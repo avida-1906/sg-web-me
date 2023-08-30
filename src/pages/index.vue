@@ -2,10 +2,6 @@
 defineOptions({
   name: 'IndexPage',
 })
-const user = useUserStore()
-const name = ref(user.savedName)
-
-const router = useRouter()
 
 const { t } = useI18n()
 </script>
@@ -13,10 +9,6 @@ const { t } = useI18n()
 <template>
   <div style="background-color: white;">
     <h1>{{ t('button.about') }}</h1>
-    <!-- <span style="background: red; display: flex; align-items: center;">
-      <AppIcon name="chat" />
-      Hehe
-    </span> -->
     <div class="sss">
       哈喽
     </div>
