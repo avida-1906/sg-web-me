@@ -25,3 +25,29 @@ html.dark {
   width: 100%;
   height: 2px;
 }
+
+:root {
+  /* 主色&辅色 */
+  --app-primary-main: #1A2C38;
+  --app-secondary-main: #2F4553;
+  --app-secondary-light: #B1BAD3;
+  --app-secondary-grey: #213743;
+  --app-secondary-dark: #0F212E;
+  --app-secondary-deepdark: #071824;
+  --app-tips-success: #1FFF20;
+  --app-tips-fail: #E91134;
+  /* 点缀色 */
+  --app-sub-info: #008A01;
+  --app-sub-deepblue: #105EB5;
+  --app-sub-blue: #1f8bff;
+  --app-sub-lightblue: #72ACED;
+  /* 文字颜色 */
+  --app-text-white: #FFFFFF;
+  --app-text-error: #ed4163;
+  --app-text-warn: #FF9800;
+  --app-text-green: #00E701;
+  --app-text-blue: #1475E1;
+  --app-text-lightblue: #4391e7;
+  --app-text-dark: #05080a;
+  --app-text-grey: #557086;
+}
