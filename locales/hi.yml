@@ -1,0 +1,14 @@
+button:
+  about: के बारे में
+  back: पीछे
+  go: जाना
+  home: घर
+  toggle_dark: डार्क मोड टॉगल करें
+  toggle_langs: भाषाएँ बदलें
+intro:
+  desc: Opinionated Vite Starter Template
+  dynamic-route: Demo of dynamic route
+  hi: नमस्ते, {name}!
+  aka: के रूप में भी जाना जाता है
+  whats-your-name: तुम्हारा नाम क्या है?
+not-found: नहीं मिला
