@@ -2,7 +2,7 @@
 import ids from 'virtual:svg-icons-names'
 
 function copyIcon(id: string) {
-  return `<AppIcon name="${id}" style="font-size: 50px;" />`
+  return `<AppIcon name="${id}" />`
 }
 </script>
 
@@ -11,7 +11,7 @@ function copyIcon(id: string) {
     <h3>图标 AppIcon</h3>
     <ul class="icon-wrap m0 p0">
       <li v-for="id in ids" :key="id" class="item" @click="() => copyIcon(id)">
-        <AppIcon :name="id.slice(5)" style="font-size: 50px;" />
+        <AppIcon :name="id.slice(5)" />
       </li>
     </ul>
   </section>
@@ -32,6 +32,7 @@ function copyIcon(id: string) {
   .item {
     cursor: pointer;
     width: 60px;
+    font-size: 50px;
   }
 }
 </style>
