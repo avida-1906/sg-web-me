@@ -4,7 +4,7 @@
 <template>
   <section class="box">
     <h3>AppIcon</h3>
-    <AppIcon name="chat" />
+    <AppIcon name="chat" style="font-size: 100px;" />
   </section>
   <section class="box" />
 </template>

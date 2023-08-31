@@ -94,4 +94,21 @@ export default defineConfig({
     // TODO: workaround until they support native ESM
     noExternal: ['workbox-window', /vue-i18n/],
   },
+
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('main.scss'))
+            return 'main.scss'
+
+          if (id.includes('reset.scss'))
+            return 'reset.scss'
+
+          if (id.includes('node_modules'))
+            return id.toString().split('node_modules/')[1].split('/')[0].toString()
+        },
+      },
+    },
+  },
 })

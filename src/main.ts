@@ -1,7 +1,8 @@
 // import Previewer from 'virtual:vue-component-preview'
 import App from './App.vue'
 
-import './styles/main.css'
+import './styles/reset.scss'
+import './styles/main.scss'
 import { install } from './modules'
 
 import 'virtual:svg-icons-register'

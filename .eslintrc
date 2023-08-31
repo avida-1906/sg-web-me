@@ -2,5 +2,9 @@
   "extends": [
     "@antfu",
     "@unocss"
+  ],
+  "ignorePatterns": [
+    "**/*.css",
+    "**/*.scss"
   ]
 }
