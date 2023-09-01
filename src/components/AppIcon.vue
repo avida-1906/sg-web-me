@@ -8,10 +8,6 @@ const props = defineProps({
     type: String,
     required: true,
   },
-  color: {
-    type: String,
-    default: '#333',
-  },
 })
 
 const symbolId = `#${props.prefix}-${props.name}`
@@ -19,7 +15,7 @@ const symbolId = `#${props.prefix}-${props.name}`
 
 <template>
   <svg class="app-svg-icon" aria-hidden="true">
-    <use :xlink:href="symbolId" :fill="color" />
+    <use :xlink:href="symbolId" />
   </svg>
 </template>
 
@@ -30,5 +26,7 @@ const symbolId = `#${props.prefix}-${props.name}`
   pointer-events: none;
   stroke-width: 0;
   flex-shrink: 0;
+  fill: currentColor;
+  stroke: currentColor;
 }
 </style>
