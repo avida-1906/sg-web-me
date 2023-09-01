@@ -25,3 +25,7 @@
   --app-text-dark: #05080a;
   --app-text-grey: #557086;
 }
+
+html, body {
+  background: var(--app-primary-main);
+}
