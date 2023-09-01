@@ -24,13 +24,32 @@ function toggle() {
         <AppIcon name="uni-arrow-down" />
       </div>
     </div>
-    <div v-show="showContent" class="app-demo-card-content">
-      <slot />
-    </div>
+    <Transition name="bounce">
+      <div v-show="showContent" class="app-demo-card-content">
+        <slot />
+      </div>
+    </Transition>
   </section>
 </template>
 
 <style lang="scss">
+.bounce-enter-active {
+  animation: bounce-in 0.5s;
+}
+.bounce-leave-active {
+  animation: bounce-in 0.5s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.01);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 :root {
     --app-demo-card-head-bg: var(--tg-secondary-dark);
     --app-demo-card-content-bg: var(--tg-primary-main);
