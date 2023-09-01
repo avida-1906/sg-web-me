@@ -1,8 +1,6 @@
 <script lang="ts" setup>
 import ids from 'virtual:svg-icons-names'
 
-const { t } = useI18n()
-
 function copyIcon(id: string) {
   return `<AppIcon name="${id}" />`
 }
@@ -11,7 +9,7 @@ function copyIcon(id: string) {
 <template>
   <ul>
     <li class="box">
-      <AppDemoCard :title="`${t('icon')}AppIcon`">
+      <AppDemoCard title="AppIcon">
         <ul class="icon-wrap m0 p0">
           <li v-for="id in ids" :key="id" class="item" @click="() => copyIcon(id)">
             <AppIcon :name="id.slice(5)" />
