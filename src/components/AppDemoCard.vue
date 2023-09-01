@@ -13,8 +13,8 @@ function toggle() {
 </script>
 
 <template>
-  <section class="card">
-    <div class="card-head">
+  <section class="app-demo-card">
+    <div class="app-demo-card-head">
       <slot name="title">
         <h3>
           {{ title }}
@@ -24,14 +24,21 @@ function toggle() {
         <AppIcon name="uni-arrow-down" />
       </div>
     </div>
-    <div v-show="showContent" class="card-content">
+    <div v-show="showContent" class="app-demo-card-content">
       <slot />
     </div>
   </section>
 </template>
 
+<style lang="scss">
+:root {
+    --app-demo-card-head-bg: var(--tg-secondary-dark);
+    --app-demo-card-content-bg: var(--tg-primary-main);
+}
+</style>
+
 <style lang="scss" scoped>
-.card {
+.app-demo-card {
   border-radius: 4px;
   overflow: hidden;
   background: var(--app-primary-main);
@@ -43,7 +50,7 @@ function toggle() {
     align-items: center;
     justify-content: space-between;
     padding: 0 16px;
-    background: var(--app-secondary-dark);
+    background: var(--app-demo-card-head-bg);
     h3 {
       line-height: 22px;
       padding: 0;
@@ -67,6 +74,7 @@ function toggle() {
   }
   &-content {
     padding: 12px 8px;
+    background: var(--app-demo-card-content-bg);
   }
 }
 </style>
