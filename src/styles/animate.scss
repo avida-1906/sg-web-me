@@ -1,12 +1,13 @@
+// 赔率变化箭头动画
 .arrow-odd{
   animation-duration: .8s;
   animation-iteration-count: 4;
   animation-fill-mode: forwards
 }
-.odd-changed-up{
+.odd-rise{
   animation-name:flashingUp;
 }
-.odd-changed-down{
+.odd-decrease{
   animation-name:flashingDown;
 }
 
