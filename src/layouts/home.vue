@@ -9,6 +9,9 @@
           <div class="container">
             {{ $t('active_day_ago', { days: 10 }) }}
           </div>
+          <p>
+            真人娱乐场
+          </p>
         </div>
       </header>
       <div class="scrollable">
@@ -41,7 +44,9 @@
     justify-content: space-between;
     align-items: center;
     height: 60px;
-    background-color: red;
+    background-color: black;
+    color: white;
+    font-weight: 600;
 
     & > .group {
       width: 100%;

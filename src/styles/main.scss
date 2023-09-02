@@ -40,6 +40,11 @@
   --tg-font-size-3xl: 32px;
   --tg-font-size-4xl: 40px;
 
+  // 字体粗细
+  --tg-font-weight-normal: 400;
+  --tg-font-weight-semibold: 600;
+  --tg-font-weight-bold: 700;
+
   // 按钮 padding size
   --tg-spacing-button-padding-horizontal-none: 0;
   --tg-spacing-button-padding-horizontal-sm: 16px;
@@ -77,6 +82,15 @@
   --tg-border-width-default: 1px;
   --tg-border-width-sm: 2px;
   --tg-border-width-md: 4px;
+
+  // z-index
+  --tg-z-index-0: 0;
+  --tg-z-index-10: 10;
+  --tg-z-index-20: 20;
+  --tg-z-index-30: 30;
+  --tg-z-index-40: 40;
+  --tg-z-index-50: 50;
+  --tg-z-index-top: 9999;
 
   // 间距
   @for $i from 1 through 50 {
