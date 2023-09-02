@@ -1,0 +1,22 @@
+.arrow-odd{
+  animation-duration: .8s;
+  animation-iteration-count: 4;
+  animation-fill-mode: forwards
+}
+.odd-changed{
+  animation-name:flashing;
+}
+
+@keyframes flashing {
+
+  0%,
+  20% {
+    transform: translateY(-20%);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(20%);
+    opacity: 0;
+  }
+}
