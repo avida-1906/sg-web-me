@@ -72,6 +72,12 @@
   // 滚动条
   --tg-scrollbar-size: 6px;
 
+  // 边框宽度
+  --tg-border-width-none: 0;
+  --tg-border-width-default: 1px;
+  --tg-border-width-sm: 2px;
+  --tg-border-width-md: 4px;
+
   // 间距
   @for $i from 1 through 50 {
     --tg-spacing-#{$i}: #{$i}px;

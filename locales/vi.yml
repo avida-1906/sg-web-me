@@ -1,1 +1,577 @@
-hello: vi hello
+hello: 越南语
+a_day: Một ngày
+a_few_hours: Một vài giờ
+a_few_minutes: Một vài phút
+a_week: Một tuần
+active_15m_ago: 'Hoạt động {minutes} phút trước'
+active_day_ago: 'Hoạt động {days} ngày trước'
+active_hour_ago: 'Hoạt động {hours} giờ trước'
+active_minute_ago: 'Hoạt động {minutes} phút trước'
+active_state: Đang hoạt động
+active_week_ago: Hoạt động hơn 1 tuần trước
+add_participant: Thêm người tham gia
+add_person: Thêm người
+ai_answer: Câu trả lời AI
+ai_answer_information: 'Câu trả lời AI, thông tin'
+ai_answers_english_only: Câu trả lời AI hiện chỉ có tiếng Anh.
+ai_bot: AI Bot
+alexandria_unauthorized: 'Bạn có thể thử gửi cho chúng tôi thông điệp hoặc đăng nhập tại {app_name}'
+almost_there: Gần xong...
+also_in_this_conversation: Cũng tham gia cuộc trò chuyện này
+amazing: Tuyệt vời
+answer: Trả lời
+answer_is_generated_with_ai: >-
+  Câu trả lời này chỉ dựa trên nội dung do {company_name} nêu rõ. Nội dung được
+  tạo ra bởi AI nên có thể không hoàn toàn chính xác.
+answer_is_generated_with_ai_may_be_incorrect: >-
+  Câu trả lời này được tạo tự động bằng AI. Có thể câu trả lời không hoàn toàn
+  chính xác.
+answer_is_generated_with_ai_sources: >-
+  Câu trả lời AI được tạo dựa trên cả nguồn công khai và riêng tư do
+  {company_name} cung cấp.
+april_date: 'Ngày {date} tháng 4'
+article: bài viết
+article_double_author: 'Của {author_first_name1} và {author_first_name2}'
+article_multiple_authors: 'Của {author_first_name1} và {number_of_other_authors} người khác'
+article_question: Nội dung này có giải đáp được câu hỏi của bạn không?
+article_search_hint_text: Tìm kiếm các bài viết...
+article_search_no_results_for_query: 'Không có kết quả cho "{query}"'
+article_search_search_results: Kết quả tìm kiếm
+article_search_search_results_for_query: 'Tìm kiếm kết quả cho "{query}"'
+article_single_author: 'Của {author_first_name}'
+ask_a_question: Đặt câu hỏi
+ask_a_question_placeholder: Đặt câu hỏi...
+ask_a_question_with_ellipsis: Đặt câu hỏi...
+ask_another_question_with_ellipsis: Đặt một câu hỏi khác...
+ask_our_bot_a_question: Đặt câu hỏi cho bot của chúng tôi
+asked_about: Đã hỏi về
+assigned_to_admin: 'Đã giao cho {admin}'
+attribute_collector_negative: Không
+attribute_collector_positive: Có
+august_date: 'Ngày {date} tháng 8'
+avatar: Ảnh đại diện
+avatars: Ảnh đại diện
+away_state: Vắng mặt
+bad: Không tốt
+banner: quảng cáo trên web
+bot: Bot
+bot_answers_instantly: Bot trả lời ngay lập tức
+bot_expectation_text: Bot của chúng tôi có thể trả lời nhiều câu hỏi phổ biến
+bot_is_still_thinking: Bot vẫn đang suy nghĩ...
+bot_is_thinking: Bot đang suy nghĩ...
+browse_collections: Xem qua các bộ sưu tập
+by_email: Bằng email
+by_web_notification: Bằng thông báo web
+can_continue_whatsapp: Bạn có thể tiếp tục cuộc trò chuyện của mình trên WhatsApp
+cancel: Hủy
+cant_load_new_messages: Không thể tải thông điệp mới
+check_later_for_updates: Hãy kiểm tra lại sau để biết các bản cập nhật.
+checklist_card_first_step: Bước đầu tiên
+checklist_card_next_step: Bước tiếp theo
+checklist_completed: Đã hoàn thành
+checklist_in_progress_time_remaining_plural: 'Còn khoảng {minutes} phút'
+checklist_in_progress_time_remaining_singular: Còn khoảng 1 phút
+checklist_mark_step_as_complete: Đánh dấu là đã hoàn thành
+checklist_not_started_time_remaining_plural: 'Khoảng {minutes} phút'
+checklist_not_started_time_remaining_singular: Khoảng 1 phút
+checklist_number_of_steps_plural: '{number_of_steps} bước'
+checklist_number_of_steps_progress_plural: '{steps_completed} trong {total_steps} đã xong'
+checklist_number_of_steps_progress_singular: '1 trong số {total_steps} đã hoàn thành'
+checklist_number_of_steps_singular: 1 bước
+checklist_sender_name: 'Được chia sẻ bởi {name}'
+checklist_step_action_button: Nút hành động bước
+checklist_step_completed: Đã hoàn thành
+choose_one: Chọn một…
+clear: Xóa
+clear_all: Xóa tất cả
+click_open_whatsapp: Nhấp vào đây để mở WhatsApp
+click_to_unmute: Nhấp để hủy tắt tiếng
+close: Đóng
+close_intercom_messenger: Đóng Intercom Messenger
+connecting: Đang kết nối...
+continue_on_whatsapp: Tiếp tục trên WhatsApp
+continue_the_conversation: Tiếp tục cuộc trò chuyện
+continue_whatsapp_instead: Bạn có thể tiếp tục cuộc trò chuyện trên WhatsApp.
+conversation_card_office_hours_header: Thời gian chúng tôi sẽ trực tuyến trở lại
+conversation_card_reply_time_header: Thời gian hồi âm thông thường của chúng tôi
+conversation_card_reply_time_header_m5: Thời gian trả lời thông thường
+conversation_card_unknown_response_time: Chúng tôi sẽ hồi âm sớm nhất có thể
+conversation_has_ended: Cuộc trò chuyện của bạn đã kết thúc
+conversation_moved_whatsapp: Cuộc trò chuyện của bạn đã chuyển sang WhatsApp
+conversations: Hội thoại
+couldnt_load_app: Không thể tải ứng dụng.
+couldnt_load_apps: Không thể tải các ứng dụng.
+couldnt_load_content: Không thể tải nội dung
+currently_no_help_articles: Hiện tại không có bài viết trợ giúp nào.
+custom_response_delay_0: Thường trả lời trong vài phút
+custom_response_delay_1: Thường trả lời trong vài giờ
+custom_response_delay_2: Thường trả lời trong một ngày
+custom_response_delay_3: Thường trả lời trong một tuần
+custom_response_delay_unknown: Sẽ trả lời sớm nhất có thể.
+december_date: 'Ngày {date} tháng 12'
+discovery_launcher: trình khởi chạy khám phá
+discovery_mode_entry_text: Cần sự trợ giúp?
+dismiss: Bỏ
+dont_show_suggestions: Không hiển thị đề xuất
+download_transcript: Tải xuống cuộc trò chuyện
+email: Email
+emoji_picker: Bộ chọn biểu tượng cảm xúc
+empty_conversations: Thông báo từ nhóm sẽ được hiển thị ở đây
+empty_suggestion_prompt: Không có đề xuất liên quan
+enter_text_placeholder: Nhập văn bản…
+expand_header: Mở rộng tiêu đề
+expected_response_delay_10800: chưa đầy 3 giờ
+expected_response_delay_120: chưa đầy 2 phút
+expected_response_delay_1200: chưa đầy 20 phút
+expected_response_delay_14400: chưa đầy 4 giờ
+expected_response_delay_172800: 2 ngày
+expected_response_delay_180: chưa đầy 3 phút
+expected_response_delay_1800: chưa đầy 30 phút
+expected_response_delay_18000: chưa đầy 5 giờ
+expected_response_delay_21600: chưa đầy 6 giờ
+expected_response_delay_240: chưa đầy 4 phút
+expected_response_delay_259200: 3 ngày
+expected_response_delay_300: chưa đầy 5 phút
+expected_response_delay_345600: 4 ngày
+expected_response_delay_3600: chưa đầy 1 giờ
+expected_response_delay_43200: chưa đầy 12 giờ
+expected_response_delay_432000: 5 ngày
+expected_response_delay_518400: 6 ngày
+expected_response_delay_60: chưa đầy 1 phút
+expected_response_delay_600: chưa đầy 10 phút
+expected_response_delay_604800: chưa đầy 1 tuần
+expected_response_delay_7200: chưa đầy 2 giờ
+expected_response_delay_86400: 1 ngày
+expected_response_delay_900: chưa đầy 15 phút
+extra_labels_count: '+ {labels_count} nhãn'
+failed_message: Tin nhắn bị lỗi
+failed_to_send: Không thể gửi
+february_date: 'Ngày {date} tháng 2'
+field_is_required: 'Trường {field_name} là bắt buộc'
+file_max_limit: 'Tối đa {limit} tập tin'
+file_too_big: 'Không thể gửi tệp lớn quá {limit} MB'
+file_type_not_allowed: Loại tập tin không được phép
+frequently_used: Thường dùng
+from_app: 'từ {app_name}'
+from_name: 'từ {name}'
+generating_answer: Đang tạo câu trả lời...
+get_an_instant_answer: Nhận câu trả lời ngay lập tức
+get_help: Được trợ giúp
+get_notified: Được thông báo
+get_notified_by_email: Nhận thông báo qua email
+get_responses_by_email: Nhận tin trả lời qua email
+gif_attribution: 'qua {providername}'
+gif_picker: Bộ chọn ảnh gif
+gifs_load_error: Không thể tải GIF
+go_to: 'Vào {app_name}'
+great: Tốt
+group_conversation_1_other_participant_count_short: +1 người khác
+group_conversation_multiple_other_participant_count_short: '+{other_participant_count} người khác'
+group_conversation_multiple_person_also_participating: '{other_participant_count} người khác cũng đang tham gia'
+group_conversation_name_also_participating: '{participant_name} cũng đang tham gia'
+group_conversation_name_and_1_other_also_particiapting: '{participant_name} và 1 người khác cũng đang tham gia'
+group_conversation_name_and_multiple_others_also_participating: '{participant_name} và {other_participant_count} người khác cũng đang tham gia'
+group_conversation_one_person_also_participating: 1 người khác cũng đang tham gia
+help_space_title: Trợ giúp
+hi_name: "Chào {first_name} \U0001F44B"
+hi_there: Chào bạn 👋
+home_space_title: Nhà
+how_can_we_help: Chúng tôi có thể giúp được gì cho bạn?
+how_would_you_rate_this: Bạn đánh giá thế nào về điều này?
+january_date: 'Ngày {date} tháng 1'
+join_conversation: Tham gia cuộc trò chuyện
+july_date: 'Ngày {date} tháng 7'
+june_date: 'Ngày {date} tháng 6'
+last_active_hours_ago: 'Hoạt động lần cuối {mins} giờ trước'
+last_active_mins_ago: 'Hoạt động lần cuối {mins} phút trước'
+last_active_over_a_week: Hoạt động lần cuối hơn 1 tuần trước
+learn_more: Tìm hiểu thêm
+leave_us_a_message: Để lại tin nhắn cho chúng tôi
+leave_your_email: Để lại email của bạn
+loading: Đang tải
+march_date: 'Ngày {date} tháng 3'
+may_date: 'Ngày {date} tháng 5'
+message: tin nhắn
+message_seen: Đã xem
+message_state_sending: Đang gửi…
+message_unseen: Chưa xem
+messages_browse_articles_btn: Duyệt tìm trợ giúp
+messages_empty_state_text: Thông báo từ nhóm sẽ được hiển thị ở đây
+messages_empty_state_title: Không có tin nhắn
+messages_space_title: Tin nhắn
+messenger: messenger
+messenger_bot_reply_time: Bot của chúng tôi sẽ trả lời ngay lập tức
+multiple_articles: '{total_articles} Bài viết'
+multiple_collections: '{total_collection} bộ sưu tập'
+mute_sound: Tắt âm thanh
+name_and_1_other: '{name} và 1 người khác'
+name_and_one_other: '{name} và 1 người khác'
+name_and_two_others: '{name} và 2 người khác'
+name_and_x_others: '{name} và {count} người khác'
+nature: Tự nhiên
+navigation_back: Quay lại
+new_conversation: Hội thoại mới
+new_message: Tin nhắn mới
+news: Tin tức
+news_empty_title: Chưa có tin tức
+news_latest_subtitle: 'Từ nhóm {team_name}'
+news_latest_title: Mới nhất
+news_older_title: Cũ hơn
+news_space_title: Tin tức
+newsfeed: Nguồn cấp tin tức
+no_articles_to_display: Chưa có bài viết nào
+no_conversations: Không có hội thoại
+no_emoji_found: Không tìm thấy emoji nào
+no_gifs_found: Không tìm thấy GIF nào
+no_help_articles_to_display: Không có bài viết trợ giúp
+no_messages_from_the_team: Không có tin nhắn từ nhóm
+no_results_for_searchterm: 'Không có kết quả cho {searchTerm}'
+no_tasks: Không có nhiệm vụ
+no_tasks_available_currently: Hiện tại không có nhiệm vụ nào khả dụng.
+nothing_to_see_here_yet: Không có tin mới
+notification: thông báo
+november_date: 'Ngày {date} tháng 11'
+number_is_incorrect: Số đó có vẻ không đúng
+objects: Đồ vật
+october_date: 'Ngày {date} tháng 10'
+office_hours_client_response_1h: Quay lại sau 1 giờ
+office_hours_client_response_2h: Quay lại sau 2 giờ
+office_hours_client_response_30m: Quay lại sau 30 phút
+office_hours_client_response_3h: Quay lại sau 3 giờ
+office_hours_client_response_day_0: Quay lại vào thứ Hai
+office_hours_client_response_day_1: Quay lại vào thứ Ba
+office_hours_client_response_day_2: Quay lại vào thứ Tư
+office_hours_client_response_day_3: Quay lại vào thứ Năm
+office_hours_client_response_day_4: Quay lại vào thứ Sáu
+office_hours_client_response_day_5: Quay lại vào thứ Bảy
+office_hours_client_response_day_6: Quay lại vào Chủ Nhật
+office_hours_client_response_later_today: Quay lại sau trong hôm nay
+office_hours_client_response_next_week: Quay lại vào tuần sau
+office_hours_client_response_tomorrow: Quay lại vào ngày mai
+ok_description: Ok
+open_article_in_help_center: Mở trong trung tâm trợ giúp
+open_conversation_and_reply: Mở cuộc trò chuyện và trả lời
+open_intercom_messenger: Mở Intercom Messenger
+operator_asked_for_attribute: 'Đã yêu cầu {attribute}'
+or_click_open_whatsapp: Hoặc nhấp vào đây để mở WhatsApp
+or_continue_on_whatsapp_web: Hoặc tiếp tục trên trang web WhatsApp
+our_bot_answers_instantly: Bot của chúng tôi trả lời ngay lập tức
+pause: Tạm dừng
+people: Người
+phone_number: Số điện thoại
+places: Địa điểm
+play: Phát
+play_sound: Phát âm thanh
+play_video: Phát video
+plus_x_participants: '+ {count}'
+pointer: con trỏ
+post: bài đăng
+powered_by_intercom: Được cung cấp bởi Intercom
+proactive_expected_response_delay_10800: Thường trả lời trong vòng 3 giờ
+proactive_expected_response_delay_120: Thường trả lời trong vòng 2 phút
+proactive_expected_response_delay_1200: Thường trả lời trong vòng 20 phút
+proactive_expected_response_delay_14400: Thường trả lời trong vòng 4 giờ
+proactive_expected_response_delay_172800: Thường trả lời trong 2 ngày
+proactive_expected_response_delay_180: Thường trả lời trong vòng 3 phút
+proactive_expected_response_delay_1800: Thường trả lời trong vòng 30 phút
+proactive_expected_response_delay_18000: Thường trả lời trong vòng 5 giờ
+proactive_expected_response_delay_21600: Thường trả lời trong vòng 6 giờ
+proactive_expected_response_delay_240: Thường trả lời trong vòng 4 phút
+proactive_expected_response_delay_259200: Thường trả lời trong 3 ngày
+proactive_expected_response_delay_300: Thường trả lời trong vòng 5 phút
+proactive_expected_response_delay_345600: Thường trả lời trong 4 ngày
+proactive_expected_response_delay_3600: Thường trả lời trong vòng 1 giờ
+proactive_expected_response_delay_43200: Thường trả lời trong 12 giờ
+proactive_expected_response_delay_432000: Thường trả lời trong 5 ngày
+proactive_expected_response_delay_518400: Thường trả lời trong 6 ngày
+proactive_expected_response_delay_60: Thường trả lời trong vòng 1 phút
+proactive_expected_response_delay_600: Thường trả lời trong vòng 10 phút
+proactive_expected_response_delay_604800: Thường trả lời trong vòng 1 tuần
+proactive_expected_response_delay_7200: Thường trả lời trong vòng 2 giờ
+proactive_expected_response_delay_86400: Thường trả lời trong 1 ngày
+proactive_expected_response_delay_900: Thường trả lời trong chưa đầy 15 phút
+proactive_expected_response_delay_unknown: Sẽ trả lời sớm nhất có thể
+product_tours_author: 'Bởi {name} từ {company}'
+product_tours_done: Xong
+product_tours_error: >-
+  Chúng tôi rất tiếc vì đã phát sinh vấn đề không mong muốn với chuyến tham quan
+  tìm hiểu này
+product_tours_error_cta: Nói chuyện với nhóm
+product_tours_name: Tham quan tìm hiểu sản phẩm
+product_tours_next: Tiếp
+product_tours_restart: Khởi động lại
+product_tours_snooze: Giấc ngủ ngắn
+product_tours_tour_step_number: '{start_number} trong {end_number}'
+product_tours_view: Xem chuyến tham quan tìm hiểu
+profile_location: '{time} ở {location}'
+rate_your_conversation: Xếp hạng cuộc trò chuyện
+receive_replies_there: 'Khi nhóm trả lời, bạn sẽ nhận được câu trả lời ở đó'
+recent_ticket: Vé gần đây
+recent_tickets: Vé gần đây
+reconnect: Kết nối lại
+recorded_days_ago: 'Đã ghi {days} ngày trước'
+recorded_over_week_ago: Đã ghi hơn một tuần trước
+recorded_today: Đã ghi hôm nay
+recorded_yesterday: Đã ghi ngày hôm qua
+remove_participant: Xóa người tham gia
+remove_person: Xóa người
+reply_from: Tin trả lời từ
+reply_to_conversation: Viết tin trả lời
+reply_to_name: 'Trả lời {name}…'
+scan_qr: Quét QR bằng điện thoại của bạn
+search: Tìm kiếm
+search_browse_empty_state_text: >-
+  Rất tiếc, chúng tôi không thể tìm thấy bất cứ kết quả nào cho điều đó. Thử
+  viết lại nội dung tìm kiếm của bạn.
+search_for_answers: Tìm kiếm câu trả lời…
+search_for_emoji: Tìm kiếm biểu tượng cảm xúc…
+search_for_help: Tìm kiếm sự trợ giúp
+search_gif: Tìm kiếm GIF…
+see_all: Xem tất cả
+see_all_conversations: Xem tất cả các cuộc trò chuyện của bạn
+see_past_conversations: Xem các cuộc trò chuyện cũ
+see_previous_conversations: Xem các cuộc trò chuyện trước đây của bạn
+seek_video: Tìm kiếm video
+send: Gửi
+send_a_message: Gửi tin nhắn…
+send_a_message_reply_time: Thời gian trả lời thông thường là
+send_a_message_reply_time_card: 'Thời gian trả lời thông thường là {replyTime}'
+send_prefilled_message: 'Khi WhatsApp mở, hãy gửi tin nhắn đã điền trước để tiếp tục cuộc trò chuyện'
+send_us_a_message: Gửi tin nhắn cho chúng tôi
+send_us_a_message_bot: Gửi tin nhắn cho chúng tôi và bot của chúng tôi sẽ trả lời ngay lập tức
+sent_a_video: đã gửi một video
+sent_an_app: đã gửi ứng dụng
+sent_an_attachment: đã gửi một tệp đính kèm
+sent_an_image: đã gửi một hình ảnh
+sent_you_a_video: Đã gửi cho bạn một video
+sent_you_a_video_reply: Đã gửi cho bạn một video trả lời
+sent_you_an_app: Đã gửi cho bạn ứng dụng
+sent_you_an_attachment: Đã gửi cho bạn một tệp đính kèm
+sent_you_an_image: Đã gửi cho bạn một hình ảnh
+september_date: 'Ngày {date} tháng 9'
+shared_by: Được chia sẻ bởi
+show_admin_name: Hiển thị tên quản trị viên
+show_less: Hiển thị ít hơn
+single_article: 1 Bài viết
+single_collection: 1 bộ sưu tập
+sms: SMS
+some_things_failed_to_load: Không tải được một số thứ. Thử lại.
+something_is_wrong: Đã xảy ra lỗi
+source: Nguồn
+sources: Nguồn
+spaces_error_description: Không thể tải nội dung
+spaces_error_title: Đã xảy ra lỗi
+start_a_conversation: Bắt đầu trò chuyện...
+start_another_conversation: Bắt đầu cuộc trò chuyện khác
+start_typing: Bắt đầu nhập...
+status: Tình trạng
+still_generating_answer: Vẫn đang tạo câu trả lời...
+still_thinking: Vẫn đang suy nghĩ...
+still_working_on_it: Vẫn đang tìm hiểu...
+string_is_incorrect: Có vẻ không đúng
+submit: Gửi
+successfully_reconnected: Đã kết nối lại thành công
+suggested_articles: Các bài viết đề xuất
+suggested_content_prompt: Bất kỳ nội dung nào trong số này có liên quan đến câu hỏi của bạn không?
+surveys_all_options_response_hint: Vui lòng chọn tất cả các tùy chọn phù hợp
+surveys_close_survey: Đóng khảo sát
+surveys_done_button: Xong
+surveys_dropdown_default_option: Vui lòng chọn một phản hồi...
+surveys_email_error: Vui lòng nhập địa chỉ email hợp lệ
+surveys_fixed_response_count_response_hint: 'Vui lòng chọn {response_count} tùy chọn'
+surveys_from_company: 'Khảo sát từ {company}'
+surveys_from_teammate: 'Khảo sát của {sender_name} từ {company}'
+surveys_multi_select_too_few_responses: 'Câu hỏi này yêu cầu ít nhất {response_count} tùy chọn để chọn'
+surveys_multi_select_too_many_responses: 'Câu hỏi này yêu cầu {response_count} tùy chọn để chọn'
+surveys_multiselect_other_option: Khác (Vui lòng nêu rõ)
+surveys_multiselect_other_option_input_label: Vui lòng nêu rõ
+surveys_multiselect_other_option_input_placeholder: Nhập câu trả lời
+surveys_multiselect_other_option_value: Khác
+surveys_next_button: Tiếp
+surveys_nps_lower_label: Không có khả năng
+surveys_nps_upper_label: Rất có khả năng
+surveys_number_error: Vui lòng nhập số
+surveys_required_question: Đây là một câu hỏi bắt buộc
+surveys_required_response: Đây là phản hồi bắt buộc
+surveys_response_range_response_hint: >-
+  Vui lòng chọn tối thiểu {minimum_response_count} và tối đa
+  {maximum_response_count} tùy chọn
+surveys_response_too_long: 'Vui lòng giữ câu trả lời tối đa {character_count} ký tự'
+surveys_single_response_hint: Vui lòng chọn 1 tùy chọn
+surveys_submit_response: Gửi câu trả lời của bạn
+surveys_telephone_error: Vui lòng nhập số điện thoại hợp lệ
+surveys_text_input_question_placeholder: Vui lòng nhập phản hồi của bạn ở đây...
+symbols: Biểu tượng
+tasks_space_title: Nhiệm vụ
+team_name_custom_response_delay_2: '{app_name} thường trả lời trong một ngày'
+team_name_custom_response_delay_3: '{app_name} thường trả lời trong một tuần'
+team_name_proactive_expected_response_delay_one_business_day: '{app_name} thường trả lời trong một ngày làm việc'
+team_name_proactive_expected_response_delay_two_business_days: '{app_name} thường trả lời trong hai ngày làm việc'
+teammate_calendar_link: Lịch dành cho nhóm
+teammate_profile: 'Hồ sơ nhóm {provider}'
+tell_us_more: Cho chúng tôi biết thêm…
+tell_us_what_you_need: Hãy cho chúng tôi biết bạn cần giúp gì và bot của chúng tôi sẽ cố gắng đáp ứng
+terrible: Thật tệ
+thank_you: Xin cảm ơn
+thanks_custom_response_delay_one_business_day: Xin cảm ơn! Nhóm sẽ trả lời trong một ngày làm việc
+thanks_custom_response_delay_two_business_days: Xin cảm ơn! Nhóm sẽ trả lời trong vòng hai ngày làm việc
+thanks_for_letting_us_know: Cảm ơn bạn đã thông báo cho chúng tôi
+thanks_proactive_expected_response_delay_unknown: Cảm ơn bạn! Nhóm sẽ trả lời sớm nhất có thể
+that_country_code_doesnt_look_quite_right: Mã quốc gia đó có vẻ không đúng
+that_email_address_doesnt_look_quite_right: Địa chỉ email đó có vẻ không đúng
+that_number_doesnt_look_quite_right: Số đó có vẻ không đúng
+that_number_has_too_many_digits: Số đó có quá nhiều chữ số
+that_number_is_missing_a_few_digits: Số đó bị thiếu một vài chữ số
+that_number_needs_a_prefix: Số đó cần có đầu số (+ hoặc 00)
+the_team_can_help_if_needed: Nhóm có thể trợ giúp nếu cần
+the_team_typically_replies_in_10800: Nhóm thường trả lời trong vòng 3 giờ.
+the_team_typically_replies_in_120: Nhóm thường trả lời trong vòng 2 phút
+the_team_typically_replies_in_1200: Nhóm thường trả lời trong vòng 20 phút.
+the_team_typically_replies_in_14400: Nhóm thường trả lời trong vòng 4 giờ.
+the_team_typically_replies_in_172800: Nhóm thường trả lời trong 2 ngày.
+the_team_typically_replies_in_180: Nhóm thường trả lời trong vòng 3 phút
+the_team_typically_replies_in_1800: Nhóm thường trả lời trong vòng 30 phút.
+the_team_typically_replies_in_18000: Nhóm thường trả lời trong vòng 5 giờ.
+the_team_typically_replies_in_21600: Nhóm thường trả lời trong vòng 6 giờ.
+the_team_typically_replies_in_240: Nhóm thường trả lời trong vòng 4 phút
+the_team_typically_replies_in_259200: Nhóm thường trả lời trong 3 ngày
+the_team_typically_replies_in_300: Nhóm thường trả lời trong vòng 5 phút.
+the_team_typically_replies_in_345600: Nhóm thường trả lời trong 4 ngày
+the_team_typically_replies_in_3600: Nhóm thường trả lời trong vòng 1 giờ.
+the_team_typically_replies_in_43200: Nhóm thường trả lời trong vòng 12 giờ
+the_team_typically_replies_in_432000: Nhóm thường trả lời trong 5 ngày
+the_team_typically_replies_in_518400: Nhóm thường trả lời trong 6 ngày
+the_team_typically_replies_in_60: Nhóm thường trả lời trong vòng 1 phút
+the_team_typically_replies_in_600: Nhóm thường trả lời trong vòng 10 phút.
+the_team_typically_replies_in_604800: Nhóm thường trả lời trong vòng 1 tuần.
+the_team_typically_replies_in_7200: Nhóm thường trả lời trong vòng 2 giờ.
+the_team_typically_replies_in_86400: Nhóm thường trả lời trong 1 ngày.
+the_team_typically_replies_in_900: Nhóm thường trả lời trong chưa đầy 15 phút
+the_team_typically_replies_in_day: Nhóm thường trả lời trong một ngày.
+the_team_typically_replies_in_hours: Nhóm thường trả lời trong vài giờ.
+the_team_typically_replies_in_minutes: Nhóm thường trả lời trong vài phút.
+the_team_typically_replies_in_one_business_day: Nhóm thường trả lời trong một ngày làm việc.
+the_team_typically_replies_in_two_business_days: Nhóm thường trả lời trong vòng hai ngày làm việc
+the_team_typically_replies_in_under_n_hours: 'Nhóm thường trả lời trong dưới {hours} giờ.'
+the_team_typically_replies_in_under_n_min: 'Nhóm thường trả lời trong dưới {minutes} phút.'
+the_team_typically_replies_in_unknown: Nhóm sẽ trả lời sớm nhất có thể
+the_team_typically_replies_in_week: Nhóm thường trả lời trong một tuần.
+thinking: Đang suy nghĩ...
+this_chat_is_powered_by_intercom: Trò chuyện này được cung cấp bởi Intercom
+ticket_status_event_moved_automation_with_bullet_point: 'Đã chuyển vé vào {status} • {timestamp}'
+ticket_status_event_moved_with_bullet_point: '{teammate} đã chuyển vé vào {status} • {timestamp}'
+tickets_add_file: Thêm tập tin
+tickets_add_files: Thêm tập tin
+tickets_create_ticket: Tạo vé
+tickets_create_ticket_fallback: Vui lòng trả lời với thông tin sau và sẽ có người sớm liên hệ lại với bạn.
+tickets_cta_text: Bạn có câu hỏi về vé này?
+tickets_email_copy: Hồi âm và cập nhật vé sẽ được gửi đến email này
+tickets_email_subject: 'Vé {ticket_type_name} của bạn'
+tickets_email_subject_with_ticket_id: 'Vé {ticket_type_name} #{ticket_id} của bạn'
+tickets_estimated_resolution: 'Thời gian ước tính để giải quyết: {duration}'
+tickets_files_added: Đã thêm tập tin
+tickets_have_a_question: Bạn có câu hỏi về vấn đề này?
+tickets_in_progress_status_detail: Chúng tôi đang làm việc này 🙌
+tickets_in_progress_status_detail_with_assignee: '{first_name} đang làm việc này!'
+tickets_is_resolved: Vé này đã được giải quyết chưa?
+tickets_log_a_ticket: Ghi một vé
+tickets_resolved_status_detail: Chúng tôi đã hoàn thành vé của bạn
+tickets_resolved_status_detail_with_assignee: '{first_name} đã hoàn thành vé của bạn'
+tickets_sla: 'Ước tính sẽ được giải quyết {time}'
+tickets_space_title: Vé
+tickets_status_change_event: 'Vé hiện {status} • {timestamp}'
+tickets_status_description_completed: Chúng tôi đã hoàn thành vé của bạn
+tickets_status_description_more_info: Chúng tôi cần thêm thông tin
+tickets_status_description_well_pick_up_soon: Chúng tôi sẽ sớm lấy vé của bạn
+tickets_status_description_working_on: Chúng tôi đang xử lý vé của bạn
+tickets_status_event_moved: '{teammate} đã chuyển vé vào {status} {timestamp}'
+tickets_status_event_moved_automation: 'Vé đã được chuyển vào {status} {timestamp}'
+tickets_status_event_submitted: 'Vé đã được {submitted_status} • {timestamp}'
+tickets_status_in_progress: Đang thực hiện
+tickets_status_resolved: Đã giải quyết
+tickets_status_submitted: Đã gửi
+tickets_status_waiting_on_you: Đang đợi bạn
+tickets_submitted_confirmation_header: Vé đã được gửi!
+tickets_submitted_confirmation_paragraph: Chúng tôi sẽ thông báo cho bạn khi vé của bạn có cập nhật
+tickets_submitted_status_detail: Chúng ta sẽ sớm lấy vé
+tickets_submitted_status_detail_with_assignee: '{first_name} sẽ sớm lấy vé'
+tickets_updates_prompt: Bạn sẽ nhận được thông tin cập nhật trong Messenger và qua email
+tickets_view_ticket: Xem chi tiết vé
+tickets_waiting_on_customer_status_detail: Chúng tôi cần thêm thông tin từ bạn
+tickets_waiting_on_customer_status_detail_with_assignee: '{first_name} cần thêm thông tin'
+time_day_ago: '{delta} ngày trước'
+time_future_1h: 1 giờ
+time_future_2h: 2 giờ
+time_future_30m: 30 phút
+time_future_3h: 3 giờ
+time_future_day_0: Thứ Hai
+time_future_day_1: Thứ Ba
+time_future_day_2: Thứ Tư
+time_future_day_3: Thứ Năm
+time_future_day_4: Thứ Sáu
+time_future_day_5: Thứ Bảy
+time_future_day_6: Chủ Nhật
+time_future_later_today: Trong hôm nay
+time_future_next_week: Tuần tới
+time_future_tomorrow: Ngày mai
+time_hour_ago: '{delta} giờ trước'
+time_just_now: Vừa xong
+time_minute_ago: '{delta} phút trước'
+time_week_ago: '{delta} tuần trước'
+time_yesterday: hôm qua
+tour: chuyến đi
+try_again: Thử lại
+try_help_center: Hãy thử Trung tâm trợ giúp của chúng tôi
+try_use_different_keywords: Hãy thử sử dụng các từ khóa khác nhau hoặc nhập câu hỏi đầy đủ của bạn
+two_business_days: Hai ngày làm việc
+type_a_number: Nhập một số…
+typically_replies_in_one_business_day: Thường trả lời trong một ngày làm việc
+typically_replies_in_two_business_days: Thường trả lời trong vòng hai ngày làm việc
+typing: Đang nhập
+unable_to_load_the_messenger: Chúng tôi không thể tải Messenger
+unread_messages: Tin nhắn chưa đọc
+updated_in_the_last_15m: Đã cập nhật trong 15 phút vừa qua
+updated_in_the_last_hour: Đã cập nhật trong 1 giờ vừa qua
+updated_over_a_week_ago: Đã cập nhật cách đây hơn 1 tuần
+updated_this_week: Đã cập nhật tuần này
+updated_today: Đã cập nhật hôm nay
+updated_yesterday: Đã cập nhật ngày hôm qua
+upfront_collection_form_close_out: Bạn có thể trở lại đây bất kỳ lúc nào để xem hồi âm và gửi nội dung cập nhật.
+upfront_collection_form_introduction: Chia sẻ một số ngữ cảnh để giúp nhóm phản hồi tốt hơn và nhanh hơn.
+upfront_collection_form_submission_confirmation: >-
+  Cám ơn bạn đã gửi ngữ cảnh đó. Để tiết kiệm thời gian sau này, bạn có thể bổ
+  sung thêm thông tin bây giờ.
+upfront_collection_form_subtitle: Gửi cho nhóm một số ngữ cảnh
+upfront_collection_form_subtitle_submitted: Họ sẽ luôn ghi nhớ ngữ cảnh này
+upfront_collection_form_title: Được trợ giúp nhanh hơn
+upfront_collection_form_title_submitted: Đã gửi đến nhóm!
+upload_attachment: Tải tệp đính kèm lên
+upload_failed: Tải lên không thành công
+upload_max_files_allowed: 'Được phép tối đa {limit} tập tin'
+upload_max_files_size: 'Kích thước tập tin tối đa là {limit}MB'
+user_says: '{firstName} nói…'
+usual_reply_time_header_label: Thời gian trả lời thông thường
+view_all: Xem tất cả
+view_conversation: Xem cuộc trò chuyện
+view_more: Hiển thị thêm
+view_more_details: Xem thêm chi tiết
+view_post: Xem bài đăng
+we_run_on_intercom: Phát triển bởi Intercom
+with_teamname: 'với {teamname}'
+working_on_it: Đang tìm hiểu...
+write_your_message: Viết tin nhắn của bạn
+written_by: Được viết bởi
+you: Bạn
+you_are_all_up_to_date: Bản tin nóng!
+you_have_new_messages: Bạn có tin nhắn mới.
+you_rated_the_conversation: Bạn đã xếp hạng cuộc trò chuyện
+you_will_get_a_reply_here_and_at_email: 'Bạn sẽ nhận được tin trả lời tại đây và tại {email}'
+youll_be_notified_here_and_by_email: Bạn sẽ được thông báo tại đây và qua email
+youll_be_notified_here_and_by_sms: Bạn sẽ được thông báo tại đây và qua SMS
+your_checklists: Danh sách kiểm tra của bạn
+your_conversations: Cuộc trò chuyện của bạn
+your_email: Email của bạn
+your_message: Tin nhắn của bạn
+your_recent_message: Tin nhắn gần đây
+your_recent_messages: Tin nhắn gần đây
+your_ticket: Vé của bạn
