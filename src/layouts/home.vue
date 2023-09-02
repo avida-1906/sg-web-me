@@ -7,7 +7,7 @@
       <header class="navigation">
         <div class="group">
           <div class="container">
-            Logo
+            {{ $t('active_day_ago', { days: 10 }) }}
           </div>
         </div>
       </header>
