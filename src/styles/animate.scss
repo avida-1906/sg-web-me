@@ -3,11 +3,14 @@
   animation-iteration-count: 4;
   animation-fill-mode: forwards
 }
-.odd-changed{
-  animation-name:flashing;
+.odd-changed-up{
+  animation-name:flashingUp;
+}
+.odd-changed-down{
+  animation-name:flashingDown;
 }
 
-@keyframes flashing {
+@keyframes flashingDown {
 
   0%,
   20% {
@@ -17,6 +20,19 @@
 
   100% {
     transform: translateY(20%);
+    opacity: 0;
+  }
+}
+@keyframes flashingUp {
+
+  0%,
+  20% {
+    transform: translateY(20%);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(-20%);
     opacity: 0;
   }
 }
