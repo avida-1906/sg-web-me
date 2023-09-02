@@ -5,7 +5,7 @@ interface Props {
 
 withDefaults(defineProps<Props>(), {})
 
-const showContent = ref(true)
+const showContent = ref(false)
 
 function toggle() {
   showContent.value = !showContent.value
@@ -14,14 +14,14 @@ function toggle() {
 
 <template>
   <section class="app-demo-card">
-    <div class="app-demo-card-head">
+    <div class="app-demo-card-head" @click="toggle">
       <slot name="title">
         <h3>
           {{ title }}
         </h3>
       </slot>
-      <div class="icon-box" :class="[showContent ? 'down' : 'left']" @click="toggle">
-        <AppIcon name="uni-arrow-down" />
+      <div class="icon-box" :class="[showContent ? 'down' : 'left']">
+        <BaseIcon name="uni-arrow-down" />
       </div>
     </div>
     <Transition name="bounce">
