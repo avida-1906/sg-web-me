@@ -35,7 +35,7 @@ function copyIcon(id: string) {
     <li class="box">
       <AppDemoCard title="BaseIcon">
         <ul class="icon-wrap m0 p0">
-          <li v-for="id in ids" :key="id" class="item" @click="() => copyIcon(id)">
+          <li v-for="id in ids" :key="id" class="item" @click="() => copyIcon(id.slice(5))">
             <BaseIcon :name="id.slice(5)" />
           </li>
         </ul>
