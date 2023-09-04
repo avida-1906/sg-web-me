@@ -80,9 +80,7 @@ button {
 
   &:active {
     color: var(--tg-text-dark);
-    .content {
-      background-color: var(--tg-text-white);
-    }
+    background-color: var(--tg-text-white);
   }
 }
 .round-line-left{
