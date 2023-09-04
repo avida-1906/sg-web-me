@@ -45,6 +45,7 @@ function copyCode(type: string) {
       {{ l }}
     </BaseButton>
   </div>
+  <!-- 按钮 -->
   <div v-if="activeTab === 'Button'">
     <BaseButton @click="copyCode('btn')">
       Click
