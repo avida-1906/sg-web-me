@@ -1,33 +1,30 @@
 <script setup lang="ts">
 interface Props {
-  width?: string | number
-  height?: string | number
-  center?: boolean
   round?: boolean
   type?: 'default' | 'text' | 'line' | 'round-line-left' | 'round-line-right'
   bgStyle?: 'primary' | 'secondary'
   disabled?: boolean
   loading?: boolean
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 }
 
 withDefaults(defineProps<Props>(), {
-  width: 68,
-  height: 44,
   type: 'default',
+  size: 'xs',
 })
 </script>
 
 <template>
   <button
-    :disabled="loading || disabled" :class="[type, bgStyle, { center, round }]" :style="{
-      width: `${width}px`,
-      height: `${height}px`,
+    :disabled="loading || disabled" :class="[type, bgStyle, { round }]"
+    :style="{
+      padding: `var(--tg-spacing-button-padding-vertical-${size}) var(--tg-spacing-button-padding-horizontal-${size})`,
     }"
   >
-    <div v-show="loading">
+    <div v-if="loading">
       loading...
     </div>
-    <div v-show="!loading" class="content">
+    <div v-else class="content">
       <slot />
     </div>
   </button>
@@ -38,7 +35,7 @@ button {
   color: var(--tg-text-white);
   font-size: var(--tg-font-size-default);
   border-radius: var(--tg-radius-default);
-  font-weight: 600;
+  font-weight: var(--tg-font-weight-semibold);
   .content{
     width: 100%;
     height: 100%;
@@ -83,9 +80,7 @@ button {
 
   &:active {
     color: var(--tg-text-dark);
-    .content {
-      background-color: var(--tg-text-white);
-    }
+    background-color: var(--tg-text-white);
   }
 }
 .round-line-left{
@@ -99,11 +94,6 @@ button {
 
 .round {
   border-radius: 100px;
-}
-
-.center {
-  display: block;
-  margin: 0 auto;
 }
 .primary{
   background-color: var(--tg-text-blue);

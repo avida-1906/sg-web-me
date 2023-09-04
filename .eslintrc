@@ -6,5 +6,8 @@
   "ignorePatterns": [
     "**/*.css",
     "**/*.scss"
-  ]
+  ],
+  "rules": {
+    "no-console": "off"
+  }
 }
