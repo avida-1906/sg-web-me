@@ -1,6 +1,4 @@
 <script lang="ts" setup name="base-loading">
-const show = ref(true)
-
 const loadIcons = [
   ['chess-frame4', 'chess-frame'],
   ['chess-football-club', 'spt-basketball'],
@@ -9,7 +7,7 @@ const loadIcons = [
 </script>
 
 <template>
-  <section v-if="show" class="tg-base-loading">
+  <section class="tg-base-loading">
     <div v-for="load, i in loadIcons" :key="i" class="item animate-prop">
       <div class="animate-prop small">
         <BaseIcon :name="load[0]" />
