@@ -41,6 +41,13 @@ function copyIcon(id: string) {
         </ul>
       </AppDemoCard>
     </li>
+    <li class="box">
+      <AppDemoCard title="BaseLoading">
+        <div class="box">
+          <BaseLoading />
+        </div>
+      </AppDemoCard>
+    </li>
   </ul>
 </template>
 

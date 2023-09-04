@@ -11,6 +11,8 @@ declare module 'vue' {
     BaseButton: typeof import('./components/BaseButton.vue')['default']
     BaseDivider: typeof import('./components/BaseDivider.vue')['default']
     BaseIcon: typeof import('./components/BaseIcon.vue')['default']
+    BaseLoading: typeof import('./components/BaseLoading.vue')['default']
+    BaseNotify: typeof import('./components/BaseNotify.vue')['default']
     BaseRadio: typeof import('./components/BaseRadio.vue')['default']
     BaseRadioGroup: typeof import('./components/BaseRadioGroup.vue')['default']
     BaseSwitch: typeof import('./components/BaseSwitch.vue')['default']
