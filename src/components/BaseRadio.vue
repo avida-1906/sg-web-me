@@ -9,7 +9,7 @@ interface Props {
   isChecked: boolean
 }
 const props = withDefaults(defineProps<Props>(), {
-  type: 'square',
+  type: 'circle',
 })
 const emit = defineEmits(['select'])
 
