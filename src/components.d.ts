@@ -10,6 +10,7 @@ declare module 'vue' {
     AppDemoCard: typeof import('./components/AppDemoCard.vue')['default']
     BaseButton: typeof import('./components/BaseButton.vue')['default']
     BaseIcon: typeof import('./components/BaseIcon.vue')['default']
+    BaseSwitch: typeof import('./components/BaseSwitch.vue')['default']
     R: typeof import('./components/R.md')['default']
     README: typeof import('./components/README.md')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

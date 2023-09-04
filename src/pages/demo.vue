@@ -2,7 +2,13 @@
 const activeTab = ref('Button')
 const tabList = [
   'Button',
+  'Switch',
 ]
+
+const isSwitch = ref(false)
+function onSwitch(v: boolean) {
+  console.log('🚀 ~ file: demo.vue:10 ~ onSwitch ~ v:', v)
+}
 
 const { copy } = useClipboard()
 function copyCode(type: string) {
@@ -31,6 +37,9 @@ function copyCode(type: string) {
       break
     case 'btn7':
       copy('<BaseButton round>Click</BaseButton>')
+      break
+    case 'switch':
+      copy('<BaseSwitch v-model="isSwitch" @change="onSwitch" />')
       break
 
     default:
@@ -87,6 +96,10 @@ function copyCode(type: string) {
         Click
       </BaseButton>
     </div>
+  </div>
+  <!-- Switch -->
+  <div v-else-if="activeTab === 'Switch'">
+    <BaseSwitch v-model="isSwitch" @change="onSwitch" @click="copyCode('switch')" />
   </div>
 </template>
 
