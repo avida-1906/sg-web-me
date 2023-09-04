@@ -10,7 +10,7 @@ const props = defineProps({
   },
 })
 
-const symbolId = `#${props.prefix}-${props.name}`
+const symbolId = computed(() => `#${props.prefix}-${props.name}`)
 </script>
 
 <template>
