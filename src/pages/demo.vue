@@ -41,36 +41,52 @@ function copyCode(type: string) {
 
 <template>
   <div class="list">
-    <BaseButton v-for="l in tabList" :key="l" @click="activeTab = l">
+    <BaseButton v-for="l in tabList" :key="l" style="margin-bottom: 10px;" @click="activeTab = l">
       {{ l }}
     </BaseButton>
   </div>
   <!-- 按钮 -->
   <div v-if="activeTab === 'Button'">
-    <BaseButton @click="copyCode('btn')">
-      Click
-    </BaseButton>
-    <BaseButton bg-style="primary" @click="copyCode('btn1')">
-      Click
-    </BaseButton>
-    <BaseButton bg-style="secondary" @click="copyCode('btn2')">
-      Click
-    </BaseButton>
-    <BaseButton type="text" @click="copyCode('btn3')">
-      Click
-    </BaseButton>
-    <BaseButton type="line" @click="copyCode('btn4')">
-      Click
-    </BaseButton>
-    <BaseButton type="round-line-left" @click="copyCode('btn5')">
-      Click
-    </BaseButton>
-    <BaseButton type="round-line-right" @click="copyCode('btn6')">
-      Click
-    </BaseButton>
-    <BaseButton round @click="copyCode('btn7')">
-      Click
-    </BaseButton>
+    <div style="margin-bottom: 10px;">
+      <BaseButton @click="copyCode('btn')">
+        Click
+      </BaseButton>
+    </div>
+    <div style="margin-bottom: 10px;">
+      <BaseButton bg-style="primary" @click="copyCode('btn1')">
+        Click
+      </BaseButton>
+    </div>
+    <div style="margin-bottom: 10px;">
+      <BaseButton bg-style="secondary" @click="copyCode('btn2')">
+        Click
+      </BaseButton>
+    </div>
+    <div style="margin-bottom: 10px;">
+      <BaseButton type="text" @click="copyCode('btn3')">
+        Click
+      </BaseButton>
+    </div>
+    <div style="margin-bottom: 10px;">
+      <BaseButton type="line" @click="copyCode('btn4')">
+        Click
+      </BaseButton>
+    </div>
+    <div style="margin-bottom: 10px;">
+      <BaseButton type="round-line-left" @click="copyCode('btn5')">
+        Click
+      </BaseButton>
+    </div>
+    <div style="margin-bottom: 10px;">
+      <BaseButton type="round-line-right" @click="copyCode('btn6')">
+        Click
+      </BaseButton>
+    </div>
+    <div style="margin-bottom: 10px;">
+      <BaseButton round @click="copyCode('btn7')">
+        Click
+      </BaseButton>
+    </div>
   </div>
 </template>
 
