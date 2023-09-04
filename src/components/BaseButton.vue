@@ -35,7 +35,7 @@ button {
   color: var(--tg-text-white);
   font-size: var(--tg-font-size-default);
   border-radius: var(--tg-radius-default);
-  font-weight: 600;
+  font-weight: var(--tg-font-weight-semibold);
   .content{
     width: 100%;
     height: 100%;

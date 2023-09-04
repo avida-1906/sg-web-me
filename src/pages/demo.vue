@@ -3,12 +3,8 @@ const activeTab = ref('Button')
 const tabList = [
   'Button',
   'Switch',
+  'Radio',
 ]
-
-const isSwitch = ref(false)
-function onSwitch(v: boolean) {
-  console.log('🚀 ~ file: demo.vue:10 ~ onSwitch ~ v:', v)
-}
 
 const { copy } = useClipboard()
 function copyCode(type: string) {
@@ -45,6 +41,24 @@ function copyCode(type: string) {
     default:
       break
   }
+}
+const radioList = [
+  { value: 'usd', label: 'usd' },
+  { value: 'eur', label: 'EUR' },
+  { value: 'jpy', label: 'JPY' },
+  { value: 'inr', label: 'INR' },
+  { value: 'brl', label: 'BRL' },
+  { value: 'cad', label: 'CAD' },
+  { value: 'cny', label: 'CNY' },
+  { value: 'idr', label: 'IDR' },
+  { value: 'krw', label: 'KRW' },
+  { value: 'mxn', label: 'MXN' },
+  { value: 'php', label: 'PHP' },
+  { value: 'rub', label: 'RUB' },
+]
+const isSwitch = ref(false)
+function onSwitch(v: boolean) {
+  console.log('🚀 ~ file: demo.vue:10 ~ onSwitch ~ v:', v)
 }
 </script>
 
@@ -100,6 +114,10 @@ function copyCode(type: string) {
   <!-- Switch -->
   <div v-else-if="activeTab === 'Switch'">
     <BaseSwitch v-model="isSwitch" @change="onSwitch" @click="copyCode('switch')" />
+  </div>
+  <!-- Radio -->
+  <div v-else-if="activeTab === 'Radio'">
+    <BaseRadioGroup :data="radioList" />
   </div>
 </template>
 
