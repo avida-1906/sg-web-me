@@ -6,7 +6,7 @@
   /* 主色&辅色 */
   --tg-primary-main: #1A2C38;
   --tg-secondary-main: #2F4553;
-  --tg-secondary-light: #B1BAD3;
+  --tg-secondary-light: #b1bad3;
   --tg-secondary-grey: #213743;
   --tg-secondary-dark: #0F212E;
   --tg-secondary-deepdark: #071824;
@@ -26,6 +26,7 @@
   --tg-text-lightblue: #4391e7;
   --tg-text-dark: #05080a;
   --tg-text-grey: #557086;
+  --tg-text-grey-button:var(--tg-secondary-light);
 }
 
 :root {
