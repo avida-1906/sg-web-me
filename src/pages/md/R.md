@@ -10,7 +10,7 @@ Switch
 ## Wade
 dialog 
 Loading
-Tip
+popTip
 notification
 Toast 
 popSelect 气泡下拉选择
