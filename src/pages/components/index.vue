@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import ids from 'virtual:svg-icons-names'
+import AppDemoCard from '~/components/AppDemoCard.vue'
 
 const { copy } = useClipboard()
 
@@ -14,6 +15,7 @@ function showNotify() {
   openNotify({
     title: () => h('p', { style: { color: 'orange' } }, 'makati 靓仔'),
     message: '欢迎马尼拉湾的吴彦祖',
+    // default: () => h('h1', '啊不错滴'),
   })
 }
 function copyCode(type: string) {
@@ -104,10 +106,24 @@ const tabList = [
 const searchValue = ref('')
 
 const showDialogOne = ref(false)
+
+const { openDialog, closeDialog } = useDialog({
+  title: '表格',
+  icon: 'balls-darts-on',
+  default: () => h(AppDemoCard, { title: '标题' }, {
+    default: () => h('table', { style: { color: 'orange' } }, 'abcdefg'),
+  }),
+})
+function showDialog() {
+  openDialog()
+  // setTimeout(() => {
+  //   closeDialog()
+  // }, 3000)
+}
 </script>
 
 <template>
-  <ul>
+  <ul class="demo-page">
     <li class="box">
       <AppDemoCard title="BaseIcon">
         <ul class="icon-wrap m0 p0">
@@ -220,7 +236,9 @@ const showDialogOne = ref(false)
     <li class="box">
       <AppDemoCard title="BaseDialog">
         <div class="box">
-          <BaseButton>展示弹窗 showBaseDialog 函数</BaseButton>
+          <BaseButton @click="showDialog">
+            展示弹窗 useDialog
+          </BaseButton>
           <div style="height: 20px;" />
           <BaseButton @click="showDialogOne = true">
             展示弹窗 template
@@ -237,6 +255,9 @@ const showDialogOne = ref(false)
 </template>
 
 <style lang="scss" scoped>
+.demo-page {
+  padding-bottom: 50px;
+}
 .box {
   padding: 5px;
   position: relative;

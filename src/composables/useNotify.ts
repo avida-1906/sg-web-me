@@ -6,7 +6,7 @@ export function useNotify({ showClose, onClose }: { onClose?: () => void; showCl
   const app = ref()
   const div = ref()
 
-  const openNotify = ({ type, icon, title, message, defaultSlot }: { type?: notifyType; icon?: string; title?: string | (() => Component); message?: string | (() => Component); defaultSlot?: () => Component }) => {
+  const openNotify = ({ type, icon, title, message, default: defaultSlot }: { type?: notifyType; icon?: string; title?: string | (() => Component); message?: string | (() => Component); default?: () => Component }) => {
     const notificationList = document.querySelector('#notificationList')
     if (notificationList) {
       div.value = document.createElement('div')

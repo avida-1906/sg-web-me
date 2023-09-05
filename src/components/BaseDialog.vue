@@ -11,10 +11,15 @@ withDefaults(defineProps<Props>(), {
   closeOnClickOverlay: true,
 })
 
-const emit = defineEmits(['update:show'])
+const emit = defineEmits(['update:show', 'close'])
 
 function updateShow(value: boolean) {
   emit('update:show', value)
+  if (!value) {
+    setTimeout(() => {
+      emit('close')
+    }, 300)
+  }
 }
 
 function close() {
@@ -27,17 +32,15 @@ function close() {
     <section v-if="show" class="tg-base-dialog">
       <div class="overlay" @click="closeOnClickOverlay && close()" />
       <div class="card">
-        <slot name="header">
-          <div class="header">
-            <h2>
-              <BaseIcon v-if="icon" :name="icon" />
-              <span>{{ title }}</span>
-            </h2>
-            <div class="close">
-              <BaseIcon name="uni-close" @click="close" />
-            </div>
+        <div class="header">
+          <h2>
+            <BaseIcon v-if="icon" :name="icon" />
+            <span>{{ title }}</span>
+          </h2>
+          <div class="close" @click="close">
+            <BaseIcon name="uni-close" />
           </div>
-        </slot>
+        </div>
         <div class="scrollY scroll-contain">
           <div class="modal-content">
             <slot />
