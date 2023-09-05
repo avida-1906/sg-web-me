@@ -1,5 +1,5 @@
 <script lang="ts" setup name="base-notify">
-import { type notifyType } from '~/utils/index'
+import { type notifyType } from '~/utils/show-portal'
 
 interface Props {
   type?: notifyType
@@ -132,9 +132,7 @@ onMounted(() => {
   opacity: 0;
 }
 .tg-base-notify {
-  position: fixed;
-  top: 5rem;
-  left: 1rem;
+  position: relative;
   font-size: var(--tg-font-size-xl);
   background: var(--tg-secondary-main);
   box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.35);
@@ -147,23 +145,23 @@ onMounted(() => {
     background: var(--tg-secondary-grey);
   }
   .right {
-    font-size: 14px;
-    color: #fff;
+    font-size: var(--tg-font-size-default);
+    color: var(--tg-text-white);
     text-align: left;
     padding: var(--tg-spacing-16) var(--tg-spacing-16) var(--tg-spacing-16) var(--tg-spacing-24);
     h3 {
-      font-weight: 600;
+      font-weight: var(--tg-font-weight-semibold);
       line-height: var(--tg-spacing-20);
     }
     p {
       line-height: var(--tg-spacing-22);
       color: var(--tg-secondary-light);
-      font-weight: 400;
+      font-weight: var(--tg-font-weight-normal);
       padding-top: var(--tg-spacing-4);
     }
   }
   .close {
-    font-size: 14px;
+    font-size: var(--tg-font-size-default);
     padding: 0 var(--tg-spacing-14) 0 var(--tg-spacing-8);
     cursor: pointer;
   }
