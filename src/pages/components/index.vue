@@ -104,6 +104,12 @@ const tabList = [
   { value: '3', label: 'Tab 3333' },
 ]
 const searchValue = ref('')
+const { value: username, errorMessage, setErrors } = useField<string>('username', (value) => {
+  if (!value)
+    return '错误文字'
+
+  return ''
+})
 
 const showDialogOne = ref(false)
 
@@ -246,6 +252,14 @@ function showDialog() {
         </div>
       </AppDemoCard>
     </li>
+    <li class="box">
+      <AppDemoCard title="BaseInput">
+        <!-- <BaseButton round @click="copyCode('input')">
+          copy
+        </BaseButton> -->
+        <BaseInput v-model="username" label="用户名" :msg="errorMessage" placeholder="请输入用户名" @blur="setErrors('')" />
+      </AppDemoCard>
+    </li>
   </ul>
   <BaseDialog v-model:show="showDialogOne" icon="uni-trend" title="提款">
     <div class="data-table">
@@ -258,6 +272,7 @@ function showDialog() {
 .demo-page {
   padding-bottom: 50px;
 }
+
 .box {
   padding: 5px;
   position: relative;
@@ -276,6 +291,7 @@ function showDialog() {
     font-size: 50px;
   }
 }
+
 .data-table {
   padding: var(--tg-spacing-12);
 }

@@ -19,11 +19,13 @@
   "dependencies": {
     "@unhead/vue": "^1.1.30",
     "@unocss/reset": "^0.53.5",
+    "@vee-validate/zod": "^4.11.3",
     "@vueuse/core": "^10.2.1",
     "@vueuse/head": "^1.1.26",
     "big.js": "^6.2.1",
     "nprogress": "^0.2.0",
     "pinia": "^2.1.4",
+    "vee-validate": "^4.11.3",
     "vue": "^3.3.4",
     "vue-demi": "^0.14.5",
     "vue-i18n": "^9.2.2",

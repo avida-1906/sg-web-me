@@ -46,8 +46,6 @@ function onClear() {
 
 <style lang='scss' scoped>
 .base-search {
-  font-size: var(--tg-font-size-default);
-  color: var(--tg-text-white);
   border-width: 2px;
   border-style: solid;
   border-color: var(--tg-secondary-main);
@@ -73,14 +71,17 @@ function onClear() {
   }
 
   .clear-icon {
+    font-size: var(--tg-font-size-default);
     position: absolute;
-    right: 10px;
+    right: 18px;
     cursor: pointer;
   }
-  .content-box{
+
+  .content-box {
     flex: 1;
     display: flex;
     align-items: center;
+    font-size: var(--tg-font-size-lg);
   }
 
   input {
@@ -89,39 +90,23 @@ function onClear() {
     outline: none;
     background-color: transparent;
     padding: 7px;
+    font-size: var(--tg-font-size-default);
+    color: var(--tg-text-white);
 
-    &::-webkit-input-placeholder {
-      color: var(--tg-text-white);
-      opacity: 0.3;
-    }
-
-    &::-moz-placeholder {
-      color: var(--tg-text-white);
-      opacity: 0.3;
-    }
-
-    &:-ms-input-placeholder {
+    &::placeholder {
       color: var(--tg-text-white);
       opacity: 0.3;
     }
   }
 }
-.whiteStyle{
+
+.whiteStyle {
   background-color: var(--tg-text-white);
-  color: var( --tg-secondary-main);
+  color: var(--tg-secondary-main);
+
   input {
 
-    &::-webkit-input-placeholder {
-      color: var(--tg-text-dark);
-      opacity: 0.3;
-    }
-
-    &::-moz-placeholder {
-      color: var(--tg-text-dark);
-      opacity: 0.3;
-    }
-
-    &:-ms-input-placeholder {
+    &::placeholder {
       color: var(--tg-text-dark);
       opacity: 0.3;
     }

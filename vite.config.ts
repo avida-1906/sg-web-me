@@ -50,6 +50,9 @@ export default defineConfig({
         '@vueuse/core',
         {
           'big.js': ['Big'],
+          'vee-validate': ['useField'],
+          '@vee-validate/zod': ['toTypedSchema'],
+          'zod': ['z'],
         },
       ],
       dts: 'src/auto-imports.d.ts',

@@ -102,7 +102,7 @@
   }
 
   // 阴影
-  --tg-box-shadow:0 1px 3px 0 #00000033, 0 1px 2px 0 #0000001f;
+  --tg-box-shadow:0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.122);
 }
 
 html,
