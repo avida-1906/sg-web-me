@@ -10,6 +10,7 @@ declare module 'vue' {
     AppDemoCard: typeof import('./components/AppDemoCard.vue')['default']
     BaseButton: typeof import('./components/BaseButton.vue')['default']
     BaseDivider: typeof import('./components/BaseDivider.vue')['default']
+    BaseEmpty: typeof import('./components/BaseEmpty.vue')['default']
     BaseIcon: typeof import('./components/BaseIcon.vue')['default']
     BaseLoading: typeof import('./components/BaseLoading.vue')['default']
     BaseNotify: typeof import('./components/BaseNotify.vue')['default']

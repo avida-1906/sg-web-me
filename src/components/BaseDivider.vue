@@ -9,8 +9,6 @@ const props = withDefaults(defineProps<Props>(), {
   offset: '0px',
 })
 
-const slots = useSlots()
-
 const leftOffset = props.titlePlacement === 'left' ? props.offset : '100%'
 const rightOffset = props.titlePlacement === 'right' ? props.offset : '100%'
 
@@ -24,7 +22,7 @@ const cssVars = {
   <div
     class="base-divider w-100" :class="[
       {
-        [`base-divider-title-position-${titlePlacement}`]: slots.default && titlePlacement,
+        [`base-divider-title-position-${titlePlacement}`]: $slots.default && titlePlacement,
       },
     ]"
     :style="cssVars"
@@ -56,8 +54,8 @@ const cssVars = {
     }
     &-title {
         color: var(--tg-text-white);
-        margin-left: 12px;
-        margin-right: 12px;
+        margin-left: var(--tg-spacing-12);
+        margin-right: var(--tg-spacing-12);
     }
 }
 </style>
