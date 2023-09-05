@@ -26,7 +26,7 @@ function scientificToString(inputNumber: number | string): string {
  * @return {string} arg1加上arg2的精确结果
  */
 export function add(arg1: number, arg2: number): string {
-  return scientificToString(Big(arg1).add(Big(arg2)).toPrecision())
+  return scientificToString(Big(arg1).plus(Big(arg2)).toPrecision())
 }
 
 /**
@@ -63,4 +63,32 @@ export function mul(arg1: number, arg2: number): string {
  */
 export function div(arg1: number, arg2: number): string {
   return scientificToString(Big(arg1).div(Big(arg2)).toPrecision())
+}
+
+/**
+ * @description: 保留小数位数，非四舍五入
+ * @param {number} num
+ * @param {number} decimal
+ * @example console.log(toFixed(0.123456789, 2)) // 0.12
+ * @example console.log(toFixed(0.128456789, 2)) // 0.12
+ * @return {string} 保留小数位数后的结果
+ */
+export function toFixed(num: number, decimal: number): string {
+  const [integer, decimalPart] = `${num}`.split('.')
+
+  if (decimal) {
+    if (decimalPart) {
+      if (decimalPart.length > decimal)
+        return `${integer}.${decimalPart.slice(0, decimal)}`
+
+      else
+        return `${integer}.${decimalPart}${'0'.repeat(decimal - decimalPart.length)}`
+    }
+    else {
+      return `${integer}.${'0'.repeat(decimal)}`
+    }
+  }
+  else {
+    return integer
+  }
 }
