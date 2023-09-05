@@ -19,6 +19,7 @@
   --tg-sub-lightblue: #72ACED;
   /* 文字颜色 */
   --tg-text-white: #FFFFFF;
+  --tg-text-black: #000000;
   --tg-text-error: #ed4163;
   --tg-text-warn: #FF9800;
   --tg-text-green: #00E701;
@@ -168,6 +169,19 @@ body {
 
 .scroll-y::-webkit-scrollbar {
   width: var(--scrollbar-size)
+}
+
+.scroll-contain {
+  overscroll-behavior: contain;
+}
+
+.notification-list {
+  display: grid;
+  grid-auto-flow: row;
+  gap: var(--tg-spacing-12);
+  position: fixed;
+  top: 5rem;
+  left: 1rem;
 }
 
 @media screen and (min-width: 768px) {

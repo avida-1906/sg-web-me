@@ -31,7 +31,7 @@ function copyIcon(id: string) {
 
 function showNotify() {
   showBaseNotify({
-    title: '欢迎',
+    title: () => h('p', { style: { color: 'orange' } }, 'makati 靓仔'),
     message: '欢迎马尼拉湾的吴彦祖',
     onClose: () => {
       console.warn('notify closed')
@@ -202,7 +202,7 @@ const tabList = [
       <AppDemoCard title="BaseNotify">
         <div class="box">
           <BaseButton @click="showNotify">
-            展示弹窗提示信息
+            展示弹窗提示信息 showBaseNotify 函数
           </BaseButton>
         </div>
       </AppDemoCard>
