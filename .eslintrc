@@ -8,6 +8,7 @@
     "**/*.scss"
   ],
   "rules": {
-    "no-console": "off"
+    "no-console": "off",
+    "prefer-const": 1
   }
 }
