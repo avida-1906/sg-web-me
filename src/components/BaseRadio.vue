@@ -1,32 +1,33 @@
 <script setup lang='ts'>
 interface Props {
-  data: {
-    [text: string]: any
-    value: string
-    disabled?: boolean
-  }
-  type?: 'square' | 'circle'
-  isChecked: boolean
+  value: string
 }
-const props = withDefaults(defineProps<Props>(), {
-  type: 'circle',
-})
-const emit = defineEmits(['select'])
+
+const props = withDefaults(defineProps<Props>(), {})
+const emit = defineEmits(['click'])
+
+const onSelect = inject<(v: string) => void>('onSelect', () => {})
+const sValue = inject<ComputedRef<string>>('sValue')
+const shape = inject('shape')
+const disabled = inject('disabled')
+
+const isChecked = computed(() => props.value === sValue?.value)
 
 function onCheck() {
-  if (props.data.disabled)
+  if (disabled)
     return
-  emit('select', props.data.value)
+  emit('click', props.value)
+  onSelect(props.value)
 }
 </script>
 
 <template>
-  <div class="base-radio" :class="{ disabled: data.disabled, active: isChecked }" @click="onCheck">
-    <span class="icon" :class="[type]">
-      <span v-if="type === 'circle'" class="dot" />
+  <div class="base-radio" :class="{ disabled, active: isChecked }" @click="onCheck">
+    <span class="icon" :class="[shape]">
+      <span v-if="shape === 'circle'" class="dot" />
       <span v-else class="hook" />
     </span>
-    <slot :data="data" />
+    <slot />
   </div>
 </template>
 

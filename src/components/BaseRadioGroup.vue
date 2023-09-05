@@ -1,27 +1,31 @@
 <script setup lang='ts'>
 interface Props {
-  data: {
-    [text: string]: any
-    value: string
-  }[]
   columns?: number
   modelValue: string
+  shape?: 'square' | 'circle'
+  disabled?: boolean
 }
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   columns: 3,
+  shape: 'circle',
 })
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(['update:modelValue', 'change'])
 
 function onSelect(value: string) {
   emit('update:modelValue', value)
+  emit('change', value)
 }
+
+const sValue = computed(() => props.modelValue)
+provide('onSelect', onSelect)
+provide('sValue', sValue)
+provide('shape', props.shape)
+provide('disabled', props.disabled)
 </script>
 
 <template>
   <div class="radio-group" :style="{ 'grid-template-columns': `repeat(${columns},1fr)` }">
-    <BaseRadio v-for="item in data" :key="item.value" v-slot="{ data: itemData }" :value="item.value" :disabled="item.disabled" :data="item" :is-checked="item.value === modelValue" @select="onSelect">
-      {{ itemData.label }}
-    </BaseRadio>
+    <slot />
   </div>
 </template>
 

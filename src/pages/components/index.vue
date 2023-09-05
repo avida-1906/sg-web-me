@@ -68,6 +68,22 @@ function copyCode(type: string) {
     case 'switch':
       copy('<BaseSwitch v-model="isSwitch" @change="onSwitch" />')
       break
+    case 'radio-group':
+      copy(`
+        <BaseRadioGroup v-model="radioValue">
+          <BaseRadio v-for="item in radioList" :key="item.value" :value="item.value">
+            {{ item.label }}
+          </BaseRadio>
+        </BaseRadioGroup>
+        `)
+      break
+    case 'checkbox':
+      copy(`
+        <BaseCheckBox v-model="checkboxValue">
+          展示弹窗提示信息
+        </BaseCheckBox>
+        `)
+      break
 
     default:
       break
@@ -93,6 +109,7 @@ const radioList = [
   { value: 'rub', label: 'RUB' },
 ]
 const radioValue = ref('php')
+const checkboxValue = ref(false)
 </script>
 
 <template>
@@ -157,7 +174,14 @@ const radioValue = ref('php')
     </li>
     <li class="box">
       <AppDemoCard title="BaseRadioGroup">
-        <BaseRadioGroup v-model="radioValue" :data="radioList" />
+        <BaseButton round @click="copyCode('radio-group')">
+          copy
+        </BaseButton>
+        <BaseRadioGroup v-model="radioValue">
+          <BaseRadio v-for="item in radioList" :key="item.value" :value="item.value">
+            {{ item.label }}
+          </BaseRadio>
+        </BaseRadioGroup>
       </AppDemoCard>
     </li>
     <li class="box">
@@ -177,8 +201,10 @@ const radioValue = ref('php')
       </AppDemoCard>
     </li>
     <li class="box">
-      <AppDemoCard title="BaseDialog">
-        <div class="box" />
+      <AppDemoCard title="BaseCheckBox">
+        <BaseCheckBox v-model="checkboxValue" @click="copyCode('checkbox')">
+          展示弹窗提示信息
+        </BaseCheckBox>
       </AppDemoCard>
     </li>
   </ul>
@@ -196,6 +222,7 @@ const radioValue = ref('php')
   list-style: none;
   align-items: flex-start;
   flex-wrap: wrap;
+
   .item {
     cursor: pointer;
     width: 60px;
