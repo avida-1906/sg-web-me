@@ -8,13 +8,12 @@ function copyIcon(id: string) {
   toast('Copied')
 }
 
+const { openNotify } = useNotify()
+
 function showNotify() {
-  showBaseNotify({
+  openNotify({
     title: () => h('p', { style: { color: 'orange' } }, 'makati 靓仔'),
     message: '欢迎马尼拉湾的吴彦祖',
-    onClose: () => {
-      console.warn('notify closed')
-    },
   })
 }
 function copyCode(type: string) {
@@ -99,6 +98,8 @@ const tabList = [
   { value: '2', label: 'Tab 2' },
   { value: '3', label: 'Tab 3333' },
 ]
+
+const showDialogOne = ref(false)
 </script>
 
 <template>
@@ -209,7 +210,23 @@ const tabList = [
         <BaseSearch />
       </AppDemoCard>
     </li>
+    <li class="box">
+      <AppDemoCard title="BaseDialog">
+        <div class="box">
+          <BaseButton>展示弹窗 showBaseDialog 函数</BaseButton>
+          <div />
+          <BaseButton @click="showDialogOne = true">
+            展示弹窗 template
+          </BaseButton>
+        </div>
+      </AppDemoCard>
+    </li>
   </ul>
+  <BaseDialog v-model:show="showDialogOne" icon="uni-trend" title="提款">
+    <div class="data-table">
+      一个外部弹窗
+    </div>
+  </BaseDialog>
 </template>
 
 <style lang="scss" scoped>
@@ -230,5 +247,8 @@ const tabList = [
     width: 60px;
     font-size: 50px;
   }
+}
+.data-table {
+  padding: var(--tg-spacing-12);
 }
 </style>
