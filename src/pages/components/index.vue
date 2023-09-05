@@ -185,7 +185,7 @@ const showDialogOne = ref(false)
       <AppDemoCard title="BaseNotify">
         <div class="box">
           <BaseButton @click="showNotify">
-            展示弹窗提示信息 showBaseNotify 函数
+            展示弹窗提示信息 const { openNotify } = useNotify() 函数
           </BaseButton>
         </div>
       </AppDemoCard>
@@ -193,7 +193,7 @@ const showDialogOne = ref(false)
     <li class="box">
       <AppDemoCard title="BaseCheckBox">
         <BaseCheckBox v-model="checkboxValue" @click="copyCode('checkbox')">
-          展示弹窗提示信息
+          一个复选框
         </BaseCheckBox>
       </AppDemoCard>
     </li>

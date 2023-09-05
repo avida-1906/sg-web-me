@@ -1,5 +1,5 @@
 <script lang="ts" setup name="base-notify">
-import { type notifyType } from '~/utils/show-portal'
+import type { notifyType } from '~/composables/useNotify'
 
 interface Props {
   type?: notifyType
