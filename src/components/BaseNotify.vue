@@ -1,0 +1,171 @@
+<script lang="ts" setup name="base-notify">
+import { type notifyType } from '~/utils/index'
+
+interface Props {
+  type?: notifyType
+  icon?: ''
+  title?: string
+  message?: string
+  showClose?: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  type: 'success',
+  showClose: true,
+})
+
+const emit = defineEmits(['close'])
+
+const iconObj = {
+  set: 'uni-set',
+  user: 'uni-user-blue',
+  email: 'uni-green-email',
+  error: 'uni-warning',
+  success: 'uni-confirmed',
+  insurance: 'navbar-cart',
+  statistics: 'uni-trend',
+}
+
+const show = ref(false)
+
+const timer = ref()
+
+const stayTime = ref(4000)
+
+const startTime = ref(0)
+const endTime = ref(0)
+
+const iconName = computed(() => {
+  if (props.type)
+    return iconObj[props.type]
+  else
+    return props.icon
+})
+
+function close() {
+  show.value = false
+  setTimeout(() => {
+    emit('close')
+  }, 800)
+}
+
+function overMove() {
+  clearTimeout(timer.value)
+}
+
+function leaveEnd() {
+  startCount()
+}
+
+function startCount() {
+  stayTime.value = stayTime.value - (endTime.value - startTime.value)
+  startTime.value = new Date().getTime()
+  timer.value = setTimeout(() => {
+    close()
+  }, stayTime.value)
+}
+
+function enterStart() {
+  clearTimeout(timer.value)
+  endTime.value = new Date().getTime()
+}
+
+onMounted(() => {
+  show.value = true
+  startCount()
+})
+</script>
+
+<template>
+  <Transition name="slide-fade">
+    <section
+      v-if="show"
+      class="tg-base-notify"
+      @touchmove="overMove"
+      @touchstart="enterStart"
+      @touchend="leaveEnd"
+      @mouseover="overMove"
+      @mouseleave="leaveEnd"
+      @mouseenter="enterStart"
+    >
+      <div v-if="iconName" class="left">
+        <BaseIcon :name="iconName" />
+      </div>
+      <div class="right">
+        <slot>
+          <div>
+            <slot name="title">
+              <h3 v-if="title" class="title">
+                {{ title }}
+              </h3>
+            </slot>
+            <slot name="message">
+              <p v-if="message" class="message">
+                {{ message }}
+              </p>
+            </slot>
+          </div>
+        </slot>
+      </div>
+      <div v-if="showClose" class="close" @click="close">
+        <BaseIcon name="uni-close" />
+      </div>
+    </section>
+  </Transition>
+</template>
+
+<style lang="scss" scoped>
+.slide-fade-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from {
+  transform: translateX(20px);
+  opacity: 1;
+}
+.slide-fade-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
+}
+.tg-base-notify {
+  position: fixed;
+  top: 5rem;
+  left: 1rem;
+  font-size: var(--tg-font-size-xl);
+  background: var(--tg-secondary-main);
+  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  .left {
+    padding: var(--tg-spacing-27) var(--tg-spacing-19);
+    background: var(--tg-secondary-grey);
+  }
+  .right {
+    font-size: 14px;
+    color: #fff;
+    text-align: left;
+    padding: var(--tg-spacing-16) var(--tg-spacing-16) var(--tg-spacing-16) var(--tg-spacing-24);
+    h3 {
+      font-weight: 600;
+      line-height: var(--tg-spacing-20);
+    }
+    p {
+      line-height: var(--tg-spacing-22);
+      color: var(--tg-secondary-light);
+      font-weight: 400;
+      padding-top: var(--tg-spacing-4);
+    }
+  }
+  .close {
+    font-size: 14px;
+    padding: 0 var(--tg-spacing-14) 0 var(--tg-spacing-8);
+    cursor: pointer;
+  }
+}
+</style>
