@@ -160,7 +160,7 @@ const radioValue = ref('php')
         <BaseRadioGroup v-model="radioValue" :data="radioList" />
       </AppDemoCard>
     </li>
-    <li>
+    <li class="box">
       <AppDemoCard title="BaseLoading">
         <div class="box">
           <BaseLoading />
