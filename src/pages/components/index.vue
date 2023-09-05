@@ -77,6 +77,13 @@ function copyCode(type: string) {
         </BaseRadioGroup>
         `)
       break
+    case 'checkbox':
+      copy(`
+        <BaseCheckBox v-model="checkboxValue">
+          展示弹窗提示信息
+        </BaseCheckBox>
+        `)
+      break
 
     default:
       break
@@ -102,6 +109,7 @@ const radioList = [
   { value: 'rub', label: 'RUB' },
 ]
 const radioValue = ref('php')
+const checkboxValue = ref(false)
 </script>
 
 <template>
@@ -190,6 +198,13 @@ const radioValue = ref('php')
             展示弹窗提示信息
           </BaseButton>
         </div>
+      </AppDemoCard>
+    </li>
+    <li class="box">
+      <AppDemoCard title="BaseCheckBox">
+        <BaseCheckBox v-model="checkboxValue" @click="copyCode('checkbox')">
+          展示弹窗提示信息
+        </BaseCheckBox>
       </AppDemoCard>
     </li>
   </ul>
