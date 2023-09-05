@@ -63,6 +63,9 @@ function copyCode(type: string) {
         </BaseCheckBox>
         `)
       break
+    case 'tab':
+      copy('<BaseTab v-model="tab" :list="tabList" />')
+      break
 
     default:
       break
@@ -195,9 +198,15 @@ const tabList = [
     </li>
     <li class="box">
       <AppDemoCard title="BaseTab">
-        <BaseTab v-model="tab" :list="tabList" shape="round">
-          展示弹窗提示信息
-        </BaseTab>
+        <BaseButton round @click="copyCode('tab')">
+          copy
+        </BaseButton>
+        <BaseTab v-model="tab" :list="tabList" />
+      </AppDemoCard>
+    </li>
+    <li class="box">
+      <AppDemoCard title="BaseSearch">
+        <BaseSearch />
       </AppDemoCard>
     </li>
   </ul>
@@ -205,7 +214,7 @@ const tabList = [
 
 <style lang="scss" scoped>
 .box {
-  padding: 20px;
+  padding: 5px;
   position: relative;
   text-align: center;
 }
