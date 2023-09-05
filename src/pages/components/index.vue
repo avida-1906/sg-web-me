@@ -3,30 +3,9 @@ import ids from 'virtual:svg-icons-names'
 
 const { copy } = useClipboard()
 
-function toast() {
-  const div = document.createElement('div')
-  div.innerHTML = 'Copied'
-  div.style.cssText = `
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 10px 20px;
-    background: rgba(0, 0, 0, 0.5);
-    color: #fff;
-    border-radius: 5px;
-    z-index: 999;
-  `
-  document.body.appendChild(div)
-
-  setTimeout(() => {
-    document.body.removeChild(div)
-  }, 1000)
-}
-
 function copyIcon(id: string) {
   copy(`<BaseIcon name="${id}" />`)
-  toast()
+  toast('Copied')
 }
 
 function showNotify() {
@@ -88,7 +67,7 @@ function copyCode(type: string) {
     default:
       break
   }
-  toast()
+  toast('Copied')
 }
 const isSwitch = ref(false)
 function onSwitch(v: boolean) {

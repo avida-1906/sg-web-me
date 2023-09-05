@@ -1,20 +1,31 @@
 <script lang="ts" setup name="base-dialog">
+interface Props {
+  show: boolean
+}
 
+withDefaults(defineProps<Props>(), {})
+
+const emit = defineEmits('update:show')
 </script>
 
 <template>
-  <section class="tg-base-dialog">
+  <section v-if="show" class="tg-base-dialog">
     <div class="overlay" />
     <div class="card">
       <div class="header">
-        <h2>aa</h2>
+        <h2>
+          <BaseIcon name="uni-trend" />
+          <span>Statistics</span>
+        </h2>
         <div><BaseIcon name="uni-close" /></div>
       </div>
       <div class="content scrollY scroll-contain">
         <div class="modal-content">
-          <div class="content">
-            aa
-          </div>
+          <slot>
+            <div class="content">
+              弹窗内容文本
+            </div>
+          </slot>
         </div>
       </div>
     </div>
