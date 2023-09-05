@@ -110,6 +110,13 @@ const radioList = [
 ]
 const radioValue = ref('php')
 const checkboxValue = ref(false)
+
+const tab = ref('1')
+const tabList = [
+  { value: '1', label: 'Tab 11111111' },
+  { value: '2', label: 'Tab 2' },
+  { value: '3', label: 'Tab 3333' },
+]
 </script>
 
 <template>
@@ -205,6 +212,13 @@ const checkboxValue = ref(false)
         <BaseCheckBox v-model="checkboxValue" @click="copyCode('checkbox')">
           展示弹窗提示信息
         </BaseCheckBox>
+      </AppDemoCard>
+    </li>
+    <li class="box">
+      <AppDemoCard title="BaseTab">
+        <BaseTab v-model="tab" :list="tabList" shape="round">
+          展示弹窗提示信息
+        </BaseTab>
       </AppDemoCard>
     </li>
   </ul>

@@ -6,6 +6,7 @@ Select
 search
 radio✅
 Switch✅
+checkbox✅
 
 ## Wade
 dialog
