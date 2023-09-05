@@ -58,6 +58,15 @@ function copyCode(type: string) {
     case 'switch':
       copy('<BaseSwitch v-model="isSwitch" @change="onSwitch" />')
       break
+    case 'radio-group':
+      copy(`
+        <BaseRadioGroup v-model="radioValue">
+          <BaseRadio v-for="item in radioList" :key="item.value" :value="item.value">
+            {{ item.label }}
+          </BaseRadio>
+        </BaseRadioGroup>
+        `)
+      break
 
     default:
       break
@@ -147,7 +156,14 @@ const radioValue = ref('php')
     </li>
     <li class="box">
       <AppDemoCard title="BaseRadioGroup">
-        <BaseRadioGroup v-model="radioValue" :data="radioList" />
+        <BaseButton round @click="copyCode('radio-group')">
+          copy
+        </BaseButton>
+        <BaseRadioGroup v-model="radioValue">
+          <BaseRadio v-for="item in radioList" :key="item.value" :value="item.value">
+            {{ item.label }}
+          </BaseRadio>
+        </BaseRadioGroup>
       </AppDemoCard>
     </li>
     <li>
@@ -172,6 +188,7 @@ const radioValue = ref('php')
   list-style: none;
   align-items: flex-start;
   flex-wrap: wrap;
+
   .item {
     cursor: pointer;
     width: 60px;
