@@ -3,39 +3,17 @@ import ids from 'virtual:svg-icons-names'
 
 const { copy } = useClipboard()
 
-function toast() {
-  const div = document.createElement('div')
-  div.innerHTML = 'Copied'
-  div.style.cssText = `
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 10px 20px;
-    background: rgba(0, 0, 0, 0.5);
-    color: #fff;
-    border-radius: 5px;
-    z-index: 999;
-  `
-  document.body.appendChild(div)
-
-  setTimeout(() => {
-    document.body.removeChild(div)
-  }, 1000)
-}
-
 function copyIcon(id: string) {
   copy(`<BaseIcon name="${id}" />`)
-  toast()
+  toast('Copied')
 }
 
+const { openNotify } = useNotify()
+
 function showNotify() {
-  showBaseNotify({
+  openNotify({
     title: () => h('p', { style: { color: 'orange' } }, 'makati 靓仔'),
     message: '欢迎马尼拉湾的吴彦祖',
-    onClose: () => {
-      console.warn('notify closed')
-    },
   })
 }
 function copyCode(type: string) {
@@ -94,7 +72,7 @@ function copyCode(type: string) {
     default:
       break
   }
-  toast()
+  toast('Copied')
 }
 const isSwitch = ref(false)
 function onSwitch(v: boolean) {
@@ -124,6 +102,8 @@ const tabList = [
   { value: '3', label: 'Tab 3333' },
 ]
 const searchValue = ref('')
+
+const showDialogOne = ref(false)
 </script>
 
 <template>
@@ -237,7 +217,23 @@ const searchValue = ref('')
         <BaseSearch v-model="searchValue" clearable />
       </AppDemoCard>
     </li>
+    <li class="box">
+      <AppDemoCard title="BaseDialog">
+        <div class="box">
+          <BaseButton>展示弹窗 showBaseDialog 函数</BaseButton>
+          <div style="height: 20px;" />
+          <BaseButton @click="showDialogOne = true">
+            展示弹窗 template
+          </BaseButton>
+        </div>
+      </AppDemoCard>
+    </li>
   </ul>
+  <BaseDialog v-model:show="showDialogOne" icon="uni-trend" title="提款">
+    <div class="data-table">
+      一个外部弹窗
+    </div>
+  </BaseDialog>
 </template>
 
 <style lang="scss" scoped>
@@ -258,5 +254,8 @@ const searchValue = ref('')
     width: 60px;
     font-size: 50px;
   }
+}
+.data-table {
+  padding: var(--tg-spacing-12);
 }
 </style>
