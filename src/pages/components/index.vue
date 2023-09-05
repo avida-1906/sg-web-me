@@ -65,6 +65,9 @@ function copyCode(type: string) {
     case 'tab':
       copy('<BaseTab v-model="tab" :list="tabList" />')
       break
+    case 'search':
+      copy('<BaseSearch v-model="searchValue" clearable />')
+      break
 
     default:
       break
@@ -98,6 +101,7 @@ const tabList = [
   { value: '2', label: 'Tab 2' },
   { value: '3', label: 'Tab 3333' },
 ]
+const searchValue = ref('')
 
 const showDialogOne = ref(false)
 </script>
@@ -207,7 +211,10 @@ const showDialogOne = ref(false)
     </li>
     <li class="box">
       <AppDemoCard title="BaseSearch">
-        <BaseSearch />
+        <BaseButton round @click="copyCode('search')">
+          copy
+        </BaseButton>
+        <BaseSearch v-model="searchValue" clearable />
       </AppDemoCard>
     </li>
     <li class="box">
