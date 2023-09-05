@@ -28,6 +28,16 @@ function copyIcon(id: string) {
   copy(`<BaseIcon name="${id}" />`)
   toast()
 }
+
+function showNotify() {
+  showBaseNotify({
+    title: '欢迎',
+    message: '欢迎马尼拉湾的吴彦祖',
+    onClose: () => {
+      console.warn('notify closed')
+    },
+  })
+}
 </script>
 
 <template>
@@ -45,6 +55,15 @@ function copyIcon(id: string) {
       <AppDemoCard title="BaseLoading">
         <div class="box">
           <BaseLoading />
+        </div>
+      </AppDemoCard>
+    </li>
+    <li class="box">
+      <AppDemoCard title="BaseNotify">
+        <div class="box">
+          <BaseButton @click="showNotify">
+            展示弹窗提示信息
+          </BaseButton>
         </div>
       </AppDemoCard>
     </li>

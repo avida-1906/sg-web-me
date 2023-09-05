@@ -29,11 +29,11 @@ const loadIcons = [
 }
 
 .tg-base-loading {
-  font-size: 18px;
+  font-size: var(--tg-font-size-md);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 60px;
+  gap: var(--tg-spacing-50);
 
   .item {
     position: relative;
