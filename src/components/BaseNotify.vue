@@ -19,7 +19,7 @@ const emit = defineEmits(['close'])
 const iconObj = {
   set: 'uni-set',
   user: 'uni-user-blue',
-  email: 'uni-greenarrow',
+  email: 'uni-green-email',
   error: 'uni-warning',
   success: 'uni-confirmed',
   insurance: 'navbar-cart',
