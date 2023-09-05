@@ -9,7 +9,7 @@ interface Props {
   average?: boolean
   shape?: 'square' | 'round'
 }
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   shape: 'round',
 })
 const emit = defineEmits(['update:modelValue', 'change'])
