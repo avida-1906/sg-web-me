@@ -214,7 +214,7 @@ const showDialogOne = ref(false)
       <AppDemoCard title="BaseDialog">
         <div class="box">
           <BaseButton>展示弹窗 showBaseDialog 函数</BaseButton>
-          <div />
+          <div style="height: 20px;" />
           <BaseButton @click="showDialogOne = true">
             展示弹窗 template
           </BaseButton>

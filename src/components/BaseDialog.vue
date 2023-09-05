@@ -23,7 +23,7 @@ function close() {
 </script>
 
 <template>
-  <Transition name="">
+  <Transition>
     <section v-if="show" class="tg-base-dialog">
       <div class="overlay" @click="closeOnClickOverlay && close()" />
       <div class="card">
@@ -49,6 +49,15 @@ function close() {
 </template>
 
 <style lang="scss" scoped>
+  .v-enter-active,
+  .v-leave-active {
+    transition: opacity .3s ease;
+  }
+
+  .v-enter-from,
+  .v-leave-to {
+    opacity: 0;
+  }
   .tg-base-dialog {
     position: fixed;
     left: 0;
