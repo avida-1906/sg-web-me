@@ -28,6 +28,16 @@ function copyIcon(id: string) {
   copy(`<BaseIcon name="${id}" />`)
   toast()
 }
+
+function showNotify() {
+  showBaseNotify({
+    title: () => h('p', { style: { color: 'orange' } }, 'makati 靓仔'),
+    message: '欢迎马尼拉湾的吴彦祖',
+    onClose: () => {
+      console.warn('notify closed')
+    },
+  })
+}
 function copyCode(type: string) {
   switch (type) {
     // 按钮
@@ -58,6 +68,22 @@ function copyCode(type: string) {
     case 'switch':
       copy('<BaseSwitch v-model="isSwitch" @change="onSwitch" />')
       break
+    case 'radio-group':
+      copy(`
+        <BaseRadioGroup v-model="radioValue">
+          <BaseRadio v-for="item in radioList" :key="item.value" :value="item.value">
+            {{ item.label }}
+          </BaseRadio>
+        </BaseRadioGroup>
+        `)
+      break
+    case 'checkbox':
+      copy(`
+        <BaseCheckBox v-model="checkboxValue">
+          展示弹窗提示信息
+        </BaseCheckBox>
+        `)
+      break
 
     default:
       break
@@ -83,6 +109,14 @@ const radioList = [
   { value: 'rub', label: 'RUB' },
 ]
 const radioValue = ref('php')
+const checkboxValue = ref(false)
+
+const tab = ref('1')
+const tabList = [
+  { value: '1', label: 'Tab 11111111' },
+  { value: '2', label: 'Tab 2' },
+  { value: '3', label: 'Tab 3333' },
+]
 </script>
 
 <template>
@@ -147,14 +181,44 @@ const radioValue = ref('php')
     </li>
     <li class="box">
       <AppDemoCard title="BaseRadioGroup">
-        <BaseRadioGroup v-model="radioValue" :data="radioList" />
+        <BaseButton round @click="copyCode('radio-group')">
+          copy
+        </BaseButton>
+        <BaseRadioGroup v-model="radioValue">
+          <BaseRadio v-for="item in radioList" :key="item.value" :value="item.value">
+            {{ item.label }}
+          </BaseRadio>
+        </BaseRadioGroup>
       </AppDemoCard>
     </li>
-    <li>
+    <li class="box">
       <AppDemoCard title="BaseLoading">
         <div class="box">
           <BaseLoading />
         </div>
+      </AppDemoCard>
+    </li>
+    <li class="box">
+      <AppDemoCard title="BaseNotify">
+        <div class="box">
+          <BaseButton @click="showNotify">
+            展示弹窗提示信息 showBaseNotify 函数
+          </BaseButton>
+        </div>
+      </AppDemoCard>
+    </li>
+    <li class="box">
+      <AppDemoCard title="BaseCheckBox">
+        <BaseCheckBox v-model="checkboxValue" @click="copyCode('checkbox')">
+          展示弹窗提示信息
+        </BaseCheckBox>
+      </AppDemoCard>
+    </li>
+    <li class="box">
+      <AppDemoCard title="BaseTab">
+        <BaseTab v-model="tab" :list="tabList" shape="round">
+          展示弹窗提示信息
+        </BaseTab>
       </AppDemoCard>
     </li>
   </ul>
@@ -172,6 +236,7 @@ const radioValue = ref('php')
   list-style: none;
   align-items: flex-start;
   flex-wrap: wrap;
+
   .item {
     cursor: pointer;
     width: 60px;
