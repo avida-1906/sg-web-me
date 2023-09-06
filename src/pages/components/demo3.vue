@@ -91,10 +91,12 @@ function copyGameItem() {
   <ul>
     <li class="box">
       <AppDemoCard title="BaseUpload">
-        <BaseUpload @select-file="getFile" @delete-file="handleDelFile" />
-        <BaseButton @click="copyUploadCode">
-          copy
-        </BaseButton>
+        <BaseUpload style="margin: auto;" @select-file="getFile" @delete-file="handleDelFile" />
+        <div class="center">
+          <BaseButton @click="copyUploadCode">
+            copy
+          </BaseButton>
+        </div>
       </AppDemoCard>
     </li>
     <li class="box">
@@ -136,12 +138,14 @@ function copyGameItem() {
     </li>
     <li class="box">
       <AppDemoCard title="BaseNumericKeypad">
-        <div style="width: 371px;">
+        <div style="width: 371px;margin: auto;">
           <BaseNumericKeypad @key-num="handleKeyNum" @key-ok="handleKeyOk" />
         </div>
-        <BaseButton @click="copyNumericKeypadCode">
-          copy
-        </BaseButton>
+        <div class="center">
+          <BaseButton @click="copyNumericKeypadCode">
+            copy
+          </BaseButton>
+        </div>
       </AppDemoCard>
     </li>
     <li class="box">
@@ -167,12 +171,14 @@ function copyGameItem() {
     </li>
     <li class="box">
       <AppDemoCard title="BaseGameItem">
-        <div style="width: 40%">
+        <div style="width: 40%;margin: auto;">
           <BaseGameItem :game-list="gameList" @item-info="getItemInfo" />
         </div>
-        <BaseButton @click="copyGameItem">
-          copy
-        </BaseButton>
+        <div class="center">
+          <BaseButton @click="copyGameItem">
+            copy
+          </BaseButton>
+        </div>
       </AppDemoCard>
     </li>
   </ul>
@@ -184,5 +190,9 @@ function copyGameItem() {
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
+}
+.center{
+  text-align: center;
+  margin-top: 20px;
 }
 </style>
