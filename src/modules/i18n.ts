@@ -1,6 +1,7 @@
 import type { Locale } from 'vue-i18n'
 import { createI18n } from 'vue-i18n'
 import type { App } from 'vue'
+import { LanguageEnum } from '~/utils/enums'
 
 const i18n = createI18n({
   legacy: false,
@@ -41,6 +42,15 @@ export async function loadLanguageAsync(lang: string): Promise<Locale> {
 }
 
 export function install(app: App<Element>) {
+  const defaultLanguage = import.meta.env.VITE_I18N_DEFAULT_LANG
+  const localStorageLanguage = localStorage.getItem('language') as LanguageEnum | null
+  let index: number
+  if (localStorageLanguage != null)
+    index = Number(localStorageLanguage)
+
+  else
+    index = Number(LanguageEnum[defaultLanguage])
+
   app.use(i18n)
-  loadLanguageAsync('zh-CN')
+  loadLanguageAsync(languageConfig.get(index)!.language)
 }

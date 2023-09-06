@@ -92,3 +92,14 @@ export function toFixed(num: number, decimal: number): string {
     return integer
   }
 }
+
+/**
+ * @description: 将数字转换成货币格式
+ * @param {number} num
+ * @example console.log(currencyFormat(123456789)) // 123,456,789
+ * @example console.log(currencyFormat(123456789.123456789)) // 123,456,789.123456789
+ * @return {string} 转换后的货币格式
+ */
+export function currencyFormat(num: number): string {
+  return `${num}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+}
