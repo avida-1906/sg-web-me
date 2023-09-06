@@ -1,34 +1,61 @@
 <script setup lang="ts">
-const emit = defineEmits(["keyNum", "keyOk"])
+const emit = defineEmits(['keyNum', 'keyOk'])
 
-const keyUpNum = (event:any) => {
-    const num = event.target?.dataset.num
-    if(num){
-        emit('keyNum',num)
-    }
+function keyUpNum(event: any) {
+  const num = event.target?.dataset.num
+  if (num)
+    emit('keyNum', num)
 }
-    
-const keyUpOk = ()=>{
-    emit('keyOk')
+
+function keyUpOk() {
+  emit('keyOk')
 }
 </script>
 
 <template>
   <div class="base-numeric-keypad" @click="keyUpNum">
-    <div data-num="7">7</div>
-    <div data-num="8">8</div>
-    <div data-num="9">9</div>
-    <div data-num="9">9</div>
-    <div data-num="4">4</div>
-    <div data-num="5">5</div>
-    <div data-num="6">6</div>
-    <div class="ok-3" @click.stop="keyUpOk">ok</div>
-    <div data-num="1">1</div>
-    <div data-num="2">2</div>
-    <div data-num="3">3</div>
-    <div data-num="00">00</div>
-    <div data-num="0">0</div>
-    <div data-num=".">.</div>
+    <div data-num="7">
+      7
+    </div>
+    <div data-num="8">
+      8
+    </div>
+    <div data-num="9">
+      9
+    </div>
+    <div data-num="9">
+      9
+    </div>
+    <div data-num="4">
+      4
+    </div>
+    <div data-num="5">
+      5
+    </div>
+    <div data-num="6">
+      6
+    </div>
+    <div class="ok-3" @click.stop="keyUpOk">
+      ok
+    </div>
+    <div data-num="1">
+      1
+    </div>
+    <div data-num="2">
+      2
+    </div>
+    <div data-num="3">
+      3
+    </div>
+    <div data-num="00">
+      00
+    </div>
+    <div data-num="0">
+      0
+    </div>
+    <div data-num=".">
+      .
+    </div>
   </div>
 </template>
 
@@ -56,4 +83,3 @@ const keyUpOk = ()=>{
     }
 }
 </style>
-

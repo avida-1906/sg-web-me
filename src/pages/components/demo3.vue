@@ -1,27 +1,25 @@
 <script setup lang="ts">
-
-
-
 const { copy } = useClipboard()
-function handleKeyNum(num:String){
-  alert(num)
+function handleKeyNum(num: string) {
+  console.log(num)
+  // alert(num)
 }
-function handleKeyOk(){
-  alert('ok')
+function handleKeyOk() {
+  // alert('ok')
 }
 
-function getFile(file:any) {
+function getFile(file: any) {
   console.log(file)
 }
 
 function handleDelFile() {
-  alert('删除')
+  // alert('删除')
 }
 
 function copyUploadCode() {
-  copy(`<BaseUpload @selectFile="getFile" @deleteFile="handleDelFile" />`)
+  copy('<BaseUpload @selectFile="getFile" @deleteFile="handleDelFile" />')
 }
-function copyNumericKeypadCode(){
+function copyNumericKeypadCode() {
   copy(`<div style="width: 371px;">
           <BaseNumericKeypad @keyNum="handleKeyNum" @keyOk="handleKeyOk" />
         </div>`)
@@ -30,25 +28,19 @@ function copyBadgeCode(type: number) {
   switch (type) {
     // 按钮
     case 1:
-      copy(`<BaseBadge :count="5">
-							<BaseButton @click="copyBadgeCode(1)"> copy </BaseButton>
-						</BaseBadge>`)
+      copy('<BaseBadge :count="5"><BaseButton @click="copyBadgeCode(1)"> copy </BaseButton></BaseBadge>')
       break
     case 2:
-      copy(`<BaseBadge :count="99" :max="10">
-							<BaseButton @click="copyBadgeCode(2)"> copy </BaseButton>
-						</BaseBadge>`)
+      copy('<BaseBadge :count="99" :max="10"><BaseButton @click="copyBadgeCode(2)"> copy </BaseButton></BaseBadge>')
       break
     case 3:
-      copy(`<BaseBadge :dot="true">
-							<BaseButton @click="copyBadgeCode(3)"> copy </BaseButton>
-						</BaseBadge>`)
+      copy('<BaseBadge :dot="true"><BaseButton @click="copyBadgeCode(3)"> copy </BaseButton></BaseBadge>')
       break
     case 4:
-      copy(`<BaseBadge :count="25" />`)
+      copy('<BaseBadge :count="25" />')
       break
     case 5:
-      copy(`<BaseBadge status="success" text="copy" />`)
+      copy('<BaseBadge status="success" text="copy" />')
       break
   }
 }
@@ -58,8 +50,10 @@ function copyBadgeCode(type: number) {
   <ul>
     <li class="box">
       <AppDemoCard title="BaseUpload">
-        <BaseUpload @selectFile="getFile" @deleteFile="handleDelFile" />
-        <BaseButton @click="copyUploadCode"> copy </BaseButton>
+        <BaseUpload @select-file="getFile" @delete-file="handleDelFile" />
+        <BaseButton @click="copyUploadCode">
+          copy
+        </BaseButton>
       </AppDemoCard>
     </li>
     <li class="box">
@@ -67,17 +61,23 @@ function copyBadgeCode(type: number) {
         <div class="flex-row">
           <div>
             <BaseBadge :count="5">
-              <BaseButton @click="copyBadgeCode(1)"> copy </BaseButton>
+              <BaseButton @click="copyBadgeCode(1)">
+                copy
+              </BaseButton>
             </BaseBadge>
           </div>
           <div>
             <BaseBadge :count="99" :max="10">
-              <BaseButton @click="copyBadgeCode(2)"> copy </BaseButton>
+              <BaseButton @click="copyBadgeCode(2)">
+                copy
+              </BaseButton>
             </BaseBadge>
           </div>
           <div>
             <BaseBadge :dot="true">
-              <BaseButton @click="copyBadgeCode(3)"> copy </BaseButton>
+              <BaseButton @click="copyBadgeCode(3)">
+                copy
+              </BaseButton>
             </BaseBadge>
           </div>
           <div>
@@ -96,9 +96,11 @@ function copyBadgeCode(type: number) {
     <li class="box">
       <AppDemoCard title="BaseNumericKeypad">
         <div style="width: 371px;">
-          <BaseNumericKeypad @keyNum="handleKeyNum" @keyOk="handleKeyOk" />
+          <BaseNumericKeypad @key-num="handleKeyNum" @key-ok="handleKeyOk" />
         </div>
-        <BaseButton @click="copyNumericKeypadCode"> copy </BaseButton>
+        <BaseButton @click="copyNumericKeypadCode">
+          copy
+        </BaseButton>
       </AppDemoCard>
     </li>
   </ul>
@@ -111,5 +113,4 @@ function copyBadgeCode(type: number) {
   align-items: center;
   justify-content: space-around;
 }
-
 </style>

@@ -76,6 +76,10 @@ function copyCode(type: string) {
     case 'input-pwd':
       copy('<BaseInput v-model="password" label="密码" :msg="pwdErrorMsg" placeholder="请输入用户名" type="password" must />')
       break
+    case 'select':
+      copy('<BaseSelect v-model="selectValue" label="选择区号" :options="selectOptions" must />')
+      break
+
     case 'skeleton':
       copy('<BaseSkeleton animated />')
       break
@@ -124,6 +128,15 @@ const { value: password, errorMessage: pwdErrorMsg } = useField<string>('passwor
 
   return ''
 })
+
+const selectValue = ref('')
+const selectOptions = [
+  { value: '1', label: '选项1' },
+  { value: '2', label: '选项2' },
+  { value: '3', label: '选项3' },
+  { value: '4', label: '选项4' },
+  { value: '5', label: '选项5' },
+]
 
 const showDialogOne = ref(false)
 
@@ -281,6 +294,14 @@ function showDialog() {
           copy password
         </BaseButton>
         <BaseInput v-model="password" label="密码" :msg="pwdErrorMsg" placeholder="请输入用户名" type="password" must />
+      </AppDemoCard>
+    </li>
+    <li class="box">
+      <AppDemoCard title="BaseSelect">
+        <BaseButton round @click="copyCode('select')">
+          copy
+        </BaseButton>
+        <BaseSelect v-model="selectValue" label="选择区号" :options="selectOptions" must />
       </AppDemoCard>
     </li>
   </ul>
