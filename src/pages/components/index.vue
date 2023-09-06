@@ -79,10 +79,13 @@ function copyCode(type: string) {
     case 'select':
       copy('<BaseSelect v-model="selectValue" label="选择区号" :options="selectOptions" must />')
       break
-
     case 'skeleton':
       copy('<BaseSkeleton animated />')
       break
+    case 'birthday':
+      copy('<BaseInputBirthday v-model="birthday" must />')
+      break
+
     default:
       break
   }
@@ -137,6 +140,7 @@ const selectOptions = [
   { value: '4', label: '选项4' },
   { value: '5', label: '选项5' },
 ]
+const birthday = ref('')
 
 const showDialogOne = ref(false)
 
@@ -302,6 +306,14 @@ function showDialog() {
           copy
         </BaseButton>
         <BaseSelect v-model="selectValue" label="选择区号" :options="selectOptions" must />
+      </AppDemoCard>
+    </li>
+    <li class="box">
+      <AppDemoCard title="BaseInputBirthday">
+        <BaseButton round @click="copyCode('birthday')">
+          copy
+        </BaseButton>
+        <BaseInputBirthday v-model="birthday" must />
       </AppDemoCard>
     </li>
   </ul>

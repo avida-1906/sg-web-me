@@ -7,13 +7,7 @@ export {}
 declare global {
   const Big: typeof import('big.js')['Big']
   const EffectScope: typeof import('vue')['EffectScope']
-  const LanguageConfig: typeof import('./utils/language')['LanguageConfig']
-  const LanguageCurrency: typeof import('./utils/enums')['LanguageCurrency']
-  const LanguageCurrencyEnum: typeof import('./utils/enums')['LanguageCurrencyEnum']
   const LanguageEnum: typeof import('./utils/enums')['LanguageEnum']
-  const LanguageList: typeof import('./utils/language')['LanguageList']
-  const TimeFormatEnum: typeof import('./utils/enums')['TimeFormatEnum']
-  const abc: typeof import('./utils/enums')['abc']
   const add: typeof import('./utils/number')['add']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
   const autoResetRef: typeof import('@vueuse/core')['autoResetRef']
@@ -35,8 +29,10 @@ declare global {
   const createUnrefFn: typeof import('@vueuse/core')['createUnrefFn']
   const currencyFormat: typeof import('./utils/number')['currencyFormat']
   const customRef: typeof import('vue')['customRef']
+  const dayjs: typeof import('dayjs')['default']
   const debouncedRef: typeof import('@vueuse/core')['debouncedRef']
   const debouncedWatch: typeof import('@vueuse/core')['debouncedWatch']
+  const default: typeof import('dayjs')['default']
   const defineAsyncComponent: typeof import('vue')['defineAsyncComponent']
   const defineComponent: typeof import('vue')['defineComponent']
   const div: typeof import('./utils/number')['div']
@@ -45,7 +41,6 @@ declare global {
   const extendRef: typeof import('@vueuse/core')['extendRef']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
-  const getViteEnv: typeof import('./utils/index')['getViteEnv']
   const h: typeof import('vue')['h']
   const ignorableWatch: typeof import('@vueuse/core')['ignorableWatch']
   const inject: typeof import('vue')['inject']
@@ -102,7 +97,6 @@ declare global {
   const shallowReactive: typeof import('vue')['shallowReactive']
   const shallowReadonly: typeof import('vue')['shallowReadonly']
   const shallowRef: typeof import('vue')['shallowRef']
-  const showBaseNotify: typeof import('./utils/show-portal')['showBaseNotify']
   const sub: typeof import('./utils/number')['sub']
   const syncRef: typeof import('@vueuse/core')['syncRef']
   const syncRefs: typeof import('@vueuse/core')['syncRefs']
@@ -346,6 +340,7 @@ declare module 'vue' {
     readonly createUnrefFn: UnwrapRef<typeof import('@vueuse/core')['createUnrefFn']>
     readonly currencyFormat: UnwrapRef<typeof import('./utils/number')['currencyFormat']>
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
+    readonly dayjs: UnwrapRef<typeof import('dayjs')['default']>
     readonly debouncedRef: UnwrapRef<typeof import('@vueuse/core')['debouncedRef']>
     readonly debouncedWatch: UnwrapRef<typeof import('@vueuse/core')['debouncedWatch']>
     readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
@@ -649,6 +644,7 @@ declare module '@vue/runtime-core' {
     readonly createUnrefFn: UnwrapRef<typeof import('@vueuse/core')['createUnrefFn']>
     readonly currencyFormat: UnwrapRef<typeof import('./utils/number')['currencyFormat']>
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
+    readonly dayjs: UnwrapRef<typeof import('dayjs')['default']>
     readonly debouncedRef: UnwrapRef<typeof import('@vueuse/core')['debouncedRef']>
     readonly debouncedWatch: UnwrapRef<typeof import('@vueuse/core')['debouncedWatch']>
     readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>

@@ -53,6 +53,7 @@ export default defineConfig({
           'vee-validate': ['useField'], // https://vee-validate.logaretm.com/v4/api/use-field/
           '@vee-validate/zod': ['toTypedSchema'],
           'zod': ['z'], // https://github.com/colinhacks/zod/blob/master/README_ZH.md
+          'dayjs': [['default', 'dayjs']],
         },
       ],
       dts: 'src/auto-imports.d.ts',

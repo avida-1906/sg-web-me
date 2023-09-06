@@ -388,6 +388,7 @@ surveys_response_too_long: '请将回答保持在最多 {character_count} 个字
 surveys_single_response_hint: 请选择 1 个选项
 surveys_submit_response: 提交您的回应
 surveys_telephone_error: 请输入有效的电话号码
+surveys_birthday_error: 请输入您的出生日期
 surveys_text_input_question_placeholder: 请在此处输入您的回答……
 symbols: 符号
 tasks_space_title: 任务
@@ -507,6 +508,20 @@ time_just_now: 刚才
 time_minute_ago: '{delta} 分钟前'
 time_week_ago: '{delta} 周前'
 time_yesterday: 昨天
+time_january: 一月
+time_february: 二月
+time_march: 三月
+time_april: 四月
+time_may: 五月
+time_june: 六月
+time_july: 七月
+time_august: 八月
+time_september: 九月
+time_october: 十月
+time_november: 十一月
+time_december: 十二月
+time_birthday: 出生日期
+time_month: 月度
 tour: 导览
 try_again: 重试
 try_help_center: 试试我们的帮助中心
@@ -548,6 +563,7 @@ working_on_it: 正在努力解答……
 write_your_message: 写下你的信息
 written_by: 作者
 you: 您
+you_have_to_enough_18: 您必须年满 18 岁以上
 you_are_all_up_to_date: 你们都深陷其中！
 you_have_new_messages: 您有新消息。
 you_rated_the_conversation: 您已为对话打分

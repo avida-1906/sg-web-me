@@ -46,7 +46,7 @@ function onBlur() {
 <template>
   <div class="base-input">
     <div :class="[layout]">
-      <label class="label">{{ label }} <span v-if="must">*</span></label>
+      <label>{{ label }} <span v-if="must">*</span></label>
       <div class="input-box" :class="{ active: isFocus, error: isError }">
         <input
           :value="modelValue" :placeholder="placeholder" :type="_type" @input="onInput" @focus="onFocus"
@@ -69,7 +69,7 @@ function onBlur() {
   width: 100%;
   font-size: var(--tg-font-size-default);
 
-  .label {
+  label {
     color: var(--tg-secondary-light);
   }
 
@@ -90,7 +90,7 @@ function onBlur() {
     flex-direction: column;
     align-items: flex-start;
 
-    .label {
+    label {
       margin-bottom: 7px;
     }
 
@@ -98,7 +98,7 @@ function onBlur() {
   .horizontal{
     display: flex;
     align-items: center;
-    .label {
+    label {
       width: 100px;
       margin-right: 10px;
     }
