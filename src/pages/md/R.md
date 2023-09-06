@@ -9,12 +9,12 @@ Switch✅
 checkbox✅
 
 ## Wade
-dialog
-Loading
-popTip
-notification
-Toast
-popSelect 气泡下拉选择
+dialog✅
+Loading✅
+popTip❌ 这个使用 https://floating-vue.starpad.dev/guide/installation
+notification✅
+Toast✅
+popSelect 气泡下拉选择❌ 这个使用 https://floating-vue.starpad.dev/guide/installation
 
 ## Mark
 Progress
