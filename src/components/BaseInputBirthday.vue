@@ -57,9 +57,7 @@ const dayMax = computed(() => {
   return 31
 })
 const { value: day, setValue: setDay, errorMessage: errorDayMsg } = useField<number>('day', (value) => {
-  if (!value)
-    return t('surveys_birthday_error')
-  if (value > dayMax.value)
+  if (!value || value > dayMax.value)
     return t('surveys_birthday_error')
 
   return ''
