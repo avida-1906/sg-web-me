@@ -70,6 +70,12 @@ function copyCode(type: string) {
     case 'search':
       copy('<BaseSearch v-model="searchValue" clearable />')
       break
+    case 'input':
+      copy('<BaseInput v-model="username" label="用户名" :msg="usernameErrorMsg" placeholder="请输入用户名" must />')
+      break
+    case 'input-pwd':
+      copy('<BaseInput v-model="password" label="密码" :msg="pwdErrorMsg" placeholder="请输入用户名" type="password" must />')
+      break
 
     default:
       break
@@ -104,7 +110,13 @@ const tabList = [
   { value: '3', label: 'Tab 3333' },
 ]
 const searchValue = ref('')
-const { value: username, errorMessage, setErrors } = useField<string>('username', (value) => {
+const { value: username, errorMessage: usernameErrorMsg } = useField<string>('username', (value) => {
+  if (!value)
+    return '错误文字'
+
+  return ''
+})
+const { value: password, errorMessage: pwdErrorMsg } = useField<string>('password', (value) => {
   if (!value)
     return '错误文字'
 
@@ -254,10 +266,14 @@ function showDialog() {
     </li>
     <li class="box">
       <AppDemoCard title="BaseInput">
-        <!-- <BaseButton round @click="copyCode('input')">
-          copy
-        </BaseButton> -->
-        <BaseInput v-model="username" label="用户名" :msg="errorMessage" placeholder="请输入用户名" @blur="setErrors('')" />
+        <BaseButton round @click="copyCode('input')">
+          copy username
+        </BaseButton>
+        <BaseInput v-model="username" label="用户名" :msg="usernameErrorMsg" placeholder="请输入用户名" must />
+        <BaseButton round @click="copyCode('input-pwd')">
+          copy password
+        </BaseButton>
+        <BaseInput v-model="password" label="密码" :msg="pwdErrorMsg" placeholder="请输入用户名" type="password" must />
       </AppDemoCard>
     </li>
   </ul>

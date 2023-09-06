@@ -7,22 +7,21 @@ interface Props {
   whiteStyle?: boolean
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   placeHolder: 'Search...',
   shape: 'round',
 })
 const emit = defineEmits(['update:modelValue', 'input', 'search'])
-const inputValue = ref(props.modelValue)
 
-function onInput() {
-  emit('update:modelValue', inputValue.value)
-  emit('input', inputValue.value)
+function onInput(event: any) {
+  const v = event.target.value
+  emit('update:modelValue', v)
+  emit('input', v)
 }
 function onSearch() {
   emit('search')
 }
 function onClear() {
-  inputValue.value = ''
   emit('update:modelValue', '')
 }
 </script>
@@ -34,9 +33,9 @@ function onClear() {
     </div>
     <div class="content-box">
       <BaseIcon name="uni-search" class="search-icon" />
-      <input v-model="inputValue" type="text" :placeholder="placeHolder" @input="onInput" @keypress.enter="onSearch">
+      <input :value="modelValue" type="text" :placeholder="placeHolder" @input="onInput" @keypress.enter="onSearch">
 
-      <div v-if="clearable && inputValue" class="clear-icon" @click="onClear">
+      <div v-if="clearable && modelValue" class="clear-icon" @click="onClear">
         <BaseIcon v-if="whiteStyle" name="uni-close" />
         <BaseIcon v-else name="uni-close-white" />
       </div>
