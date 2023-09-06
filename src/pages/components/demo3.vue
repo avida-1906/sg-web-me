@@ -1,11 +1,31 @@
 <script setup lang="ts">
 
 
+
 const { copy } = useClipboard()
-function copyUploadCode() {
-  copy('<BaseUpload />')
+function handleKeyNum(num:String){
+  alert(num)
+}
+function handleKeyOk(){
+  alert('ok')
 }
 
+function getFile(file:any) {
+  console.log(file)
+}
+
+function handleDelFile() {
+  alert('删除')
+}
+
+function copyUploadCode() {
+  copy(`<BaseUpload @selectFile="getFile" @deleteFile="handleDelFile" />`)
+}
+function copyNumericKeypadCode(){
+  copy(`<div style="width: 371px;">
+          <BaseNumericKeypad @keyNum="handleKeyNum" @keyOk="handleKeyOk" />
+        </div>`)
+}
 function copyBadgeCode(type: number) {
   switch (type) {
     // 按钮
@@ -38,8 +58,8 @@ function copyBadgeCode(type: number) {
   <ul>
     <li class="box">
       <AppDemoCard title="BaseUpload">
-        <BaseUpload />
-        <BaseButton @click="copyUploadCode()"> copy </BaseButton>
+        <BaseUpload @selectFile="getFile" @deleteFile="handleDelFile" />
+        <BaseButton @click="copyUploadCode"> copy </BaseButton>
       </AppDemoCard>
     </li>
     <li class="box">
@@ -73,6 +93,14 @@ function copyBadgeCode(type: number) {
         </div>
       </AppDemoCard>
     </li>
+    <li class="box">
+      <AppDemoCard title="BaseNumericKeypad">
+        <div style="width: 371px;">
+          <BaseNumericKeypad @keyNum="handleKeyNum" @keyOk="handleKeyOk" />
+        </div>
+        <BaseButton @click="copyNumericKeypadCode"> copy </BaseButton>
+      </AppDemoCard>
+    </li>
   </ul>
 </template>
 
@@ -83,4 +111,5 @@ function copyBadgeCode(type: number) {
   align-items: center;
   justify-content: space-around;
 }
+
 </style>

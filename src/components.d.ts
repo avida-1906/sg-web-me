@@ -20,6 +20,7 @@ declare module 'vue' {
     BaseList: typeof import('./components/BaseList.vue')['default']
     BaseLoading: typeof import('./components/BaseLoading.vue')['default']
     BaseNotify: typeof import('./components/BaseNotify.vue')['default']
+    BaseNumericKeypad: typeof import('./components/BaseNumericKeypad.vue')['default']
     BaseProgress: typeof import('./components/BaseProgress.vue')['default']
     BaseRadio: typeof import('./components/BaseRadio.vue')['default']
     BaseRadioGroup: typeof import('./components/BaseRadioGroup.vue')['default']
