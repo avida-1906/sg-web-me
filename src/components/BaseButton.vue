@@ -6,6 +6,7 @@ interface Props {
   disabled?: boolean
   loading?: boolean
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+  shadow?: boolean
 }
 
 withDefaults(defineProps<Props>(), {
@@ -16,7 +17,7 @@ withDefaults(defineProps<Props>(), {
 
 <template>
   <button
-    :disabled="loading || disabled" :class="[type, bgStyle, { round }]"
+    :disabled="loading || disabled" :class="[type, bgStyle, { round, shadow }]"
     :style="{
       padding: `var(--tg-spacing-button-padding-vertical-${size}) var(--tg-spacing-button-padding-horizontal-${size})`,
     }"
@@ -92,6 +93,9 @@ button {
   border-radius: 0 100px 100px 0;
 }
 
+.shadow{
+  box-shadow: var(--tg-box-shadow);
+}
 .round {
   border-radius: 100px;
 }

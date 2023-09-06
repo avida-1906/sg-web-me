@@ -24,6 +24,7 @@ declare module 'vue' {
     BaseRadio: typeof import('./components/BaseRadio.vue')['default']
     BaseRadioGroup: typeof import('./components/BaseRadioGroup.vue')['default']
     BaseSearch: typeof import('./components/BaseSearch.vue')['default']
+    BaseSelect: typeof import('./components/BaseSelect.vue')['default']
     BaseSwitch: typeof import('./components/BaseSwitch.vue')['default']
     BaseTab: typeof import('./components/BaseTab.vue')['default']
     BaseTable: typeof import('./components/BaseTable.vue')['default']

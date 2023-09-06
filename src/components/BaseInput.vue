@@ -1,6 +1,6 @@
 <script setup lang='ts'>
 interface Props {
-  modelValue: string
+  modelValue?: string
   label: string
   layout?: 'horizontal' | 'vertical'
   type?: 'text' | 'password'
