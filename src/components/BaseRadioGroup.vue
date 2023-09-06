@@ -12,6 +12,9 @@ const props = withDefaults(defineProps<Props>(), {
 const emit = defineEmits(['update:modelValue', 'change'])
 
 function onSelect(value: string) {
+  if (props.modelValue === value)
+    return
+
   emit('update:modelValue', value)
   emit('change', value)
 }

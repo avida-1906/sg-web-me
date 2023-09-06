@@ -10,13 +10,17 @@ interface Props {
   layout?: 'horizontal' | 'vertical'
   must?: boolean
 }
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   layout: 'vertical',
 })
 const emit = defineEmits(['update:modelValue', 'select'])
 
 function onChange(event: any) {
   const v = event.target.value
+
+  if (v === props.modelValue)
+    return
+
   emit('update:modelValue', v)
   emit('select', v)
 }

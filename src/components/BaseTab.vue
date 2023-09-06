@@ -9,12 +9,15 @@ interface Props {
   average?: boolean
   shape?: 'square' | 'round'
 }
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   shape: 'round',
 })
 const emit = defineEmits(['update:modelValue', 'change'])
 
 function onClick(v: string | number) {
+  if (v === props.modelValue)
+    return
+
   emit('update:modelValue', v)
   emit('change', v)
 }
@@ -27,7 +30,7 @@ function onClick(v: string | number) {
       @click="onClick(t.value)"
     >
       <div class="content">
-        <slot name="tab">
+        <slot name="tab" :item="t">
           {{ t.label }}
         </slot>
       </div>

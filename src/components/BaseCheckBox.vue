@@ -3,12 +3,14 @@ const props = defineProps<{
   modelValue: boolean
   disabled?: boolean
 }>()
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(['update:modelValue', 'check'])
 
 function onClick() {
   if (props.disabled)
     return
+
   emit('update:modelValue', !props.modelValue)
+  emit('check', !props.modelValue)
 }
 </script>
 
