@@ -17,6 +17,7 @@ declare module 'vue' {
     BaseDialog: typeof import('./components/BaseDialog.vue')['default']
     BaseDivider: typeof import('./components/BaseDivider.vue')['default']
     BaseEmpty: typeof import('./components/BaseEmpty.vue')['default']
+    BaseGameItem: typeof import('./components/BaseGameItem.vue')['default']
     BaseIcon: typeof import('./components/BaseIcon.vue')['default']
     BaseImage: typeof import('./components/BaseImage.vue')['default']
     BaseInput: typeof import('./components/BaseInput.vue')['default']

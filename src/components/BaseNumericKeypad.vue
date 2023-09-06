@@ -76,6 +76,7 @@ function keyUpOk() {
         background-color: var( --tg-secondary-grey);
         text-align: center;
         line-height: 44px;
+        cursor: pointer;
     }
     .ok-3{
         grid-row-start: span 3;

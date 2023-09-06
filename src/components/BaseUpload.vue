@@ -3,7 +3,7 @@ interface Props {
   readonly?: boolean // 只读
   disabled?: boolean // 禁用
   accept?: string // 可选文件类型
-  showDelete?: boolean // 是否有删除按钮
+  showDelete?: boolean // 是否显示删除按钮
 }
 withDefaults(defineProps<Props>(), {
   readonly: false,
