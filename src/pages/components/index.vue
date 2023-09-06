@@ -17,6 +17,7 @@ function showNotify() {
     message: '欢迎马尼拉湾的吴彦祖',
     // default: () => h('h1', '啊不错滴'),
   })
+  copyCode('BaseNotify')
 }
 function copyCode(type: string) {
   switch (type) {
@@ -86,6 +87,38 @@ function copyCode(type: string) {
       copy('<BaseInputBirthday v-model="birthday" must />')
       break
 
+    case 'BaseLoading':
+      copy('<BaseLoading />')
+      break
+    case 'useDialog':
+      copy(`
+        const { openDialog, closeDialog } = useDialog({
+          title: '表格',
+          icon: 'balls-darts-on',
+          default: () => h(AppDemoCard, { title: '标题' }, {
+            default: () => h('table', { style: { color: 'orange' } }, 'abcdefg'),
+          }),
+        })
+      `)
+      break
+    case 'BaseDialog':
+      copy(`
+        <BaseDialog v-model:show="showDialogOne" icon="uni-trend" title="提款">
+          <div class="data-table">
+            一个外部弹窗
+          </div>
+        </BaseDialog>
+      `)
+      break
+    case 'BaseNotify':
+      copy(`
+        openNotify({
+          title: () => h('p', { style: { color: 'orange' } }, 'makati 靓仔'),
+          message: '欢迎马尼拉湾的吴彦祖',
+          // default: () => h('h1', '啊不错滴'),
+        })
+      `)
+      break
     default:
       break
   }
@@ -152,10 +185,15 @@ const { openDialog, closeDialog } = useDialog({
   }),
 })
 function showDialog() {
+  copyCode('useDialog')
   openDialog()
-  // setTimeout(() => {
-  //   closeDialog()
-  // }, 3000)
+  setTimeout(() => {
+    closeDialog()
+  }, 3000)
+}
+function showTemDialog() {
+  showDialogOne.value = true
+  copyCode('BaseDialog')
 }
 </script>
 
@@ -238,6 +276,9 @@ function showDialog() {
     </li>
     <li class="box">
       <AppDemoCard title="BaseLoading">
+        <BaseButton round @click="copyCode('BaseLoading')">
+          copy
+        </BaseButton>
         <div class="box">
           <BaseLoading />
         </div>
@@ -282,7 +323,7 @@ function showDialog() {
             展示弹窗 useDialog
           </BaseButton>
           <div style="height: 20px;" />
-          <BaseButton @click="showDialogOne = true">
+          <BaseButton @click="showTemDialog">
             展示弹窗 template
           </BaseButton>
         </div>
