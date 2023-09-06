@@ -7,6 +7,13 @@ export {}
 declare global {
   const Big: typeof import('big.js')['Big']
   const EffectScope: typeof import('vue')['EffectScope']
+  const LanguageConfig: typeof import('./utils/language')['LanguageConfig']
+  const LanguageCurrency: typeof import('./utils/enums')['LanguageCurrency']
+  const LanguageCurrencyEnum: typeof import('./utils/enums')['LanguageCurrencyEnum']
+  const LanguageEnum: typeof import('./utils/enums')['LanguageEnum']
+  const LanguageList: typeof import('./utils/language')['LanguageList']
+  const TimeFormatEnum: typeof import('./utils/enums')['TimeFormatEnum']
+  const abc: typeof import('./utils/enums')['abc']
   const add: typeof import('./utils/number')['add']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
   const autoResetRef: typeof import('@vueuse/core')['autoResetRef']
@@ -26,6 +33,7 @@ declare global {
   const createSharedComposable: typeof import('@vueuse/core')['createSharedComposable']
   const createTemplatePromise: typeof import('@vueuse/core')['createTemplatePromise']
   const createUnrefFn: typeof import('@vueuse/core')['createUnrefFn']
+  const currencyFormat: typeof import('./utils/number')['currencyFormat']
   const customRef: typeof import('vue')['customRef']
   const debouncedRef: typeof import('@vueuse/core')['debouncedRef']
   const debouncedWatch: typeof import('@vueuse/core')['debouncedWatch']
@@ -37,6 +45,7 @@ declare global {
   const extendRef: typeof import('@vueuse/core')['extendRef']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
+  const getViteEnv: typeof import('./utils/index')['getViteEnv']
   const h: typeof import('vue')['h']
   const ignorableWatch: typeof import('@vueuse/core')['ignorableWatch']
   const inject: typeof import('vue')['inject']
@@ -46,10 +55,12 @@ declare global {
   const isReactive: typeof import('vue')['isReactive']
   const isReadonly: typeof import('vue')['isReadonly']
   const isRef: typeof import('vue')['isRef']
+  const languageConfig: typeof import('./utils/language')['languageConfig']
   const makeDestructurable: typeof import('@vueuse/core')['makeDestructurable']
   const markRaw: typeof import('vue')['markRaw']
   const mul: typeof import('./utils/number')['mul']
   const nextTick: typeof import('vue')['nextTick']
+  const numberToCurrency: typeof import('./utils/index')['numberToCurrency']
   const onActivated: typeof import('vue')['onActivated']
   const onBeforeMount: typeof import('vue')['onBeforeMount']
   const onBeforeRouteLeave: typeof import('vue-router')['onBeforeRouteLeave']
@@ -98,6 +109,7 @@ declare global {
   const templateRef: typeof import('@vueuse/core')['templateRef']
   const throttledRef: typeof import('@vueuse/core')['throttledRef']
   const throttledWatch: typeof import('@vueuse/core')['throttledWatch']
+  const timestampToTime: typeof import('./utils/index')['timestampToTime']
   const toFixed: typeof import('./utils/number')['toFixed']
   const toRaw: typeof import('vue')['toRaw']
   const toReactive: typeof import('@vueuse/core')['toReactive']
@@ -312,6 +324,7 @@ declare module 'vue' {
   interface ComponentCustomProperties {
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly LanguageEnum: UnwrapRef<typeof import('./utils/enums')['LanguageEnum']>
     readonly add: UnwrapRef<typeof import('./utils/number')['add']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
@@ -331,6 +344,7 @@ declare module 'vue' {
     readonly createSharedComposable: UnwrapRef<typeof import('@vueuse/core')['createSharedComposable']>
     readonly createTemplatePromise: UnwrapRef<typeof import('@vueuse/core')['createTemplatePromise']>
     readonly createUnrefFn: UnwrapRef<typeof import('@vueuse/core')['createUnrefFn']>
+    readonly currencyFormat: UnwrapRef<typeof import('./utils/number')['currencyFormat']>
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
     readonly debouncedRef: UnwrapRef<typeof import('@vueuse/core')['debouncedRef']>
     readonly debouncedWatch: UnwrapRef<typeof import('@vueuse/core')['debouncedWatch']>
@@ -351,10 +365,12 @@ declare module 'vue' {
     readonly isReactive: UnwrapRef<typeof import('vue')['isReactive']>
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
+    readonly languageConfig: UnwrapRef<typeof import('./utils/language')['languageConfig']>
     readonly makeDestructurable: UnwrapRef<typeof import('@vueuse/core')['makeDestructurable']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
     readonly mul: UnwrapRef<typeof import('./utils/number')['mul']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
+    readonly numberToCurrency: UnwrapRef<typeof import('./utils/index')['numberToCurrency']>
     readonly onActivated: UnwrapRef<typeof import('vue')['onActivated']>
     readonly onBeforeMount: UnwrapRef<typeof import('vue')['onBeforeMount']>
     readonly onBeforeRouteLeave: UnwrapRef<typeof import('vue-router')['onBeforeRouteLeave']>
@@ -402,6 +418,7 @@ declare module 'vue' {
     readonly templateRef: UnwrapRef<typeof import('@vueuse/core')['templateRef']>
     readonly throttledRef: UnwrapRef<typeof import('@vueuse/core')['throttledRef']>
     readonly throttledWatch: UnwrapRef<typeof import('@vueuse/core')['throttledWatch']>
+    readonly timestampToTime: UnwrapRef<typeof import('./utils/index')['timestampToTime']>
     readonly toFixed: UnwrapRef<typeof import('./utils/number')['toFixed']>
     readonly toRaw: UnwrapRef<typeof import('vue')['toRaw']>
     readonly toReactive: UnwrapRef<typeof import('@vueuse/core')['toReactive']>
@@ -610,6 +627,7 @@ declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly LanguageEnum: UnwrapRef<typeof import('./utils/enums')['LanguageEnum']>
     readonly add: UnwrapRef<typeof import('./utils/number')['add']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
@@ -629,6 +647,7 @@ declare module '@vue/runtime-core' {
     readonly createSharedComposable: UnwrapRef<typeof import('@vueuse/core')['createSharedComposable']>
     readonly createTemplatePromise: UnwrapRef<typeof import('@vueuse/core')['createTemplatePromise']>
     readonly createUnrefFn: UnwrapRef<typeof import('@vueuse/core')['createUnrefFn']>
+    readonly currencyFormat: UnwrapRef<typeof import('./utils/number')['currencyFormat']>
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
     readonly debouncedRef: UnwrapRef<typeof import('@vueuse/core')['debouncedRef']>
     readonly debouncedWatch: UnwrapRef<typeof import('@vueuse/core')['debouncedWatch']>
@@ -649,10 +668,12 @@ declare module '@vue/runtime-core' {
     readonly isReactive: UnwrapRef<typeof import('vue')['isReactive']>
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
+    readonly languageConfig: UnwrapRef<typeof import('./utils/language')['languageConfig']>
     readonly makeDestructurable: UnwrapRef<typeof import('@vueuse/core')['makeDestructurable']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
     readonly mul: UnwrapRef<typeof import('./utils/number')['mul']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
+    readonly numberToCurrency: UnwrapRef<typeof import('./utils/index')['numberToCurrency']>
     readonly onActivated: UnwrapRef<typeof import('vue')['onActivated']>
     readonly onBeforeMount: UnwrapRef<typeof import('vue')['onBeforeMount']>
     readonly onBeforeRouteLeave: UnwrapRef<typeof import('vue-router')['onBeforeRouteLeave']>
@@ -700,6 +721,7 @@ declare module '@vue/runtime-core' {
     readonly templateRef: UnwrapRef<typeof import('@vueuse/core')['templateRef']>
     readonly throttledRef: UnwrapRef<typeof import('@vueuse/core')['throttledRef']>
     readonly throttledWatch: UnwrapRef<typeof import('@vueuse/core')['throttledWatch']>
+    readonly timestampToTime: UnwrapRef<typeof import('./utils/index')['timestampToTime']>
     readonly toFixed: UnwrapRef<typeof import('./utils/number')['toFixed']>
     readonly toRaw: UnwrapRef<typeof import('vue')['toRaw']>
     readonly toReactive: UnwrapRef<typeof import('@vueuse/core')['toReactive']>

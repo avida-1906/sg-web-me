@@ -80,6 +80,9 @@ function copyCode(type: string) {
       copy('<BaseSelect v-model="selectValue" label="选择区号" :options="selectOptions" must />')
       break
 
+    case 'skeleton':
+      copy('<BaseSkeleton animated />')
+      break
     default:
       break
   }
@@ -161,6 +164,11 @@ function showDialog() {
             <BaseIcon :name="id.slice(5)" />
           </li>
         </ul>
+      </AppDemoCard>
+    </li>
+    <li class="box">
+      <AppDemoCard title="skeleton">
+        <BaseSkeleton animated @click="copyCode('skeleton')" />
       </AppDemoCard>
     </li>
     <li class="box">
