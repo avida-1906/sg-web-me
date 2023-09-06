@@ -7,12 +7,12 @@ enum Status {
 }
 interface Props {
   color?: string // 自定义小圆点的颜色
-  count?: number // 展示的数字，大于 max 时显示为 max+，为 0 时隐藏；number | slot
+  count?: number // 展示的数字，大于 max 时显示为 max+，为 0 时隐藏；number
   max?: number // 展示封顶的数字值
   showZero?: boolean // 当数值为 0 时，是否展示 Badge
   dot?: boolean // 不展示数字，只有一个小红点
   status?: Status // 设置 Badge 为状态点
-  text?: string // 在设置了 status 的前提下有效，设置状态点的文本 string | slot
+  text?: string // 在设置了 status 的前提下有效，设置状态点的文本 string
   countStyle?: CSSProperties // 设置状态点的样式
   title?: string // 设置鼠标放在状态点上时显示的文字
 }
@@ -37,13 +37,16 @@ const customStyle = computed(() => {
   }
 })
 const contentRef = ref()
-const showContent = ref(1)
-const countRef = ref()
-const showCount = ref(1)
+const showContent = ref(true)
+// const countRef = ref()
+// const showCount = ref(1)
 onMounted(() => {
   if (!props.status && !props.color) {
-    showContent.value = contentRef.value.offsetHeight
-    showCount.value = countRef.value.offsetHeight
+    showContent.value = !!useSlots().default
+    // showContent.value = contentRef.value.offsetHeight
+    // showCount.value = countRef.value.offsetHeight
+    // console.log(useSlots().default, useSlots().count)
+    // console.log(showContent.value,showCount.value)
   }
 })
 </script>
@@ -59,15 +62,14 @@ onMounted(() => {
       <span ref="contentRef" v-if="showContent">
         <slot></slot>
       </span>
-      <span
+      <!-- <span
         ref="countRef"
         v-if="showCount"
         class="m-count"
         :class="{'only-number': !showContent}">
         <slot name="count"></slot>
-      </span>
+      </span> -->
       <div
-        v-else
         v-show="showZero || count !== 0 || dot"
         class="m-badge-count"
         :class="{'small-num': count < 10, 'only-number': !showContent, 'only-dot': count === 0 && !showZero}"
@@ -83,7 +85,7 @@ onMounted(() => {
 <style lang="scss" scoped>
 .m-badge {
   color: var(--tg-text-dark);
-  font-size: 14px;
+  font-size: var(--tg-radius-2xl);
   line-height: 1;
   position: relative;
   display: inline-block;
@@ -159,12 +161,12 @@ onMounted(() => {
     height: 20px;
     color: var(--tg-text-dark);//默认字体颜色
     font-weight: normal;
-    font-size: 12px;
+    font-size: var(--tg-font-size-xs);
     line-height: 20px;
     white-space: nowrap;
     text-align: center;
     background: var(--tg-text-lightblue);//默认背景颜色
-    border-radius: 10px;
+    border-radius: var(--tg-radius-lg);
     box-shadow: 0 0 0 1px #ffffff;
     // transition: background .2s;
     .m-number {
