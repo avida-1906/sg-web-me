@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const { copy } = useClipboard()
 function handleKeyNum(num: string) {
+  console.log(num)
   // alert(num)
 }
 function handleKeyOk() {
@@ -49,7 +50,7 @@ function copyBadgeCode(type: number) {
   <ul>
     <li class="box">
       <AppDemoCard title="BaseUpload">
-        <BaseUpload @selectFile="getFile" @deleteFile="handleDelFile" />
+        <BaseUpload @select-file="getFile" @delete-file="handleDelFile" />
         <BaseButton @click="copyUploadCode">
           copy
         </BaseButton>
@@ -95,7 +96,7 @@ function copyBadgeCode(type: number) {
     <li class="box">
       <AppDemoCard title="BaseNumericKeypad">
         <div style="width: 371px;">
-          <BaseNumericKeypad @keyNum="handleKeyNum" @keyOk="handleKeyOk" />
+          <BaseNumericKeypad @key-num="handleKeyNum" @key-ok="handleKeyOk" />
         </div>
         <BaseButton @click="copyNumericKeypadCode">
           copy
