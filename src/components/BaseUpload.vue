@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 interface Props {
   readonly?: boolean // 只读
   disabled?: boolean // 禁用
