@@ -31,7 +31,7 @@ const { value: month, setValue: setMonth, errorMessage: errorMonthMsg } = useFie
   return ''
 })
 const { value: year, setValue: setYear, errorMessage: errorYearMsg } = useField<number>('year', (value) => {
-  if (!value)
+  if (!value || value < 1900)
     return t('surveys_birthday_error')
   return ''
 })
@@ -127,9 +127,9 @@ function onInput() {
       <label>{{ t('time_birthday') }} <span v-if="must">*</span></label>
       <div class="input-wrap">
         <!-- 日 -->
-        <input v-model="day" type="number" min="1" :max="dayMax" placeholder="DD" @input="onInput">
+        <input v-model="day" type="number" min="1" :max="dayMax" placeholder="DD" :class="{ error: msg }" @input="onInput">
         <!-- 月 -->
-        <select v-model="month" @change="onInput">
+        <select v-model="month" :class="{ error: msg }" @change="onInput">
           <option value="xx" disabled>
             {{ t('time_month') }}
           </option>
@@ -138,7 +138,7 @@ function onInput() {
           </option>
         </select>
         <!-- 年 -->
-        <input v-model="year" type="number" min="1900" placeholder="YYYY" @input="onInput">
+        <input v-model="year" :class="{ error: msg }" type="number" min="1900" placeholder="YYYY" @input="onInput">
       </div>
     </div>
     <div v-show="msg" class="msg">
