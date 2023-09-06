@@ -8,6 +8,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AppDemoCard: typeof import('./components/AppDemoCard.vue')['default']
+    BaseAspectRatio: typeof import('./components/BaseAspectRatio.vue')['default']
     BaseBadge: typeof import('./components/BaseBadge.vue')['default']
     BaseButton: typeof import('./components/BaseButton.vue')['default']
     BaseCheckBox: typeof import('./components/BaseCheckBox.vue')['default']
