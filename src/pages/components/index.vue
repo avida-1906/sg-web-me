@@ -136,9 +136,9 @@ const { openDialog, closeDialog } = useDialog({
 })
 function showDialog() {
   openDialog()
-  // setTimeout(() => {
-  //   closeDialog()
-  // }, 3000)
+  setTimeout(() => {
+    closeDialog()
+  }, 3000)
 }
 </script>
 
