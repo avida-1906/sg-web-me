@@ -1,41 +1,21 @@
 <script lang="ts" setup>
 import ids from 'virtual:svg-icons-names'
+import AppDemoCard from '~/components/AppDemoCard.vue'
 
 const { copy } = useClipboard()
 
-function toast() {
-  const div = document.createElement('div')
-  div.innerHTML = 'Copied'
-  div.style.cssText = `
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 10px 20px;
-    background: rgba(0, 0, 0, 0.5);
-    color: #fff;
-    border-radius: 5px;
-    z-index: 999;
-  `
-  document.body.appendChild(div)
-
-  setTimeout(() => {
-    document.body.removeChild(div)
-  }, 1000)
-}
-
 function copyIcon(id: string) {
   copy(`<BaseIcon name="${id}" />`)
-  toast()
+  toast('Copied')
 }
 
+const { openNotify } = useNotify()
+
 function showNotify() {
-  showBaseNotify({
+  openNotify({
     title: () => h('p', { style: { color: 'orange' } }, 'makati 靓仔'),
     message: '欢迎马尼拉湾的吴彦祖',
-    onClose: () => {
-      console.warn('notify closed')
-    },
+    // default: () => h('h1', '啊不错滴'),
   })
 }
 function copyCode(type: string) {
@@ -84,11 +64,23 @@ function copyCode(type: string) {
         </BaseCheckBox>
         `)
       break
+    case 'tab':
+      copy('<BaseTab v-model="tab" :list="tabList" />')
+      break
+    case 'search':
+      copy('<BaseSearch v-model="searchValue" clearable />')
+      break
+    case 'input':
+      copy('<BaseInput v-model="username" label="用户名" :msg="usernameErrorMsg" placeholder="请输入用户名" must />')
+      break
+    case 'input-pwd':
+      copy('<BaseInput v-model="password" label="密码" :msg="pwdErrorMsg" placeholder="请输入用户名" type="password" must />')
+      break
 
     default:
       break
   }
-  toast()
+  toast('Copied')
 }
 const isSwitch = ref(false)
 function onSwitch(v: boolean) {
@@ -117,10 +109,39 @@ const tabList = [
   { value: '2', label: 'Tab 2' },
   { value: '3', label: 'Tab 3333' },
 ]
+const searchValue = ref('')
+const { value: username, errorMessage: usernameErrorMsg } = useField<string>('username', (value) => {
+  if (!value)
+    return '错误文字'
+
+  return ''
+})
+const { value: password, errorMessage: pwdErrorMsg } = useField<string>('password', (value) => {
+  if (!value)
+    return '错误文字'
+
+  return ''
+})
+
+const showDialogOne = ref(false)
+
+const { openDialog, closeDialog } = useDialog({
+  title: '表格',
+  icon: 'balls-darts-on',
+  default: () => h(AppDemoCard, { title: '标题' }, {
+    default: () => h('table', { style: { color: 'orange' } }, 'abcdefg'),
+  }),
+})
+function showDialog() {
+  openDialog()
+  // setTimeout(() => {
+  //   closeDialog()
+  // }, 3000)
+}
 </script>
 
 <template>
-  <ul>
+  <ul class="demo-page">
     <li class="box">
       <AppDemoCard title="BaseIcon">
         <ul class="icon-wrap m0 p0">
@@ -202,7 +223,7 @@ const tabList = [
       <AppDemoCard title="BaseNotify">
         <div class="box">
           <BaseButton @click="showNotify">
-            展示弹窗提示信息 showBaseNotify 函数
+            展示弹窗提示信息 const { openNotify } = useNotify() 函数
           </BaseButton>
         </div>
       </AppDemoCard>
@@ -210,23 +231,66 @@ const tabList = [
     <li class="box">
       <AppDemoCard title="BaseCheckBox">
         <BaseCheckBox v-model="checkboxValue" @click="copyCode('checkbox')">
-          展示弹窗提示信息
+          一个复选框
         </BaseCheckBox>
       </AppDemoCard>
     </li>
     <li class="box">
       <AppDemoCard title="BaseTab">
-        <BaseTab v-model="tab" :list="tabList" shape="round">
-          展示弹窗提示信息
-        </BaseTab>
+        <BaseButton round @click="copyCode('tab')">
+          copy
+        </BaseButton>
+        <BaseTab v-model="tab" :list="tabList" />
+      </AppDemoCard>
+    </li>
+    <li class="box">
+      <AppDemoCard title="BaseSearch">
+        <BaseButton round @click="copyCode('search')">
+          copy
+        </BaseButton>
+        <BaseSearch v-model="searchValue" clearable />
+      </AppDemoCard>
+    </li>
+    <li class="box">
+      <AppDemoCard title="BaseDialog">
+        <div class="box">
+          <BaseButton @click="showDialog">
+            展示弹窗 useDialog
+          </BaseButton>
+          <div style="height: 20px;" />
+          <BaseButton @click="showDialogOne = true">
+            展示弹窗 template
+          </BaseButton>
+        </div>
+      </AppDemoCard>
+    </li>
+    <li class="box">
+      <AppDemoCard title="BaseInput">
+        <BaseButton round @click="copyCode('input')">
+          copy username
+        </BaseButton>
+        <BaseInput v-model="username" label="用户名" :msg="usernameErrorMsg" placeholder="请输入用户名" must />
+        <BaseButton round @click="copyCode('input-pwd')">
+          copy password
+        </BaseButton>
+        <BaseInput v-model="password" label="密码" :msg="pwdErrorMsg" placeholder="请输入用户名" type="password" must />
       </AppDemoCard>
     </li>
   </ul>
+  <BaseDialog v-model:show="showDialogOne" icon="uni-trend" title="提款">
+    <div class="data-table">
+      一个外部弹窗
+    </div>
+  </BaseDialog>
 </template>
 
 <style lang="scss" scoped>
+.demo-page {
+  padding-bottom: 50px;
+}
+
 .box {
-  padding: 20px;
+  padding: 5px;
   position: relative;
   text-align: center;
 }
@@ -242,5 +306,9 @@ const tabList = [
     width: 60px;
     font-size: 50px;
   }
+}
+
+.data-table {
+  padding: var(--tg-spacing-12);
 }
 </style>

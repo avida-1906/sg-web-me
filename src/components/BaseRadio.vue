@@ -69,7 +69,7 @@ function onCheck() {
     width: 21px;
     height: 21px;
     transition: all ease .25s;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .2), 0 1px 2px 0 rgba(0, 0, 0, .12);
+    box-shadow: var(--tg-box-shadow);
     cursor: pointer;
     margin-right: 8px;
     border-width: 2px;

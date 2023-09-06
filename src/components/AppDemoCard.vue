@@ -58,7 +58,7 @@ function toggle() {
 
 <style lang="scss" scoped>
 .app-demo-card {
-  border-radius: 4px;
+  border-radius: var(--tg-radius-default);
   overflow: hidden;
   background: var(--app-primary-main);
   box-shadow: 0px 1px 2px 1px rgba(black, 0.25);

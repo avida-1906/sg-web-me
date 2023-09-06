@@ -50,6 +50,9 @@ export default defineConfig({
         '@vueuse/core',
         {
           'big.js': ['Big'],
+          'vee-validate': ['useField'], // https://vee-validate.logaretm.com/v4/api/use-field/
+          '@vee-validate/zod': ['toTypedSchema'],
+          'zod': ['z'], // https://github.com/colinhacks/zod/blob/master/README_ZH.md
         },
       ],
       dts: 'src/auto-imports.d.ts',
