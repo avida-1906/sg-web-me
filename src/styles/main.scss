@@ -112,7 +112,7 @@ html,
 body {
   height: 100%;
   background-color: var(--tg-primary-main);
-  font-size: 16px;
+  font-size: var(--tg-font-size-base);
 }
 
 .container {
@@ -153,16 +153,17 @@ body {
 }
 
 .scroll-x::-webkit-scrollbar-thumb {
-  border-radius: 10px
+  border-radius: var(--tg-radius-lg);
 }
 
 .scroll-y::-webkit-scrollbar-thumb,
 .scroll-x::-webkit-scrollbar-thumb {
-  border-radius: 10px
+  border-radius: var(--tg-radius-lg);
+  background: var(--tg-secondary-main);
 }
 
 .scroll-x::-webkit-scrollbar {
-  height: var(--scrollbar-size)
+  height: var(--tg-scrollbar-size)
 }
 
 .hide-scrollbar {
@@ -174,7 +175,7 @@ body {
 }
 
 .scroll-y::-webkit-scrollbar {
-  width: var(--scrollbar-size)
+  width: var(--tg-scrollbar-size)
 }
 
 .scroll-contain {
