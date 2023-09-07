@@ -58,7 +58,7 @@ function close() {
 
 <template>
   <section v-if="show" ref="dragRef" class="tg-base-drag-dialog" :style="computedStyle">
-    <div class="no-select header">
+    <div class="header select-none">
       <div ref="titleRef" class="title">
         <BaseIcon :name="icon" />
         <span>{{ title }}</span>
