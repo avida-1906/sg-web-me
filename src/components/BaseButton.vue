@@ -55,15 +55,9 @@ button {
 .default {
   background-color: var(--tg-secondary-main);
 
-  &:active {
+  &:active:not(:disabled) {
     .content {
       transform: scale(0.9);
-    }
-  }
-
-  &:disabled {
-    .content {
-      transform: scale(1);
     }
   }
 
@@ -76,17 +70,10 @@ button {
   font-size: var(--tg-font-size-xl);
   color: var(--tg-text-grey-button);
 
-  &:active {
+  &:active:not(:disabled) {
     color: var(--tg-text-white);
     .content {
       transform: scale(0.9);
-    }
-  }
-
-  &:disabled {
-    color: var(--tg-text-grey-button);
-    .content {
-      transform: scale(1);
     }
   }
 
@@ -98,7 +85,7 @@ button {
 .line {
   border: 1px solid var(--tg-text-white);
 
-  &:active {
+  &:active:not(:disabled) {
     color: var(--tg-text-dark);
     background-color: var(--tg-text-white);
   }
@@ -111,15 +98,9 @@ button {
 .round-line-left {
   border: 1px solid var(--tg-secondary-light);
   border-radius: 100px 0 0 100px;
-  &:active {
+  &:active:not(:disabled) {
     .content {
       transform: scale(0.95);
-    }
-  }
-
-  &:disabled {
-    .content {
-      transform: scale(1);
     }
   }
 
@@ -133,15 +114,9 @@ button {
 .round-line-right {
   border: 1px solid var(--tg-secondary-light);
   border-radius: 0 100px 100px 0;
-  &:active {
+  &:active:not(:disabled) {
     .content {
       transform: scale(0.95);
-    }
-  }
-
-  &:disabled {
-    .content {
-      transform: scale(1);
     }
   }
 
