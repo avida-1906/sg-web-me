@@ -73,14 +73,16 @@ function keyUpOk() {
     color: var(--tg-text-white);
     div{
         height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         background-color: var( --tg-secondary-grey);
         text-align: center;
-        line-height: 44px;
         cursor: pointer;
     }
     .ok-3{
         grid-row-start: span 3;
-        line-height: 132px;
     }
 }
 </style>
