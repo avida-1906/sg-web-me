@@ -92,8 +92,8 @@ const loadIcons = [
     transform: scale(2) rotateZ(30deg);
   }
 
-  // 90% {
-  //   transform: scale(0.9) rotateZ(5deg);
+  // 80% {
+  //   transform: scale(1) rotateZ(0);
   // }
 
   100% {
