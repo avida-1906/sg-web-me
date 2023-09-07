@@ -190,6 +190,15 @@ body {
   left: 1rem;
 }
 
+.no-select {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 @media screen and (min-width: 768px) {
   #app {
     height: 1px;

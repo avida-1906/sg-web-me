@@ -119,6 +119,15 @@ function copyCode(type: string) {
         })
       `)
       break
+    case 'BaseDragDialog':
+      copy(`
+        <BaseDragDialog v-model:show="showDragDialog" icon="uni-trend" title="实时统计">
+          <div>
+            一个可拖拽弹窗
+          </div>
+        </BaseDragDialog>
+      `)
+      break
     default:
       break
   }
@@ -194,6 +203,11 @@ function showDialog() {
 function showTemDialog() {
   showDialogOne.value = true
   copyCode('BaseDialog')
+}
+const showDragDialog = ref(false)
+function showDrag() {
+  showDragDialog.value = true
+  copyCode('BaseDragDialog')
 }
 </script>
 
@@ -359,6 +373,18 @@ function showTemDialog() {
           copy
         </BaseButton>
         <BaseInputBirthday v-model="birthday" must />
+      </AppDemoCard>
+    </li>
+    <li class="box">
+      <AppDemoCard title="BaseDragDialog">
+        <BaseButton round @click="showDrag">
+          展示可拖拽弹窗
+        </BaseButton>
+        <BaseDragDialog v-model:show="showDragDialog" icon="uni-trend" title="实时统计">
+          <div>
+            一个可拖拽弹窗
+          </div>
+        </BaseDragDialog>
       </AppDemoCard>
     </li>
   </ul>
