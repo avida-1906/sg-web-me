@@ -1,14 +1,33 @@
+// 直播中信号灯
+.blinking-dash {
+  animation: blink 2s infinite linear;
+}
+
+@keyframes blink {
+
+  0%,
+  100% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
 // 赔率变化箭头动画
-.arrow-odd{
+.arrow-odd {
   animation-duration: .8s;
   animation-iteration-count: 4;
   animation-fill-mode: forwards
 }
-.odd-rise{
-  animation-name:flashingUp;
+
+.odd-rise {
+  animation-name: flashingUp;
 }
-.odd-decrease{
-  animation-name:flashingDown;
+
+.odd-decrease {
+  animation-name: flashingDown;
 }
 
 @keyframes flashingDown {
@@ -24,6 +43,7 @@
     opacity: 0;
   }
 }
+
 @keyframes flashingUp {
 
   0%,
