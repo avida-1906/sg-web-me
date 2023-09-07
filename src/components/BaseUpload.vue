@@ -1,17 +1,32 @@
 <script setup lang="ts">
 interface Props {
+  imgType?: 'frontId' | 'backId' | 'address' | 'fund' // 上传图片用途
   readonly?: boolean // 只读
   disabled?: boolean // 禁用
   accept?: string // 可选文件类型
   showDelete?: boolean // 是否显示删除按钮
 }
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
+  imgType: 'frontId',
   readonly: false,
   disabled: false,
   accept: 'image/png, image/jpg, application/pdf',
   showDelete: true,
 })
 const emit = defineEmits(['selectFile', 'deleteFile'])
+
+const getBackground = computed(() => {
+  switch (props.imgType) {
+    case 'frontId':
+      return 'front-id-bg'
+    case 'backId':
+      return 'back-id-bg'
+    case 'address':
+      return 'address-bg'
+    case 'fund':
+      return 'fund-bg'
+  }
+})
 const imageUrl: any = ref('')
 function changFile(event: any) {
   const file = event.target.files[0]
@@ -31,7 +46,7 @@ function deleteImg() {
 </script>
 
 <template>
-  <div class="base-upload">
+  <div :class="`base-upload ${getBackground}`">
     <div v-if="imageUrl" class="img-box">
       <img class="file-img" :src="imageUrl" alt="">
       <div v-if="showDelete" class="icon-upload-delete" @click.stop="deleteImg">
@@ -39,12 +54,7 @@ function deleteImg() {
       </div>
     </div>
     <input
-      v-else
-      class="input-file"
-      type="file"
-      :readonly="readonly"
-      :accept="accept"
-      :disabled="disabled"
+      v-else class="input-file" type="file" :readonly="readonly" :accept="accept" :disabled="disabled"
       @change="changFile"
     >
   </div>
@@ -57,11 +67,11 @@ function deleteImg() {
   position: relative;
   border-radius: var(--tg-radius-default);
   overflow: hidden;
-  background-image: url(../icons/upload-border.svg), url(../icons/upload-type.svg), url(../icons/upload-up.svg);
+  // background-image: url(../icons/upload-border.svg), url(../icons/upload-type.svg), url(../icons/upload-up.svg);
   background-repeat: no-repeat;
-  background-size: 95% 92%, 80% 80%, 25px 25px;
+  // background-size: 95% 92%, 80% 80%, 25px 25px;
   background-position: center;
-  background-color: #202630;
+  background-color: var(--tg-secondary-grey);
 
   .input-file {
     width: 100%;
@@ -82,7 +92,8 @@ function deleteImg() {
     position: absolute;
     top: 0;
     right: 0;
-    padding: 4px;
+    padding-top: var(--tg-spacing-input-padding-vertical);
+    padding-right: var(--tg-spacing-input-padding-vertical);
     cursor: pointer;
   }
 
@@ -90,5 +101,22 @@ function deleteImg() {
     width: 100%;
     height: 100%;
   }
+}
+.front-id-bg{
+  background-image: url(../icons/upload-border.svg), url(../icons/upload-id-border.svg), url(../icons/upload-id-person.svg), url(../icons/upload-up.svg);
+  background-size: 95% 92%, 80% 80%,70% 70%, 25px 25px;
+}
+.back-id-bg{
+  background-image: url(../icons/upload-border.svg), url(../icons/upload-id-border.svg), url(../icons/upload-id-text.svg),  url(../icons/upload-id-text.svg), url(../icons/upload-up.svg);
+  background-size: 95% 92%, 80% 80%,25% 40%,25% 40%, 25px 25px;
+  background-position: center,center,left 25% center,right 25% center,center;
+}
+.address-bg{
+  background-image: url(../icons/upload-border.svg), url(../icons/upload-type.svg), url(../icons/upload-up.svg);
+  background-size: 95% 92%, 80% 80%, 25px 25px;
+}
+.fund-bg{
+  background-image: url(../icons/upload-border.svg), url(../icons/upload-fund.svg), url(../icons/upload-up.svg);
+  background-size: 95% 92%, 80% 80%, 25px 25px;
 }
 </style>

@@ -1,59 +1,32 @@
 <script setup lang="ts">
 interface Props {
-  gameList: Array<any>
+  gameInfo: any
 }
 withDefaults(defineProps<Props>(), {
-  gameList: () => [],
+  gameInfo: () => {},
 })
-const emit = defineEmits(['itemInfo'])
-const gameBoxRef: any = ref(null)
-const gridWidth = ref(0)
+const emit = defineEmits(['clickItem'])
 function handleClick(item: any) {
-  // const index = event.target?.dataset?.index
-  // if (index)
-  emit('itemInfo', item)
+  emit('clickItem', item)
 }
-onMounted(() => {
-  const resizeObserver = new ResizeObserver((entries) => {
-    gridWidth.value = entries[0].contentRect.width
-  })
-  resizeObserver.observe(gameBoxRef.value)
-})
-const getGridColumns = computed(() => {
-  return {
-    gridTemplateColumns: gridWidth.value > 400 ? `repeat(${Math.round(gridWidth.value / 150)}, 1fr)` : `repeat(${Math.round(gridWidth.value / 120)}, 1fr)`,
-  }
-})
 </script>
 
 <template>
-  <div ref="gameBoxRef" class="base-game-box" :style="getGridColumns">
-    <BaseAspectRatio v-for="item of gameList" :key="item.id" ratio="112/158">
-      <div class="base-game-item" @click="handleClick(item)">
-        <img :src="item.url" alt="">
-        <div class="active-game-item">
-          <div class="game-title">
-            {{ item.name }}
-          </div>
-          <BaseIcon class="game-uni-play" name="uni-play" />
-          <div class="game-tip">
-            Abcd 原创游戏
-          </div>
-        </div>
+  <div class="base-game-item" @click="handleClick(gameInfo)">
+    <img :src="gameInfo.url" alt="">
+    <div class="active-game-item">
+      <div class="game-title">
+        {{ gameInfo.name }}
       </div>
-    </BaseAspectRatio>
+      <BaseIcon class="game-uni-play" name="uni-play" />
+      <div class="game-tip">
+        Abcd 原创游戏
+      </div>
+    </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-.base-game-box {
-  width: 100%;
-  height: 100%;
-  display: grid;
-  // grid-template-columns: repeat(auto-fit, minmax(128px, 170px));
-  grid-row-gap: var(--tg-spacing-20);
-  grid-column-gap: var(--tg-spacing-10);
-  justify-content: space-between;
   .base-game-item {
     position: relative;
     width: 100%;
@@ -84,6 +57,7 @@ const getGridColumns = computed(() => {
       .game-uni-play{
         width: 32px;
         height: 32px;
+        color: #ffffff;
       }
     }
   }
@@ -93,5 +67,4 @@ const getGridColumns = computed(() => {
   .base-game-item:hover .active-game-item{
     opacity: 0.8;
   }
-}
 </style>
