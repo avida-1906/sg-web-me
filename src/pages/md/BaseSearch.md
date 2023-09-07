@@ -29,3 +29,9 @@ input
 
 search
 >按下回车键时触发
+
+focus
+>获取焦点
+
+blur
+>失去焦点

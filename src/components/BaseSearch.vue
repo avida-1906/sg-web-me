@@ -11,12 +11,22 @@ withDefaults(defineProps<Props>(), {
   placeHolder: 'Search...',
   shape: 'round',
 })
-const emit = defineEmits(['update:modelValue', 'input', 'search'])
+const emit = defineEmits(['update:modelValue', 'input', 'search', 'focus', 'blur'])
 
 function onInput(event: any) {
   const v = event.target.value
   emit('update:modelValue', v)
   emit('input', v)
+}
+
+const isFocus = ref(false)
+function onFocus() {
+  isFocus.value = true
+  emit('focus')
+}
+function onBlur() {
+  isFocus.value = false
+  emit('blur')
 }
 function onSearch() {
   emit('search')
@@ -27,13 +37,16 @@ function onClear() {
 </script>
 
 <template>
-  <div class="base-search" :class="[shape, { whiteStyle }]">
+  <div class="base-search" :class="[shape, { whiteStyle, active: isFocus }]">
     <div v-show="$slots.left" class="left-box">
       <slot name="left" />
     </div>
     <div class="content-box">
       <BaseIcon name="uni-search" class="search-icon" />
-      <input :value="modelValue" type="text" :placeholder="placeHolder" @input="onInput" @keypress.enter="onSearch">
+      <input
+        :value="modelValue" type="text" :placeholder="placeHolder" @input="onInput" @keypress.enter="onSearch"
+        @blur="onBlur" @focus="onFocus"
+      >
 
       <div v-if="clearable && modelValue" class="clear-icon" @click="onClear">
         <BaseIcon v-if="whiteStyle" name="uni-close" />
@@ -55,6 +68,11 @@ function onClear() {
   align-items: stretch;
   position: relative;
   color: var(--tg-text-white);
+  transition: all ease .25s;
+
+  &:hover {
+    border-color: var(--tg-text-grey);
+  }
 
   .left-box {
     border-right-width: var(--tg-border-width-sm);
@@ -98,6 +116,11 @@ function onClear() {
       opacity: 0.3;
     }
   }
+
+}
+
+.active {
+  border-color: var(--tg-text-grey);
 }
 
 .whiteStyle {
