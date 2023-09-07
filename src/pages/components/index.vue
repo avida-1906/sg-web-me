@@ -313,7 +313,11 @@ function showTemDialog() {
         <BaseButton round @click="copyCode('search')">
           copy
         </BaseButton>
-        <BaseSearch v-model="searchValue" clearable />
+        <BaseSearch v-model="searchValue" clearable>
+          <template #left>
+            123
+          </template>
+        </BaseSearch>
       </AppDemoCard>
     </li>
     <li class="box">

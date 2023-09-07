@@ -56,7 +56,7 @@ function onChange(event: any) {
   select {
     width: 100%;
     padding: 11px 10px;
-    border-width: 2px;
+    border-width: var(--tg-border-width-sm);
     border-style: solid;
     border-color: var(--tg-secondary-main);
     background-color: var(--tg-secondary-dark);

@@ -19,16 +19,16 @@ function onClick() {
 
 <style scoped lang="scss">
 .base-switch {
-  width: 40px;
-  height: 24px;
+  width: var(--tg-spacing-40);
+  height: var(--tg-spacing-24);
   background-color: var(--tg-secondary-main);
-  padding: 2px;
+  padding: var(--tg-spacing-2);
   border-radius: 100px;
   cursor: pointer;
 
   .circle {
-    width: 20px;
-    height: 20px;
+    width: var(--tg-spacing-20);
+    height: var(--tg-spacing-20);
     background-color: var(--tg-text-white);
     border-radius: 50%;
     transition: all ease-out .3s;
@@ -39,7 +39,7 @@ function onClick() {
   background-color: var(--tg-text-blue);
 
   .circle {
-    transform: translateX(16px);
+    transform: translateX(var(--tg-spacing-16));
   }
 }
 </style>

@@ -81,7 +81,7 @@ function onBlur() {
     span {
       font-size: var(--tg-font-size-xs);
       color: var(--tg-text-error);
-      margin-left: 4px;
+      margin-left: var(--tg-spacing-4);
     }
   }
 
@@ -91,7 +91,7 @@ function onBlur() {
     align-items: flex-start;
 
     label {
-      margin-bottom: 7px;
+      margin-bottom: var(--tg-spacing-7);
     }
 
   }
@@ -102,7 +102,7 @@ function onBlur() {
 
     label {
       width: 100px;
-      margin-right: 10px;
+      margin-right: var(--tg-spacing-10);
     }
   }
 
@@ -111,10 +111,10 @@ function onBlur() {
     border-radius: var(--tg-radius-default);
     background: var(--tg-secondary-dark);
     box-shadow: var(--tg-box-shadow);
-    border-width: 2px;
+    border-width: var(--tg-border-width-sm);
     border-style: solid;
     border-color: var(--tg-secondary-main);
-    margin-bottom: 5.67px;
+    margin-bottom: var(--tg-spacing-6);
     position: relative;
 
     &:hover {
@@ -127,7 +127,7 @@ function onBlur() {
       color: var(--tg-text-white);
       border: none;
       outline: none;
-      padding: 8px 14px;
+      padding: var(--tg-spacing-input-padding-vertical) var(--tg-spacing-input-padding-horizontal);
 
       &::placeholder {
         color: var(--tg-text-white);
@@ -144,7 +144,7 @@ function onBlur() {
 
     .eye {
       position: absolute;
-      right: 6px;
+      right: var(--tg-spacing-6);
       top: 50%;
       transform: translateY(-50%);
       font-size: var(--tg-font-size-md);

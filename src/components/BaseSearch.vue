@@ -45,34 +45,35 @@ function onClear() {
 
 <style lang='scss' scoped>
 .base-search {
-  border-width: 2px;
+  border-width: var(--tg-border-width-sm);
   border-style: solid;
   border-color: var(--tg-secondary-main);
   background-color: var(--tg-secondary-dark);
   box-shadow: var(--tg-box-shadow);
-  padding: 0 10px;
+  padding: 0 var(--tg-spacing-10);
   display: flex;
   align-items: stretch;
   position: relative;
+  color: var(--tg-text-white);
 
   .left-box {
-    border-right-width: 2px;
+    border-right-width: var(--tg-border-width-sm);
     border-right-style: solid;
     border-right-color: var(--tg-secondary-main);
-    padding-right: 5px;
-    margin-right: 10px;
+    padding-right: var(--tg-spacing-5);
+    margin-right: var(--tg-spacing-10);
     display: flex;
     align-items: center;
   }
 
   .search-icon {
-    margin-right: 5px;
+    margin-right: var(--tg-spacing-5);
   }
 
   .clear-icon {
     font-size: var(--tg-font-size-default);
     position: absolute;
-    right: 18px;
+    right: var(--tg-spacing-18);
     cursor: pointer;
   }
 
@@ -88,7 +89,7 @@ function onClear() {
     border: none;
     outline: none;
     background-color: transparent;
-    padding: 7px;
+    padding: var(--tg-spacing-input-padding-vertical) var(--tg-spacing-input-padding-horizontal);
     font-size: var(--tg-font-size-default);
     color: var(--tg-text-white);
 

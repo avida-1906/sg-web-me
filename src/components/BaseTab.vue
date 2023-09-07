@@ -42,7 +42,7 @@ function onClick(v: string | number) {
 .base-tab {
   width: 100%;
   background-color: var(--tg-secondary-dark);
-  padding: 5px 6px;
+  padding: var(--tg-spacing-5) var(--tg-spacing-6);
   display: flex;
   align-items: center;
   overflow-x: scroll;
@@ -60,7 +60,7 @@ function onClick(v: string | number) {
     flex-shrink: 0;
     font-size: var(--tg-font-size-default);
     color: var(--tg-text-white);
-    padding: 11px 20px;
+    padding: var(--tg-spacing-11) var(--tg-spacing-20);
     display: flex;
     align-items: center;
     justify-content: center;
