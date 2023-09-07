@@ -159,6 +159,8 @@ const tabList = [
   { value: '1', label: 'Tab 11111111' },
   { value: '2', label: 'Tab 2' },
   { value: '3', label: 'Tab 3333' },
+  { value: '3', label: 'Tab 3333' },
+  { value: '3', label: 'Tab 3333' },
 ]
 const searchValue = ref('')
 const { value: username, errorMessage: usernameErrorMsg } = useField<string>('username', (value) => {

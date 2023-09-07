@@ -6,7 +6,6 @@ interface Props {
     label: string
   }[]
   modelValue: string | number
-  average?: boolean
   shape?: 'square' | 'round'
 }
 const props = withDefaults(defineProps<Props>(), {
@@ -25,14 +24,16 @@ function onClick(v: string | number) {
 
 <template>
   <div class="base-tab" :class="[shape]">
-    <div
-      v-for="t, i in list" :key="i" class="tab" :class="{ active: t.value === modelValue, average }"
-      @click="onClick(t.value)"
-    >
-      <div class="content">
-        <slot name="tab" :item="t">
-          {{ t.label }}
-        </slot>
+    <div class="tab-wrap">
+      <div
+        v-for="t, i in list" :key="i" class="tab" :class="{ active: t.value === modelValue }"
+        @click="onClick(t.value)"
+      >
+        <div class="content">
+          <slot name="tab" :item="t">
+            {{ t.label }}
+          </slot>
+        </div>
       </div>
     </div>
   </div>
@@ -40,12 +41,13 @@ function onClick(v: string | number) {
 
 <style lang='scss' scoped>
 .base-tab {
-  width: 100%;
   background-color: var(--tg-secondary-dark);
   padding: var(--tg-spacing-5) var(--tg-spacing-6);
   display: flex;
   align-items: center;
-  overflow-x: scroll;
+  overflow-x: auto;
+  touch-action: auto;
+  overflow-y: hidden;
 
   &::-webkit-scrollbar {
     display: none;
@@ -55,9 +57,13 @@ function onClick(v: string | number) {
   /* IE 10+ */
   scrollbar-width: none;
   /* Firefox */
+  .tab-wrap{
+    flex: 1;
+    display: flex;
+  }
 
   .tab {
-    flex-shrink: 0;
+    flex: 1;
     font-size: var(--tg-font-size-default);
     color: var(--tg-text-white);
     padding: var(--tg-spacing-11) var(--tg-spacing-20);
@@ -66,9 +72,18 @@ function onClick(v: string | number) {
     justify-content: center;
     cursor: pointer;
     transition: all ease .25s;
+    margin-right: var(--tg-spacing-5);
+    &:last-of-type{
+      margin-right: 0;
+    }
     .content {
       width: 100%;
       height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1 0;
+      white-space: nowrap;
     }
 
     &:active {
@@ -79,10 +94,6 @@ function onClick(v: string | number) {
     &:hover{
       background-color: var(--tg-secondary-main);
     }
-  }
-
-  .average{
-    flex: 1;
   }
 
   .active {
