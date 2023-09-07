@@ -13,7 +13,7 @@
   >?: 'horizontal' | 'vertical'布局
 
   type
-  > ?: 'text' | 'password' 输入类型文字或密码
+  > ?: 'text' | 'password' | 'number'  输入类型
 
   placeholder
   >?: string占位文字

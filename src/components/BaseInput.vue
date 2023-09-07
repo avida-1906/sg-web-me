@@ -3,7 +3,7 @@ interface Props {
   modelValue?: string
   label: string
   layout?: 'horizontal' | 'vertical'
-  type?: 'text' | 'password'
+  type?: 'text' | 'password' | 'number'
   placeholder?: string
   msg?: string
   must?: boolean
@@ -95,9 +95,11 @@ function onBlur() {
     }
 
   }
-  .horizontal{
+
+  .horizontal {
     display: flex;
     align-items: center;
+
     label {
       width: 100px;
       margin-right: 10px;
@@ -131,8 +133,16 @@ function onBlur() {
         color: var(--tg-text-white);
         opacity: 0.3;
       }
+
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        appearance: none;
+        margin: 0;
+      }
     }
-    .eye{
+
+    .eye {
       position: absolute;
       right: 6px;
       top: 50%;
