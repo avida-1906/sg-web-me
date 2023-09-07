@@ -14,9 +14,6 @@ list
   modelValue
   > string | number 绑定值
 
-  average
-  >?: boolean 平均分配tab大小
-
   shape
   >?: 'square' | 'round' 圆角、方角
 
