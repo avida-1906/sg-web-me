@@ -207,25 +207,17 @@ function onInput() {
       padding: var(--tg-spacing-input-padding-vertical) var(--tg-spacing-input-padding-horizontal);
       transition: all ease .25s;
 
-      &:hover {
+      &:hover:not(.error) {
         border-color: var(--tg-text-grey);
       }
 
-      &:focus {
+      &:focus:not(.error)  {
         border-color: var(--tg-text-grey);
       }
     }
 
     .error {
       border-color: var(--tg-text-error);
-
-      &:hover {
-        border-color: var(--tg-text-error);
-      }
-
-      &:focus {
-        border-color: var(--tg-text-error);
-      }
     }
 
   }

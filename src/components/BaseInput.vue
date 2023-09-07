@@ -118,7 +118,7 @@ function onBlur() {
     position: relative;
     transition: all ease .25s;
 
-    &:hover {
+    &:hover:not(.error) {
       border-color: var(--tg-text-grey);
     }
 
@@ -159,10 +159,6 @@ function onBlur() {
 
   .error {
     border-color: var(--tg-text-error);
-
-    &:hover {
-      border-color: var(--tg-text-error);
-    }
   }
 }
 </style>
