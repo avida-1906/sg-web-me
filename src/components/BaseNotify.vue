@@ -113,15 +113,17 @@ onMounted(() => {
 <style lang="scss" scoped>
 .slide-fade-enter-active {
   transition: all 0.3s ease-out;
+  opacity: 1;
 }
 
 .slide-fade-leave-active {
   transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+  opacity: 1;
 }
 
 .slide-fade-enter-from {
   transform: translateX(20px);
-  opacity: 1;
+  opacity: 0;
 }
 .slide-fade-leave-to {
   transform: translateX(20px);
@@ -135,7 +137,6 @@ onMounted(() => {
   display: flex;
   align-items: stretch;
   justify-content: flex-start;
-  opacity: 1;
   .left {
     padding: var(--tg-spacing-27) var(--tg-spacing-19);
     background: var(--tg-secondary-grey);
