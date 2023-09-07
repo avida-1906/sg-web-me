@@ -12,6 +12,8 @@ export function useNotify({ showClose, onClose }: { onClose?: () => void; showCl
       div.value = document.createElement('div')
       notificationList.appendChild(div.value)
       app.value = createApp(h(BaseNotify, {
+        title: typeof title === 'string' ? title : undefined,
+        message: typeof message === 'string' ? message : undefined,
         type,
         icon,
         showClose,
@@ -23,10 +25,10 @@ export function useNotify({ showClose, onClose }: { onClose?: () => void; showCl
       }, {
         default: () => defaultSlot !== undefined ? defaultSlot() : null,
         title: () => {
-          return title === undefined ? null : (typeof title === 'string' ? title : title())
+          return title === undefined ? null : (typeof title === 'string' ? null : title())
         },
         message: () => {
-          return message === undefined ? null : (typeof message === 'string' ? message : message())
+          return message === undefined ? null : (typeof message === 'string' ? null : message())
         },
       }))
       app.value.mount(div.value)
