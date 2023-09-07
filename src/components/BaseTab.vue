@@ -65,7 +65,7 @@ function onClick(v: string | number) {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-
+    transition: all ease .25s;
     .content {
       width: 100%;
       height: 100%;
@@ -75,6 +75,9 @@ function onClick(v: string | number) {
       .content {
         transform: scale(0.9);
       }
+    }
+    &:hover{
+      background-color: var(--tg-secondary-main);
     }
   }
 

@@ -17,8 +17,7 @@ withDefaults(defineProps<Props>(), {
 
 <template>
   <button
-    :disabled="loading || disabled" :class="[type, bgStyle, { round, shadow }]"
-    :style="{
+    :disabled="loading || disabled" :class="[type, bgStyle, { round, shadow }]" :style="{
       padding: `var(--tg-spacing-button-padding-vertical-${size}) var(--tg-spacing-button-padding-horizontal-${size})`,
     }"
   >
@@ -37,13 +36,16 @@ button {
   font-size: var(--tg-font-size-default);
   border-radius: var(--tg-radius-default);
   font-weight: var(--tg-font-weight-semibold);
-  .content{
+  transition: all ease .25s;
+
+  .content {
     width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
   }
+
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
@@ -52,15 +54,21 @@ button {
 
 .default {
   background-color: var(--tg-secondary-main);
+
   &:active {
     .content {
       transform: scale(0.9);
     }
   }
-  &:disabled{
+
+  &:disabled {
     .content {
       transform: scale(1);
     }
+  }
+
+  &:hover:not(:disabled) {
+    background-color: var(--tg-text-grey);
   }
 }
 
@@ -70,40 +78,102 @@ button {
 
   &:active {
     color: var(--tg-text-white);
+    .content {
+      transform: scale(0.9);
+    }
   }
 
   &:disabled {
     color: var(--tg-text-grey-button);
+    .content {
+      transform: scale(1);
+    }
+  }
+
+  &:hover:not(:disabled) {
+    color: var(--tg-text-white);
   }
 }
-.line{
+
+.line {
   border: 1px solid var(--tg-text-white);
 
   &:active {
     color: var(--tg-text-dark);
     background-color: var(--tg-text-white);
   }
-}
-.round-line-left{
-  border:1px solid var(--tg-secondary-light);
-  border-radius: 100px 0 0 100px;
-}
-.round-line-right{
-  border:1px solid var(--tg-secondary-light);
-  border-radius: 0 100px 100px 0;
+
+  &:hover:not(:disabled):not(:active) {
+    background-color: var(--tg-secondary-main);
+  }
 }
 
-.shadow{
+.round-line-left {
+  border: 1px solid var(--tg-secondary-light);
+  border-radius: 100px 0 0 100px;
+  &:active {
+    .content {
+      transform: scale(0.95);
+    }
+  }
+
+  &:disabled {
+    .content {
+      transform: scale(1);
+    }
+  }
+
+  &:hover:not(:disabled):not(:active) {
+    .content {
+      transform: scale(1.05);
+    }
+  }
+}
+
+.round-line-right {
+  border: 1px solid var(--tg-secondary-light);
+  border-radius: 0 100px 100px 0;
+  &:active {
+    .content {
+      transform: scale(0.95);
+    }
+  }
+
+  &:disabled {
+    .content {
+      transform: scale(1);
+    }
+  }
+
+  &:hover:not(:disabled):not(:active) {
+    .content {
+      transform: scale(1.05);
+    }
+  }
+}
+
+.shadow {
   box-shadow: var(--tg-box-shadow);
 }
+
 .round {
   border-radius: 100px;
 }
-.primary{
+
+.primary {
   background-color: var(--tg-text-blue);
+
+  &:hover:not(:disabled) {
+    background-color: var(--tg-sub-deepblue);
+  }
 }
-.secondary{
+
+.secondary {
   background-color: var(--tg-text-green);
   color: var(--tg-text-dark);
+
+  &:hover:not(:disabled) {
+    background-color: var(--tg-primary-success);
+  }
 }
 </style>
