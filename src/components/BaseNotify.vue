@@ -95,14 +95,10 @@ onMounted(() => {
         <slot>
           <div>
             <slot name="title">
-              <h3 v-if="title" class="title">
-                {{ title }}
-              </h3>
+              <h3 v-if="title" class="title" v-html="title" />
             </slot>
             <slot name="message">
-              <p v-if="message" class="message">
-                {{ message }}
-              </p>
+              <p v-if="message" class="message" v-html="message" />
             </slot>
           </div>
         </slot>
@@ -137,12 +133,15 @@ onMounted(() => {
   background: var(--tg-secondary-main);
   box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.35);
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: stretch;
+  justify-content: flex-start;
   opacity: 1;
   .left {
     padding: var(--tg-spacing-27) var(--tg-spacing-19);
     background: var(--tg-secondary-grey);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .right {
     font-size: var(--tg-font-size-default);
@@ -164,6 +163,9 @@ onMounted(() => {
     font-size: var(--tg-font-size-default);
     padding: 0 var(--tg-spacing-14) 0 var(--tg-spacing-8);
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 </style>
