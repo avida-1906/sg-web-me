@@ -116,6 +116,7 @@ function onBlur() {
     border-color: var(--tg-secondary-main);
     margin-bottom: var(--tg-spacing-6);
     position: relative;
+    transition: all ease .25s;
 
     &:hover {
       border-color: var(--tg-text-grey);
