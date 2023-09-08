@@ -40,20 +40,15 @@ const dayMax = computed(() => {
   const have31 = [1, 3, 5, 7, 8, 10, 12]
   const have30 = [4, 6, 9, 11]
 
-  if (have31.includes(month.value)) {
+  if (have31.includes(month.value))
     return 31
-  }
-  else if (have30.includes(month.value)) {
+
+  if (have30.includes(month.value))
     return 30
-  }
-  else if (month.value === 2) {
-    if (year.value) {
-      if (dayjs(`${year.value}`).isLeapYear())
-        return 29
-      return 28
-    }
-    return 28
-  }
+
+  if (month.value === 2)
+    return year.value && dayjs(`${year.value}`).isLeapYear() ? 29 : 28
+
   return 31
 })
 const { value: day, setValue: setDay, errorMessage: errorDayMsg } = useField<number>('day', (value) => {
@@ -86,7 +81,6 @@ const isEnough = computed(() => {
     return age > 18
   }
   else if (year.value && month.value && day.value) {
-    // 判断一个日期是否满足18岁
     const birthDayjs = dayjs(`${year.value}-${month.value > 9 ? month.value : `0${month.value}`}-${day.value > 9 ? day.value : `0${day.value}`}`)
     const currentDate = dayjs()
 
@@ -110,6 +104,9 @@ const isEnough = computed(() => {
 const msg = computed(() => {
   if (!isEnough.value)
     return t('you_have_to_enough_18')
+  if (month.value && day.value && day.value > dayMax.value)
+    return t('surveys_birthday_error')
+
   return errorYearMsg.value || errorMonthMsg.value || errorDayMsg.value
 })
 
