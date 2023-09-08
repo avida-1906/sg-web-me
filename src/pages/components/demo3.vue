@@ -1,5 +1,7 @@
 <script setup lang="ts">
 const { copy } = useClipboard()
+const imageUrl = ref('')
+const imageUrl2 = ref('http://c.hiphotos.baidu.com/image/pic/item/30adcbef76094b36de8a2fe5a1cc7cd98d109d99.jpg')
 const gameInfo = { id: 2, url: 'http://c.hiphotos.baidu.com/image/pic/item/30adcbef76094b36de8a2fe5a1cc7cd98d109d99.jpg', name: 'plynko' }
 
 function handleKeyNum(num: string) {
@@ -10,10 +12,16 @@ function handleKeyOk() {
 }
 
 function getFile(file: any) {
-  console.log(file)
+  // console.log(file)
+  const reader = new FileReader()
+  reader.readAsDataURL(file)
+  reader.onloadend = function (e) {
+    imageUrl.value = e.target?.result?.toString() || ''
+  }
 }
 
 function handleDelFile() {
+  imageUrl.value = ''
   console.log('删除')
 }
 function getItemInfo(obj: any) {
@@ -22,23 +30,23 @@ function getItemInfo(obj: any) {
 function copyUploadCode(type: number) {
   switch (type) {
     case 1:
-      copy('<BaseUpload img-type="frontId" @select-file="getFile" @delete-file="handleDelFile" />')
+      copy('<BaseUpload img-type="frontId" :image-url="imageUrl" @select-file="getFile" @delete-file="handleDelFile" />')
       break
     case 2:
-      copy('<BaseUpload img-type="backId" @select-file="getFile" @delete-file="handleDelFile" />')
+      copy('<BaseUpload img-type="backId" :image-url="imageUrl" @select-file="getFile" @delete-file="handleDelFile" />')
       break
     case 3:
-      copy('<BaseUpload img-type="address" @select-file="getFile" @delete-file="handleDelFile" />')
+      copy('<BaseUpload img-type="address" disabled @select-file="getFile" @delete-file="handleDelFile" />')
       break
     case 4:
-      copy('<BaseUpload img-type="fund" @select-file="getFile" @delete-file="handleDelFile" />')
+      copy('<BaseUpload img-type="fund" :image-url="imageUrl2" disabled @select-file="getFile" @delete-file="handleDelFile" />')
       break
   }
 }
 function copyNumericKeypadCode() {
-  copy(`<div style="width: 371px;">
-          <BaseNumericKeypad @keyNum="handleKeyNum" @keyOk="handleKeyOk" />
-        </div>`)
+  copy(`<BaseAspectRatio ratio="371/176" width="371px" style="margin: auto;">
+          <BaseNumericKeypad @key-num="handleKeyNum" @key-ok="handleKeyOk" />
+        </BaseAspectRatio>`)
 }
 function copyAspectRatioCode(type: number) {
   switch (type) {
@@ -105,25 +113,33 @@ function copyBaseLogo(num: number) {
       <AppDemoCard title="BaseUpload">
         <div class="flex-row">
           <div class="flex-column">
-            <BaseUpload img-type="frontId" @select-file="getFile" @delete-file="handleDelFile" />
+            <BaseAspectRatio ratio="149/97" width="149px">
+              <BaseUpload img-type="frontId" :image-url="imageUrl" @select-file="getFile" @delete-file="handleDelFile" />
+            </BaseAspectRatio>
             <BaseButton @click="copyUploadCode(1)">
               copy
             </BaseButton>
           </div>
           <div class="flex-column">
-            <BaseUpload img-type="backId" @select-file="getFile" @delete-file="handleDelFile" />
+            <BaseAspectRatio ratio="149/97" width="149px">
+              <BaseUpload img-type="backId" :image-url="imageUrl" @select-file="getFile" @delete-file="handleDelFile" />
+            </BaseAspectRatio>
             <BaseButton @click="copyUploadCode(2)">
               copy
             </BaseButton>
           </div>
           <div class="flex-column">
-            <BaseUpload img-type="address" @select-file="getFile" @delete-file="handleDelFile" />
+            <BaseAspectRatio ratio="149/97" width="149px">
+              <BaseUpload img-type="address" disabled @select-file="getFile" @delete-file="handleDelFile" />
+            </BaseAspectRatio>
             <BaseButton @click="copyUploadCode(3)">
               copy
             </BaseButton>
           </div>
           <div class="flex-column">
-            <BaseUpload img-type="fund" @select-file="getFile" @delete-file="handleDelFile" />
+            <BaseAspectRatio ratio="149/97" width="149px">
+              <BaseUpload img-type="fund" :image-url="imageUrl2" disabled @select-file="getFile" @delete-file="handleDelFile" />
+            </BaseAspectRatio>
             <BaseButton @click="copyUploadCode(4)">
               copy
             </BaseButton>
@@ -170,9 +186,9 @@ function copyBaseLogo(num: number) {
     </li>
     <li class="box">
       <AppDemoCard title="BaseNumericKeypad">
-        <div style="width: 371px;margin: auto;">
+        <BaseAspectRatio ratio="371/176" width="371px" style="margin: auto;">
           <BaseNumericKeypad @key-num="handleKeyNum" @key-ok="handleKeyOk" />
-        </div>
+        </BaseAspectRatio>
         <div class="center">
           <BaseButton @click="copyNumericKeypadCode">
             copy

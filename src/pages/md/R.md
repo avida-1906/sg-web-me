@@ -30,4 +30,4 @@ Badge 徽章✅
 游戏Item✅
 宽高比 支持aspect-ratio就使用aspect-ratio，不支持使用padding✅
 Skeleton 骨架屏✅
-Logo
+Logo✅

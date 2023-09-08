@@ -1,20 +1,19 @@
 <script setup lang="ts">
 interface Props {
   imgType?: 'frontId' | 'backId' | 'address' | 'fund' // 上传图片用途
-  readonly?: boolean // 只读
   disabled?: boolean // 禁用
   accept?: string // 可选文件类型
-  showDelete?: boolean // 是否显示删除按钮
+  // showDelete?: boolean // 是否显示删除按钮
+  imageUrl?: string // 显示图片地址
 }
 const props = withDefaults(defineProps<Props>(), {
   imgType: 'frontId',
-  readonly: false,
   disabled: false,
   accept: 'image/png, image/jpg, application/pdf',
-  showDelete: true,
+  // showDelete: true,
+  imageUrl: '',
 })
 const emit = defineEmits(['selectFile', 'deleteFile'])
-
 const getBackground = computed(() => {
   switch (props.imgType) {
     case 'frontId':
@@ -27,20 +26,19 @@ const getBackground = computed(() => {
       return 'fund-bg'
   }
 })
-const imageUrl: any = ref('')
+// const imageUrl: any = ref(props.url)
 function changFile(event: any) {
   const file = event.target.files[0]
   if (file) {
-    const reader = new FileReader()
-    reader.readAsDataURL(file)
-    reader.onloadend = function (e) {
-      imageUrl.value = e.target?.result
-    }
+    // const reader = new FileReader()
+    // reader.readAsDataURL(file)
+    // reader.onloadend = function (e) {
+    //   imageUrl.value = e.target?.result
+    // }
     emit('selectFile', file)
   }
 }
 function deleteImg() {
-  imageUrl.value = ''
   emit('deleteFile')
 }
 </script>
@@ -49,12 +47,12 @@ function deleteImg() {
   <div :class="`base-upload ${getBackground}`">
     <div v-if="imageUrl" class="img-box">
       <img class="file-img" :src="imageUrl" alt="">
-      <div v-if="showDelete" class="icon-upload-delete" @click.stop="deleteImg">
+      <div v-if="!disabled" class="icon-upload-delete" @click.stop="deleteImg">
         <BaseIcon name="upload-delete" />
       </div>
     </div>
     <input
-      v-else class="input-file" type="file" :readonly="readonly" :accept="accept" :disabled="disabled"
+      v-else class="input-file" type="file" :accept="accept" :disabled="disabled"
       @change="changFile"
     >
   </div>
@@ -62,8 +60,10 @@ function deleteImg() {
 
 <style lang="scss" scoped>
 .base-upload {
-  width: 149px;
-  height: 97px;
+  // width: 149px;
+  // height: 97px;
+  height: 100%;
+  width: 100%;
   position: relative;
   border-radius: var(--tg-radius-default);
   overflow: hidden;
