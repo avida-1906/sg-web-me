@@ -40,20 +40,17 @@ const dayMax = computed(() => {
   const have31 = [1, 3, 5, 7, 8, 10, 12]
   const have30 = [4, 6, 9, 11]
 
-  if (have31.includes(month.value)) {
-    return 31
+  if (month.value) {
+    if (have31.includes(month.value))
+      return 31
+
+    if (have30.includes(month.value))
+      return 30
+
+    if (month.value === 2)
+      return year.value && dayjs(`${year.value}`).isLeapYear() ? 29 : 28
   }
-  else if (have30.includes(month.value)) {
-    return 30
-  }
-  else if (month.value === 2) {
-    if (year.value) {
-      if (dayjs(`${year.value}`).isLeapYear())
-        return 29
-      return 28
-    }
-    return 28
-  }
+
   return 31
 })
 const { value: day, setValue: setDay, errorMessage: errorDayMsg } = useField<number>('day', (value) => {
@@ -65,44 +62,30 @@ const { value: day, setValue: setDay, errorMessage: errorDayMsg } = useField<num
 
 // 是否满足18岁
 const isEnough = computed(() => {
-  if (year.value && !month.value) {
-    const birthDayjs = dayjs(`${year.value}`)
+  const yearStr = year.value ? year.value : ''
+  const monthStr = month.value ? `-${month.value}` : ''
+  const dayStr = day.value ? `-${day.value}` : ''
+
+  if (year.value) {
+    const birthDayjs = dayjs(month.value ? yearStr + monthStr + dayStr : yearStr)
     const currentDate = dayjs()
     const age = currentDate.diff(birthDayjs, 'year')
-    return age >= 18
-  }
-  else if (year.value && month.value && !day.value) {
-    const birthDayjs = dayjs(`${year.value}-${month.value > 9 ? month.value : `0${month.value}`}`)
-    const currentDate = dayjs()
-    const age = currentDate.diff(birthDayjs, 'year')
-    if (age === 18) {
+
+    if (month.value && age === 18) {
       const birthMonth = birthDayjs.month()
       const currentMonth = currentDate.month()
+
+      if (day.value && currentMonth === birthMonth) {
+        const birthDay = birthDayjs.date()
+        const currentDay = currentDate.date()
+
+        return currentDay >= birthDay
+      }
 
       if (currentMonth >= birthMonth)
         return true
     }
-
-    return age > 18
-  }
-  else if (year.value && month.value && day.value) {
-    // 判断一个日期是否满足18岁
-    const birthDayjs = dayjs(`${year.value}-${month.value > 9 ? month.value : `0${month.value}`}-${day.value > 9 ? day.value : `0${day.value}`}`)
-    const currentDate = dayjs()
-
-    const age = currentDate.diff(birthDayjs, 'year')
-
-    if (age === 18) {
-      const birthMonth = birthDayjs.month()
-      const currentMonth = currentDate.month()
-      const birthDay = birthDayjs.date()
-      const currentDay = currentDate.date()
-
-      if (currentMonth > birthMonth || (currentMonth === birthMonth && currentDay >= birthDay))
-        return true
-    }
-
-    return age > 18
+    return month.value ? age > 18 : age >= 18
   }
   return true
 })
@@ -110,6 +93,9 @@ const isEnough = computed(() => {
 const msg = computed(() => {
   if (!isEnough.value)
     return t('you_have_to_enough_18')
+  if (month.value && day.value && day.value > dayMax.value)
+    return t('surveys_birthday_error')
+
   return errorYearMsg.value || errorMonthMsg.value || errorDayMsg.value
 })
 
@@ -125,7 +111,10 @@ function onInput() {
       <label>{{ t('time_birthday') }} <span v-if="must">*</span></label>
       <div class="input-wrap">
         <!-- 日 -->
-        <input v-model="day" type="number" min="1" :max="dayMax" placeholder="DD" :class="{ error: msg }" @input="onInput">
+        <input
+          v-model="day" type="number" min="1" :max="dayMax" placeholder="DD" :class="{ error: msg }"
+          @input="onInput"
+        >
         <!-- 月 -->
         <select v-model="month" :class="{ error: msg }" @change="onInput">
           <option value="xx" disabled>
@@ -175,6 +164,7 @@ function onInput() {
   label {
     color: var(--tg-secondary-light);
   }
+
   .msg {
     font-size: var(--tg-font-size-md);
     display: flex;
@@ -211,7 +201,7 @@ function onInput() {
         border-color: var(--tg-text-grey);
       }
 
-      &:focus:not(.error)  {
+      &:focus:not(.error) {
         border-color: var(--tg-text-grey);
       }
     }
