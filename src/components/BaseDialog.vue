@@ -54,12 +54,13 @@ function close() {
 <style lang="scss" scoped>
   .v-enter-active,
   .v-leave-active {
-    transition: opacity .3s ease;
+    transition: all .3s ease;
   }
 
   .v-enter-from,
   .v-leave-to {
     opacity: 0;
+    transform: translateY(20px);
   }
   .tg-base-dialog {
     position: fixed;
@@ -101,13 +102,15 @@ function close() {
         justify-content: space-between;
         gap: var(--tg-spacing-12);
         font-size: var(--tg-font-size-lg);
+        touch-action: none;
         h2 {
           display: flex;
           align-items: center;
           justify-content: flex-start;
           gap: var(--tg-spacing-6);
           > span {
-            font-size: var(--tg-font-size-md);
+            font-size: var(--tg-font-size-base);
+            font-weight: var(--tg-font-weight-semibold);
           }
         }
       }
