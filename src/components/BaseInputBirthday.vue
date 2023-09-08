@@ -40,14 +40,16 @@ const dayMax = computed(() => {
   const have31 = [1, 3, 5, 7, 8, 10, 12]
   const have30 = [4, 6, 9, 11]
 
-  if (have31.includes(month.value))
-    return 31
+  if (month.value) {
+    if (have31.includes(month.value))
+      return 31
 
-  if (have30.includes(month.value))
-    return 30
+    if (have30.includes(month.value))
+      return 30
 
-  if (month.value === 2)
-    return year.value && dayjs(`${year.value}`).isLeapYear() ? 29 : 28
+    if (month.value === 2)
+      return year.value && dayjs(`${year.value}`).isLeapYear() ? 29 : 28
+  }
 
   return 31
 })
