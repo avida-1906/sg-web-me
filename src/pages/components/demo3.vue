@@ -4,10 +4,9 @@ const gameInfo = { id: 2, url: 'http://c.hiphotos.baidu.com/image/pic/item/30adc
 
 function handleKeyNum(num: string) {
   console.log(num)
-  // alert(num)
 }
 function handleKeyOk() {
-  // alert('ok')
+  console.log('ok')
 }
 
 function getFile(file: any) {
@@ -15,7 +14,7 @@ function getFile(file: any) {
 }
 
 function handleDelFile() {
-  // alert('删除')
+  console.log('删除')
 }
 function getItemInfo(obj: any) {
   console.log(obj)
@@ -87,6 +86,16 @@ function copyBadgeCode(type: number) {
 }
 function copyGameItem() {
   copy('<BaseGameItem :game-info="gameInfo" @click-item="getItemInfo" />')
+}
+function copyBaseLogo(num: number) {
+  switch (num) {
+    case 1:
+      copy('<BaseLogo mode="svg" svg-name="app-logo" />')
+      break
+    case 2:
+      copy('<BaseLogo mode="picture" url="http://c.hiphotos.baidu.com/image/pic/item/30adcbef76094b36de8a2fe5a1cc7cd98d109d99.jpg" />')
+      break
+  }
 }
 </script>
 
@@ -201,6 +210,28 @@ function copyGameItem() {
           <BaseButton @click="copyGameItem">
             copy
           </BaseButton>
+        </div>
+      </AppDemoCard>
+    </li>
+    <li class="box">
+      <AppDemoCard title="BaseLogo">
+        <div class="flex-row">
+          <div>
+            <BaseAspectRatio ratio="2/1" width="67px">
+              <BaseLogo mode="svg" svg-name="app-logo" />
+            </BaseAspectRatio>
+            <BaseButton @click="copyBaseLogo(1)">
+              copy
+            </BaseButton>
+          </div>
+          <div>
+            <BaseAspectRatio ratio="1/1" width="120px">
+              <BaseLogo mode="picture" url="http://c.hiphotos.baidu.com/image/pic/item/30adcbef76094b36de8a2fe5a1cc7cd98d109d99.jpg" />
+            </BaseAspectRatio>
+            <BaseButton @click="copyBaseLogo(2)">
+              copy
+            </BaseButton>
+          </div>
         </div>
       </AppDemoCard>
     </li>

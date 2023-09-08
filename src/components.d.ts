@@ -26,6 +26,7 @@ declare module 'vue' {
     BaseInputBirthDay: typeof import('./components/BaseInputBirthDay.vue')['default']
     BaseList: typeof import('./components/BaseList.vue')['default']
     BaseLoading: typeof import('./components/BaseLoading.vue')['default']
+    BaseLogo: typeof import('./components/BaseLogo.vue')['default']
     BaseNotify: typeof import('./components/BaseNotify.vue')['default']
     BaseNumericKeypad: typeof import('./components/BaseNumericKeypad.vue')['default']
     BaseProgress: typeof import('./components/BaseProgress.vue')['default']
