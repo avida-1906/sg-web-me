@@ -5,13 +5,29 @@ interface Props {
   icon?: string
   teleport?: boolean
   closeOnClickOverlay?: boolean
+  funcCall?: boolean
 }
 
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   closeOnClickOverlay: true,
 })
 
 const emit = defineEmits(['update:show', 'close'])
+
+const _show = ref(false)
+
+onMounted(() => {
+  if (props.funcCall) {
+    setTimeout(() => {
+      _show.value = true
+      updateShow(true)
+    }, 0)
+  }
+})
+
+onUnmounted(() => {
+  _show.value = false
+})
 
 function updateShow(value: boolean) {
   emit('update:show', value)
@@ -23,13 +39,15 @@ function updateShow(value: boolean) {
 }
 
 function close() {
+  if (props.funcCall)
+    _show.value = false
   updateShow(false)
 }
 </script>
 
 <template>
   <Transition>
-    <section v-if="show" class="tg-base-dialog">
+    <section v-if="show || _show" class="tg-base-dialog">
       <div class="overlay" @click="closeOnClickOverlay && close()" />
       <div class="card">
         <div class="header">
@@ -54,12 +72,13 @@ function close() {
 <style lang="scss" scoped>
   .v-enter-active,
   .v-leave-active {
-    transition: opacity .3s ease;
+    transition: all .3s ease;
   }
 
   .v-enter-from,
   .v-leave-to {
     opacity: 0;
+    transform: translateY(20px);
   }
   .tg-base-dialog {
     position: fixed;
@@ -101,13 +120,15 @@ function close() {
         justify-content: space-between;
         gap: var(--tg-spacing-12);
         font-size: var(--tg-font-size-lg);
+        touch-action: none;
         h2 {
           display: flex;
           align-items: center;
           justify-content: flex-start;
           gap: var(--tg-spacing-6);
           > span {
-            font-size: var(--tg-font-size-md);
+            font-size: var(--tg-font-size-base);
+            font-weight: var(--tg-font-weight-semibold);
           }
         }
       }
