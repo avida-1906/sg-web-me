@@ -62,43 +62,30 @@ const { value: day, setValue: setDay, errorMessage: errorDayMsg } = useField<num
 
 // 是否满足18岁
 const isEnough = computed(() => {
-  if (year.value && !month.value) {
-    const birthDayjs = dayjs(`${year.value}`)
+  const yearStr = year.value ? year.value : ''
+  const monthStr = month.value ? `-${month.value}` : ''
+  const dayStr = day.value ? `-${day.value}` : ''
+
+  if (year.value) {
+    const birthDayjs = dayjs(month.value ? yearStr + monthStr + dayStr : yearStr)
     const currentDate = dayjs()
     const age = currentDate.diff(birthDayjs, 'year')
-    return age >= 18
-  }
-  else if (year.value && month.value && !day.value) {
-    const birthDayjs = dayjs(`${year.value}-${month.value > 9 ? month.value : `0${month.value}`}`)
-    const currentDate = dayjs()
-    const age = currentDate.diff(birthDayjs, 'year')
-    if (age === 18) {
+
+    if (month.value && age === 18) {
       const birthMonth = birthDayjs.month()
       const currentMonth = currentDate.month()
+
+      if (day.value && currentMonth === birthMonth) {
+        const birthDay = birthDayjs.date()
+        const currentDay = currentDate.date()
+
+        return currentDay >= birthDay
+      }
 
       if (currentMonth >= birthMonth)
         return true
     }
-
-    return age > 18
-  }
-  else if (year.value && month.value && day.value) {
-    const birthDayjs = dayjs(`${year.value}-${month.value > 9 ? month.value : `0${month.value}`}-${day.value > 9 ? day.value : `0${day.value}`}`)
-    const currentDate = dayjs()
-
-    const age = currentDate.diff(birthDayjs, 'year')
-
-    if (age === 18) {
-      const birthMonth = birthDayjs.month()
-      const currentMonth = currentDate.month()
-      const birthDay = birthDayjs.date()
-      const currentDay = currentDate.date()
-
-      if (currentMonth > birthMonth || (currentMonth === birthMonth && currentDay >= birthDay))
-        return true
-    }
-
-    return age > 18
+    return month.value ? age > 18 : age >= 18
   }
   return true
 })
@@ -124,7 +111,10 @@ function onInput() {
       <label>{{ t('time_birthday') }} <span v-if="must">*</span></label>
       <div class="input-wrap">
         <!-- 日 -->
-        <input v-model="day" type="number" min="1" :max="dayMax" placeholder="DD" :class="{ error: msg }" @input="onInput">
+        <input
+          v-model="day" type="number" min="1" :max="dayMax" placeholder="DD" :class="{ error: msg }"
+          @input="onInput"
+        >
         <!-- 月 -->
         <select v-model="month" :class="{ error: msg }" @change="onInput">
           <option value="xx" disabled>
@@ -174,6 +164,7 @@ function onInput() {
   label {
     color: var(--tg-secondary-light);
   }
+
   .msg {
     font-size: var(--tg-font-size-md);
     display: flex;
@@ -210,7 +201,7 @@ function onInput() {
         border-color: var(--tg-text-grey);
       }
 
-      &:focus:not(.error)  {
+      &:focus:not(.error) {
         border-color: var(--tg-text-grey);
       }
     }
