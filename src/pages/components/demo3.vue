@@ -3,7 +3,36 @@ const { copy } = useClipboard()
 const imageUrl = ref('')
 const imageUrl2 = ref('http://c.hiphotos.baidu.com/image/pic/item/30adcbef76094b36de8a2fe5a1cc7cd98d109d99.jpg')
 const gameInfo = { id: 2, url: 'http://c.hiphotos.baidu.com/image/pic/item/30adcbef76094b36de8a2fe5a1cc7cd98d109d99.jpg', name: 'plynko' }
+const percent = ref(60)
+const menuInfo = ref({
+  title: '顶级体育项目',
+  icon: 'chess-sponsorship',
+  list: [
+    { title: '足球', icon: 'chess-sponsorship', id: 1 },
+    { title: '足球', icon: 'chess-sponsorship', id: 2 },
+    { title: '足球', icon: 'chess-sponsorship', id: 3 },
+    { title: '足球', icon: 'chess-sponsorship', id: 4 },
+    { title: '足球', icon: 'chess-sponsorship', id: 5 },
+    { title: '足球', icon: 'chess-sponsorship', id: 6 },
+    { title: '足球', icon: 'chess-sponsorship', id: 7 },
+  ],
+})
+function onIncrease(scale: number) {
+  const res = percent.value + scale
+  if (res > 100)
+    percent.value = 100
 
+  else
+    percent.value = res
+}
+function onDecline(scale: number) {
+  const res = percent.value - scale
+  if (res < 0)
+    percent.value = 0
+
+  else
+    percent.value = res
+}
 function handleKeyNum(num: string) {
   console.log(num)
 }
@@ -104,6 +133,40 @@ function copyBaseLogo(num: number) {
       copy('<BaseLogo mode="picture" url="http://c.hiphotos.baidu.com/image/pic/item/30adcbef76094b36de8a2fe5a1cc7cd98d109d99.jpg" />')
       break
   }
+}
+function copyProgressCode(num: number) {
+  switch (num) {
+    case 1:
+      copy('<BaseProgress :width="400" :percent="percent" :stroke-width="10" show-info />')
+      break
+    case 2:
+      copy('<BaseProgress width="100%" :percent="100" :stroke-width="10" show-info />')
+      break
+    case 3:
+      copy(`<BaseProgress
+              :width="400"
+              :percent="percent"
+              :stroke-width="10"
+              :stroke-color="{
+                '0%': '#108ee9',
+                '100%': '#87d068',
+                'direction': 'right',
+              }"
+              show-info
+            />`)
+      break
+    case 4:
+      copy(`<BaseProgress
+                :width="120"
+                :stroke-width="10"
+                :percent="percent"
+                type="circle"
+              />`)
+      break
+  }
+}
+function copyAccordion() {
+  copy('<BaseAccordion :menu-info="menuInfo" />')
 }
 </script>
 
@@ -251,6 +314,88 @@ function copyBaseLogo(num: number) {
         </div>
       </AppDemoCard>
     </li>
+    <li class="box">
+      <AppDemoCard title="BaseProgress">
+        <div class="progress-box">
+          <div>
+            <h2>
+              基本使用 (width: 400 & type: line)
+            </h2>
+            <BaseProgress :width="400" :percent="percent" :stroke-width="10" show-info />
+            <BaseButton @click="copyProgressCode(1)">
+              copy
+            </BaseButton>
+          </div>
+          <div>
+            <h2>
+              完成进度条 (width: 100% & percent: 100)
+            </h2>
+            <BaseProgress width="100%" :percent="100" :stroke-width="10" show-info />
+            <BaseButton @click="copyProgressCode(2)">
+              copy
+            </BaseButton>
+          </div>
+          <div>
+            <h2>
+              渐变进度条 (width: 400)
+            </h2>
+            <h3>
+              strokeColor: { '0%': '#108ee9', '100%': '#87d068', direction: 'right' } 或 { from: '#108ee9', to: '#87d068', direction: 'right' }
+            </h3>
+            <BaseProgress
+              :width="400"
+              :percent="percent"
+              :stroke-width="10"
+              :stroke-color="{
+                '0%': '#108ee9',
+                '100%': '#87d068',
+                'direction': 'right',
+              }"
+              show-info
+            />
+            <BaseButton @click="copyProgressCode(3)">
+              copy
+            </BaseButton>
+          </div>
+          <div>
+            <h2>
+              进度圈基本使用 (type: circle)
+            </h2>
+            <div class="flex-row">
+              <BaseProgress
+                :width="120"
+                :stroke-width="12"
+                :percent="percent"
+                type="circle"
+              />
+              <div>
+                <BaseButton @click="onDecline(5)">
+                  Decline-
+                </BaseButton>
+                <BaseButton @click="onIncrease(5)">
+                  Increase+
+                </BaseButton>
+              </div>
+            </div>
+            <div>
+              <BaseButton @click="copyProgressCode(4)">
+                copy
+              </BaseButton>
+            </div>
+          </div>
+        </div>
+      </AppDemoCard>
+    </li>
+    <li class="box">
+      <AppDemoCard title="BaseAccordion">
+        <BaseAccordion :menu-info="menuInfo" />
+        <div class="center">
+          <BaseButton @click="copyAccordion">
+            copy
+          </BaseButton>
+        </div>
+      </AppDemoCard>
+    </li>
   </ul>
 </template>
 
@@ -271,5 +416,15 @@ function copyBaseLogo(num: number) {
 .center{
   text-align: center;
   margin-top: 20px;
+}
+h1,h2,h3{
+  color: aliceblue;
+}
+.progress-box{
+  width: 500px;
+  margin: auto;
+  >div{
+    margin-bottom: 25px;
+  }
 }
 </style>
