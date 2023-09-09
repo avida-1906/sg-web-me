@@ -28,3 +28,4 @@ interface ILanguageConfig {
    */
   currency: 'CNY' | 'USD' | 'INR' | 'BRL' | 'VND'
 }
+

@@ -4,7 +4,7 @@
   "packageManager": "pnpm@8.6.7",
   "scripts": {
     "build": "vite build",
-    "dev": "vite --port 3333 --open --mode test",
+    "dev": "vite --port 3690 --open --mode test",
     "lint": "eslint .",
     "preview": "vite preview",
     "preview-https": "serve dist",
@@ -22,6 +22,7 @@
     "@vee-validate/zod": "^4.11.3",
     "@vueuse/core": "^10.2.1",
     "@vueuse/head": "^1.1.26",
+    "axios": "^1.5.0",
     "big.js": "^6.2.1",
     "dayjs": "^1.11.9",
     "floating-vue": "2.0.0-beta.24",
@@ -31,6 +32,7 @@
     "vue": "^3.3.4",
     "vue-demi": "^0.14.5",
     "vue-i18n": "^9.2.2",
+    "vue-request": "^2.0.3",
     "vue-router": "^4.2.4"
   },
   "devDependencies": {
