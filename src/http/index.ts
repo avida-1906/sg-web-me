@@ -61,6 +61,7 @@ class HttpClient {
         console.log('请求参数：', response.config.data)
 
       console.log('接口响应数据：', response.data)
+      console.groupEnd()
       return response
     },
     // 处理后端status为false的情况
@@ -83,10 +84,6 @@ class HttpClient {
       if (status)
         response.data = data
 
-      return response
-    },
-    (response) => {
-      console.groupEnd()
       return response
     },
   ]
