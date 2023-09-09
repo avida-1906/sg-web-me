@@ -1,34 +1,31 @@
 import BaseDialog from '~/components/BaseDialog.vue'
 
 export function useDialog({ title, icon, default: defaultSlot }: { title: string; icon: string; default: () => Component }) {
-  const show = ref(false)
   const app = ref()
+  const div = ref()
 
   const openDialog = () => {
-    const div = document.createElement('div')
-    document.body.appendChild(div)
-
+    div.value = document.createElement('div')
+    document.body.appendChild(div.value)
     app.value = createApp(h(BaseDialog, {
       title,
       icon,
-      show: true,
+      show: false,
+      funcCall: true,
       onClose: () => {
-        app.value.unmount()
-        div.remove()
         closeDialog()
       },
     }, {
       default: () => defaultSlot(),
     }))
-    app.value.mount(div)
-    show.value = true
+    app.value.mount(div.value)
   }
 
   function closeDialog() {
     if (app.value)
       app.value.unmount()
-
-    show.value = false
+    if (div.value)
+      div.value.remove()
   }
 
   return {

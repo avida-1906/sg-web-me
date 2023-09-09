@@ -1,21 +1,57 @@
 <script setup lang="ts">
 const { copy } = useClipboard()
+const imageUrl = ref('')
+const imageUrl2 = ref('http://c.hiphotos.baidu.com/image/pic/item/30adcbef76094b36de8a2fe5a1cc7cd98d109d99.jpg')
 const gameInfo = { id: 2, url: 'http://c.hiphotos.baidu.com/image/pic/item/30adcbef76094b36de8a2fe5a1cc7cd98d109d99.jpg', name: 'plynko' }
+const percent = ref(60)
+const menuInfo = ref({
+  title: '顶级体育项目',
+  icon: 'chess-sponsorship',
+  list: [
+    { title: '足球', icon: 'chess-sponsorship', id: 1 },
+    { title: '足球', icon: 'chess-sponsorship', id: 2 },
+    { title: '足球', icon: 'chess-sponsorship', id: 3 },
+    { title: '足球', icon: 'chess-sponsorship', id: 4 },
+    { title: '足球', icon: 'chess-sponsorship', id: 5 },
+    { title: '足球', icon: 'chess-sponsorship', id: 6 },
+    { title: '足球', icon: 'chess-sponsorship', id: 7 },
+  ],
+})
+function onIncrease(scale: number) {
+  const res = percent.value + scale
+  if (res > 100)
+    percent.value = 100
 
+  else
+    percent.value = res
+}
+function onDecline(scale: number) {
+  const res = percent.value - scale
+  if (res < 0)
+    percent.value = 0
+
+  else
+    percent.value = res
+}
 function handleKeyNum(num: string) {
   console.log(num)
-  // alert(num)
 }
 function handleKeyOk() {
-  // alert('ok')
+  console.log('ok')
 }
 
 function getFile(file: any) {
-  console.log(file)
+  // console.log(file)
+  const reader = new FileReader()
+  reader.readAsDataURL(file)
+  reader.onloadend = function (e) {
+    imageUrl.value = e.target?.result?.toString() || ''
+  }
 }
 
 function handleDelFile() {
-  // alert('删除')
+  imageUrl.value = ''
+  console.log('删除')
 }
 function getItemInfo(obj: any) {
   console.log(obj)
@@ -23,23 +59,23 @@ function getItemInfo(obj: any) {
 function copyUploadCode(type: number) {
   switch (type) {
     case 1:
-      copy('<BaseUpload img-type="frontId" @select-file="getFile" @delete-file="handleDelFile" />')
+      copy('<BaseUpload img-type="frontId" :image-url="imageUrl" @select-file="getFile" @delete-file="handleDelFile" />')
       break
     case 2:
-      copy('<BaseUpload img-type="backId" @select-file="getFile" @delete-file="handleDelFile" />')
+      copy('<BaseUpload img-type="backId" :image-url="imageUrl" @select-file="getFile" @delete-file="handleDelFile" />')
       break
     case 3:
-      copy('<BaseUpload img-type="address" @select-file="getFile" @delete-file="handleDelFile" />')
+      copy('<BaseUpload img-type="address" disabled @select-file="getFile" @delete-file="handleDelFile" />')
       break
     case 4:
-      copy('<BaseUpload img-type="fund" @select-file="getFile" @delete-file="handleDelFile" />')
+      copy('<BaseUpload img-type="fund" :image-url="imageUrl2" disabled @select-file="getFile" @delete-file="handleDelFile" />')
       break
   }
 }
 function copyNumericKeypadCode() {
-  copy(`<div style="width: 371px;">
-          <BaseNumericKeypad @keyNum="handleKeyNum" @keyOk="handleKeyOk" />
-        </div>`)
+  copy(`<BaseAspectRatio ratio="371/176" width="371px" style="margin: auto;">
+          <BaseNumericKeypad @key-num="handleKeyNum" @key-ok="handleKeyOk" />
+        </BaseAspectRatio>`)
 }
 function copyAspectRatioCode(type: number) {
   switch (type) {
@@ -88,6 +124,50 @@ function copyBadgeCode(type: number) {
 function copyGameItem() {
   copy('<BaseGameItem :game-info="gameInfo" @click-item="getItemInfo" />')
 }
+function copyBaseLogo(num: number) {
+  switch (num) {
+    case 1:
+      copy('<BaseLogo mode="svg" svg-name="app-logo" />')
+      break
+    case 2:
+      copy('<BaseLogo mode="picture" url="http://c.hiphotos.baidu.com/image/pic/item/30adcbef76094b36de8a2fe5a1cc7cd98d109d99.jpg" />')
+      break
+  }
+}
+function copyProgressCode(num: number) {
+  switch (num) {
+    case 1:
+      copy('<BaseProgress :width="400" :percent="percent" :stroke-width="10" show-info />')
+      break
+    case 2:
+      copy('<BaseProgress width="100%" :percent="100" :stroke-width="10" show-info />')
+      break
+    case 3:
+      copy(`<BaseProgress
+              :width="400"
+              :percent="percent"
+              :stroke-width="10"
+              :stroke-color="{
+                '0%': '#108ee9',
+                '100%': '#87d068',
+                'direction': 'right',
+              }"
+              show-info
+            />`)
+      break
+    case 4:
+      copy(`<BaseProgress
+                :width="120"
+                :stroke-width="10"
+                :percent="percent"
+                type="circle"
+              />`)
+      break
+  }
+}
+function copyAccordion() {
+  copy('<BaseAccordion :menu-info="menuInfo" />')
+}
 </script>
 
 <template>
@@ -96,25 +176,33 @@ function copyGameItem() {
       <AppDemoCard title="BaseUpload">
         <div class="flex-row">
           <div class="flex-column">
-            <BaseUpload img-type="frontId" @select-file="getFile" @delete-file="handleDelFile" />
+            <BaseAspectRatio ratio="149/97" width="149px">
+              <BaseUpload img-type="frontId" :image-url="imageUrl" @select-file="getFile" @delete-file="handleDelFile" />
+            </BaseAspectRatio>
             <BaseButton @click="copyUploadCode(1)">
               copy
             </BaseButton>
           </div>
           <div class="flex-column">
-            <BaseUpload img-type="backId" @select-file="getFile" @delete-file="handleDelFile" />
+            <BaseAspectRatio ratio="149/97" width="149px">
+              <BaseUpload img-type="backId" :image-url="imageUrl" @select-file="getFile" @delete-file="handleDelFile" />
+            </BaseAspectRatio>
             <BaseButton @click="copyUploadCode(2)">
               copy
             </BaseButton>
           </div>
           <div class="flex-column">
-            <BaseUpload img-type="address" @select-file="getFile" @delete-file="handleDelFile" />
+            <BaseAspectRatio ratio="149/97" width="149px">
+              <BaseUpload img-type="address" disabled @select-file="getFile" @delete-file="handleDelFile" />
+            </BaseAspectRatio>
             <BaseButton @click="copyUploadCode(3)">
               copy
             </BaseButton>
           </div>
           <div class="flex-column">
-            <BaseUpload img-type="fund" @select-file="getFile" @delete-file="handleDelFile" />
+            <BaseAspectRatio ratio="149/97" width="149px">
+              <BaseUpload img-type="fund" :image-url="imageUrl2" disabled @select-file="getFile" @delete-file="handleDelFile" />
+            </BaseAspectRatio>
             <BaseButton @click="copyUploadCode(4)">
               copy
             </BaseButton>
@@ -161,9 +249,9 @@ function copyGameItem() {
     </li>
     <li class="box">
       <AppDemoCard title="BaseNumericKeypad">
-        <div style="width: 371px;margin: auto;">
+        <BaseAspectRatio ratio="371/176" width="371px" style="margin: auto;">
           <BaseNumericKeypad @key-num="handleKeyNum" @key-ok="handleKeyOk" />
-        </div>
+        </BaseAspectRatio>
         <div class="center">
           <BaseButton @click="copyNumericKeypadCode">
             copy
@@ -204,6 +292,110 @@ function copyGameItem() {
         </div>
       </AppDemoCard>
     </li>
+    <li class="box">
+      <AppDemoCard title="BaseLogo">
+        <div class="flex-row">
+          <div>
+            <BaseAspectRatio ratio="2/1" width="67px">
+              <BaseLogo mode="svg" svg-name="app-logo" />
+            </BaseAspectRatio>
+            <BaseButton @click="copyBaseLogo(1)">
+              copy
+            </BaseButton>
+          </div>
+          <div>
+            <BaseAspectRatio ratio="1/1" width="120px">
+              <BaseLogo mode="picture" url="http://c.hiphotos.baidu.com/image/pic/item/30adcbef76094b36de8a2fe5a1cc7cd98d109d99.jpg" />
+            </BaseAspectRatio>
+            <BaseButton @click="copyBaseLogo(2)">
+              copy
+            </BaseButton>
+          </div>
+        </div>
+      </AppDemoCard>
+    </li>
+    <li class="box">
+      <AppDemoCard title="BaseProgress">
+        <div class="progress-box">
+          <div>
+            <h2>
+              基本使用 (width: 400 & type: line)
+            </h2>
+            <BaseProgress :width="400" :percent="percent" :stroke-width="10" show-info />
+            <BaseButton @click="copyProgressCode(1)">
+              copy
+            </BaseButton>
+          </div>
+          <div>
+            <h2>
+              完成进度条 (width: 100% & percent: 100)
+            </h2>
+            <BaseProgress width="100%" :percent="100" :stroke-width="10" show-info />
+            <BaseButton @click="copyProgressCode(2)">
+              copy
+            </BaseButton>
+          </div>
+          <div>
+            <h2>
+              渐变进度条 (width: 400)
+            </h2>
+            <h3>
+              strokeColor: { '0%': '#108ee9', '100%': '#87d068', direction: 'right' } 或 { from: '#108ee9', to: '#87d068', direction: 'right' }
+            </h3>
+            <BaseProgress
+              :width="400"
+              :percent="percent"
+              :stroke-width="10"
+              :stroke-color="{
+                '0%': '#108ee9',
+                '100%': '#87d068',
+                'direction': 'right',
+              }"
+              show-info
+            />
+            <BaseButton @click="copyProgressCode(3)">
+              copy
+            </BaseButton>
+          </div>
+          <div>
+            <h2>
+              进度圈基本使用 (type: circle)
+            </h2>
+            <div class="flex-row">
+              <BaseProgress
+                :width="120"
+                :stroke-width="12"
+                :percent="percent"
+                type="circle"
+              />
+              <div>
+                <BaseButton @click="onDecline(5)">
+                  Decline-
+                </BaseButton>
+                <BaseButton @click="onIncrease(5)">
+                  Increase+
+                </BaseButton>
+              </div>
+            </div>
+            <div>
+              <BaseButton @click="copyProgressCode(4)">
+                copy
+              </BaseButton>
+            </div>
+          </div>
+        </div>
+      </AppDemoCard>
+    </li>
+    <li class="box">
+      <AppDemoCard title="BaseAccordion">
+        <BaseAccordion :menu-info="menuInfo" />
+        <div class="center">
+          <BaseButton @click="copyAccordion">
+            copy
+          </BaseButton>
+        </div>
+      </AppDemoCard>
+    </li>
   </ul>
 </template>
 
@@ -224,5 +416,15 @@ function copyGameItem() {
 .center{
   text-align: center;
   margin-top: 20px;
+}
+h1,h2,h3{
+  color: aliceblue;
+}
+.progress-box{
+  width: 500px;
+  margin: auto;
+  >div{
+    margin-bottom: 25px;
+  }
 }
 </style>

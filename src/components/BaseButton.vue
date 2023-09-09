@@ -21,8 +21,8 @@ withDefaults(defineProps<Props>(), {
       padding: `var(--tg-spacing-button-padding-vertical-${size}) var(--tg-spacing-button-padding-horizontal-${size})`,
     }"
   >
-    <div v-if="loading">
-      loading...
+    <div v-if="loading" class="loading">
+      <BaseIcon name="chess-frame2" class="ani-roll" />
     </div>
     <div v-else class="content">
       <slot />
@@ -37,6 +37,13 @@ button {
   border-radius: var(--tg-radius-default);
   font-weight: var(--tg-font-weight-semibold);
   transition: all ease .25s;
+
+  .loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size:var(--tg-font-size-base);
+  }
 
   .content {
     width: 100%;
@@ -72,6 +79,7 @@ button {
 
   &:active:not(:disabled) {
     color: var(--tg-text-white);
+
     .content {
       transform: scale(0.9);
     }
@@ -98,6 +106,7 @@ button {
 .round-line-left {
   border: 1px solid var(--tg-secondary-light);
   border-radius: 100px 0 0 100px;
+
   &:active:not(:disabled) {
     .content {
       transform: scale(0.95);
@@ -114,6 +123,7 @@ button {
 .round-line-right {
   border: 1px solid var(--tg-secondary-light);
   border-radius: 0 100px 100px 0;
+
   &:active:not(:disabled) {
     .content {
       transform: scale(0.95);

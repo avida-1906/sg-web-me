@@ -57,7 +57,6 @@ function handleClick(item: any) {
       .game-uni-play{
         width: 32px;
         height: 32px;
-        color: #ffffff;
       }
     }
   }

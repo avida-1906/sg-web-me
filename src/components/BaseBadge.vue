@@ -1,33 +1,29 @@
 <script setup lang="ts">
 import type { CSSProperties } from 'vue'
 
-const props = withDefaults(defineProps<Props>(), {
-  color: '',
-  count: 0,
-  max: 99,
-  showZero: false,
-  dot: false,
-  status: undefined,
-  text: '',
-  countStyle: () => ({}),
-  title: '',
-})
-enum Status {
-  success = 'success',
-  default = 'default',
-  fail = 'fail',
-}
 interface Props {
   color?: string // 自定义小圆点的颜色
   count?: number // 展示的数字，大于 max 时显示为 max+，为 0 时隐藏；number
   max?: number // 展示封顶的数字值
   showZero?: boolean // 当数值为 0 时，是否展示 Badge
   dot?: boolean // 不展示数字，只有一个小红点
-  status?: Status // 设置 Badge 为状态点
+  status?: 'success' | 'default' | 'fail' | '' // 设置 Badge 为状态点
   text?: string // 在设置了 status 的前提下有效，设置状态点的文本 string
   countStyle?: CSSProperties // 设置状态点的样式
   title?: string // 设置鼠标放在状态点上时显示的文字
 }
+const props = withDefaults(defineProps<Props>(), {
+  color: '',
+  count: 0,
+  max: 99,
+  showZero: false,
+  dot: false,
+  status: '',
+  text: '',
+  countStyle: () => ({}),
+  title: '',
+})
+
 const presetColor = ['white', 'black', 'error', 'warn', 'green', 'blue']
 const customStyle = computed(() => {
   if (props.color && !presetColor.includes(props.color)) {
@@ -44,10 +40,6 @@ const showContent = ref(true)
 onMounted(() => {
   if (!props.status && !props.color)
     showContent.value = !!useSlots().default
-    // showContent.value = contentRef.value.offsetHeight
-    // showCount.value = countRef.value.offsetHeight
-    // console.log(useSlots().default, useSlots().count)
-    // console.log(showContent.value,showCount.value)
 })
 </script>
 

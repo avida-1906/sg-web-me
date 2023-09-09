@@ -195,10 +195,12 @@ const { openDialog, closeDialog } = useDialog({
     default: () => h('table', { style: { color: 'orange' } }, 'abcdefg'),
   }),
 })
+const timerD = ref()
 function showDialog() {
   copyCode('useDialog')
+  clearTimeout(timerD.value)
   openDialog()
-  setTimeout(() => {
+  timerD.value = setTimeout(() => {
     closeDialog()
   }, 3000)
 }

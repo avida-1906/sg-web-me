@@ -8,6 +8,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AppDemoCard: typeof import('./components/AppDemoCard.vue')['default']
+    BaseAccordion: typeof import('./components/BaseAccordion.vue')['default']
     BaseAspectRatio: typeof import('./components/BaseAspectRatio.vue')['default']
     BaseBadge: typeof import('./components/BaseBadge.vue')['default']
     BaseBirthDay: typeof import('./components/BaseBirthDay.vue')['default']
@@ -26,6 +27,7 @@ declare module 'vue' {
     BaseInputBirthDay: typeof import('./components/BaseInputBirthDay.vue')['default']
     BaseList: typeof import('./components/BaseList.vue')['default']
     BaseLoading: typeof import('./components/BaseLoading.vue')['default']
+    BaseLogo: typeof import('./components/BaseLogo.vue')['default']
     BaseNotify: typeof import('./components/BaseNotify.vue')['default']
     BaseNumericKeypad: typeof import('./components/BaseNumericKeypad.vue')['default']
     BaseProgress: typeof import('./components/BaseProgress.vue')['default']

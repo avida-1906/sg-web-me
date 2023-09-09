@@ -63,7 +63,7 @@ function keyUpOk() {
 .base-numeric-keypad{
     display: grid;
     width: 100%;
-    height: 176px;
+    height: 100%;
     grid-template-columns: repeat(4, 25%);
     grid-template-rows: repeat(4, 25%);
     grid-row-gap: var(--tg-border-width-default);
@@ -72,15 +72,17 @@ function keyUpOk() {
     font-weight: var(--tg-font-weight-semibold);
     color: var(--tg-text-white);
     div{
-        height: 100%;
-        background-color: var( --tg-secondary-grey);
-        text-align: center;
-        line-height: 44px;
-        cursor: pointer;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var( --tg-secondary-grey);
+      text-align: center;
+      cursor: pointer;
     }
     .ok-3{
-        grid-row-start: span 3;
-        line-height: 132px;
+      grid-row-start: span 3;
     }
 }
 </style>

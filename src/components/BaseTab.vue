@@ -23,8 +23,8 @@ function onClick(v: string | number) {
 </script>
 
 <template>
-  <div class="base-tab" :class="[shape]">
-    <div class="tab-wrap">
+  <div class="base-tab scroll-x">
+    <div class="tab-wrap" :class="[shape]">
       <div
         v-for="t, i in list" :key="i" class="tab" :class="{ active: t.value === modelValue }"
         @click="onClick(t.value)"
@@ -41,25 +41,29 @@ function onClick(v: string | number) {
 
 <style lang='scss' scoped>
 .base-tab {
-  background-color: var(--tg-secondary-dark);
-  padding: var(--tg-spacing-5) var(--tg-spacing-6);
   display: flex;
-  align-items: center;
-  overflow-x: auto;
-  touch-action: auto;
-  overflow-y: hidden;
 
-  &::-webkit-scrollbar {
-    display: none;
-  }
-
-  -ms-overflow-style: none;
-  /* IE 10+ */
-  scrollbar-width: none;
-  /* Firefox */
-  .tab-wrap{
+  .tab-wrap {
+    padding: var(--tg-spacing-5) var(--tg-spacing-6);
+    background-color: var(--tg-secondary-dark);
     flex: 1;
     display: flex;
+  }
+
+  .square {
+    border-radius: var(--tg-radius-default);
+
+    .tab {
+      border-radius: var(--tg-radius-default);
+    }
+  }
+
+  .round {
+    border-radius: 100px;
+
+    .tab {
+      border-radius: 100px;
+    }
   }
 
   .tab {
@@ -73,9 +77,11 @@ function onClick(v: string | number) {
     cursor: pointer;
     transition: all ease .25s;
     margin-right: var(--tg-spacing-5);
-    &:last-of-type{
+
+    &:last-of-type {
       margin-right: 0;
     }
+
     .content {
       width: 100%;
       height: 100%;
@@ -91,25 +97,14 @@ function onClick(v: string | number) {
         transform: scale(0.9);
       }
     }
-    &:hover{
+
+    &:hover {
       background-color: var(--tg-secondary-main);
     }
   }
 
   .active {
     background-color: var(--tg-secondary-main);
-  }
-}
-.square{
-  border-radius: var(--tg-radius-default);
-  .tab{
-    border-radius: var(--tg-radius-default);
-  }
-}
-.round{
-  border-radius: 100px;
-  .tab{
-    border-radius: 100px;
   }
 }
 </style>
