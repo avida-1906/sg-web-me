@@ -474,7 +474,7 @@ function copyProgressCode(num: number) {
   }
 }
 function copyAccordionCode() {
-  copy('<BaseAccordion :menu-info="menuInfo" />')
+  copy('<BaseAccordion :menu-info="menuInfo" auto-show @click-head="handleClickHead" @click-item="handleClickItem" />')
 }
 function copyImageCode() {
   copy('<BaseImage url="http://c.hiphotos.baidu.com/image/pic/item/30adcbef76094b36de8a2fe5a1cc7cd98d109d99.jpg" @click-img="clickImg" />')
@@ -564,6 +564,12 @@ onMounted(() => {
     loading.value = false
   }, 3000)
 })
+function handleClickHead(menu: object) {
+  console.log(menu)
+}
+function handleClickItem(item: object) {
+  console.log(item)
+}
 </script>
 
 <template>
@@ -997,7 +1003,7 @@ onMounted(() => {
     </li>
     <li class="box">
       <AppDemoCard title="BaseAccordion">
-        <BaseAccordion :menu-info="menuInfo" auto-show />
+        <BaseAccordion :menu-info="menuInfo" auto-show @click-head="handleClickHead" @click-item="handleClickItem" />
         <div class="center">
           <BaseButton @click="copyAccordionCode">
             copy
