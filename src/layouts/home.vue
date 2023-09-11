@@ -18,29 +18,54 @@
  */
 
 // 宽度边界 1200
-const widthBoundaryLg = ref(1200)
+const widthBoundaryXl = ref(1200)
 // 宽度边界 768
 const widthBoundaryMd = ref(768)
+// 左侧是否展开
+const leftIsExpand = ref(false)
+// 右侧是否展开
+const rightIsExpand = ref(false)
+const rightContainerIs0 = ref(true)
+const rightSidebar = ref<HTMLElement | null>(null)
 
 const { width } = useWindowSize()
 
-// 左侧是否展开
-const leftIsExpand = ref(false)
 // home-overlay 是否显示
 const homeOverlayIsShow = computed(() => {
-  return leftIsExpand.value && width.value < widthBoundaryLg.value
+  return leftIsExpand.value && width.value < widthBoundaryXl.value
 })
 
 // 左侧侧边栏宽度
 const leftSidebarWidth = computed(() => {
   return `${leftIsExpand.value ? 240 : 60}px`
 })
+
+function setRightSidebarExpandStatus() {
+  // if (status !== undefined) {
+  //   rightIsExpand.value = status
+  //   return
+  // }
+  if (!rightIsExpand.value) {
+    rightIsExpand.value = true
+    setTimeout(() => {
+      rightContainerIs0.value = false
+    }, 30)
+  }
+  else {
+    rightContainerIs0.value = true
+    setTimeout(() => {
+      rightIsExpand.value = false
+    }, 300)
+  }
+}
 </script>
 
 <template>
-  <main class="wrap">
+  <main
+    class="wrap"
+  >
     <div v-if="homeOverlayIsShow" class="home-overlay" @click="leftIsExpand = !leftIsExpand" />
-    <div v-if="width < widthBoundaryLg && width > widthBoundaryMd" class="small-size-padding" />
+    <div v-if="width < widthBoundaryXl && width > widthBoundaryMd" class="small-size-padding" />
     <div
       class="left-sidebar"
       :style="{
@@ -48,7 +73,7 @@ const leftSidebarWidth = computed(() => {
       }"
       :class="{
         'fixed-small': width > widthBoundaryMd,
-        'fixed': width < widthBoundaryLg,
+        'fixed': width < widthBoundaryXl,
         'full-screen': width <= widthBoundaryMd,
       }"
     >
@@ -60,21 +85,40 @@ const leftSidebarWidth = computed(() => {
     </div>
     <div class="main-content">
       <header class="navigation">
-        <div class="group">
-          <div class="container">
-            {{ $t('active_day_ago', { days: 10 }) }}
+        <AppContent>
+          <div class="group">
+            <div class="container">
+              {{ $t('active_day_ago', { days: 10 }) }}
+            </div>
+            <p>
+              真人娱乐场
+            </p>
+            <button @click="setRightSidebarExpandStatus()">
+              聊天室
+            </button>
           </div>
-          <p>
-            真人娱乐场
-          </p>
-        </div>
+        </AppContent>
       </header>
-      <div class="scrollable">
-        <RouterView />
+      <div class="scrollable scroll-y">
+        <div>
+          <RouterView />
+        </div>
       </div>
     </div>
-    <div class="right-sidebar">
-      右侧
+    <div
+      v-if="rightIsExpand"
+      ref="rightSidebar"
+      class="right-sidebar"
+      :class="{
+        'width-none': rightContainerIs0,
+        'fixed': width < widthBoundaryMd,
+        'display-none': width < widthBoundaryMd,
+      }"
+    >
+      右侧 {{ rightIsExpand }}
+      <button @click="setRightSidebarExpandStatus()">
+        关闭
+      </button>
     </div>
   </main>
 </template>
@@ -131,19 +175,45 @@ const leftSidebarWidth = computed(() => {
     background-color: black;
     color: white;
     font-weight: 600;
+    padding-right: var(--tg-scrollbar-size);
 
     & > .group {
-      width: 100%;
-      padding: 0 3vw;
       display: flex;
       align-items: center;
       flex-direction: column;
     }
   }
-
-  & > .scrollable {
-    flex: 1;
-    overflow: auto;
+}
+.right-sidebar {
+  background-color: green;
+  transition: width 0.3s ease-in-out;
+  overflow: hidden;
+  &.width-none {
+    width: 0;
   }
+  &.fixed {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: var(--tg-z-index-30);
+  }
+
+  &.full-screen {
+    width: 100%;
+    top: var(--tg-header-height);
+    padding-bottom: var(--tg-footer-height),
+  }
+
+  // 768-1000 显示 320
+  // 1000 以上显示 370
+  @media screen and (min-width: 768px) and (max-width: 1000px) {
+    width: 320px;
+  }
+  @media screen and (min-width: 1000px) {
+    width: 370px;
+  }
+
 }
 </style>

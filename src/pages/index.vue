@@ -20,13 +20,17 @@ function getData() {
 
 <template>
   <div style="background-color: white; height: 1000px">
-    <div>{{ t('hello') }}</div>
-    <div>
-      {{ data }}
-    </div>
-    <button @click="getData">
-      请求
-    </button>
+    <AppContent>
+      <div>
+        {{ t('hello') }}
+      </div>
+      <div>
+        {{ data }}
+      </div>
+      <button @click="getData">
+        请求
+      </button>
+    </AppContent>
   </div>
 </template>
 

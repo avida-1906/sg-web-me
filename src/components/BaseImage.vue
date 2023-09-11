@@ -17,9 +17,7 @@ withDefaults(defineProps<Props>(), {
 const emit = defineEmits(['clickImg'])
 const complete = ref(false)
 function onComplete() { // 图片加载完成
-  setTimeout(() => {
-    complete.value = true
-  }, 1000)
+  complete.value = true
 }
 
 function handleClick() {

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 interface Props {
   menuInfo: any
+  autoShow?: boolean
 }
 const props = withDefaults(defineProps<Props>(), {
   menuInfo: () => {
@@ -10,9 +11,10 @@ const props = withDefaults(defineProps<Props>(), {
       list: [],
     }
   },
+  autoShow: false,
 })
 const emit = defineEmits(['clickHead', 'clickItem'])
-const isShow = ref(false)
+const isShow = ref(props.autoShow)
 function handleClickHeader() {
   isShow.value = !isShow.value
   emit('clickHead', props.menuInfo)
@@ -20,6 +22,9 @@ function handleClickHeader() {
 function handleClickItem(item: any) {
   emit('clickItem', item)
 }
+const showDown = computed(() => {
+  return props.menuInfo?.list?.length
+})
 </script>
 
 <template>
@@ -29,10 +34,12 @@ function handleClickItem(item: any) {
         <BaseIcon :name="menuInfo.icon" />
         <span class="header-title">{{ menuInfo.title }}</span>
       </div>
-      <BaseIcon v-if="isShow" name="uni-arrow-down" />
-      <BaseIcon v-else name="uni-arrow-right" />
+      <template v-if="showDown">
+        <BaseIcon v-if="isShow" name="uni-arrow-down" />
+        <BaseIcon v-else name="uni-arrow-right" />
+      </template>
     </div>
-    <div class="accordion-content" :style="`max-height:${isShow ? '1000px' : 0};transition: max-height ${isShow ? '1' : '0.3'}s;`">
+    <div v-if="showDown" class="accordion-content" :style="`max-height:${isShow ? '1000px' : 0};transition: max-height ${isShow ? '1' : '0.3'}s;`">
       <div v-for="item of menuInfo.list" :key="item.id" class="content-item" @click="handleClickItem(item)">
         <BaseIcon :name="item.icon" />
         <span class="header-title">{{ item.title }}</span>
@@ -73,6 +80,7 @@ function handleClickItem(item: any) {
     .content-item{
       height: 45px;
       display: flex;
+      border-radius: var(--tg-radius-default);
       padding-left: 16px;
       align-items: center;
       cursor: pointer;

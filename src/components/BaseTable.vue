@@ -73,9 +73,9 @@ withDefaults(defineProps<Props>(), {
     margin: 0;
 
     .m-th {
-      padding: 16px;
+      padding: 12px 20px;
       color: var(--tg-text-lightgrey);
-      font-weight: 500;
+      font-weight: var(--tg-font-weight-normal);
       text-align: left;
       background: var(--tg-primary-main);
       border: none;
@@ -93,13 +93,12 @@ withDefaults(defineProps<Props>(), {
           height: 100%;
         }
       }
+      // .m-tr-empty {
 
-      .m-tr-empty {
+      //   .m-td-empty {
 
-        .m-td-empty {
-
-        }
-      }
+      //   }
+      // }
     }
 
     .m-tr {
@@ -107,7 +106,7 @@ withDefaults(defineProps<Props>(), {
       background-color: var(--tg-primary-main);
       transition: background-color .3s;
       .m-td {
-        padding: 16px;
+        padding: 12px 20px;
         border: none;
         // border-bottom: 1px solid #f0f0f0;
         transition: background .3s;
