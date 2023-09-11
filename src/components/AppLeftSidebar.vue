@@ -170,12 +170,139 @@ const staticMenu2 = [
       'full-screen': width <= widthBoundaryMd,
     }"
   >
-    <div>
-      <button @click="onClick">
-        切换
-      </button>
+    <div class="header" :class="{ 'is-small': !modelValue }">
+      <div class="button" @click="onClick">
+        <BaseIcon name="uni-bars" />
+      </div>
+      <div class="game-type">
+        <div class="casino">
+          <span>娱乐城</span>
+        </div>
+        <div class="sports">
+          <span>体育</span>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
-<style lang='scss' scoped></style>
+<style lang='scss' scoped>
+.left-sidebar {
+  width: var(--width);
+  background-color: var(--tg-secondary-dark);
+  transition: width 0.3s ease-in-out, top .2s ease-in-out;
+  z-index: var(--tg-z-index-20);
+
+  &.fixed {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+  &.full-screen {
+    // H5模式
+    width: 100%;
+    top: var(--tg-header-height);
+    padding-bottom: var(--tg-footer-height);
+  }
+
+  &.fixed-small {
+    width: var(--width);
+  }
+}
+
+.header {
+  display: flex;
+  padding: 0 var(--tg-spacing-16) 0 0;
+  touch-action: none;
+  box-shadow: var(--tg-box-shadow-lg);
+
+  .button {
+    font-size: var(--tg-font-size-base);
+    min-width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .game-type {
+    display: flex;
+    align-items: center;
+    gap: var(--tg-spacing-8);
+    width: 100%;
+    color: var(--tg-text-white);
+    font-size: var(--tg-font-size-default);
+
+    .casino,
+    .sports {
+      display: flex;
+      flex: 1;
+      align-items: center;
+      justify-content: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      min-height: var(--tg-spacing-36);
+      background-image: url('/img/left-side-bar/casino_bg.png');
+      cursor: pointer;
+      border-radius: var(--tg-radius-default);
+
+      &:hover {
+        background-image: url('/img/left-side-bar/casino_bg_active.png');
+      }
+      &:active{
+      span{
+        transform: scale(0.95);
+      }
+    }
+    }
+
+    .sports {
+      background-image: url('/img/left-side-bar/sports_bg.png');
+
+      &:hover {
+        background-image: url('/img/left-side-bar/sports_bg_active.png');
+      }
+    }
+
+    .casino.active {
+      background-image: url('/img/left-side-bar/casino_bg_active.png');
+    }
+
+    .sports.active {
+      background-image: url('/img/left-side-bar/sports_bg_active.png');
+    }
+  }
+}
+
+.is-small {
+  flex-direction: column;
+  padding: 0 0 var(--tg-spacing-8);
+  box-shadow: none;
+  .button{
+    box-shadow: var(--tg-box-shadow-lg);
+  }
+
+  .game-type {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--tg-spacing-8);
+    width: 100%;
+    padding: var(--tg-spacing-16) 0 0;
+
+    span {
+      display: none;
+    }
+
+    .casino,
+    .sports {
+      width: 44px;
+      height: 44px;
+      flex: unset;
+    }
+  }
+}
+</style>
