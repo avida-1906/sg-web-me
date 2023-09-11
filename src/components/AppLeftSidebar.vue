@@ -121,7 +121,7 @@ const staticMenu1 = [
   {
     title: '促销活动',
     path: '',
-    icon: 'navbar-user',
+    icon: 'chess-gameshow',
     children: [
       { title: '推荐活动一', path: '', icon: '' },
       { title: '推荐活动二', path: '', icon: '' },
@@ -129,10 +129,10 @@ const staticMenu1 = [
       { title: '查看全部', path: '', icon: '' },
     ],
   },
-  { title: '联盟计划', path: '', icon: '', children: [] },
-  { title: 'VIP俱乐部', path: '', icon: '', children: [] },
-  { title: '博客', path: '', icon: '', children: [] },
-  { title: '论坛', path: '', icon: '', children: [] },
+  { title: '联盟计划', path: '', icon: 'spt-affiliate-pro', children: [] },
+  { title: 'VIP俱乐部', path: '', icon: 'chess-vipclub', children: [] },
+  { title: '博客', path: '', icon: 'chess-blog', children: [] },
+  { title: '论坛', path: '', icon: 'tabbar-chat', children: [] },
 ]
 const staticMenu2 = [
   {
