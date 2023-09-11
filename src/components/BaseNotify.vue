@@ -7,6 +7,7 @@ interface Props {
   title?: string
   message?: string
   showClose?: boolean
+  funcCall?: number
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -45,7 +46,7 @@ const iconName = computed(() => {
 function close() {
   show.value = false
   setTimeout(() => {
-    emit('close')
+    emit('close', props.funcCall)
   }, 800)
 }
 
@@ -68,6 +69,10 @@ function startCount() {
 function enterStart() {
   clearTimeout(timer.value)
   endTime.value = new Date().getTime()
+}
+
+function handClose() {
+  close()
 }
 
 onMounted(() => {
@@ -103,7 +108,7 @@ onMounted(() => {
           </div>
         </slot>
       </div>
-      <div v-if="showClose" class="close" @click="close">
+      <div v-if="showClose" class="close" @click="handClose">
         <BaseIcon name="uni-close" />
       </div>
     </section>

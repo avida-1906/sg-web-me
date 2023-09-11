@@ -44,6 +44,7 @@
 .tg-base-loading {
   .svg-box:first-child {
     transform-origin: top right;
+    background-position: top right;
   }
   .svg-box:nth-child(2) {
     animation-delay: 400ms;
@@ -51,6 +52,7 @@
   .svg-box:last-child {
     transform-origin: bottom left;
     animation-delay: 800ms;
+    background-position: bottom left;
   }
 }
 .animate-prop {
@@ -164,7 +166,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--tg-spacing-16);
+  gap: var(--tg-spacing-24);
 
   .item {
     position: relative;
