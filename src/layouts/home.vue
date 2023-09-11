@@ -35,11 +35,6 @@ const homeOverlayIsShow = computed(() => {
   return leftIsExpand.value && width.value < widthBoundaryXl.value
 })
 
-// 左侧侧边栏宽度
-const leftSidebarWidth = computed(() => {
-  return `${leftIsExpand.value ? 240 : 60}px`
-})
-
 function setRightSidebarExpandStatus() {
   // if (status !== undefined) {
   //   rightIsExpand.value = status
@@ -66,23 +61,7 @@ function setRightSidebarExpandStatus() {
   >
     <div v-if="homeOverlayIsShow" class="home-overlay" @click="leftIsExpand = !leftIsExpand" />
     <div v-if="width < widthBoundaryXl && width > widthBoundaryMd" class="small-size-padding" />
-    <div
-      class="left-sidebar"
-      :style="{
-        '--width': leftSidebarWidth,
-      }"
-      :class="{
-        'fixed-small': width > widthBoundaryMd,
-        'fixed': width < widthBoundaryXl,
-        'full-screen': width <= widthBoundaryMd,
-      }"
-    >
-      <div>
-        <button @click="leftIsExpand = !leftIsExpand">
-          切换
-        </button>
-      </div>
-    </div>
+    <AppLeftSidebar v-model="leftIsExpand" />
     <div class="main-content">
       <header class="navigation">
         <AppContent>

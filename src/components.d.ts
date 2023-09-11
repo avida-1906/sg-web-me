@@ -9,6 +9,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     AppContent: typeof import('./components/AppContent.vue')['default']
     AppDemoCard: typeof import('./components/AppDemoCard.vue')['default']
+    AppLeftSidebar: typeof import('./components/AppLeftSidebar.vue')['default']
     BaseAccordion: typeof import('./components/BaseAccordion.vue')['default']
     BaseAspectRatio: typeof import('./components/BaseAspectRatio.vue')['default']
     BaseBadge: typeof import('./components/BaseBadge.vue')['default']
