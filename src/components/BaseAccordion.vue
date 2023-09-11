@@ -28,7 +28,7 @@ const showDown = computed(() => {
 </script>
 
 <template>
-  <div class="base-accordion">
+  <div class="base-accordion" :class="{ 'only-accordion': !isShow }">
     <div class="accordion-header" :style="isShow ? 'background-color: #213743;' : ''" @click="handleClickHeader">
       <div class="flex-center">
         <BaseIcon :name="menuInfo.icon" />
@@ -40,6 +40,7 @@ const showDown = computed(() => {
       </template>
     </div>
     <div v-if="showDown" class="accordion-content" :style="`max-height:${isShow ? '1000px' : 0};transition: max-height ${isShow ? '1' : '0.3'}s;`">
+      <div class="content-line" />
       <div v-for="item of menuInfo.list" :key="item.id" class="content-item" @click="handleClickItem(item)">
         <BaseIcon :name="item.icon" />
         <span class="header-title">{{ item.title }}</span>
@@ -51,13 +52,14 @@ const showDown = computed(() => {
 <style scoped lang="scss">
 .base-accordion{
   color: var(--tg-text-white);
-  // width: 220px;
   background-color: #1A2C38;
+  font-weight: var(--tg-font-weight-semibold);
   // background-color: #213743;
   .accordion-header{
     display: flex;
     height: 45px;
     padding: 0 16px;
+    border-radius: var(--tg-radius-default) var(--tg-radius-default) 0 0;
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: center;
@@ -77,6 +79,11 @@ const showDown = computed(() => {
     overflow: hidden;
     // transition: max-height 0.8s;
     background-color:var(--tg-secondary-grey);
+    .content-line{
+      background: var(--tg-secondary-main);
+      height: 2px;
+      width: 100%;
+    }
     .content-item{
       height: 45px;
       display: flex;
@@ -88,12 +95,13 @@ const showDown = computed(() => {
     .content-item:hover{
       background-color: var(--tg-secondary-main);
     }
-    .content-item:first-child{
-      border-top: 2px solid var(--tg-secondary-main);
-    }
   }
   .header-title{
     padding-left: 6px;
   }
+}
+.only-accordion{
+  border-radius:0 0 var(--tg-radius-default) var(--tg-radius-default);
+  overflow:  hidden;
 }
 </style>

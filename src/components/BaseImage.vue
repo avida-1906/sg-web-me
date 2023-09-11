@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 interface Props {
-  url: string // 图像地址 | 图像地址数组
+  url: string // 图像地址
   name?: string // 图像名称
   width?: string // 图像宽度px
   height?: string // 图像高度px
@@ -38,7 +38,7 @@ function handleClick() {
 
 <template>
   <div class="base-image">
-    <img v-show="complete" :style="`width: ${width}; height: ${height}; object-fit: ${fit};`" :src="url" :alt="name" @load="onComplete" @click="handleClick">
+    <img v-show="complete" :style="`width: ${width}; height: ${height}; object-fit: ${fit};`" loading="lazy" :src="url" :alt="name" @load="onComplete" @click="handleClick">
     <div v-if="!complete" class="img-load">
       <slot>
         <BaseLoading />

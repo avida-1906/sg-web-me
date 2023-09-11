@@ -12,6 +12,8 @@ export function useNotify({ showClose, onClose }: { onClose?: () => void; showCl
       notify.unmount()
       const div = box.value[uuid]
       div.remove()
+      delete app.value[uuid]
+      delete box.value[uuid]
       onClose && onClose()
     }
   }

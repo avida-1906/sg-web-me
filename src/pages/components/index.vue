@@ -128,6 +128,46 @@ function copyCode(type: string) {
         </BaseDragDialog>
       `)
       break
+    case 'VDropdown':
+      copy(`
+        <VDropdown
+            :distance="6"
+          >
+            <button class="tips" @click="copyCode('VDropdown')">
+              VDropdown
+            </button>
+            <template #popper>
+              <input v-model="msg" class="tooltip-content" placeholder="Tooltip content">
+              <p>
+                {{ msg }}
+              </p>
+            </template>
+          </VDropdown>
+        `)
+      break
+    case 'VMenu':
+      copy(`
+        <VMenu>
+            <button class="tips" @click="copyCode('VMenu')">
+              VMenu
+            </button>
+            <template #popper>
+              <button>Guide</button>
+              <button>API Reference</button>
+            </template>
+          </VMenu>
+      `)
+      break
+    case 'VTooltip':
+      copy(`
+        <VTooltip>
+            <a class="tips" @click="copyCode('VTooltip')">VTooltip</a>
+            <template #popper>
+              Help me fund my Open Source work!
+            </template>
+          </VTooltip>
+      `)
+      break
     default:
       break
   }
@@ -213,6 +253,8 @@ function showDrag() {
   showDragDialog.value = true
   copyCode('BaseDragDialog')
 }
+
+const msg = '哈哈哈哈哈哈哈哈哈哈哈哈哈哈'
 
 const list = [
   { id: 1, key: 'left', name: '偏左' },
@@ -432,7 +474,7 @@ function copyProgressCode(num: number) {
   }
 }
 function copyAccordionCode() {
-  copy('<BaseAccordion :menu-info="menuInfo" />')
+  copy('<BaseAccordion :menu-info="menuInfo" auto-show @click-head="handleClickHead" @click-item="handleClickItem" />')
 }
 function copyImageCode() {
   copy('<BaseImage url="http://c.hiphotos.baidu.com/image/pic/item/30adcbef76094b36de8a2fe5a1cc7cd98d109d99.jpg" @click-img="clickImg" />')
@@ -522,6 +564,12 @@ onMounted(() => {
     loading.value = false
   }, 3000)
 })
+function handleClickHead(menu: object) {
+  console.log(menu)
+}
+function handleClickItem(item: object) {
+  console.log(item)
+}
 </script>
 
 <template>
@@ -955,7 +1003,7 @@ onMounted(() => {
     </li>
     <li class="box">
       <AppDemoCard title="BaseAccordion">
-        <BaseAccordion :menu-info="menuInfo" auto-show />
+        <BaseAccordion :menu-info="menuInfo" auto-show @click-head="handleClickHead" @click-item="handleClickItem" />
         <div class="center">
           <BaseButton @click="copyAccordionCode">
             copy
@@ -996,6 +1044,40 @@ onMounted(() => {
         </div>
       </AppDemoCard>
     </li>
+
+    <li class="box">
+      <AppDemoCard title="VDropdown VMenu VTooltip">
+        <VDropdown
+          :distance="6"
+        >
+          <button class="tips" @click="copyCode('VDropdown')">
+            VDropdown
+          </button>
+          <template #popper>
+            <input v-model="msg" class="tooltip-content" placeholder="Tooltip content">
+            <p>
+              {{ msg }}
+            </p>
+          </template>
+        </VDropdown>
+        <div />
+        <VMenu>
+          <button class="tips" @click="copyCode('VMenu')">
+            VMenu
+          </button>
+          <template #popper>
+            <button>Guide</button>
+            <button>API Reference</button>
+          </template>
+        </VMenu>
+        <VTooltip>
+          <a class="tips" @click="copyCode('VTooltip')">VTooltip</a>
+          <template #popper>
+            Help me fund my Open Source work!
+          </template>
+        </VTooltip>
+      </AppDemoCard>
+    </li>
   </ul>
   <BaseDialog v-model:show="showDialogOne" icon="uni-trend" title="提款">
     <div class="data-table">
@@ -1005,6 +1087,10 @@ onMounted(() => {
 </template>
 
 <style lang="scss" scoped>
+.tips {
+  color: #fff;
+  font-weight: bold;
+}
 .demo-page {
   padding-bottom: 50px;
 }
