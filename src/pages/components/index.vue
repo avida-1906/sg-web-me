@@ -128,6 +128,46 @@ function copyCode(type: string) {
         </BaseDragDialog>
       `)
       break
+    case 'VDropdown':
+      copy(`
+        <VDropdown
+            :distance="6"
+          >
+            <button class="tips" @click="copyCode('VDropdown')">
+              VDropdown
+            </button>
+            <template #popper>
+              <input v-model="msg" class="tooltip-content" placeholder="Tooltip content">
+              <p>
+                {{ msg }}
+              </p>
+            </template>
+          </VDropdown>
+        `)
+      break
+    case 'VMenu':
+      copy(`
+        <VMenu>
+            <button class="tips" @click="copyCode('VMenu')">
+              VMenu
+            </button>
+            <template #popper>
+              <button>Guide</button>
+              <button>API Reference</button>
+            </template>
+          </VMenu>
+      `)
+      break
+    case 'VTooltip':
+      copy(`
+        <VTooltip>
+            <a class="tips" @click="copyCode('VTooltip')">VTooltip</a>
+            <template #popper>
+              Help me fund my Open Source work!
+            </template>
+          </VTooltip>
+      `)
+      break
     default:
       break
   }
@@ -1004,8 +1044,8 @@ onMounted(() => {
         <VDropdown
           :distance="6"
         >
-          <button class="tips">
-            Click me
+          <button class="tips" @click="copyCode('VDropdown')">
+            VDropdown
           </button>
           <template #popper>
             <input v-model="msg" class="tooltip-content" placeholder="Tooltip content">
@@ -1016,8 +1056,8 @@ onMounted(() => {
         </VDropdown>
         <div />
         <VMenu>
-          <button class="tips">
-            Documentation
+          <button class="tips" @click="copyCode('VMenu')">
+            VMenu
           </button>
           <template #popper>
             <button>Guide</button>
@@ -1025,7 +1065,7 @@ onMounted(() => {
           </template>
         </VMenu>
         <VTooltip>
-          <a class="tips">Sponsor me</a>
+          <a class="tips" @click="copyCode('VTooltip')">VTooltip</a>
           <template #popper>
             Help me fund my Open Source work!
           </template>
