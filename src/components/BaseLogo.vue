@@ -14,7 +14,7 @@ const props = withDefaults(defineProps<Props>(), {
 <template>
   <div class="base-logo">
     <BaseIcon v-if="props.mode === 'svg'" class="icon-app-logo" :name="props.svgName" />
-    <img v-else :src="props.url" alt="">
+    <img v-else :src="props.url" loading="lazy" alt="">
   </div>
 </template>
 
