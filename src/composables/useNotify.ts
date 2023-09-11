@@ -3,24 +3,34 @@ import BaseNotify from '~/components/BaseNotify.vue'
 export type notifyType = 'set' | 'user' | 'email' | 'error' | 'success' | 'insurance' | 'statistics'
 
 export function useNotify({ showClose, onClose }: { onClose?: () => void; showClose?: boolean } = {}) {
-  const app = ref()
-  const div = ref()
+  const app = ref<any>({})
+  const box = ref<any>({})
+
+  const closeNotify = (uuid: string) => {
+    if (app.value[uuid] && box.value[uuid]) {
+      const notify = app.value[uuid]
+      notify.unmount()
+      const div = box.value[uuid]
+      div.remove()
+      onClose && onClose()
+    }
+  }
 
   const openNotify = ({ type, icon, title, message, default: defaultSlot }: { type?: notifyType; icon?: string; title?: string | (() => Component); message?: string | (() => Component); default?: () => Component }) => {
     const notificationList = document.querySelector('#notificationList')
     if (notificationList) {
-      div.value = document.createElement('div')
-      notificationList.appendChild(div.value)
-      app.value = createApp(h(BaseNotify, {
+      const uuid = getUuid()
+      box.value[uuid] = document.createElement('div')
+      notificationList.appendChild(box.value[uuid])
+      app.value[uuid] = (createApp(h(BaseNotify, {
         title: typeof title === 'string' ? title : undefined,
         message: typeof message === 'string' ? message : undefined,
         type,
         icon,
         showClose,
-        onClose: () => {
-          app.value.unmount()
-          div.value.remove()
-          onClose && onClose()
+        funcCall: uuid,
+        onClose: (uuid: string) => {
+          closeNotify(uuid)
         },
       }, {
         default: () => defaultSlot !== undefined ? defaultSlot() : null,
@@ -30,16 +40,8 @@ export function useNotify({ showClose, onClose }: { onClose?: () => void; showCl
         message: () => {
           return message === undefined ? null : (typeof message === 'string' ? null : message())
         },
-      }))
-      app.value.mount(div.value)
-    }
-  }
-
-  const closeNotify = () => {
-    if (app.value && div.value) {
-      app.value.unmount()
-      div.value.remove()
-      onClose && onClose()
+      })))
+      app.value[uuid].mount(box.value[uuid])
     }
   }
 

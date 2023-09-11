@@ -2,7 +2,7 @@
 interface Props {
   menuInfo: any
 }
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   menuInfo: () => {
     return {
       title: '',
@@ -11,10 +11,14 @@ withDefaults(defineProps<Props>(), {
     }
   },
 })
-// const emit = defineEmits(['clickItem'])
+const emit = defineEmits(['clickHead', 'clickItem'])
 const isShow = ref(false)
 function handleClickHeader() {
   isShow.value = !isShow.value
+  emit('clickHead', props.menuInfo)
+}
+function handleClickItem(item: any) {
+  emit('clickItem', item)
 }
 </script>
 
@@ -29,7 +33,7 @@ function handleClickHeader() {
       <BaseIcon v-else name="uni-arrow-right" />
     </div>
     <div class="accordion-content" :style="`max-height:${isShow ? '1000px' : 0};transition: max-height ${isShow ? '1' : '0.3'}s;`">
-      <div v-for="item of menuInfo.list" :key="item.id" class="content-item">
+      <div v-for="item of menuInfo.list" :key="item.id" class="content-item" @click="handleClickItem(item)">
         <BaseIcon :name="item.icon" />
         <span class="header-title">{{ item.title }}</span>
       </div>

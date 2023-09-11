@@ -40,3 +40,14 @@ export function numberToCurrency(number: number, options?: IUtilsConfig): string
   const languageMap = languageConfig.get(languageIndex)
   return new Intl.NumberFormat(languageMap?.language, { style: 'currency', currency: languageMap?.currency }).format(number)
 }
+
+/**
+ * @description 生成一个 uuid
+ * @returns {uuid}
+ */
+export function getUuid() {
+  const temp_url = URL.createObjectURL(new Blob())
+  const uuid = temp_url.toString()
+  URL.revokeObjectURL(temp_url)
+  return uuid.substring(uuid.lastIndexOf('/') + 1)
+}

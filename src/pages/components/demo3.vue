@@ -9,19 +9,17 @@ const menuInfo = ref({
   icon: 'chess-sponsorship',
   list: [
     { title: '足球', icon: 'chess-sponsorship', id: 1 },
-    { title: '足球', icon: 'chess-sponsorship', id: 2 },
-    { title: '足球', icon: 'chess-sponsorship', id: 3 },
-    { title: '足球', icon: 'chess-sponsorship', id: 4 },
-    { title: '足球', icon: 'chess-sponsorship', id: 5 },
-    { title: '足球', icon: 'chess-sponsorship', id: 6 },
-    { title: '足球', icon: 'chess-sponsorship', id: 7 },
+    { title: '篮球', icon: 'chess-sponsorship', id: 2 },
+    { title: '网球', icon: 'chess-sponsorship', id: 3 },
+    { title: '棒球', icon: 'chess-sponsorship', id: 4 },
+    { title: '篮球', icon: 'chess-sponsorship', id: 5 },
+    { title: '橄榄球', icon: 'chess-sponsorship', id: 6 },
   ],
 })
 function onIncrease(scale: number) {
   const res = percent.value + scale
   if (res > 100)
     percent.value = 100
-
   else
     percent.value = res
 }
@@ -29,7 +27,6 @@ function onDecline(scale: number) {
   const res = percent.value - scale
   if (res < 0)
     percent.value = 0
-
   else
     percent.value = res
 }
@@ -55,6 +52,9 @@ function handleDelFile() {
 }
 function getItemInfo(obj: any) {
   console.log(obj)
+}
+function clickImg() {
+  console.log('点我')
 }
 function copyUploadCode(type: number) {
   switch (type) {
@@ -168,6 +168,78 @@ function copyProgressCode(num: number) {
 function copyAccordion() {
   copy('<BaseAccordion :menu-info="menuInfo" />')
 }
+
+const loading = ref(true)
+const columns: any = ref([
+  {
+    title: '赛事',
+    width: 100,
+    dataIndex: 'name',
+    slot: 'name',
+    align: 'left',
+  },
+  {
+    title: '玩家',
+    width: 100,
+    dataIndex: 'age',
+    align: 'center',
+  },
+  {
+    title: '时间',
+    width: 100,
+    dataIndex: 'job',
+    slot: 'job',
+    align: 'center',
+  },
+  {
+    title: '赔率',
+    width: 100,
+    dataIndex: 'sex',
+    align: 'center',
+  },
+  {
+    title: '地址',
+    width: 100,
+    dataIndex: 'address',
+    align: 'right',
+  },
+])
+const tableData: any = ref([])
+onMounted(() => {
+  setTimeout(() => {
+    tableData.value = [
+      {
+        name: 'Stephen',
+        age: 30,
+        job: 'player',
+        sex: '男',
+        address: 'CaliforniaCaliforniaCaliforniaCaliforniaCaliforniaCalifornia',
+      },
+      {
+        name: 'Leo',
+        age: 36,
+        job: 'actor',
+        sex: '男',
+        address: 'LA',
+      },
+      {
+        name: 'Mr.Dear',
+        age: 23,
+        job: 'boy',
+        sex: '男',
+        address: 'Beijing',
+      },
+      {
+        name: 'superman',
+        age: 32,
+        job: 'boy',
+        sex: '男',
+        address: 'US',
+      },
+    ]
+    loading.value = false
+  }, 3000)
+})
 </script>
 
 <template>
@@ -394,6 +466,30 @@ function copyAccordion() {
             copy
           </BaseButton>
         </div>
+      </AppDemoCard>
+    </li>
+    <li class="box">
+      <AppDemoCard title="BaseImage">
+        <div style="width:300px;height: 300px;">
+          <BaseImage url="http://c.hiphotos.baidu.com/image/pic/item/30adcbef76094b36de8a2fe5a1cc7cd98d109d99.jpg" @click-img="clickImg" />
+        </div>
+      </AppDemoCard>
+    </li>
+    <li class="box">
+      <AppDemoCard title="BaseTable">
+        <BaseTable
+          :columns="columns"
+          :data-source="tableData"
+          :loading="loading"
+        >
+          <!-- 配置指定列数据 -->
+          <template #name="record">
+            hello {{ record.name }}
+          </template>
+          <template #job="{ job }">
+            hi {{ job }}
+          </template>
+        </BaseTable>
       </AppDemoCard>
     </li>
   </ul>
