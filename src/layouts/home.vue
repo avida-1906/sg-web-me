@@ -119,27 +119,7 @@ function setRightSidebarExpandStatus() {
 .small-size-padding {
   width: 60px;
 }
-.left-sidebar {
-  width: var(--width);
-  // background-color: var(--app-secondary-dark);
-  background-color: red;
-  transition: width 0.3s ease-in-out, top .2s ease-in-out;
-  z-index: var(--tg-z-index-20);
-  &.fixed {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-  }
-  &.full-screen {
-    width: 100%;
-    top: var(--tg-header-height);
-    padding-bottom: var(--tg-footer-height),
-  }
-  .fixed-small {
-    width: var(--width);
-  }
-}
+
 .main-content {
   display: flex;
   flex: 1;
