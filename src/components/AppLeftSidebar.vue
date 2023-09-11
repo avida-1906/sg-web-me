@@ -4,6 +4,7 @@ interface Props {
 }
 const props = defineProps<Props>()
 const emit = defineEmits(['update:modelValue'])
+const isExpand = computed(() => props.modelValue)
 
 function onClick() {
   emit('update:modelValue', !props.modelValue)
@@ -16,7 +17,7 @@ const widthBoundaryMd = ref(768)
 const { width } = useWindowSize()
 // 左侧侧边栏宽度
 const leftSidebarWidth = computed(() => {
-  return `${props.modelValue ? 240 : 60}px`
+  return `${isExpand.value ? 240 : 60}px`
 })
 
 const gameType = ref('1')
@@ -170,7 +171,7 @@ const staticMenu2 = [
       'full-screen': width <= widthBoundaryMd,
     }"
   >
-    <div class="header" :class="{ 'is-small': !modelValue }">
+    <div class="header" :class="{ 'is-small': !isExpand }">
       <div class="button" @click="onClick">
         <BaseIcon name="uni-bars" />
       </div>
@@ -183,6 +184,8 @@ const staticMenu2 = [
         </div>
       </div>
     </div>
+    <AppSidebarBig v-show="isExpand" />
+    <AppSidebarSmall v-show="!isExpand" />
   </div>
 </template>
 
