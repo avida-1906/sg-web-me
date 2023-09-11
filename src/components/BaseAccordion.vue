@@ -28,7 +28,7 @@ const showDown = computed(() => {
 </script>
 
 <template>
-  <div class="base-accordion">
+  <div class="base-accordion" :class="{ 'only-accordion': !isShow }">
     <div class="accordion-header" :style="isShow ? 'background-color: #213743;' : ''" @click="handleClickHeader">
       <div class="flex-center">
         <BaseIcon :name="menuInfo.icon" />
@@ -54,8 +54,6 @@ const showDown = computed(() => {
   color: var(--tg-text-white);
   background-color: #1A2C38;
   font-weight: var(--tg-font-weight-semibold);
-  // border-radius:0 0 var(--tg-radius-default) var(--tg-radius-default);
-  // overflow:  hidden;
   // background-color: #213743;
   .accordion-header{
     display: flex;
@@ -101,5 +99,9 @@ const showDown = computed(() => {
   .header-title{
     padding-left: 6px;
   }
+}
+.only-accordion{
+  border-radius:0 0 var(--tg-radius-default) var(--tg-radius-default);
+  overflow:  hidden;
 }
 </style>
