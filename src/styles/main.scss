@@ -109,7 +109,8 @@
   }
 
   // 阴影
-  --tg-box-shadow:0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.122);
+  --tg-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.122);
+  --tg-box-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, .2), 0 4px 6px -2px rgba(0, 0, 0, .1);
 }
 
 html,
@@ -203,6 +204,16 @@ body {
   -ms-user-select: none;
   user-select: none;
 }
+
+// 设置 VDropdown VTooltip VMenu 圆角 阴影
+.v-popper--theme-tg-popper-outer.v-popper--theme-dropdown .v-popper__inner {
+  border-radius: var(--tg-radius-default);
+  padding: var(--tg-spacing-4) 0;
+  background: var(--tg-text-white);
+  border: 0;
+  box-shadow: var(--tg-box-shadow-lg);
+}
+
 
 @media screen and (min-width: 768px) {
   #app {

@@ -213,6 +213,8 @@ function showDrag() {
   showDragDialog.value = true
   copyCode('BaseDragDialog')
 }
+
+const msg = '哈哈哈哈哈哈哈哈哈哈哈哈哈哈'
 </script>
 
 <template>
@@ -391,6 +393,39 @@ function showDrag() {
         </BaseDragDialog>
       </AppDemoCard>
     </li>
+    <li class="box">
+      <AppDemoCard title="VDropdown ">
+        <VDropdown
+          :distance="6"
+        >
+          <button class="tips">
+            Click me
+          </button>
+          <template #popper>
+            <input v-model="msg" class="tooltip-content" placeholder="Tooltip content">
+            <p>
+              {{ msg }}
+            </p>
+          </template>
+        </VDropdown>
+        <div />
+        <VMenu>
+          <button class="tips">
+            Documentation
+          </button>
+          <template #popper>
+            <button>Guide</button>
+            <button>API Reference</button>
+          </template>
+        </VMenu>
+        <VTooltip>
+          <a class="tips">Sponsor me</a>
+          <template #popper>
+            Help me fund my Open Source work!
+          </template>
+        </VTooltip>
+      </AppDemoCard>
+    </li>
   </ul>
   <BaseDialog v-model:show="showDialogOne" icon="uni-trend" title="提款">
     <div class="data-table">
@@ -400,6 +435,10 @@ function showDrag() {
 </template>
 
 <style lang="scss" scoped>
+.tips {
+  color: #fff;
+  font-weight: bold;
+}
 .demo-page {
   padding-bottom: 50px;
 }
