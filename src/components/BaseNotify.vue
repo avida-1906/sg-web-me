@@ -7,7 +7,7 @@ interface Props {
   title?: string
   message?: string
   showClose?: boolean
-  funcCall?: number
+  funcCall?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
