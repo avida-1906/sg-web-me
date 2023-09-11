@@ -38,7 +38,6 @@ function handleKeyOk() {
 }
 
 function getFile(file: any) {
-  // console.log(file)
   const reader = new FileReader()
   reader.readAsDataURL(file)
   reader.onloadend = function (e) {
@@ -165,10 +164,26 @@ function copyProgressCode(num: number) {
       break
   }
 }
-function copyAccordion() {
+function copyAccordionCode() {
   copy('<BaseAccordion :menu-info="menuInfo" />')
 }
-
+function copyImageCode() {
+  copy('<BaseImage url="http://c.hiphotos.baidu.com/image/pic/item/30adcbef76094b36de8a2fe5a1cc7cd98d109d99.jpg" @click-img="clickImg" />')
+}
+function copyTableCode() {
+  copy(`<BaseTable
+          :columns="columns"
+          :data-source="tableData"
+          :loading="loading"
+        >
+          <template #name="record">
+            hello {{ record.name }}
+          </template>
+          <template #job="{ job }">
+            hi {{ job }}
+          </template>
+        </BaseTable>`)
+}
 const loading = ref(true)
 const columns: any = ref([
   {
@@ -460,9 +475,9 @@ onMounted(() => {
     </li>
     <li class="box">
       <AppDemoCard title="BaseAccordion">
-        <BaseAccordion :menu-info="menuInfo" />
+        <BaseAccordion :menu-info="menuInfo" auto-show />
         <div class="center">
-          <BaseButton @click="copyAccordion">
+          <BaseButton @click="copyAccordionCode">
             copy
           </BaseButton>
         </div>
@@ -470,8 +485,13 @@ onMounted(() => {
     </li>
     <li class="box">
       <AppDemoCard title="BaseImage">
-        <div style="width:300px;height: 300px;">
-          <BaseImage url="http://c.hiphotos.baidu.com/image/pic/item/30adcbef76094b36de8a2fe5a1cc7cd98d109d99.jpg" @click-img="clickImg" />
+        <div style="width:300px;height: 300px;margin: auto;">
+          <BaseImage :url="imageUrl2" @click-img="clickImg" />
+        </div>
+        <div class="center">
+          <BaseButton @click="copyImageCode">
+            copy
+          </BaseButton>
         </div>
       </AppDemoCard>
     </li>
@@ -482,7 +502,6 @@ onMounted(() => {
           :data-source="tableData"
           :loading="loading"
         >
-          <!-- 配置指定列数据 -->
           <template #name="record">
             hello {{ record.name }}
           </template>
@@ -490,6 +509,11 @@ onMounted(() => {
             hi {{ job }}
           </template>
         </BaseTable>
+        <div class="center">
+          <BaseButton @click="copyTableCode">
+            copy
+          </BaseButton>
+        </div>
       </AppDemoCard>
     </li>
   </ul>

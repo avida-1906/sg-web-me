@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const activeTab = ref('Divider')
+// const activeTab = ref('Divider')
 const list = [
   { id: 1, key: 'left', name: '偏左' },
   { id: 2, key: 'center', name: '居中' },
