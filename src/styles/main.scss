@@ -117,11 +117,6 @@ body {
   font-size: var(--tg-font-size-base);
 }
 
-.container {
-  width: 100%;
-  max-width: 1200px;
-}
-
 .center {
   display: flex;
   justify-content: center;
@@ -134,6 +129,25 @@ body {
 
 .h-100 {
   height: 100%;
+}
+
+.page-content {
+  width: 100%;
+  padding: 0 3vw;
+}
+
+.home-container {
+  width: 100%;
+  max-width: 1200px;
+}
+
+.scrollable {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  flex: 1
 }
 
 .scroll-y {
