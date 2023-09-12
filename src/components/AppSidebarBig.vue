@@ -20,17 +20,15 @@ interface Props {
   sportEsports: MenuItem[]
   sportGameList: MenuItem[]
   sportOddType: MenuItem[]
+  isFullScreen: boolean
+  currentType: string
 }
 const props = defineProps<Props>()
 const route = useRoute()
 const isCasino = computed(() => route.name === 'casino')
 const isSports = computed(() => route.name === 'sports')
-
-const gameType = ref('1')
-const gameTypeList = [
-  { name: '娱乐城', id: '1' },
-  { name: '体育', id: '2' },
-]
+const isGameTypeCasino = computed(() => props.currentType === '1')
+const isGameTypeSports = computed(() => props.currentType === '2')
 
 function handleClickHead() { }
 function handleClickItem() { }
@@ -38,9 +36,9 @@ function handleClickItem() { }
 
 <template>
   <div class="big-warp">
-    <div class="inner-content scroll-y scroll-contain">
+    <div class="inner-content scroll-y scroll-contain" :class="{ 'is-full-screen': isFullScreen }">
       <!-- Casino -->
-      <template v-if="isCasino">
+      <template v-if="isFullScreen ? isGameTypeCasino : isCasino">
         <div class="menu-box">
           <div v-for="item, i in casinoMenu" :key="i">
             <div class="menu">
@@ -72,7 +70,7 @@ function handleClickItem() { }
       </template>
 
       <!-- Sports -->
-      <template v-if="isSports">
+      <template v-if="isFullScreen ? isGameTypeSports : isSports">
         <div class="menu-box">
           <div v-for="item, i in sportsMenu" :key="i">
             <div class="menu">
@@ -215,5 +213,8 @@ function handleClickItem() { }
       width: 100%;
     }
   }
+}
+.is-full-screen{
+  padding-top: 0;
 }
 </style>

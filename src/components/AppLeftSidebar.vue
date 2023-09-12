@@ -22,6 +22,9 @@ const leftSidebarWidth = computed(() => {
   return `${isExpand.value ? 240 : 60}px`
 })
 const router = useRouter()
+const route = useRoute()
+const isCasino = computed(() => route.name === 'casino')
+const isSports = computed(() => route.name === 'sports')
 
 // casino
 const casinoMenu = [
@@ -206,6 +209,24 @@ const staticMenu2 = [
     ],
   },
 ]
+
+const gameType = ref(isCasino.value ? '1' : isSports.value ? '2' : '')
+const gameTypeList = [
+  { label: '娱乐城', value: '1' },
+  { label: '体育', value: '2' },
+]
+const gameLabel = computed(() => gameTypeList.find(a => a.value === gameType.value)?.label ?? '-')
+const isPopperShow = ref(false)
+function onPopperShow() {
+  isPopperShow.value = true
+}
+function onPopperHide() {
+  isPopperShow.value = false
+}
+function selectGameType(v: string) {
+  gameType.value = v
+}
+const searchValue = ref('')
 </script>
 
 <template>
@@ -218,7 +239,8 @@ const staticMenu2 = [
       'full-screen': isFullScreen,
     }"
   >
-    <div v-show="!isFullScreen" class="header" :class="{ 'is-small': !isExpand }">
+    <!-- 头部菜单或搜索栏 -->
+    <div v-if="!isFullScreen" class="header" :class="{ 'is-small': !isExpand }">
       <div class="button" @click="onClick">
         <BaseIcon name="uni-menu" />
       </div>
@@ -231,13 +253,45 @@ const staticMenu2 = [
         </div>
       </div>
     </div>
+    <div v-else class="search">
+      <BaseSearch v-model="searchValue">
+        <template v-if="isCasino || isSports" #left>
+          <VDropdown :distance="6" @show="onPopperShow" @hide="onPopperHide">
+            <button class="tips">
+              <span>{{ gameLabel }}</span>
+              <BaseIcon :name="`uni-arrow-${isPopperShow ? 'up' : 'down'}-big`" />
+            </button>
+            <template #popper>
+              <div
+                v-for="t, i in gameTypeList" :key="i" v-close-popper class="popper-option"
+                @click="selectGameType(t.value)"
+              >
+                {{ t.label }}
+              </div>
+            </template>
+          </VDropdown>
+        </template>
+      </BaseSearch>
+    </div>
+    <div v-if="!isCasino && !isSports" class="buttons">
+      <BaseAspectRatio ratio="3.5/1">
+        <div class="casino" @click="router.push('/casino')">
+          <span>娱乐城</span>
+        </div>
+      </BaseAspectRatio>
+      <BaseAspectRatio ratio="3.5/1">
+        <div class="sports" @click="router.push('/sports')">
+          <span>体育</span>
+        </div>
+      </BaseAspectRatio>
+    </div>
 
     <div class="content scrollY">
       <AppSidebarBig
-        v-if="isExpand" :sports-menu="sportsMenu" :casino-game-provider="casinoGameProvider"
-        :casino-game-list="casinoGameList" :casino-menu="casinoMenu" :static-menu1="staticMenu1"
-        :static-menu2="staticMenu2" :sport-hot-games="sportHotGames" :sport-esports="sportEsports"
-        :sport-game-list="sportGameList" :sport-odd-type="sportOddType"
+        v-if="isExpand || isFullScreen" :current-type="gameType" :is-full-screen="isFullScreen" :casino-menu="casinoMenu"
+        :casino-game-list="casinoGameList" :casino-game-provider="casinoGameProvider" :static-menu1="staticMenu1"
+        :static-menu2="staticMenu2" :sports-menu="sportsMenu" :sport-hot-games="sportHotGames"
+        :sport-esports="sportEsports" :sport-game-list="sportGameList" :sport-odd-type="sportOddType"
       />
       <div v-else>
         <AppSidebarSmall :menu-data="[staticMenu1, staticMenu2]" />
@@ -276,6 +330,83 @@ const staticMenu2 = [
 
   .content {
     overflow: hidden;
+  }
+
+  .search {
+    margin: var(--tg-spacing-16);
+    width: auto;
+    font-size: var(--tg-font-size-default);
+  }
+
+}
+
+.buttons {
+  display: flex;
+  gap: var(--tg-spacing-8);
+  padding: 0 var(--tg-spacing-16) var(--tg-spacing-16);
+
+  .casino,
+  .sports {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: var(--tg-spacing-36);
+    border-radius: var(--tg-radius-default);
+    color: var(--tg-text-white);
+    font-size: var(--tg-font-size-default);
+    font-weight: 700;
+    text-shadow: var(--tg-text-shadow);
+    cursor: pointer;
+    background-image: url('/img/left-side-bar/casino_bg.png');
+    min-height: var(--tg-spacing-48);
+    min-width: var(--tg-spacing-80);
+    max-height: var(--tg-spacing-80);
+    justify-content: end;
+    background-position: 0 -15px;
+    padding-right: var(--tg-spacing-12);
+
+    &:hover {
+      background-image: url('/img/left-side-bar/casino_bg_active.png');
+    }
+
+    &:active {
+      span {
+        transform: scale(0.95);
+      }
+    }
+  }
+
+  .sports {
+    background-image: url('/img/left-side-bar/sports_bg.png');
+
+    &:hover {
+      background-image: url('/img/left-side-bar/sports_bg_active.png');
+    }
+  }
+}
+
+.tips {
+  display: flex;
+  align-items: center;
+
+  span {
+    margin-right: var(--tg-spacing-8);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.popper-option {
+  cursor: pointer;
+  padding: var(--tg-spacing-button-padding-vertical-xs) var(--tg-spacing-button-padding-horizontal-xs);
+
+  &:hover {
+    background-color: var(--tg-secondary-light);
   }
 }
 
