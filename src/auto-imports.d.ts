@@ -8,6 +8,7 @@ declare global {
   const ApiMemberLogin: typeof import('./apis/index')['ApiMemberLogin']
   const Big: typeof import('big.js')['Big']
   const EffectScope: typeof import('vue')['EffectScope']
+  const LOCAL_STORAGE_LANGUAGE_KEY: typeof import('./utils/local')['LOCAL_STORAGE_LANGUAGE_KEY']
   const LOCAL_STORAGE_TOKEN_KEY: typeof import('./utils/local')['LOCAL_STORAGE_TOKEN_KEY']
   const LanguageEnum: typeof import('./utils/enums')['LanguageEnum']
   const Local: typeof import('./utils/local')['Local']
@@ -330,6 +331,7 @@ declare module 'vue' {
     readonly ApiMemberLogin: UnwrapRef<typeof import('./apis/index')['ApiMemberLogin']>
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly LOCAL_STORAGE_LANGUAGE_KEY: UnwrapRef<typeof import('./utils/local')['LOCAL_STORAGE_LANGUAGE_KEY']>
     readonly LOCAL_STORAGE_TOKEN_KEY: UnwrapRef<typeof import('./utils/local')['LOCAL_STORAGE_TOKEN_KEY']>
     readonly LanguageEnum: UnwrapRef<typeof import('./utils/enums')['LanguageEnum']>
     readonly Local: UnwrapRef<typeof import('./utils/local')['Local']>
@@ -641,6 +643,7 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberLogin: UnwrapRef<typeof import('./apis/index')['ApiMemberLogin']>
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly LOCAL_STORAGE_LANGUAGE_KEY: UnwrapRef<typeof import('./utils/local')['LOCAL_STORAGE_LANGUAGE_KEY']>
     readonly LOCAL_STORAGE_TOKEN_KEY: UnwrapRef<typeof import('./utils/local')['LOCAL_STORAGE_TOKEN_KEY']>
     readonly LanguageEnum: UnwrapRef<typeof import('./utils/enums')['LanguageEnum']>
     readonly Local: UnwrapRef<typeof import('./utils/local')['Local']>

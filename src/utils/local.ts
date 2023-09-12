@@ -4,19 +4,20 @@ import type { ILocalStorageValue } from './index.utils'
  * @description: 本地存储token的key
  */
 export const LOCAL_STORAGE_TOKEN_KEY = 'token'
+export const LOCAL_STORAGE_LANGUAGE_KEY = 'language'
 
 export class Local {
-  static set(key: string, value: any) {
+  static set<T>(key: string, value: any) {
     if (!key.trim())
       return
-    const _value: ILocalStorageValue = {
+    const _value: ILocalStorageValue<T> = {
       value,
     }
 
     localStorage.setItem(key, JSON.stringify(_value))
   }
 
-  static get(key: string): ILocalStorageValue | null {
+  static get<T>(key: string): ILocalStorageValue<T> | null {
     if (!key.trim())
       return null
 

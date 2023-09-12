@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { storeToRefs } from 'pinia'
+
 defineOptions({
   name: 'IndexPage',
 })
@@ -16,6 +18,8 @@ const { run, data } = useRequest(() => ApiMemberLogin({
 function getData() {
   run()
 }
+const appStore = useAppStore()
+const { language } = storeToRefs(appStore)
 </script>
 
 <template>
@@ -24,6 +28,7 @@ function getData() {
       <div>
         {{ t('hello') }}
       </div>
+      {{ language }}
       <div>
         {{ data }}
       </div>

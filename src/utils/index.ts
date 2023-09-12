@@ -10,7 +10,7 @@ const defaultLanguage = import.meta.env.VITE_I18N_DEFAULT_LANG
  * @returns {string} 格式化后的时间
  */
 export function timestampToTime(timestamp: number, options?: IUtilsConfig): string {
-  const localStorageLanguage = localStorage.getItem('language') as LanguageEnum | null
+  const localStorageLanguage = Local.get(LOCAL_STORAGE_LANGUAGE_KEY)?.value as LanguageEnum | null
   let languageIndex: number
   if (options?.language || options?.language === 0)
     languageIndex = options.language
@@ -29,7 +29,7 @@ export function timestampToTime(timestamp: number, options?: IUtilsConfig): stri
  * @returns {string} 格式化后的货币
  */
 export function numberToCurrency(number: number, options?: IUtilsConfig): string {
-  const localStorageLanguage = localStorage.getItem('language') as LanguageEnum | null
+  const localStorageLanguage = Local.get<LanguageEnum | null>(LOCAL_STORAGE_LANGUAGE_KEY)?.value
   let languageIndex: number
   if (options?.language || options?.language === 0)
     languageIndex = options.language
