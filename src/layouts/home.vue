@@ -84,7 +84,8 @@ function setRightSidebarExpandStatus() {
     <div class="main-content">
       <header class="navigation">
         <AppContent>
-          <div class="group">
+          <AppHeader />
+          <!-- <div class="group">
             <div class="container">
               {{ $t('active_day_ago', { days: 10 }) }}
             </div>
@@ -94,7 +95,7 @@ function setRightSidebarExpandStatus() {
             <button @click="setRightSidebarExpandStatus()">
               聊天室
             </button>
-          </div>
+          </div> -->
         </AppContent>
       </header>
       <div class="scrollable scroll-y">

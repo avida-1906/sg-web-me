@@ -46,7 +46,7 @@ function deleteImg() {
 <template>
   <div :class="`base-upload ${getBackground}`">
     <div v-if="imageUrl" class="img-box">
-      <img class="file-img" :src="imageUrl" alt="">
+      <img class="file-img" :src="imageUrl" loading="lazy" alt="">
       <div v-if="!disabled" class="icon-upload-delete" @click.stop="deleteImg">
         <BaseIcon name="upload-delete" />
       </div>

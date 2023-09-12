@@ -27,7 +27,7 @@
   --tg-text-lightblue: #4391e7;
   --tg-text-dark: #05080a;
   --tg-text-grey: #557086;
-  --tg-text-lightgrey:#B1BAD3;
+  --tg-text-lightgrey:var(--tg-secondary-light);
 
   --tg-text-grey-button:var(--tg-secondary-light);
   /* 透明色 */

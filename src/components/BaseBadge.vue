@@ -133,7 +133,7 @@ onMounted(() => {
   .u-status-text {
     margin-inline-start: 8px;
     color: var(--tg-text-dark);
-    font-size: 14px;
+    font-size: var(--tg-font-size-default);
   }
   .m-count {
     position: absolute;
@@ -162,7 +162,7 @@ onMounted(() => {
     text-align: center;
     background: var(--tg-text-lightblue);//默认背景颜色
     border-radius: var(--tg-radius-lg);
-    box-shadow: 0 0 0 1px #ffffff;
+    box-shadow: 0 0 0 1px var(--tg-text-lightblue);;
     // transition: background .2s;
     .m-number {
       position: relative;
@@ -192,7 +192,7 @@ onMounted(() => {
     height: 6px;
     background: var(--tg-text-lightblue);//默认背景颜色
     border-radius: 100%;
-    box-shadow: 0 0 0 1px #ffffff;
+    box-shadow: 0 0 0 1px var(--tg-text-lightblue);;
     padding: 0;
     // transition: background .3s;
   }
