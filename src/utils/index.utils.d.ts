@@ -1,3 +1,4 @@
+import { an } from 'vitest/dist/types-198fd1d9'
 import type { LanguageEnum, LanguageCurrencyEnum } from './enums'
 
 interface IUtils {
@@ -29,3 +30,6 @@ interface ILanguageConfig {
   currency: 'CNY' | 'USD' | 'INR' | 'BRL' | 'VND'
 }
 
+interface ILocalStorageValue {
+  value: any
+}
