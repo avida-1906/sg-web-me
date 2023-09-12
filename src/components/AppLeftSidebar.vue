@@ -249,7 +249,7 @@ const searchValue = ref('')
     </div>
   </div>
   <div v-else class="search">
-    <BaseSearch v-model="searchValue">
+    <BaseSearch v-model="searchValue" clearable>
       <template v-if="isCasino || isSports" #left>
         <VDropdown :distance="6" @show="onPopperShow" @hide="onPopperHide">
           <button class="tips">

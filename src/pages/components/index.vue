@@ -688,7 +688,7 @@ function handleClickItem(item: object) {
         <BaseButton round @click="copyCode('search')">
           copy
         </BaseButton>
-        <BaseSearch v-model="searchValue" clearable>
+        <BaseSearch v-model="searchValue" clearable white-style shape="square">
           <template #left>
             123
           </template>

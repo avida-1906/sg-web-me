@@ -70,7 +70,7 @@ function onClear() {
   color: var(--tg-text-white);
   transition: all ease .25s;
 
-  &:hover {
+  &:hover:not(.whiteStyle) {
     border-color: var(--tg-text-grey);
   }
 
@@ -126,6 +126,7 @@ function onClear() {
 .whiteStyle {
   background-color: var(--tg-text-white);
   color: var(--tg-secondary-main);
+  border-color: #d5dceb;
 
   input {
 
