@@ -288,14 +288,13 @@ const searchValue = ref('')
 
     <div class="content scrollY">
       <Transition name="slide-fade">
-        <div v-if="isExpand || isFullScreen">
-          <AppSidebarBig
-            :current-type="gameType" :is-full-screen="isFullScreen" :casino-menu="casinoMenu"
-            :casino-game-list="casinoGameList" :casino-game-provider="casinoGameProvider" :static-menu1="staticMenu1"
-            :static-menu2="staticMenu2" :sports-menu="sportsMenu" :sport-hot-games="sportHotGames"
-            :sport-esports="sportEsports" :sport-game-list="sportGameList" :sport-odd-type="sportOddType"
-          />
-        </div>
+        <AppSidebarBig
+          v-if="isExpand || isFullScreen"
+          :current-type="gameType" :is-full-screen="isFullScreen" :casino-menu="casinoMenu"
+          :casino-game-list="casinoGameList" :casino-game-provider="casinoGameProvider" :static-menu1="staticMenu1"
+          :static-menu2="staticMenu2" :sports-menu="sportsMenu" :sport-hot-games="sportHotGames"
+          :sport-esports="sportEsports" :sport-game-list="sportGameList" :sport-odd-type="sportOddType"
+        />
       </Transition>
       <Transition name="slide-fade">
         <div v-if="!isExpand">
