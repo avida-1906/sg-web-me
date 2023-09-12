@@ -109,7 +109,7 @@ function onClear() {
     background-color: transparent;
     padding: var(--tg-spacing-input-padding-vertical) var(--tg-spacing-input-padding-horizontal);
     font-size: var(--tg-font-size-default);
-    color: var(--tg-text-white);
+    // color: var(--tg-text-white);
 
     &::placeholder {
       color: var(--tg-text-white);

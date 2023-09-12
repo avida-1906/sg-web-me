@@ -38,7 +38,7 @@ function handleClick() {
 
 <template>
   <div class="base-image">
-    <img v-show="complete" :style="`width: ${width}; height: ${height}; object-fit: ${fit};`" loading="lazy" :src="url" :alt="name" @load="onComplete" @click="handleClick">
+    <img :style="`width: ${width}; height: ${height}; object-fit: ${fit};`" loading="lazy" :src="url" :alt="name" @load="onComplete" @click="handleClick">
     <div v-if="!complete" class="img-load">
       <slot>
         <BaseLoading />
@@ -50,8 +50,10 @@ function handleClick() {
 <style lang="scss" scoped>
 .base-image{
   width: 100%;
-  height: 100%;
+  height: 100%;position: relative;
   .img-load{
+    position: absolute;
+    top: 0;
     width: 100%;
     height: 100%;
     display: flex;
