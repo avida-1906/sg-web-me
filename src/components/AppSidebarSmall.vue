@@ -3,7 +3,7 @@ interface MenuItem {
   title: string
   path: string
   icon: string
-  children: Menu
+  list: Menu
 }
 
 type Menu = Array<MenuItem>
@@ -16,17 +16,40 @@ withDefaults(defineProps<Props>(), {})
 </script>
 
 <template>
-  <section class="tg-app-sidebar-small">
+  <section class="scrollY tg-app-sidebar-small">
     <ul v-for="menu, idx in menuData" :key="idx" class="tiny-menu flex-col-center">
       <li v-for="menuitem in menu" :key="menuitem.title" class="flex-col-center tiny-menu-item">
-        <BaseIcon :name="menuitem.icon" />
-        <div v-if="menuitem.children && menuitem.children.length" class="arrow-right">
-          <BaseIcon name="uni-arrow-right" />
-        </div>
+        <template v-if="menuitem.list && menuitem.list.length">
+          <VMenu placement="top-start">
+            <div class="trigger">
+              <BaseIcon :name="menuitem.icon" />
+              <div class="flex-col-center arrow-right">
+                <BaseIcon name="uni-arrow-right" />
+              </div>
+            </div>
+            <template #popper>
+              <div class="tiny-menu-item-title">
+                {{ menuitem.title }}
+              </div>
+            </template>
+          </VMenu>
+        </template>
+        <template v-else>
+          <BaseIcon :name="menuitem.icon" />
+        </template>
       </li>
     </ul>
   </section>
 </template>
+
+<style lang="scss">
+.tiny-menu-item-title {
+  color: var(--tg-secondary-main);
+  font-size: var(--tg-font-size-default);
+  font-weight: var(--tg-font-weight-semibold);
+  padding: var(--tg-spacing-input-padding-vertical) var(--tg-spacing-button-padding-horizontal-xs);
+}
+</style>
 
 <style lang="scss" scoped>
 .flex-col-center {
@@ -42,19 +65,32 @@ withDefaults(defineProps<Props>(), {})
   justify-content: flex-start;
   gap: var(--tg-spacing-button-padding-vertical-xs);
   .tiny-menu {
-    padding: var(--tg-spacing-4);
-    gap: var(--tg-spacing-4);
     border-radius: var(--tg-radius-default);
     background: var(--tg-primary-main);
+    cursor: pointer;
     .tiny-menu-item {
       position: relative;
       font-size: var(--tg-font-size-default);
-      width: 40px;
-      height: 40px;
+      width: 44px;
+      height: 44px;
+      &:hover, &.active {
+        background: var(--tg-secondary-main);
+        border-radius: var(--tg-radius-default);
+      }
+      > .v-popper, .trigger {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
       .arrow-right {
         position: absolute;
         right: 0;
-        font-size: 8px;
+        font-size: 10px;
+        width: 14px;
       }
     }
   }

@@ -10,21 +10,18 @@ function onClick() {
   emit('update:modelValue', !props.modelValue)
 }
 
-// 宽度边界 1200
-const widthBoundaryXl = ref(1200)
-// 宽度边界 768
-const widthBoundaryMd = ref(768)
+const widthBoundaryXl = 1200 // 宽度边界 1200
+const widthBoundaryMd = 768 // 宽度边界 768
 const { width } = useWindowSize()
+const isFixedSmall = computed(() => width.value > widthBoundaryMd)
+const isFixed = computed(() => width.value < widthBoundaryXl)
+const isFullScreen = computed(() => width.value <= widthBoundaryMd)
+
 // 左侧侧边栏宽度
 const leftSidebarWidth = computed(() => {
   return `${isExpand.value ? 240 : 60}px`
 })
-
-const gameType = ref('1')
-const gameTypeList = [
-  { name: '娱乐城', id: '1' },
-  { name: '体育', id: '2' },
-]
+const router = useRouter()
 
 // casino
 const casinoMenu = [
@@ -49,11 +46,61 @@ const sportsMenu = [
   { title: '我的投注', path: '', icon: '', list: [] },
 ]
 const sportHotGames = [
-  { title: '足球', path: '', icon: '', list: [] },
-  { title: '网球', path: '', icon: '', list: [] },
-  { title: '美式橄榄球', path: '', icon: '', list: [] },
-  { title: '棒球', path: '', icon: '', list: [] },
-  { title: '篮球', path: '', icon: '', list: [] },
+  {
+    title: '足球',
+    path: '',
+    icon: '',
+    list: [
+      { title: '激斗峡谷', path: '', icon: '' },
+      { title: '激斗峡谷', path: '', icon: '' },
+      { title: '激斗峡谷', path: '', icon: '' },
+      { title: '激斗峡谷', path: '', icon: '' },
+    ],
+  },
+  {
+    title: '网球',
+    path: '',
+    icon: '',
+    list: [
+      { title: '激斗峡谷', path: '', icon: '' },
+      { title: '激斗峡谷', path: '', icon: '' },
+      { title: '激斗峡谷', path: '', icon: '' },
+      { title: '激斗峡谷', path: '', icon: '' },
+    ],
+  },
+  {
+    title: '美式橄榄球',
+    path: '',
+    icon: '',
+    list: [
+      { title: '激斗峡谷', path: '', icon: '' },
+      { title: '激斗峡谷', path: '', icon: '' },
+      { title: '激斗峡谷', path: '', icon: '' },
+      { title: '激斗峡谷', path: '', icon: '' },
+    ],
+  },
+  {
+    title: '棒球',
+    path: '',
+    icon: '',
+    list: [
+      { title: '激斗峡谷', path: '', icon: '' },
+      { title: '激斗峡谷', path: '', icon: '' },
+      { title: '激斗峡谷', path: '', icon: '' },
+      { title: '激斗峡谷', path: '', icon: '' },
+    ],
+  },
+  {
+    title: '篮球',
+    path: '',
+    icon: '',
+    list: [
+      { title: '激斗峡谷', path: '', icon: '' },
+      { title: '激斗峡谷', path: '', icon: '' },
+      { title: '激斗峡谷', path: '', icon: '' },
+      { title: '激斗峡谷', path: '', icon: '' },
+    ],
+  },
 ]
 const sportEsports = [
   {
@@ -139,19 +186,19 @@ const staticMenu2 = [
   {
     title: '赞助活动',
     path: '',
-    icon: 'navbar-user',
+    icon: 'spt-sponsorship',
     list: [
       { title: '赞助活动一', path: '', icon: '' },
       { title: '赞助活动二', path: '', icon: '' },
       { title: '赞助活动三', path: '', icon: '' },
     ],
   },
-  { title: '负责任博彩', path: '', icon: '', list: [] },
-  { title: '在线支持', path: '', icon: '', list: [] },
+  { title: '负责任博彩', path: '', icon: 'spt-secure', list: [] },
+  { title: '在线支持', path: '', icon: 'spt-online-support', list: [] },
   {
     title: '语言：',
     path: '',
-    icon: '',
+    icon: 'chess-language',
     list: [
       { title: '中文', path: '', icon: '' },
       { title: '日文', path: '', icon: '' },
@@ -166,26 +213,36 @@ const staticMenu2 = [
     class="left-sidebar" :style="{
       '--width': leftSidebarWidth,
     }" :class="{
-      'fixed-small': width > widthBoundaryMd,
-      'fixed': width < widthBoundaryXl,
-      'full-screen': width <= widthBoundaryMd,
+      'fixed-small': isFixedSmall,
+      'fixed': isFixed,
+      'full-screen': isFullScreen,
     }"
   >
-    <div class="header" :class="{ 'is-small': !isExpand }">
+    <div v-show="!isFullScreen" class="header" :class="{ 'is-small': !isExpand }">
       <div class="button" @click="onClick">
-        <BaseIcon name="uni-bars" />
+        <BaseIcon name="uni-menu" />
       </div>
       <div class="game-type">
-        <div class="casino">
+        <div class="casino" @click="router.push('/casino')">
           <span>娱乐城</span>
         </div>
-        <div class="sports">
+        <div class="sports" @click="router.push('/sports')">
           <span>体育</span>
         </div>
       </div>
     </div>
-    <AppSidebarBig v-show="isExpand" :static-menu1="staticMenu1" :static-menu2="staticMenu2" />
-    <!-- <AppSidebarSmall v-show="!isExpand" /> -->
+
+    <div class="content scrollY">
+      <AppSidebarBig
+        v-if="isExpand" :sports-menu="sportsMenu" :casino-game-provider="casinoGameProvider"
+        :casino-game-list="casinoGameList" :casino-menu="casinoMenu" :static-menu1="staticMenu1"
+        :static-menu2="staticMenu2" :sport-hot-games="sportHotGames" :sport-esports="sportEsports"
+        :sport-game-list="sportGameList" :sport-odd-type="sportOddType"
+      />
+      <div v-else>
+        <AppSidebarSmall :menu-data="[staticMenu1, staticMenu2]" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -195,6 +252,9 @@ const staticMenu2 = [
   background-color: var(--tg-secondary-dark);
   transition: width 0.3s ease-in-out, top .2s ease-in-out;
   z-index: var(--tg-z-index-20);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 
   &.fixed {
     position: fixed;
@@ -213,6 +273,18 @@ const staticMenu2 = [
   &.fixed-small {
     width: var(--width);
   }
+
+  .content {
+    overflow: hidden;
+  }
+}
+
+.scrollable-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--tg-spacing-input-padding-vertical);
+  scrollbar-gutter: stable;
+  padding: 0 2px 0 var(--tg-spacing-input-padding-vertical);
 }
 
 .header {
@@ -255,11 +327,12 @@ const staticMenu2 = [
       &:hover {
         background-image: url('/img/left-side-bar/casino_bg_active.png');
       }
-      &:active{
-      span{
-        transform: scale(0.95);
+
+      &:active {
+        span {
+          transform: scale(0.95);
+        }
       }
-    }
     }
 
     .sports {
@@ -284,7 +357,8 @@ const staticMenu2 = [
   flex-direction: column;
   padding: 0 0 var(--tg-spacing-8);
   box-shadow: none;
-  .button{
+
+  .button {
     box-shadow: var(--tg-box-shadow-lg);
   }
 
