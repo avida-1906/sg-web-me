@@ -30,6 +30,6 @@ interface ILanguageConfig {
   currency: 'CNY' | 'USD' | 'INR' | 'BRL' | 'VND'
 }
 
-interface ILocalStorageValue {
-  value: any
+interface ILocalStorageValue<T = any> {
+  value: T
 }
