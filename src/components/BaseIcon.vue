@@ -21,6 +21,7 @@ const symbolId = computed(() => `#${props.prefix}-${props.name}`)
 
 <style scoped>
 .app-svg-icon {
+  color: var(--tg-icon-color);
   width: 1em;
   height: 1em;
   pointer-events: none;
