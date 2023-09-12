@@ -69,6 +69,7 @@ const showDown = computed(() => {
   }
   .accordion-header:hover{
     background-color: #213743;
+    --tg-icon-color:var(--tg-text-white);
   }
   .flex-center{
     display: flex;

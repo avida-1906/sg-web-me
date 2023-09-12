@@ -213,6 +213,7 @@ function handleClickItem() { }
 
       &:hover {
         background-color: #213743;
+        --tg-icon-color:var(--tg-text-white);
       }
 
       span {
