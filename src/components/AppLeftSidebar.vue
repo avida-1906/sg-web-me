@@ -186,19 +186,19 @@ const staticMenu2 = [
   {
     title: '赞助活动',
     path: '',
-    icon: 'navbar-user',
+    icon: 'spt-sponsorship',
     list: [
       { title: '赞助活动一', path: '', icon: '' },
       { title: '赞助活动二', path: '', icon: '' },
       { title: '赞助活动三', path: '', icon: '' },
     ],
   },
-  { title: '负责任博彩', path: '', icon: '', list: [] },
-  { title: '在线支持', path: '', icon: '', list: [] },
+  { title: '负责任博彩', path: '', icon: 'spt-secure', list: [] },
+  { title: '在线支持', path: '', icon: 'spt-online-support', list: [] },
   {
     title: '语言：',
     path: '',
-    icon: '',
+    icon: 'chess-language',
     list: [
       { title: '中文', path: '', icon: '' },
       { title: '日文', path: '', icon: '' },
@@ -220,7 +220,7 @@ const staticMenu2 = [
   >
     <div v-show="!isFullScreen" class="header" :class="{ 'is-small': !isExpand }">
       <div class="button" @click="onClick">
-        <BaseIcon name="uni-bars" />
+        <BaseIcon name="uni-menu" />
       </div>
       <div class="game-type">
         <div class="casino" @click="router.push('/casino')">
@@ -231,13 +231,18 @@ const staticMenu2 = [
         </div>
       </div>
     </div>
-    <AppSidebarBig
-      v-show="isExpand" :sports-menu="sportsMenu" :casino-game-provider="casinoGameProvider"
-      :casino-game-list="casinoGameList" :casino-menu="casinoMenu" :static-menu1="staticMenu1"
-      :static-menu2="staticMenu2" :sport-hot-games="sportHotGames" :sport-esports="sportEsports" :sport-game-list="sportGameList"
-      :sport-odd-type="sportOddType"
-    />
-    <!-- <AppSidebarSmall v-show="!isExpand" /> -->
+
+    <div class="content scrollY">
+      <AppSidebarBig
+        v-if="isExpand" :sports-menu="sportsMenu" :casino-game-provider="casinoGameProvider"
+        :casino-game-list="casinoGameList" :casino-menu="casinoMenu" :static-menu1="staticMenu1"
+        :static-menu2="staticMenu2" :sport-hot-games="sportHotGames" :sport-esports="sportEsports"
+        :sport-game-list="sportGameList" :sport-odd-type="sportOddType"
+      />
+      <div v-else>
+        <AppSidebarSmall :menu-data="[staticMenu1, staticMenu2]" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -268,6 +273,19 @@ const staticMenu2 = [
   &.fixed-small {
     width: var(--width);
   }
+
+  .content {
+    display: flex;
+    overflow: hidden;
+  }
+}
+
+.scrollable-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--tg-spacing-input-padding-vertical);
+  scrollbar-gutter: stable;
+  padding: 0 2px 0 var(--tg-spacing-input-padding-vertical);
 }
 
 .header {

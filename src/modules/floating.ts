@@ -7,7 +7,7 @@ export const config: FloatingVueConfig = {
   // Disable popper components
   disabled: false,
   // Default position offset along main axis (px)
-  distance: 5,
+  distance: 10,
   // Default position offset along cross axis (px)
   skidding: 0,
   // Default container where the tooltip will be appended
@@ -75,7 +75,7 @@ export const config: FloatingVueConfig = {
       popperTriggers: ['hover', 'focus'],
       delay: {
         show: 0,
-        hide: 400,
+        hide: 200,
       },
     },
   },
