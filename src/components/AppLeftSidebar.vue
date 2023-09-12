@@ -183,6 +183,11 @@ const staticMenu2 = [
         </div>
       </div>
     </div>
+    <div class="content scrollY">
+      <div v-if="!modelValue">
+        <AppSidebarSmall :menu-data="[staticMenu1, staticMenu2]" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -210,6 +215,19 @@ const staticMenu2 = [
   &.fixed-small {
     width: var(--width);
   }
+
+  .content {
+    display: flex;
+    overflow: hidden;
+  }
+}
+
+.scrollable-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--tg-spacing-input-padding-vertical);
+  scrollbar-gutter: stable;
+  padding: 0 2px 0 var(--tg-spacing-input-padding-vertical);
 }
 
 .header {
