@@ -20,25 +20,25 @@ const isSports = computed(() => route.name === 'sports')
 
 // casino
 const casinoMenu = [
-  { title: '收藏夹', path: '', icon: '', list: [] },
-  { title: '近期游戏记录', path: '', icon: '', list: [] },
-  { title: '挑战', path: '', icon: '', list: [] },
+  { title: '收藏夹', path: '', icon: '', list: [], domId: '' },
+  { title: '近期游戏记录', path: '', icon: '', list: [], domId: '' },
+  { title: '挑战', path: '', icon: '', list: [], domId: '' },
 ]
 const casinoGameList = [
-  { title: '老虎机', path: '', icon: '', list: [] },
-  { title: '真人娱乐场', path: '', icon: '', list: [] },
-  { title: '游戏节目', path: '', icon: '', list: [] },
-  { title: '新游戏', path: '', icon: '', list: [] },
-  { title: '新游戏', path: '', icon: '', list: [] },
-  { title: '新游戏', path: '', icon: '', list: [] },
+  { title: '老虎机', path: '', icon: '', list: [], domId: '' },
+  { title: '真人娱乐场', path: '', icon: '', list: [], domId: '' },
+  { title: '游戏节目', path: '', icon: '', list: [], domId: '' },
+  { title: '新游戏', path: '', icon: '', list: [], domId: '' },
+  { title: '新游戏', path: '', icon: '', list: [], domId: '' },
+  { title: '新游戏', path: '', icon: '', list: [], domId: '' },
 ]
-const casinoGameProvider = [{ title: '游戏提供商', path: '', icon: '', list: [] }]
+const casinoGameProvider = [{ title: '游戏提供商', path: '', icon: '', list: [], domId: '' }]
 
 // sports
 const sportsMenu = [
-  { title: '滚球盘', path: '', icon: '', list: [] },
-  { title: '即将开赛', path: '', icon: '', list: [] },
-  { title: '我的投注', path: '', icon: '', list: [] },
+  { title: '滚球盘', path: '', icon: '', list: [], domId: '' },
+  { title: '即将开赛', path: '', icon: '', list: [], domId: '' },
+  { title: '我的投注', path: '', icon: '', list: [], domId: '' },
 ]
 const sportHotGames = [
   {
@@ -51,6 +51,7 @@ const sportHotGames = [
       { title: '激斗峡谷', path: '', icon: '' },
       { title: '激斗峡谷', path: '', icon: '' },
     ],
+    domId: 'sports-hot-game-football',
   },
   {
     title: '网球',
@@ -62,6 +63,7 @@ const sportHotGames = [
       { title: '激斗峡谷', path: '', icon: '' },
       { title: '激斗峡谷', path: '', icon: '' },
     ],
+    domId: 'sports-hot-game-tennis',
   },
   {
     title: '美式橄榄球',
@@ -73,6 +75,7 @@ const sportHotGames = [
       { title: '激斗峡谷', path: '', icon: '' },
       { title: '激斗峡谷', path: '', icon: '' },
     ],
+    domId: 'sports-hot-game-use-football',
   },
   {
     title: '棒球',
@@ -84,6 +87,7 @@ const sportHotGames = [
       { title: '激斗峡谷', path: '', icon: '' },
       { title: '激斗峡谷', path: '', icon: '' },
     ],
+    domId: 'sports-hot-game-use-baseball',
   },
   {
     title: '篮球',
@@ -95,6 +99,7 @@ const sportHotGames = [
       { title: '激斗峡谷', path: '', icon: '' },
       { title: '激斗峡谷', path: '', icon: '' },
     ],
+    domId: 'sports-hot-game-use-basketball',
   },
 ]
 const sportEsports = [
@@ -111,6 +116,7 @@ const sportEsports = [
       { title: '激斗峡谷', path: '', icon: '' },
       { title: '激斗峡谷', path: '', icon: '' },
     ],
+    domId: 'sports-e-sports',
   },
 ]
 const sportGameList = [
@@ -127,6 +133,7 @@ const sportGameList = [
       { title: '桌球', path: '', icon: '' },
       { title: '登山', path: '', icon: '' },
     ],
+    domId: 'sports-game-list',
   },
 ]
 const sportOddType = [
@@ -142,6 +149,7 @@ const sportOddType = [
       { title: '香港格式', path: '', icon: '' },
       { title: '马来格式', path: '', icon: '' },
     ],
+    domId: 'sports-odd-type',
   },
 ]
 
@@ -160,6 +168,7 @@ const staticMenu1 = [
       { title: '设置', path: '', icon: 'navbar-user' },
       { title: '登出', path: '', icon: 'navbar-user' },
     ],
+    domId: 'static-menu-user',
   },
   {
     title: '促销活动',
@@ -171,11 +180,12 @@ const staticMenu1 = [
       { title: '推荐活动三', path: '', icon: 'navbar-user' },
       { title: '查看全部', path: '', icon: 'navbar-user' },
     ],
+    domId: 'static-menu-promotion',
   },
-  { title: '联盟计划', path: '', icon: 'spt-affiliate-pro', list: [] },
-  { title: 'VIP俱乐部', path: '', icon: 'chess-vipclub', list: [] },
-  { title: '博客', path: '', icon: 'chess-blog', list: [] },
-  { title: '论坛', path: '', icon: 'tabbar-chat', list: [] },
+  { title: '联盟计划', path: '', icon: 'spt-affiliate-pro', list: [], domId: '' },
+  { title: 'VIP俱乐部', path: '', icon: 'chess-vipclub', list: [], domId: '' },
+  { title: '博客', path: '', icon: 'chess-blog', list: [], domId: '' },
+  { title: '论坛', path: '', icon: 'tabbar-chat', list: [], domId: '' },
 ]
 const staticMenu2 = [
   {
@@ -187,9 +197,10 @@ const staticMenu2 = [
       { title: '赞助活动二', path: '', icon: '' },
       { title: '赞助活动三', path: '', icon: '' },
     ],
+    domId: 'static-menu-sponsor',
   },
-  { title: '负责任博彩', path: '', icon: 'spt-secure', list: [] },
-  { title: '在线支持', path: '', icon: 'spt-online-support', list: [] },
+  { title: '负责任博彩', path: '', icon: 'spt-secure', list: [], domId: '' },
+  { title: '在线支持', path: '', icon: 'spt-online-support', list: [], domId: '' },
   {
     title: '语言：',
     path: '',
@@ -199,6 +210,7 @@ const staticMenu2 = [
       { title: '日文', path: '', icon: '' },
       { title: '英文', path: '', icon: '' },
     ],
+    domId: 'static-menu-language',
   },
 ]
 

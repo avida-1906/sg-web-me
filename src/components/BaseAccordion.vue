@@ -2,6 +2,7 @@
 interface Props {
   menuInfo: any
   autoShow?: boolean
+  domId?: string
 }
 const props = withDefaults(defineProps<Props>(), {
   menuInfo: () => {
@@ -29,7 +30,7 @@ const showDown = computed(() => {
 
 <template>
   <div class="base-accordion" :class="{ 'only-accordion': !isShow }">
-    <div class="accordion-header" :style="isShow ? 'background-color: #213743;' : ''" @click="handleClickHeader">
+    <div :id="domId" class="accordion-header" :style="isShow ? 'background-color: #213743;' : ''" @click="handleClickHeader">
       <div class="flex-center">
         <BaseIcon :name="menuInfo.icon" />
         <span class="header-title">{{ menuInfo.title }}</span>

@@ -8,6 +8,7 @@ interface MenuItem {
     path: string
     icon: string
   }[]
+  domId: string
 }
 interface Props {
   staticMenu1: MenuItem[]
@@ -30,13 +31,19 @@ const isSports = computed(() => route.name === 'sports')
 const isGameTypeCasino = computed(() => props.currentType === '1')
 const isGameTypeSports = computed(() => props.currentType === '2')
 
-function handleClickHead() { }
+const innerRef = ref()
+function handleClickHead() {
+  // const t = setTimeout(() => {
+  //   innerRef.value.scrollTo({ top: document.getElementById('sports-hot-game-football')!.offsetTop - 60, behavior: 'smooth' })
+  //   clearTimeout(t)
+  // }, 500)
+}
 function handleClickItem() { }
 </script>
 
 <template>
   <div class="big-warp">
-    <div class="inner-content scroll-y scroll-contain" :class="{ 'is-full-screen': isFullScreen }">
+    <div ref="innerRef" class="inner-content scroll-y scroll-contain" :class="{ 'is-full-screen': isFullScreen }">
       <!-- Casino -->
       <template v-if="isFullScreen ? isGameTypeCasino : isCasino">
         <div class="menu-box">
@@ -86,7 +93,8 @@ function handleClickItem() { }
           <div class="content-line" />
           <div v-for="item, i in sportHotGames" :key="i">
             <BaseAccordion
-              v-if="item.list.length" :menu-info="item" @click-head="handleClickHead"
+              v-if="item.list.length"
+              :dom-id="item.domId" :menu-info="item" @click-head="handleClickHead"
               @click-item="handleClickItem"
             />
             <div v-else class="menu">
@@ -98,7 +106,8 @@ function handleClickItem() { }
         <div class="menu-box">
           <div v-for="item, i in sportEsports" :key="i">
             <BaseAccordion
-              v-if="item.list.length" :menu-info="item" @click-head="handleClickHead"
+              v-if="item.list.length"
+              :dom-id="item.domId" :menu-info="item" @click-head="handleClickHead"
               @click-item="handleClickItem"
             />
             <div v-else class="menu">
@@ -110,7 +119,8 @@ function handleClickItem() { }
         <div class="menu-box">
           <div v-for="item, i in sportGameList" :key="i">
             <BaseAccordion
-              v-if="item.list.length" :menu-info="item" @click-head="handleClickHead"
+              v-if="item.list.length"
+              :dom-id="item.domId" :menu-info="item" @click-head="handleClickHead"
               @click-item="handleClickItem"
             />
             <div v-else class="menu">
@@ -122,7 +132,8 @@ function handleClickItem() { }
         <div class="menu-box">
           <div v-for="item, i in sportOddType" :key="i">
             <BaseAccordion
-              v-if="item.list.length" :menu-info="item" @click-head="handleClickHead"
+              v-if="item.list.length"
+              :dom-id="item.domId" :menu-info="item" @click-head="handleClickHead"
               @click-item="handleClickItem"
             />
             <div v-else class="menu">
@@ -137,7 +148,8 @@ function handleClickItem() { }
       <div class="menu-box">
         <div v-for="item, i in staticMenu1" :key="i">
           <BaseAccordion
-            v-if="item.list.length" :menu-info="item" @click-head="handleClickHead"
+            v-if="item.list.length"
+            :dom-id="item.domId" :menu-info="item" @click-head="handleClickHead"
             @click-item="handleClickItem"
           />
           <div v-else class="menu">
@@ -150,7 +162,8 @@ function handleClickItem() { }
       <div class="menu-box">
         <div v-for="item, i in staticMenu2" :key="i">
           <BaseAccordion
-            v-if="item.list.length" :menu-info="item" @click-head="handleClickHead"
+            v-if="item.list.length"
+            :dom-id="item.domId" :menu-info="item" @click-head="handleClickHead"
             @click-item="handleClickItem"
           />
           <div v-else class="menu">
