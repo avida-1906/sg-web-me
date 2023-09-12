@@ -1,13 +1,12 @@
 <script setup lang="ts">
 interface Props {
   round?: boolean
-  type?: 'default' | 'text' | 'line' | 'round-line-left' | 'round-line-right' | 'custom'
+  type?: 'default' | 'text' | 'line' | 'round-line-left' | 'round-line-right'
   bgStyle?: 'primary' | 'secondary'
   disabled?: boolean
   loading?: boolean
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
   shadow?: boolean
-  fontSize?: string
 }
 
 withDefaults(defineProps<Props>(), {
@@ -25,7 +24,7 @@ withDefaults(defineProps<Props>(), {
     <div v-if="loading" class="loading">
       <BaseIcon name="chess-frame2" class="ani-roll" />
     </div>
-    <div v-else class="content" :style="{ fontSize: fontSize ? `var(--tg-spacing-${fontSize})` : '' }">
+    <div v-else class="content">
       <slot />
     </div>
   </button>
@@ -52,7 +51,6 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
-    white-space: nowrap;
   }
 
   &:disabled {
@@ -72,15 +70,6 @@ button {
 
   &:hover:not(:disabled) {
     background-color: var(--tg-text-grey);
-  }
-}
-.custom{
-  background-color: transparent;
-  padding: 0  !important;
-  &:active:not(:disabled) {
-    .content {
-      transform: scale(0.9);
-    }
   }
 }
 

@@ -10,6 +10,7 @@ declare module 'vue' {
     AppContent: typeof import('./components/AppContent.vue')['default']
     AppDemoCard: typeof import('./components/AppDemoCard.vue')['default']
     AppLeftSidebar: typeof import('./components/AppLeftSidebar.vue')['default']
+    AppSidebarBig: typeof import('./components/AppSidebarBig.vue')['default']
     AppSidebarSmall: typeof import('./components/AppSidebarSmall.vue')['default']
     BaseAccordion: typeof import('./components/BaseAccordion.vue')['default']
     BaseAspectRatio: typeof import('./components/BaseAspectRatio.vue')['default']

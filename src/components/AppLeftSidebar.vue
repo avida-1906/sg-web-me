@@ -4,6 +4,7 @@ interface Props {
 }
 const props = defineProps<Props>()
 const emit = defineEmits(['update:modelValue'])
+const isExpand = computed(() => props.modelValue)
 
 function onClick() {
   emit('update:modelValue', !props.modelValue)
@@ -16,7 +17,7 @@ const widthBoundaryMd = ref(768)
 const { width } = useWindowSize()
 // 左侧侧边栏宽度
 const leftSidebarWidth = computed(() => {
-  return `${props.modelValue ? 240 : 60}px`
+  return `${isExpand.value ? 240 : 60}px`
 })
 
 const gameType = ref('1')
@@ -27,39 +28,39 @@ const gameTypeList = [
 
 // casino
 const casinoMenu = [
-  { title: '收藏夹', path: '', icon: '', children: [] },
-  { title: '近期游戏记录', path: '', icon: '', children: [] },
-  { title: '挑战', path: '', icon: '', children: [] },
+  { title: '收藏夹', path: '', icon: '', list: [] },
+  { title: '近期游戏记录', path: '', icon: '', list: [] },
+  { title: '挑战', path: '', icon: '', list: [] },
 ]
 const casinoGameList = [
-  { title: '老虎机', path: '', icon: '', children: [] },
-  { title: '真人娱乐场', path: '', icon: '', children: [] },
-  { title: '游戏节目', path: '', icon: '', children: [] },
-  { title: '新游戏', path: '', icon: '', children: [] },
-  { title: '新游戏', path: '', icon: '', children: [] },
-  { title: '新游戏', path: '', icon: '', children: [] },
+  { title: '老虎机', path: '', icon: '', list: [] },
+  { title: '真人娱乐场', path: '', icon: '', list: [] },
+  { title: '游戏节目', path: '', icon: '', list: [] },
+  { title: '新游戏', path: '', icon: '', list: [] },
+  { title: '新游戏', path: '', icon: '', list: [] },
+  { title: '新游戏', path: '', icon: '', list: [] },
 ]
-const casinoGameProvider = [{ title: '游戏提供商', path: '', icon: '', children: [] }]
+const casinoGameProvider = [{ title: '游戏提供商', path: '', icon: '', list: [] }]
 
 // sports
 const sportsMenu = [
-  { title: '滚球盘', path: '', icon: '', children: [] },
-  { title: '即将开赛', path: '', icon: '', children: [] },
-  { title: '我的投注', path: '', icon: '', children: [] },
+  { title: '滚球盘', path: '', icon: '', list: [] },
+  { title: '即将开赛', path: '', icon: '', list: [] },
+  { title: '我的投注', path: '', icon: '', list: [] },
 ]
 const sportHotGames = [
-  { title: '足球', path: '', icon: '', children: [] },
-  { title: '网球', path: '', icon: '', children: [] },
-  { title: '美式橄榄球', path: '', icon: '', children: [] },
-  { title: '棒球', path: '', icon: '', children: [] },
-  { title: '篮球', path: '', icon: '', children: [] },
+  { title: '足球', path: '', icon: '', list: [] },
+  { title: '网球', path: '', icon: '', list: [] },
+  { title: '美式橄榄球', path: '', icon: '', list: [] },
+  { title: '棒球', path: '', icon: '', list: [] },
+  { title: '篮球', path: '', icon: '', list: [] },
 ]
 const sportEsports = [
   {
     title: '所有电子竞技',
     path: '',
     icon: '',
-    children: [
+    list: [
       { title: '彩虹六号', path: '', icon: '' },
       { title: '传说对决', path: '', icon: '' },
       { title: '刀塔2', path: '', icon: '' },
@@ -75,7 +76,7 @@ const sportGameList = [
     title: '体育项目',
     path: '',
     icon: '',
-    children: [
+    list: [
       { title: '澳洲足球', path: '', icon: '' },
       { title: '板球', path: '', icon: '' },
       { title: '棒球', path: '', icon: '' },
@@ -91,7 +92,7 @@ const sportOddType = [
     title: '赔率：',
     path: '',
     icon: '',
-    children: [
+    list: [
       { title: '小数式', path: '', icon: '' },
       { title: '分数式', path: '', icon: '' },
       { title: '美式', path: '', icon: '' },
@@ -107,51 +108,51 @@ const staticMenu1 = [
     title: '个人资料',
     path: '',
     icon: 'navbar-user',
-    children: [
-      { title: '钱包', path: '', icon: '' },
-      { title: '保险库', path: '', icon: '' },
-      { title: 'VIP', path: '', icon: '' },
-      { title: '统计数据', path: '', icon: '' },
-      { title: '通知', path: '', icon: '' },
-      { title: '体育投注', path: '', icon: '' },
-      { title: '设置', path: '', icon: '' },
-      { title: '登出', path: '', icon: '' },
+    list: [
+      { title: '钱包', path: '', icon: 'navbar-user' },
+      { title: '保险库', path: '', icon: 'navbar-user' },
+      { title: 'VIP', path: '', icon: 'navbar-user' },
+      { title: '统计数据', path: '', icon: 'navbar-user' },
+      { title: '通知', path: '', icon: 'navbar-user' },
+      { title: '体育投注', path: '', icon: 'navbar-user' },
+      { title: '设置', path: '', icon: 'navbar-user' },
+      { title: '登出', path: '', icon: 'navbar-user' },
     ],
   },
   {
     title: '促销活动',
     path: '',
     icon: 'chess-gameshow',
-    children: [
-      { title: '推荐活动一', path: '', icon: '' },
-      { title: '推荐活动二', path: '', icon: '' },
-      { title: '推荐活动三', path: '', icon: '' },
-      { title: '查看全部', path: '', icon: '' },
+    list: [
+      { title: '推荐活动一', path: '', icon: 'navbar-user' },
+      { title: '推荐活动二', path: '', icon: 'navbar-user' },
+      { title: '推荐活动三', path: '', icon: 'navbar-user' },
+      { title: '查看全部', path: '', icon: 'navbar-user' },
     ],
   },
-  { title: '联盟计划', path: '', icon: 'spt-affiliate-pro', children: [] },
-  { title: 'VIP俱乐部', path: '', icon: 'chess-vipclub', children: [] },
-  { title: '博客', path: '', icon: 'chess-blog', children: [] },
-  { title: '论坛', path: '', icon: 'tabbar-chat', children: [] },
+  { title: '联盟计划', path: '', icon: 'spt-affiliate-pro', list: [] },
+  { title: 'VIP俱乐部', path: '', icon: 'chess-vipclub', list: [] },
+  { title: '博客', path: '', icon: 'chess-blog', list: [] },
+  { title: '论坛', path: '', icon: 'tabbar-chat', list: [] },
 ]
 const staticMenu2 = [
   {
     title: '赞助活动',
     path: '',
     icon: 'navbar-user',
-    children: [
+    list: [
       { title: '赞助活动一', path: '', icon: '' },
       { title: '赞助活动二', path: '', icon: '' },
       { title: '赞助活动三', path: '', icon: '' },
     ],
   },
-  { title: '负责任博彩', path: '', icon: '', children: [] },
-  { title: '在线支持', path: '', icon: '', children: [] },
+  { title: '负责任博彩', path: '', icon: '', list: [] },
+  { title: '在线支持', path: '', icon: '', list: [] },
   {
     title: '语言：',
     path: '',
     icon: '',
-    children: [
+    list: [
       { title: '中文', path: '', icon: '' },
       { title: '日文', path: '', icon: '' },
       { title: '英文', path: '', icon: '' },
@@ -170,7 +171,7 @@ const staticMenu2 = [
       'full-screen': width <= widthBoundaryMd,
     }"
   >
-    <div class="header" :class="{ 'is-small': !modelValue }">
+    <div class="header" :class="{ 'is-small': !isExpand }">
       <div class="button" @click="onClick">
         <BaseIcon name="uni-bars" />
       </div>
@@ -184,7 +185,8 @@ const staticMenu2 = [
       </div>
     </div>
     <div class="content scrollY">
-      <div v-if="!modelValue">
+      <AppSidebarBig v-show="isExpand" :static-menu1="staticMenu1" :static-menu2="staticMenu2" />
+      <div v-show="!isExpand">
         <AppSidebarSmall :menu-data="[staticMenu1, staticMenu2]" />
       </div>
     </div>
