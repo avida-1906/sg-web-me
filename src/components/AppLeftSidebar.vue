@@ -233,20 +233,49 @@ const staticMenu2 = [
     </div>
 
     <div class="content scrollY">
-      <AppSidebarBig
-        v-if="isExpand" :sports-menu="sportsMenu" :casino-game-provider="casinoGameProvider"
-        :casino-game-list="casinoGameList" :casino-menu="casinoMenu" :static-menu1="staticMenu1"
-        :static-menu2="staticMenu2" :sport-hot-games="sportHotGames" :sport-esports="sportEsports"
-        :sport-game-list="sportGameList" :sport-odd-type="sportOddType"
-      />
-      <div v-else>
-        <AppSidebarSmall :menu-data="[staticMenu1, staticMenu2]" />
-      </div>
+      <Transition name="slide-fade">
+        <div v-if="isExpand">
+          <AppSidebarBig
+            :sports-menu="sportsMenu" :casino-game-provider="casinoGameProvider"
+            :casino-game-list="casinoGameList" :casino-menu="casinoMenu" :static-menu1="staticMenu1"
+            :static-menu2="staticMenu2" :sport-hot-games="sportHotGames" :sport-esports="sportEsports"
+            :sport-game-list="sportGameList" :sport-odd-type="sportOddType"
+          />
+        </div>
+      </Transition>
+      <Transition name="slide-fade">
+        <div v-if="!isExpand">
+          <AppSidebarSmall :menu-data="[staticMenu1, staticMenu2]" />
+        </div>
+      </Transition>
     </div>
   </div>
 </template>
 
 <style lang='scss' scoped>
+.slide-fade-enter-active {
+  animation: slide-fade-in 0.5s ease-in-out;
+}
+.slide-fade-leave-active {
+  // animation: slide-fade-in 0.5s linear;
+  opacity: 0;
+}
+@keyframes slide-fade-in {
+  0% {
+    transform: translate(0, 100px);
+    opacity: 0;
+  }
+  70% {
+    opacity: 0;
+  }
+  80% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
 .left-sidebar {
   width: var(--width);
   background-color: var(--tg-secondary-dark);
