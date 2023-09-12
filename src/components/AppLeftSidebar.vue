@@ -275,7 +275,6 @@ const staticMenu2 = [
   }
 
   .content {
-    display: flex;
     overflow: hidden;
   }
 }
