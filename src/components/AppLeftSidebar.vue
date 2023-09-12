@@ -1,6 +1,9 @@
 <script setup lang='ts'>
 interface Props {
   modelValue: boolean // 是否展开
+  isFixedSmall: boolean
+  isFixed: boolean
+  isFullScreen: boolean
 }
 const props = defineProps<Props>()
 const emit = defineEmits(['update:modelValue'])
@@ -10,17 +13,6 @@ function onClick() {
   emit('update:modelValue', !props.modelValue)
 }
 
-const widthBoundaryXl = 1200 // 宽度边界 1200
-const widthBoundaryMd = 768 // 宽度边界 768
-const { width } = useWindowSize()
-const isFixedSmall = computed(() => width.value > widthBoundaryMd)
-const isFixed = computed(() => width.value < widthBoundaryXl)
-const isFullScreen = computed(() => width.value <= widthBoundaryMd)
-
-// 左侧侧边栏宽度
-const leftSidebarWidth = computed(() => {
-  return `${isExpand.value ? 240 : 60}px`
-})
 const router = useRouter()
 const route = useRoute()
 const isCasino = computed(() => route.name === 'casino')
@@ -230,78 +222,67 @@ const searchValue = ref('')
 </script>
 
 <template>
-  <div
-    class="left-sidebar" :style="{
-      '--width': leftSidebarWidth,
-    }" :class="{
-      'fixed-small': isFixedSmall,
-      'fixed': isFixed,
-      'full-screen': isFullScreen,
-    }"
-  >
-    <!-- 头部菜单或搜索栏 -->
-    <div v-if="!isFullScreen" class="header" :class="{ 'is-small': !isExpand }">
-      <div class="button" @click="onClick">
-        <BaseIcon name="uni-menu" />
+  <!-- 头部菜单或搜索栏 -->
+  <div v-if="!isFullScreen" class="header" :class="{ 'is-small': !isExpand }">
+    <div class="button" @click="onClick">
+      <BaseIcon name="uni-menu" />
+    </div>
+    <div class="game-type">
+      <div class="casino" @click="router.push('/casino')">
+        <span>娱乐城</span>
       </div>
-      <div class="game-type">
-        <div class="casino" @click="router.push('/casino')">
-          <span>娱乐城</span>
-        </div>
-        <div class="sports" @click="router.push('/sports')">
-          <span>体育</span>
-        </div>
+      <div class="sports" @click="router.push('/sports')">
+        <span>体育</span>
       </div>
     </div>
-    <div v-else class="search">
-      <BaseSearch v-model="searchValue">
-        <template v-if="isCasino || isSports" #left>
-          <VDropdown :distance="6" @show="onPopperShow" @hide="onPopperHide">
-            <button class="tips">
-              <span>{{ gameLabel }}</span>
-              <BaseIcon :name="`uni-arrow-${isPopperShow ? 'up' : 'down'}-big`" />
-            </button>
-            <template #popper>
-              <div
-                v-for="t, i in gameTypeList" :key="i" v-close-popper class="popper-option"
-                @click="selectGameType(t.value)"
-              >
-                {{ t.label }}
-              </div>
-            </template>
-          </VDropdown>
-        </template>
-      </BaseSearch>
-    </div>
-    <div v-if="!isCasino && !isSports" class="buttons">
-      <BaseAspectRatio ratio="3.5/1">
-        <div class="casino" @click="router.push('/casino')">
-          <span>娱乐城</span>
-        </div>
-      </BaseAspectRatio>
-      <BaseAspectRatio ratio="3.5/1">
-        <div class="sports" @click="router.push('/sports')">
-          <span>体育</span>
-        </div>
-      </BaseAspectRatio>
-    </div>
+  </div>
+  <div v-else class="search">
+    <BaseSearch v-model="searchValue">
+      <template v-if="isCasino || isSports" #left>
+        <VDropdown :distance="6" @show="onPopperShow" @hide="onPopperHide">
+          <button class="tips">
+            <span>{{ gameLabel }}</span>
+            <BaseIcon :name="`uni-arrow-${isPopperShow ? 'up' : 'down'}-big`" />
+          </button>
+          <template #popper>
+            <div
+              v-for="t, i in gameTypeList" :key="i" v-close-popper class="popper-option"
+              @click="selectGameType(t.value)"
+            >
+              {{ t.label }}
+            </div>
+          </template>
+        </VDropdown>
+      </template>
+    </BaseSearch>
+  </div>
+  <div v-if="!isCasino && !isSports" class="buttons">
+    <BaseAspectRatio ratio="3.5/1">
+      <div class="casino" @click="router.push('/casino')">
+        <span>娱乐城</span>
+      </div>
+    </BaseAspectRatio>
+    <BaseAspectRatio ratio="3.5/1">
+      <div class="sports" @click="router.push('/sports')">
+        <span>体育</span>
+      </div>
+    </BaseAspectRatio>
+  </div>
 
-    <div class="content scrollY">
-      <Transition name="slide-fade">
-        <AppSidebarBig
-          v-if="isExpand || isFullScreen"
-          :current-type="gameType" :is-full-screen="isFullScreen" :casino-menu="casinoMenu"
-          :casino-game-list="casinoGameList" :casino-game-provider="casinoGameProvider" :static-menu1="staticMenu1"
-          :static-menu2="staticMenu2" :sports-menu="sportsMenu" :sport-hot-games="sportHotGames"
-          :sport-esports="sportEsports" :sport-game-list="sportGameList" :sport-odd-type="sportOddType"
-        />
-      </Transition>
-      <Transition name="slide-fade">
-        <div v-if="!isExpand">
-          <AppSidebarSmall :menu-data="[staticMenu1, staticMenu2]" />
-        </div>
-      </Transition>
-    </div>
+  <div class="content scrollY">
+    <Transition name="slide-fade">
+      <AppSidebarBig
+        v-if="isExpand || isFullScreen" :current-type="gameType" :is-full-screen="isFullScreen"
+        :casino-menu="casinoMenu" :casino-game-list="casinoGameList" :casino-game-provider="casinoGameProvider"
+        :static-menu1="staticMenu1" :static-menu2="staticMenu2" :sports-menu="sportsMenu" :sport-hot-games="sportHotGames"
+        :sport-esports="sportEsports" :sport-game-list="sportGameList" :sport-odd-type="sportOddType"
+      />
+    </Transition>
+    <Transition name="slide-fade">
+      <div v-if="!isExpand">
+        <AppSidebarSmall :menu-data="[staticMenu1, staticMenu2]" />
+      </div>
+    </Transition>
   </div>
 </template>
 
@@ -309,63 +290,40 @@ const searchValue = ref('')
 .slide-fade-enter-active {
   animation: slide-fade-in 0.5s ease-in-out;
 }
+
 .slide-fade-leave-active {
   // animation: slide-fade-in 0.5s linear;
   opacity: 0;
 }
+
 @keyframes slide-fade-in {
   0% {
     transform: translate(0, 100px);
     opacity: 0;
   }
+
   70% {
     opacity: 0;
   }
+
   80% {
     opacity: 0.7;
   }
+
   100% {
     transform: translate(0, 0);
     opacity: 1;
   }
 }
-.left-sidebar {
-  width: var(--width);
-  background-color: var(--tg-secondary-dark);
-  transition: width 0.3s ease-in-out, top .2s ease-in-out;
-  z-index: var(--tg-z-index-20);
-  height: 100%;
-  display: flex;
-  flex-direction: column;
 
-  &.fixed {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-  }
+.content {
+  overflow: hidden;
+}
 
-  &.full-screen {
-    // H5模式
-    width: 100%;
-    top: var(--tg-header-height);
-    padding-bottom: var(--tg-footer-height);
-  }
-
-  &.fixed-small {
-    width: var(--width);
-  }
-
-  .content {
-    overflow: hidden;
-  }
-
-  .search {
-    margin: var(--tg-spacing-16);
-    width: auto;
-    font-size: var(--tg-font-size-default);
-  }
-
+.search {
+  margin: var(--tg-spacing-16);
+  width: auto;
+  font-size: var(--tg-font-size-default);
 }
 
 .buttons {

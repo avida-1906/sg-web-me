@@ -29,6 +29,13 @@ const rightContainerIs0 = ref(true)
 const rightSidebar = ref<HTMLElement | null>(null)
 
 const { width } = useWindowSize()
+const isFixedSmall = computed(() => width.value > widthBoundaryMd.value)
+const isFixed = computed(() => width.value < widthBoundaryXl.value)
+const isFullScreen = computed(() => width.value <= widthBoundaryMd.value)
+// 左侧侧边栏宽度
+const leftSidebarWidth = computed(() => {
+  return `${leftIsExpand.value ? 240 : 60}px`
+})
 
 // home-overlay 是否显示
 const homeOverlayIsShow = computed(() => {
@@ -56,12 +63,24 @@ function setRightSidebarExpandStatus() {
 </script>
 
 <template>
-  <main
-    class="wrap"
-  >
+  <main class="wrap">
     <div v-if="homeOverlayIsShow" class="home-overlay" @click="leftIsExpand = !leftIsExpand" />
     <div v-if="width < widthBoundaryXl && width > widthBoundaryMd" class="small-size-padding" />
-    <AppLeftSidebar v-model="leftIsExpand" />
+    <div
+      class="left-sidebar" :style="{
+        '--width': leftSidebarWidth,
+      }" :class="{
+        'fixed-small': isFixedSmall,
+        'fixed': isFixed,
+        'full-screen': isFullScreen,
+      }"
+    >
+      <AppLeftSidebar
+        v-model="leftIsExpand" :is-fixed-small="isFixedSmall" :is-fixed="isFixed"
+        :is-full-screen="isFullScreen"
+      />
+    </div>
+
     <div class="main-content">
       <header class="navigation">
         <AppContent>
@@ -85,10 +104,7 @@ function setRightSidebarExpandStatus() {
       </div>
     </div>
     <div
-      v-if="rightIsExpand"
-      ref="rightSidebar"
-      class="right-sidebar"
-      :class="{
+      v-if="rightIsExpand" ref="rightSidebar" class="right-sidebar" :class="{
         'width-none': rightContainerIs0,
         'fixed': width < widthBoundaryMd,
         'display-none': width < widthBoundaryMd,
@@ -109,6 +125,7 @@ function setRightSidebarExpandStatus() {
   height: 100%;
   overflow: hidden;
 }
+
 .home-overlay {
   position: fixed;
   inset: 0;
@@ -116,8 +133,37 @@ function setRightSidebarExpandStatus() {
   background-color: var(--tg-black-0-5);
   z-index: var(--tg-z-index-10);
 }
+
 .small-size-padding {
   width: 60px;
+}
+
+.left-sidebar {
+  width: var(--width);
+  background-color: var(--tg-secondary-dark);
+  transition: width 0.3s ease-in-out, top .2s ease-in-out;
+  z-index: var(--tg-z-index-20);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  &.fixed {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+  &.full-screen {
+    // H5模式
+    width: 100%;
+    top: var(--tg-header-height);
+    padding-bottom: var(--tg-footer-height);
+  }
+
+  &.fixed-small {
+    width: var(--width);
+  }
 }
 
 .main-content {
@@ -126,7 +172,7 @@ function setRightSidebarExpandStatus() {
   overflow: hidden;
   flex-direction: column;
 
-  & > .navigation {
+  &>.navigation {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -136,20 +182,23 @@ function setRightSidebarExpandStatus() {
     font-weight: 600;
     padding-right: var(--tg-scrollbar-size);
 
-    & > .group {
+    &>.group {
       display: flex;
       align-items: center;
       flex-direction: column;
     }
   }
 }
+
 .right-sidebar {
   background-color: green;
   transition: width 0.3s ease-in-out;
   overflow: hidden;
+
   &.width-none {
     width: 0;
   }
+
   &.fixed {
     position: fixed;
     width: 100%;
@@ -170,6 +219,7 @@ function setRightSidebarExpandStatus() {
   @media screen and (min-width: 768px) and (max-width: 1000px) {
     width: 320px;
   }
+
   @media screen and (min-width: 1000px) {
     width: 370px;
   }
