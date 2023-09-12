@@ -3,7 +3,7 @@ interface MenuItem {
   title: string
   path: string
   icon: string
-  children: Menu
+  list: Menu
 }
 
 type Menu = Array<MenuItem>
@@ -16,10 +16,10 @@ withDefaults(defineProps<Props>(), {})
 </script>
 
 <template>
-  <section class="scrollY tg-app-sidebar-small scrollable-content">
+  <section class="scrollY tg-app-sidebar-small">
     <ul v-for="menu, idx in menuData" :key="idx" class="tiny-menu flex-col-center">
       <li v-for="menuitem in menu" :key="menuitem.title" class="flex-col-center tiny-menu-item">
-        <template v-if="menuitem.children && menuitem.children.length">
+        <template v-if="menuitem.list && menuitem.list.length">
           <VMenu placement="top-start">
             <div class="trigger">
               <BaseIcon :name="menuitem.icon" />
@@ -47,7 +47,7 @@ withDefaults(defineProps<Props>(), {})
   color: var(--tg-secondary-main);
   font-size: var(--tg-font-size-default);
   font-weight: var(--tg-font-weight-semibold);
-  padding: var(--tg-spacing-button-padding-horizontal-xs) var(--tg-spacing-input-padding-vertical);
+  padding: var(--tg-spacing-input-padding-vertical) var(--tg-spacing-button-padding-horizontal-xs);
 }
 </style>
 
