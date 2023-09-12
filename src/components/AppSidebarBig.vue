@@ -12,8 +12,26 @@ interface MenuItem {
 interface Props {
   staticMenu1: MenuItem[]
   staticMenu2: MenuItem[]
+  casinoMenu: MenuItem[]
+  casinoGameList: MenuItem[]
+  casinoGameProvider: MenuItem[]
+  sportsMenu: MenuItem[]
+  sportHotGames: MenuItem[]
+  sportEsports: MenuItem[]
+  sportGameList: MenuItem[]
+  sportOddType: MenuItem[]
 }
 const props = defineProps<Props>()
+const route = useRoute()
+const isCasino = computed(() => route.name === 'casino')
+const isSports = computed(() => route.name === 'sports')
+
+const gameType = ref('1')
+const gameTypeList = [
+  { name: '娱乐城', id: '1' },
+  { name: '体育', id: '2' },
+]
+
 function handleClickHead() { }
 function handleClickItem() { }
 </script>
@@ -21,6 +39,102 @@ function handleClickItem() { }
 <template>
   <div class="big-warp">
     <div class="inner-content scroll-y scroll-contain">
+      <!-- Casino -->
+      <template v-if="isCasino">
+        <div class="menu-box">
+          <div v-for="item, i in casinoMenu" :key="i">
+            <div class="menu">
+              <BaseIcon :name="item.icon" />
+              <span>{{ item.title }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="menu-box">
+          <div class="menu">
+            游戏
+          </div>
+          <div class="content-line" />
+          <div v-for="item, i in casinoGameList" :key="i">
+            <div class="menu">
+              <BaseIcon :name="item.icon" />
+              <span>{{ item.title }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="menu-box">
+          <div v-for="item, i in casinoGameProvider" :key="i">
+            <div class="menu">
+              <BaseIcon :name="item.icon" />
+              <span>{{ item.title }}</span>
+            </div>
+          </div>
+        </div>
+      </template>
+
+      <!-- Sports -->
+      <template v-if="isSports">
+        <div class="menu-box">
+          <div v-for="item, i in sportsMenu" :key="i">
+            <div class="menu">
+              <BaseIcon :name="item.icon" />
+              <span>{{ item.title }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="menu-box">
+          <div class="menu">
+            顶级体育项目
+          </div>
+          <div class="content-line" />
+          <div v-for="item, i in sportHotGames" :key="i">
+            <BaseAccordion
+              v-if="item.list.length" :menu-info="item" @click-head="handleClickHead"
+              @click-item="handleClickItem"
+            />
+            <div v-else class="menu">
+              <BaseIcon :name="item.icon" />
+              <span>{{ item.title }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="menu-box">
+          <div v-for="item, i in sportEsports" :key="i">
+            <BaseAccordion
+              v-if="item.list.length" :menu-info="item" @click-head="handleClickHead"
+              @click-item="handleClickItem"
+            />
+            <div v-else class="menu">
+              <BaseIcon :name="item.icon" />
+              <span>{{ item.title }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="menu-box">
+          <div v-for="item, i in sportGameList" :key="i">
+            <BaseAccordion
+              v-if="item.list.length" :menu-info="item" @click-head="handleClickHead"
+              @click-item="handleClickItem"
+            />
+            <div v-else class="menu">
+              <BaseIcon :name="item.icon" />
+              <span>{{ item.title }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="menu-box">
+          <div v-for="item, i in sportOddType" :key="i">
+            <BaseAccordion
+              v-if="item.list.length" :menu-info="item" @click-head="handleClickHead"
+              @click-item="handleClickItem"
+            />
+            <div v-else class="menu">
+              <BaseIcon :name="item.icon" />
+              <span>{{ item.title }}</span>
+            </div>
+          </div>
+        </div>
+      </template>
+
       <!-- 个人中心 -->
       <div class="menu-box">
         <div v-for="item, i in staticMenu1" :key="i">
@@ -58,10 +172,9 @@ function handleClickItem() { }
   flex-direction: column;
   align-content: flex-start;
   padding: 0;
-  touch-action: pan-x;
-  flex: 1;
   color: var(--tg-text-white);
   font-size: var(--tg-font-size-default);
+  height: 100%;
 }
 
 .inner-content {
@@ -72,6 +185,7 @@ function handleClickItem() { }
   gap: var(--tg-spacing-8);
 
   .menu-box {
+    flex-shrink: 0;
     display: flex;
     flex-direction: column;
     max-width: 100%;
@@ -93,6 +207,12 @@ function handleClickItem() { }
       span {
         padding-left: 6px;
       }
+    }
+
+    .content-line {
+      background: var(--tg-secondary-main);
+      height: 2px;
+      width: 100%;
     }
   }
 }

@@ -10,21 +10,18 @@ function onClick() {
   emit('update:modelValue', !props.modelValue)
 }
 
-// 宽度边界 1200
-const widthBoundaryXl = ref(1200)
-// 宽度边界 768
-const widthBoundaryMd = ref(768)
+const widthBoundaryXl = 1200 // 宽度边界 1200
+const widthBoundaryMd = 768 // 宽度边界 768
 const { width } = useWindowSize()
+const isFixedSmall = computed(() => width.value > widthBoundaryMd)
+const isFixed = computed(() => width.value < widthBoundaryXl)
+const isFullScreen = computed(() => width.value <= widthBoundaryMd)
+
 // 左侧侧边栏宽度
 const leftSidebarWidth = computed(() => {
   return `${isExpand.value ? 240 : 60}px`
 })
-
-const gameType = ref('1')
-const gameTypeList = [
-  { name: '娱乐城', id: '1' },
-  { name: '体育', id: '2' },
-]
+const router = useRouter()
 
 // casino
 const casinoMenu = [
@@ -49,11 +46,61 @@ const sportsMenu = [
   { title: '我的投注', path: '', icon: '', list: [] },
 ]
 const sportHotGames = [
-  { title: '足球', path: '', icon: '', list: [] },
-  { title: '网球', path: '', icon: '', list: [] },
-  { title: '美式橄榄球', path: '', icon: '', list: [] },
-  { title: '棒球', path: '', icon: '', list: [] },
-  { title: '篮球', path: '', icon: '', list: [] },
+  {
+    title: '足球',
+    path: '',
+    icon: '',
+    list: [
+      { title: '激斗峡谷', path: '', icon: '' },
+      { title: '激斗峡谷', path: '', icon: '' },
+      { title: '激斗峡谷', path: '', icon: '' },
+      { title: '激斗峡谷', path: '', icon: '' },
+    ],
+  },
+  {
+    title: '网球',
+    path: '',
+    icon: '',
+    list: [
+      { title: '激斗峡谷', path: '', icon: '' },
+      { title: '激斗峡谷', path: '', icon: '' },
+      { title: '激斗峡谷', path: '', icon: '' },
+      { title: '激斗峡谷', path: '', icon: '' },
+    ],
+  },
+  {
+    title: '美式橄榄球',
+    path: '',
+    icon: '',
+    list: [
+      { title: '激斗峡谷', path: '', icon: '' },
+      { title: '激斗峡谷', path: '', icon: '' },
+      { title: '激斗峡谷', path: '', icon: '' },
+      { title: '激斗峡谷', path: '', icon: '' },
+    ],
+  },
+  {
+    title: '棒球',
+    path: '',
+    icon: '',
+    list: [
+      { title: '激斗峡谷', path: '', icon: '' },
+      { title: '激斗峡谷', path: '', icon: '' },
+      { title: '激斗峡谷', path: '', icon: '' },
+      { title: '激斗峡谷', path: '', icon: '' },
+    ],
+  },
+  {
+    title: '篮球',
+    path: '',
+    icon: '',
+    list: [
+      { title: '激斗峡谷', path: '', icon: '' },
+      { title: '激斗峡谷', path: '', icon: '' },
+      { title: '激斗峡谷', path: '', icon: '' },
+      { title: '激斗峡谷', path: '', icon: '' },
+    ],
+  },
 ]
 const sportEsports = [
   {
@@ -166,25 +213,30 @@ const staticMenu2 = [
     class="left-sidebar" :style="{
       '--width': leftSidebarWidth,
     }" :class="{
-      'fixed-small': width > widthBoundaryMd,
-      'fixed': width < widthBoundaryXl,
-      'full-screen': width <= widthBoundaryMd,
+      'fixed-small': isFixedSmall,
+      'fixed': isFixed,
+      'full-screen': isFullScreen,
     }"
   >
-    <div class="header" :class="{ 'is-small': !isExpand }">
+    <div v-show="!isFullScreen" class="header" :class="{ 'is-small': !isExpand }">
       <div class="button" @click="onClick">
         <BaseIcon name="uni-bars" />
       </div>
       <div class="game-type">
-        <div class="casino">
+        <div class="casino" @click="router.push('/casino')">
           <span>娱乐城</span>
         </div>
-        <div class="sports">
+        <div class="sports" @click="router.push('/sports')">
           <span>体育</span>
         </div>
       </div>
     </div>
-    <AppSidebarBig v-show="isExpand" :static-menu1="staticMenu1" :static-menu2="staticMenu2" />
+    <AppSidebarBig
+      v-show="isExpand" :sports-menu="sportsMenu" :casino-game-provider="casinoGameProvider"
+      :casino-game-list="casinoGameList" :casino-menu="casinoMenu" :static-menu1="staticMenu1"
+      :static-menu2="staticMenu2" :sport-hot-games="sportHotGames" :sport-esports="sportEsports" :sport-game-list="sportGameList"
+      :sport-odd-type="sportOddType"
+    />
     <!-- <AppSidebarSmall v-show="!isExpand" /> -->
   </div>
 </template>
@@ -195,6 +247,9 @@ const staticMenu2 = [
   background-color: var(--tg-secondary-dark);
   transition: width 0.3s ease-in-out, top .2s ease-in-out;
   z-index: var(--tg-z-index-20);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 
   &.fixed {
     position: fixed;
@@ -255,11 +310,12 @@ const staticMenu2 = [
       &:hover {
         background-image: url('/img/left-side-bar/casino_bg_active.png');
       }
-      &:active{
-      span{
-        transform: scale(0.95);
+
+      &:active {
+        span {
+          transform: scale(0.95);
+        }
       }
-    }
     }
 
     .sports {
@@ -284,7 +340,8 @@ const staticMenu2 = [
   flex-direction: column;
   padding: 0 0 var(--tg-spacing-8);
   box-shadow: none;
-  .button{
+
+  .button {
     box-shadow: var(--tg-box-shadow-lg);
   }
 
