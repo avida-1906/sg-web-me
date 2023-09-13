@@ -231,13 +231,18 @@ function onPopperHide() {
 function selectGameType(v: string) {
   gameType.value = v
 }
-const isSearchFocus = ref(false)
+
+const showSearchOverlay = ref(false)
 const searchValue = ref('')
-function onSearchFocus() {
-  isSearchFocus.value = true
+function setShowSearchOverlay(v = true) {
+  showSearchOverlay.value = v
 }
-function onSearchBlur() {
-  isSearchFocus.value = false
+const recentKeyword = ref(['keyword 1', 'keyword 2', 'keyword 3', 'keyword 4', 'keyword 5'])
+function onClickKeyword(k: string) {
+  searchValue.value = k
+}
+function onCloseKeyword(k: string) {
+  recentKeyword.value.splice(recentKeyword.value.findIndex(t => t === k), 1)
 }
 </script>
 
@@ -257,7 +262,7 @@ function onSearchBlur() {
     </div>
   </div>
   <div v-else class="search">
-    <BaseSearch v-model="searchValue" clearable @focus="onSearchFocus" @blur="onSearchBlur">
+    <BaseSearch v-model="searchValue" clearable @focus="setShowSearchOverlay" @clear="setShowSearchOverlay(false)">
       <template v-if="isCasino || isSports" #left>
         <VDropdown :distance="6" @show="onPopperShow" @hide="onPopperHide">
           <button class="tips">
@@ -307,25 +312,22 @@ function onSearchBlur() {
   </div>
 
   <!-- 搜索区 -->
-  <div class="search-overlay">
+  <div v-show="showSearchOverlay" class="search-overlay" @click.self="setShowSearchOverlay(false)">
     <div class="scroll-y warp">
       <div class="no-result">
         <div class="text">
-          需要至少 3 个字符来进行搜索。
+          <span v-show="searchValue.length < 3">需要至少 3 个字符来进行搜索。</span>
+          <span>未找到结果。</span>
         </div>
         <div class="recent">
           <div class="title">
             <label>近期搜索</label>
-            <BaseButton type="text" font-size="14">
-              清除搜索1
+            <BaseButton type="text" font-size="14" @click="recentKeyword.length = 0">
+              清除搜索({{ recentKeyword.length }})
             </BaseButton>
           </div>
           <div class="list">
-            <BaseTag text="king" />
-            <BaseTag text="king" />
-            <BaseTag text="king" />
-            <BaseTag text="king" />
-            <BaseTag text="king" />
+            <BaseTag v-for="t in recentKeyword" :key="t" :text="t" @click="onClickKeyword" @close="onCloseKeyword" />
           </div>
         </div>
       </div>
