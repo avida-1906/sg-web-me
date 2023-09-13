@@ -98,7 +98,7 @@ function setRightSidebarExpandStatus() {
           </div> -->
         </AppContent>
       </header>
-      <div class="scrollable scroll-y">
+      <div class="scroll-y scrollable">
         <div>
           <RouterView />
         </div>
@@ -144,7 +144,7 @@ function setRightSidebarExpandStatus() {
   background-color: var(--tg-secondary-dark);
   transition: width 0.3s ease-in-out, top .2s ease-in-out;
   z-index: var(--tg-z-index-20);
-  height: 100%;
+  height: calc(100% - var(--tg-header-height));
   display: flex;
   flex-direction: column;
 

@@ -214,6 +214,7 @@ const staticMenu2 = [
   },
 ]
 
+// 搜索栏
 const gameType = ref(isCasino.value ? '1' : isSports.value ? '2' : '')
 const gameTypeList = [
   { label: '娱乐城', value: '1' },
@@ -230,7 +231,14 @@ function onPopperHide() {
 function selectGameType(v: string) {
   gameType.value = v
 }
+const isSearchFocus = ref(false)
 const searchValue = ref('')
+function onSearchFocus() {
+  isSearchFocus.value = true
+}
+function onSearchBlur() {
+  isSearchFocus.value = false
+}
 </script>
 
 <template>
@@ -249,7 +257,7 @@ const searchValue = ref('')
     </div>
   </div>
   <div v-else class="search">
-    <BaseSearch v-model="searchValue" clearable>
+    <BaseSearch v-model="searchValue" clearable @focus="onSearchFocus" @blur="onSearchBlur">
       <template v-if="isCasino || isSports" #left>
         <VDropdown :distance="6" @show="onPopperShow" @hide="onPopperHide">
           <button class="tips">
@@ -268,6 +276,7 @@ const searchValue = ref('')
       </template>
     </BaseSearch>
   </div>
+
   <div v-if="!isCasino && !isSports" class="buttons">
     <BaseAspectRatio ratio="3.5/1">
       <div class="casino" @click="router.push('/casino')">
@@ -295,6 +304,32 @@ const searchValue = ref('')
         <AppSidebarSmall :menu-data="[staticMenu1, staticMenu2]" />
       </div>
     </Transition>
+  </div>
+
+  <!-- 搜索区 -->
+  <div class="search-overlay">
+    <div class="scroll-y warp">
+      <div class="no-result">
+        <div class="text">
+          需要至少 3 个字符来进行搜索。
+        </div>
+        <div class="recent">
+          <div class="title">
+            <label>近期搜索</label>
+            <BaseButton type="text" font-size="14">
+              清除搜索1
+            </BaseButton>
+          </div>
+          <div class="list">
+            <BaseTag text="king" />
+            <BaseTag text="king" />
+            <BaseTag text="king" />
+            <BaseTag text="king" />
+            <BaseTag text="king" />
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -509,6 +544,57 @@ const searchValue = ref('')
       height: 44px;
       flex: unset;
     }
+  }
+}
+
+.search-overlay {
+  width: 100%;
+  height: calc(100% - 73px);
+  background-color: var(--tg-secondary-dark);
+  color: var(--tg-secondary-light);
+  position: absolute;
+  margin-top: 73px;
+
+  .warp {
+    max-height: 400px;
+
+    padding: var(--tg-spacing-8) var(--tg-spacing-16) var(--tg-spacing-24);
+  }
+
+  .no-result {
+    display: flex;
+    flex-direction: column;
+    gap: var(--tg-spacing-32);
+    font-size: var(--tg-font-size-default);
+
+    .text {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: var(--tg-spacing-8);
+      gap: var(--tg-spacing-8);
+    }
+
+    .recent {
+      display: flex;
+      flex-direction: column;
+      gap: var(--tg-spacing-16);
+
+      .title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--tg-spacing-8);
+        grid-row-gap: var(--tg-spacing-16);
+      }
+    }
+
   }
 }
 </style>

@@ -45,6 +45,7 @@ declare module 'vue' {
     BaseSwitch: typeof import('./components/BaseSwitch.vue')['default']
     BaseTab: typeof import('./components/BaseTab.vue')['default']
     BaseTable: typeof import('./components/BaseTable.vue')['default']
+    BaseTag: typeof import('./components/BaseTag.vue')['default']
     BaseUpload: typeof import('./components/BaseUpload.vue')['default']
     R: typeof import('./components/R.md')['default']
     README: typeof import('./components/README.md')['default']
