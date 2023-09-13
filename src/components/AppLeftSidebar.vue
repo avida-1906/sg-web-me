@@ -249,7 +249,7 @@ function onCloseKeyword(k: string) {
 
 <template>
   <!-- 头部菜单或搜索栏 -->
-  <div style="height: var(--tg-sidebar-width-sm);">
+  <div class="sidebar-top">
     <Transition name="fade">
       <div v-show="!isSwitching">
         <div v-if="!isFullScreen" class="header" :class="{ 'is-small': !isExpand }">
@@ -343,6 +343,9 @@ function onCloseKeyword(k: string) {
 </template>
 
 <style lang='scss' scoped>
+.sidebar-top {
+  height: var(--tg-sidebar-top-height-sm);
+}
 .content {
   overflow: hidden;
 }

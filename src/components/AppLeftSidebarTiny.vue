@@ -224,7 +224,7 @@ const searchValue = ref('')
 
 <template>
   <!-- 头部菜单或搜索栏 -->
-  <div style="height: 180px;">
+  <div class="sidebar-tiny-top">
     <Transition name="fade">
       <div v-show="!isSwitching">
         <div v-if="!isFullScreen" class="header" :class="{ 'is-small': !isExpand }">
@@ -286,6 +286,9 @@ const searchValue = ref('')
 </template>
 
 <style lang='scss' scoped>
+.sidebar-tiny-top {
+  height: var(--tg-sidebar-top-height-lg);
+}
 .content {
   overflow: hidden;
 }
