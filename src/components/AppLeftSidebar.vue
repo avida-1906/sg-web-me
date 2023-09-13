@@ -4,6 +4,7 @@ interface Props {
   isFixedSmall: boolean
   isFixed: boolean
   isFullScreen: boolean
+  isSwitching: boolean
 }
 const props = defineProps<Props>()
 const emit = defineEmits(['update:modelValue'])
@@ -248,41 +249,47 @@ function onCloseKeyword(k: string) {
 
 <template>
   <!-- 头部菜单或搜索栏 -->
-  <div v-if="!isFullScreen" class="header" :class="{ 'is-small': !isExpand }">
-    <div class="button" @click="onClick">
-      <BaseIcon name="uni-menu" />
-    </div>
-    <div class="game-type">
-      <div class="casino" @click="router.push('/casino')">
-        <span>娱乐城</span>
-      </div>
-      <div class="sports" @click="router.push('/sports')">
-        <span>体育</span>
-      </div>
-    </div>
-  </div>
-  <div v-else class="search">
-    <BaseSearch v-model="searchValue" clearable @focus="setShowSearchOverlay" @clear="setShowSearchOverlay(false)">
-      <template v-if="isCasino || isSports" #left>
-        <VDropdown :distance="6" @show="onPopperShow" @hide="onPopperHide">
-          <button class="tips">
-            <span>{{ gameLabel }}</span>
-            <BaseIcon :name="`uni-arrow-${isPopperShow ? 'up' : 'down'}-big`" />
-          </button>
-          <template #popper>
-            <div
-              v-for="t, i in gameTypeList" :key="i" v-close-popper class="popper-option"
-              @click="selectGameType(t.value)"
-            >
-              {{ t.label }}
+  <div style="height: 60px;">
+    <Transition name="fade">
+      <div v-show="!isSwitching">
+        <div v-if="!isFullScreen" class="header" :class="{ 'is-small': !isExpand }">
+          <div class="button" @click="onClick">
+            <BaseIcon name="uni-menu" />
+          </div>
+          <div class="game-type">
+            <div class="casino" @click="router.push('/casino')">
+              <span>娱乐城</span>
             </div>
-          </template>
-        </VDropdown>
-      </template>
-    </BaseSearch>
+            <div class="sports" @click="router.push('/sports')">
+              <span>体育</span>
+            </div>
+          </div>
+        </div>
+        <div v-else class="search">
+          <BaseSearch v-model="searchValue" clearable @focus="setShowSearchOverlay" @clear="setShowSearchOverlay(false)">
+            <template v-if="isCasino || isSports" #left>
+              <VDropdown :distance="6" @show="onPopperShow" @hide="onPopperHide">
+                <button class="tips">
+                  <span>{{ gameLabel }}</span>
+                  <BaseIcon :name="`uni-arrow-${isPopperShow ? 'up' : 'down'}-big`" />
+                </button>
+                <template #popper>
+                  <div
+                    v-for="t, i in gameTypeList" :key="i" v-close-popper class="popper-option"
+                    @click="selectGameType(t.value)"
+                  >
+                    {{ t.label }}
+                  </div>
+                </template>
+              </VDropdown>
+            </template>
+          </BaseSearch>
+        </div>
+      </div>
+    </Transition>
   </div>
 
-  <div v-if="!isCasino && !isSports" class="buttons">
+  <div v-if="isFullScreen && !isCasino && !isSports" class="buttons">
     <BaseAspectRatio ratio="3.5/1">
       <div class="casino" @click="router.push('/casino')">
         <span>娱乐城</span>
@@ -304,11 +311,11 @@ function onCloseKeyword(k: string) {
         :sport-esports="sportEsports" :sport-game-list="sportGameList" :sport-odd-type="sportOddType"
       />
     </Transition>
-    <Transition name="slide-fade">
+    <!-- <Transition name="slide-fade">
       <div v-if="!isExpand">
         <AppSidebarSmall :menu-data="[staticMenu1, staticMenu2]" />
       </div>
-    </Transition>
+    </Transition> -->
   </div>
 
   <!-- 搜索区 -->
@@ -336,6 +343,15 @@ function onCloseKeyword(k: string) {
 </template>
 
 <style lang='scss' scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
 .slide-fade-enter-active {
   animation: slide-fade-in 0.5s ease-in-out;
 }

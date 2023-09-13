@@ -23,7 +23,7 @@ interface Props {
   sportOddType: MenuItem[]
   isFullScreen: boolean
   currentType: string
-  isSwitching: boolean
+  isSwitching?: boolean
 }
 const props = defineProps<Props>()
 const route = useRoute()
@@ -44,7 +44,7 @@ function handleClickItem() { }
 
 <template>
   <div class="big-warp">
-    <div ref="innerRef" class="inner-content scroll-y scroll-contain" :class="{ 'is-full-screen': isFullScreen }" :style="{ overflowY: isSwitching ? 'hidden' : 'auto' }">
+    <div ref="innerRef" class="scroll-y inner-content scroll-contain" :class="{ 'is-full-screen': isFullScreen }" :style="{ overflowY: isSwitching ? 'hidden' : 'auto' }">
       <!-- Casino -->
       <template v-if="isFullScreen ? isGameTypeCasino : isCasino">
         <div class="menu-box">

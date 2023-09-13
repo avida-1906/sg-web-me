@@ -4,7 +4,7 @@ interface Props {
   isFixedSmall: boolean
   isFixed: boolean
   isFullScreen: boolean
-  isSwitching: boolean
+  isSwitching?: boolean
 }
 const props = defineProps<Props>()
 const emit = defineEmits(['update:modelValue'])

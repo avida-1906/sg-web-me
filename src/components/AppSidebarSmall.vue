@@ -10,13 +10,14 @@ type Menu = Array<MenuItem>
 
 interface Props {
   menuData: Array<any>
+  isSwitching?: boolean
 }
 
 withDefaults(defineProps<Props>(), {})
 </script>
 
 <template>
-  <section class="scrollY tg-app-sidebar-small">
+  <section class="scrollY tg-app-sidebar-small" :style="{ overflowY: isSwitching ? 'hidden' : 'auto' }">
     <ul v-for="menu, idx in menuData" :key="idx" class="tiny-menu flex-col-center">
       <li v-for="menuitem in menu" :key="menuitem.title" class="flex-col-center tiny-menu-item">
         <template v-if="menuitem.list && menuitem.list.length">

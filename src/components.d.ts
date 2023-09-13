@@ -12,6 +12,7 @@ declare module 'vue' {
     AppFooter: typeof import('./components/AppFooter.vue')['default']
     AppHeader: typeof import('./components/AppHeader.vue')['default']
     AppLeftSidebar: typeof import('./components/AppLeftSidebar.vue')['default']
+    AppLeftSidebarTiny: typeof import('./components/AppLeftSidebarTiny.vue')['default']
     AppSidebarBig: typeof import('./components/AppSidebarBig.vue')['default']
     AppSidebarSmall: typeof import('./components/AppSidebarSmall.vue')['default']
     BaseAccordion: typeof import('./components/BaseAccordion.vue')['default']
