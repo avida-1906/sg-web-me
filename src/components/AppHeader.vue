@@ -31,7 +31,7 @@ const searchValue = ref()
     <div class="header-middle">
       <VDropdown :distance="6">
         <div class="wallet">
-          <BaseButton type="text" size="md">
+          <BaseButton type="text" size="sm">
             <span class="wallet-number">0.00000000</span>
             <BaseIcon class="coin" name="coin-btc" />
             <BaseIcon class="arrow" name="header-arrow-down" />
@@ -61,7 +61,7 @@ const searchValue = ref()
           </div>
         </template>
       </VDropdown>
-      <BaseButton class="wallet-right-btn" size="md" bg-style="primary">
+      <BaseButton class="wallet-right-btn" size="sm" bg-style="primary">
         <BaseIcon name="header-wallet" class="icon-size" />
       </BaseButton>
     </div>
@@ -136,6 +136,7 @@ const searchValue = ref()
       font-weight: var(--tg-font-weight-semibold);
       padding-left: 10px;
       .icon-search{
+        --tg-icon-color: var(--tg-text-white);
         font-size: var(--tg-font-size-xl);
       }
     }
@@ -146,7 +147,7 @@ const searchValue = ref()
   flex-direction: column;
   max-width: 100vw;
   .popper-top{
-    padding: 12px 20px;
+    padding: 8px 20px 12px;
     .top-search{
       max-width: 180px;
     }
@@ -154,9 +155,18 @@ const searchValue = ref()
   .popper-content{
     max-height: 300px;
     overflow: auto;
-    color: var(--, #05080A);
+    color: var(--tg-text-dark);
     font-size: var(--tg-font-size-default);
     font-weight: 500;
+    .scroll-light::-webkit-scrollbar-thumb {
+      background: var(--tg-secondary-light);
+    }
+    .scrollY::-webkit-scrollbar-thumb, .scrollX::-webkit-scrollbar-thumb {
+      border-radius: var(--tg-radius-lg);
+    }
+    .scrollY::-webkit-scrollbar {
+      width: 1px;
+    }
     .content-row{
       display: flex;
       justify-content: space-between;
@@ -164,7 +174,7 @@ const searchValue = ref()
       padding:6px 12px;
       cursor: pointer;
       &:hover{
-        background-color: #b1bad3;
+        background-color: var(--tg-secondary-light);
       }
       .balance-type{
         display: flex;
