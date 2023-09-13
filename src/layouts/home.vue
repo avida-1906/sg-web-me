@@ -23,7 +23,7 @@ const widthBoundaryXl = ref(1200)
 const widthBoundaryMd = ref(768)
 // 左侧是否展开
 // const leftIsExpand = ref(false)
-const leftIsExpand = useDebouncedRef({ value: false, delay: 300, beforeTrigger, afterTrigger })
+const leftIsExpand = useDebouncedRef({ value: false, delay: 250, beforeTrigger, afterTrigger })
 const isSwitching = ref(false)
 
 function beforeTrigger() {
