@@ -16,6 +16,9 @@ const cssVars = {
   '--leftOffset': leftOffset,
   '--rightOffset': rightOffset,
 }
+const showTitle = computed(() => {
+  return useSlots().default
+})
 </script>
 
 <template>
@@ -28,7 +31,7 @@ const cssVars = {
     :style="cssVars"
   >
     <div class="base-divider-line base-divider-line-left" />
-    <div class="base-divider-title">
+    <div v-if="showTitle" class="base-divider-title">
       <slot />
     </div>
     <div class="base-divider-line base-divider-line-right" />
@@ -48,7 +51,7 @@ const cssVars = {
     white-space: nowrap;
     &-line {
         width: 100%;
-        height: var(--tg-border-width-default);
+        height: var(--tg-border-width-sm);
         border: none;
         background-color: var(--tg-secondary-main);
     }

@@ -133,6 +133,11 @@ function setRightSidebarExpandStatus() {
           <span style="color: red;font-size: 28px;">{{ isSwitching }}</span>
         </div>
       </div>
+      <footer class="footer">
+        <AppContent>
+          <AppFooter />
+        </AppContent>
+      </footer>
     </div>
     <div
       v-if="rightIsExpand" ref="rightSidebar" class="right-sidebar" :class="{
@@ -226,6 +231,9 @@ function setRightSidebarExpandStatus() {
       align-items: center;
       flex-direction: column;
     }
+  }
+  &>.footer{
+    background-color: var(--tg-secondary-dark);
   }
 }
 
