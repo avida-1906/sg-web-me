@@ -7,6 +7,7 @@ interface Props {
   loading?: boolean
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
   shadow?: boolean
+  fontSize?: string
 }
 
 withDefaults(defineProps<Props>(), {
@@ -24,7 +25,7 @@ withDefaults(defineProps<Props>(), {
     <div v-if="loading" class="loading">
       <BaseIcon name="chess-frame2" class="ani-roll" />
     </div>
-    <div v-else class="content">
+    <div v-else class="content" :style="{ fontSize: fontSize ? `var(--tg-spacing-${fontSize})` : '' }">
       <slot />
     </div>
   </button>

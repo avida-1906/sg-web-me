@@ -35,3 +35,6 @@ focus
 
 blur
 >失去焦点
+
+clear
+>清空

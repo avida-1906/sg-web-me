@@ -11,7 +11,7 @@ withDefaults(defineProps<Props>(), {
   placeHolder: 'Search...',
   shape: 'round',
 })
-const emit = defineEmits(['update:modelValue', 'input', 'search', 'focus', 'blur'])
+const emit = defineEmits(['update:modelValue', 'input', 'search', 'focus', 'blur', 'clear'])
 
 function onInput(event: any) {
   const v = event.target.value
@@ -33,6 +33,7 @@ function onSearch() {
 }
 function onClear() {
   emit('update:modelValue', '')
+  emit('clear')
 }
 </script>
 
@@ -48,7 +49,7 @@ function onClear() {
         @blur="onBlur" @focus="onFocus"
       >
 
-      <div v-if="clearable && modelValue" class="clear-icon" @click="onClear">
+      <div v-if="clearable" class="clear-icon" @click="onClear">
         <BaseIcon v-if="whiteStyle" name="uni-close" />
         <BaseIcon v-else name="uni-close-white" />
       </div>
