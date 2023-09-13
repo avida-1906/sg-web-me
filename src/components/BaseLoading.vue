@@ -69,6 +69,7 @@
   background-position: center center;
   background-size: 14px auto;
   transform-origin: center;
+  filter: invert(1);
   &.type1 {
     background-image: var(--type1-small);
     animation-name: svgChange1;
