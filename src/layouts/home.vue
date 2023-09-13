@@ -130,7 +130,6 @@ function setRightSidebarExpandStatus() {
       <div class="scroll-y scrollable">
         <div>
           <RouterView />
-          <span style="color: red;font-size: 28px;">{{ isSwitching }}</span>
         </div>
       </div>
     </div>
