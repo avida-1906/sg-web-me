@@ -6,6 +6,23 @@
 // withDefaults(defineProps<Props>(), {
 
 // })
+const userMenu = ref([
+  { id: 1, icon: 'navbar-wallet', title: '钱包' },
+  { id: 2, icon: 'navbar-cart', title: '保险库' },
+  { id: 3, icon: 'spt-airbonus', title: 'VIP' },
+  { id: 4, icon: 'spt-affiliate-pro', title: '联盟计划' },
+  { id: 5, icon: 'uni-trend', title: '统计数据' },
+  { id: 6, icon: 'tabbar-bet', title: '交易记录' },
+  { id: 7, icon: 'spt-basketball', title: '体育投注' },
+  { id: 8, icon: 'uni-set', title: '设置' },
+  { id: 9, icon: 'spt-secure', title: 'Stake安全' },
+  { id: 10, icon: 'chess-online-support', title: '在线支持' },
+  { id: 11, icon: 'uni-logout', title: '登出' },
+])
+const newsMenu = ref([
+  { id: 1, icon: 'chess-discuss', title: '聊天室' },
+  { id: 2, icon: 'spt-user-bet', title: '投注单' },
+])
 </script>
 
 <template>
@@ -21,15 +38,39 @@
         <BaseIcon class="icon-search" name="header-search" />
         <span>搜索</span>
       </BaseButton>
-      <BaseButton type="text">
-        <BaseIcon class="icon-size" name="header-user" />
-      </BaseButton>
+      <VDropdown :distance="6">
+        <BaseButton type="text">
+          <BaseIcon class="icon-size" name="header-user" />
+        </BaseButton>
+        <template #popper>
+          <div class="dropdown-popper">
+            <div v-for="item of userMenu" :key="item.id" class="menu-item">
+              <div class="menu-btn">
+                <BaseIcon class="icon-size" :name="item.icon" />
+                <span>{{ item.title }}</span>
+              </div>
+            </div>
+          </div>
+        </template>
+      </VDropdown>
       <BaseButton type="text">
         <BaseIcon class="icon-size" name="header-notice" />
       </BaseButton>
-      <BaseButton type="text">
-        <BaseIcon class="icon-size" name="header-news" />
-      </BaseButton>
+      <VDropdown :distance="6">
+        <BaseButton type="text">
+          <BaseIcon class="icon-size" name="header-news" />
+        </BaseButton>
+        <template #popper>
+          <div class="dropdown-popper">
+            <div v-for="item of newsMenu" :key="item.id" class="menu-item">
+              <div class="menu-btn">
+                <BaseIcon class="icon-size" :name="item.icon" />
+                <span>{{ item.title }}</span>
+              </div>
+            </div>
+          </div>
+        </template>
+      </VDropdown>
     </div>
   </div>
 </template>
@@ -42,32 +83,6 @@
   align-items: center;
   .icon-size{
     font-size: var(--tg-font-size-md);
-  }
-  .header-middle{
-    .wallet{
-      background-color: var(--tg-secondary-dark);
-      border-radius: var( --tg-radius-sm) 0px 0px var( --tg-radius-sm);
-      box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.10) inset, 0px -1px 2px 0px rgba(0, 0, 0, 0.10) inset;
-      .coin{
-        font-size: var(--tg-font-size-md);
-        margin-left: 5px;
-      }
-      .arrow{
-        font-size: var(--tg-font-size-md);
-        margin-left: 8px;
-      }
-    }
-    .wallet-number{
-      line-height: 1;
-      color:var(--tg-text-white);
-      font-size: var(--tg-font-size-default);
-      font-style: normal;
-      font-weight: 500;
-    }
-    .wallet-right-btn{
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
-    }
   }
   .header-right{
     display: flex;
@@ -91,67 +106,26 @@
   }
 }
 .dropdown-popper{
-  display: flex;
-  flex-direction: column;
-  max-width: 100vw;
-  .popper-top{
-    padding: 8px 20px 12px;
-    .top-search{
-      max-width: 180px;
-    }
+  --tg-icon-color: var(--tg-primary-main);
+  font-size: var(--tg-font-size-default);
+  font-weight: var(--tg-font-weight-semibold);
+  .icon-size{
+    font-size: var(--tg-font-size-md);
+    margin-right: 5px;
   }
-  .popper-content{
-    max-height: 300px;
-    overflow: auto;
-    color: var(--tg-text-dark);
-    font-size: var(--tg-font-size-default);
-    font-weight: 500;
-    .scroll-light::-webkit-scrollbar-thumb {
-      background: var(--tg-secondary-light);
+  .menu-item{
+    cursor: pointer;
+    padding: var(--tg-spacing-button-padding-vertical-s) var(--tg-spacing-button-padding-horizontal-xs);
+    &:hover{
+      background-color: var(--tg-secondary-light);
     }
-    .scrollY::-webkit-scrollbar-thumb, .scrollX::-webkit-scrollbar-thumb {
-      border-radius: var(--tg-radius-lg);
-    }
-    .scrollY::-webkit-scrollbar {
-      width: 1px;
-    }
-    .content-row{
+    .menu-btn{
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding:6px 12px;
-      cursor: pointer;
-      &:hover{
-        background-color: var(--tg-secondary-light);
-      }
-      .balance-type{
-        display: flex;
-        align-items: center;
-      }
-      .coin{
-        font-size: var(--tg-font-size-md);
-        margin-right: 5px;
-      }
+    }
+    .menu-btn:active{
+      transform: scale(0.95);
     }
   }
-  .popper-bottom{
-    border-radius: 0px 0px 4px 4px;
-    background: rgba(177, 186, 211, 0.30);
-    .bottom-btn{
-      width: 100%;
-      color: var(--tg-text-dark);
-      font-size: var(--tg-font-size-default);
-      font-weight: 500;
-      padding: var(--tg-spacing-button-padding-vertical-s) 0 !important;
-      span{
-        line-height: 1;
-      }
-    }
-    .icon-wallet-set{
-      font-size: var(--tg-font-size-md);
-      margin-right: 5px;
-    }
-  }
-
 }
 </style>
