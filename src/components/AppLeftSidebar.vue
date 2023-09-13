@@ -249,7 +249,7 @@ function onCloseKeyword(k: string) {
 
 <template>
   <!-- 头部菜单或搜索栏 -->
-  <div style="height: 60px;">
+  <div style="height: var(--tg-sidebar-width-sm);">
     <Transition name="fade">
       <div v-show="!isSwitching">
         <div v-if="!isFullScreen" class="header" :class="{ 'is-small': !isExpand }">
@@ -308,7 +308,7 @@ function onCloseKeyword(k: string) {
         v-if="isExpand || isFullScreen" :current-type="gameType" :is-full-screen="isFullScreen"
         :casino-menu="casinoMenu" :casino-game-list="casinoGameList" :casino-game-provider="casinoGameProvider"
         :static-menu1="staticMenu1" :static-menu2="staticMenu2" :sports-menu="sportsMenu" :sport-hot-games="sportHotGames"
-        :sport-esports="sportEsports" :sport-game-list="sportGameList" :sport-odd-type="sportOddType"
+        :sport-esports="sportEsports" :sport-game-list="sportGameList" :sport-odd-type="sportOddType" :is-switching="isSwitching"
       />
     </Transition>
     <!-- <Transition name="slide-fade">
@@ -343,44 +343,6 @@ function onCloseKeyword(k: string) {
 </template>
 
 <style lang='scss' scoped>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-.slide-fade-enter-active {
-  animation: slide-fade-in 0.5s ease-in-out;
-}
-
-.slide-fade-leave-active {
-  // animation: slide-fade-in 0.5s linear;
-  opacity: 0;
-}
-
-@keyframes slide-fade-in {
-  0% {
-    transform: translate(0, 100px);
-    opacity: 0;
-  }
-
-  70% {
-    opacity: 0;
-  }
-
-  80% {
-    opacity: 0.7;
-  }
-
-  100% {
-    transform: translate(0, 0);
-    opacity: 1;
-  }
-}
-
 .content {
   overflow: hidden;
 }

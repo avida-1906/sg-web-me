@@ -230,6 +230,14 @@ body {
   box-shadow: var(--tg-box-shadow-lg);
 }
 
+// 大小菜单的宽度
+:root {
+  --tg-sidebar-width-lg: 240px;
+  --tg-sidebar-width-sm: 60px;
+  --tg-sidebar-width-lg-n: -240px;
+  --tg-sidebar-width-sm-n: -60px;
+}
+
 
 @media screen and (min-width: 768px) {
   #app {

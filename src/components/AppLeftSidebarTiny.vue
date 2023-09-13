@@ -279,51 +279,13 @@ const searchValue = ref('')
   <div class="content scrollY">
     <Transition name="slide-fade">
       <div v-if="!isExpand">
-        <AppSidebarSmall :menu-data="[staticMenu1, staticMenu2]" />
+        <AppSidebarSmall :menu-data="[staticMenu1, staticMenu2]" :is-switching="isSwitching" />
       </div>
     </Transition>
   </div>
 </template>
 
 <style lang='scss' scoped>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-.slide-fade-enter-active {
-  animation: slide-fade-in 0.5s ease-in-out;
-}
-
-.slide-fade-leave-active {
-  // animation: slide-fade-in 0.5s linear;
-  opacity: 0;
-}
-
-@keyframes slide-fade-in {
-  0% {
-    transform: translate(0, 100px);
-    opacity: 0;
-  }
-
-  70% {
-    opacity: 0;
-  }
-
-  80% {
-    opacity: 0.7;
-  }
-
-  100% {
-    transform: translate(0, 0);
-    opacity: 1;
-  }
-}
-
 .content {
   overflow: hidden;
 }

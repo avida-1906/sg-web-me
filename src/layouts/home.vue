@@ -42,9 +42,9 @@ const isFixedSmall = computed(() => width.value > widthBoundaryMd.value)
 const isFixed = computed(() => width.value < widthBoundaryXl.value)
 const isFullScreen = computed(() => width.value <= widthBoundaryMd.value)
 // 左侧侧边栏宽度
-const leftSidebarWidth = computed(() => {
-  return `${leftIsExpand.value ? 240 : 60}px`
-})
+// const leftSidebarWidth = computed(() => {
+//   return `${leftIsExpand.value ? 240 : 60}px`
+// })
 
 // home-overlay 是否显示
 const homeOverlayIsShow = computed(() => {
@@ -79,7 +79,7 @@ function setRightSidebarExpandStatus() {
       <div
         v-if="leftIsExpand || isFullScreen || isSwitching"
         class="left-sidebar" :style="{
-          '--width': '240px',
+          '--width': 'var(--tg-sidebar-width-lg)',
         }" :class="{
           'fixed-small': isFixedSmall,
           'fixed': isFixed,
@@ -96,7 +96,7 @@ function setRightSidebarExpandStatus() {
       <div
         v-if="(!leftIsExpand && !isFullScreen) || isSwitching"
         class="left-sidebar small-side" :style="{
-          '--width': '60px',
+          '--width': 'var(--tg-sidebar-width-sm)',
         }" :class="{
           'fixed-small': isFixedSmall,
           'fixed': isFixed,
@@ -149,97 +149,7 @@ function setRightSidebarExpandStatus() {
   </main>
 </template>
 
-<style>
-:root {
-  --tg-sidebar-width-lg: 240px;
-  --tg-sidebar-width-sm: 60px;
-}
-</style>
-
 <style scoped lang="scss">
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.3s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-
-.smallslide-fade-left-enter-active {
-  // animation: smallslide-fade-left-in 0.3s ease-in-out;
-  opacity: 0;
-  margin-left: -60px;
-  transition: all 0.3s linear;
-}
-.smallslide-fade-left-leave-active {
-  // animation: smallslide-fade-left-out 0.01s ease-in-out;
-  opacity: 0;
-  margin-left: -60px;
-  position: relative;
-  z-index: -2;
-}
-
-@keyframes smallslide-fade-left-in {
-  0% {
-    // margin-left: 0px;
-    opacity: 0;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    // margin-left: 0;
-    opacity: 1;
-  }
-}
-
-@keyframes smallslide-fade-left-out {
-  0% {
-    margin-left: 0;
-  }
-  100% {
-    margin-left: -60px;
-  }
-}
-
-.bigslide-fade-left-enter-active {
-  animation: bigslide-fade-left-in 0.3s linear;
-}
-.bigslide-fade-left-leave-active {
-  animation: bigslide-fade-left-out 0.3s linear;
-  margin-left: -60px;
-}
-@keyframes bigslide-fade-left-out {
-  0% {
-    // transform: translateX(0);
-    margin-left: -60px;
-  }
-  20% {
-    // transform: translateX(-120px);
-    margin-left: -180px;
-  }
-  100% {
-    // transform: translateX(-240px);
-    margin-left: -240px;
-  }
-}
-@keyframes bigslide-fade-left-in {
-  0% {
-    // transform: translateX(0);
-    margin-left: -240px;
-  }
-  50% {
-    // transform: translateX(-120px);
-    margin-left: -180px;
-  }
-  100% {
-    // transform: translateX(-240px);
-    margin-left: 0;
-  }
-}
-
 .wrap {
   display: flex;
   width: 100%;
