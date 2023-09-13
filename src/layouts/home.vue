@@ -72,7 +72,7 @@ function setRightSidebarExpandStatus() {
 </script>
 
 <template>
-  <main class="wrap">
+  <main class="wrap" :class="{ 'is-switching': isSwitching }">
     <div v-if="homeOverlayIsShow" class="home-overlay" @click="leftIsExpand = !leftIsExpand" />
     <div v-if="width < widthBoundaryXl && width > widthBoundaryMd" class="small-size-padding" />
     <Transition name="bigslide-fade-left">
@@ -150,6 +150,13 @@ function setRightSidebarExpandStatus() {
 </template>
 
 <style scoped lang="scss">
+.wrap.is-switching {
+  .left-sidebar.small-side {
+    position: relative;
+    margin-left: -60px;
+    z-index: -2;
+  }
+}
 .wrap {
   display: flex;
   width: 100%;

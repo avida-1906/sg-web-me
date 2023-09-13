@@ -82,7 +82,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <Transition name="slide-fade">
+  <Transition name="notify-slide-fade">
     <section
       v-if="show"
       class="tg-base-notify"
@@ -116,21 +116,21 @@ onMounted(() => {
 </template>
 
 <style lang="scss" scoped>
-.slide-fade-enter-active {
+.notify-slide-fade-enter-active {
   transition: all 0.3s ease-out;
   opacity: 1;
 }
 
-.slide-fade-leave-active {
+.notify-slide-fade-leave-active {
   transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
   opacity: 1;
 }
 
-.slide-fade-enter-from {
+.notify-slide-fade-enter-from {
   transform: translateX(20px);
   opacity: 0;
 }
-.slide-fade-leave-to {
+.notify-slide-fade-leave-to {
   transform: translateX(20px);
   opacity: 0;
 }
