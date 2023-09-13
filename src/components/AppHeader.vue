@@ -2,22 +2,7 @@
 // interface Props {
 
 // }
-const currency = ref([
-  { balance: '0.000000000', icon: 'coin-btc', text: 'BTC' },
-  { balance: '0.000000000', icon: 'coin-btc', text: 'BTC' },
-  { balance: '0.000000000', icon: 'coin-btc', text: 'BTC' },
-  { balance: '0.000000000', icon: 'coin-btc', text: 'BTC' },
-  { balance: '0.000000000', icon: 'coin-btc', text: 'BTC' },
-  { balance: '0.000000000', icon: 'coin-btc', text: 'BTC' },
-  { balance: '0.000000000', icon: 'coin-btc', text: 'BTC' },
-  { balance: '0.000000000', icon: 'coin-btc', text: 'BTC' },
-  { balance: '0.000000000', icon: 'coin-btc', text: 'BTC' },
-  { balance: '0.000000000', icon: 'coin-btc', text: 'BTC' },
-  { balance: '0.000000000', icon: 'coin-btc', text: 'BTC' },
-  { balance: '0.000000000', icon: 'coin-btc', text: 'BTC' },
-])
 
-const searchValue = ref()
 // withDefaults(defineProps<Props>(), {
 
 // })
@@ -29,41 +14,7 @@ const searchValue = ref()
       <BaseLogo mode="svg" svg-name="app-logo" />
     </BaseAspectRatio>
     <div class="header-middle">
-      <VDropdown :distance="6">
-        <div class="wallet">
-          <BaseButton type="text" size="sm">
-            <span class="wallet-number">0.00000000</span>
-            <BaseIcon class="coin" name="coin-btc" />
-            <BaseIcon class="arrow" name="header-arrow-down" />
-          <!-- <BaseIcon name="uni-arrow-up-big" /> -->
-          </BaseButton>
-        </div>
-        <template #popper>
-          <div class="dropdown-popper">
-            <div class="popper-top">
-              <BaseSearch v-model="searchValue" class="top-search" clearable :white-style="true" place-holder="搜索货币" />
-            </div>
-            <div class="popper-content">
-              <div v-for="item of currency" :key="item.text" class="content-row">
-                <div>{{ item.balance }}</div>
-                <div class="balance-type">
-                  <BaseIcon class="coin" name="coin-btc" />
-                  <span>{{ item.text }}</span>
-                </div>
-              </div>
-            </div>
-            <div class="popper-bottom">
-              <BaseButton type="text" class="bottom-btn">
-                <BaseIcon class="icon-wallet-set" name="wallet-set" />
-                <span>钱包设置</span>
-              </BaseButton>
-            </div>
-          </div>
-        </template>
-      </VDropdown>
-      <BaseButton class="wallet-right-btn" size="sm" bg-style="primary">
-        <BaseIcon name="header-wallet" class="icon-size" />
-      </BaseButton>
+      <BaseWallet />
     </div>
     <div class="header-right">
       <BaseButton type="text" class="search-btn">
@@ -93,9 +44,6 @@ const searchValue = ref()
     font-size: var(--tg-font-size-md);
   }
   .header-middle{
-    display: flex;
-    align-items: center;
-    justify-content: center;
     .wallet{
       background-color: var(--tg-secondary-dark);
       border-radius: var( --tg-radius-sm) 0px 0px var( --tg-radius-sm);
@@ -187,13 +135,17 @@ const searchValue = ref()
     }
   }
   .popper-bottom{
-    // border-radius: 0px 0px 4px 4px;
+    border-radius: 0px 0px 4px 4px;
     background: rgba(177, 186, 211, 0.30);
     .bottom-btn{
       width: 100%;
-      color: #05080A;
+      color: var(--tg-text-dark);
       font-size: var(--tg-font-size-default);
       font-weight: 500;
+      padding: var(--tg-spacing-button-padding-vertical-s) 0 !important;
+      span{
+        line-height: 1;
+      }
     }
     .icon-wallet-set{
       font-size: var(--tg-font-size-md);
