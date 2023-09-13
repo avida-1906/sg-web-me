@@ -249,10 +249,10 @@ function onCloseKeyword(k: string) {
 
 <template>
   <!-- 头部菜单或搜索栏 -->
-  <div class="sidebar-top">
+  <div v-if="!isFullScreen" class="sidebar-top">
     <Transition name="fade">
       <div v-show="!isSwitching">
-        <div v-if="!isFullScreen" class="header" :class="{ 'is-small': !isExpand }">
+        <div class="header" :class="{ 'is-small': !isExpand }">
           <div class="button" @click="onClick">
             <BaseIcon name="uni-menu" />
           </div>
@@ -265,28 +265,28 @@ function onCloseKeyword(k: string) {
             </div>
           </div>
         </div>
-        <div v-else class="search">
-          <BaseSearch v-model="searchValue" clearable @focus="setShowSearchOverlay" @clear="setShowSearchOverlay(false)">
-            <template v-if="isCasino || isSports" #left>
-              <VDropdown :distance="6" @show="onPopperShow" @hide="onPopperHide">
-                <button class="tips">
-                  <span>{{ gameLabel }}</span>
-                  <BaseIcon :name="`uni-arrow-${isPopperShow ? 'up' : 'down'}-big`" />
-                </button>
-                <template #popper>
-                  <div
-                    v-for="t, i in gameTypeList" :key="i" v-close-popper class="popper-option"
-                    @click="selectGameType(t.value)"
-                  >
-                    {{ t.label }}
-                  </div>
-                </template>
-              </VDropdown>
-            </template>
-          </BaseSearch>
-        </div>
       </div>
     </Transition>
+  </div>
+  <div v-else class="search">
+    <BaseSearch v-model="searchValue" clearable @focus="setShowSearchOverlay" @clear="setShowSearchOverlay(false)">
+      <template v-if="isCasino || isSports" #left>
+        <VDropdown :distance="6" @show="onPopperShow" @hide="onPopperHide">
+          <button class="tips">
+            <span>{{ gameLabel }}</span>
+            <BaseIcon :name="`uni-arrow-${isPopperShow ? 'up' : 'down'}-big`" />
+          </button>
+          <template #popper>
+            <div
+              v-for="t, i in gameTypeList" :key="i" v-close-popper class="popper-option"
+              @click="selectGameType(t.value)"
+            >
+              {{ t.label }}
+            </div>
+          </template>
+        </VDropdown>
+      </template>
+    </BaseSearch>
   </div>
 
   <div v-if="isFullScreen && !isCasino && !isSports" class="buttons">
