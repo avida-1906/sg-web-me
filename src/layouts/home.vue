@@ -22,7 +22,16 @@ const widthBoundaryXl = ref(1200)
 // 宽度边界 768
 const widthBoundaryMd = ref(768)
 // 左侧是否展开
-const leftIsExpand = ref(false)
+// const leftIsExpand = ref(false)
+const leftIsExpand = useDebouncedRef({ value: false, delay: 300, beforeTrigger, afterTrigger })
+const isSwitching = ref(false)
+
+function beforeTrigger() {
+  isSwitching.value = true
+}
+function afterTrigger() {
+  isSwitching.value = false
+}
 // 右侧是否展开
 const rightIsExpand = ref(false)
 const rightContainerIs0 = ref(true)
@@ -66,20 +75,40 @@ function setRightSidebarExpandStatus() {
   <main class="wrap">
     <div v-if="homeOverlayIsShow" class="home-overlay" @click="leftIsExpand = !leftIsExpand" />
     <div v-if="width < widthBoundaryXl && width > widthBoundaryMd" class="small-size-padding" />
-    <div
-      class="left-sidebar" :style="{
-        '--width': leftSidebarWidth,
-      }" :class="{
-        'fixed-small': isFixedSmall,
-        'fixed': isFixed,
-        'full-screen': isFullScreen,
-      }"
-    >
-      <AppLeftSidebar
-        v-model="leftIsExpand" :is-fixed-small="isFixedSmall" :is-fixed="isFixed"
-        :is-full-screen="isFullScreen"
-      />
-    </div>
+    <Transition name="bigslide-fade-left">
+      <div
+        v-if="leftIsExpand || isFullScreen || isSwitching"
+        class="left-sidebar" :style="{
+          '--width': '240px',
+        }" :class="{
+          'fixed-small': isFixedSmall,
+          'fixed': isFixed,
+          'full-screen': isFullScreen,
+        }"
+      >
+        <AppLeftSidebar
+          v-model="leftIsExpand" :is-fixed-small="isFixedSmall" :is-fixed="isFixed"
+          :is-full-screen="isFullScreen" :is-switching="isSwitching"
+        />
+      </div>
+    </Transition>
+    <Transition name="smallslide-fade-left">
+      <div
+        v-if="(!leftIsExpand && !isFullScreen) || isSwitching"
+        class="left-sidebar small-side" :style="{
+          '--width': '60px',
+        }" :class="{
+          'fixed-small': isFixedSmall,
+          'fixed': isFixed,
+          'full-screen': isFullScreen,
+        }"
+      >
+        <AppLeftSidebarTiny
+          v-model="leftIsExpand" :is-fixed-small="isFixedSmall" :is-fixed="isFixed"
+          :is-full-screen="isFullScreen" :is-switching="isSwitching"
+        />
+      </div>
+    </Transition>
 
     <div class="main-content">
       <header class="navigation">
@@ -98,9 +127,10 @@ function setRightSidebarExpandStatus() {
           </div> -->
         </AppContent>
       </header>
-      <div class="scrollable scroll-y">
+      <div class="scroll-y scrollable">
         <div>
           <RouterView />
+          <span style="color: red;font-size: 28px;">{{ isSwitching }}</span>
         </div>
       </div>
     </div>
@@ -119,7 +149,97 @@ function setRightSidebarExpandStatus() {
   </main>
 </template>
 
+<style>
+:root {
+  --tg-sidebar-width-lg: 240px;
+  --tg-sidebar-width-sm: 60px;
+}
+</style>
+
 <style scoped lang="scss">
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.smallslide-fade-left-enter-active {
+  // animation: smallslide-fade-left-in 0.3s ease-in-out;
+  opacity: 0;
+  margin-left: -60px;
+  transition: all 0.3s linear;
+}
+.smallslide-fade-left-leave-active {
+  // animation: smallslide-fade-left-out 0.01s ease-in-out;
+  opacity: 0;
+  margin-left: -60px;
+  position: relative;
+  z-index: -2;
+}
+
+@keyframes smallslide-fade-left-in {
+  0% {
+    // margin-left: 0px;
+    opacity: 0;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    // margin-left: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes smallslide-fade-left-out {
+  0% {
+    margin-left: 0;
+  }
+  100% {
+    margin-left: -60px;
+  }
+}
+
+.bigslide-fade-left-enter-active {
+  animation: bigslide-fade-left-in 0.3s linear;
+}
+.bigslide-fade-left-leave-active {
+  animation: bigslide-fade-left-out 0.3s linear;
+  margin-left: -60px;
+}
+@keyframes bigslide-fade-left-out {
+  0% {
+    // transform: translateX(0);
+    margin-left: -60px;
+  }
+  20% {
+    // transform: translateX(-120px);
+    margin-left: -180px;
+  }
+  100% {
+    // transform: translateX(-240px);
+    margin-left: -240px;
+  }
+}
+@keyframes bigslide-fade-left-in {
+  0% {
+    // transform: translateX(0);
+    margin-left: -240px;
+  }
+  50% {
+    // transform: translateX(-120px);
+    margin-left: -180px;
+  }
+  100% {
+    // transform: translateX(-240px);
+    margin-left: 0;
+  }
+}
+
 .wrap {
   display: flex;
   width: 100%;
@@ -142,11 +262,12 @@ function setRightSidebarExpandStatus() {
 .left-sidebar {
   width: var(--width);
   background-color: var(--tg-secondary-dark);
-  transition: width 0.3s ease-in-out, top .2s ease-in-out;
+  // transition: width 0.3s ease-in-out, top .2s ease-in-out;
   z-index: var(--tg-z-index-20);
   height: 100%;
   display: flex;
   flex-direction: column;
+  will-change: margin-left;
 
   &.fixed {
     position: fixed;
