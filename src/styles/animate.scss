@@ -127,11 +127,11 @@
   opacity: 0;
 }
 .slide-fade-enter-active {
-  animation: slide-fade-in 0.5s ease-in-out;
+  animation: slide-fade-in 0.4s ease-in-out;
 }
 
 .slide-fade-leave-active {
-  // animation: slide-fade-in 0.2s linear;
+  // animation: slide-fade-in 0.4s linear;
   opacity: 0;
 }
 
