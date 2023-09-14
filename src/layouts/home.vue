@@ -168,7 +168,7 @@ function setRightSidebarExpandStatus() {
 .home-overlay {
   position: fixed;
   inset: 0;
-  background-color: #{rgba($color: var(--tg-color-opacity-grey-rgb), $alpha: 0.7)};
+  background-color: #{rgba($color: var(--tg-color-grey-rgb), $alpha: 0.7)};
   z-index: var(--tg-z-index-10);
 }
 
