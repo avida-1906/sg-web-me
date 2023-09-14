@@ -326,7 +326,7 @@ function onCloseKeyword(k: string) {
           <span v-show="searchValue.length < 3">需要至少 3 个字符来进行搜索。</span>
           <span>未找到结果。</span>
         </div>
-        <div class="recent">
+        <div v-if="recentKeyword.length" class="recent">
           <div class="title">
             <label>近期搜索</label>
             <BaseButton type="text" font-size="14" @click="recentKeyword.length = 0">
