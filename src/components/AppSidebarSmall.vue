@@ -20,24 +20,19 @@ withDefaults(defineProps<Props>(), {})
   <section class="scrollY tg-app-sidebar-small" :style="{ overflowY: isSwitching ? 'hidden' : 'auto' }">
     <ul v-for="menu, idx in menuData" :key="idx" class="tiny-menu flex-col-center">
       <li v-for="menuitem in menu" :key="menuitem.title" class="flex-col-center tiny-menu-item">
-        <template v-if="menuitem.list && menuitem.list.length">
-          <VMenu placement="top-start">
-            <div class="trigger">
-              <BaseIcon :name="menuitem.icon" />
-              <div class="flex-col-center arrow-right">
-                <BaseIcon name="uni-arrow-right" />
-              </div>
+        <VMenu placement="top">
+          <div class="trigger">
+            <BaseIcon :name="menuitem.icon" />
+            <div v-if="menuitem.list && menuitem.list.length" class="flex-col-center arrow-right">
+              <BaseIcon name="uni-arrow-right" />
             </div>
-            <template #popper>
-              <div class="tiny-menu-item-title">
-                {{ menuitem.title }}
-              </div>
-            </template>
-          </VMenu>
-        </template>
-        <template v-else>
-          <BaseIcon :name="menuitem.icon" />
-        </template>
+          </div>
+          <template #popper>
+            <div class="tiny-menu-item-title">
+              {{ menuitem.title }}
+            </div>
+          </template>
+        </VMenu>
       </li>
     </ul>
   </section>
@@ -49,6 +44,8 @@ withDefaults(defineProps<Props>(), {})
   font-size: var(--tg-font-size-default);
   font-weight: var(--tg-font-weight-semibold);
   padding: var(--tg-spacing-input-padding-vertical) var(--tg-spacing-button-padding-horizontal-xs);
+  text-align: center;
+  min-width: var(--tg-sidebar-width-sm);
 }
 </style>
 
