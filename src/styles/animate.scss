@@ -119,7 +119,7 @@
 
 .menu-fade-enter-active,
 .menu-fade-leave-active {
-  transition: opacity 0.25s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
 }
 
 .menu-fade-enter-from,
@@ -127,11 +127,11 @@
   opacity: 0;
 }
 .slide-fade-enter-active {
-  animation: slide-fade-in 0.5s ease-in-out;
+  animation: slide-fade-in 0.4s ease-in-out;
 }
 
 .slide-fade-leave-active {
-  // animation: slide-fade-in 0.25s linear;
+  // animation: slide-fade-in 0.4s linear;
   opacity: 0;
 }
 
@@ -158,10 +158,10 @@
 .smallslide-fade-left-enter-active {
   opacity: 0;
   margin-left: var(--tg-sidebar-width-sm-n);
-  animation: smallslide-fade-left-in 0.25s ease-in-out;
+  animation: smallslide-fade-left-in 0.2s ease-in-out;
 }
 .smallslide-fade-left-leave-active {
-  animation: smallslide-fade-left-out 0.25s ease-in-out;
+  animation: smallslide-fade-left-out 0.2s ease-in-out;
   opacity: 1;
   margin-left: 0;
   position: fixed;
@@ -190,10 +190,10 @@
 }
 
 .bigslide-fade-left-enter-active {
-  animation: bigslide-fade-left-in 0.25s ease-in-out;
+  animation: bigslide-fade-left-in 0.2s ease-in-out;
 }
 .bigslide-fade-left-leave-active {
-  animation: bigslide-fade-left-out 0.25s ease-in-out;
+  animation: bigslide-fade-left-out 0.2s ease-in-out;
   margin-left: 0;
   opacity: 1;
 }

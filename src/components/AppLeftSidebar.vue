@@ -1,11 +1,12 @@
 <script setup lang='ts'>
 interface Props {
   modelValue: boolean // 是否展开
-  isSwitching: boolean
+  isSwitching?: boolean
+  switchTo?: 'big' | 'small' | ''
 }
 const props = defineProps<Props>()
 const emit = defineEmits(['update:modelValue'])
-const isExpand = computed(() => props.modelValue)
+// const isExpand = computed(() => props.modelValue)
 const { isFullScreen } = storeToRefs(useWindowStore())
 
 function onClick() {
@@ -223,8 +224,8 @@ const staticMenu2 = [
   <!-- 头部菜单或搜索栏 -->
   <div v-if="!isFullScreen" class="sidebar-top">
     <Transition name="menu-fade">
-      <div v-show="!isSwitching">
-        <div class="header" :class="{ 'is-small': !isExpand }">
+      <template v-if="!isSwitching">
+        <div class="header">
           <div class="button" @click="onClick">
             <BaseIcon name="uni-menu" />
           </div>
@@ -237,7 +238,7 @@ const staticMenu2 = [
             </div>
           </div>
         </div>
-      </div>
+      </template>
     </Transition>
   </div>
   <AppGlobalSearch v-else @game-type-change="onGameTypeChange" />
@@ -258,23 +259,20 @@ const staticMenu2 = [
   <div class="content scrollY">
     <Transition name="slide-fade">
       <AppSidebarBig
-        v-if="isExpand || isFullScreen" :current-type="gameType"
+        v-if="switchTo !== 'big'"
+        :current-type="gameType"
         :casino-menu="casinoMenu" :casino-game-list="casinoGameList" :casino-game-provider="casinoGameProvider"
         :static-menu1="staticMenu1" :static-menu2="staticMenu2" :sports-menu="sportsMenu" :sport-hot-games="sportHotGames"
         :sport-esports="sportEsports" :sport-game-list="sportGameList" :sport-odd-type="sportOddType" :is-switching="isSwitching"
       />
     </Transition>
-    <!-- <Transition name="slide-fade">
-      <div v-if="!isExpand">
-        <AppSidebarSmall :menu-data="[staticMenu1, staticMenu2]" />
-      </div>
-    </Transition> -->
   </div>
 </template>
 
 <style lang='scss' scoped>
 .sidebar-top {
   height: var(--tg-sidebar-top-height-sm);
+  cursor: pointer;
 }
 .content {
   overflow: hidden;

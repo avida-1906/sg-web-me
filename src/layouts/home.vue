@@ -27,14 +27,20 @@ const {
 
 // 左侧是否展开
 // const leftIsExpand = ref(false)
-const leftIsExpand = useDebouncedRef({ value: false, delay: 250, beforeTrigger, afterTrigger })
+const leftIsExpand = useDebouncedRef({ value: false, delay: 200, beforeTrigger, afterTrigger })
 const isSwitching = ref(false)
+const switchTo = ref<'big' | 'small' | ''>('')
 
-function beforeTrigger() {
+function beforeTrigger(expand_cur: boolean) {
   isSwitching.value = true
+  if (expand_cur)
+    switchTo.value = 'small'
+  else
+    switchTo.value = 'big'
 }
 function afterTrigger() {
   isSwitching.value = false
+  switchTo.value = ''
 }
 // 右侧是否展开
 const rightIsExpand = ref(false)
@@ -86,7 +92,7 @@ function setRightSidebarExpandStatus() {
           'full-screen': isFullScreen,
         }"
       >
-        <AppLeftSidebar v-model="leftIsExpand" :is-switching="isSwitching" />
+        <AppLeftSidebar v-model="leftIsExpand" :is-switching="isSwitching" :switch-to="switchTo" />
       </div>
     </Transition>
     <Transition name="smallslide-fade-left">
@@ -100,9 +106,7 @@ function setRightSidebarExpandStatus() {
           'full-screen': isFullScreen,
         }"
       >
-        <AppLeftSidebarTiny
-          v-model="leftIsExpand" :is-switching="isSwitching"
-        />
+        <AppLeftSidebarTiny v-model="leftIsExpand" :is-switching="isSwitching" :switch-to="switchTo" />
       </div>
     </Transition>
 
