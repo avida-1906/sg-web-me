@@ -278,7 +278,7 @@ const searchValue = ref('')
 
   <div class="content scrollY">
     <Transition name="slide-fade">
-      <div v-if="!isExpand">
+      <div v-if="!isExpand && !isSwitching">
         <AppSidebarSmall :menu-data="[staticMenu1, staticMenu2]" :is-switching="isSwitching" />
       </div>
     </Transition>

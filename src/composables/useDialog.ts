@@ -22,10 +22,14 @@ export function useDialog({ title, icon, default: defaultSlot }: { title: string
   }
 
   function closeDialog() {
-    if (app.value)
+    if (app.value) {
       app.value.unmount()
-    if (div.value)
+      app.value = null
+    }
+    if (div.value) {
       div.value.remove()
+      div.value = null
+    }
   }
 
   return {

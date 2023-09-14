@@ -156,8 +156,7 @@ function setRightSidebarExpandStatus() {
 <style scoped lang="scss">
 .wrap.is-switching {
   .left-sidebar.small-side {
-    position: relative;
-    margin-left: -60px;
+    position: fixed;
     z-index: -2;
   }
 }

@@ -5,6 +5,7 @@ export type notifyType = 'set' | 'user' | 'email' | 'error' | 'success' | 'insur
 export function useNotify({ showClose, onClose }: { onClose?: () => void; showClose?: boolean } = {}) {
   const app = ref<any>({})
   const box = ref<any>({})
+  const notificationList = document.querySelector('#notificationList')
 
   const closeNotify = (uuid: string) => {
     if (app.value[uuid] && box.value[uuid]) {
@@ -19,7 +20,6 @@ export function useNotify({ showClose, onClose }: { onClose?: () => void; showCl
   }
 
   const openNotify = ({ type, icon, title, message, default: defaultSlot }: { type?: notifyType; icon?: string; title?: string | (() => Component); message?: string | (() => Component); default?: () => Component }) => {
-    const notificationList = document.querySelector('#notificationList')
     if (notificationList) {
       const uuid = getUuid()
       box.value[uuid] = document.createElement('div')
