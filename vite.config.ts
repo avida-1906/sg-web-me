@@ -10,6 +10,7 @@ import VueDevTools from 'vite-plugin-vue-devtools'
 import VueMacros from 'unplugin-vue-macros/vite'
 import WebfontDownload from 'vite-plugin-webfont-dl'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
+import { visualizer } from 'rollup-plugin-visualizer'
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd()) as unknown as ImportMetaEnv
@@ -29,6 +30,12 @@ export default defineConfig(({ mode }) => {
             include: [/\.vue$/, /\.md$/],
           }),
         },
+      }),
+
+      visualizer({
+        open: true,
+        gzipSize: true,
+        brotliSize: true,
       }),
 
       createSvgIconsPlugin({
@@ -127,6 +134,7 @@ export default defineConfig(({ mode }) => {
 
     build: {
       rollupOptions: {
+        external: /\.md$/,
         output: {
           manualChunks(id) {
             if (id.includes('main.scss'))

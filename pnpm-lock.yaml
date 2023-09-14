@@ -121,6 +121,9 @@ devDependencies:
   pnpm:
     specifier: ^8.6.7
     version: 8.6.7
+  rollup-plugin-visualizer:
+    specifier: ^5.9.2
+    version: 5.9.2(rollup@2.79.1)
   sass:
     specifier: ^1.66.1
     version: 1.66.1
@@ -9518,8 +9521,8 @@ packages:
       terser: 5.17.6
     dev: true
 
-  /rollup-plugin-visualizer@5.9.0(rollup@2.79.1):
-    resolution: {integrity: sha512-bbDOv47+Bw4C/cgs0czZqfm8L82xOZssk4ayZjG40y9zbXclNk7YikrZTDao6p7+HDiGxrN0b65SgZiVm9k1Cg==}
+  /rollup-plugin-visualizer@5.9.2(rollup@2.79.1):
+    resolution: {integrity: sha512-waHktD5mlWrYFrhOLbti4YgQCn1uR24nYsNuXxg7LkPH8KdTXVWR9DNY1WU0QqokyMixVXJS4J04HNrVTMP01A==}
     engines: {node: '>=14'}
     hasBin: true
     peerDependencies:
@@ -11014,7 +11017,7 @@ packages:
     hasBin: true
     dependencies:
       cac: 6.7.14
-      rollup-plugin-visualizer: 5.9.0(rollup@2.79.1)
+      rollup-plugin-visualizer: 5.9.2(rollup@2.79.1)
     transitivePeerDependencies:
       - rollup
     dev: true
