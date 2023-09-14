@@ -6,10 +6,10 @@
 interface Props {
   modelValue: boolean // 是否展开
   isSwitching?: boolean
+  switchTo?: 'big' | 'small' | ''
 }
 const props = defineProps<Props>()
 const emit = defineEmits(['update:modelValue'])
-const isExpand = computed(() => props.modelValue)
 const { isFullScreen } = storeToRefs(useWindowStore())
 
 function onClick() {
@@ -227,23 +227,23 @@ const searchValue = ref('')
 <template>
   <!-- 头部菜单或搜索栏 -->
   <div v-if="!isFullScreen" class="sidebar-tiny-top">
-    <Transition name="menu-fade">
-      <div v-show="!isSwitching">
-        <div class="header" :class="{ 'is-small': !isExpand }">
+    <div class="header is-small">
+      <Transition name="menu-fade">
+        <template v-if="!isSwitching">
           <div class="button" @click="onClick">
             <BaseIcon name="uni-menu" />
           </div>
-          <div class="game-type">
-            <div class="casino" @click="router.push('/casino')">
-              <span>娱乐城</span>
-            </div>
-            <div class="sports" @click="router.push('/sports')">
-              <span>体育</span>
-            </div>
-          </div>
+        </template>
+      </Transition>
+      <div v-if="!isSwitching" class="game-type">
+        <div class="casino" @click="router.push('/casino')">
+          <span>娱乐城</span>
+        </div>
+        <div class="sports" @click="router.push('/sports')">
+          <span>体育</span>
         </div>
       </div>
-    </Transition>
+    </div>
   </div>
   <div v-else class="search">
     <BaseSearch v-model="searchValue">
@@ -280,7 +280,7 @@ const searchValue = ref('')
 
   <div class="content scrollY">
     <Transition name="slide-fade">
-      <div v-if="!isExpand && !isSwitching">
+      <div v-if="!isSwitching">
         <AppSidebarSmall :menu-data="[staticMenu1, staticMenu2]" :is-switching="isSwitching" />
       </div>
     </Transition>
