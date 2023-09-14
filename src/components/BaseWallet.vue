@@ -17,21 +17,27 @@ const currency = ref([
   { balance: '0.000000000', icon: 'coin-btc', text: 'BTC' },
 ])
 
-const searchValue = ref()
+const searchValue = ref('')
 // withDefaults(defineProps<Props>(), {
 
 // })
 </script>
 
 <template>
-  <div class="base-wallet center">
+  <div class="base-wallet">
     <VDropdown :distance="6">
-      <div class="wallet">
-        <BaseButton type="text" size="sm">
-          <span class="wallet-number">0.00000000</span>
-          <BaseIcon class="coin" name="coin-btc" />
-          <BaseIcon class="arrow" name="header-arrow-down" />
-          <!-- <BaseIcon name="uni-arrow-up-big" /> -->
+      <div class="center">
+        <div class="wallet">
+          <BaseButton type="text" size="sm">
+            <span class="wallet-number">0.00000000</span>
+            <BaseIcon class="coin" name="coin-btc" />
+            <BaseIcon class="arrow" name="header-arrow-down" />
+            <!-- <BaseIcon class="arrow" name="uni-arrow-down" /> -->
+            <!-- <BaseIcon class="arrow" name="uni-arrow-up-big" /> -->
+          </BaseButton>
+        </div>
+        <BaseButton class="wallet-right-btn" size="sm" bg-style="primary" @click.stop>
+          <BaseIcon name="navbar-wallet" class="icon-size" />
         </BaseButton>
       </div>
       <template #popper>
@@ -57,9 +63,6 @@ const searchValue = ref()
         </div>
       </template>
     </VDropdown>
-    <BaseButton class="wallet-right-btn" size="sm" bg-style="primary">
-      <BaseIcon name="header-wallet" class="icon-size" />
-    </BaseButton>
   </div>
 </template>
 
@@ -95,6 +98,7 @@ const searchValue = ref()
     border-bottom-left-radius: 0;
   }
   .icon-size{
+    --tg-icon-color: var(--tg-text-white);
     font-size: var(--tg-font-size-md);
   }
 }
@@ -136,7 +140,7 @@ const searchValue = ref()
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 6px 12px;
+      padding: var(--tg-spacing-button-padding-vertical-s) var(--tg-spacing-button-padding-horizontal-xs);
       cursor: pointer;
 
       &:hover {

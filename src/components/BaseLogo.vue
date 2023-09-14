@@ -28,7 +28,7 @@ const props = withDefaults(defineProps<Props>(), {
   .icon-app-logo {
     width: 100%;
     height: 100%;
-    color: var(--tg-text-white) !important;
+    --tg-icon-color: var(--tg-text-white);
   }
 }
 .base-logo:active{
