@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-// interface Props {
+interface Props {
+  isFullScreen?: boolean
+}
 
-// }
-
-// withDefaults(defineProps<Props>(), {
-
-// })
+withDefaults(defineProps<Props>(), {
+  isFullScreen: false,
+})
 const userMenu = ref([
   { id: 1, icon: 'navbar-wallet', title: '钱包' },
   { id: 2, icon: 'navbar-cart', title: '保险库' },
@@ -34,7 +34,7 @@ const newsMenu = ref([
       <BaseWallet />
     </div>
     <div class="header-right">
-      <BaseButton type="text" class="search-btn">
+      <BaseButton v-show="!isFullScreen" type="text" class="search-btn">
         <BaseIcon class="icon-search" name="header-search" />
         <span>搜索</span>
       </BaseButton>
@@ -57,7 +57,7 @@ const newsMenu = ref([
         <BaseIcon class="icon-size" name="header-notice" />
       </BaseButton>
       <VDropdown :distance="6">
-        <BaseButton type="text">
+        <BaseButton v-show="!isFullScreen" type="text">
           <BaseIcon class="icon-size" name="header-news" />
         </BaseButton>
         <template #popper>
@@ -97,7 +97,8 @@ const newsMenu = ref([
       color:var(--tg-text-white);
       font-size: var(--tg-font-size-default);
       font-weight: var(--tg-font-weight-semibold);
-      padding-left: 10px;
+      // padding-top: var(--tg-spacing-button-padding-vertical-s) !important;
+      // padding-bottom: var(--tg-spacing-button-padding-vertical-s) !important;
       .icon-search{
         --tg-icon-color: var(--tg-text-white);
         font-size: var(--tg-font-size-xl);
@@ -115,16 +116,16 @@ const newsMenu = ref([
   }
   .menu-item{
     cursor: pointer;
-    padding: var(--tg-spacing-button-padding-vertical-s) var(--tg-spacing-button-padding-horizontal-xs);
     &:hover{
       background-color: var(--tg-secondary-light);
     }
     .menu-btn{
       display: flex;
       align-items: center;
+      padding: var(--tg-spacing-button-padding-vertical-s) var(--tg-spacing-button-padding-horizontal-xs);
     }
     .menu-btn:active{
-      transform: scale(0.95);
+      transform: scale(0.93);
     }
   }
 }

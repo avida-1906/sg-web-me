@@ -20,7 +20,6 @@ const props = withDefaults(defineProps<Props>(), {
 
 <style lang="scss" scoped>
 .base-logo {
-  display: inline-block;
   width: 100%;
   height: 100%;
   cursor: pointer;

@@ -2,6 +2,10 @@
 // interface Props {
 
 // }
+
+// withDefaults(defineProps<Props>(), {
+
+// })
 const currency = ref([
   { balance: '0.000000000', icon: 'coin-btc', text: 'BTC' },
   { balance: '0.000000000', icon: 'coin-btc', text: 'BTC' },
@@ -16,37 +20,44 @@ const currency = ref([
   { balance: '0.000000000', icon: 'coin-btc', text: 'BTC' },
   { balance: '0.000000000', icon: 'coin-btc', text: 'BTC' },
 ])
-
+// 搜索内容
 const searchValue = ref('')
-// withDefaults(defineProps<Props>(), {
+// 下拉搜索是否显示
+const showDrop = ref(false)
 
-// })
+function dropShow() {
+  showDrop.value = true
+}
+function dropHide() {
+  showDrop.value = false
+}
+function selectCurrency(item: any, hide: () => void) {
+  hide()
+}
 </script>
 
 <template>
   <div class="base-wallet">
-    <VDropdown :distance="6">
+    <VDropdown :distance="6" @apply-show="dropShow" @apply-hide="dropHide">
       <div class="center">
         <div class="wallet">
           <BaseButton type="text" size="sm">
             <span class="wallet-number">0.00000000</span>
             <BaseIcon class="coin" name="coin-btc" />
-            <BaseIcon class="arrow" name="header-arrow-down" />
-            <!-- <BaseIcon class="arrow" name="uni-arrow-down" /> -->
-            <!-- <BaseIcon class="arrow" name="uni-arrow-up-big" /> -->
+            <BaseIcon class="arrow" :class="{ 'arrow-up': showDrop }" name="header-arrow-down" />
           </BaseButton>
         </div>
         <BaseButton class="wallet-right-btn" size="sm" bg-style="primary" @click.stop>
           <BaseIcon name="navbar-wallet" class="icon-size" />
         </BaseButton>
       </div>
-      <template #popper>
+      <template #popper="{ hide }">
         <div class="dropdown-popper">
           <div class="popper-top">
-            <BaseSearch v-model="searchValue" class="top-search" clearable :white-style="true" place-holder="搜索货币" />
+            <BaseSearch v-model="searchValue" class="top-search" :clearable="searchValue?.length > 0" :white-style="true" place-holder="搜索货币" />
           </div>
-          <div class="popper-content">
-            <div v-for="item of currency" :key="item.text" class="content-row">
+          <div class="scroll-y popper-content">
+            <div v-for="item of currency" :key="item.text" class="content-row" @click.stop="selectCurrency(item, hide)">
               <div>{{ item.balance }}</div>
               <div class="balance-type">
                 <BaseIcon class="coin" name="coin-btc" />
@@ -83,6 +94,9 @@ const searchValue = ref('')
       font-size: var(--tg-font-size-md);
       margin-left: 8px;
     }
+    .arrow-up{
+      transform: rotate(180deg);
+    }
   }
 
   .wallet-number {
@@ -118,22 +132,13 @@ const searchValue = ref('')
 
   .popper-content {
     max-height: 20rem;
-    overflow: auto;
+    overflow-y: auto;
     color: var(--tg-text-dark);
     font-size: var(--tg-font-size-default);
     font-weight: 500;
 
-    .scroll-light::-webkit-scrollbar-thumb {
+    &::-webkit-scrollbar-thumb {
       background: var(--tg-secondary-light);
-    }
-
-    .scrollY::-webkit-scrollbar-thumb,
-    .scrollX::-webkit-scrollbar-thumb {
-      border-radius: var(--tg-radius-lg);
-    }
-
-    .scrollY::-webkit-scrollbar {
-      width: 1px;
     }
 
     .content-row {

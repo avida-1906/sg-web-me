@@ -113,7 +113,7 @@ function setRightSidebarExpandStatus() {
     <div class="main-content">
       <header class="navigation">
         <AppContent>
-          <AppHeader />
+          <AppHeader :is-full-screen="isFullScreen" />
           <!-- <div class="group">
             <div class="container">
               {{ $t('active_day_ago', { days: 10 }) }}
