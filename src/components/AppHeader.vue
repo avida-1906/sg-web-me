@@ -40,7 +40,7 @@ const newsMenu = ref([
       </BaseButton>
       <VDropdown :distance="6">
         <BaseButton type="text">
-          <BaseIcon class="icon-size" name="header-user" />
+          <BaseIcon class="icon-size" name="navbar-user" />
         </BaseButton>
         <template #popper>
           <div class="dropdown-popper">
@@ -54,7 +54,7 @@ const newsMenu = ref([
         </template>
       </VDropdown>
       <BaseButton type="text">
-        <BaseIcon class="icon-size" name="header-notice" />
+        <BaseIcon class="icon-size" name="navbar-notice" />
       </BaseButton>
       <VDropdown :distance="6">
         <BaseButton v-show="!isFullScreen" type="text">
@@ -90,6 +90,7 @@ const newsMenu = ref([
     align-items: center;
     justify-content: flex-end;
     flex-wrap: nowrap;
+    --tg-icon-color: var(--tg-text-white);
     span{
       margin-left: 5px;
     }
@@ -100,7 +101,6 @@ const newsMenu = ref([
       // padding-top: var(--tg-spacing-button-padding-vertical-s) !important;
       // padding-bottom: var(--tg-spacing-button-padding-vertical-s) !important;
       .icon-search{
-        --tg-icon-color: var(--tg-text-white);
         font-size: var(--tg-font-size-xl);
       }
     }

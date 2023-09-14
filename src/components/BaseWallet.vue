@@ -23,14 +23,14 @@ const currency = ref([
 // 搜索内容
 const searchValue = ref('')
 // 下拉搜索是否显示
-const showDrop = ref(false)
+const isMenuShown = ref(false)
 
-function dropShow() {
-  showDrop.value = true
-}
-function dropHide() {
-  showDrop.value = false
-}
+// function dropShow() {
+//   showDrop.value = true
+// }
+// function dropHide() {
+//   showDrop.value = false
+// }
 function selectCurrency(item: any, hide: () => void) {
   hide()
 }
@@ -38,13 +38,14 @@ function selectCurrency(item: any, hide: () => void) {
 
 <template>
   <div class="base-wallet">
-    <VDropdown :distance="6" @apply-show="dropShow" @apply-hide="dropHide">
+    <VDropdown v-model:shown="isMenuShown" :distance="6">
+      <!-- @apply-show="dropShow" @apply-hide="dropHide" -->
       <div class="center">
         <div class="wallet">
           <BaseButton type="text" size="sm">
             <span class="wallet-number">0.00000000</span>
             <BaseIcon class="coin" name="coin-btc" />
-            <BaseIcon class="arrow" :class="{ 'arrow-up': showDrop }" name="header-arrow-down" />
+            <BaseIcon class="arrow" :class="{ 'arrow-up': isMenuShown }" name="uni-arrow-down" />
           </BaseButton>
         </div>
         <BaseButton class="wallet-right-btn" size="sm" bg-style="primary" @click.stop>
@@ -91,11 +92,14 @@ function selectCurrency(item: any, hide: () => void) {
     }
 
     .arrow {
-      font-size: var(--tg-font-size-md);
+      font-size: var(--tg-font-size-xs);
       margin-left: 8px;
     }
     .arrow-up{
       transform: rotate(180deg);
+    }
+    &:hover .arrow{
+      --tg-icon-color: var(--tg-text-white);
     }
   }
 
