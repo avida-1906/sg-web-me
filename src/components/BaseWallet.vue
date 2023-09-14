@@ -8,43 +8,69 @@
 // })
 const currency = ref([
   { balance: '0.000000000', icon: 'coin-btc', text: 'BTC' },
-  { balance: '0.000000000', icon: 'coin-btc', text: 'BTC' },
-  { balance: '0.000000000', icon: 'coin-btc', text: 'BTC' },
-  { balance: '0.000000000', icon: 'coin-btc', text: 'BTC' },
-  { balance: '0.000000000', icon: 'coin-btc', text: 'BTC' },
-  { balance: '0.000000000', icon: 'coin-btc', text: 'BTC' },
-  { balance: '0.000000000', icon: 'coin-btc', text: 'BTC' },
-  { balance: '0.000000000', icon: 'coin-btc', text: 'BTC' },
-  { balance: '0.000000000', icon: 'coin-btc', text: 'BTC' },
-  { balance: '0.000000000', icon: 'coin-btc', text: 'BTC' },
-  { balance: '0.000000000', icon: 'coin-btc', text: 'BTC' },
-  { balance: '0.000000000', icon: 'coin-btc', text: 'BTC' },
+  { balance: '0.000000000', icon: 'coin-eth', text: 'ETH' },
+  { balance: '0.000000000', icon: 'coin-ltc', text: 'LTC' },
+  { balance: '0.000000000', icon: 'coin-usdt', text: 'USDT' },
+  { balance: '0.000000000', icon: 'coin-doge', text: 'DOGE' },
+  { balance: '0.000000000', icon: 'coin-bch', text: 'BCH' },
+  { balance: '0.000000000', icon: 'coin-xrp', text: 'XRP' },
+  { balance: '0.000000000', icon: 'coin-eos', text: 'EOS' },
+  { balance: '0.000000000', icon: 'coin-trx', text: 'TRX' },
+  { balance: '0.000000000', icon: 'coin-bnb', text: 'BNB' },
+  { balance: '0.000000000', icon: 'coin-usdc', text: 'USDC' },
+  { balance: '0.000000000', icon: 'coin-ape', text: 'APE' },
+  { balance: '0.000000000', icon: 'coin-busd', text: 'BUSD' },
+  { balance: '0.000000000', icon: 'coin-cro', text: 'CRO' },
+  { balance: '0.000000000', icon: 'coin-dai', text: 'DAI' },
+  { balance: '0.000000000', icon: 'coin-link', text: 'LINK' },
+  { balance: '0.000000000', icon: 'coin-sand', text: 'SAND' },
+  { balance: '0.000000000', icon: 'coin-shib', text: 'SHIB' },
+  { balance: '0.000000000', icon: 'coin-uni', text: 'UNI' },
+  { balance: '0.000000000', icon: 'coin-matic', text: 'MATIC' },
+  { balance: '0.00', icon: 'coin-eur', text: 'EUR' },
+  { balance: 'JP¥0.00', icon: 'coin-jpy', text: 'JPY' },
+  { balance: 'R$0.00', icon: 'coin-brl', text: 'BRL' },
+  { balance: 'CA$0.00', icon: 'coin-cad', text: 'CAD' },
+  { balance: '0.0', icon: 'coin-inr', text: 'INR' },
 ])
 // 搜索内容
 const searchValue = ref('')
 // 下拉搜索是否显示
 const isMenuShown = ref(false)
-
+// 当前选择币种
+const activeBalance = ref(currency.value[0])
 // function dropShow() {
 //   showDrop.value = true
 // }
-// function dropHide() {
-//   showDrop.value = false
-// }
+function dropHide() {
+  searchValue.value = ''
+}
 function selectCurrency(item: any, hide: () => void) {
   hide()
+  activeBalance.value = item
 }
+
+const getSearchBalance = computed(() => {
+  if (searchValue.value) {
+    return currency.value.filter((item) => {
+      return item.text.includes(searchValue.value.toLocaleUpperCase())
+    })
+  }
+  else {
+    return currency.value
+  }
+})
 </script>
 
 <template>
   <div class="base-wallet">
-    <VDropdown v-model:shown="isMenuShown" :distance="6">
-      <!-- @apply-show="dropShow" @apply-hide="dropHide" -->
+    <VDropdown v-model:shown="isMenuShown" :distance="6" @apply-hide="dropHide">
+      <!-- @apply-show="dropShow" -->
       <div class="center">
         <div class="wallet">
           <BaseButton type="text" size="sm">
-            <span class="wallet-number">0.00000000</span>
-            <BaseIcon class="coin" name="coin-btc" />
+            <span class="wallet-number">{{ activeBalance.balance }}</span>
+            <BaseIcon class="coin" :name="activeBalance.icon" />
             <BaseIcon class="arrow" :class="{ 'arrow-up': isMenuShown }" name="uni-arrow-down" />
           </BaseButton>
         </div>
@@ -58,12 +84,12 @@ function selectCurrency(item: any, hide: () => void) {
             <BaseSearch v-model="searchValue" class="top-search" :clearable="searchValue?.length > 0" :white-style="true" place-holder="搜索货币" />
           </div>
           <div class="scroll-y popper-content">
-            <div v-for="item of currency" :key="item.text" class="content-row" @click.stop="selectCurrency(item, hide)">
-              <div>{{ item.balance }}</div>
-              <div class="balance-type">
-                <BaseIcon class="coin" name="coin-btc" />
-                <span>{{ item.text }}</span>
+            <div v-for="item of getSearchBalance" :key="item.text" class="content-row" @click.stop="selectCurrency(item, hide)">
+              <div class="balance-num">
+                {{ item.balance }}
               </div>
+              <BaseIcon class="coin" :name="item.icon" />
+              <span>{{ item.text }}</span>
             </div>
           </div>
           <div class="popper-bottom">
@@ -147,7 +173,6 @@ function selectCurrency(item: any, hide: () => void) {
 
     .content-row {
       display: flex;
-      justify-content: space-between;
       align-items: center;
       padding: var(--tg-spacing-button-padding-vertical-s) var(--tg-spacing-button-padding-horizontal-xs);
       cursor: pointer;
@@ -155,10 +180,8 @@ function selectCurrency(item: any, hide: () => void) {
       &:hover {
         background-color: var(--tg-secondary-light);
       }
-
-      .balance-type {
-        display: flex;
-        align-items: center;
+      .balance-num{
+        width: 14ch;
       }
 
       .coin {
