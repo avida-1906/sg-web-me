@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const { isFullScreen } = storeToRefs(useWindowStore())
+const { isFullScreen, isFixed } = storeToRefs(useWindowStore())
 const userMenu = ref([
   { id: 1, icon: 'navbar-wallet', title: '钱包' },
   { id: 2, icon: 'navbar-cart', title: '保险库' },
@@ -32,7 +32,7 @@ const showSearchBar = ref(false)
     <div class="header-right">
       <BaseButton v-show="!isFullScreen" type="text" class="search-btn" @click="showSearchBar = true">
         <BaseIcon class="icon-search" name="header-search" />
-        <span>搜索</span>
+        <span v-show="!isFixed">搜索</span>
       </BaseButton>
       <VDropdown :distance="6">
         <BaseButton type="text">
