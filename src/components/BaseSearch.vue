@@ -87,9 +87,9 @@ function onClear() {
     align-items: center;
   }
 
-  .search-icon {
-    margin-right: var(--tg-spacing-5);
-  }
+  // .search-icon {
+  //   margin-right: var(--tg-spacing-5);
+  // }
 
   .clear-icon {
     font-size: var(--tg-font-size-default);
@@ -112,6 +112,7 @@ function onClear() {
     background-color: transparent;
     padding: var(--tg-spacing-input-padding-vertical) var(--tg-spacing-input-padding-horizontal);
     font-size: var(--tg-font-size-default);
+    line-height: 1;
     // color: var(--tg-text-white);
 
     &::placeholder {

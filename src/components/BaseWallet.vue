@@ -39,17 +39,19 @@ const searchValue = ref('')
 const isMenuShown = ref(false)
 // 当前选择币种
 const activeBalance = ref(currency.value[0])
-// function dropShow() {
-//   showDrop.value = true
-// }
-function dropHide() {
+//
+function dropShow() {
   searchValue.value = ''
 }
+// function dropHide() {
+//   searchValue.value = ''
+// }
+// 选择币种
 function selectCurrency(item: any, hide: () => void) {
   hide()
   activeBalance.value = item
 }
-
+// 搜索币种
 const getSearchBalance = computed(() => {
   if (searchValue.value) {
     return currency.value.filter((item) => {
@@ -64,8 +66,8 @@ const getSearchBalance = computed(() => {
 
 <template>
   <div class="base-wallet">
-    <VDropdown v-model:shown="isMenuShown" :distance="6" @apply-hide="dropHide">
-      <!-- @apply-show="dropShow" -->
+    <VDropdown v-model:shown="isMenuShown" :distance="6" @apply-show="dropShow">
+      <!-- @apply-hide="dropHide" -->
       <div class="center">
         <div class="wallet">
           <BaseButton type="text" size="sm">
@@ -90,6 +92,9 @@ const getSearchBalance = computed(() => {
               </div>
               <BaseIcon class="coin" :name="item.icon" />
               <span>{{ item.text }}</span>
+            </div>
+            <div v-show="!getSearchBalance.length" class="balance-not">
+              无法使用货币
             </div>
           </div>
           <div class="popper-bottom">
@@ -188,6 +193,10 @@ const getSearchBalance = computed(() => {
         font-size: var(--tg-font-size-md);
         margin-right: 5px;
       }
+    }
+    .balance-not{
+      text-align: center;
+      padding: 3px 0 12px;
     }
   }
 
