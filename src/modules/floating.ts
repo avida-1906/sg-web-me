@@ -75,7 +75,7 @@ export const config: FloatingVueConfig = {
       popperTriggers: ['hover', 'focus'],
       delay: {
         show: 0,
-        hide: 200,
+        hide: 0,
       },
     },
   },
