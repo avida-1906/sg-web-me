@@ -180,7 +180,7 @@ function setRightSidebarExpandStatus() {
   background-color: var(--tg-secondary-dark);
   // transition: width 0.3s ease-in-out, top .2s ease-in-out;
   z-index: var(--tg-z-index-20);
-  height: calc(100% - var(--tg-header-height));
+  height: 100%;
   display: flex;
   flex-direction: column;
   will-change: margin-left;
@@ -197,6 +197,7 @@ function setRightSidebarExpandStatus() {
     width: 100%;
     top: var(--tg-header-height);
     padding-bottom: var(--tg-footer-height);
+    height: calc(100% - var(--tg-header-height));
   }
 
   &.fixed-small {
