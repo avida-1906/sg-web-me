@@ -119,7 +119,7 @@
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .app-footer {
   /* background-color: #0F212E; */
   display: grid;
