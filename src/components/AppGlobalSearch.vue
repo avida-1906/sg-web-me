@@ -145,6 +145,7 @@ const casinoList = ref([])
   position: absolute;
   left: 0;
   top: 73px;
+  z-index: 5;
 
   .warp {
     max-height: 400px;
