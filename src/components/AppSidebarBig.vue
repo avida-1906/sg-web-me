@@ -21,11 +21,11 @@ interface Props {
   sportEsports: MenuItem[]
   sportGameList: MenuItem[]
   sportOddType: MenuItem[]
-  isFullScreen: boolean
   currentType: string
   isSwitching?: boolean
 }
 const props = defineProps<Props>()
+const { isFullScreen } = storeToRefs(useWindowStore())
 const route = useRoute()
 const isCasino = computed(() => route.name === 'casino')
 const isSports = computed(() => route.name === 'sports')

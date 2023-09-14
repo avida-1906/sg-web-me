@@ -86,10 +86,7 @@ function setRightSidebarExpandStatus() {
           'full-screen': isFullScreen,
         }"
       >
-        <AppLeftSidebar
-          v-model="leftIsExpand" :is-fixed-small="isFixedSmall" :is-fixed="isFixed"
-          :is-full-screen="isFullScreen" :is-switching="isSwitching"
-        />
+        <AppLeftSidebar v-model="leftIsExpand" :is-switching="isSwitching" />
       </div>
     </Transition>
     <Transition name="smallslide-fade-left">
@@ -113,7 +110,7 @@ function setRightSidebarExpandStatus() {
     <div class="main-content">
       <header class="navigation">
         <AppContent>
-          <AppHeader :is-full-screen="isFullScreen" />
+          <AppHeader />
           <!-- <div class="group">
             <div class="container">
               {{ $t('active_day_ago', { days: 10 }) }}

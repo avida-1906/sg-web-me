@@ -1,14 +1,12 @@
 <script setup lang='ts'>
 interface Props {
   modelValue: boolean // 是否展开
-  isFixedSmall: boolean
-  isFixed: boolean
-  isFullScreen: boolean
   isSwitching: boolean
 }
 const props = defineProps<Props>()
 const emit = defineEmits(['update:modelValue'])
 const isExpand = computed(() => props.modelValue)
+const { isFullScreen } = storeToRefs(useWindowStore())
 
 function onClick() {
   emit('update:modelValue', !props.modelValue)
@@ -260,7 +258,7 @@ const staticMenu2 = [
   <div class="content scrollY">
     <Transition name="slide-fade">
       <AppSidebarBig
-        v-if="isExpand || isFullScreen" :current-type="gameType" :is-full-screen="isFullScreen"
+        v-if="isExpand || isFullScreen" :current-type="gameType"
         :casino-menu="casinoMenu" :casino-game-list="casinoGameList" :casino-game-provider="casinoGameProvider"
         :static-menu1="staticMenu1" :static-menu2="staticMenu2" :sports-menu="sportsMenu" :sport-hot-games="sportHotGames"
         :sport-esports="sportEsports" :sport-game-list="sportGameList" :sport-odd-type="sportOddType" :is-switching="isSwitching"

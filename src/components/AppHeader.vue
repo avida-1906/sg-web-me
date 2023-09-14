@@ -1,11 +1,5 @@
 <script lang="ts" setup>
-interface Props {
-  isFullScreen?: boolean
-}
-
-withDefaults(defineProps<Props>(), {
-  isFullScreen: false,
-})
+const { isFullScreen } = storeToRefs(useWindowStore())
 const userMenu = ref([
   { id: 1, icon: 'navbar-wallet', title: '钱包' },
   { id: 2, icon: 'navbar-cart', title: '保险库' },
