@@ -10,6 +10,7 @@ declare module 'vue' {
     AppContent: typeof import('./components/AppContent.vue')['default']
     AppDemoCard: typeof import('./components/AppDemoCard.vue')['default']
     AppFooter: typeof import('./components/AppFooter.vue')['default']
+    AppGlobalSearch: typeof import('./components/AppGlobalSearch.vue')['default']
     AppHeader: typeof import('./components/AppHeader.vue')['default']
     AppLeftSidebar: typeof import('./components/AppLeftSidebar.vue')['default']
     AppLeftSidebarTiny: typeof import('./components/AppLeftSidebarTiny.vue')['default']

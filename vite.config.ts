@@ -52,6 +52,7 @@ export default defineConfig(({ mode }) => {
           'vue-i18n',
           '@vueuse/head',
           '@vueuse/core',
+          'pinia',
           {
             'big.js': ['Big'],
             'vee-validate': ['useField'], // https://vee-validate.logaretm.com/v4/api/use-field/

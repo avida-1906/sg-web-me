@@ -16,11 +16,15 @@
         包含聊天室
         投注单
  */
+const {
+  widthBoundaryXl,
+  widthBoundaryMd,
+  width,
+  isFixed,
+  isFixedSmall,
+  isFullScreen,
+} = storeToRefs(useWindowStore())
 
-// 宽度边界 1200
-const widthBoundaryXl = ref(1200)
-// 宽度边界 768
-const widthBoundaryMd = ref(768)
 // 左侧是否展开
 // const leftIsExpand = ref(false)
 const leftIsExpand = useDebouncedRef({ value: false, delay: 250, beforeTrigger, afterTrigger })
@@ -37,10 +41,6 @@ const rightIsExpand = ref(false)
 const rightContainerIs0 = ref(true)
 const rightSidebar = ref<HTMLElement | null>(null)
 
-const { width } = useWindowSize()
-const isFixedSmall = computed(() => width.value > widthBoundaryMd.value)
-const isFixed = computed(() => width.value < widthBoundaryXl.value)
-const isFullScreen = computed(() => width.value <= widthBoundaryMd.value)
 // 左侧侧边栏宽度
 // const leftSidebarWidth = computed(() => {
 //   return `${leftIsExpand.value ? 240 : 60}px`

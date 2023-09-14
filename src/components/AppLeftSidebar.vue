@@ -18,6 +18,11 @@ const router = useRouter()
 const route = useRoute()
 const isCasino = computed(() => route.name === 'casino')
 const isSports = computed(() => route.name === 'sports')
+// 搜索栏
+const gameType = ref(isCasino.value ? '1' : isSports.value ? '2' : '')
+function onGameTypeChange(v: string) {
+  gameType.value = v
+}
 
 // casino
 const casinoMenu = [
@@ -214,37 +219,6 @@ const staticMenu2 = [
     domId: 'static-menu-language',
   },
 ]
-
-// 搜索栏
-const gameType = ref(isCasino.value ? '1' : isSports.value ? '2' : '')
-const gameTypeList = [
-  { label: '娱乐城', value: '1' },
-  { label: '体育', value: '2' },
-]
-const gameLabel = computed(() => gameTypeList.find(a => a.value === gameType.value)?.label ?? '-')
-const isPopperShow = ref(false)
-function onPopperShow() {
-  isPopperShow.value = true
-}
-function onPopperHide() {
-  isPopperShow.value = false
-}
-function selectGameType(v: string) {
-  gameType.value = v
-}
-
-const showSearchOverlay = ref(false)
-const searchValue = ref('')
-function setShowSearchOverlay(v = true) {
-  showSearchOverlay.value = v
-}
-const recentKeyword = ref(['keyword 1', 'keyword 2', 'keyword 3', 'keyword 4', 'keyword 5'])
-function onClickKeyword(k: string) {
-  searchValue.value = k
-}
-function onCloseKeyword(k: string) {
-  recentKeyword.value.splice(recentKeyword.value.findIndex(t => t === k), 1)
-}
 </script>
 
 <template>
@@ -268,26 +242,7 @@ function onCloseKeyword(k: string) {
       </div>
     </Transition>
   </div>
-  <div v-else class="search">
-    <BaseSearch v-model="searchValue" clearable @focus="setShowSearchOverlay" @clear="setShowSearchOverlay(false)">
-      <template v-if="isCasino || isSports" #left>
-        <VDropdown :distance="6" @show="onPopperShow" @hide="onPopperHide">
-          <button class="tips">
-            <span>{{ gameLabel }}</span>
-            <BaseIcon :name="`uni-arrow-${isPopperShow ? 'up' : 'down'}-big`" />
-          </button>
-          <template #popper>
-            <div
-              v-for="t, i in gameTypeList" :key="i" v-close-popper class="popper-option"
-              @click="selectGameType(t.value)"
-            >
-              {{ t.label }}
-            </div>
-          </template>
-        </VDropdown>
-      </template>
-    </BaseSearch>
-  </div>
+  <AppGlobalSearch v-else @game-type-change="onGameTypeChange" />
 
   <div v-if="isFullScreen && !isCasino && !isSports" class="buttons">
     <BaseAspectRatio ratio="3.5/1">
@@ -317,29 +272,6 @@ function onCloseKeyword(k: string) {
       </div>
     </Transition> -->
   </div>
-
-  <!-- 搜索区 -->
-  <div v-show="showSearchOverlay" class="search-overlay" @click.self="setShowSearchOverlay(false)">
-    <div class="scroll-y warp">
-      <div class="no-result">
-        <div class="text">
-          <span v-show="searchValue.length < 3">需要至少 3 个字符来进行搜索。</span>
-          <span>未找到结果。</span>
-        </div>
-        <div v-if="recentKeyword.length" class="recent">
-          <div class="title">
-            <label>近期搜索</label>
-            <BaseButton type="text" font-size="14" @click="recentKeyword.length = 0">
-              清除搜索({{ recentKeyword.length }})
-            </BaseButton>
-          </div>
-          <div class="list">
-            <BaseTag v-for="t in recentKeyword" :key="t" :text="t" @click="onClickKeyword" @close="onCloseKeyword" />
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </template>
 
 <style lang='scss' scoped>
@@ -348,12 +280,6 @@ function onCloseKeyword(k: string) {
 }
 .content {
   overflow: hidden;
-}
-
-.search {
-  margin: var(--tg-spacing-16);
-  width: auto;
-  font-size: var(--tg-font-size-default);
 }
 
 .buttons {
@@ -401,28 +327,6 @@ function onCloseKeyword(k: string) {
     &:hover {
       background-image: url('/img/left-side-bar/sports_bg_active.png');
     }
-  }
-}
-
-.tips {
-  display: flex;
-  align-items: center;
-
-  span {
-    margin-right: var(--tg-spacing-8);
-  }
-
-  &:active {
-    transform: scale(0.95);
-  }
-}
-
-.popper-option {
-  cursor: pointer;
-  padding: var(--tg-spacing-button-padding-vertical-xs) var(--tg-spacing-button-padding-horizontal-xs);
-
-  &:hover {
-    background-color: var(--tg-secondary-light);
   }
 }
 
@@ -527,57 +431,6 @@ function onCloseKeyword(k: string) {
       height: 44px;
       flex: unset;
     }
-  }
-}
-
-.search-overlay {
-  width: 100%;
-  height: calc(100% - 73px);
-  background-color: var(--tg-secondary-dark);
-  color: var(--tg-secondary-light);
-  position: absolute;
-  margin-top: 73px;
-
-  .warp {
-    max-height: 400px;
-
-    padding: var(--tg-spacing-8) var(--tg-spacing-16) var(--tg-spacing-24);
-  }
-
-  .no-result {
-    display: flex;
-    flex-direction: column;
-    gap: var(--tg-spacing-32);
-    font-size: var(--tg-font-size-default);
-
-    .text {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      padding: var(--tg-spacing-8);
-      gap: var(--tg-spacing-8);
-    }
-
-    .recent {
-      display: flex;
-      flex-direction: column;
-      gap: var(--tg-spacing-16);
-
-      .title {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: var(--tg-spacing-8);
-        grid-row-gap: var(--tg-spacing-16);
-      }
-    }
-
   }
 }
 </style>
