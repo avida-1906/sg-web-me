@@ -13,10 +13,8 @@ export function useDebouncedRef({ value, delay = 500, beforeTrigger = () => {}, 
         beforeTrigger(value)
         timeout = setTimeout(() => {
           value = newValue
+          trigger()
           afterTrigger(value)
-          setTimeout(() => {
-            trigger()
-          }, 0)
         }, delay)
       },
     }

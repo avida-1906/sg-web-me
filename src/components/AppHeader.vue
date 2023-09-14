@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const { isFullScreen, isFixed } = storeToRefs(useWindowStore())
+const { isFullScreen, isFixed, width } = storeToRefs(useWindowStore())
 const userMenu = ref([
   { id: 1, icon: 'navbar-wallet', title: '钱包' },
   { id: 2, icon: 'navbar-cart', title: '保险库' },
@@ -23,8 +23,8 @@ const showSearchBar = ref(false)
 
 <template>
   <div class="app-header">
-    <BaseAspectRatio ratio="2/1" width="67px">
-      <BaseLogo mode="svg" svg-name="app-logo" />
+    <BaseAspectRatio ratio="2/1" style="max-width: 67px; min-width: 42px">
+      <BaseLogo :use-small="width < 400" />
     </BaseAspectRatio>
     <div class="header-middle">
       <BaseWallet />

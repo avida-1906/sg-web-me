@@ -83,7 +83,7 @@ function setRightSidebarExpandStatus() {
     <div v-if="width < widthBoundaryXl && width > widthBoundaryMd" class="small-size-padding" />
     <Transition name="bigslide-fade-left">
       <div
-        v-if="leftIsExpand || isFullScreen || isSwitching"
+        v-if="leftIsExpand || isSwitching"
         class="left-sidebar" :style="{
           '--width': 'var(--tg-sidebar-width-lg)',
         }" :class="{
@@ -97,7 +97,7 @@ function setRightSidebarExpandStatus() {
     </Transition>
     <Transition name="smallslide-fade-left">
       <div
-        v-if="(!leftIsExpand && !isFullScreen) || isSwitching"
+        v-if="!isFullScreen && (!leftIsExpand || isSwitching)"
         class="left-sidebar small-side" :style="{
           '--width': 'var(--tg-sidebar-width-sm)',
         }" :class="{
