@@ -227,7 +227,7 @@ const searchValue = ref('')
 <template>
   <!-- 头部菜单或搜索栏 -->
   <div v-if="!isFullScreen" class="sidebar-tiny-top">
-    <Transition name="fade">
+    <Transition name="menu-fade">
       <div v-show="!isSwitching">
         <div class="header" :class="{ 'is-small': !isExpand }">
           <div class="button" @click="onClick">
