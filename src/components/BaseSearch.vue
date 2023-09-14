@@ -7,11 +7,11 @@ interface Props {
   whiteStyle?: boolean
 }
 
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   placeHolder: 'Search...',
   shape: 'round',
 })
-const emit = defineEmits(['update:modelValue', 'input', 'search', 'focus', 'blur', 'clear'])
+const emit = defineEmits(['update:modelValue', 'input', 'search', 'focus', 'blur', 'clear', 'close'])
 
 function onInput(event: any) {
   const v = event.target.value
@@ -34,6 +34,8 @@ function onSearch() {
 function onClear() {
   emit('update:modelValue', '')
   emit('clear')
+  if (!props.modelValue)
+    emit('close')
 }
 </script>
 

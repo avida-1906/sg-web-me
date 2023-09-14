@@ -17,6 +17,8 @@ const newsMenu = ref([
   { id: 1, icon: 'chess-discuss', title: '聊天室' },
   { id: 2, icon: 'spt-user-bet', title: '投注单' },
 ])
+
+const showSearchBar = ref(false)
 </script>
 
 <template>
@@ -28,7 +30,7 @@ const newsMenu = ref([
       <BaseWallet />
     </div>
     <div class="header-right">
-      <BaseButton v-show="!isFullScreen" type="text" class="search-btn">
+      <BaseButton v-show="!isFullScreen" type="text" class="search-btn" @click="showSearchBar = true">
         <BaseIcon class="icon-search" name="header-search" />
         <span>搜索</span>
       </BaseButton>
@@ -66,6 +68,8 @@ const newsMenu = ref([
         </template>
       </VDropdown>
     </div>
+
+    <AppGlobalSearch v-if="showSearchBar" @close=" () => showSearchBar = false" />
   </div>
 </template>
 
@@ -75,6 +79,7 @@ const newsMenu = ref([
   grid-template-columns: 1fr auto 1fr;
   justify-content: center;
   align-items: center;
+  position: relative;
   .icon-size{
     font-size: var(--tg-font-size-md);
   }

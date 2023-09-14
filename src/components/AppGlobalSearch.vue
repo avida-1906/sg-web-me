@@ -1,9 +1,6 @@
 <script setup lang='ts'>
-// interface Props {
-// }
-// defineProps<Props>()
-const emit = defineEmits(['gameTypeChange'])
-
+const emit = defineEmits(['gameTypeChange', 'close'])
+const { isFullScreen } = storeToRefs(useWindowStore())
 const route = useRoute()
 const isCasino = computed(() => route.name === 'casino')
 const isSports = computed(() => route.name === 'sports')
@@ -26,11 +23,14 @@ function selectGameType(v: string) {
   emit('gameTypeChange', v)
 }
 
+// 搜索功能面板
 const showSearchOverlay = ref(false)
 const searchValue = ref('')
 function setShowSearchOverlay(v = true) {
   showSearchOverlay.value = v
 }
+
+// 近期搜索关键字
 const recentKeyword = ref(['keyword 1', 'keyword 2', 'keyword 3', 'keyword 4', 'keyword 5'])
 function onClickKeyword(k: string) {
   searchValue.value = k
@@ -39,16 +39,17 @@ function onCloseKeyword(k: string) {
   recentKeyword.value.splice(recentKeyword.value.findIndex(t => t === k), 1)
 }
 
+// 搜索结果
 const gameInfo = { id: 2, url: 'http://c.hiphotos.baidu.com/image/pic/item/30adcbef76094b36de8a2fe5a1cc7cd98d109d99.jpg', name: 'plynko' }
-function onGameItemClick() {}
+function onGameItemClick() { }
 // const casinoList = ref([gameInfo, gameInfo, gameInfo, gameInfo, gameInfo])
 const casinoList = ref([])
 </script>
 
 <template>
-  <div class="app-global-search">
-    <div v-show="showSearchOverlay" class="overlay" />
-    <BaseSearch v-model="searchValue" clearable @focus="setShowSearchOverlay" @clear="setShowSearchOverlay(false)">
+  <div class="app-global-search" :class="{ 'in-pc': !isFullScreen }">
+    <div v-show="!isFullScreen" class="overlay" @click="emit('close')" />
+    <BaseSearch v-model="searchValue" clearable @focus="setShowSearchOverlay" @clear="setShowSearchOverlay(false)" @close="emit('close')">
       <template v-if="isCasino || isSports" #left>
         <VDropdown :distance="6" @show="onPopperShow" @hide="onPopperHide">
           <button class="tips">
@@ -67,8 +68,8 @@ const casinoList = ref([])
       </template>
     </BaseSearch>
 
-    <!-- 搜索区 -->
-    <div v-show="showSearchOverlay" class="search-overlay" @click.self="setShowSearchOverlay(false)">
+    <!-- 搜索功能面板  -->
+    <div v-show="showSearchOverlay || !isFullScreen" class="search-overlay" @click.self="setShowSearchOverlay(false)">
       <div class="scroll-y warp">
         <div v-if="casinoList.length === 0" class="no-result">
           <div class="text">
@@ -103,7 +104,8 @@ const casinoList = ref([])
   width: auto;
   font-size: var(--tg-font-size-default);
 }
-.overlay{
+
+.overlay {
   position: fixed;
   width: 100%;
   height: 100%;
@@ -111,6 +113,7 @@ const casinoList = ref([])
   left: 0;
   background: rgba(26, 46, 56, 0.702);
 }
+
 .tips {
   display: flex;
   align-items: center;
@@ -182,10 +185,30 @@ const casinoList = ref([])
     }
 
   }
-  .result-casino{
+
+  .result-casino {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 10px 5px;
+  }
+}
+
+.in-pc {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-top: 57px;
+  margin: 0;
+  .search-overlay{
+    height: auto;
+    position: relative;
+    border-radius: var(--tg-radius-default);
+    z-index: 1450;
+    top:8px;
+    .warp{
+      padding: var(--tg-spacing-16);
+    }
   }
 }
 </style>
