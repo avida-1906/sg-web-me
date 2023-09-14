@@ -205,7 +205,6 @@ const casinoList = ref([])
     height: auto;
     position: relative;
     border-radius: var(--tg-radius-default);
-    z-index: 1450;
     top:8px;
     .warp{
       padding: var(--tg-spacing-16);

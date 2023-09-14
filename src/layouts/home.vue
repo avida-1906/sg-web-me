@@ -124,15 +124,13 @@ function setRightSidebarExpandStatus() {
         </AppContent>
       </header>
       <div class="scroll-y scrollable">
-        <div>
-          <RouterView />
-        </div>
+        <RouterView />
+        <footer class="footer">
+          <AppContent>
+            <AppFooter />
+          </AppContent>
+        </footer>
       </div>
-      <footer class="footer">
-        <AppContent>
-          <AppFooter />
-        </AppContent>
-      </footer>
     </div>
     <div
       v-if="rightIsExpand" ref="rightSidebar" class="right-sidebar" :class="{
