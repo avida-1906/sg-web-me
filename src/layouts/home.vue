@@ -168,8 +168,7 @@ function setRightSidebarExpandStatus() {
 .home-overlay {
   position: fixed;
   inset: 0;
-  // --tg-text-black,使用scss将变量透明度设置为0.5
-  background-color: var(--tg-black-0-5);
+  background-color: #{rgba($color: var(--tg-color-opacity-grey-rgb), $alpha: 0.7)};
   z-index: var(--tg-z-index-10);
 }
 

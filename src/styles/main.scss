@@ -31,7 +31,9 @@
 
   --tg-text-grey-button:var(--tg-secondary-light);
   /* 透明色 */
-  --tg-black-0-5: rgba(0, 0, 0, 0.5);
+  --tg-color-black-rgb: 0, 0, 0;
+  --tg-color-opacity-white-rgb: 255, 255, 255;
+  --tg-color-opacity-grey-rgb: 14,18,36;
 }
 
 :root {
