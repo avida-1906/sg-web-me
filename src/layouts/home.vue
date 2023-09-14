@@ -101,8 +101,7 @@ function setRightSidebarExpandStatus() {
         }"
       >
         <AppLeftSidebarTiny
-          v-model="leftIsExpand" :is-fixed-small="isFixedSmall" :is-fixed="isFixed"
-          :is-full-screen="isFullScreen" :is-switching="isSwitching"
+          v-model="leftIsExpand" :is-switching="isSwitching"
         />
       </div>
     </Transition>

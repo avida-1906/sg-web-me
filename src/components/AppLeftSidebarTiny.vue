@@ -1,14 +1,12 @@
 <script setup lang='ts' name="app-left-sidebar-tiny">
 interface Props {
   modelValue: boolean // 是否展开
-  isFixedSmall: boolean
-  isFixed: boolean
-  isFullScreen: boolean
   isSwitching?: boolean
 }
 const props = defineProps<Props>()
 const emit = defineEmits(['update:modelValue'])
 const isExpand = computed(() => props.modelValue)
+const { isFullScreen } = storeToRefs(useWindowStore())
 
 function onClick() {
   emit('update:modelValue', !props.modelValue)
