@@ -1,4 +1,8 @@
 <script setup lang='ts' name="app-left-sidebar-tiny">
+// 有右侧聊天投注的中间区域：672 1124
+// 正常时候的中间区域：638 1160
+// 右侧：992 （320/370）
+// 左侧：消失 / 768 - 1200 fixed（占位 60）/ 正常占位
 interface Props {
   modelValue: boolean // 是否展开
   isSwitching?: boolean
@@ -223,7 +227,7 @@ const searchValue = ref('')
 <template>
   <!-- 头部菜单或搜索栏 -->
   <div v-if="!isFullScreen" class="sidebar-tiny-top">
-    <Transition name="fade">
+    <Transition name="menu-fade">
       <div v-show="!isSwitching">
         <div class="header" :class="{ 'is-small': !isExpand }">
           <div class="button" @click="onClick">
