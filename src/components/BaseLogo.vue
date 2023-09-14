@@ -1,20 +1,15 @@
 <script setup lang="ts">
 interface Props {
-  mode: 'svg' | 'picture'
-  svgName?: string
-  url?: string
+  useSmall?: boolean
 }
-const props = withDefaults(defineProps<Props>(), {
-  mode: 'svg',
-  svgName: 'app-logo',
-  url: '',
+withDefaults(defineProps<Props>(), {
+  useSmall: false,
 })
 </script>
 
 <template>
   <div class="base-logo">
-    <BaseIcon v-if="props.mode === 'svg'" class="icon-app-logo" :name="props.svgName" />
-    <img v-else :src="props.url" loading="lazy" alt="">
+    <BaseIcon class="icon-app-logo" :name="useSmall ? 'app-logo-small' : 'app-logo'" />
   </div>
 </template>
 
