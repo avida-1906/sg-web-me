@@ -1,5 +1,5 @@
 import { an } from 'vitest/dist/types-198fd1d9'
-import type { LanguageEnum, LanguageCurrencyEnum } from './enums'
+import type { EnumLanguage, LanguageCurrencyEnum } from './enums'
 
 interface IUtils {
 }
@@ -8,7 +8,7 @@ interface IUtils {
  * Utils 函数参数
  */
 interface IUtilsConfig extends IUtils {
-  language: LanguageEnum
+  language: EnumLanguage
 }
 
 interface ILanguageConfig {
