@@ -69,7 +69,7 @@ const showSearchBar = ref(false)
       </VDropdown>
     </div>
 
-    <AppGlobalSearch v-if="showSearchBar" @close=" () => showSearchBar = false" />
+    <AppGlobalSearch v-if="showSearchBar && !isFullScreen" @close=" () => showSearchBar = false" />
   </div>
 </template>
 

@@ -130,6 +130,7 @@ const casinoList = ref([])
 .popper-option {
   cursor: pointer;
   padding: var(--tg-spacing-button-padding-vertical-xs) var(--tg-spacing-button-padding-horizontal-xs);
+  font-size:var(--tg-font-size-default);
 
   &:hover {
     background-color: var(--tg-secondary-light);
