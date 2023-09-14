@@ -128,6 +128,7 @@
   .footer-nav{
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(14ch,1fr));
+    /* grid-template-columns:repeat(6,1fr); */
     grid-gap: 1rem;
     color:var(--tg-secondary-light);
     font-size: var(--tg-font-size-default);
