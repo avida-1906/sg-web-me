@@ -1,30 +1,30 @@
 // casino
 const casinoMenu = [
-  { title: '收藏夹', path: '', icon: '', list: [], domId: '' },
-  { title: '近期游戏记录', path: '', icon: '', list: [], domId: '' },
-  { title: '挑战', path: '', icon: '', list: [], domId: '' },
+  { title: '收藏夹', path: '', icon: 'chess-star', list: [], domId: '' },
+  { title: '近期游戏记录', path: '', icon: 'chess-game-record', list: [], domId: '' },
+  { title: '挑战', path: '', icon: 'chess-challenge', list: [], domId: '' },
 ]
 const casinoGameList = [
-  { title: '老虎机', path: '', icon: '', list: [], domId: '' },
-  { title: '真人娱乐场', path: '', icon: '', list: [], domId: '' },
-  { title: '游戏节目', path: '', icon: '', list: [], domId: '' },
-  { title: '新游戏', path: '', icon: '', list: [], domId: '' },
-  { title: '新游戏', path: '', icon: '', list: [], domId: '' },
-  { title: '新游戏', path: '', icon: '', list: [], domId: '' },
+  { title: '老虎机', path: '', icon: 'chess-slot-machine', list: [], domId: '' },
+  { title: '真人娱乐场', path: '', icon: 'chess-live-casino', list: [], domId: '' },
+  { title: '游戏节目', path: '', icon: 'chess-gameshow', list: [], domId: '' },
+  { title: '新游戏', path: '', icon: 'chess-newgame', list: [], domId: '' },
+  { title: '可购买奖励回合', path: '', icon: 'chess-bonus-rounds', list: [], domId: '' },
+  { title: 'RTP 增强化', path: '', icon: 'chess-rtp', list: [], domId: '' },
 ]
-const casinoGameProvider = [{ title: '游戏提供商', path: '', icon: '', list: [], domId: '' }]
+const casinoGameProvider = [{ title: '游戏提供商', path: '', icon: 'chess-game-provider', list: [], domId: '' }]
 
 // sports
 const sportsMenu = [
-  { title: '滚球盘', path: '', icon: '', list: [], domId: '' },
-  { title: '即将开赛', path: '', icon: '', list: [], domId: '' },
-  { title: '我的投注', path: '', icon: '', list: [], domId: '' },
+  { title: '滚球盘', path: '', icon: 'spt-ball-plate', list: [], domId: '' },
+  { title: '即将开赛', path: '', icon: 'spt-timing', list: [], domId: '' },
+  { title: '我的投注', path: '', icon: 'spt-user-bet', list: [], domId: '' },
 ]
 const sportHotGames = [
   {
     title: '足球',
     path: '',
-    icon: '',
+    icon: 'spt-football-outline',
     list: [
       { title: '激斗峡谷', path: '', icon: '' },
       { title: '激斗峡谷', path: '', icon: '' },
@@ -36,7 +36,7 @@ const sportHotGames = [
   {
     title: '网球',
     path: '',
-    icon: '',
+    icon: 'spt-tennis-outline',
     list: [
       { title: '激斗峡谷', path: '', icon: '' },
       { title: '激斗峡谷', path: '', icon: '' },
@@ -48,7 +48,7 @@ const sportHotGames = [
   {
     title: '美式橄榄球',
     path: '',
-    icon: '',
+    icon: 'spt-baseball-outline',
     list: [
       { title: '激斗峡谷', path: '', icon: '' },
       { title: '激斗峡谷', path: '', icon: '' },
@@ -60,7 +60,7 @@ const sportHotGames = [
   {
     title: '棒球',
     path: '',
-    icon: '',
+    icon: 'spt-america',
     list: [
       { title: '激斗峡谷', path: '', icon: '' },
       { title: '激斗峡谷', path: '', icon: '' },
@@ -72,7 +72,7 @@ const sportHotGames = [
   {
     title: '篮球',
     path: '',
-    icon: '',
+    icon: 'spt-basketball',
     list: [
       { title: '激斗峡谷', path: '', icon: '' },
       { title: '激斗峡谷', path: '', icon: '' },
@@ -86,7 +86,7 @@ const sportEsports = [
   {
     title: '所有电子竞技',
     path: '',
-    icon: '',
+    icon: 'spt-all-esports',
     list: [
       { title: '彩虹六号', path: '', icon: '' },
       { title: '传说对决', path: '', icon: '' },
@@ -103,7 +103,7 @@ const sportGameList = [
   {
     title: '体育项目',
     path: '',
-    icon: '',
+    icon: 'spt-basketball',
     list: [
       { title: '澳洲足球', path: '', icon: '' },
       { title: '板球', path: '', icon: '' },
@@ -120,7 +120,7 @@ const sportOddType = [
   {
     title: '赔率：',
     path: '',
-    icon: '',
+    icon: 'chess-language',
     list: [
       { title: '小数式', path: '', icon: '' },
       { title: '分数式', path: '', icon: '' },
