@@ -2,10 +2,19 @@ import BaseNotify from '~/components/BaseNotify.vue'
 
 export type notifyType = 'set' | 'user' | 'email' | 'error' | 'success' | 'insurance' | 'statistics'
 
+const getNotificationList = (function () {
+  const notificationList = document.createElement('div')
+  notificationList.className = 'notification-list'
+  document.body.appendChild(notificationList)
+  return function () {
+    return notificationList
+  }
+})()
+
 export function useNotify({ showClose, onClose }: { onClose?: () => void; showClose?: boolean } = {}) {
   const app = ref<any>({})
   const box = ref<any>({})
-  const notificationList = document.querySelector('#notificationList')
+  const notificationList = getNotificationList()
 
   const closeNotify = (uuid: string) => {
     if (app.value[uuid] && box.value[uuid]) {
