@@ -26,8 +26,9 @@ console.log(application.numberToCurrency(1232330.19999, EnumCurrency.CAD))
 </script>
 
 <template>
-  <div style="background-color: white; height: 1000px">
+  <div style="color: white">
     <AppContent>
+      <AppBanner />
       <div>
         {{ t('hello') }}
       </div>

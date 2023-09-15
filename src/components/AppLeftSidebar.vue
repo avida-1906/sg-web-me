@@ -15,7 +15,7 @@ const {
   casinoGameProvider,
   sportsMenu,
   sportHotGames,
-  sportESports,
+  sportEsports,
   sportGameList,
   sportOddType,
   staticMenu1,
@@ -47,10 +47,10 @@ function onGameTypeChange(v: string) {
             <BaseIcon name="uni-menu" />
           </div>
           <div class="game-type">
-            <div class="casino" @click="router.push('/casino')">
+            <div class="casino" :class="{ active: $route.name === 'casino' }" @click="router.push('/casino')">
               <span>娱乐城</span>
             </div>
-            <div class="sports" @click="router.push('/sports')">
+            <div class="sports" :class="{ active: $route.name === 'sports' }" @click="router.push('/sports')">
               <span>体育</span>
             </div>
           </div>
@@ -62,12 +62,12 @@ function onGameTypeChange(v: string) {
 
   <div v-if="isFullScreen && !isCasino && !isSports" class="buttons">
     <BaseAspectRatio ratio="3.5/1">
-      <div class="casino" @click="router.push('/casino')">
+      <div class="casino" :class="{ active: $route.name === 'casino' }" @click="router.push('/casino')">
         <span>娱乐城</span>
       </div>
     </BaseAspectRatio>
     <BaseAspectRatio ratio="3.5/1">
-      <div class="sports" @click="router.push('/sports')">
+      <div class="sports" :class="{ active: $route.name === 'sports' }" @click="router.push('/sports')">
         <span>体育</span>
       </div>
     </BaseAspectRatio>
@@ -80,7 +80,7 @@ function onGameTypeChange(v: string) {
         :current-type="gameType"
         :casino-menu="casinoMenu" :casino-game-list="casinoGameList" :casino-game-provider="casinoGameProvider"
         :static-menu1="staticMenu1" :static-menu2="staticMenu2" :sports-menu="sportsMenu" :sport-hot-games="sportHotGames"
-        :sport-esports="sportESports" :sport-game-list="sportGameList" :sport-odd-type="sportOddType" :is-switching="isSwitching"
+        :sport-esports="sportEsports" :sport-game-list="sportGameList" :sport-odd-type="sportOddType" :is-switching="isSwitching"
       />
     </Transition>
   </div>
@@ -90,6 +90,7 @@ function onGameTypeChange(v: string) {
 .sidebar-top {
   height: var(--tg-sidebar-top-height-sm);
   cursor: pointer;
+  box-shadow: var(--tg-header-shadow);
 }
 .content {
   overflow: hidden;
@@ -123,7 +124,7 @@ function onGameTypeChange(v: string) {
     background-position: 0 -15px;
     padding-right: var(--tg-spacing-12);
 
-    &:hover {
+    &:hover, &.active {
       background-image: url('/img/left-side-bar/casino_bg_active.png');
     }
 
@@ -137,7 +138,7 @@ function onGameTypeChange(v: string) {
   .sports {
     background-image: url('/img/left-side-bar/sports_bg.png');
 
-    &:hover {
+    &:hover, &.active {
       background-image: url('/img/left-side-bar/sports_bg_active.png');
     }
   }
@@ -155,7 +156,6 @@ function onGameTypeChange(v: string) {
   display: flex;
   padding: 0 var(--tg-spacing-16) 0 0;
   touch-action: none;
-  box-shadow: var(--tg-box-shadow-lg);
 
   .button {
     font-size: var(--tg-font-size-base);

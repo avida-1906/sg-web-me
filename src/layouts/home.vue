@@ -80,36 +80,39 @@ function setRightSidebarExpandStatus() {
 <template>
   <main class="wrap" :class="{ 'is-switching': isSwitching }">
     <div v-if="homeOverlayIsShow" class="home-overlay" @click="leftIsExpand = !leftIsExpand" />
-    <div v-if="width < widthBoundaryXl && width > widthBoundaryMd" class="small-size-padding" />
     <AppFooterbar v-show="!isFixedSmall" />
-    <Transition name="bigslide-fade-left">
-      <div
-        v-if="leftIsExpand || isSwitching"
-        class="left-sidebar" :style="{
-          '--width': 'var(--tg-sidebar-width-lg)',
-        }" :class="{
-          'fixed-small': isFixedSmall,
-          'fixed': isFixed,
-          'full-screen': isFullScreen,
-        }"
-      >
-        <AppLeftSidebar v-model="leftIsExpand" :is-switching="isSwitching" :switch-to="switchTo" />
-      </div>
-    </Transition>
-    <Transition name="smallslide-fade-left">
-      <div
-        v-if="!isFullScreen && (!leftIsExpand || isSwitching)"
-        class="left-sidebar small-side" :style="{
-          '--width': 'var(--tg-sidebar-width-sm)',
-        }" :class="{
-          'fixed-small': isFixedSmall,
-          'fixed': isFixed,
-          'full-screen': isFullScreen,
-        }"
-      >
-        <AppLeftSidebarTiny v-model="leftIsExpand" :is-switching="isSwitching" :switch-to="switchTo" />
-      </div>
-    </Transition>
+    <div class="side-bar-outer">
+      <div v-if="width < widthBoundaryXl && width > widthBoundaryMd" class="small-size-padding" />
+      <Transition name="bigslide-fade-left">
+        <div
+          v-if="leftIsExpand || isSwitching"
+          class="big-side left-sidebar" :style="{
+            '--width': 'var(--tg-sidebar-width-lg)',
+          }" :class="{
+            'fixed-small': isFixedSmall,
+            'fixed': isFixed,
+            'full-screen': isFullScreen,
+          }"
+        >
+          <AppLeftSidebar v-model="leftIsExpand" :is-switching="isSwitching" :switch-to="switchTo" />
+        </div>
+      </Transition>
+
+      <Transition name="smallslide-fade-left">
+        <div
+          v-if="!isFullScreen && (!leftIsExpand || isSwitching)"
+          class="left-sidebar small-side" :style="{
+            '--width': 'var(--tg-sidebar-width-sm)',
+          }" :class="{
+            'fixed-small': isFixedSmall,
+            'fixed': isFixed,
+            'full-screen': isFullScreen,
+          }"
+        >
+          <AppLeftSidebarTiny v-model="leftIsExpand" :is-switching="isSwitching" :switch-to="switchTo" />
+        </div>
+      </Transition>
+    </div>
 
     <div class="main-content">
       <header class="navigation">
@@ -153,10 +156,23 @@ function setRightSidebarExpandStatus() {
 </template>
 
 <style scoped lang="scss">
-.wrap.is-switching {
-  .left-sidebar.small-side {
-    position: fixed;
-    z-index: -2;
+.wrap {
+
+  .side-bar-outer {
+    position: relative;
+  }
+  .left-sidebar.big-side {
+    position: relative;
+    z-index: var(--tg-z-index-20);
+  }
+  &.is-switching {
+
+    .left-sidebar.small-side {
+      position: absolute;
+      right: 0;
+      top: 0;
+      z-index: var(--tg-z-index-10);
+    }
   }
 }
 .wrap {
@@ -188,7 +204,7 @@ function setRightSidebarExpandStatus() {
   will-change: margin-left;
 
   &.fixed {
-    position: fixed;
+    position: fixed !important;
     top: 0;
     bottom: 0;
     left: 0;
@@ -218,10 +234,11 @@ function setRightSidebarExpandStatus() {
     justify-content: space-between;
     align-items: center;
     height: 60px;
-    background-color: black;
+    background-color: var(--tg-primary-main);
     color: white;
     font-weight: 600;
     padding-right: var(--tg-scrollbar-size);
+    box-shadow: var(--tg-header-shadow); // #0003 0 4px 6px -1px, #0000001f 0 2px 4px -1px;
 
     &>.group {
       display: flex;

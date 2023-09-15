@@ -582,10 +582,10 @@ function copyIconName(name: string) {
       <AppDemoCard title="BaseIcon">
         <ul class="icon-wrap m0 p0">
           <li v-for="id in ids" :key="id" class="item">
-            <div @click="() => copyIcon(id.slice(5))">
+            <div alt="复制组件" title="复制组件" @click="() => copyIcon(id.slice(5))">
               <BaseIcon :name="id.slice(5)" />
             </div>
-            <div class="copy-name" @click="() => copyIconName(id.slice(5))">
+            <div alt="复制名称" title="复制名称" class="copy-name" @click="() => copyIconName(id.slice(5))">
               <!-- {{ id.slice(5) }} -->
               copyname
             </div>
@@ -736,6 +736,7 @@ function copyIconName(name: string) {
           copy
         </BaseButton>
         <BaseSelect v-model="selectValue" label="选择区号" :options="selectOptions" must />
+        <BaseSelect v-model="selectValue" :options="selectOptions" />
       </AppDemoCard>
     </li>
     <li class="box">

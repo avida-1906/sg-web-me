@@ -14,7 +14,7 @@ const _amount = computed(() => {
 
 <template>
   <div class="app-amount">
-    <span class="amount">{{ _amount }}</span>
+    <span class="amount" :title="String(_amount)">{{ _amount }}</span>
     <AppCurrencyIcon :currency-type="currencyType" />
   </div>
 </template>

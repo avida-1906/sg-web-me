@@ -126,7 +126,6 @@
   display: grid;
   grid-gap: 2rem;
   padding: 32px 0;
-  box-sizing: border-box;
   .footer-nav{
     width: 100%;
     display: grid;

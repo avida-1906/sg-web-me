@@ -24,7 +24,7 @@ const {
   casinoGameProvider,
   sportsMenu,
   sportHotGames,
-  sportESports,
+  sportEsports,
   sportGameList,
   sportOddType,
   staticMenu1,
@@ -45,7 +45,7 @@ const menuData = computed(() => {
     return [
       sportsMenu,
       sportHotGames,
-      sportESports,
+      sportEsports,
       sportGameList,
       sportOddType,
       staticMenu1,
@@ -72,10 +72,10 @@ const menuData = computed(() => {
           </template>
         </Transition>
         <div v-if="!isSwitching" class="game-type">
-          <div class="casino" @click="router.push('/casino')">
+          <div class="casino" :class="{ active: $route.name === 'casino' }" @click="router.push('/casino')">
             <span>娱乐城</span>
           </div>
-          <div class="sports" @click="router.push('/sports')">
+          <div class="sports" :class="{ active: $route.name === 'sports' }" @click="router.push('/sports')">
             <span>体育</span>
           </div>
         </div>
@@ -140,7 +140,7 @@ const menuData = computed(() => {
     background-position: 0 -15px;
     padding-right: var(--tg-spacing-12);
 
-    &:hover {
+    &:hover, &.active {
       background-image: url('/img/left-side-bar/casino_bg_active.png');
     }
 
@@ -154,7 +154,7 @@ const menuData = computed(() => {
   .sports {
     background-image: url('/img/left-side-bar/sports_bg.png');
 
-    &:hover {
+    &:hover, &.active {
       background-image: url('/img/left-side-bar/sports_bg_active.png');
     }
   }
@@ -194,7 +194,8 @@ const menuData = computed(() => {
   display: flex;
   padding: 0 var(--tg-spacing-16) 0 0;
   touch-action: none;
-  box-shadow: var(--tg-box-shadow-lg);
+  // box-shadow: var(--tg-box-shadow-lg);
+  box-shadow: var(--tg-header-shadow);
 
   .button {
     font-size: var(--tg-font-size-base);
@@ -226,6 +227,7 @@ const menuData = computed(() => {
       background-image: url('/img/left-side-bar/casino_bg.png');
       cursor: pointer;
       border-radius: var(--tg-radius-default);
+      background-position: -4px 0;
 
       &:hover {
         background-image: url('/img/left-side-bar/casino_bg_active.png');
@@ -262,7 +264,8 @@ const menuData = computed(() => {
   box-shadow: none;
 
   .button {
-    box-shadow: var(--tg-box-shadow-lg);
+    // box-shadow: var(--tg-box-shadow-lg);
+    box-shadow: var(--tg-header-shadow);
   }
 
   .game-type {
