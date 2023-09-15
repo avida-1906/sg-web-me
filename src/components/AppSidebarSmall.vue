@@ -73,6 +73,10 @@ withDefaults(defineProps<Props>(), {})
       font-size: var(--tg-font-size-default);
       width: 44px;
       height: 44px;
+      .app-svg-icon {
+        transition: color 0.2s;
+        transform: scale(1.1);
+      }
       &:hover, &.active {
         background: var(--tg-secondary-main);
         border-radius: var(--tg-radius-default);

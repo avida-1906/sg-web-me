@@ -211,6 +211,10 @@ function handleClickItem() { }
       height: 45px;
       padding: 0 16px;
       cursor: pointer;
+      .app-svg-icon {
+        transition: color 0.2s;
+        transform: scale(1.1);
+      }
 
       &:hover {
         background-color: #213743;
