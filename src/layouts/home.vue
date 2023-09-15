@@ -218,10 +218,11 @@ function setRightSidebarExpandStatus() {
     justify-content: space-between;
     align-items: center;
     height: 60px;
-    background-color: black;
+    background-color: var(--tg-primary-main);
     color: white;
     font-weight: 600;
     padding-right: var(--tg-scrollbar-size);
+    box-shadow: var(--tg-header-shadow); // #0003 0 4px 6px -1px, #0000001f 0 2px 4px -1px;
 
     &>.group {
       display: flex;

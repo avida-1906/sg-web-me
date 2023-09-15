@@ -82,7 +82,7 @@ const sportHotGames = [
     domId: 'sports-hot-game-use-basketball',
   },
 ]
-const sportESports = [
+const sportEsports = [
   {
     title: '所有电子竞技',
     path: '',
@@ -201,7 +201,7 @@ export function useMenuData() {
     casinoGameProvider,
     sportsMenu,
     sportHotGames,
-    sportESports,
+    sportEsports,
     sportGameList,
     sportOddType,
     staticMenu1,

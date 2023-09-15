@@ -15,7 +15,7 @@ const {
   casinoGameProvider,
   sportsMenu,
   sportHotGames,
-  sportESports,
+  sportEsports,
   sportGameList,
   sportOddType,
   staticMenu1,
@@ -80,7 +80,7 @@ function onGameTypeChange(v: string) {
         :current-type="gameType"
         :casino-menu="casinoMenu" :casino-game-list="casinoGameList" :casino-game-provider="casinoGameProvider"
         :static-menu1="staticMenu1" :static-menu2="staticMenu2" :sports-menu="sportsMenu" :sport-hot-games="sportHotGames"
-        :sport-esports="sportESports" :sport-game-list="sportGameList" :sport-odd-type="sportOddType" :is-switching="isSwitching"
+        :sport-esports="sportEsports" :sport-game-list="sportGameList" :sport-odd-type="sportOddType" :is-switching="isSwitching"
       />
     </Transition>
   </div>
@@ -155,7 +155,8 @@ function onGameTypeChange(v: string) {
   display: flex;
   padding: 0 var(--tg-spacing-16) 0 0;
   touch-action: none;
-  box-shadow: var(--tg-box-shadow-lg);
+  // box-shadow: var(--tg-box-shadow-lg);
+  box-shadow: var(--tg-header-shadow);
 
   .button {
     font-size: var(--tg-font-size-base);

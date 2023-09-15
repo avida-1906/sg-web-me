@@ -24,7 +24,7 @@ const {
   casinoGameProvider,
   sportsMenu,
   sportHotGames,
-  sportESports,
+  sportEsports,
   sportGameList,
   sportOddType,
   staticMenu1,
@@ -45,7 +45,7 @@ const menuData = computed(() => {
     return [
       sportsMenu,
       sportHotGames,
-      sportESports,
+      sportEsports,
       sportGameList,
       sportOddType,
       staticMenu1,
@@ -194,7 +194,8 @@ const menuData = computed(() => {
   display: flex;
   padding: 0 var(--tg-spacing-16) 0 0;
   touch-action: none;
-  box-shadow: var(--tg-box-shadow-lg);
+  // box-shadow: var(--tg-box-shadow-lg);
+  box-shadow: var(--tg-header-shadow);
 
   .button {
     font-size: var(--tg-font-size-base);
@@ -262,7 +263,8 @@ const menuData = computed(() => {
   box-shadow: none;
 
   .button {
-    box-shadow: var(--tg-box-shadow-lg);
+    // box-shadow: var(--tg-box-shadow-lg);
+    box-shadow: var(--tg-header-shadow);
   }
 
   .game-type {

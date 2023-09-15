@@ -120,6 +120,7 @@
   0 4px 6px -2px #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.1)};
   --tg-text-shadow:0 1px 2px #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.12)},
   0 1px 3px #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.2)};
+  --tg-header-shadow: 0px 4px 6px 0px #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.6)};
 }
 
 // 大小菜单的宽度
