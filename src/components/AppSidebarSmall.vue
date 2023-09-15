@@ -17,7 +17,6 @@ withDefaults(defineProps<Props>(), {})
 </script>
 
 <template>
-  <!-- :style="{ overflowY: isSwitching ? 'hidden' : 'auto' }" -->
   <section class="tg-app-sidebar-small">
     <ul v-for="menu, idx in menuData" :key="idx" class="tiny-menu flex-col-center">
       <li v-for="menuitem in menu" :key="menuitem.title" class="flex-col-center tiny-menu-item">

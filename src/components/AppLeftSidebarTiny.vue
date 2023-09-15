@@ -48,7 +48,7 @@ const menuData = reactive([
   <!-- 头部菜单或搜索栏 -->
   <div class="tg-app-left-sidebar-tiny">
     <div class="sidebar-tiny-top">
-      <div class="header is-small">
+      <div class="is-small header">
         <Transition name="menu-fade">
           <template v-if="!isSwitching">
             <div class="button" @click="onClick">
@@ -67,7 +67,7 @@ const menuData = reactive([
       </div>
     </div>
 
-    <div class="content scroll-y">
+    <div class="content" :class="{ 'scroll-y': !isSwitching }">
       <Transition name="slide-fade">
         <template v-if="!isSwitching">
           <AppSidebarSmall
