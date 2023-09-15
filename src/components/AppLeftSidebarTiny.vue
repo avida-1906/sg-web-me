@@ -10,7 +10,6 @@ interface Props {
 }
 const props = defineProps<Props>()
 const emit = defineEmits(['update:modelValue'])
-const { isFullScreen } = storeToRefs(useWindowStore())
 
 function onClick() {
   emit('update:modelValue', !props.modelValue)
@@ -18,281 +17,95 @@ function onClick() {
 
 const router = useRouter()
 const route = useRoute()
-const isCasino = computed(() => route.name === 'casino')
-const isSports = computed(() => route.name === 'sports')
 
-// casino
-const casinoMenu = [
-  { title: '收藏夹', path: '', icon: '', list: [] },
-  { title: '近期游戏记录', path: '', icon: '', list: [] },
-  { title: '挑战', path: '', icon: '', list: [] },
-]
-const casinoGameList = [
-  { title: '老虎机', path: '', icon: '', list: [] },
-  { title: '真人娱乐场', path: '', icon: '', list: [] },
-  { title: '游戏节目', path: '', icon: '', list: [] },
-  { title: '新游戏', path: '', icon: '', list: [] },
-  { title: '新游戏', path: '', icon: '', list: [] },
-  { title: '新游戏', path: '', icon: '', list: [] },
-]
-const casinoGameProvider = [{ title: '游戏提供商', path: '', icon: '', list: [] }]
+const {
+  casinoMenu,
+  casinoGameList,
+  casinoGameProvider,
+  sportsMenu,
+  sportHotGames,
+  sportEsports,
+  sportGameList,
+  sportOddType,
+  staticMenu1,
+  staticMenu2,
+} = useMenuData()
 
-// sports
-const sportsMenu = [
-  { title: '滚球盘', path: '', icon: '', list: [] },
-  { title: '即将开赛', path: '', icon: '', list: [] },
-  { title: '我的投注', path: '', icon: '', list: [] },
-]
-const sportHotGames = [
-  {
-    title: '足球',
-    path: '',
-    icon: '',
-    list: [
-      { title: '激斗峡谷', path: '', icon: '' },
-      { title: '激斗峡谷', path: '', icon: '' },
-      { title: '激斗峡谷', path: '', icon: '' },
-      { title: '激斗峡谷', path: '', icon: '' },
-    ],
-  },
-  {
-    title: '网球',
-    path: '',
-    icon: '',
-    list: [
-      { title: '激斗峡谷', path: '', icon: '' },
-      { title: '激斗峡谷', path: '', icon: '' },
-      { title: '激斗峡谷', path: '', icon: '' },
-      { title: '激斗峡谷', path: '', icon: '' },
-    ],
-  },
-  {
-    title: '美式橄榄球',
-    path: '',
-    icon: '',
-    list: [
-      { title: '激斗峡谷', path: '', icon: '' },
-      { title: '激斗峡谷', path: '', icon: '' },
-      { title: '激斗峡谷', path: '', icon: '' },
-      { title: '激斗峡谷', path: '', icon: '' },
-    ],
-  },
-  {
-    title: '棒球',
-    path: '',
-    icon: '',
-    list: [
-      { title: '激斗峡谷', path: '', icon: '' },
-      { title: '激斗峡谷', path: '', icon: '' },
-      { title: '激斗峡谷', path: '', icon: '' },
-      { title: '激斗峡谷', path: '', icon: '' },
-    ],
-  },
-  {
-    title: '篮球',
-    path: '',
-    icon: '',
-    list: [
-      { title: '激斗峡谷', path: '', icon: '' },
-      { title: '激斗峡谷', path: '', icon: '' },
-      { title: '激斗峡谷', path: '', icon: '' },
-      { title: '激斗峡谷', path: '', icon: '' },
-    ],
-  },
-]
-const sportEsports = [
-  {
-    title: '所有电子竞技',
-    path: '',
-    icon: '',
-    list: [
-      { title: '彩虹六号', path: '', icon: '' },
-      { title: '传说对决', path: '', icon: '' },
-      { title: '刀塔2', path: '', icon: '' },
-      { title: '激斗峡谷', path: '', icon: '' },
-      { title: '激斗峡谷', path: '', icon: '' },
-      { title: '激斗峡谷', path: '', icon: '' },
-      { title: '激斗峡谷', path: '', icon: '' },
-    ],
-  },
-]
-const sportGameList = [
-  {
-    title: '体育项目',
-    path: '',
-    icon: '',
-    list: [
-      { title: '澳洲足球', path: '', icon: '' },
-      { title: '板球', path: '', icon: '' },
-      { title: '棒球', path: '', icon: '' },
-      { title: '足球', path: '', icon: '' },
-      { title: '篮球', path: '', icon: '' },
-      { title: '桌球', path: '', icon: '' },
-      { title: '登山', path: '', icon: '' },
-    ],
-  },
-]
-const sportOddType = [
-  {
-    title: '赔率：',
-    path: '',
-    icon: '',
-    list: [
-      { title: '小数式', path: '', icon: '' },
-      { title: '分数式', path: '', icon: '' },
-      { title: '美式', path: '', icon: '' },
-      { title: '印尼格式', path: '', icon: '' },
-      { title: '香港格式', path: '', icon: '' },
-      { title: '马来格式', path: '', icon: '' },
-    ],
-  },
-]
-
-const staticMenu1 = [
-  {
-    title: '个人资料',
-    path: '',
-    icon: 'navbar-user',
-    list: [
-      { title: '钱包', path: '', icon: 'navbar-user' },
-      { title: '保险库', path: '', icon: 'navbar-user' },
-      { title: 'VIP', path: '', icon: 'navbar-user' },
-      { title: '统计数据', path: '', icon: 'navbar-user' },
-      { title: '通知', path: '', icon: 'navbar-user' },
-      { title: '体育投注', path: '', icon: 'navbar-user' },
-      { title: '设置', path: '', icon: 'navbar-user' },
-      { title: '登出', path: '', icon: 'navbar-user' },
-    ],
-  },
-  {
-    title: '促销活动',
-    path: '',
-    icon: 'chess-gameshow',
-    list: [
-      { title: '推荐活动一', path: '', icon: 'navbar-user' },
-      { title: '推荐活动二', path: '', icon: 'navbar-user' },
-      { title: '推荐活动三', path: '', icon: 'navbar-user' },
-      { title: '查看全部', path: '', icon: 'navbar-user' },
-    ],
-  },
-  { title: '联盟计划', path: '', icon: 'spt-affiliate-pro', list: [] },
-  { title: 'VIP俱乐部', path: '', icon: 'chess-vipclub', list: [] },
-  { title: '博客', path: '', icon: 'chess-blog', list: [] },
-  { title: '论坛', path: '', icon: 'tabbar-chat', list: [] },
-]
-const staticMenu2 = [
-  {
-    title: '赞助活动',
-    path: '',
-    icon: 'spt-sponsorship',
-    list: [
-      { title: '赞助活动一', path: '', icon: '' },
-      { title: '赞助活动二', path: '', icon: '' },
-      { title: '赞助活动三', path: '', icon: '' },
-    ],
-  },
-  { title: '负责任博彩', path: '', icon: 'spt-secure', list: [] },
-  { title: '在线支持', path: '', icon: 'spt-online-support', list: [] },
-  {
-    title: '语言：',
-    path: '',
-    icon: 'chess-language',
-    list: [
-      { title: '中文', path: '', icon: '' },
-      { title: '日文', path: '', icon: '' },
-      { title: '英文', path: '', icon: '' },
-    ],
-  },
-]
-
-const gameType = ref(isCasino.value ? '1' : isSports.value ? '2' : '')
-const gameTypeList = [
-  { label: '娱乐城', value: '1' },
-  { label: '体育', value: '2' },
-]
-const gameLabel = computed(() => gameTypeList.find(a => a.value === gameType.value)?.label ?? '-')
-const isPopperShow = ref(false)
-function onPopperShow() {
-  isPopperShow.value = true
-}
-function onPopperHide() {
-  isPopperShow.value = false
-}
-function selectGameType(v: string) {
-  gameType.value = v
-}
-const searchValue = ref('')
+const menuData = computed(() => {
+  if (route.name === 'casino') {
+    return [
+      casinoMenu,
+      casinoGameList,
+      casinoGameProvider,
+      staticMenu1,
+      staticMenu2,
+    ]
+  }
+  else if (route.name === 'sports') {
+    return [
+      sportsMenu,
+      sportHotGames,
+      sportEsports,
+      sportGameList,
+      sportOddType,
+      staticMenu1,
+      staticMenu2,
+    ]
+  }
+  return [
+    staticMenu1,
+    staticMenu2,
+  ]
+})
 </script>
 
 <template>
   <!-- 头部菜单或搜索栏 -->
-  <div v-if="!isFullScreen" class="sidebar-tiny-top">
-    <div class="header is-small">
-      <Transition name="menu-fade">
-        <template v-if="!isSwitching">
-          <div class="button" @click="onClick">
-            <BaseIcon name="uni-menu" />
+  <div class="tg-app-left-sidebar-tiny">
+    <div class="sidebar-tiny-top">
+      <div class="is-small header">
+        <Transition name="menu-fade">
+          <template v-if="!isSwitching">
+            <div class="button" @click="onClick">
+              <BaseIcon name="uni-menu" />
+            </div>
+          </template>
+        </Transition>
+        <div v-if="!isSwitching" class="game-type">
+          <div class="casino" @click="router.push('/casino')">
+            <span>娱乐城</span>
           </div>
-        </template>
-      </Transition>
-      <div v-if="!isSwitching" class="game-type">
-        <div class="casino" @click="router.push('/casino')">
-          <span>娱乐城</span>
-        </div>
-        <div class="sports" @click="router.push('/sports')">
-          <span>体育</span>
+          <div class="sports" @click="router.push('/sports')">
+            <span>体育</span>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div v-else class="search">
-    <BaseSearch v-model="searchValue">
-      <template v-if="isCasino || isSports" #left>
-        <VDropdown :distance="6" @show="onPopperShow" @hide="onPopperHide">
-          <button class="tips">
-            <span>{{ gameLabel }}</span>
-            <BaseIcon :name="`uni-arrow-${isPopperShow ? 'up' : 'down'}-big`" />
-          </button>
-          <template #popper>
-            <div
-              v-for="t, i in gameTypeList" :key="i" v-close-popper class="popper-option"
-              @click="selectGameType(t.value)"
-            >
-              {{ t.label }}
-            </div>
-          </template>
-        </VDropdown>
-      </template>
-    </BaseSearch>
-  </div>
-  <div v-if="isFullScreen && !isCasino && !isSports" class="buttons">
-    <BaseAspectRatio ratio="3.5/1">
-      <div class="casino" @click="router.push('/casino')">
-        <span>娱乐城</span>
-      </div>
-    </BaseAspectRatio>
-    <BaseAspectRatio ratio="3.5/1">
-      <div class="sports" @click="router.push('/sports')">
-        <span>体育</span>
-      </div>
-    </BaseAspectRatio>
-  </div>
 
-  <div class="content scrollY">
-    <Transition name="slide-fade">
-      <div v-if="!isSwitching">
-        <AppSidebarSmall :menu-data="[staticMenu1, staticMenu2]" :is-switching="isSwitching" />
-      </div>
-    </Transition>
+    <div class="content" :class="{ 'scroll-y': !isSwitching }">
+      <Transition name="slide-fade">
+        <template v-if="!isSwitching">
+          <AppSidebarSmall
+            :menu-data="menuData" :is-switching="isSwitching"
+          />
+        </template>
+      </Transition>
+    </div>
   </div>
 </template>
 
 <style lang='scss' scoped>
+.tg-app-left-sidebar-tiny {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  height: 100%;
+}
 .sidebar-tiny-top {
   height: var(--tg-sidebar-top-height-lg);
 }
 .content {
-  overflow: hidden;
+  flex: 1;
 }
 
 .search {

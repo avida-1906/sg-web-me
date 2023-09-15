@@ -570,6 +570,10 @@ function handleClickHead(menu: object) {
 function handleClickItem(item: object) {
   console.log(item)
 }
+function copyIconName(name: string) {
+  copy(name)
+  toast('Copied')
+}
 </script>
 
 <template>
@@ -577,8 +581,14 @@ function handleClickItem(item: object) {
     <li class="box">
       <AppDemoCard title="BaseIcon">
         <ul class="icon-wrap m0 p0">
-          <li v-for="id in ids" :key="id" class="item" @click="() => copyIcon(id.slice(5))">
-            <BaseIcon :name="id.slice(5)" />
+          <li v-for="id in ids" :key="id" class="item">
+            <div @click="() => copyIcon(id.slice(5))">
+              <BaseIcon :name="id.slice(5)" />
+            </div>
+            <div class="copy-name" @click="() => copyIconName(id.slice(5))">
+              <!-- {{ id.slice(5) }} -->
+              copyname
+            </div>
           </li>
         </ul>
       </AppDemoCard>
@@ -1111,6 +1121,18 @@ function handleClickItem(item: object) {
     cursor: pointer;
     width: 60px;
     font-size: 50px;
+    .copy-name {
+      color: #666;
+      font-size: 10px;
+      line-height: 28px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: clip;
+      max-width: 55px;
+      text-align: center;
+      margin: 4px auto;
+
+    }
   }
 }
 
