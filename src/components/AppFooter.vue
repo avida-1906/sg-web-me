@@ -122,13 +122,15 @@
 <style scoped lang="scss">
 .app-footer {
   /* background-color: #0F212E; */
+  width: 100%;
   display: grid;
   grid-gap: 2rem;
   padding: 32px 0;
+  box-sizing: border-box;
   .footer-nav{
+    width: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(14ch,1fr));
-    /* grid-template-columns:repeat(6,1fr); */
     grid-gap: 1rem;
     color:var(--tg-secondary-light);
     font-size: var(--tg-font-size-default);
@@ -149,6 +151,7 @@
     }
   }
   .footer-support{
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -156,14 +159,16 @@
     gap:2rem;
   }
   .footer-sponsor{
+    width: 100%;
     display: flex;
     gap:0.5rem;
-    /* flex-wrap: wrap;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap:2rem; */
+    gap:2rem;
   }
   .footer-copyright{
+    width: 100%;
     display: grid;
     justify-content: center;
     justify-items: center;
@@ -173,6 +178,7 @@
     font-size: var(--tg-font-size-default);
   }
   .footer-description{
+    width: 100%;
     line-height: 1.5;
     text-align: center;
     color:var(--tg-secondary-light);
