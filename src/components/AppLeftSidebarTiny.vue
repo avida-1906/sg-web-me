@@ -63,7 +63,7 @@ const menuData = computed(() => {
   <!-- 头部菜单或搜索栏 -->
   <div class="tg-app-left-sidebar-tiny">
     <div class="sidebar-tiny-top">
-      <div class="header is-small">
+      <div class="is-small header">
         <Transition name="menu-fade">
           <template v-if="!isSwitching">
             <div class="button" @click="onClick">
@@ -227,6 +227,7 @@ const menuData = computed(() => {
       background-image: url('/img/left-side-bar/casino_bg.png');
       cursor: pointer;
       border-radius: var(--tg-radius-default);
+      background-position: -4px 0;
 
       &:hover {
         background-image: url('/img/left-side-bar/casino_bg_active.png');
