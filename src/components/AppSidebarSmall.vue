@@ -17,7 +17,8 @@ withDefaults(defineProps<Props>(), {})
 </script>
 
 <template>
-  <section class="scrollY tg-app-sidebar-small" :style="{ overflowY: isSwitching ? 'hidden' : 'auto' }">
+  <!-- :style="{ overflowY: isSwitching ? 'hidden' : 'auto' }" -->
+  <section class="tg-app-sidebar-small">
     <ul v-for="menu, idx in menuData" :key="idx" class="tiny-menu flex-col-center">
       <li v-for="menuitem in menu" :key="menuitem.title" class="flex-col-center tiny-menu-item">
         <VMenu placement="top">
@@ -59,9 +60,11 @@ withDefaults(defineProps<Props>(), {})
 .tg-app-sidebar-small {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
   gap: var(--tg-spacing-button-padding-vertical-xs);
+  padding-left: var(--tg-spacing-8);
+  overflow: hidden;
   .tiny-menu {
     border-radius: var(--tg-radius-default);
     background: var(--tg-primary-main);
