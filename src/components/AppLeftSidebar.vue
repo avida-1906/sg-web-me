@@ -90,6 +90,7 @@ function onGameTypeChange(v: string) {
 .sidebar-top {
   height: var(--tg-sidebar-top-height-sm);
   cursor: pointer;
+  box-shadow: var(--tg-header-shadow);
 }
 .content {
   overflow: hidden;
@@ -155,8 +156,6 @@ function onGameTypeChange(v: string) {
   display: flex;
   padding: 0 var(--tg-spacing-16) 0 0;
   touch-action: none;
-  // box-shadow: var(--tg-box-shadow-lg);
-  box-shadow: var(--tg-header-shadow);
 
   .button {
     font-size: var(--tg-font-size-base);
