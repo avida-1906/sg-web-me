@@ -60,7 +60,7 @@ function onGameTypeChange(v: string) {
   </div>
   <AppGlobalSearch v-else @game-type-change="onGameTypeChange" />
 
-  <div v-if="isFullScreen && (isCasino || isSports)" class="buttons">
+  <div v-if="isFullScreen && !isCasino && !isSports" class="buttons">
     <BaseAspectRatio ratio="3.5/1">
       <div class="casino" :class="{ active: $route.name === 'casino' }" @click="router.push('/casino')">
         <span>娱乐城</span>
