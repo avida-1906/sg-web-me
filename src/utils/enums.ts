@@ -31,6 +31,18 @@ export enum EnumLanguage {
    * 越南语 Vietnamese
    */
   VI_VN,
+  /**
+   * 法语欧元 Vietnamese
+   */
+  FR_FR,
+  /**
+   * 日语 Japanese
+   */
+  JA_JP,
+  /**
+   * 加拿大英语 English (Canada)
+   */
+  EN_CA,
 }
 
 /**

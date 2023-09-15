@@ -36,3 +36,24 @@ languageConfig.set(EnumLanguage.VI_VN, {
   language: 'vi-VN',
   currency: 'VND',
 })
+
+languageConfig.set(EnumLanguage.FR_FR, {
+  label: 'EUR',
+  desc: '欧元',
+  language: 'fr-FR',
+  currency: 'EUR',
+})
+
+languageConfig.set(EnumLanguage.JA_JP, {
+  label: 'JPY',
+  desc: '日元',
+  language: 'ja-JP',
+  currency: 'JPY',
+})
+
+languageConfig.set(EnumLanguage.EN_CA, {
+  label: 'CAD',
+  desc: '加元',
+  language: 'en-CA',
+  currency: 'CAD',
+})

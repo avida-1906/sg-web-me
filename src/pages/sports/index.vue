@@ -7,6 +7,11 @@
     sports
     <AppGameSearch game-type="2" />
     <div class="box" />
+    <AppAmount amount="0.00001234" :currency-type="19" />
+    <AppAmount amount="0.00001234" :currency-type="21" />
+    <AppAmount amount="0.00001234" :currency-type="22" />
+    <AppAmount amount="0.00001234" :currency-type="23" />
+    <AppAmount amount="0.00001234" :currency-type="24" />
   </div>
 </template>
 
@@ -14,6 +19,7 @@
 .sports{
   padding: var(--tg-spacing-16);
   min-height: 700px;
+  color: #fff;
 }
 .box{
   width: 200px;
