@@ -21,6 +21,8 @@ declare global {
   const VirtualCurrencyEnum: typeof import('./utils/enums')['VirtualCurrencyEnum']
   const acceptHMRUpdate: typeof import('pinia')['acceptHMRUpdate']
   const add: typeof import('./utils/number')['add']
+  const application: typeof import('./utils/index')['application']
+  const appliction: typeof import('./utils/test')['appliction']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
   const autoResetRef: typeof import('@vueuse/core')['autoResetRef']
   const axios: typeof import('axios')['default']
@@ -129,6 +131,7 @@ declare global {
   const syncRef: typeof import('@vueuse/core')['syncRef']
   const syncRefs: typeof import('@vueuse/core')['syncRefs']
   const templateRef: typeof import('@vueuse/core')['templateRef']
+  const test: typeof import('./utils/test')['default']
   const throttledRef: typeof import('@vueuse/core')['throttledRef']
   const throttledWatch: typeof import('@vueuse/core')['throttledWatch']
   const timestampToTime: typeof import('./utils/index')['timestampToTime']
@@ -352,7 +355,6 @@ declare module 'vue' {
   interface ComponentCustomProperties {
     readonly ApiMemberLogin: UnwrapRef<typeof import('./apis/index')['ApiMemberLogin']>
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
-    readonly CurrencyConfig: UnwrapRef<typeof import('./utils/currency')['CurrencyConfig']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly EnumCurrency: UnwrapRef<typeof import('./utils/enums')['EnumCurrency']>
     readonly EnumLanguage: UnwrapRef<typeof import('./utils/enums')['EnumLanguage']>
@@ -361,6 +363,7 @@ declare module 'vue' {
     readonly Local: UnwrapRef<typeof import('./utils/local')['Local']>
     readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>
     readonly add: UnwrapRef<typeof import('./utils/number')['add']>
+    readonly application: UnwrapRef<typeof import('./utils/index')['application']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
     readonly axios: UnwrapRef<typeof import('axios')['default']>
@@ -381,7 +384,6 @@ declare module 'vue' {
     readonly createSharedComposable: UnwrapRef<typeof import('@vueuse/core')['createSharedComposable']>
     readonly createTemplatePromise: UnwrapRef<typeof import('@vueuse/core')['createTemplatePromise']>
     readonly createUnrefFn: UnwrapRef<typeof import('@vueuse/core')['createUnrefFn']>
-    readonly currencyFormat: UnwrapRef<typeof import('./utils/number')['currencyFormat']>
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
     readonly dayjs: UnwrapRef<typeof import('dayjs')['default']>
     readonly debouncedRef: UnwrapRef<typeof import('@vueuse/core')['debouncedRef']>
@@ -396,7 +398,6 @@ declare module 'vue' {
     readonly getActivePinia: UnwrapRef<typeof import('pinia')['getActivePinia']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
-    readonly getUuid: UnwrapRef<typeof import('./utils/index')['getUuid']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
@@ -406,7 +407,6 @@ declare module 'vue' {
     readonly isReactive: UnwrapRef<typeof import('vue')['isReactive']>
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
-    readonly languageConfig: UnwrapRef<typeof import('./utils/language')['languageConfig']>
     readonly makeDestructurable: UnwrapRef<typeof import('@vueuse/core')['makeDestructurable']>
     readonly mapActions: UnwrapRef<typeof import('pinia')['mapActions']>
     readonly mapGetters: UnwrapRef<typeof import('pinia')['mapGetters']>
@@ -416,7 +416,6 @@ declare module 'vue' {
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
     readonly mul: UnwrapRef<typeof import('./utils/number')['mul']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
-    readonly numberToCurrency: UnwrapRef<typeof import('./utils/index')['numberToCurrency']>
     readonly onActivated: UnwrapRef<typeof import('vue')['onActivated']>
     readonly onBeforeMount: UnwrapRef<typeof import('vue')['onBeforeMount']>
     readonly onBeforeRouteLeave: UnwrapRef<typeof import('vue-router')['onBeforeRouteLeave']>
@@ -467,7 +466,6 @@ declare module 'vue' {
     readonly templateRef: UnwrapRef<typeof import('@vueuse/core')['templateRef']>
     readonly throttledRef: UnwrapRef<typeof import('@vueuse/core')['throttledRef']>
     readonly throttledWatch: UnwrapRef<typeof import('@vueuse/core')['throttledWatch']>
-    readonly timestampToTime: UnwrapRef<typeof import('./utils/index')['timestampToTime']>
     readonly toFixed: UnwrapRef<typeof import('./utils/number')['toFixed']>
     readonly toRaw: UnwrapRef<typeof import('vue')['toRaw']>
     readonly toReactive: UnwrapRef<typeof import('@vueuse/core')['toReactive']>
@@ -680,7 +678,6 @@ declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
     readonly ApiMemberLogin: UnwrapRef<typeof import('./apis/index')['ApiMemberLogin']>
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
-    readonly CurrencyConfig: UnwrapRef<typeof import('./utils/currency')['CurrencyConfig']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly EnumCurrency: UnwrapRef<typeof import('./utils/enums')['EnumCurrency']>
     readonly EnumLanguage: UnwrapRef<typeof import('./utils/enums')['EnumLanguage']>
@@ -689,6 +686,7 @@ declare module '@vue/runtime-core' {
     readonly Local: UnwrapRef<typeof import('./utils/local')['Local']>
     readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>
     readonly add: UnwrapRef<typeof import('./utils/number')['add']>
+    readonly application: UnwrapRef<typeof import('./utils/index')['application']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
     readonly axios: UnwrapRef<typeof import('axios')['default']>
@@ -709,7 +707,6 @@ declare module '@vue/runtime-core' {
     readonly createSharedComposable: UnwrapRef<typeof import('@vueuse/core')['createSharedComposable']>
     readonly createTemplatePromise: UnwrapRef<typeof import('@vueuse/core')['createTemplatePromise']>
     readonly createUnrefFn: UnwrapRef<typeof import('@vueuse/core')['createUnrefFn']>
-    readonly currencyFormat: UnwrapRef<typeof import('./utils/number')['currencyFormat']>
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
     readonly dayjs: UnwrapRef<typeof import('dayjs')['default']>
     readonly debouncedRef: UnwrapRef<typeof import('@vueuse/core')['debouncedRef']>
@@ -724,7 +721,6 @@ declare module '@vue/runtime-core' {
     readonly getActivePinia: UnwrapRef<typeof import('pinia')['getActivePinia']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
-    readonly getUuid: UnwrapRef<typeof import('./utils/index')['getUuid']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
@@ -734,7 +730,6 @@ declare module '@vue/runtime-core' {
     readonly isReactive: UnwrapRef<typeof import('vue')['isReactive']>
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
-    readonly languageConfig: UnwrapRef<typeof import('./utils/language')['languageConfig']>
     readonly makeDestructurable: UnwrapRef<typeof import('@vueuse/core')['makeDestructurable']>
     readonly mapActions: UnwrapRef<typeof import('pinia')['mapActions']>
     readonly mapGetters: UnwrapRef<typeof import('pinia')['mapGetters']>
@@ -744,7 +739,6 @@ declare module '@vue/runtime-core' {
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
     readonly mul: UnwrapRef<typeof import('./utils/number')['mul']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
-    readonly numberToCurrency: UnwrapRef<typeof import('./utils/index')['numberToCurrency']>
     readonly onActivated: UnwrapRef<typeof import('vue')['onActivated']>
     readonly onBeforeMount: UnwrapRef<typeof import('vue')['onBeforeMount']>
     readonly onBeforeRouteLeave: UnwrapRef<typeof import('vue-router')['onBeforeRouteLeave']>
@@ -795,7 +789,6 @@ declare module '@vue/runtime-core' {
     readonly templateRef: UnwrapRef<typeof import('@vueuse/core')['templateRef']>
     readonly throttledRef: UnwrapRef<typeof import('@vueuse/core')['throttledRef']>
     readonly throttledWatch: UnwrapRef<typeof import('@vueuse/core')['throttledWatch']>
-    readonly timestampToTime: UnwrapRef<typeof import('./utils/index')['timestampToTime']>
     readonly toFixed: UnwrapRef<typeof import('./utils/number')['toFixed']>
     readonly toRaw: UnwrapRef<typeof import('vue')['toRaw']>
     readonly toReactive: UnwrapRef<typeof import('@vueuse/core')['toReactive']>

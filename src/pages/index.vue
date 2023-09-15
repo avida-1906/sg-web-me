@@ -1,10 +1,8 @@
 <script setup lang="ts">
-import { storeToRefs } from 'pinia'
-
 defineOptions({
   name: 'IndexPage',
 })
-console.log(timestampToTime(1628774400000))
+
 const { t } = useI18n()
 const { run, data } = useRequest(() => ApiMemberLogin({
   username: '章三',
@@ -18,8 +16,13 @@ const { run, data } = useRequest(() => ApiMemberLogin({
 function getData() {
   run()
 }
-const appStore = useAppStore()
-const { language } = storeToRefs(appStore)
+
+console.log(application.timestampToTime(1628774400000))
+console.log(application.timestampToTime(1628774400000, EnumLanguage['zh-CN']))
+console.log(application.timestampToTime(1628774400000, EnumLanguage['pt-BR']))
+console.log(application.timestampToTime(1628774400000, EnumLanguage['vi-VN']))
+
+console.log(application.numberToCurrency(1232330.19999, EnumCurrency.CAD))
 </script>
 
 <template>
@@ -28,7 +31,6 @@ const { language } = storeToRefs(appStore)
       <div>
         {{ t('hello') }}
       </div>
-      {{ language }}
       <div>
         {{ data }}
       </div>

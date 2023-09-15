@@ -20,13 +20,7 @@ interface ILanguageConfig {
    * 语言描述
    */
   desc: string
-  /**
-   * 语言 zh-CN en-US hi-IN pt-BR vi-VN
-   */
-  language: string
-  /**
-   * 货币 CNY USD INR BRL VND
-   */
+  language: 'zh-CN' | 'en-US' | 'hi-IN' | 'pt-BR' | 'vi-VN' | 'fr-FR' | 'ja-JP' | 'en-CA'
   currency: 'CNY' | 'USD' | 'INR' | 'BRL' | 'VND' | 'EUR' | 'JPY' | 'CAD'
 }
 

@@ -7,7 +7,7 @@
     sports
     <AppGameSearch game-type="2" />
     <div class="box" />
-    <AppAmount amount="0.00001234" :currency-type="19" />
+    <AppAmount amount="0.01888888" :currency-type="EnumCurrency.BTC" />
     <AppAmount amount="0.00001234" :currency-type="21" />
     <AppAmount amount="0.00001234" :currency-type="22" />
     <AppAmount amount="0.00001234" :currency-type="23" />

@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import { EnumCurrency } from '~/utils/enums'
+import type { EnumCurrency } from '~/utils/enums'
 
 interface Props {
   amount: string | number
@@ -7,19 +7,8 @@ interface Props {
 }
 const props = defineProps<Props>()
 
-const legalCurrencyList = [
-  EnumCurrency.EUR,
-  EnumCurrency.JPY,
-  EnumCurrency.BRL,
-  EnumCurrency.CAD,
-  EnumCurrency.INR,
-]
-
 const _amount = computed(() => {
-  if (legalCurrencyList.includes(props.currencyType))
-    return numberToCurrency(+props.amount, CurrencyConfig.get(props.currencyType))
-
-  return props.amount
+  return application.numberToCurrency(+props.amount, props.currencyType)
 })
 </script>
 

@@ -4,7 +4,7 @@ interface ImportMetaEnv {
   /**
    * 默认语言
    */
-  readonly VITE_I18N_DEFAULT_LANG: 'EN_US' | 'ZH_CN' | 'HI_IN' | 'PT_BR' | 'VI_VN'
+  readonly VITE_I18N_DEFAULT_LANG: 'zh-CN' | 'pt-BR' | 'vi-VN'
   /**
    * 网络请求 URL
    */
