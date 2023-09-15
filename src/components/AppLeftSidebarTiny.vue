@@ -72,10 +72,10 @@ const menuData = computed(() => {
           </template>
         </Transition>
         <div v-if="!isSwitching" class="game-type">
-          <div class="casino" @click="router.push('/casino')">
+          <div class="casino" :class="{ active: $route.name === 'casino' }" @click="router.push('/casino')">
             <span>娱乐城</span>
           </div>
-          <div class="sports" @click="router.push('/sports')">
+          <div class="sports" :class="{ active: $route.name === 'sports' }" @click="router.push('/sports')">
             <span>体育</span>
           </div>
         </div>
@@ -140,7 +140,7 @@ const menuData = computed(() => {
     background-position: 0 -15px;
     padding-right: var(--tg-spacing-12);
 
-    &:hover {
+    &:hover, &.active {
       background-image: url('/img/left-side-bar/casino_bg_active.png');
     }
 
@@ -154,7 +154,7 @@ const menuData = computed(() => {
   .sports {
     background-image: url('/img/left-side-bar/sports_bg.png');
 
-    &:hover {
+    &:hover, &.active {
       background-image: url('/img/left-side-bar/sports_bg_active.png');
     }
   }

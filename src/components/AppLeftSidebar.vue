@@ -47,10 +47,10 @@ function onGameTypeChange(v: string) {
             <BaseIcon name="uni-menu" />
           </div>
           <div class="game-type">
-            <div class="casino" @click="router.push('/casino')">
+            <div class="casino" :class="{ active: $route.name === 'casino' }" @click="router.push('/casino')">
               <span>娱乐城</span>
             </div>
-            <div class="sports" @click="router.push('/sports')">
+            <div class="sports" :class="{ active: $route.name === 'sports' }" @click="router.push('/sports')">
               <span>体育</span>
             </div>
           </div>
@@ -60,14 +60,14 @@ function onGameTypeChange(v: string) {
   </div>
   <AppGlobalSearch v-else @game-type-change="onGameTypeChange" />
 
-  <div v-if="isFullScreen && !isCasino && !isSports" class="buttons">
+  <div v-if="isFullScreen && (isCasino || isSports)" class="buttons">
     <BaseAspectRatio ratio="3.5/1">
-      <div class="casino" @click="router.push('/casino')">
+      <div class="casino" :class="{ active: $route.name === 'casino' }" @click="router.push('/casino')">
         <span>娱乐城</span>
       </div>
     </BaseAspectRatio>
     <BaseAspectRatio ratio="3.5/1">
-      <div class="sports" @click="router.push('/sports')">
+      <div class="sports" :class="{ active: $route.name === 'sports' }" @click="router.push('/sports')">
         <span>体育</span>
       </div>
     </BaseAspectRatio>
@@ -124,7 +124,7 @@ function onGameTypeChange(v: string) {
     background-position: 0 -15px;
     padding-right: var(--tg-spacing-12);
 
-    &:hover {
+    &:hover, &.active {
       background-image: url('/img/left-side-bar/casino_bg_active.png');
     }
 
@@ -138,7 +138,7 @@ function onGameTypeChange(v: string) {
   .sports {
     background-image: url('/img/left-side-bar/sports_bg.png');
 
-    &:hover {
+    &:hover, &.active {
       background-image: url('/img/left-side-bar/sports_bg_active.png');
     }
   }
