@@ -6,7 +6,7 @@ interface Props {
     label: string
     value: any
   }[]
-  label: string
+  label?: string
   layout?: 'horizontal' | 'vertical'
   must?: boolean
   disabled?: boolean
@@ -29,7 +29,7 @@ function onChange(event: any) {
 
 <template>
   <div class="base-select" :class="[layout]">
-    <label>{{ label }} <span v-if="must">*</span></label>
+    <label v-if="label">{{ label }} <span v-if="must">*</span></label>
     <div class="select-warp">
       <select :value="modelValue" :class="{ disabled }" :disabled="disabled" @change="onChange">
         <option style="display: none;" disabled value="" />
