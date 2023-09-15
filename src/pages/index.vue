@@ -23,8 +23,9 @@ const { language } = storeToRefs(appStore)
 </script>
 
 <template>
-  <div style="background-color: white; height: 1000px">
+  <div style="color: white">
     <AppContent>
+      <AppBanner />
       <div>
         {{ t('hello') }}
       </div>
