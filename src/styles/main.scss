@@ -27,13 +27,14 @@
   --tg-text-lightblue: #4391e7;
   --tg-text-dark: #05080a;
   --tg-text-grey: #557086;
-  --tg-text-lightgrey:var(--tg-secondary-light);
+  --tg-text-lightgrey: var(--tg-secondary-light);
 
-  --tg-text-grey-button:var(--tg-secondary-light);
+  --tg-text-grey-button: var(--tg-secondary-light);
   /* 透明色 */
   --tg-color-black-rgb: 0, 0, 0;
   --tg-color-white-rgb: 255, 255, 255;
-  --tg-color-grey-rgb: 14,18,36;
+  --tg-color-grey-rgb: 14, 18, 36;
+  --tg-color-blue-rgb: 26, 46, 56;
 }
 
 :root {
@@ -70,8 +71,8 @@
   --tg-spacing-button-padding-vertical-lg: 16px;
   --tg-spacing-button-padding-vertical-xl: 18px;
 
-  --tg-spacing-input-padding-horizontal:14px;
-  --tg-spacing-input-padding-vertical:8px;
+  --tg-spacing-input-padding-horizontal: 14px;
+  --tg-spacing-input-padding-vertical: 8px;
 
   // 圆角
   --tg-radius-none: 0;
@@ -112,9 +113,12 @@
   }
 
   // 阴影
-  --tg-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.122);
-  --tg-box-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, .2), 0 4px 6px -2px rgba(0, 0, 0, .1);
-  --tg-text-shadow:0 1px 2px rgba(0, 0, 0, .12), 0 1px 3px rgba(0, 0, 0, .2);
+  --tg-box-shadow: 0 1px 3px 0 #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.2)},
+  0 1px 2px 0 #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.122)};
+  --tg-box-shadow-lg: 0 10px 15px -3px #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.2)},
+  0 4px 6px -2px #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.1)};
+  --tg-text-shadow:0 1px 2px #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.12)},
+  0 1px 3px #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.2)};
 }
 
 // 大小菜单的宽度

@@ -111,7 +111,7 @@ const casinoList = ref([])
   height: 100%;
   top: 0;
   left: 0;
-  background: rgba(26, 46, 56, 0.702);
+  background: #{rgba($color: var(--tg-color-blue-rgb), $alpha: 0.7)};
 }
 
 .tips {

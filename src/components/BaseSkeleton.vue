@@ -53,9 +53,9 @@ export default {
       height: 100%;
       background: linear-gradient(
         to left,
-        rgba(255, 255, 255, 0) 0,
-        rgba(255, 255, 255, 0.7) 50%,
-        rgba(255, 255, 255, 0) 100%
+        #{rgba($color: var(--tg-color-white-rgb), $alpha: 0)} 0,
+        #{rgba($color: var(--tg-color-white-rgb), $alpha: 0.7)} 50%,
+        #{rgba($color: var(--tg-color-white-rgb), $alpha: 0)} 100%
       );
       transform: skewX(-45deg);
     }

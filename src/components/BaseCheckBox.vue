@@ -32,7 +32,7 @@ function onClick() {
 
   .square {
     transition: all ease .25s;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .2), 0 1px 2px 0 rgba(0, 0, 0, .12);
+    box-shadow: 0 1px 3px 0 #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.2)}, 0 1px 2px 0 #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.12)};
     cursor: pointer;
     margin-right: 8px;
     border-width: var(--tg-border-width-sm);

@@ -139,7 +139,7 @@ const lineColor = computed(() => {
 
       &::after {
         content: "";
-        background-image: linear-gradient(90deg, rgba(255, 255, 255, .3) 0%, rgba(255, 255, 255, .5) 100%);
+        background-image: linear-gradient(90deg, #{rgba($color: var(--tg-color-white-rgb), $alpha: 0.3)} 0%, #{rgba($color: var(--tg-color-white-rgb), $alpha: 0.5)} 100%);
         animation: progressRipple 2s cubic-bezier(.4, 0, .2, 1) infinite;
       }
 

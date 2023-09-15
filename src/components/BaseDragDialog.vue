@@ -79,18 +79,21 @@ function close() {
   inset: 0 0 0 0;
   background-color: grey;
 }
+
 .tg-base-drag-dialog {
   touch-action: none;
   position: fixed;
   display: flex;
   border-radius: var(--tg-radius-md);
-  box-shadow: rgba(27, 23, 23, 0.2) 0px 4px 6px -1px, rgba(0, 0, 0, 0.12) 0px 2px 4px -1px;
+  box-shadow: #{rgba($color: var(--tg-color-grey-rgb), $alpha: 0.2)} 0px 4px 6px -1px,
+  #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.12)} 0px 2px 4px -1px;
   background: var(--tg-secondary-grey);
   color: #d5dceb;
   min-width: 280px;
   max-width: 90vw;
   flex-direction: column;
   z-index: var(--tg-z-index-top);
+
   .header {
     touch-action: none;
     display: flex;
@@ -101,6 +104,7 @@ function close() {
     background: var(--tg-primary-main);
     border-radius: var(--tg-radius-md) var(--tg-radius-md) 0 0;
     font-size: var(--tg-font-size-default);
+
     .title {
       touch-action: none;
       cursor: move;
@@ -109,15 +113,18 @@ function close() {
       align-items: center;
       gap: var(--tg-spacing-button-padding-horizontal-xs);
       padding-left: var(--tg-spacing-button-padding-horizontal-sm);
+
       svg {
         font-size: var(--tg-font-size-base);
       }
     }
+
     .close {
       cursor: pointer;
       padding: var(--tg-spacing-button-padding-horizontal-xs);
     }
   }
+
   .content {
     display: flex;
     width: 100%;

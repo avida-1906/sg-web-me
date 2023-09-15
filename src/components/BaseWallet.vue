@@ -115,7 +115,7 @@ const getSearchBalance = computed(() => {
   .wallet {
     background-color: var(--tg-secondary-dark);
     border-radius: var(--tg-radius-sm) 0px 0px var(--tg-radius-sm);
-    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.10) inset, 0px -1px 2px 0px rgba(0, 0, 0, 0.10) inset;
+    box-shadow: 0px 1px 2px 0px #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.1)} inset, 0px -1px 2px 0px #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.1)} inset;
 
     .coin {
       font-size: var(--tg-font-size-md);
@@ -202,7 +202,7 @@ const getSearchBalance = computed(() => {
 
   .popper-bottom {
     border-radius: 0px 0px 4px 4px;
-    background: rgba(177, 186, 211, 0.30);
+    background: #{rgba($color: var(--tg-color-grey-rgb), $alpha: 0.3)};
 
     .bottom-btn {
       width: 100%;

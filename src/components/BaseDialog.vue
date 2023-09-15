@@ -98,7 +98,7 @@ function close() {
       top: 0;
       bottom: 0;
       right: 0;
-      background: rgba(14,18,36,.7);
+      background: #{rgba($color: var(--tg-color-grey-rgb), $alpha: 0.7)};
       touch-action: none;
     }
     .card {

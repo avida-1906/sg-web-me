@@ -138,7 +138,7 @@ onMounted(() => {
   position: relative;
   font-size: var(--tg-font-size-xl);
   background: var(--tg-secondary-main);
-  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.35);
+  box-shadow: 0px 3px 5px 0px #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.35)};
   display: flex;
   align-items: stretch;
   justify-content: flex-start;
