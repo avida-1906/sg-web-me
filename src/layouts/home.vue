@@ -230,6 +230,7 @@ function setRightSidebarExpandStatus() {
     }
   }
   &>.footer{
+    width: 100%;
     background-color: var(--tg-secondary-dark);
   }
 }

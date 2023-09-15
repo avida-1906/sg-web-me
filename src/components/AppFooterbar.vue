@@ -6,23 +6,40 @@
 //
 // })
 const tabbar = ref([
-  { title: '浏览', icon: 'tabbar-menu', name: 'menu' },
-  { title: '娱乐城', icon: 'tabbar-game', name: 'game' },
-  { title: '投注', icon: 'tabbar-bet', name: 'bet' },
-  // { title: '投注单', icon: 'spt-user-bet' },
-  { title: '体育', icon: 'tabbar-sport', name: 'sport' },
-  { title: '聊天室', icon: 'tabbar-chat', name: 'chat' },
+  { title: '浏览', icon: 'tabbar-menu', name: 'menu', show: true },
+  { title: '娱乐城', icon: 'tabbar-game', name: 'game', show: true },
+  { title: '投注', icon: 'tabbar-bet', name: 'bet', show: true },
+  { title: '投注单', icon: 'spt-user-bet', name: 'user-bet', show: false },
+  { title: '体育', icon: 'tabbar-sport', name: 'sport', show: true },
+  { title: '聊天室', icon: 'tabbar-chat', name: 'chat', show: true },
 ])
 const activeBar = ref('menu')
+function changeBar(item: { name: string }) {
+  activeBar.value = item.name
+  if (item.name === 'game') {
+    tabbar.value[2].show = true
+    tabbar.value[3].show = false
+  }
+  else if (item.name === 'sport') {
+    tabbar.value[2].show = false
+    tabbar.value[3].show = true
+  }
+}
 </script>
 
 <template>
-  <div class="app-bottombar">
-    <div v-for="item of tabbar" :key="item.icon" class="bar-item" :class="{ 'active-bar': activeBar === item.name }">
-      <div class="bar-btn" @click.stop="activeBar = item.name">
+  <div class="app-bottombar page-content">
+    <div v-for="item of tabbar" v-show="item.show" :key="item.icon" class="bar-item" :class="{ 'active-bar': activeBar === item.name }">
+      <BaseButton type="text" @click.stop="changeBar(item)">
+        <div class="bar-btn">
+          <BaseIcon class="bar-icon" :name="item.icon" />
+          <span>{{ item.title }}</span>
+        </div>
+      </BaseButton>
+      <!-- <div class="bar-btn" @click.stop="changeBar(item)">
         <BaseIcon class="bar-icon" :name="item.icon" />
         <span>{{ item.title }}</span>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -32,16 +49,12 @@ const activeBar = ref('menu')
   position: fixed;
   bottom: 0;
   left: 0;
-  width: 100%;
-  height: 68px;
+  height: var(--tg-footerbar-height);
   display: grid;
-  z-index: var(--tg-z-index-50);
-  padding: 0 16px;
+  z-index: var(--tg-z-index-30);
   grid-template-columns: repeat(5,1fr);
   justify-items: center;
-  line-height: 1;
   background: var(--tg-secondary-dark);
-  box-shadow: 0 5px 5px #0a1c2766;
   overflow: hidden;
   .bar-item{
     width: 100%;
@@ -54,19 +67,16 @@ const activeBar = ref('menu')
       flex-direction: column;
       flex-wrap: nowrap;
       align-items: center;
-      cursor: pointer;
-      &:active{
-        transform: scale(0.9);
+      span{
+        font-size: var(--tg-font-size-xs);
+        color:var(--tg-text-white);
+        font-weight: var(--tg-font-weight-semibold);
+        padding-top: 3px;
+        line-height: 1;
       }
-    }
-    .bar-icon{
-      font-size: var(--tg-font-size-md);
-    }
-    span{
-      font-size: var(--tg-font-size-xs);
-      color:var(--tg-text-white);
-      font-weight: var(--tg-font-weight-semibold);
-      padding-top: 3px;
+      .bar-icon{
+        font-size: var(--tg-font-size-md);
+      }
     }
 
   }
@@ -77,7 +87,7 @@ const activeBar = ref('menu')
       content: "";
       position: absolute;
       top: 0;
-      min-height: 4px;
+      min-height: var(--tg-border-width-md);
       width: 60%;
       background-color: var(--tg-text-lightblue);
     }
