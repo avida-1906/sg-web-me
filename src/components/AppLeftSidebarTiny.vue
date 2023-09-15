@@ -16,6 +16,7 @@ function onClick() {
 }
 
 const router = useRouter()
+const route = useRoute()
 
 const {
   casinoMenu,
@@ -30,18 +31,32 @@ const {
   staticMenu2,
 } = useMenuData()
 
-const menuData = reactive([
-  casinoMenu,
-  casinoGameList,
-  casinoGameProvider,
-  sportsMenu,
-  sportHotGames,
-  sportEsports,
-  sportGameList,
-  sportOddType,
-  staticMenu1,
-  staticMenu2,
-])
+const menuData = computed(() => {
+  if (route.name === 'casino') {
+    return [
+      casinoMenu,
+      casinoGameList,
+      casinoGameProvider,
+      staticMenu1,
+      staticMenu2,
+    ]
+  }
+  else if (route.name === 'sports') {
+    return [
+      sportsMenu,
+      sportHotGames,
+      sportEsports,
+      sportGameList,
+      sportOddType,
+      staticMenu1,
+      staticMenu2,
+    ]
+  }
+  return [
+    staticMenu1,
+    staticMenu2,
+  ]
+})
 </script>
 
 <template>
