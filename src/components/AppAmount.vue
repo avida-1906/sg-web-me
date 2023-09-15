@@ -32,7 +32,7 @@ const _amount = computed(() => {
 
 <style lang='scss' scoped>
 .app-amount {
-  font-size: var(--tg-font-size-default);
+  font-size: inherit;
   color: inherit;
   display: flex;
   align-items: center;
