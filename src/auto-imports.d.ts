@@ -8,6 +8,7 @@ declare global {
   const AllCurrencyEnum: typeof import('./utils/enums')['AllCurrencyEnum']
   const ApiMemberLogin: typeof import('./apis/index')['ApiMemberLogin']
   const Big: typeof import('big.js')['Big']
+  const CurrencyConfig: typeof import('./utils/currency')['CurrencyConfig']
   const CurrencyEnum: typeof import('./utils/enums')['CurrencyEnum']
   const EffectScope: typeof import('vue')['EffectScope']
   const EnumCurrency: typeof import('./utils/enums')['EnumCurrency']
@@ -40,6 +41,7 @@ declare global {
   const createSharedComposable: typeof import('@vueuse/core')['createSharedComposable']
   const createTemplatePromise: typeof import('@vueuse/core')['createTemplatePromise']
   const createUnrefFn: typeof import('@vueuse/core')['createUnrefFn']
+  const currencyConfig: typeof import('./utils/currency')['currencyConfig']
   const currencyFormat: typeof import('./utils/number')['currencyFormat']
   const customRef: typeof import('vue')['customRef']
   const dayjs: typeof import('dayjs')['default']
@@ -349,6 +351,7 @@ declare module 'vue' {
   interface ComponentCustomProperties {
     readonly ApiMemberLogin: UnwrapRef<typeof import('./apis/index')['ApiMemberLogin']>
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
+    readonly CurrencyConfig: UnwrapRef<typeof import('./utils/currency')['CurrencyConfig']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly EnumCurrency: UnwrapRef<typeof import('./utils/enums')['EnumCurrency']>
     readonly EnumLanguage: UnwrapRef<typeof import('./utils/enums')['EnumLanguage']>
@@ -675,6 +678,7 @@ declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
     readonly ApiMemberLogin: UnwrapRef<typeof import('./apis/index')['ApiMemberLogin']>
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
+    readonly CurrencyConfig: UnwrapRef<typeof import('./utils/currency')['CurrencyConfig']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly EnumCurrency: UnwrapRef<typeof import('./utils/enums')['EnumCurrency']>
     readonly EnumLanguage: UnwrapRef<typeof import('./utils/enums')['EnumLanguage']>

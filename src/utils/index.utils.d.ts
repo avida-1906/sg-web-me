@@ -27,7 +27,7 @@ interface ILanguageConfig {
   /**
    * 货币 CNY USD INR BRL VND
    */
-  currency: 'CNY' | 'USD' | 'INR' | 'BRL' | 'VND'
+  currency: 'CNY' | 'USD' | 'INR' | 'BRL' | 'VND' | 'EUR' | 'JPY' | 'CAD'
 }
 
 interface ILocalStorageValue<T = any> {
