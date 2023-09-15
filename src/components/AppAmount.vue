@@ -42,6 +42,7 @@ const _amount = computed(() => {
   display: inline-block;
   overflow: hidden;
   white-space: nowrap;
+  text-overflow: ellipsis;
   font-variant-numeric: tabular-nums;
   margin-right: var(--tg-spacing-4);
 }
