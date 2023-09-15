@@ -18,7 +18,7 @@ interface Props {
   casinoGameProvider: MenuItem[]
   sportsMenu: MenuItem[]
   sportHotGames: MenuItem[]
-  sportEsports: MenuItem[]
+  sportESports: MenuItem[]
   sportGameList: MenuItem[]
   sportOddType: MenuItem[]
   currentType: string
@@ -105,7 +105,7 @@ function handleClickItem() { }
           </div>
         </div>
         <div class="menu-box">
-          <div v-for="item, i in sportEsports" :key="i">
+          <div v-for="item, i in sportESports" :key="i">
             <BaseAccordion
               v-if="item.list.length"
               :dom-id="item.domId" :menu-info="item" @click-head="handleClickHead"

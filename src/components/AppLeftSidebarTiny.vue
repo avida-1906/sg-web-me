@@ -24,7 +24,7 @@ const {
   casinoGameProvider,
   sportsMenu,
   sportHotGames,
-  sportEsports,
+  sportESports,
   sportGameList,
   sportOddType,
   staticMenu1,
@@ -45,7 +45,7 @@ const menuData = computed(() => {
     return [
       sportsMenu,
       sportHotGames,
-      sportEsports,
+      sportESports,
       sportGameList,
       sportOddType,
       staticMenu1,
@@ -63,7 +63,7 @@ const menuData = computed(() => {
   <!-- 头部菜单或搜索栏 -->
   <div class="tg-app-left-sidebar-tiny">
     <div class="sidebar-tiny-top">
-      <div class="is-small header">
+      <div class="header is-small">
         <Transition name="menu-fade">
           <template v-if="!isSwitching">
             <div class="button" @click="onClick">
@@ -85,9 +85,7 @@ const menuData = computed(() => {
     <div class="content" :class="{ 'scroll-y': !isSwitching }">
       <Transition name="slide-fade">
         <template v-if="!isSwitching">
-          <AppSidebarSmall
-            :menu-data="menuData" :is-switching="isSwitching"
-          />
+          <AppSidebarSmall :menu-data="menuData" :is-switching="isSwitching" />
         </template>
       </Transition>
     </div>

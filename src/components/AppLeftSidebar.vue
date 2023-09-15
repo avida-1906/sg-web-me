@@ -15,7 +15,7 @@ const {
   casinoGameProvider,
   sportsMenu,
   sportHotGames,
-  sportEsports,
+  sportESports,
   sportGameList,
   sportOddType,
   staticMenu1,
@@ -80,7 +80,7 @@ function onGameTypeChange(v: string) {
         :current-type="gameType"
         :casino-menu="casinoMenu" :casino-game-list="casinoGameList" :casino-game-provider="casinoGameProvider"
         :static-menu1="staticMenu1" :static-menu2="staticMenu2" :sports-menu="sportsMenu" :sport-hot-games="sportHotGames"
-        :sport-esports="sportEsports" :sport-game-list="sportGameList" :sport-odd-type="sportOddType" :is-switching="isSwitching"
+        :sport-esports="sportESports" :sport-game-list="sportGameList" :sport-odd-type="sportOddType" :is-switching="isSwitching"
       />
     </Transition>
   </div>
