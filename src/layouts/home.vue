@@ -81,6 +81,7 @@ function setRightSidebarExpandStatus() {
   <main class="wrap" :class="{ 'is-switching': isSwitching }">
     <div v-if="homeOverlayIsShow" class="home-overlay" @click="leftIsExpand = !leftIsExpand" />
     <div v-if="width < widthBoundaryXl && width > widthBoundaryMd" class="small-size-padding" />
+    <AppFooterbar v-show="!isFixedSmall" />
     <Transition name="bigslide-fade-left">
       <div
         v-if="leftIsExpand || isSwitching"
