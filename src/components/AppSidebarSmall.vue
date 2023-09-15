@@ -76,6 +76,7 @@ withDefaults(defineProps<Props>(), {})
       &:hover, &.active {
         background: var(--tg-secondary-main);
         border-radius: var(--tg-radius-default);
+        --tg-icon-color: var(--tg-text-white);
       }
       > .v-popper, .trigger {
         width: 100%;
