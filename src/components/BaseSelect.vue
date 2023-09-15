@@ -9,6 +9,7 @@ interface Props {
   label: string
   layout?: 'horizontal' | 'vertical'
   must?: boolean
+  disabled?: boolean
 }
 const props = withDefaults(defineProps<Props>(), {
   layout: 'vertical',
@@ -30,7 +31,7 @@ function onChange(event: any) {
   <div class="base-select" :class="[layout]">
     <label>{{ label }} <span v-if="must">*</span></label>
     <div class="select-warp">
-      <select :value="modelValue" @change="onChange">
+      <select :value="modelValue" :class="{ disabled }" :disabled="disabled" @change="onChange">
         <option style="display: none;" disabled value="" />
         <option v-for="o, i in options" :key="i" :selected="o.value === modelValue" :value="o.value">
           {{ o.label }}
@@ -79,6 +80,9 @@ function onChange(event: any) {
     pointer-events: none;
     cursor: pointer;
   }
+}
+.disabled{
+  cursor: not-allowed;
 }
 
 .vertical {
