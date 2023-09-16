@@ -23,9 +23,7 @@ const showSearchBar = ref(false)
 
 <template>
   <div class="app-header">
-    <BaseAspectRatio ratio="2/1" style="max-width: 67px; min-width: 42px">
-      <BaseLogo :use-small="width < 400" />
-    </BaseAspectRatio>
+    <BaseLogo :use-small="width < 400" />
     <div class="header-middle">
       <BaseWallet />
     </div>

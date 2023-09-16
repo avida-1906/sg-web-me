@@ -27,18 +27,16 @@ console.log(application.numberToCurrency(1232330.19999, EnumCurrency.CAD))
 
 <template>
   <div style="color: white">
-    <AppContent>
-      <AppBanner />
-      <div>
-        {{ t('hello') }}
-      </div>
-      <div>
-        {{ data }}
-      </div>
-      <button @click="getData">
-        请求
-      </button>
-    </AppContent>
+    <AppBanner />
+    <div>
+      {{ t('hello') }}
+    </div>
+    <div>
+      {{ data }}
+    </div>
+    <button @click="getData">
+      请求
+    </button>
   </div>
 </template>
 
