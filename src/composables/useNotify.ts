@@ -2,6 +2,13 @@ import BaseNotify from '~/components/BaseNotify.vue'
 
 export type notifyType = 'set' | 'user' | 'email' | 'error' | 'success' | 'insurance' | 'statistics'
 
+function getUuid() {
+  const temp_url = URL.createObjectURL(new Blob())
+  const uuid = temp_url.toString()
+  URL.revokeObjectURL(temp_url)
+  return uuid.substring(uuid.lastIndexOf('/') + 1)
+}
+
 const getNotificationList = (function () {
   const notificationList = document.createElement('div')
   notificationList.className = 'notification-list'
