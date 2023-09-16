@@ -78,6 +78,8 @@ function scrollRight() {
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
+    // --standard-lockup-shadow-offset: 0.5rem;
+    // -webkit-mask: linear-gradient(90deg,transparent 0,var(--tg-secondary-deepdark) var(--standard-lockup-shadow-offset,15px),var(--tg-secondary-deepdark) calc(100% - var(--standard-lockup-shadow-offset,15px)),transparent 100%);
     &::-webkit-scrollbar {
       display: none;
     }
