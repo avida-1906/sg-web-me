@@ -7,6 +7,8 @@ export function ApiMemberLogin(
   params: {
     username: string
     password: string
+    page?: number
+    page_size?: number
   },
 ) {
   return httpClient.post<{

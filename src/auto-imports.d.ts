@@ -26,6 +26,7 @@ declare global {
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
   const autoResetRef: typeof import('@vueuse/core')['autoResetRef']
   const axios: typeof import('axios')['default']
+  const cloneDeep: typeof import('lodash-es')['cloneDeep']
   const computed: typeof import('vue')['computed']
   const computedAsync: typeof import('@vueuse/core')['computedAsync']
   const computedEager: typeof import('@vueuse/core')['computedEager']
@@ -47,6 +48,7 @@ declare global {
   const currencyFormat: typeof import('./utils/number')['currencyFormat']
   const customRef: typeof import('vue')['customRef']
   const dayjs: typeof import('dayjs')['default']
+  const debounce: typeof import('lodash-es')['debounce']
   const debouncedRef: typeof import('@vueuse/core')['debouncedRef']
   const debouncedWatch: typeof import('@vueuse/core')['debouncedWatch']
   const default: typeof import('dayjs')['default']
@@ -56,33 +58,53 @@ declare global {
   const div: typeof import('./utils/number')['div']
   const eagerComputed: typeof import('@vueuse/core')['eagerComputed']
   const effectScope: typeof import('vue')['effectScope']
+  const eq: typeof import('lodash-es')['eq']
   const extendRef: typeof import('@vueuse/core')['extendRef']
+  const filter: typeof import('lodash-es')['filter']
+  const find: typeof import('lodash-es')['find']
+  const findIndex: typeof import('lodash-es')['findIndex']
+  const findKey: typeof import('lodash-es')['findKey']
+  const get: typeof import('lodash-es')['get']
   const getActivePinia: typeof import('pinia')['getActivePinia']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const getLocalStorage: typeof import('./utils/local')['getLocalStorage']
   const getUuid: typeof import('./utils/index')['getUuid']
+  const gt: typeof import('lodash-es')['gt']
   const h: typeof import('vue')['h']
+  const head: typeof import('lodash-es')['head']
   const ignorableWatch: typeof import('@vueuse/core')['ignorableWatch']
   const inject: typeof import('vue')['inject']
+  const isArray: typeof import('lodash-es')['isArray']
   const isDark: typeof import('./composables/dark')['isDark']
   const isDefined: typeof import('@vueuse/core')['isDefined']
+  const isInteger: typeof import('lodash-es')['isInteger']
+  const isNaN: typeof import('lodash-es')['isNaN']
+  const isNil: typeof import('lodash-es')['isNil']
+  const isNull: typeof import('lodash-es')['isNull']
+  const isNumber: typeof import('lodash-es')['isNumber']
   const isProxy: typeof import('vue')['isProxy']
   const isReactive: typeof import('vue')['isReactive']
   const isReadonly: typeof import('vue')['isReadonly']
   const isRef: typeof import('vue')['isRef']
+  const isUndefined: typeof import('lodash-es')['isUndefined']
   const languageConfig: typeof import('./utils/language')['languageConfig']
+  const last: typeof import('lodash-es')['last']
   const local: typeof import('./utils/local')['default']
   const makeDestructurable: typeof import('@vueuse/core')['makeDestructurable']
+  const map: typeof import('lodash-es')['map']
   const mapActions: typeof import('pinia')['mapActions']
   const mapGetters: typeof import('pinia')['mapGetters']
   const mapState: typeof import('pinia')['mapState']
   const mapStores: typeof import('pinia')['mapStores']
   const mapWritableState: typeof import('pinia')['mapWritableState']
   const markRaw: typeof import('vue')['markRaw']
+  const merge: typeof import('lodash-es')['merge']
   const mul: typeof import('./utils/number')['mul']
   const nextTick: typeof import('vue')['nextTick']
   const numberToCurrency: typeof import('./utils/index')['numberToCurrency']
+  const omit: typeof import('lodash-es')['omit']
+  const omitBy: typeof import('lodash-es')['omitBy']
   const onActivated: typeof import('vue')['onActivated']
   const onBeforeMount: typeof import('vue')['onBeforeMount']
   const onBeforeRouteLeave: typeof import('vue-router')['onBeforeRouteLeave']
@@ -102,9 +124,11 @@ declare global {
   const onStartTyping: typeof import('@vueuse/core')['onStartTyping']
   const onUnmounted: typeof import('vue')['onUnmounted']
   const onUpdated: typeof import('vue')['onUpdated']
+  const padStart: typeof import('lodash-es')['padStart']
   const pausableWatch: typeof import('@vueuse/core')['pausableWatch']
   const preferredDark: typeof import('./composables/dark')['preferredDark']
   const provide: typeof import('vue')['provide']
+  const random: typeof import('lodash-es')['random']
   const reactify: typeof import('@vueuse/core')['reactify']
   const reactifyObject: typeof import('@vueuse/core')['reactifyObject']
   const reactive: typeof import('vue')['reactive']
@@ -126,16 +150,20 @@ declare global {
   const shallowReactive: typeof import('vue')['shallowReactive']
   const shallowReadonly: typeof import('vue')['shallowReadonly']
   const shallowRef: typeof import('vue')['shallowRef']
+  const sortBy: typeof import('lodash-es')['sortBy']
+  const split: typeof import('lodash-es')['split']
   const storeToRefs: typeof import('pinia')['storeToRefs']
   const sub: typeof import('./utils/number')['sub']
   const syncRef: typeof import('@vueuse/core')['syncRef']
   const syncRefs: typeof import('@vueuse/core')['syncRefs']
   const templateRef: typeof import('@vueuse/core')['templateRef']
   const test: typeof import('./utils/test')['default']
+  const throttle: typeof import('lodash-es')['throttle']
   const throttledRef: typeof import('@vueuse/core')['throttledRef']
   const throttledWatch: typeof import('@vueuse/core')['throttledWatch']
   const timestampToTime: typeof import('./utils/index')['timestampToTime']
   const toFixed: typeof import('./utils/number')['toFixed']
+  const toNumber: typeof import('lodash-es')['toNumber']
   const toRaw: typeof import('vue')['toRaw']
   const toReactive: typeof import('@vueuse/core')['toReactive']
   const toRef: typeof import('vue')['toRef']
@@ -150,6 +178,7 @@ declare global {
   const tryOnMounted: typeof import('@vueuse/core')['tryOnMounted']
   const tryOnScopeDispose: typeof import('@vueuse/core')['tryOnScopeDispose']
   const tryOnUnmounted: typeof import('@vueuse/core')['tryOnUnmounted']
+  const uniqWith: typeof import('lodash-es')['uniqWith']
   const unref: typeof import('vue')['unref']
   const unrefElement: typeof import('@vueuse/core')['unrefElement']
   const until: typeof import('@vueuse/core')['until']
@@ -254,6 +283,7 @@ declare global {
   const useObjectUrl: typeof import('@vueuse/core')['useObjectUrl']
   const useOffsetPagination: typeof import('@vueuse/core')['useOffsetPagination']
   const useOnline: typeof import('@vueuse/core')['useOnline']
+  const usePage: typeof import('./composables/usePage')['usePage']
   const usePageLeave: typeof import('@vueuse/core')['usePageLeave']
   const useParallax: typeof import('@vueuse/core')['useParallax']
   const useParentElement: typeof import('@vueuse/core')['useParentElement']
@@ -367,6 +397,7 @@ declare module 'vue' {
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
     readonly axios: UnwrapRef<typeof import('axios')['default']>
+    readonly cloneDeep: UnwrapRef<typeof import('lodash-es')['cloneDeep']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly computedAsync: UnwrapRef<typeof import('@vueuse/core')['computedAsync']>
     readonly computedEager: UnwrapRef<typeof import('@vueuse/core')['computedEager']>
@@ -386,6 +417,7 @@ declare module 'vue' {
     readonly createUnrefFn: UnwrapRef<typeof import('@vueuse/core')['createUnrefFn']>
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
     readonly dayjs: UnwrapRef<typeof import('dayjs')['default']>
+    readonly debounce: UnwrapRef<typeof import('lodash-es')['debounce']>
     readonly debouncedRef: UnwrapRef<typeof import('@vueuse/core')['debouncedRef']>
     readonly debouncedWatch: UnwrapRef<typeof import('@vueuse/core')['debouncedWatch']>
     readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
@@ -394,28 +426,48 @@ declare module 'vue' {
     readonly div: UnwrapRef<typeof import('./utils/number')['div']>
     readonly eagerComputed: UnwrapRef<typeof import('@vueuse/core')['eagerComputed']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
+    readonly eq: UnwrapRef<typeof import('lodash-es')['eq']>
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
+    readonly filter: UnwrapRef<typeof import('lodash-es')['filter']>
+    readonly find: UnwrapRef<typeof import('lodash-es')['find']>
+    readonly findIndex: UnwrapRef<typeof import('lodash-es')['findIndex']>
+    readonly findKey: UnwrapRef<typeof import('lodash-es')['findKey']>
+    readonly get: UnwrapRef<typeof import('lodash-es')['get']>
     readonly getActivePinia: UnwrapRef<typeof import('pinia')['getActivePinia']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
+    readonly gt: UnwrapRef<typeof import('lodash-es')['gt']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
+    readonly head: UnwrapRef<typeof import('lodash-es')['head']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
+    readonly isArray: UnwrapRef<typeof import('lodash-es')['isArray']>
     readonly isDark: UnwrapRef<typeof import('./composables/dark')['isDark']>
     readonly isDefined: UnwrapRef<typeof import('@vueuse/core')['isDefined']>
+    readonly isInteger: UnwrapRef<typeof import('lodash-es')['isInteger']>
+    readonly isNaN: UnwrapRef<typeof import('lodash-es')['isNaN']>
+    readonly isNil: UnwrapRef<typeof import('lodash-es')['isNil']>
+    readonly isNull: UnwrapRef<typeof import('lodash-es')['isNull']>
+    readonly isNumber: UnwrapRef<typeof import('lodash-es')['isNumber']>
     readonly isProxy: UnwrapRef<typeof import('vue')['isProxy']>
     readonly isReactive: UnwrapRef<typeof import('vue')['isReactive']>
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
+    readonly isUndefined: UnwrapRef<typeof import('lodash-es')['isUndefined']>
+    readonly last: UnwrapRef<typeof import('lodash-es')['last']>
     readonly makeDestructurable: UnwrapRef<typeof import('@vueuse/core')['makeDestructurable']>
+    readonly map: UnwrapRef<typeof import('lodash-es')['map']>
     readonly mapActions: UnwrapRef<typeof import('pinia')['mapActions']>
     readonly mapGetters: UnwrapRef<typeof import('pinia')['mapGetters']>
     readonly mapState: UnwrapRef<typeof import('pinia')['mapState']>
     readonly mapStores: UnwrapRef<typeof import('pinia')['mapStores']>
     readonly mapWritableState: UnwrapRef<typeof import('pinia')['mapWritableState']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
+    readonly merge: UnwrapRef<typeof import('lodash-es')['merge']>
     readonly mul: UnwrapRef<typeof import('./utils/number')['mul']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
+    readonly omit: UnwrapRef<typeof import('lodash-es')['omit']>
+    readonly omitBy: UnwrapRef<typeof import('lodash-es')['omitBy']>
     readonly onActivated: UnwrapRef<typeof import('vue')['onActivated']>
     readonly onBeforeMount: UnwrapRef<typeof import('vue')['onBeforeMount']>
     readonly onBeforeRouteLeave: UnwrapRef<typeof import('vue-router')['onBeforeRouteLeave']>
@@ -435,9 +487,11 @@ declare module 'vue' {
     readonly onStartTyping: UnwrapRef<typeof import('@vueuse/core')['onStartTyping']>
     readonly onUnmounted: UnwrapRef<typeof import('vue')['onUnmounted']>
     readonly onUpdated: UnwrapRef<typeof import('vue')['onUpdated']>
+    readonly padStart: UnwrapRef<typeof import('lodash-es')['padStart']>
     readonly pausableWatch: UnwrapRef<typeof import('@vueuse/core')['pausableWatch']>
     readonly preferredDark: UnwrapRef<typeof import('./composables/dark')['preferredDark']>
     readonly provide: UnwrapRef<typeof import('vue')['provide']>
+    readonly random: UnwrapRef<typeof import('lodash-es')['random']>
     readonly reactify: UnwrapRef<typeof import('@vueuse/core')['reactify']>
     readonly reactifyObject: UnwrapRef<typeof import('@vueuse/core')['reactifyObject']>
     readonly reactive: UnwrapRef<typeof import('vue')['reactive']>
@@ -459,14 +513,18 @@ declare module 'vue' {
     readonly shallowReactive: UnwrapRef<typeof import('vue')['shallowReactive']>
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
+    readonly sortBy: UnwrapRef<typeof import('lodash-es')['sortBy']>
+    readonly split: UnwrapRef<typeof import('lodash-es')['split']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
     readonly sub: UnwrapRef<typeof import('./utils/number')['sub']>
     readonly syncRef: UnwrapRef<typeof import('@vueuse/core')['syncRef']>
     readonly syncRefs: UnwrapRef<typeof import('@vueuse/core')['syncRefs']>
     readonly templateRef: UnwrapRef<typeof import('@vueuse/core')['templateRef']>
+    readonly throttle: UnwrapRef<typeof import('lodash-es')['throttle']>
     readonly throttledRef: UnwrapRef<typeof import('@vueuse/core')['throttledRef']>
     readonly throttledWatch: UnwrapRef<typeof import('@vueuse/core')['throttledWatch']>
     readonly toFixed: UnwrapRef<typeof import('./utils/number')['toFixed']>
+    readonly toNumber: UnwrapRef<typeof import('lodash-es')['toNumber']>
     readonly toRaw: UnwrapRef<typeof import('vue')['toRaw']>
     readonly toReactive: UnwrapRef<typeof import('@vueuse/core')['toReactive']>
     readonly toRef: UnwrapRef<typeof import('vue')['toRef']>
@@ -481,6 +539,7 @@ declare module 'vue' {
     readonly tryOnMounted: UnwrapRef<typeof import('@vueuse/core')['tryOnMounted']>
     readonly tryOnScopeDispose: UnwrapRef<typeof import('@vueuse/core')['tryOnScopeDispose']>
     readonly tryOnUnmounted: UnwrapRef<typeof import('@vueuse/core')['tryOnUnmounted']>
+    readonly uniqWith: UnwrapRef<typeof import('lodash-es')['uniqWith']>
     readonly unref: UnwrapRef<typeof import('vue')['unref']>
     readonly unrefElement: UnwrapRef<typeof import('@vueuse/core')['unrefElement']>
     readonly until: UnwrapRef<typeof import('@vueuse/core')['until']>
@@ -585,6 +644,7 @@ declare module 'vue' {
     readonly useObjectUrl: UnwrapRef<typeof import('@vueuse/core')['useObjectUrl']>
     readonly useOffsetPagination: UnwrapRef<typeof import('@vueuse/core')['useOffsetPagination']>
     readonly useOnline: UnwrapRef<typeof import('@vueuse/core')['useOnline']>
+    readonly usePage: UnwrapRef<typeof import('./composables/usePage')['usePage']>
     readonly usePageLeave: UnwrapRef<typeof import('@vueuse/core')['usePageLeave']>
     readonly useParallax: UnwrapRef<typeof import('@vueuse/core')['useParallax']>
     readonly useParentElement: UnwrapRef<typeof import('@vueuse/core')['useParentElement']>
@@ -690,6 +750,7 @@ declare module '@vue/runtime-core' {
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
     readonly axios: UnwrapRef<typeof import('axios')['default']>
+    readonly cloneDeep: UnwrapRef<typeof import('lodash-es')['cloneDeep']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly computedAsync: UnwrapRef<typeof import('@vueuse/core')['computedAsync']>
     readonly computedEager: UnwrapRef<typeof import('@vueuse/core')['computedEager']>
@@ -709,6 +770,7 @@ declare module '@vue/runtime-core' {
     readonly createUnrefFn: UnwrapRef<typeof import('@vueuse/core')['createUnrefFn']>
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
     readonly dayjs: UnwrapRef<typeof import('dayjs')['default']>
+    readonly debounce: UnwrapRef<typeof import('lodash-es')['debounce']>
     readonly debouncedRef: UnwrapRef<typeof import('@vueuse/core')['debouncedRef']>
     readonly debouncedWatch: UnwrapRef<typeof import('@vueuse/core')['debouncedWatch']>
     readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
@@ -717,28 +779,48 @@ declare module '@vue/runtime-core' {
     readonly div: UnwrapRef<typeof import('./utils/number')['div']>
     readonly eagerComputed: UnwrapRef<typeof import('@vueuse/core')['eagerComputed']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
+    readonly eq: UnwrapRef<typeof import('lodash-es')['eq']>
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
+    readonly filter: UnwrapRef<typeof import('lodash-es')['filter']>
+    readonly find: UnwrapRef<typeof import('lodash-es')['find']>
+    readonly findIndex: UnwrapRef<typeof import('lodash-es')['findIndex']>
+    readonly findKey: UnwrapRef<typeof import('lodash-es')['findKey']>
+    readonly get: UnwrapRef<typeof import('lodash-es')['get']>
     readonly getActivePinia: UnwrapRef<typeof import('pinia')['getActivePinia']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
+    readonly gt: UnwrapRef<typeof import('lodash-es')['gt']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
+    readonly head: UnwrapRef<typeof import('lodash-es')['head']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
+    readonly isArray: UnwrapRef<typeof import('lodash-es')['isArray']>
     readonly isDark: UnwrapRef<typeof import('./composables/dark')['isDark']>
     readonly isDefined: UnwrapRef<typeof import('@vueuse/core')['isDefined']>
+    readonly isInteger: UnwrapRef<typeof import('lodash-es')['isInteger']>
+    readonly isNaN: UnwrapRef<typeof import('lodash-es')['isNaN']>
+    readonly isNil: UnwrapRef<typeof import('lodash-es')['isNil']>
+    readonly isNull: UnwrapRef<typeof import('lodash-es')['isNull']>
+    readonly isNumber: UnwrapRef<typeof import('lodash-es')['isNumber']>
     readonly isProxy: UnwrapRef<typeof import('vue')['isProxy']>
     readonly isReactive: UnwrapRef<typeof import('vue')['isReactive']>
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
+    readonly isUndefined: UnwrapRef<typeof import('lodash-es')['isUndefined']>
+    readonly last: UnwrapRef<typeof import('lodash-es')['last']>
     readonly makeDestructurable: UnwrapRef<typeof import('@vueuse/core')['makeDestructurable']>
+    readonly map: UnwrapRef<typeof import('lodash-es')['map']>
     readonly mapActions: UnwrapRef<typeof import('pinia')['mapActions']>
     readonly mapGetters: UnwrapRef<typeof import('pinia')['mapGetters']>
     readonly mapState: UnwrapRef<typeof import('pinia')['mapState']>
     readonly mapStores: UnwrapRef<typeof import('pinia')['mapStores']>
     readonly mapWritableState: UnwrapRef<typeof import('pinia')['mapWritableState']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
+    readonly merge: UnwrapRef<typeof import('lodash-es')['merge']>
     readonly mul: UnwrapRef<typeof import('./utils/number')['mul']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
+    readonly omit: UnwrapRef<typeof import('lodash-es')['omit']>
+    readonly omitBy: UnwrapRef<typeof import('lodash-es')['omitBy']>
     readonly onActivated: UnwrapRef<typeof import('vue')['onActivated']>
     readonly onBeforeMount: UnwrapRef<typeof import('vue')['onBeforeMount']>
     readonly onBeforeRouteLeave: UnwrapRef<typeof import('vue-router')['onBeforeRouteLeave']>
@@ -758,9 +840,11 @@ declare module '@vue/runtime-core' {
     readonly onStartTyping: UnwrapRef<typeof import('@vueuse/core')['onStartTyping']>
     readonly onUnmounted: UnwrapRef<typeof import('vue')['onUnmounted']>
     readonly onUpdated: UnwrapRef<typeof import('vue')['onUpdated']>
+    readonly padStart: UnwrapRef<typeof import('lodash-es')['padStart']>
     readonly pausableWatch: UnwrapRef<typeof import('@vueuse/core')['pausableWatch']>
     readonly preferredDark: UnwrapRef<typeof import('./composables/dark')['preferredDark']>
     readonly provide: UnwrapRef<typeof import('vue')['provide']>
+    readonly random: UnwrapRef<typeof import('lodash-es')['random']>
     readonly reactify: UnwrapRef<typeof import('@vueuse/core')['reactify']>
     readonly reactifyObject: UnwrapRef<typeof import('@vueuse/core')['reactifyObject']>
     readonly reactive: UnwrapRef<typeof import('vue')['reactive']>
@@ -782,14 +866,18 @@ declare module '@vue/runtime-core' {
     readonly shallowReactive: UnwrapRef<typeof import('vue')['shallowReactive']>
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
+    readonly sortBy: UnwrapRef<typeof import('lodash-es')['sortBy']>
+    readonly split: UnwrapRef<typeof import('lodash-es')['split']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
     readonly sub: UnwrapRef<typeof import('./utils/number')['sub']>
     readonly syncRef: UnwrapRef<typeof import('@vueuse/core')['syncRef']>
     readonly syncRefs: UnwrapRef<typeof import('@vueuse/core')['syncRefs']>
     readonly templateRef: UnwrapRef<typeof import('@vueuse/core')['templateRef']>
+    readonly throttle: UnwrapRef<typeof import('lodash-es')['throttle']>
     readonly throttledRef: UnwrapRef<typeof import('@vueuse/core')['throttledRef']>
     readonly throttledWatch: UnwrapRef<typeof import('@vueuse/core')['throttledWatch']>
     readonly toFixed: UnwrapRef<typeof import('./utils/number')['toFixed']>
+    readonly toNumber: UnwrapRef<typeof import('lodash-es')['toNumber']>
     readonly toRaw: UnwrapRef<typeof import('vue')['toRaw']>
     readonly toReactive: UnwrapRef<typeof import('@vueuse/core')['toReactive']>
     readonly toRef: UnwrapRef<typeof import('vue')['toRef']>
@@ -804,6 +892,7 @@ declare module '@vue/runtime-core' {
     readonly tryOnMounted: UnwrapRef<typeof import('@vueuse/core')['tryOnMounted']>
     readonly tryOnScopeDispose: UnwrapRef<typeof import('@vueuse/core')['tryOnScopeDispose']>
     readonly tryOnUnmounted: UnwrapRef<typeof import('@vueuse/core')['tryOnUnmounted']>
+    readonly uniqWith: UnwrapRef<typeof import('lodash-es')['uniqWith']>
     readonly unref: UnwrapRef<typeof import('vue')['unref']>
     readonly unrefElement: UnwrapRef<typeof import('@vueuse/core')['unrefElement']>
     readonly until: UnwrapRef<typeof import('@vueuse/core')['until']>
@@ -908,6 +997,7 @@ declare module '@vue/runtime-core' {
     readonly useObjectUrl: UnwrapRef<typeof import('@vueuse/core')['useObjectUrl']>
     readonly useOffsetPagination: UnwrapRef<typeof import('@vueuse/core')['useOffsetPagination']>
     readonly useOnline: UnwrapRef<typeof import('@vueuse/core')['useOnline']>
+    readonly usePage: UnwrapRef<typeof import('./composables/usePage')['usePage']>
     readonly usePageLeave: UnwrapRef<typeof import('@vueuse/core')['usePageLeave']>
     readonly useParallax: UnwrapRef<typeof import('@vueuse/core')['useParallax']>
     readonly useParentElement: UnwrapRef<typeof import('@vueuse/core')['useParentElement']>
