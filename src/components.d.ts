@@ -17,6 +17,7 @@ declare module 'vue' {
     AppGameSearch: typeof import('./components/AppGameSearch.vue')['default']
     AppGlobalSearch: typeof import('./components/AppGlobalSearch.vue')['default']
     AppHeader: typeof import('./components/AppHeader.vue')['default']
+    AppIframe: typeof import('./components/AppIframe.vue')['default']
     AppLeftSidebar: typeof import('./components/AppLeftSidebar.vue')['default']
     AppLeftSidebarTiny: typeof import('./components/AppLeftSidebarTiny.vue')['default']
     AppSidebarBig: typeof import('./components/AppSidebarBig.vue')['default']
