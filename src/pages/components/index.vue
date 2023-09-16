@@ -587,7 +587,7 @@ function copyIconName(name: string) {
             </div>
             <div alt="复制名称" title="复制名称" class="copy-name" @click="() => copyIconName(id.slice(5))">
               <!-- {{ id.slice(5) }} -->
-              copyname
+              123
             </div>
           </li>
         </ul>

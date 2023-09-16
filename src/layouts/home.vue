@@ -132,9 +132,7 @@ function setRightSidebarExpandStatus() {
         </AppContent>
       </header>
       <div class="scroll-y scrollable">
-        <AppContent>
-          <RouterView />
-        </AppContent>
+        <RouterView />
         <footer class="footer">
           <AppContent>
             <AppFooter />

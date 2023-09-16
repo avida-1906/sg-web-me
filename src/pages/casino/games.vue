@@ -1,16 +1,28 @@
 <script setup lang='ts'>
-// 123
+const isTheatre = ref(false) // 影院模式
+function setIsTheatre(v: boolean) {
+  isTheatre.value = v
+}
 </script>
 
 <template>
-  <div class="casino-games">
+  <div class="casino-games" :class="{ theatre: isTheatre }">
     <AppIframe />
   </div>
 </template>
 
 <style lang='scss' scoped>
-.casino-games{
-
+.casino-games {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 3vw;
+  margin: 0 auto;
+}
+.theatre{
+  padding: 0;
 }
 </style>
 
