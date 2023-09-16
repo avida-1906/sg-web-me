@@ -29,7 +29,7 @@ declare module '*.tsx' {
 /**
  * 用于select的option
  */
-interface SelectOption {
+interface ISelectOption {
   label: string
   value: string | number
 }
