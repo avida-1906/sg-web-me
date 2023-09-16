@@ -249,6 +249,16 @@ body {
   box-shadow: var(--tg-box-shadow-lg);
 }
 
+// 鼠标悬停气泡提示提示
+.tiny-menu-item-title {
+  color: var(--tg-secondary-main);
+  font-size: var(--tg-font-size-default);
+  font-weight: var(--tg-font-weight-semibold);
+  padding: var(--tg-spacing-input-padding-vertical) var(--tg-spacing-button-padding-horizontal-xs);
+  text-align: center;
+  min-width: var(--tg-sidebar-width-sm);
+}
+
 @media screen and (min-width: 768px) {
   #app {
     height: 1px;
