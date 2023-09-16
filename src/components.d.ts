@@ -21,6 +21,7 @@ declare module 'vue' {
     AppLeftSidebarTiny: typeof import('./components/AppLeftSidebarTiny.vue')['default']
     AppSidebarBig: typeof import('./components/AppSidebarBig.vue')['default']
     AppSidebarSmall: typeof import('./components/AppSidebarSmall.vue')['default']
+    AppSlider: typeof import('./components/AppSlider.vue')['default']
     BaseAccordion: typeof import('./components/BaseAccordion.vue')['default']
     BaseAspectRatio: typeof import('./components/BaseAspectRatio.vue')['default']
     BaseBadge: typeof import('./components/BaseBadge.vue')['default']

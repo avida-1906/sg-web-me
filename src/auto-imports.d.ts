@@ -61,7 +61,6 @@ declare global {
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const getLocalStorage: typeof import('./utils/local')['getLocalStorage']
-  const getUuid: typeof import('./utils/index')['getUuid']
   const h: typeof import('vue')['h']
   const ignorableWatch: typeof import('@vueuse/core')['ignorableWatch']
   const inject: typeof import('vue')['inject']
