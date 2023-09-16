@@ -248,9 +248,10 @@ function setRightSidebarExpandStatus() {
       flex-direction: column;
     }
   }
-  &>.footer{
+  .footer{
     width: 100%;
-    background-color: var(--tg-secondary-dark);
+    background-color: var(--tg-secondary-deepdark);
+    // #091d2a
   }
 }
 

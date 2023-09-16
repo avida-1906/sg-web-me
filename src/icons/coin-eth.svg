@@ -1,9 +1,9 @@
-<svg width="36" height="36" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
-<path d="M34 18C34 26.837 26.837 34 18 34C9.163 34 2 26.837 2 18C2 9.163 9.163 2 18 2C26.837 2 34 9.163 34 18Z" fill="#627EEA"/>
-<path opacity="0.6" d="M18.5 6V14.87L26 18.22L18.5 6Z" fill="white"/>
-<path d="M18.5 6L11 18.22L18.5 14.87V6Z" fill="white"/>
-<path opacity="0.6" d="M18.5 23.9702V30.0002L26 19.6152L18.5 23.9702Z" fill="white"/>
-<path d="M18.5 30.0002V23.9652L11 19.6152L18.5 30.0002Z" fill="white"/>
-<path opacity="0.2" d="M18.5 22.5751L26 18.2201L18.5 14.8701V22.5751Z" fill="white"/>
-<path opacity="0.6" d="M11 18.2201L18.5 22.5751V14.8701L11 18.2201Z" fill="white"/>
+<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M28 14C28 21.7324 21.7324 28 14 28C6.26762 28 0 21.7324 0 14C0 6.26762 6.26762 0 14 0C21.7324 0 28 6.26762 28 14Z" fill="#627EEA"/>
+<path opacity="0.6" d="M14.4375 3.5V11.2613L21 14.1925L14.4375 3.5Z" fill="white"/>
+<path d="M14.4375 3.5L7.875 14.1925L14.4375 11.2613V3.5Z" fill="white"/>
+<path opacity="0.6" d="M14.4375 19.2237V24.5L21 15.4131L14.4375 19.2237Z" fill="white"/>
+<path d="M14.4375 24.5V19.2193L7.875 15.4131L14.4375 24.5Z" fill="white"/>
+<path opacity="0.2" d="M14.4375 18.0036L21 14.193L14.4375 11.2617V18.0036Z" fill="white"/>
+<path opacity="0.6" d="M7.875 14.193L14.4375 18.0036V11.2617L7.875 14.193Z" fill="white"/>
 </svg>

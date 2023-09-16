@@ -9,7 +9,8 @@ const { run, data } = useRequest(() => ApiMemberLogin({
   password: '123456',
 }), {
   manual: true,
-  onSuccess: (res) => {
+  onSuccess: (res: any) => {
+    console.log(res)
   },
 })
 
@@ -26,8 +27,9 @@ console.log(application.numberToCurrency(1232330.19999, EnumCurrency.CAD))
 </script>
 
 <template>
-  <div style="color: white">
+  <div class="home-index">
     <AppBanner />
+    <AppBetData />
     <div>
       {{ t('hello') }}
     </div>
@@ -41,6 +43,9 @@ console.log(application.numberToCurrency(1232330.19999, EnumCurrency.CAD))
 </template>
 
 <style lang="scss" scoped>
+.home-index{
+  padding: 24px 0 32px;
+}
 </style>
 
 <route lang="yaml">
