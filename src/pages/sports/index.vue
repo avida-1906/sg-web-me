@@ -4,7 +4,7 @@
 
 <template>
   <div class="sports">
-    sports
+    {{ $t('hello') }}
     <AppGameSearch game-type="2" />
     <div class="box" />
     <AppAmount amount="0.01888888" :currency-type="EnumCurrency.BTC" />

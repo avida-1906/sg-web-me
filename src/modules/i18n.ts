@@ -52,5 +52,5 @@ export function install(app: App<Element>) {
     index = Number(EnumLanguage[defaultLanguage])
 
   app.use(i18n)
-  loadLanguageAsync('zh-CN')
+  loadLanguageAsync(EnumLanguage[index])
 }
