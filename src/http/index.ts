@@ -30,7 +30,7 @@ class HttpClient {
      * 设置token
      */
     (config) => {
-      const token = localStorage.getItem('token')
+      const token = Local.get(STORAGE_TOKEN_KEY)
       if (token)
         config.headers.t = token
 

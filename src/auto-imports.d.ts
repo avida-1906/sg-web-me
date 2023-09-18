@@ -18,10 +18,10 @@ declare global {
   const LOCAL_STORAGE_TOKEN_KEY: typeof import('./utils/local')['LOCAL_STORAGE_TOKEN_KEY']
   const LanguageEnum: typeof import('./utils/enums')['LanguageEnum']
   const LanguageEnum1: typeof import('./utils/enums')['LanguageEnum1']
-  const Local: typeof import('./utils/local')['Local']
-  const STORAGE_LANGUAGE_KEY: typeof import('./utils/local')['STORAGE_LANGUAGE_KEY']
-  const STORAGE_TOKEN_KEY: typeof import('./utils/local')['STORAGE_TOKEN_KEY']
-  const Session: typeof import('./utils/local')['Session']
+  const Local: typeof import('./utils/storage')['Local']
+  const STORAGE_LANGUAGE_KEY: typeof import('./utils/storage')['STORAGE_LANGUAGE_KEY']
+  const STORAGE_TOKEN_KEY: typeof import('./utils/storage')['STORAGE_TOKEN_KEY']
+  const Session: typeof import('./utils/storage')['Session']
   const VirtualCurrencyEnum: typeof import('./utils/enums')['VirtualCurrencyEnum']
   const acceptHMRUpdate: typeof import('pinia')['acceptHMRUpdate']
   const add: typeof import('./utils/number')['add']
@@ -397,10 +397,10 @@ declare module 'vue' {
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly EnumCurrency: UnwrapRef<typeof import('./utils/enums')['EnumCurrency']>
     readonly EnumLanguage: UnwrapRef<typeof import('./utils/enums')['EnumLanguage']>
-    readonly Local: UnwrapRef<typeof import('./utils/local')['Local']>
-    readonly STORAGE_LANGUAGE_KEY: UnwrapRef<typeof import('./utils/local')['STORAGE_LANGUAGE_KEY']>
-    readonly STORAGE_TOKEN_KEY: UnwrapRef<typeof import('./utils/local')['STORAGE_TOKEN_KEY']>
-    readonly Session: UnwrapRef<typeof import('./utils/local')['Session']>
+    readonly Local: UnwrapRef<typeof import('./utils/storage')['Local']>
+    readonly STORAGE_LANGUAGE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_LANGUAGE_KEY']>
+    readonly STORAGE_TOKEN_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_TOKEN_KEY']>
+    readonly Session: UnwrapRef<typeof import('./utils/storage')['Session']>
     readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>
     readonly add: UnwrapRef<typeof import('./utils/number')['add']>
     readonly application: UnwrapRef<typeof import('./utils/index')['application']>
@@ -755,10 +755,10 @@ declare module '@vue/runtime-core' {
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly EnumCurrency: UnwrapRef<typeof import('./utils/enums')['EnumCurrency']>
     readonly EnumLanguage: UnwrapRef<typeof import('./utils/enums')['EnumLanguage']>
-    readonly Local: UnwrapRef<typeof import('./utils/local')['Local']>
-    readonly STORAGE_LANGUAGE_KEY: UnwrapRef<typeof import('./utils/local')['STORAGE_LANGUAGE_KEY']>
-    readonly STORAGE_TOKEN_KEY: UnwrapRef<typeof import('./utils/local')['STORAGE_TOKEN_KEY']>
-    readonly Session: UnwrapRef<typeof import('./utils/local')['Session']>
+    readonly Local: UnwrapRef<typeof import('./utils/storage')['Local']>
+    readonly STORAGE_LANGUAGE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_LANGUAGE_KEY']>
+    readonly STORAGE_TOKEN_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_TOKEN_KEY']>
+    readonly Session: UnwrapRef<typeof import('./utils/storage')['Session']>
     readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>
     readonly add: UnwrapRef<typeof import('./utils/number')['add']>
     readonly application: UnwrapRef<typeof import('./utils/index')['application']>
