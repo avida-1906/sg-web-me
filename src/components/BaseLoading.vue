@@ -1,7 +1,7 @@
 <script lang="ts" setup name="base-loading">
 // const loadIcons = [
 //   ['chess-frame4', 'chess-frame'],
-//   ['chess-football-club', 'spt-basketball'],
+//   ['spt-football', 'spt-basketball'],
 //   ['chess-21clock', 'chess-frame2'],
 // ]
 // loadIcons.forEach(arr => {
@@ -32,7 +32,7 @@
 :root {
   --type1-small: url('~/icons/chess-frame4.svg');
   --type1-big: url('~/icons/chess-frame.svg');
-  --type2-small: url('~/icons/chess-football-club.svg');
+  --type2-small: url('~/icons/spt-football.svg');
   --type2-big: url('~/icons/spt-basketball.svg');
   --type3-small: url('~/icons/chess-21clock.svg');
   --type3-big: url('~/icons/chess-frame2.svg');
