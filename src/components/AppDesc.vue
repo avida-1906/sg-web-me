@@ -176,9 +176,9 @@ const {
           :data-source="tableData"
           :loading="loading"
         >
-          <template #rank="row">
+          <template #rank="{ record }">
             <div class="rank-icon">
-              <BaseIcon :name="row.rank" />
+              <BaseIcon :name="record.rank" />
             </div>
           </template>
           <template #player>
@@ -186,14 +186,14 @@ const {
               <BaseIcon name="uni-hidden" /> 隐身
             </div>
           </template>
-          <template #bet="row">
+          <template #bet="{ record }">
             <div class="img-text-align img-text-align-center">
-              {{ row.bet }} <BaseIcon name="coin-bch" />
+              {{ record.bet }} <BaseIcon name="coin-bch" />
             </div>
           </template>
-          <template #payAmount="row">
+          <template #payAmount="{ record }">
             <div class="img-text-align img-text-align-right">
-              {{ row.payAmount }} <BaseIcon name="coin-bch" />
+              {{ record.payAmount }} <BaseIcon name="coin-bch" />
             </div>
           </template>
         </BaseTable>

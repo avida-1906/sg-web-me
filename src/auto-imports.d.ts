@@ -13,7 +13,6 @@ declare global {
   const EnumLanguage: typeof import('./utils/enums')['EnumLanguage']
   const LOCAL_STORAGE_LANGUAGE_KEY: typeof import('./utils/local')['LOCAL_STORAGE_LANGUAGE_KEY']
   const LOCAL_STORAGE_TOKEN_KEY: typeof import('./utils/local')['LOCAL_STORAGE_TOKEN_KEY']
-  const Local: typeof import('./utils/local')['Local']
   const LanguageEnum: typeof import('./utils/enums')['LanguageEnum']
   const LanguageEnum1: typeof import('./utils/enums')['LanguageEnum1']
   const Local: typeof import('./utils/storage')['Local']
