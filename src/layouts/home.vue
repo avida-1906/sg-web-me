@@ -166,19 +166,24 @@ const isCasinoGames = computed(() => route.name === 'casino-games')
 
   .side-bar-outer {
     position: relative;
-    z-index: 1000;
+    z-index: var(--tg-z-index-top);
+    display: flex;
+    flex-direction: row;
   }
   .left-sidebar.big-side {
     position: relative;
     z-index: var(--tg-z-index-20);
+    will-change: margin-left;
+  }
+  .left-sidebar.small-side {
+    position: relative;
+    z-index: var(--tg-z-index-10);
+    will-change: margin-left;
   }
   &.is-switching {
 
     .left-sidebar.small-side {
-      position: absolute;
-      right: 0;
-      top: 0;
-      z-index: var(--tg-z-index-10);
+      margin-left: var(--tg-sidebar-width-sm-n);
     }
   }
 }
