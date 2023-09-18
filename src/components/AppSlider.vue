@@ -3,11 +3,11 @@ interface Props {
   api: string
   icon: string
   title: string
-  data?: Array<any>
+  data: Array<any>
   showViewAll?: boolean
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   showViewAll: true,
 })
 
@@ -17,8 +17,8 @@ const pageInfo = reactive({
   page: 1,
 })
 
-const gameInfo = { id: 2, url: 'https://mediumrare.imgix.net/d51d84f1074e5b54c25c54e6cbf026a4e352c491e7a574d3da6504743d71e2d6?&dpr=2&format=auto&auto=format&q=50&w=167', name: 'plynko' }
-const data = computed(() => props.data ? props.data : Array(66).fill(gameInfo))
+// const gameInfo = { id: 2, url: 'https://mediumrare.imgix.net/d51d84f1074e5b54c25c54e6cbf026a4e352c491e7a574d3da6504743d71e2d6?&dpr=2&format=auto&auto=format&q=50&w=167', name: 'plynko' }
+// const data = computed(() => props.data ? props.data : Array(66).fill(gameInfo))
 
 const sliderOuter = ref()
 const outerWidth = ref(0)
@@ -120,7 +120,7 @@ watchEffect(() => {
       <div v-for="i, idx in data" :key="i" class="slide" :class="{ faded: idx >= scrollLeftItemsCount + pageInfo.pageSize }">
         <div class="item">
           <slot :item="i">
-            <BaseGameItem :game-info="gameInfo" />
+            <BaseGameItem :game-info="i" />
           </slot>
         </div>
       </div>
