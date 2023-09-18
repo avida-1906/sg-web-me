@@ -25,3 +25,11 @@ declare module '*.tsx' {
   const component: DefineComponent<{}, {}, any>
   export default component
 }
+
+/**
+ * 用于select的option
+ */
+interface ISelectOption {
+  label: string
+  value: string | number
+}

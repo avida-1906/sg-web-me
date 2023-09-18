@@ -62,7 +62,7 @@ function handleClick(item: any) {
     }
   }
   .base-game-item:hover{
-    top: -10px;
+    top: -7px;
   }
   .base-game-item:hover .active-game-item{
     opacity: 0.8;

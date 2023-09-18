@@ -24,7 +24,7 @@ const sportHotGames = [
   {
     title: '足球',
     path: '',
-    icon: 'spt-football-outline',
+    icon: 'spt-football',
     list: [
       { title: 'Live & Upcoming', path: '', icon: 'spt-ball-plate' },
       { title: 'Outrights', path: '', icon: 'spt-timing' },
@@ -36,7 +36,7 @@ const sportHotGames = [
   {
     title: '网球',
     path: '',
-    icon: 'spt-tennis-outline',
+    icon: 'spt-tennis',
     list: [
       { title: 'Live & Upcoming', path: '', icon: 'spt-ball-plate' },
       { title: 'Outrights', path: '', icon: 'spt-timing' },
@@ -48,7 +48,7 @@ const sportHotGames = [
   {
     title: '美式橄榄球',
     path: '',
-    icon: 'spt-baseball-outline',
+    icon: 'spt-america',
     list: [
       { title: 'Live & Upcoming', path: '', icon: 'spt-ball-plate' },
       { title: 'Outrights', path: '', icon: 'spt-timing' },
@@ -60,7 +60,7 @@ const sportHotGames = [
   {
     title: '棒球',
     path: '',
-    icon: 'spt-america',
+    icon: 'spt-baseball',
     list: [
       { title: 'Live & Upcoming', path: '', icon: 'spt-ball-plate' },
       { title: 'Outrights', path: '', icon: 'spt-timing' },

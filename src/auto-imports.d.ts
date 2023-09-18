@@ -14,6 +14,13 @@ declare global {
   const LOCAL_STORAGE_LANGUAGE_KEY: typeof import('./utils/local')['LOCAL_STORAGE_LANGUAGE_KEY']
   const LOCAL_STORAGE_TOKEN_KEY: typeof import('./utils/local')['LOCAL_STORAGE_TOKEN_KEY']
   const Local: typeof import('./utils/local')['Local']
+  const LanguageEnum: typeof import('./utils/enums')['LanguageEnum']
+  const LanguageEnum1: typeof import('./utils/enums')['LanguageEnum1']
+  const Local: typeof import('./utils/storage')['Local']
+  const STORAGE_LANGUAGE_KEY: typeof import('./utils/storage')['STORAGE_LANGUAGE_KEY']
+  const STORAGE_TOKEN_KEY: typeof import('./utils/storage')['STORAGE_TOKEN_KEY']
+  const Session: typeof import('./utils/storage')['Session']
+  const VirtualCurrencyEnum: typeof import('./utils/enums')['VirtualCurrencyEnum']
   const acceptHMRUpdate: typeof import('pinia')['acceptHMRUpdate']
   const add: typeof import('./utils/number')['add']
   const application: typeof import('./utils/index')['application']
@@ -188,6 +195,7 @@ declare global {
   const useBase64: typeof import('@vueuse/core')['useBase64']
   const useBattery: typeof import('@vueuse/core')['useBattery']
   const useBluetooth: typeof import('@vueuse/core')['useBluetooth']
+  const useBoolean: typeof import('./composables/useBoolean')['default']
   const useBreakpoints: typeof import('@vueuse/core')['useBreakpoints']
   const useBroadcastChannel: typeof import('@vueuse/core')['useBroadcastChannel']
   const useBrowserLocation: typeof import('@vueuse/core')['useBrowserLocation']
@@ -268,6 +276,7 @@ declare global {
   const useObjectUrl: typeof import('@vueuse/core')['useObjectUrl']
   const useOffsetPagination: typeof import('@vueuse/core')['useOffsetPagination']
   const useOnline: typeof import('@vueuse/core')['useOnline']
+  const useOption: typeof import('./composables/useOption')['useOption']
   const usePage: typeof import('./composables/usePage')['usePage']
   const usePageLeave: typeof import('@vueuse/core')['usePageLeave']
   const useParallax: typeof import('@vueuse/core')['useParallax']
@@ -294,6 +303,7 @@ declare global {
   const useScriptTag: typeof import('@vueuse/core')['useScriptTag']
   const useScroll: typeof import('@vueuse/core')['useScroll']
   const useScrollLock: typeof import('@vueuse/core')['useScrollLock']
+  const useSelect: typeof import('./composables/useOption')['useSelect']
   const useSeoMeta: typeof import('@vueuse/head')['useSeoMeta']
   const useSessionStorage: typeof import('@vueuse/core')['useSessionStorage']
   const useShare: typeof import('@vueuse/core')['useShare']
@@ -372,9 +382,10 @@ declare module 'vue' {
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly EnumCurrency: UnwrapRef<typeof import('./utils/enums')['EnumCurrency']>
     readonly EnumLanguage: UnwrapRef<typeof import('./utils/enums')['EnumLanguage']>
-    readonly LOCAL_STORAGE_LANGUAGE_KEY: UnwrapRef<typeof import('./utils/local')['LOCAL_STORAGE_LANGUAGE_KEY']>
-    readonly LOCAL_STORAGE_TOKEN_KEY: UnwrapRef<typeof import('./utils/local')['LOCAL_STORAGE_TOKEN_KEY']>
-    readonly Local: UnwrapRef<typeof import('./utils/local')['Local']>
+    readonly Local: UnwrapRef<typeof import('./utils/storage')['Local']>
+    readonly STORAGE_LANGUAGE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_LANGUAGE_KEY']>
+    readonly STORAGE_TOKEN_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_TOKEN_KEY']>
+    readonly Session: UnwrapRef<typeof import('./utils/storage')['Session']>
     readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>
     readonly add: UnwrapRef<typeof import('./utils/number')['add']>
     readonly application: UnwrapRef<typeof import('./utils/index')['application']>
@@ -549,6 +560,7 @@ declare module 'vue' {
     readonly useBase64: UnwrapRef<typeof import('@vueuse/core')['useBase64']>
     readonly useBattery: UnwrapRef<typeof import('@vueuse/core')['useBattery']>
     readonly useBluetooth: UnwrapRef<typeof import('@vueuse/core')['useBluetooth']>
+    readonly useBoolean: UnwrapRef<typeof import('./composables/useBoolean')['default']>
     readonly useBreakpoints: UnwrapRef<typeof import('@vueuse/core')['useBreakpoints']>
     readonly useBroadcastChannel: UnwrapRef<typeof import('@vueuse/core')['useBroadcastChannel']>
     readonly useBrowserLocation: UnwrapRef<typeof import('@vueuse/core')['useBrowserLocation']>
@@ -655,6 +667,7 @@ declare module 'vue' {
     readonly useScriptTag: UnwrapRef<typeof import('@vueuse/core')['useScriptTag']>
     readonly useScroll: UnwrapRef<typeof import('@vueuse/core')['useScroll']>
     readonly useScrollLock: UnwrapRef<typeof import('@vueuse/core')['useScrollLock']>
+    readonly useSelect: UnwrapRef<typeof import('./composables/useOption')['useSelect']>
     readonly useSeoMeta: UnwrapRef<typeof import('@vueuse/head')['useSeoMeta']>
     readonly useSessionStorage: UnwrapRef<typeof import('@vueuse/core')['useSessionStorage']>
     readonly useShare: UnwrapRef<typeof import('@vueuse/core')['useShare']>
@@ -727,9 +740,10 @@ declare module '@vue/runtime-core' {
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly EnumCurrency: UnwrapRef<typeof import('./utils/enums')['EnumCurrency']>
     readonly EnumLanguage: UnwrapRef<typeof import('./utils/enums')['EnumLanguage']>
-    readonly LOCAL_STORAGE_LANGUAGE_KEY: UnwrapRef<typeof import('./utils/local')['LOCAL_STORAGE_LANGUAGE_KEY']>
-    readonly LOCAL_STORAGE_TOKEN_KEY: UnwrapRef<typeof import('./utils/local')['LOCAL_STORAGE_TOKEN_KEY']>
-    readonly Local: UnwrapRef<typeof import('./utils/local')['Local']>
+    readonly Local: UnwrapRef<typeof import('./utils/storage')['Local']>
+    readonly STORAGE_LANGUAGE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_LANGUAGE_KEY']>
+    readonly STORAGE_TOKEN_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_TOKEN_KEY']>
+    readonly Session: UnwrapRef<typeof import('./utils/storage')['Session']>
     readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>
     readonly add: UnwrapRef<typeof import('./utils/number')['add']>
     readonly application: UnwrapRef<typeof import('./utils/index')['application']>
@@ -904,6 +918,7 @@ declare module '@vue/runtime-core' {
     readonly useBase64: UnwrapRef<typeof import('@vueuse/core')['useBase64']>
     readonly useBattery: UnwrapRef<typeof import('@vueuse/core')['useBattery']>
     readonly useBluetooth: UnwrapRef<typeof import('@vueuse/core')['useBluetooth']>
+    readonly useBoolean: UnwrapRef<typeof import('./composables/useBoolean')['default']>
     readonly useBreakpoints: UnwrapRef<typeof import('@vueuse/core')['useBreakpoints']>
     readonly useBroadcastChannel: UnwrapRef<typeof import('@vueuse/core')['useBroadcastChannel']>
     readonly useBrowserLocation: UnwrapRef<typeof import('@vueuse/core')['useBrowserLocation']>
@@ -1010,6 +1025,7 @@ declare module '@vue/runtime-core' {
     readonly useScriptTag: UnwrapRef<typeof import('@vueuse/core')['useScriptTag']>
     readonly useScroll: UnwrapRef<typeof import('@vueuse/core')['useScroll']>
     readonly useScrollLock: UnwrapRef<typeof import('@vueuse/core')['useScrollLock']>
+    readonly useSelect: UnwrapRef<typeof import('./composables/useOption')['useSelect']>
     readonly useSeoMeta: UnwrapRef<typeof import('@vueuse/head')['useSeoMeta']>
     readonly useSessionStorage: UnwrapRef<typeof import('@vueuse/core')['useSessionStorage']>
     readonly useShare: UnwrapRef<typeof import('@vueuse/core')['useShare']>

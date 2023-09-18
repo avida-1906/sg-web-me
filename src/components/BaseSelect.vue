@@ -46,7 +46,7 @@ function onChange(event: any) {
 
 <style lang='scss' scoped>
 .base-select {
-  color: var(--tg-secondary-light);
+  color: var(--tg-text-lightgrey);
   font-size: var(--tg-font-size-default);
 }
 

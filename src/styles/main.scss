@@ -28,6 +28,7 @@
   --tg-text-dark: #05080a;
   --tg-text-grey: #557086;
   --tg-text-lightgrey: var(--tg-secondary-light);
+  --tg-text-secondary-main: var(--tg-secondary-main);
 
   --tg-text-grey-button: var(--tg-secondary-light);
   /* 透明色 */
@@ -247,6 +248,27 @@ body {
   background: var(--tg-text-white);
   border: 0;
   box-shadow: var(--tg-box-shadow-lg);
+}
+
+// 鼠标悬停气泡提示提示
+.tiny-menu-item-title {
+  color: var(--tg-secondary-main);
+  font-size: var(--tg-font-size-default);
+  font-weight: var(--tg-font-weight-semibold);
+  padding: var(--tg-spacing-input-padding-vertical) var(--tg-spacing-button-padding-horizontal-xs);
+  text-align: center;
+  min-width: var(--tg-sidebar-width-sm);
+}
+
+// 气泡下拉选项
+.popper-option {
+  cursor: pointer;
+  padding: var(--tg-spacing-button-padding-vertical-xs) var(--tg-spacing-button-padding-horizontal-xs);
+  font-size: var(--tg-font-size-default);
+
+  &:hover {
+    background-color: var(--tg-text-lightgrey);
+  }
 }
 
 @media screen and (min-width: 768px) {

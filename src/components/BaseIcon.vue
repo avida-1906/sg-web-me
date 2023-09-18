@@ -29,6 +29,5 @@ const symbolId = computed(() => `#${props.prefix}-${props.name}`)
   flex-shrink: 0;
   fill: currentColor;
   stroke: currentColor;
-  transform: scale(1.1);
 }
 </style>

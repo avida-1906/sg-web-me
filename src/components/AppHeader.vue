@@ -18,17 +18,17 @@ const newsMenu = ref([
   { id: 2, icon: 'spt-user-bet', title: '投注单' },
 ])
 
-const showSearchBar = ref(false)
+const { bool: showSearchBar, setTrue } = useBoolean(false)
 </script>
 
 <template>
   <div class="app-header">
-    <BaseLogo :use-small="width < 400" />
+    <BaseLogo :use-small="width < 300" />
     <div class="header-middle">
       <BaseWallet />
     </div>
     <div class="header-right">
-      <BaseButton v-show="!isFullScreen" type="text" class="search-btn" @click="showSearchBar = true">
+      <BaseButton v-show="!isFullScreen" type="text" class="search-btn" @click="setTrue">
         <BaseIcon class="icon-search" name="header-search" />
         <span v-show="!isFixed">搜索</span>
       </BaseButton>
@@ -114,7 +114,7 @@ const showSearchBar = ref(false)
   .menu-item{
     cursor: pointer;
     &:hover{
-      background-color: var(--tg-secondary-light);
+      background-color: var(--tg-text-lightgrey);
     }
     .menu-btn{
       display: flex;

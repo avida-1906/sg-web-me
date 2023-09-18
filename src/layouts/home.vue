@@ -26,25 +26,24 @@ const {
 } = storeToRefs(useWindowStore())
 
 // 左侧是否展开
-// const leftIsExpand = ref(false)
 const leftIsExpand = useDebouncedRef({ value: false, delay: 200, beforeTrigger, afterTrigger })
-const isSwitching = ref(false)
+const { bool: isSwitching, setTrue, setFalse } = useBoolean(false)
 const switchTo = ref<'big' | 'small' | ''>('')
 
 function beforeTrigger(expand_cur: boolean) {
-  isSwitching.value = true
+  setTrue()
   if (expand_cur)
     switchTo.value = 'small'
   else
     switchTo.value = 'big'
 }
 function afterTrigger() {
-  isSwitching.value = false
+  setFalse()
   switchTo.value = ''
 }
 // 右侧是否展开
-const rightIsExpand = ref(false)
-const rightContainerIs0 = ref(true)
+const { bool: rightIsExpand, setTrue: setRightIsExpandTrue, setFalse: setRightIsExpandFalse } = useBoolean(false)
+const { bool: rightContainerIs0, setTrue: setRightContainerIs0True, setFalse: setRightContainerIs0False } = useBoolean(true)
 const rightSidebar = ref<HTMLElement | null>(null)
 
 // 左侧侧边栏宽度
@@ -63,18 +62,22 @@ function setRightSidebarExpandStatus() {
   //   return
   // }
   if (!rightIsExpand.value) {
-    rightIsExpand.value = true
+    setRightIsExpandTrue()
     setTimeout(() => {
-      rightContainerIs0.value = false
+      setRightContainerIs0False()
     }, 30)
   }
   else {
-    rightContainerIs0.value = true
+    setRightContainerIs0True()
     setTimeout(() => {
-      rightIsExpand.value = false
+      setRightIsExpandFalse()
     }, 300)
   }
 }
+
+const route = useRoute()
+// 是否游戏页面
+const isCasinoGames = computed(() => route.name === 'casino-games')
 </script>
 
 <template>
@@ -132,7 +135,8 @@ function setRightSidebarExpandStatus() {
         </AppContent>
       </header>
       <div class="scroll-y scrollable">
-        <AppContent>
+        <RouterView v-if="isCasinoGames" />
+        <AppContent v-else>
           <RouterView />
         </AppContent>
         <footer class="footer">
@@ -162,6 +166,7 @@ function setRightSidebarExpandStatus() {
 
   .side-bar-outer {
     position: relative;
+    z-index: 1000;
   }
   .left-sidebar.big-side {
     position: relative;
@@ -230,6 +235,7 @@ function setRightSidebarExpandStatus() {
   flex: 1;
   overflow: hidden;
   flex-direction: column;
+  // position: relative;
 
   &>.navigation {
     display: flex;

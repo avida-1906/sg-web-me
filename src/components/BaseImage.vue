@@ -15,9 +15,9 @@ withDefaults(defineProps<Props>(), {
 })
 
 const emit = defineEmits(['clickImg'])
-const complete = ref(false)
+const { bool: complete, setTrue } = useBoolean(false)
 function onComplete() { // 图片加载完成
-  complete.value = true
+  setTrue()
 }
 
 function handleClick() {
@@ -38,7 +38,10 @@ function handleClick() {
 
 <template>
   <div class="base-image">
-    <img :style="`width: ${width}; height: ${height}; object-fit: ${fit};`" loading="lazy" :src="url" :alt="name" @load="onComplete" @click="handleClick">
+    <img
+      :style="`width: ${width}; height: ${height}; object-fit: ${fit};`" loading="lazy" :src="url" :alt="name"
+      @load="onComplete" @click="handleClick"
+    >
     <div v-if="!complete" class="img-load">
       <slot>
         <BaseLoading />
@@ -48,10 +51,12 @@ function handleClick() {
 </template>
 
 <style lang="scss" scoped>
-.base-image{
+.base-image {
   width: 100%;
-  height: 100%;position: relative;
-  .img-load{
+  height: 100%;
+  position: relative;
+
+  .img-load {
     position: absolute;
     top: 0;
     width: 100%;

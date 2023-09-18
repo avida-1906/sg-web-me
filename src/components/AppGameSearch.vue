@@ -7,17 +7,14 @@ enum GameType {
 interface Props {
   gameType: '1' | '2'
 }
+const { t } = useI18n()
 const isCasino = computed(() => props.gameType === GameType.casino)
-const isSports = computed(() => props.gameType === GameType.sports)
-const placeHolderText = computed(() => isCasino.value ? '搜索游戏' : '搜索赛事')
+const placeHolderText = computed(() => isCasino.value ? t('search_game') : t('search_events'))
 
 const searchValue = ref('')
 
 // 搜索功能面板
-const showSearchOverlay = ref(false)
-function setShowSearchOverlay(v = true) {
-  showSearchOverlay.value = v
-}
+const { bool: showSearchOverlay, setTrue, setFalse } = useBoolean(false)
 
 // 近期搜索关键字
 const recentKeyword = ref(['keyword 1', 'keyword 2', 'keyword 3', 'keyword 4', 'keyword 5'])
@@ -29,7 +26,6 @@ function onCloseKeyword(k: string) {
 }
 
 // 搜索结果
-const gameInfo = { id: 2, url: 'http://c.hiphotos.baidu.com/image/pic/item/30adcbef76094b36de8a2fe5a1cc7cd98d109d99.jpg', name: 'plynko' }
 function onGameItemClick() { }
 // const casinoList = ref([gameInfo, gameInfo, gameInfo, gameInfo, gameInfo])
 const casinoList = ref([])
@@ -37,11 +33,11 @@ const casinoList = ref([])
 
 <template>
   <div class="app-game-search">
-    <div v-if="showSearchOverlay" class="overlay" @click.self="setShowSearchOverlay(false)" />
+    <div v-if="showSearchOverlay" class="overlay" @click.self="setFalse()" />
     <div :class="{ 'input-focus': showSearchOverlay }">
       <BaseSearch
         v-model="searchValue" :place-holder="placeHolderText" :clearable="showSearchOverlay"
-        @focus="setShowSearchOverlay" @close="setShowSearchOverlay(false)"
+        @focus="setTrue" @close="setFalse()"
       />
     </div>
 
@@ -50,14 +46,14 @@ const casinoList = ref([])
       <div class="scroll-y warp">
         <div v-if="casinoList.length === 0" class="no-result">
           <div class="text">
-            <span v-show="searchValue.length < 3">需要至少 3 个字符来进行搜索。</span>
-            <span v-show="searchValue.length >= 3 && casinoList.length === 0">未找到结果。</span>
+            <span v-show="searchValue.length < 3">{{ t('search_need_at_least_3_word') }}</span>
+            <span v-show="searchValue.length >= 3 && casinoList.length === 0">{{ t('search_no_result') }}</span>
           </div>
           <div v-if="recentKeyword.length" class="recent">
             <div class="title">
-              <label>近期搜索</label>
+              <label>{{ t('search_recent') }}</label>
               <BaseButton type="text" font-size="14" @click="recentKeyword.length = 0">
-                清除搜索({{ recentKeyword.length }})
+                {{ t('search_clear') }}({{ recentKeyword.length }})
               </BaseButton>
             </div>
             <div class="list">
@@ -95,7 +91,7 @@ const casinoList = ref([])
   .search-overlay {
     width: 100%;
     background-color: var(--tg-secondary-dark);
-    color: var(--tg-secondary-light);
+    color: var(--tg-text-lightgrey);
     border-radius: var(--tg-radius-default);
     margin-top: 8px;
     position: absolute;

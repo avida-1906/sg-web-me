@@ -1,34 +1,27 @@
 <script setup lang='ts'>
 const emit = defineEmits(['gameTypeChange', 'close'])
 const { isFullScreen } = storeToRefs(useWindowStore())
+const { t } = useI18n()
 const route = useRoute()
-const isCasino = computed(() => route.name === 'casino')
-const isSports = computed(() => route.name === 'sports')
+const isCasino = computed(() => route.name?.toString().includes('casino'))
+const isSports = computed(() => route.name?.toString().includes('sports'))
 // 搜索栏
 const gameType = ref(isCasino.value ? '1' : isSports.value ? '2' : '')
 const gameTypeList = [
-  { label: '娱乐城', value: '1' },
-  { label: '体育', value: '2' },
+  { label: t('casino'), value: '1' },
+  { label: t('sports'), value: '2' },
 ]
 const gameLabel = computed(() => gameTypeList.find(a => a.value === gameType.value)?.label ?? '-')
-const isPopperShow = ref(false)
-function onPopperShow() {
-  isPopperShow.value = true
-}
-function onPopperHide() {
-  isPopperShow.value = false
-}
+const { bool: isPopperShow, setTrue, setFalse } = useBoolean(false)
+
 function selectGameType(v: string) {
   gameType.value = v
   emit('gameTypeChange', v)
 }
 
 // 搜索功能面板
-const showSearchOverlay = ref(false)
+const { bool: showSearchOverlay, setTrue: setTrue2, setFalse: setFalse2 } = useBoolean(false)
 const searchValue = ref('')
-function setShowSearchOverlay(v = true) {
-  showSearchOverlay.value = v
-}
 
 // 近期搜索关键字
 const recentKeyword = ref(['keyword 1', 'keyword 2', 'keyword 3', 'keyword 4', 'keyword 5'])
@@ -40,7 +33,6 @@ function onCloseKeyword(k: string) {
 }
 
 // 搜索结果
-const gameInfo = { id: 2, url: 'http://c.hiphotos.baidu.com/image/pic/item/30adcbef76094b36de8a2fe5a1cc7cd98d109d99.jpg', name: 'plynko' }
 function onGameItemClick() { }
 // const casinoList = ref([gameInfo, gameInfo, gameInfo, gameInfo, gameInfo])
 const casinoList = ref([])
@@ -49,19 +41,22 @@ const casinoList = ref([])
 <template>
   <div class="app-global-search" :class="{ 'in-pc': !isFullScreen }">
     <div v-show="!isFullScreen" class="overlay" @click="emit('close')" />
-    <BaseSearch v-model="searchValue" clearable @focus="setShowSearchOverlay" @clear="setShowSearchOverlay(false)" @close="emit('close')">
-      <template v-if="isCasino || isSports" #left>
-        <VDropdown :distance="6" @show="onPopperShow" @hide="onPopperHide">
+    <BaseSearch
+      v-model="searchValue" class="search-input" clearable @focus="setTrue2" @clear="setFalse2"
+      @close="emit('close')"
+    >
+      <template #left>
+        <VDropdown :distance="6" @show="setTrue()" @hide="setFalse">
           <button class="tips">
             <span>{{ gameLabel }}</span>
             <BaseIcon :name="`uni-arrow-${isPopperShow ? 'up' : 'down'}-big`" />
           </button>
           <template #popper>
             <div
-              v-for="t, i in gameTypeList" :key="i" v-close-popper class="popper-option"
-              @click="selectGameType(t.value)"
+              v-for="type, i in gameTypeList" :key="i" v-close-popper class="popper-option"
+              @click="selectGameType(type.value)"
             >
-              {{ t.label }}
+              {{ type.label }}
             </div>
           </template>
         </VDropdown>
@@ -69,18 +64,18 @@ const casinoList = ref([])
     </BaseSearch>
 
     <!-- 搜索功能面板  -->
-    <div v-show="showSearchOverlay || !isFullScreen" class="search-overlay" @click.self="setShowSearchOverlay(false)">
+    <div v-show="showSearchOverlay || !isFullScreen" class="search-overlay" @click.self="setFalse2">
       <div class="scroll-y warp">
         <div v-if="casinoList.length === 0" class="no-result">
           <div class="text">
-            <span v-show="searchValue.length < 3">需要至少 3 个字符来进行搜索。</span>
-            <span v-show="searchValue.length >= 3 && casinoList.length === 0">未找到结果。</span>
+            <span v-show="searchValue.length < 3">{{ t('search_need_at_least_3_word') }}</span>
+            <span v-show="searchValue.length >= 3 && casinoList.length === 0">{{ t('search_no_result') }}</span>
           </div>
           <div v-if="recentKeyword.length" class="recent">
             <div class="title">
-              <label>近期搜索</label>
+              <label>{{ t('search_recent') }}</label>
               <BaseButton type="text" font-size="14" @click="recentKeyword.length = 0">
-                清除搜索({{ recentKeyword.length }})
+                {{ t('search_clear') }}({{ recentKeyword.length }})
               </BaseButton>
             </div>
             <div class="list">
@@ -112,6 +107,7 @@ const casinoList = ref([])
   top: 0;
   left: 0;
   background: #{rgba($color: var(--tg-color-blue-rgb), $alpha: 0.7)};
+  z-index: 999;
 }
 
 .tips {
@@ -123,17 +119,17 @@ const casinoList = ref([])
   }
 
   &:active {
-    transform: scale(0.95);
+    transform: scale(0.96);
   }
 }
 
 .popper-option {
   cursor: pointer;
   padding: var(--tg-spacing-button-padding-vertical-xs) var(--tg-spacing-button-padding-horizontal-xs);
-  font-size:var(--tg-font-size-default);
+  font-size: var(--tg-font-size-default);
 
   &:hover {
-    background-color: var(--tg-secondary-light);
+    background-color: var(--tg-text-lightgrey);
   }
 }
 
@@ -141,11 +137,11 @@ const casinoList = ref([])
   width: 100%;
   height: 100%;
   background-color: var(--tg-secondary-dark);
-  color: var(--tg-secondary-light);
+  color: var(--tg-text-lightgrey);
   position: absolute;
   left: 0;
-  top: 73px;
-  z-index: 5;
+  top: 72px;
+  z-index: 1450;
 
   .warp {
     max-height: 400px;
@@ -202,12 +198,20 @@ const casinoList = ref([])
   width: 100%;
   padding-top: 57px;
   margin: 0;
-  .search-overlay{
+
+  .search-input {
+    position: relative;
+    z-index: 1450;
+  }
+
+  .search-overlay {
     height: auto;
     position: relative;
     border-radius: var(--tg-radius-default);
-    top:8px;
-    .warp{
+    top: 8px;
+    z-index: 1450;
+
+    .warp {
       padding: var(--tg-spacing-16);
     }
   }

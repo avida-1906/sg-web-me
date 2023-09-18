@@ -19,13 +19,13 @@ function onInput(event: any) {
   emit('input', v)
 }
 
-const isFocus = ref(false)
+const { bool: isFocus, setTrue, setFalse } = useBoolean(false)
 function onFocus() {
-  isFocus.value = true
+  setTrue()
   emit('focus')
 }
 function onBlur() {
-  isFocus.value = false
+  setFalse()
   emit('blur')
 }
 function onSearch() {
@@ -129,7 +129,7 @@ function onClear() {
 
 .whiteStyle {
   background-color: var(--tg-text-white);
-  color: var(--tg-secondary-main);
+  color: var(--tg-text-secondary-main);
   border-color: #d5dceb;
 
   input {

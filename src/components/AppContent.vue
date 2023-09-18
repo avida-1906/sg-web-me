@@ -1,6 +1,8 @@
 <template>
-  <section class="page-content home-container margin-auto">
-    <slot />
+  <section class="page-content">
+    <div class="home-container margin-auto">
+      <slot />
+    </div>
   </section>
 </template>
 

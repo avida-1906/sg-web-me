@@ -38,6 +38,7 @@ button {
   border-radius: var(--tg-radius-default);
   font-weight: var(--tg-font-weight-semibold);
   transition: all ease .25s;
+  line-height: 1;
 
   .loading {
     display: flex;
@@ -65,7 +66,7 @@ button {
 
   &:active:not(:disabled) {
     .content {
-      transform: scale(0.9);
+      transform: scale(0.96);
     }
   }
 
@@ -82,7 +83,7 @@ button {
     color: var(--tg-text-white);
 
     .content {
-      transform: scale(0.9);
+      transform: scale(0.96);
     }
   }
 
@@ -110,7 +111,7 @@ button {
 
   &:active:not(:disabled) {
     .content {
-      transform: scale(0.95);
+      transform: scale(0.96);
     }
   }
 
@@ -127,7 +128,7 @@ button {
 
   &:active:not(:disabled) {
     .content {
-      transform: scale(0.95);
+      transform: scale(0.96);
     }
   }
 

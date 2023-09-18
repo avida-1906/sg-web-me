@@ -38,17 +38,6 @@ withDefaults(defineProps<Props>(), {})
   </section>
 </template>
 
-<style lang="scss">
-.tiny-menu-item-title {
-  color: var(--tg-secondary-main);
-  font-size: var(--tg-font-size-default);
-  font-weight: var(--tg-font-weight-semibold);
-  padding: var(--tg-spacing-input-padding-vertical) var(--tg-spacing-button-padding-horizontal-xs);
-  text-align: center;
-  min-width: var(--tg-sidebar-width-sm);
-}
-</style>
-
 <style lang="scss" scoped>
 .flex-col-center {
   display: flex;

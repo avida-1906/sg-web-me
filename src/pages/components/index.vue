@@ -173,7 +173,8 @@ function copyCode(type: string) {
   }
   toast('Copied')
 }
-const isSwitch = ref(false)
+const { bool: isSwitch } = useBoolean(false)
+
 function onSwitch(v: boolean) {
   console.log('🚀 ~ file: demo.vue:10 ~ onSwitch ~ v:', v)
 }
@@ -192,7 +193,7 @@ const radioList = [
   { value: 'rub', label: 'RUB' },
 ]
 const radioValue = ref('php')
-const checkboxValue = ref(false)
+const { bool: checkboxValue } = useBoolean(false)
 
 const tab = ref('1')
 const tabList = [
@@ -226,7 +227,7 @@ const selectOptions = [
 ]
 const birthday = ref('')
 
-const showDialogOne = ref(false)
+const { bool: showDialogOne, setTrue: setShowDialogOneTrue } = useBoolean(false)
 
 const { openDialog, closeDialog } = useDialog({
   title: '表格',
@@ -245,12 +246,12 @@ function showDialog() {
   }, 3000)
 }
 function showTemDialog() {
-  showDialogOne.value = true
+  setShowDialogOneTrue()
   copyCode('BaseDialog')
 }
-const showDragDialog = ref(false)
+const { bool: showDragDialog, setTrue: setShowDragDialogTrue } = useBoolean(false)
 function showDrag() {
-  showDragDialog.value = true
+  setShowDragDialogTrue()
   copyCode('BaseDragDialog')
 }
 
@@ -493,7 +494,7 @@ function copyTableCode() {
           </template>
         </BaseTable>`)
 }
-const loading = ref(true)
+const { bool: loading, setFalse } = useBoolean(true)
 const columns: any = ref([
   {
     title: '赛事',
@@ -561,7 +562,7 @@ onMounted(() => {
         address: 'US',
       },
     ]
-    loading.value = false
+    setFalse()
   }, 3000)
 })
 function handleClickHead(menu: object) {

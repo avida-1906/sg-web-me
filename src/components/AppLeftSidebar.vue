@@ -6,6 +6,7 @@ interface Props {
 }
 const props = defineProps<Props>()
 const emit = defineEmits(['update:modelValue'])
+const { t } = useI18n()
 // const isExpand = computed(() => props.modelValue)
 const { isFullScreen } = storeToRefs(useWindowStore())
 
@@ -28,8 +29,8 @@ function onClick() {
 
 const router = useRouter()
 const route = useRoute()
-const isCasino = computed(() => route.name === 'casino')
-const isSports = computed(() => route.name === 'sports')
+const isCasino = computed(() => route.name?.toString().includes('casino'))
+const isSports = computed(() => route.name?.toString().includes('sports'))
 // 搜索栏
 const gameType = ref(isCasino.value ? '1' : isSports.value ? '2' : '')
 function onGameTypeChange(v: string) {
@@ -47,11 +48,11 @@ function onGameTypeChange(v: string) {
             <BaseIcon name="uni-menu" />
           </div>
           <div class="game-type">
-            <div class="casino" :class="{ active: $route.name === 'casino' }" @click="router.push('/casino')">
-              <span>娱乐城</span>
+            <div class="casino" :class="{ active: isCasino }" @click="router.push('/casino')">
+              <span>{{ t('casino') }}</span>
             </div>
-            <div class="sports" :class="{ active: $route.name === 'sports' }" @click="router.push('/sports')">
-              <span>体育</span>
+            <div class="sports" :class="{ active: isSports }" @click="router.push('/sports')">
+              <span>{{ t('sports') }}</span>
             </div>
           </div>
         </div>
@@ -62,13 +63,13 @@ function onGameTypeChange(v: string) {
 
   <div v-if="isFullScreen && !isCasino && !isSports" class="buttons">
     <BaseAspectRatio ratio="3.5/1">
-      <div class="casino" :class="{ active: $route.name === 'casino' }" @click="router.push('/casino')">
-        <span>娱乐城</span>
+      <div class="casino" :class="{ active: isCasino }" @click="router.push('/casino')">
+        <span>{{ t('casino') }}</span>
       </div>
     </BaseAspectRatio>
     <BaseAspectRatio ratio="3.5/1">
-      <div class="sports" :class="{ active: $route.name === 'sports' }" @click="router.push('/sports')">
-        <span>体育</span>
+      <div class="sports" :class="{ active: isSports }" @click="router.push('/sports')">
+        <span>{{ t('sports') }}</span>
       </div>
     </BaseAspectRatio>
   </div>
@@ -130,7 +131,7 @@ function onGameTypeChange(v: string) {
 
     &:active {
       span {
-        transform: scale(0.95);
+        transform: scale(0.96);
       }
     }
   }
@@ -194,7 +195,7 @@ function onGameTypeChange(v: string) {
 
       &:active {
         span {
-          transform: scale(0.95);
+          transform: scale(0.96);
         }
       }
     }

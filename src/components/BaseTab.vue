@@ -23,7 +23,7 @@ function onClick(v: string | number) {
 </script>
 
 <template>
-  <div class="base-tab scroll-x">
+  <div class="scroll-x base-tab">
     <div class="tab-wrap" :class="[shape]">
       <div
         v-for="t, i in list" :key="i" class="tab" :class="{ active: t.value === modelValue }"
@@ -94,7 +94,7 @@ function onClick(v: string | number) {
 
     &:active {
       .content {
-        transform: scale(0.9);
+        transform: scale(0.96);
       }
     }
 
