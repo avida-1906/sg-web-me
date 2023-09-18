@@ -10,9 +10,12 @@ function getUuid() {
 }
 
 const getNotificationList = (function () {
-  const notificationList = document.createElement('div')
-  notificationList.className = 'notification-list'
-  document.body.appendChild(notificationList)
+  let notificationList = document.querySelector('.notification-list')
+  if (notificationList === null || notificationList === undefined) {
+    notificationList = document.createElement('div')
+    notificationList.className = 'notification-list'
+    document.body.appendChild(notificationList)
+  }
   return function () {
     return notificationList
   }
