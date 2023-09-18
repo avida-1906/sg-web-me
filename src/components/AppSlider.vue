@@ -104,16 +104,18 @@ watchEffect(() => {
         </BaseButton>
       </div>
     </div>
-    <div ref="gallery" class="gallery scroll-x hide-scrollbar" :class="[galleryClass, `${scrollLeftItemsCount}-aaa`]">
+    <div ref="gallery" class="gallery scroll-x hide-scrollbar" :class="[galleryClass]">
       <div v-for="i, idx in data" :key="i" class="slide" :class="{ faded: idx >= scrollLeftItemsCount + pageInfo.pageSize }">
         <div class="item">
           <BaseGameItem :game-info="gameInfo" />
         </div>
       </div>
-      <div class="slide faded see-all">
+      <div class="slide see-all" :class="{ faded: scrollLeftItemsCount + pageInfo.pageSize < data.length + 1 }">
         <div class="item">
           <img src="img/seeAll-en.avif">
-          <span>{{ $t('view_all') }}</span>
+          <div class="txt">
+            <span>{{ $t('view_all') }}</span>
+          </div>
         </div>
       </div>
     </div>
@@ -203,6 +205,31 @@ watchEffect(() => {
       &.faded {
         opacity: .2;
         cursor: pointer;
+      }
+      &.see-all {
+        .item {
+          border-radius: var(--tg-radius-md);
+          overflow: hidden;
+          text-align: center;
+          position: relative;
+          transition: all 0.3s ease;
+          &:hover {
+            transform: translateY(-7px);
+          }
+          img {
+            display: block;
+          }
+          .txt {
+            font-size: var(--tg-font-size-lg);
+            color: var(--tg-text-white);
+            position: absolute;
+            inset: 0 0 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+          }
+        }
       }
     }
   }
