@@ -115,7 +115,7 @@ function onClickFavorite() {
       </div>
     </div>
 
-    <p>t('choose_your_balance')</p>
+    <p>{{ t('choose_your_balance') }}</p>
     <!-- 选择货币 -->
     <div class="currency">
       <span>{{ t('balance') }}</span>
@@ -129,7 +129,7 @@ function onClickFavorite() {
         <template #popper>
           <div class="scroll-y popper popper-mobile">
             <div
-              v-for="c, i in currencyList" :key="i" v-close-popper class="popper-option currency-types"
+              v-for="c, i in currencyList" :key="i" v-close-popper class="currency-types popper-option"
               @click="onChooseCurrency(c.text)"
             >
               <div>
