@@ -12,6 +12,9 @@ modelValue
 disabled
 >?: boolean 是否禁用
 
+shape
+>?: 'square' | 'circle' 选框样式，方、圆
+
 ## Slot
 默认 选项文字、内容
 
