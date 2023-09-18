@@ -91,7 +91,7 @@ function onClickFavorite() {
         <div class="info-controls">
           <!-- 收藏游戏 -->
           <VMenu placement="top">
-            <div class="tg-only-icon-button" :class="{ 'is-isFavorite': isFavorite }" @click="onClickFavorite">
+            <div class="icon-button" :class="{ 'is-isFavorite': isFavorite }" @click="onClickFavorite">
               <BaseIcon :name="`${isFavorite ? 'uni-favorites' : 'chess-star'}`" />
             </div>
             <template #popper>
@@ -102,7 +102,7 @@ function onClickFavorite() {
           </VMenu>
           <!-- 实时统计 -->
           <VMenu placement="top">
-            <div class="tg-only-icon-button" :class="{ 'trend-open': isTrendOpen }" @click="onClickTrend">
+            <div class="icon-button" :class="{ 'trend-open': isTrendOpen }" @click="onClickTrend">
               <BaseIcon name="uni-trend" />
             </div>
             <template #popper>
@@ -211,12 +211,12 @@ function onClickFavorite() {
           <div class="footer">
             <div class="left">
               <!-- 全屏 -->
-              <div class="tg-only-icon-button" @click="onClickFullScreen">
+              <div class="icon-button" @click="onClickFullScreen">
                 <BaseIcon name="uni-full-screen" />
               </div>
               <!-- 影院模式 -->
               <VMenu placement="top">
-                <div class="tg-only-icon-button" @click="onClickTheatre">
+                <div class="icon-button" @click="onClickTheatre">
                   <BaseIcon :name="`uni-theatre${isTheatre ? '-open' : ''}`" />
                 </div>
                 <template #popper>
@@ -228,7 +228,7 @@ function onClickFavorite() {
 
               <!-- 实时统计 -->
               <VMenu placement="top">
-                <div class="tg-only-icon-button" :class="{ 'trend-open': isTrendOpen }" @click="onClickTrend">
+                <div class="icon-button" :class="{ 'trend-open': isTrendOpen }" @click="onClickTrend">
                   <BaseIcon name="uni-trend" />
                 </div>
                 <template #popper>
@@ -240,7 +240,7 @@ function onClickFavorite() {
 
               <!-- 收藏游戏 -->
               <VMenu placement="top">
-                <div class="tg-only-icon-button" :class="{ 'is-isFavorite': isFavorite }" @click="onClickFavorite">
+                <div class="icon-button" :class="{ 'is-isFavorite': isFavorite }" @click="onClickFavorite">
                   <BaseIcon :name="`${isFavorite ? 'uni-favorites' : 'chess-star'}`" />
                 </div>
                 <template #popper>
@@ -540,6 +540,20 @@ function onClickFavorite() {
 }
 
 // 共用
+// 图标按钮
+.icon-button{
+  padding: var(--tg-spacing-button-padding-vertical-sm) var(--tg-spacing-button-padding-horizontal-sm);
+  cursor: pointer;
+
+  &:hover {
+    --tg-icon-color: var(--tg-text-white);
+  }
+
+  &:active {
+    transform: scale(0.96);
+  }
+}
+
 .trend-open,
 .is-isFavorite {
   --tg-icon-color: var(--tg-text-white);
