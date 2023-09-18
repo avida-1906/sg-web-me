@@ -45,7 +45,7 @@ const gameProviders = [
     <AppSlider api="" icon="chess-game-provider" :title="$t('casino_provider')" :data="gameProviders" :show-view-all="false">
       <template #default="{ item }">
         <div class="provider-item-wrap">
-          <img :src="item.src">
+          <BaseImage :url="item.src" />
         </div>
       </template>
     </AppSlider>
