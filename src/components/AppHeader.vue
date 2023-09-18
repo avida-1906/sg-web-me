@@ -18,7 +18,7 @@ const newsMenu = ref([
   { id: 2, icon: 'spt-user-bet', title: '投注单' },
 ])
 
-const showSearchBar = ref(false)
+const { bool: showSearchBar, setTrue } = useBoolean(false)
 </script>
 
 <template>
@@ -28,7 +28,7 @@ const showSearchBar = ref(false)
       <BaseWallet />
     </div>
     <div class="header-right">
-      <BaseButton v-show="!isFullScreen" type="text" class="search-btn" @click="showSearchBar = true">
+      <BaseButton v-show="!isFullScreen" type="text" class="search-btn" @click="setTrue">
         <BaseIcon class="icon-search" name="header-search" />
         <span v-show="!isFixed">搜索</span>
       </BaseButton>

@@ -34,12 +34,12 @@ const customStyle = computed(() => {
   }
 })
 const contentRef = ref()
-const showContent = ref(true)
+const { bool: showContent, setBool } = useBoolean(true)
 // const countRef = ref()
 // const showCount = ref(1)
 onMounted(() => {
   if (!props.status && !props.color)
-    showContent.value = !!useSlots().default
+    setBool(!!contentRef.value)
 })
 </script>
 

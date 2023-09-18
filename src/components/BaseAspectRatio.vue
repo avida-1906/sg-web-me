@@ -12,12 +12,12 @@ const props = withDefaults(defineProps<Props>(), {
   width: '',
 })
 
-const supportsFlex = ref(false)
+const { bool: supportsFlex, setBool } = useBoolean(false)
 
 // 检测supportsCSS方法，IE不存在方法，Opera使用了一个不同的方法名supportsCSS
 const supportsCSS = !!((window.CSS && window.CSS.supports) || window.supportsCSS || false)
 if (supportsCSS)
-  supportsFlex.value = CSS.supports('aspect-ratio', '1/1') // 浏览器是否支持这个css
+  setBool(CSS.supports('aspect-ratio', '1/1')) // 浏览器是否支持这个css
 
 const [w, h] = props.ratio.split('/').map(v => Number.parseInt(v))
 

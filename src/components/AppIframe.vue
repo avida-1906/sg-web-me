@@ -33,7 +33,7 @@ function onChooseCurrency(v: number) {
   currentCurrency.value = v
 }
 
-const isRealMoneyMode = ref(false)
+const { bool: isRealMoneyMode } = useBoolean(false)
 function onSwitch(v: boolean) {
   console.log('切换真钱模式', v)
 }

@@ -184,7 +184,7 @@ function copyTableCode() {
           </template>
         </BaseTable>`)
 }
-const loading = ref(true)
+const { bool: loading, setFalse } = useBoolean(true)
 const columns: any = ref([
   {
     title: '赛事',
@@ -252,7 +252,7 @@ onMounted(() => {
         address: 'US',
       },
     ]
-    loading.value = false
+    setFalse()
   }, 3000)
 })
 </script>

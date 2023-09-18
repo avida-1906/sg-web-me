@@ -1,8 +1,5 @@
 <script setup lang='ts'>
-const isTheatre = ref(false) // 影院模式
-function setIsTheatre(v: boolean) {
-  isTheatre.value = v
-}
+const { bool: isTheatre } = useBoolean(false) // 影院模式
 </script>
 
 <template>

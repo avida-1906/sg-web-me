@@ -36,7 +36,7 @@ const currency = ref([
 // 搜索内容
 const searchValue = ref('')
 // 下拉搜索是否显示
-const isMenuShown = ref(false)
+const { bool: isMenuShown } = useBoolean(false)
 // 当前选择币种
 const activeBalance = ref(currency.value[0])
 //

@@ -14,19 +14,19 @@ const props = withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits(['update:show', 'close'])
 
-const _show = ref(false)
+const { bool: _show, setTrue, setFalse } = useBoolean(false)
 
 onMounted(() => {
   if (props.funcCall) {
     setTimeout(() => {
-      _show.value = true
+      setTrue()
       updateShow(true)
     }, 0)
   }
 })
 
 onUnmounted(() => {
-  _show.value = false
+  setFalse()
 })
 
 function updateShow(value: boolean) {
