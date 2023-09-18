@@ -131,7 +131,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(14ch,1fr));
     grid-gap: 1rem;
-    color:var(--tg-secondary-light);
+    color: var(--tg-text-lightgrey);
     font-size: var(--tg-font-size-default);
     font-weight: var(--tg-font-weight-normal);
 
@@ -172,7 +172,7 @@
     justify-content: center;
     justify-items: center;
     align-items: center;
-    color:var(--tg-secondary-light);
+    color: var(--tg-text-lightgrey);
     gap:0.5rem;
     font-size: var(--tg-font-size-default);
   }
@@ -180,7 +180,7 @@
     width: 100%;
     line-height: 1.5;
     text-align: center;
-    color:var(--tg-secondary-light);
+    color: var(--tg-text-lightgrey);
     font-size: var(--tg-font-size-xs);
   }
 }

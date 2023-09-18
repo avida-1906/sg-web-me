@@ -160,7 +160,7 @@ onMounted(() => {
     }
     p {
       line-height: var(--tg-spacing-22);
-      color: var(--tg-secondary-light);
+      color: var(--tg-text-lightgrey);
       font-weight: var(--tg-font-weight-normal);
       padding-top: var(--tg-spacing-4);
     }

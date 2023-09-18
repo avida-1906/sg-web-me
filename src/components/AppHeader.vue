@@ -114,7 +114,7 @@ const { bool: showSearchBar, setTrue } = useBoolean(false)
   .menu-item{
     cursor: pointer;
     &:hover{
-      background-color: var(--tg-secondary-light);
+      background-color: var(--tg-text-lightgrey);
     }
     .menu-btn{
       display: flex;

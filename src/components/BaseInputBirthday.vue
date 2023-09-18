@@ -162,7 +162,7 @@ function onInput() {
   }
 
   label {
-    color: var(--tg-secondary-light);
+    color: var(--tg-text-lightgrey);
   }
 
   .msg {

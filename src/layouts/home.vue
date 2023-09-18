@@ -74,6 +74,10 @@ function setRightSidebarExpandStatus() {
     }, 300)
   }
 }
+
+const route = useRoute()
+// 是否游戏页面
+const isCasinoGames = computed(() => route.name === 'casino-games')
 </script>
 
 <template>
@@ -131,7 +135,8 @@ function setRightSidebarExpandStatus() {
         </AppContent>
       </header>
       <div class="scroll-y scrollable">
-        <AppContent>
+        <RouterView v-if="isCasinoGames" />
+        <AppContent v-else>
           <RouterView />
         </AppContent>
         <footer class="footer">

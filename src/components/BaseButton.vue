@@ -38,6 +38,7 @@ button {
   border-radius: var(--tg-radius-default);
   font-weight: var(--tg-font-weight-semibold);
   transition: all ease .25s;
+  line-height: 1;
 
   .loading {
     display: flex;
