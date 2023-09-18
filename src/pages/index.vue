@@ -40,8 +40,8 @@ const gameProviders = [
   <div class="home-index">
     <AppBanner />
     <AppBetData />
-    <AppSlider api="" icon="chess-original-game" title="原创游戏" :data="gameList" />
-    <AppSlider api="" icon="chess-game-provider" title="游戏提供商" :data="gameProviders" :show-view-all="false">
+    <AppSlider api="" icon="chess-original-game" :title="$t('casino_origin_game')" :data="gameList" />
+    <AppSlider api="" icon="chess-game-provider" :title="$t('casino_provider')" :data="gameProviders" :show-view-all="false">
       <template #default="{ item }">
         <div class="provider-item-wrap">
           <img :src="item.src">
