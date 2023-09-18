@@ -1,7 +1,7 @@
 <script setup lang='ts'>
 const gameUrl = ref('https://static-live.hacksawgaming.com/1263/1.11.3/index.html?language=zh&channel=desktop&gameid=1263&mode=1&token=ce6f762e-a59b-417e-83aa-9f72d335a35f&lobbyurl=https%3A%2F%2Fstake.com&currency=CAD&partner=stake&env=https://rgs-cu.hacksawgaming.com/api')
 
-const isRealMoneyMode = ref(false)
+const { bool: isRealMoneyMode } = useBoolean(false)
 function onSwitch(v: boolean) {
   console.log('切换真钱模式', v)
 }

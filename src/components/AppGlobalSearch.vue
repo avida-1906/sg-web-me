@@ -11,24 +11,16 @@ const gameTypeList = [
   { label: '体育', value: '2' },
 ]
 const gameLabel = computed(() => gameTypeList.find(a => a.value === gameType.value)?.label ?? '-')
-const isPopperShow = ref(false)
-function onPopperShow() {
-  isPopperShow.value = true
-}
-function onPopperHide() {
-  isPopperShow.value = false
-}
+const { bool: isPopperShow, setTrue, setFalse } = useBoolean(false)
+
 function selectGameType(v: string) {
   gameType.value = v
   emit('gameTypeChange', v)
 }
 
 // 搜索功能面板
-const showSearchOverlay = ref(false)
+const { bool: showSearchOverlay, setTrue: setTrue2, setFalse: setFalse2 } = useBoolean(false)
 const searchValue = ref('')
-function setShowSearchOverlay(v = true) {
-  showSearchOverlay.value = v
-}
 
 // 近期搜索关键字
 const recentKeyword = ref(['keyword 1', 'keyword 2', 'keyword 3', 'keyword 4', 'keyword 5'])
@@ -40,7 +32,6 @@ function onCloseKeyword(k: string) {
 }
 
 // 搜索结果
-const gameInfo = { id: 2, url: 'http://c.hiphotos.baidu.com/image/pic/item/30adcbef76094b36de8a2fe5a1cc7cd98d109d99.jpg', name: 'plynko' }
 function onGameItemClick() { }
 // const casinoList = ref([gameInfo, gameInfo, gameInfo, gameInfo, gameInfo])
 const casinoList = ref([])
@@ -49,9 +40,9 @@ const casinoList = ref([])
 <template>
   <div class="app-global-search" :class="{ 'in-pc': !isFullScreen }">
     <div v-show="!isFullScreen" class="overlay" @click="emit('close')" />
-    <BaseSearch v-model="searchValue" clearable @focus="setShowSearchOverlay" @clear="setShowSearchOverlay(false)" @close="emit('close')">
+    <BaseSearch v-model="searchValue" clearable @focus="setTrue2" @clear="setFalse2" @close="emit('close')">
       <template v-if="isCasino || isSports" #left>
-        <VDropdown :distance="6" @show="onPopperShow" @hide="onPopperHide">
+        <VDropdown :distance="6" @show="setTrue()" @hide="setFalse">
           <button class="tips">
             <span>{{ gameLabel }}</span>
             <BaseIcon :name="`uni-arrow-${isPopperShow ? 'up' : 'down'}-big`" />
@@ -69,7 +60,7 @@ const casinoList = ref([])
     </BaseSearch>
 
     <!-- 搜索功能面板  -->
-    <div v-show="showSearchOverlay || !isFullScreen" class="search-overlay" @click.self="setShowSearchOverlay(false)">
+    <div v-show="showSearchOverlay || !isFullScreen" class="search-overlay" @click.self="setFalse2">
       <div class="scroll-y warp">
         <div v-if="casinoList.length === 0" class="no-result">
           <div class="text">

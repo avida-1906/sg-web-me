@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const loading = ref(true)
+const { bool: loading, setFalse } = useBoolean(true)
 const columns: any = ref([
   {
     title: '游戏',
@@ -73,7 +73,7 @@ onMounted(() => {
         address: 'US',
       },
     ]
-    loading.value = false
+    setFalse()
   }, 3000)
 })
 const tab = ref('1')

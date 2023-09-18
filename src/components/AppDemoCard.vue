@@ -5,11 +5,7 @@ interface Props {
 
 withDefaults(defineProps<Props>(), {})
 
-const showContent = ref(false)
-
-function toggle() {
-  showContent.value = !showContent.value
-}
+const { bool: showContent, toggle } = useBoolean(false)
 </script>
 
 <template>

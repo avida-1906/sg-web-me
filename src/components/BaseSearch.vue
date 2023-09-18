@@ -19,13 +19,13 @@ function onInput(event: any) {
   emit('input', v)
 }
 
-const isFocus = ref(false)
+const { bool: isFocus, setTrue, setFalse } = useBoolean(false)
 function onFocus() {
-  isFocus.value = true
+  setTrue()
   emit('focus')
 }
 function onBlur() {
-  isFocus.value = false
+  setFalse()
   emit('blur')
 }
 function onSearch() {

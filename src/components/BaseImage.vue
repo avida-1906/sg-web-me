@@ -15,9 +15,9 @@ withDefaults(defineProps<Props>(), {
 })
 
 const emit = defineEmits(['clickImg'])
-const complete = ref(false)
+const { bool: complete, setTrue } = useBoolean(false)
 function onComplete() { // 图片加载完成
-  complete.value = true
+  setTrue()
 }
 
 function handleClick() {
