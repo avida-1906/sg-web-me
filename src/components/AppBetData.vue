@@ -117,7 +117,7 @@ function changeHidden() {
             </div>
           </template>
         </VTooltip>
-        <BaseSelect v-model="selectValue" :options="selectOptions" />
+        <BaseSelect v-model="selectValue" :options="selectOptions" small />
       </div>
     </div>
     <div class="ranking-time">
