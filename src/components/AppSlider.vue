@@ -1,11 +1,11 @@
 <script lang="ts" setup name="app-slider">
 const pageInfo = reactive({
-  total: 88,
-  pageSize: 0, // 手动滚动时 pageSize = 1?
+  total: 0,
+  pageSize: 0,
   page: 1,
 })
 
-const gameInfo = { id: 2, url: 'https://mediumrare.imgix.net/3a2a9d1f841f8bed3c4a8d7c0ec66d92ffcf1a78d927414e387540fccf1ed878?&dpr=2&format=auto&auto=format&q=50&w=167', name: 'plynko' }
+const gameInfo = { id: 2, url: 'https://mediumrare.imgix.net/d51d84f1074e5b54c25c54e6cbf026a4e352c491e7a574d3da6504743d71e2d6?&dpr=2&format=auto&auto=format&q=50&w=167', name: 'plynko' }
 const data = Array(66).fill(gameInfo)
 
 const sliderOuter = ref()
