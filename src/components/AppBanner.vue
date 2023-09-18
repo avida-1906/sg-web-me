@@ -17,7 +17,7 @@ const {
 const scrollRef = ref()
 const getGridAutoColumns = computed(() => {
   if (!isFixed.value)
-    return { 'grid-auto-columns': '32.40%' }
+    return { 'grid-auto-columns': '32.53%' }
 
   else if (isFixedSmall.value)
     return { 'grid-auto-columns': '47%' }

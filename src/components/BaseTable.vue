@@ -1,7 +1,7 @@
 <script setup lang="ts">
 interface Column {
   title?: string // 列头显示文字
-  width: number | string // 列宽度
+  width?: number | string // 列宽度
   dataIndex: string // 列数据字符索引
   slot?: string // 列插槽名称索引
   align?: 'left' | 'center' | 'right' // 列对其方式
@@ -47,7 +47,7 @@ withDefaults(defineProps<Props>(), {
         </tr>
         <tr v-for="(data, index) in dataSource" :key="index" class="m-tr">
           <td v-for="(col, n) in columns" :key="n" class="m-td" :title="data[col.dataIndex as any]" :style="`text-align:${col.align}`">
-            <slot v-if="col.slot" v-bind="data" :name="col.slot" :index="index">
+            <slot v-if="col.slot" v-bind="{ record: data, index }" :name="col.slot" :index="index">
               {{ data[col.dataIndex as any] || '--' }}
             </slot>
             <span v-else>{{ data[col.dataIndex as any] || '--' }}</span>

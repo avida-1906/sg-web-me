@@ -25,7 +25,7 @@ const { bool: showSearchBar, setTrue } = useBoolean(false)
   <div class="app-header">
     <BaseLogo :use-small="width < 300" />
     <div class="header-middle">
-      <BaseWallet />
+      <AppWallet />
     </div>
     <div class="header-right">
       <BaseButton v-show="!isFullScreen" type="text" class="search-btn" @click="setTrue">
