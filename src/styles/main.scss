@@ -162,7 +162,7 @@ body {
 
 .home-container {
   width: 100%;
-  max-width: 1200px;
+  max-width: calc(1200px + 6vw);
 }
 
 .scrollable {

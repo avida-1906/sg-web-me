@@ -30,6 +30,7 @@ console.log(application.numberToCurrency(1232330.19999, EnumCurrency.CAD))
   <div class="home-index">
     <AppBanner />
     <AppBetData />
+    <AppSlider />
     <div>
       {{ t('hello') }}
     </div>
