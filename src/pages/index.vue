@@ -39,7 +39,7 @@ const gameProviders = [
 <template>
   <div class="home-index">
     <AppBanner />
-    <AppBetData />
+    <AppBetData mode="home" />
     <AppDesc />
     <AppSlider api="" icon="chess-original-game" :title="$t('casino_origin_game')" :data="gameList" />
     <AppSlider api="" icon="chess-game-provider" :title="$t('casino_provider')" :data="gameProviders" :show-view-all="false">

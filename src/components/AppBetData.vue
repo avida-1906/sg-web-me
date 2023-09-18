@@ -1,10 +1,16 @@
 <script setup lang="ts">
 interface Props {
-  mode?: 'casino' | 'sport' | 'home'
+  mode?: 'casino' | 'sports' | 'home'
 }
 const props = withDefaults(defineProps<Props>(), {
-  mode: 'casino',
+  mode: 'home',
 })
+
+const {
+  isFixed,
+  isFixedSmall,
+} = storeToRefs(useWindowStore())
+
 // loading加载
 const { bool: loading, setFalse } = useBoolean(true)
 // 是否开启隐身模式
@@ -20,6 +26,8 @@ interface Column {
   dataIndex: string // 列数据字符索引
   slot?: string | undefined // 列插槽名称索引
   align?: 'left' | 'center' | 'right' // 列对其方式
+  xl?: boolean // 768-1200是否展示
+  md?: boolean // <768是否展示
 }
 // 获取tab配置
 const getTabOptions = computed(() => {
@@ -30,14 +38,14 @@ const getTabOptions = computed(() => {
       { value: '3', label: '风云榜' },
       { value: '4', label: '竞赛排行榜' },
     ]
-    case 'sport':return [
-      { value: '2', label: '所有投注' },
-      { value: '3', label: '风云榜' },
+    case 'sports':return [
+      { value: 'sports-all', label: '所有投注' },
+      { value: 'sports-fy', label: '风云榜' },
       { value: '4', label: '竞赛排行榜' },
     ]
     case 'home': return [
-      { value: '5', label: '娱乐城投注' },
-      { value: '6', label: '体育投注' },
+      { value: '2', label: '娱乐城投注' },
+      { value: 'sports-all', label: '体育投注' },
       { value: '4', label: '竞赛排行榜' },
     ]
   }
@@ -45,21 +53,15 @@ const getTabOptions = computed(() => {
 // 获取表格head
 const getTableColumns: ComputedRef<Column[]> = computed((): Column[] => {
   switch (tab.value) {
-    case '1':
-    case '2':
-    case '3': return [
+    case '1': return [
       {
         title: '游戏',
         // width: 100,
         dataIndex: 'gameName',
         slot: 'gameName',
         align: 'left',
-      },
-      {
-        title: '玩家',
-        dataIndex: 'player',
-        slot: 'player',
-        align: 'center',
+        xl: true,
+        md: true,
       },
       {
         title: '时间',
@@ -76,12 +78,59 @@ const getTableColumns: ComputedRef<Column[]> = computed((): Column[] => {
         title: '乘数',
         dataIndex: 'multiplier',
         align: 'right',
+        xl: true,
       },
       {
         title: '支付额',
         dataIndex: 'payMoney',
         slot: 'payMoney',
         align: 'right',
+        xl: true,
+        md: true,
+      },
+    ]
+    case '2':
+    case '3': return [
+      {
+        title: '游戏',
+        // width: 100,
+        dataIndex: 'gameName',
+        slot: 'gameName',
+        align: 'left',
+        xl: true,
+        md: true,
+      },
+      {
+        title: '玩家',
+        dataIndex: 'player',
+        slot: 'player',
+        align: 'center',
+        xl: true,
+      },
+      {
+        title: '时间',
+        dataIndex: 'time',
+        align: 'center',
+      },
+      {
+        title: '投注额',
+        dataIndex: 'betMoney',
+        slot: 'betMoney',
+        align: 'right',
+      },
+      {
+        title: '乘数',
+        dataIndex: 'multiplier',
+        align: 'right',
+        xl: true,
+      },
+      {
+        title: '支付额',
+        dataIndex: 'payMoney',
+        slot: 'payMoney',
+        align: 'right',
+        xl: true,
+        md: true,
       },
     ]
     case '4': return [
@@ -91,30 +140,85 @@ const getTableColumns: ComputedRef<Column[]> = computed((): Column[] => {
         dataIndex: '',
         slot: 'ranking',
         align: 'left',
+        xl: true,
+        md: true,
       },
       {
         title: '玩家',
         dataIndex: 'player',
         slot: 'player',
         align: 'center',
+        xl: true,
+        md: true,
       },
       {
         title: '总投注额',
         dataIndex: 'betMoney',
         slot: 'betMoney',
         align: 'right',
+        xl: true,
+        md: true,
       },
       {
         title: '奖金',
         dataIndex: 'payMoney',
         slot: 'payMoney',
         align: 'right',
+        xl: true,
+        md: true,
+      },
+    ]
+    case 'sports-all':
+    case 'sports-fy':return [
+      {
+        title: '赛事',
+        // width: 100,
+        dataIndex: 'gameName',
+        slot: 'gameName',
+        align: 'left',
+        xl: true,
+        md: true,
+      },
+      {
+        title: '玩家',
+        dataIndex: 'player',
+        slot: 'player',
+        align: 'center',
+        xl: true,
+      },
+      {
+        title: '时间',
+        dataIndex: 'time',
+        align: 'center',
+        xl: true,
+      },
+      {
+        title: '赔率',
+        dataIndex: 'multiplier',
+        align: 'right',
+        xl: true,
+      },
+      {
+        title: '投注额',
+        dataIndex: 'betMoney',
+        slot: 'betMoney',
+        align: 'right',
+        xl: true,
+        md: true,
       },
     ]
     default: return []
   }
 })
 
+const getScaleColumns: ComputedRef<Column[]> = computed((): Column[] => {
+  if (!isFixed.value)
+    return getTableColumns.value
+  else if (isFixedSmall.value)
+    return getTableColumns.value.filter(item => item.xl)
+  else
+    return getTableColumns.value.filter(item => item.md)
+})
 const tableData: any = ref([])
 onMounted(() => {
   setTimeout(() => {
@@ -208,7 +312,7 @@ function changeHidden() {
       </div>
     </div>
     <BaseTable
-      :columns="getTableColumns"
+      :columns="getScaleColumns"
       :data-source="tableData"
       :loading="loading"
     >
@@ -245,9 +349,6 @@ function changeHidden() {
         </div>
         <span v-else>{{ `${index + 1}th` }}</span>
       </template>
-      <!-- <template #job="{ job }">
-        hi {{ job }}
-      </template> -->
     </BaseTable>
   </div>
 </template>
@@ -298,7 +399,7 @@ function changeHidden() {
     cursor: help;
   }
   .ranking-box{
-    font-size: 25px;
+    font-size: 20px;
   }
   .cursor-pointer{
     cursor: pointer;
