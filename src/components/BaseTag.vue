@@ -41,7 +41,7 @@ defineEmits(['click', 'close'])
       }
 
       &:active {
-        transform: scale(0.95);
+        transform: scale(0.96);
       }
     }
 
@@ -54,7 +54,7 @@ defineEmits(['click', 'close'])
       }
 
       &:active {
-        transform: scale(0.95);
+        transform: scale(0.96);
       }
     }
   }

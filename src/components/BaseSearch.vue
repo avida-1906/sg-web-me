@@ -129,7 +129,7 @@ function onClear() {
 
 .whiteStyle {
   background-color: var(--tg-text-white);
-  color: var(--tg-secondary-main);
+  color: var(--tg-text-secondary-main);
   border-color: #d5dceb;
 
   input {
