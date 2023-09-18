@@ -225,13 +225,12 @@ watchEffect(() => {
       }
       .item {
         border-radius: var(--tg-radius-md);
-        overflow: hidden;
       }
       &.see-all {
         .item {
-          border-radius: var(--tg-radius-md);
-          overflow: hidden;
           text-align: center;
+          overflow: hidden;
+          cursor: pointer;
           position: relative;
           transition: all 0.3s ease;
           &:hover {

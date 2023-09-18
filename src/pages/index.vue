@@ -43,7 +43,7 @@ const gameProviders = [
     <AppSlider api="" icon="chess-original-game" title="原创游戏" :data="gameList" />
     <AppSlider api="" icon="chess-game-provider" title="游戏提供商" :data="gameProviders" :show-view-all="false">
       <template #default="{ item }">
-        <div>
+        <div class="provider-item-wrap">
           <img :src="item.src">
         </div>
       </template>
@@ -63,6 +63,16 @@ const gameProviders = [
 <style lang="scss" scoped>
 .home-index{
   padding: 24px 0 32px;
+}
+.provider-item-wrap {
+  border-radius: var(--tg-radius-md);
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+  &:hover {
+    transform: translateY(-4px);
+  }
 }
 </style>
 
