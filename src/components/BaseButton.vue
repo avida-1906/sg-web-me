@@ -66,7 +66,7 @@ button {
 
   &:active:not(:disabled) {
     .content {
-      transform: scale(0.9);
+      transform: scale(0.96);
     }
   }
 
@@ -83,7 +83,7 @@ button {
     color: var(--tg-text-white);
 
     .content {
-      transform: scale(0.9);
+      transform: scale(0.96);
     }
   }
 
@@ -111,7 +111,7 @@ button {
 
   &:active:not(:disabled) {
     .content {
-      transform: scale(0.95);
+      transform: scale(0.96);
     }
   }
 
@@ -128,7 +128,7 @@ button {
 
   &:active:not(:disabled) {
     .content {
-      transform: scale(0.95);
+      transform: scale(0.96);
     }
   }
 

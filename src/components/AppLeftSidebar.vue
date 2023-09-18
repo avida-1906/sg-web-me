@@ -130,7 +130,7 @@ function onGameTypeChange(v: string) {
 
     &:active {
       span {
-        transform: scale(0.95);
+        transform: scale(0.96);
       }
     }
   }
@@ -194,7 +194,7 @@ function onGameTypeChange(v: string) {
 
       &:active {
         span {
-          transform: scale(0.95);
+          transform: scale(0.96);
         }
       }
     }

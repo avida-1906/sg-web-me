@@ -27,8 +27,8 @@ interface Props {
 const props = defineProps<Props>()
 const { isFullScreen } = storeToRefs(useWindowStore())
 const route = useRoute()
-const isCasino = computed(() => route.name === 'casino')
-const isSports = computed(() => route.name === 'sports')
+const isCasino = computed(() => route.name?.toString().includes('casino'))
+const isSports = computed(() => route.name?.toString().includes('sports'))
 const isGameTypeCasino = computed(() => props.currentType === '1')
 const isGameTypeSports = computed(() => props.currentType === '2')
 
@@ -94,8 +94,7 @@ function handleClickItem() { }
           <div class="content-line" />
           <div v-for="item, i in sportHotGames" :key="i">
             <BaseAccordion
-              v-if="item.list.length"
-              :dom-id="item.domId" :menu-info="item" @click-head="handleClickHead"
+              v-if="item.list.length" :dom-id="item.domId" :menu-info="item" @click-head="handleClickHead"
               @click-item="handleClickItem"
             />
             <div v-else class="menu">
@@ -107,8 +106,7 @@ function handleClickItem() { }
         <div class="menu-box">
           <div v-for="item, i in sportEsports" :key="i">
             <BaseAccordion
-              v-if="item.list.length"
-              :dom-id="item.domId" :menu-info="item" @click-head="handleClickHead"
+              v-if="item.list.length" :dom-id="item.domId" :menu-info="item" @click-head="handleClickHead"
               @click-item="handleClickItem"
             />
             <div v-else class="menu">
@@ -120,8 +118,7 @@ function handleClickItem() { }
         <div class="menu-box">
           <div v-for="item, i in sportGameList" :key="i">
             <BaseAccordion
-              v-if="item.list.length"
-              :dom-id="item.domId" :menu-info="item" @click-head="handleClickHead"
+              v-if="item.list.length" :dom-id="item.domId" :menu-info="item" @click-head="handleClickHead"
               @click-item="handleClickItem"
             />
             <div v-else class="menu">
@@ -133,8 +130,7 @@ function handleClickItem() { }
         <div class="menu-box">
           <div v-for="item, i in sportOddType" :key="i">
             <BaseAccordion
-              v-if="item.list.length"
-              :dom-id="item.domId" :menu-info="item" @click-head="handleClickHead"
+              v-if="item.list.length" :dom-id="item.domId" :menu-info="item" @click-head="handleClickHead"
               @click-item="handleClickItem"
             />
             <div v-else class="menu">
@@ -149,8 +145,7 @@ function handleClickItem() { }
       <div class="menu-box">
         <div v-for="item, i in staticMenu1" :key="i">
           <BaseAccordion
-            v-if="item.list.length"
-            :dom-id="item.domId" :menu-info="item" @click-head="handleClickHead"
+            v-if="item.list.length" :dom-id="item.domId" :menu-info="item" @click-head="handleClickHead"
             @click-item="handleClickItem"
           />
           <div v-else class="menu">
@@ -163,8 +158,7 @@ function handleClickItem() { }
       <div class="menu-box">
         <div v-for="item, i in staticMenu2" :key="i">
           <BaseAccordion
-            v-if="item.list.length"
-            :dom-id="item.domId" :menu-info="item" @click-head="handleClickHead"
+            v-if="item.list.length" :dom-id="item.domId" :menu-info="item" @click-head="handleClickHead"
             @click-item="handleClickItem"
           />
           <div v-else class="menu">
@@ -211,6 +205,7 @@ function handleClickItem() { }
       height: 45px;
       padding: 0 16px;
       cursor: pointer;
+
       .app-svg-icon {
         transition: color 0.2s;
         transform: scale(1.1);
@@ -218,7 +213,7 @@ function handleClickItem() { }
 
       &:hover {
         background-color: #213743;
-        --tg-icon-color:var(--tg-text-white);
+        --tg-icon-color: var(--tg-text-white);
       }
 
       span {
@@ -233,7 +228,8 @@ function handleClickItem() { }
     }
   }
 }
-.is-full-screen{
+
+.is-full-screen {
   padding-top: 0;
 }
 </style>

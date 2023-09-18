@@ -23,7 +23,7 @@ const { bool: showSearchBar, setTrue } = useBoolean(false)
 
 <template>
   <div class="app-header">
-    <BaseLogo :use-small="width < 400" />
+    <BaseLogo :use-small="width < 300" />
     <div class="header-middle">
       <BaseWallet />
     </div>

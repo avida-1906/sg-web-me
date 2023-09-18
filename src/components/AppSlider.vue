@@ -1,12 +1,26 @@
 <script lang="ts" setup name="app-slider">
-const pageInfo = reactive({
-  total: 88,
-  pageSize: 0, // 手动滚动时 pageSize = 1?
-  page: 1,
+interface SlideItem {
+  id: string | number
+  [key: string]: any
+}
+
+interface Props {
+  api: string
+  icon: string
+  title: string
+  data: Array<SlideItem>
+  showViewAll?: boolean
+}
+
+withDefaults(defineProps<Props>(), {
+  showViewAll: true,
 })
 
-const gameInfo = { id: 2, url: 'https://mediumrare.imgix.net/3a2a9d1f841f8bed3c4a8d7c0ec66d92ffcf1a78d927414e387540fccf1ed878?&dpr=2&format=auto&auto=format&q=50&w=167', name: 'plynko' }
-const data = Array(66).fill(gameInfo)
+const pageInfo = reactive({
+  total: 0,
+  pageSize: 0,
+  page: 1,
+})
 
 const sliderOuter = ref()
 const outerWidth = ref(0)
@@ -23,12 +37,10 @@ const scrollLeftItemsCount = computed(() => {
 })
 
 function nextPage() {
-  pageInfo.page = pageInfo.page + 1
   x.value += pageWidth.value
 }
 
 function prevPage() {
-  pageInfo.page = pageInfo.page - 1
   const temp = x.value - pageWidth.value
   if (temp > 0)
     x.value = temp
@@ -91,8 +103,8 @@ watchEffect(() => {
     <div class="header">
       <div class="title">
         <a>
-          <BaseIcon name="chess-original-game" />
-          <h3>原创游戏</h3>
+          <BaseIcon :name="icon" />
+          <h3>{{ title }}</h3>
         </a>
       </div>
       <div class="arrows">
@@ -104,16 +116,22 @@ watchEffect(() => {
         </BaseButton>
       </div>
     </div>
-    <div ref="gallery" class="gallery scroll-x hide-scrollbar" :class="[galleryClass, `${scrollLeftItemsCount}-aaa`]">
-      <div v-for="i, idx in data" :key="i" class="slide" :class="{ faded: idx >= scrollLeftItemsCount + pageInfo.pageSize }">
+    <div ref="gallery" class="gallery scroll-x hide-scrollbar" :class="[galleryClass]">
+      <div v-for="item, idx in data" :key="item.id" class="slide" :class="{ faded: idx >= scrollLeftItemsCount + pageInfo.pageSize }">
         <div class="item">
-          <BaseGameItem :game-info="gameInfo" />
+          <slot :item="item">
+            <BaseGameItem :game-info="item" />
+          </slot>
         </div>
       </div>
-      <div class="slide faded see-all">
+      <div v-if="showViewAll || $slots.viewAll" class="slide see-all" :class="{ faded: scrollLeftItemsCount + pageInfo.pageSize < data.length + 1 }">
         <div class="item">
-          <img src="img/seeAll-en.avif">
-          <span>{{ $t('view_all') }}</span>
+          <slot name="viewAll">
+            <img src="img/seeAll-en.avif">
+            <div class="txt">
+              <span>{{ $t('view_all') }}</span>
+            </div>
+          </slot>
         </div>
       </div>
     </div>
@@ -126,6 +144,7 @@ watchEffect(() => {
   flex-direction: column;
   // margin-bottom: -4px;
   width: 100%;
+  margin-top: var(--tg-spacing-button-padding-vertical-xl);
   .header {
     display: flex;
     align-items: center;
@@ -203,6 +222,34 @@ watchEffect(() => {
       &.faded {
         opacity: .2;
         cursor: pointer;
+      }
+      .item {
+        border-radius: var(--tg-radius-md);
+      }
+      &.see-all {
+        .item {
+          text-align: center;
+          overflow: hidden;
+          cursor: pointer;
+          position: relative;
+          transition: all 0.3s ease;
+          &:hover {
+            transform: translateY(-7px);
+          }
+          img {
+            display: block;
+          }
+          .txt {
+            font-size: var(--tg-font-size-lg);
+            color: var(--tg-text-white);
+            position: absolute;
+            inset: 0 0 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+          }
+        }
       }
     }
   }

@@ -1,14 +1,15 @@
 <script setup lang='ts'>
 const emit = defineEmits(['gameTypeChange', 'close'])
 const { isFullScreen } = storeToRefs(useWindowStore())
+const { t } = useI18n()
 const route = useRoute()
-const isCasino = computed(() => route.name === 'casino')
-const isSports = computed(() => route.name === 'sports')
+const isCasino = computed(() => route.name?.toString().includes('casino'))
+const isSports = computed(() => route.name?.toString().includes('sports'))
 // 搜索栏
 const gameType = ref(isCasino.value ? '1' : isSports.value ? '2' : '')
 const gameTypeList = [
-  { label: '娱乐城', value: '1' },
-  { label: '体育', value: '2' },
+  { label: t('casino'), value: '1' },
+  { label: t('sports'), value: '2' },
 ]
 const gameLabel = computed(() => gameTypeList.find(a => a.value === gameType.value)?.label ?? '-')
 const { bool: isPopperShow, setTrue, setFalse } = useBoolean(false)
@@ -40,8 +41,11 @@ const casinoList = ref([])
 <template>
   <div class="app-global-search" :class="{ 'in-pc': !isFullScreen }">
     <div v-show="!isFullScreen" class="overlay" @click="emit('close')" />
-    <BaseSearch v-model="searchValue" clearable @focus="setTrue2" @clear="setFalse2" @close="emit('close')">
-      <template v-if="isCasino || isSports" #left>
+    <BaseSearch
+      v-model="searchValue" class="search-input" clearable @focus="setTrue2" @clear="setFalse2"
+      @close="emit('close')"
+    >
+      <template #left>
         <VDropdown :distance="6" @show="setTrue()" @hide="setFalse">
           <button class="tips">
             <span>{{ gameLabel }}</span>
@@ -49,10 +53,10 @@ const casinoList = ref([])
           </button>
           <template #popper>
             <div
-              v-for="t, i in gameTypeList" :key="i" v-close-popper class="popper-option"
-              @click="selectGameType(t.value)"
+              v-for="type, i in gameTypeList" :key="i" v-close-popper class="popper-option"
+              @click="selectGameType(type.value)"
             >
-              {{ t.label }}
+              {{ type.label }}
             </div>
           </template>
         </VDropdown>
@@ -64,14 +68,14 @@ const casinoList = ref([])
       <div class="scroll-y warp">
         <div v-if="casinoList.length === 0" class="no-result">
           <div class="text">
-            <span v-show="searchValue.length < 3">需要至少 3 个字符来进行搜索。</span>
-            <span v-show="searchValue.length >= 3 && casinoList.length === 0">未找到结果。</span>
+            <span v-show="searchValue.length < 3">{{ t('search_need_at_least_3_word') }}</span>
+            <span v-show="searchValue.length >= 3 && casinoList.length === 0">{{ t('search_no_result') }}</span>
           </div>
           <div v-if="recentKeyword.length" class="recent">
             <div class="title">
-              <label>近期搜索</label>
+              <label>{{ t('search_recent') }}</label>
               <BaseButton type="text" font-size="14" @click="recentKeyword.length = 0">
-                清除搜索({{ recentKeyword.length }})
+                {{ t('search_clear') }}({{ recentKeyword.length }})
               </BaseButton>
             </div>
             <div class="list">
@@ -103,6 +107,7 @@ const casinoList = ref([])
   top: 0;
   left: 0;
   background: #{rgba($color: var(--tg-color-blue-rgb), $alpha: 0.7)};
+  z-index: 999;
 }
 
 .tips {
@@ -114,14 +119,14 @@ const casinoList = ref([])
   }
 
   &:active {
-    transform: scale(0.95);
+    transform: scale(0.96);
   }
 }
 
 .popper-option {
   cursor: pointer;
   padding: var(--tg-spacing-button-padding-vertical-xs) var(--tg-spacing-button-padding-horizontal-xs);
-  font-size:var(--tg-font-size-default);
+  font-size: var(--tg-font-size-default);
 
   &:hover {
     background-color: var(--tg-text-lightgrey);
@@ -136,7 +141,6 @@ const casinoList = ref([])
   position: absolute;
   left: 0;
   top: 73px;
-  z-index: 5;
 
   .warp {
     max-height: 400px;
@@ -193,12 +197,20 @@ const casinoList = ref([])
   width: 100%;
   padding-top: 57px;
   margin: 0;
-  .search-overlay{
+
+  .search-input {
+    position: relative;
+    z-index: 1450;
+  }
+
+  .search-overlay {
     height: auto;
     position: relative;
     border-radius: var(--tg-radius-default);
-    top:8px;
-    .warp{
+    top: 8px;
+    z-index: 1450;
+
+    .warp {
       padding: var(--tg-spacing-16);
     }
   }
