@@ -94,7 +94,7 @@ function onClick(v: string | number) {
 
     &:active {
       .content {
-        transform: scale(0.9);
+        transform: scale(0.96);
       }
     }
 

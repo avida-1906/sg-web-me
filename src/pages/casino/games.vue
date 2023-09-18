@@ -1,12 +1,11 @@
 <script setup lang='ts'>
-const { bool: isTheatre } = useBoolean(false) // 影院模式
+const { isFullScreen } = storeToRefs(useWindowStore())
+const { bool: isTheatre, setBool } = useBoolean(false) // 影院模式
 </script>
 
 <template>
-  <div class="casino-games" :class="{ theatre: isTheatre }">
-    <div class="home-container margin-auto">
-      <AppIframe />
-    </div>
+  <div class="casino-games" :class="{ theatre: isTheatre && !isFullScreen }">
+    <AppIframe :is-theatre="isTheatre" @change-theatre="setBool" />
   </div>
 </template>
 
@@ -17,10 +16,6 @@ const { bool: isTheatre } = useBoolean(false) // 影院模式
   flex-direction: column;
   align-items: center;
   padding: 0 3vw;
-
-  .margin-auto {
-    margin: 0 auto;
-  }
 }
 
 .theatre {

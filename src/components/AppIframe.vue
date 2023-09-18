@@ -1,5 +1,12 @@
 <script setup lang='ts'>
+const props = defineProps<{
+  isTheatre: boolean
+}>()
+const emit = defineEmits(['changeTheatre'])
+const { isFullScreen } = storeToRefs(useWindowStore())
+
 const gameUrl = ref('https://static-live.hacksawgaming.com/1263/1.11.3/index.html?language=zh&channel=desktop&gameid=1263&mode=1&token=ce6f762e-a59b-417e-83aa-9f72d335a35f&lobbyurl=https%3A%2F%2Fstake.com&currency=CAD&partner=stake&env=https://rgs-cu.hacksawgaming.com/api')
+const gameImgUrl = ref('https://mediumrare.imgix.net/33cd5a34c3937da326652a3beb44fe9c3680118c363a060ca5670847595561a5?&dpr=2&format=auto&auto=format&q=70')
 
 const currentCurrency = ref(0)
 const currencyList = ref([
@@ -33,19 +40,131 @@ function onChooseCurrency(v: number) {
   currentCurrency.value = v
 }
 
-const { bool: isRealMoneyMode } = useBoolean(false)
-function onSwitch(v: boolean) {
+// 选择模式遮罩层
+const { bool: isShowFrameOverlay, setFalse: setShowFrameOverlayFalse } = useBoolean(true)
+const { bool: isRealMoneyMode, setBool: setRealModeBool } = useBoolean(false)
+function onSwitchRealMoneyMode(v: boolean) {
   console.log('切换真钱模式', v)
+  setRealModeBool(v)
+  setShowFrameOverlayFalse()
+
+  // H5模式直接打开游戏
+  if (isFullScreen.value)
+    location.href = gameUrl.value
+}
+
+// 全屏
+const gameFrameRef = ref()
+function onClickFullScreen() {
+  gameFrameRef.value.requestFullscreen()
+}
+// 剧院
+function onClickTheatre() {
+  emit('changeTheatre', !props.isTheatre)
+}
+// 实时统计
+const { bool: isTrendOpen, toggle: toggleTrendOpen } = useBoolean(false)
+function onClickTrend() {
+  toggleTrendOpen()
+}
+// 收藏
+const { bool: isFavorite, toggle: toggleFavorite } = useBoolean(false)
+function onClickFavorite() {
+  toggleFavorite()
 }
 </script>
 
 <template>
-  <div class="app-iframe">
-    <div class="game-wrapper">
-      <div class="content-wrapper">
-        <div class="content">
-          <div class="iframe-wrapper">
-            <div class="iframe-menu-overlay">
+  <!-- H5模式 -->
+  <div v-if="isFullScreen" class="mobile-iframe">
+    <div class="mobile-header">
+      <div class="img-wrap">
+        <div class="img">
+          <BaseImage :url="gameImgUrl" />
+        </div>
+      </div>
+      <div class="info-wrap">
+        <div class="main-info">
+          <span class="game-name">Dork Unit</span>
+          <span class="game-provider">Hacksaw Gaming</span>
+        </div>
+        <div class="info-controls">
+          <!-- 收藏游戏 -->
+          <VMenu placement="top">
+            <div class="tg-only-icon-button" :class="{ 'is-isFavorite': isFavorite }" @click="onClickFavorite">
+              <BaseIcon :name="`${isFavorite ? 'uni-favorites' : 'chess-star'}`" />
+            </div>
+            <template #popper>
+              <div class="tiny-menu-item-title">
+                {{ isFavorite ? '取消收藏' : '收藏游戏' }}
+              </div>
+            </template>
+          </VMenu>
+          <!-- 实时统计 -->
+          <VMenu placement="top">
+            <div class="tg-only-icon-button" :class="{ 'trend-open': isTrendOpen }" @click="onClickTrend">
+              <BaseIcon name="uni-trend" />
+            </div>
+            <template #popper>
+              <div class="tiny-menu-item-title">
+                {{ isTrendOpen ? '关闭实时统计' : '打开实时统计' }}
+              </div>
+            </template>
+          </VMenu>
+        </div>
+      </div>
+    </div>
+
+    <p>选择您的显示余额</p>
+    <!-- 选择货币 -->
+    <div class="currency">
+      <span>余额</span>
+      <VDropdown :distance="6">
+        <div class="current-currency">
+          <AppCurrencyIcon show-name :currency-type="currentCurrency" />
+          <div class="arrow">
+            <BaseIcon name="uni-arrow-down" />
+          </div>
+        </div>
+        <template #popper>
+          <div class="scroll-y popper popper-mobile">
+            <div
+              v-for="c, i in currencyList" :key="i" v-close-popper class="popper-option currency-types"
+              @click="onChooseCurrency(c.text)"
+            >
+              <div>
+                <AppCurrencyIcon show-name :currency-type="c.text" />
+              </div>
+            </div>
+          </div>
+        </template>
+      </VDropdown>
+    </div>
+
+    <!-- 开始游戏 -->
+    <div class="btns btns-mobile">
+      <BaseButton class="btn" size="sm" bg-style="secondary" @click="onSwitchRealMoneyMode(true)">
+        <div class="icon left">
+          <BaseIcon name="uni-play" />
+        </div>
+        <span>真钱模式</span>
+      </BaseButton>
+      <BaseButton class="btn" size="sm" @click="onSwitchRealMoneyMode(false)">
+        <div class="icon">
+          <BaseIcon name="uni-play" />
+        </div>
+        <span>试玩模式</span>
+      </BaseButton>
+    </div>
+  </div>
+
+  <!-- PC模式 -->
+  <div v-else class="app-iframe" :class="{ 't-app-iframe': isTheatre }">
+    <div class="game-wrapper" :class="{ 't-game-wrapper': isTheatre }">
+      <div class="content-wrapper" :class="{ 't-content-wrapper': isTheatre }">
+        <div class="content" :class="{ 't-content': isTheatre }">
+          <div class="iframe-wrapper" :class="{ 't-iframe-wrapper': isTheatre }">
+            <div v-if="isShowFrameOverlay" class="iframe-menu-overlay">
               <div class="content">
                 <div class="currency">
                   <span>余额</span>
@@ -58,7 +177,10 @@ function onSwitch(v: boolean) {
                     </div>
                     <template #popper>
                       <div class="scroll-y popper">
-                        <div v-for="c, i in currencyList" :key="i" v-close-popper class="popper-option currency-types" @click="onChooseCurrency(c.text)">
+                        <div
+                          v-for="c, i in currencyList" :key="i" v-close-popper class="popper-option currency-types"
+                          @click="onChooseCurrency(c.text)"
+                        >
                           <div>
                             <AppCurrencyIcon show-name :currency-type="c.text" />
                           </div>
@@ -68,13 +190,13 @@ function onSwitch(v: boolean) {
                   </VDropdown>
                 </div>
                 <div class="btns">
-                  <BaseButton size="sm" bg-style="secondary">
+                  <BaseButton size="sm" bg-style="secondary" @click="onSwitchRealMoneyMode(true)">
                     <div class="icon left">
                       <BaseIcon name="uni-play" />
                     </div>
                     <span>真钱模式</span>
                   </BaseButton>
-                  <BaseButton size="sm">
+                  <BaseButton size="sm" @click="onSwitchRealMoneyMode(false)">
                     <div class="icon">
                       <BaseIcon name="uni-play" />
                     </div>
@@ -83,50 +205,47 @@ function onSwitch(v: boolean) {
                 </div>
               </div>
             </div>
-            <iframe :src="gameUrl" frameborder="0" allowfullscreen />
+            <iframe ref="gameFrameRef" :src="gameUrl" frameborder="0" allowfullscreen />
           </div>
 
           <div class="footer">
             <div class="left">
               <!-- 全屏 -->
-              <div class="button">
+              <div class="tg-only-icon-button" @click="onClickFullScreen">
                 <BaseIcon name="uni-full-screen" />
               </div>
               <!-- 影院模式 -->
               <VMenu placement="top">
-                <div class="button">
-                  <BaseIcon name="uni-theatre" />
+                <div class="tg-only-icon-button" @click="onClickTheatre">
+                  <BaseIcon :name="`uni-theatre${isTheatre ? '-open' : ''}`" />
                 </div>
                 <template #popper>
                   <div class="tiny-menu-item-title">
-                    <!-- 禁用剧院模式 -->
-                    启用剧院模式
+                    {{ isTheatre ? '禁用剧院模式' : '启用剧院模式' }}
                   </div>
                 </template>
               </VMenu>
 
               <!-- 实时统计 -->
               <VMenu placement="top">
-                <div class="button">
+                <div class="tg-only-icon-button" :class="{ 'trend-open': isTrendOpen }" @click="onClickTrend">
                   <BaseIcon name="uni-trend" />
                 </div>
                 <template #popper>
                   <div class="tiny-menu-item-title">
-                    <!-- 关闭实时统计 -->
-                    打开实时统计
+                    {{ isTrendOpen ? '关闭实时统计' : '打开实时统计' }}
                   </div>
                 </template>
               </VMenu>
 
               <!-- 收藏游戏 -->
               <VMenu placement="top">
-                <div class="button">
-                  <BaseIcon name="chess-star" />
+                <div class="tg-only-icon-button" :class="{ 'is-isFavorite': isFavorite }" @click="onClickFavorite">
+                  <BaseIcon :name="`${isFavorite ? 'uni-favorites' : 'chess-star'}`" />
                 </div>
                 <template #popper>
                   <div class="tiny-menu-item-title">
-                    <!-- 取消收藏 -->
-                    收藏游戏
+                    {{ isFavorite ? '取消收藏' : '收藏游戏' }}
                   </div>
                 </template>
               </VMenu>
@@ -136,7 +255,7 @@ function onSwitch(v: boolean) {
             </div>
             <div class="right">
               <span>试玩模式</span>
-              <BaseSwitch v-model="isRealMoneyMode" class="switch" @change="onSwitch" />
+              <BaseSwitch v-model="isRealMoneyMode" class="switch" @change="onSwitchRealMoneyMode" />
               <span>真钱模式</span>
             </div>
           </div>
@@ -147,25 +266,159 @@ function onSwitch(v: boolean) {
 </template>
 
 <style lang='scss' scoped>
+// H5模式
+.mobile-iframe {
+  width: 100%;
+  margin-top: 3vw;
+  border-radius: var(--tg-radius-md);
+  background: var(--tg-secondary-dark);
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  display: grid;
+  padding: var(--tg-spacing-16);
+  grid-gap: var(--tg-spacing-16);
+  color: var(--tg-text-white);
+  font-size: var(--tg-font-size-default);
+  font-weight: var(--tg-font-weight-semibold);
+
+  .mobile-header {
+    display: grid;
+    grid-gap: var(--tg-spacing-16);
+    grid-template-columns: minmax(100px, 40%) auto;
+    margin-bottom: var(--tg-spacing-4);
+
+    .img-wrap {
+      position: relative;
+
+      .img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: var(--tg-radius-md);
+        overflow: hidden;
+      }
+
+      &::before {
+        content: "";
+        display: block;
+        width: 100%;
+        padding-top: 133.8235294118%;
+      }
+    }
+
+    .info-wrap {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: auto;
+      align-self: end;
+      min-height: 60%;
+
+      .main-info {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.5;
+
+        .game-name {
+          font-size: var(--tg-font-size-md);
+        }
+
+        .game-provider {
+          color: var(--tg-text-lightgrey);
+        }
+      }
+
+      .info-controls {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding-top: var(--spacing-0-5);
+      }
+    }
+  }
+
+  p {
+    line-height: 1.5;
+  }
+
+  .currency {
+    display: grid;
+    align-items: center;
+    gap: var(--tg-spacing-8);
+    grid-auto-flow: column;
+    justify-content: flex-start;
+
+    span {
+      color: var(--tg-text-lightgrey);
+    }
+
+    .current-currency {
+      color: var(--tg-text-white);
+      font-weight: var(--tg-font-weight-semibold);
+      background-color: var(--tg-secondary-dark);
+      border-radius: var(--tg-radius-default);
+      padding: var(--tg-spacing-4);
+      display: flex;
+      align-items: center;
+      gap: var(--tg-spacing-8);
+      cursor: pointer;
+
+      &:active {
+        transform: scale(0.98);
+      }
+
+      .arrow {
+        font-size: 10px;
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+
+  .btns {
+    width: 100%;
+  }
+
+}
+
+// pc模式
 .app-iframe {
   width: 100%;
   max-width: 1200px;
+}
+
+.t-app-iframe {
+  max-width: 148vh;
 }
 
 .game-wrapper {
   margin-top: var(--tg-spacing-40);
 }
 
+.t-game-wrapper {
+  margin-top: 0;
+  display: contents;
+}
+
 .content-wrapper {
-  --header-height: 60px;
   overflow: hidden;
   background: var(--tg-secondary-dark);
   border-radius: var(--tg-radius-md);
 }
 
+.t-content-wrapper {
+  --header-height: 60px;
+  height: calc(100vh - var(--header-height));
+}
+
 .content {
 
   .iframe-wrapper {
+    height: 100%;
+    max-height: unset;
     position: relative;
 
     &::before {
@@ -179,8 +432,6 @@ function onSwitch(v: boolean) {
       position: absolute;
       top: 0;
       left: 0;
-      bottom: 0;
-      right: 0;
       width: 100%;
       height: 100%;
       background: #{rgba($color: var(--tg-color-grey-rgb), $alpha: 0.9)};
@@ -228,26 +479,6 @@ function onSwitch(v: boolean) {
           }
         }
 
-        .btns {
-          display: flex;
-          align-items: center;
-          padding: var(--tg-spacing-12);
-          gap: var(--tg-spacing-8);
-
-          .icon {
-            margin-right: var(--tg-spacing-10);
-          }
-
-          .left {
-            --tg-icon-color: var(--tg-text-black);
-          }
-
-          &:hover {
-            .left {
-              --tg-icon-color: #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.5)};
-            }
-          }
-        }
       }
     }
 
@@ -255,12 +486,14 @@ function onSwitch(v: boolean) {
       position: absolute;
       top: 0;
       left: 0;
-      bottom: 0;
-      right: 0;
       width: 100%;
       height: 100%;
       border: none;
     }
+  }
+
+  .t-iframe-wrapper {
+    max-height: 696px;
   }
 
   .footer {
@@ -278,19 +511,6 @@ function onSwitch(v: boolean) {
       display: flex;
       padding-right: var(--tg-spacing-8);
       border-right: 1px solid var(--tg-secondary-main);
-
-      .button {
-        padding: var(--tg-spacing-button-padding-vertical-sm) var(--tg-spacing-button-padding-horizontal-sm);
-        cursor: pointer;
-
-        &:hover {
-          --tg-icon-color: var(--tg-text-white);
-        }
-
-        &:active {
-          transform: scale(0.95);
-        }
-      }
     }
 
     .logo {
@@ -305,7 +525,7 @@ function onSwitch(v: boolean) {
       cursor: pointer;
 
       &:active {
-        transform: scale(0.95);
+        transform: scale(0.96);
       }
 
       .switch {
@@ -313,6 +533,16 @@ function onSwitch(v: boolean) {
       }
     }
   }
+}
+
+.t-content {
+  height: 100%;
+}
+
+// 共用
+.trend-open,
+.is-isFavorite {
+  --tg-icon-color: var(--tg-text-white);
 }
 
 .popper {
@@ -340,6 +570,40 @@ function onSwitch(v: boolean) {
     &:hover {
       background-color: var(--tg-text-lightgrey);
     }
+  }
+}
+
+.popper-mobile {
+  max-height: 295.578px;
+}
+
+.btns {
+  display: flex;
+  align-items: center;
+  padding: var(--tg-spacing-12);
+  gap: var(--tg-spacing-8);
+
+  .icon {
+    margin-right: var(--tg-spacing-10);
+  }
+
+  .left {
+    --tg-icon-color: var(--tg-text-black);
+  }
+
+  &:hover {
+    .left {
+      --tg-icon-color: #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.5)};
+    }
+  }
+}
+
+.btns-mobile {
+  justify-content: space-between;
+  padding: 0;
+
+  .btn {
+    width: 49%;
   }
 }
 </style>

@@ -114,7 +114,7 @@ const casinoList = ref([])
   }
 
   &:active {
-    transform: scale(0.95);
+    transform: scale(0.96);
   }
 }
 

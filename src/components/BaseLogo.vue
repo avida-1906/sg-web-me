@@ -32,6 +32,6 @@ function pathTo() {
   }
 }
 .base-logo:active{
-  transform: scale(0.9);
+  transform: scale(0.96);
 }
 </style>
