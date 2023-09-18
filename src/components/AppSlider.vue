@@ -1,4 +1,16 @@
 <script lang="ts" setup name="app-slider">
+interface Props {
+  api: string
+  icon: string
+  title: string
+  data?: Array<any>
+  showViewAll?: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  showViewAll: true,
+})
+
 const pageInfo = reactive({
   total: 0,
   pageSize: 0,
@@ -6,7 +18,7 @@ const pageInfo = reactive({
 })
 
 const gameInfo = { id: 2, url: 'https://mediumrare.imgix.net/d51d84f1074e5b54c25c54e6cbf026a4e352c491e7a574d3da6504743d71e2d6?&dpr=2&format=auto&auto=format&q=50&w=167', name: 'plynko' }
-const data = Array(66).fill(gameInfo)
+const data = computed(() => props.data ? props.data : Array(66).fill(gameInfo))
 
 const sliderOuter = ref()
 const outerWidth = ref(0)
@@ -91,8 +103,8 @@ watchEffect(() => {
     <div class="header">
       <div class="title">
         <a>
-          <BaseIcon name="chess-original-game" />
-          <h3>原创游戏</h3>
+          <BaseIcon :name="icon" />
+          <h3>{{ title }}</h3>
         </a>
       </div>
       <div class="arrows">
@@ -107,15 +119,19 @@ watchEffect(() => {
     <div ref="gallery" class="gallery scroll-x hide-scrollbar" :class="[galleryClass]">
       <div v-for="i, idx in data" :key="i" class="slide" :class="{ faded: idx >= scrollLeftItemsCount + pageInfo.pageSize }">
         <div class="item">
-          <BaseGameItem :game-info="gameInfo" />
+          <slot :item="i">
+            <BaseGameItem :game-info="gameInfo" />
+          </slot>
         </div>
       </div>
-      <div class="slide see-all" :class="{ faded: scrollLeftItemsCount + pageInfo.pageSize < data.length + 1 }">
+      <div v-if="showViewAll || $slots.viewAll" class="slide see-all" :class="{ faded: scrollLeftItemsCount + pageInfo.pageSize < data.length + 1 }">
         <div class="item">
-          <img src="img/seeAll-en.avif">
-          <div class="txt">
-            <span>{{ $t('view_all') }}</span>
-          </div>
+          <slot name="viewAll">
+            <img src="img/seeAll-en.avif">
+            <div class="txt">
+              <span>{{ $t('view_all') }}</span>
+            </div>
+          </slot>
         </div>
       </div>
     </div>
@@ -128,6 +144,7 @@ watchEffect(() => {
   flex-direction: column;
   // margin-bottom: -4px;
   width: 100%;
+  margin-top: var(--tg-spacing-button-padding-vertical-xl);
   .header {
     display: flex;
     align-items: center;
@@ -206,11 +223,14 @@ watchEffect(() => {
         opacity: .2;
         cursor: pointer;
       }
+      .item {
+        border-radius: var(--tg-radius-md);
+      }
       &.see-all {
         .item {
-          border-radius: var(--tg-radius-md);
-          overflow: hidden;
           text-align: center;
+          overflow: hidden;
+          cursor: pointer;
           position: relative;
           transition: all 0.3s ease;
           &:hover {
