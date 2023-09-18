@@ -2,8 +2,8 @@
 const emit = defineEmits(['gameTypeChange', 'close'])
 const { isFullScreen } = storeToRefs(useWindowStore())
 const route = useRoute()
-const isCasino = computed(() => route.name === 'casino')
-const isSports = computed(() => route.name === 'sports')
+const isCasino = computed(() => route.name?.toString().includes('casino'))
+const isSports = computed(() => route.name?.toString().includes('sports'))
 // 搜索栏
 const gameType = ref(isCasino.value ? '1' : isSports.value ? '2' : '')
 const gameTypeList = [
@@ -40,8 +40,11 @@ const casinoList = ref([])
 <template>
   <div class="app-global-search" :class="{ 'in-pc': !isFullScreen }">
     <div v-show="!isFullScreen" class="overlay" @click="emit('close')" />
-    <BaseSearch v-model="searchValue" clearable @focus="setTrue2" @clear="setFalse2" @close="emit('close')">
-      <template v-if="isCasino || isSports" #left>
+    <BaseSearch
+      v-model="searchValue" class="search-input" clearable @focus="setTrue2" @clear="setFalse2"
+      @close="emit('close')"
+    >
+      <template #left>
         <VDropdown :distance="6" @show="setTrue()" @hide="setFalse">
           <button class="tips">
             <span>{{ gameLabel }}</span>
@@ -103,6 +106,7 @@ const casinoList = ref([])
   top: 0;
   left: 0;
   background: #{rgba($color: var(--tg-color-blue-rgb), $alpha: 0.7)};
+  z-index: 999;
 }
 
 .tips {
@@ -121,7 +125,7 @@ const casinoList = ref([])
 .popper-option {
   cursor: pointer;
   padding: var(--tg-spacing-button-padding-vertical-xs) var(--tg-spacing-button-padding-horizontal-xs);
-  font-size:var(--tg-font-size-default);
+  font-size: var(--tg-font-size-default);
 
   &:hover {
     background-color: var(--tg-text-lightgrey);
@@ -136,7 +140,6 @@ const casinoList = ref([])
   position: absolute;
   left: 0;
   top: 73px;
-  z-index: 5;
 
   .warp {
     max-height: 400px;
@@ -193,12 +196,20 @@ const casinoList = ref([])
   width: 100%;
   padding-top: 57px;
   margin: 0;
-  .search-overlay{
+
+  .search-input {
+    position: relative;
+    z-index: 1450;
+  }
+
+  .search-overlay {
     height: auto;
     position: relative;
     border-radius: var(--tg-radius-default);
-    top:8px;
-    .warp{
+    top: 8px;
+    z-index: 1450;
+
+    .warp {
       padding: var(--tg-spacing-16);
     }
   }

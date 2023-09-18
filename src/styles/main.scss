@@ -271,20 +271,6 @@ body {
   }
 }
 
-// 图标按钮
-.tg-only-icon-button{
-  padding: var(--tg-spacing-button-padding-vertical-sm) var(--tg-spacing-button-padding-horizontal-sm);
-  cursor: pointer;
-
-  &:hover {
-    --tg-icon-color: var(--tg-text-white);
-  }
-
-  &:active {
-    transform: scale(0.96);
-  }
-}
-
 @media screen and (min-width: 768px) {
   #app {
     height: 1px;
