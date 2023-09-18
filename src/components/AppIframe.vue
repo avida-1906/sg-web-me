@@ -254,9 +254,9 @@ function onClickFavorite() {
               <BaseIcon name="app-logo" />
             </div>
             <div class="right">
-              <span>{{ t('casino_game_test_mode') }}</span>
+              <span :class="{ active: !isRealMoneyMode }">{{ t('casino_game_test_mode') }}</span>
               <BaseSwitch v-model="isRealMoneyMode" class="switch" @change="onSwitchRealMoneyMode" />
-              <span>{{ t('casino_game_real_money_mode') }}</span>
+              <span :class="{ active: isRealMoneyMode }">{{ t('casino_game_real_money_mode') }}</span>
             </div>
           </div>
         </div>
@@ -533,6 +533,7 @@ function onClickFavorite() {
       font-size: var(--tg-font-size-default);
       padding-right: var(--tg-spacing-24);
       cursor: pointer;
+      font-weight: var(--tg-font-weight-semibold);
 
       &:active {
         transform: scale(0.96);
@@ -540,6 +541,10 @@ function onClickFavorite() {
 
       .switch {
         margin: 0 var(--tg-spacing-8);
+      }
+
+      .active {
+        color: var(--tg-text-white);
       }
     }
   }
