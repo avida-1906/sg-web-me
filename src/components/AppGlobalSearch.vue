@@ -1,14 +1,15 @@
 <script setup lang='ts'>
 const emit = defineEmits(['gameTypeChange', 'close'])
 const { isFullScreen } = storeToRefs(useWindowStore())
+const { t } = useI18n()
 const route = useRoute()
 const isCasino = computed(() => route.name?.toString().includes('casino'))
 const isSports = computed(() => route.name?.toString().includes('sports'))
 // 搜索栏
 const gameType = ref(isCasino.value ? '1' : isSports.value ? '2' : '')
 const gameTypeList = [
-  { label: '娱乐城', value: '1' },
-  { label: '体育', value: '2' },
+  { label: t('casino'), value: '1' },
+  { label: t('sports'), value: '2' },
 ]
 const gameLabel = computed(() => gameTypeList.find(a => a.value === gameType.value)?.label ?? '-')
 const { bool: isPopperShow, setTrue, setFalse } = useBoolean(false)
@@ -52,10 +53,10 @@ const casinoList = ref([])
           </button>
           <template #popper>
             <div
-              v-for="t, i in gameTypeList" :key="i" v-close-popper class="popper-option"
-              @click="selectGameType(t.value)"
+              v-for="type, i in gameTypeList" :key="i" v-close-popper class="popper-option"
+              @click="selectGameType(type.value)"
             >
-              {{ t.label }}
+              {{ type.label }}
             </div>
           </template>
         </VDropdown>
@@ -67,14 +68,14 @@ const casinoList = ref([])
       <div class="scroll-y warp">
         <div v-if="casinoList.length === 0" class="no-result">
           <div class="text">
-            <span v-show="searchValue.length < 3">需要至少 3 个字符来进行搜索。</span>
-            <span v-show="searchValue.length >= 3 && casinoList.length === 0">未找到结果。</span>
+            <span v-show="searchValue.length < 3">{{ t('search_need_at_least_3_word') }}</span>
+            <span v-show="searchValue.length >= 3 && casinoList.length === 0">{{ t('search_no_result') }}</span>
           </div>
           <div v-if="recentKeyword.length" class="recent">
             <div class="title">
-              <label>近期搜索</label>
+              <label>{{ t('search_recent') }}</label>
               <BaseButton type="text" font-size="14" @click="recentKeyword.length = 0">
-                清除搜索({{ recentKeyword.length }})
+                {{ t('search_clear') }}({{ recentKeyword.length }})
               </BaseButton>
             </div>
             <div class="list">

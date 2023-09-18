@@ -7,8 +7,9 @@ enum GameType {
 interface Props {
   gameType: '1' | '2'
 }
+const { t } = useI18n()
 const isCasino = computed(() => props.gameType === GameType.casino)
-const placeHolderText = computed(() => isCasino.value ? '搜索游戏' : '搜索赛事')
+const placeHolderText = computed(() => isCasino.value ? t('search_game') : t('search_events'))
 
 const searchValue = ref('')
 
@@ -45,14 +46,14 @@ const casinoList = ref([])
       <div class="scroll-y warp">
         <div v-if="casinoList.length === 0" class="no-result">
           <div class="text">
-            <span v-show="searchValue.length < 3">需要至少 3 个字符来进行搜索。</span>
-            <span v-show="searchValue.length >= 3 && casinoList.length === 0">未找到结果。</span>
+            <span v-show="searchValue.length < 3">{{ t('search_need_at_least_3_word') }}</span>
+            <span v-show="searchValue.length >= 3 && casinoList.length === 0">{{ t('search_no_result') }}</span>
           </div>
           <div v-if="recentKeyword.length" class="recent">
             <div class="title">
-              <label>近期搜索</label>
+              <label>{{ t('search_recent') }}</label>
               <BaseButton type="text" font-size="14" @click="recentKeyword.length = 0">
-                清除搜索({{ recentKeyword.length }})
+                {{ t('search_clear') }}({{ recentKeyword.length }})
               </BaseButton>
             </div>
             <div class="list">

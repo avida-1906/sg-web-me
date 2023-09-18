@@ -3,6 +3,7 @@ const props = defineProps<{
   isTheatre: boolean
 }>()
 const emit = defineEmits(['changeTheatre'])
+const { t } = useI18n()
 const { isFullScreen } = storeToRefs(useWindowStore())
 
 const gameUrl = ref('https://static-live.hacksawgaming.com/1263/1.11.3/index.html?language=zh&channel=desktop&gameid=1263&mode=1&token=ce6f762e-a59b-417e-83aa-9f72d335a35f&lobbyurl=https%3A%2F%2Fstake.com&currency=CAD&partner=stake&env=https://rgs-cu.hacksawgaming.com/api')
@@ -44,7 +45,6 @@ function onChooseCurrency(v: number) {
 const { bool: isShowFrameOverlay, setFalse: setShowFrameOverlayFalse } = useBoolean(true)
 const { bool: isRealMoneyMode, setBool: setRealModeBool } = useBoolean(false)
 function onSwitchRealMoneyMode(v: boolean) {
-  console.log('切换真钱模式', v)
   setRealModeBool(v)
   setShowFrameOverlayFalse()
 
@@ -96,7 +96,7 @@ function onClickFavorite() {
             </div>
             <template #popper>
               <div class="tiny-menu-item-title">
-                {{ isFavorite ? '取消收藏' : '收藏游戏' }}
+                {{ isFavorite ? t('casino_game_remove_favorite') : t('casino_game_add_favorite') }}
               </div>
             </template>
           </VMenu>
@@ -107,7 +107,7 @@ function onClickFavorite() {
             </div>
             <template #popper>
               <div class="tiny-menu-item-title">
-                {{ isTrendOpen ? '关闭实时统计' : '打开实时统计' }}
+                {{ isTrendOpen ? t('casino_game_close_trend') : t('casino_game_open_trend') }}
               </div>
             </template>
           </VMenu>
@@ -115,10 +115,10 @@ function onClickFavorite() {
       </div>
     </div>
 
-    <p>选择您的显示余额</p>
+    <p>t('choose_your_balance')</p>
     <!-- 选择货币 -->
     <div class="currency">
-      <span>余额</span>
+      <span>{{ t('balance') }}</span>
       <VDropdown :distance="6">
         <div class="current-currency">
           <AppCurrencyIcon show-name :currency-type="currentCurrency" />
@@ -147,13 +147,13 @@ function onClickFavorite() {
         <div class="icon left">
           <BaseIcon name="uni-play" />
         </div>
-        <span>真钱模式</span>
+        <span>{{ t('casino_game_real_money_mode') }}</span>
       </BaseButton>
       <BaseButton class="btn" size="sm" @click="onSwitchRealMoneyMode(false)">
         <div class="icon">
           <BaseIcon name="uni-play" />
         </div>
-        <span>试玩模式</span>
+        <span>{{ t('casino_game_test_mode') }}</span>
       </BaseButton>
     </div>
   </div>
@@ -167,7 +167,7 @@ function onClickFavorite() {
             <div v-if="isShowFrameOverlay" class="iframe-menu-overlay">
               <div class="content">
                 <div class="currency">
-                  <span>余额</span>
+                  <span>{{ t('balance') }}</span>
                   <VDropdown :distance="6">
                     <div class="current-currency">
                       <AppCurrencyIcon show-name :currency-type="currentCurrency" />
@@ -194,13 +194,13 @@ function onClickFavorite() {
                     <div class="icon left">
                       <BaseIcon name="uni-play" />
                     </div>
-                    <span>真钱模式</span>
+                    <span>{{ t('casino_game_real_money_mode') }}</span>
                   </BaseButton>
                   <BaseButton size="sm" @click="onSwitchRealMoneyMode(false)">
                     <div class="icon">
                       <BaseIcon name="uni-play" />
                     </div>
-                    <span>试玩模式</span>
+                    <span>{{ t('casino_game_test_mode') }}</span>
                   </BaseButton>
                 </div>
               </div>
@@ -221,7 +221,7 @@ function onClickFavorite() {
                 </div>
                 <template #popper>
                   <div class="tiny-menu-item-title">
-                    {{ isTheatre ? '禁用剧院模式' : '启用剧院模式' }}
+                    {{ isTheatre ? t('casino_game_close_theatre') : t('casino_game_open_theatre') }}
                   </div>
                 </template>
               </VMenu>
@@ -233,7 +233,7 @@ function onClickFavorite() {
                 </div>
                 <template #popper>
                   <div class="tiny-menu-item-title">
-                    {{ isTrendOpen ? '关闭实时统计' : '打开实时统计' }}
+                    {{ isTrendOpen ? t('casino_game_close_trend') : t('casino_game_open_trend') }}
                   </div>
                 </template>
               </VMenu>
@@ -245,7 +245,7 @@ function onClickFavorite() {
                 </div>
                 <template #popper>
                   <div class="tiny-menu-item-title">
-                    {{ isFavorite ? '取消收藏' : '收藏游戏' }}
+                    {{ isFavorite ? t('casino_game_remove_favorite') : t('casino_game_add_favorite') }}
                   </div>
                 </template>
               </VMenu>
@@ -254,9 +254,9 @@ function onClickFavorite() {
               <BaseIcon name="app-logo" />
             </div>
             <div class="right">
-              <span>试玩模式</span>
+              <span>{{ t('casino_game_test_mode') }}</span>
               <BaseSwitch v-model="isRealMoneyMode" class="switch" @change="onSwitchRealMoneyMode" />
-              <span>真钱模式</span>
+              <span>{{ t('casino_game_real_money_mode') }}</span>
             </div>
           </div>
         </div>
