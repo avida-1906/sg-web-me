@@ -12,10 +12,10 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   layout: 'vertical',
   type: 'text',
-  placeholder: '请输入内容',
 })
 const emit = defineEmits(['update:modelValue', 'input', 'blur', 'focus'])
-
+const { t } = useI18n()
+const _placeholder = computed(() => props.placeholder ?? t('enter_your_content'))
 const { bool: isFocus, setTrue, setFalse } = useBoolean(false)
 const isError = computed(() => !!props.msg)
 
@@ -49,7 +49,7 @@ function onBlur() {
       <label>{{ label }} <span v-if="must">*</span></label>
       <div class="input-box" :class="{ active: isFocus, error: isError }">
         <input
-          :value="modelValue" :placeholder="placeholder" :type="_type" @input="onInput" @focus="onFocus"
+          :value="modelValue" :placeholder="_placeholder" :type="_type" @input="onInput" @focus="onFocus"
           @blur="onBlur"
         >
         <div v-if="isPassword" class="eye" @click="toggleType">
