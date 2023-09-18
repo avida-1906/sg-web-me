@@ -17,7 +17,7 @@ defineEmits(['click', 'close'])
 <style lang='scss' scoped>
 .base-tag {
   font-size: var(--tg-font-size-xs);
-  color: var(--tg-secondary-light);
+  color: var(--tg-text-lightgrey);
   white-space: nowrap;
   display: flex;
   align-items: center;

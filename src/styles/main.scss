@@ -259,6 +259,17 @@ body {
   min-width: var(--tg-sidebar-width-sm);
 }
 
+// 气泡下拉选项
+.popper-option {
+  cursor: pointer;
+  padding: var(--tg-spacing-button-padding-vertical-xs) var(--tg-spacing-button-padding-horizontal-xs);
+  font-size: var(--tg-font-size-default);
+
+  &:hover {
+    background-color: var(--tg-text-lightgrey);
+  }
+}
+
 @media screen and (min-width: 768px) {
   #app {
     height: 1px;

@@ -45,7 +45,7 @@ const emptyDescription = computed(
     &-description {
         padding: var(--tg-spacing-5) 0 var(--tg-spacing-10);
         font-size: var(--tg-font-size-default);
-        color: var(--tg-secondary-light);
+        color: var(--tg-text-lightgrey);
     }
 }
 </style>

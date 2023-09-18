@@ -183,7 +183,7 @@ const getSearchBalance = computed(() => {
       cursor: pointer;
 
       &:hover {
-        background-color: var(--tg-secondary-light);
+        background-color: var(--tg-text-lightgrey);
       }
       .balance-num{
         width: 14ch;

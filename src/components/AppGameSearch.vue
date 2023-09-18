@@ -95,7 +95,7 @@ const casinoList = ref([])
   .search-overlay {
     width: 100%;
     background-color: var(--tg-secondary-dark);
-    color: var(--tg-secondary-light);
+    color: var(--tg-text-lightgrey);
     border-radius: var(--tg-radius-default);
     margin-top: 8px;
     position: absolute;

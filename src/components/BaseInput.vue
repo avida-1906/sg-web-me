@@ -70,7 +70,7 @@ function onBlur() {
   font-size: var(--tg-font-size-default);
 
   label {
-    color: var(--tg-secondary-light);
+    color: var(--tg-text-lightgrey);
   }
 
   .msg {

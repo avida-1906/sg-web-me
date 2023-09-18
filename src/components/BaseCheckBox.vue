@@ -28,7 +28,7 @@ function onClick() {
 .base-check-box {
   display: flex;
   align-items: center;
-  color: var(--tg-secondary-light);
+  color: var(--tg-text-lightgrey);
 
   .square {
     transition: all ease .25s;

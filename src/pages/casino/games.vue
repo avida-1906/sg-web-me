@@ -7,21 +7,26 @@ function setIsTheatre(v: boolean) {
 
 <template>
   <div class="casino-games" :class="{ theatre: isTheatre }">
-    <AppIframe />
+    <div class="home-container margin-auto">
+      <AppIframe />
+    </div>
   </div>
 </template>
 
 <style lang='scss' scoped>
 .casino-games {
   width: 100%;
-  max-width: 1200px;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 0 3vw;
-  margin: 0 auto;
+
+  .margin-auto {
+    margin: 0 auto;
+  }
 }
-.theatre{
+
+.theatre {
   padding: 0;
 }
 </style>

@@ -33,7 +33,7 @@ function onCheck() {
 
 <style lang='scss' scoped>
 .base-radio {
-  color: var(--tg-secondary-light);
+  color: var(--tg-text-lightgrey);
   font-size: var(--tg-font-size-default);
   cursor: pointer;
   display: flex;

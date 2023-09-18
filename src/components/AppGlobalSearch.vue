@@ -133,7 +133,7 @@ const casinoList = ref([])
   font-size:var(--tg-font-size-default);
 
   &:hover {
-    background-color: var(--tg-secondary-light);
+    background-color: var(--tg-text-lightgrey);
   }
 }
 
@@ -141,7 +141,7 @@ const casinoList = ref([])
   width: 100%;
   height: 100%;
   background-color: var(--tg-secondary-dark);
-  color: var(--tg-secondary-light);
+  color: var(--tg-text-lightgrey);
   position: absolute;
   left: 0;
   top: 73px;
