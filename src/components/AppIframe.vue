@@ -129,7 +129,7 @@ function onClickFavorite() {
         <template #popper>
           <div class="scroll-y popper popper-mobile">
             <div
-              v-for="c, i in currencyList" :key="i" v-close-popper class="currency-types popper-option"
+              v-for="c, i in currencyList" :key="i" v-close-popper class="popper-option currency-types"
               @click="onChooseCurrency(c.text)"
             >
               <div>
