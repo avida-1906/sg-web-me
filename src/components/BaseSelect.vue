@@ -38,7 +38,7 @@ function onChange(event: any) {
         </option>
       </select>
       <div class="icon">
-        <BaseIcon name="uni-arrow-down-big" />
+        <BaseIcon name="uni-arrow-down" />
       </div>
     </div>
   </div>
@@ -72,7 +72,7 @@ function onChange(event: any) {
   }
 
   .icon {
-    font-size: var(--tg-font-size-md);
+    font-size: var(--tg-font-size-base);
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
