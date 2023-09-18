@@ -14,14 +14,17 @@ modelValue
     value: any
   }[] 选项列表，必须包含label、value字段
 
-  label
-  >: string label文字
+label
+>: string label文字
 
-  layout
-  >?: 'horizontal' | 'vertical' 布局
+layout
+>?: 'horizontal' | 'vertical' 布局
 
-  must
-  >?: boolean 是否必填
+must
+>?: boolean 是否必填
+
+small
+>?: boolean 排行榜专用小型样式
 
 ## Slot
 无

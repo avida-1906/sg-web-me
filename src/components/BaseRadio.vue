@@ -13,16 +13,24 @@ const disabled = inject('disabled')
 
 const isChecked = computed(() => props.value === sValue?.value)
 
+const { bool, setTrue, setFalse } = useBoolean(false)
+const outerRef = ref()
+onClickOutside(outerRef, () => {
+  setFalse()
+})
+
 function onCheck() {
   if (disabled)
     return
+
+  setTrue()
   emit('click', props.value)
   onSelect(props.value)
 }
 </script>
 
 <template>
-  <div class="base-radio" :class="{ disabled, active: isChecked }" @click="onCheck">
+  <div ref="outerRef" class="base-radio" :class="{ disabled, active: isChecked, focus: bool }" @click="onCheck">
     <span class="icon" :class="[shape]">
       <span v-if="shape === 'circle'" class="dot" />
       <span v-else class="hook" />
@@ -89,7 +97,8 @@ function onCheck() {
 
 .active {
   .icon {
-    border-color: var(--tg-text-grey);
+    border-color: var(--tg-secondary-main);
+    background-color: var(--tg-secondary-main);
     .dot {
       display: inline-block;
     }
@@ -100,20 +109,20 @@ function onCheck() {
   }
 
 }
+.active.focus{
+  .icon{
+    border-color: var(--tg-text-grey);
+    background-color: var(--tg-secondary-main);
+  }
+}
 
 .disabled {
   cursor: not-allowed;
-  opacity: 0.75;
+  opacity: 0.5;
 
   &:hover {
     .icon {
-      border-color: var(--tg-secondary-main);
-    }
-  }
-}
-.disabled.active{
-  &:hover {
-    .icon {
+      cursor: not-allowed;
       border-color: var(--tg-text-grey);
     }
   }

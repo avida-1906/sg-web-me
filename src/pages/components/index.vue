@@ -684,6 +684,7 @@ function copyIconName(name: string) {
         <BaseCheckBox v-model="checkboxValue" @click="copyCode('checkbox')">
           一个复选框
         </BaseCheckBox>
+        <BaseCheckBox v-model="checkboxValue" shape="circle" @click="copyCode('checkbox')" />
       </AppDemoCard>
     </li>
     <li class="box">
