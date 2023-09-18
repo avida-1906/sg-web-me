@@ -38,7 +38,7 @@ function onChange(event: any) {
         </option>
       </select>
       <div class="icon">
-        <BaseIcon name="uni-arrow-down-big" />
+        <BaseIcon name="uni-arrow-down" />
       </div>
     </div>
   </div>
@@ -56,7 +56,7 @@ function onChange(event: any) {
 
   select {
     width: 100%;
-    padding: 11px 10px;
+    padding: var(--tg-spacing-11) var(--tg-spacing-10);
     border-width: var(--tg-border-width-sm);
     border-style: solid;
     border-color: var(--tg-secondary-main);
@@ -72,11 +72,11 @@ function onChange(event: any) {
   }
 
   .icon {
-    font-size: var(--tg-font-size-md);
+    font-size: var(--tg-font-size-base);
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    right: 8px;
+    right: var(--tg-spacing-8);
     pointer-events: none;
     cursor: pointer;
   }
@@ -91,7 +91,7 @@ function onChange(event: any) {
   align-items: flex-start;
 
   label {
-    margin-bottom: 7px;
+    margin-bottom: var(--tg-spacing-7);
   }
 
 }
@@ -102,7 +102,7 @@ function onChange(event: any) {
 
   label {
     width: 100px;
-    margin-right: 10px;
+    margin-right: var(--tg-spacing-10);
   }
 }
 </style>
