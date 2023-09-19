@@ -580,7 +580,7 @@ function copyCollapseCode() {
   toast('Copied')
 }
 function copyAppPercentageCode() {
-  copy('<AppPercentage total="45" percentage="39" />')
+  copy('<AppPercentage :total="45" :percentage="39" />')
   toast('Copied')
 }
 </script>
@@ -1112,7 +1112,8 @@ function copyAppPercentageCode() {
     </li>
     <li class="box">
       <AppDemoCard title="AppPercentage" style="text-align:left">
-        <AppPercentage total="45" percentage="39" />
+        <AppPercentage :total="45" :percentage="39" />
+        <AppPercentage :total="80" :percentage="40" />
         <div class="center">
           <BaseButton @click="copyAppPercentageCode">
             copy

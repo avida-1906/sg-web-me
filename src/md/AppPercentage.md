@@ -1,6 +1,7 @@
 # 比例统计
 ```
-<AppPercentage total="45" percentage="39" />
+<AppPercentage :total="45" :percentage="39" />
+
 ```
 ## Props
 
