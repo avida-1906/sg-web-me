@@ -1,19 +1,22 @@
 <script setup lang='ts'>
-// interface Props {
-// }
-// const props = withDefaults(defineProps<Props>(), {
-// })
+interface IVipProgressData {
+  percent: number // vip进度百分比
+  currentLevel: number // 当前vip等级
+}
+interface Props {
+  vipProgressData?: IVipProgressData
+}
+const props = withDefaults(defineProps<Props>(), {
+  vipProgressData: () => { // vip进度条
+    return {
+      percent: 40,
+      currentLevel: 1,
+    }
+  },
+})
 // const emit = defineEmits(['update:modelValue'])
 
 const { bool: showDialog } = useBoolean(true)
-interface VipProgressData {
-  percent: number
-  currentLevel: number
-}
-const vipProgressData: VipProgressData = {
-  percent: 60,
-  currentLevel: 3,
-}
 
 const tab = ref('1')
 const tabList = [
@@ -35,7 +38,7 @@ const tabList = [
           <span>加入日期：</span>
           <span>2023年9月19日</span>
         </div>
-        <AppVipProgress :vip-progress-data="vipProgressData" />
+        <AppVipProgress :vip-progress-data="props.vipProgressData" />
         <div class="s-tab">
           <BaseTab v-model="tab" :list="tabList" />
         </div>
@@ -64,7 +67,7 @@ const tabList = [
       }
     }
     .s-tab{
-      margin-top: 36px;
+      margin-top: var(--tg-spacing-36);
     }
   }
 }

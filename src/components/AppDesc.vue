@@ -374,7 +374,7 @@ const {
 
       .rank-icon {
         >svg {
-          font-size: 24px;
+          font-size: var(--tg-font-size-xl);
         }
       }
 

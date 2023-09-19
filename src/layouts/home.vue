@@ -26,7 +26,7 @@ const {
 } = storeToRefs(useWindowStore())
 
 // 左侧是否展开
-const leftIsExpand = useDebouncedRef({ value: false, delay: 200, beforeTrigger, afterTrigger })
+const leftIsExpand = useDebouncedRef({ value: false, delay: 100, beforeTrigger, afterTrigger })
 const { bool: isSwitching, setTrue, setFalse } = useBoolean(false)
 const switchTo = ref<'big' | 'small' | ''>('')
 
