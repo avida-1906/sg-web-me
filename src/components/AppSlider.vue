@@ -122,6 +122,7 @@ watchEffect(() => {
           <slot :item="item">
             <BaseGameItem :game-info="item" />
           </slot>
+          <div class="link-next" @click="nextPage" />
         </div>
       </div>
       <div v-if="showViewAll || $slots.viewAll" class="slide see-all" :class="{ faded: scrollLeftItemsCount + pageInfo.pageSize < data.length + 1 }">
@@ -219,20 +220,32 @@ watchEffect(() => {
       scroll-snap-align: start;
       will-change: opacity;
       transition: all .3s;
+      .link-next {
+        display: none;
+        position: absolute;
+        inset: 0 0 0 0;
+        background: transparent;
+      }
       &.faded {
         opacity: .2;
         cursor: pointer;
+        .link-next {
+          display: block;
+        }
       }
       .item {
         border-radius: var(--tg-radius-md);
+        position: relative;
       }
       &.see-all {
         .item {
           text-align: center;
           overflow: hidden;
           cursor: pointer;
-          position: relative;
           transition: all 0.3s ease;
+          .link-next {
+            display: none;
+          }
           &:hover {
             transform: translateY(-7px);
           }

@@ -119,12 +119,13 @@
 
 .menu-fade-enter-active,
 .menu-fade-leave-active {
-  transition: opacity 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 .menu-fade-enter-from,
 .menu-fade-leave-to {
   opacity: 0;
+  transform: translateX(-6px);
 }
 .slide-fade-enter-active {
   animation: slide-fade-in 0.4s ease-in-out;
