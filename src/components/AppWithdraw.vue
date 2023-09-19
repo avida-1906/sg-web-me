@@ -52,8 +52,11 @@ const networkList = [
         <span class="us">US$0.00</span>
       </div>
       <BaseInput v-model="amount" type="number" placeholder="0.00000000" :msg="amountMsg" @blur="onAmountInput">
-        <template #right>
+        <template #right-icon>
           <BaseIcon name="coin-btc" />
+        </template>
+        <template #right-button>
+          <span>最大值</span>
         </template>
       </BaseInput>
     </div>
