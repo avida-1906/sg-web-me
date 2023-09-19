@@ -36,6 +36,7 @@ const networkList = [
         </div>
       </div>
     </div>
+    <BaseQrcode url="www.google.com" />
   </div>
 </template>
 
