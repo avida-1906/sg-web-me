@@ -99,7 +99,7 @@ const { openWalletDialog } = useWalletDialog()
               无法使用货币
             </div>
           </div>
-          <div class="popper-bottom">
+          <div v-if="walletBtn" class="popper-bottom">
             <BaseButton type="text" class="bottom-btn">
               <BaseIcon class="icon-wallet-set" name="wallet-set" />
               <span>钱包设置</span>
