@@ -45,14 +45,6 @@ function connectMqtt() {
 <template>
   <div class="home-index">
     <AppBanner />
-    <AppSlider api="" icon="chess-original-game" :title="$t('casino_origin_game')" :data="gameList" />
-    <AppSlider api="" icon="chess-game-provider" :title="$t('casino_provider')" :data="gameProviders" :show-view-all="false">
-      <template #default="{ item }">
-        <div class="provider-item-wrap">
-          <BaseImage :url="item.src" />
-        </div>
-      </template>
-    </AppSlider>
     <div>
       {{ t('hello') }}
     </div>
