@@ -5,10 +5,10 @@
 ## Props
 
   total
-  >?: 总数统计
+  > : number //总数统计
 
   percentage
-  >?: 分数统计
+  > : number //分数统计
 
 ## Slot
 默认 内容
