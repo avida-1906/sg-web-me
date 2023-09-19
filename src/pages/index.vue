@@ -43,7 +43,7 @@ function connectMqtt() {
 <template>
   <div class="home-index">
     <AppBanner />
-    <AppBetData mode="home" />
+
     <AppDesc />
     <AppSlider api="" icon="chess-original-game" :title="$t('casino_origin_game')" :data="gameList" />
     <AppSlider api="" icon="chess-game-provider" :title="$t('casino_provider')" :data="gameProviders" :show-view-all="false">
@@ -65,6 +65,7 @@ function connectMqtt() {
     <button @click="connectMqtt">
       链接mqtt
     </button>
+    <AppBetData mode="home" />
   </div>
 </template>
 
@@ -79,7 +80,7 @@ function connectMqtt() {
   position: relative;
   transition: all 0.3s ease;
   &:hover {
-    transform: translateY(-4px);
+    transform: translateY(-3px);
   }
 }
 </style>
