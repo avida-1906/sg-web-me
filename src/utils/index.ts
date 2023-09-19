@@ -41,6 +41,14 @@ class Application {
     else
       return toFixed(number, this.#CURRENCY_DEFAULT_DECIMAL)
   }
+
+  copy(str: string) {
+    const { copy: _copy, copied } = useClipboard()
+    _copy(str).then(() => {
+      if (copied.value)
+        toast('Copied')
+    })
+  }
 }
 
 export const application = new Application()
