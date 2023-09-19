@@ -31,7 +31,7 @@ const { openDialog: openSafeDialog } = useDialog({
   icon: 'navbar-wallet',
   default: () => h(AppSafeDialog),
 })
-function handleClickMenuItem(item: { name: string }, hide: () => void) {
+function handleClickMenuItem(item: { name: string }) {
   const { name } = item
   switch (name) {
     case 'wallet':
@@ -43,7 +43,6 @@ function handleClickMenuItem(item: { name: string }, hide: () => void) {
     default:
       break
   }
-  hide()
 }
 </script>
 
@@ -60,9 +59,9 @@ function handleClickMenuItem(item: { name: string }, hide: () => void) {
         <BaseButton type="text">
           <BaseIcon class="icon-size" name="navbar-user" />
         </BaseButton>
-        <template #popper="{ hide }">
+        <template #popper>
           <div class="dropdown-popper">
-            <div v-for="item of userMenu" :key="item.id" class="menu-item" @click="handleClickMenuItem(item, hide)">
+            <div v-for="item of userMenu" :key="item.id" v-close-popper class="menu-item" @click="handleClickMenuItem(item)">
               <div class="menu-btn">
                 <BaseIcon class="icon-size" :name="item.icon" />
                 <span>{{ item.title }}</span>
