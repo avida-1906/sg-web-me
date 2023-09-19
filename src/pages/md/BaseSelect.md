@@ -26,6 +26,9 @@ must
 small
 >?: boolean 排行榜专用小型样式
 
+popper
+>?: boolean 气泡弹出样式选项，例子看虚拟货币网络选择
+
 ## Slot
 无
 
