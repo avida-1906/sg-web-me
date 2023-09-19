@@ -5,6 +5,7 @@
 <template>
   <div>
     Casino
+    <AppBetData mode="casino" />
   </div>
 </template>
 

@@ -10,6 +10,7 @@ interface Props {
 }
 const props = defineProps<Props>()
 const emit = defineEmits(['update:modelValue'])
+const { t } = useI18n()
 
 function onClick() {
   emit('update:modelValue', !props.modelValue)
@@ -17,6 +18,8 @@ function onClick() {
 
 const router = useRouter()
 const route = useRoute()
+const isCasino = computed(() => route.name?.toString().includes('casino'))
+const isSports = computed(() => route.name?.toString().includes('sports'))
 
 const {
   casinoMenu,
@@ -32,7 +35,7 @@ const {
 } = useMenuData()
 
 const menuData = computed(() => {
-  if (route.name === 'casino') {
+  if (isCasino.value) {
     return [
       casinoMenu,
       casinoGameList,
@@ -41,7 +44,7 @@ const menuData = computed(() => {
       staticMenu2,
     ]
   }
-  else if (route.name === 'sports') {
+  else if (isSports.value) {
     return [
       sportsMenu,
       sportHotGames,
@@ -72,11 +75,11 @@ const menuData = computed(() => {
           </template>
         </Transition>
         <div v-if="!isSwitching" class="game-type">
-          <div class="casino" :class="{ active: $route.name === 'casino' }" @click="router.push('/casino')">
-            <span>娱乐城</span>
+          <div class="casino" :class="{ active: isCasino }" @click="router.push('/casino')">
+            <span>{{ t('casino') }}</span>
           </div>
-          <div class="sports" :class="{ active: $route.name === 'sports' }" @click="router.push('/sports')">
-            <span>体育</span>
+          <div class="sports" :class="{ active: isSports }" @click="router.push('/sports')">
+            <span>{{ t('sports') }}</span>
           </div>
         </div>
       </div>

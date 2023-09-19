@@ -25,6 +25,7 @@ interface Props {
   isSwitching?: boolean
 }
 const props = defineProps<Props>()
+const { t } = useI18n()
 const { isFullScreen } = storeToRefs(useWindowStore())
 const route = useRoute()
 const isCasino = computed(() => route.name?.toString().includes('casino'))
@@ -57,7 +58,7 @@ function handleClickItem() { }
         </div>
         <div class="menu-box">
           <div class="menu">
-            游戏
+            {{ t('game') }}
           </div>
           <div class="content-line" />
           <div v-for="item, i in casinoGameList" :key="i">
@@ -89,7 +90,7 @@ function handleClickItem() { }
         </div>
         <div class="menu-box">
           <div class="menu">
-            顶级体育项目
+            {{ t('top_sports_events') }}
           </div>
           <div class="content-line" />
           <div v-for="item, i in sportHotGames" :key="i">

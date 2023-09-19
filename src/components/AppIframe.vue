@@ -129,7 +129,7 @@ function onClickFavorite() {
         <template #popper>
           <div class="scroll-y popper popper-mobile">
             <div
-              v-for="c, i in currencyList" :key="i" v-close-popper class="currency-types popper-option"
+              v-for="c, i in currencyList" :key="i" v-close-popper class="popper-option currency-types"
               @click="onChooseCurrency(c.text)"
             >
               <div>
@@ -143,8 +143,8 @@ function onClickFavorite() {
 
     <!-- 开始游戏 -->
     <div class="btns btns-mobile">
-      <BaseButton class="btn" size="sm" bg-style="secondary" @click="onSwitchRealMoneyMode(true)">
-        <div class="icon left">
+      <BaseButton class="real btn" size="sm" bg-style="secondary" @click="onSwitchRealMoneyMode(true)">
+        <div class="icon">
           <BaseIcon name="uni-play" />
         </div>
         <span>{{ t('casino_game_real_money_mode') }}</span>
@@ -190,8 +190,8 @@ function onClickFavorite() {
                   </VDropdown>
                 </div>
                 <div class="btns">
-                  <BaseButton size="sm" bg-style="secondary" @click="onSwitchRealMoneyMode(true)">
-                    <div class="icon left">
+                  <BaseButton class="real" size="sm" bg-style="secondary" @click="onSwitchRealMoneyMode(true)">
+                    <div class="icon">
                       <BaseIcon name="uni-play" />
                     </div>
                     <span>{{ t('casino_game_real_money_mode') }}</span>
@@ -254,9 +254,9 @@ function onClickFavorite() {
               <BaseIcon name="app-logo" />
             </div>
             <div class="right">
-              <span>{{ t('casino_game_test_mode') }}</span>
+              <span :class="{ active: !isRealMoneyMode }">{{ t('casino_game_test_mode') }}</span>
               <BaseSwitch v-model="isRealMoneyMode" class="switch" @change="onSwitchRealMoneyMode" />
-              <span>{{ t('casino_game_real_money_mode') }}</span>
+              <span :class="{ active: isRealMoneyMode }">{{ t('casino_game_real_money_mode') }}</span>
             </div>
           </div>
         </div>
@@ -366,6 +366,11 @@ function onClickFavorite() {
       gap: var(--tg-spacing-8);
       cursor: pointer;
 
+      &:hover {
+        background-color: var(--tg-secondary-deepdark);
+        --tg-icon-color: var(--tg-text-white)
+      }
+
       &:active {
         transform: scale(0.98);
       }
@@ -467,6 +472,11 @@ function onClickFavorite() {
             gap: var(--tg-spacing-8);
             cursor: pointer;
 
+            &:hover {
+              background-color: var(--tg-secondary-deepdark);
+              --tg-icon-color: var(--tg-text-white)
+            }
+
             &:active {
               transform: scale(0.98);
             }
@@ -523,6 +533,7 @@ function onClickFavorite() {
       font-size: var(--tg-font-size-default);
       padding-right: var(--tg-spacing-24);
       cursor: pointer;
+      font-weight: var(--tg-font-weight-semibold);
 
       &:active {
         transform: scale(0.96);
@@ -530,6 +541,10 @@ function onClickFavorite() {
 
       .switch {
         margin: 0 var(--tg-spacing-8);
+      }
+
+      .active {
+        color: var(--tg-text-white);
       }
     }
   }
@@ -541,7 +556,7 @@ function onClickFavorite() {
 
 // 共用
 // 图标按钮
-.icon-button{
+.icon-button {
   padding: var(--tg-spacing-button-padding-vertical-sm) var(--tg-spacing-button-padding-horizontal-sm);
   cursor: pointer;
 
@@ -601,15 +616,14 @@ function onClickFavorite() {
     margin-right: var(--tg-spacing-10);
   }
 
-  .left {
+  .real {
     --tg-icon-color: var(--tg-text-black);
-  }
 
-  &:hover {
-    .left {
+    &:hover {
       --tg-icon-color: #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.5)};
     }
   }
+
 }
 
 .btns-mobile {

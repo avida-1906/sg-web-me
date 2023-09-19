@@ -1,43 +1,224 @@
 <script setup lang="ts">
+interface Props {
+  mode?: 'casino' | 'sports' | 'home'
+}
+const props = withDefaults(defineProps<Props>(), {
+  mode: 'home',
+})
+
+const {
+  isFixed,
+  isFixedSmall,
+} = storeToRefs(useWindowStore())
+
+// loading加载
 const { bool: loading, setFalse } = useBoolean(true)
+// 是否开启隐身模式
 const { bool: isHidden, setFalse: setIsHiddenFalse, setTrue: setIsHiddenTrue } = useBoolean(false)
-const columns: any = ref([
-  {
-    title: '游戏',
-    // width: 100,
-    dataIndex: 'gameName',
-    slot: 'gameName',
-    align: 'left',
-  },
-  {
-    title: '玩家',
-    dataIndex: 'player',
-    slot: 'player',
-    align: 'center',
-  },
-  {
-    title: '时间',
-    dataIndex: 'time',
-    align: 'center',
-  },
-  {
-    title: '投注额',
-    dataIndex: 'betMoney',
-    slot: 'betMoney',
-    align: 'right',
-  },
-  {
-    title: '乘数',
-    dataIndex: 'rate',
-    align: 'center',
-  },
-  {
-    title: '支付额',
-    dataIndex: 'payMoney',
-    slot: 'payMoney',
-    align: 'right',
-  },
-])
+// tab值
+const tab: Ref<string> = ref('1')
+// 需要获取多少条数据
+const selectValue: Ref<number> = ref(0)
+
+interface Column {
+  title?: string // 列头显示文字
+  width?: number | string // 列宽度
+  dataIndex: string // 列数据字符索引
+  slot?: string | undefined // 列插槽名称索引
+  align?: 'left' | 'center' | 'right' // 列对其方式
+  xl?: boolean // 768-1200是否展示
+  md?: boolean // <768是否展示
+}
+// 获取tab配置
+const getTabOptions = computed(() => {
+  switch (props.mode) {
+    case 'casino': return [
+      { value: '1', label: '我的投注' },
+      { value: '2', label: '所有投注' },
+      { value: '3', label: '风云榜' },
+      { value: '4', label: '竞赛排行榜' },
+    ]
+    case 'sports':return [
+      { value: 'sports-all', label: '所有投注' },
+      { value: 'sports-fy', label: '风云榜' },
+      { value: '4', label: '竞赛排行榜' },
+    ]
+    case 'home': return [
+      { value: '2', label: '娱乐城投注' },
+      { value: 'sports-all', label: '体育投注' },
+      { value: '4', label: '竞赛排行榜' },
+    ]
+  }
+})
+// 获取表格head
+const getTableColumns: ComputedRef<Column[]> = computed((): Column[] => {
+  switch (tab.value) {
+    case '1': return [
+      {
+        title: '游戏',
+        // width: 100,
+        dataIndex: 'gameName',
+        slot: 'gameName',
+        align: 'left',
+        xl: true,
+        md: true,
+      },
+      {
+        title: '时间',
+        dataIndex: 'time',
+        align: 'center',
+      },
+      {
+        title: '投注额',
+        dataIndex: 'betMoney',
+        slot: 'betMoney',
+        align: 'right',
+      },
+      {
+        title: '乘数',
+        dataIndex: 'multiplier',
+        align: 'right',
+        xl: true,
+      },
+      {
+        title: '支付额',
+        dataIndex: 'payMoney',
+        slot: 'payMoney',
+        align: 'right',
+        xl: true,
+        md: true,
+      },
+    ]
+    case '2':
+    case '3': return [
+      {
+        title: '游戏',
+        // width: 100,
+        dataIndex: 'gameName',
+        slot: 'gameName',
+        align: 'left',
+        xl: true,
+        md: true,
+      },
+      {
+        title: '玩家',
+        dataIndex: 'player',
+        slot: 'player',
+        align: 'center',
+        xl: true,
+      },
+      {
+        title: '时间',
+        dataIndex: 'time',
+        align: 'center',
+      },
+      {
+        title: '投注额',
+        dataIndex: 'betMoney',
+        slot: 'betMoney',
+        align: 'right',
+      },
+      {
+        title: '乘数',
+        dataIndex: 'multiplier',
+        align: 'right',
+        xl: true,
+      },
+      {
+        title: '支付额',
+        dataIndex: 'payMoney',
+        slot: 'payMoney',
+        align: 'right',
+        xl: true,
+        md: true,
+      },
+    ]
+    case '4': return [
+      {
+        title: '排名',
+        // width: 100,
+        dataIndex: '',
+        slot: 'ranking',
+        align: 'left',
+        xl: true,
+        md: true,
+      },
+      {
+        title: '玩家',
+        dataIndex: 'player',
+        slot: 'player',
+        align: 'center',
+        xl: true,
+        md: true,
+      },
+      {
+        title: '总投注额',
+        dataIndex: 'betMoney',
+        slot: 'betMoney',
+        align: 'right',
+        xl: true,
+        md: true,
+      },
+      {
+        title: '奖金',
+        dataIndex: 'payMoney',
+        slot: 'payMoney',
+        align: 'right',
+        xl: true,
+        md: true,
+      },
+    ]
+    case 'sports-all':
+    case 'sports-fy':return [
+      {
+        title: '赛事',
+        // width: 100,
+        dataIndex: 'gameName',
+        slot: 'gameName',
+        align: 'left',
+        xl: true,
+        md: true,
+      },
+      {
+        title: '玩家',
+        dataIndex: 'player',
+        slot: 'player',
+        align: 'center',
+        xl: true,
+      },
+      {
+        title: '时间',
+        dataIndex: 'time',
+        align: 'center',
+        xl: true,
+      },
+      {
+        title: '赔率',
+        dataIndex: 'multiplier',
+        align: 'right',
+        xl: true,
+      },
+      {
+        title: '投注额',
+        dataIndex: 'betMoney',
+        slot: 'betMoney',
+        align: 'right',
+        xl: true,
+        md: true,
+      },
+    ]
+    default: return []
+  }
+})
+
+const getScaleColumns: ComputedRef<Column[]> = computed((): Column[] => {
+  if (!isFixed.value)
+    return getTableColumns.value
+  else if (isFixedSmall.value)
+    return getTableColumns.value.filter(item => item.xl)
+  else
+    return getTableColumns.value.filter(item => item.md)
+})
 const tableData: any = ref([])
 onMounted(() => {
   setTimeout(() => {
@@ -47,9 +228,9 @@ onMounted(() => {
         player: 'Herryhung',
         time: '10:47',
         betMoney: '1.111111',
-        rate: '2.97x',
+        multiplier: '2.97x',
         payMoney: '113.34399768',
-        currencyType: 19,
+        currencyType: EnumCurrency.MATIC,
         stealth: 1,
       },
       {
@@ -57,33 +238,33 @@ onMounted(() => {
         player: 'Herryhung',
         time: '10:47',
         betMoney: '1.111111',
-        rate: '2.97x',
+        multiplier: '2.97x',
         payMoney: '113.34399768',
-        currencyType: 21,
+        currencyType: EnumCurrency.JPY,
       },
       {
         gameName: 'Cursed seas',
         player: 'Herryhung',
         time: '10:47',
         betMoney: '1.111111',
-        rate: '2.97x',
+        multiplier: '2.97x',
         payMoney: '113.34399768',
-        currencyType: 23,
+        currencyType: EnumCurrency.CAD,
+      },
+      {
+        gameName: 'Cursed seas',
+        player: 'Herryhung',
+        time: '10:47',
+        betMoney: '1.111111',
+        multiplier: '2.97x',
+        payMoney: '113.34399768',
+        currencyType: EnumCurrency.BTC,
       },
     ]
     setFalse()
-  }, 3000)
+  }, 1000)
 })
-const tab = ref('1')
-const selectValue = ref(0)
-// 是否开启隐身模式
-// const isHidden = ref(false)
-const tabList = [
-  { value: '1', label: '我的投注' },
-  { value: '2', label: '所有投注' },
-  { value: '3', label: '风云榜' },
-  { value: '4', label: '竞赛排行榜' },
-]
+
 const selectOptions: ISelectOption[] = [
   { label: '0', value: 0 },
   { label: '10', value: 10 },
@@ -104,7 +285,7 @@ function changeHidden() {
   <div class="app-bet-data">
     <div class="bet-data-head">
       <div style="max-width: 420px;">
-        <BaseTab v-model="tab" :list="tabList" />
+        <BaseTab v-model="tab" :list="getTabOptions" />
       </div>
       <div class="select-ranking center">
         <VTooltip>
@@ -117,10 +298,10 @@ function changeHidden() {
             </div>
           </template>
         </VTooltip>
-        <BaseSelect v-model="selectValue" :options="selectOptions" />
+        <BaseSelect v-model="selectValue" :options="selectOptions" small />
       </div>
     </div>
-    <div class="ranking-time">
+    <div v-show="tab === '4'" class="ranking-time">
       <div class="center cursor-pointer">
         <BaseIcon name="spt-competition" />
         <span>$100,000 竞赛 – 24 小时</span>
@@ -131,17 +312,17 @@ function changeHidden() {
       </div>
     </div>
     <BaseTable
-      :columns="columns"
+      :columns="getScaleColumns"
       :data-source="tableData"
       :loading="loading"
     >
-      <template #gameName="record">
+      <template #gameName="{ record }">
         <div class="game-box cursor-pointer">
           <BaseIcon name="chess-plinko" />
           <span>{{ record.gameName }}</span>
         </div>
       </template>
-      <template #player="record">
+      <template #player="{ record }">
         <div v-if="record.stealth" class="center stealth-box">
           <BaseIcon name="uni-hidden" />
           <span style="padding-left: 5px;">隐身</span>
@@ -150,19 +331,24 @@ function changeHidden() {
           {{ record.player }}
         </div>
       </template>
-      <template #betMoney="record">
+      <template #betMoney="{ record }">
         <div style="display: inline-block;">
           <AppAmount :amount="record.betMoney" :currency-type="record.currencyType" />
         </div>
       </template>
-      <template #payMoney="record">
+      <template #payMoney="{ record }">
         <div style="display: inline-block;color: var(--tg-text-green);">
           <AppAmount :amount="record.betMoney" :currency-type="record.currencyType" />
         </div>
       </template>
-      <!-- <template #job="{ job }">
-        hi {{ job }}
-      </template> -->
+      <template #ranking="{ index }">
+        <div v-if="index < 3" class="ranking-box">
+          <BaseIcon v-if="index === 0" name="uni-rank1" />
+          <BaseIcon v-else-if="index === 1" name="uni-rank2" />
+          <BaseIcon v-else-if="index === 2" name="uni-rank3" />
+        </div>
+        <span v-else>{{ `${index + 1}th` }}</span>
+      </template>
     </BaseTable>
   </div>
 </template>
@@ -183,12 +369,15 @@ function changeHidden() {
     justify-content: space-between;
     flex-direction: row;
     flex-wrap: nowrap;
-    color: #fff;
-    font-size: 14px;
+    color:var(--tg-text-white);
+    font-size: var(--tg-font-size-default);
     padding: 16px 8px;
     border-bottom: 2px solid rgba(255,255,255,.05);
     span{
       padding-left: 8px;
+    }
+    >div:hover{
+      --tg-icon-color: var(--tg-text-white);
     }
   }
   .switch-hidden{
@@ -200,6 +389,7 @@ function changeHidden() {
     justify-content: flex-start;
     span{
       padding-left: 10px;
+      color:var(--tg-text-white);
     }
   }
   .player-box{
@@ -208,10 +398,13 @@ function changeHidden() {
   .stealth-box{
     cursor: help;
   }
+  .ranking-box{
+    font-size: 20px;
+  }
   .cursor-pointer{
     cursor: pointer;
     &:active{
-      transform: scale(0.95);
+      transform: scale(0.96);
     }
   }
 }

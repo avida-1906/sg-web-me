@@ -10,6 +10,7 @@ interface Props {
   layout?: 'horizontal' | 'vertical'
   must?: boolean
   disabled?: boolean
+  small?: boolean
 }
 const props = withDefaults(defineProps<Props>(), {
   layout: 'vertical',
@@ -31,14 +32,14 @@ function onChange(event: any) {
   <div class="base-select" :class="[layout]">
     <label v-if="label">{{ label }} <span v-if="must">*</span></label>
     <div class="select-warp">
-      <select :value="modelValue" :class="{ disabled }" :disabled="disabled" @change="onChange">
+      <select :value="modelValue" :class="{ disabled, small }" :disabled="disabled" @change="onChange">
         <option style="display: none;" disabled value="" />
         <option v-for="o, i in options" :key="i" :selected="o.value === modelValue" :value="o.value">
           {{ o.label }}
         </option>
       </select>
       <div class="icon">
-        <BaseIcon name="uni-arrow-down-big" />
+        <BaseIcon name="uni-arrow-down" />
       </div>
     </div>
   </div>
@@ -56,7 +57,7 @@ function onChange(event: any) {
 
   select {
     width: 100%;
-    padding: 11px 10px;
+    padding: var(--tg-spacing-11) var(--tg-spacing-10);
     border-width: var(--tg-border-width-sm);
     border-style: solid;
     border-color: var(--tg-secondary-main);
@@ -71,17 +72,24 @@ function onChange(event: any) {
     }
   }
 
+  .small {
+    padding: var(--tg-spacing-7) var(--tg-spacing-28) var(--tg-spacing-7) var(--tg-spacing-7);
+  }
+
   .icon {
-    font-size: var(--tg-font-size-md);
+    font-size: var(--tg-font-size-default);
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    right: 8px;
+    right: var(--tg-spacing-8);
     pointer-events: none;
     cursor: pointer;
+    display: flex;
+    align-items: center;
   }
 }
-.disabled{
+
+.disabled {
   cursor: not-allowed;
 }
 
@@ -91,7 +99,7 @@ function onChange(event: any) {
   align-items: flex-start;
 
   label {
-    margin-bottom: 7px;
+    margin-bottom: var(--tg-spacing-7);
   }
 
 }
@@ -102,7 +110,7 @@ function onChange(event: any) {
 
   label {
     width: 100px;
-    margin-right: 10px;
+    margin-right: var(--tg-spacing-10);
   }
 }
 </style>

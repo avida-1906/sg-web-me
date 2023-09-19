@@ -14,6 +14,7 @@
     <AppAmount amount="0.00001234" :currency-type="22" />
     <AppAmount amount="0.00001234" :currency-type="23" />
     <AppAmount amount="0.00001234" :currency-type="24" />
+    <AppBetData mode="sports" />
   </div>
 </template>
 

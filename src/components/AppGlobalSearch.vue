@@ -140,7 +140,8 @@ const casinoList = ref([])
   color: var(--tg-text-lightgrey);
   position: absolute;
   left: 0;
-  top: 73px;
+  top: 72px;
+  z-index: 1450;
 
   .warp {
     max-height: 400px;
