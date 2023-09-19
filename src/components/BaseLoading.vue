@@ -47,16 +47,16 @@
     background-position: top right;
   }
   .svg-box:nth-child(2) {
-    animation-delay: 400ms;
+    animation-delay: 240ms;
   }
   .svg-box:last-child {
     transform-origin: bottom left;
-    animation-delay: 800ms;
+    animation-delay: 480ms;
     background-position: bottom left;
   }
 }
 .animate-prop {
-  animation-duration: 1000ms;
+  animation-duration: 720ms;
   animation-timing-function: linear;
   animation-fill-mode: forwards;
   animation-iteration-count: infinite;

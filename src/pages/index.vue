@@ -79,7 +79,7 @@ function connectMqtt() {
   position: relative;
   transition: all 0.3s ease;
   &:hover {
-    transform: translateY(-4px);
+    transform: translateY(-3px);
   }
 }
 </style>
