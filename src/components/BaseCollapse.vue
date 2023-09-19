@@ -29,9 +29,7 @@ function handleClickHeader() {
         </slot>
       </div>
       <div class="center">
-        <slot name="top-right">
-          <BaseBadge :count="25" />
-        </slot>
+        <slot name="top-right" />
         <div class="header-icon">
           <BaseIcon :name="`uni-arrow-${isShow ? 'down' : 'left'}`" />
         </div>
@@ -40,12 +38,7 @@ function handleClickHeader() {
     <div class="accordion-content" :style="`height:${isShow ? 'auto' : 0};`">
       <div class="content-line" />
       <div class="content-slot">
-        <slot name="content">
-          1.Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore, sequi explicabo ipsum velit ipsa aperiam nihil sapiente repellendus, quae id eos quam ad soluta! Natus ipsam similique sunt cumque voluptatem.<br>
-          2.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error ut quod harum a deserunt, consectetur suscipit mollitia iste illo, delectus tempora odio, corrupti minus hic recusandae! Illo incidunt deleniti ullam.<br>
-          3.Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius ipsum maxime doloremque tempora, ex totam nobis dolore dignissimos fugit, quisquam quasi! Iste optio impedit dolores saepe, hic voluptatem ab praesentium!<br>
-          4.Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis esse aperiam laborum, tenetur consectetur eaque dolorem necessitatibus molestias maxime distinctio voluptatum culpa reiciendis veritatis vel in voluptate quos sint eligendi.
-        </slot>
+        <slot name="content" />
       </div>
     </div>
   </div>
@@ -87,7 +80,6 @@ function handleClickHeader() {
             width: 100%;
         }
         .content-slot{
-          padding: 16px;
           color: var(--tg-secondary-light);
         }
     }

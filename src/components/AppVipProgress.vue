@@ -1,7 +1,7 @@
 <script setup lang='ts'>
 interface IVipProgressData {
-  percent: number // 进度百分比
-  currentLevel: number // 当前级别
+  percent: number // vip进度百分比
+  currentLevel: number // 当前vip级别
 }
 interface Props {
   vipProgressData: IVipProgressData
@@ -27,9 +27,6 @@ const currentInfo = computed(() => {
 const nextInfo = computed(() => {
   return levels.find(i => i.level === (props.vipProgressData.currentLevel + 1))
 })
-console.log(props.vipProgressData.currentLevel)
-console.log(currentInfo.value)
-console.log(nextInfo.value)
 </script>
 
 <template>
@@ -74,6 +71,16 @@ console.log(nextInfo.value)
         color: var(--tg-text-lightgrey);
         font-weight: var(--tg-font-weight-semibold);
       }
+    }
+  }
+}
+</style>
+
+<style lang='scss'>
+.app-vip-progress{
+  .percent-mid{
+    .m-progress-inner{
+      background-color: var(--tg-secondary-main);
     }
   }
 }
