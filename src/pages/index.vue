@@ -1,8 +1,12 @@
 <script setup lang="ts">
+import AppDemoCard from '~/components/AppDemoCard.vue'
+
 defineOptions({
   name: 'IndexPage',
 })
 
+const appStore = useAppStore()
+const { isLogin } = storeToRefs(appStore)
 const { t } = useI18n()
 const { run, data } = useRequest(() => ApiMemberLogin({
   username: '章三',
@@ -34,9 +38,16 @@ const gameProviders = [
   { id: '0', src: 'https://mediumrare.imgix.net/49a2201353bd06c3f89a9c5ff56d0efee785712e77786d4200d6fbc4ffc0e73d?&dpr=2&format=auto&auto=format&q=50' },
   { id: '0', src: 'https://mediumrare.imgix.net/bbe0383f83f2e71badab4b10933267b48ea655c522873a74ca22059d36b44220?&dpr=2&format=auto&auto=format&q=50' },
 ]
-
+const { openDialog, closeDialog } = useDialog({
+  title: '表格',
+  icon: 'balls-darts-on',
+  default: () => h(AppDemoCard, { title: '标题' }, {
+    default: () => h('table', { style: { color: 'orange' } }, 'abcdefg'),
+  }),
+})
 function connectMqtt() {
-  socketClient.connect()
+  openDialog()
+  appStore.toggle()
 }
 </script>
 
@@ -61,8 +72,8 @@ function connectMqtt() {
     <button @click="getData">
       请求
     </button>
-    <button @click="connectMqtt">
-      链接mqtt
+    <button style="color: #fff" @click="connectMqtt">
+      链接mqtt {{ isLogin }} {{ $t('hello') }}
     </button>
     <AppBetData mode="home" />
   </div>
