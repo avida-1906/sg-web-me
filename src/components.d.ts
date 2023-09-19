@@ -37,6 +37,7 @@ declare module 'vue' {
     BaseBadge: typeof import('./components/BaseBadge.vue')['default']
     BaseButton: typeof import('./components/BaseButton.vue')['default']
     BaseCheckBox: typeof import('./components/BaseCheckBox.vue')['default']
+    BaseCollapse: typeof import('./components/BaseCollapse.vue')['default']
     BaseDialog: typeof import('./components/BaseDialog.vue')['default']
     BaseDivider: typeof import('./components/BaseDivider.vue')['default']
     BaseDragDialog: typeof import('./components/BaseDragDialog.vue')['default']

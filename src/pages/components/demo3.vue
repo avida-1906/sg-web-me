@@ -502,13 +502,23 @@ onMounted(() => {
           :data-source="tableData"
           :loading="loading"
         >
-          <template #name="record">
+          <template #name=" { record }">
             hello {{ record.name }}
           </template>
-          <template #job="{ job }">
-            hi {{ job }}
+          <template #job="{ record }">
+            hi {{ record.job }}
           </template>
         </BaseTable>
+        <div class="center">
+          <BaseButton @click="copyTableCode">
+            copy
+          </BaseButton>
+        </div>
+      </AppDemoCard>
+    </li>
+    <li class="box">
+      <AppDemoCard title="BaseCollapse">
+        <BaseCollapse />
         <div class="center">
           <BaseButton @click="copyTableCode">
             copy
