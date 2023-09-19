@@ -579,6 +579,10 @@ function copyCollapseCode() {
   copy('<BaseCollapse title="这是标题" icon="chat-star-orange" @click-head="funtion()" />')
   toast('Copied')
 }
+function copyAppPercentageCode() {
+  copy('<AppPercentage total="45" percentage="39" />')
+  toast('Copied')
+}
 </script>
 
 <template>
@@ -1101,6 +1105,16 @@ function copyCollapseCode() {
         <BaseCollapse title="这是标题" icon="chat-star-orange" />
         <div class="center">
           <BaseButton @click="copyCollapseCode">
+            copy
+          </BaseButton>
+        </div>
+      </AppDemoCard>
+    </li>
+    <li class="box">
+      <AppDemoCard title="AppPercentage" style="text-align:left">
+        <AppPercentage total="45" percentage="39" />
+        <div class="center">
+          <BaseButton @click="copyAppPercentageCode">
             copy
           </BaseButton>
         </div>
