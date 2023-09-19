@@ -16,9 +16,9 @@ const { bool: loading, setFalse } = useBoolean(true)
 // 是否开启隐身模式
 const { bool: isHidden, setFalse: setIsHiddenFalse, setTrue: setIsHiddenTrue } = useBoolean(false)
 // tab值
-const tab: Ref<string> = ref('1')
+const activeTab: Ref<string> = ref('1')
 // 需要获取多少条数据
-const selectValue: Ref<number> = ref(0)
+const selectSize: Ref<number> = ref(0)
 
 interface Column {
   title?: string // 列头显示文字
@@ -52,7 +52,7 @@ const getTabOptions = computed(() => {
 })
 // 获取表格head
 const getTableColumns: ComputedRef<Column[]> = computed((): Column[] => {
-  switch (tab.value) {
+  switch (activeTab.value) {
     case '1': return [
       {
         title: '游戏',
@@ -231,13 +231,13 @@ onMounted(() => {
         multiplier: '2.97x',
         payMoney: '113.34399768',
         currencyType: EnumCurrency.MATIC,
-        stealth: 1,
+        stealth: 1, // 隐身状态
       },
       {
         gameName: 'Cursed seas',
         player: 'Herryhung',
         time: '10:47',
-        betMoney: '1.111111',
+        betMoney: '2.111111',
         multiplier: '2.97x',
         payMoney: '113.34399768',
         currencyType: EnumCurrency.JPY,
@@ -275,7 +275,6 @@ const selectOptions: ISelectOption[] = [
 function changeHidden() {
   if (isHidden.value)
     setIsHiddenFalse()
-
   else
     setIsHiddenTrue()
 }
@@ -285,23 +284,23 @@ function changeHidden() {
   <div class="app-bet-data">
     <div class="bet-data-head">
       <div style="max-width: 420px;">
-        <BaseTab v-model="tab" :list="getTabOptions" />
+        <BaseTab v-model="activeTab" :list="getTabOptions" />
       </div>
       <div class="select-ranking center">
-        <VTooltip>
-          <div class="switch-hidden" :style="{ '--tg-icon-color': isHidden ? '#fff' : '' }" @click="changeHidden">
+        <VMenu placement="top">
+          <div class="switch-hidden" :style="{ '--tg-icon-color': isHidden ? '#fff' : '' }" @click.stop="changeHidden">
             <BaseIcon name="uni-hidden" />
           </div>
           <template #popper>
-            <div>
-              <span>{{ `隐身模式${isHidden ? '开启' : '关闭'}` }}</span>
+            <div class="tiny-menu-item-title">
+              {{ `隐身模式${isHidden ? '开启' : '关闭'}` }}
             </div>
           </template>
-        </VTooltip>
-        <BaseSelect v-model="selectValue" :options="selectOptions" small />
+        </VMenu>
+        <BaseSelect v-model="selectSize" :options="selectOptions" small />
       </div>
     </div>
-    <div v-show="tab === '4'" class="ranking-time">
+    <div v-show="activeTab === '4'" class="ranking-time">
       <div class="center cursor-pointer">
         <BaseIcon name="spt-competition" />
         <span>$100,000 竞赛 – 24 小时</span>
@@ -323,10 +322,23 @@ function changeHidden() {
         </div>
       </template>
       <template #player="{ record }">
-        <div v-if="record.stealth" class="center stealth-box">
+        <template v-if="record.stealth">
+          <VMenu placement="top">
+            <div class="center stealth-box">
+              <BaseIcon name="uni-hidden" />
+              <span style="padding-left: 5px;">隐身</span>
+            </div>
+            <template #popper>
+              <div class="tiny-menu-item-title">
+                此玩家启用了私密功能
+              </div>
+            </template>
+          </VMenu>
+        </template>
+        <!-- <div v-if="record.stealth" class="center stealth-box">
           <BaseIcon name="uni-hidden" />
           <span style="padding-left: 5px;">隐身</span>
-        </div>
+        </div> -->
         <div v-else class="player-box cursor-pointer">
           {{ record.player }}
         </div>
@@ -399,7 +411,7 @@ function changeHidden() {
     cursor: help;
   }
   .ranking-box{
-    font-size: 20px;
+    font-size: 24px;
   }
   .cursor-pointer{
     cursor: pointer;
