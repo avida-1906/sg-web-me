@@ -11,6 +11,7 @@ interface Props {
   must?: boolean
   disabled?: boolean
   small?: boolean
+  popper?: boolean
 }
 const props = withDefaults(defineProps<Props>(), {
   layout: 'vertical',
@@ -26,10 +27,47 @@ function onChange(event: any) {
   emit('update:modelValue', v)
   emit('select', v)
 }
+
+// popper
+const { bool, setTrue, setFalse } = useBoolean(false)
+const outerRef = ref()
+onClickOutside(outerRef, () => {
+  setFalse()
+})
+const popperLabel = computed(() => props.options.find(a => a.value === props.modelValue)?.label ?? '-')
+function onClickPopperItem(v: any) {
+  if (v === props.modelValue)
+    return
+
+  setFalse()
+  emit('update:modelValue', v)
+  emit('select', v)
+}
 </script>
 
 <template>
-  <div class="base-select" :class="[layout]">
+  <template v-if="popper">
+    <VDropdown :distance="6">
+      <div ref="outerRef" class="popper-label" @click="setTrue">
+        <span>{{ popperLabel }}</span>
+        <div class="icon" :class="{ up: bool }">
+          <BaseIcon name="uni-arrow-down" />
+        </div>
+      </div>
+      <template #popper>
+        <div class="scroll-y popper-wrap">
+          <div
+            v-for="type, i in options" :key="i" v-close-popper class="popper-option"
+            @click="onClickPopperItem(type.value)"
+          >
+            {{ type.label }}
+          </div>
+        </div>
+      </template>
+    </VDropdown>
+  </template>
+
+  <div v-else class="base-select" :class="[layout]">
     <label v-if="label">{{ label }} <span v-if="must">*</span></label>
     <div class="select-warp">
       <select :value="modelValue" :class="{ disabled, small }" :disabled="disabled" @change="onChange">
@@ -46,6 +84,58 @@ function onChange(event: any) {
 </template>
 
 <style lang='scss' scoped>
+.popper-label {
+  padding: var(--tg-spacing-button-padding-vertical-sm) var(--tg-spacing-button-padding-horizontal-sm);
+  font-weight: var(--tg-font-weight-semibold);
+  font-size: var(--tg-font-size-default);
+  color: var(--tg-text-white);
+  background-color: var(--tg-secondary-dark);
+  border-radius: var(--tg-radius-sm);
+  transition: all ease .25s;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+
+  span {
+    margin-right: var(--tg-spacing-8);
+  }
+
+  .icon {
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    transition: all ease .25s;
+  }
+
+  .up {
+    transform: rotate(180deg);
+  }
+
+  &:hover {
+    background-color: var(--tg-secondary-deepdark);
+  }
+}
+
+.popper-wrap {
+  display: flex;
+  flex-direction: column;
+  max-height: 20em;
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--tg-secondary-light);
+  }
+}
+
+.popper-option {
+  cursor: pointer;
+  padding: var(--tg-spacing-button-padding-vertical-xs) var(--tg-spacing-button-padding-horizontal-xs);
+  font-size: var(--tg-font-size-default);
+
+  &:hover {
+    background-color: var(--tg-text-lightgrey);
+  }
+}
+
 .base-select {
   color: var(--tg-text-lightgrey);
   font-size: var(--tg-font-size-default);

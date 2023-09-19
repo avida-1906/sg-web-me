@@ -1,9 +1,11 @@
 <script setup lang='ts'>
+const { t } = useI18n()
+
 const currentTab = ref('deposit')
 const tabList = [
-  { label: '存款', value: 'deposit' },
-  { label: '取款', value: 'withdraw' },
-  { label: '购买加密货币', value: 'buy' },
+  { label: t('deposit'), value: 'deposit' },
+  { label: t('withdraw'), value: 'withdraw' },
+  { label: t('buy_cryptocurrency'), value: 'buy' },
 ]
 const isDeposit = computed(() => currentTab.value === 'deposit')
 const isWithdraw = computed(() => currentTab.value === 'withdraw')
@@ -22,9 +24,9 @@ const isWithdraw = computed(() => currentTab.value === 'withdraw')
 .app-wallet-dialog {
   padding-right: var(--tg-spacing-16);
   padding-left: var(--tg-spacing-16);
+  padding-bottom: var(--tg-spacing-16);
   display: flex;
   flex-direction: column;
-  padding-bottom: var(--tg-spacing-16);
   gap: var(--tg-spacing-16);
 }
 </style>
