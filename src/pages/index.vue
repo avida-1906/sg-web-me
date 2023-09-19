@@ -58,23 +58,12 @@ function connectMqtt() {
     <button style="color: #fff" @click="connectMqtt">
       链接mqtt {{ isLogin }} {{ $t('hello') }}
     </button>
-    <AppBetData mode="home" />
   </div>
 </template>
 
 <style lang="scss" scoped>
 .home-index{
   padding: 24px 0 32px;
-}
-.provider-item-wrap {
-  border-radius: var(--tg-radius-md);
-  overflow: hidden;
-  cursor: pointer;
-  position: relative;
-  transition: all 0.3s ease;
-  &:hover {
-    transform: translateY(-3px);
-  }
 }
 </style>
 

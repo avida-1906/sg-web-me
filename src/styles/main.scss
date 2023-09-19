@@ -292,6 +292,18 @@ body {
   font-weight: var(--tg-font-weight-bold);
 }
 
+// 供应商slider
+.provider-item-wrap {
+  border-radius: var(--tg-radius-md);
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+  &:hover {
+    transform: translateY(-3px);
+  }
+}
+
 @media screen and (min-width: 768px) {
   #app {
     height: 1px;

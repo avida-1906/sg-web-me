@@ -1,19 +1,19 @@
 <script lang="ts" setup name="app-sidebar-small">
-interface MenuItem {
-  title: string
-  path: string
-  icon: string
-  list: Menu
-}
-
-type Menu = Array<MenuItem>
+import type { Menu, MenuItem } from '~/composables/useMenuData'
 
 interface Props {
-  menuData: Array<any>
+  menuData: Array<Menu>
   isSwitching?: boolean
 }
 
 withDefaults(defineProps<Props>(), {})
+
+const router = useRouter()
+
+function itemClick(item: MenuItem) {
+  if (item.path && item.path.length)
+    router.push(item.path)
+}
 </script>
 
 <template>
@@ -21,7 +21,7 @@ withDefaults(defineProps<Props>(), {})
     <ul v-for="menu, idx in menuData" :key="idx" class="tiny-menu flex-col-center">
       <li v-for="menuitem in menu" :key="menuitem.title" class="flex-col-center tiny-menu-item">
         <VMenu placement="top">
-          <div class="trigger">
+          <div class="trigger" @click="itemClick(menuitem)">
             <BaseIcon :name="menuitem.icon" />
             <div v-if="menuitem.list && menuitem.list.length" class="flex-col-center arrow-right">
               <BaseIcon name="uni-arrow-right" />
