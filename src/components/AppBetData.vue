@@ -288,7 +288,7 @@ function changeHidden() {
       </div>
       <div class="select-ranking center">
         <VMenu placement="top">
-          <div class="switch-hidden" :style="{ '--tg-icon-color': isHidden ? '#fff' : '' }" @click="changeHidden">
+          <div class="switch-hidden" :style="{ '--tg-icon-color': isHidden ? '#fff' : '' }" @click.stop="changeHidden">
             <BaseIcon name="uni-hidden" />
           </div>
           <template #popper>

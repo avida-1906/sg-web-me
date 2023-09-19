@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-// interface Props {
+interface Props {
+  walletBtn?: boolean
+}
 
-// }
-
-// withDefaults(defineProps<Props>(), {
-
-// })
+withDefaults(defineProps<Props>(), {
+  walletBtn: false,
+})
 const currency = ref([
   { balance: '0.000000000', icon: 'coin-btc', text: 'BTC' },
   { balance: '0.000000000', icon: 'coin-eth', text: 'ETH' },
@@ -69,14 +69,14 @@ const getSearchBalance = computed(() => {
     <VDropdown v-model:shown="isMenuShown" :distance="6" @apply-show="dropShow">
       <!-- @apply-hide="dropHide" -->
       <div class="center">
-        <div class="wallet">
-          <BaseButton type="text" size="sm">
+        <div class="wallet" :class="{ 'wallet-only': !walletBtn }">
+          <BaseButton type="text" size="md">
             <span class="wallet-number">{{ activeBalance.balance }}</span>
             <BaseIcon class="coin" :name="activeBalance.icon" />
             <BaseIcon class="arrow" :class="{ 'arrow-up': isMenuShown }" name="uni-arrow-down" />
           </BaseButton>
         </div>
-        <BaseButton class="wallet-right-btn" size="sm" bg-style="primary" @click.stop>
+        <BaseButton v-if="walletBtn" class="wallet-right-btn" size="sm" bg-style="primary" @click.stop>
           <BaseIcon name="navbar-wallet" class="icon-size" />
         </BaseButton>
       </div>
@@ -118,12 +118,12 @@ const getSearchBalance = computed(() => {
     box-shadow: 0px 1px 2px 0px #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.1)} inset, 0px -1px 2px 0px #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.1)} inset;
 
     .coin {
-      font-size: var(--tg-font-size-md);
+      font-size: var(--tg-font-size-default);
       margin-left: 5px;
     }
 
     .arrow {
-      font-size: var(--tg-font-size-xs);
+      font-size: 10px;
       margin-left: 8px;
     }
     .arrow-up{
@@ -133,7 +133,9 @@ const getSearchBalance = computed(() => {
       --tg-icon-color: var(--tg-text-white);
     }
   }
-
+  .wallet-only{
+    border-radius: var(--tg-radius-sm);
+  }
   .wallet-number {
     line-height: 1;
     color: var(--tg-text-white);
