@@ -11,19 +11,19 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <div class="box">
-    <div class="base-qrcode">
+  <div class="base-qrcode">
+    <div class="wrap">
       <QrcodeVue :value="url" :size="size" />
     </div>
   </div>
 </template>
 
 <style lang='scss' scoped>
-.box {
+.base-qrcode {
   display: flex;
 }
 
-.base-qrcode {
+.wrap{
   margin: 0 auto;
   display: flex;
   align-items: center;

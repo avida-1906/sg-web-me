@@ -13,15 +13,25 @@ const isWithdraw = computed(() => currentTab.value === 'withdraw')
 
 <template>
   <div class="app-wallet-dialog">
-    <BaseTab v-model="currentTab" shape="square" :list="tabList" />
+    <div class="content">
+      <BaseTab v-model="currentTab" shape="square" :list="tabList" />
+      <AppDeposit v-if="isDeposit" />
+      <AppWithdraw v-else-if="isWithdraw" />
+    </div>
 
-    <AppDeposit v-if="isDeposit" />
-    <AppWithdraw v-else-if="isWithdraw" />
+    <div class="footer">
+      <span>通过双重验证提高您的账户安全性</span>
+      <BaseButton bg-style="primary" size="md">
+        开启双重验证
+      </BaseButton>
+    </div>
   </div>
 </template>
 
 <style lang='scss' scoped>
-.app-wallet-dialog {
+.app-wallet-dialog {}
+
+.content {
   padding-right: var(--tg-spacing-16);
   padding-left: var(--tg-spacing-16);
   padding-bottom: var(--tg-spacing-16);
@@ -31,5 +41,18 @@ const isWithdraw = computed(() => currentTab.value === 'withdraw')
   font-size: var(--tg-font-size-default);
   color: var(--tg-text-lightgrey);
   line-height: 1.5;
+}
+
+.footer {
+  padding-right: var(--tg-spacing-16);
+  padding-left: var(--tg-spacing-16);
+  display: flex;
+  flex-direction: column;
+  background: var(--tg-secondary-dark);
+  width: 100%;
+  align-items: center;
+  padding-top: var(--tg-spacing-20);
+  padding-bottom: var(--tg-spacing-20);
+  gap: var(--tg-spacing-12);
 }
 </style>

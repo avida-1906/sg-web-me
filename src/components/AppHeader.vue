@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import AppWalletDialog from '~/components/AppWalletDialog.vue'
+import AppSafeDialog from '~/components/AppSafeDialog.vue'
 
 const { isFullScreen, isFixed, width } = storeToRefs(useWindowStore())
 const { t } = useI18n()
@@ -24,16 +24,12 @@ const newsMenu = ref([
 const { bool: showSearchBar, setTrue } = useBoolean(false)
 
 // Dialog
-const { openDialog: openWalletDialog } = useDialog({
-  title: t('wallet'),
-  icon: 'navbar-wallet',
-  default: () => h(AppWalletDialog),
-})
+const { openWalletDialog } = useWalletDialog()
 
 const { openDialog: openSafeDialog } = useDialog({
   title: t('safe'),
   icon: 'navbar-wallet',
-  default: () => h(AppWalletDialog),
+  default: () => h(AppSafeDialog),
 })
 function handleClickMenuItem(item: { name: string }, hide: () => void) {
   const { name } = item
@@ -54,9 +50,7 @@ function handleClickMenuItem(item: { name: string }, hide: () => void) {
 <template>
   <div class="app-header">
     <BaseLogo :use-small="width < 300" />
-    <div class="header-middle">
-      <AppWallet :wallet-btn="true" />
-    </div>
+    <AppWallet :wallet-btn="true" />
     <div class="header-right">
       <BaseButton v-show="!isFullScreen" type="text" class="search-btn" @click="setTrue">
         <BaseIcon class="icon-search" name="header-search" />

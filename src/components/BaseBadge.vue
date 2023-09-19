@@ -39,7 +39,7 @@ const { bool: showContent, setBool } = useBoolean(true)
 // const showCount = ref(1)
 onMounted(() => {
   if (!props.status && !props.color)
-    setBool(!!contentRef.value)
+    setBool(!!useSlots().default)
 })
 </script>
 
