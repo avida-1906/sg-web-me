@@ -129,7 +129,7 @@ function onClickFavorite() {
         <template #popper>
           <div class="scroll-y popper popper-mobile">
             <div
-              v-for="c, i in currencyList" :key="i" v-close-popper class="popper-option currency-types"
+              v-for="c, i in currencyList" :key="i" v-close-popper class="currency-types popper-option"
               @click="onChooseCurrency(c.text)"
             >
               <div>
@@ -400,7 +400,13 @@ function onClickFavorite() {
 }
 
 .game-wrapper {
-  margin-top: var(--tg-spacing-40);
+  margin-top: 3vw;
+}
+
+@media only screen and (min-width:1060px) {
+  .game-wrapper {
+    margin-top: var(--tg-spacing-40);
+  }
 }
 
 .t-game-wrapper {
