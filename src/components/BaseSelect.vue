@@ -85,7 +85,7 @@ function onClickPopperItem(v: any) {
 
 <style lang='scss' scoped>
 .popper-label {
-  padding: var(--tg-spacing-button-padding-vertical-sm) var(--tg-spacing-button-padding-horizontal-sm);
+  padding: var(--tg-spacing-button-padding-vertical-md) var(--tg-spacing-button-padding-horizontal-md);
   font-weight: var(--tg-font-weight-semibold);
   font-size: var(--tg-font-size-default);
   color: var(--tg-text-white);
@@ -95,6 +95,7 @@ function onClickPopperItem(v: any) {
   cursor: pointer;
   display: flex;
   align-items: center;
+  line-height: 1;
 
   span {
     margin-right: var(--tg-spacing-8);

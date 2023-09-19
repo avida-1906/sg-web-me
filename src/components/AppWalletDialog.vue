@@ -28,5 +28,8 @@ const isWithdraw = computed(() => currentTab.value === 'withdraw')
   display: flex;
   flex-direction: column;
   gap: var(--tg-spacing-16);
+  font-size: var(--tg-font-size-default);
+  color: var(--tg-text-lightgrey);
+  line-height: 1.5;
 }
 </style>

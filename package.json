@@ -31,6 +31,7 @@
     "nprogress": "^0.2.0",
     "pinia": "^2.1.4",
     "precompiled-mqtt": "4.3.14-beta",
+    "qrcode.vue": "^3.4.1",
     "vee-validate": "^4.11.3",
     "vue": "^3.3.4",
     "vue-demi": "^0.14.5",

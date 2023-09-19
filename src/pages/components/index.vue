@@ -739,6 +739,7 @@ function copyIconName(name: string) {
         </BaseButton>
         <BaseSelect v-model="selectValue" label="选择区号" :options="selectOptions" must />
         <BaseSelect v-model="selectValue" :options="selectOptions" />
+        <BaseSelect v-model="selectValue" popper :options="selectOptions" />
       </AppDemoCard>
     </li>
     <li class="box">
