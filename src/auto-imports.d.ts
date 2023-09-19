@@ -154,6 +154,7 @@ declare global {
   const shallowReactive: typeof import('vue')['shallowReactive']
   const shallowReadonly: typeof import('vue')['shallowReadonly']
   const shallowRef: typeof import('vue')['shallowRef']
+  const socketClient: typeof import('./utils/mqtt')['socketClient']
   const sortBy: typeof import('lodash-es')['sortBy']
   const split: typeof import('lodash-es')['split']
   const storeToRefs: typeof import('pinia')['storeToRefs']
@@ -523,6 +524,7 @@ declare module 'vue' {
     readonly shallowReactive: UnwrapRef<typeof import('vue')['shallowReactive']>
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
+    readonly socketClient: UnwrapRef<typeof import('./utils/mqtt')['socketClient']>
     readonly sortBy: UnwrapRef<typeof import('lodash-es')['sortBy']>
     readonly split: UnwrapRef<typeof import('lodash-es')['split']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
@@ -881,6 +883,7 @@ declare module '@vue/runtime-core' {
     readonly shallowReactive: UnwrapRef<typeof import('vue')['shallowReactive']>
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
+    readonly socketClient: UnwrapRef<typeof import('./utils/mqtt')['socketClient']>
     readonly sortBy: UnwrapRef<typeof import('lodash-es')['sortBy']>
     readonly split: UnwrapRef<typeof import('lodash-es')['split']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>

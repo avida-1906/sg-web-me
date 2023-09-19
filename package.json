@@ -30,6 +30,7 @@
     "lodash": "^4.17.21",
     "nprogress": "^0.2.0",
     "pinia": "^2.1.4",
+    "precompiled-mqtt": "4.3.14-beta",
     "vee-validate": "^4.11.3",
     "vue": "^3.3.4",
     "vue-demi": "^0.14.5",

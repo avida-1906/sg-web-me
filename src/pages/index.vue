@@ -34,6 +34,10 @@ const gameProviders = [
   { id: '0', src: 'https://mediumrare.imgix.net/49a2201353bd06c3f89a9c5ff56d0efee785712e77786d4200d6fbc4ffc0e73d?&dpr=2&format=auto&auto=format&q=50' },
   { id: '0', src: 'https://mediumrare.imgix.net/bbe0383f83f2e71badab4b10933267b48ea655c522873a74ca22059d36b44220?&dpr=2&format=auto&auto=format&q=50' },
 ]
+
+function connectMqtt() {
+  socketClient.connect()
+}
 </script>
 
 <template>
@@ -56,6 +60,9 @@ const gameProviders = [
     </div>
     <button @click="getData">
       请求
+    </button>
+    <button @click="connectMqtt">
+      链接mqtt
     </button>
   </div>
 </template>
