@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const { bool: showContent, toggle } = useBoolean(true)
+
 const tab = ref('1')
 const tabList = [
   { value: '1', label: '大赢家' },
@@ -17,12 +19,15 @@ const tagList = [
   { label: '切换波动性', link: '#' },
 ]
 
-const showContent = ref(true)
-function toggle() {
-  showContent.value = !showContent.value
+interface Column {
+  title?: string
+  width?: number | string
+  dataIndex: string
+  slot?: string
+  align?: 'left' | 'center' | 'right'
 }
-
-const columns: any = ref([
+// 大赢家-幸运赢家 head
+const columns = ref<Column[]>([
   {
     title: '排名',
     width: 100,
@@ -66,7 +71,8 @@ const columns: any = ref([
     align: 'right',
   },
 ])
-const loading = ref(true)
+
+const { bool: loading, setFalse } = useBoolean(true)
 const tableData: any = ref([])
 onMounted(() => {
   setTimeout(() => {
@@ -78,6 +84,7 @@ onMounted(() => {
         bet: '0.00000000',
         multiple: '66,666x',
         payAmount: '257.00000000',
+        currencyType: EnumCurrency.BTC,
       },
       {
         rank: 'uni-rank2',
@@ -86,6 +93,7 @@ onMounted(() => {
         bet: '0.00000000',
         multiple: '66,666x',
         payAmount: '257.00000000',
+        currencyType: EnumCurrency.BTC,
       },
       {
         rank: 'uni-rank3',
@@ -94,9 +102,10 @@ onMounted(() => {
         bet: '0.00000000',
         multiple: '66,666x',
         payAmount: '257.00000000',
+        currencyType: EnumCurrency.BTC,
       },
     ]
-    loading.value = false
+    setFalse()
   }, 3000)
 })
 
@@ -108,7 +117,7 @@ const {
 </script>
 
 <template>
-  <div class="app-desc">
+  <div class="app-desc home-container margin-auto">
     <div class="desc-title">
       <div class="title-left">
         Goat Getter <span class="l-start-gm"><a href="#">Push Gaming</a></span>
@@ -117,10 +126,17 @@ const {
         <div v-if="!isFullScreen" class="r-status">
           <BaseIcon name="uni-cup1" />
           66,666.00x
-          <div v-tooltip="'此玩家启用了私密功能'" class="cursor-help">
-            <BaseIcon name="uni-hidden" />
-            <span>隐身</span>
-          </div>
+          <VMenu placement="top">
+            <div class="cursor-help">
+              <BaseIcon name="uni-hidden" />
+              <span>隐身</span>
+            </div>
+            <template #popper>
+              <div class="tiny-menu-item-title">
+                此玩家启用了私密功能
+              </div>
+            </template>
+          </VMenu>
         </div>
         <div class="r-arrow" :class="[showContent ? 'down' : 'left']" @click="toggle">
           <BaseIcon name="uni-arrow-down" />
@@ -171,29 +187,32 @@ const {
       </div>
       <!-- 赢家 -->
       <div v-else-if="tab === '1' || tab === '2'" class="scroll-x winner-content">
-        <BaseTable
-          :columns="columns"
-          :data-source="tableData"
-          :loading="loading"
-        >
+        <BaseTable :columns="columns" :data-source="tableData" :loading="loading">
           <template #rank="{ record }">
             <div class="rank-icon">
               <BaseIcon :name="record.rank" />
             </div>
           </template>
           <template #player>
-            <div v-tooltip="'此玩家启用了私密功能'" class="img-text-align img-text-align-center cursor-help">
-              <BaseIcon name="uni-hidden" /> 隐身
-            </div>
+            <VMenu placement="top">
+              <div class="cursor-help">
+                <BaseIcon name="uni-hidden" /> <span>隐身</span>
+              </div>
+              <template #popper>
+                <div class="tiny-menu-item-title">
+                  此玩家启用了私密功能
+                </div>
+              </template>
+            </VMenu>
           </template>
           <template #bet="{ record }">
             <div class="img-text-align img-text-align-center">
-              {{ record.bet }} <BaseIcon name="coin-bch" />
+              <AppAmount :amount="record.bet" :currency-type="record.currencyType" />
             </div>
           </template>
           <template #payAmount="{ record }">
             <div class="img-text-align img-text-align-right">
-              {{ record.payAmount }} <BaseIcon name="coin-bch" />
+              <AppAmount :amount="record.payAmount" :currency-type="record.currencyType" />
             </div>
           </template>
         </BaseTable>
@@ -212,6 +231,7 @@ const {
   color: var(--tg-text-white);
   padding: var(--tg-spacing-24);
   border-radius: var(--tg-radius-default);
+  margin-top: var(--tg-spacing-32);
 
   .desc-title {
     font-weight: var(--tg-font-weight-semibold);
@@ -248,21 +268,13 @@ const {
         border-radius: var(--tg-radius-3xl);
         padding: 0 var(--tg-spacing-16);
         margin-right: var(--tg-spacing-10);
-        .cursor-help{
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          span {
-            font-size: var(--tg-font-size-default);
-            margin-left: var(--tg-spacing-4);
-          }
-        }
       }
 
       .r-arrow {
         font-size: var(--tg-font-size-xs);
 
         cursor: pointer;
+
         >svg {
           transition: all 200ms linear;
         }
@@ -279,6 +291,7 @@ const {
   .wrap {
     animation: down 0.2s linear;
     overflow: hidden;
+
     @keyframes down {
       0% {
         transform: translateY(-10px);
@@ -290,6 +303,7 @@ const {
         opacity: 1;
       }
     }
+
     .desc-tab {
       max-width: 360px;
       margin-top: var(--tg-spacing-12);
@@ -301,10 +315,12 @@ const {
       .c-img {
         width: 150px;
         height: 200px;
-        &.float-left{
+
+        &.float-left {
           float: left;
           margin-right: var(--tg-spacing-16);
         }
+
         margin: 0 auto var(--tg-spacing-20);
       }
 
@@ -312,6 +328,7 @@ const {
         .text-tags {
           display: flex;
           flex-wrap: wrap;
+
           p {
             background-color: var(--tg-secondary-main);
             color: var(--tg-text-lightgrey);
@@ -331,6 +348,10 @@ const {
 
           &:nth-child(1) {
             font-size: var(--tg-font-size-xs);
+
+            p {
+              margin-top: 0;
+            }
           }
 
           &:nth-child(2) {
@@ -347,33 +368,48 @@ const {
         }
       }
     }
-    .winner-content{
+
+    .winner-content {
       margin-top: var(--tg-spacing-12);
-      .rank-icon{
-        > svg {
+
+      .rank-icon {
+        >svg {
           font-size: 24px;
         }
       }
-      .img-text-align{
+
+      .img-text-align {
         display: flex;
         align-items: center;
-        > svg{
+
+        >svg {
           margin: 0 var(--tg-spacing-4);
         }
       }
-      .img-text-align-center{
+
+      .img-text-align-center {
         justify-content: center;
       }
+
       .img-text-align-right {
         justify-content: right;
       }
     }
-    .challenge-content{
+
+    .challenge-content {
       margin-top: var(--tg-spacing-12);
     }
   }
-  .cursor-help{
-    cursor: help;
+
+  .cursor-help {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    span {
+      font-size: var(--tg-font-size-default);
+      margin-left: var(--tg-spacing-4);
+    }
   }
 }
 </style>
@@ -397,27 +433,33 @@ const {
       }
     }
   }
-  .winner-content{
-    .m-table-wrap{
-      .m-table{
-        tbody{
-          .m-tr{
+
+  .winner-content {
+    .m-table-wrap {
+      .m-table {
+        tbody {
+          .m-tr {
             background-color: var(--tg-secondary-dark);
+
             &:nth-child(odd) {
               background-color: var(--tg-secondary-grey);
             }
           }
         }
-        thead{
-          .m-tr{
-            .m-th{
+
+        thead {
+          .m-tr {
+            .m-th {
               background-color: var(--tg-secondary-dark);
             }
           }
         }
       }
-      .m-tr{
-        .m-th,.m-td{
+
+      .m-tr {
+
+        .m-th,
+        .m-td {
           padding: var(--tg-spacing-12);
           vertical-align: middle;
         }
