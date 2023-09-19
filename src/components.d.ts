@@ -11,7 +11,6 @@ declare module 'vue' {
     AppBanner: typeof import('./components/AppBanner.vue')['default']
     AppBetData: typeof import('./components/AppBetData.vue')['default']
     AppBuyCryptocurrency: typeof import('./components/AppBuyCryptocurrency.vue')['default']
-    AppCard: typeof import('./components/AppCard.vue')['default']
     AppContent: typeof import('./components/AppContent.vue')['default']
     AppCurrencyIcon: typeof import('./components/AppCurrencyIcon.vue')['default']
     AppDemoCard: typeof import('./components/AppDemoCard.vue')['default']
@@ -29,13 +28,9 @@ declare module 'vue' {
     AppSidebarBig: typeof import('./components/AppSidebarBig.vue')['default']
     AppSidebarSmall: typeof import('./components/AppSidebarSmall.vue')['default']
     AppSlider: typeof import('./components/AppSlider.vue')['default']
-<<<<<<< HEAD
     AppStatisticsDialog: typeof import('./components/AppStatisticsDialog.vue')['default']
     AppVipDialog: typeof import('./components/AppVipDialog.vue')['default']
     AppVipProgress: typeof import('./components/AppVipProgress.vue')['default']
-=======
-    Apptest: typeof import('./components/Apptest.vue')['default']
->>>>>>> 61249c628256d8989f31dc3180c37ce9657ff97d
     AppWallet: typeof import('./components/AppWallet.vue')['default']
     AppWalletDialog: typeof import('./components/AppWalletDialog.vue')['default']
     AppWithdraw: typeof import('./components/AppWithdraw.vue')['default']
