@@ -37,6 +37,7 @@ const networkList = [
       </div>
     </div>
     <BaseQrcode url="www.google.com" />
+    <span style="text-align: center;">请只发送 USDT 到此地址，需获 2 个确认让存款到账。</span>
   </div>
 </template>
 

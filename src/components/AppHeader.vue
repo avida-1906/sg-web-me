@@ -24,11 +24,7 @@ const newsMenu = ref([
 const { bool: showSearchBar, setTrue } = useBoolean(false)
 
 // Dialog
-const { openDialog: openWalletDialog } = useDialog({
-  title: t('wallet'),
-  icon: 'navbar-wallet',
-  default: () => h(AppWalletDialog),
-})
+const { openWalletDialog } = useWalletDialog()
 
 const { openDialog: openSafeDialog } = useDialog({
   title: t('safe'),
