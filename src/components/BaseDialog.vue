@@ -43,6 +43,8 @@ function close() {
     _show.value = false
   updateShow(false)
 }
+
+provide('closeDialog', close)
 </script>
 
 <template>
