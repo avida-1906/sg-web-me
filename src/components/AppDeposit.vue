@@ -31,7 +31,10 @@ const networkList = [
       <span class="semibold label">{{ t('your_currency_deposit_address', { currency: 'BTC' }) }}</span>
       <div class="input-box">
         <input ref="inputRef" type="text" readonly :value="currentAddress" @click="onInputClick">
-        <div class="icon" @click="application.copy(currentAddress)">
+        <div class="icon">
+          <BaseIcon name="uni-refresh" />
+        </div>
+        <div class="icon line" @click="application.copy(currentAddress)">
           <BaseIcon name="uni-doc" />
         </div>
       </div>
@@ -61,9 +64,11 @@ const networkList = [
   .address {
     display: flex;
     flex-direction: column;
-    .label{
+
+    .label {
       margin-bottom: var(--tg-spacing-4);
     }
+
     .input-box {
       width: 100%;
       display: flex;
@@ -94,9 +99,23 @@ const networkList = [
       .icon {
         padding: var(--tg-spacing-button-padding-vertical-sm) var(--tg-spacing-button-padding-horizontal-sm);
         cursor: pointer;
+        display: flex;
+        position: relative;
+        --tg-icon-color: var(--tg-text-white);
 
         &:hover {
           background-color: var(--tg-text-grey);
+        }
+      }
+      .line{
+        &::before {
+          content: "";
+          position: absolute;
+          width: var(--tg-border-width-sm);
+          background: var(--tg-primary-main);
+          left: -1px;
+          top: 25%;
+          bottom: 25%;
         }
       }
     }

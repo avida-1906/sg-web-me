@@ -45,16 +45,21 @@ function onBlur() {
   <div class="base-input">
     <div :class="[layout]">
       <label v-if="label">{{ label }} <span v-if="must">*</span></label>
-      <div class="input-box" :class="{ active: isFocus, error: isError }">
-        <input
-          :value="modelValue" min="0" :placeholder="placeholder" :type="_type" :class="{ 'p-r-0': $slots.right }" @input="onInput"
-          @focus="onFocus" @blur="onBlur"
-        >
-        <div v-if="isPassword" class="eye" @click="toggleType">
-          <BaseIcon :name="`uni-eye-${_type === 'password' ? 'open' : 'close'}`" />
+      <div class="input-wrap">
+        <div class="input-box" :class="{ 'active': isFocus, 'error': isError, 'radio-r-o': $slots['right-button'] }">
+          <input
+            :value="modelValue" min="0" :placeholder="placeholder" :type="_type" :class="{ 'p-r-0': $slots['right-icon'] }"
+            @input="onInput" @focus="onFocus" @blur="onBlur"
+          >
+          <div v-if="isPassword" class="eye" @click="toggleType">
+            <BaseIcon :name="`uni-eye-${_type === 'password' ? 'open' : 'close'}`" />
+          </div>
+          <div v-show="$slots['right-icon']" class="right-icon">
+            <slot name="right-icon" />
+          </div>
         </div>
-        <div v-show="$slots.right" class="right-box">
-          <slot name="right" />
+        <div v-show="$slots['right-button']" class="right-button">
+          <slot name="right-button" />
         </div>
       </div>
     </div>
@@ -108,15 +113,43 @@ function onBlur() {
     }
   }
 
+  .input-wrap {
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    box-shadow: var(--tg-box-shadow);
+    border-radius: var(--tg-radius-default);
+    overflow: hidden;
+    margin-bottom: var(--tg-spacing-6);
+
+    .right-button {
+      padding: var(--tg-spacing-button-padding-vertical-sm) var(--tg-spacing-button-padding-horizontal-sm);
+      cursor: pointer;
+      display: flex;
+      border-left: none;
+      border-right: none;
+      white-space: nowrap;
+      line-height: 1;
+      color: var(--tg-text-white);
+      font-weight: var(--tg-font-weight-semibold);
+      font-size: var(--tg-font-size-default);
+      background-color: var(--tg-secondary-main);
+      transition: all ease .25s;
+
+      &:hover {
+        background-color: var(--tg-text-grey);
+      }
+    }
+  }
+
   .input-box {
     width: 100%;
     border-radius: var(--tg-radius-default);
     background: var(--tg-secondary-dark);
-    box-shadow: var(--tg-box-shadow);
     border-width: var(--tg-border-width-sm);
     border-style: solid;
     border-color: var(--tg-secondary-main);
-    margin-bottom: var(--tg-spacing-6);
     position: relative;
     transition: all ease .25s;
     display: flex;
@@ -127,6 +160,7 @@ function onBlur() {
     }
 
     input {
+      line-height: 1;
       width: 100%;
       background-color: transparent;
       color: var(--tg-text-white);
@@ -146,7 +180,8 @@ function onBlur() {
       //   margin: 0;
       // }
     }
-    .p-r-0{
+
+    .p-r-0 {
       padding-right: 0;
     }
 
@@ -159,12 +194,16 @@ function onBlur() {
       cursor: pointer;
     }
 
-    .right-box {
+    .right-icon {
       padding: var(--tg-spacing-8);
       display: flex;
       align-items: center;
       justify-content: center;
     }
+  }
+
+  .radio-r-o {
+    border-radius: var(--tg-radius-default) 0 0 var(--tg-radius-default);
   }
 
   .active {
