@@ -28,7 +28,7 @@ const networkList = [
       </div>
     </div>
     <div class="address">
-      <span class="semibold">{{ t('your_currency_deposit_address', { currency: 'BTC' }) }}</span>
+      <span class="semibold label">{{ t('your_currency_deposit_address', { currency: 'BTC' }) }}</span>
       <div class="input-box">
         <input ref="inputRef" type="text" readonly :value="currentAddress" @click="onInputClick">
         <div class="icon" @click="application.copy(currentAddress)">
@@ -59,6 +59,11 @@ const networkList = [
   }
 
   .address {
+    display: flex;
+    flex-direction: column;
+    .label{
+      margin-bottom: var(--tg-spacing-4);
+    }
     .input-box {
       width: 100%;
       display: flex;

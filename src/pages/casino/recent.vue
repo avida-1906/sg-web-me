@@ -9,7 +9,7 @@
         <div class="banner">
           <div class="left">
             <h1>
-              <span>收藏夹</span>
+              <span>近期游戏记录</span>
             </h1>
           </div>
           <div class="right">

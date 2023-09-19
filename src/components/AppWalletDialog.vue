@@ -9,6 +9,7 @@ const tabList = [
 ]
 const isDeposit = computed(() => currentTab.value === 'deposit')
 const isWithdraw = computed(() => currentTab.value === 'withdraw')
+const isBuy = computed(() => currentTab.value === 'buy')
 </script>
 
 <template>
@@ -17,6 +18,7 @@ const isWithdraw = computed(() => currentTab.value === 'withdraw')
       <BaseTab v-model="currentTab" shape="square" :list="tabList" />
       <AppDeposit v-if="isDeposit" />
       <AppWithdraw v-else-if="isWithdraw" />
+      <AppBuyCryptocurrency v-else-if="isBuy" />
     </div>
 
     <div class="footer">
@@ -29,7 +31,11 @@ const isWithdraw = computed(() => currentTab.value === 'withdraw')
 </template>
 
 <style lang='scss' scoped>
-.app-wallet-dialog {}
+.app-wallet-dialog {
+  font-size: var(--tg-font-size-default);
+  color: var(--tg-text-lightgrey);
+  line-height: 1.5;
+}
 
 .content {
   padding-right: var(--tg-spacing-16);
@@ -38,9 +44,6 @@ const isWithdraw = computed(() => currentTab.value === 'withdraw')
   display: flex;
   flex-direction: column;
   gap: var(--tg-spacing-16);
-  font-size: var(--tg-font-size-default);
-  color: var(--tg-text-lightgrey);
-  line-height: 1.5;
 }
 
 .footer {

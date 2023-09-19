@@ -26,7 +26,7 @@ const {
 } = storeToRefs(useWindowStore())
 
 // 左侧是否展开
-const leftIsExpand = useDebouncedRef({ value: false, delay: 200, beforeTrigger, afterTrigger })
+const leftIsExpand = useDebouncedRef({ value: false, delay: 100, beforeTrigger, afterTrigger })
 const { bool: isSwitching, setTrue, setFalse } = useBoolean(false)
 const switchTo = ref<'big' | 'small' | ''>('')
 
@@ -251,7 +251,9 @@ const isCasinoGames = computed(() => route.name === 'casino-games')
     color: white;
     font-weight: 600;
     padding-right: var(--tg-scrollbar-size);
-    box-shadow: var(--tg-header-shadow); // #0003 0 4px 6px -1px, #0000001f 0 2px 4px -1px;
+    box-shadow: #0003 0 4px 6px -1px, #0000001f 0 2px 4px -1px;
+    position: relative;
+    z-index: var(--tg-z-index-10);
 
     &>.group {
       display: flex;
