@@ -575,6 +575,10 @@ function copyIconName(name: string) {
   copy(name)
   toast('Copied')
 }
+function copyCollapseCode() {
+  copy('<BaseCollapse title="这是标题" icon="chat-star-orange" @click-head="funtion()" />')
+  toast('Copied')
+}
 </script>
 
 <template>
@@ -1044,11 +1048,11 @@ function copyIconName(name: string) {
           :data-source="tableData"
           :loading="loading"
         >
-          <template #name="record">
+          <template #name="{ record }">
             hello {{ record.name }}
           </template>
-          <template #job="{ job }">
-            hi {{ job }}
+          <template #job="{ record }">
+            hi {{ record.job }}
           </template>
         </BaseTable>
         <div class="center">
@@ -1090,6 +1094,16 @@ function copyIconName(name: string) {
             Help me fund my Open Source work!
           </template>
         </VTooltip>
+      </AppDemoCard>
+    </li>
+    <li class="box">
+      <AppDemoCard title="BaseCollapse" style="text-align:left">
+        <BaseCollapse title="这是标题" icon="chat-star-orange" />
+        <div class="center">
+          <BaseButton @click="copyCollapseCode">
+            copy
+          </BaseButton>
+        </div>
       </AppDemoCard>
     </li>
   </ul>

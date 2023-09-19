@@ -62,6 +62,8 @@ const getSearchBalance = computed(() => {
     return currency.value
   }
 })
+
+const { openWalletDialog } = useWalletDialog()
 </script>
 
 <template>
@@ -76,7 +78,7 @@ const getSearchBalance = computed(() => {
             <BaseIcon class="arrow" :class="{ 'arrow-up': isMenuShown }" name="uni-arrow-down" />
           </BaseButton>
         </div>
-        <BaseButton v-if="walletBtn" class="wallet-right-btn" size="sm" bg-style="primary" @click.stop>
+        <BaseButton v-if="walletBtn" class="wallet-right-btn" size="sm" bg-style="primary" @click.stop="openWalletDialog">
           <BaseIcon name="navbar-wallet" class="icon-size" />
         </BaseButton>
       </div>
@@ -97,7 +99,7 @@ const getSearchBalance = computed(() => {
               无法使用货币
             </div>
           </div>
-          <div class="popper-bottom">
+          <div v-if="walletBtn" class="popper-bottom">
             <BaseButton type="text" class="bottom-btn">
               <BaseIcon class="icon-wallet-set" name="wallet-set" />
               <span>钱包设置</span>
