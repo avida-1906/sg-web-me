@@ -587,7 +587,6 @@ function copyAppPercentageCode() {
 
 <template>
   <ul class="demo-page">
-    <AppPercentage total="45" percentage="39" />
     <li class="box">
       <AppDemoCard title="BaseIcon">
         <ul class="icon-wrap m0 p0">

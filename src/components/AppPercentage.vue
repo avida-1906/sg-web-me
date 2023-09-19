@@ -27,18 +27,21 @@ const componentStyle = computed(() => {
 
 <style lang='scss' scoped>
 .app-percentage {
+  width: var(--tg-sidebar-top-height-lg);
   margin: 0 auto;
   text-align: center;
   .percentage {
-    // height: 2px;
-    // gap: 0;
-    // background-color: #2f4553;
-    // &-bar {
-    //   background-color: #1475E1;
-    // }
+    margin: var(--tg-spacing-button-padding-vertical-lg) auto;
+    height: var(--tg-border-width-sm);
+    gap: 0;
+    background-color: var(--tg-secondary-main);
+    &-bar {
+      height: 100%;
+      border-radius: var(--tg-radius-xl);
+      background-color: var(--tg-sub-blue);
+    }
   }
   .text {
-    // color: #b1bad3;
     color: var(--tg-text-lightgrey);
     font-size: var(--tg-font-size-default);
   }
