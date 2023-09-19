@@ -1,17 +1,58 @@
 <script setup lang='ts'>
-const { isFullScreen } = storeToRefs(useWindowStore())
-const router = useRouter()
+const { t } = useI18n()
+
+const currentTab = ref('deposit')
+const tabList = [
+  { label: t('deposit'), value: 'deposit' },
+  { label: t('withdraw'), value: 'withdraw' },
+  { label: t('buy_cryptocurrency'), value: 'buy' },
+]
+const isDeposit = computed(() => currentTab.value === 'deposit')
+const isWithdraw = computed(() => currentTab.value === 'withdraw')
 </script>
 
 <template>
-  <div>
-    isFullScreen?:{{ isFullScreen }}
-    <BaseButton @click="router.push('/casino')">
-      casino
-    </BaseButton>
+  <div class="app-wallet-dialog">
+    <div class="content">
+      <BaseTab v-model="currentTab" shape="square" :list="tabList" />
+      <AppDeposit v-if="isDeposit" />
+      <AppWithdraw v-else-if="isWithdraw" />
+    </div>
+
+    <div class="footer">
+      <span>通过双重验证提高您的账户安全性</span>
+      <BaseButton bg-style="primary" size="md">
+        开启双重验证
+      </BaseButton>
+    </div>
   </div>
 </template>
 
 <style lang='scss' scoped>
+.app-wallet-dialog {}
 
+.content {
+  padding-right: var(--tg-spacing-16);
+  padding-left: var(--tg-spacing-16);
+  padding-bottom: var(--tg-spacing-16);
+  display: flex;
+  flex-direction: column;
+  gap: var(--tg-spacing-16);
+  font-size: var(--tg-font-size-default);
+  color: var(--tg-text-lightgrey);
+  line-height: 1.5;
+}
+
+.footer {
+  padding-right: var(--tg-spacing-16);
+  padding-left: var(--tg-spacing-16);
+  display: flex;
+  flex-direction: column;
+  background: var(--tg-secondary-dark);
+  width: 100%;
+  align-items: center;
+  padding-top: var(--tg-spacing-20);
+  padding-bottom: var(--tg-spacing-20);
+  gap: var(--tg-spacing-12);
+}
 </style>

@@ -1,10 +1,20 @@
+export interface MenuItem {
+  title: string
+  icon: string
+  path?: string
+  list?: Menu
+  domId?: string
+}
+
+export type Menu = Array<MenuItem>
+
 // casino
-const casinoMenu = [
-  { title: '收藏夹', path: '', icon: 'chess-star', list: [], domId: '' },
+const casinoMenu: Menu = [
+  { title: '收藏夹', path: '/casino/favourites', icon: 'chess-star', list: [], domId: '' },
   { title: '近期游戏记录', path: '', icon: 'chess-game-record', list: [], domId: '' },
   { title: '挑战', path: '', icon: 'chess-challenge', list: [], domId: '' },
 ]
-const casinoGameList = [
+const casinoGameList: Menu = [
   { title: '老虎机', path: '', icon: 'chess-slot-machine', list: [], domId: '' },
   { title: '真人娱乐场', path: '', icon: 'chess-live-casino', list: [], domId: '' },
   { title: '游戏节目', path: '', icon: 'chess-gameshow', list: [], domId: '' },
@@ -12,15 +22,15 @@ const casinoGameList = [
   { title: '可购买奖励回合', path: '', icon: 'chess-bonus-rounds', list: [], domId: '' },
   { title: 'RTP 增强化', path: '', icon: 'chess-rtp', list: [], domId: '' },
 ]
-const casinoGameProvider = [{ title: '游戏提供商', path: '', icon: 'chess-game-provider', list: [], domId: '' }]
+const casinoGameProvider: Menu = [{ title: '游戏提供商', path: '', icon: 'chess-game-provider', list: [], domId: '' }]
 
 // sports
-const sportsMenu = [
+const sportsMenu: Menu = [
   { title: '滚球盘', path: '', icon: 'spt-ball-plate', list: [], domId: '' },
   { title: '即将开赛', path: '', icon: 'spt-timing', list: [], domId: '' },
   { title: '我的投注', path: '', icon: 'spt-user-bet', list: [], domId: '' },
 ]
-const sportHotGames = [
+const sportHotGames: Menu = [
   {
     title: '足球',
     path: '',
@@ -82,7 +92,7 @@ const sportHotGames = [
     domId: 'sports-hot-game-use-basketball',
   },
 ]
-const sportEsports = [
+const sportEsports: Menu = [
   {
     title: '所有电子竞技',
     path: '',
@@ -99,7 +109,7 @@ const sportEsports = [
     domId: 'sports-e-sports',
   },
 ]
-const sportGameList = [
+const sportGameList: Menu = [
   {
     title: '体育项目',
     path: '',
@@ -116,7 +126,7 @@ const sportGameList = [
     domId: 'sports-game-list',
   },
 ]
-const sportOddType = [
+const sportOddType: Menu = [
   {
     title: '赔率：',
     path: '',
@@ -133,7 +143,7 @@ const sportOddType = [
   },
 ]
 
-const staticMenu1 = [
+const staticMenu1: Menu = [
   {
     title: '个人资料',
     path: '',
@@ -167,7 +177,7 @@ const staticMenu1 = [
   { title: '博客', path: '', icon: 'chess-blog', list: [], domId: '' },
   { title: '论坛', path: '', icon: 'tabbar-chat', list: [], domId: '' },
 ]
-const staticMenu2 = [
+const staticMenu2: Menu = [
   {
     title: '赞助活动',
     path: '',
@@ -195,6 +205,13 @@ const staticMenu2 = [
 ]
 
 export function useMenuData() {
+  const router = useRouter()
+
+  function menuClick(item: MenuItem) {
+    if (item.path)
+      router.push(item.path)
+  }
+
   return {
     casinoMenu,
     casinoGameList,
@@ -206,5 +223,6 @@ export function useMenuData() {
     sportOddType,
     staticMenu1,
     staticMenu2,
+    menuClick,
   }
 }

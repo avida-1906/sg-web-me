@@ -57,13 +57,14 @@
   --tg-font-weight-semibold: 600;
   --tg-font-weight-bold: 700;
 
-  // 按钮 padding size
+  // 按钮 padding size 水平方向
   --tg-spacing-button-padding-horizontal-none: 0;
   --tg-spacing-button-padding-horizontal-xs: 12px;
   --tg-spacing-button-padding-horizontal-sm: 16px;
   --tg-spacing-button-padding-horizontal-md: 20px;
   --tg-spacing-button-padding-horizontal-lg: 24px;
   --tg-spacing-button-padding-horizontal-xl: 28px;
+  // 垂直方向
   --tg-spacing-button-padding-vertical-none: 0;
   --tg-spacing-button-padding-vertical-s: 8px;
   --tg-spacing-button-padding-vertical-xs: 12px;
@@ -241,6 +242,20 @@ body {
   user-select: none;
 }
 
+// 页面垂直布局
+.layout-spacing {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  &:not(.reset) {
+    padding-bottom: var(--tg-spacing-32);
+  }
+}
+
+.mt-24 {
+  margin-top: var(--tg-spacing-24);
+}
+
 // 设置 VDropdown VTooltip VMenu 圆角 阴影
 .v-popper--theme-tg-popper-outer.v-popper--theme-dropdown .v-popper__inner {
   border-radius: var(--tg-radius-default);
@@ -268,6 +283,24 @@ body {
 
   &:hover {
     background-color: var(--tg-text-lightgrey);
+  }
+}
+.semibold{
+  font-weight: var(--tg-font-weight-semibold);
+}
+.bold{
+  font-weight: var(--tg-font-weight-bold);
+}
+
+// 供应商slider
+.provider-item-wrap {
+  border-radius: var(--tg-radius-md);
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+  &:hover {
+    transform: translateY(-3px);
   }
 }
 

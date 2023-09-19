@@ -77,6 +77,7 @@ function onClick(v: string | number) {
     cursor: pointer;
     transition: all ease .25s;
     margin-right: var(--tg-spacing-5);
+    font-weight: var(--tg-font-weight-semibold);
 
     &:last-of-type {
       margin-right: 0;

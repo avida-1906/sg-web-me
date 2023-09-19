@@ -1,9 +1,9 @@
 import BaseDialog from '~/components/BaseDialog.vue'
+import { install } from '~/modules'
 
 export function useDialog({ title, icon, default: defaultSlot }: { title: string; icon: string; default: () => Component }) {
   const app = ref()
   const div = ref()
-
   const openDialog = () => {
     div.value = document.createElement('div')
     document.body.appendChild(div.value)
@@ -18,6 +18,7 @@ export function useDialog({ title, icon, default: defaultSlot }: { title: string
     }, {
       default: () => defaultSlot(),
     }))
+    install(app.value)
     app.value.mount(div.value)
   }
 

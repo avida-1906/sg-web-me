@@ -1,15 +1,6 @@
 <script setup lang='ts'>
-interface MenuItem {
-  title: string
-  path: string
-  icon: string
-  list: {
-    title: string
-    path: string
-    icon: string
-  }[]
-  domId: string
-}
+import { type MenuItem } from '~/composables/useMenuData'
+
 interface Props {
   staticMenu1: MenuItem[]
   staticMenu2: MenuItem[]
@@ -95,7 +86,7 @@ function handleClickItem() { }
           <div class="content-line" />
           <div v-for="item, i in sportHotGames" :key="i">
             <BaseAccordion
-              v-if="item.list.length" :dom-id="item.domId" :menu-info="item" @click-head="handleClickHead"
+              v-if="item.list && item.list.length" :dom-id="item.domId" :menu-info="item" @click-head="handleClickHead"
               @click-item="handleClickItem"
             />
             <div v-else class="menu">
@@ -107,7 +98,7 @@ function handleClickItem() { }
         <div class="menu-box">
           <div v-for="item, i in sportEsports" :key="i">
             <BaseAccordion
-              v-if="item.list.length" :dom-id="item.domId" :menu-info="item" @click-head="handleClickHead"
+              v-if="item.list && item.list.length" :dom-id="item.domId" :menu-info="item" @click-head="handleClickHead"
               @click-item="handleClickItem"
             />
             <div v-else class="menu">
@@ -119,7 +110,7 @@ function handleClickItem() { }
         <div class="menu-box">
           <div v-for="item, i in sportGameList" :key="i">
             <BaseAccordion
-              v-if="item.list.length" :dom-id="item.domId" :menu-info="item" @click-head="handleClickHead"
+              v-if="item.list && item.list.length" :dom-id="item.domId" :menu-info="item" @click-head="handleClickHead"
               @click-item="handleClickItem"
             />
             <div v-else class="menu">
@@ -131,7 +122,7 @@ function handleClickItem() { }
         <div class="menu-box">
           <div v-for="item, i in sportOddType" :key="i">
             <BaseAccordion
-              v-if="item.list.length" :dom-id="item.domId" :menu-info="item" @click-head="handleClickHead"
+              v-if="item.list && item.list.length" :dom-id="item.domId" :menu-info="item" @click-head="handleClickHead"
               @click-item="handleClickItem"
             />
             <div v-else class="menu">
@@ -146,7 +137,7 @@ function handleClickItem() { }
       <div class="menu-box">
         <div v-for="item, i in staticMenu1" :key="i">
           <BaseAccordion
-            v-if="item.list.length" :dom-id="item.domId" :menu-info="item" @click-head="handleClickHead"
+            v-if="item.list && item.list.length" :dom-id="item.domId" :menu-info="item" @click-head="handleClickHead"
             @click-item="handleClickItem"
           />
           <div v-else class="menu">
@@ -159,7 +150,7 @@ function handleClickItem() { }
       <div class="menu-box">
         <div v-for="item, i in staticMenu2" :key="i">
           <BaseAccordion
-            v-if="item.list.length" :dom-id="item.domId" :menu-info="item" @click-head="handleClickHead"
+            v-if="item.list && item.list.length" :dom-id="item.domId" :menu-info="item" @click-head="handleClickHead"
             @click-item="handleClickItem"
           />
           <div v-else class="menu">

@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { loadLanguageAsync } from '~/modules/i18n'
+
 interface Props {
   title: string
 }
@@ -6,14 +8,21 @@ interface Props {
 withDefaults(defineProps<Props>(), {})
 
 const { bool: showContent, toggle } = useBoolean(false)
+const appStore = useAppStore()
+const { isLogin } = storeToRefs(appStore)
+
+function change() {
+  appStore.toggle()
+  loadLanguageAsync(EnumLanguage[2])
+}
 </script>
 
 <template>
   <section class="app-demo-card">
     <div class="app-demo-card-head" @click="toggle">
       <slot name="title">
-        <h3>
-          {{ title }}
+        <h3 @click="change">
+          {{ title }} {{ isLogin }} {{ $t('hello') }}
         </h3>
       </slot>
       <div class="icon-box" :class="[showContent ? 'down' : 'left']">

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import AppWalletDialog from '~/components/AppWalletDialog.vue'
+import AppSafeDialog from '~/components/AppSafeDialog.vue'
 
 const { isFullScreen, isFixed, width } = storeToRefs(useWindowStore())
 const { t } = useI18n()
@@ -24,19 +24,22 @@ const newsMenu = ref([
 const { bool: showSearchBar, setTrue } = useBoolean(false)
 
 // Dialog
-const { openDialog: openWalletDialog } = useDialog({
-  title: t('wallet'),
-  icon: 'navbar-wallet',
-  default: () => h(AppWalletDialog),
-})
+const { openWalletDialog } = useWalletDialog()
 
+const { openDialog: openSafeDialog } = useDialog({
+  title: t('safe'),
+  icon: 'navbar-wallet',
+  default: () => h(AppSafeDialog),
+})
 function handleClickMenuItem(item: { name: string }) {
   const { name } = item
   switch (name) {
     case 'wallet':
       openWalletDialog()
       break
-
+    case 'safe':
+      openSafeDialog()
+      break
     default:
       break
   }
@@ -46,9 +49,7 @@ function handleClickMenuItem(item: { name: string }) {
 <template>
   <div class="app-header">
     <BaseLogo :use-small="width < 300" />
-    <div class="header-middle">
-      <AppWallet :wallet-btn="true" />
-    </div>
+    <AppWallet :wallet-btn="true" />
     <div class="header-right">
       <BaseButton v-show="!isFullScreen" type="text" class="search-btn" @click="setTrue">
         <BaseIcon class="icon-search" name="header-search" />
@@ -60,7 +61,7 @@ function handleClickMenuItem(item: { name: string }) {
         </BaseButton>
         <template #popper>
           <div class="dropdown-popper">
-            <div v-for="item of userMenu" :key="item.id" class="menu-item" @click="handleClickMenuItem(item)">
+            <div v-for="item of userMenu" :key="item.id" v-close-popper class="menu-item" @click="handleClickMenuItem(item)">
               <div class="menu-btn">
                 <BaseIcon class="icon-size" :name="item.icon" />
                 <span>{{ item.title }}</span>
@@ -155,7 +156,7 @@ function handleClickMenuItem(item: { name: string }) {
     }
 
     .menu-btn:active {
-      transform: scale(0.93);
+      transform: scale(0.95);
     }
   }
 }
