@@ -30,16 +30,24 @@ const { openDialog: openWalletDialog } = useDialog({
   default: () => h(AppWalletDialog),
 })
 
-function handleClickMenuItem(item: { name: string }) {
+const { openDialog: openSafeDialog } = useDialog({
+  title: t('safe'),
+  icon: 'navbar-wallet',
+  default: () => h(AppWalletDialog),
+})
+function handleClickMenuItem(item: { name: string }, hide: () => void) {
   const { name } = item
   switch (name) {
     case 'wallet':
       openWalletDialog()
       break
-
+    case 'safe':
+      openSafeDialog()
+      break
     default:
       break
   }
+  hide()
 }
 </script>
 
@@ -58,9 +66,9 @@ function handleClickMenuItem(item: { name: string }) {
         <BaseButton type="text">
           <BaseIcon class="icon-size" name="navbar-user" />
         </BaseButton>
-        <template #popper>
+        <template #popper="{ hide }">
           <div class="dropdown-popper">
-            <div v-for="item of userMenu" :key="item.id" class="menu-item" @click="handleClickMenuItem(item)">
+            <div v-for="item of userMenu" :key="item.id" class="menu-item" @click="handleClickMenuItem(item, hide)">
               <div class="menu-btn">
                 <BaseIcon class="icon-size" :name="item.icon" />
                 <span>{{ item.title }}</span>
@@ -155,7 +163,7 @@ function handleClickMenuItem(item: { name: string }) {
     }
 
     .menu-btn:active {
-      transform: scale(0.93);
+      transform: scale(0.95);
     }
   }
 }
