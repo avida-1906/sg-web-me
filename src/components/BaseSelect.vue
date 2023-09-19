@@ -190,7 +190,8 @@ function onClickPopperItem(v: any) {
   align-items: flex-start;
 
   label {
-    margin-bottom: var(--tg-spacing-7);
+    margin-bottom: var(--tg-spacing-4);
+    font-weight: var(--tg-font-weight-semibold);
   }
 
 }
@@ -202,6 +203,7 @@ function onClickPopperItem(v: any) {
   label {
     width: 100px;
     margin-right: var(--tg-spacing-10);
+    font-weight: var(--tg-font-weight-semibold);
   }
 }
 </style>

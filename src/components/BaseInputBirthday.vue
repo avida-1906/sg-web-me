@@ -146,7 +146,8 @@ function onInput() {
     align-items: flex-start;
 
     label {
-      margin-bottom: var(--tg-spacing-7);
+      margin-bottom: var(--tg-spacing-4);
+      font-weight: var(--tg-font-weight-semibold);
     }
 
   }

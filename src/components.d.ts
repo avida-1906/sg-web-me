@@ -10,6 +10,7 @@ declare module 'vue' {
     AppAmount: typeof import('./components/AppAmount.vue')['default']
     AppBanner: typeof import('./components/AppBanner.vue')['default']
     AppBetData: typeof import('./components/AppBetData.vue')['default']
+    AppBuyCryptocurrency: typeof import('./components/AppBuyCryptocurrency.vue')['default']
     AppCard: typeof import('./components/AppCard.vue')['default']
     AppContent: typeof import('./components/AppContent.vue')['default']
     AppCurrencyIcon: typeof import('./components/AppCurrencyIcon.vue')['default']

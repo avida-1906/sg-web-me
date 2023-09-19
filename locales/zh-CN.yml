@@ -18,6 +18,7 @@ currency: 货币
 network: 网络
 deposit: 存款
 withdraw: 取款
+this_field_is_required: 此字段为必填项
 buy_cryptocurrency: 购买加密货币
 your_currency_deposit_address: 您的 {currency} 存款地址
 top_sports_events: 顶级体育项目
