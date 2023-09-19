@@ -4,21 +4,21 @@ import AppWalletDialog from '~/components/AppWalletDialog.vue'
 const { isFullScreen, isFixed, width } = storeToRefs(useWindowStore())
 const { t } = useI18n()
 const userMenu = ref([
-  { id: 1, icon: 'navbar-wallet', title: '钱包', name: 'wallet' },
-  { id: 2, icon: 'navbar-cart', title: '保险库', name: 'safe' },
+  { id: 1, icon: 'navbar-wallet', title: t('wallet'), name: 'wallet' },
+  { id: 2, icon: 'navbar-cart', title: t('safe'), name: 'safe' },
   { id: 3, icon: 'spt-airbonus', title: 'VIP', name: 'vip' },
-  { id: 4, icon: 'spt-affiliate-pro', title: '联盟计划', name: 'plan' },
-  { id: 5, icon: 'uni-trend', title: '统计数据', name: 'statistical-data' },
-  { id: 6, icon: 'tabbar-bet', title: '交易记录', name: 'transaction-record' },
-  { id: 7, icon: 'spt-basketball', title: '体育投注', name: 'sports-betting' },
-  { id: 8, icon: 'uni-set', title: '设置', name: 'setting' },
-  { id: 9, icon: 'spt-secure', title: 'Stake安全', name: 'stake-safety' },
-  { id: 10, icon: 'chess-online-support', title: '在线支持', name: 'online-support' },
-  { id: 11, icon: 'uni-logout', title: '登出', name: 'logout' },
+  { id: 4, icon: 'spt-affiliate-pro', title: t('affiliate'), name: 'affiliate' },
+  { id: 5, icon: 'uni-trend', title: t('statistical_data'), name: 'statistical-data' },
+  { id: 6, icon: 'tabbar-bet', title: t('transaction_record'), name: 'transaction-record' },
+  { id: 7, icon: 'spt-basketball', title: t('sports_betting'), name: 'sports-betting' },
+  { id: 8, icon: 'uni-set', title: t('setting'), name: 'setting' },
+  { id: 9, icon: 'spt-secure', title: t('stake_safety'), name: 'stake-safety' },
+  { id: 10, icon: 'chess-online-support', title: t('online_support'), name: 'online-support' },
+  { id: 11, icon: 'uni-logout', title: t('logout'), name: 'logout' },
 ])
 const newsMenu = ref([
-  { id: 1, icon: 'chess-discuss', title: '聊天室', name: 'chat-room' },
-  { id: 2, icon: 'spt-user-bet', title: '投注单', name: 'bet-slip' },
+  { id: 1, icon: 'chess-discuss', title: t('chat_room'), name: 'chat-room' },
+  { id: 2, icon: 'spt-user-bet', title: t('bet_slip'), name: 'bet-slip' },
 ])
 
 const { bool: showSearchBar, setTrue } = useBoolean(false)
