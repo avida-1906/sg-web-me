@@ -83,7 +83,7 @@ function itemClick(item: MenuItem) {
       .arrow-right {
         position: absolute;
         right: 0;
-        font-size: 10px;
+        font-size: var(--tg-font-size-xs);
         width: 14px;
       }
     }
