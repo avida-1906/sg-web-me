@@ -6,6 +6,7 @@ const { bool: isTheatre, setBool } = useBoolean(false) // 影院模式
 <template>
   <div class="casino-games" :class="{ theatre: isTheatre && !isFullScreen }">
     <AppIframe :is-theatre="isTheatre" @change-theatre="setBool" />
+    <AppDesc />
   </div>
 </template>
 
