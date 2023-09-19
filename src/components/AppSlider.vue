@@ -152,14 +152,14 @@ watchEffect(() => {
     justify-content: space-between;
     .title {
       a {
-        font-size: 25px;
+        font-size: var(--tg-font-size-xl);
         color: var(--tg-text-white);
         display: inline-flex;
         position: relative;
         align-items: center;
         font-weight: 500;
         h3 {
-          font-size: 18px;
+          font-size: var(--tg-font-size-md);
           line-height: 1.5;
           margin-left: var(--tg-spacing-8);
         }
@@ -179,7 +179,7 @@ watchEffect(() => {
         cursor: default;
       }
       .app-svg-icon {
-        font-size: 20px;
+        font-size: var(--tg-font-size-lg);
         --tg-icon-color: var(--tg-text-white);
       }
     }

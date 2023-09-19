@@ -11,7 +11,7 @@ export type Menu = Array<MenuItem>
 // casino
 const casinoMenu: Menu = [
   { title: '收藏夹', path: '/casino/favourites', icon: 'chess-star', list: [], domId: '' },
-  { title: '近期游戏记录', path: '', icon: 'chess-game-record', list: [], domId: '' },
+  { title: '近期游戏记录', path: '/casino/recent', icon: 'chess-game-record', list: [], domId: '' },
   { title: '挑战', path: '', icon: 'chess-challenge', list: [], domId: '' },
 ]
 const casinoGameList: Menu = [
