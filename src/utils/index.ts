@@ -1,5 +1,5 @@
 class Application {
-  // 数字货币默认保留小数位数
+  /** 数字货币默认保留小数长度 */
   #CURRENCY_DEFAULT_DECIMAL = 8
 
   defaultLanguage = import.meta.env.VITE_I18N_DEFAULT_LANG
@@ -39,7 +39,7 @@ class Application {
       return new Intl.NumberFormat(EnumCurrency[language], { style: 'currency', currency: EnumCurrency[language] }).format(Number(toFixed(number, 2)))
 
     else
-      return toFixed(number, this.#CURRENCY_DEFAULT_DECIMAL) // 默认保留8位小数
+      return toFixed(number, this.#CURRENCY_DEFAULT_DECIMAL)
   }
 }
 

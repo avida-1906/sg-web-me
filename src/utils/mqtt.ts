@@ -31,6 +31,7 @@ class SocketClient {
         ],
       })
       this.eventHandler()
+      this.subscribeHandler()
     })
   }
 
