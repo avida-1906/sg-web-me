@@ -1,7 +1,7 @@
 <script setup lang='ts'>
 interface Props {
   modelValue?: string
-  label: string
+  label?: string
   layout?: 'horizontal' | 'vertical'
   type?: 'text' | 'password' | 'number'
   placeholder?: string
@@ -14,8 +14,6 @@ const props = withDefaults(defineProps<Props>(), {
   type: 'text',
 })
 const emit = defineEmits(['update:modelValue', 'input', 'blur', 'focus'])
-const { t } = useI18n()
-const _placeholder = computed(() => props.placeholder ?? t('enter_your_content'))
 const { bool: isFocus, setTrue, setFalse } = useBoolean(false)
 const isError = computed(() => !!props.msg)
 
@@ -46,14 +44,17 @@ function onBlur() {
 <template>
   <div class="base-input">
     <div :class="[layout]">
-      <label>{{ label }} <span v-if="must">*</span></label>
+      <label v-if="label">{{ label }} <span v-if="must">*</span></label>
       <div class="input-box" :class="{ active: isFocus, error: isError }">
         <input
-          :value="modelValue" :placeholder="_placeholder" :type="_type" @input="onInput" @focus="onFocus"
-          @blur="onBlur"
+          :value="modelValue" min="0" :placeholder="placeholder" :type="_type" :class="{ 'p-r-0': $slots.right }" @input="onInput"
+          @focus="onFocus" @blur="onBlur"
         >
         <div v-if="isPassword" class="eye" @click="toggleType">
           <BaseIcon :name="`uni-eye-${_type === 'password' ? 'open' : 'close'}`" />
+        </div>
+        <div v-show="$slots.right" class="right-box">
+          <slot name="right" />
         </div>
       </div>
     </div>
@@ -71,6 +72,7 @@ function onBlur() {
 
   label {
     color: var(--tg-text-lightgrey);
+    font-weight: var(--tg-font-weight-semibold);
   }
 
   .msg {
@@ -91,7 +93,7 @@ function onBlur() {
     align-items: flex-start;
 
     label {
-      margin-bottom: var(--tg-spacing-7);
+      margin-bottom: var(--tg-spacing-4);
     }
 
   }
@@ -117,6 +119,8 @@ function onBlur() {
     margin-bottom: var(--tg-spacing-6);
     position: relative;
     transition: all ease .25s;
+    display: flex;
+    align-items: center;
 
     &:hover:not(.error) {
       border-color: var(--tg-text-grey);
@@ -135,12 +139,15 @@ function onBlur() {
         opacity: 0.3;
       }
 
-      &::-webkit-outer-spin-button,
-      &::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        appearance: none;
-        margin: 0;
-      }
+      // &::-webkit-outer-spin-button,
+      // &::-webkit-inner-spin-button {
+      //   -webkit-appearance: none;
+      //   appearance: none;
+      //   margin: 0;
+      // }
+    }
+    .p-r-0{
+      padding-right: 0;
     }
 
     .eye {
@@ -150,6 +157,13 @@ function onBlur() {
       transform: translateY(-50%);
       font-size: var(--tg-font-size-md);
       cursor: pointer;
+    }
+
+    .right-box {
+      padding: var(--tg-spacing-8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
 
