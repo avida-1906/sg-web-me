@@ -1,8 +1,11 @@
 <script lang="ts" setup>
+const groupFilterOuter = ref()
+const { appContentWidth } = storeToRefs(useWindowStore())
+const outerWidth = computed(() => appContentWidth.value)
 </script>
 
 <template>
-  <section class="tg-app-group-filter flex-center-bet">
+  <section ref="groupFilterOuter" class="tg-app-group-filter flex-center-bet" :class="{ 'less-than-700': outerWidth < 700 }">
     <div class="flex-center-bet left">
       <div class="flex-center-bet title">
         <BaseIcon name="uni-bars" />
@@ -56,6 +59,11 @@
 
     .title {
       gap: var(--tg-spacing-input-padding-vertical);
+    }
+  }
+  &.less-than-700 {
+    .title {
+      display: none;
     }
   }
 }
