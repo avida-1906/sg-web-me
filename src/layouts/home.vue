@@ -16,12 +16,19 @@
         包含聊天室
         投注单
  */
+const windowStore = useWindowStore()
 const {
   isLessThanSm,
   isLessThanLg,
   isGreaterThanSm,
   isMobile,
-} = storeToRefs(useWindowStore())
+} = storeToRefs(windowStore)
+// 内容区宽度
+const homeContainerRef = ref<HTMLElement | null>(null)
+const { width } = useElementSize(homeContainerRef)
+watch(() => width.value, (newWidth) => {
+  windowStore.setAppContentWidth(newWidth)
+})
 
 // 左侧是否展开
 const leftIsExpand = useDebouncedRef({ value: false, delay: 100, beforeTrigger, afterTrigger })
@@ -117,7 +124,7 @@ const isCasinoGames = computed(() => route.name === 'casino-games')
 
     <div class="main-content">
       <header class="navigation">
-        <AppContent>
+        <AppContent ref="homeContainerRef">
           <AppHeader />
           <!-- <div class="group">
             <div class="container">

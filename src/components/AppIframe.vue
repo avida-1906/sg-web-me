@@ -4,7 +4,8 @@ const props = defineProps<{
 }>()
 const emit = defineEmits(['changeTheatre'])
 const { t } = useI18n()
-const { isMobile } = storeToRefs(useWindowStore())
+const { isMobile, appContentWidth } = storeToRefs(useWindowStore())
+const bigGameWrapper = computed(() => appContentWidth.value > 930)
 
 const gameUrl = ref('https://static-live.hacksawgaming.com/1263/1.11.3/index.html?language=zh&channel=desktop&gameid=1263&mode=1&token=ce6f762e-a59b-417e-83aa-9f72d335a35f&lobbyurl=https%3A%2F%2Fstake.com&currency=CAD&partner=stake&env=https://rgs-cu.hacksawgaming.com/api')
 const gameImgUrl = ref('https://mediumrare.imgix.net/33cd5a34c3937da326652a3beb44fe9c3680118c363a060ca5670847595561a5?&dpr=2&format=auto&auto=format&q=70')
@@ -129,7 +130,7 @@ function onClickFavorite() {
         <template #popper>
           <div class="scroll-y popper popper-mobile">
             <div
-              v-for="c, i in currencyList" :key="i" v-close-popper class="popper-option currency-types"
+              v-for="c, i in currencyList" :key="i" v-close-popper class="currency-types popper-option"
               @click="onChooseCurrency(c.text)"
             >
               <div>
@@ -160,7 +161,7 @@ function onClickFavorite() {
 
   <!-- PC模式 -->
   <div v-else class="app-iframe" :class="{ 't-app-iframe': isTheatre }">
-    <div class="game-wrapper" :class="{ 't-game-wrapper': isTheatre }">
+    <div class="game-wrapper" :class="{ 'b-game-wrapper': bigGameWrapper, 't-game-wrapper': isTheatre }">
       <div class="content-wrapper" :class="{ 't-content-wrapper': isTheatre }">
         <div class="content" :class="{ 't-content': isTheatre }">
           <div class="iframe-wrapper" :class="{ 't-iframe-wrapper': isTheatre }">
@@ -403,10 +404,8 @@ function onClickFavorite() {
   margin-top: 3vw;
 }
 
-@media only screen and (min-width:1060px) {
-  .game-wrapper {
-    margin-top: var(--tg-spacing-40);
-  }
+.b-game-wrapper{
+  margin-top: var(--tg-spacing-40);
 }
 
 .t-game-wrapper {
