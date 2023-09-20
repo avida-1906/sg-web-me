@@ -26,6 +26,7 @@ declare module 'vue' {
     AppIframe: typeof import('./components/AppIframe.vue')['default']
     AppLeftSidebar: typeof import('./components/AppLeftSidebar.vue')['default']
     AppLeftSidebarTiny: typeof import('./components/AppLeftSidebarTiny.vue')['default']
+    AppLoginDialog: typeof import('./components/AppLoginDialog.vue')['default']
     AppPercentage: typeof import('./components/AppPercentage.vue')['default']
     AppSafeDialog: typeof import('./components/AppSafeDialog.vue')['default']
     AppSidebarBig: typeof import('./components/AppSidebarBig.vue')['default']
@@ -70,6 +71,7 @@ declare module 'vue' {
     BaseTable: typeof import('./components/BaseTable.vue')['default']
     BaseTag: typeof import('./components/BaseTag.vue')['default']
     BaseUpload: typeof import('./components/BaseUpload.vue')['default']
+    copy: typeof import('./components/AppDeposit copy.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

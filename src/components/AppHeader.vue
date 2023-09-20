@@ -25,6 +25,7 @@ const { bool: showSearchBar, setTrue } = useBoolean(false)
 
 // Dialog
 const { openWalletDialog } = useWalletDialog()
+const { openLoginDialog } = useLoginDialog()
 
 const { openDialog: openSafeDialog } = useDialog({
   title: t('safe'),
@@ -33,12 +34,16 @@ const { openDialog: openSafeDialog } = useDialog({
 })
 function handleClickMenuItem(item: { name: string }) {
   const { name } = item
+  console.log(name)
   switch (name) {
     case 'wallet':
       openWalletDialog()
       break
     case 'safe':
       openSafeDialog()
+      break
+    case 'logout':
+      openLoginDialog()
       break
     default:
       break
