@@ -4,23 +4,7 @@ const gameList = Array(22).fill(gameInfo)
 
 const sliderOuter = ref()
 const { appContentWidth } = storeToRefs(useWindowStore())
-const outerWidth = computed(() => appContentWidth.value) // ref(0)
-
-// function setOuterWidth() {
-//   const { width } = sliderOuter.value.getBoundingClientRect()
-//   outerWidth.value = width
-// }
-
-// onMounted(() => {
-//   window.addEventListener('resize', setOuterWidth)
-//   nextTick(() => {
-//     setOuterWidth()
-//   })
-// })
-
-// onUnmounted(() => {
-//   window.removeEventListener('resize', setOuterWidth)
-// })
+const outerWidth = computed(() => appContentWidth.value)
 
 const galleryClass = ref('')
 

@@ -1,23 +1,7 @@
 <script lang="ts" setup>
 const groupFilterOuter = ref()
 const { appContentWidth } = storeToRefs(useWindowStore())
-const outerWidth = computed(() => appContentWidth.value) // ref(0)
-
-// function setOuterWidth() {
-//   const { width } = groupFilterOuter.value.getBoundingClientRect()
-//   outerWidth.value = width
-// }
-
-// onMounted(() => {
-//   window.addEventListener('resize', setOuterWidth)
-//   nextTick(() => {
-//     setOuterWidth()
-//   })
-// })
-
-// onUnmounted(() => {
-//   window.removeEventListener('resize', setOuterWidth)
-// })
+const outerWidth = computed(() => appContentWidth.value)
 </script>
 
 <template>
