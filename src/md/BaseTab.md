@@ -11,11 +11,14 @@ list
     label: string
   }[] tab列表，必须包含value,label字段
 
-  modelValue
-  > string | number 绑定值
+modelValue
+> string | number 绑定值
 
-  shape
-  >?: 'square' | 'round' 圆角、方角
+shape
+>?: 'square' | 'round' 圆角、方角
+
+full
+>?: boolean 默认tab宽度根据内容撑开，如果需要宽度占100%，设定full属性
 
 ## Slot
 tab

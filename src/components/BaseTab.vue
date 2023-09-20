@@ -7,6 +7,7 @@ interface Props {
   }[]
   modelValue: string | number
   shape?: 'square' | 'round'
+  full?: boolean
 }
 const props = withDefaults(defineProps<Props>(), {
   shape: 'round',
@@ -23,7 +24,7 @@ function onClick(v: string | number) {
 </script>
 
 <template>
-  <div class="scroll-x base-tab">
+  <div class="scroll-x base-tab" :class="{ full }">
     <div class="tab-wrap" :class="[shape]">
       <div
         v-for="t, i in list" :key="i" class="tab" :class="{ active: t.value === modelValue }"
@@ -42,6 +43,8 @@ function onClick(v: string | number) {
 <style lang='scss' scoped>
 .base-tab {
   display: flex;
+  max-width: 100%;
+  align-self: center;
 
   .tab-wrap {
     padding: var(--tg-spacing-5) var(--tg-spacing-6);
@@ -107,5 +110,8 @@ function onClick(v: string | number) {
   .active {
     background-color: var(--tg-secondary-main);
   }
+}
+.full{
+  align-self: auto;
 }
 </style>
