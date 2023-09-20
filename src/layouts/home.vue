@@ -17,8 +17,8 @@
         投注单
  */
 const {
-  widthBoundaryXl,
-  widthBoundaryMd,
+  widthBoundarySm,
+  widthBoundaryLg,
   width,
   isFixed,
   isFixedSmall,
@@ -53,7 +53,7 @@ const rightSidebar = ref<HTMLElement | null>(null)
 
 // home-overlay 是否显示
 const homeOverlayIsShow = computed(() => {
-  return leftIsExpand.value && width.value < widthBoundaryXl.value
+  return leftIsExpand.value && width.value < widthBoundaryLg.value
 })
 
 function setRightSidebarExpandStatus() {
@@ -85,7 +85,7 @@ const isCasinoGames = computed(() => route.name === 'casino-games')
     <div v-if="homeOverlayIsShow" class="home-overlay" @click="leftIsExpand = !leftIsExpand" />
     <AppFooterbar v-show="!isFixedSmall" />
     <div class="side-bar-outer">
-      <div v-if="width < widthBoundaryXl && width > widthBoundaryMd" class="small-size-padding" />
+      <div v-if="width < widthBoundaryLg && width > widthBoundarySm" class="small-size-padding" />
       <Transition name="bigslide-fade-left">
         <div
           v-if="leftIsExpand || isSwitching"
@@ -149,8 +149,8 @@ const isCasinoGames = computed(() => route.name === 'casino-games')
     <div
       v-if="rightIsExpand" ref="rightSidebar" class="right-sidebar" :class="{
         'width-none': rightContainerIs0,
-        'fixed': width < widthBoundaryMd,
-        'display-none': width < widthBoundaryMd,
+        'fixed': width < widthBoundarySm,
+        'display-none': width < widthBoundarySm,
       }"
     >
       右侧 {{ rightIsExpand }}

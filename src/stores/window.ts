@@ -19,18 +19,26 @@ export const useWindowStore = defineStore('window', () => {
         投注单
  */
 
-  // 宽度边界 1200
-  const widthBoundaryXl = ref(1200)
-  // 宽度边界 768
-  const widthBoundaryMd = ref(768)
   const { width } = useWindowSize()
-  const isFixed = computed(() => width.value < widthBoundaryXl.value)
-  const isFixedSmall = computed(() => width.value > widthBoundaryMd.value)
-  const isFullScreen = computed(() => width.value <= widthBoundaryMd.value)
+
+  // 宽度边界 638 xs
+  const widthBoundaryXs = ref(638)
+  // 宽度边界 768 sm
+  const widthBoundarySm = ref(768)
+  // 宽度边界 975 md
+  const widthBoundaryMd = ref(975)
+  // 宽度边界 1200 lg
+  const widthBoundaryLg = ref(1200)
+  // 宽度边界 1290 xl
+  const widthBoundaryXl = ref(1290)
+
+  const isFixed = computed(() => width.value < widthBoundaryLg.value)
+  const isFixedSmall = computed(() => width.value > widthBoundarySm.value)
+  const isFullScreen = computed(() => width.value <= widthBoundarySm.value)
 
   return {
-    widthBoundaryXl,
-    widthBoundaryMd,
+    widthBoundaryLg,
+    widthBoundarySm,
     width,
     isFixed,
     isFixedSmall,
