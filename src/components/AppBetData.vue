@@ -7,8 +7,8 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const {
-  isFixed,
-  isFixedSmall,
+  isLessThanLg,
+  isGreaterThanSm,
 } = storeToRefs(useWindowStore())
 
 // loading加载
@@ -212,9 +212,9 @@ const getTableColumns: ComputedRef<Column[]> = computed((): Column[] => {
 })
 
 const getScaleColumns: ComputedRef<Column[]> = computed((): Column[] => {
-  if (!isFixed.value)
+  if (!isLessThanLg.value)
     return getTableColumns.value
-  else if (isFixedSmall.value)
+  else if (isGreaterThanSm.value)
     return getTableColumns.value.filter(item => item.xl)
   else
     return getTableColumns.value.filter(item => item.md)

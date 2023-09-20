@@ -12,31 +12,31 @@ withDefaults(defineProps<Props>(), {
 const emit = defineEmits(['change'])
 
 const currency = ref([
-  { balance: '0.000000000', icon: 'coin-btc', text: 'BTC' },
-  { balance: '0.000000000', icon: 'coin-eth', text: 'ETH' },
-  { balance: '0.000000000', icon: 'coin-ltc', text: 'LTC' },
-  { balance: '0.000000000', icon: 'coin-usdt', text: 'USDT' },
-  { balance: '0.000000000', icon: 'coin-doge', text: 'DOGE' },
-  { balance: '0.000000000', icon: 'coin-bch', text: 'BCH' },
-  { balance: '0.000000000', icon: 'coin-xrp', text: 'XRP' },
-  { balance: '0.000000000', icon: 'coin-eos', text: 'EOS' },
-  { balance: '0.000000000', icon: 'coin-trx', text: 'TRX' },
-  { balance: '0.000000000', icon: 'coin-bnb', text: 'BNB' },
-  { balance: '0.000000000', icon: 'coin-usdc', text: 'USDC' },
-  { balance: '0.000000000', icon: 'coin-ape', text: 'APE' },
-  { balance: '0.000000000', icon: 'coin-busd', text: 'BUSD' },
-  { balance: '0.000000000', icon: 'coin-cro', text: 'CRO' },
-  { balance: '0.000000000', icon: 'coin-dai', text: 'DAI' },
-  { balance: '0.000000000', icon: 'coin-link', text: 'LINK' },
-  { balance: '0.000000000', icon: 'coin-sand', text: 'SAND' },
-  { balance: '0.000000000', icon: 'coin-shib', text: 'SHIB' },
-  { balance: '0.000000000', icon: 'coin-uni', text: 'UNI' },
-  { balance: '0.000000000', icon: 'coin-matic', text: 'MATIC' },
-  { balance: '0.00', icon: 'coin-eur', text: 'EUR' },
-  { balance: 'JP¥0.00', icon: 'coin-jpy', text: 'JPY' },
-  { balance: 'R$0.00', icon: 'coin-brl', text: 'BRL' },
-  { balance: 'CA$0.00', icon: 'coin-cad', text: 'CAD' },
-  { balance: '0.0', icon: 'coin-inr', text: 'INR' },
+  { balance: '0.000000000', icon: 'coin-btc', text: 0 },
+  { balance: '0.000000000', icon: 'coin-eth', text: 1 },
+  { balance: '0.000000000', icon: 'coin-ltc', text: 2 },
+  { balance: '0.000000000', icon: 'coin-usdt', text: 3 },
+  { balance: '0.000000000', icon: 'coin-doge', text: 4 },
+  { balance: '0.000000000', icon: 'coin-bch', text: 5 },
+  { balance: '0.000000000', icon: 'coin-xrp', text: 6 },
+  { balance: '0.000000000', icon: 'coin-eos', text: 7 },
+  { balance: '0.000000000', icon: 'coin-trx', text: 8 },
+  { balance: '0.000000000', icon: 'coin-bnb', text: 9 },
+  { balance: '0.000000000', icon: 'coin-usdc', text: 10 },
+  { balance: '0.000000000', icon: 'coin-ape', text: 11 },
+  { balance: '0.000000000', icon: 'coin-busd', text: 12 },
+  { balance: '0.000000000', icon: 'coin-cro', text: 13 },
+  { balance: '0.000000000', icon: 'coin-dai', text: 14 },
+  { balance: '0.000000000', icon: 'coin-link', text: 15 },
+  { balance: '0.000000000', icon: 'coin-sand', text: 16 },
+  { balance: '0.000000000', icon: 'coin-shib', text: 17 },
+  { balance: '0.000000000', icon: 'coin-uni', text: 18 },
+  { balance: '0.000000000', icon: 'coin-matic', text: 19 },
+  { balance: '0.00', icon: 'coin-eur', text: 20 },
+  { balance: 'JP¥0.00', icon: 'coin-jpy', text: 21 },
+  { balance: 'R$0.00', icon: 'coin-brl', text: 22 },
+  { balance: 'CA$0.00', icon: 'coin-cad', text: 23 },
+  { balance: '0.0', icon: 'coin-inr', text: 24 },
 ])
 // 搜索内容
 const searchValue = ref('')
@@ -81,9 +81,8 @@ const { openWalletDialog } = useWalletDialog()
       <div class="center">
         <div class="wallet" :class="{ 'wallet-only': !walletBtn }">
           <BaseButton type="text" size="md">
-            <span v-if="showBalance" class="wallet-text">{{ activeBalance.balance }}</span>
-            <BaseIcon class="coin" :name="activeBalance.icon" />
-            <span v-if="!showBalance" class="wallet-text" style="padding-left: 5px;">{{ activeBalance.text }}</span>
+            <span v-if="showBalance" class="wallet-text" style="padding-right: 5px;">{{ activeBalance.balance }}</span>
+            <AppCurrencyIcon class="wallet-text" :show-name="!showBalance" :currency-type="activeBalance.text" />
             <BaseIcon class="arrow" :class="{ 'arrow-up': isMenuShown }" name="uni-arrow-down" />
           </BaseButton>
         </div>
@@ -101,8 +100,7 @@ const { openWalletDialog } = useWalletDialog()
               <div v-if="showBalance" class="balance-num">
                 {{ item.balance }}
               </div>
-              <BaseIcon class="coin" :name="item.icon" />
-              <span>{{ item.text }}</span>
+              <AppCurrencyIcon show-name :currency-type="item.text" />
             </div>
             <div v-show="!getSearchBalance.length" class="balance-not">
               无法使用货币
@@ -127,11 +125,6 @@ const { openWalletDialog } = useWalletDialog()
     background-color: var(--tg-secondary-dark);
     border-radius: var(--tg-radius-sm) 0px 0px var(--tg-radius-sm);
     box-shadow: 0px 1px 2px 0px #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.1)} inset, 0px -1px 2px 0px #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.1)} inset;
-
-    .coin {
-      font-size: var(--tg-font-size-default);
-      margin-left: 5px;
-    }
 
     .arrow {
       font-size: 10px;
@@ -204,10 +197,6 @@ const { openWalletDialog } = useWalletDialog()
         width: 14ch;
       }
 
-      .coin {
-        font-size: var(--tg-font-size-md);
-        margin-right: 5px;
-      }
     }
     .balance-not{
       text-align: center;

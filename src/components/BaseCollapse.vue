@@ -36,7 +36,7 @@ function handleClickHeader() {
       </div>
     </div>
     <div class="accordion-content" :style="`height:${isShow ? 'auto' : 0};`">
-      <div class="content-line" />
+      <BaseDivider />
       <div class="content-slot">
         <slot name="content" />
       </div>

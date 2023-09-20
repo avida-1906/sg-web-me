@@ -23,7 +23,9 @@ const pageInfo = reactive({
 })
 
 const sliderOuter = ref()
-const outerWidth = ref(0)
+
+const { appContentWidth } = storeToRefs(useWindowStore())
+const outerWidth = computed(() => appContentWidth.value) // ref(0)
 
 const gallery = ref()
 const galleryClass = ref('')
@@ -48,21 +50,21 @@ function prevPage() {
     x.value = 0
 }
 
-function setOuterWidth() {
-  const { width } = sliderOuter.value.getBoundingClientRect()
-  outerWidth.value = width
-}
+// function setOuterWidth() {
+//   const { width } = sliderOuter.value.getBoundingClientRect()
+//   outerWidth.value = width
+// }
 
-onMounted(() => {
-  window.addEventListener('resize', setOuterWidth)
-  nextTick(() => {
-    setOuterWidth()
-  })
-})
+// onMounted(() => {
+//   window.addEventListener('resize', setOuterWidth)
+//   nextTick(() => {
+//     setOuterWidth()
+//   })
+// })
 
-onUnmounted(() => {
-  window.removeEventListener('resize', setOuterWidth)
-})
+// onUnmounted(() => {
+//   window.removeEventListener('resize', setOuterWidth)
+// })
 
 watchEffect(() => {
   if (outerWidth.value >= 1150) {

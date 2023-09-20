@@ -4,7 +4,7 @@ const props = defineProps<{
 }>()
 const emit = defineEmits(['changeTheatre'])
 const { t } = useI18n()
-const { isFullScreen } = storeToRefs(useWindowStore())
+const { isMobile } = storeToRefs(useWindowStore())
 
 const gameUrl = ref('https://static-live.hacksawgaming.com/1263/1.11.3/index.html?language=zh&channel=desktop&gameid=1263&mode=1&token=ce6f762e-a59b-417e-83aa-9f72d335a35f&lobbyurl=https%3A%2F%2Fstake.com&currency=CAD&partner=stake&env=https://rgs-cu.hacksawgaming.com/api')
 const gameImgUrl = ref('https://mediumrare.imgix.net/33cd5a34c3937da326652a3beb44fe9c3680118c363a060ca5670847595561a5?&dpr=2&format=auto&auto=format&q=70')
@@ -49,7 +49,7 @@ function onSwitchRealMoneyMode(v: boolean) {
   setShowFrameOverlayFalse()
 
   // H5模式直接打开游戏
-  if (isFullScreen.value)
+  if (isMobile.value)
     location.href = gameUrl.value
 }
 
@@ -76,7 +76,7 @@ function onClickFavorite() {
 
 <template>
   <!-- H5模式 -->
-  <div v-if="isFullScreen" class="mobile-iframe">
+  <div v-if="isMobile" class="mobile-iframe">
     <div class="mobile-header">
       <div class="img-wrap">
         <div class="img">
@@ -129,7 +129,7 @@ function onClickFavorite() {
         <template #popper>
           <div class="scroll-y popper popper-mobile">
             <div
-              v-for="c, i in currencyList" :key="i" v-close-popper class="currency-types popper-option"
+              v-for="c, i in currencyList" :key="i" v-close-popper class="popper-option currency-types"
               @click="onChooseCurrency(c.text)"
             >
               <div>

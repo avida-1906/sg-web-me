@@ -1,7 +1,4 @@
 <script setup lang='ts'>
-// const { isFullScreen } = storeToRefs(useWindowStore())
-// const router = useRouter()
-// const { t } = useI18n()
 // tab值
 const activeTab: Ref<string> = ref('deposit')
 const tabOptions = [
@@ -9,11 +6,6 @@ const tabOptions = [
   { value: 'withdraw', label: '提款' },
 ]
 
-// interface Currency {
-//   balance: string
-//   icon: string
-//   text: string
-// }
 const activeCurrency = ref()
 
 function changeCurrency(item: any) {
