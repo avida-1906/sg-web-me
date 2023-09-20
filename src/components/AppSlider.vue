@@ -128,7 +128,7 @@ watchEffect(() => {
       <div v-if="showViewAll || $slots.viewAll" class="slide see-all" :class="{ faded: scrollLeftItemsCount + pageInfo.pageSize < data.length + 1 }">
         <div class="item">
           <slot name="viewAll">
-            <img src="img/seeAll-en.avif">
+            <img src="img/casino/seeAll-en.avif">
             <div class="txt">
               <span>{{ $t('view_all') }}</span>
             </div>
