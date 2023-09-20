@@ -9,12 +9,15 @@
         <span class="txt">筛选依据</span>
       </div>
       <div>
-        <BaseButton size="md">
-          <div class="btn-arrow-down">
-            <span>游戏提供商</span>
-            <BaseIcon name="uni-arrow-down" />
-          </div>
-        </BaseButton>
+        <BaseCheckPop>
+          <BaseButton size="md">
+            <div class="btn-arrow-down">
+              <span>游戏提供商</span>
+              <BaseBadge :count="2" />
+              <BaseIcon name="uni-arrow-down" />
+            </div>
+          </BaseButton>
+        </BaseCheckPop>
       </div>
     </div>
     <div class="flex-center-bet right">
@@ -23,12 +26,14 @@
         <span class="txt">排序依据</span>
       </div>
       <div>
-        <BaseButton size="md">
-          <div class="btn-arrow-down">
-            <span>热门</span>
-            <BaseIcon name="uni-arrow-down" />
-          </div>
-        </BaseButton>
+        <BaseGameSortPop>
+          <BaseButton size="md">
+            <div class="btn-arrow-down">
+              <span>热门</span>
+              <BaseIcon name="uni-arrow-down" />
+            </div>
+          </BaseButton>
+        </BaseGameSortPop>
       </div>
     </div>
   </section>

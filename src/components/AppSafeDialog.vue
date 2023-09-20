@@ -34,7 +34,7 @@ const usernameErrorMsg = ref('')
       </div>
       <div class="amount">
         <div class="top">
-          <span class="label">金额 *</span>
+          <span class="label">金额</span>
           <span class="us">US$0.00</span>
         </div>
         <BaseInput v-model="username" type="number" placeholder="0.00000000" :msg="usernameErrorMsg">
@@ -115,6 +115,7 @@ const usernameErrorMsg = ref('')
     .top {
       display: flex;
       justify-content: space-between;
+      color: var(--tg-text-lightgrey);
       font-weight: var(--tg-font-weight-semibold);
       margin-bottom: var(--tg-spacing-4);
       .us {

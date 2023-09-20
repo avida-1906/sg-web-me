@@ -33,27 +33,27 @@ interface Column {
 const getTabOptions = computed(() => {
   switch (props.mode) {
     case 'casino': return [
-      { value: '1', label: '我的投注' },
-      { value: '2', label: '所有投注' },
-      { value: '3', label: '风云榜' },
-      { value: '4', label: '竞赛排行榜' },
+      { value: 'casino-mine', label: '我的投注' },
+      { value: 'casino-all', label: '所有投注' },
+      { value: 'casino-fy', label: '风云榜' },
+      { value: 'ranking-list', label: '竞赛排行榜' },
     ]
     case 'sports':return [
       { value: 'sports-all', label: '所有投注' },
       { value: 'sports-fy', label: '风云榜' },
-      { value: '4', label: '竞赛排行榜' },
+      { value: 'ranking-list', label: '竞赛排行榜' },
     ]
     case 'home': return [
-      { value: '2', label: '娱乐城投注' },
+      { value: 'casino-all', label: '娱乐城投注' },
       { value: 'sports-all', label: '体育投注' },
-      { value: '4', label: '竞赛排行榜' },
+      { value: 'ranking-list', label: '竞赛排行榜' },
     ]
   }
 })
 // 获取表格head
 const getTableColumns: ComputedRef<Column[]> = computed((): Column[] => {
   switch (activeTab.value) {
-    case '1': return [
+    case 'casino-mine': return [
       {
         title: '游戏',
         // width: 100,
@@ -89,8 +89,8 @@ const getTableColumns: ComputedRef<Column[]> = computed((): Column[] => {
         md: true,
       },
     ]
-    case '2':
-    case '3': return [
+    case 'casino-all':
+    case 'casino-fy': return [
       {
         title: '游戏',
         // width: 100,
@@ -133,7 +133,7 @@ const getTableColumns: ComputedRef<Column[]> = computed((): Column[] => {
         md: true,
       },
     ]
-    case '4': return [
+    case 'ranking-list': return [
       {
         title: '排名',
         // width: 100,
@@ -298,7 +298,7 @@ function changeHidden() {
         <BaseSelect v-model="selectSize" :options="selectOptions" small />
       </div>
     </div>
-    <div v-show="activeTab === '4'" class="ranking-time">
+    <div v-show="activeTab === 'ranking-list'" class="ranking-time">
       <div class="center cursor-pointer">
         <BaseIcon name="spt-competition" />
         <span>$100,000 竞赛 – 24 小时</span>
