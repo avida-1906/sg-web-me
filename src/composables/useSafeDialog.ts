@@ -4,7 +4,7 @@ export function useSafeDialog() {
   const { t } = useI18n()
 
   const { openDialog: openSafeDialog, closeDialog: closeSafeDialog } = useDialog({
-    title: t('保险库'),
+    title: t('safe'),
     icon: 'navbar-cart',
     default: () => h(AppSafeDialog),
   })

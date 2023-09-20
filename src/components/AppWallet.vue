@@ -81,8 +81,9 @@ const { openWalletDialog } = useWalletDialog()
       <div class="center">
         <div class="wallet" :class="{ 'wallet-only': !walletBtn }">
           <BaseButton type="text" size="md">
-            <span v-if="showBalance" class="wallet-number">{{ activeBalance.balance }}</span>
+            <span v-if="showBalance" class="wallet-text">{{ activeBalance.balance }}</span>
             <BaseIcon class="coin" :name="activeBalance.icon" />
+            <span v-if="!showBalance" class="wallet-text" style="padding-left: 5px;">{{ activeBalance.text }}</span>
             <BaseIcon class="arrow" :class="{ 'arrow-up': isMenuShown }" name="uni-arrow-down" />
           </BaseButton>
         </div>
@@ -93,7 +94,7 @@ const { openWalletDialog } = useWalletDialog()
       <template #popper="{ hide }">
         <div class="dropdown-popper">
           <div class="popper-top">
-            <BaseSearch v-model="searchValue" class="top-search" :clearable="searchValue?.length > 0" :white-style="true" place-holder="搜索货币" />
+            <BaseSearch v-model="searchValue" :style="{ 'max-width': showBalance ? '180px' : '140px' }" class="top-search" :clearable="searchValue?.length > 0" :white-style="true" :place-holder="showBalance ? '搜索货币' : '搜索'" />
           </div>
           <div class="scroll-y popper-content" :class="{ 'justify-content': !showBalance }">
             <div v-for="item of getSearchBalance" :key="item.text" class="content-row" @click.stop="selectCurrency(item, hide)">
@@ -146,7 +147,7 @@ const { openWalletDialog } = useWalletDialog()
   .wallet-only{
     border-radius: var(--tg-radius-sm);
   }
-  .wallet-number {
+  .wallet-text {
     line-height: 1;
     color: var(--tg-text-white);
     font-size: var(--tg-font-size-default);
@@ -174,7 +175,7 @@ const { openWalletDialog } = useWalletDialog()
     padding: 8px 0 12px;
 
     .top-search {
-      width: 80%;
+      width: 85%;
       max-width: 180px;
       margin: auto;
     }
