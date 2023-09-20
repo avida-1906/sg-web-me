@@ -31,6 +31,7 @@ const itemWidth = ref(0)
 const pageWidth = computed(() => pageInfo.pageSize * itemWidth.value * outerWidth.value)
 
 const { x } = useScroll(gallery) // , isScrolling, arrivedState, directions
+const { appContentWidth } = storeToRefs(useWindowStore())
 
 const scrollLeftItemsCount = computed(() => {
   return Math.round(x.value / (itemWidth.value * outerWidth.value))
@@ -104,7 +105,7 @@ watchEffect(() => {
       <div class="title">
         <a>
           <BaseIcon :name="icon" />
-          <h3>{{ title }}</h3>
+          <h3>{{ title }}{{ appContentWidth }}</h3>
         </a>
       </div>
       <div class="arrows">

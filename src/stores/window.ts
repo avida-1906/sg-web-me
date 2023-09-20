@@ -3,6 +3,9 @@ import { acceptHMRUpdate, defineStore } from 'pinia'
 export const useWindowStore = defineStore('window', () => {
   const { width } = useWindowSize()
 
+  /** 内容区域宽度 */
+  const appContentWidth = ref(0)
+
   /** 宽度边界 638 xs */
   const widthBoundaryXs = ref(638)
   /** 宽度边界 768 sm */
@@ -34,6 +37,10 @@ export const useWindowStore = defineStore('window', () => {
 
   const isMobile = computed(() => width.value <= widthBoundarySm.value) // isFullScreen
 
+  const setAppContentWidth = (width: number) => {
+    appContentWidth.value = width
+  }
+
   return {
     widthBoundaryXs,
     widthBoundarySm,
@@ -57,6 +64,8 @@ export const useWindowStore = defineStore('window', () => {
     isGreaterThanLg,
     isGreaterThanXl,
     isMobile,
+    appContentWidth,
+    setAppContentWidth,
   }
 })
 

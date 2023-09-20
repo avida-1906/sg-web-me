@@ -1,6 +1,17 @@
+<script lang="ts" setup>
+const homeContainerRef = ref<HTMLElement | null>(null)
+
+const windowStore = useWindowStore()
+const { width } = useElementSize(homeContainerRef)
+
+watch(() => width.value, (newWidth) => {
+  windowStore.setAppContentWidth(newWidth)
+})
+</script>
+
 <template>
   <section class="page-content">
-    <div class="home-container margin-auto">
+    <div ref="homeContainerRef" class="home-container margin-auto">
       <slot />
     </div>
   </section>
