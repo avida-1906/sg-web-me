@@ -14,7 +14,8 @@ const { value: amount, setValue: setAmount, errorMessage: amountMsg } = useField
   return ''
 })
 function onAmountInput() {
-  setAmount(application.numberToCurrency(+amount.value))
+  if (amount.value)
+    setAmount(application.numberToCurrency(+amount.value))
 }
 
 const currentNetwork = ref('1')

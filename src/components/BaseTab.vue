@@ -40,6 +40,12 @@ function onClick(v: string | number) {
   </div>
 </template>
 
+<style>
+:root{
+  --tg-tab-style-wrap-bg-color:var(--tg-secondary-dark);
+}
+</style>
+
 <style lang='scss' scoped>
 .base-tab {
   display: flex;
@@ -48,7 +54,7 @@ function onClick(v: string | number) {
 
   .tab-wrap {
     padding: var(--tg-spacing-5) var(--tg-spacing-6);
-    background-color: var(--tg-secondary-dark);
+    background-color: var(--tg-tab-style-wrap-bg-color);
     flex: 1;
     display: flex;
   }
