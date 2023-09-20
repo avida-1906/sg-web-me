@@ -6,6 +6,9 @@ interface Props {
 withDefaults(defineProps<Props>(), {
   walletBtn: false,
 })
+
+const emit = defineEmits(['change'])
+
 const currency = ref([
   { balance: '0.000000000', icon: 'coin-btc', text: 'BTC' },
   { balance: '0.000000000', icon: 'coin-eth', text: 'ETH' },
@@ -50,6 +53,7 @@ function dropShow() {
 function selectCurrency(item: any, hide: () => void) {
   hide()
   activeBalance.value = item
+  emit('change', item)
 }
 // 搜索币种
 const getSearchBalance = computed(() => {
@@ -62,7 +66,9 @@ const getSearchBalance = computed(() => {
     return currency.value
   }
 })
-
+onMounted(() => {
+  emit('change', currency.value[0])
+})
 const { openWalletDialog } = useWalletDialog()
 </script>
 

@@ -1,7 +1,7 @@
 <script setup lang='ts'>
 interface Props {
-  total: number
-  percentage: number
+  total?: number
+  percentage?: number
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -9,37 +9,23 @@ const props = withDefaults(defineProps<Props>(), {
   percentage: 0,
 })
 
-const componentStyle = computed(() => {
-  return {
-    width: `${((props.percentage / props.total) * 100).toFixed(2)}%` || '100%',
-  }
+const componentPercent = computed(() => {
+  return Number(((props.percentage / props.total) * 100).toFixed(2))
 })
 </script>
 
 <template>
   <div class="app-percentage">
-    <div class="percentage">
-      <div class="percentage-bar" :style="componentStyle" />
-    </div>
+    <BaseProgress class="app-percentage-bar" :width="180" :percent="componentPercent" :stroke-width="10" :show-info="false" />
     <span class="text">正显示 {{ props.total }} 款游戏中的 {{ props.percentage }} 个</span>
   </div>
 </template>
 
 <style lang='scss' scoped>
 .app-percentage {
-  width: var(--tg-sidebar-top-height-lg);
-  margin: 0 auto;
   text-align: center;
-  .percentage {
-    margin: var(--tg-spacing-button-padding-vertical-lg) auto;
-    height: var(--tg-border-width-sm);
-    gap: 0;
-    background-color: var(--tg-secondary-main);
-    &-bar {
-      height: 100%;
-      border-radius: var(--tg-radius-xl);
-      background-color: var(--tg-sub-blue);
-    }
+  &-bar {
+    margin: 0 auto;
   }
   .text {
     color: var(--tg-text-lightgrey);

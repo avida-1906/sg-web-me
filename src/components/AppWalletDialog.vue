@@ -15,7 +15,7 @@ const isBuy = computed(() => currentTab.value === 'buy')
 <template>
   <div class="app-wallet-dialog">
     <div class="content">
-      <BaseTab v-model="currentTab" shape="square" :list="tabList" />
+      <BaseTab v-model="currentTab" :list="tabList" />
       <AppDeposit v-if="isDeposit" />
       <AppWithdraw v-else-if="isWithdraw" />
       <AppBuyCryptocurrency v-else-if="isBuy" />

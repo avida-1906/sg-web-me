@@ -64,8 +64,6 @@ export default defineConfig(({ mode }) => {
             'lodash-es': ['find', 'debounce', 'filter', 'map', 'sortBy', 'gt', 'omit', 'eq', 'split', 'findKey', 'throttle', 'padStart', 'toNumber', 'random', 'uniqWith', 'cloneDeep', 'omitBy', 'isUndefined', 'head', 'findIndex', 'isNull', 'isNaN', 'isNumber', 'last', 'isInteger', 'isNil', 'merge', 'get', 'isArray'],
             'big.js': ['Big'],
             'vee-validate': ['useField'], // https://vee-validate.logaretm.com/v4/api/use-field/
-            '@vee-validate/zod': ['toTypedSchema'],
-            'zod': ['z'], // https://github.com/colinhacks/zod/blob/master/README_ZH.md
             'dayjs': [['default', 'dayjs']],
             'axios': [[
               'default', 'axios',

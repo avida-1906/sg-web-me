@@ -1114,6 +1114,7 @@ function copyAppPercentageCode() {
       <AppDemoCard title="AppPercentage" style="text-align:left">
         <AppPercentage :total="45" :percentage="39" />
         <AppPercentage :total="80" :percentage="40" />
+        <AppPercentage :total="100" :percentage="25" />
         <div class="center">
           <BaseButton @click="copyAppPercentageCode">
             copy

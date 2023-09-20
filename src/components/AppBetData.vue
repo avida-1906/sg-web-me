@@ -283,9 +283,7 @@ function changeHidden() {
 <template>
   <div class="app-bet-data">
     <div class="bet-data-head">
-      <div style="max-width: 420px;">
-        <BaseTab v-model="activeTab" :list="getTabOptions" />
-      </div>
+      <BaseTab v-model="activeTab" :list="getTabOptions" />
       <div class="select-ranking center">
         <VMenu placement="top">
           <div class="switch-hidden" :style="{ '--tg-icon-color': isHidden ? '#fff' : '' }" @click.stop="changeHidden">
