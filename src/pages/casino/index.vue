@@ -28,7 +28,7 @@ const gameProviders = [
       <AppGameSearch game-type="2" />
     </div>
     <div class="mt-24">
-      <BaseTab v-model="gameType" :list="tabList" />
+      <BaseTab v-model="gameType" :list="tabList" :center="false" />
     </div>
     <div class="content-wrapper">
       <AppSlider api="" icon="chess-original-game" :title="$t('casino_origin_game')" :data="gameList" />
