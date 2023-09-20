@@ -20,7 +20,6 @@
   "dependencies": {
     "@unhead/vue": "^1.1.30",
     "@unocss/reset": "^0.53.5",
-    "@vee-validate/zod": "^4.11.3",
     "@vueuse/core": "^10.2.1",
     "@vueuse/head": "^1.1.26",
     "axios": "^1.5.0",
