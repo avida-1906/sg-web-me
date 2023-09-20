@@ -86,9 +86,6 @@ function scrollRight() {
         top: 0;
         width: 100%;
         height: 100%;
-        // display: flex;
-        // flex-direction: column;
-        // flex-wrap: nowrap;
         padding: 20px;
         div+div{
           margin-top: 10px;

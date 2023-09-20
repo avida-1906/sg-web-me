@@ -66,7 +66,7 @@
         <div>小数式</div>
       </div>
     </div>
-    <BaseDivider title-placement="center" />
+    <BaseDivider />
     <div class="footer-support">
       <BaseAspectRatio v-for="i in 10" :key="i" ratio="116/35" width="133.33px" style="margin: 0 auto;">
         <svg xmlns="http://www.w3.org/2000/svg" style="color: #557086;" viewBox="0 0 1000 300">
@@ -84,7 +84,7 @@
         </svg>
       </BaseAspectRatio>
     </div>
-    <BaseDivider title-placement="center" />
+    <BaseDivider />
     <div class="footer-sponsor">
       <BaseAspectRatio v-for="i in 4" :key="i" ratio="116/35" width="133.33px" style="margin: 0 auto;">
         <svg xmlns="http://www.w3.org/2000/svg" style="color: #557086;" viewBox="0 0 1000 300">
@@ -102,7 +102,7 @@
         </svg>
       </BaseAspectRatio>
     </div>
-    <BaseDivider title-placement="center" />
+    <BaseDivider />
     <div class="footer-copyright">
       <BaseAspectRatio ratio="2/1" width="67px">
         <BaseLogo mode="svg" svg-name="app-logo" />
