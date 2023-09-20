@@ -45,7 +45,6 @@ function connectMqtt() {
 <template>
   <div class="home-index">
     <AppBanner />
-    <AppGroupFilter />
     <div>
       {{ t('hello') }}
     </div>

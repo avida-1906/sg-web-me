@@ -16,14 +16,19 @@
         包含聊天室
         投注单
  */
+const windowStore = useWindowStore()
 const {
-  widthBoundaryXl,
-  widthBoundaryMd,
-  width,
-  isFixed,
-  isFixedSmall,
-  isFullScreen,
-} = storeToRefs(useWindowStore())
+  isLessThanSm,
+  isLessThanLg,
+  isGreaterThanSm,
+  isMobile,
+} = storeToRefs(windowStore)
+// 内容区宽度
+const homeContainerRef = ref<HTMLElement | null>(null)
+const { width } = useElementSize(homeContainerRef)
+watch(() => width.value, (newWidth) => {
+  windowStore.setAppContentWidth(newWidth)
+})
 
 // 左侧是否展开
 const leftIsExpand = useDebouncedRef({ value: false, delay: 100, beforeTrigger, afterTrigger })
@@ -53,7 +58,7 @@ const rightSidebar = ref<HTMLElement | null>(null)
 
 // home-overlay 是否显示
 const homeOverlayIsShow = computed(() => {
-  return leftIsExpand.value && width.value < widthBoundaryXl.value
+  return leftIsExpand.value && isLessThanLg.value
 })
 
 function setRightSidebarExpandStatus() {
@@ -83,18 +88,18 @@ const isCasinoGames = computed(() => route.name === 'casino-games')
 <template>
   <main class="wrap" :class="{ 'is-switching': isSwitching }">
     <div v-if="homeOverlayIsShow" class="home-overlay" @click="leftIsExpand = !leftIsExpand" />
-    <AppFooterbar v-show="!isFixedSmall" />
+    <AppFooterbar v-show="!isGreaterThanSm" />
     <div class="side-bar-outer">
-      <div v-if="width < widthBoundaryXl && width > widthBoundaryMd" class="small-size-padding" />
+      <div v-if="isLessThanLg && isGreaterThanSm" class="small-size-padding" />
       <Transition name="bigslide-fade-left">
         <div
           v-if="leftIsExpand || isSwitching"
           class="big-side left-sidebar" :style="{
             '--width': 'var(--tg-sidebar-width-lg)',
           }" :class="{
-            'fixed-small': isFixedSmall,
-            'fixed': isFixed,
-            'full-screen': isFullScreen,
+            'fixed-small': isGreaterThanSm,
+            'fixed': isLessThanLg,
+            'full-screen': isMobile,
           }"
         >
           <AppLeftSidebar v-model="leftIsExpand" :is-switching="isSwitching" :switch-to="switchTo" />
@@ -103,13 +108,13 @@ const isCasinoGames = computed(() => route.name === 'casino-games')
 
       <Transition name="smallslide-fade-left">
         <div
-          v-if="!isFullScreen && (!leftIsExpand || isSwitching)"
+          v-if="!isMobile && (!leftIsExpand || isSwitching)"
           class="left-sidebar small-side" :style="{
             '--width': 'var(--tg-sidebar-width-sm)',
           }" :class="{
-            'fixed-small': isFixedSmall,
-            'fixed': isFixed,
-            'full-screen': isFullScreen,
+            'fixed-small': isGreaterThanSm,
+            'fixed': isLessThanLg,
+            'full-screen': isMobile,
           }"
         >
           <AppLeftSidebarTiny v-model="leftIsExpand" :is-switching="isSwitching" :switch-to="switchTo" />
@@ -119,7 +124,7 @@ const isCasinoGames = computed(() => route.name === 'casino-games')
 
     <div class="main-content">
       <header class="navigation">
-        <AppContent>
+        <AppContent ref="homeContainerRef">
           <AppHeader />
           <!-- <div class="group">
             <div class="container">
@@ -149,8 +154,8 @@ const isCasinoGames = computed(() => route.name === 'casino-games')
     <div
       v-if="rightIsExpand" ref="rightSidebar" class="right-sidebar" :class="{
         'width-none': rightContainerIs0,
-        'fixed': width < widthBoundaryMd,
-        'display-none': width < widthBoundaryMd,
+        'fixed': isLessThanSm,
+        'display-none': isLessThanSm,
       }"
     >
       右侧 {{ rightIsExpand }}
@@ -166,7 +171,7 @@ const isCasinoGames = computed(() => route.name === 'casino-games')
 
   .side-bar-outer {
     position: relative;
-    z-index: var(--tg-z-index-top);
+    z-index: var(--tg-z-index-50);
     display: flex;
     flex-direction: row;
   }

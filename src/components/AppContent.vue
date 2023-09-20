@@ -1,3 +1,7 @@
+<script lang="ts" setup>
+// 123
+</script>
+
 <template>
   <section class="page-content">
     <div class="home-container margin-auto">

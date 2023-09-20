@@ -1,20 +1,26 @@
 <script lang="ts" setup>
+const groupFilterOuter = ref()
+const { appContentWidth } = storeToRefs(useWindowStore())
+const outerWidth = computed(() => appContentWidth.value)
 </script>
 
 <template>
-  <section class="tg-app-group-filter flex-center-bet">
+  <section ref="groupFilterOuter" class="tg-app-group-filter flex-center-bet" :class="{ 'less-than-700': outerWidth < 700 }">
     <div class="flex-center-bet left">
       <div class="flex-center-bet title">
         <BaseIcon name="uni-bars" />
         <span class="txt">筛选依据</span>
       </div>
       <div>
-        <BaseButton size="md">
-          <div class="btn-arrow-down">
-            <span>游戏提供商</span>
-            <BaseIcon name="uni-arrow-down" />
-          </div>
-        </BaseButton>
+        <BaseCheckPop>
+          <BaseButton size="md">
+            <div class="btn-arrow-down">
+              <span>游戏提供商</span>
+              <BaseBadge :count="2" />
+              <BaseIcon name="uni-arrow-down" />
+            </div>
+          </BaseButton>
+        </BaseCheckPop>
       </div>
     </div>
     <div class="flex-center-bet right">
@@ -23,12 +29,14 @@
         <span class="txt">排序依据</span>
       </div>
       <div>
-        <BaseButton size="md">
-          <div class="btn-arrow-down">
-            <span>热门</span>
-            <BaseIcon name="uni-arrow-down" />
-          </div>
-        </BaseButton>
+        <BaseGameSortPop>
+          <BaseButton size="md">
+            <div class="btn-arrow-down">
+              <span>热门</span>
+              <BaseIcon name="uni-arrow-down" />
+            </div>
+          </BaseButton>
+        </BaseGameSortPop>
       </div>
     </div>
   </section>
@@ -51,6 +59,11 @@
 
     .title {
       gap: var(--tg-spacing-input-padding-vertical);
+    }
+  }
+  &.less-than-700 {
+    .title {
+      display: none;
     }
   }
 }

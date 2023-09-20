@@ -32,7 +32,7 @@ const networkList = [
     <div class="currency">
       <div class="c-option">
         <span class="semibold">{{ t('currency') }}</span>
-        <AppWallet :wallet-btn="false" :show-balance="false" />
+        <AppWallet :wallet-btn="false" />
       </div>
       <div class="c-option">
         <span class="semibold">{{ t('network') }}</span>

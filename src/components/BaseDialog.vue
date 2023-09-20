@@ -1,15 +1,17 @@
 <script lang="ts" setup name="base-dialog">
 interface Props {
   show: boolean
-  title: string
+  title?: string
   icon?: string
   teleport?: boolean
   closeOnClickOverlay?: boolean
   funcCall?: boolean
+  showHeader?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
   closeOnClickOverlay: true,
+  showHeader: true,
 })
 
 const emit = defineEmits(['update:show', 'close'])
@@ -52,7 +54,7 @@ provide('closeDialog', close)
     <section v-if="show || _show" class="tg-base-dialog">
       <div class="overlay" @click="closeOnClickOverlay && close()" />
       <div class="card">
-        <div class="header">
+        <div v-if="showHeader" class="header">
           <h2>
             <BaseIcon v-if="icon" :name="icon" />
             <span>{{ title }}</span>
@@ -65,6 +67,9 @@ provide('closeDialog', close)
           <div class="modal-content">
             <slot />
           </div>
+        </div>
+        <div v-if="!showHeader" class="close-only" @click="close">
+          <BaseIcon name="uni-close" />
         </div>
       </div>
     </section>
@@ -88,7 +93,7 @@ provide('closeDialog', close)
     top: 0;
     bottom: 0;
     right: 0;
-    z-index: var(--tg-z-index-10);
+    z-index: var(--tg-z-index-top);
     padding: var(--tg-spacing-12);
     display: flex;
     align-items: center;
@@ -143,6 +148,23 @@ provide('closeDialog', close)
     .close {
       cursor: pointer;
       font-size: var(--tg-font-size-md);
+      &:hover {
+        --tg-icon-color: var(--tg-text-white);
+      }
+    }
+    .close-only {
+      position: absolute;
+      right: 0;
+      top: 0;
+      z-index: 10;
+      padding: var(--tg-spacing-button-padding-horizontal-sm) var(--tg-spacing-button-padding-vertical-lg);
+      font-size: var(--tg-font-size-base);
+      cursor: pointer;
+      transition: all 0.2s;
+      color: var(--tg-secondary-light);
+      &:hover {
+        --tg-icon-color: var(--tg-text-white);
+      }
     }
   }
 </style>

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const { isFullScreen, isFixed, width } = storeToRefs(useWindowStore())
+const { isMobile, isLessThanLg, width } = storeToRefs(useWindowStore())
 const { t } = useI18n()
 const userMenu = ref([
   { id: 1, icon: 'navbar-wallet', title: t('wallet'), name: 'wallet' },
@@ -23,17 +23,22 @@ const { bool: showSearchBar, setTrue } = useBoolean(false)
 
 // Dialog
 const { openWalletDialog } = useWalletDialog()
+const { openLoginDialog } = useLoginDialog()
 const { openVipDialog } = useVipDialog()
 const { openStatisticsDialog } = useStatisticsDialog()
 const { openSafeDialog } = useSafeDialog()
 function handleClickMenuItem(item: { name: string }) {
   const { name } = item
+  console.log(name)
   switch (name) {
     case 'wallet':
       openWalletDialog()
       break
     case 'safe':
       openSafeDialog()
+      break
+    case 'logout':
+      openLoginDialog()
       break
     case 'vip':
       openVipDialog()
@@ -52,9 +57,9 @@ function handleClickMenuItem(item: { name: string }) {
     <BaseLogo :use-small="width < 300" />
     <AppWallet :wallet-btn="true" />
     <div class="header-right">
-      <BaseButton v-show="!isFullScreen" type="text" class="search-btn" @click="setTrue">
+      <BaseButton v-show="!isMobile" type="text" class="search-btn" @click="setTrue">
         <BaseIcon class="icon-search" name="header-search" />
-        <span v-show="!isFixed">搜索</span>
+        <span v-show="!isLessThanLg">搜索</span>
       </BaseButton>
       <VDropdown :distance="6">
         <BaseButton type="text">
@@ -75,7 +80,7 @@ function handleClickMenuItem(item: { name: string }) {
         <BaseIcon class="icon-size" name="navbar-notice" />
       </BaseButton>
       <VDropdown :distance="6">
-        <BaseButton v-show="!isFullScreen" type="text">
+        <BaseButton v-show="!isMobile" type="text">
           <BaseIcon class="icon-size" name="header-news" />
         </BaseButton>
         <template #popper>
@@ -91,7 +96,7 @@ function handleClickMenuItem(item: { name: string }) {
       </VDropdown>
     </div>
 
-    <AppGlobalSearch v-if="showSearchBar && !isFullScreen" @close="() => showSearchBar = false" />
+    <AppGlobalSearch v-if="showSearchBar && !isMobile" @close="() => showSearchBar = false" />
   </div>
 </template>
 
