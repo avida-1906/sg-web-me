@@ -77,9 +77,9 @@ withDefaults(defineProps<Props>(), {
       color: var(--tg-text-lightgrey);
       font-weight: var(--tg-font-weight-normal);
       text-align: left;
-      background: var(--tg-primary-main);
+      // background: var(--tg-primary-main);
       border: none;
-      transition: background .3s ease;
+      // transition: background .3s ease;
     }
 
     .m-body {
@@ -99,12 +99,15 @@ withDefaults(defineProps<Props>(), {
 
       //   }
       // }
+      .m-tr:nth-child(odd){
+        background: var(--tg-secondary-grey);
+      }
     }
 
     .m-tr {
       border: none;
-      background-color: var(--tg-primary-main);
-      transition: background-color .3s;
+      // background-color: var(--tg-primary-main);
+      // transition: background-color .3s;
       .m-td {
         padding: 12px 20px;
         border: none;
@@ -113,10 +116,8 @@ withDefaults(defineProps<Props>(), {
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
+        vertical-align: middle;
       }
-    }
-    .m-tr:nth-child(odd){
-      background: var(--tg-secondary-grey);
     }
   }
 }

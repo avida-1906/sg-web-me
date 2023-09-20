@@ -51,6 +51,9 @@ function handleClick() {
 </template>
 
 <style lang="scss" scoped>
+:root{
+  --tg-base-img-style-radius: var(--tg-radius-none);
+}
 .base-image {
   width: 100%;
   height: 100%;
@@ -64,6 +67,9 @@ function handleClick() {
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+  img{
+    border-radius: var(--tg-base-img-style-radius);
   }
 }
 </style>

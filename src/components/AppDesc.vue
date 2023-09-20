@@ -1,15 +1,26 @@
 <script setup lang="ts">
+// interface Props {
+// }
+// const props = withDefaults(defineProps<Props>(), {
+// })
+// const emit = defineEmits(['update:modelValue'])
+
+// 内容展开
 const { bool: showContent, toggle } = useBoolean(true)
 
-const tab = ref('1')
+const tab = ref('4')
 const tabList = [
   { value: '1', label: '大赢家' },
   { value: '2', label: '幸运赢家' },
   { value: '3', label: '挑战' },
   { value: '4', label: '描述' },
 ]
-
-const tagList = [
+interface ITabItem {
+  label: string
+  link: string
+}
+// 标签
+const tagList = ref<ITabItem[]>([
   { label: '购买奖励回合', link: '#' },
   { label: 'Hacksaw Gaming', link: '#' },
   { label: '海盗', link: '#' },
@@ -17,7 +28,7 @@ const tagList = [
   { label: '海洋', link: '#' },
   { label: '老虎机', link: '#' },
   { label: '切换波动性', link: '#' },
-]
+])
 
 interface Column {
   title?: string
@@ -336,7 +347,6 @@ const {
             margin: var(--tg-spacing-8) var(--tg-spacing-8) 0 0;
             border-radius: var(--tg-radius-lg);
 
-            // font-weight: var(--tg-font-weight-semibold);
             a:hover {
               color: var(--tg-text-white);
             }
@@ -356,6 +366,8 @@ const {
 
           &:nth-child(2) {
             margin: var(--tg-spacing-8) 0 var(--tg-spacing-20);
+            font-size: var(--tg-font-size-default);
+            font-weight: var(--tg-font-weight-semibold);
           }
         }
       }
@@ -405,7 +417,7 @@ const {
     display: flex;
     justify-content: center;
     align-items: center;
-
+    cursor: help;
     span {
       font-size: var(--tg-font-size-default);
       margin-left: var(--tg-spacing-4);
@@ -415,56 +427,10 @@ const {
 </style>
 
 <style lang="scss">
-.app-desc {
-  .desc-content {
-    .c-img {
-      .base-image {
-        img {
-          border-radius: var(--tg-radius-xs);
-        }
-      }
-    }
-  }
-
-  .desc-tab {
-    .base-tab {
-      .tab-wrap {
-        background-color: var(--tg-primary-main);
-      }
-    }
-  }
-
-  .winner-content {
-    .m-table-wrap {
-      .m-table {
-        tbody {
-          .m-tr {
-            background-color: var(--tg-secondary-dark);
-
-            &:nth-child(odd) {
-              background-color: var(--tg-secondary-grey);
-            }
-          }
-        }
-
-        thead {
-          .m-tr {
-            .m-th {
-              background-color: var(--tg-secondary-dark);
-            }
-          }
-        }
-      }
-
-      .m-tr {
-
-        .m-th,
-        .m-td {
-          padding: var(--tg-spacing-12);
-          vertical-align: middle;
-        }
-      }
-    }
-  }
+:root{
+  // baseImg 下 img 圆角
+  --tg-base-img-style-radius: var(--tg-radius-xs);
+  // baseTab 下 wrap 背景
+  --tg-tab-style-wrap-bg-color: var(--tg-primary-main);
 }
 </style>
