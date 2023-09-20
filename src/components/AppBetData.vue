@@ -16,7 +16,7 @@ const { bool: loading, setFalse } = useBoolean(true)
 // 是否开启隐身模式
 const { bool: isHidden, setFalse: setIsHiddenFalse, setTrue: setIsHiddenTrue } = useBoolean(false)
 // tab值
-const activeTab: Ref<string> = ref('1')
+const activeTab: Ref<string> = ref('ranking-list')
 // 需要获取多少条数据
 const selectSize: Ref<number> = ref(0)
 
@@ -284,7 +284,7 @@ function changeHidden() {
   <div class="app-bet-data">
     <div class="bet-data-head">
       <BaseTab v-model="activeTab" :list="getTabOptions" />
-      <div class="select-ranking center">
+      <div v-if="isGreaterThanSm" class="select-ranking center">
         <VMenu placement="top">
           <div class="switch-hidden" :style="{ '--tg-icon-color': isHidden ? '#fff' : '' }" @click.stop="changeHidden">
             <BaseIcon name="uni-hidden" />

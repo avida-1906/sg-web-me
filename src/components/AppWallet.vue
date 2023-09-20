@@ -61,7 +61,7 @@ function selectCurrency(item: any, hide: () => void) {
 const getSearchBalance = computed(() => {
   if (searchValue.value) {
     return currency.value.filter((item) => {
-      return item.text.includes(searchValue.value.toLocaleUpperCase())
+      return item.icon.split('-')[1].includes(searchValue.value.toLocaleLowerCase())
     })
   }
   else {
@@ -209,7 +209,6 @@ const { openWalletDialog } = useWalletDialog()
     }
   }
   .popper-bottom {
-    border-radius: 0px 0px 4px 4px;
     background: #{rgba($color: var(--tg-color-grey-rgb), $alpha: 0.3)};
 
     .bottom-btn {

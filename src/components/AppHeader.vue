@@ -128,9 +128,6 @@ function handleClickMenuItem(item: { name: string }) {
       color: var(--tg-text-white);
       font-size: var(--tg-font-size-default);
       font-weight: var(--tg-font-weight-semibold);
-
-      // padding-top: var(--tg-spacing-button-padding-vertical-s) !important;
-      // padding-bottom: var(--tg-spacing-button-padding-vertical-s) !important;
       .icon-search {
         font-size: var(--tg-font-size-xl);
       }
