@@ -1,14 +1,14 @@
 <script setup lang='ts'>
-// const { t } = useI18n()
+const { t } = useI18n()
 const { value: username, errorMessage: usernameErrorMsg } = useField<string>('username', (value) => {
   if (!value)
-    return '请输入电邮地址或用户名'
+    return t('pls_enter_email_or_username')
 
   return ''
 })
 const { value: password, errorMessage: pwdErrorMsg } = useField<string>('password', (value) => {
   if (!value)
-    return '请输入密码'
+    return t('pls_enter_password')
 
   return ''
 })
@@ -16,19 +16,16 @@ const { value: password, errorMessage: pwdErrorMsg } = useField<string>('passwor
 
 <template>
   <div>
-    <BaseInput v-model="username" label="电邮地址或用户名" :msg="usernameErrorMsg" placeholder="请输入电邮地址或用户名" must />
-    <BaseInput v-model="password" label="密码" :msg="pwdErrorMsg" placeholder="请输入密码" type="password" must />
-    <BaseButton class="login-btn" bg-style="secondary">
-      登陆
+    <BaseInput v-model="username" :label="t('email_or_username')" :msg="usernameErrorMsg" :placeholder="t('pls_enter_email_or_username')" must />
+    <BaseInput v-model="password" :label="t('password')" :msg="pwdErrorMsg" :placeholder="t('pls_enter_password')" type="password" must />
+    <BaseButton class="btn" bg-style="secondary">
+      {{ t('login') }}
     </BaseButton>
-    <BaseDivider title-placement="center">
-      或者使用
-    </BaseDivider>
   </div>
 </template>
 
 <style lang='scss' scoped>
-.login-btn {
+.btn {
   width: 100%;
 }
 </style>
