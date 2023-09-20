@@ -11,9 +11,6 @@ dependencies:
   '@unocss/reset':
     specifier: ^0.53.5
     version: 0.53.5
-  '@vee-validate/zod':
-    specifier: ^4.11.3
-    version: 4.11.3(vue@3.3.4)
   '@vueuse/core':
     specifier: ^10.2.1
     version: 10.2.1(vue@3.3.4)
@@ -3166,16 +3163,6 @@ packages:
     transitivePeerDependencies:
       - rollup
     dev: true
-
-  /@vee-validate/zod@4.11.3(vue@3.3.4):
-    resolution: {integrity: sha512-i6aBNbI3BtwcQfNaNWHEdggCO6v30nYF9lvhuIxLrbek4WocktX6Cs7Vw5RLS44nGJNumw3nhgVsoDVqLoMgnA==}
-    dependencies:
-      type-fest: 4.3.1
-      vee-validate: 4.11.3(vue@3.3.4)
-      zod: 3.22.2
-    transitivePeerDependencies:
-      - vue
-    dev: false
 
   /@vitejs/plugin-vue@4.2.3(vite@4.4.3)(vue@3.3.4):
     resolution: {integrity: sha512-R6JDUfiZbJA9cMiguQ7jxALsgiprjBeHL5ikpXfJCH62pPHtI+JdJ5xWj6Ev73yXSlYl86+blXn1kZHQ7uElxw==}
@@ -12433,8 +12420,4 @@ packages:
 
   /zhead@2.0.9:
     resolution: {integrity: sha512-Y3g6EegQc6PVrYXPq2OS7/s27UGVS5Y6NY6SY3XGH4Hg+yQWbQTtWsjCgmpR8kZnYrv8auB54sz+x5FEDrvqzQ==}
-    dev: false
-
-  /zod@3.22.2:
-    resolution: {integrity: sha512-wvWkphh5WQsJbVk1tbx1l1Ly4yg+XecD+Mq280uBGt9wa5BKSWf4Mhp6GmrkPixhMxmabYY7RbzlwVP32pbGCg==}
     dev: false

@@ -8,6 +8,17 @@ const tabOptions = [
   { value: 'deposit', label: '存款' },
   { value: 'withdraw', label: '提款' },
 ]
+
+// interface Currency {
+//   balance: string
+//   icon: string
+//   text: string
+// }
+const activeCurrency = ref()
+
+function changeCurrency(item: any) {
+  activeCurrency.value = item
+}
 const username = ref('')
 const password = ref('')
 const usernameErrorMsg = ref('')
@@ -16,26 +27,24 @@ const usernameErrorMsg = ref('')
 <template>
   <div class="app-safe">
     <div class="safe-content">
-      <div style="max-width: 160px;margin: auto;">
-        <BaseTab v-model="activeTab" :list="tabOptions" />
-      </div>
+      <BaseTab v-model="activeTab" :list="tabOptions" />
       <div class="flex-col-center">
         <span>货币</span>
-        <AppWallet />
+        <AppWallet @change="changeCurrency" />
       </div>
-      <div>
-        <div class="label-row flex-between">
-          <span>金额</span>
-          <span>US$0.00</span>
+      <div class="amount">
+        <div class="top">
+          <span class="label">金额 *</span>
+          <span class="us">US$0.00</span>
         </div>
-        <div class="flex-between amount-row">
-          <div class="input-view" style="flex: 1;">
-            <BaseInput v-model="username" label="" type="number" :msg="usernameErrorMsg" placeholder="0.00000000" />
-          </div>
-          <BaseButton class="max-btn" size="sm">
-            最大值
-          </BaseButton>
-        </div>
+        <BaseInput v-model="username" type="number" placeholder="0.00000000" :msg="usernameErrorMsg">
+          <template #right-icon>
+            <BaseIcon :name="activeCurrency?.icon || ''" />
+          </template>
+          <template #right-button>
+            <span>最大值</span>
+          </template>
+        </BaseInput>
       </div>
       <BaseButton v-if="activeTab === 'deposit'" class="safe-btn" bg-style="secondary" size="xl">
         存入保险库
@@ -73,13 +82,8 @@ const usernameErrorMsg = ref('')
     flex-direction: column;
     gap: 1rem;
     .safe-btn{
-      font-size: 16px;
+      font-size: var(--tg-font-size-base);
     }
-  }
-  .flex-between{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
   }
   .flex-col-center{
     display: flex;
@@ -101,31 +105,21 @@ const usernameErrorMsg = ref('')
     gap: 1rem;
     color: var(--tg-text-lightgrey);
     .more-btn{
-      padding: 0 !important;
+      padding: var(--tg-spacing-button-padding-vertical-none) var(--tg-spacing-button-padding-horizontal-none) !important;
       font-size: var(--tg-font-size-default);
     }
   }
-  .max-btn{
-    height: 100%;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-  }
-  .label-row{
-    margin-bottom: var(--tg-spacing-7);
-    color: var(--tg-text-lightgrey);
-  }
-  :deep(.input-view){
-    label{
-      display: none;
-    }
-    .input-box{
-      box-shadow:none;
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
-      margin-bottom:0;
-    }
-    input{
-      line-height: 1;
+  .amount {
+    display: flex;
+    flex-direction: column;
+    .top {
+      display: flex;
+      justify-content: space-between;
+      font-weight: var(--tg-font-weight-semibold);
+      margin-bottom: var(--tg-spacing-4);
+      .us {
+        font-size: var(--tg-font-size-xs);
+      }
     }
   }
 }

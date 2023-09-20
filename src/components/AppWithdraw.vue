@@ -40,7 +40,7 @@ const networkList = [
     </div>
     <div class="address">
       <span class="label">
-        <BaseIcon name="coin-btc" />
+        <AppCurrencyIcon :currency-type="EnumCurrency.BTC" />
         <span>BTC地址</span>
       </span>
       <BaseInput v-model="address" :msg="addressMsg" />
@@ -53,7 +53,7 @@ const networkList = [
       </div>
       <BaseInput v-model="amount" type="number" placeholder="0.00000000" :msg="amountMsg" @blur="onAmountInput">
         <template #right-icon>
-          <BaseIcon name="coin-btc" />
+          <AppCurrencyIcon :currency-type="EnumCurrency.BTC" />
         </template>
         <template #right-button>
           <span>最大值</span>
