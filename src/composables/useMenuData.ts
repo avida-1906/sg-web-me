@@ -15,12 +15,12 @@ const casinoMenu: Menu = [
   { title: '挑战', path: '', icon: 'chess-challenge', list: [], domId: '' },
 ]
 const casinoGameList: Menu = [
-  { title: '老虎机', path: '', icon: 'chess-slot-machine', list: [], domId: '' },
-  { title: '真人娱乐场', path: '', icon: 'chess-live-casino', list: [], domId: '' },
-  { title: '游戏节目', path: '', icon: 'chess-gameshow', list: [], domId: '' },
-  { title: '新游戏', path: '', icon: 'chess-newgame', list: [], domId: '' },
-  { title: '可购买奖励回合', path: '', icon: 'chess-bonus-rounds', list: [], domId: '' },
-  { title: 'RTP 增强化', path: '', icon: 'chess-rtp', list: [], domId: '' },
+  { title: '老虎机', path: '/casino/group/slots', icon: 'chess-slot-machine', list: [], domId: '' },
+  { title: '真人娱乐场', path: '/casino/group/live-casino', icon: 'chess-live-casino', list: [], domId: '' },
+  { title: '游戏节目', path: '/casino/group/game-shows', icon: 'chess-gameshow', list: [], domId: '' },
+  { title: '新游戏', path: '/casino/group/new-releases', icon: 'chess-newgame', list: [], domId: '' },
+  { title: '可购买奖励回合', path: '/casino/group/feature-buy-in', icon: 'chess-bonus-rounds', list: [], domId: '' },
+  { title: 'RTP 增强化', path: '/casino/group/enhanced-rtp', icon: 'chess-rtp', list: [], domId: '' },
 ]
 const casinoGameProvider: Menu = [{ title: '游戏提供商', path: '', icon: 'chess-game-provider', list: [], domId: '' }]
 

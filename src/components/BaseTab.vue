@@ -8,9 +8,11 @@ interface Props {
   modelValue: string | number
   shape?: 'square' | 'round'
   full?: boolean
+  center?: boolean
 }
 const props = withDefaults(defineProps<Props>(), {
   shape: 'round',
+  center: true,
 })
 const emit = defineEmits(['update:modelValue', 'change'])
 
@@ -24,16 +26,18 @@ function onClick(v: string | number) {
 </script>
 
 <template>
-  <div class="scroll-x base-tab" :class="{ full }">
-    <div class="tab-wrap" :class="[shape]">
-      <div
-        v-for="t, i in list" :key="i" class="tab" :class="{ active: t.value === modelValue }"
-        @click="onClick(t.value)"
-      >
-        <div class="content">
-          <slot name="tab" :item="t">
-            {{ t.label }}
-          </slot>
+  <div class="base-tab" :class="{ center }">
+    <div class="scroll-x base-tab-wrap" :class="{ full }">
+      <div class="tab-wrap" :class="[shape]">
+        <div
+          v-for="t, i in list" :key="i" class="tab" :class="{ active: t.value === modelValue }"
+          @click="onClick(t.value)"
+        >
+          <div class="content">
+            <slot name="tab" :item="t">
+              {{ t.label }}
+            </slot>
+          </div>
         </div>
       </div>
     </div>
@@ -47,10 +51,13 @@ function onClick(v: string | number) {
 </style>
 
 <style lang='scss' scoped>
-.base-tab {
+.base-tab{
   display: flex;
   max-width: 100%;
-  align-self: center;
+}
+.base-tab-wrap {
+  display: flex;
+  max-width: 100%;
 
   .tab-wrap {
     padding: var(--tg-spacing-5) var(--tg-spacing-6);
@@ -118,6 +125,9 @@ function onClick(v: string | number) {
   }
 }
 .full{
-  align-self: auto;
+  flex: 1;
+}
+.center{
+  justify-content: center;
 }
 </style>

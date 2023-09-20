@@ -1,10 +1,12 @@
 <script lang="ts" setup>
 interface Props {
   walletBtn?: boolean
+  showBalance?: boolean
 }
 
 withDefaults(defineProps<Props>(), {
   walletBtn: false,
+  showBalance: true,
 })
 
 const emit = defineEmits(['change'])
@@ -79,7 +81,7 @@ const { openWalletDialog } = useWalletDialog()
       <div class="center">
         <div class="wallet" :class="{ 'wallet-only': !walletBtn }">
           <BaseButton type="text" size="md">
-            <span class="wallet-number">{{ activeBalance.balance }}</span>
+            <span v-if="showBalance" class="wallet-number">{{ activeBalance.balance }}</span>
             <BaseIcon class="coin" :name="activeBalance.icon" />
             <BaseIcon class="arrow" :class="{ 'arrow-up': isMenuShown }" name="uni-arrow-down" />
           </BaseButton>
@@ -93,9 +95,9 @@ const { openWalletDialog } = useWalletDialog()
           <div class="popper-top">
             <BaseSearch v-model="searchValue" class="top-search" :clearable="searchValue?.length > 0" :white-style="true" place-holder="搜索货币" />
           </div>
-          <div class="scroll-y popper-content">
+          <div class="scroll-y popper-content" :class="{ 'justify-content': !showBalance }">
             <div v-for="item of getSearchBalance" :key="item.text" class="content-row" @click.stop="selectCurrency(item, hide)">
-              <div class="balance-num">
+              <div v-if="showBalance" class="balance-num">
                 {{ item.balance }}
               </div>
               <BaseIcon class="coin" :name="item.icon" />
@@ -168,10 +170,13 @@ const { openWalletDialog } = useWalletDialog()
   max-width: 100vw;
 
   .popper-top {
-    padding: 8px 20px 12px;
+    // width: 100%;
+    padding: 8px 0 12px;
 
     .top-search {
+      width: 80%;
       max-width: 180px;
+      margin: auto;
     }
   }
 
@@ -185,7 +190,6 @@ const { openWalletDialog } = useWalletDialog()
     &::-webkit-scrollbar-thumb {
       background: var(--tg-secondary-light);
     }
-
     .content-row {
       display: flex;
       align-items: center;
@@ -209,7 +213,11 @@ const { openWalletDialog } = useWalletDialog()
       padding: 3px 0 12px;
     }
   }
-
+  .justify-content{
+    .content-row{
+      justify-content:center;
+    }
+  }
   .popper-bottom {
     border-radius: 0px 0px 4px 4px;
     background: #{rgba($color: var(--tg-color-grey-rgb), $alpha: 0.3)};

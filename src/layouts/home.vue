@@ -166,7 +166,7 @@ const isCasinoGames = computed(() => route.name === 'casino-games')
 
   .side-bar-outer {
     position: relative;
-    z-index: var(--tg-z-index-top);
+    z-index: var(--tg-z-index-50);
     display: flex;
     flex-direction: row;
   }

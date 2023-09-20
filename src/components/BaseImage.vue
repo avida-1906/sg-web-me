@@ -50,10 +50,13 @@ function handleClick() {
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style>
 :root{
   --tg-base-img-style-radius: var(--tg-radius-none);
 }
+</style>
+
+<style lang="scss" scoped>
 .base-image {
   width: 100%;
   height: 100%;
