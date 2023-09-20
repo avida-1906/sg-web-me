@@ -157,7 +157,7 @@ const {
     <!-- 包裹过渡 -->
     <div v-show="showContent" class="wrap">
       <div class="desc-tab">
-        <BaseTab v-model="tab" :list="tabList" />
+        <BaseTab v-model="tab" :list="tabList" style="--tg-tab-style-wrap-bg-color: var(--tg-primary-main);" />
       </div>
       <!-- 描述内容 -->
       <div v-if="tab === '4'" class="desc-content">
@@ -165,6 +165,7 @@ const {
           <BaseImage
             url="http://c.hiphotos.baidu.com/image/pic/item/30adcbef76094b36de8a2fe5a1cc7cd98d109d99.jpg"
             fit="cover"
+            style="--tg-base-img-style-radius: var(--tg-radius-xs);"
           />
         </div>
         <div class="c-text">
@@ -423,14 +424,5 @@ const {
       margin-left: var(--tg-spacing-4);
     }
   }
-}
-</style>
-
-<style lang="scss">
-:root{
-  // baseImg 下 img 圆角
-  --tg-base-img-style-radius: var(--tg-radius-xs);
-  // baseTab 下 wrap 背景
-  --tg-tab-style-wrap-bg-color: var(--tg-primary-main);
 }
 </style>

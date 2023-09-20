@@ -30,16 +30,11 @@ function onChange(event: any) {
 
 // popper
 const { bool, setTrue, setFalse } = useBoolean(false)
-const outerRef = ref()
-onClickOutside(outerRef, () => {
-  setFalse()
-})
 const popperLabel = computed(() => props.options.find(a => a.value === props.modelValue)?.label ?? '-')
 function onClickPopperItem(v: any) {
   if (v === props.modelValue)
     return
 
-  setFalse()
   emit('update:modelValue', v)
   emit('select', v)
 }
@@ -47,8 +42,8 @@ function onClickPopperItem(v: any) {
 
 <template>
   <template v-if="popper">
-    <VDropdown :distance="6">
-      <div ref="outerRef" class="popper-label" @click="setTrue">
+    <VDropdown :distance="6" @hide="setFalse">
+      <div class="popper-label" @click="setTrue">
         <span>{{ popperLabel }}</span>
         <div class="icon" :class="{ up: bool }">
           <BaseIcon name="uni-arrow-down" />
@@ -131,12 +126,15 @@ function onClickPopperItem(v: any) {
   cursor: pointer;
   padding: var(--tg-spacing-button-padding-vertical-xs) var(--tg-spacing-button-padding-horizontal-xs);
   font-size: var(--tg-font-size-default);
+  color: var(--tg-secondary-main);
+  font-weight: var(--tg-font-weight-semibold);
 
   &:hover {
     background-color: var(--tg-text-lightgrey);
   }
 }
 
+// base-select
 .base-select {
   color: var(--tg-text-lightgrey);
   font-size: var(--tg-font-size-default);
