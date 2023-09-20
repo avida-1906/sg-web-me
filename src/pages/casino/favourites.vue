@@ -13,7 +13,7 @@
             </h1>
           </div>
           <div class="right">
-            <BaseImage url="/img/group-banner-default.png" />
+            <BaseImage url="/img/casino/group-banner-default.png" />
           </div>
         </div>
       </div>
