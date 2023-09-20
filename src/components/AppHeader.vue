@@ -25,12 +25,15 @@ const { bool: showSearchBar, setTrue } = useBoolean(false)
 
 // Dialog
 const { openWalletDialog } = useWalletDialog()
+const { openVipDialog } = useVipDialog()
+const { openStatisticsDialog } = useStatisticsDialog()
 
 const { openDialog: openSafeDialog } = useDialog({
   title: t('safe'),
   icon: 'navbar-wallet',
   default: () => h(AppSafeDialog),
 })
+
 function handleClickMenuItem(item: { name: string }) {
   const { name } = item
   switch (name) {
@@ -39,6 +42,12 @@ function handleClickMenuItem(item: { name: string }) {
       break
     case 'safe':
       openSafeDialog()
+      break
+    case 'vip':
+      openVipDialog()
+      break
+    case 'statistical-data':
+      openStatisticsDialog()
       break
     default:
       break

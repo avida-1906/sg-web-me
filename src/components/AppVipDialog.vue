@@ -88,46 +88,44 @@ const { bool: showDialog } = useBoolean(true)
 
 <template>
   <div class="app-vip-dialog scroll-y">
-    <BaseDialog v-model:show="showDialog" icon="uni-checklist" title="VIP">
-      <div class="vip-tab">
-        <BaseTab v-model="tab" :list="tabList" />
-      </div>
-      <div class="scroll-y vip-content">
-        <div v-if="tab === '1'" class="vip-progress">
-          <div class="vip-image">
-            <BaseImage url="https://mediumrare.imgix.net/vip-modal.png?&dpr=2&format=auto&auto=format&q=50" />
-          </div>
-          <AppVipProgress :vip-progress-data="props.vipProgressData" />
-          <div class="progress-text">
-            您的进度是通过您在娱乐城和体育博彩中的总投注额累积起来的。只要您的级别上升，就表示能获得更大的奖励和独家 VIP 待遇。
-          </div>
-          <div class="progress-tips">
-            <BaseIcon name="uni-tips" />
-            <p>
-              所有已结算的体育投注将回报加快 3 倍的进展速度。结算为无效的赌注并不包括在内。
-            </p>
-          </div>
+    <div class="vip-tab">
+      <BaseTab v-model="tab" :list="tabList" />
+    </div>
+    <div class="scroll-y vip-content">
+      <div v-if="tab === '1'" class="vip-progress">
+        <div class="vip-image">
+          <BaseImage url="https://mediumrare.imgix.net/vip-modal.png?&dpr=2&format=auto&auto=format&q=50" />
         </div>
-        <div v-else-if="tab === '2'" class="vip-welfare">
-          <div v-for="item, index in welfareList" :key="index" class="vip-level-column">
-            <BaseCollapse :title="item.title" :icon="item.icon" @click-head="showContent()">
-              <template #content>
-                <ul>
-                  <li v-for="c, i in item.contents" :key="i">
-                    {{ c }}
-                  </li>
-                </ul>
-              </template>
-            </BaseCollapse>
-          </div>
+        <AppVipProgress :vip-progress-data="props.vipProgressData" />
+        <div class="progress-text">
+          您的进度是通过您在娱乐城和体育博彩中的总投注额累积起来的。只要您的级别上升，就表示能获得更大的奖励和独家 VIP 待遇。
+        </div>
+        <div class="progress-tips">
+          <BaseIcon name="uni-tips" />
+          <p>
+            所有已结算的体育投注将回报加快 3 倍的进展速度。结算为无效的赌注并不包括在内。
+          </p>
         </div>
       </div>
-      <div class="vip-footer-more">
-        <a href="#">
-          了解更多有关成为 Stake VIP 的消息
-        </a>
+      <div v-else-if="tab === '2'" class="vip-welfare">
+        <div v-for="item, index in welfareList" :key="index" class="vip-level-column">
+          <BaseCollapse :title="item.title" :icon="item.icon" @click-head="showContent()">
+            <template #content>
+              <ul>
+                <li v-for="c, i in item.contents" :key="i">
+                  {{ c }}
+                </li>
+              </ul>
+            </template>
+          </BaseCollapse>
+        </div>
       </div>
-    </BaseDialog>
+    </div>
+    <div class="vip-footer-more">
+      <a href="#">
+        了解更多有关成为 Stake VIP 的消息
+      </a>
+    </div>
   </div>
 </template>
 
