@@ -1,10 +1,10 @@
 <script setup lang='ts'>
-const { isFullScreen } = storeToRefs(useWindowStore())
+const { isMobile } = storeToRefs(useWindowStore())
 const { bool: isTheatre, setBool } = useBoolean(false) // 影院模式
 </script>
 
 <template>
-  <div class="casino-games" :class="{ theatre: isTheatre && !isFullScreen }">
+  <div class="casino-games" :class="{ theatre: isTheatre && !isMobile }">
     <AppIframe :is-theatre="isTheatre" @change-theatre="setBool" />
     <AppDesc />
   </div>

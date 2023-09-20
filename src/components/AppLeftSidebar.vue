@@ -8,7 +8,7 @@ const props = defineProps<Props>()
 const emit = defineEmits(['update:modelValue'])
 const { t } = useI18n()
 // const isExpand = computed(() => props.modelValue)
-const { isFullScreen } = storeToRefs(useWindowStore())
+const { isMobile } = storeToRefs(useWindowStore())
 
 const {
   casinoMenu,
@@ -40,7 +40,7 @@ function onGameTypeChange(v: string) {
 
 <template>
   <!-- 头部菜单或搜索栏 -->
-  <div v-if="!isFullScreen" class="sidebar-top">
+  <div v-if="!isMobile" class="sidebar-top">
     <Transition name="menu-fade">
       <template v-if="!isSwitching">
         <div class="header">
@@ -61,7 +61,7 @@ function onGameTypeChange(v: string) {
   </div>
   <AppGlobalSearch v-else @game-type-change="onGameTypeChange" />
 
-  <div v-if="isFullScreen && !isCasino && !isSports" class="buttons">
+  <div v-if="isMobile && !isCasino && !isSports" class="buttons">
     <BaseAspectRatio ratio="3.5/1">
       <div class="casino" :class="{ active: isCasino }" @click="router.push('/casino')">
         <span>{{ t('casino') }}</span>

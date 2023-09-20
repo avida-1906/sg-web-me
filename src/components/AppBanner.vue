@@ -1,25 +1,15 @@
 <script setup lang="ts">
 const {
-  isFixed,
-  isFixedSmall,
-  // isFullScreen,
+  isLessThanLg,
+  isGreaterThanSm,
 } = storeToRefs(useWindowStore())
-// interface Props {
-//
-// }
-// withDefaults(defineProps<Props>(), {
-//
-// })
-// const bannerList = ref([
-//   { url: '', id: '1' },
-// ])
 
 const scrollRef = ref()
 const getGridAutoColumns = computed(() => {
-  if (!isFixed.value)
+  if (!isLessThanLg.value)
     return { 'grid-auto-columns': '32.53%' }
 
-  else if (isFixedSmall.value)
+  else if (isGreaterThanSm.value)
     return { 'grid-auto-columns': '47%' }
 
   else

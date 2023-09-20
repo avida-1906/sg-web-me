@@ -1,48 +1,62 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
 
 export const useWindowStore = defineStore('window', () => {
-  /**
- * 左侧缩小版 Slider
-      固定宽度 >768 显示
-      <768 直接隐藏
-    左侧放大版 Slider
-      <768 全屏显示，高度-header高度和footer高度
-      固定宽度 768-1200 显示(定位+蒙层)
-      1200以上显示在左侧
-
-    右侧 Slider
-      < 768 全屏 - footer高度
-      768-1000 显示 320
-      1000 以上显示 370
-
-        包含聊天室
-        投注单
- */
-
   const { width } = useWindowSize()
 
-  // 宽度边界 638 xs
+  /** 宽度边界 638 xs */
   const widthBoundaryXs = ref(638)
-  // 宽度边界 768 sm
+  /** 宽度边界 768 sm */
   const widthBoundarySm = ref(768)
-  // 宽度边界 975 md
+  /** 宽度边界 975 md */
   const widthBoundaryMd = ref(975)
-  // 宽度边界 1200 lg
+  /** 宽度边界 1200 lg */
   const widthBoundaryLg = ref(1200)
-  // 宽度边界 1290 xl
+  /** 宽度边界 1290 xl */
   const widthBoundaryXl = ref(1290)
 
-  const isFixed = computed(() => width.value < widthBoundaryLg.value)
-  const isFixedSmall = computed(() => width.value > widthBoundarySm.value)
-  const isFullScreen = computed(() => width.value <= widthBoundarySm.value)
+  const isXs = computed(() => width.value < widthBoundaryXs.value)
+  const isSm = computed(() => width.value < widthBoundarySm.value && width.value >= widthBoundaryXs.value)
+  const isMd = computed(() => width.value < widthBoundaryMd.value && width.value >= widthBoundarySm.value)
+  const isLg = computed(() => width.value < widthBoundaryLg.value && width.value >= widthBoundaryMd.value)
+  const isXl = computed(() => width.value < widthBoundaryXl.value && width.value >= widthBoundaryLg.value)
+
+  const isLessThanXs = computed(() => width.value < widthBoundaryXs.value)
+  const isLessThanSm = computed(() => width.value < widthBoundarySm.value)
+  const isLessThanMd = computed(() => width.value < widthBoundaryMd.value)
+  const isLessThanLg = computed(() => width.value < widthBoundaryLg.value) // isFixed
+  const isLessThanXl = computed(() => width.value < widthBoundaryXl.value)
+
+  const isGreaterThanXs = computed(() => width.value > widthBoundaryXs.value)
+  const isGreaterThanSm = computed(() => width.value > widthBoundarySm.value) // isFixedSmall
+  const isGreaterThanMd = computed(() => width.value > widthBoundaryMd.value)
+  const isGreaterThanLg = computed(() => width.value > widthBoundaryLg.value)
+  const isGreaterThanXl = computed(() => width.value > widthBoundaryXl.value)
+
+  const isMobile = computed(() => width.value <= widthBoundarySm.value) // isFullScreen
 
   return {
-    widthBoundaryLg,
+    widthBoundaryXs,
     widthBoundarySm,
+    widthBoundaryMd,
+    widthBoundaryLg,
+    widthBoundaryXl,
     width,
-    isFixed,
-    isFixedSmall,
-    isFullScreen,
+    isXs,
+    isSm,
+    isMd,
+    isLg,
+    isXl,
+    isLessThanXs,
+    isLessThanSm,
+    isLessThanMd,
+    isLessThanLg,
+    isLessThanXl,
+    isGreaterThanXs,
+    isGreaterThanSm,
+    isGreaterThanMd,
+    isGreaterThanLg,
+    isGreaterThanXl,
+    isMobile,
   }
 })
 

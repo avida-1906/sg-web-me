@@ -121,9 +121,7 @@ onMounted(() => {
 })
 
 const {
-  // isFixed,
-  // isFixedSmall,
-  isFullScreen,
+  isMobile,
 } = storeToRefs(useWindowStore())
 </script>
 
@@ -134,7 +132,7 @@ const {
         Goat Getter <span class="l-start-gm"><a href="#">Push Gaming</a></span>
       </div>
       <div class="title-right">
-        <div v-if="!isFullScreen" class="r-status">
+        <div v-if="!isMobile" class="r-status">
           <BaseIcon name="uni-cup1" />
           66,666.00x
           <VMenu placement="top">
@@ -161,7 +159,7 @@ const {
       </div>
       <!-- 描述内容 -->
       <div v-if="tab === '4'" class="desc-content">
-        <div class="c-img" :class="{ 'float-left': !isFullScreen }">
+        <div class="c-img" :class="{ 'float-left': !isMobile }">
           <BaseImage
             url="http://c.hiphotos.baidu.com/image/pic/item/30adcbef76094b36de8a2fe5a1cc7cd98d109d99.jpg"
             fit="cover"

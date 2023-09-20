@@ -1,6 +1,6 @@
 <script setup lang='ts'>
 const emit = defineEmits(['gameTypeChange', 'close'])
-const { isFullScreen } = storeToRefs(useWindowStore())
+const { isMobile } = storeToRefs(useWindowStore())
 const { t } = useI18n()
 const route = useRoute()
 const isCasino = computed(() => route.name?.toString().includes('casino'))
@@ -39,8 +39,8 @@ const casinoList = ref([])
 </script>
 
 <template>
-  <div class="app-global-search" :class="{ 'in-pc': !isFullScreen }">
-    <div v-show="!isFullScreen" class="overlay" @click="emit('close')" />
+  <div class="app-global-search" :class="{ 'in-pc': !isMobile }">
+    <div v-show="!isMobile" class="overlay" @click="emit('close')" />
     <BaseSearch
       v-model="searchValue" class="search-input" clearable @focus="setTrue2" @clear="setFalse2"
       @close="emit('close')"
@@ -64,7 +64,7 @@ const casinoList = ref([])
     </BaseSearch>
 
     <!-- 搜索功能面板  -->
-    <div v-show="showSearchOverlay || !isFullScreen" class="search-overlay" @click.self="setFalse2">
+    <div v-show="showSearchOverlay || !isMobile" class="search-overlay" @click.self="setFalse2">
       <div class="scroll-y warp">
         <div v-if="casinoList.length === 0" class="no-result">
           <div class="text">
