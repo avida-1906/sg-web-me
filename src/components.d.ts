@@ -30,6 +30,7 @@ declare module 'vue' {
     AppIframe: typeof import('./components/AppIframe.vue')['default']
     AppLeftSidebar: typeof import('./components/AppLeftSidebar.vue')['default']
     AppLeftSidebarTiny: typeof import('./components/AppLeftSidebarTiny.vue')['default']
+    AppLogin: typeof import('./components/AppLogin.vue')['default']
     AppLoginDialog: typeof import('./components/AppLoginDialog.vue')['default']
     AppPercentage: typeof import('./components/AppPercentage.vue')['default']
     AppSafeDialog: typeof import('./components/AppSafeDialog.vue')['default']
