@@ -1,13 +1,13 @@
 <script setup lang='ts'>
 const { t } = useI18n()
 
-const { value: address, errorMessage: addressMsg } = useField<string>('month', (value) => {
+const { value: address, errorMessage: addressMsg } = useField<string>('address', (value) => {
   if (!value)
     return t('this_field_is_required')
 
   return ''
 })
-const { value: amount, setValue: setAmount, errorMessage: amountMsg } = useField<string>('month', (value) => {
+const { value: amount, setValue: setAmount, errorMessage: amountMsg } = useField<string>('amount', (value) => {
   if (!value)
     return t('this_field_is_required')
 
@@ -32,7 +32,7 @@ const networkList = [
     <div class="currency">
       <div class="c-option">
         <span class="semibold">{{ t('currency') }}</span>
-        <AppWallet :wallet-btn="false" />
+        <AppWallet :wallet-btn="false" :show-balance="false" />
       </div>
       <div class="c-option">
         <span class="semibold">{{ t('network') }}</span>

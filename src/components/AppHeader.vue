@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import AppSafeDialog from '~/components/AppSafeDialog.vue'
-
 const { isFullScreen, isFixed, width } = storeToRefs(useWindowStore())
 const { t } = useI18n()
 const userMenu = ref([
@@ -27,13 +25,7 @@ const { bool: showSearchBar, setTrue } = useBoolean(false)
 const { openWalletDialog } = useWalletDialog()
 const { openVipDialog } = useVipDialog()
 const { openStatisticsDialog } = useStatisticsDialog()
-
-const { openDialog: openSafeDialog } = useDialog({
-  title: t('safe'),
-  icon: 'navbar-wallet',
-  default: () => h(AppSafeDialog),
-})
-
+const { openSafeDialog } = useSafeDialog()
 function handleClickMenuItem(item: { name: string }) {
   const { name } = item
   switch (name) {

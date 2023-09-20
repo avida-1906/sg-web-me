@@ -1,15 +1,4 @@
-<script setup lang='ts'>
-const gameType = ref('')
-const tabList = [
-  { label: '大厅', value: 'all' },
-  { label: '真人娱乐场', value: 'real' },
-  { label: '特色老虎机', value: 'slot' },
-  { label: '游戏节目', value: 'live' },
-  { label: 'Stake 原创游戏', value: 'origin' },
-]
-
-const gameInfo = { id: 2, url: 'https://mediumrare.imgix.net/d51d84f1074e5b54c25c54e6cbf026a4e352c491e7a574d3da6504743d71e2d6?&dpr=2&format=auto&auto=format&q=50&w=167', name: 'plynko' }
-const gameList = Array(66).fill(gameInfo)
+<script setup lang="ts">
 const gameProviders = [
   { id: '0', src: 'https://mediumrare.imgix.net/be6c453a8f450c2fbf5181abc844f080b537458061aeca3902575510acacdbea?&dpr=2&format=auto&auto=format&q=50' },
   { id: '0', src: 'https://mediumrare.imgix.net/fffebb8ad954c1fdcaca444cf83308ef0226ea06f8aa7a8d0a4e5f50c1d433c7?&dpr=2&format=auto&auto=format&q=50' },
@@ -20,18 +9,35 @@ const gameProviders = [
 </script>
 
 <template>
-  <div class="layout-spacing">
-    <div class="hero-wrapper mt-24">
-      <AppBanner />
+  <section class="layout-spacing tg-game-type-page">
+    <div class="group-banner-wrap">
+      <div class="group-banner-bg" />
+      <div class="banner-wrap">
+        <div class="banner">
+          <div class="left">
+            <h1>
+              <span>老虎机</span>
+            </h1>
+          </div>
+          <div class="right">
+            <BaseImage url="/img/casino/group-banner-slots.png" />
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="mt-24">
-      <AppGameSearch game-type="2" />
+    <div>
+      <AppGroupFilter />
     </div>
-    <div class="mt-24">
-      <BaseTab v-model="gameType" :list="tabList" :center="false" />
+    <div>
+      <AppCardList />
     </div>
-    <div class="content-wrapper">
-      <AppSlider api="" icon="chess-original-game" :title="$t('casino_origin_game')" :data="gameList" />
+    <div class="load-more mt-24">
+      <AppPercentage />
+      <BaseButton size="md">
+        <div>加载更多</div>
+      </BaseButton>
+    </div>
+    <div class="">
       <AppSlider api="" icon="chess-game-provider" :title="$t('casino_provider')" :data="gameProviders" :show-view-all="false">
         <template #default="{ item }">
           <div class="provider-item-wrap">
@@ -40,13 +46,23 @@ const gameProviders = [
         </template>
       </AppSlider>
     </div>
-  </div>
-  <div class="layout-spacing">
-    <AppBetData mode="casino" />
-  </div>
+  </section>
+  <AppBetData />
 </template>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
+.load-more {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--tg-spacing-16);
+  button {
+    width: 184px;
+    height: 44px;
+  }
+}
 </style>
 
 <route lang="yaml">
