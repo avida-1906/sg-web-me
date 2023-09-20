@@ -228,6 +228,7 @@ const selectOptions = [
 const birthday = ref('')
 
 const { bool: showDialogOne, setTrue: setShowDialogOneTrue } = useBoolean(false)
+const { bool: showDialogTwo, setTrue: setShowDialogTwoTrue } = useBoolean(false)
 
 const { openDialog, closeDialog } = useDialog({
   title: '表格',
@@ -247,6 +248,10 @@ function showDialog() {
 }
 function showTemDialog() {
   setShowDialogOneTrue()
+  copyCode('BaseDialog')
+}
+function showTemDialog2() {
+  setShowDialogTwoTrue()
   copyCode('BaseDialog')
 }
 const { bool: showDragDialog, setTrue: setShowDragDialogTrue } = useBoolean(false)
@@ -725,6 +730,9 @@ function copyAppPercentageCode() {
           <BaseButton @click="showTemDialog">
             展示弹窗 template
           </BaseButton>
+          <BaseButton @click="showTemDialog2">
+            展示弹窗没有 header template
+          </BaseButton>
         </div>
       </AppDemoCard>
     </li>
@@ -1126,6 +1134,11 @@ function copyAppPercentageCode() {
   <BaseDialog v-model:show="showDialogOne" icon="uni-trend" title="提款">
     <div class="data-table">
       一个外部弹窗
+    </div>
+  </BaseDialog>
+  <BaseDialog v-model:show="showDialogTwo" :show-header="false">
+    <div class="data-table">
+      一个外部弹窗 只有内容
     </div>
   </BaseDialog>
 </template>
