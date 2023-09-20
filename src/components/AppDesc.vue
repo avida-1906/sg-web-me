@@ -157,7 +157,7 @@ const {
     <!-- 包裹过渡 -->
     <div v-show="showContent" class="wrap">
       <div class="desc-tab">
-        <BaseTab v-model="tab" :list="tabList" style="--tg-tab-style-wrap-bg-color: var(--tg-primary-main);" />
+        <BaseTab v-model="tab" :list="tabList" class="app-desc-base-tab" />
       </div>
       <!-- 描述内容 -->
       <div v-if="tab === '4'" class="desc-content">
@@ -165,7 +165,7 @@ const {
           <BaseImage
             url="http://c.hiphotos.baidu.com/image/pic/item/30adcbef76094b36de8a2fe5a1cc7cd98d109d99.jpg"
             fit="cover"
-            style="--tg-base-img-style-radius: var(--tg-radius-xs);"
+            class="app-desc-base-image"
           />
         </div>
         <div class="c-text">
@@ -238,6 +238,12 @@ const {
 </template>
 
 <style lang="scss" scoped>
+.app-desc-base-tab{
+  --tg-tab-style-wrap-bg-color: var(--tg-primary-main);
+}
+.app-desc-base-image{
+  --tg-base-img-style-radius: var(--tg-radius-xs);
+}
 .app-desc {
   background-color: var(--tg-secondary-dark);
   color: var(--tg-text-white);

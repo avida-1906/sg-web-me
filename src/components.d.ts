@@ -33,6 +33,7 @@ declare module 'vue' {
     AppSidebarBig: typeof import('./components/AppSidebarBig.vue')['default']
     AppSidebarSmall: typeof import('./components/AppSidebarSmall.vue')['default']
     AppSlider: typeof import('./components/AppSlider.vue')['default']
+    AppStack: typeof import('./components/AppStack.vue')['default']
     AppStatisticsDialog: typeof import('./components/AppStatisticsDialog.vue')['default']
     Apptest: typeof import('./components/Apptest.vue')['default']
     AppVipDialog: typeof import('./components/AppVipDialog.vue')['default']
