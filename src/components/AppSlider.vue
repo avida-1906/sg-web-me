@@ -23,7 +23,9 @@ const pageInfo = reactive({
 })
 
 const sliderOuter = ref()
-const outerWidth = ref(0)
+
+const { appContentWidth } = storeToRefs(useWindowStore())
+const outerWidth = computed(() => appContentWidth.value) // ref(0)
 
 const gallery = ref()
 const galleryClass = ref('')
@@ -31,7 +33,6 @@ const itemWidth = ref(0)
 const pageWidth = computed(() => pageInfo.pageSize * itemWidth.value * outerWidth.value)
 
 const { x } = useScroll(gallery) // , isScrolling, arrivedState, directions
-const { appContentWidth } = storeToRefs(useWindowStore())
 
 const scrollLeftItemsCount = computed(() => {
   return Math.round(x.value / (itemWidth.value * outerWidth.value))
@@ -49,21 +50,21 @@ function prevPage() {
     x.value = 0
 }
 
-function setOuterWidth() {
-  const { width } = sliderOuter.value.getBoundingClientRect()
-  outerWidth.value = width
-}
+// function setOuterWidth() {
+//   const { width } = sliderOuter.value.getBoundingClientRect()
+//   outerWidth.value = width
+// }
 
-onMounted(() => {
-  window.addEventListener('resize', setOuterWidth)
-  nextTick(() => {
-    setOuterWidth()
-  })
-})
+// onMounted(() => {
+//   window.addEventListener('resize', setOuterWidth)
+//   nextTick(() => {
+//     setOuterWidth()
+//   })
+// })
 
-onUnmounted(() => {
-  window.removeEventListener('resize', setOuterWidth)
-})
+// onUnmounted(() => {
+//   window.removeEventListener('resize', setOuterWidth)
+// })
 
 watchEffect(() => {
   if (outerWidth.value >= 1150) {
@@ -105,7 +106,7 @@ watchEffect(() => {
       <div class="title">
         <a>
           <BaseIcon :name="icon" />
-          <h3>{{ title }}{{ appContentWidth }}</h3>
+          <h3>{{ title }}</h3>
         </a>
       </div>
       <div class="arrows">

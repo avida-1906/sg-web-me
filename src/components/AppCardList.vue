@@ -3,23 +3,24 @@ const gameInfo = { id: 2, url: 'https://mediumrare.imgix.net/d51d84f1074e5b54c25
 const gameList = Array(22).fill(gameInfo)
 
 const sliderOuter = ref()
-const outerWidth = ref(0)
+const { appContentWidth } = storeToRefs(useWindowStore())
+const outerWidth = computed(() => appContentWidth.value) // ref(0)
 
-function setOuterWidth() {
-  const { width } = sliderOuter.value.getBoundingClientRect()
-  outerWidth.value = width
-}
+// function setOuterWidth() {
+//   const { width } = sliderOuter.value.getBoundingClientRect()
+//   outerWidth.value = width
+// }
 
-onMounted(() => {
-  window.addEventListener('resize', setOuterWidth)
-  nextTick(() => {
-    setOuterWidth()
-  })
-})
+// onMounted(() => {
+//   window.addEventListener('resize', setOuterWidth)
+//   nextTick(() => {
+//     setOuterWidth()
+//   })
+// })
 
-onUnmounted(() => {
-  window.removeEventListener('resize', setOuterWidth)
-})
+// onUnmounted(() => {
+//   window.removeEventListener('resize', setOuterWidth)
+// })
 
 const galleryClass = ref('')
 
