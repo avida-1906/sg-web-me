@@ -17,7 +17,7 @@ interface Props {
 }
 const props = defineProps<Props>()
 const { t } = useI18n()
-const { isFullScreen } = storeToRefs(useWindowStore())
+const { isMobile } = storeToRefs(useWindowStore())
 const route = useRoute()
 const isCasino = computed(() => route.name?.toString().includes('casino'))
 const isSports = computed(() => route.name?.toString().includes('sports'))
@@ -36,9 +36,9 @@ function handleClickItem() { }
 
 <template>
   <div class="big-warp">
-    <div ref="innerRef" class="scroll-y inner-content scroll-contain" :class="{ 'is-full-screen': isFullScreen }">
+    <div ref="innerRef" class="scroll-y inner-content scroll-contain" :class="{ 'is-full-screen': isMobile }">
       <!-- Casino -->
-      <template v-if="isFullScreen ? isGameTypeCasino : isCasino">
+      <template v-if="isMobile ? isGameTypeCasino : isCasino">
         <div class="menu-box">
           <div v-for="item, i in casinoMenu" :key="i">
             <div class="menu">
@@ -70,7 +70,7 @@ function handleClickItem() { }
       </template>
 
       <!-- Sports -->
-      <template v-if="isFullScreen ? isGameTypeSports : isSports">
+      <template v-if="isMobile ? isGameTypeSports : isSports">
         <div class="menu-box">
           <div v-for="item, i in sportsMenu" :key="i">
             <div class="menu">
