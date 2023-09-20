@@ -42,6 +42,8 @@ function onClick(v: string | number) {
 <style lang='scss' scoped>
 .base-tab {
   display: flex;
+  max-width: 100%;
+  align-self: center;
 
   .tab-wrap {
     padding: var(--tg-spacing-5) var(--tg-spacing-6);
