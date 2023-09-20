@@ -24,13 +24,6 @@ const { bool: showSearchBar, setTrue } = useBoolean(false)
 // Dialog
 const { openWalletDialog } = useWalletDialog()
 const { openLoginDialog } = useLoginDialog()
-
-// const { openDialog: openSafeDialog } = useDialog({
-//   title: t('safe'),
-//   icon: 'navbar-wallet',
-//   default: () => h(AppSafeDialog),
-// })
-
 const { openVipDialog } = useVipDialog()
 const { openStatisticsDialog } = useStatisticsDialog()
 const { openSafeDialog } = useSafeDialog()
