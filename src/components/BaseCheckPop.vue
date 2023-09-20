@@ -1,29 +1,67 @@
 <script lang="ts" setup>
-const data = ref([])
+const data = ref([
+  { label: 'Pragmatic Play', value: 'pp', count: 12 },
+  { label: '3 Oaks Gaming', value: '3og', count: 7 },
+])
 
-const checkedValues = ref()
+const checkedValues = ref([])
 </script>
 
 <template>
-  <VMenu>
+  <VDropdown placement="bottom">
     <slot>
       <button class="tips">
-        VMenu
+        pop check
       </button>
     </slot>
     <template #popper>
-      <section>
-        <ul>
-          <li>
-            <BaseCheckBox v-model="checkedValues" />
-          </li>
-        </ul>
-        <div>全部清除</div>
-      </section>
+      <div>
+        <section class="base-check-pop-inner">
+          <BaseCheckboxGroup v-model="checkedValues" :list="data" size="mid">
+            <template #default="{ item }">
+              <div class="check-item-label">
+                <div>{{ item.label }}</div>
+                <div class="">
+                  <BaseBadge :count="item.count" />
+                </div>
+              </div>
+            </template>
+          </BaseCheckboxGroup>
+        </section>
+        <div class="clear-all">
+          全部清除
+        </div>
+      </div>
     </template>
-  </VMenu>
+  </VDropdown>
 </template>
 
 <style lang="scss" scoped>
-
+.clear-all {
+  border-top: 1px solid var(--tg-border-color-grey);
+  width: 100%;
+  padding: var(--tg-spacing-button-padding-horizontal-xs) var(--tg-spacing-button-padding-vertical-xs);
+  font-weight: var(--tg-font-weight-semibold);
+  text-align: center;
+  font-size: var(--tg-font-size-default);
+  color: var(--tg-secondary-main);
+}
+.base-check-pop-inner {
+  padding: var(--tg-spacing-button-padding-horizontal-xs);
+  display: flex;
+  flex-direction: column;
+}
+.check-item-label {
+  display: inline-flex;
+  align-items: center;
+  font-weight: var(--tg-font-weight-semibold);
+  font-size: var(--tg-font-size-default);
+  color: var(--tg-secondary-grey);
+  transition: all 0.2s;
+  letter-spacing: 0;
+  padding-top: 6px;
+  padding-bottom: 4px;
+  justify-content: space-between;
+  gap: 8px;
+}
 </style>
