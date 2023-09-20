@@ -529,7 +529,7 @@ onMounted(() => {
   </ul>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .flex-row {
   display: flex;
   flex-direction: row;

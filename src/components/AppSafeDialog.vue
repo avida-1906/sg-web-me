@@ -20,9 +20,11 @@ const usernameErrorMsg = ref('')
   <div class="app-safe">
     <div class="safe-content">
       <BaseTab v-model="activeTab" :list="tabOptions" />
-      <div class="flex-col-center">
-        <span>货币</span>
-        <AppWallet @change="changeCurrency" />
+      <div class="center">
+        <div class="flex-col-start">
+          <span>货币</span>
+          <AppWallet @change="changeCurrency" />
+        </div>
       </div>
       <div class="amount">
         <div class="top">
@@ -77,14 +79,14 @@ const usernameErrorMsg = ref('')
       font-size: var(--tg-font-size-base);
     }
   }
-  .flex-col-center{
+  .flex-col-start{
     display: flex;
     flex-direction: column;
-    flex-wrap: nowrap;
-    align-items: center;
+    align-items: flex-start;
     span{
       color: var(--tg-text-lightgrey);
       margin-bottom: 3px;
+      font-weight: var(--tg-font-weight-semibold);
     }
   }
   .safe-bottom{

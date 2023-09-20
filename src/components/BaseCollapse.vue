@@ -74,11 +74,6 @@ function handleClickHeader() {
     }
     .accordion-content {
         background-color: var(--tg-secondary-grey);
-        .content-line {
-            background: var(--tg-secondary-main);
-            height: 2px;
-            width: 100%;
-        }
         .content-slot{
           color: var(--tg-secondary-light);
         }

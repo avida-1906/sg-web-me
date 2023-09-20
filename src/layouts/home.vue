@@ -124,7 +124,7 @@ const isCasinoGames = computed(() => route.name === 'casino-games')
 
     <div class="main-content">
       <header class="navigation">
-        <AppContent ref="homeContainerRef">
+        <AppContent>
           <AppHeader />
           <!-- <div class="group">
             <div class="container">
@@ -139,11 +139,19 @@ const isCasinoGames = computed(() => route.name === 'casino-games')
           </div> -->
         </AppContent>
       </header>
+
       <div class="scroll-y scrollable">
+        <!-- 用于获取内容区宽度 -->
+        <AppContent>
+          <div ref="homeContainerRef" class="only-for-get-width" />
+        </AppContent>
+
+        <!-- 主页面 -->
         <RouterView v-if="isCasinoGames" />
         <AppContent v-else>
           <RouterView />
         </AppContent>
+
         <footer class="footer">
           <AppContent>
             <AppFooter />
@@ -167,6 +175,9 @@ const isCasinoGames = computed(() => route.name === 'casino-games')
 </template>
 
 <style scoped lang="scss">
+.only-for-get-width{
+  width: 100%;
+}
 .wrap {
 
   .side-bar-outer {

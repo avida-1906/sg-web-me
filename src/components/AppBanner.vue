@@ -1,15 +1,16 @@
 <script setup lang="ts">
 const {
   isLessThanLg,
-  isGreaterThanSm,
+  isGreaterThanXs,
 } = storeToRefs(useWindowStore())
 
+// 1160 638
 const scrollRef = ref()
 const getGridAutoColumns = computed(() => {
   if (!isLessThanLg.value)
-    return { 'grid-auto-columns': '32.53%' }
+    return { 'grid-auto-columns': '32.45%' }
 
-  else if (isGreaterThanSm.value)
+  else if (isGreaterThanXs.value)
     return { 'grid-auto-columns': '47%' }
 
   else
