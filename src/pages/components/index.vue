@@ -168,6 +168,15 @@ function copyCode(type: string) {
           </VTooltip>
       `)
       break
+    case 'BaseDialog2':
+      copy(`
+        <BaseDialog v-model:show="showDialogTwo" :show-header="false">
+          <div class="data-table">
+            一个外部弹窗 只有内容
+          </div>
+        </BaseDialog>
+      `)
+      break
     default:
       break
   }
@@ -252,7 +261,7 @@ function showTemDialog() {
 }
 function showTemDialog2() {
   setShowDialogTwoTrue()
-  copyCode('BaseDialog')
+  copyCode('BaseDialog2')
 }
 const { bool: showDragDialog, setTrue: setShowDragDialogTrue } = useBoolean(false)
 function showDrag() {
@@ -730,6 +739,7 @@ function copyAppPercentageCode() {
           <BaseButton @click="showTemDialog">
             展示弹窗 template
           </BaseButton>
+          <div style="height: 20px;" />
           <BaseButton @click="showTemDialog2">
             展示弹窗没有 header template
           </BaseButton>
