@@ -58,7 +58,7 @@ function handleClickMenuItem(item: { name: string }) {
 <template>
   <div>
     <div v-if="isLogin" class="app-header">
-      <BaseLogo :use-small="width <= 375" />
+      <BaseLogo :use-small="width < 400" />
       <AppWallet :wallet-btn="true" />
       <div class="header-right">
         <BaseButton v-show="!isMobile" type="text" class="search-btn" @click="setTrue">
@@ -102,13 +102,13 @@ function handleClickMenuItem(item: { name: string }) {
       <AppGlobalSearch v-if="showSearchBar && !isMobile" @close="() => showSearchBar = false" />
     </div>
     <div class="app-header-login">
-      <BaseLogo :use-small="width <= 375" />
+      <BaseLogo :use-small="width <= 400" />
       <div class="user">
         <BaseButton type="text" class="login" @click.stop="openLoginDialog()">
-          登录
+          {{ t('login') }}
         </BaseButton>
         <BaseButton class="reg" bg-style="primary" @click.stop="openRegisterDialog()">
-          注册
+          {{ t('reg') }}
         </BaseButton>
       </div>
     </div>
@@ -118,6 +118,7 @@ function handleClickMenuItem(item: { name: string }) {
 <style lang="scss" scoped>
 .app-header-login {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   .user {
     display: flex;

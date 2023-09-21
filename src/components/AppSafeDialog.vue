@@ -61,10 +61,6 @@ const usernameErrorMsg = ref('')
         了解更多有关保险库的信息
       </BaseButton>
     </div>
-    <!-- isFullScreen?:{{ isFullScreen }}
-    <BaseButton @click="router.push('/casino')">
-      casino
-    </BaseButton> -->
   </div>
 </template>
 

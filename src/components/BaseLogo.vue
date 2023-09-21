@@ -12,18 +12,17 @@ function pathTo() {
 </script>
 
 <template>
-  <BaseAspectRatio ratio="2/1" style="max-width: 82px;">
-    <div class="base-logo" @click="pathTo">
+  <div class="base-logo" @click="pathTo">
+    <BaseAspectRatio ratio="2/1" style="max-width: 67px;min-width: 36px;">
       <BaseIcon class="icon-app-logo" :name="useSmall ? 'app-logo-small' : 'app-logo'" />
-    </div>
-  </BaseAspectRatio>
+    </BaseAspectRatio>
+  </div>
 </template>
 
 <style lang="scss" scoped>
 .base-logo {
-  width: 100%;
-  height: 100%;
-  padding-right: 18%;
+  // width: 100%;
+  // height: 100%;
   cursor: pointer;
   .icon-app-logo {
     display: block;
@@ -32,7 +31,7 @@ function pathTo() {
     --tg-icon-color: var(--tg-text-white);
   }
 }
-.base-logo:active{
+.base-logo:active .icon-app-logo{
   transform: scale(0.96);
 }
 </style>

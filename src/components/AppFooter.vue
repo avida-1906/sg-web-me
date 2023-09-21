@@ -104,7 +104,7 @@
     </div>
     <BaseDivider />
     <div class="footer-copyright">
-      <BaseLogo mode="svg" svg-name="app-logo" />
+      <BaseLogo />
       <div>© 2023 Stake.com | 版权所有</div>
       <div>1 USDT = US$1.00</div>
     </div>
