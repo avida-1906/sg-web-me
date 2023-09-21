@@ -57,7 +57,7 @@ function handleClickMenuItem(item: { name: string }) {
 
 <template>
   <div class="app-header">
-    <BaseLogo :use-small="width < 300" />
+    <BaseLogo :use-small="width <= 375" />
     <AppWallet :wallet-btn="true" />
     <div class="header-right">
       <BaseButton v-show="!isMobile" type="text" class="search-btn" @click="setTrue">
