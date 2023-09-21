@@ -59,6 +59,7 @@ const { value: password, errorMessage: pwdErrorMsg } = useField<string>('passwor
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+    padding-bottom: var(--tg-spacing-button-padding-vertical-xs);
   }
   &-input-box {
     display: flex;
