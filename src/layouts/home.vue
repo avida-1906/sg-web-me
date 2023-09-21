@@ -140,7 +140,7 @@ const isCasinoGames = computed(() => route.name === 'casino-games')
         </AppContent>
       </header>
 
-      <div class="scroll-y scrollable">
+      <div id="main-content-scrollable" class="scroll-y scrollable">
         <!-- 用于获取内容区宽度 -->
         <AppContent>
           <div ref="homeContainerRef" class="only-for-get-width" />

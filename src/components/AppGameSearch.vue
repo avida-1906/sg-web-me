@@ -14,7 +14,18 @@ const placeHolderText = computed(() => isCasino.value ? t('search_game') : t('se
 const searchValue = ref('')
 
 // 搜索功能面板
-const { bool: showSearchOverlay, setTrue, setFalse } = useBoolean(false)
+const { bool: isShowOverlay, setTrue, setFalse } = useBoolean(false)
+// 点开始禁止页面滚动
+const dom = ref()
+const isLocked = useScrollLock(dom)
+function showOverlay() {
+  setTrue()
+  isLocked.value = true
+}
+function closeOverlay() {
+  setFalse()
+  isLocked.value = false
+}
 
 // 近期搜索关键字
 const recentKeyword = ref(['keyword 1', 'keyword 2', 'keyword 3', 'keyword 4', 'keyword 5'])
@@ -29,20 +40,24 @@ function onCloseKeyword(k: string) {
 function onGameItemClick() { }
 // const casinoList = ref([gameInfo, gameInfo, gameInfo, gameInfo, gameInfo])
 const casinoList = ref([])
+
+onMounted(() => {
+  dom.value = document.getElementById('main-content-scrollable')
+})
 </script>
 
 <template>
   <div class="app-game-search">
-    <div v-if="showSearchOverlay" class="overlay" @click.self="setFalse()" />
-    <div :class="{ 'input-focus': showSearchOverlay }">
+    <div v-if="isShowOverlay" class="overlay" @click.self="closeOverlay" />
+    <div :class="{ 'input-focus': isShowOverlay }">
       <BaseSearch
-        v-model="searchValue" :place-holder="placeHolderText" :clearable="showSearchOverlay"
-        @focus="setTrue" @close="setFalse()"
+        v-model="searchValue" :place-holder="placeHolderText" :clearable="isShowOverlay"
+        @focus="showOverlay" @close="closeOverlay"
       />
     </div>
 
     <!-- 搜索功能面板  -->
-    <div v-show="showSearchOverlay" class="search-overlay">
+    <div v-show="isShowOverlay" class="search-overlay">
       <div class="scroll-y warp">
         <div v-if="casinoList.length === 0" class="no-result">
           <div class="text">
