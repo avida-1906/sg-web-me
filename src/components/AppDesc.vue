@@ -229,7 +229,7 @@ const {
       </div>
       <!-- 挑战 -->
       <div v-else-if="tab === '3'" class="challenge-content">
-        <BaseEmpty description="暂无数据" icon="navbar-user-bet" />
+        <BaseEmpty description="Wanted Dead or a Wild 暂无任何活跃的挑战" icon="empty-1" />
       </div>
     </div>
   </div>
@@ -415,6 +415,7 @@ const {
 
     .challenge-content {
       margin-top: var(--tg-spacing-12);
+      padding: var(--tg-spacing-16);
     }
   }
 

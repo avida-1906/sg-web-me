@@ -23,7 +23,9 @@ const { bool: showSearchBar, setTrue } = useBoolean(false)
 
 // Dialog
 const { openWalletDialog } = useWalletDialog()
-const { openLoginDialog } = useLoginDialog()
+// const { openLoginDialog } = useLoginDialog()
+const { openRegisterDialog } = useRegisterDialog()
+
 const { openVipDialog } = useVipDialog()
 const { openStatisticsDialog } = useStatisticsDialog()
 const { openSafeDialog } = useSafeDialog()
@@ -38,7 +40,8 @@ function handleClickMenuItem(item: { name: string }) {
       openSafeDialog()
       break
     case 'logout':
-      openLoginDialog()
+      // openLoginDialog()
+      openRegisterDialog()
       break
     case 'vip':
       openVipDialog()
@@ -54,7 +57,7 @@ function handleClickMenuItem(item: { name: string }) {
 
 <template>
   <div class="app-header">
-    <BaseLogo :use-small="width < 300" />
+    <BaseLogo :use-small="width <= 375" />
     <AppWallet :wallet-btn="true" />
     <div class="header-right">
       <BaseButton v-show="!isMobile" type="text" class="search-btn" @click="setTrue">
@@ -128,9 +131,6 @@ function handleClickMenuItem(item: { name: string }) {
       color: var(--tg-text-white);
       font-size: var(--tg-font-size-default);
       font-weight: var(--tg-font-weight-semibold);
-
-      // padding-top: var(--tg-spacing-button-padding-vertical-s) !important;
-      // padding-bottom: var(--tg-spacing-button-padding-vertical-s) !important;
       .icon-search {
         font-size: var(--tg-font-size-xl);
       }

@@ -16,7 +16,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 // const emit = defineEmits(['update:modelValue'])
 
-const tab = ref('4')
+const tab = ref('3')
 const tabList = [
   { label: '统计数据', value: '1' },
   { label: '奖杯', value: '2' },
@@ -34,7 +34,7 @@ interface IColumns {
 const statisticsColumns = ref<IColumns[]>([
   {
     title: '投注',
-    width: 100,
+    width: 60,
     dataIndex: 'bet',
     slot: 'bet',
     align: 'left',
@@ -55,7 +55,7 @@ const statisticsColumns = ref<IColumns[]>([
   },
   {
     title: '总投注额',
-    width: 100,
+    width: 130,
     dataIndex: 'totalBet',
     slot: 'totalBet',
     align: 'right',
@@ -64,7 +64,8 @@ const statisticsColumns = ref<IColumns[]>([
 const { bool: loading, setFalse } = useBoolean(true)
 const statisticsTableData: any = ref([])
 const trophyTableData: any = ref([])
-const SweepstakesTableData: any = ref([])
+const sweepstakesTableData: any = ref([])
+const competitionTableData: any = ref([])
 onMounted(() => {
   setTimeout(() => {
     statisticsTableData.value = [
@@ -96,27 +97,27 @@ onMounted(() => {
     trophyTableData.value = [
       {
         game: 'Cursed seas',
-        gameSupplier: 'hub88',
-        trophy: EnumCurrency.BTC,
-        currencyType: EnumCurrency.BTC,
+        provider: 'hub88',
+        trophy: 'uni-cup1',
+        gameIcon: 'uni-cup1',
       },
       {
         game: 'Cursed seas',
-        gameSupplier: 'hub88',
-        trophy: EnumCurrency.BTC,
-        currencyType: EnumCurrency.BTC,
+        provider: 'hub88',
+        trophy: 'uni-cup1',
+        gameIcon: 'uni-cup1',
       },
       {
         game: 'Cursed seas',
-        gameSupplier: 'hub88',
-        trophy: EnumCurrency.BTC,
-        currencyType: EnumCurrency.BTC,
+        provider: 'hub88',
+        trophy: 'uni-cup1',
+        gameIcon: 'uni-cup1',
       },
     ]
     setFalse()
   }, 3000)
   setTimeout(() => {
-    SweepstakesTableData.value = [
+    sweepstakesTableData.value = [
       {
         bet: 'R$ 750,000 周年抽奖活动',
         date: '2023/07/28',
@@ -134,18 +135,40 @@ onMounted(() => {
       },
     ]
   }, 3000)
+  setTimeout(() => {
+    competitionTableData.value = [
+      {
+        name: '$100,000 竞赛 – 24 小时',
+        date: '2023/7/14',
+        rank: '1537th',
+        bonus: 'US$3.00',
+        bonusIcon: 'coin-usdc',
+      },
+      {
+        name: '$100,000 竞赛 – 24 小时',
+        date: '2023/7/14',
+        rank: '1537th',
+        bonus: 'US$3.00',
+        bonusIcon: 'coin-usdc',
+      },
+    ]
+  }, 3000)
 })
 // 奖杯select
-const selectValue = ref('1')
+const selectValue = ref('2')
 const selectOptions = [
   { value: '1', label: '最幸运奖杯' },
   { value: '2', label: '最大之赢' },
 ]
-// 奖杯表 head
+const trophyCards = ref([
+  { rankIcon: 'uni-cup1', gameName: 'Spellbinding Mystery', provider: 'Pragmatic' },
+  { rankIcon: 'uni-cup1', gameName: 'Spellbinding Mystery', provider: 'Pragmatic' },
+  { rankIcon: 'uni-cup1', gameName: 'Spellbinding Mystery', provider: 'Pragmatic' },
+])
 const trophyColumns = ref<IColumns[]>([
   {
     title: '游戏',
-    width: 100,
+    width: 200,
     dataIndex: 'game',
     slot: 'game',
     align: 'left',
@@ -153,8 +176,8 @@ const trophyColumns = ref<IColumns[]>([
   {
     title: '游戏提供商',
     width: 100,
-    dataIndex: 'gameSupplier',
-    slot: 'gameSupplier',
+    dataIndex: 'provider',
+    slot: 'provider',
     align: 'center',
   },
   {
@@ -164,26 +187,58 @@ const trophyColumns = ref<IColumns[]>([
     slot: 'trophy',
     align: 'right',
   },
+
+])
+// 竞赛
+const competitionColumns = ref<IColumns[]>([
+  {
+    title: '竞赛名称',
+    // width: 210,
+    dataIndex: 'name',
+    slot: 'name',
+    align: 'left',
+  },
+  {
+    title: '日期',
+    // width: 120,
+    dataIndex: 'date',
+    slot: 'date',
+    align: 'center',
+  },
+  {
+    title: '排名',
+    // width: 100,
+    dataIndex: 'rank',
+    slot: 'rank',
+    align: 'center',
+  },
+  {
+    title: '奖金',
+    // width: 100,
+    dataIndex: 'bonus',
+    slot: 'bonus',
+    align: 'right',
+  },
 ])
 // 抽奖活动 head
 const SweepstakesColumns = ref<IColumns[]>([
   {
     title: '投注',
-    width: 100,
+    width: 200,
     dataIndex: 'bet',
     slot: 'bet',
     align: 'left',
   },
   {
     title: '日期',
-    width: 100,
+    width: 120,
     dataIndex: 'date',
     slot: 'date',
     align: 'center',
   },
   {
     title: '抽奖卷',
-    width: 100,
+    width: 80,
     dataIndex: 'lottery',
     slot: 'lottery',
     align: 'right',
@@ -225,13 +280,17 @@ const onNext = function () {
       <AppVipProgress :vip-progress-data="props.vipProgressData" />
       <div class="s-tab">
         <BaseTab v-model="tab" :list="tabList" :full="true" />
-        <div v-if="tab === '1' || tab === '3'" class="statistics-wrap">
+        <!-- 数据统计 -->
+        <div v-if="tab === '1'" class="statistics-wrap">
           <BaseTable :columns="statisticsColumns" :data-source="statisticsTableData" :loading="loading">
             <template #totalBet="{ record }">
-              <AppAmount :amount="record.totalBet" :currency-type="record.currencyType" />
+              <div class="img-text-align-right">
+                <AppAmount :amount="record.totalBet" :currency-type="record.currencyType" />
+              </div>
             </template>
           </BaseTable>
         </div>
+        <!-- 奖杯 -->
         <div v-else-if="tab === '2'" class="trophies-wrap">
           <div class="trophies-title">
             <p class="title-left">
@@ -242,21 +301,72 @@ const onNext = function () {
               <BaseSelect v-model="selectValue" :options="selectOptions" :small="true" />
             </p>
           </div>
-          <div class="trophies-table">
-            <BaseTable :columns="trophyColumns" :data-source="trophyTableData" :loading="loading">
-              <!-- <template #trophy="{ record }"> -->
-              <BaseIcon name="coin-bch" />
-              <!-- </template> -->
+          <div class="trophies-cards">
+            <div v-for="item, index in trophyCards" :key="index" class="t-card">
+              <div class="card-icon">
+                <BaseIcon :name="item.rankIcon" />
+              </div>
+              <div class="card-content">
+                <span class="game"><span>{{ item.gameName }}</span></span>
+                <span class="tag">{{ item.provider }}</span>
+              </div>
+            </div>
+          </div>
+          <div v-show="selectValue === '2'" class="trophies-table">
+            <BaseTable
+              :columns="trophyColumns"
+              :data-source="trophyTableData"
+              :loading="loading"
+            >
+              <template #game="{ record }">
+                <div class="t-game">
+                  <BaseIcon :name="record.gameIcon " />
+                  <span>Valletta Megaways</span>
+                </div>
+              </template>
+              <template #trophy="{ record }">
+                <BaseIcon :name="record.trophy " />
+              </template>
             </BaseTable>
           </div>
         </div>
-        <div v-else-if="tab === '4'" class="sweepstakes-wrap">
-          <div class="sweepstakes-table">
-            <BaseTable :columns="SweepstakesColumns" :data-source="SweepstakesTableData" :loading="loading" />
-            <div class="pagination-wrap">
-              <AppStack :pagination-data="paginationData" @previous="onPrevious" @next="onNext" />
+        <div v-else-if="tab === '3'" class="competition-wrap">
+          <div class="c-title">
+            <BaseIcon name="spt-competition" />
+            最新竞赛
+          </div>
+          <div class="competition-cards">
+            <div class="c-card">
+              <div class="card-top">
+                <div>4147th</div>
+                <div>US$1.00<BaseIcon name="coin-usdc" /></div>
+              </div>
+              <div class="card-bottom">
+                <div>$100,000 竞赛 – 24 小时</div>
+                <div>2023/7/17</div>
+              </div>
             </div>
           </div>
+          <div class="scroll-x competition-table">
+            <BaseTable
+              :columns="competitionColumns"
+              :data-source="competitionTableData"
+              :loading="loading"
+            >
+              <template #bonus="{ record }">
+                <div class="t-bonus">
+                  {{ record.bonus }} <BaseIcon :name="record.bonusIcon" />
+                </div>
+              </template>
+            </BaseTable>
+          </div>
+          <AppStack :pagination-data="paginationData" @previous="onPrevious" @next="onNext" />
+        </div>
+        <div v-else-if="tab === '4'" class="sweepstakes-wrap">
+          <div class="sweepstakes-table">
+            <BaseTable :columns="SweepstakesColumns" :data-source="sweepstakesTableData" :loading="loading" />
+          </div>
+          <AppStack :pagination-data="paginationData" @previous="onPrevious" @next="onNext" />
         </div>
       </div>
     </div>
@@ -266,7 +376,7 @@ const onNext = function () {
 <style lang='scss' scoped>
 .app-statistics-dialog{
   .statistics-content{
-    padding: var(--tg-spacing-2) var(--tg-spacing-16) var(--tg-spacing-10);
+    padding: var(--tg-spacing-2) var(--tg-spacing-16) var(--tg-spacing-16);
     .s-user-name {
       color: var(--tg-text-lightgrey);
       font-size: var(--tg-font-size-md);
@@ -284,20 +394,23 @@ const onNext = function () {
     }
     .s-tab{
       margin-top: var(--tg-spacing-32);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
       .statistics-wrap{
         padding:  var(--tg-spacing-10) 0;
       }
       .trophies-wrap{
-        padding:  var(--tg-spacing-10) 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
         .trophies-title{
           display: flex;
           justify-content: space-between;
-          margin-top: var(--tg-spacing-12);
           .title-left{
             display: flex;
             justify-content: left;
             align-items: center;
-            padding: var(--tg-spacing-10) 0;
             > span{
               font-size: var(--tg-font-size-base);
               font-weight: var(--tg-font-weight-bold);
@@ -309,9 +422,122 @@ const onNext = function () {
             width: 120px;
           }
         }
+        .trophies-cards{
+          display: flex;
+          gap: .5rem;
+          .t-card{
+            border-radius: var(--tg-radius-xs);
+            background: var(--tg-secondary-grey);
+            padding: var(--tg-spacing-16);
+            gap: var(--spacing-0-5);
+            display: flex;
+            flex-direction: column;
+            gap: .5rem;
+            flex: 1;
+            .card-content{
+              white-space: normal;
+              .game{
+                max-width: 9ch;
+                font-weight: var(--tg-font-weight-semibold);
+                font-size: var(--tg-font-size-base);
+                cursor: pointer;
+                display: inline-flex;
+                > span{
+                  max-width: 9ch;
+                  display: inline-block;
+                  white-space: nowrap;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  margin-right: var(--tg-spacing-4);
+                  line-height: var(--tg-spacing-24);
+                }
+              }
+              .tag{
+                font-size: var(--tg-font-size-xs);
+                max-width: 9ch;
+                color: var(--tg-text-lightgrey);
+                font-weight: var(--tg-font-weight-semibold);
+                line-height: var(--tg-spacing-18);
+              }
+            }
+          }
+        }
+        .trophies-table{
+          .t-game{
+            color: var(--tg-text-white);
+            font-size: var(--tg-font-size-base);
+            font-weight: var(--tg-font-weight-semibold);
+            display: flex;
+            align-items: center;
+            > span {
+              margin-left: var(--tg-spacing-8);
+            }
+          }
+        }
+      }
+      .competition-wrap{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        .c-title{
+          color: var(--tg-text-white);
+          font-size: var(--tg-font-size-base);
+          font-weight: var(--tg-font-weight-bold);
+          display: flex;
+          align-items: center;
+          gap: .5rem;
+        }
+        .competition-cards{
+          .c-card{
+            padding: var(--tg-spacing-16);
+            background-color: var(--tg-secondary-grey);
+            border-radius: var(--tg-radius-md);
+            display: flex;
+            flex-direction: column;
+            gap: .5rem;
+            .card-top{
+              color: vat(--tg-text-white);
+              font-weight: var(--tg-font-weight-bold);
+              font-size: var(--tg-font-size-md);
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              >div:nth-child(2){
+                display: flex;
+                align-items: center;
+                gap: .25rem;
+              }
+            }
+            .card-bottom{
+              font-size: var(--tg-font-size-base);
+              font-weight: var(--tg-font-weight-semibold);
+              color: var(--tg-text-lightgrey);
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              >div:nth-child(2){
+                font-size: var(--tg-font-size-xs);
+              }
+            }
+          }
+        }
+        .competition-table{
+          .t-bonus{
+            display: flex;
+            align-items: center;
+            gap: .25rem;
+          }
+        }
       }
       .sweepstakes-wrap{
-        padding:  var(--tg-spacing-10) 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .img-text-align-right{
+        display: flex;
+        justify-content: right;
+        align-items: center;
       }
     }
   }
