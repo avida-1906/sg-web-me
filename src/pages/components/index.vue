@@ -170,7 +170,7 @@ function copyCode(type: string) {
       break
     case 'BaseDialog2':
       copy(`
-        <BaseDialog v-model:show="showDialogTwo" :show-header="false">
+        <BaseDialog v-model:show="showDialogTwo">
           <div class="data-table">
             一个外部弹窗 只有内容
           </div>
@@ -1147,7 +1147,7 @@ function copyAppPercentageCode() {
       一个外部弹窗
     </div>
   </BaseDialog>
-  <BaseDialog v-model:show="showDialogTwo" :show-header="false">
+  <BaseDialog v-model:show="showDialogTwo">
     <div class="data-table">
       一个外部弹窗 只有内容
     </div>
