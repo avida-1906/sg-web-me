@@ -12,9 +12,11 @@ interface Props {
 
 <template>
   <div class="app-bottom">
-    <BaseDivider class="divider" title-placement="center">
-      {{ t('or_use') }}
-    </BaseDivider>
+    <div class="app-bottom-divider">
+      <BaseDivider title-placement="center">
+        {{ t('or_use') }}
+      </BaseDivider>
+    </div>
     <div class="app-bottom-icon">
       <BaseButton class="item-svg">
         <BaseIcon name="facebook" />
@@ -37,7 +39,7 @@ interface Props {
       <div v-if="props.type === 'login'" class="user-text">
         {{ t('no_account_yet') }}<span class="text-white">{{ t('register_account') }}</span>
       </div>
-      <div v-else class="user-text">
+      <div v-else>
         {{ t('have_account') }}<span class="text-white">{{ t('login') }}</span>
       </div>
 
@@ -50,8 +52,11 @@ interface Props {
 
 <style lang='scss' scoped>
 .app-bottom {
-  .divider {
-    margin: 12px 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--tg-spacing-12);
+  &-divider {
+    padding-top: var(--tg-spacing-button-padding-vertical-xs);
   }
   &-icon {
     display: flex;
@@ -77,11 +82,11 @@ interface Props {
     font-size: var(--tg-font-size-default);
     color: var(--tg-text-lightgrey);
     line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+    gap: var(--tg-spacing-12);
     .text-white {
       color: var(--tg-text-white) !important;
-    }
-    .user-text {
-      margin: var(--tg-spacing-12) 0;
     }
     .stake-text {
       font-size: var(--tg-font-size-xs);
