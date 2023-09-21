@@ -67,7 +67,7 @@ const isCasinoGames = computed(() => route.name === 'casino-games')
 </script>
 
 <template>
-  <main class="wrap" :class="{ 'is-switching': isSwitching }">
+  <main class="wrap" :class="{ 'is-switching': isSwitching, 'not-mobile': !isMobile }">
     <div v-if="homeOverlayIsShow" class="home-overlay" @click="leftIsExpand = !leftIsExpand" />
     <AppFooterbar v-show="!isGreaterThanSm" />
     <div class="side-bar-outer">
@@ -103,7 +103,7 @@ const isCasinoGames = computed(() => route.name === 'casino-games')
       </Transition>
     </div>
 
-    <div class="main-content">
+    <div class="main-content" :class="{ 'not-mobile': !isMobile }">
       <header class="navigation">
         <AppContent>
           <AppHeader />
@@ -185,10 +185,12 @@ const isCasinoGames = computed(() => route.name === 'casino-games')
   }
 }
 .wrap {
-  display: flex;
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  &.not-mobile {
+    display: flex;
+    overflow: hidden;
+  }
 }
 
 .home-overlay {
@@ -233,11 +235,12 @@ const isCasinoGames = computed(() => route.name === 'casino-games')
 }
 
 .main-content {
-  display: flex;
-  flex: 1;
-  overflow: hidden;
-  flex-direction: column;
-  // position: relative;
+  &.not-mobile {
+    overflow: hidden;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+  }
 
   &>.navigation {
     display: flex;
@@ -249,8 +252,9 @@ const isCasinoGames = computed(() => route.name === 'casino-games')
     font-weight: 600;
     padding-right: var(--tg-scrollbar-size);
     box-shadow: #0003 0 4px 6px -1px, #0000001f 0 2px 4px -1px;
-    position: relative;
     z-index: var(--tg-z-index-10);
+    position: sticky;
+    top: 0;
 
     &>.group {
       display: flex;
