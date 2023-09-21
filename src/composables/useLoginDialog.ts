@@ -7,8 +7,19 @@ export function useLoginDialog() {
     default: () => h(AppLoginDialog),
   })
 
+  const checkLogin = () => {
+    const token = Local.get(STORAGE_TOKEN_KEY)?.value
+    if (!token) {
+      // 显示登录弹窗
+
+      return false
+    }
+    return true
+  }
+
   return {
     openLoginDialog,
     closeLoginDialog,
+    checkLogin,
   }
 }

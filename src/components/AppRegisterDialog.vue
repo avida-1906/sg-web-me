@@ -8,6 +8,7 @@ const { t } = useI18n()
       {{ t('register') }}
     </div>
     <AppRegister />
+    <!-- <AppRegisterTermsConditions /> -->
     <AppLoginRegisterBottom type="register" />
   </div>
 </template>
