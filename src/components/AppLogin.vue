@@ -15,17 +15,22 @@ const { value: password, errorMessage: pwdErrorMsg } = useField<string>('passwor
 </script>
 
 <template>
-  <div>
+  <div class="app-login">
     <BaseInput v-model="username" :label="t('email_or_username')" :msg="usernameErrorMsg" :placeholder="t('pls_enter_email_or_username')" must />
     <BaseInput v-model="password" :label="t('password')" :msg="pwdErrorMsg" :placeholder="t('pls_enter_password')" type="password" must />
-    <BaseButton class="btn" bg-style="secondary">
+    <BaseButton class="app-login-btn" bg-style="secondary">
       {{ t('login') }}
     </BaseButton>
   </div>
 </template>
 
 <style lang='scss' scoped>
-.btn {
-  width: 100%;
+.app-login {
+  .base-input {
+    margin-top: 12px;
+  }
+  &-btn {
+    width: 100%;
+  }
 }
 </style>

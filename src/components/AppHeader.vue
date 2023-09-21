@@ -24,7 +24,7 @@ const { bool: showSearchBar, setTrue } = useBoolean(false)
 // Dialog
 const { openWalletDialog } = useWalletDialog()
 // const { openLoginDialog } = useLoginDialog()
-// const { openRegisterDialog } = useRegisterDialog()
+const { openRegisterDialog } = useRegisterDialog()
 
 const { openVipDialog } = useVipDialog()
 const { openStatisticsDialog } = useStatisticsDialog()
@@ -41,7 +41,7 @@ function handleClickMenuItem(item: { name: string }) {
       break
     case 'logout':
       // openLoginDialog()
-      // openRegisterDialog()
+      openRegisterDialog()
       break
     case 'vip':
       openVipDialog()
