@@ -57,10 +57,10 @@ interface Props {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: var(--tg-spacing-5);
     .item-svg {
       width: 70px;
       height: 40px;
-      margin: 0 2.5px;
       cursor: pointer;
       flex-shrink: 0;
       border-radius: var(--tg-radius-default);
@@ -68,6 +68,8 @@ interface Props {
       justify-content: center;
       align-items: center;
       background:var(--tg-secondary-main);
+      font-size: var(--tg-font-size-default);
+      // -tg-icon-color: var(--tg-text-lightgrey);
     }
   }
   &-text {
