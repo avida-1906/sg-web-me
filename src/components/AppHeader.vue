@@ -105,10 +105,10 @@ function handleClickMenuItem(item: { name: string }) {
       <BaseLogo :use-small="width <= 375" />
       <div class="user">
         <BaseButton type="text" class="login" @click.stop="openLoginDialog()">
-          登录
+          {{ t('login') }}
         </BaseButton>
         <BaseButton class="reg" bg-style="primary" @click.stop="openRegisterDialog()">
-          注册
+          {{ t('reg') }}
         </BaseButton>
       </div>
     </div>
@@ -118,6 +118,7 @@ function handleClickMenuItem(item: { name: string }) {
 <style lang="scss" scoped>
 .app-header-login {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   .user {
     display: flex;
