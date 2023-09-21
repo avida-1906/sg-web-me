@@ -21,6 +21,7 @@ const { openDialog: openGetNewCrypto } = useDialog({
   title: '确认更换地址',
   icon: 'navbar-wallet',
   maxWidth: 400,
+  showButtons: true,
   default: () => h(AppGetNewCrypto),
 })
 </script>
