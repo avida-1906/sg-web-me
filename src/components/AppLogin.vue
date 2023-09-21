@@ -16,14 +16,16 @@ const { value: password, errorMessage: pwdErrorMsg } = useField<string>('passwor
 
 <template>
   <div class="app-login">
-    <div class="app-login-input-box">
-      <BaseInput v-model="username" :label="t('email_or_username')" :msg="usernameErrorMsg" :placeholder="t('pls_enter_email_or_username')" must />
-      <BaseInput v-model="password" :label="t('password')" :msg="pwdErrorMsg" :placeholder="t('pls_enter_password')" type="password" must />
-      <!-- <BaseInput v-model="username" :label="t('two-step_verification')" :msg="usernameErrorMsg" :placeholder="t('pls_enter_two-step_verification')" must /> -->
-      <BaseButton class="app-login-btn" bg-style="secondary">
-        {{ t('login') }}
-      </BaseButton>
-    </div>
+    <form>
+      <div class="app-login-input-box">
+        <BaseInput v-model="username" :label="t('email_or_username')" :msg="usernameErrorMsg" :placeholder="t('pls_enter_email_or_username')" must />
+        <BaseInput v-model="password" :label="t('password')" :msg="pwdErrorMsg" :placeholder="t('pls_enter_password')" type="password" must autocomplete="current-password" />
+        <!-- <BaseInput v-model="username" :label="t('two-step_verification')" :msg="usernameErrorMsg" :placeholder="t('pls_enter_two-step_verification')" must /> -->
+        <BaseButton class="app-login-btn" bg-style="secondary">
+          {{ t('login') }}
+        </BaseButton>
+      </div>
+    </form>
   </div>
 </template>
 

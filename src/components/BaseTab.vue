@@ -16,10 +16,11 @@ const props = withDefaults(defineProps<Props>(), {
 })
 const emit = defineEmits(['update:modelValue', 'change'])
 
-function onClick(v: string | number) {
+function onClick(v: string | number, event: any) {
   if (v === props.modelValue)
     return
 
+  event.target.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' })
   emit('update:modelValue', v)
   emit('change', v)
 }
@@ -31,7 +32,7 @@ function onClick(v: string | number) {
       <div class="tab-wrap" :class="[shape]">
         <div
           v-for="t, i in list" :key="i" class="tab" :class="{ active: t.value === modelValue }"
-          @click="onClick(t.value)"
+          @click="onClick(t.value, $event)"
         >
           <div class="content">
             <slot name="tab" :item="t">

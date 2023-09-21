@@ -197,6 +197,7 @@ function onInput() {
       outline: none;
       padding: var(--tg-spacing-input-padding-vertical) var(--tg-spacing-input-padding-horizontal);
       transition: all ease .25s;
+      line-height: 1;
 
       &:hover:not(.error) {
         border-color: var(--tg-text-grey);
