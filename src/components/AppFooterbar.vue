@@ -5,6 +5,9 @@
 // withDefaults(defineProps<Props>(), {
 //
 // })
+
+const { leftIsExpand } = useLeftSidebar()
+
 const tabbar = ref([
   { title: '浏览', icon: 'tabbar-menu', name: 'menu', show: true },
   { title: '娱乐城', icon: 'tabbar-game', name: 'game', show: true },
@@ -23,6 +26,9 @@ function changeBar(item: { name: string }) {
   else if (item.name === 'sport') {
     tabbar.value[2].show = false
     tabbar.value[3].show = true
+  }
+  else if (item.name === 'menu') {
+    leftIsExpand.value = !leftIsExpand.value
   }
 }
 </script>

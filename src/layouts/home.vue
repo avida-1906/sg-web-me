@@ -30,31 +30,12 @@ watch(() => width.value, (newWidth) => {
   windowStore.setAppContentWidth(newWidth)
 })
 
-// 左侧是否展开
-const leftIsExpand = useDebouncedRef({ value: false, delay: 100, beforeTrigger, afterTrigger })
-const { bool: isSwitching, setTrue, setFalse } = useBoolean(false)
-const switchTo = ref<'big' | 'small' | ''>('')
+const { leftIsExpand, isSwitching, switchTo } = useLeftSidebar()
 
-function beforeTrigger(expand_cur: boolean) {
-  setTrue()
-  if (expand_cur)
-    switchTo.value = 'small'
-  else
-    switchTo.value = 'big'
-}
-function afterTrigger() {
-  setFalse()
-  switchTo.value = ''
-}
 // 右侧是否展开
 const { bool: rightIsExpand, setTrue: setRightIsExpandTrue, setFalse: setRightIsExpandFalse } = useBoolean(false)
 const { bool: rightContainerIs0, setTrue: setRightContainerIs0True, setFalse: setRightContainerIs0False } = useBoolean(true)
 const rightSidebar = ref<HTMLElement | null>(null)
-
-// 左侧侧边栏宽度
-// const leftSidebarWidth = computed(() => {
-//   return `${leftIsExpand.value ? 240 : 60}px`
-// })
 
 // home-overlay 是否显示
 const homeOverlayIsShow = computed(() => {
@@ -243,7 +224,7 @@ const isCasinoGames = computed(() => route.name === 'casino-games')
     width: 100%;
     top: var(--tg-header-height);
     padding-bottom: var(--tg-footer-height);
-    height: calc(100% - var(--tg-header-height));
+    height: calc(100% - var(--tg-header-height) - var(--tg-footerbar-height));
   }
 
   &.fixed-small {
