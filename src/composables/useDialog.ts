@@ -1,7 +1,7 @@
 import BaseDialog from '~/components/BaseDialog.vue'
 import { install } from '~/modules'
 
-export function useDialog({ title, icon, default: defaultSlot, maxWidth }: { title: string; icon: string; default: () => Component; maxWidth?: number }) {
+export function useDialog({ title, icon, default: defaultSlot, maxWidth, showButtons }: { title: string; icon: string; default: () => Component; maxWidth?: number; showButtons?: boolean }) {
   const app = ref()
   const div = ref()
   const openDialog = () => {
@@ -11,6 +11,7 @@ export function useDialog({ title, icon, default: defaultSlot, maxWidth }: { tit
       title,
       icon,
       maxWidth,
+      showButtons,
       show: false,
       funcCall: true,
       onClose: () => {

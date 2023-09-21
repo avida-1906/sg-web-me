@@ -243,6 +243,7 @@ const { openDialog, closeDialog } = useDialog({
   title: '表格',
   icon: 'balls-darts-on',
   maxWidth: 400,
+  showButtons: true,
   default: () => h(AppDemoCard, { title: '标题' }, {
     default: () => h('table', { style: { color: 'orange' } }, 'abcdefg'),
   }),

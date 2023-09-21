@@ -6,17 +6,16 @@ interface Props {
   teleport?: boolean
   closeOnClickOverlay?: boolean
   funcCall?: boolean
-  showHeader?: boolean
   maxWidth?: number
+  showButtons?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
   closeOnClickOverlay: true,
-  showHeader: true,
   maxWidth: 500,
 })
 
-const emit = defineEmits(['update:show', 'close'])
+const emit = defineEmits(['update:show', 'close', 'cancel', 'confirm'])
 
 const { bool: _show, setTrue, setFalse } = useBoolean(false)
 
@@ -48,6 +47,14 @@ function close() {
   updateShow(false)
 }
 
+function onCancel() {
+  emit('cancel')
+}
+
+function onConfirm() {
+  emit('confirm')
+}
+
 provide('closeDialog', close)
 </script>
 
@@ -56,7 +63,7 @@ provide('closeDialog', close)
     <section v-if="show || _show" class="tg-base-dialog">
       <div class="overlay" @click="closeOnClickOverlay && close()" />
       <div class="card" :style="`--tg-dialog-style-maxwidth:${maxWidth}px`">
-        <div v-if="showHeader" class="header">
+        <div v-if="icon || title" class="header">
           <h2>
             <BaseIcon v-if="icon" :name="icon" />
             <span>{{ title }}</span>
@@ -70,7 +77,17 @@ provide('closeDialog', close)
             <slot />
           </div>
         </div>
-        <div v-if="!showHeader" class="close-only" @click="close">
+        <div v-if="showButtons" class="footer-buttons">
+          <div class="buttons">
+            <BaseButton size="md" @click="onCancel">
+              取消
+            </BaseButton>
+            <BaseButton bg-style="secondary" size="md" @click="onConfirm">
+              确认
+            </BaseButton>
+          </div>
+        </div>
+        <div v-if="!icon && !title" class="close-only" @click="close">
           <BaseIcon name="uni-close" />
         </div>
       </div>
@@ -151,6 +168,16 @@ provide('closeDialog', close)
         display: flex;
         flex-direction: column;
         position: relative;
+      }
+      .footer-buttons {
+        padding: var(--tg-spacing-button-padding-horizontal-sm);
+        .buttons {
+          display: flex;
+          gap: var(--tg-spacing-button-padding-horizontal-sm);
+          button {
+            flex: 1;
+          }
+        }
       }
     }
     .close {
