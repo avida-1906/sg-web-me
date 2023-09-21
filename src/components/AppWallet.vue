@@ -164,7 +164,6 @@ const { openWalletDialog } = useWalletDialog()
   max-width: 100vw;
 
   .popper-top {
-    // width: 100%;
     padding: 8px 0 12px;
 
     .top-search {
