@@ -92,7 +92,7 @@ interface Props {
     }
     .stake-text {
       font-size: var(--tg-font-size-xs);
-      padding-bottom: var(--tg-font-size-lg);
+      padding-bottom: var(--tg-spacing-20);
     }
   }
 }
