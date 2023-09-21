@@ -20,6 +20,7 @@ const networkList = [
 const { openDialog: openGetNewCrypto } = useDialog({
   title: '确认更换地址',
   icon: 'navbar-wallet',
+  maxWidth: 400,
   default: () => h(AppGetNewCrypto),
 })
 </script>
