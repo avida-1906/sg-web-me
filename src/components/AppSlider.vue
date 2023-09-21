@@ -222,6 +222,7 @@ watchEffect(() => {
       .item {
         border-radius: var(--tg-radius-md);
         position: relative;
+        min-height: 100px;
       }
       &.see-all {
         .item {
