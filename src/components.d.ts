@@ -20,6 +20,8 @@ declare module 'vue' {
     AppFooter: typeof import('./components/AppFooter.vue')['default']
     AppFooterbar: typeof import('./components/AppFooterbar.vue')['default']
     AppGameSearch: typeof import('./components/AppGameSearch.vue')['default']
+    AppGetNewCrypto: typeof import('./components/AppGetNewCrypto.vue')['default']
+    AppGetNewCryptoAddress: typeof import('./components/AppGetNewCryptoAddress.vue')['default']
     AppGlobalSearch: typeof import('./components/AppGlobalSearch.vue')['default']
     AppGroupFilter: typeof import('./components/AppGroupFilter.vue')['default']
     AppHeader: typeof import('./components/AppHeader.vue')['default']

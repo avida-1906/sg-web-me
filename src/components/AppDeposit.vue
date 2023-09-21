@@ -1,4 +1,6 @@
 <script setup lang='ts'>
+import AppGetNewCrypto from '~/components/AppGetNewCrypto.vue'
+
 const { t } = useI18n()
 
 const inputRef = ref()
@@ -13,6 +15,13 @@ const networkList = [
   { label: '网络3', value: '3' },
   { label: '网络4', value: '4' },
 ]
+
+// 获取新的虚拟货币地址
+const { openDialog: openGetNewCrypto } = useDialog({
+  title: '确认更换地址',
+  icon: 'navbar-wallet',
+  default: () => h(AppGetNewCrypto),
+})
 </script>
 
 <template>
@@ -31,7 +40,7 @@ const networkList = [
       <span class="semibold label">{{ t('your_currency_deposit_address', { currency: 'BTC' }) }}</span>
       <div class="input-box">
         <input ref="inputRef" type="text" readonly :value="currentAddress" @click="onInputClick">
-        <div class="icon">
+        <div class="icon" @click="openGetNewCrypto">
           <BaseIcon name="uni-refresh" />
         </div>
         <div class="icon line" @click="application.copy(currentAddress)">
