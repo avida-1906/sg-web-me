@@ -76,7 +76,6 @@ button {
 }
 
 .text {
-  font-size: var(--tg-font-size-xl);
   color: var(--tg-text-grey-button);
 
   &:active:not(:disabled) {

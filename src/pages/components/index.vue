@@ -270,7 +270,7 @@ function showDrag() {
   copyCode('BaseDragDialog')
 }
 
-const msg = '哈哈哈哈哈哈哈哈哈哈哈哈哈哈'
+const msg = ref('哈哈哈哈哈哈哈哈哈哈哈哈哈哈')
 
 const list = [
   { id: 1, key: 'left', name: '偏左' },
