@@ -98,6 +98,8 @@ function copyCode(type: string) {
           default: () => h(AppDemoCard, { title: '标题' }, {
             default: () => h('table', { style: { color: 'orange' } }, 'abcdefg'),
           }),
+          onCancel: () => { console.log('dialog canceled') },
+          onConfirm: () => { console.log('dialog confirm') },
         })
       `)
       break
@@ -247,6 +249,8 @@ const { openDialog, closeDialog } = useDialog({
   default: () => h(AppDemoCard, { title: '标题' }, {
     default: () => h('table', { style: { color: 'orange' } }, 'abcdefg'),
   }),
+  onCancel: () => { console.log('dialog canceled') },
+  onConfirm: () => { console.log('dialog confirm') },
 })
 const timerD = ref()
 function showDialog() {
