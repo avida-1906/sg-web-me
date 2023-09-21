@@ -265,6 +265,12 @@ const onNext = function () {
   console.log('下一页2')
   paginationData.value.pageNumber++
 }
+const {
+  widthBoundarySm,
+  width,
+} = storeToRefs(useWindowStore())
+const isMobile = computed(() => width.value < widthBoundarySm.value)
+console.log(isMobile.value)
 </script>
 
 <template>
@@ -291,7 +297,7 @@ const onNext = function () {
           </BaseTable>
         </div>
         <!-- 奖杯 -->
-        <div v-else-if="tab === '2'" class="trophies-wrap">
+        <div v-else-if="tab === '2'" class="trophies-wrap" :class="{ 'is-mobile': isMobile }">
           <div class="trophies-title">
             <p class="title-left">
               <BaseIcon name="chess-air-bonus" />
@@ -330,6 +336,7 @@ const onNext = function () {
             </BaseTable>
           </div>
         </div>
+        <!-- 竞赛 -->
         <div v-else-if="tab === '3'" class="competition-wrap">
           <div class="c-title">
             <BaseIcon name="spt-competition" />
@@ -362,6 +369,7 @@ const onNext = function () {
           </div>
           <AppStack :pagination-data="paginationData" @previous="onPrevious" @next="onNext" />
         </div>
+        <!-- 抽奖 -->
         <div v-else-if="tab === '4'" class="sweepstakes-wrap">
           <div class="sweepstakes-table">
             <BaseTable :columns="SweepstakesColumns" :data-source="sweepstakesTableData" :loading="loading" />
@@ -429,7 +437,6 @@ const onNext = function () {
             border-radius: var(--tg-radius-xs);
             background: var(--tg-secondary-grey);
             padding: var(--tg-spacing-16);
-            gap: var(--spacing-0-5);
             display: flex;
             flex-direction: column;
             gap: .5rem;
@@ -471,6 +478,16 @@ const onNext = function () {
             align-items: center;
             > span {
               margin-left: var(--tg-spacing-8);
+            }
+          }
+        }
+        &.is-mobile{
+          .trophies-cards{
+            flex-direction: column;
+            .t-card{
+              align-items: center;
+              flex-direction: row-reverse;
+              justify-content: space-between;
             }
           }
         }
