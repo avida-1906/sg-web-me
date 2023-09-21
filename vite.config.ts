@@ -149,6 +149,9 @@ export default defineConfig(({ mode }) => {
           entryFileNames: 'assets/js/[name]-[hash].js',
           assetFileNames: 'assets/[ext]/[name]-[hash].[ext]',
           manualChunks(id) {
+            if (['src/styles/reset.scss', 'src/styles/main.scss', 'src/styles/animate.scss'].some(v => id.includes(v)))
+              return 'styles'
+
             if (id.includes('node_modules/dayjs'))
               return 'dayjs'
 

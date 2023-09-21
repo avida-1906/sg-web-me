@@ -31,7 +31,6 @@ declare module 'vue' {
     AppLoginRegisterBottom: typeof import('./components/AppLoginRegisterBottom.vue')['default']
     AppPercentage: typeof import('./components/AppPercentage.vue')['default']
     AppRegister: typeof import('./components/AppRegister.vue')['default']
-    AppRegisterBottom: typeof import('./components/AppRegisterBottom.vue')['default']
     AppRegisterDialog: typeof import('./components/AppRegisterDialog.vue')['default']
     AppSafeDialog: typeof import('./components/AppSafeDialog.vue')['default']
     AppSidebarBig: typeof import('./components/AppSidebarBig.vue')['default']
@@ -79,8 +78,6 @@ declare module 'vue' {
     BaseTable: typeof import('./components/BaseTable.vue')['default']
     BaseTag: typeof import('./components/BaseTag.vue')['default']
     BaseUpload: typeof import('./components/BaseUpload.vue')['default']
-    BottomContainer: typeof import('./components/bottom-container.vue')['default']
-    copy: typeof import('./components/AppDeposit copy.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
