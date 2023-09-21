@@ -9,13 +9,13 @@ const outerWidth = computed(() => appContentWidth.value)
     <div class="flex-center-bet left">
       <div class="flex-center-bet title">
         <BaseIcon name="uni-bars" />
-        <span class="txt">筛选依据</span>
+        <span class="txt">{{ $t('casino_filter_label') }}</span>
       </div>
       <div>
         <BaseCheckPop>
           <BaseButton size="md">
             <div class="btn-arrow-down">
-              <span>游戏提供商</span>
+              <span>{{ $t('casino_provider') }}</span>
               <BaseBadge :count="2" />
               <BaseIcon name="uni-arrow-down" />
             </div>
@@ -26,7 +26,7 @@ const outerWidth = computed(() => appContentWidth.value)
     <div class="flex-center-bet right">
       <div class="title flex-center-bet">
         <BaseIcon name="uni-bars" />
-        <span class="txt">排序依据</span>
+        <span class="txt">{{ $t('casino_filter_label_sort') }}</span>
       </div>
       <div>
         <BaseGameSortPop>

@@ -1,11 +1,13 @@
 <script lang="ts" setup>
+const { t } = useI18n()
+
 const curSort = ref('featured')
 
 const sortData = reactive([
   { icon: 'spt-sort-az', label: 'A-Z', value: 'asc' },
   { icon: 'spt-sort-az', label: 'Z-A', value: 'desc' },
-  { icon: 'chess-bonus-rounds', label: '热门', value: 'popular' },
-  { icon: 'chess-slot-machine', label: '重点介绍', value: 'featured' },
+  { icon: 'chess-bonus-rounds', label: t('casino_sort_popular'), value: 'popular' },
+  { icon: 'chess-slot-machine', label: t('casino_sort_featured'), value: 'featured' },
 ])
 </script>
 

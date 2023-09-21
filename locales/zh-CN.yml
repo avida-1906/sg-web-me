@@ -643,3 +643,7 @@ search_game: 搜索游戏
 search_events: 搜索赛事
 casino_origin_game: 原创游戏
 casino_provider: 游戏提供商
+casino_sort_popular: 热门
+casino_sort_featured: 重点介绍
+casino_filter_label: 筛选依据
+casino_filter_label_sort: 排序依据
