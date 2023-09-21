@@ -50,6 +50,7 @@ declare global {
   const div: typeof import('./utils/number')['div']
   const eagerComputed: typeof import('@vueuse/core')['eagerComputed']
   const effectScope: typeof import('vue')['effectScope']
+  const emailReg: typeof import('./utils/regexp')['emailReg']
   const eq: typeof import('lodash-es')['eq']
   const extendRef: typeof import('@vueuse/core')['extendRef']
   const filter: typeof import('lodash-es')['filter']
@@ -112,6 +113,7 @@ declare global {
   const onUnmounted: typeof import('vue')['onUnmounted']
   const onUpdated: typeof import('vue')['onUpdated']
   const padStart: typeof import('lodash-es')['padStart']
+  const passwordReg: typeof import('./utils/regexp')['passwordReg']
   const pausableWatch: typeof import('@vueuse/core')['pausableWatch']
   const preferredDark: typeof import('./composables/dark')['preferredDark']
   const provide: typeof import('vue')['provide']
@@ -351,6 +353,7 @@ declare global {
   const useWindowScroll: typeof import('@vueuse/core')['useWindowScroll']
   const useWindowSize: typeof import('@vueuse/core')['useWindowSize']
   const useWindowStore: typeof import('./stores/window')['useWindowStore']
+  const usernameReg: typeof import('./utils/regexp')['usernameReg']
   const watch: typeof import('vue')['watch']
   const watchArray: typeof import('@vueuse/core')['watchArray']
   const watchAtMost: typeof import('@vueuse/core')['watchAtMost']
@@ -423,6 +426,7 @@ declare module 'vue' {
     readonly div: UnwrapRef<typeof import('./utils/number')['div']>
     readonly eagerComputed: UnwrapRef<typeof import('@vueuse/core')['eagerComputed']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
+    readonly emailReg: UnwrapRef<typeof import('./utils/regexp')['emailReg']>
     readonly eq: UnwrapRef<typeof import('lodash-es')['eq']>
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
     readonly filter: UnwrapRef<typeof import('lodash-es')['filter']>
@@ -485,6 +489,7 @@ declare module 'vue' {
     readonly onUnmounted: UnwrapRef<typeof import('vue')['onUnmounted']>
     readonly onUpdated: UnwrapRef<typeof import('vue')['onUpdated']>
     readonly padStart: UnwrapRef<typeof import('lodash-es')['padStart']>
+    readonly passwordReg: UnwrapRef<typeof import('./utils/regexp')['passwordReg']>
     readonly pausableWatch: UnwrapRef<typeof import('@vueuse/core')['pausableWatch']>
     readonly preferredDark: UnwrapRef<typeof import('./composables/dark')['preferredDark']>
     readonly provide: UnwrapRef<typeof import('vue')['provide']>
@@ -722,6 +727,7 @@ declare module 'vue' {
     readonly useWindowScroll: UnwrapRef<typeof import('@vueuse/core')['useWindowScroll']>
     readonly useWindowSize: UnwrapRef<typeof import('@vueuse/core')['useWindowSize']>
     readonly useWindowStore: UnwrapRef<typeof import('./stores/window')['useWindowStore']>
+    readonly usernameReg: UnwrapRef<typeof import('./utils/regexp')['usernameReg']>
     readonly watch: UnwrapRef<typeof import('vue')['watch']>
     readonly watchArray: UnwrapRef<typeof import('@vueuse/core')['watchArray']>
     readonly watchAtMost: UnwrapRef<typeof import('@vueuse/core')['watchAtMost']>
@@ -787,6 +793,7 @@ declare module '@vue/runtime-core' {
     readonly div: UnwrapRef<typeof import('./utils/number')['div']>
     readonly eagerComputed: UnwrapRef<typeof import('@vueuse/core')['eagerComputed']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
+    readonly emailReg: UnwrapRef<typeof import('./utils/regexp')['emailReg']>
     readonly eq: UnwrapRef<typeof import('lodash-es')['eq']>
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
     readonly filter: UnwrapRef<typeof import('lodash-es')['filter']>
@@ -849,6 +856,7 @@ declare module '@vue/runtime-core' {
     readonly onUnmounted: UnwrapRef<typeof import('vue')['onUnmounted']>
     readonly onUpdated: UnwrapRef<typeof import('vue')['onUpdated']>
     readonly padStart: UnwrapRef<typeof import('lodash-es')['padStart']>
+    readonly passwordReg: UnwrapRef<typeof import('./utils/regexp')['passwordReg']>
     readonly pausableWatch: UnwrapRef<typeof import('@vueuse/core')['pausableWatch']>
     readonly preferredDark: UnwrapRef<typeof import('./composables/dark')['preferredDark']>
     readonly provide: UnwrapRef<typeof import('vue')['provide']>
@@ -1086,6 +1094,7 @@ declare module '@vue/runtime-core' {
     readonly useWindowScroll: UnwrapRef<typeof import('@vueuse/core')['useWindowScroll']>
     readonly useWindowSize: UnwrapRef<typeof import('@vueuse/core')['useWindowSize']>
     readonly useWindowStore: UnwrapRef<typeof import('./stores/window')['useWindowStore']>
+    readonly usernameReg: UnwrapRef<typeof import('./utils/regexp')['usernameReg']>
     readonly watch: UnwrapRef<typeof import('vue')['watch']>
     readonly watchArray: UnwrapRef<typeof import('@vueuse/core')['watchArray']>
     readonly watchAtMost: UnwrapRef<typeof import('@vueuse/core')['watchAtMost']>
