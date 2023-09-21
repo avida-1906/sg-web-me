@@ -16,7 +16,7 @@ const { t } = useI18n()
 <style lang='scss' scoped>
 .app-register-dialog {
   min-width: 360px !important;
-  padding: 0 var(--tg-spacing-button-padding-horizontal-xs);
+  padding: 0 var(--tg-spacing-button-padding-horizontal-sm);
   .title {
     color: var(--tg-text-white);
     text-align: center;
