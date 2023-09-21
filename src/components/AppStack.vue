@@ -46,7 +46,7 @@ const toNext = function () {
 
 <style lang='scss' scoped>
 .app-pagination{
-  margin-top: var(--tg-spacing-25);
+  // margin-top: var(--tg-spacing-25);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -54,16 +54,11 @@ const toNext = function () {
   > span {
     font-weight: var(--tg-font-weight-semibold);
     cursor: pointer;
-    color: var(--tg-text-lightgrey);
+    color: var(--tg-text-white);
     user-select: none;
-    &:hover{
-      color: var(--tg-text-white);
-    }
     &.no-data{
       cursor: not-allowed;
-      &:hover{
-        color: var(--tg-text-lightgrey);
-      }
+      color: var(--tg-text-lightgrey);
     }
   }
 }

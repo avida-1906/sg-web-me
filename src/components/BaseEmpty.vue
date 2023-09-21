@@ -39,7 +39,8 @@ const emptyDescription = computed(
     text-align: center;
     &-icon {
         &-name {
-            font-size: var(--tg-font-size-6xl);
+            // font-size: var(--tg-font-size-6xl);
+            font-size: 100px;
         }
     }
     &-description {

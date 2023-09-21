@@ -132,18 +132,41 @@ export default defineConfig(({ mode }) => {
     },
 
     build: {
+      minify: 'terser',
+      assetsInlineLimit: 0,
+      chunkSizeWarningLimit: 600,
+      // sourcemap: false,
+      // terserOptions: {
+      //   compress: {
+      //     keep_infinity: true,
+      //     drop_console: true,
+      //   },
+      // },
       rollupOptions: {
         external: /\.md$/,
         output: {
+          chunkFileNames: 'assets/chunks/[name]-[hash].js',
+          entryFileNames: 'assets/js/[name]-[hash].js',
+          assetFileNames: 'assets/[ext]/[name]-[hash].[ext]',
           manualChunks(id) {
-            if (id.includes('main.scss'))
-              return 'main.scss'
+            if (['src/styles/reset.scss', 'src/styles/main.scss', 'src/styles/animate.scss'].some(v => id.includes(v)))
+              return 'styles'
 
-            if (id.includes('reset.scss'))
-              return 'reset.scss'
+            if (id.includes('node_modules/dayjs'))
+              return 'dayjs'
 
-            if (id.includes('node_modules'))
-              return id.toString().split('node_modules/')[1].split('/')[0].toString()
+            // node_modules/@floating-ui
+            if (['node_modules/@floating-ui', 'node_modules/floating-vue'].some(v => id.includes(v)))
+              return 'floating-ui'
+
+            if (id.includes('node_modules/axios'))
+              return 'axios'
+
+            if (['node_modules/pinia', 'node_modules/@vueuse/core', 'node_modules/@vueuse/shared', 'node_modules/big.js', 'node_modules/vue-request', 'node_modules/vue-i18n', 'node_modules/vue-router'].some(v => id.includes(v)))
+              return 'vue-plugins'
+
+            if (['src/utils'].some(v => id.includes(v)))
+              return 'utils'
           },
         },
       },
