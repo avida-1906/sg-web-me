@@ -12,7 +12,7 @@ function pathTo() {
 </script>
 
 <template>
-  <BaseAspectRatio ratio="2/1" style="max-width: 67px; min-width: 42px">
+  <BaseAspectRatio ratio="2/1" style="max-width: 82px;">
     <div class="base-logo" @click="pathTo">
       <BaseIcon class="icon-app-logo" :name="useSmall ? 'app-logo-small' : 'app-logo'" />
     </div>
@@ -23,6 +23,7 @@ function pathTo() {
 .base-logo {
   width: 100%;
   height: 100%;
+  padding-right: 18%;
   cursor: pointer;
   .icon-app-logo {
     display: block;

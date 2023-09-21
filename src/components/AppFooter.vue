@@ -104,9 +104,7 @@
     </div>
     <BaseDivider />
     <div class="footer-copyright">
-      <BaseAspectRatio ratio="2/1" width="67px">
-        <BaseLogo mode="svg" svg-name="app-logo" />
-      </BaseAspectRatio>
+      <BaseLogo mode="svg" svg-name="app-logo" />
       <div>© 2023 Stake.com | 版权所有</div>
       <div>1 USDT = US$1.00</div>
     </div>

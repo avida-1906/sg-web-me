@@ -452,9 +452,6 @@ function copyBaseLogo(num: number) {
     case 1:
       copy('<BaseLogo mode="svg" svg-name="app-logo" />')
       break
-    case 2:
-      copy('<BaseLogo mode="picture" url="http://c.hiphotos.baidu.com/image/pic/item/30adcbef76094b36de8a2fe5a1cc7cd98d109d99.jpg" />')
-      break
   }
 }
 function copyProgressCode(num: number) {
@@ -957,14 +954,6 @@ function copyAppPercentageCode() {
               <BaseLogo mode="svg" svg-name="app-logo" />
             </BaseAspectRatio>
             <BaseButton @click="copyBaseLogo(1)">
-              copy
-            </BaseButton>
-          </div>
-          <div>
-            <BaseAspectRatio ratio="1/1" width="120px">
-              <BaseLogo mode="picture" url="http://c.hiphotos.baidu.com/image/pic/item/30adcbef76094b36de8a2fe5a1cc7cd98d109d99.jpg" />
-            </BaseAspectRatio>
-            <BaseButton @click="copyBaseLogo(2)">
               copy
             </BaseButton>
           </div>

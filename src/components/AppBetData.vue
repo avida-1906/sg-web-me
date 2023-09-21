@@ -18,7 +18,7 @@ const { bool: isHidden, setFalse: setIsHiddenFalse, setTrue: setIsHiddenTrue } =
 // tab值
 const activeTab: Ref<string> = ref('ranking-list')
 // 需要获取多少条数据
-const selectSize: Ref<number> = ref(0)
+const selectSize: Ref<number> = ref(10)
 
 interface Column {
   title?: string // 列头显示文字
