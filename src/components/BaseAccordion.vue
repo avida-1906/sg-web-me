@@ -15,9 +15,10 @@ const props = withDefaults(defineProps<Props>(), {
   autoShow: false,
 })
 const emit = defineEmits(['clickHead', 'clickItem'])
-const isShow = ref(props.autoShow)
+// const isShow = ref()
+const { bool: isShow, setBool } = useBoolean(props.autoShow)
 function handleClickHeader() {
-  isShow.value = !isShow.value
+  setBool(!isShow.value)
   emit('clickHead', props.menuInfo)
 }
 function handleClickItem(item: any) {
