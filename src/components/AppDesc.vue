@@ -121,8 +121,10 @@ onMounted(() => {
 })
 
 const {
-  isMobile,
+  width,
+  isXs,
 } = storeToRefs(useWindowStore())
+const isXxs = computed(() => width.value <= 478)
 </script>
 
 <template>
@@ -132,9 +134,9 @@ const {
         Goat Getter <span class="l-start-gm"><a href="#">Push Gaming</a></span>
       </div>
       <div class="title-right">
-        <div v-if="!isMobile" class="r-status">
+        <div v-if="!isXs" class="r-status">
           <BaseIcon name="uni-cup1" />
-          66,666.00x
+          <span>66,666.00x</span>
           <VMenu placement="top">
             <div class="cursor-help">
               <BaseIcon name="uni-hidden" />
@@ -159,7 +161,7 @@ const {
       </div>
       <!-- 描述内容 -->
       <div v-if="tab === '4'" class="desc-content">
-        <div class="c-img" :class="{ 'float-left': !isMobile }">
+        <div class="c-img" :class="{ 'float-left': !isXxs }">
           <BaseImage
             url="http://c.hiphotos.baidu.com/image/pic/item/30adcbef76094b36de8a2fe5a1cc7cd98d109d99.jpg"
             fit="cover"
@@ -270,7 +272,6 @@ const {
       display: flex;
       justify-content: right;
       align-items: center;
-      max-width: 200px;
 
       .r-status {
         background-color: var(--tg-secondary-main);
@@ -278,12 +279,14 @@ const {
         display: flex;
         align-items: center;
         justify-content: space-around;
-        width: 168px;
         height: 32px;
         font-size: var(--tg-font-size-xs);
         border-radius: var(--tg-radius-3xl);
         padding: 0 var(--tg-spacing-16);
         margin-right: var(--tg-spacing-10);
+        > span {
+          margin: 0 var(--tg-spacing-4);
+        }
       }
 
       .r-arrow {

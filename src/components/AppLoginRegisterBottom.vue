@@ -56,6 +56,8 @@ interface Props {
   flex-direction: column;
   gap: var(--tg-spacing-12);
   &-divider {
+    width: 60%;
+    margin: 0 auto;
     padding-top: var(--tg-spacing-button-padding-vertical-xs);
   }
   &-icon {
@@ -90,7 +92,7 @@ interface Props {
     }
     .stake-text {
       font-size: var(--tg-font-size-xs);
-      padding-bottom: var(--tg-font-size-lg);
+      padding-bottom: var(--tg-spacing-20);
     }
   }
 }

@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+const appStore = useAppStore()
+const { isLogin } = storeToRefs(appStore)
 const { isMobile, isLessThanLg, width } = storeToRefs(useWindowStore())
 const { t } = useI18n()
 const userMenu = ref([
@@ -23,7 +25,7 @@ const { bool: showSearchBar, setTrue } = useBoolean(false)
 
 // Dialog
 const { openWalletDialog } = useWalletDialog()
-// const { openLoginDialog } = useLoginDialog()
+const { openLoginDialog } = useLoginDialog()
 const { openRegisterDialog } = useRegisterDialog()
 
 const { openVipDialog } = useVipDialog()
@@ -40,8 +42,6 @@ function handleClickMenuItem(item: { name: string }) {
       openSafeDialog()
       break
     case 'logout':
-      // openLoginDialog()
-      openRegisterDialog()
       break
     case 'vip':
       openVipDialog()
@@ -56,54 +56,98 @@ function handleClickMenuItem(item: { name: string }) {
 </script>
 
 <template>
-  <div class="app-header">
-    <BaseLogo :use-small="width <= 375" />
-    <AppWallet :wallet-btn="true" />
-    <div class="header-right">
-      <BaseButton v-show="!isMobile" type="text" class="search-btn" @click="setTrue">
-        <BaseIcon class="icon-search" name="header-search" />
-        <span v-show="!isLessThanLg">搜索</span>
-      </BaseButton>
-      <VDropdown :distance="6">
+  <div>
+    <div v-if="isLogin" class="app-header">
+      <BaseLogo :use-small="width <= 375" />
+      <AppWallet :wallet-btn="true" />
+      <div class="header-right">
+        <BaseButton v-show="!isMobile" type="text" class="search-btn" @click="setTrue">
+          <BaseIcon class="icon-search" name="header-search" />
+          <span v-show="!isLessThanLg">搜索</span>
+        </BaseButton>
+        <VDropdown :distance="6">
+          <BaseButton type="text">
+            <BaseIcon class="icon-size" name="navbar-user" />
+          </BaseButton>
+          <template #popper>
+            <div class="dropdown-popper">
+              <div v-for="item of userMenu" :key="item.id" v-close-popper class="menu-item" @click="handleClickMenuItem(item)">
+                <div class="menu-btn">
+                  <BaseIcon class="icon-size" :name="item.icon" />
+                  <span>{{ item.title }}</span>
+                </div>
+              </div>
+            </div>
+          </template>
+        </VDropdown>
         <BaseButton type="text">
-          <BaseIcon class="icon-size" name="navbar-user" />
+          <BaseIcon class="icon-size" name="navbar-notice" />
         </BaseButton>
-        <template #popper>
-          <div class="dropdown-popper">
-            <div v-for="item of userMenu" :key="item.id" v-close-popper class="menu-item" @click="handleClickMenuItem(item)">
-              <div class="menu-btn">
-                <BaseIcon class="icon-size" :name="item.icon" />
-                <span>{{ item.title }}</span>
+        <VDropdown :distance="6">
+          <BaseButton v-show="!isMobile" type="text">
+            <BaseIcon class="icon-size" name="header-news" />
+          </BaseButton>
+          <template #popper>
+            <div class="dropdown-popper">
+              <div v-for="item of newsMenu" :key="item.id" class="menu-item">
+                <div class="menu-btn">
+                  <BaseIcon class="icon-size" :name="item.icon" />
+                  <span>{{ item.title }}</span>
+                </div>
               </div>
             </div>
-          </div>
-        </template>
-      </VDropdown>
-      <BaseButton type="text">
-        <BaseIcon class="icon-size" name="navbar-notice" />
-      </BaseButton>
-      <VDropdown :distance="6">
-        <BaseButton v-show="!isMobile" type="text">
-          <BaseIcon class="icon-size" name="header-news" />
-        </BaseButton>
-        <template #popper>
-          <div class="dropdown-popper">
-            <div v-for="item of newsMenu" :key="item.id" class="menu-item">
-              <div class="menu-btn">
-                <BaseIcon class="icon-size" :name="item.icon" />
-                <span>{{ item.title }}</span>
-              </div>
-            </div>
-          </div>
-        </template>
-      </VDropdown>
+          </template>
+        </VDropdown>
+      </div>
+      <AppGlobalSearch v-if="showSearchBar && !isMobile" @close="() => showSearchBar = false" />
     </div>
-
-    <AppGlobalSearch v-if="showSearchBar && !isMobile" @close="() => showSearchBar = false" />
+    <div class="app-header-login">
+      <BaseLogo :use-small="width <= 375" />
+      <div class="user">
+        <BaseButton type="text" class="login" @click.stop="openLoginDialog()">
+          {{ t('login') }}
+        </BaseButton>
+        <BaseButton class="reg" bg-style="primary" @click.stop="openRegisterDialog()">
+          {{ t('reg') }}
+        </BaseButton>
+      </div>
+    </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
+.app-header-login {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .user {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--tg-text-white);
+    text-align: center;
+    font-family: PingFang SC;
+    font-size: var(--tg-font-size-default);
+    font-style: normal;
+    font-weight: 600;
+    .login {
+      color:var(--tg-text-white);
+    }
+    .reg {
+      display: flex;
+      width: 68px;
+      height: 44px;
+      padding: 10px 20px;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+      border-radius: 4px;
+      background: #1475E1;
+      margin-left: 20px;
+    }
+  }
+}
 .app-header {
   display: grid;
   grid-template-columns: 1fr auto 1fr;

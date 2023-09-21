@@ -70,6 +70,7 @@ const { value: password, errorMessage: pwdErrorMsg } = useField<string>('passwor
     display: flex;
     flex-direction: column;
     gap: var(--tg-spacing-14);
+    padding-top: var(--tg-spacing-button-padding-vertical-xs);
   }
   &-btn {
     width: 100%;

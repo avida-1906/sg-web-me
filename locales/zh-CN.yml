@@ -1,8 +1,12 @@
 login: 登录
+reg: 注册
 register: 创建账户
 continue: 继续
+start_game: 开始游戏
 email_or_username: 电邮地址或用户名
 pls_enter_email_or_username: 请输入电邮地址或用户名
+two-step_verification: 双重验证
+pls_enter_two-step_verification: 请输入双重验证
 email_address: 电邮地址
 pls_enter_email_address: 请输入电邮地址
 username: 用户名
@@ -12,6 +16,7 @@ pls_enter_password: 请输入密码
 reg_step1: 步骤1/2：填写您的详细信息
 reg_step2: 步骤2/2：填写您的详细信息
 code_optional: 代码（可选的）
+read_terms_conditions: 我已阅读并同意条款与条件
 or_use: 或者使用
 forgot_password: 忘记密码
 no_account_yet: 还未有账户？
@@ -647,3 +652,4 @@ casino_sort_popular: 热门
 casino_sort_featured: 重点介绍
 casino_filter_label: 筛选依据
 casino_filter_label_sort: 排序依据
+load_more: 加载更多

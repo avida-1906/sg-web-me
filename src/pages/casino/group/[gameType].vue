@@ -38,7 +38,7 @@ const gameProviders = [
       <div class="load-more mt-24">
         <AppPercentage />
         <BaseButton size="md">
-          <div>加载更多</div>
+          <div>{{ $t('load_more') }}</div>
         </BaseButton>
       </div>
       <div class="">
