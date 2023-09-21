@@ -170,10 +170,10 @@ provide('closeDialog', close)
         position: relative;
       }
       .footer-buttons {
-        padding: var(--tg-spacing-button-padding-horizontal-sm);
+        padding: var(--tg-spacing-16);
         .buttons {
           display: flex;
-          gap: var(--tg-spacing-button-padding-horizontal-sm);
+          gap: var(--tg-spacing-16);
           button {
             flex: 1;
           }
