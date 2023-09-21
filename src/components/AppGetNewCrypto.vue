@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-const close = inject<() => void>('closeDialog', () => {})
+// 123
 </script>
 
 <template>
@@ -12,14 +12,6 @@ const close = inject<() => void>('closeDialog', () => {})
         <li>请在您更换存款地址前先确保您已无任何待处理的存款交易。</li>
         <li>此操作无法撤消。</li>
       </ul>
-    </div>
-    <div class="footer">
-      <BaseButton type="text" @click="close">
-        取消
-      </BaseButton>
-      <BaseButton bg-style="primary" @click="close">
-        确认
-      </BaseButton>
     </div>
   </div>
 </template>
@@ -39,11 +31,6 @@ const close = inject<() => void>('closeDialog', () => {})
       list-style-type: disc;
       margin-left: var(--tg-spacing-32);
     }
-  }
-  .footer{
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
   }
 }
 </style>
