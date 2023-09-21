@@ -8,6 +8,20 @@ const { t } = useI18n()
 interface Props {
   type?: string
 }
+
+const { openLoginDialog, closeLoginDialog } = useLoginDialog()
+const { openRegisterDialog, closeRegisterDialog } = useRegisterDialog()
+
+async function toRegister() {
+  closeLoginDialog()
+  await nextTick()
+  openRegisterDialog()
+}
+async function toLogin() {
+  closeRegisterDialog()
+  await nextTick()
+  openLoginDialog()
+}
 </script>
 
 <template>
@@ -36,10 +50,10 @@ interface Props {
         {{ t('forgot_password') }}
       </div>
 
-      <div v-if="props.type === 'login'" class="user-text">
+      <div v-if="props.type === 'login'" class="user-text" @click.stop="toRegister()">
         {{ t('no_account_yet') }}<span class="text-white">{{ t('register_account') }}</span>
       </div>
-      <div v-else>
+      <div v-else @click.stop="toLogin()">
         {{ t('have_account') }}<span class="text-white">{{ t('login') }}</span>
       </div>
 
