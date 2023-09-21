@@ -242,6 +242,7 @@ const { bool: showDialogTwo, setTrue: setShowDialogTwoTrue } = useBoolean(false)
 const { openDialog, closeDialog } = useDialog({
   title: '表格',
   icon: 'balls-darts-on',
+  maxWidth: 400,
   default: () => h(AppDemoCard, { title: '标题' }, {
     default: () => h('table', { style: { color: 'orange' } }, 'abcdefg'),
   }),

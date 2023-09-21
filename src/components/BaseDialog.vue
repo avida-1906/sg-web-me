@@ -7,11 +7,13 @@ interface Props {
   closeOnClickOverlay?: boolean
   funcCall?: boolean
   showHeader?: boolean
+  maxWidth?: number
 }
 
 const props = withDefaults(defineProps<Props>(), {
   closeOnClickOverlay: true,
   showHeader: true,
+  maxWidth: 500,
 })
 
 const emit = defineEmits(['update:show', 'close'])
@@ -53,7 +55,7 @@ provide('closeDialog', close)
   <Transition>
     <section v-if="show || _show" class="tg-base-dialog">
       <div class="overlay" @click="closeOnClickOverlay && close()" />
-      <div class="card">
+      <div class="card" :style="`--tg-dialog-style-maxwidth:${maxWidth}px`">
         <div v-if="showHeader" class="header">
           <h2>
             <BaseIcon v-if="icon" :name="icon" />
@@ -75,6 +77,12 @@ provide('closeDialog', close)
     </section>
   </Transition>
 </template>
+
+<style>
+:root {
+  --tg-dialog-style-maxwidth: 500px;
+}
+</style>
 
 <style lang="scss" scoped>
   .v-enter-active,
@@ -112,7 +120,7 @@ provide('closeDialog', close)
       position: relative;
       width: 100%;
       min-width: 200px;
-      max-width: 500px;
+      max-width: var(--tg-dialog-style-maxwidth);
       max-height: calc(100% - 4em);
       border-radius: var(--tg-radius-default);
       background: var(--tg-primary-main);
