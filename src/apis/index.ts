@@ -26,9 +26,7 @@ export function ApiMemberReg(
     device_number: string
   },
 ) {
-  return httpClient.post<{
-    data: string
-  }>('/member/reg', data)
+  return httpClient.post<string>('/member/reg', data)
 }
 
 /**
