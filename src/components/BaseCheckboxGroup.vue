@@ -1,10 +1,12 @@
 <script setup lang='ts'>
+interface CheckItem {
+  value: string
+  label: string
+  isChecked?: boolean
+  [text: string]: any
+}
 interface Props {
-  list: {
-    [text: string]: any
-    value: string
-    label: string
-  }[]
+  list: Array<CheckItem>
   modelValue: string[]
   layout?: 'horizontal' | 'vertical'
   shape?: 'square' | 'circle'
@@ -16,12 +18,14 @@ const props = withDefaults(defineProps<Props>(), {
   size: 'small',
 })
 const emit = defineEmits(['update:modelValue'])
-function checkValue(v: string) {
-  return props.modelValue.findIndex(a => a === v) > -1
+function checkValue(v: string, item: CheckItem) {
+  const isChecked = props.modelValue.findIndex(a => a === v) > -1
+  item.isChecked = isChecked
+  return isChecked
 }
-function onItemChecked(v: string) {
+function onItemChecked(v: string, item: CheckItem) {
   const arr: string[] = cloneDeep(props.modelValue)
-  if (checkValue(v))
+  if (checkValue(v, item))
     arr.splice(arr.findIndex(a => a === v), 1)
 
   else
@@ -33,9 +37,9 @@ function onItemChecked(v: string) {
 
 <template>
   <div class="base-checkbox-group" :class="[layout]">
-    <div v-for="item in list" :key="item.value" class="base-check-box" @click="onItemChecked(item.value)">
-      <span class="outer" :class="[shape, size, { active: checkValue(item.value) }]">
-        <span v-show="checkValue(item.value)" class="icon" />
+    <div v-for="item in list" :key="item.value" class="base-check-box" @click="onItemChecked(item.value, item)">
+      <span class="outer" :class="[shape, size, { active: checkValue(item.value, item) }]">
+        <span v-show="checkValue(item.value, item)" class="icon" />
       </span>
       <slot :item="item">
         {{ item.label }}
