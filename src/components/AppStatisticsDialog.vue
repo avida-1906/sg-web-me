@@ -270,7 +270,6 @@ const {
   width,
 } = storeToRefs(useWindowStore())
 const isMobile = computed(() => width.value < widthBoundarySm.value)
-console.log(isMobile.value)
 </script>
 
 <template>
