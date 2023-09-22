@@ -12,7 +12,6 @@ const appStore = useAppStore()
 const { isLogin } = storeToRefs(appStore)
 
 function change() {
-  appStore.toggle()
   loadLanguageAsync(EnumLanguage[2])
 }
 </script>

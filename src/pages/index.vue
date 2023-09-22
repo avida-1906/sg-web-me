@@ -38,7 +38,6 @@ const { openDialog, closeDialog } = useDialog({
 })
 function connectMqtt() {
   openDialog()
-  appStore.toggle()
 }
 </script>
 
@@ -51,11 +50,14 @@ function connectMqtt() {
     <div>
       {{ data }}
     </div>
+    <div style="color: #fff">
+      是否登录: {{ isLogin }}
+    </div>
     <button @click="getData">
       请求
     </button>
     <button style="color: #fff" @click="connectMqtt">
-      链接mqtt {{ isLogin }} {{ $t('hello') }}
+      链接mqtt {{ $t('hello') }}
     </button>
   </div>
 </template>

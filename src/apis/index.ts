@@ -10,9 +10,7 @@ export function ApiMemberLogin(
     device_number: string
   },
 ) {
-  return httpClient.post<{
-    token: string
-  }>('/member/login', data)
+  return httpClient.post<string>('/member/login', data)
 }
 
 /**
