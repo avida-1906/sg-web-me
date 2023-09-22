@@ -22,7 +22,7 @@ const checkedValues = ref([])
               <div class="check-item-label" :class="{ active: item.isChecked }">
                 <div>{{ item.label }}</div>
                 <div class="">
-                  <BaseBadge :count="item.count" />
+                  <BaseBadge :count="item.count" :mode="checkedValues.length ? (item.isChecked ? 'active' : 'black') : 'active'" />
                 </div>
               </div>
             </template>

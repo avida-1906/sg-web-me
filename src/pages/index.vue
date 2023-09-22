@@ -37,7 +37,11 @@ const { openDialog, closeDialog } = useDialog({
   }),
 })
 function connectMqtt() {
-  openDialog()
+  socketClient.connect()
+}
+
+function disconnectMqtt() {
+  socketClient.disconnect()
 }
 </script>
 
@@ -58,6 +62,9 @@ function connectMqtt() {
     </button>
     <button style="color: #fff" @click="connectMqtt">
       链接mqtt {{ $t('hello') }}
+    </button>
+    <button @click="disconnectMqtt">
+      断开mqtt
     </button>
   </div>
 </template>
