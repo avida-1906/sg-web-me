@@ -14,17 +14,26 @@ const { value: email, errorMessage: emailErrorMsg } = useField<string>('username
   if (!value)
     return t('pls_enter_email_address')
 
+  if (!emailReg.test(value))
+    return t('email_address_incorrect')
+
   return ''
 })
 const { value: username, errorMessage: usernameErrorMsg } = useField<string>('username', (value) => {
   if (!value)
     return t('pls_enter_username')
 
+  if (!usernameReg.test(value))
+    return t('username_incorrect')
+
   return ''
 })
 const { value: password, errorMessage: pwdErrorMsg } = useField<string>('password', (value) => {
   if (!value)
     return t('pls_enter_password')
+
+  if (!passwordReg.test(value))
+    return t('password_incorrect')
 
   return ''
 })

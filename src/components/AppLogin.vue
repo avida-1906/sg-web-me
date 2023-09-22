@@ -5,11 +5,17 @@ const { value: username, errorMessage: usernameErrorMsg } = useField<string>('us
   if (!value)
     return t('pls_enter_email_or_username')
 
+  if (!emailReg.test(value) && !usernameReg.test(value))
+    return t('email_or_username_incorrect')
+
   return ''
 })
 const { value: password, errorMessage: pwdErrorMsg } = useField<string>('password', (value) => {
   if (!value)
     return t('pls_enter_password')
+
+  if (!passwordReg.test(value))
+    return t('password_incorrect')
 
   return ''
 })
