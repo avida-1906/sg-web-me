@@ -26,11 +26,12 @@ const { run: runMemberLogin, loading: isLoading } = useRequest(() => ApiMemberLo
   device_number: application.getDeviceNumber(),
 }), {
   manual: true,
-  onSuccess: (res) => {
+  onSuccess: (res: any) => {
+    // toast(res)
     appStore.setToken(res)
   },
-  onError: (err) => {
-    console.log(err)
+  onError: (err: any) => {
+    toast(err)
   },
 })
 </script>

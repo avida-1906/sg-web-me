@@ -39,23 +39,24 @@ const { value: password, errorMessage: pwdErrorMsg } = useField<string>('passwor
   return ''
 })
 
-const { run: runMemberReg, loading: isLoading } = useRequest(() => ApiMemberReg({
-  email: username.value || 'jango16888@gmail.com',
-  username: username.value || 'Jango16888',
+const { run: runMemberReg, loading: isLoading, data: memberRegData } = useRequest(() => ApiMemberReg({
+  email: username.value || 'jango1688801@gmail.com',
+  username: username.value || 'Jango1688801',
   password: password.value || 'Aa123456',
   parent_id: '',
   birthday: birthday.value || '1993-07-30',
   device_number: application.getDeviceNumber(),
 }), {
   manual: true,
-  onSuccess: async (res) => {
+  onSuccess: async (res: any) => {
+    // toast(res)
     appStore.setToken(res)
     closeDialog()
     await nextTick()
     openTermsConditionsDialog()
   },
-  onError: (err) => {
-    console.log(err)
+  onError: (err: any) => {
+    toast(err)
   },
 })
 </script>
