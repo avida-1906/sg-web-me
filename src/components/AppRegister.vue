@@ -34,19 +34,18 @@ const { value: password, errorMessage: pwdErrorMsg } = useField<string>('passwor
     <div class="app-register-title">
       {{ t('reg_step1') }}
     </div>
-    <form>
-      <div class="app-register-input-box">
-        <BaseInput v-model="email" :label="t('email_address')" :msg="emailErrorMsg" :placeholder="t('pls_enter_email_address')" must />
-        <BaseInput v-model="username" :label="t('username')" :msg="usernameErrorMsg" :placeholder="t('pls_enter_username')" must />
-        <BaseInput v-model="password" :label="t('password')" :msg="pwdErrorMsg" :placeholder="t('pls_enter_password')" type="password" must autocomplete="current-password" />
-        <BaseInputBirthday v-model="birthday" must />
-      </div>
-    </form>
+    <!-- <form></form> -->
+    <div class="app-register-input-box">
+      <BaseInput v-model="email" :label="t('email_address')" :msg="emailErrorMsg" :placeholder="t('pls_enter_email_address')" must />
+      <BaseInput v-model="username" :label="t('username')" :msg="usernameErrorMsg" :placeholder="t('pls_enter_username')" must />
+      <BaseInput v-model="password" :label="t('password')" :msg="pwdErrorMsg" :placeholder="t('pls_enter_password')" type="password" must autocomplete="current-password" />
+      <BaseInputBirthday v-model="birthday" must />
+    </div>
     <div class="app-register-check-box">
       <BaseCheckBox v-model="checkboxValue">
         {{ t('code_optional') }}
       </BaseCheckBox>
-      <BaseButton class="app-register-btn" bg-style="secondary" @click.stop="openTermsConditionsDialog()">
+      <BaseButton :loading="true" :disabled="true" class="app-register-btn" bg-style="secondary" @click.stop="openTermsConditionsDialog()">
         {{ t('continue') }}
       </BaseButton>
     </div>
