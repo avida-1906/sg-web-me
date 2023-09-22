@@ -21,7 +21,6 @@ declare module 'vue' {
     AppFooterbar: typeof import('./components/AppFooterbar.vue')['default']
     AppGameSearch: typeof import('./components/AppGameSearch.vue')['default']
     AppGetNewCrypto: typeof import('./components/AppGetNewCrypto.vue')['default']
-    AppGetNewCryptoAddress: typeof import('./components/AppGetNewCryptoAddress.vue')['default']
     AppGlobalSearch: typeof import('./components/AppGlobalSearch.vue')['default']
     AppGroupFilter: typeof import('./components/AppGroupFilter.vue')['default']
     AppHeader: typeof import('./components/AppHeader.vue')['default']
@@ -83,7 +82,6 @@ declare module 'vue' {
     BaseTable: typeof import('./components/BaseTable.vue')['default']
     BaseTag: typeof import('./components/BaseTag.vue')['default']
     BaseUpload: typeof import('./components/BaseUpload.vue')['default']
-    copy: typeof import('./components/AppRegister copy.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
