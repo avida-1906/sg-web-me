@@ -3,11 +3,12 @@ const { t } = useI18n()
 
 const birthday = ref('')
 const { bool: checkboxValue } = useBoolean(false)
+const { bool: loadingValue } = useBoolean(false)
 
-const {
-  openTermsConditionsDialog,
-  // closeTermsConditionsDialog
-} = useTermsConditionsDialog()
+// const {
+//   openTermsConditionsDialog,
+//   // closeTermsConditionsDialog
+// } = useTermsConditionsDialog()
 
 const { value: email, errorMessage: emailErrorMsg } = useField<string>('username', (value) => {
   if (!value)
@@ -27,6 +28,20 @@ const { value: password, errorMessage: pwdErrorMsg } = useField<string>('passwor
 
   return ''
 })
+
+const { run } = useRequest(() => ApiMemberReg({
+  email: username.value || 'jango16888@gmail.com',
+  username: username.value || 'jango16888',
+  password: password.value || '123456',
+  device_number: application.getDeviceNumber(),
+}), {
+  manual: true,
+  // maxWait: 2000,
+  // trailing: true,
+})
+// setTimeout(() => {
+//   loadingValue.value = true
+// }, 3000)
 </script>
 
 <template>
@@ -45,7 +60,7 @@ const { value: password, errorMessage: pwdErrorMsg } = useField<string>('passwor
       <BaseCheckBox v-model="checkboxValue">
         {{ t('code_optional') }}
       </BaseCheckBox>
-      <BaseButton :loading="true" :disabled="true" class="app-register-btn" bg-style="secondary" @click.stop="openTermsConditionsDialog()">
+      <BaseButton :loading="loadingValue" :disabled="loadingValue" class="app-register-btn" bg-style="secondary" @click.stop="run">
         {{ t('continue') }}
       </BaseButton>
     </div>

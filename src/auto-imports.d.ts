@@ -6,6 +6,7 @@
 export {}
 declare global {
   const ApiMemberLogin: typeof import('./apis/index')['ApiMemberLogin']
+  const ApiMemberReg: typeof import('./apis/index')['ApiMemberReg']
   const ApiSmsSend: typeof import('./apis/index')['ApiSmsSend']
   const Big: typeof import('big.js')['Big']
   const EffectScope: typeof import('vue')['EffectScope']
@@ -386,6 +387,7 @@ import { UnwrapRef } from 'vue'
 declare module 'vue' {
   interface ComponentCustomProperties {
     readonly ApiMemberLogin: UnwrapRef<typeof import('./apis/index')['ApiMemberLogin']>
+    readonly ApiMemberReg: UnwrapRef<typeof import('./apis/index')['ApiMemberReg']>
     readonly ApiSmsSend: UnwrapRef<typeof import('./apis/index')['ApiSmsSend']>
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
@@ -756,6 +758,7 @@ declare module 'vue' {
 declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
     readonly ApiMemberLogin: UnwrapRef<typeof import('./apis/index')['ApiMemberLogin']>
+    readonly ApiMemberReg: UnwrapRef<typeof import('./apis/index')['ApiMemberReg']>
     readonly ApiSmsSend: UnwrapRef<typeof import('./apis/index')['ApiSmsSend']>
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
