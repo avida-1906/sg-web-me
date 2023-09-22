@@ -20,7 +20,8 @@ const { value: password, errorMessage: pwdErrorMsg } = useField<string>('passwor
   return ''
 })
 
-// const { bool: isDisabled, setTrue: setDisabledTrue, setFalse: setDisabledFalse } = useBoolean(true)
+const closeDialog = inject('closeDialog', () => {})
+
 const { run: runMemberLogin, loading: isLoading } = useRequest(() => ApiMemberLogin({
   username: username.value,
   password: password.value,
@@ -29,6 +30,7 @@ const { run: runMemberLogin, loading: isLoading } = useRequest(() => ApiMemberLo
   manual: true,
   onSuccess: (res: any) => {
     // toast(res)
+    closeDialog()
     appStore.setToken(res)
   },
   onError: (err: any) => {
@@ -36,31 +38,7 @@ const { run: runMemberLogin, loading: isLoading } = useRequest(() => ApiMemberLo
   },
 })
 
-// const ruleForm = reactive({
-//   username: '',
-//   password: '',
-// })
 // const isDisabled = computed(() => { })
-
-// watch(
-//   () => username.value,
-//   (val) => {
-//     if ((emailReg.test(val) || usernameReg.test(val)) && passwordReg.test(password.value))
-//       setDisabledFalse()
-//     else
-//       setDisabledTrue()
-//   },
-// )
-// watch(
-//   () => password.value,
-//   (val) => {
-//     console.log(val)
-//     if (passwordReg.test(val) && (emailReg.test(username.value) || usernameReg.test(username.value)))
-//       setDisabledFalse()
-//     else
-//       setDisabledTrue()
-//   },
-// )
 </script>
 
 <template>
