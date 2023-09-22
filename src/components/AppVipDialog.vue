@@ -83,7 +83,6 @@ const welfareList = [
   },
 
 ]
-const { bool: showDialog } = useBoolean(true)
 </script>
 
 <template>
