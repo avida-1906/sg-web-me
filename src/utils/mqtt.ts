@@ -1,38 +1,66 @@
 import { type MqttClient as TMqttClient } from 'precompiled-mqtt'
 
-class SocketClient {
-  URL = '127.0.0.1'
-  /** 重试次数 */
-  RETRY_COUNT = 3
+/**
+ * ws://34.92.35.218:8088
+ * user = "rmqtt", password = "www.123.com",
+ */
 
+type TMqttServer = Array<{
+  host: string
+  port: number
+  protocol?: 'wss' | 'ws' | 'mqtt' | 'mqtts' | 'tcp' | 'ssl' | 'wx' | 'wxs'
+}>
+
+class SocketClient {
   client: TMqttClient | null = null
 
   subscribeList: string[] = ['test']
 
+  #MQTT_SERVER: TMqttServer | null = null
+
   #log = (message: string, ...rest: any) => {
-    console.log(`Mqtt ${message}`, ...rest)
+    console.log(`%c Mqtt ${message}`, 'color: #e10d8a', ...rest)
   }
 
   constructor() {
     this.#log('实例化')
+    this.generateMQTT_SERVER()
+  }
+
+  /** 生成 #MQTT_SERVER */
+  public generateMQTT_SERVER() {
+    const list = import.meta.env.VITE_SOCKET_URL_LIST_STRING.split(',')
+    const result: TMqttServer = []
+    list.forEach((item) => {
+      const [protocol, host, port] = item.split('|')
+      result.push({
+        host,
+        port: Number(port),
+        protocol: protocol as any,
+      })
+    })
+    this.#MQTT_SERVER = result
+    console.log('this.#MQTT_SERVER', this.#MQTT_SERVER)
   }
 
   public connect() {
-    this.#log('连接')
-    import('precompiled-mqtt').then((mqtt) => {
-      this.client = mqtt.connect({
-        keepalive: 0,
-        servers: [
-          {
-            host: this.URL,
-            port: 1883,
-            protocol: 'mqtt',
-          },
-        ],
+    if (this.#MQTT_SERVER) {
+      this.#log('连接中...')
+      import('precompiled-mqtt').then((mqtt) => {
+        this.client = mqtt.connect({
+          username: import.meta.env.VITE_SOCKET_USERNAME,
+          password: import.meta.env.VITE_SOCKET_PASSWORD,
+          keepalive: 20,
+          clientId: new Date().getTime().toString(),
+          servers: this.#MQTT_SERVER!,
+        })
+        this.eventHandler()
+        this.subscribeHandler()
       })
-      this.eventHandler()
-      this.subscribeHandler()
-    })
+    }
+    else {
+      this.#log('请在 env文件中 配置连接地址')
+    }
   }
 
   public subscribeHandler() {
@@ -49,7 +77,7 @@ class SocketClient {
   public eventHandler() {
     if (this.client != null) {
       this.client.on('connect', (arg) => {
-        this.#log('连接成功', `Info: ${arg}`)
+        this.#log('连接成功', 'Info: ', arg)
       })
 
       this.client.on('message', (topic, message, packet) => {
@@ -85,17 +113,20 @@ class SocketClient {
       })
 
       this.client.on('packetreceive', (packetreceiveInfo) => {
-        this.#log('收到数据包', packetreceiveInfo)
+        this.#log('收到数据包 《《《《《《《《《《《', packetreceiveInfo)
       })
 
       this.client.on('packetsend', (packetsendInfo) => {
-        this.#log('发送数据包', packetsendInfo)
+        this.#log('发送数据包 》》》》》》》》》》》', packetsendInfo)
       })
     }
   }
 
   public disconnect() {
-    this.#log('断开连接')
+    if (this.client != null) {
+      this.client.end()
+      this.#log('关闭连接')
+    }
   }
 }
 
