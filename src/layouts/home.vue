@@ -39,7 +39,7 @@ const rightSidebar = ref<HTMLElement | null>(null)
 
 // home-overlay 是否显示
 const homeOverlayIsShow = computed(() => {
-  return leftIsExpand.value && isLessThanLg.value
+  return leftIsExpand.value && isLessThanLg.value && !isMobile.value
 })
 
 function setRightSidebarExpandStatus() {
@@ -69,10 +69,9 @@ const isCasinoGames = computed(() => route.name === 'casino-games')
 <template>
   <main class="wrap" :class="{ 'is-switching': isSwitching, 'not-mobile': !isMobile }">
     <div v-if="homeOverlayIsShow" class="home-overlay" @click="leftIsExpand = !leftIsExpand" />
-    <AppFooterbar v-show="!isGreaterThanSm" />
     <div class="side-bar-outer">
       <div v-if="isLessThanLg && isGreaterThanSm" class="small-size-padding" />
-      <Transition name="bigslide-fade-left">
+      <Transition :name="isMobile ? 'bigslide-fade-top' : 'bigslide-fade-left'">
         <div
           v-if="leftIsExpand || isSwitching"
           class="big-side left-sidebar" :style="{
@@ -152,6 +151,7 @@ const isCasinoGames = computed(() => route.name === 'casino-games')
         关闭
       </button>
     </div>
+    <AppFooterbar v-show="!isGreaterThanSm" />
   </main>
 </template>
 
@@ -163,18 +163,17 @@ const isCasinoGames = computed(() => route.name === 'casino-games')
 
   .side-bar-outer {
     position: relative;
-    z-index: var(--tg-z-index-50);
     display: flex;
     flex-direction: row;
   }
   .left-sidebar.big-side {
     position: relative;
-    z-index: var(--tg-z-index-20);
+    z-index: var(--tg-z-index-30);
     will-change: margin-left;
   }
   .left-sidebar.small-side {
     position: relative;
-    z-index: var(--tg-z-index-10);
+    z-index: var(--tg-z-index-20);
     will-change: margin-left;
   }
   &.is-switching {
@@ -197,7 +196,7 @@ const isCasinoGames = computed(() => route.name === 'casino-games')
   position: fixed;
   inset: 0;
   background-color: #{rgba($color: var(--tg-color-grey-rgb), $alpha: 0.7)};
-  z-index: var(--tg-z-index-10);
+  z-index: var(--tg-z-index-20);
 }
 
 .small-size-padding {

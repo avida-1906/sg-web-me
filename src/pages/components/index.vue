@@ -605,6 +605,11 @@ function copyAppPercentageCode() {
 <template>
   <ul class="demo-page">
     <li class="box">
+      <AppDemoCard title="AppRegisterTermsConditions">
+        <AppRegisterTermsConditions />
+      </AppDemoCard>
+    </li>
+    <li class="box">
       <AppDemoCard title="AppLoginDialog">
         <AppLoginDialog />
       </AppDemoCard>

@@ -41,6 +41,7 @@ declare module 'vue' {
     AppSlider: typeof import('./components/AppSlider.vue')['default']
     AppStack: typeof import('./components/AppStack.vue')['default']
     AppStatisticsDialog: typeof import('./components/AppStatisticsDialog.vue')['default']
+    AppTermsConditionsDialog: typeof import('./components/AppTermsConditionsDialog.vue')['default']
     AppVipDialog: typeof import('./components/AppVipDialog.vue')['default']
     AppVipProgress: typeof import('./components/AppVipProgress.vue')['default']
     AppWallet: typeof import('./components/AppWallet.vue')['default']

@@ -4,6 +4,11 @@ const { t } = useI18n()
 const birthday = ref('')
 const { bool: checkboxValue } = useBoolean(false)
 
+const {
+  openTermsConditionsDialog,
+  // closeTermsConditionsDialog
+} = useTermsConditionsDialog()
+
 const { value: email, errorMessage: emailErrorMsg } = useField<string>('username', (value) => {
   if (!value)
     return t('pls_enter_email_address')
@@ -29,9 +34,6 @@ const { value: password, errorMessage: pwdErrorMsg } = useField<string>('passwor
     <div class="app-register-title">
       {{ t('reg_step1') }}
     </div>
-    <!-- <div class="app-register-title">
-      {{ t('reg_step2') }}
-    </div> -->
     <form>
       <div class="app-register-input-box">
         <BaseInput v-model="email" :label="t('email_address')" :msg="emailErrorMsg" :placeholder="t('pls_enter_email_address')" must />
@@ -44,7 +46,7 @@ const { value: password, errorMessage: pwdErrorMsg } = useField<string>('passwor
       <BaseCheckBox v-model="checkboxValue">
         {{ t('code_optional') }}
       </BaseCheckBox>
-      <BaseButton class="app-register-btn" bg-style="secondary">
+      <BaseButton class="app-register-btn" bg-style="secondary" @click.stop="openTermsConditionsDialog()">
         {{ t('continue') }}
       </BaseButton>
     </div>
