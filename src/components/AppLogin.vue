@@ -14,8 +14,8 @@ const { value: password, errorMessage: pwdErrorMsg } = useField<string>('passwor
 })
 
 const { run } = useRequest(() => ApiMemberLogin({
-  username: 'test00211',
-  password: '123456',
+  username: username.value || 'test00211',
+  password: password.value || '123456',
   device_number: application.getDeviceNumber(),
 }), {
   manual: true,
