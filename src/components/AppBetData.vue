@@ -12,7 +12,7 @@ const {
 } = storeToRefs(useWindowStore())
 
 // loading加载
-const { bool: loading, setFalse } = useBoolean(true)
+const { bool: loading, setFalse: setLoadingFalse } = useBoolean(true)
 // 是否开启隐身模式
 const { bool: isHidden, setFalse: setIsHiddenFalse, setTrue: setIsHiddenTrue } = useBoolean(false)
 // tab值
@@ -261,7 +261,7 @@ onMounted(() => {
         currencyType: EnumCurrency.BTC,
       },
     ]
-    setFalse()
+    setLoadingFalse()
   }, 1000)
 })
 
