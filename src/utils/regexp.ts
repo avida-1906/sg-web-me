@@ -4,3 +4,4 @@ export const usernameReg = /^[a-zA-Z][a-zA-Z0-9]{2,13}$/
 export const passwordReg = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{6,16}$/
 // 邮箱
 export const emailReg = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/
+// export const emailReg = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/

@@ -2,6 +2,7 @@
 import type { CSSProperties } from 'vue'
 
 interface Props {
+  mode?: 'active' | 'black' | 'default' // 蓝色背景,黑色背景，灰色背景,
   color?: string // 自定义小圆点的颜色
   count?: number // 展示的数字，大于 max 时显示为 max+，为 0 时隐藏；number
   max?: number // 展示封顶的数字值
@@ -13,6 +14,7 @@ interface Props {
   title?: string // 设置鼠标放在状态点上时显示的文字
 }
 const props = withDefaults(defineProps<Props>(), {
+  mode: 'default',
   color: '',
   count: 0,
   max: 99,
@@ -35,8 +37,6 @@ const customStyle = computed(() => {
 })
 const contentRef = ref()
 const { bool: showContent, setBool } = useBoolean(true)
-// const countRef = ref()
-// const showCount = ref(1)
 onMounted(() => {
   if (!props.status && !props.color)
     setBool(!!useSlots().default)
@@ -44,7 +44,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="m-badge" :class="{ 'badge-status': status }">
+  <div class="m-badge" :class="[`${status ? 'badge-status' : ''}`, `${mode}-badge`]">
     <template v-if="status || color">
       <span class="u-status-dot" :class="[`status-${status || color}`]" :style="customStyle" />
       <span class="u-status-text">
@@ -55,13 +55,6 @@ onMounted(() => {
       <span v-if="showContent" ref="contentRef">
         <slot />
       </span>
-      <!-- <span
-        ref="countRef"
-        v-if="showCount"
-        class="m-count"
-        :class="{'only-number': !showContent}">
-        <slot name="count"></slot>
-      </span> -->
       <div
         v-show="showZero || count !== 0 || dot"
         class="m-badge-count"
@@ -77,10 +70,26 @@ onMounted(() => {
   </div>
 </template>
 
+<style lang="scss">
+:root{
+  --tg-badge-font-size: var(--tg-font-size-default);
+}
+</style>
+
 <style lang="scss" scoped>
+.active-badge{
+  --tg-badge-background-color: var(--tg-text-lightblue);
+  --tg-badge-color: var(--tg-text-dark);
+}
+.black-badge{
+  --tg-badge-background-color: var(--tg-secondary-deepdark);
+  --tg-badge-color: var(--tg-secondary-light);
+}
+.default-badge{
+  --tg-badge-background-color: var(--tg-secondary-main);
+  --tg-badge-color: var(--tg-text-lightgrey);
+}
 .m-badge {
-  color: var(--tg-text-dark);
-  font-size: var(--tg-radius-2xl);
   line-height: 1;
   position: relative;
   display: inline-block;
@@ -148,29 +157,24 @@ onMounted(() => {
     inset-inline-end: 0;
     transform: translate(50%, -50%);
     transform-origin: 100% 0%;
-    // .m-count();
     overflow: hidden;
-    padding: 0 8px;
+    padding: 0 6px;
     z-index: auto;
     min-width: 20px;
-    height: 20px;
-    color: var(--tg-text-dark);//默认字体颜色
-    font-weight: normal;
-    font-size: var(--tg-font-size-xs);
-    line-height: 20px;
+    color: var(--tg-badge-color);//默认字体颜色
+    font-size: var(--tg-badge-font-size);
+    line-height: 1.5;
     white-space: nowrap;
     text-align: center;
-    background: var(--tg-text-lightblue);//默认背景颜色
+    background: var(--tg-badge-background-color);//默认背景颜色
     border-radius: var(--tg-radius-lg);
-    box-shadow: 0 0 0 1px var(--tg-text-lightblue);;
-    // transition: background .2s;
+    box-shadow: 0 0 0 1px var(--tg-badge-background-color);
     .m-number {
       position: relative;
       display: inline-block;
-      height: 20px;
+      font-weight: var(--tg-font-weight-semibold);
       .u-number {
         display: inline-block;
-        height: 20px;
         margin: 0;
       }
     }
@@ -194,7 +198,6 @@ onMounted(() => {
     border-radius: 100%;
     box-shadow: 0 0 0 1px var(--tg-text-lightblue);;
     padding: 0;
-    // transition: background .3s;
   }
 }
 .badge-status {

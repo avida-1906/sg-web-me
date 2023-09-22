@@ -21,13 +21,12 @@ export function ApiMemberReg(
     email: string
     username: string
     password: string
+    birthday?: string
     parent_id?: string// 上级id，没有留空
     device_number: string
   },
 ) {
-  return httpClient.post<{
-    data: string
-  }>('/member/reg', data)
+  return httpClient.post<string>('/member/reg', data)
 }
 
 /**

@@ -158,7 +158,6 @@ declare global {
   const toReactive: typeof import('@vueuse/core')['toReactive']
   const toRef: typeof import('vue')['toRef']
   const toRefs: typeof import('vue')['toRefs']
-  const toTypedSchema: typeof import('@vee-validate/zod')['toTypedSchema']
   const toValue: typeof import('vue')['toValue']
   const toast: typeof import('./utils/show-portal')['toast']
   const toggleDark: typeof import('./composables/dark')['toggleDark']
@@ -258,7 +257,6 @@ declare global {
   const useLeftSidebar: typeof import('./composables/useLeftSidebar')['useLeftSidebar']
   const useLink: typeof import('vue-router')['useLink']
   const useLocalStorage: typeof import('@vueuse/core')['useLocalStorage']
-  const useLogin: typeof import('./composables/useLogin')['useLogin']
   const useLoginDialog: typeof import('./composables/useDialogLogin')['useLoginDialog']
   const useMagicKeys: typeof import('@vueuse/core')['useMagicKeys']
   const useManualRefHistory: typeof import('@vueuse/core')['useManualRefHistory']
@@ -324,7 +322,6 @@ declare global {
   const useSwipe: typeof import('@vueuse/core')['useSwipe']
   const useTemplateRefsList: typeof import('@vueuse/core')['useTemplateRefsList']
   const useTermsConditionsDialog: typeof import('./composables/useDialogTermsConditions')['useTermsConditionsDialog']
-  const useTermsConditionsDialogDialog: typeof import('./composables/useTermsConditionsDialog')['useTermsConditionsDialogDialog']
   const useTextDirection: typeof import('@vueuse/core')['useTextDirection']
   const useTextSelection: typeof import('@vueuse/core')['useTextSelection']
   const useTextareaAutosize: typeof import('@vueuse/core')['useTextareaAutosize']
@@ -375,7 +372,6 @@ declare global {
   const watchTriggerable: typeof import('@vueuse/core')['watchTriggerable']
   const watchWithFilter: typeof import('@vueuse/core')['watchWithFilter']
   const whenever: typeof import('@vueuse/core')['whenever']
-  const z: typeof import('zod')['z']
 }
 // for type re-export
 declare global {

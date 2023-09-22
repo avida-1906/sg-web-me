@@ -104,7 +104,7 @@ function copyAspectRatioCode(type: number) {
 function copyBadgeCode(type: number) {
   switch (type) {
     case 1:
-      copy('<BaseBadge :count="5"><BaseButton @click="copyBadgeCode(1)"> copy </BaseButton></BaseBadge>')
+      copy('<BaseBadge mode="active" :count="5"><BaseButton @click="copyBadgeCode(1)"> copy </BaseButton></BaseBadge>')
       break
     case 2:
       copy('<BaseBadge :count="99" :max="10"><BaseButton @click="copyBadgeCode(2)"> copy </BaseButton></BaseBadge>')
@@ -113,7 +113,7 @@ function copyBadgeCode(type: number) {
       copy('<BaseBadge :dot="true"><BaseButton @click="copyBadgeCode(3)"> copy </BaseButton></BaseBadge>')
       break
     case 4:
-      copy('<BaseBadge :count="25" />')
+      copy('<BaseBadge mode="black" :count="25" />')
       break
     case 5:
       copy('<BaseBadge status="success" text="copy" />')
@@ -301,7 +301,7 @@ onMounted(() => {
       <AppDemoCard title="BaseBadge">
         <div class="flex-row">
           <div>
-            <BaseBadge :count="5">
+            <BaseBadge mode="active" :count="5">
               <BaseButton @click="copyBadgeCode(1)">
                 copy
               </BaseButton>
@@ -323,7 +323,7 @@ onMounted(() => {
           </div>
           <div>
             <BaseButton @click="copyBadgeCode(4)">
-              <BaseBadge :count="25" />
+              <BaseBadge mode="black" :count="25" />
             </BaseButton>
           </div>
           <div>
@@ -531,6 +531,9 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .flex-row {
+  // --tg-badge-color: red;
+  // --tg-badge-background-color: white;
+  // --tg-badge-font-size: 18px;
   display: flex;
   flex-direction: row;
   align-items: center;

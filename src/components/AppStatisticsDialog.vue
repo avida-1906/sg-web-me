@@ -61,7 +61,7 @@ const statisticsColumns = ref<IColumns[]>([
     align: 'right',
   },
 ])
-const { bool: loading, setFalse } = useBoolean(true)
+const { bool: loading, setFalse: setLoadingFalse } = useBoolean(true)
 const statisticsTableData: any = ref([])
 const trophyTableData: any = ref([])
 const sweepstakesTableData: any = ref([])
@@ -91,7 +91,7 @@ onMounted(() => {
         currencyType: EnumCurrency.BTC,
       },
     ]
-    setFalse()
+    setLoadingFalse()
   }, 3000)
   setTimeout(() => {
     trophyTableData.value = [
@@ -114,7 +114,7 @@ onMounted(() => {
         gameIcon: 'uni-cup1',
       },
     ]
-    setFalse()
+    setLoadingFalse()
   }, 3000)
   setTimeout(() => {
     sweepstakesTableData.value = [

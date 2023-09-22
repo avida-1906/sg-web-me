@@ -5,25 +5,62 @@ const { value: username, errorMessage: usernameErrorMsg } = useField<string>('us
   if (!value)
     return t('pls_enter_email_or_username')
 
+  if (!emailReg.test(value) && !usernameReg.test(value))
+    return t('email_or_username_incorrect')
+
   return ''
 })
 const { value: password, errorMessage: pwdErrorMsg } = useField<string>('password', (value) => {
   if (!value)
     return t('pls_enter_password')
 
+  if (!passwordReg.test(value))
+    return t('password_incorrect')
+
   return ''
 })
 
-const { run } = useRequest(() => ApiMemberLogin({
-  username: username.value || 'test00211',
-  password: password.value || '123456',
+// const { bool: isDisabled, setTrue: setDisabledTrue, setFalse: setDisabledFalse } = useBoolean(true)
+const { run: runMemberLogin, loading: isLoading } = useRequest(() => ApiMemberLogin({
+  username: username.value,
+  password: password.value,
   device_number: application.getDeviceNumber(),
 }), {
   manual: true,
-  onSuccess: (res) => {
+  onSuccess: (res: any) => {
+    // toast(res)
     appStore.setToken(res)
   },
+  onError: (err: any) => {
+    toast(err)
+  },
 })
+
+// const ruleForm = reactive({
+//   username: '',
+//   password: '',
+// })
+// const isDisabled = computed(() => { })
+
+// watch(
+//   () => username.value,
+//   (val) => {
+//     if ((emailReg.test(val) || usernameReg.test(val)) && passwordReg.test(password.value))
+//       setDisabledFalse()
+//     else
+//       setDisabledTrue()
+//   },
+// )
+// watch(
+//   () => password.value,
+//   (val) => {
+//     console.log(val)
+//     if (passwordReg.test(val) && (emailReg.test(username.value) || usernameReg.test(username.value)))
+//       setDisabledFalse()
+//     else
+//       setDisabledTrue()
+//   },
+// )
 </script>
 
 <template>
@@ -33,7 +70,8 @@ const { run } = useRequest(() => ApiMemberLogin({
       <BaseInput v-model="username" :label="t('email_or_username')" :msg="usernameErrorMsg" :placeholder="t('pls_enter_email_or_username')" must />
       <BaseInput v-model="password" :label="t('password')" :msg="pwdErrorMsg" :placeholder="t('pls_enter_password')" type="password" must autocomplete="current-password" />
       <!-- <BaseInput v-model="username" :label="t('two-step_verification')" :msg="usernameErrorMsg" :placeholder="t('pls_enter_two-step_verification')" must /> -->
-      <BaseButton class="app-login-btn" bg-style="secondary" :loading="false" :disabled="false" @click="run">
+      <!-- :disabled="isDisabled" -->
+      <BaseButton class="app-login-btn" bg-style="secondary" :loading="isLoading" @click="runMemberLogin">
         {{ t('login') }}
       </BaseButton>
     </div>

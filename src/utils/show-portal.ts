@@ -10,7 +10,7 @@ export function toast(message: string) {
     background: rgba(0, 0, 0, 0.5);
     color: #fff;
     border-radius: 5px;
-    z-index: 999;
+    z-index: 9999;
   `
   document.body.appendChild(div)
 

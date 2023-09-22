@@ -33,9 +33,9 @@ function onCloseKeyword(k: string) {
 }
 
 // 搜索结果
-function onGameItemClick() { }
-// const casinoList = ref([gameInfo, gameInfo, gameInfo, gameInfo, gameInfo])
-const casinoList = ref([])
+const { bool: noResult } = useBoolean(false)
+const { bool: casinoResult } = useBoolean(false)
+const { bool: sportsResult } = useBoolean(true)
 </script>
 
 <template>
@@ -66,10 +66,10 @@ const casinoList = ref([])
     <!-- 搜索功能面板  -->
     <div v-show="showSearchOverlay || !isMobile" class="search-overlay" @click.self="setFalse2">
       <div class="scroll-y warp">
-        <div v-if="casinoList.length === 0" class="no-result">
+        <div v-if="noResult" class="no-result">
           <div class="text">
             <span v-show="searchValue.length < 3">{{ t('search_need_at_least_3_word') }}</span>
-            <span v-show="searchValue.length >= 3 && casinoList.length === 0">{{ t('search_no_result') }}</span>
+            <span v-show="searchValue.length >= 3">{{ t('search_no_result') }}</span>
           </div>
           <div v-if="recentKeyword.length" class="recent">
             <div class="title">
@@ -85,9 +85,10 @@ const casinoList = ref([])
         </div>
 
         <!-- casino -->
-        <div v-if="casinoList.length" class="result-casino">
-          <BaseGameItem v-for="item, i in casinoList" :key="i" :game-info="item" @click-item="onGameItemClick" />
-        </div>
+        <AppCardList v-if="!noResult && casinoResult" />
+
+        <!-- sports -->
+        <AppSportsSearchResult v-if="!noResult && sportsResult" />
       </div>
     </div>
   </div>

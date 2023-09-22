@@ -1,18 +1,22 @@
 <script setup lang='ts'>
 const { t } = useI18n()
 
+const appStore = useAppStore()
 const birthday = ref('')
 const { bool: checkboxValue } = useBoolean(false)
-const { bool: loadingValue } = useBoolean(false)
 
-// const {
-//   openTermsConditionsDialog,
-//   // closeTermsConditionsDialog
-// } = useTermsConditionsDialog()
+const closeDialog = inject('closeDialog', () => {})
+
+const {
+  openTermsConditionsDialog,
+} = useTermsConditionsDialog()
 
 const { value: email, errorMessage: emailErrorMsg } = useField<string>('username', (value) => {
   if (!value)
     return t('pls_enter_email_address')
+
+  if (!emailReg.test(value))
+    return t('email_address_incorrect')
 
   return ''
 })
@@ -20,28 +24,41 @@ const { value: username, errorMessage: usernameErrorMsg } = useField<string>('us
   if (!value)
     return t('pls_enter_username')
 
+  if (!usernameReg.test(value))
+    return t('username_incorrect')
+
   return ''
 })
 const { value: password, errorMessage: pwdErrorMsg } = useField<string>('password', (value) => {
   if (!value)
     return t('pls_enter_password')
 
+  if (!passwordReg.test(value))
+    return t('password_incorrect')
+
   return ''
 })
 
-const { run } = useRequest(() => ApiMemberReg({
-  email: username.value || 'jango16888@gmail.com',
-  username: username.value || 'jango16888',
-  password: password.value || '123456',
+const { run: runMemberReg, loading: isLoading } = useRequest(() => ApiMemberReg({
+  email: username.value,
+  username: username.value,
+  password: password.value,
+  parent_id: '',
+  birthday: birthday.value,
   device_number: application.getDeviceNumber(),
 }), {
   manual: true,
-  // maxWait: 2000,
-  // trailing: true,
+  onSuccess: async (res: any) => {
+    // toast(res)
+    appStore.setToken(res)
+    closeDialog()
+    await nextTick()
+    openTermsConditionsDialog()
+  },
+  onError: (err: any) => {
+    toast(err)
+  },
 })
-// setTimeout(() => {
-//   loadingValue.value = true
-// }, 3000)
 </script>
 
 <template>
@@ -60,7 +77,7 @@ const { run } = useRequest(() => ApiMemberReg({
       <BaseCheckBox v-model="checkboxValue">
         {{ t('code_optional') }}
       </BaseCheckBox>
-      <BaseButton :loading="loadingValue" :disabled="loadingValue" class="app-register-btn" bg-style="secondary" @click.stop="run">
+      <BaseButton :loading="isLoading" class="app-register-btn" bg-style="secondary" @click.stop="runMemberReg">
         {{ t('continue') }}
       </BaseButton>
     </div>
