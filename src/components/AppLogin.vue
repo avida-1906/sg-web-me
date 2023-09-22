@@ -5,16 +5,22 @@ const { value: username, errorMessage: usernameErrorMsg } = useField<string>('us
   if (!value)
     return t('pls_enter_email_or_username')
 
+  if (!emailReg.test(value) && !usernameReg.test(value))
+    return t('email_or_username_incorrect')
+
   return ''
 })
 const { value: password, errorMessage: pwdErrorMsg } = useField<string>('password', (value) => {
   if (!value)
     return t('pls_enter_password')
 
+  if (!passwordReg.test(value))
+    return t('password_incorrect')
+
   return ''
 })
 
-const { run } = useRequest(() => ApiMemberLogin({
+const { run: runMemberLogin, loading: isLoading } = useRequest(() => ApiMemberLogin({
   username: username.value || 'test00211',
   password: password.value || '123456',
   device_number: application.getDeviceNumber(),
@@ -22,6 +28,9 @@ const { run } = useRequest(() => ApiMemberLogin({
   manual: true,
   onSuccess: (res) => {
     appStore.setToken(res)
+  },
+  onError: (err) => {
+    console.log(err)
   },
 })
 </script>
@@ -33,7 +42,7 @@ const { run } = useRequest(() => ApiMemberLogin({
       <BaseInput v-model="username" :label="t('email_or_username')" :msg="usernameErrorMsg" :placeholder="t('pls_enter_email_or_username')" must />
       <BaseInput v-model="password" :label="t('password')" :msg="pwdErrorMsg" :placeholder="t('pls_enter_password')" type="password" must autocomplete="current-password" />
       <!-- <BaseInput v-model="username" :label="t('two-step_verification')" :msg="usernameErrorMsg" :placeholder="t('pls_enter_two-step_verification')" must /> -->
-      <BaseButton class="app-login-btn" bg-style="secondary" :loading="false" :disabled="false" @click="run">
+      <BaseButton class="app-login-btn" bg-style="secondary" :loading="isLoading" :disabled="isLoading" @click="runMemberLogin">
         {{ t('login') }}
       </BaseButton>
     </div>

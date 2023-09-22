@@ -6,7 +6,7 @@
 // const emit = defineEmits(['update:modelValue'])
 
 // 内容展开
-const { bool: showContent, toggle } = useBoolean(true)
+const { bool: showContent, toggle: toggleShowContent } = useBoolean(true)
 
 const tab = ref('4')
 const tabList = [
@@ -83,7 +83,7 @@ const columns = ref<Column[]>([
   },
 ])
 
-const { bool: loading, setFalse } = useBoolean(true)
+const { bool: loading, setFalse: setLoadingFalse } = useBoolean(true)
 const tableData: any = ref([])
 onMounted(() => {
   setTimeout(() => {
@@ -117,7 +117,7 @@ onMounted(() => {
         currencyType: EnumCurrency.BTC,
       },
     ]
-    setFalse()
+    setLoadingFalse()
   }, 3000)
 })
 
@@ -150,7 +150,7 @@ const isXxs = computed(() => width.value <= 478)
             </template>
           </VMenu>
         </div>
-        <div class="r-arrow" :class="[showContent ? 'down' : 'left']" @click="toggle">
+        <div class="r-arrow" :class="[showContent ? 'down' : 'left']" @click="toggleShowContent">
           <BaseIcon name="uni-arrow-down" />
         </div>
       </div>

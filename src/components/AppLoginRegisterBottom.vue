@@ -8,17 +8,18 @@ const { t } = useI18n()
 interface Props {
   type?: string
 }
+const closeDialog = inject('closeDialog', () => {})
 
-const { openLoginDialog, closeLoginDialog } = useLoginDialog()
-const { openRegisterDialog, closeRegisterDialog } = useRegisterDialog()
+const { openLoginDialog } = useLoginDialog()
+const { openRegisterDialog } = useRegisterDialog()
 
 async function toRegister() {
-  closeLoginDialog()
+  closeDialog()
   await nextTick()
   openRegisterDialog()
 }
 async function toLogin() {
-  closeRegisterDialog()
+  closeDialog()
   await nextTick()
   openLoginDialog()
 }
