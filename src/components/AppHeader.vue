@@ -101,7 +101,7 @@ function handleClickMenuItem(item: { name: string }) {
       </div>
       <AppGlobalSearch v-if="showSearchBar && !isMobile" @close="() => showSearchBar = false" />
     </div>
-    <div class="app-header-login">
+    <div v-else class="app-header-login">
       <BaseLogo :use-small="width <= 400" />
       <div class="user">
         <BaseButton type="text" class="login" @click.stop="openLoginDialog()">
