@@ -3,12 +3,12 @@ const { t } = useI18n()
 
 const birthday = ref('')
 const { bool: checkboxValue } = useBoolean(false)
-// const { bool: isLoading, setTrue: setLoadingTrue, setFalse: setLoadingFalse } = useBoolean(false)
 
-// const {
-//   openTermsConditionsDialog,
-//   // closeTermsConditionsDialog
-// } = useTermsConditionsDialog()
+const closeDialog = inject('closeDialog', () => {})
+
+const {
+  openTermsConditionsDialog,
+} = useTermsConditionsDialog()
 
 const { value: email, errorMessage: emailErrorMsg } = useField<string>('username', (value) => {
   if (!value)
@@ -38,13 +38,15 @@ const { run: runMemberReg, loading: isLoading } = useRequest(() => ApiMemberReg(
   device_number: application.getDeviceNumber(),
 }), {
   manual: true,
-  // maxWait: 2000,
-  // trailing: true,
-  onSuccess: () => {},
+  onSuccess: async () => {
+    closeDialog()
+    await nextTick()
+    openTermsConditionsDialog()
+  },
+  onError: (err) => {
+    console.log(err)
+  },
 })
-// setTimeout(() => {
-//   loadingValue.value = true
-// }, 3000)
 </script>
 
 <template>

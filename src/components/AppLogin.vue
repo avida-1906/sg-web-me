@@ -23,6 +23,9 @@ const { run: runMemberLogin, loading: isLoading } = useRequest(() => ApiMemberLo
   onSuccess: (res) => {
     appStore.setToken(res)
   },
+  onError: (err) => {
+    console.log(err)
+  },
 })
 </script>
 
