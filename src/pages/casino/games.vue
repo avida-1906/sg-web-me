@@ -9,16 +9,21 @@ const { gameList, gameProviders } = useGameList()
   <div class="casino-games" :class="{ theatre: isTheatre && !isMobile }">
     <AppIframe :is-theatre="isTheatre" @change-theatre="setBool" />
     <AppDesc />
-    <div class="content-wrapper">
-      <AppSlider api="" icon="chess-original-game" :title="$t('casino_origin_game')" :data="gameList" />
-      <AppSlider api="" icon="chess-game-provider" :title="$t('casino_provider')" :data="gameProviders" :show-view-all="false">
-        <template #default="{ item }">
-          <div class="provider-item-wrap">
-            <BaseImage :url="item.src" />
-          </div>
-        </template>
-      </AppSlider>
-    </div>
+    <AppContent>
+      <div class="content-wrapper">
+        <AppSlider api="" icon="chess-original-game" :title="$t('casino_games_recommend')" :data="gameList" />
+        <AppSlider api="" icon="chess-game-provider" :title="$t('casino_provider')" :data="gameProviders" :show-view-all="false">
+          <template #default="{ item }">
+            <div class="provider-item-wrap">
+              <BaseImage :url="item.src" />
+            </div>
+          </template>
+        </AppSlider>
+      </div>
+      <div class="layout-spacing">
+        <AppBetData mode="casino" />
+      </div>
+    </AppContent>
   </div>
 </template>
 
