@@ -23,6 +23,7 @@ export function ApiMemberReg(
     email: string
     username: string
     password: string
+    birthday?: string
     parent_id?: string// 上级id，没有留空
     device_number: string
   },

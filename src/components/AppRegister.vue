@@ -31,8 +31,9 @@ const { value: password, errorMessage: pwdErrorMsg } = useField<string>('passwor
 
 const { run } = useRequest(() => ApiMemberReg({
   email: username.value || 'jango16888@gmail.com',
-  username: username.value || 'jango16888',
+  username: username.value || 'Jango16888',
   password: password.value || '123456',
+  birthday: birthday.value,
   device_number: application.getDeviceNumber(),
 }), {
   manual: true,
