@@ -14,6 +14,23 @@ export function ApiMemberLogin(
 }
 
 /**
+ * 用户注册
+ */
+export function ApiMemberReg(
+  data: {
+    email: string
+    username: string
+    password: string
+    parent_id?: string// 上级id，没有留空
+    device_number: string
+  },
+) {
+  return httpClient.post<{
+    data: string
+  }>('/member/reg', data)
+}
+
+/**
  * 发送短信或者邮件验证码
  */
 export function ApiSmsSend(

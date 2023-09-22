@@ -19,7 +19,7 @@ const checkedValues = ref([])
         <section class="base-check-pop-inner">
           <BaseCheckboxGroup v-model="checkedValues" :list="data" size="mid">
             <template #default="{ item }">
-              <div class="check-item-label">
+              <div class="check-item-label" :class="{ active: item.isChecked }">
                 <div>{{ item.label }}</div>
                 <div class="">
                   <BaseBadge :count="item.count" />

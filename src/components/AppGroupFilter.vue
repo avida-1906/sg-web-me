@@ -1,11 +1,10 @@
 <script lang="ts" setup>
 const groupFilterOuter = ref()
 const { appContentWidth } = storeToRefs(useWindowStore())
-const outerWidth = computed(() => appContentWidth.value)
 </script>
 
 <template>
-  <section ref="groupFilterOuter" class="tg-app-group-filter flex-center-bet" :class="{ 'less-than-700': outerWidth < 700 }">
+  <section ref="groupFilterOuter" class="tg-app-group-filter flex-center-bet" :class="{ 'less-than-700': appContentWidth < 700 }">
     <div class="flex-center-bet left">
       <div class="flex-center-bet title">
         <BaseIcon name="uni-bars" />

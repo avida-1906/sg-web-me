@@ -96,6 +96,7 @@ onMounted(() => {
         multiple: '66,666x',
         payAmount: '257.00000000',
         currencyType: EnumCurrency.BTC,
+        isStealth: true,
       },
       {
         rank: 'uni-rank2',
@@ -205,8 +206,8 @@ const isXxs = computed(() => width.value <= 478)
               <BaseIcon :name="record.rank" />
             </div>
           </template>
-          <template #player>
-            <VMenu placement="top">
+          <template #player="{ record }">
+            <VMenu v-if="record.isStealth" placement="top">
               <div class="cursor-help">
                 <BaseIcon name="uni-hidden" /> <span>隐身</span>
               </div>
@@ -216,6 +217,9 @@ const isXxs = computed(() => width.value <= 478)
                 </div>
               </template>
             </VMenu>
+            <div v-else class="player">
+              {{ record.player }}
+            </div>
           </template>
           <template #bet="{ record }">
             <div class="img-text-align img-text-align-center">
@@ -430,6 +434,14 @@ const isXxs = computed(() => width.value <= 478)
     span {
       font-size: var(--tg-font-size-default);
       margin-left: var(--tg-spacing-4);
+    }
+  }
+  .player{
+    color: var(--tg-text-white);
+    font-weight: var(--tg-font-weight-semibold);
+    cursor: pointer;
+    &:active{
+      transform: scale(0.96);
     }
   }
 }
