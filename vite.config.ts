@@ -69,6 +69,9 @@ export default defineConfig(({ mode }) => {
               'default', 'axios',
             ]],
             'vue-request': ['useRequest'],
+            'qs': [[
+              'default', 'qs',
+            ]],
           },
         ],
         dts: 'src/auto-imports.d.ts',

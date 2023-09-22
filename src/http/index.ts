@@ -1,4 +1,5 @@
 import type { AxiosResponse, InternalAxiosRequestConfig } from 'axios'
+import { getCurrentLanguage } from '~/modules/i18n'
 
 const { VITE_HTTP_TIMEOUT, VITE_HTTP_BASEURL } = import.meta.env
 
@@ -14,9 +15,31 @@ class HttpClient {
     baseURL: import.meta.env.PROD ? '' : '/api',
     timeout: VITE_HTTP_TIMEOUT,
     headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
+      'Content-Type': 'application/json;charset=UTF-8',
     },
   })
+
+  constructor() {
+    this.setInterceptors()
+  }
+
+  /** 获取当前设备信息 */
+  #getDevice() {
+    const { isMobile } = storeToRefs(useWindowStore())
+    if (isMobile.value)
+      return 25
+
+    else
+      return 24
+  }
+
+  /** 获取传给后端的语言 */
+  #getLanguage() {
+    const languageMap: any = {
+      'zh-CN': 'zh_CN',
+    }
+    return languageMap[getCurrentLanguage()] || 'zh_CN'
+  }
 
   /**
    * 请求拦截函数列表，按照顺序执行
@@ -26,9 +49,7 @@ class HttpClient {
    * 例如：设置token
    */
   private requestInterceptorsList: IRequestInterceptors[] = [
-    /**
-     * 设置token
-     */
+    // 设置token
     (config) => {
       const token = Local.get(STORAGE_TOKEN_KEY)
       if (token)
@@ -36,9 +57,19 @@ class HttpClient {
 
       return config
     },
-    /**
-     * 转换请求参数
-     */
+    // 设置全局header
+    (config) => {
+      config.headers.d = this.#getDevice()
+      config.headers.lang = this.#getLanguage()
+      return config
+    },
+    // 使用qs序列化参数
+    // (config) => {
+    //   if (config.method === 'post')
+    //     config.data = qs.stringify(config.data)
+
+    //   return config
+    // },
   ]
 
   /**
@@ -87,10 +118,6 @@ class HttpClient {
       return response
     },
   ]
-
-  constructor() {
-    this.setInterceptors()
-  }
 
   private setInterceptors() {
     /**

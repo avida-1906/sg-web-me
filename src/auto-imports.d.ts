@@ -117,6 +117,7 @@ declare global {
   const pausableWatch: typeof import('@vueuse/core')['pausableWatch']
   const preferredDark: typeof import('./composables/dark')['preferredDark']
   const provide: typeof import('vue')['provide']
+  const qs: typeof import('qs')['default']
   const random: typeof import('lodash-es')['random']
   const reactify: typeof import('@vueuse/core')['reactify']
   const reactifyObject: typeof import('@vueuse/core')['reactifyObject']
@@ -256,7 +257,7 @@ declare global {
   const useLink: typeof import('vue-router')['useLink']
   const useLocalStorage: typeof import('@vueuse/core')['useLocalStorage']
   const useLogin: typeof import('./composables/useLogin')['useLogin']
-  const useLoginDialog: typeof import('./composables/useLoginDialog')['useLoginDialog']
+  const useLoginDialog: typeof import('./composables/useDialogLogin')['useLoginDialog']
   const useMagicKeys: typeof import('@vueuse/core')['useMagicKeys']
   const useManualRefHistory: typeof import('@vueuse/core')['useManualRefHistory']
   const useMediaControls: typeof import('@vueuse/core')['useMediaControls']
@@ -293,12 +294,12 @@ declare global {
   const usePrevious: typeof import('@vueuse/core')['usePrevious']
   const useRafFn: typeof import('@vueuse/core')['useRafFn']
   const useRefHistory: typeof import('@vueuse/core')['useRefHistory']
-  const useRegisterDialog: typeof import('./composables/useRegisterDialog')['useRegisterDialog']
+  const useRegisterDialog: typeof import('./composables/useDialogRegister')['useRegisterDialog']
   const useRequest: typeof import('vue-request')['useRequest']
   const useResizeObserver: typeof import('@vueuse/core')['useResizeObserver']
   const useRoute: typeof import('vue-router')['useRoute']
   const useRouter: typeof import('vue-router')['useRouter']
-  const useSafeDialog: typeof import('./composables/useSafeDialog')['useSafeDialog']
+  const useSafeDialog: typeof import('./composables/useDialogSafe')['useSafeDialog']
   const useScreenOrientation: typeof import('@vueuse/core')['useScreenOrientation']
   const useScreenSafeArea: typeof import('@vueuse/core')['useScreenSafeArea']
   const useScriptTag: typeof import('@vueuse/core')['useScriptTag']
@@ -312,7 +313,7 @@ declare global {
   const useSorted: typeof import('@vueuse/core')['useSorted']
   const useSpeechRecognition: typeof import('@vueuse/core')['useSpeechRecognition']
   const useSpeechSynthesis: typeof import('@vueuse/core')['useSpeechSynthesis']
-  const useStatisticsDialog: typeof import('./composables/useStatisticalDialog')['useStatisticsDialog']
+  const useStatisticsDialog: typeof import('./composables/useDialogStatistical')['useStatisticsDialog']
   const useStepper: typeof import('@vueuse/core')['useStepper']
   const useStorage: typeof import('@vueuse/core')['useStorage']
   const useStorageAsync: typeof import('@vueuse/core')['useStorageAsync']
@@ -341,10 +342,10 @@ declare global {
   const useVModel: typeof import('@vueuse/core')['useVModel']
   const useVModels: typeof import('@vueuse/core')['useVModels']
   const useVibrate: typeof import('@vueuse/core')['useVibrate']
-  const useVipDialog: typeof import('./composables/useVipDialog')['useVipDialog']
+  const useVipDialog: typeof import('./composables/useDialogVip')['useVipDialog']
   const useVirtualList: typeof import('@vueuse/core')['useVirtualList']
   const useWakeLock: typeof import('@vueuse/core')['useWakeLock']
-  const useWalletDialog: typeof import('./composables/useWalletDialog')['useWalletDialog']
+  const useWalletDialog: typeof import('./composables/useDialogWallet')['useWalletDialog']
   const useWebNotification: typeof import('@vueuse/core')['useWebNotification']
   const useWebSocket: typeof import('@vueuse/core')['useWebSocket']
   const useWebWorker: typeof import('@vueuse/core')['useWebWorker']
@@ -493,6 +494,7 @@ declare module 'vue' {
     readonly pausableWatch: UnwrapRef<typeof import('@vueuse/core')['pausableWatch']>
     readonly preferredDark: UnwrapRef<typeof import('./composables/dark')['preferredDark']>
     readonly provide: UnwrapRef<typeof import('vue')['provide']>
+    readonly qs: UnwrapRef<typeof import('qs')['default']>
     readonly random: UnwrapRef<typeof import('lodash-es')['random']>
     readonly reactify: UnwrapRef<typeof import('@vueuse/core')['reactify']>
     readonly reactifyObject: UnwrapRef<typeof import('@vueuse/core')['reactifyObject']>
@@ -630,7 +632,7 @@ declare module 'vue' {
     readonly useLeftSidebar: UnwrapRef<typeof import('./composables/useLeftSidebar')['useLeftSidebar']>
     readonly useLink: UnwrapRef<typeof import('vue-router')['useLink']>
     readonly useLocalStorage: UnwrapRef<typeof import('@vueuse/core')['useLocalStorage']>
-    readonly useLoginDialog: UnwrapRef<typeof import('./composables/useLoginDialog')['useLoginDialog']>
+    readonly useLoginDialog: UnwrapRef<typeof import('./composables/useDialogLogin')['useLoginDialog']>
     readonly useMagicKeys: UnwrapRef<typeof import('@vueuse/core')['useMagicKeys']>
     readonly useManualRefHistory: UnwrapRef<typeof import('@vueuse/core')['useManualRefHistory']>
     readonly useMediaControls: UnwrapRef<typeof import('@vueuse/core')['useMediaControls']>
@@ -667,12 +669,12 @@ declare module 'vue' {
     readonly usePrevious: UnwrapRef<typeof import('@vueuse/core')['usePrevious']>
     readonly useRafFn: UnwrapRef<typeof import('@vueuse/core')['useRafFn']>
     readonly useRefHistory: UnwrapRef<typeof import('@vueuse/core')['useRefHistory']>
-    readonly useRegisterDialog: UnwrapRef<typeof import('./composables/useRegisterDialog')['useRegisterDialog']>
+    readonly useRegisterDialog: UnwrapRef<typeof import('./composables/useDialogRegister')['useRegisterDialog']>
     readonly useRequest: UnwrapRef<typeof import('vue-request')['useRequest']>
     readonly useResizeObserver: UnwrapRef<typeof import('@vueuse/core')['useResizeObserver']>
     readonly useRoute: UnwrapRef<typeof import('vue-router')['useRoute']>
     readonly useRouter: UnwrapRef<typeof import('vue-router')['useRouter']>
-    readonly useSafeDialog: UnwrapRef<typeof import('./composables/useSafeDialog')['useSafeDialog']>
+    readonly useSafeDialog: UnwrapRef<typeof import('./composables/useDialogSafe')['useSafeDialog']>
     readonly useScreenOrientation: UnwrapRef<typeof import('@vueuse/core')['useScreenOrientation']>
     readonly useScreenSafeArea: UnwrapRef<typeof import('@vueuse/core')['useScreenSafeArea']>
     readonly useScriptTag: UnwrapRef<typeof import('@vueuse/core')['useScriptTag']>
@@ -686,7 +688,7 @@ declare module 'vue' {
     readonly useSorted: UnwrapRef<typeof import('@vueuse/core')['useSorted']>
     readonly useSpeechRecognition: UnwrapRef<typeof import('@vueuse/core')['useSpeechRecognition']>
     readonly useSpeechSynthesis: UnwrapRef<typeof import('@vueuse/core')['useSpeechSynthesis']>
-    readonly useStatisticsDialog: UnwrapRef<typeof import('./composables/useStatisticalDialog')['useStatisticsDialog']>
+    readonly useStatisticsDialog: UnwrapRef<typeof import('./composables/useDialogStatistical')['useStatisticsDialog']>
     readonly useStepper: UnwrapRef<typeof import('@vueuse/core')['useStepper']>
     readonly useStorage: UnwrapRef<typeof import('@vueuse/core')['useStorage']>
     readonly useStorageAsync: UnwrapRef<typeof import('@vueuse/core')['useStorageAsync']>
@@ -715,10 +717,10 @@ declare module 'vue' {
     readonly useVModel: UnwrapRef<typeof import('@vueuse/core')['useVModel']>
     readonly useVModels: UnwrapRef<typeof import('@vueuse/core')['useVModels']>
     readonly useVibrate: UnwrapRef<typeof import('@vueuse/core')['useVibrate']>
-    readonly useVipDialog: UnwrapRef<typeof import('./composables/useVipDialog')['useVipDialog']>
+    readonly useVipDialog: UnwrapRef<typeof import('./composables/useDialogVip')['useVipDialog']>
     readonly useVirtualList: UnwrapRef<typeof import('@vueuse/core')['useVirtualList']>
     readonly useWakeLock: UnwrapRef<typeof import('@vueuse/core')['useWakeLock']>
-    readonly useWalletDialog: UnwrapRef<typeof import('./composables/useWalletDialog')['useWalletDialog']>
+    readonly useWalletDialog: UnwrapRef<typeof import('./composables/useDialogWallet')['useWalletDialog']>
     readonly useWebNotification: UnwrapRef<typeof import('@vueuse/core')['useWebNotification']>
     readonly useWebSocket: UnwrapRef<typeof import('@vueuse/core')['useWebSocket']>
     readonly useWebWorker: UnwrapRef<typeof import('@vueuse/core')['useWebWorker']>
@@ -860,6 +862,7 @@ declare module '@vue/runtime-core' {
     readonly pausableWatch: UnwrapRef<typeof import('@vueuse/core')['pausableWatch']>
     readonly preferredDark: UnwrapRef<typeof import('./composables/dark')['preferredDark']>
     readonly provide: UnwrapRef<typeof import('vue')['provide']>
+    readonly qs: UnwrapRef<typeof import('qs')['default']>
     readonly random: UnwrapRef<typeof import('lodash-es')['random']>
     readonly reactify: UnwrapRef<typeof import('@vueuse/core')['reactify']>
     readonly reactifyObject: UnwrapRef<typeof import('@vueuse/core')['reactifyObject']>
@@ -997,7 +1000,7 @@ declare module '@vue/runtime-core' {
     readonly useLeftSidebar: UnwrapRef<typeof import('./composables/useLeftSidebar')['useLeftSidebar']>
     readonly useLink: UnwrapRef<typeof import('vue-router')['useLink']>
     readonly useLocalStorage: UnwrapRef<typeof import('@vueuse/core')['useLocalStorage']>
-    readonly useLoginDialog: UnwrapRef<typeof import('./composables/useLoginDialog')['useLoginDialog']>
+    readonly useLoginDialog: UnwrapRef<typeof import('./composables/useDialogLogin')['useLoginDialog']>
     readonly useMagicKeys: UnwrapRef<typeof import('@vueuse/core')['useMagicKeys']>
     readonly useManualRefHistory: UnwrapRef<typeof import('@vueuse/core')['useManualRefHistory']>
     readonly useMediaControls: UnwrapRef<typeof import('@vueuse/core')['useMediaControls']>
@@ -1034,12 +1037,12 @@ declare module '@vue/runtime-core' {
     readonly usePrevious: UnwrapRef<typeof import('@vueuse/core')['usePrevious']>
     readonly useRafFn: UnwrapRef<typeof import('@vueuse/core')['useRafFn']>
     readonly useRefHistory: UnwrapRef<typeof import('@vueuse/core')['useRefHistory']>
-    readonly useRegisterDialog: UnwrapRef<typeof import('./composables/useRegisterDialog')['useRegisterDialog']>
+    readonly useRegisterDialog: UnwrapRef<typeof import('./composables/useDialogRegister')['useRegisterDialog']>
     readonly useRequest: UnwrapRef<typeof import('vue-request')['useRequest']>
     readonly useResizeObserver: UnwrapRef<typeof import('@vueuse/core')['useResizeObserver']>
     readonly useRoute: UnwrapRef<typeof import('vue-router')['useRoute']>
     readonly useRouter: UnwrapRef<typeof import('vue-router')['useRouter']>
-    readonly useSafeDialog: UnwrapRef<typeof import('./composables/useSafeDialog')['useSafeDialog']>
+    readonly useSafeDialog: UnwrapRef<typeof import('./composables/useDialogSafe')['useSafeDialog']>
     readonly useScreenOrientation: UnwrapRef<typeof import('@vueuse/core')['useScreenOrientation']>
     readonly useScreenSafeArea: UnwrapRef<typeof import('@vueuse/core')['useScreenSafeArea']>
     readonly useScriptTag: UnwrapRef<typeof import('@vueuse/core')['useScriptTag']>
@@ -1053,7 +1056,7 @@ declare module '@vue/runtime-core' {
     readonly useSorted: UnwrapRef<typeof import('@vueuse/core')['useSorted']>
     readonly useSpeechRecognition: UnwrapRef<typeof import('@vueuse/core')['useSpeechRecognition']>
     readonly useSpeechSynthesis: UnwrapRef<typeof import('@vueuse/core')['useSpeechSynthesis']>
-    readonly useStatisticsDialog: UnwrapRef<typeof import('./composables/useStatisticalDialog')['useStatisticsDialog']>
+    readonly useStatisticsDialog: UnwrapRef<typeof import('./composables/useDialogStatistical')['useStatisticsDialog']>
     readonly useStepper: UnwrapRef<typeof import('@vueuse/core')['useStepper']>
     readonly useStorage: UnwrapRef<typeof import('@vueuse/core')['useStorage']>
     readonly useStorageAsync: UnwrapRef<typeof import('@vueuse/core')['useStorageAsync']>
@@ -1082,10 +1085,10 @@ declare module '@vue/runtime-core' {
     readonly useVModel: UnwrapRef<typeof import('@vueuse/core')['useVModel']>
     readonly useVModels: UnwrapRef<typeof import('@vueuse/core')['useVModels']>
     readonly useVibrate: UnwrapRef<typeof import('@vueuse/core')['useVibrate']>
-    readonly useVipDialog: UnwrapRef<typeof import('./composables/useVipDialog')['useVipDialog']>
+    readonly useVipDialog: UnwrapRef<typeof import('./composables/useDialogVip')['useVipDialog']>
     readonly useVirtualList: UnwrapRef<typeof import('@vueuse/core')['useVirtualList']>
     readonly useWakeLock: UnwrapRef<typeof import('@vueuse/core')['useWakeLock']>
-    readonly useWalletDialog: UnwrapRef<typeof import('./composables/useWalletDialog')['useWalletDialog']>
+    readonly useWalletDialog: UnwrapRef<typeof import('./composables/useDialogWallet')['useWalletDialog']>
     readonly useWebNotification: UnwrapRef<typeof import('@vueuse/core')['useWebNotification']>
     readonly useWebSocket: UnwrapRef<typeof import('@vueuse/core')['useWebSocket']>
     readonly useWebWorker: UnwrapRef<typeof import('@vueuse/core')['useWebWorker']>

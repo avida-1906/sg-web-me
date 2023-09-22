@@ -4,18 +4,15 @@ import { httpClient } from '~/http'
  * 用户登录
  */
 export function ApiMemberLogin(
-  params: {
+  data: {
     username: string
     password: string
-    page?: number
-    page_size?: number
+    device_number: string
   },
 ) {
   return httpClient.post<{
     token: string
-    username: string
-    avatar: string
-  }>('/api/v1/home/ip', params)
+  }>('/member/login', data)
 }
 
 /**

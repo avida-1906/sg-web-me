@@ -54,3 +54,7 @@ export function install(app: App<Element>) {
   app.use(i18n)
   loadLanguageAsync(EnumLanguage[index])
 }
+
+export function getCurrentLanguage() {
+  return i18n.global.locale.value
+}

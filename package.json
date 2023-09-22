@@ -18,6 +18,7 @@
     "sizecheck": "npx vite-bundle-visualizer"
   },
   "dependencies": {
+    "@types/qs": "^6.9.8",
     "@unhead/vue": "^1.1.30",
     "@unocss/reset": "^0.53.5",
     "@vueuse/core": "^10.2.1",
@@ -31,6 +32,7 @@
     "pinia": "^2.1.4",
     "precompiled-mqtt": "4.3.14-beta",
     "qrcode.vue": "^3.4.1",
+    "qs": "^6.11.2",
     "vee-validate": "^4.11.3",
     "vue": "^3.3.4",
     "vue-demi": "^0.14.5",

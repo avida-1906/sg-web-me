@@ -49,6 +49,10 @@ class Application {
         toast('Copied')
     })
   }
+
+  getDeviceNumber() {
+    return 'testwebwebwebwebewb'
+  }
 }
 
 export const application = new Application()
