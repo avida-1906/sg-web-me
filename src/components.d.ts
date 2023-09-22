@@ -50,6 +50,7 @@ declare module 'vue' {
     BaseAccordion: typeof import('./components/BaseAccordion.vue')['default']
     BaseAspectRatio: typeof import('./components/BaseAspectRatio.vue')['default']
     BaseBadge: typeof import('./components/BaseBadge.vue')['default']
+    BaseBreadcrumbs: typeof import('./components/BaseBreadcrumbs.vue')['default']
     BaseButton: typeof import('./components/BaseButton.vue')['default']
     BaseCheckBox: typeof import('./components/BaseCheckBox.vue')['default']
     BaseCheckboxGroup: typeof import('./components/BaseCheckboxGroup.vue')['default']

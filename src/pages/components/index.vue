@@ -600,10 +600,16 @@ function copyAppPercentageCode() {
   copy('<AppPercentage :total="45" :percentage="39" />')
   toast('Copied')
 }
+const breadcrumbs = ['one', 'two', 'three', 'four']
 </script>
 
 <template>
   <ul class="demo-page">
+    <li class="box">
+      <AppDemoCard title="BaseBreadcrumbs">
+        <BaseBreadcrumbs :list="breadcrumbs" />
+      </AppDemoCard>
+    </li>
     <li class="box">
       <AppDemoCard title="AppRegisterTermsConditions">
         <AppRegisterTermsConditions />
