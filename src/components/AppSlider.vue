@@ -161,9 +161,9 @@ watchEffect(() => {
         height: 42px;
         padding: 0 !important;
       }
-      button:disabled {
-        cursor: default;
-      }
+      // button:disabled {
+      //   cursor: default;
+      // }
       .app-svg-icon {
         font-size: var(--tg-font-size-lg);
         --tg-icon-color: var(--tg-text-white);

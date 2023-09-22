@@ -9,7 +9,7 @@ const { bool: checkboxValue } = useBoolean(false)
     <div class="title">
       {{ t('reg_step2') }}
     </div>
-    <div class="terms-conditions">
+    <div class="scroll-y terms-conditions">
       <div>
         <div class="terms-conditions-theme">
           Terms and Conditions
@@ -125,16 +125,15 @@ const { bool: checkboxValue } = useBoolean(false)
       font-weight: 500;
       line-height: 22px;
     }
-    // height: 600px;
     max-height: 50vh;
     padding: 20px 12px;
     text-align: left;
     border-radius: 4px;
     background: #2F4553;
+    transition: all 0.5s;
     // overflow-y: scroll !important;
-    overflow-y: auto;
-    overflow-x: hidden;
-    min-height: 0;
+    // overflow-x: hidden !important;
+    // overflow-y: auto !important;
     // -webkit-overflow-scrolling: touch;
     // &::-webkit-scrollbar {
     //   width: 0px !important;
