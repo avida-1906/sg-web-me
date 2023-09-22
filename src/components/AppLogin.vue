@@ -1,5 +1,6 @@
 <script setup lang='ts'>
 const { t } = useI18n()
+const appStore = useAppStore()
 const { value: username, errorMessage: usernameErrorMsg } = useField<string>('username', (value) => {
   if (!value)
     return t('pls_enter_email_or_username')
@@ -19,6 +20,9 @@ const { run } = useRequest(() => ApiMemberLogin({
   device_number: application.getDeviceNumber(),
 }), {
   manual: true,
+  onSuccess: (res) => {
+    appStore.setToken(res)
+  },
 })
 </script>
 
