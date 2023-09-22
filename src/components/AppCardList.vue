@@ -1,6 +1,5 @@
 <script lang="ts" setup>
-const gameInfo = { id: 2, url: 'https://mediumrare.imgix.net/d51d84f1074e5b54c25c54e6cbf026a4e352c491e7a574d3da6504743d71e2d6?&dpr=2&format=auto&auto=format&q=50&w=167', name: 'plynko' }
-const gameList = Array(22).fill(gameInfo)
+const { gameList } = useGameList()
 
 const sliderOuter = ref()
 const { appContentWidth } = storeToRefs(useWindowStore())
