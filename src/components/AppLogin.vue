@@ -14,7 +14,7 @@ const { value: password, errorMessage: pwdErrorMsg } = useField<string>('passwor
   return ''
 })
 
-const { run: runMemberLogin } = useRequest(() => ApiMemberLogin({
+const { run: runMemberLogin, loading: isLoading } = useRequest(() => ApiMemberLogin({
   username: username.value || 'test00211',
   password: password.value || '123456',
   device_number: application.getDeviceNumber(),
@@ -33,7 +33,7 @@ const { run: runMemberLogin } = useRequest(() => ApiMemberLogin({
       <BaseInput v-model="username" :label="t('email_or_username')" :msg="usernameErrorMsg" :placeholder="t('pls_enter_email_or_username')" must />
       <BaseInput v-model="password" :label="t('password')" :msg="pwdErrorMsg" :placeholder="t('pls_enter_password')" type="password" must autocomplete="current-password" />
       <!-- <BaseInput v-model="username" :label="t('two-step_verification')" :msg="usernameErrorMsg" :placeholder="t('pls_enter_two-step_verification')" must /> -->
-      <BaseButton class="app-login-btn" bg-style="secondary" :loading="false" :disabled="false" @click="runMemberLogin">
+      <BaseButton class="app-login-btn" bg-style="secondary" :loading="isLoading" :disabled="isLoading" @click="runMemberLogin">
         {{ t('login') }}
       </BaseButton>
     </div>

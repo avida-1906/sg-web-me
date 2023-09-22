@@ -3,7 +3,7 @@ const { t } = useI18n()
 
 const birthday = ref('')
 const { bool: checkboxValue } = useBoolean(false)
-const { bool: loadingValue } = useBoolean(false)
+// const { bool: isLoading, setTrue: setLoadingTrue, setFalse: setLoadingFalse } = useBoolean(false)
 
 // const {
 //   openTermsConditionsDialog,
@@ -29,16 +29,18 @@ const { value: password, errorMessage: pwdErrorMsg } = useField<string>('passwor
   return ''
 })
 
-const { run: runMemberReg } = useRequest(() => ApiMemberReg({
+const { run: runMemberReg, loading: isLoading } = useRequest(() => ApiMemberReg({
   email: username.value || 'jango16888@gmail.com',
   username: username.value || 'Jango16888',
-  password: password.value || '123456',
+  password: password.value || 'Aa123456',
+  parent_id: '',
   birthday: birthday.value || '1993-07-30',
   device_number: application.getDeviceNumber(),
 }), {
   manual: true,
   // maxWait: 2000,
   // trailing: true,
+  onSuccess: () => {},
 })
 // setTimeout(() => {
 //   loadingValue.value = true
@@ -61,7 +63,7 @@ const { run: runMemberReg } = useRequest(() => ApiMemberReg({
       <BaseCheckBox v-model="checkboxValue">
         {{ t('code_optional') }}
       </BaseCheckBox>
-      <BaseButton :loading="loadingValue" :disabled="loadingValue" class="app-register-btn" bg-style="secondary" @click.stop="runMemberReg">
+      <BaseButton :loading="isLoading" :disabled="isLoading" class="app-register-btn" bg-style="secondary" @click.stop="runMemberReg">
         {{ t('continue') }}
       </BaseButton>
     </div>
