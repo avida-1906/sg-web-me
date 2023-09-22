@@ -37,7 +37,7 @@ function onItemChecked(v: string) {
       <span class="outer" :class="[shape, size, { active: checkValue(item.value) }]">
         <span v-show="checkValue(item.value)" class="icon" />
       </span>
-      <slot :item="{ ...item, isChecked: checkValue(item.value) } as any">
+      <slot :item="{ ...item, isChecked: checkValue(item.value) }">
         {{ item.label }}
       </slot>
     </div>
