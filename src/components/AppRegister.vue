@@ -39,12 +39,12 @@ const { value: password, errorMessage: pwdErrorMsg } = useField<string>('passwor
   return ''
 })
 
-const { run: runMemberReg, loading: isLoading, data: memberRegData } = useRequest(() => ApiMemberReg({
-  email: username.value || 'jango1688801@gmail.com',
-  username: username.value || 'Jango1688801',
-  password: password.value || 'Aa123456',
+const { run: runMemberReg, loading: isLoading } = useRequest(() => ApiMemberReg({
+  email: username.value,
+  username: username.value,
+  password: password.value,
   parent_id: '',
-  birthday: birthday.value || '1993-07-30',
+  birthday: birthday.value,
   device_number: application.getDeviceNumber(),
 }), {
   manual: true,
@@ -77,7 +77,7 @@ const { run: runMemberReg, loading: isLoading, data: memberRegData } = useReques
       <BaseCheckBox v-model="checkboxValue">
         {{ t('code_optional') }}
       </BaseCheckBox>
-      <BaseButton :loading="isLoading" :disabled="isLoading" class="app-register-btn" bg-style="secondary" @click.stop="runMemberReg">
+      <BaseButton :loading="isLoading" class="app-register-btn" bg-style="secondary" @click.stop="runMemberReg">
         {{ t('continue') }}
       </BaseButton>
     </div>

@@ -20,9 +20,10 @@ const { value: password, errorMessage: pwdErrorMsg } = useField<string>('passwor
   return ''
 })
 
+// const { bool: isDisabled, setTrue: setDisabledTrue, setFalse: setDisabledFalse } = useBoolean(true)
 const { run: runMemberLogin, loading: isLoading } = useRequest(() => ApiMemberLogin({
-  username: username.value || 'test00211',
-  password: password.value || '123456',
+  username: username.value,
+  password: password.value,
   device_number: application.getDeviceNumber(),
 }), {
   manual: true,
@@ -34,6 +35,32 @@ const { run: runMemberLogin, loading: isLoading } = useRequest(() => ApiMemberLo
     toast(err)
   },
 })
+
+// const ruleForm = reactive({
+//   username: '',
+//   password: '',
+// })
+// const isDisabled = computed(() => { })
+
+// watch(
+//   () => username.value,
+//   (val) => {
+//     if ((emailReg.test(val) || usernameReg.test(val)) && passwordReg.test(password.value))
+//       setDisabledFalse()
+//     else
+//       setDisabledTrue()
+//   },
+// )
+// watch(
+//   () => password.value,
+//   (val) => {
+//     console.log(val)
+//     if (passwordReg.test(val) && (emailReg.test(username.value) || usernameReg.test(username.value)))
+//       setDisabledFalse()
+//     else
+//       setDisabledTrue()
+//   },
+// )
 </script>
 
 <template>
@@ -43,7 +70,8 @@ const { run: runMemberLogin, loading: isLoading } = useRequest(() => ApiMemberLo
       <BaseInput v-model="username" :label="t('email_or_username')" :msg="usernameErrorMsg" :placeholder="t('pls_enter_email_or_username')" must />
       <BaseInput v-model="password" :label="t('password')" :msg="pwdErrorMsg" :placeholder="t('pls_enter_password')" type="password" must autocomplete="current-password" />
       <!-- <BaseInput v-model="username" :label="t('two-step_verification')" :msg="usernameErrorMsg" :placeholder="t('pls_enter_two-step_verification')" must /> -->
-      <BaseButton class="app-login-btn" bg-style="secondary" :loading="isLoading" :disabled="isLoading" @click="runMemberLogin">
+      <!-- :disabled="isDisabled" -->
+      <BaseButton class="app-login-btn" bg-style="secondary" :loading="isLoading" @click="runMemberLogin">
         {{ t('login') }}
       </BaseButton>
     </div>
