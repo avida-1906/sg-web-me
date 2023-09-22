@@ -27,7 +27,7 @@ const iconObj = {
   statistics: 'uni-trend',
 }
 
-const { bool: show, setTrue, setFalse } = useBoolean(false)
+const { bool: show, setTrue: setNTrue, setFalse: setNFalse } = useBoolean(false)
 
 const timer = ref()
 
@@ -44,7 +44,7 @@ const iconName = computed(() => {
 })
 
 function close() {
-  setFalse()
+  setNFalse()
   setTimeout(() => {
     emit('close', props.funcCall)
   }, 800)
@@ -76,7 +76,7 @@ function handClose() {
 }
 
 onMounted(() => {
-  setTrue()
+  setNTrue()
   startCount()
 })
 </script>
