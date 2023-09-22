@@ -1,6 +1,7 @@
 <script setup lang='ts'>
 const { t } = useI18n()
 
+const appStore = useAppStore()
 const birthday = ref('')
 const { bool: checkboxValue } = useBoolean(false)
 
@@ -47,7 +48,8 @@ const { run: runMemberReg, loading: isLoading } = useRequest(() => ApiMemberReg(
   device_number: application.getDeviceNumber(),
 }), {
   manual: true,
-  onSuccess: async () => {
+  onSuccess: async (res) => {
+    appStore.setToken(res)
     closeDialog()
     await nextTick()
     openTermsConditionsDialog()
