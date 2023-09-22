@@ -39,7 +39,7 @@ const rightSidebar = ref<HTMLElement | null>(null)
 
 // home-overlay 是否显示
 const homeOverlayIsShow = computed(() => {
-  return leftIsExpand.value && isLessThanLg.value && !isMobile
+  return leftIsExpand.value && isLessThanLg.value && !isMobile.value
 })
 
 function setRightSidebarExpandStatus() {
