@@ -1,12 +1,72 @@
-interface GameListQuery {
+interface GameListQuery1 {
   page: number
   pageSize: number
   params: {
     [q: string]: any
   }
 }
+interface GameListQuery {
+  page: number
+  page_size: number
+  game_type?: 1 | 3 // 游戏类型:1=真人,3=电子
+  is_hot?: 1 | 2 // 是否热门 1是 2否
+  is_new?: 1 | 2 // 是否新游戏 1是 2否
+  tag_id?: number // 游戏标签
+  platform_id?: string // 场馆id（evo真人）（需要转成字符串）
+}
+interface GameItem {
+  id: string
+  platform_id: string
+  name: string
+  en_name: string
+  pt_name: string
+  th_name: string
+  vn_name: string
+  client_type: string
+  game_type: number
+  game_id: string
+  img: string
+  online: number
+  is_hot: number
+  sorting: number
+  created_at: number
+  is_new: number
+  tag_id: string
+  is_fav: number
+}
 
-export function useGameList(query: GameListQuery = { page: 1, pageSize: 20, params: {} }) {
+export function useApiGameList(query: GameListQuery) {
+  const list = ref<GameItem[]>([])
+  const { data, run, loading } = useRequest((_query: GameListQuery) => ApiMemberGameList({ ..._query }), {
+    manual: true,
+    onSuccess(res, params) {
+      const _params = params[0]
+      if (res.d) {
+        //  TODO:待删
+        res.d = res.d.map((item) => {
+          return { ...item, img: 'https://mediumrare.imgix.net/c984a0f6625efd5a38c306697845c7bedcc917e2c061b45e8a75a5e648057e8a?&dpr=2&format=auto&auto=format&q=50&w=167' }
+        })
+
+        if (_params.page === 1) {
+          list.value = res.d
+        }
+        else {
+          const arr = cloneDeep(list.value)
+          list.value = [...arr, ...res.d]
+        }
+      }
+    },
+  })
+  const total = computed(() => data.value?.t ?? 0)
+  const finished = computed(() => data.value?.d && list.value.length >= total.value)
+
+  run(query)
+
+  return { list, total, run, loading, finished }
+}
+
+// TODO:待删
+export function useGameList(query: GameListQuery1 = { page: 1, pageSize: 20, params: {} }) {
   console.log('查询参数：', query)
   const gameInfo = { id: 2, url: 'https://mediumrare.imgix.net/d51d84f1074e5b54c25c54e6cbf026a4e352c491e7a574d3da6504743d71e2d6?&dpr=2&format=auto&auto=format&q=50&w=167', name: 'plynko' }
   const gameList = Array(66).fill(gameInfo)

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const { gameList } = useGameList()
+defineProps<{ list?: any[] }>()
 
 const sliderOuter = ref()
 const { appContentWidth } = storeToRefs(useWindowStore())
@@ -30,9 +30,11 @@ watchEffect(() => {
 
 <template>
   <div ref="sliderOuter" class="card-list" :class="[galleryClass]">
-    <div v-for="item in gameList" :key="item.id" class="wrap">
-      <BaseGameItem :game-info="item" />
-    </div>
+    <template v-if="list && list.length > 0">
+      <div v-for="item in list" :key="item.id" class="wrap">
+        <BaseGameItem :game-info="item" />
+      </div>
+    </template>
   </div>
 </template>
 

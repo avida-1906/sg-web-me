@@ -43,3 +43,41 @@ export function ApiSmsSend(
     data: string
   }>('/api/v1/home/ip', data)
 }
+
+/**
+ * 游戏列表
+ */
+export function ApiMemberGameList(params: {
+  page: number
+  page_size: number
+  game_type?: 1 | 3// 游戏类型:1=真人,3=电子
+  is_hot?: 1 | 2 // 是否热门 1是 2否
+  is_new?: 1 | 2 // 是否新游戏 1是 2否
+  tag_id?: number // 游戏标签
+  platform_id?: string // 场馆id（evo真人）（需要转成字符串）
+}) {
+  return httpClient.get< {
+    d: {
+      id: string
+      platform_id: string
+      name: string
+      en_name: string
+      pt_name: string
+      th_name: string
+      vn_name: string
+      client_type: string
+      game_type: number
+      game_id: string
+      img: string
+      online: number
+      is_hot: number
+      sorting: number
+      created_at: number
+      is_new: number
+      tag_id: string
+      is_fav: number
+    }[] | null
+    t: number
+    s: number
+  }>('/member/game/list', params)
+}

@@ -13,7 +13,7 @@ function handleClick(item: any) {
 
 <template>
   <div class="base-game-item" @click="handleClick(gameInfo)">
-    <BaseImage :url="gameInfo.url" :name="gameInfo.name" />
+    <BaseImage :url="gameInfo.img" :name="gameInfo.name" />
     <div class="active-game-item">
       <div class="game-title">
         {{ gameInfo.name }}
