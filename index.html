@@ -6,9 +6,33 @@
   <link rel="apple-touch-icon" href="/pwa-192x192.png">
   <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#00aba9">
   <meta name="msapplication-TileColor" content="#00aba9">
+  <style type="text/css">
+    .full-loading {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+    .full-loading span {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #00aba9;
+      text-transform: uppercase;
+    }
+  </style>
 </head>
 <body class="font-sans">
-  <div id="app"></div>
+  <div id="app">
+    <div class="full-loading">
+      <span>Stake</span>
+    </div>
+  </div>
   <div data-portal="true"></div>
   <script type="module" src="/src/main.ts"></script>
   <noscript>This website requires JavaScript to function properly. Please enable JavaScript to continue.</noscript>

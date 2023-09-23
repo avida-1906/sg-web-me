@@ -29,6 +29,11 @@ class SocketClient {
 
   /** 生成 #MQTT_SERVER */
   public generateMQTT_SERVER() {
+    if (!import.meta.env.VITE_SOCKET_URL_LIST_STRING) {
+      this.#MQTT_SERVER = null
+      return
+    }
+
     const list = import.meta.env.VITE_SOCKET_URL_LIST_STRING.split(',')
     const result: TMqttServer = []
     list.forEach((item) => {
