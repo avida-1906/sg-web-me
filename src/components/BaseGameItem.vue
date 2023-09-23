@@ -1,9 +1,12 @@
 <script setup lang="ts">
 interface Props {
-  gameInfo: any
+  gameInfo: {
+    img?: string
+    name?: string
+  }
 }
 withDefaults(defineProps<Props>(), {
-  gameInfo: () => {},
+  gameInfo: () => { return {} },
 })
 const emit = defineEmits(['clickItem'])
 function handleClick(item: any) {

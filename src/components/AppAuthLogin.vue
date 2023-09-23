@@ -32,7 +32,8 @@ const { t } = useI18n()
   flex-direction: column;
   gap: var(--tg-spacing-12);
   &-divider {
-    width: 60%;
+    width: 100%;
+    max-width: 200px;
     margin: 0 auto;
     padding-top: var(--tg-spacing-button-padding-vertical-xs);
   }

@@ -12,7 +12,7 @@ const { bool: showContent, toggle } = useBoolean(false)
 // const { isLogin } = storeToRefs(appStore)
 
 function change() {
-  loadLanguageAsync(EnumLanguage[2])
+  loadLanguageAsync(EnumLanguage['vi-VN'])
 }
 </script>
 

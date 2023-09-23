@@ -53,6 +53,7 @@ function handleClick() {
 <style>
 :root{
   --tg-base-img-style-radius: var(--tg-radius-none);
+  --tg-img-object-position:left;
 }
 </style>
 
@@ -73,6 +74,7 @@ function handleClick() {
   }
   img{
     border-radius: var(--tg-base-img-style-radius);
+    object-position: var(--tg-img-object-position);
   }
 }
 </style>

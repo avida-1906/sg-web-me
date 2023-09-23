@@ -43,6 +43,11 @@ function connectMqtt() {
 function disconnectMqtt() {
   socketClient.disconnect()
 }
+const { bool: showMore, toggle: toggleShowMore } = useBoolean(false)
+const onShowMore = function () {
+  console.log('showMore', showMore)
+  toggleShowMore()
+}
 const {
   width,
 } = storeToRefs(useWindowStore())
@@ -56,7 +61,7 @@ const isSm = computed(() => width.value <= 768)
     <!-- 头部 -->
     <div class="dark-background">
       <div class="top-wrapper">
-        <div class="unauthenticated-wrapper">
+        <div v-if="!isLogin" class="unauthenticated-wrapper">
           <div class="unauthenticated-content">
             <h1>更明智地下注</h1>
             <BaseButton bg-style="primary" round size="md">
@@ -64,6 +69,10 @@ const isSm = computed(() => width.value <= 768)
             </BaseButton>
             <AppAuthLogin />
           </div>
+        </div>
+        <div v-else class="top-vip-info" :class="{ 'max-width': !isMobile }">
+          <h1>欢迎归来，alanhayashi</h1>
+          <AppVipProgress />
         </div>
         <div class="top-banner">
           <AppBanner v-if="isMobile" />
@@ -145,6 +154,32 @@ const isSm = computed(() => width.value <= 768)
     <div class="index-bet">
       <AppBetData mode="home" />
     </div>
+    <!-- 公司介绍 -->
+    <div class="index-introduction" :class="{ 'max-height': showMore }">
+      <div class="introduction-content" :class="{ 'column-count': !isMobile }">
+        <h1>在 Stake 享受最出色的在线赌场体验</h1>
+        <p>自 2017 年以来，Stake.com 在网络上提供了最出色的在线加密货币与比特币赌场的博彩体验。易于使用、功能丰富且平台简约，玩家们都一而再再而三地重返 Stake 投注于他们最喜爱的赌场游戏。</p>
+        <p>Stake 团队一直都在努力改进我们无可匹敌的服务，确保来自世界各地的用户都能享有最佳的在线赌场博彩体验。随着我们定期增加到平台上的大量新游戏以及杰出的客户支持，玩家必能轻松在闻名的 Stake 赌场上雷厉风行。</p>
+        <h1>在种类繁多的赌场游戏中投注于老虎机、纸牌游戏等</h1>
+        <p>浏览我们种类繁多的赌场游戏，在 Stake 享受公平有趣的博彩体验。直接通过您的浏览器在老虎机、真人娱乐场、21点、百家乐、轮盘、弹珠以及数以千计的经典游戏上进行投注。</p>
+        <p>此外，我们还具有著名的 Stake 原创游戏——最初让 Stake 声名鹊起的赌场游戏。这包括了像 Dice、Plinko、Mines、Crash、Limbo、Hilo、Keno、Wheel 等热门游戏，另加我们最近刚推出的另一款 Stake 原创 Dragon Tower！</p>
+        <p>无论您是热衷于像 Video Poker 这类的桌面与纸牌游戏、 Spin a Win 这类的游戏节目游戏或是新推出的赌场游戏——最终的选择权都在您的手里！</p>
+        <h1>如何通过您的加密货币钱包在 Stake 存款</h1>
+        <p>在我们的在线赌场上使用比特币或其他可用的加密货币进行投注其实十分容易。要把资金存入您的 Stake.com 账户，请遵循下列步骤：</p>
+        <ul>
+          <li>第一步：前往钱包 > 存款。</li>
+          <li>第二步：选择您想使用的货币。我们支持比特币（BTC）、以太币（ETH）、狗狗币（DOGE）、莱特币（LTC）等各种货币。复制您所选货币的存款地址。</li>
+          <li>第三步：在您的加密货币钱包或交易所发送货币时，将您的存款地址输入为接收地址。</li>
+          <li>附加说明：如果您想使用法定货币存款，您可以前往钱包 > 购买加密货币以通过 MoonPay 使用法定货币为 Stake 账户购买加密货币。</li>
+        </ul>
+        <p>Stake 的支持人员将随时为您提供在线的支持与帮助，无论您是在存款时或是访问喜爱的游戏时遇到任何问题，他们都会给予您必要的帮助。</p>
+      </div>
+      <div class="introduction-more">
+        <BaseButton @click="onShowMore">
+          查看更多
+        </BaseButton>
+      </div>
+    </div>
     <!-- <div>
       {{ t('hello') }}
     </div>
@@ -211,6 +246,23 @@ const isSm = computed(() => width.value <= 768)
             width: 264px;
 
           }
+        }
+      }
+      .top-vip-info{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        &.max-width{
+          max-width: 350px;
+        }
+        padding-top: var(--tg-spacing-32);
+        padding-bottom: var(--tg-spacing-64);
+        h1{
+          color: var(--tg-text-white);
+          font-size: var(--tg-font-size-lg);
+          font-weight: var(--tg-font-weight-semibold);
+          margin-bottom: var(--tg-spacing-16);
+          line-height: 1.5;
         }
       }
       .top-banner{
@@ -333,6 +385,7 @@ const isSm = computed(() => width.value <= 768)
     div:nth-child(2){
       display: flex;
       align-items: center;
+      justify-content: center;
       > svg {
         &.w-50 {
           width: 50px;
@@ -363,6 +416,80 @@ const isSm = computed(() => width.value <= 768)
   .index-bet{
     margin-top: var(--tg-spacing-24);
   }
+  .index-introduction{
+    margin-top: var(--tg-spacing-24);
+    background: var(--tg-secondary-dark);
+    padding: var(--tg-spacing-16);
+    width: 100%;
+    color: var(--tg-text-lightgrey);
+    position: relative;
+    max-height: 250px;
+    overflow: hidden;
+    border-radius: 8px;
+    &.max-height{
+      max-height: 100%;
+      .introduction-content::before{
+        visibility: hidden;
+      }
+      .introduction-more{
+        position: static;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+    }
+    .introduction-content{
+      &.column-count{
+        column-count: 2;
+      }
+      &::before{
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        content: "";
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(0deg,var(--tg-secondary-dark) 0%,rgba(15,33,46,0) 100%);
+      }
+    }
+    .introduction-more{
+      position: absolute;
+      z-index: 2;
+      bottom: var(--tg-spacing-24);
+      left: 0;
+      right: 0;
+      margin: auto;
+      text-align: center;
+      margin-top: var(--tg-spacing-16);
+    }
+    h1{
+      color: var(--tg-text-white);
+      font-size: var(--tg-font-size-xl);
+      margin-bottom: var(--tg-spacing-8);
+      font-weight: var(--tg-font-weight-semibold);
+    }
+    p{
+      margin-bottom: var(--tg-spacing-20);
+      line-height: 24px;
+    }
+    a{
+      font-weight: var(--tg-font-weight-semibold);
+      &:hover{
+        color: var(--tg-text-white);
+      }
+    }
+    ul{
+      list-style-type:disc;
+      padding-left: var(--tg-spacing-32);
+      p {
+        margin: 0;
+      }
+      li{
+        margin: var(--tg-spacing-4) 0;
+      }
+    }
+  }
 }
 .is-mobile{
   .dark-background{
@@ -371,7 +498,7 @@ const isSm = computed(() => width.value <= 768)
     }
     .top-wrapper{
       grid-template-columns:100%;
-      background:none;
+      // background:none;
       // background-position: right 25% center;
       // background-size: cover;
     }
