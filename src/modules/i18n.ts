@@ -32,7 +32,8 @@ function setI18nLanguage(lang: Locale) {
   return lang
 }
 
-export async function loadLanguageAsync(lang: string): Promise<Locale> {
+export async function loadLanguageAsync(langIndex: EnumLanguage): Promise<Locale> {
+  const lang = EnumLanguage[langIndex]
   // If the same language
   if (i18n.global.locale.value === lang)
     return setI18nLanguage(lang)
@@ -50,16 +51,16 @@ export async function loadLanguageAsync(lang: string): Promise<Locale> {
 
 export function install(app: App<Element>) {
   const defaultLanguage = import.meta.env.VITE_I18N_DEFAULT_LANG
-  const localStorageLanguage = Local.get<EnumLanguage | null>(STORAGE_LANGUAGE_KEY)?.value
+  const localStorageLanguageIndex = Local.get<EnumLanguage | null>(STORAGE_LANGUAGE_KEY)?.value
   let index: number
-  if (localStorageLanguage != null)
-    index = Number(localStorageLanguage)
+  if (localStorageLanguageIndex != null)
+    index = Number(localStorageLanguageIndex)
 
   else
     index = Number(EnumLanguage[defaultLanguage])
 
   app.use(i18n)
-  loadLanguageAsync(EnumLanguage[index])
+  loadLanguageAsync(EnumLanguage['zh-CN'])
 }
 
 /** 获取前端本地多语言 */
