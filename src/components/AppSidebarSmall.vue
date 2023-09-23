@@ -1,5 +1,5 @@
 <script lang="ts" setup name="app-sidebar-small">
-import type { Menu, MenuItem } from '~/composables/useMenuData'
+import type { Menu, MenuItem } from '~/composables/useApiMenuData'
 
 interface Props {
   menuData: Array<Menu>

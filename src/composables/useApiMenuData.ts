@@ -154,7 +154,7 @@ const staticMenu1: Menu = [
       { title: 'VIP', path: '', icon: 'chess-air-bonus' },
       { title: '统计数据', path: '', icon: 'uni-trend' },
       { title: '通知', path: '', icon: 'tabbar-bet' },
-      { title: '体育投注', path: '', icon: 'spt-basketball' },
+      { title: '体育投注', path: '/sports/my-bets', icon: 'spt-basketball' },
       { title: '设置', path: '/settings/general', icon: 'uni-set' },
       { title: '登出', path: '', icon: 'uni-logout' },
     ],
