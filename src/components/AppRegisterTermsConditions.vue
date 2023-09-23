@@ -2,24 +2,46 @@
 const { t } = useI18n()
 
 const { bool: checkboxValue } = useBoolean(false)
+const { errorMessage: checkedErrorMsg, validate: valiChecked } = useField<string>('checkbox', (value) => {
+  if (!checkboxValue.value)
+    return t('agree_terms_conditions')
+
+  return ''
+})
 
 const $scrollList = ref(null)
-// const delayId = ref(null)
-// const atBottom = ref(false)
-const { bool: isAtBottom, setTrue: setAtBottomTrue, setFalse: setAtBottomFalse } = useBoolean(false)
+const delayId = ref()
+
+const isDisabled = computed(() => {
+  return Session.get('read_terms_conditions')
+})
 
 function handleScroll(evt: any) {
   const { scrollTop, scrollHeight, clientHeight } = evt.target
   const _atBottom = scrollHeight - scrollTop - clientHeight < 100
-  isAtBottom.value = _atBottom
-  console.log(isAtBottom.value)
 
-  // clearTimeout(delayId.value)
-  // delayId.value = setTimeout(() => {
-  //   if (_atBottom)
-  //     setAtBottomTrue()
-  // }, 100)
+  clearTimeout(delayId.value)
+  delayId.value = setTimeout(() => {
+    if (_atBottom)
+      Session.set('read_terms_conditions', true)
+  }, 100)
 }
+function getStartGame() {
+  valiChecked()
+  if (!checkedErrorMsg.value)
+    console.log('===getStartGame===')
+  if ((Session.get('read_terms_conditions')))
+    console.log('==read_terms_conditions==')
+}
+
+onMounted(() => {
+  Session.set('read_terms_conditions', false)
+})
+
+onBeforeUnmount(() => {
+  Session.remove('read_terms_conditions')
+  clearTimeout(delayId.value)
+})
 </script>
 
 <template>
@@ -87,10 +109,10 @@ function handleScroll(evt: any) {
       </div>
     </div>
     <div class="check-box">
-      <BaseCheckBox v-model="checkboxValue">
+      <BaseCheckBox v-model="checkboxValue" :disabled="isDisabled" :msg="checkedErrorMsg">
         {{ t('read_terms_conditions') }}
       </BaseCheckBox>
-      <BaseButton class="app-register-terms-conditions-btn" bg-style="secondary">
+      <BaseButton class="app-register-terms-conditions-btn" bg-style="secondary" @click.stop="getStartGame">
         {{ t('start_game') }}
       </BaseButton>
     </div>
