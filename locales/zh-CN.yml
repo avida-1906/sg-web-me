@@ -16,6 +16,7 @@ pls_enter_username: 请输入用户名
 username_incorrect: 用户名格式不正确
 password: 密码
 pls_enter_password: 请输入密码
+pls_enter_birthday: 请输入生日
 password_incorrect: 密码格式不正确
 reg_step1: 步骤1/2：填写您的详细信息
 reg_step2: 步骤2/2：填写您的详细信息

@@ -1,7 +1,7 @@
 <script setup lang='ts'>
 const { t } = useI18n()
 const appStore = useAppStore()
-const { value: username, errorMessage: usernameErrorMsg } = useField<string>('username', (value) => {
+const { value: username, errorMessage: usernameErrorMsg, validate: valiUsername } = useField<string>('username', (value) => {
   if (!value)
     return t('pls_enter_email_or_username')
 
@@ -10,7 +10,7 @@ const { value: username, errorMessage: usernameErrorMsg } = useField<string>('us
 
   return ''
 })
-const { value: password, errorMessage: pwdErrorMsg } = useField<string>('password', (value) => {
+const { value: password, errorMessage: pwdErrorMsg, validate: valiPassword } = useField<string>('password', (value) => {
   if (!value)
     return t('pls_enter_password')
 
@@ -38,9 +38,12 @@ const { run: runMemberLogin, loading: isLoading } = useRequest(() => ApiMemberLo
   },
 })
 
-const isDisabled = computed(() => {
-  return (!emailReg.test(username.value) && !usernameReg.test(username.value)) || !passwordReg.test(password.value)
-})
+async function getMemberLogin() {
+  await valiUsername()
+  await valiPassword()
+  if (!usernameErrorMsg.value && !pwdErrorMsg.value)
+    runMemberLogin()
+}
 </script>
 
 <template>
@@ -50,7 +53,7 @@ const isDisabled = computed(() => {
       <BaseInput v-model="username" :label="t('email_or_username')" :msg="usernameErrorMsg" :placeholder="t('pls_enter_email_or_username')" must />
       <BaseInput v-model="password" :label="t('password')" :msg="pwdErrorMsg" :placeholder="t('pls_enter_password')" type="password" must autocomplete="current-password" />
       <!-- <BaseInput v-model="username" :label="t('two-step_verification')" :msg="usernameErrorMsg" :placeholder="t('pls_enter_two-step_verification')" must /> -->
-      <BaseButton class="app-login-btn" bg-style="secondary" :loading="isLoading" :disabled="isDisabled" @click="runMemberLogin">
+      <BaseButton class="app-login-btn" bg-style="secondary" :loading="isLoading" @click="getMemberLogin">
         {{ t('login') }}
       </BaseButton>
     </div>
