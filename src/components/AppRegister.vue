@@ -2,7 +2,7 @@
 const { t } = useI18n()
 
 const appStore = useAppStore()
-const birthday = ref('')
+// const birthday = ref('')
 const { bool: checkboxValue } = useBoolean(false)
 
 const closeDialog = inject('closeDialog', () => {})
@@ -11,7 +11,7 @@ const {
   openTermsConditionsDialog,
 } = useTermsConditionsDialog()
 
-const { value: email, errorMessage: emailErrorMsg } = useField<string>('username', (value) => {
+const { value: email, errorMessage: emailErrorMsg, validate: valiEmail } = useField<string>('email', (value) => {
   if (!value)
     return t('pls_enter_email_address')
 
@@ -20,7 +20,7 @@ const { value: email, errorMessage: emailErrorMsg } = useField<string>('username
 
   return ''
 })
-const { value: username, errorMessage: usernameErrorMsg } = useField<string>('username', (value) => {
+const { value: username, errorMessage: usernameErrorMsg, validate: valiUsername } = useField<string>('username', (value) => {
   if (!value)
     return t('pls_enter_username')
 
@@ -29,12 +29,20 @@ const { value: username, errorMessage: usernameErrorMsg } = useField<string>('us
 
   return ''
 })
-const { value: password, errorMessage: pwdErrorMsg } = useField<string>('password', (value) => {
+
+const { value: password, errorMessage: pwdErrorMsg, validate: valiPassword } = useField<string>('password', (value) => {
   if (!value)
     return t('pls_enter_password')
 
   if (!passwordReg.test(value))
     return t('password_incorrect')
+
+  return ''
+})
+
+const { value: birthday, errorMessage: birthdayErrorMsg, validate: valiBirthday } = useField<string>('birthday', (value) => {
+  if (!value)
+    return t('pls_enter_birthday')
 
   return ''
 })
@@ -60,9 +68,14 @@ const { run: runMemberReg, loading: isLoading } = useRequest(() => ApiMemberReg(
   },
 })
 
-const isDisabled = computed(() => {
-  return (!emailReg.test(email.value) || !usernameReg.test(username.value)) || !passwordReg.test(password.value)
-})
+async function getMemberReg() {
+  await valiEmail()
+  await valiUsername()
+  await valiPassword()
+  await valiBirthday()
+  if (!emailErrorMsg.value && !usernameErrorMsg.value && !pwdErrorMsg.value && !birthdayErrorMsg.value)
+    runMemberReg()
+}
 </script>
 
 <template>
@@ -75,13 +88,13 @@ const isDisabled = computed(() => {
       <BaseInput v-model="email" :label="t('email_address')" :msg="emailErrorMsg" :placeholder="t('pls_enter_email_address')" must />
       <BaseInput v-model="username" :label="t('username')" :msg="usernameErrorMsg" :placeholder="t('pls_enter_username')" must />
       <BaseInput v-model="password" :label="t('password')" :msg="pwdErrorMsg" :placeholder="t('pls_enter_password')" type="password" must autocomplete="current-password" />
-      <BaseInputBirthday v-model="birthday" must />
+      <BaseInputBirthday v-model="birthday" :msg="birthdayErrorMsg" must />
     </div>
     <div class="app-register-check-box">
       <BaseCheckBox v-model="checkboxValue">
         {{ t('code_optional') }}
       </BaseCheckBox>
-      <BaseButton :loading="isLoading" :disabled="isDisabled" class="app-register-btn" bg-style="secondary" @click.stop="runMemberReg">
+      <BaseButton :loading="isLoading" class="app-register-btn" bg-style="secondary" @click.stop="getMemberReg">
         {{ t('continue') }}
       </BaseButton>
     </div>
