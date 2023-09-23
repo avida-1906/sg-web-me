@@ -161,20 +161,20 @@ function handleClickMenuItem(item: { name: string }) {
     font-style: normal;
     font-weight: 600;
     .login {
+      width: 68px;
+      height: 44px;
+      padding: var(--tg-spacing-button-padding-vertical-md) var(--tg-spacing-button-padding-vertical-2xl) !important;
       color:var(--tg-text-white);
     }
     .reg {
       display: flex;
       width: 68px;
       height: 44px;
-      padding: 10px 20px;
+      padding: var(--tg-spacing-button-padding-vertical-md) var(--tg-spacing-button-padding-vertical-2xl) !important;
       justify-content: center;
       align-items: center;
-      gap: 10px;
-      flex-shrink: 0;
       border-radius: 4px;
       background: #1475E1;
-      margin-left: 20px;
     }
   }
 }
