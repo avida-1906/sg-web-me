@@ -3,6 +3,7 @@ interface Props {
   modelValue: boolean
   disabled?: boolean
   shape?: 'square' | 'circle'
+  msg?: string
 }
 const props = withDefaults(defineProps<Props>(), { shape: 'square' })
 const emit = defineEmits(['update:modelValue', 'check'])
@@ -24,16 +25,40 @@ function onClick() {
 </script>
 
 <template>
-  <div class="base-check-box" :class="{ disabled }" @click="onClick">
-    <span ref="outerRef" class="outer" :class="[shape, { active: modelValue, focus: bool }]">
-      <span v-show="modelValue" class="icon" />
-    </span>
-    <slot />
+  <div class="base-check-box">
+    <div class="check-box-wrap" :class="{ disabled }" @click="onClick">
+      <span ref="outerRef" class="outer" :class="[shape, { active: modelValue, focus: bool }]">
+        <span v-show="modelValue" class="icon" />
+      </span>
+      <slot />
+    </div>
+    <div v-show="msg" class="msg">
+      <BaseIcon class="error-icon" name="uni-warning" />
+      <span>{{ msg }}</span>
+    </div>
   </div>
 </template>
 
 <style lang='scss' scoped>
 .base-check-box {
+  display: flex;
+  flex-direction: column;
+
+  .msg {
+    font-size: var(--tg-font-size-md);
+    display: flex;
+    align-items: center;
+    margin-top: var(--tg-spacing-6);
+
+    span {
+      font-size: var(--tg-font-size-xs);
+      color: var(--tg-text-error);
+      margin-left: var(--tg-spacing-4);
+    }
+  }
+}
+
+.check-box-wrap {
   display: flex;
   align-items: center;
   color: var(--tg-text-lightgrey);
@@ -73,7 +98,8 @@ function onClick() {
 
   .circle {
     border-radius: 100px;
-    .icon{
+
+    .icon {
       background-image: url('');
       border-radius: 50%;
       width: var(--tg-spacing-10);
@@ -81,7 +107,8 @@ function onClick() {
       background-color: var(--tg-text-white);
     }
   }
-  .active{
+
+  .active {
     border-color: var(--tg-secondary-main);
     background-color: var(--tg-secondary-main);
   }
@@ -90,6 +117,7 @@ function onClick() {
     border-color: var(--tg-text-grey);
     background-color: var(--tg-secondary-main);
   }
+
   .focus {
     border-color: var(--tg-text-grey);
   }
