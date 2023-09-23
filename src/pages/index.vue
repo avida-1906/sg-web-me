@@ -116,6 +116,12 @@ const isMobile = computed(() => width.value <= 888)
         <img src="https://mediumrare.imgix.net/drake-banner.png?&dpr=2&format=auto&auto=format&q=50" alt="">
       </div>
     </div>
+    <!-- 加密货币 -->
+    <div class="index-buy-cryptocurrency">
+      <div>
+        没加密货币？没问题。
+      </div>
+    </div>
     <!-- <div>
       {{ t('hello') }}
     </div>
@@ -258,6 +264,24 @@ const isMobile = computed(() => width.value <= 888)
         height: 80px;
         width: auto;
       }
+    }
+  }
+  .index-buy-cryptocurrency{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    grid-template-columns: repeat(3,1fr);
+    padding: 0 var(--tg-spacing-20);
+    border-radius: var(--tg-radius-default);
+    background: var(--tg-secondary-dark);
+    margin-top: var(--tg-spacing-24);
+    div:nth-child(1){
+      font-size: var(--tg-font-size-base);
+      color: var(--tg-text-white);
+      font-weight: var(--tg-font-weight-semibold);
+    }
+    div:nth-child(2){
+
     }
   }
 }
