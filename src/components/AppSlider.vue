@@ -32,7 +32,7 @@ const galleryClass = ref('')
 const itemWidth = ref(0)
 const pageWidth = computed(() => pageInfo.pageSize * itemWidth.value * outerWidth.value)
 
-const { x } = useScroll(gallery) // , isScrolling, arrivedState, directions
+const { x } = useScroll(gallery, { behavior: 'smooth' }) // , isScrolling, arrivedState, directions
 
 const scrollLeftItemsCount = computed(() => {
   return Math.round(x.value / (itemWidth.value * outerWidth.value))
@@ -111,7 +111,7 @@ watchEffect(() => {
           <div class="link-next" @click="nextPage" />
         </div>
       </div>
-      <div v-if="showViewAll || $slots.viewAll" class="slide see-all" :class="{ faded: scrollLeftItemsCount + pageInfo.pageSize < data.length + 1 }">
+      <div v-if="data.length && (showViewAll || $slots.viewAll)" class="slide see-all" :class="{ faded: scrollLeftItemsCount + pageInfo.pageSize < data.length + 1 }">
         <div class="item">
           <slot name="viewAll">
             <BaseImage url="/img/casino/seeAll-en.png" />
