@@ -50,10 +50,14 @@ const showDown = computed(() => {
       :style="`max-height:${isShow ? '1000px' : 0};transition: max-height ${isShow ? '1' : '0.3'}s;`"
     >
       <div class="content-line" />
-      <div v-for="item of menuInfo.list" :key="item.id" class="content-item" @click="handleClickItem(item)">
-        <BaseIcon :name="item.icon" />
-        <span class="header-title">{{ item.title }}</span>
-      </div>
+      <template v-for="item of menuInfo.list" :key="item.id">
+        <slot :menu-item="item">
+          <div class="content-item" @click="handleClickItem(item)">
+            <BaseIcon :name="item.icon" />
+            <span class="header-title">{{ item.title }}</span>
+          </div>
+        </slot>
+      </template>
     </div>
   </div>
 </template>

@@ -14,7 +14,7 @@ const { value: password, errorMessage: pwdErrorMsg, validate: valiPassword } = u
   if (!value)
     return t('pls_enter_password')
 
-  if (!passwordReg.test(value))
+  if (!lastOneNumberReg.test(value))
     return t('password_incorrect')
 
   return ''
@@ -29,7 +29,6 @@ const { run: runMemberLogin, loading: isLoading } = useRequest(() => ApiMemberLo
 }), {
   manual: true,
   onSuccess: (res: any) => {
-    // toast(res)
     closeDialog()
     appStore.setToken(res)
   },

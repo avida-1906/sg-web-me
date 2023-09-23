@@ -6,7 +6,8 @@
   "ignorePatterns": [
     "**/*.css",
     "**/*.scss",
-    "**/*.vsix"
+    "**/*.vsix",
+    "**/*.sh"
   ],
   "rules": {
     "no-console": "off",

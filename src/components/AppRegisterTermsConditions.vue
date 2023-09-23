@@ -1,20 +1,22 @@
 <script setup lang='ts'>
 const { t } = useI18n()
 
+const appStore = useAppStore()
+
+const { bool: isRead, setTrue: setReadTrue } = useBoolean(false)
 const { bool: checkboxValue } = useBoolean(false)
-const { errorMessage: checkedErrorMsg, validate: valiChecked } = useField<string>('checkbox', (value) => {
+const { errorMessage: checkedErrorMsg, validate: valiChecked } = useField<string>('checkbox', () => {
   if (!checkboxValue.value)
     return t('agree_terms_conditions')
 
   return ''
 })
 
+const closeDialog = inject('closeDialog', () => {})
+const { openLoginDialog } = useLoginDialog()
+
 const $scrollList = ref(null)
 const delayId = ref()
-
-const isDisabled = computed(() => {
-  return Session.get('read_terms_conditions')
-})
 
 function handleScroll(evt: any) {
   const { scrollTop, scrollHeight, clientHeight } = evt.target
@@ -23,23 +25,54 @@ function handleScroll(evt: any) {
   clearTimeout(delayId.value)
   delayId.value = setTimeout(() => {
     if (_atBottom)
-      Session.set('read_terms_conditions', true)
+      setReadTrue()
   }, 100)
 }
-function getStartGame() {
-  valiChecked()
-  if (!checkedErrorMsg.value)
-    console.log('===getStartGame===')
-  if ((Session.get('read_terms_conditions')))
-    console.log('==read_terms_conditions==')
-}
 
-onMounted(() => {
-  Session.set('read_terms_conditions', false)
+// const regParams = reactive({
+//   email: '',
+//   username: '',
+//   password: '',
+//   birthday: '',
+//   parent_id: '',
+//   device_number: '',
+// })
+
+const regParams = computed(() => {
+  return Session.get('reg_params')?.value
 })
 
+const { run: runMemberReg, loading: isLoading } = useRequest(() => ApiMemberReg(regParams.value), {
+  manual: true,
+  onSuccess: async (res: any) => {
+    appStore.setToken(res)
+    Session.remove('reg_params')
+    await nextTick()
+    closeDialog()
+  },
+  onError: (err: any) => {
+    toast(err)
+  },
+})
+
+async function getStartGame() {
+  valiChecked()
+  if (checkboxValue.value && !checkedErrorMsg.value)
+    runMemberReg()
+}
+
+async function toLogin() {
+  closeDialog()
+  await nextTick()
+  openLoginDialog()
+}
+
+// onMounted(() => {
+//   console.log(Session.get('reg_params'))
+//   regParams.value = Session.get('reg_params')
+// })
+
 onBeforeUnmount(() => {
-  Session.remove('read_terms_conditions')
   clearTimeout(delayId.value)
 })
 </script>
@@ -109,16 +142,16 @@ onBeforeUnmount(() => {
       </div>
     </div>
     <div class="check-box">
-      <BaseCheckBox v-model="checkboxValue" :disabled="isDisabled" :msg="checkedErrorMsg">
+      <BaseCheckBox v-model="checkboxValue" :disabled="!isRead" :msg="checkedErrorMsg" @click.stop="valiChecked">
         {{ t('read_terms_conditions') }}
       </BaseCheckBox>
-      <BaseButton class="app-register-terms-conditions-btn" bg-style="secondary" @click.stop="getStartGame">
+      <BaseButton :loading="isLoading" class="app-register-terms-conditions-btn" bg-style="secondary" @click.stop="getStartGame">
         {{ t('start_game') }}
       </BaseButton>
     </div>
     <div class="app-bottom">
       <div class="app-bottom-text">
-        <div>
+        <div @click.stop="toLogin">
           {{ t('have_account') }}<span class="text-white">{{ t('login') }}</span>
         </div>
 

@@ -82,6 +82,7 @@ declare global {
   const isRef: typeof import('vue')['isRef']
   const isUndefined: typeof import('lodash-es')['isUndefined']
   const last: typeof import('lodash-es')['last']
+  const lastOneNumberReg: typeof import('./utils/regexp')['lastOneNumberReg']
   const makeDestructurable: typeof import('@vueuse/core')['makeDestructurable']
   const map: typeof import('lodash-es')['map']
   const mapActions: typeof import('pinia')['mapActions']
@@ -115,7 +116,8 @@ declare global {
   const onUnmounted: typeof import('vue')['onUnmounted']
   const onUpdated: typeof import('vue')['onUpdated']
   const padStart: typeof import('lodash-es')['padStart']
-  const passwordReg: typeof import('./utils/regexp')['passwordReg']
+  const password1Reg: typeof import('./utils/regexp')['password1Reg']
+  const passwordUpperLowerReg: typeof import('./utils/regexp')['passwordUpperLowerReg']
   const pausableWatch: typeof import('@vueuse/core')['pausableWatch']
   const preferredDark: typeof import('./composables/dark')['preferredDark']
   const provide: typeof import('vue')['provide']
@@ -172,6 +174,7 @@ declare global {
   const unref: typeof import('vue')['unref']
   const unrefElement: typeof import('@vueuse/core')['unrefElement']
   const until: typeof import('@vueuse/core')['until']
+  const upperLowerReg: typeof import('./utils/regexp')['upperLowerReg']
   const useActiveElement: typeof import('@vueuse/core')['useActiveElement']
   const useAnimate: typeof import('@vueuse/core')['useAnimate']
   const useApiGameList: typeof import('./composables/useApiGameList')['useApiGameList']
@@ -462,6 +465,7 @@ declare module 'vue' {
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
     readonly isUndefined: UnwrapRef<typeof import('lodash-es')['isUndefined']>
     readonly last: UnwrapRef<typeof import('lodash-es')['last']>
+    readonly lastOneNumberReg: UnwrapRef<typeof import('./utils/regexp')['lastOneNumberReg']>
     readonly makeDestructurable: UnwrapRef<typeof import('@vueuse/core')['makeDestructurable']>
     readonly map: UnwrapRef<typeof import('lodash-es')['map']>
     readonly mapActions: UnwrapRef<typeof import('pinia')['mapActions']>
@@ -495,7 +499,6 @@ declare module 'vue' {
     readonly onUnmounted: UnwrapRef<typeof import('vue')['onUnmounted']>
     readonly onUpdated: UnwrapRef<typeof import('vue')['onUpdated']>
     readonly padStart: UnwrapRef<typeof import('lodash-es')['padStart']>
-    readonly passwordReg: UnwrapRef<typeof import('./utils/regexp')['passwordReg']>
     readonly pausableWatch: UnwrapRef<typeof import('@vueuse/core')['pausableWatch']>
     readonly preferredDark: UnwrapRef<typeof import('./composables/dark')['preferredDark']>
     readonly provide: UnwrapRef<typeof import('vue')['provide']>
@@ -552,6 +555,7 @@ declare module 'vue' {
     readonly unref: UnwrapRef<typeof import('vue')['unref']>
     readonly unrefElement: UnwrapRef<typeof import('@vueuse/core')['unrefElement']>
     readonly until: UnwrapRef<typeof import('@vueuse/core')['until']>
+    readonly upperLowerReg: UnwrapRef<typeof import('./utils/regexp')['upperLowerReg']>
     readonly useActiveElement: UnwrapRef<typeof import('@vueuse/core')['useActiveElement']>
     readonly useAnimate: UnwrapRef<typeof import('@vueuse/core')['useAnimate']>
     readonly useApiGameList: UnwrapRef<typeof import('./composables/useApiGameList')['useApiGameList']>
@@ -835,6 +839,7 @@ declare module '@vue/runtime-core' {
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
     readonly isUndefined: UnwrapRef<typeof import('lodash-es')['isUndefined']>
     readonly last: UnwrapRef<typeof import('lodash-es')['last']>
+    readonly lastOneNumberReg: UnwrapRef<typeof import('./utils/regexp')['lastOneNumberReg']>
     readonly makeDestructurable: UnwrapRef<typeof import('@vueuse/core')['makeDestructurable']>
     readonly map: UnwrapRef<typeof import('lodash-es')['map']>
     readonly mapActions: UnwrapRef<typeof import('pinia')['mapActions']>
@@ -868,7 +873,6 @@ declare module '@vue/runtime-core' {
     readonly onUnmounted: UnwrapRef<typeof import('vue')['onUnmounted']>
     readonly onUpdated: UnwrapRef<typeof import('vue')['onUpdated']>
     readonly padStart: UnwrapRef<typeof import('lodash-es')['padStart']>
-    readonly passwordReg: UnwrapRef<typeof import('./utils/regexp')['passwordReg']>
     readonly pausableWatch: UnwrapRef<typeof import('@vueuse/core')['pausableWatch']>
     readonly preferredDark: UnwrapRef<typeof import('./composables/dark')['preferredDark']>
     readonly provide: UnwrapRef<typeof import('vue')['provide']>
@@ -925,6 +929,7 @@ declare module '@vue/runtime-core' {
     readonly unref: UnwrapRef<typeof import('vue')['unref']>
     readonly unrefElement: UnwrapRef<typeof import('@vueuse/core')['unrefElement']>
     readonly until: UnwrapRef<typeof import('@vueuse/core')['until']>
+    readonly upperLowerReg: UnwrapRef<typeof import('./utils/regexp')['upperLowerReg']>
     readonly useActiveElement: UnwrapRef<typeof import('@vueuse/core')['useActiveElement']>
     readonly useAnimate: UnwrapRef<typeof import('@vueuse/core')['useAnimate']>
     readonly useApiGameList: UnwrapRef<typeof import('./composables/useApiGameList')['useApiGameList']>
