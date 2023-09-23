@@ -266,6 +266,9 @@ body {
   background: var(--tg-text-white);
   border: 0;
   box-shadow: var(--tg-box-shadow-lg);
+  .need-pad-y {
+    padding: var(--tg-spacing-4) 0;
+  }
 }
 
 // 鼠标悬停气泡提示提示
