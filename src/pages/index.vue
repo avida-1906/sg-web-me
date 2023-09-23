@@ -142,6 +142,9 @@ const isSm = computed(() => width.value <= 768)
       </div>
     </div>
     <!-- 投注 -->
+    <div class="index-bet">
+      <AppBetData mode="home" />
+    </div>
     <!-- <div>
       {{ t('hello') }}
     </div>
@@ -356,6 +359,9 @@ const isSm = computed(() => width.value <= 768)
       align-items: center;
       justify-content: end;
     }
+  }
+  .index-bet{
+    margin-top: var(--tg-spacing-24);
   }
 }
 .is-mobile{
