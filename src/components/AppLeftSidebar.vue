@@ -21,7 +21,7 @@ const {
   sportOddType,
   staticMenu1,
   staticMenu2,
-} = useMenuData()
+} = useApiMenuData()
 
 function onClick() {
   emit('update:modelValue', !props.modelValue)

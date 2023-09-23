@@ -8,18 +8,10 @@ interface Props {
 
 withDefaults(defineProps<Props>(), {})
 
-const router = useRouter()
-
-const { leftIsExpand } = useLeftSidebar()
+const { menuItemClick } = useApiMenuData()
 
 function itemClick(item: MenuItem) {
-  if (item.path && item.path.length) {
-    router.push(item.path)
-  }
-  else if (item.list && item.list.length) {
-    leftIsExpand.value = true
-    item.expand = true
-  }
+  menuItemClick(item)
 }
 </script>
 

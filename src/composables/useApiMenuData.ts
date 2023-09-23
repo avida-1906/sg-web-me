@@ -205,12 +205,24 @@ const staticMenu2: Menu = [
   },
 ]
 
-export function useMenuData() {
+export function useApiMenuData() {
   const router = useRouter()
 
-  function menuClick(item: MenuItem) {
-    if (item.path)
+  const { leftIsExpand } = useLeftSidebar()
+
+  function menuItemClick(item: MenuItem) {
+    if (item.path && item.path.length) {
       router.push(item.path)
+    }
+    else if (item.list && item.list.length) {
+      leftIsExpand.value = true
+      item.expand = true
+      nextTick(() => {
+        setTimeout(() => {
+          item.expand = false
+        }, 100)
+      })
+    }
   }
 
   return {
@@ -224,6 +236,6 @@ export function useMenuData() {
     sportOddType,
     staticMenu1,
     staticMenu2,
-    menuClick,
+    menuItemClick,
   }
 }
