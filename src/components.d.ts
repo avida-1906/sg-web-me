@@ -7,6 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    AppAccordionMenu: typeof import('./components/AppAccordionMenu.vue')['default']
     AppAmount: typeof import('./components/AppAmount.vue')['default']
     AppAuthLogin: typeof import('./components/AppAuthLogin.vue')['default']
     AppBanner: typeof import('./components/AppBanner.vue')['default']
@@ -31,6 +32,7 @@ declare module 'vue' {
     AppLogin: typeof import('./components/AppLogin.vue')['default']
     AppLoginDialog: typeof import('./components/AppLoginDialog.vue')['default']
     AppLoginRegisterBottom: typeof import('./components/AppLoginRegisterBottom.vue')['default']
+    AppMenuItem: typeof import('./components/AppMenuItem.vue')['default']
     AppPercentage: typeof import('./components/AppPercentage.vue')['default']
     AppProviderSlider: typeof import('./components/AppProviderSlider.vue')['default']
     AppRegister: typeof import('./components/AppRegister.vue')['default']
