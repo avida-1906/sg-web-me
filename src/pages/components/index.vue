@@ -600,6 +600,10 @@ function copyAppPercentageCode() {
   copy('<AppPercentage :total="45" :percentage="39" />')
   toast('Copied')
 }
+function copyAppAuthLogin() {
+  copy('<AppAuthLogin />')
+  toast('Copied')
+}
 const breadcrumbs = ['one', 'two', 'three', 'four']
 </script>
 
@@ -1151,6 +1155,16 @@ const breadcrumbs = ['one', 'two', 'three', 'four']
         <AppPercentage :total="100" :percentage="25" />
         <div class="center">
           <BaseButton @click="copyAppPercentageCode">
+            copy
+          </BaseButton>
+        </div>
+      </AppDemoCard>
+    </li>
+    <li class="box">
+      <AppDemoCard title="BaseAuthLogin" style="text-align:left">
+        <AppAuthLogin />
+        <div class="center">
+          <BaseButton @click="copyAppAuthLogin">
             copy
           </BaseButton>
         </div>
