@@ -5,7 +5,7 @@
   <div class="tg-weekly-giveaway" />
 </template>
 
-<style lang="">
+<style lang="scss">
 .tg-weekly-giveaway {
 
 }

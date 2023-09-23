@@ -5,7 +5,7 @@
   <div class="tg-affiliate-overview" />
 </template>
 
-<style lang="">
+<style lang="scss">
 .tg-affiliate-overview {
 
 }

@@ -5,7 +5,7 @@
   <div class="tg-ufc" />
 </template>
 
-<style lang="">
+<style lang="scss">
 .tg-ufc {
 
 }

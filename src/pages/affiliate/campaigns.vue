@@ -5,7 +5,7 @@
   <div class="tg-affiliate-campaigns" />
 </template>
 
-<style lang="">
+<style lang="scss">
 .tg-affiliate-campaigns {
 
 }

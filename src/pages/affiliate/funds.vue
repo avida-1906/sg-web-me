@@ -5,7 +5,7 @@
   <div class="tg-affiliate-funds" />
 </template>
 
-<style lang="">
+<style lang="scss">
 .tg-affiliate-funds {
 
 }

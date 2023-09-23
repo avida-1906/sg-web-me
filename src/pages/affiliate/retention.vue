@@ -5,7 +5,7 @@
   <div class="tg-affiliate-retention" />
 </template>
 
-<style lang="">
+<style lang="scss">
 .tg-affiliate-retention {
 
 }

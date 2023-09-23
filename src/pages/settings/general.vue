@@ -5,7 +5,7 @@
   <div class="tg-settings-general" />
 </template>
 
-<style lang="">
+<style lang="scss">
 .tg-settings-general {
 
 }

@@ -5,7 +5,7 @@
   <div class="tg-blog" />
 </template>
 
-<style lang="">
+<style lang="scss">
 .tg-blog {
 
 }

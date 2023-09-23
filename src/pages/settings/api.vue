@@ -5,7 +5,7 @@
   <div class="tg-settings-api" />
 </template>
 
-<style lang="">
+<style lang="scss">
 .tg-settings-api {
 
 }

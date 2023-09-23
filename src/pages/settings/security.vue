@@ -5,7 +5,7 @@
   <div class="tg-settings-security" />
 </template>
 
-<style lang="">
+<style lang="scss">
 .tg-settings-security {
 
 }

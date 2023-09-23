@@ -5,7 +5,7 @@
   <div class="tg-my-bets" />
 </template>
 
-<style lang="">
+<style lang="scss">
 .tg-my-bets {
 
 }

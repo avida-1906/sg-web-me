@@ -5,7 +5,7 @@
   <div class="tg-affiliate-commission" />
 </template>
 
-<style lang="">
+<style lang="scss">
 .tg-affiliate-commission {
 
 }

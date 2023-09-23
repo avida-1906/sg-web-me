@@ -5,7 +5,7 @@
   <div class="tg-settings-offers" />
 </template>
 
-<style lang="">
+<style lang="scss">
 .tg-settings-offers {
 
 }

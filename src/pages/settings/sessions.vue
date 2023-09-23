@@ -5,7 +5,7 @@
   <div class="tg-settings-sessions" />
 </template>
 
-<style lang="">
+<style lang="scss">
 .tg-settings-sessions {
 
 }
