@@ -43,12 +43,80 @@ function connectMqtt() {
 function disconnectMqtt() {
   socketClient.disconnect()
 }
+const { width } = storeToRefs(useWindowStore())
+const isMobile = computed(() => width.value <= 888)
 </script>
 
 <template>
-  <div class="home-index">
-    <AppBanner />
-    <div>
+  <div class="home-index" :class="{ 'is-mobile': isMobile }">
+    <!-- <AppBanner /> -->
+    <!-- 头部 -->
+    <div class="index-header-wrapper">
+      <div class="unauthenticated-wrapper">
+        <div class="unauthenticated-content">
+          <h1>更明智地下注</h1>
+          <BaseButton bg-style="primary" round size="md">
+            <span class="register-text">立即注册</span>
+          </BaseButton>
+          <AppAuthLogin />
+        </div>
+      </div>
+      <div class="header-banner" />
+    </div>
+    <!-- 玩法类型 -->
+    <div class="index-features">
+      <div class="features-casino">
+        <div class="features-title">
+          <BaseIcon name="tabbar-game" />
+          <span>娱乐城</span>
+        </div>
+        <div class="features-image">
+          <img src="https://mediumrare.imgix.net/welcome-casino-zh.jpg?&dpr=2&format=auto&auto=format&q=50&w=586" alt="背景图片" loading="lazy">
+        </div>
+        <div class="features-content">
+          <p>最领先的在线加密货币赌场</p>
+          <p>浏览我们种类繁多的赌场游戏，让 Stake 为您提供既公平又有趣的在线博彩体验。直接通过您的浏览器在老虎机、真人娱乐场、21点、百家乐、轮盘以及数以千计的经典赌场游戏包括您最喜爱的 Stake 原创游戏上进行投注。</p>
+        </div>
+        <div class="features-button">
+          <BaseButton bg-style="primary" class="w-100">
+            前往娱乐城
+          </BaseButton>
+        </div>
+      </div>
+      <div class="features-sports">
+        <div class="features-title">
+          <BaseIcon name="tabbar-sport" />
+          <span>体育</span>
+        </div>
+        <div class="features-image">
+          <img src="https://mediumrare.imgix.net/welcome-sports-zh.jpg?&dpr=2&format=auto&auto=format&q=50&w=586" alt="背景图片" loading="lazy">
+        </div>
+        <div class="features-content">
+          <p>最棒的加密货币在线体育博彩</p>
+          <p>通过我们的体育博彩平台投注于来自世界各地的体育团队、选手及联赛。在综合格斗、篮球、足球等多个体育赛事的各种博彩项目上以及滚球盘口中进行投注，享受无与伦比的体育博彩体验。</p>
+        </div>
+        <div class="features-button">
+          <BaseButton bg-style="primary" class="w-100">
+            前往娱乐城
+          </BaseButton>
+        </div>
+      </div>
+    </div>
+    <!-- 了解更多 -->
+    <div class="index-more">
+      <div>
+        <BaseButton size="md">
+          了解更多
+        </BaseButton>
+      </div>
+      <div>
+        <BaseIcon name="app-logo-darke" />
+      </div>
+      <div>
+        <img src="https://mediumrare.imgix.net/drake-banner.png?&dpr=2&format=auto&auto=format&q=50" alt="">
+      </div>
+    </div>
+    <!-- <div>
       {{ t('hello') }}
     </div>
     <div>
@@ -65,13 +133,138 @@ function disconnectMqtt() {
     </button>
     <button @click="disconnectMqtt">
       断开mqtt
-    </button>
+    </button> -->
   </div>
 </template>
 
 <style lang="scss" scoped>
 .home-index{
   padding: 24px 0 32px;
+  .index-header-wrapper{
+    display: grid;
+    grid-template-columns: 40% 50%;
+    justify-content: space-between;
+    .unauthenticated-wrapper{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      align-self: center;
+      padding: var(--tg-spacing-32);
+      .unauthenticated-content{
+        display: grid;
+        grid-auto-flow: row;
+        gap: 1rem;
+        h1{
+          color: var(--tg-text-white);
+          font-size: var(--tg-font-size-lg);
+          font-weight: var(--tg-font-weight-bold);
+          text-align: center;
+          line-height: 1.5;
+        }
+        .register-text{
+          width: 264px;
+
+        }
+      }
+    }
+  }
+  .index-features{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    margin-top: var(--tg-spacing-24);
+    grid-gap: 2rem;
+    .features-casino,.features-sports{
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      cursor: pointer;
+      &:hover{
+        .features-image{
+          img{
+            transform: translateY(-0.25rem);
+          }
+        }
+      }
+      .features-title{
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        > span {
+          color: var(--tg-text-white);
+          font-size: var(--tg-font-size-md);
+          font-weight: var(--tg-font-weight-semibold);
+          margin-left: var(--tg-spacing-8);
+        }
+      }
+      .features-image{
+        img{
+          display: block;
+          width: 100%;
+          height: auto;
+          user-select: none;
+          transition: all .25s;
+          border-radius: var(--tg-radius-default);
+        }
+      }
+      .features-content{
+        p:nth-child(1){
+          color: var(--tg-text-white);
+          font-size: var(--tg-font-size-base);
+          font-weight: var(--tg-font-weight-bold);
+        }
+        p:nth-child(2){
+          color: var(--tg-text-lightgrey);
+          margin-top: var(--tg-spacing-8);
+          line-height: 21px;
+          font-size: var(--tg-font-size-default);
+        }
+      }
+      .features-button {
+        .w-100{
+          width: 100%;
+        }
+      }
+    }
+  }
+  .index-more{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    grid-template-columns: repeat(3,1fr);
+    padding: 0 var(--tg-spacing-20);
+    border-radius: var(--tg-radius-default);
+    background: var(--tg-secondary-dark);
+    margin-top: var(--tg-spacing-24);
+    div:nth-child(1){
+      display: flex;
+      justify-content: start;
+    }
+    div:nth-child(2){
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 80px;
+      width: auto;
+      > svg {
+        width: 60%;
+        height: 60%;
+      }
+    }
+    div:nth-child(3){
+      display: flex;
+      justify-content: end;
+      img{
+        height: 80px;
+        width: auto;
+      }
+    }
+  }
+}
+.is-mobile{
+  .index-features{
+    grid-template-columns: none;
+  }
 }
 </style>
 
