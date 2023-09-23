@@ -158,9 +158,9 @@ onMounted(() => {
     transform: translate(50%, -50%);
     transform-origin: 100% 0%;
     overflow: hidden;
-    padding: 0 6px;
+    padding: 0 0.5rem;
     z-index: auto;
-    min-width: 20px;
+    min-width: 1.8em;
     color: var(--tg-badge-color);//默认字体颜色
     font-size: var(--tg-badge-font-size);
     line-height: 1.5;
