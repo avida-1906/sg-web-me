@@ -32,6 +32,7 @@ declare module 'vue' {
     AppLoginDialog: typeof import('./components/AppLoginDialog.vue')['default']
     AppLoginRegisterBottom: typeof import('./components/AppLoginRegisterBottom.vue')['default']
     AppPercentage: typeof import('./components/AppPercentage.vue')['default']
+    AppProviderSlider: typeof import('./components/AppProviderSlider.vue')['default']
     AppRegister: typeof import('./components/AppRegister.vue')['default']
     AppRegisterDialog: typeof import('./components/AppRegisterDialog.vue')['default']
     AppRegisterTermsConditions: typeof import('./components/AppRegisterTermsConditions.vue')['default']

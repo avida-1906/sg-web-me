@@ -217,11 +217,6 @@ export function useApiMenuData() {
     else if (item.list && item.list.length) {
       leftIsExpand.value = true
       item.expand = true
-      nextTick(() => {
-        setTimeout(() => {
-          item.expand = false
-        }, 100)
-      })
     }
   }
 

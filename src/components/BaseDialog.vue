@@ -72,7 +72,7 @@ provide('closeDialog', close)
             <BaseIcon name="uni-close" />
           </div>
         </div>
-        <div class="scrollY scroll-contain">
+        <div class="scroll-y scroll-contain">
           <div class="modal-content">
             <slot />
           </div>
