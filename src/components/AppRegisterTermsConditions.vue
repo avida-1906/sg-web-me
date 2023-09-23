@@ -1,6 +1,9 @@
 <script setup lang='ts'>
 const { t } = useI18n()
 
+// const appStore = useAppStore()
+
+const { bool: isRead, setTrue: setReadTrue } = useBoolean(false)
 const { bool: checkboxValue } = useBoolean(false)
 const { errorMessage: checkedErrorMsg, validate: valiChecked } = useField<string>('checkbox', (value) => {
   if (!checkboxValue.value)
@@ -9,12 +12,11 @@ const { errorMessage: checkedErrorMsg, validate: valiChecked } = useField<string
   return ''
 })
 
+const closeDialog = inject('closeDialog', () => {})
+const { openLoginDialog } = useLoginDialog()
+
 const $scrollList = ref(null)
 const delayId = ref()
-
-const isDisabled = computed(() => {
-  return Session.get('read_terms_conditions')
-})
 
 function handleScroll(evt: any) {
   const { scrollTop, scrollHeight, clientHeight } = evt.target
@@ -23,23 +25,24 @@ function handleScroll(evt: any) {
   clearTimeout(delayId.value)
   delayId.value = setTimeout(() => {
     if (_atBottom)
-      Session.set('read_terms_conditions', true)
+      setReadTrue()
   }, 100)
 }
+
 function getStartGame() {
   valiChecked()
   if (!checkedErrorMsg.value)
     console.log('===getStartGame===')
-  if ((Session.get('read_terms_conditions')))
-    console.log('==read_terms_conditions==')
+  // appStore.setToken(token)
 }
 
-onMounted(() => {
-  Session.set('read_terms_conditions', false)
-})
+async function toLogin() {
+  closeDialog()
+  await nextTick()
+  openLoginDialog()
+}
 
 onBeforeUnmount(() => {
-  Session.remove('read_terms_conditions')
   clearTimeout(delayId.value)
 })
 </script>
@@ -47,6 +50,7 @@ onBeforeUnmount(() => {
 <template>
   <div class="app-register-terms-conditions">
     <div class="title">
+      {{ isRead }}
       {{ t('reg_step2') }}
     </div>
     <div ref="$scrollList" class="scroll-y terms-conditions" @scroll="handleScroll">
@@ -109,7 +113,7 @@ onBeforeUnmount(() => {
       </div>
     </div>
     <div class="check-box">
-      <BaseCheckBox v-model="checkboxValue" :disabled="isDisabled" :msg="checkedErrorMsg">
+      <BaseCheckBox v-model="checkboxValue" :disabled="!isRead" :msg="checkedErrorMsg" @click.stop="valiChecked">
         {{ t('read_terms_conditions') }}
       </BaseCheckBox>
       <BaseButton class="app-register-terms-conditions-btn" bg-style="secondary" @click.stop="getStartGame">
@@ -118,7 +122,7 @@ onBeforeUnmount(() => {
     </div>
     <div class="app-bottom">
       <div class="app-bottom-text">
-        <div>
+        <div @click.stop="toLogin">
           {{ t('have_account') }}<span class="text-white">{{ t('login') }}</span>
         </div>
 

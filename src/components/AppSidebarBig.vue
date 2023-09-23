@@ -17,8 +17,6 @@ interface Props {
 }
 const props = defineProps<Props>()
 
-const router = useRouter()
-
 const { t } = useI18n()
 const { isMobile } = storeToRefs(useWindowStore())
 const route = useRoute()
@@ -35,13 +33,10 @@ function handleClickHead() {
   // }, 500)
 }
 
-const { leftIsExpand } = useLeftSidebar()
+const { menuItemClick } = useApiMenuData()
 
 function handleClickItem(item: any) {
-  if (item.path && item.path.length) {
-    leftIsExpand.value = false
-    router.push(item.path)
-  }
+  menuItemClick(item)
 }
 </script>
 
@@ -100,7 +95,14 @@ function handleClickItem(item: any) {
               v-if="item.list && item.list.length" :dom-id="item.domId" :menu-info="item" :auto-show="item.expand"
               @click-head="handleClickHead"
               @click-item="handleClickItem"
-            />
+            >
+              <template #default="{ menuItem }">
+                <div class="menu">
+                  <BaseIcon :name="menuItem.icon" />
+                  <span>{{ menuItem.title }}</span>
+                </div>
+              </template>
+            </BaseAccordion>
             <div v-else class="menu" @click="() => handleClickItem(item)">
               <BaseIcon :name="item.icon" />
               <span>{{ item.title }}</span>
@@ -113,7 +115,14 @@ function handleClickItem(item: any) {
               v-if="item.list && item.list.length" :dom-id="item.domId" :menu-info="item" :auto-show="item.expand"
               @click-head="handleClickHead"
               @click-item="handleClickItem"
-            />
+            >
+              <template #default="{ menuItem }">
+                <div class="menu">
+                  <BaseIcon :name="menuItem.icon" />
+                  <span>{{ menuItem.title }}</span>
+                </div>
+              </template>
+            </BaseAccordion>
             <div v-else class="menu" @click="() => handleClickItem(item)">
               <BaseIcon :name="item.icon" />
               <span>{{ item.title }}</span>
@@ -126,7 +135,14 @@ function handleClickItem(item: any) {
               v-if="item.list && item.list.length" :dom-id="item.domId" :menu-info="item" :auto-show="item.expand"
               @click-head="handleClickHead"
               @click-item="handleClickItem"
-            />
+            >
+              <template #default="{ menuItem }">
+                <div class="menu">
+                  <BaseIcon :name="menuItem.icon" />
+                  <span>{{ menuItem.title }}</span>
+                </div>
+              </template>
+            </BaseAccordion>
             <div v-else class="menu" @click="() => handleClickItem(item)">
               <BaseIcon :name="item.icon" />
               <span>{{ item.title }}</span>
@@ -139,7 +155,14 @@ function handleClickItem(item: any) {
               v-if="item.list && item.list.length" :dom-id="item.domId" :menu-info="item" :auto-show="item.expand"
               @click-head="handleClickHead"
               @click-item="handleClickItem"
-            />
+            >
+              <template #default="{ menuItem }">
+                <div class="menu">
+                  <BaseIcon :name="menuItem.icon" />
+                  <span>{{ menuItem.title }}</span>
+                </div>
+              </template>
+            </BaseAccordion>
             <div v-else class="menu" @click="() => handleClickItem(item)">
               <BaseIcon :name="item.icon" />
               <span>{{ item.title }}</span>
@@ -155,7 +178,14 @@ function handleClickItem(item: any) {
             v-if="item.list && item.list.length" :dom-id="item.domId" :menu-info="item" :auto-show="item.expand"
             @click-head="handleClickHead"
             @click-item="handleClickItem"
-          />
+          >
+            <template #default="{ menuItem }">
+              <div class="menu">
+                <BaseIcon :name="menuItem.icon" />
+                <span>{{ menuItem.title }}</span>
+              </div>
+            </template>
+          </BaseAccordion>
           <div v-else class="menu" @click="() => handleClickItem(item)">
             <BaseIcon :name="item.icon" />
             <span>{{ item.title }}</span>
@@ -169,7 +199,14 @@ function handleClickItem(item: any) {
             v-if="item.list && item.list.length" :dom-id="item.domId" :menu-info="item" :auto-show="item.expand"
             @click-head="handleClickHead"
             @click-item="handleClickItem"
-          />
+          >
+            <template #default="{ menuItem }">
+              <div class="menu">
+                <BaseIcon :name="menuItem.icon" />
+                <span>{{ menuItem.title }}</span>
+              </div>
+            </template>
+          </BaseAccordion>
           <div v-else class="menu" @click="() => handleClickItem(item)">
             <BaseIcon :name="item.icon" />
             <span>{{ item.title }}</span>
@@ -220,8 +257,8 @@ function handleClickItem(item: any) {
         transform: scale(1.1);
       }
 
-      &:hover {
-        background-color: #213743;
+      &:hover, &.active {
+        background-color: var(--tg-secondary-main);
         --tg-icon-color: var(--tg-text-white);
       }
 

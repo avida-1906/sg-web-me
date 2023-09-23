@@ -1,7 +1,7 @@
 <script setup lang='ts'>
 const { t } = useI18n()
 
-const appStore = useAppStore()
+// const appStore = useAppStore()
 // const birthday = ref('')
 const { bool: checkboxValue } = useBoolean(false)
 
@@ -58,7 +58,7 @@ const { run: runMemberReg, loading: isLoading } = useRequest(() => ApiMemberReg(
   manual: true,
   onSuccess: async (res: any) => {
     // toast(res)
-    appStore.setToken(res)
+    // appStore.setToken(res)
     closeDialog()
     await nextTick()
     openTermsConditionsDialog()
