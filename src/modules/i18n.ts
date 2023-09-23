@@ -6,6 +6,8 @@ import { EnumLanguage } from '~/utils/enums'
 /** 映射后端的多语言值 */
 export const languageMap: any = {
   'zh-CN': 'zh_CN',
+  'pt-BR': 'pt_BR',
+  'vi-VN': 'vi_VN',
 }
 
 const i18n = createI18n({
