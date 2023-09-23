@@ -5,7 +5,7 @@ const appStore = useAppStore()
 
 const { bool: isRead, setTrue: setReadTrue } = useBoolean(false)
 const { bool: checkboxValue } = useBoolean(false)
-const { errorMessage: checkedErrorMsg, validate: valiChecked } = useField<string>('checkbox', (value) => {
+const { errorMessage: checkedErrorMsg, validate: valiChecked } = useField<string>('checkbox', () => {
   if (!checkboxValue.value)
     return t('agree_terms_conditions')
 
@@ -29,13 +29,35 @@ function handleScroll(evt: any) {
   }, 100)
 }
 
+// const regParams = reactive({
+//   email: '',
+//   username: '',
+//   password: '',
+//   birthday: '',
+//   parent_id: '',
+//   device_number: '',
+// })
+
+const regParams = computed(() => {
+  return Session.get('reg_params')?.value
+})
+
+const { run: runMemberReg, loading: isLoading } = useRequest(() => ApiMemberReg(regParams.value), {
+  manual: true,
+  onSuccess: async (res: any) => {
+    appStore.setToken(res)
+    await nextTick()
+    closeDialog()
+  },
+  onError: (err: any) => {
+    toast(err)
+  },
+})
+
 async function getStartGame() {
   valiChecked()
   if (checkboxValue.value && !checkedErrorMsg.value)
-  // appStore.setToken('token')
-    console.log(Session.get('reg_params'))
-  await nextTick()
-  // closeDialog()
+    runMemberReg()
 }
 
 async function toLogin() {
@@ -43,6 +65,11 @@ async function toLogin() {
   await nextTick()
   openLoginDialog()
 }
+
+// onMounted(() => {
+//   console.log(Session.get('reg_params'))
+//   regParams.value = Session.get('reg_params')
+// })
 
 onBeforeUnmount(() => {
   clearTimeout(delayId.value)
@@ -52,6 +79,7 @@ onBeforeUnmount(() => {
 <template>
   <div class="app-register-terms-conditions">
     <div class="title">
+      {{ regParams }}
       {{ t('reg_step2') }}
     </div>
     <div ref="$scrollList" class="scroll-y terms-conditions" @scroll="handleScroll">
@@ -117,7 +145,7 @@ onBeforeUnmount(() => {
       <BaseCheckBox v-model="checkboxValue" :disabled="!isRead" :msg="checkedErrorMsg" @click.stop="valiChecked">
         {{ t('read_terms_conditions') }}
       </BaseCheckBox>
-      <BaseButton class="app-register-terms-conditions-btn" bg-style="secondary" @click.stop="getStartGame">
+      <BaseButton :loading="isLoading" class="app-register-terms-conditions-btn" bg-style="secondary" @click.stop="getStartGame">
         {{ t('start_game') }}
       </BaseButton>
     </div>

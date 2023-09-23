@@ -33,7 +33,7 @@ const { value: password, errorMessage: pwdErrorMsg, validate: valiPassword } = u
   if (!value)
     return t('pls_enter_password')
 
-  if (!passwordReg.test(value))
+  if (!lastOneNumberReg.test(value))
     return t('password_incorrect')
 
   return ''
@@ -45,26 +45,6 @@ const { value: birthday, errorMessage: birthdayErrorMsg, validate: valiBirthday 
 
   return ''
 })
-
-// const { run: runMemberReg, loading: isLoading } = useRequest(() => ApiMemberReg({
-//   email: username.value,
-//   username: username.value,
-//   password: password.value,
-//   parent_id: '',
-//   birthday: birthday.value,
-//   device_number: application.getDeviceNumber(),
-// }), {
-//   manual: true,
-//   onSuccess: async (res: any) => {
-//     console.log(res)
-//     closeDialog()
-//     await nextTick()
-//     openTermsConditionsDialog()
-//   },
-//   onError: (err: any) => {
-//     toast(err)
-//   },
-// })
 
 async function getMemberReg() {
   await valiEmail()
@@ -85,7 +65,6 @@ async function getMemberReg() {
     closeDialog()
     await nextTick()
     openTermsConditionsDialog()
-    // runMemberReg()
   }
 }
 </script>

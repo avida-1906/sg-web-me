@@ -116,7 +116,6 @@ declare global {
   const onUpdated: typeof import('vue')['onUpdated']
   const padStart: typeof import('lodash-es')['padStart']
   const password1Reg: typeof import('./utils/regexp')['password1Reg']
-  const passwordReg: typeof import('./utils/regexp')['passwordReg']
   const passwordUpperLowerReg: typeof import('./utils/regexp')['passwordUpperLowerReg']
   const pausableWatch: typeof import('@vueuse/core')['pausableWatch']
   const preferredDark: typeof import('./composables/dark')['preferredDark']

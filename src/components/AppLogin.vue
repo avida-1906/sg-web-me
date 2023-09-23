@@ -14,7 +14,7 @@ const { value: password, errorMessage: pwdErrorMsg, validate: valiPassword } = u
   if (!value)
     return t('pls_enter_password')
 
-  if (!passwordReg.test(value))
+  if (!lastOneNumberReg.test(value))
     return t('password_incorrect')
 
   return ''
