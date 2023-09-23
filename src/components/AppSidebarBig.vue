@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import { type MenuItem } from '~/composables/useMenuData'
+import { type MenuItem } from '~/composables/useApiMenuData'
 
 interface Props {
   staticMenu1: MenuItem[]
@@ -16,6 +16,9 @@ interface Props {
   isSwitching?: boolean
 }
 const props = defineProps<Props>()
+
+const router = useRouter()
+
 const { t } = useI18n()
 const { isMobile } = storeToRefs(useWindowStore())
 const route = useRoute()
@@ -31,7 +34,15 @@ function handleClickHead() {
   //   clearTimeout(t)
   // }, 500)
 }
-function handleClickItem() { }
+
+const { leftIsExpand } = useLeftSidebar()
+
+function handleClickItem(item: any) {
+  if (item.path && item.path.length) {
+    leftIsExpand.value = false
+    router.push(item.path)
+  }
+}
 </script>
 
 <template>
@@ -40,7 +51,7 @@ function handleClickItem() { }
       <!-- Casino -->
       <template v-if="isMobile ? isGameTypeCasino : isCasino">
         <div class="menu-box">
-          <div v-for="item, i in casinoMenu" :key="i">
+          <div v-for="item, i in casinoMenu" :key="i" @click="() => handleClickItem(item)">
             <div class="menu">
               <BaseIcon :name="item.icon" />
               <span>{{ item.title }}</span>
@@ -52,7 +63,7 @@ function handleClickItem() { }
             {{ t('game') }}
           </div>
           <div class="content-line" />
-          <div v-for="item, i in casinoGameList" :key="i">
+          <div v-for="item, i in casinoGameList" :key="i" @click="() => handleClickItem(item)">
             <div class="menu">
               <BaseIcon :name="item.icon" />
               <span>{{ item.title }}</span>
@@ -60,7 +71,7 @@ function handleClickItem() { }
           </div>
         </div>
         <div class="menu-box">
-          <div v-for="item, i in casinoGameProvider" :key="i">
+          <div v-for="item, i in casinoGameProvider" :key="i" @click="() => handleClickItem(item)">
             <div class="menu">
               <BaseIcon :name="item.icon" />
               <span>{{ item.title }}</span>
@@ -72,7 +83,7 @@ function handleClickItem() { }
       <!-- Sports -->
       <template v-if="isMobile ? isGameTypeSports : isSports">
         <div class="menu-box">
-          <div v-for="item, i in sportsMenu" :key="i">
+          <div v-for="item, i in sportsMenu" :key="i" @click="() => handleClickItem(item)">
             <div class="menu">
               <BaseIcon :name="item.icon" />
               <span>{{ item.title }}</span>
@@ -86,10 +97,11 @@ function handleClickItem() { }
           <div class="content-line" />
           <div v-for="item, i in sportHotGames" :key="i">
             <BaseAccordion
-              v-if="item.list && item.list.length" :dom-id="item.domId" :menu-info="item" @click-head="handleClickHead"
+              v-if="item.list && item.list.length" :dom-id="item.domId" :menu-info="item" :auto-show="item.expand"
+              @click-head="handleClickHead"
               @click-item="handleClickItem"
             />
-            <div v-else class="menu">
+            <div v-else class="menu" @click="() => handleClickItem(item)">
               <BaseIcon :name="item.icon" />
               <span>{{ item.title }}</span>
             </div>
@@ -98,10 +110,11 @@ function handleClickItem() { }
         <div class="menu-box">
           <div v-for="item, i in sportEsports" :key="i">
             <BaseAccordion
-              v-if="item.list && item.list.length" :dom-id="item.domId" :menu-info="item" @click-head="handleClickHead"
+              v-if="item.list && item.list.length" :dom-id="item.domId" :menu-info="item" :auto-show="item.expand"
+              @click-head="handleClickHead"
               @click-item="handleClickItem"
             />
-            <div v-else class="menu">
+            <div v-else class="menu" @click="() => handleClickItem(item)">
               <BaseIcon :name="item.icon" />
               <span>{{ item.title }}</span>
             </div>
@@ -110,10 +123,11 @@ function handleClickItem() { }
         <div class="menu-box">
           <div v-for="item, i in sportGameList" :key="i">
             <BaseAccordion
-              v-if="item.list && item.list.length" :dom-id="item.domId" :menu-info="item" @click-head="handleClickHead"
+              v-if="item.list && item.list.length" :dom-id="item.domId" :menu-info="item" :auto-show="item.expand"
+              @click-head="handleClickHead"
               @click-item="handleClickItem"
             />
-            <div v-else class="menu">
+            <div v-else class="menu" @click="() => handleClickItem(item)">
               <BaseIcon :name="item.icon" />
               <span>{{ item.title }}</span>
             </div>
@@ -122,10 +136,11 @@ function handleClickItem() { }
         <div class="menu-box">
           <div v-for="item, i in sportOddType" :key="i">
             <BaseAccordion
-              v-if="item.list && item.list.length" :dom-id="item.domId" :menu-info="item" @click-head="handleClickHead"
+              v-if="item.list && item.list.length" :dom-id="item.domId" :menu-info="item" :auto-show="item.expand"
+              @click-head="handleClickHead"
               @click-item="handleClickItem"
             />
-            <div v-else class="menu">
+            <div v-else class="menu" @click="() => handleClickItem(item)">
               <BaseIcon :name="item.icon" />
               <span>{{ item.title }}</span>
             </div>
@@ -137,10 +152,11 @@ function handleClickItem() { }
       <div class="menu-box">
         <div v-for="item, i in staticMenu1" :key="i">
           <BaseAccordion
-            v-if="item.list && item.list.length" :dom-id="item.domId" :menu-info="item" @click-head="handleClickHead"
+            v-if="item.list && item.list.length" :dom-id="item.domId" :menu-info="item" :auto-show="item.expand"
+            @click-head="handleClickHead"
             @click-item="handleClickItem"
           />
-          <div v-else class="menu">
+          <div v-else class="menu" @click="() => handleClickItem(item)">
             <BaseIcon :name="item.icon" />
             <span>{{ item.title }}</span>
           </div>
@@ -150,10 +166,11 @@ function handleClickItem() { }
       <div class="menu-box">
         <div v-for="item, i in staticMenu2" :key="i">
           <BaseAccordion
-            v-if="item.list && item.list.length" :dom-id="item.domId" :menu-info="item" @click-head="handleClickHead"
+            v-if="item.list && item.list.length" :dom-id="item.domId" :menu-info="item" :auto-show="item.expand"
+            @click-head="handleClickHead"
             @click-item="handleClickItem"
           />
-          <div v-else class="menu">
+          <div v-else class="menu" @click="() => handleClickItem(item)">
             <BaseIcon :name="item.icon" />
             <span>{{ item.title }}</span>
           </div>

@@ -78,6 +78,9 @@ function onBlur() {
   label {
     color: var(--tg-text-lightgrey);
     font-weight: var(--tg-font-weight-semibold);
+    span {
+      color: var(--tg-text-error);
+    }
   }
 
   .msg {

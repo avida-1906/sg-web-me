@@ -4,6 +4,7 @@ export interface MenuItem {
   path?: string
   list?: Menu
   domId?: string
+  expand?: boolean
 }
 
 export type Menu = Array<MenuItem>
@@ -12,7 +13,7 @@ export type Menu = Array<MenuItem>
 const casinoMenu: Menu = [
   { title: '收藏夹', path: '/casino/favourites', icon: 'chess-star', list: [], domId: '' },
   { title: '近期游戏记录', path: '/casino/recent', icon: 'chess-game-record', list: [], domId: '' },
-  { title: '挑战', path: '', icon: 'chess-challenge', list: [], domId: '' },
+  { title: '挑战', path: '/casino/challenges', icon: 'chess-challenge', list: [], domId: '' },
 ]
 const casinoGameList: Menu = [
   { title: '老虎机', path: '/casino/group/slots', icon: 'chess-slot-machine', list: [], domId: '' },
@@ -22,7 +23,7 @@ const casinoGameList: Menu = [
   { title: '可购买奖励回合', path: '/casino/group/feature-buy-in', icon: 'chess-bonus-rounds', list: [], domId: '' },
   { title: 'RTP 增强化', path: '/casino/group/enhanced-rtp', icon: 'chess-rtp', list: [], domId: '' },
 ]
-const casinoGameProvider: Menu = [{ title: '游戏提供商', path: '', icon: 'chess-game-provider', list: [], domId: '' }]
+const casinoGameProvider: Menu = [{ title: '游戏提供商', path: '/casino/collection/provider', icon: 'chess-game-provider', list: [], domId: '' }]
 
 // sports
 const sportsMenu: Menu = [
@@ -154,8 +155,8 @@ const staticMenu1: Menu = [
       { title: 'VIP', path: '', icon: 'chess-air-bonus' },
       { title: '统计数据', path: '', icon: 'uni-trend' },
       { title: '通知', path: '', icon: 'tabbar-bet' },
-      { title: '体育投注', path: '', icon: 'spt-basketball' },
-      { title: '设置', path: '', icon: 'uni-set' },
+      { title: '体育投注', path: '/sports/my-bets', icon: 'spt-basketball' },
+      { title: '设置', path: '/settings/general', icon: 'uni-set' },
       { title: '登出', path: '', icon: 'uni-logout' },
     ],
     domId: 'static-menu-user',
@@ -167,14 +168,14 @@ const staticMenu1: Menu = [
     list: [
       { title: '推荐活动一', path: '', icon: 'navbar-user' },
       { title: '推荐活动二', path: '', icon: 'navbar-user' },
-      { title: '推荐活动三', path: '', icon: 'navbar-user' },
-      { title: '查看全部', path: '', icon: 'navbar-user' },
+      { title: '推荐活动三', path: '/promotions/promotion/weekly-giveaway', icon: 'navbar-user' },
+      { title: '查看全部', path: '/promotions', icon: 'navbar-user' },
     ],
     domId: 'static-menu-promotion',
   },
-  { title: '联盟计划', path: '', icon: 'spt-affiliate-pro', list: [], domId: '' },
-  { title: 'VIP俱乐部', path: '', icon: 'chess-vipclub', list: [], domId: '' },
-  { title: '博客', path: '', icon: 'chess-blog', list: [], domId: '' },
+  { title: '联盟计划', path: '/affiliate/overview', icon: 'spt-affiliate-pro', list: [], domId: '' },
+  { title: 'VIP俱乐部', path: '/vip-club', icon: 'chess-vipclub', list: [], domId: '' },
+  { title: '博客', path: '/blog', icon: 'chess-blog', list: [], domId: '' },
   { title: '论坛', path: '', icon: 'tabbar-chat', list: [], domId: '' },
 ]
 const staticMenu2: Menu = [
@@ -183,13 +184,13 @@ const staticMenu2: Menu = [
     path: '',
     icon: 'spt-sponsorship',
     list: [
-      { title: '赞助活动一', path: '', icon: '' },
-      { title: '赞助活动二', path: '', icon: '' },
+      { title: '赞助活动一', path: '/drake', icon: '' },
+      { title: '赞助活动二', path: '/sponsorships/ufc', icon: '' },
       { title: '赞助活动三', path: '', icon: '' },
     ],
     domId: 'static-menu-sponsor',
   },
-  { title: '负责任博彩', path: '', icon: 'spt-secure', list: [], domId: '' },
+  { title: '负责任博彩', path: '/responsible-gambling', icon: 'spt-secure', list: [], domId: '' },
   { title: '在线支持', path: '', icon: 'spt-online-support', list: [], domId: '' },
   {
     title: '语言：',

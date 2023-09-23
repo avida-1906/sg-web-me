@@ -1,5 +1,5 @@
 <script lang="ts" setup name="app-sidebar-small">
-import type { Menu, MenuItem } from '~/composables/useMenuData'
+import type { Menu, MenuItem } from '~/composables/useApiMenuData'
 
 interface Props {
   menuData: Array<Menu>
@@ -10,9 +10,16 @@ withDefaults(defineProps<Props>(), {})
 
 const router = useRouter()
 
+const { leftIsExpand } = useLeftSidebar()
+
 function itemClick(item: MenuItem) {
-  if (item.path && item.path.length)
+  if (item.path && item.path.length) {
     router.push(item.path)
+  }
+  else if (item.list && item.list.length) {
+    leftIsExpand.value = true
+    item.expand = true
+  }
 }
 </script>
 
