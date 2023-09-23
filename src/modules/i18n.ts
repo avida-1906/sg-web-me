@@ -4,7 +4,7 @@ import type { App } from 'vue'
 import { EnumLanguage } from '~/utils/enums'
 
 /** 映射后端的多语言值 */
-export const languageMap: any = {
+export const languageMap: IObject = {
   'zh-CN': 'zh_CN',
   'pt-BR': 'pt_BR',
   'vi-VN': 'vi_VN',
