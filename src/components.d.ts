@@ -8,6 +8,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AppAmount: typeof import('./components/AppAmount.vue')['default']
+    AppAuthLogin: typeof import('./components/AppAuthLogin.vue')['default']
     AppBanner: typeof import('./components/AppBanner.vue')['default']
     AppBetData: typeof import('./components/AppBetData.vue')['default']
     AppBuyCryptocurrency: typeof import('./components/AppBuyCryptocurrency.vue')['default']
@@ -83,6 +84,7 @@ declare module 'vue' {
     BaseTable: typeof import('./components/BaseTable.vue')['default']
     BaseTag: typeof import('./components/BaseTag.vue')['default']
     BaseUpload: typeof import('./components/BaseUpload.vue')['default']
+    copy: typeof import('./components/AppLoginRegisterBottom copy.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
