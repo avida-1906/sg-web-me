@@ -57,11 +57,10 @@ function handleClickMenuItem(item: { name: string }) {
 
 <template>
   <div>
-    <!-- v-if="isLogin" -->
     <div class="app-header">
       <BaseLogo :use-small="width < 400" />
+      <AppWallet v-if="isLogin" :wallet-btn="true" />
       <div v-if="isLogin" class="header-box">
-        <AppWallet :wallet-btn="true" />
         <div class="header-right">
           <BaseButton v-show="!isMobile" type="text" class="search-btn" @click="setTrue">
             <BaseIcon class="icon-search" name="header-search" />
@@ -112,58 +111,11 @@ function handleClickMenuItem(item: { name: string }) {
         </BaseButton>
       </div>
     </div>
-    <!-- <div v-else class="app-header-login">
-      <BaseLogo @cl :use-small="width <= 400" />
-      <div class="user">
-        <BaseButton type="text" class="login" @click.stop="openLoginDialog()">
-          {{ t('login') }}
-        </BaseButton>
-        <BaseButton class="reg" bg-style="primary" @click.stop="openRegisterDialog()">
-          {{ t('reg') }}
-        </BaseButton>
-      </div>
-    </div> -->
   </div>
 </template>
 
 <style lang="scss" scoped>
-.app-header-login {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  .user {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--tg-text-white);
-    text-align: center;
-    font-family: PingFang SC;
-    font-size: var(--tg-font-size-default);
-    font-style: normal;
-    font-weight: 600;
-    .login {
-      color:var(--tg-text-white);
-    }
-    .reg {
-      display: flex;
-      width: 68px;
-      height: 44px;
-      padding: 10px 20px;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      flex-shrink: 0;
-      border-radius: 4px;
-      background: #1475E1;
-      margin-left: 20px;
-    }
-  }
-}
 .app-header {
-  // display: grid;
-  // grid-template-columns: 1fr auto 1fr;
-  // justify-content: center;
-  // align-items: center;
   position: relative;
   display: flex;
   align-items: center;
