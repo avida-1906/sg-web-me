@@ -159,12 +159,12 @@ const { openWalletDialog } = useWalletDialog()
 }
 
 .dropdown-popper {
+  max-height: inherit;
+  max-width: inherit;
   display: flex;
   flex-direction: column;
-  max-width: 100vw;
-
   .popper-top {
-    padding: 8px 0 12px;
+    padding: 12px 0;
 
     .top-search {
       width: 85%;
@@ -179,7 +179,7 @@ const { openWalletDialog } = useWalletDialog()
     color: var(--tg-text-dark);
     font-size: var(--tg-font-size-default);
     font-weight: 500;
-
+    flex: 1;
     &::-webkit-scrollbar-thumb {
       background: var(--tg-secondary-light);
     }
