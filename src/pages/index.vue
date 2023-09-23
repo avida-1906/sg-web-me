@@ -43,8 +43,12 @@ function connectMqtt() {
 function disconnectMqtt() {
   socketClient.disconnect()
 }
-const { width } = storeToRefs(useWindowStore())
+const {
+  width,
+} = storeToRefs(useWindowStore())
+
 const isMobile = computed(() => width.value <= 888)
+const isSm = computed(() => width.value <= 768)
 </script>
 
 <template>
@@ -103,7 +107,7 @@ const isMobile = computed(() => width.value <= 888)
       </div>
     </div>
     <!-- 了解更多 -->
-    <div class="index-more">
+    <div class="index-more" :class="[isMobile ? 'flex-wrap-reverse' : 'grid-wrap']">
       <div>
         <BaseButton size="md">
           了解更多
@@ -112,16 +116,28 @@ const isMobile = computed(() => width.value <= 888)
       <div>
         <BaseIcon name="app-logo-darke" />
       </div>
-      <div>
+      <div v-if="!isMobile">
         <img src="https://mediumrare.imgix.net/drake-banner.png?&dpr=2&format=auto&auto=format&q=50" alt="">
       </div>
     </div>
     <!-- 加密货币 -->
-    <div class="index-buy-cryptocurrency">
+    <div class="index-buy-cryptocurrency" :class="[isSm ? 'flex-wrap' : 'grid-wrap']">
       <div>
         没加密货币？没问题。
       </div>
+      <div :class="isMobile ? 'h-22' : 'h-30'">
+        <BaseIcon name="cryptocurrency-logo-1" class="w-50" />
+        <BaseIcon name="cryptocurrency-logo-2" class="w-73" />
+        <BaseIcon name="cryptocurrency-logo-3" class="w-77" />
+        <BaseIcon name="cryptocurrency-logo-4" class="w-66" />
+      </div>
+      <div>
+        <BaseButton size="md">
+          购买加密货币
+        </BaseButton>
+      </div>
     </div>
+    <!-- 投注 -->
     <!-- <div>
       {{ t('hello') }}
     </div>
@@ -214,6 +230,9 @@ const isMobile = computed(() => width.value <= 888)
         }
       }
       .features-content{
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
         p:nth-child(1){
           color: var(--tg-text-white);
           font-size: var(--tg-font-size-base);
@@ -233,27 +252,35 @@ const isMobile = computed(() => width.value <= 888)
       }
     }
   }
-  .index-more{
+  .grid-wrap{ // pc 布局
     display: grid;
     align-items: center;
     justify-content: center;
     grid-template-columns: repeat(3,1fr);
-    padding: 0 var(--tg-spacing-20);
+    &.index-more{
+      div:nth-child(2){
+        justify-content: center;
+        width: auto;
+        > svg {
+          width: 100%;
+        }
+      }
+    }
+  }
+  .index-more{
     border-radius: var(--tg-radius-default);
     background: var(--tg-secondary-dark);
     margin-top: var(--tg-spacing-24);
+    padding: 0 var(--tg-spacing-20);
     div:nth-child(1){
       display: flex;
       justify-content: start;
     }
     div:nth-child(2){
       display: flex;
-      justify-content: center;
       align-items: center;
       height: 80px;
-      width: auto;
       > svg {
-        width: 60%;
         height: 60%;
       }
     }
@@ -267,27 +294,89 @@ const isMobile = computed(() => width.value <= 888)
     }
   }
   .index-buy-cryptocurrency{
-    display: grid;
-    align-items: center;
-    justify-content: center;
-    grid-template-columns: repeat(3,1fr);
-    padding: 0 var(--tg-spacing-20);
     border-radius: var(--tg-radius-default);
     background: var(--tg-secondary-dark);
     margin-top: var(--tg-spacing-24);
+    padding: var(--tg-spacing-24);
     div:nth-child(1){
       font-size: var(--tg-font-size-base);
       color: var(--tg-text-white);
       font-weight: var(--tg-font-weight-semibold);
     }
     div:nth-child(2){
-
+      display: flex;
+      align-items: center;
+      > svg {
+        &.w-50 {
+          width: 50px;
+        }
+        &.w-73 {
+          width: 73px;
+        }
+        &.w-77 {
+          width: 77px;
+        }
+        &.w-66 {
+          width: 66px;
+        }
+      }
+      &.h-30{
+        gap: var(--tg-spacing-16);
+        > svg {
+          height: 30px;
+        }
+      }
+    }
+    div:nth-child(3){
+      display: flex;
+      align-items: center;
+      justify-content: end;
     }
   }
 }
 .is-mobile{
   .index-features{
     grid-template-columns: none;
+  }
+}
+// <888
+.flex-wrap-reverse{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    div:nth-child(2){
+      justify-content: start;
+      width: 50%;
+      > svg{
+        width: 60%;
+      }
+    }
+    div:nth-child(1){
+      margin: auto 0;
+    }
+  }
+.h-22{
+  gap: var(--tg-spacing-4);
+  > svg{
+    height: 22px;
+  }
+}
+// <768
+.flex-wrap{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  div:nth-child(1) {
+    text-align: center;
+  }
+  div:nth-child(2) {
+    justify-content: center;
+    > svg{
+      height: 22px;
+    }
+  }
+  div:nth-child(3) {
+    margin: 0 auto;
   }
 }
 </style>
