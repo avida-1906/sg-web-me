@@ -1,5 +1,4 @@
 <script setup lang="ts">
-const { gameProviders } = useGameList()
 </script>
 
 <template>
@@ -35,15 +34,7 @@ const { gameProviders } = useGameList()
           <div>{{ $t('load_more') }}</div>
         </BaseButton>
       </div>
-      <div class="">
-        <AppSlider api="" icon="chess-game-provider" :title="$t('casino_provider')" :data="gameProviders" :show-view-all="false">
-          <template #default="{ item }">
-            <div class="provider-item-wrap">
-              <BaseImage :url="item.src" />
-            </div>
-          </template>
-        </AppSlider>
-      </div>
+      <AppProviderSlider />
     </section>
     <AppBetData />
   </div>
