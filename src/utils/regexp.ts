@@ -1,7 +1,8 @@
-// 用户名(3-14位，必须字母开头)
-export const usernameReg = /^[a-zA-Z][a-zA-Z0-9]{2,13}$/
-// 密码(6-16位，必须包含字母和数字)
-export const passwordReg = /./
+/** 用户名(3-14字符,数字和字母) */
+export const usernameReg = /^[a-zA-Z0-9]{3,14}$/
+/** 必须含有大写和小写字母 */
+export const upperLowerReg = /^(?=.*[a-z])(?=.*[A-Z]).+$/
+/** 至少一位数字 */
+export const lastOneNumberReg = /.*[0-9].*/
 // 邮箱
-export const emailReg = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/
-// export const emailReg = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
+export const emailReg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
