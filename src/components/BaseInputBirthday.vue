@@ -190,6 +190,7 @@ function onInput() {
 
     input,
     select {
+      width: 100%;
       border-radius: var(--tg-radius-default);
       background: var(--tg-secondary-dark);
       box-shadow: var(--tg-box-shadow);
