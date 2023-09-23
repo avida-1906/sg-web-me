@@ -49,19 +49,22 @@ const isMobile = computed(() => width.value <= 888)
 
 <template>
   <div class="home-index" :class="{ 'is-mobile': isMobile }">
-    <!-- <AppBanner /> -->
     <!-- 头部 -->
-    <div class="index-header-wrapper">
-      <div class="unauthenticated-wrapper">
-        <div class="unauthenticated-content">
-          <h1>更明智地下注</h1>
-          <BaseButton bg-style="primary" round size="md">
-            <span class="register-text">立即注册</span>
-          </BaseButton>
-          <AppAuthLogin />
+    <div class="dark-background">
+      <div class="top-wrapper">
+        <div class="unauthenticated-wrapper">
+          <div class="unauthenticated-content">
+            <h1>更明智地下注</h1>
+            <BaseButton bg-style="primary" round size="md">
+              <span class="register-text">立即注册</span>
+            </BaseButton>
+            <AppAuthLogin />
+          </div>
+        </div>
+        <div class="top-banner">
+          <BaseImage url="https://mediumrare.imgix.net/welcome-top-zh.png?&dpr=2&format=auto&auto=format&w=540&q=50" />
         </div>
       </div>
-      <div class="header-banner" />
     </div>
     <!-- 玩法类型 -->
     <div class="index-features">
@@ -145,33 +148,64 @@ const isMobile = computed(() => width.value <= 888)
 
 <style lang="scss" scoped>
 .home-index{
-  padding: 24px 0 32px;
-  .index-header-wrapper{
-    display: grid;
-    grid-template-columns: 40% 50%;
-    justify-content: space-between;
-    .unauthenticated-wrapper{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-      align-self: center;
-      padding: var(--tg-spacing-32);
-      .unauthenticated-content{
-        display: grid;
-        grid-auto-flow: row;
+  padding: 0 0 32px;
+  .dark-background{
+    position: relative;
+    &:before {
+      content: "";
+      position: absolute;
+      left: -2000px;
+      right: -2000px;
+      top: 0;
+      bottom: 0;
+      background: var(--tg-secondary-dark);
+    }
+    .top-wrapper{
+      display: grid;
+      position: relative;
+      grid-template-columns: 40% 50%;
+      justify-content: space-between;
+      background-position: left 25% center;
+      background-size: 50% 125%;
+      background-repeat: no-repeat;
+      background-image: url(https://stake.com/_app/immutable/assets/abstract-bg.71bdcaae.svg);
+      .unauthenticated-wrapper{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         gap: 1rem;
-        h1{
-          color: var(--tg-text-white);
-          font-size: var(--tg-font-size-lg);
-          font-weight: var(--tg-font-weight-bold);
-          text-align: center;
-          line-height: 1.5;
-        }
-        .register-text{
-          width: 264px;
+        align-self: center;
+        // padding: var(--tg-spacing-32);
+        .unauthenticated-content{
+          display: grid;
+          grid-auto-flow: row;
+          gap: 1rem;
+          h1{
+            color: var(--tg-text-white);
+            font-size: var(--tg-font-size-lg);
+            font-weight: var(--tg-font-weight-bold);
+            text-align: center;
+            line-height: 1.5;
+          }
+          .register-text{
+            width: 264px;
 
+          }
         }
+      }
+      .top-banner{
+        position: relative;
+        // &:before {
+        //   content: "";
+        //   height: 100%;
+        //   width: 100%;
+        //   right: 75%;
+        //   position: absolute;
+        //   background-position: center;
+        //   background-size: cover;
+        //   background-repeat: no-repeat;
+        //   background-image: url(https://stake.com/_app/immutable/assets/abstract-bg.71bdcaae.svg);
+        // }
       }
     }
   }
