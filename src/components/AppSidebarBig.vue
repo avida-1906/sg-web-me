@@ -29,7 +29,7 @@ const innerRef = ref()
 
 const { menuItemClick } = useApiMenuData()
 
-function handleClickItem(item: any) {
+function handleClickItem(item: MenuItem) {
   menuItemClick(item)
 }
 </script>
