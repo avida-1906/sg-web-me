@@ -29,7 +29,6 @@ const { run: runMemberLogin, loading: isLoading } = useRequest(() => ApiMemberLo
 }), {
   manual: true,
   onSuccess: (res: any) => {
-    // toast(res)
     closeDialog()
     appStore.setToken(res)
   },

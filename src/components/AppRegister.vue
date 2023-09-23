@@ -1,7 +1,6 @@
 <script setup lang='ts'>
 const { t } = useI18n()
 
-// const appStore = useAppStore()
 // const birthday = ref('')
 const { bool: checkboxValue } = useBoolean(false)
 
@@ -47,34 +46,47 @@ const { value: birthday, errorMessage: birthdayErrorMsg, validate: valiBirthday 
   return ''
 })
 
-const { run: runMemberReg, loading: isLoading } = useRequest(() => ApiMemberReg({
-  email: username.value,
-  username: username.value,
-  password: password.value,
-  parent_id: '',
-  birthday: birthday.value,
-  device_number: application.getDeviceNumber(),
-}), {
-  manual: true,
-  onSuccess: async (res: any) => {
-    // toast(res)
-    // appStore.setToken(res)
-    closeDialog()
-    await nextTick()
-    openTermsConditionsDialog()
-  },
-  onError: (err: any) => {
-    toast(err)
-  },
-})
+// const { run: runMemberReg, loading: isLoading } = useRequest(() => ApiMemberReg({
+//   email: username.value,
+//   username: username.value,
+//   password: password.value,
+//   parent_id: '',
+//   birthday: birthday.value,
+//   device_number: application.getDeviceNumber(),
+// }), {
+//   manual: true,
+//   onSuccess: async (res: any) => {
+//     console.log(res)
+//     closeDialog()
+//     await nextTick()
+//     openTermsConditionsDialog()
+//   },
+//   onError: (err: any) => {
+//     toast(err)
+//   },
+// })
 
 async function getMemberReg() {
   await valiEmail()
   await valiUsername()
   await valiPassword()
   await valiBirthday()
-  if (!emailErrorMsg.value && !usernameErrorMsg.value && !pwdErrorMsg.value && !birthdayErrorMsg.value)
-    runMemberReg()
+  if (!emailErrorMsg.value && !usernameErrorMsg.value && !pwdErrorMsg.value && !birthdayErrorMsg.value) {
+    const paramsReg = {
+      email: username.value,
+      username: username.value,
+      password: password.value,
+      parent_id: '',
+      birthday: birthday.value,
+      device_number: application.getDeviceNumber(),
+    }
+    Session.set('reg_params', paramsReg)
+    // Session.set('reg_params', JSON.stringify(paramsReg))
+    closeDialog()
+    await nextTick()
+    openTermsConditionsDialog()
+    // runMemberReg()
+  }
 }
 </script>
 
@@ -94,7 +106,8 @@ async function getMemberReg() {
       <BaseCheckBox v-model="checkboxValue">
         {{ t('code_optional') }}
       </BaseCheckBox>
-      <BaseButton :loading="isLoading" class="app-register-btn" bg-style="secondary" @click.stop="getMemberReg">
+      <!-- :loading="isLoading" -->
+      <BaseButton class="app-register-btn" bg-style="secondary" @click.stop="getMemberReg">
         {{ t('continue') }}
       </BaseButton>
     </div>

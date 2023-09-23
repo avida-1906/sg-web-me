@@ -1,7 +1,7 @@
 <script setup lang='ts'>
 const { t } = useI18n()
 
-// const appStore = useAppStore()
+const appStore = useAppStore()
 
 const { bool: isRead, setTrue: setReadTrue } = useBoolean(false)
 const { bool: checkboxValue } = useBoolean(false)
@@ -29,11 +29,13 @@ function handleScroll(evt: any) {
   }, 100)
 }
 
-function getStartGame() {
+async function getStartGame() {
   valiChecked()
-  if (!checkedErrorMsg.value)
-    console.log('===getStartGame===')
-  // appStore.setToken(token)
+  if (checkboxValue.value && !checkedErrorMsg.value)
+  // appStore.setToken('token')
+    console.log(Session.get('reg_params'))
+  await nextTick()
+  // closeDialog()
 }
 
 async function toLogin() {
@@ -50,7 +52,6 @@ onBeforeUnmount(() => {
 <template>
   <div class="app-register-terms-conditions">
     <div class="title">
-      {{ isRead }}
       {{ t('reg_step2') }}
     </div>
     <div ref="$scrollList" class="scroll-y terms-conditions" @scroll="handleScroll">
