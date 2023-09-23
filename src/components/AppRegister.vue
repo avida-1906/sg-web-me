@@ -59,6 +59,10 @@ const { run: runMemberReg, loading: isLoading } = useRequest(() => ApiMemberReg(
     toast(err)
   },
 })
+
+const isDisabled = computed(() => {
+  return (!emailReg.test(email.value) || !usernameReg.test(username.value)) || !passwordReg.test(password.value)
+})
 </script>
 
 <template>
@@ -77,7 +81,7 @@ const { run: runMemberReg, loading: isLoading } = useRequest(() => ApiMemberReg(
       <BaseCheckBox v-model="checkboxValue">
         {{ t('code_optional') }}
       </BaseCheckBox>
-      <BaseButton :loading="isLoading" class="app-register-btn" bg-style="secondary" @click.stop="runMemberReg">
+      <BaseButton :loading="isLoading" :disabled="isDisabled" class="app-register-btn" bg-style="secondary" @click.stop="runMemberReg">
         {{ t('continue') }}
       </BaseButton>
     </div>
