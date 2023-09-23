@@ -2,6 +2,24 @@
 const { t } = useI18n()
 
 const { bool: checkboxValue } = useBoolean(false)
+
+const $scrollList = ref(null)
+// const delayId = ref(null)
+// const atBottom = ref(false)
+const { bool: isAtBottom, setTrue: setAtBottomTrue, setFalse: setAtBottomFalse } = useBoolean(false)
+
+function handleScroll(evt: any) {
+  const { scrollTop, scrollHeight, clientHeight } = evt.target
+  const _atBottom = scrollHeight - scrollTop - clientHeight < 100
+  isAtBottom.value = _atBottom
+  console.log(isAtBottom.value)
+
+  // clearTimeout(delayId.value)
+  // delayId.value = setTimeout(() => {
+  //   if (_atBottom)
+  //     setAtBottomTrue()
+  // }, 100)
+}
 </script>
 
 <template>
@@ -9,7 +27,7 @@ const { bool: checkboxValue } = useBoolean(false)
     <div class="title">
       {{ t('reg_step2') }}
     </div>
-    <div class="scroll-y terms-conditions">
+    <div ref="$scrollList" class="scroll-y terms-conditions" @scroll="handleScroll">
       <div>
         <div class="terms-conditions-theme">
           Terms and Conditions
