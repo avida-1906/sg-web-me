@@ -38,7 +38,9 @@ const { run: runMemberLogin, loading: isLoading } = useRequest(() => ApiMemberLo
   },
 })
 
-// const isDisabled = computed(() => { })
+const isDisabled = computed(() => {
+  return (!emailReg.test(username.value) && !usernameReg.test(username.value)) || !passwordReg.test(password.value)
+})
 </script>
 
 <template>
@@ -48,8 +50,7 @@ const { run: runMemberLogin, loading: isLoading } = useRequest(() => ApiMemberLo
       <BaseInput v-model="username" :label="t('email_or_username')" :msg="usernameErrorMsg" :placeholder="t('pls_enter_email_or_username')" must />
       <BaseInput v-model="password" :label="t('password')" :msg="pwdErrorMsg" :placeholder="t('pls_enter_password')" type="password" must autocomplete="current-password" />
       <!-- <BaseInput v-model="username" :label="t('two-step_verification')" :msg="usernameErrorMsg" :placeholder="t('pls_enter_two-step_verification')" must /> -->
-      <!-- :disabled="isDisabled" -->
-      <BaseButton class="app-login-btn" bg-style="secondary" :loading="isLoading" @click="runMemberLogin">
+      <BaseButton class="app-login-btn" bg-style="secondary" :loading="isLoading" :disabled="isDisabled" @click="runMemberLogin">
         {{ t('login') }}
       </BaseButton>
     </div>
