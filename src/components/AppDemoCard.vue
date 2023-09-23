@@ -8,8 +8,8 @@ interface Props {
 withDefaults(defineProps<Props>(), {})
 
 const { bool: showContent, toggle } = useBoolean(false)
-const appStore = useAppStore()
-const { isLogin } = storeToRefs(appStore)
+// const appStore = useAppStore()
+// const { isLogin } = storeToRefs(appStore)
 
 function change() {
   loadLanguageAsync(EnumLanguage[2])
@@ -21,7 +21,8 @@ function change() {
     <div class="app-demo-card-head" @click="toggle">
       <slot name="title">
         <h3 @click="change">
-          {{ title }} {{ isLogin }} {{ $t('hello') }}
+          {{ title }}
+          <!-- {{ isLogin }} {{ $t('hello') }} -->
         </h3>
       </slot>
       <div class="icon-box" :class="[showContent ? 'down' : 'left']">
