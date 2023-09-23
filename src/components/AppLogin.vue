@@ -53,7 +53,7 @@ async function getMemberLogin() {
       <BaseInput v-model="username" :label="t('email_or_username')" :msg="usernameErrorMsg" :placeholder="t('pls_enter_email_or_username')" must />
       <BaseInput v-model="password" :label="t('password')" :msg="pwdErrorMsg" :placeholder="t('pls_enter_password')" type="password" must autocomplete="current-password" />
       <!-- <BaseInput v-model="username" :label="t('two-step_verification')" :msg="usernameErrorMsg" :placeholder="t('pls_enter_two-step_verification')" must /> -->
-      <BaseButton class="app-login-btn" bg-style="secondary" :loading="isLoading" @click="getMemberLogin">
+      <BaseButton class="app-login-btn" bg-style="secondary" :loading="isLoading" @click.stop="getMemberLogin">
         {{ t('login') }}
       </BaseButton>
     </div>

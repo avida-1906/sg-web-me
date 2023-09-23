@@ -29,11 +29,12 @@ export const config: FloatingVueConfig = {
   // Shift on the cross axis to prevent the popper from overflowing
   shift: true,
   // Overflow padding (px)
-  overflowPadding: 0,
+  overflowPadding: 10,
   // Arrow padding (px)
   arrowPadding: 0,
   // Compute arrow overflow (useful to hide it)
   arrowOverflow: true,
+  autoBoundaryMaxSize: true,
   // Themes
   themes: {
     tooltip: {
@@ -50,7 +51,7 @@ export const config: FloatingVueConfig = {
         hide: 0,
       },
       // Update popper on content resize
-      handleResize: false,
+      handleResize: true,
       // Enable HTML content in directive
       html: false,
       // Displayed when tooltip content is loading

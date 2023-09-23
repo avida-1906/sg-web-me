@@ -62,7 +62,8 @@ const isMobile = computed(() => width.value <= 888)
           </div>
         </div>
         <div class="top-banner">
-          <BaseImage url="https://mediumrare.imgix.net/welcome-top-zh.png?&dpr=2&format=auto&auto=format&w=540&q=50" />
+          <AppBanner v-if="isMobile" />
+          <BaseImage v-else fit="cover" url="https://mediumrare.imgix.net/welcome-top-zh.png?&dpr=2&format=auto&auto=format&w=540&q=50" />
         </div>
       </div>
     </div>
@@ -166,7 +167,7 @@ const isMobile = computed(() => width.value <= 888)
       grid-template-columns: 40% 50%;
       justify-content: space-between;
       background-position: left 25% center;
-      background-size: 50% 125%;
+      background-size: auto 120%;
       background-repeat: no-repeat;
       background-image: url(https://stake.com/_app/immutable/assets/abstract-bg.71bdcaae.svg);
       .unauthenticated-wrapper{
@@ -175,7 +176,7 @@ const isMobile = computed(() => width.value <= 888)
         align-items: center;
         gap: 1rem;
         align-self: center;
-        // padding: var(--tg-spacing-32);
+        padding: var(--tg-spacing-32) 0;
         .unauthenticated-content{
           display: grid;
           grid-auto-flow: row;
@@ -195,17 +196,6 @@ const isMobile = computed(() => width.value <= 888)
       }
       .top-banner{
         position: relative;
-        // &:before {
-        //   content: "";
-        //   height: 100%;
-        //   width: 100%;
-        //   right: 75%;
-        //   position: absolute;
-        //   background-position: center;
-        //   background-size: cover;
-        //   background-repeat: no-repeat;
-        //   background-image: url(https://stake.com/_app/immutable/assets/abstract-bg.71bdcaae.svg);
-        // }
       }
     }
   }
@@ -320,6 +310,17 @@ const isMobile = computed(() => width.value <= 888)
   }
 }
 .is-mobile{
+  .dark-background{
+    &:before {
+      display: none;
+    }
+    .top-wrapper{
+      grid-template-columns:100%;
+      background:none;
+      // background-position: right 25% center;
+      // background-size: cover;
+    }
+  }
   .index-features{
     grid-template-columns: none;
   }
