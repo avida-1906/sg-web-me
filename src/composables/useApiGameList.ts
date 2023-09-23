@@ -36,33 +36,39 @@ interface GameItem {
 }
 
 export function useApiGameList(query: GameListQuery) {
-  const list = ref<GameItem[]>([])
-  const { data, run, loading } = useRequest((_query: GameListQuery) => ApiMemberGameList({ ..._query }), {
-    manual: true,
-    onSuccess(res, params) {
-      const _params = params[0]
-      if (res.d) {
-        //  TODO:待删
-        res.d = res.d.map((item) => {
-          return { ...item, img: 'https://mediumrare.imgix.net/c984a0f6625efd5a38c306697845c7bedcc917e2c061b45e8a75a5e648057e8a?&dpr=2&format=auto&auto=format&q=50&w=167' }
-        })
+  // const list = ref<GameItem[]>([])
+  // const { data, run, loading } = useRequest((_query: GameListQuery) => ApiMemberGameList({ ..._query }), {
+  //   manual: true,
+  //   onSuccess(res, params) {
+  //     const _params = params[0]
+  //     if (res.d) {
+  //       //  TODO:待删
+  //       res.d = res.d.map((item) => {
+  //         const name = application.getBackendLanguageField(item, 'name')
+  //         return { ...item, name, img: 'https://mediumrare.imgix.net/c984a0f6625efd5a38c306697845c7bedcc917e2c061b45e8a75a5e648057e8a?&dpr=2&format=auto&auto=format&q=50&w=167' }
+  //       })
 
-        if (_params.page === 1) {
-          list.value = res.d
-        }
-        else {
-          const arr = cloneDeep(list.value)
-          list.value = [...arr, ...res.d]
-        }
-      }
-    },
-  })
-  const total = computed(() => data.value?.t ?? 0)
-  const finished = computed(() => data.value?.d && list.value.length >= total.value)
+  //       if (_params.page === 1) {
+  //         list.value = res.d
+  //       }
+  //       else {
+  //         const arr = cloneDeep(list.value)
+  //         list.value = [...arr, ...res.d]
+  //       }
+  //     }
+  //   },
+  // })
+  const { data, page, page_size, run } = usePage((page, page_size) => () => ApiMemberGameList({
+    page: page.value,
+    page_size: page_size.value,
+  //  {...query}
+  }))
+  // const total = computed(() => data.value?.t ?? 0)
+  // const finished = computed(() => data.value?.d && list.value.length >= total.value)
 
-  run(query)
+  // run(query)
 
-  return { list, total, run, loading, finished }
+  return { data, page, page_size, run }
 }
 
 // TODO:待删
