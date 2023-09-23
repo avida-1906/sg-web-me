@@ -4,6 +4,7 @@ export interface MenuItem {
   path?: string
   list?: Menu
   domId?: string
+  expand?: boolean
 }
 
 export type Menu = Array<MenuItem>
