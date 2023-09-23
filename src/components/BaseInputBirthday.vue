@@ -148,6 +148,9 @@ function onInput() {
     label {
       margin-bottom: var(--tg-spacing-4);
       font-weight: var(--tg-font-weight-semibold);
+      span {
+        color: var(--tg-text-error);
+      }
     }
 
   }
