@@ -1,14 +1,16 @@
 <script setup lang='ts'>
-const gameType = ref('')
+const gameType = ref('all')
 const tabList = [
   { label: '大厅', value: 'all' },
-  { label: '真人娱乐场', value: 'real' },
-  { label: '特色老虎机', value: 'slot' },
-  { label: '游戏节目', value: 'live' },
-  { label: 'Stake 原创游戏', value: 'origin' },
+  { label: '真人娱乐场', value: '1' },
+  { label: '特色老虎机', value: '3' },
 ]
 
+const { VITE_CASINO_HOME_PAGE_SIZE } = import.meta.env
+
 const { gameList, gameProviders } = useGameList()
+const { list: liveList } = useApiGameList({ page: 1, page_size: VITE_CASINO_HOME_PAGE_SIZE, game_type: 1 })
+const { list: slotList } = useApiGameList({ page: 1, page_size: VITE_CASINO_HOME_PAGE_SIZE, game_type: 3 })
 </script>
 
 <template>
@@ -23,7 +25,8 @@ const { gameList, gameProviders } = useGameList()
       <BaseTab v-model="gameType" :list="tabList" :center="false" />
     </div>
     <div class="content-wrapper">
-      <AppSlider api="" icon="chess-original-game" :title="$t('casino_origin_game')" :data="gameList" />
+      <AppSlider api="" icon="chess-original-game" title="真人娱乐场" :data="liveList" />
+      <AppSlider api="" icon="chess-original-game" title="特色老虎机" :data="slotList" />
       <AppSlider api="" icon="chess-game-provider" :title="$t('casino_provider')" :data="gameProviders" :show-view-all="false">
         <template #default="{ item }">
           <div class="provider-item-wrap">

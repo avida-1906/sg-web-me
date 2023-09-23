@@ -29,7 +29,7 @@ function handleClickItem(item: any) {
       @click-item="handleClickItem"
     >
       <template #default="{ menuItem: info }">
-        <AppMenuItem :menu-item="info" />
+        <AppMenuItem :menu-item="info" @click="() => handleClickItem(info)" />
       </template>
     </BaseAccordion>
     <AppMenuItem v-else :menu-item="menuItem" @click="() => handleClickItem(menuItem)" />

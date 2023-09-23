@@ -46,6 +46,7 @@ const { run: runMemberReg, loading: isLoading } = useRequest(() => ApiMemberReg(
   manual: true,
   onSuccess: async (res: any) => {
     appStore.setToken(res)
+    Session.remove('reg_params')
     await nextTick()
     closeDialog()
   },
@@ -79,7 +80,6 @@ onBeforeUnmount(() => {
 <template>
   <div class="app-register-terms-conditions">
     <div class="title">
-      {{ regParams }}
       {{ t('reg_step2') }}
     </div>
     <div ref="$scrollList" class="scroll-y terms-conditions" @scroll="handleScroll">
