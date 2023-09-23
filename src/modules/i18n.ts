@@ -3,6 +3,11 @@ import { createI18n } from 'vue-i18n'
 import type { App } from 'vue'
 import { EnumLanguage } from '~/utils/enums'
 
+/** 映射后端的多语言值 */
+export const languageMap: any = {
+  'zh-CN': 'zh_CN',
+}
+
 const i18n = createI18n({
   legacy: false,
   locale: '',
@@ -55,6 +60,12 @@ export function install(app: App<Element>) {
   loadLanguageAsync(EnumLanguage[index])
 }
 
+/** 获取前端本地多语言 */
 export function getCurrentLanguage() {
   return i18n.global.locale.value
+}
+
+/** 获取当前对应后端的多语言 */
+export function getCurrentLanguageForBackend() {
+  return languageMap[getCurrentLanguage() || 'zh_CN']
 }

@@ -4,6 +4,7 @@ export interface MenuItem {
   path?: string
   list?: Menu
   domId?: string
+  modalQuery?: { [k: string ]: any }
   expand?: boolean
 }
 
@@ -150,7 +151,7 @@ const staticMenu1: Menu = [
     path: '',
     icon: 'navbar-user',
     list: [
-      { title: '钱包', path: '', icon: 'navbar-wallet' },
+      { title: '钱包', path: '', icon: 'navbar-wallet', modalQuery: { modal: 'vault', operation: 'deposit' } },
       { title: '保险库', path: '', icon: 'navbar-cart' },
       { title: 'VIP', path: '', icon: 'chess-air-bonus' },
       { title: '统计数据', path: '', icon: 'uni-trend' },
@@ -208,15 +209,24 @@ const staticMenu2: Menu = [
 export function useApiMenuData() {
   const router = useRouter()
 
+  const route = useRoute()
+
   const { leftIsExpand } = useLeftSidebar()
 
   function menuItemClick(item: MenuItem) {
+    console.log('item +++ ', item)
     if (item.path && item.path.length) {
       router.push(item.path)
     }
     else if (item.list && item.list.length) {
       leftIsExpand.value = true
       item.expand = true
+    }
+    else if (item.modalQuery) {
+      router.push({
+        path: route.path,
+        query: { ...route.query, ...item.modalQuery },
+      })
     }
   }
 

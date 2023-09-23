@@ -33,3 +33,7 @@ interface ISelectOption {
   label: string
   value: string | number
 }
+
+interface IObject {
+  [key: string]: any
+}
