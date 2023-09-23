@@ -15,7 +15,7 @@ const { appContentWidth } = storeToRefs(useWindowStore())
           <BaseButton size="md">
             <div class="btn-arrow-down">
               <span>{{ $t('casino_provider') }}</span>
-              <BaseBadge :count="2" />
+              <BaseBadge :count="2" mode="active" />
               <BaseIcon name="uni-arrow-down" />
             </div>
           </BaseButton>

@@ -12,6 +12,7 @@ const closeDialog = inject('closeDialog', () => {})
 
 const { openLoginDialog } = useLoginDialog()
 const { openRegisterDialog } = useRegisterDialog()
+const { openTermsConditionsDialog } = useTermsConditionsDialog()
 
 async function toRegister() {
   closeDialog()
@@ -21,7 +22,8 @@ async function toRegister() {
 async function toLogin() {
   closeDialog()
   await nextTick()
-  openLoginDialog()
+  // openLoginDialog()
+  openTermsConditionsDialog()
 }
 </script>
 

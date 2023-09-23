@@ -1,30 +1,56 @@
 <script setup lang='ts'>
 const { t } = useI18n()
 
+// const appStore = useAppStore()
+
+const { bool: isRead, setTrue: setReadTrue } = useBoolean(false)
 const { bool: checkboxValue } = useBoolean(false)
+const { errorMessage: checkedErrorMsg, validate: valiChecked } = useField<string>('checkbox', (value) => {
+  if (!checkboxValue.value)
+    return t('agree_terms_conditions')
+
+  return ''
+})
+
+const closeDialog = inject('closeDialog', () => {})
+const { openLoginDialog } = useLoginDialog()
 
 const $scrollList = ref(null)
-// const delayId = ref(null)
-// const atBottom = ref(false)
-const { bool: isAtBottom, setTrue: setAtBottomTrue, setFalse: setAtBottomFalse } = useBoolean(false)
+const delayId = ref()
 
 function handleScroll(evt: any) {
   const { scrollTop, scrollHeight, clientHeight } = evt.target
   const _atBottom = scrollHeight - scrollTop - clientHeight < 100
-  isAtBottom.value = _atBottom
-  console.log(isAtBottom.value)
 
-  // clearTimeout(delayId.value)
-  // delayId.value = setTimeout(() => {
-  //   if (_atBottom)
-  //     setAtBottomTrue()
-  // }, 100)
+  clearTimeout(delayId.value)
+  delayId.value = setTimeout(() => {
+    if (_atBottom)
+      setReadTrue()
+  }, 100)
 }
+
+function getStartGame() {
+  valiChecked()
+  if (!checkedErrorMsg.value)
+    console.log('===getStartGame===')
+  // appStore.setToken(token)
+}
+
+async function toLogin() {
+  closeDialog()
+  await nextTick()
+  openLoginDialog()
+}
+
+onBeforeUnmount(() => {
+  clearTimeout(delayId.value)
+})
 </script>
 
 <template>
   <div class="app-register-terms-conditions">
     <div class="title">
+      {{ isRead }}
       {{ t('reg_step2') }}
     </div>
     <div ref="$scrollList" class="scroll-y terms-conditions" @scroll="handleScroll">
@@ -87,16 +113,16 @@ function handleScroll(evt: any) {
       </div>
     </div>
     <div class="check-box">
-      <BaseCheckBox v-model="checkboxValue">
+      <BaseCheckBox v-model="checkboxValue" :disabled="!isRead" :msg="checkedErrorMsg" @click.stop="valiChecked">
         {{ t('read_terms_conditions') }}
       </BaseCheckBox>
-      <BaseButton class="app-register-terms-conditions-btn" bg-style="secondary">
+      <BaseButton class="app-register-terms-conditions-btn" bg-style="secondary" @click.stop="getStartGame">
         {{ t('start_game') }}
       </BaseButton>
     </div>
     <div class="app-bottom">
       <div class="app-bottom-text">
-        <div>
+        <div @click.stop="toLogin">
           {{ t('have_account') }}<span class="text-white">{{ t('login') }}</span>
         </div>
 
