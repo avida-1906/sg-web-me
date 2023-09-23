@@ -22,7 +22,7 @@ const casinoGameList: Menu = [
   { title: '可购买奖励回合', path: '/casino/group/feature-buy-in', icon: 'chess-bonus-rounds', list: [], domId: '' },
   { title: 'RTP 增强化', path: '/casino/group/enhanced-rtp', icon: 'chess-rtp', list: [], domId: '' },
 ]
-const casinoGameProvider: Menu = [{ title: '游戏提供商', path: '/collection/provider', icon: 'chess-game-provider', list: [], domId: '' }]
+const casinoGameProvider: Menu = [{ title: '游戏提供商', path: '/casino/collection/provider', icon: 'chess-game-provider', list: [], domId: '' }]
 
 // sports
 const sportsMenu: Menu = [
