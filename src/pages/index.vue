@@ -61,8 +61,9 @@ const isMobile = computed(() => width.value <= 888)
             <AppAuthLogin />
           </div>
         </div>
-        <div v-if="!isMobile" class="top-banner">
-          <BaseImage fit="cover" url="https://mediumrare.imgix.net/welcome-top-zh.png?&dpr=2&format=auto&auto=format&w=540&q=50" />
+        <div class="top-banner">
+          <AppBanner v-if="isMobile" />
+          <BaseImage v-else fit="cover" url="https://mediumrare.imgix.net/welcome-top-zh.png?&dpr=2&format=auto&auto=format&w=540&q=50" />
         </div>
       </div>
     </div>
@@ -310,10 +311,14 @@ const isMobile = computed(() => width.value <= 888)
 }
 .is-mobile{
   .dark-background{
+    &:before {
+      display: none;
+    }
     .top-wrapper{
       grid-template-columns:100%;
-      background-position: right 25% center;
-      background-size: cover;
+      background:none;
+      // background-position: right 25% center;
+      // background-size: cover;
     }
   }
   .index-features{
