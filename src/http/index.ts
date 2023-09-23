@@ -1,5 +1,5 @@
 import type { AxiosResponse, InternalAxiosRequestConfig } from 'axios'
-import { getCurrentLanguage } from '~/modules/i18n'
+import { getCurrentLanguageForBackend } from '~/modules/i18n'
 
 const { VITE_HTTP_TIMEOUT, VITE_HTTP_BASEURL } = import.meta.env
 
@@ -33,14 +33,6 @@ class HttpClient {
       return 24
   }
 
-  /** 获取传给后端的语言 */
-  #getLanguage() {
-    const languageMap: any = {
-      'zh-CN': 'zh_CN',
-    }
-    return languageMap[getCurrentLanguage()] || 'zh_CN'
-  }
-
   /**
    * 请求拦截函数列表，按照顺序执行
    *
@@ -60,7 +52,7 @@ class HttpClient {
     // 设置全局header
     (config) => {
       config.headers.d = this.#getDevice()
-      config.headers.lang = this.#getLanguage()
+      config.headers.lang = getCurrentLanguageForBackend()
       return config
     },
     // 使用qs序列化参数
