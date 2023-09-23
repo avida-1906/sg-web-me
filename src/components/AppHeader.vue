@@ -60,7 +60,7 @@ function handleClickMenuItem(item: { name: string }) {
     <!-- v-if="isLogin" -->
     <div class="app-header">
       <BaseLogo :use-small="width < 400" />
-      <div v-if="isLogin">
+      <div v-if="!isLogin" class="header-box">
         <AppWallet :wallet-btn="true" />
         <div class="header-right">
           <BaseButton v-show="!isMobile" type="text" class="search-btn" @click="setTrue">
@@ -113,7 +113,7 @@ function handleClickMenuItem(item: { name: string }) {
       </div>
     </div>
     <!-- <div v-else class="app-header-login">
-      <BaseLogo :use-small="width <= 400" />
+      <BaseLogo @cl :use-small="width <= 400" />
       <div class="user">
         <BaseButton type="text" class="login" @click.stop="openLoginDialog()">
           {{ t('login') }}
@@ -160,16 +160,21 @@ function handleClickMenuItem(item: { name: string }) {
   }
 }
 .app-header {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  // display: grid;
+  // grid-template-columns: 1fr auto 1fr;
   // justify-content: center;
   // align-items: center;
-  // position: relative;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   .icon-size {
     font-size: var(--tg-font-size-md);
+  }
+  .header-box {
+    display: flex;
+    align-items: center;
   }
 
   .header-right {
