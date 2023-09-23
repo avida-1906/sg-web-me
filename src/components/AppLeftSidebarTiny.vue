@@ -32,7 +32,7 @@ const {
   sportOddType,
   staticMenu1,
   staticMenu2,
-} = useMenuData()
+} = useApiMenuData()
 
 const menuData = computed(() => {
   if (isCasino.value) {

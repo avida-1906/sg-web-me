@@ -22,6 +22,7 @@ reg_step1: 步骤1/2：填写您的详细信息
 reg_step2: 步骤2/2：填写您的详细信息
 code_optional: 代码（可选的）
 read_terms_conditions: 我已阅读并同意条款与条件
+agree_terms_conditions: 请完整阅读条款与条件，然后滚动至末尾将其接受。
 or_use: 或者使用
 forgot_password: 忘记密码
 no_account_yet: 还未有账户？
