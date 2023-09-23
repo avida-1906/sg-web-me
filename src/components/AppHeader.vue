@@ -60,7 +60,7 @@ function handleClickMenuItem(item: { name: string }) {
     <!-- v-if="isLogin" -->
     <div class="app-header">
       <BaseLogo :use-small="width < 400" />
-      <div v-if="!isLogin" class="header-box">
+      <div v-if="isLogin" class="header-box">
         <AppWallet :wallet-btn="true" />
         <div class="header-right">
           <BaseButton v-show="!isMobile" type="text" class="search-btn" @click="setTrue">
