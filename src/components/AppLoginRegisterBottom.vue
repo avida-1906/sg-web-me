@@ -64,6 +64,7 @@ async function toLogin() {
     gap: var(--tg-spacing-12);
     .text-white {
       color: var(--tg-text-white) !important;
+      font-weight: var(--tg-font-weight-semibold);
     }
     .stake-text {
       font-size: var(--tg-font-size-xs);
