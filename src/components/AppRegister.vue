@@ -71,8 +71,7 @@ async function getMemberReg() {
       birthday: birthday.value,
       device_number: application.getDeviceNumber(),
     }
-    Session.set('reg_params', paramsReg)
-    // Session.set('reg_params', JSON.stringify(paramsReg))
+    Session.set(STORAGE_REG_PARAMS_KEYWORDS, paramsReg)
     closeDialog()
     await nextTick()
     openTermsConditionsDialog()

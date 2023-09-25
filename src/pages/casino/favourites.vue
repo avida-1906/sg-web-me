@@ -1,4 +1,10 @@
 <script setup lang="ts">
+const { VITE_CASINO_GAME_PAGE_SIZE } = import.meta.env
+
+const { data, page, page_size } = usePage((page, page_size) => () => ApiMemberGameFavList({
+  page: page.value,
+  page_size: page_size.value,
+}), { page_size: VITE_CASINO_GAME_PAGE_SIZE })
 </script>
 
 <template>
@@ -22,7 +28,7 @@
       <AppGameSearch game-type="2" />
     </div>
     <div class="mt-24">
-      <AppCardList />
+      <AppCardList :list="data" />
     </div>
   </section>
   <div class="layout-spacing">

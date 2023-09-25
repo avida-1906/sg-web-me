@@ -53,6 +53,36 @@ class Application {
   getDeviceNumber() {
     return 'testwebwebwebwebewb'
   }
+
+  /**
+   * 将Object转换成url参数
+   * @param {Record<string, any>} obj
+   * @returns {string}
+   */
+  objectToUrlParams(obj: Record<string, any>) {
+    if (Object.keys(obj).length === 0)
+      return ''
+
+    const filterObj = Object.entries(obj).filter(([, value]) => {
+      if (typeof value === 'object' || Array.isArray(value) || value === undefined || value === null || value === '')
+        return false
+      return true
+    })
+
+    const params = new URLSearchParams(filterObj)
+    return params.toString()
+  }
+
+  /**
+   * 将url参数转换成Object
+   * @param {string} url
+   * @returns {Record<string, any>}
+   */
+  urlParamsToObject(url: string) {
+    const params = new URLSearchParams(url)
+    const obj = Object.fromEntries(params)
+    return obj
+  }
 }
 
 export const application = new Application()
