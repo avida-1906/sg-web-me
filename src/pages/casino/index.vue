@@ -19,8 +19,8 @@ const slotImg = 'https://mediumrare.imgix.net/3285df789ee1e5f52e3b075b4eb0c1f080
 
 const { data: liveData, total: liveTotal } = useApiGameList({ page: 1, page_size: VITE_CASINO_HOME_PAGE_SIZE, game_type: 1 })
 const liveList = computed(() => {
-  if (liveData.value?.d) {
-    return liveData.value.d.map((item) => {
+  if (liveData.value) {
+    return liveData.value.map((item) => {
       return { ...item, img: liveImg }
     })
   }
@@ -28,8 +28,8 @@ const liveList = computed(() => {
 })
 const { data: slotData, total: slotTotal } = useApiGameList({ page: 1, page_size: VITE_CASINO_HOME_PAGE_SIZE, game_type: 3 })
 const slotList = computed(() => {
-  if (slotData.value?.d) {
-    return slotData.value.d.map((item) => {
+  if (slotData.value) {
+    return slotData.value.map((item) => {
       return { ...item, img: slotImg }
     })
   }
