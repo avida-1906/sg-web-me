@@ -179,6 +179,11 @@ function copyCode(type: string) {
         </BaseDialog>
       `)
       break
+    case 'BaseMenu':
+      copy(`
+        <BaseMenu :data="[{ title: '存款', path: '/components' }, { title: '提款', path: '/' }]" />
+      `)
+      break
     default:
       break
   }
@@ -1165,6 +1170,16 @@ const breadcrumbs = ['one', 'two', 'three', 'four']
         <AppAuthLogin />
         <div class="center">
           <BaseButton @click="copyAppAuthLogin">
+            copy
+          </BaseButton>
+        </div>
+      </AppDemoCard>
+    </li>
+    <li class="box">
+      <AppDemoCard title="BaseMenu" style="text-align:left">
+        <BaseMenu :data="[{ title: '存款', path: '/components' }, { title: '提款', path: '/' }]" />
+        <div class="center">
+          <BaseButton @click="copyCode('BaseMenu')">
             copy
           </BaseButton>
         </div>

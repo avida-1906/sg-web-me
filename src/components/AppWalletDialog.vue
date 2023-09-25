@@ -1,15 +1,17 @@
 <script setup lang='ts'>
 const { t } = useI18n()
 
-const currentTab = ref('deposit')
+const currentTab = ref('fiat')
 const tabList = [
   { label: t('deposit'), value: 'deposit' },
   { label: t('withdraw'), value: 'withdraw' },
   { label: t('buy_cryptocurrency'), value: 'buy' },
+  { label: '法币提现', value: 'fiat' },
 ]
 const isDeposit = computed(() => currentTab.value === 'deposit')
 const isWithdraw = computed(() => currentTab.value === 'withdraw')
 const isBuy = computed(() => currentTab.value === 'buy')
+const isFiat = computed(() => currentTab.value === 'fiat')
 </script>
 
 <template>
@@ -19,6 +21,7 @@ const isBuy = computed(() => currentTab.value === 'buy')
       <AppDeposit v-if="isDeposit" />
       <AppWithdraw v-else-if="isWithdraw" />
       <AppBuyCryptocurrency v-else-if="isBuy" />
+      <AppFiatDeposit v-else-if="isFiat" />
     </div>
 
     <!-- <div class="footer">

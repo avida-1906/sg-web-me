@@ -53,14 +53,24 @@ export function install(app: App<Element>) {
   const defaultLanguage = import.meta.env.VITE_I18N_DEFAULT_LANG
   const localStorageLanguageIndex = Local.get<EnumLanguage | null>(STORAGE_LANGUAGE_KEY)?.value
   let index: number
-  if (localStorageLanguageIndex != null)
+  if (localStorageLanguageIndex)
     index = Number(localStorageLanguageIndex)
 
   else
     index = Number(EnumLanguage[defaultLanguage])
 
   app.use(i18n)
-  loadLanguageAsync(EnumLanguage['zh-CN'])
+
+  if (index in EnumLanguage)
+    loadLanguageAsync(index)
+  else
+    loadLanguageAsync(EnumLanguage['zh-CN'])
+}
+
+/** 更换语言 */
+export function changeLanguage(langIndex: EnumLanguage) {
+  Local.set(STORAGE_LANGUAGE_KEY, langIndex)
+  loadLanguageAsync(langIndex)
 }
 
 /** 获取前端本地多语言 */
