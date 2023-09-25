@@ -9,37 +9,60 @@ interface Props {
 }
 const { t } = useI18n()
 const isCasino = computed(() => props.gameType === GameType.casino)
+const isSports = computed(() => props.gameType === GameType.sports)
 const placeHolderText = computed(() => isCasino.value ? t('search_game') : t('search_events'))
 
 const searchValue = ref('')
+const { bool: isClear, setTrue: setClearTrue, setFalse: setClearFalse } = useBoolean(true)
+// 近期搜索关键字
+const recentKeyword = ref(Local.get<any[]>(STORAGE_RECENT_SEARCH_KEYWORDS)?.value ?? [])
+const { data: casinoGamesData, run: runSearchCasinoGames } = useRequest(() => ApiMemberGameSearch({ w: searchValue.value }), {
+  manual: true,
+  debounceInterval: 500,
+  onAfter() {
+    setClearFalse()
+    recentKeyword.value.unshift(searchValue.value)
+    recentKeyword.value = recentKeyword.value.slice(0, 5)
+    Local.set(STORAGE_RECENT_SEARCH_KEYWORDS, recentKeyword.value)
+  },
+})
+function onBaseSearchInput() {
+  if (searchValue.value.length < 3)
+    return setClearTrue()
+  if (isCasino.value && searchValue.value.length >= 3)
+    runSearchCasinoGames()
+}
+function onClickKeyword(k: string) {
+  searchValue.value = k
+  runSearchCasinoGames()
+}
+function onCloseKeyword(k: string) {
+  recentKeyword.value.splice(recentKeyword.value.findIndex(t => t === k), 1)
+  Local.set(STORAGE_RECENT_SEARCH_KEYWORDS, recentKeyword.value)
+}
+// 搜索结果
+const resultData = computed(() => {
+  if (isClear.value)
+    return null
+  if (isCasino.value && casinoGamesData.value && casinoGamesData.value.d)
+    return casinoGamesData.value.d
+
+  return null
+})
 
 // 搜索功能面板
-const { bool: isShowOverlay, setTrue, setFalse } = useBoolean(false)
+const { bool: isShowOverlay, setTrue: setShowOverlayTrue, setFalse: setShowOverlayFalse } = useBoolean(false)
 // 点开始禁止页面滚动
 const dom = ref()
 const isLocked = useScrollLock(dom)
 function showOverlay() {
-  setTrue()
+  setShowOverlayTrue()
   isLocked.value = true
 }
 function closeOverlay() {
-  setFalse()
+  setShowOverlayFalse()
   isLocked.value = false
 }
-
-// 近期搜索关键字
-const recentKeyword = ref(['keyword 1', 'keyword 2', 'keyword 3', 'keyword 4', 'keyword 5'])
-function onClickKeyword(k: string) {
-  searchValue.value = k
-}
-function onCloseKeyword(k: string) {
-  recentKeyword.value.splice(recentKeyword.value.findIndex(t => t === k), 1)
-}
-
-// 搜索结果
-const { bool: noResult } = useBoolean(false)
-const { bool: casinoResult } = useBoolean(false)
-const { bool: sportsResult } = useBoolean(true)
 
 onMounted(() => {
   dom.value = document.getElementById('main-content-scrollable')
@@ -51,15 +74,15 @@ onMounted(() => {
     <div v-if="isShowOverlay" class="overlay" @click.self="closeOverlay" />
     <div :class="{ 'input-focus': isShowOverlay }">
       <BaseSearch
-        v-model="searchValue" :place-holder="placeHolderText" :clearable="isShowOverlay"
-        @focus="showOverlay" @close="closeOverlay"
+        v-model="searchValue" :place-holder="placeHolderText" :clearable="isShowOverlay" @focus="showOverlay"
+        @close="closeOverlay" @input="onBaseSearchInput" @clear="setClearTrue"
       />
     </div>
 
     <!-- 搜索功能面板  -->
     <div v-show="isShowOverlay" class="search-overlay">
       <div class="scroll-y warp">
-        <div v-if="noResult" class="no-result">
+        <div v-if="!resultData" class="no-result">
           <div class="text">
             <span v-show="searchValue.length < 3">{{ t('search_need_at_least_3_word') }}</span>
             <span v-show="searchValue.length >= 3">{{ t('search_no_result') }}</span>
@@ -78,10 +101,10 @@ onMounted(() => {
         </div>
 
         <!-- casino -->
-        <AppCardList v-if="!noResult && casinoResult" />
+        <AppCardList v-if="isCasino && resultData" :list="resultData" />
 
         <!-- sports -->
-        <AppSportsSearchResult v-if="!noResult && sportsResult" />
+        <AppSportsSearchResult v-if="isSports && resultData" />
       </div>
     </div>
   </div>
@@ -90,6 +113,7 @@ onMounted(() => {
 <style lang='scss' scoped>
 .app-game-search {
   position: relative;
+
   .overlay {
     position: fixed;
     width: 100%;
@@ -99,7 +123,8 @@ onMounted(() => {
     background: #{rgba($color: var(--tg-color-blue-rgb), $alpha: 0.7)};
     z-index: 1450;
   }
-  .input-focus{
+
+  .input-focus {
     position: relative;
     z-index: 1450;
   }

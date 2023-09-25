@@ -120,15 +120,11 @@ const isCasinoGames = computed(() => route.name === 'casino-games')
         </AppContent>
       </header>
 
-      <div id="main-content-scrollable" class="scroll-y scrollable">
-        <!-- <div class="layout-loading">
-          <BaseLoading />
-        </div> -->
+      <div id="main-content-scrollable" class="scroll-y scrollable" style="color: #fff">
         <!-- 用于获取内容区宽度 -->
         <AppContent>
           <div ref="homeContainerRef" class="only-for-get-width" />
         </AppContent>
-
         <!-- 主页面 -->
         <slot>
           <RouterView v-if="isCasinoGames" />

@@ -43,7 +43,8 @@ class HttpClient {
   private requestInterceptorsList: IRequestInterceptors[] = [
     // 设置token
     (config) => {
-      const token = Local.get(STORAGE_TOKEN_KEY)?.value
+      const appStore = useAppStore()
+      const token = appStore.getToken()
       if (token)
         config.headers.t = token
 

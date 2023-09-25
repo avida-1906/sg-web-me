@@ -19,6 +19,7 @@ declare module 'vue' {
     AppDemoCard: typeof import('./components/AppDemoCard.vue')['default']
     AppDeposit: typeof import('./components/AppDeposit.vue')['default']
     AppDesc: typeof import('./components/AppDesc.vue')['default']
+    AppFiatDeposit: typeof import('./components/AppFiatDeposit.vue')['default']
     AppFooter: typeof import('./components/AppFooter.vue')['default']
     AppFooterbar: typeof import('./components/AppFooterbar.vue')['default']
     AppGameSearch: typeof import('./components/AppGameSearch.vue')['default']

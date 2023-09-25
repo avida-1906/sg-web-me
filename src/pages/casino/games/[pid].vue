@@ -1,19 +1,17 @@
 <script setup lang='ts'>
-const props = defineProps<{ id: string }>()
+const props = defineProps<{ pid: string }>()
 const { query } = useRoute()
 const gameId = computed(() => query.code?.toString() ?? '')
 const { isMobile } = storeToRefs(useWindowStore())
 const { bool: isTheatre, setBool } = useBoolean(false) // 影院模式
 
 const { gameList } = useGameList()
-ApiGameLunch(props.id, gameId.value).then((res) => {
-  console.log('ApiGameLunch', res)
-})
+const { data } = useRequest(() => ApiGameLunch(props.pid, gameId.value))
 </script>
 
 <template>
   <div class="casino-games" :class="{ theatre: isTheatre && !isMobile }">
-    <AppIframe :is-theatre="isTheatre" @change-theatre="setBool" />
+    <AppIframe :data="data" :is-theatre="isTheatre" @change-theatre="setBool" />
     <AppDesc />
     <AppContent>
       <div class="content-wrapper">
