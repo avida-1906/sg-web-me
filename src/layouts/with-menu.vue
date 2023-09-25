@@ -10,29 +10,31 @@ const icon = computed<any>(() => route.meta.icon)
 <template>
   <Home>
     <template #default>
-      <section class="with-menu-container">
-        <div class="layout-spacing">
-          <div class="top">
-            <div>
-              <BaseIcon :name="icon" />
-              <span>{{ route.meta.title }}</span>
+      <AppContent>
+        <section class="with-menu-container">
+          <div class="layout-spacing">
+            <div class="top">
+              <div>
+                <BaseIcon :name="icon" />
+                <span>{{ route.meta.title }}</span>
+              </div>
+              <div>
+                <BaseIcon name="uni-close" />
+              </div>
             </div>
-            <div>
-              <BaseIcon name="uni-close" />
-            </div>
-          </div>
-          <div class="stack x-flex-start y-flex-start direction-horizontal content-outer gap-larger padding-none">
-            <div class="left">
-              <BaseMenu :data="menuData" />
-            </div>
-            <div class="right">
-              <div class="content-container">
-                <RouterView />
+            <div class="stack x-flex-start y-flex-start direction-horizontal content-outer gap-larger padding-none">
+              <div class="left">
+                <BaseMenu :data="menuData" />
+              </div>
+              <div class="right">
+                <div class="content-container">
+                  <RouterView />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </AppContent>
     </template>
   </Home>
 </template>
