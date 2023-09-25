@@ -137,32 +137,32 @@ const lineColor = computed(() => {
       border-radius: 100px;
       transition: all .3s cubic-bezier(0.78, 0.14, 0.15, 0.86);
 
-      &::after {
-        content: "";
-        background-image: linear-gradient(90deg, #{rgba($color: var(--tg-color-white-rgb), $alpha: 0.3)} 0%, #{rgba($color: var(--tg-color-white-rgb), $alpha: 0.5)} 100%);
-        animation: progressRipple 2s cubic-bezier(.4, 0, .2, 1) infinite;
-      }
+      // &::after {
+      //   content: "";
+      //   background-image: linear-gradient(90deg, #{rgba($color: var(--tg-color-white-rgb), $alpha: 0.3)} 0%, #{rgba($color: var(--tg-color-white-rgb), $alpha: 0.5)} 100%);
+      //   animation: progressRipple 2s cubic-bezier(.4, 0, .2, 1) infinite;
+      // }
 
-      @keyframes progressRipple {
-        0% {
-          position: absolute;
-          inset: 0;
-          right: 100%;
-          opacity: 1;
-        }
+      // @keyframes progressRipple {
+      //   0% {
+      //     position: absolute;
+      //     inset: 0;
+      //     right: 100%;
+      //     opacity: 1;
+      //   }
 
-        66% {
-          position: absolute;
-          inset: 0;
-          opacity: 0.66;
-        }
+      //   66% {
+      //     position: absolute;
+      //     inset: 0;
+      //     opacity: 0.66;
+      //   }
 
-        100% {
-          position: absolute;
-          inset: 0;
-          opacity: 0;
-        }
-      }
+      //   100% {
+      //     position: absolute;
+      //     inset: 0;
+      //     opacity: 0;
+      //   }
+      // }
     }
 
     .u-success-bg {
