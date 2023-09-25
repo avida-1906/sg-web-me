@@ -3,7 +3,7 @@ interface Props {
   mode?: 'only' | 'default'
 }
 const props = withDefaults(defineProps<Props>(), {
-  mode: 'only',
+  mode: 'default',
 })
 
 const {
