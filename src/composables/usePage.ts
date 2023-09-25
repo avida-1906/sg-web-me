@@ -31,7 +31,7 @@ export function usePage<R, P extends unknown[]>(service: (page: Ref<number>, pag
   const page = ref(options?.page ?? 1)
   const page_size = ref(options?.page_size ?? 10)
   const total = ref(0)
-  const resData = ref<R>()
+  const resData = ref<any[]>([])
   const isPush = ref(false)
 
   const refreshDeps: WatchSource<any>[] = [
@@ -60,27 +60,27 @@ export function usePage<R, P extends unknown[]>(service: (page: Ref<number>, pag
       ...options,
       refreshDeps, // 依赖变化时重新请求
       loadingDelay: 500, // 延迟 500ms 才设置 loading 为 true
-      onAfter(params) {
-        if (page.value === 1)
-          total.value = get(resData.value, 't', 0)
-
-        if (options?.onAfter)
-          options.onAfter(params)
-      },
       onSuccess(data) {
+        if (page.value === 1)
+          total.value = get(data, 't', 0)
+
         if (isPush.value) {
-          resData.value = get(data, 'd', []).concat(data)
+          resData.value.push(...get(data, 'd', []))
           isPush.value = false
         }
         else {
           resData.value = get(data, 'd', [])
         }
       },
+      onAfter(params) {
+        if (options?.onAfter)
+          options.onAfter(params)
+      },
     },
   )
 
   const next = () => {
-    if (page.value * page_size.value < total.value)
+    if (page.value * page_size.value <= total.value)
       page.value++
   }
 
