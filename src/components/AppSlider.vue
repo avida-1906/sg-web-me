@@ -163,7 +163,6 @@ watchEffect(() => {
         position: relative;
         align-items: center;
         font-weight: 500;
-
         h3 {
           font-size: var(--tg-font-size-md);
           line-height: 1.5;
@@ -187,8 +186,8 @@ watchEffect(() => {
       gap: var(--tg-spacing-6);
 
       button {
-        width: 55px;
-        height: 42px;
+        width: 51px;
+        height: 37px;
         padding: 0 !important;
       }
 

@@ -60,13 +60,16 @@ function onClear() {
 </template>
 
 <style lang='scss' scoped>
+.search-icon.app-svg-icon {
+  color: var(--tg-text-grey);
+}
 .base-search {
   border-width: var(--tg-border-width-sm);
   border-style: solid;
   border-color: var(--tg-secondary-main);
   background-color: var(--tg-secondary-dark);
   box-shadow: var(--tg-box-shadow);
-  padding: 0 var(--tg-spacing-10);
+  padding: 0 var(--tg-spacing-16);
   display: flex;
   align-items: stretch;
   position: relative;
