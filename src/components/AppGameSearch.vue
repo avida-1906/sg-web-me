@@ -18,7 +18,7 @@ const { bool: isClear, setTrue: setClearTrue, setFalse: setClearFalse } = useBoo
 const recentKeyword = ref(Local.get<any[]>(STORAGE_RECENT_SEARCH_KEYWORDS)?.value ?? [])
 const { data: casinoGamesData, run: runSearchCasinoGames } = useRequest(() => ApiMemberGameSearch({ w: searchValue.value }), {
   manual: true,
-  debounceInterval: 1000,
+  debounceInterval: 500,
   onAfter() {
     setClearFalse()
     recentKeyword.value.unshift(searchValue.value)
