@@ -150,6 +150,9 @@ watchEffect(() => {
         position: relative;
         align-items: center;
         font-weight: 500;
+        .app-svg-icon {
+          font-size: var(--tg-font-size-base);
+        }
         h3 {
           font-size: var(--tg-font-size-md);
           line-height: 1.5;
@@ -163,8 +166,8 @@ watchEffect(() => {
       justify-content: flex-end;
       gap: var(--tg-spacing-6);
       button {
-        width: 55px;
-        height: 42px;
+        width: 51px;
+        height: 37px;
         padding: 0 !important;
       }
       // button:disabled {
