@@ -32,6 +32,11 @@ const { menuItemClick } = useApiMenuData()
 function handleClickItem(item: MenuItem) {
   menuItemClick(item)
 }
+
+const timeStamp = ref(0)
+function closeMenu(t: any) {
+  timeStamp.value = t
+}
 </script>
 
 <template>
@@ -73,22 +78,22 @@ function handleClickItem(item: MenuItem) {
           </div>
           <div class="content-line" />
           <div v-for="item, i in sportHotGames" :key="i">
-            <AppAccordionMenu :menu-item="item" />
+            <AppAccordionMenu :menu-item="item" :time-stamp="timeStamp" @close-other-menu="closeMenu" />
           </div>
         </div>
         <div class="menu-box">
           <div v-for="item, i in sportEsports" :key="i">
-            <AppAccordionMenu :menu-item="item" />
+            <AppAccordionMenu :menu-item="item" :time-stamp="timeStamp" @close-other-menu="closeMenu" />
           </div>
         </div>
         <div class="menu-box">
           <div v-for="item, i in sportGameList" :key="i">
-            <AppAccordionMenu :menu-item="item" />
+            <AppAccordionMenu :menu-item="item" :time-stamp="timeStamp" @close-other-menu="closeMenu" />
           </div>
         </div>
         <div class="menu-box">
           <div v-for="item, i in sportOddType" :key="i">
-            <AppAccordionMenu :menu-item="item" />
+            <AppAccordionMenu :menu-item="item" :time-stamp="timeStamp" @close-other-menu="closeMenu" />
           </div>
         </div>
       </template>
@@ -96,7 +101,7 @@ function handleClickItem(item: MenuItem) {
       <!-- 个人中心 -->
       <div v-for="menu, m in [staticMenu1, staticMenu2]" :key="m" class="menu-box">
         <div v-for="item, i in menu" :key="i">
-          <AppAccordionMenu :menu-item="item" />
+          <AppAccordionMenu :menu-item="item" :time-stamp="timeStamp" @close-other-menu="closeMenu" />
         </div>
       </div>
     </div>
