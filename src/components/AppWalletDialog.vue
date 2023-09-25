@@ -17,7 +17,7 @@ const isFiat = computed(() => currentTab.value === 'fiat')
 <template>
   <div class="app-wallet-dialog">
     <div class="content">
-      <BaseTab v-model="currentTab" :list="tabList" />
+      <BaseTab v-model="currentTab" class="wallet-tab" :list="tabList" />
       <AppDeposit v-if="isDeposit" />
       <AppWithdraw v-else-if="isWithdraw" />
       <AppBuyCryptocurrency v-else-if="isBuy" />
@@ -47,6 +47,9 @@ const isFiat = computed(() => currentTab.value === 'fiat')
   display: flex;
   flex-direction: column;
   gap: var(--tg-spacing-16);
+  .wallet-tab{
+    justify-content: center;
+  }
 }
 
 .footer {

@@ -6,6 +6,7 @@ export interface MenuItem {
   domId?: string
   modalQuery?: { [k: string ]: any }
   expand?: boolean
+  type?: 'radio'
 }
 
 export type Menu = Array<MenuItem>
@@ -198,9 +199,9 @@ const staticMenu2: Menu = [
     path: '',
     icon: 'chess-language',
     list: [
-      { title: '中文', path: '', icon: '' },
-      { title: '日文', path: '', icon: '' },
-      { title: '英文', path: '', icon: '' },
+      { title: '中文', path: '', icon: '', type: 'radio' },
+      { title: '日文', path: '', icon: '', type: 'radio' },
+      { title: '英文', path: '', icon: '', type: 'radio' },
     ],
     domId: 'static-menu-language',
   },

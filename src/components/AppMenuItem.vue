@@ -11,7 +11,7 @@ withDefaults(defineProps<Props>(), {})
 <template>
   <div class="tg-app-menu-item">
     <div class="menu-item">
-      <BaseIcon :name="menuItem.icon" />
+      <BaseIcon v-if="menuItem.icon" :name="menuItem.icon" />
       <span>{{ menuItem.title }}</span>
     </div>
   </div>

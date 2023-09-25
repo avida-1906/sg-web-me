@@ -15,12 +15,17 @@ withDefaults(defineProps<Props>(), {
     { label: '200000', value: 200000 },
   ],
 })
+
+const emit = defineEmits(['clickKey'])
+function handleKey(item: ISelectOption) {
+  emit('clickKey', item)
+}
 </script>
 
 <template>
   <div class="base-money-keyboard">
     <div v-for="item of options" :key="item.label" class="item-key">
-      <BaseButton type="text" style="width: 100%;">
+      <BaseButton type="text" style="width: 100%;color:var(--tg-text-white);" @click="handleKey(item)">
         {{ item.label }}
       </BaseButton>
     </div>
@@ -33,6 +38,7 @@ withDefaults(defineProps<Props>(), {
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 12px;
   .item-key{
+
     border-radius: var(--tg-radius-default);
     border: 2px solid var(--tg-secondary-main);
     background: var(--tg-secondary-dark);

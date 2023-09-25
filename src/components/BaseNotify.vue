@@ -111,11 +111,35 @@ onMounted(() => {
       <div v-if="showClose" class="close" @click="handClose">
         <BaseIcon name="uni-close" />
       </div>
+      <div class="timer" />
     </section>
   </Transition>
 </template>
 
 <style lang="scss" scoped>
+@keyframes countDown {
+    0% {
+        transform: scaleX(1)
+    }
+
+    to {
+        transform: scaleX(0)
+    }
+}
+.timer {
+  height: 3px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--tg-text-grey); // #557086
+  transform-origin: left;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+  animation-name: countDown;
+  animation-duration: 4s!important;
+  border-bottom-left-radius: var(--tg-radius-default); // 4px
+}
 .notify-slide-fade-enter-active {
   transition: all 0.3s ease-out;
   opacity: 1;
@@ -172,6 +196,11 @@ onMounted(() => {
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+  &:hover {
+    .timer {
+      animation-play-state: paused;
+    }
   }
 }
 </style>
