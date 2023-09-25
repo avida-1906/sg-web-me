@@ -17,7 +17,7 @@ interface GameListQuery {
 
 export function useApiGameList(query: GameListQuery) {
   const { game_type, is_hot, is_new, tag_id, platform_id } = query
-  const { data, page, total } = usePage((page, page_size) => () => ApiMemberGameList({
+  const { ...rest } = usePage((page, page_size) => () => ApiMemberGameList({
     page: page.value,
     page_size: page_size.value,
     game_type,
@@ -27,7 +27,7 @@ export function useApiGameList(query: GameListQuery) {
     platform_id,
   }), { ...query })
 
-  return { data, page, total }
+  return { ...rest }
 }
 
 // TODO:待删

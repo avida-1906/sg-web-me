@@ -204,6 +204,8 @@ export enum EnumCurrency {
  * casino游戏类型枚举
  */
 export enum EnumCasinoGameType {
-  LIVE = 'live', // 真人
-  SLOT = 'slot', // 老虎机
+  /** 真人 */
+  LIVE = 'live',
+  /** 老虎机 */
+  SLOT = 'slot',
 }
