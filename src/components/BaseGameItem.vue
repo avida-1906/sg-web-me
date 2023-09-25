@@ -3,7 +3,7 @@ interface Props {
   gameInfo: {
     img?: string
     name?: string
-    id?: string
+    platform_id?: string
     game_id?: string
     [k: string]: any
   }
@@ -12,8 +12,8 @@ defineProps<Props>()
 
 const router = useRouter()
 function gameStart(item: Props['gameInfo']) {
-  const { id, game_id } = item
-  router.push(`/casino/games/${id}?code=${game_id}`)
+  const { platform_id, game_id } = item
+  router.push(`/casino/games/${platform_id}?code=${game_id}`)
 }
 </script>
 

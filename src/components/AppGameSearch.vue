@@ -27,6 +27,8 @@ const { data: casinoGamesData, run: runSearchCasinoGames } = useRequest(() => Ap
   },
 })
 function onBaseSearchInput() {
+  if (searchValue.value.length < 3)
+    return setClearTrue()
   if (isCasino.value && searchValue.value.length >= 3)
     runSearchCasinoGames()
 }

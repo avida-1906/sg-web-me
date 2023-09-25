@@ -1,6 +1,7 @@
 <script setup lang='ts'>
 const props = defineProps<{
   isTheatre: boolean
+  data: any
 }>()
 const emit = defineEmits(['changeTheatre'])
 const { t } = useI18n()
