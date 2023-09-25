@@ -1,16 +1,17 @@
 <script setup lang='ts'>
+const { VITE_CASINO_HOME_PAGE_SIZE } = import.meta.env
+const router = useRouter()
+const { t } = useI18n()
 const tab = ref('all')
 const tabList = [
-  { label: '大厅', value: 'all' },
-  { label: '真人娱乐场', value: '1' },
-  { label: '特色老虎机', value: '3' },
+  { label: t('game_type_all'), value: 'all' },
+  { label: t('game_type_live'), value: EnumCasinoGameType.LIVE },
+  { label: t('game_type_slot'), value: EnumCasinoGameType.SLOT },
 ]
 const showAll = computed(() => tab.value === 'all')
-const showLive = computed(() => tab.value === '1')
-const showSlot = computed(() => tab.value === '3')
+const showLive = computed(() => tab.value === EnumCasinoGameType.LIVE)
+const showSlot = computed(() => tab.value === EnumCasinoGameType.SLOT)
 const currentTitle = computed(() => tabList.find(a => a.value === tab.value)?.label ?? '-')
-
-const { VITE_CASINO_HOME_PAGE_SIZE } = import.meta.env
 
 const { gameProviders } = useGameList()
 // TODO:待删
@@ -35,6 +36,9 @@ const slotList = computed(() => {
   }
   return []
 })
+function viewMoreGames(gameType: string) {
+  router.push(`/casino/group/${gameType}`)
+}
 </script>
 
 <template>
@@ -49,8 +53,8 @@ const slotList = computed(() => {
       <BaseTab v-model="tab" :list="tabList" :center="false" />
     </div>
     <div class="content-wrapper">
-      <AppSlider v-show="showAll" api="" icon="chess-live-casino" title="真人娱乐场" :data="liveList" />
-      <AppSlider v-show="showAll" api="" icon="chess-slot-machine" title="特色老虎机" :data="slotList" />
+      <AppSlider v-show="showAll" api="" icon="chess-live-casino" :title="t('game_type_live')" :data="liveList" />
+      <AppSlider v-show="showAll" api="" icon="chess-slot-machine" :title="t('game_type_slot_short_name')" :data="slotList" />
 
       <div v-show="!showAll" class="list-wrap">
         <div class="title">
@@ -62,7 +66,7 @@ const slotList = computed(() => {
         <AppCardList v-show="showSlot" :list="slotList" />
 
         <div class="more">
-          <BaseButton size="md">
+          <BaseButton size="md" @click="viewMoreGames(showLive ? EnumCasinoGameType.LIVE : EnumCasinoGameType.SLOT)">
             查看全部 {{ showLive ? liveTotal : slotTotal }} {{ currentTitle }}
           </BaseButton>
         </div>

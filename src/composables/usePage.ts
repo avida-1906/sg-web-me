@@ -60,7 +60,7 @@ export function usePage<R, P extends unknown[]>(service: (page: Ref<number>, pag
       loadingDelay: 500, // 延迟 500ms 才设置 loading 为 true
       onAfter(params) {
         if (page.value === 1)
-          total.value = get(resData, 't', 0)
+          total.value = get(resData.value, 't', 0)
 
         if (options?.onAfter)
           options.onAfter(params)
