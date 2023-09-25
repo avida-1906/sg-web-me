@@ -1,6 +1,14 @@
 #!/bin/bash
 set -e
 
+if [ -n "$(git status -s)" ]
+then
+    echo "本地有未提交的代码，请先提交代码"
+    exit 1
+fi
+
+git pull origin master --no-rebase
+
 # 服务器地址
 serverDir="/home/rocky/sg/html/member"
 # 服务器ip

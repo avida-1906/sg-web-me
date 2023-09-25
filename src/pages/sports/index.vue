@@ -1,4 +1,6 @@
 <script setup lang='ts'>
+const { isMobile } = storeToRefs(useWindowStore())
+
 const gameType = ref('')
 const tabList = [
   { label: '大厅', value: 'all' },
@@ -15,7 +17,7 @@ const tabList = [
       <div class="hero-wrapper mt-24">
         <AppBanner />
       </div>
-      <div class="mt-24">
+      <div v-if="!isMobile" class="mt-24">
         <AppGameSearch game-type="2" />
       </div>
       <div class="mt-24">

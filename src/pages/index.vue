@@ -45,7 +45,6 @@ function disconnectMqtt() {
 }
 const { bool: showMore, toggle: toggleShowMore } = useBoolean(false)
 const onShowMore = function () {
-  console.log('showMore', showMore)
   toggleShowMore()
 }
 const {
@@ -226,7 +225,7 @@ const { openVipDialog } = useVipDialog()
     .top-wrapper{
       display: grid;
       position: relative;
-      grid-template-columns: 40% 40%;
+      // grid-template-columns: 40% 40%;
       grid-template-columns: repeat(2, 1fr);
       grid-gap: 2rem;
       justify-content: space-between;
