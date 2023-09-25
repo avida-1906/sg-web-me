@@ -4,7 +4,7 @@ const { gameProviders } = useGameList()
 
 <template>
   <div class="tg-app-provider-slider">
-    <AppSlider api="" icon="chess-game-provider" :title="$t('casino_provider')" :data="gameProviders" :show-view-all="false">
+    <AppSlider api="" icon="chess-game-provider" :title="$t('casino_provider')" :data="gameProviders" :show-view-all="false" game-type="provider">
       <template #default="{ item }">
         <div class="provider-item-wrap">
           <BaseImage :url="item.src" />

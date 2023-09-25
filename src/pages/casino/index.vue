@@ -13,7 +13,6 @@ const showLive = computed(() => tab.value === EnumCasinoGameType.LIVE)
 const showSlot = computed(() => tab.value === EnumCasinoGameType.SLOT)
 const currentTitle = computed(() => tabList.find(a => a.value === tab.value)?.label ?? '-')
 
-const { gameProviders } = useGameList()
 // TODO:待删
 const liveImg = 'https://mediumrare.imgix.net/c984a0f6625efd5a38c306697845c7bedcc917e2c061b45e8a75a5e648057e8a?&dpr=2&format=auto&auto=format&q=50'
 const slotImg = 'https://mediumrare.imgix.net/3285df789ee1e5f52e3b075b4eb0c1f080fcdce28f7c9689daa4e62f87fa85a3?&dpr=2&format=auto&auto=format&q=50'
@@ -53,8 +52,8 @@ function viewMoreGames(gameType: string) {
       <BaseTab v-model="tab" :list="tabList" :center="false" />
     </div>
     <div class="content-wrapper">
-      <AppSlider v-show="showAll" api="" icon="chess-live-casino" :title="t('game_type_live')" :data="liveList" />
-      <AppSlider v-show="showAll" api="" icon="chess-slot-machine" :title="t('game_type_slot_short_name')" :data="slotList" />
+      <AppSlider v-show="showAll" :game-type="EnumCasinoGameType.LIVE" api="" icon="chess-live-casino" :title="t('game_type_live')" :data="liveList" />
+      <AppSlider v-show="showAll" :game-type="EnumCasinoGameType.SLOT" api="" icon="chess-slot-machine" :title="t('game_type_slot_short_name')" :data="slotList" />
 
       <div v-show="!showAll" class="list-wrap">
         <div class="title">
@@ -71,17 +70,7 @@ function viewMoreGames(gameType: string) {
           </BaseButton>
         </div>
       </div>
-
-      <AppSlider
-        api="" icon="chess-game-provider" :title="$t('casino_provider')" :data="gameProviders"
-        :show-view-all="false"
-      >
-        <template #default="{ item }">
-          <div class="provider-item-wrap">
-            <BaseImage :url="item.src" />
-          </div>
-        </template>
-      </AppSlider>
+      <AppProviderSlider />
     </div>
   </div>
   <div class="layout-spacing">
