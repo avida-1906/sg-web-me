@@ -64,6 +64,9 @@ function menuItemClick(item: BaseMenuItem) {
         margin: 0;
         border: none;
         font-weight: var(--tg-font-weight-semibold);
+        &:hover, &.active {
+          background: var(--tg-secondary-deepdark);
+        }
       }
       .dash {
         height: 100%;
