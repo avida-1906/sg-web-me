@@ -126,10 +126,12 @@ const isCasinoGames = computed(() => route.name === 'casino-games')
           <div ref="homeContainerRef" class="only-for-get-width" />
         </AppContent>
         <!-- 主页面 -->
-        <RouterView v-if="isCasinoGames" />
-        <AppContent v-else>
-          <RouterView />
-        </AppContent>
+        <slot>
+          <RouterView v-if="isCasinoGames" />
+          <AppContent v-else>
+            <RouterView />
+          </AppContent>
+        </slot>
 
         <footer class="footer">
           <AppContent>

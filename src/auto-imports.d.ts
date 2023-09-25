@@ -20,8 +20,10 @@ declare global {
   const EnumLanguage: typeof import('./utils/enums')['EnumLanguage']
   const Local: typeof import('./utils/storage')['Local']
   const STORAGE_LANGUAGE_KEY: typeof import('./utils/storage')['STORAGE_LANGUAGE_KEY']
+  const STORAGE_RECENT_REG_KEYWORDS: typeof import('./utils/storage')['STORAGE_RECENT_REG_KEYWORDS']
   const STORAGE_RECENT_SEARCH_KEYWORD: typeof import('./utils/storage')['STORAGE_RECENT_SEARCH_KEYWORD']
   const STORAGE_RECENT_SEARCH_KEYWORDS: typeof import('./utils/storage')['STORAGE_RECENT_SEARCH_KEYWORDS']
+  const STORAGE_REG_PARAMS_KEYWORDS: typeof import('./utils/storage')[STORAGE_REG_PARAMS_KEYWORDS]
   const STORAGE_TOKEN_KEY: typeof import('./utils/storage')['STORAGE_TOKEN_KEY']
   const Session: typeof import('./utils/storage')['Session']
   const acceptHMRUpdate: typeof import('pinia')['acceptHMRUpdate']
@@ -410,6 +412,7 @@ declare module 'vue' {
     readonly Local: UnwrapRef<typeof import('./utils/storage')['Local']>
     readonly STORAGE_LANGUAGE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_LANGUAGE_KEY']>
     readonly STORAGE_RECENT_SEARCH_KEYWORDS: UnwrapRef<typeof import('./utils/storage')['STORAGE_RECENT_SEARCH_KEYWORDS']>
+    readonly STORAGE_REG_PARAMS_KEYWORDS: UnwrapRef<typeof import('./utils/storage')[STORAGE_REG_PARAMS_KEYWORDS]>
     readonly STORAGE_TOKEN_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_TOKEN_KEY']>
     readonly Session: UnwrapRef<typeof import('./utils/storage')['Session']>
     readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>
@@ -789,6 +792,7 @@ declare module '@vue/runtime-core' {
     readonly Local: UnwrapRef<typeof import('./utils/storage')['Local']>
     readonly STORAGE_LANGUAGE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_LANGUAGE_KEY']>
     readonly STORAGE_RECENT_SEARCH_KEYWORDS: UnwrapRef<typeof import('./utils/storage')['STORAGE_RECENT_SEARCH_KEYWORDS']>
+    readonly STORAGE_REG_PARAMS_KEYWORDS: UnwrapRef<typeof import('./utils/storage')[STORAGE_REG_PARAMS_KEYWORDS]>
     readonly STORAGE_TOKEN_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_TOKEN_KEY']>
     readonly Session: UnwrapRef<typeof import('./utils/storage')['Session']>
     readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>

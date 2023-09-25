@@ -86,7 +86,7 @@ const welfareList = [
 </script>
 
 <template>
-  <div class="app-vip-dialog scroll-y">
+  <div class="scroll-y app-vip-dialog">
     <div class="vip-tab">
       <BaseTab v-model="tab" :list="tabList" />
     </div>

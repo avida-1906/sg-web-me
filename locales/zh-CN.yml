@@ -21,6 +21,8 @@ password_incorrect: 密码格式不正确
 password_uppercase_lowercase_letter: 密码必须含有至少 1 个大写字母和 1 个小写字母
 password_least_8_characters: 您的 password 必须含有至少 8 个字符
 password_least_1_number: 含有至少 1 个数字
+uppercase_lowercase_letter: 含有大写和小写字母
+least_8_characters: 至少 8 个字符
 reg_step1: 步骤1/2：填写您的详细信息
 reg_step2: 步骤2/2：填写您的详细信息
 code_optional: 代码（可选的）
@@ -50,6 +52,7 @@ setting: 设置
 stake_safety: Stake安全
 online_support: 在线支持
 logout: 登出
+logout_dont_foget: 别忘了在您离开之前先查看我们丰富的娱乐城与体育博彩促销活动！
 chat_room: 聊天室
 bet_slip: 投注单
 currency: 货币
