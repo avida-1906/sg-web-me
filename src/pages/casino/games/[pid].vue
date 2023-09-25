@@ -6,12 +6,11 @@ const { isMobile } = storeToRefs(useWindowStore())
 const { bool: isTheatre, setBool } = useBoolean(false) // 影院模式
 
 const { gameList } = useGameList()
-const { data } = useRequest(() => ApiGameLunch(props.pid, gameId.value))
 </script>
 
 <template>
   <div class="casino-games" :class="{ theatre: isTheatre && !isMobile }">
-    <AppIframe :data="data" :is-theatre="isTheatre" @change-theatre="setBool" />
+    <AppIframe :is-theatre="isTheatre" @change-theatre="setBool" />
     <AppDesc />
     <AppContent>
       <div class="content-wrapper">

@@ -15,28 +15,9 @@ const showLive = computed(() => tab.value === EnumCasinoGameType.LIVE)
 const showSlot = computed(() => tab.value === EnumCasinoGameType.SLOT)
 const currentTitle = computed(() => tabList.find(a => a.value === tab.value)?.label ?? '-')
 
-// TODO:待删
-const liveImg = 'https://mediumrare.imgix.net/c984a0f6625efd5a38c306697845c7bedcc917e2c061b45e8a75a5e648057e8a?&dpr=2&format=auto&auto=format&q=50'
-const slotImg = 'https://mediumrare.imgix.net/3285df789ee1e5f52e3b075b4eb0c1f080fcdce28f7c9689daa4e62f87fa85a3?&dpr=2&format=auto&auto=format&q=50'
+const { data: liveList, total: liveTotal } = useApiGameList({ page: 1, page_size: VITE_CASINO_HOME_PAGE_SIZE, game_type: 1 })
+const { data: slotList, total: slotTotal } = useApiGameList({ page: 1, page_size: VITE_CASINO_HOME_PAGE_SIZE, game_type: 3 })
 
-const { data: liveData, total: liveTotal } = useApiGameList({ page: 1, page_size: VITE_CASINO_HOME_PAGE_SIZE, game_type: 1 })
-const liveList = computed(() => {
-  if (liveData.value) {
-    return liveData.value.map((item) => {
-      return { ...item, img: liveImg }
-    })
-  }
-  return []
-})
-const { data: slotData, total: slotTotal } = useApiGameList({ page: 1, page_size: VITE_CASINO_HOME_PAGE_SIZE, game_type: 3 })
-const slotList = computed(() => {
-  if (slotData.value) {
-    return slotData.value.map((item) => {
-      return { ...item, img: slotImg }
-    })
-  }
-  return []
-})
 function viewMoreGames(gameType: string) {
   router.push(`/casino/group/${gameType}`)
 }

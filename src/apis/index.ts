@@ -121,3 +121,10 @@ export function ApiMemberGameSearch(params: { w: string }) {
     s: number
   }>('/member/game/search', params)
 }
+
+/*
+* 游戏收藏列表
+*/
+export function ApiMemberGameFavList(params: { page: number; page_size: number }) {
+  return httpClient.get('/member/game/fav/list', params)
+}

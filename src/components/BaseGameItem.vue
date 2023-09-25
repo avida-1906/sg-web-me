@@ -9,7 +9,7 @@ interface Props {
   }
 }
 defineProps<Props>()
-
+const { VITE_CASINO_TEST_SLOT_IMG } = import.meta.env
 const router = useRouter()
 function gameStart(item: Props['gameInfo']) {
   const { platform_id, game_id } = item
@@ -19,7 +19,7 @@ function gameStart(item: Props['gameInfo']) {
 
 <template>
   <div class="base-game-item" @click="gameStart(gameInfo)">
-    <BaseImage :url="gameInfo.img" :name="gameInfo.name" />
+    <BaseImage :url="VITE_CASINO_TEST_SLOT_IMG" :name="gameInfo.name" />
     <div class="active-game-item">
       <div class="game-title">
         {{ gameInfo.name }}
