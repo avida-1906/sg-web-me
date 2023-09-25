@@ -88,3 +88,36 @@ export function ApiMemberGameList(params: {
 export function ApiGameLunch(id: string, game_id: string) {
   return httpClient.get(`/game/launch/${id}`, { code: game_id })
 }
+
+/**
+ * 搜索游戏
+ */
+export function ApiMemberGameSearch(params: { w: string }) {
+  return httpClient.get<{
+    d: {
+      id: string
+      platform_id: string
+      name: string
+      zh_name: string
+      en_name: string
+      pt_name: string
+      th_name: string
+      vn_name: string
+      client_type: string
+      game_type: number
+      game_id: string
+      img: string
+      online: number
+      is_hot: number
+      sorting: number
+      created_at: number
+      is_new: number
+      tag_id: string
+      currency: string
+      lang: string
+      is_fav: number
+    }[]
+    t: number
+    s: number
+  }>('/member/game/search', params)
+}

@@ -5,6 +5,7 @@ import type { ILocalStorageValue } from './index.utils'
  */
 export const STORAGE_TOKEN_KEY = 'token'
 export const STORAGE_LANGUAGE_KEY = 'language'
+export const STORAGE_RECENT_SEARCH_KEYWORDS = 'search_keywords'
 
 export class Local {
   static set<T>(key: string, value: any) {
