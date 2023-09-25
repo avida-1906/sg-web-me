@@ -63,12 +63,17 @@ async function toLogin() {
     flex-direction: column;
     gap: var(--tg-spacing-12);
     .text-white {
+      cursor: pointer;
       color: var(--tg-text-white) !important;
       font-weight: var(--tg-font-weight-semibold);
     }
     .stake-text {
       font-size: var(--tg-font-size-xs);
       padding-bottom: var(--tg-spacing-20);
+      cursor: pointer;
+      span:hover {
+        color: var(--tg-text-white) !important;
+      }
     }
   }
 }
