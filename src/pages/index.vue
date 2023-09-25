@@ -54,6 +54,8 @@ const {
 
 const isMobile = computed(() => width.value <= 888)
 const isSm = computed(() => width.value <= 768)
+
+const { openVipDialog } = useVipDialog()
 </script>
 
 <template>
@@ -70,9 +72,15 @@ const isSm = computed(() => width.value <= 768)
             <AppAuthLogin />
           </div>
         </div>
-        <div v-else class="top-vip-info" :class="{ 'max-width': !isMobile }">
-          <h1>欢迎归来，alanhayashi</h1>
-          <AppVipProgress />
+        <div v-else class="top-vip-info" :class="isMobile ? 'max-width-mobile' : 'max-width'">
+          <AppVipProgress>
+            <template #title>
+              <h1>欢迎归来，alanhayashi</h1>
+            </template>
+            <p @click="openVipDialog">
+              您的 VIP 进度 <BaseIcon name="uni-arrowright-line" />
+            </p>
+          </AppVipProgress>
         </div>
         <div class="top-banner">
           <AppBanner v-if="isMobile" />
@@ -255,6 +263,10 @@ const isSm = computed(() => width.value <= 768)
         &.max-width{
           max-width: 350px;
         }
+        &.max-width-mobile{
+          width: calc(100% - 2em);
+          margin: 0 auto;
+        }
         padding-top: var(--tg-spacing-32);
         padding-bottom: var(--tg-spacing-64);
         h1{
@@ -263,6 +275,20 @@ const isSm = computed(() => width.value <= 768)
           font-weight: var(--tg-font-weight-semibold);
           margin-bottom: var(--tg-spacing-16);
           line-height: 1.5;
+        }
+        p{
+          font-size: var(--tg-font-size-default);
+          display: flex;
+          justify-content: start;
+          align-items: center;
+          transition: all .25s;
+          cursor: pointer;
+          > svg {
+            margin-left: var(--tg-spacing-8);
+          }
+          &:hover{
+            transform: translateX(8px);
+          }
         }
       }
       .top-banner{
@@ -350,7 +376,7 @@ const isSm = computed(() => width.value <= 768)
     border-radius: var(--tg-radius-default);
     background: var(--tg-secondary-dark);
     margin-top: var(--tg-spacing-24);
-    padding: 0 var(--tg-spacing-20);
+    padding: 0 var(--tg-spacing-24);
     div:nth-child(1){
       display: flex;
       justify-content: start;
@@ -498,7 +524,7 @@ const isSm = computed(() => width.value <= 768)
     }
     .top-wrapper{
       grid-template-columns:100%;
-      // background:none;
+      background:none;
       // background-position: right 25% center;
       // background-size: cover;
     }

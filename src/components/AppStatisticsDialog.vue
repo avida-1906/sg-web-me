@@ -275,14 +275,17 @@ const isMobile = computed(() => width.value < widthBoundarySm.value)
 <template>
   <div class="app-statistics-dialog">
     <div class="statistics-content">
-      <p class="s-user-name">
-        alanhayashi
-      </p>
-      <div class="s-join-date">
-        <span>加入日期：</span>
-        <span>2023年9月19日</span>
-      </div>
-      <AppVipProgress :vip-progress-data="props.vipProgressData" />
+      <AppVipProgress :vip-progress-data="props.vipProgressData">
+        <template #title>
+          <p class="s-user-name">
+            alanhayashi
+          </p>
+          <div class="s-join-date">
+            <span>加入日期：</span>
+            <span>2023年9月19日</span>
+          </div>
+        </template>
+      </AppVipProgress>
       <div class="s-tab">
         <BaseTab v-model="tab" :list="tabList" :full="true" />
         <!-- 数据统计 -->

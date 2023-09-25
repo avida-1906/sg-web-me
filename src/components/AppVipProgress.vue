@@ -30,9 +30,10 @@ const nextInfo = computed(() => {
 </script>
 
 <template>
+  <slot name="title" />
   <div class="app-vip-progress">
     <div class="percent-top">
-      <p>您的<span> VIP </span>进度</p>
+      <slot><p>您的<span> VIP </span>进度</p></slot>
       <p>{{ props.vipProgressData.percent }}%</p>
     </div>
     <div class="percent-mid">
