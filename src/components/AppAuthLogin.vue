@@ -38,15 +38,21 @@ const { t } = useI18n()
     padding-top: var(--tg-spacing-button-padding-vertical-xs);
   }
   &-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
     gap: var(--tg-spacing-5);
+
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(50px,1fr));
+    grid-auto-rows: auto;
+
     .item-svg {
-      width: 70px;
-      height: 40px;
-      cursor: pointer;
-      flex-shrink: 0;
+      // width: 70px;
+      // height: 40px;
+      // cursor: pointer;
+      // flex-shrink: 0;
       border-radius: var(--tg-radius-default);
       display: flex;
       justify-content: center;
