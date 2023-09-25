@@ -1,4 +1,11 @@
 <script setup lang="ts">
+interface Props {
+  mode?: 'only' | 'default'
+}
+const props = withDefaults(defineProps<Props>(), {
+  mode: 'default',
+})
+
 const {
   isLessThanLg,
   isGreaterThanXs,
@@ -7,14 +14,19 @@ const {
 // 1160 638
 const scrollRef = ref()
 const getGridAutoColumns = computed(() => {
-  if (!isLessThanLg.value)
-    return { 'grid-auto-columns': '32.45%' }
+  if (props.mode === 'only') {
+    return { 'grid-auto-columns': '100%' }
+  }
+  else {
+    if (!isLessThanLg.value)
+      return { 'grid-auto-columns': '32.45%' }
 
-  else if (isGreaterThanXs.value)
-    return { 'grid-auto-columns': '47%' }
+    else if (isGreaterThanXs.value)
+      return { 'grid-auto-columns': '47%' }
 
-  else
-    return { 'grid-auto-columns': '93%' }
+    else
+      return { 'grid-auto-columns': '93%' }
+  }
 })
 function scrollLeft() {
   scrollRef.value.scrollLeft -= scrollRef.value.offsetWidth
@@ -139,7 +151,6 @@ function scrollRight() {
   }
   .arrow-left{
     left: -30px;
-    top: 50%;
   }
   .arrow-right{
     right: -30px;

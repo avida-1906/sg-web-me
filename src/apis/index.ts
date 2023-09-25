@@ -81,3 +81,10 @@ export function ApiMemberGameList(params: {
     s: number
   }>('/member/game/list', params)
 }
+
+/**
+ * 启动游戏
+ */
+export function ApiGameLunch(id: string, game_id: string) {
+  return httpClient.get(`/game/launch/${id}`, { code: game_id })
+}

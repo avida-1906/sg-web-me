@@ -6,6 +6,8 @@ const { bool: checkboxValue } = useBoolean(false)
 
 const closeDialog = inject('closeDialog', () => {})
 
+const { bool: isShowPasswordVerify, setTrue: setShowPasswordVerifyTrue, setFalse: setShowPasswordVerifyFalse } = useBoolean(false)
+
 const {
   openTermsConditionsDialog,
 } = useTermsConditionsDialog()
@@ -51,19 +53,15 @@ const { value: password, errorMessage: pwdErrorMsg, validate: valiPassword } = u
   return ''
 })
 
-const { value: birthday, errorMessage: birthdayErrorMsg, validate: valiBirthday } = useField<string>('birthday', (value) => {
-  if (!value)
-    return t('pls_enter_birthday')
-
-  return ''
-})
+const birthdayInputRef = ref()
+const birthday = ref('')
 
 async function getMemberReg() {
   await valiEmail()
   await valiUsername()
   await valiPassword()
-  await valiBirthday()
-  if (!emailErrorMsg.value && !usernameErrorMsg.value && !pwdErrorMsg.value && !birthdayErrorMsg.value) {
+  birthdayInputRef.value.valiBirthday()
+  if (!emailErrorMsg.value && !usernameErrorMsg.value && !pwdErrorMsg.value && birthday.value) {
     const paramsReg = {
       email: username.value,
       username: username.value,
@@ -80,10 +78,10 @@ async function getMemberReg() {
   }
 }
 function onFocus() {
-  console.log(1111)
+  setShowPasswordVerifyTrue()
 }
 function onBlur() {
-  console.log(2222)
+  setShowPasswordVerifyFalse()
 }
 </script>
 
@@ -96,12 +94,14 @@ function onBlur() {
     <div class="app-register-input-box">
       <BaseInput v-model="email" :label="t('email_address')" :msg="emailErrorMsg" :placeholder="t('pls_enter_email_address')" must />
       <BaseInput v-model="username" :label="t('username')" :msg="usernameErrorMsg" :placeholder="t('pls_enter_username')" must />
-      <BaseInput v-model="password" :label="t('password')" :msg="pwdErrorMsg" :placeholder="t('pls_enter_password')" type="password" must autocomplete="current-password" />
-      <AppPasswordVerify
+      <BaseInput
+        v-model="password" :label="t('password')" :msg="pwdErrorMsg" :placeholder="t('pls_enter_password')" type="password" must
+        autocomplete="current-password"
         :password="password"
         @focus="onFocus" @blur="onBlur"
       />
-      <BaseInputBirthday v-model="birthday" :msg="birthdayErrorMsg" must />
+      <AppPasswordVerify v-show="isShowPasswordVerify" :password="password" />
+      <BaseInputBirthday ref="birthdayInputRef" v-model="birthday" must />
     </div>
     <div class="app-register-check-box">
       <BaseCheckBox v-model="checkboxValue">

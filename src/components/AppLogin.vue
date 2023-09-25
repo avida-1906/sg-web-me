@@ -22,6 +22,8 @@ const { value: password, errorMessage: pwdErrorMsg, validate: valiPassword } = u
 
 const closeDialog = inject('closeDialog', () => {})
 
+const { bool: isShowPasswordVerify, setTrue: setShowPasswordVerifyTrue, setFalse: setShowPasswordVerifyFalse } = useBoolean(false)
+
 const { run: runMemberLogin, loading: isLoading } = useRequest(() => ApiMemberLogin({
   username: username.value,
   password: password.value,
@@ -43,6 +45,12 @@ async function getMemberLogin() {
   if (!usernameErrorMsg.value && !pwdErrorMsg.value)
     runMemberLogin()
 }
+function onFocus() {
+  setShowPasswordVerifyTrue()
+}
+function onBlur() {
+  setShowPasswordVerifyFalse()
+}
 </script>
 
 <template>
@@ -50,7 +58,13 @@ async function getMemberLogin() {
     <!-- <form></form> -->
     <div class="app-login-input-box">
       <BaseInput v-model="username" :label="t('email_or_username')" :msg="usernameErrorMsg" :placeholder="t('pls_enter_email_or_username')" must />
-      <BaseInput v-model="password" :label="t('password')" :msg="pwdErrorMsg" :placeholder="t('pls_enter_password')" type="password" must autocomplete="current-password" />
+      <BaseInput
+        v-model="password" :label="t('password')" :msg="pwdErrorMsg" :placeholder="t('pls_enter_password')" type="password" must
+        autocomplete="current-password"
+        :password="password"
+        @focus="onFocus" @blur="onBlur"
+      />
+      <AppPasswordVerify v-show="isShowPasswordVerify" :password="password" />
       <!-- <BaseInput v-model="username" :label="t('two-step_verification')" :msg="usernameErrorMsg" :placeholder="t('pls_enter_two-step_verification')" must /> -->
       <BaseButton class="app-login-btn" bg-style="secondary" :loading="isLoading" @click.stop="getMemberLogin">
         {{ t('login') }}

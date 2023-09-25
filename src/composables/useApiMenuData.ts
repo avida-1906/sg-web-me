@@ -206,6 +206,13 @@ const staticMenu2: Menu = [
   },
 ]
 
+function ExpandMapAll(menuItem: MenuItem) {
+  menuItem.expand = false
+  menuItem.list?.forEach((mi: MenuItem) => {
+    mi.expand = false
+  })
+}
+
 export function useApiMenuData() {
   const _casinoMenu = ref<Menu>(casinoMenu)
   const _casinoGameList = ref<Menu>(casinoGameList)
@@ -229,14 +236,6 @@ export function useApiMenuData() {
       router.push(item.path)
     }
     else if (item.list && item.list.length) {
-      [_casinoMenu.value, _casinoGameList.value, _casinoGameProvider.value, _sportsMenu.value, _sportHotGames.value, _sportEsports.value, _sportGameList.value, _sportOddType.value, _staticMenu1.value, _staticMenu2.value].forEach((menu: Menu) => {
-        menu.forEach((menuItem: MenuItem) => {
-          menuItem.expand = false
-          menuItem.list?.forEach((mi: MenuItem) => {
-            mi.expand = false
-          })
-        })
-      })
       leftIsExpand.value = true
       item.expand = true
     }
@@ -247,6 +246,21 @@ export function useApiMenuData() {
       })
     }
   }
+
+  watch(leftIsExpand, (val) => {
+    if (!val) {
+      _casinoMenu.value.forEach(ExpandMapAll)
+      _casinoGameList.value.forEach(ExpandMapAll)
+      _casinoGameProvider.value.forEach(ExpandMapAll)
+      _sportsMenu.value.forEach(ExpandMapAll)
+      _sportHotGames.value.forEach(ExpandMapAll)
+      _sportEsports.value.forEach(ExpandMapAll)
+      _sportGameList.value.forEach(ExpandMapAll)
+      _sportOddType.value.forEach(ExpandMapAll)
+      _staticMenu1.value.forEach(ExpandMapAll)
+      _staticMenu2.value.forEach(ExpandMapAll)
+    }
+  })
 
   return {
     casinoMenu: _casinoMenu.value,

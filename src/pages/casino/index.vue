@@ -1,5 +1,7 @@
 <script setup lang='ts'>
 const { VITE_CASINO_HOME_PAGE_SIZE } = import.meta.env
+
+const { isMobile } = storeToRefs(useWindowStore())
 const router = useRouter()
 const { t } = useI18n()
 const tab = ref('all')
@@ -19,8 +21,8 @@ const slotImg = 'https://mediumrare.imgix.net/3285df789ee1e5f52e3b075b4eb0c1f080
 
 const { data: liveData, total: liveTotal } = useApiGameList({ page: 1, page_size: VITE_CASINO_HOME_PAGE_SIZE, game_type: 1 })
 const liveList = computed(() => {
-  if (liveData.value?.d) {
-    return liveData.value.d.map((item) => {
+  if (liveData.value) {
+    return liveData.value.map((item) => {
       return { ...item, img: liveImg }
     })
   }
@@ -28,8 +30,8 @@ const liveList = computed(() => {
 })
 const { data: slotData, total: slotTotal } = useApiGameList({ page: 1, page_size: VITE_CASINO_HOME_PAGE_SIZE, game_type: 3 })
 const slotList = computed(() => {
-  if (slotData.value?.d) {
-    return slotData.value.d.map((item) => {
+  if (slotData.value) {
+    return slotData.value.map((item) => {
       return { ...item, img: slotImg }
     })
   }
@@ -45,15 +47,15 @@ function viewMoreGames(gameType: string) {
     <div class="hero-wrapper mt-24">
       <AppBanner />
     </div>
-    <div class="mt-24">
-      <AppGameSearch game-type="2" />
+    <div v-if="!isMobile" class="mt-24">
+      <AppGameSearch game-type="1" />
     </div>
     <div class="mt-24">
       <BaseTab v-model="tab" :list="tabList" :center="false" />
     </div>
     <div class="content-wrapper">
-      <AppSlider v-show="showAll" :game-type="EnumCasinoGameType.LIVE" api="" icon="chess-live-casino" :title="t('game_type_live')" :data="liveList" />
-      <AppSlider v-show="showAll" :game-type="EnumCasinoGameType.SLOT" api="" icon="chess-slot-machine" :title="t('game_type_slot_short_name')" :data="slotList" />
+      <AppSlider v-show="showAll" :game-type="EnumCasinoGameType.LIVE" icon="chess-live-casino" :title="t('game_type_live')" :data="liveList" />
+      <AppSlider v-show="showAll" :game-type="EnumCasinoGameType.SLOT" icon="chess-slot-machine" :title="t('game_type_slot_short_name')" :data="slotList" />
 
       <div v-show="!showAll" class="list-wrap">
         <div class="title">

@@ -17,7 +17,7 @@ interface GameListQuery {
 
 export function useApiGameList(query: GameListQuery) {
   const { game_type, is_hot, is_new, tag_id, platform_id } = query
-  const { data, page, total } = usePage((page, page_size) => () => ApiMemberGameList({
+  const { ...rest } = usePage((page, page_size) => () => ApiMemberGameList({
     page: page.value,
     page_size: page_size.value,
     game_type,
@@ -27,12 +27,11 @@ export function useApiGameList(query: GameListQuery) {
     platform_id,
   }), { ...query })
 
-  return { data, page, total }
+  return { ...rest }
 }
 
 // TODO:待删
 export function useGameList(query: GameListQuery1 = { page: 1, pageSize: 20, params: {} }) {
-  console.log('查询参数：', query)
   const gameInfo = { id: 2, url: 'https://mediumrare.imgix.net/d51d84f1074e5b54c25c54e6cbf026a4e352c491e7a574d3da6504743d71e2d6?&dpr=2&format=auto&auto=format&q=50&w=167', name: 'plynko' }
   const gameList = Array(66).fill(gameInfo)
   const gameProviders = [

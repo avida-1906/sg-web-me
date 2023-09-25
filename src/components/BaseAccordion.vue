@@ -27,6 +27,12 @@ function handleClickItem(item: any) {
 const showDown = computed(() => {
   return props.menuInfo?.list?.length
 })
+
+function close() {
+  setAutoShowBool(false)
+}
+
+defineExpose({ close })
 </script>
 
 <template>
