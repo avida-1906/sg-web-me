@@ -11,14 +11,8 @@ const { gameList, gameProviders } = useGameList()
     <AppDesc />
     <AppContent>
       <div class="content-wrapper">
-        <AppSlider api="" icon="chess-original-game" :title="$t('casino_games_recommend')" :data="gameList" />
-        <AppSlider api="" icon="chess-game-provider" :title="$t('casino_provider')" :data="gameProviders" :show-view-all="false">
-          <template #default="{ item }">
-            <div class="provider-item-wrap">
-              <BaseImage :url="item.src" />
-            </div>
-          </template>
-        </AppSlider>
+        <AppSlider api="" icon="chess-original-game" :title="$t('casino_games_recommend')" :data="gameList" game-type="hot" />
+        <AppProviderSlider />
       </div>
       <div class="layout-spacing">
         <AppBetData mode="casino" />

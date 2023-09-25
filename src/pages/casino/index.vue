@@ -49,8 +49,8 @@ const slotList = computed(() => {
       <BaseTab v-model="tab" :list="tabList" :center="false" />
     </div>
     <div class="content-wrapper">
-      <AppSlider v-show="showAll" api="" icon="chess-live-casino" title="真人娱乐场" :data="liveList" />
-      <AppSlider v-show="showAll" api="" icon="chess-slot-machine" title="特色老虎机" :data="slotList" />
+      <AppSlider v-show="showAll" api="" icon="chess-live-casino" title="真人娱乐场" :data="liveList" game-type="live" />
+      <AppSlider v-show="showAll" api="" icon="chess-slot-machine" title="特色老虎机" :data="slotList" game-type="slots" />
 
       <div v-show="!showAll" class="list-wrap">
         <div class="title">
@@ -67,17 +67,7 @@ const slotList = computed(() => {
           </BaseButton>
         </div>
       </div>
-
-      <AppSlider
-        api="" icon="chess-game-provider" :title="$t('casino_provider')" :data="gameProviders"
-        :show-view-all="false"
-      >
-        <template #default="{ item }">
-          <div class="provider-item-wrap">
-            <BaseImage :url="item.src" />
-          </div>
-        </template>
-      </AppSlider>
+      <AppProviderSlider />
     </div>
   </div>
   <div class="layout-spacing">

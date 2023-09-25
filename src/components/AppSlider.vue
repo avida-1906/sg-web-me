@@ -10,7 +10,7 @@ interface Props {
   title: string
   data: Array<SlideItem>
   showViewAll?: boolean
-  gameType?: string | number
+  gameType: string | number
 }
 
 const props = withDefaults(defineProps<Props>(), {
