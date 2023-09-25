@@ -8,6 +8,24 @@ const routes = setupLayouts(generatedRoutes)
 const router = createRouter({
   history: createWebHistory(),
   routes,
+  scrollBehavior(to, from, savedPosition) {
+    setTimeout(() => {
+      // document.getElementById('main-content-scrollable')?.scrollTo(0, 0)
+      document.querySelector('.only-for-get-width')?.scrollIntoView()
+    }, 100)
+  },
+})
+
+router.beforeEach((to, from, next) => {
+  next()
+})
+
+router.beforeResolve(async (to) => {
+  if (to.meta.layoutLoading) {
+    setTimeout(() => {
+      console.log('layout loading finish')
+    }, 300)
+  }
 })
 
 export function install(app: App<Element>) {

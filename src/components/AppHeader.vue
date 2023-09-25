@@ -72,7 +72,7 @@ async function logout() {
         <div class="header-right">
           <BaseButton v-show="!isMobile" type="text" class="search-btn" @click="setTrue">
             <BaseIcon class="icon-search" name="header-search" />
-            <span v-show="!isLessThanLg">搜索</span>
+            <span v-show="!isLessThanLg">{{ t('search') }}</span>
           </BaseButton>
           <VDropdown :distance="6">
             <BaseButton type="text">
@@ -122,10 +122,10 @@ async function logout() {
     <BaseDialog v-model:show="showDialogLogout" icon="uni-trend" title="登出">
       <div class="dialog">
         <div class="dialog-text">
-          别忘了在您离开之前先查看我们丰富的娱乐城与体育博彩促销活动！
+          {{ t('logout_dont_foget') }}
         </div>
         <BaseButton class="dialog-btn" type="text" @click.stop="logout">
-          登出
+          {{ t('logout') }}
         </BaseButton>
       </div>
     </BaseDialog>
