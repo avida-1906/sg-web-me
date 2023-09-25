@@ -14,5 +14,5 @@ meta:
   layout: with-menu
   title: 交易记录
   icon: tabbar-bet
-  menu: [{title: 存款, path: /},{title: 提款, path: /},{title: 投注, path: /},{title: 投注档案, path: /casino/home},{title: 其他, path: /casino/home}]
+  menu: [{title: 存款, path: /transactions/deposits},{title: 提款, path: /transactions/withdrawals},{title: 投注, path: /transactions/bets},{title: 投注档案, path: /transactions/archive},{title: 其他, path: /transactions/other}]
 </route>
