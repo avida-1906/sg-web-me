@@ -14,8 +14,14 @@ const { value: password, errorMessage: pwdErrorMsg, validate: valiPassword } = u
   if (!value)
     return t('pls_enter_password')
 
+  if (value.length < 8)
+    return t('password_least_8_characters')
+
+  if (!upperLowerReg.test(value))
+    return t('password_uppercase_lowercase_letter')
+
   if (!lastOneNumberReg.test(value))
-    return t('password_incorrect')
+    return t('password_least_1_number')
 
   return ''
 })

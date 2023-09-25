@@ -21,12 +21,12 @@ const isBuy = computed(() => currentTab.value === 'buy')
       <AppBuyCryptocurrency v-else-if="isBuy" />
     </div>
 
-    <div class="footer">
+    <!-- <div class="footer">
       <span>通过双重验证提高您的账户安全性</span>
       <BaseButton bg-style="primary" size="md">
         开启双重验证
       </BaseButton>
-    </div>
+    </div> -->
   </div>
 </template>
 
