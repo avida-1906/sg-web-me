@@ -3,7 +3,13 @@
 ## 组件全部放在 `src/components` 目录下，除了路由组件
 
 ### 关于全局数据
-为了避免产生太多重复的代码，stores、http和utils文件夹代码全部由akun维护，如果需要添加或者修改，可以直接通知修改，或者直接提供代码。
+为了避免产生太多重复的代码，
+stores、
+http
+utils
+vite.config.js
+.eslintrc
+文件和文件夹 代码全部由akun维护，如果需要添加或者修改，可以直接通知修改，或者直接提供代码给akun。
 
 ### 组件
 基础组件都使用 `Base` 开头，如 `BaseButton、BaseInput` 等。    
