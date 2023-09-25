@@ -1,5 +1,7 @@
 <script setup lang='ts'>
 const { VITE_CASINO_HOME_PAGE_SIZE } = import.meta.env
+
+const { isMobile } = storeToRefs(useWindowStore())
 const router = useRouter()
 const { t } = useI18n()
 const tab = ref('all')
@@ -45,8 +47,8 @@ function viewMoreGames(gameType: string) {
     <div class="hero-wrapper mt-24">
       <AppBanner />
     </div>
-    <div class="mt-24">
-      <AppGameSearch game-type="2" />
+    <div v-if="!isMobile" class="mt-24">
+      <AppGameSearch game-type="1" />
     </div>
     <div class="mt-24">
       <BaseTab v-model="tab" :list="tabList" :center="false" />

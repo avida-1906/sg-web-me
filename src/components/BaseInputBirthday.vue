@@ -1,6 +1,6 @@
 <script setup lang='ts'>
 interface Props {
-  modelValue: string
+  modelValue?: string
   must?: boolean
   layout?: 'horizontal' | 'vertical'
 }
@@ -24,13 +24,13 @@ const monthList = [
   { label: 'time_november', value: 11 },
   { label: 'time_december', value: 12 },
 ]
-const { value: month, setValue: setMonth, errorMessage: errorMonthMsg } = useField<number>('month', (value) => {
+const { value: month, setValue: setMonth, errorMessage: errorMonthMsg, validate: valiMonth } = useField<number>('month', (value) => {
   if (!value)
     return t('surveys_birthday_error')
 
   return ''
 })
-const { value: year, setValue: setYear, errorMessage: errorYearMsg } = useField<number>('year', (value) => {
+const { value: year, setValue: setYear, errorMessage: errorYearMsg, validate: valiYear } = useField<number>('year', (value) => {
   if (!value || value < 1900)
     return t('surveys_birthday_error')
   return ''
@@ -53,7 +53,7 @@ const dayMax = computed(() => {
 
   return 31
 })
-const { value: day, setValue: setDay, errorMessage: errorDayMsg } = useField<number>('day', (value) => {
+const { value: day, setValue: setDay, errorMessage: errorDayMsg, validate: valiDay } = useField<number>('day', (value) => {
   if (!value || value > dayMax.value)
     return t('surveys_birthday_error')
 
@@ -103,6 +103,13 @@ function onInput() {
   if (year.value && month.value && day.value && !msg.value)
     emit('update:modelValue', `${year.value}-${month.value > 9 ? month.value : `0${month.value}`}-${day.value > 9 ? day.value : `0${day.value}`}`)
 }
+
+function valiBirthday() {
+  valiMonth()
+  valiYear()
+  valiDay()
+}
+defineExpose({ valiBirthday })
 </script>
 
 <template>

@@ -53,19 +53,15 @@ const { value: password, errorMessage: pwdErrorMsg, validate: valiPassword } = u
   return ''
 })
 
-const { value: birthday, errorMessage: birthdayErrorMsg, validate: valiBirthday } = useField<string>('birthday', (value) => {
-  if (!value)
-    return t('pls_enter_birthday')
-
-  return ''
-})
+const birthdayInputRef = ref()
+const birthday = ref('')
 
 async function getMemberReg() {
   await valiEmail()
   await valiUsername()
   await valiPassword()
-  await valiBirthday()
-  if (!emailErrorMsg.value && !usernameErrorMsg.value && !pwdErrorMsg.value && !birthdayErrorMsg.value) {
+  birthdayInputRef.value.valiBirthday()
+  if (!emailErrorMsg.value && !usernameErrorMsg.value && !pwdErrorMsg.value && birthday.value) {
     const paramsReg = {
       email: username.value,
       username: username.value,
@@ -105,7 +101,7 @@ function onBlur() {
         @focus="onFocus" @blur="onBlur"
       />
       <AppPasswordVerify v-show="isShowPasswordVerify" :password="password" />
-      <BaseInputBirthday v-model="birthday" :msg="birthdayErrorMsg" must />
+      <BaseInputBirthday ref="birthdayInputRef" v-model="birthday" must />
     </div>
     <div class="app-register-check-box">
       <BaseCheckBox v-model="checkboxValue">
