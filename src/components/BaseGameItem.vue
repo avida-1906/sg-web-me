@@ -12,8 +12,7 @@ defineProps<Props>()
 const { VITE_CASINO_TEST_SLOT_IMG } = import.meta.env
 const router = useRouter()
 function gameStart(item: Props['gameInfo']) {
-  const { platform_id, game_id } = item
-  router.push(`/casino/games/${platform_id}?code=${game_id}`)
+  router.push(`/casino/games?${application.objectToUrlParams(item)}`)
 }
 </script>
 

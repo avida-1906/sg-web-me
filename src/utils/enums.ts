@@ -197,7 +197,24 @@ export enum EnumCurrency {
    * @see https://www.rbi.org.in/
    */
   INR,
-
+  /**
+   * CNY
+   * @description 人名币
+   * @see https://www.rbi.org.in/
+   */
+  CNY,
+  /**
+   * VND
+   * @description 越南盾
+   * @see https://www.rbi.org.in/
+   */
+  VND,
+  /**
+   * THB
+   * @description 泰铢
+   * @see https://www.rbi.org.in/
+   */
+  THB,
 }
 
 /**

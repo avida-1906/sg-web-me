@@ -1,7 +1,6 @@
 <script setup lang='ts'>
-const props = defineProps<{ pid: string }>()
 const { query } = useRoute()
-const gameId = computed(() => query.code?.toString() ?? '')
+const gameData = computed(() => query || {})
 const { isMobile } = storeToRefs(useWindowStore())
 const { bool: isTheatre, setBool } = useBoolean(false) // 影院模式
 
@@ -10,7 +9,7 @@ const { gameList } = useGameList()
 
 <template>
   <div class="casino-games" :class="{ theatre: isTheatre && !isMobile }">
-    <AppIframe :is-theatre="isTheatre" @change-theatre="setBool" />
+    <AppIframe :data="gameData" :is-theatre="isTheatre" @change-theatre="setBool" />
     <AppDesc />
     <AppContent>
       <div class="content-wrapper">
