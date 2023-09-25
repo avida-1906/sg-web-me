@@ -1,11 +1,11 @@
 <script setup lang='ts'>
-const { t } = useI18n()
+// const { t } = useI18n()
 
 // const inputRef = ref()
 // function onInputClick() {
 //   inputRef.value.select()
 // }
-// const currentAddress = ref('0xa9869670e7f9db1f6b916b90b2b7ebc546480e67')
+const currentAddress = ref('0xa9869670e7f9db1f6b916b90b2b7ebc546480e67')
 const currentNetwork = ref('1')
 const networkList = [
   { label: '网络1', value: '1' },
@@ -13,7 +13,7 @@ const networkList = [
   { label: '网络3', value: '3' },
   { label: '网络4', value: '4' },
 ]
-
+const depositStep = ref('1')
 // 获取新的虚拟货币地址
 // const { openDialog: openGetNewCrypto } = useDialog({
 //   title: '确认更换地址',
@@ -22,25 +22,65 @@ const networkList = [
 //   showButtons: true,
 //   default: () => h(AppGetNewCrypto),
 // })
+const activeCurrency = ref()
 
+function changeCurrency(item: any) {
+  activeCurrency.value = item
+}
 const username = ref('')
 const usernameErrorMsg = ref('')
+
+function getMoneyNum(item: ISelectOption) {
+  username.value = item.value.toString()
+}
 </script>
 
 <template>
   <div class="app-deposit">
-    <div class="currency">
-      <div class="c-option">
-        <span class="semibold">{{ t('currency') }}</span>
-        <AppWallet :wallet-btn="false" :show-balance="false" />
-      </div>
-      <div class="c-option">
-        <span class="semibold">{{ t('network') }}</span>
+    <template v-if="depositStep === '1'">
+      <div class="currency">
+        <AppWallet :wallet-btn="false" :show-balance="false" @change="changeCurrency" />
         <BaseSelect v-model="currentNetwork" :options="networkList" popper />
       </div>
-    </div>
-    <BaseInput v-model="username" label="充值金额:USDT" :msg="usernameErrorMsg" />
-    <BaseMoneyKeyboard />
+      <BaseInput v-model="username" :label="`充值金额: ${activeCurrency?.icon}`" :msg="usernameErrorMsg" />
+      <BaseMoneyKeyboard @click-key="getMoneyNum" />
+      <BaseButton bg-style="primary" size="md" @click="depositStep = '2'">
+        确认支付
+      </BaseButton>
+    </template>
+    <template v-if="depositStep === '2'">
+      <AppCurrencyIcon class="currency-icon" :show-name="true" :currency-type="1" />
+      <BaseQrcode url="www.google.com" />
+      <div>
+        <BaseInput v-model="currentAddress" label="转入地址">
+          <template #right-icon>
+            <BaseIcon name="uni-doc" />
+          </template>
+        </BaseInput>
+        <div class="warn-msg">
+          请确认发送USDT到此地址，充值需要全网确认才能到账，请耐心等待！
+        </div>
+      </div>
+      <div>
+        <BaseInput v-model="username" label="转入金额: USDT">
+          <template #right-icon>
+            <BaseIcon name="uni-doc" />
+          </template>
+        </BaseInput>
+        <div class="warn-msg">
+          请确认收款地址存入完整金额（不含手续费），否则可能导致无法上分
+        </div>
+      </div>
+
+      <div class="box-btn">
+        <BaseButton type="line" style="border-color: var(--tg-text-blue);color: var(--tg-text-blue);" size="md" @click="depositStep = '1'">
+          取消存款申请
+        </BaseButton>
+        <BaseButton bg-style="primary" size="md">
+          我已存款
+        </BaseButton>
+      </div>
+    </template>
     <!-- <div class="address">
       <span class="semibold label">{{ t('your_currency_deposit_address', { currency: 'BTC' }) }}</span>
       <div class="input-box">
@@ -67,14 +107,24 @@ const usernameErrorMsg = ref('')
   .currency {
     display: flex;
     justify-content: center;
-    gap: var(--tg-spacing-16);
-
-    .c-option {
-      display: flex;
-      flex-direction: column;
-    }
+    gap: var(--tg-spacing-12);
   }
-
+  .warn-msg{
+    line-height: 1;
+    color: var(--tg-text-error);
+    font-family: PingFang SC;
+    font-size: var(--tg-font-size-xs);
+    font-weight: 500;
+  }
+  .currency-icon{
+    color:var(--tg-text-white);
+    margin: 0 auto;
+  }
+  .box-btn{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 12px;
+  }
   // .address {
   //   display: flex;
   //   flex-direction: column;
