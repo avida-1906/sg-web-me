@@ -66,7 +66,7 @@ const { openVipDialog } = useVipDialog()
           <div class="unauthenticated-content">
             <h1>更明智地下注</h1>
             <BaseButton bg-style="primary" round size="md">
-              <span class="register-text">立即注册</span>
+              <span class="register-text">立即注册 {{ $t('hello') }}</span>
             </BaseButton>
             <AppAuthLogin />
           </div>

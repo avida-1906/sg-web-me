@@ -33,6 +33,7 @@ export const useAppStore = defineStore('app', () => {
     setLoginTrue,
     setLoginFalse,
     removeToken,
+    getToken,
   }
 })
 
