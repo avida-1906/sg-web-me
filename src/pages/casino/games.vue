@@ -2,7 +2,7 @@
 const { isMobile } = storeToRefs(useWindowStore())
 const { bool: isTheatre, setBool } = useBoolean(false) // 影院模式
 
-const { gameList, gameProviders } = useGameList()
+const { gameList } = useGameList()
 </script>
 
 <template>
