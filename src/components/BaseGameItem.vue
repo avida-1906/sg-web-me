@@ -1,22 +1,24 @@
 <script setup lang="ts">
 interface Props {
   gameInfo: {
-    img?: string
-    name?: string
+    img: string
+    name: string
+    id: string
+    game_id: string
     [k: string]: any
   }
 }
-withDefaults(defineProps<Props>(), {
-  gameInfo: () => { return {} },
-})
-const emit = defineEmits(['clickItem'])
-function handleClick(item: any) {
-  emit('clickItem', item)
+defineProps<Props>()
+
+const router = useRouter()
+function gameStart(item: Props['gameInfo']) {
+  const { id, game_id } = item
+  router.push(`/casino/games/${id}?code=${game_id}`)
 }
 </script>
 
 <template>
-  <div class="base-game-item" @click="handleClick(gameInfo)">
+  <div class="base-game-item" @click="gameStart(gameInfo)">
     <BaseImage :url="gameInfo.img" :name="gameInfo.name" />
     <div class="active-game-item">
       <div class="game-title">
