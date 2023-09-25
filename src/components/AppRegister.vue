@@ -42,14 +42,15 @@ const { value: password, errorMessage: pwdErrorMsg, validate: valiPassword } = u
   if (!value)
     return t('pls_enter_password')
 
-  if (!lastOneNumberReg.test(value))
-    return t('password_incorrect')
-  // 您的 password 必须含有至少 8 个字符 /^.{8,}$/
-  // 密码必须含有至少 1 个大写字母和 1 个小写字母 /^(?=.*[a-z])(?=.*[A-Z]).+$/
+  if (value.length < 8)
+    return t('password_least_8_characters')
 
-  // 含有大写和小写字母 /^(?=.*[a-z])(?=.*[A-Z]).+$/
-  // 含有至少 1 个数字 /.*\d+.*$/
-  // 至少 8 个字符 /^.{8,}$/
+  if (!upperLowerReg.test(value))
+    return t('password_uppercase_lowercase_letter')
+
+  if (!lastOneNumberReg.test(value))
+    return t('password_least_1_number')
+
   return ''
 })
 
@@ -63,7 +64,7 @@ async function getMemberReg() {
   birthdayInputRef.value.valiBirthday()
   if (!emailErrorMsg.value && !usernameErrorMsg.value && !pwdErrorMsg.value && birthday.value) {
     const paramsReg = {
-      email: username.value,
+      email: email.value,
       username: username.value,
       password: password.value,
       parent_id: '',

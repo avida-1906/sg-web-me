@@ -1,13 +1,11 @@
 <script setup lang='ts'>
-import AppGetNewCrypto from '~/components/AppGetNewCrypto.vue'
-
 const { t } = useI18n()
 
-const inputRef = ref()
-function onInputClick() {
-  inputRef.value.select()
-}
-const currentAddress = ref('0xa9869670e7f9db1f6b916b90b2b7ebc546480e67')
+// const inputRef = ref()
+// function onInputClick() {
+//   inputRef.value.select()
+// }
+// const currentAddress = ref('0xa9869670e7f9db1f6b916b90b2b7ebc546480e67')
 const currentNetwork = ref('1')
 const networkList = [
   { label: '网络1', value: '1' },
@@ -17,13 +15,16 @@ const networkList = [
 ]
 
 // 获取新的虚拟货币地址
-const { openDialog: openGetNewCrypto } = useDialog({
-  title: '确认更换地址',
-  icon: 'navbar-wallet',
-  maxWidth: 400,
-  showButtons: true,
-  default: () => h(AppGetNewCrypto),
-})
+// const { openDialog: openGetNewCrypto } = useDialog({
+//   title: '确认更换地址',
+//   icon: 'navbar-wallet',
+//   maxWidth: 400,
+//   showButtons: true,
+//   default: () => h(AppGetNewCrypto),
+// })
+
+const username = ref('')
+const usernameErrorMsg = ref('')
 </script>
 
 <template>
@@ -38,7 +39,9 @@ const { openDialog: openGetNewCrypto } = useDialog({
         <BaseSelect v-model="currentNetwork" :options="networkList" popper />
       </div>
     </div>
-    <div class="address">
+    <BaseInput v-model="username" label="充值金额:USDT" :msg="usernameErrorMsg" />
+    <BaseMoneyKeyboard />
+    <!-- <div class="address">
       <span class="semibold label">{{ t('your_currency_deposit_address', { currency: 'BTC' }) }}</span>
       <div class="input-box">
         <input ref="inputRef" type="text" readonly :value="currentAddress" @click="onInputClick">
@@ -49,9 +52,9 @@ const { openDialog: openGetNewCrypto } = useDialog({
           <BaseIcon name="uni-doc" />
         </div>
       </div>
-    </div>
-    <BaseQrcode url="www.google.com" />
-    <span style="text-align: center;">请只发送 USDT 到此地址，需获 2 个确认让存款到账。</span>
+    </div> -->
+    <!-- <BaseQrcode url="www.google.com" /> -->
+    <!-- <span style="text-align: center;">请只发送 USDT 到此地址，需获 2 个确认让存款到账。</span> -->
   </div>
 </template>
 
@@ -72,64 +75,64 @@ const { openDialog: openGetNewCrypto } = useDialog({
     }
   }
 
-  .address {
-    display: flex;
-    flex-direction: column;
+  // .address {
+  //   display: flex;
+  //   flex-direction: column;
 
-    .label {
-      margin-bottom: var(--tg-spacing-4);
-    }
+  //   .label {
+  //     margin-bottom: var(--tg-spacing-4);
+  //   }
 
-    .input-box {
-      width: 100%;
-      display: flex;
-      flex-shrink: 0;
-      box-shadow: var(--tg-box-shadow);
-      border-radius: var(--tg-radius-default);
-      overflow: hidden;
-      background-color: var(--tg-secondary-main);
+  //   .input-box {
+  //     width: 100%;
+  //     display: flex;
+  //     flex-shrink: 0;
+  //     box-shadow: var(--tg-box-shadow);
+  //     border-radius: var(--tg-radius-default);
+  //     overflow: hidden;
+  //     background-color: var(--tg-secondary-main);
 
-      input {
-        width: 100%;
-        background-color: transparent;
-        color: var(--tg-text-white);
-        outline: none;
-        cursor: text;
-        padding: var(--tg-spacing-7);
-        border-width: var(--tg-border-width-sm);
-        border-style: solid;
-        border-color: var(--tg-secondary-main);
-        border-radius: var(--tg-radius-default) 0 0 var(--tg-radius-default);
-        font-weight: var(--tg-font-weight-semibold);
+  //     input {
+  //       width: 100%;
+  //       background-color: transparent;
+  //       color: var(--tg-text-white);
+  //       outline: none;
+  //       cursor: text;
+  //       padding: var(--tg-spacing-7);
+  //       border-width: var(--tg-border-width-sm);
+  //       border-style: solid;
+  //       border-color: var(--tg-secondary-main);
+  //       border-radius: var(--tg-radius-default) 0 0 var(--tg-radius-default);
+  //       font-weight: var(--tg-font-weight-semibold);
 
-        &:hover {
-          border-color: var(--tg-text-grey);
-        }
-      }
+  //       &:hover {
+  //         border-color: var(--tg-text-grey);
+  //       }
+  //     }
 
-      .icon {
-        padding: var(--tg-spacing-button-padding-vertical-sm) var(--tg-spacing-button-padding-horizontal-sm);
-        cursor: pointer;
-        display: flex;
-        position: relative;
-        --tg-icon-color: var(--tg-text-white);
+  //     .icon {
+  //       padding: var(--tg-spacing-button-padding-vertical-sm) var(--tg-spacing-button-padding-horizontal-sm);
+  //       cursor: pointer;
+  //       display: flex;
+  //       position: relative;
+  //       --tg-icon-color: var(--tg-text-white);
 
-        &:hover {
-          background-color: var(--tg-text-grey);
-        }
-      }
-      .line{
-        &::before {
-          content: "";
-          position: absolute;
-          width: var(--tg-border-width-sm);
-          background: var(--tg-primary-main);
-          left: -1px;
-          top: 25%;
-          bottom: 25%;
-        }
-      }
-    }
-  }
+  //       &:hover {
+  //         background-color: var(--tg-text-grey);
+  //       }
+  //     }
+  //     .line{
+  //       &::before {
+  //         content: "";
+  //         position: absolute;
+  //         width: var(--tg-border-width-sm);
+  //         background: var(--tg-primary-main);
+  //         left: -1px;
+  //         top: 25%;
+  //         bottom: 25%;
+  //       }
+  //     }
+  //   }
+  // }
 }
 </style>
