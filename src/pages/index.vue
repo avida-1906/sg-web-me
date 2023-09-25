@@ -45,7 +45,6 @@ function disconnectMqtt() {
 }
 const { bool: showMore, toggle: toggleShowMore } = useBoolean(false)
 const onShowMore = function () {
-  console.log('showMore', showMore)
   toggleShowMore()
 }
 const {
