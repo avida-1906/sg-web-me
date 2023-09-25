@@ -83,8 +83,8 @@ const { openVipDialog } = useVipDialog()
           </AppVipProgress>
         </div>
         <div class="top-banner">
-          <AppBanner v-if="isMobile" />
-          <BaseImage v-else fit="cover" url="https://mediumrare.imgix.net/welcome-top-zh.png?&dpr=2&format=auto&auto=format&w=540&q=50" />
+          <AppBanner :mode="isMobile ? 'default' : 'only'" />
+          <!-- <BaseImage v-else fit="cover" url="https://mediumrare.imgix.net/welcome-top-zh.png?&dpr=2&format=auto&auto=format&w=540&q=50" /> -->
         </div>
       </div>
     </div>
@@ -226,7 +226,9 @@ const { openVipDialog } = useVipDialog()
     .top-wrapper{
       display: grid;
       position: relative;
-      grid-template-columns: 40% 50%;
+      grid-template-columns: 40% 40%;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 2rem;
       justify-content: space-between;
       background-position: left 25% center;
       background-size: auto 120%;
@@ -293,6 +295,7 @@ const { openVipDialog } = useVipDialog()
       }
       .top-banner{
         position: relative;
+        padding: var(--tg-spacing-24) 0;
       }
     }
   }
@@ -527,6 +530,9 @@ const { openVipDialog } = useVipDialog()
       background:none;
       // background-position: right 25% center;
       // background-size: cover;
+      .top-banner{
+        padding: 0;
+      }
     }
   }
   .index-features{

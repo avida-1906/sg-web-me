@@ -1,10 +1,10 @@
 <script setup lang="ts">
 interface Props {
   gameInfo: {
-    img: string
-    name: string
-    id: string
-    game_id: string
+    img?: string
+    name?: string
+    id?: string
+    game_id?: string
     [k: string]: any
   }
 }
