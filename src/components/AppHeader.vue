@@ -139,14 +139,14 @@ async function logout() {
   gap: var(--tg-spacing-16);
   padding: var(--tg-spacing-16) var(--tg-spacing-16);
   &-text {
-    color: #b1bad3;
     // font-size: var(--tg-font-size-default);
     font-size: var(--tg-font-size-xs);
+    color: var(--tg-text-lightgrey);
   }
 
   &-btn {
     color: var(--tg-text-white) !important;
-    background: #e9113c;
+    background: var(--tg-button-secondary-main);
   }
 }
 
