@@ -5,16 +5,18 @@ interface SlideItem {
 }
 
 interface Props {
-  api: string
   icon: string
   title: string
   data: Array<SlideItem>
   showViewAll?: boolean
+  gameType: string | number
 }
 
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   showViewAll: true,
 })
+
+const router = useRouter()
 
 const pageInfo = reactive({
   total: 0,
@@ -48,6 +50,10 @@ function prevPage() {
     x.value = temp
   else
     x.value = 0
+}
+
+function goAllPage() {
+  router.push(`/casino/group/${props.gameType}`)
 }
 
 watchEffect(() => {
@@ -112,7 +118,7 @@ watchEffect(() => {
         </div>
       </div>
       <div v-if="data.length && (showViewAll || $slots.viewAll)" class="slide see-all" :class="{ faded: scrollLeftItemsCount + pageInfo.pageSize < data.length + 1 }">
-        <div class="item">
+        <div class="item" @click="goAllPage">
           <slot name="viewAll">
             <BaseImage url="/img/casino/seeAll-en.png" />
             <div class="txt">

@@ -199,3 +199,11 @@ export enum EnumCurrency {
   INR,
 
 }
+
+/**
+ * casino游戏类型枚举
+ */
+export enum EnumCasinoGameType {
+  LIVE = 'live', // 真人
+  SLOT = 'slot', // 老虎机
+}

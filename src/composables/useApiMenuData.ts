@@ -207,6 +207,17 @@ const staticMenu2: Menu = [
 ]
 
 export function useApiMenuData() {
+  const _casinoMenu = ref<Menu>(casinoMenu)
+  const _casinoGameList = ref<Menu>(casinoGameList)
+  const _casinoGameProvider = ref<Menu>(casinoGameProvider)
+  const _sportsMenu = ref<Menu>(sportsMenu)
+  const _sportHotGames = ref<Menu>(sportHotGames)
+  const _sportEsports = ref<Menu>(sportEsports)
+  const _sportGameList = ref<Menu>(sportGameList)
+  const _sportOddType = ref<Menu>(sportOddType)
+  const _staticMenu1 = ref<Menu>(staticMenu1)
+  const _staticMenu2 = ref<Menu>(staticMenu2)
+
   const router = useRouter()
 
   const route = useRoute()
@@ -214,11 +225,18 @@ export function useApiMenuData() {
   const { leftIsExpand } = useLeftSidebar()
 
   function menuItemClick(item: MenuItem) {
-    console.log('item +++ ', item)
     if (item.path && item.path.length) {
       router.push(item.path)
     }
     else if (item.list && item.list.length) {
+      [_casinoMenu.value, _casinoGameList.value, _casinoGameProvider.value, _sportsMenu.value, _sportHotGames.value, _sportEsports.value, _sportGameList.value, _sportOddType.value, _staticMenu1.value, _staticMenu2.value].forEach((menu: Menu) => {
+        menu.forEach((menuItem: MenuItem) => {
+          menuItem.expand = false
+          menuItem.list?.forEach((mi: MenuItem) => {
+            mi.expand = false
+          })
+        })
+      })
       leftIsExpand.value = true
       item.expand = true
     }
@@ -231,16 +249,16 @@ export function useApiMenuData() {
   }
 
   return {
-    casinoMenu,
-    casinoGameList,
-    casinoGameProvider,
-    sportsMenu,
-    sportHotGames,
-    sportEsports,
-    sportGameList,
-    sportOddType,
-    staticMenu1,
-    staticMenu2,
+    casinoMenu: _casinoMenu.value,
+    casinoGameList: _casinoGameList.value,
+    casinoGameProvider: _casinoGameProvider.value,
+    sportsMenu: _sportsMenu.value,
+    sportHotGames: _sportHotGames.value,
+    sportEsports: _sportEsports.value,
+    sportGameList: _sportGameList.value,
+    sportOddType: _sportOddType.value,
+    staticMenu1: _staticMenu1.value,
+    staticMenu2: _staticMenu2.value,
     menuItemClick,
   }
 }

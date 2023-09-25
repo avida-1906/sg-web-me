@@ -3,6 +3,7 @@ interface Props {
   gameInfo: {
     img?: string
     name?: string
+    [k: string]: any
   }
 }
 withDefaults(defineProps<Props>(), {
