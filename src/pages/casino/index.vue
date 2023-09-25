@@ -52,8 +52,8 @@ function viewMoreGames(gameType: string) {
       <BaseTab v-model="tab" :list="tabList" :center="false" />
     </div>
     <div class="content-wrapper">
-      <AppSlider v-show="showAll" :game-type="EnumCasinoGameType.LIVE" api="" icon="chess-live-casino" :title="t('game_type_live')" :data="liveList" />
-      <AppSlider v-show="showAll" :game-type="EnumCasinoGameType.SLOT" api="" icon="chess-slot-machine" :title="t('game_type_slot_short_name')" :data="slotList" />
+      <AppSlider v-show="showAll" :game-type="EnumCasinoGameType.LIVE" icon="chess-live-casino" :title="t('game_type_live')" :data="liveList" />
+      <AppSlider v-show="showAll" :game-type="EnumCasinoGameType.SLOT" icon="chess-slot-machine" :title="t('game_type_slot_short_name')" :data="slotList" />
 
       <div v-show="!showAll" class="list-wrap">
         <div class="title">
