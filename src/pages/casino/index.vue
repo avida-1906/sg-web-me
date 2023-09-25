@@ -12,11 +12,29 @@ const currentTitle = computed(() => tabList.find(a => a.value === tab.value)?.la
 
 const { VITE_CASINO_HOME_PAGE_SIZE } = import.meta.env
 
-const { gameList, gameProviders } = useGameList()
-const { data: liveData } = useApiGameList({ page: 1, page_size: VITE_CASINO_HOME_PAGE_SIZE, game_type: 1 })
-const liveList = computed(() => liveData.value?.d ? liveData.value.d : [])
-const { data: slotData } = useApiGameList({ page: 1, page_size: VITE_CASINO_HOME_PAGE_SIZE, game_type: 3 })
-const slotList = computed(() => slotData.value?.d ? slotData.value.d : [])
+const { gameProviders } = useGameList()
+// TODO:待删
+const liveImg = 'https://mediumrare.imgix.net/c984a0f6625efd5a38c306697845c7bedcc917e2c061b45e8a75a5e648057e8a?&dpr=2&format=auto&auto=format&q=50'
+const slotImg = 'https://mediumrare.imgix.net/3285df789ee1e5f52e3b075b4eb0c1f080fcdce28f7c9689daa4e62f87fa85a3?&dpr=2&format=auto&auto=format&q=50'
+
+const { data: liveData, total: liveTotal } = useApiGameList({ page: 1, page_size: VITE_CASINO_HOME_PAGE_SIZE, game_type: 1 })
+const liveList = computed(() => {
+  if (liveData.value?.d) {
+    return liveData.value.d.map((item) => {
+      return { ...item, img: liveImg }
+    })
+  }
+  return []
+})
+const { data: slotData, total: slotTotal } = useApiGameList({ page: 1, page_size: VITE_CASINO_HOME_PAGE_SIZE, game_type: 3 })
+const slotList = computed(() => {
+  if (slotData.value?.d) {
+    return slotData.value.d.map((item) => {
+      return { ...item, img: slotImg }
+    })
+  }
+  return []
+})
 </script>
 
 <template>
@@ -45,7 +63,7 @@ const slotList = computed(() => slotData.value?.d ? slotData.value.d : [])
 
         <div class="more">
           <BaseButton size="md">
-            查看全部[]{{ currentTitle }}
+            查看全部 {{ showLive ? liveTotal : slotTotal }} {{ currentTitle }}
           </BaseButton>
         </div>
       </div>
