@@ -59,6 +59,7 @@ const showTitle = computed(() => {
         color: var(--tg-text-white);
         margin-left: var(--tg-spacing-12);
         margin-right: var(--tg-spacing-12);
+        font-weight: var(--tg-font-weight-semibold);
     }
 }
 </style>

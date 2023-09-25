@@ -8,10 +8,10 @@ const title = computed(() => isLive.value ? t('game_type_live') : t('game_type_s
 
 const gameType = computed(() => isLive.value ? 1 : isSlot.value ? 3 : undefined)
 const liveImg = 'https://mediumrare.imgix.net/c984a0f6625efd5a38c306697845c7bedcc917e2c061b45e8a75a5e648057e8a?&dpr=2&format=auto&auto=format&q=50'
-const { data, total } = useApiGameList({ page: 1, page_size: VITE_CASINO_GAME_PAGE_SIZE, game_type: gameType.value })
+const { data, total, push, loading } = useApiGameList({ page: 1, page_size: VITE_CASINO_GAME_PAGE_SIZE, game_type: gameType.value })
 const list = computed(() => {
-  if (data.value?.d) {
-    return data.value.d.map((item) => {
+  if (data.value) {
+    return data.value.map((item) => {
       return { ...item, img: liveImg }
     })
   }
@@ -48,8 +48,10 @@ const list = computed(() => {
       </div>
       <div class="load-more mt-24">
         <AppPercentage :total="total" :percentage="list.length" />
-        <BaseButton size="md">
-          <div>{{ $t('load_more') }}</div>
+        <BaseButton size="md" :loading="loading" @click="push">
+          <div>
+            {{ $t('load_more') }}
+          </div>
         </BaseButton>
       </div>
       <AppProviderSlider />

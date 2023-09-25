@@ -243,8 +243,13 @@ onBeforeUnmount(() => {
         color: var(--tg-text-white) !important;
       }
       .stake-text {
+        font-weight: var(--tg-font-weight-semibold);
         font-size: var(--tg-font-size-xs);
         padding-bottom: var(--tg-spacing-20);
+        cursor: pointer;
+        span:hover {
+          color: var(--tg-text-white) !important;
+        }
       }
     }
   }
