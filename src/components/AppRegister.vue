@@ -16,7 +16,10 @@ const { value: email, errorMessage: emailErrorMsg, validate: valiEmail } = useFi
 
   if (!emailReg.test(value))
     return t('email_address_incorrect')
-
+    // 请在您的电邮地址中加入 “@” 符号
+    // 请在您的电邮地址中加入 “.” 符号
+    // 电子邮件域不受支持
+    // 请输入有效的电邮地址
   return ''
 })
 const { value: username, errorMessage: usernameErrorMsg, validate: valiUsername } = useField<string>('username', (value) => {
@@ -25,7 +28,11 @@ const { value: username, errorMessage: usernameErrorMsg, validate: valiUsername 
 
   if (!usernameReg.test(value))
     return t('username_incorrect')
-
+  // 此用户名已被使用，请选择另一用户名。
+  // 用户名含有无效的字符
+  // 您的用户名长度必须为 3 – 14 个字符。
+  // 您的 username 必须含有至少 3 个字符
+  // 您的 username 不得超过 14 个字符
   return ''
 })
 
@@ -35,7 +42,12 @@ const { value: password, errorMessage: pwdErrorMsg, validate: valiPassword } = u
 
   if (!lastOneNumberReg.test(value))
     return t('password_incorrect')
+  // 您的 password 必须含有至少 8 个字符 /^.{8,}$/
+  // 密码必须含有至少 1 个大写字母和 1 个小写字母 /^(?=.*[a-z])(?=.*[A-Z]).+$/
 
+  // 含有大写和小写字母 /^(?=.*[a-z])(?=.*[A-Z]).+$/
+  // 含有至少 1 个数字 /.*\d+.*$/
+  // 至少 8 个字符 /^.{8,}$/
   return ''
 })
 
@@ -67,6 +79,12 @@ async function getMemberReg() {
     openTermsConditionsDialog()
   }
 }
+function onFocus() {
+  console.log(1111)
+}
+function onBlur() {
+  console.log(2222)
+}
 </script>
 
 <template>
@@ -79,13 +97,16 @@ async function getMemberReg() {
       <BaseInput v-model="email" :label="t('email_address')" :msg="emailErrorMsg" :placeholder="t('pls_enter_email_address')" must />
       <BaseInput v-model="username" :label="t('username')" :msg="usernameErrorMsg" :placeholder="t('pls_enter_username')" must />
       <BaseInput v-model="password" :label="t('password')" :msg="pwdErrorMsg" :placeholder="t('pls_enter_password')" type="password" must autocomplete="current-password" />
+      <AppPasswordVerify
+        :password="password"
+        @focus="onFocus" @blur="onBlur"
+      />
       <BaseInputBirthday v-model="birthday" :msg="birthdayErrorMsg" must />
     </div>
     <div class="app-register-check-box">
       <BaseCheckBox v-model="checkboxValue">
         {{ t('code_optional') }}
       </BaseCheckBox>
-      <!-- :loading="isLoading" -->
       <BaseButton class="app-register-btn" bg-style="secondary" @click.stop="getMemberReg">
         {{ t('continue') }}
       </BaseButton>
