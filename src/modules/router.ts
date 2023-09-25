@@ -12,7 +12,7 @@ const router = createRouter({
     setTimeout(() => {
       // document.getElementById('main-content-scrollable')?.scrollTo(0, 0)
       document.querySelector('.only-for-get-width')?.scrollIntoView()
-    }, 100)
+    }, 0)
   },
 })
 
