@@ -1,11 +1,13 @@
 <script setup lang='ts'>
-interface Props {
-  password?: string
-}
-
 const props = withDefaults(defineProps<Props>(), {
   password: '',
 })
+
+const { t } = useI18n()
+
+interface Props {
+  password?: string
+}
 </script>
 
 <template>
@@ -13,17 +15,17 @@ const props = withDefaults(defineProps<Props>(), {
     <div class="item">
       <BaseIcon v-if="upperLowerReg.test(props.password)" name="password-hook-2" />
       <BaseIcon v-else name="password-hook-1" />
-      含有大写和小写字母
+      {{ t('uppercase_lowercase_letter') }}
     </div>
     <div class="item">
       <BaseIcon v-if="lastOneNumberReg.test(props.password)" name="password-hook-2" />
       <BaseIcon v-else name="password-hook-1" />
-      含有至少 1 个数字
+      {{ t('password_least_1_number') }}
     </div>
     <div class="item">
       <BaseIcon v-if="props.password.length >= 8" name="password-hook-2" />
       <BaseIcon v-else name="password-hook-1" />
-      至少 8 个字符
+      {{ t('least_8_characters') }}
     </div>
   </div>
 </template>

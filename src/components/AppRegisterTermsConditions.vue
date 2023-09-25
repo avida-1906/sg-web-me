@@ -29,24 +29,15 @@ function handleScroll(evt: any) {
   }, 100)
 }
 
-// const regParams = reactive({
-//   email: '',
-//   username: '',
-//   password: '',
-//   birthday: '',
-//   parent_id: '',
-//   device_number: '',
-// })
-
 const regParams = computed(() => {
-  return Session.get('reg_params')?.value
+  return Session.get(STORAGE_REG_PARAMS_KEYWORDS)?.value
 })
 
 const { run: runMemberReg, loading: isLoading } = useRequest(() => ApiMemberReg(regParams.value), {
   manual: true,
   onSuccess: async (res: any) => {
     appStore.setToken(res)
-    Session.remove('reg_params')
+    Session.remove(STORAGE_REG_PARAMS_KEYWORDS)
     await nextTick()
     closeDialog()
   },
@@ -66,11 +57,6 @@ async function toLogin() {
   await nextTick()
   openLoginDialog()
 }
-
-// onMounted(() => {
-//   console.log(Session.get('reg_params'))
-//   regParams.value = Session.get('reg_params')
-// })
 
 onBeforeUnmount(() => {
   clearTimeout(delayId.value)
