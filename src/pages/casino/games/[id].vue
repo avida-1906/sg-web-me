@@ -1,8 +1,16 @@
 <script setup lang='ts'>
+const props = defineProps<{ id: string }>()
+console.log('🚀 ~ file: [id].vue:3 ~ props:', props.id)
+const { query } = useRoute()
+const gameId = computed(() => query.code?.toString() ?? '')
+console.log('🚀 ~ file: [id].vue:5 ~ route:', query.code)
 const { isMobile } = storeToRefs(useWindowStore())
 const { bool: isTheatre, setBool } = useBoolean(false) // 影院模式
 
 const { gameList } = useGameList()
+ApiGameLunch(props.id, gameId.value).then((res) => {
+  console.log('ApiGameLunch', res)
+})
 </script>
 
 <template>
