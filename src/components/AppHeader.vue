@@ -22,6 +22,7 @@ const newsMenu = ref([
 ])
 
 const { bool: showSearchBar, setTrue } = useBoolean(false)
+const { bool: showDialogLogout, setTrue: setshowDialogLogoutTrue, setFalse: setDialogLogoutFalse } = useBoolean(false)
 
 // Dialog
 const { openWalletDialog } = useWalletDialog()
@@ -42,6 +43,7 @@ function handleClickMenuItem(item: { name: string }) {
       openSafeDialog()
       break
     case 'logout':
+      setshowDialogLogoutTrue()
       break
     case 'vip':
       openVipDialog()
@@ -52,6 +54,12 @@ function handleClickMenuItem(item: { name: string }) {
     default:
       break
   }
+}
+
+async function logout() {
+  appStore.removeToken()
+  await nextTick()
+  setDialogLogoutFalse()
 }
 </script>
 
@@ -111,10 +119,37 @@ function handleClickMenuItem(item: { name: string }) {
         </BaseButton>
       </div>
     </div>
+    <BaseDialog v-model:show="showDialogLogout" icon="uni-trend" title="登出">
+      <div class="dialog">
+        <div class="dialog-text">
+          别忘了在您离开之前先查看我们丰富的娱乐城与体育博彩促销活动！
+        </div>
+        <BaseButton class="dialog-btn" type="text" @click.stop="logout">
+          登出
+        </BaseButton>
+      </div>
+    </BaseDialog>
   </div>
 </template>
 
 <style lang="scss" scoped>
+.dialog {
+  display: flex;
+  flex-direction: column;
+  gap: var(--tg-spacing-16);
+  padding: var(--tg-spacing-16) var(--tg-spacing-16);
+  &-text {
+    color: #b1bad3;
+    // font-size: var(--tg-font-size-default);
+    font-size: var(--tg-font-size-xs);
+  }
+
+  &-btn {
+    color: var(--tg-text-white) !important;
+    background: #e9113c;
+  }
+}
+
 .app-header {
   position: relative;
   display: flex;
