@@ -13,22 +13,28 @@ const icon = computed<any>(() => route.meta.icon)
       <AppContent>
         <section class="with-menu-container">
           <div class="layout-spacing">
-            <div class="top">
-              <div>
-                <BaseIcon :name="icon" />
-                <span>{{ route.meta.title }}</span>
-              </div>
-              <div>
-                <BaseIcon name="uni-close" />
-              </div>
-            </div>
-            <div class="stack x-flex-start y-flex-start direction-horizontal content-outer gap-larger padding-none">
-              <div class="left">
-                <BaseMenu :data="menuData" />
-              </div>
-              <div class="right">
-                <div class="content-container">
-                  <RouterView />
+            <div>
+              <div class="stack x-stretch y-center direction-vertical gap-larger padding-none">
+                <div class="wrap-flex">
+                  <div class="stack y-center padding-none top direction-horizontal x-space-between stretch gap-medium">
+                    <div class="stack y-center gap-medium padding-none direction-horizontal title x-flex-start">
+                      <BaseIcon :name="icon" />
+                      <span>{{ route.meta.title }}</span>
+                    </div>
+                    <div class="close">
+                      <BaseIcon name="uni-close" />
+                    </div>
+                  </div>
+                </div>
+                <div class="stack x-flex-start direction-horizontal gap-larger padding-none y-flex-start content-outer" style="grid-template-columns: auto 1fr;">
+                  <div class="left">
+                    <BaseMenu :data="menuData" />
+                  </div>
+                  <div class="right">
+                    <div class="content-container">
+                      <RouterView />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -40,30 +46,30 @@ const icon = computed<any>(() => route.meta.icon)
 </template>
 
 <style lang="scss" scoped>
-.stack {
+.wrap-flex {
+  width: 100%;
   display: grid;
-
-  grid-template-columns: auto 1fr;
-  position: relative;
-
-  &.direction-horizontal {
-    grid-auto-flow: column;
-  }
-  &.x-flex-start {
-    justify-content: flex-start;
-  }
-  &.y-flex-start {
-    align-items: flex-start;
-  }
-  &.gap-larger {
-    gap: var(--tg-spacing-24);
-  }
-  &.padding-none {
-    padding: 0;
-  }
+  place-items: flex-start;
+  padding-top: var(--tg-spacing-24);
 }
+  // grid-template-columns: auto 1fr;
+
 .with-menu-container {
   .layout-spacing {
+    .top {
+      .title {
+        font-size: var(--tg-font-size-base);
+        font-weight: var(--tg-font-weight-normal);
+        .app-svg-icon {
+          font-size: var(--tg-font-size-md);
+        }
+      }
+      .close {
+        .app-svg-icon {
+          font-size: var(--tg-font-size-default);
+        }
+      }
+    }
     .content-outer {
       .right {
         .content-container {

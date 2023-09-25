@@ -3,7 +3,7 @@
 
 <template>
   <div class="tg-affiliate-overview" />
-  <BaseMenu :data="[{ title: '存款', path: '/components' }, { title: '提款', path: '/' }]" />
+  <!-- <BaseMenu :data="[{ title: '存款', path: '/components' }, { title: '提款', path: '/' }]" /> -->
 </template>
 
 <style lang="scss">

@@ -12,6 +12,7 @@
   --tg-secondary-deepdark: #071824;
   --tg-primary-success: #1FFF20;
   --tg-primary-fail: #E91134;
+  --tg-button-secondary-main: #e9113c;
   /* 点缀色 */
   --tg-sub-info: #008A01;
   --tg-sub-deepblue: #105EB5;
@@ -246,6 +247,46 @@ body {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+// stack 布局
+.stack {
+  display: grid;
+  position: relative;
+
+  &.stretch {
+    width: 100%;
+  }
+  &.direction-horizontal {
+    grid-auto-flow: column;
+  }
+  &.direction-vertical {
+    grid-auto-flow: row;
+  }
+  &.x-stretch {
+    justify-content: stretch;
+  }
+  &.x-flex-start {
+    justify-content: flex-start;
+  }
+  &.x-space-between {
+    justify-content: space-between;
+  }
+  &.y-flex-start {
+    align-items: flex-start;
+  }
+  &.y-center {
+    align-items: center;
+  }
+  &.gap-larger {
+    gap: var(--tg-spacing-24);
+  }
+  &.gap-medium {
+    gap: var(--tg-spacing-12);
+  }
+  &.padding-none {
+    padding: 0;
+  }
 }
 
 // 页面垂直布局
