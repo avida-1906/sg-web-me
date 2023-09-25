@@ -1,6 +1,6 @@
 <script lang="ts" setup name="app-slider">
 interface SlideItem {
-  id: string | number
+  id: string
   [key: string]: any
 }
 
@@ -95,7 +95,9 @@ watchEffect(() => {
     <div class="header">
       <div class="title">
         <a>
-          <BaseIcon :name="icon" />
+          <div class="icon">
+            <BaseIcon :name="icon" />
+          </div>
           <h3>{{ title }}</h3>
         </a>
       </div>
@@ -103,13 +105,19 @@ watchEffect(() => {
         <BaseButton type="round-line-left" :disabled="x <= 0" @click="prevPage">
           <BaseIcon name="uni-arrowleft-line" />
         </BaseButton>
-        <BaseButton type="round-line-right" :disabled="scrollLeftItemsCount + pageInfo.pageSize >= data.length + 1" @click="nextPage">
+        <BaseButton
+          type="round-line-right" :disabled="scrollLeftItemsCount + pageInfo.pageSize >= data.length + 1"
+          @click="nextPage"
+        >
           <BaseIcon name="uni-arrowright-line" />
         </BaseButton>
       </div>
     </div>
     <div ref="gallery" class="scroll-x gallery hide-scrollbar" :class="[galleryClass]">
-      <div v-for="item, idx in data" :key="item.id" class="slide" :class="{ faded: idx >= scrollLeftItemsCount + pageInfo.pageSize }">
+      <div
+        v-for="item, idx in data" :key="item.id" class="slide"
+        :class="{ faded: idx >= scrollLeftItemsCount + pageInfo.pageSize }"
+      >
         <div class="item">
           <slot :item="item">
             <BaseGameItem :game-info="item" />
@@ -117,7 +125,10 @@ watchEffect(() => {
           <div class="link-next" @click="nextPage" />
         </div>
       </div>
-      <div v-if="data.length && (showViewAll || $slots.viewAll)" class="slide see-all" :class="{ faded: scrollLeftItemsCount + pageInfo.pageSize < data.length + 1 }">
+      <div
+        v-if="data.length && (showViewAll || $slots.viewAll)" class="slide see-all"
+        :class="{ faded: scrollLeftItemsCount + pageInfo.pageSize < data.length + 1 }"
+      >
         <div class="item" @click="goAllPage">
           <slot name="viewAll">
             <BaseImage url="/img/casino/seeAll-en.png" />
@@ -138,10 +149,12 @@ watchEffect(() => {
   // margin-bottom: -4px;
   width: 100%;
   margin-top: var(--tg-spacing-button-padding-vertical-xl);
+
   .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     .title {
       a {
         font-size: var(--tg-font-size-xl);
@@ -150,23 +163,35 @@ watchEffect(() => {
         position: relative;
         align-items: center;
         font-weight: 500;
+
         h3 {
           font-size: var(--tg-font-size-md);
           line-height: 1.5;
           margin-left: var(--tg-spacing-8);
         }
+
+        .icon {
+          font-size: var(--tg-font-size-base);
+        }
+
+        &:hover {
+          --tg-icon-color: var(--tg-text-white);
+        }
       }
     }
+
     .arrows {
       display: flex;
       align-items: center;
       justify-content: flex-end;
       gap: var(--tg-spacing-6);
+
       button {
         width: 55px;
         height: 42px;
         padding: 0 !important;
       }
+
       // button:disabled {
       //   cursor: default;
       // }
@@ -176,6 +201,7 @@ watchEffect(() => {
       }
     }
   }
+
   .gallery {
     display: grid;
     grid-auto-flow: column;
@@ -183,68 +209,84 @@ watchEffect(() => {
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
+
     // 以下数字代表 tg-app-slider 的宽度
     &.gallery-1150 {
       grid-auto-columns: calc(13.33% - 10px); // pageSize 7
       gap: 11px;
     }
+
     &.gallery-1150-1000 {
       grid-auto-columns: calc(15.38% - 15px); // 6
       gap: 16px;
     }
+
     &.gallery-1000-850 {
       grid-auto-columns: calc(18.18% - 15px); // 5
       gap: 16px;
     }
+
     &.gallery-850-700 {
       grid-auto-columns: calc(22.22% - 15px); // 4
       gap: 16px;
     }
+
     &.gallery-700-500 {
       grid-auto-columns: calc(25% - 5px); // 4
       gap: 6px;
     }
+
     &.gallery-500 {
       grid-auto-columns: calc(33.33% - 5px); // 3
       gap: 6px;
     }
+
     .slide {
       scroll-snap-align: start;
       will-change: opacity;
       transition: all .3s;
+
       .link-next {
         display: none;
         position: absolute;
         inset: 0 0 0 0;
         background: transparent;
       }
+
       &.faded {
         opacity: .2;
         cursor: pointer;
+
         .link-next {
           display: block;
         }
       }
+
       .item {
         border-radius: var(--tg-radius-md);
         position: relative;
         min-height: 100px;
       }
+
       &.see-all {
         .item {
           text-align: center;
           overflow: hidden;
           cursor: pointer;
           transition: all 0.3s ease;
+
           .link-next {
             display: none;
           }
+
           &:hover {
             transform: translateY(-7px);
           }
+
           img {
             display: block;
           }
+
           .txt {
             font-size: var(--tg-font-size-lg);
             color: var(--tg-text-white);

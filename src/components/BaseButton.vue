@@ -37,14 +37,14 @@ button {
   font-size: var(--tg-font-size-default);
   border-radius: var(--tg-radius-default);
   font-weight: var(--tg-font-weight-semibold);
-  transition: all ease .25s;
+  transition: var(--tg-transition);
   line-height: 1;
 
   .loading {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size:var(--tg-font-size-base);
+    font-size: var(--tg-font-size-base);
   }
 
   .content {

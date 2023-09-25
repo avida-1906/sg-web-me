@@ -6,9 +6,9 @@ const isLive = computed(() => props.gameType === EnumCasinoGameType.LIVE) // 真
 const isSlot = computed(() => props.gameType === EnumCasinoGameType.SLOT) // 老虎机
 const title = computed(() => isLive.value ? t('game_type_live') : t('game_type_slot'))
 
-const gameType = computed(() => isLive.value ? 1 : isSlot.value ? 3 : undefined)
+const game_type = computed(() => isLive.value ? 1 : isSlot.value ? 3 : undefined)
 const liveImg = 'https://mediumrare.imgix.net/c984a0f6625efd5a38c306697845c7bedcc917e2c061b45e8a75a5e648057e8a?&dpr=2&format=auto&auto=format&q=50'
-const { data, total, push, loading } = useApiGameList({ page: 1, page_size: VITE_CASINO_GAME_PAGE_SIZE, game_type: gameType.value })
+const { data, total, push, loading } = useApiGameList({ page: 1, page_size: VITE_CASINO_GAME_PAGE_SIZE, game_type: game_type.value })
 const list = computed(() => {
   if (data.value) {
     return data.value.map((item) => {
@@ -32,7 +32,7 @@ const list = computed(() => {
               </h1>
             </div>
             <div class="right">
-              <BaseImage url="/img/casino/group-banner-slots.png" />
+              <BaseImage :url="`/img/casino/group-banner-${gameType}.png`" />
             </div>
           </div>
         </div>
