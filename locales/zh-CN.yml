@@ -660,3 +660,7 @@ casino_sort_featured: 重点介绍
 casino_filter_label: 筛选依据
 casino_filter_label_sort: 排序依据
 load_more: 加载更多
+game_type_all: 大厅
+game_type_live: 真人娱乐场
+game_type_slot: 特色老虎机
+game_type_slot_short_name: 老虎机

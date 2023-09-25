@@ -1,4 +1,22 @@
 <script setup lang="ts">
+const props = defineProps<{ gameType: string }>()
+const { VITE_CASINO_GAME_PAGE_SIZE } = import.meta.env
+const { t } = useI18n()
+const isLive = computed(() => props.gameType === EnumCasinoGameType.LIVE) // 真人
+const isSlot = computed(() => props.gameType === EnumCasinoGameType.SLOT) // 老虎机
+const title = computed(() => isLive.value ? t('game_type_live') : t('game_type_slot'))
+
+const gameType = computed(() => isLive.value ? 1 : isSlot.value ? 3 : undefined)
+const liveImg = 'https://mediumrare.imgix.net/c984a0f6625efd5a38c306697845c7bedcc917e2c061b45e8a75a5e648057e8a?&dpr=2&format=auto&auto=format&q=50'
+const { data, total } = useApiGameList({ page: 1, page_size: VITE_CASINO_GAME_PAGE_SIZE, game_type: gameType.value })
+const list = computed(() => {
+  if (data.value?.d) {
+    return data.value.d.map((item) => {
+      return { ...item, img: liveImg }
+    })
+  }
+  return []
+})
 </script>
 
 <template>
@@ -10,7 +28,7 @@
           <div class="banner">
             <div class="left">
               <h1>
-                <span>老虎机</span>
+                <span>{{ title }}</span>
               </h1>
             </div>
             <div class="right">
@@ -26,10 +44,10 @@
         <AppGroupFilter />
       </div>
       <div class="mt-24">
-        <AppCardList />
+        <AppCardList :list="list" />
       </div>
       <div class="load-more mt-24">
-        <AppPercentage />
+        <AppPercentage :total="total" :percentage="list.length" />
         <BaseButton size="md">
           <div>{{ $t('load_more') }}</div>
         </BaseButton>

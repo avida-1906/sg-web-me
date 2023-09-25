@@ -44,7 +44,7 @@ function handleClick() {
     >
     <div v-if="!complete" class="img-load">
       <slot>
-        <BaseLoading />
+        <!-- <BaseLoading /> -->
       </slot>
     </div>
   </div>

@@ -14,55 +14,20 @@ interface GameListQuery {
   tag_id?: number // 游戏标签
   platform_id?: string // 场馆id（evo真人）（需要转成字符串）
 }
-interface GameItem {
-  id: string
-  platform_id: string
-  name: string
-  en_name: string
-  pt_name: string
-  th_name: string
-  vn_name: string
-  client_type: string
-  game_type: number
-  game_id: string
-  img: string
-  online: number
-  is_hot: number
-  sorting: number
-  created_at: number
-  is_new: number
-  tag_id: string
-  is_fav: number
-}
 
 export function useApiGameList(query: GameListQuery) {
-  const list = ref<GameItem[]>([])
-  const { data, run, loading } = useRequest((_query: GameListQuery) => ApiMemberGameList({ ..._query }), {
-    manual: true,
-    onSuccess(res, params) {
-      const _params = params[0]
-      if (res.d) {
-        //  TODO:待删
-        res.d = res.d.map((item) => {
-          return { ...item, img: 'https://mediumrare.imgix.net/c984a0f6625efd5a38c306697845c7bedcc917e2c061b45e8a75a5e648057e8a?&dpr=2&format=auto&auto=format&q=50&w=167' }
-        })
+  const { game_type, is_hot, is_new, tag_id, platform_id } = query
+  const { data, page, total } = usePage((page, page_size) => () => ApiMemberGameList({
+    page: page.value,
+    page_size: page_size.value,
+    game_type,
+    is_hot,
+    is_new,
+    tag_id,
+    platform_id,
+  }), { ...query })
 
-        if (_params.page === 1) {
-          list.value = res.d
-        }
-        else {
-          const arr = cloneDeep(list.value)
-          list.value = [...arr, ...res.d]
-        }
-      }
-    },
-  })
-  const total = computed(() => data.value?.t ?? 0)
-  const finished = computed(() => data.value?.d && list.value.length >= total.value)
-
-  run(query)
-
-  return { list, total, run, loading, finished }
+  return { data, page, total }
 }
 
 // TODO:待删
