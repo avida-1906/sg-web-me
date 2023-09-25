@@ -527,6 +527,7 @@ const { openVipDialog } = useVipDialog()
     .top-wrapper{
       grid-template-columns:100%;
       background:none;
+      grid-gap: 0;
       // background-position: right 25% center;
       // background-size: cover;
       .top-banner{
