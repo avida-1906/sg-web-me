@@ -1,5 +1,3 @@
-import { getCurrentLanguageForBackend } from '~/modules/i18n'
-
 class Application {
   /** 数字货币默认保留小数长度 */
   #CURRENCY_DEFAULT_DECIMAL = 8
@@ -54,15 +52,6 @@ class Application {
 
   getDeviceNumber() {
     return 'testwebwebwebwebewb'
-  }
-
-  /**
-   * @description 获取语言字段
-   */
-  getBackendLanguageField(row: IObject, field: string) {
-    const langStr = getCurrentLanguageForBackend()
-    const [pre] = langStr.split('_')
-    return get(row, `${pre}_${field}`, '')
   }
 }
 
