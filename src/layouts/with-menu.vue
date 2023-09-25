@@ -26,7 +26,7 @@ const icon = computed<any>(() => route.meta.icon)
                     </div>
                   </div>
                 </div>
-                <div class="stack x-flex-start direction-horizontal gap-larger padding-none y-flex-start content-outer">
+                <div class="stack x-flex-start direction-horizontal gap-larger padding-none y-flex-start content-outer" style="grid-template-columns: auto 1fr;">
                   <div class="left">
                     <BaseMenu :data="menuData" />
                   </div>
