@@ -22,11 +22,17 @@ export const useAppStore = defineStore('app', () => {
       return undefined
   }
 
+  function removeToken() {
+    Local.remove(STORAGE_TOKEN_KEY)
+    setLoginFalse()
+  }
+
   return {
     isLogin,
     setToken,
     setLoginTrue,
     setLoginFalse,
+    removeToken,
   }
 })
 
