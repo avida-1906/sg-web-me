@@ -67,19 +67,15 @@ withDefaults(defineProps<Props>(), {
     table-layout: fixed;
     width: 100%;
     text-align: left;
-    // border-radius: 4px 4px 0 0;
     border-collapse: separate;
     border-spacing: 0;
     margin: 0;
-
     .m-th {
       padding: 12px 20px;
       color: var(--tg-text-lightgrey);
-      font-weight: var(--tg-font-weight-normal);
+      font-weight: var(--tg-font-weight-semibold);
       text-align: left;
-      // background: var(--tg-primary-main);
       border: none;
-      // transition: background .3s ease;
     }
 
     .m-body {
@@ -106,13 +102,9 @@ withDefaults(defineProps<Props>(), {
 
     .m-tr {
       border: none;
-      // background-color: var(--tg-primary-main);
-      // transition: background-color .3s;
       .m-td {
         padding: 12px 20px;
         border: none;
-        // border-bottom: 1px solid #f0f0f0;
-        transition: background .3s;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
