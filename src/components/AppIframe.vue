@@ -8,7 +8,6 @@ const { t } = useI18n()
 const { isMobile, appContentWidth } = storeToRefs(useWindowStore())
 const bigGameWrapper = computed(() => appContentWidth.value > 930)
 
-const gameUrl = ref('https://static-live.hacksawgaming.com/1263/1.11.3/index.html?language=zh&channel=desktop&gameid=1263&mode=1&token=ce6f762e-a59b-417e-83aa-9f72d335a35f&lobbyurl=https%3A%2F%2Fstake.com&currency=CAD&partner=stake&env=https://rgs-cu.hacksawgaming.com/api')
 const gameImgUrl = ref('https://mediumrare.imgix.net/33cd5a34c3937da326652a3beb44fe9c3680118c363a060ca5670847595561a5?&dpr=2&format=auto&auto=format&q=70')
 
 const currentCurrency = ref(0)
@@ -52,7 +51,7 @@ function onSwitchRealMoneyMode(v: boolean) {
 
   // H5模式直接打开游戏
   if (isMobile.value)
-    location.href = gameUrl.value
+    location.href = props.data
 }
 
 // 全屏
@@ -207,7 +206,7 @@ function onClickFavorite() {
                 </div>
               </div>
             </div>
-            <iframe ref="gameFrameRef" :src="gameUrl" frameborder="0" allowfullscreen />
+            <iframe ref="gameFrameRef" :src="data" frameborder="0" allowfullscreen />
           </div>
 
           <div class="footer">
