@@ -1,4 +1,4 @@
-<script setup lang='ts' runAsync>
+<script setup lang='ts'>
 const { VITE_CASINO_HOME_PAGE_SIZE } = import.meta.env
 
 const { isMobile } = storeToRefs(useWindowStore())
