@@ -17,7 +17,6 @@ declare module 'vue' {
     AppContent: typeof import('./components/AppContent.vue')['default']
     AppCurrencyIcon: typeof import('./components/AppCurrencyIcon.vue')['default']
     AppDemoCard: typeof import('./components/AppDemoCard.vue')['default']
-    AppDeposit: typeof import('./components/AppDeposit.vue')['default']
     AppDesc: typeof import('./components/AppDesc.vue')['default']
     AppFiatDeposit: typeof import('./components/AppFiatDeposit.vue')['default']
     AppFooter: typeof import('./components/AppFooter.vue')['default']

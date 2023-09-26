@@ -25,7 +25,7 @@ function handleKey(item: ISelectOption) {
 <template>
   <div class="base-money-keyboard">
     <div v-for="item of options" :key="item.label" class="item-key">
-      <BaseButton type="text" style="width: 100%;color:var(--tg-text-white);" @click="handleKey(item)">
+      <BaseButton type="text" style="width: 100%;color:var(--tg-text-white);font-weight: 500;" @click="handleKey(item)">
         {{ item.label }}
       </BaseButton>
     </div>

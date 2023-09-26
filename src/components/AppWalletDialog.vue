@@ -12,13 +12,29 @@ const isDeposit = computed(() => currentTab.value === 'deposit')
 const isWithdraw = computed(() => currentTab.value === 'withdraw')
 // const isBuy = computed(() => currentTab.value === 'buy')
 // const isFiat = computed(() => currentTab.value === 'fiat')
+const { bool: showWallet, setBool: setShowWalletBool } = useBoolean(true)
+
+const activeCurrency = ref()
+
+function changeCurrency(item: any) {
+  activeCurrency.value = item
+}
+
+function handleShow(val: boolean) {
+  setShowWalletBool(val)
+}
 </script>
 
 <template>
   <div class="app-wallet-dialog">
     <div class="content">
       <BaseTab v-model="currentTab" class="wallet-tab" :list="tabList" />
-      <AppDeposit v-if="isDeposit" />
+      <!-- <AppDeposit /> -->
+      <div v-if="isDeposit" class="app-deposit">
+        <AppWallet v-show="showWallet" :wallet-btn="false" :show-balance="false" :network="true" @change="changeCurrency" />
+        <AppFiatDeposit v-if="activeCurrency?.legalTender" :active-currency="activeCurrency" @show="handleShow" />
+        <AppVirtualDeposit v-else :active-currency="activeCurrency" @show="handleShow" />
+      </div>
       <AppWithdraw v-else-if="isWithdraw" />
       <!-- <AppBuyCryptocurrency v-else-if="isBuy" />
       <AppFiatDeposit v-else-if="isFiat" /> -->
@@ -37,31 +53,34 @@ const isWithdraw = computed(() => currentTab.value === 'withdraw')
 .app-wallet-dialog {
   font-size: var(--tg-font-size-default);
   color: var(--tg-text-lightgrey);
-  line-height: 1.5;
-}
-
-.content {
-  padding-right: var(--tg-spacing-16);
-  padding-left: var(--tg-spacing-16);
-  padding-bottom: var(--tg-spacing-16);
-  display: flex;
-  flex-direction: column;
-  gap: var(--tg-spacing-16);
-  .wallet-tab{
-    justify-content: center;
+  .content {
+    padding-right: var(--tg-spacing-16);
+    padding-left: var(--tg-spacing-16);
+    padding-bottom: var(--tg-spacing-16);
+    display: flex;
+    flex-direction: column;
+    gap: var(--tg-spacing-12);
+    .wallet-tab{
+      justify-content: center;
+    }
+  }
+  .app-deposit {
+    display: flex;
+    flex-direction: column;
+    gap: var(--tg-spacing-12);
   }
 }
 
-.footer {
-  padding-right: var(--tg-spacing-16);
-  padding-left: var(--tg-spacing-16);
-  display: flex;
-  flex-direction: column;
-  background: var(--tg-secondary-dark);
-  width: 100%;
-  align-items: center;
-  padding-top: var(--tg-spacing-20);
-  padding-bottom: var(--tg-spacing-20);
-  gap: var(--tg-spacing-12);
-}
+// .footer {
+//   padding-right: var(--tg-spacing-16);
+//   padding-left: var(--tg-spacing-16);
+//   display: flex;
+//   flex-direction: column;
+//   background: var(--tg-secondary-dark);
+//   width: 100%;
+//   align-items: center;
+//   padding-top: var(--tg-spacing-20);
+//   padding-bottom: var(--tg-spacing-20);
+//   gap: var(--tg-spacing-12);
+// }
 </style>
