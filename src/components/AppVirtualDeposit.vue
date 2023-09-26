@@ -96,7 +96,6 @@ function cancelPayment() {
     .warn-msg {
         line-height: 1;
         color: var(--tg-text-error);
-        font-family: PingFang SC;
         font-size: var(--tg-font-size-xs);
         font-weight: 500;
     }
