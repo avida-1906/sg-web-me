@@ -35,6 +35,8 @@ const aisleData = ref([
 const changeAisle = function (value: string) {
   currentAisle.value = value
 }
+const username = ref('')
+const amount = ref('')
 </script>
 
 <template>
@@ -52,8 +54,10 @@ const changeAisle = function (value: string) {
       </div>
       <div v-if="currentType === '1'" class="type-online-bank">
         <div v-if="bankStep === '1'" class="bank-first">
-          <BaseInput v-model="username" label="收款人姓名" :msg="usernameErrorMsg" />
-          <BaseInput v-model="username" label="充值金额" :msg="usernameErrorMsg" />
+          <BaseLabel label="收款人姓名:" label-content="为及时到账，请务必输入正确的存款人姓名">
+            <BaseInput v-model="username" />
+          </BaseLabel>
+          <BaseInput v-model="amount" label="充值金额" />
           <BaseMoneyKeyboard />
           <BaseButton bg-style="primary" size="md" @click="bankStep = '2'">
             确认支付
@@ -98,7 +102,7 @@ const changeAisle = function (value: string) {
               {{ item.label }}
             </div>
           </div>
-          <BaseInput v-model="username" label="充值金额:￥" :msg="usernameErrorMsg" />
+          <BaseInput v-model="username" label="充值金额:￥" />
           <BaseMoneyKeyboard />
           <BaseButton bg-style="primary" size="md">
             确认支付

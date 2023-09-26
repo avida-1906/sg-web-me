@@ -72,6 +72,7 @@ declare module 'vue' {
     BaseImage: typeof import('./components/BaseImage.vue')['default']
     BaseInput: typeof import('./components/BaseInput.vue')['default']
     BaseInputBirthday: typeof import('./components/BaseInputBirthday.vue')['default']
+    BaseLabel: typeof import('./components/BaseLabel.vue')['default']
     BaseList: typeof import('./components/BaseList.vue')['default']
     BaseLoading: typeof import('./components/BaseLoading.vue')['default']
     BaseLogo: typeof import('./components/BaseLogo.vue')['default']
