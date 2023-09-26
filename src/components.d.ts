@@ -50,6 +50,7 @@ declare module 'vue' {
     AppTermsConditionsDialog: typeof import('./components/AppTermsConditionsDialog.vue')['default']
     AppVipDialog: typeof import('./components/AppVipDialog.vue')['default']
     AppVipProgress: typeof import('./components/AppVipProgress.vue')['default']
+    AppVirtualDeposit: typeof import('./components/AppVirtualDeposit.vue')['default']
     AppWallet: typeof import('./components/AppWallet.vue')['default']
     AppWalletDialog: typeof import('./components/AppWalletDialog.vue')['default']
     AppWithdraw: typeof import('./components/AppWithdraw.vue')['default']
