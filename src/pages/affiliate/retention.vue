@@ -21,6 +21,7 @@
     <p>若您想要详细了解费用计算的细目，请随时通过支持人员与联盟经理联系。</p>
 
     <p class="tg-affiliate-retention-bottom">
+      <BaseIcon name="uni-tips" />
       保留计划可让您的推荐用户在体育博彩和娱乐城里使用。不过，在计算体育投注的联盟佣金之前，保留计划的费用已被吸收，好让我们可设定标准的 3% 假定利润率。
     </p>
   </div>
@@ -32,13 +33,26 @@
   flex-direction: column;
   gap: var(--tg-spacing-14);
   &-bottom {
+    line-height: 1.5;
     border-color: var(--tg-secondary-light);
     display: flex;
     background-color: var(--tg-secondary-dark);
     padding: var(--tg-spacing-16);
-    gap: var(--tg-spacing-16);
+    gap: var(--tg-spacing-12);
     border: 2px dashed;
     border-radius: var(--tg-radius-xs);
+    color: var(--tg-text-lightgrey) !important;
+    // font-size: var(--tg-font-size-default);
+    .app-svg-icon {
+      pointer-events: none;
+      stroke-width: 0;
+      stroke: currentColor;
+      fill: currentColor;
+      flex-shrink: 0;
+      display: inline-block;
+      font-size: var(--tg-font-size-base);
+      margin: var(--tg-spacing-3) 0 0 0;
+    }
   }
   p {
     line-height: 150%;

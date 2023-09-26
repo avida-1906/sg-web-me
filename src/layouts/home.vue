@@ -60,6 +60,9 @@ function setRightSidebarExpandStatus() {
     }, 300)
   }
 }
+const route = useRoute()
+// 是否游戏页面
+const isCasinoGames = computed(() => route.name === 'casino-games')
 </script>
 
 <template>
@@ -123,7 +126,7 @@ function setRightSidebarExpandStatus() {
         </AppContent>
         <!-- 主页面 -->
         <slot>
-          <AppContent>
+          <AppContent :is-game-page="isCasinoGames">
             <RouterView v-slot="{ Component }">
               <template v-if="Component">
                 <Suspense timeout="0">

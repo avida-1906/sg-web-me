@@ -1,12 +1,9 @@
 <script lang="ts" setup>
-const route = useRoute()
-// 是否游戏页面
-const isCasinoGames = computed(() => route.name === 'casino-games')
+defineProps<{ isGamePage?: boolean }>()
 </script>
 
 <template>
-  <slot v-if="isCasinoGames" />
-  <section v-else class="page-content">
+  <section class="page-content" :class="{ 'p-0': isGamePage }">
     <div class="home-container margin-auto">
       <slot />
     </div>
@@ -16,5 +13,8 @@ const isCasinoGames = computed(() => route.name === 'casino-games')
 <style lang="scss" scoped>
 .margin-auto {
   margin: 0 auto;
+}
+.p-0{
+  padding: 0;
 }
 </style>

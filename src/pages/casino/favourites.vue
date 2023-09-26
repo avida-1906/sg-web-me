@@ -1,4 +1,4 @@
-<script setup lang="ts" runAsync>
+<script setup lang="ts">
 const { VITE_CASINO_GAME_PAGE_SIZE } = import.meta.env
 
 const { data, prev, next, page, total, runAsync } = usePage((page, page_size) => () => ApiMemberGameFavList({

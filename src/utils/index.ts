@@ -95,7 +95,7 @@ class Application {
         Promise.allSettled(promises).then((result) => {
           resolve(result)
         })
-      }, 2000)
+      }, 1500)
     })
     const result = await Promise.allSettled(promises)
     return result
