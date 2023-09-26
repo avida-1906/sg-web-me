@@ -9,7 +9,7 @@ interface Props {
 
 withDefaults(defineProps<Props>(), {})
 
-const tab = ref()
+const tab = ref('')
 </script>
 
 <template>
@@ -21,10 +21,7 @@ const tab = ref()
       <div class="empty">
         <BaseEmpty description="尚未存款" icon="empty-1" />
       </div>
-      <div class="footer-buttons stack x-center y-center direction-horizontal gap-larger padding-none mt-24">
-        <div>上一页</div>
-        <div>下一页</div>
-      </div>
+      <AppNextPrev />
       <div class="download-btn">
         <BaseButton size="md">
           下载全部存款

@@ -33,6 +33,7 @@ declare module 'vue' {
     AppLoginDialog: typeof import('./components/AppLoginDialog.vue')['default']
     AppLoginRegisterBottom: typeof import('./components/AppLoginRegisterBottom.vue')['default']
     AppMenuItem: typeof import('./components/AppMenuItem.vue')['default']
+    AppNextPrev: typeof import('./components/AppNextPrev.vue')['default']
     AppPasswordVerify: typeof import('./components/AppPasswordVerify.vue')['default']
     AppPercentage: typeof import('./components/AppPercentage.vue')['default']
     AppProviderSlider: typeof import('./components/AppProviderSlider.vue')['default']

@@ -91,7 +91,7 @@ const amount = ref('')
   .bind-identity{
     display: flex;
     flex-direction: column;
-    gap:.5rem;
+    gap:.75rem;
     .bind-tips{
       text-align: center;
       color: var(--tg-text-warn);
@@ -103,10 +103,13 @@ const amount = ref('')
     }
   }
   .withdrawal-wrap{
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
     .withdrawal-info{
       display: flex;
       flex-direction: column;
-      gap: .5rem;
+      gap: .75rem;
     }
   }
 }
