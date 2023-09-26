@@ -6,12 +6,12 @@ const tabList = [
   { label: t('deposit'), value: 'deposit' },
   { label: t('withdraw'), value: 'withdraw' },
   // { label: t('buy_cryptocurrency'), value: 'buy' },
-  { label: '法币提现', value: 'fiat' },
+  // { label: '法币提现', value: 'fiat' },
 ]
 const isDeposit = computed(() => currentTab.value === 'deposit')
 const isWithdraw = computed(() => currentTab.value === 'withdraw')
 // const isBuy = computed(() => currentTab.value === 'buy')
-const isFiat = computed(() => currentTab.value === 'fiat')
+// const isFiat = computed(() => currentTab.value === 'fiat')
 const { bool: showWallet, setBool: setShowWalletBool } = useBoolean(true)
 
 const activeCurrency = ref()
@@ -29,15 +29,16 @@ function handleShow(val: boolean) {
   <div class="app-wallet-dialog">
     <div class="content">
       <BaseTab v-model="currentTab" class="wallet-tab" :list="tabList" />
+      <AppWallet v-show="showWallet" :wallet-btn="false" :show-balance="false" :network="true" @change="changeCurrency" />
       <!-- <AppDeposit /> -->
-      <div v-if="isDeposit" class="app-deposit">
-        <AppWallet v-show="showWallet" :wallet-btn="false" :show-balance="false" :network="true" @change="changeCurrency" />
+      <template v-if="isDeposit">
         <AppFiatDeposit v-if="activeCurrency?.legalTender" :active-currency="activeCurrency" @show="handleShow" />
         <AppVirtualDeposit v-else :active-currency="activeCurrency" @show="handleShow" />
-      </div>
-      <AppWithdraw v-else-if="isWithdraw" />
-      <!-- <AppBuyCryptocurrency v-else-if="isBuy" /> -->
-      <AppFiatWithdrawal v-else-if="isFiat" />
+      </template>
+      <template v-else-if="isWithdraw">
+        <AppFiatWithdrawal v-if="activeCurrency?.legalTender" :active-currency="activeCurrency" />
+        <AppWithdraw v-else :active-currency="activeCurrency" />
+      </template>
     </div>
 
     <!-- <div class="footer">
@@ -64,11 +65,11 @@ function handleShow(val: boolean) {
       justify-content: center;
     }
   }
-  .app-deposit {
-    display: flex;
-    flex-direction: column;
-    gap: var(--tg-spacing-12);
-  }
+  // .app-deposit {
+  //   display: flex;
+  //   flex-direction: column;
+  //   gap: var(--tg-spacing-12);
+  // }
 }
 
 // .footer {
