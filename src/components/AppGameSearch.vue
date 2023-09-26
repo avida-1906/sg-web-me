@@ -13,14 +13,16 @@ const isSports = computed(() => props.gameType === GameType.sports)
 const placeHolderText = computed(() => isCasino.value ? t('search_game') : t('search_events'))
 
 const searchValue = ref('')
-const { bool: isClear, setTrue: setClearTrue, setFalse: setClearFalse } = useBoolean(true)
+const { bool: isClear, setTrue: setClearTrue } = useBoolean(true)
+const { bool: isInputing, setTrue: setInputingTrue } = useBoolean(false)
 // 近期搜索关键字
 const recentKeyword = ref(Local.get<any[]>(STORAGE_RECENT_SEARCH_KEYWORDS)?.value ?? [])
 const { data: casinoGamesData, run: runSearchCasinoGames } = useRequest(() => ApiMemberGameSearch({ w: searchValue.value }), {
   manual: true,
   debounceInterval: 500,
   onAfter() {
-    setClearFalse()
+    isClear.value = false
+    isInputing.value = false
     recentKeyword.value.unshift(searchValue.value)
     recentKeyword.value = recentKeyword.value.slice(0, 5)
     Local.set(STORAGE_RECENT_SEARCH_KEYWORDS, recentKeyword.value)
@@ -29,10 +31,13 @@ const { data: casinoGamesData, run: runSearchCasinoGames } = useRequest(() => Ap
 function onBaseSearchInput() {
   if (searchValue.value.length < 3)
     return setClearTrue()
-  if (isCasino.value && searchValue.value.length >= 3)
+  if (isCasino.value && searchValue.value.length >= 3) {
+    setInputingTrue()
     runSearchCasinoGames()
+  }
 }
 function onClickKeyword(k: string) {
+  setInputingTrue()
   searchValue.value = k
   runSearchCasinoGames()
 }
@@ -51,16 +56,16 @@ const resultData = computed(() => {
 })
 
 // 搜索功能面板
-const { bool: isShowOverlay, setTrue: setShowOverlayTrue, setFalse: setShowOverlayFalse } = useBoolean(false)
+const { bool: isShowOverlay } = useBoolean(false)
 // 点开始禁止页面滚动
 const dom = ref()
 const isLocked = useScrollLock(dom)
 function showOverlay() {
-  setShowOverlayTrue()
+  isShowOverlay.value = true
   isLocked.value = true
 }
 function closeOverlay() {
-  setShowOverlayFalse()
+  isShowOverlay.value = false
   isLocked.value = false
 }
 
@@ -85,7 +90,7 @@ onMounted(() => {
         <div v-if="!resultData" class="no-result">
           <div class="text">
             <span v-show="searchValue.length < 3">{{ t('search_need_at_least_3_word') }}</span>
-            <span v-show="searchValue.length >= 3">{{ t('search_no_result') }}</span>
+            <span v-show="searchValue.length >= 3 && !isInputing">{{ t('search_no_result') }}</span>
           </div>
           <div v-if="recentKeyword.length" class="recent">
             <div class="title">

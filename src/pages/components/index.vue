@@ -184,6 +184,13 @@ function copyCode(type: string) {
         <BaseMenu :data="[{ title: '存款', path: '/components' }, { title: '提款', path: '/' }]" />
       `)
       break
+    case 'BaseLabel':
+      copy(`
+        <BaseLabel label="input标题" label-content="温馨提示">
+          // 表单元素组件
+        </BaseLabel>
+      `)
+      break
     default:
       break
   }
@@ -1183,6 +1190,16 @@ const breadcrumbs = ['one', 'two', 'three', 'four']
             copy
           </BaseButton>
         </div>
+      </AppDemoCard>
+    </li>
+    <li>
+      <AppDemoCard title="BaseLabel" style="text-align:left">
+        <BaseLabel label="input标题:" label-content="温馨提示自定义">
+          <BaseInput v-model="username" :msg="usernameErrorMsg" placeholder="请输入用户名" must />
+        </BaseLabel>
+        <BaseLabel label="select标题:" label-content="温馨提示自定义" content-color="--tg-text-error" content-size="14">
+          <BaseSelect v-model="selectValue" :options="selectOptions" must />
+        </BaseLabel>
       </AppDemoCard>
     </li>
   </ul>

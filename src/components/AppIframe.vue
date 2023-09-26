@@ -7,7 +7,9 @@ interface Props {
 }
 const props = defineProps<Props>()
 const emit = defineEmits(['changeTheatre'])
+const { VITE_CASINO_TEST_SLOT_IMG } = import.meta.env
 console.log('🚀 ~ file: AppIframe.vue:9 ~ props:', props.data)
+
 const pid = computed(() => props.data.platform_id)
 const code = computed(() => props.data.game_id)
 const currencyList = computed(() => {
@@ -17,7 +19,6 @@ const currencyList = computed(() => {
     return { ...item, num, name: item.id }
   })
 })
-const { VITE_CASINO_TEST_SLOT_IMG } = import.meta.env
 
 const { t } = useI18n()
 const { isMobile, appContentWidth } = storeToRefs(useWindowStore())
@@ -27,7 +28,14 @@ const currentCurrency = ref(currencyList.value[0])
 function onChooseCurrency(v: any) {
   currentCurrency.value = v
 }
-const { run } = useRequest(() => ApiGameLunch(pid.value, code.value, currentCurrency.value.name))
+const { run: runLunchGame, data: gameUrl } = useRequest(() => ApiGameLunch(pid.value, code.value, currentCurrency.value.name), {
+  manual: true,
+  onSuccess(res) {
+    // H5模式直接打开游戏
+    if (isMobile.value)
+      return location.href = res
+  },
+})
 
 // 选择模式遮罩层
 const { bool: isShowFrameOverlay, setFalse: setShowFrameOverlayFalse } = useBoolean(true)
@@ -36,9 +44,7 @@ function onSwitchRealMoneyMode(v: boolean) {
   setRealModeBool(v)
   setShowFrameOverlayFalse()
 
-  // H5模式直接打开游戏
-  if (isMobile.value)
-    location.href = props.data
+  runLunchGame()
 }
 
 // 全屏
@@ -193,7 +199,7 @@ function onClickFavorite() {
                 </div>
               </div>
             </div>
-            <iframe ref="gameFrameRef" :src="data" frameborder="0" allowfullscreen />
+            <iframe ref="gameFrameRef" :src="gameUrl" frameborder="0" allowfullscreen />
           </div>
 
           <div class="footer">
