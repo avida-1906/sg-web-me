@@ -29,16 +29,14 @@ const networkList = [
 
 <template>
   <div class="app-withdraw">
-    <div class="currency">
+    <!-- <div class="currency">
       <div class="c-option">
-        <span class="semibold">{{ t('currency') }}</span>
         <AppWallet :wallet-btn="false" />
       </div>
       <div class="c-option">
-        <span class="semibold">{{ t('network') }}</span>
         <BaseSelect v-model="currentNetwork" :options="networkList" popper />
       </div>
-    </div>
+    </div> -->
     <div class="address">
       <span class="label">
         <AppCurrencyIcon :currency-type="EnumCurrency.BTC" />
@@ -61,6 +59,10 @@ const networkList = [
         </template>
       </BaseInput>
     </div>
+    <BaseInput v-model="address" label="双重验证" must />
+    <BaseButton bg-style="primary" size="md">
+      提款
+    </BaseButton>
     <div class="tips">
       <span>最低提款金额为 0.00020000</span>
       <AppCurrencyIcon :currency-type="EnumCurrency.BTC" />

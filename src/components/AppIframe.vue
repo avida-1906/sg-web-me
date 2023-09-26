@@ -3,32 +3,42 @@ import { EnumCurrency } from '~/utils/enums'
 
 interface Props {
   isTheatre: boolean
-  data: any
+  pid: string
+  gameId: string
 }
+interface CurrencyItem {
+  id: string
+  name: string
+  num: number
+}
+
 const props = defineProps<Props>()
 const emit = defineEmits(['changeTheatre'])
 const { VITE_CASINO_TEST_SLOT_IMG } = import.meta.env
-console.log('🚀 ~ file: AppIframe.vue:9 ~ props:', props.data)
 
-const pid = computed(() => props.data.platform_id)
-const code = computed(() => props.data.game_id)
-const currencyList = computed(() => {
-  const arr = JSON.parse(props.data.currency) ?? []
-  return arr.map((item: any) => {
-    const num = EnumCurrency[item.id] ?? 0
-    return { ...item, num, name: item.id }
-  })
+const currentCurrency = ref<CurrencyItem>()
+const currencyList = ref<CurrencyItem[]>([])
+const { data: dataDetail, runAsync: runDetail } = useRequest(() => ApiMemberGameDetail(props.pid, props.gameId), {
+  onSuccess(res) {
+    currencyList.value = JSON.parse(res.currency).map((item: any) => {
+      const num = EnumCurrency[item.id] ?? 0
+      return { ...item, num, name: item.id }
+    })
+    currentCurrency.value = currencyList.value[0]
+  },
 })
+const pid = computed(() => dataDetail.value ? dataDetail.value.platform_id : '')
+const code = computed(() => dataDetail.value ? dataDetail.value.game_id : '')
+const currencyName = computed(() => currentCurrency.value ? currentCurrency.value.name : '')
 
 const { t } = useI18n()
 const { isMobile, appContentWidth } = storeToRefs(useWindowStore())
 const bigGameWrapper = computed(() => appContentWidth.value > 930)
 
-const currentCurrency = ref(currencyList.value[0])
 function onChooseCurrency(v: any) {
   currentCurrency.value = v
 }
-const { run: runLunchGame, data: gameUrl } = useRequest(() => ApiGameLunch(pid.value, code.value, currentCurrency.value.name), {
+const { run: runLunchGame, data: gameUrl } = useRequest(() => ApiGameLunch(pid.value, code.value, currencyName.value), {
   manual: true,
   onSuccess(res) {
     // H5模式直接打开游戏
@@ -66,6 +76,8 @@ const { bool: isFavorite, toggle: toggleFavorite } = useBoolean(false)
 function onClickFavorite() {
   toggleFavorite()
 }
+
+await application.allSettled([runDetail()])
 </script>
 
 <template>
@@ -114,14 +126,14 @@ function onClickFavorite() {
     <div class="currency">
       <span>{{ t('balance') }}</span>
       <VDropdown :distance="6">
-        <div class="current-currency">
+        <div v-if="currentCurrency" class="current-currency">
           <AppCurrencyIcon show-name :currency-type="currentCurrency.num" />
           <div class="arrow">
             <BaseIcon name="uni-arrow-down" />
           </div>
         </div>
         <template #popper>
-          <div class="scroll-y popper popper-mobile">
+          <div v-if="currencyList.length" class="scroll-y popper popper-mobile">
             <div
               v-for="c, i in currencyList" :key="i" v-close-popper class="currency-types popper-option"
               @click="onChooseCurrency(c)"
@@ -163,14 +175,14 @@ function onClickFavorite() {
                 <div class="currency">
                   <span>{{ t('balance') }}</span>
                   <VDropdown :distance="6">
-                    <div class="current-currency">
+                    <div v-if="currentCurrency" class="current-currency">
                       <AppCurrencyIcon show-name :currency-type="currentCurrency.num" />
                       <div class="arrow">
                         <BaseIcon name="uni-arrow-down" />
                       </div>
                     </div>
                     <template #popper>
-                      <div class="scroll-y popper">
+                      <div v-if="currencyList.length" class="scroll-y popper">
                         <div
                           v-for="c, i in currencyList" :key="i" v-close-popper class="popper-option currency-types"
                           @click="onChooseCurrency(c)"

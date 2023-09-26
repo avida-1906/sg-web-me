@@ -7,7 +7,7 @@ interface SlideItem {
 interface Props {
   icon: string
   title: string
-  data: Array<SlideItem>
+  data: Array<SlideItem> | null
   showViewAll?: boolean
   gameType: string | number
 }
@@ -93,7 +93,7 @@ watchEffect(() => {
 </script>
 
 <template>
-  <section ref="sliderOuter" class="tg-app-slider">
+  <section v-if="data" ref="sliderOuter" class="tg-app-slider">
     <div class="header">
       <div class="title">
         <a>
