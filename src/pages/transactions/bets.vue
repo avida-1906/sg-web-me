@@ -3,7 +3,7 @@
 
 <template>
   <section>
-    投注
+    aa
   </section>
 </template>
 

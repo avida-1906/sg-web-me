@@ -284,6 +284,9 @@ body {
   &.gap-medium {
     gap: var(--tg-spacing-12);
   }
+  &.gap-small {
+    gap: var(--tg-spacing-8);
+  }
   &.padding-none {
     padding: 0;
   }
