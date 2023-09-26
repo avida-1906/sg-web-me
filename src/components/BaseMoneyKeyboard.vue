@@ -1,7 +1,7 @@
 <script setup lang='ts'>
 // 123
 interface Props {
-  options: ISelectOption[]
+  options?: ISelectOption[]
 }
 withDefaults(defineProps<Props>(), {
   options: () => [
