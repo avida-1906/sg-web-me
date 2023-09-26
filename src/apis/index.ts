@@ -83,6 +83,35 @@ export function ApiMemberGameList(params: {
 }
 
 /**
+ * 游戏详情
+ */
+export function ApiMemberGameDetail(pid: string, game_id: string) {
+  return httpClient.get<{
+    id: string
+    platform_id: string
+    name: string
+    zh_name: string
+    en_name: string
+    pt_name: string
+    th_name: string
+    vn_name: string
+    client_type: string
+    game_type: number
+    game_id: string
+    img: string
+    online: number
+    is_hot: number
+    sorting: number
+    created_at: number
+    is_new: number
+    tag_id: string
+    currency: string
+    lang: string
+    is_fav: number
+  }>(`/member/game/detail?platform_id=${pid}&game_id=${game_id}`)
+}
+
+/**
  * 启动游戏
  */
 export function ApiGameLunch(pid: string, game_id: string, cur: string) {
