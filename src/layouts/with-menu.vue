@@ -4,12 +4,24 @@ import Home from './home.vue'
 const router = useRouter()
 const route = useRoute()
 
+const { appContentWidth } = storeToRefs(useWindowStore())
+
+const layoutLoading = ref(true)
+
 const menuData = computed<any>(() => route.meta.menu)
 const icon = computed<any>(() => route.meta.icon)
 
 function goBack() {
   router.push('/casino')
 }
+
+onMounted(() => {
+  layoutLoading.value = false
+})
+
+onUpdated(() => {
+  layoutLoading.value = false
+})
 </script>
 
 <template>
@@ -17,7 +29,7 @@ function goBack() {
     <template #default>
       <AppContent>
         <section class="with-menu-container">
-          <div class="layout-spacing">
+          <div class="layout-spacing" :class="{ 'more-than-800': appContentWidth > 800 }">
             <div>
               <div class="stack x-stretch y-center direction-vertical gap-larger padding-none">
                 <div class="wrap-flex">
@@ -31,11 +43,29 @@ function goBack() {
                     </div>
                   </div>
                 </div>
-                <div class="stack x-flex-start direction-horizontal gap-larger padding-none y-flex-start content-outer" style="grid-template-columns: auto 1fr;">
+                <div class="stack direction-horizontal padding-none content-outer" :class="[appContentWidth > 800 ? 'direction-horizontal x-flex-start y-flex-start gap-larger' : 'direction-vertical x-stretch y-center gap-small']">
                   <div class="left">
-                    <BaseMenu :data="menuData" />
+                    <template v-if="appContentWidth > 800">
+                      <BaseMenu :data="menuData" />
+                    </template>
+                    <template v-else>
+                      <div class="stack x-flex-start y-center padding-none direction-horizontal gap-small menu-btn">
+                        <BaseButton size="md">
+                          <BaseIcon name="uni-arrow-left" class="arrow-left" />
+                        </BaseButton>
+                        <BaseButton size="md">
+                          <div class="btn-txt">
+                            <span>存款</span>
+                            <BaseIcon name="uni-arrow-down" />
+                          </div>
+                        </BaseButton>
+                      </div>
+                    </template>
                   </div>
-                  <div class="right">
+                  <div class="right" :class="{ loading: layoutLoading }">
+                    <div v-if="layoutLoading" class="layout-loading">
+                      <BaseLoading />
+                    </div>
                     <div class="content-container">
                       <RouterView />
                     </div>
@@ -51,13 +81,36 @@ function goBack() {
 </template>
 
 <style lang="scss" scoped>
+.layout-loading {
+  position: absolute;
+  inset: 0 0 0 0;
+  background: #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.1)};
+  z-index: var(--tg-z-index-10);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .wrap-flex {
   width: 100%;
   display: grid;
   place-items: flex-start;
   padding-top: var(--tg-spacing-24);
 }
-  // grid-template-columns: auto 1fr;
+.menu-btn {
+  .app-svg-icon.arrow-left {
+    font-size: var(--tg-font-size-xs);
+  }
+}
+.btn-txt {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  gap: var(--tg-spacing-8);
+  font-size: var(--tg-font-size-default);
+  .app-svg-icon {
+    font-size: var(--tg-font-size-xs);
+  }
+}
 
 .with-menu-container {
   .layout-spacing {
@@ -76,8 +129,21 @@ function goBack() {
         }
       }
     }
+    &.more-than-800 {
+      .content-outer {
+        grid-template-columns: auto 1fr;
+      }
+    }
     .content-outer {
       .right {
+        position: relative;
+        border-radius: var(--tg-radius-md);
+        overflow: hidden;
+        &.loading {
+          .content-container {
+            opacity: 0.3;
+          }
+        }
         .content-container {
           color: var(--tg-border-color-grey);
           background: var(--tg-secondary-dark);
