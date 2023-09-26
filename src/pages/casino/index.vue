@@ -45,24 +45,37 @@ await application.allSettled([runLive(), runSlot()])
       <BaseTab v-model="tab" :list="tabList" :center="false" />
     </div>
     <div class="content-wrapper">
-      <AppSlider v-show="showAll" :game-type="EnumCasinoGameType.LIVE" icon="chess-live-casino" :title="t('game_type_live')" :data="liveList" />
-      <AppSlider v-show="showAll" :game-type="EnumCasinoGameType.SLOT" icon="chess-slot-machine" :title="t('game_type_slot_short_name')" :data="slotList" />
-
-      <div v-show="!showAll" class="list-wrap">
-        <div class="title">
-          <BaseIcon :name="showLive ? 'chess-live-casino' : 'chess-slot-machine'" />
-          <span>{{ currentTitle }}</span>
+      <Transition name="tab-fade">
+        <div v-show="showAll">
+          <AppSlider
+            :game-type="EnumCasinoGameType.LIVE" icon="chess-live-casino" :title="t('game_type_live')"
+            :data="liveList"
+          />
+          <AppSlider
+            :game-type="EnumCasinoGameType.SLOT" icon="chess-slot-machine"
+            :title="t('game_type_slot_short_name')" :data="slotList"
+          />
         </div>
-
-        <AppCardList v-show="showLive" :list="liveList" />
-        <AppCardList v-show="showSlot" :list="slotList" />
-
-        <div class="more">
-          <BaseButton size="md" @click="viewMoreGames(showLive ? EnumCasinoGameType.LIVE : EnumCasinoGameType.SLOT)">
-            查看全部 {{ showLive ? liveTotal : slotTotal }} {{ currentTitle }}
-          </BaseButton>
+      </Transition>
+      <Transition name="tab-fade">
+        <div v-show="!showAll" class="list-wrap">
+          <div class="title">
+            <BaseIcon :name="showLive ? 'chess-live-casino' : 'chess-slot-machine'" />
+            <span>{{ currentTitle }}</span>
+          </div>
+          <Transition name="tab-fade">
+            <AppCardList v-show="showLive" :list="liveList" />
+          </Transition>
+          <Transition name="tab-fade">
+            <AppCardList v-show="showSlot" :list="slotList" />
+          </Transition>
+          <div class="more">
+            <BaseButton size="md" @click="viewMoreGames(showLive ? EnumCasinoGameType.LIVE : EnumCasinoGameType.SLOT)">
+              查看全部 {{ showLive ? liveTotal : slotTotal }} {{ currentTitle }}
+            </BaseButton>
+          </div>
         </div>
-      </div>
+      </Transition>
       <AppProviderSlider />
     </div>
   </div>
@@ -91,7 +104,8 @@ await application.allSettled([runLive(), runSlot()])
       line-height: 1.5;
     }
   }
-  .more{
+
+  .more {
     margin-top: var(--tg-spacing-24);
     display: flex;
     justify-content: center;

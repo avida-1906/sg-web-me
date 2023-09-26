@@ -262,3 +262,15 @@
 }
 
 /*** end ***/
+
+/* tab切换动画 */
+.tab-fade-enter-active,
+.tab-fade-leave-active {
+  transition: all 0.2s ease-in-out;
+}
+
+.tab-fade-enter-from,
+.tab-fade-leave-to {
+  opacity: 0;
+  transform: translateY(5px);
+}
