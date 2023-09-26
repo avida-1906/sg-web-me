@@ -1,4 +1,13 @@
 <script lang="ts" setup>
+const showContent = function () {}
+const campaignsList = [
+  {
+    title: '活动名称01',
+  },
+  {
+    title: '活动名称02',
+  },
+]
 </script>
 
 <template>
@@ -22,9 +31,32 @@
       </div>
       <div class="stat">
         <span>可用金额</span>
-        <span>0.00000000</span>
+        <span>
+          0.00000000
+          <BaseIcon name="coin-btc" />
+        </span>
       </div>
     </div>
+    <div v-for="item, index in campaignsList" :key="index" class="campaigns-list-column">
+      <BaseCollapse @click-head="showContent()">
+        <template #title>
+          <div class="title">
+            {{ item.title }}
+          </div>
+        </template>
+        <template #top-right>
+          <div class="top-right">
+            <span>佣金： 0.00000000</span>
+            <BaseIcon name="coin-btc" />
+          </div>
+        </template>
+        <template #content>
+          888888
+        </template>
+      </BaseCollapse>
+    </div>
+    <AppNextPrev />
+    <!-- <AppStack /> -->
     <BaseButton>
       创建新活动
     </BaseButton>
@@ -33,6 +65,7 @@
 
 <style lang="scss">
 .tg-affiliate-campaigns {
+  margin-bottom: 38px;
   .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(120px,1fr));
@@ -44,6 +77,29 @@
       align-items: center;
     }
   }
+  .campaigns-list-column {
+    margin-top: var(--tg-spacing-12);
+    .title {
+      color: var(--tg-text-lightgrey);
+      font-size: var(--tg-font-size-default);
+      font-weight: var(--tg-font-weight-semibold);
+    }
+    .top-right {
+      span {
+        color: var(--tg-text-lightgrey);
+        font-size: var(--tg-font-size-default);
+        font-weight: var(--tg-font-weight-normal);
+      }
+      .app-svg-icon {
+        vertical-align: middle;
+        margin: 0 var(--tg-spacing-6);
+      }
+    }
+
+  }
+}
+button {
+  margin-top: 28px;
 }
 </style>
 
