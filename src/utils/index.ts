@@ -83,6 +83,23 @@ class Application {
     const obj = Object.fromEntries(params)
     return obj
   }
+
+  /**
+   * 异步函数，Promise.allSettled
+   * @param {Promise<any>[]} promises
+   * @returns {Promise<any[]>}
+   */
+  async allSettled(promises: Promise<any>[]) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        Promise.allSettled(promises).then((result) => {
+          resolve(result)
+        })
+      }, 2000)
+    })
+    const result = await Promise.allSettled(promises)
+    return result
+  }
 }
 
 export const application = new Application()

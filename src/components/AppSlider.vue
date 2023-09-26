@@ -11,10 +11,12 @@ interface Props {
   showViewAll?: boolean
   gameType: string | number
 }
-
 const props = withDefaults(defineProps<Props>(), {
   showViewAll: true,
 })
+
+// await 10s
+// await new Promise(resolve => setTimeout(resolve, 3000))
 
 const router = useRouter()
 

@@ -3,7 +3,7 @@
 // }
 // const props = withDefaults(defineProps<Props>(), {
 // })
-// const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(['show'])
 //  存款类型
 const currentType = ref('2')
 const depositType = ref([
@@ -23,6 +23,14 @@ const payeeInformation = ref({
   accountOpeningBank: '开户网点：天津农商银行',
   amount: '200,000.00',
 })
+const nextStep = function () {
+  emit('show', false)
+  bankStep.value = '2'
+}
+const previous = function () {
+  emit('show', true)
+  bankStep.value = '1'
+}
 const toCopy = function (item: string) {
   application.copy(item)
 }
@@ -49,7 +57,7 @@ const amount = ref('')
           @click="changeType(item.value)"
         >
           <BaseIcon :name="item.icon" />
-          {{ item.label }}
+          <span>{{ item.label }}</span>
         </div>
       </div>
       <div v-if="currentType === '1'" class="type-online-bank">
@@ -59,7 +67,7 @@ const amount = ref('')
           </BaseLabel>
           <BaseInput v-model="amount" label="充值金额" />
           <BaseMoneyKeyboard />
-          <BaseButton bg-style="primary" size="md" @click="bankStep = '2'">
+          <BaseButton bg-style="primary" size="md" @click="nextStep">
             确认支付
           </BaseButton>
         </div>
@@ -75,7 +83,7 @@ const amount = ref('')
             转账金额务必与订单金额一致
           </p>
           <div class="second-btns">
-            <BaseButton type="line" size="md">
+            <BaseButton type="line" size="md" @click="previous">
               取消存款申请
             </BaseButton>
             <BaseButton bg-style="primary" size="md">
@@ -99,7 +107,7 @@ const amount = ref('')
               :class="currentAisle === item.value ? 'active' : ''"
               @click="changeAisle(item.value)"
             >
-              {{ item.label }}
+              <span>{{ item.label }}</span>
             </div>
           </div>
           <BaseInput v-model="username" label="充值金额:￥" />
@@ -136,7 +144,9 @@ const amount = ref('')
         color: var(--tg-text-white);
         cursor: pointer;
         &:active{
-          transform: scale(.96);
+          span, svg {
+            transform: scale(.96);
+          }
         }
         &:hover{
           opacity: .9;
@@ -214,15 +224,21 @@ const amount = ref('')
             box-shadow: var(--tg-box-shadow);
             cursor: pointer;
             font-size: var(--tg-font-size-xs);
-            &:active{
-                transform: scale(.96);
-            }
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: .5rem;
             &:hover{
               opacity: .9;
             }
             &.active{
               background: var(--tg-text-blue);
               color: var(--tg-text-white);
+            }
+            &:active{
+                span{
+                  transform: scale(.96);
+                }
             }
           }
         }

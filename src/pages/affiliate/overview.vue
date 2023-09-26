@@ -2,13 +2,56 @@
 </script>
 
 <template>
-  <div class="tg-affiliate-overview" />
-  <!-- <BaseMenu :data="[{ title: '存款', path: '/components' }, { title: '提款', path: '/' }]" /> -->
+  <div class="tg-affiliate-overview">
+    <video
+      class="tg-affiliate-overview-video"
+      autoplay="false" controls
+      src="https://player.vimeo.com/video/531039335"
+      poster="https://i.vimeocdn.com/video/1099128577-5eb60cef9d3a000730614dd90ba15bfc447f5f1fa9cabce1af812db291d7841f-d?mw=1100&mh=620&q=70"
+    />
+    <p>加入 Stake.com 的联盟计划，以推荐我们的品牌赚钱! 每当一位用户通过您的推荐链接注册并使用 Stake.com，您便会收到联盟佣金。</p>
+    <p>身为 Stake.com 的联盟会员，所赚的佣金将以推荐用户在娱乐城和体育博彩中的总投注为依据。这跟传统联盟计划的不同之处在于无论推荐用户是赢或输，您都能获得同样的佣金！</p>
+    <p>推荐链接</p>
+
+    <div class="tg-affiliate-overview-bottom">
+      <div class="link-box">
+        stake.com/?c=a9c244e0d1
+      </div>
+      <BaseButton>下载横幅</BaseButton>
+    </div>
+  </div>
 </template>
 
 <style lang="scss">
 .tg-affiliate-overview {
-
+  display: flex;
+  flex-direction: column;
+  gap: var(--tg-spacing-14);
+  &-video { }
+  p {
+    font-weight: 400;
+  }
+  .record-link {
+    font-weight: 600;
+  }
+  &-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // width: 100%;
+    // max-width: 100%;
+    // display: grid;
+    // align-items: flex-end;
+    // justify-content: space-between;
+    // grid-template-rows: auto;
+    // grid-template-columns: .5fr auto;
+    .link-box {
+      font-weight: 600;
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .2), 0 1px 2px 0 rgba(0, 0, 0, .12);
+      border-radius: var(--tg-radius-default);
+      background-color: var(--tg-secondary-main);
+    }
+  }
 }
 </style>
 
