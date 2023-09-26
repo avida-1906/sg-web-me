@@ -7,55 +7,20 @@ const isLive = computed(() => currentType.value === EnumCasinoGameType.LIVE) // 
 const isSlot = computed(() => currentType.value === EnumCasinoGameType.SLOT) // 老虎机
 const title = computed(() => isLive.value ? t('game_type_live') : t('game_type_slot'))
 
-const { data: liveList, total: liveTotal, runAsync: runLive, loading: loadingL, push: pushL } = usePage((page, page_size) => () => ApiMemberGameList({
+const gameTypeParams = computed(() => isLive.value ? 1 : isSlot.value ? 3 : undefined)
+const { data: list, total, runAsync, loading, push } = usePage((page, page_size) => () => ApiMemberGameList({
   page: page.value,
   page_size: page_size.value,
-  game_type: 1,
+  game_type: gameTypeParams.value,
 }), { page_size: VITE_CASINO_GAME_PAGE_SIZE })
-const { data: slotList, total: slotTotal, runAsync: runSlot, loading: loadingS, push: pushS } = usePage((page, page_size) => () => ApiMemberGameList({
-  page: page.value,
-  page_size: page_size.value,
-  game_type: 3,
-}), { page_size: VITE_CASINO_GAME_PAGE_SIZE })
-const list = computed(() => {
-  if (isLive.value)
-    return liveList.value
-  else if (isSlot.value)
-    return slotList.value
-  return []
-})
-
-const total = computed(() => {
-  if (isLive.value)
-    return liveTotal.value
-  else if (isSlot.value)
-    return slotTotal.value
-  return 0
-})
-const loading = computed(() => {
-  if (isLive.value)
-    return loadingL.value
-  else if (isSlot.value)
-    return loadingS.value
-  return false
-})
-const push = computed(() => {
-  if (isLive.value)
-    return pushL
-  else if (isSlot.value)
-    return pushS
-  return () => {}
-})
 
 const route = useRoute()
 watch(route, (a) => {
   currentType.value = a.params.gameType.toString()
-  isLive.value && application.allSettled([runLive()])
-  isSlot.value && application.allSettled([runSlot()])
+  application.allSettled([runAsync()])
 })
 
-isLive.value && await application.allSettled([runLive()])
-isSlot.value && await application.allSettled([runSlot()])
+await application.allSettled([runAsync()])
 </script>
 
 <template>
