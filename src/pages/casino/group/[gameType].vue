@@ -1,22 +1,61 @@
-<script setup lang="ts">
+<script setup lang="ts" runAsync>
 const props = defineProps<{ gameType: string }>()
 const { VITE_CASINO_GAME_PAGE_SIZE } = import.meta.env
 const { t } = useI18n()
-const isLive = computed(() => props.gameType === EnumCasinoGameType.LIVE) // 真人
-const isSlot = computed(() => props.gameType === EnumCasinoGameType.SLOT) // 老虎机
+const currentType = ref(props.gameType)
+const isLive = computed(() => currentType.value === EnumCasinoGameType.LIVE) // 真人
+const isSlot = computed(() => currentType.value === EnumCasinoGameType.SLOT) // 老虎机
 const title = computed(() => isLive.value ? t('game_type_live') : t('game_type_slot'))
 
-const game_type = computed(() => isLive.value ? 1 : isSlot.value ? 3 : undefined)
-const liveImg = 'https://mediumrare.imgix.net/c984a0f6625efd5a38c306697845c7bedcc917e2c061b45e8a75a5e648057e8a?&dpr=2&format=auto&auto=format&q=50'
-const { data, total, push, loading } = useApiGameList({ page: 1, page_size: VITE_CASINO_GAME_PAGE_SIZE, game_type: game_type.value })
+const { data: liveList, total: liveTotal, runAsync: runLive, loading: loadingL, push: pushL } = usePage((page, page_size) => () => ApiMemberGameList({
+  page: page.value,
+  page_size: page_size.value,
+  game_type: 1,
+}), { page_size: VITE_CASINO_GAME_PAGE_SIZE })
+const { data: slotList, total: slotTotal, runAsync: runSlot, loading: loadingS, push: pushS } = usePage((page, page_size) => () => ApiMemberGameList({
+  page: page.value,
+  page_size: page_size.value,
+  game_type: 3,
+}), { page_size: VITE_CASINO_GAME_PAGE_SIZE })
 const list = computed(() => {
-  if (data.value) {
-    return data.value.map((item) => {
-      return { ...item, img: liveImg }
-    })
-  }
+  if (isLive.value)
+    return liveList.value
+  else if (isSlot.value)
+    return slotList.value
   return []
 })
+
+const total = computed(() => {
+  if (isLive.value)
+    return liveTotal.value
+  else if (isSlot.value)
+    return slotTotal.value
+  return 0
+})
+const loading = computed(() => {
+  if (isLive.value)
+    return loadingL.value
+  else if (isSlot.value)
+    return loadingS.value
+  return false
+})
+const push = computed(() => {
+  if (isLive.value)
+    return pushL
+  else if (isSlot.value)
+    return pushS
+  return () => {}
+})
+
+const route = useRoute()
+watch(route, (a) => {
+  currentType.value = a.params.gameType.toString()
+  isLive.value && application.allSettled([runLive()])
+  isSlot.value && application.allSettled([runSlot()])
+})
+
+isLive.value && await application.allSettled([runLive()])
+isSlot.value && await application.allSettled([runSlot()])
 </script>
 
 <template>
@@ -68,6 +107,7 @@ const list = computed(() => {
   align-items: center;
   justify-content: center;
   gap: var(--tg-spacing-16);
+
   button {
     width: 184px;
     height: 44px;

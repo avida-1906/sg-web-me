@@ -573,7 +573,6 @@ declare module 'vue' {
     readonly upperLowerReg: UnwrapRef<typeof import('./utils/regexp')['upperLowerReg']>
     readonly useActiveElement: UnwrapRef<typeof import('@vueuse/core')['useActiveElement']>
     readonly useAnimate: UnwrapRef<typeof import('@vueuse/core')['useAnimate']>
-    readonly useApiGameList: UnwrapRef<typeof import('./composables/useApiGameList')['useApiGameList']>
     readonly useApiMenuData: UnwrapRef<typeof import('./composables/useApiMenuData')['useApiMenuData']>
     readonly useApiSendMsg: UnwrapRef<typeof import('./composables/useApiSendMsg')['useApiSendMsg']>
     readonly useAppStore: UnwrapRef<typeof import('./stores/app')['useAppStore']>
@@ -953,7 +952,6 @@ declare module '@vue/runtime-core' {
     readonly upperLowerReg: UnwrapRef<typeof import('./utils/regexp')['upperLowerReg']>
     readonly useActiveElement: UnwrapRef<typeof import('@vueuse/core')['useActiveElement']>
     readonly useAnimate: UnwrapRef<typeof import('@vueuse/core')['useAnimate']>
-    readonly useApiGameList: UnwrapRef<typeof import('./composables/useApiGameList')['useApiGameList']>
     readonly useApiMenuData: UnwrapRef<typeof import('./composables/useApiMenuData')['useApiMenuData']>
     readonly useApiSendMsg: UnwrapRef<typeof import('./composables/useApiSendMsg')['useApiSendMsg']>
     readonly useAppStore: UnwrapRef<typeof import('./stores/app')['useAppStore']>

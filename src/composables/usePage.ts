@@ -80,8 +80,10 @@ export function usePage<R, P extends unknown[]>(service: (page: Ref<number>, pag
   )
 
   const next = () => {
-    if (page.value * page_size.value < total.value)
+    if (page.value * page_size.value < total.value) {
       page.value++
+      run()
+    }
   }
 
   const prev = () => {
