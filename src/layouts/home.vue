@@ -127,9 +127,21 @@ const isCasinoGames = computed(() => route.name === 'casino-games')
         </AppContent>
         <!-- 主页面 -->
         <slot>
-          <RouterView v-if="isCasinoGames" />
-          <AppContent v-else>
-            <RouterView />
+          <AppContent>
+            <RouterView v-slot="{ Component }">
+              <template v-if="Component">
+                <KeepAlive>
+                  <Suspense timeout="0">
+                    <component :is="Component" />
+                    <template #fallback>
+                      <div class="loading-content-height center">
+                        <BaseLoading />
+                      </div>
+                    </template>
+                  </Suspense>
+                </KeepAlive>
+              </template>
+            </RouterView>
           </AppContent>
         </slot>
 
@@ -157,6 +169,15 @@ const isCasinoGames = computed(() => route.name === 'casino-games')
 </template>
 
 <style scoped lang="scss">
+.loading-content-height {
+  height: calc(100vh - var(--tg-header-height));
+}
+
+@media screen and (max-width: 767px) {
+  .loading-content-height {
+    height: calc(100vh - var(--tg-header-height) - var(--tg-footerbar-height));
+  }
+}
 .only-for-get-width{
   width: 100%;
 }
