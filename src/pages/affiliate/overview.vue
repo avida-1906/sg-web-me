@@ -35,7 +35,9 @@
   display: flex;
   flex-direction: column;
   gap: var(--tg-spacing-14);
-  &-video { }
+  &-video {
+    max-width: 550px;
+  }
   p {
     font-weight: 400;
     line-height: 1.5;
