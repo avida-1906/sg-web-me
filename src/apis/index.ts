@@ -86,7 +86,7 @@ export function ApiMemberGameList(params: {
  * 启动游戏
  */
 export function ApiGameLunch(pid: string, game_id: string, cur: string) {
-  return httpClient.get(`/game/launch/${pid}`, { code: game_id, cur })
+  return httpClient.get<string>(`/game/launch/${pid}`, { code: game_id, cur })
 }
 
 /**
