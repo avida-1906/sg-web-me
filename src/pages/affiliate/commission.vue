@@ -16,6 +16,7 @@
       </div>
     </div>
     <div class="tg-affiliate-commission-bottom">
+      <BaseIcon name="uni-tips" />
       您若是个影响力极佳并能触及广大群众，或是处在其他特殊情况下的联盟会员，可请联系我们杰出的支持团队。经与联盟经理人讨论后，我们可争取为您定制一套联盟计划。这可能包括更高的佣金。
     </div>
   </div>
@@ -70,11 +71,21 @@
     display: flex;
     background-color: var(--tg-secondary-dark);
     padding: var(--tg-spacing-16);
-    gap: var(--tg-spacing-16);
+    gap: var(--tg-spacing-12);
     border: 2px dashed;
     border-radius: var(--tg-radius-xs);
     color: var(--tg-text-lightgrey) !important;
     font-size: var(--tg-font-size-default);
+    .app-svg-icon {
+      pointer-events: none;
+      stroke-width: 0;
+      stroke: currentColor;
+      fill: currentColor;
+      flex-shrink: 0;
+      display: inline-block;
+      font-size: var(--tg-font-size-base);
+      margin: var(--tg-spacing-3) 0 0 0;
+    }
   }
 }
 </style>

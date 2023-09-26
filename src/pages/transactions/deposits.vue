@@ -6,7 +6,7 @@ const tabList = reactive([
 </script>
 
 <template>
-  <section class="tg-withdrawals-record-page">
+  <section class="tg-deposits-record-page">
     <AppTabRecord :tabs="tabList" />
   </section>
 </template>
