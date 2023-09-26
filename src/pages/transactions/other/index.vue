@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 const tabList = reactive([
-  { label: '全部', value: 'all' },
+  { label: '全部', value: '' },
   { label: '奖金', value: 'bonus' },
   { label: '空投奖金', value: 'drop' },
   { label: '活动佣金取款', value: 'campaign_withdrawal' },
