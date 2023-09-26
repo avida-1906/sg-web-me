@@ -6,12 +6,10 @@ const gameId = computed(() => query.game_id?.toString() ?? '')
 const { isMobile } = storeToRefs(useWindowStore())
 const { bool: isTheatre, setBool } = useBoolean(false) // 影院模式
 
-const { data: recGameList, runAsync: runGetRecGameList } = usePage((page, page_size) => () => ApiMemberGameRecList({
+const { data: recGameList } = usePage((page, page_size) => () => ApiMemberGameRecList({
   page: page.value,
   page_size: page_size.value,
-}), { page_size: VITE_CASINO_HOME_PAGE_SIZE })
-
-await application.allSettled([runGetRecGameList()])
+}), { page_size: VITE_CASINO_HOME_PAGE_SIZE, manual: false })
 </script>
 
 <template>
