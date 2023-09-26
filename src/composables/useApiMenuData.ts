@@ -24,6 +24,8 @@ function ExpandMapAll(menuItem: MenuItem) {
 }
 
 export function useApiMenuData() {
+  const { locale } = useI18n()
+
   // casino
   const casinoMenu = ref<Menu>([
     { title: '收藏夹', path: '/casino/favourites', icon: 'chess-star', list: [], domId: '' },
@@ -212,7 +214,7 @@ export function useApiMenuData() {
       path: '',
       icon: 'chess-language',
       type: 'radio',
-      value: EnumLanguage['zh-CN'],
+      value: EnumLanguage[locale.value as any],
       radioChange: (val: EnumLanguage) => changeLanguage(val),
       list: [
         { title: '中文', path: '', icon: '', value: EnumLanguage['zh-CN'] },
