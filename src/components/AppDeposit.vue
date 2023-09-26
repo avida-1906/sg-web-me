@@ -24,7 +24,7 @@ function handleShow(val: boolean) {
 <template>
   <div class="app-deposit">
     <AppWallet v-show="showWallet" :wallet-btn="false" :show-balance="false" :network="true" @change="changeCurrency" />
-    <AppFiatDeposit v-if="activeCurrency?.legalTender" :active-currency="activeCurrency" />
+    <AppFiatDeposit v-if="activeCurrency?.legalTender" :active-currency="activeCurrency" @show="handleShow" />
     <AppVirtualDeposit v-else :active-currency="activeCurrency" @show="handleShow" />
   </div>
 </template>
