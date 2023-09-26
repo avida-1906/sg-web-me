@@ -5,15 +5,12 @@
 // })
 const emit = defineEmits(['show'])
 //  存款类型
-const currentType = ref('2')
+const currentType = ref('1')
 const depositType = ref([
   { label: '银行转账', icon: 'fiat-bank', value: '1' },
   { label: '支付宝', icon: 'fiat-alipay', value: '2' },
   { label: '微信', icon: 'fiat-wechat', value: '3' },
 ])
-const changeType = function (type: string) {
-  currentType.value = type
-}
 
 const bankStep = ref<'1' | '2'>('1')
 const payeeInformation = ref({
@@ -50,16 +47,7 @@ const amount = ref('')
 <template>
   <div class="app-fiat-currency-deposit">
     <div class="deposit-wrap">
-      <div class="scroll-x deposit-type-btns">
-        <div
-          v-for="item in depositType" :key="item.value" class="type-btn"
-          :class="item.value === currentType ? 'active' : '' "
-          @click="changeType(item.value)"
-        >
-          <BaseIcon :name="item.icon" />
-          <span>{{ item.label }}</span>
-        </div>
-      </div>
+      <AppWithdrawalDepositType v-model="currentType" :deposit-type="depositType" />
       <div v-if="currentType === '1'" class="type-online-bank">
         <div v-if="bankStep === '1'" class="bank-first">
           <BaseLabel label="收款人姓名:" label-content="为及时到账，请务必输入正确的存款人姓名">
@@ -124,38 +112,6 @@ const amount = ref('')
 <style lang='scss' scoped>
 .app-fiat-currency-deposit{
   .deposit-wrap{
-    .deposit-type-btns{
-      display: flex;
-      gap: .75rem;
-      margin-bottom: var(--tg-spacing-12);
-      .type-btn{
-        background: var(--tg-secondary-main);
-        min-width: 102px;
-        padding: 0 var(--tg-spacing-12);
-        text-align: center;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: .5rem;
-        // box-shadow: var(--tg-box-shadow);
-        box-shadow: 0px 2px 3px -1px rgba(0, 0, 0, 0.30);;
-        border-radius: var(--tg-radius-default);
-        color: var(--tg-text-white);
-        cursor: pointer;
-        &:active{
-          span, svg {
-            transform: scale(.96);
-          }
-        }
-        &:hover{
-          opacity: .9;
-        }
-        &.active{
-          background-color: var(--tg-text-blue);
-        }
-      }
-    }
     .type-online-bank{
       .bank-first,.bank-second{
         display: flex;
