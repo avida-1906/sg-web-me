@@ -232,12 +232,13 @@ export function useApiMenuData() {
   const { leftIsExpand } = useLeftSidebar()
 
   function menuItemClick(item: MenuItem) {
+    Local.set('curDomIdRef', item.domId || '')
     if (item.path && item.path.length) {
       router.push(item.path)
     }
     else if (item.list && item.list.length) {
+      // item.expand = true
       leftIsExpand.value = true
-      item.expand = true
     }
     else if (item.modalQuery) {
       router.push({
@@ -246,21 +247,6 @@ export function useApiMenuData() {
       })
     }
   }
-
-  watch(leftIsExpand, (val) => {
-    if (!val) {
-      casinoMenu.value.forEach(ExpandMapAll)
-      casinoGameList.value.forEach(ExpandMapAll)
-      casinoGameProvider.value.forEach(ExpandMapAll)
-      sportsMenu.value.forEach(ExpandMapAll)
-      sportHotGames.value.forEach(ExpandMapAll)
-      sportEsports.value.forEach(ExpandMapAll)
-      sportGameList.value.forEach(ExpandMapAll)
-      sportOddType.value.forEach(ExpandMapAll)
-      staticMenu1.value.forEach(ExpandMapAll)
-      staticMenu2.value.forEach(ExpandMapAll)
-    }
-  })
 
   return {
     casinoMenu,

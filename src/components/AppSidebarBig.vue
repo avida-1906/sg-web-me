@@ -40,6 +40,20 @@ const timeStamp = ref(0)
 function closeMenu(t: any) {
   timeStamp.value = t
 }
+
+onMounted(() => {
+  const tempId = Local.get('curDomIdRef')?.value ?? ''
+  if (tempId) {
+    const t = setTimeout(() => {
+      innerRef.value.scrollTo({ top: document.getElementById(tempId as string)!.offsetTop - 60, behavior: 'smooth' })
+      clearTimeout(t)
+    }, 500)
+  }
+})
+
+onBeforeUnmount(() => {
+  Local.remove('curDomIdRef')
+})
 </script>
 
 <template>
