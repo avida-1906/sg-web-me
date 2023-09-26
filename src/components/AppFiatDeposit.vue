@@ -86,18 +86,17 @@ const amount = ref('')
       </div>
       <div v-else class="type-other">
         <div class="other-first">
-          <div class="other-title">
-            通道选择
-          </div>
-          <div class="other-aisles">
-            <div
-              v-for="item in aisleData" :key="item.value" class="aisle"
-              :class="currentAisle === item.value ? 'active' : ''"
-              @click="changeAisle(item.value)"
-            >
-              <span>{{ item.label }}</span>
+          <BaseLabel label="通道选择">
+            <div class="other-aisles">
+              <div
+                v-for="item in aisleData" :key="item.value" class="aisle"
+                :class="currentAisle === item.value ? 'active' : ''"
+                @click="changeAisle(item.value)"
+              >
+                <span>{{ item.label }}</span>
+              </div>
             </div>
-          </div>
+          </BaseLabel>
           <BaseInput v-model="username" label="充值金额:￥" />
           <BaseMoneyKeyboard />
           <BaseButton bg-style="primary" size="md">
@@ -112,11 +111,14 @@ const amount = ref('')
 <style lang='scss' scoped>
 .app-fiat-currency-deposit{
   .deposit-wrap{
+    display: flex;
+      flex-direction: column;
+      gap: .75rem;
     .type-online-bank{
       .bank-first,.bank-second{
         display: flex;
         flex-direction: column;
-        gap: .5rem;
+        gap: .75rem;
       }
       .bank-second{
         .second-title{
@@ -126,12 +128,13 @@ const amount = ref('')
           max-width: 100%;
           border-radius: var(--tg-radius-default);
           border: 1px solid var(--tg-secondary-main);
-          padding: var(--tg-spacing-9) var(--tg-spacing-12);
+          padding: var(--tg-spacing-15) var(--tg-spacing-12);
           display: flex;
           justify-content: space-between;
           align-items: center;
           color: var(--tg-text-white);
           cursor: pointer;
+          background-color: var(--tg-secondary-dark);
         }
         .second-tips{
           color:var(--tg-text-error);
@@ -162,10 +165,6 @@ const amount = ref('')
         display: flex;
         flex-direction: column;
         gap: .75rem;
-        .other-title{
-          color: var(--tg-text-lightgrey);
-          margin-bottom: -5px;
-        }
         .other-aisles{
           display: flex;
           justify-content: left;
@@ -183,7 +182,7 @@ const amount = ref('')
             display: inline-flex;
             justify-content: center;
             align-items: center;
-            gap: .5rem;
+            gap: .75rem;
             &:hover{
               opacity: .9;
             }
