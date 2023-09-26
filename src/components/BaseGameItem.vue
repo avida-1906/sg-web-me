@@ -51,15 +51,20 @@ function gameStart(item: Props['gameInfo']) {
       top: 0;
       flex-direction: column;
       flex-wrap: nowrap;
-      align-items: center;
-      justify-content: space-around;
+      justify-content: space-between;
+      padding: 1rem;
       font-size: var(--tg-font-size-base);
       opacity: 0;
       color: var(--tg-text-white);
       background-color: var(--tg-sub-blue);
       will-change: transform;
       transition: all 0.3s ease 0.3s;
+      .game-title{
+        font-size:var(--tg-font-size-md);
+        line-height: 1.2;
+      }
       .game-uni-play{
+        margin: 0 auto;
         width: 32px;
         height: 32px;
         --tg-icon-color: var(--tg-text-white);
@@ -70,6 +75,6 @@ function gameStart(item: Props['gameInfo']) {
     top: -7px;
   }
   .base-game-item:hover .active-game-item{
-    opacity: 0.8;
+    opacity: 0.9;
   }
 </style>

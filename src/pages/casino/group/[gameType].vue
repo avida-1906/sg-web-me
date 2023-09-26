@@ -1,29 +1,80 @@
-<script setup lang="ts" runAsync>
+<script setup lang="ts">
 const props = defineProps<{ gameType: string }>()
 const { VITE_CASINO_GAME_PAGE_SIZE } = import.meta.env
 const { t } = useI18n()
 const currentType = ref(props.gameType)
 const isLive = computed(() => currentType.value === EnumCasinoGameType.LIVE) // 真人
 const isSlot = computed(() => currentType.value === EnumCasinoGameType.SLOT) // 老虎机
-const title = computed(() => isLive.value ? t('game_type_live') : t('game_type_slot'))
+const isRec = computed(() => currentType.value === 'rec') // 推荐游戏
+const title = computed(() => {
+  if (isLive.value)
+    return t('game_type_live')
+  else if (isSlot.value)
+    return t('game_type_slot')
+  else if (isRec.value)
+    return t('game_type_rec')
+  return '-'
+})
 
+// 真人、老虎机
 const gameTypeParams = computed(() => isLive.value ? 1 : isSlot.value ? 3 : undefined)
-const { data: list, total, runAsync, loading, push } = usePage((page, page_size) => () => ApiMemberGameList({
+const { data: gameList, total: gameTotal, runAsync: runGameList, loading: loadingGame, push: pushGame } = usePage((page, page_size) => () => ApiMemberGameList({
   page: page.value,
   page_size: page_size.value,
   game_type: gameTypeParams.value,
 }), { page_size: VITE_CASINO_GAME_PAGE_SIZE })
 
+// 推荐游戏
+const { data: recList, total: recTotal, runAsync: runRecList, loading: loadingRec, push: pushRec } = usePage((page, page_size) => () => ApiMemberGameRecList({
+  page: page.value,
+  page_size: page_size.value,
+}), { page_size: VITE_CASINO_GAME_PAGE_SIZE })
+
+const list = computed(() => {
+  if (isLive.value || isSlot.value)
+    return gameList.value
+  else if (isRec.value)
+    return recList.value
+  return []
+})
+const total = computed(() => {
+  if (isLive.value || isSlot.value)
+    return gameTotal.value
+  else if (isRec.value)
+    return recTotal.value
+  return 0
+})
+const loading = computed(() => {
+  if (isLive.value || isSlot.value)
+    return loadingGame.value
+  else if (isRec.value)
+    return loadingRec.value
+  return false
+})
+const push = computed(() => {
+  if (isLive.value || isSlot.value)
+    return pushGame
+  else if (isRec.value)
+    return pushRec
+  return () => { }
+})
+
 const route = useRoute()
 const stop = watch(route, (a) => {
   currentType.value = a.params.gameType.toString()
-  application.allSettled([runAsync()])
+  if (isLive.value || isSlot.value)
+    application.allSettled([runGameList()])
+  else if (isRec.value)
+    application.allSettled([runRecList()])
 })
 onBeforeRouteLeave(() => {
   stop()
 })
 
-await application.allSettled([runAsync()])
+if (isLive.value || isSlot.value)
+  await application.allSettled([runGameList()])
+else if (isRec.value)
+  await application.allSettled([runRecList()])
 </script>
 
 <template>
