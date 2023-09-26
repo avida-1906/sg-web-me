@@ -16,11 +16,9 @@ const baseAccor = ref()
 
 const timestamp = ref(0)
 
+const curDomId = ref(Local.get('curDomIdRef')?.value)
+
 function handleClickHead() {
-  // const t = setTimeout(() => {
-  //   innerRef.value.scrollTo({ top: document.getElementById('sports-hot-game-football')!.offsetTop - 60, behavior: 'smooth' })
-  //   clearTimeout(t)
-  // }, 500)
   timestamp.value = new Date().getTime()
   emit('closeOtherMenu', timestamp.value)
 }
@@ -46,7 +44,7 @@ watch(() => props.timeStamp, (val) => {
   <section>
     <BaseAccordion
       v-if="menuItem.list && menuItem.list.length"
-      ref="baseAccor" :dom-id="menuItem.domId" :menu-info="menuItem" :auto-show="menuItem.expand"
+      ref="baseAccor" :dom-id="menuItem.domId" :menu-info="menuItem" :auto-show="curDomId === undefined ? false : curDomId === menuItem.domId"
       @click-head="handleClickHead"
       @click-item="handleClickItem"
       @radio-change="radioChangeValue"

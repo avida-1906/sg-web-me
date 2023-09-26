@@ -8,10 +8,10 @@ function goPage(v: 'prev' | 'next') {
 
 <template>
   <div class="stack x-center y-center direction-horizontal gap-larger padding-none next-prev-buttons mt-24">
-    <div @click="goPage('prev')">
+    <div class="cursor-pointer" @click="goPage('prev')">
       上一页
     </div>
-    <div @click="goPage('next')">
+    <div class="cursor-pointer" @click="goPage('next')">
       下一页
     </div>
   </div>
