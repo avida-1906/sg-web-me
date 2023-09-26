@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { VITE_CASINO_GAME_PAGE_SIZE } = import.meta.env
 
-const { data, page, page_size } = usePage((page, page_size) => () => ApiMemberGameFavList({
+const { data, prev, next, page, total } = usePage((page, page_size) => () => ApiMemberGameFavList({
   page: page.value,
   page_size: page_size.value,
 }), { page_size: VITE_CASINO_GAME_PAGE_SIZE })
@@ -24,11 +24,22 @@ const { data, page, page_size } = usePage((page, page_size) => () => ApiMemberGa
         </div>
       </div>
     </div>
-    <div class="mt-24">
-      <AppGameSearch game-type="2" />
+    <AppGameSearch game-type="1" />
+    <AppCardList v-if="data.length" :list="data" />
+    <div v-else class="no-data">
+      暂无任何收藏，请使用
+      <div class="icon">
+        <BaseIcon name="chess-star" />
+      </div>
+      把游戏添加到收藏夹中。
     </div>
-    <div class="mt-24">
-      <AppCardList :list="data" />
+    <div class="btns">
+      <BaseButton type="text" :disabled="page === 1" @click="prev">
+        上一页
+      </BaseButton>
+      <BaseButton type="text" :disabled="data.length >= total" @click="next">
+        下一页
+      </BaseButton>
     </div>
   </section>
   <div class="layout-spacing">
@@ -37,6 +48,11 @@ const { data, page, page_size } = usePage((page, page_size) => () => ApiMemberGa
 </template>
 
 <style lang="scss" scoped>
+.tg-favourites{
+  display: flex;
+  flex-direction: column;
+  gap: var(--tg-spacing-24);
+}
 .group-banner-wrap {
   position: relative;
   .group-banner-bg {
@@ -86,6 +102,21 @@ const { data, page, page_size } = usePage((page, page_size) => () => ApiMemberGa
       }
     }
   }
+}
+.no-data{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--tg-text-lightgrey);
+  font-size:var(--tg-font-size-default);
+  .icon{
+    margin: 0 var(--tg-spacing-8);
+  }
+}
+.btns{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>
 
