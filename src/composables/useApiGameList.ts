@@ -25,7 +25,7 @@ export function useApiGameList(query: GameListQuery) {
     is_new,
     tag_id,
     platform_id,
-  }), { ...query })
+  }), { manual: true })
 
   return { ...rest }
 }

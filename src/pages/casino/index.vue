@@ -15,8 +15,11 @@ const showLive = computed(() => tab.value === EnumCasinoGameType.LIVE)
 const showSlot = computed(() => tab.value === EnumCasinoGameType.SLOT)
 const currentTitle = computed(() => tabList.find(a => a.value === tab.value)?.label ?? '-')
 
-const { data: liveList, total: liveTotal } = useApiGameList({ page: 1, page_size: VITE_CASINO_HOME_PAGE_SIZE, game_type: 1 })
-const { data: slotList, total: slotTotal } = useApiGameList({ page: 1, page_size: VITE_CASINO_HOME_PAGE_SIZE, game_type: 3 })
+const { data: liveList, total: liveTotal, runAsync: run1 } = useApiGameList({ page: 1, page_size: VITE_CASINO_HOME_PAGE_SIZE, game_type: 1 })
+const { data: slotList, total: slotTotal, runAsync: run2 } = useApiGameList({ page: 1, page_size: VITE_CASINO_HOME_PAGE_SIZE, game_type: 3 })
+
+await Promise.all([run1(), run2()])
+await new Promise(resolve => setTimeout(resolve, 3000))
 
 function viewMoreGames(gameType: string) {
   router.push(`/casino/group/${gameType}`)
