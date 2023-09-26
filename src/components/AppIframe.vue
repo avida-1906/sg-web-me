@@ -1,46 +1,41 @@
 <script setup lang='ts'>
-const props = defineProps<{
+import { EnumCurrency } from '~/utils/enums'
+
+interface Props {
   isTheatre: boolean
-  data?: any
-}>()
+  data: any
+}
+const props = defineProps<Props>()
 const emit = defineEmits(['changeTheatre'])
+const { VITE_CASINO_TEST_SLOT_IMG } = import.meta.env
+console.log('🚀 ~ file: AppIframe.vue:9 ~ props:', props.data)
+
+const pid = computed(() => props.data.platform_id)
+const code = computed(() => props.data.game_id)
+const currencyList = computed(() => {
+  const arr = JSON.parse(props.data.currency) ?? []
+  return arr.map((item: any) => {
+    const num = EnumCurrency[item.id] ?? 0
+    return { ...item, num, name: item.id }
+  })
+})
+
 const { t } = useI18n()
 const { isMobile, appContentWidth } = storeToRefs(useWindowStore())
 const bigGameWrapper = computed(() => appContentWidth.value > 930)
 
-const gameImgUrl = ref('https://mediumrare.imgix.net/33cd5a34c3937da326652a3beb44fe9c3680118c363a060ca5670847595561a5?&dpr=2&format=auto&auto=format&q=70')
-
-const currentCurrency = ref(0)
-const currencyList = ref([
-  { balance: '0.000000000', icon: 'coin-btc', text: 0 },
-  { balance: '0.000000000', icon: 'coin-eth', text: 1 },
-  { balance: '0.000000000', icon: 'coin-ltc', text: 2 },
-  { balance: '0.000000000', icon: 'coin-usdt', text: 3 },
-  { balance: '0.000000000', icon: 'coin-doge', text: 4 },
-  { balance: '0.000000000', icon: 'coin-bch', text: 5 },
-  { balance: '0.000000000', icon: 'coin-xrp', text: 6 },
-  { balance: '0.000000000', icon: 'coin-eos', text: 7 },
-  { balance: '0.000000000', icon: 'coin-trx', text: 8 },
-  { balance: '0.000000000', icon: 'coin-bnb', text: 9 },
-  { balance: '0.000000000', icon: 'coin-usdc', text: 10 },
-  { balance: '0.000000000', icon: 'coin-ape', text: 11 },
-  { balance: '0.000000000', icon: 'coin-busd', text: 12 },
-  { balance: '0.000000000', icon: 'coin-cro', text: 13 },
-  { balance: '0.000000000', icon: 'coin-dai', text: 14 },
-  { balance: '0.000000000', icon: 'coin-link', text: 15 },
-  { balance: '0.000000000', icon: 'coin-sand', text: 16 },
-  { balance: '0.000000000', icon: 'coin-shib', text: 17 },
-  { balance: '0.000000000', icon: 'coin-uni', text: 18 },
-  { balance: '0.000000000', icon: 'coin-matic', text: 19 },
-  { balance: '0.00', icon: 'coin-eur', text: 20 },
-  { balance: 'JP¥0.00', icon: 'coin-jpy', text: 21 },
-  { balance: 'R$0.00', icon: 'coin-brl', text: 22 },
-  { balance: 'CA$0.00', icon: 'coin-cad', text: 23 },
-  { balance: '0.0', icon: 'coin-inr', text: 24 },
-])
-function onChooseCurrency(v: number) {
+const currentCurrency = ref(currencyList.value[0])
+function onChooseCurrency(v: any) {
   currentCurrency.value = v
 }
+const { run: runLunchGame, data: gameUrl } = useRequest(() => ApiGameLunch(pid.value, code.value, currentCurrency.value.name), {
+  manual: true,
+  onSuccess(res) {
+    // H5模式直接打开游戏
+    if (isMobile.value)
+      return location.href = res
+  },
+})
 
 // 选择模式遮罩层
 const { bool: isShowFrameOverlay, setFalse: setShowFrameOverlayFalse } = useBoolean(true)
@@ -49,9 +44,7 @@ function onSwitchRealMoneyMode(v: boolean) {
   setRealModeBool(v)
   setShowFrameOverlayFalse()
 
-  // H5模式直接打开游戏
-  if (isMobile.value)
-    location.href = props.data
+  runLunchGame()
 }
 
 // 全屏
@@ -81,7 +74,7 @@ function onClickFavorite() {
     <div class="mobile-header">
       <div class="img-wrap">
         <div class="img">
-          <BaseImage :url="gameImgUrl" />
+          <BaseImage :url="VITE_CASINO_TEST_SLOT_IMG" />
         </div>
       </div>
       <div class="info-wrap">
@@ -122,7 +115,7 @@ function onClickFavorite() {
       <span>{{ t('balance') }}</span>
       <VDropdown :distance="6">
         <div class="current-currency">
-          <AppCurrencyIcon show-name :currency-type="currentCurrency" />
+          <AppCurrencyIcon show-name :currency-type="currentCurrency.num" />
           <div class="arrow">
             <BaseIcon name="uni-arrow-down" />
           </div>
@@ -131,10 +124,10 @@ function onClickFavorite() {
           <div class="scroll-y popper popper-mobile">
             <div
               v-for="c, i in currencyList" :key="i" v-close-popper class="currency-types popper-option"
-              @click="onChooseCurrency(c.text)"
+              @click="onChooseCurrency(c)"
             >
               <div>
-                <AppCurrencyIcon show-name :currency-type="c.text" />
+                <AppCurrencyIcon show-name :currency-type="c.num" />
               </div>
             </div>
           </div>
@@ -171,7 +164,7 @@ function onClickFavorite() {
                   <span>{{ t('balance') }}</span>
                   <VDropdown :distance="6">
                     <div class="current-currency">
-                      <AppCurrencyIcon show-name :currency-type="currentCurrency" />
+                      <AppCurrencyIcon show-name :currency-type="currentCurrency.num" />
                       <div class="arrow">
                         <BaseIcon name="uni-arrow-down" />
                       </div>
@@ -180,10 +173,10 @@ function onClickFavorite() {
                       <div class="scroll-y popper">
                         <div
                           v-for="c, i in currencyList" :key="i" v-close-popper class="popper-option currency-types"
-                          @click="onChooseCurrency(c.text)"
+                          @click="onChooseCurrency(c)"
                         >
                           <div>
-                            <AppCurrencyIcon show-name :currency-type="c.text" />
+                            <AppCurrencyIcon show-name :currency-type="c.num" />
                           </div>
                         </div>
                       </div>
@@ -206,7 +199,7 @@ function onClickFavorite() {
                 </div>
               </div>
             </div>
-            <iframe ref="gameFrameRef" :src="data" frameborder="0" allowfullscreen />
+            <iframe ref="gameFrameRef" :src="gameUrl" frameborder="0" allowfullscreen />
           </div>
 
           <div class="footer">
@@ -404,7 +397,7 @@ function onClickFavorite() {
   margin-top: 3vw;
 }
 
-.b-game-wrapper{
+.b-game-wrapper {
   margin-top: var(--tg-spacing-40);
 }
 
