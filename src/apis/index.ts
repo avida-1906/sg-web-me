@@ -112,6 +112,18 @@ export function ApiMemberGameDetail(pid: string, game_id: string) {
 }
 
 /**
+ * 修改收藏
+ * id: string 游戏id
+ * val: string 是否收藏 1是 2否
+*/
+export function ApiMemberGameUpdateFav(params: {
+  id: string
+  val: string
+}) {
+  return httpClient.get('/member/game/update/fav', params)
+}
+
+/**
  * 启动游戏
  */
 export function ApiGameLunch(pid: string, game_id: string, cur: string) {

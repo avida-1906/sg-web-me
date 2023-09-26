@@ -16,15 +16,20 @@ const props = defineProps<Props>()
 const emit = defineEmits(['changeTheatre'])
 const { VITE_CASINO_TEST_SLOT_IMG } = import.meta.env
 
+// 选择模式遮罩层
+const { bool: isShowFrameOverlay, setTrue: overlayTrue, setFalse: overlayFalse } = useBoolean(false)
+const { bool: isRealMoneyMode, setBool: setRealModeBool } = useBoolean(false)
+
 const currentCurrency = ref<CurrencyItem>()
 const currencyList = ref<CurrencyItem[]>([])
-const { data: dataDetail, runAsync: runDetail } = useRequest(() => ApiMemberGameDetail(props.pid, props.gameId), {
+const { data: dataDetail, runAsync: runDetail } = useRequest((pid, gameId) => ApiMemberGameDetail(pid, gameId), {
   onSuccess(res) {
     currencyList.value = JSON.parse(res.currency).map((item: any) => {
       const num = EnumCurrency[item.id] ?? 0
       return { ...item, num, name: item.id }
     })
     currentCurrency.value = currencyList.value[0]
+    overlayTrue()
   },
 })
 const pid = computed(() => dataDetail.value ? dataDetail.value.platform_id : '')
@@ -46,13 +51,10 @@ const { run: runLunchGame, data: gameUrl } = useRequest(() => ApiGameLunch(pid.v
       return location.href = res
   },
 })
-
-// 选择模式遮罩层
-const { bool: isShowFrameOverlay, setFalse: setShowFrameOverlayFalse } = useBoolean(true)
-const { bool: isRealMoneyMode, setBool: setRealModeBool } = useBoolean(false)
+// 切换试玩真钱模式
 function onSwitchRealMoneyMode(v: boolean) {
   setRealModeBool(v)
-  setShowFrameOverlayFalse()
+  overlayFalse()
 
   runLunchGame()
 }
@@ -73,11 +75,18 @@ function onClickTrend() {
 }
 // 收藏
 const { bool: isFavorite, toggle: toggleFavorite } = useBoolean(false)
+const { run } = useRequest(() => ApiMemberGameUpdateFav({ id: dataDetail.value?.id ?? '', val: '1' }), {
+  onSuccess(res) {
+    console.log('ApiMemberGameUpdateFav', res)
+  },
+})
 function onClickFavorite() {
   toggleFavorite()
+  run()
 }
 
-await application.allSettled([runDetail()])
+defineExpose({ runDetail })
+await application.allSettled([runDetail(props.pid, props.gameId)])
 </script>
 
 <template>

@@ -313,6 +313,10 @@ body {
   margin-top: var(--tg-spacing-24);
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
 // 设置 VDropdown VTooltip VMenu 圆角 阴影
 .v-popper--theme-tg-popper-outer.v-popper--theme-dropdown .v-popper__inner {
   border-radius: var(--tg-radius-default);

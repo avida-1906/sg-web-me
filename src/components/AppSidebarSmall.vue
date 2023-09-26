@@ -28,27 +28,27 @@ const {
 const menuData = computed(() => {
   if (isCasino.value) {
     return [
-      casinoMenu.value,
-      casinoGameList.value,
-      casinoGameProvider.value,
-      staticMenu1.value,
-      staticMenu2.value,
+      casinoMenu,
+      casinoGameList,
+      casinoGameProvider,
+      staticMenu1,
+      staticMenu2,
     ]
   }
   else if (isSports.value) {
     return [
-      sportsMenu.value,
-      sportHotGames.value,
-      sportEsports.value,
-      sportGameList.value,
-      sportOddType.value,
-      staticMenu1.value,
-      staticMenu2.value,
+      sportsMenu,
+      sportHotGames,
+      sportEsports,
+      sportGameList,
+      sportOddType,
+      staticMenu1,
+      staticMenu2,
     ]
   }
   return [
-    staticMenu1.value,
-    staticMenu2.value,
+    staticMenu1,
+    staticMenu2,
   ]
 })
 
@@ -60,7 +60,7 @@ function itemClick(item: MenuItem) {
 <template>
   <section class="tg-app-sidebar-small">
     <ul v-for="menu, idx in menuData" :key="idx" class="tiny-menu flex-col-center">
-      <li v-for="menuitem in menu" :key="menuitem.title" class="flex-col-center tiny-menu-item">
+      <li v-for="menuitem in menu.value" :key="menuitem.title" class="flex-col-center tiny-menu-item">
         <VMenu placement="top">
           <div class="trigger" @click="itemClick(menuitem)">
             <BaseIcon :name="menuitem.icon" />

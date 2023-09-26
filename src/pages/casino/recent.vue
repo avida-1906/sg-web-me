@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <section class="tg-favourites layout-spacing">
+  <section class="layout-spacing tg-favourites">
     <div class="group-banner-wrap">
       <div class="group-banner-bg" />
       <div class="banner-wrap">
@@ -19,7 +19,7 @@
       </div>
     </div>
     <div class="mt-24">
-      <AppGameSearch game-type="2" />
+      <AppGameSearch game-type="1" />
     </div>
     <div class="mt-24">
       <AppCardList />
