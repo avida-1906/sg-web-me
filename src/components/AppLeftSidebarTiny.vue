@@ -20,46 +20,6 @@ const router = useRouter()
 const route = useRoute()
 const isCasino = computed(() => route.name?.toString().includes('casino'))
 const isSports = computed(() => route.name?.toString().includes('sports'))
-
-const {
-  casinoMenu,
-  casinoGameList,
-  casinoGameProvider,
-  sportsMenu,
-  sportHotGames,
-  sportEsports,
-  sportGameList,
-  sportOddType,
-  staticMenu1,
-  staticMenu2,
-} = useApiMenuData()
-
-const menuData = computed(() => {
-  if (isCasino.value) {
-    return [
-      casinoMenu,
-      casinoGameList,
-      casinoGameProvider,
-      staticMenu1,
-      staticMenu2,
-    ]
-  }
-  else if (isSports.value) {
-    return [
-      sportsMenu,
-      sportHotGames,
-      sportEsports,
-      sportGameList,
-      sportOddType,
-      staticMenu1,
-      staticMenu2,
-    ]
-  }
-  return [
-    staticMenu1,
-    staticMenu2,
-  ]
-})
 </script>
 
 <template>
@@ -88,7 +48,7 @@ const menuData = computed(() => {
     <div class="content" :class="{ 'scroll-y': !isSwitching }">
       <Transition name="slide-fade">
         <template v-if="!isSwitching">
-          <AppSidebarSmall :menu-data="menuData" :is-switching="isSwitching" />
+          <AppSidebarSmall :is-switching="isSwitching" />
         </template>
       </Transition>
     </div>

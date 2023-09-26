@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { MenuItem } from '~/composables/useApiMenuData'
+
 interface Props {
   menuInfo: any
   autoShow?: boolean
@@ -14,7 +16,10 @@ const props = withDefaults(defineProps<Props>(), {
   },
   autoShow: false,
 })
-const emit = defineEmits(['clickHead', 'clickItem'])
+const emit = defineEmits(['clickHead', 'clickItem', 'radioChange'])
+
+const radioValue = ref(props.menuInfo.value === undefined ? '' : props.menuInfo.value)
+
 // const isShow = ref()
 const { bool: isShow, setBool: setAutoShowBool } = useBoolean(props.autoShow)
 function handleClickHeader() {
@@ -31,6 +36,10 @@ const showDown = computed(() => {
 function close() {
   setAutoShowBool(false)
 }
+
+watch(radioValue, (val) => {
+  emit('radioChange', val)
+})
 
 defineExpose({ close })
 </script>
@@ -56,13 +65,24 @@ defineExpose({ close })
       :style="`max-height:${isShow ? '1000px' : 0};transition: max-height ${isShow ? '1' : '0.3'}s;`"
     >
       <div class="content-line" />
-      <template v-for="item of menuInfo.list" :key="item.id">
-        <slot :menu-item="item">
-          <div class="content-item" @click="handleClickItem(item)">
-            <BaseIcon :name="item.icon" />
-            <span class="header-title">{{ item.title }}</span>
+      <template v-if="menuInfo.type === 'radio'">
+        <BaseRadioGroup v-model="radioValue" :columns="1">
+          <div v-for="item in menuInfo.list.map((r: MenuItem) => ({ ...r, label: r.title }))" :key="item.value" class="radio-menu-item">
+            <BaseRadio :value="item.value">
+              {{ item.label }}
+            </BaseRadio>
           </div>
-        </slot>
+        </BaseRadioGroup>
+      </template>
+      <template v-else>
+        <template v-for="item of menuInfo.list" :key="item.id">
+          <slot :menu-item="item">
+            <div class="content-item" @click="handleClickItem(item)">
+              <BaseIcon v-if="item.icon" :name="item.icon" />
+              <span class="header-title">{{ item.title }}</span>
+            </div>
+          </slot>
+        </template>
       </template>
     </div>
   </div>
@@ -73,6 +93,11 @@ defineExpose({ close })
   color: var(--tg-text-white);
   background-color: #1A2C38;
   font-weight: var(--tg-font-weight-semibold);
+
+  --tg-radio-group-style-gap-vertical: 0;
+  --tg-radio-group-style-gap-horizontal: 0;
+  --tg-base-radio-style-just-content: space-between;
+  --tg-base-radio-style-flex-direction: row-reverse;
 
   // background-color: #213743;
   .accordion-header {
@@ -126,7 +151,7 @@ defineExpose({ close })
       width: 100%;
     }
 
-    .content-item {
+    .content-item, .radio-menu-item {
       height: 45px;
       display: flex;
       border-radius: var(--tg-radius-default);
@@ -135,7 +160,7 @@ defineExpose({ close })
       cursor: pointer;
     }
 
-    .content-item:hover {
+    .content-item:hover, .radio-menu-item:hover {
       background-color: var(--tg-secondary-main);
     }
   }

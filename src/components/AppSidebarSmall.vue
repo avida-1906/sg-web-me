@@ -1,14 +1,56 @@
 <script lang="ts" setup name="app-sidebar-small">
-import type { Menu, MenuItem } from '~/composables/useApiMenuData'
+import type { MenuItem } from '~/composables/useApiMenuData'
 
 interface Props {
-  menuData: Array<Menu>
   isSwitching?: boolean
 }
 
 withDefaults(defineProps<Props>(), {})
 
-const { menuItemClick } = useApiMenuData()
+const route = useRoute()
+const isCasino = computed(() => route.name?.toString().includes('casino'))
+const isSports = computed(() => route.name?.toString().includes('sports'))
+
+const {
+  casinoMenu,
+  casinoGameList,
+  casinoGameProvider,
+  sportsMenu,
+  sportHotGames,
+  sportEsports,
+  sportGameList,
+  sportOddType,
+  staticMenu1,
+  staticMenu2,
+  menuItemClick,
+} = useApiMenuData()
+
+const menuData = computed(() => {
+  if (isCasino.value) {
+    return [
+      casinoMenu.value,
+      casinoGameList.value,
+      casinoGameProvider.value,
+      staticMenu1.value,
+      staticMenu2.value,
+    ]
+  }
+  else if (isSports.value) {
+    return [
+      sportsMenu.value,
+      sportHotGames.value,
+      sportEsports.value,
+      sportGameList.value,
+      sportOddType.value,
+      staticMenu1.value,
+      staticMenu2.value,
+    ]
+  }
+  return [
+    staticMenu1.value,
+    staticMenu2.value,
+  ]
+})
 
 function itemClick(item: MenuItem) {
   menuItemClick(item)

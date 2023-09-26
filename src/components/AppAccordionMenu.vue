@@ -31,6 +31,11 @@ function handleClickItem(item: any) {
   menuItemClick(item)
 }
 
+function radioChangeValue(val: string | number) {
+  if (props.menuItem.radioChange)
+    props.menuItem.radioChange(val)
+}
+
 watch(() => props.timeStamp, (val) => {
   if (val !== timestamp.value)
     baseAccor.value?.close()
@@ -44,6 +49,7 @@ watch(() => props.timeStamp, (val) => {
       ref="baseAccor" :dom-id="menuItem.domId" :menu-info="menuItem" :auto-show="menuItem.expand"
       @click-head="handleClickHead"
       @click-item="handleClickItem"
+      @radio-change="radioChangeValue"
     >
       <template #default="{ menuItem: info }">
         <AppMenuItem :menu-item="info" @click="() => handleClickItem(info)" />

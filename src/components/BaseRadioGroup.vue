@@ -1,17 +1,18 @@
 <script setup lang='ts'>
 interface Props {
   columns?: number
-  modelValue: string
+  modelValue: string | number
   shape?: 'square' | 'circle'
   disabled?: boolean
 }
 const props = withDefaults(defineProps<Props>(), {
   columns: 3,
   shape: 'circle',
+  inline: true,
 })
 const emit = defineEmits(['update:modelValue', 'change'])
 
-function onSelect(value: string) {
+function onSelect(value: string | number) {
   if (props.modelValue === value)
     return
 
@@ -32,11 +33,18 @@ provide('disabled', props.disabled)
   </div>
 </template>
 
+<style lang="scss">
+:root {
+  --tg-radio-group-style-gap-vertical: var(--tg-spacing-16);
+  --tg-radio-group-style-gap-horizontal: var(--tg-spacing-48);
+}
+</style>
+
 <style lang='scss' scoped>
 .radio-group{
   width: 100%;
   display: grid;
   grid-template-rows: auto;
-  grid-gap: var(--tg-spacing-16) var(--tg-spacing-48);
+  grid-gap: var(--tg-radio-group-style-gap-vertical) var(--tg-radio-group-style-gap-horizontal);
 }
 </style>
