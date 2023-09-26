@@ -3,6 +3,14 @@
 
 <template>
   <div class="tg-affiliate-commission" />
+  <div>佣金</div>
+  <div>佣金</div>
+  <div>佣金</div>
+  <div>佣金</div>
+  <div>佣金</div>
+  <div>佣金</div>
+  <div>佣金</div>
+  <div>佣金</div>
 </template>
 
 <style lang="scss">

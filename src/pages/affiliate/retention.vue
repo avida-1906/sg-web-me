@@ -3,6 +3,12 @@
 
 <template>
   <div class="tg-affiliate-retention" />
+  <div>保留计划</div>
+  <div>保留计划</div>
+  <div>保留计划</div>
+  <div>保留计划</div>
+  <div>保留计划</div>
+  <div>保留计划</div>
 </template>
 
 <style lang="scss">
