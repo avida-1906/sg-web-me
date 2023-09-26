@@ -96,7 +96,7 @@ else if (isRec.value)
         </div>
       </div>
       <div class="mt-24">
-        <AppGameSearch game-type="2" />
+        <AppGameSearch game-type="1" />
       </div>
       <div class="mt-24">
         <AppGroupFilter />

@@ -50,14 +50,16 @@ function onClickPopperItem(v: any) {
         </div>
       </div>
       <template #popper>
-        <div class="scroll-y popper-wrap">
-          <div
-            v-for="type, i in options" :key="i" v-close-popper class="popper-option"
-            @click="onClickPopperItem(type.value)"
-          >
-            {{ type.label }}
+        <slot>
+          <div class="scroll-y popper-wrap">
+            <div
+              v-for="type, i in options" :key="i" v-close-popper class="popper-option"
+              @click="onClickPopperItem(type.value)"
+            >
+              {{ type.label }}
+            </div>
           </div>
-        </div>
+        </slot>
       </template>
     </VDropdown>
   </template>
