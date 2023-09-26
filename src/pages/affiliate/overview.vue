@@ -17,9 +17,15 @@
 
     <div class="tg-affiliate-overview-bottom">
       <div class="link-box">
-        stake.com/?c=a9c244e0d1
+        <input type="text" value="stake.com/?c=a9c244e0d1" autocomplete="on" readonly class="input spacing-expanded svelte-41a1vp" tooltipvisible="false">
+        <BaseButton>
+          <BaseIcon name="uni-jump-page" />
+        </BaseButton>
       </div>
-      <BaseButton>下载横幅</BaseButton>
+      <BaseButton>
+        <span>下载横幅</span>
+        <BaseIcon name="uni-jump-page" />
+      </BaseButton>
     </div>
   </div>
 </template>
@@ -32,26 +38,47 @@
   &-video { }
   p {
     font-weight: 400;
+    line-height: 1.5;
+    // font-size: var(--tg-font-size-default);
+    font-size: var(--tg-font-size-base);
+    letter-spacing: 0;
   }
   .recommend-link {
-    font-weight: 600;
+    font-weight: var(--tg-font-weight-semibold);
+    font-size: var(--tg-font-size-default);
   }
   &-bottom {
-    display: flex;
+    width: 100%;
+    max-width: 100%;
+    display: grid;
+    align-items: flex-end;
     justify-content: space-between;
-    align-items: center;
-    // width: 100%;
-    // max-width: 100%;
-    // display: grid;
-    // align-items: flex-end;
-    // justify-content: space-between;
-    // grid-template-rows: auto;
-    // grid-template-columns: .5fr auto;
+    grid-template-rows: auto;
+    grid-template-columns: .5fr auto;
     .link-box {
-      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .2), 0 1px 2px 0 rgba(0, 0, 0, .12);
       border-radius: var(--tg-radius-default);
       background-color: var(--tg-secondary-main);
+      padding-left: var(--tg-spacing-12);
+      input {
+        background-color: var(--tg-secondary-main);
+        font-weight: var(--tg-font-weight-semibold);
+        font-size: var(--tg-font-size-default);
+        color: var(--tg-text-white);
+        outline: 0;
+        margin: 0;
+        cursor: text;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        box-shadow: none;
+      }
+    }
+    span {
+      margin-right: var(--tg-spacing-12);
     }
   }
 }
