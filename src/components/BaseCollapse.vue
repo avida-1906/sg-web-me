@@ -68,7 +68,7 @@ function handleClickHeader() {
           margin-right: 6px;
         }
         .header-icon {
-          margin-left: 20px;
+          // margin-left: 20px;
           font-size: var(--tg-font-size-xs);
         }
     }
