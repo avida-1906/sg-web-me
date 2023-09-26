@@ -6,6 +6,7 @@ interface Props {
   contentSize?: string // 内容字体
   must?: boolean // 必填
   rightText?: string // 右侧文本
+  icon?: string // icon
 }
 const props = withDefaults(defineProps<Props>(), {
   contentColor: '--tg-text-warn',
@@ -19,6 +20,7 @@ const props = withDefaults(defineProps<Props>(), {
   <div class="base-label">
     <div class="label-wrap">
       <div class="label-left">
+        <BaseIcon v-if="props.icon" :name="props.icon" />
         <div class="label-title">
           {{ props.label }}
           <div v-if="props.must" class="label-must">
