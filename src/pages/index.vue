@@ -55,6 +55,11 @@ const isMobile = computed(() => width.value <= 888)
 const isSm = computed(() => width.value <= 768)
 
 const { openVipDialog } = useVipDialog()
+// vip进度data
+const vipProgressData = {
+  percent: 30,
+  currentLevel: 2,
+}
 </script>
 
 <template>
@@ -72,7 +77,7 @@ const { openVipDialog } = useVipDialog()
           </div>
         </div>
         <div v-else class="top-vip-info" :class="isMobile ? 'max-width-mobile' : 'max-width'">
-          <AppVipProgress>
+          <AppVipProgress :vip-progress-data="vipProgressData">
             <template #title>
               <h1>欢迎归来，alanhayashi</h1>
             </template>
