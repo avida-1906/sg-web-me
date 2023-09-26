@@ -276,6 +276,9 @@ body {
   &.x-space-between {
     justify-content: space-between;
   }
+  &.x-center {
+    justify-content: center;
+  }
   &.y-flex-start {
     align-items: flex-start;
   }

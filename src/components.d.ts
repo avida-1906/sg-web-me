@@ -46,6 +46,7 @@ declare module 'vue' {
     AppSportsSearchResult: typeof import('./components/AppSportsSearchResult.vue')['default']
     AppStack: typeof import('./components/AppStack.vue')['default']
     AppStatisticsDialog: typeof import('./components/AppStatisticsDialog.vue')['default']
+    AppTabRecord: typeof import('./components/AppTabRecord.vue')['default']
     AppTermsConditionsDialog: typeof import('./components/AppTermsConditionsDialog.vue')['default']
     AppVipDialog: typeof import('./components/AppVipDialog.vue')['default']
     AppVipProgress: typeof import('./components/AppVipProgress.vue')['default']
