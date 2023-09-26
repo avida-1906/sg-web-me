@@ -15,9 +15,12 @@ const { data: list, total, runAsync, loading, push } = usePage((page, page_size)
 }), { page_size: VITE_CASINO_GAME_PAGE_SIZE })
 
 const route = useRoute()
-watch(route, (a) => {
+const stop = watch(route, (a) => {
   currentType.value = a.params.gameType.toString()
   application.allSettled([runAsync()])
+})
+onBeforeRouteLeave(() => {
+  stop()
 })
 
 await application.allSettled([runAsync()])

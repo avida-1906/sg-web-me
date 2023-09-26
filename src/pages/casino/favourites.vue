@@ -1,10 +1,12 @@
-<script setup lang="ts">
+<script setup lang="ts" runAsync>
 const { VITE_CASINO_GAME_PAGE_SIZE } = import.meta.env
 
-const { data, prev, next, page, total } = usePage((page, page_size) => () => ApiMemberGameFavList({
+const { data, prev, next, page, total, runAsync } = usePage((page, page_size) => () => ApiMemberGameFavList({
   page: page.value,
   page_size: page_size.value,
 }), { page_size: VITE_CASINO_GAME_PAGE_SIZE })
+
+await application.allSettled([runAsync()])
 </script>
 
 <template>

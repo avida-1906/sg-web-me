@@ -128,3 +128,10 @@ export function ApiMemberGameSearch(params: { w: string }) {
 export function ApiMemberGameFavList(params: { page: number; page_size: number }) {
   return httpClient.get('/member/game/fav/list', params)
 }
+
+/*
+* 推荐游戏列表
+*/
+export function ApiMemberGameRecList(params: { page: number; page_size: number }) {
+  return httpClient.get('/member/game/rec/list', params)
+}

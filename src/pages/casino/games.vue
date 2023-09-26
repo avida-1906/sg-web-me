@@ -4,23 +4,28 @@ const gameData = computed(() => query || {})
 const { isMobile } = storeToRefs(useWindowStore())
 const { bool: isTheatre, setBool } = useBoolean(false) // 影院模式
 
-const { gameList } = useGameList()
+// const { data } = useRequest(() => ApiMemberGameRecList())
 </script>
 
 <template>
   <div class="casino-games" :class="{ theatre: isTheatre && !isMobile }">
     <AppIframe :data="gameData" :is-theatre="isTheatre" @change-theatre="setBool" />
+  </div>
+  <section class="page-content">
     <AppDesc />
-    <AppContent>
+    <div class="home-container margin-auto">
       <div class="content-wrapper">
-        <AppSlider api="" icon="chess-original-game" :title="$t('casino_games_recommend')" :data="gameList" game-type="hot" />
+        <AppSlider
+          api="" icon="chess-original-game" :title="$t('casino_games_recommend')" :data="gameList"
+          game-type="hot"
+        />
         <AppProviderSlider />
       </div>
       <div class="layout-spacing">
         <AppBetData mode="casino" />
       </div>
-    </AppContent>
-  </div>
+    </div>
+  </section>
 </template>
 
 <style lang='scss' scoped>

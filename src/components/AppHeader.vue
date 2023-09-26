@@ -64,72 +64,70 @@ async function logout() {
 </script>
 
 <template>
-  <div>
-    <div class="app-header">
-      <BaseLogo :use-small="width < 400" />
-      <AppWallet v-if="isLogin" :wallet-btn="true" />
-      <div v-if="isLogin" class="header-box">
-        <div class="header-right">
-          <BaseButton v-show="!isMobile" type="text" class="search-btn" @click="setTrue">
-            <BaseIcon class="icon-search" name="header-search" />
-            <span v-show="!isLessThanLg">{{ t('search') }}</span>
-          </BaseButton>
-          <VDropdown :distance="6">
-            <BaseButton type="text">
-              <BaseIcon class="icon-size" name="navbar-user" />
-            </BaseButton>
-            <template #popper>
-              <div class="dropdown-popper">
-                <div v-for="item of userMenu" :key="item.id" v-close-popper class="menu-item" @click="handleClickMenuItem(item)">
-                  <div class="menu-btn">
-                    <BaseIcon class="icon-size" :name="item.icon" />
-                    <span>{{ item.title }}</span>
-                  </div>
-                </div>
-              </div>
-            </template>
-          </VDropdown>
+  <div class="app-header" :style="{ 'grid-template-columns': `1fr ${isLogin ? 'auto' : ''} 1fr` }">
+    <BaseLogo :use-small="width < 376" />
+    <AppWallet v-if="isLogin" :wallet-btn="true" />
+    <div v-if="isLogin" class="header-box">
+      <div class="header-right">
+        <BaseButton v-show="!isMobile" type="text" class="search-btn" @click="setTrue">
+          <BaseIcon class="icon-search" name="header-search" />
+          <span v-show="!isLessThanLg">{{ t('search') }}</span>
+        </BaseButton>
+        <VDropdown :distance="6">
           <BaseButton type="text">
-            <BaseIcon class="icon-size" name="navbar-notice" />
+            <BaseIcon class="icon-size" name="navbar-user" />
           </BaseButton>
-          <VDropdown :distance="6">
-            <BaseButton v-show="!isMobile" type="text">
-              <BaseIcon class="icon-size" name="header-news" />
-            </BaseButton>
-            <template #popper>
-              <div class="dropdown-popper">
-                <div v-for="item of newsMenu" :key="item.id" class="menu-item">
-                  <div class="menu-btn">
-                    <BaseIcon class="icon-size" :name="item.icon" />
-                    <span>{{ item.title }}</span>
-                  </div>
+          <template #popper>
+            <div class="dropdown-popper">
+              <div v-for="item of userMenu" :key="item.id" v-close-popper class="menu-item" @click="handleClickMenuItem(item)">
+                <div class="menu-btn">
+                  <BaseIcon class="icon-size" :name="item.icon" />
+                  <span>{{ item.title }}</span>
                 </div>
               </div>
-            </template>
-          </VDropdown>
-        </div>
-        <AppGlobalSearch v-if="showSearchBar && !isMobile" @close="() => showSearchBar = false" />
-      </div>
-      <div v-else class="header-login">
-        <BaseButton type="text" class="login" @click.stop="openLoginDialog()">
-          {{ t('login') }}
+            </div>
+          </template>
+        </VDropdown>
+        <BaseButton type="text">
+          <BaseIcon class="icon-size" name="navbar-notice" />
         </BaseButton>
-        <BaseButton class="reg" bg-style="primary" @click.stop="openRegisterDialog()">
-          {{ t('reg') }}
-        </BaseButton>
+        <VDropdown :distance="6">
+          <BaseButton v-show="!isMobile" type="text">
+            <BaseIcon class="icon-size" name="header-news" />
+          </BaseButton>
+          <template #popper>
+            <div class="dropdown-popper">
+              <div v-for="item of newsMenu" :key="item.id" class="menu-item">
+                <div class="menu-btn">
+                  <BaseIcon class="icon-size" :name="item.icon" />
+                  <span>{{ item.title }}</span>
+                </div>
+              </div>
+            </div>
+          </template>
+        </VDropdown>
       </div>
+      <AppGlobalSearch v-if="showSearchBar && !isMobile" @close="() => showSearchBar = false" />
     </div>
-    <BaseDialog v-model:show="showDialogLogout" icon="uni-trend" title="登出">
-      <div class="dialog">
-        <div class="dialog-text">
-          {{ t('logout_dont_foget') }}
-        </div>
-        <BaseButton class="dialog-btn" type="text" @click.stop="logout">
-          {{ t('logout') }}
-        </BaseButton>
-      </div>
-    </BaseDialog>
+    <div v-else class="header-login">
+      <BaseButton type="text" class="login" @click.stop="openLoginDialog()">
+        {{ t('login') }}
+      </BaseButton>
+      <BaseButton class="reg" bg-style="primary" @click.stop="openRegisterDialog()">
+        {{ t('reg') }}
+      </BaseButton>
+    </div>
   </div>
+  <BaseDialog v-model:show="showDialogLogout" icon="uni-trend" title="登出">
+    <div class="dialog">
+      <div class="dialog-text">
+        {{ t('logout_dont_foget') }}
+      </div>
+      <BaseButton class="dialog-btn" type="text" @click.stop="logout">
+        {{ t('logout') }}
+      </BaseButton>
+    </div>
+  </BaseDialog>
 </template>
 
 <style lang="scss" scoped>
@@ -151,17 +149,17 @@ async function logout() {
 }
 
 .app-header {
-  position: relative;
-  display: flex;
+  display: grid;
+  // grid-template-columns: 1fr auto 1fr;
+  gap: 1rem;
   align-items: center;
-  justify-content: space-between;
-
   .icon-size {
     font-size: var(--tg-font-size-md);
   }
   .header-box {
     display: flex;
     align-items: center;
+    justify-content: flex-end;
   }
 
   .header-right {
@@ -187,7 +185,7 @@ async function logout() {
   }
   .header-login {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     color: var(--tg-text-white);
     text-align: center;

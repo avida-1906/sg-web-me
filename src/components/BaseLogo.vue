@@ -13,7 +13,7 @@ function pathTo() {
 
 <template>
   <div class="base-logo" @click="pathTo">
-    <BaseAspectRatio ratio="2/1" style="max-width: 67px;min-width: 36px;">
+    <BaseAspectRatio ratio="2/1" style="max-width: 67px;min-width: 30px;">
       <BaseIcon class="icon-app-logo" :name="useSmall ? 'app-logo-small' : 'app-logo'" />
     </BaseAspectRatio>
   </div>
