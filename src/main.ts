@@ -9,6 +9,8 @@ import { install } from './modules'
 
 import 'virtual:svg-icons-register'
 
+import './modules/vue-request'
+
 // 是否润年插件
 dayjs.extend(isLeapYear)
 
