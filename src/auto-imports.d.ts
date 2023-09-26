@@ -8,6 +8,7 @@ declare global {
   const ApiGameLunch: typeof import('./apis/index')['ApiGameLunch']
   const ApiMemberGameFavList: typeof import('./apis/index')['ApiMemberGameFavList']
   const ApiMemberGameList: typeof import('./apis/index')['ApiMemberGameList']
+  const ApiMemberGameRecList: typeof import('./apis/index')['ApiMemberGameRecList']
   const ApiMemberGameSearch: typeof import('./apis/index')['ApiMemberGameSearch']
   const ApiMemberLogin: typeof import('./apis/index')['ApiMemberLogin']
   const ApiMemberReg: typeof import('./apis/index')['ApiMemberReg']
@@ -400,6 +401,7 @@ declare module 'vue' {
     readonly ApiGameLunch: UnwrapRef<typeof import('./apis/index')['ApiGameLunch']>
     readonly ApiMemberGameFavList: UnwrapRef<typeof import('./apis/index')['ApiMemberGameFavList']>
     readonly ApiMemberGameList: UnwrapRef<typeof import('./apis/index')['ApiMemberGameList']>
+    readonly ApiMemberGameRecList: UnwrapRef<typeof import('./apis/index')['ApiMemberGameRecList']>
     readonly ApiMemberGameSearch: UnwrapRef<typeof import('./apis/index')['ApiMemberGameSearch']>
     readonly ApiMemberLogin: UnwrapRef<typeof import('./apis/index')['ApiMemberLogin']>
     readonly ApiMemberReg: UnwrapRef<typeof import('./apis/index')['ApiMemberReg']>
@@ -779,6 +781,7 @@ declare module '@vue/runtime-core' {
     readonly ApiGameLunch: UnwrapRef<typeof import('./apis/index')['ApiGameLunch']>
     readonly ApiMemberGameFavList: UnwrapRef<typeof import('./apis/index')['ApiMemberGameFavList']>
     readonly ApiMemberGameList: UnwrapRef<typeof import('./apis/index')['ApiMemberGameList']>
+    readonly ApiMemberGameRecList: UnwrapRef<typeof import('./apis/index')['ApiMemberGameRecList']>
     readonly ApiMemberGameSearch: UnwrapRef<typeof import('./apis/index')['ApiMemberGameSearch']>
     readonly ApiMemberLogin: UnwrapRef<typeof import('./apis/index')['ApiMemberLogin']>
     readonly ApiMemberReg: UnwrapRef<typeof import('./apis/index')['ApiMemberReg']>
