@@ -11,6 +11,7 @@ declare global {
   const ApiMemberGameList: typeof import('./apis/index')['ApiMemberGameList']
   const ApiMemberGameRecList: typeof import('./apis/index')['ApiMemberGameRecList']
   const ApiMemberGameSearch: typeof import('./apis/index')['ApiMemberGameSearch']
+  const ApiMemberGameUpdateFav: typeof import('./apis/index')['ApiMemberGameUpdateFav']
   const ApiMemberLogin: typeof import('./apis/index')['ApiMemberLogin']
   const ApiMemberReg: typeof import('./apis/index')['ApiMemberReg']
   const ApiSmsSend: typeof import('./apis/index')['ApiSmsSend']
@@ -405,6 +406,7 @@ declare module 'vue' {
     readonly ApiMemberGameList: UnwrapRef<typeof import('./apis/index')['ApiMemberGameList']>
     readonly ApiMemberGameRecList: UnwrapRef<typeof import('./apis/index')['ApiMemberGameRecList']>
     readonly ApiMemberGameSearch: UnwrapRef<typeof import('./apis/index')['ApiMemberGameSearch']>
+    readonly ApiMemberGameUpdateFav: UnwrapRef<typeof import('./apis/index')['ApiMemberGameUpdateFav']>
     readonly ApiMemberLogin: UnwrapRef<typeof import('./apis/index')['ApiMemberLogin']>
     readonly ApiMemberReg: UnwrapRef<typeof import('./apis/index')['ApiMemberReg']>
     readonly ApiSmsSend: UnwrapRef<typeof import('./apis/index')['ApiSmsSend']>
@@ -786,6 +788,7 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberGameList: UnwrapRef<typeof import('./apis/index')['ApiMemberGameList']>
     readonly ApiMemberGameRecList: UnwrapRef<typeof import('./apis/index')['ApiMemberGameRecList']>
     readonly ApiMemberGameSearch: UnwrapRef<typeof import('./apis/index')['ApiMemberGameSearch']>
+    readonly ApiMemberGameUpdateFav: UnwrapRef<typeof import('./apis/index')['ApiMemberGameUpdateFav']>
     readonly ApiMemberLogin: UnwrapRef<typeof import('./apis/index')['ApiMemberLogin']>
     readonly ApiMemberReg: UnwrapRef<typeof import('./apis/index')['ApiMemberReg']>
     readonly ApiSmsSend: UnwrapRef<typeof import('./apis/index')['ApiSmsSend']>
