@@ -1,6 +1,13 @@
 <script setup lang='ts'>
+withDefaults(defineProps<Props>(), {
+  activeCurrency: () => { },
+})
+
 const { t } = useI18n()
 
+interface Props {
+  activeCurrency: any
+}
 const { value: address, errorMessage: addressMsg } = useField<string>('address', (value) => {
   if (!value)
     return t('this_field_is_required')
@@ -18,13 +25,13 @@ function onAmountInput() {
     setAmount(application.numberToCurrency(+amount.value))
 }
 
-const currentNetwork = ref('1')
-const networkList = [
-  { label: '网络1', value: '1' },
-  { label: '网络2', value: '2' },
-  { label: '网络3', value: '3' },
-  { label: '网络4', value: '4' },
-]
+// const currentNetwork = ref('1')
+// const networkList = [
+//   { label: '网络1', value: '1' },
+//   { label: '网络2', value: '2' },
+//   { label: '网络3', value: '3' },
+//   { label: '网络4', value: '4' },
+// ]
 </script>
 
 <template>
@@ -37,17 +44,19 @@ const networkList = [
         <BaseSelect v-model="currentNetwork" :options="networkList" popper />
       </div>
     </div> -->
-    <div class="address">
+    <!-- <div class="address">
       <span class="label">
         <AppCurrencyIcon :currency-type="EnumCurrency.BTC" />
         <span>BTC地址</span>
       </span>
       <BaseInput v-model="address" :msg="addressMsg" />
-    </div>
-
+    </div> -->
+    <BaseLabel label="BTC地址" :icon="activeCurrency?.icon" must>
+      <BaseInput v-model="address" :msg="addressMsg" />
+    </BaseLabel>
     <div class="amount">
       <div class="top">
-        <span class="label">金额 *</span>
+        <span class="label">金额<span style="color: var(--tg-text-error);">*</span></span>
         <span class="us">US$0.00</span>
       </div>
       <BaseInput v-model="amount" type="number" placeholder="0.00000000" :msg="amountMsg" @blur="onAmountInput">
@@ -59,16 +68,18 @@ const networkList = [
         </template>
       </BaseInput>
     </div>
-    <BaseInput v-model="address" label="双重验证" must />
+    <BaseLabel label="双重验证" must>
+      <BaseInput v-model="address" label="" must />
+    </BaseLabel>
     <BaseButton bg-style="primary" size="md">
       提款
     </BaseButton>
     <div class="tips">
       <span>最低提款金额为 0.00020000</span>
-      <AppCurrencyIcon :currency-type="EnumCurrency.BTC" />
+      <AppCurrencyIcon class="currency-icon" :currency-type="EnumCurrency.BTC" />
       <span>。我们将从您的余额扣除0.00007000</span>
-      <AppCurrencyIcon :currency-type="EnumCurrency.BTC" />
-      作为您提款的交易费用。
+      <AppCurrencyIcon class="currency-icon" :currency-type="EnumCurrency.BTC" />
+      <span>作为您提款的交易费用。</span>
     </div>
   </div>
 </template>
@@ -77,7 +88,7 @@ const networkList = [
 .app-withdraw {
   display: flex;
   flex-direction: column;
-  gap: var(--tg-spacing-16);
+  gap: var(--tg-spacing-12);
 
   .address {
     display: flex;
@@ -110,23 +121,12 @@ const networkList = [
       }
     }
   }
-
-  .currency {
-    display: flex;
-    justify-content: center;
-    gap: var(--tg-spacing-16);
-
-    .c-option {
-      display: flex;
-      flex-direction: column;
-    }
-  }
   .tips{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    span{
-      margin-right: var(--tg-spacing-4);
+    font-size: var(--tg-font-size-xs);
+    .currency-icon{
+      display: inline-block;
+      vertical-align: middle;
+      padding:0 4px;
     }
   }
 }
