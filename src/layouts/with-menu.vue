@@ -1,10 +1,15 @@
 <script lang="ts" setup>
 import Home from './home.vue'
 
+const router = useRouter()
 const route = useRoute()
 
 const menuData = computed<any>(() => route.meta.menu)
 const icon = computed<any>(() => route.meta.icon)
+
+function goBack() {
+  router.push('/casino')
+}
 </script>
 
 <template>
@@ -21,7 +26,7 @@ const icon = computed<any>(() => route.meta.icon)
                       <BaseIcon :name="icon" />
                       <span>{{ route.meta.title }}</span>
                     </div>
-                    <div class="close">
+                    <div class="close" @click="goBack">
                       <BaseIcon name="uni-close" />
                     </div>
                   </div>
@@ -65,6 +70,7 @@ const icon = computed<any>(() => route.meta.icon)
         }
       }
       .close {
+        cursor: pointer;
         .app-svg-icon {
           font-size: var(--tg-font-size-default);
         }
