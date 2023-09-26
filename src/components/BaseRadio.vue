@@ -1,13 +1,13 @@
 <script setup lang='ts'>
 interface Props {
-  value: string
+  value: string | number
 }
 
 const props = withDefaults(defineProps<Props>(), {})
 const emit = defineEmits(['click'])
 
-const onSelect = inject<(v: string) => void>('onSelect', () => {})
-const sValue = inject<ComputedRef<string>>('sValue')
+const onSelect = inject<(v: string | number) => void>('onSelect', () => {})
+const sValue = inject<ComputedRef<string | number>>('sValue')
 const shape = inject('shape')
 const disabled = inject('disabled')
 
@@ -39,6 +39,13 @@ function onCheck() {
   </div>
 </template>
 
+<style lang="scss">
+:root {
+  --tg-base-radio-style-just-content: flex-start;
+  --tg-base-radio-style-flex-direction: row;
+}
+</style>
+
 <style lang='scss' scoped>
 .base-radio {
   color: var(--tg-text-lightgrey);
@@ -46,6 +53,9 @@ function onCheck() {
   cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: var(--tg-base-radio-style-just-content);
+  flex-direction: var(--tg-base-radio-style-flex-direction);
+  width: 100%;
 
   .circle {
     border-radius: 50%;

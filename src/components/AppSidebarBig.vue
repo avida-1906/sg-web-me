@@ -2,20 +2,23 @@
 import { type MenuItem } from '~/composables/useApiMenuData'
 
 interface Props {
-  staticMenu1: MenuItem[]
-  staticMenu2: MenuItem[]
-  casinoMenu: MenuItem[]
-  casinoGameList: MenuItem[]
-  casinoGameProvider: MenuItem[]
-  sportsMenu: MenuItem[]
-  sportHotGames: MenuItem[]
-  sportEsports: MenuItem[]
-  sportGameList: MenuItem[]
-  sportOddType: MenuItem[]
   currentType: string
   isSwitching?: boolean
 }
 const props = defineProps<Props>()
+
+const {
+  casinoMenu,
+  casinoGameList,
+  casinoGameProvider,
+  sportsMenu,
+  sportHotGames,
+  sportEsports,
+  sportGameList,
+  sportOddType,
+  staticMenu1,
+  staticMenu2,
+} = useApiMenuData()
 
 const { t } = useI18n()
 const { isMobile } = storeToRefs(useWindowStore())

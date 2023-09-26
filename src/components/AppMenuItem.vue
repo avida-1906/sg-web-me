@@ -3,6 +3,7 @@ import type { MenuItem } from '~/composables/useApiMenuData'
 
 interface Props {
   menuItem: MenuItem
+  type?: 'radio'
 }
 
 withDefaults(defineProps<Props>(), {})
