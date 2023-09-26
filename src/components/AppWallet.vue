@@ -2,18 +2,20 @@
 interface Props {
   walletBtn?: boolean
   showBalance?: boolean
+  network?: boolean
 }
 
 withDefaults(defineProps<Props>(), {
   walletBtn: false,
   showBalance: true,
+  network: false,
 })
 
 const emit = defineEmits(['change'])
 
 const currency = ref([
   { balance: '0.000000000', icon: 'coin-btc', text: 0 },
-  { balance: '0.000000000', icon: 'coin-eth', text: 1 },
+  { balance: '0.000000000', icon: 'coin-eth', text: 1, legalTender: true },
   { balance: '0.000000000', icon: 'coin-ltc', text: 2 },
   { balance: '0.000000000', icon: 'coin-usdt', text: 3 },
   { balance: '0.000000000', icon: 'coin-doge', text: 4 },
@@ -68,6 +70,15 @@ const getSearchBalance = computed(() => {
     return currency.value
   }
 })
+
+const currentNetwork = ref('1')
+const networkList = [
+  { label: '网络1', value: '1' },
+  { label: '网络2', value: '2' },
+  { label: '网络3', value: '3' },
+  { label: '网络4', value: '4' },
+]
+
 onMounted(() => {
   emit('change', currency.value[0])
 })
@@ -75,7 +86,7 @@ const { openWalletDialog } = useWalletDialog()
 </script>
 
 <template>
-  <div class="base-wallet">
+  <div class="app-wallet app-currency" :class="{ 'app-currency': network }">
     <VDropdown v-model:shown="isMenuShown" :distance="6" @apply-show="dropShow">
       <!-- @apply-hide="dropHide" -->
       <div class="center">
@@ -115,11 +126,12 @@ const { openWalletDialog } = useWalletDialog()
         </div>
       </template>
     </VDropdown>
+    <BaseSelect v-if="network" v-model="currentNetwork" :options="networkList" popper />
   </div>
 </template>
 
 <style lang="scss" scoped>
-.base-wallet {
+.app-wallet {
 
   .wallet {
     background-color: var(--tg-secondary-dark);
@@ -156,8 +168,13 @@ const { openWalletDialog } = useWalletDialog()
     --tg-icon-color: var(--tg-text-white);
     font-size: var(--tg-font-size-md);
   }
-}
 
+}
+.app-currency {
+  display: flex;
+  justify-content: center;
+  gap: var(--tg-spacing-12);
+}
 .dropdown-popper {
   max-height: inherit;
   max-width: inherit;
