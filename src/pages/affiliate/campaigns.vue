@@ -51,7 +51,21 @@ const campaignsList = [
           </div>
         </template>
         <template #content>
-          888888
+          <div class="content-spacing">
+            <section class="stats-grid svelte-1n8qe9c">
+              活动点击量
+              0
+              推荐用户
+              0
+              总存款次数
+              0
+              独立存款
+              0
+              佣金率
+              0.10
+            </section>
+            <!-- <div>可用佣金 总佣金</div> -->
+          </div>
         </template>
       </BaseCollapse>
     </div>
@@ -75,6 +89,13 @@ const campaignsList = [
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      color: var(--tg-text-white);
+      font-size: var(--tg-font-size-default);
+      font-weight: var(--tg-font-weight-semibold);
+      line-height: 1.5;
+      span:nth-child(2) {
+        color: var(--tg-text-lightgrey);
+      }
     }
   }
   .campaigns-list-column {
@@ -94,6 +115,19 @@ const campaignsList = [
         vertical-align: middle;
         margin: 0 var(--tg-spacing-6);
       }
+    }
+    .content-spacing {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(120px,1fr));
+      gap: var(--tg-spacing-16);
+      // padding: var(--tg-spacing-32);
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit,minmax(120px,1fr));
+        padding: var(--tg-spacing-32);
+      }
+
     }
 
   }
