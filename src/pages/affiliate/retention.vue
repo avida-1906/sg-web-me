@@ -20,21 +20,19 @@
     <p>用这独特的方法，您的佣金是以实现这些成本后的庄家优势为依据。按照玩家获得福利的程度，您收到的庄家优势佣金将是任何游戏所宣传的大约少于 45% 的庄家优势。</p>
     <p>若您想要详细了解费用计算的细目，请随时通过支持人员与联盟经理联系。</p>
 
-    <div class="tg-affiliate-retention-bottom">
+    <p class="tg-affiliate-retention-bottom">
       保留计划可让您的推荐用户在体育博彩和娱乐城里使用。不过，在计算体育投注的联盟佣金之前，保留计划的费用已被吸收，好让我们可设定标准的 3% 假定利润率。
-    </div>
+    </p>
   </div>
 </template>
 
 <style lang="scss">
 .tg-affiliate-retention {
-  color: var(--tg-text-lightgrey) !important;
   display: flex;
   flex-direction: column;
   gap: var(--tg-spacing-14);
   &-bottom {
     border-color: var(--tg-secondary-light);
-    color: var(--tg-text-lightgrey);
     display: flex;
     background-color: var(--tg-secondary-dark);
     padding: var(--tg-spacing-16);
@@ -42,11 +40,17 @@
     border: 2px dashed;
     border-radius: var(--tg-radius-xs);
   }
+  p {
+    line-height: 150%;
+    color: var(--tg-text-lightgrey) !important;
+  }
   ul{
     list-style-type: disc;
-    padding: var(--tg-spacing-12) var(--tg-spacing-16);
+    padding: 0 var(--tg-spacing-16);
     li {
       margin: var(--tg-spacing-8) var(--tg-spacing-14);
+      line-height: 150%;
+      color: var(--tg-text-lightgrey) !important;
     }
   }
 }
