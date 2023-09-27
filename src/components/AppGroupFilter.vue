@@ -1,26 +1,39 @@
 <script lang="ts" setup>
 const groupFilterOuter = ref()
 const { appContentWidth } = storeToRefs(useWindowStore())
+
+const route = useRoute()
+const gameType = route.params.gameType as string
+const isCasinoGame = computed(() => (Object.values(EnumCasinoGameType) as Array<string>).includes(gameType))
 </script>
 
 <template>
   <section ref="groupFilterOuter" class="tg-app-group-filter flex-center-bet" :class="{ 'less-than-700': appContentWidth < 700 }">
     <div class="flex-center-bet left">
-      <div class="flex-center-bet title">
-        <BaseIcon name="uni-bars" />
-        <span class="txt">{{ $t('casino_filter_label') }}</span>
-      </div>
-      <div>
-        <BaseCheckPop>
-          <BaseButton bg-style="dark" size="sm">
-            <div class="btn-arrow-down">
-              <span>{{ $t('casino_provider') }}</span>
-              <BaseBadge :count="2" mode="active" />
-              <BaseIcon name="uni-arrow-down" />
-            </div>
+      <template v-if="isCasinoGame">
+        <div class="flex-center-bet title">
+          <BaseIcon name="uni-bars" />
+          <span class="txt">{{ $t('casino_filter_label') }}</span>
+        </div>
+        <div>
+          <BaseCheckPop>
+            <BaseButton bg-style="dark" size="sm">
+              <div class="btn-arrow-down">
+                <span>{{ $t('casino_provider') }}</span>
+                <BaseBadge :count="2" mode="active" />
+                <BaseIcon name="uni-arrow-down" />
+              </div>
+            </BaseButton>
+          </BaseCheckPop>
+        </div>
+      </template>
+      <template v-else>
+        <div>
+          <BaseButton size="md" round>
+            查看所有游戏提供商
           </BaseButton>
-        </BaseCheckPop>
-      </div>
+        </div>
+      </template>
     </div>
     <div class="flex-center-bet right">
       <div class="title flex-center-bet">
