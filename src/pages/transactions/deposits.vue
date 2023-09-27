@@ -7,7 +7,7 @@ const tabList = reactive([
 
 <template>
   <section class="tg-deposits-record-page">
-    <AppTabRecord :tabs="tabList" />
+    <AppTabRecord :tabs="tabList" :empty-text="$t('finance_deposit_empty_text')" :download-text="$t('finance_deposit_download_text')" />
   </section>
 </template>
 

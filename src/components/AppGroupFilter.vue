@@ -30,7 +30,7 @@ const isCasinoGame = computed(() => (Object.values(EnumCasinoGameType) as Array<
       <template v-else>
         <div>
           <BaseButton size="md" round>
-            查看所有游戏提供商
+            {{ $t('casino_filter_provider_all') }}
           </BaseButton>
         </div>
       </template>

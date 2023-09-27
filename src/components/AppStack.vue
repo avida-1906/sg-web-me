@@ -36,10 +36,10 @@ const toNext = function () {
 <template>
   <div class="app-pagination">
     <span class="pagination-previous" :class="{ 'no-data': props.paginationData.total === 0 || props.paginationData.pageNumber === 1 }" @click="toPrevious">
-      上一页
+      {{ $t('page_prev') }}
     </span>
     <span class="pagination-next" :class="{ 'no-data': props.paginationData.total === 0 || props.paginationData.pageNumber === maxPageNumber }" @click="toNext">
-      下一页
+      {{ $t('page_next') }}
     </span>
   </div>
 </template>

@@ -27,7 +27,7 @@
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .tg-affiliate-retention {
   display: flex;
   flex-direction: column;

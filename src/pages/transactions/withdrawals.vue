@@ -7,7 +7,7 @@ const tabList = reactive([
 
 <template>
   <section class="tg-withdrawals-record-page">
-    <AppTabRecord :tabs="tabList" />
+    <AppTabRecord :tabs="tabList" :empty-text="$t('finance_withdraw_empty_text')" :download-text="$t('finance_withdraw_download_text')" />
   </section>
 </template>
 

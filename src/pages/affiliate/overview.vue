@@ -30,7 +30,7 @@
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .tg-affiliate-overview {
   display: flex;
   flex-direction: column;
