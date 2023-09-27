@@ -22,7 +22,7 @@ const { bool: isRealMoneyMode, setBool: setRealModeBool } = useBoolean(false)
 
 const currentCurrency = ref<CurrencyItem>()
 const currencyList = ref<CurrencyItem[]>([])
-const { data: dataDetail, runAsync: runDetail } = useRequest((pid, gameId) => ApiMemberGameDetail(pid, gameId), {
+const { data: dataDetail, runAsync: runDetail } = useRequest(() => ApiMemberGameDetail(props.pid, props.gameId), {
   onSuccess(res) {
     currencyList.value = JSON.parse(res.currency).map((item: any) => {
       const num = EnumCurrency[item.id] ?? 0
@@ -78,7 +78,7 @@ function onClickTrend() {
 const { run: runUpdateFav } = useRequest(() => ApiMemberGameUpdateFav({ id: dataDetail.value?.id ?? '', val: isFavorite.value ? '2' : '1' }), {
   onSuccess(res) {
     console.log('ApiMemberGameUpdateFav', res)
-    runDetail(props.pid, props.gameId)
+    runDetail()
   },
 })
 function onClickFavorite() {
@@ -86,7 +86,7 @@ function onClickFavorite() {
 }
 
 defineExpose({ runDetail })
-await application.allSettled([runDetail(props.pid, props.gameId)])
+await application.allSettled([runDetail()])
 </script>
 
 <template>

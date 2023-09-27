@@ -16,7 +16,9 @@ const route = useRoute()
 const stop = watch(route, (a) => {
   pid.value = a.query.pid?.toString() ?? ''
   gameId.value = a.query.game_id?.toString() ?? ''
-  appIframeRef.value.runDetail(pid.value, gameId.value)
+  nextTick(() => {
+    appIframeRef.value.runDetail()
+  })
 })
 onBeforeRouteLeave(() => {
   stop()
