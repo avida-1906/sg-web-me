@@ -1,10 +1,10 @@
 <script setup lang="ts">
-const { VITE_CASINO_GAME_PAGE_SIZE } = import.meta.env
+const { VITE_CASINO_HOME_PAGE_SIZE } = import.meta.env
 
-const { data, prev, next, page, total, runAsync } = usePage((page, page_size) => () => ApiMemberGameFavList({
+const { data, prev, next, page, total, runAsync } = usePage((page, page_size) => () => ApiMemberFavList({
   page: page.value,
   page_size: page_size.value,
-}), { page_size: VITE_CASINO_GAME_PAGE_SIZE })
+}), { page_size: VITE_CASINO_HOME_PAGE_SIZE })
 
 await application.allSettled([runAsync()])
 </script>
@@ -27,7 +27,9 @@ await application.allSettled([runAsync()])
       </div>
     </div>
     <AppGameSearch game-type="1" />
-    <AppCardList v-if="data.length" :list="data" />
+    <template v-if="data && data.length > 0">
+      <AppCardList :list="data" />
+    </template>
     <div v-else class="no-data">
       暂无任何收藏，请使用
       <div class="icon">
@@ -39,7 +41,7 @@ await application.allSettled([runAsync()])
       <BaseButton type="text" :disabled="page === 1" @click="prev">
         上一页
       </BaseButton>
-      <BaseButton type="text" :disabled="data.length >= total" @click="next">
+      <BaseButton type="text" :disabled="!data || data.length >= total" @click="next">
         下一页
       </BaseButton>
     </div>

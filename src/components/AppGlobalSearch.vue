@@ -21,12 +21,31 @@ function selectGameType(v: string) {
 }
 const { bool: isShowOverlay, setTrue: showOverlayTrue, setFalse: showOverlayFalse } = useBoolean(false)
 
-// 近期搜索关键字
 const searchValue = ref('')
 const { bool: isClear, setTrue: setClearTrue } = useBoolean(true)
 const { bool: isInputing, setTrue: setInputingTrue } = useBoolean(false)
+
 // 近期搜索关键字
 const keywordLive = ref(Local.get<any[]>(STORAGE_SEARCH_KEYWORDS_LIVE)?.value ?? [])
+const keywordSports = ref(Local.get<any[]>(STORAGE_SEARCH_KEYWORDS_SPORTS)?.value ?? [])
+const keywordList = computed(() => {
+  if (showLive.value)
+    return keywordLive.value
+  else if (showSports.value)
+    return keywordSports.value
+  return []
+})
+function clearKeyword() {
+  if (showLive.value) {
+    keywordLive.value.length = 0
+    Local.remove(STORAGE_SEARCH_KEYWORDS_LIVE)
+  }
+  else if (showSports.value) {
+    keywordSports.value.length = 0
+    Local.remove(STORAGE_SEARCH_KEYWORDS_SPORTS)
+  }
+}
+
 const { data: casinoGamesData, run: runSearchCasinoGames } = useRequest(() => ApiMemberGameSearch({ w: searchValue.value }), {
   manual: true,
   debounceInterval: 500,
@@ -52,8 +71,14 @@ function onClickKeyword(k: string) {
   runSearchCasinoGames()
 }
 function onCloseKeyword(k: string) {
-  keywordLive.value.splice(keywordLive.value.findIndex(t => t === k), 1)
-  Local.set(STORAGE_SEARCH_KEYWORDS_LIVE, keywordLive.value)
+  if (isCasino.value) {
+    keywordLive.value.splice(keywordLive.value.findIndex(t => t === k), 1)
+    Local.set(STORAGE_SEARCH_KEYWORDS_LIVE, keywordLive.value)
+  }
+  else if (isSports.value) {
+    keywordSports.value.splice(keywordSports.value.findIndex(t => t === k), 1)
+    Local.set(STORAGE_SEARCH_KEYWORDS_SPORTS, keywordSports.value)
+  }
 }
 // 搜索结果
 const resultData = computed(() => {
@@ -99,15 +124,15 @@ const resultData = computed(() => {
             <span v-show="searchValue.length < 3">{{ t('search_need_at_least_3_word') }}</span>
             <span v-show="searchValue.length >= 3 && !isInputing">{{ t('search_no_result') }}</span>
           </div>
-          <div v-if="keywordLive.length" class="recent">
+          <div v-if="keywordList.length" class="recent">
             <div class="title">
               <label>{{ t('search_recent') }}</label>
-              <BaseButton type="text" font-size="14" @click="keywordLive.length = 0">
-                {{ t('search_clear') }}({{ keywordLive.length }})
+              <BaseButton type="text" font-size="14" @click="clearKeyword">
+                {{ t('search_clear') }}({{ keywordList.length }})
               </BaseButton>
             </div>
             <div class="list">
-              <BaseTag v-for="text in keywordLive" :key="text" :text="text" @click="onClickKeyword" @close="onCloseKeyword" />
+              <BaseTag v-for="text in keywordList" :key="text" :text="text" @click="onClickKeyword" @close="onCloseKeyword" />
             </div>
           </div>
         </div>
