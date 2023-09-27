@@ -4,7 +4,7 @@
 <template>
   <section class="tg-archive-record-page">
     <div class="record-content">
-      <div class="bet-record table-wrapper scroll-x">
+      <div class="scroll-x bet-record table-wrapper">
         <table class="table">
           <thead />
           <tbody>

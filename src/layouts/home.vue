@@ -132,7 +132,7 @@ const isCasinoGames = computed(() => route.name === 'casino-games')
                 <Suspense timeout="0">
                   <component :is="Component" />
                   <template #fallback>
-                    <div class="loading-content-height center">
+                    <div class="center loading-content-height">
                       <BaseLoading />
                     </div>
                   </template>
