@@ -4,7 +4,7 @@
 // const props = withDefaults(defineProps<Props>(), {
 // })
 // const emit = defineEmits(['update:modelValue'])
-const isBind = ref(false)
+const isBind = ref(true)
 const username = ref('')
 const accountNumber = ref('')
 const currentType = ref('1')
@@ -25,13 +25,22 @@ const bankSelectOptions = [
 const selectBank = ref('')
 const bindBanks = computed(() => {
   return [
-    { label: '中国农商银行', icon: 'fiat-bank', value: '8888888888888888' },
+    { label: '中国农商银行', icon: 'fiat-bank', value: '8888 8888 8888 8888' },
+    { label: '中国工商银行', icon: 'fiat-bank', value: '8888 8888 8888 8887' },
   ].map((item) => {
-    item.label = `${item.label} ${item.value}`
+    // item.label = `${item.label} ${item.value}`
     return item
   })
 })
 const amount = ref('')
+function onClickPopperItem(v: any, hide: () => void) {
+  if (v === selectBank.value)
+    return
+  selectBank.value = v.value
+  hide()
+}
+// < 638
+const { isXs } = storeToRefs(useWindowStore())
 </script>
 
 <template>
@@ -63,7 +72,19 @@ const amount = ref('')
       <AppWithdrawalDepositType v-model="currentType" :deposit-type="depositTypeData" />
       <div class="withdrawal-info">
         <BaseLabel v-if="currentType === '1'" label="出款银行卡" must>
-          <BaseSelect v-model="selectBank" :options="bindBanks" must />
+          <BaseSelect v-model="selectBank" :options="bindBanks" must banks popper>
+            <template #default="{ data: { options, hide, parentWidth } }">
+              <div class="bank-options scroll-x" :style="{ width: `${parentWidth + 40}px` }">
+                <div v-for="item, index in options" :key="index" class="option-row" @click="onClickPopperItem(item, hide)">
+                  <BaseIcon name="fiat-bank" />
+                  <div class="bank-info" :class="{ 'is-mobile': isXs }">
+                    <p>{{ item.label }}</p>
+                    <p>{{ item.value }}</p>
+                  </div>
+                </div>
+              </div>
+            </template>
+          </BaseSelect>
         </BaseLabel>
         <BaseLabel v-else label="PIX账号" must>
           <BaseInput v-model="selectBank" />
@@ -110,6 +131,40 @@ const amount = ref('')
       display: flex;
       flex-direction: column;
       gap: .75rem;
+    }
+  }
+}
+.bank-options{
+  background-color: var(--tg-secondary-main);
+  padding: var(--tg-spacing-12) 0;
+  .option-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--tg-text-white);
+    padding: var(--tg-spacing-8) var(--tg-spacing-24);
+    cursor: pointer;
+    > svg{
+      width: 40px;
+      height: 40px;
+    }
+    .bank-info{
+      display: flex;
+      align-items: center;
+      :nth-child(1){
+        margin-right: var(--tg-spacing-5);
+      }
+      p{
+        margin: var(--tg-spacing-2) 0;
+      }
+      &.is-mobile{
+        flex-direction: column;
+        align-items: self-start;
+      }
+    }
+    &:hover{
+      background-color: var(--tg-sub-blue);
     }
   }
 }

@@ -12,6 +12,7 @@ interface Props {
   disabled?: boolean
   small?: boolean
   popper?: boolean
+  banks?: boolean // 银行卡选择需要多一个类
 }
 const props = withDefaults(defineProps<Props>(), {
   layout: 'vertical',
@@ -30,7 +31,7 @@ function onChange(event: any) {
 
 // popper
 const { bool, setTrue, setFalse } = useBoolean(false)
-const popperLabel = computed(() => props.options.find(a => a.value === props.modelValue)?.label ?? '-')
+const popperLabel = computed(() => props.options.find(a => a.value === props.modelValue)?.label ?? (props.banks ? '' : '-'))
 function onClickPopperItem(v: any) {
   if (v === props.modelValue)
     return
@@ -38,19 +39,23 @@ function onClickPopperItem(v: any) {
   emit('update:modelValue', v)
   emit('select', v)
 }
+
+//   自定义银行卡select
+const parent = ref<HTMLElement | null>(null)
+const { width } = useElementSize(parent)
 </script>
 
 <template>
   <template v-if="popper">
-    <VDropdown :distance="6" @hide="setFalse">
-      <div class="popper-label" @click="setTrue">
+    <VDropdown :distance="6" :popper-class="banks ? 'select-bank' : ''" @hide="setFalse">
+      <div ref="parent" class="popper-label" @click="setTrue">
         <span>{{ popperLabel }}</span>
         <div class="icon" :class="{ up: bool }">
           <BaseIcon name="uni-arrow-down" />
         </div>
       </div>
-      <template #popper>
-        <slot>
+      <template #popper="{ hide }">
+        <slot :data="{ options, hide, parentWidth: width }">
           <div class="scroll-y popper-wrap">
             <div
               v-for="type, i in options" :key="i" v-close-popper class="popper-option"
@@ -91,6 +96,7 @@ function onClickPopperItem(v: any) {
   transition: all ease .25s;
   cursor: pointer;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   line-height: 1;
 
@@ -204,6 +210,17 @@ function onClickPopperItem(v: any) {
     width: 100px;
     margin-right: var(--tg-spacing-10);
     font-weight: var(--tg-font-weight-semibold);
+  }
+}
+</style>
+
+<style>
+/* 全局修改，需要组件传select-bank class才可以 */
+.select-bank{
+  .v-popper__arrow-container{
+    .v-popper__arrow-inner, .v-popper__arrow-outer{
+      border-color:var(--tg-secondary-main);
+    }
   }
 }
 </style>
