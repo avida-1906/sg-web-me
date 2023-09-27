@@ -14,6 +14,7 @@ declare global {
   const ApiMemberGameUpdateFav: typeof import('./apis/index')['ApiMemberGameUpdateFav']
   const ApiMemberLogin: typeof import('./apis/index')['ApiMemberLogin']
   const ApiMemberReg: typeof import('./apis/index')['ApiMemberReg']
+  const ApiMemberWalletList: typeof import('./apis/index')['ApiMemberWalletList']
   const ApiSmsSend: typeof import('./apis/index')['ApiSmsSend']
   const Big: typeof import('big.js')['Big']
   const CasinoGameType: typeof import('./utils/enums')['CasinoGameType']
@@ -409,6 +410,7 @@ declare module 'vue' {
     readonly ApiMemberGameUpdateFav: UnwrapRef<typeof import('./apis/index')['ApiMemberGameUpdateFav']>
     readonly ApiMemberLogin: UnwrapRef<typeof import('./apis/index')['ApiMemberLogin']>
     readonly ApiMemberReg: UnwrapRef<typeof import('./apis/index')['ApiMemberReg']>
+    readonly ApiMemberWalletList: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletList']>
     readonly ApiSmsSend: UnwrapRef<typeof import('./apis/index')['ApiSmsSend']>
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
@@ -791,6 +793,7 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberGameUpdateFav: UnwrapRef<typeof import('./apis/index')['ApiMemberGameUpdateFav']>
     readonly ApiMemberLogin: UnwrapRef<typeof import('./apis/index')['ApiMemberLogin']>
     readonly ApiMemberReg: UnwrapRef<typeof import('./apis/index')['ApiMemberReg']>
+    readonly ApiMemberWalletList: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletList']>
     readonly ApiSmsSend: UnwrapRef<typeof import('./apis/index')['ApiSmsSend']>
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>

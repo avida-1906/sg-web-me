@@ -81,6 +81,7 @@ const networkList = [
 
 onMounted(() => {
   emit('change', currency.value[0])
+  console.log(EnumCurrency)
 })
 const { openWalletDialog } = useWalletDialog()
 </script>
@@ -102,7 +103,7 @@ const { openWalletDialog } = useWalletDialog()
         </BaseButton>
       </div>
       <template #popper="{ hide }">
-        <div class="dropdown-popper">
+        <div class="dropdown-popper need-pad-y">
           <div class="popper-top">
             <BaseSearch v-model="searchValue" :style="{ 'max-width': showBalance ? '180px' : '140px' }" class="top-search" :clearable="searchValue?.length > 0" :white-style="true" :place-holder="showBalance ? '搜索货币' : '搜索'" />
           </div>
