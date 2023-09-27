@@ -15,7 +15,7 @@ const placeHolderText = computed(() => isCasino.value ? t('search_game') : t('se
 const searchValue = ref('')
 const { bool: isClear, setTrue: setClearTrue } = useBoolean(true)
 const { bool: isInputing, setTrue: setInputingTrue } = useBoolean(false)
-// 近期搜索关键字
+
 // 近期搜索关键字
 const keywordLive = ref(Local.get<any[]>(STORAGE_SEARCH_KEYWORDS_LIVE)?.value ?? [])
 const keywordSports = ref(Local.get<any[]>(STORAGE_SEARCH_KEYWORDS_SPORTS)?.value ?? [])
@@ -43,6 +43,11 @@ const { data: casinoGamesData, run: runSearchCasinoGames } = useRequest(() => Ap
   onAfter() {
     isClear.value = false
     isInputing.value = false
+
+    // 去重
+    if (keywordLive.value.includes(searchValue.value))
+      keywordLive.value.splice(keywordLive.value.findIndex(t => t === searchValue.value), 1)
+
     keywordLive.value.unshift(searchValue.value)
     keywordLive.value = keywordLive.value.slice(0, 5)
     Local.set(STORAGE_SEARCH_KEYWORDS_LIVE, keywordLive.value)
@@ -106,7 +111,7 @@ onMounted(() => {
     <div v-if="isShowOverlay" class="overlay" @click.self="closeOverlay" />
     <div :class="{ 'input-focus': isShowOverlay }">
       <BaseSearch
-        v-model="searchValue" :place-holder="placeHolderText" :clearable="isShowOverlay" @focus="showOverlay"
+        v-model.trim="searchValue" :place-holder="placeHolderText" :clearable="isShowOverlay" @focus="showOverlay"
         @close="closeOverlay" @input="onBaseSearchInput" @clear="setClearTrue"
       />
     </div>

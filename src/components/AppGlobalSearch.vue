@@ -52,6 +52,11 @@ const { data: casinoGamesData, run: runSearchCasinoGames } = useRequest(() => Ap
   onAfter() {
     isClear.value = false
     isInputing.value = false
+
+    // 去重
+    if (keywordLive.value.includes(searchValue.value))
+      keywordLive.value.splice(keywordLive.value.findIndex(t => t === searchValue.value), 1)
+
     keywordLive.value.unshift(searchValue.value)
     keywordLive.value = keywordLive.value.slice(0, 5)
     Local.set(STORAGE_SEARCH_KEYWORDS_LIVE, keywordLive.value)
@@ -90,14 +95,17 @@ const resultData = computed(() => {
   return null
 })
 
+// 关闭方法
+const { leftIsExpand } = useLeftSidebar()
 provide('closeSearch', () => emit('close'))
+provide('closeSearchH5', () => leftIsExpand.value = !leftIsExpand.value)
 </script>
 
 <template>
   <div class="app-global-search" :class="{ 'in-pc': !isMobile }">
     <div v-show="!isMobile" class="overlay" @click="emit('close')" />
     <BaseSearch
-      v-model="searchValue" class="search-input" clearable @focus="showOverlayTrue" @clear="setClearTrue"
+      v-model.trim="searchValue" class="search-input" clearable @focus="showOverlayTrue" @clear="setClearTrue"
       @close="emit('close')" @input="onBaseSearchInput"
     >
       <template #left>
