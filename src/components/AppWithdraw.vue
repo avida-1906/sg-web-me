@@ -71,7 +71,7 @@ onMounted(() => {
       </div>
       <BaseInput v-model="amount" type="number" placeholder="0.00000000" :msg="amountMsg" @blur="onAmountInput">
         <template #right-icon>
-          <AppCurrencyIcon :currency-type="EnumCurrency.BTC" />
+          <AppCurrencyIcon :currency-type="activeCurrency?.id" />
         </template>
         <template #right-button>
           <span>最大值</span>
@@ -86,9 +86,9 @@ onMounted(() => {
     </BaseButton>
     <div class="tips">
       <span>最低提款金额为 0.00020000</span>
-      <AppCurrencyIcon class="currency-icon" :currency-type="EnumCurrency.BTC" />
+      <AppCurrencyIcon class="currency-icon" :currency-type="activeCurrency?.id" />
       <span>。我们将从您的余额扣除0.00007000</span>
-      <AppCurrencyIcon class="currency-icon" :currency-type="EnumCurrency.BTC" />
+      <AppCurrencyIcon class="currency-icon" :currency-type="activeCurrency?.id" />
       <span>作为您提款的交易费用。</span>
     </div>
   </div>

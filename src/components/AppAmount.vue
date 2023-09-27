@@ -4,6 +4,7 @@ import type { EnumCurrency } from '~/utils/enums'
 interface Props {
   amount: string | number
   currencyType: EnumCurrency
+  showName?: boolean
 }
 const props = defineProps<Props>()
 
@@ -15,9 +16,15 @@ const _amount = computed(() => {
 <template>
   <div class="app-amount">
     <span class="amount" :title="String(_amount)">{{ _amount }}</span>
-    <AppCurrencyIcon :currency-type="currencyType" />
+    <AppCurrencyIcon :show-name="showName" :currency-type="currencyType" />
   </div>
 </template>
+
+<style lang='scss'>
+:root{
+  --tg-app-amount-width: auto
+}
+</style>
 
 <style lang='scss' scoped>
 .app-amount {
@@ -28,6 +35,7 @@ const _amount = computed(() => {
 }
 
 .amount {
+  width: var(--tg-app-amount-width);
   display: inline-block;
   overflow: hidden;
   white-space: nowrap;
