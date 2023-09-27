@@ -72,7 +72,7 @@ const { isXs } = storeToRefs(useWindowStore())
       <AppWithdrawalDepositType v-model="currentType" :deposit-type="depositTypeData" />
       <div class="withdrawal-info">
         <BaseLabel v-if="currentType === '1'" label="出款银行卡" must>
-          <BaseSelect v-model="selectBank" :options="bindBanks" must banks popper>
+          <BaseSelect v-model="selectBank" :options="bindBanks" must banks theme popper>
             <template #default="{ data: { options, hide, parentWidth } }">
               <div class="bank-options scroll-x" :style="{ width: `${parentWidth + 40}px` }">
                 <div v-for="item, index in options" :key="index" class="option-row" @click="onClickPopperItem(item, hide)">
@@ -135,7 +135,6 @@ const { isXs } = storeToRefs(useWindowStore())
   }
 }
 .bank-options{
-  background-color: var(--tg-secondary-main);
   padding: var(--tg-spacing-12) 0;
   .option-row {
     display: flex;
