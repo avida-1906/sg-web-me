@@ -7,13 +7,13 @@ interface Props {
   }[]
 }
 
-withDefaults(defineProps<Props>(), {})
+const props = withDefaults(defineProps<Props>(), {})
 
-const tab = ref('')
+const tab = ref(props.tabs[0].value)
 </script>
 
 <template>
-  <section class="tg-deposits-record-page">
+  <section class="tg-app-tab-record">
     <div class="top">
       <BaseTab v-model="tab" :list="tabs" />
     </div>
@@ -34,6 +34,9 @@ const tab = ref('')
 </template>
 
 <style lang="scss" scoped>
+.tg-app-tab-record {
+  --tg-tab-style-wrap-bg-color: var(--tg-primary-main);
+}
 .footer-buttons {
   font-size: var(--tg-font-size-default);
   color: var(--tg-text-white);
