@@ -69,7 +69,9 @@ const campaignsList = [
         </template>
       </BaseCollapse>
     </div>
-    <AppStack />
+    <div class="page-stack-wrap mt-24">
+      <AppStack />
+    </div>
     <BaseButton>
       创建新活动
     </BaseButton>

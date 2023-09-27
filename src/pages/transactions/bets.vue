@@ -34,7 +34,9 @@
         </table>
       </div>
     </div>
-    <AppStack />
+    <div class="page-stack-wrap mt-24">
+      <AppStack />
+    </div>
   </section>
 </template>
 
