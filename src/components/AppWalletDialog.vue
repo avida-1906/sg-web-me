@@ -30,7 +30,6 @@ function handleShow(val: boolean) {
     <div class="content">
       <BaseTab v-model="currentTab" class="wallet-tab" :list="tabList" />
       <AppWallet v-show="showWallet" :wallet-btn="false" :show-balance="false" :network="true" @change="changeCurrency" />
-      <!-- <AppDeposit /> -->
       <template v-if="isDeposit">
         <AppFiatDeposit v-if="activeCurrency?.legalTender" :active-currency="activeCurrency" @show="handleShow" />
         <AppVirtualDeposit v-else :active-currency="activeCurrency" @show="handleShow" />

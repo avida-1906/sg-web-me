@@ -78,7 +78,7 @@ async function logout() {
             <BaseIcon class="icon-size" name="navbar-user" />
           </BaseButton>
           <template #popper>
-            <div class="dropdown-popper">
+            <div class="dropdown-popper need-pad-y">
               <div v-for="item of userMenu" :key="item.id" v-close-popper class="menu-item" @click="handleClickMenuItem(item)">
                 <div class="menu-btn">
                   <BaseIcon class="icon-size" :name="item.icon" />
@@ -96,7 +96,7 @@ async function logout() {
             <BaseIcon class="icon-size" name="header-news" />
           </BaseButton>
           <template #popper>
-            <div class="dropdown-popper">
+            <div class="dropdown-popper need-pad-y">
               <div v-for="item of newsMenu" :key="item.id" class="menu-item">
                 <div class="menu-btn">
                   <BaseIcon class="icon-size" :name="item.icon" />

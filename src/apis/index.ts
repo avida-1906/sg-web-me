@@ -176,3 +176,17 @@ export function ApiMemberGameFavList(params: { page: number; page_size: number }
 export function ApiMemberGameRecList(params: { page: number; page_size: number }) {
   return httpClient.get('/member/game/rec/list', params)
 }
+
+/**
+ * 虚拟钱包列表
+ */
+export function ApiMemberWalletList(
+  params: {
+    contract_type: string
+    currency_name: string
+    page: number
+    page_size: number
+  },
+) {
+  return httpClient.get<string>('/member/wallet/list', params)
+}
