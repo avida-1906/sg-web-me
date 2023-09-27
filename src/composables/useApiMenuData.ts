@@ -8,20 +8,12 @@ export interface MenuItem {
   list?: Menu
   domId?: string
   modalQuery?: { [k: string]: any }
-  expand?: boolean
   type?: 'radio'
   value?: any
   radioChange?: (val: any) => void
 }
 
 export type Menu = Array<MenuItem>
-
-function ExpandMapAll(menuItem: MenuItem) {
-  menuItem.expand = false
-  menuItem.list?.forEach((mi: MenuItem) => {
-    mi.expand = false
-  })
-}
 
 export function useApiMenuData() {
   const { locale } = useI18n()
@@ -237,7 +229,6 @@ export function useApiMenuData() {
       router.push(item.path)
     }
     else if (item.list && item.list.length) {
-      // item.expand = true
       leftIsExpand.value = true
     }
     else if (item.modalQuery) {
