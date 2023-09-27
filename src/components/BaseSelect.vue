@@ -51,7 +51,7 @@ function onClickPopperItem(v: any) {
       </div>
       <template #popper>
         <slot>
-          <div class="scroll-y popper-wrap">
+          <div class="scroll-y need-pad-y popper-wrap">
             <div
               v-for="type, i in options" :key="i" v-close-popper class="popper-option"
               @click="onClickPopperItem(type.value)"
