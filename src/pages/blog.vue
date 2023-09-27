@@ -5,7 +5,7 @@
   <div class="tg-blog" />
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .tg-blog {
 
 }

@@ -61,7 +61,7 @@ const campaignsList = [
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .tg-affiliate-campaigns {
   margin-bottom: 38px;
   .stats-grid {

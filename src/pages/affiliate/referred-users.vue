@@ -5,7 +5,7 @@
   <div class="tg-affiliate-referred-users" />
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .tg-affiliate-referred-users {
 
 }

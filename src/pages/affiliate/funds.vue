@@ -5,7 +5,7 @@
   <div class="tg-affiliate-funds" />
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .tg-affiliate-funds {
 
 }
