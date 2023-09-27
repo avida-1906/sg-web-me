@@ -232,7 +232,7 @@ export function useApiMenuData() {
   const { leftIsExpand } = useLeftSidebar()
 
   function menuItemClick(item: MenuItem) {
-    Local.set('curDomIdRef', item.domId || '')
+    Local.set(STORAGE_MENU_EXPAND_DOMID, item.domId || '')
     if (item.path && item.path.length) {
       router.push(item.path)
     }

@@ -5,7 +5,7 @@
   <div class="tg-settings-security" />
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .tg-settings-security {
 
 }

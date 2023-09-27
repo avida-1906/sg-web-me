@@ -16,7 +16,7 @@ const baseAccor = ref()
 
 const timestamp = ref(0)
 
-const curDomId = ref(Local.get('curDomIdRef')?.value)
+const curDomId = ref(Local.get(STORAGE_MENU_EXPAND_DOMID)?.value)
 
 function handleClickHead() {
   timestamp.value = new Date().getTime()

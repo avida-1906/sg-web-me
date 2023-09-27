@@ -8,6 +8,7 @@ export const STORAGE_LANGUAGE_KEY = 'language'
 export const STORAGE_REG_PARAMS_KEYWORDS = 'reg_params'
 export const STORAGE_SEARCH_KEYWORDS_LIVE = 'search_keywords_live'
 export const STORAGE_SEARCH_KEYWORDS_SPORTS = 'search_keywords_sports'
+export const STORAGE_MENU_EXPAND_DOMID = 'menu_expand_domid'
 
 export class Local {
   static set<T>(key: string, value: any) {

@@ -5,7 +5,7 @@
   <div class="tg-settings-verify" />
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .tg-settings-verify {
 
 }

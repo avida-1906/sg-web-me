@@ -5,7 +5,7 @@
   <div class="tg-settings-ignored-users" />
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .tg-settings-ignored-users {
 
 }
