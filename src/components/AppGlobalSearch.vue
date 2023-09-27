@@ -89,6 +89,8 @@ const resultData = computed(() => {
 
   return null
 })
+
+provide('closeSearch', () => emit('close'))
 </script>
 
 <template>

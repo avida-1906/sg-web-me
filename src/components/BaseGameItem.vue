@@ -11,9 +11,13 @@ interface Props {
 defineProps<Props>()
 const { VITE_CASINO_TEST_SLOT_IMG } = import.meta.env
 const router = useRouter()
+
+const closeSearch = inject('closeSearch', () => {})
+
 function gameStart(item: Props['gameInfo']) {
   const { id } = item
   router.push(`/casino/games?id=${id}`)
+  closeSearch()
 }
 </script>
 
