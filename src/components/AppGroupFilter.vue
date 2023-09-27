@@ -12,7 +12,7 @@ const { appContentWidth } = storeToRefs(useWindowStore())
       </div>
       <div>
         <BaseCheckPop>
-          <BaseButton size="md">
+          <BaseButton bg-style="dark" size="sm">
             <div class="btn-arrow-down">
               <span>{{ $t('casino_provider') }}</span>
               <BaseBadge :count="2" mode="active" />
@@ -29,7 +29,7 @@ const { appContentWidth } = storeToRefs(useWindowStore())
       </div>
       <div>
         <BaseGameSortPop>
-          <BaseButton size="md">
+          <BaseButton bg-style="dark" size="sm">
             <div class="btn-arrow-down">
               <span>热门</span>
               <BaseIcon name="uni-arrow-down" />
