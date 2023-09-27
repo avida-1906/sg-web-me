@@ -12,38 +12,66 @@ const gameTypeList = [
   { label: t('sports'), value: '2' },
 ]
 const gameLabel = computed(() => gameTypeList.find(a => a.value === gameType.value)?.label ?? '-')
+const showLive = computed(() => gameType.value === '1')
+const showSports = computed(() => gameType.value === '2')
 const { bool: isPopperShow, setTrue, setFalse } = useBoolean(false)
-
 function selectGameType(v: string) {
   gameType.value = v
   emit('gameTypeChange', v)
 }
-
-// 搜索功能面板
-const { bool: showSearchOverlay, setTrue: setTrue2, setFalse: setFalse2 } = useBoolean(false)
-const searchValue = ref('')
+const { bool: isShowOverlay, setTrue: showOverlayTrue, setFalse: showOverlayFalse } = useBoolean(false)
 
 // 近期搜索关键字
-const recentKeyword = ref(['keyword 1', 'keyword 2', 'keyword 3', 'keyword 4', 'keyword 5'])
+const searchValue = ref('')
+const { bool: isClear, setTrue: setClearTrue } = useBoolean(true)
+const { bool: isInputing, setTrue: setInputingTrue } = useBoolean(false)
+// 近期搜索关键字
+const keywordLive = ref(Local.get<any[]>(STORAGE_SEARCH_KEYWORDS_LIVE)?.value ?? [])
+const { data: casinoGamesData, run: runSearchCasinoGames } = useRequest(() => ApiMemberGameSearch({ w: searchValue.value }), {
+  manual: true,
+  debounceInterval: 500,
+  onAfter() {
+    isClear.value = false
+    isInputing.value = false
+    keywordLive.value.unshift(searchValue.value)
+    keywordLive.value = keywordLive.value.slice(0, 5)
+    Local.set(STORAGE_SEARCH_KEYWORDS_LIVE, keywordLive.value)
+  },
+})
+function onBaseSearchInput() {
+  if (searchValue.value.length < 3)
+    return setClearTrue()
+  if (isCasino.value && searchValue.value.length >= 3) {
+    setInputingTrue()
+    runSearchCasinoGames()
+  }
+}
 function onClickKeyword(k: string) {
+  setInputingTrue()
   searchValue.value = k
+  runSearchCasinoGames()
 }
 function onCloseKeyword(k: string) {
-  recentKeyword.value.splice(recentKeyword.value.findIndex(t => t === k), 1)
+  keywordLive.value.splice(keywordLive.value.findIndex(t => t === k), 1)
+  Local.set(STORAGE_SEARCH_KEYWORDS_LIVE, keywordLive.value)
 }
-
 // 搜索结果
-const { bool: noResult } = useBoolean(false)
-const { bool: casinoResult } = useBoolean(false)
-const { bool: sportsResult } = useBoolean(true)
+const resultData = computed(() => {
+  if (isClear.value)
+    return null
+  if (isCasino.value && casinoGamesData.value && casinoGamesData.value.d)
+    return casinoGamesData.value.d
+
+  return null
+})
 </script>
 
 <template>
   <div class="app-global-search" :class="{ 'in-pc': !isMobile }">
     <div v-show="!isMobile" class="overlay" @click="emit('close')" />
     <BaseSearch
-      v-model="searchValue" class="search-input" clearable @focus="setTrue2" @clear="setFalse2"
-      @close="emit('close')"
+      v-model="searchValue" class="search-input" clearable @focus="showOverlayTrue" @clear="setClearTrue"
+      @close="emit('close')" @input="onBaseSearchInput"
     >
       <template #left>
         <VDropdown :distance="6" @show="setTrue()" @hide="setFalse">
@@ -64,31 +92,31 @@ const { bool: sportsResult } = useBoolean(true)
     </BaseSearch>
 
     <!-- 搜索功能面板  -->
-    <div v-show="showSearchOverlay || !isMobile" class="search-overlay" @click.self="setFalse2">
+    <div v-show="isShowOverlay || !isMobile" class="search-overlay" @click.self="showOverlayFalse">
       <div class="scroll-y warp">
-        <div v-if="noResult" class="no-result">
+        <div v-if="!resultData" class="no-result">
           <div class="text">
             <span v-show="searchValue.length < 3">{{ t('search_need_at_least_3_word') }}</span>
-            <span v-show="searchValue.length >= 3">{{ t('search_no_result') }}</span>
+            <span v-show="searchValue.length >= 3 && !isInputing">{{ t('search_no_result') }}</span>
           </div>
-          <div v-if="recentKeyword.length" class="recent">
+          <div v-if="keywordLive.length" class="recent">
             <div class="title">
               <label>{{ t('search_recent') }}</label>
-              <BaseButton type="text" font-size="14" @click="recentKeyword.length = 0">
-                {{ t('search_clear') }}({{ recentKeyword.length }})
+              <BaseButton type="text" font-size="14" @click="keywordLive.length = 0">
+                {{ t('search_clear') }}({{ keywordLive.length }})
               </BaseButton>
             </div>
             <div class="list">
-              <BaseTag v-for="t in recentKeyword" :key="t" :text="t" @click="onClickKeyword" @close="onCloseKeyword" />
+              <BaseTag v-for="text in keywordLive" :key="text" :text="text" @click="onClickKeyword" @close="onCloseKeyword" />
             </div>
           </div>
         </div>
 
         <!-- casino -->
-        <AppCardList v-if="!noResult && casinoResult" />
+        <AppCardList v-if="showLive && resultData" :list="resultData" />
 
         <!-- sports -->
-        <AppSportsSearchResult v-if="!noResult && sportsResult" />
+        <AppSportsSearchResult v-if="showSports && resultData" />
       </div>
     </div>
   </div>
@@ -197,8 +225,9 @@ const { bool: sportsResult } = useBoolean(true)
   top: 0;
   left: 0;
   width: 100%;
-  padding-top: 57px;
   margin: 0;
+  max-width: 1200px;
+  padding: 57px 3vw 0;
 
   .search-input {
     position: relative;

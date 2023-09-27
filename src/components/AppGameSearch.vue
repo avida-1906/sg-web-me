@@ -16,7 +16,7 @@ const searchValue = ref('')
 const { bool: isClear, setTrue: setClearTrue } = useBoolean(true)
 const { bool: isInputing, setTrue: setInputingTrue } = useBoolean(false)
 // 近期搜索关键字
-const recentKeyword = ref(Local.get<any[]>(STORAGE_RECENT_SEARCH_KEYWORDS)?.value ?? [])
+const recentKeyword = ref(Local.get<any[]>(STORAGE_SEARCH_KEYWORDS_LIVE)?.value ?? [])
 const { data: casinoGamesData, run: runSearchCasinoGames } = useRequest(() => ApiMemberGameSearch({ w: searchValue.value }), {
   manual: true,
   debounceInterval: 500,
@@ -25,7 +25,7 @@ const { data: casinoGamesData, run: runSearchCasinoGames } = useRequest(() => Ap
     isInputing.value = false
     recentKeyword.value.unshift(searchValue.value)
     recentKeyword.value = recentKeyword.value.slice(0, 5)
-    Local.set(STORAGE_RECENT_SEARCH_KEYWORDS, recentKeyword.value)
+    Local.set(STORAGE_SEARCH_KEYWORDS_LIVE, recentKeyword.value)
   },
 })
 function onBaseSearchInput() {
@@ -43,7 +43,7 @@ function onClickKeyword(k: string) {
 }
 function onCloseKeyword(k: string) {
   recentKeyword.value.splice(recentKeyword.value.findIndex(t => t === k), 1)
-  Local.set(STORAGE_RECENT_SEARCH_KEYWORDS, recentKeyword.value)
+  Local.set(STORAGE_SEARCH_KEYWORDS_LIVE, recentKeyword.value)
 }
 // 搜索结果
 const resultData = computed(() => {
@@ -100,7 +100,7 @@ onMounted(() => {
               </BaseButton>
             </div>
             <div class="list">
-              <BaseTag v-for="t in recentKeyword" :key="t" :text="t" @click="onClickKeyword" @close="onCloseKeyword" />
+              <BaseTag v-for="text in recentKeyword" :key="text" :text="text" @click="onClickKeyword" @close="onCloseKeyword" />
             </div>
           </div>
         </div>
