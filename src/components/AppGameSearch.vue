@@ -15,7 +15,7 @@ const placeHolderText = computed(() => isCasino.value ? t('search_game') : t('se
 const searchValue = ref('')
 const { bool: isClear, setTrue: setClearTrue } = useBoolean(true)
 const { bool: isInputing, setTrue: setInputingTrue } = useBoolean(false)
-// 近期搜索关键字
+
 // 近期搜索关键字
 const keywordLive = ref(Local.get<any[]>(STORAGE_SEARCH_KEYWORDS_LIVE)?.value ?? [])
 const keywordSports = ref(Local.get<any[]>(STORAGE_SEARCH_KEYWORDS_SPORTS)?.value ?? [])
