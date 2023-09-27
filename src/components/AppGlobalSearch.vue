@@ -3,17 +3,17 @@ const emit = defineEmits(['gameTypeChange', 'close'])
 const { isMobile } = storeToRefs(useWindowStore())
 const { t } = useI18n()
 const route = useRoute()
-const isCasino = computed(() => route.name?.toString().includes('casino'))
-const isSports = computed(() => route.name?.toString().includes('sports'))
+const initCasino = computed(() => route.name?.toString().includes('casino'))
+const initSports = computed(() => route.name?.toString().includes('sports'))
 // 搜索栏
-const gameType = ref(isCasino.value ? '1' : isSports.value ? '2' : '')
+const gameType = ref(initCasino.value ? '1' : initSports.value ? '2' : '')
 const gameTypeList = [
   { label: t('casino'), value: '1' },
   { label: t('sports'), value: '2' },
 ]
 const gameLabel = computed(() => gameTypeList.find(a => a.value === gameType.value)?.label ?? '-')
-const showLive = computed(() => gameType.value === '1')
-const showSports = computed(() => gameType.value === '2')
+const isCasino = computed(() => gameType.value === '1')
+const isSports = computed(() => gameType.value === '2')
 const { bool: isPopperShow, setTrue, setFalse } = useBoolean(false)
 function selectGameType(v: string) {
   gameType.value = v
@@ -29,18 +29,18 @@ const { bool: isInputing, setTrue: setInputingTrue } = useBoolean(false)
 const keywordLive = ref(Local.get<any[]>(STORAGE_SEARCH_KEYWORDS_LIVE)?.value ?? [])
 const keywordSports = ref(Local.get<any[]>(STORAGE_SEARCH_KEYWORDS_SPORTS)?.value ?? [])
 const keywordList = computed(() => {
-  if (showLive.value)
+  if (isCasino.value)
     return keywordLive.value
-  else if (showSports.value)
+  else if (isSports.value)
     return keywordSports.value
   return []
 })
 function clearKeyword() {
-  if (showLive.value) {
+  if (isCasino.value) {
     keywordLive.value.length = 0
     Local.remove(STORAGE_SEARCH_KEYWORDS_LIVE)
   }
-  else if (showSports.value) {
+  else if (isSports.value) {
     keywordSports.value.length = 0
     Local.remove(STORAGE_SEARCH_KEYWORDS_SPORTS)
   }
@@ -138,10 +138,10 @@ const resultData = computed(() => {
         </div>
 
         <!-- casino -->
-        <AppCardList v-if="showLive && resultData" :list="resultData" />
+        <AppCardList v-if="isCasino && resultData" :list="resultData" />
 
         <!-- sports -->
-        <AppSportsSearchResult v-if="showSports && resultData" />
+        <AppSportsSearchResult v-if="isSports && resultData" />
       </div>
     </div>
   </div>
