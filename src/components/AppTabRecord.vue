@@ -5,6 +5,8 @@ interface Props {
     value: string | number
     label: string
   }[]
+  emptyText: string
+  downloadText?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {})
@@ -19,14 +21,14 @@ const tab = ref(props.tabs[0].value)
     </div>
     <div class="middle">
       <div class="empty">
-        <BaseEmpty description="尚未存款" icon="empty-1" />
+        <BaseEmpty :description="emptyText" icon="empty-1" />
       </div>
       <div class="page-stack-wrap mt-24">
         <AppStack />
       </div>
-      <div class="download-btn mt-24">
+      <div v-if="downloadText" class="download-btn mt-24">
         <BaseButton size="md">
-          下载全部存款
+          {{ downloadText }}
         </BaseButton>
       </div>
     </div>

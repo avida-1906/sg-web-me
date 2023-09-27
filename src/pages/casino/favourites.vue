@@ -37,10 +37,10 @@ await application.allSettled([runAsync()])
     </div>
     <div class="btns">
       <BaseButton type="text" :disabled="page === 1" @click="prev">
-        上一页
+        {{ $t('page_prev') }}
       </BaseButton>
       <BaseButton type="text" :disabled="data.length >= total" @click="next">
-        下一页
+        {{ $t('page_next') }}
       </BaseButton>
     </div>
   </section>

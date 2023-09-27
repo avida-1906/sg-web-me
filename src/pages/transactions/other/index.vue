@@ -1,25 +1,26 @@
 <script lang="ts" setup>
+const { t } = useI18n()
 const tabList = reactive([
-  { label: '全部', value: '' },
-  { label: '奖金', value: 'bonus' },
-  { label: '空投奖金', value: 'drop' },
-  { label: '活动佣金取款', value: 'campaign_withdrawal' },
-  { label: '充值奖金领取', value: 'reload_claim' },
-  { label: '竞赛奖金', value: 'race_payout' },
-  { label: '收到的红包雨', value: 'rains_received' },
-  { label: '发出的红包雨', value: 'rains_sent' },
-  { label: '已收回返水', value: 'rakeback_received' },
-  { label: '体育博彩促销奖金支付', value: 'sportsbook_promotion_payout' },
-  { label: '收到的小费', value: 'tips_received' },
-  { label: '发送的小费', value: 'tips_sent' },
-  { label: '保险库存款', value: 'vault_deposit' },
-  { label: '保险库取款', value: 'vault_withdrawal' },
+  { label: t('finance_other_tab_all'), value: '' },
+  { label: t('finance_other_tab_bonus'), value: 'bonus' },
+  { label: t('finance_other_tab_drop'), value: 'drop' },
+  { label: t('finance_other_tab_campaign_withdrawal'), value: 'campaign_withdrawal' },
+  { label: t('finance_other_tab_reload_claim'), value: 'reload_claim' },
+  { label: t('finance_other_tab_race_payout'), value: 'race_payout' },
+  { label: t('finance_other_tab_rains_received'), value: 'rains_received' },
+  { label: t('finance_other_tab_rains_sent'), value: 'rains_sent' },
+  { label: t('finance_other_tab_rakeback_received'), value: 'rakeback_received' },
+  { label: t('finance_other_tab_sportsbook_promotion_payout'), value: 'sportsbook_promotion_payout' },
+  { label: t('finance_other_tab_tips_received'), value: 'tips_received' },
+  { label: t('finance_other_tab_tips_sent'), value: 'tips_sent' },
+  { label: t('finance_other_tab_vault_deposit'), value: 'vault_deposit' },
+  { label: t('finance_other_tab_vault_withdrawal'), value: 'vault_withdrawal' },
 ])
 </script>
 
 <template>
   <section class="tg-transactions-other-record-page">
-    <AppTabRecord :tabs="tabList" />
+    <AppTabRecord :tabs="tabList" :empty-text="$t('finance_other_empty_text')" />
   </section>
 </template>
 
