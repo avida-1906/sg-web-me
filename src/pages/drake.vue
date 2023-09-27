@@ -5,7 +5,7 @@
   <div class="tg-drake" />
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .tg-drake {
 
 }

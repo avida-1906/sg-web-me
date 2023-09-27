@@ -25,8 +25,14 @@
               </td>
               <td class="table-cell">
                 <div class="row-wrap right">
-                  <div class="col" />
-                  <div class="col" />
+                  <div class="col">
+                    <AppAmount amount="0.01888888" :currency-type="EnumCurrency.BTC" />
+                  </div>
+                  <div class="col bot">
+                    <BaseIcon name="uni-checklist" />
+                    <span>176770928770</span>
+                    <span class="line-height-1-5">0.00x</span>
+                  </div>
                 </div>
               </td>
             </tr>
@@ -34,11 +40,16 @@
         </table>
       </div>
     </div>
-    <AppStack />
+    <div class="page-stack-wrap mt-24">
+      <AppStack />
+    </div>
   </section>
 </template>
 
 <style lang="scss" scoped>
+.line-height-1-5 {
+  line-height: 1.5;
+}
 .link {
   text-decoration: none;
   -webkit-appearance: none;
@@ -71,10 +82,13 @@
 .row-wrap {
   display: flex;
   align-items: center;
-  .right {
+  &.right {
     justify-content: flex-end;
     flex-direction: column;
     align-items: flex-end;
+    .col {
+      align-items: center;
+    }
   }
 }
 .icon-wrap {

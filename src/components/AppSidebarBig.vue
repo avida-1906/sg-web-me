@@ -42,7 +42,7 @@ function closeMenu(t: any) {
 }
 
 onMounted(() => {
-  const tempId = Local.get('curDomIdRef')?.value ?? ''
+  const tempId = Local.get(STORAGE_MENU_EXPAND_DOMID)?.value ?? ''
   if (tempId) {
     const t = setTimeout(() => {
       innerRef.value.scrollTo({ top: document.getElementById(tempId as string)!.offsetTop - 60, behavior: 'smooth' })
@@ -52,7 +52,7 @@ onMounted(() => {
 })
 
 onBeforeUnmount(() => {
-  Local.remove('curDomIdRef')
+  Local.remove(STORAGE_MENU_EXPAND_DOMID)
 })
 </script>
 

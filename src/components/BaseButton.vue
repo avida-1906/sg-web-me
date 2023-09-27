@@ -2,7 +2,7 @@
 interface Props {
   round?: boolean
   type?: 'default' | 'text' | 'line' | 'round-line-left' | 'round-line-right'
-  bgStyle?: 'primary' | 'secondary'
+  bgStyle?: 'primary' | 'secondary' | 'dark'
   disabled?: boolean
   loading?: boolean
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
@@ -160,6 +160,14 @@ button {
 
   &:hover:not(:disabled) {
     background-color: var(--tg-primary-success);
+  }
+}
+
+.dark {
+  background-color: var(--tg-secondary-dark);
+
+  &:hover:not(:disabled) {
+    background-color: var(--tg-secondary-grey);
   }
 }
 </style>

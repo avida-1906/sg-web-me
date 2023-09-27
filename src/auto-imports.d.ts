@@ -6,6 +6,9 @@
 export {}
 declare global {
   const ApiGameLunch: typeof import('./apis/index')['ApiGameLunch']
+  const ApiMemberFavDelete: typeof import('./apis/index')['ApiMemberFavDelete']
+  const ApiMemberFavInsert: typeof import('./apis/index')['ApiMemberFavInsert']
+  const ApiMemberFavList: typeof import('./apis/index')['ApiMemberFavList']
   const ApiMemberGameDetail: typeof import('./apis/index')['ApiMemberGameDetail']
   const ApiMemberGameFavList: typeof import('./apis/index')['ApiMemberGameFavList']
   const ApiMemberGameList: typeof import('./apis/index')['ApiMemberGameList']
@@ -14,6 +17,7 @@ declare global {
   const ApiMemberGameUpdateFav: typeof import('./apis/index')['ApiMemberGameUpdateFav']
   const ApiMemberLogin: typeof import('./apis/index')['ApiMemberLogin']
   const ApiMemberReg: typeof import('./apis/index')['ApiMemberReg']
+  const ApiMemberWalletList: typeof import('./apis/index')['ApiMemberWalletList']
   const ApiSmsSend: typeof import('./apis/index')['ApiSmsSend']
   const Big: typeof import('big.js')['Big']
   const CasinoGameType: typeof import('./utils/enums')['CasinoGameType']
@@ -23,10 +27,12 @@ declare global {
   const EnumLanguage: typeof import('./utils/enums')['EnumLanguage']
   const Local: typeof import('./utils/storage')['Local']
   const STORAGE_LANGUAGE_KEY: typeof import('./utils/storage')['STORAGE_LANGUAGE_KEY']
+  const STORAGE_MENU_EXPAND_DOMID: typeof import('./utils/storage')['STORAGE_MENU_EXPAND_DOMID']
   const STORAGE_RECENT_REG_KEYWORDS: typeof import('./utils/storage')['STORAGE_RECENT_REG_KEYWORDS']
   const STORAGE_RECENT_SEARCH_KEYWORD: typeof import('./utils/storage')['STORAGE_RECENT_SEARCH_KEYWORD']
-  const STORAGE_RECENT_SEARCH_KEYWORDS: typeof import('./utils/storage')['STORAGE_RECENT_SEARCH_KEYWORDS']
   const STORAGE_REG_PARAMS_KEYWORDS: typeof import('./utils/storage')['STORAGE_REG_PARAMS_KEYWORDS']
+  const STORAGE_SEARCH_KEYWORDS_LIVE: typeof import('./utils/storage')['STORAGE_SEARCH_KEYWORDS_LIVE']
+  const STORAGE_SEARCH_KEYWORDS_SPORTS: typeof import('./utils/storage')['STORAGE_SEARCH_KEYWORDS_SPORTS']
   const STORAGE_TOKEN_KEY: typeof import('./utils/storage')['STORAGE_TOKEN_KEY']
   const Session: typeof import('./utils/storage')['Session']
   const acceptHMRUpdate: typeof import('pinia')['acceptHMRUpdate']
@@ -401,14 +407,16 @@ import { UnwrapRef } from 'vue'
 declare module 'vue' {
   interface ComponentCustomProperties {
     readonly ApiGameLunch: UnwrapRef<typeof import('./apis/index')['ApiGameLunch']>
+    readonly ApiMemberFavDelete: UnwrapRef<typeof import('./apis/index')['ApiMemberFavDelete']>
+    readonly ApiMemberFavInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberFavInsert']>
+    readonly ApiMemberFavList: UnwrapRef<typeof import('./apis/index')['ApiMemberFavList']>
     readonly ApiMemberGameDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberGameDetail']>
-    readonly ApiMemberGameFavList: UnwrapRef<typeof import('./apis/index')['ApiMemberGameFavList']>
     readonly ApiMemberGameList: UnwrapRef<typeof import('./apis/index')['ApiMemberGameList']>
     readonly ApiMemberGameRecList: UnwrapRef<typeof import('./apis/index')['ApiMemberGameRecList']>
     readonly ApiMemberGameSearch: UnwrapRef<typeof import('./apis/index')['ApiMemberGameSearch']>
-    readonly ApiMemberGameUpdateFav: UnwrapRef<typeof import('./apis/index')['ApiMemberGameUpdateFav']>
     readonly ApiMemberLogin: UnwrapRef<typeof import('./apis/index')['ApiMemberLogin']>
     readonly ApiMemberReg: UnwrapRef<typeof import('./apis/index')['ApiMemberReg']>
+    readonly ApiMemberWalletList: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletList']>
     readonly ApiSmsSend: UnwrapRef<typeof import('./apis/index')['ApiSmsSend']>
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
@@ -417,8 +425,10 @@ declare module 'vue' {
     readonly EnumLanguage: UnwrapRef<typeof import('./utils/enums')['EnumLanguage']>
     readonly Local: UnwrapRef<typeof import('./utils/storage')['Local']>
     readonly STORAGE_LANGUAGE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_LANGUAGE_KEY']>
-    readonly STORAGE_RECENT_SEARCH_KEYWORDS: UnwrapRef<typeof import('./utils/storage')['STORAGE_RECENT_SEARCH_KEYWORDS']>
+    readonly STORAGE_MENU_EXPAND_DOMID: UnwrapRef<typeof import('./utils/storage')['STORAGE_MENU_EXPAND_DOMID']>
     readonly STORAGE_REG_PARAMS_KEYWORDS: UnwrapRef<typeof import('./utils/storage')['STORAGE_REG_PARAMS_KEYWORDS']>
+    readonly STORAGE_SEARCH_KEYWORDS_LIVE: UnwrapRef<typeof import('./utils/storage')['STORAGE_SEARCH_KEYWORDS_LIVE']>
+    readonly STORAGE_SEARCH_KEYWORDS_SPORTS: UnwrapRef<typeof import('./utils/storage')['STORAGE_SEARCH_KEYWORDS_SPORTS']>
     readonly STORAGE_TOKEN_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_TOKEN_KEY']>
     readonly Session: UnwrapRef<typeof import('./utils/storage')['Session']>
     readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>
@@ -783,14 +793,16 @@ declare module 'vue' {
 declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
     readonly ApiGameLunch: UnwrapRef<typeof import('./apis/index')['ApiGameLunch']>
+    readonly ApiMemberFavDelete: UnwrapRef<typeof import('./apis/index')['ApiMemberFavDelete']>
+    readonly ApiMemberFavInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberFavInsert']>
+    readonly ApiMemberFavList: UnwrapRef<typeof import('./apis/index')['ApiMemberFavList']>
     readonly ApiMemberGameDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberGameDetail']>
-    readonly ApiMemberGameFavList: UnwrapRef<typeof import('./apis/index')['ApiMemberGameFavList']>
     readonly ApiMemberGameList: UnwrapRef<typeof import('./apis/index')['ApiMemberGameList']>
     readonly ApiMemberGameRecList: UnwrapRef<typeof import('./apis/index')['ApiMemberGameRecList']>
     readonly ApiMemberGameSearch: UnwrapRef<typeof import('./apis/index')['ApiMemberGameSearch']>
-    readonly ApiMemberGameUpdateFav: UnwrapRef<typeof import('./apis/index')['ApiMemberGameUpdateFav']>
     readonly ApiMemberLogin: UnwrapRef<typeof import('./apis/index')['ApiMemberLogin']>
     readonly ApiMemberReg: UnwrapRef<typeof import('./apis/index')['ApiMemberReg']>
+    readonly ApiMemberWalletList: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletList']>
     readonly ApiSmsSend: UnwrapRef<typeof import('./apis/index')['ApiSmsSend']>
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
@@ -799,8 +811,10 @@ declare module '@vue/runtime-core' {
     readonly EnumLanguage: UnwrapRef<typeof import('./utils/enums')['EnumLanguage']>
     readonly Local: UnwrapRef<typeof import('./utils/storage')['Local']>
     readonly STORAGE_LANGUAGE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_LANGUAGE_KEY']>
-    readonly STORAGE_RECENT_SEARCH_KEYWORDS: UnwrapRef<typeof import('./utils/storage')['STORAGE_RECENT_SEARCH_KEYWORDS']>
+    readonly STORAGE_MENU_EXPAND_DOMID: UnwrapRef<typeof import('./utils/storage')['STORAGE_MENU_EXPAND_DOMID']>
     readonly STORAGE_REG_PARAMS_KEYWORDS: UnwrapRef<typeof import('./utils/storage')['STORAGE_REG_PARAMS_KEYWORDS']>
+    readonly STORAGE_SEARCH_KEYWORDS_LIVE: UnwrapRef<typeof import('./utils/storage')['STORAGE_SEARCH_KEYWORDS_LIVE']>
+    readonly STORAGE_SEARCH_KEYWORDS_SPORTS: UnwrapRef<typeof import('./utils/storage')['STORAGE_SEARCH_KEYWORDS_SPORTS']>
     readonly STORAGE_TOKEN_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_TOKEN_KEY']>
     readonly Session: UnwrapRef<typeof import('./utils/storage')['Session']>
     readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>

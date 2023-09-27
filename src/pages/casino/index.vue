@@ -6,9 +6,9 @@ const router = useRouter()
 const { t } = useI18n()
 const tab = ref('all')
 const tabList = [
-  { label: t('game_type_all'), value: 'all' },
-  { label: t('game_type_live'), value: EnumCasinoGameType.LIVE },
-  { label: t('game_type_slot'), value: EnumCasinoGameType.SLOT },
+  { label: t('game_type_all'), value: 'all', icon: 'chess-lobby' },
+  { label: t('game_type_live'), value: EnumCasinoGameType.LIVE, icon: 'chess-live-casino' },
+  { label: t('game_type_slot'), value: EnumCasinoGameType.SLOT, icon: 'chess-slot-machine' },
 ]
 const showAll = computed(() => tab.value === 'all')
 const showLive = computed(() => tab.value === EnumCasinoGameType.LIVE)
@@ -42,7 +42,7 @@ await application.allSettled([runLive(), runSlot()])
       <AppGameSearch game-type="1" />
     </div>
     <div class="mt-24">
-      <BaseTab v-model="tab" :list="tabList" :center="false" />
+      <BaseTab v-model="tab" :list="tabList" :center="false" size="large" />
     </div>
     <div class="content-wrapper">
       <Transition name="tab-fade">

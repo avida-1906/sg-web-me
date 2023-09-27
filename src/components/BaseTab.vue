@@ -4,15 +4,18 @@ interface Props {
     [text: string]: any
     value: string | number
     label: string
+    icon?: string
   }[]
   modelValue: string | number
   shape?: 'square' | 'round'
   full?: boolean
   center?: boolean
+  size?: 'small' | 'large'
 }
 const props = withDefaults(defineProps<Props>(), {
   shape: 'round',
   center: true,
+  size: 'small',
 })
 const emit = defineEmits(['update:modelValue', 'change'])
 
@@ -31,11 +34,12 @@ function onClick(v: string | number, event: any) {
     <div class="scroll-x base-tab-wrap" :class="{ full }">
       <div class="tab-wrap" :class="[shape]">
         <div
-          v-for="t, i in list" :key="i" class="tab" :class="{ active: t.value === modelValue }"
+          v-for="t, i in list" :key="i" class="tab" :class="[t.value === modelValue ? 'active' : '', `tab-${size}`]"
           @click="onClick(t.value, $event)"
         >
           <div class="content">
             <slot name="tab" :item="t">
+              <BaseIcon v-if="t.icon" :name="t.icon" />
               {{ t.label }}
             </slot>
           </div>
@@ -48,6 +52,8 @@ function onClick(v: string | number, event: any) {
 <style>
 :root{
   --tg-tab-style-wrap-bg-color:var(--tg-secondary-dark);
+  --tg-tab-style-inner-padding-y: var(--tg-spacing-11);
+  --tg-tab-style-inner-padding-x: var(--tg-spacing-20);
 }
 </style>
 
@@ -87,7 +93,7 @@ function onClick(v: string | number, event: any) {
     flex: 1;
     font-size: var(--tg-font-size-default);
     color: var(--tg-text-white);
-    padding: var(--tg-spacing-11) var(--tg-spacing-20);
+    padding: var(--tg-tab-style-inner-padding-y) var(--tg-tab-style-inner-padding-x);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -95,6 +101,9 @@ function onClick(v: string | number, event: any) {
     transition: all ease .25s;
     margin-right: var(--tg-spacing-5);
     font-weight: var(--tg-font-weight-semibold);
+    &.tab-large {
+      --tg-tab-style-inner-padding-y: var(--tg-spacing-15);
+    }
 
     &:last-of-type {
       margin-right: 0;
@@ -108,6 +117,9 @@ function onClick(v: string | number, event: any) {
       justify-content: center;
       flex: 1 0;
       white-space: nowrap;
+      .app-svg-icon {
+        margin-right: var(--tg-spacing-8);
+      }
     }
 
     &:active {

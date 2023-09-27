@@ -5,7 +5,7 @@
   <div class="tg-responsible-gambling" />
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .tg-responsible-gambling {
 
 }

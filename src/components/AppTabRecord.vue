@@ -5,26 +5,30 @@ interface Props {
     value: string | number
     label: string
   }[]
+  emptyText: string
+  downloadText?: string
 }
 
-withDefaults(defineProps<Props>(), {})
+const props = withDefaults(defineProps<Props>(), {})
 
-const tab = ref('')
+const tab = ref(props.tabs[0].value)
 </script>
 
 <template>
-  <section class="tg-deposits-record-page">
+  <section class="tg-app-tab-record">
     <div class="top">
       <BaseTab v-model="tab" :list="tabs" />
     </div>
     <div class="middle">
       <div class="empty">
-        <BaseEmpty description="尚未存款" icon="empty-1" />
+        <BaseEmpty :description="emptyText" icon="empty-1" />
       </div>
-      <AppStack />
-      <div class="download-btn">
+      <div class="page-stack-wrap mt-24">
+        <AppStack />
+      </div>
+      <div v-if="downloadText" class="download-btn mt-24">
         <BaseButton size="md">
-          下载全部存款
+          {{ downloadText }}
         </BaseButton>
       </div>
     </div>
@@ -32,6 +36,9 @@ const tab = ref('')
 </template>
 
 <style lang="scss" scoped>
+.tg-app-tab-record {
+  --tg-tab-style-wrap-bg-color: var(--tg-primary-main);
+}
 .footer-buttons {
   font-size: var(--tg-font-size-default);
   color: var(--tg-text-white);

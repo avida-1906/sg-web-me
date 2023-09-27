@@ -25,6 +25,16 @@ function onAmountInput() {
     setAmount(application.numberToCurrency(+amount.value))
 }
 
+onMounted(() => {
+  // ApiMemberWalletList({
+  //   contract_type: 'TRC20',
+  //   currency_name: 'USDT',
+  //   page: 1,
+  //   page_size: 10,
+  // }).then((res) => {
+  //   console.log('11111', res)
+  // })
+})
 // const currentNetwork = ref('1')
 // const networkList = [
 //   { label: '网络1', value: '1' },

@@ -105,7 +105,7 @@ else if (isRec.value)
         <AppCardList :list="list" />
       </div>
       <div class="load-more mt-24">
-        <AppPercentage :total="total" :percentage="list.length" />
+        <AppPercentage :total="total" :percentage="list?.length" />
         <BaseButton size="md" :loading="loading" @click="push">
           <div>
             {{ $t('load_more') }}

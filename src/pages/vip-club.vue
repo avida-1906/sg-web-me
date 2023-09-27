@@ -5,7 +5,7 @@
   <div class="tg-vip-club" />
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .tg-vip-club {
 
 }
