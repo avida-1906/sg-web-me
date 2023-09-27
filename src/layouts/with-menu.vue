@@ -98,7 +98,8 @@ onUpdated(() => {
 }
 .menu-btn {
   .app-svg-icon.arrow-left {
-    font-size: var(--tg-font-size-xs);
+    font-size: var(--tg-font-size-default);
+    transform: scale(0.8);
   }
 }
 .btn-txt {

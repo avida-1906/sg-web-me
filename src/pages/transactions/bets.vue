@@ -34,7 +34,9 @@
         </table>
       </div>
     </div>
-    <AppNextPrev />
+    <div class="page-stack-wrap mt-24">
+      <AppStack />
+    </div>
   </section>
 </template>
 
