@@ -85,7 +85,7 @@ export function ApiMemberGameList(params: {
 /**
  * 游戏详情
  */
-export function ApiMemberGameDetail(pid: string, game_id: string) {
+export function ApiMemberGameDetail(id: string) {
   return httpClient.get<{
     id: string
     platform_id: string
@@ -108,19 +108,7 @@ export function ApiMemberGameDetail(pid: string, game_id: string) {
     currency: string
     lang: string
     is_fav: number
-  }>(`/member/game/detail?platform_id=${pid}&game_id=${game_id}`)
-}
-
-/**
- * 修改收藏
- * id: string 游戏id
- * val: string 是否收藏 1是 2否
-*/
-export function ApiMemberGameUpdateFav(params: {
-  id: string
-  val: string
-}) {
-  return httpClient.get('/member/game/update/fav', params)
+  }>(`/member/game/detail?id=${id}`)
 }
 
 /**
@@ -166,8 +154,22 @@ export function ApiMemberGameSearch(params: { w: string }) {
 /*
 * 游戏收藏列表
 */
-export function ApiMemberGameFavList(params: { page: number; page_size: number }) {
-  return httpClient.get('/member/game/fav/list', params)
+export function ApiMemberFavList(params: { page: number; page_size: number }) {
+  return httpClient.get('/member/fav/list', params)
+}
+
+/**
+ * 新增收藏
+*/
+export function ApiMemberFavInsert(id: string) {
+  return httpClient.get(`/member/fav/insert?id=${id}`)
+}
+
+/**
+ * 删除收藏
+*/
+export function ApiMemberFavDelete(id: string) {
+  return httpClient.get(`/member/fav/delete?id=${id}`)
 }
 
 /*

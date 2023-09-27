@@ -3,8 +3,7 @@ import { EnumCurrency } from '~/utils/enums'
 
 interface Props {
   isTheatre: boolean
-  pid: string
-  gameId: string
+  id: string
 }
 interface CurrencyItem {
   id: string
@@ -22,7 +21,7 @@ const { bool: isRealMoneyMode, setBool: setRealModeBool } = useBoolean(false)
 
 const currentCurrency = ref<CurrencyItem>()
 const currencyList = ref<CurrencyItem[]>([])
-const { data: dataDetail, runAsync: runDetail } = useRequest(() => ApiMemberGameDetail(props.pid, props.gameId), {
+const { data: dataDetail, runAsync: runDetail } = useRequest(() => ApiMemberGameDetail(props.id), {
   onSuccess(res) {
     currencyList.value = JSON.parse(res.currency).map((item: any) => {
       const num = EnumCurrency[item.id] ?? 0
@@ -32,6 +31,7 @@ const { data: dataDetail, runAsync: runDetail } = useRequest(() => ApiMemberGame
     overlayTrue()
   },
 })
+const id = computed(() => dataDetail.value ? dataDetail.value.id : '')
 const pid = computed(() => dataDetail.value ? dataDetail.value.platform_id : '')
 const code = computed(() => dataDetail.value ? dataDetail.value.game_id : '')
 const currencyName = computed(() => currentCurrency.value ? currentCurrency.value.name : '')
@@ -74,15 +74,22 @@ const { bool: isTrendOpen, toggle: toggleTrendOpen } = useBoolean(false)
 function onClickTrend() {
   toggleTrendOpen()
 }
-// 收藏
-const { run: runUpdateFav } = useRequest(() => ApiMemberGameUpdateFav({ id: dataDetail.value?.id ?? '', val: isFavorite.value ? '2' : '1' }), {
-  onSuccess(res) {
-    console.log('ApiMemberGameUpdateFav', res)
+// 添加收藏
+const { run: runFavInsert } = useRequest(() => ApiMemberFavInsert(id.value), {
+  onSuccess() {
+    runDetail()
+  },
+})
+// 删除收藏
+const { run: runFavDelete } = useRequest(() => ApiMemberFavDelete(id.value), {
+  onSuccess() {
     runDetail()
   },
 })
 function onClickFavorite() {
-  runUpdateFav()
+  if (isFavorite.value)
+    return runFavDelete()
+  runFavInsert()
 }
 
 defineExpose({ runDetail })
@@ -144,7 +151,7 @@ await application.allSettled([runDetail()])
         <template #popper>
           <div v-if="currencyList.length" class="scroll-y popper popper-mobile">
             <div
-              v-for="c, i in currencyList" :key="i" v-close-popper class="currency-types popper-option"
+              v-for="c, i in currencyList" :key="i" v-close-popper class="popper-option currency-types"
               @click="onChooseCurrency(c)"
             >
               <div>
