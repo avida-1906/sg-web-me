@@ -34,7 +34,7 @@
         </table>
       </div>
     </div>
-    <AppNextPrev />
+    <AppStack />
   </section>
 </template>
 

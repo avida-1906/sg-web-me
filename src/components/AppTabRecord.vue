@@ -21,7 +21,7 @@ const tab = ref('')
       <div class="empty">
         <BaseEmpty description="尚未存款" icon="empty-1" />
       </div>
-      <AppNextPrev />
+      <AppStack />
       <div class="download-btn">
         <BaseButton size="md">
           下载全部存款

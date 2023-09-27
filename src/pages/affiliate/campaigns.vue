@@ -69,8 +69,7 @@ const campaignsList = [
         </template>
       </BaseCollapse>
     </div>
-    <AppNextPrev />
-    <!-- <AppStack /> -->
+    <AppStack />
     <BaseButton>
       创建新活动
     </BaseButton>
