@@ -11,7 +11,7 @@ const router = createRouter({
   scrollBehavior(to, from, savedPosition) {
     setTimeout(() => {
       // document.getElementById('main-content-scrollable')?.scrollTo(0, 0)
-      document.querySelector('.only-for-get-width')?.scrollIntoView()
+      document.querySelector('.only-for-get-width')?.scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'center' })
     }, 0)
   },
 })

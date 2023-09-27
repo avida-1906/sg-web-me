@@ -177,6 +177,8 @@ const isCasinoGames = computed(() => route.name === 'casino-games')
 }
 .only-for-get-width{
   width: 100%;
+  position: relative;
+  top: var(--tg-header-height-n);
 }
 .wrap {
 
