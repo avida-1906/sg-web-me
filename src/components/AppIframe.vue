@@ -35,6 +35,7 @@ const { data: dataDetail, runAsync: runDetail } = useRequest((pid, gameId) => Ap
 const pid = computed(() => dataDetail.value ? dataDetail.value.platform_id : '')
 const code = computed(() => dataDetail.value ? dataDetail.value.game_id : '')
 const currencyName = computed(() => currentCurrency.value ? currentCurrency.value.name : '')
+const isFavorite = computed(() => dataDetail.value ? dataDetail.value.is_fav === 1 : false)
 
 const { t } = useI18n()
 const { isMobile, appContentWidth } = storeToRefs(useWindowStore())
@@ -74,15 +75,14 @@ function onClickTrend() {
   toggleTrendOpen()
 }
 // 收藏
-const { bool: isFavorite, toggle: toggleFavorite } = useBoolean(false)
-const { run } = useRequest(() => ApiMemberGameUpdateFav({ id: dataDetail.value?.id ?? '', val: '1' }), {
+const { run: runUpdateFav } = useRequest(() => ApiMemberGameUpdateFav({ id: dataDetail.value?.id ?? '', val: isFavorite.value ? '2' : '1' }), {
   onSuccess(res) {
     console.log('ApiMemberGameUpdateFav', res)
+    runDetail(props.pid, props.gameId)
   },
 })
 function onClickFavorite() {
-  toggleFavorite()
-  run()
+  runUpdateFav()
 }
 
 defineExpose({ runDetail })
