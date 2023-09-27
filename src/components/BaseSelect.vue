@@ -12,7 +12,8 @@ interface Props {
   disabled?: boolean
   small?: boolean
   popper?: boolean
-  banks?: boolean // 银行卡选择需要多一个类
+  theme?: boolean // 主题默认白色，true黑色
+  banks?: boolean // 银行卡选择 展示的数据格式不同
 }
 const props = withDefaults(defineProps<Props>(), {
   layout: 'vertical',
@@ -31,7 +32,8 @@ function onChange(event: any) {
 
 // popper
 const { bool, setTrue, setFalse } = useBoolean(false)
-const popperLabel = computed(() => props.options.find(a => a.value === props.modelValue)?.label ?? (props.banks ? '' : '-'))
+const popperLabel = computed(() => props.options.find(a => a.value === props.modelValue)?.label ?? '-')
+const popperLabelBank = computed(() => props.options.find(a => a.value === props.modelValue)?.value ?? '')
 function onClickPopperItem(v: any) {
   if (v === props.modelValue)
     return
@@ -47,9 +49,10 @@ const { width } = useElementSize(parent)
 
 <template>
   <template v-if="popper">
-    <VDropdown :distance="6" :popper-class="banks ? 'select-bank' : ''" @hide="setFalse">
+    <VDropdown :distance="6" :popper-class="theme ? 'theme-black' : ''" @hide="setFalse">
       <div ref="parent" class="popper-label" @click="setTrue">
-        <span>{{ popperLabel }}</span>
+        <span v-if="!banks">{{ popperLabel }}</span>
+        <span v-else><BaseIcon v-if="popperLabelBank" name="fiat-bank" />  {{ popperLabelBank }}</span>
         <div class="icon" :class="{ up: bool }">
           <BaseIcon name="uni-arrow-down" />
         </div>
@@ -100,8 +103,11 @@ const { width } = useElementSize(parent)
   align-items: center;
   line-height: 1;
 
-  span {
+  > span {
     margin-right: var(--tg-spacing-8);
+    display: flex;
+    align-items: center;
+    gap: .5rem;
   }
 
   .icon {
@@ -216,7 +222,10 @@ const { width } = useElementSize(parent)
 
 <style>
 /* 全局修改，需要组件传select-bank class才可以 */
-.select-bank{
+.theme-black{
+  .v-popper__inner{
+    background-color: var(--tg-secondary-main) !important;
+  }
   .v-popper__arrow-container{
     .v-popper__arrow-inner, .v-popper__arrow-outer{
       border-color:var(--tg-secondary-main);
