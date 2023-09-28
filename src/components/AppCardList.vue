@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-defineProps<{ list?: any[] }>()
+defineProps<{ list?: any[]; isProvider?: boolean }>()
 
 const sliderOuter = ref()
 const { appContentWidth } = storeToRefs(useWindowStore())

@@ -30,7 +30,7 @@ function onClick(v: string | number, event: any) {
 </script>
 
 <template>
-  <div class="base-tab" :class="[center]">
+  <div class="base-tab" :class="{ center }">
     <div class="scroll-x base-tab-wrap" :class="{ full }">
       <div class="tab-wrap" :class="[shape]">
         <div

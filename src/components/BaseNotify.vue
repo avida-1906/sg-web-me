@@ -138,7 +138,7 @@ onMounted(() => {
   animation-timing-function: linear;
   animation-name: countDown;
   animation-duration: 4s!important;
-  border-bottom-left-radius: var(--tg-radius-default); // 4px
+  border-bottom-left-radius: var(--tg-radius-default); //
 }
 .notify-slide-fade-enter-active {
   transition: all 0.3s ease-out;
