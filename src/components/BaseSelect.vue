@@ -59,7 +59,7 @@ const { width } = useElementSize(parent)
       </div>
       <template #popper="{ hide }">
         <slot :data="{ options, hide, parentWidth: width }">
-          <div class="scroll-y need-pad-y popper-wrap">
+          <div class="need-pad-y scroll-y popper-wrap">
             <div
               v-for="type, i in options" :key="i" v-close-popper class="popper-option"
               @click="onClickPopperItem(type.value)"
@@ -87,6 +87,14 @@ const { width } = useElementSize(parent)
     </div>
   </div>
 </template>
+
+<style lang="scss">
+:root {
+  --tg-base-select-style-padding-x: var(--tg-spacing-10);
+  --tg-base-select-style-padding-y: var(--tg-spacing-11);
+  --tg-base-select-style-padding-right: var(--tg-base-select-style-padding-x);
+}
+</style>
 
 <style lang='scss' scoped>
 .popper-label {
@@ -160,7 +168,8 @@ const { width } = useElementSize(parent)
 
   select {
     width: 100%;
-    padding: var(--tg-spacing-11) var(--tg-spacing-10);
+    padding: var(--tg-base-select-style-padding-y) var(--tg-base-select-style-padding-x);
+    padding-right: var(--tg-base-select-style-padding-right);
     border-width: var(--tg-border-width-sm);
     border-style: solid;
     border-color: var(--tg-secondary-main);

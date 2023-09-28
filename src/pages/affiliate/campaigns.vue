@@ -106,8 +106,3 @@ button {
   margin-top: 28px;
 }
 </style>
-
-<route lang="yaml">
-meta:
-  layout: home
-</route>
