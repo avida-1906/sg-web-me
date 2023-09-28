@@ -1,10 +1,12 @@
 <script lang="ts" setup>
+interface Props {
+  gameType: string
+}
+const props = defineProps<Props>()
 const groupFilterOuter = ref()
 const { appContentWidth } = storeToRefs(useWindowStore())
 
-const route = useRoute()
-const gameType = route.params.gameType as string
-const isCasinoGame = computed(() => (Object.values(EnumCasinoGameType) as Array<string>).includes(gameType))
+const isCasinoGame = computed(() => (Object.values(EnumCasinoGameType) as Array<string>).includes(props.gameType))
 </script>
 
 <template>
@@ -28,11 +30,9 @@ const isCasinoGame = computed(() => (Object.values(EnumCasinoGameType) as Array<
         </div>
       </template>
       <template v-else>
-        <div>
-          <BaseButton size="md" round>
-            {{ $t('casino_filter_provider_all') }}
-          </BaseButton>
-        </div>
+        <BaseButton bg-style="dark" size="md" round @click="$router.push('/casino/collection/provider')">
+          {{ $t('casino_filter_provider_all') }}
+        </BaseButton>
       </template>
     </div>
     <div class="flex-center-bet right">

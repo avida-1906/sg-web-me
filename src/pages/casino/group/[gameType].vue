@@ -113,7 +113,7 @@ else if (isRec.value)
         <AppGameSearch game-type="1" />
       </div>
       <div class="mt-24">
-        <AppGroupFilter />
+        <AppGroupFilter :game-type="currentType" />
       </div>
       <div class="mt-24">
         <AppCardList :list="list" />
