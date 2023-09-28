@@ -273,3 +273,14 @@ export function ApiMemberWalletList(
 ) {
   return httpClient.get<string>('/member/wallet/list', params)
 }
+
+/**
+ * 保险库加减
+ */
+export function ApiMemberBalanceLockerUpdate(data: {
+  type: 'add' | 'remove'
+  currency_name: string
+  amount: string
+}) {
+  return httpClient.post('/member/balance_locker/update', data)
+}
