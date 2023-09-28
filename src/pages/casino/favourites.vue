@@ -1,10 +1,7 @@
 <script setup lang="ts">
 const { VITE_CASINO_HOME_PAGE_SIZE } = import.meta.env
 
-const { data, prev, next, page, total, runAsync } = usePage((page, page_size) => () => ApiMemberFavList({
-  page: page.value,
-  page_size: page_size.value,
-}), { page_size: VITE_CASINO_HOME_PAGE_SIZE })
+const { list, page, runAsync, prev, next, hasMore } = useList(ApiMemberFavList, {}, { page_size: VITE_CASINO_HOME_PAGE_SIZE })
 
 await application.allSettled([runAsync()])
 </script>
@@ -21,14 +18,14 @@ await application.allSettled([runAsync()])
             </h1>
           </div>
           <div class="right">
-            <BaseImage url="/img/casino/group-banner-rec.png" />
+            <BaseImage url="/img/casino/group-banner-default.png" />
           </div>
         </div>
       </div>
     </div>
     <AppGameSearch game-type="1" />
-    <template v-if="data && data.length > 0">
-      <AppCardList :list="data" />
+    <template v-if="list.length > 0">
+      <AppCardList :list="list" />
     </template>
     <div v-else class="no-data">
       暂无任何收藏，请使用
@@ -41,7 +38,7 @@ await application.allSettled([runAsync()])
       <BaseButton type="text" :disabled="page === 1" @click="prev">
         {{ $t('page_prev') }}
       </BaseButton>
-      <BaseButton type="text" :disabled="!data || data.length >= total" @click="next">
+      <BaseButton type="text" :disabled="!hasMore" @click="next">
         {{ $t('page_next') }}
       </BaseButton>
     </div>

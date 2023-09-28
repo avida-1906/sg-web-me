@@ -15,16 +15,14 @@ const showLive = computed(() => tab.value === EnumCasinoGameType.LIVE)
 const showSlot = computed(() => tab.value === EnumCasinoGameType.SLOT)
 const currentTitle = computed(() => tabList.find(a => a.value === tab.value)?.label ?? '-')
 
-const { list: liveList, total: liveTotal, runAsync: runLive } = useList(ApiMemberGameList)
-const { list: slotList, total: slotTotal, runAsync: runSlot, loadMore, hasMore } = useList(ApiMemberGameList, {}, {
-  page_size: 400,
-})
+const { list: liveList, total: liveTotal, runAsync: runLive } = useList(ApiMemberGameList, {}, { page_size: VITE_CASINO_HOME_PAGE_SIZE })
+const { list: slotList, total: slotTotal, runAsync: runSlot } = useList(ApiMemberGameList, {}, { page_size: VITE_CASINO_HOME_PAGE_SIZE })
 
 function viewMoreGames(gameType: string) {
   router.push(`/casino/group/${gameType}`)
 }
 
-await application.allSettled([runLive({ game_type: 3 }), runSlot({ game_type: 3 })])
+await application.allSettled([runLive({ game_type: 1 }), runSlot({ game_type: 3 })])
 </script>
 
 <template>
@@ -38,9 +36,6 @@ await application.allSettled([runLive({ game_type: 3 }), runSlot({ game_type: 3 
     <div class="mt-24">
       <BaseTab v-model="tab" :list="tabList" :center="false" size="large" />
     </div>
-    <BaseButton @click="loadMore">
-      loadMore {{ slotList?.length }} {{ slotTotal }} hasMore   {{ hasMore }}
-    </BaseButton>
     <div class="content-wrapper">
       <Transition name="tab-fade">
         <div v-show="showAll">
