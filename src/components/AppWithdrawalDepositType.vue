@@ -36,6 +36,7 @@ const changeType = function (type: string) {
   display: flex;
   gap: .75rem;
   // margin-bottom: var(--tg-spacing-12);
+  padding: var(--tg-spacing-2) 0;
   .type-btn{
     background: var(--tg-secondary-main);
     min-width: 102px;
@@ -47,7 +48,7 @@ const changeType = function (type: string) {
     justify-content: center;
     gap: .5rem;
     // box-shadow: var(--tg-box-shadow);
-    box-shadow: 0px 2px 3px -1px rgba(0, 0, 0, 0.30);;
+    box-shadow: 0px 2px 3px -1px rgba(0, 0, 0, 0.30);
     border-radius: var(--tg-radius-default);
     color: var(--tg-text-white);
     cursor: pointer;
