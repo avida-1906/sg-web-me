@@ -2,10 +2,14 @@
 const props = defineProps<{ gameType: string }>()
 const { VITE_CASINO_GAME_PAGE_SIZE } = import.meta.env
 const { t } = useI18n()
+const route = useRoute()
+
 const currentType = ref(props.gameType)
 const isLive = computed(() => currentType.value === EnumCasinoGameType.LIVE) // 真人
 const isSlot = computed(() => currentType.value === EnumCasinoGameType.SLOT) // 老虎机
 const isRec = computed(() => currentType.value === 'rec') // 推荐游戏
+const iszProvider = computed(() => currentType.value === 'provider') // 供应商
+
 const title = computed(() => {
   if (isLive.value)
     return t('game_type_live')
@@ -13,15 +17,26 @@ const title = computed(() => {
     return t('game_type_slot')
   else if (isRec.value)
     return t('game_type_rec')
+  else if (iszProvider.value)
+    return route.query.name
   return '-'
+})
+const bannerImg = computed(() => {
+  if (isLive.value)
+    return 'live'
+  else if (isSlot.value)
+    return 'slot'
+  return 'default'
 })
 
 // 真人、老虎机
 const gameTypeParams = computed(() => isLive.value ? 1 : isSlot.value ? 3 : undefined)
+const pid = computed(() => iszProvider.value ? route.query.pid?.toString() : undefined)
 const { data: gameList, total: gameTotal, runAsync: runGameList, loading: loadingGame, push: pushGame } = usePage((page, page_size) => () => ApiMemberGameList({
   page: page.value,
   page_size: page_size.value,
   game_type: gameTypeParams.value,
+  platform_id: pid.value,
 }), { page_size: VITE_CASINO_GAME_PAGE_SIZE })
 
 // 推荐游戏
@@ -31,38 +46,37 @@ const { data: recList, total: recTotal, runAsync: runRecList, loading: loadingRe
 }), { page_size: VITE_CASINO_GAME_PAGE_SIZE })
 
 const list = computed(() => {
-  if (isLive.value || isSlot.value)
+  if (isLive.value || isSlot.value || iszProvider.value)
     return gameList.value
   else if (isRec.value)
     return recList.value
   return []
 })
 const total = computed(() => {
-  if (isLive.value || isSlot.value)
+  if (isLive.value || isSlot.value || iszProvider.value)
     return gameTotal.value
   else if (isRec.value)
     return recTotal.value
   return 0
 })
 const loading = computed(() => {
-  if (isLive.value || isSlot.value)
+  if (isLive.value || isSlot.value || iszProvider.value)
     return loadingGame.value
   else if (isRec.value)
     return loadingRec.value
   return false
 })
 const push = computed(() => {
-  if (isLive.value || isSlot.value)
+  if (isLive.value || isSlot.value || iszProvider.value)
     return pushGame
   else if (isRec.value)
     return pushRec
   return () => { }
 })
 
-const route = useRoute()
 const stop = watch(route, (a) => {
   currentType.value = a.params.gameType.toString()
-  if (isLive.value || isSlot.value)
+  if (isLive.value || isSlot.value || iszProvider.value)
     application.allSettled([runGameList()])
   else if (isRec.value)
     application.allSettled([runRecList()])
@@ -71,7 +85,7 @@ onBeforeRouteLeave(() => {
   stop()
 })
 
-if (isLive.value || isSlot.value)
+if (isLive.value || isSlot.value || iszProvider.value)
   await application.allSettled([runGameList()])
 else if (isRec.value)
   await application.allSettled([runRecList()])
@@ -90,7 +104,7 @@ else if (isRec.value)
               </h1>
             </div>
             <div class="right">
-              <BaseImage :url="`/img/casino/group-banner-${gameType}.png`" />
+              <BaseImage :url="`/img/casino/group-banner-${bannerImg}.png`" />
             </div>
           </div>
         </div>
@@ -106,7 +120,7 @@ else if (isRec.value)
       </div>
       <div class="load-more mt-24">
         <AppPercentage :total="total" :percentage="list?.length" />
-        <BaseButton size="md" :loading="loading" @click="push">
+        <BaseButton v-show="list?.length < total" size="md" :loading="loading" @click="push">
           <div>
             {{ $t('load_more') }}
           </div>

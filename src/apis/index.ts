@@ -179,6 +179,35 @@ export function ApiMemberGameRecList(params: { page: number; page_size: number }
   return httpClient.get('/member/game/rec/list', params)
 }
 
+/*
+* 场馆列表
+*/
+export function ApiMemberPlatformList(params: { page: number; page_size: number }) {
+  return httpClient.get<{
+    d: {
+      id: string
+      en_name: string
+      game_type: number
+      state: number
+      maintained: number
+      seq: number
+      logo: string
+      created_at: number
+      updated_at: number
+      updated_uid: string
+      updated_name: string
+      zh_name: string
+      pt_name: string
+      vn_name: string
+      th_name: string
+      game_num: number
+      name: string
+    }[]
+    t: number
+    s: number
+  }>('/member/platform/list', params)
+}
+
 /**
  * 虚拟钱包列表
  */

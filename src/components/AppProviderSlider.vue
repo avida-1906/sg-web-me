@@ -1,19 +1,24 @@
 <script lang="ts" setup>
-// const router = useRouter()
+const { VITE_CASINO_HOME_PAGE_SIZE } = import.meta.env
+const router = useRouter()
 
-const { gameProviders } = useGameList()
+const { data: liveList, total: liveTotal, runAsync: runPLatFormList } = usePage((page, page_size) => () => ApiMemberPlatformList({
+  page: page.value,
+  page_size: page_size.value,
+}), { page_size: VITE_CASINO_HOME_PAGE_SIZE })
+runPLatFormList()
 
 function goPage(item: any) {
-  // router.push(`/casino/group/${item.name}`)
+  router.push(`/casino/group/provider?pid=${item.id}&name=${item.en_name}`)
 }
 </script>
 
 <template>
   <div class="tg-app-provider-slider">
-    <AppSlider api="" icon="chess-game-provider" :title="$t('casino_provider')" :data="gameProviders" :show-view-all="false" game-type="provider">
+    <AppSlider icon="chess-game-provider" :title="$t('casino_provider')" :data="liveList" :show-view-all="false" game-type="provider">
       <template #default="{ item }">
         <div class="provider-item-wrap" @click="goPage(item)">
-          <BaseImage :url="item.src" />
+          <BaseImage url="https://mediumrare.imgix.net/be6c453a8f450c2fbf5181abc844f080b537458061aeca3902575510acacdbea?&dpr=2&format=auto&auto=format&q=50" />
         </div>
       </template>
     </AppSlider>
