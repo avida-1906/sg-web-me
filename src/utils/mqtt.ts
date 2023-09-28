@@ -29,12 +29,14 @@ class SocketClient {
 
   /** 生成 #MQTT_SERVER */
   public generateMQTT_SERVER() {
-    if (!import.meta.env.VITE_SOCKET_URL_LIST_STRING) {
+    const { VITE_SOCKET_URL_LIST_STRING } = getEnv()
+
+    if (!VITE_SOCKET_URL_LIST_STRING) {
       this.#MQTT_SERVER = null
       return
     }
 
-    const list = import.meta.env.VITE_SOCKET_URL_LIST_STRING.split(',')
+    const list = VITE_SOCKET_URL_LIST_STRING.split(',')
     const result: TMqttServer = []
     list.forEach((item) => {
       const [protocol, host, port] = item.split('|')
@@ -52,9 +54,10 @@ class SocketClient {
     if (this.#MQTT_SERVER) {
       this.#log('连接中...')
       import('precompiled-mqtt').then((mqtt) => {
+        const { VITE_SOCKET_USERNAME, VITE_SOCKET_PASSWORD } = getEnv()
         this.client = mqtt.connect({
-          username: import.meta.env.VITE_SOCKET_USERNAME,
-          password: import.meta.env.VITE_SOCKET_PASSWORD,
+          username: VITE_SOCKET_USERNAME,
+          password: VITE_SOCKET_PASSWORD,
           keepalive: 20,
           clientId: new Date().getTime().toString(),
           servers: this.#MQTT_SERVER!,

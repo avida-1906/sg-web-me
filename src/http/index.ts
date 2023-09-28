@@ -1,7 +1,7 @@
 import type { AxiosResponse, InternalAxiosRequestConfig } from 'axios'
 import { getCurrentLanguageForBackend } from '~/modules/i18n'
 
-const { VITE_HTTP_TIMEOUT, VITE_HTTP_BASEURL } = import.meta.env
+const { VITE_HTTP_TIMEOUT, VITE_HTTP_BASEURL, PROD } = getEnv()
 
 interface IResponse<T> {
   status: boolean
@@ -11,12 +11,11 @@ type IRequestInterceptors = (value: InternalAxiosRequestConfig<any>) => Internal
 type IResponseInterceptors = (value: AxiosResponse<any>) => AxiosResponse<any> | Promise<Error>
 
 const { openNotify } = useNotify()
-
 class HttpClient {
   cancelTokenList: AbortController[] = []
 
   private instance = axios.create({
-    baseURL: import.meta.env.PROD ? '' : '/api',
+    baseURL: PROD ? '' : '/api',
     timeout: VITE_HTTP_TIMEOUT,
     headers: {
       'Content-Type': 'application/json;charset=UTF-8',
