@@ -15,6 +15,13 @@ const router = createRouter({
   },
 })
 
+router.beforeEach((to, from, next) => {
+  if (httpClient.cancelTokenList.length > 0)
+    httpClient.cancelAllRequest()
+
+  next()
+})
+
 export function install(app: App<Element>) {
   app.use(router)
 }

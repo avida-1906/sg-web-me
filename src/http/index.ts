@@ -11,6 +11,8 @@ type IRequestInterceptors = (value: InternalAxiosRequestConfig<any>) => Internal
 type IResponseInterceptors = (value: AxiosResponse<any>) => AxiosResponse<any> | Promise<Error>
 
 class HttpClient {
+  cancelTokenList: AbortController[] = []
+
   private instance = axios.create({
     baseURL: import.meta.env.PROD ? '' : '/api',
     timeout: VITE_HTTP_TIMEOUT,
@@ -56,6 +58,13 @@ class HttpClient {
       config.headers.lang = getCurrentLanguageForBackend()
       return config
     },
+    // 设置AbortController
+    (config) => {
+      const controller = new AbortController()
+      config.signal = controller.signal
+      this.cancelTokenList.push(controller)
+      return config
+    },
     // 使用qs序列化参数
     // (config) => {
     //   if (config.method === 'post')
@@ -91,15 +100,23 @@ class HttpClient {
     // 处理后端status为false的情况
     (response) => {
       const { status, data } = response.data as IResponse<any>
-      if (!status) {
-        if (!Number.isNaN(Number(data)) && data !== '')
-          console.log('data是数字，可以Toast')
+      const appStore = useAppStore()
 
-        // Toast
+      if (!status) {
+        // 如果后端返回token，关闭所有请求，清除token
+        if (data === 'token') {
+          this.cancelAllRequest()
+          appStore.removeToken()
+        }
 
         // 直接抛出错误，不再执行后续操作
-        return Promise.reject(new Error(`发生错误：status: ${status}`))
+        return Promise.reject(new Error(`发生错误：status: ${status}, data: ${data}`))
       }
+      return response
+    },
+    // 请求完成后，移除AbortController
+    (response) => {
+      this.cancelTokenList = this.cancelTokenList.filter(item => item !== response.config.signal as any)
       return response
     },
     // 处理后端status为true的情况，只将data返回
@@ -181,6 +198,12 @@ class HttpClient {
 
         return Promise.reject(errorMessage)
       })
+  }
+
+  /** 关闭所有请求 */
+  cancelAllRequest() {
+    this.cancelTokenList.forEach(item => item.abort())
+    this.cancelTokenList = []
   }
 
   get<T>(url: string, params?: any): Promise<T> {
