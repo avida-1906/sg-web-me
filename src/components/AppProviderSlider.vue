@@ -2,7 +2,7 @@
 const { VITE_CASINO_HOME_PAGE_SIZE } = import.meta.env
 const router = useRouter()
 
-const { data: liveList, total: liveTotal, runAsync: runPLatFormList } = usePage((page, page_size) => () => ApiMemberPlatformList({
+const { data: liveList, runAsync: runPLatFormList } = usePage((page, page_size) => () => ApiMemberPlatformList({
   page: page.value,
   page_size: page_size.value,
 }), { page_size: VITE_CASINO_HOME_PAGE_SIZE })
