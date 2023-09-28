@@ -7,25 +7,26 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const {
-  isLessThanLg,
-  isGreaterThanXs,
+  appContentWidth,
 } = storeToRefs(useWindowStore())
 
-// 1160 638
+// 1160 638 （370）
+// 1555 1103
+// 1024 600
 const scrollRef = ref()
 const getGridAutoColumns = computed(() => {
   if (props.mode === 'only') {
     return { 'grid-auto-columns': '100%' }
   }
   else {
-    if (!isLessThanLg.value)
-      return { 'grid-auto-columns': '32.45%' }
+    if (appContentWidth.value > 1024)
+      return { 'grid-auto-columns': '33.33%' }
 
-    else if (isGreaterThanXs.value)
-      return { 'grid-auto-columns': '47%' }
+    else if (appContentWidth.value > 600)
+      return { 'grid-auto-columns': '48.75%' }
 
     else
-      return { 'grid-auto-columns': '93%' }
+      return { 'grid-auto-columns': '95.5%' }
   }
 })
 function scrollLeft() {
@@ -40,7 +41,7 @@ function scrollRight() {
   <div class="app-banner">
     <div ref="scrollRef" class="banner-scroll scroll-x" :style="getGridAutoColumns">
       <div v-for="i in 7" :key="i" class="banner-item">
-        <BaseAspectRatio ratio="386/226">
+        <BaseAspectRatio class="banner-ratio" ratio="386/226">
           <BaseImage url="https://cdn.sanity.io/images/tdrhge4k/production/65949dde3eac8d7c7f59a020c5acf70bd3692a0c-1743x1026.jpg?auto=format&q=90&w=760" />
           <div class="item-msg">
             <div class="msg-type">
@@ -71,27 +72,31 @@ function scrollRight() {
 
 <style lang="scss" scoped>
 .app-banner {
-  width: 100%;
+  // width: 100%;
   position: relative;
+  margin: 0 -6px 0;
   .banner-scroll{
     width: 100%;
     display: grid;
     grid-auto-flow: column;
-    grid-column-gap: 1rem;
+    // grid-column-gap: 1rem;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
-    // --standard-lockup-shadow-offset: 0.5rem;
-    // -webkit-mask: linear-gradient(90deg,transparent 0,var(--tg-secondary-deepdark) var(--standard-lockup-shadow-offset,15px),var(--tg-secondary-deepdark) calc(100% - var(--standard-lockup-shadow-offset,15px)),transparent 100%);
+    --standard-lockup-shadow-offset: 8px;
+    -webkit-mask: linear-gradient(90deg,transparent 0,var(--tg-secondary-deepdark) var(--standard-lockup-shadow-offset,15px),var(--tg-secondary-deepdark) calc(100% - var(--standard-lockup-shadow-offset,15px)),transparent 100%);
     &::-webkit-scrollbar {
       display: none;
     }
     .banner-item{
       position: relative;
       scroll-snap-align: start;
-      border-radius: var(--tg-radius-md);
-      overflow: hidden;
       cursor: pointer;
+      padding: 0 6px;
+      .banner-ratio{
+        border-radius: var(--tg-radius-md);
+        overflow: hidden;
+      }
       .item-msg{
         position: absolute;
         color: var(--tg-text-white);
@@ -150,10 +155,10 @@ function scrollRight() {
     --tg-icon-color:var(--tg-text-white);
   }
   .arrow-left{
-    left: -30px;
+    left: -20px;
   }
   .arrow-right{
-    right: -30px;
+    right: -20px;
   }
 }
 </style>

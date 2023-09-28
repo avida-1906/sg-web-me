@@ -4,16 +4,20 @@ import { EnumCurrency } from '~/utils/enums'
 interface Props {
   currencyType: EnumCurrency
   showName?: boolean
+  iconAlign?: 'left' | 'right'
 }
 const props = defineProps<Props>()
 const currencyName = computed(() => EnumCurrency[props.currencyType].toLocaleUpperCase())
 const iconName = computed(() => EnumCurrency[props.currencyType].toLocaleLowerCase())
+const getIsRight = computed(() => props.iconAlign === 'right')
 </script>
 
 <template>
   <div class="app-currency-icon">
-    <BaseIcon :name="`coin-${iconName}`" />
-    <span v-if="showName" class="name">{{ currencyName }}</span>
+    <BaseIcon v-if="!getIsRight" :name="`coin-${iconName}`" />
+    <span v-if="showName" class="name" :style="`margin-${getIsRight ? 'right' : 'left'}: var(--tg-spacing-4);`">{{ currencyName }}</span>
+    <slot name="network" />
+    <BaseIcon v-if="getIsRight" :name="`coin-${iconName}`" />
   </div>
 </template>
 
@@ -29,7 +33,7 @@ const iconName = computed(() => EnumCurrency[props.currencyType].toLocaleLowerCa
     overflow: hidden;
     text-overflow: ellipsis;
     text-transform: uppercase;
-    margin-left: var(--tg-spacing-4);
+    // margin-left: var(--tg-spacing-4);
   }
 }
 </style>

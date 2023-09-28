@@ -52,7 +52,11 @@ function cancelPayment() {
       </BaseButton>
     </template>
     <template v-if="depositStep === '2'">
-      <AppCurrencyIcon class="currency-icon" :show-name="true" :currency-type="1" />
+      <AppCurrencyIcon class="currency-icon" :show-name="true" :currency-type="1" icon-align="right">
+        <template #network>
+          <span style="padding-right: var(--tg-spacing-5);">TRC20</span>
+        </template>
+      </AppCurrencyIcon>
       <BaseQrcode url="www.google.com" />
       <div>
         <BaseInput v-model="currentAddress" label="转入地址">
