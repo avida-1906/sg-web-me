@@ -1,8 +1,8 @@
+const { VITE_I18N_DEFAULT_LANG } = getEnv()
+
 class Application {
   /** 数字货币默认保留小数长度 */
   #CURRENCY_DEFAULT_DECIMAL = 8
-
-  defaultLanguage = import.meta.env.VITE_I18N_DEFAULT_LANG
 
   constructor() {
     console.log('Appliction constructor')
@@ -14,7 +14,7 @@ class Application {
    * @param {EnumLanguage} language 语言
    * @returns {string} 格式化后的时间
    */
-  timestampToTime(timestamp: number, language = EnumLanguage[this.defaultLanguage]): string {
+  timestampToTime(timestamp: number, language = EnumLanguage[VITE_I18N_DEFAULT_LANG]): string {
     const languageStr = EnumLanguage[language]
     return new Intl.DateTimeFormat(languageStr, { dateStyle: 'short', timeStyle: 'medium' }).format(timestamp)
   }
@@ -104,4 +104,10 @@ class Application {
 
 export const application = new Application()
 
-// export const getEnv = (key: keyof ImportMetaEnv) => import.meta.env[key]
+/**
+ * @description 获取环境变量
+ * @returns {ImportMetaEnv}
+ */
+export function getEnv() {
+  return import.meta.env
+}

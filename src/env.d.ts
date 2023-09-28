@@ -13,9 +13,9 @@ interface ImportMetaEnv {
   readonly VITE_SOCKET_USERNAME: string
   /** Socket密码 */
   readonly VITE_SOCKET_PASSWORD: string
-  /* casino大厅游戏数量 */
+  /** casino大厅游戏数量 */
   readonly VITE_CASINO_HOME_PAGE_SIZE: number
-  /* casino子类型游戏数量 */
+  /** casino子类型游戏数量 */
   readonly VITE_CASINO_GAME_PAGE_SIZE: number
 }
 

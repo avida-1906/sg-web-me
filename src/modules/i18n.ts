@@ -50,14 +50,14 @@ export async function loadLanguageAsync(langIndex: EnumLanguage): Promise<Locale
 }
 
 export function install(app: App<Element>) {
-  const defaultLanguage = import.meta.env.VITE_I18N_DEFAULT_LANG
+  const { VITE_I18N_DEFAULT_LANG } = getEnv()
   const localStorageLanguageIndex = Local.get<EnumLanguage | null>(STORAGE_LANGUAGE_KEY)?.value
   let index: number
   if (localStorageLanguageIndex)
     index = Number(localStorageLanguageIndex)
 
   else
-    index = Number(EnumLanguage[defaultLanguage])
+    index = Number(EnumLanguage[VITE_I18N_DEFAULT_LANG])
 
   app.use(i18n)
 

@@ -1,6 +1,6 @@
 import type { Options, Service } from 'vue-request'
 
-const { VITE_CASINO_HOME_PAGE_SIZE } = import.meta.env
+const { VITE_CASINO_HOME_PAGE_SIZE } = getEnv()
 
 export interface IResponseList<T> {
   d: T

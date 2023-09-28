@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const props = defineProps<{ gameType: string }>()
-const { VITE_CASINO_GAME_PAGE_SIZE } = import.meta.env
+const { VITE_CASINO_GAME_PAGE_SIZE } = getEnv()
 const { t } = useI18n()
 const route = useRoute()
 

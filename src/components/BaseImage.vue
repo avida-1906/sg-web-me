@@ -18,7 +18,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const emit = defineEmits(['clickImg'])
-const { VITE_CASINO_IMG_CLOUD_URL } = import.meta.env
+const { VITE_CASINO_IMG_CLOUD_URL } = getEnv()
 const imgUrl = computed(() => {
   if (props.isCloud)
     return `${VITE_CASINO_IMG_CLOUD_URL}${props.url.replace('%lang%', getCurrentLanguageForBackend())}`
