@@ -6,7 +6,7 @@ const route = useRoute()
 const initCasino = computed(() => route.name?.toString().includes('casino'))
 const initSports = computed(() => route.name?.toString().includes('sports'))
 // 搜索栏
-const gameType = ref(initCasino.value ? '1' : initSports.value ? '2' : '')
+const gameType = ref(initCasino.value ? '1' : initSports.value ? '2' : '1')
 const gameTypeList = [
   { label: t('casino'), value: '1' },
   { label: t('sports'), value: '2' },

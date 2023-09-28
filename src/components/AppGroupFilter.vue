@@ -3,10 +3,19 @@ interface Props {
   gameType: string
 }
 const props = defineProps<Props>()
+const { t } = useI18n()
 const groupFilterOuter = ref()
 const { appContentWidth } = storeToRefs(useWindowStore())
 
 const isCasinoGame = computed(() => (Object.values(EnumCasinoGameType) as Array<string>).includes(props.gameType))
+
+const selectValue = ref('en_name:asc')
+const selectOptions = [
+  { icon: 'spt-sort-az', label: 'A-Z', value: 'en_name:asc' },
+  { icon: 'spt-sort-az', label: 'Z-A', value: 'en_name:desc' },
+  { icon: 'chess-bonus-rounds', label: t('casino_sort_popular'), value: 'sorting:asc' },
+  { icon: 'chess-slot-machine', label: t('casino_sort_featured'), value: 'created_at:desc' },
+]
 </script>
 
 <template>
@@ -40,16 +49,10 @@ const isCasinoGame = computed(() => (Object.values(EnumCasinoGameType) as Array<
         <BaseIcon name="uni-bars" />
         <span class="txt">{{ $t('casino_filter_label_sort') }}</span>
       </div>
-      <div>
-        <BaseGameSortPop>
-          <BaseButton bg-style="dark" size="sm">
-            <div class="btn-arrow-down">
-              <span>热门</span>
-              <BaseIcon name="uni-arrow-down" />
-            </div>
-          </BaseButton>
-        </BaseGameSortPop>
-      </div>
+      <BaseSelect v-slot="{ data: { item } }" v-model="selectValue" :options="selectOptions" popper>
+        <BaseIcon :name="item.icon" />
+        <div>{{ item.label }}</div>
+      </BaseSelect>
     </div>
   </section>
 </template>

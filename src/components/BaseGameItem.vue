@@ -9,7 +9,6 @@ interface Props {
   }
 }
 defineProps<Props>()
-const { VITE_CASINO_TEST_SLOT_IMG } = import.meta.env
 const router = useRouter()
 const { isMobile } = storeToRefs(useWindowStore())
 
@@ -30,7 +29,7 @@ function gameStart(item: Props['gameInfo']) {
 
 <template>
   <div class="base-game-item" @click="gameStart(gameInfo)">
-    <BaseImage :url="VITE_CASINO_TEST_SLOT_IMG" :name="gameInfo.name" />
+    <BaseImage :url="gameInfo.img" :name="gameInfo.name" is-cloud />
     <div class="active-game-item">
       <div class="game-title">
         {{ gameInfo.name }}
