@@ -20,7 +20,7 @@ export function useList<R extends IResponseList<unknown>, P extends unknown[]>(
   options?: Options<R, P>,
   defaultPagination?: Partial<IPagination>,
 ) {
-  const isLoadMore = ref(false)
+  const { bool: isLoadMore, setTrue: setLoadMoreTrue, setFalse: setLoadMoreFalse } = useBoolean(false)
   const total = ref(0)
   const page = ref(defaultPagination?.page || 1)
   const page_size = ref(defaultPagination?.page_size || Number(VITE_CASINO_HOME_PAGE_SIZE))
@@ -34,7 +34,7 @@ export function useList<R extends IResponseList<unknown>, P extends unknown[]>(
 
       if (isLoadMore.value) {
         list.value = Object.freeze(concat(list.value, get(response, 'd', [])))
-        isLoadMore.value = false
+        setLoadMoreFalse()
       }
       else {
         list.value = get(response, 'd', []) as any
@@ -72,7 +72,7 @@ export function useList<R extends IResponseList<unknown>, P extends unknown[]>(
   }
 
   const loadMore = () => {
-    isLoadMore.value = true
+    setLoadMoreTrue()
     page.value++
   }
 

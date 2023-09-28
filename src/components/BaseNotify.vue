@@ -86,8 +86,8 @@ onMounted(() => {
     <section
       v-if="show"
       class="tg-base-notify"
-      @touchmove="overMove"
-      @touchstart="enterStart"
+      @touchmove.passive="overMove"
+      @touchstart.passive="enterStart"
       @touchend="leaveEnd"
       @mouseover="overMove"
       @mouseleave="leaveEnd"

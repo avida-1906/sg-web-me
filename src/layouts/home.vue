@@ -26,43 +26,21 @@ const {
 // 内容区宽度
 const homeContainerRef = ref<HTMLElement | null>(null)
 const { width } = useElementSize(homeContainerRef)
-watch(() => width.value, (newWidth) => {
-  windowStore.setAppContentWidth(newWidth)
-})
-
+const route = useRoute()
 const { leftIsExpand, isSwitching, switchTo } = useLeftSidebar()
+const { rightIsExpand, setRightSidebarExpandStatus, rightContainerIs0 } = useRightSidebar()
 
-// 右侧是否展开
-const { bool: rightIsExpand, setTrue: setRightIsExpandTrue, setFalse: setRightIsExpandFalse } = useBoolean(false)
-const { bool: rightContainerIs0, setTrue: setRightContainerIs0True, setFalse: setRightContainerIs0False } = useBoolean(true)
-const rightSidebar = ref<HTMLElement | null>(null)
+// 是否游戏页面
+const isCasinoGames = computed(() => route.name === 'casino-games')
 
 // home-overlay 是否显示
 const homeOverlayIsShow = computed(() => {
   return leftIsExpand.value && isLessThanLg.value && !isMobile.value
 })
 
-function setRightSidebarExpandStatus() {
-  // if (status !== undefined) {
-  //   rightIsExpand.value = status
-  //   return
-  // }
-  if (!rightIsExpand.value) {
-    setRightIsExpandTrue()
-    setTimeout(() => {
-      setRightContainerIs0False()
-    }, 30)
-  }
-  else {
-    setRightContainerIs0True()
-    setTimeout(() => {
-      setRightIsExpandFalse()
-    }, 300)
-  }
-}
-const route = useRoute()
-// 是否游戏页面
-const isCasinoGames = computed(() => route.name === 'casino-games')
+watch(() => width.value, (newWidth) => {
+  windowStore.setAppContentWidth(newWidth)
+})
 </script>
 
 <template>
@@ -105,26 +83,18 @@ const isCasinoGames = computed(() => route.name === 'casino-games')
       <header class="navigation">
         <AppContent>
           <AppHeader />
-          <!-- <div class="group">
-            <div class="container">
-              {{ $t('active_day_ago', { days: 10 }) }}
-            </div>
-            <p>
-              真人娱乐场
-            </p>
-            <button @click="setRightSidebarExpandStatus()">
-              聊天室
-            </button>
-          </div> -->
         </AppContent>
       </header>
 
-      <div id="main-content-scrollable" class="scroll-y scrollable" style="color: #fff">
+      <div id="main-content-scrollable" class="scroll-y scrollable">
         <!-- 用于获取内容区宽度 -->
         <AppContent>
           <div ref="homeContainerRef" class="only-for-get-width" />
         </AppContent>
         <!-- 主页面 -->
+        <BaseButton @click="setRightSidebarExpandStatus">
+          聊天室
+        </BaseButton>
         <slot>
           <AppContent :is-game-page="isCasinoGames">
             <RouterView v-slot="{ Component }">
@@ -150,10 +120,9 @@ const isCasinoGames = computed(() => route.name === 'casino-games')
       </div>
     </div>
     <div
-      v-if="rightIsExpand" ref="rightSidebar" class="right-sidebar" :class="{
+      v-if="rightIsExpand" class="right-sidebar" :class="{
         'width-none': rightContainerIs0,
         'fixed': isLessThanSm,
-        'display-none': isLessThanSm,
       }"
     >
       右侧 {{ rightIsExpand }}
