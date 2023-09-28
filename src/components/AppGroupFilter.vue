@@ -19,7 +19,10 @@ const selectOptions = [
 </script>
 
 <template>
-  <section ref="groupFilterOuter" class="tg-app-group-filter flex-center-bet" :class="{ 'less-than-700': appContentWidth < 700 }">
+  <section
+    ref="groupFilterOuter" class="tg-app-group-filter flex-center-bet"
+    :class="{ 'less-than-700': appContentWidth < 700 }"
+  >
     <div class="flex-center-bet left">
       <template v-if="isCasinoGame">
         <div class="flex-center-bet title">
@@ -49,9 +52,13 @@ const selectOptions = [
         <BaseIcon name="uni-bars" />
         <span class="txt">{{ $t('casino_filter_label_sort') }}</span>
       </div>
-      <BaseSelect v-slot="{ data: { item } }" v-model="selectValue" :options="selectOptions" popper>
-        <BaseIcon :name="item.icon" />
-        <div>{{ item.label }}</div>
+      <BaseSelect v-slot="{ data: { item, active } }" v-model="selectValue" :options="selectOptions" popper>
+        <div class="flex-center-bet sort" :class="{ active }">
+          <BaseIcon :name="item.icon" />
+          <div class="label">
+            {{ item.label }}
+          </div>
+        </div>
       </BaseSelect>
     </div>
   </section>
@@ -63,33 +70,55 @@ const selectOptions = [
   align-items: center;
   justify-content: space-between;
 }
+
 .tg-app-group-filter {
   width: 100%;
   color: var(--tg-text-white);
   font-size: var(--tg-font-size-default);
   line-height: 1.5;
   color: var(--tg-text-white);
-  .left, .right {
+
+  .left,
+  .right {
     gap: var(--tg-spacing-16);
 
     .title {
       gap: var(--tg-spacing-input-padding-vertical);
     }
+
   }
+
   &.less-than-700 {
     .title {
       display: none;
     }
   }
 }
+
 .btn-arrow-down {
   font-size: var(--tg-font-size-default);
   display: flex;
   align-items: center;
   justify-content: center;
   gap: var(--tg-spacing-8);
+
   .app-svg-icon {
     font-size: var(--tg-font-size-xs);
+  }
+}
+
+.sort {
+  gap: var(--tg-spacing-input-padding-vertical);
+  --tg-icon-color: var(--tg-secondary-main);
+
+  .label {
+    text-align: left;
+    flex: 1;
+  }
+
+  &.active {
+    color: var(--tg-text-blue);
+    --tg-icon-color: var(--tg-text-blue);
   }
 }
 </style>

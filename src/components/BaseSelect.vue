@@ -63,7 +63,7 @@ const { width } = useElementSize(parent)
             v-for="item, i in options" :key="i" v-close-popper class="popper-option"
             @click="onClickPopperItem(item.value)"
           >
-            <slot :data="{ item, parentWidth: width }">
+            <slot :data="{ item, parentWidth: width, active: item.value === modelValue }">
               {{ item.label }}
             </slot>
           </div>
