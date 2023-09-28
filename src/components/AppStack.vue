@@ -51,6 +51,7 @@ const toNext = function () {
   justify-content: center;
   align-items: center;
   gap: var(--tg-spacing-25);
+  font-size: var(--tg-font-size-default);
   > span {
     font-weight: var(--tg-font-weight-semibold);
     cursor: pointer;

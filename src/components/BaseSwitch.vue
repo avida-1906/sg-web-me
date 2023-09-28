@@ -17,6 +17,12 @@ function onClick() {
   </div>
 </template>
 
+<style>
+:root{
+  --tg-base-switch-style-bg: var(--tg-text-blue);
+}
+</style>
+
 <style scoped lang="scss">
 .base-switch {
   width: var(--tg-spacing-40);
@@ -36,7 +42,7 @@ function onClick() {
 }
 
 .active {
-  background-color: var(--tg-text-blue);
+  background-color: var(--tg-base-switch-style-bg);
 
   .circle {
     transform: translateX(var(--tg-spacing-16));

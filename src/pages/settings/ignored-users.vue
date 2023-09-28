@@ -33,6 +33,11 @@ const tableData: any = [
     vipIcon: 'chat-star-orange',
   },
 ]
+const paginationData = {
+  pageSize: 10,
+  pageNumber: 1,
+  total: 0,
+}
 </script>
 
 <template>
@@ -49,10 +54,23 @@ const tableData: any = [
       </template>
       <template #player="{ record }">
         <div class="user-info">
-          <BaseIcon :name="record.vipIcon" /> {{ record.player }}
+          <VMenu placement="top">
+            <div class="cursor-help">
+              <BaseIcon :name="record.vipIcon" />
+            </div>
+            <template #popper>
+              <div class="tiny-menu-item-title">
+                等级描述
+              </div>
+            </template>
+          </VMenu>
+          <BaseButton type="text" class="user-name">
+            {{ record.player }}
+          </BaseButton>
         </div>
       </template>
     </BaseTable>
+    <AppStack :pagination-data="paginationData" />
   </div>
 </template>
 
@@ -71,6 +89,9 @@ const tableData: any = [
     align-items: center;
     justify-content: center;
     gap: .25rem;
+    .user-name{
+      padding: var(--tg-spacing-7) 0 !important;
+    }
   }
 }
 </style>

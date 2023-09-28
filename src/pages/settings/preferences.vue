@@ -69,6 +69,8 @@ const { bool: isMarketing } = useBoolean(true)
     justify-content: start;
     .switch{
       margin-right: var(--tg-spacing-16);
+      // #00b801
+      --tg-base-switch-style-bg: var(--tg-text-green)
     }
     div{
       p:nth-child(1){
