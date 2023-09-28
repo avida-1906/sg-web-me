@@ -4,7 +4,7 @@
 // const props = withDefaults(defineProps<Props>(), {
 // })
 // const emit = defineEmits(['update:modelValue'])
-const isBind = ref(true)
+const { bool: isBind } = useBoolean(true)
 const username = ref('')
 const accountNumber = ref('')
 const currentType = ref('1')
