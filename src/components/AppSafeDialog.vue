@@ -31,7 +31,6 @@ const { value: password, resetField: resetPassword, errorMessage: errPassword } 
 
   return ''
 })
-ApiMemberBalanceLockerShow()
 
 const updateType = computed(() => isDeposit.value ? 'add' : 'remove')
 const { run: runLockerUpdate } = useRequest(() => ApiMemberBalanceLockerUpdate({ amount: amount.value, type: updateType.value, currency_name: 'CNY' }), {
