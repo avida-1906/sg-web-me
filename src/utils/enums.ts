@@ -226,3 +226,17 @@ export enum EnumCasinoGameType {
   /** 老虎机 */
   SLOT = 'slot',
 }
+
+/**
+ * casino游戏排序枚举
+ */
+export enum EnumCasinoSortType {
+  /** 名称a-z */
+  nameA = 'en_name:asc',
+  /** 名称z-a */
+  nameZ = 'en_name:desc',
+  /** 热门 */
+  hot = 'sorting:asc',
+  /** 推荐 */
+  recommend = 'created_at:desc',
+}
