@@ -6,7 +6,6 @@ interface Column {
   slot?: string // 列插槽名称索引
   align?: 'left' | 'center' | 'right' // 列对其方式
 }
-
 interface Props {
   columns: Column[] // 表格列的配置项
   dataSource?: any[] // 表格数据数组

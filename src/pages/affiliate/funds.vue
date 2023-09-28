@@ -9,11 +9,33 @@ const sortedOptions = [
 
 const sortedBy = ref(sortedOptions[0].value)
 
-// const columns = [
-//   { title: t('finance_funds_transfer_sort_available'), dataIndex: 'available' },
-//   { label: t('finance_funds_transfer_sort_commission'), dataIndex: 'commission' },
-//   { label: t('finance_funds_transfer_sort_withdrawn'), dataIndex: 'withdrawn' },
-// ]
+const columns = [
+  {
+    title: t('finance_funds_transfer_sort_available'),
+    dataIndex: 'available',
+    align: 'left',
+    slot: 'available',
+  },
+  {
+    title: t('finance_funds_transfer_sort_commission'),
+    dataIndex: 'commission',
+    align: 'center',
+    slot: 'commission',
+  },
+  {
+    title: t('finance_funds_transfer_sort_withdrawn'),
+    dataIndex: 'withdrawn',
+    align: 'right',
+    slot: 'withdrawn',
+  },
+]
+
+const data = reactive([
+  { available: '0.00001234', commission: '567', withdrawn: '900', currencyType: 19 },
+  { available: '0.00001234', commission: '567', withdrawn: '900', currencyType: 20 },
+  { available: '0.00001234', commission: '567', withdrawn: '900', currencyType: 22 },
+  { available: '0.00001234', commission: '567', withdrawn: '900', currencyType: 24 },
+])
 </script>
 
 <template>
@@ -23,7 +45,23 @@ const sortedBy = ref(sortedOptions[0].value)
         <BaseSelect v-model="sortedBy" label="排序依据" :options="sortedOptions" />
       </div>
       <div class="table-data">
-        <!-- <BaseTable :columns="columns" /> -->
+        <BaseTable :columns="columns" :data-source="data">
+          <template #available="{ record }">
+            <div class="line-height-2">
+              <AppAmount :amount="record.available" :currency-type="record.currencyType" />
+            </div>
+          </template>
+          <template #commission="{ record }">
+            <div class="center line-height-2">
+              <AppAmount :amount="record.commission" :currency-type="record.currencyType" />
+            </div>
+          </template>
+          <template #withdrawn="{ record }">
+            <div class="flex-end line-height-2">
+              <AppAmount :amount="record.withdrawn" :currency-type="record.currencyType" />
+            </div>
+          </template>
+        </BaseTable>
       </div>
       <div class="footer-btn">
         <div>
@@ -38,6 +76,14 @@ const sortedBy = ref(sortedOptions[0].value)
 </template>
 
 <style lang="scss" scoped>
+.line-height-2 {
+  line-height: 2;
+}
+.flex-end {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
 .footer-btn {
   color: var(--tg-secondary-light);
   font-size: var(--tg-font-size-default);
@@ -57,6 +103,7 @@ const sortedBy = ref(sortedOptions[0].value)
   --tg-base-select-style-padding-x: var(--tg-spacing-7);
   --tg-base-select-style-padding-y: var(--tg-spacing-7);
   --tg-base-select-style-padding-right: var(--tg-spacing-28);
+  margin-bottom: var(--tg-spacing-16);
 }
 .tg-affiliate-funds {
 
