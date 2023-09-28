@@ -80,10 +80,10 @@ provide('closeDialog', close)
         <div v-if="showButtons" class="footer-buttons">
           <div class="buttons">
             <BaseButton size="md" @click="onCancel">
-              取消
+              {{ $t('cancel') }}
             </BaseButton>
             <BaseButton bg-style="secondary" size="md" @click="onConfirm">
-              确认
+              {{ $t('confirm') }}
             </BaseButton>
           </div>
         </div>
