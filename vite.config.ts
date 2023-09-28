@@ -80,6 +80,7 @@ export default defineConfig(({ mode }) => {
           'src/stores',
           'src/utils',
           'src/apis',
+          'src/http',
         ],
         vueTemplate: true,
       }),
