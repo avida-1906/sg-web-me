@@ -23,7 +23,7 @@ function onClick(v: string | number, event: any) {
   if (v === props.modelValue)
     return
 
-  event.target.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' })
+  // event.target.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' })
   emit('update:modelValue', v)
   emit('change', v)
 }
