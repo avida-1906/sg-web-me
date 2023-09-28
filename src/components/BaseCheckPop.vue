@@ -5,6 +5,10 @@ const data = ref([
 ])
 
 const checkedValues = ref([])
+
+function reset() {
+  checkedValues.value = []
+}
 </script>
 
 <template>
@@ -28,8 +32,8 @@ const checkedValues = ref([])
             </template>
           </BaseCheckboxGroup>
         </section>
-        <div class="clear-all">
-          全部清除
+        <div class="clear-all" @click="reset">
+          {{ $t('clear_all') }}
         </div>
       </div>
     </template>
@@ -45,6 +49,7 @@ const checkedValues = ref([])
   text-align: center;
   font-size: var(--tg-font-size-default);
   color: var(--tg-secondary-main);
+  cursor: pointer;
 }
 .base-check-pop-inner {
   padding: var(--tg-spacing-button-padding-horizontal-xs);

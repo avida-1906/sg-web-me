@@ -13,61 +13,49 @@ withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits(['change'])
 
-const currency = ref([
-  { balance: '0.000000000', icon: 'coin-btc', text: 0 },
-  { balance: '0.000000000', icon: 'coin-eth', text: 1, legalTender: true },
-  { balance: '0.000000000', icon: 'coin-ltc', text: 2 },
-  { balance: '0.000000000', icon: 'coin-usdt', text: 3 },
-  { balance: '0.000000000', icon: 'coin-doge', text: 4 },
-  { balance: '0.000000000', icon: 'coin-bch', text: 5 },
-  { balance: '0.000000000', icon: 'coin-xrp', text: 6 },
-  { balance: '0.000000000', icon: 'coin-eos', text: 7 },
-  { balance: '0.000000000', icon: 'coin-trx', text: 8 },
-  { balance: '0.000000000', icon: 'coin-bnb', text: 9 },
-  { balance: '0.000000000', icon: 'coin-usdc', text: 10 },
-  { balance: '0.000000000', icon: 'coin-ape', text: 11 },
-  { balance: '0.000000000', icon: 'coin-busd', text: 12 },
-  { balance: '0.000000000', icon: 'coin-cro', text: 13 },
-  { balance: '0.000000000', icon: 'coin-dai', text: 14 },
-  { balance: '0.000000000', icon: 'coin-link', text: 15 },
-  { balance: '0.000000000', icon: 'coin-sand', text: 16 },
-  { balance: '0.000000000', icon: 'coin-shib', text: 17 },
-  { balance: '0.000000000', icon: 'coin-uni', text: 18 },
-  { balance: '0.000000000', icon: 'coin-matic', text: 19 },
-  { balance: '0.00', icon: 'coin-eur', text: 20 },
-  { balance: 'JP¥0.00', icon: 'coin-jpy', text: 21 },
-  { balance: 'R$0.00', icon: 'coin-brl', text: 22 },
-  { balance: 'CA$0.00', icon: 'coin-cad', text: 23 },
-  { balance: '0.0', icon: 'coin-inr', text: 24 },
-])
+interface Currency {
+  balance: string | number
+  icon: string
+  name: string
+  id: number
+  legalTender?: boolean
+}
+const currencyOptions: Ref<Currency[]> = ref([])
+
 // 搜索内容
 const searchValue = ref('')
 // 下拉搜索是否显示
 const { bool: isMenuShown } = useBoolean(false)
-// 当前选择币种
-const activeBalance = ref(currency.value[0])
-//
+
 function dropShow() {
   searchValue.value = ''
 }
+
+// 当前选择币种
+const activeCurrency: Ref<Currency> = ref({
+  balance: '',
+  icon: '',
+  name: '',
+  id: 0,
+})
 // function dropHide() {
 //   searchValue.value = ''
 // }
 // 选择币种
 function selectCurrency(item: any, hide: () => void) {
   hide()
-  activeBalance.value = item
+  activeCurrency.value = item
   emit('change', item)
 }
 // 搜索币种
 const getSearchBalance = computed(() => {
   if (searchValue.value) {
-    return currency.value.filter((item) => {
-      return item.icon.split('-')[1].includes(searchValue.value.toLocaleLowerCase())
+    return currencyOptions.value.filter((item) => {
+      return item.name.includes(searchValue.value.toLocaleUpperCase())
     })
   }
   else {
-    return currency.value
+    return currencyOptions.value
   }
 })
 
@@ -78,11 +66,28 @@ const networkList = [
   { label: '网络3', value: '3' },
   { label: '网络4', value: '4' },
 ]
+function initCurrency() {
+  const arr: Currency[] = []
+  for (const key in EnumCurrency) {
+    if (isNumber(EnumCurrency[key]))
+      break
+    arr.push({
+      balance: 0,
+      icon: `coin-${EnumCurrency[key].toLocaleLowerCase()}`,
+      name: EnumCurrency[key],
+      id: Number(key),
+    })
+  }
+  arr[1].legalTender = true
+  currencyOptions.value = arr
+  activeCurrency.value = arr[0]
+  emit('change', currencyOptions.value[0])
+}
 
-onMounted(() => {
-  emit('change', currency.value[0])
-  console.log(EnumCurrency)
-})
+initCurrency()
+// onMounted(() => {
+
+// })
 const { openWalletDialog } = useWalletDialog()
 </script>
 
@@ -93,8 +98,9 @@ const { openWalletDialog } = useWalletDialog()
       <div class="center">
         <div class="wallet" :class="{ 'wallet-only': !walletBtn }">
           <BaseButton type="text" size="md">
-            <span v-if="showBalance" class="wallet-text" style="padding-right: 5px;">{{ activeBalance.balance }}</span>
-            <AppCurrencyIcon class="wallet-text" :show-name="!showBalance" :currency-type="activeBalance.text" />
+            <AppAmount v-if="showBalance" style="color:var(--tg-text-white);" :amount="activeCurrency.balance" :currency-type="activeCurrency.id" />
+            <!-- <span v-if="showBalance" class="wallet-text" style="padding-right: 5px;">{{ activeCurrency.balance }}</span> -->
+            <AppCurrencyIcon v-else class="wallet-text" :show-name="!showBalance" :currency-type="activeCurrency.id" />
             <BaseIcon class="arrow" :class="{ 'arrow-up': isMenuShown }" name="uni-arrow-down" />
           </BaseButton>
         </div>
@@ -108,11 +114,12 @@ const { openWalletDialog } = useWalletDialog()
             <BaseSearch v-model="searchValue" :style="{ 'max-width': showBalance ? '180px' : '140px' }" class="top-search" :clearable="searchValue?.length > 0" :white-style="true" :place-holder="showBalance ? '搜索货币' : '搜索'" />
           </div>
           <div class="scroll-y popper-content" :class="{ 'justify-content': !showBalance }">
-            <div v-for="item of getSearchBalance" :key="item.text" class="content-row" @click.stop="selectCurrency(item, hide)">
-              <div v-if="showBalance" class="balance-num">
+            <div v-for="item of getSearchBalance" :key="item.id" class="content-row" @click.stop="selectCurrency(item, hide)">
+              <AppAmount v-if="showBalance" :amount="item.balance" :currency-type="item.id" show-name />
+              <!-- <div class="balance-num">
                 {{ item.balance }}
-              </div>
-              <AppCurrencyIcon show-name :currency-type="item.text" />
+              </div> -->
+              <AppCurrencyIcon v-else show-name :currency-type="item.id" />
             </div>
             <div v-show="!getSearchBalance.length" class="balance-not">
               无法使用货币
@@ -206,13 +213,13 @@ const { openWalletDialog } = useWalletDialog()
       align-items: center;
       padding: var(--tg-spacing-button-padding-vertical-s) var(--tg-spacing-button-padding-horizontal-xs);
       cursor: pointer;
-
+      --tg-app-amount-width:14ch;
       &:hover {
         background-color: var(--tg-text-lightgrey);
       }
-      .balance-num{
-        width: 14ch;
-      }
+      // .balance-num{
+      //   width: 14ch;
+      // }
 
     }
     .balance-not{
