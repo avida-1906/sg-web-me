@@ -43,6 +43,21 @@ const iconName = computed(() => {
     return props.icon
 })
 
+const { t } = useI18n()
+
+const _title = computed(() => {
+  if (props.title)
+    return undefined
+  switch (props.type) {
+    case 'error':
+      return t('notify_title_error')
+    case 'success':
+      return t('notify_title_success')
+    default:
+      return undefined
+  }
+})
+
 function close() {
   setNFalse()
   setTimeout(() => {
@@ -101,6 +116,9 @@ onMounted(() => {
           <div>
             <slot name="title">
               <h3 v-if="title" class="title" v-html="title" />
+              <h3 v-if="!title && _title" class="title">
+                {{ _title }}
+              </h3>
             </slot>
             <slot name="message">
               <p v-if="message" class="message" v-html="message" />

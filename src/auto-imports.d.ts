@@ -6,6 +6,7 @@
 export {}
 declare global {
   const ApiGameLunch: typeof import('./apis/index')['ApiGameLunch']
+  const ApiMemberBalanceLockerShow: typeof import('./apis/index')['ApiMemberBalanceLockerShow']
   const ApiMemberBalanceLockerUpdate: typeof import('./apis/index')['ApiMemberBalanceLockerUpdate']
   const ApiMemberFavDelete: typeof import('./apis/index')['ApiMemberFavDelete']
   const ApiMemberFavInsert: typeof import('./apis/index')['ApiMemberFavInsert']
@@ -25,6 +26,7 @@ declare global {
   const CasinoGameType: typeof import('./utils/enums')['CasinoGameType']
   const EffectScope: typeof import('vue')['EffectScope']
   const EnumCasinoGameType: typeof import('./utils/enums')['EnumCasinoGameType']
+  const EnumCasinoSortType: typeof import('./utils/enums')['EnumCasinoSortType']
   const EnumCurrency: typeof import('./utils/enums')['EnumCurrency']
   const EnumLanguage: typeof import('./utils/enums')['EnumLanguage']
   const Local: typeof import('./utils/storage')['Local']
@@ -416,6 +418,7 @@ import { UnwrapRef } from 'vue'
 declare module 'vue' {
   interface ComponentCustomProperties {
     readonly ApiGameLunch: UnwrapRef<typeof import('./apis/index')['ApiGameLunch']>
+    readonly ApiMemberBalanceLockerShow: UnwrapRef<typeof import('./apis/index')['ApiMemberBalanceLockerShow']>
     readonly ApiMemberBalanceLockerUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberBalanceLockerUpdate']>
     readonly ApiMemberFavDelete: UnwrapRef<typeof import('./apis/index')['ApiMemberFavDelete']>
     readonly ApiMemberFavInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberFavInsert']>
@@ -809,6 +812,7 @@ declare module 'vue' {
 declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
     readonly ApiGameLunch: UnwrapRef<typeof import('./apis/index')['ApiGameLunch']>
+    readonly ApiMemberBalanceLockerShow: UnwrapRef<typeof import('./apis/index')['ApiMemberBalanceLockerShow']>
     readonly ApiMemberBalanceLockerUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberBalanceLockerUpdate']>
     readonly ApiMemberFavDelete: UnwrapRef<typeof import('./apis/index')['ApiMemberFavDelete']>
     readonly ApiMemberFavInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberFavInsert']>

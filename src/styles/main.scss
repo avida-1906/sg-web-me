@@ -117,6 +117,7 @@
   --tg-z-index-30: 30;
   --tg-z-index-40: 40;
   --tg-z-index-50: 50;
+  --tg-z-index-secondary: 8888;
   --tg-z-index-top: 9999;
 
   // 间距
@@ -243,6 +244,7 @@ body {
   position: fixed;
   top: 5rem;
   left: 1rem;
+  z-index: var(--tg-z-index-top);
 }
 
 .select-none {
