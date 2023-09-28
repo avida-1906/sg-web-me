@@ -104,4 +104,4 @@ class Application {
 
 export const application = new Application()
 
-export const getEnv = (key: keyof ImportMetaEnv) => import.meta.env[key]
+// export const getEnv = (key: keyof ImportMetaEnv) => import.meta.env[key]
