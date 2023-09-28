@@ -284,3 +284,10 @@ export function ApiMemberBalanceLockerUpdate(data: {
 }) {
   return httpClient.post('/member/balance_locker/update', data)
 }
+
+/**
+ * 保险库详情
+ */
+export function ApiMemberBalanceLockerShow() {
+  return httpClient.post('/member/balance_locker/show')
+}
