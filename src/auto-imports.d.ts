@@ -26,6 +26,7 @@ declare global {
   const CasinoGameType: typeof import('./utils/enums')['CasinoGameType']
   const EffectScope: typeof import('vue')['EffectScope']
   const EnumCasinoGameType: typeof import('./utils/enums')['EnumCasinoGameType']
+  const EnumCasinoSortType: typeof import('./utils/enums')['EnumCasinoSortType']
   const EnumCurrency: typeof import('./utils/enums')['EnumCurrency']
   const EnumLanguage: typeof import('./utils/enums')['EnumLanguage']
   const Local: typeof import('./utils/storage')['Local']
