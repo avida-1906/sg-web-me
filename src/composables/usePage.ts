@@ -22,8 +22,8 @@ export interface CustomOptions {
  * @description 在useRequest改进，管理分页请求
  *  1.暴露page,page_size,total,自动管理
  *  2.新增option配置resetPageDeps，设置要重置页码的属性值
- * @template R
- * @template P
+ * @template R 返回数据类型
+ * @template P 请求参数类型
  * @param {(page: Ref<number>, page_size: Ref<number>) => Service<R, P>} service
  * @param {(Options<R, P> & CustomOptions)} [options]
  */

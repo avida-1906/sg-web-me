@@ -47,9 +47,9 @@ export function ApiSmsSend(
 /**
  * 游戏列表
  */
-export function ApiMemberGameList(params: {
-  page: number
-  page_size: number
+export function ApiMemberGameList(params?: {
+  page?: number
+  page_size?: number
   game_type?: 1 | 3// 游戏类型:1=真人,3=电子
   is_hot?: 1 | 2 // 是否热门 1是 2否
   is_new?: 1 | 2 // 是否新游戏 1是 2否
@@ -80,35 +80,6 @@ export function ApiMemberGameList(params: {
     t: number
     s: number
   }>('/member/game/list', params)
-}
-
-/**
- * 游戏详情
- */
-export function ApiMemberGameDetail(pid: string, game_id: string) {
-  return httpClient.get<{
-    id: string
-    platform_id: string
-    name: string
-    zh_name: string
-    en_name: string
-    pt_name: string
-    th_name: string
-    vn_name: string
-    client_type: string
-    game_type: number
-    game_id: string
-    img: string
-    online: number
-    is_hot: number
-    sorting: number
-    created_at: number
-    is_new: number
-    tag_id: string
-    currency: string
-    lang: string
-    is_fav: number
-  }>(`/member/game/detail?platform_id=${pid}&game_id=${game_id}`)
 }
 
 /**
@@ -156,11 +127,4 @@ export function ApiMemberGameSearch(params: { w: string }) {
 */
 export function ApiMemberGameFavList(params: { page: number; page_size: number }) {
   return httpClient.get('/member/game/fav/list', params)
-}
-
-/*
-* 推荐游戏列表
-*/
-export function ApiMemberGameRecList(params: { page: number; page_size: number }) {
-  return httpClient.get('/member/game/rec/list', params)
 }
