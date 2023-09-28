@@ -13,7 +13,6 @@ interface CurrencyItem {
 
 const props = defineProps<Props>()
 const emit = defineEmits(['changeTheatre'])
-const { VITE_CASINO_TEST_SLOT_IMG } = import.meta.env
 
 // 选择模式遮罩层
 const { bool: isShowFrameOverlay, setTrue: overlayTrue, setFalse: overlayFalse } = useBoolean(false)
@@ -102,7 +101,7 @@ await application.allSettled([runDetail()])
     <div class="mobile-header">
       <div class="img-wrap">
         <div class="img">
-          <BaseImage :url="VITE_CASINO_TEST_SLOT_IMG" />
+          <BaseImage :url="dataDetail?.img" />
         </div>
       </div>
       <div class="info-wrap">

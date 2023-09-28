@@ -1,6 +1,4 @@
 <script setup lang='ts'>
-const { VITE_CASINO_HOME_PAGE_SIZE } = import.meta.env
-
 const { isMobile } = storeToRefs(useWindowStore())
 const router = useRouter()
 const { t } = useI18n()
@@ -15,22 +13,14 @@ const showLive = computed(() => tab.value === EnumCasinoGameType.LIVE)
 const showSlot = computed(() => tab.value === EnumCasinoGameType.SLOT)
 const currentTitle = computed(() => tabList.find(a => a.value === tab.value)?.label ?? '-')
 
-const { data: liveList, total: liveTotal, runAsync: runLive } = usePage((page, page_size) => () => ApiMemberGameList({
-  page: page.value,
-  page_size: page_size.value,
-  game_type: 1,
-}), { page_size: VITE_CASINO_HOME_PAGE_SIZE })
-const { data: slotList, total: slotTotal, runAsync: runSlot } = usePage((page, page_size) => () => ApiMemberGameList({
-  page: page.value,
-  page_size: page_size.value,
-  game_type: 3,
-}), { page_size: VITE_CASINO_HOME_PAGE_SIZE })
+const { list: liveList, total: liveTotal, runAsync: runLive } = useList(ApiMemberGameList)
+const { list: slotList, total: slotTotal, runAsync: runSlot } = useList(ApiMemberGameList)
 
 function viewMoreGames(gameType: string) {
   router.push(`/casino/group/${gameType}`)
 }
 
-await application.allSettled([runLive(), runSlot()])
+await application.allSettled([runLive({ game_type: 1 }), runSlot({ game_type: 3 })])
 </script>
 
 <template>

@@ -43,6 +43,21 @@ const iconName = computed(() => {
     return props.icon
 })
 
+const { t } = useI18n()
+
+const _title = computed(() => {
+  if (props.title)
+    return undefined
+  switch (props.type) {
+    case 'error':
+      return t('notify_title_error')
+    case 'success':
+      return t('notify_title_success')
+    default:
+      return undefined
+  }
+})
+
 function close() {
   setNFalse()
   setTimeout(() => {
@@ -86,8 +101,8 @@ onMounted(() => {
     <section
       v-if="show"
       class="tg-base-notify"
-      @touchmove="overMove"
-      @touchstart="enterStart"
+      @touchmove.passive="overMove"
+      @touchstart.passive="enterStart"
       @touchend="leaveEnd"
       @mouseover="overMove"
       @mouseleave="leaveEnd"
@@ -101,6 +116,9 @@ onMounted(() => {
           <div>
             <slot name="title">
               <h3 v-if="title" class="title" v-html="title" />
+              <h3 v-if="!title && _title" class="title">
+                {{ _title }}
+              </h3>
             </slot>
             <slot name="message">
               <p v-if="message" class="message" v-html="message" />
@@ -138,7 +156,7 @@ onMounted(() => {
   animation-timing-function: linear;
   animation-name: countDown;
   animation-duration: 4s!important;
-  border-bottom-left-radius: var(--tg-radius-default); // 4px
+  border-bottom-left-radius: var(--tg-radius-default); //
 }
 .notify-slide-fade-enter-active {
   transition: all 0.3s ease-out;

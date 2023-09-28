@@ -1,4 +1,5 @@
 import BaseNotify from '~/components/BaseNotify.vue'
+import { install } from '~/modules'
 
 export type notifyType = 'set' | 'user' | 'email' | 'error' | 'success' | 'insurance' | 'statistics'
 
@@ -62,6 +63,7 @@ export function useNotify({ showClose, onClose }: { onClose?: () => void; showCl
           return message === undefined ? null : (typeof message === 'string' ? null : message())
         },
       })))
+      install(app.value[uuid])
       app.value[uuid].mount(box.value[uuid])
     }
   }

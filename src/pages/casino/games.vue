@@ -1,14 +1,11 @@
 <script setup lang='ts'>
-const { VITE_CASINO_HOME_PAGE_SIZE } = import.meta.env
 const { query } = useRoute()
 const id = ref(query.id?.toString() ?? '')
 const { isMobile } = storeToRefs(useWindowStore())
 const { bool: isTheatre, setBool } = useBoolean(false) // 影院模式
 
-const { data: recGameList } = usePage((page, page_size) => () => ApiMemberGameRecList({
-  page: page.value,
-  page_size: page_size.value,
-}), { page_size: VITE_CASINO_HOME_PAGE_SIZE, manual: false })
+const { list: recGameList, run } = useList(ApiMemberGameRecList)
+run()
 
 const appIframeRef = ref()
 const route = useRoute()
@@ -55,6 +52,9 @@ onBeforeRouteLeave(() => {
 
 .theatre {
   padding: 0;
+}
+.content-wrapper{
+  margin-bottom: var(--tg-spacing-24);
 }
 </style>
 

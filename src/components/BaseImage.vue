@@ -1,12 +1,15 @@
 <script lang="ts" setup>
+import { getCurrentLanguageForBackend } from '~/modules/i18n'
+
 interface Props {
   url: string // 图像地址
   name?: string // 图像名称
   width?: string // 图像宽度px
   height?: string // 图像高度px
   fit?: 'contain' | 'fill' | 'cover' // 图像如何适应容器高度和宽度
+  isCloud?: boolean
 }
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   url: '',
   name: '',
   width: '100%',
@@ -15,6 +18,14 @@ withDefaults(defineProps<Props>(), {
 })
 
 const emit = defineEmits(['clickImg'])
+const { VITE_CASINO_IMG_CLOUD_URL } = import.meta.env
+const imgUrl = computed(() => {
+  if (props.isCloud)
+    return `${VITE_CASINO_IMG_CLOUD_URL}${props.url.replace('%lang%', getCurrentLanguageForBackend())}`
+
+  return props.url
+})
+
 const { bool: complete, setTrue } = useBoolean(false)
 function onComplete() { // 图片加载完成
   setTrue()
@@ -23,23 +34,12 @@ function onComplete() { // 图片加载完成
 function handleClick() {
   emit('clickImg')
 }
-// function getImageName() { // 从图像地址src中获取图像名称
-//   if (image) {
-//     if (image.name) {
-//       return image.name
-//     }
-//     else {
-//       const res = image.src.split('?')[0].split('/')
-//       return res[res.length - 1]
-//     }
-//   }
-// }
 </script>
 
 <template>
   <div class="base-image">
     <img
-      :style="`width: ${width}; height: ${height}; object-fit: ${fit};`" loading="lazy" :src="url" :alt="name"
+      :style="`width: ${width}; height: ${height}; object-fit: ${fit};`" loading="lazy" :src="imgUrl"
       @load="onComplete" @click="handleClick"
     >
     <div v-if="!complete" class="img-load">

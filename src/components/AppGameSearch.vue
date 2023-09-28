@@ -91,14 +91,16 @@ const resultData = computed(() => {
 const { bool: isShowOverlay } = useBoolean(false)
 // 点开始禁止页面滚动
 const dom = ref()
-const isLocked = useScrollLock(dom)
 function showOverlay() {
   isShowOverlay.value = true
-  isLocked.value = true
+  dom.value.addEventListener('wheel', preventScroll)
 }
 function closeOverlay() {
   isShowOverlay.value = false
-  isLocked.value = false
+  dom.value.removeEventListener('wheel', preventScroll)
+}
+function preventScroll(event: any) {
+  event.preventDefault()
 }
 
 onMounted(() => {

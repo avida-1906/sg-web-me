@@ -6,7 +6,7 @@ const route = useRoute()
 
 const { appContentWidth } = storeToRefs(useWindowStore())
 
-const layoutLoading = ref(true)
+const { bool: layoutLoading, setFalse: setLFalse } = useBoolean(true)
 
 const menuData = computed<any>(() => route.meta.menu)
 const icon = computed<any>(() => route.meta.icon)
@@ -35,11 +35,11 @@ function goPage(item: any, hide: any) {
 }
 
 onMounted(() => {
-  layoutLoading.value = false
+  setLFalse()
 })
 
 onUpdated(() => {
-  layoutLoading.value = false
+  setLFalse()
 })
 </script>
 
@@ -55,7 +55,7 @@ onUpdated(() => {
                   <div class="stack y-center padding-none top direction-horizontal x-space-between stretch gap-medium">
                     <div class="stack y-center gap-medium padding-none direction-horizontal title x-flex-start">
                       <BaseIcon :name="icon" />
-                      <span>{{ route.meta.title }}</span>
+                      <span>{{ $t(route.meta.title as string) }}</span>
                     </div>
                     <div class="close" @click="goBack">
                       <BaseIcon name="uni-close" />
@@ -68,7 +68,7 @@ onUpdated(() => {
                       <BaseMenu :data="menuData" />
                     </template>
                     <template v-else>
-                      <div class="stack x-flex-start y-center padding-none direction-horizontal menu-btn gap-small">
+                      <div class="stack x-flex-start y-center padding-none direction-horizontal gap-small menu-btn">
                         <BaseButton size="md">
                           <BaseIcon name="uni-arrow-left" class="arrow-left" />
                         </BaseButton>

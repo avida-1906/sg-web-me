@@ -1,4 +1,12 @@
 <script setup lang="ts">
+const router = useRouter()
+const { list, runAsync } = useList(ApiMemberPlatformList)
+
+function handleItemClick(item: any) {
+  router.push(`/casino/group/provider?pid=${item.id}&name=${item.en_name}`)
+}
+
+await application.allSettled([runAsync()])
 </script>
 
 <template>
@@ -20,6 +28,13 @@
     </div>
     <div class="mt-24">
       <AppGameSearch game-type="2" />
+    </div>
+    <div class="mt-24">
+      <AppCardList :list="list" is-provider>
+        <template #default="{ item }">
+          <BaseProviderItem :url="item.logo" @click="handleItemClick(item)" />
+        </template>
+      </AppCardList>
     </div>
   </section>
   <div class="layout-spacing">

@@ -1,19 +1,54 @@
 <script setup lang='ts'>
+const { t } = useI18n()
+
+const { openNotify } = useNotify()
+
 // tab值
-const activeTab: Ref<string> = ref('deposit')
+const activeTab = ref('deposit')
 const tabOptions = [
-  { value: 'deposit', label: '存款' },
-  { value: 'withdraw', label: '提款' },
+  { label: t('deposit'), value: 'deposit' },
+  { label: t('withdraw'), value: 'withdraw' },
 ]
+const isDeposit = computed(() => activeTab.value === 'deposit')
+// const isWithdraw = computed(() => activeTab.value === 'withdraw')
 
 const activeCurrency = ref()
 
 function changeCurrency(item: any) {
   activeCurrency.value = item
 }
-const username = ref('')
-const password = ref('')
-const usernameErrorMsg = ref('')
+const { value: amount, resetField: resetAmount, validate: valiAmount, errorMessage: errAmount } = useField<string>('amount', (value) => {
+  if (!value)
+    return '不能为空'
+
+  return ''
+})
+const { value: password, resetField: resetPassword, errorMessage: errPassword } = useField<string>('password', (value) => {
+  if (!value)
+    return '不能为空'
+  else if (!payPasswordReg.test(value))
+    return '支付密码格式错误'
+
+  return ''
+})
+
+const updateType = computed(() => isDeposit.value ? 'add' : 'remove')
+const { run: runLockerUpdate } = useRequest(() => ApiMemberBalanceLockerUpdate({ amount: amount.value, type: updateType.value, currency_name: 'CNY' }), {
+  manual: true,
+  onSuccess() {
+    openNotify({
+      type: 'success',
+      message: '操作成功！',
+    })
+    resetAmount()
+    resetPassword()
+  },
+})
+async function handleUpdate() {
+  await valiAmount()
+  if (!errAmount.value)
+    runLockerUpdate()
+}
 </script>
 
 <template>
@@ -31,7 +66,7 @@ const usernameErrorMsg = ref('')
           <span class="label">金额</span>
           <span class="us">US$0.00</span>
         </div>
-        <BaseInput v-model="username" type="number" placeholder="0.00000000" :msg="usernameErrorMsg">
+        <BaseInput v-model="amount" type="number" placeholder="0.00000000" :msg="errAmount">
           <template #right-icon>
             <BaseIcon :name="activeCurrency?.icon || ''" />
           </template>
@@ -40,14 +75,14 @@ const usernameErrorMsg = ref('')
           </template>
         </BaseInput>
       </div>
-      <BaseButton v-if="activeTab === 'deposit'" class="safe-btn" bg-style="secondary" size="xl">
+      <BaseButton v-if="isDeposit" class="safe-btn" bg-style="secondary" size="xl" @click="handleUpdate">
         存入保险库
       </BaseButton>
       <template v-else>
         <div>
-          <BaseInput v-model="password" label="密码" :msg="usernameErrorMsg" placeholder="" type="password" must />
+          <BaseInput v-model="password" label="密码" :msg="errPassword" placeholder="" type="password" must />
         </div>
-        <BaseButton class="safe-btn" bg-style="secondary" size="xl">
+        <BaseButton class="safe-btn" bg-style="secondary" size="xl" @click="handleUpdate">
           保险库取款
         </BaseButton>
       </template>

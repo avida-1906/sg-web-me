@@ -28,7 +28,7 @@ function handleShow(val: boolean) {
 <template>
   <div class="app-wallet-dialog">
     <div class="content">
-      <BaseTab v-model="currentTab" class="wallet-tab" :list="tabList" />
+      <BaseTab v-model="currentTab" :list="tabList" />
       <AppWallet v-show="showWallet" :wallet-btn="false" :show-balance="false" :network="true" @change="changeCurrency" />
       <template v-if="isDeposit">
         <AppFiatDeposit v-if="activeCurrency?.legalTender" :active-currency="activeCurrency" @show="handleShow" />
@@ -60,9 +60,6 @@ function handleShow(val: boolean) {
     display: flex;
     flex-direction: column;
     gap: var(--tg-spacing-12);
-    .wallet-tab{
-      justify-content: center;
-    }
   }
   // .app-deposit {
   //   display: flex;

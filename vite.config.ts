@@ -61,14 +61,14 @@ export default defineConfig(({ mode }) => {
           '@vueuse/core',
           'pinia',
           {
-            'lodash-es': ['find', 'debounce', 'filter', 'map', 'sortBy', 'gt', 'omit', 'eq', 'split', 'findKey', 'throttle', 'padStart', 'toNumber', 'random', 'uniqWith', 'cloneDeep', 'omitBy', 'isUndefined', 'head', 'findIndex', 'isNull', 'isNaN', 'isNumber', 'last', 'isInteger', 'isNil', 'merge', 'get', 'isArray'],
+            'lodash-es': ['find', 'debounce', 'filter', 'map', 'sortBy', 'gt', 'omit', 'eq', 'split', 'findKey', 'throttle', 'padStart', 'toNumber', 'random', 'uniqWith', 'cloneDeep', 'omitBy', 'isUndefined', 'head', 'findIndex', 'isNull', 'isNaN', 'isNumber', 'last', 'isInteger', 'isNil', 'merge', 'get', 'isArray', 'concat'],
             'big.js': ['Big'],
             'vee-validate': ['useField'], // https://vee-validate.logaretm.com/v4/api/use-field/
             'dayjs': [['default', 'dayjs']],
             'axios': [[
               'default', 'axios',
             ]],
-            'vue-request': ['useRequest'],
+            'vue-request': ['useRequest', 'usePagination', 'useLoadMore'],
             'qs': [[
               'default', 'qs',
             ]],
@@ -80,6 +80,7 @@ export default defineConfig(({ mode }) => {
           'src/stores',
           'src/utils',
           'src/apis',
+          'src/http',
         ],
         vueTemplate: true,
       }),

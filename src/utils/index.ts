@@ -90,16 +90,18 @@ class Application {
    * @returns {Promise<any[]>}
    */
   async allSettled(promises: Promise<any>[]) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        Promise.allSettled(promises).then((result) => {
-          resolve(result)
-        })
-      }, 1500)
-    })
+    // return new Promise((resolve, reject) => {
+    //   setTimeout(() => {
+    //     Promise.allSettled(promises).then((result) => {
+    //       resolve(result)
+    //     })
+    //   }, 300)
+    // })
     const result = await Promise.allSettled(promises)
     return result
   }
 }
 
 export const application = new Application()
+
+export const getEnv = (key: keyof ImportMetaEnv) => import.meta.env[key]
