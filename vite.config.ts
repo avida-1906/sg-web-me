@@ -171,6 +171,9 @@ export default defineConfig(({ mode }) => {
 
             if (['src/utils'].some(v => id.includes(v)))
               return 'utils'
+
+            if (['src/components'].some(v => id.includes(v)))
+              return 'components'
           },
         },
       },
