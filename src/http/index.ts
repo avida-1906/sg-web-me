@@ -10,6 +10,8 @@ interface IResponse<T> {
 type IRequestInterceptors = (value: InternalAxiosRequestConfig<any>) => InternalAxiosRequestConfig<any>
 type IResponseInterceptors = (value: AxiosResponse<any>) => AxiosResponse<any> | Promise<Error>
 
+const { openNotify } = useNotify()
+
 class HttpClient {
   cancelTokenList: AbortController[] = []
 
@@ -107,6 +109,16 @@ class HttpClient {
         if (data === 'token') {
           this.cancelAllRequest()
           appStore.removeToken()
+          openNotify({
+            type: 'error',
+            message: '登录失效',
+          })
+        }
+        else {
+          openNotify({
+            type: 'error',
+            message: data || '系统错误',
+          })
         }
 
         // 直接抛出错误，不再执行后续操作
@@ -150,7 +162,8 @@ class HttpClient {
         }
 
         return Promise.reject(error)
-      })
+      },
+    )
 
     /**
      * 响应拦截器 (不要修改)
@@ -197,7 +210,8 @@ class HttpClient {
         }
 
         return Promise.reject(errorMessage)
-      })
+      },
+    )
   }
 
   /** 关闭所有请求 */

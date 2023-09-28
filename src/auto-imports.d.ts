@@ -140,6 +140,7 @@ declare global {
   const password1Reg: typeof import('./utils/regexp')['password1Reg']
   const passwordUpperLowerReg: typeof import('./utils/regexp')['passwordUpperLowerReg']
   const pausableWatch: typeof import('@vueuse/core')['pausableWatch']
+  const payPasswordReg: typeof import('./utils/regexp')['payPasswordReg']
   const preferredDark: typeof import('./composables/dark')['preferredDark']
   const provide: typeof import('vue')['provide']
   const qs: typeof import('qs')['default']
@@ -540,6 +541,7 @@ declare module 'vue' {
     readonly onUpdated: UnwrapRef<typeof import('vue')['onUpdated']>
     readonly padStart: UnwrapRef<typeof import('lodash-es')['padStart']>
     readonly pausableWatch: UnwrapRef<typeof import('@vueuse/core')['pausableWatch']>
+    readonly payPasswordReg: UnwrapRef<typeof import('./utils/regexp')['payPasswordReg']>
     readonly preferredDark: UnwrapRef<typeof import('./composables/dark')['preferredDark']>
     readonly provide: UnwrapRef<typeof import('vue')['provide']>
     readonly qs: UnwrapRef<typeof import('qs')['default']>
@@ -703,7 +705,6 @@ declare module 'vue' {
     readonly useObjectUrl: UnwrapRef<typeof import('@vueuse/core')['useObjectUrl']>
     readonly useOffsetPagination: UnwrapRef<typeof import('@vueuse/core')['useOffsetPagination']>
     readonly useOnline: UnwrapRef<typeof import('@vueuse/core')['useOnline']>
-    readonly usePage: UnwrapRef<typeof import('./composables/usePage')['usePage']>
     readonly usePageLeave: UnwrapRef<typeof import('@vueuse/core')['usePageLeave']>
     readonly usePagination: UnwrapRef<typeof import('vue-request')['usePagination']>
     readonly useParallax: UnwrapRef<typeof import('@vueuse/core')['useParallax']>
@@ -931,6 +932,7 @@ declare module '@vue/runtime-core' {
     readonly onUpdated: UnwrapRef<typeof import('vue')['onUpdated']>
     readonly padStart: UnwrapRef<typeof import('lodash-es')['padStart']>
     readonly pausableWatch: UnwrapRef<typeof import('@vueuse/core')['pausableWatch']>
+    readonly payPasswordReg: UnwrapRef<typeof import('./utils/regexp')['payPasswordReg']>
     readonly preferredDark: UnwrapRef<typeof import('./composables/dark')['preferredDark']>
     readonly provide: UnwrapRef<typeof import('vue')['provide']>
     readonly qs: UnwrapRef<typeof import('qs')['default']>
@@ -1094,7 +1096,6 @@ declare module '@vue/runtime-core' {
     readonly useObjectUrl: UnwrapRef<typeof import('@vueuse/core')['useObjectUrl']>
     readonly useOffsetPagination: UnwrapRef<typeof import('@vueuse/core')['useOffsetPagination']>
     readonly useOnline: UnwrapRef<typeof import('@vueuse/core')['useOnline']>
-    readonly usePage: UnwrapRef<typeof import('./composables/usePage')['usePage']>
     readonly usePageLeave: UnwrapRef<typeof import('@vueuse/core')['usePageLeave']>
     readonly usePagination: UnwrapRef<typeof import('vue-request')['usePagination']>
     readonly useParallax: UnwrapRef<typeof import('@vueuse/core')['useParallax']>
