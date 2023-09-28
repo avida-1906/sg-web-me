@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-const { VITE_CASINO_HOME_PAGE_SIZE } = import.meta.env
 const router = useRouter()
 
-const { list } = useList(() => ApiMemberPlatformList({ page: 1, page_size: VITE_CASINO_HOME_PAGE_SIZE }), { manual: false })
+const { list, run } = useList(ApiMemberPlatformList)
+run()
 
 function goPage(item: any) {
   router.push(`/casino/group/provider?pid=${item.id}&name=${item.en_name}`)

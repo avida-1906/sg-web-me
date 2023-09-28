@@ -13,9 +13,8 @@ const { openNotify } = useNotify()
 
 function showNotify() {
   openNotify({
-    title: () => h('p', { style: { color: 'orange' } }, 'makati 靓仔'),
+    type: 'error',
     message: '欢迎马尼拉湾的<br />吴彦祖',
-    // default: () => h('h1', '啊不错滴'),
   })
   copyCode('BaseNotify')
 }

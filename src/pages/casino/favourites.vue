@@ -1,7 +1,5 @@
 <script setup lang="ts">
-const { VITE_CASINO_HOME_PAGE_SIZE } = import.meta.env
-
-const { list, page, runAsync, prev, next, hasMore } = useList(ApiMemberFavList, {}, { page_size: VITE_CASINO_HOME_PAGE_SIZE })
+const { list, page, runAsync, prev, next, hasMore } = useList(ApiMemberFavList)
 
 await application.allSettled([runAsync()])
 </script>

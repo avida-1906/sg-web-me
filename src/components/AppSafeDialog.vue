@@ -17,14 +17,20 @@ const activeCurrency = ref()
 function changeCurrency(item: any) {
   activeCurrency.value = item
 }
-const { value: amount, validate: valiAmount, errorMessage: errAmount } = useField<string>('amount', (value) => {
+const { value: amount, resetField: resetAmount, validate: valiAmount, errorMessage: errAmount } = useField<string>('amount', (value) => {
   if (!value)
     return '不能为空'
 
   return ''
 })
-const password = ref('')
-const usernameErrorMsg = ref('')
+const { value: password, resetField: resetPassword, errorMessage: errPassword } = useField<string>('password', (value) => {
+  if (!value)
+    return '不能为空'
+  else if (!payPasswordReg.test(value))
+    return '支付密码格式错误'
+
+  return ''
+})
 
 const updateType = computed(() => isDeposit.value ? 'add' : 'remove')
 const { run: runLockerUpdate } = useRequest(() => ApiMemberBalanceLockerUpdate({ amount: amount.value, type: updateType.value, currency_name: 'CNY' }), {
@@ -34,6 +40,8 @@ const { run: runLockerUpdate } = useRequest(() => ApiMemberBalanceLockerUpdate({
       type: 'success',
       message: '操作成功！',
     })
+    resetAmount()
+    resetPassword()
   },
 })
 async function handleUpdate() {
@@ -72,9 +80,9 @@ async function handleUpdate() {
       </BaseButton>
       <template v-else>
         <div>
-          <BaseInput v-model="password" label="密码" :msg="usernameErrorMsg" placeholder="" type="password" must />
+          <BaseInput v-model="password" label="密码" :msg="errPassword" placeholder="" type="password" must />
         </div>
-        <BaseButton class="safe-btn" bg-style="secondary" size="xl">
+        <BaseButton class="safe-btn" bg-style="secondary" size="xl" @click="handleUpdate">
           保险库取款
         </BaseButton>
       </template>

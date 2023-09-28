@@ -1,6 +1,4 @@
 <script setup lang='ts'>
-const { VITE_CASINO_HOME_PAGE_SIZE } = import.meta.env
-
 const { isMobile } = storeToRefs(useWindowStore())
 const router = useRouter()
 const { t } = useI18n()
@@ -15,8 +13,8 @@ const showLive = computed(() => tab.value === EnumCasinoGameType.LIVE)
 const showSlot = computed(() => tab.value === EnumCasinoGameType.SLOT)
 const currentTitle = computed(() => tabList.find(a => a.value === tab.value)?.label ?? '-')
 
-const { list: liveList, total: liveTotal, runAsync: runLive } = useList(ApiMemberGameList, {}, { page_size: VITE_CASINO_HOME_PAGE_SIZE })
-const { list: slotList, total: slotTotal, runAsync: runSlot } = useList(ApiMemberGameList, {}, { page_size: VITE_CASINO_HOME_PAGE_SIZE })
+const { list: liveList, total: liveTotal, runAsync: runLive } = useList(ApiMemberGameList)
+const { list: slotList, total: slotTotal, runAsync: runSlot } = useList(ApiMemberGameList)
 
 function viewMoreGames(gameType: string) {
   router.push(`/casino/group/${gameType}`)

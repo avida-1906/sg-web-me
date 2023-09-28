@@ -6,6 +6,7 @@
 export {}
 declare global {
   const ApiGameLunch: typeof import('./apis/index')['ApiGameLunch']
+  const ApiMemberBalanceLockerShow: typeof import('./apis/index')['ApiMemberBalanceLockerShow']
   const ApiMemberBalanceLockerUpdate: typeof import('./apis/index')['ApiMemberBalanceLockerUpdate']
   const ApiMemberFavDelete: typeof import('./apis/index')['ApiMemberFavDelete']
   const ApiMemberFavInsert: typeof import('./apis/index')['ApiMemberFavInsert']
@@ -141,6 +142,7 @@ declare global {
   const password1Reg: typeof import('./utils/regexp')['password1Reg']
   const passwordUpperLowerReg: typeof import('./utils/regexp')['passwordUpperLowerReg']
   const pausableWatch: typeof import('@vueuse/core')['pausableWatch']
+  const payPasswordReg: typeof import('./utils/regexp')['payPasswordReg']
   const preferredDark: typeof import('./composables/dark')['preferredDark']
   const provide: typeof import('vue')['provide']
   const qs: typeof import('qs')['default']
@@ -414,6 +416,7 @@ import { UnwrapRef } from 'vue'
 declare module 'vue' {
   interface ComponentCustomProperties {
     readonly ApiGameLunch: UnwrapRef<typeof import('./apis/index')['ApiGameLunch']>
+    readonly ApiMemberBalanceLockerShow: UnwrapRef<typeof import('./apis/index')['ApiMemberBalanceLockerShow']>
     readonly ApiMemberBalanceLockerUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberBalanceLockerUpdate']>
     readonly ApiMemberFavDelete: UnwrapRef<typeof import('./apis/index')['ApiMemberFavDelete']>
     readonly ApiMemberFavInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberFavInsert']>
@@ -542,6 +545,7 @@ declare module 'vue' {
     readonly onUpdated: UnwrapRef<typeof import('vue')['onUpdated']>
     readonly padStart: UnwrapRef<typeof import('lodash-es')['padStart']>
     readonly pausableWatch: UnwrapRef<typeof import('@vueuse/core')['pausableWatch']>
+    readonly payPasswordReg: UnwrapRef<typeof import('./utils/regexp')['payPasswordReg']>
     readonly preferredDark: UnwrapRef<typeof import('./composables/dark')['preferredDark']>
     readonly provide: UnwrapRef<typeof import('vue')['provide']>
     readonly qs: UnwrapRef<typeof import('qs')['default']>
@@ -805,6 +809,7 @@ declare module 'vue' {
 declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
     readonly ApiGameLunch: UnwrapRef<typeof import('./apis/index')['ApiGameLunch']>
+    readonly ApiMemberBalanceLockerShow: UnwrapRef<typeof import('./apis/index')['ApiMemberBalanceLockerShow']>
     readonly ApiMemberBalanceLockerUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberBalanceLockerUpdate']>
     readonly ApiMemberFavDelete: UnwrapRef<typeof import('./apis/index')['ApiMemberFavDelete']>
     readonly ApiMemberFavInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberFavInsert']>
@@ -933,6 +938,7 @@ declare module '@vue/runtime-core' {
     readonly onUpdated: UnwrapRef<typeof import('vue')['onUpdated']>
     readonly padStart: UnwrapRef<typeof import('lodash-es')['padStart']>
     readonly pausableWatch: UnwrapRef<typeof import('@vueuse/core')['pausableWatch']>
+    readonly payPasswordReg: UnwrapRef<typeof import('./utils/regexp')['payPasswordReg']>
     readonly preferredDark: UnwrapRef<typeof import('./composables/dark')['preferredDark']>
     readonly provide: UnwrapRef<typeof import('vue')['provide']>
     readonly qs: UnwrapRef<typeof import('qs')['default']>
