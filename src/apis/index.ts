@@ -47,9 +47,9 @@ export function ApiSmsSend(
 /**
  * 游戏列表
  */
-export function ApiMemberGameList(params: {
-  page: number
-  page_size: number
+export function ApiMemberGameList(params?: {
+  page?: number
+  page_size?: number
   game_type?: 1 | 3// 游戏类型:1=真人,3=电子
   is_hot?: 1 | 2 // 是否热门 1是 2否
   is_new?: 1 | 2 // 是否新游戏 1是 2否
