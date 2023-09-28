@@ -73,7 +73,7 @@ const { width } = useElementSize(parent)
   </template>
 
   <div v-else class="base-select" :class="[layout]">
-    <label v-if="label">{{ label }} <span v-if="must">*</span></label>
+    <label v-if="label">{{ label }} <span v-if="must" class="must">*</span></label>
     <div class="select-warp">
       <select :value="modelValue" :class="{ disabled, small }" :disabled="disabled" @change="onChange">
         <option style="display: none;" disabled value="" />
@@ -160,6 +160,9 @@ const { width } = useElementSize(parent)
 .base-select {
   color: var(--tg-text-lightgrey);
   font-size: var(--tg-font-size-default);
+  .must{
+    color: var(--tg-text-error);
+  }
 }
 
 .select-warp {
@@ -229,7 +232,7 @@ const { width } = useElementSize(parent)
 }
 </style>
 
-<style>
+<style lang="scss">
 /* 全局修改，需要组件传select-bank class才可以 */
 .theme-black{
   .v-popper__inner{
