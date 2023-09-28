@@ -712,3 +712,5 @@ register_date: 注册日期
 total_deposits: 总存款次数
 last_deposits: 最后一次存款
 wagered: 总投注额
+notify_title_error: 错误
+notify_title_success: 成功
