@@ -33,6 +33,9 @@ function cancelPayment() {
   depositStep.value = '1'
   emit('show', true)
 }
+// onMounted(() => {
+//   console.log(props.activeCurrency, 11111)
+// })
 </script>
 
 <template>
@@ -40,7 +43,7 @@ function cancelPayment() {
     <template v-if="depositStep === '1'">
       <!-- <BaseSelect v-model="currentNetwork" :options="networkList" popper /> -->
       <BaseInput
-        v-model="username" :label="`充值金额: ${activeCurrency ? EnumCurrency[activeCurrency.text] : ''}`"
+        v-model="username" :label="`充值金额: ${activeCurrency?.name}`"
         :msg="usernameErrorMsg"
       />
       <BaseMoneyKeyboard @click-key="getMoneyNum" />
