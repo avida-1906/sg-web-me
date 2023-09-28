@@ -56,6 +56,9 @@ const toNext = function () {
     cursor: pointer;
     color: var(--tg-text-white);
     user-select: none;
+    &:active{
+      transform: scale(.96);
+    }
     &.no-data{
       cursor: not-allowed;
       color: var(--tg-text-lightgrey);

@@ -11,8 +11,27 @@ const layoutLoading = ref(true)
 const menuData = computed<any>(() => route.meta.menu)
 const icon = computed<any>(() => route.meta.icon)
 
+const activeMenu = ref(menuData.value.filter((m: any) => m.path === route.path)[0])
+const { bool: isPopShow, setTrue: setPTrue, setFalse: setPFalse } = useBoolean(false)
+
+function togglePop() {
+  if (isPopShow.value)
+    setPFalse()
+  else
+    setPTrue()
+}
+
 function goBack() {
   router.push('/casino')
+}
+
+function goPage(item: any, hide: any) {
+  if (item.path) {
+    activeMenu.value = item
+    router.push(item.path)
+  }
+  hide && hide()
+  setPFalse()
 }
 
 onMounted(() => {
@@ -49,16 +68,27 @@ onUpdated(() => {
                       <BaseMenu :data="menuData" />
                     </template>
                     <template v-else>
-                      <div class="stack x-flex-start y-center padding-none direction-horizontal gap-small menu-btn">
+                      <div class="stack x-flex-start y-center padding-none direction-horizontal menu-btn gap-small">
                         <BaseButton size="md">
                           <BaseIcon name="uni-arrow-left" class="arrow-left" />
                         </BaseButton>
-                        <BaseButton size="md">
-                          <div class="btn-txt">
-                            <span>存款</span>
-                            <BaseIcon name="uni-arrow-down" />
-                          </div>
-                        </BaseButton>
+                        <VDropdown
+                          :distance="10"
+                        >
+                          <BaseButton size="md" @click="togglePop">
+                            <div class="btn-txt">
+                              <span>{{ activeMenu.title }}</span>
+                              <BaseIcon :name="isPopShow ? 'uni-arrow-up' : 'uni-arrow-down'" />
+                            </div>
+                          </BaseButton>
+                          <template #popper="{ hide }">
+                            <ul class="pop-menu">
+                              <li v-for="mi in menuData" :key="mi.path" :class="{ active: activeMenu.path === mi.path }" @click="goPage(mi, hide)">
+                                {{ mi.title }}
+                              </li>
+                            </ul>
+                          </template>
+                        </VDropdown>
                       </div>
                     </template>
                   </div>
@@ -81,6 +111,23 @@ onUpdated(() => {
 </template>
 
 <style lang="scss" scoped>
+.pop-menu {
+  padding: var(--tg-spacing-4) 0;
+  font-size: var(--tg-font-size-default);
+  color: var(--tg-secondary-main);
+  font-weight: var(--tg-font-weight-semibold);
+  li {
+    cursor: pointer;
+    padding: var(--tg-spacing-button-padding-vertical-xs) var(--tg-spacing-button-padding-horizontal-xs);
+    &:hover {
+      background-color: var(--tg-text-grey-light);
+      color: var(--tg-primary-main);
+    }
+    &.active {
+      color: var(--tg-text-blue);
+    }
+  }
+}
 .layout-loading {
   position: absolute;
   inset: 0 0 0 0;

@@ -186,8 +186,8 @@ function copyCode(type: string) {
       break
     case 'BaseLabel':
       copy(`
-        <BaseLabel label="input标题" label-content="温馨提示">
-          // 表单元素组件
+        <BaseLabel label="select标题:" label-content="温馨提示自定义" content-color="--tg-text-error" content-size="14">
+          <BaseSelect v-model="selectValue" :options="selectOptions" must />
         </BaseLabel>
       `)
       break
@@ -1192,7 +1192,7 @@ const breadcrumbs = ['one', 'two', 'three', 'four']
         </div>
       </AppDemoCard>
     </li>
-    <li>
+    <li class="box">
       <AppDemoCard title="BaseLabel" style="text-align:left">
         <BaseLabel label="input标题:" label-content="温馨提示自定义">
           <BaseInput v-model="username" :msg="usernameErrorMsg" placeholder="请输入用户名" must />
@@ -1200,6 +1200,11 @@ const breadcrumbs = ['one', 'two', 'three', 'four']
         <BaseLabel label="select标题:" label-content="温馨提示自定义" content-color="--tg-text-error" content-size="14">
           <BaseSelect v-model="selectValue" :options="selectOptions" must />
         </BaseLabel>
+        <div class="center">
+          <BaseButton @click="copyCode('BaseLabel')">
+            copy
+          </BaseButton>
+        </div>
       </AppDemoCard>
     </li>
   </ul>
