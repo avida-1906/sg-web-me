@@ -19,7 +19,8 @@ const titleRef = ref()
 
 const { x, y } = useDraggable(dragRef, {
   initialValue: { x: props.initX, y: props.initY },
-  draggingElement: titleRef,
+  // draggingElement: titleRef,
+  preventDefault: true,
 })
 
 const computedStyle = computed(() => {
@@ -74,12 +75,6 @@ function close() {
 </template>
 
 <style lang="scss" scoped>
-.container {
-  position: fixed;
-  inset: 0 0 0 0;
-  background-color: grey;
-}
-
 .tg-base-drag-dialog {
   touch-action: none;
   position: fixed;
@@ -95,7 +90,6 @@ function close() {
   z-index: var(--tg-z-index-top);
 
   .header {
-    touch-action: none;
     display: flex;
     font-weight: var(--tg-font-weight-semibold);
     white-space: nowrap;
@@ -104,6 +98,7 @@ function close() {
     background: var(--tg-primary-main);
     border-radius: var(--tg-radius-md) var(--tg-radius-md) 0 0;
     font-size: var(--tg-font-size-default);
+    touch-action: none;
 
     .title {
       touch-action: none;

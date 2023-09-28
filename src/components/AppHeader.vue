@@ -10,7 +10,7 @@ const userMenu = ref([
   { id: 3, icon: 'spt-airbonus', title: 'VIP', name: 'vip' },
   { id: 4, icon: 'spt-affiliate-pro', title: t('affiliate'), name: 'affiliate', path: '/affiliate/overview' },
   { id: 5, icon: 'uni-trend', title: t('statistical_data'), name: 'statistical-data' },
-  { id: 6, icon: 'tabbar-bet', title: t('transaction_record'), name: 'transaction-record', path: '/transactions' },
+  { id: 6, icon: 'tabbar-bet', title: t('transaction_record'), name: 'transaction-record', path: '/transactions/deposits' },
   { id: 7, icon: 'spt-basketball', title: t('sports_betting'), name: 'sports-betting' },
   { id: 8, icon: 'uni-set', title: t('setting'), name: 'setting' },
   { id: 9, icon: 'spt-secure', title: t('stake_safety'), name: 'stake-safety' },
