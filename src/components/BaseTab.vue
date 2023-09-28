@@ -71,6 +71,7 @@ function onClick(v: string | number, event: any) {
     background-color: var(--tg-tab-style-wrap-bg-color);
     flex: 1;
     display: flex;
+    gap: var(--tg-spacing-5);
   }
 
   .square {
@@ -99,14 +100,9 @@ function onClick(v: string | number, event: any) {
     justify-content: center;
     cursor: pointer;
     transition: all ease .25s;
-    margin-right: var(--tg-spacing-5);
     font-weight: var(--tg-font-weight-semibold);
     &.tab-large {
       --tg-tab-style-inner-padding-y: var(--tg-spacing-15);
-    }
-
-    &:last-of-type {
-      margin-right: 0;
     }
 
     .content {

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { EnumCasinoSortType } from '~/utils/enums'
+import { EnumCasinoGameType, EnumCasinoSortType } from '~/utils/enums'
 
 interface Props {
   gameType: string
@@ -24,11 +24,6 @@ const selectOptions = [
 function onSortSelect(v: string) {
   emit('sortTypeChange', v)
 }
-
-// onBeforeUpdate(() => {
-//   console.log('onBeforeUpdate')
-//   selectValue.value = props.sortType
-// })
 </script>
 
 <template>
