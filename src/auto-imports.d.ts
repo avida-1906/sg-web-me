@@ -331,6 +331,7 @@ declare global {
   const useRegisterDialog: typeof import('./composables/useDialogRegister')['useRegisterDialog']
   const useRequest: typeof import('vue-request')['useRequest']
   const useResizeObserver: typeof import('@vueuse/core')['useResizeObserver']
+  const useRightSidebar: typeof import('./composables/useRightSidebar')['useRightSidebar']
   const useRoute: typeof import('vue-router')['useRoute']
   const useRouter: typeof import('vue-router')['useRouter']
   const useSafeDialog: typeof import('./composables/useDialogSafe')['useSafeDialog']
@@ -730,6 +731,7 @@ declare module 'vue' {
     readonly useRegisterDialog: UnwrapRef<typeof import('./composables/useDialogRegister')['useRegisterDialog']>
     readonly useRequest: UnwrapRef<typeof import('vue-request')['useRequest']>
     readonly useResizeObserver: UnwrapRef<typeof import('@vueuse/core')['useResizeObserver']>
+    readonly useRightSidebar: UnwrapRef<typeof import('./composables/useRightSidebar')['useRightSidebar']>
     readonly useRoute: UnwrapRef<typeof import('vue-router')['useRoute']>
     readonly useRouter: UnwrapRef<typeof import('vue-router')['useRouter']>
     readonly useSafeDialog: UnwrapRef<typeof import('./composables/useDialogSafe')['useSafeDialog']>
@@ -1123,6 +1125,7 @@ declare module '@vue/runtime-core' {
     readonly useRegisterDialog: UnwrapRef<typeof import('./composables/useDialogRegister')['useRegisterDialog']>
     readonly useRequest: UnwrapRef<typeof import('vue-request')['useRequest']>
     readonly useResizeObserver: UnwrapRef<typeof import('@vueuse/core')['useResizeObserver']>
+    readonly useRightSidebar: UnwrapRef<typeof import('./composables/useRightSidebar')['useRightSidebar']>
     readonly useRoute: UnwrapRef<typeof import('vue-router')['useRoute']>
     readonly useRouter: UnwrapRef<typeof import('vue-router')['useRouter']>
     readonly useSafeDialog: UnwrapRef<typeof import('./composables/useDialogSafe')['useSafeDialog']>
