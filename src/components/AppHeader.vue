@@ -12,7 +12,7 @@ const userMenu = ref([
   { id: 5, icon: 'uni-trend', title: t('statistical_data'), name: 'statistical-data' },
   { id: 6, icon: 'tabbar-bet', title: t('transaction_record'), name: 'transaction-record', path: '/transactions/deposits' },
   { id: 7, icon: 'spt-basketball', title: t('sports_betting'), name: 'sports-betting' },
-  { id: 8, icon: 'uni-set', title: t('setting'), name: 'setting' },
+  { id: 8, icon: 'uni-set', title: t('setting'), name: 'setting', path: '/settings/general' },
   { id: 9, icon: 'spt-secure', title: t('stake_safety'), name: 'stake-safety' },
   { id: 10, icon: 'chess-online-support', title: t('online_support'), name: 'online-support' },
   { id: 11, icon: 'uni-logout', title: t('logout'), name: 'logout' },

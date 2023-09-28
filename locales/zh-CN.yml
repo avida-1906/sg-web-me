@@ -691,6 +691,11 @@ finance_other_tab_tips_received: 收到的小费
 finance_other_tab_tips_sent: 发送的小费
 finance_other_tab_vault_deposit: 保险库存款
 finance_other_tab_vault_withdrawal: 保险库取款
+finance_funds_transfer_sort_available: 可用金额
+finance_funds_transfer_sort_commission: 佣金
+finance_funds_transfer_sort_withdrawn: 已提取
+finance_funds_transfer_commission_txt: 把联盟佣金转入可用余额
+finance_funds_transfer_commission_withdraw: 提取可用佣金
 page_prev: 上一页
 page_next: 下一页
 currency_byte_coin: 加密货币
