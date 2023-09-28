@@ -32,18 +32,10 @@ const bannerImg = computed(() => {
 // 真人、老虎机
 const gameTypeParams = computed(() => isLive.value ? 1 : isSlot.value ? 3 : undefined)
 const pid = computed(() => iszProvider.value ? route.query.pid?.toString() : undefined)
-const { data: gameList, total: gameTotal, runAsync: runGameList, loading: loadingGame, push: pushGame } = usePage((page, page_size) => () => ApiMemberGameList({
-  page: page.value,
-  page_size: page_size.value,
-  game_type: gameTypeParams.value,
-  platform_id: pid.value,
-}), { page_size: VITE_CASINO_GAME_PAGE_SIZE })
+const { list: gameList, total: gameTotal, runAsync: runGameList, loading: loadingGame, loadMore: loadMoreGame } = useList(ApiMemberGameList, {}, { page_size: VITE_CASINO_GAME_PAGE_SIZE })
 
 // 推荐游戏
-const { data: recList, total: recTotal, runAsync: runRecList, loading: loadingRec, push: pushRec } = usePage((page, page_size) => () => ApiMemberGameRecList({
-  page: page.value,
-  page_size: page_size.value,
-}), { page_size: VITE_CASINO_GAME_PAGE_SIZE })
+const { list: recList, total: recTotal, runAsync: runRecList, loading: loadingRec, loadMore: loadMoreRec } = useList(ApiMemberGameRecList, {}, { page_size: VITE_CASINO_GAME_PAGE_SIZE })
 
 const list = computed(() => {
   if (isLive.value || isSlot.value || iszProvider.value)
@@ -68,16 +60,16 @@ const loading = computed(() => {
 })
 const push = computed(() => {
   if (isLive.value || isSlot.value || iszProvider.value)
-    return pushGame
+    return loadMoreGame
   else if (isRec.value)
-    return pushRec
+    return loadMoreRec
   return () => { }
 })
 
 const stop = watch(route, (a) => {
   currentType.value = a.params.gameType.toString()
   if (isLive.value || isSlot.value || iszProvider.value)
-    application.allSettled([runGameList()])
+    application.allSettled([runGameList({ game_type: gameTypeParams.value, platform_id: pid.value })])
   else if (isRec.value)
     application.allSettled([runRecList()])
 })
@@ -86,7 +78,8 @@ onBeforeRouteLeave(() => {
 })
 
 if (isLive.value || isSlot.value || iszProvider.value)
-  await application.allSettled([runGameList()])
+  await application.allSettled([runGameList({ game_type: gameTypeParams.value, platform_id: pid.value })])
+
 else if (isRec.value)
   await application.allSettled([runRecList()])
 </script>

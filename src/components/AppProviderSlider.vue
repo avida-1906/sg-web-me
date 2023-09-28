@@ -2,11 +2,7 @@
 const { VITE_CASINO_HOME_PAGE_SIZE } = import.meta.env
 const router = useRouter()
 
-const { data: liveList, runAsync: runPLatFormList } = usePage((page, page_size) => () => ApiMemberPlatformList({
-  page: page.value,
-  page_size: page_size.value,
-}), { page_size: VITE_CASINO_HOME_PAGE_SIZE })
-runPLatFormList()
+const { list } = useList(() => ApiMemberPlatformList({ page: 1, page_size: VITE_CASINO_HOME_PAGE_SIZE }), { manual: false })
 
 function goPage(item: any) {
   router.push(`/casino/group/provider?pid=${item.id}&name=${item.en_name}`)
@@ -15,7 +11,7 @@ function goPage(item: any) {
 
 <template>
   <div class="tg-app-provider-slider">
-    <AppSlider icon="chess-game-provider" :title="$t('casino_provider')" :data="liveList" :show-view-all="false" game-type="provider">
+    <AppSlider :key="list.length" icon="chess-game-provider" :title="$t('casino_provider')" :data="list" :show-view-all="false" game-type="provider">
       <template #default="{ item }">
         <div class="provider-item-wrap" @click="goPage(item)">
           <BaseImage url="https://mediumrare.imgix.net/be6c453a8f450c2fbf5181abc844f080b537458061aeca3902575510acacdbea?&dpr=2&format=auto&auto=format&q=50" />
