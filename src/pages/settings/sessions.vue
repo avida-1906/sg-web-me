@@ -18,26 +18,31 @@ const columns: Column[] = [
   {
     title: '浏览器',
     dataIndex: 'browser',
+    width: 180,
     align: 'left',
   },
   {
     title: '靠近',
     dataIndex: 'near',
+    width: 120,
     align: 'center',
   },
   {
     title: 'IP地址',
     dataIndex: 'addr',
+    width: 130,
     align: 'center',
   },
   {
     title: '最后使用',
     dataIndex: 'lastUsed',
+    width: 100,
     align: 'center',
   },
   {
     title: '行动',
     dataIndex: 'action',
+    width: 100,
     align: 'right',
   },
 ]
@@ -80,7 +85,7 @@ const paginationData = {
     <div class="session-select">
       <BaseSelect v-model="selectValue" :options="selectOptions" small />
     </div>
-    <div class="session-table">
+    <div class="session-table scroll-x">
       <BaseTable
         :columns="columns"
         :data-source="tableData"
@@ -100,6 +105,7 @@ const paginationData = {
   .session-select{
     width: 80px;
     margin-top: var(--tg-spacing-4);
+    margin-bottom: var(--tg-spacing-16);
   }
   .session-page{
     margin-top: var(--tg-spacing-16);

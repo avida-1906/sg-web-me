@@ -125,6 +125,7 @@ by_email: 通过电子邮件
 by_web_notification: 通过网页通知
 can_continue_whatsapp: 您可以在 WhatsApp 上继续对话
 cancel: 取消
+confirm: 确认
 cant_load_new_messages: 无法加载新消息
 check_later_for_updates: 请稍后再回来查看更新。
 checklist_card_first_step: 第一步

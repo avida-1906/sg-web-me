@@ -28,18 +28,20 @@ function gameStart(item: Props['gameInfo']) {
 </script>
 
 <template>
-  <div class="base-game-item" @click="gameStart(gameInfo)">
-    <BaseImage :url="gameInfo.img" :name="gameInfo.name" is-cloud />
-    <div class="active-game-item">
-      <div class="game-title">
-        {{ gameInfo.name }}
-      </div>
-      <BaseIcon class="game-uni-play" name="uni-play" />
-      <div class="game-tip">
-        Abcd 原创游戏
+  <BaseAspectRatio ratio="334/447">
+    <div class="base-game-item" @click="gameStart(gameInfo)">
+      <BaseImage :url="gameInfo.img" :name="gameInfo.name" is-cloud />
+      <div class="active-game-item">
+        <div class="game-title">
+          {{ gameInfo.name }}
+        </div>
+        <BaseIcon class="game-uni-play" name="uni-play" />
+        <div class="game-tip">
+          Abcd 原创游戏
+        </div>
       </div>
     </div>
-  </div>
+  </BaseAspectRatio>
 </template>
 
 <style scoped lang="scss">

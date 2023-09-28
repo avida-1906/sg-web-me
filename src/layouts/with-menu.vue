@@ -163,6 +163,7 @@ onUpdated(() => {
 .with-menu-container {
   .layout-spacing {
     .top {
+      color: var(--tg-text-white);
       .title {
         font-size: var(--tg-font-size-base);
         font-weight: var(--tg-font-weight-normal);

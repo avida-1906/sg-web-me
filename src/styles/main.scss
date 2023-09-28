@@ -333,6 +333,10 @@ body {
   cursor: pointer;
 }
 
+.cursor-help {
+  cursor: help;
+}
+
 .page-stack-wrap {
   font-size: var(--tg-font-size-default);
   color: var(--tg-text-white);
