@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { EnumCasinoGameType, EnumCasinoSortType } from '~/utils/enums'
+
 const props = defineProps<{ gameType: string }>()
 const { VITE_CASINO_GAME_PAGE_SIZE } = import.meta.env
 const { t } = useI18n()
@@ -32,11 +34,21 @@ const bannerImg = computed(() => {
 // 真人、老虎机
 const gameTypeParams = computed(() => isLive.value ? 1 : isSlot.value ? 3 : undefined)
 const pid = computed(() => iszProvider.value ? route.query.pid?.toString() : undefined)
+const sort = ref(isLive.value ? EnumCasinoSortType.recommend : EnumCasinoSortType.hot)
 const { list: gameList, total: gameTotal, runAsync: runGameList, loading: loadingGame, loadMore: loadMoreGame } = useList(ApiMemberGameList, {}, { page_size: VITE_CASINO_GAME_PAGE_SIZE })
 
 // 推荐游戏
 const { list: recList, total: recTotal, runAsync: runRecList, loading: loadingRec, loadMore: loadMoreRec } = useList(ApiMemberGameRecList, {}, { page_size: VITE_CASINO_GAME_PAGE_SIZE })
 
+// 获取数据
+function getData() {
+  if (isLive.value || isSlot.value || iszProvider.value)
+    application.allSettled([runGameList({ game_type: gameTypeParams.value, platform_id: pid.value, sort: sort.value })])
+  else if (isRec.value)
+    application.allSettled([runRecList({ sort: sort.value })])
+}
+
+// 页面数据
 const list = computed(() => {
   if (isLive.value || isSlot.value || iszProvider.value)
     return gameList.value
@@ -66,22 +78,28 @@ const push = computed(() => {
   return () => { }
 })
 
+// 路由变化
 const stop = watch(route, (a) => {
   currentType.value = a.params.gameType.toString()
-  if (isLive.value || isSlot.value || iszProvider.value)
-    application.allSettled([runGameList({ game_type: gameTypeParams.value, platform_id: pid.value })])
-  else if (isRec.value)
-    application.allSettled([runRecList()])
+  sort.value = currentType.value === EnumCasinoGameType.LIVE ? EnumCasinoSortType.recommend : EnumCasinoSortType.hot
+  getData()
 })
 onBeforeRouteLeave(() => {
   stop()
 })
 
+// 排序变化
+function onSortChange(v: any) {
+  sort.value = v
+  getData()
+}
+
+// 初始化
 if (isLive.value || isSlot.value || iszProvider.value)
-  await application.allSettled([runGameList({ game_type: gameTypeParams.value, platform_id: pid.value })])
+  await application.allSettled([runGameList({ game_type: gameTypeParams.value, platform_id: pid.value, sort: sort.value })])
 
 else if (isRec.value)
-  await application.allSettled([runRecList()])
+  await application.allSettled([runRecList({ sort: sort.value })])
 </script>
 
 <template>
@@ -106,7 +124,7 @@ else if (isRec.value)
         <AppGameSearch game-type="1" />
       </div>
       <div class="mt-24">
-        <AppGroupFilter :game-type="currentType" />
+        <AppGroupFilter :game-type="currentType" :sort-type="sort" @sort-type-change="onSortChange" />
       </div>
       <div class="mt-24">
         <AppCardList :list="list" />

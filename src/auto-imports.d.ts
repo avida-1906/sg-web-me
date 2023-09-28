@@ -436,6 +436,7 @@ declare module 'vue' {
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly EnumCasinoGameType: UnwrapRef<typeof import('./utils/enums')['EnumCasinoGameType']>
+    readonly EnumCasinoSortType: UnwrapRef<typeof import('./utils/enums')['EnumCasinoSortType']>
     readonly EnumCurrency: UnwrapRef<typeof import('./utils/enums')['EnumCurrency']>
     readonly EnumLanguage: UnwrapRef<typeof import('./utils/enums')['EnumLanguage']>
     readonly Local: UnwrapRef<typeof import('./utils/storage')['Local']>
@@ -831,6 +832,7 @@ declare module '@vue/runtime-core' {
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly EnumCasinoGameType: UnwrapRef<typeof import('./utils/enums')['EnumCasinoGameType']>
+    readonly EnumCasinoSortType: UnwrapRef<typeof import('./utils/enums')['EnumCasinoSortType']>
     readonly EnumCurrency: UnwrapRef<typeof import('./utils/enums')['EnumCurrency']>
     readonly EnumLanguage: UnwrapRef<typeof import('./utils/enums')['EnumLanguage']>
     readonly Local: UnwrapRef<typeof import('./utils/storage')['Local']>

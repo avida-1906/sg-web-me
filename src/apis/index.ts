@@ -55,6 +55,7 @@ export function ApiMemberGameList(params?: {
   is_new?: 1 | 2 // 是否新游戏 1是 2否
   tag_id?: number // 游戏标签
   platform_id?: string // 场馆id（evo真人）（需要转成字符串）
+  sort?: string // 排序sorting,en_name,created_at 三个字段支持排序，格式为 sorting:asc sorting:desc
 }) {
   return httpClient.get< {
     d: {
@@ -201,7 +202,11 @@ export function ApiMemberFavDelete(id: string) {
 /*
 * 推荐游戏列表
 */
-export function ApiMemberGameRecList(params?: { page?: number; page_size?: number }) {
+export function ApiMemberGameRecList(params?: {
+  page?: number
+  page_size?: number
+  sort?: string // 排序sorting,en_name,created_at 三个字段支持排序，格式为 sorting:asc sorting:desc
+}) {
   return httpClient.get<{
     d: {
       id: string
