@@ -57,17 +57,17 @@ const { width } = useElementSize(parent)
           <BaseIcon name="uni-arrow-down" />
         </div>
       </div>
-      <template #popper="{ hide }">
-        <slot :data="{ options, hide, parentWidth: width }">
-          <div class="need-pad-y scroll-y popper-wrap">
-            <div
-              v-for="type, i in options" :key="i" v-close-popper class="popper-option"
-              @click="onClickPopperItem(type.value)"
-            >
-              {{ type.label }}
-            </div>
+      <template #popper>
+        <div class="scroll-y need-pad-y popper-wrap">
+          <div
+            v-for="item, i in options" :key="i" v-close-popper class="popper-option"
+            @click="onClickPopperItem(item.value)"
+          >
+            <slot :data="{ item, parentWidth: width }">
+              {{ item.label }}
+            </slot>
           </div>
-        </slot>
+        </div>
       </template>
     </VDropdown>
   </template>
