@@ -6,7 +6,7 @@ const route = useRoute()
 
 const { appContentWidth } = storeToRefs(useWindowStore())
 
-const layoutLoading = ref(true)
+const { bool: layoutLoading, setFalse: setLFalse } = useBoolean(true)
 
 const menuData = computed<any>(() => route.meta.menu)
 const icon = computed<any>(() => route.meta.icon)
@@ -35,11 +35,11 @@ function goPage(item: any, hide: any) {
 }
 
 onMounted(() => {
-  layoutLoading.value = false
+  setLFalse()
 })
 
 onUpdated(() => {
-  layoutLoading.value = false
+  setLFalse()
 })
 </script>
 

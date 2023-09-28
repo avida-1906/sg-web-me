@@ -243,6 +243,7 @@ body {
   position: fixed;
   top: 5rem;
   left: 1rem;
+  z-index: var(--tg-z-index-top);
 }
 
 .select-none {

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-defineProps<{ list?: any[]; isProvider?: boolean }>()
+const props = defineProps<{ list?: any[]; isProvider?: boolean }>()
 
 const sliderOuter = ref()
 const { appContentWidth } = storeToRefs(useWindowStore())
@@ -26,13 +26,22 @@ watchEffect(() => {
   else
     galleryClass.value = 'card-list-500'
 })
+
+const style = computed(() => {
+  const obj: any = {}
+  if (props.isProvider)
+    obj.gap = 'var(--tg-spacing-32) var(--tg-spacing-16)'
+  return obj
+})
 </script>
 
 <template>
-  <div ref="sliderOuter" class="card-list" :class="[galleryClass]">
+  <div ref="sliderOuter" class="card-list" :class="[galleryClass, isProvider ? 'card-list-provider' : '']" :style="style">
     <template v-if="list && list.length > 0">
       <div v-for="item in list" :key="item.id" class="wrap">
-        <BaseGameItem :game-info="item" />
+        <slot :item="item">
+          <BaseGameItem :game-info="item" />
+        </slot>
       </div>
     </template>
   </div>
@@ -67,6 +76,26 @@ watchEffect(() => {
   &-500 {
     grid-template-columns: repeat(3, 1fr);
     gap: 10px 5px;
+  }
+  &.card-list-provider {
+    &.card-list-1150 {
+      grid-template-columns: repeat(7, 1fr);
+    }
+    &.card-list-1150-1000 {
+      grid-template-columns: repeat(7, 1fr);
+    }
+    &.card-list-1000-850 {
+      grid-template-columns: repeat(7, 1fr);
+    }
+    &.card-list-850-700 {
+      grid-template-columns: repeat(5, 1fr);
+    }
+    &.card-list-700-500 {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    &.card-list-500 {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 }
 </style>

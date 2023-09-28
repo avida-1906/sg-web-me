@@ -287,9 +287,9 @@ watchEffect(() => {
             display: none;
           }
 
-          &:hover {
-            transform: translateY(-7px);
-          }
+          // &:hover {
+          //   transform: translateY(-7px);
+          // }
 
           img {
             display: block;
