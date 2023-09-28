@@ -17,7 +17,7 @@ const tab = ref(props.tabs[0].value)
 <template>
   <section class="tg-app-tab-record">
     <div class="top">
-      <BaseTab v-model="tab" :list="tabs" />
+      <BaseTab v-model="tab" :list="tabs" :center="false" />
     </div>
     <div class="middle">
       <div class="empty">

@@ -118,7 +118,7 @@ provide('closeDialog', close)
     top: 0;
     bottom: 0;
     right: 0;
-    z-index: var(--tg-z-index-top);
+    z-index: var(--tg-z-index-secondary);
     padding: var(--tg-spacing-12);
     display: flex;
     align-items: center;
