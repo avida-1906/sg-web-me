@@ -42,6 +42,7 @@ const columns: Column[] = [
   {
     title: '行动',
     dataIndex: 'action',
+    slot: 'action',
     width: 100,
     align: 'right',
   },
@@ -90,7 +91,17 @@ const paginationData = {
         :columns="columns"
         :data-source="tableData"
         :loading="loading"
-      />
+      >
+        <template #action="{ record }">
+          <div class="slot-action">
+            <BaseButton type="text" size="xs" class="but-action">
+              <span>
+                {{ record.action }}
+              </span>
+            </BaseButton>
+          </div>
+        </template>
+      </BaseTable>
     </div>
     <div class="session-page">
       <AppStack :pagination-data="paginationData" />
@@ -101,14 +112,25 @@ const paginationData = {
 <style lang="scss" scoped>
 .tg-settings-sessions {
   font-size: var(--tg-font-size-default);
-  font-weight: var(--tg-font-weight-semibold);
+  // font-weight: var(--tg-font-weight-semibold);
   .session-select{
     width: 80px;
     margin-top: var(--tg-spacing-4);
     margin-bottom: var(--tg-spacing-16);
   }
+  .session-table{
+    font-weight: var(--tg-font-weight-default);
+  }
   .session-page{
     margin-top: var(--tg-spacing-16);
+  }
+  .slot-action{
+    span{
+      color: var(--tg-text-error);
+    }
+    .but-action{
+      padding: var(--tg-spacing-7) 0 var(--tg-spacing-8) !important;
+    }
   }
 }
 </style>

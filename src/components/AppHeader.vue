@@ -2,7 +2,7 @@
 const appStore = useAppStore()
 const { isLogin } = storeToRefs(appStore)
 const { isMobile, isLessThanLg, width } = storeToRefs(useWindowStore())
-const { rightIsExpand, setRightSidebarExpandStatus } = useRightSidebar()
+const { rightIsExpand, openRightSidebar, currentRightSidebarContent, closeRightSidebar } = useRightSidebar()
 const { t } = useI18n()
 const router = useRouter()
 const route = useRoute()
@@ -20,8 +20,8 @@ const userMenu = ref([
   { id: 11, icon: 'uni-logout', title: t('logout'), name: 'logout' },
 ])
 const newsMenu = ref([
-  { id: 1, icon: 'chess-discuss', title: t('chat_room'), name: 'chat-room', shown: rightIsExpand },
-  { id: 2, icon: 'spt-user-bet', title: t('bet_slip'), name: 'bet-slip' },
+  { id: 1, icon: 'chess-discuss', title: t('chat_room'), name: 'chat-room', shown: EnumRightSidebarContent.CHATROOM },
+  { id: 2, icon: 'spt-user-bet', title: t('bet_slip'), name: 'bet-slip', shown: EnumRightSidebarContent.BETTING },
 ])
 
 const { bool: showSearchBar, setTrue } = useBoolean(false)
@@ -35,6 +35,14 @@ const { openRegisterDialog } = useRegisterDialog()
 const { openVipDialog } = useVipDialog()
 const { openStatisticsDialog } = useStatisticsDialog()
 const { openSafeDialog } = useSafeDialog()
+
+// 选中状态
+const getActiveState = computed(() => {
+  return (path: string | undefined) => path === route.path
+})
+const getActiveShown = computed(() => {
+  return (shown: string) => rightIsExpand.value && shown === currentRightSidebarContent.value
+})
 function handleClickMenuItem(item: { name: string; path?: string }) {
   const { name, path } = item
   // console.log(name)
@@ -59,9 +67,14 @@ function handleClickMenuItem(item: { name: string; path?: string }) {
       openStatisticsDialog()
       break
     case 'chat-room':
-      setRightSidebarExpandStatus()
+      getActiveShown.value(EnumRightSidebarContent.CHATROOM) ? closeRightSidebar() : openRightSidebar(EnumRightSidebarContent.CHATROOM)
       break
-    case 'bet-slip': break
+    case 'bet-slip':
+      getActiveShown.value(EnumRightSidebarContent.BETTING) ? closeRightSidebar() : openRightSidebar(EnumRightSidebarContent.BETTING)
+      break
+    case 'notification':
+      getActiveShown.value(EnumRightSidebarContent.NOTIFICATION) ? closeRightSidebar() : openRightSidebar(EnumRightSidebarContent.NOTIFICATION)
+      break
     default:
       break
   }
@@ -72,10 +85,6 @@ async function logout() {
   await nextTick()
   setDialogLogoutFalse()
 }
-// 选中状态
-const getActiveState = computed(() => {
-  return (path: string | undefined) => path === route.path
-})
 </script>
 
 <template>
@@ -103,7 +112,7 @@ const getActiveState = computed(() => {
             </div>
           </template>
         </VDropdown>
-        <BaseButton type="text">
+        <BaseButton type="text" @click="handleClickMenuItem({ name: 'notification' })">
           <BaseIcon class="icon-size" name="navbar-notice" />
         </BaseButton>
         <VDropdown :distance="6">
@@ -112,7 +121,7 @@ const getActiveState = computed(() => {
           </BaseButton>
           <template #popper>
             <div class="dropdown-popper need-pad-y">
-              <div v-for="item of newsMenu" :key="item.id" v-close-popper class="menu-item" :class="{ 'active-menu': item.shown }" @click="handleClickMenuItem(item)">
+              <div v-for="item of newsMenu" :key="item.id" v-close-popper class="menu-item" :class="{ 'active-menu': getActiveShown(item.shown) }" @click="handleClickMenuItem(item)">
                 <div class="menu-btn">
                   <BaseIcon class="icon-size" :name="item.icon" />
                   <span>{{ item.title }}</span>

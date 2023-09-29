@@ -27,8 +27,8 @@ const {
 const homeContainerRef = ref<HTMLElement | null>(null)
 const { width } = useElementSize(homeContainerRef)
 const route = useRoute()
-const { leftIsExpand, isSwitching, switchTo } = useLeftSidebar()
-const { rightIsExpand, setRightSidebarExpandStatus, rightContainerIs0 } = useRightSidebar()
+const { leftIsExpand, isSwitching, switchTo, triggerLeftSidebar } = useLeftSidebar()
+const { rightIsExpand, rightContainerIs0, currentRightSidebarContent } = useRightSidebar()
 
 // 是否游戏页面
 const isCasinoGames = computed(() => route.name === 'casino-games')
@@ -45,13 +45,12 @@ watch(() => width.value, (newWidth) => {
 
 <template>
   <main class="wrap" :class="{ 'is-switching': isSwitching, 'not-mobile': !isMobile }">
-    <div v-if="homeOverlayIsShow" class="home-overlay" @click="leftIsExpand = !leftIsExpand" />
+    <div v-if="homeOverlayIsShow" class="home-overlay" @click="triggerLeftSidebar" />
     <div class="side-bar-outer">
       <div v-if="isLessThanLg && isGreaterThanSm" class="small-size-padding" />
       <Transition :name="isMobile ? 'bigslide-fade-top' : 'bigslide-fade-left'">
         <div
-          v-if="leftIsExpand || isSwitching"
-          class="big-side left-sidebar" :style="{
+          v-if="leftIsExpand || isSwitching" class="big-side left-sidebar" :style="{
             '--width': 'var(--tg-sidebar-width-lg)',
           }" :class="{
             'fixed-small': isGreaterThanSm,
@@ -59,14 +58,13 @@ watch(() => width.value, (newWidth) => {
             'full-screen': isMobile,
           }"
         >
-          <AppLeftSidebar v-model="leftIsExpand" :is-switching="isSwitching" :switch-to="switchTo" />
+          <AppLeftSidebar :is-switching="isSwitching" :switch-to="switchTo" />
         </div>
       </Transition>
 
       <Transition name="smallslide-fade-left">
         <div
-          v-if="!isMobile && (!leftIsExpand || isSwitching)"
-          class="left-sidebar small-side" :style="{
+          v-if="!isMobile && (!leftIsExpand || isSwitching)" class="left-sidebar small-side" :style="{
             '--width': 'var(--tg-sidebar-width-sm)',
           }" :class="{
             'fixed-small': isGreaterThanSm,
@@ -74,7 +72,7 @@ watch(() => width.value, (newWidth) => {
             'full-screen': isMobile,
           }"
         >
-          <AppLeftSidebarTiny v-model="leftIsExpand" :is-switching="isSwitching" :switch-to="switchTo" />
+          <AppLeftSidebarTiny :is-switching="isSwitching" :switch-to="switchTo" />
         </div>
       </Transition>
     </div>
@@ -91,10 +89,6 @@ watch(() => width.value, (newWidth) => {
         <AppContent>
           <div ref="homeContainerRef" class="only-for-get-width" />
         </AppContent>
-        <!-- 主页面 -->
-        <BaseButton @click="setRightSidebarExpandStatus">
-          聊天室
-        </BaseButton>
         <slot>
           <AppContent :is-game-page="isCasinoGames">
             <RouterView v-slot="{ Component }">
@@ -125,10 +119,15 @@ watch(() => width.value, (newWidth) => {
         'fixed': isLessThanSm,
       }"
     >
-      右侧 {{ rightIsExpand }}
-      <button @click="setRightSidebarExpandStatus()">
-        关闭
-      </button>
+      <template v-if="currentRightSidebarContent === EnumRightSidebarContent.NOTIFICATION">
+        <AppNotice />
+      </template>
+      <template v-if="currentRightSidebarContent === EnumRightSidebarContent.CHATROOM">
+        聊天室
+      </template>
+      <template v-if="currentRightSidebarContent === EnumRightSidebarContent.BETTING">
+        <AppSportsBetSlip />
+      </template>
     </div>
     <AppFooterbar v-show="!isGreaterThanSm" />
   </main>
@@ -144,11 +143,13 @@ watch(() => width.value, (newWidth) => {
     height: calc(100vh - var(--tg-header-height) - var(--tg-footerbar-height));
   }
 }
-.only-for-get-width{
+
+.only-for-get-width {
   width: 100%;
   position: relative;
   top: var(--tg-header-height-n);
 }
+
 .wrap {
 
   .side-bar-outer {
@@ -156,16 +157,19 @@ watch(() => width.value, (newWidth) => {
     display: flex;
     flex-direction: row;
   }
+
   .left-sidebar.big-side {
     position: relative;
     z-index: var(--tg-z-index-30);
     will-change: margin-left;
   }
+
   .left-sidebar.small-side {
     position: relative;
     z-index: var(--tg-z-index-20);
     will-change: margin-left;
   }
+
   &.is-switching {
 
     .left-sidebar.small-side {
@@ -173,9 +177,11 @@ watch(() => width.value, (newWidth) => {
     }
   }
 }
+
 .wrap {
   width: 100%;
   height: 100%;
+
   &.not-mobile {
     display: flex;
     overflow: hidden;
@@ -237,10 +243,10 @@ watch(() => width.value, (newWidth) => {
     align-items: center;
     height: 60px;
     background-color: var(--tg-primary-main);
-    color: white;
+    color: var(--tg-text-white);
     font-weight: 600;
     padding-right: var(--tg-scrollbar-size);
-    box-shadow: #0003 0 4px 6px -1px, #0000001f 0 2px 4px -1px;
+    box-shadow: var(--tg-header-shadow);
     z-index: var(--tg-z-index-10);
     position: sticky;
     top: 0;
@@ -251,7 +257,8 @@ watch(() => width.value, (newWidth) => {
       flex-direction: column;
     }
   }
-  .footer{
+
+  .footer {
     width: 100%;
     background-color: var(--tg-secondary-deepdark);
     // #091d2a
@@ -259,10 +266,11 @@ watch(() => width.value, (newWidth) => {
 }
 
 .right-sidebar {
-  background-color: green;
-  transition: width 0.3s ease-in-out;
+  background: var(--tg-secondary-dark);
+  transition: width 0.3s;
   overflow: hidden;
   z-index: var(--tg-z-index-30);
+  filter: drop-shadow(var(--tg-drop-shadow));
 
   &.width-none {
     width: 0;

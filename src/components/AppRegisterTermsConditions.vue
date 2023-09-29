@@ -155,40 +155,37 @@ onBeforeUnmount(() => {
   flex-direction: column;
   gap: var(--tg-spacing-12);
   .title {
-    color: #B1BAD3;
+    color: var(--tg-text-lightgrey);
     text-align: center;
-    font-family: PingFang SC;
     font-size: var(--tg-font-size-base);
     font-style: normal;
-    font-weight: 500;
+    font-weight: var(--tg-font-weight-semibold);
     line-height: normal;
     // padding-bottom: var(--tg-spacing-button-padding-vertical-xs);
   }
   .terms-conditions {
     .theme {
-      margin: 12px 0;
+      margin: var(--tg-spacing-12) 0;
     }
     .terms-conditions-title,.terms-conditions-theme  {
-      color: #FFF;
-      font-family: PingFang SC;
-      font-size: 14px;
+      color: var(--tg-text-white);
+      font-size: var(--tg-font-size-default);
       font-style: normal;
-      font-weight: 500;
+      font-weight: var(--tg-font-weight-semibold);
       line-height: 22px;
     }
     .terms-conditions-describe {
-      color: #B1BAD3;
-      font-family: PingFang SC;
-      font-size: 12px;
+      color: var(--tg-text-lightgrey);
+      font-size: var(--tg-font-size-xs);
       font-style: normal;
-      font-weight: 500;
+      font-weight: var(--tg-font-weight-semibold);
       line-height: 22px;
     }
     max-height: 50vh;
-    padding: 20px 12px;
+    padding: var(--tg-spacing-20) var(--tg-spacing-12);
     text-align: left;
-    border-radius: 4px;
-    background: #2F4553;
+    border-radius: var(--tg-radius-default);
+    background: var(--tg-secondary-main);
     transition: all 0.5s;
     // overflow-y: scroll !important;
     // overflow-x: hidden !important;

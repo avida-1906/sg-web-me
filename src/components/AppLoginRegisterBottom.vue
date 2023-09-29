@@ -28,9 +28,9 @@ async function toLogin() {
 </script>
 
 <template>
-  <div class="app-bottom">
+  <div class="app-bottoms">
     <AppAuthLogin />
-    <div class="app-bottom-text">
+    <div class="app-bottoms-text">
       <div v-if="props.type === 'login'" class="text-white">
         {{ t('forgot_password') }}
       </div>
@@ -50,10 +50,11 @@ async function toLogin() {
 </template>
 
 <style lang='scss' scoped>
-.app-bottom {
+.app-bottoms {
   display: flex;
   flex-direction: column;
-  gap: var(--tg-spacing-12);
+  gap: var(--tg-spacing-16);
+  padding-top: var(--tg-spacing-16);
   &-text {
     text-align: center;
     font-size: var(--tg-font-size-default);

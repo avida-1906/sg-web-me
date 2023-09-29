@@ -6,12 +6,14 @@ interface Props {
   type?: 'radio'
 }
 
-withDefaults(defineProps<Props>(), {})
+const props = withDefaults(defineProps<Props>(), {})
+const route = useRoute()
+const active = computed(() => route.path === props.menuItem.path)
 </script>
 
 <template>
   <div class="tg-app-menu-item">
-    <div class="menu-item">
+    <div class="menu-item" :class="{ active }">
       <BaseIcon v-if="menuItem.icon" :name="menuItem.icon" />
       <span>{{ menuItem.title }}</span>
     </div>

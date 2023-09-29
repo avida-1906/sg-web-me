@@ -4,17 +4,13 @@
 // 右侧：992 （320/370）
 // 左侧：消失 / 768 - 1200 fixed（占位 60）/ 正常占位
 interface Props {
-  modelValue: boolean // 是否展开
   isSwitching?: boolean
   switchTo?: 'big' | 'small' | ''
 }
-const props = defineProps<Props>()
-const emit = defineEmits(['update:modelValue'])
+defineProps<Props>()
 const { t } = useI18n()
 
-function onClick() {
-  emit('update:modelValue', !props.modelValue)
-}
+const { triggerLeftSidebar } = useLeftSidebar()
 
 const router = useRouter()
 const route = useRoute()
@@ -29,7 +25,7 @@ const isSports = computed(() => route.name?.toString().includes('sports'))
       <div class="header is-small">
         <Transition name="menu-fade">
           <template v-if="!isSwitching">
-            <div class="button" @click="onClick">
+            <div class="button" @click="triggerLeftSidebar">
               <BaseIcon name="uni-menu" />
             </div>
           </template>

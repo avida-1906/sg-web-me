@@ -101,7 +101,7 @@ await application.allSettled([runDetail()])
     <div class="mobile-header">
       <div class="img-wrap">
         <div class="img">
-          <BaseImage :url="dataDetail?.img" />
+          <BaseImage :url="dataDetail?.img" is-cloud />
         </div>
       </div>
       <div class="info-wrap">
@@ -150,7 +150,7 @@ await application.allSettled([runDetail()])
         <template #popper>
           <div v-if="currencyList.length" class="scroll-y popper popper-mobile">
             <div
-              v-for="c, i in currencyList" :key="i" v-close-popper class="popper-option currency-types"
+              v-for="c, i in currencyList" :key="i" v-close-popper class="currency-types popper-option"
               @click="onChooseCurrency(c)"
             >
               <div>
