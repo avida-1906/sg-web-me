@@ -33,12 +33,6 @@ const bindBanks = computed(() => {
   })
 })
 const amount = ref('')
-function onClickPopperItem(v: any, hide: () => void) {
-  if (v === selectBank.value)
-    return
-  selectBank.value = v.value
-  hide()
-}
 // < 638
 const { isXs } = storeToRefs(useWindowStore())
 </script>
@@ -73,9 +67,9 @@ const { isXs } = storeToRefs(useWindowStore())
       <div class="withdrawal-info">
         <BaseLabel v-if="currentType === '1'" label="出款银行卡" must>
           <BaseSelect v-model="selectBank" :options="bindBanks" must banks theme popper>
-            <template #default="{ data: { options, hide, parentWidth } }">
-              <div class="bank-options scroll-x" :style="{ width: `${parentWidth + 40}px` }">
-                <div v-for="item, index in options" :key="index" class="option-row" @click="onClickPopperItem(item, hide)">
+            <template #default="{ data: { item, parentWidth } }">
+              <div class="bank-options scroll-x" :style="{ width: `${parentWidth + 24}px` }">
+                <div class="option-row">
                   <BaseIcon name="fiat-bank" />
                   <div class="bank-info" :class="{ 'is-mobile': isXs }">
                     <p>{{ item.label }}</p>
@@ -135,14 +129,14 @@ const { isXs } = storeToRefs(useWindowStore())
   }
 }
 .bank-options{
-  padding: var(--tg-spacing-12) 0;
+  // padding: var(--tg-spacing-12) 0;
   .option-row {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 0.75rem;
     color: var(--tg-text-white);
-    padding: var(--tg-spacing-8) var(--tg-spacing-24);
+    // padding: var(--tg-spacing-8) var(--tg-spacing-24);
     cursor: pointer;
     > svg{
       width: 40px;
@@ -163,7 +157,7 @@ const { isXs } = storeToRefs(useWindowStore())
       }
     }
     &:hover{
-      background-color: var(--tg-sub-blue);
+      // background-color: var(--tg-sub-blue);
     }
   }
 }

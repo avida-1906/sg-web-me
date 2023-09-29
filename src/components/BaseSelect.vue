@@ -60,7 +60,7 @@ const { width } = useElementSize(parent)
       <template #popper>
         <div class="scroll-y need-pad-y popper-wrap">
           <div
-            v-for="item, i in options" :key="i" v-close-popper class="popper-option"
+            v-for="item, i in options" :key="i" v-close-popper :class="theme ? 'popper-option-dark' : 'popper-option'"
             @click="onClickPopperItem(item.value)"
           >
             <slot :data="{ item, parentWidth: width, active: item.value === modelValue }">
@@ -153,6 +153,16 @@ const { width } = useElementSize(parent)
 
   &:hover {
     background-color: var(--tg-text-lightgrey);
+  }
+}
+.popper-option-dark {
+  cursor: pointer;
+  padding: var(--tg-spacing-button-padding-vertical-s) var(--tg-spacing-button-padding-horizontal-s);
+  font-size: var(--tg-font-size-default);
+  color: var(--tg-secondary-main);
+  font-weight: var(--tg-font-weight-semibold);
+  &:hover {
+    background-color: var(--tg-sub-blue);
   }
 }
 
