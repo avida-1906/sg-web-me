@@ -2,11 +2,13 @@
 </script>
 
 <template>
-  <section>
+  <section class="tg-chat-page">
     <AppChat />
   </section>
 </template>
 
 <style lang="scss" scoped>
-
+.tg-chat-page {
+  height: 100vh;
+}
 </style>
