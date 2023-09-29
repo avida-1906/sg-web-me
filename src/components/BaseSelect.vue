@@ -19,6 +19,13 @@ const props = withDefaults(defineProps<Props>(), {
   layout: 'vertical',
 })
 const emit = defineEmits(['update:modelValue', 'select'])
+const parent = ref<HTMLElement | null>(null)
+const { bool, setTrue, setFalse } = useBoolean(false)
+const { width } = useElementSize(parent)
+
+const selectedOption = computed(() => props.options.find(a => a.value === props.modelValue))
+const popperLabel = computed(() => props.options.find(a => a.value === props.modelValue)?.label ?? '-')
+const popperLabelBank = computed(() => props.options.find(a => a.value === props.modelValue)?.value ?? '')
 
 function onChange(event: any) {
   const v = event.target.value
@@ -29,12 +36,6 @@ function onChange(event: any) {
   emit('update:modelValue', v)
   emit('select', v)
 }
-
-// popper
-const { bool, setTrue, setFalse } = useBoolean(false)
-const selectedOption = computed(() => props.options.find(a => a.value === props.modelValue))
-const popperLabel = computed(() => props.options.find(a => a.value === props.modelValue)?.label ?? '-')
-const popperLabelBank = computed(() => props.options.find(a => a.value === props.modelValue)?.value ?? '')
 function onClickPopperItem(v: any) {
   if (v === props.modelValue)
     return
@@ -42,10 +43,6 @@ function onClickPopperItem(v: any) {
   emit('update:modelValue', v)
   emit('select', v)
 }
-
-//   自定义银行卡select
-const parent = ref<HTMLElement | null>(null)
-const { width } = useElementSize(parent)
 </script>
 
 <template>
