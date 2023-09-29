@@ -41,6 +41,10 @@ onMounted(() => {
 onUpdated(() => {
   setLFalse()
 })
+
+watch(route, (val) => {
+  activeMenu.value = menuData.value.filter((m: any) => m.path === val.path)[0]
+})
 </script>
 
 <template>
@@ -69,7 +73,7 @@ onUpdated(() => {
                     </template>
                     <template v-else>
                       <div class="stack x-flex-start y-center padding-none direction-horizontal gap-small menu-btn">
-                        <BaseButton size="md">
+                        <BaseButton size="md" @click="$router.go(-1)">
                           <BaseIcon name="uni-arrow-left" class="arrow-left" />
                         </BaseButton>
                         <VDropdown
