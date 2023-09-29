@@ -3,8 +3,9 @@ interface Props {
   modelValue?: string
   must?: boolean
   layout?: 'horizontal' | 'vertical'
+  label?: string
 }
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   layout: 'vertical',
 })
 const emit = defineEmits(['update:modelValue'])
@@ -115,7 +116,7 @@ defineExpose({ valiBirthday })
 <template>
   <div class="base-input-birthday">
     <div :class="[layout]">
-      <label>{{ t('time_birthday') }} <span v-if="must">*</span></label>
+      <label>{{ props.label }} <span v-if="must">*</span></label>
       <div class="input-wrap">
         <!-- 日 -->
         <input

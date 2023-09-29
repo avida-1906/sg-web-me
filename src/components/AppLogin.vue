@@ -63,17 +63,23 @@ function onBlur() {
   <div class="app-login">
     <!-- <form></form> -->
     <div class="app-login-input-box">
-      <BaseInput v-model="username" :label="t('email_or_username')" :msg="usernameErrorMsg" :placeholder="t('pls_enter_email_or_username')" must />
-      <BaseInput
-        v-model="password" :label="t('password')" :msg="pwdErrorMsg" :placeholder="t('pls_enter_password')" type="password" must
-        autocomplete="current-password"
-        :password="password"
-        @focus="onFocus" @blur="onBlur"
-      />
+      <BaseLabel :label="t('email_or_username')" must-small>
+        <BaseInput v-model="username" :msg="usernameErrorMsg" :placeholder="t('pls_enter_email_or_username')" />
+      </BaseLabel>
+      <BaseLabel :label="t('password')" must-small>
+        <BaseInput
+          v-model="password" :msg="pwdErrorMsg" :placeholder="t('pls_enter_password')" type="password"
+          autocomplete="current-password"
+          :password="password"
+          @focus="onFocus" @blur="onBlur"
+        />
+      </BaseLabel>
       <AppPasswordVerify v-show="isShowPasswordVerify" :password="password" />
       <!-- <BaseInput v-model="username" :label="t('two-step_verification')" :msg="usernameErrorMsg" :placeholder="t('pls_enter_two-step_verification')" must /> -->
-      <BaseButton class="app-login-btn" bg-style="secondary" :loading="isLoading" @click.stop="getMemberLogin">
-        {{ t('login') }}
+      <BaseButton class="app-login-btn" bg-style="secondary" :loading="isLoading" size="xl" @click.stop="getMemberLogin">
+        <span class="login-text">
+          {{ t('login') }}
+        </span>
       </BaseButton>
     </div>
   </div>
@@ -88,6 +94,9 @@ function onBlur() {
   }
   &-btn {
     width: 100%;
+  }
+  .login-text{
+    font-size: var(--tg-font-size-base);
   }
 }
 </style>
