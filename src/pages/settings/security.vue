@@ -10,9 +10,15 @@ const twoStepCode = ref('HM3XE2DLGVWECZDYK5BUMNTQORGVCKBVO5MG4JBSG46EGMCSHZEA')
 <template>
   <div class="tg-settings-security">
     <AppSettingsContentItem title="密码">
-      <BaseInput v-model="password" label="旧密码" type="password" must />
-      <BaseInput v-model="newPassword" label="新密码" type="password" must />
-      <BaseInput v-model="againNewPassword" label="确认新密码" type="password" must />
+      <BaseLabel label="旧密码" must-small>
+        <BaseInput v-model="password" type="password" />
+      </BaseLabel>
+      <BaseLabel label="新密码" must-small>
+        <BaseInput v-model="newPassword" type="password" />
+      </BaseLabel>
+      <BaseLabel label="确认新密码" must-small>
+        <BaseInput v-model="againNewPassword" type="password" />
+      </BaseLabel>
     </AppSettingsContentItem>
     <AppSettingsContentItem title="双重验证" last-one>
       <template #top-desc>
@@ -30,8 +36,14 @@ const twoStepCode = ref('HM3XE2DLGVWECZDYK5BUMNTQORGVCKBVO5MG4JBSG46EGMCSHZEA')
           <BaseQrcode url="www.baidu.com" class="mt-16" />
         </div>
         <div class="mt-16">
-          <BaseInput v-model="password" label="密码" :msg="pwdErrorMsg" placeholder="请输入用户名" type="password" must />
-          <BaseInput v-model="twoStepPassword" label="双重验证" :msg="pwdErrorMsg" must />
+          <BaseLabel label="密码" must-small>
+            <BaseInput v-model="password" :msg="pwdErrorMsg" placeholder="请输入用户名" type="password" />
+          </BaseLabel>
+          <div class="mt-16">
+            <BaseLabel label="双重验证" must-small>
+              <BaseInput v-model="twoStepPassword" :msg="pwdErrorMsg" />
+            </BaseLabel>
+          </div>
         </div>
       </div>
     </AppSettingsContentItem>

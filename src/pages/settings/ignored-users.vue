@@ -23,12 +23,12 @@ const columns: IColumns[] = [
 ]
 const tableData: any = [
   {
-    action: '接触拉黑',
+    action: '解除拉黑',
     player: 'littlemissmay',
     vipIcon: 'chat-star-orange',
   },
   {
-    action: '接触拉黑',
+    action: '解除拉黑',
     player: 'littlemissmay',
     vipIcon: 'chat-star-orange',
   },

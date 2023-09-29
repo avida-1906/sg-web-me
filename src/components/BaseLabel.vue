@@ -5,6 +5,7 @@ interface Props {
   contentColor?: string // 内容颜色
   contentSize?: string // 内容字体
   must?: boolean // 必填
+  mustSmall?: boolean // 小
   rightText?: string // 右侧文本
   icon?: string // icon
 }
@@ -23,8 +24,8 @@ const props = withDefaults(defineProps<Props>(), {
         <BaseIcon v-if="props.icon" :name="props.icon" />
         <div class="label-title">
           {{ props.label }}
-          <div v-if="props.must" class="label-must">
-            *
+          <div v-if="props.must || props.mustSmall" :class="{ 'label-must': props.must, 'label-must-small': props.mustSmall }">
+            <span>*</span>
           </div>
         </div>
         <div class="label-content" :style="`color:var(${props.contentColor});font-size:${props.contentSize}px`">
@@ -41,6 +42,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 <style lang='scss' scoped>
 .base-label{
+  font-size: var(--tg-font-size-default);
   .label-wrap{
     display: flex;
     align-items: center;
@@ -59,6 +61,15 @@ const props = withDefaults(defineProps<Props>(), {
         align-items: center;
         .label-must{
           color: var(--tg-text-error);
+        }
+        .label-must-small{
+          color: var(--tg-text-error);
+          margin-left: var(--tg-spacing-3);
+          span{
+            margin-top: -4px;
+            display: block;
+            transform: scale(.7);
+          }
         }
       }
     }
