@@ -10,7 +10,11 @@ const options = [
   <div class="app-sports-bet-slip">
     <div class="header">
       <div class="navigation-header">
-        <BaseSelect v-model="type" style="--tg-base-select-hover-bg-color:var(--tg-secondary-dark);" :options="options" no-hover popper>
+        <BaseSelect
+          v-model="type"
+          style="--tg-base-select-hover-bg-color:var(--tg-secondary-dark);--tg-base-select-popper-style-padding-x:0;"
+          :options="options" no-hover popper
+        >
           <template #label="{ data }">
             <div class="type-select">
               <BaseIcon :name="data?.icon" />
@@ -47,22 +51,25 @@ const options = [
   display: grid;
   grid-auto-flow: row;
   place-content: stretch;
-  .navigation-header{
-    background: var(--sidebar-header-background);
+
+  .navigation-header {
+    background: var(--tg-secondary-dark);
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: var(--header-height);
+    height: var(--tg-header-height);
     z-index: 2;
     position: relative;
-    box-shadow: var(--shadows-lg);
+    box-shadow: var(--tg-box-shadow-lg);
     touch-action: none;
-    padding-right: var(--scrollbar-size);
-    padding-left: var(--spacing-1);
-    .type-select{
+    padding-right: var(--tg-scrollbar-size);
+    padding-left: var(--tg-spacing-16);
+
+    .type-select {
       display: flex;
-      span{
+
+      span {
         margin-left: var(--tg-spacing-8);
       }
     }

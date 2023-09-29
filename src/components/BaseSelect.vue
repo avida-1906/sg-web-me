@@ -98,12 +98,14 @@ function onClickPopperItem(v: any) {
   --tg-base-select-style-padding-y: var(--tg-spacing-11);
   --tg-base-select-style-padding-right: var(--tg-base-select-style-padding-x);
   --tg-base-select-hover-bg-color: var(--tg-secondary-deepdark);
+  --tg-base-select-popper-style-padding-x: var(--tg-spacing-button-padding-horizontal-md);
+  --tg-base-select-popper-style-padding-y: var(--tg-spacing-button-padding-vertical-md);
 }
 </style>
 
 <style lang='scss' scoped>
 .popper-label {
-  padding: var(--tg-spacing-button-padding-vertical-md) var(--tg-spacing-button-padding-horizontal-md);
+  padding: var(--tg-base-select-popper-style-padding-y) var(--tg-base-select-popper-style-padding-x);
   font-weight: var(--tg-font-weight-semibold);
   font-size: var(--tg-font-size-default);
   color: var(--tg-text-white);
