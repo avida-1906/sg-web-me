@@ -1,18 +1,13 @@
 <script setup lang='ts'>
 interface Props {
-  modelValue: boolean // 是否展开
   isSwitching?: boolean
   switchTo?: 'big' | 'small' | ''
 }
-const props = defineProps<Props>()
-const emit = defineEmits(['update:modelValue'])
+defineProps<Props>()
 const { t } = useI18n()
-// const isExpand = computed(() => props.modelValue)
 const { isMobile } = storeToRefs(useWindowStore())
 
-function onClick() {
-  emit('update:modelValue', !props.modelValue)
-}
+const { triggerLeftSidebar } = useLeftSidebar()
 
 const router = useRouter()
 const route = useRoute()
@@ -31,7 +26,7 @@ function onGameTypeChange(v: string) {
     <Transition name="menu-fade">
       <template v-if="!isSwitching">
         <div class="header">
-          <div class="button" @click="onClick">
+          <div class="button" @click="triggerLeftSidebar">
             <BaseIcon name="uni-menu" />
           </div>
           <div class="game-type">

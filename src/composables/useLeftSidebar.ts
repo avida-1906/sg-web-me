@@ -14,10 +14,22 @@ export const useLeftSidebar = createGlobalState(() => {
     setFalse()
     switchTo.value = ''
   }
+  function openLeftSidebar() {
+    leftIsExpand.value = true
+  }
+  function closeLeftSidebar() {
+    leftIsExpand.value = false
+  }
+  function triggerLeftSidebar() {
+    leftIsExpand.value = !leftIsExpand.value
+  }
 
   return {
     leftIsExpand,
     isSwitching,
     switchTo,
+    openLeftSidebar,
+    closeLeftSidebar,
+    triggerLeftSidebar,
   }
 })

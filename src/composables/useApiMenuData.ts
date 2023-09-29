@@ -221,24 +221,24 @@ export function useApiMenuData() {
 
   const route = useRoute()
 
-  const { leftIsExpand } = useLeftSidebar()
+  const { closeLeftSidebar, openLeftSidebar } = useLeftSidebar()
 
-  const { isMobile } = storeToRefs(useWindowStore())
+  const { isMobile, isLessThanLg } = storeToRefs(useWindowStore())
 
   function menuItemClick(item: MenuItem) {
     Local.set(STORAGE_MENU_EXPAND_DOMID, item.domId || '')
     if (item.path && item.path.length) {
-      if (isMobile.value)
-        leftIsExpand.value = false
+      if (isMobile.value || isLessThanLg.value)
+        closeLeftSidebar()
 
       router.push(item.path)
     }
     else if (item.list && item.list.length) {
-      leftIsExpand.value = true
+      openLeftSidebar()
     }
     else if (item.modalQuery) {
       if (isMobile.value)
-        leftIsExpand.value = false
+        closeLeftSidebar()
       router.push({
         path: route.path,
         query: { ...route.query, ...item.modalQuery },
