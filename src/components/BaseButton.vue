@@ -35,6 +35,7 @@ withDefaults(defineProps<Props>(), {
 :root {
   --tg-base-button-style-bg: var(--tg-secondary-main);
   --tg-base-button-style-bg-hover: var(--tg-text-grey);
+  --tg-base-button-text-default-color: var(--tg-text-grey-button);
 }
 </style>
 
@@ -83,7 +84,7 @@ button {
 }
 
 .text {
-  color: var(--tg-text-grey-button);
+  color: var(--tg-base-button-text-default-color);
 
   &:active:not(:disabled) {
     color: var(--tg-text-white);

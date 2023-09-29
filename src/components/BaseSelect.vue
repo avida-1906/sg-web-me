@@ -64,7 +64,8 @@ function onClickPopperItem(v: any) {
       <template #popper>
         <div class="scroll-y need-pad-y popper-wrap">
           <a
-            v-for="item, i in options" :key="i" v-close-popper :class="theme ? 'popper-option-dark' : 'popper-option'"
+            v-for="item, i in options" :key="i" v-close-popper
+            :class="{ 'popper-option-dark': theme, 'popper-option': !theme, 'active': item.value === modelValue }"
             @click="onClickPopperItem(item.value)"
           >
             <slot name="option" :data="{ item, parentWidth: width, active: item.value === modelValue }">
@@ -100,6 +101,8 @@ function onClickPopperItem(v: any) {
   --tg-base-select-hover-bg-color: var(--tg-secondary-deepdark);
   --tg-base-select-popper-style-padding-x: var(--tg-spacing-button-padding-horizontal-md);
   --tg-base-select-popper-style-padding-y: var(--tg-spacing-button-padding-vertical-md);
+  --tg-base-select-popper-label-color: var(--tg-text-white);
+  --tg-base-select-popper-label-hover-color: var(--tg-text-white);
 }
 </style>
 
@@ -108,7 +111,7 @@ function onClickPopperItem(v: any) {
   padding: var(--tg-base-select-popper-style-padding-y) var(--tg-base-select-popper-style-padding-x);
   font-weight: var(--tg-font-weight-semibold);
   font-size: var(--tg-font-size-default);
-  color: var(--tg-text-white);
+  color: var(--tg-base-select-popper-label-color);
   background-color: var(--tg-secondary-dark);
   border-radius: var(--tg-radius-sm);
   transition: all ease .25s;
@@ -137,8 +140,13 @@ function onClickPopperItem(v: any) {
   }
 
   &:hover {
+    color: var(--tg-base-select-popper-label-hover-color);
     background-color: var(--tg-base-select-hover-bg-color);
     --tg-icon-color: var(--tg-text-white)
+  }
+
+  &:active {
+    transform: scale(0.96);
   }
 }
 
@@ -158,9 +166,15 @@ function onClickPopperItem(v: any) {
   font-size: var(--tg-font-size-default);
   color: var(--tg-secondary-main);
   font-weight: var(--tg-font-weight-semibold);
+  --tg-icon-color: var(--tg-secondary-main);
 
   &:hover {
     background-color: var(--tg-text-lightgrey);
+  }
+
+  &.active {
+    color: var(--tg-text-blue);
+    --tg-icon-color: var(--tg-text-blue);
   }
 }
 
