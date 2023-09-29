@@ -240,6 +240,19 @@ body {
   overscroll-behavior: contain;
 }
 
+.dropdown-scroll-content {
+  display: flex;
+  flex-direction: column;
+  padding: var(--tg-spacing-4) 0;
+  max-width: 100vw;
+  max-height: inherit;
+}
+
+.hoverable {
+  cursor: help;
+  display: inline-flex;
+}
+
 .notification-list {
   display: grid;
   grid-auto-flow: row;
