@@ -28,7 +28,7 @@ const homeContainerRef = ref<HTMLElement | null>(null)
 const { width } = useElementSize(homeContainerRef)
 const route = useRoute()
 const { leftIsExpand, isSwitching, switchTo } = useLeftSidebar()
-const { rightIsExpand, setRightSidebarExpandStatus, rightContainerIs0 } = useRightSidebar()
+const { rightIsExpand, rightContainerIs0, currentRightSidebarContent } = useRightSidebar()
 
 // 是否游戏页面
 const isCasinoGames = computed(() => route.name === 'casino-games')
@@ -91,10 +91,6 @@ watch(() => width.value, (newWidth) => {
         <AppContent>
           <div ref="homeContainerRef" class="only-for-get-width" />
         </AppContent>
-        <!-- 主页面 -->
-        <BaseButton @click="setRightSidebarExpandStatus">
-          聊天室
-        </BaseButton>
         <slot>
           <AppContent :is-game-page="isCasinoGames">
             <RouterView v-slot="{ Component }">
@@ -125,10 +121,15 @@ watch(() => width.value, (newWidth) => {
         'fixed': isLessThanSm,
       }"
     >
-      右侧 {{ rightIsExpand }}
-      <button @click="setRightSidebarExpandStatus()">
-        关闭
-      </button>
+      <template v-if="currentRightSidebarContent === EnumRightSidebarContent.NOTIFICATION">
+        通知
+      </template>
+      <template v-if="currentRightSidebarContent === EnumRightSidebarContent.CHATROOM">
+        聊天室
+      </template>
+      <template v-if="currentRightSidebarContent === EnumRightSidebarContent.BETTING">
+        投注单
+      </template>
     </div>
     <AppFooterbar v-show="!isGreaterThanSm" />
   </main>
@@ -260,7 +261,7 @@ watch(() => width.value, (newWidth) => {
 
 .right-sidebar {
   background-color: green;
-  transition: width 0.3s ease-in-out;
+  transition: width 0.3s;
   overflow: hidden;
   z-index: var(--tg-z-index-30);
 

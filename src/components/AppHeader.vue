@@ -2,7 +2,7 @@
 const appStore = useAppStore()
 const { isLogin } = storeToRefs(appStore)
 const { isMobile, isLessThanLg, width } = storeToRefs(useWindowStore())
-const { rightIsExpand, setRightSidebarExpandStatus } = useRightSidebar()
+const { rightIsExpand, openRightSidebar, closeRightSidebar } = useRightSidebar()
 const { t } = useI18n()
 const router = useRouter()
 const route = useRoute()
@@ -59,9 +59,11 @@ function handleClickMenuItem(item: { name: string; path?: string }) {
       openStatisticsDialog()
       break
     case 'chat-room':
-      setRightSidebarExpandStatus()
+      openRightSidebar(EnumRightSidebarContent.CHATROOM)
       break
-    case 'bet-slip': break
+    case 'bet-slip':
+      openRightSidebar(EnumRightSidebarContent.BETTING)
+      break
     default:
       break
   }
