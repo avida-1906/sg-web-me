@@ -69,13 +69,13 @@ onUpdated(() => {
                     </template>
                     <template v-else>
                       <div class="stack x-flex-start y-center padding-none direction-horizontal gap-small menu-btn">
-                        <BaseButton size="md">
+                        <BaseButton size="md" bg-style="dark">
                           <BaseIcon name="uni-arrow-left" class="arrow-left" />
                         </BaseButton>
                         <VDropdown
                           :distance="10"
                         >
-                          <BaseButton size="md" @click="togglePop">
+                          <BaseButton size="md" bg-style="dark" @click="togglePop">
                             <div class="btn-txt">
                               <span>{{ activeMenu.title }}</span>
                               <BaseIcon :name="isPopShow ? 'uni-arrow-up' : 'uni-arrow-down'" />
@@ -146,7 +146,11 @@ onUpdated(() => {
 .menu-btn {
   .app-svg-icon.arrow-left {
     font-size: var(--tg-font-size-default);
-    transform: scale(0.8);
+    transform: scale(0.7);
+    --tg-icon-color: var(--tg-text-white);
+  }
+  .app-svg-icon {
+    transform: scale(0.85);
   }
 }
 .btn-txt {
