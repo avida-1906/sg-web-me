@@ -35,3 +35,13 @@ pages 下面所有的文件夹和文件都使用中横线 `-` 连接，如 `home
 // 统一使用vue-request, 全局已经将manual设置成了true，所以需要手动调用，要使用runAsync，不能使用run
 await application.allSettled([run1(), run2()])
 ```
+
+### script setup 代码顺序
+props
+hooks
+data
+computed
+methods
+watch
+mounted
+…生命周期
