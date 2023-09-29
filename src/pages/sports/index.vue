@@ -1,13 +1,13 @@
 <script setup lang='ts'>
 const { isMobile } = storeToRefs(useWindowStore())
 
-const gameType = ref('')
+const gameType = ref('all')
 const tabList = [
-  { label: '大厅', value: 'all' },
-  { label: '真人娱乐场', value: 'real' },
-  { label: '特色老虎机', value: 'slot' },
-  { label: '游戏节目', value: 'live' },
-  { label: 'Stake 原创游戏', value: 'origin' },
+  { label: '大厅', value: 'all', icon: 'spt-basketball' },
+  { label: '我的投注', value: 'my-bet', icon: 'spt-user-bet' },
+  { label: '收藏夹', value: 'fav', icon: 'uni-favorites' },
+  { label: '滚球盘', value: 'live', icon: 'spt-ball-plate' },
+  { label: '即将开赛', value: 'soon', icon: 'spt-timing' },
 ]
 </script>
 
@@ -21,16 +21,7 @@ const tabList = [
         <AppGameSearch game-type="2" />
       </div>
       <div class="mt-24">
-        <BaseTab v-model="gameType" :list="tabList" />
-      </div>
-      <div class="content-wrapper mt-24">
-        <AppAmount amount="0.01888888" :currency-type="EnumCurrency.BTC" />
-        <AppAmount amount="0.00001234" :currency-type="19" />
-        <AppAmount amount="0.00001234" :currency-type="20" />
-        <AppAmount amount="0.00001234" :currency-type="21" />
-        <AppAmount amount="0.00001234" :currency-type="22" />
-        <AppAmount amount="0.00001234" :currency-type="23" />
-        <AppAmount amount="0.00001234" :currency-type="24" />
+        <BaseTab v-model="gameType" :list="tabList" :center="false" />
       </div>
     </div>
     <div class="layout-spacing">
