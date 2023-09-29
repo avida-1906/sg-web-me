@@ -49,7 +49,7 @@ function onBlur() {
         <div class="input-box" :class="{ 'active': isFocus, 'error': isError, 'radio-r-o': $slots['right-button'] }">
           <input
             :value="modelValue" min="0" :placeholder="placeholder" :type="_type" :class="{ 'p-r-0': $slots['right-icon'] }"
-            @input="onInput" @focus="onFocus" @blur="onBlur"
+            autocomplete="new-password" @input="onInput" @focus="onFocus" @blur="onBlur"
           >
           <div v-if="isPassword" class="eye" @click="toggleType">
             <BaseIcon :name="`uni-eye-${_type === 'password' ? 'open' : 'close'}`" />
