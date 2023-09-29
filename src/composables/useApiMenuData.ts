@@ -223,15 +223,22 @@ export function useApiMenuData() {
 
   const { leftIsExpand } = useLeftSidebar()
 
+  const { isMobile } = storeToRefs(useWindowStore())
+
   function menuItemClick(item: MenuItem) {
     Local.set(STORAGE_MENU_EXPAND_DOMID, item.domId || '')
     if (item.path && item.path.length) {
+      if (isMobile.value)
+        leftIsExpand.value = false
+
       router.push(item.path)
     }
     else if (item.list && item.list.length) {
       leftIsExpand.value = true
     }
     else if (item.modalQuery) {
+      if (isMobile.value)
+        leftIsExpand.value = false
       router.push({
         path: route.path,
         query: { ...route.query, ...item.modalQuery },
