@@ -36,12 +36,19 @@ pages 下面所有的文件夹和文件都使用中横线 `-` 连接，如 `home
 await application.allSettled([run1(), run2()])
 ```
 
-### script setup 代码顺序
+### script setup 代码顺序，每类之间空一行
 props
+
 hooks
+
 data
+
 computed
+
 methods
+
 watch
+
 mounted
+
 …生命周期
