@@ -147,14 +147,14 @@ await application.allSettled([runDetail()])
         </div>
         <template #popper>
           <div v-if="currencyList.length" class="scroll-y popper popper-mobile">
-            <div
-              v-for="c, i in currencyList" :key="i" v-close-popper class="currency-types popper-option"
+            <a
+              v-for="c, i in currencyList" :key="i" v-close-popper class="popper-option currency-types"
               @click="onChooseCurrency(c)"
             >
               <div>
                 <AppCurrencyIcon show-name :currency-type="c.num" />
               </div>
-            </div>
+            </a>
           </div>
         </template>
       </VDropdown>
@@ -196,14 +196,14 @@ await application.allSettled([runDetail()])
                     </div>
                     <template #popper>
                       <div v-if="currencyList.length" class="scroll-y popper">
-                        <div
+                        <a
                           v-for="c, i in currencyList" :key="i" v-close-popper class="popper-option currency-types"
                           @click="onChooseCurrency(c)"
                         >
                           <div>
                             <AppCurrencyIcon show-name :currency-type="c.num" />
                           </div>
-                        </div>
+                        </a>
                       </div>
                     </template>
                   </VDropdown>

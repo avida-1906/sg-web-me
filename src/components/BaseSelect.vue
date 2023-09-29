@@ -63,14 +63,14 @@ function onClickPopperItem(v: any) {
       </div>
       <template #popper>
         <div class="scroll-y need-pad-y popper-wrap">
-          <div
+          <a
             v-for="item, i in options" :key="i" v-close-popper :class="theme ? 'popper-option-dark' : 'popper-option'"
             @click="onClickPopperItem(item.value)"
           >
             <slot name="option" :data="{ item, parentWidth: width, active: item.value === modelValue }">
               {{ item.label }}
             </slot>
-          </div>
+          </a>
         </div>
       </template>
     </VDropdown>

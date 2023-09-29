@@ -115,12 +115,12 @@ provide('closeSearchH5', () => leftIsExpand.value = !leftIsExpand.value)
             <BaseIcon :name="`uni-arrow-${isPopperShow ? 'up' : 'down'}-big`" />
           </button>
           <template #popper>
-            <div
+            <a
               v-for="type, i in gameTypeList" :key="i" v-close-popper class="popper-option"
               @click="selectGameType(type.value)"
             >
               {{ type.label }}
-            </div>
+            </a>
           </template>
         </VDropdown>
       </template>
