@@ -30,7 +30,7 @@ function gameStart(item: Props['gameInfo']) {
 <template>
   <BaseAspectRatio ratio="334/447">
     <div class="base-game-item" @click="gameStart(gameInfo)">
-      <BaseImage :url="gameInfo.img" :name="gameInfo.name" is-cloud />
+      <BaseImage :url="gameInfo.img" :name="gameInfo.name" is-game />
       <div class="active-game-item">
         <div class="game-title">
           {{ gameInfo.name }}

@@ -8,6 +8,7 @@ interface Props {
   height?: string // 图像高度px
   fit?: 'contain' | 'fill' | 'cover' // 图像如何适应容器高度和宽度
   isCloud?: boolean
+  isGame?: boolean
 }
 const props = withDefaults(defineProps<Props>(), {
   url: '',
@@ -20,8 +21,11 @@ const props = withDefaults(defineProps<Props>(), {
 const emit = defineEmits(['clickImg'])
 const { VITE_CASINO_IMG_CLOUD_URL } = getEnv()
 const imgUrl = computed(() => {
-  if (props.isCloud)
+  if (props.isGame)
     return `${VITE_CASINO_IMG_CLOUD_URL}${props.url.replace('%lang%', getCurrentLanguageForBackend())}`
+
+  if (props.isCloud)
+    return `${VITE_CASINO_IMG_CLOUD_URL}${props.url}`
 
   return props.url
 })
