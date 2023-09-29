@@ -92,22 +92,30 @@ function onBlur() {
     </div>
     <!-- <form></form> -->
     <div class="app-register-input-box">
-      <BaseInput v-model="email" :label="t('email_address')" :msg="emailErrorMsg" :placeholder="t('pls_enter_email_address')" must />
-      <BaseInput v-model="username" :label="t('username')" :msg="usernameErrorMsg" :placeholder="t('pls_enter_username')" must />
-      <BaseInput
-        v-model="password" :label="t('password')" :msg="pwdErrorMsg" :placeholder="t('pls_enter_password')" type="password" must
-        autocomplete="current-password"
-        :password="password"
-        @focus="onFocus" @blur="onBlur"
-      />
+      <BaseLabel :label="t('email_address')" must-small>
+        <BaseInput v-model="email" :msg="emailErrorMsg" :placeholder="t('pls_enter_email_address')" />
+      </BaseLabel>
+      <BaseLabel :label="t('username')" must-small>
+        <BaseInput v-model="username" :msg="usernameErrorMsg" :placeholder="t('pls_enter_username')" />
+      </BaseLabel>
+      <BaseLabel :label="t('password')" must-small>
+        <BaseInput
+          v-model="password" :msg="pwdErrorMsg" :placeholder="t('pls_enter_password')" type="password"
+          autocomplete="current-password"
+          :password="password"
+          @focus="onFocus" @blur="onBlur"
+        />
+      </BaseLabel>
       <AppPasswordVerify v-show="isShowPasswordVerify" :password="password" />
-      <BaseInputBirthday ref="birthdayInputRef" v-model="birthday" must />
+      <BaseLabel label="出生日期" must-small>
+        <BaseInputBirthday ref="birthdayInputRef" v-model="birthday" />
+      </BaseLabel>
     </div>
     <div class="app-register-check-box">
       <BaseCheckBox v-model="checkboxValue">
         {{ t('code_optional') }}
       </BaseCheckBox>
-      <BaseButton class="app-register-btn" bg-style="secondary" @click.stop="getMemberReg">
+      <BaseButton class="app-register-btn" bg-style="secondary" size="xl" @click.stop="getMemberReg">
         {{ t('continue') }}
       </BaseButton>
     </div>
@@ -117,28 +125,32 @@ function onBlur() {
 <style lang='scss' scoped>
 .app-register {
   &-title {
-    color: #B1BAD3;
+    color: var(--tg-text-lightgrey);
     text-align: center;
     font-family: PingFang SC;
     font-size: var(--tg-font-size-base);
     font-style: normal;
-    font-weight: 500;
+    font-weight: var(--tg-font-weight-semibold);
     line-height: normal;
-    padding-bottom: var(--tg-spacing-button-padding-vertical-xs);
+    padding-bottom: var(--tg-spacing-16);
   }
   &-input-box {
     display: flex;
     flex-direction: column;
-    gap: var(--tg-spacing-12);
+    gap: var(--tg-spacing-16);
   }
   &-check-box {
     display: flex;
     flex-direction: column;
-    gap: var(--tg-spacing-14);
+    gap: var(--tg-spacing-16);
     padding-top: var(--tg-spacing-button-padding-vertical-xs);
+    font-weight: var(--tg-font-weight-semibold);
   }
   &-btn {
     width: 100%;
+  }
+  .app-register-btn{
+    font-size: var(--tg-font-size-base);
   }
 }
 </style>

@@ -5,8 +5,8 @@ const { t } = useI18n()
 <template>
   <div class="app-bottom">
     <div class="app-bottom-divider">
-      <BaseDivider title-placement="center">
-        {{ t('or_use') }}
+      <BaseDivider title-placement="center" spacing="8" size="1">
+        <span>        {{ t('or_use') }}</span>
       </BaseDivider>
     </div>
     <div class="app-bottom-icon">
@@ -30,18 +30,21 @@ const { t } = useI18n()
 .app-bottom {
   display: flex;
   flex-direction: column;
-  gap: var(--tg-spacing-12);
+  gap: var(--tg-spacing-16);
   &-divider {
     width: 100%;
     max-width: 200px;
     margin: 0 auto;
-    padding-top: var(--tg-spacing-button-padding-vertical-xs);
+    // padding-top: var(--tg-spacing-16);
+    span{
+      color: var(--tg-text-lightgrey);
+    }
   }
   &-icon {
     // display: flex;
     // justify-content: center;
     // align-items: center;
-    gap: var(--tg-spacing-5);
+    gap: var(--tg-spacing-8);
 
     width: 100%;
     display: grid;

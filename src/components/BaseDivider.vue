@@ -2,6 +2,8 @@
 interface Props {
   titlePlacement?: 'left' | 'center' | 'right'
   offset?: string
+  spacing?: string
+  size?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -19,6 +21,20 @@ const cssVars = {
 const showTitle = computed(() => {
   return useSlots().default
 })
+// 文字边距
+const marginSpacing = computed(() => {
+  if (props.spacing)
+    return `var(--tg-spacing-${props.spacing})`
+  else
+    return 'var(--tg-spacing-12)'
+})
+// line 高
+const lineHeight = computed(() => {
+  if (props.size)
+    return `var(--tg-spacing-${props.size})`
+  else
+    return 'var(--tg-spacing-2)'
+})
 </script>
 
 <template>
@@ -30,11 +46,11 @@ const showTitle = computed(() => {
     ]"
     :style="cssVars"
   >
-    <div class="base-divider-line base-divider-line-left" />
-    <div v-if="showTitle" class="base-divider-title">
+    <div class="base-divider-line base-divider-line-left" :style="{ height: lineHeight }" />
+    <div v-if="showTitle" class="base-divider-title" :style="{ margin: `0 ${marginSpacing}` }">
       <slot />
     </div>
-    <div class="base-divider-line base-divider-line-right" />
+    <div class="base-divider-line base-divider-line-right" :style="{ height: lineHeight }" />
   </div>
 </template>
 
@@ -51,15 +67,15 @@ const showTitle = computed(() => {
     white-space: nowrap;
     &-line {
         width: 100%;
-        height: var(--tg-border-width-sm);
+        // height: var(--tg-border-width-sm);
         border: none;
         background-color: var(--tg-secondary-main);
     }
     &-title {
         color: var(--tg-text-white);
-        margin-left: var(--tg-spacing-12);
-        margin-right: var(--tg-spacing-12);
-        font-weight: var(--tg-font-weight-semibold);
+        // margin-left: var(--tg-spacing-12);
+        // margin-right: var(--tg-spacing-12);
+        // font-weight: var(--tg-font-weight-semibold);
     }
 }
 </style>
