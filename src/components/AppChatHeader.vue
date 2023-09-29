@@ -15,9 +15,8 @@ const chatRoomList = reactive<Array<Room>>([
 
 const room = ref(chatRoomList[0])
 
-function chooseRoom(item: Room, hide: () => void) {
+function chooseRoom(item: Room) {
   room.value = item
-  hide()
 }
 </script>
 
@@ -32,13 +31,13 @@ function chooseRoom(item: Room, hide: () => void) {
           <span>SFake: {{ room.label }} </span>
           <BaseIcon class="arrow-down" name="uni-arrow-down" />
         </div>
-        <template #popper="{ hide }">
-          <ul class="scroll-y chat-room-list dropdown-scroll-content">
-            <li v-for="item in chatRoomList" :key="item.icon" class="item dropdown-option" :class="{ active: room.value === item.value }" @click="chooseRoom(item, hide)">
+        <template #popper>
+          <div class="scroll-y chat-room-list dropdown-scroll-content">
+            <a v-for="item in chatRoomList" :key="item.icon" v-close-popper class="item dropdown-option" :class="{ active: room.value === item.value }" @click="chooseRoom(item)">
               <BaseIcon :name="item.icon" />
               <span>{{ item.label }}</span>
-            </li>
-          </ul>
+            </a>
+          </div>
         </template>
       </VDropdown>
     </div>

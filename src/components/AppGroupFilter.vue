@@ -11,8 +11,6 @@ const { t } = useI18n()
 const groupFilterOuter = ref()
 const { appContentWidth } = storeToRefs(useWindowStore())
 
-const isCasinoGame = computed(() => (Object.values(EnumCasinoGameType) as Array<string>).includes(props.gameType))
-
 const selectValue = ref(props.sortType)
 const selectOptions = [
   { icon: 'spt-sort-az', label: 'A-Z', value: EnumCasinoSortType.nameA },
@@ -20,6 +18,8 @@ const selectOptions = [
   { icon: 'chess-bonus-rounds', label: t('casino_sort_popular'), value: EnumCasinoSortType.hot },
   { icon: 'chess-slot-machine', label: t('casino_sort_featured'), value: EnumCasinoSortType.recommend },
 ]
+
+const isCasinoGame = computed(() => (Object.values(EnumCasinoGameType) as Array<string>).includes(props.gameType))
 
 function onSortSelect(v: string) {
   emit('sortTypeChange', v)
@@ -60,13 +60,15 @@ function onSortSelect(v: string) {
         <BaseIcon name="uni-bars" />
         <span class="txt">{{ $t('casino_filter_label_sort') }}</span>
       </div>
-      <BaseSelect v-slot="{ data: { item, active } }" v-model="selectValue" :options="selectOptions" popper @select="onSortSelect">
-        <div class="flex-center-bet sort" :class="{ active }">
-          <BaseIcon :name="item.icon" />
-          <div class="label">
-            {{ item.label }}
+      <BaseSelect v-model="selectValue" :options="selectOptions" popper @select="onSortSelect">
+        <template #option="{ data: { item, active } }">
+          <div class="flex-center-bet sort" :class="{ active }">
+            <BaseIcon :name="item.icon" />
+            <div class="label">
+              {{ item.label }}
+            </div>
           </div>
-        </div>
+        </template>
       </BaseSelect>
     </div>
   </section>

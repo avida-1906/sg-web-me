@@ -20,6 +20,14 @@ const props = withDefaults(defineProps<Props>(), {
 })
 const emit = defineEmits(['update:modelValue', 'select'])
 
+const { bool, setTrue, setFalse } = useBoolean(false)
+const parent = ref<HTMLElement | null>(null)
+const { width } = useElementSize(parent)
+
+const selectedOption = computed(() => props.options.find(a => a.value === props.modelValue))
+const popperLabel = computed(() => props.options.find(a => a.value === props.modelValue)?.label ?? '-')
+const popperLabelBank = computed(() => props.options.find(a => a.value === props.modelValue)?.value ?? '')
+
 function onChange(event: any) {
   const v = event.target.value
 
@@ -29,12 +37,6 @@ function onChange(event: any) {
   emit('update:modelValue', v)
   emit('select', v)
 }
-
-// popper
-const { bool, setTrue, setFalse } = useBoolean(false)
-const selectedOption = computed(() => props.options.find(a => a.value === props.modelValue))
-const popperLabel = computed(() => props.options.find(a => a.value === props.modelValue)?.label ?? '-')
-const popperLabelBank = computed(() => props.options.find(a => a.value === props.modelValue)?.value ?? '')
 function onClickPopperItem(v: any) {
   if (v === props.modelValue)
     return
@@ -42,10 +44,6 @@ function onClickPopperItem(v: any) {
   emit('update:modelValue', v)
   emit('select', v)
 }
-
-//   自定义银行卡select
-const parent = ref<HTMLElement | null>(null)
-const { width } = useElementSize(parent)
 </script>
 
 <template>
@@ -65,14 +63,14 @@ const { width } = useElementSize(parent)
       </div>
       <template #popper>
         <div class="scroll-y need-pad-y popper-wrap">
-          <div
+          <a
             v-for="item, i in options" :key="i" v-close-popper :class="theme ? 'popper-option-dark' : 'popper-option'"
             @click="onClickPopperItem(item.value)"
           >
             <slot name="option" :data="{ item, parentWidth: width, active: item.value === modelValue }">
               {{ item.label }}
             </slot>
-          </div>
+          </a>
         </div>
       </template>
     </VDropdown>

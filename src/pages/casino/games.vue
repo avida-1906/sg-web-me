@@ -1,23 +1,26 @@
 <script setup lang='ts'>
-const { query } = useRoute()
-const id = ref(query.id?.toString() ?? '')
 const { isMobile } = storeToRefs(useWindowStore())
+const route = useRoute()
+const { query } = useRoute()
 const { bool: isTheatre, setBool } = useBoolean(false) // 影院模式
 
-const { list: recGameList, run } = useList(ApiMemberGameRecList)
-run()
-
+const id = ref(query.id?.toString() ?? '')
 const appIframeRef = ref()
-const route = useRoute()
+
+const { list: recGameList, run } = useList(ApiMemberGameRecList)
+
 const stop = watch(route, (a) => {
   id.value = a.query.id?.toString() ?? ''
   nextTick(() => {
     appIframeRef.value.runDetail()
   })
 })
+
 onBeforeRouteLeave(() => {
   stop()
 })
+
+run()
 </script>
 
 <template>
