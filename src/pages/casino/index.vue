@@ -2,6 +2,7 @@
 const { isMobile } = storeToRefs(useWindowStore())
 const router = useRouter()
 const { t } = useI18n()
+
 const tab = ref('all')
 const tabList = [
   { label: t('game_type_all'), value: 'all', icon: 'chess-lobby' },

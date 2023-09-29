@@ -50,18 +50,19 @@ function onClick(v: string | number, event: any) {
 </template>
 
 <style>
-:root{
-  --tg-tab-style-wrap-bg-color:var(--tg-secondary-dark);
+:root {
+  --tg-tab-style-wrap-bg-color: var(--tg-secondary-dark);
   --tg-tab-style-inner-padding-y: var(--tg-spacing-11);
   --tg-tab-style-inner-padding-x: var(--tg-spacing-20);
 }
 </style>
 
 <style lang='scss' scoped>
-.base-tab{
+.base-tab {
   display: flex;
   max-width: 100%;
 }
+
 .base-tab-wrap {
   display: flex;
   max-width: 100%;
@@ -101,6 +102,7 @@ function onClick(v: string | number, event: any) {
     cursor: pointer;
     transition: all ease .25s;
     font-weight: var(--tg-font-weight-semibold);
+
     &.tab-large {
       --tg-tab-style-inner-padding-y: var(--tg-spacing-15);
     }
@@ -113,6 +115,7 @@ function onClick(v: string | number, event: any) {
       justify-content: center;
       flex: 1 0;
       white-space: nowrap;
+
       .app-svg-icon {
         margin-right: var(--tg-spacing-8);
       }
@@ -126,17 +129,21 @@ function onClick(v: string | number, event: any) {
 
     &:hover {
       background-color: var(--tg-secondary-main);
+      --tg-icon-color: var(--tg-text-white);
     }
   }
 
   .active {
     background-color: var(--tg-secondary-main);
+    --tg-icon-color: var(--tg-text-white);
   }
 }
-.full{
+
+.full {
   flex: 1;
 }
-.center{
+
+.center {
   justify-content: center;
 }
 </style>

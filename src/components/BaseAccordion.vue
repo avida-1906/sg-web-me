@@ -158,6 +158,9 @@ defineExpose({ close })
       padding-left: 16px;
       align-items: center;
       cursor: pointer;
+      > div {
+        height: 100%;
+      }
     }
 
     .content-item:hover, .radio-menu-item:hover {

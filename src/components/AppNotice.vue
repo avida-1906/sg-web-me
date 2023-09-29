@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-const { closeRightSidebar } = useRightSidebar()
 // interface Props {
 
 // }
 
 // withDefaults(defineProps<Props>(), {})
+const { closeRightSidebar } = useRightSidebar()
 </script>
 
 <template>
@@ -19,17 +19,19 @@ const { closeRightSidebar } = useRightSidebar()
       </BaseButton>
     </div>
     <div class="notice-list">
-      <div class="scrollY notice-scroll">
+      <div class="scrollable scroll-y scroll-contain notice-scroll">
         <div class="empty-notice">
-          <div class="empty-list">
-            <div class="large-icon">
-              <BaseIcon name="notice-empty" />
-            </div>
-            <div class="empty-text">
-              暂无通知
-            </div>
-            <div>您的互动将在此处显示</div>
-          </div>
+          <BaseEmpty>
+            <template #icon>
+              <BaseIcon font-size="62" name="notice-empty" />
+            </template>
+            <template #description>
+              <div class="empty-text">
+                暂无通知
+              </div>
+              <div>您的互动将在此处显示</div>
+            </template>
+          </BaseEmpty>
         </div>
       </div>
     </div>
@@ -49,7 +51,6 @@ const { closeRightSidebar } = useRightSidebar()
     justify-content: space-between;
     align-items: center;
     background: var(--tg-secondary-dark);
-    // z-index: 2;
     position: relative;
     box-shadow: var(--tg-box-shadow-lg);
     flex-shrink: 0;
@@ -84,35 +85,21 @@ const { closeRightSidebar } = useRightSidebar()
     overflow: hidden;
     background: var(--tg-secondary-dark);
     .notice-scroll{
-      display: flex;
-      flex-direction: column;
-      flex: 1;
       padding: 12px 16px;
-      overflow-x: hidden;
-      overscroll-behavior: contain;
       gap: 12px;
       .empty-notice{
+        height: 100%;
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
-        height: 100%;
-      }
-      .empty-list{
         padding: 16px;
         color: var(--tg-secondary-light);
-        flex-direction: column;
-        margin: 0 auto;
-        display: flex;
-        align-items: center;
-        gap: 8px 0;
         font-size: var(--tg-font-size-default);
-        .large-icon{
-          font-size: 3.75rem;
-          margin-bottom: 24px;
-        }
         .empty-text{
           color:var(--tg-text-white);
           font-weight: var(--tg-font-weight-semibold);
+          margin: 36px auto 8px;
         }
       }
     }

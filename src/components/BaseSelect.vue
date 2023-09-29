@@ -20,6 +20,14 @@ const props = withDefaults(defineProps<Props>(), {
 })
 const emit = defineEmits(['update:modelValue', 'select'])
 
+const { bool, setTrue, setFalse } = useBoolean(false)
+const parent = ref<HTMLElement | null>(null)
+const { width } = useElementSize(parent)
+
+const selectedOption = computed(() => props.options.find(a => a.value === props.modelValue))
+const popperLabel = computed(() => props.options.find(a => a.value === props.modelValue)?.label ?? '-')
+const popperLabelBank = computed(() => props.options.find(a => a.value === props.modelValue)?.value ?? '')
+
 function onChange(event: any) {
   const v = event.target.value
 
@@ -29,11 +37,6 @@ function onChange(event: any) {
   emit('update:modelValue', v)
   emit('select', v)
 }
-
-// popper
-const { bool, setTrue, setFalse } = useBoolean(false)
-const popperLabel = computed(() => props.options.find(a => a.value === props.modelValue)?.label ?? '-')
-const popperLabelBank = computed(() => props.options.find(a => a.value === props.modelValue)?.value ?? '')
 function onClickPopperItem(v: any) {
   if (v === props.modelValue)
     return
@@ -41,32 +44,34 @@ function onClickPopperItem(v: any) {
   emit('update:modelValue', v)
   emit('select', v)
 }
-
-//   自定义银行卡select
-const parent = ref<HTMLElement | null>(null)
-const { width } = useElementSize(parent)
 </script>
 
 <template>
   <template v-if="popper">
     <VDropdown :distance="6" :popper-class="theme ? 'theme-black' : ''" @hide="setFalse">
       <div ref="parent" class="popper-label" @click="setTrue">
-        <span v-if="!banks">{{ popperLabel }}</span>
-        <span v-else><BaseIcon v-if="popperLabelBank" name="fiat-bank" />  {{ popperLabelBank }}</span>
+        <slot name="label" :data="selectedOption">
+          <span v-if="!banks">{{ popperLabel }}</span>
+          <span v-else>
+            <BaseIcon v-if="popperLabelBank" name="fiat-bank" /> {{ popperLabelBank }}
+          </span>
+        </slot>
+
         <div class="icon" :class="{ up: bool }">
           <BaseIcon name="uni-arrow-down" />
         </div>
       </div>
       <template #popper>
         <div class="scroll-y need-pad-y popper-wrap">
-          <div
-            v-for="item, i in options" :key="i" v-close-popper :class="theme ? 'popper-option-dark' : 'popper-option'"
+          <a
+            v-for="item, i in options" :key="i" v-close-popper
+            :class="{ 'popper-option-dark': theme, 'popper-option': !theme, 'active': item.value === modelValue }"
             @click="onClickPopperItem(item.value)"
           >
-            <slot :data="{ item, parentWidth: width, active: item.value === modelValue }">
+            <slot name="option" :data="{ item, parentWidth: width, active: item.value === modelValue }">
               {{ item.label }}
             </slot>
-          </div>
+          </a>
         </div>
       </template>
     </VDropdown>
@@ -93,15 +98,20 @@ const { width } = useElementSize(parent)
   --tg-base-select-style-padding-x: var(--tg-spacing-10);
   --tg-base-select-style-padding-y: var(--tg-spacing-11);
   --tg-base-select-style-padding-right: var(--tg-base-select-style-padding-x);
+  --tg-base-select-hover-bg-color: var(--tg-secondary-deepdark);
+  --tg-base-select-popper-style-padding-x: var(--tg-spacing-button-padding-horizontal-md);
+  --tg-base-select-popper-style-padding-y: var(--tg-spacing-button-padding-vertical-md);
+  --tg-base-select-popper-label-color: var(--tg-text-white);
+  --tg-base-select-popper-label-hover-color: var(--tg-text-white);
 }
 </style>
 
 <style lang='scss' scoped>
 .popper-label {
-  padding: var(--tg-spacing-button-padding-vertical-md) var(--tg-spacing-button-padding-horizontal-md);
+  padding: var(--tg-base-select-popper-style-padding-y) var(--tg-base-select-popper-style-padding-x);
   font-weight: var(--tg-font-weight-semibold);
   font-size: var(--tg-font-size-default);
-  color: var(--tg-text-white);
+  color: var(--tg-base-select-popper-label-color);
   background-color: var(--tg-secondary-dark);
   border-radius: var(--tg-radius-sm);
   transition: all ease .25s;
@@ -111,8 +121,7 @@ const { width } = useElementSize(parent)
   align-items: center;
   line-height: 1;
 
-  > span {
-    margin-right: var(--tg-spacing-8);
+  >span {
     display: flex;
     align-items: center;
     gap: .5rem;
@@ -123,6 +132,7 @@ const { width } = useElementSize(parent)
     display: flex;
     align-items: center;
     transition: all ease .25s;
+    margin-left: var(--tg-spacing-8);
   }
 
   .up {
@@ -130,7 +140,13 @@ const { width } = useElementSize(parent)
   }
 
   &:hover {
-    background-color: var(--tg-secondary-deepdark);
+    color: var(--tg-base-select-popper-label-hover-color);
+    background-color: var(--tg-base-select-hover-bg-color);
+    --tg-icon-color: var(--tg-text-white)
+  }
+
+  &:active {
+    transform: scale(0.96);
   }
 }
 
@@ -150,17 +166,25 @@ const { width } = useElementSize(parent)
   font-size: var(--tg-font-size-default);
   color: var(--tg-secondary-main);
   font-weight: var(--tg-font-weight-semibold);
+  --tg-icon-color: var(--tg-secondary-main);
 
   &:hover {
     background-color: var(--tg-text-lightgrey);
   }
+
+  &.active {
+    color: var(--tg-text-blue);
+    --tg-icon-color: var(--tg-text-blue);
+  }
 }
+
 .popper-option-dark {
   cursor: pointer;
   padding: var(--tg-spacing-button-padding-vertical-s) var(--tg-spacing-button-padding-horizontal-s);
   font-size: var(--tg-font-size-default);
   color: var(--tg-secondary-main);
   font-weight: var(--tg-font-weight-semibold);
+
   &:hover {
     background-color: var(--tg-sub-blue);
   }
@@ -170,7 +194,8 @@ const { width } = useElementSize(parent)
 .base-select {
   color: var(--tg-text-lightgrey);
   font-size: var(--tg-font-size-default);
-  .must{
+
+  .must {
     color: var(--tg-text-error);
   }
 }
@@ -193,7 +218,7 @@ const { width } = useElementSize(parent)
     border-radius: var(--tg-radius-default);
 
     &:hover {
-       border-color: var(--tg-border-color-deep-grey);
+      border-color: var(--tg-border-color-deep-grey);
     }
   }
 
@@ -244,13 +269,16 @@ const { width } = useElementSize(parent)
 
 <style lang="scss">
 /* 全局修改，需要组件传select-bank class才可以 */
-.theme-black{
-  .v-popper__inner{
+.theme-black {
+  .v-popper__inner {
     background-color: var(--tg-secondary-main) !important;
   }
-  .v-popper__arrow-container{
-    .v-popper__arrow-inner, .v-popper__arrow-outer{
-      border-color:var(--tg-secondary-main);
+
+  .v-popper__arrow-container {
+
+    .v-popper__arrow-inner,
+    .v-popper__arrow-outer {
+      border-color: var(--tg-secondary-main);
     }
   }
 }
