@@ -37,6 +37,8 @@ await application.allSettled([run1(), run2()])
 ```
 
 ### script setup 代码顺序，每类之间空一行
+类型定义(interface, type)
+
 props
 
 hooks
@@ -47,8 +49,10 @@ computed
 
 methods
 
-watch
+watch, watchEffect
 
 mounted
 
 …生命周期
+
+初始化需要执行的函数，比如网络请求 init()之类的
