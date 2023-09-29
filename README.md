@@ -37,6 +37,8 @@ await application.allSettled([run1(), run2()])
 ```
 
 ### script setup 代码顺序，每类之间空一行
+类型定义(interface, type)
+
 props
 
 hooks
