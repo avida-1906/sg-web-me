@@ -41,10 +41,6 @@ const homeOverlayIsShow = computed(() => {
 watch(() => width.value, (newWidth) => {
   windowStore.setAppContentWidth(newWidth)
 })
-
-onMounted(() => {
-  setRightSidebarExpandStatus()
-})
 </script>
 
 <template>
