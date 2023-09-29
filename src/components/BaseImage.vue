@@ -26,10 +26,10 @@ const imgUrl = computed(() => {
   return props.url
 })
 
-const { bool: complete, setTrue } = useBoolean(false)
-function onComplete() { // 图片加载完成
-  setTrue()
-}
+// const { bool: complete, setTrue } = useBoolean(false)
+// function onComplete() { // 图片加载完成
+//   setTrue()
+// }
 
 function handleClick() {
   emit('clickImg')
@@ -39,14 +39,12 @@ function handleClick() {
 <template>
   <div class="base-image">
     <img
-      :style="`width: ${width}; height: ${height}; object-fit: ${fit};`" loading="lazy" :src="imgUrl"
-      @load="onComplete" @click="handleClick"
+      :style="`width: ${width}; height: ${height}; object-fit: ${fit};`" loading="lazy" :src="imgUrl" @click="handleClick"
     >
-    <div v-if="!complete" class="img-load">
+    <!-- <div v-if="!complete" class="img-load">
       <slot>
-        <!-- <BaseLoading /> -->
       </slot>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -63,15 +61,15 @@ function handleClick() {
   height: 100%;
   position: relative;
 
-  .img-load {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+  // .img-load {
+  //   position: absolute;
+  //   top: 0;
+  //   width: 100%;
+  //   height: 100%;
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  // }
   img{
     border-radius: var(--tg-base-img-style-radius);
     object-position: var(--tg-img-object-position);

@@ -2,8 +2,10 @@
 const appStore = useAppStore()
 const { isLogin } = storeToRefs(appStore)
 const { isMobile, isLessThanLg, width } = storeToRefs(useWindowStore())
+const { rightIsExpand, setRightSidebarExpandStatus } = useRightSidebar()
 const { t } = useI18n()
 const router = useRouter()
+const route = useRoute()
 const userMenu = ref([
   { id: 1, icon: 'navbar-wallet', title: t('wallet'), name: 'wallet' },
   { id: 2, icon: 'navbar-cart', title: t('safe'), name: 'safe' },
@@ -18,7 +20,7 @@ const userMenu = ref([
   { id: 11, icon: 'uni-logout', title: t('logout'), name: 'logout' },
 ])
 const newsMenu = ref([
-  { id: 1, icon: 'chess-discuss', title: t('chat_room'), name: 'chat-room' },
+  { id: 1, icon: 'chess-discuss', title: t('chat_room'), name: 'chat-room', shown: rightIsExpand },
   { id: 2, icon: 'spt-user-bet', title: t('bet_slip'), name: 'bet-slip' },
 ])
 
@@ -35,7 +37,7 @@ const { openStatisticsDialog } = useStatisticsDialog()
 const { openSafeDialog } = useSafeDialog()
 function handleClickMenuItem(item: { name: string; path?: string }) {
   const { name, path } = item
-  console.log(name)
+  // console.log(name)
   if (path) {
     router.push(path)
     return
@@ -56,6 +58,10 @@ function handleClickMenuItem(item: { name: string; path?: string }) {
     case 'statistical-data':
       openStatisticsDialog()
       break
+    case 'chat-room':
+      setRightSidebarExpandStatus()
+      break
+    case 'bet-slip': break
     default:
       break
   }
@@ -66,6 +72,10 @@ async function logout() {
   await nextTick()
   setDialogLogoutFalse()
 }
+// 选中状态
+const getActiveState = computed(() => {
+  return (path: string | undefined) => path === route.path
+})
 </script>
 
 <template>
@@ -84,7 +94,7 @@ async function logout() {
           </BaseButton>
           <template #popper>
             <div class="dropdown-popper need-pad-y">
-              <div v-for="item of userMenu" :key="item.id" v-close-popper class="menu-item" @click="handleClickMenuItem(item)">
+              <div v-for="item of userMenu" :key="item.id" v-close-popper class="menu-item" :class="{ 'active-menu': getActiveState(item.path) }" @click="handleClickMenuItem(item)">
                 <div class="menu-btn">
                   <BaseIcon class="icon-size" :name="item.icon" />
                   <span>{{ item.title }}</span>
@@ -102,7 +112,7 @@ async function logout() {
           </BaseButton>
           <template #popper>
             <div class="dropdown-popper need-pad-y">
-              <div v-for="item of newsMenu" :key="item.id" class="menu-item">
+              <div v-for="item of newsMenu" :key="item.id" v-close-popper class="menu-item" :class="{ 'active-menu': item.shown }" @click="handleClickMenuItem(item)">
                 <div class="menu-btn">
                   <BaseIcon class="icon-size" :name="item.icon" />
                   <span>{{ item.title }}</span>
@@ -218,12 +228,12 @@ async function logout() {
 }
 
 .dropdown-popper {
-  --tg-icon-color: var(--tg-primary-main);
+  --tg-icon-color: var(--tg-text-secondary-main);
+  color: var(--tg-text-secondary-main);
   font-size: var(--tg-font-size-default);
   font-weight: var(--tg-font-weight-semibold);
-
   .icon-size {
-    font-size: var(--tg-font-size-md);
+    font-size: var(--tg-font-size-default);
     margin-right: 5px;
   }
 
@@ -233,15 +243,22 @@ async function logout() {
     &:hover {
       background-color: var(--tg-text-lightgrey);
     }
-
     .menu-btn {
       display: flex;
+
       align-items: center;
-      padding: var(--tg-spacing-button-padding-vertical-s) var(--tg-spacing-button-padding-horizontal-xs);
+      padding: var(--tg-spacing-button-padding-vertical-xs) var(--tg-spacing-button-padding-horizontal-xs);
     }
 
     .menu-btn:active {
       transform: scale(0.95);
+    }
+  }
+  .active-menu{
+    --tg-icon-color: var(--tg-text-blue);
+    color:var(--tg-text-blue);
+    &:hover {
+      background: 0 0;
     }
   }
 }

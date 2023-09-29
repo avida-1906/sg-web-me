@@ -262,6 +262,7 @@ watch(() => width.value, (newWidth) => {
   background-color: green;
   transition: width 0.3s ease-in-out;
   overflow: hidden;
+  z-index: var(--tg-z-index-30);
 
   &.width-none {
     width: 0;
