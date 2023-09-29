@@ -122,7 +122,7 @@ watch(() => width.value, (newWidth) => {
       }"
     >
       <template v-if="currentRightSidebarContent === EnumRightSidebarContent.NOTIFICATION">
-        通知
+        <AppNotice />
       </template>
       <template v-if="currentRightSidebarContent === EnumRightSidebarContent.CHATROOM">
         聊天室

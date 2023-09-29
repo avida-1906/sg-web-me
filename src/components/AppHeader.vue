@@ -105,7 +105,7 @@ const getActiveState = computed(() => {
             </div>
           </template>
         </VDropdown>
-        <BaseButton type="text">
+        <BaseButton type="text" @click="openRightSidebar(EnumRightSidebarContent.NOTIFICATION)">
           <BaseIcon class="icon-size" name="navbar-notice" />
         </BaseButton>
         <VDropdown :distance="6">
