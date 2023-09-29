@@ -9,7 +9,6 @@ declare module 'vue' {
   export interface GlobalComponents {
     AppAccordionMenu: typeof import('./components/AppAccordionMenu.vue')['default']
     AppAmount: typeof import('./components/AppAmount.vue')['default']
-    AppAnswerTips: typeof import('./components/AppAnswerTips.vue')['default']
     AppAuthLogin: typeof import('./components/AppAuthLogin.vue')['default']
     AppBanner: typeof import('./components/AppBanner.vue')['default']
     AppBetData: typeof import('./components/AppBetData.vue')['default']
@@ -44,7 +43,6 @@ declare module 'vue' {
     AppRegister: typeof import('./components/AppRegister.vue')['default']
     AppRegisterDialog: typeof import('./components/AppRegisterDialog.vue')['default']
     AppRegisterTermsConditions: typeof import('./components/AppRegisterTermsConditions.vue')['default']
-    AppRightSidebar: typeof import('./components/AppRightSidebar.vue')['default']
     AppSafeDialog: typeof import('./components/AppSafeDialog.vue')['default']
     AppSettingsContentItem: typeof import('./components/AppSettingsContentItem.vue')['default']
     AppSidebarBig: typeof import('./components/AppSidebarBig.vue')['default']
@@ -77,7 +75,6 @@ declare module 'vue' {
     BaseDragDialog: typeof import('./components/BaseDragDialog.vue')['default']
     BaseEmpty: typeof import('./components/BaseEmpty.vue')['default']
     BaseGameItem: typeof import('./components/BaseGameItem.vue')['default']
-    BaseGameSortPop: typeof import('./components/BaseGameSortPop.vue')['default']
     BaseIcon: typeof import('./components/BaseIcon.vue')['default']
     BaseImage: typeof import('./components/BaseImage.vue')['default']
     BaseInput: typeof import('./components/BaseInput.vue')['default']
