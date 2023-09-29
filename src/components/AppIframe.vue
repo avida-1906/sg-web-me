@@ -14,12 +14,17 @@ interface CurrencyItem {
 const props = defineProps<Props>()
 const emit = defineEmits(['changeTheatre'])
 
-// 选择模式遮罩层
+const { t } = useI18n()
+const { isMobile, appContentWidth } = storeToRefs(useWindowStore())
 const { bool: isShowFrameOverlay, setTrue: overlayTrue, setFalse: overlayFalse } = useBoolean(false)
 const { bool: isRealMoneyMode, setBool: setRealModeBool } = useBoolean(false)
+const { bool: isTrendOpen, toggle: toggleTrendOpen } = useBoolean(false)
 
 const currentCurrency = ref<CurrencyItem>()
 const currencyList = ref<CurrencyItem[]>([])
+const gameFrameRef = ref()
+
+// 游戏数据接口
 const { data: dataDetail, runAsync: runDetail } = useRequest(() => ApiMemberGameDetail(props.id), {
   onSuccess(res) {
     currencyList.value = JSON.parse(res.currency).map((item: any) => {
@@ -35,14 +40,12 @@ const pid = computed(() => dataDetail.value ? dataDetail.value.platform_id : '')
 const code = computed(() => dataDetail.value ? dataDetail.value.game_id : '')
 const currencyName = computed(() => currentCurrency.value ? currentCurrency.value.name : '')
 const isFavorite = computed(() => dataDetail.value ? dataDetail.value.is_fav === 1 : false)
-
-const { t } = useI18n()
-const { isMobile, appContentWidth } = storeToRefs(useWindowStore())
 const bigGameWrapper = computed(() => appContentWidth.value > 930)
 
 function onChooseCurrency(v: any) {
   currentCurrency.value = v
 }
+// 启动游戏接口
 const { run: runLunchGame, data: gameUrl } = useRequest(() => ApiGameLunch(pid.value, code.value, currencyName.value), {
   manual: true,
   onSuccess(res) {
@@ -59,18 +62,13 @@ function onSwitchRealMoneyMode(v: boolean) {
   runLunchGame()
 }
 
-// 全屏
-const gameFrameRef = ref()
-function onClickFullScreen() {
+function onClickFullScreen() { // 全屏
   gameFrameRef.value.requestFullscreen()
 }
-// 剧院
-function onClickTheatre() {
+function onClickTheatre() { // 剧院
   emit('changeTheatre', !props.isTheatre)
 }
-// 实时统计
-const { bool: isTrendOpen, toggle: toggleTrendOpen } = useBoolean(false)
-function onClickTrend() {
+function onClickTrend() { // 实时统计
   toggleTrendOpen()
 }
 // 添加收藏
