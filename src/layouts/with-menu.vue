@@ -69,13 +69,13 @@ onUpdated(() => {
                     </template>
                     <template v-else>
                       <div class="stack x-flex-start y-center padding-none direction-horizontal gap-small menu-btn">
-                        <BaseButton size="md" bg-style="dark">
+                        <BaseButton size="md">
                           <BaseIcon name="uni-arrow-left" class="arrow-left" />
                         </BaseButton>
                         <VDropdown
                           :distance="10"
                         >
-                          <BaseButton size="md" bg-style="dark" @click="togglePop">
+                          <BaseButton size="md" @click="togglePop">
                             <div class="btn-txt">
                               <span>{{ activeMenu.title }}</span>
                               <BaseIcon :name="isPopShow ? 'uni-arrow-up' : 'uni-arrow-down'" />
@@ -143,16 +143,6 @@ onUpdated(() => {
   place-items: flex-start;
   padding-top: var(--tg-spacing-24);
 }
-.menu-btn {
-  .app-svg-icon.arrow-left {
-    font-size: var(--tg-font-size-default);
-    transform: scale(0.7);
-    --tg-icon-color: var(--tg-text-white);
-  }
-  .app-svg-icon {
-    transform: scale(0.85);
-  }
-}
 .btn-txt {
   display: inline-flex;
   align-items: center;
@@ -188,6 +178,19 @@ onUpdated(() => {
       }
     }
     .content-outer {
+
+      .menu-btn {
+        .app-svg-icon.arrow-left {
+          font-size: var(--tg-font-size-default);
+          transform: scale(0.7);
+          --tg-icon-color: var(--tg-text-white);
+        }
+        .app-svg-icon {
+          transform: scale(0.85);
+        }
+        --tg-base-button-style-bg: var(--tg-secondary-dark);
+        --tg-base-button-style-bg-hover: var(--tg-secondary-deepdark);
+      }
       .right {
         position: relative;
         border-radius: var(--tg-radius-md);

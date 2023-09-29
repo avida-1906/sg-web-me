@@ -31,6 +31,13 @@ withDefaults(defineProps<Props>(), {
   </button>
 </template>
 
+<style lang="scss">
+:root {
+  --tg-base-button-style-bg: var(--tg-secondary-main);
+  --tg-base-button-style-bg-hover: var(--tg-text-grey);
+}
+</style>
+
 <style lang="scss" scoped>
 button {
   color: var(--tg-text-white);
@@ -62,7 +69,7 @@ button {
 }
 
 .default {
-  background-color: var(--tg-secondary-main);
+  background-color: var(--tg-base-button-style-bg);
 
   &:active:not(:disabled) {
     .content {
@@ -71,7 +78,7 @@ button {
   }
 
   &:hover:not(:disabled) {
-    background-color: var(--tg-text-grey);
+    background-color: var(--tg-base-button-style-bg-hover);
   }
 }
 
@@ -147,27 +154,33 @@ button {
 }
 
 .primary {
-  background-color: var(--tg-text-blue);
+  --tg-base-button-style-bg: var(--tg-text-blue);
+  --tg-base-button-style-bg-hover: var(--tg-sub-deepblue);
+  background-color: var(--tg-base-button-style-bg);
 
   &:hover:not(:disabled) {
-    background-color: var(--tg-sub-deepblue);
+    background-color: var(--tg-base-button-style-bg-hover);
   }
 }
 
 .secondary {
-  background-color: var(--tg-text-green);
+  --tg-base-button-style-bg: var(--tg-text-green);
+  --tg-base-button-style-bg-hover: var(--tg-primary-success);
+  background-color: var(--tg-base-button-style-bg);
   color: var(--tg-text-dark);
 
   &:hover:not(:disabled) {
-    background-color: var(--tg-primary-success);
+    background-color: var(--tg-base-button-style-bg-hover);
   }
 }
 
 .dark {
-  background-color: var(--tg-secondary-dark);
+  --tg-base-button-style-bg: var(--tg-secondary-dark);
+  --tg-base-button-style-bg-hover: var(--tg-secondary-grey);
+  background-color: var(--tg-base-button-style-bg);
 
   &:hover:not(:disabled) {
-    background-color: var(--tg-secondary-grey);
+    background-color: var(--tg-base-button-style-bg-hover);
   }
 }
 </style>
