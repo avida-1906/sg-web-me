@@ -103,12 +103,12 @@ async function logout() {
           </BaseButton>
           <template #popper>
             <div class="dropdown-popper need-pad-y">
-              <div v-for="item of userMenu" :key="item.id" v-close-popper class="menu-item" :class="{ 'active-menu': getActiveState(item.path) }" @click="handleClickMenuItem(item)">
+              <a v-for="item of userMenu" :key="item.id" v-close-popper class="menu-item" :class="{ 'active-menu': getActiveState(item.path) }" @click="handleClickMenuItem(item)">
                 <div class="menu-btn">
                   <BaseIcon class="icon-size" :name="item.icon" />
                   <span>{{ item.title }}</span>
                 </div>
-              </div>
+              </a>
             </div>
           </template>
         </VDropdown>
@@ -121,12 +121,12 @@ async function logout() {
           </BaseButton>
           <template #popper>
             <div class="dropdown-popper need-pad-y">
-              <div v-for="item of newsMenu" :key="item.id" v-close-popper class="menu-item" :class="{ 'active-menu': getActiveShown(item.shown) }" @click="handleClickMenuItem(item)">
+              <a v-for="item of newsMenu" :key="item.id" v-close-popper class="menu-item" :class="{ 'active-menu': getActiveShown(item.shown) }" @click="handleClickMenuItem(item)">
                 <div class="menu-btn">
                   <BaseIcon class="icon-size" :name="item.icon" />
                   <span>{{ item.title }}</span>
                 </div>
-              </div>
+              </a>
             </div>
           </template>
         </VDropdown>
