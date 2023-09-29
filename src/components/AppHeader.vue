@@ -1,11 +1,20 @@
 <script lang="ts" setup>
+const { t } = useI18n()
+const router = useRouter()
+const route = useRoute()
 const appStore = useAppStore()
 const { isLogin } = storeToRefs(appStore)
 const { isMobile, isLessThanLg, width } = storeToRefs(useWindowStore())
 const { rightIsExpand, openRightSidebar, currentRightSidebarContent, closeRightSidebar } = useRightSidebar()
-const { t } = useI18n()
-const router = useRouter()
-const route = useRoute()
+const { bool: showSearchBar, setTrue } = useBoolean(false)
+const { bool: showDialogLogout, setTrue: setShowDialogLogoutTrue, setFalse: setDialogLogoutFalse } = useBoolean(false)
+const { openWalletDialog } = useWalletDialog()
+const { openLoginDialog } = useLoginDialog()
+const { openRegisterDialog } = useRegisterDialog()
+const { openVipDialog } = useVipDialog()
+const { openStatisticsDialog } = useStatisticsDialog()
+const { openSafeDialog } = useSafeDialog()
+
 const userMenu = ref([
   { id: 1, icon: 'navbar-wallet', title: t('wallet'), name: 'wallet' },
   { id: 2, icon: 'navbar-cart', title: t('safe'), name: 'safe' },
@@ -24,18 +33,6 @@ const newsMenu = ref([
   { id: 2, icon: 'spt-user-bet', title: t('bet_slip'), name: 'bet-slip', shown: EnumRightSidebarContent.BETTING },
 ])
 
-const { bool: showSearchBar, setTrue } = useBoolean(false)
-const { bool: showDialogLogout, setTrue: setshowDialogLogoutTrue, setFalse: setDialogLogoutFalse } = useBoolean(false)
-
-// Dialog
-const { openWalletDialog } = useWalletDialog()
-const { openLoginDialog } = useLoginDialog()
-const { openRegisterDialog } = useRegisterDialog()
-
-const { openVipDialog } = useVipDialog()
-const { openStatisticsDialog } = useStatisticsDialog()
-const { openSafeDialog } = useSafeDialog()
-
 // 选中状态
 const getActiveState = computed(() => {
   return (path: string | undefined) => path === route.path
@@ -43,6 +40,7 @@ const getActiveState = computed(() => {
 const getActiveShown = computed(() => {
   return (shown: string) => rightIsExpand.value && shown === currentRightSidebarContent.value
 })
+
 function handleClickMenuItem(item: { name: string; path?: string }) {
   const { name, path } = item
   // console.log(name)
@@ -58,7 +56,7 @@ function handleClickMenuItem(item: { name: string; path?: string }) {
       openSafeDialog()
       break
     case 'logout':
-      setshowDialogLogoutTrue()
+      setShowDialogLogoutTrue()
       break
     case 'vip':
       openVipDialog()
@@ -79,7 +77,6 @@ function handleClickMenuItem(item: { name: string; path?: string }) {
       break
   }
 }
-
 async function logout() {
   appStore.removeToken()
   await nextTick()

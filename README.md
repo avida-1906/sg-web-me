@@ -49,8 +49,10 @@ computed
 
 methods
 
-watch
+watch, watchEffect
 
 mounted
 
 …生命周期
+
+初始化需要执行的函数，比如网络请求 init()之类的

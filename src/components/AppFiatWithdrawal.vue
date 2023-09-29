@@ -67,7 +67,7 @@ const { isXs } = storeToRefs(useWindowStore())
       <div class="withdrawal-info">
         <BaseLabel v-if="currentType === '1'" label="出款银行卡" must>
           <BaseSelect v-model="selectBank" :options="bindBanks" must banks theme popper>
-            <template #default="{ data: { item, parentWidth } }">
+            <template #option="{ data: { item, parentWidth } }">
               <div class="bank-options scroll-x" :style="{ width: `${parentWidth + 24}px` }">
                 <div class="option-row">
                   <BaseIcon name="fiat-bank" />
