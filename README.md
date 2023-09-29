@@ -49,7 +49,7 @@ computed
 
 methods
 
-watch
+watch, watchEffect
 
 mounted
 
