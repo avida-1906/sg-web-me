@@ -19,8 +19,9 @@ const props = withDefaults(defineProps<Props>(), {
   layout: 'vertical',
 })
 const emit = defineEmits(['update:modelValue', 'select'])
-const parent = ref<HTMLElement | null>(null)
+
 const { bool, setTrue, setFalse } = useBoolean(false)
+const parent = ref<HTMLElement | null>(null)
 const { width } = useElementSize(parent)
 
 const selectedOption = computed(() => props.options.find(a => a.value === props.modelValue))
