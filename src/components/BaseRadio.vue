@@ -92,7 +92,7 @@ function onCheck() {
     margin-right: var(--tg-spacing-8);
     border-width: var(--tg-border-width-sm);
     border-style: solid;
-    border-color: var(--tg-secondary-main);
+    border-color: var(--tg-border-color-main);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -100,14 +100,14 @@ function onCheck() {
 
   &:hover {
     .icon {
-      border-color: var(--tg-text-grey);
+       border-color: var(--tg-border-color-deep-grey);
     }
   }
 }
 
 .active {
   .icon {
-    border-color: var(--tg-secondary-main);
+    border-color: var(--tg-border-color-main);
     background-color: var(--tg-secondary-main);
     .dot {
       display: inline-block;
@@ -121,7 +121,7 @@ function onCheck() {
 }
 .active.focus{
   .icon{
-    border-color: var(--tg-text-grey);
+     border-color: var(--tg-border-color-deep-grey);
     background-color: var(--tg-secondary-main);
   }
 }
@@ -133,7 +133,7 @@ function onCheck() {
   &:hover {
     .icon {
       cursor: not-allowed;
-      border-color: var(--tg-text-grey);
+       border-color: var(--tg-border-color-deep-grey);
     }
   }
 }

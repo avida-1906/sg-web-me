@@ -79,7 +79,7 @@ function onItemChecked(v: string, item: CheckItem) {
     margin-right: 8px;
     border-width: var(--tg-border-width-sm);
     border-style: solid;
-    border-color: var(--tg-secondary-main);
+    border-color: var(--tg-border-color-main);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -94,7 +94,7 @@ function onItemChecked(v: string, item: CheckItem) {
     }
 
     &:hover {
-      border-color: var(--tg-text-grey);
+       border-color: var(--tg-border-color-deep-grey);
     }
   }
 
@@ -125,17 +125,17 @@ function onItemChecked(v: string, item: CheckItem) {
   }
 
   .active {
-    border-color: var(--tg-secondary-main);
+    border-color: var(--tg-border-color-main);
     background-color: var(--tg-secondary-main);
   }
 
   .active.focus {
-    border-color: var(--tg-text-grey);
+     border-color: var(--tg-border-color-deep-grey);
     background-color: var(--tg-secondary-main);
   }
 
   .focus {
-    border-color: var(--tg-text-grey);
+     border-color: var(--tg-border-color-deep-grey);
   }
 }
 </style>

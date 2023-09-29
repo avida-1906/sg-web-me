@@ -71,7 +71,7 @@ function onClick() {
     margin-right: 8px;
     border-width: var(--tg-border-width-sm);
     border-style: solid;
-    border-color: var(--tg-secondary-main);
+    border-color: var(--tg-border-color-main);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -88,7 +88,7 @@ function onClick() {
     }
 
     &:hover {
-      border-color: var(--tg-text-grey);
+       border-color: var(--tg-border-color-deep-grey);
     }
   }
 
@@ -109,17 +109,17 @@ function onClick() {
   }
 
   .active {
-    border-color: var(--tg-secondary-main);
+    border-color: var(--tg-border-color-main);
     background-color: var(--tg-secondary-main);
   }
 
   .active.focus {
-    border-color: var(--tg-text-grey);
+     border-color: var(--tg-border-color-deep-grey);
     background-color: var(--tg-secondary-main);
   }
 
   .focus {
-    border-color: var(--tg-text-grey);
+     border-color: var(--tg-border-color-deep-grey);
   }
 }
 
@@ -131,15 +131,15 @@ function onClick() {
     cursor: not-allowed;
 
     &:hover {
-      border-color: var(--tg-secondary-main);
+      border-color: var(--tg-border-color-main);
     }
   }
 
   .active {
-    border-color: var(--tg-text-grey);
+     border-color: var(--tg-border-color-deep-grey);
 
     &:hover {
-      border-color: var(--tg-text-grey);
+       border-color: var(--tg-border-color-deep-grey);
     }
   }
 }

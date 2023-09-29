@@ -33,13 +33,13 @@ const props = withDefaults(defineProps<Props>(), {
         background: var(--tg-secondary-main);
         border-width: var(--tg-border-width-sm);
         border-style: solid;
-        border-color: var(--tg-secondary-main);
+        border-color: var(--tg-border-color-main);
         position: relative;
         transition: all ease .25s;
         display: flex;
         align-items: center;
         &:hover:not(.error) {
-          border-color: var(--tg-text-grey);
+           border-color: var(--tg-border-color-deep-grey);
         }
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;

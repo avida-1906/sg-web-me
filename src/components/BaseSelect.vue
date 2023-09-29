@@ -175,7 +175,7 @@ const { width } = useElementSize(parent)
     padding-right: var(--tg-base-select-style-padding-right);
     border-width: var(--tg-border-width-sm);
     border-style: solid;
-    border-color: var(--tg-secondary-main);
+    border-color: var(--tg-border-color-main);
     background-color: var(--tg-secondary-dark);
     box-shadow: var(--tg-box-shadow);
     color: var(--tg-text-white);
@@ -183,7 +183,7 @@ const { width } = useElementSize(parent)
     border-radius: var(--tg-radius-default);
 
     &:hover {
-      border-color: var(--tg-text-grey);
+       border-color: var(--tg-border-color-deep-grey);
     }
   }
 

@@ -66,7 +66,7 @@ function onClear() {
 .base-search {
   border-width: var(--tg-border-width-sm);
   border-style: solid;
-  border-color: var(--tg-secondary-main);
+  border-color: var(--tg-border-color-main);
   background-color: var(--tg-secondary-dark);
   box-shadow: var(--tg-box-shadow);
   padding: 0 var(--tg-spacing-16);
@@ -77,7 +77,7 @@ function onClear() {
   transition: all ease .25s;
 
   &:hover:not(.whiteStyle) {
-    border-color: var(--tg-text-grey);
+     border-color: var(--tg-border-color-deep-grey);
   }
 
   .left-box {
@@ -127,13 +127,13 @@ function onClear() {
 }
 
 .active {
-  border-color: var(--tg-text-grey);
+   border-color: var(--tg-border-color-deep-grey);
 }
 
 .whiteStyle {
   background-color: var(--tg-text-white);
   color: var(--tg-text-secondary-main);
-  border-color: #d5dceb;
+  border-color: var(--tg-border-color-grey);
 
   input {
 

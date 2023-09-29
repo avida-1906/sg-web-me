@@ -40,8 +40,10 @@
   --tg-color-grey-rgb: 14, 18, 36;
   --tg-color-blue-rgb: 26, 46, 56;
   /* 边框颜色 */
-  --tg-border-color-grey: #d5dceb;
-  --tg-secondary-border-color-grey: #213743;
+  --tg-border-color-grey: var(--tg-text-grey-light);
+  --tg-secondary-border-color-grey: var(--tg-secondary-grey);
+  --tg-border-color-deep-grey: var(--tg-text-grey);
+  --tg-border-color-main: var(--tg-secondary-main);
 
 }
 

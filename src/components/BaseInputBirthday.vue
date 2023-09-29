@@ -203,7 +203,7 @@ defineExpose({ valiBirthday })
       box-shadow: var(--tg-box-shadow);
       border-width: var(--tg-border-width-sm);
       border-style: solid;
-      border-color: var(--tg-secondary-main);
+      border-color: var(--tg-border-color-main);
       color: var(--tg-text-white);
       outline: none;
       padding: var(--tg-spacing-input-padding-vertical) var(--tg-spacing-input-padding-horizontal);
@@ -211,11 +211,11 @@ defineExpose({ valiBirthday })
       line-height: 1;
 
       &:hover:not(.error) {
-        border-color: var(--tg-text-grey);
+         border-color: var(--tg-border-color-deep-grey);
       }
 
       &:focus:not(.error) {
-        border-color: var(--tg-text-grey);
+         border-color: var(--tg-border-color-deep-grey);
       }
     }
 

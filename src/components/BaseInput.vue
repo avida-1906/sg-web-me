@@ -152,14 +152,14 @@ function onBlur() {
     background: var(--tg-secondary-dark);
     border-width: var(--tg-border-width-sm);
     border-style: solid;
-    border-color: var(--tg-secondary-main);
+    border-color: var(--tg-border-color-main);
     position: relative;
     transition: all ease .25s;
     display: flex;
     align-items: center;
 
     &:hover:not(.error) {
-      border-color: var(--tg-text-grey);
+       border-color: var(--tg-border-color-deep-grey);
     }
 
     input {
@@ -210,7 +210,7 @@ function onBlur() {
   }
 
   .active {
-    border-color: var(--tg-text-grey);
+     border-color: var(--tg-border-color-deep-grey);
   }
 
   .error {
