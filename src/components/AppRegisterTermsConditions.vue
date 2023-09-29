@@ -1,10 +1,18 @@
 <script setup lang='ts'>
+interface IRegParams {
+  email: string
+  username: string
+  password: string
+  birthday?: string
+  parent_id?: string
+  device_number: string
+}
+const closeDialog = inject('closeDialog', () => {})
 const { t } = useI18n()
-
 const appStore = useAppStore()
-
 const { bool: isRead, setTrue: setReadTrue } = useBoolean(false)
 const { bool: checkboxValue } = useBoolean(false)
+const { openLoginDialog } = useLoginDialog()
 const { errorMessage: checkedErrorMsg, validate: valiChecked } = useField<string>('checkbox', () => {
   if (!checkboxValue.value)
     return t('agree_terms_conditions')
@@ -12,63 +20,60 @@ const { errorMessage: checkedErrorMsg, validate: valiChecked } = useField<string
   return ''
 })
 
-const closeDialog = inject('closeDialog', () => {})
-const { openLoginDialog } = useLoginDialog()
-
-const $scrollList = ref(null)
+const scrollRef = ref()
 const delayId = ref()
 
-function handleScroll(evt: any) {
-  const { scrollTop, scrollHeight, clientHeight } = evt.target
-  const _atBottom = scrollHeight - scrollTop - clientHeight < 100
-
-  clearTimeout(delayId.value)
-  delayId.value = setTimeout(() => {
-    if (_atBottom)
-      setReadTrue()
-  }, 100)
-}
-
 const regParams = computed(() => {
-  return Session.get(STORAGE_REG_PARAMS_KEYWORDS)?.value
+  return Session.get(STORAGE_REG_PARAMS_KEYWORDS)?.value as IRegParams
 })
-
 const { run: runMemberReg, loading: isLoading } = useRequest(() => ApiMemberReg(regParams.value), {
   manual: true,
-  onSuccess: async (res: any) => {
+  onSuccess: async (res: string) => {
     appStore.setToken(res)
     Session.remove(STORAGE_REG_PARAMS_KEYWORDS)
     await nextTick()
     closeDialog()
   },
-  onError: (err: any) => {
-    toast(err)
+  onError: (err: Error) => {
+    console.log(err)
   },
 })
 
+function handleScroll() {
+  clearTimeout(delayId.value)
+  delayId.value = setTimeout(() => {
+    const { scrollTop, scrollHeight, clientHeight } = scrollRef.value
+    const _atBottom = scrollHeight - scrollTop - clientHeight < 100
+    if (_atBottom)
+      setReadTrue()
+  }, 500)
+}
 async function getStartGame() {
   valiChecked()
   if (checkboxValue.value && !checkedErrorMsg.value)
     runMemberReg()
 }
-
 async function toLogin() {
   closeDialog()
   await nextTick()
   openLoginDialog()
 }
 
+onMounted(() => {
+  scrollRef.value.addEventListener('scroll', handleScroll)
+})
+
 onBeforeUnmount(() => {
-  clearTimeout(delayId.value)
+  scrollRef.value.removeEventListener('scroll', handleScroll)
 })
 </script>
 
 <template>
   <div class="app-register-terms-conditions">
     <div class="title">
-      {{ t('reg_step2') }}
+      步骤 2/2： 阅读并接受条款与条件
     </div>
-    <div ref="$scrollList" class="scroll-y terms-conditions" @scroll="handleScroll">
+    <div ref="scrollRef" class="scroll-y terms-conditions">
       <div>
         <div class="terms-conditions-theme">
           Terms and Conditions
@@ -131,14 +136,14 @@ onBeforeUnmount(() => {
       <BaseCheckBox v-model="checkboxValue" :disabled="!isRead" :msg="checkedErrorMsg" @click.stop="valiChecked">
         {{ t('read_terms_conditions') }}
       </BaseCheckBox>
-      <BaseButton :loading="isLoading" class="app-register-terms-conditions-btn" bg-style="secondary" @click.stop="getStartGame">
+      <BaseButton :loading="isLoading" :disabled="!isRead" class="app-register-terms-conditions-btn" bg-style="secondary" @click.stop="getStartGame">
         {{ t('start_game') }}
       </BaseButton>
     </div>
     <div class="app-bottom">
       <div class="app-bottom-text">
-        <div @click.stop="toLogin">
-          {{ t('have_account') }}<span class="text-white">{{ t('login') }}</span>
+        <div>
+          {{ t('have_account') }}<span class="text-white" @click.stop="toLogin">{{ t('login') }}</span>
         </div>
 
         <div class="stake-text">
@@ -161,46 +166,34 @@ onBeforeUnmount(() => {
     font-style: normal;
     font-weight: var(--tg-font-weight-semibold);
     line-height: normal;
-    // padding-bottom: var(--tg-spacing-button-padding-vertical-xs);
   }
   .terms-conditions {
-    .theme {
-      margin: var(--tg-spacing-12) 0;
-    }
-    .terms-conditions-title,.terms-conditions-theme  {
-      color: var(--tg-text-white);
-      font-size: var(--tg-font-size-default);
-      font-style: normal;
-      font-weight: var(--tg-font-weight-semibold);
-      line-height: 22px;
-    }
-    .terms-conditions-describe {
-      color: var(--tg-text-lightgrey);
-      font-size: var(--tg-font-size-xs);
-      font-style: normal;
-      font-weight: var(--tg-font-weight-semibold);
-      line-height: 22px;
-    }
     max-height: 50vh;
     padding: var(--tg-spacing-20) var(--tg-spacing-12);
     text-align: left;
     border-radius: var(--tg-radius-default);
-    background: var(--tg-secondary-main);
+    background: var(--tg-secondary-grey);
     transition: all 0.5s;
-    // overflow-y: scroll !important;
-    // overflow-x: hidden !important;
-    // overflow-y: auto !important;
-    // -webkit-overflow-scrolling: touch;
-    // &::-webkit-scrollbar {
-    //   width: 0px !important;
-    //   height: 0px !important;
-    // }
-    // &::-webkit-scrollbar-track {
-    //   -webkit-box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
-    // }
-    // &::-webkit-scrollbar-thumb {
-    //   -webkit-box-shadow: inset 0 0 10px rgba(0,0,0,.3);
-    // }
+    .theme {
+      margin: var(--tg-spacing-12) 0;
+    }
+    .terms-conditions-theme{
+      color: var(--tg-text-white);
+      font-size: var(--tg-font-size-md);
+      font-weight: var(--tg-font-weight-semibold);
+    }
+    .terms-conditions-title{
+      color: var(--tg-text-white);
+      font-size: var(--tg-font-size-md);
+      font-weight: var(--tg-font-weight-semibold);
+      margin: var(--tg-spacing-32) 0 var(--tg-spacing-8);
+    }
+    .terms-conditions-describe {
+      color: var(--tg-text-lightgrey);
+      font-size: var(--tg-font-size-xs);
+      font-weight: var(--tg-font-weight-default);
+      line-height: 22px;
+    }
   }
   .check-box {
     display: flex;
@@ -233,6 +226,11 @@ onBeforeUnmount(() => {
         span:hover {
           color: var(--tg-text-white) !important;
         }
+      }
+    }
+    .app-bottom-text{
+      span{
+        cursor: pointer;
       }
     }
   }
