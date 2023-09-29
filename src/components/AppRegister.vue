@@ -1,17 +1,10 @@
 <script setup lang='ts'>
-const { t } = useI18n()
-
-// const birthday = ref('')
-const { bool: checkboxValue } = useBoolean(false)
-
 const closeDialog = inject('closeDialog', () => {})
 
+const { t } = useI18n()
+const { bool: checkboxValue } = useBoolean(false)
+const { openTermsConditionsDialog } = useTermsConditionsDialog()
 const { bool: isShowPasswordVerify, setTrue: setShowPasswordVerifyTrue, setFalse: setShowPasswordVerifyFalse } = useBoolean(false)
-
-const {
-  openTermsConditionsDialog,
-} = useTermsConditionsDialog()
-
 const { value: email, errorMessage: emailErrorMsg, validate: valiEmail } = useField<string>('email', (value) => {
   if (!value)
     return t('pls_enter_email_address')
@@ -37,7 +30,6 @@ const { value: username, errorMessage: usernameErrorMsg, validate: valiUsername 
   // 您的 username 不得超过 14 个字符
   return ''
 })
-
 const { value: password, errorMessage: pwdErrorMsg, validate: valiPassword } = useField<string>('password', (value) => {
   if (!value)
     return t('pls_enter_password')
@@ -56,6 +48,7 @@ const { value: password, errorMessage: pwdErrorMsg, validate: valiPassword } = u
 
 const birthdayInputRef = ref()
 const birthday = ref('')
+const { bool: pwdStatus, setBool: setPwdStatus } = useBoolean(false)
 
 async function getMemberReg() {
   await valiEmail()
@@ -81,7 +74,11 @@ function onFocus() {
   setShowPasswordVerifyTrue()
 }
 function onBlur() {
-  setShowPasswordVerifyFalse()
+  if (pwdStatus.value)
+    setShowPasswordVerifyFalse()
+}
+function passwordVerifyPass(status: boolean) {
+  setPwdStatus(status)
 }
 </script>
 
@@ -90,7 +87,6 @@ function onBlur() {
     <div class="app-register-title">
       {{ t('reg_step1') }}
     </div>
-    <!-- <form></form> -->
     <div class="app-register-input-box">
       <BaseLabel :label="t('email_address')" must-small>
         <BaseInput v-model="email" :msg="emailErrorMsg" :placeholder="t('pls_enter_email_address')" />
@@ -105,8 +101,8 @@ function onBlur() {
           :password="password"
           @focus="onFocus" @blur="onBlur"
         />
+        <AppPasswordVerify v-show="isShowPasswordVerify" :password="password" @pass="passwordVerifyPass" />
       </BaseLabel>
-      <AppPasswordVerify v-show="isShowPasswordVerify" :password="password" />
       <BaseLabel label="出生日期" must-small>
         <BaseInputBirthday ref="birthdayInputRef" v-model="birthday" />
       </BaseLabel>

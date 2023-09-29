@@ -8,12 +8,23 @@
     </div>
     <div class="messages">
       <div class="scroll-y message-content" />
+      <Transition>
+        <div class="more-wrap">
+          <BaseButton shadow size="lg">
+            <div class="icon-text stop">
+              <BaseIcon name="uni-stop" />
+              <span>聊天室因滚动而暂停</span>
+            </div>
+            <div class="icon-text go-down">
+              <BaseIcon name="uni-arrow-godown" />
+              <span>20+ 条新信息</span>
+            </div>
+          </BaseButton>
+        </div>
+      </Transition>
     </div>
     <div class="footer">
-      footer
-      @ 用户
-      : 表情
-      / 指令
+      <AppChatFooter />
     </div>
   </section>
 </template>
@@ -57,20 +68,46 @@
       overflow-anchor: none;
       overscroll-behavior: contain;
     }
+    .more-wrap {
+      left: 50%;
+      position: absolute;
+      bottom: var(--tg-spacing-24);
+      transform: translate(-50%);
+      line-height: 1.5;
+      font-size: var(--tg-font-size-default);
+      color: var(--tg-secondary-light);
+      .icon-text {
+        display: flex;
+        white-space: nowrap;
+        gap: var(--tg-spacing-8);
+        padding: var(--tg-spacing-2) var(--tg-spacing-8);
+        &.stop {
+          visibility: visible;
+          opacity: 1;
+        }
+        &.go-down {
+          visibility: hidden;
+          opacity: 0;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translateX(-50%) translateY(-50%);
+        }
+      }
+      &:hover {
+        .icon-text.stop {
+          visibility: hidden;
+          opacity: 0;
+        }
+        .icon-text.go-down {
+          visibility: visible;
+          opacity: 1;
+        }
+      }
+    }
   }
   .footer {
-    position: relative;
-    display: grid;
-    align-items: center;
-    padding: var(--tg-spacing-16);
-    row-gap: var(--tg-spacing-8);
     background: var(--tg-secondary-grey);
-    grid-template-rows: auto;
-    grid-template-columns: auto 1fr;
-    grid-template-areas:
-        "input input"
-        "online actions";
-    touch-action: none;
   }
 }
 </style>

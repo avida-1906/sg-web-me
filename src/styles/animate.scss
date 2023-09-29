@@ -274,3 +274,10 @@
   opacity: 0;
   transform: translateY(5px);
 }
+
+// 聊天室在线人数绿点
+@keyframes OnlineFlash {
+  0% {
+    transform: translate(-50%,-50%) scale(0);
+  }
+}
