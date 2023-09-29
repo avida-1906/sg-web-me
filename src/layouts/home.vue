@@ -123,7 +123,7 @@ watch(() => width.value, (newWidth) => {
         <AppNotice />
       </template>
       <template v-if="currentRightSidebarContent === EnumRightSidebarContent.CHATROOM">
-        聊天室
+        <AppChat />
       </template>
       <template v-if="currentRightSidebarContent === EnumRightSidebarContent.BETTING">
         <AppSportsBetSlip />
