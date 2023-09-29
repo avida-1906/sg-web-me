@@ -7,11 +7,13 @@ interface Props {
   placeholder?: string
   msg?: string
   must?: boolean
+  textarea?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
   layout: 'vertical',
   type: 'text',
+  textarea: false,
 })
 const emit = defineEmits(['update:modelValue', 'input', 'blur', 'focus'])
 const { bool: isFocus, setTrue, setFalse } = useBoolean(false)
@@ -47,9 +49,17 @@ function onBlur() {
       <label v-if="label">{{ label }} <span v-if="must">*</span></label>
       <div class="input-wrap">
         <div class="input-box" :class="{ 'active': isFocus, 'error': isError, 'radio-r-o': $slots['right-button'] }">
+          <div v-if="textarea" class="textarea-container">
+            <pre aria-hidden="true">{{ modelValue }}</pre>
+            <textarea
+              min="0" class="scroll-y" :placeholder="placeholder" :class="{ 'p-r-0': $slots['right-icon'] }"
+              autocomplete="new-password" @input="onInput" @focus="onFocus" @blur="onBlur"
+            />
+          </div>
           <input
+            v-else
             :value="modelValue" min="0" :placeholder="placeholder" :type="_type" :class="{ 'p-r-0': $slots['right-icon'] }"
-            autocomplete="new-password" @input="onInput" @focus="onFocus" @blur="onBlur"
+            @input="onInput" @focus="onFocus" @blur="onBlur"
           >
           <div v-if="isPassword" class="eye" @click="toggleType">
             <BaseIcon :name="`uni-eye-${_type === 'password' ? 'open' : 'close'}`" />
@@ -71,6 +81,46 @@ function onBlur() {
 </template>
 
 <style lang='scss' scoped>
+.textarea-container {
+  position: relative;
+  width: 100%;
+  font-size: var(--tg-font-size-default);
+  pre, textarea {
+    line-height: 1.5;
+    overflow: hidden;
+    white-space: break-spaces;
+    width: 100%;
+    color: var(--tg-text-white);
+    background: var(--tg-secondary-dark);
+    box-shadow: var(--tg-box-shadow);
+    // border: var(--input-border-width) solid var(--input-border);
+    // border-radius: var(--input-border-radius);
+    letter-spacing: 0;
+    font-weight: var(--tg-font-weight-semibold);
+    // transition: all var(--input-transition);
+    outline: 0;
+    margin: 0;
+    cursor: text;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    font-size: var(--tg-font-size-default);
+    padding: var(--tg-spacing-8);
+    transition: none;
+  }
+  pre {
+    min-height: 2.8em;
+    max-height: 6.4em;
+  }
+  textarea {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    resize: none;
+    overflow: auto;
+  }
+}
 .base-input {
   width: 100%;
   font-size: var(--tg-font-size-default);
