@@ -27,7 +27,7 @@ const {
 const homeContainerRef = ref<HTMLElement | null>(null)
 const { width } = useElementSize(homeContainerRef)
 const route = useRoute()
-const { leftIsExpand, isSwitching, switchTo } = useLeftSidebar()
+const { leftIsExpand, isSwitching, switchTo, triggerLeftSidebar } = useLeftSidebar()
 const { rightIsExpand, rightContainerIs0, currentRightSidebarContent } = useRightSidebar()
 
 // 是否游戏页面
@@ -45,7 +45,7 @@ watch(() => width.value, (newWidth) => {
 
 <template>
   <main class="wrap" :class="{ 'is-switching': isSwitching, 'not-mobile': !isMobile }">
-    <div v-if="homeOverlayIsShow" class="home-overlay" @click="leftIsExpand = !leftIsExpand" />
+    <div v-if="homeOverlayIsShow" class="home-overlay" @click="triggerLeftSidebar" />
     <div class="side-bar-outer">
       <div v-if="isLessThanLg && isGreaterThanSm" class="small-size-padding" />
       <Transition :name="isMobile ? 'bigslide-fade-top' : 'bigslide-fade-left'">
@@ -59,7 +59,7 @@ watch(() => width.value, (newWidth) => {
             'full-screen': isMobile,
           }"
         >
-          <AppLeftSidebar v-model="leftIsExpand" :is-switching="isSwitching" :switch-to="switchTo" />
+          <AppLeftSidebar :is-switching="isSwitching" :switch-to="switchTo" />
         </div>
       </Transition>
 
@@ -74,7 +74,7 @@ watch(() => width.value, (newWidth) => {
             'full-screen': isMobile,
           }"
         >
-          <AppLeftSidebarTiny v-model="leftIsExpand" :is-switching="isSwitching" :switch-to="switchTo" />
+          <AppLeftSidebarTiny :is-switching="isSwitching" :switch-to="switchTo" />
         </div>
       </Transition>
     </div>

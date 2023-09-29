@@ -1,12 +1,5 @@
 <script setup lang="ts">
-// interface Props {
-//
-// }
-// withDefaults(defineProps<Props>(), {
-//
-// })
-
-const { leftIsExpand } = useLeftSidebar()
+const { triggerLeftSidebar } = useLeftSidebar()
 
 const tabbar = ref([
   { title: '浏览', icon: 'tabbar-menu', name: 'menu', show: true },
@@ -28,13 +21,13 @@ function changeBar(item: { name: string }) {
     tabbar.value[3].show = true
   }
   else if (item.name === 'menu') {
-    leftIsExpand.value = !leftIsExpand.value
+    triggerLeftSidebar()
   }
 }
 </script>
 
 <template>
-  <div class="app-bottombar page-content">
+  <div class="app-footer-bar page-content">
     <div v-for="item of tabbar" v-show="item.show" :key="item.icon" class="bar-item" :class="{ 'active-bar': activeBar === item.name }">
       <BaseButton type="text" @click.stop="changeBar(item)">
         <div class="bar-btn">
@@ -42,16 +35,12 @@ function changeBar(item: { name: string }) {
           <span>{{ item.title }}</span>
         </div>
       </BaseButton>
-      <!-- <div class="bar-btn" @click.stop="changeBar(item)">
-        <BaseIcon class="bar-icon" :name="item.icon" />
-        <span>{{ item.title }}</span>
-      </div> -->
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.app-bottombar {
+.app-footer-bar {
   position: fixed;
   bottom: 0;
   left: 0;

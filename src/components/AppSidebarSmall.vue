@@ -8,6 +8,7 @@ interface Props {
 withDefaults(defineProps<Props>(), {})
 
 const route = useRoute()
+const routePath = computed(() => route.path)
 const isCasino = computed(() => route.name?.toString().includes('casino'))
 const isSports = computed(() => route.name?.toString().includes('sports'))
 
@@ -60,7 +61,7 @@ function itemClick(item: MenuItem) {
 <template>
   <section class="tg-app-sidebar-small">
     <ul v-for="menu, idx in menuData" :key="idx" class="tiny-menu flex-col-center">
-      <li v-for="menuitem in menu.value" :key="menuitem.title" class="flex-col-center tiny-menu-item">
+      <li v-for="menuitem in menu.value" :key="menuitem.title" class="flex-col-center tiny-menu-item" :class="{ active: routePath === menuitem.path }">
         <VMenu placement="top">
           <div class="trigger" @click="itemClick(menuitem)">
             <BaseIcon :name="menuitem.icon" />
