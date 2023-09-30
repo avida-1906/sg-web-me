@@ -4,6 +4,8 @@
 //  / 指令
 
 const message = ref('')
+
+const { openChatRulesDialog } = useChatRulesDialog()
 </script>
 
 <template>
@@ -21,7 +23,7 @@ const message = ref('')
     </div>
     <div class="actions">
       <span>88</span>
-      <BaseButton type="text">
+      <BaseButton type="text" @click="openChatRulesDialog">
         <BaseIcon name="chat-rule" />
       </BaseButton>
       <BaseButton bg-style="secondary" size="md">
