@@ -8,6 +8,7 @@ interface Props {
   msg?: string
   must?: boolean
   textarea?: boolean
+  mb0?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -47,7 +48,7 @@ function onBlur() {
   <div class="base-input">
     <div :class="[layout]">
       <label v-if="label">{{ label }} <span v-if="must">*</span></label>
-      <div class="input-wrap">
+      <div class="input-wrap" :class="{ mb0 }">
         <div class="input-box" :class="{ 'active': isFocus, 'error': isError, 'radio-r-o': $slots['right-button'] }">
           <div v-if="textarea" class="textarea-container">
             <pre aria-hidden="true">{{ modelValue }}</pre>
@@ -57,9 +58,8 @@ function onBlur() {
             />
           </div>
           <input
-            v-else
-            :value="modelValue" min="0" :placeholder="placeholder" :type="_type" :class="{ 'p-r-0': $slots['right-icon'] }"
-            @input="onInput" @focus="onFocus" @blur="onBlur"
+            v-else :value="modelValue" min="0" :placeholder="placeholder" :type="_type"
+            :class="{ 'p-r-0': $slots['right-icon'] }" @input="onInput" @focus="onFocus" @blur="onBlur"
           >
           <div v-if="isPassword" class="eye" @click="toggleType">
             <BaseIcon :name="`uni-eye-${_type === 'password' ? 'open' : 'close'}`" />
@@ -85,7 +85,9 @@ function onBlur() {
   position: relative;
   width: 100%;
   font-size: var(--tg-font-size-default);
-  pre, textarea {
+
+  pre,
+  textarea {
     line-height: 1.5;
     overflow: hidden;
     white-space: break-spaces;
@@ -108,10 +110,12 @@ function onBlur() {
     padding: var(--tg-spacing-8);
     transition: none;
   }
+
   pre {
     min-height: 2.8em;
     max-height: 6.4em;
   }
+
   textarea {
     position: absolute;
     width: 100%;
@@ -121,6 +125,7 @@ function onBlur() {
     overflow: auto;
   }
 }
+
 .base-input {
   width: 100%;
   font-size: var(--tg-font-size-default);
@@ -128,6 +133,7 @@ function onBlur() {
   label {
     color: var(--tg-text-lightgrey);
     font-weight: var(--tg-font-weight-semibold);
+
     span {
       color: var(--tg-text-error);
     }
@@ -195,6 +201,9 @@ function onBlur() {
       }
     }
   }
+  .mb0{
+    margin-bottom: 0;
+  }
 
   .input-box {
     width: 100%;
@@ -209,7 +218,7 @@ function onBlur() {
     align-items: center;
 
     &:hover:not(.error) {
-       border-color: var(--tg-border-color-deep-grey);
+      border-color: var(--tg-border-color-deep-grey);
     }
 
     input {
@@ -260,7 +269,7 @@ function onBlur() {
   }
 
   .active {
-     border-color: var(--tg-border-color-deep-grey);
+    border-color: var(--tg-border-color-deep-grey);
   }
 
   .error {

@@ -30,6 +30,7 @@ declare global {
   const EnumCurrency: typeof import('./utils/enums')['EnumCurrency']
   const EnumLanguage: typeof import('./utils/enums')['EnumLanguage']
   const EnumRightSidebarContent: typeof import('./composables/useRightSidebar')['EnumRightSidebarContent']
+  const EnumsBetSlipTabs: typeof import('./utils/enums')['EnumsBetSlipTabs']
   const Local: typeof import('./utils/storage')['Local']
   const STORAGE_LANGUAGE_KEY: typeof import('./utils/storage')['STORAGE_LANGUAGE_KEY']
   const STORAGE_MENU_EXPAND_DOMID: typeof import('./utils/storage')['STORAGE_MENU_EXPAND_DOMID']
@@ -441,6 +442,7 @@ declare module 'vue' {
     readonly EnumCurrency: UnwrapRef<typeof import('./utils/enums')['EnumCurrency']>
     readonly EnumLanguage: UnwrapRef<typeof import('./utils/enums')['EnumLanguage']>
     readonly EnumRightSidebarContent: UnwrapRef<typeof import('./composables/useRightSidebar')['EnumRightSidebarContent']>
+    readonly EnumsBetSlipTabs: UnwrapRef<typeof import('./utils/enums')['EnumsBetSlipTabs']>
     readonly Local: UnwrapRef<typeof import('./utils/storage')['Local']>
     readonly STORAGE_LANGUAGE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_LANGUAGE_KEY']>
     readonly STORAGE_MENU_EXPAND_DOMID: UnwrapRef<typeof import('./utils/storage')['STORAGE_MENU_EXPAND_DOMID']>
@@ -838,6 +840,7 @@ declare module '@vue/runtime-core' {
     readonly EnumCurrency: UnwrapRef<typeof import('./utils/enums')['EnumCurrency']>
     readonly EnumLanguage: UnwrapRef<typeof import('./utils/enums')['EnumLanguage']>
     readonly EnumRightSidebarContent: UnwrapRef<typeof import('./composables/useRightSidebar')['EnumRightSidebarContent']>
+    readonly EnumsBetSlipTabs: UnwrapRef<typeof import('./utils/enums')['EnumsBetSlipTabs']>
     readonly Local: UnwrapRef<typeof import('./utils/storage')['Local']>
     readonly STORAGE_LANGUAGE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_LANGUAGE_KEY']>
     readonly STORAGE_MENU_EXPAND_DOMID: UnwrapRef<typeof import('./utils/storage')['STORAGE_MENU_EXPAND_DOMID']>

@@ -1,12 +1,5 @@
 <script setup lang='ts'>
-enum EnumsBetSlipTabs {
-  betSlip, // 投注单
-  myBets, // 我的投注
-  single, // 单项投注
-  multi, // 复式投注
-  active, // 活跃
-  settled, // 已结算
-}
+import { EnumsBetSlipTabs } from '~/utils/enums'
 
 const { closeRightSidebar } = useRightSidebar()
 
@@ -49,7 +42,7 @@ const betBtnText = computed(() => betSlipTypeTabs.find(b => b.value === betSlipT
         <BaseSelect
           v-model="type"
           style="--tg-base-select-hover-bg-color:var(--tg-secondary-dark);--tg-base-select-popper-style-padding-x:0;"
-          :options="typeOptions" popper no-hover
+          :options="typeOptions" no-hover popper
         >
           <template #label="{ data }">
             <div class="type-select">
@@ -78,7 +71,7 @@ const betBtnText = computed(() => betSlipTypeTabs.find(b => b.value === betSlipT
           style="--tg-base-select-hover-bg-color:var(--tg-secondary-dark);--tg-base-select-popper-style-padding-x:0;--tg-base-select-popper-style-padding-y:0;--tg-base-select-popper-label-color:var(--tg-text-lightgrey);"
           :options="bettingOptions" no-hover popper
         />
-        <BaseButton type="text" style="--tg-base-button-text-default-color:var(--tg-text-white);">
+        <BaseButton type="text" padding0 style="--tg-base-button-text-default-color:var(--tg-text-white);">
           全部清除
         </BaseButton>
       </div>
@@ -86,7 +79,7 @@ const betBtnText = computed(() => betSlipTypeTabs.find(b => b.value === betSlipT
 
     <div class="bet-list">
       <div class="scroll-y betlist-scroll">
-        <AppSportsBetSlip />
+        <AppSportsBetSlip v-for="i, ii in 5" :key="i" :bet-slip-type="betSlipType" :index="ii" :error="i > 2" />
       </div>
     </div>
 
