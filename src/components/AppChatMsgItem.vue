@@ -37,9 +37,6 @@ withDefaults(defineProps<Props>(), {})
       font-size: var(--tg-font-size-default);
       font-weight: var(--tg-font-weight-normal);
       line-height: 1.5;
-      span {
-        vertical-align: top;
-      }
     }
   }
 }
