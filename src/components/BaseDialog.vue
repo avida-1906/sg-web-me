@@ -19,19 +19,6 @@ const emit = defineEmits(['update:show', 'close', 'cancel', 'confirm'])
 
 const { bool: _show, setTrue: setBShowTrue, setFalse: setBShowFalse } = useBoolean(false)
 
-onMounted(() => {
-  if (props.funcCall) {
-    setTimeout(() => {
-      setBShowTrue()
-      updateShow(true)
-    }, 0)
-  }
-})
-
-onUnmounted(() => {
-  setBShowFalse()
-})
-
 function updateShow(value: boolean) {
   emit('update:show', value)
   if (!value) {
@@ -56,6 +43,19 @@ function onConfirm() {
 }
 
 provide('closeDialog', close)
+
+onMounted(() => {
+  if (props.funcCall) {
+    setTimeout(() => {
+      setBShowTrue()
+      updateShow(true)
+    }, 0)
+  }
+})
+
+onUnmounted(() => {
+  setBShowFalse()
+})
 </script>
 
 <template>

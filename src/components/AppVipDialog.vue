@@ -27,7 +27,7 @@ const showContent = function () {
 const welfareList = [
   {
     title: '铜',
-    icon: 'chat-star-green',
+    icon: 'chat-star-bronze',
     contents: [
       '支持人员将按照您所选的货币发送奖金',
       '启用返水功能',
@@ -38,7 +38,7 @@ const welfareList = [
   },
   {
     title: '银',
-    icon: 'chat-star-grey',
+    icon: 'chat-star-silver',
     contents: [
       '支持人员将按照您所选的货币发送奖金',
       '周度和月度奖金增加',
@@ -46,7 +46,7 @@ const welfareList = [
   },
   {
     title: '金',
-    icon: 'chat-star-orange',
+    icon: 'chat-star-gold',
     contents: [
       '支持人员将按照您所选的货币发送奖金',
       '周度和月度奖金增加',
@@ -54,7 +54,7 @@ const welfareList = [
   },
   {
     title: '铂金 I – III',
-    icon: 'chat-star1',
+    icon: 'chat-star-1',
     contents: [
       '支持人员将按照您所选的货币发送奖金',
       '周度和月度奖金增加',
@@ -63,7 +63,7 @@ const welfareList = [
   },
   {
     title: '铂金 IV – VI',
-    icon: 'chat-star4',
+    icon: 'chat-star-4',
     contents: [
       '专属 VIP 服务代表',
       'VIP 服务代表将按照您所选的货币发送奖金',
@@ -73,7 +73,7 @@ const welfareList = [
   },
   {
     title: '钻石',
-    icon: 'chat-diamond',
+    icon: 'chat-star-diamond',
     contents: [
       'VIP 服务代表将按照您所选的货币发送奖金',
       '专属定制福利',

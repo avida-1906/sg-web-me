@@ -15,11 +15,11 @@ const props = withDefaults(defineProps<Props>(), {
   },
 })
 const levels = [
-  { level: 0, icon: 'chat-star-green', label: '暂无级别' },
-  { level: 1, icon: 'chat-star-green', label: '铜' },
-  { level: 2, icon: 'chat-star-grey', label: '银' },
-  { level: 3, icon: 'chat-star-orange', label: '金' },
-  { level: 4, icon: 'chat-star-green', label: '暂无级别' },
+  { level: 0, icon: 'chat-star-bronze', label: '暂无级别' },
+  { level: 1, icon: 'chat-star-bronze', label: '铜' },
+  { level: 2, icon: 'chat-star-silver', label: '银' },
+  { level: 3, icon: 'chat-star-gold', label: '金' },
+  { level: 4, icon: 'chat-star-bronze', label: '暂无级别' },
 ]
 const currentInfo = computed(() => {
   return levels.find(i => i.level === props.vipProgressData.currentLevel)

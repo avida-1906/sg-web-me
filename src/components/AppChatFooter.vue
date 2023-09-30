@@ -3,9 +3,9 @@
 //  : 表情
 //  / 指令
 
-const message = ref('')
-
 const { openChatRulesDialog } = useChatRulesDialog()
+
+const message = ref('')
 </script>
 
 <template>

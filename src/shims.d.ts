@@ -37,3 +37,24 @@ interface ISelectOption {
 interface IObject {
   [key: string]: any
 }
+
+/**
+ * 聊天室用户角色
+ */
+type ChatUserRole = 'moderator' | 'normal'
+
+/**
+ * 用户级别
+ */
+type UserLevelBadge = 'bronze' | 'silver' | 'gold' | 'diamond' | 1 | 2 | 3 | 4
+
+/**
+ * 聊天室用户
+ */
+interface ChatUserInfo {
+  name: string
+  id: string
+  level: UserLevelBadge
+  role: ChatUserRole
+  [k: string]: any
+}

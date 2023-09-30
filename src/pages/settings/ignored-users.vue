@@ -25,12 +25,12 @@ const tableData: any = [
   {
     action: '解除拉黑',
     player: 'littlemissmay',
-    vipIcon: 'chat-star-orange',
+    vipIcon: 'chat-star-gold',
   },
   {
     action: '解除拉黑',
     player: 'littlemissmay',
-    vipIcon: 'chat-star-orange',
+    vipIcon: 'chat-star-gold',
   },
 ]
 const paginationData = {

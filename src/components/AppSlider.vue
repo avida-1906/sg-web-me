@@ -11,6 +11,7 @@ interface Props {
   showViewAll?: boolean
   gameType: string | number
 }
+
 const props = withDefaults(defineProps<Props>(), {
   showViewAll: true,
 })
@@ -19,34 +20,31 @@ const props = withDefaults(defineProps<Props>(), {
 // await new Promise(resolve => setTimeout(resolve, 3000))
 
 const router = useRouter()
+const { appContentWidth } = storeToRefs(useWindowStore())
 
 const pageInfo = reactive({
   total: 0,
   pageSize: 0,
   page: 1,
 })
-
 const sliderOuter = ref()
-
-const { appContentWidth } = storeToRefs(useWindowStore())
-const outerWidth = computed(() => appContentWidth.value)
-
 const gallery = ref()
 const galleryClass = ref('')
 const itemWidthPercent = ref(0) // 百分比
-const pageWidth = computed(() => pageInfo.pageSize * itemWidthPercent.value * outerWidth.value)
 
 const { x } = useScroll(gallery, { behavior: 'smooth' }) // , isScrolling, arrivedState, directions
 
-const scrollLeftItemsCount = computed(() => {
-  return Math.round(x.value / (itemWidthPercent.value * outerWidth.value))
-})
-
+const outerWidth = computed(() => appContentWidth.value)
+const pageWidth = computed(() => pageInfo.pageSize * itemWidthPercent.value * outerWidth.value)
 const isEnd = computed(() => {
   if (props.data) {
     const temp = (x.value + outerWidth.value) / (itemWidthPercent.value * outerWidth.value)
     return temp >= props.data.length - 0.1
   }
+})
+
+const scrollLeftItemsCount = computed(() => {
+  return Math.round(x.value / (itemWidthPercent.value * outerWidth.value))
 })
 
 function nextPage() {

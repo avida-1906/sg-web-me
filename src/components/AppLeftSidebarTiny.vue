@@ -7,13 +7,14 @@ interface Props {
   isSwitching?: boolean
   switchTo?: 'big' | 'small' | ''
 }
+
 defineProps<Props>()
+
 const { t } = useI18n()
-
 const { triggerLeftSidebar } = useLeftSidebar()
-
 const router = useRouter()
 const route = useRoute()
+
 const isCasino = computed(() => route.name?.toString().includes('casino'))
 const isSports = computed(() => route.name?.toString().includes('sports'))
 </script>

@@ -1,11 +1,18 @@
 <script lang="ts" setup>
 const props = defineProps<{ list?: any[]; isProvider?: boolean }>()
 
-const sliderOuter = ref()
 const { appContentWidth } = storeToRefs(useWindowStore())
-const outerWidth = computed(() => appContentWidth.value)
 
+const sliderOuter = ref()
 const galleryClass = ref('')
+
+const outerWidth = computed(() => appContentWidth.value)
+const style = computed(() => {
+  const obj: any = {}
+  if (props.isProvider)
+    obj.gap = 'var(--tg-spacing-32) var(--tg-spacing-16)'
+  return obj
+})
 
 watchEffect(() => {
   if (outerWidth.value >= 1150)
@@ -25,13 +32,6 @@ watchEffect(() => {
 
   else
     galleryClass.value = 'card-list-500'
-})
-
-const style = computed(() => {
-  const obj: any = {}
-  if (props.isProvider)
-    obj.gap = 'var(--tg-spacing-32) var(--tg-spacing-16)'
-  return obj
 })
 </script>
 

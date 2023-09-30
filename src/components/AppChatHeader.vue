@@ -12,7 +12,6 @@ const chatRoomList = reactive<Array<Room>>([
   { icon: 'gb', label: 'English', value: 'gb' },
   { icon: 'in', label: 'हिन्दी', value: 'in' },
 ])
-
 const room = ref(chatRoomList[0])
 
 function chooseRoom(item: Room) {

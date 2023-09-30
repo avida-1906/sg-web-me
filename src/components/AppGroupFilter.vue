@@ -6,11 +6,13 @@ interface Props {
   sortType?: string
 }
 const props = defineProps<Props>()
+
 const emit = defineEmits(['sortTypeChange'])
+
 const { t } = useI18n()
-const groupFilterOuter = ref()
 const { appContentWidth } = storeToRefs(useWindowStore())
 
+const groupFilterOuter = ref()
 const selectValue = ref(props.sortType)
 const selectOptions = [
   { icon: 'spt-sort-az', label: 'A-Z', value: EnumCasinoSortType.nameA },

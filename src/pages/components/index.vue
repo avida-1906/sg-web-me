@@ -604,7 +604,7 @@ function copyIconName(name: string) {
   toast('Copied')
 }
 function copyCollapseCode() {
-  copy('<BaseCollapse title="这是标题" icon="chat-star-orange" @click-head="funtion()" />')
+  copy('<BaseCollapse title="这是标题" icon="chat-star-gold" @click-head="funtion()" />')
   toast('Copied')
 }
 function copyAppPercentageCode() {
@@ -1151,7 +1151,7 @@ const breadcrumbs = ['one', 'two', 'three', 'four']
     </li>
     <li class="box">
       <AppDemoCard title="BaseCollapse" style="text-align:left">
-        <BaseCollapse title="这是标题" icon="chat-star-orange" />
+        <BaseCollapse title="这是标题" icon="chat-star-gold" />
         <div class="center">
           <BaseButton @click="copyCollapseCode">
             copy

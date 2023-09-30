@@ -1,27 +1,8 @@
 <script lang="ts" setup name="base-loading">
-// const loadIcons = [
-//   ['chess-frame4', 'chess-frame'],
-//   ['spt-football', 'spt-basketball'],
-//   ['chess-21clock', 'chess-frame2'],
-// ]
-// loadIcons.forEach(arr => {
-//   arr.forEach(icon => {
-//     document.styleSheets.setProperty('', '')
-//   })
-// })
 </script>
 
 <template>
   <section class="tg-base-loading">
-    <!-- <div v-for="load, i in loadIcons" :key="i" class="item animate-prop">
-      <div class="animate-prop small">
-        <BaseIcon :name="load[0]" />
-      </div>
-      <div class="animate-prop big">
-        <BaseIcon :name="load[1]" />
-      </div>
-    </div> -->
-
     <div class="type1 animate-prop svg-box" />
     <div class="svg-box animate-prop type2" />
     <div class="svg-box animate-prop type3" />

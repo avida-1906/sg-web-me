@@ -6,15 +6,16 @@ interface Props {
 defineProps<Props>()
 const { t } = useI18n()
 const { isMobile } = storeToRefs(useWindowStore())
-
 const { triggerLeftSidebar } = useLeftSidebar()
-
 const router = useRouter()
 const route = useRoute()
+
 const isCasino = computed(() => route.name?.toString().includes('casino'))
 const isSports = computed(() => route.name?.toString().includes('sports'))
+
 // 搜索栏
 const gameType = ref(isCasino.value ? '1' : isSports.value ? '2' : '')
+
 function onGameTypeChange(v: string) {
   gameType.value = v
 }

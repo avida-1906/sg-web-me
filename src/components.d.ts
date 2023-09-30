@@ -18,6 +18,7 @@ declare module 'vue' {
     AppChatHeader: typeof import('./components/AppChatHeader.vue')['default']
     AppChatMsgItem: typeof import('./components/AppChatMsgItem.vue')['default']
     AppChatRulesDialog: typeof import('./components/AppChatRulesDialog.vue')['default']
+    AppChatUserTags: typeof import('./components/AppChatUserTags.vue')['default']
     AppContent: typeof import('./components/AppContent.vue')['default']
     AppCopyLine: typeof import('./components/AppCopyLine.vue')['default']
     AppCurrencyIcon: typeof import('./components/AppCurrencyIcon.vue')['default']

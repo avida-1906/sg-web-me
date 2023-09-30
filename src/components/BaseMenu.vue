@@ -15,8 +15,8 @@ const router = useRouter()
 const route = useRoute()
 
 const activeMenu = ref(route.path)
-const activeIdx = computed(() => props.data.findIndex((item: BaseMenuItem) => item.path === activeMenu.value))
 
+const activeIdx = computed(() => props.data.findIndex((item: BaseMenuItem) => item.path === activeMenu.value))
 const percent = computed(() => activeIdx.value >= 0 ? activeIdx.value * 100 : 0)
 const height = computed(() => (100 / props.data.length).toFixed(2))
 

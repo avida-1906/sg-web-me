@@ -1,6 +1,9 @@
 <script lang="ts" setup>
 interface Props {
   type: 'normal' | 'tip' | 'rain'
+  msgInfo: {
+    sender: ChatUserInfo
+  }
 }
 
 withDefaults(defineProps<Props>(), {
@@ -15,7 +18,11 @@ withDefaults(defineProps<Props>(), {
         <span>发送小费</span>
       </div>
     </div>
-    <div class="content" />
+    <div class="content">
+      <p>
+        <AppChatUserTags :user-info="msgInfo.sender" />
+      </p>
+    </div>
   </section>
 </template>
 

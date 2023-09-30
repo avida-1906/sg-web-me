@@ -8,10 +8,6 @@ interface Props {
 withDefaults(defineProps<Props>(), {})
 
 const route = useRoute()
-const routePath = computed(() => route.path)
-const isCasino = computed(() => route.name?.toString().includes('casino'))
-const isSports = computed(() => route.name?.toString().includes('sports'))
-
 const {
   casinoMenu,
   casinoGameList,
@@ -26,6 +22,9 @@ const {
   menuItemClick,
 } = useApiMenuData()
 
+const routePath = computed(() => route.path)
+const isCasino = computed(() => route.name?.toString().includes('casino'))
+const isSports = computed(() => route.name?.toString().includes('sports'))
 const menuData = computed(() => {
   if (isCasino.value) {
     return [

@@ -27,12 +27,11 @@ const iconObj = {
   statistics: 'uni-trend',
 }
 
+const { t } = useI18n()
 const { bool: show, setTrue: setNTrue, setFalse: setNFalse } = useBoolean(false)
 
 const timer = ref()
-
 const stayTime = ref(4000)
-
 const startTime = ref(0)
 const endTime = ref(0)
 
@@ -42,8 +41,6 @@ const iconName = computed(() => {
   else
     return props.icon
 })
-
-const { t } = useI18n()
 
 const _title = computed(() => {
   if (props.title)
