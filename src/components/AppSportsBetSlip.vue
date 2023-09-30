@@ -51,9 +51,7 @@ const isFirst = computed(() => props.index === 0)
         获胜
       </div>
       <!-- 最大下注金额 -->
-      <!-- <div class="max-bet">
-        100
-      </div> -->
+      <div class="max-bet" />
       <!-- 下注盘口 -->
       <div class="outcome-name">
         <span>Sprynar, Pavel</span>
