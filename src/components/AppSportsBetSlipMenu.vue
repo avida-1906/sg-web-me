@@ -1,6 +1,7 @@
 <script setup lang='ts'>
 import { EnumsBetSlipTabs } from '~/utils/enums'
 
+const router = useRouter()
 const { closeRightSidebar } = useRightSidebar()
 
 const type = ref(EnumsBetSlipTabs.betSlip)
@@ -79,7 +80,29 @@ const betBtnText = computed(() => betSlipTypeTabs.find(b => b.value === betSlipT
 
     <div class="bet-list">
       <div class="scroll-y betlist-scroll">
-        <AppSportsBetSlip v-for="i, ii in 5" :key="i" :bet-slip-type="betSlipType" :index="ii" :is-live="i === 1" :error="i === 2" :disabled="i === 3" :is-closed="i === 4" />
+        <AppSportsBetSlip :bet-slip-type="betSlipType" :index="0" />
+        <AppSportsBetSlip :bet-slip-type="betSlipType" :index="1" is-live />
+        <AppSportsBetSlip :bet-slip-type="betSlipType" :index="2" error />
+        <AppSportsBetSlip :bet-slip-type="betSlipType" :index="3" disabled is-closed />
+
+        <!-- 无数据缺省，不要删 -->
+        <!-- <div class="empty">
+          <BaseEmpty>
+            <template #icon>
+              <div class="icon">
+                <BaseIcon name="uni-empty-betslip" />
+              </div>
+            </template>
+            <template #description>
+              <span>投注单为空</span>
+            </template>
+            <template #default>
+              <BaseButton type="text" padding0 style=" --tg-base-button-text-default-color:var(--tg-text-white)" @click="router.push('/sports')">
+                立即开始下注！
+              </BaseButton>
+            </template>
+          </BaseEmpty>
+        </div> -->
       </div>
     </div>
 
@@ -207,7 +230,8 @@ const betBtnText = computed(() => betSlipTypeTabs.find(b => b.value === betSlipT
   flex-direction: column;
   justify-content: flex-end;
   overflow: hidden;
-  .betlist-scroll{
+
+  .betlist-scroll {
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
@@ -215,6 +239,19 @@ const betBtnText = computed(() => betSlipTypeTabs.find(b => b.value === betSlipT
     min-height: 0;
     padding: var(--tg-spacing-8) var(--tg-spacing-16) var(--tg-spacing-16);
     overscroll-behavior: contain;
+  }
+
+  .empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    justify-content: center;
+    min-height: 150px;
+
+    .icon {
+      font-size: var(--tg-empty-icon-size);
+    }
   }
 }
 
@@ -246,7 +283,8 @@ const betBtnText = computed(() => betSlipTypeTabs.find(b => b.value === betSlipT
         font-weight: var(--tg-font-weight-bold);
         display: flex;
         align-items: center;
-        .icon{
+
+        .icon {
           font-size: var(--tg-spacing-10);
           margin-right: var(--tg-spacing-8);
         }

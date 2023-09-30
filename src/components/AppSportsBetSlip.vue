@@ -2,8 +2,8 @@
 import { EnumsBetSlipTabs } from '~/utils/enums'
 
 interface Props {
-  index?: number
-  betSlipType?: number
+  index: number
+  betSlipType: number
   error?: boolean
   disabled?: boolean
   isClosed?: boolean
@@ -32,7 +32,7 @@ const isFirst = computed(() => props.index === 0)
       disabled,
     }"
   >
-    <div class="header">
+    <div class="header" :class="{ 'round-header': isFirst || isBetSingle }">
       <div class="fixture-name">
         <div v-if="isLive" class="status live">
           滚球
@@ -111,7 +111,6 @@ const isFirst = computed(() => props.index === 0)
     justify-content: space-between;
     background: var(--tg-secondary-main);
     padding: var(--tg-spacing-8) var(--tg-spacing-12);
-    border-radius: var(--tg-radius-default) var(--tg-radius-default) 0 0;
 
     .fixture-name {
       width: 100%;
@@ -157,6 +156,10 @@ const isFirst = computed(() => props.index === 0)
         }
       }
     }
+  }
+
+  .round-header {
+    border-radius: var(--tg-radius-default) var(--tg-radius-default) 0 0;
   }
 
   .content {
@@ -225,7 +228,8 @@ const isFirst = computed(() => props.index === 0)
         }
       }
     }
-    .closed{
+
+    .closed {
       justify-self: flex-end;
       color: var(--tg-text-error);
     }
@@ -295,7 +299,8 @@ const isFirst = computed(() => props.index === 0)
     background: var(--tg-bet-slip-error);
   }
 }
-.disabled{
+
+.disabled {
   opacity: 0.5;
 }
 
@@ -307,7 +312,7 @@ const isFirst = computed(() => props.index === 0)
     height: 6px;
     width: 100%;
     top: -4px;
-    background: radial-gradient(circle, transparent, transparent 50%, var(--tg-secondary-grey) 50%, var(--tg-secondary-grey) 100%) 0px -6px/0.7rem 0.7rem repeat-x;
+    background: radial-gradient(circle, transparent, transparent 50%, var(--tg-secondary-main) 50%, var(--tg-secondary-main) 100%) 0px -6px/0.7rem 0.7rem repeat-x;
   }
 }
 </style>
