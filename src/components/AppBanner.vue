@@ -100,39 +100,43 @@ function scrollRight() {
       .item-msg{
         position: absolute;
         color: var(--tg-text-white);
-        left: 0;
+        left: 8px;
         top: 0;
-        width: 100%;
+        max-width: 182px;
         height: 100%;
-        padding: 20px;
+        padding: 16px;
         div+div{
           margin-top: 10px;
         }
         .msg-type{
           display: inline-block;
           vertical-align: middle;
+          line-height: 1.5;
           color:var(--tg-secondary-grey);
-          padding: 4px 8px;
+          padding: 0 4px;
           font-size: var(--tg-font-size-xs);
           font-weight: 500;
           border-radius: var(--tg-radius-default);
           background:var(--tg-text-white);
         }
         .msg-title{
-          font-size: var(--tg-font-size-xl);
+          font-size: var(--tg-font-size-lg);
           font-weight: var(--tg-font-weight-semibold);
         }
         .msg-tips{
           color:var(--tg-text-white);
           font-size: var(--tg-font-size-xs);
           font-weight: var(--tg-font-weight-normal);
+          line-height: 1.5;
         }
         .come-play{
-          position: absolute;
           bottom: 20px;
-          display: inline-block;
+          position: absolute;
+          width: 100%;
+          max-height: 2.5rem;
+          text-align: center;
           border-radius: var(--tg-radius-default);
-          padding: 8px 65px;
+          padding: 13px 16px;
           border: 1px solid var(--tg-text-white);
           background: var(--tg-secondary-grey);
           font-size: var(--tg-font-size-default);
