@@ -16,6 +16,7 @@ withDefaults(defineProps<Props>(), {})
     <div class="content">
       <p>
         <AppChatUserTags :user-info="msgInfo.sender" />
+        <span>: <span v-html="msgInfo.html" /></span>
       </p>
     </div>
   </section>
@@ -32,10 +33,13 @@ withDefaults(defineProps<Props>(), {})
       display: block;
       width: 100%;
       color: var(--tg-text-white);
-      line-height: 1.5;
       text-align: left;
       font-size: var(--tg-font-size-default);
       font-weight: var(--tg-font-weight-normal);
+      line-height: 1.5;
+      span {
+        vertical-align: top;
+      }
     }
   }
 }

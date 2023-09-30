@@ -16,17 +16,13 @@ const levelRoleTxt = {
   diamond: 'Diamond',
   moderator: 'Moderator',
 }
-
-const roleMap = {
-  moderator: 'M',
-}
 </script>
 
 <template>
   <div class="tg-user-tags">
     <template v-if="userInfo.level">
-      <VMenu placement="bottom">
-        <div :class="[`user-badge-${userInfo.level}`]">
+      <VMenu placement="top">
+        <div class="user-level-tag" :class="[`user-badge-${userInfo.level}`]">
           <span class="hoverable">
             <BaseIcon :name="`chat-star-${userInfo.level}`" />
           </span>
@@ -39,9 +35,9 @@ const roleMap = {
       </VMenu>
     </template>
     <template v-if="userInfo.role">
-      <VMenu placement="bottom">
-        <div :class="[`user-role-${userInfo.role}`]">
-          <span class="hoverable">{{ roleMap[userInfo.role] }}</span>
+      <VMenu placement="top">
+        <div class="user-role-tag" :class="[`user-role-${userInfo.role}`]">
+          <span class="hoverable">{{ userInfo.role[0] }}</span>
         </div>
         <template #popper>
           <div class="tiny-menu-item-title">
@@ -51,13 +47,32 @@ const roleMap = {
       </VMenu>
     </template>
     <BaseButton type="text">
-      <span>{{ userInfo.name }}</span>
+      <span class="user-name">{{ userInfo.name }}</span>
     </BaseButton>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .tg-user-tags {
-
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--tg-spacing-6);
+  font-size: var(--tg-font-size-default);
+  font-weight: var(--tg-font-weight-semibold);
+  line-height: 1.5;
+  button {
+    padding: 0 !important;
+  }
+  .user-level-tag {
+    display: flex;
+  }
+  .user-role-tag {
+    color: var(--tg-text-blue);
+    text-transform: capitalize;
+  }
+  .user-name {
+    line-height: 1.5;
+  }
 }
 </style>
