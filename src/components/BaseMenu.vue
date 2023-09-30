@@ -1,28 +1,38 @@
 <script lang="ts" setup>
 interface Props {
   data: Array<BaseMenuItem>
+  modelValue?: string
 }
 
 interface BaseMenuItem {
   title: string
-  path: string
+  value?: string
+  path?: string
   icon?: string
 }
 
 const props = defineProps<Props>()
 
+const emit = defineEmits(['update:modelValue'])
+
 const router = useRouter()
 const route = useRoute()
 
-const activeMenu = ref(route.path)
+const activeMenu = ref(props.data.filter(d => d.path === props.modelValue || d.path === route.path)[0]?.path ?? props.data.filter(d => d.value === props.modelValue)[0]?.value ?? props.data[0].value ?? props.data[0].path)
 
-const activeIdx = computed(() => props.data.findIndex((item: BaseMenuItem) => item.path === activeMenu.value))
+const activeIdx = computed(() => props.data.findIndex((item: BaseMenuItem) => item.value === activeMenu.value || item.path === activeMenu.value))
 const percent = computed(() => activeIdx.value >= 0 ? activeIdx.value * 100 : 0)
 const height = computed(() => (100 / props.data.length).toFixed(2))
 
 function menuItemClick(item: BaseMenuItem) {
-  activeMenu.value = item.path
-  router.push(item.path)
+  if (item.value)
+    activeMenu.value = item.value
+
+  if (item.path) {
+    activeMenu.value = item.path
+    router.push(item.path)
+  }
+  emit('update:modelValue', activeMenu.value)
 }
 </script>
 
@@ -30,7 +40,7 @@ function menuItemClick(item: BaseMenuItem) {
   <section class="tg-base-menu">
     <div class="outer-wrapper">
       <div class="wrapper">
-        <a v-for="item, idx in data" :key="idx" class="link" :class="{ active: activeMenu === item.path }" @click="menuItemClick(item)">
+        <a v-for="item, idx in data" :key="idx" class="link" :class="{ active: activeIdx === idx }" @click="menuItemClick(item)">
           <span class="content-or-loader"><span>{{ item.title }}</span></span>
         </a>
         <div class="dash" :style="{ height: `${height}%`, transform: `translateY(${percent}%)` }" />

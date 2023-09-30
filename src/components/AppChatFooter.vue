@@ -2,6 +2,7 @@
 //  @ 用户
 //  : 表情
 //  / 指令
+//  enter 消息加空格->发送
 
 const { openChatRulesDialog } = useChatRulesDialog()
 
@@ -52,6 +53,11 @@ const message = ref('')
 
 const emojiName = computed(() => {
   const i = message.value.lastIndexOf(':')
+  const j = message.value.lastIndexOf('@')
+  const k = message.value.lastIndexOf(' ')
+  if (k > i || j > i)
+    return undefined
+
   if (i !== -1)
     return message.value.slice(i + 1)
   return undefined
