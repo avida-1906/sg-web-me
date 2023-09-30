@@ -197,7 +197,7 @@
 .bigslide-fade-left-enter-active {
   animation: bigslide-fade-left-in 0.2s ease-in-out;
   animation-fill-mode: forwards;
-  opacity: 0;
+  opacity: 1;
   margin-left: -180px;
 }
 .bigslide-fade-left-leave-active {
@@ -219,7 +219,7 @@
 @keyframes bigslide-fade-left-in {
   0% {
     margin-left: -180px; // var(--tg-sidebar-width-lg-n);
-    opacity: 0;
+    opacity: 1;
   }
   100% {
     margin-left: 0;
