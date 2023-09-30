@@ -19,24 +19,22 @@ const {
   staticMenu1,
   staticMenu2,
 } = useApiMenuData()
-
 const { t } = useI18n()
-const { isMobile } = storeToRefs(useWindowStore())
 const route = useRoute()
+const { isMobile } = storeToRefs(useWindowStore())
+const { menuItemClick } = useApiMenuData()
+
+const innerRef = ref()
+const timeStamp = ref(0)
+
 const isCasino = computed(() => route.name?.toString().includes('casino'))
 const isSports = computed(() => route.name?.toString().includes('sports'))
 const isGameTypeCasino = computed(() => props.currentType === '1')
 const isGameTypeSports = computed(() => props.currentType === '2')
 
-const innerRef = ref()
-
-const { menuItemClick } = useApiMenuData()
-
 function handleClickItem(item: MenuItem) {
   menuItemClick(item)
 }
-
-const timeStamp = ref(0)
 function closeMenu(t: any) {
   timeStamp.value = t
 }
@@ -50,7 +48,6 @@ onMounted(() => {
     }, 500)
   }
 })
-
 onBeforeUnmount(() => {
   Local.remove(STORAGE_MENU_EXPAND_DOMID)
 })

@@ -104,12 +104,12 @@ function onInput() {
   if (year.value && month.value && day.value && !msg.value)
     emit('update:modelValue', `${year.value}-${month.value > 9 ? month.value : `0${month.value}`}-${day.value > 9 ? day.value : `0${day.value}`}`)
 }
-
 function valiBirthday() {
   valiMonth()
   valiYear()
   valiDay()
 }
+
 defineExpose({ valiBirthday })
 </script>
 
@@ -156,6 +156,7 @@ defineExpose({ valiBirthday })
     label {
       margin-bottom: var(--tg-spacing-4);
       font-weight: var(--tg-font-weight-semibold);
+
       span {
         color: var(--tg-text-error);
       }
@@ -212,11 +213,11 @@ defineExpose({ valiBirthday })
       line-height: 1;
 
       &:hover:not(.error) {
-         border-color: var(--tg-border-color-deep-grey);
+        border-color: var(--tg-border-color-deep-grey);
       }
 
       &:focus:not(.error) {
-         border-color: var(--tg-border-color-deep-grey);
+        border-color: var(--tg-border-color-deep-grey);
       }
     }
 

@@ -1,6 +1,8 @@
 <script setup lang='ts'>
 const { t } = useI18n()
+const { bool: showWallet, setBool: setShowWalletBool } = useBoolean(true)
 
+const activeCurrency = ref()
 const currentTab = ref('deposit')
 const tabList = [
   { label: t('deposit'), value: 'deposit' },
@@ -12,14 +14,10 @@ const isDeposit = computed(() => currentTab.value === 'deposit')
 const isWithdraw = computed(() => currentTab.value === 'withdraw')
 // const isBuy = computed(() => currentTab.value === 'buy')
 // const isFiat = computed(() => currentTab.value === 'fiat')
-const { bool: showWallet, setBool: setShowWalletBool } = useBoolean(true)
-
-const activeCurrency = ref()
 
 function changeCurrency(item: any) {
   activeCurrency.value = item
 }
-
 function handleShow(val: boolean) {
   setShowWalletBool(val)
 }
