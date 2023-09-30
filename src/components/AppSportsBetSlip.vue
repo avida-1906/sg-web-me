@@ -5,6 +5,9 @@ interface Props {
   index?: number
   betSlipType?: number
   error?: boolean
+  disabled?: boolean
+  isClosed?: boolean
+  isLive?: boolean
 }
 const props = withDefaults(defineProps<Props>(), {
   index: 0,
@@ -26,11 +29,12 @@ const isFirst = computed(() => props.index === 0)
       mt8: !isFirst && isBetMulti,
       before: !isFirst && isBetMulti,
       error,
+      disabled,
     }"
   >
     <div class="header">
       <div class="fixture-name">
-        <div class="status live">
+        <div v-if="isLive" class="status live">
           滚球
         </div>
         <div class="text">
@@ -55,7 +59,10 @@ const isFirst = computed(() => props.index === 0)
         <span>Sprynar, Pavel</span>
       </div>
       <!-- 赔率 -->
-      <div class="odds-payout">
+      <div v-if="isClosed" class="closed">
+        已结算
+      </div>
+      <div v-else class="odds-payout">
         <div class="odds">
           <div class="icon arrow-odd odd-rise">
             <BaseIcon name="uni-tri-down" />
@@ -218,6 +225,10 @@ const isFirst = computed(() => props.index === 0)
         }
       }
     }
+    .closed{
+      justify-self: flex-end;
+      color: var(--tg-text-error);
+    }
 
     .footer {
       display: grid;
@@ -283,6 +294,9 @@ const isFirst = computed(() => props.index === 0)
   .header {
     background: var(--tg-bet-slip-error);
   }
+}
+.disabled{
+  opacity: 0.5;
 }
 
 .before {

@@ -79,7 +79,7 @@ const betBtnText = computed(() => betSlipTypeTabs.find(b => b.value === betSlipT
 
     <div class="bet-list">
       <div class="scroll-y betlist-scroll">
-        <AppSportsBetSlip v-for="i, ii in 5" :key="i" :bet-slip-type="betSlipType" :index="ii" :error="i > 2" />
+        <AppSportsBetSlip v-for="i, ii in 5" :key="i" :bet-slip-type="betSlipType" :index="ii" :is-live="i === 1" :error="i === 2" :disabled="i === 3" :is-closed="i === 4" />
       </div>
     </div>
 
