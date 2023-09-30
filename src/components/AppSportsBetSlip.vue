@@ -3,7 +3,7 @@ import { EnumsBetSlipTabs } from '~/utils/enums'
 
 interface Props {
   index: number
-  betSlipType: number
+  betSlipType: EnumsBetSlipTabs.single | EnumsBetSlipTabs.multi
   error?: boolean
   disabled?: boolean
   isClosed?: boolean
@@ -73,7 +73,7 @@ const isFirst = computed(() => props.index === 0)
       <!-- 单式金额输入框 -->
       <div v-show="isBetSingle" class="footer">
         <div class="bet-amount">
-          <BaseInput type="number" placeholder="0.00000000" mb0>
+          <BaseInput type="number" placeholder="0.00000000" mb0 :disabled="disabled">
             <template #right-icon>
               <BaseIcon name="coin-btc" />
             </template>

@@ -7,19 +7,19 @@ const { closeRightSidebar } = useRightSidebar()
 const type = ref(EnumsBetSlipTabs.betSlip)
 const typeOptions = [
   { label: '投注单', value: EnumsBetSlipTabs.betSlip, num: 5, icon: 'spt-user-bet' },
-  { label: '我的投注', value: EnumsBetSlipTabs.myBets, num: 4, icon: 'navbar-user-bet' },
+  { label: '我的投注', value: EnumsBetSlipTabs.myBets, num: 0, icon: 'navbar-user-bet' },
 ]
-// 投注单Tab<BaseIcon name="navbar-bet-mult" />
-const betSlipType = ref(EnumsBetSlipTabs.single)
+// 投注单Tab
+const betSlipType = ref<EnumsBetSlipTabs.single | EnumsBetSlipTabs.multi>(EnumsBetSlipTabs.single)
 const betSlipTypeTabs = [
-  { label: '单项投注', value: EnumsBetSlipTabs.single, num: 5, icon: 'navbar-bet' },
-  { label: '复式投注', value: EnumsBetSlipTabs.multi, num: 4, icon: 'navbar-bet-mult' },
+  { label: '单项投注', value: EnumsBetSlipTabs.single, icon: 'navbar-bet' },
+  { label: '复式投注', value: EnumsBetSlipTabs.multi, icon: 'navbar-bet-mult' },
 ]
 // 我的投注Tab
 const myBetsType = ref(EnumsBetSlipTabs.active)
 const myBetsTypeTabs = [
-  { label: '活跃', value: EnumsBetSlipTabs.active, num: 5, icon: 'navbar-active' },
-  { label: '已结算', value: EnumsBetSlipTabs.settled, num: 4, icon: 'navbar-settled' },
+  { label: '活跃', value: EnumsBetSlipTabs.active, icon: 'navbar-active' },
+  { label: '已结算', value: EnumsBetSlipTabs.settled, icon: 'navbar-settled' },
 ]
 // 下注选项
 const bettingOption = ref('1')
@@ -49,12 +49,14 @@ const betBtnText = computed(() => betSlipTypeTabs.find(b => b.value === betSlipT
             <div class="type-select">
               <BaseIcon :name="data?.icon" />
               <span>{{ data?.label }}</span>
+              <BaseBadge v-if="data?.num" :count="data?.num" mode="active" />
             </div>
           </template>
           <template #option="{ data: { item } }">
             <div class="type-option">
               <BaseIcon :name="item.icon" />
               <span>{{ item.label }}</span>
+              <BaseBadge v-if="item?.num" :count="item?.num" mode="active" />
             </div>
           </template>
         </BaseSelect>
@@ -161,10 +163,8 @@ const betBtnText = computed(() => betSlipTypeTabs.find(b => b.value === betSlipT
 <style lang='scss' scoped>
 .type-option {
   display: flex;
-
-  span {
-    margin-left: var(--tg-spacing-8);
-  }
+  align-items: center;
+  gap: var(--tg-spacing-8);
 }
 
 .app-sports-bet-slip-menu {
@@ -196,10 +196,8 @@ const betBtnText = computed(() => betSlipTypeTabs.find(b => b.value === betSlipT
 
     .type-select {
       display: flex;
-
-      span {
-        margin-left: var(--tg-spacing-8);
-      }
+      align-items: center;
+      gap:var(--tg-spacing-8);
     }
   }
 
