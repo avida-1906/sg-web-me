@@ -113,22 +113,25 @@ watch(() => width.value, (newWidth) => {
         </footer>
       </div>
     </div>
-    <div
-      v-if="rightIsExpand" class="right-sidebar" :class="{
-        'width-none': rightContainerIs0,
-        'fixed': isLessThanSm,
-      }"
-    >
-      <template v-if="currentRightSidebarContent === EnumRightSidebarContent.NOTIFICATION">
-        <AppNotice />
-      </template>
-      <template v-if="currentRightSidebarContent === EnumRightSidebarContent.CHATROOM">
-        <AppChat />
-      </template>
-      <template v-if="currentRightSidebarContent === EnumRightSidebarContent.BETTING">
-        <AppSportsBetSlipMenu />
-      </template>
-    </div>
+    <Transition :name="isMobile ? 'bigslide-fade-top' : ''">
+      <div
+        v-if="rightIsExpand" class="right-sidebar" :class="{
+          'width-none': rightContainerIs0,
+          'fixed': isLessThanSm,
+          'mobile': isMobile,
+        }"
+      >
+        <template v-if="currentRightSidebarContent === EnumRightSidebarContent.NOTIFICATION">
+          <AppNotice />
+        </template>
+        <template v-if="currentRightSidebarContent === EnumRightSidebarContent.CHATROOM">
+          <AppChat />
+        </template>
+        <template v-if="currentRightSidebarContent === EnumRightSidebarContent.BETTING">
+          <AppSportsBetSlipMenu />
+        </template>
+      </div>
+    </Transition>
     <AppFooterbar v-show="!isGreaterThanSm" />
   </main>
 </template>
@@ -220,7 +223,7 @@ watch(() => width.value, (newWidth) => {
     // H5模式
     width: 100%;
     top: var(--tg-header-height);
-    padding-bottom: var(--tg-footer-height);
+    padding-bottom: var(--tg-footerbar-height);
     height: calc(100% - var(--tg-header-height) - var(--tg-footerbar-height));
   }
 
@@ -288,7 +291,12 @@ watch(() => width.value, (newWidth) => {
   &.full-screen {
     width: 100%;
     top: var(--tg-header-height);
-    padding-bottom: var(--tg-footer-height),
+    padding-bottom: var(--tg-footerbar-height),
+  }
+
+  &.mobile {
+    width: 100%;
+    padding-bottom: var(--tg-footerbar-height),
   }
 
   // 768-1000 显示 320
