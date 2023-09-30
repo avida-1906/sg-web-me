@@ -60,11 +60,15 @@ function scrollRight() {
         </BaseAspectRatio>
       </div>
     </div>
-    <div class="arrow arrow-left" @click="scrollLeft">
-      <BaseIcon name="uni-arrow-left" />
+    <div class="arrow arrow-left">
+      <BaseButton type="text" @click="scrollLeft">
+        <BaseIcon name="uni-arrow-left" />
+      </BaseButton>
     </div>
-    <div class="arrow arrow-right" @click="scrollRight">
-      <BaseIcon name="uni-arrow-right" />
+    <div class="arrow arrow-right">
+      <BaseButton type="text" @click="scrollRight">
+        <BaseIcon name="uni-arrow-right" />
+      </BaseButton>
     </div>
   </div>
 </template>
@@ -149,16 +153,15 @@ function scrollRight() {
     top: 50%;
     opacity: 0;
     font-size: var(--tg-font-size-base);
-    transform: translateY(-40%);
+    transform: translateY(-50%);
     transition: opacity 0.3s;
-    cursor: pointer;
     --tg-icon-color:var(--tg-text-white);
   }
   .arrow-left{
-    left: -20px;
+    left: -30px;
   }
   .arrow-right{
-    right: -20px;
+    right: -30px;
   }
 }
 </style>
