@@ -223,7 +223,7 @@ watch(() => width.value, (newWidth) => {
     // H5模式
     width: 100%;
     top: var(--tg-header-height);
-    padding-bottom: var(--tg-footerbar-height);
+    // padding-bottom: var(--tg-footerbar-height);
     height: calc(100% - var(--tg-header-height) - var(--tg-footerbar-height));
   }
 
