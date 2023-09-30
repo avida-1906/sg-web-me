@@ -1,28 +1,68 @@
 <script setup lang="ts">
-const { triggerLeftSidebar } = useLeftSidebar()
+const router = useRouter()
+const route = useRoute()
+const { triggerLeftSidebar, closeLeftSidebar } = useLeftSidebar()
+const { openRightSidebar, closeRightSidebar } = useRightSidebar()
 
 const tabbar = ref([
   { title: '浏览', icon: 'tabbar-menu', name: 'menu', show: true },
-  { title: '娱乐城', icon: 'tabbar-game', name: 'game', show: true },
-  { title: '投注', icon: 'tabbar-bet', name: 'bet', show: true },
+  { title: '娱乐城', icon: 'tabbar-game', name: 'game', show: true, path: '/casino' },
+  { title: '投注', icon: 'tabbar-bet', name: 'bet', show: true, path: '' },
   { title: '投注单', icon: 'spt-user-bet', name: 'user-bet', show: false },
-  { title: '体育', icon: 'tabbar-sport', name: 'sport', show: true },
+  { title: '体育', icon: 'tabbar-sport', name: 'sport', show: true, path: '/sports' },
   { title: '聊天室', icon: 'tabbar-chat', name: 'chat', show: true },
 ])
-const activeBar = ref('menu')
-function changeBar(item: { name: string }) {
-  activeBar.value = item.name
-  if (item.name === 'game') {
-    tabbar.value[2].show = true
-    tabbar.value[3].show = false
+const activeBar = ref('')
+
+function changeBar(item: { name: string; path?: string }) {
+  const { name, path } = item
+  switch (name) {
+    case 'menu':
+      closeRightSidebar()
+      triggerLeftSidebar()
+      if (activeBar.value === name)
+        activeBar.value = route.path.includes('/casino') ? 'game' : 'sport'
+      else
+        activeBar.value = name
+      break
+    case 'bet':
+    case 'user-bet':
+      if (activeBar.value === name) {
+        activeBar.value = route.path.includes('/casino') ? 'game' : 'sport'
+        closeRightSidebar()
+      }
+      else {
+        activeBar.value = name
+        openRightSidebar(EnumRightSidebarContent.BETTING)
+      }
+      break
+    case 'chat':
+      if (activeBar.value === name) {
+        activeBar.value = route.path.includes('/casino') ? 'game' : 'sport'
+        closeRightSidebar()
+      }
+      else {
+        activeBar.value = name
+        openRightSidebar(EnumRightSidebarContent.CHATROOM)
+      }
+      break
+    case 'game':
+    case 'sport':
+      activeBar.value = name
+      closeLeftSidebar()
+      closeRightSidebar()
+      if (name === 'game') {
+        tabbar.value[2].show = true
+        tabbar.value[3].show = false
+      }
+      else {
+        tabbar.value[2].show = false
+        tabbar.value[3].show = true
+      }
+      break
   }
-  else if (item.name === 'sport') {
-    tabbar.value[2].show = false
-    tabbar.value[3].show = true
-  }
-  else if (item.name === 'menu') {
-    triggerLeftSidebar()
-  }
+  if (path)
+    router.push(path)
 }
 </script>
 

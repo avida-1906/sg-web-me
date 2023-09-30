@@ -1,9 +1,5 @@
 <script lang="ts" setup>
-// interface Props {
-
-// }
-
-// withDefaults(defineProps<Props>(), {})
+const noticeList = [{}]
 const { closeRightSidebar } = useRightSidebar()
 </script>
 
@@ -20,7 +16,26 @@ const { closeRightSidebar } = useRightSidebar()
     </div>
     <div class="notice-list">
       <div class="scrollable scroll-y scroll-contain notice-scroll">
-        <div class="empty-notice">
+        <template v-if="noticeList.length > 0">
+          <div class="contain-top">
+            <span>新推出</span>
+            <span>标记全部为已读</span>
+          </div>
+          <div v-for="i in 12" :key="i" class="contain-item">
+            <div class="center item-left">
+              <BaseIcon name="navbar-wallet" class="icon-size" />
+            </div>
+            <div class="item-right">
+              <div class="right-state">
+                <span>存款待定中{{ i }}</span>
+                <BaseBadge status="success" style="color: var(--tg-secondary-light);font-size: var(--tg-font-size-xs);font-weight: var(--tg-font-weight-normal);" text="1天前" />
+              </div>
+              <div>已登机您 100.00000000 <AppCurrencyIcon style="display: inline;vertical-align: middle;" :currency-type="EnumCurrency.BTC" /> 的存款</div>
+              <div>待确认</div>
+            </div>
+          </div>
+        </template>
+        <div v-else class="empty-notice">
           <BaseEmpty>
             <template #icon>
               <BaseIcon font-size="62" name="notice-empty" />
@@ -43,7 +58,7 @@ const { closeRightSidebar } = useRightSidebar()
   height: 100%;
   display: flex;
   flex-direction: column;
-  word-wrap: break-word;
+  white-space: nowrap;
   .notice-head{
     height: var(--tg-header-height);
     width: 100%;
@@ -87,6 +102,52 @@ const { closeRightSidebar } = useRightSidebar()
     .notice-scroll{
       padding: 12px 16px;
       gap: 12px;
+      color: var(--tg-secondary-light);
+      .contain-top{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: var(--tg-font-size-default);
+        font-weight: 500;
+        span:hover{
+          cursor: pointer;
+        }
+      }
+      .contain-item{
+        display: flex;
+        height: 80px;
+        min-height: 80px;
+        max-height: 80px;
+        width: 100%;
+        overflow: hidden;
+        .item-left{
+          width: 60px;
+          height: 100%;
+          font-size: var(--tg-font-size-lg);
+          --tg-icon-color:var(--tg-primary-success);
+          background: var(--tg-secondary-grey);
+          border-radius: var(--tg-radius-default) var(--tg-radius-none) var(--tg-radius-none) var(--tg-radius-default);
+        }
+        .item-right{
+          display: flex;
+          flex: 1;
+          height: 100%;
+          padding: 9px 12px;
+          font-size: var(--tg-font-size-default);
+          flex-direction: column;
+          justify-content: space-between;
+          background: var(--tg-secondary-main);
+          border-radius: var(--tg-radius-none) var(--tg-radius-default) var(--tg-radius-default) var(--tg-radius-none);
+          .right-state{
+            display: flex;
+            color:var(--tg-text-white);
+            font-size: var(--tg-font-size-default);
+            font-weight: 500;
+            justify-content: space-between;
+            align-items: center;
+          }
+        }
+      }
       .empty-notice{
         height: 100%;
         display: flex;
