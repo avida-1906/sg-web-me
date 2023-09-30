@@ -41,12 +41,12 @@ interface IObject {
 /**
  * 聊天室用户角色
  */
-type ChatUserRole = 'moderator' | 'normal'
+type ChatUserRole = 'moderator'
 
 /**
  * 用户级别
  */
-type UserLevelBadge = 'bronze' | 'silver' | 'gold' | 'diamond' | 1 | 2 | 3 | 4
+type UserLevelBadge = 'bronze' | 'silver' | 'gold' | 'diamond' | '1' | '2' | '3' | '4'
 
 /**
  * 聊天室用户
@@ -54,7 +54,17 @@ type UserLevelBadge = 'bronze' | 'silver' | 'gold' | 'diamond' | 1 | 2 | 3 | 4
 interface ChatUserInfo {
   name: string
   id: string
-  level: UserLevelBadge
-  role: ChatUserRole
+  level?: UserLevelBadge
+  role?: ChatUserRole
+  [k: string]: any
+}
+
+/**
+ * 聊天室消息体
+ */
+interface ChatMessageInfo {
+  id: string
+  type?: 'tip' | 'rain'
+  sender: ChatUserInfo
   [k: string]: any
 }

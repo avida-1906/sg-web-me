@@ -38,7 +38,7 @@ const roleMap = {
         </template>
       </VMenu>
     </template>
-    <template v-if="userInfo.role !== 'normal'">
+    <template v-if="userInfo.role">
       <VMenu placement="bottom">
         <div :class="[`user-role-${userInfo.role}`]">
           <span class="hoverable">{{ roleMap[userInfo.role] }}</span>

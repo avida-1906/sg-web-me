@@ -1,4 +1,23 @@
 <script lang="ts" setup>
+const messages: Array<ChatMessageInfo> = [
+  {
+    id: '394802',
+    sender: {
+      name: 'XiaoMing86',
+      id: '5293840jk23k44h2k',
+      level: '3',
+      role: 'moderator',
+    },
+  },
+  {
+    id: '6345436',
+    sender: {
+      name: 'XiaoHong77',
+      id: '9saf7d9f9saf78s9dfi24',
+      level: 'gold',
+    },
+  },
+]
 </script>
 
 <template>
@@ -7,7 +26,11 @@
       <AppChatHeader />
     </div>
     <div class="messages">
-      <div class="scroll-y message-content" />
+      <div class="scroll-y message-content">
+        <div v-for="msg in messages" :key="msg.id" class="wrap">
+          <AppChatMsgItem :msg-info="msg" />
+        </div>
+      </div>
       <Transition>
         <div class="more-wrap">
           <BaseButton shadow size="lg">
