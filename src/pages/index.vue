@@ -4,6 +4,7 @@ interface IVipProgressData {
   currentLevel: number
 }
 
+const { t } = useI18n()
 const router = useRouter()
 const { bool: showMore, toggle: toggleShowMore } = useBoolean(false)
 const {
@@ -19,6 +20,8 @@ const vipProgressData = ref<IVipProgressData>({
   percent: 30,
   currentLevel: 2,
 })
+const { list: liveList, runAsync: runLive } = useList(ApiMemberGameList)
+const { list: slotList, runAsync: runSlot } = useList(ApiMemberGameList)
 
 const isSm = computed(() => appContentWidth.value <= widthBoundarySm.value)
 const isXs = computed(() => appContentWidth.value <= widthBoundaryXs.value)
@@ -26,6 +29,8 @@ const isXs = computed(() => appContentWidth.value <= widthBoundaryXs.value)
 const onShowMore = function () {
   toggleShowMore()
 }
+
+await application.allSettled([runLive({ game_type: 1 }), runSlot({ game_type: 3 })])
 </script>
 
 <template>
@@ -97,7 +102,7 @@ const onShowMore = function () {
       </div>
     </div>
     <!-- 了解更多 -->
-    <div class="index-more" :class="[isSm ? 'flex-wrap-reverse' : 'grid-wrap']">
+    <!-- <div class="index-more" :class="[isSm ? 'flex-wrap-reverse' : 'grid-wrap']">
       <div>
         <BaseButton size="md">
           了解更多
@@ -109,7 +114,17 @@ const onShowMore = function () {
       <div v-if="!isSm">
         <img src="https://mediumrare.imgix.net/drake-banner.png?&dpr=2&format=auto&auto=format&q=50" alt="">
       </div>
-    </div>
+    </div> -->
+    <!-- 老虎机  -->
+    <AppSlider
+      :game-type="EnumCasinoGameType.SLOT" icon="chess-slot-machine"
+      :title="t('game_type_slot_short_name')" :data="slotList"
+    />
+    <!-- 真人娱乐 -->
+    <AppSlider
+      :game-type="EnumCasinoGameType.LIVE" icon="chess-live-casino" :title="t('game_type_live')"
+      :data="liveList"
+    />
     <!-- 加密货币 -->
     <div class="index-buy-cryptocurrency" :class="[isXs ? 'flex-wrap' : 'grid-wrap']">
       <div>
