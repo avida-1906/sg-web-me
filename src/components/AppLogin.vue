@@ -36,12 +36,12 @@ const { run: runMemberLogin, loading: isLoading } = useRequest(() => ApiMemberLo
   device_number: application.getDeviceNumber(),
 }), {
   manual: true,
-  onSuccess: (res: any) => {
+  onSuccess: (res: string) => {
     closeDialog()
     appStore.setToken(res)
   },
-  onError: (err: any) => {
-    toast(err)
+  onError: (err: Error) => {
+    console.log(err)
   },
 })
 
@@ -61,7 +61,6 @@ function onBlur() {
 
 <template>
   <div class="app-login">
-    <!-- <form></form> -->
     <div class="app-login-input-box">
       <BaseLabel :label="t('email_or_username')" must-small>
         <BaseInput v-model="username" :msg="usernameErrorMsg" :placeholder="t('pls_enter_email_or_username')" />
@@ -75,7 +74,6 @@ function onBlur() {
         />
       </BaseLabel>
       <AppPasswordVerify v-show="isShowPasswordVerify" :password="password" />
-      <!-- <BaseInput v-model="username" :label="t('two-step_verification')" :msg="usernameErrorMsg" :placeholder="t('pls_enter_two-step_verification')" must /> -->
       <BaseButton class="app-login-btn" bg-style="secondary" :loading="isLoading" size="xl" @click.stop="getMemberLogin">
         <span class="login-text">
           {{ t('login') }}

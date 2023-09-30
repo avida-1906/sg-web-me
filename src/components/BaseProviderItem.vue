@@ -9,7 +9,7 @@ defineProps<Props>()
 <template>
   <div class="base-provider-item">
     <div class="img-wrap">
-      <BaseImage :url="url" />
+      <BaseImage :url="url" is-cloud />
     </div>
   </div>
 </template>

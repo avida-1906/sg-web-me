@@ -13,7 +13,7 @@ function goPage(item: any) {
   <div class="tg-app-provider-slider">
     <AppSlider icon="chess-game-provider" :title="$t('casino_provider')" :data="list" :show-view-all="false" game-type="provider">
       <template #default="{ item }">
-        <BaseProviderItem url="https://mediumrare.imgix.net/be6c453a8f450c2fbf5181abc844f080b537458061aeca3902575510acacdbea?&dpr=2&format=auto&auto=format&q=50" @click="goPage(item)" />
+        <BaseProviderItem :url="item.logo" @click="goPage(item)" />
       </template>
     </AppSlider>
   </div>

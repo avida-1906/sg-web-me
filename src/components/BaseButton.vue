@@ -8,18 +8,20 @@ interface Props {
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
   shadow?: boolean
   fontSize?: string
+  padding0?: boolean
 }
 
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   type: 'default',
   size: 'xs',
 })
+const size = computed(() => props.padding0 ? '' : `var(--tg-spacing-button-padding-vertical-${props.size}) var(--tg-spacing-button-padding-horizontal-${props.size})`)
 </script>
 
 <template>
   <button
     :disabled="loading || disabled" :class="[type, bgStyle, { round, shadow }]" :style="{
-      padding: `var(--tg-spacing-button-padding-vertical-${size}) var(--tg-spacing-button-padding-horizontal-${size})`,
+      padding: size,
     }"
   >
     <div v-if="loading" class="loading">
@@ -96,6 +98,7 @@ button {
 
   &:hover:not(:disabled) {
     color: var(--tg-text-white);
+    --tg-icon-color: var(--tg-text-white);
   }
 }
 

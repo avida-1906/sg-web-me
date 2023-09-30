@@ -126,7 +126,7 @@ watch(() => width.value, (newWidth) => {
         <AppChat />
       </template>
       <template v-if="currentRightSidebarContent === EnumRightSidebarContent.BETTING">
-        <AppSportsBetSlip />
+        <AppSportsBetSlipMenu />
       </template>
     </div>
     <AppFooterbar v-show="!isGreaterThanSm" />
