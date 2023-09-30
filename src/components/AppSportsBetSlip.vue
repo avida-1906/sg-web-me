@@ -38,7 +38,7 @@ const isFirst = computed(() => props.index === 0)
           滚球
         </div>
         <div class="text">
-          深圳市足球俱乐部 - 长春亚泰深圳市足球俱乐部 - 长春亚泰深圳市足球俱乐部 - 长春亚泰
+          深圳市足球俱乐部 - 长春亚泰
         </div>
       </div>
       <BaseButton type="text" padding0>
@@ -46,19 +46,19 @@ const isFirst = computed(() => props.index === 0)
       </BaseButton>
     </div>
     <div class="content">
-      <!-- 盘口 -->
+      <!-- 盘口类型 -->
       <div class="market-name">
         获胜
       </div>
       <!-- 最大下注金额 -->
-      <div class="max-bet">
+      <!-- <div class="max-bet">
         100
-      </div>
-      <!-- 主客 -->
+      </div> -->
+      <!-- 下注盘口 -->
       <div class="outcome-name">
         <span>Sprynar, Pavel</span>
       </div>
-      <!-- 赔率 -->
+      <!-- 状态或赔率 -->
       <div v-if="isClosed" class="closed">
         已结算
       </div>

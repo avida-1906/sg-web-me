@@ -106,8 +106,10 @@ button {
   border: 1px solid var(--tg-text-white);
 
   &:active:not(:disabled) {
-    color: var(--tg-text-dark);
-    background-color: var(--tg-text-white);
+    background-color: var(--tg-secondary-main);
+    .content {
+      transform: scale(0.96);
+    }
   }
 
   &:hover:not(:disabled):not(:active) {

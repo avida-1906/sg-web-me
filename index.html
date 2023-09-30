@@ -8,7 +8,7 @@
   <meta name="msapplication-TileColor" content="#00aba9">
   <meta name="theme-color" content="#1a2c38">
   <style type="text/css">
-    .full-loading {
+    #full-loading {
       position: fixed;
       top: 0;
       left: 0;
@@ -20,7 +20,7 @@
       justify-content: center;
       z-index: 9999;
     }
-    .full-loading span {
+    #full-loading span {
       font-size: 2rem;
       font-weight: bold;
       color: #00aba9;
@@ -29,10 +29,9 @@
   </style>
 </head>
 <body class="font-sans">
-  <div id="app">
-    <div class="full-loading">
-      <span>Stake</span>
-    </div>
+  <div id="app"></div>
+  <div id="full-loading">
+    <span>Stake</span>
   </div>
   <div data-portal="true"></div>
   <script type="module" src="/src/main.ts"></script>
