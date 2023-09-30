@@ -1,6 +1,15 @@
 <script lang="ts" setup>
 import { getCurrentLanguageForBackend } from '~/modules/i18n'
 
+const props = withDefaults(defineProps<Props>(), {
+  url: '',
+  name: '',
+  width: '100%',
+  height: '100%',
+  fit: 'contain',
+})
+const emit = defineEmits(['clickImg'])
+const { bool: isError, setTrue: setErrorTrue } = useBoolean(false)
 interface Props {
   url: string // 图像地址
   name?: string // 图像名称
@@ -10,15 +19,6 @@ interface Props {
   isCloud?: boolean
   isGame?: boolean
 }
-const props = withDefaults(defineProps<Props>(), {
-  url: '',
-  name: '',
-  width: '100%',
-  height: '100%',
-  fit: 'contain',
-})
-
-const emit = defineEmits(['clickImg'])
 const { VITE_CASINO_IMG_CLOUD_URL } = getEnv()
 const imgUrl = computed(() => {
   if (props.isGame)
@@ -30,25 +30,30 @@ const imgUrl = computed(() => {
   return props.url
 })
 
-// const { bool: complete, setTrue } = useBoolean(false)
-// function onComplete() { // 图片加载完成
-//   setTrue()
-// }
-
 function handleClick() {
   emit('clickImg')
+}
+function handleError() {
+  setErrorTrue()
 }
 </script>
 
 <template>
   <div class="base-image">
     <img
-      :style="`width: ${width}; height: ${height}; object-fit: ${fit};`" loading="lazy" :src="imgUrl" @click="handleClick"
+      v-if="!isError"
+      :style="`width: ${width}; height: ${height}; object-fit: ${fit};`" loading="lazy" :src="imgUrl" @click="handleClick" @error="handleError"
     >
-    <!-- <div v-if="!complete" class="img-load">
-      <slot>
-      </slot>
-    </div> -->
+    <div v-else class="img-load center">
+      <BaseEmpty>
+        <template #icon>
+          <BaseIcon font-size="43" name="img-error" />
+        </template>
+        <template #description>
+          <span style="font-size: var(--tg-font-size-xs);">加载失败了x_x</span>
+        </template>
+      </BaseEmpty>
+    </div>
   </div>
 </template>
 
@@ -63,17 +68,11 @@ function handleClick() {
 .base-image {
   width: 100%;
   height: 100%;
-  position: relative;
-
-  // .img-load {
-  //   position: absolute;
-  //   top: 0;
-  //   width: 100%;
-  //   height: 100%;
-  //   display: flex;
-  //   justify-content: center;
-  //   align-items: center;
-  // }
+  .img-load {
+    width: 100%;
+    height: 100%;
+    background-color: var(--tg-secondary-grey);
+  }
   img{
     border-radius: var(--tg-base-img-style-radius);
     object-position: var(--tg-img-object-position);

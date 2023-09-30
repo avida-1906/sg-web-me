@@ -1,10 +1,4 @@
 <script lang="ts" setup>
-interface Props {
-  walletBtn?: boolean
-  showBalance?: boolean
-  network?: boolean
-}
-
 withDefaults(defineProps<Props>(), {
   walletBtn: false,
   showBalance: true,
@@ -12,7 +6,6 @@ withDefaults(defineProps<Props>(), {
 })
 
 const emit = defineEmits(['change'])
-
 interface Currency {
   balance: string | number
   icon: string
@@ -20,17 +13,20 @@ interface Currency {
   id: number
   legalTender?: boolean
 }
-const currencyOptions: Ref<Currency[]> = ref([])
+interface Props {
+  walletBtn?: boolean
+  showBalance?: boolean
+  network?: boolean
+}
 
+const { openWalletDialog } = useWalletDialog()
+const { appContentWidth } = storeToRefs(useWindowStore())
+
+const currencyOptions: Ref<Currency[]> = ref([])
 // 搜索内容
 const searchValue = ref('')
 // 下拉搜索是否显示
 const { bool: isMenuShown } = useBoolean(false)
-
-function dropShow() {
-  searchValue.value = ''
-}
-
 // 当前选择币种
 const activeCurrency: Ref<Currency> = ref({
   balance: '',
@@ -38,15 +34,14 @@ const activeCurrency: Ref<Currency> = ref({
   name: '',
   id: 0,
 })
-// function dropHide() {
-//   searchValue.value = ''
-// }
-// 选择币种
-function selectCurrency(item: any, hide: () => void) {
-  hide()
-  activeCurrency.value = item
-  emit('change', item)
-}
+const currentNetwork = ref('1')
+const networkList = [
+  { label: '网络1', value: '1' },
+  { label: '网络2', value: '2' },
+  { label: '网络3', value: '3' },
+  { label: '网络4', value: '4' },
+]
+
 // 搜索币种
 const getSearchBalance = computed(() => {
   if (searchValue.value) {
@@ -59,13 +54,15 @@ const getSearchBalance = computed(() => {
   }
 })
 
-const currentNetwork = ref('1')
-const networkList = [
-  { label: '网络1', value: '1' },
-  { label: '网络2', value: '2' },
-  { label: '网络3', value: '3' },
-  { label: '网络4', value: '4' },
-]
+function dropShow() {
+  searchValue.value = ''
+}
+// 选择币种
+function selectCurrency(item: any, hide: () => void) {
+  hide()
+  activeCurrency.value = item
+  emit('change', item)
+}
 function initCurrency() {
   const arr: Currency[] = []
   for (const key in EnumCurrency) {
@@ -85,27 +82,20 @@ function initCurrency() {
 }
 
 initCurrency()
-// onMounted(() => {
-
-// })
-const { openWalletDialog } = useWalletDialog()
 </script>
 
 <template>
   <div class="app-wallet app-currency" :class="{ 'app-currency': network }">
     <VDropdown v-model:shown="isMenuShown" :distance="6" @apply-show="dropShow">
-      <!-- @apply-hide="dropHide" -->
-      <div class="center">
-        <div class="wallet" :class="{ 'wallet-only': !walletBtn }">
-          <BaseButton type="text" size="md">
-            <AppAmount v-if="showBalance" style="color:var(--tg-text-white);" :amount="activeCurrency.balance" :currency-type="activeCurrency.id" />
-            <!-- <span v-if="showBalance" class="wallet-text" style="padding-right: 5px;">{{ activeCurrency.balance }}</span> -->
-            <AppCurrencyIcon v-else class="wallet-text" :show-name="!showBalance" :currency-type="activeCurrency.id" />
-            <BaseIcon class="arrow" :class="{ 'arrow-up': isMenuShown }" name="uni-arrow-down" />
-          </BaseButton>
-        </div>
-        <BaseButton v-if="walletBtn" class="wallet-right-btn" size="sm" bg-style="primary" @click.stop="openWalletDialog">
-          <BaseIcon name="navbar-wallet" class="icon-size" />
+      <div class="wallet-box">
+        <BaseButton class="wallet" :class="{ 'wallet-only': !walletBtn }" type="text" size="md">
+          <AppAmount v-if="showBalance" style="color:var(--tg-text-white);" :amount="activeCurrency.balance" :currency-type="activeCurrency.id" />
+          <AppCurrencyIcon v-else class="wallet-text" :show-name="!showBalance" :currency-type="activeCurrency.id" />
+          <BaseIcon class="arrow" :class="{ 'arrow-up': isMenuShown }" name="uni-arrow-down" />
+        </BaseButton>
+        <BaseButton v-if="walletBtn" class="wallet-right-btn" bg-style="primary" @click.stop="openWalletDialog">
+          <BaseIcon v-if="appContentWidth < 790" name="navbar-wallet" class="icon-size" />
+          <span v-else>钱包</span>
         </BaseButton>
       </div>
       <template #popper="{ hide }">
@@ -116,9 +106,6 @@ const { openWalletDialog } = useWalletDialog()
           <div class="scroll-y popper-content" :class="{ 'justify-content': !showBalance }">
             <div v-for="item of getSearchBalance" :key="item.id" class="content-row" @click.stop="selectCurrency(item, hide)">
               <AppAmount v-if="showBalance" :amount="item.balance" :currency-type="item.id" show-name />
-              <!-- <div class="balance-num">
-                {{ item.balance }}
-              </div> -->
               <AppCurrencyIcon v-else show-name :currency-type="item.id" />
             </div>
             <div v-show="!getSearchBalance.length" class="balance-not">
@@ -140,7 +127,10 @@ const { openWalletDialog } = useWalletDialog()
 
 <style lang="scss" scoped>
 .app-wallet {
-
+  .wallet-box{
+    display: flex;
+    justify-content: center;
+  }
   .wallet {
     background-color: var(--tg-secondary-dark);
     border-radius: var(--tg-radius-sm) 0px 0px var(--tg-radius-sm);
@@ -148,13 +138,10 @@ const { openWalletDialog } = useWalletDialog()
 
     .arrow {
       font-size: 10px;
-      margin-left: 8px;
+      margin-left: 9px;
     }
     .arrow-up{
       transform: rotate(180deg);
-    }
-    &:hover .arrow{
-      --tg-icon-color: var(--tg-text-white);
     }
   }
   .wallet-only{
@@ -171,10 +158,11 @@ const { openWalletDialog } = useWalletDialog()
   .wallet-right-btn {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
+    padding: 16.5px 16px 16.5px !important;
   }
   .icon-size{
     --tg-icon-color: var(--tg-text-white);
-    font-size: var(--tg-font-size-md);
+    font-size: var(--tg-font-size-default);
   }
 
 }
@@ -217,9 +205,6 @@ const { openWalletDialog } = useWalletDialog()
       &:hover {
         background-color: var(--tg-text-lightgrey);
       }
-      // .balance-num{
-      //   width: 14ch;
-      // }
 
     }
     .balance-not{

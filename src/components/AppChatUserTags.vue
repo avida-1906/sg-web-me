@@ -57,6 +57,7 @@ const levelRoleTxt = {
   display: inline-flex;
   align-items: center;
   justify-content: flex-start;
+  vertical-align: text-top;
   gap: var(--tg-spacing-6);
   font-size: var(--tg-font-size-default);
   font-weight: var(--tg-font-weight-semibold);

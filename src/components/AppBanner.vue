@@ -10,10 +10,8 @@ const {
   appContentWidth,
 } = storeToRefs(useWindowStore())
 
-// 1160 638 （370）
-// 1555 1103
-// 1024 600
 const scrollRef = ref()
+
 const getGridAutoColumns = computed(() => {
   if (props.mode === 'only') {
     return { 'grid-auto-columns': '100%' }
@@ -29,6 +27,7 @@ const getGridAutoColumns = computed(() => {
       return { 'grid-auto-columns': '95.5%' }
   }
 })
+
 function scrollLeft() {
   scrollRef.value.scrollLeft -= scrollRef.value.offsetWidth
 }
@@ -39,7 +38,7 @@ function scrollRight() {
 
 <template>
   <div class="app-banner">
-    <div ref="scrollRef" class="banner-scroll scroll-x" :style="getGridAutoColumns">
+    <div ref="scrollRef" class="banner-scroll scroll-x hide-scrollbar" :style="getGridAutoColumns">
       <div v-for="i in 7" :key="i" class="banner-item">
         <BaseAspectRatio class="banner-ratio" ratio="386/226">
           <BaseImage url="https://cdn.sanity.io/images/tdrhge4k/production/65949dde3eac8d7c7f59a020c5acf70bd3692a0c-1743x1026.jpg?auto=format&q=90&w=760" />
@@ -72,7 +71,6 @@ function scrollRight() {
 
 <style lang="scss" scoped>
 .app-banner {
-  // width: 100%;
   position: relative;
   margin: 0 -6px 0;
   .banner-scroll{
@@ -85,9 +83,7 @@ function scrollRight() {
     scroll-behavior: smooth;
     --standard-lockup-shadow-offset: 8px;
     -webkit-mask: linear-gradient(90deg,transparent 0,var(--tg-secondary-deepdark) var(--standard-lockup-shadow-offset,15px),var(--tg-secondary-deepdark) calc(100% - var(--standard-lockup-shadow-offset,15px)),transparent 100%);
-    &::-webkit-scrollbar {
-      display: none;
-    }
+
     .banner-item{
       position: relative;
       scroll-snap-align: start;
@@ -100,39 +96,43 @@ function scrollRight() {
       .item-msg{
         position: absolute;
         color: var(--tg-text-white);
-        left: 0;
+        left: 8px;
         top: 0;
-        width: 100%;
+        max-width: 182px;
         height: 100%;
-        padding: 20px;
+        padding: 16px;
         div+div{
           margin-top: 10px;
         }
         .msg-type{
           display: inline-block;
           vertical-align: middle;
+          line-height: 1.5;
           color:var(--tg-secondary-grey);
-          padding: 4px 8px;
+          padding: 0 4px;
           font-size: var(--tg-font-size-xs);
           font-weight: 500;
           border-radius: var(--tg-radius-default);
           background:var(--tg-text-white);
         }
         .msg-title{
-          font-size: var(--tg-font-size-xl);
+          font-size: var(--tg-font-size-lg);
           font-weight: var(--tg-font-weight-semibold);
         }
         .msg-tips{
           color:var(--tg-text-white);
           font-size: var(--tg-font-size-xs);
           font-weight: var(--tg-font-weight-normal);
+          line-height: 1.5;
         }
         .come-play{
-          position: absolute;
           bottom: 20px;
-          display: inline-block;
+          position: absolute;
+          width: 100%;
+          max-height: 2.5rem;
+          text-align: center;
           border-radius: var(--tg-radius-default);
-          padding: 8px 65px;
+          padding: 13px 16px;
           border: 1px solid var(--tg-text-white);
           background: var(--tg-secondary-grey);
           font-size: var(--tg-font-size-default);
@@ -148,7 +148,7 @@ function scrollRight() {
     position: absolute;
     top: 50%;
     opacity: 0;
-    font-size: var(--tg-font-size-md);
+    font-size: var(--tg-font-size-base);
     transform: translateY(-40%);
     transition: opacity 0.3s;
     cursor: pointer;

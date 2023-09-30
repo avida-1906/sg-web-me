@@ -91,7 +91,7 @@ async function logout() {
     <div v-if="isLogin" class="header-box">
       <div class="header-right">
         <BaseButton v-show="!isMobile" type="text" class="search-btn" @click="setTrue">
-          <BaseIcon class="icon-search" name="header-search" />
+          <BaseIcon class="icon-search" name="uni-search" />
           <span v-show="!isLessThanLg">{{ t('search') }}</span>
         </BaseButton>
         <VDropdown :distance="6">
@@ -175,7 +175,7 @@ async function logout() {
   gap: 1rem;
   align-items: center;
   .icon-size {
-    font-size: var(--tg-font-size-md);
+    font-size: var(--tg-font-size-base);
   }
   .header-box {
     display: flex;
@@ -192,7 +192,8 @@ async function logout() {
     --tg-icon-color: var(--tg-text-white);
 
     span {
-      margin-left: 5px;
+      margin-left: 8px;
+      font-size: var(--tg-font-size-default);
     }
 
     .search-btn {
@@ -200,7 +201,7 @@ async function logout() {
       font-size: var(--tg-font-size-default);
       font-weight: var(--tg-font-weight-semibold);
       .icon-search {
-        font-size: var(--tg-font-size-xl);
+        font-size: var(--tg-font-size-base);
       }
     }
   }

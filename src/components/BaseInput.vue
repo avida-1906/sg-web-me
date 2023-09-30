@@ -54,6 +54,7 @@ function onBlur() {
           <div v-if="textarea" class="textarea-container">
             <pre aria-hidden="true">{{ modelValue }}</pre>
             <textarea
+              :value="modelValue"
               min="0" class="scroll-y" :placeholder="placeholder" :class="{ 'p-r-0': $slots['right-icon'] }"
               autocomplete="new-password" :disabled="disabled" @input="onInput" @focus="onFocus" @blur="onBlur"
             />
