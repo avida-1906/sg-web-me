@@ -13,6 +13,7 @@
   --tg-primary-success: #1FFF20;
   --tg-primary-fail: #E91134;
   --tg-button-secondary-main: #e9113c;
+  --tg-bet-slip-error: #5D0718;
   /* 点缀色 */
   --tg-sub-info: #008A01;
   --tg-sub-deepblue: #105EB5;
@@ -60,6 +61,9 @@
   --tg-font-size-4xl: 40px;
   --tg-font-size-5xl: 54px;
   --tg-font-size-6xl: 58px;
+
+  // 缺省图icon
+  --tg-empty-icon-size: 112px;
 
   // 字体粗细
   --tg-font-weight-normal: 400;

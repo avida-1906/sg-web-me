@@ -240,3 +240,15 @@ export enum EnumCasinoSortType {
   /** 推荐 */
   recommend = 'created_at:desc',
 }
+
+/**
+ * 体育下注单分类枚举
+ */
+export enum EnumsBetSlipTabs {
+  betSlip, // 投注单
+  myBets, // 我的投注
+  single, // 单项投注
+  multi, // 复式投注
+  active, // 活跃
+  settled, // 已结算
+}

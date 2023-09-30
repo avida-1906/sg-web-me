@@ -1,69 +1,40 @@
 <script setup lang="ts">
-import AppDemoCard from '~/components/AppDemoCard.vue'
+interface IVipProgressData {
+  percent: number
+  currentLevel: number
+}
 
-defineOptions({
-  name: 'IndexPage',
-})
-
-const appStore = useAppStore()
-const { isLogin } = storeToRefs(appStore)
 const { t } = useI18n()
-const { run, data } = useRequest(() => ApiMemberLogin({
-  username: '章三',
-  password: '123456',
-}), {
-  manual: true,
-  onSuccess: (res: any) => {
-    console.log(res)
-  },
-})
-
-function getData() {
-  run()
-}
-
-console.log(application.timestampToTime(1628774400000))
-console.log(application.timestampToTime(1628774400000, EnumLanguage['zh-CN']))
-console.log(application.timestampToTime(1628774400000, EnumLanguage['pt-BR']))
-console.log(application.timestampToTime(1628774400000, EnumLanguage['vi-VN']))
-
-console.log(application.numberToCurrency(1232330.19999, EnumCurrency.CAD))
-
-const { openDialog, closeDialog } = useDialog({
-  title: '表格',
-  icon: 'balls-darts-on',
-  default: () => h(AppDemoCard, { title: '标题' }, {
-    default: () => h('table', { style: { color: 'orange' } }, 'abcdefg'),
-  }),
-})
-function connectMqtt() {
-  socketClient.connect()
-}
-
-function disconnectMqtt() {
-  socketClient.disconnect()
-}
+const router = useRouter()
 const { bool: showMore, toggle: toggleShowMore } = useBoolean(false)
+const {
+  appContentWidth,
+  widthBoundarySm,
+  widthBoundaryXs,
+} = storeToRefs(useWindowStore())
+const { isLogin } = storeToRefs(useAppStore())
+const { openVipDialog } = useVipDialog()
+const { openWalletDialog } = useWalletDialog()
+
+const vipProgressData = ref<IVipProgressData>({
+  percent: 30,
+  currentLevel: 2,
+})
+const { list: liveList, runAsync: runLive } = useList(ApiMemberGameList)
+const { list: slotList, runAsync: runSlot } = useList(ApiMemberGameList)
+
+const isSm = computed(() => appContentWidth.value <= widthBoundarySm.value)
+const isXs = computed(() => appContentWidth.value <= widthBoundaryXs.value)
+
 const onShowMore = function () {
   toggleShowMore()
 }
-const {
-  width,
-} = storeToRefs(useWindowStore())
 
-const isMobile = computed(() => width.value <= 888)
-const isSm = computed(() => width.value <= 768)
-
-const { openVipDialog } = useVipDialog()
-// vip进度data
-const vipProgressData = {
-  percent: 30,
-  currentLevel: 2,
-}
+await application.allSettled([runLive({ game_type: 1 }), runSlot({ game_type: 3 })])
 </script>
 
 <template>
-  <div class="home-index" :class="{ 'is-mobile': isMobile }">
+  <div class="home-index" :class="{ 'is-mobile': isSm }">
     <!-- 头部 -->
     <div class="dark-background">
       <div class="top-wrapper">
@@ -76,7 +47,7 @@ const vipProgressData = {
             <AppAuthLogin />
           </div>
         </div>
-        <div v-else class="top-vip-info" :class="isMobile ? 'max-width-mobile' : 'max-width'">
+        <div v-else class="top-vip-info" :class="isSm ? 'max-width-mobile' : 'max-width'">
           <AppVipProgress :vip-progress-data="vipProgressData">
             <template #title>
               <h1>欢迎归来，alanhayashi</h1>
@@ -87,14 +58,13 @@ const vipProgressData = {
           </AppVipProgress>
         </div>
         <div class="top-banner">
-          <AppBanner :mode="isMobile ? 'default' : 'only'" />
-          <!-- <BaseImage v-else fit="cover" url="https://mediumrare.imgix.net/welcome-top-zh.png?&dpr=2&format=auto&auto=format&w=540&q=50" /> -->
+          <AppBanner :mode="isSm ? 'default' : 'only'" />
         </div>
       </div>
     </div>
     <!-- 玩法类型 -->
     <div class="index-features">
-      <div class="features-casino">
+      <div class="features-casino" @click="router.push('/casino')">
         <div class="features-title">
           <BaseIcon name="tabbar-game" />
           <span>娱乐城</span>
@@ -112,7 +82,7 @@ const vipProgressData = {
           </BaseButton>
         </div>
       </div>
-      <div class="features-sports">
+      <div class="features-sports" @click="router.push('/sports')">
         <div class="features-title">
           <BaseIcon name="tabbar-sport" />
           <span>体育</span>
@@ -132,7 +102,7 @@ const vipProgressData = {
       </div>
     </div>
     <!-- 了解更多 -->
-    <div class="index-more" :class="[isMobile ? 'flex-wrap-reverse' : 'grid-wrap']">
+    <!-- <div class="index-more" :class="[isSm ? 'flex-wrap-reverse' : 'grid-wrap']">
       <div>
         <BaseButton size="md">
           了解更多
@@ -141,23 +111,33 @@ const vipProgressData = {
       <div>
         <BaseIcon name="app-logo-darke" />
       </div>
-      <div v-if="!isMobile">
+      <div v-if="!isSm">
         <img src="https://mediumrare.imgix.net/drake-banner.png?&dpr=2&format=auto&auto=format&q=50" alt="">
       </div>
-    </div>
+    </div> -->
+    <!-- 老虎机  -->
+    <AppSlider
+      :game-type="EnumCasinoGameType.SLOT" icon="chess-slot-machine"
+      :title="t('game_type_slot_short_name')" :data="slotList"
+    />
+    <!-- 真人娱乐 -->
+    <AppSlider
+      :game-type="EnumCasinoGameType.LIVE" icon="chess-live-casino" :title="t('game_type_live')"
+      :data="liveList"
+    />
     <!-- 加密货币 -->
-    <div class="index-buy-cryptocurrency" :class="[isSm ? 'flex-wrap' : 'grid-wrap']">
+    <div class="index-buy-cryptocurrency" :class="[isXs ? 'flex-wrap' : 'grid-wrap']">
       <div>
         没加密货币？没问题。
       </div>
-      <div :class="isMobile ? 'h-22' : 'h-30'">
-        <BaseIcon name="cryptocurrency-logo-1" class="w-50" />
-        <BaseIcon name="cryptocurrency-logo-2" class="w-73" />
-        <BaseIcon name="cryptocurrency-logo-3" class="w-77" />
-        <BaseIcon name="cryptocurrency-logo-4" class="w-66" />
+      <div :class="isSm ? 'h-22' : 'h-30'">
+        <BaseIcon name="cryptocurrency-logo-1" class="w-48" />
+        <BaseIcon name="cryptocurrency-logo-2" class="w-70" />
+        <BaseIcon name="cryptocurrency-logo-3" class="w-75" />
+        <BaseIcon name="cryptocurrency-logo-4" class="w-65" />
       </div>
       <div>
-        <BaseButton size="md">
+        <BaseButton size="md" @click="openWalletDialog">
           购买加密货币
         </BaseButton>
       </div>
@@ -168,7 +148,7 @@ const vipProgressData = {
     </div>
     <!-- 公司介绍 -->
     <div class="index-introduction" :class="{ 'max-height': showMore }">
-      <div class="introduction-content" :class="{ 'column-count': !isMobile }">
+      <div class="introduction-content" :class="{ 'column-count': !isSm }">
         <h1>在 Stake 享受最出色的在线赌场体验</h1>
         <p>自 2017 年以来，Stake.com 在网络上提供了最出色的在线加密货币与比特币赌场的博彩体验。易于使用、功能丰富且平台简约，玩家们都一而再再而三地重返 Stake 投注于他们最喜爱的赌场游戏。</p>
         <p>Stake 团队一直都在努力改进我们无可匹敌的服务，确保来自世界各地的用户都能享有最佳的在线赌场博彩体验。随着我们定期增加到平台上的大量新游戏以及杰出的客户支持，玩家必能轻松在闻名的 Stake 赌场上雷厉风行。</p>
@@ -192,24 +172,6 @@ const vipProgressData = {
         </BaseButton>
       </div>
     </div>
-    <!-- <div>
-      {{ t('hello') }}
-    </div>
-    <div>
-      {{ data }}
-    </div>
-    <div style="color: #fff">
-      是否登录: {{ isLogin }}
-    </div>
-    <button @click="getData">
-      请求
-    </button>
-    <button style="color: #fff" @click="connectMqtt">
-      链接mqtt {{ $t('hello') }}
-    </button>
-    <button @click="disconnectMqtt">
-      断开mqtt
-    </button> -->
   </div>
 </template>
 
@@ -230,7 +192,6 @@ const vipProgressData = {
     .top-wrapper{
       display: grid;
       position: relative;
-      // grid-template-columns: 40% 40%;
       grid-template-columns: repeat(2, 1fr);
       grid-gap: 2rem;
       justify-content: space-between;
@@ -421,16 +382,16 @@ const vipProgressData = {
       justify-content: center;
       > svg {
         &.w-50 {
-          width: 50px;
+          width: 48px;
         }
-        &.w-73 {
-          width: 73px;
+        &.w-70 {
+          width: 70px;
         }
-        &.w-77 {
-          width: 77px;
+        &.w-75 {
+          width: 75px;
         }
-        &.w-66 {
-          width: 66px;
+        &.w-65 {
+          width: 65px;
         }
       }
       &.h-30{
@@ -533,8 +494,6 @@ const vipProgressData = {
       grid-template-columns:100%;
       background:none;
       grid-gap: 0;
-      // background-position: right 25% center;
-      // background-size: cover;
       .top-banner{
         padding: 0;
       }
