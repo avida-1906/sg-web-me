@@ -98,8 +98,8 @@ onMounted(() => {
     position: relative;
     top: -1px;
     display: inline-block;
-    width: 6px;
-    height: 6px;
+    width: 8px;
+    height: 8px;
     vertical-align: middle;
     border-radius: 50%;
   }
@@ -140,9 +140,9 @@ onMounted(() => {
     background-color: var(--tg-text-blue);
   }
   .u-status-text {
-    margin-inline-start: 8px;
-    color: var(--tg-text-dark);
-    font-size: var(--tg-font-size-default);
+    margin-inline-start: 4px;
+    color: inherit;
+    font-size: inherit;
   }
   .m-count {
     position: absolute;

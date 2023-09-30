@@ -1,13 +1,13 @@
 <script setup lang='ts'>
+interface Props {
+  activeCurrency: any
+}
 withDefaults(defineProps<Props>(), {
   activeCurrency: () => { },
 })
 
 const { t } = useI18n()
 
-interface Props {
-  activeCurrency: any
-}
 const { value: address, errorMessage: addressMsg } = useField<string>('address', (value) => {
   if (!value)
     return t('this_field_is_required')
@@ -20,6 +20,7 @@ const { value: amount, setValue: setAmount, errorMessage: amountMsg } = useField
 
   return ''
 })
+
 function onAmountInput() {
   if (amount.value)
     setAmount(application.numberToCurrency(+amount.value))
