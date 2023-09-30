@@ -9,8 +9,8 @@ const typeOptions = [
   { label: '投注单', value: EnumsBetSlipTabs.betSlip, num: 5, icon: 'spt-user-bet' },
   { label: '我的投注', value: EnumsBetSlipTabs.myBets, num: 4, icon: 'navbar-user-bet' },
 ]
-// 投注单Tab<BaseIcon name="navbar-bet-mult" />
-const betSlipType = ref(EnumsBetSlipTabs.single)
+// 投注单Tab
+const betSlipType = ref<EnumsBetSlipTabs.single | EnumsBetSlipTabs.multi>(EnumsBetSlipTabs.single)
 const betSlipTypeTabs = [
   { label: '单项投注', value: EnumsBetSlipTabs.single, num: 5, icon: 'navbar-bet' },
   { label: '复式投注', value: EnumsBetSlipTabs.multi, num: 4, icon: 'navbar-bet-mult' },

@@ -9,6 +9,7 @@ interface Props {
   must?: boolean
   textarea?: boolean
   mb0?: boolean
+  disabled?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -54,11 +55,11 @@ function onBlur() {
             <pre aria-hidden="true">{{ modelValue }}</pre>
             <textarea
               min="0" class="scroll-y" :placeholder="placeholder" :class="{ 'p-r-0': $slots['right-icon'] }"
-              autocomplete="new-password" @input="onInput" @focus="onFocus" @blur="onBlur"
+              autocomplete="new-password" :disabled="disabled" @input="onInput" @focus="onFocus" @blur="onBlur"
             />
           </div>
           <input
-            v-else :value="modelValue" min="0" :placeholder="placeholder" :type="_type"
+            v-else :value="modelValue" min="0" :placeholder="placeholder" :type="_type" :disabled="disabled"
             :class="{ 'p-r-0': $slots['right-icon'] }" @input="onInput" @focus="onFocus" @blur="onBlur"
           >
           <div v-if="isPassword" class="eye" @click="toggleType">
