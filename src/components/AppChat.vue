@@ -3,19 +3,21 @@ const messages: Array<ChatMessageInfo> = [
   {
     id: '394802',
     sender: {
-      name: 'XiaoMing86',
+      name: 'xiaoming86',
       id: '5293840jk23k44h2k',
       level: '3',
       role: 'moderator',
     },
+    html: '就是本金再多，我也很少去按比例下单，',
   },
   {
     id: '6345436',
     sender: {
-      name: 'XiaoHong77',
+      name: 'xiaohong77',
       id: '9saf7d9f9saf78s9dfi24',
       level: 'gold',
     },
+    html: '我不开满倍的啊。只开10X',
   },
 ]
 </script>
@@ -90,6 +92,12 @@ const messages: Array<ChatMessageInfo> = [
       flex-direction: column;
       overflow-anchor: none;
       overscroll-behavior: contain;
+      > *+* {
+        margin-top: var(--tg-spacing-8);
+      }
+      .wrap {
+        width: 100%;
+      }
     }
     .more-wrap {
       left: 50%;
