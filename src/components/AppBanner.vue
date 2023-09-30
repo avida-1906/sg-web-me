@@ -10,10 +10,8 @@ const {
   appContentWidth,
 } = storeToRefs(useWindowStore())
 
-// 1160 638 （370）
-// 1555 1103
-// 1024 600
 const scrollRef = ref()
+
 const getGridAutoColumns = computed(() => {
   if (props.mode === 'only') {
     return { 'grid-auto-columns': '100%' }
@@ -29,6 +27,7 @@ const getGridAutoColumns = computed(() => {
       return { 'grid-auto-columns': '95.5%' }
   }
 })
+
 function scrollLeft() {
   scrollRef.value.scrollLeft -= scrollRef.value.offsetWidth
 }
@@ -39,7 +38,7 @@ function scrollRight() {
 
 <template>
   <div class="app-banner">
-    <div ref="scrollRef" class="banner-scroll scroll-x" :style="getGridAutoColumns">
+    <div ref="scrollRef" class="banner-scroll scroll-x hide-scrollbar" :style="getGridAutoColumns">
       <div v-for="i in 7" :key="i" class="banner-item">
         <BaseAspectRatio class="banner-ratio" ratio="386/226">
           <BaseImage url="https://cdn.sanity.io/images/tdrhge4k/production/65949dde3eac8d7c7f59a020c5acf70bd3692a0c-1743x1026.jpg?auto=format&q=90&w=760" />
@@ -72,7 +71,6 @@ function scrollRight() {
 
 <style lang="scss" scoped>
 .app-banner {
-  // width: 100%;
   position: relative;
   margin: 0 -6px 0;
   .banner-scroll{
@@ -85,9 +83,7 @@ function scrollRight() {
     scroll-behavior: smooth;
     --standard-lockup-shadow-offset: 8px;
     -webkit-mask: linear-gradient(90deg,transparent 0,var(--tg-secondary-deepdark) var(--standard-lockup-shadow-offset,15px),var(--tg-secondary-deepdark) calc(100% - var(--standard-lockup-shadow-offset,15px)),transparent 100%);
-    &::-webkit-scrollbar {
-      display: none;
-    }
+
     .banner-item{
       position: relative;
       scroll-snap-align: start;
@@ -152,7 +148,7 @@ function scrollRight() {
     position: absolute;
     top: 50%;
     opacity: 0;
-    font-size: var(--tg-font-size-md);
+    font-size: var(--tg-font-size-base);
     transform: translateY(-40%);
     transition: opacity 0.3s;
     cursor: pointer;
