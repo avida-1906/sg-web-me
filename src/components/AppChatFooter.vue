@@ -7,6 +7,7 @@
 
 const { openChatRulesDialog } = useChatRulesDialog()
 
+const msgInput = ref()
 const allEmojis = [
   'adesanya.webp',
   'beer.webp',
@@ -51,7 +52,6 @@ const allEmojis = [
   'woods.png',
 ]
 const message = ref('')
-
 const atUsers = reactive([
   { name: 'abc32434', id: '39429304' },
   { name: 'adflkl32434', id: '234324335' },
@@ -73,10 +73,9 @@ const matched_at_users = computed(() => {
       return filtered
 
     else
-      return [{ name: temp, id: '' }]
+      return [{ name: temp, id: '00' }]
   }
 })
-
 const emojiName = computed(() => {
   const i = message.value.lastIndexOf(':')
   const j = message.value.lastIndexOf('@')
@@ -99,12 +98,16 @@ function addEmoMsg(emo: string) {
   const i = message.value.lastIndexOf(':')
   message.value = `${message.value.slice(0, i + 1)}${emo.split('.')[0]} ` + ': '
 }
+function addAtUser(u: { name: string }) {
+  const i = message.value.lastIndexOf('@')
+  message.value = `${message.value.slice(0, i + 1) + u.name} `
+}
 </script>
 
 <template>
   <section class="tg-app-chat-footer">
     <Transition>
-      <div v-show="emojis.length" class="scroll-y wrap emoji-wrap layout-grid">
+      <div v-show="emojis.length" class="scroll-y emoji-wrap layout-grid wrap">
         <div v-for="emo in emojis" :key="emo" class="button-wrap">
           <span class="box" @click="addEmoMsg(emo)">
             <BaseButton type="text">
@@ -118,7 +121,7 @@ function addEmoMsg(emo: string) {
     </Transition>
     <Transition>
       <div v-show="matched_at_users.length" class="scroll-y wrap at-users-wrap layout-default">
-        <div v-for="u in matched_at_users" :key="u.id" class="button-wrap">
+        <div v-for="u in matched_at_users" :key="u.id" class="button-wrap" @click="addAtUser(u)">
           <div class="at-user-name">
             {{ u.name }}
           </div>
@@ -126,7 +129,7 @@ function addEmoMsg(emo: string) {
       </div>
     </Transition>
     <div class="chat-input">
-      <BaseInput v-model="message" placeholder="输入您的消息" textarea />
+      <BaseInput ref="msgInput" v-model="message" placeholder="输入您的消息" textarea />
     </div>
     <div class="online">
       <div class="green-dot" />

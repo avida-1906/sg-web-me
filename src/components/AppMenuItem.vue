@@ -7,7 +7,9 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {})
+
 const route = useRoute()
+
 const active = computed(() => route.path === props.menuItem.path)
 </script>
 
