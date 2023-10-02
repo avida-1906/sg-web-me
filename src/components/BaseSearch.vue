@@ -13,13 +13,13 @@ const props = withDefaults(defineProps<Props>(), {
 })
 const emit = defineEmits(['update:modelValue', 'input', 'search', 'focus', 'blur', 'clear', 'close'])
 
+const { bool: isFocus, setTrue, setFalse } = useBoolean(false)
+
 function onInput(event: any) {
   const v = event.target.value
   emit('update:modelValue', v)
   emit('input', v)
 }
-
-const { bool: isFocus, setTrue, setFalse } = useBoolean(false)
 function onFocus() {
   setTrue()
   emit('focus')
