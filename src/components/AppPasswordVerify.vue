@@ -2,10 +2,10 @@
 interface Props {
   password: string
 }
+
 const props = withDefaults(defineProps<Props>(), {
   password: '',
 })
-
 const emit = defineEmits(['pass'])
 
 const { t } = useI18n()

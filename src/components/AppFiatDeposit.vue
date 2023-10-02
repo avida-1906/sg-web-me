@@ -1,17 +1,26 @@
 <script setup lang='ts'>
+interface IDepositType {
+  label: string
+  icon: string
+  value: string
+}
+interface IAisleData {
+  label: string
+  value: string
+}
+
 // interface Props {
 // }
 // const props = withDefaults(defineProps<Props>(), {
 // })
 const emit = defineEmits(['show'])
-//  存款类型
+
 const currentType = ref('1')
-const depositType = ref([
+const depositType = ref<IDepositType[]>([
   { label: '银行转账', icon: 'fiat-bank', value: '1' },
   { label: '支付宝', icon: 'fiat-alipay', value: '2' },
   { label: '微信', icon: 'fiat-wechat', value: '3' },
 ])
-
 const bankStep = ref<'1' | '2'>('1')
 const payeeInformation = ref({
   name: '张三',
@@ -20,6 +29,15 @@ const payeeInformation = ref({
   accountOpeningBank: '开户网点：天津农商银行',
   amount: '200,000.00',
 })
+const currentAisle = ref('2')
+const aisleData = ref<IAisleData[]>([
+  { label: 'XGS/支付宝-小额', value: '1' },
+  { label: 'XGS/支付宝-小额', value: '2' },
+  { label: 'XGS/支付宝-小额', value: '3' },
+])
+const username = ref('')
+const amount = ref('')
+
 const nextStep = function () {
   emit('show', false)
   bankStep.value = '2'
@@ -31,17 +49,9 @@ const previous = function () {
 const toCopy = function (item: string) {
   application.copy(item)
 }
-const currentAisle = ref('2')
-const aisleData = ref([
-  { label: 'XGS/支付宝-小额', value: '1' },
-  { label: 'XGS/支付宝-小额', value: '2' },
-  { label: 'XGS/支付宝-小额', value: '3' },
-])
 const changeAisle = function (value: string) {
   currentAisle.value = value
 }
-const username = ref('')
-const amount = ref('')
 </script>
 
 <template>

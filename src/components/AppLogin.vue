@@ -1,6 +1,9 @@
 <script setup lang='ts'>
+const closeDialog = inject('closeDialog', () => {})
+
 const { t } = useI18n()
 const appStore = useAppStore()
+const { bool: isShowPasswordVerify, setTrue: setShowPasswordVerifyTrue, setFalse: setShowPasswordVerifyFalse } = useBoolean(false)
 const { value: username, errorMessage: usernameErrorMsg, validate: valiUsername } = useField<string>('username', (value) => {
   if (!value)
     return t('pls_enter_email_or_username')
@@ -25,11 +28,6 @@ const { value: password, errorMessage: pwdErrorMsg, validate: valiPassword } = u
 
   return ''
 })
-
-const closeDialog = inject('closeDialog', () => {})
-
-const { bool: isShowPasswordVerify, setTrue: setShowPasswordVerifyTrue, setFalse: setShowPasswordVerifyFalse } = useBoolean(false)
-
 const { run: runMemberLogin, loading: isLoading } = useRequest(() => ApiMemberLogin({
   username: username.value,
   password: password.value,

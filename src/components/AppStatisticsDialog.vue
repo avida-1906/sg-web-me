@@ -3,11 +3,24 @@ interface IVipProgressData {
   percent: number // vip进度百分比
   currentLevel: number // 当前vip等级
 }
+interface IColumns {
+  title?: string
+  width?: number | string
+  dataIndex: string
+  slot?: string
+  align?: 'left' | 'center' | 'right'
+}
+interface IPaginationData {
+  pageSize: number
+  pageNumber: number
+  total: number
+}
 interface Props {
   vipProgressData?: IVipProgressData
 }
+
 const props = withDefaults(defineProps<Props>(), {
-  vipProgressData: () => { // vip进度条
+  vipProgressData: () => {
     return {
       percent: 40,
       currentLevel: 1,
@@ -15,6 +28,12 @@ const props = withDefaults(defineProps<Props>(), {
   },
 })
 // const emit = defineEmits(['update:modelValue'])
+
+const {
+  isLessThanSm,
+} = storeToRefs(useWindowStore())
+
+const { bool: loading, setFalse: setLoadingFalse } = useBoolean(true)
 
 const tab = ref('3')
 const tabList = [
@@ -24,13 +43,6 @@ const tabList = [
   { label: '抽奖活动', value: '4' },
 ]
 // 数据统计表 head
-interface IColumns {
-  title?: string
-  width?: number | string
-  dataIndex: string
-  slot?: string
-  align?: 'left' | 'center' | 'right'
-}
 const statisticsColumns = ref<IColumns[]>([
   {
     title: '投注',
@@ -61,11 +73,113 @@ const statisticsColumns = ref<IColumns[]>([
     align: 'right',
   },
 ])
-const { bool: loading, setFalse: setLoadingFalse } = useBoolean(true)
 const statisticsTableData: any = ref([])
 const trophyTableData: any = ref([])
 const sweepstakesTableData: any = ref([])
 const competitionTableData: any = ref([])
+// 奖杯select
+const selectValue = ref('2')
+const selectOptions = [
+  { value: '1', label: '最幸运奖杯' },
+  { value: '2', label: '最大之赢' },
+]
+const trophyCards = ref([
+  { rankIcon: 'uni-cup1', gameName: 'Spellbinding Mystery', provider: 'Pragmatic' },
+  { rankIcon: 'uni-cup1', gameName: 'Spellbinding Mystery', provider: 'Pragmatic' },
+  { rankIcon: 'uni-cup1', gameName: 'Spellbinding Mystery', provider: 'Pragmatic' },
+])
+const trophyColumns = ref<IColumns[]>([
+  {
+    title: '游戏',
+    width: 200,
+    dataIndex: 'game',
+    slot: 'game',
+    align: 'left',
+  },
+  {
+    title: '游戏提供商',
+    width: 100,
+    dataIndex: 'provider',
+    slot: 'provider',
+    align: 'center',
+  },
+  {
+    title: '奖杯',
+    width: 100,
+    dataIndex: 'trophy',
+    slot: 'trophy',
+    align: 'right',
+  },
+
+])
+// 竞赛
+const competitionColumns = ref<IColumns[]>([
+  {
+    title: '竞赛名称',
+    dataIndex: 'name',
+    slot: 'name',
+    align: 'left',
+  },
+  {
+    title: '日期',
+    dataIndex: 'date',
+    slot: 'date',
+    align: 'center',
+  },
+  {
+    title: '排名',
+    dataIndex: 'rank',
+    slot: 'rank',
+    align: 'center',
+  },
+  {
+    title: '奖金',
+    dataIndex: 'bonus',
+    slot: 'bonus',
+    align: 'right',
+  },
+])
+// 抽奖活动 head
+const SweepstakesColumns = ref<IColumns[]>([
+  {
+    title: '投注',
+    width: 200,
+    dataIndex: 'bet',
+    slot: 'bet',
+    align: 'left',
+  },
+  {
+    title: '日期',
+    width: 120,
+    dataIndex: 'date',
+    slot: 'date',
+    align: 'center',
+  },
+  {
+    title: '抽奖卷',
+    width: 80,
+    dataIndex: 'lottery',
+    slot: 'lottery',
+    align: 'right',
+  },
+])
+const paginationData = ref<IPaginationData>(
+  {
+    pageSize: 10,
+    pageNumber: 2,
+    total: 21,
+  },
+)
+
+const onPrevious = function () {
+  console.log('上一页1')
+  paginationData.value.pageNumber--
+}
+const onNext = function () {
+  console.log('下一页2')
+  paginationData.value.pageNumber++
+}
+
 onMounted(() => {
   setTimeout(() => {
     statisticsTableData.value = [
@@ -154,122 +268,6 @@ onMounted(() => {
     ]
   }, 3000)
 })
-// 奖杯select
-const selectValue = ref('2')
-const selectOptions = [
-  { value: '1', label: '最幸运奖杯' },
-  { value: '2', label: '最大之赢' },
-]
-const trophyCards = ref([
-  { rankIcon: 'uni-cup1', gameName: 'Spellbinding Mystery', provider: 'Pragmatic' },
-  { rankIcon: 'uni-cup1', gameName: 'Spellbinding Mystery', provider: 'Pragmatic' },
-  { rankIcon: 'uni-cup1', gameName: 'Spellbinding Mystery', provider: 'Pragmatic' },
-])
-const trophyColumns = ref<IColumns[]>([
-  {
-    title: '游戏',
-    width: 200,
-    dataIndex: 'game',
-    slot: 'game',
-    align: 'left',
-  },
-  {
-    title: '游戏提供商',
-    width: 100,
-    dataIndex: 'provider',
-    slot: 'provider',
-    align: 'center',
-  },
-  {
-    title: '奖杯',
-    width: 100,
-    dataIndex: 'trophy',
-    slot: 'trophy',
-    align: 'right',
-  },
-
-])
-// 竞赛
-const competitionColumns = ref<IColumns[]>([
-  {
-    title: '竞赛名称',
-    // width: 210,
-    dataIndex: 'name',
-    slot: 'name',
-    align: 'left',
-  },
-  {
-    title: '日期',
-    // width: 120,
-    dataIndex: 'date',
-    slot: 'date',
-    align: 'center',
-  },
-  {
-    title: '排名',
-    // width: 100,
-    dataIndex: 'rank',
-    slot: 'rank',
-    align: 'center',
-  },
-  {
-    title: '奖金',
-    // width: 100,
-    dataIndex: 'bonus',
-    slot: 'bonus',
-    align: 'right',
-  },
-])
-// 抽奖活动 head
-const SweepstakesColumns = ref<IColumns[]>([
-  {
-    title: '投注',
-    width: 200,
-    dataIndex: 'bet',
-    slot: 'bet',
-    align: 'left',
-  },
-  {
-    title: '日期',
-    width: 120,
-    dataIndex: 'date',
-    slot: 'date',
-    align: 'center',
-  },
-  {
-    title: '抽奖卷',
-    width: 80,
-    dataIndex: 'lottery',
-    slot: 'lottery',
-    align: 'right',
-  },
-])
-// 分页
-interface IPaginationData {
-  pageSize: number
-  pageNumber: number
-  total: number
-}
-const paginationData = ref<IPaginationData>(
-  {
-    pageSize: 10,
-    pageNumber: 2,
-    total: 21,
-  },
-)
-const onPrevious = function () {
-  console.log('上一页1')
-  paginationData.value.pageNumber--
-}
-const onNext = function () {
-  console.log('下一页2')
-  paginationData.value.pageNumber++
-}
-const {
-  widthBoundarySm,
-  width,
-} = storeToRefs(useWindowStore())
-const isMobile = computed(() => width.value < widthBoundarySm.value)
 </script>
 
 <template>
@@ -299,7 +297,7 @@ const isMobile = computed(() => width.value < widthBoundarySm.value)
           </BaseTable>
         </div>
         <!-- 奖杯 -->
-        <div v-else-if="tab === '2'" class="trophies-wrap" :class="{ 'is-mobile': isMobile }">
+        <div v-else-if="tab === '2'" class="trophies-wrap" :class="{ 'is-mobile': isLessThanSm }">
           <div class="trophies-title">
             <p class="title-left">
               <BaseIcon name="chess-air-bonus" />
@@ -478,6 +476,7 @@ const isMobile = computed(() => width.value < widthBoundarySm.value)
             font-weight: var(--tg-font-weight-semibold);
             display: flex;
             align-items: center;
+            padding: var(--tg-spacing-8) 0;
             > span {
               margin-left: var(--tg-spacing-8);
             }
@@ -514,6 +513,7 @@ const isMobile = computed(() => width.value < widthBoundarySm.value)
             display: flex;
             flex-direction: column;
             gap: .5rem;
+            line-height: 1.2;
             .card-top{
               color: vat(--tg-text-white);
               font-weight: var(--tg-font-weight-bold);
@@ -545,6 +545,7 @@ const isMobile = computed(() => width.value < widthBoundarySm.value)
             display: flex;
             align-items: center;
             gap: .25rem;
+            padding: var(--tg-spacing-5) 0;
           }
         }
       }
@@ -557,6 +558,8 @@ const isMobile = computed(() => width.value < widthBoundarySm.value)
         display: flex;
         justify-content: right;
         align-items: center;
+        line-height: 1.5;
+        padding: var(--tg-spacing-4) 0;
       }
     }
   }

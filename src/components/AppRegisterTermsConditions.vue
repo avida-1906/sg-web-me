@@ -7,7 +7,9 @@ interface IRegParams {
   parent_id?: string
   device_number: string
 }
+
 const closeDialog = inject('closeDialog', () => {})
+
 const { t } = useI18n()
 const appStore = useAppStore()
 const { bool: isRead, setTrue: setReadTrue } = useBoolean(false)
@@ -16,7 +18,6 @@ const { openLoginDialog } = useLoginDialog()
 const { errorMessage: checkedErrorMsg, validate: valiChecked } = useField<string>('checkbox', () => {
   if (!checkboxValue.value)
     return t('agree_terms_conditions')
-
   return ''
 })
 
