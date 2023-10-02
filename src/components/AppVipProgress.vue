@@ -1,11 +1,12 @@
 <script setup lang='ts'>
 interface IVipProgressData {
-  percent?: number // vip进度百分比
-  currentLevel?: number // 当前vip级别
+  percent: number // vip进度百分比
+  currentLevel: number // 当前vip级别
 }
 interface Props {
   vipProgressData: IVipProgressData
 }
+
 const props = withDefaults(defineProps<Props>(), {
   vipProgressData: () => {
     return {
@@ -14,6 +15,7 @@ const props = withDefaults(defineProps<Props>(), {
     }
   },
 })
+
 const levels = [
   { level: 0, icon: 'chat-star-bronze', label: '暂无级别' },
   { level: 1, icon: 'chat-star-bronze', label: '铜' },
@@ -21,11 +23,12 @@ const levels = [
   { level: 3, icon: 'chat-star-gold', label: '金' },
   { level: 4, icon: 'chat-star-bronze', label: '暂无级别' },
 ]
+
 const currentInfo = computed(() => {
   return levels.find(i => i.level === props.vipProgressData.currentLevel)
 })
 const nextInfo = computed(() => {
-  return levels.find(i => i.level === (props.vipProgressData.currentLevel! + 1))
+  return levels.find(i => i.level === (props.vipProgressData.currentLevel + 1))
 })
 </script>
 

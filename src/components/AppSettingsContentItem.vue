@@ -4,10 +4,12 @@ interface Props {
   badge?: string // 标签
   lastOne?: boolean // 最后一个
 }
+
 const props = withDefaults(defineProps<Props>(), {
   lastOne: false,
 })
 const emit = defineEmits(['submit'])
+
 const onSubmit = function () {
   emit('submit')
 }

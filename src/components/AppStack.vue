@@ -6,6 +6,7 @@ interface Props {
     total: number // 总数
   }
 }
+
 const props = withDefaults(defineProps<Props>(), {
   paginationData() {
     return {
@@ -15,8 +16,8 @@ const props = withDefaults(defineProps<Props>(), {
     }
   },
 })
-
 const emit = defineEmits(['previous', 'next'])
+
 const maxPageNumber = computed(() => {
   return Math.ceil(props.paginationData.total / props.paginationData.pageSize)
 })
@@ -46,7 +47,6 @@ const toNext = function () {
 
 <style lang='scss' scoped>
 .app-pagination{
-  // margin-top: var(--tg-spacing-25);
   display: flex;
   justify-content: center;
   align-items: center;

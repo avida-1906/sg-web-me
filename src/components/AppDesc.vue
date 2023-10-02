@@ -1,12 +1,28 @@
 <script setup lang="ts">
+interface ITabItem {
+  label: string
+  link: string
+}
+interface Column {
+  title?: string
+  width?: number | string
+  dataIndex: string
+  slot?: string
+  align?: 'left' | 'center' | 'right'
+}
+
 // interface Props {
 // }
 // const props = withDefaults(defineProps<Props>(), {
 // })
 // const emit = defineEmits(['update:modelValue'])
 
-// 内容展开
 const { bool: showContent, toggle: toggleShowContent } = useBoolean(true)
+const { bool: loading, setFalse: setLoadingFalse } = useBoolean(true)
+const {
+  widthBoundaryXs,
+  appContentWidth,
+} = storeToRefs(useWindowStore())
 
 const tab = ref('4')
 const tabList = [
@@ -15,11 +31,6 @@ const tabList = [
   { value: '3', label: '挑战' },
   { value: '4', label: '描述' },
 ]
-interface ITabItem {
-  label: string
-  link: string
-}
-// 标签
 const tagList = ref<ITabItem[]>([
   { label: '购买奖励回合', link: '#' },
   { label: 'Hacksaw Gaming', link: '#' },
@@ -29,15 +40,6 @@ const tagList = ref<ITabItem[]>([
   { label: '老虎机', link: '#' },
   { label: '切换波动性', link: '#' },
 ])
-
-interface Column {
-  title?: string
-  width?: number | string
-  dataIndex: string
-  slot?: string
-  align?: 'left' | 'center' | 'right'
-}
-// 大赢家-幸运赢家 head
 const columns = ref<Column[]>([
   {
     title: '排名',
@@ -82,9 +84,11 @@ const columns = ref<Column[]>([
     align: 'right',
   },
 ])
-
-const { bool: loading, setFalse: setLoadingFalse } = useBoolean(true)
 const tableData: any = ref([])
+
+const isXxs = computed(() => appContentWidth.value <= 478)
+const isXs = computed(() => appContentWidth.value <= widthBoundaryXs.value)
+
 onMounted(() => {
   setTimeout(() => {
     tableData.value = [
@@ -120,12 +124,6 @@ onMounted(() => {
     setLoadingFalse()
   }, 3000)
 })
-
-const {
-  width,
-  isXs,
-} = storeToRefs(useWindowStore())
-const isXxs = computed(() => width.value <= 478)
 </script>
 
 <template>

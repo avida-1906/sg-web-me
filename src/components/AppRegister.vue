@@ -3,6 +3,7 @@ const closeDialog = inject('closeDialog', () => {})
 
 const { t } = useI18n()
 const { bool: checkboxValue } = useBoolean(false)
+const { bool: pwdStatus, setBool: setPwdStatus } = useBoolean(false)
 const { openTermsConditionsDialog } = useTermsConditionsDialog()
 const { bool: isShowPasswordVerify, setTrue: setShowPasswordVerifyTrue, setFalse: setShowPasswordVerifyFalse } = useBoolean(false)
 const { value: email, errorMessage: emailErrorMsg, validate: valiEmail } = useField<string>('email', (value) => {
@@ -48,7 +49,6 @@ const { value: password, errorMessage: pwdErrorMsg, validate: valiPassword } = u
 
 const birthdayInputRef = ref()
 const birthday = ref('')
-const { bool: pwdStatus, setBool: setPwdStatus } = useBoolean(false)
 
 async function getMemberReg() {
   await valiEmail()

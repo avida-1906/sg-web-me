@@ -1,18 +1,16 @@
 <script setup lang='ts'>
-const props = withDefaults(defineProps<Props>(), {
-  type: 'login',
-})
-
-const { t } = useI18n()
-
 interface Props {
   type?: string
 }
+
+const props = withDefaults(defineProps<Props>(), {
+  type: 'login',
+})
 const closeDialog = inject('closeDialog', () => {})
 
+const { t } = useI18n()
 const { openLoginDialog } = useLoginDialog()
 const { openRegisterDialog } = useRegisterDialog()
-// const { openTermsConditionsDialog } = useTermsConditionsDialog()
 
 async function toRegister() {
   closeDialog()
@@ -23,7 +21,6 @@ async function toLogin() {
   closeDialog()
   await nextTick()
   openLoginDialog()
-  // openTermsConditionsDialog()
 }
 </script>
 

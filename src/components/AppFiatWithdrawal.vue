@@ -1,28 +1,37 @@
 <script setup lang='ts'>
+interface IBankOption {
+  label: string
+  icon: string
+  value: string
+}
+
 // interface Props {
 // }
 // const props = withDefaults(defineProps<Props>(), {
 // })
 // const emit = defineEmits(['update:modelValue'])
+
 const { bool: isBind } = useBoolean(true)
+const { isLessThanXs } = storeToRefs(useWindowStore())
+
+const amount = ref('')
 const username = ref('')
 const accountNumber = ref('')
 const currentType = ref('1')
+const currentBank = ref('')
 const depositTypeData = ref([
   { label: '银行转账', icon: 'fiat-bank', value: '1' },
   { label: '支付宝', icon: 'fiat-alipay', value: '2' },
   { label: '微信', icon: 'fiat-wechat', value: '3' },
 ])
-// 银行选择
-const currentBank = ref('')
-const bankSelectOptions = [
+const bankSelectOptions: IBankOption[] = [
   { label: '中国工商', icon: 'fiat-bank', value: '1' },
   { label: '中国建设', icon: 'fiat-bank', value: '2' },
   { label: '中国银行', icon: 'fiat-bank', value: '3' },
   { label: '光大银行', icon: 'fiat-bank', value: '4' },
 ]
-// 出款银行
 const selectBank = ref('')
+
 const bindBanks = computed(() => {
   return [
     { label: '中国农商银行', icon: 'fiat-bank', value: '8888 8888 8888 8888' },
@@ -32,9 +41,6 @@ const bindBanks = computed(() => {
     return item
   })
 })
-const amount = ref('')
-// < 638
-const { isXs } = storeToRefs(useWindowStore())
 </script>
 
 <template>
@@ -68,10 +74,10 @@ const { isXs } = storeToRefs(useWindowStore())
         <BaseLabel v-if="currentType === '1'" label="出款银行卡" must>
           <BaseSelect v-model="selectBank" :options="bindBanks" must banks theme popper>
             <template #option="{ data: { item, parentWidth } }">
-              <div class="bank-options scroll-x" :style="{ width: `${parentWidth + 24}px` }">
+              <div class="scroll-x bank-options" :style="{ width: `${parentWidth + 24}px` }">
                 <div class="option-row">
                   <BaseIcon name="fiat-bank" />
-                  <div class="bank-info" :class="{ 'is-mobile': isXs }">
+                  <div class="bank-info" :class="{ 'is-mobile': isLessThanXs }">
                     <p>{{ item.label }}</p>
                     <p>{{ item.value }}</p>
                   </div>
