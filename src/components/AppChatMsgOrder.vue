@@ -11,7 +11,7 @@ defineProps<Props>()
   <BaseButton type="text">
     <span class="chat-msg-order">
       <span class="label">{{ type }}: #</span>
-      <span class="order">{{ order }}</span>
+      <span class="order">{{ application.formatNumber(order) }}</span>
     </span>
   </BaseButton>
 </template>
@@ -25,6 +25,7 @@ button {
   line-height: inherit;
 }
 .chat-msg-order {
+  text-decoration: underline;
   .label {
     text-transform: capitalize;
   }
