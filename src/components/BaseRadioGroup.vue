@@ -5,12 +5,16 @@ interface Props {
   shape?: 'square' | 'circle'
   disabled?: boolean
 }
+
 const props = withDefaults(defineProps<Props>(), {
   columns: 3,
   shape: 'circle',
   inline: true,
 })
+
 const emit = defineEmits(['update:modelValue', 'change'])
+
+const sValue = computed(() => props.modelValue)
 
 function onSelect(value: string | number) {
   if (props.modelValue === value)
@@ -20,7 +24,6 @@ function onSelect(value: string | number) {
   emit('change', value)
 }
 
-const sValue = computed(() => props.modelValue)
 provide('onSelect', onSelect)
 provide('sValue', sValue)
 provide('shape', props.shape)

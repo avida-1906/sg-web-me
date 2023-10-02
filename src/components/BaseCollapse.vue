@@ -4,13 +4,14 @@ interface Props {
   title?: string // 标题
   autoShow?: boolean // 是否自动展开
 }
+
 const props = withDefaults(defineProps<Props>(), {
   icon: '',
   title: '这是标题',
   autoShow: false,
 })
-const emit = defineEmits(['clickHead'])
 
+const emit = defineEmits(['clickHead'])
 const { bool: isShow, setBool: setAutoShowBool } = useBoolean(props.autoShow)
 
 function handleClickHeader() {

@@ -3,10 +3,7 @@ interface Props {
   ratio?: string
   width?: string
 }
-// validator: (v) => {
-//   const [w, h] = v.split(":").map(v => parseInt(v))
-//   return !Number.isNaN(w) && !Number.isNaN(h)
-// }
+
 const props = withDefaults(defineProps<Props>(), {
   ratio: '1/1',
   width: '',
@@ -16,9 +13,6 @@ const { bool: supportsFlex, setBool } = useBoolean(false)
 
 // 检测supportsCSS方法，IE不存在方法，Opera使用了一个不同的方法名supportsCSS
 const supportsCSS = !!((window.CSS && window.CSS.supports) || window.supportsCSS || false)
-if (supportsCSS)
-  setBool(CSS.supports('aspect-ratio', '1/1')) // 浏览器是否支持这个css
-
 const [w, h] = props.ratio.split('/').map(v => Number.parseInt(v))
 
 const componentStyle = computed(() => {
@@ -32,6 +26,9 @@ const innerStyle = computed(() => {
     paddingTop: `${(h / w) * 100}%`,
   }
 })
+
+if (supportsCSS)
+  setBool(CSS.supports('aspect-ratio', '1/1')) // 浏览器是否支持这个css
 </script>
 
 <template>

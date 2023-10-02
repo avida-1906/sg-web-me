@@ -6,6 +6,7 @@ interface Props {
   autoShow?: boolean
   domId?: string
 }
+
 const props = withDefaults(defineProps<Props>(), {
   menuInfo: () => {
     return {
@@ -16,12 +17,16 @@ const props = withDefaults(defineProps<Props>(), {
   },
   autoShow: false,
 })
+
 const emit = defineEmits(['clickHead', 'clickItem', 'radioChange'])
+const { bool: isShow, setBool: setAutoShowBool } = useBoolean(props.autoShow)
 
 const radioValue = ref(props.menuInfo.value === undefined ? '' : props.menuInfo.value)
 
-// const isShow = ref()
-const { bool: isShow, setBool: setAutoShowBool } = useBoolean(props.autoShow)
+const showDown = computed(() => {
+  return props.menuInfo?.list?.length
+})
+
 function handleClickHeader() {
   setAutoShowBool(!isShow.value)
   emit('clickHead', props.menuInfo)
@@ -29,10 +34,6 @@ function handleClickHeader() {
 function handleClickItem(item: any) {
   emit('clickItem', item)
 }
-const showDown = computed(() => {
-  return props.menuInfo?.list?.length
-})
-
 function close() {
   setAutoShowBool(false)
 }

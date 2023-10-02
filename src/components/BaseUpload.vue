@@ -6,6 +6,7 @@ interface Props {
   // showDelete?: boolean // 是否显示删除按钮
   imageUrl?: string // 显示图片地址
 }
+
 const props = withDefaults(defineProps<Props>(), {
   imgType: 'frontId',
   disabled: false,
@@ -13,7 +14,9 @@ const props = withDefaults(defineProps<Props>(), {
   // showDelete: true,
   imageUrl: '',
 })
+
 const emit = defineEmits(['selectFile', 'deleteFile'])
+
 const getBackground = computed(() => {
   switch (props.imgType) {
     case 'frontId':
@@ -26,7 +29,7 @@ const getBackground = computed(() => {
       return 'fund-bg'
   }
 })
-// const imageUrl: any = ref(props.url)
+
 function changFile(event: any) {
   const file = event.target.files[0]
   if (file) {

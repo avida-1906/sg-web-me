@@ -1,6 +1,7 @@
 <script lang="ts" setup>
-const noticeList = [{}]
 const { closeRightSidebar } = useRightSidebar()
+
+const noticeList = [{}]
 </script>
 
 <template>

@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 const { t } = useI18n()
+
 const tabList = reactive([
   { label: t('finance_other_tab_all'), value: '' },
   { label: t('finance_other_tab_bonus'), value: 'bonus' },

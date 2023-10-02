@@ -6,9 +6,7 @@ const props = withDefaults(defineProps<Props>(), {
   mode: 'default',
 })
 
-const {
-  appContentWidth,
-} = storeToRefs(useWindowStore())
+const { appContentWidth } = storeToRefs(useWindowStore())
 
 const scrollRef = ref()
 
