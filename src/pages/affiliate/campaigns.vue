@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-const showContent = function () {}
 const campaignsList = [
   {
     title: '活动名称01',
@@ -8,6 +7,8 @@ const campaignsList = [
     title: '活动名称02',
   },
 ]
+
+const showContent = function () {}
 </script>
 
 <template>

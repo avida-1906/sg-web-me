@@ -8,8 +8,6 @@ interface Props {
 withDefaults(defineProps<Props>(), {})
 
 const { bool: showContent, toggle } = useBoolean(false)
-// const appStore = useAppStore()
-// const { isLogin } = storeToRefs(appStore)
 
 function change() {
   loadLanguageAsync(EnumLanguage['vi-VN'])

@@ -1,11 +1,4 @@
 <script lang="ts" setup>
-withDefaults(defineProps<Props>(), {
-  walletBtn: false,
-  showBalance: true,
-  network: false,
-})
-
-const emit = defineEmits(['change'])
 interface Currency {
   balance: string | number
   icon: string
@@ -19,14 +12,21 @@ interface Props {
   network?: boolean
 }
 
+withDefaults(defineProps<Props>(), {
+  walletBtn: false,
+  showBalance: true,
+  network: false,
+})
+
+const emit = defineEmits(['change'])
 const { openWalletDialog } = useWalletDialog()
+// 下拉搜索是否显示
+const { bool: isMenuShown } = useBoolean(false)
 const { appContentWidth } = storeToRefs(useWindowStore())
 
 const currencyOptions: Ref<Currency[]> = ref([])
 // 搜索内容
 const searchValue = ref('')
-// 下拉搜索是否显示
-const { bool: isMenuShown } = useBoolean(false)
 // 当前选择币种
 const activeCurrency: Ref<Currency> = ref({
   balance: '',

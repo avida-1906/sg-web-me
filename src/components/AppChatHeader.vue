@@ -4,6 +4,7 @@ interface Room {
   label: string
   value: string
 }
+
 const chatRoomList = reactive<Array<Room>>([
   { icon: 'cn', label: '中文', value: 'cn' },
   { icon: 'vn', label: 'Tiếng Việt', value: 'vn' },

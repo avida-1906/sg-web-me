@@ -1,33 +1,30 @@
 <script setup lang='ts'>
 const emit = defineEmits(['gameTypeChange', 'close'])
 const { isMobile } = storeToRefs(useWindowStore())
+const { leftIsExpand } = useLeftSidebar()
 const { t } = useI18n()
 const route = useRoute()
+const { bool: isPopperShow, setTrue, setFalse } = useBoolean(false)
+const { bool: isShowOverlay, setTrue: showOverlayTrue, setFalse: showOverlayFalse } = useBoolean(false)
+const { bool: isClear, setTrue: setClearTrue } = useBoolean(true)
+const { bool: isInputing, setTrue: setInputingTrue } = useBoolean(false)
 const initCasino = computed(() => route.name?.toString().includes('casino'))
 const initSports = computed(() => route.name?.toString().includes('sports'))
+
 // 搜索栏
 const gameType = ref(initCasino.value ? '1' : initSports.value ? '2' : '1')
 const gameTypeList = [
   { label: t('casino'), value: '1' },
   { label: t('sports'), value: '2' },
 ]
-const gameLabel = computed(() => gameTypeList.find(a => a.value === gameType.value)?.label ?? '-')
-const isCasino = computed(() => gameType.value === '1')
-const isSports = computed(() => gameType.value === '2')
-const { bool: isPopperShow, setTrue, setFalse } = useBoolean(false)
-function selectGameType(v: string) {
-  gameType.value = v
-  emit('gameTypeChange', v)
-}
-const { bool: isShowOverlay, setTrue: showOverlayTrue, setFalse: showOverlayFalse } = useBoolean(false)
-
 const searchValue = ref('')
-const { bool: isClear, setTrue: setClearTrue } = useBoolean(true)
-const { bool: isInputing, setTrue: setInputingTrue } = useBoolean(false)
-
 // 近期搜索关键字
 const keywordLive = ref(Local.get<any[]>(STORAGE_SEARCH_KEYWORDS_LIVE)?.value ?? [])
 const keywordSports = ref(Local.get<any[]>(STORAGE_SEARCH_KEYWORDS_SPORTS)?.value ?? [])
+
+const gameLabel = computed(() => gameTypeList.find(a => a.value === gameType.value)?.label ?? '-')
+const isCasino = computed(() => gameType.value === '1')
+const isSports = computed(() => gameType.value === '2')
 const keywordList = computed(() => {
   if (isCasino.value)
     return keywordLive.value
@@ -35,17 +32,6 @@ const keywordList = computed(() => {
     return keywordSports.value
   return []
 })
-function clearKeyword() {
-  if (isCasino.value) {
-    keywordLive.value.length = 0
-    Local.remove(STORAGE_SEARCH_KEYWORDS_LIVE)
-  }
-  else if (isSports.value) {
-    keywordSports.value.length = 0
-    Local.remove(STORAGE_SEARCH_KEYWORDS_SPORTS)
-  }
-}
-
 const { data: casinoGamesData, run: runSearchCasinoGames } = useRequest(() => ApiMemberGameSearch({ w: searchValue.value }), {
   manual: true,
   debounceInterval: 500,
@@ -62,6 +48,16 @@ const { data: casinoGamesData, run: runSearchCasinoGames } = useRequest(() => Ap
     Local.set(STORAGE_SEARCH_KEYWORDS_LIVE, keywordLive.value)
   },
 })
+// 搜索结果
+const resultData = computed(() => {
+  if (isClear.value)
+    return null
+  if (isCasino.value && casinoGamesData.value && casinoGamesData.value.d)
+    return casinoGamesData.value.d
+
+  return null
+})
+
 function onBaseSearchInput() {
   if (searchValue.value.length < 3)
     return setClearTrue()
@@ -85,18 +81,22 @@ function onCloseKeyword(k: string) {
     Local.set(STORAGE_SEARCH_KEYWORDS_SPORTS, keywordSports.value)
   }
 }
-// 搜索结果
-const resultData = computed(() => {
-  if (isClear.value)
-    return null
-  if (isCasino.value && casinoGamesData.value && casinoGamesData.value.d)
-    return casinoGamesData.value.d
-
-  return null
-})
+function selectGameType(v: string) {
+  gameType.value = v
+  emit('gameTypeChange', v)
+}
+function clearKeyword() {
+  if (isCasino.value) {
+    keywordLive.value.length = 0
+    Local.remove(STORAGE_SEARCH_KEYWORDS_LIVE)
+  }
+  else if (isSports.value) {
+    keywordSports.value.length = 0
+    Local.remove(STORAGE_SEARCH_KEYWORDS_SPORTS)
+  }
+}
 
 // 关闭方法
-const { leftIsExpand } = useLeftSidebar()
 provide('closeSearch', () => emit('close'))
 provide('closeSearchH5', () => leftIsExpand.value = !leftIsExpand.value)
 </script>
