@@ -1,6 +1,10 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
 
 export const useAppStore = defineStore('app', () => {
+  const { list: platformList } = useList(ApiMemberPlatformList, {
+    manual: false,
+  })
+
   /**
    * @type {boolean}
    * @description 是否登录，程序用这个变量来判断是否登录
@@ -13,7 +17,6 @@ export const useAppStore = defineStore('app', () => {
     Local.set(STORAGE_TOKEN_KEY, _token)
     setLoginTrue()
   }
-
   function getToken() {
     const _token = Local.get<string | undefined>(STORAGE_TOKEN_KEY)?.value
     if (_token)
@@ -21,7 +24,6 @@ export const useAppStore = defineStore('app', () => {
     else
       return undefined
   }
-
   function removeToken() {
     Local.remove(STORAGE_TOKEN_KEY)
     setLoginFalse()
@@ -29,6 +31,7 @@ export const useAppStore = defineStore('app', () => {
 
   return {
     isLogin,
+    platformList,
     setToken,
     setLoginTrue,
     setLoginFalse,
