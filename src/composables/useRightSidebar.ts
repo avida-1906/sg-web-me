@@ -12,28 +12,6 @@ export const useRightSidebar = createGlobalState(() => {
   // 显示内容，聊天室，投注单，通知
   const currentRightSidebarContent = ref<EnumRightSidebarContent | null>(null)
 
-  /**
-   * 切换右侧侧边栏展开状态
-   */
-  // function toggleRightSidebarExpandStatus(rightSidebarContent?: EnumRightSidebarContent) {
-  //   if (!rightIsExpand.value) {
-  //     // 打开右侧侧边栏
-  //     setRightIsExpandTrue()
-  //     setTimeout(() => {
-  //       setRightContainerIs0False()
-
-  //       if (rightSidebarContent)
-  //         currentRightSidebarContent.value = rightSidebarContent
-  //     }, 30)
-  //   }
-  //   else {
-  //     setRightContainerIs0True()
-  //     setTimeout(() => {
-  //       // 关闭右侧侧边栏
-  //       setRightIsExpandFalse()
-  //     }, 200)
-  //   }
-
   function openRightSidebar(rightSidebarContent?: EnumRightSidebarContent) {
     // 打开右侧侧边栏
     setRightIsExpandTrue()
