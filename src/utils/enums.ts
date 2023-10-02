@@ -223,8 +223,18 @@ export enum EnumCurrency {
 export enum EnumCasinoGameType {
   /** 真人 */
   LIVE = 'live',
-  /** 老虎机 */
+  /** 电子 */
   SLOT = 'slot',
+}
+
+/**
+ * casino游戏类型接口参数枚举
+ */
+export enum EnumCasinoApiGameType {
+  /** 真人 */
+  LIVE = 1,
+  /** 电子 */
+  SLOT = 3,
 }
 
 /**

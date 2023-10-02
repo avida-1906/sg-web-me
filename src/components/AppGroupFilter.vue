@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { EnumCasinoGameType, EnumCasinoSortType } from '~/utils/enums'
+import { EnumCasinoApiGameType, EnumCasinoGameType, EnumCasinoSortType } from '~/utils/enums'
 
 interface Props {
   gameType: string
@@ -7,10 +7,11 @@ interface Props {
 }
 const props = defineProps<Props>()
 
-const emit = defineEmits(['sortTypeChange'])
+const emit = defineEmits(['sortTypeChange', 'platTypeChecked'])
 
 const { t } = useI18n()
 const { appContentWidth } = storeToRefs(useWindowStore())
+const { platformList } = storeToRefs(useAppStore())
 
 const groupFilterOuter = ref()
 const selectValue = ref(props.sortType)
@@ -20,11 +21,34 @@ const selectOptions = [
   { icon: 'chess-bonus-rounds', label: t('casino_sort_popular'), value: EnumCasinoSortType.hot },
   { icon: 'chess-slot-machine', label: t('casino_sort_featured'), value: EnumCasinoSortType.recommend },
 ]
+const platformCheckedValues = ref([])
 
 const isCasinoGame = computed(() => (Object.values(EnumCasinoGameType) as Array<string>).includes(props.gameType))
+const platformOptions = computed(() => {
+  return platformList.value.map((p) => {
+    const label = p.en_name
+    const value = p.id
+    const count = p.game_num
+    const isChecked = false
+    return { ...p, label, value, count, isChecked }
+  }).filter((item) => {
+    return props.gameType === 'live' ? item.game_type === EnumCasinoApiGameType.LIVE : props.gameType === 'slot' ? item.game_type === EnumCasinoApiGameType.SLOT : !!item
+  })
+})
 
 function onSortSelect(v: string) {
   emit('sortTypeChange', v)
+}
+function onCheckedPlatform(v: string[]) {
+  if (v.length === 1)
+    return emit('platTypeChecked', v[0])
+  emit('platTypeChecked', undefined)
+}
+function resetPlatformChecked() {
+  if (!platformCheckedValues.value.length)
+    return
+  platformCheckedValues.value = []
+  emit('platTypeChecked', undefined)
 }
 </script>
 
@@ -40,15 +64,37 @@ function onSortSelect(v: string) {
           <span class="txt">{{ $t('casino_filter_label') }}</span>
         </div>
         <div>
-          <BaseCheckPop>
+          <VDropdown placement="bottom">
             <BaseButton bg-style="dark" size="sm">
               <div class="btn-arrow-down">
                 <span>{{ $t('casino_provider') }}</span>
-                <BaseBadge :count="2" mode="active" />
+                <BaseBadge :count="platformOptions.length" mode="active" />
                 <BaseIcon name="uni-arrow-down" />
               </div>
             </BaseButton>
-          </BaseCheckPop>
+            <template #popper>
+              <div>
+                <section class="base-check-pop-inner">
+                  <BaseCheckboxGroup v-model="platformCheckedValues" :list="platformOptions" size="mid" @check="onCheckedPlatform">
+                    <template #default="{ item }">
+                      <div class="check-item-label" :class="{ active: item.isChecked }">
+                        <div>{{ item.label }}</div>
+                        <div class="">
+                          <BaseBadge
+                            :count="item.count"
+                            :mode="platformCheckedValues.length ? (item.isChecked ? 'active' : 'black') : 'active'"
+                          />
+                        </div>
+                      </div>
+                    </template>
+                  </BaseCheckboxGroup>
+                </section>
+                <div class="clear-all" @click="resetPlatformChecked">
+                  {{ $t('clear_all') }}
+                </div>
+              </div>
+            </template>
+          </VDropdown>
         </div>
       </template>
       <template v-else>
@@ -77,6 +123,39 @@ function onSortSelect(v: string) {
 </template>
 
 <style lang="scss" scoped>
+// 游戏提供商
+.clear-all {
+  border-top: 1px solid var(--tg-border-color-grey);
+  width: 100%;
+  padding: var(--tg-spacing-button-padding-horizontal-xs) var(--tg-spacing-button-padding-vertical-xs);
+  font-weight: var(--tg-font-weight-semibold);
+  text-align: center;
+  font-size: var(--tg-font-size-default);
+  color: var(--tg-secondary-main);
+  cursor: pointer;
+}
+
+.base-check-pop-inner {
+  padding: var(--tg-spacing-button-padding-horizontal-xs);
+  display: flex;
+  flex-direction: column;
+}
+
+.check-item-label {
+  display: inline-flex;
+  align-items: center;
+  font-weight: var(--tg-font-weight-semibold);
+  font-size: var(--tg-font-size-default);
+  color: var(--tg-secondary-grey);
+  transition: all 0.2s;
+  letter-spacing: 0;
+  padding-top: 6px;
+  padding-bottom: 4px;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+// 排序
 .flex-center-bet {
   display: flex;
   align-items: center;

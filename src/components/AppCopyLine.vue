@@ -2,6 +2,7 @@
 interface Props {
   msg: string
 }
+
 const props = withDefaults(defineProps<Props>(), {
 })
 // const emit = defineEmits(['update:modelValue'])

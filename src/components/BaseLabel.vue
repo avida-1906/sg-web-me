@@ -9,6 +9,7 @@ interface Props {
   rightText?: string // 右侧文本
   icon?: string // icon
 }
+
 const props = withDefaults(defineProps<Props>(), {
   contentColor: '--tg-text-warn',
   contentSize: '12',

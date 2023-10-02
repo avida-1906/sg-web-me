@@ -25,6 +25,7 @@ declare global {
   const Big: typeof import('big.js')['Big']
   const CasinoGameType: typeof import('./utils/enums')['CasinoGameType']
   const EffectScope: typeof import('vue')['EffectScope']
+  const EnumCasinoApiGameType: typeof import('./utils/enums')['EnumCasinoApiGameType']
   const EnumCasinoGameType: typeof import('./utils/enums')['EnumCasinoGameType']
   const EnumCasinoSortType: typeof import('./utils/enums')['EnumCasinoSortType']
   const EnumCurrency: typeof import('./utils/enums')['EnumCurrency']
@@ -438,6 +439,7 @@ declare module 'vue' {
     readonly ApiSmsSend: UnwrapRef<typeof import('./apis/index')['ApiSmsSend']>
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly EnumCasinoApiGameType: UnwrapRef<typeof import('./utils/enums')['EnumCasinoApiGameType']>
     readonly EnumCasinoGameType: UnwrapRef<typeof import('./utils/enums')['EnumCasinoGameType']>
     readonly EnumCasinoSortType: UnwrapRef<typeof import('./utils/enums')['EnumCasinoSortType']>
     readonly EnumCurrency: UnwrapRef<typeof import('./utils/enums')['EnumCurrency']>
@@ -837,6 +839,7 @@ declare module '@vue/runtime-core' {
     readonly ApiSmsSend: UnwrapRef<typeof import('./apis/index')['ApiSmsSend']>
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly EnumCasinoApiGameType: UnwrapRef<typeof import('./utils/enums')['EnumCasinoApiGameType']>
     readonly EnumCasinoGameType: UnwrapRef<typeof import('./utils/enums')['EnumCasinoGameType']>
     readonly EnumCasinoSortType: UnwrapRef<typeof import('./utils/enums')['EnumCasinoSortType']>
     readonly EnumCurrency: UnwrapRef<typeof import('./utils/enums')['EnumCurrency']>

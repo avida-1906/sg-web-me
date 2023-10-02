@@ -62,8 +62,8 @@ const isFirst = computed(() => props.index === 0)
       </div>
       <div v-else class="odds-payout">
         <div class="odds">
-          <div class="icon arrow-odd odd-rise">
-            <BaseIcon name="uni-tri-down" />
+          <div class="icon arrow-odd odd-up">
+            <BaseIcon name="uni-tri-up" />
           </div>
           <span>2.35</span>
         </div>

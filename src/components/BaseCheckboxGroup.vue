@@ -17,7 +17,7 @@ const props = withDefaults(defineProps<Props>(), {
   shape: 'square',
   size: 'small',
 })
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(['update:modelValue', 'check'])
 function checkValue(v: string, item: CheckItem) {
   const isChecked = props.modelValue.findIndex(a => a === v) > -1
   item.isChecked = isChecked
@@ -32,6 +32,7 @@ function onItemChecked(v: string, item: CheckItem) {
     arr.push(v)
 
   emit('update:modelValue', arr)
+  emit('check', arr)
 }
 </script>
 

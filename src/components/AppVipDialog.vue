@@ -6,8 +6,9 @@ interface IVipProgressData {
 interface Props {
   vipProgressData?: IVipProgressData
 }
+
 const props = withDefaults(defineProps<Props>(), {
-  vipProgressData: () => { // vip进度条
+  vipProgressData: () => {
     return {
       percent: 60,
       currentLevel: 3,
@@ -21,9 +22,6 @@ const tabList = [
   { label: '进展程度', value: '1' },
   { label: '福利', value: '2' },
 ]
-const showContent = function () {
-  console.log('点击')
-}
 const welfareList = [
   {
     title: '铜',
@@ -83,6 +81,10 @@ const welfareList = [
   },
 
 ]
+
+const showContent = function () {
+  console.log('点击')
+}
 </script>
 
 <template>

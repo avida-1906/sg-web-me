@@ -2,6 +2,7 @@
 interface ITableData {
   text?: string
   empty?: boolean
+  sticky?: boolean
   child?: {
     icon?: string
     text?: string
@@ -9,6 +10,7 @@ interface ITableData {
 }
 interface IMenuData {
   title: string
+  label: string
   value: string
 }
 
@@ -20,6 +22,7 @@ const {
 const tableData: ITableData[] = [
   {
     text: 'VIP 级别对照',
+    sticky: true,
   },
   {
     child: [
@@ -67,6 +70,7 @@ const tableData: ITableData[] = [
   },
   {
     text: '投注金额',
+    sticky: true,
   },
   {
     text: '1 万美元',
@@ -85,6 +89,7 @@ const tableData: ITableData[] = [
   },
   {
     text: '月度奖金',
+    sticky: true,
   },
   {
     child: [
@@ -126,6 +131,7 @@ const tableData: ITableData[] = [
   },
   {
     text: '升级奖金',
+    sticky: true,
   },
   {
     child: [
@@ -167,6 +173,7 @@ const tableData: ITableData[] = [
   },
   {
     text: '返水',
+    sticky: true,
   },
   {
     child: [
@@ -208,6 +215,7 @@ const tableData: ITableData[] = [
   },
   {
     text: '周度奖金',
+    sticky: true,
   },
   {
     child: [
@@ -249,6 +257,7 @@ const tableData: ITableData[] = [
   },
   {
     text: '每日奖金/充值奖金',
+    sticky: true,
   },
   {
     empty: true,
@@ -279,6 +288,7 @@ const tableData: ITableData[] = [
   },
   {
     text: '奖金增长',
+    sticky: true,
   },
   {
     empty: true,
@@ -316,6 +326,7 @@ const tableData: ITableData[] = [
   },
   {
     text: '专属 VIP 服务代表',
+    sticky: true,
   },
   {
     empty: true,
@@ -342,6 +353,7 @@ const tableData: ITableData[] = [
   },
   {
     text: 'Bespoke 奖金',
+    sticky: true,
   },
   {
     empty: true,
@@ -367,14 +379,17 @@ const menuValue = ref('1')
 const menuData: IMenuData[] = [
   {
     title: '常规',
+    label: '常规',
     value: '1',
   },
   {
     title: '福利',
+    label: '福利',
     value: '2',
   },
   {
     title: 'VIP 服务代表',
+    label: 'VIP 服务代表',
     value: '3',
   },
 ]
@@ -385,7 +400,7 @@ const isSm = computed(() => appContentWidth.value < widthBoundarySm.value)
 <template>
   <div class="tg-vip-club">
     <div class="vip-banner">
-      <div class="banner-wrap" :class="{ 'is-sm': isSm }">
+      <div class="banner-wrap" :class="{ 'banner-is-sm': isSm }">
         <div class="banner-left">
           <p class="left-title">
             无与伦比的 VIP 体验
@@ -417,7 +432,7 @@ const isSm = computed(() => appContentWidth.value < widthBoundarySm.value)
         <p class="desc">
           成为 VIP 是个既简单又富有回报的过程
         </p>
-        <div class="t-steps">
+        <div class="t-steps" :class="{ 'steps-is-sm': isSm }">
           <div class="step-item">
             <div class="img-wrap">
               <BaseImage url="https://stake.com/_app/immutable/assets/Step1.387bc52a.jpg" />
@@ -463,19 +478,21 @@ const isSm = computed(() => appContentWidth.value < widthBoundarySm.value)
         <p class="desc">
           每次升级都能获得更棒的奖励
         </p>
-        <div class="a-table">
-          <div v-for="item, index in tableData" :key="index" class="table-item">
-            <template v-if="item.empty">
-              <!-- <BaseIcon name="uni-review" /> -->
-              <div class="empty" />
-            </template>
-            <template v-else>
-              {{ item.text }}
-              <div v-for="second, i in item.child" :key="i">
-                <BaseIcon v-if="second.icon" :name="second.icon" />
-                <span v-if="second.text">{{ second.text }}</span>
-              </div>
-            </template>
+        <div class="scroll-x">
+          <div class="a-table">
+            <div v-for="item, index in tableData" :key="index" class="table-item" :class="{ sticky: item.sticky }">
+              <template v-if="item.empty">
+                <!-- <BaseIcon name="uni-review" /> -->
+                <div class="empty" />
+              </template>
+              <template v-else>
+                {{ item.text }}
+                <div v-for="second, i in item.child" :key="i">
+                  <BaseIcon v-if="second.icon" :name="second.icon" />
+                  <span v-if="second.text">{{ second.text }}</span>
+                </div>
+              </template>
+            </div>
           </div>
         </div>
       </div>
@@ -487,9 +504,10 @@ const isSm = computed(() => appContentWidth.value < widthBoundarySm.value)
         <p class="desc">
           联系我们屡获殊荣的支持团队
         </p>
-        <div class="question-wrap">
+        <div class="question-wrap" :class="{ 'question-is-sm': isSm }">
           <div class="q-menu">
-            <BaseMenu v-model="menuValue" :data="menuData" />
+            <BaseMenu v-if="!isSm" v-model="menuValue" :data="menuData" />
+            <BaseTab v-else v-model="menuValue" :list="menuData" />
           </div>
           <div v-if="menuValue === '1'" class="q-content">
             <BaseCollapse title="为什么 Stake 的 VIP 计划是最出色的？">
@@ -665,6 +683,7 @@ const isSm = computed(() => appContentWidth.value < widthBoundarySm.value)
 
 <style lang="scss" scoped>
 .tg-vip-club {
+  width: 100%;
   .vip-banner{
     padding: var(--tg-spacing-56) 0;
     position: relative;
@@ -717,7 +736,7 @@ const isSm = computed(() => appContentWidth.value < widthBoundarySm.value)
           justify-content: center;
         }
       }
-      &.is-sm{
+      &.banner-is-sm{
         grid-template-areas:
         "headerImage"
         "headerText";
@@ -730,6 +749,7 @@ const isSm = computed(() => appContentWidth.value < widthBoundarySm.value)
     display: flex;
     flex-direction: column;
     gap: 4rem;
+    width: 100%;
     .vip-tutorial, .vip-award, .vip-question{
       .title{
         text-align: center;
@@ -750,6 +770,7 @@ const isSm = computed(() => appContentWidth.value < widthBoundarySm.value)
         display: grid;
         grid-auto-flow: column;
         gap: 3.5rem;
+        width: 100%;
         .step-item{
           p:nth-child(2){
             font-size: var(--tg-font-size-md);
@@ -768,6 +789,12 @@ const isSm = computed(() => appContentWidth.value < widthBoundarySm.value)
             box-shadow: var(--tg-box-shadow);
           }
         }
+        &.steps-is-sm{
+          grid-auto-flow: row;
+          .img-wrap{
+            margin: 0 0 var(--tg-spacing-26);
+          }
+        }
       }
     }
     .vip-award{
@@ -781,6 +808,7 @@ const isSm = computed(() => appContentWidth.value < widthBoundarySm.value)
         align-items: center;
         grid-gap: .125rem;
         margin-top: var(--tg-spacing-42);
+        min-width: 43rem;
         .table-item{
           width: 100%;
           height: 100%;
@@ -791,6 +819,9 @@ const isSm = computed(() => appContentWidth.value < widthBoundarySm.value)
           justify-content: center;
           align-items: center;
           gap: .5rem;
+          padding: var(--tg-spacing-16);
+          line-height: 24px;
+          text-align: center;
           &:has(span){
             flex-direction: column;
             gap: 0;
@@ -819,8 +850,13 @@ const isSm = computed(() => appContentWidth.value < widthBoundarySm.value)
       justify-content: flex-start;
       align-items: flex-start;
       gap: 1.5rem;
-      grid-template-columns: auto 1fr;
       margin-top: var(--tg-spacing-42);
+      &.question-is-sm{
+        grid-auto-flow: row;
+        justify-content: stretch;
+        align-items: center;
+        gap: .5rem;
+      }
       .q-content {
         padding: var(--tg-spacing-24);
         background-color: var(--tg-secondary-dark);
@@ -880,6 +916,10 @@ const isSm = computed(() => appContentWidth.value < widthBoundarySm.value)
       }
     }
   }
+}
+.sticky{
+  position: sticky;
+  left: 0;
 }
 </style>
 
