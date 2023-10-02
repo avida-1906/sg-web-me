@@ -109,8 +109,7 @@ class Application {
   /**
    * 通过指定的分隔符分割字符串
    * @param {string} numberStr 数字
-   * @param {string} groupSize 小数位数
-   * @param {string} separator 分隔符
+   * @param {IFormatNumberOptions} options 选项
    * @returns {string}
    */
   formatNumber(numberStr: string, options: IFormatNumberOptions = {}) {
