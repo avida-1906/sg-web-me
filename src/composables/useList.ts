@@ -24,7 +24,7 @@ export function useList<R extends IResponseList<unknown>, P extends unknown[]>(
   const total = ref(0)
   const page = ref(defaultPagination?.page || 1)
   const page_size = ref(defaultPagination?.page_size || Number(VITE_CASINO_HOME_PAGE_SIZE))
-  const list = ref<GetProperty<R, 'd'>>([])
+  const list = shallowRef<GetProperty<R, 'd'>>([])
 
   const { run: _run, runAsync: _runAsync, refresh: _refresh, params, ...rest } = useRequest<R, P>(service, {
     ...options,
@@ -33,7 +33,7 @@ export function useList<R extends IResponseList<unknown>, P extends unknown[]>(
         total.value = get(response, 't', 0)
 
       if (isLoadMore.value) {
-        list.value = Object.freeze(concat(list.value, get(response, 'd', [])))
+        list.value = concat(list.value, get(response, 'd', []))
         setLoadMoreFalse()
       }
       else {
