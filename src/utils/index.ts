@@ -1,5 +1,10 @@
 const { VITE_I18N_DEFAULT_LANG } = getEnv()
 
+interface IFormatNumberOptions {
+  groupSize?: number
+  separator?: string
+}
+
 class Application {
   /** 数字货币默认保留小数长度 */
   #CURRENCY_DEFAULT_DECIMAL = 8
@@ -99,6 +104,39 @@ class Application {
     // })
     const result = await Promise.allSettled(promises)
     return result
+  }
+
+  /**
+   * 通过指定的分隔符分割字符串
+   * @param {string} numberStr 数字
+   * @param {string} groupSize 小数位数
+   * @param {string} separator 分隔符
+   * @returns {string}
+   */
+  formatNumber(numberStr: string, options: IFormatNumberOptions = {}) {
+    const _options = Object.assign({
+      groupSize: 3,
+      separator: ',',
+    }, options)
+
+    const { groupSize, separator } = _options
+    // 分割整数和小数部分
+    const parts = numberStr.split('.')
+    let integerPart = parts[0]
+    const decimalPart = parts[1] || ''
+
+    // 添加分隔符到整数部分
+    if (groupSize > 0 && separator.length > 0) {
+      const regex = new RegExp(`\\B(?=(\\d{${groupSize}})+(?!\\d))`, 'g')
+      integerPart = integerPart.replace(regex, separator)
+    }
+
+    // 拼接整数和小数部分
+    if (decimalPart.length > 0)
+      return `${integerPart}.${decimalPart}`
+
+    else
+      return integerPart
   }
 }
 
