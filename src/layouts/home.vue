@@ -98,7 +98,7 @@ onErrorCaptured((err, instance, info) => {
           <AppContent :is-game-page="isCasinoGames">
             <RouterView v-slot="{ Component }">
               <template v-if="Component">
-                <KeepAlive :include="keepAliveList">
+                <KeepAlive :include="keepAliveList" :max="10">
                   <Suspense timeout="0">
                     <component :is="Component" />
                     <template #fallback>
