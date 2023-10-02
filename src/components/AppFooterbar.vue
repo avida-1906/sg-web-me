@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const router = useRouter()
 const route = useRoute()
-const { triggerLeftSidebar, closeLeftSidebar } = useLeftSidebar()
+const { leftIsExpand, triggerLeftSidebar, closeLeftSidebar } = useLeftSidebar()
 const { openRightSidebar, closeRightSidebar } = useRightSidebar()
 
 const tabbar = ref([
@@ -49,7 +49,7 @@ function changeBar(item: { name: string; path?: string }) {
     case 'game':
     case 'sport':
       activeBar.value = name
-      closeLeftSidebar()
+      leftIsExpand.value && closeLeftSidebar()
       closeRightSidebar()
       if (name === 'game') {
         tabbar.value[2].show = true
