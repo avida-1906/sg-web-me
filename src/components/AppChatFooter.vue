@@ -3,6 +3,7 @@
 //  : 表情
 //  / 指令
 //  enter 消息加空格->发送
+//  enter 加空格再次 enter 发送
 
 const { openChatRulesDialog } = useChatRulesDialog()
 
@@ -51,6 +52,31 @@ const allEmojis = [
 ]
 const message = ref('')
 
+const atUsers = reactive([
+  { name: 'abc32434', id: '39429304' },
+  { name: 'adflkl32434', id: '234324335' },
+  { name: 'iofugsdfs32434', id: '3450503495' },
+  { name: 'eoiqfd00809', id: '98734957342' },
+  { name: 'flasuoi0320423', id: '932479238' },
+])
+
+const matched_at_users = computed(() => {
+  const j = message.value.lastIndexOf('@')
+  const k = message.value.lastIndexOf(' ')
+  if (k > j || j === -1) {
+    return []
+  }
+  else {
+    const temp = message.value.slice(j + 1)
+    const filtered = atUsers.filter(a => a.name.includes(temp))
+    if (filtered.length)
+      return filtered
+
+    else
+      return [{ name: temp, id: '' }]
+  }
+})
+
 const emojiName = computed(() => {
   const i = message.value.lastIndexOf(':')
   const j = message.value.lastIndexOf('@')
@@ -78,7 +104,7 @@ function addEmoMsg(emo: string) {
 <template>
   <section class="tg-app-chat-footer">
     <Transition>
-      <div v-show="emojis.length" class="emoji-wrap scroll-y layout-grid wrap">
+      <div v-show="emojis.length" class="scroll-y wrap emoji-wrap layout-grid">
         <div v-for="emo in emojis" :key="emo" class="button-wrap">
           <span class="box" @click="addEmoMsg(emo)">
             <BaseButton type="text">
@@ -87,6 +113,15 @@ function addEmoMsg(emo: string) {
               </div>
             </BaseButton>
           </span>
+        </div>
+      </div>
+    </Transition>
+    <Transition>
+      <div v-show="matched_at_users.length" class="scroll-y wrap at-users-wrap layout-default">
+        <div v-for="u in matched_at_users" :key="u.id" class="button-wrap">
+          <div class="at-user-name">
+            {{ u.name }}
+          </div>
         </div>
       </div>
     </Transition>
@@ -118,6 +153,37 @@ function addEmoMsg(emo: string) {
   grid-template-columns: repeat(auto-fill,minmax(50px,1fr));
   gap: var(--tg-spacing-4);
   padding: var(--tg-spacing-8) var(--tg-spacing-16);
+}
+.at-users-wrap {
+  background: var(--tg-secondary-main);
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  overflow-y: auto;
+  max-height: 50vh;
+  .button-wrap {
+    .at-user-name {
+      transition: background-color 0.2s;
+      cursor: pointer;
+      font-size: var(--tg-font-size-default);
+      color: var(--tg-secondary-light);
+      background-color: var(--tg-secondary-main);
+      box-shadow: var(--tg-box-shadow);
+      font-weight: var(--tg-font-weight-normal);
+      padding: var(--tg-spacing-button-padding-vertical-sm) var(--tg-spacing-button-padding-horizontal-sm);
+    }
+  }
+  .button-wrap:first-child {
+    .at-user-name, .at-user-name:hover {
+      background-color: var(--tg-secondary-dark);
+    }
+  }
+  .button-wrap:not(first-child) {
+    .at-user-name:hover {
+      background-color: var(--tg-text-grey);
+    }
+  }
 }
 .emoji-wrap {
   background: var(--tg-secondary-main);
