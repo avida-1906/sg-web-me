@@ -1,8 +1,8 @@
 <script setup lang='ts'>
-// 123
 interface Props {
   options?: ISelectOption[]
 }
+
 withDefaults(defineProps<Props>(), {
   options: () => [
     { label: '100', value: 100 },
@@ -17,6 +17,7 @@ withDefaults(defineProps<Props>(), {
 })
 
 const emit = defineEmits(['clickKey'])
+
 function handleKey(item: ISelectOption) {
   emit('clickKey', item)
 }

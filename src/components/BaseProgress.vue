@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-
 interface Gradient {
   '0%'?: string
   '100%'?: string
@@ -16,6 +14,7 @@ interface Props {
   showInfo?: boolean // 是否显示进度数值或状态图标
   type?: 'line' | 'circle' // 进度条类型
 }
+
 const props = withDefaults(defineProps<Props>(), {
   width: '100%',
   percent: 0,
@@ -24,6 +23,7 @@ const props = withDefaults(defineProps<Props>(), {
   showInfo: true,
   type: 'line',
 })
+
 const totalWidth = computed(() => { // 进度条总宽度
   if (typeof props.width === 'number')
     return `${props.width}px`
@@ -43,7 +43,6 @@ const path = computed(() => { // 圆条轨道路径指令
 const lineColor = computed(() => {
   if (typeof props.strokeColor === 'string')
     return props.strokeColor
-
   else
     return `linear-gradient(to ${props.strokeColor.direction || 'right'}, ${props.strokeColor['0%'] || props.strokeColor.from}, ${props.strokeColor['100%'] || props.strokeColor.to})`
 })

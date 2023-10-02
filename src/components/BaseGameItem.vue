@@ -8,7 +8,9 @@ interface Props {
     [k: string]: any
   }
 }
+
 defineProps<Props>()
+
 const router = useRouter()
 const { isMobile } = storeToRefs(useWindowStore())
 
@@ -18,7 +20,6 @@ const closeSearchH5 = inject('closeSearchH5', () => {})
 function gameStart(item: Props['gameInfo']) {
   const { id } = item
   router.push(`/casino/games?id=${id}`)
-
   if (isMobile.value)
     closeSearchH5()
 
@@ -88,6 +89,6 @@ function gameStart(item: Props['gameInfo']) {
     top: -7px;
   }
   .base-game-item:hover .active-game-item{
-    opacity: 0.9;
+    opacity: 0.88;
   }
 </style>

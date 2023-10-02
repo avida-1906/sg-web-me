@@ -13,6 +13,7 @@ interface Props {
   countStyle?: CSSProperties // 设置状态点的样式
   title?: string // 设置鼠标放在状态点上时显示的文字
 }
+
 const props = withDefaults(defineProps<Props>(), {
   mode: 'default',
   color: '',
@@ -26,7 +27,11 @@ const props = withDefaults(defineProps<Props>(), {
   title: '',
 })
 
+const { bool: showContent, setBool } = useBoolean(true)
+
 const presetColor = ['white', 'black', 'error', 'warn', 'green', 'blue']
+const contentRef = ref()
+
 const customStyle = computed(() => {
   if (props.color && !presetColor.includes(props.color)) {
     return {
@@ -35,8 +40,7 @@ const customStyle = computed(() => {
     }
   }
 })
-const contentRef = ref()
-const { bool: showContent, setBool } = useBoolean(true)
+
 onMounted(() => {
   if (!props.status && !props.color)
     setBool(!!useSlots().default)

@@ -2,12 +2,12 @@
 interface Props {
   activeCurrency: any
 }
+
 withDefaults(defineProps<Props>(), {
   activeCurrency: () => { },
 })
 
 const { t } = useI18n()
-
 const { value: address, errorMessage: addressMsg } = useField<string>('address', (value) => {
   if (!value)
     return t('this_field_is_required')
@@ -25,43 +25,10 @@ function onAmountInput() {
   if (amount.value)
     setAmount(application.numberToCurrency(+amount.value))
 }
-
-onMounted(() => {
-  // ApiMemberWalletList({
-  //   contract_type: 'TRC20',
-  //   currency_name: 'USDT',
-  //   page: 1,
-  //   page_size: 10,
-  // }).then((res) => {
-  //   console.log('11111', res)
-  // })
-})
-// const currentNetwork = ref('1')
-// const networkList = [
-//   { label: '网络1', value: '1' },
-//   { label: '网络2', value: '2' },
-//   { label: '网络3', value: '3' },
-//   { label: '网络4', value: '4' },
-// ]
 </script>
 
 <template>
   <div class="app-withdraw">
-    <!-- <div class="currency">
-      <div class="c-option">
-        <AppWallet :wallet-btn="false" />
-      </div>
-      <div class="c-option">
-        <BaseSelect v-model="currentNetwork" :options="networkList" popper />
-      </div>
-    </div> -->
-    <!-- <div class="address">
-      <span class="label">
-        <AppCurrencyIcon :currency-type="EnumCurrency.BTC" />
-        <span>BTC地址</span>
-      </span>
-      <BaseInput v-model="address" :msg="addressMsg" />
-    </div> -->
     <BaseLabel label="BTC地址" :icon="activeCurrency?.icon" must>
       <BaseInput v-model="address" :msg="addressMsg" />
     </BaseLabel>

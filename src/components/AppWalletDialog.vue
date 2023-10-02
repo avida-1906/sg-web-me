@@ -7,13 +7,10 @@ const currentTab = ref('deposit')
 const tabList = [
   { label: t('deposit'), value: 'deposit' },
   { label: t('withdraw'), value: 'withdraw' },
-  // { label: t('buy_cryptocurrency'), value: 'buy' },
-  // { label: '法币提现', value: 'fiat' },
 ]
+
 const isDeposit = computed(() => currentTab.value === 'deposit')
 const isWithdraw = computed(() => currentTab.value === 'withdraw')
-// const isBuy = computed(() => currentTab.value === 'buy')
-// const isFiat = computed(() => currentTab.value === 'fiat')
 
 function changeCurrency(item: any) {
   activeCurrency.value = item

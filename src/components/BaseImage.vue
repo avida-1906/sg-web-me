@@ -1,15 +1,6 @@
 <script lang="ts" setup>
 import { getCurrentLanguageForBackend } from '~/modules/i18n'
 
-const props = withDefaults(defineProps<Props>(), {
-  url: '',
-  name: '',
-  width: '100%',
-  height: '100%',
-  fit: 'contain',
-})
-const emit = defineEmits(['clickImg'])
-const { bool: isError, setTrue: setErrorTrue } = useBoolean(false)
 interface Props {
   url: string // 图像地址
   name?: string // 图像名称
@@ -19,7 +10,19 @@ interface Props {
   isCloud?: boolean
   isGame?: boolean
 }
+
+const props = withDefaults(defineProps<Props>(), {
+  url: '',
+  name: '',
+  width: '100%',
+  height: '100%',
+  fit: 'contain',
+})
+
+const emit = defineEmits(['clickImg'])
+const { bool: isError, setTrue: setErrorTrue } = useBoolean(false)
 const { VITE_CASINO_IMG_CLOUD_URL } = getEnv()
+
 const imgUrl = computed(() => {
   if (props.isGame)
     return `${VITE_CASINO_IMG_CLOUD_URL}${props.url.replace('%lang%', getCurrentLanguageForBackend())}`
@@ -33,18 +36,15 @@ const imgUrl = computed(() => {
 function handleClick() {
   emit('clickImg')
 }
-function handleError() {
-  setErrorTrue()
-}
 </script>
 
 <template>
   <div class="base-image">
     <img
       v-if="!isError"
-      :style="`width: ${width}; height: ${height}; object-fit: ${fit};`" loading="lazy" :src="imgUrl" @click="handleClick" @error="handleError"
+      :style="`width: ${width}; height: ${height}; object-fit: ${fit};`" loading="lazy" :src="imgUrl" @click="handleClick" @error="setErrorTrue"
     >
-    <div v-else class="img-load center">
+    <div v-else class="center img-load">
       <BaseEmpty>
         <template #icon>
           <BaseIcon font-size="43" name="img-error" />
