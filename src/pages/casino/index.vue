@@ -1,6 +1,10 @@
 <script setup lang='ts'>
 import { EnumCasinoApiGameType, EnumCasinoGameType } from '~/utils/enums'
 
+defineOptions({
+  name: 'KeepAliveCasino',
+})
+
 const { isMobile } = storeToRefs(useWindowStore())
 const router = useRouter()
 const { t } = useI18n()

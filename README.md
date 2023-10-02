@@ -56,3 +56,11 @@ mounted
 …生命周期
 
 初始化需要执行的函数，比如网络请求 init()之类的
+
+### 关于KeepAlive名称
+```js
+// 统一使用 KeepAlive开头+组件名称，如
+defineOptions({
+  name: 'KeepAliveCasino',
+})
+```
