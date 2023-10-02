@@ -41,6 +41,11 @@ const homeOverlayIsShow = computed(() => {
 watch(() => width.value, (newWidth) => {
   windowStore.setAppContentWidth(newWidth)
 })
+
+onErrorCaptured((err, instance, info) => {
+  console.error('发生错误: \n Error', err, '\n', 'Instance: ', instance, '\n', 'Info:', info)
+  return false
+})
 </script>
 
 <template>
