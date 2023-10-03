@@ -29,6 +29,8 @@ const { width } = useElementSize(homeContainerRef)
 const route = useRoute()
 const { leftIsExpand, isSwitching, switchTo, triggerLeftSidebar } = useLeftSidebar()
 const { rightIsExpand, rightContainerIs0, currentRightSidebarContent } = useRightSidebar()
+const { bool: isRouting, setFalse: setRFalse, setTrue: setRTrue } = useBoolean(true)
+
 const keepAliveList = ref<string[]>(['KeepAliveCasino'])
 
 // 是否游戏页面
@@ -40,6 +42,19 @@ const homeOverlayIsShow = computed(() => {
 
 watch(() => width.value, (newWidth) => {
   windowStore.setAppContentWidth(newWidth)
+})
+
+watch(route, () => {
+  setRTrue()
+  setTimeout(() => {
+    setRFalse()
+  }, 300)
+})
+
+onMounted(() => {
+  setTimeout(() => {
+    setRFalse()
+  }, 300)
 })
 
 onErrorCaptured((err, instance, info) => {
@@ -89,38 +104,38 @@ onErrorCaptured((err, instance, info) => {
         </AppContent>
       </header>
 
-      <Transition name="home-slide-fade">
-        <div id="main-content-scrollable" :key="route.path" class="scroll-y scrollable">
-          <!-- 用于获取内容区宽度 -->
-          <AppContent>
-            <div ref="homeContainerRef" class="only-for-get-width" />
+      <!-- <Transition name="home-slide-fade"> :key="route.path" -->
+      <div id="main-content-scrollable" class="scroll-y scrollable" :class="{ 'home-slide-fade-enter-active': isRouting }">
+        <!-- 用于获取内容区宽度 -->
+        <AppContent>
+          <div ref="homeContainerRef" class="only-for-get-width" />
+        </AppContent>
+        <slot>
+          <AppContent :is-game-page="isCasinoGames">
+            <RouterView v-slot="{ Component }">
+              <template v-if="Component">
+                <KeepAlive :include="keepAliveList" :max="10">
+                  <Suspense timeout="0">
+                    <component :is="Component" />
+                    <template #fallback>
+                      <div class="center loading-content-height">
+                        <BaseLoading />
+                      </div>
+                    </template>
+                  </Suspense>
+                </KeepAlive>
+              </template>
+            </RouterView>
           </AppContent>
-          <slot>
-            <AppContent :is-game-page="isCasinoGames">
-              <RouterView v-slot="{ Component }">
-                <template v-if="Component">
-                  <KeepAlive :include="keepAliveList" :max="10">
-                    <Suspense timeout="0">
-                      <component :is="Component" />
-                      <template #fallback>
-                        <div class="center loading-content-height">
-                          <BaseLoading />
-                        </div>
-                      </template>
-                    </Suspense>
-                  </KeepAlive>
-                </template>
-              </RouterView>
-            </AppContent>
-          </slot>
+        </slot>
 
-          <footer class="footer">
-            <AppContent>
-              <AppFooter />
-            </AppContent>
-          </footer>
-        </div>
-      </Transition>
+        <footer class="footer">
+          <AppContent>
+            <AppFooter />
+          </AppContent>
+        </footer>
+      </div>
+      <!-- </Transition> -->
     </div>
     <Transition :name="isMobile ? 'bigslide-fade-top' : ''">
       <div
