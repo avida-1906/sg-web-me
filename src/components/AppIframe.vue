@@ -16,6 +16,7 @@ const emit = defineEmits(['changeTheatre'])
 
 const { t } = useI18n()
 const { isMobile, appContentWidth } = storeToRefs(useWindowStore())
+const { platformList } = storeToRefs(useAppStore())
 const { bool: isShowFrameOverlay, setTrue: overlayTrue, setFalse: overlayFalse } = useBoolean(false)
 const { bool: isRealMoneyMode, setBool: setRealModeBool } = useBoolean(false)
 const { bool: isTrendOpen, toggle: toggleTrendOpen } = useBoolean(false)
@@ -41,6 +42,7 @@ const code = computed(() => dataDetail.value ? dataDetail.value.game_id : '')
 const currencyName = computed(() => currentCurrency.value ? currentCurrency.value.name : '')
 const isFavorite = computed(() => dataDetail.value ? dataDetail.value.is_fav === 1 : false)
 const bigGameWrapper = computed(() => appContentWidth.value > 930)
+const gameProviderName = computed(() => platformList.value.find(a => a.id === dataDetail.value?.platform_id)?.name ?? '-')
 // 启动游戏接口
 const { run: runLunchGame, data: gameUrl } = useRequest(() => ApiGameLunch(pid.value, code.value, currencyName.value), {
   manual: true,
@@ -104,8 +106,8 @@ await application.allSettled([runDetail().then(() => runLunchGame())])
       </div>
       <div class="info-wrap">
         <div class="main-info">
-          <span class="game-name">Dork Unit</span>
-          <span class="game-provider">Hacksaw Gaming</span>
+          <span class="game-name">{{ dataDetail?.name }}</span>
+          <span class="game-provider">{{ gameProviderName }}</span>
         </div>
         <div class="info-controls">
           <!-- 收藏游戏 -->
