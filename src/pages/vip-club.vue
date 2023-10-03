@@ -18,6 +18,7 @@ const {
   appContentWidth,
   widthBoundarySm,
 } = storeToRefs(useWindowStore())
+const router = useRouter()
 
 const tableData: ITableData[] = [
   {
@@ -393,8 +394,13 @@ const menuData: IMenuData[] = [
     value: '3',
   },
 ]
+const award = ref<HTMLElement | null>(null)
 
 const isSm = computed(() => appContentWidth.value < widthBoundarySm.value)
+
+const toVip = function () {
+  award.value?.scrollIntoView({ behavior: 'smooth' })
+}
 </script>
 
 <template>
@@ -409,10 +415,10 @@ const isSm = computed(() => appContentWidth.value < widthBoundarySm.value)
             解锁专属福利并获得无需任何附加条件即可立即提取的奖金。
           </p>
           <div class="left-btns">
-            <BaseButton bg-style="secondary" size="md">
+            <BaseButton bg-style="secondary" size="md" @click="router.push('/casino')">
               <span>开始游戏</span>
             </BaseButton>
-            <BaseButton size="md">
+            <BaseButton size="md" @click.prevent="toVip">
               <a href="#">查看 VIP 级别表</a>
             </BaseButton>
           </div>
@@ -468,9 +474,15 @@ const isSm = computed(() => appContentWidth.value < widthBoundarySm.value)
           </div>
         </div>
       </div>
-      <!-- 轮播图暂留 -->
+      <!-- 轮播图 -->
       <div class="vip-slider">
-        <AppBannerUnlimited />
+        <p class="title">
+          体验
+        </p>
+        <p class="desc">
+          Stake 通过不间断送出的奖金提供了独特且无与伦比的体验
+        </p>
+        <AppBannerUnlimited class="vip-slider-wrap" />
       </div>
       <!-- 奖励 -->
       <div class="vip-award">
@@ -481,7 +493,7 @@ const isSm = computed(() => appContentWidth.value < widthBoundarySm.value)
           每次升级都能获得更棒的奖励
         </p>
         <div class="scroll-x">
-          <div class="a-table">
+          <div ref="award" class="a-table">
             <div v-for="item, index in tableData" :key="index" class="table-item" :class="{ sticky: item.sticky }">
               <template v-if="item.empty">
                 <!-- <BaseIcon name="uni-review" /> -->
@@ -752,7 +764,7 @@ const isSm = computed(() => appContentWidth.value < widthBoundarySm.value)
     flex-direction: column;
     gap: 4rem;
     width: 100%;
-    .vip-tutorial, .vip-award, .vip-question{
+    .vip-tutorial, .vip-award, .vip-question, .vip-slider{
       .title{
         text-align: center;
         color: var(--tg-text-white);
@@ -915,6 +927,11 @@ const isSm = computed(() => appContentWidth.value < widthBoundarySm.value)
           height: 80%;
           background: var(--tg-secondary-grey);
         }
+      }
+    }
+    .vip-slider{
+      .vip-slider-wrap{
+        margin-top: var(--tg-spacing-42);
       }
     }
   }

@@ -6,6 +6,12 @@ interface IBannerData {
   value: number
 }
 
+const {
+  appContentWidth,
+  isSm,
+  isXs,
+} = storeToRefs(useWindowStore())
+
 const bannerData = [
   {
     imgUrl: 'https://stake.com/_app/immutable/assets/bespoke.732ab8da.png',
@@ -38,20 +44,10 @@ const bannerData = [
     value: 5,
   },
 ]
-
-const {
-  appContentWidth,
-  isSm,
-  isXs,
-} = storeToRefs(useWindowStore())
-
 const offSet = ref(0)
 const activeValue = ref(2)
-const { bool: activeTransition, setTrue: setTransitionTrue, setFalse: setTransitionFalse } = useBoolean(true)
+const { bool: activeTransition, setTrue: setTransitionTrue, setFalse: setTransitionFalse } = useBoolean(false)
 const sliderRef = ref<HTMLElement>()
-const translateX = ref(0)
-const startX = ref(0)
-const itemValue = ref<IBannerData>()
 const baseNumber = ref(0.3333)
 const offSetNumber = ref(0)
 
@@ -69,16 +65,16 @@ const onPrev = throttle(() => {
   offSet.value = Number((offSet.value + cardWidth.value).toFixed(2))
   if (activeValue.value === 1)
     activeValue.value = 6
+  setTransitionTrue()
   activeValue.value--
   if (offSet.value === -cardWidth.value) {
     setTimeout(() => {
-      setTransitionFalse()
       offSet.value = -(cardWidth.value * 6)
-      setTimeout(() => {
-        setTransitionTrue()
-      }, 100)
-    }, 800)
+    }, 900)
   }
+  setTimeout(() => {
+    setTransitionFalse()
+  }, 800)
   offSetNumber.value = Math.abs(offSet.value / cardWidth.value)
 }, 1000)
 // 右
@@ -86,31 +82,30 @@ const onNext = throttle(() => {
   offSet.value = Number((offSet.value - cardWidth.value).toFixed(2))
   if (activeValue.value === 5)
     activeValue.value = 0
+  setTransitionTrue()
   activeValue.value++
   if (offSet.value === -(cardWidth.value * 9)) {
     setTimeout(() => {
-      setTransitionFalse()
       offSet.value = -(cardWidth.value * 4)
-      setTimeout(() => {
-        setTransitionTrue()
-      }, 100)
-    }, 800)
+    }, 900)
   }
+  setTimeout(() => {
+    setTransitionFalse()
+  }, 800)
   offSetNumber.value = Math.abs(offSet.value / cardWidth.value)
 }, 1000)
 // 点击图片切换
 const change = function (item: IBannerData) {
   if (isSm.value || isXs.value)
     return
-  itemValue.value = item
-  if (itemValue.value!.value < activeValue.value) {
-    if (itemValue.value!.value === 1 && activeValue.value !== 2)
+  if (item.value < activeValue.value) {
+    if (item.value === 1 && activeValue.value !== 2)
       onNext()
     else
       onPrev()
   }
-  else if (itemValue.value!.value > activeValue.value) {
-    if (itemValue.value!.value === 5 && activeValue.value !== 4)
+  else if (item.value > activeValue.value) {
+    if (item.value === 5 && activeValue.value !== 4)
       onPrev()
     else
       onNext()
@@ -131,33 +126,12 @@ watch(() => isXs.value, () => {
 }, { immediate: true })
 watch(() => appContentWidth.value, (newValue) => {
   if (newValue < 1200)
-    offSet.value = (-offSetNumber.value * -cardWidth.value)
+    offSet.value = -Math.abs(offSetNumber.value * cardWidth.value)
 })
 
 onMounted(() => {
   // 滑动
-  // sliderRef.value?.addEventListener('mousedown', throttle((e: MouseEvent) => {
-  //   translateX.value = offSet.value
-  //   startX.value = e.clientX
-  //   activeTransition.value = false
-  // }, 1000))
-  // sliderRef.value?.addEventListener('mousemove', (e: MouseEvent) => {
-  //   if (startX.value)
-  //     offSet.value = translateX.value + (e.clientX - startX.value)
-  // })
-  // sliderRef.value?.addEventListener('mouseup', throttle((e: MouseEvent) => {
-  //   activeTransition.value = true
-  //   setTimeout(() => {
-  //     offSet.value = translateX.value
-  //     if (startX.value > e.clientX)
-  //       onNext()
-  //     else if (startX.value < e.clientX)
-  //       onPrev()
-  //     else if (startX.value === e.clientX)
-  //       change(true)
-  //     startX.value = 0
-  //   }, 0)
-  // }, 1000))
+
 })
 </script>
 
