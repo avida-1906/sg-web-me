@@ -44,7 +44,7 @@ const isFavorite = computed(() => dataDetail.value ? dataDetail.value.is_fav ===
 const bigGameWrapper = computed(() => appContentWidth.value > 930)
 const gameProviderName = computed(() => platformList.value.find(a => a.id === dataDetail.value?.platform_id)?.name ?? '-')
 // 启动游戏接口
-const { run: runLunchGame, data: gameUrl } = useRequest(() => ApiGameLunch(pid.value, code.value, currencyName.value), {
+const { run: runLunchGame, data: gameUrl, loading: lunchLoading } = useRequest(() => ApiGameLunch(pid.value, code.value, currencyName.value), {
   manual: true,
   onSuccess(res) {
     // H5模式直接打开游戏
@@ -56,12 +56,13 @@ const { run: runLunchGame, data: gameUrl } = useRequest(() => ApiGameLunch(pid.v
 // 选择货币
 function onChooseCurrency(v: any) {
   currentCurrency.value = v
-  runLunchGame()
+  !isMobile.value && runLunchGame()
 }
 // 切换试玩真钱模式
 function onSwitchRealMoneyMode(v: boolean) {
   setRealModeBool(v)
   overlayFalse()
+  isMobile.value && runLunchGame()
 }
 
 function onClickFullScreen() { // 全屏
@@ -92,7 +93,7 @@ function onClickFavorite() {
 }
 
 defineExpose({ runDetail })
-await application.allSettled([runDetail().then(() => runLunchGame())])
+await application.allSettled([runDetail().then(() => !isMobile.value && runLunchGame())])
 </script>
 
 <template>
@@ -164,13 +165,13 @@ await application.allSettled([runDetail().then(() => runLunchGame())])
 
     <!-- 开始游戏 -->
     <div class="btns btns-mobile">
-      <BaseButton class="real btn" size="sm" bg-style="secondary" @click="onSwitchRealMoneyMode(true)">
+      <BaseButton :loading="lunchLoading" class="real btn" size="sm" bg-style="secondary" @click="onSwitchRealMoneyMode(true)">
         <div class="icon">
           <BaseIcon name="uni-play" />
         </div>
         <span>{{ t('casino_game_real_money_mode') }}</span>
       </BaseButton>
-      <BaseButton class="btn" size="sm" @click="onSwitchRealMoneyMode(false)">
+      <BaseButton :loading="lunchLoading" class="btn" size="sm" @click="onSwitchRealMoneyMode(false)">
         <div class="icon">
           <BaseIcon name="uni-play" />
         </div>
