@@ -59,7 +59,22 @@ const atUsers = reactive([
   { name: 'eoiqfd00809', id: '98734957342' },
   { name: 'flasuoi0320423', id: '932479238' },
 ])
+const allCommandList = reactive([
+  { icon: 'chat-bet', command: '/bet', param: '[bet id]', text: '查看赌注' },
+  { icon: 'chat-atuser', command: '/user', param: '@user', text: '查看玩家' },
+  { icon: 'chat-tip', command: '/tip', param: '@user', text: '给用户发送小费' },
+  { icon: 'chat-rain', command: '/rain', param: '', text: '下红包雨' },
+  { icon: 'chat-ignore', command: '/ignore', param: '@user', text: '拉入黑名单' },
+  { icon: 'chat-unignore', command: '/unignore', param: '@user', text: '移出黑名单' },
+])
 
+const commandList = computed(() => {
+  const i = message.value.lastIndexOf('/')
+  if (i === 0)
+    return allCommandList.filter(a => a.command.indexOf(message.value) === 0)
+
+  return []
+})
 const matched_at_users = computed(() => {
   const j = message.value.lastIndexOf('@')
   const k = message.value.lastIndexOf(' ')
@@ -97,10 +112,16 @@ const emojis = computed(() => {
 function addEmoMsg(emo: string) {
   const i = message.value.lastIndexOf(':')
   message.value = `${message.value.slice(0, i + 1)}${emo.split('.')[0]} ` + ': '
+  msgInput.value?.getFocus()
 }
 function addAtUser(u: { name: string }) {
   const i = message.value.lastIndexOf('@')
   message.value = `${message.value.slice(0, i + 1) + u.name} `
+  msgInput.value?.getFocus()
+}
+function addCommand(u: { command: string }) {
+  message.value = `${u.command} `
+  msgInput.value?.getFocus()
 }
 </script>
 
@@ -124,6 +145,22 @@ function addAtUser(u: { name: string }) {
         <div v-for="u in matched_at_users" :key="u.id" class="button-wrap" @click="addAtUser(u)">
           <div class="at-user-name">
             {{ u.name }}
+          </div>
+        </div>
+      </div>
+    </Transition>
+    <Transition>
+      <div v-if="commandList.length" class="scroll-y wrap layout-default command-wrap">
+        <div v-for="u in commandList" :key="u.command" class="button-wrap" @click="addCommand(u)">
+          <div class="command">
+            <div class="label">
+              <BaseIcon :name="u.icon" />
+              <span>{{ u.command }}</span>
+              <span v-if="u.param" class="param">{{ u.param }}</span>
+            </div>
+            <div class="desc">
+              {{ u.text }}
+            </div>
           </div>
         </div>
       </div>
@@ -157,7 +194,7 @@ function addAtUser(u: { name: string }) {
   gap: var(--tg-spacing-4);
   padding: var(--tg-spacing-8) var(--tg-spacing-16);
 }
-.at-users-wrap {
+.at-users-wrap, .command-wrap {
   background: var(--tg-secondary-main);
   position: absolute;
   bottom: 100%;
@@ -166,7 +203,7 @@ function addAtUser(u: { name: string }) {
   overflow-y: auto;
   max-height: 50vh;
   .button-wrap {
-    .at-user-name {
+    .at-user-name, .command {
       transition: background-color 0.2s;
       cursor: pointer;
       font-size: var(--tg-font-size-default);
@@ -176,14 +213,40 @@ function addAtUser(u: { name: string }) {
       font-weight: var(--tg-font-weight-normal);
       padding: var(--tg-spacing-button-padding-vertical-sm) var(--tg-spacing-button-padding-horizontal-sm);
     }
+    .command {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: var(--tg-spacing-8);
+      font-size: var(--tg-font-size-default);
+      .label {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        color: var(--tg-text-white);
+        font-weight: var(--tg-font-weight-semibold);
+        .param {
+          margin-left: var(--tg-spacing-4);
+        }
+      }
+      .desc {
+        font-weight: var(--tg-font-weight-normal);
+        color: var(--tg-secondary-light);
+      }
+    }
   }
   .button-wrap:first-child {
-    .at-user-name, .at-user-name:hover {
+    .at-user-name, .at-user-name:hover, .command, .command:hover {
       background-color: var(--tg-secondary-dark);
+    }
+    .command {
+      .label {
+        color: var(--tg-secondary-light);
+      }
     }
   }
   .button-wrap:not(first-child) {
-    .at-user-name:hover {
+    .at-user-name:hover, .command:hover {
       background-color: var(--tg-text-grey);
     }
   }

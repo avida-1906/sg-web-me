@@ -5,12 +5,6 @@ interface IBankOption {
   value: string
 }
 
-// interface Props {
-// }
-// const props = withDefaults(defineProps<Props>(), {
-// })
-// const emit = defineEmits(['update:modelValue'])
-
 const { bool: isBind } = useBoolean(true)
 const { isLessThanXs } = storeToRefs(useWindowStore())
 
@@ -37,7 +31,6 @@ const bindBanks = computed(() => {
     { label: '中国农商银行', icon: 'fiat-bank', value: '8888 8888 8888 8888' },
     { label: '中国工商银行', icon: 'fiat-bank', value: '8888 8888 8888 8887' },
   ].map((item) => {
-    // item.label = `${item.label} ${item.value}`
     return item
   })
 })
@@ -135,14 +128,12 @@ const bindBanks = computed(() => {
   }
 }
 .bank-options{
-  // padding: var(--tg-spacing-12) 0;
   .option-row {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 0.75rem;
     color: var(--tg-text-white);
-    // padding: var(--tg-spacing-8) var(--tg-spacing-24);
     cursor: pointer;
     > svg{
       width: 40px;

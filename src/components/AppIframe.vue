@@ -16,6 +16,7 @@ const emit = defineEmits(['changeTheatre'])
 
 const { t } = useI18n()
 const { isMobile, appContentWidth } = storeToRefs(useWindowStore())
+const { platformList } = storeToRefs(useAppStore())
 const { bool: isShowFrameOverlay, setTrue: overlayTrue, setFalse: overlayFalse } = useBoolean(false)
 const { bool: isRealMoneyMode, setBool: setRealModeBool } = useBoolean(false)
 const { bool: isTrendOpen, toggle: toggleTrendOpen } = useBoolean(false)
@@ -41,8 +42,9 @@ const code = computed(() => dataDetail.value ? dataDetail.value.game_id : '')
 const currencyName = computed(() => currentCurrency.value ? currentCurrency.value.name : '')
 const isFavorite = computed(() => dataDetail.value ? dataDetail.value.is_fav === 1 : false)
 const bigGameWrapper = computed(() => appContentWidth.value > 930)
+const gameProviderName = computed(() => platformList.value.find(a => a.id === dataDetail.value?.platform_id)?.name ?? '-')
 // 启动游戏接口
-const { run: runLunchGame, data: gameUrl } = useRequest(() => ApiGameLunch(pid.value, code.value, currencyName.value), {
+const { run: runLunchGame, data: gameUrl, loading: lunchLoading } = useRequest(() => ApiGameLunch(pid.value, code.value, currencyName.value), {
   manual: true,
   onSuccess(res) {
     // H5模式直接打开游戏
@@ -54,12 +56,13 @@ const { run: runLunchGame, data: gameUrl } = useRequest(() => ApiGameLunch(pid.v
 // 选择货币
 function onChooseCurrency(v: any) {
   currentCurrency.value = v
-  runLunchGame()
+  !isMobile.value && runLunchGame()
 }
 // 切换试玩真钱模式
 function onSwitchRealMoneyMode(v: boolean) {
   setRealModeBool(v)
   overlayFalse()
+  isMobile.value && runLunchGame()
 }
 
 function onClickFullScreen() { // 全屏
@@ -90,7 +93,7 @@ function onClickFavorite() {
 }
 
 defineExpose({ runDetail })
-await application.allSettled([runDetail().then(() => runLunchGame())])
+await application.allSettled([runDetail().then(() => !isMobile.value && runLunchGame())])
 </script>
 
 <template>
@@ -104,8 +107,8 @@ await application.allSettled([runDetail().then(() => runLunchGame())])
       </div>
       <div class="info-wrap">
         <div class="main-info">
-          <span class="game-name">Dork Unit</span>
-          <span class="game-provider">Hacksaw Gaming</span>
+          <span class="game-name">{{ dataDetail?.name }}</span>
+          <span class="game-provider">{{ gameProviderName }}</span>
         </div>
         <div class="info-controls">
           <!-- 收藏游戏 -->
@@ -162,13 +165,13 @@ await application.allSettled([runDetail().then(() => runLunchGame())])
 
     <!-- 开始游戏 -->
     <div class="btns btns-mobile">
-      <BaseButton class="real btn" size="sm" bg-style="secondary" @click="onSwitchRealMoneyMode(true)">
+      <BaseButton :loading="lunchLoading" class="real btn" size="sm" bg-style="secondary" @click="onSwitchRealMoneyMode(true)">
         <div class="icon">
           <BaseIcon name="uni-play" />
         </div>
         <span>{{ t('casino_game_real_money_mode') }}</span>
       </BaseButton>
-      <BaseButton class="btn" size="sm" @click="onSwitchRealMoneyMode(false)">
+      <BaseButton :loading="lunchLoading" class="btn" size="sm" @click="onSwitchRealMoneyMode(false)">
         <div class="icon">
           <BaseIcon name="uni-play" />
         </div>

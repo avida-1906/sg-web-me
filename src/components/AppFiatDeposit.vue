@@ -9,10 +9,6 @@ interface IAisleData {
   value: string
 }
 
-// interface Props {
-// }
-// const props = withDefaults(defineProps<Props>(), {
-// })
 const emit = defineEmits(['show'])
 
 const currentType = ref('1')
@@ -163,7 +159,6 @@ const changeAisle = function (value: string) {
           display: flex;
           justify-content: center;
           align-items: center;
-          // margin-top: var(--tg-spacing-10);
           color:var(--tg-text-error);
           font-size: var(--tg-font-size-xs);
           gap: .25rem;

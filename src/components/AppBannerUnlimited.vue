@@ -5,11 +5,13 @@ interface IBannerData {
   desc: string
   value: number
 }
-// interface Props {
-// }
-// const props = withDefaults(defineProps<Props>(), {
-// })
-// const emit = defineEmits(['update:modelValue'])
+
+const {
+  appContentWidth,
+  isSm,
+  isXs,
+} = storeToRefs(useWindowStore())
+
 const bannerData = [
   {
     imgUrl: 'https://stake.com/_app/immutable/assets/bespoke.732ab8da.png',
@@ -42,94 +44,94 @@ const bannerData = [
     value: 5,
   },
 ]
-
-const mergeBannerData = computed(() => {
-  return [...bannerData, ...bannerData, ...bannerData]
-})
-
-const offSet = ref(-2000)
+const offSet = ref(0)
 const activeValue = ref(2)
-const activeTransition = ref(true)
+const { bool: activeTransition, setTrue: setTransitionTrue, setFalse: setTransitionFalse } = useBoolean(false)
 const sliderRef = ref<HTMLElement>()
-const translateX = ref(0)
-const startX = ref(0)
-const itemValue = ref<IBannerData>()
+const baseNumber = ref(0.3333)
+const offSetNumber = ref(0)
+
+const mergeBannerData = computed(() => [...bannerData, ...bannerData, ...bannerData])
+const cardWidth = computed(() => Number((appContentWidth.value * baseNumber.value).toFixed(2)))
+const sliderWidth = computed(() => cardWidth.value * 15)
+const offSetInit = computed(() => cardWidth.value * 5)
+setTimeout(() => {
+  offSet.value = -offSetInit.value
+  offSetNumber.value = offSet.value / cardWidth.value
+}, 0)
 
 // 左
 const onPrev = throttle(() => {
-  offSet.value += 400
+  offSet.value = Number((offSet.value + cardWidth.value).toFixed(2))
   if (activeValue.value === 1)
     activeValue.value = 6
+  setTransitionTrue()
   activeValue.value--
-
-  if (offSet.value === -400) {
+  if (offSet.value === -cardWidth.value) {
     setTimeout(() => {
-      activeTransition.value = false
-      offSet.value = -2400
-      setTimeout(() => {
-        activeTransition.value = true
-      }, 100)
-    }, 800)
+      offSet.value = -(cardWidth.value * 6)
+    }, 900)
   }
+  setTimeout(() => {
+    setTransitionFalse()
+  }, 800)
+  offSetNumber.value = Math.abs(offSet.value / cardWidth.value)
 }, 1000)
 // 右
 const onNext = throttle(() => {
-  offSet.value -= 400
+  offSet.value = Number((offSet.value - cardWidth.value).toFixed(2))
   if (activeValue.value === 5)
     activeValue.value = 0
+  setTransitionTrue()
   activeValue.value++
-
-  if (offSet.value === -3600) {
+  if (offSet.value === -(cardWidth.value * 9)) {
     setTimeout(() => {
-      activeTransition.value = false
-      offSet.value = -1600
-      setTimeout(() => {
-        activeTransition.value = true
-      }, 100)
-    }, 800)
+      offSet.value = -(cardWidth.value * 4)
+    }, 900)
   }
+  setTimeout(() => {
+    setTransitionFalse()
+  }, 800)
+  offSetNumber.value = Math.abs(offSet.value / cardWidth.value)
 }, 1000)
 // 点击图片切换
 const change = function (item: IBannerData) {
-  itemValue.value = item
-  if (itemValue.value!.value < activeValue.value) {
-    if (itemValue.value!.value === 1 && activeValue.value !== 2)
+  if (isSm.value || isXs.value)
+    return
+  if (item.value < activeValue.value) {
+    if (item.value === 1 && activeValue.value !== 2)
       onNext()
     else
       onPrev()
   }
-  else if (itemValue.value!.value > activeValue.value) {
-    if (itemValue.value!.value === 5 && activeValue.value !== 4)
+  else if (item.value > activeValue.value) {
+    if (item.value === 5 && activeValue.value !== 4)
       onPrev()
     else
       onNext()
   }
 }
 
+watch(() => isSm.value, () => {
+  if (isSm.value)
+    baseNumber.value = 0.5
+  else if (!isSm.value && !isXs.value)
+    baseNumber.value = 0.3333
+}, { immediate: true })
+watch(() => isXs.value, () => {
+  if (isXs.value)
+    baseNumber.value = 1
+  else if (!isSm.value && !isXs.value)
+    baseNumber.value = 0.3333
+}, { immediate: true })
+watch(() => appContentWidth.value, (newValue) => {
+  if (newValue < 1200)
+    offSet.value = -Math.abs(offSetNumber.value * cardWidth.value)
+})
+
 onMounted(() => {
   // 滑动
-  // sliderRef.value?.addEventListener('mousedown', throttle((e: MouseEvent) => {
-  //   translateX.value = offSet.value
-  //   startX.value = e.clientX
-  //   activeTransition.value = false
-  // }, 1000))
-  // sliderRef.value?.addEventListener('mousemove', (e: MouseEvent) => {
-  //   if (startX.value)
-  //     offSet.value = translateX.value + (e.clientX - startX.value)
-  // })
-  // sliderRef.value?.addEventListener('mouseup', throttle((e: MouseEvent) => {
-  //   activeTransition.value = true
-  //   setTimeout(() => {
-  //     offSet.value = translateX.value
-  //     if (startX.value > e.clientX)
-  //       onNext()
-  //     else if (startX.value < e.clientX)
-  //       onPrev()
-  //     else if (startX.value === e.clientX)
-  //       change(true)
-  //     startX.value = 0
-  //   }, 0)
-  // }, 1000))
+
 })
 </script>
 
@@ -137,8 +139,15 @@ onMounted(() => {
   <div class="app-banner-unlimited">
     <div class="banner-wrap">
       <div ref="sliderRef" class="slider-wrap">
-        <div class="slider" :style="{ transform: `translate(${offSet}px, 0px)` }" :class="{ 'is-transition': activeTransition }">
-          <div v-for="item in mergeBannerData" :key="item.value" class="slider-item" :class="{ active: item.value === activeValue }" @click.stop="change(item)">
+        <div class="slider" :style="{ transform: `translate(${offSet}px, 0px)`, width: `${sliderWidth}px` }" :class="{ 'is-transition': activeTransition }">
+          <div
+            v-for="item in mergeBannerData"
+            :key="item.value"
+            class="slider-item"
+            :class="{ 'active': item.value === activeValue && !isSm, 'active-sm': isSm, 'active-xs': isXs }"
+            :style="{ width: `${cardWidth}px` }"
+            @click.stop="change(item)"
+          >
             <div class="item-box">
               <div class="item-img">
                 <BaseImage :url="item.imgUrl" />
@@ -173,19 +182,19 @@ onMounted(() => {
     overflow: hidden;
     .slider-wrap{
       width: 100%;
-      height: 430px;
+      min-height: 430px;
       position: relative;
       .slider{
         display: flex;
         position: relative;
         overflow-x: auto;
-        width: 6000px;
+        // width: 6000px;
         &.is-transition {
           transition: all .8s;
         }
         .slider-item{
-          width: 400px;
-          height:430px;
+          // width: 400px;
+          min-height:430px;
           transform: scale(.85);
           transition: transform .7s ease,opacity 1s ease;
           .item-box{
@@ -202,6 +211,20 @@ onMounted(() => {
           }
           &.active{
             transform: scale(1);
+            .item-box{
+              background-color: var(--tg-secondary-grey);
+            }
+          }
+          &.active-sm{
+            transform: scale(1);
+            margin: 0 var(--tg-spacing-16);
+            .item-box{
+              background-color: var(--tg-secondary-grey);
+            }
+          }
+          &.active-xs{
+            transform: scale(1);
+            margin: var(--tg-spacing-16);
             .item-box{
               background-color: var(--tg-secondary-grey);
             }
