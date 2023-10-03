@@ -44,7 +44,7 @@ watch(() => width.value, (newWidth) => {
   windowStore.setAppContentWidth(newWidth)
 })
 
-watch(route, () => {
+watch(() => route.name, () => {
   setRTrue()
   setTimeout(() => {
     setRFalse()
