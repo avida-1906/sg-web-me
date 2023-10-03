@@ -26,6 +26,12 @@ declare module '*.tsx' {
   export default component
 }
 
+
+/** 显示类型详细值 */
+type Prettify<T> = {
+  [P in keyof T]: T[P]
+}
+
 /**
  * 用于select的option
  */
