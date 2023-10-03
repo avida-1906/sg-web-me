@@ -281,3 +281,28 @@
     transform: translate(-50%,-50%) scale(0);
   }
 }
+
+// home layout 切换路由动画
+.home-slide-fade-enter-active {
+  animation: 300ms linear 0ms 1 normal both running home-slide-fade-enter;
+  animation-fill-mode: forwards;
+}
+
+.home-slide-fade-leave-active {
+  opacity: 0;
+}
+
+@keyframes home-slide-fade-enter {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  60% {
+    opacity: 0.2;
+    transform: translateY(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
