@@ -1,4 +1,13 @@
 <script lang="ts" setup>
+// 前面都补充一个空格
+/**
+ * 解析规则：
+ * casino:连续数字
+ * sport:连续数字
+ * :emoji_name:
+ * @user_name_规则(没有最小长度)
+ * /指令空格
+ */
 interface Props {
   msgInfo: ChatMessageInfo
 }
@@ -16,7 +25,10 @@ withDefaults(defineProps<Props>(), {})
     <div class="content">
       <p>
         <AppChatUserTags :user-info="msgInfo.sender" />
-        <span>: <span v-html="msgInfo.html" /></span>
+        <span>:<span v-html="msgInfo.html" /></span>
+        <AppChatMsgOrder type="casino" order="982964823672423" />
+        <AppChatMsgAt :user="{ name: 'abce24234', id: '123kjh24sdfs' }" />
+        <img alt=":monkas:" src="/img/emoji/monkas.webp" class="emoji">
       </p>
     </div>
   </section>
@@ -37,6 +49,13 @@ withDefaults(defineProps<Props>(), {})
       font-size: var(--tg-font-size-default);
       font-weight: var(--tg-font-weight-normal);
       line-height: 1.5;
+      .emoji {
+        width: 24px;
+        display: inline;
+        vertical-align: middle;
+        height: auto;
+        user-select: none;
+      }
     }
   }
 }

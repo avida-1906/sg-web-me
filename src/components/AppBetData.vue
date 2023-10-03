@@ -1,25 +1,4 @@
 <script setup lang="ts">
-interface Props {
-  mode?: 'casino' | 'sports' | 'home'
-}
-const props = withDefaults(defineProps<Props>(), {
-  mode: 'home',
-})
-
-const {
-  isLessThanLg,
-  isGreaterThanSm,
-} = storeToRefs(useWindowStore())
-
-// loading加载
-const { bool: loading, setFalse: setLoadingFalse } = useBoolean(true)
-// 是否开启隐身模式
-const { bool: isHidden, setFalse: setIsHiddenFalse, setTrue: setIsHiddenTrue } = useBoolean(false)
-// tab值
-const activeTab: Ref<string> = ref('ranking-list')
-// 需要获取多少条数据
-const selectSize: Ref<number> = ref(10)
-
 interface Column {
   title?: string // 列头显示文字
   width?: number | string // 列宽度
@@ -29,6 +8,33 @@ interface Column {
   xl?: boolean // 768-1200是否展示
   md?: boolean // <768是否展示
 }
+interface Props {
+  mode?: 'casino' | 'sports' | 'home'
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  mode: 'home',
+})
+
+const { isLessThanLg, isGreaterThanSm } = storeToRefs(useWindowStore())
+// loading加载
+const { bool: loading, setFalse: setLoadingFalse } = useBoolean(true)
+// 是否开启隐身模式
+const { bool: isHidden, setFalse: setIsHiddenFalse, setTrue: setIsHiddenTrue } = useBoolean(false)
+
+// tab值
+const activeTab: Ref<string> = ref('ranking-list')
+// 需要获取多少条数据
+const selectSize: Ref<number> = ref(10)
+const tableData: any = ref([])
+const selectOptions: ISelectOption[] = [
+  { label: '0', value: 0 },
+  { label: '10', value: 10 },
+  { label: '20', value: 20 },
+  { label: '30', value: 30 },
+  { label: '40', value: 40 },
+]
+
 // 获取tab配置
 const getTabOptions = computed(() => {
   switch (props.mode) {
@@ -210,7 +216,6 @@ const getTableColumns: ComputedRef<Column[]> = computed((): Column[] => {
     default: return []
   }
 })
-
 const getScaleColumns: ComputedRef<Column[]> = computed((): Column[] => {
   if (!isLessThanLg.value)
     return getTableColumns.value
@@ -219,7 +224,14 @@ const getScaleColumns: ComputedRef<Column[]> = computed((): Column[] => {
   else
     return getTableColumns.value.filter(item => item.md)
 })
-const tableData: any = ref([])
+
+function changeHidden() {
+  if (isHidden.value)
+    setIsHiddenFalse()
+  else
+    setIsHiddenTrue()
+}
+
 onMounted(() => {
   setTimeout(() => {
     tableData.value = [
@@ -264,20 +276,6 @@ onMounted(() => {
     setLoadingFalse()
   }, 1000)
 })
-
-const selectOptions: ISelectOption[] = [
-  { label: '0', value: 0 },
-  { label: '10', value: 10 },
-  { label: '20', value: 20 },
-  { label: '30', value: 30 },
-  { label: '40', value: 40 },
-]
-function changeHidden() {
-  if (isHidden.value)
-    setIsHiddenFalse()
-  else
-    setIsHiddenTrue()
-}
 </script>
 
 <template>

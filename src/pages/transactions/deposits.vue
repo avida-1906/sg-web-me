@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 const { t } = useI18n()
+
 const tabList = reactive([
   { label: t('currency_byte_coin'), value: 'byte_coin' },
   { label: t('currency_law_coin'), value: 'real_coin' },

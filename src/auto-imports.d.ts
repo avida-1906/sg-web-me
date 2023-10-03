@@ -25,6 +25,7 @@ declare global {
   const Big: typeof import('big.js')['Big']
   const CasinoGameType: typeof import('./utils/enums')['CasinoGameType']
   const EffectScope: typeof import('vue')['EffectScope']
+  const EnumCasinoApiGameType: typeof import('./utils/enums')['EnumCasinoApiGameType']
   const EnumCasinoGameType: typeof import('./utils/enums')['EnumCasinoGameType']
   const EnumCasinoSortType: typeof import('./utils/enums')['EnumCasinoSortType']
   const EnumCurrency: typeof import('./utils/enums')['EnumCurrency']
@@ -37,6 +38,8 @@ declare global {
   const STORAGE_RECENT_REG_KEYWORDS: typeof import('./utils/storage')['STORAGE_RECENT_REG_KEYWORDS']
   const STORAGE_RECENT_SEARCH_KEYWORD: typeof import('./utils/storage')['STORAGE_RECENT_SEARCH_KEYWORD']
   const STORAGE_REG_PARAMS_KEYWORDS: typeof import('./utils/storage')['STORAGE_REG_PARAMS_KEYWORDS']
+  const STORAGE_RIGHT_SIDEBAR_CONTENT: typeof import('./utils/storage')['STORAGE_RIGHT_SIDEBAR_CONTENT']
+  const STORAGE_RIGHT_SIDEBAR_STATUS: typeof import('./utils/storage')['STORAGE_RIGHT_SIDEBAR_STATUS']
   const STORAGE_SEARCH_KEYWORDS_LIVE: typeof import('./utils/storage')['STORAGE_SEARCH_KEYWORDS_LIVE']
   const STORAGE_SEARCH_KEYWORDS_SPORTS: typeof import('./utils/storage')['STORAGE_SEARCH_KEYWORDS_SPORTS']
   const STORAGE_TOKEN_KEY: typeof import('./utils/storage')['STORAGE_TOKEN_KEY']
@@ -438,6 +441,7 @@ declare module 'vue' {
     readonly ApiSmsSend: UnwrapRef<typeof import('./apis/index')['ApiSmsSend']>
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly EnumCasinoApiGameType: UnwrapRef<typeof import('./utils/enums')['EnumCasinoApiGameType']>
     readonly EnumCasinoGameType: UnwrapRef<typeof import('./utils/enums')['EnumCasinoGameType']>
     readonly EnumCasinoSortType: UnwrapRef<typeof import('./utils/enums')['EnumCasinoSortType']>
     readonly EnumCurrency: UnwrapRef<typeof import('./utils/enums')['EnumCurrency']>
@@ -448,6 +452,7 @@ declare module 'vue' {
     readonly STORAGE_LANGUAGE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_LANGUAGE_KEY']>
     readonly STORAGE_MENU_EXPAND_DOMID: UnwrapRef<typeof import('./utils/storage')['STORAGE_MENU_EXPAND_DOMID']>
     readonly STORAGE_REG_PARAMS_KEYWORDS: UnwrapRef<typeof import('./utils/storage')['STORAGE_REG_PARAMS_KEYWORDS']>
+    readonly STORAGE_RIGHT_SIDEBAR_CONTENT: UnwrapRef<typeof import('./utils/storage')['STORAGE_RIGHT_SIDEBAR_CONTENT']>
     readonly STORAGE_SEARCH_KEYWORDS_LIVE: UnwrapRef<typeof import('./utils/storage')['STORAGE_SEARCH_KEYWORDS_LIVE']>
     readonly STORAGE_SEARCH_KEYWORDS_SPORTS: UnwrapRef<typeof import('./utils/storage')['STORAGE_SEARCH_KEYWORDS_SPORTS']>
     readonly STORAGE_TOKEN_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_TOKEN_KEY']>
@@ -837,6 +842,7 @@ declare module '@vue/runtime-core' {
     readonly ApiSmsSend: UnwrapRef<typeof import('./apis/index')['ApiSmsSend']>
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly EnumCasinoApiGameType: UnwrapRef<typeof import('./utils/enums')['EnumCasinoApiGameType']>
     readonly EnumCasinoGameType: UnwrapRef<typeof import('./utils/enums')['EnumCasinoGameType']>
     readonly EnumCasinoSortType: UnwrapRef<typeof import('./utils/enums')['EnumCasinoSortType']>
     readonly EnumCurrency: UnwrapRef<typeof import('./utils/enums')['EnumCurrency']>
@@ -847,6 +853,7 @@ declare module '@vue/runtime-core' {
     readonly STORAGE_LANGUAGE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_LANGUAGE_KEY']>
     readonly STORAGE_MENU_EXPAND_DOMID: UnwrapRef<typeof import('./utils/storage')['STORAGE_MENU_EXPAND_DOMID']>
     readonly STORAGE_REG_PARAMS_KEYWORDS: UnwrapRef<typeof import('./utils/storage')['STORAGE_REG_PARAMS_KEYWORDS']>
+    readonly STORAGE_RIGHT_SIDEBAR_CONTENT: UnwrapRef<typeof import('./utils/storage')['STORAGE_RIGHT_SIDEBAR_CONTENT']>
     readonly STORAGE_SEARCH_KEYWORDS_LIVE: UnwrapRef<typeof import('./utils/storage')['STORAGE_SEARCH_KEYWORDS_LIVE']>
     readonly STORAGE_SEARCH_KEYWORDS_SPORTS: UnwrapRef<typeof import('./utils/storage')['STORAGE_SEARCH_KEYWORDS_SPORTS']>
     readonly STORAGE_TOKEN_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_TOKEN_KEY']>

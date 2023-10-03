@@ -1,4 +1,8 @@
 <script setup lang='ts'>
+defineOptions({
+  name: 'KeepAliveSports',
+})
+
 const { isMobile } = storeToRefs(useWindowStore())
 
 const gameType = ref('all')

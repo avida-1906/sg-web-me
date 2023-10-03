@@ -8,6 +8,7 @@ interface Props {
 withDefaults(defineProps<Props>(), {})
 
 const route = useRoute()
+const { isLogin } = storeToRefs(useAppStore())
 const {
   casinoMenu,
   casinoGameList,
@@ -53,6 +54,8 @@ const menuData = computed(() => {
 })
 
 function itemClick(item: MenuItem) {
+  if (item.token && !isLogin.value)
+    return
   menuItemClick(item)
 }
 </script>
@@ -60,7 +63,7 @@ function itemClick(item: MenuItem) {
 <template>
   <section class="tg-app-sidebar-small">
     <ul v-for="menu, idx in menuData" :key="idx" class="tiny-menu flex-col-center">
-      <li v-for="menuitem in menu.value" :key="menuitem.title" class="flex-col-center tiny-menu-item" :class="{ active: routePath === menuitem.path }">
+      <li v-for="menuitem in menu.value" :key="menuitem.title" class="flex-col-center tiny-menu-item" :class="{ active: routePath === menuitem.path, disabled: menuitem.token && !isLogin }">
         <VMenu placement="top">
           <div class="trigger" @click="itemClick(menuitem)">
             <BaseIcon :name="menuitem.icon" />
@@ -111,6 +114,10 @@ function itemClick(item: MenuItem) {
         background: var(--tg-secondary-main);
         border-radius: var(--tg-radius-default);
         --tg-icon-color: var(--tg-text-white);
+      }
+      &.disabled{
+        cursor: not-allowed;
+        opacity: 0.5;
       }
       > .v-popper, .trigger {
         width: 100%;

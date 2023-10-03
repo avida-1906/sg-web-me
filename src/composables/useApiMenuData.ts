@@ -7,6 +7,7 @@ export interface MenuItem {
   path?: string
   list?: Menu
   domId?: string
+  token?: boolean
   modalQuery?: { [k: string]: any }
   type?: 'radio'
   value?: any
@@ -20,8 +21,8 @@ export function useApiMenuData() {
 
   // casino
   const casinoMenu = ref<Menu>([
-    { title: '收藏夹', path: '/casino/favourites', icon: 'chess-star', list: [], domId: '' },
-    { title: '近期游戏记录', path: '/casino/recent', icon: 'chess-game-record', list: [], domId: '' },
+    { title: '收藏夹', path: '/casino/favourites', icon: 'chess-star', list: [], domId: '', token: true },
+    { title: '近期游戏记录', path: '/casino/recent', icon: 'chess-game-record', list: [], domId: '', token: true },
     { title: '挑战', path: '/casino/challenges', icon: 'chess-challenge', list: [], domId: '' },
   ])
   const casinoGameList = ref<Menu>([
@@ -38,7 +39,7 @@ export function useApiMenuData() {
   const sportsMenu = ref<Menu>([
     { title: '滚球盘', path: '', icon: 'spt-ball-plate', list: [], domId: '' },
     { title: '即将开赛', path: '', icon: 'spt-timing', list: [], domId: '' },
-    { title: '我的投注', path: '', icon: 'spt-user-bet', list: [], domId: '' },
+    { title: '我的投注', path: '', icon: 'spt-user-bet', list: [], domId: '', token: true },
   ])
   const sportHotGames = ref<Menu>([
     {
@@ -221,14 +222,14 @@ export function useApiMenuData() {
 
   const route = useRoute()
 
-  const { closeLeftSidebar, openLeftSidebar } = useLeftSidebar()
+  const { closeLeftSidebar, openLeftSidebar, leftIsExpand } = useLeftSidebar()
 
   const { isMobile, isLessThanLg } = storeToRefs(useWindowStore())
 
   function menuItemClick(item: MenuItem) {
     Local.set(STORAGE_MENU_EXPAND_DOMID, item.domId || '')
     if (item.path && item.path.length) {
-      if (isMobile.value || isLessThanLg.value)
+      if ((isMobile.value || isLessThanLg.value) && leftIsExpand.value)
         closeLeftSidebar()
 
       router.push(item.path)

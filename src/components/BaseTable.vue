@@ -11,6 +11,7 @@ interface Props {
   dataSource?: any[] // 表格数据数组
   loading?: boolean // 是否加载中
 }
+
 withDefaults(defineProps<Props>(), {
   columns: () => [],
   dataSource: () => [],

@@ -29,8 +29,16 @@ const messages: Array<ChatMessageInfo> = [
     </div>
     <div class="messages">
       <div class="scroll-y message-content">
+        <div class="time-wrap wrap">
+          <span>星期一</span>
+          <span>13:18</span>
+        </div>
         <div v-for="msg in messages" :key="msg.id" class="wrap">
           <AppChatMsgItem :msg-info="msg" />
+        </div>
+        <div class="time-wrap wrap">
+          <span>星期一</span>
+          <span>13:18</span>
         </div>
       </div>
       <Transition>
@@ -97,6 +105,12 @@ const messages: Array<ChatMessageInfo> = [
       }
       .wrap {
         width: 100%;
+      }
+      .time-wrap {
+        display: flex;
+        color: var(--tg-secondary-light);
+        justify-content: space-between;
+        font-size: var(--tg-font-size-xs);
       }
     }
     .more-wrap {

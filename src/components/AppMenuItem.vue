@@ -7,13 +7,16 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {})
+
 const route = useRoute()
+const { isLogin } = storeToRefs(useAppStore())
+
 const active = computed(() => route.path === props.menuItem.path)
 </script>
 
 <template>
   <div class="tg-app-menu-item">
-    <div class="menu-item" :class="{ active }">
+    <div class="menu-item" :class="{ active, disabled: menuItem.token && !isLogin }">
       <BaseIcon v-if="menuItem.icon" :name="menuItem.icon" />
       <span>{{ menuItem.title }}</span>
     </div>
@@ -41,6 +44,10 @@ const active = computed(() => route.path === props.menuItem.path)
     overflow: hidden;
     &:hover, &.active {
       background-color: var(--tg-secondary-main);
+    }
+    &.disabled{
+      cursor: not-allowed;
+      opacity: 0.5;
     }
   }
 }

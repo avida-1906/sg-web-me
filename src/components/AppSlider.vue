@@ -42,7 +42,6 @@ const isEnd = computed(() => {
     return temp >= props.data.length - 0.1
   }
 })
-
 const scrollLeftItemsCount = computed(() => {
   return Math.round(x.value / (itemWidthPercent.value * outerWidth.value))
 })

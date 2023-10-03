@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { EnumCasinoGameType, EnumCasinoSortType } from '~/utils/enums'
+import { EnumCasinoApiGameType, EnumCasinoGameType, EnumCasinoSortType } from '~/utils/enums'
 
 const props = defineProps<{ gameType: string }>()
 const { VITE_CASINO_GAME_PAGE_SIZE } = getEnv()
@@ -10,7 +10,7 @@ const currentType = ref(props.gameType)
 const isLive = computed(() => currentType.value === EnumCasinoGameType.LIVE) // 真人
 const isSlot = computed(() => currentType.value === EnumCasinoGameType.SLOT) // 老虎机
 const isRec = computed(() => currentType.value === 'rec') // 推荐游戏
-const iszProvider = computed(() => currentType.value === 'provider') // 供应商
+const isProvider = computed(() => currentType.value === 'provider') // 供应商
 
 const title = computed(() => {
   if (isLive.value)
@@ -19,7 +19,7 @@ const title = computed(() => {
     return t('game_type_slot')
   else if (isRec.value)
     return t('game_type_rec')
-  else if (iszProvider.value)
+  else if (isProvider.value)
     return route.query.name
   return '-'
 })
@@ -32,8 +32,8 @@ const bannerImg = computed(() => {
 })
 
 // 真人、老虎机
-const gameTypeParams = computed(() => isLive.value ? 1 : isSlot.value ? 3 : undefined)
-const pid = computed(() => iszProvider.value ? route.query.pid?.toString() : undefined)
+const gameTypeParams = computed(() => isLive.value ? EnumCasinoApiGameType.LIVE : isSlot.value ? EnumCasinoApiGameType.SLOT : undefined)
+const pid = computed(() => isProvider.value ? route.query.pid?.toString() : undefined)
 const sort = ref(isLive.value ? EnumCasinoSortType.recommend : EnumCasinoSortType.hot)
 const { list: gameList, total: gameTotal, runAsync: runGameList, loading: loadingGame, loadMore: loadMoreGame } = useList(ApiMemberGameList, {}, { page_size: VITE_CASINO_GAME_PAGE_SIZE })
 
@@ -42,7 +42,7 @@ const { list: recList, total: recTotal, runAsync: runRecList, loading: loadingRe
 
 // 获取数据
 function getData() {
-  if (isLive.value || isSlot.value || iszProvider.value)
+  if (isLive.value || isSlot.value || isProvider.value)
     application.allSettled([runGameList({ game_type: gameTypeParams.value, platform_id: pid.value, sort: sort.value })])
   else if (isRec.value)
     application.allSettled([runRecList({ sort: sort.value })])
@@ -50,28 +50,28 @@ function getData() {
 
 // 页面数据
 const list = computed(() => {
-  if (isLive.value || isSlot.value || iszProvider.value)
+  if (isLive.value || isSlot.value || isProvider.value)
     return gameList.value
   else if (isRec.value)
     return recList.value
   return []
 })
 const total = computed(() => {
-  if (isLive.value || isSlot.value || iszProvider.value)
+  if (isLive.value || isSlot.value || isProvider.value)
     return gameTotal.value
   else if (isRec.value)
     return recTotal.value
   return 0
 })
 const loading = computed(() => {
-  if (isLive.value || isSlot.value || iszProvider.value)
+  if (isLive.value || isSlot.value || isProvider.value)
     return loadingGame.value
   else if (isRec.value)
     return loadingRec.value
   return false
 })
 const push = computed(() => {
-  if (isLive.value || isSlot.value || iszProvider.value)
+  if (isLive.value || isSlot.value || isProvider.value)
     return loadMoreGame
   else if (isRec.value)
     return loadMoreRec
@@ -88,6 +88,10 @@ onBeforeRouteLeave(() => {
   stop()
 })
 
+// 游戏提供尚选择变化
+function onPlatTypeChecked(v: string) {
+  application.allSettled([runGameList({ game_type: gameTypeParams.value, platform_id: v, sort: sort.value })])
+}
 // 排序变化
 function onSortChange(v: any) {
   sort.value = v
@@ -95,7 +99,7 @@ function onSortChange(v: any) {
 }
 
 // 初始化
-if (isLive.value || isSlot.value || iszProvider.value)
+if (isLive.value || isSlot.value || isProvider.value)
   await application.allSettled([runGameList({ game_type: gameTypeParams.value, platform_id: pid.value, sort: sort.value })])
 
 else if (isRec.value)
@@ -124,7 +128,7 @@ else if (isRec.value)
         <AppGameSearch game-type="1" />
       </div>
       <div class="mt-24">
-        <AppGroupFilter :game-type="currentType" :sort-type="sort" @sort-type-change="onSortChange" />
+        <AppGroupFilter :game-type="currentType" :sort-type="sort" @sort-type-change="onSortChange" @plat-type-checked="onPlatTypeChecked" />
       </div>
       <div class="mt-24">
         <AppCardList :list="list" />

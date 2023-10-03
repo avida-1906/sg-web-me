@@ -229,13 +229,13 @@
 
 // 移动端大菜单动画
 .bigslide-fade-top-enter-active {
-  animation: bigslide-fade-top-in 0.15s linear;
+  animation: bigslide-fade-top-in 0.15s ease-in-out;
   animation-fill-mode: forwards;
   // opacity: 0;
   margin-top: 100vh;
 }
 .bigslide-fade-top-leave-active {
-  animation: bigslide-fade-top-out 0.15s linear;
+  animation: bigslide-fade-top-out 0.15s ease-in-out;
   animation-fill-mode: forwards;
   margin-top: 0;
   // opacity: 1;

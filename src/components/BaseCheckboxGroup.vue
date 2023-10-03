@@ -17,29 +17,29 @@ const props = withDefaults(defineProps<Props>(), {
   shape: 'square',
   size: 'small',
 })
-const emit = defineEmits(['update:modelValue'])
-function checkValue(v: string, item: CheckItem) {
-  const isChecked = props.modelValue.findIndex(a => a === v) > -1
-  item.isChecked = isChecked
-  return isChecked
+const emit = defineEmits(['update:modelValue', 'check'])
+function checkValue(v: string) {
+  return props.modelValue.findIndex(a => a === v) > -1
 }
 function onItemChecked(v: string, item: CheckItem) {
+  item.isChecked = !item.isChecked
   const arr: string[] = cloneDeep(props.modelValue)
-  if (checkValue(v, item))
+  if (checkValue(v))
     arr.splice(arr.findIndex(a => a === v), 1)
 
   else
     arr.push(v)
 
   emit('update:modelValue', arr)
+  emit('check', arr)
 }
 </script>
 
 <template>
   <div class="base-checkbox-group" :class="[layout]">
     <div v-for="item in list" :key="item.value" class="base-check-box" @click="onItemChecked(item.value, item)">
-      <span class="outer" :class="[shape, size, { active: checkValue(item.value, item) }]">
-        <span v-show="checkValue(item.value, item)" class="icon" />
+      <span class="outer" :class="[shape, size, { active: checkValue(item.value) }]">
+        <span v-show="checkValue(item.value)" class="icon" />
       </span>
       <slot :item="item">
         {{ item.label }}

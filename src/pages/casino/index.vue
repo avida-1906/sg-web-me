@@ -1,4 +1,10 @@
 <script setup lang='ts'>
+import { EnumCasinoApiGameType, EnumCasinoGameType } from '~/utils/enums'
+
+defineOptions({
+  name: 'KeepAliveCasino',
+})
+
 const { isMobile } = storeToRefs(useWindowStore())
 const router = useRouter()
 const { t } = useI18n()
@@ -21,7 +27,7 @@ function viewMoreGames(gameType: string) {
   router.push(`/casino/group/${gameType}`)
 }
 
-await application.allSettled([runLive({ game_type: 1 }), runSlot({ game_type: 3 })])
+await application.allSettled([runLive({ game_type: EnumCasinoApiGameType.LIVE }), runSlot({ game_type: EnumCasinoApiGameType.SLOT })])
 </script>
 
 <template>

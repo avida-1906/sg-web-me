@@ -29,10 +29,10 @@ const { width } = useElementSize(homeContainerRef)
 const route = useRoute()
 const { leftIsExpand, isSwitching, switchTo, triggerLeftSidebar } = useLeftSidebar()
 const { rightIsExpand, rightContainerIs0, currentRightSidebarContent } = useRightSidebar()
+const keepAliveList = ref<string[]>(['KeepAliveCasino'])
 
 // 是否游戏页面
 const isCasinoGames = computed(() => route.name === 'casino-games')
-
 // home-overlay 是否显示
 const homeOverlayIsShow = computed(() => {
   return leftIsExpand.value && isLessThanLg.value && !isMobile.value
@@ -40,6 +40,11 @@ const homeOverlayIsShow = computed(() => {
 
 watch(() => width.value, (newWidth) => {
   windowStore.setAppContentWidth(newWidth)
+})
+
+onErrorCaptured((err, instance, info) => {
+  console.error('发生错误: \n Error', err, '\n', 'Instance: ', instance, '\n', 'Info:', info)
+  return false
 })
 </script>
 
@@ -93,14 +98,16 @@ watch(() => width.value, (newWidth) => {
           <AppContent :is-game-page="isCasinoGames">
             <RouterView v-slot="{ Component }">
               <template v-if="Component">
-                <Suspense timeout="0">
-                  <component :is="Component" />
-                  <template #fallback>
-                    <div class="center loading-content-height">
-                      <BaseLoading />
-                    </div>
-                  </template>
-                </Suspense>
+                <KeepAlive :include="keepAliveList" :max="10">
+                  <Suspense timeout="0">
+                    <component :is="Component" />
+                    <template #fallback>
+                      <div class="center loading-content-height">
+                        <BaseLoading />
+                      </div>
+                    </template>
+                  </Suspense>
+                </KeepAlive>
               </template>
             </RouterView>
           </AppContent>

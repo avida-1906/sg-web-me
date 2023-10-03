@@ -18,11 +18,12 @@ const {
   sportOddType,
   staticMenu1,
   staticMenu2,
+  menuItemClick,
 } = useApiMenuData()
 const { t } = useI18n()
 const route = useRoute()
 const { isMobile } = storeToRefs(useWindowStore())
-const { menuItemClick } = useApiMenuData()
+const { isLogin } = storeToRefs(useAppStore())
 
 const innerRef = ref()
 const timeStamp = ref(0)
@@ -33,6 +34,8 @@ const isGameTypeCasino = computed(() => props.currentType === '1')
 const isGameTypeSports = computed(() => props.currentType === '2')
 
 function handleClickItem(item: MenuItem) {
+  if (item.token && !isLogin.value)
+    return
   menuItemClick(item)
 }
 function closeMenu(t: any) {
