@@ -6,10 +6,6 @@ function keyUpNum(event: any) {
   if (num)
     emit('keyNum', num)
 }
-
-function keyUpOk() {
-  emit('keyOk')
-}
 </script>
 
 <template>
@@ -35,7 +31,7 @@ function keyUpOk() {
     <div data-num="6">
       6
     </div>
-    <div class="ok-3" @click.stop="keyUpOk">
+    <div class="ok-3" @click.stop="emit('keyOk')">
       ok
     </div>
     <div data-num="1">

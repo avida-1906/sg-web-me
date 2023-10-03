@@ -2,6 +2,7 @@
 interface Props {
   mode?: 'only' | 'default'
 }
+
 const props = withDefaults(defineProps<Props>(), {
   mode: 'default',
 })
@@ -79,7 +80,6 @@ function scrollRight() {
     width: 100%;
     display: grid;
     grid-auto-flow: column;
-    // grid-column-gap: 1rem;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;

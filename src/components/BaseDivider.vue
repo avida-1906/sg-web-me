@@ -18,6 +18,7 @@ const cssVars = {
   '--leftOffset': leftOffset,
   '--rightOffset': rightOffset,
 }
+
 const showTitle = computed(() => {
   return useSlots().default
 })

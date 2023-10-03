@@ -71,7 +71,6 @@ const noticeList = [{}]
     box-shadow: var(--tg-box-shadow-lg);
     flex-shrink: 0;
     touch-action: none;
-    // padding-right: var(--scrollbar-size);
     .head-title{
       color:var(--tg-text-white);
       display: inline-flex;

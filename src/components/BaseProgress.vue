@@ -135,33 +135,6 @@ const lineColor = computed(() => {
       background-color: var(--tg-sub-blue);//默认颜色
       border-radius: 100px;
       transition: all .3s cubic-bezier(0.78, 0.14, 0.15, 0.86);
-
-      // &::after {
-      //   content: "";
-      //   background-image: linear-gradient(90deg, #{rgba($color: var(--tg-color-white-rgb), $alpha: 0.3)} 0%, #{rgba($color: var(--tg-color-white-rgb), $alpha: 0.5)} 100%);
-      //   animation: progressRipple 2s cubic-bezier(.4, 0, .2, 1) infinite;
-      // }
-
-      // @keyframes progressRipple {
-      //   0% {
-      //     position: absolute;
-      //     inset: 0;
-      //     right: 100%;
-      //     opacity: 1;
-      //   }
-
-      //   66% {
-      //     position: absolute;
-      //     inset: 0;
-      //     opacity: 0.66;
-      //   }
-
-      //   100% {
-      //     position: absolute;
-      //     inset: 0;
-      //     opacity: 0;
-      //   }
-      // }
     }
 
     .u-success-bg {
@@ -175,7 +148,6 @@ const lineColor = computed(() => {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    // padding-left: 4px;
     flex-shrink: 1; // 默认 1.即空间不足时，项目将缩小
 
     .u-icon {
@@ -187,10 +159,6 @@ const lineColor = computed(() => {
   }
 
   .u-progress-text {
-    /*
-      如果所有项目的flex-shrink属性都为1，当空间不足时，都将等比例缩小
-      如果一个项目的flex-shrink属性为0，其他项目都为1，则空间不足时，前者不缩小。
-    */
     flex-shrink: 1; // 默认 1.即空间不足时，项目将缩小
     width: 40px;
     text-align: center;

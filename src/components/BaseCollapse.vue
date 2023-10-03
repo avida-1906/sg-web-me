@@ -12,6 +12,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const emit = defineEmits(['clickHead'])
+
 const { bool: isShow, setBool: setAutoShowBool } = useBoolean(props.autoShow)
 
 function handleClickHeader() {
