@@ -41,10 +41,6 @@ const code = computed(() => dataDetail.value ? dataDetail.value.game_id : '')
 const currencyName = computed(() => currentCurrency.value ? currentCurrency.value.name : '')
 const isFavorite = computed(() => dataDetail.value ? dataDetail.value.is_fav === 1 : false)
 const bigGameWrapper = computed(() => appContentWidth.value > 930)
-
-function onChooseCurrency(v: any) {
-  currentCurrency.value = v
-}
 // 启动游戏接口
 const { run: runLunchGame, data: gameUrl } = useRequest(() => ApiGameLunch(pid.value, code.value, currencyName.value), {
   manual: true,
@@ -54,12 +50,16 @@ const { run: runLunchGame, data: gameUrl } = useRequest(() => ApiGameLunch(pid.v
       return location.href = res
   },
 })
+
+// 选择货币
+function onChooseCurrency(v: any) {
+  currentCurrency.value = v
+  runLunchGame()
+}
 // 切换试玩真钱模式
 function onSwitchRealMoneyMode(v: boolean) {
   setRealModeBool(v)
   overlayFalse()
-
-  runLunchGame()
 }
 
 function onClickFullScreen() { // 全屏
@@ -90,7 +90,7 @@ function onClickFavorite() {
 }
 
 defineExpose({ runDetail })
-await application.allSettled([runDetail()])
+await application.allSettled([runDetail().then(() => runLunchGame())])
 </script>
 
 <template>
