@@ -15,7 +15,6 @@ const props = withDefaults(defineProps<Props>(), {
     }
   },
 })
-// const emit = defineEmits(['update:modelValue'])
 
 const tab = ref('1')
 const tabList = [

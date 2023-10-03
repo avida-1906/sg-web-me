@@ -15,7 +15,6 @@ const props = withDefaults(defineProps<Props>(), {
   contentSize: '12',
   must: false,
 })
-// const emit = defineEmits(['update:modelValue'])
 </script>
 
 <template>
