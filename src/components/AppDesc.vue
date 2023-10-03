@@ -11,12 +11,6 @@ interface Column {
   align?: 'left' | 'center' | 'right'
 }
 
-// interface Props {
-// }
-// const props = withDefaults(defineProps<Props>(), {
-// })
-// const emit = defineEmits(['update:modelValue'])
-
 const { bool: showContent, toggle: toggleShowContent } = useBoolean(true)
 const { bool: loading, setFalse: setLoadingFalse } = useBoolean(true)
 const {
