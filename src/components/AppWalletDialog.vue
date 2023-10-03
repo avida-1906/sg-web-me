@@ -34,13 +34,6 @@ function handleShow(val: boolean) {
         <AppWithdraw v-else :active-currency="activeCurrency" />
       </template>
     </div>
-
-    <!-- <div class="footer">
-      <span>通过双重验证提高您的账户安全性</span>
-      <BaseButton bg-style="primary" size="md">
-        开启双重验证
-      </BaseButton>
-    </div> -->
   </div>
 </template>
 
@@ -56,23 +49,5 @@ function handleShow(val: boolean) {
     flex-direction: column;
     gap: var(--tg-spacing-12);
   }
-  // .app-deposit {
-  //   display: flex;
-  //   flex-direction: column;
-  //   gap: var(--tg-spacing-12);
-  // }
 }
-
-// .footer {
-//   padding-right: var(--tg-spacing-16);
-//   padding-left: var(--tg-spacing-16);
-//   display: flex;
-//   flex-direction: column;
-//   background: var(--tg-secondary-dark);
-//   width: 100%;
-//   align-items: center;
-//   padding-top: var(--tg-spacing-20);
-//   padding-bottom: var(--tg-spacing-20);
-//   gap: var(--tg-spacing-12);
-// }
 </style>

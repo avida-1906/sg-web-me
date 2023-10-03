@@ -104,7 +104,7 @@ function changeBar(item: { name: string; path?: string }) {
       align-items: center;
       span{
         font-size: var(--tg-font-size-xs);
-        color:var(--tg-text-white);
+        color: var(--tg-text-white);
         font-weight: var(--tg-font-weight-semibold);
         padding-top: 3px;
         line-height: 1;

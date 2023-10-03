@@ -20,6 +20,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const emit = defineEmits(['clickImg'])
+
 const { bool: isError, setTrue: setErrorTrue } = useBoolean(false)
 const { VITE_CASINO_IMG_CLOUD_URL } = getEnv()
 

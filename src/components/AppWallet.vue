@@ -19,6 +19,7 @@ withDefaults(defineProps<Props>(), {
 })
 
 const emit = defineEmits(['change'])
+
 const { openWalletDialog } = useWalletDialog()
 // 下拉搜索是否显示
 const { bool: isMenuShown } = useBoolean(false)

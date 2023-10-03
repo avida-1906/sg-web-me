@@ -469,7 +469,9 @@ const isSm = computed(() => appContentWidth.value < widthBoundarySm.value)
         </div>
       </div>
       <!-- 轮播图暂留 -->
-      <div>轮播图暂留位置</div>
+      <div class="vip-slider">
+        <AppBannerUnlimited />
+      </div>
       <!-- 奖励 -->
       <div class="vip-award">
         <p class="title">

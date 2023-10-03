@@ -1,13 +1,8 @@
 <script setup lang='ts'>
-// const { t } = useI18n()
-
-// const inputRef = ref()
-// function onInputClick() {
-//   inputRef.value.select()
-// }
 interface Props {
   activeCurrency: any
 }
+
 withDefaults(defineProps<Props>(), {
   activeCurrency: () => {},
 })
@@ -33,15 +28,11 @@ function cancelPayment() {
   depositStep.value = '1'
   emit('show', true)
 }
-// onMounted(() => {
-//   console.log(props.activeCurrency, 11111)
-// })
 </script>
 
 <template>
   <div class="app-virtual-deposit">
     <template v-if="depositStep === '1'">
-      <!-- <BaseSelect v-model="currentNetwork" :options="networkList" popper /> -->
       <BaseInput
         v-model="username" :label="`充值金额: ${activeCurrency?.name}`"
         :msg="usernameErrorMsg"

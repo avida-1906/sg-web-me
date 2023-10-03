@@ -11,6 +11,7 @@ declare module 'vue' {
     AppAmount: typeof import('./components/AppAmount.vue')['default']
     AppAuthLogin: typeof import('./components/AppAuthLogin.vue')['default']
     AppBanner: typeof import('./components/AppBanner.vue')['default']
+    AppBannerUnlimited: typeof import('./components/AppBannerUnlimited.vue')['default']
     AppBetData: typeof import('./components/AppBetData.vue')['default']
     AppCardList: typeof import('./components/AppCardList.vue')['default']
     AppChat: typeof import('./components/AppChat.vue')['default']

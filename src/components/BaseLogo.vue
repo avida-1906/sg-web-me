@@ -2,10 +2,13 @@
 interface Props {
   useSmall?: boolean
 }
+
 withDefaults(defineProps<Props>(), {
   useSmall: false,
 })
+
 const router = useRouter()
+
 function pathTo() {
   router.push('/')
 }
@@ -21,8 +24,6 @@ function pathTo() {
 
 <style lang="scss" scoped>
 .base-logo {
-  // width: 100%;
-  // height: 100%;
   cursor: pointer;
   .icon-app-logo {
     display: block;

@@ -43,7 +43,6 @@ const getActiveShown = computed(() => {
 
 function handleClickMenuItem(item: { name: string; path?: string }) {
   const { name, path } = item
-  // console.log(name)
   if (path) {
     router.push(path)
     return
@@ -158,7 +157,6 @@ async function logout() {
   gap: var(--tg-spacing-16);
   padding: var(--tg-spacing-16) var(--tg-spacing-16);
   &-text {
-    // font-size: var(--tg-font-size-default);
     font-size: var(--tg-font-size-xs);
     color: var(--tg-text-lightgrey);
   }
@@ -171,7 +169,6 @@ async function logout() {
 
 .app-header {
   display: grid;
-  // grid-template-columns: 1fr auto 1fr;
   gap: 1rem;
   align-items: center;
   .icon-size {
