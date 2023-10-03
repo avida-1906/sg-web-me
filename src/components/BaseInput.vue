@@ -17,12 +17,18 @@ const props = withDefaults(defineProps<Props>(), {
   type: 'text',
   textarea: false,
 })
-const emit = defineEmits(['update:modelValue', 'input', 'blur', 'focus'])
-const { bool: isFocus, setTrue, setFalse } = useBoolean(false)
-const isError = computed(() => !!props.msg)
 
+const emit = defineEmits(['update:modelValue', 'input', 'blur', 'focus'])
+
+const { bool: isFocus, setTrue, setFalse } = useBoolean(false)
+
+const iTextarea = ref()
+const iInput = ref()
 const _type = ref(props.type)
+
+const isError = computed(() => !!props.msg)
 const isPassword = computed(() => props.type === 'password')
+
 function toggleType() {
   if (_type.value === 'text')
     return _type.value = 'password'
@@ -39,10 +45,18 @@ function onFocus() {
   setTrue()
   emit('focus')
 }
+
 function onBlur() {
   setFalse()
   emit('blur')
 }
+
+function getFocus() {
+  iTextarea.value?.focus()
+  iInput.value?.focus()
+}
+
+defineExpose({ getFocus })
 </script>
 
 <template>
@@ -54,13 +68,14 @@ function onBlur() {
           <div v-if="textarea" class="textarea-container">
             <pre aria-hidden="true">{{ modelValue }}</pre>
             <textarea
+              ref="iTextarea"
               :value="modelValue"
               min="0" class="scroll-y" :placeholder="placeholder" :class="{ 'p-r-0': $slots['right-icon'] }"
               autocomplete="new-password" :disabled="disabled" @input="onInput" @focus="onFocus" @blur="onBlur"
             />
           </div>
           <input
-            v-else :value="modelValue" min="0" :placeholder="placeholder" :type="_type" :disabled="disabled"
+            v-else ref="iInput" :value="modelValue" min="0" :placeholder="placeholder" :type="_type" :disabled="disabled"
             :class="{ 'p-r-0': $slots['right-icon'] }" @input="onInput" @focus="onFocus" @blur="onBlur"
           >
           <div v-if="isPassword" class="eye" @click="toggleType">
