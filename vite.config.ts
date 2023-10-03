@@ -157,7 +157,7 @@ export default defineConfig(({ mode }) => {
               return 'styles'
 
             if (['src/components'].some(v => id.includes(v)))
-              return 'src-components'
+              return `src-components-${id.split('src/components/')[1].split('/')[0]}`
 
             if (id.includes('node_modules/dayjs'))
               return 'dayjs'
