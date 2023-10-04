@@ -6,6 +6,7 @@ import generatedRoutes from '~pages'
 declare module 'vue-router' {
   interface RouteMeta {
     layout?: string
+    /** 是否需要登录 */
     auth?: boolean
   }
 }
