@@ -3,6 +3,8 @@ import { createI18n } from 'vue-i18n'
 import type { App } from 'vue'
 import { EnumLanguage } from '~/utils/enums'
 
+const { VITE_I18N_DEFAULT_LANG } = getEnv()
+
 /** 映射后端的多语言值 */
 export const languageMap: IObject = {
   'zh-CN': 'zh_CN',
@@ -57,7 +59,6 @@ export async function loadLanguageAsync(langIndex: EnumLanguage): Promise<Locale
 }
 
 export function install(app: App<Element>) {
-  const { VITE_I18N_DEFAULT_LANG } = getEnv()
   const localStorageLanguageIndex = Local.get<EnumLanguage | null>(STORAGE_LANGUAGE_KEY)?.value
   let index: number
   if (localStorageLanguageIndex)
@@ -71,7 +72,7 @@ export function install(app: App<Element>) {
   if (index in EnumLanguage)
     loadLanguageAsync(index)
   else
-    loadLanguageAsync(EnumLanguage['zh-CN'])
+    loadLanguageAsync(EnumLanguage[VITE_I18N_DEFAULT_LANG])
 }
 
 /** 更换语言 */
@@ -87,10 +88,10 @@ export function getCurrentLanguage() {
 
 /** 获取当前对应后端的多语言 */
 export function getCurrentLanguageForBackend() {
-  return languageMap[getCurrentLanguage() || 'zh-CN']
+  return languageMap[getCurrentLanguage() || VITE_I18N_DEFAULT_LANG]
 }
 
 /** 获取当前对应后端的多语言ID */
 export function getCurrentLanguageIdForBackend() {
-  return languageIdMap[getCurrentLanguage() || 'zh-CN']
+  return languageIdMap[getCurrentLanguage() || VITE_I18N_DEFAULT_LANG]
 }
