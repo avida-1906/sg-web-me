@@ -29,7 +29,7 @@ const { width } = useElementSize(homeContainerRef)
 const route = useRoute()
 const { leftIsExpand, isSwitching, switchTo, triggerLeftSidebar } = useLeftSidebar()
 const { rightIsExpand, rightContainerIs0, currentRightSidebarContent } = useRightSidebar()
-const { bool: isRouting, setFalse: setRFalse, setTrue: setRTrue } = useBoolean(true)
+const { bool: isRouting, setFalse: setRFalse, setTrue: setRTrue } = useBoolean(false)
 
 const keepAliveList = ref<string[]>(['KeepAliveCasino'])
 
@@ -40,21 +40,23 @@ const homeOverlayIsShow = computed(() => {
   return leftIsExpand.value && isLessThanLg.value && !isMobile.value
 })
 
-watch(() => width.value, (newWidth) => {
-  windowStore.setAppContentWidth(newWidth)
-})
-
-watch(route, () => {
+function toggleAni() {
   setRTrue()
   setTimeout(() => {
     setRFalse()
   }, 300)
+}
+
+watch(() => width.value, (newWidth) => {
+  windowStore.setAppContentWidth(newWidth)
+})
+
+watch(() => route.name, () => {
+  toggleAni()
 })
 
 onMounted(() => {
-  setTimeout(() => {
-    setRFalse()
-  }, 300)
+  toggleAni()
 })
 
 onErrorCaptured((err, instance, info) => {
