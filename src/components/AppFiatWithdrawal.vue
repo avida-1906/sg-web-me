@@ -5,7 +5,7 @@ interface IBankOption {
   value: string
 }
 
-const { bool: isBind } = useBoolean(true)
+const { bool: isBind } = useBoolean(false)
 const { isLessThanXs } = storeToRefs(useWindowStore())
 
 const amount = ref('')
@@ -25,6 +25,19 @@ const bankSelectOptions: IBankOption[] = [
   { label: '光大银行', icon: 'fiat-bank', value: '4' },
 ]
 const selectBank = ref('')
+const params = ref({
+  page_size: '10',
+  page: '1',
+  bank_type: '601',
+})
+
+const { list: bankcardList, run } = useList(ApiMemberBankcardList)
+const { data: bankTypeList } = useRequest(() => ApiMemberTreeList({ level: '006' }), {
+  manual: false,
+  onSuccess(data) {
+    console.log('data', data)
+  },
+})
 
 const bindBanks = computed(() => {
   return [
@@ -34,6 +47,8 @@ const bindBanks = computed(() => {
     return item
   })
 })
+
+run(params.value)
 </script>
 
 <template>
@@ -47,12 +62,13 @@ const bindBanks = computed(() => {
       <BaseLabel label="用户名" must label-content="绑定后不可更改">
         <BaseInput v-model="username" />
       </BaseLabel>
-      <BaseLabel label="提款方式">
+      <!-- <BaseLabel label="提款方式">
         <AppWithdrawalDepositType v-model="currentType" :deposit-type="depositTypeData" />
-      </BaseLabel>
+      </BaseLabel> -->
       <BaseLabel v-if="currentType === '1'" label="请选择银行" must>
-        <BaseSelect v-model="currentBank" :options="bankSelectOptions" />
+        <BaseSelect v-model="currentBank" :options="bankSelectOptions" class="base-select" />
       </BaseLabel>
+      <BaseInput label="开户行地址" />
       <BaseLabel :label="currentType === '1' ? '银行账户' : '请输入第三方账户 '" must>
         <BaseInput v-model="accountNumber" />
       </BaseLabel>
@@ -114,6 +130,9 @@ const bindBanks = computed(() => {
       align-items: center;
       gap: .25rem;
       margin-bottom: var(--tg-spacing-5);
+    }
+    .base-select{
+      --tg-base-select-style-padding-y: var(--tg-spacing-8);
     }
   }
   .withdrawal-wrap{
