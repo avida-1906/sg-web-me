@@ -8,8 +8,8 @@ interface IBannerData {
 
 const {
   appContentWidth,
-  isSm,
-  isXs,
+  widthBoundaryXs,
+  widthBoundarySm,
 } = storeToRefs(useWindowStore())
 
 const bannerData = [
@@ -50,15 +50,16 @@ const { bool: activeTransition, setTrue: setTransitionTrue, setFalse: setTransit
 const sliderRef = ref<HTMLElement>()
 const baseNumber = ref(0.3333)
 const offSetNumber = ref(0)
+const { bool: isDragging, setTrue: setDraggingTrue, setFalse: setDraggingFalse } = useBoolean(false)
+const startPosition = ref(0)
+const tempOffSet = ref(0)
 
+const isXs = computed(() => appContentWidth.value < widthBoundaryXs.value)
+const isSm = computed(() => appContentWidth.value < widthBoundarySm.value && appContentWidth.value > widthBoundaryXs.value)
 const mergeBannerData = computed(() => [...bannerData, ...bannerData, ...bannerData])
 const cardWidth = computed(() => Number((appContentWidth.value * baseNumber.value).toFixed(2)))
 const sliderWidth = computed(() => cardWidth.value * 15)
 const offSetInit = computed(() => cardWidth.value * 5)
-setTimeout(() => {
-  offSet.value = -offSetInit.value
-  offSetNumber.value = offSet.value / cardWidth.value
-}, 0)
 
 // 左
 const onPrev = throttle(() => {
@@ -69,14 +70,14 @@ const onPrev = throttle(() => {
   activeValue.value--
   if (offSet.value === -cardWidth.value) {
     setTimeout(() => {
-      offSet.value = -(cardWidth.value * 6)
+      offSet.value = -(Number((cardWidth.value * 6).toFixed(2)))
     }, 900)
   }
   setTimeout(() => {
     setTransitionFalse()
   }, 800)
-  offSetNumber.value = Math.abs(offSet.value / cardWidth.value)
-}, 1000)
+  offSetNumber.value = Math.abs(Number((offSet.value / cardWidth.value).toFixed()))
+}, 1000, { leading: true, trailing: false })
 // 右
 const onNext = throttle(() => {
   offSet.value = Number((offSet.value - cardWidth.value).toFixed(2))
@@ -84,16 +85,16 @@ const onNext = throttle(() => {
     activeValue.value = 0
   setTransitionTrue()
   activeValue.value++
-  if (offSet.value === -(cardWidth.value * 9)) {
+  if (offSet.value === -(Number((cardWidth.value * 9).toFixed(2)))) {
     setTimeout(() => {
-      offSet.value = -(cardWidth.value * 4)
+      offSet.value = -(Number((cardWidth.value * 4).toFixed(2)))
     }, 900)
   }
   setTimeout(() => {
     setTransitionFalse()
   }, 800)
-  offSetNumber.value = Math.abs(offSet.value / cardWidth.value)
-}, 1000)
+  offSetNumber.value = Math.abs(Number((offSet.value / cardWidth.value).toFixed()))
+}, 1000, { leading: true, trailing: false })
 // 点击图片切换
 const change = function (item: IBannerData) {
   if (isSm.value || isXs.value)
@@ -111,6 +112,29 @@ const change = function (item: IBannerData) {
       onNext()
   }
 }
+// 触碰
+const onTouchstart = throttle((e: TouchEvent) => {
+  setDraggingTrue()
+  startPosition.value = e.touches[0].clientX
+  tempOffSet.value = offSet.value
+}, 1000, { leading: true, trailing: false })
+// 移动
+const onTouchMove = function (e: TouchEvent) {
+  if (!isDragging.value)
+    return
+  const currentPosition = e.touches[0].clientX
+  offSet.value = tempOffSet.value + (currentPosition - startPosition.value)
+}
+// 抬起
+const onTouchEnd = throttle((e: TouchEvent) => {
+  setDraggingFalse()
+  const currentPosition = e.changedTouches[0].clientX
+  offSet.value = tempOffSet.value
+  if (startPosition.value > currentPosition)
+    onNext()
+  else if (startPosition.value < currentPosition)
+    onPrev()
+}, 1000, { leading: true, trailing: false })
 
 watch(() => isSm.value, () => {
   if (isSm.value)
@@ -124,14 +148,24 @@ watch(() => isXs.value, () => {
   else if (!isSm.value && !isXs.value)
     baseNumber.value = 0.3333
 }, { immediate: true })
-watch(() => appContentWidth.value, (newValue) => {
-  if (newValue < 1200)
-    offSet.value = -Math.abs(offSetNumber.value * cardWidth.value)
+watch(() => appContentWidth.value, () => {
+  offSet.value = -Number(Math.abs(offSetNumber.value * cardWidth.value).toFixed(2))
 })
 
 onMounted(() => {
+  setTimeout(() => {
+    offSet.value = -offSetInit.value
+    offSetNumber.value = Math.abs(Number((offSet.value / cardWidth.value).toFixed()))
+  }, 0)
   // 滑动
-
+  sliderRef.value?.addEventListener('touchstart', onTouchstart)
+  sliderRef.value?.addEventListener('touchmove', onTouchMove)
+  sliderRef.value?.addEventListener('touchend', onTouchEnd)
+})
+onUnmounted(() => {
+  sliderRef.value?.removeEventListener('touchstart', onTouchstart)
+  sliderRef.value?.removeEventListener('touchmove', onTouchMove)
+  sliderRef.value?.removeEventListener('touchend', onTouchEnd)
 })
 </script>
 
@@ -144,7 +178,7 @@ onMounted(() => {
             v-for="item in mergeBannerData"
             :key="item.value"
             class="slider-item"
-            :class="{ 'active': item.value === activeValue && !isSm, 'active-sm': isSm, 'active-xs': isXs }"
+            :class="{ 'active': item.value === activeValue && !isSm && !isXs, 'active-sm': isSm, 'active-xs': isXs }"
             :style="{ width: `${cardWidth}px` }"
             @click.stop="change(item)"
           >
