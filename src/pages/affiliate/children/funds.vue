@@ -109,3 +109,7 @@ const data = reactive([
 
 }
 </style>
+
+<route lang="yaml">
+name: affiliate
+</route>
