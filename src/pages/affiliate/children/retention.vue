@@ -69,3 +69,7 @@
   }
 }
 </style>
+
+<route lang="yaml">
+name: affiliate
+</route>
