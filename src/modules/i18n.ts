@@ -87,10 +87,10 @@ export function getCurrentLanguage() {
 
 /** 获取当前对应后端的多语言 */
 export function getCurrentLanguageForBackend() {
-  return languageMap[getCurrentLanguage() || 'zh_CN']
+  return languageMap[getCurrentLanguage() || 'zh-CN']
 }
 
 /** 获取当前对应后端的多语言ID */
 export function getCurrentLanguageIdForBackend() {
-  return languageIdMap[getCurrentLanguage() || 'zh_CN']
+  return languageIdMap[getCurrentLanguage() || 'zh-CN']
 }
