@@ -3,6 +3,13 @@ import { setupLayouts } from 'virtual:generated-layouts'
 import type { App } from 'vue'
 import generatedRoutes from '~pages'
 
+declare module 'vue-router' {
+  interface RouteMeta {
+    layout?: string
+    auth?: boolean
+  }
+}
+
 const routes = setupLayouts(generatedRoutes)
 
 const router = createRouter({
@@ -16,6 +23,18 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  const auth = to.meta.auth || false
+
+  if (auth) {
+    const { isLogin } = storeToRefs(useAppStore())
+    if (!isLogin.value) {
+      const { openRegisterDialog } = useRegisterDialog()
+      openRegisterDialog()
+      next('/')
+      return
+    }
+  }
+
   if (httpClient.cancelTokenList.length > 0)
     httpClient.cancelAllRequest()
 
