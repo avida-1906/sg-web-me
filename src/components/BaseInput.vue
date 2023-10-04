@@ -54,6 +54,7 @@ function onBlur() {
 function getFocus() {
   iTextarea.value?.focus()
   iInput.value?.focus()
+  onFocus()
 }
 
 defineExpose({ getFocus })

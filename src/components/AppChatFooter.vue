@@ -7,6 +7,7 @@
 
 const { openChatRulesDialog } = useChatRulesDialog()
 
+const maxMsgLen = 160
 const msgInput = ref()
 const allEmojis = [
   'adesanya.webp',
@@ -123,12 +124,30 @@ function addCommand(u: { command: string }) {
   message.value = `${u.command} `
   msgInput.value?.getFocus()
 }
+
+const sendLoading = ref(false)
+function sendMsg() {
+  if (message.value[0] === '/') {
+    const temp = message.value.split(' ')
+    switch (temp[0]) {
+      case '':
+        break
+      default:
+        break
+    }
+    return
+  }
+  sendLoading.value = true
+  setTimeout(() => {
+    sendLoading.value = false
+  }, 500)
+}
 </script>
 
 <template>
   <section class="tg-app-chat-footer">
     <Transition>
-      <div v-show="emojis.length" class="scroll-y emoji-wrap layout-grid wrap">
+      <div v-show="!sendLoading && emojis.length" class="scroll-y emoji-wrap layout-grid wrap">
         <div v-for="emo in emojis" :key="emo" class="button-wrap">
           <span class="box" @click="addEmoMsg(emo)">
             <BaseButton type="text">
@@ -141,7 +160,7 @@ function addCommand(u: { command: string }) {
       </div>
     </Transition>
     <Transition>
-      <div v-show="matched_at_users.length" class="scroll-y wrap at-users-wrap layout-default">
+      <div v-show="!sendLoading && matched_at_users.length" class="scroll-y wrap at-users-wrap layout-default">
         <div v-for="u in matched_at_users" :key="u.id" class="button-wrap" @click="addAtUser(u)">
           <div class="at-user-name">
             {{ u.name }}
@@ -176,11 +195,11 @@ function addCommand(u: { command: string }) {
       </div>
     </div>
     <div class="actions">
-      <span>88</span>
+      <span>{{ maxMsgLen - message.length }}</span>
       <BaseButton type="text" @click="openChatRulesDialog">
         <BaseIcon name="chat-rule" />
       </BaseButton>
-      <BaseButton bg-style="secondary" size="md">
+      <BaseButton bg-style="secondary" size="md" @click="sendMsg">
         发送
       </BaseButton>
     </div>
