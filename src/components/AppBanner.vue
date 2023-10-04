@@ -135,7 +135,7 @@ function scrollRight() {
           text-align: center;
           border-radius: var(--tg-radius-default);
           padding: 13px 16px;
-          border: 1px solid var(--tg-text-white);
+          border: var(--tg-border-width-default) solid var(--tg-text-white);
           background: var(--tg-secondary-grey);
           font-size: var(--tg-font-size-default);
           font-weight: 500;
