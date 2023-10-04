@@ -12,7 +12,7 @@ const { list: recGameList, run } = useList(ApiMemberGameRecList)
 const stop = watch(route, (a) => {
   id.value = a.query.id?.toString() ?? ''
   nextTick(() => {
-    appIframeRef.value.runDetail()
+    appIframeRef.value.refreshDetail()
   })
 })
 
