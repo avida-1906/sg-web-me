@@ -17,6 +17,9 @@ const searchValue = ref('')
 const keywordLive = ref(Local.get<any[]>(STORAGE_SEARCH_KEYWORDS_LIVE)?.value ?? [])
 const keywordSports = ref(Local.get<any[]>(STORAGE_SEARCH_KEYWORDS_SPORTS)?.value ?? [])
 const dom = ref()
+const gameSearchRef = ref()
+const searchOverlayStyle = ref({ left: 0, top: 0, width: 0 })
+let gameSearchRefClient: any = null
 
 const isCasino = computed(() => props.gameType === GameType.casino)
 const isSports = computed(() => props.gameType === GameType.sports)
@@ -90,6 +93,8 @@ function clearKeyword() {
 }
 // 点开始禁止页面滚动
 function showOverlay() {
+  getSearchOverlayStyle()
+
   isShowOverlay.value = true
   dom.value.addEventListener('wheel', preventScroll)
 }
@@ -100,53 +105,82 @@ function closeOverlay() {
 function preventScroll(event: any) {
   event.preventDefault()
 }
+// 获取搜索面板样式数据
+function getSearchOverlayStyle() {
+  gameSearchRefClient = gameSearchRef.value.getBoundingClientRect()
+  searchOverlayStyle.value.left = gameSearchRefClient.left
+  searchOverlayStyle.value.top = gameSearchRefClient.top
+  searchOverlayStyle.value.width = gameSearchRefClient.width
+  gameSearchRefClient = null
+}
+function windowResizeAdd() {
+  window.addEventListener('resize', resizeCallBack)
+}
+function windowResizeRemove() {
+  window.removeEventListener('resize', resizeCallBack)
+}
+function resizeCallBack() {
+  getSearchOverlayStyle()
+}
 
 onMounted(() => {
   dom.value = document.getElementById('main-content-scrollable')
+  windowResizeAdd()
+})
+onBeforeUnmount(() => {
+  windowResizeRemove()
 })
 </script>
 
 <template>
-  <div class="app-game-search">
+  <div ref="gameSearchRef" class="app-game-search">
     <div v-if="isShowOverlay" class="overlay" @click.self="closeOverlay" />
     <div :class="{ 'input-focus': isShowOverlay }">
       <BaseSearch
-        v-model.trim="searchValue" :place-holder="placeHolderText" :clearable="isShowOverlay" @focus="showOverlay"
-        @close="closeOverlay" @input="onBaseSearchInput" @clear="setClearTrue"
+        v-model.trim="searchValue" :place-holder="placeHolderText" :clearable="isShowOverlay"
+        @focus="showOverlay" @close="closeOverlay" @input="onBaseSearchInput" @clear="setClearTrue"
       />
     </div>
 
     <!-- 搜索功能面板  -->
-    <div v-show="isShowOverlay" class="search-overlay">
-      <div class="scroll-y warp">
-        <div v-if="!resultData" class="no-result">
-          <div class="text">
-            <span v-show="searchValue.length < 3">{{ t('search_need_at_least_3_word') }}</span>
-            <span v-show="searchValue.length >= 3 && !isInputing">{{ t('search_no_result') }}</span>
-          </div>
-          <div v-if="keywordList.length" class="recent">
-            <div class="title">
-              <label>{{ t('search_recent') }}</label>
-              <BaseButton type="text" font-size="14" @click="clearKeyword">
-                {{ t('search_clear') }}({{ keywordList.length }})
-              </BaseButton>
+    <teleport to="body">
+      <div
+        v-show="isShowOverlay" class="search-overlay" :style="{
+          top: `${searchOverlayStyle.top + 48}px`,
+          left: `${searchOverlayStyle.left}px`,
+          width: `${searchOverlayStyle.width}px`,
+        }"
+      >
+        <div class="scroll-y warp">
+          <div v-if="!resultData" class="no-result">
+            <div class="text">
+              <span v-show="searchValue.length < 3">{{ t('search_need_at_least_3_word') }}</span>
+              <span v-show="searchValue.length >= 3 && !isInputing">{{ t('search_no_result') }}</span>
             </div>
-            <div class="list">
-              <BaseTag
-                v-for="text in keywordList" :key="text" :text="text" @click="onClickKeyword"
-                @close="onCloseKeyword"
-              />
+            <div v-if="keywordList.length" class="recent">
+              <div class="title">
+                <label>{{ t('search_recent') }}</label>
+                <BaseButton type="text" font-size="14" @click="clearKeyword">
+                  {{ t('search_clear') }}({{ keywordList.length }})
+                </BaseButton>
+              </div>
+              <div class="list">
+                <BaseTag
+                  v-for="text in keywordList" :key="text" :text="text" @click="onClickKeyword"
+                  @close="onCloseKeyword"
+                />
+              </div>
             </div>
           </div>
+
+          <!-- casino -->
+          <AppCardList v-if="isCasino && resultData" :list="resultData" />
+
+          <!-- sports -->
+          <AppSportsSearchResult v-if="isSports && resultData" />
         </div>
-
-        <!-- casino -->
-        <AppCardList v-if="isCasino && resultData" :list="resultData" />
-
-        <!-- sports -->
-        <AppSportsSearchResult v-if="isSports && resultData" />
       </div>
-    </div>
+    </teleport>
   </div>
 </template>
 
@@ -169,61 +203,61 @@ onMounted(() => {
     z-index: 1450;
   }
 
-  .search-overlay {
-    width: 100%;
-    background-color: var(--tg-secondary-dark);
-    color: var(--tg-text-lightgrey);
-    border-radius: var(--tg-radius-default);
-    margin-top: 8px;
-    position: absolute;
-    z-index: 1450;
+}
 
-    .warp {
-      max-height: 400px;
-      padding: var(--tg-spacing-16);
+.search-overlay {
+  width: 100%;
+  background-color: var(--tg-secondary-dark);
+  color: var(--tg-text-lightgrey);
+  border-radius: var(--tg-radius-default);
+  position: absolute;
+  z-index: 1450;
+
+  .warp {
+    max-height: 400px;
+    padding: var(--tg-spacing-16);
+  }
+
+  .no-result {
+    display: flex;
+    flex-direction: column;
+    gap: var(--tg-spacing-32);
+    font-size: var(--tg-font-size-default);
+
+    .text {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: var(--tg-spacing-8);
+      gap: var(--tg-spacing-8);
     }
 
-    .no-result {
+    .recent {
       display: flex;
       flex-direction: column;
-      gap: var(--tg-spacing-32);
-      font-size: var(--tg-font-size-default);
+      gap: var(--tg-spacing-16);
 
-      .text {
+      .title {
         display: flex;
+        justify-content: space-between;
         align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        padding: var(--tg-spacing-8);
-        gap: var(--tg-spacing-8);
       }
 
-      .recent {
+      .list {
         display: flex;
-        flex-direction: column;
-        gap: var(--tg-spacing-16);
-
-        .title {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-        }
-
-        .list {
-          display: flex;
-          flex-wrap: wrap;
-          gap: var(--tg-spacing-8);
-          grid-row-gap: var(--tg-spacing-16);
-        }
+        flex-wrap: wrap;
+        gap: var(--tg-spacing-8);
+        grid-row-gap: var(--tg-spacing-16);
       }
-
     }
 
-    .result-casino {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px 5px;
-    }
+  }
+
+  .result-casino {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px 5px;
   }
 }
 </style>
