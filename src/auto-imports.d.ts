@@ -8,6 +8,7 @@ declare global {
   const ApiGameLunch: typeof import('./apis/index')['ApiGameLunch']
   const ApiMemberBalanceLockerShow: typeof import('./apis/index')['ApiMemberBalanceLockerShow']
   const ApiMemberBalanceLockerUpdate: typeof import('./apis/index')['ApiMemberBalanceLockerUpdate']
+  const ApiMemberBankcardList: typeof import('./apis/index')['ApiMemberBankcardList']
   const ApiMemberFavDelete: typeof import('./apis/index')['ApiMemberFavDelete']
   const ApiMemberFavInsert: typeof import('./apis/index')['ApiMemberFavInsert']
   const ApiMemberFavList: typeof import('./apis/index')['ApiMemberFavList']
@@ -20,6 +21,7 @@ declare global {
   const ApiMemberLogin: typeof import('./apis/index')['ApiMemberLogin']
   const ApiMemberPlatformList: typeof import('./apis/index')['ApiMemberPlatformList']
   const ApiMemberReg: typeof import('./apis/index')['ApiMemberReg']
+  const ApiMemberTreeList: typeof import('./apis/index')['ApiMemberTreeList']
   const ApiMemberWalletList: typeof import('./apis/index')['ApiMemberWalletList']
   const ApiSmsSend: typeof import('./apis/index')['ApiSmsSend']
   const Big: typeof import('big.js')['Big']
@@ -428,6 +430,7 @@ declare module 'vue' {
     readonly ApiGameLunch: UnwrapRef<typeof import('./apis/index')['ApiGameLunch']>
     readonly ApiMemberBalanceLockerShow: UnwrapRef<typeof import('./apis/index')['ApiMemberBalanceLockerShow']>
     readonly ApiMemberBalanceLockerUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberBalanceLockerUpdate']>
+    readonly ApiMemberBankcardList: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardList']>
     readonly ApiMemberFavDelete: UnwrapRef<typeof import('./apis/index')['ApiMemberFavDelete']>
     readonly ApiMemberFavInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberFavInsert']>
     readonly ApiMemberFavList: UnwrapRef<typeof import('./apis/index')['ApiMemberFavList']>
@@ -438,6 +441,7 @@ declare module 'vue' {
     readonly ApiMemberLogin: UnwrapRef<typeof import('./apis/index')['ApiMemberLogin']>
     readonly ApiMemberPlatformList: UnwrapRef<typeof import('./apis/index')['ApiMemberPlatformList']>
     readonly ApiMemberReg: UnwrapRef<typeof import('./apis/index')['ApiMemberReg']>
+    readonly ApiMemberTreeList: UnwrapRef<typeof import('./apis/index')['ApiMemberTreeList']>
     readonly ApiMemberWalletList: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletList']>
     readonly ApiSmsSend: UnwrapRef<typeof import('./apis/index')['ApiSmsSend']>
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
@@ -830,6 +834,7 @@ declare module '@vue/runtime-core' {
     readonly ApiGameLunch: UnwrapRef<typeof import('./apis/index')['ApiGameLunch']>
     readonly ApiMemberBalanceLockerShow: UnwrapRef<typeof import('./apis/index')['ApiMemberBalanceLockerShow']>
     readonly ApiMemberBalanceLockerUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberBalanceLockerUpdate']>
+    readonly ApiMemberBankcardList: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardList']>
     readonly ApiMemberFavDelete: UnwrapRef<typeof import('./apis/index')['ApiMemberFavDelete']>
     readonly ApiMemberFavInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberFavInsert']>
     readonly ApiMemberFavList: UnwrapRef<typeof import('./apis/index')['ApiMemberFavList']>
@@ -840,6 +845,7 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberLogin: UnwrapRef<typeof import('./apis/index')['ApiMemberLogin']>
     readonly ApiMemberPlatformList: UnwrapRef<typeof import('./apis/index')['ApiMemberPlatformList']>
     readonly ApiMemberReg: UnwrapRef<typeof import('./apis/index')['ApiMemberReg']>
+    readonly ApiMemberTreeList: UnwrapRef<typeof import('./apis/index')['ApiMemberTreeList']>
     readonly ApiMemberWalletList: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletList']>
     readonly ApiSmsSend: UnwrapRef<typeof import('./apis/index')['ApiSmsSend']>
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>

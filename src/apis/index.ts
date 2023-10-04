@@ -283,3 +283,37 @@ export function ApiMemberBalanceLockerUpdate(data: {
 export function ApiMemberBalanceLockerShow() {
   return httpClient.post('/member/balance_locker/show')
 }
+/**
+ * 银行卡列表
+ */
+export function ApiMemberBankcardList(params: {
+  page_size: string
+  page: string
+  bank_type: string
+}) {
+  return httpClient.get<IResponseList<{
+    id: string
+    uid: string
+    username: string
+    bank_type: string
+    open_name: string
+    bank_name: string
+    bank_account: string
+    bank_area_cpf: string
+    is_default: number
+  }>>('/member/bankcard/list', params)
+}
+/**
+ * 辅助数据
+ * level: 004: 支付方式清单 | 005: 支付类型 | 006: 国家
+ */
+export function ApiMemberTreeList(params: {
+  level: string
+}) {
+  return httpClient.get<IResponseList<{
+    id: string
+    name: string
+    pid: string
+    sortlevel: string
+  }>>('member/tree/list', params)
+}
