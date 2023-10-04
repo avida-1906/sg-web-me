@@ -16,7 +16,8 @@ const emit = defineEmits(['changeTheatre'])
 
 const { t } = useI18n()
 const { isMobile, appContentWidth } = storeToRefs(useWindowStore())
-const { platformList } = storeToRefs(useAppStore())
+const { platformList, isLogin } = storeToRefs(useAppStore())
+const { openRegisterDialog } = useRegisterDialog()
 const { bool: isShowFrameOverlay, setTrue: overlayTrue, setFalse: overlayFalse } = useBoolean(false)
 const { bool: isRealMoneyMode, setBool: setRealModeBool } = useBoolean(false)
 const { bool: isTrendOpen, toggle: toggleTrendOpen } = useBoolean(false)
@@ -42,7 +43,7 @@ const code = computed(() => dataDetail.value ? dataDetail.value.game_id : '')
 const currencyName = computed(() => currentCurrency.value ? currentCurrency.value.name : '')
 const isFavorite = computed(() => dataDetail.value ? dataDetail.value.is_fav === 1 : false)
 const bigGameWrapper = computed(() => appContentWidth.value > 930)
-const gameProviderName = computed(() => platformList.value.find(a => a.id === dataDetail.value?.platform_id)?.name ?? '-')
+const gameProviderName = computed(() => platformList.value?.find(a => a.id === dataDetail.value?.platform_id)?.name ?? '-')
 // 启动游戏接口
 const { run: runLunchGame, data: gameUrl, loading: lunchLoading, mutate: mutateGameUrl } = useRequest(() => ApiGameLunch(pid.value, code.value, currencyName.value), {
   manual: true,
@@ -52,6 +53,10 @@ const { run: runLunchGame, data: gameUrl, loading: lunchLoading, mutate: mutateG
       return location.href = res
   },
 })
+// pc自动启动游戏
+function autoLunchOnPc() {
+  !isMobile.value && isLogin.value && runLunchGame()
+}
 // 重新获取游戏地址是先清空
 function clearUrl() {
   mutateGameUrl('')
@@ -59,13 +64,13 @@ function clearUrl() {
 // 切换路由时重新获取detail
 function refreshDetail() {
   clearUrl()
-  runDetail().then(() => !isMobile.value && runLunchGame())
+  runDetail().then(() => autoLunchOnPc())
 }
 // 选择货币
 function onChooseCurrency(v: any) {
   clearUrl()
   currentCurrency.value = v
-  !isMobile.value && runLunchGame()
+  autoLunchOnPc()
 }
 // 切换试玩真钱模式
 function onSwitchRealMoneyMode(v: boolean) {
@@ -102,7 +107,7 @@ function onClickFavorite() {
 }
 
 defineExpose({ refreshDetail })
-await application.allSettled([runDetail().then(() => !isMobile.value && runLunchGame())])
+await application.allSettled([runDetail().then(() => autoLunchOnPc())])
 </script>
 
 <template>
@@ -174,11 +179,17 @@ await application.allSettled([runDetail().then(() => !isMobile.value && runLunch
 
     <!-- 开始游戏 -->
     <div class="btns btns-mobile">
-      <BaseButton :loading="lunchLoading" class="real btn" size="sm" bg-style="secondary" @click="onSwitchRealMoneyMode(true)">
+      <BaseButton v-if="isLogin" :loading="lunchLoading" class="real btn" size="sm" bg-style="secondary" @click="onSwitchRealMoneyMode(true)">
         <div class="icon">
           <BaseIcon name="uni-play" />
         </div>
         <span>{{ t('casino_game_real_money_mode') }}</span>
+      </BaseButton>
+      <BaseButton v-else :loading="lunchLoading" class="real btn" size="sm" bg-style="secondary" @click="openRegisterDialog">
+        <div class="icon">
+          <BaseIcon name="uni-play" />
+        </div>
+        <span>{{ t('reg') }}</span>
       </BaseButton>
       <BaseButton :loading="lunchLoading" class="btn" size="sm" @click="onSwitchRealMoneyMode(false)">
         <div class="icon">
@@ -221,11 +232,17 @@ await application.allSettled([runDetail().then(() => !isMobile.value && runLunch
                   </VDropdown>
                 </div>
                 <div class="btns">
-                  <BaseButton class="real" size="sm" bg-style="secondary" @click="onSwitchRealMoneyMode(true)">
+                  <BaseButton v-if="isLogin" class="real" size="sm" bg-style="secondary" @click="onSwitchRealMoneyMode(true)">
                     <div class="icon">
                       <BaseIcon name="uni-play" />
                     </div>
                     <span>{{ t('casino_game_real_money_mode') }}</span>
+                  </BaseButton>
+                  <BaseButton v-else class="real" size="sm" bg-style="secondary" @click="openRegisterDialog">
+                    <div class="icon">
+                      <BaseIcon name="uni-play" />
+                    </div>
+                    <span>{{ t('reg') }}</span>
                   </BaseButton>
                   <BaseButton size="sm" @click="onSwitchRealMoneyMode(false)">
                     <div class="icon">
