@@ -233,48 +233,46 @@ function changeHidden() {
 }
 
 onMounted(() => {
-  setTimeout(() => {
-    tableData.value = [
-      {
-        gameName: 'Cursed seas',
-        player: 'Herryhung',
-        time: '10:47',
-        betMoney: '1.111111',
-        multiplier: '2.97x',
-        payMoney: '113.34399768',
-        currencyType: EnumCurrency.MATIC,
-        stealth: 1, // 隐身状态
-      },
-      {
-        gameName: 'Cursed seas',
-        player: 'Herryhung',
-        time: '10:47',
-        betMoney: '2.111111',
-        multiplier: '2.97x',
-        payMoney: '113.34399768',
-        currencyType: EnumCurrency.JPY,
-      },
-      {
-        gameName: 'Cursed seas',
-        player: 'Herryhung',
-        time: '10:47',
-        betMoney: '1.111111',
-        multiplier: '2.97x',
-        payMoney: '113.34399768',
-        currencyType: EnumCurrency.CAD,
-      },
-      {
-        gameName: 'Cursed seas',
-        player: 'Herryhung',
-        time: '10:47',
-        betMoney: '1.111111',
-        multiplier: '2.97x',
-        payMoney: '113.34399768',
-        currencyType: EnumCurrency.BTC,
-      },
-    ]
-    setLoadingFalse()
-  }, 1000)
+  tableData.value = [
+    {
+      gameName: 'Cursed seas',
+      player: 'Herryhung',
+      time: '10:47',
+      betMoney: '1.111111',
+      multiplier: '2.97x',
+      payMoney: '113.34399768',
+      currencyType: EnumCurrency.MATIC,
+      stealth: 1, // 隐身状态
+    },
+    {
+      gameName: 'Cursed seas',
+      player: 'Herryhung',
+      time: '10:47',
+      betMoney: '2.111111',
+      multiplier: '2.97x',
+      payMoney: '113.34399768',
+      currencyType: EnumCurrency.JPY,
+    },
+    {
+      gameName: 'Cursed seas',
+      player: 'Herryhung',
+      time: '10:47',
+      betMoney: '1.111111',
+      multiplier: '2.97x',
+      payMoney: '113.34399768',
+      currencyType: EnumCurrency.CAD,
+    },
+    {
+      gameName: 'Cursed seas',
+      player: 'Herryhung',
+      time: '10:47',
+      betMoney: '1.111111',
+      multiplier: '2.97x',
+      payMoney: '113.34399768',
+      currencyType: EnumCurrency.BTC,
+    },
+  ]
+  setLoadingFalse()
 })
 </script>
 
@@ -331,10 +329,6 @@ onMounted(() => {
             </template>
           </VMenu>
         </template>
-        <!-- <div v-if="record.stealth" class="center stealth-box">
-          <BaseIcon name="uni-hidden" />
-          <span style="padding-left: 5px;">隐身</span>
-        </div> -->
         <div v-else class="player-box cursor-pointer">
           {{ record.player }}
         </div>
@@ -380,7 +374,7 @@ onMounted(() => {
     color:var(--tg-text-white);
     font-size: var(--tg-font-size-default);
     padding: 16px 8px;
-    border-bottom: 2px solid rgba(255,255,255,.05);
+    border-bottom: var(--tg-font-size-default) solid rgba(255,255,255,.05);
     span{
       padding-left: 8px;
     }
@@ -407,7 +401,7 @@ onMounted(() => {
     cursor: help;
   }
   .ranking-box{
-    font-size: 24px;
+    font-size: var(--tg-font-size-xl);
   }
   .cursor-pointer{
     cursor: pointer;

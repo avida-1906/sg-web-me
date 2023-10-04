@@ -2,7 +2,7 @@ import { httpClient } from '~/http'
 
 /** 后端返回数组时候的数据结构 */
 interface IResponseList<T> {
-  d: T[] | null
+  d: T[]
   t: number
   s: number
 }

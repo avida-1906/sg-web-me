@@ -5,6 +5,8 @@ interface Room {
   value: string
 }
 
+const { closeRightSidebar } = useRightSidebar()
+
 const chatRoomList = reactive<Array<Room>>([
   { icon: 'cn', label: '中文', value: 'cn' },
   { icon: 'vn', label: 'Tiếng Việt', value: 'vn' },
@@ -18,6 +20,14 @@ const room = ref(chatRoomList[0])
 function chooseRoom(item: Room) {
   room.value = item
 }
+
+function close() {
+  closeRightSidebar()
+}
+
+function openChat() {
+  window.open('/chat', '_blank', 'popup,width=370,height=720')
+}
 </script>
 
 <template>
@@ -27,7 +37,7 @@ function chooseRoom(item: Room) {
         :distance="14"
       >
         <div class="chat-room-choose">
-          <BaseIcon name="vn" />
+          <BaseIcon :name="room.icon" />
           <span>SFake: {{ room.label }} </span>
           <BaseIcon class="arrow-down" name="uni-arrow-down" />
         </div>
@@ -41,10 +51,10 @@ function chooseRoom(item: Room) {
         </template>
       </VDropdown>
     </div>
-    <div class="right-header">
+    <div v-if="$route.path !== '/chat'" class="right-header">
       <VMenu placement="bottom">
         <div class="item hoverable">
-          <BaseButton type="text">
+          <BaseButton type="text" @click="openChat">
             <BaseIcon name="uni-jump-page" />
           </BaseButton>
         </div>
@@ -54,10 +64,9 @@ function chooseRoom(item: Room) {
           </div>
         </template>
       </VMenu>
-
       <VMenu placement="bottom">
         <div class="hoverable item">
-          <BaseButton type="text">
+          <BaseButton type="text" @click="close">
             <BaseIcon name="uni-close" />
           </BaseButton>
         </div>
