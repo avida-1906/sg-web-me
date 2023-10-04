@@ -52,9 +52,18 @@ const { run: runLunchGame, data: gameUrl, loading: lunchLoading } = useRequest((
       return location.href = res
   },
 })
-
+// 重新获取游戏地址是先清空
+function clearUrl() {
+  gameUrl.value = ''
+}
+// 切换路由时重新获取detail
+function refreshDetail() {
+  clearUrl()
+  runDetail().then(() => !isMobile.value && runLunchGame())
+}
 // 选择货币
 function onChooseCurrency(v: any) {
+  clearUrl()
   currentCurrency.value = v
   !isMobile.value && runLunchGame()
 }
@@ -92,7 +101,7 @@ function onClickFavorite() {
   runFavInsert()
 }
 
-defineExpose({ runDetail })
+defineExpose({ refreshDetail })
 await application.allSettled([runDetail().then(() => !isMobile.value && runLunchGame())])
 </script>
 
