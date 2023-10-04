@@ -61,7 +61,7 @@ function handleClick() {
 <style>
 :root{
   --tg-base-img-style-radius: var(--tg-radius-none);
-  --tg-img-object-position:left;
+  --tg-img-object-position:center;
 }
 </style>
 
