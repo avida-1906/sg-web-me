@@ -1,5 +1,12 @@
 import { httpClient } from '~/http'
 
+/** 后端返回数组时候的数据结构 */
+interface IResponseList<T> {
+  d: T[] | null
+  t: number
+  s: number
+}
+
 /**
  * 用户登录
  */
@@ -57,30 +64,26 @@ export function ApiMemberGameList(params?: {
   platform_id?: string // 场馆id（evo真人）（需要转成字符串）
   sort?: string // 排序sorting,en_name,created_at 三个字段支持排序，格式为 sorting:asc sorting:desc
 }) {
-  return httpClient.get< {
-    d: {
-      id: string
-      platform_id: string
-      name: string
-      en_name: string
-      pt_name: string
-      th_name: string
-      vn_name: string
-      client_type: string
-      game_type: number
-      game_id: string
-      img: string
-      online: number
-      is_hot: number
-      sorting: number
-      created_at: number
-      is_new: number
-      tag_id: string
-      is_fav: number
-    }[]
-    t: number
-    s: number
-  }>('/member/game/list', params)
+  return httpClient.get<IResponseList<{
+    id: string
+    platform_id: string
+    name: string
+    en_name: string
+    pt_name: string
+    th_name: string
+    vn_name: string
+    client_type: string
+    game_type: number
+    game_id: string
+    img: string
+    online: number
+    is_hot: number
+    sorting: number
+    created_at: number
+    is_new: number
+    tag_id: string
+    is_fav: number
+  }>>('/member/game/list', params)
 }
 
 /**
@@ -123,66 +126,58 @@ export function ApiGameLunch(pid: string, game_id: string, cur: string) {
  * 搜索游戏
  */
 export function ApiMemberGameSearch(params: { w: string }) {
-  return httpClient.get<{
-    d: {
-      id: string
-      platform_id: string
-      name: string
-      zh_name: string
-      en_name: string
-      pt_name: string
-      th_name: string
-      vn_name: string
-      client_type: string
-      game_type: number
-      game_id: string
-      img: string
-      online: number
-      is_hot: number
-      sorting: number
-      created_at: number
-      is_new: number
-      tag_id: string
-      currency: string
-      lang: string
-      is_fav: number
-    }[]
-    t: number
-    s: number
-  }>('/member/game/search', params)
+  return httpClient.get<IResponseList<{
+    id: string
+    platform_id: string
+    name: string
+    zh_name: string
+    en_name: string
+    pt_name: string
+    th_name: string
+    vn_name: string
+    client_type: string
+    game_type: number
+    game_id: string
+    img: string
+    online: number
+    is_hot: number
+    sorting: number
+    created_at: number
+    is_new: number
+    tag_id: string
+    currency: string
+    lang: string
+    is_fav: number
+  }>>('/member/game/search', params)
 }
 
 /*
 * 游戏收藏列表
 */
 export function ApiMemberFavList(params?: { page?: number; page_size?: number }) {
-  return httpClient.get<{
-    d: {
-      id: string
-      platform_id: string
-      name: string
-      zh_name: string
-      en_name: string
-      pt_name: string
-      th_name: string
-      vn_name: string
-      client_type: string
-      game_type: number
-      game_id: string
-      img: string
-      online: number
-      is_hot: number
-      sorting: number
-      created_at: number
-      is_new: number
-      tag_id: string
-      currency: string
-      lang: string
-      is_fav: number
-    }[]
-    t: number
-    s: number
-  }>('/member/fav/list', params)
+  return httpClient.get<IResponseList<{
+    id: string
+    platform_id: string
+    name: string
+    zh_name: string
+    en_name: string
+    pt_name: string
+    th_name: string
+    vn_name: string
+    client_type: string
+    game_type: number
+    game_id: string
+    img: string
+    online: number
+    is_hot: number
+    sorting: number
+    created_at: number
+    is_new: number
+    tag_id: string
+    currency: string
+    lang: string
+    is_fav: number
+  }>>('/member/fav/list', params)
 }
 
 /**
@@ -207,62 +202,54 @@ export function ApiMemberGameRecList(params?: {
   page_size?: number
   sort?: string // 排序sorting,en_name,created_at 三个字段支持排序，格式为 sorting:asc sorting:desc
 }) {
-  return httpClient.get<{
-    d: {
-      id: string
-      platform_id: string
-      name: string
-      zh_name: string
-      en_name: string
-      pt_name: string
-      th_name: string
-      vn_name: string
-      client_type: string
-      game_type: number
-      game_id: string
-      img: string
-      online: number
-      is_hot: number
-      sorting: number
-      created_at: number
-      is_new: number
-      tag_id: string
-      currency: string
-      lang: string
-      is_fav: number
-    }[]
-    t: number
-    s: number
-  }>('/member/game/rec/list', params)
+  return httpClient.get<IResponseList<{
+    id: string
+    platform_id: string
+    name: string
+    zh_name: string
+    en_name: string
+    pt_name: string
+    th_name: string
+    vn_name: string
+    client_type: string
+    game_type: number
+    game_id: string
+    img: string
+    online: number
+    is_hot: number
+    sorting: number
+    created_at: number
+    is_new: number
+    tag_id: string
+    currency: string
+    lang: string
+    is_fav: number
+  }>>('/member/game/rec/list', params)
 }
 
 /*
 * 场馆列表
 */
 export function ApiMemberPlatformList(params?: { page?: number; page_size?: number }) {
-  return httpClient.get<{
-    d: {
-      id: string
-      en_name: string
-      game_type: number
-      state: number
-      maintained: number
-      seq: number
-      logo: string
-      created_at: number
-      updated_at: number
-      updated_uid: string
-      updated_name: string
-      zh_name: string
-      pt_name: string
-      vn_name: string
-      th_name: string
-      game_num: number
-      name: string
-    }[]
-    t: number
-    s: number
-  }>('/member/platform/list', params)
+  return httpClient.get<IResponseList<{
+    id: string
+    en_name: string
+    game_type: number
+    state: number
+    maintained: number
+    seq: number
+    logo: string
+    created_at: number
+    updated_at: number
+    updated_uid: string
+    updated_name: string
+    zh_name: string
+    pt_name: string
+    vn_name: string
+    th_name: string
+    game_num: number
+    name: string
+  }>>('/member/platform/list', params)
 }
 
 /**
