@@ -321,7 +321,7 @@ onErrorCaptured((err, instance, info) => {
   &.mobile {
     width: 100%;
     padding-bottom: var(--tg-footerbar-height);
-    will-change: margin-top;
+    will-change: top;
   }
 
   // 768-1000 显示 320
