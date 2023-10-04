@@ -44,7 +44,7 @@ const isFavorite = computed(() => dataDetail.value ? dataDetail.value.is_fav ===
 const bigGameWrapper = computed(() => appContentWidth.value > 930)
 const gameProviderName = computed(() => platformList.value.find(a => a.id === dataDetail.value?.platform_id)?.name ?? '-')
 // 启动游戏接口
-const { run: runLunchGame, data: gameUrl, loading: lunchLoading } = useRequest(() => ApiGameLunch(pid.value, code.value, currencyName.value), {
+const { run: runLunchGame, data: gameUrl, loading: lunchLoading, mutate: mutateGameUrl } = useRequest(() => ApiGameLunch(pid.value, code.value, currencyName.value), {
   manual: true,
   onSuccess(res) {
     // H5模式直接打开游戏
@@ -54,7 +54,7 @@ const { run: runLunchGame, data: gameUrl, loading: lunchLoading } = useRequest((
 })
 // 重新获取游戏地址是先清空
 function clearUrl() {
-  gameUrl.value = ''
+  mutateGameUrl('')
 }
 // 切换路由时重新获取detail
 function refreshDetail() {
