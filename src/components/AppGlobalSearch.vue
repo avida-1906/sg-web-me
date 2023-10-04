@@ -32,18 +32,18 @@ const keywordList = computed(() => {
     return keywordSports.value
   return []
 })
-const { data: casinoGamesData, run: runSearchCasinoGames } = useRequest(() => ApiMemberGameSearch({ w: searchValue.value }), {
-  manual: true,
+const { list: casinoGames, run: runSearchCasinoGames } = useList(ApiMemberGameSearch, {
   debounceInterval: 500,
-  onAfter() {
+  onAfter(params) {
+    const word = params[0].w
     isClear.value = false
     isInputing.value = false
 
     // 去重
-    if (keywordLive.value.includes(searchValue.value))
-      keywordLive.value.splice(keywordLive.value.findIndex(t => t === searchValue.value), 1)
+    if (keywordLive.value.includes(word))
+      keywordLive.value.splice(keywordLive.value.findIndex(t => t === word), 1)
 
-    keywordLive.value.unshift(searchValue.value)
+    keywordLive.value.unshift(word)
     keywordLive.value = keywordLive.value.slice(0, 5)
     Local.set(STORAGE_SEARCH_KEYWORDS_LIVE, keywordLive.value)
   },
@@ -52,8 +52,8 @@ const { data: casinoGamesData, run: runSearchCasinoGames } = useRequest(() => Ap
 const resultData = computed(() => {
   if (isClear.value)
     return null
-  if (isCasino.value && casinoGamesData.value && casinoGamesData.value.d)
-    return casinoGamesData.value.d
+  if (isCasino.value)
+    return casinoGames.value
 
   return null
 })
@@ -63,13 +63,13 @@ function onBaseSearchInput() {
     return setClearTrue()
   if (isCasino.value && searchValue.value.length >= 3) {
     setInputingTrue()
-    runSearchCasinoGames()
+    runSearchCasinoGames({ w: searchValue.value })
   }
 }
 function onClickKeyword(k: string) {
   setInputingTrue()
   searchValue.value = k
-  runSearchCasinoGames()
+  runSearchCasinoGames({ w: searchValue.value })
 }
 function onCloseKeyword(k: string) {
   if (isCasino.value) {

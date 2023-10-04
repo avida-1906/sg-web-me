@@ -70,7 +70,7 @@ await application.allSettled([runLive({ game_type: 1 }), runSlot({ game_type: 3 
           <span>娱乐城</span>
         </div>
         <div class="features-image">
-          <img src="https://mediumrare.imgix.net/welcome-casino-zh.jpg?&dpr=2&format=auto&auto=format&q=50&w=586" alt="背景图片" loading="lazy">
+          <BaseImage url="https://mediumrare.imgix.net/welcome-casino-zh.jpg?&dpr=2&format=auto&auto=format&q=50&w=586" class="base-img" />
         </div>
         <div class="features-content">
           <p>最领先的在线加密货币赌场</p>
@@ -88,7 +88,7 @@ await application.allSettled([runLive({ game_type: 1 }), runSlot({ game_type: 3 
           <span>体育</span>
         </div>
         <div class="features-image">
-          <img src="https://mediumrare.imgix.net/welcome-sports-zh.jpg?&dpr=2&format=auto&auto=format&q=50&w=586" alt="背景图片" loading="lazy">
+          <BaseImage url="https://mediumrare.imgix.net/welcome-sports-zh.jpg?&dpr=2&format=auto&auto=format&q=50&w=586" class="base-img" />
         </div>
         <div class="features-content">
           <p>最棒的加密货币在线体育博彩</p>
@@ -101,20 +101,6 @@ await application.allSettled([runLive({ game_type: 1 }), runSlot({ game_type: 3 
         </div>
       </div>
     </div>
-    <!-- 了解更多 -->
-    <!-- <div class="index-more" :class="[isSm ? 'flex-wrap-reverse' : 'grid-wrap']">
-      <div>
-        <BaseButton size="md">
-          了解更多
-        </BaseButton>
-      </div>
-      <div>
-        <BaseIcon name="app-logo-darke" />
-      </div>
-      <div v-if="!isSm">
-        <img src="https://mediumrare.imgix.net/drake-banner.png?&dpr=2&format=auto&auto=format&q=50" alt="">
-      </div>
-    </div> -->
     <!-- 老虎机  -->
     <AppSlider
       :game-type="EnumCasinoGameType.SLOT" icon="chess-slot-machine"
@@ -276,7 +262,7 @@ await application.allSettled([runLive({ game_type: 1 }), runSlot({ game_type: 3 
       cursor: pointer;
       &:hover{
         .features-image{
-          img{
+          .base-img{
             transform: translateY(-0.25rem);
           }
         }
@@ -293,13 +279,14 @@ await application.allSettled([runLive({ game_type: 1 }), runSlot({ game_type: 3 
         }
       }
       .features-image{
-        img{
+        .base-img{
           display: block;
           width: 100%;
           height: auto;
           user-select: none;
           transition: all .25s;
-          border-radius: var(--tg-radius-default);
+          // border-radius: var(--tg-radius-default);
+          --tg-base-img-style-radius: var(--tg-radius-default);
         }
       }
       .features-content{
