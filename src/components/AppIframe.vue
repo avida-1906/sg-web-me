@@ -44,7 +44,7 @@ const isFavorite = computed(() => dataDetail.value ? dataDetail.value.is_fav ===
 const bigGameWrapper = computed(() => appContentWidth.value > 930)
 const gameProviderName = computed(() => platformList.value.find(a => a.id === dataDetail.value?.platform_id)?.name ?? '-')
 // 启动游戏接口
-const { run: runLunchGame, data: gameUrl, loading: lunchLoading } = useRequest(() => ApiGameLunch(pid.value, code.value, currencyName.value), {
+const { run: runLunchGame, data: gameUrl, loading: lunchLoading, mutate: mutateGameUrl } = useRequest(() => ApiGameLunch(pid.value, code.value, currencyName.value), {
   manual: true,
   onSuccess(res) {
     // H5模式直接打开游戏
@@ -52,9 +52,18 @@ const { run: runLunchGame, data: gameUrl, loading: lunchLoading } = useRequest((
       return location.href = res
   },
 })
-
+// 重新获取游戏地址是先清空
+function clearUrl() {
+  mutateGameUrl('')
+}
+// 切换路由时重新获取detail
+function refreshDetail() {
+  clearUrl()
+  runDetail().then(() => !isMobile.value && runLunchGame())
+}
 // 选择货币
 function onChooseCurrency(v: any) {
+  clearUrl()
   currentCurrency.value = v
   !isMobile.value && runLunchGame()
 }
@@ -92,7 +101,7 @@ function onClickFavorite() {
   runFavInsert()
 }
 
-defineExpose({ runDetail })
+defineExpose({ refreshDetail })
 await application.allSettled([runDetail().then(() => !isMobile.value && runLunchGame())])
 </script>
 
