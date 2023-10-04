@@ -24,6 +24,10 @@ function chooseRoom(item: Room) {
 function close() {
   closeRightSidebar()
 }
+
+function openChat() {
+  window.open('/chat', '_blank', 'popup,width=370,height=720')
+}
 </script>
 
 <template>
@@ -47,10 +51,10 @@ function close() {
         </template>
       </VDropdown>
     </div>
-    <div class="right-header">
+    <div v-if="$route.path !== '/chat'" class="right-header">
       <VMenu placement="bottom">
         <div class="item hoverable">
-          <BaseButton type="text">
+          <BaseButton type="text" @click="openChat">
             <BaseIcon name="uni-jump-page" />
           </BaseButton>
         </div>
@@ -60,7 +64,6 @@ function close() {
           </div>
         </template>
       </VMenu>
-
       <VMenu placement="bottom">
         <div class="hoverable item">
           <BaseButton type="text" @click="close">

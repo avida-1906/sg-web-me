@@ -71,6 +71,7 @@ const messages: Array<ChatMessageInfo> = [
   background: var(--tg-secondary-dark);
   filter: drop-shadow(0 0 5px rgba(25,25,25,.25));
   z-index: var(--tg-z-index-secondary);
+  flex: 1;
   .header {
     position: relative;
     background: var(--tg-secondary-dark);
@@ -82,13 +83,13 @@ const messages: Array<ChatMessageInfo> = [
   }
   .messages {
     width: 100%;
-    flex-grow: 1;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     overflow: hidden;
     position: relative;
     touch-action: none;
+    flex: 1;
     .message-content {
       overflow-x: hidden;
       min-height: 0;
