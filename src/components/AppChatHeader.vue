@@ -5,6 +5,8 @@ interface Room {
   value: string
 }
 
+const { closeRightSidebar } = useRightSidebar()
+
 const chatRoomList = reactive<Array<Room>>([
   { icon: 'cn', label: '中文', value: 'cn' },
   { icon: 'vn', label: 'Tiếng Việt', value: 'vn' },
@@ -18,6 +20,10 @@ const room = ref(chatRoomList[0])
 function chooseRoom(item: Room) {
   room.value = item
 }
+
+function close() {
+  closeRightSidebar()
+}
 </script>
 
 <template>
@@ -27,7 +33,7 @@ function chooseRoom(item: Room) {
         :distance="14"
       >
         <div class="chat-room-choose">
-          <BaseIcon name="vn" />
+          <BaseIcon :name="room.icon" />
           <span>SFake: {{ room.label }} </span>
           <BaseIcon class="arrow-down" name="uni-arrow-down" />
         </div>
@@ -57,7 +63,7 @@ function chooseRoom(item: Room) {
 
       <VMenu placement="bottom">
         <div class="hoverable item">
-          <BaseButton type="text">
+          <BaseButton type="text" @click="close">
             <BaseIcon name="uni-close" />
           </BaseButton>
         </div>
