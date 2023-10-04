@@ -19,14 +19,7 @@ const keywordSports = ref(Local.get<any[]>(STORAGE_SEARCH_KEYWORDS_SPORTS)?.valu
 const dom = ref()
 const gameSearchRef = ref()
 const searchOverlayStyle = ref({ left: 0, top: 0, width: 0 })
-useResizeObserver(gameSearchRef, (entries) => {
-  const entry = entries[0]
-  searchOverlayStyle.value.width = entry.contentRect.width
-
-  const obj = gameSearchRef.value.getBoundingClientRect()
-  searchOverlayStyle.value.left = obj.left
-  searchOverlayStyle.value.top = obj.top
-})
+let gameSearchRefClient: any = null
 
 const isCasino = computed(() => props.gameType === GameType.casino)
 const isSports = computed(() => props.gameType === GameType.sports)
@@ -100,9 +93,7 @@ function clearKeyword() {
 }
 // 点开始禁止页面滚动
 function showOverlay() {
-  const obj = gameSearchRef.value.getBoundingClientRect()
-  searchOverlayStyle.value.left = obj.left
-  searchOverlayStyle.value.top = obj.top
+  getSearchOverlayStyle()
 
   isShowOverlay.value = true
   dom.value.addEventListener('wheel', preventScroll)
@@ -114,9 +105,30 @@ function closeOverlay() {
 function preventScroll(event: any) {
   event.preventDefault()
 }
+// 获取搜索面板样式数据
+function getSearchOverlayStyle() {
+  gameSearchRefClient = gameSearchRef.value.getBoundingClientRect()
+  searchOverlayStyle.value.left = gameSearchRefClient.left
+  searchOverlayStyle.value.top = gameSearchRefClient.top
+  searchOverlayStyle.value.width = gameSearchRefClient.width
+  gameSearchRefClient = null
+}
+function windowResizeAdd() {
+  window.addEventListener('resize', resizeCallBack)
+}
+function windowResizeRemove() {
+  window.removeEventListener('resize', resizeCallBack)
+}
+function resizeCallBack() {
+  getSearchOverlayStyle()
+}
 
 onMounted(() => {
   dom.value = document.getElementById('main-content-scrollable')
+  windowResizeAdd()
+})
+onBeforeUnmount(() => {
+  windowResizeRemove()
 })
 </script>
 
