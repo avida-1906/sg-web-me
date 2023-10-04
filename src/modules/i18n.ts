@@ -6,8 +6,15 @@ import { EnumLanguage } from '~/utils/enums'
 /** 映射后端的多语言值 */
 export const languageMap: IObject = {
   'zh-CN': 'zh_CN',
-  'pt-BR': 'pt_BR',
   'vi-VN': 'vi_VN',
+  'pt-BR': 'pt_BR',
+}
+
+/** 映射后端多语言对应的ID */
+export const languageIdMap: IObject = {
+  'zh-CN': 601,
+  'vi-VN': 603,
+  'pt-BR': 602,
 }
 
 const i18n = createI18n({
@@ -81,4 +88,9 @@ export function getCurrentLanguage() {
 /** 获取当前对应后端的多语言 */
 export function getCurrentLanguageForBackend() {
   return languageMap[getCurrentLanguage() || 'zh_CN']
+}
+
+/** 获取当前对应后端的多语言ID */
+export function getCurrentLanguageIdForBackend() {
+  return languageIdMap[getCurrentLanguage() || 'zh_CN']
 }
