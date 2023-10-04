@@ -22,7 +22,7 @@ const getNotificationList = (function () {
   }
 })()
 
-export function useNotify({ showClose, onClose }: { onClose?: () => void; showClose?: boolean } = {}) {
+export function useNotify({ showClose, onClose, onNotifyClick }: { onClose?: () => void; onNotifyClick?: () => void; showClose?: boolean } = {}) {
   const app = ref<any>({})
   const box = ref<any>({})
   const notificationList = getNotificationList()
@@ -53,6 +53,9 @@ export function useNotify({ showClose, onClose }: { onClose?: () => void; showCl
         funcCall: uuid,
         onClose: (uuid: string) => {
           closeNotify(uuid)
+        },
+        onNotifyClick: () => {
+          onNotifyClick && onNotifyClick()
         },
       }, {
         default: () => defaultSlot !== undefined ? defaultSlot() : null,

@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<Props>(), {
   showClose: true,
 })
 
-const emit = defineEmits(['close'])
+const emit = defineEmits(['close', 'notifyClick'])
 
 const iconObj = {
   set: 'uni-set',
@@ -87,6 +87,10 @@ function handClose() {
   close()
 }
 
+function contentClick() {
+  emit('notifyClick')
+}
+
 onMounted(() => {
   setNTrue()
   startCount()
@@ -95,12 +99,12 @@ onMounted(() => {
 
 <template>
   <Transition name="notify-slide-fade">
+    <!-- @touchmove.passive="overMove"
+      @touchstart.passive="enterStart"
+      @touchend="leaveEnd" -->
     <section
       v-if="show"
       class="tg-base-notify"
-      @touchmove.passive="overMove"
-      @touchstart.passive="enterStart"
-      @touchend="leaveEnd"
       @mouseover="overMove"
       @mouseleave="leaveEnd"
       @mouseenter="enterStart"
@@ -108,7 +112,7 @@ onMounted(() => {
       <div v-if="iconName" class="left">
         <BaseIcon :name="iconName" />
       </div>
-      <div class="right">
+      <div class="right" @click.stop="contentClick">
         <slot>
           <div>
             <slot name="title">

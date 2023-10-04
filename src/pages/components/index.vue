@@ -9,7 +9,7 @@ function copyIcon(id: string) {
   toast('Copied')
 }
 
-const { openNotify } = useNotify()
+const { openNotify } = useNotify({ onNotifyClick: () => toast('点击领取金奖') })
 
 function showNotify() {
   openNotify({
