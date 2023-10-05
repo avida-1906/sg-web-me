@@ -257,7 +257,7 @@ const { openDialog, closeDialog } = useDialog({
   icon: 'balls-darts-on',
   maxWidth: 400,
   showButtons: true,
-  default: () => h(AppDemoCard, { title: '标题' }, {
+  default: ({ currency }) => h(AppDemoCard, { title: `标题+${currency}` }, {
     default: () => h('table', { style: { color: 'orange' } }, 'abcdefg'),
   }),
   onCancel: () => { console.log('dialog canceled') },
@@ -267,7 +267,7 @@ const timerD = ref()
 function showDialog() {
   copyCode('useDialog')
   clearTimeout(timerD.value)
-  openDialog()
+  openDialog({ currency: 'usdt' })
   timerD.value = setTimeout(() => {
     closeDialog()
   }, 3000)
