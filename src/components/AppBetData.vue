@@ -279,7 +279,7 @@ onMounted(() => {
 <template>
   <div class="app-bet-data">
     <div class="bet-data-head">
-      <BaseTab v-model="activeTab" :list="getTabOptions" />
+      <BaseTab v-model="activeTab" :list="getTabOptions" size="large" />
       <div v-if="isGreaterThanSm" class="select-ranking center">
         <VMenu placement="top">
           <div class="switch-hidden" :style="{ '--tg-icon-color': isHidden ? '#fff' : '' }" @click.stop="changeHidden">
