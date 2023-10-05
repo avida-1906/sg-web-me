@@ -11,17 +11,9 @@
     />
     <p>加入 Stake.com 的联盟计划，以推荐我们的品牌赚钱! 每当一位用户通过您的推荐链接注册并使用 Stake.com，您便会收到联盟佣金。</p>
     <p>身为 Stake.com 的联盟会员，所赚的佣金将以推荐用户在娱乐城和体育博彩中的总投注为依据。这跟传统联盟计划的不同之处在于无论推荐用户是赢或输，您都能获得同样的佣金！</p>
-    <div class="recommend-link">
-      推荐链接
-    </div>
 
     <div class="tg-affiliate-overview-bottom">
-      <div class="link-box">
-        <input type="text" value="stake.com/?c=a9c244e0d1" autocomplete="on" readonly class="input spacing-expanded svelte-41a1vp" tooltipvisible="false">
-        <BaseButton>
-          <BaseIcon name="uni-jump-page" />
-        </BaseButton>
-      </div>
+      <AppCopyLine label="推荐链接" msg="stake.com/?c=2b1494b2ca" />
       <BaseButton>
         <span>下载横幅</span>
         <BaseIcon name="uni-jump-page" />

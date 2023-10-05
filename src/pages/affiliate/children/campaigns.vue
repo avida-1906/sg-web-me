@@ -145,24 +145,6 @@ const showContent = function () {}
 }
 .tg-affiliate-campaigns {
   margin-bottom: 38px;
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(120px,1fr));
-    grid-gap: var(--spacing-2);
-    .stat {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: var(--tg-text-white);
-      font-size: var(--tg-font-size-default);
-      font-weight: var(--tg-font-weight-semibold);
-      line-height: 1.5;
-      span:nth-child(2) {
-        color: var(--tg-text-lightgrey);
-      }
-    }
-  }
   .campaigns-list-column {
     margin-top: var(--tg-spacing-12);
     .title {
