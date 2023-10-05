@@ -162,11 +162,11 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
             <BaseIcon name="uni-arrow-down" />
           </div>
         </div>
-        <template #popper>
+        <template #popper="{ hide }">
           <div v-if="currencyList.length" class="scroll-y popper popper-mobile">
             <a
-              v-for="c, i in currencyList" :key="i" v-close-popper class="currency-types popper-option"
-              @click="onChooseCurrency(c)"
+              v-for="c, i in currencyList" :key="i" class="popper-option currency-types"
+              @click="hide();onChooseCurrency(c)"
             >
               <div>
                 <AppCurrencyIcon show-name :currency-type="c.num" />
@@ -217,11 +217,11 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
                         <BaseIcon name="uni-arrow-down" />
                       </div>
                     </div>
-                    <template #popper>
+                    <template #popper="{ hide }">
                       <div v-if="currencyList.length" class="scroll-y popper">
                         <a
-                          v-for="c, i in currencyList" :key="i" v-close-popper class="popper-option currency-types"
-                          @click="onChooseCurrency(c)"
+                          v-for="c, i in currencyList" :key="i" class="popper-option currency-types"
+                          @click="hide();onChooseCurrency(c)"
                         >
                           <div>
                             <AppCurrencyIcon show-name :currency-type="c.num" />
