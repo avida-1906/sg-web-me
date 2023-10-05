@@ -4,12 +4,13 @@ defineOptions({
 })
 
 const { isMobile } = storeToRefs(useWindowStore())
+const { isLogin } = storeToRefs(useAppStore())
 
 const gameType = ref('all')
 const tabList = [
   { label: '大厅', value: 'all', icon: 'spt-basketball' },
-  { label: '我的投注', value: 'my-bet', icon: 'spt-user-bet' },
-  { label: '收藏夹', value: 'fav', icon: 'uni-favorites' },
+  { label: '我的投注', value: 'my-bet', icon: 'spt-user-bet', disabled: !isLogin.value },
+  { label: '收藏夹', value: 'fav', icon: 'uni-favorites', disabled: !isLogin.value },
   { label: '滚球盘', value: 'live', icon: 'spt-ball-plate' },
   { label: '即将开赛', value: 'soon', icon: 'spt-timing' },
 ]
