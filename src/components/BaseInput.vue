@@ -70,6 +70,9 @@ defineExpose({ getFocus })
       <label v-if="label">{{ label }} <span v-if="must">*</span></label>
       <div class="input-wrap" :class="{ mb0 }">
         <div class="input-box" :class="{ 'active': isFocus, 'error': isError, 'radio-r-o': $slots['right-button'] }">
+          <div v-show="$slots['left-icon']" class="left-icon">
+            <slot name="left-icon" />
+          </div>
           <div v-if="textarea" class="textarea-container">
             <pre aria-hidden="true">{{ modelValue }}</pre>
             <textarea
@@ -82,7 +85,7 @@ defineExpose({ getFocus })
           </div>
           <input
             v-else ref="iInput" :value="modelValue" min="0" :placeholder="placeholder" :type="_type" :disabled="disabled"
-            :class="{ 'p-r-0': $slots['right-icon'] }" @input="onInput" @focus="onFocus" @blur="onBlur"
+            :class="{ 'p-r-0': $slots['right-icon'], 'p-l-0': $slots['left-icon'] }" @input="onInput" @focus="onFocus" @blur="onBlur"
           >
           <div v-if="isPassword" class="eye" @click="toggleType">
             <BaseIcon :name="`uni-eye-${_type === 'password' ? 'open' : 'close'}`" />
@@ -265,7 +268,9 @@ defineExpose({ getFocus })
       //   margin: 0;
       // }
     }
-
+    .p-l-0 {
+      padding-left: 0;
+    }
     .p-r-0 {
       padding-right: 0;
     }
@@ -278,7 +283,12 @@ defineExpose({ getFocus })
       font-size: var(--tg-font-size-md);
       cursor: pointer;
     }
-
+    .left-icon {
+      padding: var(--tg-spacing-8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
     .right-icon {
       padding: var(--tg-spacing-8);
       display: flex;

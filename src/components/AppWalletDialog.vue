@@ -7,10 +7,12 @@ const currentTab = ref('deposit')
 const tabList = [
   { label: t('deposit'), value: 'deposit' },
   { label: t('withdraw'), value: 'withdraw' },
+  { label: '卡包', value: 'cardHolder' },
 ]
 
 const isDeposit = computed(() => currentTab.value === 'deposit')
 const isWithdraw = computed(() => currentTab.value === 'withdraw')
+const isCardHolder = computed(() => currentTab.value === 'cardHolder')
 
 function changeCurrency(item: any) {
   activeCurrency.value = item
@@ -24,7 +26,7 @@ function handleShow(val: boolean) {
   <div class="app-wallet-dialog">
     <div class="content">
       <BaseTab v-model="currentTab" :list="tabList" />
-      <AppWallet v-show="showWallet" :wallet-btn="false" :show-balance="false" :network="true" @change="changeCurrency" />
+      <AppWallet v-show="showWallet && !isCardHolder" :wallet-btn="false" :show-balance="false" :network="true" @change="changeCurrency" />
       <template v-if="isDeposit">
         <AppFiatDeposit v-if="activeCurrency?.legalTender" :active-currency="activeCurrency" @show="handleShow" />
         <AppVirtualDeposit v-else :active-currency="activeCurrency" @show="handleShow" />
@@ -34,6 +36,9 @@ function handleShow(val: boolean) {
         <AppWithdraw v-else :active-currency="activeCurrency" />
       </template>
     </div>
+    <template v-if="isCardHolder">
+      <AppCardHolder />
+    </template>
   </div>
 </template>
 
