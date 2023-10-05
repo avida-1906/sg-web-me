@@ -9,11 +9,11 @@ type type = '002' | '003'
  * '003' : 越南银行列表
  * @returns
  */
-export function useApiMemberTreeList<R extends Array<unknown>, P extends unknown[]>(
+export function useApiMemberTreeList(
   type: type,
-  options?: Options<R, P>,
+  options?: Options,
 ) {
-  const { data, loading, error } = useRequest<R, P>(() => ApiMemberTreeList({ level: type }), {
+  const { data, loading, error } = useRequest(() => ApiMemberTreeList({ level: type }), {
     manual: false,
     ...options,
   })

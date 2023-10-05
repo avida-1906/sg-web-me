@@ -2,14 +2,11 @@
 defineOptions({
   name: 'KeepAliveSports',
 })
-
-const time = new Date().getTime()
 </script>
 
 <template>
   <div class="sports-home">
     home
-    {{ time }}
   </div>
 </template>
 

@@ -74,14 +74,3 @@ interface ChatMessageInfo {
   sender: ChatUserInfo
   [k: string]: any
 }
-
-/**
- * BaseTab tab类型
- */
-interface BaseTabItem {
-  [text: string]: any
-  value: string | number
-  label: string
-  icon?: string
-  path?: string
-}

@@ -59,7 +59,7 @@ await application.allSettled([runLive({ game_type: 1 }), runSlot({ game_type: 3 
           </AppVipProgress>
         </div>
         <div class="top-banner">
-          <AppBanner :mode="isSm ? 'default' : 'only'" />
+          <AppBanner :mode="isSm ? 'default' : 'home'" />
         </div>
       </div>
     </div>
@@ -97,7 +97,7 @@ await application.allSettled([runLive({ game_type: 1 }), runSlot({ game_type: 3 
         </div>
         <div class="features-button">
           <BaseButton bg-style="primary" class="w-100">
-            前往娱乐城
+            前往体育博彩
           </BaseButton>
         </div>
       </div>

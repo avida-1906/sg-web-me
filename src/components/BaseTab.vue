@@ -1,6 +1,12 @@
 <script setup lang='ts'>
+interface TabItem {
+  [text: string]: any
+  value: string | number
+  label: string
+  icon?: string
+}
 interface Props {
-  list: BaseTabItem[]
+  list: TabItem[]
   modelValue: string | number
   shape?: 'square' | 'round'
   full?: boolean
@@ -14,17 +20,13 @@ const props = withDefaults(defineProps<Props>(), {
 })
 const emit = defineEmits(['update:modelValue', 'change'])
 
-const router = useRouter()
-
-function onClick(t: BaseTabItem, event: any) {
-  if (t.value === props.modelValue)
+function onClick(tab: TabItem, event: any) {
+  if (tab.value === props.modelValue || tab.disabled)
     return
 
   // event.target.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' })
-  emit('update:modelValue', t.value)
-  emit('change', t.value)
-  if (t.path)
-    router.push(t.path)
+  emit('update:modelValue', tab.value)
+  emit('change', tab.value)
 }
 </script>
 
@@ -33,8 +35,8 @@ function onClick(t: BaseTabItem, event: any) {
     <div class="scroll-x base-tab-wrap" :class="{ full }">
       <div class="tab-wrap" :class="[shape]">
         <div
-          v-for="t, i in list" :key="i" class="tab" :class="[t.value === modelValue ? 'active' : '', `tab-${size}`]"
-          @click="onClick(t, $event)"
+          v-for="t, i in list" :key="i" class="tab"
+          :class="[`tab-${size}`, { active: t.value === modelValue, disabled: t.disabled }]" @click="onClick(t, $event)"
         >
           <div class="content">
             <slot name="tab" :item="t">
@@ -130,12 +132,18 @@ function onClick(t: BaseTabItem, event: any) {
       background-color: var(--tg-secondary-main);
       --tg-icon-color: var(--tg-text-white);
     }
+
+    &.active {
+      background-color: var(--tg-secondary-main);
+      --tg-icon-color: var(--tg-text-white);
+    }
+
+    &.disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
   }
 
-  .active {
-    background-color: var(--tg-secondary-main);
-    --tg-icon-color: var(--tg-text-white);
-  }
 }
 
 .full {

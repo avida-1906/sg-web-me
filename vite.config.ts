@@ -156,8 +156,8 @@ export default defineConfig(({ mode }) => {
             if (['src/styles/reset.scss', 'src/styles/main.scss', 'src/styles/animate.scss'].some(v => id.includes(v)))
               return 'styles'
 
-            // if (['src/components'].some(v => id.includes(v)))
-            //   return `src-components-${id.split('src/components/')[1].split('/')[0]}`
+            if (['src/components'].some(v => id.includes(v)))
+              return 'src-components'
 
             if (id.includes('node_modules/dayjs'))
               return 'dayjs'
