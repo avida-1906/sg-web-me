@@ -1,11 +1,6 @@
 <script setup lang='ts'>
 interface Props {
-  list: {
-    [text: string]: any
-    value: string | number
-    label: string
-    icon?: string
-  }[]
+  list: BaseTabItem[]
   modelValue: string | number
   shape?: 'square' | 'round'
   full?: boolean
@@ -19,13 +14,17 @@ const props = withDefaults(defineProps<Props>(), {
 })
 const emit = defineEmits(['update:modelValue', 'change'])
 
-function onClick(v: string | number, event: any) {
-  if (v === props.modelValue)
+const router = useRouter()
+
+function onClick(t: BaseTabItem, event: any) {
+  if (t.value === props.modelValue)
     return
 
   // event.target.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' })
-  emit('update:modelValue', v)
-  emit('change', v)
+  emit('update:modelValue', t.value)
+  emit('change', t.value)
+  if (t.path)
+    router.push(t.path)
 }
 </script>
 
@@ -35,7 +34,7 @@ function onClick(v: string | number, event: any) {
       <div class="tab-wrap" :class="[shape]">
         <div
           v-for="t, i in list" :key="i" class="tab" :class="[t.value === modelValue ? 'active' : '', `tab-${size}`]"
-          @click="onClick(t.value, $event)"
+          @click="onClick(t, $event)"
         >
           <div class="content">
             <slot name="tab" :item="t">

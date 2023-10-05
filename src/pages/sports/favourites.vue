@@ -2,13 +2,13 @@
 </script>
 
 <template>
-  <div class="tg-sports-my-bets">
-    bets
+  <div class="tg-sports-favourites">
+    favourites
   </div>
 </template>
 
 <style lang="scss" scoped>
-.tg-sports-my-bets {
+.tg-sports-favourites {
 
 }
 </style>

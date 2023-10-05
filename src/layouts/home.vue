@@ -51,7 +51,8 @@ watch(() => width.value, (newWidth) => {
   windowStore.setAppContentWidth(newWidth)
 })
 
-watch(() => route.name, () => {
+watch(() => route.name, (val, old) => {
+  console.log('route name ======== ', val, old)
   toggleAni()
 })
 
