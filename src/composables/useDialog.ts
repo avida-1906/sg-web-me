@@ -8,13 +8,13 @@ interface DialogOptions {
   showButtons?: boolean
   onCancel?: () => void
   onConfirm?: () => void
-  default: () => Component
+  default: (params?: any) => Component
 }
 
 export function useDialog({ title, icon, default: defaultSlot, maxWidth, showButtons, onCancel, onConfirm }: DialogOptions) {
   const app = ref()
   const div = ref()
-  const openDialog = () => {
+  const openDialog = (params?: any) => {
     div.value = document.createElement('div')
     document.body.appendChild(div.value)
     app.value = createApp(h(BaseDialog, {
@@ -36,7 +36,7 @@ export function useDialog({ title, icon, default: defaultSlot, maxWidth, showBut
         closeDialog()
       },
     }, {
-      default: () => defaultSlot(),
+      default: () => defaultSlot(params),
     }))
     install(app.value)
     app.value.mount(div.value)
