@@ -106,7 +106,7 @@ function cancelPayment() {
     .box-btn {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        grid-gap: 12px;
+        grid-gap:  var(--tg-spacing-12);
     }
 }
 </style>

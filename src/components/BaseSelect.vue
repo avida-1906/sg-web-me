@@ -193,7 +193,7 @@ function onClickPopperItem(v: any) {
   color: var(--tg-secondary-main);
   font-weight: var(--tg-font-weight-semibold);
 
-  &:hover {
+  &:hover, &.active {
     background-color: var(--tg-sub-blue);
   }
 }
