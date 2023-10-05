@@ -38,31 +38,26 @@ function scrollRight() {
 <template>
   <div class="app-banner">
     <div ref="scrollRef" class="banner-scroll scroll-x hide-scrollbar" :style="getGridAutoColumns">
-      <template v-if="mode === 'home'">
-        <BaseImage url="https://mediumrare.imgix.net/welcome-top-zh.png?&dpr=2&format=auto&auto=format&w=540&q=50" />
-      </template>
-      <template v-else>
-        <div v-for="i in 7" :key="i" class="banner-item">
-          <BaseAspectRatio class="banner-ratio" ratio="386/226">
-            <BaseImage url="https://cdn.sanity.io/images/tdrhge4k/production/65949dde3eac8d7c7f59a020c5acf70bd3692a0c-1743x1026.jpg?auto=format&q=90&w=760" />
-            <div class="item-msg">
-              <div class="msg-type">
-                促销活动
-              </div>
-              <div class="msg-title">
-                挑战升级
-              </div>
-              <div class="msg-tips">
-                投注瓜分千万奖金！
-                <span>阅读更多</span>
-              </div>
-              <div class="come-play">
-                马上来玩
-              </div>
+      <div v-for="i in 7" :key="i" class="banner-item">
+        <BaseAspectRatio class="banner-ratio" ratio="386/226">
+          <BaseImage url="/img/home/banner-bg.png" />
+          <!-- <div class="item-msg">
+            <div class="msg-type">
+              促销活动
             </div>
-          </BaseAspectRatio>
-        </div>
-      </template>
+            <div class="msg-title">
+              挑战升级
+            </div>
+            <div class="msg-tips">
+              投注瓜分千万奖金！
+              <span>阅读更多</span>
+            </div>
+            <div class="come-play">
+              马上来玩
+            </div>
+          </div> -->
+        </BaseAspectRatio>
+      </div>
     </div>
     <div class="arrow arrow-left">
       <BaseButton type="text" @click="scrollLeft">

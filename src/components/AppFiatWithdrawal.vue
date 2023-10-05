@@ -22,6 +22,7 @@ const bankType = getCurrentLanguageIdForBackend()
 const bankAreaCpf = ref('')
 const isDefault = ref(false)
 const amount = ref('')
+// 1 表示银行卡， 2 表示pix 除了巴西其他国家都是银行卡
 const currentType = ref('1')
 const depositTypeData = ref([
   { label: '银行转账', icon: 'fiat-bank', value: '1' },
