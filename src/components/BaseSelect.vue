@@ -63,12 +63,12 @@ function onClickPopperItem(v: any) {
           <BaseIcon name="uni-arrow-down" />
         </div>
       </div>
-      <template #popper>
+      <template #poppe="{ hide }">
         <div class="scroll-y need-pad-y popper-wrap">
           <a
-            v-for="item, i in options" :key="i" v-close-popper
+            v-for="item, i in options" :key="i"
             :class="{ 'popper-option-dark': theme, 'popper-option': !theme, 'active': item.value === modelValue }"
-            @click="onClickPopperItem(item.value)"
+            @click="hide();onClickPopperItem(item.value)"
           >
             <slot name="option" :data="{ item, parentWidth: width, active: item.value === modelValue }">
               {{ item.label }}

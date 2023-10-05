@@ -97,9 +97,9 @@ async function logout() {
           <BaseButton type="text">
             <BaseIcon class="icon-size" name="navbar-user" />
           </BaseButton>
-          <template #popper>
+          <template #popper="{ hide }">
             <div class="dropdown-popper need-pad-y">
-              <div v-for="item of userMenu" :key="item.id" v-close-popper class="menu-item" :class="{ 'active-menu': getActiveState(item.path) }" @click="handleClickMenuItem(item)">
+              <div v-for="item of userMenu" :key="item.id" class="menu-item" :class="{ 'active-menu': getActiveState(item.path) }" @click=" hide();handleClickMenuItem(item)">
                 <div class="menu-btn">
                   <BaseIcon class="icon-size" :name="item.icon" />
                   <span>{{ item.title }}</span>
@@ -115,9 +115,9 @@ async function logout() {
           <BaseButton v-show="!isMobile" type="text">
             <BaseIcon class="icon-size" name="header-news" />
           </BaseButton>
-          <template #popper>
+          <template #popper="{ hide }">
             <div class="dropdown-popper need-pad-y">
-              <div v-for="item of newsMenu" :key="item.id" v-close-popper class="menu-item" :class="{ 'active-menu': getActiveShown(item.shown) }" @click="handleClickMenuItem(item)">
+              <div v-for="item of newsMenu" :key="item.id" class="menu-item" :class="{ 'active-menu': getActiveShown(item.shown) }" @click="hide(); handleClickMenuItem(item)">
                 <div class="menu-btn">
                   <BaseIcon class="icon-size" :name="item.icon" />
                   <span>{{ item.title }}</span>
