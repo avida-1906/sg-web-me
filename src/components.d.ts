@@ -13,6 +13,7 @@ declare module 'vue' {
     AppBanner: typeof import('./components/AppBanner.vue')['default']
     AppBannerUnlimited: typeof import('./components/AppBannerUnlimited.vue')['default']
     AppBetData: typeof import('./components/AppBetData.vue')['default']
+    AppCardHolder: typeof import('./components/AppCardHolder.vue')['default']
     AppCardList: typeof import('./components/AppCardList.vue')['default']
     AppChat: typeof import('./components/AppChat.vue')['default']
     AppChatFooter: typeof import('./components/AppChatFooter.vue')['default']

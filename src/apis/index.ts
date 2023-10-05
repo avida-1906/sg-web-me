@@ -333,3 +333,18 @@ export function ApiMemberBankcardInsert(data: {
 }) {
   return httpClient.post<string>('/member/bankcard/insert', data)
 }
+
+/**
+ * 添加虚拟币钱包地址
+ */
+export function ApiMemberWalletInsert(data: {
+  contract_type?: string
+  currency_name: string
+  wallet_address: string
+  is_default?: number
+}) {
+  return httpClient.post<{
+    status: boolean
+    data: string
+  }>('/member/wallet/insert', data)
+}
