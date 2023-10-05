@@ -131,11 +131,11 @@ else if (isRec.value)
         <AppGroupFilter :game-type="currentType" :sort-type="sort" @sort-type-change="onSortChange" @plat-type-checked="onPlatTypeChecked" />
       </div>
       <div class="mt-24">
-        <AppCardList :list="list" />
+        <AppCardList :list="list ?? []" />
       </div>
       <div class="load-more mt-24">
         <AppPercentage :total="total" :percentage="list?.length" />
-        <BaseButton v-show="list?.length < total" size="md" :loading="loading" @click="push">
+        <BaseButton v-show="list && list?.length < total" size="md" :loading="loading" @click="push">
           <div>
             {{ $t('load_more') }}
           </div>
