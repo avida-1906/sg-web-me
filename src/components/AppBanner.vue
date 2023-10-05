@@ -1,6 +1,6 @@
 <script setup lang="ts">
 interface Props {
-  mode?: 'only' | 'default'
+  mode?: 'home' | 'default'
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -12,7 +12,7 @@ const { appContentWidth } = storeToRefs(useWindowStore())
 const scrollRef = ref()
 
 const getGridAutoColumns = computed(() => {
-  if (props.mode === 'only') {
+  if (props.mode === 'home') {
     return { 'grid-auto-columns': '100%' }
   }
   else {
@@ -40,8 +40,8 @@ function scrollRight() {
     <div ref="scrollRef" class="banner-scroll scroll-x hide-scrollbar" :style="getGridAutoColumns">
       <div v-for="i in 7" :key="i" class="banner-item">
         <BaseAspectRatio class="banner-ratio" ratio="386/226">
-          <BaseImage url="https://cdn.sanity.io/images/tdrhge4k/production/65949dde3eac8d7c7f59a020c5acf70bd3692a0c-1743x1026.jpg?auto=format&q=90&w=760" />
-          <div class="item-msg">
+          <BaseImage url="/img/home/banner-bg.png" />
+          <!-- <div class="item-msg">
             <div class="msg-type">
               促销活动
             </div>
@@ -55,7 +55,7 @@ function scrollRight() {
             <div class="come-play">
               马上来玩
             </div>
-          </div>
+          </div> -->
         </BaseAspectRatio>
       </div>
     </div>

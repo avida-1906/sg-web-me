@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const paypwd: Ref<string> = ref('ICBC 6228 4804 4583 9939 573')
+const bankId: Ref<string> = ref('ICBC 6228 4804 4583 9939 573')
 </script>
 
 <template>
@@ -18,7 +18,7 @@ const paypwd: Ref<string> = ref('ICBC 6228 4804 4583 9939 573')
     </div>
     <div class="layout-spacing reset bank-card">
       <BaseLabel v-for="i in 3" :key="i" label="持卡人姓名" label-content="小明明">
-        <BaseInput v-model="paypwd" disabled>
+        <BaseInput v-model="bankId" disabled>
           <template #left-icon>
             <BaseIcon name="fiat-bank" />
           </template>

@@ -4,6 +4,7 @@ interface TabItem {
   value: string | number
   label: string
   icon?: string
+  path?: string
 }
 interface Props {
   list: TabItem[]
@@ -20,6 +21,8 @@ const props = withDefaults(defineProps<Props>(), {
 })
 const emit = defineEmits(['update:modelValue', 'change'])
 
+const router = useRouter()
+
 function onClick(tab: TabItem, event: any) {
   if (tab.value === props.modelValue || tab.disabled)
     return
@@ -27,6 +30,8 @@ function onClick(tab: TabItem, event: any) {
   // event.target.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' })
   emit('update:modelValue', tab.value)
   emit('change', tab.value)
+  if (tab.path)
+    router.push(tab.path)
 }
 </script>
 
