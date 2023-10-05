@@ -14,9 +14,9 @@ const languageMap: IObject = {
 
 /** 映射后端多语言对应的ID */
 const languageIdMap: IObject = {
-  'zh-CN': 601,
-  'vi-VN': 603,
-  'pt-BR': 602,
+  'zh-CN': '601',
+  'vi-VN': '603',
+  'pt-BR': '602',
 }
 
 const i18n = createI18n({
