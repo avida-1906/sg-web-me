@@ -6,6 +6,8 @@ interface Props {
 }
 
 withDefaults(defineProps<Props>(), {})
+
+const { copy } = useClipboard()
 </script>
 
 <template>
@@ -22,9 +24,14 @@ withDefaults(defineProps<Props>(), {})
               >
             </div>
             <div class="input-button-wrap">
-              <BaseButton>
-                <BaseIcon name="uni-doc" />
-              </BaseButton>
+              <VMenu :triggers="['click']" placement="top" :hide-triggers="(triggers: any) => [...triggers, 'hover']">
+                <BaseButton @click="copy(msg)">
+                  <BaseIcon name="uni-doc" />
+                </BaseButton>
+                <template #popper>
+                  <div class="tiny-menu-item-title">成功复制！</div>
+                </template>
+              </VMenu>
             </div>
           </div>
           <span class="label-content">
@@ -133,6 +140,9 @@ withDefaults(defineProps<Props>(), {})
           button:last-child {
             border-bottom-left-radius: 0;
             border-top-left-radius: 0;
+          }
+          button {
+            height: 100%;
           }
         }
       }
