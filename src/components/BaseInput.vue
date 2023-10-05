@@ -26,7 +26,7 @@ const iTextarea = ref()
 const iInput = ref()
 const _type = ref(props.type)
 
-const isError = computed(() => !!props.msg)
+const error = computed(() => !!props.msg)
 const isPassword = computed(() => props.type === 'password')
 
 function toggleType() {
@@ -69,7 +69,7 @@ defineExpose({ getFocus })
     <div :class="[layout]">
       <label v-if="label">{{ label }} <span v-if="must">*</span></label>
       <div class="input-wrap" :class="{ mb0 }">
-        <div class="input-box" :class="{ 'active': isFocus, 'error': isError, 'radio-r-o': $slots['right-button'] }">
+        <div class="input-box" :class="{ 'active': isFocus, error, 'radio-r-o': $slots['right-button'] }">
           <div v-show="$slots['left-icon']" class="left-icon">
             <slot name="left-icon" />
           </div>
@@ -169,6 +169,7 @@ defineExpose({ getFocus })
     font-size: var(--tg-font-size-md);
     display: flex;
     align-items: center;
+    margin-top: var(--tg-spacing-6);
 
     span {
       font-size: var(--tg-font-size-xs);
@@ -206,7 +207,6 @@ defineExpose({ getFocus })
     box-shadow: var(--tg-box-shadow);
     border-radius: var(--tg-radius-default);
     overflow: hidden;
-    margin-bottom: var(--tg-spacing-6);
 
     .right-button {
       padding: var(--tg-spacing-button-padding-vertical-sm) var(--tg-spacing-button-padding-horizontal-sm);

@@ -14,6 +14,7 @@ interface Props {
   popper?: boolean
   theme?: boolean // 主题默认白色，true黑色
   banks?: boolean // 银行卡选择 展示的数据格式不同
+  msg?: string
 }
 const props = withDefaults(defineProps<Props>(), {
   layout: 'vertical',
@@ -24,6 +25,7 @@ const { bool, setTrue, setFalse } = useBoolean(false)
 const parent = ref<HTMLElement | null>(null)
 const { width } = useElementSize(parent)
 
+const error = computed(() => !!props.msg)
 const selectedOption = computed(() => props.options.find(a => a.value === props.modelValue))
 const popperLabel = computed(() => props.options.find(a => a.value === props.modelValue)?.label ?? '-')
 const popperLabelBank = computed(() => props.options.find(a => a.value === props.modelValue)?.value ?? '')
@@ -77,18 +79,24 @@ function onClickPopperItem(v: any) {
     </VDropdown>
   </template>
 
-  <div v-else class="base-select" :class="[layout]">
-    <label v-if="label">{{ label }} <span v-if="must" class="must">*</span></label>
-    <div class="select-warp">
-      <select :value="modelValue" :class="{ disabled, small }" :disabled="disabled" @change="onChange">
-        <option style="display: none;" disabled value="" />
-        <option v-for="o, i in options" :key="i" :selected="o.value === modelValue" :value="o.value">
-          {{ o.label }}
-        </option>
-      </select>
-      <div class="icon">
-        <BaseIcon name="uni-arrow-down" />
+  <div v-else class="base-select">
+    <div :class="[layout]">
+      <label v-if="label">{{ label }} <span v-if="must" class="must">*</span></label>
+      <div class="select-warp">
+        <select :value="modelValue" :class="{ disabled, small, error }" :disabled="disabled" @change="onChange">
+          <option style="display: none;" disabled value="" />
+          <option v-for="o, i in options" :key="i" :selected="o.value === modelValue" :value="o.value">
+            {{ o.label }}
+          </option>
+        </select>
+        <div class="icon">
+          <BaseIcon name="uni-arrow-down" />
+        </div>
       </div>
+    </div>
+    <div v-show="msg" class="msg">
+      <BaseIcon class="error-icon" name="uni-warning" />
+      <span>{{ msg }}</span>
     </div>
   </div>
 </template>
@@ -185,7 +193,7 @@ function onClickPopperItem(v: any) {
   color: var(--tg-secondary-main);
   font-weight: var(--tg-font-weight-semibold);
 
-  &:hover {
+  &:hover, &.active {
     background-color: var(--tg-sub-blue);
   }
 }
@@ -197,6 +205,19 @@ function onClickPopperItem(v: any) {
 
   .must {
     color: var(--tg-text-error);
+  }
+
+  .msg {
+    margin-top: var(--tg-spacing-6);
+    font-size: var(--tg-font-size-md);
+    display: flex;
+    align-items: center;
+
+    span {
+      font-size: var(--tg-font-size-xs);
+      color: var(--tg-text-error);
+      margin-left: var(--tg-spacing-4);
+    }
   }
 }
 
@@ -220,10 +241,14 @@ function onClickPopperItem(v: any) {
     &:hover {
       border-color: var(--tg-border-color-deep-grey);
     }
-  }
 
-  .small {
-    padding: var(--tg-spacing-7) var(--tg-spacing-28) var(--tg-spacing-7) var(--tg-spacing-7);
+    &.small {
+      padding: var(--tg-spacing-7) var(--tg-spacing-28) var(--tg-spacing-7) var(--tg-spacing-7);
+    }
+
+    &.error {
+      border-color: var(--tg-text-error);
+    }
   }
 
   .icon {
