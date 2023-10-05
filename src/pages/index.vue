@@ -71,7 +71,7 @@ await application.allSettled([runLive({ game_type: 1 }), runSlot({ game_type: 3 
           <span>娱乐城</span>
         </div>
         <div class="features-image">
-          <BaseImage url="https://mediumrare.imgix.net/welcome-casino-zh.jpg?&dpr=2&format=auto&auto=format&q=50&w=586" class="base-img" />
+          <BaseImage url="/img/home/casino.png" class="base-img" />
         </div>
         <div class="features-content">
           <p>最领先的在线加密货币赌场</p>
@@ -89,7 +89,7 @@ await application.allSettled([runLive({ game_type: 1 }), runSlot({ game_type: 3 
           <span>体育</span>
         </div>
         <div class="features-image">
-          <BaseImage url="https://mediumrare.imgix.net/welcome-sports-zh.jpg?&dpr=2&format=auto&auto=format&q=50&w=586" class="base-img" />
+          <BaseImage url="/img/home/sports.png" class="base-img" />
         </div>
         <div class="features-content">
           <p>最棒的加密货币在线体育博彩</p>
@@ -261,6 +261,7 @@ await application.allSettled([runLive({ game_type: 1 }), runSlot({ game_type: 3 
       flex-direction: column;
       gap: 1rem;
       cursor: pointer;
+      position: relative;
       &:hover{
         .features-image{
           .base-img{
@@ -272,6 +273,8 @@ await application.allSettled([runLive({ game_type: 1 }), runSlot({ game_type: 3 
         display: flex;
         justify-content: left;
         align-items: center;
+        position: absolute;
+        z-index: 1;
         > span {
           color: var(--tg-text-white);
           font-size: var(--tg-font-size-md);

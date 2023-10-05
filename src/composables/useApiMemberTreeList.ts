@@ -1,3 +1,5 @@
+import type { Options } from 'vue-request'
+
 type type = '002' | '003'
 
 /**
@@ -5,13 +7,20 @@ type type = '002' | '003'
  * @param type
  * '002' : 中国银行列表
  * '003' : 越南银行列表
- * @returns ITreeList[]
+ * @returns
  */
-export function useApiMemberTreeList(type: type) {
-  const { data: list, loading } = useRequest(() => ApiMemberTreeList({ level: type }), { manual: false })
-  console.log('list1', list)
+export function useApiMemberTreeList<R extends Array<unknown>, P extends unknown[]>(
+  type: type,
+  options?: Options<R, P>,
+) {
+  const { data, loading, error } = useRequest<R, P>(() => ApiMemberTreeList({ level: type }), {
+    manual: false,
+    ...options,
+  })
+
   return {
-    list,
+    data,
     loading,
+    error,
   }
 }
