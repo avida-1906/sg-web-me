@@ -1,8 +1,11 @@
 <script setup lang="ts">
 function handleUpdated() {
   const loading = document.querySelector('#full-loading')
-  if (loading)
-    loading.remove()
+  if (loading) {
+    setTimeout(() => {
+      loading.remove()
+    }, 400)
+  }
 }
 </script>
 

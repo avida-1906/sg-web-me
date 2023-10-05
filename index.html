@@ -2,10 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta 
+    name="viewport" 
+    content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+  >
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
   <link rel="apple-touch-icon" href="/pwa-192x192.png">
   <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#00aba9">
   <meta name="msapplication-TileColor" content="#00aba9">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#00aba9" />
   <meta name="theme-color" content="#1a2c38">
   <style type="text/css">
     #full-loading {
@@ -36,5 +42,24 @@
   <div data-portal="true"></div>
   <script type="module" src="/src/main.ts"></script>
   <noscript>This website requires JavaScript to function properly. Please enable JavaScript to continue.</noscript>
+  <script >
+    // 阻止双指放大
+    document.addEventListener('gesturestart', (event) => {
+      event.preventDefault()
+    }, false)
+
+    // 阻止双击放大
+    let lastTouchEnd = 0
+    document.addEventListener('touchstart', (event) => {
+      if (event.touches.length > 1)
+        event.preventDefault()
+    })
+    document.addEventListener('touchend', (event) => {
+      const now = (new Date()).getTime()
+      if (now - lastTouchEnd <= 300)
+        event.preventDefault()
+      lastTouchEnd = now
+    }, false)
+  </script>
 </body>
 </html>
