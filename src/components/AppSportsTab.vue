@@ -1,5 +1,4 @@
 <script setup lang='ts'>
-// <BaseIcon name="spt-handball" />
 const allList = [
   { label: '全部', value: 'all', icon: 'uni-all', num: 1707, id: '1' },
   { label: '网球', value: 'tennis', icon: 'spt-tennis', num: 10, id: '2' },
@@ -23,18 +22,16 @@ const allList = [
   { label: '地板球', value: 'spt-ice-puck3', icon: 'spt-ice-puck3', num: 10, id: '21' },
   { label: '五人制足球', value: 'spt-five', icon: 'spt-five', num: 10, id: '22' },
   { label: '手球', value: 'spt-handball', icon: 'spt-handball', num: 10, id: '23' },
-  { label: '', value: '', icon: '', num: 10, id: '24' },
-  { label: '', value: '', icon: '', num: 10, id: '25' },
-  { label: '', value: '', icon: '', num: 10, id: '26' },
-  { label: '', value: '', icon: '', num: 10, id: '27' },
-  { label: '', value: '', icon: '', num: 10, id: '28' },
-  { label: '', value: '', icon: '', num: 10, id: '29' },
-  { label: '', value: '', icon: '', num: 10, id: '30' },
-  { label: '', value: '', icon: '', num: 10, id: '31' },
-  { label: '', value: '', icon: '', num: 10, id: '32' },
-  { label: '', value: '', icon: '', num: 10, id: '33' },
-  { label: '', value: '', icon: '', num: 10, id: '34' },
-  { label: '', value: '', icon: '', num: 10, id: '35' },
+  { label: '英雄联盟', value: 'spt-hero', icon: 'spt-hero', num: 10, id: '24' },
+  { label: '综合格斗', value: 'chess-gilburns', icon: 'chess-gilburns', num: 10, id: '25' },
+  { label: '无尽对决', value: 'spt-endless', icon: 'spt-endless', num: 10, id: '26' },
+  { label: 'NBA2K', value: 'spt-nba2k', icon: 'spt-nba2k', num: 10, id: '27' },
+  { label: '彩虹六号', value: 'spt-rainbow', icon: 'spt-rainbow', num: 10, id: '28' },
+  { label: '桌球', value: 'spt-table-tennis', icon: 'spt-table-tennis', num: 10, id: '29' },
+  { label: '星际争霸2', value: 'spt-interstellar', icon: 'spt-interstellar', num: 10, id: '30' },
+  { label: '无畏契约', value: 'spt-fearless', icon: 'spt-fearless', num: 10, id: '31' },
+  { label: '魔兽争霸3', value: 'spt-warcraft', icon: 'spt-warcraft', num: 10, id: '32' },
+  { label: '水球', value: 'spt-water-polo', icon: 'spt-water-polo', num: 10, id: '33' },
 ]
 </script>
 
