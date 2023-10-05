@@ -25,10 +25,7 @@ const twoStepCode = ref('HM3XE2DLGVWECZDYK5BUMNTQORGVCKBVO5MG4JBSG46EGMCSHZEA')
         启用双重验证以让您的账户更加安全。
       </template>
       <div class="two-step-verification">
-        <p class="text">
-          将代码复制到您的身份验证器应用程序（Authenticator App）
-        </p>
-        <AppCopyLine :msg="twoStepCode" />
+        <AppCopyLine label="将代码复制到您的身份验证器应用程序（Authenticator App）" :msg="twoStepCode" />
         <p class="mt-16">
           防止他人看到此页！
         </p>
