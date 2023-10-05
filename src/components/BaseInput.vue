@@ -18,7 +18,7 @@ const props = withDefaults(defineProps<Props>(), {
   textarea: false,
 })
 
-const emit = defineEmits(['update:modelValue', 'input', 'blur', 'focus'])
+const emit = defineEmits(['update:modelValue', 'input', 'blur', 'focus', 'downEnter'])
 
 const { bool: isFocus, setTrue, setFalse } = useBoolean(false)
 
@@ -57,6 +57,10 @@ function getFocus() {
   onFocus()
 }
 
+function keyDownEnter(event: KeyboardEvent) {
+  emit('downEnter', event)
+}
+
 defineExpose({ getFocus })
 </script>
 
@@ -73,6 +77,7 @@ defineExpose({ getFocus })
               :value="modelValue"
               min="0" class="scroll-y" :placeholder="placeholder" :class="{ 'p-r-0': $slots['right-icon'] }"
               autocomplete="new-password" :disabled="disabled" @input="onInput" @focus="onFocus" @blur="onBlur"
+              @keydown.enter="keyDownEnter"
             />
           </div>
           <input

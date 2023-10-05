@@ -182,7 +182,7 @@ onUnmounted(() => {
     }
     .close {
       cursor: pointer;
-      font-size: var(--tg-font-size-md);
+      font-size: var(--tg-font-size-base);
       &:hover {
         --tg-icon-color: var(--tg-text-white);
       }
