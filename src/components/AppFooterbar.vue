@@ -9,7 +9,7 @@ const tabbar = ref([
   { title: '娱乐城', icon: 'tabbar-game', name: 'game', show: true, path: '/casino' },
   { title: '投注', icon: 'tabbar-bet', name: 'bet', show: true, path: '' },
   { title: '投注单', icon: 'spt-user-bet', name: 'user-bet', show: false },
-  { title: '体育', icon: 'tabbar-sport', name: 'sport', show: true, path: '/sports' },
+  { title: '体育', icon: 'spt-basketball', name: 'sport', show: true, path: '/sports' },
   { title: '聊天室', icon: 'tabbar-chat', name: 'chat', show: true },
 ])
 const activeBar = ref('')

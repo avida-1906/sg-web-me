@@ -85,7 +85,7 @@ await application.allSettled([runLive({ game_type: 1 }), runSlot({ game_type: 3 
       </div>
       <div class="features-sports" @click="router.push('/sports')">
         <div class="features-title">
-          <BaseIcon name="tabbar-sport" />
+          <BaseIcon name="spt-basketball" />
           <span>体育</span>
         </div>
         <div class="features-image">

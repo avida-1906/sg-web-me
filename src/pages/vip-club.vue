@@ -496,7 +496,6 @@ const toVip = function () {
           <div ref="award" class="a-table">
             <div v-for="item, index in tableData" :key="index" class="table-item" :class="{ sticky: item.sticky }">
               <template v-if="item.empty">
-                <!-- <BaseIcon name="uni-review" /> -->
                 <div class="empty" />
               </template>
               <template v-else>

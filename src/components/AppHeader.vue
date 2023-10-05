@@ -19,7 +19,7 @@ const userMenu = ref([
   { id: 1, icon: 'navbar-wallet', title: t('wallet'), name: 'wallet' },
   { id: 2, icon: 'navbar-cart', title: t('safe'), name: 'safe' },
   { id: 3, icon: 'spt-airbonus', title: 'VIP', name: 'vip' },
-  { id: 4, icon: 'spt-affiliate-pro', title: t('affiliate'), name: 'affiliate', path: '/affiliate/overview' },
+  { id: 4, icon: 'chess-affiliate', title: t('affiliate'), name: 'affiliate', path: '/affiliate/overview' },
   { id: 5, icon: 'uni-trend', title: t('statistical_data'), name: 'statistical-data' },
   { id: 6, icon: 'tabbar-bet', title: t('transaction_record'), name: 'transaction-record', path: '/transactions/deposits' },
   { id: 7, icon: 'spt-basketball', title: t('sports_betting'), name: 'sports-betting' },

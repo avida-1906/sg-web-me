@@ -141,7 +141,7 @@ export function useApiMenuData() {
     {
       title: '赔率：',
       path: '',
-      icon: 'chess-language',
+      icon: 'spt-odds',
       list: [
         { title: '小数式', path: '', icon: '' },
         { title: '分数式', path: '', icon: '' },
@@ -183,7 +183,7 @@ export function useApiMenuData() {
       ],
       domId: 'static-menu-promotion',
     },
-    { title: '联盟计划', path: '/affiliate/overview', icon: 'spt-affiliate-pro', list: [], domId: '' },
+    { title: '联盟计划', path: '/affiliate/overview', icon: 'chess-affiliate', list: [], domId: '' },
     { title: 'VIP俱乐部', path: '/vip-club', icon: 'chess-vipclub', list: [], domId: '' },
     { title: '博客', path: '/blog', icon: 'chess-blog', list: [], domId: '' },
     { title: '论坛', path: '', icon: 'tabbar-chat', list: [], domId: '' },
@@ -205,7 +205,7 @@ export function useApiMenuData() {
     {
       title: '语言：',
       path: '',
-      icon: 'chess-language',
+      icon: 'spt-odds',
       type: 'radio',
       value: EnumLanguage[locale.value as any],
       radioChange: (val: EnumLanguage) => changeLanguage(val),
