@@ -313,17 +313,17 @@ export function ApiMemberBankcardList(params: {
 export function ApiMemberTreeList(params: {
   level: string
 }) {
-  return httpClient.get<IResponseList<{
+  return httpClient.get<{
     id: string
     name: string
     pid: string
     sortlevel: string
-  }>>('/member/tree/list', params)
+  }[]>('/member/tree/list', params)
 }
 /**
  * 银行卡添加
  */
-export function ApiMemberBankcardInsert(params: {
+export function ApiMemberBankcardInsert(data: {
   bank_type: string
   open_name: string
   bank_name: string
@@ -331,5 +331,5 @@ export function ApiMemberBankcardInsert(params: {
   bank_area_cpf?: string
   is_default?: number
 }) {
-  return httpClient.get<string>('/member/bankcard/insert', params)
+  return httpClient.post<string>('/member/bankcard/insert', data)
 }
