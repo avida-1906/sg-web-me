@@ -109,6 +109,7 @@ const emojis = computed(() => {
   else
     return allEmojis.filter(e => e.split('.')[0].includes(emojiName.value ?? ''))
 })
+const isCommand = computed(() => message.value[0] === '/')
 
 function addEmoMsg(emo: string) {
   const i = message.value.lastIndexOf(':')
@@ -141,6 +142,13 @@ function sendMsg() {
   setTimeout(() => {
     sendLoading.value = false
   }, 500)
+}
+
+function enterPress(event: KeyboardEvent) {
+  event.preventDefault()
+  event.stopPropagation()
+  if (isCommand.value)
+    console.log('处理指令')
 }
 </script>
 
@@ -185,7 +193,7 @@ function sendMsg() {
       </div>
     </Transition>
     <div class="chat-input">
-      <BaseInput ref="msgInput" v-model="message" placeholder="输入您的消息" textarea />
+      <BaseInput ref="msgInput" v-model="message" placeholder="输入您的消息" textarea @down-enter="enterPress" />
     </div>
     <div class="online">
       <div class="green-dot" />

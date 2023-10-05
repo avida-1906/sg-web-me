@@ -33,7 +33,7 @@ function handleClickHeader() {
       <div class="center">
         <slot name="top-right" />
         <div class="header-icon">
-          <BaseIcon :name="`uni-arrow-${isShow ? 'down' : 'left'}`" />
+          <BaseIcon style="display: block;" :name="`uni-arrow-${isShow ? 'down' : 'left'}`" />
         </div>
       </div>
     </div>
@@ -70,8 +70,7 @@ function handleClickHeader() {
           margin-right: 6px;
         }
         .header-icon {
-          // margin-left: 20px;
-          font-size: var(--tg-font-size-xs);
+          font-size: 10px;
         }
     }
     .accordion-content {

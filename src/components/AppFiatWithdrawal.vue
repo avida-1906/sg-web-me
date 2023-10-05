@@ -1,8 +1,16 @@
 <script setup lang='ts'>
+import { getCurrentLanguage, getCurrentLanguageIdForBackend } from '~/modules/i18n'
+
 interface IBankOption {
   label: string
   icon: string
   value: string
+}
+interface IBank {
+  id: string
+  name: string
+  pid: string
+  sortlevel: string
 }
 
 const { bool: isBind } = useBoolean(false)
@@ -20,23 +28,57 @@ const depositTypeData = ref([
   { label: '支付宝', icon: 'fiat-alipay', value: '2' },
   { label: '微信', icon: 'fiat-wechat', value: '3' },
 ])
-const bankSelectOptions: IBankOption[] = [
-  { label: '中国工商', icon: 'fiat-bank', value: '1' },
-  { label: '中国建设', icon: 'fiat-bank', value: '2' },
-  { label: '中国银行', icon: 'fiat-bank', value: '3' },
-  { label: '光大银行', icon: 'fiat-bank', value: '4' },
-]
+const bankSelectOptions = ref<IBankOption[]>(
+  [
+    { label: '中国工商', icon: 'fiat-bank', value: '1' },
+  ],
+)
 const selectBank = ref('')
 const params = ref({
   page_size: '10',
   page: '1',
   bank_type: '601',
 })
-
-const { list: bankcardList, run } = useList(ApiMemberBankcardList)
-const { list, loading } = useApiMemberTreeList('002')
-
-console.log(loading)
+const languageBankMap: IObject = {
+  'zh-CN': '002',
+  'vi-VN': '003',
+}
+// 银行卡列表
+const { list: bankcardList, run } = useList(ApiMemberBankcardList, {
+  onSuccess(data) {
+    console.log('银行卡列表', data)
+  },
+})
+// 银行列表
+useApiMemberTreeList(languageBankMap[getCurrentLanguage()], {
+  onSuccess(data) {
+    bankSelectOptions.value = data.map((item: IBank) => {
+      const temp: IBankOption = {
+        label: item.name,
+        icon: 'fiat-bank',
+        value: item.id,
+      }
+      return temp
+    })
+  },
+})
+// 绑定个银行卡
+const onBindBank = function () {
+  useRequest(() => ApiMemberBankcardInsert(
+    {
+      bank_type: getCurrentLanguageIdForBackend(),
+      open_name: username.value,
+      bank_name: bankName.value,
+      bank_account: accountNumber.value,
+      bank_area_cpf: bankAddr.value,
+      is_default: isDefault ? 1 : 2,
+    },
+  ), {
+    onSuccess(data) {
+      console.log(data)
+    },
+  })
+}
 
 const bindBanks = computed(() => {
   return [
@@ -75,7 +117,7 @@ run(params.value)
         <span>是否设为默认卡号</span>
         <BaseCheckBox v-model="isDefault" />
       </div>
-      <BaseButton bg-style="primary" size="md" @click="isBind = true">
+      <BaseButton bg-style="primary" size="md" @click="onBindBank">
         提交
       </BaseButton>
     </div>
