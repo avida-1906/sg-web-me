@@ -127,7 +127,7 @@ onUnmounted(() => {
     .overlay {
       position: absolute;
       left: 0;
-      top: 0;
+      top: -100px;
       bottom: 0;
       right: 0;
       background: #{rgba($color: var(--tg-color-grey-rgb), $alpha: 0.7)};
