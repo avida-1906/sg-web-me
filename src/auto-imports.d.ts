@@ -8,6 +8,7 @@ declare global {
   const ApiGameLunch: typeof import('./apis/index')['ApiGameLunch']
   const ApiMemberBalanceLockerShow: typeof import('./apis/index')['ApiMemberBalanceLockerShow']
   const ApiMemberBalanceLockerUpdate: typeof import('./apis/index')['ApiMemberBalanceLockerUpdate']
+  const ApiMemberBankcardInsert: typeof import('./apis/index')['ApiMemberBankcardInsert']
   const ApiMemberBankcardList: typeof import('./apis/index')['ApiMemberBankcardList']
   const ApiMemberFavDelete: typeof import('./apis/index')['ApiMemberFavDelete']
   const ApiMemberFavInsert: typeof import('./apis/index')['ApiMemberFavInsert']
@@ -212,6 +213,7 @@ declare global {
   const useActiveElement: typeof import('@vueuse/core')['useActiveElement']
   const useAnimate: typeof import('@vueuse/core')['useAnimate']
   const useApiGameList: typeof import('./composables/useApiGameList')['useApiGameList']
+  const useApiMemberTreeList: typeof import('./composables/useApiMemberTreeList')['useApiMemberTreeList']
   const useApiMenuData: typeof import('./composables/useApiMenuData')['useApiMenuData']
   const useApiSendMsg: typeof import('./composables/useApiSendMsg')['useApiSendMsg']
   const useAppStore: typeof import('./stores/app')['useAppStore']
@@ -430,6 +432,7 @@ declare module 'vue' {
     readonly ApiGameLunch: UnwrapRef<typeof import('./apis/index')['ApiGameLunch']>
     readonly ApiMemberBalanceLockerShow: UnwrapRef<typeof import('./apis/index')['ApiMemberBalanceLockerShow']>
     readonly ApiMemberBalanceLockerUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberBalanceLockerUpdate']>
+    readonly ApiMemberBankcardInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardInsert']>
     readonly ApiMemberBankcardList: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardList']>
     readonly ApiMemberFavDelete: UnwrapRef<typeof import('./apis/index')['ApiMemberFavDelete']>
     readonly ApiMemberFavInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberFavInsert']>
@@ -625,6 +628,7 @@ declare module 'vue' {
     readonly upperLowerReg: UnwrapRef<typeof import('./utils/regexp')['upperLowerReg']>
     readonly useActiveElement: UnwrapRef<typeof import('@vueuse/core')['useActiveElement']>
     readonly useAnimate: UnwrapRef<typeof import('@vueuse/core')['useAnimate']>
+    readonly useApiMemberTreeList: UnwrapRef<typeof import('./composables/useApiMemberTreeList')['useApiMemberTreeList']>
     readonly useApiMenuData: UnwrapRef<typeof import('./composables/useApiMenuData')['useApiMenuData']>
     readonly useApiSendMsg: UnwrapRef<typeof import('./composables/useApiSendMsg')['useApiSendMsg']>
     readonly useAppStore: UnwrapRef<typeof import('./stores/app')['useAppStore']>
@@ -834,6 +838,7 @@ declare module '@vue/runtime-core' {
     readonly ApiGameLunch: UnwrapRef<typeof import('./apis/index')['ApiGameLunch']>
     readonly ApiMemberBalanceLockerShow: UnwrapRef<typeof import('./apis/index')['ApiMemberBalanceLockerShow']>
     readonly ApiMemberBalanceLockerUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberBalanceLockerUpdate']>
+    readonly ApiMemberBankcardInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardInsert']>
     readonly ApiMemberBankcardList: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardList']>
     readonly ApiMemberFavDelete: UnwrapRef<typeof import('./apis/index')['ApiMemberFavDelete']>
     readonly ApiMemberFavInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberFavInsert']>
@@ -1029,6 +1034,7 @@ declare module '@vue/runtime-core' {
     readonly upperLowerReg: UnwrapRef<typeof import('./utils/regexp')['upperLowerReg']>
     readonly useActiveElement: UnwrapRef<typeof import('@vueuse/core')['useActiveElement']>
     readonly useAnimate: UnwrapRef<typeof import('@vueuse/core')['useAnimate']>
+    readonly useApiMemberTreeList: UnwrapRef<typeof import('./composables/useApiMemberTreeList')['useApiMemberTreeList']>
     readonly useApiMenuData: UnwrapRef<typeof import('./composables/useApiMenuData')['useApiMenuData']>
     readonly useApiSendMsg: UnwrapRef<typeof import('./composables/useApiSendMsg')['useApiSendMsg']>
     readonly useAppStore: UnwrapRef<typeof import('./stores/app')['useAppStore']>

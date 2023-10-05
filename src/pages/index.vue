@@ -22,6 +22,7 @@ const vipProgressData = ref<IVipProgressData>({
 })
 const { list: liveList, runAsync: runLive } = useList(ApiMemberGameList)
 const { list: slotList, runAsync: runSlot } = useList(ApiMemberGameList)
+const { openRegisterDialog } = useRegisterDialog()
 
 const isSm = computed(() => appContentWidth.value <= widthBoundarySm.value)
 const isXs = computed(() => appContentWidth.value <= widthBoundaryXs.value)
@@ -41,8 +42,8 @@ await application.allSettled([runLive({ game_type: 1 }), runSlot({ game_type: 3 
         <div v-if="!isLogin" class="unauthenticated-wrapper">
           <div class="unauthenticated-content">
             <h1>更明智地下注</h1>
-            <BaseButton bg-style="primary" round size="md">
-              <span class="register-text">立即注册 {{ $t('hello') }}</span>
+            <BaseButton bg-style="primary" round size="md" @click="openRegisterDialog">
+              <span class="register-text">立即注册</span>
             </BaseButton>
             <AppAuthLogin />
           </div>

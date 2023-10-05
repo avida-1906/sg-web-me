@@ -305,7 +305,10 @@ export function ApiMemberBankcardList(params: {
 }
 /**
  * 辅助数据
- * level: 004: 支付方式清单 | 005: 支付类型 | 006: 国家
+ * level: 001=数字货币分类，002=中国银行列表，
+ *        003=越南银行列表，004=支付方式列表，
+ *        005=支付类型列表，006=国家列表，
+ *        007=币种列表，008=账变类型列表
  */
 export function ApiMemberTreeList(params: {
   level: string
@@ -315,5 +318,18 @@ export function ApiMemberTreeList(params: {
     name: string
     pid: string
     sortlevel: string
-  }>>('member/tree/list', params)
+  }>>('/member/tree/list', params)
+}
+/**
+ * 银行卡添加
+ */
+export function ApiMemberBankcardInsert(params: {
+  bank_type: string
+  open_name: string
+  bank_name: string
+  bank_account: string
+  bank_area_cpf?: string
+  is_default?: number
+}) {
+  return httpClient.get<string>('/member/bankcard/insert', params)
 }

@@ -12,7 +12,9 @@ const amount = ref('')
 const username = ref('')
 const accountNumber = ref('')
 const currentType = ref('1')
-const currentBank = ref('')
+const bankName = ref('')
+const isDefault = ref(false)
+const bankAddr = ref('')
 const depositTypeData = ref([
   { label: '银行转账', icon: 'fiat-bank', value: '1' },
   { label: '支付宝', icon: 'fiat-alipay', value: '2' },
@@ -32,12 +34,9 @@ const params = ref({
 })
 
 const { list: bankcardList, run } = useList(ApiMemberBankcardList)
-const { data: bankTypeList } = useRequest(() => ApiMemberTreeList({ level: '006' }), {
-  manual: false,
-  onSuccess(data) {
-    console.log('data', data)
-  },
-})
+const { list, loading } = useApiMemberTreeList('002')
+
+console.log(loading)
 
 const bindBanks = computed(() => {
   return [
@@ -66,12 +65,16 @@ run(params.value)
         <AppWithdrawalDepositType v-model="currentType" :deposit-type="depositTypeData" />
       </BaseLabel> -->
       <BaseLabel v-if="currentType === '1'" label="请选择银行" must>
-        <BaseSelect v-model="currentBank" :options="bankSelectOptions" class="base-select" />
+        <BaseSelect v-model="bankName" :options="bankSelectOptions" class="base-select" />
       </BaseLabel>
-      <BaseInput label="开户行地址" />
+      <BaseInput v-model="bankAddr" label="开户行地址" />
       <BaseLabel :label="currentType === '1' ? '银行账户' : '请输入第三方账户 '" must>
         <BaseInput v-model="accountNumber" />
       </BaseLabel>
+      <div class="checkbox-wrap">
+        <span>是否设为默认卡号</span>
+        <BaseCheckBox v-model="isDefault" />
+      </div>
       <BaseButton bg-style="primary" size="md" @click="isBind = true">
         提交
       </BaseButton>
@@ -133,6 +136,15 @@ run(params.value)
     }
     .base-select{
       --tg-base-select-style-padding-y: var(--tg-spacing-8);
+    }
+    .checkbox-wrap{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      > span {
+        color: var(--tg-text-lightgrey);
+        font-weight: var(--tg-font-weight-semibold);
+      }
     }
   }
   .withdrawal-wrap{
