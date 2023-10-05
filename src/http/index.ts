@@ -110,7 +110,7 @@ class HttpClient {
           appStore.removeToken()
           openNotify({
             type: 'error',
-            message: '登录失效',
+            message: '登录失效，请重新登录',
           })
         }
         else {
