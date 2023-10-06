@@ -94,21 +94,13 @@ function passwordVerifyPass(status: boolean) {
   setPwdStatus(status)
 }
 
+// 如果保存了自动填充
 if (regParams.value) {
   email.value = regParams.value?.email
   username.value = regParams.value?.username
   password.value = regParams.value?.password
   birthday.value = regParams.value?.birthday
 }
-
-// onMounted(() => {
-//   if (regParams.value) {
-//     email.value = regParams.value?.email
-//     username.value = regParams.value?.username
-//     password.value = regParams.value?.password
-//     birthday.value = regParams.value?.birthday
-//   }
-// })
 onUnmounted(() => {
   if (!needSaveFormData.value)
     Session.remove(STORAGE_REG_PARAMS_KEYWORDS)

@@ -3,6 +3,7 @@ import Home from './home.vue'
 
 const router = useRouter()
 const route = useRoute()
+const { animatingMounted } = useLayoutAnimate({ aniMounted: true })
 
 const { appContentWidth } = storeToRefs(useWindowStore())
 
@@ -50,66 +51,68 @@ watch(route, (val) => {
 <template>
   <Home>
     <template #default>
-      <AppContent>
-        <section class="with-menu-container">
-          <div class="layout-spacing" :class="{ 'more-than-800': appContentWidth > 800 }">
-            <div>
-              <div class="stack x-stretch y-center direction-vertical gap-larger padding-none">
-                <div class="wrap-flex">
-                  <div class="stack y-center padding-none top direction-horizontal x-space-between stretch gap-medium">
-                    <div class="stack y-center gap-medium padding-none direction-horizontal title x-flex-start">
-                      <BaseIcon :name="icon" />
-                      <span>{{ $t(route.meta.title as string) }}</span>
-                    </div>
-                    <div class="close" @click="goBack">
-                      <BaseIcon name="uni-close" />
-                    </div>
-                  </div>
-                </div>
-                <div class="stack direction-horizontal padding-none content-outer" :class="[appContentWidth > 800 ? 'direction-horizontal x-flex-start y-flex-start gap-larger' : 'direction-vertical x-stretch y-center gap-small']">
-                  <div class="left">
-                    <template v-if="appContentWidth > 800">
-                      <BaseMenu :data="menuData" />
-                    </template>
-                    <template v-else>
-                      <div class="stack x-flex-start y-center padding-none direction-horizontal gap-small menu-btn">
-                        <BaseButton size="md" @click="$router.go(-1)">
-                          <BaseIcon name="uni-arrow-left" class="arrow-left" />
-                        </BaseButton>
-                        <VDropdown
-                          :distance="10"
-                        >
-                          <BaseButton size="md" @click="togglePop">
-                            <div class="btn-txt">
-                              <span>{{ activeMenu.title }}</span>
-                              <BaseIcon :name="isPopShow ? 'uni-arrow-up' : 'uni-arrow-down'" />
-                            </div>
-                          </BaseButton>
-                          <template #popper="{ hide }">
-                            <ul class="pop-menu">
-                              <li v-for="mi in menuData" :key="mi.path" :class="{ active: activeMenu.path === mi.path }" @click="goPage(mi, hide)">
-                                {{ mi.title }}
-                              </li>
-                            </ul>
-                          </template>
-                        </VDropdown>
+      <div :class="{ 'home-slide-fade-enter-active': animatingMounted }">
+        <AppContent>
+          <section class="with-menu-container">
+            <div class="layout-spacing" :class="{ 'more-than-800': appContentWidth > 800 }">
+              <div>
+                <div class="stack x-stretch y-center direction-vertical gap-larger padding-none">
+                  <div class="wrap-flex">
+                    <div class="stack y-center padding-none top direction-horizontal x-space-between stretch gap-medium">
+                      <div class="stack y-center gap-medium padding-none direction-horizontal title x-flex-start">
+                        <BaseIcon :name="icon" />
+                        <span>{{ $t(route.meta.title as string) }}</span>
                       </div>
-                    </template>
-                  </div>
-                  <div class="right" :class="{ loading: layoutLoading }">
-                    <div v-if="layoutLoading" class="layout-loading">
-                      <BaseLoading />
+                      <div class="close" @click="goBack">
+                        <BaseIcon name="uni-close" />
+                      </div>
                     </div>
-                    <div class="content-container">
-                      <RouterView />
+                  </div>
+                  <div class="stack direction-horizontal padding-none content-outer" :class="[appContentWidth > 800 ? 'direction-horizontal x-flex-start y-flex-start gap-larger' : 'direction-vertical x-stretch y-center gap-small']">
+                    <div class="left">
+                      <template v-if="appContentWidth > 800">
+                        <BaseMenu :data="menuData" />
+                      </template>
+                      <template v-else>
+                        <div class="stack x-flex-start y-center padding-none direction-horizontal gap-small menu-btn">
+                          <BaseButton size="md" @click="$router.go(-1)">
+                            <BaseIcon name="uni-arrow-left" class="arrow-left" />
+                          </BaseButton>
+                          <VDropdown
+                            :distance="10"
+                          >
+                            <BaseButton size="md" @click="togglePop">
+                              <div class="btn-txt">
+                                <span>{{ activeMenu.title }}</span>
+                                <BaseIcon :name="isPopShow ? 'uni-arrow-up' : 'uni-arrow-down'" />
+                              </div>
+                            </BaseButton>
+                            <template #popper="{ hide }">
+                              <ul class="pop-menu">
+                                <li v-for="mi in menuData" :key="mi.path" :class="{ active: activeMenu.path === mi.path }" @click="goPage(mi, hide)">
+                                  {{ mi.title }}
+                                </li>
+                              </ul>
+                            </template>
+                          </VDropdown>
+                        </div>
+                      </template>
+                    </div>
+                    <div class="right" :class="{ loading: layoutLoading }">
+                      <div v-if="layoutLoading" class="layout-loading">
+                        <BaseLoading />
+                      </div>
+                      <div class="content-container">
+                        <RouterView />
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
-      </AppContent>
+          </section>
+        </AppContent>
+      </div>
     </template>
   </Home>
 </template>
@@ -217,3 +220,8 @@ watch(route, (val) => {
   }
 }
 </style>
+
+<route lang="yaml">
+meta:
+  animate: false
+</route>

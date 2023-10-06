@@ -8,3 +8,5 @@ export const lastOneNumberReg = /.*[0-9].*/
 export const emailReg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 // 支付密码(6位数字)
 export const payPasswordReg = /^\d{6}$/
+// 虚拟币地址
+export const virtualCoinAddressReg = /^[a-zA-Z0-9]{26,35}$/

@@ -300,6 +300,7 @@ declare global {
   const useIntervalFn: typeof import('@vueuse/core')['useIntervalFn']
   const useKeyModifier: typeof import('@vueuse/core')['useKeyModifier']
   const useLastChanged: typeof import('@vueuse/core')['useLastChanged']
+  const useLayoutAnimate: typeof import('./composables/useLayoutAnimate')['useLayoutAnimate']
   const useLeftSidebar: typeof import('./composables/useLeftSidebar')['useLeftSidebar']
   const useLink: typeof import('vue-router')['useLink']
   const useList: typeof import('./composables/useList')['useList']
@@ -407,6 +408,7 @@ declare global {
   const useWindowSize: typeof import('@vueuse/core')['useWindowSize']
   const useWindowStore: typeof import('./stores/window')['useWindowStore']
   const usernameReg: typeof import('./utils/regexp')['usernameReg']
+  const virtualCoinAddressReg: typeof import('./utils/regexp')['virtualCoinAddressReg']
   const watch: typeof import('vue')['watch']
   const watchArray: typeof import('@vueuse/core')['watchArray']
   const watchAtMost: typeof import('@vueuse/core')['watchAtMost']
@@ -718,6 +720,7 @@ declare module 'vue' {
     readonly useIntervalFn: UnwrapRef<typeof import('@vueuse/core')['useIntervalFn']>
     readonly useKeyModifier: UnwrapRef<typeof import('@vueuse/core')['useKeyModifier']>
     readonly useLastChanged: UnwrapRef<typeof import('@vueuse/core')['useLastChanged']>
+    readonly useLayoutAnimate: UnwrapRef<typeof import('./composables/useLayoutAnimate')['useLayoutAnimate']>
     readonly useLeftSidebar: UnwrapRef<typeof import('./composables/useLeftSidebar')['useLeftSidebar']>
     readonly useLink: UnwrapRef<typeof import('vue-router')['useLink']>
     readonly useList: UnwrapRef<typeof import('./composables/useList')['useList']>
@@ -823,6 +826,7 @@ declare module 'vue' {
     readonly useWindowSize: UnwrapRef<typeof import('@vueuse/core')['useWindowSize']>
     readonly useWindowStore: UnwrapRef<typeof import('./stores/window')['useWindowStore']>
     readonly usernameReg: UnwrapRef<typeof import('./utils/regexp')['usernameReg']>
+    readonly virtualCoinAddressReg: UnwrapRef<typeof import('./utils/regexp')['virtualCoinAddressReg']>
     readonly watch: UnwrapRef<typeof import('vue')['watch']>
     readonly watchArray: UnwrapRef<typeof import('@vueuse/core')['watchArray']>
     readonly watchAtMost: UnwrapRef<typeof import('@vueuse/core')['watchAtMost']>
@@ -1128,6 +1132,7 @@ declare module '@vue/runtime-core' {
     readonly useIntervalFn: UnwrapRef<typeof import('@vueuse/core')['useIntervalFn']>
     readonly useKeyModifier: UnwrapRef<typeof import('@vueuse/core')['useKeyModifier']>
     readonly useLastChanged: UnwrapRef<typeof import('@vueuse/core')['useLastChanged']>
+    readonly useLayoutAnimate: UnwrapRef<typeof import('./composables/useLayoutAnimate')['useLayoutAnimate']>
     readonly useLeftSidebar: UnwrapRef<typeof import('./composables/useLeftSidebar')['useLeftSidebar']>
     readonly useLink: UnwrapRef<typeof import('vue-router')['useLink']>
     readonly useList: UnwrapRef<typeof import('./composables/useList')['useList']>
@@ -1233,6 +1238,7 @@ declare module '@vue/runtime-core' {
     readonly useWindowSize: UnwrapRef<typeof import('@vueuse/core')['useWindowSize']>
     readonly useWindowStore: UnwrapRef<typeof import('./stores/window')['useWindowStore']>
     readonly usernameReg: UnwrapRef<typeof import('./utils/regexp')['usernameReg']>
+    readonly virtualCoinAddressReg: UnwrapRef<typeof import('./utils/regexp')['virtualCoinAddressReg']>
     readonly watch: UnwrapRef<typeof import('vue')['watch']>
     readonly watchArray: UnwrapRef<typeof import('@vueuse/core')['watchArray']>
     readonly watchAtMost: UnwrapRef<typeof import('@vueuse/core')['watchAtMost']>

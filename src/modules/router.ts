@@ -25,14 +25,6 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const appStore = useAppStore()
-  if (to.meta.top && to.meta.top === from.meta.top)
-    appStore.setNeedAnimateBool(false)
-
-  else if (to.name !== from.name)
-    appStore.setNeedAnimateBool(true)
-
-  else
-    appStore.setNeedAnimateBool(false)
 
   const auth = to.meta.auth || false
 

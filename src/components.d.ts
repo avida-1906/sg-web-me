@@ -57,6 +57,7 @@ declare module 'vue' {
     AppSidebarBig: typeof import('./components/AppSidebarBig.vue')['default']
     AppSidebarSmall: typeof import('./components/AppSidebarSmall.vue')['default']
     AppSlider: typeof import('./components/AppSlider.vue')['default']
+    AppSportsBetButton: typeof import('./components/AppSportsBetButton.vue')['default']
     AppSportsBetSlip: typeof import('./components/AppSportsBetSlip.vue')['default']
     AppSportsBetSlipMenu: typeof import('./components/AppSportsBetSlipMenu.vue')['default']
     AppSportsSearchResult: typeof import('./components/AppSportsSearchResult.vue')['default']
