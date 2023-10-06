@@ -11,6 +11,7 @@ declare module 'vue' {
     AppAddBankcards: typeof import('./components/AppAddBankcards.vue')['default']
     AppAmount: typeof import('./components/AppAmount.vue')['default']
     AppAuthLogin: typeof import('./components/AppAuthLogin.vue')['default']
+    AppBallRange: typeof import('./components/AppBallRange.vue')['default']
     AppBanner: typeof import('./components/AppBanner.vue')['default']
     AppBannerUnlimited: typeof import('./components/AppBannerUnlimited.vue')['default']
     AppBetData: typeof import('./components/AppBetData.vue')['default']
