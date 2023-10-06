@@ -111,5 +111,6 @@ const data = reactive([
 </style>
 
 <route lang="yaml">
-name: affiliate
+meta:
+  browserTitle: 联盟计划推荐用户 – Stake.com
 </route>

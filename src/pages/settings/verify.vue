@@ -10,3 +10,8 @@
 
 }
 </style>
+
+<route lang="yaml">
+meta:
+  browserTitle: 验证账户 – Stake.com
+  </route>

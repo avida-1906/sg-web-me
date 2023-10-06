@@ -86,3 +86,8 @@ const { bool: isMarketing } = useBoolean(true)
   }
 }
 </style>
+
+<route lang="yaml">
+meta:
+  browserTitle: 首选项 – Stake.com
+</route>
