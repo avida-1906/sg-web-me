@@ -18,8 +18,8 @@ withDefaults(defineProps<Props>(), {
       <div class="odd-box" :class="[layout]">
         <span v-if="disabled" class="status">暂停</span>
         <span v-else class="odd">1.65</span>
-        <div v-if="!disabled" class="icon arrow-odd odd-up">
-          <BaseIcon name="uni-tri-up" />
+        <div v-if="!disabled" class="icon arrow-odd odd-down">
+          <BaseIcon name="uni-tri-down" />
         </div>
       </div>
     </div>
@@ -72,6 +72,8 @@ withDefaults(defineProps<Props>(), {
       .icon {
         grid-area: icon;
         font-size: var(--tg-spacing-8);
+        display: flex;
+        align-items: center;
       }
 
       .odd {
