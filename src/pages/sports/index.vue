@@ -53,7 +53,7 @@ const threeOptions = [
     </div>
     <div class="content-container">
       <div class="sports-home">
-        <div class="title">
+        <div class="sports-page-title">
           <div class="left">
             <BaseIcon name="spt-ball-plate" />
             <h6>滚球盘</h6>
