@@ -4,6 +4,7 @@ interface Props {
   max?: number
   step?: number
   title?: string
+  modelValue?: number
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -12,24 +13,34 @@ const props = withDefaults(defineProps<Props>(), {
   max: 4,
 })
 
-const range = ref()
+const emit = defineEmits(['update:modelValue'])
+
+const range = ref(props.modelValue ?? props.min)
 
 const labels = computed(() => {
   const arr = []
   let temp = props.min
-  do
-    arr.push(temp += props.step)
-  while (temp < props.max)
+  do {
+    arr.push(Math.floor(temp))
+    temp += props.step
+  } while (temp < props.max)
   arr.push(props.max)
   return arr
+})
+
+onMounted(() => {
+  emit('update:modelValue', range.value)
+})
+
+watch(range, (val) => {
+  emit('update:modelValue', val)
 })
 </script>
 
 <template>
-  {{ range }}
   <div class="app-ball-range wrapper">
-    <span v-if="title">{{ title }}</span>
-    <div class="input-wrapper">
+    <span v-if="title" class="title">{{ title }}</span>
+    <div class="input-wrapper" :style="{ '--current': `${100 * (range - min) / (max - min)}%` }">
       <input v-model="range" type="range" :min="min" :max="max" :step="step" class="">
     </div>
     <div class="labels" :style="`grid-template-columns: repeat(${labels.length}, 1fr);`">
@@ -39,6 +50,87 @@ const labels = computed(() => {
 </template>
 
 <style lang="scss" scoped>
+.input-wrapper input[type=range] {
+    -webkit-appearance: none;
+    width: 100%;
+    background: 0 0;
+    height: 30px;
+    padding: 5px;
+}
+
+.input-wrapper input[type=range]::-moz-range-thumb {
+    position: relative;
+    z-index: 3;
+    -webkit-appearance: none;
+    height: 21px;
+    width: 21px;
+    border-radius: 10.5px;
+    background-image: radial-gradient(circle,var(--tg-text-blue) 45%,var(--tg-text-white) 47%);
+    cursor: pointer
+}
+
+.input-wrapper input[type=range]::-webkit-slider-thumb {
+    margin-top: -5.5px;
+    position: relative;
+    z-index: 3;
+    -webkit-appearance: none;
+    height: 21px;
+    width: 21px;
+    border-radius: 10.5px;
+    background-image: radial-gradient(circle,var(--tg-text-blue) 45%,var(--tg-text-white) 47%);
+    cursor: pointer
+}
+
+.input-wrapper input[type=range]::-moz-range-track {
+    width: 100%;
+    height: 10px;
+    cursor: pointer;
+    background: var(--tg-text-grey);
+    border-radius: 5px
+}
+
+.input-wrapper input[type=range]::-moz-range-progress {
+    width: 100%;
+    height: 10px;
+    cursor: pointer;
+    background: var(--tg-text-grey);
+    border-radius: 5px;
+    background-color: var(--tg-text-blue)
+}
+
+.input-wrapper input[type=range]::-ms-fill-lower {
+    width: 100%;
+    height: 10px;
+    cursor: pointer;
+    background: var(--tg-text-grey);
+    border-radius: 5px;
+    background-color: var(--tg-text-blue)
+}
+
+.input-wrapper input[type=range]::-ms-fill-upper {
+    width: 100%;
+    height: 10px;
+    cursor: pointer;
+    background: var(--tg-text-grey);
+    border-radius: 5px
+}
+
+.input-wrapper input[type=range]::-moz-focus-outer {
+    border: 0
+}
+
+.input-wrapper input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 10px;
+    cursor: pointer;
+    background: var(--tg-text-grey);
+    border-radius: 5px
+}
+
+.input-wrapper input[type=range]:focus::-webkit-slider-runnable-track {
+    background: var(--tg-text-grey)
+}
+
 .app-ball-range {
   display: flex;
   flex-direction: column;
@@ -57,8 +149,7 @@ const labels = computed(() => {
   .input-wrapper {
     position: relative;
     display: flex;
-    width: var(--current);
-    input {
+    input[type=range] {
       -webkit-appearance: none;
       width: 100%;
       background: 0 0;
@@ -70,10 +161,10 @@ const labels = computed(() => {
       content: "";
       position: absolute;
       left: 5px;
-      width: var(--current);
       max-width: calc(100% - 20px);
       top: calc(50% - 5px);
       height: 10px;
+      width: var(--current);
       border-radius: 5px;
       background: var(--tg-text-blue);
       pointer-events: none;
