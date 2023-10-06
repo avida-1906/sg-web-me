@@ -47,7 +47,7 @@ runBankcardList(pagination.value)
   <div v-else class="app-fiat-withdrawal">
     <!-- 绑定银行卡/三方账户 -->
     <div v-if="!bankcardList?.length" class="bank-bind">
-      <AppAddBankcards :is-first="true" />
+      <AppAddBankcards :is-first="true" :container="false" />
     </div>
     <!-- 出款信息 -->
     <div v-else class="withdrawal-wrap">
