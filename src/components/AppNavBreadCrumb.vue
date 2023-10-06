@@ -1,30 +1,55 @@
 <script lang="ts" setup>
+interface BreadCrumbItem {
+  path: string
+  title: string
+}
 interface Props {
-  breadcrumb: Array<{
-    path: string
-    title: string
-  }>
+  breadcrumb: Array<BreadCrumbItem>
 }
 
-defineProps<Props>()
+const props = defineProps<Props>()
+
+const router = useRouter()
+
+const _data = reactive(props.breadcrumb)
+
+function goPath({ d, disabled }: { d?: BreadCrumbItem; disabled?: boolean } = {}) {
+  if (disabled)
+    return
+  const p = _data.pop()
+  const _d = d ?? p
+  if (_d && _d.path)
+    router.push(_d.path)
+}
+
+function goBack() {
+  if (_data.length > 1)
+    goPath()
+  else
+    router.push('/sports')
+}
+
+function collect() {
+  console.log('收藏第一个')
+}
 </script>
 
 <template>
   <div class="app-nav-bread-crumb scroll-x">
     <div class="back">
-      <BaseButton size="md">
+      <BaseButton size="md" @click="goBack">
         <BaseIcon name="uni-arrow-left" class="arrow-left" />
       </BaseButton>
     </div>
     <div class="scroll-x breadcrumb-wrapper remove-end-border">
-      <template v-for="bread, idx in breadcrumb" :key="bread.path">
-        <a class="link" :class="{ disabled: idx === breadcrumb.length - 1, active: idx === breadcrumb.length - 1 }">
-          <span>{{ bread.title }}</span>
+      <template v-for="d, idx in _data" :key="d.path">
+        <a class="link" :class="{ disabled: idx === _data.length - 1, active: idx === _data.length - 1 }" @click="goPath({ d, disabled: idx === _data.length - 1 })">
+          <span>{{ d.title }}</span>
         </a>
-        <span v-if="idx !== breadcrumb.length - 1" class="slash" />
+        <span v-if="idx !== _data.length - 1" class="slash" />
       </template>
     </div>
-    <BaseButton size="md">
+    <BaseButton v-if="_data.length === 1" size="md" @click="collect">
       <BaseIcon name="uni-favorites" />
     </BaseButton>
   </div>
