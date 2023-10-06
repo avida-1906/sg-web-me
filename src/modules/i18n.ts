@@ -12,11 +12,17 @@ const languageMap: IObject = {
   'pt-BR': 'pt_BR',
 }
 
-/** 映射后端多语言对应的ID */
+/** 映射前端多语言对应后端的ID */
 const languageIdMap: IObject = {
   'zh-CN': '601',
   'vi-VN': '603',
   'pt-BR': '602',
+}
+
+/** 映射前端多语言对应后端的银行列表ID */
+const languageBankListMap: IObject = {
+  'zh-CN': '002',
+  'vi-VN': '003',
 }
 
 const i18n = createI18n({
@@ -94,4 +100,9 @@ export function getCurrentLanguageForBackend() {
 /** 获取当前对应后端的多语言ID */
 export function getCurrentLanguageIdForBackend() {
   return languageIdMap[getCurrentLanguage() || VITE_I18N_DEFAULT_LANG]
+}
+
+/** 获取当前对应后端的银行列表ID */
+export function getCurrentLanguageBankListIdForBackend() {
+  return languageBankListMap[getCurrentLanguage() || VITE_I18N_DEFAULT_LANG]
 }

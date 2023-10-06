@@ -1,6 +1,8 @@
 <script setup lang='ts'>
 interface Props {
   layout?: 'horizontal' | 'vertical'
+  active?: boolean
+  disabled?: boolean
 }
 withDefaults(defineProps<Props>(), {
   layout: 'vertical',
@@ -8,40 +10,90 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <div class="app-sports-bet-button" :class="[layout]">
-    <div class="content">
+  <div class="app-sports-bet-button" :class="{ active, disabled }">
+    <div class="content" :class="[layout]">
       <div class="name">
         汉夫曼，扬尼克
       </div>
-      <div class="odd-box">
-        <span class="odd">1.65</span>
-        <div class="icon arrow-odd odd-up">
+      <div class="odd-box" :class="[layout]">
+        <span v-if="disabled" class="status">暂停</span>
+        <span v-else class="odd">1.65</span>
+        <div v-if="!disabled" class="icon arrow-odd odd-up">
           <BaseIcon name="uni-tri-up" />
         </div>
       </div>
-      <!-- <div class="status">
-      暂停
-    </div> -->
     </div>
   </div>
 </template>
 
 <style lang='scss' scoped>
 .app-sports-bet-button {
-  display: flex;
   background: var(--tg-secondary-deepdark);
   border-radius: var(--tg-radius-default);
   transition: all .1s;
-  justify-content: center;
   width: 100%;
   position: relative;
   font-size: var(--tg-font-size-default);
   color: var(--tg-text-white);
-  align-items: flex-start;
   min-width: 0;
   padding: 0.5em 0.75em;
   line-height: 1.5;
   cursor: pointer;
+
+  .content {
+    display: flex;
+
+    .name {
+      max-width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .odd-box {
+      display: grid;
+
+      &.horizontal {
+        grid-template-areas: "icon odd";
+
+        .icon {
+          margin-right: var(--tg-spacing-4);
+        }
+      }
+
+      &.vertical {
+        grid-template-areas: "odd icon";
+
+        .icon {
+          margin-left: var(--tg-spacing-4);
+        }
+      }
+
+      .icon {
+        grid-area: icon;
+        font-size: var(--tg-spacing-8);
+      }
+
+      .odd {
+        grid-area: odd;
+        color: var(--tg-text-lightblue);
+        font-weight: var(--tg-font-weight-bold);
+      }
+
+    }
+
+    &.horizontal {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    &.vertical {
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+    }
+  }
 
   &:hover {
     background: var(--tg-bet-button-deepblue);
@@ -53,35 +105,36 @@ withDefaults(defineProps<Props>(), {
     }
   }
 
-  .name {
-    max-width: 100%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+  &.active {
+    background: var(--tg-text-blue);
+    box-shadow: var(--tg-box-shadow-lg);
 
-  .odd-box {
-    display: flex;
-    align-items: center;
-
-    .icon {
-      font-size: var(--tg-spacing-8);
-      margin-left: var(--tg-spacing-4);
+    .name {
+      font-weight: var(--tg-font-weight-semibold);
+      color: var(--tg-text-black);
     }
 
-    .odd {
-      color: var(--tg-text-lightblue);
-      font-weight: var(--tg-font-weight-bold);
+    .odd-box {
+      .odd {
+        color: var(--tg-text-white);
+      }
     }
   }
 
-  &.horizontal {
-    flex-direction: row;
-    align-items: center;
-  }
+  &.disabled {
+    pointer-events: none;
 
-  &.vertical {
-    flex-direction: column;
+    .name {
+      opacity: 0.2;
+    }
+
+    .odd-box {
+      .status {
+        grid-area: odd;
+        color: var(--tg-text-white);
+        opacity: 0.4;
+      }
+    }
   }
 }
 </style>
