@@ -20,10 +20,19 @@ export enum EnumSportsOddsType {
   HONGKONG = 'HONGKONG',
 }
 
+/** 投注单数据格式 */
+interface IBetSlipData {
+  // 测试
+  [key: string]: any
+}
+
 export const useSportsStore = defineStore('sports', () => {
-  /** 体育数据展示方式 */
+  /** 体育页面展示方式 */
   const sportsPanelType = ref(getSportsPanelType())
+  /** 体育赔率展示方式 */
   const sportsOddsType = ref(getSportsOddsType())
+  /** 投注单数据 */
+  const betSlipData = ref<IBetSlipData[]>([])
 
   /** 设置当前体育数据展示方式 */
   function setSportsPanelType(type: EnumSportsPanelType) {
@@ -58,6 +67,7 @@ export const useSportsStore = defineStore('sports', () => {
   return {
     sportsPanelType,
     sportsOddsType,
+    betSlipData,
     setSportsPanelType,
     getSportsPanelType,
     setSportsOddsType,
