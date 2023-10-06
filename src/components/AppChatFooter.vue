@@ -126,7 +126,7 @@ function addCommand(u: { command: string }) {
   msgInput.value?.getFocus()
 }
 
-const sendLoading = ref(false)
+const { bool: sendLoading, setTrue: setSLTrue, setFalse: setSLFalse } = useBoolean(false)
 function sendMsg() {
   if (message.value[0] === '/') {
     const temp = message.value.split(' ')
@@ -138,9 +138,9 @@ function sendMsg() {
     }
     return
   }
-  sendLoading.value = true
+  setSLTrue()
   setTimeout(() => {
-    sendLoading.value = false
+    setSLFalse()
   }, 500)
 }
 
