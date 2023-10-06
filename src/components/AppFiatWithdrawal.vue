@@ -20,8 +20,8 @@ const pixTypeData = ref([
 ])
 
 // 银行卡列表
-const { list: bankcardList, run: runBankcardList, loading: bankcardListLoading } = useList(ApiMemberBankcardList, {
-  loadingKeep: 1000,
+const { list: bankcardList, runAsync: runBankcardList } = useList(ApiMemberBankcardList, {
+  loadingKeep: 5000,
 })
 
 const bindBanks = computed(() => {
@@ -37,14 +37,11 @@ const bindBanks = computed(() => {
   })
 })
 
-runBankcardList(pagination.value)
+await application.allSettled([runBankcardList(pagination.value)])
 </script>
 
 <template>
-  <div v-if="bankcardListLoading" class="loading-wrap">
-    <BaseLoading />
-  </div>
-  <div v-else class="app-fiat-withdrawal">
+  <div class="app-fiat-withdrawal">
     <!-- 绑定银行卡/三方账户 -->
     <div v-if="!bankcardList?.length" class="bank-bind">
       <AppAddBankcards :is-first="true" :container="false" />
@@ -158,11 +155,5 @@ runBankcardList(pagination.value)
       // background-color: var(--tg-sub-blue);
     }
   }
-}
-.loading-wrap{
-  min-height: 300px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 </style>
