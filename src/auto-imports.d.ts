@@ -35,6 +35,8 @@ declare global {
   const EnumCurrency: typeof import('./utils/enums')['EnumCurrency']
   const EnumLanguage: typeof import('./utils/enums')['EnumLanguage']
   const EnumRightSidebarContent: typeof import('./composables/useRightSidebar')['EnumRightSidebarContent']
+  const EnumSportsOddsType: typeof import('./stores/sports')['EnumSportsOddsType']
+  const EnumSportsPanelType: typeof import('./stores/sports')['EnumSportsPanelType']
   const EnumsBetSlipTabs: typeof import('./utils/enums')['EnumsBetSlipTabs']
   const Local: typeof import('./utils/storage')['Local']
   const SOCKET_EVENT_BUS: typeof import('./utils/event-bus')['SOCKET_EVENT_BUS']
@@ -47,9 +49,12 @@ declare global {
   const STORAGE_RIGHT_SIDEBAR_STATUS: typeof import('./utils/storage')['STORAGE_RIGHT_SIDEBAR_STATUS']
   const STORAGE_SEARCH_KEYWORDS_LIVE: typeof import('./utils/storage')['STORAGE_SEARCH_KEYWORDS_LIVE']
   const STORAGE_SEARCH_KEYWORDS_SPORTS: typeof import('./utils/storage')['STORAGE_SEARCH_KEYWORDS_SPORTS']
+  const STORAGE_SPORTS_ODDS_TYPE_KEY: typeof import('./utils/storage')['STORAGE_SPORTS_ODDS_TYPE_KEY']
   const STORAGE_SPORTS_PANEL_TYPE_KEY: typeof import('./utils/storage')['STORAGE_SPORTS_PANEL_TYPE_KEY']
   const STORAGE_TOKEN_KEY: typeof import('./utils/storage')['STORAGE_TOKEN_KEY']
   const Session: typeof import('./utils/storage')['Session']
+  const Sports: typeof import('./utils/sports')['Sports']
+  const SportsOdds: typeof import('./utils/sports')['SportsOdds']
   const acceptHMRUpdate: typeof import('pinia')['acceptHMRUpdate']
   const add: typeof import('./utils/number')['add']
   const application: typeof import('./utils/index')['application']
@@ -463,6 +468,8 @@ declare module 'vue' {
     readonly EnumCurrency: UnwrapRef<typeof import('./utils/enums')['EnumCurrency']>
     readonly EnumLanguage: UnwrapRef<typeof import('./utils/enums')['EnumLanguage']>
     readonly EnumRightSidebarContent: UnwrapRef<typeof import('./composables/useRightSidebar')['EnumRightSidebarContent']>
+    readonly EnumSportsOddsType: UnwrapRef<typeof import('./stores/sports')['EnumSportsOddsType']>
+    readonly EnumSportsPanelType: UnwrapRef<typeof import('./stores/sports')['EnumSportsPanelType']>
     readonly EnumsBetSlipTabs: UnwrapRef<typeof import('./utils/enums')['EnumsBetSlipTabs']>
     readonly Local: UnwrapRef<typeof import('./utils/storage')['Local']>
     readonly SOCKET_EVENT_BUS: UnwrapRef<typeof import('./utils/event-bus')['SOCKET_EVENT_BUS']>
@@ -472,9 +479,12 @@ declare module 'vue' {
     readonly STORAGE_RIGHT_SIDEBAR_CONTENT: UnwrapRef<typeof import('./utils/storage')['STORAGE_RIGHT_SIDEBAR_CONTENT']>
     readonly STORAGE_SEARCH_KEYWORDS_LIVE: UnwrapRef<typeof import('./utils/storage')['STORAGE_SEARCH_KEYWORDS_LIVE']>
     readonly STORAGE_SEARCH_KEYWORDS_SPORTS: UnwrapRef<typeof import('./utils/storage')['STORAGE_SEARCH_KEYWORDS_SPORTS']>
+    readonly STORAGE_SPORTS_ODDS_TYPE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_SPORTS_ODDS_TYPE_KEY']>
     readonly STORAGE_SPORTS_PANEL_TYPE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_SPORTS_PANEL_TYPE_KEY']>
     readonly STORAGE_TOKEN_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_TOKEN_KEY']>
     readonly Session: UnwrapRef<typeof import('./utils/storage')['Session']>
+    readonly Sports: UnwrapRef<typeof import('./utils/sports')['Sports']>
+    readonly SportsOdds: UnwrapRef<typeof import('./utils/sports')['SportsOdds']>
     readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>
     readonly add: UnwrapRef<typeof import('./utils/number')['add']>
     readonly application: UnwrapRef<typeof import('./utils/index')['application']>
@@ -876,6 +886,8 @@ declare module '@vue/runtime-core' {
     readonly EnumCurrency: UnwrapRef<typeof import('./utils/enums')['EnumCurrency']>
     readonly EnumLanguage: UnwrapRef<typeof import('./utils/enums')['EnumLanguage']>
     readonly EnumRightSidebarContent: UnwrapRef<typeof import('./composables/useRightSidebar')['EnumRightSidebarContent']>
+    readonly EnumSportsOddsType: UnwrapRef<typeof import('./stores/sports')['EnumSportsOddsType']>
+    readonly EnumSportsPanelType: UnwrapRef<typeof import('./stores/sports')['EnumSportsPanelType']>
     readonly EnumsBetSlipTabs: UnwrapRef<typeof import('./utils/enums')['EnumsBetSlipTabs']>
     readonly Local: UnwrapRef<typeof import('./utils/storage')['Local']>
     readonly SOCKET_EVENT_BUS: UnwrapRef<typeof import('./utils/event-bus')['SOCKET_EVENT_BUS']>
@@ -885,9 +897,12 @@ declare module '@vue/runtime-core' {
     readonly STORAGE_RIGHT_SIDEBAR_CONTENT: UnwrapRef<typeof import('./utils/storage')['STORAGE_RIGHT_SIDEBAR_CONTENT']>
     readonly STORAGE_SEARCH_KEYWORDS_LIVE: UnwrapRef<typeof import('./utils/storage')['STORAGE_SEARCH_KEYWORDS_LIVE']>
     readonly STORAGE_SEARCH_KEYWORDS_SPORTS: UnwrapRef<typeof import('./utils/storage')['STORAGE_SEARCH_KEYWORDS_SPORTS']>
+    readonly STORAGE_SPORTS_ODDS_TYPE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_SPORTS_ODDS_TYPE_KEY']>
     readonly STORAGE_SPORTS_PANEL_TYPE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_SPORTS_PANEL_TYPE_KEY']>
     readonly STORAGE_TOKEN_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_TOKEN_KEY']>
     readonly Session: UnwrapRef<typeof import('./utils/storage')['Session']>
+    readonly Sports: UnwrapRef<typeof import('./utils/sports')['Sports']>
+    readonly SportsOdds: UnwrapRef<typeof import('./utils/sports')['SportsOdds']>
     readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>
     readonly add: UnwrapRef<typeof import('./utils/number')['add']>
     readonly application: UnwrapRef<typeof import('./utils/index')['application']>
