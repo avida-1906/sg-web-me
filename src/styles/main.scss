@@ -502,6 +502,10 @@ body {
   }
 }
 
+.dialog-loading-height {
+  min-height: 200px;
+}
+
 @media screen and (min-width: 768px) {
   #app {
     height: 1px;

@@ -71,5 +71,6 @@
 </style>
 
 <route lang="yaml">
-name: affiliate
+meta:
+  browserTitle: 联盟保留计划 – Stake.com
 </route>

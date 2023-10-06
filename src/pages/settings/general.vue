@@ -50,3 +50,8 @@ const numberSubmit = function () {
   }
 }
 </style>
+
+<route lang="yaml">
+meta:
+  browserTitle: 设置常规 – Stake.com
+</route>

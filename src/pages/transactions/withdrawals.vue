@@ -8,11 +8,16 @@ const tabList = reactive([
 </script>
 
 <template>
-  <section class="tg-deposits-record-page">
-    <AppTabRecord :tabs="tabList" :empty-text="$t('finance_deposit_empty_text')" :download-text="$t('finance_deposit_download_text')" />
+  <section class="tg-withdrawals-record-page">
+    <AppTabRecord :tabs="tabList" :empty-text="$t('finance_withdraw_empty_text')" :download-text="$t('finance_withdraw_download_text')" />
   </section>
 </template>
 
 <style lang="scss" scoped>
 
 </style>
+
+<route lang="yaml">
+meta:
+  browserTitle: 提款交易 – Stake.com
+  </route>

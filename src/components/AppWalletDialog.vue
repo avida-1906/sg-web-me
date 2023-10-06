@@ -27,17 +27,32 @@ function handleShow(val: boolean) {
     <div class="content">
       <BaseTab v-model="currentTab" :list="tabList" />
       <AppWallet v-show="showWallet && !isCardHolder" :wallet-btn="false" :show-balance="false" :network="true" @change="changeCurrency" />
+
       <template v-if="isDeposit">
         <AppFiatDeposit v-if="activeCurrency?.legalTender" :active-currency="activeCurrency" @show="handleShow" />
         <AppVirtualDeposit v-else :active-currency="activeCurrency" @show="handleShow" />
       </template>
       <template v-else-if="isWithdraw">
-        <AppFiatWithdrawal v-if="activeCurrency?.legalTender" :active-currency="activeCurrency" />
-        <AppWithdraw v-else :active-currency="activeCurrency" />
+        <Suspense timeout="0">
+          <AppFiatWithdrawal v-if="activeCurrency?.legalTender" :active-currency="activeCurrency" />
+          <AppWithdraw v-else :active-currency="activeCurrency" />
+          <template #fallback>
+            <div class="center dialog-loading-height">
+              <BaseLoading />
+            </div>
+          </template>
+        </Suspense>
       </template>
     </div>
     <template v-if="isCardHolder">
-      <AppCardHolder />
+      <Suspense timeout="0">
+        <AppCardHolder />
+        <template #fallback>
+          <div class="center dialog-loading-height">
+            <BaseLoading />
+          </div>
+        </template>
+      </Suspense>
     </template>
   </div>
 </template>

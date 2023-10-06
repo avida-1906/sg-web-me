@@ -10,3 +10,8 @@
 
 }
 </style>
+
+<route lang="yaml">
+meta:
+  browserTitle: 优惠 – Stake.com
+</route>

@@ -91,5 +91,6 @@
 </style>
 
 <route lang="yaml">
-name: affiliate
+meta:
+  browserTitle: 联盟佣金 – Stake.com
 </route>

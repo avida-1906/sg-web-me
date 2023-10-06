@@ -5,13 +5,15 @@ const breadcrumb = [
   { path: '', title: '英超' },
   { path: '', title: 'Premier League 23/24' },
 ]
+
+const rangeNum = ref()
 </script>
 
 <template>
   <div class="tg-sports-country-event-betdetail">
-    当前国家某种赛事的其中具体的一场对局赛事盘口详情
+    当前国家某种赛事的其中具体的一场对局赛事盘口详情 {{ rangeNum }}
     <AppNavBreadCrumb :breadcrumb="breadcrumb" />
-    <AppBallRange />
+    <AppBallRange v-model="rangeNum" title="和卡里姆" />
   </div>
 </template>
 
