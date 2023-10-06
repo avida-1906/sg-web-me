@@ -12,6 +12,7 @@ declare module 'vue-router' {
 }
 
 const routes = setupLayouts(generatedRoutes)
+const title = useTitle()
 
 const router = createRouter({
   history: createWebHistory(),
@@ -25,6 +26,9 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const appStore = useAppStore()
+  console.log(to.meta)
+  console.log(to.path)
+  title.value = (to.meta.browserTitle || 'Stake.com') as string
 
   const auth = to.meta.auth || false
 

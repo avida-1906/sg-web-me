@@ -546,4 +546,5 @@ await application.allSettled([runLive({ game_type: 1 }), runSlot({ game_type: 3 
 <route lang="yaml">
 meta:
   layout: home
+  browserTitle: Stake.com – 最领先的加密货币赌场及体育博彩平台
 </route>

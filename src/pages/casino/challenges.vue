@@ -28,4 +28,5 @@
 <route lang="yaml">
 meta:
   layout: home
+  browserTitle: 挑战 – Stake.com
 </route>
