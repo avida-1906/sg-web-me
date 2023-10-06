@@ -5,7 +5,7 @@ await application.allSettled([runAsync()])
 </script>
 
 <template>
-  <section class="tg-favourites layout-spacing">
+  <section class="layout-spacing tg-favourites">
     <div class="group-banner-wrap">
       <div class="group-banner-bg" />
       <div class="banner-wrap">
@@ -122,4 +122,5 @@ await application.allSettled([runAsync()])
 <route lang="yaml">
 meta:
   layout: home
+  browserTitle: 热门赌场游戏 – Stake.com
 </route>

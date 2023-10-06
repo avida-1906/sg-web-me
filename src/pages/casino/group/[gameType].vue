@@ -166,4 +166,5 @@ else if (isRec.value)
 <route lang="yaml">
 meta:
   layout: home
+  browserTitle: Play Slots Online - Best Casino Slot Games at Stake.com
 </route>

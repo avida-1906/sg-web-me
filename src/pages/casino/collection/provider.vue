@@ -47,4 +47,5 @@ function handleItemClick(item: any) {
 <route lang="yaml">
 meta:
   layout: home
+  browserTitle: Casino Game Providers - Best Creators of Gambling Games
 </route>

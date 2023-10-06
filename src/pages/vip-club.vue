@@ -944,4 +944,5 @@ const toVip = function () {
 <route lang="yaml">
 meta:
   layout: home
+  browserTitle: VIP 俱乐部 – Stake.com
 </route>
