@@ -74,7 +74,14 @@ onUnmounted(() => {
         </div>
         <div class="scroll-y scroll-contain">
           <div class="modal-content">
-            <slot />
+            <Suspense timeout="0">
+              <slot />
+              <template #fallback>
+                <div class="center dialog-loading-height">
+                  <BaseLoading />
+                </div>
+              </template>
+            </Suspense>
           </div>
         </div>
         <div v-if="showButtons" class="footer-buttons">
@@ -102,6 +109,10 @@ onUnmounted(() => {
 </style>
 
 <style lang="scss" scoped>
+  .dialog-loading-height {
+    min-height: 200px;
+  }
+
   .v-enter-active,
   .v-leave-active {
     transition: all .3s ease;

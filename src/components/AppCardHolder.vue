@@ -1,8 +1,16 @@
 <script setup lang="ts">
 import { getCurrentLanguageIdForBackend } from '~/modules/i18n'
 
-const closeDialog = inject('closeDialog', () => {})
+// 银行卡列表
+const { list: bankcardList, run: runBankcardList, loading: bankcardListLoading } = useList(ApiMemberBankcardList, {
+  loadingKeep: 1000,
+})
+// 虚拟币钱包地址
+const { list: WalletList, run: runWalletList, loading: walletListLoading } = useList(ApiMemberWalletList, {
+  loadingKeep: 1000,
+})
 
+const closeDialog = inject('closeDialog', () => {})
 const openName = ref('')
 const selectBank = ref('')
 const pagination = ref({
@@ -11,13 +19,8 @@ const pagination = ref({
   bank_type: getCurrentLanguageIdForBackend(),
 })
 
-// 银行卡列表
-const { list: bankcardList, run: runBankcardList, loading: bankcardListLoading } = useList(ApiMemberBankcardList, {
-  loadingKeep: 1000,
-})
-
 const bindBanks = computed(() => {
-  return bankcardList.value.map((item) => {
+  return bankcardList.value?.map((item) => {
     if (item.is_default === 1)
       selectBank.value = item.bank_account
     const temp = {
@@ -34,27 +37,45 @@ const bindBanks = computed(() => {
 })
 
 const toAddBankcards = function () {
-  const { openAddBankcardsDialog } = useAddBankcardsDialog({ title: '绑定银行卡', openName: openName.value })
+  console.log(bankcardList.value)
+  const { openAddBankcardsDialog } = useAddBankcardsDialog({ title: '绑定银行卡', openName: openName.value, isFirst: !bankcardList.value?.length })
   closeDialog()
   nextTick(() => openAddBankcardsDialog())
 }
+const toAddVirAddress = function () {
+  const { openVirAddressDialog } = useVirAddressDialog({ title: '绑定BTC', icon: 'btc' })
+  closeDialog()
+  nextTick(() => openVirAddressDialog({
+    contractType: 'TRC20',
+    currencyName: 'BTC',
+  }))
+}
 
+runWalletList({
+  contract_type: '',
+  currency_name: '',
+  page: 1,
+  page_size: 10,
+})
 runBankcardList(pagination.value)
 </script>
 
 <template>
-  <div v-if="bankcardListLoading" class="loading-wrap">
+  <div v-if="bankcardListLoading && walletListLoading" class="loading-wrap">
     <BaseLoading />
   </div>
   <div v-else class="app-card-holder">
+    <!-- <BaseButton class="add-btn" @click="toAddVirAddress">
+      +
+    </BaseButton> -->
     <div class="layout-spacing reset wallet-address">
-      <BaseCollapse v-for="i in 3" :key="i" :title="i.toString()">
+      <BaseCollapse v-for="item, i in WalletList" :key="item.id" :title="(i + 1).toString()">
         <template #top-right>
-          <AppCurrencyIcon class="currency-icon" show-name :currency-type="1" />
+          <AppCurrencyIcon class="currency-icon" show-name :currency-type="EnumCurrency[item.currency_name]" />
         </template>
         <template #content>
           <div class="text">
-            bc1qcttjkayjg28gkw6v4petiqk56p098xxnuo0ze
+            {{ item.wallet_address }}
           </div>
         </template>
       </BaseCollapse>

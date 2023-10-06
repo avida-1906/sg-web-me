@@ -1,9 +1,10 @@
 <script setup lang='ts'>
-import { getCurrentLanguage, getCurrentLanguageIdForBackend } from '~/modules/i18n'
+import { getCurrentLanguage, getCurrentLanguageBankListIdForBackend, getCurrentLanguageIdForBackend } from '~/modules/i18n'
 
 interface Props {
   isFirst?: boolean // 是否首次绑定
   openName?: string // 户名
+  container?: boolean // 是否需要padding
 }
 interface IBank {
   id: string
@@ -15,6 +16,7 @@ interface IBank {
 const props = withDefaults(defineProps<Props>(), {
   isFirst: false,
   openName: '',
+  container: true,
 })
 const closeDialog = inject('closeDialog', () => {})
 
@@ -31,11 +33,6 @@ const bankTypeData = ref([
 const pixTypeData = ref([
   { label: 'PIX', icon: 'fiat-bank', value: '2' },
 ])
-const languageBankMap: IObject = {
-  'zh-CN': '002',
-  'vi-VN': '003',
-}
-const bankSelectOptions = ref<ISelectOption[]>([])
 
 const { value: openName, errorMessage: usernameError, validate: usernameValidate, resetField: usernameReset } = useField<string>('username', (value) => {
   if (!value)
@@ -52,21 +49,9 @@ const { value: bankAccount, errorMessage: bankaccountError, validate: bankaccoun
     return '请输入账户号码'
   return ''
 })
-
-useApiMemberTreeList(languageBankMap[getCurrentLanguage()], {
-  onSuccess(data: IBank[]) {
-    bankSelectOptions.value = data.map((item: IBank) => {
-      const temp = {
-        label: item.name,
-        icon: 'fiat-bank',
-        value: item.name,
-      }
-      return temp
-    })
-  },
-})
+const { data: bankList } = useApiMemberTreeList(getCurrentLanguageBankListIdForBackend())
 const { run: runBankcardInsert } = useRequest(ApiMemberBankcardInsert, {
-  onSuccess(data) {
+  onSuccess() {
     openNotify({
       type: 'success',
       message: '添加成功',
@@ -79,6 +64,21 @@ const { run: runBankcardInsert } = useRequest(ApiMemberBankcardInsert, {
     closeDialog()
   },
 })
+
+const bankSelectOptions = computed(() => {
+  if (!bankList.value)
+    return []
+
+  return bankList.value.map((item: IBank) => {
+    const temp = {
+      label: item.name,
+      icon: 'fiat-bank',
+      value: item.name,
+    }
+    return temp
+  })
+})
+
 const onBindBank = async function () {
   if (currentType.value === '2')
     bankName.value = 'PIX'
@@ -105,7 +105,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="app-add-bankcards" :class="{ 'is-first': !props.isFirst }">
+  <div class="app-add-bankcards" :class="{ 'is-first': props.container }">
     <div class="bind-identity">
       <div v-if="props.isFirst" class="bind-tips">
         <BaseIcon name="uni-warning" />
