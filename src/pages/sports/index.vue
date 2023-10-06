@@ -49,7 +49,6 @@ const threeOptions = [
       <div class="mt-24">
         <BaseTab v-model="gameType" :list="tabList" :center="false" />
       </div>
-      <AppSportsTab v-model="currentGame" :list="gameList" />
     </div>
     <div class="content-container">
       <div class="sports-home">
