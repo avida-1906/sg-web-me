@@ -168,5 +168,6 @@ const showContent = function () {}
 </style>
 
 <route lang="yaml">
-name: affiliate
+meta:
+  browserTitle: 联盟活动 – Stake.com
 </route>

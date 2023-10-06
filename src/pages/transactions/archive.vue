@@ -2,36 +2,28 @@
 </script>
 
 <template>
-  <section class="tg-bets-record-page">
+  <section class="tg-archive-record-page">
     <div class="record-content">
-      <div class="bet-record table-wrapper scroll-x">
+      <div class="scroll-x bet-record table-wrapper">
         <table class="table">
           <thead />
           <tbody>
             <tr>
               <td class="table-cell">
                 <div class="row-wrap">
-                  <span class="icon-wrap">
-                    <BaseIcon name="chess-frame1" />
-                  </span>
                   <div class="col header-stack">
-                    <a class="link">
-                      <span class="content-or-loader">Crash</span>
-                    </a>
-                    {{ '18:50' }}
-                    {{ '2023/8/29' }}
+                    <span>2023年8月29日</span>
+                    <span>9 项投注</span>
                   </div>
                 </div>
               </td>
               <td class="table-cell">
                 <div class="row-wrap right">
                   <div class="col">
-                    <AppAmount amount="0.01888888" :currency-type="EnumCurrency.BTC" />
-                  </div>
-                  <div class="col bot">
-                    <BaseIcon name="uni-checklist" />
-                    <span>176770928770</span>
-                    <span class="line-height-1-5">0.00x</span>
+                    <a class="link">
+                      <span>下载</span>
+                      <BaseIcon name="uni-jump-page" />
+                    </a>
                   </div>
                 </div>
               </td>
@@ -140,3 +132,8 @@
   }
 }
 </style>
+
+<route lang="yaml">
+meta:
+  browserTitle: 交易档案 – Stake.com
+  </route>

@@ -95,3 +95,8 @@ const paginationData = {
   }
 }
 </style>
+
+<route lang="yaml">
+meta:
+  browserTitle: 黑名单 – Stake.com
+</route>

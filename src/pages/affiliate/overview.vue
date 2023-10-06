@@ -79,5 +79,6 @@
 </style>
 
 <route lang="yaml">
-name: affiliate
+meta:
+  browserTitle: 联盟计划概述 – Stake.com
 </route>

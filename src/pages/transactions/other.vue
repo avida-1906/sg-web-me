@@ -28,3 +28,8 @@ const tabList = reactive([
 <style lang="scss" scoped>
 
 </style>
+
+<route lang="yaml">
+meta:
+  browserTitle: 其他交易 – Stake.com
+  </route>

@@ -134,3 +134,8 @@ const paginationData = {
   }
 }
 </style>
+
+<route lang="yaml">
+meta:
+  browserTitle: 账户会话 – Stake.com
+</route>

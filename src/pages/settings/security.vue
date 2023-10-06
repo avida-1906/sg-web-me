@@ -67,3 +67,8 @@ const twoStepCode = ref('HM3XE2DLGVWECZDYK5BUMNTQORGVCKBVO5MG4JBSG46EGMCSHZEA')
   }
 }
 </style>
+
+<route lang="yaml">
+meta:
+  browserTitle: 安全 – Stake.com
+  </route>

@@ -218,6 +218,8 @@ const isFirst = computed(() => props.index === 0)
         .icon {
           font-size: var(--tg-spacing-10);
           margin-right: var(--tg-spacing-8);
+          display: flex;
+          align-items: center;
         }
 
         span {
