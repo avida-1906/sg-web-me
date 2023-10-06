@@ -75,6 +75,18 @@ const threeOptions = [
           </div>
         </div>
         <AppSportsTab v-model="currentGame" :list="gameList" />
+        <div style="width: 233.64px;margin-bottom: 20px;">
+          <AppSportsBetButton />
+        </div>
+        <div style="width: 233.64px;margin-bottom: 20px;">
+          <AppSportsBetButton layout="horizontal" />
+        </div>
+        <div style="width: 233.64px;margin-bottom: 20px;">
+          <AppSportsBetButton active />
+        </div>
+        <div style="width: 233.64px;margin-bottom: 20px;">
+          <AppSportsBetButton disabled />
+        </div>
       </div>
     </div>
     <div class="layout-spacing">
