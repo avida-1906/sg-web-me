@@ -47,6 +47,7 @@ declare global {
   const STORAGE_RIGHT_SIDEBAR_STATUS: typeof import('./utils/storage')['STORAGE_RIGHT_SIDEBAR_STATUS']
   const STORAGE_SEARCH_KEYWORDS_LIVE: typeof import('./utils/storage')['STORAGE_SEARCH_KEYWORDS_LIVE']
   const STORAGE_SEARCH_KEYWORDS_SPORTS: typeof import('./utils/storage')['STORAGE_SEARCH_KEYWORDS_SPORTS']
+  const STORAGE_SPORTS_PANEL_TYPE_KEY: typeof import('./utils/storage')['STORAGE_SPORTS_PANEL_TYPE_KEY']
   const STORAGE_TOKEN_KEY: typeof import('./utils/storage')['STORAGE_TOKEN_KEY']
   const Session: typeof import('./utils/storage')['Session']
   const acceptHMRUpdate: typeof import('pinia')['acceptHMRUpdate']
@@ -363,6 +364,7 @@ declare global {
   const useSorted: typeof import('@vueuse/core')['useSorted']
   const useSpeechRecognition: typeof import('@vueuse/core')['useSpeechRecognition']
   const useSpeechSynthesis: typeof import('@vueuse/core')['useSpeechSynthesis']
+  const useSportsStore: typeof import('./stores/sports')['useSportsStore']
   const useStatisticsDialog: typeof import('./composables/useDialogStatistical')['useStatisticsDialog']
   const useStepper: typeof import('@vueuse/core')['useStepper']
   const useStorage: typeof import('@vueuse/core')['useStorage']
@@ -468,6 +470,7 @@ declare module 'vue' {
     readonly STORAGE_RIGHT_SIDEBAR_CONTENT: UnwrapRef<typeof import('./utils/storage')['STORAGE_RIGHT_SIDEBAR_CONTENT']>
     readonly STORAGE_SEARCH_KEYWORDS_LIVE: UnwrapRef<typeof import('./utils/storage')['STORAGE_SEARCH_KEYWORDS_LIVE']>
     readonly STORAGE_SEARCH_KEYWORDS_SPORTS: UnwrapRef<typeof import('./utils/storage')['STORAGE_SEARCH_KEYWORDS_SPORTS']>
+    readonly STORAGE_SPORTS_PANEL_TYPE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_SPORTS_PANEL_TYPE_KEY']>
     readonly STORAGE_TOKEN_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_TOKEN_KEY']>
     readonly Session: UnwrapRef<typeof import('./utils/storage')['Session']>
     readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>
@@ -777,6 +780,7 @@ declare module 'vue' {
     readonly useSorted: UnwrapRef<typeof import('@vueuse/core')['useSorted']>
     readonly useSpeechRecognition: UnwrapRef<typeof import('@vueuse/core')['useSpeechRecognition']>
     readonly useSpeechSynthesis: UnwrapRef<typeof import('@vueuse/core')['useSpeechSynthesis']>
+    readonly useSportsStore: UnwrapRef<typeof import('./stores/sports')['useSportsStore']>
     readonly useStatisticsDialog: UnwrapRef<typeof import('./composables/useDialogStatistical')['useStatisticsDialog']>
     readonly useStepper: UnwrapRef<typeof import('@vueuse/core')['useStepper']>
     readonly useStorage: UnwrapRef<typeof import('@vueuse/core')['useStorage']>
@@ -876,6 +880,7 @@ declare module '@vue/runtime-core' {
     readonly STORAGE_RIGHT_SIDEBAR_CONTENT: UnwrapRef<typeof import('./utils/storage')['STORAGE_RIGHT_SIDEBAR_CONTENT']>
     readonly STORAGE_SEARCH_KEYWORDS_LIVE: UnwrapRef<typeof import('./utils/storage')['STORAGE_SEARCH_KEYWORDS_LIVE']>
     readonly STORAGE_SEARCH_KEYWORDS_SPORTS: UnwrapRef<typeof import('./utils/storage')['STORAGE_SEARCH_KEYWORDS_SPORTS']>
+    readonly STORAGE_SPORTS_PANEL_TYPE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_SPORTS_PANEL_TYPE_KEY']>
     readonly STORAGE_TOKEN_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_TOKEN_KEY']>
     readonly Session: UnwrapRef<typeof import('./utils/storage')['Session']>
     readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>
@@ -1185,6 +1190,7 @@ declare module '@vue/runtime-core' {
     readonly useSorted: UnwrapRef<typeof import('@vueuse/core')['useSorted']>
     readonly useSpeechRecognition: UnwrapRef<typeof import('@vueuse/core')['useSpeechRecognition']>
     readonly useSpeechSynthesis: UnwrapRef<typeof import('@vueuse/core')['useSpeechSynthesis']>
+    readonly useSportsStore: UnwrapRef<typeof import('./stores/sports')['useSportsStore']>
     readonly useStatisticsDialog: UnwrapRef<typeof import('./composables/useDialogStatistical')['useStatisticsDialog']>
     readonly useStepper: UnwrapRef<typeof import('@vueuse/core')['useStepper']>
     readonly useStorage: UnwrapRef<typeof import('@vueuse/core')['useStorage']>

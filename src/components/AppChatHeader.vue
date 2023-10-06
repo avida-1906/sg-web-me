@@ -41,9 +41,9 @@ function openChat() {
           <span>SFake: {{ room.label }} </span>
           <BaseIcon class="arrow-down" name="uni-arrow-down" />
         </div>
-        <template #popper>
+        <template #popper="{ hide }">
           <div class="scroll-y chat-room-list dropdown-scroll-content">
-            <a v-for="item in chatRoomList" :key="item.icon" v-close-popper class="item dropdown-option" :class="{ active: room.value === item.value }" @click="chooseRoom(item)">
+            <a v-for="item in chatRoomList" :key="item.icon" class="item dropdown-option" :class="{ active: room.value === item.value }" @click="hide();chooseRoom(item)">
               <BaseIcon :name="item.icon" />
               <span>{{ item.label }}</span>
             </a>

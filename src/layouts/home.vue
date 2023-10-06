@@ -23,6 +23,9 @@ const {
   isGreaterThanSm,
   isMobile,
 } = storeToRefs(windowStore)
+const appStore = useAppStore()
+const { needAnimate } = storeToRefs(appStore)
+
 // 内容区宽度
 const homeContainerRef = ref<HTMLElement | null>(null)
 const { width } = useElementSize(homeContainerRef)
@@ -107,7 +110,7 @@ onErrorCaptured((err, instance, info) => {
       </header>
 
       <!-- <Transition name="home-slide-fade"> :key="route.path" -->
-      <div id="main-content-scrollable" class="scroll-y scrollable" :class="{ 'home-slide-fade-enter-active': isRouting }">
+      <div id="main-content-scrollable" class="scroll-y scrollable" :class="{ 'home-slide-fade-enter-active': isRouting && needAnimate }">
         <!-- 用于获取内容区宽度 -->
         <AppContent>
           <div ref="homeContainerRef" class="only-for-get-width" />

@@ -10,6 +10,11 @@ export const useAppStore = defineStore('app', () => {
    * @description 是否登录，程序用这个变量来判断是否登录
    */
   const { bool: isLogin, setTrue: setLoginTrue, setFalse: setLoginFalse } = useBoolean(!!getToken())
+  /**
+   * @type {boolean}
+   * @description 路由变化时，是否需要动画
+   */
+  const { bool: needAnimate, setBool: setNeedAnimateBool } = useBoolean(false)
 
   function setToken(token: string) {
     // 将token加密后存储到本地
@@ -32,11 +37,13 @@ export const useAppStore = defineStore('app', () => {
   return {
     isLogin,
     platformList,
+    needAnimate,
     setToken,
     setLoginTrue,
     setLoginFalse,
     removeToken,
     getToken,
+    setNeedAnimateBool,
   }
 })
 
