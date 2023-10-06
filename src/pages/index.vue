@@ -103,15 +103,19 @@ await application.allSettled([runLive({ game_type: 1 }), runSlot({ game_type: 3 
       </div>
     </div>
     <!-- 老虎机  -->
-    <AppSlider
-      :game-type="EnumCasinoGameType.SLOT" icon="chess-slot-machine"
-      :title="t('game_type_slot_short_name')" :data="slotList"
-    />
+    <div class="pt-6">
+      <AppSlider
+        :game-type="EnumCasinoGameType.SLOT" icon="chess-slot-machine"
+        :title="t('game_type_slot_short_name')" :data="slotList"
+      />
+    </div>
     <!-- 真人娱乐 -->
-    <AppSlider
-      :game-type="EnumCasinoGameType.LIVE" icon="chess-live-casino" :title="t('game_type_live')"
-      :data="liveList"
-    />
+    <div class="pt-6">
+      <AppSlider
+        :game-type="EnumCasinoGameType.LIVE" icon="chess-live-casino" :title="t('game_type_live')"
+        :data="liveList"
+      />
+    </div>
     <!-- 加密货币 -->
     <div class="index-buy-cryptocurrency" :class="[isXs ? 'flex-wrap' : 'grid-wrap']">
       <div>
@@ -475,6 +479,9 @@ await application.allSettled([runLive({ game_type: 1 }), runSlot({ game_type: 3 
       }
     }
   }
+}
+.pt-6{
+  padding-top: var(--tg-spacing-6);
 }
 .is-mobile{
   .dark-background{

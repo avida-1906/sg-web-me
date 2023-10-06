@@ -13,7 +13,6 @@ const props = withDefaults(defineProps<Props>(), {
 const emit = defineEmits(['update:modelValue'])
 
 const changeType = function (type: string) {
-  console.log(type)
   emit('update:modelValue', type)
 }
 </script>
