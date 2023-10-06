@@ -38,52 +38,50 @@ const threeOptions = [
 </script>
 
 <template>
-  <AppContent>
-    <div class="sports sports-layout-home">
-      <div class="layout-spacing">
-        <div class="hero-wrapper mt-24">
-          <AppBanner />
-        </div>
-        <div v-if="!isMobile" class="mt-24">
-          <AppGameSearch game-type="2" />
-        </div>
-        <div class="mt-24">
-          <BaseTab v-model="gameType" :list="tabList" :center="false" />
+  <div class="sports sports-layout-home">
+    <div class="layout-spacing">
+      <div class="hero-wrapper mt-24">
+        <AppBanner />
+      </div>
+      <div v-if="!isMobile" class="mt-24">
+        <AppGameSearch game-type="2" />
+      </div>
+      <div class="mt-24">
+        <BaseTab v-model="gameType" :list="tabList" :center="false" />
+      </div>
+      <AppSportsTab v-model="currentGame" :list="gameList" />
+    </div>
+    <div class="content-container">
+      <div class="sports-home">
+        <div class="title">
+          <div class="left">
+            <BaseIcon name="spt-ball-plate" />
+            <h6>滚球盘</h6>
+          </div>
+          <div class="right">
+            <VMenu placement="top">
+              <BaseButton size="sm" type="text" @click="toggleBase">
+                <BaseIcon v-if="isBase" name="uni-three-top" />
+                <BaseIcon v-else name="uni-standard" />
+              </BaseButton>
+              <template #popper>
+                <div class="tiny-menu-item-title">
+                  {{ marketTypeText }}
+                </div>
+              </template>
+            </VMenu>
+
+            <BaseSelect v-if="isBase" v-model="baseType" :options="baseOptions" popper />
+            <BaseSelect v-else v-model="threeType" :options="threeOptions" popper disabled />
+          </div>
         </div>
         <AppSportsTab v-model="currentGame" :list="gameList" />
       </div>
-      <div class="content-container">
-        <div class="sports-home">
-          <div class="title">
-            <div class="left">
-              <BaseIcon name="spt-ball-plate" />
-              <h6>滚球盘</h6>
-            </div>
-            <div class="right">
-              <VMenu placement="top">
-                <BaseButton size="sm" type="text" @click="toggleBase">
-                  <BaseIcon v-if="isBase" name="uni-three-top" />
-                  <BaseIcon v-else name="uni-standard" />
-                </BaseButton>
-                <template #popper>
-                  <div class="tiny-menu-item-title">
-                    {{ marketTypeText }}
-                  </div>
-                </template>
-              </VMenu>
-
-              <BaseSelect v-if="isBase" v-model="baseType" :options="baseOptions" popper />
-              <BaseSelect v-else v-model="threeType" disabled :options="threeOptions" popper />
-            </div>
-          </div>
-          <AppSportsTab v-model="currentGame" :list="gameList" />
-        </div>
-      </div>
-      <div class="layout-spacing">
-        <AppBetData mode="casino" />
-      </div>
     </div>
-  </AppContent>
+    <div class="layout-spacing">
+      <AppBetData mode="casino" />
+    </div>
+  </div>
 </template>
 
 <style lang='scss' scoped>
