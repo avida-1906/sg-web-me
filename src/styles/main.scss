@@ -482,6 +482,26 @@ body {
   }
 }
 
+// 体育页面title
+.sports-page-title {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .left {
+    display: flex;
+    font-size: var(--tg-font-size-md);
+    color: var(--tg-text-white);
+    font-weight: var(--tg-font-weight-semibold);
+    gap: var(--tg-spacing-8);
+  }
+
+  .right {
+    display: flex;
+  }
+}
+
 @media screen and (min-width: 768px) {
   #app {
     height: 1px;
