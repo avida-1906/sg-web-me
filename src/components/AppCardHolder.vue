@@ -17,7 +17,7 @@ const { list: bankcardList, run: runBankcardList, loading: bankcardListLoading }
 })
 
 const bindBanks = computed(() => {
-  return bankcardList.value.map((item) => {
+  return bankcardList.value?.map((item) => {
     if (item.is_default === 1)
       selectBank.value = item.bank_account
     const temp = {
@@ -34,7 +34,8 @@ const bindBanks = computed(() => {
 })
 
 const toAddBankcards = function () {
-  const { openAddBankcardsDialog } = useAddBankcardsDialog({ title: '绑定银行卡', openName: openName.value })
+  console.log(bankcardList.value)
+  const { openAddBankcardsDialog } = useAddBankcardsDialog({ title: '绑定银行卡', openName: openName.value, isFirst: !bankcardList.value?.length })
   closeDialog()
   nextTick(() => openAddBankcardsDialog())
 }

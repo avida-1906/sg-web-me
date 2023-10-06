@@ -4,6 +4,7 @@ import { getCurrentLanguage, getCurrentLanguageIdForBackend } from '~/modules/i1
 interface Props {
   isFirst?: boolean // 是否首次绑定
   openName?: string // 户名
+  container?: boolean // 是否需要padding
 }
 interface IBank {
   id: string
@@ -15,6 +16,7 @@ interface IBank {
 const props = withDefaults(defineProps<Props>(), {
   isFirst: false,
   openName: '',
+  container: true,
 })
 const closeDialog = inject('closeDialog', () => {})
 
@@ -105,7 +107,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="app-add-bankcards" :class="{ 'is-first': !props.isFirst }">
+  <div class="app-add-bankcards" :class="{ 'is-first': props.container }">
     <div class="bind-identity">
       <div v-if="props.isFirst" class="bind-tips">
         <BaseIcon name="uni-warning" />
