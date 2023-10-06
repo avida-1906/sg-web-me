@@ -26,7 +26,7 @@ const threeOptions = [
 
 <template>
   <div class="sports-home">
-    <div class="title">
+    <div class="sports-page-title">
       <div class="left">
         <BaseIcon name="spt-ball-plate" />
         <h6>滚球盘</h6>
@@ -45,17 +45,20 @@ const threeOptions = [
         </VMenu>
 
         <BaseSelect v-if="isBase" v-model="baseType" :options="baseOptions" popper />
-        <BaseSelect v-else v-model="threeType" disabled :options="threeOptions" popper />
+        <BaseSelect v-else v-model="threeType" :options="threeOptions" popper disabled />
       </div>
     </div>
     <AppSportsTab v-model="currentGame" :list="gameList" />
+    <div style="width: 233.64px;">
+      <AppSportsBetButton />
+    </div>
   </div>
 </template>
 
 <style lang='scss' scoped>
 .sports-home {}
 
-.title {
+.sports-page-title {
   width: 100%;
   display: flex;
   align-items: center;
