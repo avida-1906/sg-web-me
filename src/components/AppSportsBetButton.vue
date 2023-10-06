@@ -15,13 +15,8 @@ withDefaults(defineProps<Props>(), {
       <div class="name">
         汉夫曼，扬尼克
       </div>
-      <div class="odd-box" :class="[layout]">
-        <span v-if="disabled" class="status">暂停</span>
-        <span v-else class="odd">1.65</span>
-        <div v-if="!disabled" class="icon arrow-odd odd-down">
-          <BaseIcon name="uni-tri-down" />
-        </div>
-      </div>
+      <span v-if="disabled" class="status">暂停</span>
+      <AppSportsOdds v-else :style="`--tg-sports-odds-color:${active ? 'var(--tg-text-white)' : ''}`" :arrow="layout === 'horizontal' ? 'left' : 'right'" odds="1.65" />
     </div>
   </div>
 </template>
@@ -48,40 +43,6 @@ withDefaults(defineProps<Props>(), {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-    }
-
-    .odd-box {
-      display: grid;
-
-      &.horizontal {
-        grid-template-areas: "icon odd";
-
-        .icon {
-          margin-right: var(--tg-spacing-4);
-        }
-      }
-
-      &.vertical {
-        grid-template-areas: "odd icon";
-
-        .icon {
-          margin-left: var(--tg-spacing-4);
-        }
-      }
-
-      .icon {
-        grid-area: icon;
-        font-size: var(--tg-spacing-8);
-        display: flex;
-        align-items: center;
-      }
-
-      .odd {
-        grid-area: odd;
-        color: var(--tg-text-lightblue);
-        font-weight: var(--tg-font-weight-bold);
-      }
-
     }
 
     &.horizontal {
@@ -115,12 +76,6 @@ withDefaults(defineProps<Props>(), {
       font-weight: var(--tg-font-weight-semibold);
       color: var(--tg-text-black);
     }
-
-    .odd-box {
-      .odd {
-        color: var(--tg-text-white);
-      }
-    }
   }
 
   &.disabled {
@@ -129,13 +84,8 @@ withDefaults(defineProps<Props>(), {
     .name {
       opacity: 0.2;
     }
-
-    .odd-box {
-      .status {
-        grid-area: odd;
-        color: var(--tg-text-white);
-        opacity: 0.4;
-      }
+    .status{
+      opacity: 0.4;
     }
   }
 }

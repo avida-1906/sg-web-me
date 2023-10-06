@@ -60,14 +60,7 @@ const isFirst = computed(() => props.index === 0)
       <div v-if="isClosed" class="closed">
         已结算
       </div>
-      <div v-else class="odds-payout">
-        <div class="odds">
-          <div class="icon arrow-odd odd-up">
-            <BaseIcon name="uni-tri-up" />
-          </div>
-          <span>2.35</span>
-        </div>
-      </div>
+      <AppSportsOdds v-else odds="2.35" arrow="left" />
       <!-- 单式金额输入框 -->
       <div v-show="isBetSingle" class="footer">
         <div class="bet-amount">
@@ -204,28 +197,6 @@ const isFirst = computed(() => props.index === 0)
         text-align: left;
         display: inline-flex;
         align-items: center;
-      }
-    }
-
-    .odds-payout {
-      grid-area: odds;
-      justify-self: flex-end;
-
-      .odds {
-        display: flex;
-        align-items: center;
-
-        .icon {
-          font-size: var(--tg-spacing-10);
-          margin-right: var(--tg-spacing-8);
-          display: flex;
-          align-items: center;
-        }
-
-        span {
-          color: var(--tg-text-lightblue);
-          font-weight: var(--tg-font-weight-bold);
-        }
       }
     }
 

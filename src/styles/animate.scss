@@ -69,17 +69,17 @@
 }
 
 // 赔率变化箭头动画
-.arrow-odd {
+.arrow-odds {
   animation-duration: .8s;
   animation-iteration-count: 4;
   animation-fill-mode: forwards
 }
 
-.odd-up {
+.odds-up {
   animation-name: flashingUp;
 }
 
-.odd-down {
+.odds-down {
   animation-name: flashingDown;
 }
 

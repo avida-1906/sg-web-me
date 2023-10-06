@@ -150,7 +150,7 @@ export function useApiMenuData() {
         { title: '香港格式', path: '', icon: '' },
         { title: '马来格式', path: '', icon: '' },
       ],
-      domId: 'sports-odd-type',
+      domId: 'sports-odds-type',
     },
   ])
 

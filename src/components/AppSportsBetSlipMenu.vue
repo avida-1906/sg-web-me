@@ -1,7 +1,7 @@
 <script setup lang='ts'>
 import { EnumsBetSlipTabs } from '~/utils/enums'
 
-const router = useRouter()
+// const router = useRouter()
 const { closeRightSidebar } = useRightSidebar()
 
 const type = ref(EnumsBetSlipTabs.betSlip)
@@ -111,24 +111,17 @@ const betBtnText = computed(() => betSlipTypeTabs.find(b => b.value === betSlipT
     <div class="footer">
       <!-- 投注单 -->
       <template v-if="isBetSlip">
-        <div class="betslip-calculation-summary">
-          <!-- 复式 -->
-          <template v-if="isBetMulti">
-            <BaseInput type="number" placeholder="0.00000000">
-              <template #right-icon>
-                <BaseIcon name="coin-btc" />
-              </template>
-            </BaseInput>
-            <div class="calculation-item">
-              <span>总赔率</span>
-              <div class="odd">
-                <div class="icon arrow-odd odd-rise">
-                  <BaseIcon name="uni-tri-up" />
-                </div>
-                <span>1.00</span>
-              </div>
-            </div>
+        <!-- 复式投注额输入框 -->
+        <BaseInput v-show="isBetMulti" type="number" placeholder="0.00000000">
+          <template #right-icon>
+            <BaseIcon name="coin-btc" />
           </template>
+        </BaseInput>
+        <div class="betslip-calculation-summary">
+          <div v-show="isBetMulti" class="calculation-item">
+            <span>总赔率</span>
+            <AppSportsOdds odds="1.00" arrow="left" />
+          </div>
           <!-- 单式 -->
           <div v-show="isBetSingle" class="calculation-item">
             <span>总投注额</span>
@@ -274,18 +267,6 @@ const betBtnText = computed(() => betSlipTypeTabs.find(b => b.value === betSlipT
       span {
         color: var(--tg-text-lightgrey);
         font-weight: var(--tg-font-weight-normal);
-      }
-
-      .odd {
-        color: var(--tg-text-lightblue);
-        font-weight: var(--tg-font-weight-bold);
-        display: flex;
-        align-items: center;
-
-        .icon {
-          font-size: var(--tg-spacing-10);
-          margin-right: var(--tg-spacing-8);
-        }
       }
     }
   }
