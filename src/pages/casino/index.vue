@@ -114,4 +114,5 @@ await application.allSettled([runLive({ game_type: EnumCasinoApiGameType.LIVE })
 name: casino-home
 meta:
   layout: home
+  browserTitle: 在线加密货币与比特币赌场 – Stake.com 赌场游戏
 </route>

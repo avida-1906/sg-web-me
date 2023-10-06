@@ -36,4 +36,5 @@
 <route lang="yaml">
 meta:
   layout: home
+  browserTitle: 近期赌场游戏记录 – Stake.com
 </route>
