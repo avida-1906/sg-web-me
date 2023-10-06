@@ -1,6 +1,8 @@
 <script setup lang='ts'>
-import SportsLive from '~/pages/sports/live/[sportType].vue'
-import SportsUpComing from '~/pages/sports/upcoming/[sportType].vue'
+import SportsLive from '~/pages/sports/live/index.vue'
+import SportsUpComing from '~/pages/sports/upcoming/index.vue'
+import SportsMyBets from '~/pages/sports/my-bets.vue'
+import SportsFavourites from '~/pages/sports/favourites.vue'
 
 defineOptions({
   name: 'KeepAliveSports',
@@ -82,6 +84,10 @@ const threeOptions = [
       </div>
       <AppSportsTab v-model="currentGame" :list="gameList" />
     </div>
+    <!-- 我的投注 -->
+    <SportsMyBets v-else-if="marketType === 'my-bet'" />
+    <!-- 收藏夹 -->
+    <SportsFavourites v-else-if="marketType === 'fav'" />
     <!-- 滚球 -->
     <SportsLive v-else-if="marketType === 'live'" />
     <!-- 即将开赛 -->
