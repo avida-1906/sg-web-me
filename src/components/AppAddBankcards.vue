@@ -53,8 +53,6 @@ const { value: bankAccount, errorMessage: bankaccountError, validate: bankaccoun
   return ''
 })
 
-openName.value = props.openName
-
 useApiMemberTreeList(languageBankMap[getCurrentLanguage()], {
   onSuccess(data: IBank[]) {
     bankSelectOptions.value = data.map((item: IBank) => {
@@ -99,6 +97,11 @@ const onBindBank = async function () {
     })
   }
 }
+
+onMounted(() => {
+  if (props.openName)
+    openName.value = props.openName
+})
 </script>
 
 <template>
