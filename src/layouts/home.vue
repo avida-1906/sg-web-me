@@ -101,24 +101,24 @@ onErrorCaptured((err, instance, info) => {
           <div ref="homeContainerRef" class="only-for-get-width" />
         </AppContent>
         <slot>
-          <div :class="{ 'home-slide-fade-enter-active': animatingMounted || animatingWatch }">
-            <AppContent :is-game-page="isCasinoGames">
-              <RouterView v-slot="{ Component }">
-                <template v-if="Component">
-                  <KeepAlive :include="keepAliveList" :max="10">
-                    <Suspense timeout="0" @resolve="suspenseResolved">
+          <AppContent :is-game-page="isCasinoGames">
+            <RouterView v-slot="{ Component }">
+              <template v-if="Component">
+                <KeepAlive :include="keepAliveList" :max="10">
+                  <Suspense timeout="0" @resolve="suspenseResolved">
+                    <div :class="{ 'home-slide-fade-enter-active': animatingMounted || animatingWatch }">
                       <component :is="Component" />
-                      <template #fallback>
-                        <div class="center loading-content-height">
-                          <BaseLoading />
-                        </div>
-                      </template>
-                    </Suspense>
-                  </KeepAlive>
-                </template>
-              </RouterView>
-            </AppContent>
-          </div>
+                    </div>
+                    <template #fallback>
+                      <div class="center loading-content-height">
+                        <BaseLoading />
+                      </div>
+                    </template>
+                  </Suspense>
+                </KeepAlive>
+              </template>
+            </RouterView>
+          </AppContent>
         </slot>
 
         <footer class="footer">
