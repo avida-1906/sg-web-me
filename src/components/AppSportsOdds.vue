@@ -8,7 +8,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const saveNum = ref(props.odds)
-const upDown = ref('up')
+const upDown = ref('')
 let timer: any
 function resetUpDown() {
   clearTimeout(timer)
