@@ -16,7 +16,7 @@ const routes = setupLayouts(generatedRoutes)
 const router = createRouter({
   history: createWebHistory(),
   routes,
-  scrollBehavior(to, from, savedPosition) {
+  scrollBehavior() {
     setTimeout(() => {
       document.querySelector('.only-for-get-width')?.scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'center' })
     }, 0)
@@ -24,10 +24,20 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  const appStore = useAppStore()
+  if (to.meta.top && to.meta.top === from.meta.top)
+    appStore.setNeedAnimateBool(false)
+
+  else if (to.name !== from.name)
+    appStore.setNeedAnimateBool(true)
+
+  else
+    appStore.setNeedAnimateBool(false)
+
   const auth = to.meta.auth || false
 
   if (auth) {
-    const { isLogin } = storeToRefs(useAppStore())
+    const { isLogin } = storeToRefs(appStore)
     if (!isLogin.value) {
       const { openRegisterDialog } = useRegisterDialog()
       openRegisterDialog()

@@ -2,19 +2,18 @@
 </script>
 
 <template>
-  <div class="tg-sports-upcoming">
-    upcoming
+  <div class="tg-sports-hotlive">
+    滚球与即将开赛的盘口
   </div>
 </template>
 
 <style lang="scss" scoped>
-.tg-sports-upcoming {
+.tg-sports-hotlive {
 
 }
 </style>
 
 <route lang="yaml">
 meta:
-  father: /sports
-  layout: sports-home
+  layout: home
 </route>

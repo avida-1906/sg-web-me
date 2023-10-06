@@ -1,4 +1,22 @@
 <script setup lang='ts'>
+interface ListItem {
+  [text: string]: any
+  id: string
+}
+interface TabItem {
+  label: string
+  value: string
+  icon: string
+  num: number
+  id: string
+}
+interface Props {
+  list: ListItem[]
+  modelValue: string
+}
+const props = defineProps<Props>()
+const emit = defineEmits(['update:modelValue'])
+
 const allList = [
   { label: '全部', value: 'all', icon: 'uni-all', num: 1707, id: '1' },
   { label: '网球', value: 'tennis', icon: 'spt-tennis', num: 10, id: '2' },
@@ -33,14 +51,132 @@ const allList = [
   { label: '魔兽争霸3', value: 'spt-warcraft', icon: 'spt-warcraft', num: 10, id: '32' },
   { label: '水球', value: 'spt-water-polo', icon: 'spt-water-polo', num: 10, id: '33' },
 ]
+
+const showList = computed(() => {
+  const arr: TabItem[] = []
+  props.list.forEach((pl) => {
+    allList.forEach((al) => {
+      if (pl.id === al.id)
+        arr.push(al)
+    })
+  })
+  return arr
+})
+
+function handleClick(item: TabItem) {
+  emit('update:modelValue', item.id)
+}
 </script>
 
 <template>
   <div class="app-sports-tab">
-    123
+    <div class="scroll-x">
+      <div class="tab-wrap">
+        <div v-for="tab in showList" :key="tab.value" class="tab">
+          <BaseButton type="text" padding0 @click="handleClick(tab)">
+            <div class="button" :class="{ active: tab.id === modelValue }">
+              <div class="dot" />
+              <div class="main">
+                <div class="icon">
+                  <BaseIcon :name="tab.icon" />
+                  <BaseBadge
+                    :mode="tab.id === modelValue ? 'active' : 'black'" style="--tg-badge-font-size:var(--tg-font-size-xs);" class="badge"
+                    :count="tab.num"
+                  />
+                </div>
+                <div class="name">
+                  {{ tab.label }}
+                </div>
+              </div>
+            </div>
+          </BaseButton>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <style lang='scss' scoped>
+.app-sports-tab {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-top: var(--tg-spacing-12);
+  background-color: var(--tg-secondary-dark);
+  border-radius: var(--tg-radius-default);
+  overflow: hidden;
+}
 
+.tab-wrap {
+  padding: var(--tg-spacing-32) var(--tg-spacing-8) var(--tg-spacing-18);
+  display: inline-flex;
+
+  .tab {
+    flex-shrink: 0;
+    position: relative;
+
+    .button {
+      .dot {
+        display: none;
+        content: "";
+        background: var(--tg-text-blue);
+        width: 12px;
+        height: 6px;
+        position: absolute;
+        top: calc(-1 * var(--tg-spacing-32));
+        left: 50%;
+        z-index: 1;
+        transform: translate(-50%);
+        border-radius: 0 0 100% 100%;
+      }
+
+      .main {
+        display: grid;
+        grid-auto-flow: row;
+        gap: var(--tg-spacing-8);
+        place-items: center;
+        position: relative;
+        width: 9ch;
+        max-width: 9ch;
+
+        .icon {
+          font-size: 28px;
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          .badge {
+            position: absolute;
+            top: -8px;
+            left: 55%;
+          }
+        }
+
+        .name {
+          font-size: var(--tg-font-size-xs);
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-width: 6ch;
+        }
+      }
+
+      &.active {
+        .dot {
+          display: block;
+        }
+
+        .main {
+          .icon {
+            --tg-icon-color: var(--tg-text-white);
+          }
+          .name{
+            color:var(--tg-text-white);
+          }
+        }
+      }
+    }
+  }
+}
 </style>

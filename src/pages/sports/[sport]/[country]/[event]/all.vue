@@ -2,19 +2,18 @@
 </script>
 
 <template>
-  <div class="tg-sports-type">
-    lanqiu
+  <div class="tg-sports-country-event-all">
+    当前国家全部赛事
   </div>
 </template>
 
 <style lang="scss" scoped>
-.tg-sports-type {
+.tg-sports-country-event-all {
 
 }
 </style>
 
 <route lang="yaml">
 meta:
-  layout: sports-home
-  top: sports-home
+  layout: home
 </route>

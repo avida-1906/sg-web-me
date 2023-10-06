@@ -15,6 +15,6 @@
 
 <route lang="yaml">
 meta:
-  father: /sports
   layout: sports-home
+  top: sports-home
 </route>

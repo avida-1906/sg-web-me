@@ -2,13 +2,13 @@
 </script>
 
 <template>
-  <div class="tg-sports-type">
-    lanqiu
+  <div class="tg-sports-upcoming">
+    upcoming
   </div>
 </template>
 
 <style lang="scss" scoped>
-.tg-sports-type {
+.tg-sports-upcoming {
 
 }
 </style>

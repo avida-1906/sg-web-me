@@ -1,107 +1,34 @@
 <script setup lang='ts'>
 import { getCurrentLanguage, getCurrentLanguageIdForBackend } from '~/modules/i18n'
 
-interface ISelectOption {
-  label: string
-  icon: string
-  value: string
-}
-interface IBank {
-  id: string
-  name: string
-  pid: string
-  sortlevel: string
-}
-
 const { isLessThanXs } = storeToRefs(useWindowStore())
 
-const bankType = getCurrentLanguageIdForBackend()
-// const openName = ref('')
-// const bankName = ref('')
-// const bankAccount = ref('')
-const bankAreaCpf = ref('')
-const isDefault = ref(false)
 const amount = ref('')
-// 1 表示银行卡， 2 表示pix 除了巴西其他国家都是银行卡
-const currentType = ref('1')
-const depositTypeData = ref([
-  { label: '银行转账', icon: 'fiat-bank', value: '1' },
-  { label: '支付宝', icon: 'fiat-alipay', value: '2' },
-  { label: '微信', icon: 'fiat-wechat', value: '3' },
-])
-const bankSelectOptions = ref<ISelectOption[]>([])
+// '1' 银行卡， '2' pix 除了巴西其他国家都是银行卡
+const currentType = ref(getCurrentLanguage() === 'pt-BR' ? '2' : '1')
 const selectBank = ref('')
 const pagination = ref({
   page_size: '10',
   page: '1',
-  bank_type: '601',
+  bank_type: getCurrentLanguageIdForBackend(),
 })
-const languageBankMap: IObject = {
-  'zh-CN': '002',
-  'vi-VN': '003',
-}
-
-const { value: openName, errorMessage: usernameError, validate: usernameValidate } = useField<string>('username', (value) => {
-  if (!value)
-    return '请输入用户名'
-  return ''
-})
-const { value: bankName, errorMessage: banknameError, validate: banknameValidate } = useField<string>('bankname', (value) => {
-  if (!value)
-    return '请选择银行'
-  return ''
-})
-const { value: bankAccount, errorMessage: bankaccountError, validate: bankaccountValidate } = useField<string>('bankaccount', (value) => {
-  if (!value)
-    return '请输入银行账户'
-  return ''
-})
+const bankTypeData = ref([
+  { label: '银行转账', icon: 'fiat-bank', value: '1' },
+])
+const pixTypeData = ref([
+  { label: 'PIX', icon: 'fiat-bank', value: '2' },
+])
 
 // 银行卡列表
 const { list: bankcardList, run: runBankcardList, loading: bankcardListLoading } = useList(ApiMemberBankcardList, {
   loadingKeep: 1000,
 })
-// 银行列表
-useApiMemberTreeList(languageBankMap[getCurrentLanguage()], {
-  onSuccess(data) {
-    bankSelectOptions.value = data.map((item: IBank) => {
-      const temp: ISelectOption = {
-        label: item.name,
-        icon: 'fiat-bank',
-        value: item.name,
-      }
-      return temp
-    })
-  },
-})
-// 绑定银行卡
-const { run: runBankcardInsert } = useRequest(ApiMemberBankcardInsert, {
-  onSuccess(data) {
-    console.log(data)
-  },
-})
-const onBindBank = async function () {
-  await usernameValidate()
-  await banknameValidate()
-  await bankaccountValidate()
-  if (!usernameError.value && !usernameError.value && !bankaccountError.value) {
-    runBankcardInsert({
-      bank_type: bankType,
-      bank_name: bankName.value,
-      open_name: openName.value,
-      bank_area_cpf: bankAreaCpf.value,
-      bank_account: bankAccount.value,
-      is_default: isDefault ? 1 : 2,
-
-    })
-  }
-}
 
 const bindBanks = computed(() => {
   return bankcardList.value.map((item) => {
     if (item.is_default === 1)
       selectBank.value = item.bank_account
-    const temp: ISelectOption = {
+    const temp = {
       label: item.bank_name,
       value: item.bank_account,
       icon: 'fiat-bank',
@@ -119,35 +46,12 @@ runBankcardList(pagination.value)
   </div>
   <div v-else class="app-fiat-withdrawal">
     <!-- 绑定银行卡/三方账户 -->
-    <div v-if="!!bankcardList.length" class="bind-identity">
-      <div class="bind-tips">
-        <BaseIcon name="uni-warning" />
-        请先绑定提款方式，再进行提款！
-      </div>
-      <BaseLabel label="用户名" must label-content="绑定后不可更改">
-        <BaseInput v-model="openName" :msg="usernameError" />
-      </BaseLabel>
-      <!-- <BaseLabel label="提款方式">
-        <AppWithdrawalDepositType v-model="currentType" :deposit-type="depositTypeData" />
-      </BaseLabel> -->
-      <BaseLabel v-if="currentType === '1'" label="请选择银行" must>
-        <BaseSelect v-model="bankName" :msg="banknameError" :options="bankSelectOptions" class="base-select" />
-      </BaseLabel>
-      <BaseInput v-model="bankAreaCpf" label="开户行地址" />
-      <BaseLabel :label="currentType === '1' ? '银行账户' : '请输入第三方账户 '" must>
-        <BaseInput v-model="bankAccount" :msg="bankaccountError" />
-      </BaseLabel>
-      <div class="checkbox-wrap">
-        <span>是否设为默认卡号</span>
-        <BaseCheckBox v-model="isDefault" />
-      </div>
-      <BaseButton bg-style="primary" size="md" @click="onBindBank">
-        提交
-      </BaseButton>
+    <div v-if="!!bankcardList.length" class="bank-bind">
+      <AppAddBankcards :is-first="true" />
     </div>
     <!-- 出款信息 -->
     <div v-else class="withdrawal-wrap">
-      <AppWithdrawalDepositType v-model="currentType" :deposit-type="depositTypeData" />
+      <AppWithdrawalDepositType v-model="currentType" :deposit-type="currentType === '1' ? bankTypeData : pixTypeData" />
       <div class="withdrawal-info">
         <BaseLabel v-if="currentType === '1'" label="出款银行卡" must>
           <BaseSelect v-model="selectBank" :options="bindBanks" must banks theme popper>

@@ -2,19 +2,18 @@
 </script>
 
 <template>
-  <div class="tg-sports-type">
-    lanqiu
+  <div class="tg-sports-outrights">
+    冠军投注
   </div>
 </template>
 
 <style lang="scss" scoped>
-.tg-sports-type {
+.tg-sports-outrights {
 
 }
 </style>
 
 <route lang="yaml">
 meta:
-  layout: sports-home
-  top: sports-home
+  layout: home
 </route>
