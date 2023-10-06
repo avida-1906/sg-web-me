@@ -94,7 +94,7 @@ function itemClick(item: MenuItem) {
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  gap: var(--tg-spacing-button-padding-vertical-xs);
+  gap: var(--tg-spacing-8);
   padding-left: var(--tg-spacing-8);
   overflow: hidden;
   .tiny-menu {

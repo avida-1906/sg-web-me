@@ -77,6 +77,7 @@ onMounted(() => {
 <style lang="scss">
 :root{
   --tg-badge-font-size: var(--tg-font-size-default);
+  --tg-badge-padding-x:var(--tg-spacing-8);
 }
 </style>
 
@@ -162,7 +163,7 @@ onMounted(() => {
     transform: translate(50%, -50%);
     transform-origin: 100% 0%;
     overflow: hidden;
-    padding: 0 0.5rem;
+    padding: 0 var(--tg-badge-padding-x);
     z-index: auto;
     min-width: 1.8em;
     color: var(--tg-badge-color);//默认字体颜色
