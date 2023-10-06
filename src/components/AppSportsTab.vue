@@ -83,8 +83,9 @@ function handleClick(item: TabItem) {
                 <div class="icon">
                   <BaseIcon :name="tab.icon" />
                   <BaseBadge
-                    :mode="tab.id === modelValue ? 'active' : 'black'" style="--tg-badge-font-size:var(--tg-font-size-xs);" class="badge"
-                    :count="tab.num"
+                    :mode="tab.id === modelValue ? 'active' : 'black'"
+                    style="--tg-badge-font-size:var(--tg-font-size-xs);--tg-badge-padding-x:var(--tg-spacing-6);"
+                    class="badge" :count="tab.num"
                   />
                 </div>
                 <div class="name">
@@ -142,6 +143,7 @@ function handleClick(item: TabItem) {
         position: relative;
         width: 9ch;
         max-width: 9ch;
+        font-size: var(--tg-font-size-xs);
 
         .icon {
           font-size: 28px;
@@ -175,8 +177,9 @@ function handleClick(item: TabItem) {
           .icon {
             --tg-icon-color: var(--tg-text-white);
           }
-          .name{
-            color:var(--tg-text-white);
+
+          .name {
+            color: var(--tg-text-white);
           }
         }
       }

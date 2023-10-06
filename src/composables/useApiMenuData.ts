@@ -37,8 +37,8 @@ export function useApiMenuData() {
 
   // sports
   const sportsMenu = ref<Menu>([
-    { title: '滚球盘', path: '', icon: 'spt-ball-plate', list: [], domId: '' },
-    { title: '即将开赛', path: '', icon: 'spt-timing', list: [], domId: '' },
+    { title: '滚球盘', path: '/sports/live/tennis', icon: 'spt-ball-plate', list: [], domId: '' },
+    { title: '即将开赛', path: '/sports/upcoming/all', icon: 'spt-timing', list: [], domId: '' },
     { title: '我的投注', path: '', icon: 'spt-user-bet', list: [], domId: '', token: true },
   ])
   const sportHotGames = ref<Menu>([
