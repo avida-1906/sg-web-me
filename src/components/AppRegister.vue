@@ -1,11 +1,21 @@
 <script setup lang='ts'>
+interface IRegParams {
+  email: string
+  username: string
+  password: string
+  birthday: string
+  parent_id?: string
+  device_number?: string
+}
+
 const closeDialog = inject('closeDialog', () => {})
 
 const { t } = useI18n()
 const { bool: checkboxValue } = useBoolean(false)
 const { bool: pwdStatus, setBool: setPwdStatus } = useBoolean(false)
-const { openTermsConditionsDialog } = useTermsConditionsDialog()
 const { bool: isShowPasswordVerify, setTrue: setShowPasswordVerifyTrue, setFalse: setShowPasswordVerifyFalse } = useBoolean(false)
+const { bool: needSaveFormData, setTrue: setNeedSaveFormDataTrue } = useBoolean(false)
+const { openTermsConditionsDialog } = useTermsConditionsDialog()
 const { value: email, errorMessage: emailErrorMsg, validate: valiEmail } = useField<string>('email', (value) => {
   if (!value)
     return t('pls_enter_email_address')
@@ -50,6 +60,8 @@ const { value: password, errorMessage: pwdErrorMsg, validate: valiPassword } = u
 const birthdayInputRef = ref()
 const birthday = ref('')
 
+const regParams = computed(() => Session.get(STORAGE_REG_PARAMS_KEYWORDS)?.value as IRegParams)
+
 async function getMemberReg() {
   await valiEmail()
   await valiUsername()
@@ -65,6 +77,7 @@ async function getMemberReg() {
       device_number: application.getDeviceNumber(),
     }
     Session.set(STORAGE_REG_PARAMS_KEYWORDS, paramsReg)
+    setNeedSaveFormDataTrue()
     closeDialog()
     await nextTick()
     openTermsConditionsDialog()
@@ -80,6 +93,20 @@ function onBlur() {
 function passwordVerifyPass(status: boolean) {
   setPwdStatus(status)
 }
+
+onMounted(() => {
+  console.log(regParams.value)
+  if (regParams.value) {
+    email.value = regParams.value?.email
+    username.value = regParams.value?.username
+    password.value = regParams.value?.password
+    birthday.value = regParams.value?.birthday
+  }
+})
+onUnmounted(() => {
+  if (!needSaveFormData.value)
+    Session.remove(STORAGE_REG_PARAMS_KEYWORDS)
+})
 </script>
 
 <template>
