@@ -10,11 +10,14 @@ interface IRegParams {
 
 const closeDialog = inject('closeDialog', () => {})
 
+const { openNotify } = useNotify()
 const { t } = useI18n()
 const appStore = useAppStore()
+const { bool: needBack, setFalse: setNeedBackFalse } = useBoolean(true)
 const { bool: isRead, setTrue: setReadTrue } = useBoolean(false)
 const { bool: checkboxValue } = useBoolean(false)
 const { openLoginDialog } = useLoginDialog()
+const { openRegisterDialog } = useRegisterDialog()
 const { errorMessage: checkedErrorMsg, validate: valiChecked } = useField<string>('checkbox', () => {
   if (!checkboxValue.value)
     return t('agree_terms_conditions')
@@ -29,14 +32,16 @@ const regParams = computed(() => {
 })
 const { run: runMemberReg, loading: isLoading } = useRequest(() => ApiMemberReg(regParams.value), {
   manual: true,
-  onSuccess: async (res: string) => {
+  onSuccess: async (res) => {
     appStore.setToken(res)
     Session.remove(STORAGE_REG_PARAMS_KEYWORDS)
+    setNeedBackFalse()
+    openNotify({
+      type: 'success',
+      message: '注册成功!',
+    })
     await nextTick()
     closeDialog()
-  },
-  onError: (err: Error) => {
-    console.log(err)
   },
 })
 
@@ -55,6 +60,7 @@ async function getStartGame() {
     runMemberReg()
 }
 async function toLogin() {
+  setNeedBackFalse()
   closeDialog()
   await nextTick()
   openLoginDialog()
@@ -66,6 +72,8 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   scrollRef.value.removeEventListener('scroll', handleScroll)
+  if (needBack.value)
+    openRegisterDialog()
 })
 </script>
 

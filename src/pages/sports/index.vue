@@ -2,6 +2,19 @@
 defineOptions({
   name: 'KeepAliveSports',
 })
+
+const { isMobile } = storeToRefs(useWindowStore())
+const { isLogin } = storeToRefs(useAppStore())
+
+const gameType = ref('all')
+const tabList = [
+  { label: '大厅', value: 'all', icon: 'spt-basketball', path: '/sports' },
+  { label: '我的投注', value: 'my-bet', icon: 'spt-user-bet', path: '/sports/my-bets', disabled: !isLogin.value },
+  { label: '收藏夹', value: 'fav', icon: 'uni-favorites', path: '/sports/favourites', disabled: !isLogin.value },
+  { label: '滚球盘', value: 'live', icon: 'spt-ball-plate', path: '/sports/live/tennis' },
+  { label: '即将开赛', value: 'soon', icon: 'spt-timing', path: '/sports/upcoming/all' },
+]
+
 const currentGame = ref('2')
 const gameList = [
   { name: '网球', id: '2', num: 20 },
@@ -25,34 +38,52 @@ const threeOptions = [
 </script>
 
 <template>
-  <div class="sports-home">
-    <div class="sports-page-title">
-      <div class="left">
-        <BaseIcon name="spt-ball-plate" />
-        <h6>滚球盘</h6>
+  <AppContent>
+    <div class="sports sports-layout-home">
+      <div class="layout-spacing">
+        <div class="hero-wrapper mt-24">
+          <AppBanner />
+        </div>
+        <div v-if="!isMobile" class="mt-24">
+          <AppGameSearch game-type="2" />
+        </div>
+        <div class="mt-24">
+          <BaseTab v-model="gameType" :list="tabList" :center="false" />
+        </div>
+        <AppSportsTab v-model="currentGame" :list="gameList" />
       </div>
-      <div class="right">
-        <VMenu placement="top">
-          <BaseButton size="sm" type="text" @click="toggleBase">
-            <BaseIcon v-if="isBase" name="uni-three-top" />
-            <BaseIcon v-else name="uni-standard" />
-          </BaseButton>
-          <template #popper>
-            <div class="tiny-menu-item-title">
-              {{ marketTypeText }}
+      <div class="content-container">
+        <div class="sports-home">
+          <div class="title">
+            <div class="left">
+              <BaseIcon name="spt-ball-plate" />
+              <h6>滚球盘</h6>
             </div>
-          </template>
-        </VMenu>
+            <div class="right">
+              <VMenu placement="top">
+                <BaseButton size="sm" type="text" @click="toggleBase">
+                  <BaseIcon v-if="isBase" name="uni-three-top" />
+                  <BaseIcon v-else name="uni-standard" />
+                </BaseButton>
+                <template #popper>
+                  <div class="tiny-menu-item-title">
+                    {{ marketTypeText }}
+                  </div>
+                </template>
+              </VMenu>
 
-        <BaseSelect v-if="isBase" v-model="baseType" :options="baseOptions" popper />
-        <BaseSelect v-else v-model="threeType" :options="threeOptions" popper disabled />
+              <BaseSelect v-if="isBase" v-model="baseType" :options="baseOptions" popper />
+              <BaseSelect v-else v-model="threeType" :options="threeOptions" popper disabled />
+            </div>
+          </div>
+          <AppSportsTab v-model="currentGame" :list="gameList" />
+        </div>
+      </div>
+      <div class="layout-spacing">
+        <AppBetData mode="casino" />
       </div>
     </div>
-    <AppSportsTab v-model="currentGame" :list="gameList" />
-    <div style="width: 233.64px;">
-      <AppSportsBetButton />
-    </div>
-  </div>
+  </AppContent>
 </template>
 
 <style lang='scss' scoped>
@@ -80,6 +111,5 @@ const threeOptions = [
 <route lang="yaml">
 name: sports-home
 meta:
-  layout: sports-home
-  top: sports-home
+  layout: home
 </route>
