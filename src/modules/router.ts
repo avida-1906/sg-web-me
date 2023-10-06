@@ -26,8 +26,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const appStore = useAppStore()
-  console.log(to.meta)
-  console.log(to.path)
+
   title.value = (to.meta.browserTitle || 'Stake.com') as string
 
   const auth = to.meta.auth || false

@@ -21,7 +21,7 @@ const pixTypeData = ref([
 
 // 银行卡列表
 const { list: bankcardList, runAsync: runBankcardList } = useList(ApiMemberBankcardList, {
-  loadingKeep: 5000,
+  loadingKeep: 1000,
 })
 
 const bindBanks = computed(() => {
