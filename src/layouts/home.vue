@@ -41,6 +41,8 @@ const homeOverlayIsShow = computed(() => {
   return leftIsExpand.value && isLessThanLg.value && !isMobile.value
 })
 
+function suspenseResolved() {}
+
 watch(() => width.value, (newWidth) => {
   windowStore.setAppContentWidth(newWidth)
 })
@@ -104,7 +106,7 @@ onErrorCaptured((err, instance, info) => {
               <RouterView v-slot="{ Component }">
                 <template v-if="Component">
                   <KeepAlive :include="keepAliveList" :max="10">
-                    <Suspense timeout="0">
+                    <Suspense timeout="0" @resolve="suspenseResolved">
                       <component :is="Component" />
                       <template #fallback>
                         <div class="center loading-content-height">

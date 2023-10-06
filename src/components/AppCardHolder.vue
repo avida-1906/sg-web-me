@@ -37,7 +37,8 @@ const bindBanks = computed(() => {
 })
 
 const toAddBankcards = function () {
-  const { openAddBankcardsDialog } = useAddBankcardsDialog({ title: '绑定银行卡', openName: openName.value })
+  console.log(bankcardList.value)
+  const { openAddBankcardsDialog } = useAddBankcardsDialog({ title: '绑定银行卡', openName: openName.value, isFirst: !bankcardList.value?.length })
   closeDialog()
   nextTick(() => openAddBankcardsDialog())
 }
