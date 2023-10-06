@@ -110,6 +110,14 @@ function valiBirthday() {
   valiDay()
 }
 
+onMounted(() => {
+  if (props.modelValue) {
+    const arr = props.modelValue.split('-')
+    setYear(+arr[0])
+    setMonth(+arr[1])
+    setDay(+arr[2])
+  }
+})
 defineExpose({ valiBirthday })
 </script>
 

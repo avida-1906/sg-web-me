@@ -213,7 +213,6 @@ declare global {
   const until: typeof import('@vueuse/core')['until']
   const upperLowerReg: typeof import('./utils/regexp')['upperLowerReg']
   const useActiveElement: typeof import('@vueuse/core')['useActiveElement']
-  const useAddBankcards: typeof import('./composables/useDialogAddBankcards')['useAddBankcards']
   const useAddBankcardsDialog: typeof import('./composables/useDialogAddBankcards')['useAddBankcardsDialog']
   const useAnimate: typeof import('@vueuse/core')['useAnimate']
   const useApiGameList: typeof import('./composables/useApiGameList')['useApiGameList']
@@ -301,6 +300,7 @@ declare global {
   const useIntervalFn: typeof import('@vueuse/core')['useIntervalFn']
   const useKeyModifier: typeof import('@vueuse/core')['useKeyModifier']
   const useLastChanged: typeof import('@vueuse/core')['useLastChanged']
+  const useLayoutAnimate: typeof import('./composables/useLayoutAnimate')['useLayoutAnimate']
   const useLeftSidebar: typeof import('./composables/useLeftSidebar')['useLeftSidebar']
   const useLink: typeof import('vue-router')['useLink']
   const useList: typeof import('./composables/useList')['useList']
@@ -720,6 +720,7 @@ declare module 'vue' {
     readonly useIntervalFn: UnwrapRef<typeof import('@vueuse/core')['useIntervalFn']>
     readonly useKeyModifier: UnwrapRef<typeof import('@vueuse/core')['useKeyModifier']>
     readonly useLastChanged: UnwrapRef<typeof import('@vueuse/core')['useLastChanged']>
+    readonly useLayoutAnimate: UnwrapRef<typeof import('./composables/useLayoutAnimate')['useLayoutAnimate']>
     readonly useLeftSidebar: UnwrapRef<typeof import('./composables/useLeftSidebar')['useLeftSidebar']>
     readonly useLink: UnwrapRef<typeof import('vue-router')['useLink']>
     readonly useList: UnwrapRef<typeof import('./composables/useList')['useList']>
@@ -1131,6 +1132,7 @@ declare module '@vue/runtime-core' {
     readonly useIntervalFn: UnwrapRef<typeof import('@vueuse/core')['useIntervalFn']>
     readonly useKeyModifier: UnwrapRef<typeof import('@vueuse/core')['useKeyModifier']>
     readonly useLastChanged: UnwrapRef<typeof import('@vueuse/core')['useLastChanged']>
+    readonly useLayoutAnimate: UnwrapRef<typeof import('./composables/useLayoutAnimate')['useLayoutAnimate']>
     readonly useLeftSidebar: UnwrapRef<typeof import('./composables/useLeftSidebar')['useLeftSidebar']>
     readonly useLink: UnwrapRef<typeof import('vue-router')['useLink']>
     readonly useList: UnwrapRef<typeof import('./composables/useList')['useList']>

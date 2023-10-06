@@ -23,8 +23,7 @@ const {
   isGreaterThanSm,
   isMobile,
 } = storeToRefs(windowStore)
-const appStore = useAppStore()
-const { needAnimate } = storeToRefs(appStore)
+const { animatingMounted, animatingWatch } = useLayoutAnimate({ aniMounted: true, aniRouteNameChange: true })
 
 // 内容区宽度
 const homeContainerRef = ref<HTMLElement | null>(null)
@@ -32,7 +31,6 @@ const { width } = useElementSize(homeContainerRef)
 const route = useRoute()
 const { leftIsExpand, isSwitching, switchTo, triggerLeftSidebar } = useLeftSidebar()
 const { rightIsExpand, rightContainerIs0, currentRightSidebarContent } = useRightSidebar()
-const { bool: isRouting, setFalse: setRFalse, setTrue: setRTrue } = useBoolean(false)
 
 const keepAliveList = ref<string[]>(['KeepAliveCasino'])
 
@@ -43,23 +41,8 @@ const homeOverlayIsShow = computed(() => {
   return leftIsExpand.value && isLessThanLg.value && !isMobile.value
 })
 
-function toggleAni() {
-  setRTrue()
-  setTimeout(() => {
-    setRFalse()
-  }, 300)
-}
-
 watch(() => width.value, (newWidth) => {
   windowStore.setAppContentWidth(newWidth)
-})
-
-watch(() => route.name, () => {
-  toggleAni()
-})
-
-onMounted(() => {
-  toggleAni()
 })
 
 onErrorCaptured((err, instance, info) => {
@@ -110,28 +93,30 @@ onErrorCaptured((err, instance, info) => {
       </header>
 
       <!-- <Transition name="home-slide-fade"> :key="route.path" -->
-      <div id="main-content-scrollable" class="scroll-y scrollable" :class="{ 'home-slide-fade-enter-active': isRouting && needAnimate }">
+      <div id="main-content-scrollable" class="scroll-y scrollable">
         <!-- 用于获取内容区宽度 -->
         <AppContent>
           <div ref="homeContainerRef" class="only-for-get-width" />
         </AppContent>
         <slot>
-          <AppContent :is-game-page="isCasinoGames">
-            <RouterView v-slot="{ Component }">
-              <template v-if="Component">
-                <KeepAlive :include="keepAliveList" :max="10">
-                  <Suspense timeout="0">
-                    <component :is="Component" />
-                    <template #fallback>
-                      <div class="center loading-content-height">
-                        <BaseLoading />
-                      </div>
-                    </template>
-                  </Suspense>
-                </KeepAlive>
-              </template>
-            </RouterView>
-          </AppContent>
+          <div :class="{ 'home-slide-fade-enter-active': animatingMounted || animatingWatch }">
+            <AppContent :is-game-page="isCasinoGames">
+              <RouterView v-slot="{ Component }">
+                <template v-if="Component">
+                  <KeepAlive :include="keepAliveList" :max="10">
+                    <Suspense timeout="0">
+                      <component :is="Component" />
+                      <template #fallback>
+                        <div class="center loading-content-height">
+                          <BaseLoading />
+                        </div>
+                      </template>
+                    </Suspense>
+                  </KeepAlive>
+                </template>
+              </RouterView>
+            </AppContent>
+          </div>
         </slot>
 
         <footer class="footer">
