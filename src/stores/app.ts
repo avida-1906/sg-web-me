@@ -14,7 +14,7 @@ export const useAppStore = defineStore('app', () => {
    * @type {boolean}
    * @description 路由变化时，是否需要动画
    */
-  const { bool: needAnimate, toggle: toggleNeedAnimate } = useBoolean(true)
+  const { bool: needAnimate, toggle: toggleNeedAnimate } = useBoolean(false)
 
   function setToken(token: string) {
     // 将token加密后存储到本地
