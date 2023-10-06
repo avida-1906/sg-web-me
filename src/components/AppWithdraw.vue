@@ -8,22 +8,31 @@ withDefaults(defineProps<Props>(), {
 })
 
 const { t } = useI18n()
-const { value: address, errorMessage: addressMsg } = useField<string>('address', (value) => {
+const { value: address, errorMessage: addressMsg, validate: valiAddress } = useField<string>('address', (value) => {
   if (!value)
     return t('this_field_is_required')
 
   return ''
 })
-const { value: amount, setValue: setAmount, errorMessage: amountMsg } = useField<string>('amount', (value) => {
+const { value: amount, setValue: setAmount, errorMessage: amountMsg, validate: valiAmount } = useField<string>('amount', (value) => {
   if (!value)
     return t('this_field_is_required')
-
+  return ''
+})
+const { value: paypwd, errorMessage: paypwdMsg, validate: valiPaypwd } = useField<string>('paypwd', (value) => {
+  if (!value)
+    return t('this_field_is_required')
   return ''
 })
 
 function onAmountInput() {
   if (amount.value)
     setAmount(application.numberToCurrency(+amount.value))
+}
+async function handleWithdraw() {
+  await valiAddress()
+  await valiAmount()
+  await valiPaypwd()
 }
 </script>
 
@@ -47,9 +56,9 @@ function onAmountInput() {
       </BaseInput>
     </div>
     <BaseLabel label="双重验证" must>
-      <BaseInput v-model="address" label="" must />
+      <BaseInput v-model="paypwd" :msg="paypwdMsg" must />
     </BaseLabel>
-    <BaseButton bg-style="primary" size="md">
+    <BaseButton bg-style="primary" size="md" @click="handleWithdraw">
       提款
     </BaseButton>
     <div class="tips">
@@ -104,7 +113,7 @@ function onAmountInput() {
     .currency-icon{
       display: inline-block;
       vertical-align: middle;
-      padding:0 4px;
+      padding:0  var(--tg-spacing-4);
     }
   }
 }

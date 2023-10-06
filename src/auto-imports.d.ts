@@ -396,6 +396,7 @@ declare global {
   const useVModels: typeof import('@vueuse/core')['useVModels']
   const useVibrate: typeof import('@vueuse/core')['useVibrate']
   const useVipDialog: typeof import('./composables/useDialogVip')['useVipDialog']
+  const useVirAddressDialog: typeof import('./composables/useDialogVirAddress')['useVirAddressDialog']
   const useVirtualList: typeof import('@vueuse/core')['useVirtualList']
   const useWakeLock: typeof import('@vueuse/core')['useWakeLock']
   const useWalletDialog: typeof import('./composables/useDialogWallet')['useWalletDialog']
@@ -814,6 +815,7 @@ declare module 'vue' {
     readonly useVModels: UnwrapRef<typeof import('@vueuse/core')['useVModels']>
     readonly useVibrate: UnwrapRef<typeof import('@vueuse/core')['useVibrate']>
     readonly useVipDialog: UnwrapRef<typeof import('./composables/useDialogVip')['useVipDialog']>
+    readonly useVirAddressDialog: UnwrapRef<typeof import('./composables/useDialogVirAddress')['useVirAddressDialog']>
     readonly useVirtualList: UnwrapRef<typeof import('@vueuse/core')['useVirtualList']>
     readonly useWakeLock: UnwrapRef<typeof import('@vueuse/core')['useWakeLock']>
     readonly useWalletDialog: UnwrapRef<typeof import('./composables/useDialogWallet')['useWalletDialog']>
@@ -1226,6 +1228,7 @@ declare module '@vue/runtime-core' {
     readonly useVModels: UnwrapRef<typeof import('@vueuse/core')['useVModels']>
     readonly useVibrate: UnwrapRef<typeof import('@vueuse/core')['useVibrate']>
     readonly useVipDialog: UnwrapRef<typeof import('./composables/useDialogVip')['useVipDialog']>
+    readonly useVirAddressDialog: UnwrapRef<typeof import('./composables/useDialogVirAddress')['useVirAddressDialog']>
     readonly useVirtualList: UnwrapRef<typeof import('@vueuse/core')['useVirtualList']>
     readonly useWakeLock: UnwrapRef<typeof import('@vueuse/core')['useWakeLock']>
     readonly useWalletDialog: UnwrapRef<typeof import('./composables/useDialogWallet')['useWalletDialog']>

@@ -263,7 +263,18 @@ export function ApiMemberWalletList(
     page_size: number
   },
 ) {
-  return httpClient.get<string>('/member/wallet/list', params)
+  return httpClient.get<IResponseList<{
+    id: string
+    uid: string
+    state: number
+    contract_type: string
+    currency_name: string
+    created_at: number
+    updated_at: number
+    is_default: number
+    username: string
+    wallet_address: string
+  }>>('/member/wallet/list', params)
 }
 
 /**
