@@ -1,4 +1,9 @@
 <script setup lang='ts'>
+import SportsLive from '~/pages/sports/live/index.vue'
+import SportsUpComing from '~/pages/sports/upcoming/index.vue'
+import SportsMyBets from '~/pages/sports/my-bets.vue'
+import SportsFavourites from '~/pages/sports/favourites.vue'
+
 defineOptions({
   name: 'KeepAliveSports',
 })
@@ -6,7 +11,7 @@ defineOptions({
 const { isMobile } = storeToRefs(useWindowStore())
 const { isLogin } = storeToRefs(useAppStore())
 
-const gameType = ref('all')
+const marketType = ref('all')
 const tabList = [
   { label: '大厅', value: 'all', icon: 'spt-basketball' },
   { label: '我的投注', value: 'my-bet', icon: 'spt-user-bet', disabled: !isLogin.value },
@@ -14,12 +19,14 @@ const tabList = [
   { label: '滚球盘', value: 'live', icon: 'spt-ball-plate' },
   { label: '即将开赛', value: 'soon', icon: 'spt-timing' },
 ]
-
 const currentGame = ref('2')
 const gameList = [
-  { name: '网球', id: '2', num: 20 },
+  { name: '网球', id: '2', num: 22 },
   { name: '足球', id: '3', num: 30 },
   { name: '美式橄榄球', id: '4', num: 5 },
+  { name: '乒乓球', id: '7', num: 7 },
+  { name: '篮球', id: '6', num: 6 },
+  { name: '英雄联盟', id: '24', num: 24 },
 ]
 const { bool: isBase, toggle: toggleBase } = useBoolean(true)
 const marketTypeText = computed(() => isBase.value ? '三项投注' : '标准')
@@ -47,75 +54,52 @@ const threeOptions = [
         <AppGameSearch game-type="2" />
       </div>
       <div class="mt-24">
-        <BaseTab v-model="gameType" :list="tabList" :center="false" />
+        <BaseTab v-model="marketType" size="large" :list="tabList" :center="false" />
       </div>
     </div>
-    <div class="content-container">
-      <div class="sports-home">
-        <div class="sports-page-title">
-          <div class="left">
-            <BaseIcon name="spt-ball-plate" />
-            <h6>滚球盘</h6>
-          </div>
-          <div class="right">
-            <VMenu placement="top">
-              <BaseButton size="sm" type="text" @click="toggleBase">
-                <BaseIcon v-if="isBase" name="uni-three-top" />
-                <BaseIcon v-else name="uni-standard" />
-              </BaseButton>
-              <template #popper>
-                <div class="tiny-menu-item-title">
-                  {{ marketTypeText }}
-                </div>
-              </template>
-            </VMenu>
 
-            <BaseSelect v-if="isBase" v-model="baseType" :options="baseOptions" popper />
-            <BaseSelect v-else v-model="threeType" :options="threeOptions" popper disabled />
-          </div>
+    <!-- 大厅 -->
+    <div v-if="marketType === 'all'" class="hall">
+      <div class="sports-page-title">
+        <div class="left">
+          <BaseIcon name="spt-ball-plate" />
+          <h6>滚球盘</h6>
         </div>
-        <AppSportsTab v-model="currentGame" :list="gameList" />
-        <div style="width: 233.64px;margin-bottom: 20px;">
-          <AppSportsBetButton />
-        </div>
-        <div style="width: 233.64px;margin-bottom: 20px;">
-          <AppSportsBetButton layout="horizontal" />
-        </div>
-        <div style="width: 233.64px;margin-bottom: 20px;">
-          <AppSportsBetButton active />
-        </div>
-        <div style="width: 233.64px;margin-bottom: 20px;">
-          <AppSportsBetButton disabled />
+        <div class="right">
+          <VMenu placement="top">
+            <BaseButton size="sm" type="text" @click="toggleBase">
+              <BaseIcon v-if="isBase" name="uni-three-top" />
+              <BaseIcon v-else name="uni-standard" />
+            </BaseButton>
+            <template #popper>
+              <div class="tiny-menu-item-title">
+                {{ marketTypeText }}
+              </div>
+            </template>
+          </VMenu>
+
+          <BaseSelect v-if="isBase" v-model="baseType" :options="baseOptions" popper />
+          <BaseSelect v-else v-model="threeType" :options="threeOptions" popper disabled />
         </div>
       </div>
+      <AppSportsTab v-model="currentGame" :list="gameList" />
     </div>
+    <!-- 我的投注 -->
+    <SportsMyBets v-else-if="marketType === 'my-bet'" />
+    <!-- 收藏夹 -->
+    <SportsFavourites v-else-if="marketType === 'fav'" />
+    <!-- 滚球 -->
+    <SportsLive v-else-if="marketType === 'live'" />
+    <!-- 即将开赛 -->
+    <SportsUpComing v-else-if="marketType === 'soon'" />
+
     <div class="layout-spacing">
       <AppBetData mode="casino" />
     </div>
   </div>
 </template>
 
-<style lang='scss' scoped>
-.sports-home {}
-
-.sports-page-title {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  .left {
-    display: flex;
-    font-size: var(--tg-font-size-md);
-    color: var(--tg-text-white);
-    font-weight: var(--tg-font-weight-semibold);
-    gap: var(--tg-spacing-8);
-  }
-  .right{
-    display: flex;
-  }
-}
-</style>
+<style lang='scss' scoped></style>
 
 <route lang="yaml">
 name: sports-home
