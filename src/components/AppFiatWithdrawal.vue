@@ -25,7 +25,7 @@ const { list: bankcardList, run: runBankcardList, loading: bankcardListLoading }
 })
 
 const bindBanks = computed(() => {
-  return bankcardList.value.map((item) => {
+  return bankcardList.value?.map((item) => {
     if (item.is_default === 1)
       selectBank.value = item.bank_account
     const temp = {
@@ -46,7 +46,7 @@ runBankcardList(pagination.value)
   </div>
   <div v-else class="app-fiat-withdrawal">
     <!-- 绑定银行卡/三方账户 -->
-    <div v-if="!!bankcardList.length" class="bank-bind">
+    <div v-if="!bankcardList?.length" class="bank-bind">
       <AppAddBankcards :is-first="true" />
     </div>
     <!-- 出款信息 -->
