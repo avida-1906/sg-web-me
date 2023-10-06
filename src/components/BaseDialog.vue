@@ -109,10 +109,6 @@ onUnmounted(() => {
 </style>
 
 <style lang="scss" scoped>
-  .dialog-loading-height {
-    min-height: 200px;
-  }
-
   .v-enter-active,
   .v-leave-active {
     transition: all .3s ease;
