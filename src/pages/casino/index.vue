@@ -111,6 +111,7 @@ await application.allSettled([runLive({ game_type: EnumCasinoApiGameType.LIVE })
 </style>
 
 <route lang="yaml">
+name: casino-home
 meta:
   layout: home
 </route>

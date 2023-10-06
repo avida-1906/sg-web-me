@@ -1,4 +1,6 @@
-import type { ILocalStorageValue } from './index.utils'
+export interface IStorageValue<T = any> {
+  value: T
+}
 
 /**
  * @description: 本地存储的key
@@ -10,19 +12,20 @@ export const STORAGE_SEARCH_KEYWORDS_LIVE = 'search_keywords_live'
 export const STORAGE_SEARCH_KEYWORDS_SPORTS = 'search_keywords_sports'
 export const STORAGE_MENU_EXPAND_DOMID = 'menu_expand_domid'
 export const STORAGE_RIGHT_SIDEBAR_CONTENT = 'right_sidebar_content'
+export const STORAGE_SPORTS_PANEL_TYPE_KEY = 'sports_panel_type'
 
 export class Local {
   static set<T>(key: string, value: any) {
     if (!key.trim())
       return
-    const _value: ILocalStorageValue<T> = {
+    const _value: IStorageValue<T> = {
       value,
     }
 
     localStorage.setItem(key, JSON.stringify(_value))
   }
 
-  static get<T>(key: string): ILocalStorageValue<T> | null {
+  static get<T>(key: string): IStorageValue<T> | null {
     if (!key.trim())
       return null
 
@@ -63,14 +66,14 @@ export class Session {
     if (!key.trim())
       return
 
-    const _value: ILocalStorageValue<T> = {
+    const _value: IStorageValue<T> = {
       value,
     }
 
     sessionStorage.setItem(key, JSON.stringify(_value))
   }
 
-  static get<T>(key: string): ILocalStorageValue<T> | null {
+  static get<T>(key: string): IStorageValue<T> | null {
     if (!key.trim())
       return null
 

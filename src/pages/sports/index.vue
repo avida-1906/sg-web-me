@@ -16,6 +16,8 @@ defineOptions({
 </style>
 
 <route lang="yaml">
+name: sports-home
 meta:
   layout: sports-home
+  top: sports-home
 </route>
