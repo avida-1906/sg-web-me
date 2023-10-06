@@ -21,7 +21,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 const emit = defineEmits(['update:modelValue', 'select'])
 
-const { bool, setTrue, setFalse } = useBoolean(false)
+const { bool: isPopperOpen, setTrue: setPopperOpen, setFalse: setPopperClose } = useBoolean(false)
 const parent = ref<HTMLElement | null>(null)
 const { width } = useElementSize(parent)
 
@@ -46,12 +46,17 @@ function onClickPopperItem(v: any) {
   emit('update:modelValue', v)
   emit('select', v)
 }
+function onClickPopper() {
+  if (props.disabled)
+    return
+  setPopperOpen()
+}
 </script>
 
 <template>
   <template v-if="popper">
-    <VDropdown :distance="6" :popper-class="theme ? 'theme-black' : ''" @hide="setFalse">
-      <div ref="parent" class="popper-label" @click="setTrue">
+    <VDropdown :disabled="disabled" :distance="6" :popper-class="theme ? 'theme-black' : ''" @hide="setPopperClose">
+      <div ref="parent" class="popper-label" :class="{ disabled }" @click="onClickPopper">
         <slot name="label" :data="selectedOption">
           <span v-if="!banks">{{ popperLabel }}</span>
           <span v-else>
@@ -59,11 +64,11 @@ function onClickPopperItem(v: any) {
           </span>
         </slot>
 
-        <div class="icon" :class="{ up: bool }">
+        <div class="icon" :class="{ up: isPopperOpen }">
           <BaseIcon name="uni-arrow-down" />
         </div>
       </div>
-      <template #poppe="{ hide }">
+      <template #popper="{ hide }">
         <div class="scroll-y need-pad-y popper-wrap">
           <a
             v-for="item, i in options" :key="i"
@@ -155,6 +160,10 @@ function onClickPopperItem(v: any) {
 
   &:active {
     transform: scale(0.96);
+  }
+  &.disabled{
+    opacity: 0.5;
+    cursor: not-allowed;
   }
 }
 

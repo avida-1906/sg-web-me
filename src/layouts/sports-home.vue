@@ -10,16 +10,9 @@ const tabList = [
   { label: '我的投注', value: 'my-bet', icon: 'spt-user-bet', path: '/sports/my-bets', disabled: !isLogin.value },
   { label: '收藏夹', value: 'fav', icon: 'uni-favorites', path: '/sports/favourites', disabled: !isLogin.value },
   { label: '滚球盘', value: 'live', icon: 'spt-ball-plate', path: '/sports/live/tennis' },
-  { label: '即将开赛', value: 'soon', icon: 'spt-timing', path: '/sports/upcoming' },
+  { label: '即将开赛', value: 'soon', icon: 'spt-timing', path: '/sports/upcoming/all' },
 ]
 const keepAliveList = ref<string[]>(['KeepAliveSports'])
-
-const currentGame = ref('2')
-const gameList = [
-  { name: '网球', id: '2' },
-  { name: '足球', id: '3' },
-  { name: '美式橄榄球', id: '4' },
-]
 </script>
 
 <template>
@@ -37,7 +30,6 @@ const gameList = [
             <div class="mt-24">
               <BaseTab v-model="gameType" :list="tabList" :center="false" />
             </div>
-            <AppSportsTab v-model="currentGame" :list="gameList" />
           </div>
           <div class="content-container">
             <RouterView v-slot="{ Component }">
