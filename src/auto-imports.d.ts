@@ -213,7 +213,6 @@ declare global {
   const until: typeof import('@vueuse/core')['until']
   const upperLowerReg: typeof import('./utils/regexp')['upperLowerReg']
   const useActiveElement: typeof import('@vueuse/core')['useActiveElement']
-  const useAddBankcards: typeof import('./composables/useDialogAddBankcards')['useAddBankcards']
   const useAddBankcardsDialog: typeof import('./composables/useDialogAddBankcards')['useAddBankcardsDialog']
   const useAnimate: typeof import('@vueuse/core')['useAnimate']
   const useApiGameList: typeof import('./composables/useApiGameList')['useApiGameList']

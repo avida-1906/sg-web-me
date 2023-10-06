@@ -14,13 +14,6 @@ const tabList = [
   { label: '即将开赛', value: 'soon', icon: 'spt-timing', path: '/sports/upcoming/all' },
 ]
 const keepAliveList = ref<string[]>(['KeepAliveSports'])
-
-const currentGame = ref('2')
-const gameList = [
-  { name: '网球', id: '2' },
-  { name: '足球', id: '3' },
-  { name: '美式橄榄球', id: '4' },
-]
 </script>
 
 <template>
