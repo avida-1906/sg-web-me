@@ -348,6 +348,12 @@ body {
   &:not(.reset) {
     padding-bottom: var(--tg-spacing-24);
   }
+  &:not(.reset).variant-normal {
+    padding-bottom: var(--tg-spacing-32);
+  }
+  &:not(.reset).no-bottom-spacing {
+    padding-bottom: unset;
+  }
 }
 
 .mt-24 {
