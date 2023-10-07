@@ -3,6 +3,7 @@ interface Props {
   title: string // 标题
   badge?: string // 标签
   lastOne?: boolean // 最后一个
+  btnLoading?: boolean // 按钮loading状态
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -38,7 +39,7 @@ const onSubmit = function () {
       </div>
       <div class="btm-right">
         <slot name="btm-right" />
-        <BaseButton bg-style="secondary" size="md" class="btn-width" @click="onSubmit">
+        <BaseButton bg-style="secondary" size="md" class="btn-width" :loading="btnLoading" @click="onSubmit">
           保存
         </BaseButton>
       </div>
