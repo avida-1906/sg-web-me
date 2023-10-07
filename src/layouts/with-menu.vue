@@ -9,8 +9,8 @@ const { appContentWidth } = storeToRefs(useWindowStore())
 
 const { bool: layoutLoading, setFalse: setLFalse } = useBoolean(true)
 
-const menuData = computed<any>(() => route.meta.menu)
-const icon = computed<any>(() => route.meta.icon)
+const menuData = computed<any>(() => route.meta.withMenuMenu)
+const icon = computed<any>(() => route.meta.withMenuIcon)
 
 const activeMenu = ref(menuData.value.filter((m: any) => m.path === route.path)[0])
 const { bool: isPopShow, setTrue: setPTrue, setFalse: setPFalse } = useBoolean(false)
@@ -61,7 +61,7 @@ watch(route, (val) => {
                     <div class="stack y-center padding-none top direction-horizontal x-space-between stretch gap-medium">
                       <div class="stack y-center gap-medium padding-none direction-horizontal title x-flex-start">
                         <BaseIcon :name="icon" />
-                        <span>{{ $t(route.meta.title as string) }}</span>
+                        <span>{{ $t(route.meta.withMenuTitle as string) }}</span>
                       </div>
                       <div class="close" @click="goBack">
                         <BaseIcon name="uni-close" />
@@ -222,6 +222,4 @@ watch(route, (val) => {
 </style>
 
 <route lang="yaml">
-meta:
-  animate: false
 </route>
