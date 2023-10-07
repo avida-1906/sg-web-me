@@ -221,6 +221,7 @@ declare global {
   const useAddBankcardsDialog: typeof import('./composables/useDialogAddBankcards')['useAddBankcardsDialog']
   const useAnimate: typeof import('@vueuse/core')['useAnimate']
   const useApiGameList: typeof import('./composables/useApiGameList')['useApiGameList']
+  const useApiMemberBankCardList: typeof import('./composables/useApiMemberBankcardList')['useApiMemberBankCardList']
   const useApiMemberTreeList: typeof import('./composables/useApiMemberTreeList')['useApiMemberTreeList']
   const useApiMenuData: typeof import('./composables/useApiMenuData')['useApiMenuData']
   const useApiSendMsg: typeof import('./composables/useApiSendMsg')['useApiSendMsg']
@@ -648,6 +649,7 @@ declare module 'vue' {
     readonly useActiveElement: UnwrapRef<typeof import('@vueuse/core')['useActiveElement']>
     readonly useAddBankcardsDialog: UnwrapRef<typeof import('./composables/useDialogAddBankcards')['useAddBankcardsDialog']>
     readonly useAnimate: UnwrapRef<typeof import('@vueuse/core')['useAnimate']>
+    readonly useApiMemberBankCardList: UnwrapRef<typeof import('./composables/useApiMemberBankcardList')['useApiMemberBankCardList']>
     readonly useApiMemberTreeList: UnwrapRef<typeof import('./composables/useApiMemberTreeList')['useApiMemberTreeList']>
     readonly useApiMenuData: UnwrapRef<typeof import('./composables/useApiMenuData')['useApiMenuData']>
     readonly useApiSendMsg: UnwrapRef<typeof import('./composables/useApiSendMsg')['useApiSendMsg']>
@@ -1066,6 +1068,7 @@ declare module '@vue/runtime-core' {
     readonly useActiveElement: UnwrapRef<typeof import('@vueuse/core')['useActiveElement']>
     readonly useAddBankcardsDialog: UnwrapRef<typeof import('./composables/useDialogAddBankcards')['useAddBankcardsDialog']>
     readonly useAnimate: UnwrapRef<typeof import('@vueuse/core')['useAnimate']>
+    readonly useApiMemberBankCardList: UnwrapRef<typeof import('./composables/useApiMemberBankcardList')['useApiMemberBankCardList']>
     readonly useApiMemberTreeList: UnwrapRef<typeof import('./composables/useApiMemberTreeList')['useApiMemberTreeList']>
     readonly useApiMenuData: UnwrapRef<typeof import('./composables/useApiMenuData')['useApiMenuData']>
     readonly useApiSendMsg: UnwrapRef<typeof import('./composables/useApiSendMsg')['useApiSendMsg']>

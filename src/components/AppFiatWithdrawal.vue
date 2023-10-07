@@ -2,42 +2,15 @@
 import { getCurrentLanguage, getCurrentLanguageIdForBackend } from '~/modules/i18n'
 
 const { isLessThanXs } = storeToRefs(useWindowStore())
+const { bankcardList, runBankcardList, bindBanks, selectBank } = useApiMemberBankCardList()
 
 const amount = ref('')
-// '1' 银行卡， '2' pix 除了巴西其他国家都是银行卡
+/** '1' 银行卡， '2' pix 除了巴西其他国家都是银行卡 */
 const currentType = ref(getCurrentLanguage() === 'pt-BR' ? '2' : '1')
-const selectBank = ref('')
-const pagination = ref({
-  page_size: '10',
-  page: '1',
-  bank_type: getCurrentLanguageIdForBackend(),
-})
-const bankTypeData = ref([
-  { label: '银行转账', icon: 'fiat-bank', value: '1' },
-])
-const pixTypeData = ref([
-  { label: 'PIX', icon: 'fiat-bank', value: '2' },
-])
+const bankTypeData = ref([{ label: '银行转账', icon: 'fiat-bank', value: '1' }])
+const pixTypeData = ref([{ label: 'PIX', icon: 'fiat-bank', value: '2' }])
 
-// 银行卡列表
-const { list: bankcardList, runAsync: runBankcardList } = useList(ApiMemberBankcardList, {
-  loadingKeep: 1000,
-})
-
-const bindBanks = computed(() => {
-  return bankcardList.value?.map((item) => {
-    if (item.is_default === 1)
-      selectBank.value = item.bank_account
-    const temp = {
-      label: item.bank_name,
-      value: item.bank_account,
-      icon: 'fiat-bank',
-    }
-    return temp
-  })
-})
-
-await application.allSettled([runBankcardList(pagination.value)])
+await application.allSettled([runBankcardList({ bank_type: getCurrentLanguageIdForBackend() })])
 </script>
 
 <template>

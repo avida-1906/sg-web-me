@@ -298,8 +298,8 @@ export function ApiMemberBalanceLockerShow() {
  * 银行卡列表
  */
 export function ApiMemberBankcardList(params: {
-  page_size: string
-  page: string
+  page_size?: string
+  page?: string
   bank_type: string
 }) {
   return httpClient.get<IResponseList<{
