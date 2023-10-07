@@ -20,6 +20,11 @@ const eventData = reactive({
         awayScore: 0,
         matchStatus: '上半场',
       },
+      {
+        homeScore: 1,
+        awayScore: 5,
+        matchStatus: '第二盘',
+      },
     ],
     currentTeamServing: null,
     homeGameScore: '0',
@@ -91,6 +96,29 @@ const eventData = reactive({
   },
 })
 
+const scoreBoard = computed(() => {
+  const head = [
+    { key: 'competitor' },
+    { key: 'corners', score: eventData.eventStatus.statistic.corners },
+    { key: 'yellowCards', score: eventData.eventStatus.statistic.yellowCards },
+    { key: 'redCards', score: eventData.eventStatus.statistic.redCards },
+    {
+      key: 'period',
+      periodScores: eventData.eventStatus.periodScores,
+    },
+    { key: 'gameScore' },
+    { key: 'matchScore' },
+  ]
+  const headTitle = mapHeadArea(head, 'title')
+  const headHome = mapHeadArea(head, 'home')
+  const headAway = mapHeadArea(head, 'away')
+  return {
+    head,
+    headTitle,
+    headHome,
+    headAway,
+  }
+})
 const sport = computed(() => route.params.sport)
 const country = computed(() => route.params.country)
 const event = computed(() => route.params.event)
@@ -106,6 +134,24 @@ const breadcrumb = computed(() => {
     { path: `/sports/${sslug}/${cslug}/${slug}/${t_slug}`, title: competitors.map(i => i.abbreviation).join(' - '), id: t_id },
   ]
 })
+const gridAreas = computed(() => {
+  return `
+    "${scoreBoard.value.headTitle.map((i: any) => i.name).join(' ')}"
+    "${scoreBoard.value.headHome.map((i: any) => i.name).join(' ')}"
+    "${scoreBoard.value.headAway.map((i: any) => i.name).join(' ')}"
+  `
+})
+
+function mapHeadArea(head: Array<{ key: string; periodScores?: Array<{ [prop: string]: any }> }>, label: string) {
+  return head.reduce((accumulator: any, currentValue) => {
+    if (currentValue.periodScores && currentValue.periodScores.length)
+      accumulator.push(...currentValue.periodScores.map((p, idx) => ({ ...p, key: currentValue.key, name: `${currentValue.key}_${label}_${idx}`, qualifier: label })))
+    else
+      accumulator.push({ ...currentValue, name: `${currentValue.key}_${label}`, qualifier: label })
+
+    return accumulator
+  }, [])
+}
 </script>
 
 <template>
@@ -118,7 +164,7 @@ const breadcrumb = computed(() => {
             <div class="fixture-column">
               <div class="background match-statistics" :style="{ '--sport-image': `url(/img/match-statistics/${sport}.jpg)` }">
                 <div class="box-shadow wrapper has-background">
-                  <div class="content scroll-x" />
+                  <div class="content scroll-x" :style="{ 'grid-template-areas': gridAreas }" />
                 </div>
               </div>
               <div class="live-stream-scoreboard-footer" />
