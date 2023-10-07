@@ -11,6 +11,7 @@ declare global {
   const ApiMemberBalanceLockerUpdate: typeof import('./apis/index')['ApiMemberBalanceLockerUpdate']
   const ApiMemberBankcardInsert: typeof import('./apis/index')['ApiMemberBankcardInsert']
   const ApiMemberBankcardList: typeof import('./apis/index')['ApiMemberBankcardList']
+  const ApiMemberCurrencyConfig: typeof import('./apis/index')['ApiMemberCurrencyConfig']
   const ApiMemberDetail: typeof import('./apis/index')['ApiMemberDetail']
   const ApiMemberFavDelete: typeof import('./apis/index')['ApiMemberFavDelete']
   const ApiMemberFavInsert: typeof import('./apis/index')['ApiMemberFavInsert']
@@ -452,6 +453,7 @@ declare module 'vue' {
     readonly ApiMemberBalanceLockerUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberBalanceLockerUpdate']>
     readonly ApiMemberBankcardInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardInsert']>
     readonly ApiMemberBankcardList: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardList']>
+    readonly ApiMemberCurrencyConfig: UnwrapRef<typeof import('./apis/index')['ApiMemberCurrencyConfig']>
     readonly ApiMemberDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberDetail']>
     readonly ApiMemberFavDelete: UnwrapRef<typeof import('./apis/index')['ApiMemberFavDelete']>
     readonly ApiMemberFavInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberFavInsert']>
@@ -875,6 +877,7 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberBalanceLockerUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberBalanceLockerUpdate']>
     readonly ApiMemberBankcardInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardInsert']>
     readonly ApiMemberBankcardList: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardList']>
+    readonly ApiMemberCurrencyConfig: UnwrapRef<typeof import('./apis/index')['ApiMemberCurrencyConfig']>
     readonly ApiMemberDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberDetail']>
     readonly ApiMemberFavDelete: UnwrapRef<typeof import('./apis/index')['ApiMemberFavDelete']>
     readonly ApiMemberFavInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberFavInsert']>
