@@ -35,12 +35,10 @@ const activeCurrency: Ref<Currency> = ref({
   name: '',
   id: 0,
 })
-const currentNetwork = ref('1')
+const currentNetwork = ref('TRC20')
 const networkList = [
-  { label: '网络1', value: '1' },
-  { label: '网络2', value: '2' },
-  { label: '网络3', value: '3' },
-  { label: '网络4', value: '4' },
+  { label: 'ERC20', value: 'ERC20' },
+  { label: 'TRC20', value: 'TRC20' },
 ]
 
 // 搜索币种

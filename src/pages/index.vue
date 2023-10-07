@@ -16,6 +16,7 @@ const { isLogin } = storeToRefs(useAppStore())
 const { openVipDialog } = useVipDialog()
 const { openWalletDialog } = useWalletDialog()
 
+const btnText = ref('查看更多')
 const vipProgressData = ref<IVipProgressData>({
   percent: 30,
   currentLevel: 2,
@@ -29,6 +30,10 @@ const isXs = computed(() => appContentWidth.value <= widthBoundaryXs.value)
 
 const onShowMore = function () {
   toggleShowMore()
+  if (showMore)
+    btnText.value = '显示较少'
+  else
+    btnText.value = '查看更多'
 }
 
 await application.allSettled([runLive({ game_type: 1 }), runSlot({ game_type: 3 })])
@@ -140,26 +145,41 @@ await application.allSettled([runLive({ game_type: 1 }), runSlot({ game_type: 3 
     <!-- 公司介绍 -->
     <div class="index-introduction" :class="{ 'max-height': showMore }">
       <div class="introduction-content" :class="{ 'column-count': !isSm }">
-        <h1>在 Stake 享受最出色的在线赌场体验</h1>
-        <p>自 2017 年以来，Stake.com 在网络上提供了最出色的在线加密货币与比特币赌场的博彩体验。易于使用、功能丰富且平台简约，玩家们都一而再再而三地重返 Stake 投注于他们最喜爱的赌场游戏。</p>
-        <p>Stake 团队一直都在努力改进我们无可匹敌的服务，确保来自世界各地的用户都能享有最佳的在线赌场博彩体验。随着我们定期增加到平台上的大量新游戏以及杰出的客户支持，玩家必能轻松在闻名的 Stake 赌场上雷厉风行。</p>
-        <h1>在种类繁多的赌场游戏中投注于老虎机、纸牌游戏等</h1>
-        <p>浏览我们种类繁多的赌场游戏，在 Stake 享受公平有趣的博彩体验。直接通过您的浏览器在老虎机、真人娱乐场、21点、百家乐、轮盘、弹珠以及数以千计的经典游戏上进行投注。</p>
-        <p>此外，我们还具有著名的 Stake 原创游戏——最初让 Stake 声名鹊起的赌场游戏。这包括了像 Dice、Plinko、Mines、Crash、Limbo、Hilo、Keno、Wheel 等热门游戏，另加我们最近刚推出的另一款 Stake 原创 Dragon Tower！</p>
-        <p>无论您是热衷于像 Video Poker 这类的桌面与纸牌游戏、 Spin a Win 这类的游戏节目游戏或是新推出的赌场游戏——最终的选择权都在您的手里！</p>
-        <h1>如何通过您的加密货币钱包在 Stake 存款</h1>
-        <p>在我们的在线赌场上使用比特币或其他可用的加密货币进行投注其实十分容易。要把资金存入您的 Stake.com 账户，请遵循下列步骤：</p>
+        <p>Stake.com 是加密货币博彩领域的全球领导者，拥有以比特币和其他加密货币进行投注的最佳赌场与体育博彩平台之一。 成立于 2017 年的 Stake.com 现已发展成为在线博彩行业中最值得信赖的品牌之一，并在全球许多市场上提供了种类繁多的赌场游戏。玩家可以在 Stake 这单一的平台上同时享受安全、可靠及有趣的在线博彩体验！ 除了赌场外，Stake.com 也提供了能在世界上最大型的体育项目、联赛与比赛上进行投注的动态体育博彩平台。具有最新更新的赔率和各种各样的投注选项，不难理解为什么 Stake 即是使用加密货币进行体育投注最实用的方式。</p>
+        <p>Stake.com 是业内最负盛名的加密货币赌场与体育博彩平台之一。作为UFC 在拉丁美洲和亚洲的官方博彩合作伙伴以及沃特福德足球俱乐部的主要赞助商， Stake 是例如 Drake、伊斯利 · 阿迪萨亚、何塞 · 奥尔多等许多业内重头人物与超级巨星所信任的优质博彩合作伙伴。</p>
+        <p>Stake.com 在库拉索获得许可，提供安全、可靠及公平的平台。Stake.com 由 Medium Rare N.V. 根据颁发给由库拉索政府授权和监管的 Antillephone 的游戏许可证 8048/JAZ 运营。 凭借良好的声誉、安全可靠的平台以及赌场与体育博彩上的各种投注选项，Stake 是个在世界各地都具有活跃社区的在线博彩平台。</p>
+        <h1>Stake 加密货币赌场体验</h1>
+        <p>Stake 加密货币赌场具有来自许多游戏提供商的数千多款赌场游戏，带给玩家无与伦比的体验。Stake 的赌场游戏在类型与玩法上各不相同，而这也包括了老虎机、21点、轮盘、百家乐和其他桌面游戏等经典游戏。</p>
+        <p>为了让玩家获得身临其境的博彩体验，Stake 提供的真人娱乐场游戏具有真人荷官，通过现场直播视频让玩家在各种各样的真人娱乐场游戏中获得正宗的赌场游戏体验。</p>
+        <p>Stake 除了提供来自许多游戏提供商不同类型的赌场游戏外，我们还拥有自己的 Stake 原创游戏，而这些游戏还是 Stake.com 最受欢迎的游戏之一，例如 Dice、Plinko、Mines、Crash、Limbo、Hilo等经典游戏。</p>
+        <p>由我们才华横溢的团队制作以提供业内最优质、最公平的赌场游戏体验，Stake 原创游戏都是可证明公平的游戏且具有业内最低的庄家优势，并也同时确保玩家能获得值得信赖的博彩体验以及居高的玩家回报率（RTP）</p>
+        <p>除了种类繁多的游戏、原创游戏的精美设计和各式各样的投注选项，Stake 也为使用比特币（BTC）、以太币（ETH）、狗狗币（DOGE）、比特币现金（BCH）、瑞波币（XRP）、波场币（TRX）以及柚子币（EOS）进行投注的玩家带来了最具吸引力和娱乐性的在线赌场体验之一。</p>
+
+        <h1>Stake.com 加密货币体育博彩</h1>
+        <p>Stake.com 的在线体育博彩让玩家能轻松投注于全球最大型的体育赛事。体育博彩玩家可以在我们的平台上投注于他们最喜爱的体育项目，例如足球、篮球、综合格斗、电子竞技、冰上曲棍球、板球、美式足球、网球、乒乓球、棒球、飞镖、一级方程式等，这甚至还包括了政治与娱乐！</p>
+        <p>Stake.com 为玩家提供了在 UFC、英超联赛、NBA、NFL、CFL、MLB、意甲联赛、西甲联赛，还有甚至像《英雄联盟》和 Dota 2的电子竞技联赛这类各种大型的联赛和锦标赛上进行投注的机会。无论是哪个体育联赛，您都能在 Stake 找到它的投注盘口！</p>
+        <p>Stake 为想在实时赛事上投注的玩家提供了实时体育博彩，以多种实时投注选项满足最活跃的体育博彩玩家。</p>
+        <h1>Stake 的促销活动、奖金以及 VIP 计划</h1>
+        <p>Stake 具有简单易用的用户界面以及高质量的用户体验，为 Stake 社区活跃的成员带来不同的促销活动与奖金。</p>
+        <p>Stake 为玩家们准备的促销活动包括了定期的体育博彩促销活动和赌场促销活动。</p>
+        <p>除了为赌场与体育博彩玩家们举办惊人的 $50,000 周度送奖活动和 Stake 每日竞赛外，Stake 也时常以 UFC、NBA、英超联赛等大型赛事或新推出的游戏进行特别的促销活动与奖金发放。</p>
+        <p>注册了 Stake.com 账户之后，您接下来便可以根据您在 Stake 平台上的总投注额成为 VIP 并提高您 VIP 俱乐部的会员级别。VIP 会员将能享受特殊福利，例如重装奖金、返水、升级奖金、周度助推奖金以及通过电邮发送的月度奖金。</p>
+        <p>符合条件的伯金 IV VIP 会员也将被分配一名专属的 VIP 服务代表。除此之外，Stake 所提供的全面 VIP 计划还会根据不同类型的玩家的累积使用量来满足他们的需求。有关 VIP 计划的更多信息，请参阅我们的 VIP 计划概述。</p>
+        <h1>Stake 加密货币博彩的即时存款与提款的功能</h1>
+        <p>在 Stake 的在线赌场与体育博彩上使用比特币或其他可用的加密货币进行投注与管理资金其实十分容易。要把资金存入您的 Stake.com 账户以使用您选择的加密货币进行体育投注，请遵循下列简单的步骤：</p>
         <ul>
           <li>第一步：前往钱包 > 存款。</li>
           <li>第二步：选择您想使用的货币。我们支持比特币（BTC）、以太币（ETH）、狗狗币（DOGE）、莱特币（LTC）等各种货币。复制您所选货币的存款地址。</li>
           <li>第三步：在您的加密货币钱包或交易所发送货币时，将您的存款地址输入为接收地址。</li>
           <li>附加说明：如果您想使用法定货币存款，您可以前往钱包 > 购买加密货币以通过 MoonPay 使用法定货币为 Stake 账户购买加密货币。</li>
         </ul>
-        <p>Stake 的支持人员将随时为您提供在线的支持与帮助，无论您是在存款时或是访问喜爱的游戏时遇到任何问题，他们都会给予您必要的帮助。</p>
+        <p>您在 Stake 的存款与提款都是即时的，并且可任您选择任何可用的加密货币。无论您是想在我们的赌场游戏或体育赛事上进行投注，Stake 都提供了简单明了的过程。</p>
+        <p>MoonPay 具有许多受支持的支付方式，您可以使用 Visa、MasterCard、Apple Pay、Google Pay 等购买加密货币来存款以进行投注。有关您所在辖区支持的支付方式完整列表，请参阅 MoonPay 文档。</p>
+        <p>具有蓬勃发展的社区、活跃的聊天室以及一个专门为客户解决游戏或账户方面任何问题的支持团队，Stake.com 因此成功展示了它能成为最领先的加密货币赌场及体育博彩平台的原因。</p>
       </div>
       <div class="introduction-more">
         <BaseButton @click="onShowMore">
-          查看更多
+          {{ btnText }}
         </BaseButton>
       </div>
     </div>
@@ -430,6 +450,7 @@ await application.allSettled([runLive({ game_type: 1 }), runSlot({ game_type: 3 
     .introduction-content{
       &.column-count{
         column-count: 2;
+        column-gap: 1.5rem;
       }
       &::before{
         position: absolute;

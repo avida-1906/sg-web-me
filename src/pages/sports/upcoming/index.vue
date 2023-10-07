@@ -34,15 +34,7 @@ const gameList = [
   { name: '魔兽争霸3', num: 4, id: '32' },
   { name: '水球', num: 16, id: '33' },
 ]
-const { bool: isBase, toggle: toggleBase } = useBoolean(true)
-const marketTypeText = computed(() => isBase.value ? '三项投注' : '标准')
-// 标准盘选项
-const baseType = ref('winner')
-const baseOptions = [
-  { label: '获胜盘', value: 'winner' },
-  { label: '让分盘', value: 'handicap' },
-  { label: '总分盘', value: 'total' },
-]
+
 // 三项投注选项
 const threeType = ref('home')
 const threeOptions = [
@@ -59,22 +51,23 @@ const threeOptions = [
       </div>
       <div class="right">
         <VMenu placement="top">
-          <BaseButton size="sm" type="text" @click="toggleBase">
-            <BaseIcon v-if="isBase" name="uni-three-top" />
-            <BaseIcon v-else name="uni-standard" />
+          <BaseButton size="sm" type="text" disabled>
+            <BaseIcon name="uni-standard" />
           </BaseButton>
           <template #popper>
             <div class="tiny-menu-item-title">
-              {{ marketTypeText }}
+              标准
             </div>
           </template>
         </VMenu>
-
-        <BaseSelect v-if="isBase" v-model="baseType" :options="baseOptions" popper />
-        <BaseSelect v-else v-model="threeType" :options="threeOptions" popper disabled />
+        <BaseSelect v-model="threeType" :options="threeOptions" disabled popper />
       </div>
     </div>
     <AppSportsTab v-model="currentGame" :list="gameList" />
+
+    <div class="layout-spacing">
+      <AppBetData mode="sports" />
+    </div>
   </div>
 </template>
 

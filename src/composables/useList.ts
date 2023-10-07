@@ -33,11 +33,11 @@ export function useList<R extends IResponseList<unknown>, P extends unknown[]>(
         total.value = get(response, 't', 0)
 
       if (isLoadMore.value) {
-        list.value = concat(list.value, get(response, 'd', []))
+        list.value = concat(list.value, response.d || [])
         setLoadMoreFalse()
       }
       else {
-        list.value = get(response, 'd', []) as any
+        list.value = response.d || []
       }
     },
   })

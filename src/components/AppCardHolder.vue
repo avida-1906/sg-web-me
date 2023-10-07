@@ -2,13 +2,9 @@
 import { getCurrentLanguageIdForBackend } from '~/modules/i18n'
 
 // 银行卡列表
-const { list: bankcardList, run: runBankcardList, loading: bankcardListLoading } = useList(ApiMemberBankcardList, {
-  loadingKeep: 1000,
-})
+const { list: bankcardList, run: runBankcardList } = useList(ApiMemberBankcardList)
 // 虚拟币钱包地址
-const { list: WalletList, run: runWalletList, loading: walletListLoading } = useList(ApiMemberWalletList, {
-  loadingKeep: 1000,
-})
+const { list: WalletList, run: runWalletList } = useList(ApiMemberWalletList)
 
 const closeDialog = inject('closeDialog', () => {})
 const openName = ref('')
@@ -35,9 +31,23 @@ const bindBanks = computed(() => {
     return temp
   })
 })
+const initCurrency = computed(() => {
+  const arr: any = []
+  for (const key in EnumCurrency) {
+    if (isNumber(EnumCurrency[key]))
+      break
+    arr.push({
+      balance: 0,
+      icon: `coin-${EnumCurrency[key].toLocaleLowerCase()}`,
+      name: EnumCurrency[key],
+      id: Number(key),
+    })
+  }
+  arr[1].legalTender = true
+  return arr
+})
 
 const toAddBankcards = function () {
-  console.log(bankcardList.value)
   const { openAddBankcardsDialog } = useAddBankcardsDialog({ title: '绑定银行卡', openName: openName.value, isFirst: !bankcardList.value?.length })
   closeDialog()
   nextTick(() => openAddBankcardsDialog())
@@ -50,80 +60,82 @@ const toAddVirAddress = function () {
     currencyName: 'BTC',
   }))
 }
+const showCollapse = function (item: any) {
+  if (item.legalTender)
+    runBankcardList(pagination.value)
 
-runWalletList({
-  contract_type: '',
-  currency_name: '',
-  page: 1,
-  page_size: 10,
-})
-runBankcardList(pagination.value)
+  else
+    runWalletList({ contract_type: '', currency_name: item.name })
+}
 </script>
 
 <template>
-  <div v-if="bankcardListLoading && walletListLoading" class="loading-wrap">
-    <BaseLoading />
-  </div>
-  <div v-else class="app-card-holder">
-    <!-- <BaseButton class="add-btn" @click="toAddVirAddress">
-      +
-    </BaseButton> -->
+  <div class="app-card-holder">
     <div class="layout-spacing reset wallet-address">
-      <BaseCollapse v-for="item, i in WalletList" :key="item.id" :title="(i + 1).toString()">
+      <BaseCollapse v-for="item in initCurrency" :key="item.id" title="0" @click-head="showCollapse(item)">
         <template #top-right>
-          <AppCurrencyIcon class="currency-icon" show-name :currency-type="EnumCurrency[item.currency_name]" />
+          <AppCurrencyIcon class="currency-icon" show-name :currency-type="item.id" />
         </template>
         <template #content>
-          <div class="text">
-            {{ item.wallet_address }}
+          <div v-if="!item.legalTender" class="layout-spacing reset">
+            <div v-for="tmp in WalletList" :key="tmp.id" class="address-row">
+              <span>{{ tmp.wallet_address }}</span>
+              <span class="type">{{ tmp.contract_type }}</span>
+            </div>
+            <BaseButton type="text" class="add-btn" @click="toAddVirAddress">
+              +
+            </BaseButton>
+          </div>
+          <div v-else class="layout-spacing reset">
+            <div v-for="tmp, index in bindBanks" :key="index" class="address-row">
+              <BaseIcon :name="tmp.icon" />
+              <span class="bank-num">{{ tmp.value }}</span>
+              <span class="type">{{ tmp.name }}</span>
+            </div>
+            <BaseButton type="text" class="add-btn" @click="toAddBankcards">
+              +
+            </BaseButton>
           </div>
         </template>
       </BaseCollapse>
-    </div>
-    <div class="layout-spacing reset bank-card">
-      <BaseLabel v-for="i, index in bindBanks" :key="index" label="持卡人姓名" :label-content="i.name">
-        <BaseInput v-model="i.fullName" disabled>
-          <template #left-icon>
-            <BaseIcon :name="i.icon" />
-          </template>
-        </BaseInput>
-      </BaseLabel>
-      <BaseButton class="add-btn" @click="toAddBankcards">
-        +
-      </BaseButton>
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
 .app-card-holder {
+  padding-bottom: var(--tg-spacing-16);
   .wallet-address{
-    gap:  var(--tg-spacing-2) 0;
+    gap:  var(--tg-spacing-6) 0;
     .currency-icon{
       margin-right:  var(--tg-spacing-8);
       color: var(--tg-text-white);
     }
-    .text{
-      background: var(--tg-secondary-dark);
-      font-size: var(--tg-font-size-default);
-      color: var(--tg-text-white);
-      line-height: 20px;
-      padding: var(--tg-spacing-12) var(--tg-spacing-16);
+    .layout-spacing{
+      gap:  var(--tg-spacing-6) 0;
+      background: var(--tg-primary-main);
     }
-  }
-  .bank-card{
-    padding: var(--tg-spacing-16);
-    gap: var(--tg-spacing-12);
     .add-btn{
       font-size: var(--tg-font-size-md);
       color: var(--tg-text-lightgrey);
+      background: var(--tg-secondary-dark);
+    }
+    .address-row{
+      display: flex;
+      justify-content: space-between;
+      background: var(--tg-secondary-dark);
+      font-size: var(--tg-font-size-xs);
+      color: var(--tg-text-white);
+      padding: var(--tg-spacing-14) var(--tg-spacing-16);
+      .type{
+        font-weight: 500;
+        color: var(--tg-text-warn);
+      }
+      .bank-num{
+        flex: 1;
+        margin-left: var(--tg-spacing-8);
+      }
     }
   }
-}
-.loading-wrap{
-  min-height: 300px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 </style>

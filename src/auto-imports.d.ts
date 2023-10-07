@@ -20,6 +20,8 @@ declare global {
   const ApiMemberGameSearch: typeof import('./apis/index')['ApiMemberGameSearch']
   const ApiMemberGameUpdateFav: typeof import('./apis/index')['ApiMemberGameUpdateFav']
   const ApiMemberLogin: typeof import('./apis/index')['ApiMemberLogin']
+  const ApiMemberLoginout: typeof import('./apis/index')['ApiMemberLoginout']
+  const ApiMemberPasswordUpdate: typeof import('./apis/index')['ApiMemberPasswordUpdate']
   const ApiMemberPlatformList: typeof import('./apis/index')['ApiMemberPlatformList']
   const ApiMemberReg: typeof import('./apis/index')['ApiMemberReg']
   const ApiMemberTreeList: typeof import('./apis/index')['ApiMemberTreeList']
@@ -221,6 +223,7 @@ declare global {
   const useAddBankcardsDialog: typeof import('./composables/useDialogAddBankcards')['useAddBankcardsDialog']
   const useAnimate: typeof import('@vueuse/core')['useAnimate']
   const useApiGameList: typeof import('./composables/useApiGameList')['useApiGameList']
+  const useApiMemberBankCardList: typeof import('./composables/useApiMemberBankcardList')['useApiMemberBankCardList']
   const useApiMemberTreeList: typeof import('./composables/useApiMemberTreeList')['useApiMemberTreeList']
   const useApiMenuData: typeof import('./composables/useApiMenuData')['useApiMenuData']
   const useApiSendMsg: typeof import('./composables/useApiSendMsg')['useApiSendMsg']
@@ -454,6 +457,8 @@ declare module 'vue' {
     readonly ApiMemberGameRecList: UnwrapRef<typeof import('./apis/index')['ApiMemberGameRecList']>
     readonly ApiMemberGameSearch: UnwrapRef<typeof import('./apis/index')['ApiMemberGameSearch']>
     readonly ApiMemberLogin: UnwrapRef<typeof import('./apis/index')['ApiMemberLogin']>
+    readonly ApiMemberLoginout: UnwrapRef<typeof import('./apis/index')['ApiMemberLoginout']>
+    readonly ApiMemberPasswordUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberPasswordUpdate']>
     readonly ApiMemberPlatformList: UnwrapRef<typeof import('./apis/index')['ApiMemberPlatformList']>
     readonly ApiMemberReg: UnwrapRef<typeof import('./apis/index')['ApiMemberReg']>
     readonly ApiMemberTreeList: UnwrapRef<typeof import('./apis/index')['ApiMemberTreeList']>
@@ -648,6 +653,7 @@ declare module 'vue' {
     readonly useActiveElement: UnwrapRef<typeof import('@vueuse/core')['useActiveElement']>
     readonly useAddBankcardsDialog: UnwrapRef<typeof import('./composables/useDialogAddBankcards')['useAddBankcardsDialog']>
     readonly useAnimate: UnwrapRef<typeof import('@vueuse/core')['useAnimate']>
+    readonly useApiMemberBankCardList: UnwrapRef<typeof import('./composables/useApiMemberBankcardList')['useApiMemberBankCardList']>
     readonly useApiMemberTreeList: UnwrapRef<typeof import('./composables/useApiMemberTreeList')['useApiMemberTreeList']>
     readonly useApiMenuData: UnwrapRef<typeof import('./composables/useApiMenuData')['useApiMenuData']>
     readonly useApiSendMsg: UnwrapRef<typeof import('./composables/useApiSendMsg')['useApiSendMsg']>
@@ -872,6 +878,8 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberGameRecList: UnwrapRef<typeof import('./apis/index')['ApiMemberGameRecList']>
     readonly ApiMemberGameSearch: UnwrapRef<typeof import('./apis/index')['ApiMemberGameSearch']>
     readonly ApiMemberLogin: UnwrapRef<typeof import('./apis/index')['ApiMemberLogin']>
+    readonly ApiMemberLoginout: UnwrapRef<typeof import('./apis/index')['ApiMemberLoginout']>
+    readonly ApiMemberPasswordUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberPasswordUpdate']>
     readonly ApiMemberPlatformList: UnwrapRef<typeof import('./apis/index')['ApiMemberPlatformList']>
     readonly ApiMemberReg: UnwrapRef<typeof import('./apis/index')['ApiMemberReg']>
     readonly ApiMemberTreeList: UnwrapRef<typeof import('./apis/index')['ApiMemberTreeList']>
@@ -1066,6 +1074,7 @@ declare module '@vue/runtime-core' {
     readonly useActiveElement: UnwrapRef<typeof import('@vueuse/core')['useActiveElement']>
     readonly useAddBankcardsDialog: UnwrapRef<typeof import('./composables/useDialogAddBankcards')['useAddBankcardsDialog']>
     readonly useAnimate: UnwrapRef<typeof import('@vueuse/core')['useAnimate']>
+    readonly useApiMemberBankCardList: UnwrapRef<typeof import('./composables/useApiMemberBankcardList')['useApiMemberBankCardList']>
     readonly useApiMemberTreeList: UnwrapRef<typeof import('./composables/useApiMemberTreeList')['useApiMemberTreeList']>
     readonly useApiMenuData: UnwrapRef<typeof import('./composables/useApiMenuData')['useApiMenuData']>
     readonly useApiSendMsg: UnwrapRef<typeof import('./composables/useApiSendMsg')['useApiSendMsg']>

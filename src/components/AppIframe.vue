@@ -78,14 +78,16 @@ function onSwitchRealMoneyMode(v: boolean) {
   overlayFalse()
   isMobile.value && runLunchGame()
 }
-
-function onClickFullScreen() { // 全屏
+// 全屏
+function onClickFullScreen() {
   gameFrameRef.value.requestFullscreen()
 }
-function onClickTheatre() { // 剧院
+// 剧院
+function onClickTheatre() {
   emit('changeTheatre', !props.isTheatre)
 }
-function onClickTrend() { // 实时统计
+// 实时统计
+function onClickTrend() {
   toggleTrendOpen()
 }
 // 添加收藏
@@ -165,7 +167,7 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
         <template #popper="{ hide }">
           <div v-if="currencyList.length" class="scroll-y popper popper-mobile">
             <a
-              v-for="c, i in currencyList" :key="i" class="popper-option currency-types"
+              v-for="c, i in currencyList" :key="i" class="currency-types popper-option"
               @click="hide();onChooseCurrency(c)"
             >
               <div>

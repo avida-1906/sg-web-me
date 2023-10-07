@@ -1,7 +1,7 @@
 <script setup lang='ts'>
 import { EnumsBetSlipTabs } from '~/utils/enums'
 
-// const router = useRouter()
+const router = useRouter()
 const { closeRightSidebar } = useRightSidebar()
 
 const type = ref(EnumsBetSlipTabs.betSlip)
@@ -146,7 +146,7 @@ const betBtnText = computed(() => betSlipTypeTabs.find(b => b.value === betSlipT
         </BaseButton>
       </template>
       <!-- 我的投注 -->
-      <BaseButton v-else size="md">
+      <BaseButton v-else size="md" @click="router.push('/sports/my-bets')">
         查看全部
       </BaseButton>
     </div>
