@@ -42,10 +42,6 @@ const threeType = ref('home')
 const threeOptions = [
   { label: '主页', value: 'home' },
 ]
-const textNum = ref(+(Math.random() * 10).toFixed(2))
-function textClick() {
-  textNum.value = +(Math.random() * 10).toFixed(2)
-}
 </script>
 
 <template>
@@ -87,10 +83,6 @@ function textClick() {
         </div>
       </div>
       <AppSportsTab v-model="currentGame" :list="gameList" />
-      <AppSportsOdds :odds="`${textNum}`" />
-      <BaseButton @click="textClick">
-        click
-      </BaseButton>
     </div>
 
     <!-- 我的投注 -->
