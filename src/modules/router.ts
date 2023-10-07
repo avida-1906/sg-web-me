@@ -10,6 +10,12 @@ declare module 'vue-router' {
     auth?: boolean
     /** 浏览器标题 */
     browserTitle?: string
+    /** layout with-menu 标题 */
+    withMenuTitle?: string
+    /** layout with-menu 图标 */
+    withMenuIcon?: string
+    /** layout with-menu 菜单数据 */
+    withMenuMenu?: string
   }
 }
 
