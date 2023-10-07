@@ -1,11 +1,7 @@
 <script lang="ts" setup>
 const route = useRoute()
 
-const sport = computed(() => route.params.sport)
-const country = computed(() => route.params.country)
-const event = computed(() => route.params.event)
-const tournament = computed(() => route.params.tournament)
-
+const rangeNum = ref()
 const eventData = reactive({
   id: '54091c18-6724-461f-8ccd-ac254479d198',
   slug: '43893124-persija-jakarta-barito-putera',
@@ -95,6 +91,10 @@ const eventData = reactive({
   },
 })
 
+const sport = computed(() => route.params.sport)
+const country = computed(() => route.params.country)
+const event = computed(() => route.params.event)
+const tournament = computed(() => route.params.tournament)
 const breadcrumb = computed(() => {
   const { id: t_id, slug: t_slug } = eventData
   const competitors = eventData.data.competitors
@@ -106,8 +106,6 @@ const breadcrumb = computed(() => {
     { path: `/sports/${sslug}/${cslug}/${slug}/${t_slug}`, title: competitors.map(i => i.abbreviation).join(' - '), id: t_id },
   ]
 })
-
-const rangeNum = ref()
 </script>
 
 <template>
