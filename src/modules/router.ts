@@ -8,6 +8,8 @@ declare module 'vue-router' {
     layout?: string
     /** 是否需要登录 */
     auth?: boolean
+    /** 浏览器标题 */
+    browserTitle?: string
   }
 }
 
@@ -25,13 +27,12 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  const appStore = useAppStore()
-
-  title.value = (to.meta.browserTitle || 'Stake.com') as string
+  title.value = to.meta.browserTitle || 'Stake.com'
 
   const auth = to.meta.auth || false
 
   if (auth) {
+    const appStore = useAppStore()
     const { isLogin } = storeToRefs(appStore)
     if (!isLogin.value) {
       const { openRegisterDialog } = useRegisterDialog()

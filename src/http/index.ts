@@ -11,6 +11,7 @@ type IRequestInterceptors = (value: InternalAxiosRequestConfig<any>) => Internal
 type IResponseInterceptors = (value: AxiosResponse<any>) => AxiosResponse<any> | Promise<Error>
 
 const { openNotify } = useNotify()
+
 class HttpClient {
   cancelTokenList: AbortController[] = []
 
@@ -188,6 +189,10 @@ class HttpClient {
         }
         if (error.response) {
           const status = error.response.status
+          openNotify({
+            type: 'error',
+            message: `Url: ${error.config.url}<br />发生错误：${status}`,
+          })
           switch (status) {
             case 404:
               // 请求地址错误
