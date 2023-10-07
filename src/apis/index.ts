@@ -7,14 +7,6 @@ interface IResponseList<T> {
   s: number
 }
 
-/** 后端返回执行结果数据结构 */
-interface IResponseResult {
-  /** 结果 */
-  status: boolean
-  /** 消息 */
-  data: string
-}
-
 /**
  * 用户登录
  */
@@ -397,7 +389,7 @@ export function ApiMemberWalletInsert(data: {
   /** 是否默认：1：是，2否 */
   is_default?: number
 }) {
-  return httpClient.post<IResponseResult>('/member/wallet/insert', data)
+  return httpClient.post<string>('/member/wallet/insert', data)
 }
 
 /**
@@ -405,7 +397,7 @@ export function ApiMemberWalletInsert(data: {
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=714a7e70-5d38-4c04-969d-f251710adf6b
  */
 export function ApiMemberLoginout() {
-  return httpClient.post<IResponseResult>('/member/login_out')
+  return httpClient.post<string>('/member/login_out')
 }
 
 /**
@@ -418,7 +410,7 @@ export function ApiMemberPasswordUpdate(data: {
   /** 新密码 */
   new_password: string
 }) {
-  return httpClient.post<IResponseResult>('/member/password/update', data)
+  return httpClient.post<string>('/member/password/update', data)
 }
 
 /**

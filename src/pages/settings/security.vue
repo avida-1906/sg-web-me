@@ -3,8 +3,9 @@ const password = ref('')
 const newPassword = ref('')
 const againNewPassword = ref('')
 const twoStepPassword = ref('')
-
 const twoStepCode = ref('HM3XE2DLGVWECZDYK5BUMNTQORGVCKBVO5MG4JBSG46EGMCSHZEA')
+const transPassword = ref('')
+const aginTransPassword = ref('')
 </script>
 
 <template>
@@ -18,6 +19,17 @@ const twoStepCode = ref('HM3XE2DLGVWECZDYK5BUMNTQORGVCKBVO5MG4JBSG46EGMCSHZEA')
       </BaseLabel>
       <BaseLabel label="确认新密码" must-small>
         <BaseInput v-model="againNewPassword" type="password" />
+      </BaseLabel>
+    </AppSettingsContentItem>
+    <AppSettingsContentItem title="交易密码">
+      <template #top-desc>
+        交易密码将用于保护提款，保险库取款安全。
+      </template>
+      <BaseLabel label="密码" must-small>
+        <BaseInputPassword v-model="transPassword" />
+      </BaseLabel>
+      <BaseLabel label="确认密码" must-small>
+        <BaseInputPassword v-model="aginTransPassword" />
       </BaseLabel>
     </AppSettingsContentItem>
     <AppSettingsContentItem title="双重验证" last-one>
