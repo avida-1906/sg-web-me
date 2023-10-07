@@ -20,7 +20,7 @@ const { value: address, errorMessage: addressMsg, validate: valiAddress } = useF
     return '地址格式不正确'
   return ''
 })
-const { run: runMemberWalletInsert } = useRequest(() => ApiMemberWalletInsert({
+const { run: runMemberWalletInsert, loading: addWalletInsertLoading } = useRequest(() => ApiMemberWalletInsert({
   contract_type: props.contractType,
   currency_name: props.currencyName,
   wallet_address: address.value,
@@ -28,7 +28,8 @@ const { run: runMemberWalletInsert } = useRequest(() => ApiMemberWalletInsert({
   onSuccess() {
     openNotify({
       type: 'success',
-      message: '绑定成功！',
+      title: '绑定',
+      message: '恭喜你！绑定成功',
     })
     closeDialog()
   },
@@ -39,7 +40,6 @@ async function handleBindAddress() {
   if (!addressMsg.value)
     runMemberWalletInsert()
 }
-// const bankId: Ref<string> = ref('CS66661626166116616666')
 </script>
 
 <template>
@@ -47,7 +47,7 @@ async function handleBindAddress() {
     <BaseLabel :label="`您${currencyName}的${contractType}地址`" must>
       <BaseInput v-model="address" :msg="addressMsg" />
     </BaseLabel>
-    <BaseButton bg-style="primary" @click="handleBindAddress">
+    <BaseButton bg-style="primary" :loading="addWalletInsertLoading" @click="handleBindAddress">
       绑定
     </BaseButton>
   </div>
