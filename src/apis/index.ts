@@ -22,6 +22,7 @@ export function ApiMemberLogin(
 
 /**
  * 用户注册
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=b9e7b167-6221-4721-b3f0-dce161b8f522
  */
 export function ApiMemberReg(
   data: {
@@ -53,6 +54,7 @@ export function ApiSmsSend(
 
 /**
  * 游戏列表
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=ee80d925-48b5-43e4-aa04-3893dfce1e06
  */
 export function ApiMemberGameList(params?: {
   page?: number
@@ -94,6 +96,7 @@ export function ApiMemberGameList(params?: {
 
 /**
  * 游戏详情
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=2aa03c22-4083-40c9-8a1f-0908901eabfe
  */
 export function ApiMemberGameDetail(id: string) {
   return httpClient.get<{
@@ -123,6 +126,7 @@ export function ApiMemberGameDetail(id: string) {
 
 /**
  * 启动游戏
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=b75f9a13-ec49-4eea-bc24-1e7de8bb9e7a
  */
 export function ApiGameLunch(pid: string, game_id: string, cur: string) {
   return httpClient.get<string>(`/game/launch/${pid}`, { code: game_id, cur })
@@ -130,6 +134,7 @@ export function ApiGameLunch(pid: string, game_id: string, cur: string) {
 
 /**
  * 搜索游戏
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=3a3a1a44-450d-40ea-a37e-1e88ed074895
  */
 export function ApiMemberGameSearch(params: { w: string }) {
   return httpClient.get<IResponseList<{
@@ -157,9 +162,10 @@ export function ApiMemberGameSearch(params: { w: string }) {
   }>>('/member/game/search', params)
 }
 
-/*
-* 游戏收藏列表
-*/
+/**
+ * 游戏收藏列表
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=cde927eb-45af-40aa-be78-18426224daf6
+ */
 export function ApiMemberFavList(params?: { page?: number; page_size?: number }) {
   return httpClient.get<IResponseList<{
     id: string
@@ -188,21 +194,24 @@ export function ApiMemberFavList(params?: { page?: number; page_size?: number })
 
 /**
  * 新增收藏
-*/
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=73c0d845-b1b6-4231-ae8e-bd72aefb6242
+ */
 export function ApiMemberFavInsert(id: string) {
   return httpClient.get(`/member/fav/insert?id=${id}`)
 }
 
 /**
  * 删除收藏
-*/
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=e79ee42a-504c-416a-b4d0-810ee949ede0
+ */
 export function ApiMemberFavDelete(id: string) {
   return httpClient.get(`/member/fav/delete?id=${id}`)
 }
 
-/*
-* 推荐游戏列表
-*/
+/**
+ * 推荐游戏列表
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=1a5800ea-da6f-466d-bd42-27e3c39c5bf1
+ */
 export function ApiMemberGameRecList(params?: {
   page?: number
   page_size?: number
@@ -234,9 +243,10 @@ export function ApiMemberGameRecList(params?: {
   }>>('/member/game/rec/list', params)
 }
 
-/*
-* 场馆列表
-*/
+/**
+ * 场馆列表
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=d8e0da7a-92e4-4c67-bc62-8549304bada9
+ */
 export function ApiMemberPlatformList(params?: { page?: number; page_size?: number }) {
   return httpClient.get<IResponseList<{
     id: string
@@ -261,6 +271,7 @@ export function ApiMemberPlatformList(params?: { page?: number; page_size?: numb
 
 /**
  * 虚拟钱包列表
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=b5a4e1b7-5297-4210-9d76-17a6a8efb4b4
  */
 export function ApiMemberWalletList(
   params: {
@@ -286,6 +297,7 @@ export function ApiMemberWalletList(
 
 /**
  * 保险库加减
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=925fc8cb-c68a-4825-aa56-34c425aa8752
  */
 export function ApiMemberBalanceLockerUpdate(data: {
   type: 'add' | 'remove'
@@ -297,12 +309,14 @@ export function ApiMemberBalanceLockerUpdate(data: {
 
 /**
  * 保险库详情
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=86000030-4588-4690-9384-baa0584ea7d5
  */
 export function ApiMemberBalanceLockerShow() {
   return httpClient.post('/member/balance_locker/show')
 }
 /**
  * 银行卡列表
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=3b3a818d-668f-41fc-ab45-3a8cbc3b3f40
  */
 export function ApiMemberBankcardList(params: {
   page_size?: string
@@ -323,6 +337,7 @@ export function ApiMemberBankcardList(params: {
 }
 /**
  * 辅助数据
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=eef5fa8c-373d-49fb-88cb-5f43d5223d6e
  * level: 001=数字货币分类，002=中国银行列表，
  *        003=越南银行列表，004=支付方式列表，
  *        005=支付类型列表，006=国家列表，
@@ -340,6 +355,7 @@ export function ApiMemberTreeList(params: {
 }
 /**
  * 银行卡添加
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=96b12d9e-536b-4aa3-b6bc-0a8a6fc4d17d
  */
 export function ApiMemberBankcardInsert(data: {
   bank_type: string
@@ -354,6 +370,7 @@ export function ApiMemberBankcardInsert(data: {
 
 /**
  * 添加虚拟币钱包地址
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=2d1b9bf2-3557-421d-8f93-b5cfc3637afc
  */
 export function ApiMemberWalletInsert(data: {
   /** 合约类型 */
@@ -370,6 +387,7 @@ export function ApiMemberWalletInsert(data: {
 
 /**
  * 退出登陆
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=714a7e70-5d38-4c04-969d-f251710adf6b
  */
 export function ApiMemberLoginout() {
   return httpClient.post('/member/login_out')
@@ -377,10 +395,30 @@ export function ApiMemberLoginout() {
 
 /**
  * 修改登录密码
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=8099f10a-3710-4854-b933-61068636900f
  */
 export function ApiMemberPasswordUpdate(data: {
   password: string
   new_password: string
 }) {
   return httpClient.post('/member/password/update', data)
+}
+
+/**
+ * 查询余额
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=9aabea35-99e8-4d35-b58a-abbcb05ba837
+ */
+export function ApiMemberBalanceList() {
+  return httpClient.post<
+    {
+      uid: string
+      BRL: string
+      CNY: string
+      INR: string
+      VND: string
+      THB: string
+      USDT: string
+      BTC: string
+    }
+  >('/member/balance/list')
 }

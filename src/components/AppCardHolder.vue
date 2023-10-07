@@ -1,36 +1,12 @@
 <script setup lang="ts">
 import { getCurrentLanguageIdForBackend } from '~/modules/i18n'
 
-// 银行卡列表
-const { list: bankcardList, run: runBankcardList } = useList(ApiMemberBankcardList)
+const closeDialog = inject('closeDialog', () => {})
+
+const { bankcardList, runBankcardList, bindBanks, openName } = useApiMemberBankCardList()
 // 虚拟币钱包地址
 const { list: WalletList, run: runWalletList } = useList(ApiMemberWalletList)
 
-const closeDialog = inject('closeDialog', () => {})
-const openName = ref('')
-const selectBank = ref('')
-const pagination = ref({
-  page_size: '10',
-  page: '1',
-  bank_type: getCurrentLanguageIdForBackend(),
-})
-
-const bindBanks = computed(() => {
-  return bankcardList.value?.map((item) => {
-    if (item.is_default === 1)
-      selectBank.value = item.bank_account
-    const temp = {
-      label: item.bank_name,
-      value: item.bank_account,
-      icon: 'fiat-bank',
-      fullName: `${item.bank_name} ${item.bank_account}`,
-      name: item.open_name,
-    }
-    if (!openName.value)
-      openName.value = item.open_name
-    return temp
-  })
-})
 const initCurrency = computed(() => {
   const arr: any = []
   for (const key in EnumCurrency) {
@@ -62,7 +38,7 @@ const toAddVirAddress = function () {
 }
 const showCollapse = function (item: any) {
   if (item.legalTender)
-    runBankcardList(pagination.value)
+    runBankcardList({ bank_type: getCurrentLanguageIdForBackend() })
 
   else
     runWalletList({ contract_type: '', currency_name: item.name })
