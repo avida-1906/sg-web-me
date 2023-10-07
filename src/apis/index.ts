@@ -259,8 +259,8 @@ export function ApiMemberWalletList(
   params: {
     contract_type: string
     currency_name: string
-    page: number
-    page_size: number
+    page?: number
+    page_size?: number
   },
 ) {
   return httpClient.get<IResponseList<{
@@ -349,13 +349,31 @@ export function ApiMemberBankcardInsert(data: {
  * 添加虚拟币钱包地址
  */
 export function ApiMemberWalletInsert(data: {
-  contract_type?: string
+  /** 合约类型 */
+  contract_type: string
+  /** 货币名称 */
   currency_name: string
+  /** 钱包地址 */
   wallet_address: string
+  /** 是否默认：1：是，2否 */
   is_default?: number
 }) {
-  return httpClient.post<{
-    status: boolean
-    data: string
-  }>('/member/wallet/insert', data)
+  return httpClient.post('/member/wallet/insert', data)
+}
+
+/**
+ * 退出登陆
+ */
+export function ApiMemberLoginout() {
+  return httpClient.post('/member/login_out')
+}
+
+/**
+ * 修改登录密码
+ */
+export function ApiMemberPasswordUpdate(data: {
+  password: string
+  new_password: string
+}) {
+  return httpClient.post('/member/password/update', data)
 }

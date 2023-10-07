@@ -20,6 +20,8 @@ declare global {
   const ApiMemberGameSearch: typeof import('./apis/index')['ApiMemberGameSearch']
   const ApiMemberGameUpdateFav: typeof import('./apis/index')['ApiMemberGameUpdateFav']
   const ApiMemberLogin: typeof import('./apis/index')['ApiMemberLogin']
+  const ApiMemberLoginout: typeof import('./apis/index')['ApiMemberLoginout']
+  const ApiMemberPasswordUpdate: typeof import('./apis/index')['ApiMemberPasswordUpdate']
   const ApiMemberPlatformList: typeof import('./apis/index')['ApiMemberPlatformList']
   const ApiMemberReg: typeof import('./apis/index')['ApiMemberReg']
   const ApiMemberTreeList: typeof import('./apis/index')['ApiMemberTreeList']
@@ -454,6 +456,8 @@ declare module 'vue' {
     readonly ApiMemberGameRecList: UnwrapRef<typeof import('./apis/index')['ApiMemberGameRecList']>
     readonly ApiMemberGameSearch: UnwrapRef<typeof import('./apis/index')['ApiMemberGameSearch']>
     readonly ApiMemberLogin: UnwrapRef<typeof import('./apis/index')['ApiMemberLogin']>
+    readonly ApiMemberLoginout: UnwrapRef<typeof import('./apis/index')['ApiMemberLoginout']>
+    readonly ApiMemberPasswordUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberPasswordUpdate']>
     readonly ApiMemberPlatformList: UnwrapRef<typeof import('./apis/index')['ApiMemberPlatformList']>
     readonly ApiMemberReg: UnwrapRef<typeof import('./apis/index')['ApiMemberReg']>
     readonly ApiMemberTreeList: UnwrapRef<typeof import('./apis/index')['ApiMemberTreeList']>
@@ -872,6 +876,8 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberGameRecList: UnwrapRef<typeof import('./apis/index')['ApiMemberGameRecList']>
     readonly ApiMemberGameSearch: UnwrapRef<typeof import('./apis/index')['ApiMemberGameSearch']>
     readonly ApiMemberLogin: UnwrapRef<typeof import('./apis/index')['ApiMemberLogin']>
+    readonly ApiMemberLoginout: UnwrapRef<typeof import('./apis/index')['ApiMemberLoginout']>
+    readonly ApiMemberPasswordUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberPasswordUpdate']>
     readonly ApiMemberPlatformList: UnwrapRef<typeof import('./apis/index')['ApiMemberPlatformList']>
     readonly ApiMemberReg: UnwrapRef<typeof import('./apis/index')['ApiMemberReg']>
     readonly ApiMemberTreeList: UnwrapRef<typeof import('./apis/index')['ApiMemberTreeList']>
