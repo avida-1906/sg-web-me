@@ -10,10 +10,10 @@ export const useAppStore = defineStore('app', () => {
    * @description 是否登录，程序用这个变量来判断是否登录
    */
   const { bool: isLogin, setTrue: setLoginTrue, setFalse: setLoginFalse } = useBoolean(!!getToken())
-  /**
-   * @type {boolean}
-   * @description 路由变化时，是否需要动画
-   */
+  const { data: balanceList } = useRequest(ApiMemberBalanceList, {
+    ready: isLogin,
+    manual: false,
+  })
 
   function setToken(token: string) {
     // 将token加密后存储到本地
@@ -33,9 +33,14 @@ export const useAppStore = defineStore('app', () => {
     setLoginFalse()
   }
 
+  watchEffect(() => {
+    console.log('balanceList', balanceList.value)
+  })
+
   return {
     isLogin,
     platformList,
+    balanceList,
     setToken,
     setLoginTrue,
     setLoginFalse,

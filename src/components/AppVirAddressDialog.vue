@@ -20,11 +20,7 @@ const { value: address, errorMessage: addressMsg, validate: valiAddress } = useF
     return '地址格式不正确'
   return ''
 })
-const { run: runMemberWalletInsert, loading: addWalletInsertLoading } = useRequest(() => ApiMemberWalletInsert({
-  contract_type: props.contractType,
-  currency_name: props.currencyName,
-  wallet_address: address.value,
-}), {
+const { run: runMemberWalletInsert, loading: addWalletInsertLoading } = useRequest(ApiMemberWalletInsert, {
   onSuccess() {
     openNotify({
       type: 'success',
@@ -37,8 +33,13 @@ const { run: runMemberWalletInsert, loading: addWalletInsertLoading } = useReque
 
 async function handleBindAddress() {
   await valiAddress()
-  if (!addressMsg.value)
-    runMemberWalletInsert()
+  if (!addressMsg.value) {
+    runMemberWalletInsert({
+      contract_type: props.contractType,
+      currency_name: props.currencyName,
+      wallet_address: address.value,
+    })
+  }
 }
 </script>
 
