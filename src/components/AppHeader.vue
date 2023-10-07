@@ -72,6 +72,9 @@ function handleClickMenuItem(item: { name: string; path?: string }) {
     case 'notification':
       getActiveShown.value(EnumRightSidebarContent.NOTIFICATION) ? closeRightSidebar() : openRightSidebar(EnumRightSidebarContent.NOTIFICATION)
       break
+    case 'sports-betting':
+      router.push('/sports/my-bets')
+      break
     default:
       break
   }
@@ -99,7 +102,10 @@ async function logout() {
           </BaseButton>
           <template #popper="{ hide }">
             <div class="dropdown-popper need-pad-y">
-              <div v-for="item of userMenu" :key="item.id" class="menu-item" :class="{ 'active-menu': getActiveState(item.path) }" @click=" hide();handleClickMenuItem(item)">
+              <div
+                v-for="item of userMenu" :key="item.id" class="menu-item"
+                :class="{ 'active-menu': getActiveState(item.path) }" @click=" hide(); handleClickMenuItem(item)"
+              >
                 <div class="menu-btn">
                   <BaseIcon class="icon-size" :name="item.icon" />
                   <span>{{ item.title }}</span>
@@ -117,7 +123,10 @@ async function logout() {
           </BaseButton>
           <template #popper="{ hide }">
             <div class="dropdown-popper need-pad-y">
-              <div v-for="item of newsMenu" :key="item.id" class="menu-item" :class="{ 'active-menu': getActiveShown(item.shown) }" @click="hide(); handleClickMenuItem(item)">
+              <div
+                v-for="item of newsMenu" :key="item.id" class="menu-item"
+                :class="{ 'active-menu': getActiveShown(item.shown) }" @click="hide(); handleClickMenuItem(item)"
+              >
                 <div class="menu-btn">
                   <BaseIcon class="icon-size" :name="item.icon" />
                   <span>{{ item.title }}</span>
@@ -156,6 +165,7 @@ async function logout() {
   flex-direction: column;
   gap: var(--tg-spacing-16);
   padding: var(--tg-spacing-16) var(--tg-spacing-16);
+
   &-text {
     font-size: var(--tg-font-size-xs);
     color: var(--tg-text-lightgrey);
@@ -171,9 +181,11 @@ async function logout() {
   display: grid;
   gap: 1rem;
   align-items: center;
+
   .icon-size {
     font-size: var(--tg-font-size-base);
   }
+
   .header-box {
     display: flex;
     align-items: center;
@@ -197,11 +209,13 @@ async function logout() {
       color: var(--tg-text-white);
       font-size: var(--tg-font-size-default);
       font-weight: var(--tg-font-weight-semibold);
+
       .icon-search {
         font-size: var(--tg-font-size-base);
       }
     }
   }
+
   .header-login {
     display: flex;
     justify-content: flex-end;
@@ -212,12 +226,14 @@ async function logout() {
     font-size: var(--tg-font-size-default);
     font-style: normal;
     font-weight: 600;
+
     .login {
       width: 68px;
       height: 44px;
       padding: var(--tg-spacing-button-padding-vertical-md) var(--tg-spacing-button-padding-vertical-2xl) !important;
-      color:var(--tg-text-white);
+      color: var(--tg-text-white);
     }
+
     .reg {
       display: flex;
       width: 68px;
@@ -236,6 +252,7 @@ async function logout() {
   color: var(--tg-text-secondary-main);
   font-size: var(--tg-font-size-default);
   font-weight: var(--tg-font-weight-semibold);
+
   .icon-size {
     font-size: var(--tg-font-size-default);
     margin-right: 5px;
@@ -243,9 +260,11 @@ async function logout() {
 
   .menu-item {
     cursor: pointer;
+
     &:hover {
       background-color: var(--tg-text-lightgrey);
     }
+
     .menu-btn {
       display: flex;
       align-items: center;
@@ -256,9 +275,11 @@ async function logout() {
       transform: scale(0.95);
     }
   }
-  .active-menu{
+
+  .active-menu {
     --tg-icon-color: var(--tg-text-blue);
-    color:var(--tg-text-blue);
+    color: var(--tg-text-blue);
+
     &:hover {
       background: 0 0;
     }

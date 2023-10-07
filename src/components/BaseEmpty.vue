@@ -36,17 +36,18 @@ const emptyDescription = computed(
 
 <style lang="scss" scoped>
 .base-empty {
-    text-align: center;
-    &-icon {
-        &-name {
-            // font-size: var(--tg-font-size-6xl);
-            font-size: 100px;
-        }
+  text-align: center;
+
+  &-icon {
+    &-name {
+      font-size: var(--tg-empty-icon-size);
     }
-    &-description {
-        padding: var(--tg-spacing-5) 0 var(--tg-spacing-10);
-        font-size: var(--tg-font-size-default);
-        color: var(--tg-text-lightgrey);
-    }
+  }
+
+  &-description {
+    padding: var(--tg-spacing-5) 0 var(--tg-spacing-10);
+    font-size: var(--tg-font-size-default);
+    color: var(--tg-text-lightgrey);
+  }
 }
 </style>
