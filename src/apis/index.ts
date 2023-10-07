@@ -7,6 +7,14 @@ interface IResponseList<T> {
   s: number
 }
 
+/** 后端返回执行结果数据结构 */
+interface IResponseResult {
+  /** 结果 */
+  status: boolean
+  /** 消息 */
+  data: string
+}
+
 /**
  * 用户登录
  */
@@ -275,7 +283,9 @@ export function ApiMemberPlatformList(params?: { page?: number; page_size?: numb
  */
 export function ApiMemberWalletList(
   params: {
+    /** 合约类型 */
     contract_type: string
+    /** 货币名称 */
     currency_name: string
     page?: number
     page_size?: number
@@ -285,12 +295,17 @@ export function ApiMemberWalletList(
     id: string
     uid: string
     state: number
+    /** 合约类型 */
     contract_type: string
+    /** 货币名称 */
     currency_name: string
     created_at: number
     updated_at: number
+    /** 是否默认：1：是，2否 */
     is_default: number
+    /** 用户名 */
     username: string
+    /** 钱包地址 */
     wallet_address: string
   }>>('/member/wallet/list', params)
 }
@@ -382,7 +397,7 @@ export function ApiMemberWalletInsert(data: {
   /** 是否默认：1：是，2否 */
   is_default?: number
 }) {
-  return httpClient.post('/member/wallet/insert', data)
+  return httpClient.post<IResponseResult>('/member/wallet/insert', data)
 }
 
 /**
@@ -390,7 +405,7 @@ export function ApiMemberWalletInsert(data: {
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=714a7e70-5d38-4c04-969d-f251710adf6b
  */
 export function ApiMemberLoginout() {
-  return httpClient.post('/member/login_out')
+  return httpClient.post<IResponseResult>('/member/login_out')
 }
 
 /**
@@ -398,10 +413,12 @@ export function ApiMemberLoginout() {
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=8099f10a-3710-4854-b933-61068636900f
  */
 export function ApiMemberPasswordUpdate(data: {
+  /** 原密码 */
   password: string
+  /** 新密码 */
   new_password: string
 }) {
-  return httpClient.post('/member/password/update', data)
+  return httpClient.post<IResponseResult>('/member/password/update', data)
 }
 
 /**
