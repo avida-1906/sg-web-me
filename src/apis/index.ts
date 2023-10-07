@@ -57,12 +57,18 @@ export function ApiSmsSend(
 export function ApiMemberGameList(params?: {
   page?: number
   page_size?: number
-  game_type?: 1 | 3// 游戏类型:1=真人,3=电子
-  is_hot?: 1 | 2 // 是否热门 1是 2否
-  is_new?: 1 | 2 // 是否新游戏 1是 2否
-  tag_id?: number // 游戏标签
-  platform_id?: string // 场馆id（evo真人）（需要转成字符串）
-  sort?: string // 排序sorting,en_name,created_at 三个字段支持排序，格式为 sorting:asc sorting:desc
+  /** 游戏类型:1=真人,3=电子 */
+  game_type?: 1 | 3
+  /** 是否热门 1是 2否 */
+  is_hot?: 1 | 2
+  /** 是否新游戏 1是 2否 */
+  is_new?: 1 | 2
+  /** 游戏标签 */
+  tag_id?: number
+  /** 场馆id（evo真人）（需要转成字符串） */
+  platform_id?: string
+  /** 排序sorting,en_name,created_at 三个字段支持排序，格式为 sorting:asc sorting:desc */
+  sort?: string
 }) {
   return httpClient.get<IResponseList<{
     id: string
@@ -200,7 +206,8 @@ export function ApiMemberFavDelete(id: string) {
 export function ApiMemberGameRecList(params?: {
   page?: number
   page_size?: number
-  sort?: string // 排序sorting,en_name,created_at 三个字段支持排序，格式为 sorting:asc sorting:desc
+  /** 排序sorting,en_name,created_at 三个字段支持排序，格式为 sorting:asc sorting:desc */
+  sort?: string
 }) {
   return httpClient.get<IResponseList<{
     id: string

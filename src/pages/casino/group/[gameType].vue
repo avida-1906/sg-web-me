@@ -11,7 +11,6 @@ const isLive = computed(() => currentType.value === EnumCasinoGameType.LIVE) // 
 const isSlot = computed(() => currentType.value === EnumCasinoGameType.SLOT) // 老虎机
 const isRec = computed(() => currentType.value === 'rec') // 推荐游戏
 const isProvider = computed(() => currentType.value === 'provider') // 供应商
-
 const title = computed(() => {
   if (isLive.value)
     return t('game_type_live')
@@ -30,24 +29,15 @@ const bannerImg = computed(() => {
     return 'slot'
   return 'default'
 })
-
 // 真人、老虎机
 const gameTypeParams = computed(() => isLive.value ? EnumCasinoApiGameType.LIVE : isSlot.value ? EnumCasinoApiGameType.SLOT : undefined)
 const pid = computed(() => isProvider.value ? route.query.pid?.toString() : undefined)
 const sort = ref(isLive.value ? EnumCasinoSortType.recommend : EnumCasinoSortType.hot)
+const paramsGame = computed(() => ({ game_type: gameTypeParams.value, platform_id: pid.value, sort: sort.value }))
 const { list: gameList, total: gameTotal, runAsync: runGameList, loading: loadingGame, loadMore: loadMoreGame } = useList(ApiMemberGameList, {}, { page_size: VITE_CASINO_GAME_PAGE_SIZE })
-
 // 推荐游戏
+const paramsRec = computed(() => ({ sort: sort.value }))
 const { list: recList, total: recTotal, runAsync: runRecList, loading: loadingRec, loadMore: loadMoreRec } = useList(ApiMemberGameRecList, {}, { page_size: VITE_CASINO_GAME_PAGE_SIZE })
-
-// 获取数据
-function getData() {
-  if (isLive.value || isSlot.value || isProvider.value)
-    application.allSettled([runGameList({ game_type: gameTypeParams.value, platform_id: pid.value, sort: sort.value })])
-  else if (isRec.value)
-    application.allSettled([runRecList({ sort: sort.value })])
-}
-
 // 页面数据
 const list = computed(() => {
   if (isLive.value || isSlot.value || isProvider.value)
@@ -78,6 +68,23 @@ const push = computed(() => {
   return () => { }
 })
 
+// 获取数据
+function getData() {
+  if (isLive.value || isSlot.value || isProvider.value)
+    runGameList(paramsGame.value)
+  else if (isRec.value)
+    runRecList(paramsRec.value)
+}
+// 游戏提供商选择变化
+function onPlatTypeChecked(v: string) {
+  runGameList({ ...paramsGame.value, platform_id: v })
+}
+// 排序变化
+function onSortChange(v: any) {
+  sort.value = v
+  getData()
+}
+
 // 路由变化
 const stop = watch(route, (a) => {
   currentType.value = a.params.gameType.toString()
@@ -88,22 +95,12 @@ onBeforeRouteLeave(() => {
   stop()
 })
 
-// 游戏提供尚选择变化
-function onPlatTypeChecked(v: string) {
-  application.allSettled([runGameList({ game_type: gameTypeParams.value, platform_id: v, sort: sort.value })])
-}
-// 排序变化
-function onSortChange(v: any) {
-  sort.value = v
-  getData()
-}
-
 // 初始化
 if (isLive.value || isSlot.value || isProvider.value)
-  await application.allSettled([runGameList({ game_type: gameTypeParams.value, platform_id: pid.value, sort: sort.value })])
+  await application.allSettled([runGameList(paramsGame.value)])
 
 else if (isRec.value)
-  await application.allSettled([runRecList({ sort: sort.value })])
+  await application.allSettled([runRecList(paramsRec.value)])
 </script>
 
 <template>
