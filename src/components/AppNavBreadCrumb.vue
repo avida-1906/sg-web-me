@@ -67,6 +67,9 @@ function collect() {
     --tg-base-button-style-bg: var(--tg-secondary-dark);
     --tg-base-button-style-bg-hover: var(--tg-secondary-deepdark);
     margin-right: var(--tg-spacing-12);
+    svg {
+      font-size: var(--tg-font-size-xs);
+    }
   }
   .breadcrumb-wrapper {
     padding: var(--tg-spacing-16) var(--tg-spacing-20);

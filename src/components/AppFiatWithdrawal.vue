@@ -7,8 +7,6 @@ const { bankcardList, runBankcardList, bindBanks, selectBank } = useApiMemberBan
 const amount = ref('')
 /** '1' 银行卡， '2' pix 除了巴西其他国家都是银行卡 */
 const currentType = ref(getCurrentLanguage() === 'pt-BR' ? '2' : '1')
-const bankTypeData = ref([{ label: '银行转账', icon: 'fiat-bank', value: '1' }])
-const pixTypeData = ref([{ label: 'PIX', icon: 'fiat-bank', value: '2' }])
 
 await application.allSettled([runBankcardList({ bank_type: getCurrentLanguageIdForBackend() })])
 </script>
@@ -21,7 +19,7 @@ await application.allSettled([runBankcardList({ bank_type: getCurrentLanguageIdF
     </div>
     <!-- 出款信息 -->
     <div v-else class="withdrawal-wrap">
-      <AppWithdrawalDepositType v-model="currentType" :deposit-type="currentType === '1' ? bankTypeData : pixTypeData" />
+      <AppWithdrawalDepositType v-model="currentType" />
       <div class="withdrawal-info">
         <BaseLabel v-if="currentType === '1'" label="出款银行卡" must>
           <BaseSelect v-model="selectBank" :options="bindBanks" must banks theme popper>

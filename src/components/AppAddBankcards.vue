@@ -25,14 +25,8 @@ const { openNotify } = useNotify()
 const bankType = getCurrentLanguageIdForBackend()
 const bankAreaCpf = ref('')
 const { bool: isDefault, setFalse: setIsDefaultFalse } = useBoolean(false)
-// '1' 银行卡， '2' pix 除了巴西其他国家都是银行卡
+/** '1' 银行卡， '2' pix 除了巴西其他国家都是银行卡 */
 const currentType = ref(getCurrentLanguage() === 'pt-BR' ? '2' : '1')
-const bankTypeData = ref([
-  { label: '银行转账', icon: 'fiat-bank', value: '1' },
-])
-const pixTypeData = ref([
-  { label: 'PIX', icon: 'fiat-bank', value: '2' },
-])
 
 const { value: openName, errorMessage: usernameError, validate: usernameValidate, resetField: usernameReset } = useField<string>('username', (value) => {
   if (!value)
@@ -115,7 +109,7 @@ onMounted(() => {
         <BaseInput v-model="openName" :msg="usernameError" :disabled="!props.isFirst" />
       </BaseLabel>
       <BaseLabel label="提款方式">
-        <AppWithdrawalDepositType v-model="currentType" :deposit-type="currentType === '1' ? bankTypeData : pixTypeData" />
+        <AppWithdrawalDepositType v-model="currentType" />
       </BaseLabel>
       <BaseLabel v-if="currentType === '1'" label="请选择银行" must>
         <BaseSelect v-model="bankName" :msg="banknameError" :options="bankSelectOptions" class="base-select" />
