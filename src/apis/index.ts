@@ -446,3 +446,20 @@ export function ApiMemberBalanceList() {
     }
   >('/member/balance/list')
 }
+
+/**
+ * 货币配置信息
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=df9ed49c-03c3-452d-b5c8-ed7a73575049
+ */
+export function ApiMemberCurrencyConfig() {
+  return httpClient.get<{
+    /** 货币ID */
+    cur: string
+    /** 货币名称（CNY,...） */
+    cur_name: string
+    /** 货币小数位数 */
+    decimal_places: number
+    /** 货币前缀 */
+    symbol: string
+  }[]>('/member/currency/config')
+}
