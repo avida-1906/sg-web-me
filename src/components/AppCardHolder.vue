@@ -60,18 +60,12 @@ const toAddVirAddress = function () {
     currencyName: 'BTC',
   }))
 }
-function showCollapse(item: any) {
-  if (item.legalTender) {
+const showCollapse = function (item: any) {
+  if (item.legalTender)
     runBankcardList(pagination.value)
-  }
-  else {
-    runWalletList({
-      contract_type: '',
-      currency_name: '',
-      page: 1,
-      page_size: 10,
-    })
-  }
+
+  else
+    runWalletList({ contract_type: '', currency_name: item.name })
 }
 </script>
 

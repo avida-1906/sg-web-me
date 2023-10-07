@@ -50,7 +50,7 @@ const { page, prev, next, hasMore } = useList(ApiMemberFavList)
     </div>
 
     <div class="layout-spacing">
-      <AppBetData mode="casino" />
+      <AppBetData mode="sports" />
     </div>
   </div>
 </template>
