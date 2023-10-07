@@ -409,15 +409,22 @@ export function ApiMemberPasswordUpdate(data: {
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=9aabea35-99e8-4d35-b58a-abbcb05ba837
  */
 export function ApiMemberBalanceList() {
-  return httpClient.post<
+  return httpClient.get<
     {
       uid: string
-      BRL: string
+      /** 人民币 */
       CNY: string
+      /** 巴西雷亚尔 */
+      BRL: string
+      /** 印度卢比 */
       INR: string
+      /** 越南盾 */
       VND: string
+      /** 泰铢 */
       THB: string
+      /** USDT */
       USDT: string
+      /** 比特币 */
       BTC: string
     }
   >('/member/balance/list')
