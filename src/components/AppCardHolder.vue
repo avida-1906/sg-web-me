@@ -2,13 +2,9 @@
 import { getCurrentLanguageIdForBackend } from '~/modules/i18n'
 
 // 银行卡列表
-const { list: bankcardList, run: runBankcardList, loading: bankcardListLoading } = useList(ApiMemberBankcardList, {
-  loadingKeep: 1000,
-})
+const { list: bankcardList, run: runBankcardList } = useList(ApiMemberBankcardList)
 // 虚拟币钱包地址
-const { list: WalletList, run: runWalletList, loading: walletListLoading } = useList(ApiMemberWalletList, {
-  loadingKeep: 1000,
-})
+const { list: WalletList, run: runWalletList } = useList(ApiMemberWalletList)
 
 const closeDialog = inject('closeDialog', () => {})
 const openName = ref('')
@@ -102,13 +98,6 @@ function showCollapse(item: any) {
               <span class="bank-num">{{ tmp.value }}</span>
               <span class="type">{{ tmp.name }}</span>
             </div>
-            <!-- <BaseLabel label="持卡人姓名" :label-content="i.name">
-              <BaseInput v-model="i.fullName" disabled>
-                <template #left-icon>
-                  <BaseIcon :name="i.icon" />
-                </template>
-              </BaseInput>
-            </BaseLabel> -->
             <BaseButton type="text" class="add-btn" @click="toAddBankcards">
               +
             </BaseButton>
