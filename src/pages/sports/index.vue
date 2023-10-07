@@ -95,7 +95,7 @@ const threeOptions = [
     <SportsUpComing v-else-if="marketType === 'soon'" />
 
     <div class="layout-spacing">
-      <AppBetData mode="casino" />
+      <AppBetData mode="sports" />
     </div>
   </div>
 </template>
