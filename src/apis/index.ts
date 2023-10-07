@@ -438,3 +438,26 @@ export function ApiMemberBalanceList() {
     }
   >('/member/balance/list')
 }
+/**
+ * 会员资料详情
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=a7da5a93-3c50-438f-b0aa-c7c9faada194
+ */
+export function ApiMemberDetail() {
+  return httpClient.get<{
+    uid: string
+    /** 真实姓名，多个语言的用逗号隔开 */
+    realname: string
+    phone: string
+    email: string
+    telegram: string
+    facebook: string
+    zalo: string
+    line: string
+    viber: string
+    whatsapp: string
+    twitter: string
+    wechat: string
+    /** 性别1=男，2=女 */
+    sex: number
+  }>('/member/detail')
+}

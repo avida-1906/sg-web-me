@@ -64,10 +64,10 @@ const changeText = function (e: any) {
       position: relative;
       width: 40px;
       height: 40px;
-      background: #0F212E;
-      box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.20);
+      background: var(--tg-secondary-dark);
+      box-shadow: var(--tg-box-shadow);
       border-radius: 4px;
-      border: 2px #2F4553 solid;
+      border: 2px var(--tg-secondary-main) solid;
       cursor: pointer;
       i{
         position: absolute;

@@ -8,12 +8,19 @@ const selectOptions = [
   { label: '+86 China', value: '86' },
   { label: '+86 China', value: '86' },
 ]
+
+const { data: detailData, runAsync: runAsyncDetail } = useRequest(ApiMemberDetail)
+
 const emailSubmit = function () {
   console.log('email submit')
 }
 const numberSubmit = function () {
   console.log('number submit')
 }
+// setTimeout(() => {
+//   console.log(detailData.value)
+// }, 1000)
+// await application.allSettled([runAsyncDetail()])
 </script>
 
 <template>

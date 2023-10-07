@@ -1,6 +1,6 @@
 /** 银行列表api数据 */
 export function useApiMemberBankCardList() {
-  const { list: bankcardList, runAsync: runBankcardList } = useList(ApiMemberBankcardList)
+  const { list: bankcardList, runAsync: runAsyncBankcardList } = useList(ApiMemberBankcardList)
 
   /** 开户名 */
   const openName = ref('')
@@ -26,7 +26,7 @@ export function useApiMemberBankCardList() {
 
   return {
     bankcardList,
-    runBankcardList,
+    runAsyncBankcardList,
     bindBanks,
     openName,
     selectBank,
