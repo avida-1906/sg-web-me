@@ -6,6 +6,23 @@ interface IResponseList<T> {
   t: number
   s: number
 }
+export interface IMemberDetail {
+  uid: string
+  /** 真实姓名，多个语言的用逗号隔开 */
+  realname: string
+  phone: string
+  email: string
+  telegram: string
+  facebook: string
+  zalo: string
+  line: string
+  viber: string
+  whatsapp: string
+  twitter: string
+  wechat: string
+  /** 性别1=男，2=女 */
+  sex: number
+}
 
 /**
  * 用户登录
@@ -349,6 +366,7 @@ export function ApiMemberBankcardList(params: {
  *        003=越南银行列表，004=支付方式列表，
  *        005=支付类型列表，006=国家列表，
  *        007=币种列表，008=账变类型列表
+ *        011=国际电话区号
  */
 export function ApiMemberTreeList(params: {
   level: string
@@ -443,23 +461,14 @@ export function ApiMemberBalanceList() {
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=a7da5a93-3c50-438f-b0aa-c7c9faada194
  */
 export function ApiMemberDetail() {
-  return httpClient.get<{
-    uid: string
-    /** 真实姓名，多个语言的用逗号隔开 */
-    realname: string
-    phone: string
-    email: string
-    telegram: string
-    facebook: string
-    zalo: string
-    line: string
-    viber: string
-    whatsapp: string
-    twitter: string
-    wechat: string
-    /** 性别1=男，2=女 */
-    sex: number
-  }>('/member/detail')
+  return httpClient.get<IMemberDetail>('/member/detail')
+}
+/**
+ * 会员资料修改
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=4f939a92-0ef0-41fb-b7e7-339b196b6d63
+ */
+export function ApiMemberUpdate(data: IMemberDetail) {
+  return httpClient.post('/member/update', data)
 }
 
 /**
