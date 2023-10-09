@@ -87,39 +87,39 @@ await application.allSettled([runAsyncDetail()])
     <AppSettingsContentItem title="社交账号" last-one class="general-app-settings-content-item" @submit="socialSubmit">
       <div class="social-wrap">
         <div class="social-item">
-          <BaseIcon name="social-facebook" />
+          <BaseImage url="/img/settings/social-facebook.png" width="50px" height="50px" class="general-base-image" />
           <BaseInput v-model="paramsData.facebook" label="Facebook" />
         </div>
         <div class="social-item">
-          <BaseIcon name="social-whatsapp" />
+          <BaseImage url="/img/settings/social-whatsapp.png" width="50px" height="50px" class="general-base-image" />
           <BaseInput v-model="paramsData.whatsapp" label="WhatsApp" />
         </div>
         <div class="social-item">
-          <BaseIcon name="social-telegram" />
+          <BaseImage url="/img/settings/social-telegram.png" width="50px" height="50px" class="general-base-image" />
           <BaseInput v-model="paramsData.telegram" label="Telegram" />
         </div>
         <div class="social-item">
-          <BaseIcon name="social-line" />
+          <BaseImage url="/img/settings/social-line.png" width="50px" height="50px" class="general-base-image" />
           <BaseInput v-model="paramsData.line" label="Line" />
         </div>
         <div class="social-item">
-          <BaseIcon name="social-x" />
+          <BaseImage url="/img/settings/social-x.png" width="50px" height="50px" class="general-base-image" />
           <BaseInput v-model="paramsData.twitter" label="X" />
         </div>
         <div class="social-item">
-          <BaseIcon name="social-zalo" />
+          <BaseImage url="/img/settings/social-zalo.png" width="50px" height="50px" class="general-base-image" />
           <BaseInput v-model="paramsData.zalo" label="Zalo" />
         </div>
         <div class="social-item">
-          <BaseIcon name="social-viber" />
+          <BaseImage url="/img/settings/social-viber.png" width="50px" height="50px" class="general-base-image" />
           <BaseInput v-model="paramsData.viber" label="Viber" />
         </div>
         <div class="social-item">
-          <BaseIcon name="social-wechat" />
+          <BaseImage url="/img/settings/social-wechat.png" width="50px" height="50px" class="general-base-image" />
           <BaseInput v-model="paramsData.wechat" label="WeChat" />
         </div>
         <div class="social-item">
-          <BaseIcon name="social-qq" />
+          <BaseImage url="/img/settings/social-qq.png" width="50px" height="50px" class="general-base-image" />
           <BaseInput v-model="paramsData.qq" label="QQ" />
         </div>
       </div>
@@ -136,6 +136,11 @@ await application.allSettled([runAsyncDetail()])
   .general-app-settings-content-item{
     --tg-app-settings-content-item-style-max-width: 100%;
   }
+  .general-base-image{
+    width: 50px;
+    height: 50px;
+    --tg-base-img-style-radius: var(--tg-radius-md);
+  }
   .social-wrap{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -145,9 +150,6 @@ await application.allSettled([runAsyncDetail()])
       display: flex;
       align-items: center;
       gap: .75rem;
-      svg{
-        border-radius: var(--tg-radius-md);
-      }
     }
   }
 }
