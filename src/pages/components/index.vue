@@ -195,6 +195,20 @@ function copyCode(type: string) {
       <BaseInputPassword v-model="selectValue" :width-auto="false" />
       `)
       break
+    case 'BaseSecondaryAccordion':
+      copy(`
+      <BaseSecondaryAccordion title="ATP / ATP上海站，中国，男单">
+          <template #side="{ isOpen }">
+            <div v-show="!isOpen" style="--tg-badge-font-size: 12px;margin-right: 16px;">
+              <BaseBadge :count="9" />
+            </div>
+          </template>
+          <template #default>
+            <div>盘口</div>
+          </template>
+        </BaseSecondaryAccordion>
+      `)
+      break
     default:
       break
   }
@@ -1085,6 +1099,36 @@ const breadcrumbs = ['one', 'two', 'three', 'four']
             copy
           </BaseButton>
         </div>
+      </AppDemoCard>
+    </li>
+    <li class="box">
+      <AppDemoCard title="BaseSecondaryAccordion">
+        <BaseSecondaryAccordion title="ATP / ATP上海站，中国，男单">
+          <template #side="{ isOpen }">
+            <div v-show="!isOpen" style="--tg-badge-font-size: 12px;margin-right: 16px;">
+              <BaseBadge :count="9" />
+            </div>
+          </template>
+          <template #default>
+            <div>盘口</div>
+          </template>
+        </BaseSecondaryAccordion>
+        <div class="center">
+          <BaseButton @click="copyCode('BaseSecondaryAccordion')">
+            copy
+          </BaseButton>
+        </div>
+        <BaseSecondaryAccordion title="亚洲让分盘">
+          <template #sideThird>
+            <div class="odds-buttons" @click.stop="console.log('ooooooo')">
+              <span>赔率表</span>
+              <span>全部</span>
+            </div>
+          </template>
+          <template #default>
+            <div>盘口</div>
+          </template>
+        </BaseSecondaryAccordion>
       </AppDemoCard>
     </li>
     <li class="box">

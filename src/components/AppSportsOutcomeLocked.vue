@@ -5,7 +5,7 @@
 <template>
   <div class="outcome-locked">
     <div class="icon">
-      <BaseIcon name="spt-odds" />
+      <BaseIcon name="uni-lock" />
     </div>
   </div>
 </template>
