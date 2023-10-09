@@ -36,6 +36,18 @@ export function useCurrencyData() {
     currentCurrency.value = currency
   }
 
+  /**
+   * 判断是不是虚拟货币
+   * @param {EnumCurrencyKey} currency
+   */
+  const isVirtualCurrency = (currency: EnumCurrencyKey) => {
+    const virtualList: EnumCurrencyKey[] = [
+      'USDT',
+    ]
+
+    return virtualList.includes(currency)
+  }
+
   return {
     currentGlobalCurrency,
     currentGlobalCurrencyBalance,
@@ -44,5 +56,6 @@ export function useCurrencyData() {
     changeCurrency,
     clearSearchValue,
     changeCurrentCurrency,
+    isVirtualCurrency,
   }
 }
