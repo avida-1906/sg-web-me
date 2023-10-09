@@ -58,6 +58,9 @@ const threeOptions = [
     <div style="width: 233.64px;margin-bottom: 20px;">
       <AppSportsBetButton disabled />
     </div>
+    <div style="width: 233.64px;height: 78px;margin-bottom: 20px;">
+      <AppSportsOutcomeLocked />
+    </div>
 
     <div class="layout-spacing">
       <AppBetData mode="sports" />
