@@ -23,8 +23,8 @@ const { page, prev, next, hasMore } = useList(ApiMemberFavList)
     <div class="empty">
       <BaseEmpty>
         <template #icon>
-          <div class="icon">
-            <BaseIcon name="uni-empty-betslip" />
+          <div>
+            <BaseIcon style="font-size: var(--tg-empty-icon-size);margin-bottom: var(--tg-spacing-24);" name="uni-empty-betslip" />
           </div>
         </template>
         <template #description>
@@ -72,10 +72,6 @@ const { page, prev, next, hasMore } = useList(ApiMemberFavList)
     height: 100%;
     justify-content: center;
     min-height: 150px;
-
-    .icon {
-      font-size: var(--tg-empty-icon-size);
-    }
   }
 
   .btns {

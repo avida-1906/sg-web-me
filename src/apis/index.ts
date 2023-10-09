@@ -1,5 +1,15 @@
 import { httpClient } from '~/http'
 
+/** 货币的Key */
+export type EnumCurrencyKey = keyof typeof EnumCurrency
+
+/** 后端金额接口数据 */
+export type TCurrencyObject = Prettify<{
+  uid: string
+} & {
+  -readonly [K in EnumCurrencyKey]: string;
+}>
+
 /** 后端返回数组时候的数据结构 */
 interface IResponseList<T> {
   d: T[]
@@ -436,25 +446,7 @@ export function ApiMemberPasswordUpdate(data: {
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=9aabea35-99e8-4d35-b58a-abbcb05ba837
  */
 export function ApiMemberBalanceList() {
-  return httpClient.get<
-    {
-      uid: string
-      /** 人民币 */
-      CNY: string
-      /** 巴西雷亚尔 */
-      BRL: string
-      /** 印度卢比 */
-      INR: string
-      /** 越南盾 */
-      VND: string
-      /** 泰铢 */
-      THB: string
-      /** USDT */
-      USDT: string
-      /** 比特币 */
-      BTC: string
-    }
-  >('/member/balance/list')
+  return httpClient.get<TCurrencyObject>('/member/balance/list')
 }
 /**
  * 会员资料详情
@@ -480,7 +472,7 @@ export function ApiMemberCurrencyConfig() {
     /** 货币ID */
     cur: string
     /** 货币名称（CNY,...） */
-    cur_name: string
+    cur_name: EnumCurrencyKey
     /** 货币小数位数 */
     decimal_places: number
     /** 货币前缀 */

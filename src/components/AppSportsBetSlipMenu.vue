@@ -82,18 +82,16 @@ const betBtnText = computed(() => betSlipTypeTabs.find(b => b.value === betSlipT
 
     <div class="bet-list">
       <div class="scroll-y betlist-scroll">
-        <AppSportsBetSlip :bet-slip-type="betSlipType" :index="0" />
+        <!-- <AppSportsBetSlip :bet-slip-type="betSlipType" :index="0" />
         <AppSportsBetSlip :bet-slip-type="betSlipType" :index="1" is-live />
         <AppSportsBetSlip :bet-slip-type="betSlipType" :index="2" error />
-        <AppSportsBetSlip :bet-slip-type="betSlipType" :index="3" disabled is-closed />
+        <AppSportsBetSlip :bet-slip-type="betSlipType" :index="3" disabled is-closed /> -->
 
         <!-- 无数据缺省，不要删！ -->
-        <!-- <div class="empty">
+        <div class="empty">
           <BaseEmpty>
             <template #icon>
-              <div class="icon">
-                <BaseIcon name="uni-empty-betslip" />
-              </div>
+              <BaseIcon style="font-size: var(--tg-empty-icon-size);margin-bottom: var(--tg-spacing-24);" name="uni-empty-betslip" />
             </template>
             <template #description>
               <span>投注单为空</span>
@@ -104,7 +102,7 @@ const betBtnText = computed(() => betSlipTypeTabs.find(b => b.value === betSlipT
               </BaseButton>
             </template>
           </BaseEmpty>
-        </div> -->
+        </div>
       </div>
     </div>
 
@@ -239,10 +237,6 @@ const betBtnText = computed(() => betSlipTypeTabs.find(b => b.value === betSlipT
     height: 100%;
     justify-content: center;
     min-height: 150px;
-
-    .icon {
-      font-size: var(--tg-empty-icon-size);
-    }
   }
 }
 
