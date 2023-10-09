@@ -45,7 +45,6 @@ export function useCurrencyData() {
       'USDT',
       'BTC',
     ]
-    console.log(virtualList.includes(currency))
     return virtualList.includes(currency)
   }
 

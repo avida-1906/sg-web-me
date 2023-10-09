@@ -64,10 +64,6 @@ const threeOptions = [
       </div>
     </div>
     <AppSportsTab v-model="currentGame" :list="gameList" />
-
-    <div class="layout-spacing">
-      <AppBetData mode="sports" />
-    </div>
   </div>
 </template>
 
@@ -79,6 +75,5 @@ const threeOptions = [
 
 <route lang="yaml">
 meta:
-  layout: home
-  top: sports-home
+  layout: sports-home
 </route>
