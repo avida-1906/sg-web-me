@@ -4,6 +4,8 @@ interface Props {
   modelValue: string
   /** 宽度是否auto */
   widthAuto?: boolean
+  /** 错误提示 */
+  msg?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -42,6 +44,10 @@ const changeText = function (e: any) {
         <b />
       </li>
     </ul>
+    <div v-show="msg" class="msg">
+      <BaseIcon class="error-icon" name="uni-warning" />
+      <span>{{ msg }}</span>
+    </div>
   </div>
 </template>
 
@@ -111,6 +117,18 @@ const changeText = function (e: any) {
             opacity: 0;
         }
       }
+    }
+  }
+  .msg {
+    font-size: var(--tg-font-size-md);
+    display: flex;
+    align-items: center;
+    margin-top: var(--tg-spacing-6);
+
+    span {
+      font-size: var(--tg-font-size-xs);
+      color: var(--tg-text-error);
+      margin-left: var(--tg-spacing-4);
     }
   }
 }

@@ -17,10 +17,8 @@ const emailSubmit = function () {
 const numberSubmit = function () {
   console.log('number submit')
 }
-// setTimeout(() => {
-//   console.log(detailData.value)
-// }, 1000)
-// await application.allSettled([runAsyncDetail()])
+
+await application.allSettled([runAsyncDetail()])
 </script>
 
 <template>
