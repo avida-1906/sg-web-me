@@ -1,16 +1,16 @@
 <script setup lang='ts'>
 interface Props {
   index: number
+  isStandard: boolean // 标准盘或三项投注
+  type: 'live' | 'upcoming'
 }
-defineProps<Props>()
+const props = defineProps<Props>()
 
 const { width } = storeToRefs(useWindowStore())
-const isStandard = ref(true) // 标准盘或三项投注
-const isUpcoming = ref(true)
 
 const isH5Layout = computed(() => width.value < 575)
 const baseGridAreaClass = computed(() => {
-  if (isStandard.value)
+  if (props.isStandard)
     return isH5Layout.value ? 'grid-standard-574' : 'grid-standard-normal'
 
   return isH5Layout.value ? 'grid-three-option-574' : 'grid-three-option-normal'
@@ -29,14 +29,21 @@ const baseGridClass = computed(() => isH5Layout.value ? 'grid-setup-574' : 'grid
             滚球
           </div>
           <span class="text">第二盘</span>
+          <!-- H5 -->
+          <div v-if="isH5Layout" class="fixture-score-h5">
+            <!-- 局分 -->
+            <span>1-4</span>
+            <!-- 总分 -->
+            <span class="total">0-1</span>
+          </div>
         </div>
       </div>
     </div>
     <!-- 横线 -->
-    <div class="line" style="grid-area: line" />
-    <div class="line" style=" grid-area: line2" />
+    <div class="line" :class="{ 'line-bg': index > 0 }" style="grid-area: line" />
+    <div class="line" :class="{ 'line-bg': index > 0 }" style=" grid-area: line2" />
     <!-- 队名 -->
-    <div class="teams">
+    <div v-if="!isH5Layout" class="teams">
       <!-- 主队名称 -->
       <div class="teams-name">
         <span>洛杉矶湖人</span>
@@ -53,7 +60,7 @@ const baseGridClass = computed(() => isH5Layout.value ? 'grid-setup-574' : 'grid
       </div>
     </div>
     <!-- 滚球比分 -->
-    <div class="fixture-score">
+    <div v-if="!isH5Layout" class="fixture-score">
       <div class="fixture-score-wrapper">
         <div class="score-wrapper">
           <!-- 局分 -->
@@ -147,14 +154,29 @@ const baseGridClass = computed(() => isH5Layout.value ? 'grid-setup-574' : 'grid
         color: var(--tg-text-lightgrey);
         background: var(--tg-secondary-deepdark);
       }
+
+      .fixture-score-h5 {
+        display: flex;
+        align-items: center;
+        font-weight: var(--tg-font-weight-semibold);
+        line-height: 1.5;
+
+        .total {
+          color: var(--tg-text-warn);
+          margin-left: var(--tg-spacing-8);
+        }
+      }
     }
   }
 }
 
 .line {
-  background: var(--tg-secondary-main);
   width: 100%;
   height: 2px;
+}
+
+.line-bg {
+  background: var(--tg-secondary-main);
 }
 
 .teams {

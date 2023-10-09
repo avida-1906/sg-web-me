@@ -61,7 +61,9 @@ const threeOptions = [
     <div style="width: 233.64px;height: 78px;margin-bottom: 20px;">
       <AppSportsOutcomeLocked />
     </div>
-    <AppSportsMarket is-live />
+    <AppSportsMarket type="live" />
+    <div style="height: 24px;" />
+    <AppSportsMarket type="upcoming" />
 
     <div class="layout-spacing">
       <AppBetData mode="sports" />

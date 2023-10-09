@@ -1,9 +1,11 @@
 <script setup lang='ts'>
 interface Props {
-  isLive?: boolean
+  type: 'live' | 'upcoming'
+  isStandard?: boolean
 }
 withDefaults(defineProps<Props>(), {
-  isLive: true,
+  type: 'live',
+  isStandard: true,
 })
 </script>
 
@@ -16,9 +18,9 @@ withDefaults(defineProps<Props>(), {
     </template>
     <template #default>
       <div class="wrapper">
-        <AppSportsMarketInfo :index="0" />
-        <AppSportsMarketInfo :index="1" />
-        <AppSportsMarketInfo :index="2" />
+        <AppSportsMarketInfo :type="type" :is-standard="isStandard" :index="0" />
+        <AppSportsMarketInfo :type="type" :is-standard="isStandard" :index="1" />
+        <AppSportsMarketInfo :type="type" :is-standard="isStandard" :index="2" />
       </div>
     </template>
   </BaseSecondaryAccordion>
