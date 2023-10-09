@@ -2,13 +2,13 @@
 import { getCurrentLanguage, getCurrentLanguageIdForBackend } from '~/modules/i18n'
 
 const { isLessThanXs } = storeToRefs(useWindowStore())
-const { bankcardList, runBankcardList, bindBanks, selectBank } = useApiMemberBankCardList()
+const { bankcardList, runAsyncBankcardList, bindBanks, selectBank } = useApiMemberBankCardList()
 
 const amount = ref('')
 /** '1' 银行卡， '2' pix 除了巴西其他国家都是银行卡 */
 const currentType = ref(getCurrentLanguage() === 'pt-BR' ? '2' : '1')
 
-await application.allSettled([runBankcardList({ bank_type: getCurrentLanguageIdForBackend() })])
+await application.allSettled([runAsyncBankcardList({ bank_type: getCurrentLanguageIdForBackend() })])
 </script>
 
 <template>
