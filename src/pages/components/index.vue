@@ -197,7 +197,7 @@ function copyCode(type: string) {
       break
     case 'BaseSecondaryAccordion':
       copy(`
-      <BaseSecondaryAccordion title="ATP / ATP上海站，中国，男单">
+      <BaseSecondaryAccordion title="ATP / ATP上海站，中国，男单" show-more loading>
           <template #side="{ isOpen }">
             <div v-show="!isOpen" style="--tg-badge-font-size: 12px;margin-right: 16px;">
               <BaseBadge :count="9" />
