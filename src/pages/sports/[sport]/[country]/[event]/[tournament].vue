@@ -271,7 +271,26 @@ function onOpenLiveSwitch() {}
               </div>
             </div>
             <div class="sticky-column">
-              右侧面板 {{ rangeNum }}
+              <div class="iframe-widget tracker desktop widget-container">
+                <div class="expand-wrapper">
+                  <BaseIcon name="uni-arrow-up-big" />
+                </div>
+              </div>
+              <div class="spotlight is-open">
+                <div class="no-active-scale header">
+                  <span>近期游戏记录</span>
+                  <BaseButton type="text">
+                    <BaseIcon name="uni-close-white" />
+                  </BaseButton>
+                </div>
+                <div class="content is-open">
+                  <div class="wrapper">
+                    <div class="card-list" style="grid-template-columns: repeat(3, 1fr); gap: 30px 15px;">
+                      <div class="item" />
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -435,6 +454,65 @@ function onOpenLiveSwitch() {}
           height: min-content;
           flex: 0 0 360px;
           max-width: 360px;
+          .widget-container {
+            position: relative;
+            background: var(--tg-secondary-dark);
+            .expand-wrapper {
+              --tg-icon-color: var(--tg-text-white);
+              font-size: var(--tg-font-size-xs);
+              height: var(--tg-spacing-20);
+              -webkit-box-pack: center;
+              bottom: 0;
+              cursor: pointer;
+              display: flex;
+              height: 100%;
+              justify-content: center;
+              left: 0;
+              margin: auto;
+              position: absolute;
+              right: 0;
+              top: 0;
+              transform: rotate(180deg);
+              width: 100%;
+            }
+          }
+          .spotlight {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            position: relative;
+            z-index: 0;
+            border-radius: var(--tg-radius-default);
+            background: var(--header-background);
+            color: var(--tg-secondary-light);
+            font-size: var(--tg-font-size-default);
+            font-weight: var(--tg-font-weight-semibold);
+            .header {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: var(--tg-spacing-8) 0 0 var(--tg-spacing-16);
+            }
+            .content {
+              background: var(--content-background);
+              display: flex;
+              flex-direction: column;
+              width: 100%;
+              border-radius: 0 0 var(--tg-spacing-4) var(--tg-spacing-4);
+              .wrapper {
+                border-radius: var(--tg-spacing-4);
+                padding: var(--tg-spacing-12) var(--tg-spacing-16);
+                .card-list {
+                  display: grid;
+                }
+              }
+            }
+          }
+          .spotlight.variant-dark {
+            --header-background: var(--tg-secondary-dark);
+            --title-color: var(--tg-text-grey-light);
+            --content-background: var(--tg-secondary-dark);
+          }
         }
       }
     }
