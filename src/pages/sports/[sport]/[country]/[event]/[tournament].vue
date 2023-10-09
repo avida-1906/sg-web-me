@@ -4,6 +4,7 @@ type Qualifier = 'home' | 'away'
 const route = useRoute()
 
 const rangeNum = ref()
+const { bool: openLiveSwitch } = useBoolean(false)
 const eventData = reactive({
   id: '54091c18-6724-461f-8ccd-ac254479d198',
   slug: '43893124-persija-jakarta-barito-putera',
@@ -154,6 +155,7 @@ function mapHeadArea(head: Array<{ key: string; periodScores?: Array<{ [prop: st
     return accumulator
   }, [])
 }
+function onOpenLiveSwitch() {}
 </script>
 
 <template>
@@ -245,30 +247,36 @@ function mapHeadArea(head: Array<{ key: string; periodScores?: Array<{ [prop: st
                     <div class="match-score fill-frame" style="grid-area: matchScore_away;">
                       <span>1</span>
                     </div>
-
-                    <!-- <div v-for="s in scoreBoard.headTitle" :key="s.key" :style="{ 'grid-area': s.name }" class="heading">
-                      {{ s.title || s.icon }}
-                    </div>
-                    <div v-for="s in scoreBoard.headHome" :key="s.key" :style="{ 'grid-area': s.name }">
-                      {{ s.value() }}
-                    </div>
-                    <div v-for="s in scoreBoard.headAway" :key="s.key" :style="{ 'grid-area': s.name }">
-                      {{ s.value() }}
-                    </div> -->
                   </div>
                 </div>
               </div>
-              <div class="live-stream-scoreboard-footer" />
-              <div class="groups" />
+              <div class="live-stream-scoreboard-footer">
+                <span>记分板</span>
+                <label>
+                  <BaseSwitch v-model="openLiveSwitch" @change="onOpenLiveSwitch" />
+                </label>
+                <span>直播</span>
+              </div>
+              <div class="groups">
+                <div class="search-wrap">
+                  <BaseInput>
+                    <template #left-icon>
+                      <BaseIcon name="uni-search" />
+                    </template>
+                  </BaseInput>
+                </div>
+                <div class="no-markets">
+                  <BaseEmpty icon="uni-empty-handicap" description="暂无可用盘口" />
+                </div>
+              </div>
             </div>
             <div class="sticky-column">
-              2
+              右侧面板 {{ rangeNum }}
             </div>
           </div>
         </div>
       </div>
     </div>
-    当前国家某种赛事的其中具体的一场对局赛事盘口详情 {{ rangeNum }}
     <AppBallRange v-model="rangeNum" title="和卡里姆" />
   </div>
 </template>
@@ -289,6 +297,9 @@ function mapHeadArea(head: Array<{ key: string; periodScores?: Array<{ [prop: st
           flex-direction: column;
           flex: auto;
           min-width: 0;
+          > *+* {
+            margin-top: var(--tg-spacing-16);
+          }
           .match-statistics {
             display: flex;
             justify-content: center;
@@ -389,6 +400,30 @@ function mapHeadArea(head: Array<{ key: string; periodScores?: Array<{ [prop: st
                   background: var(--tg-text-lightblue);
                 }
               }
+            }
+          }
+          .live-stream-scoreboard-footer {
+            background: var(--tg-secondary-dark);
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: var(--tg-spacing-8) var(--tg-spacing-16);
+            margin-top: 0;
+            color: var(--tg-secondary-light);
+            line-height: 1.5;
+            font-size: var(--tg-font-size-default);
+            font-weight: var(--tg-font-weight-semibold);
+            > *+* {
+              margin-left: var(--tg-spacing-12);
+            }
+          }
+          .groups {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            position: relative;
+            > *+* {
+              margin-top: var(--tg-spacing-16);
             }
           }
         }
