@@ -1,10 +1,40 @@
 import { httpClient } from '~/http'
 
+/** 货币的Key */
+export type EnumCurrencyKey = keyof typeof EnumCurrency
+
+/** 后端金额接口数据 */
+export type TCurrencyObject = Prettify<{
+  uid: string
+} & {
+  -readonly [K in EnumCurrencyKey]: string;
+}>
+
 /** 后端返回数组时候的数据结构 */
 interface IResponseList<T> {
   d: T[]
   t: number
   s: number
+}
+export interface IMemberDetail {
+  uid: string
+  /** 真实姓名，多个语言的用逗号隔开 */
+  realname: string
+  phone: string
+  email: string
+  telegram: string
+  facebook: string
+  zalo: string
+  line: string
+  viber: string
+  whatsapp: string
+  twitter: string
+  wechat: string
+  qq: string
+  /** 邮箱是否验证 1=已验证，2=未验证 */
+  email_check_state: number
+  /** 性别 1=男，2=女 */
+  sex: number
 }
 
 /**
@@ -349,6 +379,7 @@ export function ApiMemberBankcardList(params: {
  *        003=越南银行列表，004=支付方式列表，
  *        005=支付类型列表，006=国家列表，
  *        007=币种列表，008=账变类型列表
+ *        011=国际电话区号
  */
 export function ApiMemberTreeList(params: {
   level: string
@@ -418,48 +449,21 @@ export function ApiMemberPasswordUpdate(data: {
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=9aabea35-99e8-4d35-b58a-abbcb05ba837
  */
 export function ApiMemberBalanceList() {
-  return httpClient.get<
-    {
-      uid: string
-      /** 人民币 */
-      CNY: string
-      /** 巴西雷亚尔 */
-      BRL: string
-      /** 印度卢比 */
-      INR: string
-      /** 越南盾 */
-      VND: string
-      /** 泰铢 */
-      THB: string
-      /** USDT */
-      USDT: string
-      /** 比特币 */
-      BTC: string
-    }
-  >('/member/balance/list')
+  return httpClient.get<TCurrencyObject>('/member/balance/list')
 }
 /**
  * 会员资料详情
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=a7da5a93-3c50-438f-b0aa-c7c9faada194
  */
 export function ApiMemberDetail() {
-  return httpClient.get<{
-    uid: string
-    /** 真实姓名，多个语言的用逗号隔开 */
-    realname: string
-    phone: string
-    email: string
-    telegram: string
-    facebook: string
-    zalo: string
-    line: string
-    viber: string
-    whatsapp: string
-    twitter: string
-    wechat: string
-    /** 性别1=男，2=女 */
-    sex: number
-  }>('/member/detail')
+  return httpClient.get<IMemberDetail>('/member/detail')
+}
+/**
+ * 会员资料修改
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=4f939a92-0ef0-41fb-b7e7-339b196b6d63
+ */
+export function ApiMemberUpdate(data: IMemberDetail) {
+  return httpClient.post<string>('/member/update', data)
 }
 
 /**
@@ -471,7 +475,7 @@ export function ApiMemberCurrencyConfig() {
     /** 货币ID */
     cur: string
     /** 货币名称（CNY,...） */
-    cur_name: string
+    cur_name: EnumCurrencyKey
     /** 货币小数位数 */
     decimal_places: number
     /** 货币前缀 */

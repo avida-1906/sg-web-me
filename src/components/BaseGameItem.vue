@@ -9,13 +9,15 @@ interface Props {
   }
 }
 
-defineProps<Props>()
+const props = defineProps<Props>()
 
 const router = useRouter()
 const { isMobile } = storeToRefs(useWindowStore())
-
+const { platformList } = storeToRefs(useAppStore())
 const closeSearch = inject('closeSearch', () => {})
 const closeSearchH5 = inject('closeSearchH5', () => {})
+
+const gameProviderName = computed(() => platformList.value?.find(a => a.id === props.gameInfo.platform_id)?.name ?? '-')
 
 function gameStart(item: Props['gameInfo']) {
   const { id } = item
@@ -38,7 +40,7 @@ function gameStart(item: Props['gameInfo']) {
         </div>
         <BaseIcon class="game-uni-play" name="uni-play" />
         <div class="game-tip">
-          Abcd 原创游戏
+          {{ gameProviderName }}
         </div>
       </div>
     </div>

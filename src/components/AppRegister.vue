@@ -37,8 +37,6 @@ const { value: username, errorMessage: usernameErrorMsg, validate: valiUsername 
   // 此用户名已被使用，请选择另一用户名。
   // 用户名含有无效的字符
   // 您的用户名长度必须为 3 – 14 个字符。
-  // 您的 username 必须含有至少 3 个字符
-  // 您的 username 不得超过 14 个字符
   return ''
 })
 const { value: password, errorMessage: pwdErrorMsg, validate: valiPassword } = useField<string>('password', (value) => {
