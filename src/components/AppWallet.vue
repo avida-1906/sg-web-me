@@ -1,11 +1,6 @@
 <script lang="ts" setup>
-interface Currency {
-  balance: string | number
-  icon: string
-  name: string
-  id: number
-  legalTender?: boolean
-}
+import type { IUserCurrencyList } from '~/stores/app'
+
 interface Props {
   walletBtn?: boolean
   showBalance?: boolean
@@ -24,72 +19,36 @@ const { openWalletDialog } = useWalletDialog()
 // 下拉搜索是否显示
 const { bool: isMenuShown } = useBoolean(false)
 const { appContentWidth } = storeToRefs(useWindowStore())
+const {
+  currentGlobalCurrency,
+  currentGlobalCurrencyBalance,
+  searchValue,
+  renderCurrencyList,
+  changeCurrency,
+  clearSearchValue,
+} = useCurrencyData()
 
-const currencyOptions: Ref<Currency[]> = ref([])
-// 搜索内容
-const searchValue = ref('')
-// 当前选择币种
-const activeCurrency: Ref<Currency> = ref({
-  balance: '',
-  icon: '',
-  name: '',
-  id: 0,
-})
 const currentNetwork = ref('TRC20')
 const networkList = [
   { label: 'ERC20', value: 'ERC20' },
   { label: 'TRC20', value: 'TRC20' },
 ]
 
-// 搜索币种
-const getSearchBalance = computed(() => {
-  if (searchValue.value) {
-    return currencyOptions.value.filter((item) => {
-      return item.name.includes(searchValue.value.toLocaleUpperCase())
-    })
-  }
-  else {
-    return currencyOptions.value
-  }
-})
-
-function dropShow() {
-  searchValue.value = ''
-}
 // 选择币种
-function selectCurrency(item: any, hide: () => void) {
+function selectCurrency(item: IUserCurrencyList, hide: () => void) {
+  changeCurrency(item.type)
   hide()
-  activeCurrency.value = item
   emit('change', item)
 }
-function initCurrency() {
-  const arr: Currency[] = []
-  for (const key in EnumCurrency) {
-    if (isNumber(EnumCurrency[key]))
-      break
-    arr.push({
-      balance: 0,
-      icon: `coin-${EnumCurrency[key].toLocaleLowerCase()}`,
-      name: EnumCurrency[key],
-      id: Number(key),
-    })
-  }
-  arr[1].legalTender = true
-  currencyOptions.value = arr
-  activeCurrency.value = arr[0]
-  emit('change', currencyOptions.value[0])
-}
-
-initCurrency()
 </script>
 
 <template>
   <div class="app-wallet app-currency" :class="{ 'app-currency': network }">
-    <VDropdown v-model:shown="isMenuShown" :distance="6" @apply-show="dropShow">
+    <VDropdown v-model:shown="isMenuShown" :distance="6" @apply-show="clearSearchValue">
       <div class="wallet-box">
         <BaseButton class="wallet" :class="{ 'wallet-only': !walletBtn }" type="text" size="md">
-          <AppAmount v-if="showBalance" style="color:var(--tg-text-white);" :amount="activeCurrency.balance" :currency-type="activeCurrency.id" />
-          <AppCurrencyIcon v-else class="wallet-text" :show-name="!showBalance" :currency-type="activeCurrency.id" />
+          <AppAmount v-if="showBalance" style="color:var(--tg-text-white);" :amount="currentGlobalCurrencyBalance" :currency-type="currentGlobalCurrency" />
+          <AppCurrencyIcon v-else class="wallet-text" :show-name="!showBalance" :currency-type="currentGlobalCurrency" />
           <BaseIcon class="arrow" :class="{ 'arrow-up': isMenuShown }" name="uni-arrow-down" />
         </BaseButton>
         <BaseButton v-if="walletBtn" class="wallet-right-btn" bg-style="primary" @click.stop="openWalletDialog">
@@ -103,11 +62,11 @@ initCurrency()
             <BaseSearch v-model="searchValue" :style="{ 'max-width': showBalance ? '180px' : '140px' }" class="top-search" :clearable="searchValue?.length > 0" :white-style="true" :place-holder="showBalance ? '搜索货币' : '搜索'" />
           </div>
           <div class="scroll-y popper-content" :class="{ 'justify-content': !showBalance }">
-            <div v-for="item of getSearchBalance" :key="item.id" class="content-row" @click.stop="selectCurrency(item, hide)">
-              <AppAmount v-if="showBalance" :amount="item.balance" :currency-type="item.id" show-name />
-              <AppCurrencyIcon v-else show-name :currency-type="item.id" />
+            <div v-for="item of renderCurrencyList" :key="item.type" class="content-row" @click.stop="selectCurrency(item, hide)">
+              <AppAmount v-if="showBalance" :amount="item.balanceWithSymbol" :currency-type="item.type" show-name />
+              <AppCurrencyIcon v-else show-name :currency-type="item.type" />
             </div>
-            <div v-show="!getSearchBalance.length" class="balance-not">
+            <div v-show="!renderCurrencyList.length" class="balance-not">
               无法使用货币
             </div>
           </div>

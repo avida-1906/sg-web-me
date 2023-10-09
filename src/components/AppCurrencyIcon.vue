@@ -1,23 +1,24 @@
 <script setup lang='ts'>
-import { EnumCurrency } from '~/utils/enums'
+import type { EnumCurrencyKey } from '~/apis'
 
 interface Props {
-  currencyType: EnumCurrency
+  currencyType: EnumCurrencyKey
   showName?: boolean
   iconAlign?: 'left' | 'right'
 }
 const props = defineProps<Props>()
-const currencyName = computed(() => EnumCurrency[props.currencyType].toLocaleUpperCase())
-const iconName = computed(() => EnumCurrency[props.currencyType].toLocaleLowerCase())
+
+const { VITE_CURRENCY_ICON_URL } = getEnv()
+
 const getIsRight = computed(() => props.iconAlign === 'right')
 </script>
 
 <template>
   <div class="app-currency-icon">
-    <BaseIcon v-if="!getIsRight" :name="`coin-${iconName}`" />
-    <span v-if="showName" class="name" :style="`margin-${getIsRight ? 'right' : 'left'}: var(--tg-spacing-4);`">{{ currencyName }}</span>
+    <div v-if="!getIsRight" class="icon" :data-icon-url="VITE_CURRENCY_ICON_URL" :title="currencyType" />
+    <span v-if="showName" class="name" :style="`margin-${getIsRight ? 'right' : 'left'}: var(--tg-spacing-4);`">{{ currencyType }}</span>
     <slot name="network" />
-    <BaseIcon v-if="getIsRight" :name="`coin-${iconName}`" />
+    <div v-if="getIsRight" class="icon" :data-icon-url="VITE_CURRENCY_ICON_URL" :title="currencyType" />
   </div>
 </template>
 
@@ -27,6 +28,13 @@ const getIsRight = computed(() => props.iconAlign === 'right')
   color: inherit;
   display: flex;
   align-items: center;
+
+  .icon {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: red;
+  }
 
   .name {
     white-space: nowrap;
