@@ -40,9 +40,7 @@ function onSortSelect(v: string) {
   emit('sortTypeChange', v)
 }
 function onCheckedPlatform(v: string[]) {
-  if (v.length === 1)
-    return emit('platTypeChecked', v[0])
-  emit('platTypeChecked', undefined)
+  emit('platTypeChecked', v.join(','))
 }
 function resetPlatformChecked() {
   if (!platformCheckedValues.value.length)
