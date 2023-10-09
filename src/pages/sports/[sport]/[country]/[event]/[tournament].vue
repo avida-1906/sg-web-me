@@ -214,15 +214,17 @@ function mapHeadArea(head: Array<{ key: string; periodScores?: Array<{ [prop: st
                     </span>
 
                     <!-- period -->
-                    <div class="heading center" style="grid-area: period_title_0;">
-                      <span>1st</span>
-                    </div>
-                    <span class="fill-frame border" style="grid-area: period_home_0;">
-                      <span>0</span>
-                    </span>
-                    <span class="fill-frame" style="grid-area: period_away_0;">
-                      <span>1</span>
-                    </span>
+                    <template v-for="p, idx in eventData.eventStatus.periodScores" :key="idx">
+                      <div class="heading center" :style="`grid-area: period_title_${idx}`">
+                        <span>{{ idx + 1 }}st</span>
+                      </div>
+                      <span class="fill-frame border" :style="`grid-area: period_home_${idx}`">
+                        <span>{{ p.homeScore }}</span>
+                      </span>
+                      <span class="fill-frame" :style="`grid-area: period_away_${idx}`">
+                        <span>{{ p.awayScore }}</span>
+                      </span>
+                    </template>
 
                     <!-- gameScore -->
                     <div class="heading center" style="grid-area: gameScore_title;" />
