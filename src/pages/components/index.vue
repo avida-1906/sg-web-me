@@ -190,6 +190,11 @@ function copyCode(type: string) {
         </BaseLabel>
       `)
       break
+    case 'BaseInputPassword':
+      copy(`
+      <BaseInputPassword v-model="selectValue" :width-auto="false" />
+      `)
+      break
     default:
       break
   }
@@ -625,7 +630,7 @@ const breadcrumbs = ['one', 'two', 'three', 'four']
         <BaseBreadcrumbs :list="breadcrumbs" />
       </AppDemoCard>
     </li>
-    <li class="box">
+    <!-- <li class="box">
       <AppDemoCard title="AppRegisterTermsConditions">
         <AppRegisterTermsConditions />
       </AppDemoCard>
@@ -639,7 +644,7 @@ const breadcrumbs = ['one', 'two', 'three', 'four']
       <AppDemoCard title="AppRegisterDialog">
         <AppRegisterDialog />
       </AppDemoCard>
-    </li>
+    </li> -->
     <li class="box">
       <AppDemoCard title="BaseIcon">
         <ul class="icon-wrap m0 p0">
@@ -1201,6 +1206,16 @@ const breadcrumbs = ['one', 'two', 'three', 'four']
         </BaseLabel>
         <div class="center">
           <BaseButton @click="copyCode('BaseLabel')">
+            copy
+          </BaseButton>
+        </div>
+      </AppDemoCard>
+    </li>
+    <li class="box">
+      <AppDemoCard title="BaseInputPassword" style="text-align:center">
+        <BaseInputPassword v-model="selectValue" :width-auto="false" />
+        <div class="center">
+          <BaseButton @click="copyCode('BaseInputPassword')">
             copy
           </BaseButton>
         </div>

@@ -275,7 +275,9 @@ export function ApiMemberPlatformList(params?: { page?: number; page_size?: numb
  */
 export function ApiMemberWalletList(
   params: {
+    /** 合约类型 */
     contract_type: string
+    /** 货币名称 */
     currency_name: string
     page?: number
     page_size?: number
@@ -285,12 +287,17 @@ export function ApiMemberWalletList(
     id: string
     uid: string
     state: number
+    /** 合约类型 */
     contract_type: string
+    /** 货币名称 */
     currency_name: string
     created_at: number
     updated_at: number
+    /** 是否默认：1：是，2否 */
     is_default: number
+    /** 用户名 */
     username: string
+    /** 钱包地址 */
     wallet_address: string
   }>>('/member/wallet/list', params)
 }
@@ -382,7 +389,7 @@ export function ApiMemberWalletInsert(data: {
   /** 是否默认：1：是，2否 */
   is_default?: number
 }) {
-  return httpClient.post('/member/wallet/insert', data)
+  return httpClient.post<string>('/member/wallet/insert', data)
 }
 
 /**
@@ -390,7 +397,7 @@ export function ApiMemberWalletInsert(data: {
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=714a7e70-5d38-4c04-969d-f251710adf6b
  */
 export function ApiMemberLoginout() {
-  return httpClient.post('/member/login_out')
+  return httpClient.post<string>('/member/login_out')
 }
 
 /**
@@ -398,10 +405,12 @@ export function ApiMemberLoginout() {
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=8099f10a-3710-4854-b933-61068636900f
  */
 export function ApiMemberPasswordUpdate(data: {
+  /** 原密码 */
   password: string
+  /** 新密码 */
   new_password: string
 }) {
-  return httpClient.post('/member/password/update', data)
+  return httpClient.post<string>('/member/password/update', data)
 }
 
 /**
@@ -409,16 +418,63 @@ export function ApiMemberPasswordUpdate(data: {
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=9aabea35-99e8-4d35-b58a-abbcb05ba837
  */
 export function ApiMemberBalanceList() {
-  return httpClient.post<
+  return httpClient.get<
     {
       uid: string
-      BRL: string
+      /** 人民币 */
       CNY: string
+      /** 巴西雷亚尔 */
+      BRL: string
+      /** 印度卢比 */
       INR: string
+      /** 越南盾 */
       VND: string
+      /** 泰铢 */
       THB: string
+      /** USDT */
       USDT: string
+      /** 比特币 */
       BTC: string
     }
   >('/member/balance/list')
+}
+/**
+ * 会员资料详情
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=a7da5a93-3c50-438f-b0aa-c7c9faada194
+ */
+export function ApiMemberDetail() {
+  return httpClient.get<{
+    uid: string
+    /** 真实姓名，多个语言的用逗号隔开 */
+    realname: string
+    phone: string
+    email: string
+    telegram: string
+    facebook: string
+    zalo: string
+    line: string
+    viber: string
+    whatsapp: string
+    twitter: string
+    wechat: string
+    /** 性别1=男，2=女 */
+    sex: number
+  }>('/member/detail')
+}
+
+/**
+ * 货币配置信息
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=df9ed49c-03c3-452d-b5c8-ed7a73575049
+ */
+export function ApiMemberCurrencyConfig() {
+  return httpClient.get<{
+    /** 货币ID */
+    cur: string
+    /** 货币名称（CNY,...） */
+    cur_name: string
+    /** 货币小数位数 */
+    decimal_places: number
+    /** 货币前缀 */
+    symbol: string
+  }[]>('/member/currency/config')
 }

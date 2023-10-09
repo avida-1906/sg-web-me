@@ -14,6 +14,13 @@ const { openRegisterDialog } = useRegisterDialog()
 const { openVipDialog } = useVipDialog()
 const { openStatisticsDialog } = useStatisticsDialog()
 const { openSafeDialog } = useSafeDialog()
+const { run: runMemberLoginout, loading: loginoutLoading } = useRequest(ApiMemberLoginout, {
+  onSuccess() {
+    appStore.removeToken()
+    setDialogLogoutFalse()
+    router.push('/')
+  },
+})
 
 const userMenu = ref([
   { id: 1, icon: 'navbar-wallet', title: t('wallet'), name: 'wallet' },
@@ -78,11 +85,6 @@ function handleClickMenuItem(item: { name: string; path?: string }) {
     default:
       break
   }
-}
-async function logout() {
-  appStore.removeToken()
-  await nextTick()
-  setDialogLogoutFalse()
 }
 </script>
 
@@ -152,7 +154,7 @@ async function logout() {
       <div class="dialog-text">
         {{ t('logout_dont_foget') }}
       </div>
-      <BaseButton class="dialog-btn" type="text" @click.stop="logout">
+      <BaseButton class="dialog-btn" type="text" :loading="loginoutLoading" @click.stop="runMemberLoginout">
         {{ t('logout') }}
       </BaseButton>
     </div>

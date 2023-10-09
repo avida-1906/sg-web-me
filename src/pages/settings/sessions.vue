@@ -1,11 +1,4 @@
 <script lang="ts" setup>
-const selectValue = ref('1')
-const selectOptions = [
-  { label: '全部', value: '1' },
-  { label: '活跃', value: '2' },
-  { label: '不活跃', value: '3' },
-]
-
 interface Column {
   title?: string
   width?: number | string
@@ -13,7 +6,15 @@ interface Column {
   slot?: string
   align?: 'left' | 'center' | 'right'
 }
+
 const { bool: loading } = useBoolean(false)
+
+const selectValue = ref('1')
+const selectOptions = [
+  { label: '全部', value: '1' },
+  { label: '活跃', value: '2' },
+  { label: '不活跃', value: '3' },
+]
 const columns: Column[] = [
   {
     title: '浏览器',
@@ -86,7 +87,7 @@ const paginationData = {
     <div class="session-select">
       <BaseSelect v-model="selectValue" :options="selectOptions" small />
     </div>
-    <div class="session-table scroll-x">
+    <div class="scroll-x session-table">
       <BaseTable
         :columns="columns"
         :data-source="tableData"
