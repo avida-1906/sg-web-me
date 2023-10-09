@@ -61,7 +61,7 @@ async function handleSubmit() {
         <BaseInput v-model="password" :msg="pwdErrorMsg" type="password" />
       </BaseLabel>
       <BaseLabel label="新密码" must-small>
-        <BaseInput v-model="newPassword" type="password" :msg="newPwdErrorMsg" @focus="setShowPasswordVerifyTrue" />
+        <BaseInput v-model="newPassword" :msg="newPwdErrorMsg" type="password" @focus="setShowPasswordVerifyTrue" />
         <AppPasswordVerify v-show="isShowPasswordVerify" :password="newPassword" />
       </BaseLabel>
       <BaseLabel label="确认新密码" must-small>

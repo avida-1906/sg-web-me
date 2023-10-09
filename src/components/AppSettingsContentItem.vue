@@ -1,13 +1,18 @@
 <script setup lang='ts'>
 interface Props {
-  title: string // 标题
-  badge?: string // 标签
-  lastOne?: boolean // 最后一个
-  btnLoading?: boolean // 按钮loading状态
+  /** 标题 */
+  title: string
+  /** 最后一行 */
+  lastOne?: boolean
+  /** 按钮loading状态 */
+  btnLoading?: boolean
+  /** 是否验证 */
+  verified?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
   lastOne: false,
+  verified: false,
 })
 const emit = defineEmits(['submit'])
 
@@ -21,7 +26,7 @@ const onSubmit = function () {
     <div class="content-top">
       <div class="top-title">
         <span>{{ props.title }}</span>
-        <span class="badge">{{ props.badge }}</span>
+        <span v-if="props.verified" class="badge">已验证</span>
       </div>
       <div class="top-desc">
         <slot name="top-desc" />
@@ -39,7 +44,7 @@ const onSubmit = function () {
       </div>
       <div class="btm-right">
         <slot name="btm-right" />
-        <BaseButton bg-style="secondary" size="md" class="btn-width" :loading="btnLoading" @click="onSubmit">
+        <BaseButton bg-style="secondary" size="md" class="btn-width" :loading="btnLoading" :disabled="props.verified" @click="onSubmit">
           保存
         </BaseButton>
       </div>

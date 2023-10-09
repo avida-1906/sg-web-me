@@ -202,6 +202,18 @@ function mapHeadArea(head: Array<{ key: string; periodScores?: Array<{ [prop: st
   }, [])
 }
 function onOpenLiveSwitch() {}
+const menuInfo = ref({
+  title: '顶级体育项目',
+  icon: 'chess-sponsorship',
+  list: [
+    { title: '足球', icon: 'chess-sponsorship', id: 1 },
+    { title: '篮球', icon: 'chess-sponsorship', id: 2 },
+    { title: '网球', icon: 'chess-sponsorship', id: 3 },
+    { title: '棒球', icon: 'chess-sponsorship', id: 4 },
+    { title: '篮球', icon: 'chess-sponsorship', id: 5 },
+    { title: '橄榄球', icon: 'chess-sponsorship', id: 6 },
+  ],
+})
 </script>
 
 <template>
@@ -314,6 +326,18 @@ function onOpenLiveSwitch() {}
                     </template>
                   </BaseInput>
                 </div>
+                <section>
+                  <BaseSecondaryAccordion title="ATP / ATP上海站，中国，男单">
+                    <template #side="{ isOpen }">
+                      <div v-show="!isOpen" class="badge-box">
+                        <BaseBadge :count="9" />
+                      </div>
+                    </template>
+                    <template #default>
+                      <div>盘口</div>
+                    </template>
+                  </BaseSecondaryAccordion>
+                </section>
                 <div class="no-markets">
                   <BaseEmpty icon="uni-empty-handicap" description="暂无可用盘口" />
                 </div>

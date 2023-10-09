@@ -78,6 +78,7 @@ onMounted(() => {
 :root{
   --tg-badge-font-size: var(--tg-font-size-default);
   --tg-badge-padding-x:var(--tg-spacing-8);
+  --tg-badge-line-height: 1.5;
 }
 </style>
 
@@ -168,7 +169,7 @@ onMounted(() => {
     min-width: 1.8em;
     color: var(--tg-badge-color);//默认字体颜色
     font-size: var(--tg-badge-font-size);
-    line-height: 1.5;
+    line-height: var(--tg-badge-line-height);
     white-space: nowrap;
     text-align: center;
     background: var(--tg-badge-background-color);//默认背景颜色

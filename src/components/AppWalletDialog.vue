@@ -1,6 +1,7 @@
 <script setup lang='ts'>
 const { t } = useI18n()
 const { bool: showWallet, setBool: setShowWalletBool } = useBoolean(true)
+const { isVirtualCurrency } = useCurrencyData()
 
 const activeCurrency = ref()
 const currentTab = ref('deposit')
@@ -26,15 +27,14 @@ function handleShow(val: boolean) {
   <div class="app-wallet-dialog">
     <div class="content">
       <BaseTab v-model="currentTab" :list="tabList" />
-      <AppWallet v-show="showWallet && !isCardHolder" :wallet-btn="false" :show-balance="false" :network="true" @change="changeCurrency" />
-
+      <AppSelectCurrency v-show="showWallet && !isCardHolder" @change="changeCurrency" />
       <template v-if="isDeposit">
-        <AppFiatDeposit v-if="activeCurrency?.legalTender" :active-currency="activeCurrency" @show="handleShow" />
+        <AppFiatDeposit v-if="isVirtualCurrency(activeCurrency?.type)" :active-currency="activeCurrency" @show="handleShow" />
         <AppVirtualDeposit v-else :active-currency="activeCurrency" @show="handleShow" />
       </template>
       <template v-else-if="isWithdraw">
         <Suspense timeout="0">
-          <AppFiatWithdrawal v-if="activeCurrency?.legalTender" :active-currency="activeCurrency" />
+          <AppFiatWithdrawal v-if="isVirtualCurrency(activeCurrency?.type)" :active-currency="activeCurrency" />
           <AppWithdraw v-else :active-currency="activeCurrency" />
           <template #fallback>
             <div class="center dialog-loading-height">
