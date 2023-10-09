@@ -9,6 +9,8 @@ export function useCurrencyData() {
 
   // 搜索内容
   const searchValue = ref('')
+  // 当前选择的货币
+  const currentCurrency = ref(EnumCurrency[0] as EnumCurrencyKey)
 
   // 渲染货币列表
   const renderCurrencyList = computed(() => {
@@ -26,6 +28,14 @@ export function useCurrencyData() {
     searchValue.value = ''
   }
 
+  /**
+   * 改变当前选择的货币
+   * @param {EnumCurrencyKey} currency
+   */
+  const changeCurrentCurrency = (currency: EnumCurrencyKey) => {
+    currentCurrency.value = currency
+  }
+
   return {
     currentGlobalCurrency,
     currentGlobalCurrencyBalance,
@@ -33,5 +43,6 @@ export function useCurrencyData() {
     renderCurrencyList,
     changeCurrency,
     clearSearchValue,
+    changeCurrentCurrency,
   }
 }
