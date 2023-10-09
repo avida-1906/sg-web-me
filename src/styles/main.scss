@@ -338,6 +338,26 @@ body {
   &.padding-none {
     padding: 0;
   }
+
+  &.padding-bottom-medium {
+    padding-bottom: var(--tg-spacing-12);
+  }
+  
+  &.padding-bottom-small {
+    padding-bottom: var(--tg-spacing-8);
+  }
+
+  &.padding-bottom-smaller {
+    padding-bottom: var(--tg-spacing-4);
+  }
+
+  &.padding-top-medium {
+    padding-top: var(--tg-spacing-12);
+  }
+
+  &.padding-left-large {
+    padding-left: var(--tg-spacing-16);
+  }
 }
 
 // 页面垂直布局

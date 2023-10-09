@@ -1,11 +1,19 @@
 <script lang="ts" setup>
 interface Props {
   title?: string
+  showMore?: boolean
+  loading?: boolean
 }
 
 withDefaults(defineProps<Props>(), {})
 
+const emit = defineEmits(['more'])
+
 const { bool: isOpen, toggle } = useBoolean(true)
+
+function loadMore() {
+  emit('more')
+}
 </script>
 
 <template>
@@ -30,6 +38,17 @@ const { bool: isOpen, toggle } = useBoolean(true)
     <div v-if="isOpen" class="content" :class="{ 'is-open': isOpen }">
       <slot :is-open="isOpen" />
     </div>
+    <div v-if="showMore" class="show-more">
+      <hr>
+      <div class="stack x-flex-start y-center direction-vertical gap-small padding-none padding-left-large padding-top-medium padding-bottom-medium">
+        <BaseButton type="text" @click="loadMore">
+          <span v-if="!loading">加载更多</span>
+          <span v-else class="ani-scale">
+            <BaseIcon name="spt-football" />
+          </span>
+        </BaseButton>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -43,6 +62,20 @@ const { bool: isOpen, toggle } = useBoolean(true)
 </style>
 
 <style lang="scss" scoped>
+@keyframes aniScale {
+  0% {
+    transform: scale(0.85);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(0.85);
+  }
+}
+.ani-scale {
+  animation: 800ms linear 0ms infinite normal both running aniScale;
+}
 .base-secondary-accordion {
   display: flex;
   flex-direction: column;
@@ -116,6 +149,16 @@ const { bool: isOpen, toggle } = useBoolean(true)
     border-radius: 0 0 var(--tg-radius-default) var(--tg-radius-default);
     &.is-open {
       border-top: 2px solid var(--content-border);
+    }
+  }
+  .show-more {
+    --tg-spacing-button-padding-vertical-xs: 0;
+    --tg-spacing-button-padding-horizontal-xs: 0;
+    hr {
+      background: var(--tg-secondary-main);
+      height: 2px;
+      width: 100%;
+      margin-top: var(--tg-spacing-8);
     }
   }
 }
