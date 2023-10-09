@@ -5,8 +5,8 @@ const gameList = [
   { name: '足球', id: '3', num: 30 },
   { name: '美式橄榄球', id: '4', num: 5 },
 ]
-const { bool: isBase, toggle: toggleBase } = useBoolean(true)
-const marketTypeText = computed(() => isBase.value ? '三项投注' : '标准')
+const { bool: isStandard, toggle: toggleBase } = useBoolean(true)
+const marketTypeText = computed(() => isStandard.value ? '三项投注' : '标准')
 // 标准盘选项
 const baseType = ref('winner')
 const baseOptions = [
@@ -31,7 +31,7 @@ const threeOptions = [
       <div class="right">
         <VMenu placement="top">
           <BaseButton size="sm" type="text" @click="toggleBase">
-            <BaseIcon v-if="isBase" name="uni-three-top" />
+            <BaseIcon v-if="isStandard" name="uni-three-top" />
             <BaseIcon v-else name="uni-standard" />
           </BaseButton>
           <template #popper>
@@ -41,7 +41,7 @@ const threeOptions = [
           </template>
         </VMenu>
 
-        <BaseSelect v-if="isBase" v-model="baseType" :options="baseOptions" popper />
+        <BaseSelect v-if="isStandard" v-model="baseType" :options="baseOptions" popper />
         <BaseSelect v-else v-model="threeType" :options="threeOptions" popper disabled />
       </div>
     </div>
@@ -61,6 +61,7 @@ const threeOptions = [
     <div style="width: 233.64px;height: 78px;margin-bottom: 20px;">
       <AppSportsOutcomeLocked />
     </div>
+    <AppSportsMarketInfo />
   </div>
 </template>
 
