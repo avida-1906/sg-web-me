@@ -91,7 +91,7 @@ function handleClickMenuItem(item: { name: string; path?: string }) {
 <template>
   <div class="app-header" :style="{ 'grid-template-columns': `1fr ${isLogin ? 'auto' : ''} 1fr` }">
     <BaseLogo :use-small="width < 376" />
-    <AppWallet v-if="isLogin" :wallet-btn="true" />
+    <AppWallet v-if="isLogin" />
     <div v-if="isLogin" class="header-box">
       <div class="header-right">
         <BaseButton v-show="!isMobile" type="text" class="search-btn" @click="setTrue">

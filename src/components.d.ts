@@ -55,6 +55,7 @@ declare module 'vue' {
     AppRegisterDialog: typeof import('./components/AppRegisterDialog.vue')['default']
     AppRegisterTermsConditions: typeof import('./components/AppRegisterTermsConditions.vue')['default']
     AppSafeDialog: typeof import('./components/AppSafeDialog.vue')['default']
+    AppSelectCurrency: typeof import('./components/AppSelectCurrency.vue')['default']
     AppSettingsContentItem: typeof import('./components/AppSettingsContentItem.vue')['default']
     AppSidebarBig: typeof import('./components/AppSidebarBig.vue')['default']
     AppSidebarSmall: typeof import('./components/AppSidebarSmall.vue')['default']
