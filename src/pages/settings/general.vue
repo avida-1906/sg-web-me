@@ -18,6 +18,7 @@ const paramsData = ref<IMemberDetail>({
   twitter: '',
   wechat: '',
   qq: '',
+  email_check_state: 2,
   sex: 1,
 })
 
@@ -45,6 +46,7 @@ const areaCodeOptions = computed(() => {
     return temp
   })
 })
+const emailVerified = computed(() => paramsData.value.email_check_state === 2)
 
 const emailSubmit = function () {
   console.log('email submit')
@@ -61,12 +63,12 @@ await application.allSettled([runAsyncDetail()])
 
 <template>
   <div class="tg-settings-general">
-    <AppSettingsContentItem title="电邮地址" badge="已验证" @submit="emailSubmit">
+    <AppSettingsContentItem title="电邮地址" :verified="emailVerified" @submit="emailSubmit">
       <BaseLabel label="用户名" must-small>
         <BaseInput v-model="paramsData.email" placeholder="请绑定邮箱" />
       </BaseLabel>
       <template #btm-right>
-        <BaseButton type="text">
+        <BaseButton type="text" :disabled="emailVerified">
           重新发送电邮
         </BaseButton>
       </template>

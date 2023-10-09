@@ -31,7 +31,9 @@ export interface IMemberDetail {
   twitter: string
   wechat: string
   qq: string
-  /** 性别1=男，2=女 */
+  /** 邮箱是否验证 1=已验证，2=未验证 */
+  email_check_state: number
+  /** 性别 1=男，2=女 */
   sex: number
 }
 

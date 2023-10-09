@@ -43,6 +43,7 @@ export function useCurrencyData() {
   const isVirtualCurrency = (currency: EnumCurrencyKey) => {
     const virtualList: EnumCurrencyKey[] = [
       'USDT',
+      'BTC',
     ]
 
     return virtualList.includes(currency)
