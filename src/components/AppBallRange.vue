@@ -4,7 +4,7 @@ interface Props {
   max?: number
   step?: number
   title?: string
-  modelValue?: number
+  modelValue?: number | string
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits(['update:modelValue'])
 
-const range = ref(props.modelValue ?? props.min)
+const range = ref(props.modelValue ? +props.modelValue : props.min)
 
 const labels = computed(() => {
   const arr = []

@@ -96,18 +96,19 @@ const eventData = reactive({
   },
 })
 
+type Qualifier = 'home' | 'away'
 const scoreBoard = computed(() => {
   const head = [
-    { key: 'competitor' },
-    { key: 'corners', score: eventData.eventStatus.statistic.corners },
-    { key: 'yellowCards', score: eventData.eventStatus.statistic.yellowCards },
-    { key: 'redCards', score: eventData.eventStatus.statistic.redCards },
+    { key: 'competitor', value: (q: Qualifier) => eventData.data.teams.filter(t => t.qualifier === q)[0]?.name, title: eventData.eventStatus.matchStatus },
+    { key: 'corners', value: (q: Qualifier) => eventData.eventStatus.statistic.corners[q], icon: 'uni-ruler' },
+    { key: 'yellowCards', value: (q: Qualifier) => eventData.eventStatus.statistic.yellowCards[q], icon: 'uni-warn-rect' },
+    { key: 'redCards', value: (q: Qualifier) => eventData.eventStatus.statistic.redCards[q], icon: 'uni-error-rect' },
     {
       key: 'period',
-      periodScores: eventData.eventStatus.periodScores,
+      periodScores: eventData.eventStatus.periodScores.map(p => ({ ...p, value: (q: Qualifier) => p[`${q}Score`] })),
     },
-    { key: 'gameScore' },
-    { key: 'matchScore' },
+    { key: 'gameScore', value: (q: Qualifier) => eventData.eventStatus[`${q}GameScore`] },
+    { key: 'matchScore', value: (q: Qualifier) => eventData.eventStatus[`${q}Score`], icon: 'soccer' },
   ]
   const headTitle = mapHeadArea(head, 'title')
   const headHome = mapHeadArea(head, 'home')
@@ -163,8 +164,88 @@ function mapHeadArea(head: Array<{ key: string; periodScores?: Array<{ [prop: st
           <div class="content">
             <div class="fixture-column">
               <div class="background match-statistics" :style="{ '--sport-image': `url(/img/match-statistics/${sport}.jpg)` }">
-                <div class="box-shadow wrapper has-background">
-                  <div class="content scroll-x" :style="{ 'grid-template-areas': gridAreas }" />
+                <div class="wrapper box-shadow has-background">
+                  <div class="content scroll-x" :style="{ 'grid-template-areas': gridAreas }">
+                    <!-- competitor -->
+                    <div class="chromatic-ignore heading" style="grid-area: competitor_title;">
+                      <span class="match-status-label">
+                        {{ '第四节' }}
+                      </span>
+                    </div>
+                    <div class="competitor-item border" style="grid-area: competitor_home;">
+                      <img src="https://img-cdn001.akamaized.net/ls/crest/medium/4389.png" width="20" height="20" style="width:20px;height: 20px;">
+                      <span>旧金山49人美式足球队</span>
+                    </div>
+                    <div class="competitor-item" style="grid-area: competitor_away;">
+                      <img src="https://img-cdn001.akamaized.net/ls/crest/medium/6118.png" width="20" height="20" style="width:20px;height: 20px;">
+                      <span>卡尔达斯</span>
+                    </div>
+
+                    <!-- corners yellowCards redCards -->
+                    <div class="heading center" style="grid-area: corners_title;">
+                      <BaseIcon name="uni-ruler" />
+                    </div>
+                    <span class="fill-frame border" style="grid-area: corners_home;">
+                      <span>6</span>
+                    </span>
+                    <span class="fill-frame" style="grid-area: corners_away;">
+                      <span>5</span>
+                    </span>
+
+                    <div class="heading center" style="grid-area: yellowCards_title;">
+                      <BaseIcon name="uni-warn-rect" />
+                    </div>
+                    <span class="fill-frame border" style="grid-area: yellowCards_home;">
+                      <span>6</span>
+                    </span>
+                    <span class="fill-frame" style="grid-area: yellowCards_away;">
+                      <span>5</span>
+                    </span>
+
+                    <div class="heading center" style="grid-area: redCards_title;">
+                      <BaseIcon name="uni-error-rect" />
+                    </div>
+                    <span class="fill-frame border" style="grid-area: redCards_home;">
+                      <span>6</span>
+                    </span>
+                    <span class="fill-frame" style="grid-area: redCards_away;">
+                      <span>5</span>
+                    </span>
+
+                    <!-- period -->
+                    <div class="heading center" style="grid-area: period_title_0;">
+                      <span>1st</span>
+                    </div>
+                    <span class="fill-frame border" style="grid-area: period_home_0;">
+                      <span>0</span>
+                    </span>
+                    <span class="fill-frame" style="grid-area: period_away_0;">
+                      <span>1</span>
+                    </span>
+
+                    <!-- gameScore -->
+
+                    <!-- matchScore -->
+                    <div class="heading center" style="grid-area: matchScore_title;">
+                      <BaseIcon name="spt-football" />
+                    </div>
+                    <div class="fill-frame completed match-score border" style="grid-area: matchScore_home;">
+                      <span>2</span>
+                    </div>
+                    <div class="match-score fill-frame" style="grid-area: matchScore_away;">
+                      <span>1</span>
+                    </div>
+
+                    <!-- <div v-for="s in scoreBoard.headTitle" :key="s.key" :style="{ 'grid-area': s.name }" class="heading">
+                      {{ s.title || s.icon }}
+                    </div>
+                    <div v-for="s in scoreBoard.headHome" :key="s.key" :style="{ 'grid-area': s.name }">
+                      {{ s.value() }}
+                    </div>
+                    <div v-for="s in scoreBoard.headAway" :key="s.key" :style="{ 'grid-area': s.name }">
+                      {{ s.value() }}
+                    </div> -->
+                  </div>
                 </div>
               </div>
               <div class="live-stream-scoreboard-footer" />
@@ -244,6 +325,42 @@ function mapHeadArea(head: Array<{ key: string; periodScores?: Array<{ [prop: st
                 overflow: auto;
                 width: 100%;
                 border-radius: var(--tg-radius-default);
+                > * {
+                  padding: var(--tg-spacing-8);
+                }
+                .heading {
+                  width: 100%;
+                  height: 100%;
+                  display: flex;
+                  text-align: center;
+                  background: var(--tg-secondary-dark);
+                }
+                .heading.center {
+                  justify-content: center;
+                  align-items: center;
+                }
+                .competitor-item {
+                  display: flex;
+                  align-items: center;
+                  justify-self: stretch;
+                }
+                .border {
+                  border-bottom: 1px solid var(--tg-secondary-main);
+                }
+                .fill-frame {
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  width: 100%;
+                  height: 100%;
+                }
+                .match-score {
+                  font-weight: 700;
+                  background: var(--tg-secondary-main);
+                }
+                .match-score.completed {
+                  background: var(--tg-text-lightblue);
+                }
               }
             }
           }
