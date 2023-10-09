@@ -46,13 +46,13 @@ const areaCodeOptions = computed(() => {
     return temp
   })
 })
-const emailVerified = computed(() => paramsData.value.email_check_state === 2)
+const emailVerified = computed(() => paramsData.value.email_check_state === 1)
 
 const emailSubmit = function () {
-  console.log('email submit')
+  runMemberUpdate(paramsData.value)
 }
 const numberSubmit = function () {
-  console.log('number submit')
+  runMemberUpdate(paramsData.value)
 }
 const socialSubmit = function () {
   runMemberUpdate(paramsData.value)
