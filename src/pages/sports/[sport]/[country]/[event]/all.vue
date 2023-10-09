@@ -15,5 +15,5 @@
 
 <route lang="yaml">
 meta:
-  layout: home
+  layout: sports-home
 </route>

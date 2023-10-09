@@ -61,10 +61,6 @@ const threeOptions = [
     <div style="width: 233.64px;height: 78px;margin-bottom: 20px;">
       <AppSportsOutcomeLocked />
     </div>
-
-    <div class="layout-spacing">
-      <AppBetData mode="sports" />
-    </div>
   </div>
 </template>
 
@@ -76,5 +72,5 @@ const threeOptions = [
 
 <route lang="yaml">
 meta:
-  layout: home
+  layout: sports-home
 </route>
