@@ -3,7 +3,7 @@ import { getCurrentLanguageIdForBackend } from '~/modules/i18n'
 
 const closeDialog = inject('closeDialog', () => {})
 
-const { bankcardList, runBankcardList, bindBanks, openName } = useApiMemberBankCardList()
+const { bankcardList, runAsyncBankcardList, bindBanks, openName } = useApiMemberBankCardList()
 // 虚拟币钱包地址
 const { list: WalletList, run: runWalletList } = useList(ApiMemberWalletList)
 
@@ -38,7 +38,7 @@ const toAddVirAddress = function () {
 }
 const showCollapse = function (item: any) {
   if (item.legalTender)
-    runBankcardList({ bank_type: getCurrentLanguageIdForBackend() })
+    runAsyncBankcardList({ bank_type: getCurrentLanguageIdForBackend() })
 
   else
     runWalletList({ contract_type: '', currency_name: item.name })

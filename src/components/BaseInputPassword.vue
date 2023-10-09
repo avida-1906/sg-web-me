@@ -4,6 +4,8 @@ interface Props {
   modelValue: string
   /** 宽度是否auto */
   widthAuto?: boolean
+  /** 错误提示 */
+  msg?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -42,6 +44,10 @@ const changeText = function (e: any) {
         <b />
       </li>
     </ul>
+    <div v-show="msg" class="msg">
+      <BaseIcon class="error-icon" name="uni-warning" />
+      <span>{{ msg }}</span>
+    </div>
   </div>
 </template>
 
@@ -64,10 +70,10 @@ const changeText = function (e: any) {
       position: relative;
       width: 40px;
       height: 40px;
-      background: #0F212E;
-      box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.20);
+      background: var(--tg-secondary-dark);
+      box-shadow: var(--tg-box-shadow);
       border-radius: 4px;
-      border: 2px #2F4553 solid;
+      border: 2px var(--tg-secondary-main) solid;
       cursor: pointer;
       i{
         position: absolute;
@@ -111,6 +117,18 @@ const changeText = function (e: any) {
             opacity: 0;
         }
       }
+    }
+  }
+  .msg {
+    font-size: var(--tg-font-size-md);
+    display: flex;
+    align-items: center;
+    margin-top: var(--tg-spacing-6);
+
+    span {
+      font-size: var(--tg-font-size-xs);
+      color: var(--tg-text-error);
+      margin-left: var(--tg-spacing-4);
     }
   }
 }

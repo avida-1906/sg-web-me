@@ -2,7 +2,14 @@
 </script>
 
 <template>
-  <RouterView />
+  <Suspense timeout="0">
+    <RouterView />
+    <template #fallback>
+      <div class="center dialog-loading-height">
+        <BaseLoading />
+      </div>
+    </template>
+  </Suspense>
 </template>
 
 <style lang="scss" scoped>
