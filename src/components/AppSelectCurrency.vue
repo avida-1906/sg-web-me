@@ -23,10 +23,10 @@ const networkList = [
 function selectCurrency(item: IUserCurrencyList, hide: () => void) {
   changeCurrentCurrency(item.type)
   hide()
-  emit('change', item)
+  emit('change', item.type)
 }
 
-emit('change', { type: currentCurrency.value })
+emit('change', currentCurrency.value)
 </script>
 
 <template>

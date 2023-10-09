@@ -1,11 +1,11 @@
 <script setup lang='ts'>
+import type { EnumCurrencyKey } from '~/apis'
+
 interface Props {
-  activeCurrency: any
+  activeCurrency: EnumCurrencyKey
 }
 
-withDefaults(defineProps<Props>(), {
-  activeCurrency: () => {},
-})
+defineProps<Props>()
 
 const emit = defineEmits(['show'])
 
@@ -34,7 +34,7 @@ function cancelPayment() {
   <div class="app-virtual-deposit">
     <template v-if="depositStep === '1'">
       <BaseInput
-        v-model="username" :label="`充值金额: ${activeCurrency?.type}`"
+        v-model="username" :label="`充值金额: ${activeCurrency}`"
         :msg="usernameErrorMsg"
       />
       <BaseMoneyKeyboard @click-key="getMoneyNum" />
@@ -43,7 +43,7 @@ function cancelPayment() {
       </BaseButton>
     </template>
     <template v-if="depositStep === '2'">
-      <AppCurrencyIcon class="currency-icon" :show-name="true" :currency-type="activeCurrency?.type" icon-align="right">
+      <AppCurrencyIcon class="currency-icon" :show-name="true" :currency-type="activeCurrency" icon-align="right">
         <template #network>
           <span style="padding-right: var(--tg-spacing-5);">TRC20</span>
         </template>
@@ -60,7 +60,7 @@ function cancelPayment() {
         </div>
       </div>
       <div>
-        <BaseInput v-model="username" label="转入金额: USDT">
+        <BaseInput v-model="username" :label="`转入金额: ${activeCurrency}`">
           <template #right-icon>
             <BaseIcon name="uni-doc" />
           </template>
