@@ -144,6 +144,7 @@
   --tg-header-shadow: #0003 0 4px 6px -1px,
   #0000001f 0 2px 4px -1px;
   --tg-drop-shadow:0 0 5px rgba(25, 25, 25, .25);
+  --tg-shadow-inset: inset 0 1px #{rgba($color: var(--tg-color-white-rgb), $alpha: 0.04)};
 
   // 基础过度
   --tg-transition: all ease .25s;

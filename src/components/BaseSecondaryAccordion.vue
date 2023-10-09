@@ -1,0 +1,122 @@
+<script lang="ts" setup>
+interface Props {
+  title?: string
+}
+
+withDefaults(defineProps<Props>(), {})
+
+const { bool: isOpen, toggle } = useBoolean(true)
+</script>
+
+<template>
+  <div class="base-secondary-accordion" :class="{ 'is-open': isOpen }">
+    <div class="no-active-scale header" @click="toggle">
+      <div class="container">
+        <div class="container">
+          <div class="container">
+            <div class="center">
+              <span>{{ title }}</span>
+            </div>
+            <slot name="sideThird" :is-open="isOpen" />
+          </div>
+          <slot name="sideSecond" :is-open="isOpen" />
+        </div>
+        <slot name="side" :is-open="isOpen" />
+      </div>
+      <div class="arrow">
+        <BaseIcon name="uni-arrow-down" :style="{ transform: `rotate(${isOpen ? 0 : 90}deg)` }" />
+      </div>
+    </div>
+    <div v-if="isOpen" class="content" :class="{ 'is-open': isOpen }">
+      <slot :is-open="isOpen" />
+    </div>
+  </div>
+</template>
+
+<style lang="scss">
+:root {
+  --tg-secondaryAccordion-header-background: var(--tg-secondary-grey);
+  --tg-secondaryAccordion-header-title-color: var(--tg-text-grey-light);
+  --tg-secondaryAccordion-content-background: var(--tg-secondary-grey);
+  --tg-secondaryAccordion-content-border-color: var(--tg-secondary-main);
+}
+</style>
+
+<style lang="scss" scoped>
+.base-secondary-accordion {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+  z-index: 0;
+  box-shadow: var(--tg-box-shadow), var(--tg-shadow-inset);
+  border-radius: var(--tg-radius-default);
+  background: var(--header-background);
+  --header-background: var(--tg-secondaryAccordion-header-background);
+  --title-color: var(--tg-secondaryAccordion-header-title-color);
+  --content-background: var(--tg-secondaryAccordion-content-background);
+  --content-border: var(--tg-secondaryAccordion-content-border-color);
+  &.is-open {
+    .header {
+      border-radius: var(--tg-radius-default) var(--tg-radius-default) 0 0;
+    }
+  }
+  .arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--tg-font-size-xs);
+    width: var(--tg-spacing-18);
+    height: var(--tg-spacing-18);
+    svg {
+      transition: all 50ms;
+    }
+  }
+  .header {
+    width: 100%;
+    z-index: 4;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: 0 0;
+    padding: var(--tg-spacing-12) var(--tg-spacing-16);
+    color: var(--title-color);
+    cursor: pointer;
+    border-radius: var(--tg-radius-default);
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--tg-spacing-8);
+      width: 100%;
+    }
+    .center {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      gap: var(--tg-spacing-8);
+      > span {
+        color: var(--tg-text-white);
+        font-size: var(--tg-font-size-default);
+        font-weight: var(--tg-font-weight-semibold);
+        line-height: 1.5;
+        display: inline-flex;
+        align-items: center;
+        text-align: left;
+        justify-content: flex-start;
+      }
+    }
+  }
+  .content {
+    background: var(--content-background);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 0 0 var(--tg-radius-default) var(--tg-radius-default);
+    &.is-open {
+      border-top: 2px solid var(--content-border);
+    }
+  }
+}
+</style>

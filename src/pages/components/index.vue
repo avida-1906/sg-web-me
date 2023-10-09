@@ -1088,6 +1088,20 @@ const breadcrumbs = ['one', 'two', 'three', 'four']
       </AppDemoCard>
     </li>
     <li class="box">
+      <AppDemoCard title="BaseSecondaryAccordion">
+        <BaseSecondaryAccordion title="ATP / ATP上海站，中国，男单">
+          <template #side="{ isOpen }">
+            <div v-show="!isOpen" style="--tg-badge-font-size: 12px;margin-right: 16px;">
+              <BaseBadge :count="9" />
+            </div>
+          </template>
+          <template #default>
+            <div>盘口</div>
+          </template>
+        </BaseSecondaryAccordion>
+      </AppDemoCard>
+    </li>
+    <li class="box">
       <AppDemoCard title="BaseImage">
         <div style="width:300px;height: 300px;margin: auto;">
           <BaseImage :url="imageUrl2" @click-img="clickImg" />
