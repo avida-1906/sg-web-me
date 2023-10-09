@@ -1,14 +1,12 @@
 <script setup lang='ts'>
-import { EnumCurrency } from '~/utils/enums'
+import type { EnumCurrencyKey } from '~/apis'
 
 interface Props {
   isTheatre: boolean
   id: string
 }
 interface CurrencyItem {
-  id: string
-  name: string
-  num: number
+  id: EnumCurrencyKey
 }
 
 const props = defineProps<Props>()
@@ -29,10 +27,7 @@ const gameFrameRef = ref()
 // 游戏数据接口
 const { data: dataDetail, runAsync: runDetail } = useRequest(() => ApiMemberGameDetail(props.id), {
   onSuccess(res) {
-    currencyList.value = JSON.parse(res.currency).map((item: any) => {
-      const num = EnumCurrency[item.id] ?? 0
-      return { ...item, num, name: item.id }
-    })
+    currencyList.value = JSON.parse(res.currency)
     currentCurrency.value = currencyList.value[0]
     overlayTrue()
   },
@@ -40,7 +35,7 @@ const { data: dataDetail, runAsync: runDetail } = useRequest(() => ApiMemberGame
 const id = computed(() => dataDetail.value ? dataDetail.value.id : '')
 const pid = computed(() => dataDetail.value ? dataDetail.value.platform_id : '')
 const code = computed(() => dataDetail.value ? dataDetail.value.game_id : '')
-const currencyName = computed(() => currentCurrency.value ? currentCurrency.value.name : '')
+const currencyName = computed(() => currentCurrency.value ? currentCurrency.value.id : '')
 const isFavorite = computed(() => dataDetail.value ? dataDetail.value.is_fav === 1 : false)
 const bigGameWrapper = computed(() => appContentWidth.value > 930)
 const gameProviderName = computed(() => platformList.value?.find(a => a.id === dataDetail.value?.platform_id)?.name ?? '-')
@@ -159,7 +154,7 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
       <span>{{ t('balance') }}</span>
       <VDropdown :distance="6">
         <div v-if="currentCurrency" class="current-currency">
-          <AppCurrencyIcon show-name :currency-type="currentCurrency.num" />
+          <AppCurrencyIcon show-name :currency-type="currentCurrency.id" />
           <div class="arrow">
             <BaseIcon name="uni-arrow-down" />
           </div>
@@ -171,7 +166,7 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
               @click="hide();onChooseCurrency(c)"
             >
               <div>
-                <AppCurrencyIcon show-name :currency-type="c.num" />
+                <AppCurrencyIcon show-name :currency-type="c.id" />
               </div>
             </a>
           </div>
@@ -214,7 +209,7 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
                   <span>{{ t('balance') }}</span>
                   <VDropdown :distance="6">
                     <div v-if="currentCurrency" class="current-currency">
-                      <AppCurrencyIcon show-name :currency-type="currentCurrency.num" />
+                      <AppCurrencyIcon show-name :currency-type="currentCurrency.id" />
                       <div class="arrow">
                         <BaseIcon name="uni-arrow-down" />
                       </div>
@@ -226,7 +221,7 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
                           @click="hide();onChooseCurrency(c)"
                         >
                           <div>
-                            <AppCurrencyIcon show-name :currency-type="c.num" />
+                            <AppCurrencyIcon show-name :currency-type="c.id" />
                           </div>
                         </a>
                       </div>

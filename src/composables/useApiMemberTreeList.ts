@@ -1,4 +1,4 @@
-export type TTreeListType = '001' | '002' | '003' | '004' | '005' | '006' | '007' | '008'
+export type TTreeListType = '001' | '002' | '003' | '004' | '005' | '006' | '007' | '008' | '011'
 
 /**
  * 获取后端辅助数据
@@ -18,6 +18,8 @@ export type TTreeListType = '001' | '002' | '003' | '004' | '005' | '006' | '007
  * 007=币种列表
  *
  * 008=账变类型列表
+ *
+ * 011=国际电话区号
  */
 export function useApiMemberTreeList(type: TTreeListType) {
   const { data, loading, error, run } = useRequest(ApiMemberTreeList)

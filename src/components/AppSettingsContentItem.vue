@@ -47,6 +47,12 @@ const onSubmit = function () {
   </div>
 </template>
 
+<style>
+:root{
+  --tg-app-settings-content-item-style-max-width: 420px;
+}
+</style>
+
 <style lang='scss' scoped>
   .settings-content-item{
     width: 100%;
@@ -93,7 +99,7 @@ const onSubmit = function () {
       }
       .mid-form{
         width: 100%;
-        max-width: 420px;
+        max-width: var(--tg-app-settings-content-item-style-max-width);
         padding: var(--tg-spacing-16) 0 var(--tg-spacing-10);
         display: flex;
         flex-direction: column;
