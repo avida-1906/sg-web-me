@@ -17,6 +17,7 @@ const paramsData = ref<IMemberDetail>({
   whatsapp: '',
   twitter: '',
   wechat: '',
+  qq: '',
   sex: 1,
 })
 
@@ -96,17 +97,17 @@ await application.allSettled([runAsyncDetail()])
           <BaseInput v-model="paramsData.telegram" label="Telegram" />
         </div>
         <div class="social-item">
-          <BaseIcon name="social-zalo" />
-          <BaseInput v-model="paramsData.zalo" label="Zalo" />
-        </div>
-        <div class="social-item">
           <BaseIcon name="social-line" />
           <BaseInput v-model="paramsData.line" label="Line" />
         </div>
-        <!-- <div class="social-item">
+        <div class="social-item">
           <BaseIcon name="social-x" />
-          <BaseInput label="X" v-model="paramsData.x" />
-        </div> -->
+          <BaseInput v-model="paramsData.twitter" label="X" />
+        </div>
+        <div class="social-item">
+          <BaseIcon name="social-zalo" />
+          <BaseInput v-model="paramsData.zalo" label="Zalo" />
+        </div>
         <div class="social-item">
           <BaseIcon name="social-viber" />
           <BaseInput v-model="paramsData.viber" label="Viber" />
@@ -115,10 +116,10 @@ await application.allSettled([runAsyncDetail()])
           <BaseIcon name="social-wechat" />
           <BaseInput v-model="paramsData.wechat" label="WeChat" />
         </div>
-        <!-- <div class="social-item">
+        <div class="social-item">
           <BaseIcon name="social-qq" />
-          <BaseInput label="QQ" v-model="paramsData.qq" />
-        </div> -->
+          <BaseInput v-model="paramsData.qq" label="QQ" />
+        </div>
       </div>
     </AppSettingsContentItem>
   </div>
