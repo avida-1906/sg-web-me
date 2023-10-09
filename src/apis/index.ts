@@ -30,6 +30,7 @@ export interface IMemberDetail {
   whatsapp: string
   twitter: string
   wechat: string
+  qq: string
   /** 性别1=男，2=女 */
   sex: number
 }
@@ -460,7 +461,7 @@ export function ApiMemberDetail() {
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=4f939a92-0ef0-41fb-b7e7-339b196b6d63
  */
 export function ApiMemberUpdate(data: IMemberDetail) {
-  return httpClient.post('/member/update', data)
+  return httpClient.post<string>('/member/update', data)
 }
 
 /**
