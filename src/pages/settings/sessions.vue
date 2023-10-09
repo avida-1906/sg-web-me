@@ -87,7 +87,7 @@ const paginationData = {
     <div class="session-select">
       <BaseSelect v-model="selectValue" :options="selectOptions" small />
     </div>
-    <div class="session-table scroll-x">
+    <div class="scroll-x session-table">
       <BaseTable
         :columns="columns"
         :data-source="tableData"
