@@ -63,6 +63,7 @@ declare module 'vue' {
     AppSportsBetButton: typeof import('./components/AppSportsBetButton.vue')['default']
     AppSportsBetSlip: typeof import('./components/AppSportsBetSlip.vue')['default']
     AppSportsBetSlipMenu: typeof import('./components/AppSportsBetSlipMenu.vue')['default']
+    AppSportsMarket: typeof import('./components/AppSportsMarket.vue')['default']
     AppSportsMarketInfo: typeof import('./components/AppSportsMarketInfo.vue')['default']
     AppSportsOdds: typeof import('./components/AppSportsOdds.vue')['default']
     AppSportsOutcomeLocked: typeof import('./components/AppSportsOutcomeLocked.vue')['default']
