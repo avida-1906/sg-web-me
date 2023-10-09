@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+type Qualifier = 'home' | 'away'
+
 const route = useRoute()
 
 const rangeNum = ref()
@@ -96,7 +98,6 @@ const eventData = reactive({
   },
 })
 
-type Qualifier = 'home' | 'away'
 const scoreBoard = computed(() => {
   const head = [
     { key: 'competitor', value: (q: Qualifier) => eventData.data.teams.filter(t => t.qualifier === q)[0]?.name, title: eventData.eventStatus.matchStatus },
@@ -224,6 +225,13 @@ function mapHeadArea(head: Array<{ key: string; periodScores?: Array<{ [prop: st
                     </span>
 
                     <!-- gameScore -->
+                    <div class="heading center" style="grid-area: gameScore_title;" />
+                    <span class="fill-frame border" style="grid-area: gameScore_home;">
+                      <span>0</span>
+                    </span>
+                    <span class="fill-frame" style="grid-area: gameScore_away;">
+                      <span>16</span>
+                    </span>
 
                     <!-- matchScore -->
                     <div class="heading center" style="grid-area: matchScore_title;">
