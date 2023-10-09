@@ -1099,6 +1099,17 @@ const breadcrumbs = ['one', 'two', 'three', 'four']
             <div>盘口</div>
           </template>
         </BaseSecondaryAccordion>
+        <BaseSecondaryAccordion title="亚洲让分盘">
+          <template #sideThird>
+            <div class="odds-buttons" @click.stop="console.log('ooooooo')">
+              <span>赔率表</span>
+              <span>全部</span>
+            </div>
+          </template>
+          <template #default>
+            <div>盘口</div>
+          </template>
+        </BaseSecondaryAccordion>
       </AppDemoCard>
     </li>
     <li class="box">
