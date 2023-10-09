@@ -4,6 +4,7 @@ type Qualifier = 'home' | 'away'
 const route = useRoute()
 
 const rangeNum = ref()
+const curGroupTab = ref('')
 const { bool: openLiveSwitch } = useBoolean(false)
 const eventData = reactive({
   id: '54091c18-6724-461f-8ccd-ac254479d198',
@@ -97,6 +98,50 @@ const eventData = reactive({
     },
     frontRowSeatEvent: null,
   },
+  groups: [
+    {
+      id: '737cd46e-9b5f-4b0b-998d-0593262c7dcf',
+      name: 'main',
+      translation: '主页',
+      rank: 15,
+    },
+    {
+      id: '91b6d92d-5c0c-4979-820f-2e1a464c393c',
+      name: '1st2ndhalfmarkets',
+      translation: '上半场/下半场',
+      rank: 13,
+    },
+    {
+      id: 'ad2dda6e-3cc4-4179-bf91-74ccc911cfac',
+      name: 'AsianLines',
+      translation: '亚洲盘',
+      rank: 12,
+    },
+    {
+      id: '57eeace2-9ebf-4f08-8535-620a0c817e90',
+      name: 'Handicap',
+      translation: '让分盘',
+      rank: 0,
+    },
+    {
+      id: '0d62ec0a-2ae0-47d5-bd22-e602dceec854',
+      name: 'threeway',
+      translation: '三项让分盘',
+      rank: 0,
+    },
+    {
+      id: '92faec38-91f3-47b7-8a0e-fbb7a8b8421c',
+      name: 'Total',
+      translation: '总分盘',
+      rank: 0,
+    },
+    {
+      id: 'a4df526b-a9f4-413a-ade2-f03e8a1942fb',
+      name: 'winner',
+      translation: '获胜盘',
+      rank: 0,
+    },
+  ],
 })
 
 const scoreBoard = computed(() => {
@@ -144,6 +189,7 @@ const gridAreas = computed(() => {
     "${scoreBoard.value.headAway.map((i: any) => i.name).join(' ')}"
   `
 })
+const groupTabs = computed(() => eventData.groups.filter(g => g.rank > 0).map(g => ({ ...g, value: g.id, label: g.translation })))
 
 function mapHeadArea(head: Array<{ key: string; periodScores?: Array<{ [prop: string]: any }> }>, label: string) {
   return head.reduce((accumulator: any, currentValue) => {
@@ -258,6 +304,9 @@ function onOpenLiveSwitch() {}
                 <span>直播</span>
               </div>
               <div class="groups">
+                <div>
+                  <BaseTab v-model="curGroupTab" :list="groupTabs" size="large" :center="false" />
+                </div>
                 <div class="search-wrap">
                   <BaseInput>
                     <template #left-icon>
