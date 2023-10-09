@@ -17,6 +17,8 @@ interface ImportMetaEnv {
   readonly VITE_CASINO_HOME_PAGE_SIZE: number
   /** casino子类型游戏数量 */
   readonly VITE_CASINO_GAME_PAGE_SIZE: number
+  /** 金额Icon服务器地址 */
+  readonly VITE_CURRENCY_ICON_URL: string
 }
 
 interface ImportMeta {

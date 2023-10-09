@@ -1,21 +1,17 @@
 <script setup lang='ts'>
-import type { EnumCurrency } from '~/utils/enums'
+import type { EnumCurrencyKey } from '~/apis'
 
 interface Props {
   amount: string | number
-  currencyType: EnumCurrency
+  currencyType: EnumCurrencyKey
   showName?: boolean
 }
 const props = defineProps<Props>()
-
-const _amount = computed(() => {
-  return application.numberToCurrency(+props.amount, props.currencyType)
-})
 </script>
 
 <template>
   <div class="app-amount">
-    <span class="amount" :title="String(_amount)">{{ _amount }}</span>
+    <span class="amount" :title="String(props.amount)">{{ props.amount }}</span>
     <AppCurrencyIcon :show-name="showName" :currency-type="currencyType" />
   </div>
 </template>
