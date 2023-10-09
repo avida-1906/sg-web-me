@@ -164,7 +164,7 @@ function mapHeadArea(head: Array<{ key: string; periodScores?: Array<{ [prop: st
           <div class="content">
             <div class="fixture-column">
               <div class="background match-statistics" :style="{ '--sport-image': `url(/img/match-statistics/${sport}.jpg)` }">
-                <div class="wrapper box-shadow has-background">
+                <div class="box-shadow wrapper has-background">
                   <div class="content scroll-x" :style="{ 'grid-template-areas': gridAreas }">
                     <!-- competitor -->
                     <div class="chromatic-ignore heading" style="grid-area: competitor_title;">
@@ -318,6 +318,15 @@ function mapHeadArea(head: Array<{ key: string; periodScores?: Array<{ [prop: st
             }
             .wrapper {
               .content {
+                text-align: left;
+                color: var(--tg-secondary-light);
+                line-height: 1.5;
+                font-size: var(--tg-font-size-default);
+                font-weight: var(--tg-font-weight-normal);
+                --tg-icon-color: var(--tg-text-white);
+                .app-svg-icon {
+                  font-size: var(--tg-font-size-base);
+                }
                 display: grid;
                 background: var(--tg-primary-main);
                 justify-items: center;
@@ -343,6 +352,13 @@ function mapHeadArea(head: Array<{ key: string; periodScores?: Array<{ [prop: st
                   display: flex;
                   align-items: center;
                   justify-self: stretch;
+                  color: var(--tg-text-white);
+                  img {
+                    width: var(--tg-spacing-20);
+                    height: var(--tg-spacing-20);
+                    fill: var(--tg-text-lightblue);
+                    margin-right: var(--tg-spacing-8);
+                  }
                 }
                 .border {
                   border-bottom: 1px solid var(--tg-secondary-main);
@@ -357,6 +373,7 @@ function mapHeadArea(head: Array<{ key: string; periodScores?: Array<{ [prop: st
                 .match-score {
                   font-weight: 700;
                   background: var(--tg-secondary-main);
+                  color: var(--tg-text-white);
                 }
                 .match-score.completed {
                   background: var(--tg-text-lightblue);
