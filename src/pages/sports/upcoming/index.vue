@@ -65,9 +65,10 @@ const threeOptions = [
     </div>
     <AppSportsTab v-model="currentGame" :list="gameList" />
 
-    <AppSportsMarket type="upcoming" />
-    <div style="height: 24px;" />
-    <AppSportsMarket type="upcoming" :is-standard="false" />
+    <div class="market-wrapper">
+      <AppSportsMarket type="upcoming" />
+      <AppSportsMarket type="upcoming" :is-standard="false" />
+    </div>
 
     <div class="layout-spacing">
       <AppBetData mode="sports" />
@@ -78,6 +79,13 @@ const threeOptions = [
 <style lang="scss" scoped>
 .tg-sports-upcoming {
   margin-top: var(--tg-spacing-24);
+}
+
+.market-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--tg-spacing-12);
+  margin-bottom: var(--tg-spacing-24);
 }
 </style>
 
