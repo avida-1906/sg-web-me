@@ -6,7 +6,6 @@ const { isMobile, appContentWidth } = storeToRefs(useWindowStore())
 
 const rangeNum = ref()
 const searchHandicap = ref('')
-const curGroupTab = ref('')
 const { bool: openLiveSwitch } = useBoolean(false)
 const eventData = reactive({
   id: '54091c18-6724-461f-8ccd-ac254479d198',
@@ -465,7 +464,8 @@ const gridAreas = computed(() => {
     "${scoreBoard.value.headAway.map((i: any) => i.name).join(' ')}"
   `
 })
-const groupTabs = computed(() => eventData.groups.filter(g => g.rank > 0).map(g => ({ ...g, value: g.id, label: g.translation })))
+const groupTabs = computed(() => eventData.groups.filter(g => g.rank > 0).map(g => ({ ...g, value: g.name, label: g.translation })))
+const curGroupTab = ref(groupTabs.value[0].value)
 
 function mapHeadArea(head: Array<{ key: string; periodScores?: Array<{ [prop: string]: any }> }>, label: string) {
   return head.reduce((accumulator: any, currentValue) => {
@@ -637,18 +637,20 @@ function onOpenLiveSwitch() {}
                 <div class="search-wrap">
                   <BaseSearch v-model="searchHandicap" shape="square" place-holder="搜索" />
                 </div>
-                <section>
-                  <BaseSecondaryAccordion title="ATP / ATP上海站，中国，男单">
-                    <template #side="{ isOpen }">
-                      <div v-show="!isOpen" class="badge-box">
-                        <BaseBadge :count="9" />
-                      </div>
-                    </template>
-                    <template #default>
-                      <div>盘口</div>
-                    </template>
-                  </BaseSecondaryAccordion>
-                </section>
+                <template v-for="group in eventData.group.filter(g => g.name === curGroupTab)" :key="group.name">
+                  <template v-for="temp in group.templates" :key="temp.id">
+                    <BaseSecondaryAccordion :title="temp.name">
+                      <template #side="{ isOpen }">
+                        <div v-show="!isOpen" class="badge-box">
+                          <BaseBadge :count="9" />
+                        </div>
+                      </template>
+                      <template #default>
+                        <div>盘口</div>
+                      </template>
+                    </BaseSecondaryAccordion>
+                  </template>
+                </template>
                 <div class="no-markets">
                   <BaseEmpty icon="uni-empty-handicap" description="暂无可用盘口" />
                 </div>
