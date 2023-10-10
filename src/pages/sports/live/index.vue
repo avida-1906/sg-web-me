@@ -46,24 +46,10 @@ const threeOptions = [
       </div>
     </div>
     <AppSportsTab v-model="currentGame" :list="gameList" />
-    <div style="width: 233.64px;margin-bottom: 20px;">
-      <AppSportsBetButton />
+    <div class="market-wrapper">
+      <AppSportsMarket type="live" />
+      <AppSportsMarket type="live" :is-standard="false" />
     </div>
-    <div style="width: 233.64px;margin-bottom: 20px;">
-      <AppSportsBetButton layout="horizontal" />
-    </div>
-    <div style="width: 233.64px;margin-bottom: 20px;">
-      <AppSportsBetButton active />
-    </div>
-    <div style="width: 233.64px;margin-bottom: 20px;">
-      <AppSportsBetButton disabled />
-    </div>
-    <div style="width: 233.64px;height: 78px;margin-bottom: 20px;">
-      <AppSportsOutcomeLocked />
-    </div>
-    <AppSportsMarket type="live" />
-    <div style="height: 24px;" />
-    <AppSportsMarket type="live" :is-standard="false" />
 
     <div class="layout-spacing">
       <AppBetData mode="sports" />
@@ -74,6 +60,12 @@ const threeOptions = [
 <style lang="scss" scoped>
 .tg-sports-type {
   margin-top: var(--tg-spacing-24);
+}
+.market-wrapper{
+  display: flex;
+  flex-direction: column;
+  gap: var(--tg-spacing-12);
+  margin-bottom:  var(--tg-spacing-24);
 }
 </style>
 
