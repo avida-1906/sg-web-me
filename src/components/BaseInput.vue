@@ -1,6 +1,6 @@
 <script setup lang='ts'>
 interface Props {
-  modelValue?: string
+  modelValue?: string | number
   label?: string
   layout?: 'horizontal' | 'vertical'
   type?: 'text' | 'password' | 'number'
@@ -105,6 +105,12 @@ defineExpose({ getFocus })
     </div>
   </div>
 </template>
+
+<style>
+:root{
+  --tg-base-input-style-background-color: transparent;
+}
+</style>
 
 <style lang='scss' scoped>
 .textarea-container {
@@ -250,7 +256,7 @@ defineExpose({ getFocus })
     input {
       line-height: 1;
       width: 100%;
-      background-color: transparent;
+      background-color: var(--tg-base-input-style-background-color);
       color: var(--tg-text-white);
       border: none;
       outline: none;
