@@ -38,6 +38,11 @@ export interface IMemberDetail {
   sex: number
   username: string
 }
+export interface IMemberBalanceLockerUpdate {
+  type: 'add' | 'remove'
+  currency_name: string
+  amount: string
+}
 
 /**
  * 用户登录
@@ -338,11 +343,7 @@ export function ApiMemberWalletList(
  * 保险库加减
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=925fc8cb-c68a-4825-aa56-34c425aa8752
  */
-export function ApiMemberBalanceLockerUpdate(data: {
-  type: 'add' | 'remove'
-  currency_name: string
-  amount: string
-}) {
+export function ApiMemberBalanceLockerUpdate(data: IMemberBalanceLockerUpdate) {
   return httpClient.post('/member/balance_locker/update', data)
 }
 

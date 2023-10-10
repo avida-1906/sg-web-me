@@ -1,4 +1,6 @@
 <script setup lang='ts'>
+import type { IMemberBalanceLockerUpdate } from '~/apis'
+
 const { t } = useI18n()
 
 const { openNotify } = useNotify()
@@ -33,7 +35,8 @@ const { value: password, resetField: resetPassword, errorMessage: errPassword } 
 })
 
 const updateType = computed(() => isDeposit.value ? 'add' : 'remove')
-const { run: runLockerUpdate } = useRequest(() => ApiMemberBalanceLockerUpdate({ amount: amount.value, type: updateType.value, currency_name: 'CNY' }), {
+const updateParams = ref<IMemberBalanceLockerUpdate>({ amount: amount.value, type: updateType.value, currency_name: 'CNY' })
+const { run: runLockerUpdate } = useRequest(ApiMemberBalanceLockerUpdate, {
   manual: true,
   onSuccess() {
     openNotify({
@@ -47,7 +50,7 @@ const { run: runLockerUpdate } = useRequest(() => ApiMemberBalanceLockerUpdate({
 async function handleUpdate() {
   await valiAmount()
   if (!errAmount.value)
-    runLockerUpdate()
+    runLockerUpdate(updateParams.value)
 }
 </script>
 
