@@ -27,7 +27,7 @@ const { value: payPassword, errorMessage: payPwdErrorMsg, validate: valiPayPwd }
   if (!value)
     return t('pls_enter_password')
   if (value.length !== 6)
-    return '请输入6位支付密码'
+    return '请输入6位数字'
   return ''
 })
 const { value: aginPayPassword, errorMessage: aginPayPwdErrorMsg, validate: valiAginPayPwd } = useField<string>('aginPayPassword', (value) => {
@@ -36,6 +36,15 @@ const { value: aginPayPassword, errorMessage: aginPayPwdErrorMsg, validate: vali
   if (value !== newPassword.value)
     return '两次输入的密码不一致'
   return ''
+})
+const { run: runMemberPayPasswordUpdate, loading: payPasswordUpdateLoading } = useRequest(ApiMemberPayPasswordUpdate, {
+  onSuccess() {
+    openNotify({
+      type: 'success',
+      title: '成功',
+      message: '设置交易密码成功',
+    })
+  },
 })
 const twoStepPassword = ref('')
 const twoStepCode = ref('HM3XE2DLGVWECZDYK5BUMNTQORGVCKBVO5MG4JBSG46EGMCSHZEA')
@@ -79,8 +88,8 @@ async function submitPayPwd() {
   await valiPayPwd()
   await valiAginPayPwd()
   if (!(payPwdErrorMsg.value || aginPayPwdErrorMsg.value)) {
-    ApiMemberPayPasswordUpdate({
-      pay_password: '',
+    runMemberPayPasswordUpdate({
+      pay_password: payPassword.value,
       code: '',
     })
   }
@@ -101,7 +110,7 @@ async function submitPayPwd() {
         <BaseInput v-model="repeatPassword" :msg="repeatPwdErrorMsg" type="password" />
       </BaseLabel>
     </AppSettingsContentItem>
-    <AppSettingsContentItem title="交易密码" @submit="submitPayPwd">
+    <AppSettingsContentItem title="交易密码" :btn-loading="payPasswordUpdateLoading" @submit="submitPayPwd">
       <template #top-desc>
         交易密码将用于保护提款，保险库取款安全。
       </template>
