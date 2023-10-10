@@ -36,6 +36,7 @@ export interface IMemberDetail {
   email_check_state: number
   /** 性别 1=男，2=女 */
   sex: number
+  username: string
 }
 
 /**
