@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import type { EnumCurrencyKey } from '~/apis'
+import type { IUserCurrencyList } from '~/stores/app'
 
 const { t } = useI18n()
 const { bool: showWallet, setBool: setShowWalletBool } = useBoolean(true)
@@ -17,7 +17,7 @@ const isDeposit = computed(() => currentTab.value === 'deposit')
 const isWithdraw = computed(() => currentTab.value === 'withdraw')
 const isCardHolder = computed(() => currentTab.value === 'cardHolder')
 
-function changeCurrency(item: EnumCurrencyKey) {
+function changeCurrency(item: IUserCurrencyList) {
   activeCurrency.value = item
 }
 function handleShow(val: boolean) {
@@ -31,12 +31,12 @@ function handleShow(val: boolean) {
       <BaseTab v-model="currentTab" :list="tabList" />
       <AppSelectCurrency v-show="showWallet && !isCardHolder" :show-balance="isWithdraw" :network="true" @change="changeCurrency" />
       <template v-if="isDeposit">
-        <AppVirtualDeposit v-if="isVirtualCurrency(activeCurrency)" :active-currency="activeCurrency" @show="handleShow" />
-        <AppFiatDeposit v-else :active-currency="activeCurrency" @show="handleShow" />
+        <AppVirtualDeposit v-if="isVirtualCurrency(activeCurrency?.type)" :active-currency="activeCurrency?.type" @show="handleShow" />
+        <AppFiatDeposit v-else :active-currency="activeCurrency?.type" @show="handleShow" />
       </template>
       <template v-else-if="isWithdraw">
         <Suspense timeout="0">
-          <AppWithdraw v-if="isVirtualCurrency(activeCurrency)" :active-currency="activeCurrency" />
+          <AppWithdraw v-if="isVirtualCurrency(activeCurrency?.type)" :active-currency="activeCurrency" />
           <AppFiatWithdrawal v-else :active-currency="activeCurrency" />
           <template #fallback>
             <div class="center dialog-loading-height">

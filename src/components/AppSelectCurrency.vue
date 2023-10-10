@@ -41,7 +41,7 @@ function selectCurrency(item: IUserCurrencyList, hide: () => void) {
   currentCurrencyBalance.value = item.balanceWithSymbol
   changeCurrentCurrency(item.type)
   hide()
-  emit('change', item.type)
+  emit('change', item)
 }
 
 emit('change', currentCurrency.value)
