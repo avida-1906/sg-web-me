@@ -12,7 +12,7 @@ const {
   widthBoundarySm,
   widthBoundaryXs,
 } = storeToRefs(useWindowStore())
-const { isLogin, userCurrencyList } = storeToRefs(useAppStore())
+const { isLogin, userInfo } = storeToRefs(useAppStore())
 const { openVipDialog } = useVipDialog()
 const { openWalletDialog } = useWalletDialog()
 
@@ -56,7 +56,7 @@ await application.allSettled([runLive({ game_type: 1 }), runSlot({ game_type: 3 
         <div v-else class="top-vip-info" :class="isSm ? 'max-width-mobile' : 'max-width'">
           <AppVipProgress :vip-progress-data="vipProgressData">
             <template #title>
-              <h1>欢迎归来，alanhayashi</h1>
+              <h1>欢迎归来，{{ userInfo?.username }}</h1>
             </template>
             <p @click="openVipDialog">
               您的 VIP 进度 <BaseIcon name="uni-arrowright-line" />

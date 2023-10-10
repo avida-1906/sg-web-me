@@ -1,9 +1,15 @@
 <script lang="ts" setup>
 import type { IMemberDetail } from '~/apis'
+import type { notifyType } from '~/composables/useNotify'
+
+interface INotifyData {
+  type: notifyType
+  title?: string
+  message: string
+}
 
 const { openNotify } = useNotify()
 
-const areaCodeValue = ref('')
 const paramsData = ref<IMemberDetail>({
   uid: '',
   realname: '',
@@ -18,9 +24,12 @@ const paramsData = ref<IMemberDetail>({
   twitter: '',
   wechat: '',
   qq: '',
+  area_code: '',
   email_check_state: 2,
   sex: 1,
+  username: '',
 })
+const dataChangeCount = ref(0)
 const socialData = [
   { label: 'Facebook', img: '/img/settings/social-facebook.png', index: 'facebook' },
   { label: 'WhatsApp', img: '/img/settings/social-whatsapp.png', index: 'whatsapp' },
@@ -32,16 +41,19 @@ const socialData = [
   { label: 'WeChat', img: '/img/settings/social-wechat.png', index: 'wechat' },
   { label: 'QQ', img: '/img/settings/social-qq.png', index: 'qq' },
 ]
-const { bool: phoneDisabledBtn, setTrue: setPhoneDisabledBtnTrue, setFalse: setPhoneDisabledBtnFalse } = useBoolean(true)
-const { bool: emailDisabledBtn, setTrue: setEmailDisabledBtnTrue, setFalse: setEmailDisabledBtnFalse } = useBoolean(true)
+const notifyData = ref<INotifyData>({
+  type: 'success',
+  title: '',
+  message: '修改成功',
+})
 
+const { bool: emailDisabledBtn, setTrue: setEmailDisabledBtnTrue, setFalse: setEmailDisabledBtnFalse } = useBoolean(true)
+const { bool: phoneDisabledBtn, setTrue: setPhoneDisabledBtnTrue, setFalse: setPhoneDisabledBtnFalse } = useBoolean(true)
+const { bool: socialDisabledBtn, setTrue: setSocialDisabledBtnTrue, setFalse: setSocialDisabledBtnFalse } = useBoolean(true)
 const { data: areaCodeData } = useApiMemberTreeList('011')
 const { run: runMemberUpdate } = useRequest(ApiMemberUpdate, {
   onSuccess() {
-    openNotify({
-      type: 'success',
-      message: '修改成功',
-    })
+    openNotify(notifyData.value)
   },
 })
 const { runAsync: runAsyncDetail } = useRequest(ApiMemberDetail, {
@@ -52,10 +64,7 @@ const { runAsync: runAsyncDetail } = useRequest(ApiMemberDetail, {
 
 const areaCodeOptions = computed(() => {
   return areaCodeData.value?.map((item) => {
-    const temp = {
-      label: item.name,
-      value: item.id,
-    }
+    const temp = { label: item.name, value: item.id }
     return temp
   })
 })
@@ -63,26 +72,50 @@ const emailVerified = computed(() => paramsData.value.email_check_state === 1)
 
 const emailSubmit = function () {
   runMemberUpdate(paramsData.value)
+  notifyData.value = { type: 'email', title: '成功更新电邮地址', message: `电邮地址已更新为 ${paramsData.value.email}` }
+  setEmailDisabledBtnTrue()
 }
 const numberSubmit = function () {
   runMemberUpdate(paramsData.value)
+  notifyData.value = { type: 'phone', title: '成功更新手机号码', message: `手机号码已更新为 +${paramsData.value.phone}` }
+  setPhoneDisabledBtnTrue()
 }
 const socialSubmit = function () {
   runMemberUpdate(paramsData.value)
+  notifyData.value = { type: 'success', message: '修改成功' }
+  setSocialDisabledBtnTrue()
 }
 
-watch(() => paramsData.value.phone, (newValue, oldValue) => {
-  if (!oldValue)
-    setPhoneDisabledBtnTrue()
-  else if (newValue !== oldValue)
-    setPhoneDisabledBtnFalse()
-})
-watch(() => paramsData.value.email, (newValue, oldValue) => {
-  if (!oldValue)
-    setEmailDisabledBtnTrue()
-  else if (newValue !== oldValue)
-    setEmailDisabledBtnFalse()
-})
+/** 无法监听对象新旧值，使用深度克隆解决 */
+watch(() => cloneDeep(paramsData.value), (newValue, oldValue) => {
+  if (dataChangeCount.value > 0) {
+    if (newValue.email !== oldValue.email) {
+      if (newValue.email === '')
+        setEmailDisabledBtnTrue()
+      else
+        setEmailDisabledBtnFalse()
+    }
+    else if (newValue.phone !== oldValue.phone || newValue.area_code !== oldValue.area_code) {
+      if (newValue.phone === '' || newValue.area_code === '')
+        setPhoneDisabledBtnTrue()
+      else
+        setPhoneDisabledBtnFalse()
+    }
+    else {
+      if (
+        newValue.facebook === '' || newValue.whatsapp === ''
+        || newValue.telegram === '' || newValue.line === ''
+        || newValue.twitter === '' || newValue.zalo === ''
+        || newValue.viber === '' || newValue.wechat === ''
+        || newValue.qq === ''
+      )
+        setSocialDisabledBtnTrue()
+      else
+        setSocialDisabledBtnFalse()
+    }
+  }
+  dataChangeCount.value++
+}, { deep: true })
 
 await application.allSettled([runAsyncDetail()])
 </script>
@@ -104,13 +137,13 @@ await application.allSettled([runAsyncDetail()])
         我们只服务国际电话区号列表中所列有的区域。
       </template>
       <BaseLabel label="国际电话区号" must-small>
-        <BaseSelect v-model="areaCodeValue" :options="areaCodeOptions || []" class="general-base-select" />
+        <BaseSelect v-model="paramsData.area_code" :options="areaCodeOptions || []" class="general-base-select" />
       </BaseLabel>
       <BaseLabel label="手机号码" must-small>
         <BaseInput v-model="paramsData.phone" placeholder="请绑定手机号码" />
       </BaseLabel>
     </AppSettingsContentItem>
-    <AppSettingsContentItem title="社交账号" last-one class="general-app-settings-content-item" @submit="socialSubmit">
+    <AppSettingsContentItem title="社交账号" :verified="socialDisabledBtn" last-one class="general-app-settings-content-item" @submit="socialSubmit">
       <div class="social-wrap">
         <div v-for="item, index in socialData" :key="index" class="social-item">
           <BaseImage :url="item.img" width="50px" height="50px" class="general-base-image" />
