@@ -21,6 +21,18 @@ const paramsData = ref<IMemberDetail>({
   email_check_state: 2,
   sex: 1,
 })
+const socialData = [
+  { label: 'Facebook', img: '/img/settings/social-facebook.png', index: 'facebook' },
+  { label: 'WhatsApp', img: '/img/settings/social-whatsapp.png', index: 'whatsapp' },
+  { label: 'Telegram', img: '/img/settings/social-telegram.png', index: 'telegram' },
+  { label: 'Line', img: '/img/settings/social-line.png', index: 'line' },
+  { label: 'X', img: '/img/settings/social-x.png', index: 'twitter' },
+  { label: 'Zalo', img: '/img/settings/social-zalo.png', index: 'zalo' },
+  { label: 'Viber', img: '/img/settings/social-viber.png', index: 'viber' },
+  { label: 'WeChat', img: '/img/settings/social-wechat.png', index: 'wechat' },
+  { label: 'QQ', img: '/img/settings/social-qq.png', index: 'qq' },
+]
+const { bool: disabledBtn, setTrue: setDisabledBtnTrue, setFalse: setDisabledBtnFalse } = useBoolean(false)
 
 const { data: areaCodeData } = useApiMemberTreeList('011')
 const { run: runMemberUpdate } = useRequest(ApiMemberUpdate, {
@@ -58,6 +70,14 @@ const socialSubmit = function () {
   runMemberUpdate(paramsData.value)
 }
 
+watch(() => paramsData.value.phone, (newValue, oldValue) => {
+  console.log(oldValue)
+  if (!oldValue)
+    setDisabledBtnTrue()
+  else if (newValue !== oldValue)
+    setDisabledBtnFalse()
+})
+
 await application.allSettled([runAsyncDetail()])
 </script>
 
@@ -65,7 +85,7 @@ await application.allSettled([runAsyncDetail()])
   <div class="tg-settings-general">
     <AppSettingsContentItem title="电邮地址" :verified="emailVerified" @submit="emailSubmit">
       <BaseLabel label="用户名" must-small>
-        <BaseInput v-model="paramsData.email" placeholder="请绑定邮箱" />
+        <BaseInput v-model="paramsData.email" placeholder="请绑定邮箱" :disabled="emailVerified" :class="{ 'general-base-input-background': emailVerified }" />
       </BaseLabel>
       <template #btm-right>
         <BaseButton type="text" :disabled="emailVerified">
@@ -73,7 +93,7 @@ await application.allSettled([runAsyncDetail()])
         </BaseButton>
       </template>
     </AppSettingsContentItem>
-    <AppSettingsContentItem title="手机号码" @submit="numberSubmit">
+    <AppSettingsContentItem title="手机号码" :verified="disabledBtn" @submit="numberSubmit">
       <template #top-desc>
         我们只服务国际电话区号列表中所列有的区域。
       </template>
@@ -86,41 +106,9 @@ await application.allSettled([runAsyncDetail()])
     </AppSettingsContentItem>
     <AppSettingsContentItem title="社交账号" last-one class="general-app-settings-content-item" @submit="socialSubmit">
       <div class="social-wrap">
-        <div class="social-item">
-          <BaseImage url="/img/settings/social-facebook.png" width="50px" height="50px" class="general-base-image" />
-          <BaseInput v-model="paramsData.facebook" label="Facebook" />
-        </div>
-        <div class="social-item">
-          <BaseImage url="/img/settings/social-whatsapp.png" width="50px" height="50px" class="general-base-image" />
-          <BaseInput v-model="paramsData.whatsapp" label="WhatsApp" />
-        </div>
-        <div class="social-item">
-          <BaseImage url="/img/settings/social-telegram.png" width="50px" height="50px" class="general-base-image" />
-          <BaseInput v-model="paramsData.telegram" label="Telegram" />
-        </div>
-        <div class="social-item">
-          <BaseImage url="/img/settings/social-line.png" width="50px" height="50px" class="general-base-image" />
-          <BaseInput v-model="paramsData.line" label="Line" />
-        </div>
-        <div class="social-item">
-          <BaseImage url="/img/settings/social-x.png" width="50px" height="50px" class="general-base-image" />
-          <BaseInput v-model="paramsData.twitter" label="X" />
-        </div>
-        <div class="social-item">
-          <BaseImage url="/img/settings/social-zalo.png" width="50px" height="50px" class="general-base-image" />
-          <BaseInput v-model="paramsData.zalo" label="Zalo" />
-        </div>
-        <div class="social-item">
-          <BaseImage url="/img/settings/social-viber.png" width="50px" height="50px" class="general-base-image" />
-          <BaseInput v-model="paramsData.viber" label="Viber" />
-        </div>
-        <div class="social-item">
-          <BaseImage url="/img/settings/social-wechat.png" width="50px" height="50px" class="general-base-image" />
-          <BaseInput v-model="paramsData.wechat" label="WeChat" />
-        </div>
-        <div class="social-item">
-          <BaseImage url="/img/settings/social-qq.png" width="50px" height="50px" class="general-base-image" />
-          <BaseInput v-model="paramsData.qq" label="QQ" />
+        <div v-for="item, index in socialData" :key="index" class="social-item">
+          <BaseImage :url="item.img" width="50px" height="50px" class="general-base-image" />
+          <BaseInput v-model="paramsData[item.index as keyof typeof paramsData]" :label="item.label" />
         </div>
       </div>
     </AppSettingsContentItem>
@@ -135,6 +123,9 @@ await application.allSettled([runAsyncDetail()])
   }
   .general-app-settings-content-item{
     --tg-app-settings-content-item-style-max-width: 100%;
+  }
+  .general-base-input-background{
+    --tg-base-input-style-background-color: var(--tg-secondary-main);
   }
   .general-base-image{
     width: 50px;

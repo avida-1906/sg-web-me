@@ -13,7 +13,7 @@ pls_enter_email_address: 请输入电邮地址
 email_address_incorrect: 电邮地址格式不正确
 username: 用户名
 pls_enter_username: 请输入用户名
-username_incorrect: 您的用户名长度必须为 5 – 14 个字符。
+username_incorrect: 您的用户名长度必须为 3 – 14 个字符。
 password: 密码
 pls_enter_password: 请输入密码
 pls_enter_birthday: 请输入生日
