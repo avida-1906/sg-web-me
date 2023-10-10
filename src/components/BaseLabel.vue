@@ -1,4 +1,6 @@
 <script setup lang='ts'>
+import type { EnumCurrencyKey } from '~/apis'
+
 interface Props {
   label?: string // 标签
   labelContent?: string // 标签内容
@@ -8,6 +10,7 @@ interface Props {
   mustSmall?: boolean // 小
   rightText?: string // 右侧文本
   icon?: string // icon
+  currentCurrency?: EnumCurrencyKey
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -22,6 +25,7 @@ const props = withDefaults(defineProps<Props>(), {
     <div class="label-wrap">
       <div class="label-left">
         <BaseIcon v-if="props.icon" :name="props.icon" />
+        <AppCurrencyIcon v-if="currentCurrency" :currency-type="currentCurrency" />
         <div class="label-title">
           {{ props.label }}
           <div v-if="props.must || props.mustSmall" :class="{ 'label-must': props.must, 'label-must-small': props.mustSmall }">

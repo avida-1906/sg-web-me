@@ -20,18 +20,20 @@ function loadMore() {
 <template>
   <div class="base-secondary-accordion" :class="[isOpen ? 'is-open' : '', `level-${level}`]">
     <div class="no-active-scale header" @click="toggle">
-      <div class="container">
+      <slot name="header">
         <div class="container">
           <div class="container">
-            <div class="center">
-              <span>{{ title }}</span>
+            <div class="container">
+              <div class="center">
+                <span>{{ title }}</span>
+              </div>
+              <slot name="sideThird" :is-open="isOpen" />
             </div>
-            <slot name="sideThird" :is-open="isOpen" />
+            <slot name="sideSecond" :is-open="isOpen" />
           </div>
-          <slot name="sideSecond" :is-open="isOpen" />
+          <slot name="side" :is-open="isOpen" />
         </div>
-        <slot name="side" :is-open="isOpen" />
-      </div>
+      </slot>
       <div class="arrow">
         <BaseIcon name="uni-arrow-down" :style="{ transform: `rotate(${isOpen ? 0 : 90}deg)` }" />
       </div>

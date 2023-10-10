@@ -11,10 +11,8 @@ export class SportsOdds {
    * @param {number} odds
    * @returns {number}
    */
-  static convert(odds: number) {
-    const sportsStore = useSportsStore()
-
-    switch (sportsStore.getSportsOddsType()) {
+  static convert(odds: number, type = EnumSportsOddsType.DECIMAL) {
+    switch (type) {
       case EnumSportsOddsType.DECIMAL:
         return odds
       case EnumSportsOddsType.FRACTION:

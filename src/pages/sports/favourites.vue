@@ -4,6 +4,9 @@
 <template>
   <div class="tg-sports-favourites">
     favourites
+    <div class="layout-spacing">
+      <AppBetData mode="sports" />
+    </div>
   </div>
 </template>
 
@@ -15,5 +18,5 @@
 
 <route lang="yaml">
 meta:
-  layout: sports-home
+  layout: home
 </route>

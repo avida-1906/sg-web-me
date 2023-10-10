@@ -93,6 +93,9 @@ const threeOptions = [
     <SportsLive v-else-if="marketType === 'live'" />
     <!-- 即将开赛 -->
     <SportsUpComing v-else-if="marketType === 'soon'" />
+    <div class="layout-spacing">
+      <AppBetData mode="sports" />
+    </div>
   </div>
 </template>
 
@@ -100,5 +103,5 @@ const threeOptions = [
 
 <route lang="yaml">
 meta:
-  layout: sports-home
+  layout: home
 </route>
