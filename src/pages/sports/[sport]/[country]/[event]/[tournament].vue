@@ -202,18 +202,6 @@ function mapHeadArea(head: Array<{ key: string; periodScores?: Array<{ [prop: st
   }, [])
 }
 function onOpenLiveSwitch() {}
-const menuInfo = ref({
-  title: '顶级体育项目',
-  icon: 'chess-sponsorship',
-  list: [
-    { title: '足球', icon: 'chess-sponsorship', id: 1 },
-    { title: '篮球', icon: 'chess-sponsorship', id: 2 },
-    { title: '网球', icon: 'chess-sponsorship', id: 3 },
-    { title: '棒球', icon: 'chess-sponsorship', id: 4 },
-    { title: '篮球', icon: 'chess-sponsorship', id: 5 },
-    { title: '橄榄球', icon: 'chess-sponsorship', id: 6 },
-  ],
-})
 </script>
 
 <template>

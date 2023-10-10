@@ -1118,7 +1118,7 @@ const breadcrumbs = ['one', 'two', 'three', 'four']
             copy
           </BaseButton>
         </div>
-        <BaseSecondaryAccordion title="亚洲让分盘">
+        <BaseSecondaryAccordion title="亚洲让分盘" level="3">
           <template #sideThird>
             <div class="odds-buttons" @click.stop="console.log('ooooooo')">
               <span>赔率表</span>

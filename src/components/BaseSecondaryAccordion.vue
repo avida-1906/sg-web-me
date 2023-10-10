@@ -3,6 +3,7 @@ interface Props {
   title?: string
   showMore?: boolean
   loading?: boolean
+  level?: string | number
 }
 
 withDefaults(defineProps<Props>(), {})
@@ -17,7 +18,7 @@ function loadMore() {
 </script>
 
 <template>
-  <div class="base-secondary-accordion" :class="{ 'is-open': isOpen }">
+  <div class="base-secondary-accordion" :class="[isOpen ? 'is-open' : '', `level-${level}`]">
     <div class="no-active-scale header" @click="toggle">
       <div class="container">
         <div class="container">
@@ -75,6 +76,27 @@ function loadMore() {
 }
 .ani-scale {
   animation: 800ms linear 0ms infinite normal both running aniScale;
+}
+.level-1 {
+  --tg-secondaryAccordion-header-background: var(--tg-text-grey-deep);
+  --tg-secondaryAccordion-header-title-color: var(--tg-text-white);
+  --tg-secondaryAccordion-content-background: var(--tg-primary-main);
+  --tg-secondaryAccordion-content-border-color: var(--tg-text-grey-deep);
+}
+.level-2 {
+  --tg-secondaryAccordion-header-background: var(--tg-secondary-grey);
+  --tg-secondaryAccordion-header-title-color: var(--tg-text-grey-light);
+  --tg-secondaryAccordion-content-background: var(--tg-secondary-grey);
+  --tg-secondaryAccordion-content-border-color: var(--tg-secondary-main);
+}
+.level-3 {
+  --tg-secondaryAccordion-header-background: var(--tg-secondary-dark);
+  --tg-secondaryAccordion-header-title-color: var(--tg-text-grey-light);
+  --tg-secondaryAccordion-content-background: var(--tg-secondary-dark);
+  --tg-secondaryAccordion-content-border-color: var(--tg-secondary-main);
+  .arrow {
+    --tg-icon-color: var(--tg-text-white);
+  }
 }
 .base-secondary-accordion {
   display: flex;
