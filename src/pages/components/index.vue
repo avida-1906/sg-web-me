@@ -197,7 +197,7 @@ function copyCode(type: string) {
       break
     case 'BaseSecondaryAccordion':
       copy(`
-      <BaseSecondaryAccordion title="ATP / ATP上海站，中国，男单">
+      <BaseSecondaryAccordion title="ATP / ATP上海站，中国，男单" show-more loading>
           <template #side="{ isOpen }">
             <div v-show="!isOpen" style="--tg-badge-font-size: 12px;margin-right: 16px;">
               <BaseBadge :count="9" />
@@ -1103,7 +1103,7 @@ const breadcrumbs = ['one', 'two', 'three', 'four']
     </li>
     <li class="box">
       <AppDemoCard title="BaseSecondaryAccordion">
-        <BaseSecondaryAccordion title="ATP / ATP上海站，中国，男单">
+        <BaseSecondaryAccordion title="ATP / ATP上海站，中国，男单" show-more loading>
           <template #side="{ isOpen }">
             <div v-show="!isOpen" style="--tg-badge-font-size: 12px;margin-right: 16px;">
               <BaseBadge :count="9" />
@@ -1118,7 +1118,7 @@ const breadcrumbs = ['one', 'two', 'three', 'four']
             copy
           </BaseButton>
         </div>
-        <BaseSecondaryAccordion title="亚洲让分盘">
+        <BaseSecondaryAccordion title="亚洲让分盘" level="3">
           <template #sideThird>
             <div class="odds-buttons" @click.stop="console.log('ooooooo')">
               <span>赔率表</span>

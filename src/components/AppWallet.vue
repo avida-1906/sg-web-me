@@ -22,9 +22,9 @@ function selectCurrency(item: IUserCurrencyList, hide: () => void) {
 </script>
 
 <template>
-  <div class="app-wallet">
+  <div class="app-wallet flex-box">
     <VDropdown v-model:shown="isMenuShown" :distance="6" @apply-show="clearSearchValue">
-      <div class="wallet-box">
+      <div class="flex-box">
         <BaseButton class="wallet" type="text" size="sm">
           <AppAmount style="color:var(--tg-text-white);" :amount="currentGlobalCurrencyBalance" :currency-type="currentGlobalCurrency" />
           <BaseIcon class="arrow" :class="{ 'arrow-up': isMenuShown }" name="uni-arrow-down" />
@@ -60,11 +60,11 @@ function selectCurrency(item: IUserCurrencyList, hide: () => void) {
 </template>
 
 <style lang="scss" scoped>
+.flex-box{
+  display: flex;
+  justify-content: center;
+}
 .app-wallet {
-  .wallet-box{
-    display: flex;
-    justify-content: center;
-  }
   .wallet {
     background-color: var(--tg-secondary-dark);
     border-radius: var(--tg-radius-sm) 0px 0px var(--tg-radius-sm);
