@@ -8,10 +8,13 @@ defineEmits(['click'])
 
 <template>
   <div class="base-breadcrumbs">
-    <div v-for="b, i in list" :key="i" class="bread-item">
-      <span @click="$emit('click', b)">{{ b }}</span>
-      <div v-show="i !== list.length - 1" class="icon">
-        <BaseIcon name="uni-arrowright-line" />
+    <div class="wrap">
+      <div v-for="b, i in list" :key="i" class="bread-item">
+        <span @click="$emit('click', b)">{{ b }}</span>
+        <BaseIcon
+          v-show="i !== list.length - 1" name="uni-arrowright-line"
+          style="font-size: var(--tg-font-size-base);margin: 0 var(--tg-spacing-4);vertical-align: -3px;"
+        />
       </div>
     </div>
   </div>
@@ -19,25 +22,27 @@ defineEmits(['click'])
 
 <style lang='scss' scoped>
 .base-breadcrumbs {
-  display: flex;
+  display: inline-flex;
   align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  overflow: hidden;
+
+  .wrap {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
   .bread-item {
-    display: flex;
-    align-items: center;
+    display: inline;
     font-size: var(--tg-font-size-default);
     color: var(--tg-text-lightgrey);
     font-weight: var(--tg-font-weight-semibold);
+    white-space: nowrap;
 
     span {
       cursor: pointer;
-    }
-
-    .icon {
-      font-size: var(--tg-font-size-base);
-      display: flex;
-      align-items: center;
-      margin: 0 var(--tg-spacing-4);
     }
 
     &:hover {

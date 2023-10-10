@@ -20,7 +20,7 @@ withDefaults(defineProps<Props>(), {
       <div class="wrapper">
         <AppSportsMarketInfo :type="type" :is-standard="isStandard" :index="0" />
         <AppSportsMarketInfo :type="type" :is-standard="isStandard" :index="1" />
-        <AppSportsMarketInfo :type="type" :is-standard="isStandard" :index="2" />
+        <AppSportsMarketInfo :type="type" :is-standard="isStandard" :index="2" is-last />
       </div>
     </template>
   </BaseSecondaryAccordion>
