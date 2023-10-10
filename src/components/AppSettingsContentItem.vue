@@ -2,6 +2,8 @@
 interface Props {
   /** 标题 */
   title: string
+  /** 是否展示徽章  */
+  badge: boolean
   /** 最后一行 */
   lastOne?: boolean
   /** 按钮loading状态 */
@@ -13,6 +15,7 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   lastOne: false,
   verified: false,
+  badge: false,
 })
 const emit = defineEmits(['submit'])
 
@@ -26,7 +29,7 @@ const onSubmit = function () {
     <div class="content-top">
       <div class="top-title">
         <span>{{ props.title }}</span>
-        <span v-if="props.verified" class="badge">已验证</span>
+        <span v-if="props.badge" class="badge">已验证</span>
       </div>
       <div class="top-desc">
         <slot name="top-desc" />
