@@ -12,7 +12,7 @@ const {
   widthBoundarySm,
   widthBoundaryXs,
 } = storeToRefs(useWindowStore())
-const { isLogin, userCurrencyList } = storeToRefs(useAppStore())
+const { isLogin } = storeToRefs(useAppStore())
 const { openVipDialog } = useVipDialog()
 const { openWalletDialog } = useWalletDialog()
 
