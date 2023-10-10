@@ -1,6 +1,16 @@
 <script lang="ts" setup>
 import type { IUserCurrencyList } from '~/stores/app'
 
+interface Props {
+  showBalance?: boolean
+  network?: boolean
+}
+
+withDefaults(defineProps<Props>(), {
+  showBalance: true,
+  network: false,
+})
+
 const emit = defineEmits(['change'])
 
 // 下拉搜索是否显示
@@ -9,18 +19,26 @@ const {
   currentCurrency,
   searchValue,
   renderCurrencyList,
+  currentGlobalCurrencyBalance,
   changeCurrentCurrency,
   clearSearchValue,
+  getCurrencyContract,
 } = useCurrencyData()
 
 const currentNetwork = ref('ERC20')
-const networkList = [
-  { label: 'ERC20', value: 'ERC20' },
-  { label: 'TRC20', value: 'TRC20' },
-]
+const currentCurrencyBalance = ref(currentGlobalCurrencyBalance.value)
+// const networkList = [
+//   { label: 'ERC20', value: 'ERC20' },
+//   { label: 'TRC20', value: 'TRC20' },
+// ]
+
+const getCurContract = computed(() => {
+  return getCurrencyContract(currentCurrency.value)
+})
 
 // 选择币种
 function selectCurrency(item: IUserCurrencyList, hide: () => void) {
+  currentCurrencyBalance.value = item.balanceWithSymbol
   changeCurrentCurrency(item.type)
   hide()
   emit('change', item.type)
@@ -34,7 +52,8 @@ emit('change', currentCurrency.value)
     <VDropdown v-model:shown="isMenuShown" :distance="6" @apply-show="clearSearchValue">
       <div class="wallet-box">
         <BaseButton class="wallet wallet-only" type="text" size="md">
-          <AppCurrencyIcon class="wallet-text" show-name :currency-type="currentCurrency" />
+          <AppAmount v-if="showBalance" style="color:var(--tg-text-white);" :amount="currentCurrencyBalance" :currency-type="currentCurrency" />
+          <AppCurrencyIcon v-else class="wallet-text" :show-name="!showBalance" :currency-type="currentCurrency" />
           <BaseIcon class="arrow" :class="{ 'arrow-up': isMenuShown }" name="uni-arrow-down" />
         </BaseButton>
       </div>
@@ -44,12 +63,14 @@ emit('change', currentCurrency.value)
             <BaseSearch
               v-model="searchValue"
               class="top-search" :clearable="searchValue?.length > 0" :white-style="true"
+              :style="{ 'max-width': showBalance ? '180px' : '140px' }"
               place-holder="搜索"
             />
           </div>
-          <div class="scroll-y justify-content popper-content">
+          <div class="scroll-y popper-content" :class="{ 'justify-content': !showBalance }">
             <div v-for="item of renderCurrencyList" :key="item.type" class="content-row" @click.stop="selectCurrency(item, hide)">
-              <AppCurrencyIcon show-name :currency-type="item.type" />
+              <AppAmount v-if="showBalance" :amount="item.balanceWithSymbol" :currency-type="item.type" show-name />
+              <AppCurrencyIcon v-else show-name :currency-type="item.type" />
             </div>
             <div v-show="!renderCurrencyList.length" class="balance-not">
               无法使用货币
@@ -58,7 +79,7 @@ emit('change', currentCurrency.value)
         </div>
       </template>
     </VDropdown>
-    <BaseSelect v-model="currentNetwork" :options="networkList" popper />
+    <BaseSelect v-if="getCurContract" v-model="currentNetwork" :options="getCurContract" popper />
   </div>
 </template>
 
