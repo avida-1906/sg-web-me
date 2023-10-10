@@ -25,6 +25,7 @@ declare global {
   const ApiMemberLogin: typeof import('./apis/index')['ApiMemberLogin']
   const ApiMemberLoginout: typeof import('./apis/index')['ApiMemberLoginout']
   const ApiMemberPasswordUpdate: typeof import('./apis/index')['ApiMemberPasswordUpdate']
+  const ApiMemberPayPasswordUpdate: typeof import('./apis/index')['ApiMemberPayPasswordUpdate']
   const ApiMemberPlatformList: typeof import('./apis/index')['ApiMemberPlatformList']
   const ApiMemberReg: typeof import('./apis/index')['ApiMemberReg']
   const ApiMemberTreeList: typeof import('./apis/index')['ApiMemberTreeList']
@@ -471,6 +472,7 @@ declare module 'vue' {
     readonly ApiMemberLogin: UnwrapRef<typeof import('./apis/index')['ApiMemberLogin']>
     readonly ApiMemberLoginout: UnwrapRef<typeof import('./apis/index')['ApiMemberLoginout']>
     readonly ApiMemberPasswordUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberPasswordUpdate']>
+    readonly ApiMemberPayPasswordUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberPayPasswordUpdate']>
     readonly ApiMemberPlatformList: UnwrapRef<typeof import('./apis/index')['ApiMemberPlatformList']>
     readonly ApiMemberReg: UnwrapRef<typeof import('./apis/index')['ApiMemberReg']>
     readonly ApiMemberTreeList: UnwrapRef<typeof import('./apis/index')['ApiMemberTreeList']>
@@ -897,6 +899,7 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberLogin: UnwrapRef<typeof import('./apis/index')['ApiMemberLogin']>
     readonly ApiMemberLoginout: UnwrapRef<typeof import('./apis/index')['ApiMemberLoginout']>
     readonly ApiMemberPasswordUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberPasswordUpdate']>
+    readonly ApiMemberPayPasswordUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberPayPasswordUpdate']>
     readonly ApiMemberPlatformList: UnwrapRef<typeof import('./apis/index')['ApiMemberPlatformList']>
     readonly ApiMemberReg: UnwrapRef<typeof import('./apis/index')['ApiMemberReg']>
     readonly ApiMemberTreeList: UnwrapRef<typeof import('./apis/index')['ApiMemberTreeList']>
