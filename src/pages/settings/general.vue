@@ -28,6 +28,7 @@ const paramsData = ref(userInfo.value || {
   /** 邮箱是否验证 1=已验证，2=未验证 */
   email_check_state: 2,
   sex: 1,
+  username: '',
 })
 const dataChangeCount = ref(0)
 const socialData = [
