@@ -650,7 +650,9 @@ function onOpenLiveSwitch() {}
                         </div>
                       </template>
                       <template #default>
-                        <div>盘口</div>
+                        <div v-for="market in temp.markets" :key="market.id" class="market">
+                          <AppSportsBetButton v-for="outcome in market.outcomes" :key="outcome.id" layout="horizontal" />
+                        </div>
                       </template>
                     </BaseSecondaryAccordion>
                   </template>
@@ -691,6 +693,14 @@ function onOpenLiveSwitch() {}
 </template>
 
 <style lang="scss" scoped>
+.market {
+  display: grid;
+  color: var(--tg-text-white);
+  grid-gap: var(--tg-spacing-8);
+  width: 100%;
+  padding: var(--tg-spacing-12) var(--tg-spacing-16);
+  grid-template-columns: repeat(auto-fit,minmax(calc(33% - var(--tg-spacing-8)/2),1fr));
+}
 iframe, .iframe {
   border: none;
   width: 100%;
