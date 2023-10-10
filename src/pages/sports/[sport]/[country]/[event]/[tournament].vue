@@ -5,6 +5,7 @@ const route = useRoute()
 const { isMobile, appContentWidth } = storeToRefs(useWindowStore())
 
 const rangeNum = ref()
+const searchHandicap = ref('')
 const curGroupTab = ref('')
 const { bool: openLiveSwitch } = useBoolean(false)
 const eventData = reactive({
@@ -77,7 +78,13 @@ const eventData = reactive({
         qualifier: 'away',
       },
     ],
-    tvChannels: null,
+    tvChannels: [
+      {
+        language: 'zh',
+        name: 'Huya',
+        streamUrl: 'https://liveshare.huya.com/iframe/lpl?needStop=true',
+      },
+    ],
     __typename: 'SportFixtureDataMatch',
   },
   tournament: {
@@ -362,10 +369,55 @@ const eventData = reactive({
             },
           ],
         },
+        {
+          id: '30c81d31-2bcd-4e39-8935-bbfd209c79c4',
+          extId: '4',
+          rank: 2062.5,
+          name: '正确比赛得分',
+          markets: [
+            {
+              id: '52fd4c15-9b4c-44ac-8aab-9b81eaa8db78',
+              name: '正确比赛得分',
+              status: 'active',
+              extId: '4',
+              specifiers: 'best_of=3|variant=best_of:3',
+              customBetAvailable: false,
+              provider: 'oddin',
+              outcomes: [
+                {
+                  active: true,
+                  id: 'b1e9ebe7-bc1b-44f1-a1b3-8d150a39f04f',
+                  odds: 1.2,
+                  name: '2:0',
+                  customBetAvailable: false,
+                  __typename: 'SportMarketOutcome',
+                },
+                {
+                  active: true,
+                  id: '9813cfa8-6328-4b67-9617-fe4eb2fff4d0',
+                  odds: 10,
+                  name: '1:2',
+                  customBetAvailable: false,
+                  __typename: 'SportMarketOutcome',
+                },
+                {
+                  active: true,
+                  id: '37d27fba-b2cf-4341-9f10-38fee1a1f9e0',
+                  odds: 5,
+                  name: '2:1',
+                  customBetAvailable: false,
+                  __typename: 'SportMarketOutcome',
+                },
+              ],
+            },
+          ],
+        },
       ],
     },
   ],
   // 选手主题投注
+  // 右侧微件url
+  widgetUrl: 'https://disir.oddin.gg/lol/match?availableData=tournament&availableData=teams&availableData=players&awayTeamId=dGVhbS9vZDpjb21wZXRpdG9yOjExOTk%3D&brandToken=a91d9435-1130-42f5-88d3-00361e69b932&darkMode=true&homeTeamId=dGVhbS9vZDpjb21wZXRpdG9yOjEwMzU%3D&id=bWF0Y2gvb2Q6bWF0Y2g6NDg0NTMw&lang=zh&layout=default&t=4254007617&theme=dark&timeframe=THREE_MONTHS&tournamentId=dG91cm5hbWVudC9vZDp0b3VybmFtZW50OjQ1MzA%3D&type=teams',
 })
 
 const scoreBoard = computed(() => {
@@ -524,7 +576,14 @@ function onOpenLiveSwitch() {}
                 <!-- <div class="wrapper">
                   <span class="tip">直播视频将在赛事进行之前开始。</span>
                 </div> -->
-                <video autoplay controls playsinline disablepictureinpicture="" controlslist="nodownload nofullscreen" class="" src="blob:https://stake.com/49ddf2cf-2e38-4d2f-bf3d-4fd6ff04c0f1"><track kind="captions"></video>
+                <!-- <video autoplay controls playsinline disablepictureinpicture="" controlslist="nodownload nofullscreen" class="" src="blob:https://liveshare.huya.com/72a92f58-c32f-4bd1-a287-d355b40c7b59"><track kind="captions"></video> -->
+                <div class="content">
+                  <div class="player-view">
+                    <div class="ratio-wrap">
+                      <iframe class="iframe" scrolling="no" allowfullscreen src="https://liveshare.huya.com/iframe/lpl?needStop=true" />
+                    </div>
+                  </div>
+                </div>
               </div>
               <div class="live-stream-scoreboard-footer">
                 <span v-show="openLiveSwitch" class="mini-video">
@@ -576,11 +635,7 @@ function onOpenLiveSwitch() {}
                   </BaseSecondaryAccordion>
                 </div>
                 <div class="search-wrap">
-                  <BaseInput>
-                    <template #left-icon>
-                      <BaseIcon name="uni-search" />
-                    </template>
-                  </BaseInput>
+                  <BaseSearch v-model="searchHandicap" shape="square" place-holder="搜索" />
                 </div>
                 <section>
                   <BaseSecondaryAccordion title="ATP / ATP上海站，中国，男单">
@@ -601,6 +656,9 @@ function onOpenLiveSwitch() {}
             </div>
             <div v-if="appContentWidth >= 900" class="sticky-column">
               <div class="iframe-widget tracker desktop widget-container">
+                <div class="stack x-stretch y-center direction-vertical gap-small padding-none padding-left-auto padding-top-auto padding-bottom-auto padding-right-auto">
+                  <iframe id="widget-od-41421" title="url" :src="eventData.widgetUrl" scrolling="yes" height="730" name="widget-od-41421" class="" />
+                </div>
                 <div class="expand-wrapper">
                   <BaseIcon name="uni-arrow-up-big" />
                 </div>
@@ -630,6 +688,10 @@ function onOpenLiveSwitch() {}
 </template>
 
 <style lang="scss" scoped>
+iframe, .iframe {
+  border: none;
+  width: 100%;
+}
 video {
   width: 100%;
   height: 100%;
@@ -680,10 +742,6 @@ video {
   font-size: var(--tg-font-size-default);
   font-weight: var(--tg-font-weight-normal);
   line-height: 1.5;
-  & > * {
-    position: absolute;
-    inset: 0;
-  }
   .tip {
     display: inline-flex;
     align-items: center;
@@ -705,6 +763,41 @@ video {
     text-align: center;
     background: var(--tg-text-grey-deep);
     position: absolute;
+    inset: 0;
+  }
+  .content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding-top: 56.25%;
+    position: relative;
+    overflow: hidden;
+    .player-view {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+    }
+    .player-view>* {
+      height: 100%;
+    }
+    .ratio-wrap {
+      width: 100%;
+    }
+    .iframe {
+      border: none;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 2;
+    }
+  }
+  & > * {
+    position: absolute !important;
     inset: 0;
   }
 }
@@ -911,13 +1004,12 @@ video {
               bottom: 0;
               cursor: pointer;
               display: flex;
-              height: 100%;
               justify-content: center;
               left: 0;
               margin: auto;
               position: absolute;
               right: 0;
-              top: 0;
+              bottom: 0;
               transform: rotate(180deg);
               width: 100%;
             }
