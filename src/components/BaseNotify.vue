@@ -25,6 +25,7 @@ const iconObj = {
   success: 'uni-confirmed',
   insurance: 'navbar-cart',
   statistics: 'uni-trend',
+  phone: 'settings-phone',
 }
 
 const { t } = useI18n()

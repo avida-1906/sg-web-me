@@ -3,7 +3,7 @@ interface Props {
   /** 标题 */
   title: string
   /** 是否展示徽章  */
-  badge: boolean
+  badge?: boolean
   /** 最后一行 */
   lastOne?: boolean
   /** 按钮loading状态 */

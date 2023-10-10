@@ -30,6 +30,11 @@ export const useAppStore = defineStore('app', () => {
   const { data: currencyConfig } = useRequest(ApiMemberCurrencyConfig, {
     manual: false,
   })
+  /** 用户信息 */
+  const { data: userInfo } = useRequest(ApiMemberDetail, {
+    ready: isLogin,
+    manual: false,
+  })
 
   /** 当前全局选择的货币 */
   const currentGlobalCurrency = ref<EnumCurrencyKey>(EnumCurrency[0] as EnumCurrencyKey)
@@ -58,6 +63,7 @@ export const useAppStore = defineStore('app', () => {
     }
     return list
   })
+
   /** 当前选择货币的金额 */
   const currentGlobalCurrencyBalance = computed(() => {
     const balance = userCurrencyList.value.find(item => item.type === currentGlobalCurrency.value)?.balanceWithSymbol ?? '-'
@@ -70,6 +76,7 @@ export const useAppStore = defineStore('app', () => {
     Local.set(STORAGE_TOKEN_KEY, _token)
     setLoginTrue()
   }
+
   function getToken() {
     const _token = Local.get<string | undefined>(STORAGE_TOKEN_KEY)?.value
     if (_token)
@@ -77,14 +84,17 @@ export const useAppStore = defineStore('app', () => {
     else
       return undefined
   }
+
   function removeToken() {
     Local.remove(STORAGE_TOKEN_KEY)
     setLoginFalse()
   }
+
   /** 判断输入金额是否足够 */
   function isBalanceEnough(amount: number, currency: EnumCurrency) {
     return true
   }
+
   /**
    * 改变当前全局选择的货币
    * @param {EnumCurrencyKey} currency
@@ -103,6 +113,7 @@ export const useAppStore = defineStore('app', () => {
     currentGlobalCurrency,
     userCurrencyList,
     currentGlobalCurrencyBalance,
+    userInfo,
     setToken,
     setLoginTrue,
     setLoginFalse,
