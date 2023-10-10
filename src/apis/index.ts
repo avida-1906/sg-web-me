@@ -352,6 +352,7 @@ export function ApiMemberBalanceLockerUpdate(data: {
 export function ApiMemberBalanceLockerShow() {
   return httpClient.post('/member/balance_locker/show')
 }
+
 /**
  * 银行卡列表
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=3b3a818d-668f-41fc-ab45-3a8cbc3b3f40
@@ -373,6 +374,7 @@ export function ApiMemberBankcardList(params: {
     is_default: number
   }>>('/member/bankcard/list', params)
 }
+
 /**
  * 辅助数据
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=eef5fa8c-373d-49fb-88cb-5f43d5223d6e
@@ -392,6 +394,7 @@ export function ApiMemberTreeList(params: {
     sortlevel: string
   }[]>('/member/tree/list', params)
 }
+
 /**
  * 银行卡添加
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=96b12d9e-536b-4aa3-b6bc-0a8a6fc4d17d
@@ -452,6 +455,7 @@ export function ApiMemberPasswordUpdate(data: {
 export function ApiMemberBalanceList() {
   return httpClient.get<TCurrencyObject>('/member/balance')
 }
+
 /**
  * 会员资料详情
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=a7da5a93-3c50-438f-b0aa-c7c9faada194
@@ -459,6 +463,7 @@ export function ApiMemberBalanceList() {
 export function ApiMemberDetail() {
   return httpClient.get<IMemberDetail>('/member/detail')
 }
+
 /**
  * 会员资料修改
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=4f939a92-0ef0-41fb-b7e7-339b196b6d63

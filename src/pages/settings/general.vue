@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import type { IMemberDetail } from '~/apis'
 import type { notifyType } from '~/composables/useNotify'
 
 interface INotifyData {
@@ -9,8 +8,9 @@ interface INotifyData {
 }
 
 const { openNotify } = useNotify()
+const { userInfo } = storeToRefs(useAppStore())
 
-const paramsData = ref<IMemberDetail>({
+const paramsData = ref(userInfo.value || {
   uid: '',
   realname: '',
   phone: '',
@@ -25,6 +25,7 @@ const paramsData = ref<IMemberDetail>({
   wechat: '',
   qq: '',
   area_code: '',
+  /** 邮箱是否验证 1=已验证，2=未验证 */
   email_check_state: 2,
   sex: 1,
 })
@@ -40,11 +41,7 @@ const socialData = [
   { label: 'WeChat', img: '/img/settings/social-wechat.png', index: 'wechat' },
   { label: 'QQ', img: '/img/settings/social-qq.png', index: 'qq' },
 ]
-const notifyData = ref<INotifyData>({
-  type: 'success',
-  title: '',
-  message: '修改成功',
-})
+const notifyData = ref<INotifyData>({ type: 'success', title: '', message: '修改成功' })
 
 const { bool: emailDisabledBtn, setTrue: setEmailDisabledBtnTrue, setFalse: setEmailDisabledBtnFalse } = useBoolean(true)
 const { bool: phoneDisabledBtn, setTrue: setPhoneDisabledBtnTrue, setFalse: setPhoneDisabledBtnFalse } = useBoolean(true)
@@ -55,11 +52,6 @@ const { run: runMemberUpdate } = useRequest(ApiMemberUpdate, {
     openNotify(notifyData.value)
   },
 })
-const { runAsync: runAsyncDetail } = useRequest(ApiMemberDetail, {
-  onSuccess(data) {
-    paramsData.value = data
-  },
-})
 
 const areaCodeOptions = computed(() => {
   return areaCodeData.value?.map((item) => {
@@ -67,7 +59,7 @@ const areaCodeOptions = computed(() => {
     return temp
   })
 })
-const emailVerified = computed(() => paramsData.value.email_check_state === 1)
+const emailVerified = computed(() => paramsData.value?.email_check_state === 1)
 
 const emailSubmit = function () {
   runMemberUpdate(paramsData.value)
@@ -115,12 +107,14 @@ watch(() => cloneDeep(paramsData.value), (newValue, oldValue) => {
   }
   dataChangeCount.value++
 }, { deep: true })
-
-await application.allSettled([runAsyncDetail()])
+watch(() => userInfo.value, (newValue) => {
+  if (newValue)
+    paramsData.value = newValue
+})
 </script>
 
 <template>
-  <div class="tg-settings-general">
+  <div v-if="paramsData" class="tg-settings-general">
     <AppSettingsContentItem title="电邮地址" :verified="emailVerified || emailDisabledBtn" :badge="emailVerified" @submit="emailSubmit">
       <BaseLabel label="用户名" must-small>
         <BaseInput v-model="paramsData.email" placeholder="请绑定邮箱" :disabled="emailVerified" :class="{ 'general-base-input-background': emailVerified }" />
