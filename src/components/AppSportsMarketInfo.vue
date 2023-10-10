@@ -41,8 +41,8 @@ const baseGridClass = computed(() => isH5Layout.value ? 'grid-setup-574' : 'grid
       </div>
     </div>
     <!-- 横线 -->
-    <div class="line" :class="{ 'line-bg': index > 0 }" style="grid-area: line" />
-    <div class="line" :class="{ 'line-bg': index > 0 }" style=" grid-area: line2" />
+    <div v-if="!isH5Layout" class="line" :class="{ 'line-bg': index > 0 }" style="grid-area: line" />
+    <div v-if="!isH5Layout" class="line" :class="{ 'line-bg': index > 0 }" style=" grid-area: line2" />
     <!-- 队名 -->
     <div v-if="!isH5Layout" class="teams">
       <!-- 主队名称 -->
@@ -280,6 +280,7 @@ const baseGridClass = computed(() => isH5Layout.value ? 'grid-setup-574' : 'grid
       font-weight: var(--tg-font-weight-semibold);
       line-height: 1.3;
       font-size: var(--tg-font-size-default);
+      cursor: pointer;
     }
 
     .icon {
