@@ -32,7 +32,8 @@ const socialData = [
   { label: 'WeChat', img: '/img/settings/social-wechat.png', index: 'wechat' },
   { label: 'QQ', img: '/img/settings/social-qq.png', index: 'qq' },
 ]
-const { bool: disabledBtn, setTrue: setDisabledBtnTrue, setFalse: setDisabledBtnFalse } = useBoolean(false)
+const { bool: phoneDisabledBtn, setTrue: setPhoneDisabledBtnTrue, setFalse: setPhoneDisabledBtnFalse } = useBoolean(true)
+const { bool: emailDisabledBtn, setTrue: setEmailDisabledBtnTrue, setFalse: setEmailDisabledBtnFalse } = useBoolean(true)
 
 const { data: areaCodeData } = useApiMemberTreeList('011')
 const { run: runMemberUpdate } = useRequest(ApiMemberUpdate, {
@@ -71,11 +72,16 @@ const socialSubmit = function () {
 }
 
 watch(() => paramsData.value.phone, (newValue, oldValue) => {
-  console.log(oldValue)
   if (!oldValue)
-    setDisabledBtnTrue()
+    setPhoneDisabledBtnTrue()
   else if (newValue !== oldValue)
-    setDisabledBtnFalse()
+    setPhoneDisabledBtnFalse()
+})
+watch(() => paramsData.value.email, (newValue, oldValue) => {
+  if (!oldValue)
+    setEmailDisabledBtnTrue()
+  else if (newValue !== oldValue)
+    setEmailDisabledBtnFalse()
 })
 
 await application.allSettled([runAsyncDetail()])
@@ -83,7 +89,7 @@ await application.allSettled([runAsyncDetail()])
 
 <template>
   <div class="tg-settings-general">
-    <AppSettingsContentItem title="电邮地址" :verified="emailVerified" @submit="emailSubmit">
+    <AppSettingsContentItem title="电邮地址" :verified="emailVerified || emailDisabledBtn" :badge="emailVerified" @submit="emailSubmit">
       <BaseLabel label="用户名" must-small>
         <BaseInput v-model="paramsData.email" placeholder="请绑定邮箱" :disabled="emailVerified" :class="{ 'general-base-input-background': emailVerified }" />
       </BaseLabel>
@@ -93,7 +99,7 @@ await application.allSettled([runAsyncDetail()])
         </BaseButton>
       </template>
     </AppSettingsContentItem>
-    <AppSettingsContentItem title="手机号码" :verified="disabledBtn" @submit="numberSubmit">
+    <AppSettingsContentItem title="手机号码" :verified="phoneDisabledBtn" @submit="numberSubmit">
       <template #top-desc>
         我们只服务国际电话区号列表中所列有的区域。
       </template>

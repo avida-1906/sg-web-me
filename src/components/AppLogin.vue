@@ -3,7 +3,7 @@ const closeDialog = inject('closeDialog', () => {})
 
 const { t } = useI18n()
 const appStore = useAppStore()
-const { bool: isShowPasswordVerify, setTrue: setShowPasswordVerifyTrue, setFalse: setShowPasswordVerifyFalse } = useBoolean(false)
+const { bool: isShowPasswordVerify, setTrue: setShowPasswordVerifyTrue, setBool: setShowPasswordVerifyBool } = useBoolean(false)
 const { value: username, errorMessage: usernameErrorMsg, validate: valiUsername } = useField<string>('username', (value) => {
   if (!value)
     return t('pls_enter_email_or_username')
@@ -52,8 +52,8 @@ async function getMemberLogin() {
 function onFocus() {
   setShowPasswordVerifyTrue()
 }
-function onBlur() {
-  setShowPasswordVerifyFalse()
+function passwordVerifyPass(status: boolean) {
+  setShowPasswordVerifyBool(!status)
 }
 </script>
 
@@ -68,10 +68,10 @@ function onBlur() {
           v-model="password" :msg="pwdErrorMsg" :placeholder="t('pls_enter_password')" type="password"
           autocomplete="current-password"
           :password="password"
-          @focus="onFocus" @blur="onBlur"
+          @focus="onFocus"
         />
       </BaseLabel>
-      <AppPasswordVerify v-show="isShowPasswordVerify" :password="password" />
+      <AppPasswordVerify v-show="isShowPasswordVerify" :password="password" @pass="passwordVerifyPass" />
       <BaseButton class="app-login-btn" bg-style="secondary" :loading="isLoading" size="xl" @click.stop="getMemberLogin">
         <span class="login-text">
           {{ t('login') }}
