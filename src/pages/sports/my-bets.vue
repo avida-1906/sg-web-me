@@ -48,6 +48,9 @@ const { page, prev, next, hasMore } = useList(ApiMemberFavList)
         {{ $t('page_next') }}
       </BaseButton>
     </div>
+    <div class="layout-spacing">
+      <AppBetData mode="sports" />
+    </div>
   </div>
 </template>
 
@@ -81,5 +84,5 @@ const { page, prev, next, hasMore } = useList(ApiMemberFavList)
 
 <route lang="yaml">
 meta:
-  layout: sports-home
+  layout: home
 </route>

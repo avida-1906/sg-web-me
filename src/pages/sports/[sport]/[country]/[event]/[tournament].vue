@@ -2,6 +2,7 @@
 type Qualifier = 'home' | 'away'
 
 const route = useRoute()
+const { isMobile } = storeToRefs(useWindowStore())
 
 const rangeNum = ref()
 const curGroupTab = ref('')
@@ -142,6 +143,229 @@ const eventData = reactive({
       rank: 0,
     },
   ],
+  group: [
+    {
+      name: 'main',
+      translation: '主页',
+      rank: 13,
+      templates: [
+        {
+          id: '5c524611-7ef5-4a67-9c0b-0b012294c136',
+          extId: '251',
+          rank: 14,
+          name: '获胜 (incl. extra innings)',
+          markets: [
+            {
+              id: '49b58ff9-cecc-466e-9502-3f5ce21afdfb',
+              name: '获胜 (incl. extra innings)',
+              status: 'active',
+              extId: '251',
+              specifiers: '',
+              customBetAvailable: false,
+              provider: 'betradar',
+              outcomes: [
+                {
+                  active: true,
+                  id: '2c6f85d5-8322-4ba4-9b10-a89e0a95834f',
+                  odds: 4.55,
+                  name: '洛杉矶道奇队',
+                  customBetAvailable: false,
+                  __typename: 'SportMarketOutcome',
+                },
+                {
+                  active: true,
+                  id: 'b40d0802-92c6-432c-895a-3818c70cec0b',
+                  odds: 1.22,
+                  name: '亚利桑那响尾蛇队',
+                  customBetAvailable: false,
+                  __typename: 'SportMarketOutcome',
+                },
+              ],
+            },
+          ],
+        },
+        {
+          id: '9bce7c9c-b390-4667-94b7-93263ddcf847',
+          extId: '258',
+          rank: 13.5,
+          name: '总数 (incl. extra innings)',
+          markets: [
+            {
+              id: 'd6b59063-ecf8-4997-ad00-770b3b5e861a',
+              name: '总数 (incl. extra innings)',
+              status: 'active',
+              extId: '258',
+              specifiers: 'total=7.5',
+              customBetAvailable: false,
+              provider: 'betradar',
+              outcomes: [
+                {
+                  active: true,
+                  id: 'e9779db1-df1a-4c94-98d9-79a95f872be6',
+                  odds: 1.75,
+                  name: '高于7.5',
+                  customBetAvailable: false,
+                  __typename: 'SportMarketOutcome',
+                },
+                {
+                  active: true,
+                  id: 'f2ac7ac4-957d-4572-81ec-db28fb8a028e',
+                  odds: 2.1,
+                  name: '低于7.5',
+                  customBetAvailable: false,
+                  __typename: 'SportMarketOutcome',
+                },
+              ],
+            },
+            {
+              id: '7b5c5bba-3d48-4018-a5df-22227c3b764c',
+              name: '总数 (incl. extra innings)',
+              status: 'active',
+              extId: '258',
+              specifiers: 'total=8',
+              customBetAvailable: false,
+              provider: 'betradar',
+              outcomes: [
+                {
+                  active: true,
+                  id: '94e49bed-38d8-4a5d-9835-8e774671a20c',
+                  odds: 1.9,
+                  name: '高于8',
+                  customBetAvailable: false,
+                  __typename: 'SportMarketOutcome',
+                },
+                {
+                  active: true,
+                  id: '211d8e64-ea0e-4351-a0d9-b0b26799f2d7',
+                  odds: 1.95,
+                  name: '低于8',
+                  customBetAvailable: false,
+                  __typename: 'SportMarketOutcome',
+                },
+              ],
+            },
+            {
+              id: '9f3be939-6fad-46ba-985e-1c239e1b0276',
+              name: '总数 (incl. extra innings)',
+              status: 'active',
+              extId: '258',
+              specifiers: 'total=8.5',
+              customBetAvailable: false,
+              provider: 'betradar',
+              outcomes: [
+                {
+                  active: true,
+                  id: '6f64c5f6-63ec-411d-bf0e-ffe4f879d876',
+                  odds: 2,
+                  name: '高于8.5',
+                  customBetAvailable: false,
+                  __typename: 'SportMarketOutcome',
+                },
+                {
+                  active: true,
+                  id: 'c324b9db-0978-482b-9c9a-e549dd2a0e22',
+                  odds: 1.8,
+                  name: '低于8.5',
+                  customBetAvailable: false,
+                  __typename: 'SportMarketOutcome',
+                },
+              ],
+            },
+          ],
+        },
+        {
+          id: '5912d081-381b-4148-9f6b-e23c62f01eed',
+          extId: '256',
+          rank: 13,
+          name: '盘口 (incl. extra innings)',
+          markets: [
+            {
+              id: 'ef50ec2d-9bb9-4483-b96e-887648ad0bc5',
+              name: '盘口 (incl. extra innings)',
+              status: 'active',
+              extId: '256',
+              specifiers: 'hcp=1.5',
+              customBetAvailable: false,
+              provider: 'betradar',
+              outcomes: [
+                {
+                  active: true,
+                  id: 'ba996aaf-f777-41f2-8cf9-cfa8560fa3df',
+                  odds: 2.65,
+                  name: '洛杉矶道奇队 (1.5)',
+                  customBetAvailable: false,
+                  __typename: 'SportMarketOutcome',
+                },
+                {
+                  active: true,
+                  id: 'd5dbae2d-3faf-46c7-b663-afd2e45cf9dd',
+                  odds: 1.5,
+                  name: '亚利桑那响尾蛇队 (-1.5)',
+                  customBetAvailable: false,
+                  __typename: 'SportMarketOutcome',
+                },
+              ],
+            },
+            {
+              id: 'c2ea540f-5961-4283-815f-e2e0ef18e962',
+              name: '盘口 (incl. extra innings)',
+              status: 'active',
+              extId: '256',
+              specifiers: 'hcp=2.5',
+              customBetAvailable: false,
+              provider: 'betradar',
+              outcomes: [
+                {
+                  active: true,
+                  id: '02110c97-4dbb-4370-9522-98346048cd6a',
+                  odds: 1.85,
+                  name: '洛杉矶道奇队 (2.5)',
+                  customBetAvailable: false,
+                  __typename: 'SportMarketOutcome',
+                },
+                {
+                  active: true,
+                  id: '7835a91d-92f9-48f7-807a-593858fff811',
+                  odds: 2,
+                  name: '亚利桑那响尾蛇队 (-2.5)',
+                  customBetAvailable: false,
+                  __typename: 'SportMarketOutcome',
+                },
+              ],
+            },
+            {
+              id: '977ead7b-0996-47cf-8066-825be40eebc2',
+              name: '盘口 (incl. extra innings)',
+              status: 'active',
+              extId: '256',
+              specifiers: 'hcp=3.5',
+              customBetAvailable: false,
+              provider: 'betradar',
+              outcomes: [
+                {
+                  active: true,
+                  id: '2dae91d2-22c2-4174-940e-99c92d3d69ef',
+                  odds: 1.3,
+                  name: '洛杉矶道奇队 (3.5)',
+                  customBetAvailable: false,
+                  __typename: 'SportMarketOutcome',
+                },
+                {
+                  active: true,
+                  id: '648c04c8-a25f-45d4-8882-4c1e0d130c4b',
+                  odds: 3.4,
+                  name: '亚利桑那响尾蛇队 (-3.5)',
+                  customBetAvailable: false,
+                  __typename: 'SportMarketOutcome',
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+  // 选手主题投注
 })
 
 const scoreBoard = computed(() => {
@@ -303,10 +527,15 @@ function onOpenLiveSwitch() {}
                 </label>
                 <span>直播</span>
               </div>
+              <div class="fixture-notice">
+                <span>如果您在赢家盘口的选择在第 9 局开始时领先但最终却输掉比赛，则可赢得奖金！</span>
+                <a class="link">条款与条件适用。</a>
+              </div>
               <div class="groups">
                 <div>
                   <BaseTab v-model="curGroupTab" :list="groupTabs" size="large" :center="false" />
                 </div>
+                <div class="bet-builder-sticky-header" :class="{ 'is-pc': !isMobile }" />
                 <div class="search-wrap">
                   <BaseInput>
                     <template #left-icon>
@@ -497,6 +726,19 @@ function onOpenLiveSwitch() {}
               margin-left: var(--tg-spacing-12);
             }
           }
+          .fixture-notice {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            color: var(--tg-secondary-light);
+            text-align: left;
+            font-size: var(--tg-font-size-default);
+            font-weight: var(--tg-font-weight-normal);
+            line-height: 1.5;
+            a {
+              font-weight: var(--tg-font-weight-semibold);
+            }
+          }
           .groups {
             display: flex;
             flex-direction: column;
@@ -504,6 +746,21 @@ function onOpenLiveSwitch() {}
             position: relative;
             > *+* {
               margin-top: var(--tg-spacing-16);
+            }
+
+            .bet-builder-sticky-header {
+              width: 100%;
+              bottom: var(--mobile-footer-height);
+              left: 0;
+              z-index: var(--z-index);
+              position: fixed;
+              box-shadow: var(--btn-shadow);
+              &.is-pc {
+                position:sticky;
+                top: -2px;
+                bottom: auto;
+                width: 100%
+              }
             }
           }
         }
@@ -583,5 +840,5 @@ function onOpenLiveSwitch() {}
 
 <route lang="yaml">
 meta:
-  layout: sports-home
+  layout: home
 </route>
