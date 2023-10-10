@@ -16,7 +16,10 @@ withDefaults(defineProps<Props>(), {
         汉夫曼，扬尼克
       </div>
       <span v-if="disabled" class="status">暂停</span>
-      <AppSportsOdds v-else :style="`--tg-sports-odds-color:${active ? 'var(--tg-text-white)' : ''}`" :arrow="layout === 'horizontal' ? 'left' : 'right'" odds="1.65" />
+      <AppSportsOdds
+        v-else :style="`--tg-sports-odds-color:${active ? 'var(--tg-text-white)' : ''}`"
+        :arrow="layout === 'horizontal' ? 'left' : 'right'" odds="1.65"
+      />
     </div>
   </div>
 </template>
@@ -27,6 +30,7 @@ withDefaults(defineProps<Props>(), {
   border-radius: var(--tg-radius-default);
   transition: all .1s;
   width: 100%;
+  height: 100%;
   position: relative;
   font-size: var(--tg-font-size-default);
   color: var(--tg-text-white);
@@ -37,6 +41,8 @@ withDefaults(defineProps<Props>(), {
 
   .content {
     display: flex;
+    width: 100%;
+    height: 100%;
 
     .name {
       max-width: 100%;
@@ -84,7 +90,8 @@ withDefaults(defineProps<Props>(), {
     .name {
       opacity: 0.2;
     }
-    .status{
+
+    .status {
       opacity: 0.4;
     }
   }
