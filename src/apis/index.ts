@@ -449,7 +449,7 @@ export function ApiMemberPasswordUpdate(data: {
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=9aabea35-99e8-4d35-b58a-abbcb05ba837
  */
 export function ApiMemberBalanceList() {
-  return httpClient.get<TCurrencyObject>('/member/balance/list')
+  return httpClient.get<TCurrencyObject>('/member/balance')
 }
 /**
  * 会员资料详情
