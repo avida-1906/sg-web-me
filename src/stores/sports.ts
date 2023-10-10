@@ -34,6 +34,13 @@ export const useSportsStore = defineStore('sports', () => {
   /** 投注单数据 */
   const betSlipData = ref<IBetSlipData[]>([])
 
+  /** 渲染赔率 */
+  const renderOdds = (odds: number) => {
+    return computed(() => {
+      return Number(SportsOdds.convert(odds, sportsOddsType.value))
+    })
+  }
+
   /** 设置当前体育数据展示方式 */
   function setSportsPanelType(type: EnumSportsPanelType) {
     sportsPanelType.value = type
@@ -68,6 +75,7 @@ export const useSportsStore = defineStore('sports', () => {
     sportsPanelType,
     sportsOddsType,
     betSlipData,
+    renderOdds,
     setSportsPanelType,
     getSportsPanelType,
     setSportsOddsType,

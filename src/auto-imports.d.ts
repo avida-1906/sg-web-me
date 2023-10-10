@@ -195,6 +195,8 @@ declare global {
   const socketClient: typeof import('./utils/mqtt')['socketClient']
   const sortBy: typeof import('lodash-es')['sortBy']
   const split: typeof import('lodash-es')['split']
+  const sports: typeof import('./utils/sports')['sports']
+  const sportsRq: typeof import('./utils/sports')['sportsRq']
   const storeToRefs: typeof import('pinia')['storeToRefs']
   const sub: typeof import('./utils/number')['sub']
   const syncRef: typeof import('@vueuse/core')['syncRef']
