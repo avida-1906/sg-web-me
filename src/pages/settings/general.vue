@@ -27,6 +27,7 @@ const paramsData = ref<IMemberDetail>({
   area_code: '',
   email_check_state: 2,
   sex: 1,
+  username: '',
 })
 const dataChangeCount = ref(0)
 const socialData = [
