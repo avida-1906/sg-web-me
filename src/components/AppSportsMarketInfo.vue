@@ -115,25 +115,26 @@ const baseGridClass = computed(() => isH5Layout.value ? 'grid-setup-574' : 'grid
       <div class="market-name" style="--area: marketName0;">
         <span>获胜</span>
       </div>
-      <div class="outcomes-three" style="--area: outcomes0;">
+      <div class="outcomes-three" :class="{ 'outcomes-three-h5': isH5Layout }" style="--area: outcomes0;">
         <AppSportsBetButton layout="horizontal" />
         <AppSportsBetButton layout="horizontal" />
       </div>
       <div class="market-name" style="--area: marketName1;">
         <span>2nd 盘 - 胜利</span>
       </div>
-      <div class="outcomes-three" style="--area: outcomes1;">
+      <div class="outcomes-three" :class="{ 'outcomes-three-h5': isH5Layout }" style="--area: outcomes1;">
         <AppSportsBetButton layout="horizontal" />
         <AppSportsBetButton layout="horizontal" />
       </div>
       <div class="market-name" style="--area: marketName2;">
         <span>比赛总数</span>
       </div>
-      <div class="outcomes-three" style="--area: outcomes2;">
-        <AppSportsBetButton layout="horizontal" />
-        <AppSportsBetButton layout="horizontal" />
+      <div class="outcomes-three" :class="{ 'outcomes-three-h5': isH5Layout }" style="--area: outcomes2;">
+        <AppSportsOutcomeLocked />
+        <!-- <AppSportsBetButton layout="horizontal" />
+        <AppSportsBetButton layout="horizontal" /> -->
       </div>
-      <div class="breadcrumb">
+      <div v-if="!isH5Layout" class="breadcrumb">
         <BaseBreadcrumbs :list="['网球', 'ITF女子', 'ITF China 11A, Women Singles']" />
       </div>
     </template>
@@ -372,6 +373,17 @@ const baseGridClass = computed(() => isH5Layout.value ? 'grid-setup-574' : 'grid
 
 }
 
+.outcomes-three-h5 {
+  place-items: center;
+  width: 100%;
+  grid-area: var(--area);
+  display: grid;
+  grid-gap: var(--tg-spacing-8) var(--tg-spacing-8);
+  grid-template-rows: 1fr;
+  align-self: stretch;
+  grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+}
+
 .breadcrumb {
   grid-area: breadcrumb;
   overflow: hidden;
@@ -434,15 +446,15 @@ const baseGridClass = computed(() => isH5Layout.value ? 'grid-setup-574' : 'grid
   --areas:
     'misc misc marketCount marketCount marketCount marketCount'
     'fixture fixture fixture fixture fixture fixture'
-    ' marketName0 marketName0 marketName0 marketName0 marketName0 marketName0'
-    ' outcomes0 outcomes0 outcomes0 outcomes0 outcomes0 outcomes0'
-    ' outcomes0 outcomes0 outcomes0 outcomes0 outcomes0 outcomes0'
-    ' marketName1 marketName1 marketName1 marketName1 marketName1 marketName1'
-    ' outcomes1 outcomes1 outcomes1 outcomes1 outcomes1 outcomes1'
-    ' outcomes1 outcomes1 outcomes1 outcomes1 outcomes1 outcomes1'
-    ' marketName2 marketName2 marketName2 marketName2 marketName2 marketName2'
-    ' outcomes2 outcomes2 outcomes2 outcomes2 outcomes2 outcomes2'
-    ' outcomes2 outcomes2 outcomes2 outcomes2 outcomes2 outcomes2';
+    'marketName0 marketName0 marketName0 marketName0 marketName0 marketName0'
+    'outcomes0 outcomes0 outcomes0 outcomes0 outcomes0 outcomes0'
+    'outcomes0 outcomes0 outcomes0 outcomes0 outcomes0 outcomes0'
+    'marketName1 marketName1 marketName1 marketName1 marketName1 marketName1'
+    'outcomes1 outcomes1 outcomes1 outcomes1 outcomes1 outcomes1'
+    'outcomes1 outcomes1 outcomes1 outcomes1 outcomes1 outcomes1'
+    'marketName2 marketName2 marketName2 marketName2 marketName2 marketName2'
+    'outcomes2 outcomes2 outcomes2 outcomes2 outcomes2 outcomes2'
+    'outcomes2 outcomes2 outcomes2 outcomes2 outcomes2 outcomes2';
   --column-count: 6;
 }
 
