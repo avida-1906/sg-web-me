@@ -2,7 +2,7 @@
 type Qualifier = 'home' | 'away'
 
 const route = useRoute()
-const { isMobile } = storeToRefs(useWindowStore())
+const { isMobile, appContentWidth } = storeToRefs(useWindowStore())
 
 const rangeNum = ref()
 const curGroupTab = ref('')
@@ -434,9 +434,9 @@ function onOpenLiveSwitch() {}
       <div class="layout-spacing no-bottom-spacing variant-normal">
         <AppNavBreadCrumb :breadcrumb="breadcrumb" />
         <div class="content-wrapper">
-          <div class="content">
+          <div class="content" :class="{ stacked: appContentWidth < 900 }">
             <div class="fixture-column">
-              <div class="background match-statistics" :style="{ '--sport-image': `url(/img/match-statistics/${sport}.jpg)` }">
+              <div v-if="!openLiveSwitch" class="background match-statistics" :style="{ '--sport-image': `url(/img/match-statistics/${sport}.jpg)` }">
                 <div class="box-shadow wrapper has-background">
                   <div class="content scroll-x" :style="{ 'grid-template-areas': gridAreas }">
                     <!-- competitor -->
@@ -520,12 +520,25 @@ function onOpenLiveSwitch() {}
                   </div>
                 </div>
               </div>
+              <div v-else class="livestream-wrap">
+                <!-- <div class="wrapper">
+                  <span class="tip">直播视频将在赛事进行之前开始。</span>
+                </div> -->
+                <video autoplay controls playsinline disablepictureinpicture="" controlslist="nodownload nofullscreen" class="" src="blob:https://stake.com/49ddf2cf-2e38-4d2f-bf3d-4fd6ff04c0f1"><track kind="captions"></video>
+              </div>
               <div class="live-stream-scoreboard-footer">
+                <span v-show="openLiveSwitch" class="mini-video">
+                  <BaseIcon name="uni-tv" />
+                  <span>最小化</span>
+                </span>
                 <span>记分板</span>
                 <label>
                   <BaseSwitch v-model="openLiveSwitch" @change="onOpenLiveSwitch" />
                 </label>
                 <span>直播</span>
+                <span class="blinking-dash">
+                  <span class="red-circle" />
+                </span>
               </div>
               <div class="fixture-notice">
                 <span>如果您在赢家盘口的选择在第 9 局开始时领先但最终却输掉比赛，则可赢得奖金！</span>
@@ -535,7 +548,33 @@ function onOpenLiveSwitch() {}
                 <div>
                   <BaseTab v-model="curGroupTab" :list="groupTabs" size="large" :center="false" />
                 </div>
-                <div class="bet-builder-sticky-header" :class="{ 'is-pc': !isMobile }" />
+                <div class="bet-builder-sticky-header" :class="{ 'is-pc': !isMobile }">
+                  <BaseSecondaryAccordion>
+                    <template #header>
+                      <div class="header-content">
+                        <span class="odds h-gap">
+                          <span>总赔率：</span>
+                          <AppSportsOdds odds="17.00" arrow="right" />
+                          <div class="error">组合不受支持。请尝试其他选择。</div>
+                        </span>
+                        <span class="h-gap">
+                          <BaseButton bg-style="primary">加入投注单</BaseButton>
+                          <BaseButton>全部清除</BaseButton>
+                        </span>
+                      </div>
+                    </template>
+                    <template #default>
+                      <div class="legs scroll-y">
+                        <div class="leg">
+                          <span>handicap - Texas Rangers (-0.5)</span>
+                          <BaseButton type="text">
+                            <BaseIcon name="uni-close" />
+                          </BaseButton>
+                        </div>
+                      </div>
+                    </template>
+                  </BaseSecondaryAccordion>
+                </div>
                 <div class="search-wrap">
                   <BaseInput>
                     <template #left-icon>
@@ -560,7 +599,7 @@ function onOpenLiveSwitch() {}
                 </div>
               </div>
             </div>
-            <div class="sticky-column">
+            <div v-if="appContentWidth >= 900" class="sticky-column">
               <div class="iframe-widget tracker desktop widget-container">
                 <div class="expand-wrapper">
                   <BaseIcon name="uni-arrow-up-big" />
@@ -591,7 +630,86 @@ function onOpenLiveSwitch() {}
 </template>
 
 <style lang="scss" scoped>
+video {
+  width: 100%;
+  height: 100%;
+}
+.header-content {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  column-gap: var(--tg-spacing-16);
+  margin-right: var(--tg-spacing-16);
+  font-weight: 600;
+  color: var(--tg-text-white);
+  > .odds {
+    white-space: nowrap;
+    margin: var(--tg-spacing-8) 0;
+  }
+  > .h-gap {
+    display: flex;
+    align-items: center;
+    & > *+* {
+      margin-left: var(--tg-spacing-12);
+    }
+    .error {
+      color: var(--tg-button-secondary-main);
+    }
+  }
+}
+.legs {
+  max-height: 240px;
+  .leg {
+    font-weight: 600;
+    color: var(--tg-text-white);
+    padding: var(--tg-spacing-6) var(--tg-spacing-16);
+    padding-right: var(--tg-spacing-6);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+.livestream-wrap {
+  width: 100%;
+  padding-top: 56.25%;
+  position: relative;
+  color: var(--tg-secondary-light);
+  font-size: var(--tg-font-size-default);
+  font-weight: var(--tg-font-weight-normal);
+  line-height: 1.5;
+  & > * {
+    position: absolute;
+    inset: 0;
+  }
+  .tip {
+    display: inline-flex;
+    align-items: center;
+    text-align: left;
+    justify-content: flex-start;
+  }
+  .wrapper {
+    display: grid;
+    grid-auto-flow: row;
+    gap: var(--tg-spacing-8);
+    place-items: center;
+    height: 100%;
+    color: var(--tg-secondary-light);
+    padding: var(--tg-spacing-16);
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    place-content: center;
+    text-align: center;
+    background: var(--tg-text-grey-deep);
+    position: absolute;
+    inset: 0;
+  }
+}
 .tg-sports-country-event-betdetail {
+  --tg-base-switch-style-bg: var(--tg-text-green);
   .sports-detail-wrapper {
     margin-top: var(--tg-spacing-32);
     .content-wrapper {
@@ -725,6 +843,16 @@ function onOpenLiveSwitch() {}
             > *+* {
               margin-left: var(--tg-spacing-12);
             }
+            .mini-video {
+              cursor: pointer;
+              flex: 1;
+              display: flex;
+              align-items: center;
+              justify-content: flex-start;
+              font-size: var(--tg-font-size-default);
+              color: var(--tg-text-white);
+              gap: var(--tg-spacing-12);
+            }
           }
           .fixture-notice {
             display: flex;
@@ -750,11 +878,11 @@ function onOpenLiveSwitch() {}
 
             .bet-builder-sticky-header {
               width: 100%;
-              bottom: var(--mobile-footer-height);
+              bottom: var(--tg-footerbar-height);
               left: 0;
-              z-index: var(--z-index);
+              z-index: var(--tg-z-index-50);
               position: fixed;
-              box-shadow: var(--btn-shadow);
+              box-shadow: var(--tg-box-shadow), var(--tg-shadow-inset);
               &.is-pc {
                 position:sticky;
                 top: -2px;
@@ -830,6 +958,16 @@ function onOpenLiveSwitch() {}
             --header-background: var(--tg-secondary-dark);
             --title-color: var(--tg-text-grey-light);
             --content-background: var(--tg-secondary-dark);
+          }
+        }
+        &.stacked {
+          .fixture-column {
+            .live-stream-scoreboard-footer {
+              margin-top: var(--tg-spacing-4);
+            }
+          }
+          .sticky-column {
+            display: none;
           }
         }
       }

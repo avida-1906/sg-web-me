@@ -3,14 +3,22 @@ interface Props {
   index: number
   isStandard: boolean // 标准盘或三项投注
   isLast?: boolean // 是否列表最后一个
-  type: 'live' | 'upcoming'
+  type: 'live' | 'upcoming' // 滚球或即将开赛
 }
 const props = defineProps<Props>()
 
 const { width } = storeToRefs(useWindowStore())
 
 const isH5Layout = computed(() => width.value < 575)
+const isUpcoming = computed(() => props.type === 'upcoming') // 即将开赛
 const baseGridAreaClass = computed(() => {
+  if (isUpcoming.value) {
+    if (props.isStandard)
+      return isH5Layout.value ? 'grid-standard-574-coming' : 'grid-standard-normal-coming'
+
+    return isH5Layout.value ? 'grid-three-option-574-coming' : 'grid-three-option-normal-coming'
+  }
+  // 滚球
   if (props.isStandard)
     return isH5Layout.value ? 'grid-standard-574' : 'grid-standard-normal'
 
@@ -40,66 +48,75 @@ const baseGridClass = computed(() => isH5Layout.value ? 'grid-setup-574' : 'grid
         </div>
       </div>
     </div>
-    <!-- 横线 -->
-    <div class="line" :class="{ 'line-bg': index > 0 }" style="grid-area: line" />
-    <div class="line" :class="{ 'line-bg': index > 0 }" style=" grid-area: line2" />
-    <!-- 队名 -->
-    <div v-if="!isH5Layout" class="teams">
-      <!-- 主队名称 -->
-      <div class="teams-name">
-        <span>洛杉矶湖人</span>
-        <div class="icon">
-          <BaseIcon name="spt-tennis" />
+
+    <template v-if="isH5Layout">
+      <!-- 队名 -->
+      <div class="fixture">
+        <!-- 主队名称 -->
+        <div class="teams-name">
+          <div class="icon left">
+            <BaseIcon name="spt-tennis" />
+          </div>
+          <span>洛杉矶湖人</span>
+        </div>
+        <span> - </span>
+        <!-- 客队名称 -->
+        <div class="teams-name">
+          <span>波士顿凯尔特人</span>
+          <div class="icon right">
+            <BaseIcon name="spt-tennis" />
+          </div>
         </div>
       </div>
-      <!-- 客队名称 -->
-      <div class="teams-name">
-        <span>波士顿凯尔特人</span>
-        <div class="icon">
-          <BaseIcon name="spt-tennis" />
+    </template>
+    <template v-else>
+      <!-- 横线 -->
+      <div class="line" :class="{ 'line-bg': index > 0 }" style="grid-area: line" />
+      <div class="line" :class="{ 'line-bg': index > 0 }" style=" grid-area: line2" />
+
+      <!-- 队名 -->
+      <div class="teams">
+        <!-- 主队名称 -->
+        <div class="teams-name">
+          <span>洛杉矶湖人</span>
+          <div class="icon">
+            <BaseIcon name="spt-tennis" />
+          </div>
+        </div>
+        <!-- 客队名称 -->
+        <div class="teams-name">
+          <span>波士顿凯尔特人</span>
+          <div class="icon">
+            <BaseIcon name="spt-tennis" />
+          </div>
         </div>
       </div>
-    </div>
-    <div v-else class="fixture">
-      <!-- 主队名称 -->
-      <div class="teams-name">
-        <div class="icon left">
-          <BaseIcon name="spt-tennis" />
+
+      <!-- 滚球比分 -->
+      <div class="fixture-score">
+        <div class="fixture-score-wrapper">
+          <div class="score-wrapper">
+            <!-- 局分 -->
+            <span>0</span>
+            <span>6</span>
+          </div>
+          <!-- 总分 -->
+          <div class="score-wrapper total">
+            <span>2</span>
+            <span>3</span>
+          </div>
         </div>
-        <span>洛杉矶湖人</span>
-      </div>
-      <span> - </span>
-      <!-- 客队名称 -->
-      <div class="teams-name">
-        <span>波士顿凯尔特人</span>
-        <div class="icon right">
-          <BaseIcon name="spt-tennis" />
-        </div>
-      </div>
-    </div>
-    <!-- 滚球比分 -->
-    <div v-if="!isH5Layout" class="fixture-score">
-      <div class="fixture-score-wrapper">
-        <div class="score-wrapper">
-          <!-- 局分 -->
-          <span>0</span>
-          <span>6</span>
-        </div>
-        <!-- 总分 -->
-        <div class="score-wrapper total">
-          <span>2</span>
-          <span>3</span>
+        <div class="options-wrapper">
+          <BaseButton type="text" padding0>
+            <BaseIcon name="uni-trend" />
+          </BaseButton>
+          <BaseButton type="text" padding0>
+            <BaseIcon name="spt-live" />
+          </BaseButton>
         </div>
       </div>
-      <div class="options-wrapper">
-        <BaseButton type="text" padding0>
-          <BaseIcon name="uni-trend" />
-        </BaseButton>
-        <BaseButton type="text" padding0>
-          <BaseIcon name="spt-live" />
-        </BaseButton>
-      </div>
-    </div>
+    </template>
+
     <!-- 标准盘 -->
     <template v-if="isStandard">
       <div class="market-name" style="--area: marketName0;">
@@ -134,10 +151,13 @@ const baseGridClass = computed(() => isH5Layout.value ? 'grid-setup-574' : 'grid
         <!-- <AppSportsBetButton layout="horizontal" />
         <AppSportsBetButton layout="horizontal" /> -->
       </div>
-      <div v-if="!isH5Layout" class="breadcrumb">
-        <BaseBreadcrumbs :list="['网球', 'ITF女子', 'ITF China 11A, Women Singles']" />
-      </div>
     </template>
+
+    <!-- 联赛分类 -->
+    <div v-if="isUpcoming || (!isStandard && !isH5Layout)" class="breadcrumb">
+      <BaseBreadcrumbs :list="['网球', 'ITF女子', 'ITF China 11A, Women Singles']" />
+    </div>
+
     <!-- 更多盘口 -->
     <div class="market-count" :class="{ 'market-count-h5': isH5Layout }">
       <div v-if="isH5Layout" class="options-wrapper">
@@ -280,6 +300,7 @@ const baseGridClass = computed(() => isH5Layout.value ? 'grid-setup-574' : 'grid
       font-weight: var(--tg-font-weight-semibold);
       line-height: 1.3;
       font-size: var(--tg-font-size-default);
+      cursor: pointer;
     }
 
     .icon {
@@ -347,6 +368,14 @@ const baseGridClass = computed(() => isH5Layout.value ? 'grid-setup-574' : 'grid
   text-align: center;
   line-height: 1.5;
   font-size: var(--tg-font-size-xs);
+
+  span {
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inherit;
+  }
 }
 
 .outcomes {
@@ -432,6 +461,7 @@ const baseGridClass = computed(() => isH5Layout.value ? 'grid-setup-574' : 'grid
   row-gap: var(--tg-spacing-8);
 }
 
+// 滚球
 .grid-standard-574 {
   --areas:
     'misc misc marketCount marketCount marketCount marketCount'
@@ -467,6 +497,53 @@ const baseGridClass = computed(() => isH5Layout.value ? 'grid-setup-574' : 'grid
 }
 
 .grid-three-option-normal {
+  --areas:
+    'misc misc line line line line line marketName0 marketName0 marketName0 marketName1 marketName1 marketName1 marketName2 marketName2 marketName2 line2'
+    'teams teams teams teams fixtureScore fixtureScore fixtureScore outcomes0 outcomes0 outcomes0 outcomes1 outcomes1 outcomes1 outcomes2 outcomes2 outcomes2 marketCount'
+    'teams teams teams teams fixtureScore fixtureScore fixtureScore outcomes0 outcomes0 outcomes0 outcomes1 outcomes1 outcomes1 outcomes2 outcomes2 outcomes2 marketCount'
+    'breadcrumb breadcrumb breadcrumb breadcrumb breadcrumb breadcrumb breadcrumb outcomes0 outcomes0 outcomes0 outcomes1 outcomes1 outcomes1 outcomes2 outcomes2 outcomes2 marketCount';
+  --column-count: 17;
+}
+
+// 即将开赛
+.grid-standard-574-coming {
+  --areas:
+    'misc misc marketCount marketCount marketCount marketCount'
+    'fixture fixture fixture fixture fixture fixture'
+    'breadcrumb breadcrumb breadcrumb breadcrumb breadcrumb breadcrumb'
+    ' marketName0 marketName0 marketName0 marketName0 marketName0 marketName0'
+    ' outcomes0 outcomes0 outcomes0 outcomes0 outcomes0 outcomes0'
+    ' outcomes0 outcomes0 outcomes0 outcomes0 outcomes0 outcomes0';
+  --column-count: 6;
+}
+
+.grid-standard-normal-coming {
+  --areas:
+    'misc misc line line line line marketName0 marketName0 marketName0 marketName0 line2 line2'
+    'teams teams teams fixtureScore fixtureScore outcomes0 outcomes0 outcomes0 outcomes0 outcomes0 outcomes0 marketCount'
+    'teams teams teams fixtureScore fixtureScore outcomes0 outcomes0 outcomes0 outcomes0 outcomes0 outcomes0 marketCount'
+    'breadcrumb breadcrumb breadcrumb fixtureScore fixtureScore outcomes0 outcomes0 outcomes0 outcomes0 outcomes0 outcomes0 marketCount';
+  --column-count: 12;
+}
+
+.grid-three-option-574-coming {
+  --areas:
+    'misc misc marketCount marketCount marketCount marketCount'
+    'fixture fixture fixture fixture fixture fixture'
+    'breadcrumb breadcrumb breadcrumb breadcrumb breadcrumb breadcrumb'
+    ' marketName0 marketName0 marketName0 marketName0 marketName0 marketName0'
+    ' outcomes0 outcomes0 outcomes0 outcomes0 outcomes0 outcomes0'
+    ' outcomes0 outcomes0 outcomes0 outcomes0 outcomes0 outcomes0'
+    ' marketName1 marketName1 marketName1 marketName1 marketName1 marketName1'
+    ' outcomes1 outcomes1 outcomes1 outcomes1 outcomes1 outcomes1'
+    ' outcomes1 outcomes1 outcomes1 outcomes1 outcomes1 outcomes1'
+    ' marketName2 marketName2 marketName2 marketName2 marketName2 marketName2'
+    ' outcomes2 outcomes2 outcomes2 outcomes2 outcomes2 outcomes2'
+    ' outcomes2 outcomes2 outcomes2 outcomes2 outcomes2 outcomes2';
+  --column-count: 6;
+}
+
+.grid-three-option-normal-coming {
   --areas:
     'misc misc line line line line line marketName0 marketName0 marketName0 marketName1 marketName1 marketName1 marketName2 marketName2 marketName2 line2'
     'teams teams teams teams fixtureScore fixtureScore fixtureScore outcomes0 outcomes0 outcomes0 outcomes1 outcomes1 outcomes1 outcomes2 outcomes2 outcomes2 marketCount'

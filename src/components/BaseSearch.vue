@@ -121,6 +121,7 @@ function onClear() {
     &::placeholder {
       color: var(--tg-text-white);
       opacity: 0.3;
+      font-weight: var(--tg-font-weight-semibold);
     }
   }
 

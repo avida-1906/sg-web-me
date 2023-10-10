@@ -1,39 +1,29 @@
 <script setup lang="ts">
 import { getCurrentLanguageIdForBackend } from '~/modules/i18n'
+import type { IUserCurrencyList } from '~/stores/app'
 
 const closeDialog = inject('closeDialog', () => {})
 
 const { bankcardList, runAsyncBankcardList, bindBanks, openName } = useApiMemberBankCardList()
 // 虚拟币钱包地址
 const { list: WalletList, run: runWalletList } = useList(ApiMemberWalletList)
-
-const initCurrency = computed(() => {
-  const arr: any = []
-  for (const key in EnumCurrency) {
-    if (isNumber(EnumCurrency[key]))
-      break
-    arr.push({
-      balance: 0,
-      icon: `coin-${EnumCurrency[key].toLocaleLowerCase()}`,
-      name: EnumCurrency[key],
-      id: Number(key),
-    })
-  }
-  arr[1].legalTender = true
-  return arr
-})
+const {
+  renderCurrencyList,
+  isVirtualCurrency,
+} = useCurrencyData()
 
 const toAddBankcards = function () {
   const { openAddBankcardsDialog } = useAddBankcardsDialog({ title: '绑定银行卡', openName: openName.value, isFirst: !bankcardList.value?.length })
   closeDialog()
   nextTick(() => openAddBankcardsDialog())
 }
-const toAddVirAddress = function () {
-  const { openVirAddressDialog } = useVirAddressDialog({ title: '绑定BTC', icon: 'btc' })
+const toAddVirAddress = function (item: IUserCurrencyList) {
+  console.log(item)
+  const { openVirAddressDialog } = useVirAddressDialog({ title: `绑定${item.type}`, icon: 'btc' })
   closeDialog()
   nextTick(() => openVirAddressDialog({
     contractType: 'TRC20',
-    currencyName: 'BTC',
+    currencyName: item.type,
   }))
 }
 const showCollapse = function (item: any) {
@@ -41,24 +31,24 @@ const showCollapse = function (item: any) {
     runAsyncBankcardList({ bank_type: getCurrentLanguageIdForBackend() })
 
   else
-    runWalletList({ contract_type: '', currency_name: item.name })
+    runWalletList({ contract_type: '', currency_name: item.type })
 }
 </script>
 
 <template>
   <div class="app-card-holder">
     <div class="layout-spacing reset wallet-address">
-      <BaseCollapse v-for="item in initCurrency" :key="item.id" title="0" @click-head="showCollapse(item)">
+      <BaseCollapse v-for="item in renderCurrencyList" :key="item.type" title="0" @click-head="showCollapse(item)">
         <template #top-right>
-          <AppCurrencyIcon class="currency-icon" show-name :currency-type="item.id" />
+          <AppCurrencyIcon class="currency-icon" show-name :currency-type="item.type" />
         </template>
         <template #content>
-          <div v-if="!item.legalTender" class="layout-spacing reset">
+          <div v-if="isVirtualCurrency(item.type)" class="layout-spacing reset">
             <div v-for="tmp in WalletList" :key="tmp.id" class="address-row">
               <span>{{ tmp.wallet_address }}</span>
               <span class="type">{{ tmp.contract_type }}</span>
             </div>
-            <BaseButton type="text" class="add-btn" @click="toAddVirAddress">
+            <BaseButton type="text" class="add-btn" @click="toAddVirAddress(item)">
               +
             </BaseButton>
           </div>
