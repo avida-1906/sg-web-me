@@ -359,6 +359,10 @@ body {
   &.padding-left-large {
     padding-left: var(--tg-spacing-16);
   }
+  
+  &.padding-right-medium {
+    padding-right: var(--tg-spacing-12);
+  }
 }
 
 // 页面垂直布局

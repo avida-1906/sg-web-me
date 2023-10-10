@@ -657,11 +657,57 @@ function onOpenLiveSwitch() {}
                     </BaseSecondaryAccordion>
                   </template>
                 </template>
+
+                <BaseSecondaryAccordion title="比赛地图数">
+                  <template #default>
+                    <div class="market">
+                      <div class="table" :style="{ '--itemCount': 1 }">
+                        <div class="heading column">
+                          <span>大</span>
+                        </div>
+                        <div class="column heading">
+                          <span>小</span>
+                        </div>
+                        <div class="column">
+                          <AppSportsBetButton layout="horizontal" />
+                        </div>
+                        <div class="column">
+                          <AppSportsBetButton layout="horizontal" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="load-more-container">
+                      <BaseButton type="text" size="md">
+                        Load More
+                      </BaseButton>
+                    </div>
+                  </template>
+                </BaseSecondaryAccordion>
+                <BaseSecondaryAccordion title="正确比赛得分">
+                  <template #side>
+                    <div class="stack x-stretch y-center direction-horizontal gap-medium padding-none padding-left-auto padding-top-auto padding-bottom-auto padding-right-medium odd-switch-buttons">
+                      <BaseButton type="text" padding0 @click.stop="">
+                        赔率滑块
+                      </BaseButton>
+                      <BaseButton type="text" padding0 @click.stop="">
+                        全部
+                      </BaseButton>
+                    </div>
+                  </template>
+                  <template #default>
+                    <div class="market">
+                      <div class="correct-score-wrapper">
+                        <AppBallRange v-model="rangeNum" title="Team BDS" />
+                        <AppBallRange title="Team Whales" />
+                      </div>
+                    </div>
+                  </template>
+                </BaseSecondaryAccordion>
               </div>
             </div>
             <div v-if="appContentWidth >= 900" class="sticky-column">
               <div class="iframe-widget tracker desktop widget-container">
-                <div class="stack x-stretch y-center direction-vertical gap-small padding-none padding-left-auto padding-top-auto padding-bottom-auto padding-right-auto">
+                <div class="stack x-stretch y-center padding-none padding-left-auto padding-top-auto padding-bottom-auto direction-vertical gap-small padding-right-auto">
                   <iframe id="widget-od-41421" title="url" :src="eventData.widgetUrl" scrolling="yes" height="730" name="widget-od-41421" class="" />
                 </div>
                 <div class="expand-wrapper">
@@ -688,11 +734,19 @@ function onOpenLiveSwitch() {}
         </div>
       </div>
     </div>
-    <AppBallRange v-model="rangeNum" title="和卡里姆" />
   </div>
 </template>
 
 <style lang="scss" scoped>
+.load-more-container {
+  text-align: center;
+  margin-top: -10px;
+}
+.odd-switch-buttons {
+  button {
+    white-space: nowrap;
+  }
+}
 .market {
   display: grid;
   color: var(--tg-text-white);
@@ -700,6 +754,25 @@ function onOpenLiveSwitch() {}
   width: 100%;
   padding: var(--tg-spacing-12) var(--tg-spacing-16);
   grid-template-columns: repeat(auto-fit,minmax(calc(33% - var(--tg-spacing-8)/2),1fr));
+  .table {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: repeat(var(--itemCount),auto);
+    gap: var(--tg-spacing-4);
+  }
+  .column.heading {
+    margin-bottom: var(--tg-spacing-4);
+    text-align: center;
+  }
+  .correct-score-wrapper {
+    display: grid;
+    color: var(--tg-text-white);
+    width: 100%;
+    align-items: center;
+    grid-gap: var(--tg-spacing-16);
+    grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+    padding: 0 var(--tg-spacing-8);
+  }
 }
 iframe, .iframe {
   border: none;

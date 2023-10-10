@@ -3,6 +3,7 @@ interface Props {
   layout?: 'horizontal' | 'vertical'
   active?: boolean
   disabled?: boolean
+  isNa?: boolean
 }
 withDefaults(defineProps<Props>(), {
   layout: 'vertical',
@@ -10,8 +11,11 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <div class="app-sports-bet-button" :class="{ active, disabled }">
-    <div class="content" :class="[layout]">
+  <div class="app-sports-bet-button" :class="{ active, disabled, 'is-na': isNa }">
+    <template v-if="isNa">
+      <span class="status">N/A</span>
+    </template>
+    <div v-else class="content" :class="[layout]">
       <div class="name">
         汉夫曼，扬尼克
       </div>
@@ -93,6 +97,16 @@ withDefaults(defineProps<Props>(), {
 
     .status {
       opacity: 0.4;
+    }
+  }
+
+  &.is-na {
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .status {
+      opacity: 0.2;
     }
   }
 }
