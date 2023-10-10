@@ -534,6 +534,14 @@ body {
   min-height: 200px;
 }
 
+.red-circle {
+  display: block;
+  width: 0.4rem;
+  height: 0.4rem;
+  background-color: red;
+  border-radius: 50%;
+}
+
 @media screen and (min-width: 768px) {
   #app {
     height: 1px;
