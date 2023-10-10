@@ -466,6 +466,7 @@ const gridAreas = computed(() => {
 })
 const groupTabs = computed(() => eventData.groups.filter(g => g.rank > 0).map(g => ({ ...g, value: g.name, label: g.translation })))
 const curGroupTab = ref(groupTabs.value[0].value)
+const curGroups = computed(() => eventData.group.filter(g => g.name === curGroupTab.value))
 
 function mapHeadArea(head: Array<{ key: string; periodScores?: Array<{ [prop: string]: any }> }>, label: string) {
   return head.reduce((accumulator: any, currentValue) => {
@@ -637,7 +638,10 @@ function onOpenLiveSwitch() {}
                 <div class="search-wrap">
                   <BaseSearch v-model="searchHandicap" shape="square" place-holder="搜索" />
                 </div>
-                <template v-for="group in eventData.group.filter(g => g.name === curGroupTab)" :key="group.name">
+                <div v-if="!curGroups || !curGroups.length" class="no-markets">
+                  <BaseEmpty icon="uni-empty-handicap" description="暂无可用盘口" />
+                </div>
+                <template v-for="group in curGroups" v-else :key="group.name">
                   <template v-for="temp in group.templates" :key="temp.id">
                     <BaseSecondaryAccordion :title="temp.name">
                       <template #side="{ isOpen }">
@@ -651,9 +655,6 @@ function onOpenLiveSwitch() {}
                     </BaseSecondaryAccordion>
                   </template>
                 </template>
-                <div class="no-markets">
-                  <BaseEmpty icon="uni-empty-handicap" description="暂无可用盘口" />
-                </div>
               </div>
             </div>
             <div v-if="appContentWidth >= 900" class="sticky-column">
