@@ -1,11 +1,11 @@
 <script setup lang='ts'>
+import type { EnumCurrencyKey } from '~/apis'
+
 interface Props {
-  activeCurrency: any
+  activeCurrency: EnumCurrencyKey
 }
 
-withDefaults(defineProps<Props>(), {
-  activeCurrency: () => { },
-})
+defineProps<Props>()
 
 const { t } = useI18n()
 const { value: address, errorMessage: addressMsg, validate: valiAddress } = useField<string>('address', (value) => {
@@ -38,7 +38,7 @@ async function handleWithdraw() {
 
 <template>
   <div class="app-withdraw">
-    <BaseLabel label="BTC地址" :icon="activeCurrency?.icon" must>
+    <BaseLabel :label="`${activeCurrency}地址`" :icon="activeCurrency" must>
       <BaseInput v-model="address" :msg="addressMsg" />
     </BaseLabel>
     <div class="amount">
@@ -48,7 +48,7 @@ async function handleWithdraw() {
       </div>
       <BaseInput v-model="amount" type="number" placeholder="0.00000000" :msg="amountMsg" @blur="onAmountInput">
         <template #right-icon>
-          <AppCurrencyIcon :currency-type="activeCurrency?.id" />
+          <AppCurrencyIcon :currency-type="activeCurrency" />
         </template>
         <template #right-button>
           <span>最大值</span>
@@ -63,9 +63,9 @@ async function handleWithdraw() {
     </BaseButton>
     <div class="tips">
       <span>最低提款金额为 0.00020000</span>
-      <AppCurrencyIcon class="currency-icon" :currency-type="activeCurrency?.id" />
+      <AppCurrencyIcon class="currency-icon" :currency-type="activeCurrency" />
       <span>。我们将从您的余额扣除0.00007000</span>
-      <AppCurrencyIcon class="currency-icon" :currency-type="activeCurrency?.id" />
+      <AppCurrencyIcon class="currency-icon" :currency-type="activeCurrency" />
       <span>作为您提款的交易费用。</span>
     </div>
   </div>
