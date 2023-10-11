@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+defineProps<{ onPage?: boolean }>()
+
 const currentGame = ref('2')
 const gameList = [
   { name: '网球', id: '2', num: 22 },
@@ -22,7 +24,7 @@ const threeOptions = [
 </script>
 
 <template>
-  <div class="tg-sports-type">
+  <div class="tg-sports-type" :class="{ 'on-page': onPage }">
     <div class="sports-page-title">
       <div class="left">
         <BaseIcon name="spt-ball-plate" />
@@ -62,7 +64,7 @@ const threeOptions = [
       <AppSportsMarket type="live" :is-standard="isStandard" />
     </div>
 
-    <div class="layout-spacing">
+    <div v-if="!onPage" class="layout-spacing">
       <AppBetData mode="sports" />
     </div>
   </div>
@@ -71,6 +73,9 @@ const threeOptions = [
 <style lang="scss" scoped>
 .tg-sports-type {
   margin-top: var(--tg-spacing-24);
+  &.on-page{
+    margin-top: 0;
+  }
 }
 .market-wrapper{
   display: flex;
