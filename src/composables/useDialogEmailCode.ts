@@ -10,7 +10,7 @@ export function useEmailCodeDialog() {
   } = useDialog({
     title: '邮箱验证',
     icon: 'settings-email',
-    default: () => h(AppEmailCodeDialog),
+    default: data => h(AppEmailCodeDialog, data),
   })
 
   return {
