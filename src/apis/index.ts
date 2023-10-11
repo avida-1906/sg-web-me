@@ -492,9 +492,31 @@ export function ApiMemberCurrencyConfig() {
 }
 
 /**
- * 设置交易密码
- * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=7f28bcd5-c379-4de4-9027-cf3ce6f23695
+ * 邮箱验证申请
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=1114f62c-7a42-4784-8ed8-824d9c196ecb
  */
+export function ApiMemberEmailCheckRequest(data: {
+  email: string
+}) {
+  return httpClient.post<string>('/member/email/check/request', data)
+}
+
+/**
+ * 邮箱验证
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=b53f7df8-f7c1-47c7-bf0f-f4d7248d129f
+ */
+export function ApiMemberEmailCheck(data: {
+  email: string
+  captcha: string
+  uid: string
+}) {
+  return httpClient.post<string>('/member/email/check', data)
+}
+
+/**
+* 设置交易密码
+* @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=7f28bcd5-c379-4de4-9027-cf3ce6f23695
+*/
 export function ApiMemberPayPasswordUpdate(data: {
   /** 交易密码 */
   pay_password: string
