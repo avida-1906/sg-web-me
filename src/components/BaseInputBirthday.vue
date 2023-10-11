@@ -25,13 +25,22 @@ const monthList = [
   { label: 'time_november', value: 11 },
   { label: 'time_december', value: 12 },
 ]
-const { value: month, setValue: setMonth, errorMessage: errorMonthMsg, validate: valiMonth } = useField<number>('month', (value) => {
+const {
+  value: month, setValue: setMonth,
+  errorMessage: errorMonthMsg,
+  validate: valiMonth,
+} = useField<number>('month', (value) => {
   if (!value)
     return t('surveys_birthday_error')
 
   return ''
 })
-const { value: year, setValue: setYear, errorMessage: errorYearMsg, validate: valiYear } = useField<number>('year', (value) => {
+const {
+  value: year,
+  setValue: setYear,
+  errorMessage: errorYearMsg,
+  validate: valiYear,
+} = useField<number>('year', (value) => {
   if (!value || value < 1900)
     return t('surveys_birthday_error')
   return ''
@@ -54,7 +63,12 @@ const dayMax = computed(() => {
 
   return 31
 })
-const { value: day, setValue: setDay, errorMessage: errorDayMsg, validate: valiDay } = useField<number>('day', (value) => {
+const {
+  value: day,
+  setValue: setDay,
+  errorMessage: errorDayMsg,
+  validate: valiDay,
+} = useField<number>('day', (value) => {
   if (!value || value > dayMax.value)
     return t('surveys_birthday_error')
 
@@ -128,7 +142,12 @@ defineExpose({ valiBirthday })
       <div class="input-wrap">
         <!-- 日 -->
         <input
-          v-model="day" type="number" min="1" :max="dayMax" placeholder="DD" :class="{ error: msg }"
+          v-model="day"
+          type="number"
+          min="1"
+          :max="dayMax"
+          placeholder="DD"
+          :class="{ error: msg }"
           @input="onInput"
         >
         <!-- 月 -->
@@ -141,7 +160,14 @@ defineExpose({ valiBirthday })
           </option>
         </select>
         <!-- 年 -->
-        <input v-model="year" :class="{ error: msg }" type="number" min="1900" placeholder="YYYY" @input="onInput">
+        <input
+          v-model="year"
+          :class="{ error: msg }"
+          type="number"
+          min="1900"
+          placeholder="YYYY"
+          @input="onInput"
+        >
       </div>
     </div>
     <div v-show="msg" class="msg">

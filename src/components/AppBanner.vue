@@ -37,7 +37,11 @@ function scrollRight() {
 
 <template>
   <div class="app-banner">
-    <div ref="scrollRef" class="banner-scroll scroll-x hide-scrollbar" :style="getGridAutoColumns">
+    <div
+      ref="scrollRef"
+      class="banner-scroll scroll-x hide-scrollbar"
+      :style="getGridAutoColumns"
+    >
       <div v-for="i in 7" :key="i" class="banner-item">
         <BaseAspectRatio class="banner-ratio" ratio="386/226">
           <BaseImage url="/img/home/banner-bg.png" />
@@ -86,7 +90,13 @@ function scrollRight() {
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     --standard-lockup-shadow-offset: 8px;
-    -webkit-mask: linear-gradient(90deg,transparent 0,var(--tg-secondary-deepdark) var(--standard-lockup-shadow-offset,15px),var(--tg-secondary-deepdark) calc(100% - var(--standard-lockup-shadow-offset,15px)),transparent 100%);
+    -webkit-mask:
+    linear-gradient(
+      90deg,transparent 0,
+      var(--tg-secondary-deepdark)
+      var(--standard-lockup-shadow-offset,15px),
+      var(--tg-secondary-deepdark)
+      calc(100% - var(--standard-lockup-shadow-offset,15px)),transparent 100%);
 
     .banner-item{
       position: relative;

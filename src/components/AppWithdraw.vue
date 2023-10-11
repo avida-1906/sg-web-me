@@ -8,18 +8,31 @@ interface Props {
 defineProps<Props>()
 
 const { t } = useI18n()
-const { value: address, errorMessage: addressMsg, validate: valiAddress } = useField<string>('address', (value) => {
+const {
+  value: address,
+  errorMessage: addressMsg,
+  validate: valiAddress,
+} = useField<string>('address', (value) => {
   if (!value)
     return t('this_field_is_required')
 
   return ''
 })
-const { value: amount, setValue: setAmount, errorMessage: amountMsg, validate: valiAmount } = useField<string>('amount', (value) => {
+const {
+  value: amount,
+  setValue: setAmount,
+  errorMessage: amountMsg,
+  validate: valiAmount,
+} = useField<string>('amount', (value) => {
   if (!value)
     return t('this_field_is_required')
   return ''
 })
-const { value: paypwd, errorMessage: paypwdMsg, validate: valiPaypwd } = useField<string>('paypwd', (value) => {
+const {
+  value: paypwd,
+  errorMessage: paypwdMsg,
+  validate: valiPaypwd,
+} = useField<string>('paypwd', (value) => {
   if (!value)
     return t('this_field_is_required')
   return ''
@@ -38,7 +51,11 @@ async function handleWithdraw() {
 
 <template>
   <div class="app-withdraw">
-    <BaseLabel :label="`${activeCurrency?.type}地址`" :current-currency="activeCurrency?.type" must>
+    <BaseLabel
+      :label="`${activeCurrency?.type}地址`"
+      :current-currency="activeCurrency?.type"
+      must
+    >
       <BaseInput v-model="address" :msg="addressMsg" />
     </BaseLabel>
     <div class="amount">
@@ -46,7 +63,13 @@ async function handleWithdraw() {
         <span class="label">金额<span style="color: var(--tg-text-error);">*</span></span>
         <span class="us">US$0.00</span>
       </div>
-      <BaseInput v-model="amount" type="number" placeholder="0.00000000" :msg="amountMsg" @blur="onAmountInput">
+      <BaseInput
+        v-model="amount"
+        type="number"
+        placeholder="0.00000000"
+        :msg="amountMsg"
+        @blur="onAmountInput"
+      >
         <template #right-icon>
           <AppCurrencyIcon :currency-type="activeCurrency?.type" />
         </template>

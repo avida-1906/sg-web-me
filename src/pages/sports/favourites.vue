@@ -1,10 +1,11 @@
 <script lang="ts" setup>
+defineProps<{ onPage?: boolean }>()
 </script>
 
 <template>
-  <div class="tg-sports-favourites">
+  <div class="tg-sports-favourites" :class="{ 'on-page': onPage }">
     favourites
-    <div class="layout-spacing">
+    <div v-if="!onPage" class="layout-spacing">
       <AppBetData mode="sports" />
     </div>
   </div>
@@ -12,7 +13,9 @@
 
 <style lang="scss" scoped>
 .tg-sports-favourites {
-
+  &.on-page{
+    margin-top: 0;
+  }
 }
 </style>
 

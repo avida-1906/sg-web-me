@@ -66,7 +66,12 @@ const allCommandList = reactive([
   { icon: 'chat-tip', command: '/tip', param: '@user', text: '给用户发送小费' },
   { icon: 'chat-rain', command: '/rain', param: '', text: '下红包雨' },
   { icon: 'chat-ignore', command: '/ignore', param: '@user', text: '拉入黑名单' },
-  { icon: 'chat-unignore', command: '/unignore', param: '@user', text: '移出黑名单' },
+  {
+    icon: 'chat-unignore',
+    command: '/unignore',
+    param: '@user',
+    text: '移出黑名单',
+  },
 ])
 
 const commandList = computed(() => {
@@ -104,10 +109,14 @@ const emojiName = computed(() => {
   return undefined
 })
 const emojis = computed(() => {
-  if (emojiName.value === undefined)
+  if (emojiName.value === undefined) {
     return []
-  else
-    return allEmojis.filter(e => e.split('.')[0].includes(emojiName.value ?? ''))
+  }
+  else {
+    return allEmojis.filter((e) => {
+      return e.split('.')[0].includes(emojiName.value ?? '')
+    })
+  }
 })
 const isCommand = computed(() => message.value[0] === '/')
 
@@ -126,7 +135,11 @@ function addCommand(u: { command: string }) {
   msgInput.value?.getFocus()
 }
 
-const { bool: sendLoading, setTrue: setSLTrue, setFalse: setSLFalse } = useBoolean(false)
+const {
+  bool: sendLoading,
+  setTrue: setSLTrue,
+  setFalse: setSLFalse,
+} = useBoolean(false)
 function sendMsg() {
   if (message.value[0] === '/') {
     const temp = message.value.split(' ')
@@ -155,7 +168,10 @@ function enterPress(event: KeyboardEvent) {
 <template>
   <section class="tg-app-chat-footer">
     <Transition>
-      <div v-show="!sendLoading && emojis.length" class="scroll-y emoji-wrap layout-grid wrap">
+      <div
+        v-show="!sendLoading && emojis.length"
+        class="wrap scroll-y emoji-wrap layout-grid"
+      >
         <div v-for="emo in emojis" :key="emo" class="button-wrap">
           <span class="box" @click="addEmoMsg(emo)">
             <BaseButton type="text">
@@ -168,8 +184,16 @@ function enterPress(event: KeyboardEvent) {
       </div>
     </Transition>
     <Transition>
-      <div v-show="!sendLoading && matched_at_users.length" class="scroll-y wrap at-users-wrap layout-default">
-        <div v-for="u in matched_at_users" :key="u.id" class="button-wrap" @click="addAtUser(u)">
+      <div
+        v-show="!sendLoading && matched_at_users.length"
+        class="scroll-y wrap at-users-wrap layout-default"
+      >
+        <div
+          v-for="u in matched_at_users"
+          :key="u.id"
+          class="button-wrap"
+          @click="addAtUser(u)"
+        >
           <div class="at-user-name">
             {{ u.name }}
           </div>
@@ -177,8 +201,16 @@ function enterPress(event: KeyboardEvent) {
       </div>
     </Transition>
     <Transition>
-      <div v-if="commandList.length" class="scroll-y wrap layout-default command-wrap">
-        <div v-for="u in commandList" :key="u.command" class="button-wrap" @click="addCommand(u)">
+      <div
+        v-if="commandList.length"
+        class="scroll-y wrap layout-default command-wrap"
+      >
+        <div
+          v-for="u in commandList"
+          :key="u.command"
+          class="button-wrap"
+          @click="addCommand(u)"
+        >
           <div class="command">
             <div class="label">
               <BaseIcon :name="u.icon" />
@@ -193,7 +225,13 @@ function enterPress(event: KeyboardEvent) {
       </div>
     </Transition>
     <div class="chat-input">
-      <BaseInput ref="msgInput" v-model="message" placeholder="输入您的消息" textarea @down-enter="enterPress" />
+      <BaseInput
+        ref="msgInput"
+        v-model="message"
+        placeholder="输入您的消息"
+        textarea
+        @down-enter="enterPress"
+      />
     </div>
     <div class="online">
       <div class="green-dot" />
@@ -238,7 +276,9 @@ function enterPress(event: KeyboardEvent) {
       background-color: var(--tg-secondary-main);
       box-shadow: var(--tg-box-shadow);
       font-weight: var(--tg-font-weight-normal);
-      padding: var(--tg-spacing-button-padding-vertical-sm) var(--tg-spacing-button-padding-horizontal-sm);
+      padding:
+      var(--tg-spacing-button-padding-vertical-sm)
+      var(--tg-spacing-button-padding-horizontal-sm);
     }
     .command {
       display: flex;

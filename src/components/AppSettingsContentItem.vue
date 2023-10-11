@@ -47,7 +47,14 @@ const onSubmit = function () {
       </div>
       <div class="btm-right">
         <slot name="btm-right" />
-        <BaseButton bg-style="secondary" size="md" class="btn-width" :loading="btnLoading" :disabled="props.verified" @click="onSubmit">
+        <BaseButton
+          bg-style="secondary"
+          size="md"
+          class="btn-width"
+          :loading="btnLoading"
+          :disabled="props.verified"
+          @click="onSubmit"
+        >
           保存
         </BaseButton>
       </div>

@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+defineProps<{ onPage?: boolean }>()
+
 const router = useRouter()
 
 const currentTab = ref('1')
@@ -10,7 +12,7 @@ const { page, prev, next, hasMore } = useList(ApiMemberFavList)
 </script>
 
 <template>
-  <div class="tg-sports-my-bets">
+  <div class="tg-sports-my-bets" :class="{ 'on-page': onPage }">
     <div class="sports-page-title">
       <div class="left">
         <BaseIcon name="spt-user-bet" />
@@ -55,7 +57,7 @@ const { page, prev, next, hasMore } = useList(ApiMemberFavList)
         {{ $t('page_next') }}
       </BaseButton>
     </div>
-    <div class="layout-spacing">
+    <div v-if="!onPage" class="layout-spacing">
       <AppBetData mode="sports" />
     </div>
   </div>
@@ -65,6 +67,10 @@ const { page, prev, next, hasMore } = useList(ApiMemberFavList)
 .tg-sports-my-bets {
   margin-top: var(--tg-spacing-24);
   padding-top: var(--tg-spacing-12);
+  &.on-page{
+    margin-top: 0;
+    padding-top: 0;
+  }
 
   .tab-bar {
     margin-top: var(--tg-spacing-24);

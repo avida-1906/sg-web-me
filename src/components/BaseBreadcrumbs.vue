@@ -13,7 +13,8 @@ defineEmits(['click'])
         <span @click="$emit('click', b)">{{ b }}</span>
         <BaseIcon
           v-show="i !== list.length - 1" name="uni-arrowright-line"
-          style="font-size: var(--tg-font-size-base);margin: 0 var(--tg-spacing-4);vertical-align: -3px;"
+          style="font-size: var(--tg-font-size-base);
+          margin: 0 var(--tg-spacing-4);vertical-align: -3px;"
         />
       </div>
     </div>

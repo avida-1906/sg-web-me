@@ -11,7 +11,10 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <div class="app-sports-bet-button" :class="{ active, disabled, 'is-na': isNa }">
+  <div
+    class="app-sports-bet-button"
+    :class="{ active, disabled, 'is-na': isNa }"
+  >
     <template v-if="isNa">
       <span class="status">N/A</span>
     </template>
@@ -21,7 +24,9 @@ withDefaults(defineProps<Props>(), {
       </div>
       <span v-if="disabled" class="status">暂停</span>
       <AppSportsOdds
-        v-else :style="`--tg-sports-odds-color:${active ? 'var(--tg-text-white)' : ''}`"
+        v-else
+        :style="`--tg-sports-odds-color:${active
+          ? 'var(--tg-text-white)' : ''}`"
         :arrow="layout === 'horizontal' ? 'left' : 'right'" odds="1.65"
       />
     </div>

@@ -23,7 +23,9 @@ const { t } = useI18n()
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-    padding: var(--tg-spacing-button-padding-vertical-2xl) var(--tg-spacing-button-padding-vertical-xs);
+    padding:
+    var(--tg-spacing-button-padding-vertical-2xl)
+     var(--tg-spacing-button-padding-vertical-xs);
   }
 }
 </style>

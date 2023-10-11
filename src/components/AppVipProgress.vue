@@ -40,7 +40,12 @@ const nextInfo = computed(() => {
       <p>{{ props.vipProgressData.percent }}%</p>
     </div>
     <div class="percent-mid">
-      <BaseProgress width="100%" :percent="props.vipProgressData.percent" :show-info="false" :stroke-width="14" />
+      <BaseProgress
+        width="100%"
+        :percent="props.vipProgressData.percent"
+        :show-info="false"
+        :stroke-width="14"
+      />
     </div>
     <div class="percent-btm">
       <div>

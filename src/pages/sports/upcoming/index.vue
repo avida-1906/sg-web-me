@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+defineProps<{ onPage?: boolean }>()
+
 const currentGame = ref('2')
 const gameList = [
   { name: '全部', num: 1754, id: '1' },
@@ -56,7 +58,7 @@ watch(currentGame, (a) => {
 </script>
 
 <template>
-  <div class="tg-sports-upcoming">
+  <div class="tg-sports-upcoming" :class="{ 'on-page': onPage }">
     <div class="sports-page-title">
       <div class="left">
         <BaseIcon name="spt-timing" />
@@ -96,7 +98,7 @@ watch(currentGame, (a) => {
       <AppSportsMarket type="upcoming" :is-standard="isStandard" />
     </div>
 
-    <div class="layout-spacing">
+    <div v-if="!onPage" class="layout-spacing">
       <AppBetData mode="sports" />
     </div>
   </div>
@@ -105,6 +107,9 @@ watch(currentGame, (a) => {
 <style lang="scss" scoped>
 .tg-sports-upcoming {
   margin-top: var(--tg-spacing-24);
+  &.on-page{
+    margin-top: 0;
+  }
 }
 
 .market-wrapper {

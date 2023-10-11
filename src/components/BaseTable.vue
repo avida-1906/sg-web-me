@@ -26,7 +26,9 @@ withDefaults(defineProps<Props>(), {
         <tr class="m-tr">
           <th
             v-for="(item, index) in columns" :key="index"
-            class="m-th" :style="`width: ${typeof item.width === 'number' ? `${item.width}px` : item.width};text-align:${item.align}`"
+            class="m-th"
+            :style="`width: ${typeof item.width === 'number'
+              ? `${item.width}px` : item.width};text-align:${item.align}`"
           >
             {{ item.title }}
           </th>
@@ -46,8 +48,17 @@ withDefaults(defineProps<Props>(), {
           </td>
         </tr>
         <tr v-for="(data, index) in dataSource" :key="index" class="m-tr">
-          <td v-for="(col, n) in columns" :key="n" class="m-td" :title="data[col.dataIndex as any]" :style="`text-align:${col.align}`">
-            <slot v-if="col.slot" v-bind="{ record: data, index }" :name="col.slot" :index="index">
+          <td
+            v-for="(col, n) in columns"
+            :key="n" class="m-td"
+            :title="data[col.dataIndex as any]"
+            :style="`text-align:${col.align}`"
+          >
+            <slot
+              v-if="col.slot" v-bind="{ record: data, index }"
+              :name="col.slot"
+              :index="index"
+            >
               {{ data[col.dataIndex as any] || '--' }}
             </slot>
             <span v-else>{{ data[col.dataIndex as any] || '--' }}</span>

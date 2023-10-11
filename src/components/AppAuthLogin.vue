@@ -35,15 +35,11 @@ const { t } = useI18n()
     width: 100%;
     max-width: 200px;
     margin: 0 auto;
-    // padding-top: var(--tg-spacing-16);
     span{
       color: var(--tg-text-lightgrey);
     }
   }
   &-icon {
-    // display: flex;
-    // justify-content: center;
-    // align-items: center;
     gap: var(--tg-spacing-8);
 
     width: 100%;
@@ -52,17 +48,12 @@ const { t } = useI18n()
     grid-auto-rows: auto;
 
     .item-svg {
-      // width: 70px;
-      // height: 40px;
-      // cursor: pointer;
-      // flex-shrink: 0;
       border-radius: var(--tg-radius-default);
       display: flex;
       justify-content: center;
       align-items: center;
       background:var(--tg-secondary-main);
       font-size: var(--tg-font-size-default);
-      // -tg-icon-color: var(--tg-text-lightgrey);
     }
   }
 }

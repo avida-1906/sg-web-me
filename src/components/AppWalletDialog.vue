@@ -29,14 +29,30 @@ function handleShow(val: boolean) {
   <div class="app-wallet-dialog">
     <div class="content">
       <BaseTab v-model="currentTab" :list="tabList" />
-      <AppSelectCurrency v-show="showWallet && !isCardHolder" :show-balance="isWithdraw" :network="true" @change="changeCurrency" />
+      <AppSelectCurrency
+        v-show="showWallet && !isCardHolder"
+        :show-balance="isWithdraw"
+        :network="true"
+        @change="changeCurrency"
+      />
       <template v-if="isDeposit">
-        <AppVirtualDeposit v-if="isVirtualCurrency(activeCurrency?.type)" :active-currency="activeCurrency?.type" @show="handleShow" />
-        <AppFiatDeposit v-else :active-currency="activeCurrency?.type" @show="handleShow" />
+        <AppVirtualDeposit
+          v-if="isVirtualCurrency(activeCurrency?.type)"
+          :active-currency="activeCurrency?.type"
+          @show="handleShow"
+        />
+        <AppFiatDeposit
+          v-else
+          :active-currency="activeCurrency?.type"
+          @show="handleShow"
+        />
       </template>
       <template v-else-if="isWithdraw">
         <Suspense timeout="0">
-          <AppWithdraw v-if="isVirtualCurrency(activeCurrency?.type)" :active-currency="activeCurrency" />
+          <AppWithdraw
+            v-if="isVirtualCurrency(activeCurrency?.type)"
+            :active-currency="activeCurrency"
+          />
           <AppFiatWithdrawal v-else :active-currency="activeCurrency" />
           <template #fallback>
             <div class="center dialog-loading-height">

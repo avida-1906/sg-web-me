@@ -19,13 +19,22 @@ const activeCurrency = ref()
 function changeCurrency(item: any) {
   activeCurrency.value = item
 }
-const { value: amount, resetField: resetAmount, validate: valiAmount, errorMessage: errAmount } = useField<string>('amount', (value) => {
+const {
+  value: amount,
+  resetField: resetAmount,
+  validate: valiAmount,
+  errorMessage: errAmount,
+} = useField<string>('amount', (value) => {
   if (!value)
     return '不能为空'
 
   return ''
 })
-const { value: password, resetField: resetPassword, errorMessage: errPassword } = useField<string>('password', (value) => {
+const {
+  value: password,
+  resetField: resetPassword,
+  errorMessage: errPassword,
+} = useField<string>('password', (value) => {
   if (!value)
     return '不能为空'
   else if (!payPasswordReg.test(value))
@@ -35,7 +44,9 @@ const { value: password, resetField: resetPassword, errorMessage: errPassword } 
 })
 
 const updateType = computed(() => isDeposit.value ? 'add' : 'remove')
-const updateParams = ref<IMemberBalanceLockerUpdate>({ amount: amount.value, type: updateType.value, currency_name: 'CNY' })
+const updateParams = ref<IMemberBalanceLockerUpdate>({
+  amount: amount.value, type: updateType.value, currency_name: 'CNY',
+})
 const { run: runLockerUpdate } = useRequest(ApiMemberBalanceLockerUpdate, {
   manual: true,
   onSuccess() {
@@ -69,7 +80,12 @@ async function handleUpdate() {
           <span class="label">金额</span>
           <span class="us">US$0.00</span>
         </div>
-        <BaseInput v-model="amount" type="number" placeholder="0.00000000" :msg="errAmount">
+        <BaseInput
+          v-model="amount"
+          type="number"
+          placeholder="0.00000000"
+          :msg="errAmount"
+        >
           <template #right-icon>
             <BaseIcon :name="activeCurrency?.icon || ''" />
           </template>
@@ -78,14 +94,32 @@ async function handleUpdate() {
           </template>
         </BaseInput>
       </div>
-      <BaseButton v-if="isDeposit" class="safe-btn" bg-style="secondary" size="xl" @click="handleUpdate">
+      <BaseButton
+        v-if="isDeposit"
+        class="safe-btn"
+        bg-style="secondary"
+        size="xl"
+        @click="handleUpdate"
+      >
         存入保险库
       </BaseButton>
       <template v-else>
         <div>
-          <BaseInput v-model="password" label="密码" :msg="errPassword" placeholder="" type="password" must />
+          <BaseInput
+            v-model="password"
+            label="密码"
+            :msg="errPassword"
+            placeholder=""
+            type="password"
+            must
+          />
         </div>
-        <BaseButton class="safe-btn" bg-style="secondary" size="xl" @click="handleUpdate">
+        <BaseButton
+          class="safe-btn"
+          bg-style="secondary"
+          size="xl"
+          @click="handleUpdate"
+        >
           保险库取款
         </BaseButton>
       </template>
@@ -133,7 +167,9 @@ async function handleUpdate() {
     gap: 1rem;
     color: var(--tg-text-lightgrey);
     .more-btn{
-      padding: var(--tg-spacing-button-padding-vertical-none) var(--tg-spacing-button-padding-horizontal-none) !important;
+      padding:
+      var(--tg-spacing-button-padding-vertical-none)
+      var(--tg-spacing-button-padding-horizontal-none) !important;
       font-size: var(--tg-font-size-default);
     }
   }

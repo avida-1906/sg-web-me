@@ -5,7 +5,11 @@ const { leftIsExpand } = useLeftSidebar()
 const { t } = useI18n()
 const route = useRoute()
 const { bool: isPopperShow, setTrue, setFalse } = useBoolean(false)
-const { bool: isShowOverlay, setTrue: showOverlayTrue, setFalse: showOverlayFalse } = useBoolean(false)
+const {
+  bool: isShowOverlay,
+  setTrue: showOverlayTrue,
+  setFalse: showOverlayFalse,
+} = useBoolean(false)
 const { bool: isClear, setTrue: setClearTrue } = useBoolean(true)
 const { bool: isInputing, setTrue: setInputingTrue } = useBoolean(false)
 const initCasino = computed(() => route.name?.toString().includes('casino'))
@@ -19,10 +23,16 @@ const gameTypeList = [
 ]
 const searchValue = ref('')
 // 近期搜索关键字
-const keywordLive = ref(Local.get<any[]>(STORAGE_SEARCH_KEYWORDS_LIVE)?.value ?? [])
-const keywordSports = ref(Local.get<any[]>(STORAGE_SEARCH_KEYWORDS_SPORTS)?.value ?? [])
+const keywordLive = ref(
+  Local.get<any[]>(STORAGE_SEARCH_KEYWORDS_LIVE)?.value ?? [],
+)
+const keywordSports = ref(
+  Local.get<any[]>(STORAGE_SEARCH_KEYWORDS_SPORTS)?.value ?? [],
+)
 
-const gameLabel = computed(() => gameTypeList.find(a => a.value === gameType.value)?.label ?? '-')
+const gameLabel = computed(() => {
+  return gameTypeList.find(a => a.value === gameType.value)?.label ?? '-'
+})
 const isCasino = computed(() => gameType.value === '1')
 const isSports = computed(() => gameType.value === '2')
 const keywordList = computed(() => {
@@ -32,7 +42,10 @@ const keywordList = computed(() => {
     return keywordSports.value
   return []
 })
-const { list: casinoGames, run: runSearchCasinoGames } = useList(ApiMemberGameSearch, {
+const {
+  list: casinoGames,
+  run: runSearchCasinoGames,
+} = useList(ApiMemberGameSearch, {
   debounceInterval: 500,
   onAfter(params) {
     const word = params[0].w
@@ -105,8 +118,13 @@ provide('closeSearchH5', () => leftIsExpand.value = !leftIsExpand.value)
   <div class="app-global-search" :class="{ 'in-pc': !isMobile }">
     <div v-show="!isMobile" class="overlay" @click="emit('close')" />
     <BaseSearch
-      v-model.trim="searchValue" class="search-input" clearable @focus="showOverlayTrue" @clear="setClearTrue"
-      @close="emit('close')" @input="onBaseSearchInput"
+      v-model.trim="searchValue"
+      class="search-input"
+      clearable
+      @focus="showOverlayTrue"
+      @clear="setClearTrue"
+      @close="emit('close')"
+      @input="onBaseSearchInput"
     >
       <template #left>
         <VDropdown :distance="6" @show="setTrue()" @hide="setFalse">
@@ -127,12 +145,20 @@ provide('closeSearchH5', () => leftIsExpand.value = !leftIsExpand.value)
     </BaseSearch>
 
     <!-- 搜索功能面板  -->
-    <div v-show="isShowOverlay || !isMobile" class="search-overlay" @click.self="showOverlayFalse">
+    <div
+      v-show="isShowOverlay || !isMobile"
+      class="search-overlay"
+      @click.self="showOverlayFalse"
+    >
       <div class="scroll-y warp">
         <div v-if="!resultData" class="no-result">
           <div class="text">
-            <span v-show="searchValue.length < 3">{{ t('search_need_at_least_3_word') }}</span>
-            <span v-show="searchValue.length >= 3 && !isInputing">{{ t('search_no_result') }}</span>
+            <span
+              v-show="searchValue.length < 3"
+            >{{ t('search_need_at_least_3_word') }}</span>
+            <span
+              v-show="searchValue.length >= 3 && !isInputing"
+            >{{ t('search_no_result') }}</span>
           </div>
           <div v-if="keywordList.length" class="recent">
             <div class="title">
@@ -142,7 +168,13 @@ provide('closeSearchH5', () => leftIsExpand.value = !leftIsExpand.value)
               </BaseButton>
             </div>
             <div class="list">
-              <BaseTag v-for="text in keywordList" :key="text" :text="text" @click="onClickKeyword" @close="onCloseKeyword" />
+              <BaseTag
+                v-for="text in keywordList"
+                :key="text"
+                :text="text"
+                @click="onClickKeyword"
+                @close="onCloseKeyword"
+              />
             </div>
           </div>
         </div>
@@ -189,7 +221,9 @@ provide('closeSearchH5', () => leftIsExpand.value = !leftIsExpand.value)
 
 .popper-option {
   cursor: pointer;
-  padding: var(--tg-spacing-button-padding-vertical-xs) var(--tg-spacing-button-padding-horizontal-xs);
+  padding:
+  var(--tg-spacing-button-padding-vertical-xs)
+  var(--tg-spacing-button-padding-horizontal-xs);
   font-size: var(--tg-font-size-default);
 
   &:hover {

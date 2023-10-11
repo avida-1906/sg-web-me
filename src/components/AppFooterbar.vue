@@ -6,10 +6,22 @@ const { openRightSidebar, closeRightSidebar } = useRightSidebar()
 
 const tabbar = ref([
   { title: '浏览', icon: 'tabbar-menu', name: 'menu', show: true },
-  { title: '娱乐城', icon: 'tabbar-game', name: 'game', show: true, path: '/casino' },
+  {
+    title: '娱乐城',
+    icon: 'tabbar-game',
+    name: 'game',
+    show: true,
+    path: '/casino',
+  },
   { title: '投注', icon: 'tabbar-bet', name: 'bet', show: true, path: '' },
   { title: '投注单', icon: 'spt-user-bet', name: 'user-bet', show: false },
-  { title: '体育', icon: 'spt-basketball', name: 'sport', show: true, path: '/sports' },
+  {
+    title: '体育',
+    icon: 'spt-basketball',
+    name: 'sport',
+    show: true,
+    path: '/sports',
+  },
   { title: '聊天室', icon: 'tabbar-chat', name: 'chat', show: true },
 ])
 const activeBar = ref('')
@@ -68,7 +80,13 @@ function changeBar(item: { name: string; path?: string }) {
 
 <template>
   <div class="app-footer-bar page-content">
-    <div v-for="item of tabbar" v-show="item.show" :key="item.icon" class="bar-item" :class="{ 'active-bar': activeBar === item.name }">
+    <div
+      v-for="item of tabbar"
+      v-show="item.show"
+      :key="item.icon"
+      class="bar-item"
+      :class="{ 'active-bar': activeBar === item.name }"
+    >
       <BaseButton type="text" @click.stop="changeBar(item)">
         <div class="bar-btn">
           <BaseIcon class="bar-icon" :name="item.icon" />

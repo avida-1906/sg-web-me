@@ -15,10 +15,24 @@ const getIsRight = computed(() => props.iconAlign === 'right')
 
 <template>
   <div class="app-currency-icon">
-    <div v-if="!getIsRight" class="icon" :data-icon-url="VITE_CURRENCY_ICON_URL" :title="currencyType" />
-    <span v-if="showName" class="name" :style="`margin-${getIsRight ? 'right' : 'left'}: var(--tg-spacing-4);`">{{ currencyType }}</span>
+    <div
+      v-if="!getIsRight"
+      class="icon"
+      :data-icon-url="VITE_CURRENCY_ICON_URL"
+      :title="currencyType"
+    />
+    <span
+      v-if="showName"
+      class="name"
+      :style="`margin-${getIsRight ? 'right' : 'left'}: var(--tg-spacing-4);`"
+    >{{ currencyType }}</span>
     <slot name="network" />
-    <div v-if="getIsRight" class="icon" :data-icon-url="VITE_CURRENCY_ICON_URL" :title="currencyType" />
+    <div
+      v-if="getIsRight"
+      class="icon"
+      :data-icon-url="VITE_CURRENCY_ICON_URL"
+      :title="currencyType"
+    />
   </div>
 </template>
 
@@ -41,7 +55,6 @@ const getIsRight = computed(() => props.iconAlign === 'right')
     overflow: hidden;
     text-overflow: ellipsis;
     text-transform: uppercase;
-    // margin-left: var(--tg-spacing-4);
   }
 }
 </style>

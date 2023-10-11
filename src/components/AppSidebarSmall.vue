@@ -62,12 +62,26 @@ function itemClick(item: MenuItem) {
 
 <template>
   <section class="tg-app-sidebar-small">
-    <ul v-for="menu, idx in menuData" :key="idx" class="tiny-menu flex-col-center">
-      <li v-for="menuitem in menu.value" :key="menuitem.title" class="flex-col-center tiny-menu-item" :class="{ active: routePath === menuitem.path, disabled: menuitem.token && !isLogin }">
+    <ul
+      v-for="menu, idx in menuData"
+      :key="idx"
+      class="tiny-menu flex-col-center"
+    >
+      <li
+        v-for="menuitem in menu.value"
+        :key="menuitem.title" class="flex-col-center tiny-menu-item"
+        :class="{
+          active: routePath === menuitem.path,
+          disabled: menuitem.token && !isLogin,
+        }"
+      >
         <VMenu placement="top">
           <div class="trigger" @click="itemClick(menuitem)">
             <BaseIcon :name="menuitem.icon" />
-            <div v-if="menuitem.list && menuitem.list.length" class="flex-col-center arrow-right">
+            <div
+              v-if="menuitem.list && menuitem.list.length"
+              class="flex-col-center arrow-right"
+            >
               <BaseIcon name="uni-arrow-right" />
             </div>
           </div>

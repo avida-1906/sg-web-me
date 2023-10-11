@@ -35,10 +35,18 @@ function push(path: string) {
             <BaseIcon name="uni-menu" />
           </div>
           <div class="game-type">
-            <div class="casino" :class="{ active: isCasino }" @click="$router.push('/casino')">
+            <div
+              class="casino"
+              :class="{ active: isCasino }"
+              @click="$router.push('/casino')"
+            >
               <span>{{ t('casino') }}</span>
             </div>
-            <div class="sports" :class="{ active: isSports }" @click="$router.push('/sports')">
+            <div
+              class="sports"
+              :class="{ active: isSports }"
+              @click="$router.push('/sports')"
+            >
               <span>{{ t('sports') }}</span>
             </div>
           </div>
@@ -50,12 +58,20 @@ function push(path: string) {
 
   <div v-if="isMobile && !isCasino && !isSports" class="buttons">
     <BaseAspectRatio ratio="3.5/1">
-      <div class="casino" :class="{ active: isCasino }" @click="push('/casino')">
+      <div
+        class="casino"
+        :class="{ active: isCasino }"
+        @click="push('/casino')"
+      >
         <span>{{ t('casino') }}</span>
       </div>
     </BaseAspectRatio>
     <BaseAspectRatio ratio="3.5/1">
-      <div class="sports" :class="{ active: isSports }" @click="push('/sports')">
+      <div
+        class="sports"
+        :class="{ active: isSports }"
+        @click="push('/sports')"
+      >
         <span>{{ t('sports') }}</span>
       </div>
     </BaseAspectRatio>
@@ -63,7 +79,11 @@ function push(path: string) {
 
   <div class="content scrollY">
     <Transition name="slide-fade">
-      <AppSidebarBig v-if="switchTo !== 'big'" :current-type="gameType" :is-switching="isSwitching" />
+      <AppSidebarBig
+        v-if="switchTo !== 'big'"
+        :current-type="gameType"
+        :is-switching="isSwitching"
+      />
     </Transition>
   </div>
 </template>

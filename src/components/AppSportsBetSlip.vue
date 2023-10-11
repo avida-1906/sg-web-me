@@ -14,7 +14,8 @@ const props = withDefaults(defineProps<Props>(), {
   betSlipType: EnumsBetSlipTabs.single,
 })
 
-const isBetSingle = computed(() => props.betSlipType === EnumsBetSlipTabs.single)
+const isBetSingle = computed(() =>
+  props.betSlipType === EnumsBetSlipTabs.single)
 const isBetMulti = computed(() => props.betSlipType === EnumsBetSlipTabs.multi)
 const isFirst = computed(() => props.index === 0)
 </script>
@@ -64,7 +65,12 @@ const isFirst = computed(() => props.index === 0)
       <!-- 单式金额输入框 -->
       <div v-show="isBetSingle" class="footer">
         <div class="bet-amount">
-          <BaseInput type="number" placeholder="0.00000000" mb0 :disabled="disabled">
+          <BaseInput
+            type="number"
+            placeholder="0.00000000"
+            mb0
+            :disabled="disabled"
+          >
             <template #right-icon>
               <BaseIcon name="coin-btc" />
             </template>
@@ -74,7 +80,10 @@ const isFirst = computed(() => props.index === 0)
           <span>预计支付金额</span>
         </div>
         <div class="estimated-amount">
-          <AppAmount style="--tg-app-amount-width:12ch;" amount="289339339.05000001" :currency-type="0" />
+          <AppAmount
+            style="--tg-app-amount-width:12ch;"
+            amount="289339339.05000001" :currency-type="0"
+          />
         </div>
       </div>
     </div>
@@ -245,7 +254,10 @@ const isFirst = computed(() => props.index === 0)
     height: 6px;
     width: 100%;
     bottom: -4px;
-    background: radial-gradient(circle, transparent, transparent 50%, var(--tg-secondary-grey) 50%, var(--tg-secondary-grey) 100%) 0px 1px/0.7rem 0.7rem repeat-x;
+    background:
+    radial-gradient(circle, transparent, transparent 50%,
+    var(--tg-secondary-grey) 50%,
+    var(--tg-secondary-grey) 100%) 0px 1px/0.7rem 0.7rem repeat-x;
   }
 }
 
@@ -283,7 +295,10 @@ const isFirst = computed(() => props.index === 0)
     height: 6px;
     width: 100%;
     top: -4px;
-    background: radial-gradient(circle, transparent, transparent 50%, var(--tg-secondary-main) 50%, var(--tg-secondary-main) 100%) 0px -6px/0.7rem 0.7rem repeat-x;
+    background:
+    radial-gradient(circle, transparent, transparent 50%,
+    var(--tg-secondary-main) 50%,
+    var(--tg-secondary-main) 100%) 0px -6px/0.7rem 0.7rem repeat-x;
   }
 }
 </style>

@@ -1,7 +1,8 @@
 import BaseNotify from '~/components/BaseNotify.vue'
 import { install } from '~/modules'
 
-export type notifyType = 'set' | 'user' | 'email' | 'error' | 'success' | 'insurance' | 'statistics' | 'phone'
+export type notifyType =
+'set' | 'user' | 'email' | 'error' | 'success' | 'insurance' | 'statistics' | 'phone'
 
 function getUuid() {
   const temp_url = URL.createObjectURL(new Blob())
@@ -22,7 +23,12 @@ const getNotificationList = (function () {
   }
 })()
 
-export function useNotify({ showClose, onClose, onNotifyClick }: { onClose?: () => void; onNotifyClick?: () => void; showClose?: boolean } = {}) {
+export function useNotify({
+  showClose,
+  onClose,
+  onNotifyClick,
+}:
+{ onClose?: () => void; onNotifyClick?: () => void; showClose?: boolean } = {}) {
   const app = ref<any>({})
   const box = ref<any>({})
   const notificationList = getNotificationList()
@@ -39,7 +45,19 @@ export function useNotify({ showClose, onClose, onNotifyClick }: { onClose?: () 
     }
   }
 
-  const openNotify = ({ type, icon, title, message, default: defaultSlot }: { type?: notifyType; icon?: string; title?: string | (() => Component); message?: string | (() => Component); default?: () => Component }) => {
+  const openNotify = ({
+    type,
+    icon,
+    title,
+    message,
+    default: defaultSlot,
+  }:
+  {
+    type?: notifyType
+    icon?: string
+    title?: string | (() => Component)
+    message?: string | (() => Component)
+    default?: () => Component }) => {
     if (notificationList) {
       const uuid = getUuid()
       box.value[uuid] = document.createElement('div')

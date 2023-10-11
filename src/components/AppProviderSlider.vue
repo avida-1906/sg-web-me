@@ -9,7 +9,13 @@ function goPage(item: any) {
 
 <template>
   <div class="tg-app-provider-slider">
-    <AppSlider icon="chess-game-provider" :title="$t('casino_provider')" :data="platformList" :show-view-all="false" game-type="provider">
+    <AppSlider
+      icon="chess-game-provider"
+      :title="$t('casino_provider')"
+      :data="platformList"
+      :show-view-all="false"
+      game-type="provider"
+    >
       <template #default="{ item }">
         <BaseProviderItem :url="item.logo" @click="goPage(item)" />
       </template>

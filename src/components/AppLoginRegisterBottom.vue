@@ -32,15 +32,22 @@ async function toLogin() {
         {{ t('forgot_password') }}
       </div>
 
-      <div v-if="props.type === 'login'" class="user-text" @click.stop="toRegister()">
-        {{ t('no_account_yet') }}<span class="text-white">{{ t('register_account') }}</span>
+      <div
+        v-if="props.type === 'login'"
+        class="user-text"
+        @click.stop="toRegister()"
+      >
+        {{ t('no_account_yet') }}
+        <span class="text-white">{{ t('register_account') }}</span>
       </div>
       <div v-else @click.stop="toLogin()">
         {{ t('have_account') }}<span class="text-white">{{ t('login') }}</span>
       </div>
 
       <div class="stake-text">
-        {{ t('stake_hCaptcha') }} <span>{{ t('privacy_policy') }}</span> {{ t('and') }} <span>{{ t('terms_of_service') }}</span> {{ t('applicable') }}
+        {{ t('stake_hCaptcha') }}
+        <span>{{ t('privacy_policy') }}</span> {{ t('and') }}
+        d<span>{{ t('terms_of_service') }}</span> {{ t('applicable') }}
       </div>
     </div>
   </div>

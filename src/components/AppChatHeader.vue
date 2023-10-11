@@ -43,7 +43,13 @@ function openChat() {
         </div>
         <template #popper="{ hide }">
           <div class="scroll-y chat-room-list dropdown-scroll-content">
-            <a v-for="item in chatRoomList" :key="item.icon" class="item dropdown-option" :class="{ active: room.value === item.value }" @click="hide();chooseRoom(item)">
+            <a
+              v-for="item in chatRoomList"
+              :key="item.icon"
+              class="item dropdown-option"
+              :class="{ active: room.value === item.value }"
+              @click="hide();chooseRoom(item)"
+            >
               <BaseIcon :name="item.icon" />
               <span>{{ item.label }}</span>
             </a>
@@ -90,7 +96,9 @@ function openChat() {
     align-items: center;
     justify-content: flex-start;
     width: 100%;
-    padding: var(--tg-spacing-button-padding-vertical-xs) var(--tg-spacing-button-padding-horizontal-xs);
+    padding:
+    var(--tg-spacing-button-padding-vertical-xs)
+    var(--tg-spacing-button-padding-horizontal-xs);
     gap: var(--tg-spacing-8);
     cursor: pointer;
     &:hover {

@@ -43,7 +43,12 @@ function cancelPayment() {
       </BaseButton>
     </template>
     <template v-if="depositStep === '2'">
-      <AppCurrencyIcon class="currency-icon" :show-name="true" :currency-type="activeCurrency" icon-align="right">
+      <AppCurrencyIcon
+        class="currency-icon"
+        :show-name="true"
+        :currency-type="activeCurrency"
+        icon-align="right"
+      >
         <template #network>
           <span style="padding-right: var(--tg-spacing-5);">TRC20</span>
         </template>
@@ -72,7 +77,9 @@ function cancelPayment() {
 
       <div class="box-btn">
         <BaseButton
-          type="line" style="border-color: var(--tg-text-blue);color: var(--tg-text-blue);" size="md"
+          type="line"
+          style="border-color: var(--tg-text-blue);
+          color: var(--tg-text-blue);" size="md"
           @click="cancelPayment"
         >
           取消存款申请

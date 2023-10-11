@@ -142,7 +142,11 @@ onMounted(() => {
             </template>
           </VMenu>
         </div>
-        <div class="r-arrow" :class="[showContent ? 'down' : 'left']" @click="toggleShowContent">
+        <div
+          class="r-arrow"
+          :class="[showContent ? 'down' : 'left']"
+          @click="toggleShowContent"
+        >
           <BaseIcon name="uni-arrow-down" />
         </div>
       </div>
@@ -156,7 +160,9 @@ onMounted(() => {
       <div v-if="tab === '4'" class="desc-content">
         <div class="c-img" :class="{ 'float-left': !isXxs }">
           <BaseImage
-            url="http://c.hiphotos.baidu.com/image/pic/item/30adcbef76094b36de8a2fe5a1cc7cd98d109d99.jpg"
+            url="
+            http://c.hiphotos.baidu.com/image/
+            pic/item/30adcbef76094b36de8a2fe5a1cc7cd98d109d99.jpg"
             fit="cover"
             class="app-desc-base-image"
           />
@@ -172,27 +178,39 @@ onMounted(() => {
           </div>
           <div class="text">
             <p>
-              Shiver me timbers! It’s time to hoist the mainsail and look for treasure in this ghostly pirate-themed
+              Shiver me timbers! It’s time to hoist the
+              mainsail and look for treasure in this ghostly pirate-themed
               slot.
             </p>
             <p>
-              The action takes place on a 5x4 grid with a pirate ship lurking in the background, serving up a maximum win
+              The action takes place on a 5x4 grid with
+              a pirate ship lurking in the background, serving up a maximum win
               of 12,500x to lucky players.
             </p>
             <p>
-              With multiplier values and some quirky bonus features, slot fans will relish the opportunity to play the
+              With multiplier values and some quirky
+              bonus features, slot fans will relish the opportunity to play the
               Cursed Seas slot at Stake Casino.
             </p>
             <p>
-              The grid matrix in Cursed Seas is in a 5x4 format with 26 paylines on which you can form winning
-              combinations by matching symbols on the leftmost reel to the right.
+              The grid matrix in Cursed Seas is
+              in a 5x4 format with 26 paylines on which you can form winning
+              combinations by matching symbols on
+              the leftmost reel to the right.
             </p>
           </div>
         </div>
       </div>
       <!-- 赢家 -->
-      <div v-else-if="tab === '1' || tab === '2'" class="scroll-x winner-content">
-        <BaseTable :columns="columns" :data-source="tableData" :loading="loading">
+      <div
+        v-else-if="tab === '1' || tab === '2'"
+        class="scroll-x winner-content"
+      >
+        <BaseTable
+          :columns="columns"
+          :data-source="tableData"
+          :loading="loading"
+        >
           <template #rank="{ record }">
             <div class="rank-icon">
               <BaseIcon :name="record.rank" />
@@ -215,19 +233,28 @@ onMounted(() => {
           </template>
           <template #bet="{ record }">
             <div class="img-text-align img-text-align-center">
-              <AppAmount :amount="record.bet" :currency-type="record.currencyType" />
+              <AppAmount
+                :amount="record.bet"
+                :currency-type="record.currencyType"
+              />
             </div>
           </template>
           <template #payAmount="{ record }">
             <div class="img-text-align img-text-align-right">
-              <AppAmount :amount="record.payAmount" :currency-type="record.currencyType" />
+              <AppAmount
+                :amount="record.payAmount"
+                :currency-type="record.currencyType"
+              />
             </div>
           </template>
         </BaseTable>
       </div>
       <!-- 挑战 -->
       <div v-else-if="tab === '3'" class="challenge-content">
-        <BaseEmpty description="Wanted Dead or a Wild 暂无任何活跃的挑战" icon="empty-1" />
+        <BaseEmpty
+          description="Wanted Dead or a Wild 暂无任何活跃的挑战"
+          icon="empty-1"
+        />
       </div>
     </div>
   </div>

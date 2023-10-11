@@ -37,9 +37,24 @@ const changeText = function (e: any) {
 
 <template>
   <div class="base-input-password">
-    <input ref="inputRef" :value="modelValue" type="text" maxlength="6" @input="changeText" @blur="onBlur">
+    <input
+      ref="inputRef"
+      :value="modelValue"
+      type="text"
+      maxlength="6"
+      @input="changeText"
+      @blur="onBlur"
+    >
     <ul class="password-wrap" :class="{ 'width-auto': widthAuto }" @click="onFocus">
-      <li v-for="item in 6" :key="item" :class="{ 'active': textLength === (item - 1), 'show': entered > (item - 1), 'active-bg': textLength !== null }">
+      <li
+        v-for="item in 6"
+        :key="item"
+        :class="{
+          'active': textLength === (item - 1),
+          'show': entered > (item - 1),
+          'active-bg': textLength !== null,
+        }"
+      >
         <i />
         <b />
       </li>
