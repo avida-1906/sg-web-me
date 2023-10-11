@@ -2,6 +2,7 @@
 interface Props {
   type: 'live' | 'upcoming'
   isStandard?: boolean
+  showMore?: boolean
 }
 withDefaults(defineProps<Props>(), {
   type: 'live',
@@ -10,7 +11,7 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <BaseSecondaryAccordion title="ATP / ATP上海站，中国，男单">
+  <BaseSecondaryAccordion title="ATP / ATP上海站，中国，男单" :show-more="showMore">
     <template #side="{ isOpen }">
       <div v-show="!isOpen" style="--tg-badge-font-size: 12px;margin-right: 16px;">
         <BaseBadge :count="9" />
