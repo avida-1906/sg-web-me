@@ -699,6 +699,9 @@ function onOpenLiveSwitch() {}
                       <div class="correct-score-wrapper">
                         <AppBallRange v-model="rangeNum" title="Team BDS" />
                         <AppBallRange title="Team Whales" />
+                        <div style="display: flex;">
+                          <AppSportsBetButton layout="horizontal" is-na />
+                        </div>
                       </div>
                     </div>
                   </template>
@@ -735,6 +738,7 @@ function onOpenLiveSwitch() {}
       </div>
     </div>
   </div>
+  <AppBetData mode="sports" />
 </template>
 
 <style lang="scss" scoped>
@@ -889,6 +893,7 @@ video {
 }
 .tg-sports-country-event-betdetail {
   --tg-base-switch-style-bg: var(--tg-text-green);
+  padding-bottom: var(--tg-spacing-16);
   .sports-detail-wrapper {
     margin-top: var(--tg-spacing-32);
     .content-wrapper {
