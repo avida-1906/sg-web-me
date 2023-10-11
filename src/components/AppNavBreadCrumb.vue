@@ -10,6 +10,7 @@ interface Props {
 const props = defineProps<Props>()
 
 const router = useRouter()
+const { appContentWidth } = storeToRefs(useWindowStore())
 
 const _data = reactive(props.breadcrumb)
 
@@ -46,16 +47,17 @@ function collect() {
     <div class="scroll-x breadcrumb-wrapper remove-end-border">
       <template v-for="d, idx in _data" :key="d.path">
         <a
+          v-if="appContentWidth > 700 ? true : idx === _data.length - 1"
           class="link"
           :class="{
-            disabled: idx === _data.length - 1,
+            disabled: appContentWidth > 700 ? idx === _data.length - 1 : false,
             active: idx === _data.length - 1,
           }"
           @click="goPath({ d, disabled: idx === _data.length - 1 })"
         >
           <span>{{ d.title }}</span>
         </a>
-        <span v-if="idx !== _data.length - 1" class="slash" />
+        <span v-if="idx !== _data.length - 1 && appContentWidth > 700" class="slash" />
       </template>
     </div>
     <BaseButton v-if="_data.length === 1" size="md" @click="collect">
