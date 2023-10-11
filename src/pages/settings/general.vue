@@ -12,6 +12,7 @@ const router = useRouter()
 const { openNotify } = useNotify()
 const { userInfo } = storeToRefs(useAppStore())
 const { updateUserInfo } = useAppStore()
+const { isLessThanXs } = storeToRefs(useWindowStore())
 
 const paramsData = ref(userInfo.value || {
   uid: '',
@@ -242,8 +243,12 @@ watch(() => route.query, (newValue) => {
       class="general-app-settings-content-item"
       @submit="socialSubmit"
     >
-      <div class="social-wrap">
-        <div v-for="item, index in socialData" :key="index" class="social-item">
+      <div class="social-wrap" :class="{ 'is-less-than-xs': isLessThanXs }">
+        <div
+          v-for="item, index in socialData"
+          :key="index"
+          class="social-item"
+        >
           <BaseImage
             :url="item.img"
             width="50px"
@@ -286,6 +291,9 @@ watch(() => route.query, (newValue) => {
       display: flex;
       align-items: center;
       gap: .75rem;
+    }
+    &.is-less-than-xs{
+      grid-template-columns: repeat(1, 1fr);
     }
   }
 }
