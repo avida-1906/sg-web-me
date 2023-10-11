@@ -11,6 +11,7 @@ const route = useRoute()
 const router = useRouter()
 const { openNotify } = useNotify()
 const { userInfo } = storeToRefs(useAppStore())
+const { updateUserInfo } = useAppStore()
 
 const paramsData = ref(userInfo.value || {
   uid: '',
@@ -172,8 +173,14 @@ watch(() => route.query, (newValue) => {
     && newValue.email
     && newValue.uid && newValue.captcha) {
     const { run } = useRequest(ApiMemberEmailCheck, {
-      onSuccess() {
-        openNotify({ type: 'success', message: '邮箱验证成功!' })
+      async onSuccess() {
+        openNotify({ type: 'email', title: '验证成功', message: '恭喜您电邮验证成功!' })
+        await updateUserInfo()
+      },
+      onAfter() {
+        setTimeout(() => {
+          router.replace(route.path)
+        }, 2000)
       },
     })
     run({
@@ -181,9 +188,6 @@ watch(() => route.query, (newValue) => {
       uid: route.query.uid as string,
       captcha: route.query.captcha as string,
     })
-    setTimeout(() => {
-      router.replace(route.path)
-    }, 2000)
   }
 }, { immediate: true })
 </script>
