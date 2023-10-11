@@ -38,7 +38,11 @@ const showContent = function () {}
         </span>
       </div>
     </div>
-    <div v-for="item, index in campaignsList" :key="index" class="campaigns-list-column">
+    <div
+      v-for="item, index in campaignsList"
+      :key="index"
+      class="campaigns-list-column"
+    >
       <BaseCollapse @click-head="showContent()">
         <template #title>
           <div class="title">
@@ -76,7 +80,10 @@ const showContent = function () {}
                   <span class="value">0.10</span>
                 </div>
               </section>
-              <AppCopyLine title="链接" msg="HB3XU3LIJ56T6YTUOM4FKW33NU5DE2DCFEZEKUT2IUXGYNJEJF2A" />
+              <AppCopyLine
+                title="链接"
+                msg="HB3XU3LIJ56T6YTUOM4FKW33NU5DE2DCFEZEKUT2IUXGYNJEJF2A"
+              />
             </div>
             <div class="balance-grid">
               <section>

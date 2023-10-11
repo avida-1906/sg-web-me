@@ -1,6 +1,6 @@
 <script setup lang='ts'>
 interface Props {
-  modelValue: any
+  modelValue?: any
   options: {
     [text: string]: any
     label: string

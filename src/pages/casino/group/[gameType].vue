@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import { EnumCasinoApiGameType, EnumCasinoGameType, EnumCasinoSortType } from '~/utils/enums'
+import {
+  EnumCasinoApiGameType,
+  EnumCasinoGameType,
+  EnumCasinoSortType,
+} from '~/utils/enums'
 
 const props = defineProps<{ gameType: string }>()
 const { VITE_CASINO_GAME_PAGE_SIZE } = getEnv()
@@ -30,14 +34,37 @@ const bannerImg = computed(() => {
   return 'default'
 })
 // 真人、老虎机
-const gameTypeParams = computed(() => isLive.value ? EnumCasinoApiGameType.LIVE : isSlot.value ? EnumCasinoApiGameType.SLOT : undefined)
-const pid = computed(() => isProvider.value ? route.query.pid?.toString() : undefined)
-const sort = ref(isLive.value ? EnumCasinoSortType.recommend : EnumCasinoSortType.hot)
-const paramsGame = computed(() => ({ game_type: gameTypeParams.value, platform_id: pid.value, sort: sort.value }))
-const { list: gameList, total: gameTotal, runAsync: runGameList, loading: loadingGame, loadMore: loadMoreGame } = useList(ApiMemberGameList, {}, { page_size: VITE_CASINO_GAME_PAGE_SIZE })
+const gameTypeParams = computed(
+  () => isLive.value
+    ? EnumCasinoApiGameType.LIVE
+    : isSlot.value ? EnumCasinoApiGameType.SLOT : undefined)
+const pid = computed(() =>
+  isProvider.value ? route.query.pid?.toString() : undefined)
+const sort = ref(
+  isLive.value ? EnumCasinoSortType.recommend : EnumCasinoSortType.hot,
+)
+const paramsGame = computed(() =>
+  ({
+    game_type: gameTypeParams.value,
+    platform_id: pid.value,
+    sort: sort.value,
+  }))
+const {
+  list: gameList,
+  total: gameTotal,
+  runAsync: runGameList,
+  loading: loadingGame,
+  loadMore: loadMoreGame,
+} = useList(ApiMemberGameList, {}, { page_size: VITE_CASINO_GAME_PAGE_SIZE })
 // 推荐游戏
 const paramsRec = computed(() => ({ sort: sort.value }))
-const { list: recList, total: recTotal, runAsync: runRecList, loading: loadingRec, loadMore: loadMoreRec } = useList(ApiMemberGameRecList, {}, { page_size: VITE_CASINO_GAME_PAGE_SIZE })
+const {
+  list: recList,
+  total: recTotal,
+  runAsync: runRecList,
+  loading: loadingRec,
+  loadMore: loadMoreRec,
+} = useList(ApiMemberGameRecList, {}, { page_size: VITE_CASINO_GAME_PAGE_SIZE })
 // 页面数据
 const list = computed(() => {
   if (isLive.value || isSlot.value || isProvider.value)
@@ -88,7 +115,10 @@ function onSortChange(v: any) {
 // 路由变化
 const stop = watch(route, (a) => {
   currentType.value = a.params.gameType.toString()
-  sort.value = currentType.value === EnumCasinoGameType.LIVE ? EnumCasinoSortType.recommend : EnumCasinoSortType.hot
+  sort.value = currentType.value
+    === EnumCasinoGameType.LIVE
+    ? EnumCasinoSortType.recommend
+    : EnumCasinoSortType.hot
   getData()
 })
 onBeforeRouteLeave(() => {
@@ -125,14 +155,23 @@ else if (isRec.value)
         <AppGameSearch game-type="1" />
       </div>
       <div class="mt-24">
-        <AppGroupFilter :game-type="currentType" :sort-type="sort" @sort-type-change="onSortChange" @plat-type-checked="onPlatTypeChecked" />
+        <AppGroupFilter
+          :game-type="currentType"
+          :sort-type="sort"
+          @sort-type-change="onSortChange"
+          @plat-type-checked="onPlatTypeChecked"
+        />
       </div>
       <div class="mt-24">
         <AppCardList :list="list ?? []" />
       </div>
       <div class="load-more mt-24">
         <AppPercentage :total="total" :percentage="list?.length" />
-        <BaseButton v-show="list && list?.length < total" size="md" :loading="loading" @click="push">
+        <BaseButton
+          v-show="list && list?.length < total"
+          size="md"
+          :loading="loading" @click="push"
+        >
           <div>
             {{ $t('load_more') }}
           </div>

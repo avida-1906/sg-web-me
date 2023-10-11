@@ -30,12 +30,27 @@ const columns = [
   },
 ]
 
-const data = reactive([
-  { available: '0.00001234', commission: '567', withdrawn: '900', currencyType: 19 },
-  { available: '0.00001234', commission: '567', withdrawn: '900', currencyType: 20 },
-  { available: '0.00001234', commission: '567', withdrawn: '900', currencyType: 22 },
-  { available: '0.00001234', commission: '567', withdrawn: '900', currencyType: 24 },
-])
+const data = reactive([{
+  available: '0.00001234',
+  commission: '567',
+  withdrawn: '900',
+  currencyType: 19,
+}, {
+  available: '0.00001234',
+  commission: '567',
+  withdrawn: '900',
+  currencyType: 20,
+}, {
+  available: '0.00001234',
+  commission: '567',
+  withdrawn: '900',
+  currencyType: 22,
+}, {
+  available: '0.00001234',
+  commission: '567',
+  withdrawn: '900',
+  currencyType: 24,
+}])
 </script>
 
 <template>
@@ -48,17 +63,26 @@ const data = reactive([
         <BaseTable :columns="columns" :data-source="data">
           <template #available="{ record }">
             <div class="line-height-2">
-              <AppAmount :amount="record.available" :currency-type="record.currencyType" />
+              <AppAmount
+                :amount="record.available"
+                :currency-type="record.currencyType"
+              />
             </div>
           </template>
           <template #commission="{ record }">
             <div class="center line-height-2">
-              <AppAmount :amount="record.commission" :currency-type="record.currencyType" />
+              <AppAmount
+                :amount="record.commission"
+                :currency-type="record.currencyType"
+              />
             </div>
           </template>
           <template #withdrawn="{ record }">
             <div class="flex-end line-height-2">
-              <AppAmount :amount="record.withdrawn" :currency-type="record.currencyType" />
+              <AppAmount
+                :amount="record.withdrawn"
+                :currency-type="record.currencyType"
+              />
             </div>
           </template>
         </BaseTable>

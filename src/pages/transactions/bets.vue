@@ -26,7 +26,10 @@
               <td class="table-cell">
                 <div class="row-wrap right">
                   <div class="col">
-                    <AppAmount amount="0.01888888" :currency-type="EnumCurrency.BTC" />
+                    <AppAmount
+                      amount="0.01888888"
+                      :currency-type="EnumCurrency.BTC"
+                    />
                   </div>
                   <div class="col bot">
                     <BaseIcon name="uni-checklist" />

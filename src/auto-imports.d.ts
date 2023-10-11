@@ -30,6 +30,7 @@ declare global {
   const ApiMemberPayPasswordUpdate: typeof import('./apis/index')['ApiMemberPayPasswordUpdate']
   const ApiMemberPlatformList: typeof import('./apis/index')['ApiMemberPlatformList']
   const ApiMemberReg: typeof import('./apis/index')['ApiMemberReg']
+  const ApiMemberSendMailCode: typeof import('./apis/index')['ApiMemberSendMailCode']
   const ApiMemberTreeList: typeof import('./apis/index')['ApiMemberTreeList']
   const ApiMemberUpdate: typeof import('./apis/index')['ApiMemberUpdate']
   const ApiMemberWalletInsert: typeof import('./apis/index')['ApiMemberWalletInsert']
@@ -292,6 +293,7 @@ declare global {
   const useElementHover: typeof import('@vueuse/core')['useElementHover']
   const useElementSize: typeof import('@vueuse/core')['useElementSize']
   const useElementVisibility: typeof import('@vueuse/core')['useElementVisibility']
+  const useEmailCodeDialog: typeof import('./composables/useDialogEmailCode')['useEmailCodeDialog']
   const useEventBus: typeof import('@vueuse/core')['useEventBus']
   const useEventListener: typeof import('@vueuse/core')['useEventListener']
   const useEventSource: typeof import('@vueuse/core')['useEventSource']
@@ -479,6 +481,7 @@ declare module 'vue' {
     readonly ApiMemberPayPasswordUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberPayPasswordUpdate']>
     readonly ApiMemberPlatformList: UnwrapRef<typeof import('./apis/index')['ApiMemberPlatformList']>
     readonly ApiMemberReg: UnwrapRef<typeof import('./apis/index')['ApiMemberReg']>
+    readonly ApiMemberSendMailCode: UnwrapRef<typeof import('./apis/index')['ApiMemberSendMailCode']>
     readonly ApiMemberTreeList: UnwrapRef<typeof import('./apis/index')['ApiMemberTreeList']>
     readonly ApiMemberUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberUpdate']>
     readonly ApiMemberWalletInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletInsert']>
@@ -732,6 +735,7 @@ declare module 'vue' {
     readonly useElementHover: UnwrapRef<typeof import('@vueuse/core')['useElementHover']>
     readonly useElementSize: UnwrapRef<typeof import('@vueuse/core')['useElementSize']>
     readonly useElementVisibility: UnwrapRef<typeof import('@vueuse/core')['useElementVisibility']>
+    readonly useEmailCodeDialog: UnwrapRef<typeof import('./composables/useDialogEmailCode')['useEmailCodeDialog']>
     readonly useEventBus: UnwrapRef<typeof import('@vueuse/core')['useEventBus']>
     readonly useEventListener: UnwrapRef<typeof import('@vueuse/core')['useEventListener']>
     readonly useEventSource: UnwrapRef<typeof import('@vueuse/core')['useEventSource']>
@@ -908,6 +912,7 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberPayPasswordUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberPayPasswordUpdate']>
     readonly ApiMemberPlatformList: UnwrapRef<typeof import('./apis/index')['ApiMemberPlatformList']>
     readonly ApiMemberReg: UnwrapRef<typeof import('./apis/index')['ApiMemberReg']>
+    readonly ApiMemberSendMailCode: UnwrapRef<typeof import('./apis/index')['ApiMemberSendMailCode']>
     readonly ApiMemberTreeList: UnwrapRef<typeof import('./apis/index')['ApiMemberTreeList']>
     readonly ApiMemberUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberUpdate']>
     readonly ApiMemberWalletInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletInsert']>
@@ -1161,6 +1166,7 @@ declare module '@vue/runtime-core' {
     readonly useElementHover: UnwrapRef<typeof import('@vueuse/core')['useElementHover']>
     readonly useElementSize: UnwrapRef<typeof import('@vueuse/core')['useElementSize']>
     readonly useElementVisibility: UnwrapRef<typeof import('@vueuse/core')['useElementVisibility']>
+    readonly useEmailCodeDialog: UnwrapRef<typeof import('./composables/useDialogEmailCode')['useEmailCodeDialog']>
     readonly useEventBus: UnwrapRef<typeof import('@vueuse/core')['useEventBus']>
     readonly useEventListener: UnwrapRef<typeof import('@vueuse/core')['useEventListener']>
     readonly useEventSource: UnwrapRef<typeof import('@vueuse/core')['useEventSource']>
