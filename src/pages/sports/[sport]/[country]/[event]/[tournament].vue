@@ -988,11 +988,7 @@ function selectOutcome(v: string, tempid: string, marketid: string) {
                 <BaseSecondaryAccordion title="正确比赛得分">
                   <template #side>
                     <div
-                      :class="`${appContentWidth}
-                        stack x-stretch y-center direction-horizontal
-                        gap-medium padding-none padding-left-auto
-                        padding-top-auto padding-bottom-auto
-                        padding-right-medium odd-switch-buttons`"
+                      class="odd-switch-buttons"
                     >
                       <BaseButton type="text" padding0 @click.stop="">
                         赔率滑块
@@ -1049,10 +1045,7 @@ function selectOutcome(v: string, tempid: string, marketid: string) {
             <div v-if="appContentWidth >= 900" class="sticky-column">
               <div class="iframe-widget tracker desktop widget-container">
                 <div
-                  :class="`${appContentWidth}
-                    stack x-stretch y-center padding-none padding-left-auto
-                    padding-top-auto padding-bottom-auto direction-vertical
-                    gap-small padding-right-auto`"
+                  class="iframe-box"
                 >
                   <iframe
                     id="widget-od-41421"
@@ -1096,12 +1089,26 @@ function selectOutcome(v: string, tempid: string, marketid: string) {
 </template>
 
 <style lang="scss" scoped>
+.iframe-box {
+  display: grid;
+  position: relative;
+  grid-auto-flow: row;
+  justify-content: stretch;
+  align-items: center;
+  gap: var(--tg-spacing-8);
+  padding: 0;
+}
 .load-more-container {
   text-align: center;
   margin-top: -10px;
 }
 
 .odd-switch-buttons {
+  display: flex;
+  gap: var(--tg-spacing-12);
+  align-items: center;
+  justify-content: stretch;
+  padding-right: var(--tg-spacing-12);
   button {
     white-space: nowrap;
   }
