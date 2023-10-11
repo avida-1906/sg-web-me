@@ -1060,6 +1060,13 @@ function selectOutcome(v: string, tempid: string, marketid: string) {
                   <BaseIcon name="uni-arrow-up-big" />
                 </div>
               </div>
+              <div class="loader-wrapper">
+                <div class="loader">
+                  <div class="wobble">
+                    <BaseIcon name="spt-hero" />
+                  </div>
+                </div>
+              </div>
               <div class="spotlight is-open">
                 <div class="no-active-scale header">
                   <span>近期游戏记录</span>
@@ -1089,6 +1096,22 @@ function selectOutcome(v: string, tempid: string, marketid: string) {
 </template>
 
 <style lang="scss" scoped>
+.wobble {
+  animation-name: wobble;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(.87,-.41,.19,1.44);
+}
+.loader-wrapper {
+  width: 100%;
+  padding-top: 56.25%;
+  position: relative;
+  .loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }
+}
 .iframe-box {
   display: grid;
   position: relative;
