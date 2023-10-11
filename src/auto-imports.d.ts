@@ -13,6 +13,8 @@ declare global {
   const ApiMemberBankcardList: typeof import('./apis/index')['ApiMemberBankcardList']
   const ApiMemberCurrencyConfig: typeof import('./apis/index')['ApiMemberCurrencyConfig']
   const ApiMemberDetail: typeof import('./apis/index')['ApiMemberDetail']
+  const ApiMemberEmailCheck: typeof import('./apis/index')['ApiMemberEmailCheck']
+  const ApiMemberEmailCheckRequest: typeof import('./apis/index')['ApiMemberEmailCheckRequest']
   const ApiMemberFavDelete: typeof import('./apis/index')['ApiMemberFavDelete']
   const ApiMemberFavInsert: typeof import('./apis/index')['ApiMemberFavInsert']
   const ApiMemberFavList: typeof import('./apis/index')['ApiMemberFavList']
@@ -462,6 +464,8 @@ declare module 'vue' {
     readonly ApiMemberBankcardList: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardList']>
     readonly ApiMemberCurrencyConfig: UnwrapRef<typeof import('./apis/index')['ApiMemberCurrencyConfig']>
     readonly ApiMemberDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberDetail']>
+    readonly ApiMemberEmailCheck: UnwrapRef<typeof import('./apis/index')['ApiMemberEmailCheck']>
+    readonly ApiMemberEmailCheckRequest: UnwrapRef<typeof import('./apis/index')['ApiMemberEmailCheckRequest']>
     readonly ApiMemberFavDelete: UnwrapRef<typeof import('./apis/index')['ApiMemberFavDelete']>
     readonly ApiMemberFavInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberFavInsert']>
     readonly ApiMemberFavList: UnwrapRef<typeof import('./apis/index')['ApiMemberFavList']>
@@ -889,6 +893,8 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberBankcardList: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardList']>
     readonly ApiMemberCurrencyConfig: UnwrapRef<typeof import('./apis/index')['ApiMemberCurrencyConfig']>
     readonly ApiMemberDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberDetail']>
+    readonly ApiMemberEmailCheck: UnwrapRef<typeof import('./apis/index')['ApiMemberEmailCheck']>
+    readonly ApiMemberEmailCheckRequest: UnwrapRef<typeof import('./apis/index')['ApiMemberEmailCheckRequest']>
     readonly ApiMemberFavDelete: UnwrapRef<typeof import('./apis/index')['ApiMemberFavDelete']>
     readonly ApiMemberFavInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberFavInsert']>
     readonly ApiMemberFavList: UnwrapRef<typeof import('./apis/index')['ApiMemberFavList']>

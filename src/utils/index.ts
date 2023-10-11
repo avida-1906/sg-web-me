@@ -19,9 +19,15 @@ class Application {
    * @param {EnumLanguage} language 语言
    * @returns {string} 格式化后的时间
    */
-  timestampToTime(timestamp: number, language = EnumLanguage[VITE_I18N_DEFAULT_LANG]): string {
+  timestampToTime(
+    timestamp: number,
+    language = EnumLanguage[VITE_I18N_DEFAULT_LANG],
+  ): string {
     const languageStr = EnumLanguage[language]
-    return new Intl.DateTimeFormat(languageStr, { dateStyle: 'short', timeStyle: 'medium' }).format(timestamp)
+    return new Intl.DateTimeFormat(
+      languageStr,
+      { dateStyle: 'short', timeStyle: 'medium' },
+    ).format(timestamp)
   }
 
   /**
@@ -33,18 +39,21 @@ class Application {
   numberToCurrency(number: number, language = EnumCurrency.BTC): string {
     // 法定货币列表
     const fiatCurrencyList = [
-      EnumCurrency.EUR,
-      EnumCurrency.JPY,
       EnumCurrency.BRL,
-      EnumCurrency.CAD,
       EnumCurrency.INR,
     ]
 
-    if (fiatCurrencyList.includes(language))
-      return new Intl.NumberFormat(EnumCurrency[language], { style: 'currency', currency: EnumCurrency[language] }).format(Number(toFixed(number, 2)))
+    if (fiatCurrencyList.includes(language)) {
+      return new Intl.NumberFormat(
+        EnumCurrency[language],
+        {
+          style: 'currency',
+          currency: EnumCurrency[language],
+        },
+      ).format(Number(toFixed(number, 2)))
+    }
 
-    else
-      return toFixed(number, this.#CURRENCY_DEFAULT_DECIMAL)
+    else { return toFixed(number, this.#CURRENCY_DEFAULT_DECIMAL) }
   }
 
   copy(str: string) {
@@ -69,7 +78,13 @@ class Application {
       return ''
 
     const filterObj = Object.entries(obj).filter(([, value]) => {
-      if (typeof value === 'object' || Array.isArray(value) || value === undefined || value === null || value === '')
+      if (
+        typeof value === 'object'
+        || Array.isArray(value)
+        || value === undefined
+        || value === null
+        || value === ''
+      )
         return false
       return true
     })

@@ -1,9 +1,12 @@
-export function useLayoutAnimate({ aniMounted, aniRouteNameChange, waitSuspense }: { aniMounted?: boolean; aniRouteNameChange?: boolean; waitSuspense?: boolean }) {
+export type SuspenseStatus = 'suspense-resolved' | 'suspense-pending' | 'suspense-fallback' | ''
+
+export function useLayoutAnimate({ aniMounted, aniRouteNameChange, aniSuspense }: { aniMounted?: boolean; aniRouteNameChange?: boolean; aniSuspense?: boolean }) {
   const route = useRoute()
 
-  // const { bool: suspenseResolved, setFalse: setSusFalse, setTrue: setSusTrue } = useBoolean(false)
   const { bool: animatingMounted, setFalse: setMFalse, setTrue: setMTrue } = useBoolean(false)
   const { bool: animatingWatch, setFalse: setWFalse, setTrue: setWTrue } = useBoolean(false)
+  const { bool: animatingSuspense, setFalse: setSFalse, setTrue: setSTrue } = useBoolean(false)
+  const suspenseStatus = ref()
 
   function toggleMAni() {
     setMTrue()
@@ -19,20 +22,52 @@ export function useLayoutAnimate({ aniMounted, aniRouteNameChange, waitSuspense 
     }, 300)
   }
 
+  function toggleSAni() {
+    setSTrue()
+    setTimeout(() => {
+      setSFalse()
+    }, 300)
+  }
+
+  function getSuspenseStatus(status: SuspenseStatus) {
+    suspenseStatus.value = status
+    setTimeout(() => {
+      suspenseStatus.value = ''
+    }, 10)
+  }
+
+  const stopWatchSus = watch(suspenseStatus, (val: SuspenseStatus) => {
+    if (val === 'suspense-resolved' && aniSuspense) {
+      nextTick(() => {
+        toggleSAni()
+      })
+    }
+  })
+
   const stop = watch(() => route.name, () => {
-    if (aniRouteNameChange)
-      toggleWAni()
+    if (aniRouteNameChange) {
+      nextTick(() => {
+        toggleWAni()
+      })
+    }
   })
 
   onMounted(() => {
-    if (aniMounted)
-      toggleMAni()
+    if (aniMounted) {
+      nextTick(() => {
+        toggleMAni()
+      })
+    }
     if (!aniRouteNameChange)
       stop()
+    if (!aniSuspense)
+      stopWatchSus()
   })
 
   return {
     animatingMounted,
     animatingWatch,
+    animatingSuspense,
+    getSuspenseStatus,
   }
 }

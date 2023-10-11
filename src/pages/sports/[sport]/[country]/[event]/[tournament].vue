@@ -624,7 +624,7 @@ function onOpenLiveSwitch() {}
                       </div>
                     </template>
                     <template #default>
-                      <div class="legs scroll-y">
+                      <div class="scroll-y legs">
                         <div class="leg">
                           <span>handicap - Texas Rangers (-0.5)</span>
                           <BaseButton type="text">
@@ -650,8 +650,10 @@ function onOpenLiveSwitch() {}
                         </div>
                       </template>
                       <template #default>
-                        <div v-for="market in temp.markets" :key="market.id" class="market">
-                          <AppSportsBetButton v-for="outcome in market.outcomes" :key="outcome.id" layout="horizontal" />
+                        <div class="market">
+                          <template v-for="market in temp.markets" :key="market.id">
+                            <AppSportsBetButton v-for="outcome in market.outcomes" :key="outcome.id" layout="horizontal" />
+                          </template>
                         </div>
                       </template>
                     </BaseSecondaryAccordion>
@@ -699,6 +701,9 @@ function onOpenLiveSwitch() {}
                       <div class="correct-score-wrapper">
                         <AppBallRange v-model="rangeNum" title="Team BDS" />
                         <AppBallRange title="Team Whales" />
+                        <div style="display: flex;">
+                          <AppSportsBetButton layout="horizontal" is-na />
+                        </div>
                       </div>
                     </div>
                   </template>
@@ -734,6 +739,7 @@ function onOpenLiveSwitch() {}
         </div>
       </div>
     </div>
+    <AppBetData mode="sports" />
   </div>
 </template>
 
@@ -889,6 +895,7 @@ video {
 }
 .tg-sports-country-event-betdetail {
   --tg-base-switch-style-bg: var(--tg-text-green);
+  padding-bottom: var(--tg-spacing-16);
   .sports-detail-wrapper {
     margin-top: var(--tg-spacing-32);
     .content-wrapper {
