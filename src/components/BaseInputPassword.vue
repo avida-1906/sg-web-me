@@ -39,7 +39,7 @@ const changeText = function (e: any) {
   <div class="base-input-password">
     <input ref="inputRef" :value="modelValue" type="text" maxlength="6" @input="changeText" @blur="onBlur">
     <ul class="password-wrap" :class="{ 'width-auto': widthAuto }" @click="onFocus">
-      <li v-for="item in 6" :key="item" :class="{ active: textLength === (item - 1), show: entered > (item - 1) }">
+      <li v-for="item in 6" :key="item" :class="{ 'active': textLength === (item - 1), 'show': entered > (item - 1), 'active-bg': textLength !== null }">
         <i />
         <b />
       </li>
@@ -105,6 +105,9 @@ const changeText = function (e: any) {
           animation: 1s cursor-flicker infinite;
           -webkit-animation: 1s cursor-flicker infinite;
         }
+      }
+      &.active-bg{
+        border-color: var(--tg-border-color-deep-grey);
       }
       @keyframes cursor-flicker {
         0% {
