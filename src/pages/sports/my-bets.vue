@@ -24,7 +24,12 @@ const { page, prev, next, hasMore } = useList(ApiMemberFavList)
       <BaseEmpty>
         <template #icon>
           <div>
-            <BaseIcon style="font-size: var(--tg-empty-icon-size);margin-bottom: var(--tg-spacing-24);" name="uni-empty-betslip" />
+            <BaseIcon
+              style="
+                font-size: var(--tg-empty-icon-size);
+                margin-bottom: var(--tg-spacing-24);"
+              name="uni-empty-betslip"
+            />
           </div>
         </template>
         <template #description>
@@ -32,7 +37,9 @@ const { page, prev, next, hasMore } = useList(ApiMemberFavList)
         </template>
         <template #default>
           <BaseButton
-            type="text" padding0 style=" --tg-base-button-text-default-color:var(--tg-text-white)"
+            type="text"
+            padding0
+            style=" --tg-base-button-text-default-color:var(--tg-text-white)"
             @click="router.push('/sports')"
           >
             立即开始下注！
