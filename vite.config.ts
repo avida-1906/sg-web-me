@@ -13,38 +13,27 @@ import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import { visualizer } from 'rollup-plugin-visualizer'
 import { chunkSplitPlugin } from 'vite-plugin-chunk-split'
 
-/**
- "dependencies": {
-    "@types/qs": "^6.9.8",
-    "@unhead/vue": "^1.1.30",
-    "@unocss/reset": "^0.53.5",
-    "@vueuse/core": "^10.2.1",
-    "@vueuse/head": "^1.1.26",
-    "axios": "^1.5.0",
-    "big.js": "^6.2.1",
-    "dayjs": "^1.11.9",
-    "floating-vue": "2.0.0-beta.24",
-    "lodash": "^4.17.21",
-    "nprogress": "^0.2.0",
-    "pinia": "^2.1.4",
-    "precompiled-mqtt": "4.3.14-beta",
-    "qrcode.vue": "^3.4.1",
-    "qs": "^6.11.2",
-    "vee-validate": "^4.11.3",
-    "vue": "^3.3.4",
-    "vue-demi": "^0.14.5",
-    "vue-i18n": "^9.2.2",
-    "vue-request": "^2.0.3",
-    "vue-router": "^4.2.4"
-  },
-  src: {
-    components
-    composables
-    pages
-    styles
-    utils
-  }
- */
+const core1 = [
+  'vue',
+  'vue-router',
+  'pinia',
+]
+const core2 = [
+  'vue-i18n',
+  '@vueuse/head',
+  '@vueuse/core',
+]
+const utils = [
+  'lodash-es',
+  'big.js',
+  'vee-validate',
+  'dayjs',
+  'axios',
+  'vue-request',
+  'qs',
+]
+const precompiledMqtt = ['precompiled-mqtt']
+const floatingVue = ['floating-vue']
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd()) as unknown as ImportMetaEnv
@@ -176,17 +165,22 @@ export default defineConfig(({ mode }) => {
       chunkSplitPlugin({
         strategy: 'default',
         customSplitting: {
-
+          core1,
+          core2,
+          utils,
+          precompiledMqtt,
+          floatingVue,
         },
         customChunk: (args) => {
-          // files into pages directory is export in single files
           let { file, id, moduleId, root } = args
           if (file.startsWith('src/pages/')) {
-            console.log('file', file)
             file = file.substring(4)
             file = file.replace(/\.[^.$]+$/, '')
             return file
           }
+          if (file.startsWith('src/utils/'))
+            return 'src-utils'
+
           return null
         },
       }),
@@ -218,41 +212,13 @@ export default defineConfig(({ mode }) => {
       },
     },
 
-    // build: {
-    //   minify: 'terser',
-    //   assetsInlineLimit: 0,
-    //   chunkSizeWarningLimit: 600,
-    //   rollupOptions: {
-    //     external: /\.md$/,
-    //     // output: {
-    //     //   chunkFileNames: 'assets/chunks/[name]-[hash].js',
-    //     //   entryFileNames: 'assets/js/[name]-[hash].js',
-    //     //   assetFileNames: 'assets/[ext]/[name]-[hash].[ext]',
-    //     //   manualChunks(id) {
-    //     //     if (['src/styles/reset.scss', 'src/styles/main.scss', 'src/styles/animate.scss'].some(v => id.includes(v)))
-    //     //       return 'styles'
-
-    //     //     if (['src/components'].some(v => id.includes(v)))
-    //     //       return 'src-components'
-
-    //     //     if (id.includes('node_modules/dayjs'))
-    //     //       return 'dayjs'
-
-    //     //     // node_modules/@floating-ui
-    //     //     if (['node_modules/@floating-ui', 'node_modules/floating-vue'].some(v => id.includes(v)))
-    //     //       return 'floating-ui'
-
-    //     //     if (id.includes('node_modules/axios'))
-    //     //       return 'axios'
-
-    //     //     if (['node_modules/pinia', 'node_modules/@vueuse/core', 'node_modules/@vueuse/shared', 'node_modules/big.js', 'node_modules/vue-request', 'node_modules/vue-i18n', 'node_modules/vue-router'].some(v => id.includes(v)))
-    //     //       return 'vue-plugins'
-
-    //     //     if (['src/utils'].some(v => id.includes(v)))
-    //     //       return 'utils'
-    //     //   },
-    //     // },
-    //   },
-    // },
+    build: {
+      minify: 'terser',
+      assetsInlineLimit: 0,
+      chunkSizeWarningLimit: 600,
+      rollupOptions: {
+        external: /\.md$/,
+      },
+    },
   }
 })

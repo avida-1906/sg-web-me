@@ -22,7 +22,10 @@ export const useAppStore = defineStore('app', () => {
   /** 是否登录，程序用这个变量来判断是否登录 */
   const { bool: isLogin, setTrue: setLoginTrue, setFalse: setLoginFalse } = useBoolean(!!getToken())
   /** 用户余额数据 */
-  const { data: balanceMap } = useRequest(ApiMemberBalanceList, {
+  const {
+    data: balanceMap,
+    runAsync: updateUserBalance,
+  } = useRequest(ApiMemberBalanceList, {
     ready: isLogin,
     manual: false,
   })
@@ -122,6 +125,7 @@ export const useAppStore = defineStore('app', () => {
     isBalanceEnough,
     changeCurrentGlobalCurrency,
     updateUserInfo,
+    updateUserBalance,
   }
 })
 
