@@ -1,7 +1,8 @@
+export type SuspenseStatus = 'suspense-resolved' | 'suspense-pending' | 'suspense-fallback' | ''
+
 export function useLayoutAnimate({ aniMounted, aniRouteNameChange, aniSuspense }: { aniMounted?: boolean; aniRouteNameChange?: boolean; aniSuspense?: boolean }) {
   const route = useRoute()
 
-  // const { bool: suspenseResolved, setFalse: setSusFalse, setTrue: setSusTrue } = useBoolean(false)
   const { bool: animatingMounted, setFalse: setMFalse, setTrue: setMTrue } = useBoolean(false)
   const { bool: animatingWatch, setFalse: setWFalse, setTrue: setWTrue } = useBoolean(false)
   const { bool: animatingSuspense, setFalse: setSFalse, setTrue: setSTrue } = useBoolean(false)
@@ -28,16 +29,15 @@ export function useLayoutAnimate({ aniMounted, aniRouteNameChange, aniSuspense }
     }, 300)
   }
 
-  function getSuspenseStatus(status: any) {
-    console.log('status === ', status)
+  function getSuspenseStatus(status: SuspenseStatus) {
     suspenseStatus.value = status
     setTimeout(() => {
       suspenseStatus.value = ''
-    }, 100)
+    }, 10)
   }
 
-  const stopWatchSus = watch(suspenseStatus, (val) => {
-    if (val === 'SuspenseResolved' && aniSuspense) {
+  const stopWatchSus = watch(suspenseStatus, (val: SuspenseStatus) => {
+    if (val === 'suspense-resolved' && aniSuspense) {
       nextTick(() => {
         toggleSAni()
       })

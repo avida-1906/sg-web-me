@@ -42,7 +42,7 @@ const homeOverlayIsShow = computed(() => {
 })
 
 function suspenseResolved() {
-  getSuspenseStatus('SuspenseResolved')
+  getSuspenseStatus('suspense-resolved')
 }
 
 watch(() => width.value, (newWidth) => {
