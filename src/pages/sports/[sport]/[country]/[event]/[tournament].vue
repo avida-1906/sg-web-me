@@ -650,8 +650,10 @@ function onOpenLiveSwitch() {}
                         </div>
                       </template>
                       <template #default>
-                        <div v-for="market in temp.markets" :key="market.id" class="market">
-                          <AppSportsBetButton v-for="outcome in market.outcomes" :key="outcome.id" layout="horizontal" />
+                        <div class="market">
+                          <template v-for="market in temp.markets" :key="market.id">
+                            <AppSportsBetButton v-for="outcome in market.outcomes" :key="outcome.id" layout="horizontal" />
+                          </template>
                         </div>
                       </template>
                     </BaseSecondaryAccordion>
@@ -737,8 +739,8 @@ function onOpenLiveSwitch() {}
         </div>
       </div>
     </div>
+    <AppBetData mode="sports" />
   </div>
-  <AppBetData mode="sports" />
 </template>
 
 <style lang="scss" scoped>
