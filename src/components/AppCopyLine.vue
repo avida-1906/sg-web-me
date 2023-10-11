@@ -11,7 +11,7 @@ const { copy } = useClipboard()
 </script>
 
 <template>
-  <div class="app-copy-line wrapper">
+  <div class="wrapper app-copy-line">
     <div class="link">
       <span v-if="title" class="title">{{ title }}</span>
       <div class="wrap">
@@ -19,12 +19,20 @@ const { copy } = useClipboard()
           <div class="input-wrap">
             <div class="input-content square-right-border">
               <input
-                :value="msg" autocomplete="on" readonly class="input spacing-expanded" type="text"
+                :value="msg"
+                autocomplete="on"
+                readonly
+                class="input spacing-expanded"
+                type="text"
                 tooltipvisible="false"
               >
             </div>
             <div class="input-button-wrap">
-              <VMenu :triggers="['click']" placement="top" :hide-triggers="(triggers: any) => [...triggers, 'hover']">
+              <VMenu
+                :triggers="['click']"
+                placement="top"
+                :hide-triggers="(triggers: any) => [...triggers, 'hover']"
+              >
                 <BaseButton @click="copy(msg)">
                   <BaseIcon name="uni-doc" />
                 </BaseButton>

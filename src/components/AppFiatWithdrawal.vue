@@ -1,14 +1,24 @@
 <script setup lang='ts'>
-import { getCurrentLanguage, getCurrentLanguageIdForBackend } from '~/modules/i18n'
+import {
+  getCurrentLanguage,
+  getCurrentLanguageIdForBackend,
+} from '~/modules/i18n'
 
 const { isLessThanXs } = storeToRefs(useWindowStore())
-const { bankcardList, runAsyncBankcardList, bindBanks, selectBank } = useApiMemberBankCardList()
+const {
+  bankcardList,
+  runAsyncBankcardList,
+  bindBanks,
+  selectBank,
+} = useApiMemberBankCardList()
 
 const amount = ref('')
 /** '1' 银行卡， '2' pix 除了巴西其他国家都是银行卡 */
 const currentType = ref(getCurrentLanguage() === 'pt-BR' ? '2' : '1')
 
-await application.allSettled([runAsyncBankcardList({ bank_type: getCurrentLanguageIdForBackend() })])
+await application.allSettled(
+  [runAsyncBankcardList({ bank_type: getCurrentLanguageIdForBackend() })],
+)
 </script>
 
 <template>
@@ -22,9 +32,19 @@ await application.allSettled([runAsyncBankcardList({ bank_type: getCurrentLangua
       <AppWithdrawalDepositType v-model="currentType" />
       <div class="withdrawal-info">
         <BaseLabel v-if="currentType === '1'" label="出款银行卡" must>
-          <BaseSelect v-model="selectBank" :options="bindBanks" must banks theme popper>
+          <BaseSelect
+            v-model="selectBank"
+            :options="bindBanks"
+            must
+            banks
+            theme
+            popper
+          >
             <template #option="{ data: { item, parentWidth } }">
-              <div class="scroll-x bank-options" :style="{ width: `${parentWidth + 24}px` }">
+              <div
+                class="scroll-x bank-options"
+                :style="{ width: `${parentWidth + 24}px` }"
+              >
                 <div class="option-row">
                   <BaseIcon name="fiat-bank" />
                   <div class="bank-info" :class="{ 'is-mobile': isLessThanXs }">

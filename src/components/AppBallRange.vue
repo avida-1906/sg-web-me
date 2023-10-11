@@ -40,11 +40,27 @@ watch(range, (val) => {
 <template>
   <div class="app-ball-range wrapper">
     <span v-if="title" class="title">{{ title }}</span>
-    <div class="input-wrapper" :style="{ '--current': `${100 * (range - min) / (max - min)}%` }">
-      <input v-model="range" type="range" :min="min" :max="max" :step="step" class="">
+    <div
+      class="input-wrapper"
+      :style="{ '--current': `${100 * (range - min) / (max - min)}%` }"
+    >
+      <input
+        v-model="range"
+        type="range"
+        :min="min"
+        :max="max"
+        :step="step"
+      >
     </div>
-    <div class="labels" :style="`grid-template-columns: repeat(${labels.length}, 1fr);`">
-      <span v-for="label, idx in labels" :key="label" class="label" :style="{ left: `${(100 * idx / (labels.length - 1)).toFixed(2)}%` }">{{ label }}</span>
+    <div
+      class="labels"
+      :style="`grid-template-columns: repeat(${labels.length}, 1fr);`"
+    >
+      <span
+        v-for="label, idx in labels" :key="label"
+        class="label"
+        :style="{ left: `${(100 * idx / (labels.length - 1)).toFixed(2)}%` }"
+      >{{ label }}</span>
     </div>
   </div>
 </template>
@@ -65,7 +81,8 @@ watch(range, (val) => {
     height: 21px;
     width: 21px;
     border-radius: 10.5px;
-    background-image: radial-gradient(circle,var(--tg-text-blue) 45%,var(--tg-text-white) 47%);
+    background-image:
+    radial-gradient(circle,var(--tg-text-blue) 45%,var(--tg-text-white) 47%);
     cursor: pointer
 }
 
@@ -77,7 +94,8 @@ watch(range, (val) => {
     height: 21px;
     width: 21px;
     border-radius: 10.5px;
-    background-image: radial-gradient(circle,var(--tg-text-blue) 45%,var(--tg-text-white) 47%);
+    background-image:
+    radial-gradient(circle,var(--tg-text-blue) 45%,var(--tg-text-white) 47%);
     cursor: pointer
 }
 

@@ -1,6 +1,12 @@
-export type SuspenseStatus = 'suspense-resolved' | 'suspense-pending' | 'suspense-fallback' | ''
+export type SuspenseStatus =
+'suspense-resolved' | 'suspense-pending' | 'suspense-fallback' | ''
 
-export function useLayoutAnimate({ aniMounted, aniRouteNameChange, aniSuspense }: { aniMounted?: boolean; aniRouteNameChange?: boolean; aniSuspense?: boolean }) {
+export function useLayoutAnimate({
+  aniMounted,
+  aniRouteNameChange,
+  aniSuspense,
+}:
+{ aniMounted?: boolean; aniRouteNameChange?: boolean; aniSuspense?: boolean }) {
   const route = useRoute()
 
   const { bool: animatingMounted, setFalse: setMFalse, setTrue: setMTrue } = useBoolean(false)

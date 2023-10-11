@@ -32,10 +32,18 @@ const isSports = computed(() => route.name?.toString().includes('sports'))
           </template>
         </Transition>
         <div v-if="!isSwitching" class="game-type">
-          <div class="casino" :class="{ active: isCasino }" @click="router.push('/casino')">
+          <div
+            class="casino"
+            :class="{ active: isCasino }"
+            @click="router.push('/casino')"
+          >
             <span>{{ t('casino') }}</span>
           </div>
-          <div class="sports" :class="{ active: isSports }" @click="router.push('/sports')">
+          <div
+            class="sports"
+            :class="{ active: isSports }"
+            @click="router.push('/sports')"
+          >
             <span>{{ t('sports') }}</span>
           </div>
         </div>

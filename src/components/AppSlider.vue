@@ -35,10 +35,12 @@ const itemWidthPercent = ref(0) // 百分比
 const { x } = useScroll(gallery, { behavior: 'smooth' }) // , isScrolling, arrivedState, directions
 
 const outerWidth = computed(() => appContentWidth.value)
-const pageWidth = computed(() => pageInfo.pageSize * itemWidthPercent.value * outerWidth.value)
+const pageWidth = computed(() =>
+  pageInfo.pageSize * itemWidthPercent.value * outerWidth.value)
 const isEnd = computed(() => {
   if (props.data) {
-    const temp = (x.value + outerWidth.value) / (itemWidthPercent.value * outerWidth.value)
+    const temp = (x.value + outerWidth.value)
+    / (itemWidthPercent.value * outerWidth.value)
     return temp >= props.data.length - 0.1
   }
 })
@@ -112,17 +114,26 @@ watchEffect(() => {
           <BaseIcon name="uni-arrowleft-line" />
         </BaseButton>
         <BaseButton
-          type="round-line-right" :disabled="scrollLeftItemsCount + pageInfo.pageSize >= data.length + 1"
+          type="round-line-right"
+          :disabled="scrollLeftItemsCount + pageInfo.pageSize
+            >= data.length + 1"
           @click="nextPage"
         >
           <BaseIcon name="uni-arrowright-line" />
         </BaseButton>
       </div>
     </div>
-    <div ref="gallery" class="scroll-x gallery hide-scrollbar" :class="[galleryClass]">
+    <div
+      ref="gallery"
+      class="scroll-x hide-scrollbar gallery"
+      :class="[galleryClass]"
+    >
       <div
         v-for="item, idx in data" :key="item.id" class="slide"
-        :class="{ faded: idx === data.length - 1 ? !isEnd : idx >= scrollLeftItemsCount + pageInfo.pageSize }"
+        :class="{
+          faded: idx === data.length - 1
+            ? !isEnd : idx >= scrollLeftItemsCount + pageInfo.pageSize,
+        }"
       >
         <div class="item">
           <slot :item="item">
@@ -132,8 +143,11 @@ watchEffect(() => {
         </div>
       </div>
       <div
-        v-if="data.length && (showViewAll || $slots.viewAll)" class="slide see-all"
-        :class="{ faded: scrollLeftItemsCount + pageInfo.pageSize < data.length + 1 }"
+        v-if="data.length && (showViewAll || $slots.viewAll)"
+        class="slide see-all"
+        :class="{
+          faded: scrollLeftItemsCount + pageInfo.pageSize < data.length + 1,
+        }"
       >
         <div class="item" @click="goAllPage">
           <slot name="viewAll">

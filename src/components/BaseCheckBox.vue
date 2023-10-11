@@ -27,7 +27,11 @@ function onClick() {
 <template>
   <div class="base-check-box">
     <div class="check-box-wrap" :class="{ disabled }" @click="onClick">
-      <span ref="outerRef" class="outer" :class="[shape, { active: modelValue, focus: bool }]">
+      <span
+        ref="outerRef"
+        class="outer"
+        :class="[shape, { active: modelValue, focus: bool }]"
+      >
         <span v-show="modelValue" class="icon" />
       </span>
       <slot />

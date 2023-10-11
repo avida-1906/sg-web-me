@@ -115,7 +115,6 @@ declare module 'vue' {
     BaseRadio: typeof import('./components/BaseRadio.vue')['default']
     BaseRadioGroup: typeof import('./components/BaseRadioGroup.vue')['default']
     BaseSearch: typeof import('./components/BaseSearch.vue')['default']
-    BaseSecd: typeof import('./components/BaseSecd.vue')['default']
     BaseSecondaryAccordion: typeof import('./components/BaseSecondaryAccordion.vue')['default']
     BaseSelect: typeof import('./components/BaseSelect.vue')['default']
     BaseSkeleton: typeof import('./components/BaseSkeleton.vue')['default']

@@ -53,7 +53,10 @@ const changeAisle = function (value: string) {
 <template>
   <div class="app-fiat-currency-deposit">
     <div class="deposit-wrap">
-      <AppWithdrawalDepositType v-model="currentType" :deposit-type="depositType" />
+      <AppWithdrawalDepositType
+        v-model="currentType"
+        :deposit-type="depositType"
+      />
       <div v-if="currentType === '1'" class="type-online-bank">
         <div v-if="bankStep === '1'" class="bank-first">
           <BaseLabel label="收款人姓名:" label-content="为及时到账，请务必输入正确的存款人姓名">
@@ -69,7 +72,12 @@ const changeAisle = function (value: string) {
           <p class="second-title">
             收款人信息
           </p>
-          <p v-for="item, index in payeeInformation" :key="index" class="copy-row" @click="toCopy(item)">
+          <p
+            v-for="item, index in payeeInformation"
+            :key="index"
+            class="copy-row"
+            @click="toCopy(item)"
+          >
             {{ item }}
             <BaseIcon name="uni-doc" />
           </p>

@@ -15,7 +15,9 @@ const lastOneNumberRegOk = computed(() => lastOneNumberReg.test(props.password))
 const lengthOk = computed(() => props.password.length >= 8)
 
 watch(() => props.password, () => {
-  emit('pass', upperLowerRegOk.value && lastOneNumberRegOk.value && lengthOk.value)
+  emit('pass', upperLowerRegOk.value
+  && lastOneNumberRegOk.value
+  && lengthOk.value)
 })
 </script>
 

@@ -69,7 +69,10 @@ defineExpose({ getFocus })
     <div :class="[layout]">
       <label v-if="label">{{ label }} <span v-if="must">*</span></label>
       <div class="input-wrap" :class="{ mb0 }">
-        <div class="input-box" :class="{ 'active': isFocus, error, 'radio-r-o': $slots['right-button'] }">
+        <div
+          class="input-box"
+          :class="{ 'active': isFocus, error, 'radio-r-o': $slots['right-button'] }"
+        >
           <div v-show="$slots['left-icon']" class="left-icon">
             <slot name="left-icon" />
           </div>
@@ -78,14 +81,29 @@ defineExpose({ getFocus })
             <textarea
               ref="iTextarea"
               :value="modelValue"
-              min="0" class="scroll-y" :placeholder="placeholder" :class="{ 'p-r-0': $slots['right-icon'] }"
-              autocomplete="new-password" :disabled="disabled" @input="onInput" @focus="onFocus" @blur="onBlur"
+              min="0"
+              class="scroll-y"
+              :placeholder="placeholder"
+              :class="{ 'p-r-0': $slots['right-icon'] }"
+              autocomplete="new-password"
+              :disabled="disabled"
+              @input="onInput"
+              @focus="onFocus"
+              @blur="onBlur"
               @keydown.enter="keyDownEnter"
             />
           </div>
           <input
-            v-else ref="iInput" :value="modelValue" min="0" :placeholder="placeholder" :type="_type" :disabled="disabled"
-            :class="{ 'p-r-0': $slots['right-icon'], 'p-l-0': $slots['left-icon'] }" @input="onInput" @focus="onFocus" @blur="onBlur"
+            v-else
+            ref="iInput"
+            :value="modelValue" min="0"
+            :placeholder="placeholder"
+            :type="_type"
+            :disabled="disabled"
+            :class="{ 'p-r-0': $slots['right-icon'], 'p-l-0': $slots['left-icon'] }"
+            @input="onInput"
+            @focus="onFocus"
+            @blur="onBlur"
           >
           <div v-if="isPassword" class="eye" @click="toggleType">
             <BaseIcon :name="`uni-eye-${_type === 'password' ? 'open' : 'close'}`" />

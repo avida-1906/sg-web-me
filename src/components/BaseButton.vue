@@ -15,7 +15,10 @@ const props = withDefaults(defineProps<Props>(), {
   type: 'default',
   size: 'xs',
 })
-const size = computed(() => props.padding0 ? '' : `var(--tg-spacing-button-padding-vertical-${props.size}) var(--tg-spacing-button-padding-horizontal-${props.size})`)
+const size = computed(() => props.padding0
+  ? ''
+  : `var(--tg-spacing-button-padding-vertical-${props.size}) 
+var(--tg-spacing-button-padding-horizontal-${props.size})`)
 </script>
 
 <template>
@@ -27,7 +30,11 @@ const size = computed(() => props.padding0 ? '' : `var(--tg-spacing-button-paddi
     <div v-if="loading" class="loading">
       <BaseIcon name="chess-frame2" class="ani-roll" />
     </div>
-    <div v-else class="content" :style="{ fontSize: fontSize ? `var(--tg-spacing-${fontSize})` : '' }">
+    <div
+      v-else
+      class="content"
+      :style="{ fontSize: fontSize ? `var(--tg-spacing-${fontSize})` : '' }"
+    >
       <slot />
     </div>
   </button>

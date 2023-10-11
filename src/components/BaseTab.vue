@@ -23,7 +23,7 @@ const emit = defineEmits(['update:modelValue', 'change'])
 
 const router = useRouter()
 
-function onClick(tab: TabItem, event: any) {
+function onClick(tab: TabItem) {
   if (tab.value === props.modelValue || tab.disabled)
     return
 
@@ -41,7 +41,9 @@ function onClick(tab: TabItem, event: any) {
       <div class="tab-wrap" :class="[shape]">
         <div
           v-for="t, i in list" :key="i" class="tab"
-          :class="[`tab-${size}`, { active: t.value === modelValue, disabled: t.disabled }]" @click="onClick(t, $event)"
+          :class="[`tab-${size}`,
+                   { active: t.value === modelValue, disabled: t.disabled }]"
+          @click="onClick(t, $event)"
         >
           <div class="content">
             <slot name="tab" :item="t">

@@ -16,7 +16,10 @@ const active = computed(() => route.path === props.menuItem.path)
 
 <template>
   <div class="tg-app-menu-item">
-    <div class="menu-item" :class="{ active, disabled: menuItem.token && !isLogin }">
+    <div
+      class="menu-item"
+      :class="{ active, disabled: menuItem.token && !isLogin }"
+    >
       <BaseIcon v-if="menuItem.icon" :name="menuItem.icon" />
       <span>{{ menuItem.title }}</span>
     </div>

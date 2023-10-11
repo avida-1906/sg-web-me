@@ -13,10 +13,21 @@ const closeDialog = inject('closeDialog', () => {})
 const { t } = useI18n()
 const { bool: checkboxValue } = useBoolean(false)
 const { bool: pwdStatus, setBool: setPwdStatus } = useBoolean(false)
-const { bool: isShowPasswordVerify, setTrue: setShowPasswordVerifyTrue, setFalse: setShowPasswordVerifyFalse } = useBoolean(false)
-const { bool: needSaveFormData, setTrue: setNeedSaveFormDataTrue } = useBoolean(false)
+const {
+  bool: isShowPasswordVerify,
+  setTrue: setShowPasswordVerifyTrue,
+  setFalse: setShowPasswordVerifyFalse,
+} = useBoolean(false)
+const {
+  bool: needSaveFormData,
+  setTrue: setNeedSaveFormDataTrue,
+} = useBoolean(false)
 const { openTermsConditionsDialog } = useTermsConditionsDialog()
-const { value: email, errorMessage: emailErrorMsg, validate: valiEmail } = useField<string>('email', (value) => {
+const {
+  value: email,
+  errorMessage: emailErrorMsg,
+  validate: valiEmail,
+} = useField<string>('email', (value) => {
   if (!value)
     return t('pls_enter_email_address')
 
@@ -28,7 +39,11 @@ const { value: email, errorMessage: emailErrorMsg, validate: valiEmail } = useFi
     // 请输入有效的电邮地址
   return ''
 })
-const { value: username, errorMessage: usernameErrorMsg, validate: valiUsername } = useField<string>('username', (value) => {
+const {
+  value: username,
+  errorMessage: usernameErrorMsg,
+  validate: valiUsername,
+} = useField<string>('username', (value) => {
   if (!value)
     return t('pls_enter_username')
 
@@ -39,7 +54,11 @@ const { value: username, errorMessage: usernameErrorMsg, validate: valiUsername 
   // 您的用户名长度必须为 3 – 14 个字符。
   return ''
 })
-const { value: password, errorMessage: pwdErrorMsg, validate: valiPassword } = useField<string>('password', (value) => {
+const {
+  value: password,
+  errorMessage: pwdErrorMsg,
+  validate: valiPassword,
+} = useField<string>('password', (value) => {
   if (!value)
     return t('pls_enter_password')
 
@@ -58,14 +77,20 @@ const { value: password, errorMessage: pwdErrorMsg, validate: valiPassword } = u
 const birthdayInputRef = ref()
 const birthday = ref('')
 
-const regParams = computed(() => Session.get(STORAGE_REG_PARAMS_KEYWORDS)?.value as IRegParams)
+const regParams = computed(() =>
+  Session.get(STORAGE_REG_PARAMS_KEYWORDS)?.value as IRegParams)
 
 async function getMemberReg() {
   await valiEmail()
   await valiUsername()
   await valiPassword()
   birthdayInputRef.value.valiBirthday()
-  if (!emailErrorMsg.value && !usernameErrorMsg.value && !pwdErrorMsg.value && birthday.value) {
+  if (
+    !emailErrorMsg.value
+    && !usernameErrorMsg.value
+    && !pwdErrorMsg.value
+    && birthday.value
+  ) {
     const paramsReg = {
       email: email.value,
       username: username.value,
@@ -112,19 +137,33 @@ onUnmounted(() => {
     </div>
     <div class="app-register-input-box">
       <BaseLabel :label="t('email_address')" must-small>
-        <BaseInput v-model="email" :msg="emailErrorMsg" :placeholder="t('pls_enter_email_address')" />
+        <BaseInput
+          v-model="email"
+          :msg="emailErrorMsg"
+          :placeholder="t('pls_enter_email_address')"
+        />
       </BaseLabel>
       <BaseLabel :label="t('username')" must-small>
-        <BaseInput v-model="username" :msg="usernameErrorMsg" :placeholder="t('pls_enter_username')" />
+        <BaseInput
+          v-model="username"
+          :msg="usernameErrorMsg"
+          :placeholder="t('pls_enter_username')"
+        />
       </BaseLabel>
       <BaseLabel :label="t('password')" must-small>
         <BaseInput
-          v-model="password" :msg="pwdErrorMsg" :placeholder="t('pls_enter_password')" type="password"
+          v-model="password"
+          :msg="pwdErrorMsg"
+          :placeholder="t('pls_enter_password')" type="password"
           autocomplete="current-password"
           :password="password"
           @focus="onFocus" @blur="onBlur"
         />
-        <AppPasswordVerify v-show="isShowPasswordVerify" :password="password" @pass="passwordVerifyPass" />
+        <AppPasswordVerify
+          v-show="isShowPasswordVerify"
+          :password="password"
+          @pass="passwordVerifyPass"
+        />
       </BaseLabel>
       <BaseLabel label="出生日期" must-small>
         <BaseInputBirthday ref="birthdayInputRef" v-model="birthday" />
@@ -134,7 +173,12 @@ onUnmounted(() => {
       <BaseCheckBox v-model="checkboxValue">
         {{ t('code_optional') }}
       </BaseCheckBox>
-      <BaseButton class="app-register-btn" bg-style="secondary" size="xl" @click.stop="getMemberReg">
+      <BaseButton
+        class="app-register-btn"
+        bg-style="secondary"
+        size="xl"
+        @click.stop="getMemberReg"
+      >
         {{ t('continue') }}
       </BaseButton>
     </div>

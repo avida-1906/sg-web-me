@@ -25,8 +25,10 @@ const { bool: isError, setTrue: setErrorTrue } = useBoolean(false)
 const { VITE_CASINO_IMG_CLOUD_URL } = getEnv()
 
 const imgUrl = computed(() => {
-  if (props.isGame)
-    return `${VITE_CASINO_IMG_CLOUD_URL}${props.url.replace('%lang%', getCurrentLanguageForBackend())}`
+  if (props.isGame) {
+    return `${VITE_CASINO_IMG_CLOUD_URL}
+  ${props.url.replace('%lang%', getCurrentLanguageForBackend())}`
+  }
 
   if (props.isCloud)
     return `${VITE_CASINO_IMG_CLOUD_URL}${props.url}`
@@ -43,7 +45,11 @@ function handleClick() {
   <div class="base-image">
     <img
       v-if="!isError"
-      :style="`width: ${width}; height: ${height}; object-fit: ${fit};`" loading="lazy" :src="imgUrl" @click="handleClick" @error="setErrorTrue"
+      :style="`width: ${width}; height: ${height}; object-fit: ${fit};`"
+      loading="lazy"
+      :src="imgUrl"
+      @click="handleClick"
+      @error="setErrorTrue"
     >
     <div v-else class="center img-load">
       <BaseEmpty>

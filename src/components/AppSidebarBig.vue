@@ -46,7 +46,10 @@ onMounted(() => {
   const tempId = Local.get(STORAGE_MENU_EXPAND_DOMID)?.value ?? ''
   if (tempId) {
     const t = setTimeout(() => {
-      innerRef.value.scrollTo({ top: document.getElementById(tempId as string)!.offsetTop - 60, behavior: 'smooth' })
+      innerRef.value.scrollTo({
+        top: document.getElementById(tempId as string)!.offsetTop - 60,
+        behavior: 'smooth',
+      })
       clearTimeout(t)
     }, 500)
   }
@@ -58,11 +61,19 @@ onBeforeUnmount(() => {
 
 <template>
   <div class="big-warp">
-    <div ref="innerRef" class="scroll-y inner-content scroll-contain" :class="{ 'is-full-screen': isMobile }">
+    <div
+      ref="innerRef"
+      class="scroll-y scroll-contain inner-content"
+      :class="{ 'is-full-screen': isMobile }"
+    >
       <!-- Casino -->
       <template v-if="isMobile ? isGameTypeCasino : isCasino">
         <div class="menu-box">
-          <div v-for="item, i in casinoMenu" :key="i" @click="() => handleClickItem(item)">
+          <div
+            v-for="item, i in casinoMenu"
+            :key="i"
+            @click="() => handleClickItem(item)"
+          >
             <AppMenuItem :menu-item="item" />
           </div>
         </div>
@@ -71,12 +82,20 @@ onBeforeUnmount(() => {
             {{ t('game') }}
           </div>
           <div class="content-line" />
-          <div v-for="item, i in casinoGameList" :key="i" @click="() => handleClickItem(item)">
+          <div
+            v-for="item, i in casinoGameList"
+            :key="i"
+            @click="() => handleClickItem(item)"
+          >
             <AppMenuItem :menu-item="item" />
           </div>
         </div>
         <div class="menu-box">
-          <div v-for="item, i in casinoGameProvider" :key="i" @click="() => handleClickItem(item)">
+          <div
+            v-for="item, i in casinoGameProvider"
+            :key="i"
+            @click="() => handleClickItem(item)"
+          >
             <AppMenuItem :menu-item="item" />
           </div>
         </div>
@@ -85,7 +104,11 @@ onBeforeUnmount(() => {
       <!-- Sports -->
       <template v-if="isMobile ? isGameTypeSports : isSports">
         <div class="menu-box">
-          <div v-for="item, i in sportsMenu" :key="i" @click="() => handleClickItem(item)">
+          <div
+            v-for="item, i in sportsMenu"
+            :key="i"
+            @click="() => handleClickItem(item)"
+          >
             <AppMenuItem :menu-item="item" />
           </div>
         </div>
@@ -95,30 +118,54 @@ onBeforeUnmount(() => {
           </div>
           <div class="content-line" />
           <div v-for="item, i in sportHotGames" :key="i">
-            <AppAccordionMenu :menu-item="item" :time-stamp="timeStamp" @close-other-menu="closeMenu" />
+            <AppAccordionMenu
+              :menu-item="item"
+              :time-stamp="timeStamp"
+              @close-other-menu="closeMenu"
+            />
           </div>
         </div>
         <div class="menu-box">
           <div v-for="item, i in sportEsports" :key="i">
-            <AppAccordionMenu :menu-item="item" :time-stamp="timeStamp" @close-other-menu="closeMenu" />
+            <AppAccordionMenu
+              :menu-item="item"
+              :time-stamp="timeStamp"
+              @close-other-menu="closeMenu"
+            />
           </div>
         </div>
         <div class="menu-box">
           <div v-for="item, i in sportGameList" :key="i">
-            <AppAccordionMenu :menu-item="item" :time-stamp="timeStamp" @close-other-menu="closeMenu" />
+            <AppAccordionMenu
+              :menu-item="item"
+              :time-stamp="timeStamp"
+              @close-other-menu="closeMenu"
+            />
           </div>
         </div>
         <div class="menu-box">
           <div v-for="item, i in sportOddType" :key="i">
-            <AppAccordionMenu :menu-item="item" :time-stamp="timeStamp" @close-other-menu="closeMenu" />
+            <AppAccordionMenu
+              :menu-item="item"
+              :time-stamp="timeStamp"
+              @close-other-menu="closeMenu"
+            />
           </div>
         </div>
       </template>
 
       <!-- 个人中心 -->
-      <div v-for="menu, m in [staticMenu1, staticMenu2]" :key="m" class="menu-box">
+      <div
+        v-for="menu, m in [staticMenu1, staticMenu2]"
+        :key="m"
+        class="menu-box"
+      >
         <div v-for="item, i in menu" :key="i">
-          <AppAccordionMenu :menu-item="item" :time-stamp="timeStamp" @close-other-menu="closeMenu" />
+          <AppAccordionMenu
+            :menu-item="item"
+            :time-stamp="timeStamp"
+            @close-other-menu="closeMenu"
+          />
         </div>
       </div>
     </div>

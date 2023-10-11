@@ -26,7 +26,13 @@ export function useList<R extends IResponseList<unknown>, P extends unknown[]>(
   const page_size = ref(defaultPagination?.page_size || Number(VITE_CASINO_HOME_PAGE_SIZE))
   const list = shallowRef<GetProperty<R, 'd'>>([])
 
-  const { run: _run, runAsync: _runAsync, refresh: _refresh, params, ...rest } = useRequest<R, P>(service, {
+  const {
+    run: _run,
+    runAsync: _runAsync,
+    refresh: _refresh,
+    params,
+    ...rest
+  } = useRequest<R, P>(service, {
     ...options,
     onSuccess(response: any) {
       if (page.value === 1)

@@ -64,7 +64,8 @@ function change() {
   border-radius: var(--tg-radius-default);
   overflow: hidden;
   background: var(--app-primary-main);
-  box-shadow: 0px 1px 2px 1px #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.25)};
+  box-shadow:
+  0px 1px 2px 1px #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.25)};
   &-head {
     height: 45px;
     display: flex;

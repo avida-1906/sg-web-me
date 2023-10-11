@@ -42,16 +42,26 @@ const lineHeight = computed(() => {
   <div
     class="base-divider w-100" :class="[
       {
-        [`base-divider-title-position-${titlePlacement}`]: $slots.default && titlePlacement,
+        [`base-divider-title-position-${titlePlacement}`]:
+          $slots.default && titlePlacement,
       },
     ]"
     :style="cssVars"
   >
-    <div class="base-divider-line base-divider-line-left" :style="{ height: lineHeight }" />
-    <div v-if="showTitle" class="base-divider-title" :style="{ margin: `0 ${marginSpacing}` }">
+    <div
+      class="base-divider-line base-divider-line-left"
+      :style="{ height: lineHeight }"
+    />
+    <div
+      v-if="showTitle" class="base-divider-title"
+      :style="{ margin: `0 ${marginSpacing}` }"
+    >
       <slot />
     </div>
-    <div class="base-divider-line base-divider-line-right" :style="{ height: lineHeight }" />
+    <div
+      class="base-divider-line base-divider-line-right"
+      :style="{ height: lineHeight }"
+    />
   </div>
 </template>
 
@@ -59,7 +69,8 @@ const lineHeight = computed(() => {
 .base-divider.base-divider-title-position-left .base-divider-line.base-divider-line-left {
     width: var(--leftOffset);
 }
-.base-divider.base-divider-title-position-right .base-divider-line.base-divider-line-right {
+.base-divider.base-divider-title-position-right
+.base-divider-line.base-divider-line-right {
     width: var(--rightOffset);
 }
 .base-divider {

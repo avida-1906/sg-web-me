@@ -11,12 +11,17 @@ const noticeList = [{}]
         <BaseIcon class="title-icon" name="navbar-notice" />
         <span>通知</span>
       </div>
-      <BaseButton class="close-btn" type="text" size="md" @click="closeRightSidebar">
+      <BaseButton
+        class="close-btn"
+        type="text"
+        size="md"
+        @click="closeRightSidebar"
+      >
         <BaseIcon class="close-icon" name="uni-close" />
       </BaseButton>
     </div>
     <div class="notice-list">
-      <div class="scrollable scroll-y scroll-contain notice-scroll">
+      <div class="scroll-y scrollable scroll-contain notice-scroll">
         <template v-if="noticeList.length > 0">
           <div class="contain-top">
             <span>新推出</span>
@@ -29,9 +34,21 @@ const noticeList = [{}]
             <div class="item-right">
               <div class="right-state">
                 <span>存款待定中{{ i }}</span>
-                <BaseBadge status="success" style="color: var(--tg-secondary-light);font-size: var(--tg-font-size-xs);font-weight: var(--tg-font-weight-normal);" text="1天前" />
+                <BaseBadge
+                  status="success"
+                  style="color: var(--tg-secondary-light);
+                font-size: var(--tg-font-size-xs);
+                font-weight: var(--tg-font-weight-normal);"
+                  text="1天前"
+                />
               </div>
-              <div>已登机您 100.00000000 <AppCurrencyIcon style="display: inline;vertical-align: middle;" :currency-type="EnumCurrency.BTC" /> 的存款</div>
+              <div>
+                已登机您 100.00000000
+                <AppCurrencyIcon
+                  style="display: inline;vertical-align: middle;"
+                  :currency-type="EnumCurrency.BTC"
+                /> 的存款
+              </div>
               <div>待确认</div>
             </div>
           </div>
@@ -126,7 +143,11 @@ const noticeList = [{}]
           font-size: var(--tg-font-size-lg);
           --tg-icon-color:var(--tg-primary-success);
           background: var(--tg-secondary-grey);
-          border-radius: var(--tg-radius-default) var(--tg-radius-none) var(--tg-radius-none) var(--tg-radius-default);
+          border-radius:
+          var(--tg-radius-default)
+          var(--tg-radius-none)
+          var(--tg-radius-none)
+          var(--tg-radius-default);
         }
         .item-right{
           display: flex;
@@ -137,7 +158,11 @@ const noticeList = [{}]
           flex-direction: column;
           justify-content: space-between;
           background: var(--tg-secondary-main);
-          border-radius: var(--tg-radius-none) var(--tg-radius-default) var(--tg-radius-default) var(--tg-radius-none);
+          border-radius:
+          var(--tg-radius-none)
+          var(--tg-radius-default)
+           var(--tg-radius-default)
+           var(--tg-radius-none);
           .right-state{
             display: flex;
             color:var(--tg-text-white);

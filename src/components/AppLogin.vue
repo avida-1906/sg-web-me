@@ -3,8 +3,16 @@ const closeDialog = inject('closeDialog', () => {})
 
 const { t } = useI18n()
 const appStore = useAppStore()
-const { bool: isShowPasswordVerify, setTrue: setShowPasswordVerifyTrue, setBool: setShowPasswordVerifyBool } = useBoolean(false)
-const { value: username, errorMessage: usernameErrorMsg, validate: valiUsername } = useField<string>('username', (value) => {
+const {
+  bool: isShowPasswordVerify,
+  setTrue: setShowPasswordVerifyTrue,
+  setBool: setShowPasswordVerifyBool,
+} = useBoolean(false)
+const {
+  value: username,
+  errorMessage: usernameErrorMsg,
+  validate: valiUsername,
+} = useField<string>('username', (value) => {
   if (!value)
     return t('pls_enter_email_or_username')
 
@@ -13,7 +21,11 @@ const { value: username, errorMessage: usernameErrorMsg, validate: valiUsername 
 
   return ''
 })
-const { value: password, errorMessage: pwdErrorMsg, validate: valiPassword } = useField<string>('password', (value) => {
+const {
+  value: password,
+  errorMessage: pwdErrorMsg,
+  validate: valiPassword,
+} = useField<string>('password', (value) => {
   if (!value)
     return t('pls_enter_password')
 
@@ -28,7 +40,10 @@ const { value: password, errorMessage: pwdErrorMsg, validate: valiPassword } = u
 
   return ''
 })
-const { run: runMemberLogin, loading: isLoading } = useRequest(() => ApiMemberLogin({
+const {
+  run: runMemberLogin,
+  loading: isLoading,
+} = useRequest(() => ApiMemberLogin({
   username: username.value,
   password: password.value,
   device_number: application.getDeviceNumber(),
@@ -61,18 +76,35 @@ function passwordVerifyPass(status: boolean) {
   <div class="app-login">
     <div class="app-login-input-box">
       <BaseLabel :label="t('email_or_username')" must-small>
-        <BaseInput v-model="username" :msg="usernameErrorMsg" :placeholder="t('pls_enter_email_or_username')" />
+        <BaseInput
+          v-model="username"
+          :msg="usernameErrorMsg"
+          :placeholder="t('pls_enter_email_or_username')"
+        />
       </BaseLabel>
       <BaseLabel :label="t('password')" must-small>
         <BaseInput
-          v-model="password" :msg="pwdErrorMsg" :placeholder="t('pls_enter_password')" type="password"
+          v-model="password"
+          :msg="pwdErrorMsg"
+          :placeholder="t('pls_enter_password')"
+          type="password"
           autocomplete="current-password"
           :password="password"
           @focus="onFocus"
         />
       </BaseLabel>
-      <AppPasswordVerify v-show="isShowPasswordVerify" :password="password" @pass="passwordVerifyPass" />
-      <BaseButton class="app-login-btn" bg-style="secondary" :loading="isLoading" size="xl" @click.stop="getMemberLogin">
+      <AppPasswordVerify
+        v-show="isShowPasswordVerify"
+        :password="password"
+        @pass="passwordVerifyPass"
+      />
+      <BaseButton
+        class="app-login-btn"
+        bg-style="secondary"
+        :loading="isLoading"
+        size="xl"
+        @click.stop="getMemberLogin"
+      >
         <span class="login-text">
           {{ t('login') }}
         </span>

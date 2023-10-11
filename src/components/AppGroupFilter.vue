@@ -1,5 +1,9 @@
 <script lang="ts" setup>
-import { EnumCasinoApiGameType, EnumCasinoGameType, EnumCasinoSortType } from '~/utils/enums'
+import {
+  EnumCasinoApiGameType,
+  EnumCasinoGameType,
+  EnumCasinoSortType,
+} from '~/utils/enums'
 
 interface Props {
   gameType: string
@@ -18,12 +22,23 @@ const selectValue = ref(props.sortType)
 const selectOptions = [
   { icon: 'spt-sort-az', label: 'A-Z', value: EnumCasinoSortType.nameA },
   { icon: 'spt-sort-az', label: 'Z-A', value: EnumCasinoSortType.nameZ },
-  { icon: 'chess-bonus-rounds', label: t('casino_sort_popular'), value: EnumCasinoSortType.hot },
-  { icon: 'chess-slot-machine', label: t('casino_sort_featured'), value: EnumCasinoSortType.recommend },
+  {
+    icon: 'chess-bonus-rounds',
+    label: t('casino_sort_popular'),
+    value: EnumCasinoSortType.hot,
+  },
+  {
+    icon: 'chess-slot-machine',
+    label: t('casino_sort_featured'),
+    value: EnumCasinoSortType.recommend,
+  },
 ]
 const platformCheckedValues = ref([])
 
-const isCasinoGame = computed(() => (Object.values(EnumCasinoGameType) as Array<string>).includes(props.gameType))
+const isCasinoGame = computed(() => {
+  return (Object.values(EnumCasinoGameType) as Array<string>)
+    .includes(props.gameType)
+})
 const platformOptions = computed(() => {
   return platformList.value.map((p) => {
     const label = p.en_name
@@ -32,7 +47,11 @@ const platformOptions = computed(() => {
     const isChecked = false
     return { ...p, label, value, count, isChecked }
   }).filter((item) => {
-    return props.gameType === 'live' ? item.game_type === EnumCasinoApiGameType.LIVE : props.gameType === 'slot' ? item.game_type === EnumCasinoApiGameType.SLOT : !!item
+    return props.gameType === 'live'
+      ? item.game_type === EnumCasinoApiGameType.LIVE
+      : props.gameType === 'slot'
+        ? item.game_type === EnumCasinoApiGameType.SLOT
+        : !!item
   })
 })
 
@@ -73,14 +92,24 @@ function resetPlatformChecked() {
             <template #popper>
               <div>
                 <section class="base-check-pop-inner">
-                  <BaseCheckboxGroup v-model="platformCheckedValues" :list="platformOptions" size="mid" @check="onCheckedPlatform">
+                  <BaseCheckboxGroup
+                    v-model="platformCheckedValues"
+                    :list="platformOptions"
+                    size="mid"
+                    @check="onCheckedPlatform"
+                  >
                     <template #default="{ item }">
-                      <div class="check-item-label" :class="{ active: item.isChecked }">
+                      <div
+                        class="check-item-label"
+                        :class="{ active: item.isChecked }"
+                      >
                         <div>{{ item.label }}</div>
                         <div class="">
                           <BaseBadge
                             :count="item.count"
-                            :mode="platformCheckedValues.length ? (item.isChecked ? 'active' : 'black') : 'active'"
+                            :mode="platformCheckedValues.length
+                              ? (item.isChecked ? 'active' : 'black')
+                              : 'active'"
                           />
                         </div>
                       </div>
@@ -96,7 +125,12 @@ function resetPlatformChecked() {
         </div>
       </template>
       <template v-else>
-        <BaseButton bg-style="dark" size="md" round @click="$router.push('/casino/collection/provider')">
+        <BaseButton
+          bg-style="dark"
+          size="md"
+          round
+          @click="$router.push('/casino/collection/provider')"
+        >
           {{ $t('casino_filter_provider_all') }}
         </BaseButton>
       </template>
@@ -106,7 +140,12 @@ function resetPlatformChecked() {
         <BaseIcon name="uni-bars" />
         <span class="txt">{{ $t('casino_filter_label_sort') }}</span>
       </div>
-      <BaseSelect v-model="selectValue" :options="selectOptions" popper @select="onSortSelect">
+      <BaseSelect
+        v-model="selectValue"
+        :options="selectOptions"
+        popper
+        @select="onSortSelect"
+      >
         <template #option="{ data: { item, active } }">
           <div class="flex-center-bet sort" :class="{ active }">
             <BaseIcon :name="item.icon" />
@@ -125,7 +164,9 @@ function resetPlatformChecked() {
 .clear-all {
   border-top: 1px solid var(--tg-border-color-grey);
   width: 100%;
-  padding: var(--tg-spacing-button-padding-horizontal-xs) var(--tg-spacing-button-padding-vertical-xs);
+  padding:
+  var(--tg-spacing-button-padding-horizontal-xs)
+  var(--tg-spacing-button-padding-vertical-xs);
   font-weight: var(--tg-font-weight-semibold);
   text-align: center;
   font-size: var(--tg-font-size-default);

@@ -17,7 +17,8 @@ const { platformList } = storeToRefs(useAppStore())
 const closeSearch = inject('closeSearch', () => {})
 const closeSearchH5 = inject('closeSearchH5', () => {})
 
-const gameProviderName = computed(() => platformList.value?.find(a => a.id === props.gameInfo.platform_id)?.name ?? '-')
+const gameProviderName = computed(() =>
+  platformList.value?.find(a => a.id === props.gameInfo.platform_id)?.name ?? '-')
 
 function gameStart(item: Props['gameInfo']) {
   const { id } = item
