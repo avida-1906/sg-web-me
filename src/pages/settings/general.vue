@@ -7,6 +7,8 @@ interface INotifyData {
   message: string
 }
 
+const route = useRoute()
+const router = useRouter()
 const { openNotify } = useNotify()
 const { userInfo } = storeToRefs(useAppStore())
 
@@ -53,6 +55,11 @@ const { run: runMemberUpdate } = useRequest(ApiMemberUpdate, {
     openNotify(notifyData.value)
   },
 })
+const { run: runEmailCheckRequest, loading: loadingEmailCheckRequest } = useRequest(ApiMemberEmailCheckRequest, {
+  onSuccess() {
+    openNotify(notifyData.value)
+  },
+})
 
 const areaCodeOptions = computed(() => {
   return areaCodeData.value?.map((item) => {
@@ -76,6 +83,10 @@ const socialSubmit = function () {
   runMemberUpdate(paramsData.value)
   notifyData.value = { type: 'success', message: '修改成功' }
   setSocialDisabledBtnTrue()
+}
+const emailCheck = function () {
+  runEmailCheckRequest({ email: paramsData.value.email })
+  notifyData.value = { type: 'email', title: '邮电已发送', message: `验证邮电已发送至 +${paramsData.value.email}` }
 }
 
 /** 无法监听对象新旧值，使用深度克隆解决 */
@@ -112,6 +123,19 @@ watch(() => userInfo.value, (newValue) => {
   if (newValue)
     paramsData.value = newValue
 })
+watch(() => route.query, (newValue) => {
+  if (JSON.stringify(newValue) !== '{}' && newValue.email && newValue.uid && newValue.captcha) {
+    const { run } = useRequest(ApiMemberEmailCheck, {
+      onSuccess() {
+        openNotify({ type: 'success', message: '邮箱验证成功!' })
+      },
+    })
+    run({ email: route.query.email as string, uid: route.query.uid as string, captcha: route.query.captcha as string })
+    setTimeout(() => {
+      router.replace(route.path)
+    }, 2000)
+  }
+}, { immediate: true })
 </script>
 
 <template>
@@ -121,7 +145,7 @@ watch(() => userInfo.value, (newValue) => {
         <BaseInput v-model="paramsData.email" placeholder="请绑定邮箱" :disabled="emailVerified" :class="{ 'general-base-input-background': emailVerified }" />
       </BaseLabel>
       <template #btm-right>
-        <BaseButton type="text" :disabled="emailVerified">
+        <BaseButton type="text" :disabled="emailVerified" :loading="loadingEmailCheckRequest" @click="emailCheck">
           重新发送电邮
         </BaseButton>
       </template>
