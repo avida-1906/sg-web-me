@@ -6,11 +6,14 @@ interface Props {
   widthAuto?: boolean
   /** 错误提示 */
   msg?: string
+  /** 是否密文 */
+  isCipherText?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
   modelValue: '',
   widthAuto: false,
+  isCipherText: true,
 })
 const emit = defineEmits(['update:modelValue'])
 
@@ -19,6 +22,10 @@ const inputRef = ref<HTMLElement>()
 const textLength = ref<number | null>(null)
 /** 已输入字符 */
 const entered = ref<number>(0)
+
+const inputValueList = computed(() => {
+  return props.modelValue.split('')
+})
 
 const onFocus = function () {
   inputRef.value?.focus()
@@ -51,10 +58,11 @@ const changeText = function (e: any) {
         :key="item"
         :class="{
           'active': textLength === (item - 1),
-          'show': entered > (item - 1),
+          'show': entered > (item - 1) && props.isCipherText,
           'active-bg': textLength !== null,
         }"
       >
+        <span v-if="!props.isCipherText">{{ inputValueList[(item - 1)] }}</span>
         <i />
         <b />
       </li>
@@ -90,6 +98,10 @@ const changeText = function (e: any) {
       border-radius: 4px;
       border: 2px var(--tg-secondary-main) solid;
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--tg-font-size-lg);
       i{
         position: absolute;
         top: 50%;
