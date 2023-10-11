@@ -56,9 +56,9 @@ watch(route, (val) => {
           <section class="with-menu-container">
             <div class="layout-spacing" :class="{ 'more-than-800': appContentWidth > 800 }">
               <div>
-                <div class="stack x-stretch y-center direction-vertical gap-larger padding-none">
+                <div class="stack x-stretch y-center direction-vertical padding-none gap-larger">
                   <div class="wrap-flex">
-                    <div class="stack y-center padding-none top direction-horizontal x-space-between stretch gap-medium">
+                    <div class="stack y-center padding-none direction-horizontal top x-space-between stretch gap-medium">
                       <div class="stack y-center gap-medium padding-none direction-horizontal title x-flex-start">
                         <BaseIcon :name="icon" />
                         <span>{{ $t(route.meta.withMenuTitle as string) }}</span>

@@ -23,7 +23,7 @@ const {
   isGreaterThanSm,
   isMobile,
 } = storeToRefs(windowStore)
-const { animatingMounted, animatingWatch } = useLayoutAnimate({ aniMounted: true, aniRouteNameChange: true })
+const { animatingSuspense, getSuspenseStatus } = useLayoutAnimate({ aniSuspense: true })
 
 // 内容区宽度
 const homeContainerRef = ref<HTMLElement | null>(null)
@@ -41,7 +41,9 @@ const homeOverlayIsShow = computed(() => {
   return leftIsExpand.value && isLessThanLg.value && !isMobile.value
 })
 
-function suspenseResolved() {}
+function suspenseResolved() {
+  getSuspenseStatus('SuspenseResolved')
+}
 
 watch(() => width.value, (newWidth) => {
   windowStore.setAppContentWidth(newWidth)
@@ -101,7 +103,7 @@ onErrorCaptured((err, instance, info) => {
           <div ref="homeContainerRef" class="only-for-get-width" />
         </AppContent>
         <slot>
-          <div :class="{ 'home-slide-fade-enter-active': animatingMounted || animatingWatch }">
+          <div :class="{ 'home-slide-fade-enter-active': animatingSuspense }">
             <AppContent :is-game-page="isCasinoGames">
               <RouterView v-slot="{ Component }">
                 <template v-if="Component">
