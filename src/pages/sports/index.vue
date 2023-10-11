@@ -12,7 +12,7 @@ const { isMobile } = storeToRefs(useWindowStore())
 const { isLogin } = storeToRefs(useAppStore())
 
 const marketType = ref('all')
-const tabList = [
+const tabList = computed(() => [
   { label: '大厅', value: 'all', icon: 'spt-basketball' },
   {
     label: '我的投注',
@@ -28,7 +28,7 @@ const tabList = [
   },
   { label: '滚球盘', value: 'live', icon: 'spt-ball-plate' },
   { label: '即将开赛', value: 'soon', icon: 'spt-timing' },
-]
+])
 const currentGame = ref('2')
 const gameList = [
   { name: '网球', id: '2', num: 22 },

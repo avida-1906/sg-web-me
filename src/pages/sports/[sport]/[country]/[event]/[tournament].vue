@@ -1014,6 +1014,36 @@ function selectOutcome(v: string, tempid: string, marketid: string) {
                     </div>
                   </template>
                 </BaseSecondaryAccordion>
+                <BaseSecondaryAccordion title="至少在一张地图上获胜">
+                  <template #default>
+                    <div class="market">
+                      <div class="">
+                        <div class="row">
+                          <div class="column heading">
+                            <span class="team-name">DetonatioN FM</span>
+                          </div>
+                          <div class="column">
+                            <AppSportsBetButton layout="horizontal" />
+                          </div>
+                          <div class="column">
+                            <AppSportsBetButton layout="horizontal" />
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="column heading">
+                            <span class="team-name">DetonatioN FM</span>
+                          </div>
+                          <div class="column">
+                            <AppSportsBetButton layout="horizontal" />
+                          </div>
+                          <div class="column">
+                            <AppSportsBetButton layout="horizontal" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </template>
+                </BaseSecondaryAccordion>
               </div>
             </div>
             <div v-if="appContentWidth >= 900" class="sticky-column">
@@ -1077,6 +1107,18 @@ function selectOutcome(v: string, tempid: string, marketid: string) {
   }
 }
 
+.team-name {
+  color: var(--tg-text-white);
+  font-size: var(--tg-font-size-default);
+  font-weight: var(--tg-font-weight-normal);
+  line-height: 1.5;
+  text-align: left;
+  justify-content: flex-start;
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
 .market {
   display: grid;
   color: var(--tg-text-white);
@@ -1093,9 +1135,28 @@ function selectOutcome(v: string, tempid: string, marketid: string) {
     gap: var(--tg-spacing-4);
   }
 
+  .row {
+    display: grid;
+    grid-template-columns: auto 30% 30%;
+    gap: var(--tg-spacing-4);
+    margin-bottom: var(--tg-spacing-12);
+    padding-top: var(--tg-spacing-12);
+    border-top: 2px solid var(--content-border);
+  }
+  .row:first-child {
+    border: none;
+    padding-top: 0;
+  }
+  .row:last-child {
+    margin-bottom: 0;
+  }
+
   .column.heading {
     margin-bottom: var(--tg-spacing-4);
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .correct-score-wrapper {

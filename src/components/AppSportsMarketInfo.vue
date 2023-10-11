@@ -7,6 +7,7 @@ interface Props {
 }
 const props = defineProps<Props>()
 
+const router = useRouter()
 const { width } = storeToRefs(useWindowStore())
 
 const isH5Layout = computed(() => width.value < 575)
@@ -25,20 +26,62 @@ const baseGridAreaClass = computed(() => {
   return isH5Layout.value ? 'grid-three-option-574' : 'grid-three-option-normal'
 })
 const baseGridClass = computed(() => isH5Layout.value ? 'grid-setup-574' : 'grid-setup')
+
+// TODO: 假状态
+const statusIndex = ref(Math.ceil(Math.random() * 5))
+const isCountdown = computed(() => statusIndex.value === 2)
+const isOnAir = computed(() => statusIndex.value === 4)
+const isFinish = computed(() => statusIndex.value === 5)
+const statusText = computed(() => {
+  switch (statusIndex.value) {
+    case 1:
+      return '10月11日周三 14:30'
+    case 2:
+      return '开始时间： 48分钟后'
+    case 3:
+      return '即将开赛'
+    case 4:
+      return '第一盘'
+    case 5:
+      return ''
+    default:
+      return '-'
+  }
+})
+const onBall = ref(Math.ceil(Math.random() * 2))
+const onBallHome = computed(() => onBall.value === 1)
+const onBallAway = computed(() => onBall.value === 2)
 </script>
 
 <template>
-  <div class="app-sports-market-info" :class="[baseGridAreaClass, baseGridClass, { 'is-last': isLast }]">
+  <div
+    class="app-sports-market-info"
+    :class="[baseGridAreaClass, baseGridClass, { 'is-last': isLast }]"
+  >
     <!-- 盘口状态 -->
     <div class="misc">
       <div class="wrapper">
         <div class="fixture-details">
-          <!-- TODO：有5种状态 -->
-          <div class="status live">
-            滚球
+          <!-- 状态 -->
+          <div
+            v-if="isOnAir || isFinish" class="status"
+            :class="{ live: isOnAir, end: isFinish }"
+          >
+            {{ isOnAir ? '滚球' : isFinish ? '已结束' : '' }}
           </div>
-          <span class="text">第二盘</span>
-          <!-- H5时显示在这里 -->
+          <div v-else-if="isCountdown">
+            <svg height="12" width="12" viewBox="0 0 20 20" class="svelte-l8nfzs">
+              <circle r="10" cx="10" cy="10" fill="#72ACED" />
+              <circle
+                r="5" cx="10" cy="10" fill="transparent" stroke="#105EB4"
+                stroke-width="10.5" stroke-dasharray="calc(42 * 31.4 / 100) 31.4"
+                transform="rotate(-90) translate(-20)"
+              />
+            </svg>
+          </div>
+          <span class="text">{{ statusText }}</span>
+
+          <!-- H5时比分显示在这里 -->
           <div v-if="isH5Layout" class="fixture-score-h5">
             <!-- 局分 -->
             <span>1-4</span>
@@ -54,16 +97,16 @@ const baseGridClass = computed(() => isH5Layout.value ? 'grid-setup-574' : 'grid
       <div class="fixture">
         <!-- 主队名称 -->
         <div class="teams-name">
-          <div class="icon left">
+          <div v-if="onBallHome" class="icon left">
             <BaseIcon name="spt-tennis" />
           </div>
-          <span>洛杉矶湖人</span>
+          <span>朱卡耶夫，北比特</span>
         </div>
         <span> - </span>
         <!-- 客队名称 -->
         <div class="teams-name">
-          <span>波士顿凯尔特人</span>
-          <div class="icon right">
+          <span>李喆</span>
+          <div v-if="onBallAway" class="icon right">
             <BaseIcon name="spt-tennis" />
           </div>
         </div>
@@ -71,22 +114,28 @@ const baseGridClass = computed(() => isH5Layout.value ? 'grid-setup-574' : 'grid
     </template>
     <template v-else>
       <!-- 横线 -->
-      <div class="line" :class="{ 'line-bg': index > 0 }" style="grid-area: line" />
-      <div class="line" :class="{ 'line-bg': index > 0 }" style=" grid-area: line2" />
+      <div
+        class="line" :class="{ 'line-bg': index > 0 }"
+        style="grid-area: line"
+      />
+      <div
+        class="line" :class="{ 'line-bg': index > 0 }"
+        style=" grid-area: line2"
+      />
 
       <!-- 队名 -->
       <div class="teams">
         <!-- 主队名称 -->
         <div class="teams-name">
-          <span>洛杉矶湖人</span>
-          <div class="icon">
+          <span>朱卡耶夫，北比特</span>
+          <div v-if="onBallHome" class="icon">
             <BaseIcon name="spt-tennis" />
           </div>
         </div>
         <!-- 客队名称 -->
         <div class="teams-name">
-          <span>波士顿凯尔特人</span>
-          <div class="icon">
+          <span>李喆</span>
+          <div v-if="onBallAway" class="icon">
             <BaseIcon name="spt-tennis" />
           </div>
         </div>
@@ -132,21 +181,30 @@ const baseGridClass = computed(() => isH5Layout.value ? 'grid-setup-574' : 'grid
       <div class="market-name" style="--area: marketName0;">
         <span>获胜</span>
       </div>
-      <div class="outcomes-three" :class="{ 'outcomes-three-h5': isH5Layout }" style="--area: outcomes0;">
+      <div
+        class="outcomes-three" :class="{ 'outcomes-three-h5': isH5Layout }"
+        style="--area: outcomes0;"
+      >
         <AppSportsBetButton layout="horizontal" />
         <AppSportsBetButton layout="horizontal" />
       </div>
       <div class="market-name" style="--area: marketName1;">
         <span>2nd 盘 - 胜利</span>
       </div>
-      <div class="outcomes-three" :class="{ 'outcomes-three-h5': isH5Layout }" style="--area: outcomes1;">
+      <div
+        class="outcomes-three" :class="{ 'outcomes-three-h5': isH5Layout }"
+        style="--area: outcomes1;"
+      >
         <AppSportsBetButton layout="horizontal" />
         <AppSportsBetButton layout="horizontal" />
       </div>
       <div class="market-name" style="--area: marketName2;">
         <span>比赛总数</span>
       </div>
-      <div class="outcomes-three" :class="{ 'outcomes-three-h5': isH5Layout }" style="--area: outcomes2;">
+      <div
+        class="outcomes-three" :class="{ 'outcomes-three-h5': isH5Layout }"
+        style="--area: outcomes2;"
+      >
         <AppSportsOutcomeLocked />
         <!-- <AppSportsBetButton layout="horizontal" />
         <AppSportsBetButton layout="horizontal" /> -->
@@ -155,7 +213,9 @@ const baseGridClass = computed(() => isH5Layout.value ? 'grid-setup-574' : 'grid
 
     <!-- 联赛分类 -->
     <div v-if="isUpcoming || (!isStandard && !isH5Layout)" class="breadcrumb">
-      <BaseBreadcrumbs :list="['网球', 'ITF女子', 'ITF China 11A, Women Singles']" />
+      <BaseBreadcrumbs
+        :list="['网球', 'ITF女子', 'ITF China 11A, Women Singles']"
+      />
     </div>
 
     <!-- 更多盘口 -->
@@ -168,7 +228,10 @@ const baseGridClass = computed(() => isH5Layout.value ? 'grid-setup-574' : 'grid
           <BaseIcon name="spt-live" />
         </BaseButton>
       </div>
-      <BaseButton class="text-btn" type="text" padding0>
+      <BaseButton
+        class="text-btn" type="text" padding0
+        @click="router.push('/sports/a/b/c/d')"
+      >
         <span>+25</span>
       </BaseButton>
     </div>
@@ -218,16 +281,14 @@ const baseGridClass = computed(() => isH5Layout.value ? 'grid-setup-574' : 'grid
         font-feature-settings: "tnum";
         white-space: nowrap;
         line-height: 1.5;
-      }
-
-      .live {
-        background: var(--tg-button-secondary-main);
+        &.live{
+          background: var(--tg-button-secondary-main);
         color: var(--tg-text-white);
-      }
-
-      .end {
-        color: var(--tg-text-lightgrey);
+        }
+        &.end{
+          color: var(--tg-text-lightgrey);
         background: var(--tg-secondary-deepdark);
+        }
       }
 
       .fixture-score-h5 {
