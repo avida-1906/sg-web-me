@@ -28,7 +28,10 @@ const baseGridClass = computed(() => isH5Layout.value ? 'grid-setup-574' : 'grid
 </script>
 
 <template>
-  <div class="app-sports-market-info" :class="[baseGridAreaClass, baseGridClass, { 'is-last': isLast }]">
+  <div
+    class="app-sports-market-info"
+    :class="[baseGridAreaClass, baseGridClass, { 'is-last': isLast }]"
+  >
     <!-- 盘口状态 -->
     <div class="misc">
       <div class="wrapper">
@@ -71,8 +74,14 @@ const baseGridClass = computed(() => isH5Layout.value ? 'grid-setup-574' : 'grid
     </template>
     <template v-else>
       <!-- 横线 -->
-      <div class="line" :class="{ 'line-bg': index > 0 }" style="grid-area: line" />
-      <div class="line" :class="{ 'line-bg': index > 0 }" style=" grid-area: line2" />
+      <div
+        class="line" :class="{ 'line-bg': index > 0 }"
+        style="grid-area: line"
+      />
+      <div
+        class="line" :class="{ 'line-bg': index > 0 }"
+        style=" grid-area: line2"
+      />
 
       <!-- 队名 -->
       <div class="teams">
@@ -132,21 +141,30 @@ const baseGridClass = computed(() => isH5Layout.value ? 'grid-setup-574' : 'grid
       <div class="market-name" style="--area: marketName0;">
         <span>获胜</span>
       </div>
-      <div class="outcomes-three" :class="{ 'outcomes-three-h5': isH5Layout }" style="--area: outcomes0;">
+      <div
+        class="outcomes-three" :class="{ 'outcomes-three-h5': isH5Layout }"
+        style="--area: outcomes0;"
+      >
         <AppSportsBetButton layout="horizontal" />
         <AppSportsBetButton layout="horizontal" />
       </div>
       <div class="market-name" style="--area: marketName1;">
         <span>2nd 盘 - 胜利</span>
       </div>
-      <div class="outcomes-three" :class="{ 'outcomes-three-h5': isH5Layout }" style="--area: outcomes1;">
+      <div
+        class="outcomes-three" :class="{ 'outcomes-three-h5': isH5Layout }"
+        style="--area: outcomes1;"
+      >
         <AppSportsBetButton layout="horizontal" />
         <AppSportsBetButton layout="horizontal" />
       </div>
       <div class="market-name" style="--area: marketName2;">
         <span>比赛总数</span>
       </div>
-      <div class="outcomes-three" :class="{ 'outcomes-three-h5': isH5Layout }" style="--area: outcomes2;">
+      <div
+        class="outcomes-three" :class="{ 'outcomes-three-h5': isH5Layout }"
+        style="--area: outcomes2;"
+      >
         <AppSportsOutcomeLocked />
         <!-- <AppSportsBetButton layout="horizontal" />
         <AppSportsBetButton layout="horizontal" /> -->
@@ -155,7 +173,9 @@ const baseGridClass = computed(() => isH5Layout.value ? 'grid-setup-574' : 'grid
 
     <!-- 联赛分类 -->
     <div v-if="isUpcoming || (!isStandard && !isH5Layout)" class="breadcrumb">
-      <BaseBreadcrumbs :list="['网球', 'ITF女子', 'ITF China 11A, Women Singles']" />
+      <BaseBreadcrumbs
+        :list="['网球', 'ITF女子', 'ITF China 11A, Women Singles']"
+      />
     </div>
 
     <!-- 更多盘口 -->
