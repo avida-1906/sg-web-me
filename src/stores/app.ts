@@ -31,7 +31,7 @@ export const useAppStore = defineStore('app', () => {
     manual: false,
   })
   /** 用户信息 */
-  const { data: userInfo } = useRequest(ApiMemberDetail, {
+  const { data: userInfo, runAsync: updateUserInfo } = useRequest(ApiMemberDetail, {
     ready: isLogin,
     manual: false,
   })
@@ -121,6 +121,7 @@ export const useAppStore = defineStore('app', () => {
     getToken,
     isBalanceEnough,
     changeCurrentGlobalCurrency,
+    updateUserInfo,
   }
 })
 
