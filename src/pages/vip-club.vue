@@ -415,7 +415,11 @@ const toVip = function () {
             解锁专属福利并获得无需任何附加条件即可立即提取的奖金。
           </p>
           <div class="left-btns">
-            <BaseButton bg-style="secondary" size="md" @click="router.push('/casino')">
+            <BaseButton
+              bg-style="secondary"
+              size="md"
+              @click="router.push('/casino')"
+            >
               <span>开始游戏</span>
             </BaseButton>
             <BaseButton size="md" @click.prevent="toVip">
@@ -494,7 +498,12 @@ const toVip = function () {
         </p>
         <div class="scroll-x">
           <div ref="award" class="a-table">
-            <div v-for="item, index in tableData" :key="index" class="table-item" :class="{ sticky: item.sticky }">
+            <div
+              v-for="item, index in tableData"
+              :key="index"
+              class="table-item"
+              :class="{ sticky: item.sticky }"
+            >
               <template v-if="item.empty">
                 <div class="empty" />
               </template>
@@ -527,7 +536,10 @@ const toVip = function () {
               <template #content>
                 <div class="content-wrap">
                   <p>由于我们发放给玩家的奖金数额居多，Stake 的 VIP 计划一向都被评为最佳的在线赌场体验之一。</p>
-                  <p>此外，我们屡获殊荣的支持团队将全天候在线回答您的任何问题。我们在众多在线赌场中拥有最高的客户满意度，也与此同时创建了由全球最热情的一些博彩爱好者所组成的社区。</p>
+                  <p>
+                    此外，我们屡获殊荣的支持团队将全天候在线回答您的任何问题。
+                    我们在众多在线赌场中拥有最高的客户满意度，也与此同时创建了由全球最热情的一些博彩爱好者所组成的社区。
+                  </p>
                 </div>
               </template>
             </BaseCollapse>
@@ -542,7 +554,10 @@ const toVip = function () {
             <BaseCollapse title="如何参加 $75,000 周度抽奖活动？">
               <template #content>
                 <div class="content-wrap">
-                  <p>您在 Stake 的每 $1,000 投注能换来一张抽奖券，而您只需要一张抽奖券便能参加抽奖活动。投注得越多，获得的抽奖券就越多，您的获胜机会也会因而增加。</p>
+                  <p>
+                    您在 Stake 的每 $1,000 投注能换来一张抽奖券，而您只需要一张抽奖券便能参加抽奖活动。
+                    投注得越多，获得的抽奖券就越多，您的获胜机会也会因而增加。
+                  </p>
                 </div>
               </template>
             </BaseCollapse>
@@ -586,14 +601,22 @@ const toVip = function () {
               <template #content>
                 <div class="content-wrap">
                   <p> 充值奖金是根据玩家近期的投注表现计算的。玩家可以选择每日、每小时或每 10 分钟的领取间隔。</p>
-                  <p>点击账户右上角的主用户菜单，在下拉菜单中点击 “VIP” 。在出现的模式窗口上点击 “充值奖金” 选项卡，然后再点击 “领取充值奖金” 即可。您能否被分配一名服务代表将取决于您的总投注额。</p>
+                  <p>
+                    点击账户右上角的主用户菜单，在下拉菜单中点击 “VIP” 。
+                    在出现的模式窗口上点击 “充值奖金” 选项卡，然后再点击 “领取充值奖金” 即可。
+                    您能否被分配一名服务代表将取决于您的总投注额。
+                  </p>
                 </div>
               </template>
             </BaseCollapse>
             <BaseCollapse title="月度奖金将在何时发放？">
               <template #content>
                 <div class="content-wrap">
-                  <p>月度奖金将会每月发放一次，日期一般在 15 日左右。但在某些情况下，发放日可能会稍晚或甚至提早，而这就是为什么它是 Stake 最令人期待的奖金之一。月度奖金一旦发放后，您便将收到电邮通知。为确保您不会错过奖金，请记得也要查看您电邮中的垃圾邮件文件夹。</p>
+                  <p>
+                    月度奖金将会每月发放一次，日期一般在 15 日左右。
+                    但在某些情况下，发放日可能会稍晚或甚至提早，而这就是为什么它是 Stake 最令人期待的奖金之一。
+                    月度奖金一旦发放后，您便将收到电邮通知。为确保您不会错过奖金，请记得也要查看您电邮中的垃圾邮件文件夹。
+                  </p>
                   <p>铜、银和金级的玩家们将通过每日充值奖金领取奖金，而铂金与钻石级的玩家将一次性地领取他们的奖金。</p>
                 </div>
               </template>
@@ -601,7 +624,11 @@ const toVip = function () {
             <BaseCollapse title="如何计算达到下个级别所需要投注的金额?">
               <template #content>
                 <div class="content-wrap">
-                  <p>首先点击账户右上角的主用户菜单，在下拉菜单中点击 “VIP” 查看您 VIP 进度条上的百分比，然后从 100% 减去此数目以获得剩余百分比。接下来将剩余百分比乘以您达到下个级别所剩下的总投注需求即可。</p>
+                  <p>
+                    首先点击账户右上角的主用户菜单，
+                    在下拉菜单中点击 “VIP” 查看您 VIP 进度条上的百分比，然后从 100% 减去此数目以获得剩余百分比。
+                    接下来将剩余百分比乘以您达到下个级别所剩下的总投注需求即可。
+                  </p>
                   <div>
                     <BaseButton type="text" class="base-btn">
                       点击这里以了解更多
@@ -614,7 +641,10 @@ const toVip = function () {
               <template #content>
                 <div class="content-wrap">
                   <p>升级奖金：这是每次升级都会增加的固定奖金。我们将根据您在升级前的盈亏情况以近期游戏表现奖金的形式添加额外金额。</p>
-                  <p>周度与月度奖金：根据您的 VIP 级别您将得到一笔基础金额，之后您在相应的时间段内每投注的 $1,000 将得到额外的金额。</p>
+                  <p>
+                    周度与月度奖金：根据您的 VIP 级别您将得到一笔基础金额，
+                    之后您在相应的时间段内每投注的 $1,000 将得到额外的金额。
+                  </p>
                   <p>每日奖金：充值奖金在到期后将由您的 VIP 服务代表更新。</p>
                 </div>
               </template>
@@ -622,7 +652,10 @@ const toVip = function () {
             <BaseCollapse title="奖金数额是如何计算的？">
               <template #content>
                 <div class="content-wrap">
-                  <p>您所得到的奖金数额是按照您的总投注额和利润计算的。我们坚信玩家们无论输赢都应该得到奖励。只奖励输钱的玩家并不公平，但如果您的运气真的欠佳，我们会再额外增加您的奖金数额！</p>
+                  <p>
+                    您所得到的奖金数额是按照您的总投注额和利润计算的。我们坚信玩家们无论输赢都应该得到奖励。
+                    只奖励输钱的玩家并不公平，但如果您的运气真的欠佳，我们会再额外增加您的奖金数额！
+                  </p>
                 </div>
               </template>
             </BaseCollapse>
@@ -631,14 +664,21 @@ const toVip = function () {
             <BaseCollapse title="我的 VIP 服务代表能为我做什么？">
               <template #content>
                 <div class="content-wrap">
-                  <p>您的 VIP 服务代表将确保您的游戏表现会得到奖励。他们会帮您更新充值奖金、在您的升级过程中给予指导、审查您的体育限制、评估您是否可获得额外奖金以及处理您在网站上遇到的任何问题。</p>
+                  <p>
+                    您的 VIP 服务代表将确保您的游戏表现会得到奖励。
+                    他们会帮您更新充值奖金、在您的升级过程中给予指导、审查您的体育限制、
+                    评估您是否可获得额外奖金以及处理您在网站上遇到的任何问题。
+                  </p>
                 </div>
               </template>
             </BaseCollapse>
             <BaseCollapse title="在被分配了一名 VIP 服务代表后，所获得的充值奖金是一个持续的还是可更新的福利？">
               <template #content>
                 <div class="content-wrap">
-                  <p>当您达到铂金 IV 级别并被分配一名 VIP 服务代表后，您将开始获得可更新的周度充值奖金。每当您的周度充值奖金到期时，您便可联系您的 VIP 服务代表以更新您在接下来 7 天内可领取的充值奖金。</p>
+                  <p>
+                    当您达到铂金 IV 级别并被分配一名 VIP 服务代表后，您将开始获得可更新的周度充值奖金。
+                    每当您的周度充值奖金到期时，您便可联系您的 VIP 服务代表以更新您在接下来 7 天内可领取的充值奖金。
+                  </p>
                   <p>充值奖金的数额是取决于您每周在游戏中的表现，如果您那一周内在利润方面的运气不佳，您将会得到额外的奖金。</p>
                 </div>
               </template>
@@ -646,7 +686,11 @@ const toVip = function () {
             <BaseCollapse title="VIP 服务代表的职责包括了什么，与常规的在线支持人员又有何不同？">
               <template #content>
                 <div class="content-wrap">
-                  <p>VIP 服务代表只分配给铂金 IV 级别以上的玩家。他们可以回答您有关 VIP 计划的问题并确保您领取所有应得的奖金。VIP 服务代表也能够在确保奖金符合您需求的同时更频繁地发送更大的奖金。</p>
+                  <p>
+                    VIP 服务代表只分配给铂金 IV 级别以上的玩家。
+                    他们可以回答您有关 VIP 计划的问题并确保您领取所有应得的奖金。
+                    VIP 服务代表也能够在确保奖金符合您需求的同时更频繁地发送更大的奖金。
+                  </p>
                   <p>在线支持可以帮助您解决在平台上遇到的任何技术问题。</p>
                 </div>
               </template>
@@ -654,14 +698,21 @@ const toVip = function () {
             <BaseCollapse title="我什么时候可以被分配 VIP 服务代表？">
               <template #content>
                 <div class="content-wrap">
-                  <p>玩家一旦达到铂金 IV 级后便会被分配一名 VIP 服务代表。这名服务代表将成为您的专属支持人员，帮助您解决所有疑问并在您的游戏过程中提供任何所需的指导。请注意，您是否符合资格还取决于您近期的活动。</p>
+                  <p>
+                    玩家一旦达到铂金 IV 级后便会被分配一名 VIP 服务代表。
+                    这名服务代表将成为您的专属支持人员，帮助您解决所有疑问并在您的游戏过程中提供任何所需的指导。
+                    请注意，您是否符合资格还取决于您近期的活动。
+                  </p>
                 </div>
               </template>
             </BaseCollapse>
             <BaseCollapse title="万一我的 VIP 服务代表休假去了该怎么办？">
               <template #content>
                 <div class="content-wrap">
-                  <p>请确保向您的 VIP 服务代表索取他特有 VIP 服务频道的邀请链接。如果您漏掉了这一步，您可以联系在线支持获取一个 VIP 备份链接。这将是您的服务代表回来之前的临时备份代表。</p>
+                  <p>
+                    请确保向您的 VIP 服务代表索取他特有 VIP 服务频道的邀请链接。
+                    如果您漏掉了这一步，您可以联系在线支持获取一个 VIP 备份链接。这将是您的服务代表回来之前的临时备份代表。
+                  </p>
                 </div>
               </template>
             </BaseCollapse>

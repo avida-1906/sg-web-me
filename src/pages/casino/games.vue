@@ -25,14 +25,21 @@ run()
 
 <template>
   <div class="casino-games" :class="{ theatre: isTheatre && !isMobile }">
-    <AppIframe :id="id" ref="appIframeRef" :is-theatre="isTheatre" @change-theatre="setBool" />
+    <AppIframe
+      :id="id"
+      ref="appIframeRef"
+      :is-theatre="isTheatre"
+      @change-theatre="setBool"
+    />
   </div>
   <section class="page-content">
     <AppDesc />
     <div class="home-container margin-auto">
       <div class="content-wrapper">
         <AppSlider
-          icon="chess-original-game" :title="$t('casino_games_recommend')" :data="recGameList"
+          icon="chess-original-game"
+          :title="$t('casino_games_recommend')"
+          :data="recGameList"
           game-type="rec"
         />
         <AppProviderSlider />

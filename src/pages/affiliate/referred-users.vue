@@ -62,14 +62,21 @@ const data = reactive([
   <div class="tg-affiliate-referred-users">
     <div class="select-sort-wrap">
       <div class="select-sort">
-        <BaseSelect v-model="campaignName" label="活动名称" :options="campaignOptions" />
+        <BaseSelect
+          v-model="campaignName"
+          label="活动名称"
+          :options="campaignOptions"
+        />
       </div>
       <div class="select-sort">
         <BaseSelect v-model="sortedBy" label="排序依据" :options="sortedOptions" />
       </div>
     </div>
     <div class="content">
-      <BaseTable :columns="columns" :data-source="data">
+      <BaseTable
+        :columns="columns"
+        :data-source="data"
+      >
         <template #name="{ record }">
           <div class="line-height-2">
             {{ record.name }}
@@ -99,14 +106,10 @@ const data = reactive([
   grid-template-columns: repeat(auto-fit, minmax(min-content, 200px));
 }
 .select-sort {
-  // display: flex;
   --tg-base-select-style-padding-x: var(--tg-spacing-7);
   --tg-base-select-style-padding-y: var(--tg-spacing-7);
   --tg-base-select-style-padding-right: var(--tg-spacing-28);
   margin-bottom: var(--tg-spacing-16);
-}
-.tg-affiliate-referred-users {
-
 }
 </style>
 
