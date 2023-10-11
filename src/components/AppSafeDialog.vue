@@ -15,6 +15,7 @@ const isDeposit = computed(() => activeTab.value === 'deposit')
 // const isWithdraw = computed(() => activeTab.value === 'withdraw')
 
 const activeCurrency = ref()
+const isWithdraw = ref(true)
 
 function changeCurrency(item: any) {
   activeCurrency.value = item
@@ -48,7 +49,6 @@ const updateParams = ref<IMemberBalanceLockerUpdate>({
   amount: amount.value, type: updateType.value, currency_name: 'CNY',
 })
 const { run: runLockerUpdate } = useRequest(ApiMemberBalanceLockerUpdate, {
-  manual: true,
   onSuccess() {
     openNotify({
       type: 'success',
@@ -58,11 +58,14 @@ const { run: runLockerUpdate } = useRequest(ApiMemberBalanceLockerUpdate, {
     resetPassword()
   },
 })
+const { runAsync: runAsyncBalanceLockerShow } = useRequest(ApiMemberBalanceLockerShow)
 async function handleUpdate() {
   await valiAmount()
   if (!errAmount.value)
-    runLockerUpdate(updateParams.value)
+    runLockerUpdate({ ...updateParams.value, amount: amount.value })
 }
+
+application.allSettled([runAsyncBalanceLockerShow()])
 </script>
 
 <template>
@@ -71,8 +74,11 @@ async function handleUpdate() {
       <BaseTab v-model="activeTab" :list="tabOptions" />
       <div class="center">
         <div class="flex-col-start">
-          <span>货币</span>
-          <AppWallet @change="changeCurrency" />
+          <span>{{ activeTab === 'deposit' ? '账户货币' : '保险库货币' }}</span>
+          <AppSelectCurrency
+            :show-balance="isWithdraw"
+            @change="changeCurrency"
+          />
         </div>
       </div>
       <div class="amount">

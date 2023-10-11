@@ -11,7 +11,7 @@ interface Props {
   /** 是否验证 */
   verified?: boolean
   /** 按钮文字 */
-  btnText: string
+  btnText?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
