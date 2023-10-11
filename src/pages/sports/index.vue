@@ -14,8 +14,18 @@ const { isLogin } = storeToRefs(useAppStore())
 const marketType = ref('all')
 const tabList = [
   { label: '大厅', value: 'all', icon: 'spt-basketball' },
-  { label: '我的投注', value: 'my-bet', icon: 'spt-user-bet', disabled: !isLogin.value },
-  { label: '收藏夹', value: 'fav', icon: 'uni-favorites', disabled: !isLogin.value },
+  {
+    label: '我的投注',
+    value: 'my-bet',
+    icon: 'spt-user-bet',
+    disabled: !isLogin.value,
+  },
+  {
+    label: '收藏夹',
+    value: 'fav',
+    icon: 'uni-favorites',
+    disabled: !isLogin.value,
+  },
   { label: '滚球盘', value: 'live', icon: 'spt-ball-plate' },
   { label: '即将开赛', value: 'soon', icon: 'spt-timing' },
 ]
@@ -54,7 +64,12 @@ const threeOptions = [
         <AppGameSearch game-type="2" />
       </div>
       <div class="mt-24">
-        <BaseTab v-model="marketType" size="large" :list="tabList" :center="false" />
+        <BaseTab
+          v-model="marketType"
+          size="large"
+          :list="tabList"
+          :center="false"
+        />
       </div>
     </div>
 
@@ -78,8 +93,19 @@ const threeOptions = [
             </template>
           </VMenu>
 
-          <BaseSelect v-if="isStandard" v-model="baseType" :options="baseOptions" popper />
-          <BaseSelect v-else v-model="threeType" :options="threeOptions" popper disabled />
+          <BaseSelect
+            v-if="isStandard"
+            v-model="baseType"
+            :options="baseOptions"
+            popper
+          />
+          <BaseSelect
+            v-else
+            v-model="threeType"
+            :options="threeOptions"
+            popper
+            disabled
+          />
         </div>
       </div>
       <AppSportsTab v-model="currentGame" :list="gameList" />

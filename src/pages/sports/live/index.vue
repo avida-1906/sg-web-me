@@ -41,8 +41,19 @@ const threeOptions = [
           </template>
         </VMenu>
 
-        <BaseSelect v-if="isStandard" v-model="baseType" :options="baseOptions" popper />
-        <BaseSelect v-else v-model="threeType" :options="threeOptions" popper disabled />
+        <BaseSelect
+          v-if="isStandard"
+          v-model="baseType"
+          :options="baseOptions"
+          popper
+        />
+        <BaseSelect
+          v-else
+          v-model="threeType"
+          :options="threeOptions"
+          popper
+          disabled
+        />
       </div>
     </div>
     <AppSportsTab v-model="currentGame" :list="gameList" />
