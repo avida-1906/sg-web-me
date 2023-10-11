@@ -16,8 +16,16 @@ const componentPercent = computed<number>(() => {
 
 <template>
   <div class="app-percentage">
-    <BaseProgress class="app-percentage-bar" :width="180" :percent="componentPercent" :stroke-width="2" :show-info="false" />
-    <span class="text">正显示 {{ props.total }} 款游戏中的 {{ props.percentage }} 个</span>
+    <BaseProgress
+      class="app-percentage-bar"
+      :width="180"
+      :percent="componentPercent"
+      :stroke-width="2"
+      :show-info="false"
+    />
+    <span class="text">
+      正显示 {{ props.total }} 款游戏中的 {{ props.percentage }} 个
+    </span>
   </div>
 </template>
 

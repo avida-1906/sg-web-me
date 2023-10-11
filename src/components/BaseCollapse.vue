@@ -33,7 +33,10 @@ function handleClickHeader() {
       <div class="center">
         <slot name="top-right" />
         <div class="header-icon">
-          <BaseIcon style="display: block;" :name="`uni-arrow-${isShow ? 'down' : 'left'}`" />
+          <BaseIcon
+            style="display: block;"
+            :name="`uni-arrow-${isShow ? 'down' : 'left'}`"
+          />
         </div>
       </div>
     </div>

@@ -36,7 +36,12 @@ watchEffect(() => {
 </script>
 
 <template>
-  <div ref="sliderOuter" class="card-list" :class="[galleryClass, isProvider ? 'card-list-provider' : '']" :style="style">
+  <div
+    ref="sliderOuter"
+    class="card-list"
+    :class="[galleryClass, isProvider ? 'card-list-provider' : '']"
+    :style="style"
+  >
     <template v-if="list && list.length > 0">
       <div v-for="item in list" :key="item.id" class="wrap">
         <slot :item="item">

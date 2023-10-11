@@ -20,7 +20,11 @@ const { isLessThanLg, isGreaterThanSm } = storeToRefs(useWindowStore())
 // loading加载
 const { bool: loading, setFalse: setLoadingFalse } = useBoolean(true)
 // 是否开启隐身模式
-const { bool: isHidden, setFalse: setIsHiddenFalse, setTrue: setIsHiddenTrue } = useBoolean(false)
+const {
+  bool: isHidden,
+  setFalse: setIsHiddenFalse,
+  setTrue: setIsHiddenTrue,
+} = useBoolean(false)
 
 // tab值
 const activeTab: Ref<string> = ref('ranking-list')
@@ -282,7 +286,11 @@ onMounted(() => {
       <BaseTab v-model="activeTab" :list="getTabOptions" size="large" />
       <div v-if="isGreaterThanSm" class="select-ranking center">
         <VMenu placement="top">
-          <div class="switch-hidden" :style="{ '--tg-icon-color': isHidden ? '#fff' : '' }" @click.stop="changeHidden">
+          <div
+            class="switch-hidden"
+            :style="{ '--tg-icon-color': isHidden ? '#fff' : '' }"
+            @click.stop="changeHidden"
+          >
             <BaseIcon name="uni-hidden" />
           </div>
           <template #popper>
@@ -335,12 +343,18 @@ onMounted(() => {
       </template>
       <template #betMoney="{ record }">
         <div style="display: inline-block;">
-          <AppAmount :amount="record.betMoney" :currency-type="record.currencyType" />
+          <AppAmount
+            :amount="record.betMoney"
+            :currency-type="record.currencyType"
+          />
         </div>
       </template>
       <template #payMoney="{ record }">
         <div style="display: inline-block;color: var(--tg-text-green);">
-          <AppAmount :amount="record.betMoney" :currency-type="record.currencyType" />
+          <AppAmount
+            :amount="record.betMoney"
+            :currency-type="record.currencyType"
+          />
         </div>
       </template>
       <template #ranking="{ index }">

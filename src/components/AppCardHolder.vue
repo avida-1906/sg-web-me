@@ -4,7 +4,12 @@ import type { IUserCurrencyList } from '~/stores/app'
 
 const closeDialog = inject('closeDialog', () => {})
 
-const { bankcardList, runAsyncBankcardList, bindBanks, openName } = useApiMemberBankCardList()
+const {
+  bankcardList,
+  runAsyncBankcardList,
+  bindBanks,
+  openName,
+} = useApiMemberBankCardList()
 // 虚拟币钱包地址
 const { list: WalletList, run: runWalletList } = useList(ApiMemberWalletList)
 const {
@@ -13,13 +18,24 @@ const {
 } = useCurrencyData()
 
 const toAddBankcards = function () {
-  const { openAddBankcardsDialog } = useAddBankcardsDialog({ title: '绑定银行卡', openName: openName.value, isFirst: !bankcardList.value?.length })
+  const {
+    openAddBankcardsDialog,
+  } = useAddBankcardsDialog({
+    title: '绑定银行卡',
+    openName: openName.value,
+    isFirst: !bankcardList.value?.length,
+  })
   closeDialog()
   nextTick(() => openAddBankcardsDialog())
 }
 const toAddVirAddress = function (item: IUserCurrencyList) {
   console.log(item)
-  const { openVirAddressDialog } = useVirAddressDialog({ title: `绑定${item.type}`, icon: 'btc' })
+  const {
+    openVirAddressDialog,
+  } = useVirAddressDialog({
+    title: `绑定${item.type}`,
+    icon: 'btc',
+  })
   closeDialog()
   nextTick(() => openVirAddressDialog({
     contractType: 'TRC20',
@@ -38,9 +54,18 @@ const showCollapse = function (item: any) {
 <template>
   <div class="app-card-holder">
     <div class="layout-spacing reset wallet-address">
-      <BaseCollapse v-for="item in renderCurrencyList" :key="item.type" title="0" @click-head="showCollapse(item)">
+      <BaseCollapse
+        v-for="item in renderCurrencyList"
+        :key="item.type"
+        title="0"
+        @click-head="showCollapse(item)"
+      >
         <template #top-right>
-          <AppCurrencyIcon class="currency-icon" show-name :currency-type="item.type" />
+          <AppCurrencyIcon
+            class="currency-icon"
+            show-name
+            :currency-type="item.type"
+          />
         </template>
         <template #content>
           <div v-if="isVirtualCurrency(item.type)" class="layout-spacing reset">
@@ -48,12 +73,19 @@ const showCollapse = function (item: any) {
               <span>{{ tmp.wallet_address }}</span>
               <span class="type">{{ tmp.contract_type }}</span>
             </div>
-            <BaseButton type="text" class="add-btn" @click="toAddVirAddress(item)">
+            <BaseButton
+              type="text"
+              class="add-btn"
+              @click="toAddVirAddress(item)"
+            >
               +
             </BaseButton>
           </div>
           <div v-else class="layout-spacing reset">
-            <div v-for="tmp, index in bindBanks" :key="index" class="address-row">
+            <div
+              v-for="tmp, index in bindBanks"
+              :key="index" class="address-row"
+            >
               <BaseIcon :name="tmp.icon" />
               <span class="bank-num">{{ tmp.value }}</span>
               <span class="type">{{ tmp.name }}</span>

@@ -18,8 +18,11 @@ function loadMore() {
 </script>
 
 <template>
-  <div class="base-secondary-accordion" :class="[isOpen ? 'is-open' : '', `level-${level}`]">
-    <div class="no-active-scale header" @click="toggle">
+  <div
+    class="base-secondary-accordion"
+    :class="[isOpen ? 'is-open' : '', `level-${level}`]"
+  >
+    <div class="header no-active-scale" @click="toggle">
       <slot name="header">
         <div class="container">
           <div class="container">
@@ -35,7 +38,9 @@ function loadMore() {
         </div>
       </slot>
       <div class="arrow">
-        <BaseIcon name="uni-arrow-down" :style="{ transform: `rotate(${isOpen ? 0 : 90}deg)` }" />
+        <BaseIcon
+          name="uni-arrow-down" :style="{ transform: `rotate(${isOpen ? 0 : 90}deg)` }"
+        />
       </div>
     </div>
     <div v-if="isOpen" class="content" :class="{ 'is-open': isOpen }">
@@ -43,7 +48,7 @@ function loadMore() {
     </div>
     <div v-if="showMore" class="show-more">
       <hr>
-      <div class="stack x-flex-start y-center direction-vertical gap-small padding-none padding-left-large padding-top-medium padding-bottom-medium">
+      <div class="load-more-box">
         <BaseButton type="text" @click="loadMore">
           <span v-if="!loading">加载更多</span>
           <span v-else class="ani-scale">
@@ -65,6 +70,14 @@ function loadMore() {
 </style>
 
 <style lang="scss" scoped>
+.load-more-box {
+  padding-left: var(--tg-spacing-16);
+  padding-top: var(--tg-spacing-12);
+  padding-bottom: var(--tg-spacing-12);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
 @keyframes aniScale {
   0% {
     transform: scale(0.85);

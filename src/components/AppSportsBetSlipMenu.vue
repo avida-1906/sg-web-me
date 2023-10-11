@@ -10,7 +10,9 @@ const typeOptions = [
   { label: '我的投注', value: EnumsBetSlipTabs.myBets, num: 0, icon: 'navbar-user-bet' },
 ]
 // 投注单Tab
-const betSlipType = ref<EnumsBetSlipTabs.single | EnumsBetSlipTabs.multi>(EnumsBetSlipTabs.single)
+const betSlipType = ref<EnumsBetSlipTabs.single | EnumsBetSlipTabs.multi>(
+  EnumsBetSlipTabs.single,
+)
 const betSlipTypeTabs = [
   { label: '单项投注', value: EnumsBetSlipTabs.single, icon: 'navbar-bet' },
   { label: '复式投注', value: EnumsBetSlipTabs.multi, icon: 'navbar-bet-mult' },
@@ -33,7 +35,8 @@ const isBetSlip = computed(() => type.value === EnumsBetSlipTabs.betSlip)
 const isMyBets = computed(() => type.value === EnumsBetSlipTabs.myBets)
 const isBetSingle = computed(() => betSlipType.value === EnumsBetSlipTabs.single)
 const isBetMulti = computed(() => betSlipType.value === EnumsBetSlipTabs.multi)
-const betBtnText = computed(() => betSlipTypeTabs.find(b => b.value === betSlipType.value)?.label ?? '-')
+const betBtnText = computed(() =>
+  betSlipTypeTabs.find(b => b.value === betSlipType.value)?.label ?? '-')
 </script>
 
 <template>
@@ -42,8 +45,9 @@ const betBtnText = computed(() => betSlipTypeTabs.find(b => b.value === betSlipT
       <div class="navigation-header">
         <BaseSelect
           v-model="type"
-          style="--tg-base-select-hover-bg-color:var(--tg-secondary-dark);--tg-base-select-popper-style-padding-x:0;"
-          :options="typeOptions" no-hover popper
+          style="--tg-base-select-hover-bg-color:var(--tg-secondary-dark);
+          --tg-base-select-popper-style-padding-x:0;"
+          :options="typeOptions" popper no-hover
         >
           <template #label="{ data }">
             <div class="type-select">
@@ -71,10 +75,17 @@ const betBtnText = computed(() => betSlipTypeTabs.find(b => b.value === betSlipT
       <div v-show="isBetSlip" class="actions">
         <BaseSelect
           v-model="bettingOption"
-          style="--tg-base-select-hover-bg-color:var(--tg-secondary-dark);--tg-base-select-popper-style-padding-x:0;--tg-base-select-popper-style-padding-y:0;--tg-base-select-popper-label-color:var(--tg-text-lightgrey);"
+          style="--tg-base-select-hover-bg-color:var(--tg-secondary-dark);
+          --tg-base-select-popper-style-padding-x:0;
+          --tg-base-select-popper-style-padding-y:0;
+          --tg-base-select-popper-label-color:var(--tg-text-lightgrey);"
           :options="bettingOptions" no-hover popper
         />
-        <BaseButton type="text" padding0 style="--tg-base-button-text-default-color:var(--tg-text-white);">
+        <BaseButton
+          type="text"
+          padding0
+          style="--tg-base-button-text-default-color:var(--tg-text-white);"
+        >
           全部清除
         </BaseButton>
       </div>
@@ -85,19 +96,30 @@ const betBtnText = computed(() => betSlipTypeTabs.find(b => b.value === betSlipT
         <!-- <AppSportsBetSlip :bet-slip-type="betSlipType" :index="0" />
         <AppSportsBetSlip :bet-slip-type="betSlipType" :index="1" is-live />
         <AppSportsBetSlip :bet-slip-type="betSlipType" :index="2" error />
-        <AppSportsBetSlip :bet-slip-type="betSlipType" :index="3" disabled is-closed /> -->
+        <AppSportsBetSlip :bet-slip-type="betSlipType"
+         :index="3" disabled is-closed /> -->
 
         <!-- 无数据缺省，不要删！ -->
         <div class="empty">
           <BaseEmpty>
             <template #icon>
-              <BaseIcon style="font-size: var(--tg-empty-icon-size);margin-bottom: var(--tg-spacing-24);" name="uni-empty-betslip" />
+              <BaseIcon
+                style="
+              font-size: var(--tg-empty-icon-size);
+              margin-bottom: var(--tg-spacing-24);"
+                name="uni-empty-betslip"
+              />
             </template>
             <template #description>
               <span>投注单为空</span>
             </template>
             <template #default>
-              <BaseButton type="text" padding0 style=" --tg-base-button-text-default-color:var(--tg-text-white)" @click="router.push('/sports')">
+              <BaseButton
+                type="text"
+                padding0
+                style=" --tg-base-button-text-default-color:var(--tg-text-white)"
+                @click="router.push('/sports')"
+              >
                 立即开始下注！
               </BaseButton>
             </template>

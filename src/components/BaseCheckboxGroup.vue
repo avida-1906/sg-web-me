@@ -37,7 +37,12 @@ function onItemChecked(v: string, item: CheckItem) {
 
 <template>
   <div class="base-checkbox-group" :class="[layout]">
-    <div v-for="item in list" :key="item.value" class="base-check-box" @click="onItemChecked(item.value, item)">
+    <div
+      v-for="item in list"
+      :key="item.value"
+      class="base-check-box"
+      @click="onItemChecked(item.value, item)"
+    >
       <span class="outer" :class="[shape, size, { active: checkValue(item.value) }]">
         <span v-show="checkValue(item.value)" class="icon" />
       </span>

@@ -44,7 +44,10 @@ watch(() => props.timeStamp, (val) => {
   <section>
     <BaseAccordion
       v-if="menuItem.list && menuItem.list.length"
-      ref="baseAccor" :dom-id="menuItem.domId" :menu-info="menuItem" :auto-show="curDomId === undefined ? false : curDomId === menuItem.domId"
+      ref="baseAccor"
+      :dom-id="menuItem.domId"
+      :menu-info="menuItem"
+      :auto-show="curDomId === undefined ? false : curDomId === menuItem.domId"
       @click-head="handleClickHead"
       @click-item="handleClickItem"
       @radio-change="radioChangeValue"
@@ -53,7 +56,10 @@ watch(() => props.timeStamp, (val) => {
         <AppMenuItem :menu-item="info" @click="() => handleClickItem(info)" />
       </template>
     </BaseAccordion>
-    <AppMenuItem v-else :menu-item="menuItem" @click="() => handleClickItem(menuItem)" />
+    <AppMenuItem
+      v-else
+      :menu-item="menuItem" @click="() => handleClickItem(menuItem)"
+    />
   </section>
 </template>
 

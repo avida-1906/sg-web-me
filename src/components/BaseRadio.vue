@@ -30,7 +30,12 @@ function onCheck() {
 </script>
 
 <template>
-  <div ref="outerRef" class="base-radio" :class="{ disabled, active: isChecked, focus: bool }" @click="onCheck">
+  <div
+    ref="outerRef"
+    class="base-radio"
+    :class="{ disabled, active: isChecked, focus: bool }"
+    @click="onCheck"
+  >
     <span class="icon" :class="[shape]">
       <span v-if="shape === 'circle'" class="dot" />
       <span v-else class="hook" />

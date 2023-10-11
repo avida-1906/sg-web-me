@@ -49,7 +49,9 @@ defineExpose({ close })
 <template>
   <div class="base-accordion" :class="{ 'only-accordion': !isShow }">
     <div
-      :id="domId" class="accordion-header" :style="isShow ? 'background-color: #213743;' : ''"
+      :id="domId"
+      class="accordion-header"
+      :style="isShow ? 'background-color: #213743;' : ''"
       @click="handleClickHeader"
     >
       <div class="flex-center">
@@ -64,12 +66,16 @@ defineExpose({ close })
     </div>
     <div
       v-if="showDown" class="accordion-content"
-      :style="`max-height:${isShow ? '1000px' : 0};transition: max-height ${isShow ? '1' : '0.3'}s;`"
+      :style="`max-height:${isShow ? '1000px' : 0};
+      transition: max-height ${isShow ? '1' : '0.3'}s;`"
     >
       <div class="content-line" />
       <template v-if="menuInfo.type === 'radio'">
         <BaseRadioGroup v-model="radioValue" :columns="1">
-          <div v-for="item in menuInfo.list.map((r: MenuItem) => ({ ...r, label: r.title }))" :key="item.value" class="radio-menu-item">
+          <div
+            v-for="item in menuInfo.list.map((r: MenuItem) => ({ ...r, label: r.title }))"
+            :key="item.value" class="radio-menu-item"
+          >
             <BaseRadio :value="item.value">
               {{ item.label }}
             </BaseRadio>

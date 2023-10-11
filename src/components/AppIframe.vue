@@ -16,7 +16,11 @@ const { t } = useI18n()
 const { isMobile, appContentWidth } = storeToRefs(useWindowStore())
 const { platformList, isLogin } = storeToRefs(useAppStore())
 const { openRegisterDialog } = useRegisterDialog()
-const { bool: isShowFrameOverlay, setTrue: overlayTrue, setFalse: overlayFalse } = useBoolean(false)
+const {
+  bool: isShowFrameOverlay,
+  setTrue: overlayTrue,
+  setFalse: overlayFalse,
+} = useBoolean(false)
 const { bool: isRealMoneyMode, setBool: setRealModeBool } = useBoolean(false)
 const { bool: isTrendOpen, toggle: toggleTrendOpen } = useBoolean(false)
 
@@ -25,7 +29,10 @@ const currencyList = ref<CurrencyItem[]>([])
 const gameFrameRef = ref()
 
 // 游戏数据接口
-const { data: dataDetail, runAsync: runDetail } = useRequest(() => ApiMemberGameDetail(props.id), {
+const {
+  data: dataDetail,
+  runAsync: runDetail,
+} = useRequest(() => ApiMemberGameDetail(props.id), {
   onSuccess(res) {
     currencyList.value = JSON.parse(res.currency)
     currentCurrency.value = currencyList.value[0]
@@ -35,12 +42,29 @@ const { data: dataDetail, runAsync: runDetail } = useRequest(() => ApiMemberGame
 const id = computed(() => dataDetail.value ? dataDetail.value.id : '')
 const pid = computed(() => dataDetail.value ? dataDetail.value.platform_id : '')
 const code = computed(() => dataDetail.value ? dataDetail.value.game_id : '')
-const currencyName = computed(() => currentCurrency.value ? currentCurrency.value.id : '')
-const isFavorite = computed(() => dataDetail.value ? dataDetail.value.is_fav === 1 : false)
+const currencyName = computed(() => {
+  return currentCurrency.value ? currentCurrency.value.id : ''
+})
+const isFavorite = computed(() => {
+  return dataDetail.value ? dataDetail.value.is_fav === 1 : false
+})
 const bigGameWrapper = computed(() => appContentWidth.value > 930)
-const gameProviderName = computed(() => platformList.value?.find(a => a.id === dataDetail.value?.platform_id)?.name ?? '-')
+const gameProviderName = computed(() => {
+  return platformList.value?.find(
+    a => a.id === dataDetail.value?.platform_id,
+  )?.name ?? '-'
+})
 // 启动游戏接口
-const { run: runLunchGame, data: gameUrl, loading: lunchLoading, mutate: mutateGameUrl } = useRequest(() => ApiGameLunch(pid.value, code.value, currencyName.value), {
+const {
+  run: runLunchGame,
+  data: gameUrl,
+  loading: lunchLoading,
+  mutate: mutateGameUrl,
+} = useRequest(() => ApiGameLunch(
+  pid.value,
+  code.value,
+  currencyName.value,
+), {
   manual: true,
   onSuccess(res) {
     // H5模式直接打开游戏
@@ -124,23 +148,35 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
         <div class="info-controls">
           <!-- 收藏游戏 -->
           <VMenu placement="top">
-            <div class="icon-button" :class="{ 'is-isFavorite': isFavorite }" @click="onClickFavorite">
-              <BaseIcon :name="`${isFavorite ? 'uni-favorites' : 'chess-star'}`" />
+            <div
+              class="icon-button"
+              :class="{ 'is-isFavorite': isFavorite }"
+              @click="onClickFavorite"
+            >
+              <BaseIcon
+                :name="`${isFavorite ? 'uni-favorites' : 'chess-star'}`"
+              />
             </div>
             <template #popper>
               <div class="tiny-menu-item-title">
-                {{ isFavorite ? t('casino_game_remove_favorite') : t('casino_game_add_favorite') }}
+                {{ isFavorite ? t('casino_game_remove_favorite')
+                  : t('casino_game_add_favorite') }}
               </div>
             </template>
           </VMenu>
           <!-- 实时统计 -->
           <VMenu placement="top">
-            <div class="icon-button" :class="{ 'trend-open': isTrendOpen }" @click="onClickTrend">
+            <div
+              class="icon-button"
+              :class="{ 'trend-open': isTrendOpen }"
+              @click="onClickTrend"
+            >
               <BaseIcon name="uni-trend" />
             </div>
             <template #popper>
               <div class="tiny-menu-item-title">
-                {{ isTrendOpen ? t('casino_game_close_trend') : t('casino_game_open_trend') }}
+                {{ isTrendOpen ? t('casino_game_close_trend')
+                  : t('casino_game_open_trend') }}
               </div>
             </template>
           </VMenu>
@@ -162,7 +198,8 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
         <template #popper="{ hide }">
           <div v-if="currencyList.length" class="scroll-y popper popper-mobile">
             <a
-              v-for="c, i in currencyList" :key="i" class="currency-types popper-option"
+              v-for="c, i in currencyList" :key="i"
+              class="popper-option currency-types"
               @click="hide();onChooseCurrency(c)"
             >
               <div>
@@ -176,19 +213,38 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
 
     <!-- 开始游戏 -->
     <div class="btns btns-mobile">
-      <BaseButton v-if="isLogin" :loading="lunchLoading" class="real btn" size="sm" bg-style="secondary" @click="onSwitchRealMoneyMode(true)">
+      <BaseButton
+        v-if="isLogin"
+        :loading="lunchLoading"
+        class="real btn"
+        size="sm"
+        bg-style="secondary"
+        @click="onSwitchRealMoneyMode(true)"
+      >
         <div class="icon">
           <BaseIcon name="uni-play" />
         </div>
         <span>{{ t('casino_game_real_money_mode') }}</span>
       </BaseButton>
-      <BaseButton v-else :loading="lunchLoading" class="real btn" size="sm" bg-style="secondary" @click="openRegisterDialog">
+      <BaseButton
+        v-else
+        :loading="lunchLoading"
+        class="real btn"
+        size="sm"
+        bg-style="secondary"
+        @click="openRegisterDialog"
+      >
         <div class="icon">
           <BaseIcon name="uni-play" />
         </div>
         <span>{{ t('reg') }}</span>
       </BaseButton>
-      <BaseButton :loading="lunchLoading" class="btn" size="sm" @click="onSwitchRealMoneyMode(false)">
+      <BaseButton
+        :loading="lunchLoading"
+        class="btn"
+        size="sm"
+        @click="onSwitchRealMoneyMode(false)"
+      >
         <div class="icon">
           <BaseIcon name="uni-play" />
         </div>
@@ -199,17 +255,26 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
 
   <!-- PC模式 -->
   <div v-else class="app-iframe" :class="{ 't-app-iframe': isTheatre }">
-    <div class="game-wrapper" :class="{ 'b-game-wrapper': bigGameWrapper, 't-game-wrapper': isTheatre }">
+    <div
+      class="game-wrapper"
+      :class="{ 'b-game-wrapper': bigGameWrapper, 't-game-wrapper': isTheatre }"
+    >
       <div class="content-wrapper" :class="{ 't-content-wrapper': isTheatre }">
         <div class="content" :class="{ 't-content': isTheatre }">
-          <div class="iframe-wrapper" :class="{ 't-iframe-wrapper': isTheatre }">
+          <div
+            class="iframe-wrapper"
+            :class="{ 't-iframe-wrapper': isTheatre }"
+          >
             <div v-if="isShowFrameOverlay" class="iframe-menu-overlay">
               <div class="content">
                 <div class="currency">
                   <span>{{ t('balance') }}</span>
                   <VDropdown :distance="6">
                     <div v-if="currentCurrency" class="current-currency">
-                      <AppCurrencyIcon show-name :currency-type="currentCurrency.id" />
+                      <AppCurrencyIcon
+                        show-name
+                        :currency-type="currentCurrency.id"
+                      />
                       <div class="arrow">
                         <BaseIcon name="uni-arrow-down" />
                       </div>
@@ -217,7 +282,9 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
                     <template #popper="{ hide }">
                       <div v-if="currencyList.length" class="scroll-y popper">
                         <a
-                          v-for="c, i in currencyList" :key="i" class="popper-option currency-types"
+                          v-for="c, i in currencyList"
+                          :key="i"
+                          class="popper-option currency-types"
                           @click="hide();onChooseCurrency(c)"
                         >
                           <div>
@@ -229,13 +296,25 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
                   </VDropdown>
                 </div>
                 <div class="btns">
-                  <BaseButton v-if="isLogin" class="real" size="sm" bg-style="secondary" @click="onSwitchRealMoneyMode(true)">
+                  <BaseButton
+                    v-if="isLogin"
+                    class="real"
+                    size="sm"
+                    bg-style="secondary"
+                    @click="onSwitchRealMoneyMode(true)"
+                  >
                     <div class="icon">
                       <BaseIcon name="uni-play" />
                     </div>
                     <span>{{ t('casino_game_real_money_mode') }}</span>
                   </BaseButton>
-                  <BaseButton v-else class="real" size="sm" bg-style="secondary" @click="openRegisterDialog">
+                  <BaseButton
+                    v-else
+                    class="real"
+                    size="sm"
+                    bg-style="secondary"
+                    @click="openRegisterDialog"
+                  >
                     <div class="icon">
                       <BaseIcon name="uni-play" />
                     </div>
@@ -250,7 +329,12 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
                 </div>
               </div>
             </div>
-            <iframe ref="gameFrameRef" :src="gameUrl" frameborder="0" allowfullscreen />
+            <iframe
+              ref="gameFrameRef"
+              :src="gameUrl"
+              frameborder="0"
+              allowfullscreen
+            />
           </div>
 
           <div class="footer">
@@ -266,31 +350,45 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
                 </div>
                 <template #popper>
                   <div class="tiny-menu-item-title">
-                    {{ isTheatre ? t('casino_game_close_theatre') : t('casino_game_open_theatre') }}
+                    {{ isTheatre ? t('casino_game_close_theatre')
+                      : t('casino_game_open_theatre') }}
                   </div>
                 </template>
               </VMenu>
 
               <!-- 实时统计 -->
               <VMenu placement="top">
-                <div class="icon-button" :class="{ 'trend-open': isTrendOpen }" @click="onClickTrend">
+                <div
+                  class="icon-button"
+                  :class="{ 'trend-open': isTrendOpen }"
+                  @click="onClickTrend"
+                >
                   <BaseIcon name="uni-trend" />
                 </div>
                 <template #popper>
                   <div class="tiny-menu-item-title">
-                    {{ isTrendOpen ? t('casino_game_close_trend') : t('casino_game_open_trend') }}
+                    {{ isTrendOpen ? t('casino_game_close_trend')
+                      : t('casino_game_open_trend') }}
                   </div>
                 </template>
               </VMenu>
 
               <!-- 收藏游戏 -->
               <VMenu placement="top">
-                <div class="icon-button" :class="{ 'is-isFavorite': isFavorite }" @click="onClickFavorite">
-                  <BaseIcon :name="`${isFavorite ? 'uni-favorites' : 'chess-star'}`" />
+                <div
+                  class="icon-button"
+                  :class="{ 'is-isFavorite': isFavorite }"
+                  @click="onClickFavorite"
+                >
+                  <BaseIcon
+                    :name="`${isFavorite ? 'uni-favorites' : 'chess-star'}`"
+                  />
                 </div>
                 <template #popper>
                   <div class="tiny-menu-item-title">
-                    {{ isFavorite ? t('casino_game_remove_favorite') : t('casino_game_add_favorite') }}
+                    {{ isFavorite
+                      ? t('casino_game_remove_favorite')
+                      : t('casino_game_add_favorite') }}
                   </div>
                 </template>
               </VMenu>
@@ -299,9 +397,17 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
               <BaseIcon name="app-logo" />
             </div>
             <div class="right">
-              <span :class="{ active: !isRealMoneyMode }">{{ t('casino_game_test_mode') }}</span>
-              <BaseSwitch v-model="isRealMoneyMode" class="switch" @change="onSwitchRealMoneyMode" />
-              <span :class="{ active: isRealMoneyMode }">{{ t('casino_game_real_money_mode') }}</span>
+              <span
+                :class="{ active: !isRealMoneyMode }"
+              >{{ t('casino_game_test_mode') }}</span>
+              <BaseSwitch
+                v-model="isRealMoneyMode"
+                class="switch"
+                @change="onSwitchRealMoneyMode"
+              />
+              <span
+                :class="{ active: isRealMoneyMode }"
+              >{{ t('casino_game_real_money_mode') }}</span>
             </div>
           </div>
         </div>
@@ -606,7 +712,9 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
 // 共用
 // 图标按钮
 .icon-button {
-  padding: var(--tg-spacing-button-padding-vertical-sm) var(--tg-spacing-button-padding-horizontal-sm);
+  padding:
+  var(--tg-spacing-button-padding-vertical-sm)
+  var(--tg-spacing-button-padding-horizontal-sm);
   cursor: pointer;
 
   &:hover {

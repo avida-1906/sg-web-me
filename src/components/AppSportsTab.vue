@@ -29,10 +29,22 @@ const allList = [
   { label: '板球', value: 'spt-cricket', icon: 'spt-cricket', num: 0, id: '8' },
   { label: '英式橄榄球', value: 'spt-british', icon: 'spt-british', num: 0, id: '9' },
   { label: '冰上曲棍球', value: 'spt-ice-puck', icon: 'spt-ice-puck', num: 0, id: '10' },
-  { label: '排球', value: 'chess-volleyball', icon: 'chess-volleyball-league', num: 0, id: '11' },
+  {
+    label: '排球',
+    value: 'chess-volleyball',
+    icon: 'chess-volleyball-league',
+    num: 0,
+    id: '11',
+  },
   { label: '传说对决', value: 'spt-legend', icon: 'spt-legend', num: 0, id: '12' },
   { label: '澳洲足球', value: 'spt-europe', icon: 'spt-europe', num: 0, id: '13' },
-  { label: '拳击', value: 'chess-japan-shots', icon: 'chess-japan-shots', num: 0, id: '14' },
+  {
+    label: '拳击',
+    value: 'chess-japan-shots',
+    icon: 'chess-japan-shots',
+    num: 0,
+    id: '14',
+  },
   { label: 'CS:GO', value: 'spt-cs-go', icon: 'spt-cs-go', num: 0, id: '15' },
   { label: '飞镖', value: 'spt-fly-ticket', icon: 'spt-fly-ticket', num: 0, id: '16' },
   { label: '刀塔2', value: 'spt-dota2', icon: 'spt-dota2', num: 0, id: '17' },
@@ -47,7 +59,13 @@ const allList = [
   { label: 'NBA2K', value: 'spt-nba2k', icon: 'spt-nba2k', num: 0, id: '27' },
   { label: '彩虹六号', value: 'spt-rainbow', icon: 'spt-rainbow', num: 0, id: '28' },
   { label: '桌球', value: 'spt-table-tennis', icon: 'spt-table-tennis', num: 0, id: '29' },
-  { label: '星际争霸2', value: 'spt-interstellar', icon: 'spt-interstellar', num: 0, id: '30' },
+  {
+    label: '星际争霸2',
+    value: 'spt-interstellar',
+    icon: 'spt-interstellar',
+    num: 0,
+    id: '30',
+  },
   { label: '无畏契约', value: 'spt-fearless', icon: 'spt-fearless', num: 0, id: '31' },
   { label: '魔兽争霸3', value: 'spt-warcraft', icon: 'spt-warcraft', num: 0, id: '32' },
   { label: '水球', value: 'spt-water-polo', icon: 'spt-water-polo', num: 0, id: '33' },
@@ -84,7 +102,8 @@ function handleClick(item: TabItem) {
                   <BaseIcon :name="tab.icon" />
                   <BaseBadge
                     :mode="tab.id === modelValue ? 'active' : 'black'"
-                    style="--tg-badge-font-size:var(--tg-font-size-xs);--tg-badge-padding-x:var(--tg-spacing-6);"
+                    style="--tg-badge-font-size:var(--tg-font-size-xs);
+                    --tg-badge-padding-x:var(--tg-spacing-6);"
                     class="badge" :count="tab.num"
                   />
                 </div>

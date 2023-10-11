@@ -49,12 +49,29 @@ emit('change', currentCurrency.value)
 
 <template>
   <div class="app-wallet app-currency">
-    <VDropdown v-model:shown="isMenuShown" :distance="6" @apply-show="clearSearchValue">
+    <VDropdown
+      v-model:shown="isMenuShown"
+      :distance="6"
+      @apply-show="clearSearchValue"
+    >
       <div class="wallet-box">
         <BaseButton class="wallet wallet-only" type="text" size="md">
-          <AppAmount v-if="showBalance" style="color:var(--tg-text-white);" :amount="currentCurrencyBalance" :currency-type="currentCurrency" />
-          <AppCurrencyIcon v-else class="wallet-text" :show-name="!showBalance" :currency-type="currentCurrency" />
-          <BaseIcon class="arrow" :class="{ 'arrow-up': isMenuShown }" name="uni-arrow-down" />
+          <AppAmount
+            v-if="showBalance"
+            style="color:var(--tg-text-white);"
+            :amount="currentCurrencyBalance"
+            :currency-type="currentCurrency"
+          />
+          <AppCurrencyIcon
+            v-else class="wallet-text"
+            :show-name="!showBalance"
+            :currency-type="currentCurrency"
+          />
+          <BaseIcon
+            class="arrow"
+            :class="{ 'arrow-up': isMenuShown }"
+            name="uni-arrow-down"
+          />
         </BaseButton>
       </div>
       <template #popper="{ hide }">
@@ -62,14 +79,28 @@ emit('change', currentCurrency.value)
           <div class="popper-top">
             <BaseSearch
               v-model="searchValue"
-              class="top-search" :clearable="searchValue?.length > 0" :white-style="true"
+              class="top-search"
+              :clearable="searchValue?.length > 0"
+              :white-style="true"
               :style="{ 'max-width': showBalance ? '180px' : '140px' }"
               place-holder="搜索"
             />
           </div>
-          <div class="scroll-y popper-content" :class="{ 'justify-content': !showBalance }">
-            <div v-for="item of renderCurrencyList" :key="item.type" class="content-row" @click.stop="selectCurrency(item, hide)">
-              <AppAmount v-if="showBalance" :amount="item.balanceWithSymbol" :currency-type="item.type" show-name />
+          <div
+            class="scroll-y popper-content"
+            :class="{ 'justify-content': !showBalance }"
+          >
+            <div
+              v-for="item of renderCurrencyList"
+              :key="item.type" class="content-row"
+              @click.stop="selectCurrency(item, hide)"
+            >
+              <AppAmount
+                v-if="showBalance"
+                :amount="item.balanceWithSymbol"
+                :currency-type="item.type"
+                show-name
+              />
               <AppCurrencyIcon v-else show-name :currency-type="item.type" />
             </div>
             <div v-show="!renderCurrencyList.length" class="balance-not">
@@ -79,7 +110,12 @@ emit('change', currentCurrency.value)
         </div>
       </template>
     </VDropdown>
-    <BaseSelect v-if="getCurContract" v-model="currentNetwork" :options="getCurContract" popper />
+    <BaseSelect
+      v-if="getCurContract"
+      v-model="currentNetwork"
+      :options="getCurContract"
+      popper
+    />
   </div>
 </template>
 
@@ -93,8 +129,11 @@ emit('change', currentCurrency.value)
     .wallet {
         background-color: var(--tg-secondary-dark);
         border-radius: var(--tg-radius-sm) 0px 0px var(--tg-radius-sm);
-        box-shadow: 0px 1px 2px 0px #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.1)} inset,
-        0px -1px 2px 0px #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.1)} inset;
+        box-shadow:
+        0px 1px 2px 0px
+        #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.1)} inset,
+        0px -1px 2px 0px
+        #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.1)} inset;
 
         .arrow {
             font-size: 10px;
@@ -156,7 +195,9 @@ emit('change', currentCurrency.value)
         .content-row {
             display: flex;
             align-items: center;
-            padding: var(--tg-spacing-button-padding-vertical-s) var(--tg-spacing-button-padding-horizontal-xs);
+            padding:
+            var(--tg-spacing-button-padding-vertical-s)
+            var(--tg-spacing-button-padding-horizontal-xs);
             cursor: pointer;
             --tg-app-amount-width: 14ch;
 

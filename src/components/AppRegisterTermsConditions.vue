@@ -18,7 +18,10 @@ const { bool: isRead, setTrue: setReadTrue } = useBoolean(false)
 const { bool: checkboxValue } = useBoolean(false)
 const { openLoginDialog } = useLoginDialog()
 const { openRegisterDialog } = useRegisterDialog()
-const { errorMessage: checkedErrorMsg, validate: valiChecked } = useField<string>('checkbox', () => {
+const {
+  errorMessage: checkedErrorMsg,
+  validate: valiChecked,
+} = useField<string>('checkbox', () => {
   if (!checkboxValue.value)
     return t('agree_terms_conditions')
   return ''
@@ -30,7 +33,10 @@ const delayId = ref()
 const regParams = computed(() => {
   return Session.get(STORAGE_REG_PARAMS_KEYWORDS)?.value as IRegParams
 })
-const { run: runMemberReg, loading: isLoading } = useRequest(() => ApiMemberReg(regParams.value), {
+const {
+  run: runMemberReg,
+  loading: isLoading,
+} = useRequest(() => ApiMemberReg(regParams.value), {
   manual: true,
   onSuccess: async (res) => {
     appStore.setToken(res)
@@ -91,7 +97,12 @@ onBeforeUnmount(() => {
           1.STAKE.COM
         </div>
         <div class="terms-conditions-describe">
-          1.1 Stake.com is owned and operated by Medium Rare, N.V. (hereinafter "Stake", "We" or "Us"), a company with head office at Korporaalweg 10, Willemstad, Curaçao. Stake is licensed and regulated by the Government of Curaçao under the gaming license 8048/JAZ issued to Antillephone. Some credit card payment processing are handled by its wholly owned subsidiary, Medium Rare Limited.
+          1.1 Stake.com is owned and operated by Medium Rare, N.V. (hereinafter
+          "Stake", "We" or "Us"), a company with head office at Korporaalweg
+          10, Willemstad, Curaçao. Stake is licensed and regulated by
+          the Government of Curaçao under the gaming license 8048/JAZ
+          issued to Antillephone. Some credit card payment processing
+          are handled by its wholly owned subsidiary, Medium Rare Limited.
         </div>
 
         <div class="terms-conditions-title">
@@ -99,10 +110,25 @@ onBeforeUnmount(() => {
         </div>
         <div class="terms-conditions-describe">
           2.1 BY REGISTERING ON WWW.XXX.COM
-          (THE “WEBSITE”), YOU ENTER INTO A CONTRACT WITH MEDIUM RARE N.V., AND AGREE TO BE BOUND BY (I) THESE TERMS AND CONDITIONS; (II) OUR PRIVACY POLICY; (III) OUR COOKIES POLICY AND (IV) THE RULES APPLICABLE TO OUR BETTING OR GAMING PRODUCTS AS FURTHER REFERENCED IN THESE TERMS AND CONDITIONS (“TERMS AND CONDITIONS” OR “AGREEMENT”), AND THE BETTING AND/OR GAMING SPECIFIC RULES, AND ARE DEEMED TO HAVE ACCEPTED AND UNDERSTOOD ALL THE TERMS.
+          (THE “WEBSITE”), YOU ENTER INTO A CONTRACT WITH MEDIUM
+          RARE N.V., AND AGREE TO BE BOUND BY (I) THESE TERMS AND
+          CONDITIONS; (II) OUR PRIVACY POLICY; (III) OUR COOKIES
+          POLICY AND (IV) THE RULES APPLICABLE TO OUR BETTING
+          OR GAMING PRODUCTS AS FURTHER REFERENCED IN THESE TERMS
+          AND CONDITIONS (“TERMS AND CONDITIONS” OR “AGREEMENT”)
+          , AND THE BETTING AND/OR GAMING SPECIFIC RULES,
+          AND ARE DEEMED TO HAVE ACCEPTED AND UNDERSTOOD ALL THE TERMS.
         </div>
         <div class="terms-conditions-describe">
-          2.2 PLEASE READ THIS AGREEMENT CAREFULLY TO MAKE SURE YOU FULLY UNDERSTAND ITS CONTENT. IF YOU HAVE ANY DOUBTS AS TO YOUR RIGHTS AND OBLIGATIONS RESULTING FROM THE ACCEPTANCE OF THIS AGREEMENT, PLEASE CONSULT A LEGAL ADVISOR IN YOUR JURISDICTION BEFORE FURTHER USING THE WEBSITE(S) AND ACCESSING ITS CONTENT. IF YOU DO NOT ACCEPT THE TERMS, DO NOT USE, VISIT OR ACCESS ANY PART (INCLUDING, BUT NOT LIMITED TO, SUB-DOMAINS, SOURCE CODE AND/OR WEBSITE APIS, WHETHER VISIBLE OR NOT) OF THE WEBSITE.
+          2.2 PLEASE READ THIS AGREEMENT CAREFULLY TO MAKE SURE
+          YOU FULLY UNDERSTAND ITS CONTENT. IF YOU HAVE ANY DOUBTS
+          AS TO YOUR RIGHTS AND OBLIGATIONS RESULTING FROM THE
+          ACCEPTANCE OF THIS AGREEMENT, PLEASE CONSULT A LEGAL
+          ADVISOR IN YOUR JURISDICTION BEFORE FURTHER USING THE
+          WEBSITE(S) AND ACCESSING ITS CONTENT. IF YOU DO NOT
+          ACCEPT THE TERMS, DO NOT USE, VISIT OR ACCESS ANY PART
+          (INCLUDING, BUT NOT LIMITED TO, SUB-DOMAINS, SOURCE
+          CODE AND/OR WEBSITE APIS, WHETHER VISIBLE OR NOT) OF THE WEBSITE.
         </div>
 
         <div class="terms-conditions-title">
@@ -114,49 +140,103 @@ onBeforeUnmount(() => {
         </div>
         <div class="terms-conditions-describe">
           2.1 BY REGISTERING ON WWW.XXX.COM
-          (THE “WEBSITE”), YOU ENTER INTO A CONTRACT WITH MEDIUM RARE N.V., AND AGREE TO BE BOUND BY (I) THESE TERMS AND CONDITIONS; (II) OUR PRIVACY POLICY; (III) OUR COOKIES POLICY AND (IV) THE RULES APPLICABLE TO OUR BETTING OR GAMING PRODUCTS AS FURTHER REFERENCED IN THESE TERMS AND CONDITIONS (“TERMS AND CONDITIONS” OR “AGREEMENT”), AND THE BETTING AND/OR GAMING SPECIFIC RULES, AND ARE DEEMED TO HAVE ACCEPTED AND UNDERSTOOD ALL THE TERMS.
+          (THE “WEBSITE”), YOU ENTER INTO A CONTRACT WITH MEDIUM RARE N.V.,
+          AND AGREE TO BE BOUND BY (I) THESE TERMS AND CONDITIONS; (II)
+          OUR PRIVACY POLICY; (III) OUR COOKIES POLICY AND (IV) THE RULES
+          APPLICABLE TO OUR BETTING OR GAMING PRODUCTS AS FURTHER
+          REFERENCED IN THESE TERMS AND CONDITIONS (“TERMS AND CONDITIONS”
+          OR “AGREEMENT”), AND THE BETTING AND/OR GAMING SPECIFIC RULES,
+          AND ARE DEEMED TO HAVE ACCEPTED AND UNDERSTOOD ALL THE TERMS.
         </div>
         <div class="terms-conditions-describe">
-          2.2 PLEASE READ THIS AGREEMENT CAREFULLY TO MAKE SURE YOU FULLY UNDERSTAND ITS CONTENT. IF YOU HAVE ANY DOUBTS AS TO YOUR RIGHTS AND OBLIGATIONS RESULTING FROM THE ACCEPTANCE OF THIS AGREEMENT, PLEASE CONSULT A LEGAL ADVISOR IN YOUR JURISDICTION BEFORE FURTHER USING THE WEBSITE(S) AND ACCESSING ITS CONTENT. IF YOU DO NOT ACCEPT THE TERMS, DO NOT USE, VISIT OR ACCESS ANY PART (INCLUDING, BUT NOT LIMITED TO, SUB-DOMAINS, SOURCE CODE AND/OR WEBSITE APIS, WHETHER VISIBLE OR NOT) OF THE WEBSITE.
+          2.2 PLEASE READ THIS AGREEMENT CAREFULLY TO MAKE SURE YOU FULLY
+          UNDERSTAND ITS CONTENT. IF YOU HAVE ANY DOUBTS AS TO YOUR RIGHTS
+          AND OBLIGATIONS RESULTING FROM THE ACCEPTANCE OF THIS AGREEMENT,
+          PLEASE CONSULT A LEGAL ADVISOR IN YOUR JURISDICTION BEFORE
+          FURTHER USING THE WEBSITE(S) AND ACCESSING ITS CONTENT. IF
+          YOU DO NOT ACCEPT THE TERMS, DO NOT USE, VISIT OR ACCESS
+          ANY PART (INCLUDING, BUT NOT LIMITED TO, SUB-DOMAINS,
+          SOURCE CODE AND/OR WEBSITE APIS, WHETHER VISIBLE OR NOT)
+          OF THE WEBSITE.
         </div>
         <div class="terms-conditions-title">
           2. IMPORTANT NOTICE
         </div>
         <div class="terms-conditions-describe">
           2.1 BY REGISTERING ON WWW.XXX.COM
-          (THE “WEBSITE”), YOU ENTER INTO A CONTRACT WITH MEDIUM RARE N.V., AND AGREE TO BE BOUND BY (I) THESE TERMS AND CONDITIONS; (II) OUR PRIVACY POLICY; (III) OUR COOKIES POLICY AND (IV) THE RULES APPLICABLE TO OUR BETTING OR GAMING PRODUCTS AS FURTHER REFERENCED IN THESE TERMS AND CONDITIONS (“TERMS AND CONDITIONS” OR “AGREEMENT”), AND THE BETTING AND/OR GAMING SPECIFIC RULES, AND ARE DEEMED TO HAVE ACCEPTED AND UNDERSTOOD ALL THE TERMS.
+          (THE “WEBSITE”), YOU ENTER INTO A CONTRACT WITH MEDIUM RARE N.V.,
+          AND AGREE TO BE BOUND BY (I) THESE TERMS AND CONDITIONS; (II)
+          OUR PRIVACY POLICY; (III) OUR COOKIES POLICY AND (IV) THE RULES
+          APPLICABLE TO OUR BETTING OR GAMING PRODUCTS AS FURTHER REFERENCED
+          IN THESE TERMS AND CONDITIONS (“TERMS AND CONDITIONS” OR
+          “AGREEMENT”), AND THE BETTING AND/OR GAMING SPECIFIC RULES,
+          AND ARE DEEMED TO HAVE ACCEPTED AND UNDERSTOOD ALL THE TERMS.
         </div>
         <div class="terms-conditions-describe">
-          2.2 PLEASE READ THIS AGREEMENT CAREFULLY TO MAKE SURE YOU FULLY UNDERSTAND ITS CONTENT. IF YOU HAVE ANY DOUBTS AS TO YOUR RIGHTS AND OBLIGATIONS RESULTING FROM THE ACCEPTANCE OF THIS AGREEMENT, PLEASE CONSULT A LEGAL ADVISOR IN YOUR JURISDICTION BEFORE FURTHER USING THE WEBSITE(S) AND ACCESSING ITS CONTENT. IF YOU DO NOT ACCEPT THE TERMS, DO NOT USE, VISIT OR ACCESS ANY PART (INCLUDING, BUT NOT LIMITED TO, SUB-DOMAINS, SOURCE CODE AND/OR WEBSITE APIS, WHETHER VISIBLE OR NOT) OF THE WEBSITE.
+          2.2 PLEASE READ THIS AGREEMENT CAREFULLY TO MAKE SURE YOU FULLY
+          UNDERSTAND ITS CONTENT. IF YOU HAVE ANY DOUBTS AS TO YOUR RIGHTS
+          AND OBLIGATIONS RESULTING FROM THE ACCEPTANCE OF THIS AGREEMENT,
+          PLEASE CONSULT A LEGAL ADVISOR IN YOUR JURISDICTION BEFORE FURTHER
+          USING THE WEBSITE(S) AND ACCESSING ITS CONTENT. IF YOU DO NOT
+          ACCEPT THE TERMS, DO NOT USE, VISIT OR ACCESS ANY PART (INCLUDING,
+          BUT NOT LIMITED TO, SUB-DOMAINS, SOURCE CODE AND/OR WEBSITE APIS,
+          WHETHER VISIBLE OR NOT) OF THE WEBSITE.
         </div>
         <div class="terms-conditions-title">
           2. IMPORTANT NOTICE
         </div>
         <div class="terms-conditions-describe">
           2.1 BY REGISTERING ON WWW.XXX.COM
-          (THE “WEBSITE”), YOU ENTER INTO A CONTRACT WITH MEDIUM RARE N.V., AND AGREE TO BE BOUND BY (I) THESE TERMS AND CONDITIONS; (II) OUR PRIVACY POLICY; (III) OUR COOKIES POLICY AND (IV) THE RULES APPLICABLE TO OUR BETTING OR GAMING PRODUCTS AS FURTHER REFERENCED IN THESE TERMS AND CONDITIONS (“TERMS AND CONDITIONS” OR “AGREEMENT”), AND THE BETTING AND/OR GAMING SPECIFIC RULES, AND ARE DEEMED TO HAVE ACCEPTED AND UNDERSTOOD ALL THE TERMS.
+          (THE “WEBSITE”), YOU ENTER INTO A CONTRACT WITH MEDIUM RARE N.V.,
+          AND AGREE TO BE BOUND BY (I) THESE TERMS AND CONDITIONS; (II) OUR
+          PRIVACY POLICY; (III) OUR COOKIES POLICY AND (IV) THE RULES
+          APPLICABLE TO OUR BETTING OR GAMING PRODUCTS AS FURTHER REFERENCED
+          IN THESE TERMS AND CONDITIONS (“TERMS AND CONDITIONS” OR
+          “AGREEMENT”), AND THE BETTING AND/OR GAMING SPECIFIC RULES,
+          AND ARE DEEMED TO HAVE ACCEPTED AND UNDERSTOOD ALL THE TERMS.
         </div>
         <div class="terms-conditions-describe">
-          2.2 PLEASE READ THIS AGREEMENT CAREFULLY TO MAKE SURE YOU FULLY UNDERSTAND ITS CONTENT. IF YOU HAVE ANY DOUBTS AS TO YOUR RIGHTS AND OBLIGATIONS RESULTING FROM THE ACCEPTANCE OF THIS AGREEMENT, PLEASE CONSULT A LEGAL ADVISOR IN YOUR JURISDICTION BEFORE FURTHER USING THE WEBSITE(S) AND ACCESSING ITS CONTENT. IF YOU DO NOT ACCEPT THE TERMS, DO NOT USE, VISIT OR ACCESS ANY PART (INCLUDING, BUT NOT LIMITED TO, SUB-DOMAINS, SOURCE CODE AND/OR WEBSITE APIS, WHETHER VISIBLE OR NOT) OF THE WEBSITE.
+          2.2 PLEASE READ THIS AGREEMENT CAREFULLY TO MAKE SURE YOU FULLY
+          UNDERSTAND ITS CONTENT. IF YOU HAVE ANY DOUBTS AS TO YOUR RIGHTS
+          AND OBLIGATIONS RESULTING FROM THE ACCEPTANCE OF THIS AGREEMENT,
+          PLEASE CONSULT A LEGAL ADVISOR IN YOUR JURISDICTION BEFORE
+          FURTHER USING THE WEBSITE(S) AND ACCESSING ITS CONTENT. IF
+          YOU DO NOT ACCEPT THE TERMS, DO NOT USE, VISIT OR ACCESS
+          ANY PART (INCLUDING, BUT NOT LIMITED TO, SUB-DOMAINS,
+          SOURCE CODE AND/OR WEBSITE APIS, WHETHER VISIBLE OR NOT)
+          OF THE WEBSITE.
         </div>
       </div>
     </div>
     <div class="check-box">
-      <BaseCheckBox v-model="checkboxValue" :disabled="!isRead" :msg="checkedErrorMsg" @click.stop="valiChecked">
+      <BaseCheckBox
+        v-model="checkboxValue"
+        :disabled="!isRead"
+        :msg="checkedErrorMsg"
+        @click.stop="valiChecked"
+      >
         {{ t('read_terms_conditions') }}
       </BaseCheckBox>
-      <BaseButton :loading="isLoading" :disabled="!isRead" class="app-register-terms-conditions-btn" bg-style="secondary" @click.stop="getStartGame">
+      <BaseButton
+        :loading="isLoading"
+        :disabled="!isRead"
+        class="app-register-terms-conditions-btn"
+        bg-style="secondary" @click.stop="getStartGame"
+      >
         {{ t('start_game') }}
       </BaseButton>
     </div>
     <div class="app-bottom">
       <div class="app-bottom-text">
         <div>
-          {{ t('have_account') }}<span class="text-white" @click.stop="toLogin">{{ t('login') }}</span>
+          {{ t('have_account') }}
+          <span class="text-white" @click.stop="toLogin">{{ t('login') }}</span>
         </div>
 
         <div class="stake-text">
-          {{ t('stake_hCaptcha') }} <span>{{ t('privacy_policy') }}</span> {{ t('and') }} <span>{{ t('terms_of_service') }}</span> {{ t('applicable') }}
+          {{ t('stake_hCaptcha') }}
+          <span>{{ t('privacy_policy') }}</span> {{ t('and') }}
+          <span>{{ t('terms_of_service') }}</span> {{ t('applicable') }}
         </div>
       </div>
     </div>

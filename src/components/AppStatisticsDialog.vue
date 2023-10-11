@@ -288,16 +288,27 @@ onMounted(() => {
         <BaseTab v-model="tab" :list="tabList" :full="true" />
         <!-- 数据统计 -->
         <div v-if="tab === '1'" class="statistics-wrap">
-          <BaseTable :columns="statisticsColumns" :data-source="statisticsTableData" :loading="loading">
+          <BaseTable
+            :columns="statisticsColumns"
+            :data-source="statisticsTableData"
+            :loading="loading"
+          >
             <template #totalBet="{ record }">
               <div class="img-text-align-right">
-                <AppAmount :amount="record.totalBet" :currency-type="record.currencyType" />
+                <AppAmount
+                  :amount="record.totalBet"
+                  :currency-type="record.currencyType"
+                />
               </div>
             </template>
           </BaseTable>
         </div>
         <!-- 奖杯 -->
-        <div v-else-if="tab === '2'" class="trophies-wrap" :class="{ 'is-mobile': isLessThanSm }">
+        <div
+          v-else-if="tab === '2'"
+          class="trophies-wrap"
+          :class="{ 'is-mobile': isLessThanSm }"
+        >
           <div class="trophies-title">
             <p class="title-left">
               <BaseIcon name="chess-air-bonus" />
@@ -367,14 +378,24 @@ onMounted(() => {
               </template>
             </BaseTable>
           </div>
-          <AppStack :pagination-data="paginationData" @previous="onPrevious" @next="onNext" />
+          <AppStack
+            :pagination-data="paginationData"
+            @previous="onPrevious" @next="onNext"
+          />
         </div>
         <!-- 抽奖 -->
         <div v-else-if="tab === '4'" class="sweepstakes-wrap">
           <div class="sweepstakes-table">
-            <BaseTable :columns="SweepstakesColumns" :data-source="sweepstakesTableData" :loading="loading" />
+            <BaseTable
+              :columns="SweepstakesColumns"
+              :data-source="sweepstakesTableData"
+              :loading="loading"
+            />
           </div>
-          <AppStack :pagination-data="paginationData" @previous="onPrevious" @next="onNext" />
+          <AppStack
+            :pagination-data="paginationData"
+            @previous="onPrevious" @next="onNext"
+          />
         </div>
       </div>
     </div>

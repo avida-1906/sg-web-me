@@ -50,7 +50,11 @@ onMounted(() => {
 <template>
   <div class="m-badge" :class="[`${status ? 'badge-status' : ''}`, `${mode}-badge`]">
     <template v-if="status || color">
-      <span class="u-status-dot" :class="[`status-${status || color}`]" :style="customStyle" />
+      <span
+        class="u-status-dot"
+        :class="[`status-${status || color}`]"
+        :style="customStyle"
+      />
       <span class="u-status-text">
         <slot>{{ text }}</slot>
       </span>
@@ -62,7 +66,11 @@ onMounted(() => {
       <div
         v-show="showZero || count !== 0 || dot"
         class="m-badge-count"
-        :class="{ 'small-num': count < 10, 'only-number': !showContent, 'only-dot': count === 0 && !showZero }"
+        :class="{
+          'small-num': count < 10,
+          'only-number': !showContent,
+          'only-dot': count === 0 && !showZero,
+        }"
         :style="countStyle"
         :title="title || String(count)"
       >

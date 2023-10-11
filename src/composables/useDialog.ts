@@ -11,7 +11,12 @@ interface DialogOptions {
   default: (params?: any) => Component
 }
 
-export function useDialog({ title, icon, default: defaultSlot, maxWidth, showButtons, onCancel, onConfirm }: DialogOptions) {
+export function useDialog({
+  title,
+  icon,
+  default:
+  defaultSlot, maxWidth, showButtons, onCancel, onConfirm,
+}: DialogOptions) {
   const app = ref()
   const div = ref()
   const openDialog = (params?: any) => {

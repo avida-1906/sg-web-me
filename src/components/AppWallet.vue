@@ -26,10 +26,22 @@ function selectCurrency(item: IUserCurrencyList, hide: () => void) {
     <VDropdown v-model:shown="isMenuShown" :distance="6" @apply-show="clearSearchValue">
       <div class="flex-box">
         <BaseButton class="wallet" type="text" size="sm">
-          <AppAmount style="color:var(--tg-text-white);" :amount="currentGlobalCurrencyBalance" :currency-type="currentGlobalCurrency" />
-          <BaseIcon class="arrow" :class="{ 'arrow-up': isMenuShown }" name="uni-arrow-down" />
+          <AppAmount
+            style="color:var(--tg-text-white);"
+            :amount="currentGlobalCurrencyBalance"
+            :currency-type="currentGlobalCurrency"
+          />
+          <BaseIcon
+            class="arrow"
+            :class="{ 'arrow-up': isMenuShown }"
+            name="uni-arrow-down"
+          />
         </BaseButton>
-        <BaseButton class="wallet-right-btn" bg-style="primary" @click.stop="openWalletDialog">
+        <BaseButton
+          class="wallet-right-btn"
+          bg-style="primary"
+          @click.stop="openWalletDialog"
+        >
           <BaseIcon v-if="appContentWidth < 790" name="navbar-wallet" class="icon-size" />
           <span v-else>钱包</span>
         </BaseButton>
@@ -37,11 +49,25 @@ function selectCurrency(item: IUserCurrencyList, hide: () => void) {
       <template #popper="{ hide }">
         <div class="dropdown-popper need-pad-y">
           <div class="popper-top">
-            <BaseSearch v-model="searchValue" class="top-search" :clearable="searchValue?.length > 0" :white-style="true" place-holder="搜索货币" />
+            <BaseSearch
+              v-model="searchValue"
+              class="top-search"
+              :clearable="searchValue?.length > 0"
+              :white-style="true" place-holder="搜索货币"
+            />
           </div>
           <div class="scroll-y popper-content">
-            <div v-for="item of renderCurrencyList" :key="item.type" class="content-row" @click.stop="selectCurrency(item, hide)">
-              <AppAmount :amount="item.balanceWithSymbol" :currency-type="item.type" show-name />
+            <div
+              v-for="item of renderCurrencyList"
+              :key="item.type"
+              class="content-row"
+              @click.stop="selectCurrency(item, hide)"
+            >
+              <AppAmount
+                :amount="item.balanceWithSymbol"
+                :currency-type="item.type"
+                show-name
+              />
             </div>
             <div v-show="!renderCurrencyList.length" class="balance-not">
               无法使用货币

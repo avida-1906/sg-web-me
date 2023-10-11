@@ -12,7 +12,8 @@ console.log(props.modelValue)
 
 const bankTypeData = ref([{ label: '银行转账', icon: 'fiat-bank', value: '1' }])
 const pixTypeData = ref([{ label: 'PIX', icon: 'fiat-bank', value: '2' }])
-const currentTypeBanks = computed(() => props.modelValue === '1' ? bankTypeData.value : pixTypeData.value)
+const currentTypeBanks = computed(() =>
+  props.modelValue === '1' ? bankTypeData.value : pixTypeData.value)
 
 const changeType = function (type: string) {
   emit('update:modelValue', type)

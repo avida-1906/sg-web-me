@@ -28,11 +28,17 @@ const props = withDefaults(defineProps<Props>(), {
         <AppCurrencyIcon v-if="currentCurrency" :currency-type="currentCurrency" />
         <div class="label-title">
           {{ props.label }}
-          <div v-if="props.must || props.mustSmall" :class="{ 'label-must': props.must, 'label-must-small': props.mustSmall }">
+          <div
+            v-if="props.must || props.mustSmall"
+            :class="{ 'label-must': props.must, 'label-must-small': props.mustSmall }"
+          >
             <span>*</span>
           </div>
         </div>
-        <div class="label-content" :style="`color:var(${props.contentColor});font-size:${props.contentSize}px`">
+        <div
+          class="label-content"
+          :style="`color:var(${props.contentColor});font-size:${props.contentSize}px`"
+        >
           {{ props.labelContent }}
         </div>
       </div>

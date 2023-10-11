@@ -46,18 +46,33 @@ const bannerData = [
 ]
 const offSet = ref(0)
 const activeValue = ref(2)
-const { bool: activeTransition, setTrue: setTransitionTrue, setFalse: setTransitionFalse } = useBoolean(false)
+const {
+  bool: activeTransition,
+  setTrue: setTransitionTrue,
+  setFalse: setTransitionFalse,
+} = useBoolean(false)
 const sliderRef = ref<HTMLElement>()
 const baseNumber = ref(0.3333)
 const offSetNumber = ref(0)
-const { bool: isDragging, setTrue: setDraggingTrue, setFalse: setDraggingFalse } = useBoolean(false)
+const {
+  bool: isDragging, setTrue:
+  setDraggingTrue, setFalse:
+  setDraggingFalse,
+} = useBoolean(false)
 const startPosition = ref(0)
 const tempOffSet = ref(0)
 
 const isXs = computed(() => appContentWidth.value < widthBoundaryXs.value)
-const isSm = computed(() => appContentWidth.value < widthBoundarySm.value && appContentWidth.value > widthBoundaryXs.value)
-const mergeBannerData = computed(() => [...bannerData, ...bannerData, ...bannerData])
-const cardWidth = computed(() => Number((appContentWidth.value * baseNumber.value).toFixed(2)))
+const isSm = computed(() => {
+  return appContentWidth.value < widthBoundarySm.value
+  && appContentWidth.value > widthBoundaryXs.value
+})
+const mergeBannerData = computed(() => {
+  return [...bannerData, ...bannerData, ...bannerData]
+})
+const cardWidth = computed(() => {
+  return Number((appContentWidth.value * baseNumber.value).toFixed(2))
+})
 const sliderWidth = computed(() => cardWidth.value * 15)
 const offSetInit = computed(() => cardWidth.value * 5)
 
@@ -76,7 +91,8 @@ const onPrev = throttle(() => {
   setTimeout(() => {
     setTransitionFalse()
   }, 800)
-  offSetNumber.value = Math.abs(Number((offSet.value / cardWidth.value).toFixed()))
+  offSetNumber.value = Math.abs(
+    Number((offSet.value / cardWidth.value).toFixed()))
 }, 1000, { leading: true, trailing: false })
 // 右
 const onNext = throttle(() => {
@@ -93,7 +109,8 @@ const onNext = throttle(() => {
   setTimeout(() => {
     setTransitionFalse()
   }, 800)
-  offSetNumber.value = Math.abs(Number((offSet.value / cardWidth.value).toFixed()))
+  offSetNumber.value = Math.abs(
+    Number((offSet.value / cardWidth.value).toFixed()))
 }, 1000, { leading: true, trailing: false })
 // 点击图片切换
 const change = function (item: IBannerData) {
@@ -149,13 +166,15 @@ watch(() => isXs.value, () => {
     baseNumber.value = 0.3333
 }, { immediate: true })
 watch(() => appContentWidth.value, () => {
-  offSet.value = -Number(Math.abs(offSetNumber.value * cardWidth.value).toFixed(2))
+  offSet.value = -Number(
+    Math.abs(offSetNumber.value * cardWidth.value).toFixed(2))
 })
 
 onMounted(() => {
   setTimeout(() => {
     offSet.value = -offSetInit.value
-    offSetNumber.value = Math.abs(Number((offSet.value / cardWidth.value).toFixed()))
+    offSetNumber.value = Math.abs(
+      Number((offSet.value / cardWidth.value).toFixed()))
   }, 0)
   // 滑动
   sliderRef.value?.addEventListener('touchstart', onTouchstart)
@@ -173,12 +192,23 @@ onUnmounted(() => {
   <div class="app-banner-unlimited">
     <div class="banner-wrap">
       <div ref="sliderRef" class="slider-wrap">
-        <div class="slider" :style="{ transform: `translate(${offSet}px, 0px)`, width: `${sliderWidth}px` }" :class="{ 'is-transition': activeTransition }">
+        <div
+          class="slider"
+          :style="{
+            transform: `translate(${offSet}px, 0px)`,
+            width: `${sliderWidth}px`,
+          }"
+          :class="{ 'is-transition': activeTransition }"
+        >
           <div
             v-for="item in mergeBannerData"
             :key="item.value"
             class="slider-item"
-            :class="{ 'active': item.value === activeValue && !isSm && !isXs, 'active-sm': isSm, 'active-xs': isXs }"
+            :class="{
+              'active': item.value === activeValue && !isSm && !isXs,
+              'active-sm': isSm,
+              'active-xs': isXs,
+            }"
             :style="{ width: `${cardWidth}px` }"
             @click.stop="change(item)"
           >

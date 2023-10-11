@@ -11,7 +11,9 @@ const props = withDefaults(defineProps<Props>(), {
   placeHolder: 'Search...',
   shape: 'round',
 })
-const emit = defineEmits(['update:modelValue', 'input', 'search', 'focus', 'blur', 'clear', 'close'])
+const emit = defineEmits(
+  ['update:modelValue', 'input', 'search', 'focus', 'blur', 'clear', 'close'],
+)
 
 const { bool: isFocus, setTrue, setFalse } = useBoolean(false)
 
@@ -47,7 +49,11 @@ function onClear() {
     <div class="content-box">
       <BaseIcon name="uni-search" class="search-icon" />
       <input
-        :value="modelValue" type="text" :placeholder="placeHolder" @input="onInput" @keypress.enter="onSearch"
+        :value="modelValue"
+        type="text"
+        :placeholder="placeHolder"
+        @input="onInput"
+        @keypress.enter="onSearch"
         @blur="onBlur" @focus="onFocus"
       >
 

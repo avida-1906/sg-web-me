@@ -36,10 +36,24 @@ const toNext = function () {
 
 <template>
   <div class="app-pagination">
-    <span class="pagination-previous" :class="{ 'no-data': props.paginationData.total === 0 || props.paginationData.pageNumber === 1 }" @click="toPrevious">
+    <span
+      class="pagination-previous"
+      :class="{
+        'no-data': props.paginationData.total === 0
+          || props.paginationData.pageNumber === 1,
+      }"
+      @click="toPrevious"
+    >
       {{ $t('page_prev') }}
     </span>
-    <span class="pagination-next" :class="{ 'no-data': props.paginationData.total === 0 || props.paginationData.pageNumber === maxPageNumber }" @click="toNext">
+    <span
+      class="pagination-next"
+      :class="{
+        'no-data': props.paginationData.total === 0
+          || props.paginationData.pageNumber === maxPageNumber,
+      }"
+      @click="toNext"
+    >
       {{ $t('page_next') }}
     </span>
   </div>

@@ -21,14 +21,21 @@ const props = withDefaults(defineProps<Props>(), {
 })
 const emit = defineEmits(['update:modelValue', 'select'])
 
-const { bool: isPopperOpen, setTrue: setPopperOpen, setFalse: setPopperClose } = useBoolean(false)
+const {
+  bool: isPopperOpen,
+  setTrue: setPopperOpen,
+  setFalse: setPopperClose,
+} = useBoolean(false)
 const parent = ref<HTMLElement | null>(null)
 const { width } = useElementSize(parent)
 
 const error = computed(() => !!props.msg)
-const selectedOption = computed(() => props.options.find(a => a.value === props.modelValue))
-const popperLabel = computed(() => props.options.find(a => a.value === props.modelValue)?.label ?? '-')
-const popperLabelBank = computed(() => props.options.find(a => a.value === props.modelValue)?.value ?? '')
+const selectedOption = computed(() =>
+  props.options.find(a => a.value === props.modelValue))
+const popperLabel = computed(() =>
+  props.options.find(a => a.value === props.modelValue)?.label ?? '-')
+const popperLabelBank = computed(() =>
+  props.options.find(a => a.value === props.modelValue)?.value ?? '')
 
 function onChange(event: any) {
   const v = event.target.value
@@ -55,7 +62,12 @@ function onClickPopper() {
 
 <template>
   <template v-if="popper">
-    <VDropdown :disabled="disabled" :distance="6" :popper-class="theme ? 'theme-black' : ''" @hide="setPopperClose">
+    <VDropdown
+      :disabled="disabled"
+      :distance="6"
+      :popper-class="theme ? 'theme-black' : ''"
+      @hide="setPopperClose"
+    >
       <div ref="parent" class="popper-label" :class="{ disabled }" @click="onClickPopper">
         <slot name="label" :data="selectedOption">
           <span v-if="!banks">{{ popperLabel }}</span>
@@ -72,10 +84,17 @@ function onClickPopper() {
         <div class="scroll-y need-pad-y popper-wrap">
           <a
             v-for="item, i in options" :key="i"
-            :class="{ 'popper-option-dark': theme, 'popper-option': !theme, 'active': item.value === modelValue }"
+            :class="{
+              'popper-option-dark': theme,
+              'popper-option': !theme,
+              'active': item.value === modelValue,
+            }"
             @click="hide();onClickPopperItem(item.value)"
           >
-            <slot name="option" :data="{ item, parentWidth: width, active: item.value === modelValue }">
+            <slot
+              name="option"
+              :data="{ item, parentWidth: width, active: item.value === modelValue }"
+            >
               {{ item.label }}
             </slot>
           </a>
@@ -88,9 +107,18 @@ function onClickPopper() {
     <div :class="[layout]">
       <label v-if="label">{{ label }} <span v-if="must" class="must">*</span></label>
       <div class="select-warp">
-        <select :value="modelValue" :class="{ disabled, small, error }" :disabled="disabled" @change="onChange">
+        <select
+          :value="modelValue"
+          :class="{ disabled, small, error }"
+          :disabled="disabled" @change="onChange"
+        >
           <option style="display: none;" disabled value="" />
-          <option v-for="o, i in options" :key="i" :selected="o.value === modelValue" :value="o.value">
+          <option
+            v-for="o, i in options"
+            :key="i"
+            :selected="o.value === modelValue"
+            :value="o.value"
+          >
             {{ o.label }}
           </option>
         </select>

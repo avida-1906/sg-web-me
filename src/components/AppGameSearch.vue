@@ -14,8 +14,12 @@ const { bool: isInputing, setTrue: setInputingTrue } = useBoolean(false)
 const { bool: isShowOverlay } = useBoolean(false)
 
 const searchValue = ref('')
-const keywordLive = ref(Local.get<any[]>(STORAGE_SEARCH_KEYWORDS_LIVE)?.value ?? [])
-const keywordSports = ref(Local.get<any[]>(STORAGE_SEARCH_KEYWORDS_SPORTS)?.value ?? [])
+const keywordLive = ref(
+  Local.get<any[]>(STORAGE_SEARCH_KEYWORDS_LIVE)?.value ?? [],
+)
+const keywordSports = ref(
+  Local.get<any[]>(STORAGE_SEARCH_KEYWORDS_SPORTS)?.value ?? [],
+)
 const dom = ref()
 const gameSearchRef = ref()
 const searchOverlayStyle = ref({ left: 0, top: 0, width: 0 })
@@ -23,7 +27,9 @@ let gameSearchRefClient: any = null
 
 const isCasino = computed(() => props.gameType === GameType.casino)
 const isSports = computed(() => props.gameType === GameType.sports)
-const placeHolderText = computed(() => isCasino.value ? t('search_game') : t('search_events'))
+const placeHolderText = computed(() => {
+  return isCasino.value ? t('search_game') : t('search_events')
+})
 // 近期搜索关键字
 const keywordList = computed(() => {
   if (isCasino.value)
@@ -32,7 +38,10 @@ const keywordList = computed(() => {
     return keywordSports.value
   return []
 })
-const { list: casinoGames, run: runSearchCasinoGames } = useList(ApiMemberGameSearch, {
+const {
+  list: casinoGames,
+  run: runSearchCasinoGames,
+} = useList(ApiMemberGameSearch, {
   debounceInterval: 500,
   onAfter(params) {
     const word = params[0].w
@@ -137,8 +146,13 @@ onBeforeUnmount(() => {
     <div v-if="isShowOverlay" class="overlay" @click.self="closeOverlay" />
     <div :class="{ 'input-focus': isShowOverlay }">
       <BaseSearch
-        v-model.trim="searchValue" :place-holder="placeHolderText" :clearable="isShowOverlay"
-        @focus="showOverlay" @close="closeOverlay" @input="onBaseSearchInput" @clear="setClearTrue"
+        v-model.trim="searchValue"
+        :place-holder="placeHolderText"
+        :clearable="isShowOverlay"
+        @focus="showOverlay"
+        @close="closeOverlay"
+        @input="onBaseSearchInput"
+        @clear="setClearTrue"
       />
     </div>
 
@@ -154,8 +168,13 @@ onBeforeUnmount(() => {
         <div class="scroll-y warp">
           <div v-if="!resultData" class="no-result">
             <div class="text">
-              <span v-show="searchValue.length < 3">{{ t('search_need_at_least_3_word') }}</span>
-              <span v-show="searchValue.length >= 3 && !isInputing">{{ t('search_no_result') }}</span>
+              <span
+                v-show="searchValue.length < 3"
+              >
+                {{ t('search_need_at_least_3_word') }}</span>
+              <span
+                v-show="searchValue.length >= 3 && !isInputing"
+              >{{ t('search_no_result') }}</span>
             </div>
             <div v-if="keywordList.length" class="recent">
               <div class="title">
@@ -166,7 +185,10 @@ onBeforeUnmount(() => {
               </div>
               <div class="list">
                 <BaseTag
-                  v-for="text in keywordList" :key="text" :text="text" @click="onClickKeyword"
+                  v-for="text in keywordList"
+                  :key="text"
+                  :text="text"
+                  @click="onClickKeyword"
                   @close="onCloseKeyword"
                 />
               </div>

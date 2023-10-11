@@ -13,7 +13,9 @@ const router = useRouter()
 
 const _data = reactive(props.breadcrumb)
 
-function goPath({ d, disabled }: { d?: BreadCrumbItem; disabled?: boolean } = {}) {
+function goPath(
+  { d, disabled }: { d?: BreadCrumbItem; disabled?: boolean } = {},
+) {
   if (disabled)
     return
   const p = _data.pop()
@@ -35,7 +37,7 @@ function collect() {
 </script>
 
 <template>
-  <div class="app-nav-bread-crumb scroll-x">
+  <div class="scroll-x app-nav-bread-crumb">
     <div class="back">
       <BaseButton size="md" @click="goBack">
         <BaseIcon name="uni-arrow-left" class="arrow-left" />
@@ -43,7 +45,14 @@ function collect() {
     </div>
     <div class="scroll-x breadcrumb-wrapper remove-end-border">
       <template v-for="d, idx in _data" :key="d.path">
-        <a class="link" :class="{ disabled: idx === _data.length - 1, active: idx === _data.length - 1 }" @click="goPath({ d, disabled: idx === _data.length - 1 })">
+        <a
+          class="link"
+          :class="{
+            disabled: idx === _data.length - 1,
+            active: idx === _data.length - 1,
+          }"
+          @click="goPath({ d, disabled: idx === _data.length - 1 })"
+        >
           <span>{{ d.title }}</span>
         </a>
         <span v-if="idx !== _data.length - 1" class="slash" />
