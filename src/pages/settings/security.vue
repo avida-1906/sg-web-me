@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 const { t } = useI18n()
 const { openNotify } = useNotify()
-const { openEmailCodeDialog } = useEmailCodeDialog()
+const { openEmailCodeDialog, closeEmailCodeDialog } = useEmailCodeDialog()
 // 登录密码
 const { bool: pwdStatus, setBool: setPwdStatus } = useBoolean(false)
 const {
@@ -49,8 +49,8 @@ const {
 } = useField<string>('payPassword', (value) => {
   if (!value)
     return t('pls_enter_password')
-  if (value.length !== 6)
-    return '请输入6位数字'
+  if (!payPasswordReg.test(value))
+    return '您的交易密码含有6位数字'
   return ''
 })
 const {
@@ -60,8 +60,8 @@ const {
 } = useField<string>('aginPayPassword', (value) => {
   if (!value)
     return t('pls_enter_password')
-  if (value !== newPassword.value)
-    return '两次输入的密码不一致'
+  if (value !== payPassword.value)
+    return '两次输入的交易密码不一致'
   return ''
 })
 const {
@@ -74,8 +74,10 @@ const {
       title: '成功',
       message: '设置交易密码成功',
     })
+    closeEmailCodeDialog()
   },
 })
+
 // 双重验证
 const twoStepPassword = ref('')
 const twoStepCode = ref('HM3XE2DLGVWECZDYK5BUMNTQORGVCKBVO5MG4JBSG46EGMCSHZEA')
@@ -116,13 +118,17 @@ async function submitLoginPwd() {
 }
 // 提交支付密码
 async function submitPayPwd() {
-  openEmailCodeDialog()
   await valiPayPwd()
   await valiAginPayPwd()
   if (!(payPwdErrorMsg.value || aginPayPwdErrorMsg.value)) {
-    runMemberPayPasswordUpdate({
-      pay_password: payPassword.value,
-      code: '',
+    openEmailCodeDialog({
+      run: (emailCode: string) => {
+        runMemberPayPasswordUpdate({
+          pay_password: payPassword.value,
+          code: emailCode,
+        })
+      },
+      loading: payPasswordUpdateLoading,
     })
   }
 }
@@ -163,6 +169,7 @@ async function submitPayPwd() {
     <AppSettingsContentItem
       title="交易密码"
       :btn-loading="payPasswordUpdateLoading"
+      btn-text="电邮验证"
       @submit="submitPayPwd"
     >
       <template #top-desc>

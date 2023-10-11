@@ -10,12 +10,15 @@ interface Props {
   btnLoading?: boolean
   /** 是否验证 */
   verified?: boolean
+  /** 按钮文字 */
+  btnText: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
   lastOne: false,
   verified: false,
   badge: false,
+  btnText: '保存',
 })
 const emit = defineEmits(['submit'])
 
@@ -55,7 +58,7 @@ const onSubmit = function () {
           :disabled="props.verified"
           @click="onSubmit"
         >
-          保存
+          {{ btnText }}
         </BaseButton>
       </div>
     </div>
