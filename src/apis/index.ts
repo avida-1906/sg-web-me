@@ -512,3 +512,16 @@ export function ApiMemberEmailCheck(data: {
 }) {
   return httpClient.post<string>('/member/email/check', data)
 }
+
+/**
+* 设置交易密码
+* @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=7f28bcd5-c379-4de4-9027-cf3ce6f23695
+*/
+export function ApiMemberPayPasswordUpdate(data: {
+  /** 交易密码 */
+  pay_password: string
+  /** 邮箱验证码 */
+  code: string
+}) {
+  return httpClient.post<string>('/member/pay/password/update', data)
+}

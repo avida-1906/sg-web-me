@@ -1,7 +1,9 @@
 <script lang="ts" setup>
 const { t } = useI18n()
 const { openNotify } = useNotify()
-const { bool: isShowPasswordVerify, setTrue: setShowPasswordVerifyTrue } = useBoolean(false)
+// 登录密码
+const { bool: pwdStatus, setBool: setPwdStatus } = useBoolean(false)
+const { bool: isShowPasswordVerify, setBool: setShowPasswordVerify } = useBoolean(false)
 const { value: password, errorMessage: pwdErrorMsg, validate: valiPassword } = useField<string>('password', fieldVerify)
 const { value: newPassword, errorMessage: newPwdErrorMsg, validate: valiNewPassword } = useField<string>('newPassword', fieldVerify)
 const { value: repeatPassword, errorMessage: repeatPwdErrorMsg, validate: valiRepeatPassword } = useField<string>('repeatPassword', (value) => {
@@ -20,10 +22,31 @@ const { run: runMemberPasswordUpdate, loading: passwordUpdateLoading } = useRequ
     })
   },
 })
-
+// 交易密码
+const { value: payPassword, errorMessage: payPwdErrorMsg, validate: valiPayPwd } = useField<string>('payPassword', (value) => {
+  if (!value)
+    return t('pls_enter_password')
+  if (value.length !== 6)
+    return '请输入6位数字'
+  return ''
+})
+const { value: aginPayPassword, errorMessage: aginPayPwdErrorMsg, validate: valiAginPayPwd } = useField<string>('aginPayPassword', (value) => {
+  if (!value)
+    return t('pls_enter_password')
+  if (value !== newPassword.value)
+    return '两次输入的密码不一致'
+  return ''
+})
+const { run: runMemberPayPasswordUpdate, loading: payPasswordUpdateLoading } = useRequest(ApiMemberPayPasswordUpdate, {
+  onSuccess() {
+    openNotify({
+      type: 'success',
+      title: '成功',
+      message: '设置交易密码成功',
+    })
+  },
+})
 const twoStepPassword = ref('')
-const transPassword = ref('')
-const aginTransPassword = ref('')
 const twoStepCode = ref('HM3XE2DLGVWECZDYK5BUMNTQORGVCKBVO5MG4JBSG46EGMCSHZEA')
 
 function fieldVerify(value: string) {
@@ -41,7 +64,15 @@ function fieldVerify(value: string) {
 
   return ''
 }
-async function handleSubmit() {
+function onBlur() {
+  if (pwdStatus.value)
+    setShowPasswordVerify(false)
+}
+function passwordVerifyPass(status: boolean) {
+  setPwdStatus(status)
+}
+// 提交登陆密码
+async function submitLoginPwd() {
   await valiPassword()
   await valiNewPassword()
   await valiRepeatPassword()
@@ -52,31 +83,42 @@ async function handleSubmit() {
     })
   }
 }
+// 提交支付密码
+async function submitPayPwd() {
+  await valiPayPwd()
+  await valiAginPayPwd()
+  if (!(payPwdErrorMsg.value || aginPayPwdErrorMsg.value)) {
+    runMemberPayPasswordUpdate({
+      pay_password: payPassword.value,
+      code: '',
+    })
+  }
+}
 </script>
 
 <template>
   <div class="tg-settings-security">
-    <AppSettingsContentItem title="密码" :btn-loading="passwordUpdateLoading" @submit="handleSubmit">
+    <AppSettingsContentItem title="密码" :btn-loading="passwordUpdateLoading" @submit="submitLoginPwd">
       <BaseLabel label="旧密码" must-small>
         <BaseInput v-model="password" :msg="pwdErrorMsg" type="password" />
       </BaseLabel>
       <BaseLabel label="新密码" must-small>
-        <BaseInput v-model="newPassword" :msg="newPwdErrorMsg" type="password" @focus="setShowPasswordVerifyTrue" />
-        <AppPasswordVerify v-show="isShowPasswordVerify" :password="newPassword" />
+        <BaseInput v-model="newPassword" :msg="newPwdErrorMsg" type="password" @focus="setShowPasswordVerify(true)" @blur="onBlur" />
+        <AppPasswordVerify v-show="isShowPasswordVerify" :password="newPassword" @pass="passwordVerifyPass" />
       </BaseLabel>
       <BaseLabel label="确认新密码" must-small>
         <BaseInput v-model="repeatPassword" :msg="repeatPwdErrorMsg" type="password" />
       </BaseLabel>
     </AppSettingsContentItem>
-    <AppSettingsContentItem title="交易密码">
+    <AppSettingsContentItem title="交易密码" :btn-loading="payPasswordUpdateLoading" @submit="submitPayPwd">
       <template #top-desc>
         交易密码将用于保护提款，保险库取款安全。
       </template>
       <BaseLabel label="密码" must-small>
-        <BaseInputPassword v-model="transPassword" />
+        <BaseInputPassword v-model="payPassword" :msg="payPwdErrorMsg" />
       </BaseLabel>
       <BaseLabel label="确认密码" must-small>
-        <BaseInputPassword v-model="aginTransPassword" />
+        <BaseInputPassword v-model="aginPayPassword" :msg="aginPayPwdErrorMsg" />
       </BaseLabel>
     </AppSettingsContentItem>
     <AppSettingsContentItem title="双重验证" last-one>
