@@ -411,6 +411,58 @@ const eventData = reactive({
             },
           ],
         },
+        {
+          add_local_is_select: true,
+          id: 'bb02b075-f6e1-42b0-a81e-d09bb9b99477',
+          extId: '201',
+          rank: 4,
+          name: '半全场赛果(1st set/match)',
+          markets: [
+            {
+              id: '180d63f7-0d64-40ca-a3b6-7c97edf6fbc5',
+              name: '半全场赛果(1st set/match)',
+              status: 'active',
+              extId: '201',
+              specifiers: '',
+              customBetAvailable: false,
+              provider: 'betradar',
+              outcomes: [
+                {
+                  active: true,
+                  id: '8e86d19d-f896-4988-9eb0-1b8ee02ca48b',
+                  odds: 2.7,
+                  name: '刘，克莱尔/刘，克莱尔',
+                  customBetAvailable: false,
+                  __typename: 'SportMarketOutcome',
+                },
+                {
+                  active: true,
+                  id: 'bd907ebe-a4db-47de-aaf6-e5c8d3f74263',
+                  odds: 7,
+                  name: '露丝/刘，克莱尔',
+                  customBetAvailable: false,
+                  __typename: 'SportMarketOutcome',
+                },
+                {
+                  active: true,
+                  id: '267357fa-9f8e-46bb-bb67-d135dbbcc7be',
+                  odds: 11,
+                  name: '刘，克莱尔/露丝',
+                  customBetAvailable: false,
+                  __typename: 'SportMarketOutcome',
+                },
+                {
+                  active: true,
+                  id: 'b8ac0a83-a71e-4eaa-8236-ab1d23edf700',
+                  odds: 1.95,
+                  name: '露丝/露丝',
+                  customBetAvailable: false,
+                  __typename: 'SportMarketOutcome',
+                },
+              ],
+            },
+          ],
+        },
       ],
     },
   ],
@@ -479,6 +531,9 @@ function mapHeadArea(head: Array<{ key: string; periodScores?: Array<{ [prop: st
   }, [])
 }
 function onOpenLiveSwitch() {}
+function selectOutcome(v: string, tempid: string, marketid: string) {
+  console.log(v, tempid, marketid)
+}
 </script>
 
 <template>
@@ -624,7 +679,7 @@ function onOpenLiveSwitch() {}
                       </div>
                     </template>
                     <template #default>
-                      <div class="legs scroll-y">
+                      <div class="scroll-y legs">
                         <div class="leg">
                           <span>handicap - Texas Rangers (-0.5)</span>
                           <BaseButton type="text">
@@ -651,8 +706,16 @@ function onOpenLiveSwitch() {}
                       </template>
                       <template #default>
                         <div class="market">
-                          <template v-for="market in temp.markets" :key="market.id">
-                            <AppSportsBetButton v-for="outcome in market.outcomes" :key="outcome.id" layout="horizontal" />
+                          <template v-if="temp.add_local_is_select">
+                            <template v-for="market in temp.markets" :key="market.id">
+                              <BaseSelect :options="market.outcomes.map(t => ({ ...t, label: t.name, value: t.id }))" @select="(v) => selectOutcome(v, temp.id, market.id)" />
+                              <AppSportsBetButton layout="horizontal" />
+                            </template>
+                          </template>
+                          <template v-else>
+                            <template v-for="market in temp.markets" :key="market.id">
+                              <AppSportsBetButton v-for="outcome in market.outcomes" :key="outcome.id" layout="horizontal" />
+                            </template>
                           </template>
                         </div>
                       </template>
