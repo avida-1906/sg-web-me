@@ -203,7 +203,11 @@ export function ApiMemberGameSearch(params: { w: string }) {
  * 游戏收藏列表
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=cde927eb-45af-40aa-be78-18426224daf6
  */
-export function ApiMemberFavList(params?: { page?: number; page_size?: number }) {
+export function ApiMemberFavList(
+  params?: {
+    page?: number
+    page_size?: number
+  }) {
   return httpClient.get<IResponseList<{
     id: string
     platform_id: string
@@ -284,7 +288,11 @@ export function ApiMemberGameRecList(params?: {
  * 场馆列表
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=d8e0da7a-92e4-4c67-bc62-8549304bada9
  */
-export function ApiMemberPlatformList(params?: { page?: number; page_size?: number }) {
+export function ApiMemberPlatformList(
+  params?: {
+    page?: number
+    page_size?: number
+  }) {
   return httpClient.get<IResponseList<{
     id: string
     en_name: string
@@ -524,4 +532,12 @@ export function ApiMemberPayPasswordUpdate(data: {
   code: string
 }) {
   return httpClient.post<string>('/member/pay/password/update', data)
+}
+
+/**
+* 发送邮箱验证码
+* @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=80a6d16c-b13e-4647-91e1-3a18e73cef4c
+*/
+export function ApiMemberSendMailCode() {
+  return httpClient.get<string>('/member/send/mailCode')
 }

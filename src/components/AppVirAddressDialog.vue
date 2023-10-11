@@ -13,14 +13,21 @@ const closeDialog = inject('closeDialog', () => { })
 
 const { t } = useI18n()
 const { openNotify } = useNotify()
-const { value: address, errorMessage: addressMsg, validate: valiAddress } = useField<string>('address', (value) => {
+const {
+  value: address,
+  errorMessage: addressMsg,
+  validate: valiAddress,
+} = useField<string>('address', (value) => {
   if (!value)
     return t('this_field_is_required')
   if (!virtualCoinAddressReg.test(value))
     return '地址格式不正确'
   return ''
 })
-const { run: runMemberWalletInsert, loading: addWalletInsertLoading } = useRequest(ApiMemberWalletInsert, {
+const {
+  run: runMemberWalletInsert,
+  loading: addWalletInsertLoading,
+} = useRequest(ApiMemberWalletInsert, {
   onSuccess() {
     openNotify({
       type: 'success',
@@ -48,7 +55,12 @@ async function handleBindAddress() {
     <BaseLabel :label="`您${currencyName}的${contractType}地址`" must>
       <BaseInput v-model="address" :msg="addressMsg" />
     </BaseLabel>
-    <BaseButton bg-style="primary" :loading="addWalletInsertLoading" @click="handleBindAddress">
+    <BaseButton
+      bg-style="primary"
+      :loading="addWalletInsertLoading"
+      size="md"
+      @click="handleBindAddress"
+    >
       绑定
     </BaseButton>
   </div>

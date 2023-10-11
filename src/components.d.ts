@@ -30,6 +30,7 @@ declare module 'vue' {
     AppCurrencyIcon: typeof import('./components/AppCurrencyIcon.vue')['default']
     AppDemoCard: typeof import('./components/AppDemoCard.vue')['default']
     AppDesc: typeof import('./components/AppDesc.vue')['default']
+    AppEmailCodeDialog: typeof import('./components/AppEmailCodeDialog.vue')['default']
     AppFiatDeposit: typeof import('./components/AppFiatDeposit.vue')['default']
     AppFiatWithdrawal: typeof import('./components/AppFiatWithdrawal.vue')['default']
     AppFooter: typeof import('./components/AppFooter.vue')['default']
