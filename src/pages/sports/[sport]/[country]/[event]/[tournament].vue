@@ -463,6 +463,89 @@ const eventData = reactive({
             },
           ],
         },
+        {
+          id: 'eba9af0f-68e5-4e5e-bffa-a3a9fefe34c1',
+          extId: '214',
+          rank: 11.625,
+          name: '{!setnr} 盘 {gamenr} - 正确比分',
+          markets: [
+            {
+              id: '611e1d55-8099-42e2-9228-055d2d6d90fd',
+              name: '2nd 盘 2 - 正确比分',
+              status: 'active',
+              extId: '214',
+              specifiers: 'setnr=2|gamenr=2',
+              customBetAvailable: false,
+              provider: 'betradar',
+              outcomes: [
+                {
+                  active: true,
+                  id: 'ebc19141-a6f2-4ce7-876a-88dcddf5b052',
+                  odds: 3.6,
+                  name: '贾里，尼古拉斯 到 0',
+                  customBetAvailable: false,
+                  __typename: 'SportMarketOutcome',
+                },
+                {
+                  active: true,
+                  id: 'c9e584a5-8c5f-43fc-a9d1-033dcedbfd21',
+                  odds: 3.1,
+                  name: '贾里，尼古拉斯 到 15',
+                  customBetAvailable: false,
+                  __typename: 'SportMarketOutcome',
+                },
+                {
+                  active: true,
+                  id: 'b5625197-0794-42ae-80c5-8cacfcc64a4e',
+                  odds: 3.9,
+                  name: '贾里，尼古拉斯 到 30',
+                  customBetAvailable: false,
+                  __typename: 'SportMarketOutcome',
+                },
+                {
+                  active: true,
+                  id: '99173af0-04d0-474d-9e06-31154691c71a',
+                  odds: 5.5,
+                  name: '贾里，尼古拉斯 到 40',
+                  customBetAvailable: false,
+                  __typename: 'SportMarketOutcome',
+                },
+                {
+                  active: true,
+                  id: '60e53b3a-b2e6-4e58-ad9f-b816d993138a',
+                  odds: 80,
+                  name: 'Schwartzman, Diego 到 0',
+                  customBetAvailable: false,
+                  __typename: 'SportMarketOutcome',
+                },
+                {
+                  active: true,
+                  id: '17c740eb-699f-4ddb-aa29-852aa573b542',
+                  odds: 29,
+                  name: 'Schwartzman, Diego 到 15',
+                  customBetAvailable: false,
+                  __typename: 'SportMarketOutcome',
+                },
+                {
+                  active: true,
+                  id: 'cbdc6b90-f812-4164-bbc7-37b276d5c79f',
+                  odds: 17.25,
+                  name: 'Schwartzman, Diego 到 30',
+                  customBetAvailable: false,
+                  __typename: 'SportMarketOutcome',
+                },
+                {
+                  active: true,
+                  id: '6e2dcabe-1ccc-4085-bc8a-2134255ce3ec',
+                  odds: 23,
+                  name: 'Schwartzman, Diego 到 40',
+                  customBetAvailable: false,
+                  __typename: 'SportMarketOutcome',
+                },
+              ],
+            },
+          ],
+        },
       ],
     },
   ],
@@ -473,16 +556,45 @@ const eventData = reactive({
 
 const scoreBoard = computed(() => {
   const head = [
-    { key: 'competitor', value: (q: Qualifier) => eventData.data.teams.filter(t => t.qualifier === q)[0]?.name, title: eventData.eventStatus.matchStatus },
-    { key: 'corners', value: (q: Qualifier) => eventData.eventStatus.statistic.corners[q], icon: 'uni-ruler' },
-    { key: 'yellowCards', value: (q: Qualifier) => eventData.eventStatus.statistic.yellowCards[q], icon: 'uni-warn-rect' },
-    { key: 'redCards', value: (q: Qualifier) => eventData.eventStatus.statistic.redCards[q], icon: 'uni-error-rect' },
+    {
+      key: 'competitor',
+      value: (q: Qualifier) =>
+        eventData.data.teams.filter(t => t.qualifier === q)[0]?.name,
+      title: eventData.eventStatus.matchStatus,
+    },
+    {
+      key: 'corners',
+      value: (q: Qualifier) =>
+        eventData.eventStatus.statistic.corners[q],
+      icon: 'uni-ruler',
+    },
+    {
+      key: 'yellowCards',
+      value: (q: Qualifier) =>
+        eventData.eventStatus.statistic.yellowCards[q],
+      icon: 'uni-warn-rect',
+    },
+    {
+      key: 'redCards',
+      value: (q: Qualifier) =>
+        eventData.eventStatus.statistic.redCards[q],
+      icon: 'uni-error-rect',
+    },
     {
       key: 'period',
-      periodScores: eventData.eventStatus.periodScores.map(p => ({ ...p, value: (q: Qualifier) => p[`${q}Score`] })),
+      periodScores: eventData.eventStatus.periodScores.map(p =>
+        ({ ...p, value: (q: Qualifier) => p[`${q}Score`] })),
     },
-    { key: 'gameScore', value: (q: Qualifier) => eventData.eventStatus[`${q}GameScore`] },
-    { key: 'matchScore', value: (q: Qualifier) => eventData.eventStatus[`${q}Score`], icon: 'soccer' },
+    {
+      key: 'gameScore',
+      value: (q: Qualifier) => eventData.eventStatus[`${q}GameScore`],
+    },
+    {
+      key: 'matchScore',
+      value: (q: Qualifier) =>
+        eventData.eventStatus[`${q}Score`],
+      icon: 'soccer',
+    },
   ]
   const headTitle = mapHeadArea(head, 'title')
   const headHome = mapHeadArea(head, 'home')
@@ -495,18 +607,28 @@ const scoreBoard = computed(() => {
   }
 })
 const sport = computed(() => route.params.sport)
-const country = computed(() => route.params.country)
-const event = computed(() => route.params.event)
-const tournament = computed(() => route.params.tournament)
+// const country = computed(() => route.params.country)
+// const event = computed(() => route.params.event)
+// const tournament = computed(() => route.params.tournament)
 const breadcrumb = computed(() => {
   const { id: t_id, slug: t_slug } = eventData
   const competitors = eventData.data.competitors
-  const { id, name, slug, category: { id: cid, name: cname, slug: cslug, sport: { id: sid, name: sname, slug: sslug } } } = eventData.tournament
+  const {
+    id, name, slug, category: {
+      id: cid, name: cname, slug: cslug, sport: {
+        id: sid, name: sname, slug: sslug,
+      },
+    },
+  } = eventData.tournament
   return [
     { path: `/sports/${sslug}`, title: sname, id: sid },
     { path: `/sports/${sslug}/${cslug}`, title: cname, id: cid },
     { path: `/sports/${sslug}/${cslug}/${slug}`, title: name, id },
-    { path: `/sports/${sslug}/${cslug}/${slug}/${t_slug}`, title: competitors.map(i => i.abbreviation).join(' - '), id: t_id },
+    {
+      path: `/sports/${sslug}/${cslug}/${slug}/${t_slug}`,
+      title: competitors.map(i => i.abbreviation).join(' - '),
+      id: t_id,
+    },
   ]
 })
 const gridAreas = computed(() => {
@@ -516,21 +638,36 @@ const gridAreas = computed(() => {
     "${scoreBoard.value.headAway.map((i: any) => i.name).join(' ')}"
   `
 })
-const groupTabs = computed(() => eventData.groups.filter(g => g.rank > 0).map(g => ({ ...g, value: g.name, label: g.translation })))
+const groupTabs = computed(() => eventData.groups.filter(g => g.rank > 0)
+  .map(g => ({ ...g, value: g.name, label: g.translation })))
 const curGroupTab = ref(groupTabs.value[0].value)
-const curGroups = computed(() => eventData.group.filter(g => g.name === curGroupTab.value))
+const curGroups = computed(() =>
+  eventData.group.filter(g => g.name === curGroupTab.value))
 
-function mapHeadArea(head: Array<{ key: string; periodScores?: Array<{ [prop: string]: any }> }>, label: string) {
+function mapHeadArea(
+  head: Array<{ key: string; periodScores?: Array<{ [prop: string]: any }> }>,
+  label: string,
+) {
   return head.reduce((accumulator: any, currentValue) => {
-    if (currentValue.periodScores && currentValue.periodScores.length)
-      accumulator.push(...currentValue.periodScores.map((p, idx) => ({ ...p, key: currentValue.key, name: `${currentValue.key}_${label}_${idx}`, qualifier: label })))
-    else
-      accumulator.push({ ...currentValue, name: `${currentValue.key}_${label}`, qualifier: label })
-
+    if (currentValue.periodScores && currentValue.periodScores.length) {
+      accumulator.push(...currentValue.periodScores.map((p, idx) => ({
+        ...p,
+        key: currentValue.key,
+        name: `${currentValue.key}_${label}_${idx}`,
+        qualifier: label,
+      })))
+    }
+    else {
+      accumulator.push({
+        ...currentValue,
+        name: `${currentValue.key}_${label}`,
+        qualifier: label,
+      })
+    }
     return accumulator
   }, [])
 }
-function onOpenLiveSwitch() {}
+function onOpenLiveSwitch() { }
 function selectOutcome(v: string, tempid: string, marketid: string) {
   console.log(v, tempid, marketid)
 }
@@ -544,49 +681,90 @@ function selectOutcome(v: string, tempid: string, marketid: string) {
         <div class="content-wrapper">
           <div class="content" :class="{ stacked: appContentWidth < 900 }">
             <div class="fixture-column">
-              <div v-if="!openLiveSwitch" class="background match-statistics" :style="{ '--sport-image': `url(/img/match-statistics/${sport}.jpg)` }">
+              <div
+                v-if="!openLiveSwitch"
+                class="background match-statistics" :style="{
+                  '--sport-image': `url(/img/match-statistics/${sport}.jpg)`,
+                }"
+              >
                 <div class="box-shadow wrapper has-background">
-                  <div class="content scroll-x" :style="{ 'grid-template-areas': gridAreas }">
+                  <div
+                    class="content scroll-x" :style="{
+                      'grid-template-areas': gridAreas,
+                    }"
+                  >
                     <!-- competitor -->
-                    <div class="chromatic-ignore heading" style="grid-area: competitor_title;">
+                    <div
+                      class="chromatic-ignore heading"
+                      style="grid-area: competitor_title;"
+                    >
                       <span class="match-status-label">
                         {{ '第四节' }}
                       </span>
                     </div>
-                    <div class="competitor-item border" style="grid-area: competitor_home;">
-                      <img src="https://img-cdn001.akamaized.net/ls/crest/medium/4389.png" width="20" height="20" style="width:20px;height: 20px;">
+                    <div
+                      class="competitor-item border"
+                      style="grid-area: competitor_home;"
+                    >
+                      <img
+                        src="https://img-cdn001.akamaized.net/ls/crest/medium/4389.png" width="20" height="20"
+                        style="width:20px;height: 20px;"
+                      >
                       <span>旧金山49人美式足球队</span>
                     </div>
-                    <div class="competitor-item" style="grid-area: competitor_away;">
-                      <img src="https://img-cdn001.akamaized.net/ls/crest/medium/6118.png" width="20" height="20" style="width:20px;height: 20px;">
+                    <div
+                      class="competitor-item"
+                      style="grid-area: competitor_away;"
+                    >
+                      <img
+                        src="https://img-cdn001.akamaized.net/ls/crest/medium/6118.png" width="20" height="20"
+                        style="width:20px;height: 20px;"
+                      >
                       <span>卡尔达斯</span>
                     </div>
 
                     <!-- corners yellowCards redCards -->
-                    <div class="heading center" style="grid-area: corners_title;">
+                    <div
+                      class="heading center" style="grid-area: corners_title;"
+                    >
                       <BaseIcon name="uni-ruler" />
                     </div>
-                    <span class="fill-frame border" style="grid-area: corners_home;">
+                    <span
+                      class="fill-frame border" style="grid-area: corners_home;"
+                    >
                       <span>6</span>
                     </span>
                     <span class="fill-frame" style="grid-area: corners_away;">
                       <span>5</span>
                     </span>
 
-                    <div class="heading center" style="grid-area: yellowCards_title;">
+                    <div
+                      class="heading center"
+                      style="grid-area: yellowCards_title;"
+                    >
                       <BaseIcon name="uni-warn-rect" />
                     </div>
-                    <span class="fill-frame border" style="grid-area: yellowCards_home;">
+                    <span
+                      class="fill-frame border"
+                      style="grid-area: yellowCards_home;"
+                    >
                       <span>6</span>
                     </span>
-                    <span class="fill-frame" style="grid-area: yellowCards_away;">
+                    <span
+                      class="fill-frame" style="grid-area: yellowCards_away;"
+                    >
                       <span>5</span>
                     </span>
 
-                    <div class="heading center" style="grid-area: redCards_title;">
+                    <div
+                      class="heading center" style="grid-area: redCards_title;"
+                    >
                       <BaseIcon name="uni-error-rect" />
                     </div>
-                    <span class="fill-frame border" style="grid-area: redCards_home;">
+                    <span
+                      class="fill-frame border"
+                      style="grid-area: redCards_home;"
+                    >
                       <span>6</span>
                     </span>
                     <span class="fill-frame" style="grid-area: redCards_away;">
@@ -594,21 +772,39 @@ function selectOutcome(v: string, tempid: string, marketid: string) {
                     </span>
 
                     <!-- period -->
-                    <template v-for="p, idx in eventData.eventStatus.periodScores" :key="idx">
-                      <div class="heading center" :style="`grid-area: period_title_${idx}`">
+                    <template
+                      v-for="p, idx in eventData.eventStatus.periodScores"
+                      :key="idx"
+                    >
+                      <div
+                        class="heading center"
+                        :style="`grid-area: period_title_${idx}`"
+                      >
                         <span>{{ idx + 1 }}st</span>
                       </div>
-                      <span class="fill-frame border" :style="`grid-area: period_home_${idx}`">
+                      <span
+                        class="fill-frame border"
+                        :style="`grid-area: period_home_${idx}`"
+                      >
                         <span>{{ p.homeScore }}</span>
                       </span>
-                      <span class="fill-frame" :style="`grid-area: period_away_${idx}`">
+                      <span
+                        class="fill-frame"
+                        :style="`grid-area: period_away_${idx}`"
+                      >
                         <span>{{ p.awayScore }}</span>
                       </span>
                     </template>
 
                     <!-- gameScore -->
-                    <div class="heading center" style="grid-area: gameScore_title;" />
-                    <span class="fill-frame border" style="grid-area: gameScore_home;">
+                    <div
+                      class="heading center"
+                      style="grid-area: gameScore_title;"
+                    />
+                    <span
+                      class="fill-frame border"
+                      style="grid-area: gameScore_home;"
+                    >
                       <span>0</span>
                     </span>
                     <span class="fill-frame" style="grid-area: gameScore_away;">
@@ -616,13 +812,22 @@ function selectOutcome(v: string, tempid: string, marketid: string) {
                     </span>
 
                     <!-- matchScore -->
-                    <div class="heading center" style="grid-area: matchScore_title;">
+                    <div
+                      class="heading center"
+                      style="grid-area: matchScore_title;"
+                    >
                       <BaseIcon name="spt-football" />
                     </div>
-                    <div class="fill-frame completed match-score border" style="grid-area: matchScore_home;">
+                    <div
+                      class="fill-frame completed match-score border"
+                      style="grid-area: matchScore_home;"
+                    >
                       <span>2</span>
                     </div>
-                    <div class="match-score fill-frame" style="grid-area: matchScore_away;">
+                    <div
+                      class="match-score fill-frame"
+                      style="grid-area: matchScore_away;"
+                    >
                       <span>1</span>
                     </div>
                   </div>
@@ -636,7 +841,10 @@ function selectOutcome(v: string, tempid: string, marketid: string) {
                 <div class="content">
                   <div class="player-view">
                     <div class="ratio-wrap">
-                      <iframe class="iframe" scrolling="no" allowfullscreen src="https://liveshare.huya.com/iframe/lpl?needStop=true" />
+                      <iframe
+                        class="iframe" scrolling="no" allowfullscreen
+                        src="https://liveshare.huya.com/iframe/lpl?needStop=true"
+                      />
                     </div>
                   </div>
                 </div>
@@ -648,7 +856,9 @@ function selectOutcome(v: string, tempid: string, marketid: string) {
                 </span>
                 <span>记分板</span>
                 <label>
-                  <BaseSwitch v-model="openLiveSwitch" @change="onOpenLiveSwitch" />
+                  <BaseSwitch
+                    v-model="openLiveSwitch" @change="onOpenLiveSwitch"
+                  />
                 </label>
                 <span>直播</span>
                 <span class="blinking-dash">
@@ -661,9 +871,17 @@ function selectOutcome(v: string, tempid: string, marketid: string) {
               </div>
               <div class="groups">
                 <div>
-                  <BaseTab v-model="curGroupTab" :list="groupTabs" size="large" :center="false" />
+                  <BaseTab
+                    v-model="curGroupTab"
+                    :list="groupTabs"
+                    size="large"
+                    :center="false"
+                  />
                 </div>
-                <div class="bet-builder-sticky-header" :class="{ 'is-pc': !isMobile }">
+                <div
+                  class="bet-builder-sticky-header"
+                  :class="{ 'is-pc': !isMobile }"
+                >
                   <BaseSecondaryAccordion>
                     <template #header>
                       <div class="header-content">
@@ -691,7 +909,11 @@ function selectOutcome(v: string, tempid: string, marketid: string) {
                   </BaseSecondaryAccordion>
                 </div>
                 <div class="search-wrap">
-                  <BaseSearch v-model="searchHandicap" shape="square" place-holder="搜索" />
+                  <BaseSearch
+                    v-model="searchHandicap"
+                    shape="square"
+                    place-holder="搜索"
+                  />
                 </div>
                 <div v-if="!curGroups || !curGroups.length" class="no-markets">
                   <BaseEmpty icon="uni-empty-handicap" description="暂无可用盘口" />
@@ -707,14 +929,29 @@ function selectOutcome(v: string, tempid: string, marketid: string) {
                       <template #default>
                         <div class="market">
                           <template v-if="temp.add_local_is_select">
-                            <template v-for="market in temp.markets" :key="market.id">
-                              <BaseSelect :options="market.outcomes.map(t => ({ ...t, label: t.name, value: t.id }))" @select="(v) => selectOutcome(v, temp.id, market.id)" />
+                            <template
+                              v-for="market in temp.markets"
+                              :key="market.id"
+                            >
+                              <BaseSelect
+                                :options="market.outcomes.map(t =>
+                                  ({ ...t, label: t.name, value: t.id }))"
+                                @select="(v) =>
+                                  selectOutcome(v, temp.id, market.id)"
+                              />
                               <AppSportsBetButton layout="horizontal" />
                             </template>
                           </template>
                           <template v-else>
-                            <template v-for="market in temp.markets" :key="market.id">
-                              <AppSportsBetButton v-for="outcome in market.outcomes" :key="outcome.id" layout="horizontal" />
+                            <template
+                              v-for="market in temp.markets"
+                              :key="market.id"
+                            >
+                              <AppSportsBetButton
+                                v-for="outcome in market.outcomes"
+                                :key="outcome.id"
+                                layout="horizontal"
+                              />
                             </template>
                           </template>
                         </div>
@@ -750,7 +987,13 @@ function selectOutcome(v: string, tempid: string, marketid: string) {
                 </BaseSecondaryAccordion>
                 <BaseSecondaryAccordion title="正确比赛得分">
                   <template #side>
-                    <div class="stack x-stretch y-center direction-horizontal gap-medium padding-none padding-left-auto padding-top-auto padding-bottom-auto padding-right-medium odd-switch-buttons">
+                    <div
+                      :class="`${appContentWidth}
+                        stack x-stretch y-center direction-horizontal
+                        gap-medium padding-none padding-left-auto
+                        padding-top-auto padding-bottom-auto
+                        padding-right-medium odd-switch-buttons`"
+                    >
                       <BaseButton type="text" padding0 @click.stop="">
                         赔率滑块
                       </BaseButton>
@@ -775,8 +1018,20 @@ function selectOutcome(v: string, tempid: string, marketid: string) {
             </div>
             <div v-if="appContentWidth >= 900" class="sticky-column">
               <div class="iframe-widget tracker desktop widget-container">
-                <div class="stack x-stretch y-center padding-none padding-left-auto padding-top-auto padding-bottom-auto direction-vertical gap-small padding-right-auto">
-                  <iframe id="widget-od-41421" title="url" :src="eventData.widgetUrl" scrolling="yes" height="730" name="widget-od-41421" class="" />
+                <div
+                  :class="`${appContentWidth}
+                    stack x-stretch y-center padding-none padding-left-auto
+                    padding-top-auto padding-bottom-auto direction-vertical
+                    gap-small padding-right-auto`"
+                >
+                  <iframe
+                    id="widget-od-41421"
+                    title="url"
+                    :src="eventData.widgetUrl"
+                    scrolling="yes"
+                    height="730"
+                    name="widget-od-41421" class=""
+                  />
                 </div>
                 <div class="expand-wrapper">
                   <BaseIcon name="uni-arrow-up-big" />
@@ -791,7 +1046,11 @@ function selectOutcome(v: string, tempid: string, marketid: string) {
                 </div>
                 <div class="content is-open">
                   <div class="wrapper">
-                    <div class="card-list" style="grid-template-columns: repeat(3, 1fr); gap: 30px 15px;">
+                    <div
+                      class="card-list" style="
+                        grid-template-columns: repeat(3, 1fr); gap: 30px 15px;
+                      "
+                    >
                       <div class="item" />
                     </div>
                   </div>
@@ -811,46 +1070,56 @@ function selectOutcome(v: string, tempid: string, marketid: string) {
   text-align: center;
   margin-top: -10px;
 }
+
 .odd-switch-buttons {
   button {
     white-space: nowrap;
   }
 }
+
 .market {
   display: grid;
   color: var(--tg-text-white);
   grid-gap: var(--tg-spacing-8);
   width: 100%;
   padding: var(--tg-spacing-12) var(--tg-spacing-16);
-  grid-template-columns: repeat(auto-fit,minmax(calc(33% - var(--tg-spacing-8)/2),1fr));
+  grid-template-columns:
+    repeat(auto-fit, minmax(calc(33% - var(--tg-spacing-8)/2), 1fr));
+
   .table {
     display: grid;
-    grid-template-columns: repeat(2,1fr);
-    grid-template-rows: repeat(var(--itemCount),auto);
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(var(--itemCount), auto);
     gap: var(--tg-spacing-4);
   }
+
   .column.heading {
     margin-bottom: var(--tg-spacing-4);
     text-align: center;
   }
+
   .correct-score-wrapper {
     display: grid;
     color: var(--tg-text-white);
     width: 100%;
     align-items: center;
     grid-gap: var(--tg-spacing-16);
-    grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     padding: 0 var(--tg-spacing-8);
   }
 }
-iframe, .iframe {
+
+iframe,
+.iframe {
   border: none;
   width: 100%;
 }
+
 video {
   width: 100%;
   height: 100%;
 }
+
 .header-content {
   width: 100%;
   display: flex;
@@ -861,23 +1130,29 @@ video {
   margin-right: var(--tg-spacing-16);
   font-weight: 600;
   color: var(--tg-text-white);
-  > .odds {
+
+  >.odds {
     white-space: nowrap;
     margin: var(--tg-spacing-8) 0;
   }
-  > .h-gap {
+
+  >.h-gap {
     display: flex;
     align-items: center;
-    & > *+* {
+
+    &>*+* {
       margin-left: var(--tg-spacing-12);
     }
+
     .error {
       color: var(--tg-button-secondary-main);
     }
   }
 }
+
 .legs {
   max-height: 240px;
+
   .leg {
     font-weight: 600;
     color: var(--tg-text-white);
@@ -889,6 +1164,7 @@ video {
     justify-content: space-between;
   }
 }
+
 .livestream-wrap {
   width: 100%;
   padding-top: 56.25%;
@@ -897,12 +1173,14 @@ video {
   font-size: var(--tg-font-size-default);
   font-weight: var(--tg-font-weight-normal);
   line-height: 1.5;
+
   .tip {
     display: inline-flex;
     align-items: center;
     text-align: left;
     justify-content: flex-start;
   }
+
   .wrapper {
     display: grid;
     grid-auto-flow: row;
@@ -920,6 +1198,7 @@ video {
     position: absolute;
     inset: 0;
   }
+
   .content {
     width: 100%;
     display: flex;
@@ -928,6 +1207,7 @@ video {
     padding-top: 56.25%;
     position: relative;
     overflow: hidden;
+
     .player-view {
       position: absolute;
       top: 0;
@@ -935,12 +1215,15 @@ video {
       bottom: 0;
       right: 0;
     }
+
     .player-view>* {
       height: 100%;
     }
+
     .ratio-wrap {
       width: 100%;
     }
+
     .iframe {
       border: none;
       width: 100%;
@@ -951,31 +1234,39 @@ video {
       z-index: 2;
     }
   }
-  & > * {
+
+  &>* {
     position: absolute !important;
     inset: 0;
   }
 }
+
 .tg-sports-country-event-betdetail {
   --tg-base-switch-style-bg: var(--tg-text-green);
   padding-bottom: var(--tg-spacing-16);
+
   .sports-detail-wrapper {
     margin-top: var(--tg-spacing-32);
+
     .content-wrapper {
       position: relative;
       margin-top: var(--tg-spacing-24);
-      > .content {
+
+      >.content {
         width: 100%;
         display: flex;
         gap: var(--tg-spacing-16);
+
         .fixture-column {
           display: flex;
           flex-direction: column;
           flex: auto;
           min-width: 0;
-          > *+* {
+
+          >*+* {
             margin-top: var(--tg-spacing-16);
           }
+
           .match-statistics {
             display: flex;
             justify-content: center;
@@ -986,9 +1277,11 @@ video {
             grid-area: statistics;
             max-height: 200px;
             color: var(--tg-text-white);
+
             &.background {
               padding: var(--tg-spacing-32);
             }
+
             &.background::after {
               content: "";
               position: absolute;
@@ -1004,15 +1297,18 @@ video {
               z-index: -1;
               background-repeat: no-repeat;
             }
+
             .wrapper.has-background {
               min-width: 250px;
               max-width: calc(100% - var(--tg-spacing-32));
               border-radius: var(--tg-radius-default);
               width: auto;
             }
+
             .wrapper.box-shadow {
               box-shadow: var(--tg-header-shadow);
             }
+
             .wrapper {
               .content {
                 text-align: left;
@@ -1021,9 +1317,11 @@ video {
                 font-size: var(--tg-font-size-default);
                 font-weight: var(--tg-font-weight-normal);
                 --tg-icon-color: var(--tg-text-white);
+
                 .app-svg-icon {
                   font-size: var(--tg-font-size-base);
                 }
+
                 display: grid;
                 background: var(--tg-primary-main);
                 justify-items: center;
@@ -1031,9 +1329,11 @@ video {
                 overflow: auto;
                 width: 100%;
                 border-radius: var(--tg-radius-default);
-                > * {
+
+                >* {
                   padding: var(--tg-spacing-8);
                 }
+
                 .heading {
                   width: 100%;
                   height: 100%;
@@ -1041,15 +1341,18 @@ video {
                   text-align: center;
                   background: var(--tg-secondary-dark);
                 }
+
                 .heading.center {
                   justify-content: center;
                   align-items: center;
                 }
+
                 .competitor-item {
                   display: flex;
                   align-items: center;
                   justify-self: stretch;
                   color: var(--tg-text-white);
+
                   img {
                     width: var(--tg-spacing-20);
                     height: var(--tg-spacing-20);
@@ -1057,9 +1360,11 @@ video {
                     margin-right: var(--tg-spacing-8);
                   }
                 }
+
                 .border {
                   border-bottom: 1px solid var(--tg-secondary-main);
                 }
+
                 .fill-frame {
                   display: flex;
                   align-items: center;
@@ -1067,17 +1372,20 @@ video {
                   width: 100%;
                   height: 100%;
                 }
+
                 .match-score {
                   font-weight: 700;
                   background: var(--tg-secondary-main);
                   color: var(--tg-text-white);
                 }
+
                 .match-score.completed {
                   background: var(--tg-text-lightblue);
                 }
               }
             }
           }
+
           .live-stream-scoreboard-footer {
             background: var(--tg-secondary-dark);
             display: flex;
@@ -1089,9 +1397,11 @@ video {
             line-height: 1.5;
             font-size: var(--tg-font-size-default);
             font-weight: var(--tg-font-weight-semibold);
-            > *+* {
+
+            >*+* {
               margin-left: var(--tg-spacing-12);
             }
+
             .mini-video {
               cursor: pointer;
               flex: 1;
@@ -1103,6 +1413,7 @@ video {
               gap: var(--tg-spacing-12);
             }
           }
+
           .fixture-notice {
             display: flex;
             flex-direction: row;
@@ -1112,16 +1423,20 @@ video {
             font-size: var(--tg-font-size-default);
             font-weight: var(--tg-font-weight-normal);
             line-height: 1.5;
+
             a {
               font-weight: var(--tg-font-weight-semibold);
             }
           }
+
           .groups {
             display: flex;
             flex-direction: column;
             width: 100%;
             position: relative;
-            > *+* {
+            --tg-base-select-style-padding-y: var(--tg-spacing-5);
+
+            >*+* {
               margin-top: var(--tg-spacing-16);
             }
 
@@ -1132,8 +1447,9 @@ video {
               z-index: var(--tg-z-index-50);
               position: fixed;
               box-shadow: var(--tg-box-shadow), var(--tg-shadow-inset);
+
               &.is-pc {
-                position:sticky;
+                position: sticky;
                 top: -2px;
                 bottom: auto;
                 width: 100%
@@ -1141,6 +1457,7 @@ video {
             }
           }
         }
+
         .sticky-column {
           position: sticky;
           top: 0;
@@ -1149,9 +1466,11 @@ video {
           height: min-content;
           flex: 0 0 360px;
           max-width: 360px;
+
           .widget-container {
             position: relative;
             background: var(--tg-secondary-dark);
+
             .expand-wrapper {
               --tg-icon-color: var(--tg-text-white);
               font-size: var(--tg-font-size-xs);
@@ -1170,6 +1489,7 @@ video {
               width: 100%;
             }
           }
+
           .spotlight {
             display: flex;
             flex-direction: column;
@@ -1181,39 +1501,46 @@ video {
             color: var(--tg-secondary-light);
             font-size: var(--tg-font-size-default);
             font-weight: var(--tg-font-weight-semibold);
+
             .header {
               display: flex;
               justify-content: space-between;
               align-items: center;
               padding: var(--tg-spacing-8) 0 0 var(--tg-spacing-16);
             }
+
             .content {
               background: var(--content-background);
               display: flex;
               flex-direction: column;
               width: 100%;
               border-radius: 0 0 var(--tg-spacing-4) var(--tg-spacing-4);
+
               .wrapper {
                 border-radius: var(--tg-spacing-4);
                 padding: var(--tg-spacing-12) var(--tg-spacing-16);
+
                 .card-list {
                   display: grid;
                 }
               }
             }
           }
+
           .spotlight.variant-dark {
             --header-background: var(--tg-secondary-dark);
             --title-color: var(--tg-text-grey-light);
             --content-background: var(--tg-secondary-dark);
           }
         }
+
         &.stacked {
           .fixture-column {
             .live-stream-scoreboard-footer {
               margin-top: var(--tg-spacing-4);
             }
           }
+
           .sticky-column {
             display: none;
           }
