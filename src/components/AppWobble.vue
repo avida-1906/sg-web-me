@@ -9,7 +9,7 @@ interface Props {
 const props = defineProps<Props>()
 
 const _icon = computed(() => {
-  if (props.icon !== undefined && props.icon.length)
+  if (props.icon !== undefined)
     return props.icon
 
   else if (props.type !== undefined)
