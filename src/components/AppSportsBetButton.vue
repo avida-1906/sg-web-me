@@ -12,7 +12,7 @@ withDefaults(defineProps<Props>(), {
 const { openRightSidebar, rightIsExpand } = useRightSidebar()
 function clickHandler() {
   if (!rightIsExpand.value)
-    openRightSidebar()
+    openRightSidebar(EnumRightSidebarContent.BETTING)
 }
 </script>
 
