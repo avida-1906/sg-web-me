@@ -10,7 +10,6 @@ const curTab = ref('')
 
 <template>
   <div class="tg-sports-hotlive layout-spacing gap-medium">
-    滚球与即将开赛的盘口
     <BaseTab v-model="curTab" :list="tabs" size="large" :center="false" />
     <BaseSecondaryAccordion title="ATP" icon="spt-game-intl" level="1">
       <div class="acc-box">
