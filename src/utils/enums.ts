@@ -111,3 +111,71 @@ export enum EnumsBetSlipTabs {
   active, // 活跃
   settled, // 已结算
 }
+
+/**
+ * 所有体育类型枚举
+ */
+export enum EnumSportType {
+  /** 网球 */
+  'tennis',
+  /** 足球 */
+  'soccer',
+  /** 美式橄榄球 */
+  'american-football',
+  /** 篮球 */
+  'basketball',
+  /** 冰上曲棍球 */
+  'ice-hockey',
+  /** 棒球 */
+  'baseball',
+  /** 板球 */
+  'cricket',
+  /** 英雄联盟 */
+  'league-of-legends',
+  /** CS:GO/CS2 */
+  'counter-strike',
+  /** 综合格斗 */
+  'mma',
+  /** 英式橄榄球 */
+  'rugby',
+  /** 传说对决 */
+  'arena-of-valor',
+  /** 澳洲足球 */
+  'aussie-rules',
+  /** 羽毛球 */
+  'badminton',
+  /** 拳击 */
+  'boxing',
+  /** 飞镖 */
+  'darts',
+  /** 刀塔2 */
+  'dota-2',
+  /** FIFA */
+  'fifa',
+  /** 地板球 */
+  'floorball',
+  /** 五人制足球 */
+  'futsal',
+  /** 光环 */
+  'halo',
+  /** 手球 */
+  'handball',
+  /** 王者荣耀 */
+  'kings-of-glory',
+  /** 无尽对决 */
+  'mobile-legends',
+  /** NBA2K */
+  'nba2k',
+  /** 彩虹六号 */
+  'rainbow-six',
+  /** 桌球 */
+  'snooker',
+  /** 星际争霸2 */
+  'starcraft-2',
+  /** 星际争霸 I */
+  'starcraft-1',
+  /** 无畏契约 */
+  'valorant',
+  /** 排球 */
+  'volleyball',
+}
