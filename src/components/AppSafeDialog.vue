@@ -4,7 +4,6 @@ import { generateCurrencyData } from '~/stores/app'
 import type { IUserCurrencyList } from '~/stores/app'
 
 const { t } = useI18n()
-
 const { openNotify } = useNotify()
 const { currencyConfig, userCurrencyList } = storeToRefs(useAppStore())
 const { updateUserBalance } = useAppStore()
