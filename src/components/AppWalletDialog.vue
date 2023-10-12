@@ -35,6 +35,7 @@ function handleShow(val: boolean) {
         :network="true"
         @change="changeCurrency"
       />
+      <!-- 存款 -->
       <template v-if="isDeposit">
         <AppVirtualDeposit
           v-if="isVirtualCurrency(activeCurrency?.type)"
@@ -47,6 +48,7 @@ function handleShow(val: boolean) {
           @show="handleShow"
         />
       </template>
+      <!-- 取款 -->
       <template v-else-if="isWithdraw">
         <Suspense timeout="0">
           <AppWithdraw
@@ -62,6 +64,7 @@ function handleShow(val: boolean) {
         </Suspense>
       </template>
     </div>
+    <!-- 卡包 -->
     <template v-if="isCardHolder">
       <Suspense timeout="0">
         <AppCardHolder />
