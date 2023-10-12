@@ -44,7 +44,7 @@ const toAddVirAddress = function (item: IUserCurrencyList) {
 }
 const showCollapse = function (item: any) {
   if (item.legalTender)
-    runAsyncBankcardList({ bank_type: getCurrentLanguageIdForBackend() })
+    runAsyncBankcardList({ currency_id: getCurrentLanguageIdForBackend() })
 
   else
     runWalletList({ contract_type: '', currency_name: item.type })

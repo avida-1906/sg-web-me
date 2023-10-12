@@ -381,13 +381,13 @@ export function ApiMemberBalanceLockerShow() {
 export function ApiMemberBankcardList(params: {
   page_size?: string
   page?: string
-  bank_type: string
+  currency_id: string
 }) {
   return httpClient.get<IResponseList<{
     id: string
     uid: string
     username: string
-    bank_type: string
+    currency_id: string
     open_name: string
     bank_name: string
     bank_account: string
@@ -421,7 +421,7 @@ export function ApiMemberTreeList(params: {
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=96b12d9e-536b-4aa3-b6bc-0a8a6fc4d17d
  */
 export function ApiMemberBankcardInsert(data: {
-  bank_type: string
+  currency_id: string
   open_name: string
   bank_name: string
   bank_account: string
