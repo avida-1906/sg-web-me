@@ -8,12 +8,18 @@ interface Props {
 withDefaults(defineProps<Props>(), {
   layout: 'vertical',
 })
+
+const { openRightSidebar, rightIsExpand } = useRightSidebar()
+function clickHandler() {
+  if (!rightIsExpand.value)
+    openRightSidebar()
+}
 </script>
 
 <template>
   <div
-    class="app-sports-bet-button"
-    :class="{ active, disabled, 'is-na': isNa }"
+    class="app-sports-bet-button" :class="{ active, disabled, 'is-na': isNa }"
+    @click="clickHandler"
   >
     <template v-if="isNa">
       <span class="status">N/A</span>
@@ -24,10 +30,10 @@ withDefaults(defineProps<Props>(), {
       </div>
       <span v-if="disabled" class="status">暂停</span>
       <AppSportsOdds
-        v-else
-        :style="`--tg-sports-odds-color:${active
+        v-else :style="`--tg-sports-odds-color:${active
           ? 'var(--tg-text-white)' : ''}`"
-        :arrow="layout === 'horizontal' ? 'left' : 'right'" odds="1.65"
+        :arrow="layout === 'horizontal' ? 'left' : 'right'"
+        odds="1.65"
       />
     </div>
   </div>
@@ -110,6 +116,7 @@ withDefaults(defineProps<Props>(), {
     display: flex;
     align-items: center;
     justify-content: center;
+
     .status {
       opacity: 0.2;
     }
