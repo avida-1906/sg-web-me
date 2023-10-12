@@ -4,9 +4,10 @@ import type { IUserCurrencyList } from '~/stores/app'
 interface Props {
   showBalance?: boolean
   network?: boolean
+  currencyList?: any
 }
 
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   showBalance: true,
   network: false,
 })
@@ -34,6 +35,17 @@ const currentCurrencyBalance = ref(currentGlobalCurrencyBalance.value)
 
 const getCurContract = computed(() => {
   return getCurrencyContract(currentCurrency.value)
+})
+const getCurrencyList = computed(() => {
+  if (props.currencyList) {
+    if (searchValue.value)
+      return props.currencyList.value.filter((item: any) => item.type.includes(searchValue.value.toLocaleUpperCase()))
+
+    return props.currencyList.value
+  }
+  else {
+    return renderCurrencyList.value
+  }
 })
 
 // 选择币种
@@ -91,7 +103,7 @@ emit('change', currentCurrency.value)
             :class="{ 'justify-content': !showBalance }"
           >
             <div
-              v-for="item of renderCurrencyList"
+              v-for="item of getCurrencyList"
               :key="item.type" class="content-row"
               @click.stop="selectCurrency(item, hide)"
             >
