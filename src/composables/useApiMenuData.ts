@@ -108,7 +108,7 @@ export function useApiMenuData() {
     {
       title: '足球',
       path: '',
-      icon: 'spt-football',
+      icon: 'spt-soccer',
       list: [
         { title: 'Live & Upcoming', path: '', icon: 'spt-ball-plate' },
         { title: 'Outrights', path: '', icon: 'spt-timing' },
@@ -132,7 +132,7 @@ export function useApiMenuData() {
     {
       title: '美式橄榄球',
       path: '',
-      icon: 'spt-america',
+      icon: 'spt-american-football',
       list: [
         { title: 'Live & Upcoming', path: '', icon: 'spt-ball-plate' },
         { title: 'Outrights', path: '', icon: 'spt-timing' },

@@ -59,7 +59,7 @@ const changeAisle = function (value: string) {
       />
       <div v-if="currentType === '1'" class="type-online-bank">
         <div v-if="bankStep === '1'" class="bank-first">
-          <BaseLabel label="收款人姓名:" label-content="为及时到账，请务必输入正确的存款人姓名">
+          <BaseLabel label="存款人姓名:" label-content="为及时到账，请务必输入正确的存款人姓名">
             <BaseInput v-model="username" />
           </BaseLabel>
           <BaseInput v-model="amount" label="充值金额" />

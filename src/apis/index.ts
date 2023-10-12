@@ -333,8 +333,8 @@ export function ApiMemberWalletList(
   params: {
     /** 合约类型 */
     contract_type: string
-    /** 货币名称 */
-    currency_name: string
+    /** 货币id */
+    currency_id: string
     page?: number
     page_size?: number
   },
@@ -541,5 +541,5 @@ export function ApiMemberPayPasswordUpdate(data: {
 * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=80a6d16c-b13e-4647-91e1-3a18e73cef4c
 */
 export function ApiMemberSendMailCode() {
-  return httpClient.get<string>('/member/send/mailCode')
+  return httpClient.get<string>('/member/send/mail/code')
 }
