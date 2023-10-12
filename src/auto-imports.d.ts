@@ -108,6 +108,7 @@ declare global {
   const find: typeof import('lodash-es')['find']
   const findIndex: typeof import('lodash-es')['findIndex']
   const findKey: typeof import('lodash-es')['findKey']
+  const generateCurrencyData: typeof import('./stores/app')['generateCurrencyData']
   const get: typeof import('lodash-es')['get']
   const getActivePinia: typeof import('pinia')['getActivePinia']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
@@ -555,6 +556,7 @@ declare module 'vue' {
     readonly find: UnwrapRef<typeof import('lodash-es')['find']>
     readonly findIndex: UnwrapRef<typeof import('lodash-es')['findIndex']>
     readonly findKey: UnwrapRef<typeof import('lodash-es')['findKey']>
+    readonly generateCurrencyData: UnwrapRef<typeof import('./stores/app')['generateCurrencyData']>
     readonly get: UnwrapRef<typeof import('lodash-es')['get']>
     readonly getActivePinia: UnwrapRef<typeof import('pinia')['getActivePinia']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
@@ -986,6 +988,7 @@ declare module '@vue/runtime-core' {
     readonly find: UnwrapRef<typeof import('lodash-es')['find']>
     readonly findIndex: UnwrapRef<typeof import('lodash-es')['findIndex']>
     readonly findKey: UnwrapRef<typeof import('lodash-es')['findKey']>
+    readonly generateCurrencyData: UnwrapRef<typeof import('./stores/app')['generateCurrencyData']>
     readonly get: UnwrapRef<typeof import('lodash-es')['get']>
     readonly getActivePinia: UnwrapRef<typeof import('pinia')['getActivePinia']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>

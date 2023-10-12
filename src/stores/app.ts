@@ -1,5 +1,5 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
-import type { EnumCurrencyKey } from '~/apis'
+import type { EnumCurrencyKey, IMemberCurrencyConfig, TCurrencyObject } from '~/apis'
 import { EnumCurrency } from '~/utils/enums'
 
 /** 页面渲染的货币对象 */
@@ -12,6 +12,32 @@ export interface IUserCurrencyList {
   symbol: string
   /** 带余额的前缀 */
   balanceWithSymbol: string
+}
+
+/**
+ * 生成用户货币数据
+ * @param currency 用户余额数据
+ * @param currencyConfig 货币配置
+ * @returns  {IUserCurrencyList} 前端渲染的货币对象数组
+ */
+export function generateCurrencyData(
+  currency: TCurrencyObject,
+  currencyConfig: IMemberCurrencyConfig[],
+) {
+  const list: IUserCurrencyList[] = []
+  for (let i = 0; i < currencyConfig.length; i++) {
+    const type = currencyConfig[i].cur_name
+    const balance = currency[type]
+    const symbol = currencyConfig[i].symbol
+    const balanceWithSymbol = symbol + balance
+    list.push({
+      type,
+      balance,
+      symbol,
+      balanceWithSymbol,
+    })
+  }
+  return list
 }
 
 export const useAppStore = defineStore('app', () => {
@@ -49,22 +75,10 @@ export const useAppStore = defineStore('app', () => {
    * @returns {IUserCurrencyList}
    */
   const userCurrencyList = computed(() => {
-    const list: IUserCurrencyList[] = []
-    if (balanceMap.value && currencyConfig.value) {
-      for (let i = 0; i < currencyConfig.value.length; i++) {
-        const type = currencyConfig.value[i].cur_name
-        const balance = balanceMap.value[type]
-        const symbol = currencyConfig.value[i].symbol
-        const balanceWithSymbol = symbol + balance
-        list.push({
-          type,
-          balance,
-          symbol,
-          balanceWithSymbol,
-        })
-      }
-    }
-    return list
+    if (balanceMap.value && currencyConfig.value)
+      return generateCurrencyData(balanceMap.value, currencyConfig.value)
+
+    return []
   })
 
   /** 当前选择货币的金额 */
@@ -117,6 +131,7 @@ export const useAppStore = defineStore('app', () => {
     userCurrencyList,
     currentGlobalCurrencyBalance,
     userInfo,
+    currencyConfig,
     setToken,
     setLoginTrue,
     setLoginFalse,
