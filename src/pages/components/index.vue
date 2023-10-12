@@ -122,11 +122,10 @@ function copyCode(type: string) {
       break
     case 'BaseDragDialog':
       copy(`
-        <BaseDragDialog v-model:show="showDragDialog" icon="uni-trend" title="实时统计">
-          <div>
-            一个可拖拽弹窗
-          </div>
-        </BaseDragDialog>
+          // 打开实时数据或直播
+          function openDragDialog(type: 'trend' | 'live') {
+            useDragDialog({ type, url: '' })
+          }
       `)
       break
     case 'VDropdown':
@@ -308,9 +307,9 @@ function showTemDialog2() {
   setShowDialogTwoTrue()
   copyCode('BaseDialog2')
 }
-const { bool: showDragDialog, setTrue: setShowDragDialogTrue } = useBoolean(false)
-function showDrag() {
-  setShowDragDialogTrue()
+// 打开实时数据或直播
+function openDragDialog(type: 'trend' | 'live') {
+  useDragDialog({ type, url: '' })
   copyCode('BaseDragDialog')
 }
 
@@ -676,8 +675,8 @@ const breadcrumbs = ['one', 'two', 'three', 'four']
               <BaseIcon :name="id.slice(5)" />
             </div>
             <div
-              alt="复制名称" title="复制名称"
-              class="copy-name" @click="() => copyIconName(id.slice(5))"
+              alt="复制名称" title="复制名称" class="copy-name"
+              @click="() => copyIconName(id.slice(5))"
             >
               <!-- {{ id.slice(5) }} -->
               123
@@ -857,14 +856,9 @@ const breadcrumbs = ['one', 'two', 'three', 'four']
     </li>
     <li class="box">
       <AppDemoCard title="BaseDragDialog">
-        <BaseButton round @click="showDrag">
+        <BaseButton round @click="openDragDialog('live')">
           展示可拖拽弹窗
         </BaseButton>
-        <BaseDragDialog v-model:show="showDragDialog" icon="uni-trend" title="实时统计">
-          <div>
-            一个可拖拽弹窗
-          </div>
-        </BaseDragDialog>
       </AppDemoCard>
     </li>
     <li class="box">
@@ -912,9 +906,8 @@ const breadcrumbs = ['one', 'two', 'three', 'four']
           <div class="flex-column">
             <BaseAspectRatio ratio="149/97" width="149px">
               <BaseUpload
-                img-type="frontId"
-                :image-url="imageUrl"
-                @select-file="getFile" @delete-file="handleDelFile"
+                img-type="frontId" :image-url="imageUrl" @select-file="getFile"
+                @delete-file="handleDelFile"
               />
             </BaseAspectRatio>
             <BaseButton @click="copyUploadCode(1)">
@@ -924,9 +917,8 @@ const breadcrumbs = ['one', 'two', 'three', 'four']
           <div class="flex-column">
             <BaseAspectRatio ratio="149/97" width="149px">
               <BaseUpload
-                img-type="backId"
-                :image-url="imageUrl"
-                @select-file="getFile" @delete-file="handleDelFile"
+                img-type="backId" :image-url="imageUrl" @select-file="getFile"
+                @delete-file="handleDelFile"
               />
             </BaseAspectRatio>
             <BaseButton @click="copyUploadCode(2)">
@@ -936,8 +928,8 @@ const breadcrumbs = ['one', 'two', 'three', 'four']
           <div class="flex-column">
             <BaseAspectRatio ratio="149/97" width="149px">
               <BaseUpload
-                img-type="address" disabled
-                @select-file="getFile" @delete-file="handleDelFile"
+                img-type="address" disabled @select-file="getFile"
+                @delete-file="handleDelFile"
               />
             </BaseAspectRatio>
             <BaseButton @click="copyUploadCode(3)">
@@ -947,8 +939,8 @@ const breadcrumbs = ['one', 'two', 'three', 'four']
           <div class="flex-column">
             <BaseAspectRatio ratio="149/97" width="149px">
               <BaseUpload
-                img-type="fund" :image-url="imageUrl2" disabled
-                @select-file="getFile" @delete-file="handleDelFile"
+                img-type="fund" :image-url="imageUrl2" disabled @select-file="getFile"
+                @delete-file="handleDelFile"
               />
             </BaseAspectRatio>
             <BaseButton @click="copyUploadCode(4)">
@@ -1084,15 +1076,11 @@ const breadcrumbs = ['one', 'two', 'three', 'four']
               { from: '#108ee9', to: '#87d068', direction: 'right' }
             </h3>
             <BaseProgress
-              :width="400"
-              :percent="percent"
-              :stroke-width="10"
-              :stroke-color="{
+              :width="400" :percent="percent" :stroke-width="10" :stroke-color="{
                 '0%': '#108ee9',
                 '100%': '#87d068',
                 'direction': 'right',
-              }"
-              show-info
+              }" show-info
             />
             <BaseButton @click="copyProgressCode(3)">
               copy
@@ -1104,9 +1092,7 @@ const breadcrumbs = ['one', 'two', 'three', 'four']
             </h2>
             <div class="flex-row">
               <BaseProgress
-                :width="120"
-                :stroke-width="12"
-                :percent="percent"
+                :width="120" :stroke-width="12" :percent="percent"
                 type="circle"
               />
               <div>
@@ -1130,8 +1116,8 @@ const breadcrumbs = ['one', 'two', 'three', 'four']
     <li class="box">
       <AppDemoCard title="BaseAccordion">
         <BaseAccordion
-          :menu-info="menuInfo"
-          auto-show @click-head="handleClickHead" @click-item="handleClickItem"
+          :menu-info="menuInfo" auto-show @click-head="handleClickHead"
+          @click-item="handleClickItem"
         />
         <div class="center">
           <BaseButton @click="copyAccordionCode">
@@ -1143,8 +1129,8 @@ const breadcrumbs = ['one', 'two', 'three', 'four']
     <li class="box">
       <AppDemoCard title="BaseSecondaryAccordion">
         <BaseSecondaryAccordion
-          title="ATP / ATP上海站，中国，男单"
-          show-more loading icon="spt-game-intl"
+          title="ATP / ATP上海站，中国，男单" show-more loading
+          icon="spt-game-intl"
         >
           <template #side="{ isOpen }">
             <div v-show="!isOpen" style="--tg-badge-font-size: 12px;margin-right: 16px;">
@@ -1187,11 +1173,7 @@ const breadcrumbs = ['one', 'two', 'three', 'four']
     </li>
     <li class="box">
       <AppDemoCard title="BaseTable">
-        <BaseTable
-          :columns="columns"
-          :data-source="tableData"
-          :loading="loading"
-        >
+        <BaseTable :columns="columns" :data-source="tableData" :loading="loading">
           <template #name="{ record }">
             hello {{ record.name }}
           </template>
@@ -1209,9 +1191,7 @@ const breadcrumbs = ['one', 'two', 'three', 'four']
 
     <li class="box">
       <AppDemoCard title="VDropdown VMenu VTooltip">
-        <VDropdown
-          :distance="6"
-        >
+        <VDropdown :distance="6">
           <button class="tips" @click="copyCode('VDropdown')">
             VDropdown
           </button>
@@ -1275,7 +1255,8 @@ const breadcrumbs = ['one', 'two', 'three', 'four']
     <li class="box">
       <AppDemoCard title="BaseMenu" style="text-align:left">
         <BaseMenu
-          :data="[{ title: '存款', path: '/components' }, { title: '提款', path: '/' }]"
+          :data="[{ title: '存款', path: '/components' },
+                  { title: '提款', path: '/' }]"
         />
         <div class="center">
           <BaseButton @click="copyCode('BaseMenu')">
@@ -1293,8 +1274,9 @@ const breadcrumbs = ['one', 'two', 'three', 'four']
           />
         </BaseLabel>
         <BaseLabel
-          label="select标题:"
-          label-content="温馨提示自定义" content-color="--tg-text-error" content-size="14"
+          label="select标题:" label-content="温馨提示自定义"
+          content-color="--tg-text-error"
+          content-size="14"
         >
           <BaseSelect v-model="selectValue" :options="selectOptions" must />
         </BaseLabel>
@@ -1333,6 +1315,7 @@ const breadcrumbs = ['one', 'two', 'three', 'four']
   color: #fff;
   font-weight: bold;
 }
+
 .demo-page {
   padding-bottom: 50px;
 }
@@ -1353,6 +1336,7 @@ const breadcrumbs = ['one', 'two', 'three', 'four']
     cursor: pointer;
     width: 60px;
     font-size: 50px;
+
     .copy-name {
       color: #666;
       font-size: 10px;
@@ -1371,30 +1355,38 @@ const breadcrumbs = ['one', 'two', 'three', 'four']
 .data-table {
   padding: var(--tg-spacing-12);
 }
+
 .flex-row {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
 }
-.flex-column{
+
+.flex-column {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
 }
-.center{
+
+.center {
   text-align: center;
   margin-top: 20px;
 }
-h1,h2,h3{
+
+h1,
+h2,
+h3 {
   color: aliceblue;
 }
-.progress-box{
+
+.progress-box {
   width: 500px;
   margin: auto;
-  >div{
+
+  >div {
     margin-bottom: 25px;
   }
 }
