@@ -83,7 +83,7 @@ function changeCurrency(item: IUserCurrencyList) {
   activeCurrency.value = item
 }
 function maxNumber() {
-  console.log('最大值', activeCurrency.value.balance)
+  // console.log('最大值', activeCurrency.value.balance)
   if (activeCurrency.value)
     amount.value = activeCurrency.value.balance
 }
