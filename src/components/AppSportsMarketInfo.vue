@@ -27,6 +27,11 @@ const baseGridAreaClass = computed(() => {
 })
 const baseGridClass = computed(() => isH5Layout.value ? 'grid-setup-574' : 'grid-setup')
 
+// 打开实时数据或直播
+function openDragDialog(type: 'trend' | 'live') {
+  useDragDialog({ type, url: '' })
+}
+
 // TODO: 假状态
 const statusIndex = ref(Math.ceil(Math.random() * 5))
 const isCountdown = computed(() => statusIndex.value === 2)
@@ -156,10 +161,10 @@ const onBallAway = computed(() => onBall.value === 2)
           </div>
         </div>
         <div class="options-wrapper">
-          <BaseButton type="text" padding0>
+          <BaseButton type="text" padding0 @click="openDragDialog('trend')">
             <BaseIcon name="uni-trend" />
           </BaseButton>
-          <BaseButton type="text" padding0>
+          <BaseButton type="text" padding0 @click="openDragDialog('live')">
             <BaseIcon name="spt-live" />
           </BaseButton>
         </div>
