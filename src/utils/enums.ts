@@ -124,12 +124,16 @@ export enum EnumSportType {
   'american-football',
   /** 篮球 */
   'basketball',
+  /** 乒乓球 */
+  'table-tennis',
   /** 冰上曲棍球 */
   'ice-hockey',
   /** 棒球 */
   'baseball',
   /** 板球 */
   'cricket',
+  /** 电子板球 */
+  'ecricket',
   /** 英雄联盟 */
   'league-of-legends',
   /** CS:GO/CS2 */
@@ -178,4 +182,32 @@ export enum EnumSportType {
   'valorant',
   /** 排球 */
   'volleyball',
+  /** 水球 */
+  'waterpolo',
+  /** 登山 */
+  'alpine-skiing',
+  /** 改装车比赛 */
+  'stock-car-racing',
+  /** 盖尔式板棍球 */
+  'gaelic-hurling',
+  /** 盖尔式足球 */
+  'gaelic-football',
+  /** 高尔夫 */
+  'golf',
+  /** 高山滑雪 */
+  'ski-jumping',
+  /** 滑雪和射击 */
+  'biathlon',
+  /** 摩托车竞速 */
+  'motorcycle-racing',
+  /** 沙滩排球 */
+  'beach-volley',
+  /** 特技比赛 */
+  'politics-entertainment',
+  /** 一级方程式 */
+  'formula-1',
+  /** 越野赛 */
+  'cross-country',
+  /** 自行车赛 */
+  'cycling',
 }

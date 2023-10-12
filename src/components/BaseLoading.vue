@@ -13,7 +13,7 @@
 :root {
   --type1-small: url('~/icons/chess-frame4.svg');
   --type1-big: url('~/icons/chess-frame.svg');
-  --type2-small: url('~/icons/spt-football.svg');
+  --type2-small: url('~/icons/spt-soccer.svg');
   --type2-big: url('~/icons/spt-basketball.svg');
   --type3-small: url('~/icons/chess-21clock.svg');
   --type3-big: url('~/icons/chess-frame2.svg');

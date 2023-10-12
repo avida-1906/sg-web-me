@@ -818,7 +818,7 @@ function selectOutcome(v: string, tempid: string, marketid: string) {
                       class="heading center"
                       style="grid-area: matchScore_title;"
                     >
-                      <BaseIcon name="spt-football" />
+                      <BaseIcon name="spt-soccer" />
                     </div>
                     <div
                       class="fill-frame completed match-score border"
@@ -854,7 +854,7 @@ function selectOutcome(v: string, tempid: string, marketid: string) {
                   <div class="loader-wrapper">
                     <div class="loader">
                       <div class="wobble">
-                        <BaseIcon name="spt-hero" />
+                        <BaseIcon name="spt-league-of-legends" />
                       </div>
                     </div>
                   </div>
@@ -1002,7 +1002,7 @@ function selectOutcome(v: string, tempid: string, marketid: string) {
                     </div>
                   </template>
                 </BaseSecondaryAccordion>
-                <BaseSecondaryAccordion title="正确比赛得分">
+                <BaseSecondaryAccordion title="正确比赛得分" icon="spt-game-intl">
                   <template #side>
                     <div
                       class="odd-switch-buttons"
@@ -1080,7 +1080,7 @@ function selectOutcome(v: string, tempid: string, marketid: string) {
               <div class="loader-wrapper">
                 <div class="loader">
                   <div class="wobble">
-                    <BaseIcon name="spt-hero" />
+                    <BaseIcon name="spt-league-of-legends" />
                   </div>
                 </div>
               </div>
