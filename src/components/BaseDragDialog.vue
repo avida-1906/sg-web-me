@@ -2,14 +2,16 @@
 interface Props {
   type: 'trend' | 'live'
   url: string
-  close: () => void
   isLogin: globalThis.Ref<boolean>
+  dialogId: string
 }
 const props = defineProps<Props>()
+const emit = defineEmits(['close'])
 
 const { openLoginDialog, closeLoginDialog } = useLoginDialog()
 const { openRegisterDialog, closeRegisterDialog } = useRegisterDialog()
 const { bool: isFullScreen, toggle: toggleFullScreen } = useBoolean(false)
+const { dragDialogListRemove } = useDragDialogList()
 
 const dragRef = ref()
 let posX: globalThis.Ref<number>, posY: globalThis.Ref<number>
@@ -41,6 +43,10 @@ function handleLoginRegister(type: 'login' | 'register') {
   closeLoginDialog()
   openRegisterDialog()
 }
+function handleClose() {
+  dragDialogListRemove(props.dialogId)
+  emit('close')
+}
 
 onMounted(() => {
   const { x, y } = useDraggable(dragRef, {
@@ -70,7 +76,7 @@ onMounted(() => {
         <BaseButton v-if="isLive" type="text" @click="toggleFullScreen">
           <BaseIcon name="uni-full-screen" />
         </BaseButton>
-        <BaseButton type="text" @click="close">
+        <BaseButton type="text" @click="handleClose">
           <BaseIcon name="uni-close" />
         </BaseButton>
       </div>
