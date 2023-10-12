@@ -180,12 +180,15 @@ function copyCode(type: string) {
       break
     case 'BaseMenu':
       copy(`
-        <BaseMenu :data="[{ title: '存款', path: '/components' }, { title: '提款', path: '/' }]" />
+        <BaseMenu :data="
+        [{ title: '存款', path: '/components' }, { title: '提款', path: '/' }]"
+        />
       `)
       break
     case 'BaseLabel':
       copy(`
-        <BaseLabel label="select标题:" label-content="温馨提示自定义" content-color="--tg-text-error" content-size="14">
+        <BaseLabel label="select标题:"
+          label-content="温馨提示自定义" content-color="--tg-text-error" content-size="14">
           <BaseSelect v-model="selectValue" :options="selectOptions" must />
         </BaseLabel>
       `)
@@ -245,13 +248,19 @@ const tabList = [
   { value: '3', label: 'Tab 3333' },
 ]
 const searchValue = ref('')
-const { value: username, errorMessage: usernameErrorMsg } = useField<string>('username', (value) => {
+const {
+  value: username,
+  errorMessage: usernameErrorMsg,
+} = useField<string>('username', (value) => {
   if (!value)
     return '错误文字'
 
   return ''
 })
-const { value: password, errorMessage: pwdErrorMsg } = useField<string>('password', (value) => {
+const {
+  value: password,
+  errorMessage: pwdErrorMsg,
+} = useField<string>('password', (value) => {
   if (!value)
     return '错误文字'
 
@@ -666,7 +675,10 @@ const breadcrumbs = ['one', 'two', 'three', 'four']
             <div alt="复制组件" title="复制组件" @click="() => copyIcon(id.slice(5))">
               <BaseIcon :name="id.slice(5)" />
             </div>
-            <div alt="复制名称" title="复制名称" class="copy-name" @click="() => copyIconName(id.slice(5))">
+            <div
+              alt="复制名称" title="复制名称"
+              class="copy-name" @click="() => copyIconName(id.slice(5))"
+            >
               <!-- {{ id.slice(5) }} -->
               123
             </div>
@@ -764,7 +776,10 @@ const breadcrumbs = ['one', 'two', 'three', 'four']
         <BaseCheckBox v-model="checkboxValue" @click="copyCode('checkbox')">
           一个复选框
         </BaseCheckBox>
-        <BaseCheckBox v-model="checkboxValue" shape="circle" @click="copyCode('checkbox')" />
+        <BaseCheckBox
+          v-model="checkboxValue" shape="circle"
+          @click="copyCode('checkbox')"
+        />
       </AppDemoCard>
     </li>
     <li class="box">
@@ -809,11 +824,17 @@ const breadcrumbs = ['one', 'two', 'three', 'four']
         <BaseButton round @click="copyCode('input')">
           copy username
         </BaseButton>
-        <BaseInput v-model="username" label="用户名" :msg="usernameErrorMsg" placeholder="请输入用户名" must />
+        <BaseInput
+          v-model="username" label="用户名" :msg="usernameErrorMsg"
+          placeholder="请输入用户名" must
+        />
         <BaseButton round @click="copyCode('input-pwd')">
           copy password
         </BaseButton>
-        <BaseInput v-model="password" label="密码" :msg="pwdErrorMsg" placeholder="请输入用户名" type="password" must />
+        <BaseInput
+          v-model="password" label="密码" :msg="pwdErrorMsg"
+          placeholder="请输入用户名" type="password" must
+        />
       </AppDemoCard>
     </li>
     <li class="box">
@@ -890,7 +911,11 @@ const breadcrumbs = ['one', 'two', 'three', 'four']
         <div class="flex-row">
           <div class="flex-column">
             <BaseAspectRatio ratio="149/97" width="149px">
-              <BaseUpload img-type="frontId" :image-url="imageUrl" @select-file="getFile" @delete-file="handleDelFile" />
+              <BaseUpload
+                img-type="frontId"
+                :image-url="imageUrl"
+                @select-file="getFile" @delete-file="handleDelFile"
+              />
             </BaseAspectRatio>
             <BaseButton @click="copyUploadCode(1)">
               copy
@@ -898,7 +923,11 @@ const breadcrumbs = ['one', 'two', 'three', 'four']
           </div>
           <div class="flex-column">
             <BaseAspectRatio ratio="149/97" width="149px">
-              <BaseUpload img-type="backId" :image-url="imageUrl" @select-file="getFile" @delete-file="handleDelFile" />
+              <BaseUpload
+                img-type="backId"
+                :image-url="imageUrl"
+                @select-file="getFile" @delete-file="handleDelFile"
+              />
             </BaseAspectRatio>
             <BaseButton @click="copyUploadCode(2)">
               copy
@@ -906,7 +935,10 @@ const breadcrumbs = ['one', 'two', 'three', 'four']
           </div>
           <div class="flex-column">
             <BaseAspectRatio ratio="149/97" width="149px">
-              <BaseUpload img-type="address" disabled @select-file="getFile" @delete-file="handleDelFile" />
+              <BaseUpload
+                img-type="address" disabled
+                @select-file="getFile" @delete-file="handleDelFile"
+              />
             </BaseAspectRatio>
             <BaseButton @click="copyUploadCode(3)">
               copy
@@ -914,7 +946,10 @@ const breadcrumbs = ['one', 'two', 'three', 'four']
           </div>
           <div class="flex-column">
             <BaseAspectRatio ratio="149/97" width="149px">
-              <BaseUpload img-type="fund" :image-url="imageUrl2" disabled @select-file="getFile" @delete-file="handleDelFile" />
+              <BaseUpload
+                img-type="fund" :image-url="imageUrl2" disabled
+                @select-file="getFile" @delete-file="handleDelFile"
+              />
             </BaseAspectRatio>
             <BaseButton @click="copyUploadCode(4)">
               copy
@@ -1045,7 +1080,8 @@ const breadcrumbs = ['one', 'two', 'three', 'four']
               渐变进度条 (width: 400)
             </h2>
             <h3>
-              strokeColor: { '0%': '#108ee9', '100%': '#87d068', direction: 'right' } 或 { from: '#108ee9', to: '#87d068', direction: 'right' }
+              strokeColor: { '0%': '#108ee9', '100%': '#87d068', direction: 'right' } 或
+              { from: '#108ee9', to: '#87d068', direction: 'right' }
             </h3>
             <BaseProgress
               :width="400"
@@ -1093,7 +1129,10 @@ const breadcrumbs = ['one', 'two', 'three', 'four']
     </li>
     <li class="box">
       <AppDemoCard title="BaseAccordion">
-        <BaseAccordion :menu-info="menuInfo" auto-show @click-head="handleClickHead" @click-item="handleClickItem" />
+        <BaseAccordion
+          :menu-info="menuInfo"
+          auto-show @click-head="handleClickHead" @click-item="handleClickItem"
+        />
         <div class="center">
           <BaseButton @click="copyAccordionCode">
             copy
@@ -1103,7 +1142,10 @@ const breadcrumbs = ['one', 'two', 'three', 'four']
     </li>
     <li class="box">
       <AppDemoCard title="BaseSecondaryAccordion">
-        <BaseSecondaryAccordion title="ATP / ATP上海站，中国，男单" show-more loading>
+        <BaseSecondaryAccordion
+          title="ATP / ATP上海站，中国，男单"
+          show-more loading icon="spt-game-intl"
+        >
           <template #side="{ isOpen }">
             <div v-show="!isOpen" style="--tg-badge-font-size: 12px;margin-right: 16px;">
               <BaseBadge :count="9" />
@@ -1232,7 +1274,9 @@ const breadcrumbs = ['one', 'two', 'three', 'four']
     </li>
     <li class="box">
       <AppDemoCard title="BaseMenu" style="text-align:left">
-        <BaseMenu :data="[{ title: '存款', path: '/components' }, { title: '提款', path: '/' }]" />
+        <BaseMenu
+          :data="[{ title: '存款', path: '/components' }, { title: '提款', path: '/' }]"
+        />
         <div class="center">
           <BaseButton @click="copyCode('BaseMenu')">
             copy
@@ -1243,9 +1287,15 @@ const breadcrumbs = ['one', 'two', 'three', 'four']
     <li class="box">
       <AppDemoCard title="BaseLabel" style="text-align:left">
         <BaseLabel label="input标题:" label-content="温馨提示自定义">
-          <BaseInput v-model="username" :msg="usernameErrorMsg" placeholder="请输入用户名" must />
+          <BaseInput
+            v-model="username" :msg="usernameErrorMsg"
+            placeholder="请输入用户名" must
+          />
         </BaseLabel>
-        <BaseLabel label="select标题:" label-content="温馨提示自定义" content-color="--tg-text-error" content-size="14">
+        <BaseLabel
+          label="select标题:"
+          label-content="温馨提示自定义" content-color="--tg-text-error" content-size="14"
+        >
           <BaseSelect v-model="selectValue" :options="selectOptions" must />
         </BaseLabel>
         <div class="center">

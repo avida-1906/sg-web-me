@@ -2,9 +2,9 @@
 import type { IUserCurrencyList } from '~/stores/app'
 
 interface Props {
-  showBalance?: boolean
-  network?: boolean
-  currencyList?: IUserCurrencyList[]
+  showBalance?: boolean // 是否展示货币余额
+  network?: boolean // 是否显示协议类型
+  currencyList?: IUserCurrencyList[] // 渲染的货币列表
 }
 
 const props = withDefaults(defineProps<Props>(), {

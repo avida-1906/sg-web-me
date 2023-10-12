@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 interface Props {
   title?: string
+  icon?: string
   showMore?: boolean
   loading?: boolean
   level?: string | number
@@ -26,6 +27,7 @@ function loadMore() {
       <slot name="header">
         <div class="container">
           <div class="container">
+            <BaseIcon v-if="icon" :name="icon" />
             <div class="container">
               <div class="center">
                 <span>{{ title }}</span>
@@ -52,7 +54,7 @@ function loadMore() {
         <BaseButton type="text" @click="loadMore">
           <span v-if="!loading">加载更多</span>
           <span v-else class="ani-scale">
-            <BaseIcon name="spt-football" />
+            <BaseIcon name="spt-soccer" />
           </span>
         </BaseButton>
       </div>
@@ -153,6 +155,9 @@ function loadMore() {
     color: var(--title-color);
     cursor: pointer;
     border-radius: var(--tg-radius-default);
+    font-size: var(--tg-font-size-default);
+    font-weight: var(--tg-font-weight-semibold);
+    line-height: 1.5;
     .container {
       display: flex;
       justify-content: space-between;
@@ -166,11 +171,8 @@ function loadMore() {
       align-items: flex-start;
       justify-content: center;
       gap: var(--tg-spacing-8);
+      color: var(--tg-text-white);
       > span {
-        color: var(--tg-text-white);
-        font-size: var(--tg-font-size-default);
-        font-weight: var(--tg-font-weight-semibold);
-        line-height: 1.5;
         display: inline-flex;
         align-items: center;
         text-align: left;

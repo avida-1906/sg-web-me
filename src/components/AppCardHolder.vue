@@ -29,7 +29,6 @@ const toAddBankcards = function () {
   nextTick(() => openAddBankcardsDialog())
 }
 const toAddVirAddress = function (item: IUserCurrencyList) {
-  console.log(item)
   const {
     openVirAddressDialog,
   } = useVirAddressDialog({
@@ -42,12 +41,11 @@ const toAddVirAddress = function (item: IUserCurrencyList) {
     currencyName: item.type,
   }))
 }
-const showCollapse = function (item: any) {
-  if (item.legalTender)
-    runAsyncBankcardList({ currency_id: getCurrentLanguageIdForBackend() })
-
+const showCollapse = function (item: IUserCurrencyList) {
+  if (isVirtualCurrency(item.type))
+    runWalletList({ contract_type: '', currency_id: item.cur || '' })
   else
-    runWalletList({ contract_type: '', currency_name: item.type })
+    runAsyncBankcardList({ currency_id: getCurrentLanguageIdForBackend() })
 }
 </script>
 
