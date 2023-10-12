@@ -309,7 +309,7 @@ function showTemDialog2() {
 }
 // 打开实时数据或直播
 function openDragDialog(type: 'trend' | 'live') {
-  useDragDialog({ type, url: '' })
+  useDragDialog({ type, url: '', dialogId: '123' })
   copyCode('BaseDragDialog')
 }
 
