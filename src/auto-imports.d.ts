@@ -45,6 +45,7 @@ declare global {
   const EnumCurrency: typeof import('./utils/enums')['EnumCurrency']
   const EnumLanguage: typeof import('./utils/enums')['EnumLanguage']
   const EnumRightSidebarContent: typeof import('./composables/useRightSidebar')['EnumRightSidebarContent']
+  const EnumSportType: typeof import('./utils/enums')['EnumSportType']
   const EnumSportsOddsType: typeof import('./stores/sports')['EnumSportsOddsType']
   const EnumSportsPanelType: typeof import('./stores/sports')['EnumSportsPanelType']
   const EnumsBetSlipTabs: typeof import('./utils/enums')['EnumsBetSlipTabs']
@@ -63,6 +64,7 @@ declare global {
   const STORAGE_SPORTS_PANEL_TYPE_KEY: typeof import('./utils/storage')['STORAGE_SPORTS_PANEL_TYPE_KEY']
   const STORAGE_TOKEN_KEY: typeof import('./utils/storage')['STORAGE_TOKEN_KEY']
   const Session: typeof import('./utils/storage')['Session']
+  const SportType: typeof import('./utils/enums')['SportType']
   const Sports: typeof import('./utils/sports')['Sports']
   const SportsOdds: typeof import('./utils/sports')['SportsOdds']
   const acceptHMRUpdate: typeof import('pinia')['acceptHMRUpdate']
@@ -496,6 +498,7 @@ declare module 'vue' {
     readonly EnumCurrency: UnwrapRef<typeof import('./utils/enums')['EnumCurrency']>
     readonly EnumLanguage: UnwrapRef<typeof import('./utils/enums')['EnumLanguage']>
     readonly EnumRightSidebarContent: UnwrapRef<typeof import('./composables/useRightSidebar')['EnumRightSidebarContent']>
+    readonly EnumSportType: UnwrapRef<typeof import('./utils/enums')['EnumSportType']>
     readonly EnumSportsOddsType: UnwrapRef<typeof import('./stores/sports')['EnumSportsOddsType']>
     readonly EnumSportsPanelType: UnwrapRef<typeof import('./stores/sports')['EnumSportsPanelType']>
     readonly EnumsBetSlipTabs: UnwrapRef<typeof import('./utils/enums')['EnumsBetSlipTabs']>
@@ -928,6 +931,7 @@ declare module '@vue/runtime-core' {
     readonly EnumCurrency: UnwrapRef<typeof import('./utils/enums')['EnumCurrency']>
     readonly EnumLanguage: UnwrapRef<typeof import('./utils/enums')['EnumLanguage']>
     readonly EnumRightSidebarContent: UnwrapRef<typeof import('./composables/useRightSidebar')['EnumRightSidebarContent']>
+    readonly EnumSportType: UnwrapRef<typeof import('./utils/enums')['EnumSportType']>
     readonly EnumSportsOddsType: UnwrapRef<typeof import('./stores/sports')['EnumSportsOddsType']>
     readonly EnumSportsPanelType: UnwrapRef<typeof import('./stores/sports')['EnumSportsPanelType']>
     readonly EnumsBetSlipTabs: UnwrapRef<typeof import('./utils/enums')['EnumsBetSlipTabs']>
