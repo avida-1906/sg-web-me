@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { getCurrentLanguageIdForBackend } from '~/modules/i18n'
 import type { IUserCurrencyList } from '~/stores/app'
 
 const closeDialog = inject('closeDialog', () => {})
+
+const activeCurrency = ref<IUserCurrencyList>()
 
 const {
   bankcardList,
@@ -24,6 +25,8 @@ const toAddBankcards = function () {
     title: '绑定银行卡',
     openName: openName.value,
     isFirst: !bankcardList.value?.length,
+    activeCurrency: activeCurrency.value as IUserCurrencyList,
+    currentType: activeCurrency.value?.cur === '702' ? '2' : '1',
   })
   closeDialog()
   nextTick(() => openAddBankcardsDialog())
@@ -42,10 +45,11 @@ const toAddVirAddress = function (item: IUserCurrencyList) {
   }))
 }
 const showCollapse = function (item: IUserCurrencyList) {
+  activeCurrency.value = item
   if (isVirtualCurrency(item.type))
     runWalletList({ contract_type: '', currency_id: item.cur || '' })
   else
-    runAsyncBankcardList({ currency_id: getCurrentLanguageIdForBackend() })
+    runAsyncBankcardList({ currency_id: item.cur ?? '' })
 }
 </script>
 
