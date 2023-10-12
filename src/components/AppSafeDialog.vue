@@ -1,33 +1,31 @@
 <script setup lang='ts'>
 import type { IMemberBalanceLockerUpdate } from '~/apis'
+import { generateCurrencyData } from '~/stores/app'
+import type { IUserCurrencyList } from '~/stores/app'
 
 const { t } = useI18n()
 
 const { openNotify } = useNotify()
+const { currencyConfig, userCurrencyList } = storeToRefs(useAppStore())
+const { updateUserBalance } = useAppStore()
 
-// tab值
+const activeCurrency = ref<IUserCurrencyList>()
 const activeTab = ref('deposit')
 const tabOptions = [
   { label: t('deposit'), value: 'deposit' },
   { label: t('withdraw'), value: 'withdraw' },
 ]
-const isDeposit = computed(() => activeTab.value === 'deposit')
-// const isWithdraw = computed(() => activeTab.value === 'withdraw')
 
-const activeCurrency = ref()
-const isWithdraw = ref(true)
-
-function changeCurrency(item: any) {
-  activeCurrency.value = item
-}
 const {
   value: amount,
   resetField: resetAmount,
-  validate: valiAmount,
+  validate: validateAmount,
   errorMessage: errAmount,
 } = useField<string>('amount', (value) => {
   if (!value)
     return '不能为空'
+  if (activeCurrency.value && value > activeCurrency.value?.balance)
+    return '金额不能超过最大值'
 
   return ''
 })
@@ -44,26 +42,56 @@ const {
   return ''
 })
 
+const isDeposit = computed(() => activeTab.value === 'deposit')
 const updateType = computed(() => isDeposit.value ? 'add' : 'remove')
-const updateParams = ref<IMemberBalanceLockerUpdate>({
-  amount: amount.value, type: updateType.value, currency_name: 'CNY',
+const updateParams = computed<IMemberBalanceLockerUpdate>(() => {
+  return { amount: amount.value, type: updateType.value, currency_name: 'CNY' }
 })
+
+const {
+  data: vaultBalanceData,
+  runAsync: runAsyncBalanceLockerShow,
+} = useRequest(ApiMemberBalanceLockerShow)
 const { run: runLockerUpdate } = useRequest(ApiMemberBalanceLockerUpdate, {
-  onSuccess() {
+  async onSuccess() {
     openNotify({
       type: 'success',
       message: '操作成功！',
     })
     resetAmount()
     resetPassword()
+    updateUserBalance()
+    runAsyncBalanceLockerShow()
   },
 })
-const { runAsync: runAsyncBalanceLockerShow } = useRequest(ApiMemberBalanceLockerShow)
+
+const vaultBalanceList = computed(() => {
+  if (vaultBalanceData.value && currencyConfig.value)
+    return generateCurrencyData(vaultBalanceData.value, currencyConfig.value)
+  return []
+})
+const initBalance = computed(() => {
+  return isDeposit.value ? userCurrencyList.value : vaultBalanceList.value
+})
+
 async function handleUpdate() {
-  await valiAmount()
+  await validateAmount()
   if (!errAmount.value)
-    runLockerUpdate({ ...updateParams.value, amount: amount.value })
+    runLockerUpdate(updateParams.value)
 }
+function changeCurrency(item: IUserCurrencyList) {
+  activeCurrency.value = item
+}
+function maxNumber() {
+  console.log('最大值', activeCurrency.value.balance)
+  if (activeCurrency.value)
+    amount.value = activeCurrency.value.balance
+}
+
+watch(() => activeTab.value, () => {
+  resetAmount()
+  resetPassword()
+})
 
 application.allSettled([runAsyncBalanceLockerShow()])
 </script>
@@ -74,9 +102,9 @@ application.allSettled([runAsyncBalanceLockerShow()])
       <BaseTab v-model="activeTab" :list="tabOptions" />
       <div class="center">
         <div class="flex-col-start">
-          <span>{{ activeTab === 'deposit' ? '账户货币' : '保险库货币' }}</span>
+          <span>{{ isDeposit ? '账户货币' : '保险库货币' }}</span>
           <AppSelectCurrency
-            :show-balance="isWithdraw"
+            :currency-list="initBalance"
             @change="changeCurrency"
           />
         </div>
@@ -96,7 +124,7 @@ application.allSettled([runAsyncBalanceLockerShow()])
             <BaseIcon :name="activeCurrency?.icon || ''" />
           </template>
           <template #right-button>
-            <span>最大值</span>
+            <span @click="maxNumber">最大值</span>
           </template>
         </BaseInput>
       </div>

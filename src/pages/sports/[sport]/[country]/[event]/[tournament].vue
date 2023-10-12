@@ -3,6 +3,8 @@ type Qualifier = 'home' | 'away'
 
 const route = useRoute()
 const { isMobile, appContentWidth } = storeToRefs(useWindowStore())
+const appStore = useAppStore()
+const { isLogin } = storeToRefs(appStore)
 
 const rangeNum = ref()
 const searchHandicap = ref('')
@@ -834,18 +836,33 @@ function selectOutcome(v: string, tempid: string, marketid: string) {
                 </div>
               </div>
               <div v-else class="livestream-wrap">
-                <!-- <div class="wrapper">
-                  <span class="tip">直播视频将在赛事进行之前开始。</span>
-                </div> -->
-                <!-- <video autoplay controls playsinline disablepictureinpicture="" controlslist="nodownload nofullscreen" class="" src="blob:https://liveshare.huya.com/72a92f58-c32f-4bd1-a287-d355b40c7b59"><track kind="captions"></video> -->
-                <div class="content">
-                  <div class="player-view">
-                    <div class="ratio-wrap">
-                      <iframe
-                        class="iframe" scrolling="no" allowfullscreen
-                        src="https://liveshare.huya.com/iframe/lpl?needStop=true"
-                      />
+                <template v-if="isLogin">
+                  <!-- <div class="wrapper">
+                    <span class="tip">直播视频将在赛事进行之前开始。</span>
+                  </div> -->
+                  <!-- <video autoplay controls playsinline disablepictureinpicture="" controlslist="nodownload nofullscreen" class="" src="blob:https://liveshare.huya.com/72a92f58-c32f-4bd1-a287-d355b40c7b59"><track kind="captions"></video> -->
+                  <!-- <div class="content">
+                    <div class="player-view">
+                      <div class="ratio-wrap">
+                        <iframe
+                          class="iframe" scrolling="no" allowfullscreen
+                          src="https://liveshare.huya.com/iframe/lpl?needStop=true"
+                        />
+                      </div>
                     </div>
+                  </div> -->
+                  <div class="loader-wrapper">
+                    <div class="loader">
+                      <div class="wobble">
+                        <BaseIcon name="spt-hero" />
+                      </div>
+                    </div>
+                  </div>
+                </template>
+                <div v-else class="wrapper-grid-center">
+                  <span>请登录以观看直播。</span>
+                  <div class="center">
+                    <AppLoginRegisterBtns />
                   </div>
                 </div>
               </div>
@@ -1096,6 +1113,21 @@ function selectOutcome(v: string, tempid: string, marketid: string) {
 </template>
 
 <style lang="scss" scoped>
+.wrapper-grid-center {
+  display: grid;
+  grid-auto-flow: row;
+  gap: var(--tg-spacing-8);
+  place-items: center;
+  height: 100%;
+  color: var(--tg-secondary-light);
+  padding: var(--tg-spacing-16);
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  place-content: center;
+  text-align: center;
+  background: var(--tg-text-grey-deep);
+}
 .wobble {
   animation-name: wobble;
   animation-duration: 1s;
