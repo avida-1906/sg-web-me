@@ -44,7 +44,6 @@ function handleShow(val: boolean) {
         />
         <AppFiatDeposit
           v-else
-          :active-currency="activeCurrency?.type"
           @show="handleShow"
         />
       </template>

@@ -9,6 +9,8 @@ const props = defineProps<Props>()
 
 const router = useRouter()
 const { width } = storeToRefs(useWindowStore())
+const { dragDialogListAdd, checkDragDialog } = useDragDialogList()
+const fakeDragDialogId = Math.ceil(Math.random() * 100000)
 
 const isH5Layout = computed(() => width.value < 575)
 const isUpcoming = computed(() => props.type === 'upcoming') // 即将开赛
@@ -26,6 +28,13 @@ const baseGridAreaClass = computed(() => {
   return isH5Layout.value ? 'grid-three-option-574' : 'grid-three-option-normal'
 })
 const baseGridClass = computed(() => isH5Layout.value ? 'grid-setup-574' : 'grid-setup')
+
+// 打开实时数据或直播
+function openDragDialog(type: 'trend' | 'live') {
+  const dialogId = fakeDragDialogId + type
+  dragDialogListAdd(dialogId)
+  useDragDialog({ type, url: '', dialogId })
+}
 
 // TODO: 假状态
 const statusIndex = ref(Math.ceil(Math.random() * 5))
@@ -74,7 +83,8 @@ const onBallAway = computed(() => onBall.value === 2)
               <circle r="10" cx="10" cy="10" fill="#72ACED" />
               <circle
                 r="5" cx="10" cy="10" fill="transparent" stroke="#105EB4"
-                stroke-width="10.5" stroke-dasharray="calc(42 * 31.4 / 100) 31.4"
+                stroke-width="10.5"
+                stroke-dasharray="calc(42 * 31.4 / 100) 31.4"
                 transform="rotate(-90) translate(-20)"
               />
             </svg>
@@ -114,14 +124,8 @@ const onBallAway = computed(() => onBall.value === 2)
     </template>
     <template v-else>
       <!-- 横线 -->
-      <div
-        class="line" :class="{ 'line-bg': index > 0 }"
-        style="grid-area: line"
-      />
-      <div
-        class="line" :class="{ 'line-bg': index > 0 }"
-        style=" grid-area: line2"
-      />
+      <div class="line" :class="{ 'line-bg': index > 0 }" style="grid-area: line" />
+      <div class="line" :class="{ 'line-bg': index > 0 }" style=" grid-area: line2" />
 
       <!-- 队名 -->
       <div class="teams">
@@ -156,10 +160,16 @@ const onBallAway = computed(() => onBall.value === 2)
           </div>
         </div>
         <div class="options-wrapper">
-          <BaseButton type="text" padding0>
+          <BaseButton
+            type="text" padding0 :disabled="checkDragDialog(`${fakeDragDialogId}trend`)"
+            @click="openDragDialog('trend')"
+          >
             <BaseIcon name="uni-trend" />
           </BaseButton>
-          <BaseButton type="text" padding0>
+          <BaseButton
+            type="text" padding0 :disabled="checkDragDialog(`${fakeDragDialogId}live`)"
+            @click="openDragDialog('live')"
+          >
             <BaseIcon name="spt-live" />
           </BaseButton>
         </div>
@@ -213,9 +223,7 @@ const onBallAway = computed(() => onBall.value === 2)
 
     <!-- 联赛分类 -->
     <div v-if="isUpcoming || (!isStandard && !isH5Layout)" class="breadcrumb">
-      <BaseBreadcrumbs
-        :list="['网球', 'ITF女子', 'ITF China 11A, Women Singles']"
-      />
+      <BaseBreadcrumbs :list="['网球', 'ITF女子', 'ITF China 11A, Women Singles']" />
     </div>
 
     <!-- 更多盘口 -->
@@ -281,13 +289,15 @@ const onBallAway = computed(() => onBall.value === 2)
         font-feature-settings: "tnum";
         white-space: nowrap;
         line-height: 1.5;
-        &.live{
+
+        &.live {
           background: var(--tg-button-secondary-main);
-        color: var(--tg-text-white);
+          color: var(--tg-text-white);
         }
-        &.end{
+
+        &.end {
           color: var(--tg-text-lightgrey);
-        background: var(--tg-secondary-deepdark);
+          background: var(--tg-secondary-deepdark);
         }
       }
 

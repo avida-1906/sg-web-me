@@ -1,9 +1,4 @@
 <script setup lang='ts'>
-interface IDepositType {
-  label: string
-  icon: string
-  value: string
-}
 interface IAisleData {
   label: string
   value: string
@@ -11,12 +6,7 @@ interface IAisleData {
 
 const emit = defineEmits(['show'])
 
-const currentType = ref('1')
-const depositType = ref<IDepositType[]>([
-  { label: '银行转账', icon: 'fiat-bank', value: '1' },
-  { label: '支付宝', icon: 'fiat-alipay', value: '2' },
-  { label: '微信', icon: 'fiat-wechat', value: '3' },
-])
+const currentType = ref<'1' | '2'>('1')
 const bankStep = ref<'1' | '2'>('1')
 const payeeInformation = ref({
   name: '张三',
@@ -55,7 +45,6 @@ const changeAisle = function (value: string) {
     <div class="deposit-wrap">
       <AppWithdrawalDepositType
         v-model="currentType"
-        :deposit-type="depositType"
       />
       <div v-if="currentType === '1'" class="type-online-bank">
         <div v-if="bankStep === '1'" class="bank-first">

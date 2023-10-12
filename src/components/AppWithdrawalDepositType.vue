@@ -1,14 +1,12 @@
 <script setup lang='ts'>
 interface Props {
   /** '1' 银行卡， '2' pix 除了巴西其他国家都是银行卡 */
-  modelValue: string
+  modelValue: '1' | '2'
 }
 const props = withDefaults(defineProps<Props>(), {
   modelValue: '1',
 })
 const emit = defineEmits(['update:modelValue'])
-
-console.log(props.modelValue)
 
 const bankTypeData = ref([{ label: '银行转账', icon: 'fiat-bank', value: '1' }])
 const pixTypeData = ref([{ label: 'PIX', icon: 'fiat-bank', value: '2' }])

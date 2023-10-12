@@ -289,6 +289,8 @@ declare global {
   const useDialog: typeof import('./composables/useDialog')['useDialog']
   const useDisplayMedia: typeof import('@vueuse/core')['useDisplayMedia']
   const useDocumentVisibility: typeof import('@vueuse/core')['useDocumentVisibility']
+  const useDragDialog: typeof import('./composables/useDragDialog')['useDragDialog']
+  const useDragDialogList: typeof import('./composables/useDragDialogList')['useDragDialogList']
   const useDraggable: typeof import('@vueuse/core')['useDraggable']
   const useDropZone: typeof import('@vueuse/core')['useDropZone']
   const useElementBounding: typeof import('@vueuse/core')['useElementBounding']
@@ -733,6 +735,8 @@ declare module 'vue' {
     readonly useDialog: UnwrapRef<typeof import('./composables/useDialog')['useDialog']>
     readonly useDisplayMedia: UnwrapRef<typeof import('@vueuse/core')['useDisplayMedia']>
     readonly useDocumentVisibility: UnwrapRef<typeof import('@vueuse/core')['useDocumentVisibility']>
+    readonly useDragDialog: UnwrapRef<typeof import('./composables/useDragDialog')['useDragDialog']>
+    readonly useDragDialogList: UnwrapRef<typeof import('./composables/useDragDialogList')['useDragDialogList']>
     readonly useDraggable: UnwrapRef<typeof import('@vueuse/core')['useDraggable']>
     readonly useDropZone: UnwrapRef<typeof import('@vueuse/core')['useDropZone']>
     readonly useElementBounding: UnwrapRef<typeof import('@vueuse/core')['useElementBounding']>
@@ -1166,6 +1170,8 @@ declare module '@vue/runtime-core' {
     readonly useDialog: UnwrapRef<typeof import('./composables/useDialog')['useDialog']>
     readonly useDisplayMedia: UnwrapRef<typeof import('@vueuse/core')['useDisplayMedia']>
     readonly useDocumentVisibility: UnwrapRef<typeof import('@vueuse/core')['useDocumentVisibility']>
+    readonly useDragDialog: UnwrapRef<typeof import('./composables/useDragDialog')['useDragDialog']>
+    readonly useDragDialogList: UnwrapRef<typeof import('./composables/useDragDialogList')['useDragDialogList']>
     readonly useDraggable: UnwrapRef<typeof import('@vueuse/core')['useDraggable']>
     readonly useDropZone: UnwrapRef<typeof import('@vueuse/core')['useDropZone']>
     readonly useElementBounding: UnwrapRef<typeof import('@vueuse/core')['useElementBounding']>

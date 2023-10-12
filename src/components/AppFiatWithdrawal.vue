@@ -1,10 +1,22 @@
 <script setup lang='ts'>
-import {
-  getCurrentLanguage,
-  getCurrentLanguageIdForBackend,
-} from '~/modules/i18n'
+import type { IUserCurrencyList } from '~/stores/app'
+
+interface Props {
+  /** 货币对象 */
+  activeCurrency: IUserCurrencyList
+}
+const props = withDefaults(defineProps<Props>(), {
+})
 
 const { isLessThanXs } = storeToRefs(useWindowStore())
+
+const amount = ref('')
+
+/** '1' 银行卡， '2' pix 除了巴西其他国家都是银行卡 */
+const currentType = computed<'1' | '2'>(() =>
+  props.activeCurrency.cur === '702' ? '2' : '1',
+)
+
 const {
   bankcardList,
   runAsyncBankcardList,
@@ -12,12 +24,8 @@ const {
   selectBank,
 } = useApiMemberBankCardList()
 
-const amount = ref('')
-/** '1' 银行卡， '2' pix 除了巴西其他国家都是银行卡 */
-const currentType = ref(getCurrentLanguage() === 'pt-BR' ? '2' : '1')
-
 await application.allSettled(
-  [runAsyncBankcardList({ bank_type: getCurrentLanguageIdForBackend() })],
+  [runAsyncBankcardList({ currency_id: props.activeCurrency.cur! })],
 )
 </script>
 
@@ -25,7 +33,12 @@ await application.allSettled(
   <div class="app-fiat-withdrawal">
     <!-- 绑定银行卡/三方账户 -->
     <div v-if="!bankcardList?.length" class="bank-bind">
-      <AppAddBankcards :is-first="true" :container="false" />
+      <AppAddBankcards
+        :is-first="true"
+        :container="false"
+        :active-currency="activeCurrency"
+        :current-type="currentType"
+      />
     </div>
     <!-- 出款信息 -->
     <div v-else class="withdrawal-wrap">
