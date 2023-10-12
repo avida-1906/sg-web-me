@@ -1,14 +1,21 @@
 <script setup lang='ts'>
 import {
-  getCurrentLanguage,
   getCurrentLanguageBankListIdForBackend,
   getCurrentLanguageIdForBackend,
 } from '~/modules/i18n'
+import type { IUserCurrencyList } from '~/stores/app'
 
 interface Props {
-  isFirst?: boolean // 是否首次绑定
-  openName?: string // 户名
-  container?: boolean // 是否需要padding
+  /** 是否首次绑定 */
+  isFirst?: boolean
+  /** 户名 */
+  openName?: string
+  /** 是否需要padding */
+  container?: boolean
+  /** 货币对象 */
+  activeCurrency: IUserCurrencyList
+  /** '1' 银行卡， '2' pix 除了巴西其他国家都是银行卡 */
+  currentType: '1' | '2'
 }
 interface IBank {
   id: string
@@ -26,11 +33,11 @@ const closeDialog = inject('closeDialog', () => {})
 
 const { openNotify } = useNotify()
 
+/** '1' 银行卡， '2' pix 除了巴西其他国家都是银行卡 */
+const currentType = ref<'1' | '2'>(props.currentType)
 const bankType = getCurrentLanguageIdForBackend()
 const bankAreaCpf = ref('')
 const { bool: isDefault, setFalse: setIsDefaultFalse } = useBoolean(false)
-/** '1' 银行卡， '2' pix 除了巴西其他国家都是银行卡 */
-const currentType = ref(getCurrentLanguage() === 'pt-BR' ? '2' : '1')
 
 const {
   value: openName,
@@ -102,7 +109,7 @@ const onBindBank = async function () {
   await bankaccountValidate()
   if (!usernameError.value && !usernameError.value && !bankaccountError.value) {
     runBankcardInsert({
-      bank_type: bankType,
+      currency_id: bankType,
       bank_name: bankName.value,
       open_name: openName.value,
       bank_area_cpf: bankAreaCpf.value,
@@ -112,6 +119,10 @@ const onBindBank = async function () {
     })
   }
 }
+
+watch(() => props.currentType, () => {
+  currentType.value = props.currentType
+})
 
 onMounted(() => {
   if (props.openName)

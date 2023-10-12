@@ -45,7 +45,7 @@ const showCollapse = function (item: IUserCurrencyList) {
   if (isVirtualCurrency(item.type))
     runWalletList({ contract_type: '', currency_id: item.cur || '' })
   else
-    runAsyncBankcardList({ bank_type: getCurrentLanguageIdForBackend() })
+    runAsyncBankcardList({ currency_id: getCurrentLanguageIdForBackend() })
 }
 </script>
 
