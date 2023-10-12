@@ -380,6 +380,9 @@ body {
   &:not(.reset).no-bottom-spacing {
     padding-bottom: unset;
   }
+  &.gap-medium {
+    gap: var(--tg-spacing-24);
+  }
 }
 
 .mt-24 {

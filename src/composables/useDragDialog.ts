@@ -1,16 +1,29 @@
 import { render } from 'vue'
 import BaseDragDialog from '~/components/BaseDragDialog.vue'
 
-export function useDragDialog(props: { type: 'trend' | 'live'; url: string }) {
+interface Props {
+  type: 'trend' | 'live'
+  url: string
+  dialogId: string
+}
+
+export function useDragDialog(props: Props) {
   const { isLogin } = storeToRefs(useAppStore())
+
   const div = document.createElement('div')
   div.id = 'app-drag-dialog'
 
-  function close() {
+  function removeDiv() {
     div.remove()
   }
 
-  const vNode = h(BaseDragDialog, { ...props, close, isLogin })
+  const vNode = h(BaseDragDialog, {
+    ...props,
+    isLogin,
+    onClose: () => {
+      removeDiv()
+    },
+  })
   render(vNode, div)
   document.body.appendChild(div)
 }

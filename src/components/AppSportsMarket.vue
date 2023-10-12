@@ -11,9 +11,9 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <BaseSecondaryAccordion title="ATP / ATP上海站，中国，男单" :show-more="showMore">
+  <BaseSecondaryAccordion title="ATP / ATP上海站，中国，男单" :show-more="showMore" level="2">
     <template #side="{ isOpen }">
-      <div v-show="!isOpen" style="--tg-badge-font-size: 12px;margin-right: 16px;">
+      <div v-show="!isOpen" class="badge-wrap">
         <BaseBadge :count="9" />
       </div>
     </template>
@@ -30,5 +30,10 @@ withDefaults(defineProps<Props>(), {
 <style lang='scss' scoped>
 .wrapper{
   padding: var(--tg-spacing-8) 0;
+}
+.badge-wrap {
+  --tg-badge-font-size: 12px;
+  margin-right: 16px;
+  display: flex;
 }
 </style>
