@@ -4,7 +4,7 @@ import type { IUserCurrencyList } from '~/stores/app'
 interface Props {
   showBalance?: boolean
   network?: boolean
-  currencyList?: any
+  currencyList?: IUserCurrencyList[]
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -39,9 +39,9 @@ const getCurContract = computed(() => {
 const getCurrencyList = computed(() => {
   if (props.currencyList) {
     if (searchValue.value)
-      return props.currencyList.value.filter((item: any) => item.type.includes(searchValue.value.toLocaleUpperCase()))
+      return props.currencyList.filter((item: IUserCurrencyList) => item.type.includes(searchValue.value.toLocaleUpperCase()))
 
-    return props.currencyList.value
+    return props.currencyList
   }
   else {
     return renderCurrencyList.value
