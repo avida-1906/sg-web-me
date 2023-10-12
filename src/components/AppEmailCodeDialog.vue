@@ -1,11 +1,11 @@
 <script setup lang='ts'>
 interface Props {
-  run?: (code: string) => void
+  runSubmit?: (code: string) => void
   loading?: Ref<boolean>
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  run: () => { },
+  runSubmit: () => { },
   loading: () => ref(false),
 })
 
@@ -48,7 +48,7 @@ const {
 async function submit() {
   await valiemailCode()
   if (!emailCodeErrorMsg.value)
-    props.run(emailCode.value)
+    props.runSubmit(emailCode.value)
 }
 
 await application.allSettled([

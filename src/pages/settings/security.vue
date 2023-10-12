@@ -122,7 +122,7 @@ async function submitPayPwd() {
   await valiAginPayPwd()
   if (!(payPwdErrorMsg.value || aginPayPwdErrorMsg.value)) {
     openEmailCodeDialog({
-      run: (emailCode: string) => {
+      runSubmit: (emailCode: string) => {
         runMemberPayPasswordUpdate({
           pay_password: payPassword.value,
           code: emailCode,
