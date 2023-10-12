@@ -18,8 +18,6 @@ const {
   setFalse: setDialogLogoutFalse,
 } = useBoolean(false)
 const { openWalletDialog } = useWalletDialog()
-const { openLoginDialog } = useLoginDialog()
-const { openRegisterDialog } = useRegisterDialog()
 const { openVipDialog } = useVipDialog()
 const { openStatisticsDialog } = useStatisticsDialog()
 const { openSafeDialog } = useSafeDialog()
@@ -233,16 +231,7 @@ function handleClickMenuItem(item: { name: string; path?: string }) {
       />
     </div>
     <div v-else class="header-login">
-      <BaseButton type="text" class="login" @click.stop="openLoginDialog()">
-        {{ t('login') }}
-      </BaseButton>
-      <BaseButton
-        class="reg"
-        bg-style="primary"
-        @click.stop="openRegisterDialog()"
-      >
-        {{ t('reg') }}
-      </BaseButton>
+      <AppLoginRegisterBtns />
     </div>
   </div>
   <BaseDialog v-model:show="showDialogLogout" icon="uni-trend" title="登出">
@@ -318,7 +307,6 @@ function handleClickMenuItem(item: { name: string; path?: string }) {
       }
     }
   }
-
   .header-login {
     display: flex;
     justify-content: flex-end;
@@ -329,28 +317,6 @@ function handleClickMenuItem(item: { name: string; path?: string }) {
     font-size: var(--tg-font-size-default);
     font-style: normal;
     font-weight: 600;
-
-    .login {
-      width: 68px;
-      height: 44px;
-      padding:
-      var(--tg-spacing-button-padding-vertical-md)
-      var(--tg-spacing-button-padding-vertical-2xl) !important;
-      color: var(--tg-text-white);
-    }
-
-    .reg {
-      display: flex;
-      width: 68px;
-      height: 44px;
-      padding:
-      var(--tg-spacing-button-padding-vertical-md)
-      var(--tg-spacing-button-padding-vertical-2xl) !important;
-      justify-content: center;
-      align-items: center;
-      border-radius: 4px;
-      background: #1475E1;
-    }
   }
 }
 
