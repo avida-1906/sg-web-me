@@ -12,6 +12,8 @@ export interface IUserCurrencyList {
   symbol: string
   /** 带余额的前缀 */
   balanceWithSymbol: string
+  /** 货币id */
+  cur?: string
 }
 
 /**
@@ -30,11 +32,13 @@ export function generateCurrencyData(
     const balance = currency[type]
     const symbol = currencyConfig[i].symbol
     const balanceWithSymbol = symbol + balance
+    const cur = currencyConfig[i].cur
     list.push({
       type,
       balance,
       symbol,
       balanceWithSymbol,
+      cur,
     })
   }
   return list
