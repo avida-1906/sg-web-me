@@ -131,6 +131,7 @@ export const useAppStore = defineStore('app', () => {
     userCurrencyList,
     currentGlobalCurrencyBalance,
     userInfo,
+    currencyConfig,
     setToken,
     setLoginTrue,
     setLoginFalse,
