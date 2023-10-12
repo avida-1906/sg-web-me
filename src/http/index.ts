@@ -7,8 +7,13 @@ interface IResponse<T> {
   status: boolean
   data: T
 }
-type IRequestInterceptors = (value: InternalAxiosRequestConfig<any>) => InternalAxiosRequestConfig<any>
-type IResponseInterceptors = (value: AxiosResponse<any>) => AxiosResponse<any> | Promise<Error>
+type IRequestInterceptors = (
+  value: InternalAxiosRequestConfig<any>
+) => InternalAxiosRequestConfig<any>
+
+type IResponseInterceptors = (
+  value: AxiosResponse<any>
+) => AxiosResponse<any> | Promise<Error>
 
 const { openNotify } = useNotify()
 
@@ -200,7 +205,11 @@ class HttpClient {
               break
             case 405:
               // 请求方法错误
-              errorMessage.message = `${status}: 当前是${error.config.method}方法， 应该是${error.response.headers.allow}方法`
+              errorMessage.message = `
+                ${status}: 
+                当前是${error.config.method}方法， 
+                应该是${error.response.headers.allow}方法
+              `
               break
             case 502:
             case 504:

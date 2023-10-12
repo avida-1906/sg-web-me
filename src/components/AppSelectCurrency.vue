@@ -20,19 +20,14 @@ const {
   currentCurrency,
   searchValue,
   renderCurrencyList,
-  currentGlobalCurrencyBalance,
   changeCurrentCurrency,
   clearSearchValue,
   getCurrencyContract,
 } = useCurrencyData()
 
 const currentNetwork = ref('ERC20')
-const currentCurrencyBalance = ref(currentGlobalCurrencyBalance.value)
-// const networkList = [
-//   { label: 'ERC20', value: 'ERC20' },
-//   { label: 'TRC20', value: 'TRC20' },
-// ]
 
+// 获取协议类型
 const getCurContract = computed(() => {
   return getCurrencyContract(currentCurrency.value)
 })
@@ -47,16 +42,25 @@ const getCurrencyList = computed(() => {
     return renderCurrencyList.value
   }
 })
+// 获取当前选择货币对象
+const getCurrencyBalance = computed(() => {
+  return getCurrencyList.value
+    .find((item: IUserCurrencyList) =>
+      item.type === currentCurrency.value)
+})
 
 // 选择币种
 function selectCurrency(item: IUserCurrencyList, hide: () => void) {
-  currentCurrencyBalance.value = item.balanceWithSymbol
   changeCurrentCurrency(item.type)
   hide()
-  emit('change', item)
+  // emit('change', item)
 }
 
-emit('change', currentCurrency.value)
+watch(() => getCurrencyBalance.value, () => {
+  emit('change', getCurrencyBalance.value)
+})
+
+emit('change', getCurrencyBalance.value)
 </script>
 
 <template>
@@ -71,7 +75,7 @@ emit('change', currentCurrency.value)
           <AppAmount
             v-if="showBalance"
             style="color:var(--tg-text-white);"
-            :amount="currentCurrencyBalance"
+            :amount="getCurrencyBalance?.balanceWithSymbol || ''"
             :currency-type="currentCurrency"
           />
           <AppCurrencyIcon
@@ -123,7 +127,7 @@ emit('change', currentCurrency.value)
       </template>
     </VDropdown>
     <BaseSelect
-      v-if="getCurContract"
+      v-if="network && getCurContract"
       v-model="currentNetwork"
       :options="getCurContract"
       popper

@@ -1,19 +1,19 @@
 <script setup lang='ts'>
 import type { IMemberBalanceLockerUpdate } from '~/apis'
 import { generateCurrencyData } from '~/stores/app'
+import type { IUserCurrencyList } from '~/stores/app'
 
 const { t } = useI18n()
-
 const { openNotify } = useNotify()
 const { currencyConfig, userCurrencyList } = storeToRefs(useAppStore())
 const { updateUserBalance } = useAppStore()
 
+const activeCurrency = ref<IUserCurrencyList>()
 const activeTab = ref('deposit')
 const tabOptions = [
   { label: t('deposit'), value: 'deposit' },
   { label: t('withdraw'), value: 'withdraw' },
 ]
-const activeCurrency = ref()
 
 const {
   value: amount,
@@ -23,6 +23,8 @@ const {
 } = useField<string>('amount', (value) => {
   if (!value)
     return '不能为空'
+  if (activeCurrency.value && value > activeCurrency.value?.balance)
+    return '金额不能超过最大值'
 
   return ''
 })
@@ -76,12 +78,19 @@ async function handleUpdate() {
   if (!errAmount.value)
     runLockerUpdate(updateParams.value)
 }
-function changeCurrency(item: any) {
+function changeCurrency(item: IUserCurrencyList) {
   activeCurrency.value = item
 }
 function maxNumber() {
-  console.log('最大值')
+  // console.log('最大值', activeCurrency.value.balance)
+  if (activeCurrency.value)
+    amount.value = activeCurrency.value.balance
 }
+
+watch(() => activeTab.value, () => {
+  resetAmount()
+  resetPassword()
+})
 
 application.allSettled([runAsyncBalanceLockerShow()])
 </script>
