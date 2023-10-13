@@ -4,17 +4,24 @@ interface Props {
   isStandard?: boolean
   showMore?: boolean
   tournament?: SportTournament
+  autoShow?: boolean
 }
 withDefaults(defineProps<Props>(), {
   isStandard: true,
+  autoShow: false,
 })
 </script>
 
 <template>
-  <BaseSecondaryAccordion title="ATP / ATP上海站，中国，男单" :show-more="showMore" level="2">
+  <BaseSecondaryAccordion
+    :title="tournament?.name"
+    :show-more="showMore"
+    level="2"
+    :init="autoShow"
+  >
     <template #side="{ isOpen }">
       <div v-show="!isOpen" class="accordion-badge-wrap">
-        <BaseBadge :count="9" />
+        <BaseBadge :count="tournament?.fixtureCount" />
       </div>
     </template>
     <template #default>

@@ -484,43 +484,28 @@ const curTab = ref(tabs.value[0].value)
 <template>
   <div class="tg-sports-hotlive layout-spacing gap-medium">
     <BaseTab v-model="curTab" :list="tabs" size="large" :center="false" />
-    <!-- 取前三个 -->
+    <!-- 按字母顺序排序 -->
     <template
-      v-for="e, edx in data.categoryList.slice(0, 3)"
-      :key="e.id"
+      v-for="tnt, tdx in data.categoryList"
+      :key="tnt.id"
     >
       <BaseSecondaryAccordion
-        :title="e.name"
+        :title="tnt.name"
         icon="spt-game-intl"
         level="1"
-        :init="edx > 0 ? false : true"
+        :init="tdx > 0 ? false : true"
       >
         <template #side="{ isOpen }">
           <div v-show="!isOpen" class="accordion-badge-wrap">
-            <BaseBadge :count="e.fixtureCount" />
+            <BaseBadge :count="tnt.fixtureCount" />
           </div>
         </template>
         <div class="acc-box">
-          <!-- fixtureCount 排序前三个 -->
           <template
-            v-for="t, tdx in e.tournamentList.sort(
-              (a, b) => b.fixtureCount - a.fixtureCount).slice(0, 3)"
-            :key="t.id"
+            v-for="tnt_tnt, ttdx in tnt.tournamentList"
+            :key="tnt_tnt.id"
           >
-            <BaseSecondaryAccordion
-              :title="t.name"
-              level="2"
-              :init="tdx > 0 ? false : true"
-            >
-              <template #side="{ isOpen }">
-                <div v-show="!isOpen" class="accordion-badge-wrap">
-                  <BaseBadge :count="t.fixtureCount" />
-                </div>
-              </template>
-              <template #default>
-                <div class="wrapper" />
-              </template>
-            </BaseSecondaryAccordion>
+            <AppSportsMarket :auto-show="ttdx > 0 ? false : true" :tournament="tnt_tnt" />
           </template>
         </div>
       </BaseSecondaryAccordion>
