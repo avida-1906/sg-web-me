@@ -68,6 +68,16 @@ const {
     return '请输入账户号码'
   return ''
 })
+const {
+  value: payPassword,
+  errorMessage: paypasswordError,
+  validate: paypasswordValidate,
+  resetField: paypasswordReset,
+} = useField<string>('paypassword', (value) => {
+  if (!value)
+    return '请输入交易密码'
+  return ''
+})
 
 const {
   data: bankList,
@@ -83,6 +93,7 @@ const {
     usernameReset()
     banknameReset()
     bankaccountReset()
+    paypasswordReset()
     bankAreaCpf.value = ''
     setIsDefaultFalse()
     closeDialog()
@@ -109,6 +120,7 @@ const onBindBank = async function () {
   await usernameValidate()
   await banknameValidate()
   await bankaccountValidate()
+  await paypasswordValidate()
   if (!usernameError.value && !usernameError.value && !bankaccountError.value) {
     runBankcardInsert({
       currency_id: currencyId.value,
@@ -117,7 +129,7 @@ const onBindBank = async function () {
       bank_area_cpf: bankAreaCpf.value,
       bank_account: bankAccount.value,
       is_default: isDefault.value ? 1 : 2,
-
+      pay_password: payPassword.value,
     })
   }
 }
@@ -169,6 +181,14 @@ onMounted(() => {
         v-model="bankAreaCpf"
         label="开户行地址"
       />
+      <BaseLabel label="交易密码" must>
+        <BaseInput
+          v-model="payPassword"
+          :msg="paypasswordError"
+          type="password"
+          max="6"
+        />
+      </BaseLabel>
       <div class="checkbox-wrap">
         <span>是否设为默认卡号</span>
         <BaseCheckBox v-model="isDefault" />
