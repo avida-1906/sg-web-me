@@ -3,7 +3,7 @@ interface Props {
   index: number
   isStandard: boolean // 标准盘或三项投注
   isLast?: boolean // 是否列表最后一个
-  type: 'live' | 'upcoming' // 滚球或即将开赛
+  showBreadcrumb?: boolean // 始终展示联赛数据
 }
 const props = defineProps<Props>()
 
@@ -13,9 +13,8 @@ const { checkDragDialog } = useDragDialogList()
 const fakeDragDialogId = Math.ceil(Math.random() * 100000)
 
 const isH5Layout = computed(() => width.value < 575)
-const isUpcoming = computed(() => props.type === 'upcoming') // 即将开赛
 const baseGridAreaClass = computed(() => {
-  if (isUpcoming.value) {
+  if (props.showBreadcrumb) {
     if (props.isStandard)
       return isH5Layout.value ? 'grid-standard-574-coming' : 'grid-standard-normal-coming'
 
@@ -106,7 +105,7 @@ const onBallAway = computed(() => onBall.value === 2)
       <div class="fixture">
         <!-- 主队名称 -->
         <div class="teams-name">
-          <div v-if="onBallHome" class="icon left">
+          <div v-if="onBallHome" class="left icon">
             <BaseIcon name="spt-tennis" />
           </div>
           <span>朱卡耶夫，北比特</span>
@@ -221,7 +220,7 @@ const onBallAway = computed(() => onBall.value === 2)
     </template>
 
     <!-- 联赛分类 -->
-    <div v-if="isUpcoming || (!isStandard && !isH5Layout)" class="breadcrumb">
+    <div v-if="showBreadcrumb || (!isStandard && !isH5Layout)" class="breadcrumb">
       <BaseBreadcrumbs :list="['网球', 'ITF女子', 'ITF China 11A, Women Singles']" />
     </div>
 

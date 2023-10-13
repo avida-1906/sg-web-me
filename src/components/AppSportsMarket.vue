@@ -1,27 +1,43 @@
 <script setup lang='ts'>
 interface Props {
-  type: 'live' | 'upcoming'
+  showBreadcrumb?: boolean
   isStandard?: boolean
   showMore?: boolean
+  tournament?: SportTournament
+  autoShow?: boolean
 }
 withDefaults(defineProps<Props>(), {
-  type: 'live',
   isStandard: true,
+  autoShow: false,
 })
 </script>
 
 <template>
-  <BaseSecondaryAccordion title="ATP / ATP上海站，中国，男单" :show-more="showMore" level="2">
+  <BaseSecondaryAccordion
+    :title="tournament?.name"
+    :show-more="showMore"
+    level="2"
+    :init="autoShow"
+  >
     <template #side="{ isOpen }">
-      <div v-show="!isOpen" class="badge-wrap">
-        <BaseBadge :count="9" />
+      <div v-show="!isOpen" class="accordion-badge-wrap">
+        <BaseBadge :count="tournament?.fixtureCount" />
       </div>
     </template>
     <template #default>
       <div class="wrapper">
-        <AppSportsMarketInfo :type="type" :is-standard="isStandard" :index="0" />
-        <AppSportsMarketInfo :type="type" :is-standard="isStandard" :index="1" />
-        <AppSportsMarketInfo :type="type" :is-standard="isStandard" :index="2" is-last />
+        <AppSportsMarketInfo
+          :show-breadcrumb="showBreadcrumb"
+          :is-standard="isStandard" :index="0"
+        />
+        <AppSportsMarketInfo
+          :show-breadcrumb="showBreadcrumb"
+          :is-standard="isStandard" :index="1"
+        />
+        <AppSportsMarketInfo
+          :show-breadcrumb="showBreadcrumb"
+          :is-standard="isStandard" :index="2" is-last
+        />
       </div>
     </template>
   </BaseSecondaryAccordion>
@@ -30,10 +46,5 @@ withDefaults(defineProps<Props>(), {
 <style lang='scss' scoped>
 .wrapper{
   padding: var(--tg-spacing-8) 0;
-}
-.badge-wrap {
-  --tg-badge-font-size: 12px;
-  margin-right: 16px;
-  display: flex;
 }
 </style>

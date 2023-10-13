@@ -94,8 +94,8 @@ watch(currentGame, (a) => {
     <AppSportsTab v-model="currentGame" :list="gameList" />
 
     <div class="market-wrapper">
-      <AppSportsMarket type="upcoming" :is-standard="isStandard" />
-      <AppSportsMarket type="upcoming" :is-standard="isStandard" />
+      <AppSportsMarket show-breadcrumb :is-standard="isStandard" />
+      <AppSportsMarket show-breadcrumb :is-standard="isStandard" />
     </div>
 
     <div v-if="!onPage" class="layout-spacing">
