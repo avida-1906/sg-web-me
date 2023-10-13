@@ -477,44 +477,71 @@ const tabs = computed(() => [
   { value: 'outrights', label: '冠军投注' },
   { value: 'all', label: `全部 ${sport.value}` },
 ])
+const sortedCategoryList = computed(() =>
+  sortBy(data.categoryList, (o: SportTournament) => o.name))
 
 const curTab = ref(tabs.value[0].value)
 </script>
 
 <template>
-  <div class="tg-sports-hotlive layout-spacing gap-medium">
+  <div class="tg-sports-hotlive layout-spacing variant-normal gap-medium">
     <BaseTab v-model="curTab" :list="tabs" size="large" :center="false" />
     <!-- 按字母顺序排序 -->
-    <template
-      v-for="tnt, tdx in data.categoryList"
-      :key="tnt.id"
-    >
-      <BaseSecondaryAccordion
-        :title="tnt.name"
-        icon="spt-game-intl"
-        level="1"
-        :init="tdx > 0 ? false : true"
+    <div class="layout-spacing sort-tournament">
+      <h3 class="sub-title">
+        <BaseIcon name="spt-sort-az" />
+        <span>按字母顺序排列</span>
+      </h3>
+      <template
+        v-for="tnt, tdx in sortedCategoryList"
+        :key="tnt.id"
       >
-        <template #side="{ isOpen }">
-          <div v-show="!isOpen" class="accordion-badge-wrap">
-            <BaseBadge :count="tnt.fixtureCount" />
-          </div>
-        </template>
-        <div class="acc-box">
-          <template
-            v-for="tnt_tnt, ttdx in tnt.tournamentList"
-            :key="tnt_tnt.id"
-          >
-            <AppSportsMarket :auto-show="ttdx > 0 ? false : true" :tournament="tnt_tnt" />
+        <BaseSecondaryAccordion
+          :title="tnt.name"
+          icon="spt-game-intl"
+          level="1"
+          :init="tdx > 0 ? false : true"
+        >
+          <template #side="{ isOpen }">
+            <div v-show="!isOpen" class="accordion-badge-wrap">
+              <BaseBadge :count="tnt.fixtureCount" />
+            </div>
           </template>
-        </div>
-      </BaseSecondaryAccordion>
-    </template>
+          <div class="acc-box">
+            <template
+              v-for="tnt_tnt, ttdx in tnt.tournamentList"
+              :key="tnt_tnt.id"
+            >
+              <AppSportsMarket
+                :auto-show="ttdx > 0 ? false : true"
+                :tournament="tnt_tnt"
+              />
+            </template>
+          </div>
+        </BaseSecondaryAccordion>
+      </template>
+    </div>
     <AppErrorPage />
   </div>
 </template>
 
 <style lang="scss" scoped>
+.sort-tournament >*+* {
+  margin-top: var(--tg-spacing-12);
+}
+.sub-title {
+  color: var(--tg-text-white);
+  text-align: left;
+  justify-content: flex-start;
+  font-weight: var(--tg-font-weight-semibold);
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--tg-font-size-md);
+  line-height: 1.5;
+  .app-svg-icon {
+    margin-right: var(--tg-spacing-8);
+  }
+}
 .acc-box {
   display: grid;
   grid-auto-flow: row;
