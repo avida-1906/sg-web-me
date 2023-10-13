@@ -1,11 +1,10 @@
 <script setup lang='ts'>
 interface Props {
-  type: 'live' | 'upcoming'
+  showBreadcrumb?: boolean
   isStandard?: boolean
   showMore?: boolean
 }
 withDefaults(defineProps<Props>(), {
-  type: 'live',
   isStandard: true,
 })
 </script>
@@ -19,9 +18,18 @@ withDefaults(defineProps<Props>(), {
     </template>
     <template #default>
       <div class="wrapper">
-        <AppSportsMarketInfo :type="type" :is-standard="isStandard" :index="0" />
-        <AppSportsMarketInfo :type="type" :is-standard="isStandard" :index="1" />
-        <AppSportsMarketInfo :type="type" :is-standard="isStandard" :index="2" is-last />
+        <AppSportsMarketInfo
+          :show-breadcrumb="showBreadcrumb"
+          :is-standard="isStandard" :index="0"
+        />
+        <AppSportsMarketInfo
+          :show-breadcrumb="showBreadcrumb"
+          :is-standard="isStandard" :index="1"
+        />
+        <AppSportsMarketInfo
+          :show-breadcrumb="showBreadcrumb"
+          :is-standard="isStandard" :index="2" is-last
+        />
       </div>
     </template>
   </BaseSecondaryAccordion>

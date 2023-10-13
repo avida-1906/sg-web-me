@@ -60,8 +60,8 @@ const threeOptions = [
     </div>
     <AppSportsTab v-model="currentGame" :list="gameList" />
     <div class="market-wrapper">
-      <AppSportsMarket type="live" :is-standard="isStandard" />
-      <AppSportsMarket type="live" :is-standard="isStandard" />
+      <AppSportsMarket :is-standard="isStandard" />
+      <AppSportsMarket :is-standard="isStandard" />
     </div>
 
     <div v-if="!onPage" class="layout-spacing">
