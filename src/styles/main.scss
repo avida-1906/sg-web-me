@@ -374,6 +374,9 @@ body {
   &:not(.reset) {
     padding-bottom: var(--tg-spacing-24);
   }
+  &:not(.reset).variant-normal>*+* {
+    margin-top: var(--tg-spacing-24);
+  }
   &:not(.reset).variant-normal {
     padding-bottom: var(--tg-spacing-32);
   }

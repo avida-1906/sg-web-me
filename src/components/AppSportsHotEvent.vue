@@ -34,8 +34,8 @@ const threeOptions = [
     </div>
 
     <div class="market-wrapper">
-      <AppSportsMarket show-more />
-      <AppSportsMarket />
+      <AppSportsMarket show-more auto-show />
+      <AppSportsMarket auto-show />
     </div>
   </div>
 </template>

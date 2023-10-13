@@ -8,7 +8,8 @@
     "**/*.scss",
     "**/*.vsix",
     "**/*.sh",
-    "**/*.svg"
+    "**/*.svg",
+    "**/*.yml"
   ],
   "rules": {
     "no-console": "off",
