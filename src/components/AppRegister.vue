@@ -15,8 +15,6 @@ const { bool: checkboxValue } = useBoolean(false)
 const { bool: pwdStatus, setBool: setPwdStatus } = useBoolean(false)
 const { openTermsConditionsDialog } = useTermsConditionsDialog()
 
-const emailExistsError = ref('')
-const usernameExistsError = ref('')
 const curExists = ref<1 | 2>(2)
 const birthdayInputRef = ref()
 const birthday = ref('')
@@ -34,14 +32,13 @@ const {
   value: email,
   errorMessage: emailErrorMsg,
   validate: validateEmail,
+  setErrors: setEmailErrors,
 } = useField<string>('email', (value) => {
   if (!value)
     return t('pls_enter_email_address')
 
   if (!emailReg.test(value))
     return t('email_address_incorrect')
-  if (emailExistsError.value)
-    return emailExistsError.value
     // 请在您的电邮地址中加入 “@” 符号
     // 请在您的电邮地址中加入 “.” 符号
     // 电子邮件域不受支持
@@ -52,14 +49,13 @@ const {
   value: username,
   errorMessage: usernameErrorMsg,
   validate: validateUsername,
+  setErrors: setUsernameErrors,
 } = useField<string>('username', (value) => {
   if (!value)
     return t('pls_enter_username')
 
   if (!usernameReg.test(value))
     return t('username_incorrect')
-  if (usernameExistsError.value)
-    return usernameExistsError.value
     // 此用户名已被使用，请选择另一用户名。
     // 用户名含有无效的字符
     // 您的用户名长度必须为 3 – 14 个字符。
@@ -90,14 +86,10 @@ const regParams = computed(() =>
 
 const { run: runExists } = useRequest(ApiMemberExists, {
   onError() {
-    if (curExists.value === 2) {
-      emailExistsError.value = '邮箱已存在,请重新填写邮箱'
-      validateEmail()
-    }
-    else if (curExists.value === 1) {
-      usernameExistsError.value = '用户名已存在,请重新填写用户名'
-      validateUsername()
-    }
+    if (curExists.value === 2)
+      setEmailErrors('邮箱已存在,请重新填写邮箱')
+    else if (curExists.value === 1)
+      setUsernameErrors('用户名已存在,请重新填写用户名')
   },
 })
 
@@ -137,7 +129,7 @@ function onPasswordBlur() {
 function passwordVerifyPass(status: boolean) {
   setPwdStatus(status)
 }
-function onEmailBlur(type: 1 | 2) {
+function onEmailUsernameBlur(type: 1 | 2) {
   curExists.value = type
   runExists({ ty: type, val: type === 1 ? username.value : email.value })
 }
@@ -166,7 +158,7 @@ onUnmounted(() => {
           v-model="email"
           :msg="emailErrorMsg"
           :placeholder="t('pls_enter_email_address')"
-          @blur="onEmailBlur(2)"
+          @blur="onEmailUsernameBlur(2)"
         />
       </BaseLabel>
       <BaseLabel :label="t('username')" must-small>
@@ -174,7 +166,7 @@ onUnmounted(() => {
           v-model="username"
           :msg="usernameErrorMsg"
           :placeholder="t('pls_enter_username')"
-          @blur="onEmailBlur(1)"
+          @blur="onEmailUsernameBlur(1)"
         />
       </BaseLabel>
       <BaseLabel :label="t('password')" must-small>
