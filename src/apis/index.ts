@@ -546,3 +546,16 @@ export function ApiMemberPayPasswordUpdate(data: {
 export function ApiMemberSendMailCode() {
   return httpClient.get<string>('/member/send/mail/code')
 }
+
+/**
+ * 会员账号校验
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=954ecf22-c1d5-4ca6-9576-655090e75d18
+ */
+export function ApiMemberExists(params: {
+  /** 1会员名 2邮箱地址 */
+  ty: 1 | 2
+  /** 会员名或者邮箱地址 */
+  val: string
+}) {
+  return httpClient.get<string>('/member/exists', params)
+}
