@@ -1,7 +1,6 @@
 <script setup lang='ts'>
 import {
   getCurrentLanguageBankListIdForBackend,
-  getCurrentLanguageIdForBackend,
 } from '~/modules/i18n'
 import type { IUserCurrencyList } from '~/stores/app'
 
@@ -35,7 +34,7 @@ const { openNotify } = useNotify()
 
 /** '1' 银行卡， '2' pix 除了巴西其他国家都是银行卡 */
 const currentType = ref<'1' | '2'>(props.currentType)
-const bankType = getCurrentLanguageIdForBackend()
+const currencyId = ref(props.activeCurrency.cur ?? '')
 const bankAreaCpf = ref('')
 const { bool: isDefault, setFalse: setIsDefaultFalse } = useBoolean(false)
 
@@ -69,10 +68,13 @@ const {
     return '请输入账户号码'
   return ''
 })
+
 const {
   data: bankList,
 } = useApiMemberTreeList(getCurrentLanguageBankListIdForBackend())
-const { run: runBankcardInsert } = useRequest(ApiMemberBankcardInsert, {
+const {
+  run: runBankcardInsert,
+} = useRequest(ApiMemberBankcardInsert, {
   onSuccess() {
     openNotify({
       type: 'success',
@@ -109,7 +111,7 @@ const onBindBank = async function () {
   await bankaccountValidate()
   if (!usernameError.value && !usernameError.value && !bankaccountError.value) {
     runBankcardInsert({
-      currency_id: bankType,
+      currency_id: currencyId.value,
       bank_name: bankName.value,
       open_name: openName.value,
       bank_area_cpf: bankAreaCpf.value,
@@ -133,7 +135,7 @@ onMounted(() => {
 <template>
   <div class="app-add-bankcards" :class="{ 'is-first': props.container }">
     <div class="bind-identity">
-      <div v-if="props.isFirst" class="bind-tips">
+      <div v-if="props.isFirst " class="bind-tips">
         <BaseIcon name="uni-warning" />
         请先绑定提款方式，再进行提款！
       </div>

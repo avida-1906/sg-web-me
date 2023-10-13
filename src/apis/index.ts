@@ -16,6 +16,7 @@ interface IResponseList<T> {
   t: number
   s: number
 }
+
 export interface IMemberDetail {
   uid: string
   /** 真实姓名，多个语言的用逗号隔开 */
@@ -38,6 +39,7 @@ export interface IMemberDetail {
   sex: number
   username: string
 }
+
 export interface IMemberBalanceLockerUpdate {
   type: 'add' | 'remove'
   currency_name: string
@@ -78,7 +80,8 @@ export function ApiMemberReg(
     username: string
     password: string
     birthday?: string
-    parent_id?: string// 上级id，没有留空
+    /** 上级id，没有留空 */
+    parent_id?: string
     device_number: string
   },
 ) {
