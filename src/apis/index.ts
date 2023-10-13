@@ -55,6 +55,8 @@ export interface IMemberCurrencyConfig {
   decimal_places: number
   /** 货币前缀 */
   symbol: string
+  /** 银行id */
+  bank_tree: string
 }
 
 /**

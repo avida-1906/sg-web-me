@@ -3,18 +3,14 @@ import type { EnumCurrencyKey, IMemberCurrencyConfig, TCurrencyObject } from '~/
 import { EnumCurrency } from '~/utils/enums'
 
 /** 页面渲染的货币对象 */
-export interface IUserCurrencyList {
+export type IUserCurrencyList = {
   /** 货币类型 */
   type: EnumCurrencyKey
   /** 余额 */
   balance: string
-  /** 前缀 */
-  symbol: string
   /** 带余额的前缀 */
   balanceWithSymbol: string
-  /** 货币id */
-  cur?: string
-}
+} & Pick<IMemberCurrencyConfig, 'cur' | 'bank_tree' | 'symbol'>
 
 /**
  * 生成用户货币数据
@@ -33,12 +29,14 @@ export function generateCurrencyData(
     const symbol = currencyConfig[i].symbol
     const balanceWithSymbol = symbol + balance
     const cur = currencyConfig[i].cur
+    const bank_tree = currencyConfig[i].bank_tree
     list.push({
       type,
       balance,
       symbol,
       balanceWithSymbol,
       cur,
+      bank_tree,
     })
   }
   return list
