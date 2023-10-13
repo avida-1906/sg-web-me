@@ -15,6 +15,7 @@ declare global {
   const ApiMemberDetail: typeof import('./apis/index')['ApiMemberDetail']
   const ApiMemberEmailCheck: typeof import('./apis/index')['ApiMemberEmailCheck']
   const ApiMemberEmailCheckRequest: typeof import('./apis/index')['ApiMemberEmailCheckRequest']
+  const ApiMemberExists: typeof import('./apis/index')['ApiMemberExists']
   const ApiMemberFavDelete: typeof import('./apis/index')['ApiMemberFavDelete']
   const ApiMemberFavInsert: typeof import('./apis/index')['ApiMemberFavInsert']
   const ApiMemberFavList: typeof import('./apis/index')['ApiMemberFavList']
@@ -473,6 +474,7 @@ declare module 'vue' {
     readonly ApiMemberDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberDetail']>
     readonly ApiMemberEmailCheck: UnwrapRef<typeof import('./apis/index')['ApiMemberEmailCheck']>
     readonly ApiMemberEmailCheckRequest: UnwrapRef<typeof import('./apis/index')['ApiMemberEmailCheckRequest']>
+    readonly ApiMemberExists: UnwrapRef<typeof import('./apis/index')['ApiMemberExists']>
     readonly ApiMemberFavDelete: UnwrapRef<typeof import('./apis/index')['ApiMemberFavDelete']>
     readonly ApiMemberFavInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberFavInsert']>
     readonly ApiMemberFavList: UnwrapRef<typeof import('./apis/index')['ApiMemberFavList']>
@@ -908,6 +910,7 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberDetail']>
     readonly ApiMemberEmailCheck: UnwrapRef<typeof import('./apis/index')['ApiMemberEmailCheck']>
     readonly ApiMemberEmailCheckRequest: UnwrapRef<typeof import('./apis/index')['ApiMemberEmailCheckRequest']>
+    readonly ApiMemberExists: UnwrapRef<typeof import('./apis/index')['ApiMemberExists']>
     readonly ApiMemberFavDelete: UnwrapRef<typeof import('./apis/index')['ApiMemberFavDelete']>
     readonly ApiMemberFavInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberFavInsert']>
     readonly ApiMemberFavList: UnwrapRef<typeof import('./apis/index')['ApiMemberFavList']>
