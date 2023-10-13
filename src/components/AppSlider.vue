@@ -7,7 +7,7 @@ interface SlideItem {
 interface Props {
   icon: string
   title: string
-  data: Array<SlideItem> | null
+  data: Array<SlideItem>
   showViewAll?: boolean
   gameType: string | number
 }
@@ -99,7 +99,7 @@ watchEffect(() => {
 </script>
 
 <template>
-  <section v-if="data" ref="sliderOuter" class="tg-app-slider">
+  <section ref="sliderOuter" class="tg-app-slider">
     <div class="header">
       <div class="title">
         <a>
@@ -123,42 +123,45 @@ watchEffect(() => {
         </BaseButton>
       </div>
     </div>
-    <div
-      ref="gallery"
-      class="scroll-x hide-scrollbar gallery"
-      :class="[galleryClass]"
-    >
+    <template v-if="data.length > 0">
       <div
-        v-for="item, idx in data" :key="item.id" class="slide"
-        :class="{
-          faded: idx === data.length - 1
-            ? !isEnd : idx >= scrollLeftItemsCount + pageInfo.pageSize,
-        }"
+        ref="gallery"
+        class="scroll-x gallery hide-scrollbar"
+        :class="[galleryClass]"
       >
-        <div class="item">
-          <slot :item="item">
-            <BaseGameItem :game-info="item" />
-          </slot>
-          <div class="link-next" @click="nextPage" />
+        <div
+          v-for="item, idx in data" :key="item.id" class="slide"
+          :class="{
+            faded: idx === data.length - 1
+              ? !isEnd : idx >= scrollLeftItemsCount + pageInfo.pageSize,
+          }"
+        >
+          <div class="item">
+            <slot :item="item">
+              <BaseGameItem :game-info="item" />
+            </slot>
+            <div class="link-next" @click="nextPage" />
+          </div>
+        </div>
+        <div
+          v-if="data.length && (showViewAll || $slots.viewAll)"
+          class="slide see-all"
+          :class="{
+            faded: scrollLeftItemsCount + pageInfo.pageSize < data.length + 1,
+          }"
+        >
+          <div class="item" @click="goAllPage">
+            <slot name="viewAll">
+              <BaseImage url="/img/casino/seeAll-en.png" />
+              <div class="txt">
+                <span>{{ $t('view_all') }}</span>
+              </div>
+            </slot>
+          </div>
         </div>
       </div>
-      <div
-        v-if="data.length && (showViewAll || $slots.viewAll)"
-        class="slide see-all"
-        :class="{
-          faded: scrollLeftItemsCount + pageInfo.pageSize < data.length + 1,
-        }"
-      >
-        <div class="item" @click="goAllPage">
-          <slot name="viewAll">
-            <BaseImage url="/img/casino/seeAll-en.png" />
-            <div class="txt">
-              <span>{{ $t('view_all') }}</span>
-            </div>
-          </slot>
-        </div>
-      </div>
-    </div>
+    </template>
+    <BaseEmpty v-else icon="empty-game" description="暂无游戏" />
   </section>
 </template>
 

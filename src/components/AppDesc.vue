@@ -22,7 +22,6 @@ const tab = ref('4')
 const tabList = [
   { value: '1', label: '大赢家' },
   { value: '2', label: '幸运赢家' },
-  { value: '3', label: '挑战' },
   { value: '4', label: '描述' },
 ]
 const tagList = ref<ITabItem[]>([
@@ -154,7 +153,10 @@ onMounted(() => {
     <!-- 包裹过渡 -->
     <div v-show="showContent" class="wrap">
       <div class="desc-tab">
-        <BaseTab v-model="tab" :list="tabList" class="app-desc-base-tab" />
+        <BaseTab
+          v-model="tab" :list="tabList" :center="false"
+          class="app-desc-base-tab"
+        />
       </div>
       <!-- 描述内容 -->
       <div v-if="tab === '4'" class="desc-content">
@@ -248,13 +250,6 @@ onMounted(() => {
             </div>
           </template>
         </BaseTable>
-      </div>
-      <!-- 挑战 -->
-      <div v-else-if="tab === '3'" class="challenge-content">
-        <BaseEmpty
-          description="Wanted Dead or a Wild 暂无任何活跃的挑战"
-          icon="empty-1"
-        />
       </div>
     </div>
   </div>
@@ -377,6 +372,7 @@ onMounted(() => {
             padding: var(--tg-spacing-2) var(--tg-spacing-8);
             margin: var(--tg-spacing-8) var(--tg-spacing-8) 0 0;
             border-radius: var(--tg-radius-lg);
+            font-weight: var(--tg-font-weight-semibold);
 
             a:hover {
               color: var(--tg-text-white);
@@ -398,7 +394,6 @@ onMounted(() => {
           &:nth-child(2) {
             margin: var(--tg-spacing-8) 0 var(--tg-spacing-20);
             font-size: var(--tg-font-size-default);
-            font-weight: var(--tg-font-weight-semibold);
           }
         }
       }
