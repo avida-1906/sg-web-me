@@ -12,55 +12,44 @@ const data = {
       fixtureList: [
         {
           id: 'd001b39d-345a-4baa-a3a9-53a6f3fc21a4',
-          betradarStream: {
-            exists: false,
-          },
-          imgArenaStream: {
-            exists: true,
-          },
-          abiosStream: null,
-          geniussportsStream: {
-            exists: false,
-          },
           status: 'active',
           slug: '43882414-qf1-qf2',
           name: '迪米托夫 - 贾里，尼古拉斯',
-          provider: 'betradar',
           marketCount: 18,
           extId: 'sr:match:44100366',
-          liveWidgetUrl: null,
-          widgetUrl: null,
-          data: {
-            __typename: 'SportFixtureDataMatch',
-            startTime: 'Fri, 13 Oct 2023 08:30:00 GMT',
-            competitors: [
-              {
-                name: '迪米托夫',
-                extId: 'sr:competitor:23581',
-                countryCode: 'BG',
-                abbreviation: '迪米托',
-                iconPath: null,
-              },
-              {
-                name: '贾里，尼古拉斯',
-                extId: 'sr:competitor:89632',
-                countryCode: 'CL',
-                abbreviation: '贾里，',
-                iconPath: null,
-              },
-            ],
-            teams: [
-              {
-                name: '迪米托夫',
-                qualifier: 'home',
-              },
-              {
-                name: '贾里，尼古拉斯',
-                qualifier: 'away',
-              },
-            ],
-            tvChannels: null,
-          },
+          liveWidgetUrl: '',
+          widgetUrl: '',
+          // data: {
+          //   __typename: 'SportFixtureDataMatch',
+          //   startTime: 'Fri, 13 Oct 2023 08:30:00 GMT',
+          //   competitors: [
+          //     {
+          //       name: '迪米托夫',
+          //       extId: 'sr:competitor:23581',
+          //       countryCode: 'BG',
+          //       abbreviation: '迪米托',
+          //       iconPath: null,
+          //     },
+          //     {
+          //       name: '贾里，尼古拉斯',
+          //       extId: 'sr:competitor:89632',
+          //       countryCode: 'CL',
+          //       abbreviation: '贾里，',
+          //       iconPath: null,
+          //     },
+          //   ],
+          //   teams: [
+          //     {
+          //       name: '迪米托夫',
+          //       qualifier: 'home',
+          //     },
+          //     {
+          //       name: '贾里，尼古拉斯',
+          //       qualifier: 'away',
+          //     },
+          //   ],
+          //   tvChannels: null,
+          // },
           tournament: {
             id: 'e84762ad-9781-4fde-b2b7-1243b17eb07c',
             name: 'ATP上海站，中国，男单',
@@ -75,80 +64,78 @@ const data = {
                 slug: 'tennis',
               },
             },
-            frontRowSeatEvent: null,
           },
-          eventStatus: {
-            __typename: 'SportFixtureEventStatusData',
-            homeScore: null,
-            awayScore: null,
-            matchStatus: '未开始',
-            clock: {
-              matchTime: null,
-              remainingTime: null,
-            },
-            periodScores: null,
-            currentTeamServing: null,
-            homeGameScore: '0',
-            awayGameScore: '0',
-            statistic: {
-              yellowCards: {
-                away: null,
-                home: null,
-              },
-              redCards: {
-                away: null,
-                home: null,
-              },
-              corners: {
-                home: null,
-                away: null,
-              },
-            },
-          },
-          frontRowSeatFight: null,
-          groups: [
-            {
-              name: 'winner',
-              translation: '获胜盘',
-              rank: 0,
-              templates: [
-                {
-                  extId: '186',
-                  rank: 2,
-                  name: '获胜',
-                  markets: [
-                    {
-                      id: 'efb9bd8b-136f-4222-9d56-1a355350b890',
-                      name: '获胜',
-                      status: 'active',
-                      extId: '186',
-                      specifiers: '',
-                      customBetAvailable: false,
-                      provider: 'betradar',
-                      outcomes: [
-                        {
-                          active: true,
-                          id: 'faf52eba-08b9-4456-a35b-cd221d6f9622',
-                          odds: 1.49,
-                          name: '迪米托夫',
-                          customBetAvailable: false,
-                          __typename: 'SportMarketOutcome',
-                        },
-                        {
-                          active: true,
-                          id: 'a720a098-431b-4a6a-99e7-bdf23f9beb13',
-                          odds: 2.7,
-                          name: '贾里，尼古拉斯',
-                          customBetAvailable: false,
-                          __typename: 'SportMarketOutcome',
-                        },
-                      ],
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
+          // eventStatus: {
+          //   __typename: 'SportFixtureEventStatusData',
+          //   homeScore: null,
+          //   awayScore: null,
+          //   matchStatus: '未开始',
+          //   clock: {
+          //     matchTime: null,
+          //     remainingTime: null,
+          //   },
+          //   periodScores: null,
+          //   currentTeamServing: null,
+          //   homeGameScore: '0',
+          //   awayGameScore: '0',
+          //   statistic: {
+          //     yellowCards: {
+          //       away: null,
+          //       home: null,
+          //     },
+          //     redCards: {
+          //       away: null,
+          //       home: null,
+          //     },
+          //     corners: {
+          //       home: null,
+          //       away: null,
+          //     },
+          //   },
+          // },
+          // groups: [
+          //   {
+          //     name: 'winner',
+          //     translation: '获胜盘',
+          //     rank: 0,
+          //     templates: [
+          //       {
+          //         extId: '186',
+          //         rank: 2,
+          //         name: '获胜',
+          //         markets: [
+          //           {
+          //             id: 'efb9bd8b-136f-4222-9d56-1a355350b890',
+          //             name: '获胜',
+          //             status: 'active',
+          //             extId: '186',
+          //             specifiers: '',
+          //             customBetAvailable: false,
+          //             provider: 'betradar',
+          //             outcomes: [
+          //               {
+          //                 active: true,
+          //                 id: 'faf52eba-08b9-4456-a35b-cd221d6f9622',
+          //                 odds: 1.49,
+          //                 name: '迪米托夫',
+          //                 customBetAvailable: false,
+          //                 __typename: 'SportMarketOutcome',
+          //               },
+          //               {
+          //                 active: true,
+          //                 id: 'a720a098-431b-4a6a-99e7-bdf23f9beb13',
+          //                 odds: 2.7,
+          //                 name: '贾里，尼古拉斯',
+          //                 customBetAvailable: false,
+          //                 __typename: 'SportMarketOutcome',
+          //               },
+          //             ],
+          //           },
+          //         ],
+          //       },
+          //     ],
+          //   },
+          // ],
         },
       ],
     },
@@ -163,7 +150,7 @@ const data = {
         id: '5102f1bc-58c5-435e-aff4-d9c71c0ad30c',
         slug: 'atp',
         name: 'ATP',
-        countryCode: null,
+        countryCode: '',
       },
     },
     {
@@ -175,7 +162,7 @@ const data = {
         id: '71a98070-c267-4885-93a2-7c912702f1d1',
         slug: 'wta',
         name: 'WTA',
-        countryCode: null,
+        countryCode: '',
       },
     },
     {
@@ -187,7 +174,7 @@ const data = {
         id: '71a98070-c267-4885-93a2-7c912702f1d1',
         slug: 'wta',
         name: 'WTA',
-        countryCode: null,
+        countryCode: '',
       },
     },
     {
@@ -199,7 +186,7 @@ const data = {
         id: '71a98070-c267-4885-93a2-7c912702f1d1',
         slug: 'wta',
         name: 'WTA',
-        countryCode: null,
+        countryCode: '',
       },
     },
     {
@@ -211,7 +198,7 @@ const data = {
         id: '71a98070-c267-4885-93a2-7c912702f1d1',
         slug: 'wta',
         name: 'WTA',
-        countryCode: null,
+        countryCode: '',
       },
     },
   ],
@@ -480,6 +467,13 @@ const tabs = computed(() => [
 ])
 const sortedCategoryList = computed(() =>
   sortBy(data.categoryList, (o: SportTournament) => o.name))
+const topUpcomingCategoryList = computed(() => {
+  return data.tournamentList.reduce((accumulator: any, currentValue) => {
+    if (accumulator.findIndex((item: any) => currentValue.category.id === item.id) === -1)
+      accumulator.push(currentValue.category)
+    return accumulator
+  }, [])
+})
 
 const curTab = ref(tabs.value[0].value)
 </script>
@@ -489,7 +483,33 @@ const curTab = ref(tabs.value[0].value)
     <div class="layout-spacing variant-normal no-bottom-spacing">
       <AppNavBreadCrumb :breadcrumb="breadcrumb" />
       <BaseTab v-model="curTab" :list="tabs" size="large" :center="false" />
-      <div class="layout-spacing no-bottom-spacing sort-tournament" />
+      <div class="layout-spacing no-bottom-spacing sort-tournament">
+        <template
+          v-for="up, udx in topUpcomingCategoryList"
+          :key="up.id"
+        >
+          <BaseSecondaryAccordion
+            :title="up.name"
+            icon="spt-game-intl"
+            level="1"
+            :init="udx > 0 ? false : true"
+          >
+            <template #side="{ isOpen }">
+              <div v-show="!isOpen" class="accordion-badge-wrap">
+                <BaseBadge :count="up.fixtureCount" />
+              </div>
+            </template>
+            <div class="acc-box">
+              <template v-for="tour, rdx in data.tournamentList" :key="tour.id">
+                <AppSportsMarket
+                  :auto-show="rdx === 0"
+                  :tournament="rdx === 0 ? data.firstTournament[0] : tour"
+                />
+              </template>
+            </div>
+          </BaseSecondaryAccordion>
+        </template>
+      </div>
       <!-- 按字母顺序排序 -->
       <div class="layout-spacing sort-tournament">
         <h3 class="sub-title">
@@ -497,14 +517,14 @@ const curTab = ref(tabs.value[0].value)
           <span>按字母顺序排列</span>
         </h3>
         <template
-          v-for="tnt, tdx in sortedCategoryList"
+          v-for="tnt in sortedCategoryList"
           :key="tnt.id"
         >
           <BaseSecondaryAccordion
             :title="tnt.name"
             icon="spt-game-intl"
             level="1"
-            :init="tdx > 0 ? false : true"
+            :init="false"
           >
             <template #side="{ isOpen }">
               <div v-show="!isOpen" class="accordion-badge-wrap">
@@ -517,7 +537,7 @@ const curTab = ref(tabs.value[0].value)
                 :key="tnt_tnt.id"
               >
                 <AppSportsMarket
-                  :auto-show="ttdx > 0 ? false : true"
+                  :auto-show="ttdx === 0"
                   :tournament="tnt_tnt"
                 />
               </template>

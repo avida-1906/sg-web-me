@@ -82,22 +82,23 @@ interface SportTournament {
   /** id */
   id: string
   /** 固定链接地址 */
-  slug: string
+  slug?: string
   /** 赛事名称 国家名称 体育运动名称 */
   name: string
   /** 国家代码 */
   countryCode?: string
   /** 具体对局 Match 的数量（tournamentList 里面 fixtureCount 的总和） */
-  fixtureCount: number
+  fixtureCount?: number
   /** 具体对局 Match 列表 */
   fixtureList?: Array<SportFixture>
   /** 赛事列表 */
   tournamentList?: Array<SportTournament>
   /** 上一级分类 */
-  category?: Array<SportTournament>
+  category?: SportTournament
   /** 属于具体什么运动 */
   sport?: Array<SportTournament>
   contentNotes?: Array
+  [k: string]: any
 }
 
 /**
@@ -109,10 +110,12 @@ interface SportFixture {
   slug:               string
   name:               string
   marketCount:        number
+  extId:              string
   liveWidgetUrl:      string
   widgetUrl:          string
-  data:               Data
+  // data:               any
   tournament:         Tournament
   // eventStatus:        EventStatus;
   // groups:             Group[];
+  [k: string]: any
 }
