@@ -131,7 +131,8 @@ function passwordVerifyPass(status: boolean) {
 }
 function onEmailUsernameBlur(type: 1 | 2) {
   curExists.value = type
-  runExists({ ty: type, val: type === 1 ? username.value : email.value })
+  if (type === 1 ? username.value && !usernameErrorMsg.value : email.value && !emailErrorMsg.value)
+    runExists({ ty: type, val: type === 1 ? username.value : email.value })
 }
 
 /** 如果保存了自动填充 */
