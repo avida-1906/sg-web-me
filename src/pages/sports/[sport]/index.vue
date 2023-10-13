@@ -502,9 +502,13 @@ const curTab = ref(tabs.value[0].value)
             <div class="acc-box">
               <template v-for="tour, rdx in data.tournamentList" :key="tour.id">
                 <AppSportsMarket
+                  v-if="curTab === 'live-upcoming'"
                   :auto-show="rdx === 0"
                   :tournament="rdx === 0 ? data.firstTournament[0] : tour"
                 />
+                <div v-else-if="curTab === 'outrights'">
+                  123
+                </div>
               </template>
             </div>
           </BaseSecondaryAccordion>
@@ -537,9 +541,13 @@ const curTab = ref(tabs.value[0].value)
                 :key="tnt_tnt.id"
               >
                 <AppSportsMarket
+                  v-if="curTab === 'live-upcoming'"
                   :auto-show="ttdx === 0"
                   :tournament="tnt_tnt"
                 />
+                <div v-else-if="curTab === 'outrights'">
+                  123
+                </div>
               </template>
             </div>
           </BaseSecondaryAccordion>
