@@ -5,16 +5,32 @@ interface Props {
   showMore?: boolean
   loading?: boolean
   level?: string | number
+  init?: boolean
 }
 
-withDefaults(defineProps<Props>(), {})
+const props = withDefaults(defineProps<Props>(), {
+  init: false,
+})
 
-const emit = defineEmits(['more'])
+const emit = defineEmits(['more', 'open', 'close'])
 
-const { bool: isOpen, toggle } = useBoolean(true)
+const { bool: isOpen, setBool } = useBoolean(props.init)
+
+const openCount = ref(0)
 
 function loadMore() {
   emit('more')
+}
+
+function toggle() {
+  setBool(!isOpen.value)
+  if (isOpen.value) {
+    openCount.value += 1
+    emit('open', openCount.value)
+  }
+  else {
+    emit('close')
+  }
 }
 </script>
 
@@ -23,7 +39,7 @@ function loadMore() {
     class="base-secondary-accordion"
     :class="[isOpen ? 'is-open' : '', `level-${level}`]"
   >
-    <div class="header no-active-scale" @click="toggle">
+    <div class="no-active-scale header" @click="toggle">
       <slot name="header">
         <div class="container">
           <div class="container">

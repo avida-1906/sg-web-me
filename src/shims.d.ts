@@ -74,3 +74,45 @@ interface ChatMessageInfo {
   sender: ChatUserInfo
   [k: string]: any
 }
+
+/**
+ * SportTournament 体育系列赛事（不同大小不同等级的赛事）
+ */
+interface SportTournament {
+  /** id */
+  id: string
+  /** 固定链接地址 */
+  slug: string
+  /** 赛事名称 国家名称 体育运动名称 */
+  name: string
+  /** 国家代码 */
+  countryCode?: string
+  /** 具体对局 Match 的数量（tournamentList 里面 fixtureCount 的总和） */
+  fixtureCount: number
+  /** 具体对局 Match 列表 */
+  fixtureList?: Array<SportFixture>
+  /** 赛事列表 */
+  tournamentList?: Array<SportTournament>
+  /** 上一级分类 */
+  category?: Array<SportTournament>
+  /** 属于具体什么运动 */
+  sport?: Array<SportTournament>
+  contentNotes?: Array
+}
+
+/**
+ * SportFixture 某一场对局
+ */
+interface SportFixture {
+  id:                 string
+  status:             string
+  slug:               string
+  name:               string
+  marketCount:        number
+  liveWidgetUrl:      string
+  widgetUrl:          string
+  data:               Data
+  tournament:         Tournament
+  // eventStatus:        EventStatus;
+  // groups:             Group[];
+}

@@ -549,6 +549,12 @@ body {
   border-radius: 50%;
 }
 
+.accordion-badge-wrap {
+  --tg-badge-font-size: 12px;
+  margin-right: 16px;
+  display: flex;
+}
+
 @media screen and (min-width: 768px) {
   #app {
     height: 1px;
