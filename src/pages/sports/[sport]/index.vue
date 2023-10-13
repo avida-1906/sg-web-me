@@ -472,6 +472,7 @@ const data = {
 }
 
 const sport = computed(() => route.params.sport)
+const breadcrumb = computed(() => [{ path: '', title: data.name, id: data.id }])
 const tabs = computed(() => [
   { value: 'live-upcoming', label: '滚球与即将开赛的盘口' },
   { value: 'outrights', label: '冠军投注' },
@@ -484,42 +485,46 @@ const curTab = ref(tabs.value[0].value)
 </script>
 
 <template>
-  <div class="tg-sports-hotlive layout-spacing variant-normal gap-medium">
-    <BaseTab v-model="curTab" :list="tabs" size="large" :center="false" />
-    <!-- 按字母顺序排序 -->
-    <div class="layout-spacing sort-tournament">
-      <h3 class="sub-title">
-        <BaseIcon name="spt-sort-az" />
-        <span>按字母顺序排列</span>
-      </h3>
-      <template
-        v-for="tnt, tdx in sortedCategoryList"
-        :key="tnt.id"
-      >
-        <BaseSecondaryAccordion
-          :title="tnt.name"
-          icon="spt-game-intl"
-          level="1"
-          :init="tdx > 0 ? false : true"
+  <div class="tg-sports-index tg-sports-hotlive">
+    <div class="layout-spacing variant-normal no-bottom-spacing">
+      <AppNavBreadCrumb :breadcrumb="breadcrumb" />
+      <BaseTab v-model="curTab" :list="tabs" size="large" :center="false" />
+      <div class="layout-spacing no-bottom-spacing sort-tournament" />
+      <!-- 按字母顺序排序 -->
+      <div class="layout-spacing sort-tournament">
+        <h3 class="sub-title">
+          <BaseIcon name="spt-sort-az" />
+          <span>按字母顺序排列</span>
+        </h3>
+        <template
+          v-for="tnt, tdx in sortedCategoryList"
+          :key="tnt.id"
         >
-          <template #side="{ isOpen }">
-            <div v-show="!isOpen" class="accordion-badge-wrap">
-              <BaseBadge :count="tnt.fixtureCount" />
-            </div>
-          </template>
-          <div class="acc-box">
-            <template
-              v-for="tnt_tnt, ttdx in tnt.tournamentList"
-              :key="tnt_tnt.id"
-            >
-              <AppSportsMarket
-                :auto-show="ttdx > 0 ? false : true"
-                :tournament="tnt_tnt"
-              />
+          <BaseSecondaryAccordion
+            :title="tnt.name"
+            icon="spt-game-intl"
+            level="1"
+            :init="tdx > 0 ? false : true"
+          >
+            <template #side="{ isOpen }">
+              <div v-show="!isOpen" class="accordion-badge-wrap">
+                <BaseBadge :count="tnt.fixtureCount" />
+              </div>
             </template>
-          </div>
-        </BaseSecondaryAccordion>
-      </template>
+            <div class="acc-box">
+              <template
+                v-for="tnt_tnt, ttdx in tnt.tournamentList"
+                :key="tnt_tnt.id"
+              >
+                <AppSportsMarket
+                  :auto-show="ttdx > 0 ? false : true"
+                  :tournament="tnt_tnt"
+                />
+              </template>
+            </div>
+          </BaseSecondaryAccordion>
+        </template>
+      </div>
     </div>
     <AppErrorPage />
   </div>
@@ -549,6 +554,9 @@ const curTab = ref(tabs.value[0].value)
   align-items: center;
   gap: var(--tg-spacing-12);
   padding: var(--tg-spacing-8);
+}
+.tg-sports-index {
+  margin-top: var(--tg-spacing-32);
 }
 .tg-sports-hotlive {
 
