@@ -37,13 +37,6 @@ export function useApiMenuData() {
       domId: '',
       token: true,
     },
-    {
-      title: '挑战',
-      path: '/casino/challenges',
-      icon: 'chess-challenge',
-      list: [],
-      domId: '',
-    },
   ])
   const casinoGameList = ref<Menu>([
     {
