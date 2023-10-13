@@ -51,6 +51,7 @@ declare module 'vue' {
     AppMenuItem: typeof import('./components/AppMenuItem.vue')['default']
     AppNavBreadCrumb: typeof import('./components/AppNavBreadCrumb.vue')['default']
     AppNotice: typeof import('./components/AppNotice.vue')['default']
+    AppOutrightPreview: typeof import('./components/AppOutrightPreview.vue')['default']
     AppPasswordVerify: typeof import('./components/AppPasswordVerify.vue')['default']
     AppPercentage: typeof import('./components/AppPercentage.vue')['default']
     AppProviderSlider: typeof import('./components/AppProviderSlider.vue')['default']

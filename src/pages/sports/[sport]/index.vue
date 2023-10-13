@@ -506,8 +506,11 @@ const curTab = ref(tabs.value[0].value)
                   :auto-show="rdx === 0"
                   :tournament="rdx === 0 ? data.firstTournament[0] : tour"
                 />
-                <div v-else-if="curTab === 'outrights'">
-                  123
+                <div v-else-if="curTab === 'outrights'" class="">
+                  <AppOutrightPreview
+                    :tournament="rdx === 0 ? data.firstTournament[0] : tour"
+                    :auto-show="rdx === 0"
+                  />
                 </div>
               </template>
             </div>
@@ -545,8 +548,8 @@ const curTab = ref(tabs.value[0].value)
                   :auto-show="ttdx === 0"
                   :tournament="tnt_tnt"
                 />
-                <div v-else-if="curTab === 'outrights'">
-                  123
+                <div v-else-if="curTab === 'outrights'" class="">
+                  <AppOutrightPreview :tournament="tnt_tnt" :auto-show="ttdx === 0" />
                 </div>
               </template>
             </div>
