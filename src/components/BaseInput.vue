@@ -10,6 +10,7 @@ interface Props {
   textarea?: boolean
   mb0?: boolean
   disabled?: boolean
+  max?: number | string
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -82,6 +83,7 @@ defineExpose({ getFocus })
               ref="iTextarea"
               :value="modelValue"
               min="0"
+              :maxlength="max"
               class="scroll-y"
               :placeholder="placeholder"
               :class="{ 'p-r-0': $slots['right-icon'] }"
@@ -96,7 +98,9 @@ defineExpose({ getFocus })
           <input
             v-else
             ref="iInput"
-            :value="modelValue" min="0"
+            :value="modelValue"
+            min="0"
+            :maxlength="max"
             :placeholder="placeholder"
             :type="_type"
             :disabled="disabled"

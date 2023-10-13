@@ -430,6 +430,7 @@ export function ApiMemberBankcardInsert(data: {
   bank_account: string
   bank_area_cpf?: string
   is_default?: number
+  pay_password: string
 }) {
   return httpClient.post<string>('/member/bankcard/insert', data)
 }
