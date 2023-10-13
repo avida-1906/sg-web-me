@@ -3,7 +3,6 @@ interface Props {
   type: 'trend' | 'live'
   url: string
   isLogin: globalThis.Ref<boolean>
-  dialogId: string
 }
 const props = defineProps<Props>()
 const emit = defineEmits(['close'])
@@ -11,7 +10,6 @@ const emit = defineEmits(['close'])
 const { openLoginDialog, closeLoginDialog } = useLoginDialog()
 const { openRegisterDialog, closeRegisterDialog } = useRegisterDialog()
 const { bool: isFullScreen, toggle: toggleFullScreen } = useBoolean(false)
-const { dragDialogListRemove } = useDragDialogList()
 
 const dragRef = ref()
 let posX: globalThis.Ref<number>, posY: globalThis.Ref<number>
@@ -44,7 +42,6 @@ function handleLoginRegister(type: 'login' | 'register') {
   openRegisterDialog()
 }
 function handleClose() {
-  dragDialogListRemove(props.dialogId)
   emit('close')
 }
 

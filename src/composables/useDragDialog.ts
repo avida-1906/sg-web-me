@@ -9,11 +9,16 @@ interface Props {
 
 export function useDragDialog(props: Props) {
   const { isLogin } = storeToRefs(useAppStore())
+  const { dragDialogListAdd, checkDragDialog, dragDialogListRemove } = useDragDialogList()
 
   const div = document.createElement('div')
   div.id = 'app-drag-dialog'
 
+  if (!checkDragDialog(props.dialogId))
+    dragDialogListAdd(props.dialogId)
+
   function removeDiv() {
+    dragDialogListRemove(props.dialogId)
     div.remove()
   }
 

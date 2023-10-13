@@ -9,7 +9,7 @@ const props = defineProps<Props>()
 
 const router = useRouter()
 const { width } = storeToRefs(useWindowStore())
-const { dragDialogListAdd, checkDragDialog } = useDragDialogList()
+const { checkDragDialog } = useDragDialogList()
 const fakeDragDialogId = Math.ceil(Math.random() * 100000)
 
 const isH5Layout = computed(() => width.value < 575)
@@ -32,7 +32,6 @@ const baseGridClass = computed(() => isH5Layout.value ? 'grid-setup-574' : 'grid
 // 打开实时数据或直播
 function openDragDialog(type: 'trend' | 'live') {
   const dialogId = fakeDragDialogId + type
-  dragDialogListAdd(dialogId)
   useDragDialog({ type, url: '', dialogId })
 }
 
