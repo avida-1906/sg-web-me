@@ -1,11 +1,12 @@
 <script setup lang="ts">
 interface Props {
   contractType?: string
+  currencyId?: string
   currencyName?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  currencyName: '',
+  currencyId: '',
   contractType: '',
 })
 
@@ -43,8 +44,8 @@ async function handleBindAddress() {
   if (!addressMsg.value) {
     runMemberWalletInsert({
       contract_type: props.contractType,
-      currency_name: props.currencyName,
-      wallet_address: address.value,
+      currency_id: props.currencyId,
+      address: address.value,
     })
   }
 }
