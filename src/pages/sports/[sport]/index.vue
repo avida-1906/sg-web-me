@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 const route = useRoute()
 
+// slugSport slugCategory slugTournament (两层 一层 一层)
 const data = {
   id: '8c7aea57-e9b1-414f-a095-206740716b4f',
   name: '网球',
@@ -556,12 +557,52 @@ const curTab = ref(tabs.value[0].value)
           </BaseSecondaryAccordion>
         </template>
       </div>
+
+      <!-- 全部 -->
+      <BaseSecondaryAccordion icon="coin-uni" title="马国" level="3">
+        <template #side="{ isOpen }">
+          <div v-show="!isOpen" class="accordion-badge-wrap">
+            <BaseBadge :count="39" />
+          </div>
+        </template>
+        <div class="grid-column-200">
+          <div class="game-like square">
+            <!-- <BaseCheckBox :model-value="false">
+              展示弹窗提示信息
+            </BaseCheckBox> -->
+            <div class="wrapper">
+              <a class="link">
+                <span>美国冰球职业联盟(16)</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </BaseSecondaryAccordion>
     </div>
     <AppErrorPage />
   </div>
 </template>
 
 <style lang="scss" scoped>
+.grid-column-200 {
+  display: grid;
+  grid-gap: var(--tg-spacing-8);
+  grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+  padding: var(--tg-spacing-16);
+}
+.game-like {
+  display: flex;
+  align-items: center;
+  color: var(--tg-text-white);
+  background: var(--tg-secondary-main);
+  box-shadow: var(--tg-box-shadow);
+  border-radius: var(--tg-radius-default);
+  padding: var(--tg-spacing-8) var(--tg-spacing-16);
+  overflow: hidden;
+  font-size: var(--tg-font-size-default);
+  font-weight: var(--tg-font-weight-semibold);
+  line-height: var(--tg-spacing-26);
+}
 .sort-tournament >*+* {
   margin-top: var(--tg-spacing-12);
 }
