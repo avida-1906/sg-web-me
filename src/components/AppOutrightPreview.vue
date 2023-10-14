@@ -32,7 +32,7 @@ defineProps<Props>()
           <BaseBreadcrumbs :list="['网球', 'ITF女子', 'ITF China 11A, Women Singles']" />
         </div>
         <span class="market-count">
-          <a class="link">{{ fixture.marketCount }}</a>
+          <a class="link">+{{ fixture.marketCount }}</a>
         </span>
       </div>
     </div>
@@ -47,6 +47,8 @@ defineProps<Props>()
   grid-template-areas:
       "name marketCount"
       "breadcrumb breadcrumb";
+  font-size: var(--tg-font-size-default);
+  font-weight: var(--tg-font-weight-semibold);
 }
 .group-time {
   display: flex;
@@ -62,6 +64,7 @@ defineProps<Props>()
 }
 .name {
   grid-area: name;
+  color: #fff;
 }
 .breadcrumb {
   grid-area: breadcrumb;
@@ -69,5 +72,6 @@ defineProps<Props>()
 .market-count {
   grid-area: marketCount;
   margin: auto 0 auto auto;
+  color: var(--tg-secondary-light);
 }
 </style>

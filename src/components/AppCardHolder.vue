@@ -47,7 +47,7 @@ const toAddVirAddress = function (item: IUserCurrencyList) {
 const showCollapse = function (item: IUserCurrencyList) {
   activeCurrency.value = item
   if (isVirtualCurrency(item.type))
-    runWalletList({ contract_type: '', currency_id: item.cur || '' })
+    runWalletList({ contract_type: '', currency_id: item.cur ?? '' })
   else
     runAsyncBankcardList({ currency_id: item.cur ?? '' })
 }
