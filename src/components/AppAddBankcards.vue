@@ -79,6 +79,7 @@ const {
 
 const {
   data: bankList,
+  run: runBankTreeList,
 } = useApiMemberTreeList(props.activeCurrency.bank_tree as TTreeListType)
 const {
   run: runBankcardInsert,
@@ -134,6 +135,10 @@ const onBindBank = async function () {
 
 watch(() => props.currentType, () => {
   currentType.value = props.currentType
+})
+watch(() => props.activeCurrency, () => {
+  currencyId.value = props.activeCurrency.cur
+  runBankTreeList({ level: props.activeCurrency.bank_tree })
 })
 
 onMounted(() => {

@@ -48,7 +48,7 @@ await application.allSettled(
     <div v-else class="withdrawal-wrap">
       <AppWithdrawalDepositType v-model="currentType" />
       <div class="withdrawal-info">
-        <BaseLabel v-if="currentType === '1'" label="出款银行卡" must>
+        <BaseLabel :label="currentType === '1' ? '出款银行卡' : 'PIX账号'" must>
           <BaseSelect
             v-model="selectBank"
             :options="bindBanks"
@@ -72,9 +72,6 @@ await application.allSettled(
               </div>
             </template>
           </BaseSelect>
-        </BaseLabel>
-        <BaseLabel v-else label="PIX账号" must>
-          <BaseInput v-model="selectBank" />
         </BaseLabel>
         <BaseLabel label="金额" must right-text="R$ 0.00">
           <BaseInput v-model="amount">

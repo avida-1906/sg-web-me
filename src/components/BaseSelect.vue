@@ -68,7 +68,12 @@ function onClickPopper() {
       :popper-class="theme ? 'theme-black' : ''"
       @hide="setPopperClose"
     >
-      <div ref="parent" class="popper-label" :class="{ disabled }" @click="onClickPopper">
+      <div
+        ref="parent"
+        class="popper-label"
+        :class="{ disabled, 'show-border': banks }"
+        @click="onClickPopper"
+      >
         <slot name="label" :data="selectedOption">
           <span v-if="!banks">{{ popperLabel }}</span>
           <span v-else>
@@ -161,7 +166,10 @@ function onClickPopper() {
   justify-content: space-between;
   align-items: center;
   line-height: 1;
-
+  &.show-border{
+    border: 2px solid  var(--tg-border-color-main);
+    border-radius: var(--tg-radius-default);
+  }
   >span {
     display: flex;
     align-items: center;
