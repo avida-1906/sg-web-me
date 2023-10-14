@@ -43,7 +43,7 @@ function onClick(tab: TabItem) {
           v-for="t, i in list" :key="i" class="tab"
           :class="[`tab-${size}`,
                    { active: t.value === modelValue, disabled: t.disabled }]"
-          @click="onClick(t, $event)"
+          @click="onClick(t)"
         >
           <div class="content">
             <slot name="tab" :item="t">

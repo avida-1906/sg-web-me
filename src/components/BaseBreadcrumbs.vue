@@ -9,16 +9,23 @@ interface Props {
 }
 defineProps<Props>()
 const emit = defineEmits(['itemClick'])
+const route = useRoute()
 
 function handleClick(list: BreadcrumbItem[], index: number) {
   emit('itemClick', { list, index })
+}
+function checkRoute(v: string) {
+  return route.path.includes(v)
 }
 </script>
 
 <template>
   <div class="base-breadcrumbs">
     <div class="wrap">
-      <div v-for="b, i in list" :key="i" class="bread-item">
+      <div
+        v-for="b, i in list" :key="i" class="bread-item"
+        :class="{ active: checkRoute(b.value) }"
+      >
         <span @click="handleClick(list, i)">{{ b.label }}</span>
         <BaseIcon
           v-show="i !== list.length - 1" name="uni-arrowright-line"
@@ -56,6 +63,9 @@ function handleClick(list: BreadcrumbItem[], index: number) {
     }
 
     &:hover {
+      color: var(--tg-text-white);
+    }
+    &.active{
       color: var(--tg-text-white);
     }
   }
