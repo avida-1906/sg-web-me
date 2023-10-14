@@ -10,7 +10,7 @@ export type IUserCurrencyList = {
   balance: string
   /** 带余额的前缀 */
   balanceWithSymbol: string
-} & Pick<IMemberCurrencyConfig, 'cur' | 'bank_tree' | 'symbol'>
+} & Pick<IMemberCurrencyConfig, 'cur' | 'bank_tree' | 'symbol' | 'contract_type'>
 
 /**
  * 生成用户货币数据

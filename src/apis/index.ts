@@ -57,6 +57,8 @@ export interface IMemberCurrencyConfig {
   symbol: string
   /** 银行id */
   bank_tree: string
+  /** 虚拟币协议 */
+  contract_type: string[] | null
 }
 
 export interface IMemberReg {
