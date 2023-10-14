@@ -477,13 +477,58 @@ const topUpcomingCategoryList = computed(() => {
 })
 
 const curTab = ref(tabs.value[0].value)
+const { bool: isStandard, toggle: toggleBase } = useBoolean(true)
+const marketTypeText = computed(() => isStandard.value ? '三项投注' : '标准')
+// 标准盘选项
+const baseType = ref('winner')
+const baseOptions = [
+  { label: '获胜盘', value: 'winner' },
+  { label: '让分盘', value: 'handicap' },
+  { label: '总分盘', value: 'total' },
+]
+// 三项投注选项
+const threeType = ref('home')
+const threeOptions = [
+  { label: '主页', value: 'home' },
+]
 </script>
 
 <template>
   <div class="tg-sports-index tg-sports-hotlive">
     <div class="layout-spacing variant-normal no-bottom-spacing">
       <AppNavBreadCrumb :breadcrumb="breadcrumb" />
-      <BaseTab v-model="curTab" :list="tabs" size="large" :center="false" />
+      <div class="sports-page-title">
+        <div class="left">
+          <BaseTab v-model="curTab" :list="tabs" size="large" :center="false" />
+        </div>
+        <div class="right">
+          <VMenu placement="top">
+            <BaseButton size="sm" type="text" @click="toggleBase">
+              <BaseIcon v-if="isStandard" name="uni-three-top" />
+              <BaseIcon v-else name="uni-standard" />
+            </BaseButton>
+            <template #popper>
+              <div class="tiny-menu-item-title">
+                {{ marketTypeText }}
+              </div>
+            </template>
+          </VMenu>
+
+          <BaseSelect
+            v-if="isStandard"
+            v-model="baseType"
+            :options="baseOptions"
+            popper
+          />
+          <BaseSelect
+            v-else
+            v-model="threeType"
+            :options="threeOptions"
+            popper
+            disabled
+          />
+        </div>
+      </div>
       <div class="layout-spacing no-bottom-spacing sort-tournament">
         <template
           v-for="up, udx in topUpcomingCategoryList"
