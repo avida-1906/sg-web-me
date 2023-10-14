@@ -388,7 +388,7 @@ onMounted(() => {
     color:var(--tg-text-white);
     font-size: var(--tg-font-size-default);
     padding: 16px 8px;
-    border-bottom: var(--tg-font-size-default) solid rgba(255,255,255,.05);
+    border-bottom: var(--tg-spacing-2) solid rgba(255,255,255,.05);
     span{
       padding-left: 8px;
     }
