@@ -36,6 +36,7 @@ declare module 'vue' {
     AppFiatWithdrawal: typeof import('./components/AppFiatWithdrawal.vue')['default']
     AppFooter: typeof import('./components/AppFooter.vue')['default']
     AppFooterbar: typeof import('./components/AppFooterbar.vue')['default']
+    AppForgetPasswordDialog: typeof import('./components/AppForgetPasswordDialog.vue')['default']
     AppGameSearch: typeof import('./components/AppGameSearch.vue')['default']
     AppGetNewCrypto: typeof import('./components/AppGetNewCrypto.vue')['default']
     AppGlobalSearch: typeof import('./components/AppGlobalSearch.vue')['default']

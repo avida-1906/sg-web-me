@@ -11,6 +11,7 @@ const closeDialog = inject('closeDialog', () => {})
 const { t } = useI18n()
 const { openLoginDialog } = useLoginDialog()
 const { openRegisterDialog } = useRegisterDialog()
+const { openForgetPasswordDialog } = useForgetPasswordDialog()
 
 async function toRegister() {
   closeDialog()
@@ -22,13 +23,18 @@ async function toLogin() {
   await nextTick()
   openLoginDialog()
 }
+async function toForgetPassword() {
+  closeDialog()
+  await nextTick()
+  openForgetPasswordDialog()
+}
 </script>
 
 <template>
   <div class="app-bottoms">
     <AppAuthLogin />
     <div class="app-bottoms-text">
-      <div v-if="props.type === 'login'" class="text-white">
+      <div v-if="props.type === 'login'" class="text-white" @click="toForgetPassword">
         {{ t('forgot_password') }}
       </div>
 
