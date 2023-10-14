@@ -15,51 +15,42 @@ const {
 } = useCurrencyData()
 const {
   bankcardList,
-  // runAsyncBankcardList,
-  // bindBanks,
   openName,
 } = useApiMemberBankCardList()
 // 会员卡包
 const {
   data: walletBankcard,
   runAsync: runAsyncWalletBankcardList,
-  // loading: walletBankcardListLoading,
 } = useRequest(ApiWalletBankcardList, {
   onSuccess() {
-    // console.log(walletBankcard.value)
-    // console.log(renderCurrencyList.value)
     for (const item of renderCurrencyList.value) {
       if (item.bank_tree) { // 银行卡
         cardList.push({
           ...item,
           bankcard: walletBankcard.value?.bankcard[item.cur],
         })
-        // (item as WalletCurrencyList).bindBanks = walletBankcard.value?.bankcard[item.cur]
       }
       else { // 虚拟币
         cardList.push({
           ...item,
           coin: walletBankcard.value?.coin[item.cur],
         })
-        // (item as WalletCurrencyList).address = walletBankcard.value?.coin[item.cur]
       }
     }
   },
 })
-// 虚拟币钱包地址
-// const { list: walletList, run: runWalletList } = useList(ApiMemberWalletList)
-
-const activeCurrency = ref()
 
 const toAddBankcards = function (item: WalletCurrencyList) {
+  console.log(item, 'item')
   const {
     openAddBankcardsDialog,
   } = useAddBankcardsDialog({
     title: '绑定银行卡',
     openName: openName.value,
     isFirst: !bankcardList.value?.length,
-    activeCurrency: activeCurrency.value,
-    currentType: activeCurrency.value?.cur === '702' ? '2' : '1',
+    activeCurrency: item,
+    /** 702 货币id */
+    currentType: item.cur === '702' ? '2' : '1',
   })
   closeDialog()
   nextTick(() => openAddBankcardsDialog())
@@ -78,13 +69,6 @@ const toAddVirAddress = function (item: WalletCurrencyList) {
     currencyName: item.type,
   }))
 }
-// const showCollapse = function (item: IUserCurrencyList) {
-//   activeCurrency.value = item
-//   if (isVirtualCurrency(item.type))
-//     runWalletList({ contract_type: '', currency_id: item.cur })
-//   else
-//     runAsyncBankcardList({ currency_id: item.cur ?? '' })
-// }
 
 await application.allSettled([
   runAsyncWalletBankcardList(),
