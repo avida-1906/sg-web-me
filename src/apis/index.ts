@@ -41,8 +41,9 @@ export interface IMemberDetail {
 }
 
 export interface IMemberBalanceLockerUpdate {
-  type: 'add' | 'remove'
-  currency_name: string
+  /** 1:转入 2转出 */
+  flag: 1 | 2
+  currency_id: number
   amount: string
 }
 
