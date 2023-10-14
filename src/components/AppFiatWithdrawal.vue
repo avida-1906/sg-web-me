@@ -24,8 +24,12 @@ const {
   selectBank,
 } = useApiMemberBankCardList()
 
+watch(() => props.activeCurrency, () => {
+  runAsyncBankcardList({ currency_id: props.activeCurrency.cur })
+})
+
 await application.allSettled(
-  [runAsyncBankcardList({ currency_id: props.activeCurrency.cur! })],
+  [runAsyncBankcardList({ currency_id: props.activeCurrency.cur })],
 )
 </script>
 

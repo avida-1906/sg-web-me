@@ -562,3 +562,13 @@ export function ApiMemberExists(params: {
 }) {
   return httpClient.get<string>('/member/exists', params)
 }
+
+/**
+ * 忘记密码
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=4c8f31ed-b895-4d8a-9bba-1c446b7b891d
+ */
+export function ApiMemberForgetPassword(params: {
+  email: string
+}) {
+  return httpClient.get<string>('/member/forget/password', params)
+}
