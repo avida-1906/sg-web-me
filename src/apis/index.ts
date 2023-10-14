@@ -41,8 +41,9 @@ export interface IMemberDetail {
 }
 
 export interface IMemberBalanceLockerUpdate {
-  type: 'add' | 'remove'
-  currency_name: string
+  /** 1:转入 2转出 */
+  flag: 1 | 2
+  currency_id: number
   amount: string
 }
 
@@ -361,7 +362,7 @@ export function ApiMemberWalletList(
     /** 用户名 */
     username: string
     /** 钱包地址 */
-    wallet_address: string
+    address: string
   }>>('/member/wallet/list', params)
 }
 
@@ -446,10 +447,10 @@ export function ApiMemberBankcardInsert(data: {
 export function ApiMemberWalletInsert(data: {
   /** 合约类型 */
   contract_type: string
-  /** 货币名称 */
-  currency_name: string
+  /** 货币id */
+  currency_id: string
   /** 钱包地址 */
-  wallet_address: string
+  address: string
   /** 是否默认：1：是，2否 */
   is_default?: number
 }) {
@@ -573,4 +574,45 @@ export function ApiMemberForgetPassword(params: {
   email: string
 }) {
   return httpClient.get<string>('/member/forget/password', params)
+}
+
+/**
+* 会员卡包
+* @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=c2214746-c638-4695-bc43-7332b9906502
+*/
+export function ApiWalletBankcardList() {
+  return httpClient.get<{
+    bankcard: {
+      [key: string]: {
+        id: string
+        uid: string
+        username: string
+        currency_id: string
+        open_name: string
+        bank_name: string
+        bank_account: string
+        bank_area_cpf: string
+        is_default: number
+      }[]
+    }
+    coin: {
+      [key: string]: {
+        id: string
+        uid: string
+        state: number
+        /** 合约类型 */
+        contract_type: string
+        /** 货币名称 */
+        currency_name: string
+        created_at: number
+        updated_at: number
+        /** 是否默认：1：是，2否 */
+        is_default: number
+        /** 用户名 */
+        username: string
+        /** 钱包地址 */
+        address: string
+      }[]
+    }
+  }>('/member/wallet/bankcard/list')
 }

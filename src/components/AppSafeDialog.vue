@@ -42,9 +42,16 @@ const {
 })
 
 const isDeposit = computed(() => activeTab.value === 'deposit')
-const updateType = computed(() => isDeposit.value ? 'add' : 'remove')
-const updateParams = computed<IMemberBalanceLockerUpdate>(() => {
-  return { amount: amount.value, type: updateType.value, currency_name: 'CNY' }
+const updateType = computed(() => isDeposit.value ? 1 : 2)
+const updateParams = computed<IMemberBalanceLockerUpdate | null>(() => {
+  if (activeCurrency.value) {
+    return {
+      amount: amount.value,
+      flag: updateType.value,
+      currency_id: Number(activeCurrency.value.cur),
+    }
+  }
+  return null
 })
 
 const {
@@ -75,11 +82,12 @@ const initBalance = computed(() => {
 
 async function handleUpdate() {
   await validateAmount()
-  if (!errAmount.value)
+  if (!errAmount.value && updateParams.value)
     runLockerUpdate(updateParams.value)
 }
 function changeCurrency(item: IUserCurrencyList) {
   activeCurrency.value = item
+  console.log(item)
 }
 function maxNumber() {
   // console.log('最大值', activeCurrency.value.balance)

@@ -39,6 +39,7 @@ declare global {
   const ApiMemberWalletInsert: typeof import('./apis/index')['ApiMemberWalletInsert']
   const ApiMemberWalletList: typeof import('./apis/index')['ApiMemberWalletList']
   const ApiSmsSend: typeof import('./apis/index')['ApiSmsSend']
+  const ApiWalletBankcardList: typeof import('./apis/index')['ApiWalletBankcardList']
   const Big: typeof import('big.js')['Big']
   const CasinoGameType: typeof import('./utils/enums')['CasinoGameType']
   const EffectScope: typeof import('vue')['EffectScope']
@@ -498,6 +499,7 @@ declare module 'vue' {
     readonly ApiMemberWalletInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletInsert']>
     readonly ApiMemberWalletList: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletList']>
     readonly ApiSmsSend: UnwrapRef<typeof import('./apis/index')['ApiSmsSend']>
+    readonly ApiWalletBankcardList: UnwrapRef<typeof import('./apis/index')['ApiWalletBankcardList']>
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly EnumCasinoApiGameType: UnwrapRef<typeof import('./utils/enums')['EnumCasinoApiGameType']>
@@ -936,6 +938,7 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberWalletInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletInsert']>
     readonly ApiMemberWalletList: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletList']>
     readonly ApiSmsSend: UnwrapRef<typeof import('./apis/index')['ApiSmsSend']>
+    readonly ApiWalletBankcardList: UnwrapRef<typeof import('./apis/index')['ApiWalletBankcardList']>
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly EnumCasinoApiGameType: UnwrapRef<typeof import('./utils/enums')['EnumCasinoApiGameType']>

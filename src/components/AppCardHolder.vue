@@ -1,66 +1,87 @@
 <script setup lang="ts">
 import type { IUserCurrencyList } from '~/stores/app'
 
-const closeDialog = inject('closeDialog', () => {})
+type WalletCurrencyList = {
+  coin?: any[]
+  bankcard?: any[]
+} & IUserCurrencyList
 
-const activeCurrency = ref()
+const closeDialog = inject('closeDialog', () => { })
+const cardList: WalletCurrencyList[] = []
 
-const {
-  bankcardList,
-  runAsyncBankcardList,
-  bindBanks,
-  openName,
-} = useApiMemberBankCardList()
-// 虚拟币钱包地址
-const { list: WalletList, run: runWalletList } = useList(ApiMemberWalletList)
 const {
   renderCurrencyList,
   isVirtualCurrency,
 } = useCurrencyData()
+const {
+  bankcardList,
+  openName,
+} = useApiMemberBankCardList()
+// 会员卡包
+const {
+  data: walletBankcard,
+  runAsync: runAsyncWalletBankcardList,
+} = useRequest(ApiWalletBankcardList, {
+  onSuccess() {
+    for (const item of renderCurrencyList.value) {
+      if (item.bank_tree) { // 银行卡
+        cardList.push({
+          ...item,
+          bankcard: walletBankcard.value?.bankcard[item.cur],
+        })
+      }
+      else { // 虚拟币
+        cardList.push({
+          ...item,
+          coin: walletBankcard.value?.coin[item.cur],
+        })
+      }
+    }
+  },
+})
 
-const toAddBankcards = function () {
+const toAddBankcards = function (item: WalletCurrencyList) {
+  console.log(item, 'item')
   const {
     openAddBankcardsDialog,
   } = useAddBankcardsDialog({
     title: '绑定银行卡',
     openName: openName.value,
     isFirst: !bankcardList.value?.length,
-    activeCurrency: activeCurrency.value,
-    currentType: activeCurrency.value?.cur === '702' ? '2' : '1',
+    activeCurrency: item,
+    /** 702 货币id */
+    currentType: item.cur === '702' ? '2' : '1',
   })
   closeDialog()
   nextTick(() => openAddBankcardsDialog())
 }
-const toAddVirAddress = function (item: IUserCurrencyList) {
+const toAddVirAddress = function (item: WalletCurrencyList) {
   const {
     openVirAddressDialog,
   } = useVirAddressDialog({
     title: `绑定${item.type}`,
-    icon: 'btc',
+    icon: item.type,
   })
   closeDialog()
   nextTick(() => openVirAddressDialog({
     contractType: 'TRC20',
+    currencyId: item.cur,
     currencyName: item.type,
   }))
 }
-const showCollapse = function (item: IUserCurrencyList) {
-  activeCurrency.value = item
-  if (isVirtualCurrency(item.type))
-    runWalletList({ contract_type: '', currency_id: item.cur ?? '' })
-  else
-    runAsyncBankcardList({ currency_id: item.cur ?? '' })
-}
+
+await application.allSettled([
+  runAsyncWalletBankcardList(),
+])
 </script>
 
 <template>
   <div class="app-card-holder">
     <div class="layout-spacing reset wallet-address">
       <BaseCollapse
-        v-for="item in renderCurrencyList"
+        v-for="item in cardList"
         :key="item.type"
-        title="0"
-        @click-show="showCollapse(item)"
+        :title="(item.coin?.length || item.bankcard?.length)?.toString() || '0'"
       >
         <template #top-right>
           <AppCurrencyIcon
@@ -71,8 +92,8 @@ const showCollapse = function (item: IUserCurrencyList) {
         </template>
         <template #content>
           <div v-if="isVirtualCurrency(item.type)" class="layout-spacing reset">
-            <div v-for="tmp in WalletList" :key="tmp.id" class="address-row">
-              <span>{{ tmp.wallet_address }}</span>
+            <div v-for="tmp in item.coin" :key="tmp.id" class="address-row">
+              <span>{{ tmp.address }}</span>
               <span class="type">{{ tmp.contract_type }}</span>
             </div>
             <BaseButton
@@ -85,14 +106,14 @@ const showCollapse = function (item: IUserCurrencyList) {
           </div>
           <div v-else class="layout-spacing reset">
             <div
-              v-for="tmp, index in bindBanks"
-              :key="index" class="address-row"
+              v-for="tmp in item.bankcard"
+              :key="tmp.id" class="address-row"
             >
-              <BaseIcon :name="tmp.icon" />
-              <span class="bank-num">{{ tmp.value }}</span>
-              <span class="type">{{ tmp.name }}</span>
+              <BaseIcon name="fiat-bank" />
+              <span class="bank-num">{{ tmp.bank_account }}</span>
+              <span class="type">{{ tmp.bank_name }}</span>
             </div>
-            <BaseButton type="text" class="add-btn" @click="toAddBankcards">
+            <BaseButton type="text" class="add-btn" @click="toAddBankcards(item)">
               +
             </BaseButton>
           </div>
