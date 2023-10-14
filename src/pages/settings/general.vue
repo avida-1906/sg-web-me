@@ -184,11 +184,16 @@ watch(() => route.query, (newValue) => {
         }, 2000)
       },
     })
-    run({
-      email: route.query.email as string,
-      uid: route.query.uid as string,
-      captcha: route.query.captcha as string,
-    })
+    if (
+      typeof newValue.email === 'string'
+      && typeof newValue.uid === 'string'
+      && typeof newValue.captcha === 'string') {
+      run({
+        email: newValue.email,
+        uid: newValue.uid,
+        captcha: newValue.captcha,
+      })
+    }
   }
 }, { immediate: true })
 </script>

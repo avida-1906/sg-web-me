@@ -59,6 +59,16 @@ export interface IMemberCurrencyConfig {
   bank_tree: string
 }
 
+export interface IMemberReg {
+  email: string
+  username: string
+  password: string
+  birthday: string
+  /** 上级id，没有留空 */
+  parent_id?: string
+  device_number: string
+}
+
 /**
  * 用户登录
  */
@@ -76,17 +86,7 @@ export function ApiMemberLogin(
  * 用户注册
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=b9e7b167-6221-4721-b3f0-dce161b8f522
  */
-export function ApiMemberReg(
-  data: {
-    email: string
-    username: string
-    password: string
-    birthday?: string
-    /** 上级id，没有留空 */
-    parent_id?: string
-    device_number: string
-  },
-) {
+export function ApiMemberReg(data: IMemberReg) {
   return httpClient.post<string>('/member/reg', data)
 }
 

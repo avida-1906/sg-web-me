@@ -1,12 +1,5 @@
 <script setup lang='ts'>
-interface IRegParams {
-  email: string
-  username: string
-  password: string
-  birthday: string
-  parent_id?: string
-  device_number?: string
-}
+import type { IMemberReg } from '~/apis'
 
 const closeDialog = inject('closeDialog', () => {})
 
@@ -82,7 +75,8 @@ const {
 })
 
 const regParams = computed(() =>
-  Session.get(STORAGE_REG_PARAMS_KEYWORDS)?.value as IRegParams)
+  Session.get<IMemberReg>(STORAGE_REG_PARAMS_KEYWORDS)?.value,
+)
 
 const { run: runExists } = useRequest(ApiMemberExists, {
   onError() {

@@ -2,10 +2,6 @@
 import type { IUserCurrencyList } from '~/stores/app'
 import type { TTreeListType } from '~/composables/useApiMemberTreeList'
 
-type TUserCurrencyList = {
-  bank_tree: TTreeListType
-} & Pick<IUserCurrencyList, 'type' | 'balance' | 'balanceWithSymbol' | 'cur' | 'symbol'>
-
 interface Props {
   /** 是否首次绑定 */
   isFirst?: boolean
@@ -14,7 +10,7 @@ interface Props {
   /** 是否需要padding */
   container?: boolean
   /** 货币对象 */
-  activeCurrency: TUserCurrencyList
+  activeCurrency: IUserCurrencyList
   /** '1' 银行卡， '2' pix 除了巴西其他国家都是银行卡 */
   currentType: '1' | '2'
 }
@@ -83,7 +79,7 @@ const {
 
 const {
   data: bankList,
-} = useApiMemberTreeList(props.activeCurrency.bank_tree)
+} = useApiMemberTreeList(props.activeCurrency.bank_tree as TTreeListType)
 const {
   run: runBankcardInsert,
 } = useRequest(ApiMemberBankcardInsert, {
