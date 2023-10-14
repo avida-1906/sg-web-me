@@ -17,6 +17,38 @@ interface IResponseList<T> {
   s: number
 }
 
+/** 绑定的钱包银行卡对象 */
+interface BankCard {
+  id: string
+  uid: string
+  username: string
+  currency_id: string
+  open_name: string
+  bank_name: string
+  bank_account: string
+  bank_area_cpf: string
+  is_default: number
+}
+
+/** 绑定的钱包虚拟币地址对象 */
+interface VirtualCoin {
+  id: string
+  uid: string
+  state: number
+  /** 合约类型 */
+  contract_type: string
+  /** 货币名称 */
+  currency_name: string
+  created_at: number
+  updated_at: number
+  /** 是否默认：1：是，2否 */
+  is_default: number
+  /** 用户名 */
+  username: string
+  /** 钱包地址 */
+  address: string
+}
+
 export interface IMemberDetail {
   uid: string
   /** 真实姓名，多个语言的用逗号隔开 */
@@ -58,6 +90,8 @@ export interface IMemberCurrencyConfig {
   symbol: string
   /** 银行id */
   bank_tree: string
+  /** 虚拟币协议 */
+  contract_type: string[] | null
 }
 
 export interface IMemberReg {
@@ -345,23 +379,7 @@ export function ApiMemberWalletList(
     page_size?: number
   },
 ) {
-  return httpClient.get<IResponseList<{
-    id: string
-    uid: string
-    state: number
-    /** 合约类型 */
-    contract_type: string
-    /** 货币名称 */
-    currency_name: string
-    created_at: number
-    updated_at: number
-    /** 是否默认：1：是，2否 */
-    is_default: number
-    /** 用户名 */
-    username: string
-    /** 钱包地址 */
-    address: string
-  }>>('/member/wallet/list', params)
+  return httpClient.get < IResponseList<VirtualCoin>>('/member/wallet/list', params)
 }
 
 /**
@@ -389,17 +407,7 @@ export function ApiMemberBankcardList(params: {
   page?: string
   currency_id: string
 }) {
-  return httpClient.get<IResponseList<{
-    id: string
-    uid: string
-    username: string
-    currency_id: string
-    open_name: string
-    bank_name: string
-    bank_account: string
-    bank_area_cpf: string
-    is_default: number
-  }>>('/member/bankcard/list', params)
+  return httpClient.get<IResponseList<BankCard>>('/member/bankcard/list', params)
 }
 
 /**
@@ -581,36 +589,10 @@ export function ApiMemberForgetPassword(params: {
 export function ApiWalletBankcardList() {
   return httpClient.get<{
     bankcard: {
-      [key: string]: {
-        id: string
-        uid: string
-        username: string
-        currency_id: string
-        open_name: string
-        bank_name: string
-        bank_account: string
-        bank_area_cpf: string
-        is_default: number
-      }[]
+      [key: string]: BankCard[]
     }
     coin: {
-      [key: string]: {
-        id: string
-        uid: string
-        state: number
-        /** 合约类型 */
-        contract_type: string
-        /** 货币名称 */
-        currency_name: string
-        created_at: number
-        updated_at: number
-        /** 是否默认：1：是，2否 */
-        is_default: number
-        /** 用户名 */
-        username: string
-        /** 钱包地址 */
-        address: string
-      }[]
+      [key: string]: VirtualCoin[]
     }
   }>('/member/wallet/bankcard/list')
 }

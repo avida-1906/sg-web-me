@@ -10,7 +10,7 @@ export type IUserCurrencyList = {
   balance: string
   /** 带余额的前缀 */
   balanceWithSymbol: string
-} & Pick<IMemberCurrencyConfig, 'cur' | 'bank_tree' | 'symbol'>
+} & Pick<IMemberCurrencyConfig, 'cur' | 'bank_tree' | 'symbol' | 'contract_type'>
 
 /**
  * 生成用户货币数据
@@ -30,6 +30,7 @@ export function generateCurrencyData(
     const balanceWithSymbol = symbol + balance
     const cur = currencyConfig[i].cur
     const bank_tree = currencyConfig[i].bank_tree
+    const contract_type = currencyConfig[i].contract_type ?? []
     list.push({
       type,
       balance,
@@ -37,6 +38,7 @@ export function generateCurrencyData(
       balanceWithSymbol,
       cur,
       bank_tree,
+      contract_type,
     })
   }
   return list
