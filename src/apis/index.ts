@@ -375,8 +375,8 @@ export function ApiMemberBalanceLockerUpdate(data: IMemberBalanceLockerUpdate) {
  * 保险库余额
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=86000030-4588-4690-9384-baa0584ea7d5
  */
-export function ApiMemberBalanceLockerShow() {
-  return httpClient.get<TCurrencyObject>('/member/balance_locker/show')
+export function ApiMemberBalanceLocker() {
+  return httpClient.get<TCurrencyObject>('/member/balance/locker')
 }
 
 /**

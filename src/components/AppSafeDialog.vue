@@ -50,7 +50,7 @@ const updateParams = computed<IMemberBalanceLockerUpdate>(() => {
 const {
   data: vaultBalanceData,
   runAsync: runAsyncBalanceLockerShow,
-} = useRequest(ApiMemberBalanceLockerShow)
+} = useRequest(ApiMemberBalanceLocker)
 const { run: runLockerUpdate } = useRequest(ApiMemberBalanceLockerUpdate, {
   async onSuccess() {
     openNotify({
@@ -118,12 +118,13 @@ application.allSettled([runAsyncBalanceLockerShow()])
           type="number"
           placeholder="0.00000000"
           :msg="errAmount"
+          @on-right-button="maxNumber"
         >
           <template #right-icon>
-            <BaseIcon :name="activeCurrency?.icon || ''" />
+            <!-- <BaseIcon :name="activeCurrency?.icon || ''" /> -->
           </template>
           <template #right-button>
-            <span @click="maxNumber">最大值</span>
+            <span>最大值</span>
           </template>
         </BaseInput>
       </div>

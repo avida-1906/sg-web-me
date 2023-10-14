@@ -19,7 +19,9 @@ const props = withDefaults(defineProps<Props>(), {
   textarea: false,
 })
 
-const emit = defineEmits(['update:modelValue', 'input', 'blur', 'focus', 'downEnter'])
+const emit = defineEmits(
+  ['update:modelValue', 'input', 'blur', 'focus', 'downEnter', 'onRightButton'],
+)
 
 const { bool: isFocus, setTrue, setFalse } = useBoolean(false)
 
@@ -60,6 +62,10 @@ function getFocus() {
 
 function keyDownEnter(event: KeyboardEvent) {
   emit('downEnter', event)
+}
+
+function onRightButton() {
+  emit('onRightButton')
 }
 
 defineExpose({ getFocus })
@@ -116,7 +122,7 @@ defineExpose({ getFocus })
             <slot name="right-icon" />
           </div>
         </div>
-        <div v-show="$slots['right-button']" class="right-button">
+        <div v-show="$slots['right-button']" class="right-button" @click="onRightButton">
           <slot name="right-button" />
         </div>
       </div>
