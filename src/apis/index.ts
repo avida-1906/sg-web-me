@@ -368,7 +368,7 @@ export function ApiMemberWalletList(
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=925fc8cb-c68a-4825-aa56-34c425aa8752
  */
 export function ApiMemberBalanceLockerUpdate(data: IMemberBalanceLockerUpdate) {
-  return httpClient.post('/member/balance_locker/update', data)
+  return httpClient.post('/member/balance/locker/update', data)
 }
 
 /**
@@ -459,7 +459,7 @@ export function ApiMemberWalletInsert(data: {
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=714a7e70-5d38-4c04-969d-f251710adf6b
  */
 export function ApiMemberLoginout() {
-  return httpClient.post<string>('/member/login_out')
+  return httpClient.post<string>('/member/login/out')
 }
 
 /**
