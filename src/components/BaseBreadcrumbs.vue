@@ -1,16 +1,25 @@
 <script setup lang='ts'>
+interface BreadcrumbItem {
+  [k: string]: any
+  value: string
+  label: string
+}
 interface Props {
-  list: string[]
+  list: BreadcrumbItem[]
 }
 defineProps<Props>()
-defineEmits(['click'])
+const emit = defineEmits(['itemClick'])
+
+function handleClick(list: BreadcrumbItem[], index: number) {
+  emit('itemClick', { list, index })
+}
 </script>
 
 <template>
   <div class="base-breadcrumbs">
     <div class="wrap">
       <div v-for="b, i in list" :key="i" class="bread-item">
-        <span @click="$emit('click', b)">{{ b }}</span>
+        <span @click="handleClick(list, i)">{{ b.label }}</span>
         <BaseIcon
           v-show="i !== list.length - 1" name="uni-arrowright-line"
           style="font-size: var(--tg-font-size-base);

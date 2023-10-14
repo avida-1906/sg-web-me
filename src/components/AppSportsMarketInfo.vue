@@ -58,6 +58,16 @@ const statusText = computed(() => {
 const onBall = ref(Math.ceil(Math.random() * 2))
 const onBallHome = computed(() => onBall.value === 1)
 const onBallAway = computed(() => onBall.value === 2)
+const breadcrumbs = [
+  { label: '棒球', value: 'baseball' },
+  { label: '美国', value: 'usa' },
+  { label: '美国职业棒球大联盟', value: 'mlb' },
+]
+function onBreadcrumbsClick({ list, index }: { list: ISelectOption[]; index: number }) {
+  const path = `/sports/${list.slice(0, index + 1).map(a => a.value).join('/')}`
+  console.log('🚀 ~ file: BaseBreadcrumbs.vue:15 ~ handleClick ~ path:', path)
+  router.push(path)
+}
 </script>
 
 <template>
@@ -221,7 +231,7 @@ const onBallAway = computed(() => onBall.value === 2)
 
     <!-- 联赛分类 -->
     <div v-if="showBreadcrumb || (!isStandard && !isH5Layout)" class="breadcrumb">
-      <BaseBreadcrumbs :list="['网球', 'ITF女子', 'ITF China 11A, Women Singles']" />
+      <BaseBreadcrumbs :list="breadcrumbs" @item-click="onBreadcrumbsClick" />
     </div>
 
     <!-- 更多盘口 -->
