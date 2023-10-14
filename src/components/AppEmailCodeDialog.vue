@@ -51,6 +51,11 @@ async function submit() {
     props.runSubmit(emailCode.value)
 }
 
+onUnmounted(() => {
+  if (timer.value)
+    clearInterval(timer.value)
+})
+
 await application.allSettled([
   runAsyncMemberSendMailCode(),
 ])
