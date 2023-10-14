@@ -29,7 +29,13 @@ defineProps<Props>()
           </a>
         </span>
         <div class="breadcrumb">
-          <BaseBreadcrumbs :list="['网球', 'ITF女子', 'ITF China 11A, Women Singles']" />
+          <BaseBreadcrumbs
+            :list="[
+              { label: '网球', value: 'tennis' },
+              { label: 'ITF女子', value: 'itf-women' },
+              { label: 'ITF China 11A, Women Singles', value: 'itf-china-women-singles' },
+            ]"
+          />
         </div>
         <span class="market-count">
           <a class="link">+{{ fixture.marketCount }}</a>
