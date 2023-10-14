@@ -3,7 +3,7 @@ import type { IUserCurrencyList } from '~/stores/app'
 
 const closeDialog = inject('closeDialog', () => {})
 
-const activeCurrency = ref<IUserCurrencyList>()
+const activeCurrency = ref()
 
 const {
   bankcardList,
@@ -25,7 +25,7 @@ const toAddBankcards = function () {
     title: '绑定银行卡',
     openName: openName.value,
     isFirst: !bankcardList.value?.length,
-    activeCurrency: activeCurrency.value as IUserCurrencyList,
+    activeCurrency: activeCurrency.value,
     currentType: activeCurrency.value?.cur === '702' ? '2' : '1',
   })
   closeDialog()

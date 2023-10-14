@@ -1,12 +1,5 @@
 <script setup lang='ts'>
-interface IRegParams {
-  email: string
-  username: string
-  password: string
-  birthday?: string
-  parent_id?: string
-  device_number: string
-}
+import type { IMemberReg } from '~/apis'
 
 const closeDialog = inject('closeDialog', () => {})
 
@@ -31,12 +24,12 @@ const scrollRef = ref()
 const delayId = ref()
 
 const regParams = computed(() => {
-  return Session.get(STORAGE_REG_PARAMS_KEYWORDS)?.value as IRegParams
+  return Session.get<IMemberReg>(STORAGE_REG_PARAMS_KEYWORDS)?.value
 })
 const {
   run: runMemberReg,
   loading: isLoading,
-} = useRequest(() => ApiMemberReg(regParams.value), {
+} = useRequest(ApiMemberReg, {
   manual: true,
   onSuccess: async (res) => {
     appStore.setToken(res)
@@ -62,8 +55,8 @@ function handleScroll() {
 }
 async function getStartGame() {
   valiChecked()
-  if (checkboxValue.value && !checkedErrorMsg.value)
-    runMemberReg()
+  if (checkboxValue.value && !checkedErrorMsg.value && regParams.value)
+    runMemberReg(regParams.value)
 }
 async function toLogin() {
   setNeedBackFalse()
