@@ -899,7 +899,7 @@ function selectOutcome(v: string, tempid: string, marketid: string) {
                   class="bet-builder-sticky-header"
                   :class="{ 'is-pc': !isMobile }"
                 >
-                  <BaseSecondaryAccordion>
+                  <BaseSecondaryAccordion init>
                     <template #header>
                       <div class="header-content">
                         <span class="odds h-gap">
@@ -937,7 +937,7 @@ function selectOutcome(v: string, tempid: string, marketid: string) {
                 </div>
                 <template v-for="group in curGroups" v-else :key="group.name">
                   <template v-for="temp in group.templates" :key="temp.id">
-                    <BaseSecondaryAccordion :title="temp.name">
+                    <BaseSecondaryAccordion :title="temp.name" init>
                       <template #side="{ isOpen }">
                         <div v-show="!isOpen" class="badge-box">
                           <BaseBadge :count="9" />
@@ -977,7 +977,7 @@ function selectOutcome(v: string, tempid: string, marketid: string) {
                   </template>
                 </template>
 
-                <BaseSecondaryAccordion title="比赛地图数">
+                <BaseSecondaryAccordion title="比赛地图数" init>
                   <template #default>
                     <div class="market">
                       <div class="table" :style="{ '--itemCount': 1 }">
@@ -1002,7 +1002,7 @@ function selectOutcome(v: string, tempid: string, marketid: string) {
                     </div>
                   </template>
                 </BaseSecondaryAccordion>
-                <BaseSecondaryAccordion title="正确比赛得分" icon="spt-game-intl">
+                <BaseSecondaryAccordion title="正确比赛得分" icon="spt-game-intl" init>
                   <template #side>
                     <div
                       class="odd-switch-buttons"
@@ -1027,7 +1027,7 @@ function selectOutcome(v: string, tempid: string, marketid: string) {
                     </div>
                   </template>
                 </BaseSecondaryAccordion>
-                <BaseSecondaryAccordion title="至少在一张地图上获胜">
+                <BaseSecondaryAccordion title="至少在一张地图上获胜" init>
                   <template #default>
                     <div class="market">
                       <div class="">
