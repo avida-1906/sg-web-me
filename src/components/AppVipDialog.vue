@@ -109,7 +109,7 @@ const showContent = function () {
       </div>
       <div v-else-if="tab === '2'" class="vip-welfare">
         <div v-for="item, index in welfareList" :key="index" class="vip-level-column">
-          <BaseCollapse :title="item.title" :icon="item.icon" @click-head="showContent()">
+          <BaseCollapse :title="item.title" :icon="item.icon" @click-show="showContent()">
             <template #content>
               <ul>
                 <li v-for="c, i in item.contents" :key="i">

@@ -43,7 +43,7 @@ const showContent = function () {}
       :key="index"
       class="campaigns-list-column"
     >
-      <BaseCollapse @click-head="showContent()">
+      <BaseCollapse @click-show="showContent()">
         <template #title>
           <div class="title">
             {{ item.title }}

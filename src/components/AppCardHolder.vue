@@ -60,7 +60,7 @@ const showCollapse = function (item: IUserCurrencyList) {
         v-for="item in renderCurrencyList"
         :key="item.type"
         title="0"
-        @click-head="showCollapse(item)"
+        @click-show="showCollapse(item)"
       >
         <template #top-right>
           <AppCurrencyIcon

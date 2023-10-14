@@ -11,14 +11,23 @@ const props = withDefaults(defineProps<Props>(), {
   autoShow: false,
 })
 
-const emit = defineEmits(['clickHead'])
+const emit = defineEmits(['clickShow', 'clickClose'])
 
 const { bool: isShow, setBool: setAutoShowBool } = useBoolean(props.autoShow)
 
 function handleClickHeader() {
   setAutoShowBool(!isShow.value)
-  emit('clickHead')
+  if (isShow.value)
+    emit('clickShow')
+
+  else
+    emit('clickClose')
 }
+
+onMounted(() => {
+  if (isShow.value)
+    emit('clickShow')
+})
 </script>
 
 <template>
