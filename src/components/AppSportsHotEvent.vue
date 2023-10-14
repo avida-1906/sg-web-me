@@ -27,7 +27,6 @@ const threeOptions = [
         <BaseSelect
           v-model="threeType"
           :options="threeOptions"
-
           disabled popper
         />
       </div>

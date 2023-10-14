@@ -7,20 +7,11 @@ const gameList = [
   { name: '足球', id: '3', num: 30 },
   { name: '美式橄榄球', id: '4', num: 5 },
 ]
-const { bool: isStandard, toggle: toggleBase } = useBoolean(true)
-const marketTypeText = computed(() => isStandard.value ? '三项投注' : '标准')
-// 标准盘选项
+const isStandard = ref(true)
 const baseType = ref('winner')
-const baseOptions = [
-  { label: '获胜盘', value: 'winner' },
-  { label: '让分盘', value: 'handicap' },
-  { label: '总分盘', value: 'total' },
-]
-// 三项投注选项
-const threeType = ref('home')
-const threeOptions = [
-  { label: '主页', value: 'home' },
-]
+function onBaseTypeChange(v: string) {
+  baseType.value = v
+}
 </script>
 
 <template>
@@ -30,33 +21,10 @@ const threeOptions = [
         <BaseIcon name="spt-ball-plate" />
         <h6>滚球盘</h6>
       </div>
-      <div class="right">
-        <VMenu placement="top">
-          <BaseButton size="sm" type="text" @click="toggleBase">
-            <BaseIcon v-if="isStandard" name="uni-three-top" />
-            <BaseIcon v-else name="uni-standard" />
-          </BaseButton>
-          <template #popper>
-            <div class="tiny-menu-item-title">
-              {{ marketTypeText }}
-            </div>
-          </template>
-        </VMenu>
-
-        <BaseSelect
-          v-if="isStandard"
-          v-model="baseType"
-          :options="baseOptions"
-          popper
-        />
-        <BaseSelect
-          v-else
-          v-model="threeType"
-          :options="threeOptions"
-          popper
-          disabled
-        />
-      </div>
+      <AppSportsMarketTypeSelect
+        v-model="isStandard" :base-type="baseType"
+        @base-type-change="onBaseTypeChange"
+      />
     </div>
     <AppSportsTab v-model="currentGame" :list="gameList" />
     <div class="market-wrapper">

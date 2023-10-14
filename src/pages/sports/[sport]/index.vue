@@ -477,20 +477,11 @@ const topUpcomingCategoryList = computed(() => {
 })
 
 const curTab = ref(tabs.value[0].value)
-const { bool: isStandard, toggle: toggleBase } = useBoolean(true)
-const marketTypeText = computed(() => isStandard.value ? '三项投注' : '标准')
-// 标准盘选项
+const isStandard = ref(true)
 const baseType = ref('winner')
-const baseOptions = [
-  { label: '获胜盘', value: 'winner' },
-  { label: '让分盘', value: 'handicap' },
-  { label: '总分盘', value: 'total' },
-]
-// 三项投注选项
-const threeType = ref('home')
-const threeOptions = [
-  { label: '主页', value: 'home' },
-]
+function onBaseTypeChange(v: string) {
+  baseType.value = v
+}
 </script>
 
 <template>
@@ -501,33 +492,10 @@ const threeOptions = [
         <div class="left">
           <BaseTab v-model="curTab" :list="tabs" size="large" :center="false" />
         </div>
-        <div class="right">
-          <VMenu placement="top">
-            <BaseButton size="sm" type="text" @click="toggleBase">
-              <BaseIcon v-if="isStandard" name="uni-three-top" />
-              <BaseIcon v-else name="uni-standard" />
-            </BaseButton>
-            <template #popper>
-              <div class="tiny-menu-item-title">
-                {{ marketTypeText }}
-              </div>
-            </template>
-          </VMenu>
-
-          <BaseSelect
-            v-if="isStandard"
-            v-model="baseType"
-            :options="baseOptions"
-            popper
-          />
-          <BaseSelect
-            v-else
-            v-model="threeType"
-            :options="threeOptions"
-            popper
-            disabled
-          />
-        </div>
+        <AppSportsMarketTypeSelect
+          v-model="isStandard" :base-type="baseType"
+          @base-type-change="onBaseTypeChange"
+        />
       </div>
       <div class="layout-spacing no-bottom-spacing sort-tournament">
         <template
@@ -551,6 +519,7 @@ const threeOptions = [
                   v-if="curTab === 'live-upcoming'"
                   :auto-show="rdx === 0"
                   :tournament="rdx === 0 ? data.firstTournament[0] : tour"
+                  :is-standard="isStandard"
                 />
                 <div v-else-if="curTab === 'outrights'" class="">
                   <AppOutrightPreview
@@ -593,6 +562,7 @@ const threeOptions = [
                   v-if="curTab === 'live-upcoming'"
                   :auto-show="ttdx === 0"
                   :tournament="tnt_tnt"
+                  :is-standard="isStandard"
                 />
                 <div v-else-if="curTab === 'outrights'" class="">
                   <AppOutrightPreview :tournament="tnt_tnt" :auto-show="ttdx === 0" />
