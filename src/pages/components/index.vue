@@ -631,7 +631,7 @@ function copyIconName(name: string) {
   toast('Copied')
 }
 function copyCollapseCode() {
-  copy('<BaseCollapse title="这是标题" icon="chat-star-gold" @click-head="funtion()" />')
+  copy('<BaseCollapse title="这是标题" icon="chat-star-gold" @click-show="funtion()" @click-close="funtion()" />')
   toast('Copied')
 }
 function copyAppPercentageCode() {
