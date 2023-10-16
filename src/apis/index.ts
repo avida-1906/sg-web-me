@@ -72,7 +72,10 @@ export interface IMemberDetail {
   username: string
   /** 是否设置交易密码 0=未设置 1=已设置 */
   pay_password: string
-
+  /** 谷歌验证吗key */
+  google_key: string
+  /** 1谷歌未认证 2谷歌已认证 */
+  google_verify: string
 }
 
 export interface IMemberBalanceLockerUpdate {
@@ -601,4 +604,15 @@ export function ApiWalletBankcardList() {
       [key: string]: VirtualCoin[]
     }
   }>('/member/wallet/bankcard/list')
+}
+
+/**
+ * 双重验证
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=4f07bbd4-26b3-4c1b-bf47-87fbb8ac6e09
+ */
+export function ApiMemberDualVerify(data: {
+  password: string
+  code: string
+}) {
+  return httpClient.post<string>('/member/dual/verify', data)
 }

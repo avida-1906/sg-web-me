@@ -66,6 +66,22 @@ const {
     return '两次输入的交易密码不一致'
   return ''
 })
+/** 双重验证 */
+const {
+  value: loginPassword,
+  errorMessage: loginPwdErrorMsg,
+  validate: validateLoginPwd,
+} = useField<string>('loginPassword', fieldVerify)
+const {
+  value: doublePassword,
+  errorMessage: doublePwdErrorMsg,
+  validate: validateDoublePwd,
+} = useField<string>('doublePassword', (value) => {
+  if (!value)
+    return '请输入双重验证密码'
+  return ''
+})
+
 const {
   run: runMemberPayPasswordUpdate,
   loading: payPasswordUpdateLoading,
@@ -81,10 +97,17 @@ const {
     closeEmailCodeDialog()
   },
 })
-
-// 双重验证
-const twoStepPassword = ref('')
-const twoStepCode = ref('HM3XE2DLGVWECZDYK5BUMNTQORGVCKBVO5MG4JBSG46EGMCSHZEA')
+const {
+  run: runMemberDualVerify,
+  loading: dualVerifyLoading,
+} = useRequest(ApiMemberDualVerify, {
+  onSuccess() {
+    openNotify({
+      type: 'success',
+      message: '设置双重验证密码成功',
+    })
+  },
+})
 
 const getPayPwdState = computed(() => {
   return userInfo.value?.pay_password === '1'
@@ -149,6 +172,12 @@ async function submitPayPwd() {
     })
   }
 }
+async function submitDoublePassword() {
+  await validateLoginPwd()
+  await validateDoublePwd()
+  if (!loginPwdErrorMsg.value && !doublePwdErrorMsg.value)
+    runMemberDualVerify({ password: loginPassword.value, code: doublePassword.value })
+}
 </script>
 
 <template>
@@ -208,33 +237,43 @@ async function submitPayPwd() {
         />
       </BaseLabel>
     </AppSettingsContentItem>
-    <AppSettingsContentItem title="双重验证" last-one>
+    <AppSettingsContentItem
+      title="双重验证"
+      last-one
+      :btn-loading="dualVerifyLoading"
+      @submit="submitDoublePassword"
+    >
       <template #top-desc>
         启用双重验证以让您的账户更加安全。
       </template>
-      <div class="two-step-verification">
+      <div v-if="userInfo" class="two-step-verification">
         <AppCopyLine
           label="将代码复制到您的身份验证器应用程序（Authenticator App）"
-          :msg="twoStepCode"
+          :msg="userInfo.google_key"
         />
         <p class="mt-16">
           防止他人看到此页！
         </p>
         <div class="qr-wrap">
-          <BaseQrcode url="www.baidu.com" class="mt-16" />
+          <BaseQrcode :url="userInfo.google_key" class="mt-16" />
         </div>
         <div class="mt-16">
           <BaseLabel label="密码" must-small>
             <BaseInput
-              v-model="password"
-              :msg="pwdErrorMsg"
-              placeholder="请输入用户名"
+              v-model="loginPassword"
+              :msg="loginPwdErrorMsg"
+              placeholder="请输入登陆密码"
               type="password"
             />
           </BaseLabel>
           <div class="mt-16">
             <BaseLabel label="双重验证" must-small>
-              <BaseInput v-model="twoStepPassword" :msg="pwdErrorMsg" />
+              <BaseInput
+                v-model="doublePassword"
+                :msg="doublePwdErrorMsg"
+                placeholder="请输入双重验证密码"
+                type="password"
+              />
             </BaseLabel>
           </div>
         </div>

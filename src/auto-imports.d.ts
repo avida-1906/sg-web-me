@@ -14,6 +14,7 @@ declare global {
   const ApiMemberBankcardList: typeof import('./apis/index')['ApiMemberBankcardList']
   const ApiMemberCurrencyConfig: typeof import('./apis/index')['ApiMemberCurrencyConfig']
   const ApiMemberDetail: typeof import('./apis/index')['ApiMemberDetail']
+  const ApiMemberDualVerify: typeof import('./apis/index')['ApiMemberDualVerify']
   const ApiMemberEmailCheck: typeof import('./apis/index')['ApiMemberEmailCheck']
   const ApiMemberEmailCheckRequest: typeof import('./apis/index')['ApiMemberEmailCheckRequest']
   const ApiMemberExists: typeof import('./apis/index')['ApiMemberExists']
@@ -476,6 +477,7 @@ declare module 'vue' {
     readonly ApiMemberBankcardList: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardList']>
     readonly ApiMemberCurrencyConfig: UnwrapRef<typeof import('./apis/index')['ApiMemberCurrencyConfig']>
     readonly ApiMemberDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberDetail']>
+    readonly ApiMemberDualVerify: UnwrapRef<typeof import('./apis/index')['ApiMemberDualVerify']>
     readonly ApiMemberEmailCheck: UnwrapRef<typeof import('./apis/index')['ApiMemberEmailCheck']>
     readonly ApiMemberEmailCheckRequest: UnwrapRef<typeof import('./apis/index')['ApiMemberEmailCheckRequest']>
     readonly ApiMemberExists: UnwrapRef<typeof import('./apis/index')['ApiMemberExists']>
@@ -915,6 +917,7 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberBankcardList: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardList']>
     readonly ApiMemberCurrencyConfig: UnwrapRef<typeof import('./apis/index')['ApiMemberCurrencyConfig']>
     readonly ApiMemberDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberDetail']>
+    readonly ApiMemberDualVerify: UnwrapRef<typeof import('./apis/index')['ApiMemberDualVerify']>
     readonly ApiMemberEmailCheck: UnwrapRef<typeof import('./apis/index')['ApiMemberEmailCheck']>
     readonly ApiMemberEmailCheckRequest: UnwrapRef<typeof import('./apis/index')['ApiMemberEmailCheckRequest']>
     readonly ApiMemberExists: UnwrapRef<typeof import('./apis/index')['ApiMemberExists']>

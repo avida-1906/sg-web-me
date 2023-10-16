@@ -33,6 +33,7 @@ const paramsData = ref(userInfo.value || {
   email_check_state: 2,
   sex: 1,
   username: '',
+  pay_password: '',
 })
 const dataChangeCount = ref(0)
 const socialData = [
@@ -234,7 +235,8 @@ watch(() => route.query, (newValue) => {
       <BaseLabel label="国际电话区号" must-small>
         <BaseSelect
           v-model="paramsData.area_code"
-          :options="areaCodeOptions || []" class="general-base-select"
+          :options="areaCodeOptions || []"
+          class="general-base-select"
         />
       </BaseLabel>
       <BaseLabel label="手机号码" must-small>
