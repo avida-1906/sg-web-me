@@ -1121,7 +1121,16 @@ function selectOutcome(v: string, tempid: string, marketid: string) {
                         <div class="players">
                           <div class="row">
                             <div class="prop">
-                              <div class="lines-wrap" />
+                              <div class="lines-wrap">
+                                <div class="lines">
+                                  <BaseSlider
+                                    :data="[
+                                      { value: '50.5', label: '50.5' },
+                                      { value: '60.5', label: '60.5' },
+                                    ]"
+                                  />
+                                </div>
+                              </div>
                               <div class="outcomes">
                                 <AppSportsBetButton layout="horizontal" />
                                 <AppSportsBetButton layout="horizontal" />
@@ -1301,6 +1310,25 @@ function selectOutcome(v: string, tempid: string, marketid: string) {
     display: flex;
     gap: 10px;
     flex: 1.8;
+  }
+  .lines-wrap {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    overflow: hidden;
+    position: relative;
+  }
+  .lines {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 0 5px;
+    position: relative;
   }
 }
 .outcomes {
