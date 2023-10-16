@@ -47,7 +47,7 @@ const changeText = function (e: any) {
     <input
       ref="inputRef"
       :value="modelValue"
-      type="text"
+      type="number"
       maxlength="6"
       @input="changeText"
       @blur="onBlur"

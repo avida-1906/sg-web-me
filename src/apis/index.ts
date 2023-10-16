@@ -77,6 +77,7 @@ export interface IMemberBalanceLockerUpdate {
   flag: 1 | 2
   currency_id: number
   amount: string
+  password?: string
 }
 
 export interface IMemberCurrencyConfig {
