@@ -673,6 +673,9 @@ function onOpenLiveSwitch() { }
 function selectOutcome(v: string, tempid: string, marketid: string) {
   console.log(v, tempid, marketid)
 }
+function openMiniVideo() {
+  useDragDialog({ type: 'live', url: '', dialogId: '123456' })
+}
 </script>
 
 <template>
@@ -868,8 +871,12 @@ function selectOutcome(v: string, tempid: string, marketid: string) {
               </div>
               <div class="live-stream-scoreboard-footer">
                 <span v-show="openLiveSwitch" class="mini-video">
-                  <BaseIcon name="uni-small-screen" />
-                  <span>最小化</span>
+                  <BaseButton type="text" padding0 @click="openMiniVideo">
+                    <span class="mini-video">
+                      <BaseIcon name="uni-small-screen" />
+                      <span>最小化</span>
+                    </span>
+                  </BaseButton>
                 </span>
                 <span>记分板</span>
                 <label>
