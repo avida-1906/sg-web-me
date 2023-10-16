@@ -20,7 +20,6 @@ const baseGridAreaClass = computed(() => {
 
     return isH5Layout.value ? 'grid-three-option-574-coming' : 'grid-three-option-normal-coming'
   }
-  // 滚球
   if (props.isStandard)
     return isH5Layout.value ? 'grid-standard-574' : 'grid-standard-normal'
 
@@ -32,6 +31,18 @@ const baseGridClass = computed(() => isH5Layout.value ? 'grid-setup-574' : 'grid
 function openDragDialog(type: 'trend' | 'live') {
   const dialogId = fakeDragDialogId + type
   useDragDialog({ type, url: '', dialogId })
+}
+// 联赛跳转
+function onBreadcrumbsClick({ list, index }: { list: ISelectOption[]; index: number }) {
+  let path = ''
+  if (isH5Layout.value)
+    path = `/sports/${list.map(a => a.value).join('/')}`
+
+  else
+    path = `/sports/${list.slice(0, index + 1).map(a => a.value).join('/')}`
+
+  console.log('🚀 ~ file: BaseBreadcrumbs.vue:15 ~ handleClick ~ path:', path)
+  router.push(path)
 }
 
 // TODO: 假状态
@@ -63,11 +74,6 @@ const breadcrumbs = [
   { label: '美国', value: 'usa' },
   { label: '美国职业棒球大联盟', value: 'mlb' },
 ]
-function onBreadcrumbsClick({ list, index }: { list: ISelectOption[]; index: number }) {
-  const path = `/sports/${list.slice(0, index + 1).map(a => a.value).join('/')}`
-  console.log('🚀 ~ file: BaseBreadcrumbs.vue:15 ~ handleClick ~ path:', path)
-  router.push(path)
-}
 </script>
 
 <template>
@@ -231,7 +237,9 @@ function onBreadcrumbsClick({ list, index }: { list: ISelectOption[]; index: num
 
     <!-- 联赛分类 -->
     <div v-if="showBreadcrumb || (!isStandard && !isH5Layout)" class="breadcrumb">
-      <BaseBreadcrumbs :list="breadcrumbs" @item-click="onBreadcrumbsClick" />
+      <BaseBreadcrumbs
+        :list="breadcrumbs" :only-last="isH5Layout" @item-click="onBreadcrumbsClick"
+      />
     </div>
 
     <!-- 更多盘口 -->

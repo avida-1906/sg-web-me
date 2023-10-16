@@ -6,13 +6,16 @@ interface BreadcrumbItem {
 }
 interface Props {
   list: BreadcrumbItem[]
+  onlyLast?: boolean // 只显示最后一个
 }
-defineProps<Props>()
+const props = defineProps<Props>()
 const emit = defineEmits(['itemClick'])
 const route = useRoute()
+const lastIndex = computed(() => props.list.length - 1)
+const lastItem = computed(() => props.list[lastIndex.value])
 
-function handleClick(list: BreadcrumbItem[], index: number) {
-  emit('itemClick', { list, index })
+function handleClick(item: BreadcrumbItem, index: number) {
+  emit('itemClick', { list: props.list, item, index })
 }
 function checkRoute(v: string) {
   return route.path.includes(v)
@@ -22,17 +25,22 @@ function checkRoute(v: string) {
 <template>
   <div class="base-breadcrumbs">
     <div class="wrap">
-      <div
-        v-for="b, i in list" :key="i" class="bread-item"
-        :class="{ active: checkRoute(b.value) }"
-      >
-        <span @click="handleClick(list, i)">{{ b.label }}</span>
-        <BaseIcon
-          v-show="i !== list.length - 1" name="uni-arrowright-line"
-          style="font-size: var(--tg-font-size-base);
-          margin: 0 var(--tg-spacing-4);vertical-align: -3px;"
-        />
+      <div v-if="onlyLast" class="bread-item" @click="handleClick(lastItem, lastIndex)">
+        <span>{{ lastItem.label }}</span>
       </div>
+      <template v-else>
+        <div
+          v-for="b, i in list" :key="i" class="bread-item"
+          :class="{ active: checkRoute(b.value) }"
+        >
+          <span @click="handleClick(b, i)">{{ b.label }}</span>
+          <BaseIcon
+            v-show="i !== list.length - 1" name="uni-arrowright-line"
+            style="font-size: var(--tg-font-size-base);
+          margin: 0 var(--tg-spacing-4);vertical-align: -3px;"
+          />
+        </div>
+      </template>
     </div>
   </div>
 </template>
