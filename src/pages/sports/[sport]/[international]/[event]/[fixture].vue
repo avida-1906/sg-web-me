@@ -868,7 +868,7 @@ function selectOutcome(v: string, tempid: string, marketid: string) {
               </div>
               <div class="live-stream-scoreboard-footer">
                 <span v-show="openLiveSwitch" class="mini-video">
-                  <BaseIcon name="uni-tv" />
+                  <BaseIcon name="uni-small-screen" />
                   <span>最小化</span>
                 </span>
                 <span>记分板</span>
