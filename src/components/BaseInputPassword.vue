@@ -8,12 +8,15 @@ interface Props {
   msg?: string
   /** 是否密文 */
   isCipherText?: boolean
+  /** 是否禁用 */
+  disabled?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
   modelValue: '',
   widthAuto: false,
   isCipherText: true,
+  disabled: true,
 })
 const emit = defineEmits(['update:modelValue'])
 
@@ -49,6 +52,7 @@ const changeText = function (e: any) {
       :value="modelValue"
       type="number"
       maxlength="6"
+      :disabled="disabled"
       @input="changeText"
       @blur="onBlur"
     >
@@ -57,9 +61,9 @@ const changeText = function (e: any) {
         v-for="item in 6"
         :key="item"
         :class="{
-          'active': textLength === (item - 1),
-          'show': entered > (item - 1) && props.isCipherText,
-          'active-bg': textLength !== null,
+          'active': textLength === (item - 1) && !disabled,
+          'show': entered > (item - 1) && props.isCipherText && !disabled,
+          'active-bg': textLength !== null && !disabled,
         }"
       >
         <span v-if="!props.isCipherText">{{ inputValueList[(item - 1)] }}</span>
