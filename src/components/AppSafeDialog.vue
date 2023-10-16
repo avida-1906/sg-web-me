@@ -21,8 +21,6 @@ const {
   validate: validateAmount,
   errorMessage: errAmount,
 } = useField<string>('amount', (value) => {
-  console.log(value)
-  console.log(activeCurrency.value?.balance)
   if (!value)
     return '不能为空'
   if (Number(value) === 0)
@@ -96,7 +94,6 @@ function changeCurrency(item: IUserCurrencyList) {
   console.log(item)
 }
 function maxNumber() {
-  // console.log('最大值', activeCurrency.value.balance)
   if (activeCurrency.value)
     amount.value = activeCurrency.value.balance
 }
@@ -160,6 +157,7 @@ application.allSettled([runAsyncBalanceLockerShow()])
             placeholder=""
             type="password"
             must
+            max="6"
           />
         </div>
         <BaseButton
