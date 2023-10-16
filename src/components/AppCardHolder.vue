@@ -2,13 +2,16 @@
 import type { IUserCurrencyList } from '~/stores/app'
 
 type WalletCurrencyList = {
-  coin?: any[]
-  bankcard?: any[]
+  coin?: any[] // 绑定的虚拟币
+  bankcard?: any[] // 绑定的银行卡
+  addressNum?: string // 虚拟币已绑定地址的数量
 } & IUserCurrencyList
 
 const closeDialog = inject('closeDialog', () => { })
 const cardList: WalletCurrencyList[] = []
 
+const { userInfo } = useAppStore()
+const { openNotify } = useNotify()
 const {
   renderCurrencyList,
   isVirtualCurrency,
@@ -27,23 +30,55 @@ const {
         })
       }
       else { // 虚拟币
+        const currentCoin = walletBankcard.value?.coin[item.cur] || []
         cardList.push({
           ...item,
-          coin: walletBankcard.value?.coin[item.cur],
+          coin: currentCoin,
+          addressNum: currentCoin.length.toString(),
         })
+        for (const tmp of item.contract_type || []) {
+          if (!currentCoin.find(tp => tmp === tp.contract_type)) {
+            currentCoin.push({
+              address: '',
+              contract_type: tmp,
+              id: tmp,
+              uid: '',
+              state: -1,
+              currency_name: '',
+              created_at: 0,
+              updated_at: 0,
+              is_default: 0,
+              username: '',
+            })
+          }
+        }
       }
     }
   },
 })
 
+function verifyPayPsw() {
+  if (userInfo?.pay_password === '0') {
+    openNotify({
+      type: 'error',
+      title: '错误',
+      message: '请先设置交易密码',
+    })
+    return true
+  }
+  else {
+    return false
+  }
+}
 const toAddBankcards = function (item: WalletCurrencyList) {
+  if (verifyPayPsw())
+    return
   let isFirst = true
   let openName = ''
   if (item.bankcard?.length) {
     isFirst = false
     openName = item.bankcard[0].open_name
   }
-
   const {
     openAddBankcardsDialog,
   } = useAddBankcardsDialog({
@@ -57,7 +92,12 @@ const toAddBankcards = function (item: WalletCurrencyList) {
   closeDialog()
   nextTick(() => openAddBankcardsDialog())
 }
-const toAddVirAddress = function (item: WalletCurrencyList) {
+const toAddVirAddress = function (
+  item: WalletCurrencyList,
+  contractType: string,
+) {
+  if (verifyPayPsw())
+    return
   const {
     openVirAddressDialog,
   } = useVirAddressDialog({
@@ -66,7 +106,7 @@ const toAddVirAddress = function (item: WalletCurrencyList) {
   })
   closeDialog()
   nextTick(() => openVirAddressDialog({
-    contractType: 'TRC20',
+    contractType,
     currencyId: item.cur,
     currencyName: item.type,
   }))
@@ -83,7 +123,7 @@ await application.allSettled([
       <BaseCollapse
         v-for="item in cardList"
         :key="item.type"
-        :title="(item.coin?.length || item.bankcard?.length)?.toString() || '0'"
+        :title="item.addressNum || item.bankcard?.length.toString() || '0'"
       >
         <template #top-right>
           <AppCurrencyIcon
@@ -94,17 +134,24 @@ await application.allSettled([
         </template>
         <template #content>
           <div v-if="isVirtualCurrency(item.type)" class="layout-spacing reset">
-            <div v-for="tmp in item.coin" :key="tmp.id" class="address-row">
-              <span>{{ tmp.address }}</span>
-              <span class="type">{{ tmp.contract_type }}</span>
-            </div>
-            <BaseButton
-              type="text"
-              class="add-btn"
-              @click="toAddVirAddress(item)"
+            <div
+              v-for="tmp in item.coin"
+              :key="tmp.id"
+              class="address-row"
+              :class="{ padding0: !tmp.address }"
             >
-              +
-            </BaseButton>
+              <span v-if="tmp.address">{{ tmp.address }}</span>
+              <BaseButton
+                v-else
+                size="sm"
+                type="text"
+                class="add-btn"
+                @click="toAddVirAddress(item, tmp.contract_type)"
+              >
+                <BaseIcon style="transform: rotate(45deg);" name="uni-close" />
+              </BaseButton>
+              <span class="type vir-type center">{{ tmp.contract_type }}</span>
+            </div>
           </div>
           <div v-else class="layout-spacing reset">
             <div
@@ -115,8 +162,13 @@ await application.allSettled([
               <span class="bank-num">{{ tmp.bank_account }}</span>
               <span class="type">{{ tmp.bank_name }}</span>
             </div>
-            <BaseButton type="text" class="add-btn" @click="toAddBankcards(item)">
-              +
+            <BaseButton
+              type="text"
+              size="sm"
+              class="add-btn"
+              @click="toAddBankcards(item)"
+            >
+              <BaseIcon style="transform: rotate(45deg);" name="uni-close" />
             </BaseButton>
           </div>
         </template>
@@ -139,25 +191,36 @@ await application.allSettled([
       background: var(--tg-primary-main);
     }
     .add-btn{
-      font-size: var(--tg-font-size-md);
+      flex: 1;
+      font-size: var(--tg-font-size-xs);
       color: var(--tg-text-lightgrey);
       background: var(--tg-secondary-dark);
     }
     .address-row{
+      position: relative;
       display: flex;
       justify-content: space-between;
+      align-items: center;
       background: var(--tg-secondary-dark);
       font-size: var(--tg-font-size-xs);
       color: var(--tg-text-white);
-      padding: var(--tg-spacing-14) var(--tg-spacing-16);
+      padding: var(--tg-spacing-13) var(--tg-spacing-16);
       .type{
         font-weight: 500;
         color: var(--tg-text-warn);
+      }
+      .vir-type{
+        height: 100%;
+        position: absolute;
+        right: var(--tg-spacing-16);
       }
       .bank-num{
         flex: 1;
         margin-left: var(--tg-spacing-8);
       }
+    }
+    .padding0{
+      padding: 0 var(--tg-spacing-16);
     }
   }
 }

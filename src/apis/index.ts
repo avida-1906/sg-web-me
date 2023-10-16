@@ -70,6 +70,9 @@ export interface IMemberDetail {
   /** 性别 1=男，2=女 */
   sex: number
   username: string
+  /** 是否设置交易密码 0=未设置 1=已设置 */
+  pay_password: string
+
 }
 
 export interface IMemberBalanceLockerUpdate {
@@ -77,6 +80,7 @@ export interface IMemberBalanceLockerUpdate {
   flag: 1 | 2
   currency_id: number
   amount: string
+  password?: string
 }
 
 export interface IMemberCurrencyConfig {
@@ -459,6 +463,8 @@ export function ApiMemberWalletInsert(data: {
   address: string
   /** 是否默认：1：是，2否 */
   is_default?: number
+  /** 交易密码 */
+  pay_password: string
 }) {
   return httpClient.post<string>('/member/wallet/insert', data)
 }

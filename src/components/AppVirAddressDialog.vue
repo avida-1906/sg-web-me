@@ -26,6 +26,15 @@ const {
   return ''
 })
 const {
+  value: payPassword,
+  errorMessage: paypasswordError,
+  validate: paypasswordValidate,
+} = useField<string>('paypassword', (value) => {
+  if (!value)
+    return '请输入交易密码'
+  return ''
+})
+const {
   run: runMemberWalletInsert,
   loading: addWalletInsertLoading,
 } = useRequest(ApiMemberWalletInsert, {
@@ -41,11 +50,13 @@ const {
 
 async function handleBindAddress() {
   await valiAddress()
+  await paypasswordValidate()
   if (!addressMsg.value) {
     runMemberWalletInsert({
       contract_type: props.contractType,
       currency_id: props.currencyId,
       address: address.value,
+      pay_password: payPassword.value,
     })
   }
 }
@@ -55,6 +66,14 @@ async function handleBindAddress() {
   <div class="layout-spacing reset app-vir-address">
     <BaseLabel :label="`您${currencyName}的${contractType}地址`" must>
       <BaseInput v-model="address" :msg="addressMsg" />
+    </BaseLabel>
+    <BaseLabel label="交易密码" must>
+      <BaseInput
+        v-model="payPassword"
+        :msg="paypasswordError"
+        type="password"
+        max="6"
+      />
     </BaseLabel>
     <BaseButton
       bg-style="primary"

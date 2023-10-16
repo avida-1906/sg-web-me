@@ -6,6 +6,10 @@ const { isMobile, appContentWidth } = storeToRefs(useWindowStore())
 const appStore = useAppStore()
 const { isLogin } = storeToRefs(appStore)
 
+const sport = route.params.sport
+// const international = route.params.international
+// const event = route.params.event
+// const fixture = route.params.fixture
 const rangeNum = ref()
 const searchHandicap = ref('')
 const { bool: openLiveSwitch } = useBoolean(false)
@@ -92,7 +96,28 @@ const eventData = reactive({
     id: '4149a2b5-2fc9-421e-a97c-88a4d6fe42ae',
     name: '印度尼西亚丙级联赛，东部',
     slug: 'liga-3',
-    contentNotes: [],
+    contentNotes: [
+      {
+        id: 'e88fbff3-192b-4350-818f-6890e73f83ea',
+        createdAt: 'Sun, 10 Sep 2023 00:00:44 GMT',
+        publishAt: 'Sat, 09 Sep 2023 23:58:00 GMT',
+        expireAt: 'Sun, 18 Feb 2024 22:58:00 GMT',
+        linkText: '条款与条件适用。',
+        linkUrl: 'https://stake.com/promotions/promotion/nfl-3rd-quarter-payout',
+        message: '如果您在赢家盘口的选择在第 9 局开始时领先但最终却输掉比赛，则可赢得奖金！',
+        language: 'en',
+        ref: {
+          id: '470a411f-e95c-43e1-b18f-1ffefd0f0d1c',
+          name: '美国橄榄球职业联盟',
+          category: {
+            name: '美国',
+            sport: {
+              name: '美式橄榄球',
+            },
+          },
+        },
+      },
+    ],
     category: {
       id: 'fad34360-a769-4058-aafe-01e6a6ad5fff',
       name: '印尼',
@@ -608,10 +633,6 @@ const scoreBoard = computed(() => {
     headAway,
   }
 })
-const sport = computed(() => route.params.sport)
-// const international = computed(() => route.params.international)
-// const event = computed(() => route.params.event)
-// const fixture = computed(() => route.params.fixture)
 const breadcrumb = computed(() => {
   const { id: t_id, slug: t_slug } = eventData
   const competitors = eventData.data.competitors
@@ -1064,6 +1085,70 @@ function openMiniVideo() {
                     </div>
                   </template>
                 </BaseSecondaryAccordion>
+                <BaseSecondaryAccordion title="Match" level="1">
+                  <template #default>
+                    <div class="players">
+                      <BaseSecondaryAccordion title="Winner" level="2">
+                        <div class="players">
+                          <div class="outcomes">
+                            <AppSportsBetButton layout="horizontal" />
+                            <AppSportsBetButton layout="horizontal" />
+                          </div>
+                        </div>
+                      </BaseSecondaryAccordion>
+                      <BaseSecondaryAccordion title="Handicap" level="2">
+                        <div class="players">
+                          <div class="table">
+                            <div class="column">
+                              <div class="heading">
+                                <span>Los Angeles Chargers</span>
+                              </div>
+                              <div class="outcome-line">
+                                <AppSportsBetButton layout="horizontal" />
+                              </div>
+                              <div class="outcome-line">
+                                <AppSportsBetButton layout="horizontal" />
+                              </div>
+                            </div>
+                            <div class="column">
+                              <div class="heading">
+                                <span>Los Angeles Chargers</span>
+                              </div>
+                              <div class="outcome-line">
+                                <AppSportsBetButton layout="horizontal" />
+                              </div>
+                              <div class="outcome-line">
+                                <AppSportsBetButton layout="horizontal" />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </BaseSecondaryAccordion>
+                      <BaseSecondaryAccordion title="Total" level="2">
+                        <div class="players">
+                          <div class="row">
+                            <div class="prop">
+                              <div class="lines-wrap">
+                                <div class="lines">
+                                  <BaseSlider
+                                    :data="[
+                                      { value: '50.5', label: '50.5' },
+                                      { value: '60.5', label: '60.5' },
+                                    ]"
+                                  />
+                                </div>
+                              </div>
+                              <div class="outcomes">
+                                <AppSportsBetButton layout="horizontal" />
+                                <AppSportsBetButton layout="horizontal" />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </BaseSecondaryAccordion>
+                    </div>
+                  </template>
+                </BaseSecondaryAccordion>
               </div>
             </div>
             <div v-if="appContentWidth >= 900" class="sticky-column">
@@ -1187,7 +1272,78 @@ function openMiniVideo() {
   align-items: center;
   flex: 1;
 }
+.players {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-top: 2px solid var(--tg-primary-main);
+  background: var(--tg-secondaryAccordion-header-background);
+  padding: var(--tg-spacing-8);
+  color: var(--tg-secondary-light);
+  font-size: var(--tg-font-size-default);
+  font-weight: var(--tg-font-weight-normal);
+  line-height: 1.5;
+  .table {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-auto-flow: row;
+    justify-items: center;
+    gap: var(--tg-spacing-12);
+  }
+  .column {
+    width: 100%;
+    text-align: center;
+  }
+  .heading, .outcome-line {
+    margin-bottom: var(--tg-spacing-4);
+  }
+  .row:first-of-type {
+    padding-top: 0;
+  }
 
+  .row:last-of-type {
+    padding-bottom: 0;
+  }
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    padding: var(--tg-spacing-8) 0 var(--tg-spacing-12);
+  }
+  .prop {
+    display: flex;
+    flex: 1;
+  }
+  .outcomes {
+    display: flex;
+    gap: 10px;
+    flex: 1.8;
+  }
+  .lines-wrap {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    overflow: hidden;
+    position: relative;
+  }
+  .lines {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 0 5px;
+    position: relative;
+  }
+}
+.outcomes {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: var(--tg-spacing-12);
+}
 .market {
   display: grid;
   color: var(--tg-text-white);
@@ -1377,6 +1533,7 @@ video {
 
   .sports-detail-wrapper {
     margin-top: var(--tg-spacing-32);
+    margin-bottom: var(--tg-spacing-32);
 
     .content-wrapper {
       position: relative;
