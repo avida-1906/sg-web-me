@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 const { t } = useI18n()
 const { openNotify } = useNotify()
+const { userInfo, updateUserInfo } = useAppStore()
 const { openEmailCodeDialog, closeEmailCodeDialog } = useEmailCodeDialog()
 // 登录密码
 const { bool: pwdStatus, setBool: setPwdStatus } = useBoolean(false)
@@ -74,6 +75,8 @@ const {
       title: '成功',
       message: '设置交易密码成功',
     })
+    // 交易密码设置成功之后，刷新用户信息
+    updateUserInfo()
     closeEmailCodeDialog()
   },
 })
@@ -118,17 +121,26 @@ async function submitLoginPwd() {
 }
 // 提交支付密码
 async function submitPayPwd() {
-  await valiPayPwd()
-  await valiAginPayPwd()
-  if (!(payPwdErrorMsg.value || aginPayPwdErrorMsg.value)) {
-    openEmailCodeDialog({
-      runSubmit: (emailCode: string) => {
-        runMemberPayPasswordUpdate({
-          pay_password: payPassword.value,
-          code: emailCode,
-        })
-      },
-      loading: payPasswordUpdateLoading,
+  if (userInfo?.email_check_state === 1) {
+    await valiPayPwd()
+    await valiAginPayPwd()
+    if (!(payPwdErrorMsg.value || aginPayPwdErrorMsg.value)) {
+      openEmailCodeDialog({
+        runSubmit: (emailCode: string) => {
+          runMemberPayPasswordUpdate({
+            pay_password: payPassword.value,
+            code: emailCode,
+          })
+        },
+        loading: payPasswordUpdateLoading,
+      })
+    }
+  }
+  else {
+    openNotify({
+      type: 'error',
+      title: '错误',
+      message: '邮箱未验证',
     })
   }
 }
