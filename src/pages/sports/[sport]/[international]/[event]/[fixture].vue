@@ -609,7 +609,7 @@ const scoreBoard = computed(() => {
   }
 })
 const sport = computed(() => route.params.sport)
-// const country = computed(() => route.params.country)
+// const international = computed(() => route.params.international)
 // const event = computed(() => route.params.event)
 // const fixture = computed(() => route.params.fixture)
 const breadcrumb = computed(() => {
@@ -899,7 +899,7 @@ function selectOutcome(v: string, tempid: string, marketid: string) {
                   class="bet-builder-sticky-header"
                   :class="{ 'is-pc': !isMobile }"
                 >
-                  <BaseSecondaryAccordion init>
+                  <BaseSecondaryAccordion>
                     <template #header>
                       <div class="header-content">
                         <span class="odds h-gap">
@@ -937,7 +937,7 @@ function selectOutcome(v: string, tempid: string, marketid: string) {
                 </div>
                 <template v-for="group in curGroups" v-else :key="group.name">
                   <template v-for="temp in group.templates" :key="temp.id">
-                    <BaseSecondaryAccordion :title="temp.name" init>
+                    <BaseSecondaryAccordion :title="temp.name">
                       <template #side="{ isOpen }">
                         <div v-show="!isOpen" class="badge-box">
                           <BaseBadge :count="9" />
@@ -977,7 +977,7 @@ function selectOutcome(v: string, tempid: string, marketid: string) {
                   </template>
                 </template>
 
-                <BaseSecondaryAccordion title="比赛地图数" init>
+                <BaseSecondaryAccordion title="比赛地图数">
                   <template #default>
                     <div class="market">
                       <div class="table" :style="{ '--itemCount': 1 }">
@@ -1002,7 +1002,7 @@ function selectOutcome(v: string, tempid: string, marketid: string) {
                     </div>
                   </template>
                 </BaseSecondaryAccordion>
-                <BaseSecondaryAccordion title="正确比赛得分" icon="spt-game-intl" init>
+                <BaseSecondaryAccordion title="正确比赛得分" icon="spt-game-intl">
                   <template #side>
                     <div
                       class="odd-switch-buttons"
@@ -1027,7 +1027,7 @@ function selectOutcome(v: string, tempid: string, marketid: string) {
                     </div>
                   </template>
                 </BaseSecondaryAccordion>
-                <BaseSecondaryAccordion title="至少在一张地图上获胜" init>
+                <BaseSecondaryAccordion title="至少在一张地图上获胜">
                   <template #default>
                     <div class="market">
                       <div class="">

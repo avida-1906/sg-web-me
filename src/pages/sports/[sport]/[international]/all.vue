@@ -3,7 +3,7 @@
 
 <template>
   <div class="tg-sports-country-all">
-    全部国家国际
+    全部国家国际全部某种赛事
   </div>
 </template>
 

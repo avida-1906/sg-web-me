@@ -8,7 +8,7 @@ interface Props {
 }
 withDefaults(defineProps<Props>(), {
   isStandard: true,
-  autoShow: false,
+  autoShow: true,
 })
 </script>
 

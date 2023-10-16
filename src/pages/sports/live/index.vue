@@ -28,8 +28,8 @@ function onBaseTypeChange(v: string) {
     </div>
     <AppSportsTab v-model="currentGame" :list="gameList" />
     <div class="market-wrapper">
-      <AppSportsMarket :is-standard="isStandard" auto-show />
-      <AppSportsMarket :is-standard="isStandard" auto-show />
+      <AppSportsMarket :is-standard="isStandard" />
+      <AppSportsMarket :is-standard="isStandard" />
     </div>
 
     <div v-if="!onPage" class="layout-spacing">

@@ -9,7 +9,7 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  init: false,
+  init: true,
 })
 
 const emit = defineEmits(['more', 'open', 'close'])
