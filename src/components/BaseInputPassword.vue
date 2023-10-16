@@ -16,7 +16,7 @@ const props = withDefaults(defineProps<Props>(), {
   modelValue: '',
   widthAuto: false,
   isCipherText: true,
-  disabled: true,
+  disabled: false,
 })
 const emit = defineEmits(['update:modelValue'])
 
