@@ -609,7 +609,7 @@ const scoreBoard = computed(() => {
   }
 })
 const sport = computed(() => route.params.sport)
-// const country = computed(() => route.params.country)
+// const international = computed(() => route.params.international)
 // const event = computed(() => route.params.event)
 // const fixture = computed(() => route.params.fixture)
 const breadcrumb = computed(() => {
@@ -689,7 +689,7 @@ function selectOutcome(v: string, tempid: string, marketid: string) {
                   '--sport-image': `url(/img/match-statistics/${sport}.jpg)`,
                 }"
               >
-                <div class="wrapper box-shadow has-background">
+                <div class="box-shadow wrapper has-background">
                   <div
                     class="content scroll-x" :style="{
                       'grid-template-areas': gridAreas,

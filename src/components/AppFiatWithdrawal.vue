@@ -5,8 +5,7 @@ interface Props {
   /** 货币对象 */
   activeCurrency: IUserCurrencyList
 }
-const props = withDefaults(defineProps<Props>(), {
-})
+const props = withDefaults(defineProps<Props>(), {})
 
 const { isLessThanXs } = storeToRefs(useWindowStore())
 

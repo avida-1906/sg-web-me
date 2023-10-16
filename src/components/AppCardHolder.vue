@@ -13,10 +13,6 @@ const {
   renderCurrencyList,
   isVirtualCurrency,
 } = useCurrencyData()
-const {
-  bankcardList,
-  openName,
-} = useApiMemberBankCardList()
 // 会员卡包
 const {
   data: walletBankcard,
@@ -41,13 +37,19 @@ const {
 })
 
 const toAddBankcards = function (item: WalletCurrencyList) {
-  console.log(item, 'item')
+  let isFirst = true
+  let openName = ''
+  if (item.bankcard?.length) {
+    isFirst = false
+    openName = item.bankcard[0].open_name
+  }
+
   const {
     openAddBankcardsDialog,
   } = useAddBankcardsDialog({
     title: '绑定银行卡',
-    openName: openName.value,
-    isFirst: !bankcardList.value?.length,
+    openName,
+    isFirst,
     activeCurrency: item,
     /** 702 货币id */
     currentType: item.cur === '702' ? '2' : '1',
