@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 const { t } = useI18n()
 const { openNotify } = useNotify()
-const { userInfo, updateUserInfo } = useAppStore()
+const { userInfo } = storeToRefs(useAppStore())
+const { updateUserInfo } = useAppStore()
 const { openEmailCodeDialog, closeEmailCodeDialog } = useEmailCodeDialog()
 // 登录密码
 const { bool: pwdStatus, setBool: setPwdStatus } = useBoolean(false)
@@ -85,6 +86,10 @@ const {
 const twoStepPassword = ref('')
 const twoStepCode = ref('HM3XE2DLGVWECZDYK5BUMNTQORGVCKBVO5MG4JBSG46EGMCSHZEA')
 
+const getPayPwdState = computed(() => {
+  return userInfo.value?.pay_password === '1'
+})
+
 function fieldVerify(value: string) {
   if (!value)
     return t('pls_enter_password')
@@ -121,7 +126,7 @@ async function submitLoginPwd() {
 }
 // 提交支付密码
 async function submitPayPwd() {
-  if (userInfo?.email_check_state === 1) {
+  if (userInfo.value?.email_check_state === 1) {
     await valiPayPwd()
     await valiAginPayPwd()
     if (!(payPwdErrorMsg.value || aginPayPwdErrorMsg.value)) {
@@ -181,19 +186,25 @@ async function submitPayPwd() {
     <AppSettingsContentItem
       title="交易密码"
       :btn-loading="payPasswordUpdateLoading"
-      btn-text="电邮验证"
+      :btn-text="getPayPwdState ? '已设置' : '电邮验证'"
+      verified
       @submit="submitPayPwd"
     >
       <template #top-desc>
         交易密码将用于保护提款，保险库取款安全。
       </template>
       <BaseLabel label="密码" must-small>
-        <BaseInputPassword v-model="payPassword" :msg="payPwdErrorMsg" />
+        <BaseInputPassword
+          v-model="payPassword"
+          :msg="payPwdErrorMsg"
+          :disabled="getPayPwdState"
+        />
       </BaseLabel>
       <BaseLabel label="确认密码" must-small>
         <BaseInputPassword
           v-model="aginPayPassword"
           :msg="aginPayPwdErrorMsg"
+          :disabled="getPayPwdState"
         />
       </BaseLabel>
     </AppSettingsContentItem>
