@@ -459,12 +459,12 @@ const data = {
   ],
 }
 
-const sport = computed(() => route.params.sport)
+const sport = route.params.sport
 const breadcrumb = computed(() => [{ path: '', title: data.name, id: data.id }])
 const tabs = computed(() => [
   { value: 'live-upcoming', label: '滚球与即将开赛的盘口' },
   { value: 'outrights', label: '冠军投注' },
-  { value: 'all', label: `全部 ${sport.value}` },
+  { value: 'all', label: `全部 ${sport}` },
 ])
 const sortedCategoryList = computed(() =>
   sortBy(data.categoryList, (o: SportTournament) => o.name))
