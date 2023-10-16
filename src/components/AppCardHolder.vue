@@ -27,10 +27,27 @@ const {
         })
       }
       else { // 虚拟币
+        const currentCoin = walletBankcard.value?.coin[item.cur] || []
         cardList.push({
           ...item,
-          coin: walletBankcard.value?.coin[item.cur],
+          coin: currentCoin,
         })
+        for (const tmp of item.contract_type || []) {
+          if (!currentCoin.find(tp => tmp === tp.contract_type)) {
+            currentCoin.push({
+              address: '',
+              contract_type: tmp,
+              id: tmp,
+              uid: '',
+              state: -1,
+              currency_name: '',
+              created_at: 0,
+              updated_at: 0,
+              is_default: 0,
+              username: '',
+            })
+          }
+        }
       }
     }
   },
@@ -83,7 +100,8 @@ await application.allSettled([
       <BaseCollapse
         v-for="item in cardList"
         :key="item.type"
-        :title="(item.coin?.length || item.bankcard?.length)?.toString() || '0'"
+        :title="(item.coin?.filter((i) => i.state !== -1)?.length
+          || item.bankcard?.length)?.toString() || '0'"
       >
         <template #top-right>
           <AppCurrencyIcon
@@ -94,17 +112,24 @@ await application.allSettled([
         </template>
         <template #content>
           <div v-if="isVirtualCurrency(item.type)" class="layout-spacing reset">
-            <div v-for="tmp in item.coin" :key="tmp.id" class="address-row">
-              <span>{{ tmp.address }}</span>
-              <span class="type">{{ tmp.contract_type }}</span>
-            </div>
-            <BaseButton
-              type="text"
-              class="add-btn"
-              @click="toAddVirAddress(item)"
+            <div
+              v-for="tmp in item.coin"
+              :key="tmp.id"
+              class="address-row"
+              :class="{ padding0: !tmp.address }"
             >
-              +
-            </BaseButton>
+              <span v-if="tmp.address">{{ tmp.address }}</span>
+              <BaseButton
+                v-else
+                size="sm"
+                type="text"
+                class="add-btn"
+                @click="toAddVirAddress(item)"
+              >
+                <BaseIcon style="transform: rotate(45deg);" name="uni-close" />
+              </BaseButton>
+              <span class="type vir-type center">{{ tmp.contract_type }}</span>
+            </div>
           </div>
           <div v-else class="layout-spacing reset">
             <div
@@ -115,8 +140,13 @@ await application.allSettled([
               <span class="bank-num">{{ tmp.bank_account }}</span>
               <span class="type">{{ tmp.bank_name }}</span>
             </div>
-            <BaseButton type="text" class="add-btn" @click="toAddBankcards(item)">
-              +
+            <BaseButton
+              type="text"
+              size="sm"
+              class="add-btn"
+              @click="toAddBankcards(item)"
+            >
+              <BaseIcon style="transform: rotate(45deg);" name="uni-close" />
             </BaseButton>
           </div>
         </template>
@@ -139,25 +169,36 @@ await application.allSettled([
       background: var(--tg-primary-main);
     }
     .add-btn{
-      font-size: var(--tg-font-size-md);
+      flex: 1;
+      font-size: var(--tg-font-size-xs);
       color: var(--tg-text-lightgrey);
       background: var(--tg-secondary-dark);
     }
     .address-row{
+      position: relative;
       display: flex;
       justify-content: space-between;
+      align-items: center;
       background: var(--tg-secondary-dark);
       font-size: var(--tg-font-size-xs);
       color: var(--tg-text-white);
-      padding: var(--tg-spacing-14) var(--tg-spacing-16);
+      padding: var(--tg-spacing-13) var(--tg-spacing-16);
       .type{
         font-weight: 500;
         color: var(--tg-text-warn);
+      }
+      .vir-type{
+        height: 100%;
+        position: absolute;
+        right: var(--tg-spacing-16);
       }
       .bank-num{
         flex: 1;
         margin-left: var(--tg-spacing-8);
       }
+    }
+    .padding0{
+      padding: 0 var(--tg-spacing-16);
     }
   }
 }
