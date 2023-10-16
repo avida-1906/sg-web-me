@@ -2,13 +2,16 @@
 import type { IUserCurrencyList } from '~/stores/app'
 
 type WalletCurrencyList = {
-  coin?: any[]
-  bankcard?: any[]
+  coin?: any[] // 绑定的虚拟币
+  bankcard?: any[] // 绑定的银行卡
+  addressNum?: string // 虚拟币已绑定地址的数量
 } & IUserCurrencyList
 
 const closeDialog = inject('closeDialog', () => { })
 const cardList: WalletCurrencyList[] = []
 
+const { userInfo } = useAppStore()
+const { openNotify } = useNotify()
 const {
   renderCurrencyList,
   isVirtualCurrency,
@@ -31,6 +34,7 @@ const {
         cardList.push({
           ...item,
           coin: currentCoin,
+          addressNum: currentCoin.length.toString(),
         })
         for (const tmp of item.contract_type || []) {
           if (!currentCoin.find(tp => tmp === tp.contract_type)) {
@@ -53,14 +57,28 @@ const {
   },
 })
 
+function verifyPayPsw() {
+  if (userInfo?.pay_password === '0') {
+    openNotify({
+      type: 'error',
+      title: '错误',
+      message: '请先设置交易密码',
+    })
+    return true
+  }
+  else {
+    return false
+  }
+}
 const toAddBankcards = function (item: WalletCurrencyList) {
+  if (verifyPayPsw())
+    return
   let isFirst = true
   let openName = ''
   if (item.bankcard?.length) {
     isFirst = false
     openName = item.bankcard[0].open_name
   }
-
   const {
     openAddBankcardsDialog,
   } = useAddBankcardsDialog({
@@ -74,7 +92,12 @@ const toAddBankcards = function (item: WalletCurrencyList) {
   closeDialog()
   nextTick(() => openAddBankcardsDialog())
 }
-const toAddVirAddress = function (item: WalletCurrencyList) {
+const toAddVirAddress = function (
+  item: WalletCurrencyList,
+  contractType: string,
+) {
+  if (verifyPayPsw())
+    return
   const {
     openVirAddressDialog,
   } = useVirAddressDialog({
@@ -83,7 +106,7 @@ const toAddVirAddress = function (item: WalletCurrencyList) {
   })
   closeDialog()
   nextTick(() => openVirAddressDialog({
-    contractType: 'TRC20',
+    contractType,
     currencyId: item.cur,
     currencyName: item.type,
   }))
@@ -100,8 +123,7 @@ await application.allSettled([
       <BaseCollapse
         v-for="item in cardList"
         :key="item.type"
-        :title="(item.coin?.filter((i) => i.state !== -1)?.length
-          || item.bankcard?.length)?.toString() || '0'"
+        :title="item.addressNum || item.bankcard?.length.toString() || '0'"
       >
         <template #top-right>
           <AppCurrencyIcon
@@ -124,7 +146,7 @@ await application.allSettled([
                 size="sm"
                 type="text"
                 class="add-btn"
-                @click="toAddVirAddress(item)"
+                @click="toAddVirAddress(item, tmp.contract_type)"
               >
                 <BaseIcon style="transform: rotate(45deg);" name="uni-close" />
               </BaseButton>

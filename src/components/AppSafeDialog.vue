@@ -35,6 +35,7 @@ const {
 const {
   value: password,
   resetField: resetPassword,
+  validate: validatePassword,
   errorMessage: errPassword,
 } = useField<string>('password', (value) => {
   if (!value)
@@ -86,12 +87,18 @@ const initBalance = computed(() => {
 
 async function handleUpdate() {
   await validateAmount()
-  if (!errAmount.value && updateParams.value)
-    runLockerUpdate(updateParams.value)
+  if (isDeposit.value) {
+    if (!errAmount.value && updateParams.value)
+      runLockerUpdate(updateParams.value)
+  }
+  else {
+    await validatePassword()
+    if (!errAmount.value && !errPassword.value && updateParams.value)
+      runLockerUpdate({ ...updateParams.value, password: password.value })
+  }
 }
 function changeCurrency(item: IUserCurrencyList) {
   activeCurrency.value = item
-  console.log(item)
 }
 function maxNumber() {
   if (activeCurrency.value)
