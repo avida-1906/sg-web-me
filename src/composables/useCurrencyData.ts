@@ -49,20 +49,6 @@ export function useCurrencyData() {
     return virtualList.includes(currency)
   }
 
-  /**
-   * 获取虚拟货币的协议类型
-   * @param {EnumCurrencyKey} currency
-   */
-  const getCurrencyContract = (currency: EnumCurrencyKey) => {
-    switch (currency) {
-      case 'USDT': return [
-        { label: 'ERC20', value: 'ERC20' },
-        { label: 'TRC20', value: 'TRC20' },
-      ]
-      default: return null
-    }
-  }
-
   return {
     currentGlobalCurrency,
     currentGlobalCurrencyBalance,
@@ -73,6 +59,5 @@ export function useCurrencyData() {
     clearSearchValue,
     changeCurrentCurrency,
     isVirtualCurrency,
-    getCurrencyContract,
   }
 }
