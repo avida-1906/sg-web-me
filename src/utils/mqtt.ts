@@ -16,6 +16,9 @@ class SocketClient {
 
   subscribeList: string[] = ['test']
 
+  /** 上一次连接登录状态 */
+  lastLoginStatus: boolean | null = null
+
   #MQTT_SERVER: TMqttServer | null = null
 
   #log = (message: string, ...rest: any) => {
@@ -50,21 +53,42 @@ class SocketClient {
     console.log('this.#MQTT_SERVER', this.#MQTT_SERVER)
   }
 
-  public connect() {
+  /** 断开重新连接 */
+  public reconnect() {
+    if (this.client != null) {
+      this.#log('已经连接, 断开连接中...')
+      const opts: any = null
+      this.client.end(true, opts, () => {
+        this.connect()
+      })
+    }
+  }
+
+  public async connect() {
     if (this.#MQTT_SERVER) {
-      // 判断是否已经连接
-      if (this.client != null) {
-        this.#log('已经连接！！！')
+      const { userInfo, isLogin } = storeToRefs(useAppStore())
+
+      if (this.lastLoginStatus === null)
+        this.lastLoginStatus = isLogin.value
+
+      if (this.lastLoginStatus === isLogin.value) {
+        if (this.client != null) {
+          this.#log('已经连接')
+          return
+        }
+      }
+      else {
+        this.lastLoginStatus = isLogin.value
+        this.reconnect()
         return
       }
 
       this.#log('连接中...')
 
-      const { userInfo, isLogin } = storeToRefs(useAppStore())
       // 随机生成10位的 客户端ID
       const r = Math.random().toString(36).slice(-10)
       const clientId = isLogin.value ? userInfo.value?.uid : `web-random-${r}`
-      console.log('clientId', clientId)
+      this.#log('clientId', clientId)
 
       import('precompiled-mqtt').then((mqtt) => {
         // const { VITE_SOCKET_USERNAME, VITE_SOCKET_PASSWORD } = getEnv()
@@ -124,10 +148,12 @@ class SocketClient {
 
       this.client.on('end', () => {
         this.#log('连接结束')
+        this.client = null
       })
 
       this.client.on('close', () => {
         this.#log('连接关闭')
+        this.client = null
       })
 
       this.client.on('outgoingEmpty', () => {
@@ -144,10 +170,11 @@ class SocketClient {
     }
   }
 
-  public disconnect() {
+  /** 关闭mqtt连接 */
+  close() {
     if (this.client != null) {
-      this.client.end()
-      this.#log('关闭连接')
+      const opts: any = null
+      this.client.end(true, opts)
     }
   }
 }
