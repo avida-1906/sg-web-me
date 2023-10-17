@@ -124,8 +124,9 @@ export const useAppStore = defineStore('app', () => {
     currentGlobalCurrency.value = currency
   }
 
-  watchEffect(() => {
-    console.log('balanceMap', balanceMap.value, currencyConfig.value, userCurrencyList.value)
+  watch(userInfo, () => {
+    if (userInfo.value?.uid)
+      socketClient.connect()
   })
 
   return {

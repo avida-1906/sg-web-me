@@ -50,7 +50,6 @@ const {
 }), {
   manual: true,
   onSuccess: (res: string) => {
-    socketClient.connect()
     closeDialog()
     appStore.setToken(res)
   },
