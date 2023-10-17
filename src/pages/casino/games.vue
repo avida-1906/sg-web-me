@@ -25,7 +25,7 @@ run()
 
 <template>
   <div class="casino-games" :class="{ theatre: isTheatre && !isMobile }">
-    <AppIframe
+    <AppCasinoIframe
       :id="id"
       ref="appIframeRef"
       :is-theatre="isTheatre"
