@@ -60,13 +60,19 @@ class SocketClient {
 
       this.#log('连接中...')
 
+      const { userInfo, isLogin } = storeToRefs(useAppStore())
+      // 随机生成10位的 客户端ID
+      const r = Math.random().toString(36).slice(-10)
+      const clientId = isLogin.value ? userInfo.value?.uid : `web-random-${r}`
+      console.log('clientId', clientId)
+
       import('precompiled-mqtt').then((mqtt) => {
         // const { VITE_SOCKET_USERNAME, VITE_SOCKET_PASSWORD } = getEnv()
         this.client = mqtt.connect({
           // username: VITE_SOCKET_USERNAME,
           // password: VITE_SOCKET_PASSWORD,
           keepalive: 60,
-          clientId: 'asdfasdfa234',
+          clientId,
           servers: this.#MQTT_SERVER!,
         })
         this.eventHandler()
