@@ -82,7 +82,7 @@ const isFirst = computed(() => props.index === 0)
         <div class="estimated-amount">
           <AppAmount
             style="--tg-app-amount-width:12ch;"
-            amount="289339339.05000001" :currency-type="0"
+            amount="289339339.05000001" currency-type="BTC"
           />
         </div>
       </div>
