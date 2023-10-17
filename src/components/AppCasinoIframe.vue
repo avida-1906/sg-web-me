@@ -199,7 +199,7 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
           <div v-if="currencyList.length" class="scroll-y popper popper-mobile">
             <a
               v-for="c, i in currencyList" :key="i"
-              class="popper-option currency-types"
+              class="currency-types popper-option"
               @click="hide();onChooseCurrency(c)"
             >
               <div>
