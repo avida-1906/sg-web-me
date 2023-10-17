@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-interface SliderItem {
+interface SwiperItem {
   value: string | number
   label: string
 }
 
 interface Props {
-  data: SliderItem[]
+  data: SwiperItem[]
   modelValue?: string | number
 }
 
@@ -13,20 +13,18 @@ const props = defineProps<Props>()
 
 const emit = defineEmits(['update:modelValue', 'change'])
 
-const sliderOuter = ref()
+const swiperOuter = ref()
 const outerWidth = ref(0)
 const active = ref(0)
 const { bool: isDragging, setFalse: setDFalse, setTrue: setDTrue } = useBoolean(false)
 const trackX = ref(0)
-
-const tripleData = props.data.concat(props.data, props.data)
 
 emit('update:modelValue', props.data[active.value])
 emit('change', props.data[active.value])
 
 function slideToPrev() {}
 function slideToNext() {
-  if (active.value < tripleData.length - 1) {
+  if (active.value < props.data.length - 1) {
     trackX.value -= outerWidth.value
     active.value += 1
   }
@@ -43,16 +41,20 @@ function mouseUpEve() {
 }
 
 onMounted(() => {
-  const { width } = sliderOuter.value.getBoundingClientRect()
-  outerWidth.value = width
+  nextTick(() => {
+    setTimeout(() => {
+      const { width } = swiperOuter.value.getBoundingClientRect()
+      outerWidth.value = width
+    }, 0)
+  })
 })
 </script>
 
 <template>
   <div
-    ref="sliderOuter"
-    class="slider-outer center-mode"
-    :style="{ '--slider-outer-width': `${outerWidth}px` }"
+    ref="swiperOuter"
+    class="swiper-outer center-mode"
+    :style="{ '--swiper-outer-width': `${outerWidth}px` }"
   >
     <div class="arrows-overlay">
       <div class="left">
@@ -66,7 +68,7 @@ onMounted(() => {
         </BaseButton>
       </div>
     </div>
-    <div class="slider-track-wrap" :class="{ dragging: isDragging }">
+    <div class="swiper-track-wrap" :class="{ dragging: isDragging }">
       <div
         class="track"
         :style="{
@@ -77,12 +79,12 @@ onMounted(() => {
         @mouseup="mouseUpEve"
       >
         <div
-          v-for="item, idx in tripleData"
+          v-for="item, idx in data"
           :key="`${idx}_${item.value}`"
           class="slide-wrap"
           :class="[
             `slide-position-${idx + 1}`,
-            tripleData[active].value === item.value ? 'center visible' : '',
+            data[active].value === item.value ? 'center visible' : '',
             isDragging ? 'visible' : '',
           ]"
         >
@@ -96,7 +98,7 @@ onMounted(() => {
 </template>
 
 <style lang="scss" scoped>
-.slider-outer {
+.swiper-outer {
   width: 100%;
   position: relative;
   overflow: visible;
@@ -133,19 +135,20 @@ onMounted(() => {
       }
     }
   }
-  .slider-track-wrap {
+  .swiper-track-wrap {
     max-width: 0px;
     width: 100%;
     .track {
       display: flex;
       position: relative;
       will-change: transform;
+      transition: all 1s linear;
       .slide-wrap {
         position: relative;
         opacity: .3;
         transition: transform .7s ease,opacity 1s ease;
         padding: 0 7.5px;
-        width: var(--slider-outer-width);
+        width: var(--swiper-outer-width);
         &.visible {
           opacity: 1;
         }

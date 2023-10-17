@@ -1130,7 +1130,7 @@ function openMiniVideo() {
                             <div class="prop">
                               <div class="lines-wrap">
                                 <div class="lines">
-                                  <BaseSlider
+                                  <BaseSwiper
                                     :data="[
                                       { value: '50.5', label: '50.5' },
                                       { value: '60.5', label: '60.5' },
