@@ -64,7 +64,10 @@ async function handleBindAddress() {
 
 <template>
   <div class="layout-spacing reset app-vir-address">
-    <BaseLabel :label="`您${currencyName}的${contractType}地址`" must>
+    <BaseLabel
+      :label="`您${currencyName}的${currencyName === contractType ? '' : contractType}地址`"
+      must
+    >
       <BaseInput v-model="address" :msg="addressMsg" />
     </BaseLabel>
     <BaseLabel label="交易密码" must>

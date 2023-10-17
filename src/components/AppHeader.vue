@@ -27,6 +27,7 @@ const {
 } = useRequest(ApiMemberLoginout, {
   onSuccess() {
     appStore.removeToken()
+    socketClient.close()
     setDialogLogoutFalse()
     router.push('/')
   },

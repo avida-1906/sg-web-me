@@ -8,7 +8,7 @@ export function useVirAddressDialog(headMsg: { title: string; icon: string }) {
     closeDialog: closeVirAddressDialog,
   } = useDialog({
     title: headMsg.title,
-    icon: `coin-${headMsg.icon}`,
+    // icon: `coin-${headMsg.icon}`,
     default: obj => h(AppVirAddressDialog, obj),
   })
 
