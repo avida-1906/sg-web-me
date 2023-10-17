@@ -22,15 +22,10 @@ const {
   renderCurrencyList,
   changeCurrentCurrency,
   clearSearchValue,
-  getCurrencyContract,
 } = useCurrencyData()
 
-const currentNetwork = ref('ERC20')
+const currentNetwork = ref()
 
-// 获取协议类型
-const getCurContract = computed(() => {
-  return getCurrencyContract(currentCurrency.value)
-})
 const getCurrencyList = computed(() => {
   if (props.currencyList) {
     if (searchValue.value)
@@ -48,19 +43,32 @@ const getCurrencyBalance = computed(() => {
     .find((item: IUserCurrencyList) =>
       item.type === currentCurrency.value)
 })
+// 获取协议类型
+const getCurContract = computed(() => {
+  return getCurrencyBalance.value?.contract_type?.map((type) => {
+    return { label: type, value: type }
+  })
+})
 
+// 设置协议选项的值
+function getTypeVal() {
+  currentNetwork.value = getCurContract.value ? getCurContract.value[0]?.value : ''
+}
 // 选择币种
 function selectCurrency(item: IUserCurrencyList, hide: () => void) {
-  changeCurrentCurrency(item.type)
   hide()
-  // emit('change', item)
+  changeCurrentCurrency(item.type)
+  getTypeVal()
 }
 
 watch(() => getCurrencyBalance.value, () => {
   emit('change', getCurrencyBalance.value)
 })
 
-emit('change', getCurrencyBalance.value)
+onMounted(() => {
+  emit('change', getCurrencyBalance.value)
+  getTypeVal()
+})
 </script>
 
 <template>
@@ -127,7 +135,7 @@ emit('change', getCurrencyBalance.value)
       </template>
     </VDropdown>
     <BaseSelect
-      v-if="network && getCurContract"
+      v-if="network && getCurContract?.length"
       v-model="currentNetwork"
       :options="getCurContract"
       popper
