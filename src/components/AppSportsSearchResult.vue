@@ -5,7 +5,11 @@ const tabList = ref([
   { label: '篮球', value: '2', num: '5' },
   { label: '赛车', value: '3', num: '10' },
 ])
-const breadList = ref(['电子足球', 'Gt Sports League', 'GT Nations League'])
+const breadList = ref([
+  { value: '1', label: '电子足球' },
+  { value: '2', label: 'Gt Sports League' },
+  { value: '3', label: 'GT Nations League' },
+])
 </script>
 
 <template>
