@@ -23,6 +23,10 @@ const getNotificationList = (function () {
   }
 })()
 
+const OnlyOne: any = {
+
+}
+
 export function useNotify({
   showClose,
   onClose,
@@ -33,7 +37,7 @@ export function useNotify({
   const box = ref<any>({})
   const notificationList = getNotificationList()
 
-  const closeNotify = (uuid: string) => {
+  const closeNotify = (uuid: string, code?: string) => {
     if (app.value[uuid] && box.value[uuid]) {
       const notify = app.value[uuid]
       notify.unmount()
@@ -42,10 +46,13 @@ export function useNotify({
       delete app.value[uuid]
       delete box.value[uuid]
       onClose && onClose()
+      if (code && OnlyOne[code])
+        delete OnlyOne[code]
     }
   }
 
   const openNotify = ({
+    code,
     type,
     icon,
     title,
@@ -53,11 +60,18 @@ export function useNotify({
     default: defaultSlot,
   }:
   {
+    code?: string
     type?: notifyType
     icon?: string
     title?: string | (() => Component)
     message?: string | (() => Component)
     default?: () => Component }) => {
+    if (code) {
+      if (OnlyOne[code])
+        return
+      else
+        OnlyOne[code] = true
+    }
     if (notificationList) {
       const uuid = getUuid()
       box.value[uuid] = document.createElement('div')
@@ -70,7 +84,7 @@ export function useNotify({
         showClose,
         funcCall: uuid,
         onClose: (uuid: string) => {
-          closeNotify(uuid)
+          closeNotify(uuid, code)
         },
         onNotifyClick: () => {
           onNotifyClick && onNotifyClick()
