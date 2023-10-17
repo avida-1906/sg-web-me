@@ -18,27 +18,42 @@ const outerWidth = ref(0)
 const active = ref(0)
 const { bool: isDragging, setFalse: setDFalse, setTrue: setDTrue } = useBoolean(false)
 const trackX = ref(0)
+const duration = ref(800)
 
 emit('update:modelValue', props.data[active.value])
 emit('change', props.data[active.value])
 
-function slideToPrev() {}
+function slideToPrev() {
+  if (active.value > 0) {
+    duration.value = 800
+    trackX.value += outerWidth.value
+    active.value -= 1
+  }
+  else {
+    duration.value = 0
+    active.value = props.data.length - 1
+    trackX.value = -(props.data.length - 1) * outerWidth.value
+  }
+}
 function slideToNext() {
   if (active.value < props.data.length - 1) {
+    duration.value = 800
     trackX.value -= outerWidth.value
     active.value += 1
   }
   else {
+    duration.value = 0
     active.value = 0
     trackX.value = 0
   }
 }
-function mouseDownEve() {
+function mouseDownEve(event: MouseEvent) {
   setDTrue()
 }
-function mouseUpEve() {
+function mouseUpEve(event: MouseEvent) {
   setDFalse()
 }
+function mouseMoveEve(event: MouseEvent) {}
 
 onMounted(() => {
   nextTick(() => {
@@ -72,11 +87,13 @@ onMounted(() => {
       <div
         class="track"
         :style="{
-          width: `${outerWidth * data.length * 3}px`,
-          transform: `translate(${trackX}px, 0px)`,
+          'width': `${outerWidth * data.length}px`,
+          'transform': `translate3d(${trackX}px, 0px, 0px)`,
+          'transition-duration': `${duration}ms`,
         }"
         @mousedown="mouseDownEve"
         @mouseup="mouseUpEve"
+        @mousemove="mouseMoveEve"
       >
         <div
           v-for="item, idx in data"
@@ -141,8 +158,10 @@ onMounted(() => {
     .track {
       display: flex;
       position: relative;
-      will-change: transform;
-      transition: all 1s linear;
+      transition-property: transform;
+      transition-duration: 0ms;
+      transition-delay: 0ms;
+      transition-timing-function: ease;
       .slide-wrap {
         position: relative;
         opacity: .3;
