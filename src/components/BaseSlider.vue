@@ -1,9 +1,11 @@
 <script lang="ts" setup>
+interface SliderItem {
+  value: string | number
+  label: string
+}
+
 interface Props {
-  data: {
-    value: string | number
-    label: string
-  }[]
+  data: SliderItem[]
   modelValue?: string | number
 }
 
@@ -13,16 +15,26 @@ const emit = defineEmits(['update:modelValue', 'change'])
 
 const sliderOuter = ref()
 const outerWidth = ref(0)
-const curValue = ref(props.data[0].value)
+const active = ref(0)
 const { bool: isDragging, setFalse: setDFalse, setTrue: setDTrue } = useBoolean(false)
+const trackX = ref(0)
 
 const tripleData = props.data.concat(props.data, props.data)
 
-emit('update:modelValue', curValue.value)
-emit('change', curValue.value)
+emit('update:modelValue', props.data[active.value])
+emit('change', props.data[active.value])
 
 function slideToPrev() {}
-function slideToNext() {}
+function slideToNext() {
+  if (active.value < tripleData.length - 1) {
+    trackX.value -= outerWidth.value
+    active.value += 1
+  }
+  else {
+    active.value = 0
+    trackX.value = 0
+  }
+}
 function mouseDownEve() {
   setDTrue()
 }
@@ -57,7 +69,10 @@ onMounted(() => {
     <div class="slider-track-wrap" :class="{ dragging: isDragging }">
       <div
         class="track"
-        :style="{ width: `${outerWidth * data.length * 3}px` }"
+        :style="{
+          width: `${outerWidth * data.length * 3}px`,
+          transform: `translate(${trackX}px, 0px)`,
+        }"
         @mousedown="mouseDownEve"
         @mouseup="mouseUpEve"
       >
@@ -67,7 +82,7 @@ onMounted(() => {
           class="slide-wrap"
           :class="[
             `slide-position-${idx + 1}`,
-            curValue === item.value ? 'center visible' : '',
+            tripleData[active].value === item.value ? 'center visible' : '',
             isDragging ? 'visible' : '',
           ]"
         >
@@ -75,11 +90,6 @@ onMounted(() => {
             {{ item.label }}
           </BaseButton>
         </div>
-        <!-- <div class="slide-wrap slide-position-2 center visible">
-          <BaseButton size="md">
-            7.5
-          </BaseButton>
-        </div> -->
       </div>
     </div>
   </div>
@@ -130,8 +140,6 @@ onMounted(() => {
       display: flex;
       position: relative;
       will-change: transform;
-      // transform: translate(-1655.84px, 0px);
-      // width: 2709.56px;
       .slide-wrap {
         position: relative;
         opacity: .3;
