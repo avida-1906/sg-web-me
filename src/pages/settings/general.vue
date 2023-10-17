@@ -34,6 +34,8 @@ const paramsData = ref(userInfo.value || {
   sex: 1,
   username: '',
   pay_password: '',
+  google_key: '',
+  google_verify: '',
 })
 const dataChangeCount = ref(0)
 const socialData = [
