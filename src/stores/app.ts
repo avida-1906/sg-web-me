@@ -68,6 +68,7 @@ export const useAppStore = defineStore('app', () => {
     ready: isLogin,
     manual: false,
   })
+  const visibility = useDocumentVisibility()
 
   /** 当前全局选择的货币 */
   const currentGlobalCurrency = ref<EnumCurrencyKey>(EnumCurrency[0] as EnumCurrencyKey)
@@ -124,7 +125,16 @@ export const useAppStore = defineStore('app', () => {
     currentGlobalCurrency.value = currency
   }
 
+  watch(visibility, (bool) => {
+    // 如果页面可见，更新用户余额和用户信息
+    if (bool === 'visible') {
+      updateUserBalance()
+      updateUserInfo()
+    }
+  })
+
   watch(userInfo, () => {
+    // 如果有uid，连接socket
     if (userInfo.value?.uid)
       socketClient.connect()
   })

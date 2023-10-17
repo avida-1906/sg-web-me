@@ -54,7 +54,7 @@ class SocketClient {
   }
 
   /** 断开重新连接 */
-  public reconnect() {
+  public endOrConnect() {
     if (this.client != null) {
       this.#log('已经连接, 断开连接中...')
       const opts: any = null
@@ -79,7 +79,7 @@ class SocketClient {
       }
       else {
         this.lastLoginStatus = isLogin.value
-        this.reconnect()
+        this.endOrConnect()
         return
       }
 

@@ -15,11 +15,15 @@ const getIsRight = computed(() => props.iconAlign === 'right')
 
 <template>
   <div class="app-currency-icon">
-    <div
+    <!-- <div
       v-if="!getIsRight"
       class="icon"
       :data-icon-url="VITE_CURRENCY_ICON_URL"
       :title="currencyType"
+    /> -->
+    <BaseIcon
+      v-if="!getIsRight"
+      :name="`coin-${currencyType.toLocaleLowerCase()}`"
     />
     <span
       v-if="showName"
@@ -27,12 +31,16 @@ const getIsRight = computed(() => props.iconAlign === 'right')
       :style="`margin-${getIsRight ? 'right' : 'left'}: var(--tg-spacing-4);`"
     >{{ currencyType }}</span>
     <slot name="network" />
-    <div
+    <BaseIcon
+      v-if="getIsRight"
+      :name="`coin-${currencyType.toLocaleLowerCase()}`"
+    />
+    <!-- <div
       v-if="getIsRight"
       class="icon"
       :data-icon-url="VITE_CURRENCY_ICON_URL"
       :title="currencyType"
-    />
+    /> -->
   </div>
 </template>
 
