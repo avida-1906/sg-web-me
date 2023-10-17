@@ -3,10 +3,13 @@ import type { IMemberBalanceLockerUpdate } from '~/apis'
 import { generateCurrencyData } from '~/stores/app'
 import type { IUserCurrencyList } from '~/stores/app'
 
+const closeDialog = inject('closeDialog', () => {})
+
 const { t } = useI18n()
 const { openNotify } = useNotify()
-const { currencyConfig, userCurrencyList } = storeToRefs(useAppStore())
+const { currencyConfig, userCurrencyList, userInfo } = storeToRefs(useAppStore())
 const { updateUserBalance } = useAppStore()
+const router = useRouter()
 
 const activeCurrency = ref<IUserCurrencyList>()
 const activeTab = ref('deposit')
@@ -178,8 +181,15 @@ application.allSettled([runAsyncBalanceLockerShow()])
       </template>
     </div>
     <div class="safe-bottom">
-      <div>通过双重验证提高您的账户安全性</div>
-      <BaseButton bg-style="primary" size="md">
+      <div v-if="userInfo && userInfo.google_verify !== '2'">
+        通过双重验证提高您的账户安全性
+      </div>
+      <BaseButton
+        v-if="userInfo && userInfo.google_verify !== '2'"
+        bg-style="primary"
+        size="md"
+        @click="router.push('/settings/security');closeDialog()"
+      >
         开启双重验证
       </BaseButton>
       <BaseButton class="more-btn" type="text">
