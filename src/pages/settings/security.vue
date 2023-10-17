@@ -112,6 +112,13 @@ const {
 const getPayPwdState = computed(() => {
   return userInfo.value?.pay_password === '1'
 })
+const doubleVerified = computed(() => {
+  return userInfo.value?.google_verify === '2'
+})
+const getQRcodeUrl = computed(() => {
+  if (userInfo.value)
+    return generateQRCodeUrl({ label: 'sg', email: userInfo.value.email, secret: userInfo.value.google_key })
+})
 
 function fieldVerify(value: string) {
   if (!value)
@@ -178,6 +185,22 @@ async function submitDoublePassword() {
   if (!loginPwdErrorMsg.value && !doublePwdErrorMsg.value)
     runMemberDualVerify({ password: loginPassword.value, code: doublePassword.value })
 }
+
+/**
+ *
+ * @param params
+ * label: appName
+ * email: userEmail
+ * secret: 密钥
+ */
+function generateQRCodeUrl(params: {
+  label: string
+  email: string
+  secret: string
+}) {
+  console.log(params)
+  return `otpauth://totp/${encodeURIComponent(params.label)}:${encodeURIComponent(params.email)}?secret=${params.secret}&issuer=${encodeURIComponent(params.label)}`
+}
 </script>
 
 <template>
@@ -215,8 +238,8 @@ async function submitDoublePassword() {
     <AppSettingsContentItem
       title="交易密码"
       :btn-loading="payPasswordUpdateLoading"
-      :btn-text="getPayPwdState ? '已设置' : '电邮验证'"
-      verified
+      :badge="getPayPwdState"
+      :verified="getPayPwdState"
       @submit="submitPayPwd"
     >
       <template #top-desc>
@@ -241,27 +264,31 @@ async function submitDoublePassword() {
       title="双重验证"
       last-one
       :btn-loading="dualVerifyLoading"
+      :verified="doubleVerified"
+      :badge="doubleVerified"
       @submit="submitDoublePassword"
     >
       <template #top-desc>
         启用双重验证以让您的账户更加安全。
       </template>
-      <div v-if="userInfo" class="two-step-verification">
+      <div class="two-step-verification">
         <AppCopyLine
+          v-if="userInfo"
           label="将代码复制到您的身份验证器应用程序（Authenticator App）"
           :msg="userInfo.google_key"
         />
         <p class="mt-16">
           防止他人看到此页！
         </p>
-        <div class="qr-wrap">
-          <BaseQrcode :url="userInfo.google_key" class="mt-16" />
+        <div v-if="getQRcodeUrl" class="qr-wrap">
+          <BaseQrcode :url="getQRcodeUrl" class="mt-16" />
         </div>
         <div class="mt-16">
           <BaseLabel label="密码" must-small>
             <BaseInput
               v-model="loginPassword"
               :msg="loginPwdErrorMsg"
+              :disabled="doubleVerified"
               placeholder="请输入登陆密码"
               type="password"
             />
@@ -271,6 +298,7 @@ async function submitDoublePassword() {
               <BaseInput
                 v-model="doublePassword"
                 :msg="doublePwdErrorMsg"
+                :disabled="doubleVerified"
                 placeholder="请输入双重验证密码"
                 type="password"
               />
