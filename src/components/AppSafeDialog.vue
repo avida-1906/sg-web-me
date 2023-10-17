@@ -66,7 +66,10 @@ const {
   data: vaultBalanceData,
   runAsync: runAsyncBalanceLockerShow,
 } = useRequest(ApiMemberBalanceLocker)
-const { run: runLockerUpdate } = useRequest(ApiMemberBalanceLockerUpdate, {
+const {
+  run: runLockerUpdate,
+  loading: lockerUpdateLoading,
+} = useRequest(ApiMemberBalanceLockerUpdate, {
   async onSuccess() {
     openNotify({
       type: 'success',
@@ -154,6 +157,7 @@ application.allSettled([runAsyncBalanceLockerShow()])
         class="safe-btn"
         bg-style="secondary"
         size="xl"
+        :loading="lockerUpdateLoading"
         @click="handleUpdate"
       >
         存入保险库
@@ -174,6 +178,7 @@ application.allSettled([runAsyncBalanceLockerShow()])
           class="safe-btn"
           bg-style="secondary"
           size="xl"
+          :loading="lockerUpdateLoading"
           @click="handleUpdate"
         >
           保险库取款
@@ -214,10 +219,13 @@ application.allSettled([runAsyncBalanceLockerShow()])
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    position: relative;
     span{
       color: var(--tg-text-lightgrey);
-      margin-bottom: 3px;
       font-weight: var(--tg-font-weight-semibold);
+      position: absolute;
+      top: 50%;
+      transform: translate(-118%, -50%);
     }
   }
   .safe-bottom{

@@ -41,6 +41,7 @@ const {
     })
     await nextTick()
     closeDialog()
+    socketClient.connect()
   },
 })
 
