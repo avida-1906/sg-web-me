@@ -52,14 +52,21 @@ class SocketClient {
 
   public connect() {
     if (this.#MQTT_SERVER) {
+      // 判断是否已经连接
+      if (this.client != null) {
+        this.#log('已经连接！！！')
+        return
+      }
+
       this.#log('连接中...')
+
       import('precompiled-mqtt').then((mqtt) => {
-        const { VITE_SOCKET_USERNAME, VITE_SOCKET_PASSWORD } = getEnv()
+        // const { VITE_SOCKET_USERNAME, VITE_SOCKET_PASSWORD } = getEnv()
         this.client = mqtt.connect({
-          username: VITE_SOCKET_USERNAME,
-          password: VITE_SOCKET_PASSWORD,
-          keepalive: 20,
-          clientId: new Date().getTime().toString(),
+          // username: VITE_SOCKET_USERNAME,
+          // password: VITE_SOCKET_PASSWORD,
+          keepalive: 60,
+          clientId: 'asdfasdfa234',
           servers: this.#MQTT_SERVER!,
         })
         this.eventHandler()
@@ -102,6 +109,7 @@ class SocketClient {
 
       this.client.on('disconnect', (disconnectInfo) => {
         this.#log('断开连接', disconnectInfo)
+        this.client = null
       })
 
       this.client.on('reconnect', () => {
