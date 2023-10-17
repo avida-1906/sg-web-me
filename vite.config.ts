@@ -37,7 +37,6 @@ const floatingVue = ['floating-vue']
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd()) as unknown as ImportMetaEnv
-  console.log(env.VITE_HTTP_BASEURL)
 
   return {
     resolve: {

@@ -107,6 +107,7 @@ class HttpClient {
     // 处理后端status为false的情况
     (response) => {
       const { status, data } = response.data as IResponse<any>
+      const responseStatus = response.status
       const appStore = useAppStore()
 
       if (!status) {
@@ -116,12 +117,14 @@ class HttpClient {
           appStore.removeToken()
           openNotify({
             type: 'error',
+            code: `${responseStatus}`,
             message: '登录失效，请重新登录',
           })
         }
         else {
           openNotify({
             type: 'error',
+            code: `${responseStatus}`,
             message: data || '系统错误',
           })
         }
@@ -196,6 +199,7 @@ class HttpClient {
           const status = error.response.status
           openNotify({
             type: 'error',
+            code: `${status}`,
             message: `Url: ${error.config.url}<br />发生错误：${status}`,
           })
           switch (status) {
