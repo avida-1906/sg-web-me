@@ -1,4 +1,6 @@
 <script setup lang='ts'>
+const { t } = useI18n()
+
 const currentTab = ref('1')
 const tabList = ref([
   { label: '足球', value: '1', num: '5' },
@@ -30,7 +32,7 @@ const breadList = ref([
           <span>FC Barcelona (Moic)</span>
         </div>
         <div class="status">
-          已结束
+          {{ t('sports_status_finished') }}
         </div>
         <BaseBreadcrumbs :list="breadList" />
       </div>

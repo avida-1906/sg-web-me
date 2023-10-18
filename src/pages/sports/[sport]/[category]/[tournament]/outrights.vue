@@ -2,13 +2,13 @@
 </script>
 
 <template>
-  <div class="tg-sports-country-event-all">
-    当前国家全部赛事
+  <div class="tg-sports-tournament-fixture-outrights">
+    当前国家某种赛事的冠军投注
   </div>
 </template>
 
 <style lang="scss" scoped>
-.tg-sports-country-event-all {
+.tg-sports-tournament-fixture-outrights {
 
 }
 </style>

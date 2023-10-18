@@ -77,6 +77,13 @@ const paginationData = {
   pageNumber: 1,
   total: 0,
 }
+
+const {
+  list: loginLogList,
+  runAsync: loginLogRunAsync,
+} = useList(ApiMemberFrontLoginLogList, {}, { page_size: 10 })
+
+application.allSettled([loginLogRunAsync()])
 </script>
 
 <template>

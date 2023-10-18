@@ -7,18 +7,23 @@ interface Props {
 const props = defineProps<Props>()
 const emit = defineEmits(['update:modelValue', 'baseTypeChange'])
 
-const marketTypeText = computed(() => props.modelValue ? '三项投注' : '标准')
+const { t } = useI18n()
+
+const marketTypeText = computed(() => props.modelValue
+  ? t('sports_three_options')
+  : t('sports_standard'),
+)
 // 标准盘选项
 const baseType = ref(props.baseType)
 const baseOptions = [
-  { label: '获胜盘', value: 'winner' },
-  { label: '让分盘', value: 'handicap' },
-  { label: '总分盘', value: 'total' },
+  { label: t('sports_winner_market'), value: 'winner' },
+  { label: t('sports_handicap_market'), value: 'handicap' },
+  { label: t('sports_total_market'), value: 'total' },
 ]
 // 三项投注选项
 const threeType = ref('home')
 const threeOptions = [
-  { label: '主页', value: 'home' },
+  { label: t('home_space_title'), value: 'home' },
 ]
 
 function toggleBase() {
