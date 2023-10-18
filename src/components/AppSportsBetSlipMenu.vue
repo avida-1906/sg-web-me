@@ -1,34 +1,44 @@
 <script setup lang='ts'>
 import { EnumsBetSlipTabs } from '~/utils/enums'
 
+const { t } = useI18n()
 const router = useRouter()
 const { closeRightSidebar } = useRightSidebar()
 
 const type = ref(EnumsBetSlipTabs.betSlip)
 const typeOptions = [
-  { label: '投注单', value: EnumsBetSlipTabs.betSlip, num: 5, icon: 'spt-user-bet' },
-  { label: '我的投注', value: EnumsBetSlipTabs.myBets, num: 0, icon: 'navbar-user-bet' },
+  { label: t('bet_slip'), value: EnumsBetSlipTabs.betSlip, num: 5, icon: 'spt-user-bet' },
+  {
+    label: t('my_bets'),
+    value: EnumsBetSlipTabs.myBets,
+    num: 0,
+    icon: 'navbar-user-bet',
+  },
 ]
 // 投注单Tab
 const betSlipType = ref<EnumsBetSlipTabs.single | EnumsBetSlipTabs.multi>(
   EnumsBetSlipTabs.single,
 )
 const betSlipTypeTabs = [
-  { label: '单项投注', value: EnumsBetSlipTabs.single, icon: 'navbar-bet' },
-  { label: '复式投注', value: EnumsBetSlipTabs.multi, icon: 'navbar-bet-mult' },
+  { label: t('sports_single_bet'), value: EnumsBetSlipTabs.single, icon: 'navbar-bet' },
+  {
+    label: t('sports_multi_bet'),
+    value: EnumsBetSlipTabs.multi,
+    icon: 'navbar-bet-mult',
+  },
 ]
 // 我的投注Tab
 const myBetsType = ref(EnumsBetSlipTabs.active)
 const myBetsTypeTabs = [
-  { label: '活跃', value: EnumsBetSlipTabs.active, icon: 'navbar-active' },
-  { label: '已结算', value: EnumsBetSlipTabs.settled, icon: 'navbar-settled' },
+  { label: t('sports_active'), value: EnumsBetSlipTabs.active, icon: 'navbar-active' },
+  { label: t('sports_settled'), value: EnumsBetSlipTabs.settled, icon: 'navbar-settled' },
 ]
 // 下注选项
 const bettingOption = ref('1')
 const bettingOptions = [
-  { label: '接受任何赔率', value: '1' },
-  { label: '只接受更高的赔率', value: '2' },
-  { label: '不接受任何赔率更改', value: '3' },
+  { label: t('sports_accept_any_odds'), value: '1' },
+  { label: t('sports_accept_higher_odds'), value: '2' },
+  { label: t('sports_accept_none_odds'), value: '3' },
 ]
 
 const isBetSlip = computed(() => type.value === EnumsBetSlipTabs.betSlip)
@@ -86,7 +96,7 @@ const betBtnText = computed(() =>
           padding0
           style="--tg-base-button-text-default-color:var(--tg-text-white);"
         >
-          全部清除
+          {{ t('clear_all') }}
         </BaseButton>
       </div>
     </div>
@@ -113,7 +123,7 @@ const betBtnText = computed(() =>
               />
             </template>
             <template #description>
-              <span>投注单为空</span>
+              <span>{{ t('sports_bet_slip_empty') }}</span>
             </template>
             <template #default>
               <BaseButton
@@ -122,7 +132,7 @@ const betBtnText = computed(() =>
                 style=" --tg-base-button-text-default-color:var(--tg-text-white)"
                 @click="router.push('/sports')"
               >
-                立即开始下注！
+                {{t('sports_betting_now')}}
               </BaseButton>
             </template>
           </BaseEmpty>
@@ -141,17 +151,17 @@ const betBtnText = computed(() =>
         </BaseInput>
         <div class="betslip-calculation-summary">
           <div v-show="isBetMulti" class="calculation-item">
-            <span>总赔率</span>
+            <span>{{ t('sports_total_odds') }}</span>
             <AppSportsOdds odds="1.00" arrow="left" />
           </div>
           <!-- 单式 -->
           <div v-show="isBetSingle" class="calculation-item">
-            <span>总投注额</span>
+            <span>{{ t('sports_total_bet_amount') }}</span>
             <AppAmount amount="0.00000000" currency-type="BTC" />
           </div>
 
           <div class="calculation-item">
-            <span>预计支付额</span>
+            <span>{{ t('sports_estimated_payment_amount') }}</span>
             <AppAmount amount="0.00000000" currency-type="BTC" />
           </div>
         </div>
@@ -160,16 +170,16 @@ const betBtnText = computed(() =>
           <div class="icon">
             <BaseIcon class="error-icon" name="uni-warning" />
           </div>
-          <span>赔率已更改。</span>
+          <span>{{ t('sports_odds_has_changed') }}</span>
         </div>
 
         <BaseButton size="md" bg-style="primary">
-          押下{{ betBtnText }}
+          {{ t('sports_bet') }}{{ betBtnText }}
         </BaseButton>
       </template>
       <!-- 我的投注 -->
       <BaseButton v-else size="md" @click="router.push('/sports/my-bets')">
-        查看全部
+        {{ t('view_all') }}
       </BaseButton>
     </div>
   </div>
