@@ -22,6 +22,8 @@ const {
   isLessThanLg,
   isGreaterThanSm,
   isMobile,
+  width: windowWidth,
+  widthBoundarySm,
 } = storeToRefs(windowStore)
 const { animatingSuspense, getSuspenseStatus } = useLayoutAnimate({ aniSuspense: true })
 
@@ -39,6 +41,16 @@ const isCasinoGames = computed(() => route.name === 'casino-games')
 // home-overlay 是否显示
 const homeOverlayIsShow = computed(() => {
   return leftIsExpand.value && isLessThanLg.value && !isMobile.value
+})
+const rightWidth = computed(() => {
+  if (windowWidth.value > widthBoundarySm.value && windowWidth.value < 1000)
+    return '320px'
+
+  else if (windowWidth.value >= 1000)
+    return '370px'
+
+  else
+    return ''
 })
 
 function suspenseResolved() {
@@ -76,7 +88,9 @@ onErrorCaptured((err, instance, info) => {
 
       <Transition name="smallslide-fade-left">
         <div
-          v-if="!isMobile && (!leftIsExpand || isSwitching)" class="left-sidebar small-side" :style="{
+          v-if="!isMobile && (!leftIsExpand || isSwitching)"
+          class="left-sidebar small-side"
+          :style="{
             '--width': 'var(--tg-sidebar-width-sm)',
           }" :class="{
             'fixed-small': isGreaterThanSm,
@@ -133,21 +147,44 @@ onErrorCaptured((err, instance, info) => {
     </div>
     <Transition :name="isMobile ? 'bigslide-fade-top' : ''">
       <div
-        v-if="rightIsExpand" class="right-sidebar" :class="{
+        v-if="rightIsExpand"
+        class="right-sidebar"
+        :class="{
           'width-none': rightContainerIs0,
           'fixed': isLessThanSm,
           'mobile': isMobile,
         }"
+        :style="{
+          '--width': rightWidth,
+        }"
       >
-        <template v-if="currentRightSidebarContent === EnumRightSidebarContent.NOTIFICATION">
-          <AppNotice />
-        </template>
-        <template v-if="currentRightSidebarContent === EnumRightSidebarContent.CHATROOM">
-          <AppChat />
-        </template>
-        <template v-if="currentRightSidebarContent === EnumRightSidebarContent.BETTING">
-          <AppSportsBetSlipMenu />
-        </template>
+        <div
+          :style="{
+            width: 'var(--width)',
+          }"
+        >
+          <template
+            v-if="
+              currentRightSidebarContent === EnumRightSidebarContent.NOTIFICATION
+            "
+          >
+            <AppNotice />
+          </template>
+          <template
+            v-if="
+              currentRightSidebarContent === EnumRightSidebarContent.CHATROOM
+            "
+          >
+            <AppChat />
+          </template>
+          <template
+            v-if="
+              currentRightSidebarContent === EnumRightSidebarContent.BETTING
+            "
+          >
+            <AppSportsBetSlipMenu />
+          </template>
+        </div>
       </div>
     </Transition>
     <AppFooterbar v-show="!isGreaterThanSm" />
@@ -326,6 +363,5 @@ onErrorCaptured((err, instance, info) => {
   @media screen and (min-width: 1000px) {
     width: 370px;
   }
-
 }
 </style>
