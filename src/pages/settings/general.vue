@@ -267,7 +267,7 @@ onMounted(() => {
         />
       </BaseLabel>
       <BaseLabel label="手机号码" must-small>
-        <BaseInput v-model="paramsData.phone" placeholder="请绑定手机号码" />
+        <BaseInput v-model="paramsData.phone" placeholder="请绑定手机号码" type="number" />
       </BaseLabel>
     </AppSettingsContentItem>
     <AppSettingsContentItem
