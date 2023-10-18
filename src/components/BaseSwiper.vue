@@ -24,11 +24,14 @@ const touchEndPoint = ref()
 const swiperTrack = ref()
 
 const trackOuterWidth = computed(() => Math.ceil(outerWidth.value * props.data.length))
+const dragDirection = computed(() => touchEndPoint.value - touchStartPoint.value)
 
 emit('update:modelValue', props.data[active.value])
 emit('change', props.data[active.value])
 
 function slideToPrev() {
+  if (isDragging.value)
+    return
   if (active.value > 0) {
     duration.value = 800
     trackX.value += outerWidth.value
@@ -41,6 +44,8 @@ function slideToPrev() {
   }
 }
 function slideToNext() {
+  if (isDragging.value)
+    return
   if (active.value < props.data.length - 1) {
     duration.value = 800
     trackX.value -= outerWidth.value
@@ -63,6 +68,7 @@ function mouseUpEve(event: MouseEvent) {
   if (trackX.value > 0) {
     duration.value = trackX.value / outerWidth.value * 800
     trackX.value = 0
+    active.value = 0
   }
   else {
     const minTrack = outerWidth.value - trackOuterWidth.value
@@ -71,6 +77,42 @@ function mouseUpEve(event: MouseEvent) {
         = (-trackX.value + minTrack)
         / outerWidth.value * 800
       trackX.value = minTrack
+      active.value = props.data.length - 1
+    }
+    else {
+      if (Math.abs(dragDirection.value) >= outerWidth.value / 4) {
+        if (dragDirection.value > 0) {
+          trackX.value += (outerWidth.value - dragDirection.value)
+          active.value -= 1
+          if (trackX.value > 0)
+            trackX.value = 0
+
+          if (active.value < 0)
+            active.value = 0
+
+          duration.value
+            = (outerWidth.value - dragDirection.value) / outerWidth.value * 800
+        }
+        else {
+          trackX.value -= (outerWidth.value + dragDirection.value)
+          active.value += 1
+          if (trackX.value < -trackOuterWidth.value)
+            trackX.value = -trackOuterWidth.value
+
+          if (active.value > props.data.length - 1)
+            active.value = props.data.length - 1
+
+          duration.value
+            = (outerWidth.value + dragDirection.value) / outerWidth.value * 800
+        }
+      }
+      else {
+        if (dragDirection.value)
+          trackX.value -= dragDirection.value
+        else
+          trackX.value += dragDirection.value
+        duration.value = dragDirection.value / outerWidth.value * 800
+      }
     }
   }
 }
@@ -81,6 +123,10 @@ function mouseMoveEve(event: MouseEvent) {
     trackX.value += temp
     touchEndPoint.value = event.clientX
   }
+}
+function mouseLeaveEve(event: MouseEvent) {
+  if (isDragging.value)
+    mouseUpEve(event)
 }
 
 onMounted(() => {
@@ -123,7 +169,7 @@ onMounted(() => {
         @mousedown="mouseDownEve"
         @mouseup="mouseUpEve"
         @mousemove="mouseMoveEve"
-        @mouseleave="mouseUpEve"
+        @mouseleave="mouseLeaveEve"
       >
         <div
           v-for="item, idx in data"
@@ -131,12 +177,12 @@ onMounted(() => {
           class="slide-wrap"
           :class="[
             `slide-position-${idx + 1}`,
-            data[active].value === item.value ? 'center visible' : '',
+            data[active].value === item.value ? 'center visible active' : '',
             isDragging ? 'visible' : '',
           ]"
         >
           <BaseButton size="md">
-            {{ item.label }}
+            <span class="label">{{ item.label }}</span>
           </BaseButton>
         </div>
       </div>
@@ -200,6 +246,11 @@ onMounted(() => {
         width: var(--swiper-outer-width);
         &.visible {
           opacity: 1;
+        }
+        &.active {
+          .label {
+            color: var(--tg-text-lightblue);
+          }
         }
         button {
           display: flex;
