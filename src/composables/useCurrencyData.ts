@@ -14,7 +14,7 @@ export function useCurrencyData() {
   // 搜索内容
   const searchValue = ref('')
   // 是否隐藏零余额
-  const hideZeroBalance = ref(false)
+  const { bool: hideZeroBalance } = useBoolean(false)
   // 当前选择的货币
   const currentCurrency = ref(currentGlobalCurrency.value)
 
