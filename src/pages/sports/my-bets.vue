@@ -2,11 +2,12 @@
 defineProps<{ onPage?: boolean }>()
 
 const router = useRouter()
+const { t } = useI18n()
 
 const currentTab = ref('1')
 const tabList = [
-  { label: '活跃', value: '1' },
-  { label: '已结算', value: '2' },
+  { label: t('sports_active'), value: '1' },
+  { label: t('sports_settled'), value: '2' },
 ]
 const { page, prev, next, hasMore } = useList(ApiMemberFavList)
 </script>
@@ -16,7 +17,7 @@ const { page, prev, next, hasMore } = useList(ApiMemberFavList)
     <div class="sports-page-title">
       <div class="left">
         <BaseIcon name="spt-user-bet" />
-        <h6>我的投注</h6>
+        <h6>{{ t('my_bets') }}</h6>
       </div>
     </div>
     <div class="tab-bar">
@@ -35,7 +36,7 @@ const { page, prev, next, hasMore } = useList(ApiMemberFavList)
           </div>
         </template>
         <template #description>
-          <span>暂无活跃的赌注</span>
+          <span>{{ t('sports_no_active_bet') }}</span>
         </template>
         <template #default>
           <BaseButton
@@ -44,7 +45,7 @@ const { page, prev, next, hasMore } = useList(ApiMemberFavList)
             style=" --tg-base-button-text-default-color:var(--tg-text-white)"
             @click="router.push('/sports')"
           >
-            立即开始下注！
+            {{ t('sports_betting_now') }}
           </BaseButton>
         </template>
       </BaseEmpty>

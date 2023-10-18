@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 defineProps<{ onPage?: boolean }>()
 
+const { t } = useI18n()
+
 const currentGame = ref('2')
 const gameList = [
   { name: '全部', num: 1754, id: '1' },
@@ -53,7 +55,7 @@ watch(currentGame, (a) => {
     <div class="sports-page-title">
       <div class="left">
         <BaseIcon name="spt-timing" />
-        <h6>即将开赛</h6>
+        <h6>{{ t('sports_tab_starting_soon') }}</h6>
       </div>
       <AppSportsMarketTypeSelect
         v-model="isStandard" :disabled="isAll" :base-type="baseType"

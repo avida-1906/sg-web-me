@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 defineProps<{ onPage?: boolean }>()
 
+const { t } = useI18n()
+
 const currentGame = ref('2')
 const gameList = [
   { name: '网球', id: '2', num: 22 },
@@ -19,7 +21,7 @@ function onBaseTypeChange(v: string) {
     <div class="sports-page-title">
       <div class="left">
         <BaseIcon name="spt-ball-plate" />
-        <h6>滚球盘</h6>
+        <h6>{{ t('sports_tab_live_events') }}</h6>
       </div>
       <AppSportsMarketTypeSelect
         v-model="isStandard" :base-type="baseType"
