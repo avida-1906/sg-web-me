@@ -7,6 +7,7 @@ interface Props {
 }
 const props = defineProps<Props>()
 
+const { t } = useI18n()
 const router = useRouter()
 const { width } = storeToRefs(useWindowStore())
 const { checkDragDialog } = useDragDialogList()
@@ -78,8 +79,10 @@ const breadcrumbs = [
 
 <template>
   <div
-    class="app-sports-market-info"
-    :class="[baseGridAreaClass, baseGridClass, { 'is-last': isLast }]"
+    class="app-sports-market-info" :class="[
+      baseGridAreaClass, baseGridClass,
+      { 'is-last': isLast },
+    ]"
   >
     <!-- 盘口状态 -->
     <div class="misc">
@@ -174,18 +177,32 @@ const breadcrumbs = [
           </div>
         </div>
         <div class="options-wrapper">
-          <BaseButton
-            type="text" padding0 :disabled="checkDragDialog(`${fakeDragDialogId}trend`)"
-            @click="openDragDialog('trend')"
-          >
-            <BaseIcon name="uni-trend" />
-          </BaseButton>
-          <BaseButton
-            type="text" padding0 :disabled="checkDragDialog(`${fakeDragDialogId}live`)"
-            @click="openDragDialog('live')"
-          >
-            <BaseIcon name="spt-live" />
-          </BaseButton>
+          <VMenu placement="top">
+            <BaseButton
+              type="text" padding0 :disabled="checkDragDialog(`${fakeDragDialogId}trend`)"
+              @click="openDragDialog('trend')"
+            >
+              <BaseIcon name="uni-trend" />
+            </BaseButton>
+            <template #popper>
+              <div class="tiny-menu-item-title">
+                {{ t('sports_live_trend') }}
+              </div>
+            </template>
+          </VMenu>
+          <VMenu placement="top">
+            <BaseButton
+              type="text" padding0 :disabled="checkDragDialog(`${fakeDragDialogId}live`)"
+              @click="openDragDialog('live')"
+            >
+              <BaseIcon name="spt-live" />
+            </BaseButton>
+            <template #popper>
+              <div class="tiny-menu-item-title">
+                {{ t('sports_live_tv') }}
+              </div>
+            </template>
+          </VMenu>
         </div>
       </div>
     </template>
@@ -238,19 +255,40 @@ const breadcrumbs = [
     <!-- 联赛分类 -->
     <div v-if="showBreadcrumb || (!isStandard && !isH5Layout)" class="breadcrumb">
       <BaseBreadcrumbs
-        :list="breadcrumbs" :only-last="isH5Layout" @item-click="onBreadcrumbsClick"
+        :list="breadcrumbs" :only-last="isH5Layout"
+        @item-click="onBreadcrumbsClick"
       />
     </div>
 
     <!-- 更多盘口 -->
     <div class="market-count" :class="{ 'market-count-h5': isH5Layout }">
       <div v-if="isH5Layout" class="options-wrapper">
-        <BaseButton type="text" padding0>
-          <BaseIcon name="uni-trend" />
-        </BaseButton>
-        <BaseButton type="text" padding0>
-          <BaseIcon name="spt-live" />
-        </BaseButton>
+        <VMenu placement="top">
+          <BaseButton
+            type="text" padding0 :disabled="checkDragDialog(`${fakeDragDialogId}trend`)"
+            @click="openDragDialog('trend')"
+          >
+            <BaseIcon name="uni-trend" />
+          </BaseButton>
+          <template #popper>
+            <div class="tiny-menu-item-title">
+              {{ t('sports_live_trend') }}
+            </div>
+          </template>
+        </VMenu>
+        <VMenu placement="top">
+          <BaseButton
+            type="text" padding0 :disabled="checkDragDialog(`${fakeDragDialogId}live`)"
+            @click="openDragDialog('live')"
+          >
+            <BaseIcon name="spt-live" />
+          </BaseButton>
+          <template #popper>
+            <div class="tiny-menu-item-title">
+              {{ t('sports_live_tv') }}
+            </div>
+          </template>
+        </VMenu>
       </div>
       <BaseButton
         class="text-btn" type="text" padding0
