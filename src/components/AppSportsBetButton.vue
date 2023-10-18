@@ -9,7 +9,9 @@ withDefaults(defineProps<Props>(), {
   layout: 'vertical',
 })
 
+const { t } = useI18n()
 const { openRightSidebar, rightIsExpand } = useRightSidebar()
+
 function clickHandler() {
   if (!rightIsExpand.value)
     openRightSidebar(EnumRightSidebarContent.BETTING)
@@ -28,7 +30,7 @@ function clickHandler() {
       <div class="name">
         汉夫曼，扬尼克
       </div>
-      <span v-if="disabled" class="status">暂停</span>
+      <span v-if="disabled" class="status">{{ t('sports_status_timeout') }}</span>
       <AppSportsOdds
         v-else :style="`--tg-sports-odds-color:${active
           ? 'var(--tg-text-white)' : ''}`"

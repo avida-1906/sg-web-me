@@ -1,8 +1,10 @@
 <script setup lang='ts'>
+const { t } = useI18n()
+
 // 三项投注选项
 const threeType = ref('home')
 const threeOptions = [
-  { label: '主页', value: 'home' },
+  { label: t('home_space_title'), value: 'home' },
 ]
 </script>
 
@@ -11,7 +13,7 @@ const threeOptions = [
     <div class="sports-page-title">
       <div class="left">
         <BaseIcon name="uni-popular" />
-        <h6>热门赛事</h6>
+        <h6>{{ t('sports_hot_event') }}</h6>
       </div>
       <div class="right">
         <VMenu placement="top">
@@ -20,7 +22,7 @@ const threeOptions = [
           </BaseButton>
           <template #popper>
             <div class="tiny-menu-item-title">
-              三项投注
+              {{ t('sports_three_options') }}
             </div>
           </template>
         </VMenu>

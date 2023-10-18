@@ -13,6 +13,7 @@ const props = withDefaults(defineProps<Props>(), {
   index: 0,
   betSlipType: EnumsBetSlipTabs.single,
 })
+const { t } = useI18n()
 
 const isBetSingle = computed(() =>
   props.betSlipType === EnumsBetSlipTabs.single)
@@ -22,7 +23,7 @@ const isFirst = computed(() => props.index === 0)
 
 <template>
   <div v-if="isBetSingle && index === 1" class="duplicate-bet mt12">
-    重复下注
+    {{ t('sports_duplicate_bet') }}
   </div>
   <div
     class="app-sports-bet-slip" :class="{
@@ -36,7 +37,7 @@ const isFirst = computed(() => props.index === 0)
     <div class="header" :class="{ 'round-header': isFirst || isBetSingle }">
       <div class="fixture-name">
         <div v-if="isLive" class="status live">
-          滚球
+          {{ t('sports_status_live') }}
         </div>
         <div class="text">
           深圳市足球俱乐部 - 长春亚泰
@@ -59,7 +60,7 @@ const isFirst = computed(() => props.index === 0)
       </div>
       <!-- 状态或赔率 -->
       <div v-if="isClosed" class="closed">
-        已结算
+        {{ t('sports_settled') }}
       </div>
       <AppSportsOdds v-else odds="2.35" arrow="left" />
       <!-- 单式金额输入框 -->
@@ -77,7 +78,7 @@ const isFirst = computed(() => props.index === 0)
           </BaseInput>
         </div>
         <div class="estimated-label">
-          <span>预计支付金额</span>
+          <span>{{ t('sports_estimated_payment_amount') }}</span>
         </div>
         <div class="estimated-amount">
           <AppAmount

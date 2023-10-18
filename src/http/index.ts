@@ -1,5 +1,6 @@
 import type { AxiosResponse, InternalAxiosRequestConfig } from 'axios'
 import { getCurrentLanguageForBackend } from '~/modules/i18n'
+import { router } from '~/modules/router'
 
 const { VITE_HTTP_TIMEOUT, VITE_HTTP_BASEURL, PROD } = getEnv()
 
@@ -16,6 +17,7 @@ type IResponseInterceptors = (
 ) => AxiosResponse<any> | Promise<Error>
 
 const { openNotify } = useNotify()
+const { openLoginDialog } = useLoginDialog()
 
 class HttpClient {
   cancelTokenList: AbortController[] = []
@@ -120,6 +122,10 @@ class HttpClient {
             code: `${responseStatus}`,
             message: '登录失效，请重新登录',
           })
+          if (router.currentRoute.value.path !== '/') {
+            router.push('/')
+            openLoginDialog()
+          }
         }
         else {
           openNotify({

@@ -18,7 +18,7 @@ interface IResponseList<T> {
 }
 
 /** 绑定的钱包银行卡对象 */
-interface BankCard {
+export interface BankCard {
   id: string
   uid: string
   username: string
@@ -31,7 +31,7 @@ interface BankCard {
 }
 
 /** 绑定的钱包虚拟币地址对象 */
-interface VirtualCoin {
+export interface VirtualCoin {
   id: string
   uid: string
   state: number
