@@ -23,7 +23,7 @@ const getIsRight = computed(() => props.iconAlign === 'right')
     /> -->
     <BaseIcon
       v-if="!getIsRight"
-      :name="`coin-${currencyType.toLocaleLowerCase()}`"
+      :name="`coin-${currencyType && currencyType.toLocaleLowerCase()}`"
     />
     <span
       v-if="showName"
