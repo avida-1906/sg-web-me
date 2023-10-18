@@ -8,7 +8,7 @@ export function useCurrencyData() {
   const {
     currentGlobalCurrency,
     currentGlobalCurrencyBalance,
-    userCurrencyList,
+    userCurrencyList: _userCurrencyList,
   } = storeToRefs(appStore)
 
   // 搜索内容
@@ -17,6 +17,15 @@ export function useCurrencyData() {
   const hideZeroBalance = ref(false)
   // 当前选择的货币
   const currentCurrency = ref(currentGlobalCurrency.value)
+
+  // 用户货币数据，如果隐藏零余额，就过滤掉零余额的货币
+  const userCurrencyList = computed(() => {
+    const list = _userCurrencyList.value
+    if (hideZeroBalance.value)
+      return list.filter(item => Number(item.balance) > 0)
+
+    return list
+  })
 
   // 渲染货币列表
   const renderCurrencyList = computed(() => {
@@ -54,6 +63,10 @@ export function useCurrencyData() {
     return virtualList.includes(currency)
   }
 
+  watchEffect(() => {
+    console.error('userCurrencyList', userCurrencyList.value)
+  })
+
   return {
     currentGlobalCurrency,
     currentGlobalCurrencyBalance,
@@ -61,6 +74,7 @@ export function useCurrencyData() {
     searchValue,
     renderCurrencyList,
     hideZeroBalance,
+    userCurrencyList,
     changeCurrency,
     clearSearchValue,
     changeCurrentCurrency,
