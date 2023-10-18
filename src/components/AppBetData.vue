@@ -285,7 +285,7 @@ onMounted(() => {
     <div class="bet-data-head">
       <BaseTab v-model="activeTab" :list="getTabOptions" size="large" />
       <div v-if="isGreaterThanSm" class="select-ranking center">
-        <VMenu placement="top">
+        <VTooltip placement="top">
           <div
             class="switch-hidden"
             :style="{ '--tg-icon-color': isHidden ? '#fff' : '' }"
@@ -298,7 +298,7 @@ onMounted(() => {
               {{ `隐身模式${isHidden ? '开启' : '关闭'}` }}
             </div>
           </template>
-        </VMenu>
+        </VTooltip>
         <BaseSelect v-model="selectSize" :options="selectOptions" small />
       </div>
     </div>
@@ -325,7 +325,7 @@ onMounted(() => {
       </template>
       <template #player="{ record }">
         <template v-if="record.stealth">
-          <VMenu placement="top">
+          <VTooltip placement="top">
             <div class="center stealth-box">
               <BaseIcon name="uni-hidden" />
               <span style="padding-left: 5px;">隐身</span>
@@ -335,7 +335,7 @@ onMounted(() => {
                 此玩家启用了私密功能
               </div>
             </template>
-          </VMenu>
+          </VTooltip>
         </template>
         <div v-else class="player-box cursor-pointer">
           {{ record.player }}

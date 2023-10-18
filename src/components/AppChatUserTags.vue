@@ -21,7 +21,7 @@ const levelRoleTxt = {
 <template>
   <div class="tg-user-tags">
     <template v-if="userInfo.level">
-      <VMenu placement="top">
+      <VTooltip placement="top">
         <div class="user-level-tag" :class="[`user-badge-${userInfo.level}`]">
           <span class="hoverable">
             <BaseIcon :name="`chat-star-${userInfo.level}`" />
@@ -32,10 +32,10 @@ const levelRoleTxt = {
             {{ levelRoleTxt[userInfo.level] }}
           </div>
         </template>
-      </VMenu>
+      </VTooltip>
     </template>
     <template v-if="userInfo.role">
-      <VMenu placement="top">
+      <VTooltip placement="top">
         <div class="user-role-tag" :class="[`user-role-${userInfo.role}`]">
           <span class="hoverable">{{ userInfo.role[0] }}</span>
         </div>
@@ -44,7 +44,7 @@ const levelRoleTxt = {
             {{ levelRoleTxt[userInfo.role] }}
           </div>
         </template>
-      </VMenu>
+      </VTooltip>
     </template>
     <BaseButton type="text">
       <span class="user-name">{{ userInfo.name }}</span>

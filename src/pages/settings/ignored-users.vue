@@ -54,7 +54,7 @@ const paginationData = {
       </template>
       <template #player="{ record }">
         <div class="user-info">
-          <VMenu placement="top">
+          <VTooltip placement="top">
             <div class="cursor-help">
               <BaseIcon :name="record.vipIcon" />
             </div>
@@ -63,7 +63,7 @@ const paginationData = {
                 等级描述
               </div>
             </template>
-          </VMenu>
+          </VTooltip>
           <BaseButton type="text" class="user-name">
             {{ record.player }}
           </BaseButton>

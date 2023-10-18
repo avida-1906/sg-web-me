@@ -75,7 +75,7 @@ function itemClick(item: MenuItem) {
           disabled: menuitem.token && !isLogin,
         }"
       >
-        <VMenu placement="top">
+        <VTooltip placement="top">
           <div class="trigger" @click="itemClick(menuitem)">
             <BaseIcon :name="menuitem.icon" />
             <div
@@ -90,7 +90,7 @@ function itemClick(item: MenuItem) {
               {{ menuitem.title }}
             </div>
           </template>
-        </VMenu>
+        </VTooltip>
       </li>
     </ul>
   </section>

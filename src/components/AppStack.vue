@@ -2,7 +2,7 @@
 interface Props {
   paginationData: {
     pageSize: number // 每页大小
-    pageNumber: number // 当前页
+    page: number // 当前页
     total: number // 总数
   }
 }
@@ -11,24 +11,24 @@ const props = withDefaults(defineProps<Props>(), {
   paginationData() {
     return {
       pageSize: 10,
-      pageNumber: 1,
+      page: 1,
       total: 0,
     }
   },
 })
 const emit = defineEmits(['previous', 'next'])
 
-const maxPageNumber = computed(() => {
+const maxPage = computed(() => {
   return Math.ceil(props.paginationData.total / props.paginationData.pageSize)
 })
 
 const toPrevious = function () {
-  if (props.paginationData.total === 0 || props.paginationData.pageNumber === 1)
+  if (props.paginationData.total === 0 || props.paginationData.page === 1)
     return
   emit('previous')
 }
 const toNext = function () {
-  if (props.paginationData.total === 0 || props.paginationData.pageNumber === maxPageNumber.value)
+  if (props.paginationData.total === 0 || props.paginationData.page === maxPage.value)
     return
   emit('next')
 }
@@ -40,7 +40,7 @@ const toNext = function () {
       class="pagination-previous"
       :class="{
         'no-data': props.paginationData.total === 0
-          || props.paginationData.pageNumber === 1,
+          || props.paginationData.page === 1,
       }"
       @click="toPrevious"
     >
@@ -50,7 +50,7 @@ const toNext = function () {
       class="pagination-next"
       :class="{
         'no-data': props.paginationData.total === 0
-          || props.paginationData.pageNumber === maxPageNumber,
+          || props.paginationData.page === maxPage,
       }"
       @click="toNext"
     >

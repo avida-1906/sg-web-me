@@ -11,7 +11,7 @@ const { copy } = useClipboard()
 </script>
 
 <template>
-  <div class="wrapper app-copy-line">
+  <div class="app-copy-line wrapper">
     <div class="link">
       <span v-if="title" class="title">{{ title }}</span>
       <div class="wrap">
@@ -28,7 +28,7 @@ const { copy } = useClipboard()
               >
             </div>
             <div class="input-button-wrap">
-              <VMenu
+              <VTooltip
                 :triggers="['click']"
                 placement="top"
                 :hide-triggers="(triggers: any) => [...triggers, 'hover']"
@@ -39,7 +39,7 @@ const { copy } = useClipboard()
                 <template #popper>
                   <div class="tiny-menu-item-title">成功复制！</div>
                 </template>
-              </VMenu>
+              </VTooltip>
             </div>
           </div>
           <span class="label-content">

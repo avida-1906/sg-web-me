@@ -7,31 +7,29 @@ interface Column {
   align?: 'left' | 'center' | 'right'
 }
 
-const { bool: loading } = useBoolean(false)
-
-const selectValue = ref('1')
-const selectOptions = [
-  { label: '全部', value: '1' },
-  { label: '活跃', value: '2' },
-  { label: '不活跃', value: '3' },
-]
+// const selectValue = ref('1')
+// const selectOptions = [
+//   { label: '全部', value: '1' },
+//   { label: '活跃', value: '2' },
+//   { label: '不活跃', value: '3' },
+// ]
 const columns: Column[] = [
   {
     title: '浏览器',
     dataIndex: 'browser',
-    width: 180,
+    width: 100,
     align: 'left',
   },
   {
     title: '靠近',
     dataIndex: 'near',
-    width: 120,
+    width: 100,
     align: 'center',
   },
   {
     title: 'IP地址',
     dataIndex: 'addr',
-    width: 130,
+    width: 100,
     align: 'center',
   },
   {
@@ -40,65 +38,47 @@ const columns: Column[] = [
     width: 100,
     align: 'center',
   },
-  {
-    title: '行动',
-    dataIndex: 'action',
-    slot: 'action',
-    width: 100,
-    align: 'right',
-  },
 ]
-const tableData = ref([
-  {
-    browser: 'Chrome (Unknown)',
-    near: 'PH, Pasig',
-    addr: '155.137.88.4',
-    lastUsed: '38分钟前',
-    action: '当前',
-  },
-  {
-    browser: 'Chrome (Unknown)',
-    near: 'PH, Pasig',
-    addr: '155.137.88.4',
-    lastUsed: '38分钟前',
-    action: '当前',
-  },
-  {
-    browser: 'Chrome (Unknown)',
-    near: 'PH, Pasig',
-    addr: '155.137.88.4',
-    lastUsed: '38分钟前',
-    action: '当前',
-  },
-])
-// 上下页
-const paginationData = {
-  pageSize: 10,
-  pageNumber: 1,
-  total: 0,
-}
 
 const {
   list: loginLogList,
   runAsync: loginLogRunAsync,
+  page,
+  page_size,
+  total,
+  prev,
+  next,
 } = useList(ApiMemberFrontLoginLogList, {}, { page_size: 10 })
+
+const tableData = computed(() => {
+  if (loginLogList) {
+    return loginLogList.value.map((item) => {
+      const temp = {
+        browser: item.browser,
+        near: item.ipaddress,
+        addr: item.loginip,
+        lastUsed: dayjs.unix(item.created_at).format('YYYY-MM-DD HH:mm:ss'),
+      }
+      return temp
+    })
+  }
+})
 
 application.allSettled([loginLogRunAsync()])
 </script>
 
 <template>
   <div class="tg-settings-sessions">
-    <div class="session-title">
+    <!-- <div class="session-title">
       会话筛选器
     </div>
     <div class="session-select">
       <BaseSelect v-model="selectValue" :options="selectOptions" small />
-    </div>
+    </div> -->
     <div class="scroll-x session-table">
       <BaseTable
         :columns="columns"
         :data-source="tableData"
-        :loading="loading"
       >
         <template #action="{ record }">
           <div class="slot-action">
@@ -112,7 +92,11 @@ application.allSettled([loginLogRunAsync()])
       </BaseTable>
     </div>
     <div class="session-page">
-      <AppStack :pagination-data="paginationData" />
+      <AppStack
+        :pagination-data="{ page, pageSize: page_size, total }"
+        @previous="prev"
+        @next="next"
+      />
     </div>
   </div>
 </template>
