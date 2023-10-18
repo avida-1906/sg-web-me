@@ -245,7 +245,7 @@ onMounted(() => {
       betMoney: '1.111111',
       multiplier: '2.97x',
       payMoney: '113.34399768',
-      currencyType: EnumCurrency.MATIC,
+      currencyType: EnumCurrency[3],
       stealth: 1, // 隐身状态
     },
     {
@@ -255,7 +255,7 @@ onMounted(() => {
       betMoney: '2.111111',
       multiplier: '2.97x',
       payMoney: '113.34399768',
-      currencyType: EnumCurrency.JPY,
+      currencyType: EnumCurrency[2],
     },
     {
       gameName: 'Cursed seas',
@@ -264,7 +264,7 @@ onMounted(() => {
       betMoney: '1.111111',
       multiplier: '2.97x',
       payMoney: '113.34399768',
-      currencyType: EnumCurrency.CAD,
+      currencyType: EnumCurrency[1],
     },
     {
       gameName: 'Cursed seas',
@@ -273,7 +273,7 @@ onMounted(() => {
       betMoney: '1.111111',
       multiplier: '2.97x',
       payMoney: '113.34399768',
-      currencyType: EnumCurrency.BTC,
+      currencyType: EnumCurrency[0],
     },
   ]
   setLoadingFalse()
