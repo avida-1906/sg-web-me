@@ -93,7 +93,9 @@ const breadcrumbs = [
             v-if="isOnAir || isFinish" class="status"
             :class="{ live: isOnAir, end: isFinish }"
           >
-            {{ isOnAir ? '滚球' : isFinish ? '已结束' : '' }}
+            {{ isOnAir ? t('sports_status_live') : isFinish
+              ? t('sports_status_finished') : ''
+            }}
           </div>
           <div v-else-if="isCountdown">
             <svg height="12" width="12" viewBox="0 0 20 20" class="svelte-l8nfzs">
