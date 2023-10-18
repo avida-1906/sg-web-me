@@ -715,6 +715,7 @@ function openMiniVideo() {
               >
                 <div class="box-shadow wrapper has-background">
                   <div
+                    v-if="appContentWidth >= 900"
                     class="content scroll-x" :style="{
                       'grid-template-areas': gridAreas,
                     }"
@@ -857,6 +858,11 @@ function openMiniVideo() {
                       <span>1</span>
                     </div>
                   </div>
+                  <!-- <div
+                    v-else
+                    class="iframe-box"
+                  >
+                  </div> -->
                 </div>
               </div>
               <div v-else class="livestream-wrap">
