@@ -63,10 +63,6 @@ export function useCurrencyData() {
     return virtualList.includes(currency)
   }
 
-  watchEffect(() => {
-    console.error('userCurrencyList', userCurrencyList.value)
-  })
-
   return {
     currentGlobalCurrency,
     currentGlobalCurrencyBalance,

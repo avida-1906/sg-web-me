@@ -65,6 +65,7 @@ class SocketClient {
   }
 
   public async connect() {
+    return
     if (this.#MQTT_SERVER) {
       const { userInfo, isLogin } = storeToRefs(useAppStore())
 
