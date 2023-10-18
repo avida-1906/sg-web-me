@@ -68,7 +68,13 @@ onErrorCaptured((err, instance, info) => {
 </script>
 
 <template>
-  <main class="wrap" :class="{ 'is-switching': isSwitching, 'not-mobile': !isMobile }">
+  <main
+    class="wrap"
+    :class="{ 'is-switching': isSwitching, 'not-mobile': !isMobile }"
+    :style="{
+      '--width': rightWidth,
+    }"
+  >
     <div v-if="homeOverlayIsShow" class="home-overlay" @click="triggerLeftSidebar" />
     <div class="side-bar-outer">
       <div v-if="isLessThanLg && isGreaterThanSm" class="small-size-padding" />
@@ -153,9 +159,6 @@ onErrorCaptured((err, instance, info) => {
           'width-none': rightContainerIs0,
           'fixed': isLessThanSm,
           'mobile': isMobile,
-        }"
-        :style="{
-          '--width': rightWidth,
         }"
       >
         <div
@@ -329,6 +332,7 @@ onErrorCaptured((err, instance, info) => {
   transition: width 0.3s;
   overflow: hidden;
   z-index: var(--tg-z-index-30);
+  width: var(--width);
   filter: drop-shadow(var(--tg-drop-shadow));
 
   &.width-none {
@@ -353,16 +357,6 @@ onErrorCaptured((err, instance, info) => {
   &.mobile {
     width: 100%;
     padding-bottom: var(--tg-footerbar-height);
-  }
-
-  // 768-1000 显示 320
-  // 1000 以上显示 370
-  @media screen and (min-width: 768px) and (max-width: 1000px) {
-    width: 320px;
-  }
-
-  @media screen and (min-width: 1000px) {
-    width: 370px;
   }
 }
 </style>
