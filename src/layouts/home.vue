@@ -161,6 +161,7 @@ onErrorCaptured((err, instance, info) => {
         <div
           :style="{
             width: 'var(--width)',
+            height: '100%',
           }"
         >
           <template
