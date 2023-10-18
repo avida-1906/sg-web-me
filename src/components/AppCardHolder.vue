@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import type { IUserCurrencyList } from '~/stores/app'
+import type { BankCard, VirtualCoin } from '~/apis'
 
 type WalletCurrencyList = {
-  coin?: any[] // 绑定的虚拟币
-  bankcard?: any[] // 绑定的银行卡
+  coin?: VirtualCoin[] // 绑定的虚拟币
+  bankcard?: BankCard[] // 绑定的银行卡
   addressNum?: string // 虚拟币已绑定地址的数量
 } & IUserCurrencyList
 
@@ -173,6 +174,7 @@ await application.allSettled([
           </div>
         </template>
       </BaseCollapse>
+      <BaseEmpty v-if="!cardList.length" description="暂无数据" icon="uni-empty-betslip" />
     </div>
   </div>
 </template>
