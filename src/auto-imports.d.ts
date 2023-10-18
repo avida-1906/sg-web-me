@@ -542,8 +542,6 @@ declare module 'vue' {
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
     readonly axios: UnwrapRef<typeof import('axios')['default']>
-    readonly brazilPhoneReg: UnwrapRef<typeof import('./utils/regexp')['brazilPhoneReg']>
-    readonly chinaPhoneReg: UnwrapRef<typeof import('./utils/regexp')['chinaPhoneReg']>
     readonly cloneDeep: UnwrapRef<typeof import('lodash-es')['cloneDeep']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly computedAsync: UnwrapRef<typeof import('@vueuse/core')['computedAsync']>
@@ -592,7 +590,6 @@ declare module 'vue' {
     readonly head: UnwrapRef<typeof import('lodash-es')['head']>
     readonly httpClient: UnwrapRef<typeof import('./http/index')['httpClient']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
-    readonly indiaPhoneReg: UnwrapRef<typeof import('./utils/regexp')['indiaPhoneReg']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
     readonly isArray: UnwrapRef<typeof import('lodash-es')['isArray']>
     readonly isDark: UnwrapRef<typeof import('./composables/dark')['isDark']>
@@ -677,7 +674,6 @@ declare module 'vue' {
     readonly syncRef: UnwrapRef<typeof import('@vueuse/core')['syncRef']>
     readonly syncRefs: UnwrapRef<typeof import('@vueuse/core')['syncRefs']>
     readonly templateRef: UnwrapRef<typeof import('@vueuse/core')['templateRef']>
-    readonly thailandPhoneReg: UnwrapRef<typeof import('./utils/regexp')['thailandPhoneReg']>
     readonly throttle: UnwrapRef<typeof import('lodash-es')['throttle']>
     readonly throttledRef: UnwrapRef<typeof import('@vueuse/core')['throttledRef']>
     readonly throttledWatch: UnwrapRef<typeof import('@vueuse/core')['throttledWatch']>
@@ -900,7 +896,6 @@ declare module 'vue' {
     readonly useWindowSize: UnwrapRef<typeof import('@vueuse/core')['useWindowSize']>
     readonly useWindowStore: UnwrapRef<typeof import('./stores/window')['useWindowStore']>
     readonly usernameReg: UnwrapRef<typeof import('./utils/regexp')['usernameReg']>
-    readonly vietnamPhoneReg: UnwrapRef<typeof import('./utils/regexp')['vietnamPhoneReg']>
     readonly virtualCoinAddressReg: UnwrapRef<typeof import('./utils/regexp')['virtualCoinAddressReg']>
     readonly watch: UnwrapRef<typeof import('vue')['watch']>
     readonly watchArray: UnwrapRef<typeof import('@vueuse/core')['watchArray']>
@@ -988,8 +983,6 @@ declare module '@vue/runtime-core' {
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
     readonly axios: UnwrapRef<typeof import('axios')['default']>
-    readonly brazilPhoneReg: UnwrapRef<typeof import('./utils/regexp')['brazilPhoneReg']>
-    readonly chinaPhoneReg: UnwrapRef<typeof import('./utils/regexp')['chinaPhoneReg']>
     readonly cloneDeep: UnwrapRef<typeof import('lodash-es')['cloneDeep']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly computedAsync: UnwrapRef<typeof import('@vueuse/core')['computedAsync']>
@@ -1038,7 +1031,6 @@ declare module '@vue/runtime-core' {
     readonly head: UnwrapRef<typeof import('lodash-es')['head']>
     readonly httpClient: UnwrapRef<typeof import('./http/index')['httpClient']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
-    readonly indiaPhoneReg: UnwrapRef<typeof import('./utils/regexp')['indiaPhoneReg']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
     readonly isArray: UnwrapRef<typeof import('lodash-es')['isArray']>
     readonly isDark: UnwrapRef<typeof import('./composables/dark')['isDark']>
@@ -1123,7 +1115,6 @@ declare module '@vue/runtime-core' {
     readonly syncRef: UnwrapRef<typeof import('@vueuse/core')['syncRef']>
     readonly syncRefs: UnwrapRef<typeof import('@vueuse/core')['syncRefs']>
     readonly templateRef: UnwrapRef<typeof import('@vueuse/core')['templateRef']>
-    readonly thailandPhoneReg: UnwrapRef<typeof import('./utils/regexp')['thailandPhoneReg']>
     readonly throttle: UnwrapRef<typeof import('lodash-es')['throttle']>
     readonly throttledRef: UnwrapRef<typeof import('@vueuse/core')['throttledRef']>
     readonly throttledWatch: UnwrapRef<typeof import('@vueuse/core')['throttledWatch']>
@@ -1346,7 +1337,6 @@ declare module '@vue/runtime-core' {
     readonly useWindowSize: UnwrapRef<typeof import('@vueuse/core')['useWindowSize']>
     readonly useWindowStore: UnwrapRef<typeof import('./stores/window')['useWindowStore']>
     readonly usernameReg: UnwrapRef<typeof import('./utils/regexp')['usernameReg']>
-    readonly vietnamPhoneReg: UnwrapRef<typeof import('./utils/regexp')['vietnamPhoneReg']>
     readonly virtualCoinAddressReg: UnwrapRef<typeof import('./utils/regexp')['virtualCoinAddressReg']>
     readonly watch: UnwrapRef<typeof import('vue')['watch']>
     readonly watchArray: UnwrapRef<typeof import('@vueuse/core')['watchArray']>
