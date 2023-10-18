@@ -5,13 +5,18 @@ import type { EnumCurrencyKey } from '~/apis'
  */
 export function useCurrencyData() {
   const appStore = useAppStore()
-  const { currentGlobalCurrency, currentGlobalCurrencyBalance, userCurrencyList } = storeToRefs(appStore)
+  const {
+    currentGlobalCurrency,
+    currentGlobalCurrencyBalance,
+    userCurrencyList,
+  } = storeToRefs(appStore)
 
   // 搜索内容
   const searchValue = ref('')
+  // 是否隐藏零余额
+  const hideZeroBalance = ref(false)
   // 当前选择的货币
   const currentCurrency = ref(currentGlobalCurrency.value)
-  // const currentCurrency = ref(EnumCurrency[0] as EnumCurrencyKey)
 
   // 渲染货币列表
   const renderCurrencyList = computed(() => {
@@ -55,6 +60,7 @@ export function useCurrencyData() {
     currentCurrency,
     searchValue,
     renderCurrencyList,
+    hideZeroBalance,
     changeCurrency,
     clearSearchValue,
     changeCurrentCurrency,

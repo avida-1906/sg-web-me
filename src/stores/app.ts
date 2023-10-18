@@ -85,7 +85,6 @@ export const useAppStore = defineStore('app', () => {
 
     return []
   })
-
   /** 当前选择货币的金额 */
   const currentGlobalCurrencyBalance = computed(() => {
     const balance = userCurrencyList.value.find(item => item.type === currentGlobalCurrency.value)?.balanceWithSymbol ?? '-'
