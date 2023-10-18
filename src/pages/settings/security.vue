@@ -106,6 +106,7 @@ const {
       type: 'success',
       message: '设置双重验证密码成功',
     })
+    updateUserInfo()
   },
 })
 
