@@ -1165,9 +1165,9 @@ function openMiniVideo() {
                     name="widget-od-41421" class=""
                   />
                 </div>
-                <div class="expand-wrapper">
+                <!-- <div class="expand-wrapper">
                   <BaseIcon name="uni-arrow-up-big" />
-                </div>
+                </div> -->
               </div>
               <div class="loader-wrapper">
                 <div class="loader">
@@ -1186,9 +1186,8 @@ function openMiniVideo() {
                 <div class="content is-open">
                   <div class="wrapper">
                     <div
-                      class="card-list" style="
-                        grid-template-columns: repeat(3, 1fr); gap: 30px 15px;
-                      "
+                      class="card-list"
+                      style="grid-template-columns: repeat(3, 1fr); gap: 30px 15px;"
                     >
                       <div class="item" />
                     </div>

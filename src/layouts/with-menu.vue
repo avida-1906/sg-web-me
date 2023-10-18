@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import Home from './home.vue'
 
+const { t } = useI18n()
 const router = useRouter()
 const route = useRoute()
 const { animatingMounted } = useLayoutAnimate({ aniMounted: true })
@@ -9,7 +10,8 @@ const { appContentWidth } = storeToRefs(useWindowStore())
 
 const { bool: layoutLoading, setFalse: setLFalse } = useBoolean(true)
 
-const menuData = computed<any>(() => route.meta.withMenuMenu)
+const menuData = computed<any>(() =>
+  route.meta.withMenuMenu?.map(m => ({ ...m, title: t(m.title) })))
 const icon = computed<any>(() => route.meta.withMenuIcon)
 
 const activeMenu = ref(menuData.value.filter((m: any) => m.path === route.path)[0])
@@ -54,27 +56,61 @@ watch(route, (val) => {
       <div :class="{ 'home-slide-fade-enter-active': animatingMounted }">
         <AppContent>
           <section class="with-menu-container">
-            <div class="layout-spacing" :class="{ 'more-than-800': appContentWidth > 800 }">
+            <div
+              class="layout-spacing"
+              :class="{ 'more-than-800': appContentWidth > 800 }"
+            >
               <div>
-                <div class="stack x-stretch y-center direction-vertical padding-none gap-larger">
+                <div
+                  class="stack x-stretch y-center direction-vertical padding-none"
+                  :class="[appContentWidth > 800 ? 'gap-larger' : 'gap-larger']"
+                >
                   <div class="wrap-flex">
-                    <div class="stack y-center padding-none direction-horizontal top x-space-between stretch gap-medium">
-                      <div class="stack y-center gap-medium padding-none direction-horizontal title x-flex-start">
+                    <div
+                      class="stack y-center padding-none direction-horizontal top"
+                      :class="[
+                        appContentWidth > 800
+                          ? 'x-space-between stretch gap-medium'
+                          : 'x-space-between stretch gap-medium',
+                      ]"
+                    >
+                      <div
+                        class="stack y-center direction-horizontal title x-flex-start"
+                        :class="[appContentWidth > 800
+                          ? 'gap-medium padding-none'
+                          : 'gap-medium padding-none']"
+                      >
                         <BaseIcon :name="icon" />
-                        <span>{{ $t(route.meta.withMenuTitle as string) }}</span>
+                        <span>
+                          {{
+                            route.meta.withMenuTitle
+                              ? $t(route.meta.withMenuTitle) : ''
+                          }}
+                        </span>
                       </div>
                       <div class="close" @click="goBack">
                         <BaseIcon name="uni-close" />
                       </div>
                     </div>
                   </div>
-                  <div class="stack direction-horizontal padding-none content-outer" :class="[appContentWidth > 800 ? 'direction-horizontal x-flex-start y-flex-start gap-larger' : 'direction-vertical x-stretch y-center gap-small']">
+                  <div
+                    class="stack direction-horizontal padding-none content-outer"
+                    :class="[
+                      appContentWidth > 800
+                        ? 'direction-horizontal x-flex-start y-flex-start gap-larger'
+                        : 'direction-vertical x-stretch y-center gap-small']"
+                  >
                     <div class="left">
                       <template v-if="appContentWidth > 800">
                         <BaseMenu :data="menuData" />
                       </template>
                       <template v-else>
-                        <div class="stack x-flex-start y-center padding-none direction-horizontal gap-small menu-btn">
+                        <div
+                          class="stack x-flex-start y-center gap-small menu-btn"
+                          :class="[appContentWidth > 800
+                            ? 'padding-none direction-horizontal'
+                            : 'padding-none direction-horizontal']"
+                        >
                           <BaseButton size="md" @click="$router.go(-1)">
                             <BaseIcon name="uni-arrow-left" class="arrow-left" />
                           </BaseButton>
@@ -84,12 +120,20 @@ watch(route, (val) => {
                             <BaseButton size="md" @click="togglePop">
                               <div class="btn-txt">
                                 <span>{{ activeMenu.title }}</span>
-                                <BaseIcon :name="isPopShow ? 'uni-arrow-up' : 'uni-arrow-down'" />
+                                <BaseIcon
+                                  :name="isPopShow
+                                    ? 'uni-arrow-up'
+                                    : 'uni-arrow-down'"
+                                />
                               </div>
                             </BaseButton>
                             <template #popper="{ hide }">
                               <ul class="pop-menu">
-                                <li v-for="mi in menuData" :key="mi.path" :class="{ active: activeMenu.path === mi.path }" @click="goPage(mi, hide)">
+                                <li
+                                  v-for="mi in menuData" :key="mi.path"
+                                  :class="{ active: activeMenu.path === mi.path }"
+                                  @click="goPage(mi, hide)"
+                                >
                                   {{ mi.title }}
                                 </li>
                               </ul>

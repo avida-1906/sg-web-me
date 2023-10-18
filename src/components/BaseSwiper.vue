@@ -19,6 +19,9 @@ const active = ref(0)
 const { bool: isDragging, setFalse: setDFalse, setTrue: setDTrue } = useBoolean(false)
 const trackX = ref(0)
 const duration = ref(800)
+const touchStartPoint = ref()
+const touchEndPoint = ref()
+const swiperTrack = ref()
 
 emit('update:modelValue', props.data[active.value])
 emit('change', props.data[active.value])
@@ -49,11 +52,19 @@ function slideToNext() {
 }
 function mouseDownEve(event: MouseEvent) {
   setDTrue()
+  touchStartPoint.value = event.clientX
 }
 function mouseUpEve(event: MouseEvent) {
   setDFalse()
 }
-function mouseMoveEve(event: MouseEvent) {}
+function mouseMoveEve(event: MouseEvent) {
+  // if (isDragging.value) {
+  //   duration.value = 0
+  //   const temp = event.clientX - touchStartPoint.value
+  //   console.log(temp)
+  //   trackX.value += temp
+  // }
+}
 
 onMounted(() => {
   nextTick(() => {
@@ -85,6 +96,7 @@ onMounted(() => {
     </div>
     <div class="swiper-track-wrap" :class="{ dragging: isDragging }">
       <div
+        ref="swiperTrack"
         class="track"
         :style="{
           'width': `${outerWidth * data.length}px`,
