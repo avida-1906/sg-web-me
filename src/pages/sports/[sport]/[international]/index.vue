@@ -314,7 +314,7 @@ function onBaseTypeChange(v: string) {
 
 <template>
   <div class="tg-sports-international-index">
-    <div class="layout-spacing variant-normal no-bottom-spacing">
+    <div class="layout-spacing variant-normal">
       <AppNavBreadCrumb :breadcrumb="breadcrumb" />
       <div class="sports-page-title">
         <div class="left">
@@ -325,8 +325,13 @@ function onBaseTypeChange(v: string) {
           @base-type-change="onBaseTypeChange"
         />
       </div>
-      <div class="layout-spacing no-bottom-spacing sort-tournament" />
+      <div class="layout-spacing no-bottom-spacing sort-tournament">
+        <template v-for="item, idx in data.tournamentList" :key="item.id">
+          <AppSportsMarket :tournament="item" :auto-show="idx === 0" />
+        </template>
+      </div>
     </div>
+    <AppBetData />
   </div>
 </template>
 
