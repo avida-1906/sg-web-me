@@ -21,16 +21,8 @@ const { openWalletDialog } = useWalletDialog()
 const { openVipDialog } = useVipDialog()
 const { openStatisticsDialog } = useStatisticsDialog()
 const { openSafeDialog } = useSafeDialog()
-const {
-  run: runMemberLoginout,
-  loading: loginoutLoading,
-} = useRequest(ApiMemberLoginout, {
-  onSuccess() {
-    appStore.removeToken()
-    socketClient.close()
-    setDialogLogoutFalse()
-    router.push('/')
-  },
+const { runMemberLoginout, loginoutLoading } = useLoginout(() => {
+  setDialogLogoutFalse()
 })
 
 const userMenu = ref([

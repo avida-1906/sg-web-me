@@ -344,6 +344,7 @@ declare global {
   const useLoadMore: typeof import('vue-request')['useLoadMore']
   const useLocalStorage: typeof import('@vueuse/core')['useLocalStorage']
   const useLoginDialog: typeof import('./composables/useDialogLogin')['useLoginDialog']
+  const useLoginout: typeof import('./composables/useLoginout')['useLoginout']
   const useMagicKeys: typeof import('@vueuse/core')['useMagicKeys']
   const useManualRefHistory: typeof import('@vueuse/core')['useManualRefHistory']
   const useMediaControls: typeof import('@vueuse/core')['useMediaControls']
@@ -796,6 +797,7 @@ declare module 'vue' {
     readonly useLoadMore: UnwrapRef<typeof import('vue-request')['useLoadMore']>
     readonly useLocalStorage: UnwrapRef<typeof import('@vueuse/core')['useLocalStorage']>
     readonly useLoginDialog: UnwrapRef<typeof import('./composables/useDialogLogin')['useLoginDialog']>
+    readonly useLoginout: UnwrapRef<typeof import('./composables/useLoginout')['useLoginout']>
     readonly useMagicKeys: UnwrapRef<typeof import('@vueuse/core')['useMagicKeys']>
     readonly useManualRefHistory: UnwrapRef<typeof import('@vueuse/core')['useManualRefHistory']>
     readonly useMediaControls: UnwrapRef<typeof import('@vueuse/core')['useMediaControls']>
@@ -1237,6 +1239,7 @@ declare module '@vue/runtime-core' {
     readonly useLoadMore: UnwrapRef<typeof import('vue-request')['useLoadMore']>
     readonly useLocalStorage: UnwrapRef<typeof import('@vueuse/core')['useLocalStorage']>
     readonly useLoginDialog: UnwrapRef<typeof import('./composables/useDialogLogin')['useLoginDialog']>
+    readonly useLoginout: UnwrapRef<typeof import('./composables/useLoginout')['useLoginout']>
     readonly useMagicKeys: UnwrapRef<typeof import('@vueuse/core')['useMagicKeys']>
     readonly useManualRefHistory: UnwrapRef<typeof import('@vueuse/core')['useManualRefHistory']>
     readonly useMediaControls: UnwrapRef<typeof import('@vueuse/core')['useMediaControls']>
