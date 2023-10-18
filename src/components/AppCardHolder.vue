@@ -164,6 +164,7 @@ await application.allSettled([
               <span class="type">{{ tmp.bank_name }}</span>
             </div>
             <BaseButton
+              v-if="(!item.bankcard) || item.bankcard.length < 3"
               type="text"
               size="sm"
               class="add-btn"
