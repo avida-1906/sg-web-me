@@ -145,8 +145,8 @@ await application.allSettled([
               :key="tmp.id" class="address-row"
             >
               <BaseIcon name="fiat-bank" />
-              <span class="type">{{ tmp.bank_name }}</span>
-              <span class="type">{{ tmp.bank_name }}</span>
+              <span class="bank-num">{{ tmp.bank_account }}</span>
+              <span class="type">{{ tmp.open_name }}</span>
             </div>
             <BaseButton
               v-if="(!item.bankcard) || item.bankcard.length < 3"
