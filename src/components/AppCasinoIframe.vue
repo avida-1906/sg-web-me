@@ -147,7 +147,7 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
         </div>
         <div class="info-controls">
           <!-- 收藏游戏 -->
-          <VMenu placement="top">
+          <VTooltip placement="top">
             <div
               class="icon-button"
               :class="{ 'is-isFavorite': isFavorite }"
@@ -163,9 +163,9 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
                   : t('casino_game_add_favorite') }}
               </div>
             </template>
-          </VMenu>
+          </VTooltip>
           <!-- 实时统计 -->
-          <VMenu placement="top">
+          <VTooltip placement="top">
             <div
               class="icon-button"
               :class="{ 'trend-open': isTrendOpen }"
@@ -179,7 +179,7 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
                   : t('casino_game_open_trend') }}
               </div>
             </template>
-          </VMenu>
+          </VTooltip>
         </div>
       </div>
     </div>
@@ -344,7 +344,7 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
                 <BaseIcon name="uni-full-screen" />
               </div>
               <!-- 影院模式 -->
-              <VMenu placement="top">
+              <VTooltip placement="top">
                 <div class="icon-button" @click="onClickTheatre">
                   <BaseIcon :name="`uni-theatre${isTheatre ? '-open' : ''}`" />
                 </div>
@@ -354,10 +354,10 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
                       : t('casino_game_open_theatre') }}
                   </div>
                 </template>
-              </VMenu>
+              </VTooltip>
 
               <!-- 实时统计 -->
-              <VMenu placement="top">
+              <VTooltip placement="top">
                 <div
                   class="icon-button"
                   :class="{ 'trend-open': isTrendOpen }"
@@ -371,10 +371,10 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
                       : t('casino_game_open_trend') }}
                   </div>
                 </template>
-              </VMenu>
+              </VTooltip>
 
               <!-- 收藏游戏 -->
-              <VMenu placement="top">
+              <VTooltip placement="top">
                 <div
                   class="icon-button"
                   :class="{ 'is-isFavorite': isFavorite }"
@@ -391,7 +391,7 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
                       : t('casino_game_add_favorite') }}
                   </div>
                 </template>
-              </VMenu>
+              </VTooltip>
             </div>
             <div class="logo">
               <BaseIcon name="app-logo" />

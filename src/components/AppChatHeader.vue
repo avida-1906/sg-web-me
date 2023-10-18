@@ -58,7 +58,7 @@ function openChat() {
       </VDropdown>
     </div>
     <div v-if="$route.path !== '/chat'" class="right-header">
-      <VMenu placement="bottom">
+      <VTooltip placement="bottom">
         <div class="item hoverable">
           <BaseButton type="text" @click="openChat">
             <BaseIcon name="uni-jump-page" />
@@ -69,8 +69,8 @@ function openChat() {
             弹出式聊天室
           </div>
         </template>
-      </VMenu>
-      <VMenu placement="bottom">
+      </VTooltip>
+      <VTooltip placement="bottom">
         <div class="hoverable item">
           <BaseButton type="text" @click="close">
             <BaseIcon name="uni-close" />
@@ -81,7 +81,7 @@ function openChat() {
             折叠侧边栏
           </div>
         </template>
-      </VMenu>
+      </VTooltip>
     </div>
   </section>
 </template>

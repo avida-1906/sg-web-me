@@ -16,7 +16,7 @@ const threeOptions = [
         <h6>{{ t('sports_hot_event') }}</h6>
       </div>
       <div class="right">
-        <VMenu placement="top">
+        <VTooltip placement="top">
           <BaseButton size="sm" type="text" disabled>
             <BaseIcon name="uni-three-top" />
           </BaseButton>
@@ -25,7 +25,7 @@ const threeOptions = [
               {{ t('sports_three_options') }}
             </div>
           </template>
-        </VMenu>
+        </VTooltip>
         <BaseSelect
           v-model="threeType"
           :options="threeOptions"

@@ -38,7 +38,7 @@ export const config: FloatingVueConfig = {
   // Themes
   themes: {
     tooltip: {
-      $extend: 'tg-popper-outer',
+      $extend: 'dropdown',
       // Default tooltip placement relative to target element
       placement: 'top',
       // Default events that trigger the tooltip

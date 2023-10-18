@@ -129,7 +129,7 @@ onMounted(() => {
         <div v-if="!isXs" class="r-status">
           <BaseIcon name="uni-cup1" />
           <span>66,666.00x</span>
-          <VMenu placement="top">
+          <VTooltip placement="top">
             <div class="cursor-help">
               <BaseIcon name="uni-hidden" />
               <span>隐身</span>
@@ -139,7 +139,7 @@ onMounted(() => {
                 此玩家启用了私密功能
               </div>
             </template>
-          </VMenu>
+          </VTooltip>
         </div>
         <div
           class="r-arrow"
@@ -219,7 +219,7 @@ onMounted(() => {
             </div>
           </template>
           <template #player="{ record }">
-            <VMenu v-if="record.isStealth" placement="top">
+            <VTooltip v-if="record.isStealth" placement="top">
               <div class="cursor-help">
                 <BaseIcon name="uni-hidden" /> <span>隐身</span>
               </div>
@@ -228,7 +228,7 @@ onMounted(() => {
                   此玩家启用了私密功能
                 </div>
               </template>
-            </VMenu>
+            </VTooltip>
             <div v-else class="player">
               {{ record.player }}
             </div>

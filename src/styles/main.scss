@@ -343,7 +343,7 @@ body {
   &.padding-bottom-medium {
     padding-bottom: var(--tg-spacing-12);
   }
-  
+
   &.padding-bottom-small {
     padding-bottom: var(--tg-spacing-8);
   }
@@ -359,7 +359,7 @@ body {
   &.padding-left-large {
     padding-left: var(--tg-spacing-16);
   }
-  
+
   &.padding-right-medium {
     padding-right: var(--tg-spacing-12);
   }
@@ -406,7 +406,7 @@ body {
   opacity: 0.5;
 }
 
-// 设置 VDropdown VTooltip VMenu 圆角 阴影
+// 设置 VDropdown VTooltip VTooltip 圆角 阴影
 .v-popper--theme-tg-popper-outer.v-popper--theme-dropdown .v-popper__inner {
   border-radius: var(--tg-radius-default);
   // padding: var(--tg-spacing-4) 0;
@@ -417,6 +417,13 @@ body {
   .need-pad-y {
     padding: var(--tg-spacing-4) 0;
   }
+}
+.v-popper--theme-tg-popper-outer.v-popper--theme-tooltip .v-popper__inner{
+  border-radius: var(--tg-radius-default);
+  padding: 0;
+  background: var(--tg-text-white);
+  border: 0;
+  box-shadow: var(--tg-box-shadow-lg);
 }
 
 // 鼠标悬停气泡提示提示

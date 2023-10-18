@@ -4,9 +4,9 @@ export const usernameReg = /^[a-zA-Z0-9]{3,14}$/
 export const upperLowerReg = /^(?=.*[a-z])(?=.*[A-Z]).+$/
 /** 至少一位数字 */
 export const lastOneNumberReg = /.*[0-9].*/
-// 邮箱
+/** 邮箱 */
 export const emailReg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-// 支付密码(6位数字)
+/** 支付密码(6位数字) */
 export const payPasswordReg = /^\d{6}$/
-// 虚拟币地址
+/** 虚拟币地址 */
 export const virtualCoinAddressReg = /^[a-zA-Z0-9]{26,35}$/

@@ -179,7 +179,7 @@ const breadcrumbs = [
           </div>
         </div>
         <div class="options-wrapper">
-          <VMenu placement="top">
+          <VTooltip placement="top">
             <BaseButton
               type="text" padding0 :disabled="checkDragDialog(`${fakeDragDialogId}trend`)"
               @click="openDragDialog('trend')"
@@ -191,8 +191,8 @@ const breadcrumbs = [
                 {{ t('sports_live_trend') }}
               </div>
             </template>
-          </VMenu>
-          <VMenu placement="top">
+          </VTooltip>
+          <VTooltip placement="top">
             <BaseButton
               type="text" padding0 :disabled="checkDragDialog(`${fakeDragDialogId}live`)"
               @click="openDragDialog('live')"
@@ -204,7 +204,7 @@ const breadcrumbs = [
                 {{ t('sports_live_tv') }}
               </div>
             </template>
-          </VMenu>
+          </VTooltip>
         </div>
       </div>
     </template>
@@ -265,7 +265,7 @@ const breadcrumbs = [
     <!-- 更多盘口 -->
     <div class="market-count" :class="{ 'market-count-h5': isH5Layout }">
       <div v-if="isH5Layout" class="options-wrapper">
-        <VMenu placement="top">
+        <VTooltip placement="top">
           <BaseButton
             type="text" padding0 :disabled="checkDragDialog(`${fakeDragDialogId}trend`)"
             @click="openDragDialog('trend')"
@@ -277,8 +277,8 @@ const breadcrumbs = [
               {{ t('sports_live_trend') }}
             </div>
           </template>
-        </VMenu>
-        <VMenu placement="top">
+        </VTooltip>
+        <VTooltip placement="top">
           <BaseButton
             type="text" padding0 :disabled="checkDragDialog(`${fakeDragDialogId}live`)"
             @click="openDragDialog('live')"
@@ -290,7 +290,7 @@ const breadcrumbs = [
               {{ t('sports_live_tv') }}
             </div>
           </template>
-        </VMenu>
+        </VTooltip>
       </div>
       <BaseButton
         class="text-btn" type="text" padding0
