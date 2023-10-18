@@ -23,6 +23,8 @@ const touchStartPoint = ref()
 const touchEndPoint = ref()
 const swiperTrack = ref()
 
+const trackOuterWidth = computed(() => Math.ceil(outerWidth.value * props.data.length))
+
 emit('update:modelValue', props.data[active.value])
 emit('change', props.data[active.value])
 
@@ -53,17 +55,32 @@ function slideToNext() {
 function mouseDownEve(event: MouseEvent) {
   setDTrue()
   touchStartPoint.value = event.clientX
+  touchEndPoint.value = event.clientX
 }
 function mouseUpEve(event: MouseEvent) {
   setDFalse()
+  touchEndPoint.value = event.clientX
+  if (trackX.value > 0) {
+    duration.value = trackX.value / outerWidth.value * 800
+    trackX.value = 0
+  }
+  else {
+    const minTrack = outerWidth.value - trackOuterWidth.value
+    if (trackX.value < minTrack) {
+      duration.value
+        = (-trackX.value + minTrack)
+        / outerWidth.value * 800
+      trackX.value = minTrack
+    }
+  }
 }
 function mouseMoveEve(event: MouseEvent) {
-  // if (isDragging.value) {
-  //   duration.value = 0
-  //   const temp = event.clientX - touchStartPoint.value
-  //   console.log(temp)
-  //   trackX.value += temp
-  // }
+  if (isDragging.value) {
+    duration.value = 0
+    const temp = event.clientX - touchEndPoint.value
+    trackX.value += temp
+    touchEndPoint.value = event.clientX
+  }
 }
 
 onMounted(() => {
@@ -106,6 +123,7 @@ onMounted(() => {
         @mousedown="mouseDownEve"
         @mouseup="mouseUpEve"
         @mousemove="mouseMoveEve"
+        @mouseleave="mouseUpEve"
       >
         <div
           v-for="item, idx in data"
