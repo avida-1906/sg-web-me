@@ -8,27 +8,28 @@ defineOptions({
   name: 'KeepAliveSports',
 })
 
+const { t } = useI18n()
 const router = useRouter()
 const { isMobile } = storeToRefs(useWindowStore())
 const { isLogin } = storeToRefs(useAppStore())
 
 const marketType = ref('all')
 const tabList = computed(() => [
-  { label: '大厅', value: 'all', icon: 'spt-basketball' },
+  { label: t('sports_tab_lobby'), value: 'all', icon: 'spt-basketball' },
   {
-    label: '我的投注',
+    label: t('my_bets'),
     value: 'my-bet',
     icon: 'spt-user-bet',
     disabled: !isLogin.value,
   },
   {
-    label: '收藏夹',
+    label: t('sports_tab_favourites'),
     value: 'fav',
     icon: 'uni-favorites',
     disabled: !isLogin.value,
   },
-  { label: '滚球盘', value: 'live', icon: 'spt-ball-plate' },
-  { label: '即将开赛', value: 'soon', icon: 'spt-timing' },
+  { label: t('sports_tab_live_events'), value: 'live', icon: 'spt-ball-plate' },
+  { label: t('sports_tab_starting_soon'), value: 'soon', icon: 'spt-timing' },
 ])
 </script>
 
@@ -58,7 +59,7 @@ const tabList = computed(() => [
         class="check-more" type="text" padding0
         @click="router.push('/sports/live')"
       >
-        查看全部
+        {{ t('view_all') }}
       </BaseButton>
       <AppSportsHotEvent />
     </template>

@@ -803,3 +803,8 @@ sports_standard: 标准
 sports_winner_market: 获胜盘
 sports_handicap_market: 让分盘
 sports_total_market: 总分盘
+sports_tab_live_events: 滚球盘
+sports_tab_starting_soon: 即将开赛
+sports_tab_lobby: 大厅
+sports_tab_favourites: 收藏夹
+sports_no_active_bet: 暂无活跃的赌注
