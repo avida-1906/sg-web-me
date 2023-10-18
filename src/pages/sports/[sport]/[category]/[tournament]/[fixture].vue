@@ -7,8 +7,8 @@ const appStore = useAppStore()
 const { isLogin } = storeToRefs(appStore)
 
 const sport = route.params.sport
-// const international = route.params.international
-// const event = route.params.event
+// const category = route.params.category
+// const tournament = route.params.tournament
 // const fixture = route.params.fixture
 const rangeNum = ref()
 const searchHandicap = ref('')
@@ -700,7 +700,7 @@ function openMiniVideo() {
 </script>
 
 <template>
-  <div class="tg-sports-country-event-betdetail">
+  <div class="tg-sports-tournament-fixture-betdetail">
     <div class="sports-detail-wrapper">
       <div class="layout-spacing no-bottom-spacing variant-normal">
         <AppNavBreadCrumb :breadcrumb="breadcrumb" />
@@ -1526,7 +1526,7 @@ video {
   }
 }
 
-.tg-sports-country-event-betdetail {
+.tg-sports-tournament-fixture-betdetail {
   --tg-base-switch-style-bg: var(--tg-text-green);
   padding-bottom: var(--tg-spacing-16);
 

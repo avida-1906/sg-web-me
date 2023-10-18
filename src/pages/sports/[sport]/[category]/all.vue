@@ -2,13 +2,13 @@
 </script>
 
 <template>
-  <div class="tg-sports-country-all">
+  <div class="tg-sports-category-all">
     全部国家国际全部某种赛事
   </div>
 </template>
 
 <style lang="scss" scoped>
-.tg-sports-country-all {
+.tg-sports-category-all {
 
 }
 </style>
