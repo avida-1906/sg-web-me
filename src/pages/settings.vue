@@ -23,12 +23,12 @@ meta:
   withMenuIcon: uni-set
   browserTitle: 设置 – Stake.com
   withMenuMenu:
-    - {title: 常规, path: /settings/general,}
-    - {title: 安全, path: /settings/security}
-    - {title: 首选项, path: /settings/preferences}
-    # - {title: API, path: /settings/api}
-    - {title: 会话, path: /settings/sessions}
-    - {title: 黑名单, path: /settings/ignored-users}
-    # - {title: 验证, path: /settings/verify}
-    # - {title: 优惠,path: /settings/offers}
+    - {title: menu_title_settings_general, path: /settings/general,}
+    - {title: menu_title_settings_security, path: /settings/security}
+    - {title: menu_title_settings_preferences, path: /settings/preferences}
+    # - {title: menu_title_settings_api, path: /settings/api}
+    - {title: menu_title_settings_sessions, path: /settings/sessions}
+    - {title: menu_title_settings_ignoredusers, path: /settings/ignored-users}
+    # - {title: menu_title_settings_verify, path: /settings/verify}
+    # - {title: menu_title_settings_offers,path: /settings/offers}
 </route>

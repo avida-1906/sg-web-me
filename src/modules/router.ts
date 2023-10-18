@@ -15,7 +15,7 @@ declare module 'vue-router' {
     /** layout with-menu 图标 */
     withMenuIcon?: string
     /** layout with-menu 菜单数据 */
-    withMenuMenu?: string
+    withMenuMenu?: Array<{ title: string; path: string }>
   }
 }
 
