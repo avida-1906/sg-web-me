@@ -57,7 +57,8 @@ class Application {
   }
 
   copy(str: string) {
-    const { copy: _copy, copied } = useClipboard()
+    /** legacy 兼容http复制 */
+    const { copy: _copy, copied } = useClipboard({ legacy: true })
     _copy(str).then(() => {
       if (copied.value)
         toast('Copied')

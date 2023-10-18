@@ -22,7 +22,7 @@ declare module 'vue-router' {
 const routes = setupLayouts(generatedRoutes)
 const title = useTitle()
 
-const router = createRouter({
+export const router = createRouter({
   history: createWebHistory(),
   routes,
   scrollBehavior() {
