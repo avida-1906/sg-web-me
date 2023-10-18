@@ -18,7 +18,7 @@ interface IResponseList<T> {
 }
 
 /** 绑定的钱包银行卡对象 */
-interface BankCard {
+export interface BankCard {
   id: string
   uid: string
   username: string
@@ -31,7 +31,7 @@ interface BankCard {
 }
 
 /** 绑定的钱包虚拟币地址对象 */
-interface VirtualCoin {
+export interface VirtualCoin {
   id: string
   uid: string
   state: number
@@ -615,4 +615,21 @@ export function ApiMemberDualVerify(data: {
   code: string
 }) {
   return httpClient.post<string>('/member/dual/verify', data)
+}
+
+/**
+ * 会员登陆日记
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=269c1d37-c318-455e-bc06-1e6ea7d5e866
+ */
+export function ApiMemberFrontLoginLogList(params?: {
+  page_size?: string
+  page?: string
+}) {
+  return httpClient.get<IResponseList<{
+    id: string
+    browser: string
+    loginip: string
+    ipaddress: string
+    created_at: string
+  }>>('/member/front/login/log/list', params)
 }

@@ -2,7 +2,7 @@
 const route = useRoute()
 
 const sport = route.params.sport
-const international = route.params.international
+const category = route.params.category
 
 const data = {
   id: 'acadd537-9fdd-41ac-9901-ad9dac94bb5f',
@@ -297,7 +297,7 @@ const baseType = ref('winner')
 
 const breadcrumb = computed(() => [
   { path: `/sports/${sport}`, title: data.sport.name, id: data.sport.id },
-  { path: `/sports/${sport}/${international}`, title: data.name, id: data.id },
+  { path: `/sports/${sport}/${category}`, title: data.name, id: data.id },
 ])
 const tabs = computed(() => [
   { value: 'live-upcoming', label: '滚球与即将开赛的盘口' },
@@ -313,7 +313,7 @@ function onBaseTypeChange(v: string) {
 </script>
 
 <template>
-  <div class="tg-sports-international-index">
+  <div class="tg-sports-category-index">
     <div class="layout-spacing variant-normal">
       <AppNavBreadCrumb :breadcrumb="breadcrumb" />
       <div class="sports-page-title">
@@ -339,7 +339,7 @@ function onBaseTypeChange(v: string) {
 .sort-tournament >*+* {
   margin-top: var(--tg-spacing-12);
 }
-.tg-sports-international-index {
+.tg-sports-category-index {
   margin-top: var(--tg-spacing-32);
 }
 </style>
