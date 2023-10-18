@@ -105,14 +105,27 @@ const areaCodeOptions = computed(() => {
 })
 const emailVerified = computed(() => paramsData.value?.email_check_state === 1)
 
-const emailSubmit = function () {
-  runMemberUpdate(paramsData.value)
-  notifyData.value = {
-    type: 'email',
-    title: '成功更新电邮地址',
-    message: `电邮地址已更新为 ${paramsData.value.email}`,
+const {
+  value: email,
+  errorMessage: emailErrormsg,
+  validate: emailValidate,
+} = useField<string>('email', (value) => {
+  if (!emailReg.test(value))
+    return '请填写正确的电邮地址'
+  return ''
+})
+
+const emailSubmit = async function () {
+  await emailValidate()
+  if (!emailErrormsg.value) {
+    runMemberUpdate(paramsData.value)
+    notifyData.value = {
+      type: 'email',
+      title: '成功更新电邮地址',
+      message: `电邮地址已更新为 ${paramsData.value.email}`,
+    }
+    setEmailDisabledBtnTrue()
   }
-  setEmailDisabledBtnTrue()
 }
 const numberSubmit = function () {
   runMemberUpdate(paramsData.value)
@@ -137,16 +150,16 @@ const emailCheck = function () {
   }
 }
 
+watch(() => email.value, (newValue, oldValue) => {
+  if (oldValue && newValue && newValue !== oldValue)
+    setEmailDisabledBtnFalse()
+  else
+    setEmailDisabledBtnTrue()
+})
 /** 无法监听对象新旧值，使用深度克隆解决 */
 watch(() => cloneDeep(paramsData.value), (newValue, oldValue) => {
   if (dataChangeCount.value > 0) {
-    if (newValue.email !== oldValue.email) {
-      if (newValue.email === '')
-        setEmailDisabledBtnTrue()
-      else
-        setEmailDisabledBtnFalse()
-    }
-    else if (newValue.phone !== oldValue.phone
+    if (newValue.phone !== oldValue.phone
       || newValue.area_code !== oldValue.area_code) {
       if (newValue.phone === '' || newValue.area_code === '')
         setPhoneDisabledBtnTrue()
@@ -155,11 +168,15 @@ watch(() => cloneDeep(paramsData.value), (newValue, oldValue) => {
     }
     else {
       if (
-        newValue.facebook === '' || newValue.whatsapp === ''
-        || newValue.telegram === '' || newValue.line === ''
-        || newValue.twitter === '' || newValue.zalo === ''
-        || newValue.viber === '' || newValue.wechat === ''
-        || newValue.qq === ''
+        (newValue.facebook === '' || newValue.facebook === oldValue.facebook)
+        && (newValue.whatsapp === '' || newValue.whatsapp === oldValue.whatsapp)
+        && (newValue.telegram === '' || newValue.telegram === oldValue.telegram)
+        && (newValue.line === '' || newValue.line === oldValue.line)
+        && (newValue.twitter === '' || newValue.twitter === oldValue.twitter)
+        && (newValue.zalo === '' || newValue.zalo === oldValue.zalo)
+        && (newValue.viber === '' || newValue.viber === oldValue.viber)
+        && (newValue.wechat === '' || newValue.wechat === oldValue.wechat)
+        && (newValue.qq === '' || newValue.qq === oldValue.qq)
       )
         setSocialDisabledBtnTrue()
       else
@@ -169,8 +186,10 @@ watch(() => cloneDeep(paramsData.value), (newValue, oldValue) => {
   dataChangeCount.value++
 }, { deep: true })
 watch(() => userInfo.value, (newValue) => {
-  if (newValue)
+  if (newValue) {
+    email.value = newValue.email
     paramsData.value = newValue
+  }
 })
 watch(() => route.query, (newValue) => {
   if (JSON.stringify(newValue) !== '{}'
@@ -199,6 +218,11 @@ watch(() => route.query, (newValue) => {
     }
   }
 }, { immediate: true })
+
+onMounted(() => {
+  if (userInfo.value)
+    email.value = userInfo.value.email
+})
 </script>
 
 <template>
@@ -208,10 +232,11 @@ watch(() => route.query, (newValue) => {
       :verified="emailVerified || emailDisabledBtn" :badge="emailVerified"
       @submit="emailSubmit"
     >
-      <BaseLabel label="用户名" must-small>
+      <BaseLabel label="电邮地址" must-small>
         <BaseInput
-          v-model="paramsData.email" placeholder="请绑定邮箱"
+          v-model="email" placeholder="请输入电邮地址"
           :disabled="emailVerified"
+          :msg="emailErrormsg"
           :class="{ 'general-base-input-background': emailVerified }"
         />
       </BaseLabel>
