@@ -14,12 +14,12 @@ const {
   value: password,
   errorMessage: pwdErrorMsg,
   validate: valiPassword,
-} = useField<string>('password', fieldVerify)
+} = useField<string>('password', fieldVerifyLoginPwd)
 const {
   value: newPassword,
   errorMessage: newPwdErrorMsg,
   validate: valiNewPassword,
-} = useField<string>('newPassword', fieldVerify)
+} = useField<string>('newPassword', fieldVerifyLoginPwd)
 const {
   value: repeatPassword,
   errorMessage: repeatPwdErrorMsg,
@@ -48,13 +48,7 @@ const {
   value: payPassword,
   errorMessage: payPwdErrorMsg,
   validate: valiPayPwd,
-} = useField<string>('payPassword', (value) => {
-  if (!value)
-    return t('pls_enter_password')
-  if (!payPasswordReg.test(value))
-    return '您的交易密码含有6位数字'
-  return ''
-})
+} = useField<string>('payPassword', fieldVerifyPayPwd)
 const {
   value: aginPayPassword,
   errorMessage: aginPayPwdErrorMsg,
@@ -71,7 +65,7 @@ const {
   value: loginPassword,
   errorMessage: loginPwdErrorMsg,
   validate: validateLoginPwd,
-} = useField<string>('loginPassword', fieldVerify)
+} = useField<string>('loginPassword', fieldVerifyLoginPwd)
 const {
   value: doublePassword,
   errorMessage: doublePwdErrorMsg,
@@ -121,19 +115,26 @@ const getQRcodeUrl = computed(() => {
     return generateQRCodeUrl({ label: 'sg', email: userInfo.value.email, secret: userInfo.value.google_key })
 })
 
-function fieldVerify(value: string) {
+function fieldVerifyLoginPwd(value: string) {
   if (!value)
     return t('pls_enter_password')
-
   if (value.length < 8)
     return t('password_least_8_characters')
-
   if (!upperLowerReg.test(value))
     return t('password_uppercase_lowercase_letter')
-
   if (!lastOneNumberReg.test(value))
     return t('password_least_1_number')
-
+  if (repeatPassword.value)
+    valiRepeatPassword()
+  return ''
+}
+function fieldVerifyPayPwd(value: string) {
+  if (!value)
+    return t('pls_enter_password')
+  if (!payPasswordReg.test(value))
+    return '您的交易密码含有6位数字'
+  if (aginPayPassword.value)
+    valiAginPayPwd()
   return ''
 }
 function onBlur() {
@@ -199,7 +200,6 @@ function generateQRCodeUrl(params: {
   email: string
   secret: string
 }) {
-  console.log(params)
   return `otpauth://totp/${encodeURIComponent(params.label)}:${encodeURIComponent(params.email)}?secret=${params.secret}&issuer=${encodeURIComponent(params.label)}`
 }
 </script>
