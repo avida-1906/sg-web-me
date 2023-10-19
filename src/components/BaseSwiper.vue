@@ -40,9 +40,14 @@ function slideToPrev() {
     active.value -= 1
   }
   else {
+    _data.value.reverse()
     duration.value = 0
-    active.value = _data.value.length - 1
     trackX.value = -(_data.value.length - 1) * outerWidth.value
+    setTimeout(() => {
+      duration.value = 800
+      trackX.value = -(_data.value.length - 2) * outerWidth.value
+      active.value = _data.value.length - 2
+    }, 0)
   }
 }
 function slideToNext() {
@@ -54,9 +59,14 @@ function slideToNext() {
     active.value += 1
   }
   else {
+    _data.value.reverse()
     duration.value = 0
-    active.value = 0
     trackX.value = 0
+    setTimeout(() => {
+      duration.value = 800
+      trackX.value = -outerWidth.value
+      active.value = 1
+    }, 0)
   }
 }
 function mouseDownEve(event: MouseEvent) {
