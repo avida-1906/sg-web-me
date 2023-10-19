@@ -960,7 +960,7 @@ function openMiniVideo() {
                   </div>
                 </div>
               </div>
-              <div class="spotlight is-open">
+              <div class="spotlight is-open variant-dark">
                 <div class="no-active-scale header">
                   <span>近期游戏记录</span>
                   <BaseButton type="text">
