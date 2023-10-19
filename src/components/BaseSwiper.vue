@@ -17,7 +17,6 @@ const { bool: isDragging, setFalse: setDFalse, setTrue: setDTrue } = useBoolean(
 
 const _data = ref(props.data)
 const swiperOuter = ref()
-const outerWidth = ref(0)
 const active = ref(0)
 const trackX = ref(0)
 const duration = ref(800)
@@ -25,6 +24,9 @@ const touchStartPoint = ref()
 const touchEndPoint = ref()
 const swiperTrack = ref()
 
+const { width } = useElementSize(swiperOuter)
+
+const outerWidth = computed(() => Math.floor(width.value))
 const trackOuterWidth = computed(() => Math.ceil(outerWidth.value * _data.value.length))
 const dragDirection = computed(() => touchEndPoint.value - touchStartPoint.value)
 
@@ -145,15 +147,6 @@ watch(active, (val) => {
   emit('update:modelValue', _data.value[val])
   emit('change', _data.value[val])
 })
-
-onMounted(() => {
-  nextTick(() => {
-    setTimeout(() => {
-      const { width } = swiperOuter.value.getBoundingClientRect()
-      outerWidth.value = width
-    }, 0)
-  })
-})
 </script>
 
 <template>
@@ -261,6 +254,10 @@ onMounted(() => {
         transition: transform .7s ease,opacity 1s ease;
         padding: 0 7.5px;
         width: var(--swiper-outer-width);
+        .label {
+          color: var(--tg-text-white);
+          transition: color 0.2s linear;
+        }
         &.visible {
           opacity: 1;
         }
