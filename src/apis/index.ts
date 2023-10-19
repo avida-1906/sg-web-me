@@ -476,8 +476,8 @@ export function ApiMemberWalletInsert(data: {
  * 退出登陆
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=714a7e70-5d38-4c04-969d-f251710adf6b
  */
-export function ApiMemberLoginout() {
-  return httpClient.post<string>('/member/login/out')
+export function ApiMemberLogout() {
+  return httpClient.post<string>('/member/logout')
 }
 
 /**

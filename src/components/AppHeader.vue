@@ -21,7 +21,7 @@ const { openWalletDialog } = useWalletDialog()
 const { openVipDialog } = useVipDialog()
 const { openStatisticsDialog } = useStatisticsDialog()
 const { openSafeDialog } = useSafeDialog()
-const { runMemberLoginout, loginoutLoading } = useLoginout(() => {
+const { runMemberLogout, logoutLoading } = useLogout(() => {
   setDialogLogoutFalse()
 })
 
@@ -235,8 +235,8 @@ function handleClickMenuItem(item: { name: string; path?: string }) {
       <BaseButton
         class="dialog-btn"
         type="text"
-        :loading="loginoutLoading"
-        @click.stop="runMemberLoginout"
+        :loading="logoutLoading"
+        @click.stop="runMemberLogout"
       >
         {{ t('logout') }}
       </BaseButton>

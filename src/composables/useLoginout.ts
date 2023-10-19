@@ -1,11 +1,11 @@
 /** 退出登录 */
-export function useLoginout(callback?: () => void) {
+export function useLogout(callback?: () => void) {
   const appStore = useAppStore()
   const router = useRouter()
   const {
-    run: runMemberLoginout,
-    loading: loginoutLoading,
-  } = useRequest(ApiMemberLoginout, {
+    run: runMemberLogout,
+    loading: logoutLoading,
+  } = useRequest(ApiMemberLogout, {
     onSuccess() {
       appStore.removeToken()
       socketClient.close()
@@ -15,7 +15,7 @@ export function useLoginout(callback?: () => void) {
   })
 
   return {
-    runMemberLoginout,
-    loginoutLoading,
+    runMemberLogout,
+    logoutLoading,
   }
 }

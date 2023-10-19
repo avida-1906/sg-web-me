@@ -6,7 +6,7 @@ const { updateUserInfo } = useAppStore()
 const { openEmailCodeDialog, closeEmailCodeDialog } = useEmailCodeDialog()
 // 登录密码
 const { bool: pwdStatus, setBool: setPwdStatus } = useBoolean(false)
-const { runMemberLoginout, loginoutLoading } = useLoginout()
+const { runMemberLogout, logoutLoading } = useLogout()
 const {
   bool: isShowPasswordVerify,
   setBool: setShowPasswordVerify,
@@ -43,7 +43,7 @@ const {
       message: '修改密码成功',
     })
     // 修改密码成功之后退出登陆
-    runMemberLoginout()
+    runMemberLogout()
   },
 })
 // 交易密码
@@ -210,7 +210,7 @@ function generateQRCodeUrl(params: {
   <div class="tg-settings-security">
     <AppSettingsContentItem
       title="密码"
-      :btn-loading="passwordUpdateLoading && loginoutLoading"
+      :btn-loading="passwordUpdateLoading && logoutLoading"
       @submit="submitLoginPwd"
     >
       <BaseLabel label="旧密码" must-small>
