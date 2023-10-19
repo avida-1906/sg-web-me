@@ -211,6 +211,16 @@ function copyCode(type: string) {
         </BaseSecondaryAccordion>
       `)
       break
+    case 'BaseSwiper':
+      copy(`
+      <BaseSwiper
+          :data="[
+            { value: '50.5', label: '50.5' },
+            { value: '60.5', label: '60.5' },
+          ]"
+        />
+      `)
+      break
     default:
       break
   }
@@ -1292,6 +1302,23 @@ const breadcrumbs = ['one', 'two', 'three', 'four']
         <BaseInputPassword v-model="selectValue" :width-auto="false" />
         <div class="center">
           <BaseButton @click="copyCode('BaseInputPassword')">
+            copy
+          </BaseButton>
+        </div>
+      </AppDemoCard>
+    </li>
+    <li class="box">
+      <AppDemoCard title="BaseSwiper">
+        <div class="center" style="width: 280px;margin:0 auto;">
+          <BaseSwiper
+            :data="[
+              { value: '50.5', label: '50.5' },
+              { value: '60.5', label: '60.5' },
+            ]"
+          />
+        </div>
+        <div class="center">
+          <BaseButton @click="copyCode('BaseSwiper')">
             copy
           </BaseButton>
         </div>
