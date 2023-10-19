@@ -167,7 +167,7 @@ onMounted(() => {
         请先绑定提款方式，再进行提款！
       </div>
       <BaseLabel
-        label="开户人姓名"
+        :label="currentType === '1' ? '开户人姓名' : '账户人姓名'"
         :must="props.isFirst"
         :label-content="props.isFirst ? '绑定后不可更改' : ''"
       >
