@@ -7,7 +7,7 @@ export function useWalletSetDialog() {
     closeDialog: closeWalletSetDialog,
   } = useDialog({
     title: '钱包设置',
-    icon: 'navbar-wallet',
+    icon: 'wallet-set',
     default: () => h(AppWalletSetDialog),
   })
 

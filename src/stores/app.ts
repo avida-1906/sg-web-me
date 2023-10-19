@@ -72,6 +72,8 @@ export const useAppStore = defineStore('app', () => {
 
   /** 当前全局选择的货币 */
   const currentGlobalCurrency = ref<EnumCurrencyKey>(getLocalCurrentGlobalCurrency())
+  // 是否隐藏零余额
+  const { bool: hideZeroBalance } = useBoolean(Local.get<boolean | undefined>(STORAGE_HIDE_ZERO_BALANCE_KEY)?.value)
 
   /**
    * 用户货币数据
@@ -160,6 +162,7 @@ export const useAppStore = defineStore('app', () => {
     isLogin,
     platformList,
     currentGlobalCurrency,
+    hideZeroBalance,
     userCurrencyList,
     currentGlobalCurrencyBalance,
     userInfo,

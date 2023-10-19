@@ -2,7 +2,7 @@
 const { hideZeroBalance } = useCurrencyData()
 
 function onSwitch() {
-  console.log(hideZeroBalance.value)
+  Local.set(STORAGE_HIDE_ZERO_BALANCE_KEY, hideZeroBalance.value)
 }
 </script>
 
