@@ -13,21 +13,23 @@ const props = defineProps<Props>()
 
 const emit = defineEmits(['update:modelValue', 'change'])
 
+const { bool: isDragging, setFalse: setDFalse, setTrue: setDTrue } = useBoolean(false)
+
+const _data = ref(props.data)
 const swiperOuter = ref()
 const outerWidth = ref(0)
 const active = ref(0)
-const { bool: isDragging, setFalse: setDFalse, setTrue: setDTrue } = useBoolean(false)
 const trackX = ref(0)
 const duration = ref(800)
 const touchStartPoint = ref()
 const touchEndPoint = ref()
 const swiperTrack = ref()
 
-const trackOuterWidth = computed(() => Math.ceil(outerWidth.value * props.data.length))
+const trackOuterWidth = computed(() => Math.ceil(outerWidth.value * _data.value.length))
 const dragDirection = computed(() => touchEndPoint.value - touchStartPoint.value)
 
-emit('update:modelValue', props.data[active.value])
-emit('change', props.data[active.value])
+emit('update:modelValue', _data.value[active.value])
+emit('change', _data.value[active.value])
 
 function slideToPrev() {
   if (isDragging.value)
@@ -39,14 +41,14 @@ function slideToPrev() {
   }
   else {
     duration.value = 0
-    active.value = props.data.length - 1
-    trackX.value = -(props.data.length - 1) * outerWidth.value
+    active.value = _data.value.length - 1
+    trackX.value = -(_data.value.length - 1) * outerWidth.value
   }
 }
 function slideToNext() {
   if (isDragging.value)
     return
-  if (active.value < props.data.length - 1) {
+  if (active.value < _data.value.length - 1) {
     duration.value = 800
     trackX.value -= outerWidth.value
     active.value += 1
@@ -77,7 +79,7 @@ function mouseUpEve(event: MouseEvent) {
         = (-trackX.value + minTrack)
         / outerWidth.value * 800
       trackX.value = minTrack
-      active.value = props.data.length - 1
+      active.value = _data.value.length - 1
     }
     else {
       if (Math.abs(dragDirection.value) >= outerWidth.value / 4) {
@@ -99,8 +101,8 @@ function mouseUpEve(event: MouseEvent) {
           if (trackX.value < -trackOuterWidth.value)
             trackX.value = -trackOuterWidth.value
 
-          if (active.value > props.data.length - 1)
-            active.value = props.data.length - 1
+          if (active.value > _data.value.length - 1)
+            active.value = _data.value.length - 1
 
           duration.value
             = (outerWidth.value + dragDirection.value) / outerWidth.value * 800
@@ -128,6 +130,11 @@ function mouseLeaveEve(event: MouseEvent) {
   if (isDragging.value)
     mouseUpEve(event)
 }
+
+watch(active, (val) => {
+  emit('update:modelValue', _data.value[val])
+  emit('change', _data.value[val])
+})
 
 onMounted(() => {
   nextTick(() => {
@@ -162,7 +169,7 @@ onMounted(() => {
         ref="swiperTrack"
         class="track"
         :style="{
-          'width': `${outerWidth * data.length}px`,
+          'width': `${outerWidth * _data.length}px`,
           'transform': `translate3d(${trackX}px, 0px, 0px)`,
           'transition-duration': `${duration}ms`,
         }"
@@ -172,12 +179,12 @@ onMounted(() => {
         @mouseleave="mouseLeaveEve"
       >
         <div
-          v-for="item, idx in data"
+          v-for="item, idx in _data"
           :key="`${idx}_${item.value}`"
           class="slide-wrap"
           :class="[
             `slide-position-${idx + 1}`,
-            data[active].value === item.value ? 'center visible active' : '',
+            _data[active].value === item.value ? 'center visible active' : '',
             isDragging ? 'visible' : '',
           ]"
         >
