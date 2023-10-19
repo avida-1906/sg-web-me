@@ -64,18 +64,18 @@ function handleShow(val: boolean) {
       </template>
     </div>
     <!-- 卡包 -->
-    <!-- <KeepAlive> -->
-    <template v-if="isCardHolder">
-      <Suspense timeout="0">
-        <AppCardHolder />
-        <template #fallback>
-          <div class="center dialog-loading-height">
-            <BaseLoading />
-          </div>
-        </template>
-      </Suspense>
-    </template>
-    <!-- </KeepAlive> -->
+    <KeepAlive>
+      <template v-if="isCardHolder">
+        <Suspense timeout="0">
+          <AppCardHolder />
+          <template #fallback>
+            <div class="center dialog-loading-height">
+              <BaseLoading />
+            </div>
+          </template>
+        </Suspense>
+      </template>
+    </KeepAlive>
   </div>
 </template>
 
