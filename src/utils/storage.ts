@@ -14,6 +14,7 @@ export const STORAGE_MENU_EXPAND_DOMID = 'menu_expand_domid'
 export const STORAGE_RIGHT_SIDEBAR_CONTENT = 'right_sidebar_content'
 export const STORAGE_SPORTS_PANEL_TYPE_KEY = 'sports_panel_type'
 export const STORAGE_SPORTS_ODDS_TYPE_KEY = 'sports_odds_type'
+export const STORAGE_CURRENT_GLOBAL_CURRENCY_KEY = 'current_global_currency'
 
 export class Local {
   static set<T>(key: string, value: any) {

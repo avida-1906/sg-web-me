@@ -71,7 +71,7 @@ export const useAppStore = defineStore('app', () => {
   const visibility = useDocumentVisibility()
 
   /** 当前全局选择的货币 */
-  const currentGlobalCurrency = ref<EnumCurrencyKey>(EnumCurrency[0] as EnumCurrencyKey)
+  const currentGlobalCurrency = ref<EnumCurrencyKey>(getLocalCurrentGlobalCurrency())
 
   /**
    * 用户货币数据
@@ -122,6 +122,24 @@ export const useAppStore = defineStore('app', () => {
    */
   function changeCurrentGlobalCurrency(currency: EnumCurrencyKey) {
     currentGlobalCurrency.value = currency
+    setLocalCurrentGlobalCurrency(currency)
+  }
+
+  /** 获取本地存储的当前全局选择的货币 */
+  function getLocalCurrentGlobalCurrency(): EnumCurrencyKey {
+    const currency = Local.get<
+      EnumCurrencyKey
+    >(STORAGE_CURRENT_GLOBAL_CURRENCY_KEY)?.value
+
+    if (currency)
+      return currency
+    else
+      return EnumCurrency[0] as EnumCurrencyKey
+  }
+
+  /** 设置本地存储的当前全局选择的货币 */
+  function setLocalCurrentGlobalCurrency(currency: EnumCurrencyKey) {
+    Local.set(STORAGE_CURRENT_GLOBAL_CURRENCY_KEY, currency)
   }
 
   watch(visibility, (bool) => {
@@ -155,6 +173,8 @@ export const useAppStore = defineStore('app', () => {
     changeCurrentGlobalCurrency,
     updateUserInfo,
     updateUserBalance,
+    setLocalCurrentGlobalCurrency,
+    getLocalCurrentGlobalCurrency,
   }
 })
 
