@@ -5,13 +5,27 @@ import type { EnumCurrencyKey } from '~/apis'
  */
 export function useCurrencyData() {
   const appStore = useAppStore()
-  const { currentGlobalCurrency, currentGlobalCurrencyBalance, userCurrencyList } = storeToRefs(appStore)
+  const {
+    currentGlobalCurrency,
+    currentGlobalCurrencyBalance,
+    userCurrencyList: _userCurrencyList,
+  } = storeToRefs(appStore)
 
   // 搜索内容
   const searchValue = ref('')
+  // 是否隐藏零余额
+  const { bool: hideZeroBalance } = useBoolean(false)
   // 当前选择的货币
   const currentCurrency = ref(currentGlobalCurrency.value)
-  // const currentCurrency = ref(EnumCurrency[0] as EnumCurrencyKey)
+
+  // 用户货币数据，如果隐藏零余额，就过滤掉零余额的货币
+  const userCurrencyList = computed(() => {
+    const list = _userCurrencyList.value
+    if (hideZeroBalance.value)
+      return list.filter(item => Number(item.balance) > 0)
+
+    return list
+  })
 
   // 渲染货币列表
   const renderCurrencyList = computed(() => {
@@ -55,6 +69,8 @@ export function useCurrencyData() {
     currentCurrency,
     searchValue,
     renderCurrencyList,
+    hideZeroBalance,
+    userCurrencyList,
     changeCurrency,
     clearSearchValue,
     changeCurrentCurrency,

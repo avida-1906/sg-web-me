@@ -13,48 +13,73 @@ const props = defineProps<Props>()
 
 const emit = defineEmits(['update:modelValue', 'change'])
 
-const swiperOuter = ref()
-const outerWidth = ref(0)
-const active = ref(0)
 const { bool: isDragging, setFalse: setDFalse, setTrue: setDTrue } = useBoolean(false)
+const { bool: isSliding, setFalse: setSFalse, setTrue: setSTrue } = useBoolean(false)
+
+const _data = ref(props.data)
+const swiperOuter = ref()
+const active = ref(0)
 const trackX = ref(0)
 const duration = ref(800)
 const touchStartPoint = ref()
 const touchEndPoint = ref()
 const swiperTrack = ref()
 
-const trackOuterWidth = computed(() => Math.ceil(outerWidth.value * props.data.length))
+const { width } = useElementSize(swiperOuter)
+
+const outerWidth = computed(() => Math.floor(width.value))
+const trackOuterWidth = computed(() => Math.ceil(outerWidth.value * _data.value.length))
 const dragDirection = computed(() => touchEndPoint.value - touchStartPoint.value)
 
-emit('update:modelValue', props.data[active.value])
-emit('change', props.data[active.value])
+emit('update:modelValue', _data.value[active.value])
+emit('change', _data.value[active.value])
 
 function slideToPrev() {
-  if (isDragging.value)
+  if (isDragging.value || isSliding.value)
     return
+  setSTrue()
   if (active.value > 0) {
     duration.value = 800
     trackX.value += outerWidth.value
     active.value -= 1
+    setSFalse()
   }
   else {
+    _data.value.reverse()
     duration.value = 0
-    active.value = props.data.length - 1
-    trackX.value = -(props.data.length - 1) * outerWidth.value
+    trackX.value = -(_data.value.length - 1) * outerWidth.value
+    setTimeout(() => {
+      duration.value = 800
+      trackX.value = -(_data.value.length - 2) * outerWidth.value
+      active.value = _data.value.length - 2
+      setTimeout(() => {
+        setSFalse()
+      }, 800)
+    }, 0)
   }
 }
 function slideToNext() {
-  if (isDragging.value)
+  if (isDragging.value || isSliding.value)
     return
-  if (active.value < props.data.length - 1) {
+  setSTrue()
+  if (active.value < _data.value.length - 1) {
     duration.value = 800
     trackX.value -= outerWidth.value
     active.value += 1
+    setSFalse()
   }
   else {
+    _data.value.reverse()
     duration.value = 0
-    active.value = 0
     trackX.value = 0
+    setTimeout(() => {
+      duration.value = 800
+      trackX.value = -outerWidth.value
+      active.value = 1
+      setTimeout(() => {
+        setSFalse()
+      }, 800)
+    }, 0)
   }
 }
 function mouseDownEve(event: MouseEvent) {
@@ -77,7 +102,7 @@ function mouseUpEve(event: MouseEvent) {
         = (-trackX.value + minTrack)
         / outerWidth.value * 800
       trackX.value = minTrack
-      active.value = props.data.length - 1
+      active.value = _data.value.length - 1
     }
     else {
       if (Math.abs(dragDirection.value) >= outerWidth.value / 4) {
@@ -99,8 +124,8 @@ function mouseUpEve(event: MouseEvent) {
           if (trackX.value < -trackOuterWidth.value)
             trackX.value = -trackOuterWidth.value
 
-          if (active.value > props.data.length - 1)
-            active.value = props.data.length - 1
+          if (active.value > _data.value.length - 1)
+            active.value = _data.value.length - 1
 
           duration.value
             = (outerWidth.value + dragDirection.value) / outerWidth.value * 800
@@ -129,61 +154,59 @@ function mouseLeaveEve(event: MouseEvent) {
     mouseUpEve(event)
 }
 
-onMounted(() => {
-  nextTick(() => {
-    setTimeout(() => {
-      const { width } = swiperOuter.value.getBoundingClientRect()
-      outerWidth.value = width
-    }, 0)
-  })
+watch(active, (val) => {
+  emit('update:modelValue', _data.value[val])
+  emit('change', _data.value[val])
 })
 </script>
 
 <template>
-  <div
-    ref="swiperOuter"
-    class="swiper-outer center-mode"
-    :style="{ '--swiper-outer-width': `${outerWidth}px` }"
-  >
-    <div class="arrows-overlay">
-      <div class="left">
-        <BaseButton type="text" @click="slideToPrev">
-          <BaseIcon name="uni-arrow-left" />
-        </BaseButton>
-      </div>
-      <div class="right">
-        <BaseButton type="text" @click="slideToNext">
-          <BaseIcon name="uni-arrow-right" />
-        </BaseButton>
-      </div>
-    </div>
-    <div class="swiper-track-wrap" :class="{ dragging: isDragging }">
-      <div
-        ref="swiperTrack"
-        class="track"
-        :style="{
-          'width': `${outerWidth * data.length}px`,
-          'transform': `translate3d(${trackX}px, 0px, 0px)`,
-          'transition-duration': `${duration}ms`,
-        }"
-        @mousedown="mouseDownEve"
-        @mouseup="mouseUpEve"
-        @mousemove="mouseMoveEve"
-        @mouseleave="mouseLeaveEve"
-      >
-        <div
-          v-for="item, idx in data"
-          :key="`${idx}_${item.value}`"
-          class="slide-wrap"
-          :class="[
-            `slide-position-${idx + 1}`,
-            data[active].value === item.value ? 'center visible active' : '',
-            isDragging ? 'visible' : '',
-          ]"
-        >
-          <BaseButton size="md">
-            <span class="label">{{ item.label }}</span>
+  <div class="swiper-wrapper">
+    <div
+      ref="swiperOuter"
+      class="swiper-outer center-mode"
+      :style="{ '--swiper-outer-width': `${outerWidth}px` }"
+    >
+      <div v-if="_data.length > 1" class="arrows-overlay">
+        <div class="left">
+          <BaseButton type="text" @click="slideToPrev">
+            <BaseIcon name="uni-arrow-left" />
           </BaseButton>
+        </div>
+        <div class="right">
+          <BaseButton type="text" @click="slideToNext">
+            <BaseIcon name="uni-arrow-right" />
+          </BaseButton>
+        </div>
+      </div>
+      <div class="swiper-track-wrap" :class="{ dragging: isDragging }">
+        <div
+          ref="swiperTrack"
+          class="track"
+          :style="{
+            'width': `${outerWidth * _data.length}px`,
+            'transform': `translate3d(${trackX}px, 0px, 0px)`,
+            'transition-duration': `${duration}ms`,
+          }"
+          @mousedown="mouseDownEve"
+          @mouseup="mouseUpEve"
+          @mousemove="mouseMoveEve"
+          @mouseleave="mouseLeaveEve"
+        >
+          <div
+            v-for="item, idx in _data"
+            :key="`${idx}_${item.value}`"
+            class="slide-wrap"
+            :class="[
+              `slide-position-${idx + 1}`,
+              _data[active].value === item.value ? 'center visible active' : '',
+              isDragging ? 'visible' : '',
+            ]"
+          >
+            <BaseButton size="md">
+              <span class="label">{{ item.label }}</span>
+            </BaseButton>
+          </div>
         </div>
       </div>
     </div>
@@ -191,6 +214,16 @@ onMounted(() => {
 </template>
 
 <style lang="scss" scoped>
+.swiper-wrapper {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5px;
+  position: relative;
+  overflow: hidden;
+}
 .swiper-outer {
   width: 100%;
   position: relative;
@@ -244,6 +277,10 @@ onMounted(() => {
         transition: transform .7s ease,opacity 1s ease;
         padding: 0 7.5px;
         width: var(--swiper-outer-width);
+        .label {
+          color: var(--tg-text-white);
+          transition: color 0.2s linear;
+        }
         &.visible {
           opacity: 1;
         }

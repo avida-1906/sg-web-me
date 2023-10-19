@@ -7,6 +7,12 @@
 
 const { openChatRulesDialog } = useChatRulesDialog()
 
+const {
+  bool: sendLoading,
+  setTrue: setSLTrue,
+  setFalse: setSLFalse,
+} = useBoolean(false)
+
 const maxMsgLen = 160
 const msgInput = ref()
 const allEmojis = [
@@ -134,12 +140,6 @@ function addCommand(u: { command: string }) {
   message.value = `${u.command} `
   msgInput.value?.getFocus()
 }
-
-const {
-  bool: sendLoading,
-  setTrue: setSLTrue,
-  setFalse: setSLFalse,
-} = useBoolean(false)
 function sendMsg() {
   if (message.value[0] === '/') {
     const temp = message.value.split(' ')
@@ -170,7 +170,7 @@ function enterPress(event: KeyboardEvent) {
     <Transition>
       <div
         v-show="!sendLoading && emojis.length"
-        class="wrap scroll-y emoji-wrap layout-grid"
+        class="scroll-y emoji-wrap layout-grid wrap"
       >
         <div v-for="emo in emojis" :key="emo" class="button-wrap">
           <span class="box" @click="addEmoMsg(emo)">

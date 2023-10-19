@@ -5,14 +5,12 @@ import type { BankCard, VirtualCoin } from '~/apis'
 type WalletCurrencyList = {
   coin?: VirtualCoin[] // 绑定的虚拟币
   bankcard?: BankCard[] // 绑定的银行卡
-  addressNum?: string // 虚拟币已绑定地址的数量
+  addressNum?: number // 虚拟币已绑定地址的数量
 } & IUserCurrencyList
 
 const closeDialog = inject('closeDialog', () => { })
 const cardList: WalletCurrencyList[] = []
 
-const { userInfo } = useAppStore()
-const { openNotify } = useNotify()
 const {
   renderCurrencyList,
   isVirtualCurrency,
@@ -35,7 +33,7 @@ const {
         cardList.push({
           ...item,
           coin: currentCoin,
-          addressNum: currentCoin.length.toString(),
+          addressNum: currentCoin.length,
         })
         for (const tmp of item.contract_type || []) {
           if (!currentCoin.find(tp => tmp === tp.contract_type)) {
@@ -55,25 +53,14 @@ const {
         }
       }
     }
+    // 排序，绑定的在前
+    cardList.sort((a, b) => {
+      return ((b.bank_tree ? b.bankcard?.length : b.addressNum) || 0) - ((a.bank_tree ? a.bankcard?.length : a.addressNum) || 0)
+    })
   },
 })
 
-function verifyPayPsw() {
-  if (userInfo?.pay_password === '0') {
-    openNotify({
-      type: 'error',
-      title: '错误',
-      message: '请先设置交易密码',
-    })
-    return true
-  }
-  else {
-    return false
-  }
-}
 const toAddBankcards = function (item: WalletCurrencyList) {
-  if (verifyPayPsw())
-    return
   let isFirst = true
   let openName = ''
   if (item.bankcard?.length) {
@@ -97,8 +84,6 @@ const toAddVirAddress = function (
   item: WalletCurrencyList,
   contractType: string,
 ) {
-  if (verifyPayPsw())
-    return
   const {
     openVirAddressDialog,
   } = useVirAddressDialog({
@@ -125,7 +110,7 @@ onActivated(() => {
       <BaseCollapse
         v-for="item in cardList"
         :key="item.type"
-        :title="item.addressNum || item.bankcard?.length.toString() || '0'"
+        :title="item.addressNum?.toString() || item.bankcard?.length.toString() || '0'"
       >
         <template #top-right>
           <AppCurrencyIcon
@@ -162,7 +147,7 @@ onActivated(() => {
             >
               <BaseIcon name="fiat-bank" />
               <span class="bank-num">{{ tmp.bank_account }}</span>
-              <span class="type">{{ tmp.bank_name }}</span>
+              <span class="type">{{ tmp.open_name }}</span>
             </div>
             <BaseButton
               v-if="(!item.bankcard) || item.bankcard.length < 3"

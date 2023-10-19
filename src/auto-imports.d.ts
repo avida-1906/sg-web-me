@@ -57,6 +57,7 @@ declare global {
   const EnumsBetSlipTabs: typeof import('./utils/enums')['EnumsBetSlipTabs']
   const Local: typeof import('./utils/storage')['Local']
   const SOCKET_EVENT_BUS: typeof import('./utils/event-bus')['SOCKET_EVENT_BUS']
+  const STORAGE_CURRENT_GLOBAL_CURRENCY_KEY: typeof import('./utils/storage')['STORAGE_CURRENT_GLOBAL_CURRENCY_KEY']
   const STORAGE_LANGUAGE_KEY: typeof import('./utils/storage')['STORAGE_LANGUAGE_KEY']
   const STORAGE_MENU_EXPAND_DOMID: typeof import('./utils/storage')['STORAGE_MENU_EXPAND_DOMID']
   const STORAGE_RECENT_REG_KEYWORDS: typeof import('./utils/storage')['STORAGE_RECENT_REG_KEYWORDS']
@@ -344,6 +345,7 @@ declare global {
   const useLoadMore: typeof import('vue-request')['useLoadMore']
   const useLocalStorage: typeof import('@vueuse/core')['useLocalStorage']
   const useLoginDialog: typeof import('./composables/useDialogLogin')['useLoginDialog']
+  const useLoginout: typeof import('./composables/useLoginout')['useLoginout']
   const useMagicKeys: typeof import('@vueuse/core')['useMagicKeys']
   const useManualRefHistory: typeof import('@vueuse/core')['useManualRefHistory']
   const useMediaControls: typeof import('@vueuse/core')['useMediaControls']
@@ -524,6 +526,7 @@ declare module 'vue' {
     readonly EnumsBetSlipTabs: UnwrapRef<typeof import('./utils/enums')['EnumsBetSlipTabs']>
     readonly Local: UnwrapRef<typeof import('./utils/storage')['Local']>
     readonly SOCKET_EVENT_BUS: UnwrapRef<typeof import('./utils/event-bus')['SOCKET_EVENT_BUS']>
+    readonly STORAGE_CURRENT_GLOBAL_CURRENCY_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_CURRENT_GLOBAL_CURRENCY_KEY']>
     readonly STORAGE_LANGUAGE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_LANGUAGE_KEY']>
     readonly STORAGE_MENU_EXPAND_DOMID: UnwrapRef<typeof import('./utils/storage')['STORAGE_MENU_EXPAND_DOMID']>
     readonly STORAGE_REG_PARAMS_KEYWORDS: UnwrapRef<typeof import('./utils/storage')['STORAGE_REG_PARAMS_KEYWORDS']>
@@ -796,6 +799,7 @@ declare module 'vue' {
     readonly useLoadMore: UnwrapRef<typeof import('vue-request')['useLoadMore']>
     readonly useLocalStorage: UnwrapRef<typeof import('@vueuse/core')['useLocalStorage']>
     readonly useLoginDialog: UnwrapRef<typeof import('./composables/useDialogLogin')['useLoginDialog']>
+    readonly useLoginout: UnwrapRef<typeof import('./composables/useLoginout')['useLoginout']>
     readonly useMagicKeys: UnwrapRef<typeof import('@vueuse/core')['useMagicKeys']>
     readonly useManualRefHistory: UnwrapRef<typeof import('@vueuse/core')['useManualRefHistory']>
     readonly useMediaControls: UnwrapRef<typeof import('@vueuse/core')['useMediaControls']>
@@ -965,6 +969,7 @@ declare module '@vue/runtime-core' {
     readonly EnumsBetSlipTabs: UnwrapRef<typeof import('./utils/enums')['EnumsBetSlipTabs']>
     readonly Local: UnwrapRef<typeof import('./utils/storage')['Local']>
     readonly SOCKET_EVENT_BUS: UnwrapRef<typeof import('./utils/event-bus')['SOCKET_EVENT_BUS']>
+    readonly STORAGE_CURRENT_GLOBAL_CURRENCY_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_CURRENT_GLOBAL_CURRENCY_KEY']>
     readonly STORAGE_LANGUAGE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_LANGUAGE_KEY']>
     readonly STORAGE_MENU_EXPAND_DOMID: UnwrapRef<typeof import('./utils/storage')['STORAGE_MENU_EXPAND_DOMID']>
     readonly STORAGE_REG_PARAMS_KEYWORDS: UnwrapRef<typeof import('./utils/storage')['STORAGE_REG_PARAMS_KEYWORDS']>
@@ -1237,6 +1242,7 @@ declare module '@vue/runtime-core' {
     readonly useLoadMore: UnwrapRef<typeof import('vue-request')['useLoadMore']>
     readonly useLocalStorage: UnwrapRef<typeof import('@vueuse/core')['useLocalStorage']>
     readonly useLoginDialog: UnwrapRef<typeof import('./composables/useDialogLogin')['useLoginDialog']>
+    readonly useLoginout: UnwrapRef<typeof import('./composables/useLoginout')['useLoginout']>
     readonly useMagicKeys: UnwrapRef<typeof import('@vueuse/core')['useMagicKeys']>
     readonly useManualRefHistory: UnwrapRef<typeof import('@vueuse/core')['useManualRefHistory']>
     readonly useMediaControls: UnwrapRef<typeof import('@vueuse/core')['useMediaControls']>
