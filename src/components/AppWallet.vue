@@ -179,7 +179,8 @@ function selectCurrency(item: IUserCurrencyList, hide: () => void) {
     }
 
     .icon-wallet-set {
-      font-size: var(--tg-font-size-md);
+      font-size: var(--tg-font-size-base);
+      --tg-icon-color:#1A2C38;
       margin-right: 5px;
     }
   }
