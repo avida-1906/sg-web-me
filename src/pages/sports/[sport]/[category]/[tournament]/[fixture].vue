@@ -739,7 +739,7 @@ function openMiniVideo() {
                   <template v-for="temp in group.templates" :key="temp.id">
                     <BaseSecondaryAccordion :title="temp.name">
                       <template #side="{ isOpen }">
-                        <div v-show="!isOpen" class="badge-box">
+                        <div v-show="!isOpen" class="accordion-badge-wrap">
                           <BaseBadge :count="9" />
                         </div>
                       </template>
@@ -781,7 +781,7 @@ function openMiniVideo() {
                   <template #default>
                     <div class="market">
                       <div class="table" :style="{ '--itemCount': 1 }">
-                        <div class="heading column">
+                        <div class="column heading">
                           <span>大</span>
                         </div>
                         <div class="column heading">
@@ -929,12 +929,24 @@ function openMiniVideo() {
                   class="iframe-box"
                 >
                   <iframe
-                    id="widget-od-41421"
+                    title="url"
+                    src="https://disir.oddin.gg/lol/scoreboard?brandToken=a91d9435-1130-42f5-88d3-00361e69b932&darkMode=true&id=bWF0Y2gvb2Q6bWF0Y2g6NTAyNzY0&lang=zh&layout=&t=959746778&theme=dark"
+                    scrolling="yes"
+                    height="219"
+                    class=""
+                  />
+                </div>
+              </div>
+              <div class="iframe-widget tracker desktop widget-container">
+                <div
+                  class="iframe-box"
+                >
+                  <iframe
                     title="url"
                     :src="eventData.widgetUrl"
                     scrolling="yes"
                     height="730"
-                    name="widget-od-41421" class=""
+                    class=""
                   />
                 </div>
                 <!-- <div class="expand-wrapper">
@@ -1437,6 +1449,9 @@ video {
           height: min-content;
           flex: 0 0 360px;
           max-width: 360px;
+          &>*+* {
+            margin-top: var(--tg-spacing-16);
+          }
 
           .widget-container {
             position: relative;
