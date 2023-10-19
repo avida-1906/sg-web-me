@@ -254,6 +254,10 @@ watch(active, (val) => {
         transition: transform .7s ease,opacity 1s ease;
         padding: 0 7.5px;
         width: var(--swiper-outer-width);
+        .label {
+          color: var(--tg-text-white);
+          transition: color 0.2s linear;
+        }
         &.visible {
           opacity: 1;
         }
