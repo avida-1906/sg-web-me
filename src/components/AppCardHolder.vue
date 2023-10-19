@@ -6,6 +6,7 @@ type WalletCurrencyList = {
   coin?: VirtualCoin[] // 绑定的虚拟币
   bankcard?: BankCard[] // 绑定的银行卡
   addressNum?: number // 虚拟币已绑定地址的数量
+  showAdd?: boolean
 } & IUserCurrencyList
 
 const closeDialog = inject('closeDialog', () => { })
@@ -20,12 +21,17 @@ const {
   runAsync: runAsyncWalletBankcardList,
 } = useRequest(ApiWalletBankcardList, {
   onSuccess() {
-    const temp = []
+    const temp: WalletCurrencyList[] = []
     for (const item of userCurrencyList) {
+      const currentBankcard = walletBankcard.value?.bankcard[item.cur] || []
       if (item.bank_tree) { // 银行卡
         temp.push({
           ...item,
-          bankcard: walletBankcard.value?.bankcard[item.cur],
+          bankcard: currentBankcard,
+          addressNum: currentBankcard.length,
+          showAdd: item.cur === '702'
+            ? currentBankcard.length < 1
+            : currentBankcard.length < 3,
         })
       }
       else { // 虚拟币
@@ -120,7 +126,7 @@ await application.allSettled([
       <BaseCollapse
         v-for="item in cardList"
         :key="item.type"
-        :title="item.addressNum?.toString() || item.bankcard?.length.toString() || '0'"
+        :title="item.addressNum?.toString() || '0'"
       >
         <template #top-right>
           <AppCurrencyIcon
@@ -160,7 +166,7 @@ await application.allSettled([
               <span class="type">{{ tmp.open_name }}</span>
             </div>
             <BaseButton
-              v-if="(!item.bankcard) || item.bankcard.length < 3"
+              v-if="item.showAdd"
               type="text"
               size="sm"
               class="add-btn"

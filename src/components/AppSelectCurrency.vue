@@ -34,7 +34,8 @@ const getCurrencyList = computed(() => {
 })
 // 获取当前选择货币对象
 const getCurrencyBalance = computed(() => {
-  return getCurrencyList.value
+  const activeList = props.currencyList || userCurrencyList
+  return activeList
     .find((item: IUserCurrencyList) =>
       item.type === currentCurrency.value)
 })
