@@ -112,10 +112,11 @@ const toAddVirAddress = function (
     currencyName: item.type,
   }))
 }
-
-await application.allSettled([
-  runAsyncWalletBankcardList(),
-])
+onActivated(() => {
+  application.allSettled([
+    runAsyncWalletBankcardList(),
+  ])
+})
 </script>
 
 <template>
