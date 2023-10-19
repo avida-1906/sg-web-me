@@ -162,7 +162,7 @@ onMounted(() => {
     class="swiper-outer center-mode"
     :style="{ '--swiper-outer-width': `${outerWidth}px` }"
   >
-    <div class="arrows-overlay">
+    <div v-if="_data.length > 1" class="arrows-overlay">
       <div class="left">
         <BaseButton type="text" @click="slideToPrev">
           <BaseIcon name="uni-arrow-left" />
