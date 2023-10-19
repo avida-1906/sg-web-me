@@ -11,6 +11,8 @@ type WalletCurrencyList = {
 const closeDialog = inject('closeDialog', () => { })
 const cardList: Ref<WalletCurrencyList[]> = ref([])
 
+const { bool: firstActivation, setFalse: setFirstActivationFalse } = useBoolean(true)
+
 const {
   renderCurrencyList,
   isVirtualCurrency,
@@ -101,10 +103,18 @@ const toAddVirAddress = function (
 }
 
 onActivated(() => {
+  if (firstActivation.value) {
+    setFirstActivationFalse()
+    return
+  }
   application.allSettled([
     runAsyncWalletBankcardList(),
   ])
 })
+
+await application.allSettled([
+  runAsyncWalletBankcardList(),
+])
 </script>
 
 <template>
