@@ -439,6 +439,7 @@ declare global {
   const useVirtualList: typeof import('@vueuse/core')['useVirtualList']
   const useWakeLock: typeof import('@vueuse/core')['useWakeLock']
   const useWalletDialog: typeof import('./composables/useDialogWallet')['useWalletDialog']
+  const useWalletSetDialog: typeof import('./composables/useDialogWalletSet')['useWalletSetDialog']
   const useWebNotification: typeof import('@vueuse/core')['useWebNotification']
   const useWebSocket: typeof import('@vueuse/core')['useWebSocket']
   const useWebWorker: typeof import('@vueuse/core')['useWebWorker']
@@ -891,6 +892,7 @@ declare module 'vue' {
     readonly useVirtualList: UnwrapRef<typeof import('@vueuse/core')['useVirtualList']>
     readonly useWakeLock: UnwrapRef<typeof import('@vueuse/core')['useWakeLock']>
     readonly useWalletDialog: UnwrapRef<typeof import('./composables/useDialogWallet')['useWalletDialog']>
+    readonly useWalletSetDialog: UnwrapRef<typeof import('./composables/useDialogWalletSet')['useWalletSetDialog']>
     readonly useWebNotification: UnwrapRef<typeof import('@vueuse/core')['useWebNotification']>
     readonly useWebSocket: UnwrapRef<typeof import('@vueuse/core')['useWebSocket']>
     readonly useWebWorker: UnwrapRef<typeof import('@vueuse/core')['useWebWorker']>
@@ -1334,6 +1336,7 @@ declare module '@vue/runtime-core' {
     readonly useVirtualList: UnwrapRef<typeof import('@vueuse/core')['useVirtualList']>
     readonly useWakeLock: UnwrapRef<typeof import('@vueuse/core')['useWakeLock']>
     readonly useWalletDialog: UnwrapRef<typeof import('./composables/useDialogWallet')['useWalletDialog']>
+    readonly useWalletSetDialog: UnwrapRef<typeof import('./composables/useDialogWalletSet')['useWalletSetDialog']>
     readonly useWebNotification: UnwrapRef<typeof import('@vueuse/core')['useWebNotification']>
     readonly useWebSocket: UnwrapRef<typeof import('@vueuse/core')['useWebSocket']>
     readonly useWebWorker: UnwrapRef<typeof import('@vueuse/core')['useWebWorker']>

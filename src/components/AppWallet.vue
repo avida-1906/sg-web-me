@@ -2,6 +2,7 @@
 import type { IUserCurrencyList } from '~/stores/app'
 
 const { openWalletDialog } = useWalletDialog()
+const { openWalletSetDialog } = useWalletSetDialog()
 // 下拉搜索是否显示
 const { bool: isMenuShown } = useBoolean(false)
 const { appContentWidth } = storeToRefs(useWindowStore())
@@ -74,7 +75,11 @@ function selectCurrency(item: IUserCurrencyList, hide: () => void) {
             </div>
           </div>
           <div class="popper-bottom">
-            <BaseButton type="text" class="bottom-btn">
+            <BaseButton
+              type="text"
+              class="bottom-btn"
+              @click="openWalletSetDialog()"
+            >
               <BaseIcon class="icon-wallet-set" name="wallet-set" />
               <span>钱包设置</span>
             </BaseButton>
