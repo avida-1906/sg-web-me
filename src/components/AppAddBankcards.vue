@@ -63,7 +63,9 @@ const {
   resetField: bankaccountReset,
 } = useField<string>('bankaccount', (value) => {
   if (!value)
-    return '请输入账户号码'
+    return currentType.value === '1' ? '请输入银行卡号码' : '请输入PIX账户'
+  if (value.length < 4 || value.length > 30)
+    return currentType.value === '1' ? '请输入 4 - 30 位数字组成的正确银行卡号' : '请输入 4 - 30 位数字组成的正确PIX账户'
   return ''
 })
 const {
@@ -155,7 +157,7 @@ onMounted(() => {
         请先绑定提款方式，再进行提款！
       </div>
       <BaseLabel
-        label="用户名"
+        label="开户人姓名"
         :must="props.isFirst"
         :label-content="props.isFirst ? '绑定后不可更改' : ''"
       >
@@ -176,8 +178,11 @@ onMounted(() => {
           class="base-select"
         />
       </BaseLabel>
-      <BaseLabel :label="currentType === '1' ? '银行账户' : '请输入第三方账户 '" must>
-        <BaseInput v-model="bankAccount" :msg="bankaccountError" />
+      <BaseLabel :label="currentType === '1' ? '银行卡号' : 'PIX账户 '" must>
+        <BaseInput
+          v-model="bankAccount"
+          :msg="bankaccountError"
+        />
       </BaseLabel>
       <BaseInput
         v-if="currentType === '1'"
