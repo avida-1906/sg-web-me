@@ -64,6 +64,7 @@ function handleShow(val: boolean) {
       </template>
     </div>
     <!-- 卡包 -->
+    <!-- <KeepAlive> -->
     <template v-if="isCardHolder">
       <Suspense timeout="0">
         <AppCardHolder />
@@ -74,6 +75,7 @@ function handleShow(val: boolean) {
         </template>
       </Suspense>
     </template>
+    <!-- </KeepAlive> -->
   </div>
 </template>
 

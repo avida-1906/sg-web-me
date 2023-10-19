@@ -87,6 +87,7 @@ declare module 'vue' {
     AppVirtualDeposit: typeof import('./components/AppVirtualDeposit.vue')['default']
     AppWallet: typeof import('./components/AppWallet.vue')['default']
     AppWalletDialog: typeof import('./components/AppWalletDialog.vue')['default']
+    AppWalletSetDialog: typeof import('./components/AppWalletSetDialog.vue')['default']
     AppWithdraw: typeof import('./components/AppWithdraw.vue')['default']
     AppWithdrawalDepositType: typeof import('./components/AppWithdrawalDepositType.vue')['default']
     AppWobble: typeof import('./components/AppWobble.vue')['default']

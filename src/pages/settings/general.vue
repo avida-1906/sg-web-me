@@ -6,6 +6,9 @@ interface INotifyData {
   title?: string
   message: string
 }
+interface ISocialData {
+  [key: string]: boolean
+}
 
 const route = useRoute()
 const router = useRouter()
@@ -14,6 +17,18 @@ const { userInfo } = storeToRefs(useAppStore())
 const { updateUserInfo } = useAppStore()
 const { isLessThanXs } = storeToRefs(useWindowStore())
 
+/** 社交账号改变 */
+const socialDataChanged: ISocialData = {
+  facebook: false,
+  whatsapp: false,
+  telegram: false,
+  line: false,
+  twitter: false,
+  zalo: false,
+  viber: false,
+  wechat: false,
+  qq: false,
+}
 const paramsData = ref(userInfo.value || {
   uid: '',
   realname: '',
@@ -37,7 +52,6 @@ const paramsData = ref(userInfo.value || {
   google_key: '',
   google_verify: '',
 })
-const dataChangeCount = ref(0)
 const socialData = [
   {
     label: 'Facebook',
@@ -150,41 +164,52 @@ const emailCheck = function () {
   }
 }
 
+/** 监听邮箱改变 */
 watch(() => email.value, (newValue, oldValue) => {
   if (oldValue && newValue && newValue !== oldValue)
     setEmailDisabledBtnFalse()
   else
     setEmailDisabledBtnTrue()
 })
-/** 无法监听对象新旧值，使用深度克隆解决 */
-watch(() => cloneDeep(paramsData.value), (newValue, oldValue) => {
-  if (dataChangeCount.value > 0) {
-    if (newValue.phone !== oldValue.phone
-      || newValue.area_code !== oldValue.area_code) {
-      if (newValue.phone === '' || newValue.area_code === '')
-        setPhoneDisabledBtnTrue()
+/** 监听手机号码 */
+watch(() => [
+  paramsData.value.area_code,
+  paramsData.value.phone,
+], (newValue, oldValue) => {
+  if (oldValue[0] && oldValue[1] && newValue[0] && newValue[1] && (newValue[0] !== oldValue[0] || newValue[1] !== oldValue[1]))
+    setPhoneDisabledBtnFalse()
+  else
+    setPhoneDisabledBtnTrue()
+})
+/** 监听社交账号改变 */
+for (const k in paramsData.value) {
+  if (
+    ['facebook', 'telegram', 'line',
+      'twitter', 'zalo', 'viber', 'wechat', 'qq', 'whatsapp'].includes(k)
+  ) {
+    const key = k as keyof typeof paramsData.value
+    watch(() => paramsData.value[key], (newValue, oldValue) => {
+      if (newValue === '' || newValue === oldValue || oldValue === '')
+        socialDataChanged[k] = false
       else
-        setPhoneDisabledBtnFalse()
-    }
-    else {
+        socialDataChanged[k] = true
       if (
-        (newValue.facebook === '' || newValue.facebook === oldValue.facebook)
-        && (newValue.whatsapp === '' || newValue.whatsapp === oldValue.whatsapp)
-        && (newValue.telegram === '' || newValue.telegram === oldValue.telegram)
-        && (newValue.line === '' || newValue.line === oldValue.line)
-        && (newValue.twitter === '' || newValue.twitter === oldValue.twitter)
-        && (newValue.zalo === '' || newValue.zalo === oldValue.zalo)
-        && (newValue.viber === '' || newValue.viber === oldValue.viber)
-        && (newValue.wechat === '' || newValue.wechat === oldValue.wechat)
-        && (newValue.qq === '' || newValue.qq === oldValue.qq)
+        socialDataChanged.facebook
+        || socialDataChanged.whatsapp
+        || socialDataChanged.telegram
+        || socialDataChanged.line
+        || socialDataChanged.twitter
+        || socialDataChanged.zalo
+        || socialDataChanged.viber
+        || socialDataChanged.wechat
+        || socialDataChanged.qq
       )
-        setSocialDisabledBtnTrue()
-      else
         setSocialDisabledBtnFalse()
-    }
+      else
+        setSocialDisabledBtnTrue()
+    })
   }
-  dataChangeCount.value++
-}, { deep: true })
+}
 watch(() => userInfo.value, (newValue) => {
   if (newValue) {
     email.value = newValue.email

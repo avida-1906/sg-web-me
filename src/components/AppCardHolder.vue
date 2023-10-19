@@ -9,7 +9,7 @@ type WalletCurrencyList = {
 } & IUserCurrencyList
 
 const closeDialog = inject('closeDialog', () => { })
-const cardList: WalletCurrencyList[] = []
+const cardList: Ref<WalletCurrencyList[]> = ref([])
 
 const {
   renderCurrencyList,
@@ -23,14 +23,14 @@ const {
   onSuccess() {
     for (const item of renderCurrencyList.value) {
       if (item.bank_tree) { // 银行卡
-        cardList.push({
+        cardList.value.push({
           ...item,
           bankcard: walletBankcard.value?.bankcard[item.cur],
         })
       }
       else { // 虚拟币
         const currentCoin = walletBankcard.value?.coin[item.cur] || []
-        cardList.push({
+        cardList.value.push({
           ...item,
           coin: currentCoin,
           addressNum: currentCoin.length,
@@ -54,7 +54,7 @@ const {
       }
     }
     // 排序，绑定的在前
-    cardList.sort((a, b) => {
+    cardList.value.sort((a, b) => {
       return ((b.bank_tree ? b.bankcard?.length : b.addressNum) || 0) - ((a.bank_tree ? a.bankcard?.length : a.addressNum) || 0)
     })
   },
@@ -98,9 +98,11 @@ const toAddVirAddress = function (
   }))
 }
 
-await application.allSettled([
+// onActivated(() => {
+application.allSettled([
   runAsyncWalletBankcardList(),
 ])
+// })
 </script>
 
 <template>
