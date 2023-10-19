@@ -12,11 +12,8 @@ const closeDialog = inject('closeDialog', () => { })
 const cardList: Ref<WalletCurrencyList[]> = ref([])
 
 const { bool: firstActivation, setFalse: setFirstActivationFalse } = useBoolean(true)
-
-const {
-  renderCurrencyList,
-  isVirtualCurrency,
-} = useCurrencyData()
+const { userCurrencyList } = useAppStore()
+const { isVirtualCurrency } = useCurrencyData()
 // 会员卡包
 const {
   data: walletBankcard,
@@ -24,7 +21,7 @@ const {
 } = useRequest(ApiWalletBankcardList, {
   onSuccess() {
     const temp = []
-    for (const item of renderCurrencyList.value) {
+    for (const item of userCurrencyList) {
       if (item.bank_tree) { // 银行卡
         temp.push({
           ...item,

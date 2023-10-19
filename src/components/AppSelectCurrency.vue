@@ -16,10 +16,10 @@ const emit = defineEmits(['change'])
 
 // 下拉搜索是否显示
 const { bool: isMenuShown } = useBoolean(false)
+const { userCurrencyList } = useAppStore()
 const {
   currentCurrency,
   searchValue,
-  renderCurrencyList,
   changeCurrentCurrency,
   clearSearchValue,
 } = useCurrencyData()
@@ -27,15 +27,10 @@ const {
 const currentNetwork = ref()
 
 const getCurrencyList = computed(() => {
-  if (props.currencyList) {
-    if (searchValue.value)
-      return props.currencyList.filter((item: IUserCurrencyList) => item.type.includes(searchValue.value.toLocaleUpperCase()))
-
-    return props.currencyList
-  }
-  else {
-    return renderCurrencyList.value
-  }
+  const activeList = props.currencyList || userCurrencyList
+  if (searchValue.value)
+    return activeList.filter((item: IUserCurrencyList) => item.type.includes(searchValue.value.toLocaleUpperCase()))
+  return activeList
 })
 // 获取当前选择货币对象
 const getCurrencyBalance = computed(() => {
@@ -127,7 +122,7 @@ onMounted(() => {
               />
               <AppCurrencyIcon v-else show-name :currency-type="item.type" />
             </div>
-            <div v-show="!renderCurrencyList.length" class="balance-not">
+            <div v-show="!getCurrencyList.length" class="balance-not">
               无法使用货币
             </div>
           </div>

@@ -78,7 +78,7 @@ function selectCurrency(item: IUserCurrencyList, hide: () => void) {
             <BaseButton
               type="text"
               class="bottom-btn"
-              @click="openWalletSetDialog()"
+              @click=" hide();openWalletSetDialog()"
             >
               <BaseIcon class="icon-wallet-set" name="wallet-set" />
               <span>钱包设置</span>

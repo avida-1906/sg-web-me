@@ -1,16 +1,12 @@
 <script setup lang="ts">
 const { hideZeroBalance } = useCurrencyData()
-
-function onSwitch() {
-  console.log(hideZeroBalance.value)
-}
 </script>
 
 <template>
   <div class="layout-spacing reset app-vir-address">
     <div class="flex-row">
       <div>
-        <BaseSwitch v-model="hideZeroBalance" @change="onSwitch" />
+        <BaseSwitch v-model="hideZeroBalance" />
       </div>
       <div>
         <div class="row-title">
