@@ -33,7 +33,6 @@ const { openNotify } = useNotify()
 /** '1' 银行卡， '2' pix 除了巴西其他国家都是银行卡 */
 const currentType = ref<'1' | '2'>(props.currentType)
 const currencyId = ref(props.activeCurrency.cur ?? '')
-const bankAreaCpf = ref('')
 const { bool: isDefault, setFalse: setIsDefaultFalse } = useBoolean(false)
 
 const {
@@ -42,8 +41,8 @@ const {
   validate: usernameValidate,
   resetField: usernameReset,
 } = useField<string>('username', (value) => {
-  if (!value)
-    return '请输入用户名'
+  if (!value || value.length > 20)
+    return '请输入正确姓名'
   return ''
 })
 const {
@@ -66,6 +65,16 @@ const {
     return currentType.value === '1' ? '请输入银行卡号码' : '请输入PIX账户'
   if (value.length < 4 || value.length > 30)
     return currentType.value === '1' ? '请输入 4 - 30 位数字组成的正确银行卡号' : '请输入 4 - 30 位数字组成的正确PIX账户'
+  return ''
+})
+const {
+  value: bankAreaCpf,
+  errorMessage: bankAreaCpfError,
+  validate: bankAreaCpfValidate,
+  resetField: bankAreaCpfReset,
+} = useField<string>('bankAreaCpf', (value) => {
+  if (value && value.length > 100)
+    return '请输入正确开户支行地址'
   return ''
 })
 const {
@@ -94,8 +103,8 @@ const {
     usernameReset()
     banknameReset()
     bankaccountReset()
+    bankAreaCpfReset()
     paypasswordReset()
-    bankAreaCpf.value = ''
     setIsDefaultFalse()
     closeDialog()
   },
@@ -121,6 +130,7 @@ const onBindBank = async function () {
   await usernameValidate()
   await banknameValidate()
   await bankaccountValidate()
+  await bankAreaCpfValidate()
   await paypasswordValidate()
   if (!usernameError.value && !usernameError.value && !bankaccountError.value) {
     runBankcardInsert({
@@ -187,6 +197,7 @@ onMounted(() => {
       <BaseInput
         v-if="currentType === '1'"
         v-model="bankAreaCpf"
+        :msg="bankAreaCpfError"
         label="开户行地址"
       />
       <BaseLabel label="交易密码" must>
