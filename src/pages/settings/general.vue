@@ -52,7 +52,6 @@ const paramsData = ref(userInfo.value || {
   google_key: '',
   google_verify: '',
 })
-const dataChangeCount = ref(0)
 const socialData = [
   {
     label: 'Facebook',
@@ -208,7 +207,6 @@ for (const k in paramsData.value) {
         setSocialDisabledBtnFalse()
       else
         setSocialDisabledBtnTrue()
-      console.log(socialDataChanged)
     })
   }
 }

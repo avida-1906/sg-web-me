@@ -48,7 +48,7 @@ const {
     return t('pls_enter_username')
 
   if (!usernameReg.test(value))
-    return t('username_incorrect')
+    return '您的用户名长度必须为 3 – 14 个小写英文字母和数字组成'
     // 此用户名已被使用，请选择另一用户名。
     // 用户名含有无效的字符
     // 您的用户名长度必须为 3 – 14 个字符。

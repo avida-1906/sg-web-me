@@ -17,7 +17,7 @@ const {
     return t('pls_enter_email_or_username')
 
   if (!emailReg.test(value) && !usernameReg.test(value))
-    return t('email_or_username_incorrect')
+    return '请输入正确的电邮地址或 3 - 14 个小写英文和数字组成的用户名'
 
   return ''
 })
