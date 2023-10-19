@@ -10,9 +10,8 @@ type WalletCurrencyList = {
 } & IUserCurrencyList
 
 const closeDialog = inject('closeDialog', () => { })
-const cardList: Ref<WalletCurrencyList[]> = ref([])
+const cardList: Ref<WalletCurrencyList[] | null> = ref(null)
 
-const { bool: firstActivation, setFalse: setFirstActivationFalse } = useBoolean(true)
 const { userCurrencyList } = useAppStore()
 const { isVirtualCurrency } = useCurrencyData()
 // 会员卡包
@@ -59,11 +58,11 @@ const {
         }
       }
     }
-    cardList.value = temp
     // 排序，绑定的在前
-    cardList.value.sort((a, b) => {
+    temp.sort((a, b) => {
       return ((b.bank_tree ? b.bankcard?.length : b.addressNum) || 0) - ((a.bank_tree ? a.bankcard?.length : a.addressNum) || 0)
     })
+    cardList.value = temp
   },
 })
 
@@ -105,19 +104,8 @@ const toAddVirAddress = function (
   }))
 }
 
-onActivated(() => {
-  if (firstActivation.value) {
-    setFirstActivationFalse()
-    return
-  }
-  application.allSettled([
-    runAsyncWalletBankcardList(),
-  ])
-})
-
-await application.allSettled([
-  runAsyncWalletBankcardList(),
-])
+if (!cardList.value)
+  application.allSettled([runAsyncWalletBankcardList()])
 </script>
 
 <template>
@@ -177,7 +165,7 @@ await application.allSettled([
           </div>
         </template>
       </BaseCollapse>
-      <BaseEmpty v-if="!cardList.length" description="暂无数据" icon="uni-empty-betslip" />
+      <BaseEmpty v-if="!cardList?.length" description="暂无数据" icon="uni-empty-betslip" />
     </div>
   </div>
 </template>
