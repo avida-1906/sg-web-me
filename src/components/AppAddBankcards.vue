@@ -45,7 +45,7 @@ const {
   validate: usernameValidate,
   resetField: usernameReset,
 } = useField<string>('username', (value) => {
-  if (!value || value.length > 20)
+  if (!value || value.trim() === '' || value.trim().length > 20)
     return '请输入正确姓名'
   return ''
 })
@@ -77,7 +77,7 @@ const {
   validate: bankAreaCpfValidate,
   resetField: bankAreaCpfReset,
 } = useField<string>('bankAreaCpf', (value) => {
-  if (!value || value.length > 100)
+  if (value && value.length > 100)
     return '请输入正确开户支行地址'
   return ''
 })
