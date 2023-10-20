@@ -12,7 +12,7 @@ function onSwitch() {
       <div>
         <BaseSwitch v-model="hideZeroBalance" @change="onSwitch" />
       </div>
-      <div>
+      <div class="row-right">
         <div class="row-title">
           隐藏零数余额
         </div>
@@ -32,11 +32,14 @@ function onSwitch() {
     display: flex;
     flex-direction: row;
     align-items: center;
+    .row-right{
+      margin-left: 10px;
+    }
     .row-title{
-
+      margin-bottom: 8px;
     }
     .row-text{
-
+      color: var(--tg-text-lightgrey);
     }
   }
 }
