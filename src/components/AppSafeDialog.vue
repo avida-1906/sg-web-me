@@ -26,11 +26,11 @@ const {
 } = useField<string>('amount', (value) => {
   if (!value)
     return '不能为空'
-  if (Number(value) === 0)
+  else if (Number(value) === 0)
     return '存入金额不能为0'
-  if (Number(value) < 0)
+  else if (Number(value) < 0)
     return '存入金额不能为负数'
-  if (activeCurrency.value && Number(value) > Number(activeCurrency.value?.balance))
+  else if (activeCurrency.value && Number(value) > Number(activeCurrency.value?.balance))
     return '金额不能超过最大值'
 
   return ''

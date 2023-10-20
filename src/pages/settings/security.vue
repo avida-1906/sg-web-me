@@ -28,7 +28,7 @@ const {
 } = useField<string>('repeatPassword', (value) => {
   if (!value)
     return t('pls_enter_password')
-  if (value !== newPassword.value)
+  else if (value !== newPassword.value)
     return '两次输入的密码不一致'
   return ''
 })
@@ -59,7 +59,7 @@ const {
 } = useField<string>('aginPayPassword', (value) => {
   if (!value)
     return t('pls_enter_password')
-  if (value !== payPassword.value)
+  else if (value !== payPassword.value)
     return '两次输入的交易密码不一致'
   return ''
 })
@@ -120,22 +120,22 @@ const getQRcodeUrl = computed(() => {
 function fieldVerifyLoginPwd(value: string) {
   if (!value)
     return t('pls_enter_password')
-  if (value.length < 8)
+  else if (value.length < 8)
     return t('password_least_8_characters')
-  if (!upperLowerReg.test(value))
+  else if (!upperLowerReg.test(value))
     return t('password_uppercase_lowercase_letter')
-  if (!lastOneNumberReg.test(value))
+  else if (!lastOneNumberReg.test(value))
     return t('password_least_1_number')
-  if (repeatPassword.value)
+  else if (repeatPassword.value)
     valiRepeatPassword()
   return ''
 }
 function fieldVerifyPayPwd(value: string) {
   if (!value)
     return t('pls_enter_password')
-  if (!payPasswordReg.test(value))
+  else if (!payPasswordReg.test(value))
     return '您的交易密码含有6位数字'
-  if (aginPayPassword.value)
+  else if (aginPayPassword.value)
     valiAginPayPwd()
   return ''
 }

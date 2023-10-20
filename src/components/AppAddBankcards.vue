@@ -63,7 +63,7 @@ const {
 } = useField<string>('bankaccount', (value) => {
   if (!value)
     return currentType.value === '1' ? '请输入银行卡号码' : '请输入PIX账户'
-  if (value.length < 4 || value.length > 30)
+  else if (value.length < 4 || value.length > 30)
     return currentType.value === '1' ? '请输入 4 - 30 位数字组成的正确银行卡号' : '请输入 4 - 30 位数字组成的正确PIX账户'
   return ''
 })
@@ -85,6 +85,8 @@ const {
 } = useField<string>('paypassword', (value) => {
   if (!value)
     return '请输入交易密码'
+  else if (!payPasswordReg.test(value))
+    return '请输入6位数字组成的交易密码'
   return ''
 })
 

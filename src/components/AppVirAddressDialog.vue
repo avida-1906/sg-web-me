@@ -21,7 +21,7 @@ const {
 } = useField<string>('address', (value) => {
   if (!value)
     return t('this_field_is_required')
-  if (!virtualCoinAddressReg.test(value))
+  else if (!virtualCoinAddressReg.test(value))
     return '地址格式不正确'
   return ''
 })

@@ -105,7 +105,7 @@ const toAddVirAddress = function (
 }
 
 if (!cardList.value)
-  application.allSettled([runAsyncWalletBankcardList()])
+  await application.allSettled([runAsyncWalletBankcardList()])
 </script>
 
 <template>

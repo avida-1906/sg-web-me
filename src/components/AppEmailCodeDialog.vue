@@ -40,7 +40,7 @@ const {
 } = useField<string>('emailCode', (value) => {
   if (!value)
     return '请输入验证码'
-  if (value.length !== 6)
+  else if (value.length !== 6)
     return '您的邮箱验证码含有6位数字'
   return ''
 })

@@ -9,7 +9,7 @@ const {
 } = useField<string>('email', (value) => {
   if (!value)
     return '请输入电邮地址'
-  if (!emailReg.test(value))
+  else if (!emailReg.test(value))
     return '电邮地址格式不正确'
   return ''
 })

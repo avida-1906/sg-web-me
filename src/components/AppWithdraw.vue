@@ -15,7 +15,6 @@ const {
 } = useField<string>('address', (value) => {
   if (!value)
     return t('this_field_is_required')
-
   return ''
 })
 const {
