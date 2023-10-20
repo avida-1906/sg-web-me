@@ -73,15 +73,16 @@ const toAddBankcards = function (item: WalletCurrencyList) {
     isFirst = false
     openName = item.bankcard[0].open_name
   }
+  const currentType = item.cur === '702'
   const {
     openAddBankcardsDialog,
   } = useAddBankcardsDialog({
-    title: '绑定银行卡',
+    title: currentType ? '绑定PIX账户' : '绑定银行卡',
     openName,
     isFirst,
     activeCurrency: item,
     /** 702 货币id */
-    currentType: item.cur === '702' ? '2' : '1',
+    currentType: currentType ? '2' : '1',
   })
   closeDialog()
   nextTick(() => openAddBankcardsDialog())
