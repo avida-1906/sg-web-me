@@ -35,6 +35,10 @@ const currentType = ref<'1' | '2'>(props.currentType)
 const currencyId = ref(props.activeCurrency.cur ?? '')
 const { bool: isDefault, setFalse: setIsDefaultFalse } = useBoolean(false)
 
+const isBankType = computed(() => {
+  return currentType.value === '1'
+})
+
 const {
   value: openName,
   errorMessage: usernameError,
@@ -52,7 +56,7 @@ const {
   resetField: banknameReset,
 } = useField<string>('bankname', (value) => {
   if (!value)
-    return '请选择银行'
+    return isBankType.value ? '请选择银行' : '请选择PIX账户类型'
   return ''
 })
 const {
@@ -62,9 +66,9 @@ const {
   resetField: bankaccountReset,
 } = useField<string>('bankaccount', (value) => {
   if (!value)
-    return currentType.value === '1' ? '请输入银行卡号码' : '请输入PIX账户'
+    return isBankType.value ? '请输入银行卡号码' : '请输入PIX账户'
   else if (value.length < 4 || value.length > 30)
-    return currentType.value === '1' ? '请输入 4 - 30 位数字组成的正确银行卡号' : '请输入 4 - 30 位数字组成的正确PIX账户'
+    return isBankType.value ? '请输入 4 - 30 位数字组成的正确银行卡号' : '请输入 4 - 30 位数字组成的正确PIX账户'
   return ''
 })
 const {
@@ -115,7 +119,6 @@ const {
 const bankSelectOptions = computed(() => {
   if (!bankList.value)
     return []
-
   return bankList.value.map((item: IBank) => {
     const temp = {
       label: item.name,
@@ -127,8 +130,6 @@ const bankSelectOptions = computed(() => {
 })
 
 const onBindBank = async function () {
-  if (currentType.value === '2')
-    bankName.value = 'PIX'
   await usernameValidate()
   await banknameValidate()
   await bankaccountValidate()
@@ -169,7 +170,7 @@ onMounted(() => {
         请先绑定提款方式，再进行提款！
       </div>
       <BaseLabel
-        :label="currentType === '1' ? '开户人姓名' : '账户人姓名'"
+        :label="isBankType ? '开户人姓名' : '账户人姓名'"
         :must="props.isFirst"
         :label-content="props.isFirst ? '绑定后不可更改' : ''"
       >
@@ -182,7 +183,7 @@ onMounted(() => {
       <BaseLabel label="提款方式">
         <AppWithdrawalDepositType v-model="currentType" />
       </BaseLabel>
-      <BaseLabel v-if="currentType === '1'" label="请选择银行" must>
+      <BaseLabel :label="isBankType ? '请选择银行' : '请选择PIX账户类型'" must>
         <BaseSelect
           v-model="bankName"
           :msg="banknameError"
@@ -190,14 +191,14 @@ onMounted(() => {
           class="base-select"
         />
       </BaseLabel>
-      <BaseLabel :label="currentType === '1' ? '银行卡号' : 'PIX账户 '" must>
+      <BaseLabel :label="isBankType ? '银行卡号' : 'PIX账户 '" must>
         <BaseInput
           v-model="bankAccount"
           :msg="bankaccountError"
         />
       </BaseLabel>
       <BaseInput
-        v-if="currentType === '1'"
+        v-if="isBankType"
         v-model="bankAreaCpf"
         :msg="bankAreaCpfError"
         label="开户行地址"
