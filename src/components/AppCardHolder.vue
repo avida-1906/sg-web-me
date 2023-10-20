@@ -5,8 +5,8 @@ import type { BankCard, VirtualCoin } from '~/apis'
 type WalletCurrencyList = {
   coin?: VirtualCoin[] // 绑定的虚拟币
   bankcard?: BankCard[] // 绑定的银行卡
-  addressNum?: number // 虚拟币已绑定地址的数量
-  showAdd?: boolean
+  addressNum: number // 虚拟币已绑定地址的数量
+  showAdd: boolean // 是否可添加
 } & IUserCurrencyList
 
 const closeDialog = inject('closeDialog', () => { })
@@ -39,28 +39,13 @@ const {
           ...item,
           coin: currentCoin,
           addressNum: currentCoin.length,
+          showAdd: currentCoin.length < 3,
         })
-        // for (const tmp of item.contract_type || []) {
-        //   if (!currentCoin.find(tp => tmp === tp.contract_type)) {
-        //     currentCoin.push({
-        //       address: '',
-        //       contract_type: tmp,
-        //       id: tmp,
-        //       uid: '',
-        //       state: -1,
-        //       currency_name: '',
-        //       created_at: 0,
-        //       updated_at: 0,
-        //       is_default: 0,
-        //       username: '',
-        //     })
-        //   }
-        // }
       }
     }
     // 排序，绑定的在前
     temp.sort((a, b) => {
-      return ((b.bank_tree ? b.bankcard?.length : b.addressNum) || 0) - ((a.bank_tree ? a.bankcard?.length : a.addressNum) || 0)
+      return b.addressNum - a.addressNum
     })
     cardList.value = temp
   },
@@ -138,6 +123,7 @@ if (!cardList.value)
               </BaseButton>
             </div>
             <BaseButton
+              v-if="item.showAdd"
               size="sm"
               type="text"
               class="add-btn"
