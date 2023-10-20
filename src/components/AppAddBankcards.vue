@@ -77,7 +77,7 @@ const {
   validate: bankAreaCpfValidate,
   resetField: bankAreaCpfReset,
 } = useField<string>('bankAreaCpf', (value) => {
-  if (!value || (value && value.length > 100))
+  if (!value || value.length > 100)
     return '请输入正确开户支行地址'
   return ''
 })
