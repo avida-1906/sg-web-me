@@ -163,9 +163,15 @@ const emailCheck = function () {
     message: `验证邮电已发送至 +${paramsData.value.email}`,
   }
 }
+const emailPaste = function () {
+  setTimeout(() => {
+    setEmailDisabledBtnFalse()
+  }, 0)
+}
 
 /** 监听邮箱改变 */
 watch(() => email.value, (newValue, oldValue) => {
+  paramsData.value.email = newValue
   if (oldValue && newValue && newValue !== oldValue)
     setEmailDisabledBtnFalse()
   else
@@ -263,6 +269,7 @@ onMounted(() => {
           :disabled="emailVerified"
           :msg="emailErrormsg"
           :class="{ 'general-base-input-background': emailVerified }"
+          @paste="emailPaste"
         />
       </BaseLabel>
       <template #btm-right>

@@ -20,7 +20,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const emit = defineEmits(
-  ['update:modelValue', 'input', 'blur', 'focus', 'downEnter', 'onRightButton'],
+  ['update:modelValue', 'input', 'blur', 'focus', 'downEnter', 'onRightButton', 'paste'],
 )
 
 const { bool: isFocus, setTrue, setFalse } = useBoolean(false)
@@ -68,6 +68,10 @@ function onRightButton() {
   emit('onRightButton')
 }
 
+function onPaste() {
+  emit('paste')
+}
+
 defineExpose({ getFocus })
 </script>
 
@@ -99,6 +103,7 @@ defineExpose({ getFocus })
               @focus="onFocus"
               @blur="onBlur"
               @keydown.enter="keyDownEnter"
+              @paste="onPaste"
             />
           </div>
           <input
@@ -114,6 +119,8 @@ defineExpose({ getFocus })
             @input="onInput"
             @focus="onFocus"
             @blur="onBlur"
+            @paste="onPaste"
+            @keydown.enter="keyDownEnter"
           >
           <div v-if="isPassword" class="eye" @click="toggleType">
             <BaseIcon :name="`uni-eye-${_type === 'password' ? 'open' : 'close'}`" />
