@@ -231,6 +231,7 @@ function resetPlatformChecked() {
   align-items: center;
   justify-content: center;
   gap: var(--tg-spacing-8);
+  line-height: 1.3;
 
   .app-svg-icon {
     font-size: var(--tg-font-size-xs);

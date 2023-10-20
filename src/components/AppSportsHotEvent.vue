@@ -35,8 +35,8 @@ const threeOptions = [
     </div>
 
     <div class="market-wrapper">
-      <AppSportsMarket show-more />
-      <AppSportsMarket />
+      <AppSportsMarket show-more :tournament="{ name: 'ATP东京站，日本，男单', id: '123' }" />
+      <AppSportsMarket :tournament="{ name: 'ATP东京站，日本，男单', id: '123' }" />
     </div>
   </div>
 </template>

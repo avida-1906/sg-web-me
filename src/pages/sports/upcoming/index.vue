@@ -65,8 +65,10 @@ watch(currentGame, (a) => {
     <AppSportsTab v-model="currentGame" :list="gameList" />
 
     <div class="market-wrapper">
-      <AppSportsMarket :is-standard="isStandard" show-breadcrumb />
-      <AppSportsMarket show-breadcrumb :is-standard="isStandard" />
+      <AppSportsMarket
+        :is-standard="isStandard" show-breadcrumb
+        :tournament="{ name: '网球', id: '123' }"
+      />
     </div>
 
     <div v-if="!onPage" class="layout-spacing">

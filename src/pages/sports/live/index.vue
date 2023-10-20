@@ -30,8 +30,14 @@ function onBaseTypeChange(v: string) {
     </div>
     <AppSportsTab v-model="currentGame" :list="gameList" />
     <div class="market-wrapper">
-      <AppSportsMarket :is-standard="isStandard" />
-      <AppSportsMarket :is-standard="isStandard" />
+      <AppSportsMarket
+        :is-standard="isStandard"
+        :tournament="{ name: '澳大利亚 / 女子联赛', id: '123' }"
+      />
+      <AppSportsMarket
+        :is-standard="isStandard"
+        :tournament="{ name: '澳大利亚 / 女子联赛', id: '123' }"
+      />
     </div>
 
     <div v-if="!onPage" class="layout-spacing">
