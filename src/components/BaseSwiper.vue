@@ -132,7 +132,7 @@ function mouseUpEve(event: MouseEvent) {
         }
       }
       else {
-        if (dragDirection.value)
+        if (dragDirection.value > 0)
           trackX.value -= dragDirection.value
         else
           trackX.value += dragDirection.value
