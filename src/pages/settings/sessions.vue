@@ -57,7 +57,7 @@ const tableData = computed(() => {
         browser: item.browser,
         near: item.ipaddress,
         addr: item.loginip,
-        lastUsed: dayjs.unix(item.created_at).format('YYYY-MM-DD HH:mm:ss'),
+        lastUsed: application.timestampToTime(Number(item.created_at) * 1000),
       }
       return temp
     })
