@@ -1,17 +1,16 @@
 <script setup lang="ts">
 interface Props {
-  contractType?: string
   currencyId?: string
   currencyName?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
   currencyId: '',
-  contractType: '',
 })
 
 const closeDialog = inject('closeDialog', () => { })
 
+const { userCurrencyList } = useAppStore()
 const { t } = useI18n()
 const { openNotify } = useNotify()
 const {
@@ -32,6 +31,8 @@ const {
 } = useField<string>('paypassword', (value) => {
   if (!value)
     return '请输入交易密码'
+  if (!payPasswordReg.test(value))
+    return '您的交易密码含有6位数字'
   return ''
 })
 const {
@@ -48,14 +49,26 @@ const {
   },
 })
 
+const optionsContract = getCurContract() || []
+const currentNetwork = ref(optionsContract[0]?.value || '')
+
+// 获取协议类型
+function getCurContract() {
+  return userCurrencyList.find(
+    item => item.cur === props.currencyId,
+  )?.contract_type?.map((type) => {
+    return { label: type, value: type }
+  })
+}
 async function handleBindAddress() {
   await valiAddress()
   await paypasswordValidate()
   if (!addressMsg.value) {
     runMemberWalletInsert({
-      contract_type: props.contractType,
+      contract_type: currentNetwork.value,
       currency_id: props.currencyId,
       address: address.value,
+      is_default: 2,
       pay_password: payPassword.value,
     })
   }
@@ -64,8 +77,14 @@ async function handleBindAddress() {
 
 <template>
   <div class="layout-spacing reset app-vir-address">
+    <BaseSelect
+      v-model="currentNetwork"
+      label="选择协议"
+      :options="optionsContract"
+      small
+    />
     <BaseLabel
-      :label="`您${currencyName}的${currencyName === contractType ? '' : contractType}地址`"
+      :label="`您${currencyName}的${currentNetwork}地址`"
       must
     >
       <BaseInput v-model="address" :msg="addressMsg" />

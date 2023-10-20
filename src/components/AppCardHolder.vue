@@ -40,22 +40,22 @@ const {
           coin: currentCoin,
           addressNum: currentCoin.length,
         })
-        for (const tmp of item.contract_type || []) {
-          if (!currentCoin.find(tp => tmp === tp.contract_type)) {
-            currentCoin.push({
-              address: '',
-              contract_type: tmp,
-              id: tmp,
-              uid: '',
-              state: -1,
-              currency_name: '',
-              created_at: 0,
-              updated_at: 0,
-              is_default: 0,
-              username: '',
-            })
-          }
-        }
+        // for (const tmp of item.contract_type || []) {
+        //   if (!currentCoin.find(tp => tmp === tp.contract_type)) {
+        //     currentCoin.push({
+        //       address: '',
+        //       contract_type: tmp,
+        //       id: tmp,
+        //       uid: '',
+        //       state: -1,
+        //       currency_name: '',
+        //       created_at: 0,
+        //       updated_at: 0,
+        //       is_default: 0,
+        //       username: '',
+        //     })
+        //   }
+        // }
       }
     }
     // 排序，绑定的在前
@@ -89,7 +89,6 @@ const toAddBankcards = function (item: WalletCurrencyList) {
 }
 const toAddVirAddress = function (
   item: WalletCurrencyList,
-  contractType: string,
 ) {
   const {
     openVirAddressDialog,
@@ -99,7 +98,6 @@ const toAddVirAddress = function (
   })
   closeDialog()
   nextTick(() => openVirAddressDialog({
-    contractType,
     currencyId: item.cur,
     currencyName: item.type,
   }))
@@ -130,20 +128,23 @@ if (!cardList.value)
               v-for="tmp in item.coin"
               :key="tmp.id"
               class="address-row"
-              :class="{ padding0: !tmp.address }"
             >
-              <span v-if="tmp.address">{{ tmp.address }}</span>
-              <BaseButton
-                v-else
-                size="sm"
-                type="text"
-                class="add-btn"
-                @click="toAddVirAddress(item, tmp.contract_type)"
-              >
-                <BaseIcon style="transform: rotate(45deg);" name="uni-close" />
+              <span class="type">{{ tmp.contract_type }}</span>
+              <span
+                style="flex: 1;padding-left: var(--tg-spacing-8);"
+              >{{ tmp.address }}</span>
+              <BaseButton type="text">
+                <BaseIcon name="upload-delete" />
               </BaseButton>
-              <span class="type vir-type center">{{ tmp.contract_type }}</span>
             </div>
+            <BaseButton
+              size="sm"
+              type="text"
+              class="add-btn"
+              @click="toAddVirAddress(item)"
+            >
+              <BaseIcon style="transform: rotate(45deg);" name="uni-close" />
+            </BaseButton>
           </div>
           <div v-else class="layout-spacing reset">
             <div
@@ -153,6 +154,9 @@ if (!cardList.value)
               <BaseIcon name="fiat-bank" />
               <span class="bank-num">{{ tmp.bank_account }}</span>
               <span class="type">{{ tmp.open_name }}</span>
+              <BaseButton type="text">
+                <BaseIcon name="upload-delete" />
+              </BaseButton>
             </div>
             <BaseButton
               v-if="item.showAdd"
@@ -191,30 +195,21 @@ if (!cardList.value)
       background: var(--tg-secondary-dark);
     }
     .address-row{
-      position: relative;
       display: flex;
       justify-content: space-between;
       align-items: center;
       background: var(--tg-secondary-dark);
       font-size: var(--tg-font-size-xs);
       color: var(--tg-text-white);
-      padding: var(--tg-spacing-13) var(--tg-spacing-16);
+      padding: 0 var(--tg-spacing-4) 0 var(--tg-spacing-16);
       .type{
         font-weight: 500;
         color: var(--tg-text-warn);
-      }
-      .vir-type{
-        height: 100%;
-        position: absolute;
-        right: var(--tg-spacing-16);
       }
       .bank-num{
         flex: 1;
         margin-left: var(--tg-spacing-8);
       }
-    }
-    .padding0{
-      padding: 0 var(--tg-spacing-16);
     }
   }
 }
