@@ -15,8 +15,7 @@ const {
 } = useField<string>('username', (value) => {
   if (!value)
     return t('pls_enter_email_or_username')
-
-  if (!emailReg.test(value) && !usernameReg.test(value))
+  else if (!emailReg.test(value) && !usernameReg.test(value))
     return '请输入正确的电邮地址或 3 - 14 个小写英文和数字组成的用户名'
 
   return ''
@@ -28,16 +27,12 @@ const {
 } = useField<string>('password', (value) => {
   if (!value)
     return t('pls_enter_password')
-
-  if (value.length < 8)
+  else if (value.length < 8)
     return t('password_least_8_characters')
-
-  if (!upperLowerReg.test(value))
+  else if (!upperLowerReg.test(value))
     return t('password_uppercase_lowercase_letter')
-
-  if (!lastOneNumberReg.test(value))
+  else if (!lastOneNumberReg.test(value))
     return t('password_least_1_number')
-
   return ''
 })
 const {

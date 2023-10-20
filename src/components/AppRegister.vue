@@ -29,8 +29,7 @@ const {
 } = useField<string>('email', (value) => {
   if (!value)
     return t('pls_enter_email_address')
-
-  if (!emailReg.test(value))
+  else if (!emailReg.test(value))
     return t('email_address_incorrect')
     // 请在您的电邮地址中加入 “@” 符号
     // 请在您的电邮地址中加入 “.” 符号
@@ -46,8 +45,7 @@ const {
 } = useField<string>('username', (value) => {
   if (!value)
     return t('pls_enter_username')
-
-  if (!usernameReg.test(value))
+  else if (!usernameReg.test(value))
     return '您的用户名长度必须为 3 – 14 个小写英文字母和数字组成'
     // 此用户名已被使用，请选择另一用户名。
     // 用户名含有无效的字符
@@ -61,16 +59,12 @@ const {
 } = useField<string>('password', (value) => {
   if (!value)
     return t('pls_enter_password')
-
-  if (value.length < 8)
+  else if (value.length < 8)
     return t('password_least_8_characters')
-
-  if (!upperLowerReg.test(value))
+  else if (!upperLowerReg.test(value))
     return t('password_uppercase_lowercase_letter')
-
-  if (!lastOneNumberReg.test(value))
+  else if (!lastOneNumberReg.test(value))
     return t('password_least_1_number')
-
   return ''
 })
 
