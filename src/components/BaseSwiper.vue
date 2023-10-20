@@ -132,10 +132,7 @@ function mouseUpEve(event: MouseEvent) {
         }
       }
       else {
-        if (dragDirection.value)
-          trackX.value -= dragDirection.value
-        else
-          trackX.value += dragDirection.value
+        trackX.value -= dragDirection.value
         duration.value = dragDirection.value / outerWidth.value * 800
       }
     }
