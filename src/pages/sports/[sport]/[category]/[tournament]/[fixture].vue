@@ -961,7 +961,7 @@ function openMiniVideo() {
                 </div>
               </div>
               <div class="spotlight is-open variant-dark">
-                <div class="no-active-scale header">
+                <div class="header no-active-scale">
                   <span>近期游戏记录</span>
                   <BaseButton type="text">
                     <BaseIcon name="uni-close-white" />
@@ -1427,7 +1427,7 @@ video {
               width: 100%;
               bottom: var(--tg-footerbar-height);
               left: 0;
-              z-index: var(--tg-z-index-50);
+              z-index: 5;
               position: fixed;
               box-shadow: var(--tg-box-shadow), var(--tg-shadow-inset);
 
@@ -1444,7 +1444,8 @@ video {
         .sticky-column {
           position: sticky;
           top: 0;
-          z-index: var(--tg-z-index-10);
+          // z-index: var(--tg-z-index-10);
+          z-index: 5;
           height: -moz-min-content;
           height: min-content;
           flex: 0 0 360px;

@@ -112,11 +112,10 @@ function openChat() {
 }
 .app-chat-header {
   width: 100%;
-  height: 100%;
+  height: var(--tg-header-height);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-shrink: 0;
   padding-right: var(--tg-scrollbar-size);
   padding-left: var(--tg-spacing-16);
   color: var(--tg-text-white);

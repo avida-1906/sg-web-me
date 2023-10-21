@@ -19,6 +19,69 @@ const messages: Array<ChatMessageInfo> = [
     },
     html: '我不开满倍的啊。只开10X',
   },
+  {
+    id: '634sdf5436',
+    sender: {
+      name: 'xiaohong77',
+      id: '9saf7d9f9saf78s9dfi24',
+      level: 'gold',
+    },
+    html: '我不开满倍的啊。只开10X',
+  },
+  {
+    id: '634ssssa5436',
+    sender: {
+      name: 'xiaohong77',
+      id: '9saf7d9f9saf78s9dfi24',
+      level: 'gold',
+    },
+    html: '我不开满倍的啊。只开10X',
+  },
+  {
+    id: '632345bbcdd436',
+    sender: {
+      name: 'xiaohong77',
+      id: '9saf7d9f9saf78s9dfi24',
+      level: 'gold',
+    },
+    html: '我不开满倍的啊。只开10X',
+  },
+  {
+    id: '61112bcdd436',
+    sender: {
+      name: 'xiaohong77',
+      id: '9saf7d9f9saf78s9dfi24',
+      level: 'gold',
+    },
+    html: '我不开满倍的啊。只开10X',
+  },
+  {
+    id: '6546yyyd436',
+    sender: {
+      name: 'xiaohong77',
+      id: '9saf7d9f9saf78s9dfi24',
+      level: 'gold',
+    },
+    html: '我不开满倍的啊。只开10X',
+  },
+  {
+    id: '7897dfbcdd436',
+    sender: {
+      name: 'xiaohong77',
+      id: '9saf7d9f9saf78s9dfi24',
+      level: 'gold',
+    },
+    html: '我不开满倍的啊。只开10X',
+  },
+  {
+    id: '34634fdsfdd436',
+    sender: {
+      name: 'xiaohong77',
+      id: '9saf7d9f9saf78s9dfi24',
+      level: 'gold',
+    },
+    html: '我不开满倍的啊。只开10X',
+  },
 ]
 </script>
 
@@ -65,13 +128,10 @@ const messages: Array<ChatMessageInfo> = [
 <style lang="scss" scoped>
 .app-chat-outer {
   display: flex;
-  flex-shrink: 0;
   flex-direction: column;
   height: 100%;
   background: var(--tg-secondary-dark);
-  filter: drop-shadow(0 0 5px rgba(25,25,25,.25));
-  z-index: var(--tg-z-index-secondary);
-  flex: 1;
+  // filter: drop-shadow(0 0 5px rgba(25,25,25,.25));
   .header {
     position: relative;
     background: var(--tg-secondary-dark);
@@ -79,7 +139,6 @@ const messages: Array<ChatMessageInfo> = [
     height: var(--tg-header-height);
     z-index: var(--tg-z-index-10);
     box-shadow: var(--tg-box-shadow-lg);
-    touch-action: none;
   }
   .messages {
     width: 100%;
@@ -88,8 +147,7 @@ const messages: Array<ChatMessageInfo> = [
     justify-content: flex-end;
     overflow: hidden;
     position: relative;
-    touch-action: none;
-    flex: 1;
+    flex-grow: 1;
     .message-content {
       overflow-x: hidden;
       min-height: 0;

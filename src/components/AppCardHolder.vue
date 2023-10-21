@@ -123,9 +123,7 @@ if (!cardList.value)
               class="address-row"
             >
               <span class="type">{{ tmp.contract_type }}</span>
-              <span
-                style="flex: 1;padding-left: var(--tg-spacing-8);"
-              >{{ tmp.address }}</span>
+              <span class="bank-num">{{ tmp.address }}</span>
               <BaseButton type="text" @click.stop="toDeleteVirAddress(tmp, item.type)">
                 <BaseIcon name="uni-delete" />
               </BaseButton>
@@ -146,7 +144,10 @@ if (!cardList.value)
               :key="tmp.id" class="address-row"
             >
               <BaseIcon name="fiat-bank" />
-              <span class="bank-num">{{ tmp.bank_account }}</span>
+              <div class="bank-num">
+                <span style="padding-right: 1ch;">{{ tmp.bank_name }}</span>
+                <span>{{ tmp.bank_account }}</span>
+              </div>
               <span class="type">{{ tmp.open_name }}</span>
               <BaseButton type="text" @click.stop="toDeleteBankcard(tmp)">
                 <BaseIcon name="uni-delete" />
