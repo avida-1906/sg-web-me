@@ -74,7 +74,13 @@ const changeAisle = function (value: string) {
             转账金额务必与订单金额一致
           </p>
           <div class="second-btns">
-            <BaseButton type="line" size="md" @click="previous">
+            <BaseButton
+              type="line"
+              style="border-color: var(--tg-text-blue);
+              color: var(--tg-text-blue);"
+              size="md"
+              @click="previous"
+            >
               取消存款申请
             </BaseButton>
             <BaseButton bg-style="primary" size="md">

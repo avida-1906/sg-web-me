@@ -79,7 +79,8 @@ function cancelPayment() {
         <BaseButton
           type="line"
           style="border-color: var(--tg-text-blue);
-          color: var(--tg-text-blue);" size="md"
+          color: var(--tg-text-blue);"
+          size="md"
           @click="cancelPayment"
         >
           取消存款申请
