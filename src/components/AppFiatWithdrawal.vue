@@ -155,9 +155,6 @@ await application.allSettled(
         align-items: self-start;
       }
     }
-    &:hover{
-      // background-color: var(--tg-sub-blue);
-    }
   }
 }
 </style>

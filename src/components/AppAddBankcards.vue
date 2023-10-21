@@ -135,7 +135,8 @@ const onBindBank = async function () {
   await bankaccountValidate()
   await bankAreaCpfValidate()
   await paypasswordValidate()
-  if (!usernameError.value && !usernameError.value && !bankaccountError.value) {
+  if (!usernameError.value && !usernameError.value
+  && !bankaccountError.value && !paypasswordError.value) {
     runBankcardInsert({
       currency_id: currencyId.value,
       bank_name: bankName.value,

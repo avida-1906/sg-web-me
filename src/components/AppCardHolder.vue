@@ -87,6 +87,17 @@ const toAddVirAddress = function (
     currencyName: item.type,
   }))
 }
+function toDeleteVirAddress(item: VirtualCoin, vCurrencyTitle: string) {
+  console.log('type', vCurrencyTitle)
+  const { openDeleteConfirm } = useDeleteConfirmDialog(item, runAsyncWalletBankcardList, vCurrencyTitle)
+  openDeleteConfirm()
+  console.log('删除虚拟币', item)
+}
+function toDeleteBankcard(item: BankCard) {
+  const { openDeleteConfirm } = useDeleteConfirmDialog(item, runAsyncWalletBankcardList)
+  openDeleteConfirm()
+  console.log('删除银行卡', item)
+}
 
 if (!cardList.value)
   await application.allSettled([runAsyncWalletBankcardList()])
@@ -118,7 +129,7 @@ if (!cardList.value)
               <span
                 style="flex: 1;padding-left: var(--tg-spacing-8);"
               >{{ tmp.address }}</span>
-              <BaseButton type="text">
+              <BaseButton type="text" @click="toDeleteVirAddress(tmp, item.type)">
                 <BaseIcon name="upload-delete" />
               </BaseButton>
             </div>
@@ -140,7 +151,7 @@ if (!cardList.value)
               <BaseIcon name="fiat-bank" />
               <span class="bank-num">{{ tmp.bank_account }}</span>
               <span class="type">{{ tmp.open_name }}</span>
-              <BaseButton type="text">
+              <BaseButton type="text" @click="toDeleteBankcard(tmp)">
                 <BaseIcon name="upload-delete" />
               </BaseButton>
             </div>

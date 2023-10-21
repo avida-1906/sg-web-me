@@ -29,6 +29,7 @@ declare module 'vue' {
     AppContent: typeof import('./components/AppContent.vue')['default']
     AppCopyLine: typeof import('./components/AppCopyLine.vue')['default']
     AppCurrencyIcon: typeof import('./components/AppCurrencyIcon.vue')['default']
+    AppDeleteConfirmDialog: typeof import('./components/AppDeleteConfirmDialog.vue')['default']
     AppDemoCard: typeof import('./components/AppDemoCard.vue')['default']
     AppDesc: typeof import('./components/AppDesc.vue')['default']
     AppEmailCodeDialog: typeof import('./components/AppEmailCodeDialog.vue')['default']

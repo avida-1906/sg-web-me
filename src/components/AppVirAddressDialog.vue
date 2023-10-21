@@ -63,7 +63,7 @@ function getCurContract() {
 async function handleBindAddress() {
   await valiAddress()
   await paypasswordValidate()
-  if (!addressMsg.value) {
+  if (!addressMsg.value && !paypasswordError.value) {
     runMemberWalletInsert({
       contract_type: currentNetwork.value,
       currency_id: props.currencyId,

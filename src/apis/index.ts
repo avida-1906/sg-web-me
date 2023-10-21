@@ -633,3 +633,25 @@ export function ApiMemberFrontLoginLogList(params?: {
     created_at: string
   }>>('/member/front/login/log/list', params)
 }
+
+/**
+ * 删除钱包地址
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=b4d0e4df-e035-41da-8073-de5518b03d5b
+ */
+export function ApiMemberWalletRemove(data: {
+  id: string
+  pay_password: string
+}) {
+  return httpClient.post<string>('/member/wallet/remove', data)
+}
+
+/**
+ * 删除银行卡
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=ef81a01f-6743-404b-a2fa-d4ee172885d6
+ */
+export function ApiMemberBankcardRemove(data: {
+  id: string
+  pay_password: string
+}) {
+  return httpClient.post<string>('/member/bankcard/remove', data)
+}
