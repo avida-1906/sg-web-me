@@ -203,7 +203,7 @@ onMounted(() => {
     .popper-content {
         max-height: 20rem;
         overflow-y: auto;
-        color: var(--tg-text-dark);
+        color: var(--tg-popper-color-default);
         font-size: var(--tg-font-size-default);
         font-weight: 500;
         flex: 1;
@@ -220,9 +220,11 @@ onMounted(() => {
             var(--tg-spacing-button-padding-horizontal-xs);
             cursor: pointer;
             --tg-app-amount-width: 14ch;
+            transition: color 0.2s ease;
 
             &:hover {
-                background-color: var(--tg-text-lightgrey);
+                // background-color: var(--tg-text-lightgrey);
+                color: var(--tg-popper-hover-color-default);
             }
 
         }

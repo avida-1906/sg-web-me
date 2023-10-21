@@ -89,7 +89,7 @@ function openChat() {
 <style lang="scss" scoped>
 .chat-room-list {
   .dropdown-option {
-    color: var(--tg-secondary-main);
+    color: var(--tg-popper-color-default);
     font-size: var(--tg-font-size-default);
     font-weight: var(--tg-font-weight-semibold);
     display: flex;
@@ -102,11 +102,11 @@ function openChat() {
     gap: var(--tg-spacing-8);
     cursor: pointer;
     &:hover {
-      background-color: var(--tg-secondary-light);
-      color: var(--tg-secondary-deepdark);
+      // background-color: var(--tg-secondary-light);
+      color: var(--tg-popper-hover-color-default);
     }
     &.active {
-      color: var(--tg-text-blue);
+      color: var(--tg-popper-hover-color-default);
     }
   }
 }

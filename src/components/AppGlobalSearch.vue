@@ -227,7 +227,7 @@ provide('closeSearchH5', () => leftIsExpand.value = !leftIsExpand.value)
   font-size: var(--tg-font-size-default);
 
   &:hover {
-    background-color: var(--tg-text-lightgrey);
+    // background-color: var(--tg-text-lightgrey);
   }
 }
 

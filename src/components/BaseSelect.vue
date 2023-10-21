@@ -217,17 +217,17 @@ function onClickPopper() {
   cursor: pointer;
   padding: var(--tg-spacing-button-padding-vertical-xs) var(--tg-spacing-button-padding-horizontal-xs);
   font-size: var(--tg-font-size-default);
-  color: var(--tg-secondary-main);
+  color: var(--tg-popper-color-default);
   font-weight: var(--tg-font-weight-semibold);
-  --tg-icon-color: var(--tg-secondary-main);
 
   &:hover {
-    background-color: var(--tg-text-lightgrey);
+    // background-color: var(--tg-text-lightgrey);
+    color: var(--tg-popper-hover-color-default);
   }
 
   &.active {
-    color: var(--tg-text-blue);
     --tg-icon-color: var(--tg-text-blue);
+    color: var(--tg-popper-hover-color-default);
   }
 }
 

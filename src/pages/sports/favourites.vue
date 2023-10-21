@@ -154,15 +154,15 @@ function resetPlatformChecked() {
 }
 
 .clear-all {
-  border-top: 1px solid var(--tg-border-color-grey);
   width: 100%;
   padding:
     var(--tg-spacing-button-padding-horizontal-xs) var(--tg-spacing-button-padding-vertical-xs);
   font-weight: var(--tg-font-weight-semibold);
   text-align: center;
   font-size: var(--tg-font-size-default);
-  color: var(--tg-secondary-main);
+  color: var(--tg-popper-color-bright);
   cursor: pointer;
+  background-color: var(--tg-popper-bg-deep);
 }
 
 .base-check-pop-inner {
@@ -180,7 +180,7 @@ function resetPlatformChecked() {
   align-items: center;
   font-weight: var(--tg-font-weight-semibold);
   font-size: var(--tg-font-size-default);
-  color: var(--tg-secondary-grey);
+  color: var(--tg-popper-color-default);
   transition: all 0.2s;
   letter-spacing: 0;
   padding-top: 6px;
