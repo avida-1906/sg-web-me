@@ -29,11 +29,9 @@ const socialDataChanged: ISocialData = {
   wechat: false,
   qq: false,
 }
-const paramsData = ref(userInfo.value || {
+const paramsData = ref(userInfo.value?.ext || {
   uid: '',
-  realname: '',
   phone: '',
-  email: '',
   telegram: '',
   facebook: '',
   zalo: '',
@@ -44,13 +42,9 @@ const paramsData = ref(userInfo.value || {
   wechat: '',
   qq: '',
   area_code: '',
-  /** 邮箱是否验证 1=已验证，2=未验证 */
-  email_check_state: 2,
+  /** 性别 1=男，2=女 */
   sex: 1,
-  username: '',
-  pay_password: '',
-  google_key: '',
-  google_verify: '',
+  cpf: '',
 })
 const socialData = [
   {
@@ -117,7 +111,7 @@ const areaCodeOptions = computed(() => {
     return temp
   })
 })
-const emailVerified = computed(() => paramsData.value?.email_check_state === 1)
+const emailVerified = computed(() => userInfo.value?.email_check_state === 1)
 
 const {
   value: email,
@@ -132,17 +126,23 @@ const {
 const emailSubmit = async function () {
   await emailValidate()
   if (!emailErrormsg.value) {
-    runMemberUpdate(paramsData.value)
+    runMemberUpdate({ record: { email: email.value }, uid: paramsData.value.uid })
     notifyData.value = {
       type: 'email',
       title: '成功更新电邮地址',
-      message: `电邮地址已更新为 ${paramsData.value.email}`,
+      message: `电邮地址已更新为 ${email.value}`,
     }
     setEmailDisabledBtnTrue()
   }
 }
 const numberSubmit = function () {
-  runMemberUpdate(paramsData.value)
+  runMemberUpdate({
+    record: {
+      phone: paramsData.value.phone,
+      area_code: paramsData.value.area_code,
+    },
+    uid: paramsData.value.uid,
+  })
   notifyData.value = {
     type: 'phone',
     title: '成功更新手机号码',
@@ -151,26 +151,17 @@ const numberSubmit = function () {
   setPhoneDisabledBtnTrue()
 }
 const socialSubmit = function () {
-  const d: string[] = []
-  for (const k in paramsData.value) {
-    const key = k as keyof typeof paramsData.value
-    if (
-      Object.prototype.hasOwnProperty.call(paramsData.value, key)
-      && paramsData.value[key] === ''
-    )
-      d.push(key as string)
-  }
-  paramsData.value.d = d
-  runMemberUpdate(paramsData.value)
+  const { sex, ...rest } = paramsData.value
+  runMemberUpdate({ record: { sex: sex.toString(), ...rest }, uid: paramsData.value.uid })
   notifyData.value = { type: 'success', message: '修改成功' }
   setSocialDisabledBtnTrue()
 }
 const emailCheck = function () {
-  runEmailCheckRequest({ email: paramsData.value.email })
+  runEmailCheckRequest({ email: email.value })
   notifyData.value = {
     type: 'email',
     title: '邮电已发送',
-    message: `验证邮电已发送至 +${paramsData.value.email}`,
+    message: `验证邮电已发送至 +${email.value}`,
   }
 }
 const emailPaste = function () {
@@ -181,7 +172,6 @@ const emailPaste = function () {
 
 /** 监听邮箱改变 */
 watch(() => email.value, (newValue, oldValue) => {
-  paramsData.value.email = newValue
   if (oldValue && newValue && newValue !== oldValue)
     setEmailDisabledBtnFalse()
   else
@@ -229,7 +219,7 @@ for (const k in paramsData.value) {
 watch(() => userInfo.value, (newValue) => {
   if (newValue) {
     email.value = newValue.email
-    paramsData.value = newValue
+    paramsData.value = newValue.ext
   }
 })
 watch(() => route.query, (newValue) => {
@@ -261,8 +251,8 @@ watch(() => route.query, (newValue) => {
 }, { immediate: true })
 
 onMounted(() => {
-  if (userInfo.value)
-    email.value = userInfo.value.email
+  if (userInfo.value?.ext)
+    email.value = userInfo.value?.email
 })
 </script>
 

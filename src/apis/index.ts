@@ -64,9 +64,11 @@ export interface IUserInfo {
   qq: string
   area_code: string
   /** 性别 1=男，2=女 */
-  sex: number
+  sex: string
   cpf: string
 }
+
+/** 用户详情  */
 export interface IMemberDetail {
   uid: string
   username: string
@@ -438,14 +440,6 @@ export function ApiMemberBalanceLockerUpdate(data: IMemberBalanceLockerUpdate) {
 }
 
 /**
- * 保险库余额
- * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=86000030-4588-4690-9384-baa0584ea7d5
- */
-export function ApiMemberBalanceLocker() {
-  return httpClient.get<TCurrencyObject>('/member/balance/locker')
-}
-
-/**
  * 银行卡列表
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=3b3a818d-668f-41fc-ab45-3a8cbc3b3f40
  */
@@ -546,8 +540,10 @@ export function ApiMemberDetail() {
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=4f939a92-0ef0-41fb-b7e7-339b196b6d63
  */
 export function ApiMemberUpdate(data: {
-  record: IUserInfo
-  uid: string
+  record: {
+    email?: string
+  } & Partial<IUserInfo>
+  uid?: string
 }) {
   return httpClient.post<string>('/member/update', data)
 }
