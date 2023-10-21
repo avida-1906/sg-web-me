@@ -116,6 +116,7 @@ defineExpose({ getFocus })
             :type="_type"
             :disabled="disabled"
             :class="{ 'p-r-0': $slots['right-icon'], 'p-l-0': $slots['left-icon'] }"
+            :autocomplete="`new-${_type}`"
             @input="onInput"
             @focus="onFocus"
             @blur="onBlur"
