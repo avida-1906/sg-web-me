@@ -49,12 +49,10 @@ export interface VirtualCoin {
   address: string
 }
 
-export interface IMemberDetail {
+/** 用户信息 */
+export interface IUserInfo {
   uid: string
-  /** 真实姓名，多个语言的用逗号隔开 */
-  realname: string
   phone: string
-  email: string
   telegram: string
   facebook: string
   zalo: string
@@ -65,19 +63,59 @@ export interface IMemberDetail {
   wechat: string
   qq: string
   area_code: string
-  /** 邮箱是否验证 1=已验证，2=未验证 */
-  email_check_state: number
   /** 性别 1=男，2=女 */
   sex: number
+  cpf: string
+}
+export interface IMemberDetail {
+  uid: string
   username: string
-  /** 是否设置交易密码 0=未设置 1=已设置 */
-  pay_password: string
+  email: string
+  /** 邮箱是否验证 1=已验证，2=未验证 */
+  email_check_state: number
+  password: string
+  created_at: number
+  created_ip: string
+  level_id: string
+  vip: string
+  top_uid: string
+  top_name: string
+  parent_uid: string
+  parent_name: string
+  tester: string
+  avatar: number
+  device_number: string
+  last_login_ip: string
+  last_login_at: number
+  last_login_device: string
+  last_login_domain: string
+  reg_domain: string
+  reg_ip: string
+  reg_device_no: string
+  agency_rebate_state: number
+  state: string
+  source: string
+  member_type: number
+  bonus_state: number
+  bonus_note: string
+  note: string
+  deposit_count: number
+  withdraw_count: number
+  deposit_amount: string
+  withdraw_amount: string
   /** 谷歌验证吗key */
   google_key: string
   /** 1谷歌未认证 2谷歌已认证 */
-  google_verify: string
-  /** 社交账号修改为空时需要将字段添加到里面 */
-  [key: string]: string | number | string[]
+  google_verify: number
+  /** 是否设置交易密码 0=未设置 1=已设置 */
+  pay_password: string
+  online: string
+  /** 账户余额 */
+  balance: TCurrencyObject
+  /** 保险库余额 */
+  balanceLocker: TCurrencyObject
+  /** 用户信息 */
+  ext: IUserInfo
 }
 
 export interface IMemberBalanceLockerUpdate {
@@ -515,7 +553,10 @@ export function ApiMemberDetail() {
  * 会员资料修改
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=4f939a92-0ef0-41fb-b7e7-339b196b6d63
  */
-export function ApiMemberUpdate(data: IMemberDetail) {
+export function ApiMemberUpdate(data: {
+  record: IUserInfo
+  uid: string
+}) {
   return httpClient.post<string>('/member/update', data)
 }
 
