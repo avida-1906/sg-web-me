@@ -88,7 +88,7 @@ async function deleteConfirm() {
         取消
       </BaseButton>
       <BaseButton bg-style="primary" @click="deleteConfirm">
-        删除
+        确认删除
       </BaseButton>
     </div>
   </div>
