@@ -139,9 +139,11 @@ onUnmounted(() => {
       right: 0;
       background: #{rgba($color: var(--tg-color-grey-rgb), $alpha: 0.7)};
       touch-action: none;
+      z-index: var(--tg-z-index-50);
     }
     .card {
       position: relative;
+      z-index: var(--tg-z-index-secondary);
       width: 100%;
       min-width: 200px;
       max-width: var(--tg-dialog-style-maxwidth);
