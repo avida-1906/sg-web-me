@@ -4,9 +4,11 @@
 //  / 指令
 //  enter 消息加空格->发送
 //  enter 加空格再次 enter 发送
-type CommandType = '/bet' | '/user' | '/tip' | '/rain' | '/ignore' | '/unignore'
+
+// type CommandType = '/bet' | '/user' | '/tip' | '/rain' | '/ignore' | '/unignore'
 
 const { openChatRulesDialog } = useChatRulesDialog()
+const { openStatisticsDialog } = useStatisticsDialog()
 
 const {
   bool: sendLoading,
@@ -144,10 +146,13 @@ function addCommand(u: { command: string }) {
 function sendMsg() {
   if (message.value[0] === '/') {
     const temp = message.value.split(' ')
+    const firstSpaceIdx = message.value.indexOf(' ')
+    const param = firstSpaceIdx !== -1 ? message.value.slice(firstSpaceIdx) : ''
     switch (temp[0]) {
       case '/bet':
         break
       case '/user':
+        openStatisticsDialog(param.replace('@', ''))
         break
       case '/tip':
         break

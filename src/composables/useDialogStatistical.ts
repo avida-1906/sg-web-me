@@ -7,7 +7,7 @@ export function useStatisticsDialog() {
   } = useDialog({
     title: 'Statistics',
     icon: 'uni-trend',
-    default: () => h(AppStatisticsDialogVue),
+    default: (userName?: string) => h(AppStatisticsDialogVue, { userName }),
   })
 
   return {
