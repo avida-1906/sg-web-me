@@ -79,7 +79,12 @@ async function deleteConfirm() {
       />
     </div>
     <div class="btns">
-      <BaseButton type="line" @click="cancel">
+      <BaseButton
+        type="line"
+        style="border-color: var(--tg-text-blue);
+        color: var(--tg-text-blue);"
+        @click="cancel"
+      >
         取消
       </BaseButton>
       <BaseButton bg-style="primary" @click="deleteConfirm">
