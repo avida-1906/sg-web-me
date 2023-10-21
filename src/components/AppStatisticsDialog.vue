@@ -12,10 +12,11 @@ interface IColumns {
 }
 interface IPaginationData {
   pageSize: number
-  pageNumber: number
+  page: number
   total: number
 }
 interface Props {
+  userName?: string
   vipProgressData?: IVipProgressData
 }
 
@@ -166,18 +167,18 @@ const SweepstakesColumns = ref<IColumns[]>([
 const paginationData = ref<IPaginationData>(
   {
     pageSize: 10,
-    pageNumber: 2,
+    page: 2,
     total: 21,
   },
 )
 
 const onPrevious = function () {
   console.log('上一页1')
-  paginationData.value.pageNumber--
+  paginationData.value.page--
 }
 const onNext = function () {
   console.log('下一页2')
-  paginationData.value.pageNumber++
+  paginationData.value.page++
 }
 
 onMounted(() => {
@@ -276,7 +277,7 @@ onMounted(() => {
       <AppVipProgress :vip-progress-data="props.vipProgressData">
         <template #title>
           <p class="s-user-name">
-            alanhayashi
+            {{ userName }}
           </p>
           <div class="s-join-date">
             <span>加入日期：</span>
