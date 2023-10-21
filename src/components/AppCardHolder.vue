@@ -88,15 +88,12 @@ const toAddVirAddress = function (
   }))
 }
 function toDeleteVirAddress(item: VirtualCoin, vCurrencyTitle: string) {
-  console.log('type', vCurrencyTitle)
   const { openDeleteConfirm } = useDeleteConfirmDialog(item, runAsyncWalletBankcardList, vCurrencyTitle)
   openDeleteConfirm()
-  console.log('删除虚拟币', item)
 }
 function toDeleteBankcard(item: BankCard) {
   const { openDeleteConfirm } = useDeleteConfirmDialog(item, runAsyncWalletBankcardList)
   openDeleteConfirm()
-  console.log('删除银行卡', item)
 }
 
 if (!cardList.value)
