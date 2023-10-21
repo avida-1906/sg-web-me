@@ -151,6 +151,16 @@ const numberSubmit = function () {
   setPhoneDisabledBtnTrue()
 }
 const socialSubmit = function () {
+  const d: string[] = []
+  for (const k in paramsData.value) {
+    const key = k as keyof typeof paramsData.value
+    if (
+      Object.prototype.hasOwnProperty.call(paramsData.value, key)
+      && paramsData.value[key] === ''
+    )
+      d.push(key as string)
+  }
+  paramsData.value.d = d
   runMemberUpdate(paramsData.value)
   notifyData.value = { type: 'success', message: '修改成功' }
   setSocialDisabledBtnTrue()
@@ -195,7 +205,7 @@ for (const k in paramsData.value) {
   ) {
     const key = k as keyof typeof paramsData.value
     watch(() => paramsData.value[key], (newValue, oldValue) => {
-      if (newValue === '' || newValue === oldValue || oldValue === '')
+      if (newValue === oldValue || oldValue === '')
         socialDataChanged[k] = false
       else
         socialDataChanged[k] = true

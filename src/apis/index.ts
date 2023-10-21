@@ -76,6 +76,8 @@ export interface IMemberDetail {
   google_key: string
   /** 1谷歌未认证 2谷歌已认证 */
   google_verify: string
+  /** 社交账号修改为空时需要将字段添加到里面 */
+  [key: string]: string | number | string[]
 }
 
 export interface IMemberBalanceLockerUpdate {
