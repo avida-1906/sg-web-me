@@ -19,6 +19,69 @@ const messages: Array<ChatMessageInfo> = [
     },
     html: '我不开满倍的啊。只开10X',
   },
+  {
+    id: '634sdf5436',
+    sender: {
+      name: 'xiaohong77',
+      id: '9saf7d9f9saf78s9dfi24',
+      level: 'gold',
+    },
+    html: '我不开满倍的啊。只开10X',
+  },
+  {
+    id: '634ssssa5436',
+    sender: {
+      name: 'xiaohong77',
+      id: '9saf7d9f9saf78s9dfi24',
+      level: 'gold',
+    },
+    html: '我不开满倍的啊。只开10X',
+  },
+  {
+    id: '632345bbcdd436',
+    sender: {
+      name: 'xiaohong77',
+      id: '9saf7d9f9saf78s9dfi24',
+      level: 'gold',
+    },
+    html: '我不开满倍的啊。只开10X',
+  },
+  {
+    id: '61112bcdd436',
+    sender: {
+      name: 'xiaohong77',
+      id: '9saf7d9f9saf78s9dfi24',
+      level: 'gold',
+    },
+    html: '我不开满倍的啊。只开10X',
+  },
+  {
+    id: '6546yyyd436',
+    sender: {
+      name: 'xiaohong77',
+      id: '9saf7d9f9saf78s9dfi24',
+      level: 'gold',
+    },
+    html: '我不开满倍的啊。只开10X',
+  },
+  {
+    id: '7897dfbcdd436',
+    sender: {
+      name: 'xiaohong77',
+      id: '9saf7d9f9saf78s9dfi24',
+      level: 'gold',
+    },
+    html: '我不开满倍的啊。只开10X',
+  },
+  {
+    id: '34634fdsfdd436',
+    sender: {
+      name: 'xiaohong77',
+      id: '9saf7d9f9saf78s9dfi24',
+      level: 'gold',
+    },
+    html: '我不开满倍的啊。只开10X',
+  },
 ]
 </script>
 
