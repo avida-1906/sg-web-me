@@ -294,7 +294,7 @@ function onClickPopper() {
   }
 
   .icon {
-    font-size: var(--tg-font-size-default);
+    font-size: 10px;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
