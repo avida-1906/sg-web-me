@@ -534,14 +534,6 @@ export function ApiMemberPasswordUpdate(data: {
 }
 
 /**
- * 查询余额
- * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=9aabea35-99e8-4d35-b58a-abbcb05ba837
- */
-export function ApiMemberBalanceList() {
-  return httpClient.get<TCurrencyObject>('/member/balance')
-}
-
-/**
  * 会员资料详情
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=a7da5a93-3c50-438f-b0aa-c7c9faada194
  */

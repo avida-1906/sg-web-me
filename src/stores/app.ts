@@ -51,14 +51,6 @@ export const useAppStore = defineStore('app', () => {
   })
   /** 是否登录，程序用这个变量来判断是否登录 */
   const { bool: isLogin, setTrue: setLoginTrue, setFalse: setLoginFalse } = useBoolean(!!getToken())
-  /** 用户余额数据 */
-  const {
-    data: balanceMap,
-    runAsync: updateUserBalance,
-  } = useRequest(ApiMemberBalanceList, {
-    ready: isLogin,
-    manual: false,
-  })
   /** 货币配置 */
   const { data: currencyConfig } = useRequest(ApiMemberCurrencyConfig, {
     manual: false,
@@ -82,8 +74,8 @@ export const useAppStore = defineStore('app', () => {
    * @returns {IUserCurrencyList}
    */
   const userCurrencyList = computed(() => {
-    if (balanceMap.value && currencyConfig.value)
-      return generateCurrencyData(balanceMap.value, currencyConfig.value)
+    if (userInfo.value?.balance && currencyConfig.value)
+      return generateCurrencyData(userInfo.value!.balance, currencyConfig.value)
 
     return []
   })
@@ -146,10 +138,8 @@ export const useAppStore = defineStore('app', () => {
 
   watch(visibility, (bool) => {
     // 如果页面可见，更新用户余额和用户信息
-    if (bool === 'visible') {
-      updateUserBalance()
+    if (bool === 'visible')
       updateUserInfo()
-    }
   })
 
   watch(userInfo, () => {
@@ -175,7 +165,6 @@ export const useAppStore = defineStore('app', () => {
     isBalanceEnough,
     changeCurrentGlobalCurrency,
     updateUserInfo,
-    updateUserBalance,
     setLocalCurrentGlobalCurrency,
     getLocalCurrentGlobalCurrency,
   }

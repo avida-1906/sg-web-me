@@ -8,7 +8,7 @@ const closeDialog = inject('closeDialog', () => {})
 const { t } = useI18n()
 const { openNotify } = useNotify()
 const { currencyConfig, userCurrencyList, userInfo } = storeToRefs(useAppStore())
-const { updateUserBalance } = useAppStore()
+const { updateUserInfo } = useAppStore()
 const router = useRouter()
 
 const activeCurrency = ref<IUserCurrencyList>()
@@ -77,7 +77,7 @@ const {
     })
     resetAmount()
     resetPassword()
-    updateUserBalance()
+    updateUserInfo()
     runAsyncBalanceLockerShow()
   },
 })
