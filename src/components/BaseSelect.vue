@@ -12,8 +12,10 @@ interface Props {
   disabled?: boolean
   small?: boolean
   popper?: boolean
-  theme?: boolean // 主题默认白色，true黑色
-  banks?: boolean // 银行卡选择 展示的数据格式不同
+  /** 主题默认白色，true黑色 */
+  theme?: boolean
+  /** 边框  */
+  border?: boolean
   msg?: string
 }
 const props = withDefaults(defineProps<Props>(), {
@@ -34,8 +36,6 @@ const selectedOption = computed(() =>
   props.options.find(a => a.value === props.modelValue))
 const popperLabel = computed(() =>
   props.options.find(a => a.value === props.modelValue)?.label ?? '-')
-const popperLabelBank = computed(() =>
-  props.options.find(a => a.value === props.modelValue)?.value ?? '')
 
 function onChange(event: any) {
   const v = event.target.value
@@ -71,14 +71,11 @@ function onClickPopper() {
       <div
         ref="parent"
         class="popper-label"
-        :class="{ disabled, 'show-border': banks }"
+        :class="{ disabled, 'show-border': border }"
         @click="onClickPopper"
       >
         <slot name="label" :data="selectedOption">
-          <span v-if="!banks">{{ popperLabel }}</span>
-          <span v-else>
-            <BaseIcon v-if="popperLabelBank" name="fiat-bank" /> {{ popperLabelBank }}
-          </span>
+          <span>{{ popperLabel }}</span>
         </slot>
 
         <div class="icon" :class="{ up: isPopperOpen }">
@@ -195,7 +192,7 @@ function onClickPopper() {
   }
 
   &:active {
-    transform: scale(0.96);
+    // transform: scale(0.96);
   }
   &.disabled{
     opacity: 0.5;
