@@ -203,7 +203,7 @@ onMounted(() => {
     .popper-content {
         max-height: 20rem;
         overflow-y: auto;
-        color: var(--tg-text-dark);
+        color: var(--tg-popper-color-default);
         font-size: var(--tg-font-size-default);
         font-weight: 500;
         flex: 1;

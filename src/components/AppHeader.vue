@@ -328,28 +328,44 @@ function handleClickMenuItem(item: { name: string; path?: string }) {
     cursor: pointer;
 
     &:hover {
-      background-color: var(--tg-text-lightgrey);
+      // background-color: var(--tg-text-lightgrey);
+      .menu-btn {
+        color: var(--tg-text-blue);
+      }
     }
 
     .menu-btn {
       display: flex;
       align-items: center;
+      color: var(--tg-text-white);
+      --tg-icon-color: #B1BAD3;
       padding:
       var(--tg-spacing-button-padding-vertical-xs)
       var(--tg-spacing-button-padding-horizontal-xs);
+      transition: color 0.2s ease;
     }
 
-    .menu-btn:active {
+    &:active {
+      transform: scale(0.95);
+      .menu-btn {
+        color: var(--tg-text-blue) !important;
+      }
+    }
+
+    &:active {
       transform: scale(0.95);
     }
-  }
+    &.active-menu {
+      --tg-icon-color: var(--tg-text-blue);
+      color: var(--tg-text-blue);
+      .menu-btn {
+        --tg-icon-color: var(--tg-text-blue);
+        color: var(--tg-text-blue);
+      }
 
-  .active-menu {
-    --tg-icon-color: var(--tg-text-blue);
-    color: var(--tg-text-blue);
-
-    &:hover {
-      background: 0 0;
+      &:hover {
+        background: 0 0;
+      }
     }
   }
 }

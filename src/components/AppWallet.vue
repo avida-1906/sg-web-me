@@ -48,7 +48,7 @@ function selectCurrency(item: IUserCurrencyList, hide: () => void) {
         </BaseButton>
       </div>
       <template #popper="{ hide }">
-        <div class="dropdown-popper need-pad-y">
+        <div class="dropdown-popper">
           <div class="popper-top">
             <BaseSearch
               v-model="searchValue"
@@ -80,7 +80,7 @@ function selectCurrency(item: IUserCurrencyList, hide: () => void) {
               class="bottom-btn"
               @click=" hide();openWalletSetDialog()"
             >
-              <BaseIcon class="icon-wallet-set" name="wallet-set" />
+              <BaseIcon class="icon-wallet-set" name="navbar-wallet" />
               <span>钱包设置</span>
             </BaseButton>
           </div>
@@ -139,49 +139,53 @@ function selectCurrency(item: IUserCurrencyList, hide: () => void) {
   .popper-content {
     max-height: 20rem;
     overflow-y: auto;
-    color: var(--tg-text-dark);
+    color: var(--tg-popper-color-default);
     font-size: var(--tg-font-size-default);
     font-weight: 500;
     flex: 1;
+    padding-bottom: var(--tg-spacing-15);
     &::-webkit-scrollbar-thumb {
       background: var(--tg-secondary-light);
     }
     .content-row {
       display: flex;
       align-items: center;
-      padding: var(--tg-spacing-button-padding-vertical-s) var(--tg-spacing-button-padding-horizontal-xs);
+      padding: var(--tg-spacing-6) var(--tg-spacing-button-padding-horizontal-xs);
       cursor: pointer;
       --tg-app-amount-width:14ch;
+      line-height: 20px;
+      transition: color .2s ease;
       &:hover {
-        background-color: var(--tg-text-lightgrey);
+        // background-color: var(--tg-text-lightgrey);
+        color: var(--tg-popper-hover-color-default);
       }
 
     }
     .balance-not{
       text-align: center;
-      padding: 3px 0 12px;
+      // padding: 3px 0 12px;
     }
   }
 
   .popper-bottom {
-    background: #{rgba($color: var(--tg-color-grey-rgb), $alpha: 0.3)};
+    background: var(--tg-primary-main);
 
     .bottom-btn {
       width: 100%;
-      color: var(--tg-text-dark);
+      color: var(--tg-text-white);
       font-size: var(--tg-font-size-default);
-      font-weight: 500;
+      font-weight: 400;
       padding: var(--tg-spacing-button-padding-vertical-s) 0 !important;
 
       span {
-        line-height: 1;
+        line-height: 20px;
       }
     }
 
     .icon-wallet-set {
       font-size: var(--tg-font-size-base);
-      --tg-icon-color:#1A2C38;
-      margin-right: 5px;
+      --tg-icon-color: var(--tg-text-white);
+      margin-right: 8px;
     }
   }
 

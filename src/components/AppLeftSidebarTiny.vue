@@ -23,7 +23,7 @@ const isSports = computed(() => route.name?.toString().includes('sports'))
   <!-- 头部菜单或搜索栏 -->
   <div class="tg-app-left-sidebar-tiny">
     <div class="sidebar-tiny-top">
-      <div class="header is-small">
+      <div class="is-small header">
         <Transition name="menu-fade">
           <template v-if="!isSwitching">
             <div class="button" @click="triggerLeftSidebar">
@@ -146,7 +146,7 @@ const isSports = computed(() => route.name?.toString().includes('sports'))
   padding: var(--tg-spacing-button-padding-vertical-xs) var(--tg-spacing-button-padding-horizontal-xs);
 
   &:hover {
-    background-color: var(--tg-text-lightgrey);
+    // background-color: var(--tg-text-lightgrey);
   }
 }
 
