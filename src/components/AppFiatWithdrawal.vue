@@ -23,6 +23,10 @@ const {
   selectBank,
 } = useApiMemberBankCardList()
 
+const defaultBank = computed(() =>
+  bindBanks.value.find(a => a.value === selectBank.value)?.label ?? '',
+)
+
 watch(() => props.activeCurrency, () => {
   runAsyncBankcardList({ currency_id: props.activeCurrency.cur })
 })
@@ -52,10 +56,15 @@ await application.allSettled(
             v-model="selectBank"
             :options="bindBanks"
             must
-            banks
             theme
             popper
+            border
           >
+            <template #label>
+              <span class="popper-label">
+                <BaseIcon v-if="defaultBank" name="fiat-bank" /> {{ defaultBank }}
+              </span>
+            </template>
             <template #option="{ data: { item, parentWidth } }">
               <div
                 class="scroll-x bank-options"
@@ -126,6 +135,11 @@ await application.allSettled(
       display: flex;
       flex-direction: column;
       gap: .75rem;
+      .popper-label{
+        display: flex;
+        align-items: center;
+        gap: .25rem;
+      }
     }
   }
 }
