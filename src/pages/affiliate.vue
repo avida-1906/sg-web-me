@@ -16,10 +16,15 @@ meta:
   withMenuIcon: chess-affiliate
   browserTitle: 联盟计划 – Stake.com
   withMenuMenu:
-    - {title: menu_title_affiliate_overview, path: /affiliate/overview}
-    - {title: menu_title_affiliate_retention, path: /affiliate/retention}
-    - {title: menu_title_affiliate_commission, path: /affiliate/commission}
-    - {title: menu_title_affiliate_funds, path: /affiliate/funds}
-    - {title: menu_title_affiliate_users, path: /affiliate/referred-users}
-    - {title: menu_title_affiliate_campaigns, path: /affiliate/campaigns}
+    - {title: menu_title_promotion_tutorial, path: /affiliate/overview}
+    - {title: menu_title_my_promotion, path: /affiliate/retention}
+    - {title: menu_title_my_commission, path: /affiliate/commission}
+    - {title: menu_title_my_performance, path: /affiliate/funds}
+    - {title: menu_title_all_data, path: /affiliate/referred-users}
+    - {title: menu_title_direct_finance, path: /affiliate/campaigns}
+    - {title: menu_title_direct_bet, path: /affiliate/campaigns}
+    - {title: menu_title_direct_user, path: /affiliate/campaigns}
+    - {title: menu_title_direct_receive, path: /affiliate/campaigns}
+    - {title: menu_title_commission_rate, path: /affiliate/campaigns}
+    - {title: menu_title_add_new_subagent, path: /affiliate/campaigns}
 </route>
