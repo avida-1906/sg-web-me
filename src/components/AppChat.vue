@@ -76,7 +76,6 @@ const messages: Array<ChatMessageInfo> = [
     height: var(--tg-header-height);
     z-index: var(--tg-z-index-10);
     box-shadow: var(--tg-box-shadow-lg);
-    touch-action: none;
   }
   .messages {
     width: 100%;
@@ -85,7 +84,6 @@ const messages: Array<ChatMessageInfo> = [
     justify-content: flex-end;
     overflow: hidden;
     position: relative;
-    touch-action: none;
     flex-grow: 1;
     .message-content {
       overflow-x: hidden;
