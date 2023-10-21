@@ -127,7 +127,7 @@ if (!cardList.value)
                 style="flex: 1;padding-left: var(--tg-spacing-8);"
               >{{ tmp.address }}</span>
               <BaseButton type="text" @click="toDeleteVirAddress(tmp, item.type)">
-                <BaseIcon name="upload-delete" />
+                <BaseIcon name="uni-delete" />
               </BaseButton>
             </div>
             <BaseButton
@@ -149,7 +149,7 @@ if (!cardList.value)
               <span class="bank-num">{{ tmp.bank_account }}</span>
               <span class="type">{{ tmp.open_name }}</span>
               <BaseButton type="text" @click="toDeleteBankcard(tmp)">
-                <BaseIcon name="upload-delete" />
+                <BaseIcon name="uni-delete" />
               </BaseButton>
             </div>
             <BaseButton

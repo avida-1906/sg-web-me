@@ -4,6 +4,7 @@
 //  / 指令
 //  enter 消息加空格->发送
 //  enter 加空格再次 enter 发送
+type CommandType = '/bet' | '/user' | '/tip' | '/rain' | '/ignore' | '/unignore'
 
 const { openChatRulesDialog } = useChatRulesDialog()
 
@@ -144,7 +145,17 @@ function sendMsg() {
   if (message.value[0] === '/') {
     const temp = message.value.split(' ')
     switch (temp[0]) {
-      case '':
+      case '/bet':
+        break
+      case '/user':
+        break
+      case '/tip':
+        break
+      case '/rain':
+        break
+      case '/ignore':
+        break
+      case '/unignore':
         break
       default:
         break
