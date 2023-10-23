@@ -9,7 +9,7 @@ const gameList = [
   { name: '足球', id: '3', num: 30 },
   { name: '美式橄榄球', id: '4', num: 5 },
 ]
-const isStandard = ref(true)
+const { bool: isStandard } = useBoolean(true)
 const baseType = ref('winner')
 function onBaseTypeChange(v: string) {
   baseType.value = v

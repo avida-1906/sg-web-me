@@ -18,6 +18,7 @@ export type Menu = Array<MenuItem>
 
 export function useApiMenuData() {
   const { locale } = useI18n()
+  const { isLogin } = storeToRefs(useAppStore())
 
   // casino
   const casinoMenu = ref<Menu>([
@@ -210,29 +211,31 @@ export function useApiMenuData() {
     },
   ])
 
-  const staticMenu1 = ref<Menu>([
-    {
-      title: '个人资料',
-      path: '',
-      icon: 'navbar-user',
-      list: [
-        {
-          title: '钱包',
+  const staticMenu1 = computed(() => <Menu>[
+    isLogin.value
+      ? {
+          title: '个人资料',
           path: '',
-          icon: 'navbar-wallet',
-          modalQuery:
+          icon: 'navbar-user',
+          list: [
+            {
+              title: '钱包',
+              path: '',
+              icon: 'navbar-wallet',
+              modalQuery:
           { modal: 'vault', operation: 'deposit' },
-        },
-        { title: '保险库', path: '', icon: 'navbar-cart' },
-        { title: 'VIP', path: '', icon: 'chess-air-bonus' },
-        { title: '统计数据', path: '', icon: 'uni-trend' },
-        { title: '通知', path: '', icon: 'tabbar-bet' },
-        { title: '体育投注', path: '/sports/my-bets', icon: 'spt-basketball' },
-        { title: '设置', path: '/settings/general', icon: 'uni-set' },
-        { title: '登出', path: '', icon: 'uni-logout' },
-      ],
-      domId: 'static-menu-user',
-    },
+            },
+            { title: '保险库', path: '', icon: 'navbar-cart' },
+            { title: 'VIP', path: '', icon: 'chess-air-bonus' },
+            { title: '统计数据', path: '', icon: 'uni-trend' },
+            { title: '通知', path: '', icon: 'tabbar-bet' },
+            { title: '体育投注', path: '/sports/my-bets', icon: 'spt-basketball' },
+            { title: '设置', path: '/settings/general', icon: 'uni-set' },
+            { title: '登出', path: '', icon: 'uni-logout' },
+          ],
+          domId: 'static-menu-user',
+        }
+      : undefined,
     {
       title: '促销活动',
       path: '',
@@ -259,7 +262,7 @@ export function useApiMenuData() {
     { title: 'VIP俱乐部', path: '/vip-club', icon: 'chess-vipclub', list: [], domId: '' },
     { title: '博客', path: '/blog', icon: 'chess-blog', list: [], domId: '' },
     { title: '论坛', path: '', icon: 'tabbar-chat', list: [], domId: '' },
-  ])
+  ].filter(i => i !== undefined))
   const staticMenu2 = ref<Menu>([
     {
       title: '赞助活动',

@@ -69,8 +69,8 @@ function slideToNext() {
     setSFalse()
   }
   else {
-    _data.value.reverse()
     duration.value = 0
+    _data.value.reverse()
     trackX.value = 0
     setTimeout(() => {
       duration.value = 800

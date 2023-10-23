@@ -6,11 +6,16 @@ interface Props {
 
 const props = withDefaults(defineProps<Props>(), {
   currencyId: '',
+  currencyName: '',
 })
 
 const closeDialog = inject('closeDialog', () => { })
 
-const { userCurrencyList } = useAppStore()
+const {
+  // renderBalanceList,
+  getVirtualCurrencyContractType,
+} = useCurrencyData()
+// const { userCurrencyList } = useAppStore()
 const { t } = useI18n()
 const { openNotify } = useNotify()
 const {
@@ -54,11 +59,7 @@ const currentNetwork = ref(optionsContract[0]?.value || '')
 
 // 获取协议类型
 function getCurContract() {
-  return userCurrencyList.find(
-    item => item.cur === props.currencyId,
-  )?.contract_type?.map((type) => {
-    return { label: type, value: type }
-  })
+  return getVirtualCurrencyContractType(props.currencyName)
 }
 async function handleBindAddress() {
   await valiAddress()

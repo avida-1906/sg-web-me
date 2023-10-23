@@ -43,7 +43,7 @@ const getCurrencyBalance = computed(() => {
 })
 // 获取协议类型
 const getCurContract = computed(() => {
-  return getVirtualCurrencyContractType(getCurrencyBalance.value?.type)
+  return getVirtualCurrencyContractType(getCurrencyBalance.value?.type ?? '')
 })
 
 // 设置协议选项的值

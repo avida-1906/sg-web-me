@@ -51,6 +51,8 @@ const _title = computed(() => {
       return t('notify_title_error')
     case 'success':
       return t('notify_title_success')
+    case 'user':
+      return t('welcome_guest')
     default:
       return undefined
   }
@@ -161,12 +163,12 @@ onMounted(() => {
   border-bottom-left-radius: var(--tg-radius-default); //
 }
 .notify-slide-fade-enter-active {
-  transition: all 0.3s ease-out;
+  transition: all 0.15s ease-out;
   opacity: 1;
 }
 
 .notify-slide-fade-leave-active {
-  transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
+  transition: all 0.15s cubic-bezier(1, 0.5, 0.8, 1);
   opacity: 1;
 }
 

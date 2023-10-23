@@ -292,7 +292,7 @@ const data = {
   ],
 }
 
-const isStandard = ref(true)
+const { bool: isStandard } = useBoolean(true)
 const baseType = ref('winner')
 
 const breadcrumb = computed(() => [
