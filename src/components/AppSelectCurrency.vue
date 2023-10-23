@@ -20,7 +20,7 @@ const {
   clearSearchValue,
   currentCurrency,
   searchValue,
-  renderBalanceList,
+  renderCurrencyList,
   // changeCurrentCurrency,
   getVirtualCurrencyContractType,
 } = useCurrencyData()
@@ -28,14 +28,14 @@ const {
 const currentNetwork = ref()
 
 const getCurrencyList = computed(() => {
-  const activeList = props.currencyList || renderBalanceList.value
-  if (searchValue.value)
-    return activeList.filter(item => item.type.includes(searchValue.value.toLocaleUpperCase()))
+  const activeList = props.currencyList || renderCurrencyList.value
+  // if (searchValue.value)
+  //   return activeList.filter(item => item.type.includes(searchValue.value.toLocaleUpperCase()))
   return activeList
 })
 // 获取当前选择货币对象
 const getCurrencyBalance = computed(() => {
-  const activeList = props.currencyList || renderBalanceList.value
+  const activeList = props.currencyList || renderCurrencyList.value
   return activeList
     .find(item =>
       item.type === currentCurrency.value)

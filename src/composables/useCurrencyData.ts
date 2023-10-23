@@ -80,10 +80,11 @@ export function useCurrencyData() {
   // 搜索内容
   const searchValue = ref('')
   // 是否隐藏零余额
-  /** 当前选择的货币,用在充值和提现的下拉列表 */
-  const currentCurrency = ref(EnumCurrency[0] as EnumCurrencyKey)
+
   /** 当前全局选择的货币 */
   const currentGlobalCurrency = ref<EnumCurrencyKey>(getLocalCurrentGlobalCurrency())
+  /** 当前选择的货币,用在充值和提现的下拉列表 */
+  const currentCurrency = ref(currentGlobalCurrency.value)
 
   /** 用户当前选择的货币余额 */
   const currentGlobalCurrencyBalance = computed(() => {
@@ -92,10 +93,8 @@ export function useCurrencyData() {
     return balance ?? 0
   })
 
-  /** 生成渲染的货币列表 */
-  const generateCurrencyData = (
-    currency: TCurrencyObject | undefined,
-  ) => {
+  /** 货币列表;含筛选 */
+  const allCurrencyData = (currency: TCurrencyObject | undefined) => {
     if (!currency)
       return []
 
@@ -104,9 +103,8 @@ export function useCurrencyData() {
       const type = key as EnumCurrencyKey
       const balanceNumber = currency[type]
       if (Object.values(EnumCurrency).includes(type)) {
-        if (hideZeroBalance.value && Number(balanceNumber) === 0)
-          continue
-
+        // if (hideZeroBalance.value && Number(balanceNumber) === 0)
+        //   continue
         list.push({
           type,
           balance: balanceNumber,
@@ -123,14 +121,50 @@ export function useCurrencyData() {
       return list
   }
 
+  /** 生成渲染的货币列表 */
+  // const generateCurrencyData = (currency: TCurrencyObject | undefined) => {
+  //   if (!currency)
+  //     return []
+
+  //   const list: CurrencyData[] = []
+  //   for (const key in currency) {
+  //     const type = key as EnumCurrencyKey
+  //     const balanceNumber = currency[type]
+  //     if (Object.values(EnumCurrency).includes(type)) {
+  //       if (hideZeroBalance.value && Number(balanceNumber) === 0)
+  //         continue
+
+  //       list.push({
+  //         type,
+  //         balance: balanceNumber,
+  //         balanceWithSymbol: `${currencyConfig[type].prefix}${balanceNumber}`,
+  //         cur: currencyConfig[type].cur,
+  //         bankTree: currencyConfig[type].bankTree,
+  //       })
+  //     }
+  //   }
+
+  //   if (searchValue.value)
+  //     return list.filter(({ type }) => type.includes(searchValue.value.toLocaleUpperCase()))
+  //   else
+  //     return list
+  // }
+
   /** 钱包余额 */
   const renderBalanceList = computed(() => {
-    return generateCurrencyData(userInfo.value?.balance)
+    return allCurrencyData(userInfo.value?.balance).filter(
+      ({ balance }) => { return !(hideZeroBalance.value && (Number(balance) === 0)) },
+    )
   })
 
   /** 保险库余额 */
   const renderBalanceLockerList = computed(() => {
-    return generateCurrencyData(userInfo.value?.locker)
+    return allCurrencyData(userInfo.value?.locker)
+  })
+
+  /** 钱包弹框，下拉选择 */
+  const renderCurrencyList = computed(() => {
+    return allCurrencyData(userInfo.value?.balance)
   })
 
   /**
@@ -195,6 +229,7 @@ export function useCurrencyData() {
     currentCurrency,
     searchValue,
     hideZeroBalance,
+    renderCurrencyList,
     isVirtualCurrency,
     clearSearchValue,
     changeGlobalCurrency,
