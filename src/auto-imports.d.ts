@@ -9,6 +9,7 @@ declare global {
   const ApiMemberBalanceList: typeof import('./apis/index')['ApiMemberBalanceList']
   const ApiMemberBalanceLocker: typeof import('./apis/index')['ApiMemberBalanceLocker']
   const ApiMemberBalanceLockerUpdate: typeof import('./apis/index')['ApiMemberBalanceLockerUpdate']
+  const ApiMemberBankcardDelete: typeof import('./apis/index')['ApiMemberBankcardDelete']
   const ApiMemberBankcardInsert: typeof import('./apis/index')['ApiMemberBankcardInsert']
   const ApiMemberBankcardList: typeof import('./apis/index')['ApiMemberBankcardList']
   const ApiMemberBankcardRemove: typeof import('./apis/index')['ApiMemberBankcardRemove']
@@ -36,6 +37,7 @@ declare global {
   const ApiMemberSendMailCode: typeof import('./apis/index')['ApiMemberSendMailCode']
   const ApiMemberTreeList: typeof import('./apis/index')['ApiMemberTreeList']
   const ApiMemberUpdate: typeof import('./apis/index')['ApiMemberUpdate']
+  const ApiMemberWalletDelete: typeof import('./apis/index')['ApiMemberWalletDelete']
   const ApiMemberWalletInsert: typeof import('./apis/index')['ApiMemberWalletInsert']
   const ApiMemberWalletList: typeof import('./apis/index')['ApiMemberWalletList']
   const ApiMemberWalletRemove: typeof import('./apis/index')['ApiMemberWalletRemove']
@@ -461,9 +463,9 @@ declare module 'vue' {
   interface ComponentCustomProperties {
     readonly ApiGameLunch: UnwrapRef<typeof import('./apis/index')['ApiGameLunch']>
     readonly ApiMemberBalanceLockerUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberBalanceLockerUpdate']>
+    readonly ApiMemberBankcardDelete: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardDelete']>
     readonly ApiMemberBankcardInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardInsert']>
     readonly ApiMemberBankcardList: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardList']>
-    readonly ApiMemberBankcardRemove: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardRemove']>
     readonly ApiMemberCurrencyConfig: UnwrapRef<typeof import('./apis/index')['ApiMemberCurrencyConfig']>
     readonly ApiMemberDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberDetail']>
     readonly ApiMemberDualVerify: UnwrapRef<typeof import('./apis/index')['ApiMemberDualVerify']>
@@ -488,9 +490,9 @@ declare module 'vue' {
     readonly ApiMemberSendMailCode: UnwrapRef<typeof import('./apis/index')['ApiMemberSendMailCode']>
     readonly ApiMemberTreeList: UnwrapRef<typeof import('./apis/index')['ApiMemberTreeList']>
     readonly ApiMemberUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberUpdate']>
+    readonly ApiMemberWalletDelete: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletDelete']>
     readonly ApiMemberWalletInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletInsert']>
     readonly ApiMemberWalletList: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletList']>
-    readonly ApiMemberWalletRemove: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletRemove']>
     readonly ApiSmsSend: UnwrapRef<typeof import('./apis/index')['ApiSmsSend']>
     readonly ApiWalletBankcardList: UnwrapRef<typeof import('./apis/index')['ApiWalletBankcardList']>
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
@@ -907,9 +909,9 @@ declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
     readonly ApiGameLunch: UnwrapRef<typeof import('./apis/index')['ApiGameLunch']>
     readonly ApiMemberBalanceLockerUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberBalanceLockerUpdate']>
+    readonly ApiMemberBankcardDelete: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardDelete']>
     readonly ApiMemberBankcardInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardInsert']>
     readonly ApiMemberBankcardList: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardList']>
-    readonly ApiMemberBankcardRemove: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardRemove']>
     readonly ApiMemberCurrencyConfig: UnwrapRef<typeof import('./apis/index')['ApiMemberCurrencyConfig']>
     readonly ApiMemberDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberDetail']>
     readonly ApiMemberDualVerify: UnwrapRef<typeof import('./apis/index')['ApiMemberDualVerify']>
@@ -934,9 +936,9 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberSendMailCode: UnwrapRef<typeof import('./apis/index')['ApiMemberSendMailCode']>
     readonly ApiMemberTreeList: UnwrapRef<typeof import('./apis/index')['ApiMemberTreeList']>
     readonly ApiMemberUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberUpdate']>
+    readonly ApiMemberWalletDelete: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletDelete']>
     readonly ApiMemberWalletInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletInsert']>
     readonly ApiMemberWalletList: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletList']>
-    readonly ApiMemberWalletRemove: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletRemove']>
     readonly ApiSmsSend: UnwrapRef<typeof import('./apis/index')['ApiSmsSend']>
     readonly ApiWalletBankcardList: UnwrapRef<typeof import('./apis/index')['ApiWalletBankcardList']>
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>

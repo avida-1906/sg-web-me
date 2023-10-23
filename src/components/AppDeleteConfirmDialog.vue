@@ -17,6 +17,9 @@ const { openNotify } = useNotify()
 const isBankcard = computed(() => 'bank_name' in props.item)
 const bankcardItem = computed(() => props.item as BankCard)
 const virtualCoinItem = computed(() => props.item as VirtualCoin)
+const api = computed(() =>
+  isBankcard.value ? ApiMemberBankcardDelete : ApiMemberWalletDelete,
+)
 
 const {
   value: password,
@@ -34,7 +37,7 @@ function cancel() {
   closeDialog()
 }
 
-const { run: runDelete } = useRequest(ApiMemberWalletRemove, {
+const { run: runDelete } = useRequest(api.value, {
   async onSuccess() {
     closeDialog()
     openNotify({
