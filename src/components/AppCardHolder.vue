@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { IUserCurrencyList } from '~/stores/app'
+import type { CurrencyData } from '~/composables/useCurrencyData'
 import type { BankCard, VirtualCoin } from '~/apis'
 
 type WalletCurrencyList = {
@@ -7,13 +7,16 @@ type WalletCurrencyList = {
   bankcard?: BankCard[] // 绑定的银行卡
   addressNum: number // 虚拟币已绑定地址的数量
   showAdd: boolean // 是否可添加
-} & IUserCurrencyList
+} & CurrencyData
 
 const closeDialog = inject('closeDialog', () => { })
 const cardList: Ref<WalletCurrencyList[] | null> = ref(null)
 
-const { userCurrencyList } = useAppStore()
-const { isVirtualCurrency } = useCurrencyData()
+// const { userCurrencyList } = useAppStore()
+const {
+  isVirtualCurrency,
+  renderBalanceList,
+} = useCurrencyData()
 // 会员卡包
 const {
   data: walletBankcard,
@@ -21,9 +24,18 @@ const {
 } = useRequest(ApiWalletBankcardList, {
   onSuccess() {
     const temp: WalletCurrencyList[] = []
-    for (const item of userCurrencyList) {
+    for (const item of renderBalanceList.value) {
       const currentBankcard = walletBankcard.value?.bankcard[item.cur] || []
-      if (item.bank_tree) { // 银行卡
+      if (isVirtualCurrency(item.type)) { // 虚拟币
+        const currentCoin = walletBankcard.value?.coin[item.cur] || []
+        temp.push({
+          ...item,
+          coin: currentCoin,
+          addressNum: currentCoin.length,
+          showAdd: currentCoin.length < 3,
+        })
+      }
+      else { // 银行卡
         temp.push({
           ...item,
           bankcard: currentBankcard,
@@ -31,15 +43,6 @@ const {
           showAdd: item.cur === '702'
             ? currentBankcard.length < 1
             : currentBankcard.length < 3,
-        })
-      }
-      else { // 虚拟币
-        const currentCoin = walletBankcard.value?.coin[item.cur] || []
-        temp.push({
-          ...item,
-          coin: currentCoin,
-          addressNum: currentCoin.length,
-          showAdd: currentCoin.length < 3,
         })
       }
     }

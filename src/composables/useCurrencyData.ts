@@ -3,40 +3,50 @@ import type { EnumCurrencyKey } from '~/apis'
 /**
  * 页面渲染的货币列表
  */
-interface CurrencyData {
+export interface CurrencyData {
   /** 货币类型 */
   type: EnumCurrencyKey
   /** 余额 */
   balance: string
   /** 带货币符号的余额 */
   balanceWithSymbol: string
+  /** 货币id */
+  cur: string
 }
 
 interface CurrencyValue {
   prefix: string
+  cur: string
 }
 
 export const currencyConfig: Record<EnumCurrencyKey, CurrencyValue> = {
   BRL: {
     prefix: 'R$',
+    cur: '702',
   },
   CNY: {
     prefix: '¥',
+    cur: '701',
   },
   INR: {
     prefix: '₹',
+    cur: '703',
   },
   THB: {
     prefix: '฿',
+    cur: '705',
   },
   VND: {
     prefix: '₫',
+    cur: '704',
   },
   USDT: {
     prefix: '',
+    cur: '706',
   },
   BTC: {
     prefix: '',
+    cur: '707',
   },
 }
 
@@ -81,6 +91,7 @@ export function useCurrencyData() {
           type,
           balance: balanceNumber,
           balanceWithSymbol: `${currencyConfig[type].prefix}${balanceNumber}`,
+          cur: currencyConfig[type].cur,
         })
       }
     }
@@ -101,6 +112,20 @@ export function useCurrencyData() {
       'BTC',
     ]
     return virtualList.includes(currency)
+  }
+
+  /** 获取虚拟币协议类型 */
+  const getVirtualCurrencyContractType = (currency: string) => {
+    switch (currency) {
+      case 'BTC': return [
+        { label: 'BTC', value: 'BTC' },
+      ]
+      case 'USDT': return [
+        { label: 'TRC20', value: 'TRC20' },
+        { label: 'ERC20', value: 'ERC20' },
+      ]
+      default:return null
+    }
   }
 
   /** 获取本地存储的当前全局选择的货币 */
@@ -141,5 +166,6 @@ export function useCurrencyData() {
     isVirtualCurrency,
     clearSearchValue,
     changeGlobalCurrency,
+    getVirtualCurrencyContractType,
   }
 }

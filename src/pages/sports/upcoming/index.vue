@@ -39,14 +39,14 @@ const gameList = [
   { name: '水球', num: 16, id: '33' },
 ]
 const isAll = computed(() => currentGame.value === '1')
-const isStandard = ref(true)
+const { bool: isStandard, setBool: setStandard } = useBoolean(true)
 const baseType = ref('winner')
 function onBaseTypeChange(v: string) {
   baseType.value = v
 }
 watch(currentGame, (a) => {
   if (a === '1')
-    isStandard.value = true
+    setStandard(true)
 })
 </script>
 

@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import type { IUserCurrencyList } from '~/stores/app'
+import type { CurrencyData } from '~/composables/useCurrencyData'
 
 interface Props {
   showBalance?: boolean // 是否展示货币余额
   network?: boolean // 是否显示协议类型
-  currencyList?: IUserCurrencyList[] // 渲染的货币列表
+  currencyList?: CurrencyData[] // 渲染的货币列表
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -16,34 +16,34 @@ const emit = defineEmits(['change'])
 
 // 下拉搜索是否显示
 const { bool: isMenuShown } = useBoolean(false)
-const { userCurrencyList } = useAppStore()
+// const { userCurrencyList } = useAppStore()
 const {
+  clearSearchValue,
   currentCurrency,
   searchValue,
-  changeCurrentCurrency,
-  clearSearchValue,
+  renderBalanceList,
+  // changeCurrentCurrency,
+  getVirtualCurrencyContractType,
 } = useCurrencyData()
 
 const currentNetwork = ref()
 
 const getCurrencyList = computed(() => {
-  const activeList = props.currencyList || userCurrencyList
+  const activeList = props.currencyList || renderBalanceList.value
   if (searchValue.value)
-    return activeList.filter((item: IUserCurrencyList) => item.type.includes(searchValue.value.toLocaleUpperCase()))
+    return activeList.filter(item => item.type.includes(searchValue.value.toLocaleUpperCase()))
   return activeList
 })
 // 获取当前选择货币对象
 const getCurrencyBalance = computed(() => {
-  const activeList = props.currencyList || userCurrencyList
+  const activeList = props.currencyList || renderBalanceList.value
   return activeList
-    .find((item: IUserCurrencyList) =>
+    .find(item =>
       item.type === currentCurrency.value)
 })
 // 获取协议类型
 const getCurContract = computed(() => {
-  return getCurrencyBalance.value?.contract_type?.map((type) => {
-    return { label: type, value: type }
-  })
+  return getVirtualCurrencyContractType(getCurrencyBalance.value?.type ?? '')
 })
 
 // 设置协议选项的值
@@ -51,9 +51,10 @@ function getTypeVal() {
   currentNetwork.value = getCurContract.value ? getCurContract.value[0]?.value : ''
 }
 // 选择币种
-function selectCurrency(item: IUserCurrencyList, hide: () => void) {
+function selectCurrency(item: CurrencyData, hide: () => void) {
   hide()
-  changeCurrentCurrency(item.type)
+  currentCurrency.value = item.type
+  // changeCurrentCurrency(item.type)
   getTypeVal()
 }
 

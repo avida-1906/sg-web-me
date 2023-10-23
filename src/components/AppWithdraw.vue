@@ -1,8 +1,8 @@
 <script setup lang='ts'>
-import type { IUserCurrencyList } from '~/stores/app'
+import type { CurrencyData } from '~/composables/useCurrencyData'
 
 interface Props {
-  activeCurrency: IUserCurrencyList
+  activeCurrency: CurrencyData
 }
 
 defineProps<Props>()

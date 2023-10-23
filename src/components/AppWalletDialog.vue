@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import type { IUserCurrencyList } from '~/stores/app'
+import type { CurrencyData } from '~/composables/useCurrencyData'
 
 const { t } = useI18n()
 const { bool: showWallet, setBool: setShowWalletBool } = useBoolean(true)
@@ -17,7 +17,7 @@ const isDeposit = computed(() => currentTab.value === 'deposit')
 const isWithdraw = computed(() => currentTab.value === 'withdraw')
 const isCardHolder = computed(() => currentTab.value === 'cardHolder')
 
-function changeCurrency(item: IUserCurrencyList) {
+function changeCurrency(item: CurrencyData) {
   activeCurrency.value = item
 }
 function handleShow(val: boolean) {
