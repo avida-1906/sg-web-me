@@ -1,4 +1,4 @@
-import type { EnumCurrencyKey } from '~/apis'
+import type { EnumCurrencyKey, TCurrencyObject } from '~/apis'
 
 /**
  * 页面渲染的货币列表
@@ -75,14 +75,17 @@ export function useCurrencyData() {
     return balance ?? 0
   })
 
-  /** 页面渲染的货币列表 */
-  const renderBalanceList = computed(() => {
-    const balance = userInfo.value?.balance
-    const list: CurrencyData[] = []
+  /** 生成渲染的货币列表 */
+  const generateCurrencyData = (
+    currency: TCurrencyObject | undefined,
+  ) => {
+    if (!currency)
+      return []
 
-    for (const key in balance) {
+    const list: CurrencyData[] = []
+    for (const key in currency) {
       const type = key as EnumCurrencyKey
-      const balanceNumber = balance[type]
+      const balanceNumber = currency[type]
       if (Object.values(EnumCurrency).includes(type)) {
         if (hideZeroBalance.value && Number(balanceNumber) === 0)
           continue
@@ -100,6 +103,15 @@ export function useCurrencyData() {
       return list.filter(({ type }) => type.includes(searchValue.value.toLocaleUpperCase()))
     else
       return list
+  }
+
+  /** 钱包余额 */
+  const renderBalanceList = computed(() => {
+    return generateCurrencyData(userInfo.value?.balance)
+  })
+  /** 保险库余额 */
+  const renderBalanceLockerList = computed(() => {
+    return generateCurrencyData(userInfo.value?.balanceLocker)
   })
 
   /**
@@ -160,6 +172,7 @@ export function useCurrencyData() {
     currentGlobalCurrency,
     currentGlobalCurrencyBalance,
     renderBalanceList,
+    renderBalanceLockerList,
     currentCurrency,
     searchValue,
     hideZeroBalance,

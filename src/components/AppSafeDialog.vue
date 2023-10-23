@@ -1,13 +1,15 @@
 <script setup lang='ts'>
 import type { IMemberBalanceLockerUpdate } from '~/apis'
+import type { CurrencyData } from '~/composables/useCurrencyData'
 
 const closeDialog = inject('closeDialog', () => {})
 
 const { t } = useI18n()
 const { openNotify } = useNotify()
-const { userCurrencyList, userInfo } = storeToRefs(useAppStore())
+const { userInfo } = storeToRefs(useAppStore())
 const { updateUserInfo } = useAppStore()
 const router = useRouter()
+const { renderBalanceList, renderBalanceLockerList } = useCurrencyData()
 
 const activeCurrency = ref<any>()
 const activeTab = ref('deposit')
@@ -60,10 +62,6 @@ const updateParams = computed<IMemberBalanceLockerUpdate | null>(() => {
   return null
 })
 
-// const {
-//   data: vaultBalanceData,
-//   runAsync: runAsyncBalanceLockerShow,
-// } = useRequest(ApiMemberBalanceLocker)
 const {
   run: runLockerUpdate,
   loading: lockerUpdateLoading,
@@ -76,17 +74,11 @@ const {
     resetAmount()
     resetPassword()
     updateUserInfo()
-    // runAsyncBalanceLockerShow()
   },
 })
 
-const vaultBalanceList = computed(() => {
-  // if (vaultBalanceData.value && currencyConfig.value)
-  //   return generateCurrencyData(vaultBalanceData.value, currencyConfig.value)
-  return []
-})
 const initBalance = computed(() => {
-  return isDeposit.value ? userCurrencyList.value : vaultBalanceList.value
+  return isDeposit.value ? renderBalanceList.value : renderBalanceLockerList.value
 })
 
 async function handleUpdate() {
@@ -101,7 +93,7 @@ async function handleUpdate() {
       runLockerUpdate({ ...updateParams.value, password: password.value })
   }
 }
-function changeCurrency(item) {
+function changeCurrency(item: CurrencyData) {
   activeCurrency.value = item
 }
 function maxNumber() {
@@ -113,8 +105,6 @@ watch(() => activeTab.value, () => {
   resetAmount()
   resetPassword()
 })
-
-// application.allSettled([runAsyncBalanceLockerShow()])
 </script>
 
 <template>
@@ -184,11 +174,11 @@ watch(() => activeTab.value, () => {
       </template>
     </div>
     <div class="safe-bottom">
-      <div v-if="userInfo && userInfo.google_verify !== '2'">
+      <div v-if="userInfo && userInfo.google_verify !== 2">
         通过双重验证提高您的账户安全性
       </div>
       <BaseButton
-        v-if="userInfo && userInfo.google_verify !== '2'"
+        v-if="userInfo && userInfo.google_verify !== 2"
         bg-style="primary"
         size="md"
         @click="router.push('/settings/security');closeDialog()"
