@@ -1,38 +1,24 @@
 <script setup lang='ts'>
-import { EnumCasinoApiGameType, EnumCasinoGameType } from '~/utils/enums'
+import { EnumCasinoGameType } from '~/utils/enums'
 
 defineOptions({
   name: 'KeepAliveCasino',
 })
 
 const { isMobile } = storeToRefs(useWindowStore())
+const { casinoNav } = storeToRefs(useCasinoStore())
+
 const router = useRouter()
 const { t } = useI18n()
 
 const tab = ref('all')
-const tabList = [
-  {
-    label: t('game_type_all'),
-    value: 'all',
-    icon: 'chess-lobby',
-  },
-  {
-    label: t('game_type_live'),
-    value: EnumCasinoGameType.LIVE,
-    icon: 'chess-live-casino',
-  },
-  {
-    label: t('game_type_slot'),
-    value: EnumCasinoGameType.SLOT,
-    icon: 'chess-slot-machine',
-  },
-]
 const showAll = computed(() => tab.value === 'all')
 const showLive = computed(() => tab.value === EnumCasinoGameType.LIVE)
 const showSlot = computed(() => tab.value === EnumCasinoGameType.SLOT)
-const currentTitle = computed(() =>
-  tabList.find(a => a.value === tab.value)?.label ?? '-')
-
+const currentTitle = computed(() => {
+  return casinoNav.value.find(a => a.value === tab.value)?.label ?? '-'
+})
+// const currentIcon =
 const {
   list: liveList,
   total: liveTotal,
@@ -47,11 +33,6 @@ const {
 function viewMoreGames(gameType: string) {
   router.push(`/casino/group/${gameType}`)
 }
-
-await application.allSettled([
-  runLive({ game_type: EnumCasinoApiGameType.LIVE }),
-  runSlot({ game_type: EnumCasinoApiGameType.SLOT }),
-])
 </script>
 
 <template>
@@ -63,7 +44,7 @@ await application.allSettled([
       <AppGameSearch game-type="1" />
     </div>
     <div class="mt-24">
-      <BaseTab v-model="tab" :list="tabList" :center="false" size="large" />
+      <BaseTab v-model="tab" :list="casinoNav" :center="false" size="large" />
     </div>
     <div class="content-wrapper">
       <Transition name="tab-fade">

@@ -371,8 +371,41 @@ export function ApiMemberGameRecList(params?: {
 
 /**
  * 场馆列表
- * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=d8e0da7a-92e4-4c67-bc62-8549304bada9
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=52e8029a-59b0-4669-a6c1-bc2d3c36d4e3
  */
+export function ApiMemberGameLobby() {
+  return httpClient.get<{
+    id: string
+    name: string
+    icon: string
+    navs: {
+      ty: number
+      cid: string
+      platform_id: string
+      name: string
+      icon: string
+    }[]
+    items: {
+      ty: number
+      cid: string
+      platform_id: string
+      name: string
+      icon: string
+      total: number
+      games: {
+        platform_id: string
+        game_id: string
+        game_code: string
+        img: string
+        name: string
+      }[]
+    }[]
+  }>('/member/game/lobby')
+}
+/**
+   * 场馆列表
+   * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=d8e0da7a-92e4-4c67-bc62-8549304bada9
+   */
 export function ApiMemberPlatformList(
   params?: {
     page?: number
@@ -400,9 +433,9 @@ export function ApiMemberPlatformList(
 }
 
 /**
- * 虚拟钱包列表
- * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=b5a4e1b7-5297-4210-9d76-17a6a8efb4b4
- */
+   * 虚拟钱包列表
+   * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=b5a4e1b7-5297-4210-9d76-17a6a8efb4b4
+   */
 export function ApiMemberWalletList(
   params: {
     /** 合约类型 */
@@ -413,21 +446,21 @@ export function ApiMemberWalletList(
     page_size?: number
   },
 ) {
-  return httpClient.get < IResponseList<VirtualCoin>>('/member/wallet/list', params)
+  return httpClient.get<IResponseList<VirtualCoin>>('/member/wallet/list', params)
 }
 
 /**
- * 保险库加减
- * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=925fc8cb-c68a-4825-aa56-34c425aa8752
- */
+   * 保险库加减
+   * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=925fc8cb-c68a-4825-aa56-34c425aa8752
+   */
 export function ApiMemberBalanceLockerUpdate(data: IMemberBalanceLockerUpdate) {
   return httpClient.post('/member/balance/locker/update', data)
 }
 
 /**
- * 银行卡列表
- * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=3b3a818d-668f-41fc-ab45-3a8cbc3b3f40
- */
+   * 银行卡列表
+   * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=3b3a818d-668f-41fc-ab45-3a8cbc3b3f40
+   */
 export function ApiMemberBankcardList(params: {
   page_size?: string
   page?: string
@@ -437,14 +470,14 @@ export function ApiMemberBankcardList(params: {
 }
 
 /**
- * 辅助数据
- * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=eef5fa8c-373d-49fb-88cb-5f43d5223d6e
- * level: 001=数字货币分类，002=中国银行列表，
- *        003=越南银行列表，004=支付方式列表，
- *        005=支付类型列表，006=国家列表，
- *        007=币种列表，008=账变类型列表
- *        011=国际电话区号
- */
+   * 辅助数据
+   * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=eef5fa8c-373d-49fb-88cb-5f43d5223d6e
+   * level: 001=数字货币分类，002=中国银行列表，
+   *        003=越南银行列表，004=支付方式列表，
+   *        005=支付类型列表，006=国家列表，
+   *        007=币种列表，008=账变类型列表
+   *        011=国际电话区号
+   */
 export function ApiMemberTreeList(params: {
   level: string
 }) {
@@ -457,9 +490,9 @@ export function ApiMemberTreeList(params: {
 }
 
 /**
- * 银行卡添加
- * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=96b12d9e-536b-4aa3-b6bc-0a8a6fc4d17d
- */
+   * 银行卡添加
+   * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=96b12d9e-536b-4aa3-b6bc-0a8a6fc4d17d
+   */
 export function ApiMemberBankcardInsert(data: {
   currency_id: string
   open_name: string
@@ -473,9 +506,9 @@ export function ApiMemberBankcardInsert(data: {
 }
 
 /**
- * 添加虚拟币钱包地址
- * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=2d1b9bf2-3557-421d-8f93-b5cfc3637afc
- */
+   * 添加虚拟币钱包地址
+   * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=2d1b9bf2-3557-421d-8f93-b5cfc3637afc
+   */
 export function ApiMemberWalletInsert(data: {
   /** 合约类型 */
   contract_type: string
@@ -492,17 +525,17 @@ export function ApiMemberWalletInsert(data: {
 }
 
 /**
- * 退出登陆
- * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=714a7e70-5d38-4c04-969d-f251710adf6b
- */
+   * 退出登陆
+   * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=714a7e70-5d38-4c04-969d-f251710adf6b
+   */
 export function ApiMemberLogout() {
   return httpClient.post<string>('/member/logout')
 }
 
 /**
- * 修改登录密码
- * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=8099f10a-3710-4854-b933-61068636900f
- */
+   * 修改登录密码
+   * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=8099f10a-3710-4854-b933-61068636900f
+   */
 export function ApiMemberPasswordUpdate(data: {
   /** 原密码 */
   password: string
@@ -513,17 +546,17 @@ export function ApiMemberPasswordUpdate(data: {
 }
 
 /**
- * 会员资料详情
- * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=a7da5a93-3c50-438f-b0aa-c7c9faada194
- */
+   * 会员资料详情
+   * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=a7da5a93-3c50-438f-b0aa-c7c9faada194
+   */
 export function ApiMemberDetail() {
   return httpClient.get<IMemberDetail>('/member/detail')
 }
 
 /**
- * 会员资料修改
- * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=4f939a92-0ef0-41fb-b7e7-339b196b6d63
- */
+   * 会员资料修改
+   * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=4f939a92-0ef0-41fb-b7e7-339b196b6d63
+   */
 export function ApiMemberUpdate(data: {
   record: {
     email?: string
@@ -534,9 +567,9 @@ export function ApiMemberUpdate(data: {
 }
 
 /**
- * 邮箱验证申请
- * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=1114f62c-7a42-4784-8ed8-824d9c196ecb
- */
+   * 邮箱验证申请
+   * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=1114f62c-7a42-4784-8ed8-824d9c196ecb
+   */
 export function ApiMemberEmailCheckRequest(data: {
   email: string
 }) {
@@ -544,9 +577,9 @@ export function ApiMemberEmailCheckRequest(data: {
 }
 
 /**
- * 邮箱验证
- * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=b53f7df8-f7c1-47c7-bf0f-f4d7248d129f
- */
+   * 邮箱验证
+   * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=b53f7df8-f7c1-47c7-bf0f-f4d7248d129f
+   */
 export function ApiMemberEmailCheck(data: {
   email: string
   captcha: string
@@ -556,9 +589,9 @@ export function ApiMemberEmailCheck(data: {
 }
 
 /**
-* 设置交易密码
-* @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=7f28bcd5-c379-4de4-9027-cf3ce6f23695
-*/
+  * 设置交易密码
+  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=7f28bcd5-c379-4de4-9027-cf3ce6f23695
+  */
 export function ApiMemberPayPasswordUpdate(data: {
   /** 交易密码 */
   pay_password: string
@@ -569,17 +602,17 @@ export function ApiMemberPayPasswordUpdate(data: {
 }
 
 /**
-* 发送邮箱验证码
-* @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=80a6d16c-b13e-4647-91e1-3a18e73cef4c
-*/
+  * 发送邮箱验证码
+  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=80a6d16c-b13e-4647-91e1-3a18e73cef4c
+  */
 export function ApiMemberSendMailCode() {
   return httpClient.get<string>('/member/send/mail/code')
 }
 
 /**
- * 会员账号校验
- * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=954ecf22-c1d5-4ca6-9576-655090e75d18
- */
+   * 会员账号校验
+   * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=954ecf22-c1d5-4ca6-9576-655090e75d18
+   */
 export function ApiMemberExists(params: {
   /** 1会员名 2邮箱地址 */
   ty: 1 | 2
@@ -590,9 +623,9 @@ export function ApiMemberExists(params: {
 }
 
 /**
- * 忘记密码
- * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=4c8f31ed-b895-4d8a-9bba-1c446b7b891d
- */
+   * 忘记密码
+   * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=4c8f31ed-b895-4d8a-9bba-1c446b7b891d
+   */
 export function ApiMemberForgetPassword(params: {
   email: string
 }) {
@@ -600,9 +633,9 @@ export function ApiMemberForgetPassword(params: {
 }
 
 /**
-* 会员卡包
-* @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=c2214746-c638-4695-bc43-7332b9906502
-*/
+  * 会员卡包
+  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=c2214746-c638-4695-bc43-7332b9906502
+  */
 export function ApiWalletBankcardList() {
   return httpClient.get<{
     bankcard: {
@@ -615,9 +648,9 @@ export function ApiWalletBankcardList() {
 }
 
 /**
- * 双重验证
- * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=4f07bbd4-26b3-4c1b-bf47-87fbb8ac6e09
- */
+   * 双重验证
+   * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=4f07bbd4-26b3-4c1b-bf47-87fbb8ac6e09
+   */
 export function ApiMemberDualVerify(data: {
   password: string
   code: string
@@ -626,9 +659,9 @@ export function ApiMemberDualVerify(data: {
 }
 
 /**
- * 会员登陆日记
- * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=269c1d37-c318-455e-bc06-1e6ea7d5e866
- */
+   * 会员登陆日记
+   * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=269c1d37-c318-455e-bc06-1e6ea7d5e866
+   */
 export function ApiMemberFrontLoginLogList(params?: {
   page_size?: string
   page?: string
@@ -643,9 +676,9 @@ export function ApiMemberFrontLoginLogList(params?: {
 }
 
 /**
- * 删除钱包地址
- * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=b4d0e4df-e035-41da-8073-de5518b03d5b
- */
+   * 删除钱包地址
+   * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=b4d0e4df-e035-41da-8073-de5518b03d5b
+   */
 export function ApiMemberWalletDelete(data: {
   id: string
   pay_password: string
@@ -654,9 +687,9 @@ export function ApiMemberWalletDelete(data: {
 }
 
 /**
- * 删除银行卡
- * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=ef81a01f-6743-404b-a2fa-d4ee172885d6
- */
+   * 删除银行卡
+   * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=ef81a01f-6743-404b-a2fa-d4ee172885d6
+   */
 export function ApiMemberBankcardDelete(data: {
   id: string
   pay_password: string

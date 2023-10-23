@@ -19,6 +19,7 @@ export type Menu = Array<MenuItem>
 export function useApiMenuData() {
   const { locale } = useI18n()
   const { isLogin } = storeToRefs(useAppStore())
+  const { casinoGameList } = storeToRefs(useCasinoStore())
 
   // casino
   const casinoMenu = ref<Menu>([
@@ -37,50 +38,6 @@ export function useApiMenuData() {
       list: [],
       domId: '',
       token: true,
-    },
-  ])
-  const casinoGameList = ref<Menu>([
-    {
-      title: '老虎机',
-      path: '/casino/group/slot',
-      icon: 'chess-slot-machine',
-      list: [],
-      domId: '',
-    },
-    {
-      title: '真人娱乐场',
-      path: '/casino/group/live',
-      icon: 'chess-live-casino',
-      list: [],
-      domId: '',
-    },
-    {
-      title: '游戏节目',
-      path: '/casino/group/game-shows',
-      icon: 'chess-gameshow',
-      list: [],
-      domId: '',
-    },
-    {
-      title: '新游戏',
-      path: '/casino/group/new-releases',
-      icon: 'chess-newgame',
-      list: [],
-      domId: '',
-    },
-    {
-      title: '可购买奖励回合',
-      path: '/casino/group/feature-buy-in',
-      icon: 'chess-bonus-rounds',
-      list: [],
-      domId: '',
-    },
-    {
-      title: 'RTP 增强化',
-      path: '/casino/group/enhanced-rtp',
-      icon: 'chess-rtp',
-      list: [],
-      domId: '',
     },
   ])
   const casinoGameProvider = ref<Menu>([{ title: '游戏提供商', path: '/casino/collection/provider', icon: 'chess-game-provider', list: [], domId: '' }])

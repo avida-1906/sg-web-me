@@ -26,6 +26,7 @@ declare global {
   const ApiMemberFrontLoginLogList: typeof import('./apis/index')['ApiMemberFrontLoginLogList']
   const ApiMemberGameDetail: typeof import('./apis/index')['ApiMemberGameDetail']
   const ApiMemberGameList: typeof import('./apis/index')['ApiMemberGameList']
+  const ApiMemberGameLobby: typeof import('./apis/index')['ApiMemberGameLobby']
   const ApiMemberGameRecList: typeof import('./apis/index')['ApiMemberGameRecList']
   const ApiMemberGameSearch: typeof import('./apis/index')['ApiMemberGameSearch']
   const ApiMemberLogin: typeof import('./apis/index')['ApiMemberLogin']
@@ -264,6 +265,7 @@ declare global {
   const useBroadcastChannel: typeof import('@vueuse/core')['useBroadcastChannel']
   const useBrowserLocation: typeof import('@vueuse/core')['useBrowserLocation']
   const useCached: typeof import('@vueuse/core')['useCached']
+  const useCasinoStore: typeof import('./stores/casino')['useCasinoStore']
   const useChatRulesDialog: typeof import('./composables/useDialogChatRules')['useChatRulesDialog']
   const useClipboard: typeof import('@vueuse/core')['useClipboard']
   const useCloned: typeof import('@vueuse/core')['useCloned']
@@ -479,6 +481,7 @@ declare module 'vue' {
     readonly ApiMemberFrontLoginLogList: UnwrapRef<typeof import('./apis/index')['ApiMemberFrontLoginLogList']>
     readonly ApiMemberGameDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberGameDetail']>
     readonly ApiMemberGameList: UnwrapRef<typeof import('./apis/index')['ApiMemberGameList']>
+    readonly ApiMemberGameLobby: UnwrapRef<typeof import('./apis/index')['ApiMemberGameLobby']>
     readonly ApiMemberGameRecList: UnwrapRef<typeof import('./apis/index')['ApiMemberGameRecList']>
     readonly ApiMemberGameSearch: UnwrapRef<typeof import('./apis/index')['ApiMemberGameSearch']>
     readonly ApiMemberLogin: UnwrapRef<typeof import('./apis/index')['ApiMemberLogin']>
@@ -715,6 +718,7 @@ declare module 'vue' {
     readonly useBroadcastChannel: UnwrapRef<typeof import('@vueuse/core')['useBroadcastChannel']>
     readonly useBrowserLocation: UnwrapRef<typeof import('@vueuse/core')['useBrowserLocation']>
     readonly useCached: UnwrapRef<typeof import('@vueuse/core')['useCached']>
+    readonly useCasinoStore: UnwrapRef<typeof import('./stores/casino')['useCasinoStore']>
     readonly useChatRulesDialog: UnwrapRef<typeof import('./composables/useDialogChatRules')['useChatRulesDialog']>
     readonly useClipboard: UnwrapRef<typeof import('@vueuse/core')['useClipboard']>
     readonly useCloned: UnwrapRef<typeof import('@vueuse/core')['useCloned']>
@@ -924,6 +928,7 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberFrontLoginLogList: UnwrapRef<typeof import('./apis/index')['ApiMemberFrontLoginLogList']>
     readonly ApiMemberGameDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberGameDetail']>
     readonly ApiMemberGameList: UnwrapRef<typeof import('./apis/index')['ApiMemberGameList']>
+    readonly ApiMemberGameLobby: UnwrapRef<typeof import('./apis/index')['ApiMemberGameLobby']>
     readonly ApiMemberGameRecList: UnwrapRef<typeof import('./apis/index')['ApiMemberGameRecList']>
     readonly ApiMemberGameSearch: UnwrapRef<typeof import('./apis/index')['ApiMemberGameSearch']>
     readonly ApiMemberLogin: UnwrapRef<typeof import('./apis/index')['ApiMemberLogin']>
@@ -1160,6 +1165,7 @@ declare module '@vue/runtime-core' {
     readonly useBroadcastChannel: UnwrapRef<typeof import('@vueuse/core')['useBroadcastChannel']>
     readonly useBrowserLocation: UnwrapRef<typeof import('@vueuse/core')['useBrowserLocation']>
     readonly useCached: UnwrapRef<typeof import('@vueuse/core')['useCached']>
+    readonly useCasinoStore: UnwrapRef<typeof import('./stores/casino')['useCasinoStore']>
     readonly useChatRulesDialog: UnwrapRef<typeof import('./composables/useDialogChatRules')['useChatRulesDialog']>
     readonly useClipboard: UnwrapRef<typeof import('@vueuse/core')['useClipboard']>
     readonly useCloned: UnwrapRef<typeof import('@vueuse/core')['useCloned']>

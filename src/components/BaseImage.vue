@@ -25,10 +25,9 @@ const { bool: isError, setTrue: setErrorTrue } = useBoolean(false)
 const { VITE_CASINO_IMG_CLOUD_URL } = getEnv()
 
 const imgUrl = computed(() => {
-  if (props.isGame) {
-    return `${VITE_CASINO_IMG_CLOUD_URL}
-  ${props.url.replace('%lang%', getCurrentLanguageForBackend())}`
-  }
+  if (props.isGame)
+    // eslint-disable-next-line max-len
+    return `${VITE_CASINO_IMG_CLOUD_URL}${props.url.replace('%lang%', getCurrentLanguageForBackend())}`
 
   if (props.isCloud)
     return `${VITE_CASINO_IMG_CLOUD_URL}${props.url}`
@@ -42,14 +41,11 @@ function handleClick() {
 </script>
 
 <template>
-  <div class="base-image">
+  <div class="base-image" :abc="imgUrl">
     <img
-      v-if="!isError"
-      :style="`width: ${width}; height: ${height}; object-fit: ${fit};`"
-      loading="lazy"
-      :src="imgUrl"
-      @click="handleClick"
-      @error="setErrorTrue"
+      v-if="!isError" :style="`width: ${width}; height: ${height}; object-fit: ${fit};`"
+      loading="lazy" :src="imgUrl"
+      @click="handleClick" @error="setErrorTrue"
     >
     <div v-else class="center img-load">
       <BaseEmpty>
@@ -65,9 +61,9 @@ function handleClick() {
 </template>
 
 <style>
-:root{
+:root {
   --tg-base-img-style-radius: var(--tg-radius-none);
-  --tg-img-object-position:center;
+  --tg-img-object-position: center;
 }
 </style>
 
@@ -75,12 +71,14 @@ function handleClick() {
 .base-image {
   width: 100%;
   height: 100%;
+
   .img-load {
     width: 100%;
     height: 100%;
     background-color: var(--tg-secondary-grey);
   }
-  img{
+
+  img {
     border-radius: var(--tg-base-img-style-radius);
     object-position: var(--tg-img-object-position);
     user-select: none;
