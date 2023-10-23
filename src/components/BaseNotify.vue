@@ -51,6 +51,8 @@ const _title = computed(() => {
       return t('notify_title_error')
     case 'success':
       return t('notify_title_success')
+    case 'user':
+      return t('welcome_guest')
     default:
       return undefined
   }

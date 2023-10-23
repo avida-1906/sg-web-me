@@ -8,6 +8,7 @@ const {
   setTrue: setShowPasswordVerifyTrue,
   setBool: setShowPasswordVerifyBool,
 } = useBoolean(false)
+const { openNotify } = useNotify()
 const {
   value: username,
   errorMessage: usernameErrorMsg,
@@ -47,6 +48,7 @@ const {
   onSuccess: (res: string) => {
     closeDialog()
     appStore.setToken(res)
+    openNotify({ type: 'user', message: `欢迎${username.value}！` })
   },
 })
 
