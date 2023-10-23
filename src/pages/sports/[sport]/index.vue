@@ -477,7 +477,7 @@ const topUpcomingCategoryList = computed(() => {
 })
 
 const curTab = ref(tabs.value[0].value)
-const isStandard = ref(true)
+const { bool: isStandard } = useBoolean(true)
 const baseType = ref('winner')
 function onBaseTypeChange(v: string) {
   baseType.value = v
