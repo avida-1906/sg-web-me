@@ -109,9 +109,10 @@ export function useCurrencyData() {
   const renderBalanceList = computed(() => {
     return generateCurrencyData(userInfo.value?.balance)
   })
+
   /** 保险库余额 */
   const renderBalanceLockerList = computed(() => {
-    return generateCurrencyData(userInfo.value?.balanceLocker)
+    return generateCurrencyData(userInfo.value?.locker)
   })
 
   /**

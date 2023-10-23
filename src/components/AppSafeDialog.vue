@@ -57,6 +57,7 @@ const updateParams = computed<IMemberBalanceLockerUpdate | null>(() => {
       amount: amount.value,
       flag: updateType.value,
       currency_id: Number(activeCurrency.value.cur),
+      device: 0,
     }
   }
   return null
@@ -133,7 +134,7 @@ watch(() => activeTab.value, () => {
           @on-right-button="maxNumber"
         >
           <template #right-icon>
-            <!-- <BaseIcon :name="activeCurrency?.icon || ''" /> -->
+            <AppCurrencyIcon v-if="activeCurrency" :currency-type="activeCurrency.type" />
           </template>
           <template #right-button>
             <span>最大值</span>
