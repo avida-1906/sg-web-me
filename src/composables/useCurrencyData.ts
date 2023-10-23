@@ -50,6 +50,10 @@ export const currencyConfig: Record<EnumCurrencyKey, CurrencyValue> = {
   },
 }
 
+const {
+  bool: hideZeroBalance,
+} = useBoolean(Local.get<boolean | undefined>(STORAGE_HIDE_ZERO_BALANCE_KEY)?.value)
+
 /**
  * 使用货币数据
  */
@@ -62,7 +66,6 @@ export function useCurrencyData() {
   // 搜索内容
   const searchValue = ref('')
   // 是否隐藏零余额
-  const { bool: hideZeroBalance } = useBoolean(Local.get<boolean | undefined>(STORAGE_HIDE_ZERO_BALANCE_KEY)?.value)
   /** 当前选择的货币,用在充值和提现的下拉列表 */
   const currentCurrency = ref(EnumCurrency[0] as EnumCurrencyKey)
   /** 当前全局选择的货币 */

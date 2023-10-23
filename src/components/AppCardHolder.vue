@@ -12,7 +12,6 @@ type WalletCurrencyList = {
 const closeDialog = inject('closeDialog', () => { })
 const cardList: Ref<WalletCurrencyList[] | null> = ref(null)
 
-// const { userCurrencyList } = useAppStore()
 const {
   isVirtualCurrency,
   renderBalanceList,

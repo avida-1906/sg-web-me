@@ -3,6 +3,8 @@ const route = useRoute()
 const { isMobile, appContentWidth } = storeToRefs(useWindowStore())
 const appStore = useAppStore()
 const { isLogin } = storeToRefs(appStore)
+const { bool: showRecent, setFalse: setSRFalse } = useBoolean(true)
+const { bool: openLiveSwitch } = useBoolean(false)
 
 const sport = route.params.sport
 // const category = route.params.category
@@ -10,7 +12,6 @@ const sport = route.params.sport
 // const fixture = route.params.fixture
 const rangeNum = ref()
 const searchHandicap = ref('')
-const { bool: openLiveSwitch } = useBoolean(false)
 const eventData = reactive({
   id: '54091c18-6724-461f-8ccd-ac254479d198',
   slug: '43893124-persija-jakarta-barito-putera',
@@ -960,10 +961,10 @@ function openMiniVideo() {
                   </div>
                 </div>
               </div>
-              <div class="spotlight is-open variant-dark">
-                <div class="header no-active-scale">
+              <div v-if="showRecent" class="spotlight is-open variant-dark">
+                <div class="no-active-scale header">
                   <span>近期游戏记录</span>
-                  <BaseButton type="text">
+                  <BaseButton type="text" @click="setSRFalse()">
                     <BaseIcon name="uni-close-white" />
                   </BaseButton>
                 </div>
