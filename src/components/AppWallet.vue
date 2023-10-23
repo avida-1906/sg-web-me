@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { IUserCurrencyList } from '~/stores/app'
+import type { EnumCurrencyKey } from '~/apis'
 
 const { openWalletDialog } = useWalletDialog()
 const { openWalletSetDialog } = useWalletSetDialog()
@@ -10,14 +10,14 @@ const {
   currentGlobalCurrency,
   currentGlobalCurrencyBalance,
   searchValue,
-  renderCurrencyList,
-  changeCurrency,
+  renderBalanceList,
+  changeGlobalCurrency,
   clearSearchValue,
 } = useCurrencyData()
 
 // 选择币种
-function selectCurrency(item: IUserCurrencyList, hide: () => void) {
-  changeCurrency(item.type)
+function selectCurrency(item: EnumCurrencyKey, hide: () => void) {
+  changeGlobalCurrency(item)
   hide()
 }
 </script>
@@ -59,10 +59,10 @@ function selectCurrency(item: IUserCurrencyList, hide: () => void) {
           </div>
           <div class="scroll-y popper-content">
             <div
-              v-for="item of renderCurrencyList"
+              v-for="item of renderBalanceList"
               :key="item.type"
               class="content-row"
-              @click.stop="selectCurrency(item, hide)"
+              @click.stop="selectCurrency(item.type, hide)"
             >
               <AppAmount
                 :amount="item.balanceWithSymbol"
@@ -70,7 +70,7 @@ function selectCurrency(item: IUserCurrencyList, hide: () => void) {
                 show-name
               />
             </div>
-            <div v-show="!renderCurrencyList.length" class="balance-not">
+            <div v-show="!renderBalanceList.length" class="balance-not">
               无法使用货币
             </div>
           </div>

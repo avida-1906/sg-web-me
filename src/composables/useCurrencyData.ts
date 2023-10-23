@@ -1,54 +1,95 @@
 import type { EnumCurrencyKey } from '~/apis'
 
 /**
+ * 页面渲染的货币列表
+ */
+interface CurrencyData {
+  /** 货币类型 */
+  type: EnumCurrencyKey
+  /** 余额 */
+  balance: string
+  /** 带货币符号的余额 */
+  balanceWithSymbol: string
+}
+
+interface CurrencyValue {
+  prefix: string
+}
+
+export const currencyConfig: Record<EnumCurrencyKey, CurrencyValue> = {
+  BRL: {
+    prefix: 'R$',
+  },
+  CNY: {
+    prefix: '¥',
+  },
+  INR: {
+    prefix: '₹',
+  },
+  THB: {
+    prefix: '฿',
+  },
+  VND: {
+    prefix: '₫',
+  },
+  USDT: {
+    prefix: '',
+  },
+  BTC: {
+    prefix: '',
+  },
+}
+
+/**
  * 使用货币数据
  */
 export function useCurrencyData() {
   const appStore = useAppStore()
   const {
-    currentGlobalCurrency,
-    hideZeroBalance,
-    currentGlobalCurrencyBalance,
-    userCurrencyList: _userCurrencyList,
+    userInfo,
   } = storeToRefs(appStore)
 
   // 搜索内容
   const searchValue = ref('')
-  // 当前选择的货币
-  const currentCurrency = ref(currentGlobalCurrency.value)
+  // 是否隐藏零余额
+  const { bool: hideZeroBalance } = useBoolean(Local.get<boolean | undefined>(STORAGE_HIDE_ZERO_BALANCE_KEY)?.value)
+  /** 当前选择的货币,用在充值和提现的下拉列表 */
+  const currentCurrency = ref(EnumCurrency[0] as EnumCurrencyKey)
+  /** 当前全局选择的货币 */
+  const currentGlobalCurrency = ref<EnumCurrencyKey>(getLocalCurrentGlobalCurrency())
 
-  // 用户货币数据，如果隐藏零余额，就过滤掉零余额的货币
-  const userCurrencyList = computed(() => {
-    const list = _userCurrencyList.value
-    if (hideZeroBalance.value)
-      return list.filter(item => Number(item.balance) > 0)
-
-    return list
+  /** 用户当前选择的货币余额 */
+  const currentGlobalCurrencyBalance = computed(() => {
+    const currency = currentGlobalCurrency.value
+    const balance = userInfo.value?.balance[currency]
+    return balance ?? 0
   })
 
-  // 渲染货币列表
-  const renderCurrencyList = computed(() => {
+  /** 页面渲染的货币列表 */
+  const renderBalanceList = computed(() => {
+    const balance = userInfo.value?.balance
+    const list: CurrencyData[] = []
+
+    for (const key in balance) {
+      const type = key as EnumCurrencyKey
+      const balanceNumber = balance[type]
+      if (Object.values(EnumCurrency).includes(type)) {
+        if (hideZeroBalance.value && Number(balanceNumber) === 0)
+          continue
+
+        list.push({
+          type,
+          balance: balanceNumber,
+          balanceWithSymbol: `${currencyConfig[type].prefix}${balanceNumber}`,
+        })
+      }
+    }
+
     if (searchValue.value)
-      return userCurrencyList.value.filter(item => item.type.includes(searchValue.value.toLocaleUpperCase()))
-
-    return userCurrencyList.value
+      return list.filter(({ type }) => type.includes(searchValue.value.toLocaleUpperCase()))
+    else
+      return list
   })
-
-  const changeCurrency = (type: EnumCurrencyKey) => {
-    appStore.changeCurrentGlobalCurrency(type)
-  }
-
-  const clearSearchValue = () => {
-    searchValue.value = ''
-  }
-
-  /**
-   * 改变当前选择的货币
-   * @param {EnumCurrencyKey} currency
-   */
-  const changeCurrentCurrency = (currency: EnumCurrencyKey) => {
-    currentCurrency.value = currency
-  }
 
   /**
    * 判断是不是虚拟货币
@@ -62,17 +103,43 @@ export function useCurrencyData() {
     return virtualList.includes(currency)
   }
 
+  /** 获取本地存储的当前全局选择的货币 */
+  function getLocalCurrentGlobalCurrency(): EnumCurrencyKey {
+    const currency = Local.get<
+      EnumCurrencyKey
+    >(STORAGE_CURRENT_GLOBAL_CURRENCY_KEY)?.value
+
+    if (currency)
+      return currency
+    else
+      return EnumCurrency[0] as EnumCurrencyKey
+  }
+
+  /** 设置本地存储的当前全局选择的货币 */
+  function setLocalCurrentGlobalCurrency(currency: EnumCurrencyKey) {
+    Local.set(STORAGE_CURRENT_GLOBAL_CURRENCY_KEY, currency)
+  }
+
+  /** 改变全局货币 */
+  function changeGlobalCurrency(currency: EnumCurrencyKey) {
+    currentGlobalCurrency.value = currency
+    setLocalCurrentGlobalCurrency(currency)
+  }
+
+  /** 清空搜索内容 */
+  function clearSearchValue() {
+    searchValue.value = ''
+  }
+
   return {
     currentGlobalCurrency,
     currentGlobalCurrencyBalance,
+    renderBalanceList,
     currentCurrency,
     searchValue,
-    renderCurrencyList,
     hideZeroBalance,
-    userCurrencyList,
-    changeCurrency,
-    clearSearchValue,
-    changeCurrentCurrency,
     isVirtualCurrency,
+    clearSearchValue,
+    changeGlobalCurrency,
   }
 }

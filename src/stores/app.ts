@@ -1,48 +1,4 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
-import type { EnumCurrencyKey, IMemberCurrencyConfig, TCurrencyObject } from '~/apis'
-import { EnumCurrency } from '~/utils/enums'
-
-/** 页面渲染的货币对象 */
-export type IUserCurrencyList = {
-  /** 货币类型 */
-  type: EnumCurrencyKey
-  /** 余额 */
-  balance: string
-  /** 带余额的前缀 */
-  balanceWithSymbol: string
-} & Pick<IMemberCurrencyConfig, 'cur' | 'bank_tree' | 'symbol' | 'contract_type'>
-
-/**
- * 生成用户货币数据
- * @param currency 用户余额数据
- * @param currencyConfig 货币配置
- * @returns  {IUserCurrencyList} 前端渲染的货币对象数组
- */
-export function generateCurrencyData(
-  currency: TCurrencyObject,
-  currencyConfig: IMemberCurrencyConfig[],
-) {
-  const list: IUserCurrencyList[] = []
-  for (let i = 0; i < currencyConfig.length; i++) {
-    const type = currencyConfig[i].cur_name
-    const balance = currency[type]
-    const symbol = currencyConfig[i].symbol
-    const balanceWithSymbol = symbol + balance
-    const cur = currencyConfig[i].cur
-    const bank_tree = currencyConfig[i].bank_tree
-    const contract_type = currencyConfig[i].contract_type ?? []
-    list.push({
-      type,
-      balance,
-      symbol,
-      balanceWithSymbol,
-      cur,
-      bank_tree,
-      contract_type,
-    })
-  }
-  return list
-}
 
 export const useAppStore = defineStore('app', () => {
   /** 游戏提供商数据(PG,EVO,...) */
@@ -51,39 +7,12 @@ export const useAppStore = defineStore('app', () => {
   })
   /** 是否登录，程序用这个变量来判断是否登录 */
   const { bool: isLogin, setTrue: setLoginTrue, setFalse: setLoginFalse } = useBoolean(!!getToken())
-  /** 货币配置 */
-  const { data: currencyConfig } = useRequest(ApiMemberCurrencyConfig, {
-    manual: false,
-  })
   /** 用户信息 */
   const { data: userInfo, runAsync: updateUserInfo } = useRequest(ApiMemberDetail, {
     ready: isLogin,
     manual: false,
   })
   const visibility = useDocumentVisibility()
-
-  /** 当前全局选择的货币 */
-  const currentGlobalCurrency = ref<EnumCurrencyKey>(getLocalCurrentGlobalCurrency())
-  // 是否隐藏零余额
-  const { bool: hideZeroBalance } = useBoolean(Local.get<boolean | undefined>(STORAGE_HIDE_ZERO_BALANCE_KEY)?.value)
-
-  /**
-   * 用户货币数据
-   *
-   * 结合货币配置和用户余额数据，计算出用户各个货币的余额
-   * @returns {IUserCurrencyList}
-   */
-  const userCurrencyList = computed(() => {
-    if (userInfo.value?.balance && currencyConfig.value)
-      return generateCurrencyData(userInfo.value!.balance, currencyConfig.value)
-
-    return []
-  })
-  /** 当前选择货币的金额 */
-  const currentGlobalCurrencyBalance = computed(() => {
-    const balance = userCurrencyList.value.find(item => item.type === currentGlobalCurrency.value)?.balanceWithSymbol ?? '-'
-    return balance
-  })
 
   function setToken(token: string) {
     // 将token加密后存储到本地
@@ -105,37 +34,6 @@ export const useAppStore = defineStore('app', () => {
     setLoginFalse()
   }
 
-  /** 判断输入金额是否足够 */
-  function isBalanceEnough(amount: number, currency: EnumCurrency) {
-    return true
-  }
-
-  /**
-   * 改变当前全局选择的货币
-   * @param {EnumCurrencyKey} currency
-   */
-  function changeCurrentGlobalCurrency(currency: EnumCurrencyKey) {
-    currentGlobalCurrency.value = currency
-    setLocalCurrentGlobalCurrency(currency)
-  }
-
-  /** 获取本地存储的当前全局选择的货币 */
-  function getLocalCurrentGlobalCurrency(): EnumCurrencyKey {
-    const currency = Local.get<
-      EnumCurrencyKey
-    >(STORAGE_CURRENT_GLOBAL_CURRENCY_KEY)?.value
-
-    if (currency)
-      return currency
-    else
-      return EnumCurrency[0] as EnumCurrencyKey
-  }
-
-  /** 设置本地存储的当前全局选择的货币 */
-  function setLocalCurrentGlobalCurrency(currency: EnumCurrencyKey) {
-    Local.set(STORAGE_CURRENT_GLOBAL_CURRENCY_KEY, currency)
-  }
-
   watch(visibility, (bool) => {
     // 如果页面可见，更新用户余额和用户信息
     if (bool === 'visible')
@@ -151,22 +49,13 @@ export const useAppStore = defineStore('app', () => {
   return {
     isLogin,
     platformList,
-    currentGlobalCurrency,
-    hideZeroBalance,
-    userCurrencyList,
-    currentGlobalCurrencyBalance,
     userInfo,
-    currencyConfig,
     setToken,
     setLoginTrue,
     setLoginFalse,
     removeToken,
     getToken,
-    isBalanceEnough,
-    changeCurrentGlobalCurrency,
     updateUserInfo,
-    setLocalCurrentGlobalCurrency,
-    getLocalCurrentGlobalCurrency,
   }
 })
 

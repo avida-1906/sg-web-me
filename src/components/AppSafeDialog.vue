@@ -1,17 +1,15 @@
 <script setup lang='ts'>
 import type { IMemberBalanceLockerUpdate } from '~/apis'
-import { generateCurrencyData } from '~/stores/app'
-import type { IUserCurrencyList } from '~/stores/app'
 
 const closeDialog = inject('closeDialog', () => {})
 
 const { t } = useI18n()
 const { openNotify } = useNotify()
-const { currencyConfig, userCurrencyList, userInfo } = storeToRefs(useAppStore())
+const { userCurrencyList, userInfo } = storeToRefs(useAppStore())
 const { updateUserInfo } = useAppStore()
 const router = useRouter()
 
-const activeCurrency = ref<IUserCurrencyList>()
+const activeCurrency = ref<any>()
 const activeTab = ref('deposit')
 const tabOptions = [
   { label: t('deposit'), value: 'deposit' },
@@ -62,10 +60,10 @@ const updateParams = computed<IMemberBalanceLockerUpdate | null>(() => {
   return null
 })
 
-const {
-  data: vaultBalanceData,
-  runAsync: runAsyncBalanceLockerShow,
-} = useRequest(ApiMemberBalanceLocker)
+// const {
+//   data: vaultBalanceData,
+//   runAsync: runAsyncBalanceLockerShow,
+// } = useRequest(ApiMemberBalanceLocker)
 const {
   run: runLockerUpdate,
   loading: lockerUpdateLoading,
@@ -78,13 +76,13 @@ const {
     resetAmount()
     resetPassword()
     updateUserInfo()
-    runAsyncBalanceLockerShow()
+    // runAsyncBalanceLockerShow()
   },
 })
 
 const vaultBalanceList = computed(() => {
-  if (vaultBalanceData.value && currencyConfig.value)
-    return generateCurrencyData(vaultBalanceData.value, currencyConfig.value)
+  // if (vaultBalanceData.value && currencyConfig.value)
+  //   return generateCurrencyData(vaultBalanceData.value, currencyConfig.value)
   return []
 })
 const initBalance = computed(() => {
@@ -103,7 +101,7 @@ async function handleUpdate() {
       runLockerUpdate({ ...updateParams.value, password: password.value })
   }
 }
-function changeCurrency(item: IUserCurrencyList) {
+function changeCurrency(item) {
   activeCurrency.value = item
 }
 function maxNumber() {
@@ -116,7 +114,7 @@ watch(() => activeTab.value, () => {
   resetPassword()
 })
 
-application.allSettled([runAsyncBalanceLockerShow()])
+// application.allSettled([runAsyncBalanceLockerShow()])
 </script>
 
 <template>

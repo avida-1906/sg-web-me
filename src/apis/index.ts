@@ -128,21 +128,6 @@ export interface IMemberBalanceLockerUpdate {
   password?: string
 }
 
-export interface IMemberCurrencyConfig {
-  /** 货币ID */
-  cur: string
-  /** 货币名称（CNY,...） */
-  cur_name: EnumCurrencyKey
-  /** 货币小数位数 */
-  decimal_places: number
-  /** 货币前缀 */
-  symbol: string
-  /** 银行id */
-  bank_tree: string
-  /** 虚拟币协议 */
-  contract_type: string[] | null
-}
-
 export interface IMemberReg {
   email: string
   username: string
@@ -546,14 +531,6 @@ export function ApiMemberUpdate(data: {
   uid?: string
 }) {
   return httpClient.post<string>('/member/update', data)
-}
-
-/**
- * 货币配置信息
- * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=df9ed49c-03c3-452d-b5c8-ed7a73575049
- */
-export function ApiMemberCurrencyConfig() {
-  return httpClient.get<IMemberCurrencyConfig[]>('/member/currency/config')
 }
 
 /**
