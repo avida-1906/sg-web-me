@@ -115,7 +115,7 @@ export function useCurrencyData() {
   }
 
   /** 获取虚拟币协议类型 */
-  const getVirtualCurrencyContractType = (currency: EnumCurrencyKey) => {
+  const getVirtualCurrencyContractType = (currency: string) => {
     switch (currency) {
       case 'BTC': return [
         { label: 'BTC', value: 'BTC' },
