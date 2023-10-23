@@ -16,7 +16,6 @@ const emit = defineEmits(['change'])
 
 // 下拉搜索是否显示
 const { bool: isMenuShown } = useBoolean(false)
-// const { userCurrencyList } = useAppStore()
 const {
   clearSearchValue,
   currentCurrency,

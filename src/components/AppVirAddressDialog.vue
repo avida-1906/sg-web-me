@@ -12,10 +12,8 @@ const props = withDefaults(defineProps<Props>(), {
 const closeDialog = inject('closeDialog', () => { })
 
 const {
-  // renderBalanceList,
   getVirtualCurrencyContractType,
 } = useCurrencyData()
-// const { userCurrencyList } = useAppStore()
 const { t } = useI18n()
 const { openNotify } = useNotify()
 const {
