@@ -110,7 +110,7 @@ const getPayPwdState = computed(() => {
   return userInfo.value?.pay_password === '1'
 })
 const doubleVerified = computed(() => {
-  return userInfo.value?.google_verify === '2'
+  return userInfo.value?.google_verify === 2
 })
 const getQRcodeUrl = computed(() => {
   if (userInfo.value)

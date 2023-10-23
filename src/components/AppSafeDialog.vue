@@ -9,7 +9,7 @@ const { openNotify } = useNotify()
 const { userInfo } = storeToRefs(useAppStore())
 const { updateUserInfo } = useAppStore()
 const router = useRouter()
-const { renderBalanceList, renderBalanceLockerList } = useCurrencyData()
+// const { renderBalanceList, renderBalanceLockerList } = useCurrencyData()
 
 const activeCurrency = ref<any>()
 const activeTab = ref('deposit')
@@ -57,6 +57,7 @@ const updateParams = computed<IMemberBalanceLockerUpdate | null>(() => {
       amount: amount.value,
       flag: updateType.value,
       currency_id: Number(activeCurrency.value.cur),
+      device: 0,
     }
   }
   return null
@@ -77,9 +78,9 @@ const {
   },
 })
 
-const initBalance = computed(() => {
-  return isDeposit.value ? renderBalanceList.value : renderBalanceLockerList.value
-})
+// const initBalance = computed(() => {
+// return isDeposit.value ? renderBalanceList.value : renderBalanceLockerList.value
+// })
 
 async function handleUpdate() {
   await validateAmount()
@@ -115,7 +116,7 @@ watch(() => activeTab.value, () => {
         <div class="flex-col-start">
           <span>{{ isDeposit ? '账户货币' : '保险库货币' }}</span>
           <AppSelectCurrency
-            :currency-list="initBalance"
+            :currency-list="!isDeposit"
             @change="changeCurrency"
           />
         </div>
@@ -133,7 +134,7 @@ watch(() => activeTab.value, () => {
           @on-right-button="maxNumber"
         >
           <template #right-icon>
-            <!-- <BaseIcon :name="activeCurrency?.icon || ''" /> -->
+            <AppCurrencyIcon v-if="activeCurrency" :currency-type="activeCurrency.type" />
           </template>
           <template #right-button>
             <span>最大值</span>

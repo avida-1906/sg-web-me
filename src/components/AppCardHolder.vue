@@ -12,10 +12,9 @@ type WalletCurrencyList = {
 const closeDialog = inject('closeDialog', () => { })
 const cardList: Ref<WalletCurrencyList[] | null> = ref(null)
 
-// const { userCurrencyList } = useAppStore()
 const {
   isVirtualCurrency,
-  renderBalanceList,
+  renderCurrencyList,
 } = useCurrencyData()
 // 会员卡包
 const {
@@ -24,7 +23,7 @@ const {
 } = useRequest(ApiWalletBankcardList, {
   onSuccess() {
     const temp: WalletCurrencyList[] = []
-    for (const item of renderBalanceList.value) {
+    for (const item of renderCurrencyList.value) {
       const currentBankcard = walletBankcard.value?.bankcard[item.cur] || []
       if (isVirtualCurrency(item.type)) { // 虚拟币
         const currentCoin = walletBankcard.value?.coin[item.cur] || []

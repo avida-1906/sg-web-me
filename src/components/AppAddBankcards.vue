@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import type { IUserCurrencyList } from '~/stores/app'
+import type { CurrencyData } from '~/composables/useCurrencyData'
 import type { TTreeListType } from '~/composables/useApiMemberTreeList'
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
   /** 是否需要padding */
   container?: boolean
   /** 货币对象 */
-  activeCurrency: IUserCurrencyList
+  activeCurrency: CurrencyData<TTreeListType>
   /** '1' 银行卡， '2' pix 除了巴西其他国家都是银行卡 */
   currentType: '1' | '2'
 }
@@ -97,7 +97,7 @@ const {
 const {
   data: bankList,
   run: runBankTreeList,
-} = useApiMemberTreeList(props.activeCurrency.bank_tree as TTreeListType)
+} = useApiMemberTreeList(props.activeCurrency.bankTree)
 const {
   run: runBankcardInsert,
 } = useRequest(ApiMemberBankcardInsert, {
@@ -154,7 +154,7 @@ watch(() => props.currentType, () => {
 })
 watch(() => props.activeCurrency, () => {
   currencyId.value = props.activeCurrency.cur
-  runBankTreeList({ level: props.activeCurrency.bank_tree })
+  runBankTreeList({ level: props.activeCurrency.bankTree })
 })
 
 onMounted(() => {
