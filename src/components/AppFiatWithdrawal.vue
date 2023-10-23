@@ -1,9 +1,9 @@
 <script setup lang='ts'>
-import type { IUserCurrencyList } from '~/stores/app'
+import type { CurrencyData } from '~/composables/useCurrencyData'
 
 interface Props {
   /** 货币对象 */
-  activeCurrency: IUserCurrencyList
+  activeCurrency: CurrencyData
 }
 const props = withDefaults(defineProps<Props>(), {})
 

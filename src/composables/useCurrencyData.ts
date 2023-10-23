@@ -1,9 +1,13 @@
 import type { EnumCurrencyKey, TCurrencyObject } from '~/apis'
+import type { TTreeListType } from '~/composables/useApiMemberTreeList'
+
+type TBankTreeType<T extends TTreeListType | string>
+= T extends TTreeListType ? TTreeListType : string
 
 /**
  * 页面渲染的货币列表
  */
-export interface CurrencyData {
+export interface CurrencyData<T extends TTreeListType | string = string> {
   /** 货币类型 */
   type: EnumCurrencyKey
   /** 余额 */
@@ -12,41 +16,51 @@ export interface CurrencyData {
   balanceWithSymbol: string
   /** 货币id */
   cur: string
+  /** 银行列表 */
+  bankTree: TBankTreeType<T>
 }
 
 interface CurrencyValue {
   prefix: string
   cur: string
+  bankTree: string
 }
 
 export const currencyConfig: Record<EnumCurrencyKey, CurrencyValue> = {
   BRL: {
     prefix: 'R$',
     cur: '702',
+    bankTree: '015',
   },
   CNY: {
     prefix: '¥',
     cur: '701',
+    bankTree: '002',
   },
   INR: {
     prefix: '₹',
     cur: '703',
+    bankTree: '016',
   },
   THB: {
     prefix: '฿',
     cur: '705',
+    bankTree: '017',
   },
   VND: {
     prefix: '₫',
     cur: '704',
+    bankTree: '003',
   },
   USDT: {
     prefix: '',
     cur: '706',
+    bankTree: '',
   },
   BTC: {
     prefix: '',
     cur: '707',
+    bankTree: '',
   },
 }
 
@@ -98,6 +112,7 @@ export function useCurrencyData() {
           balance: balanceNumber,
           balanceWithSymbol: `${currencyConfig[type].prefix}${balanceNumber}`,
           cur: currencyConfig[type].cur,
+          bankTree: currencyConfig[type].bankTree,
         })
       }
     }
