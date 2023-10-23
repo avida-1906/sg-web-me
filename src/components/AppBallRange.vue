@@ -44,20 +44,12 @@ watch(range, (val) => {
       class="input-wrapper"
       :style="{ '--current': `${100 * (range - min) / (max - min)}%` }"
     >
-      <input
-        v-model="range"
-        type="range"
-        :min="min"
-        :max="max"
-        :step="step"
-      >
+      <input v-model="range" type="range" :min="min" :max="max" :step="step">
     </div>
-    <div
-      class="labels"
-      :style="`grid-template-columns: repeat(${labels.length}, 1fr);`"
-    >
+    <div class="labels" :style="`grid-template-columns: repeat(${labels.length}, 1fr);`">
       <span
-        v-for="label, idx in labels" :key="label"
+        v-for="label, idx in labels"
+        :key="label"
         class="label"
         :style="{ left: `${(100 * idx / (labels.length - 1)).toFixed(2)}%` }"
       >{{ label }}</span>
@@ -67,86 +59,86 @@ watch(range, (val) => {
 
 <style lang="scss" scoped>
 .input-wrapper input[type=range] {
-    -webkit-appearance: none;
-    width: 100%;
-    background: 0 0;
-    height: 30px;
-    padding: 5px;
+  appearance: none;
+  width: 100%;
+  background: 0 0;
+  height: 30px;
+  padding: 5px;
 }
 
 .input-wrapper input[type=range]::-moz-range-thumb {
-    position: relative;
-    z-index: 3;
-    -webkit-appearance: none;
-    height: 21px;
-    width: 21px;
-    border-radius: 10.5px;
-    background-image:
-    radial-gradient(circle,var(--tg-text-blue) 45%,var(--tg-text-white) 47%);
-    cursor: pointer
+  position: relative;
+  z-index: 3;
+  appearance: none;
+  height: 21px;
+  width: 21px;
+  border-radius: 10.5px;
+  background-image:
+    radial-gradient(circle, var(--tg-text-blue) 45%, var(--tg-text-white) 47%);
+  cursor: pointer
 }
 
 .input-wrapper input[type=range]::-webkit-slider-thumb {
-    margin-top: -5.5px;
-    position: relative;
-    z-index: 3;
-    -webkit-appearance: none;
-    height: 21px;
-    width: 21px;
-    border-radius: 10.5px;
-    background-image:
-    radial-gradient(circle,var(--tg-text-blue) 45%,var(--tg-text-white) 47%);
-    cursor: pointer
+  margin-top: -5.5px;
+  position: relative;
+  z-index: 3;
+  -webkit-appearance: none;
+  height: 21px;
+  width: 21px;
+  border-radius: 10.5px;
+  background-image:
+    radial-gradient(circle, var(--tg-text-blue) 45%, var(--tg-text-white) 47%);
+  cursor: pointer
 }
 
 .input-wrapper input[type=range]::-moz-range-track {
-    width: 100%;
-    height: 10px;
-    cursor: pointer;
-    background: var(--tg-text-grey);
-    border-radius: 5px
+  width: 100%;
+  height: 10px;
+  cursor: pointer;
+  background: var(--tg-text-grey);
+  border-radius: 5px
 }
 
 .input-wrapper input[type=range]::-moz-range-progress {
-    width: 100%;
-    height: 10px;
-    cursor: pointer;
-    background: var(--tg-text-grey);
-    border-radius: 5px;
-    background-color: var(--tg-text-blue)
+  width: 100%;
+  height: 10px;
+  cursor: pointer;
+  background: var(--tg-text-grey);
+  border-radius: 5px;
+  background-color: var(--tg-text-blue)
 }
 
 .input-wrapper input[type=range]::-ms-fill-lower {
-    width: 100%;
-    height: 10px;
-    cursor: pointer;
-    background: var(--tg-text-grey);
-    border-radius: 5px;
-    background-color: var(--tg-text-blue)
+  width: 100%;
+  height: 10px;
+  cursor: pointer;
+  background: var(--tg-text-grey);
+  border-radius: 5px;
+  background-color: var(--tg-text-blue)
 }
 
 .input-wrapper input[type=range]::-ms-fill-upper {
-    width: 100%;
-    height: 10px;
-    cursor: pointer;
-    background: var(--tg-text-grey);
-    border-radius: 5px
+  width: 100%;
+  height: 10px;
+  cursor: pointer;
+  background: var(--tg-text-grey);
+  border-radius: 5px
 }
 
 .input-wrapper input[type=range]::-moz-focus-outer {
-    border: 0
+  border: 0
 }
 
 .input-wrapper input[type=range]::-webkit-slider-runnable-track {
-    width: 100%;
-    height: 10px;
-    cursor: pointer;
-    background: var(--tg-text-grey);
-    border-radius: 5px
+  width: 100%;
+  height: 10px;
+  cursor: pointer;
+  background: var(--tg-text-grey);
+  border-radius: 5px
 }
 
 .input-wrapper input[type=range]:focus::-webkit-slider-runnable-track {
-    background: var(--tg-text-grey)
+  background: var(--tg-text-grey)
 }
 
 .app-ball-range {
@@ -154,6 +146,7 @@ watch(range, (val) => {
   flex-direction: column;
   align-content: center;
   justify-content: center;
+
   .title {
     display: inline-flex;
     align-items: center;
@@ -164,16 +157,19 @@ watch(range, (val) => {
     font-weight: var(--tg-font-weight-normal);
     font-size: var(--tg-font-size-default);
   }
+
   .input-wrapper {
     position: relative;
     display: flex;
+
     input[type=range] {
-      -webkit-appearance: none;
+      appearance: none;
       width: 100%;
       background: 0 0;
       height: 30px;
       padding: 5px;
     }
+
     &::after {
       z-index: 1;
       content: "";
@@ -188,6 +184,7 @@ watch(range, (val) => {
       pointer-events: none;
     }
   }
+
   .labels {
     display: grid;
     color: var(--tg-secondary-light);
@@ -196,6 +193,7 @@ watch(range, (val) => {
     width: calc(100% - var(--tg-spacing-20));
     margin: var(--tg-spacing-8) var(--tg-spacing-10) 0;
     pointer-events: none;
+
     .label {
       font-weight: 600;
       text-align: center;
