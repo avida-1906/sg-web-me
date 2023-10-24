@@ -6,7 +6,7 @@ defineOptions({
 })
 
 const { isMobile } = storeToRefs(useWindowStore())
-const { casinoNav } = storeToRefs(useCasinoStore())
+const { casinoNav, casinoGameList } = storeToRefs(useCasinoStore())
 
 const router = useRouter()
 const { t } = useI18n()
@@ -50,14 +50,10 @@ function viewMoreGames(gameType: string) {
       <Transition name="tab-fade">
         <div v-show="showAll">
           <AppSlider
-            :game-type="EnumCasinoGameType.LIVE"
-            icon="chess-live-casino"
-            :title="t('game_type_live')"
-            :data="liveList"
-          />
-          <AppSlider
-            :game-type="EnumCasinoGameType.SLOT" icon="chess-slot-machine"
-            :title="t('game_type_slot_short_name')" :data="slotList"
+            v-for="item in casinoGameList" :key="item.name"
+            :icon="item.icon"
+            :title="item.name"
+            :data="item.games"
           />
         </div>
       </Transition>

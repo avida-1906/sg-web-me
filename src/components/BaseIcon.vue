@@ -10,11 +10,18 @@ const props = defineProps({
   },
 })
 
+const isImage = computed(() => props.name.includes('%lang%'))
 const symbolId = computed(() => `#${props.prefix}-${props.name}`)
 </script>
 
 <template>
-  <svg class="app-svg-icon" aria-hidden="true">
+  <div v-if="isImage" class="app-svg-icon">
+    <BaseImage
+      :url="name"
+      is-game
+    />
+  </div>
+  <svg v-else class="app-svg-icon" aria-hidden="true">
     <use :xlink:href="symbolId" />
   </svg>
 </template>
