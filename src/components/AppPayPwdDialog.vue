@@ -26,7 +26,7 @@ const {
   return ''
 })
 
-function toPayPwdSet() {
+function handleSet() {
   props.toPayPwdSet()
   router.push('/settings/security')
 }
@@ -66,7 +66,7 @@ async function submit() {
         >
           取消
         </BaseButton>
-        <BaseButton bg-style="primary" size="md" @click="toPayPwdSet">
+        <BaseButton bg-style="primary" size="md" @click="handleSet">
           前往设置
         </BaseButton>
       </div>

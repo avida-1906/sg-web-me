@@ -27,30 +27,30 @@ interface CurrencyValue {
 }
 
 export const currencyConfig: Record<EnumCurrencyKey, CurrencyValue> = {
-  BRL: {
-    prefix: 'R$',
-    cur: '702',
-    bankTree: '015',
-  },
   CNY: {
     prefix: '¥',
     cur: '701',
     bankTree: '002',
+  },
+  BRL: {
+    prefix: 'R$',
+    cur: '702',
+    bankTree: '015',
   },
   INR: {
     prefix: '₹',
     cur: '703',
     bankTree: '016',
   },
-  THB: {
-    prefix: '฿',
-    cur: '705',
-    bankTree: '017',
-  },
   VND: {
     prefix: '₫',
     cur: '704',
     bankTree: '003',
+  },
+  THB: {
+    prefix: '฿',
+    cur: '705',
+    bankTree: '017',
   },
   USDT: {
     prefix: '',
@@ -100,6 +100,7 @@ export function useCurrencyData() {
 
     const list: CurrencyData[] = []
     for (const key in currency) {
+      console.log(key)
       const type = key as EnumCurrencyKey
       const balanceNumber = currency[type]
       if (Object.values(EnumCurrency).includes(type)) {
@@ -114,7 +115,9 @@ export function useCurrencyData() {
         })
       }
     }
-
+    list.sort((a, b) => {
+      return Number(a.cur) - Number(b.cur)
+    })
     if (searchValue.value)
       return list.filter(({ type }) => type.includes(searchValue.value.toLocaleUpperCase()))
     else
