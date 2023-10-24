@@ -81,25 +81,15 @@ const {
     return '请输入正确开户支行地址'
   return ''
 })
-const {
-  value: payPassword,
-  errorMessage: paypasswordError,
-  validate: paypasswordValidate,
-  resetField: paypasswordReset,
-} = useField<string>('paypassword', (value) => {
-  if (!value)
-    return '请输入交易密码'
-  else if (!payPasswordReg.test(value))
-    return '请输入6位数字组成的交易密码'
-  return ''
-})
 
+const { openPayPwdDialog, closePayPwdDialog } = usePayPwdDialog()
 const {
   data: bankList,
   run: runBankTreeList,
 } = useApiMemberTreeList(props.activeCurrency.bankTree)
 const {
   run: runBankcardInsert,
+  loading: bankcardInsertLoading,
 } = useRequest(ApiMemberBankcardInsert, {
   onSuccess() {
     openNotify({
@@ -110,9 +100,9 @@ const {
     banknameReset()
     bankaccountReset()
     bankAreaCpfReset()
-    paypasswordReset()
     setIsDefaultFalse()
     closeDialog()
+    closePayPwdDialog()
   },
 })
 
@@ -134,17 +124,25 @@ const onBindBank = async function () {
   await banknameValidate()
   await bankaccountValidate()
   await bankAreaCpfValidate()
-  await paypasswordValidate()
   if (!usernameError.value && !usernameError.value
-  && !bankaccountError.value && !paypasswordError.value) {
-    runBankcardInsert({
-      currency_id: currencyId.value,
-      bank_name: bankName.value,
-      open_name: openName.value,
-      bank_area_cpf: bankAreaCpf.value,
-      bank_account: bankAccount.value,
-      is_default: isDefault.value ? 1 : 2,
-      pay_password: payPassword.value,
+  && !bankaccountError.value) {
+    openPayPwdDialog({
+      runSubmit: (payPassword: string) => {
+        runBankcardInsert({
+          currency_id: currencyId.value,
+          bank_name: bankName.value,
+          open_name: openName.value,
+          bank_area_cpf: bankAreaCpf.value,
+          bank_account: bankAccount.value,
+          is_default: isDefault.value ? 1 : 2,
+          pay_password: payPassword,
+        })
+      },
+      toPayPwdSet: () => {
+        closeDialog()
+        closePayPwdDialog()
+      },
+      loading: bankcardInsertLoading,
     })
   }
 }
@@ -204,14 +202,6 @@ onMounted(() => {
         :msg="bankAreaCpfError"
         label="开户行地址"
       />
-      <BaseLabel label="交易密码" must>
-        <BaseInput
-          v-model="payPassword"
-          :msg="paypasswordError"
-          type="password"
-          max="6"
-        />
-      </BaseLabel>
       <div class="checkbox-wrap">
         <span>是否设为默认卡号</span>
         <BaseCheckBox v-model="isDefault" />
