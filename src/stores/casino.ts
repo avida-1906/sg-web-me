@@ -4,7 +4,7 @@ export const useCasinoStore = defineStore('casino', () => {
   const { data } = useRequest(ApiMemberGameLobby, { manual: false })
   const casinoNav = computed(() => {
     if (data.value) {
-      data.value.navs.unshift({ cid: 'all', name: data.value.name, ty: -1, platform_id: 'all', icon: data.value.icon })
+      data.value.navs.unshift({ cid: 'all', name: data.value.name, ty: 2, platform_id: 'all', icon: data.value.icon })
       return data.value.navs.map(a => ({ ...a, label: a.name, value: a.cid }))
     }
     return []

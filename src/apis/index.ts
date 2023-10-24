@@ -387,7 +387,8 @@ export function ApiMemberGameLobby() {
     name: string
     icon: string
     navs: {
-      ty: number
+      /** 1类别 2场馆 */
+      ty: 1 | 2
       cid: string
       platform_id: string
       name: string

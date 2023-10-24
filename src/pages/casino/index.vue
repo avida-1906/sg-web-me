@@ -12,20 +12,65 @@ const tab = ref('all')
 const showAll = computed(() => tab.value === 'all')
 const currentNav = computed(() => {
   return casinoNav.value.find(a => a.value === tab.value)
-  ?? { label: '', cid: '', icon: '' }
+  ?? { label: '', cid: '', icon: '', ty: -1, platform_id: '' }
 })
+const isCat = computed(() => currentNav.value.ty === 1) // 类别
+const isPlat = computed(() => currentNav.value.ty === 2) // 场馆
 // 类别数据
-const { data: catGameData, run: runGameCate } = useRequest(ApiMemberGameCate)
+const { data: catGameData, run: runGameCate } = useRequest(ApiMemberGameCate, {
+  cacheKey: (params) => {
+    if (params && params[0])
+      return `CatGameData-${params[0]}`
+
+    return ''
+  },
+})
+// 场馆数据
+const platParams = computed(() => ({
+  page: 1,
+  page_size: 21,
+  platform_id: currentNav.value.platform_id,
+}))
+const {
+  list: platGameList,
+  total: platTotal,
+  run: runPlatData,
+} = useList(ApiMemberGameList, {
+  cacheKey: (params) => {
+    if (params && params[0])
+      return `GameList-${params[0].platform_id}`
+
+    return ''
+  },
+})
 const catGameList = computed(() => {
-  return catGameData.value && catGameData.value.games ? catGameData.value.games : []
+  if (isCat.value)
+    return catGameData.value && catGameData.value.games ? catGameData.value.games : []
+
+  if (isPlat.value)
+    return platGameList.value
+
+  return []
 })
 const catGameTotal = computed(() => {
-  return catGameData.value ? catGameData.value.total : 0
+  if (isCat.value)
+    return catGameData.value ? catGameData.value.total : 0
+
+  if (isPlat.value)
+    return platTotal.value
+
+  return 0
 })
 
 function onTabChange() {
-  if (tab.value !== 'all')
-    runGameCate({ cid: currentNav.value.cid })
+  if (tab.value === 'all')
+    return
+
+  if (isCat.value)
+    return runGameCate({ cid: currentNav.value.cid })
+
+  if (isPlat.value)
+    return runPlatData(platParams.value)
 }
 function viewMoreGames() {
   router.push(`/casino/group/category?cid=${currentNav.value.cid}`)
@@ -47,6 +92,7 @@ function viewMoreGames() {
       />
     </div>
     <div class="content-wrapper">
+      <!-- 大厅 -->
       <Transition name="tab-fade">
         <div v-show="showAll">
           <AppSlider
@@ -58,6 +104,7 @@ function viewMoreGames() {
           />
         </div>
       </Transition>
+      <!-- 其他 -->
       <Transition name="tab-fade">
         <div v-show="!showAll" class="list-wrap">
           <div class="title">
@@ -93,6 +140,8 @@ function viewMoreGames() {
     font-size: var(--tg-font-size-base);
     color: var(--tg-text-white);
     margin-bottom: var(--tg-spacing-12);
+    display: flex;
+    align-items: center;
 
     &:hover {
       --tg-icon-color: var(--tg-text-white);
