@@ -116,7 +116,7 @@ watch(() => activeTab.value, () => {
         <div class="flex-col-start">
           <span>{{ isDeposit ? '账户货币' : '保险库货币' }}</span>
           <AppSelectCurrency
-            :currency-list="!isDeposit"
+            :is-deposit="isDeposit ? 1 : 2"
             @change="changeCurrency"
           />
         </div>
