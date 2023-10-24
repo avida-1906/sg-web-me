@@ -75,7 +75,7 @@ function onTabChange() {
     return runPlatData(platParams.value)
 }
 function viewMoreGames() {
-  router.push(`/casino/group/category?cid=${currentNav.value.cid}`)
+  router.push(`/casino/group/category?cid=${currentNav.value.cid}&ty=${currentNav.value.ty}`)
 }
 </script>
 
@@ -103,6 +103,7 @@ function viewMoreGames() {
             :title="item.name"
             :data="item.games"
             :cid="item.cid"
+            :ty="item.ty"
           />
         </div>
       </Transition>

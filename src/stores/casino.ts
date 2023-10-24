@@ -11,7 +11,7 @@ export const useCasinoStore = defineStore('casino', () => {
   })
   const casinoGameList = computed(() =>
     data.value
-      ? data.value.items.map(a => ({ ...a, title: a.name, list: [], path: `/casino/group/category?cid=${a.cid}` }))
+      ? data.value.items.map(a => ({ ...a, title: a.name, list: [], path: `/casino/group/category?cid=${a.cid}&ty=${a.ty}` }))
       : [])
 
   return {

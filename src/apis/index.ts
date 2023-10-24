@@ -138,10 +138,10 @@ export interface IMemberReg {
   device_number: string
 }
 
-export interface CasinoGameItem {
+export interface CasinoLobbyGameItem {
   platform_id: string
+  id: string
   game_id: string
-  game_code: string
   img: string
   name: string
 }
@@ -387,8 +387,7 @@ export function ApiMemberGameLobby() {
     name: string
     icon: string
     navs: {
-      /** 1类别 2场馆 */
-      ty: 1 | 2
+      ty: number
       cid: string
       platform_id: string
       name: string
@@ -401,7 +400,7 @@ export function ApiMemberGameLobby() {
       name: string
       icon: string
       total: number
-      games: CasinoGameItem[]
+      games: CasinoLobbyGameItem[]
     }[]
   }>('/member/game/lobby')
 }
@@ -416,7 +415,7 @@ export function ApiMemberGameCate(params: { cid: string }) {
     name: string
     icon: string
     total: number
-    games: CasinoGameItem[] | null
+    games: CasinoLobbyGameItem[] | null
   }>('/member/game/cate', params)
 }
 

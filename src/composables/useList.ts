@@ -1,7 +1,5 @@
 import type { Options, Service } from 'vue-request'
 
-const { VITE_CASINO_HOME_PAGE_SIZE } = getEnv()
-
 export interface IResponseList<T> {
   d: T
   t: number
@@ -23,7 +21,7 @@ export function useList<R extends IResponseList<unknown>, P extends unknown[]>(
   const { bool: isLoadMore, setTrue: setLoadMoreTrue, setFalse: setLoadMoreFalse } = useBoolean(false)
   const total = ref(0)
   const page = ref(defaultPagination?.page || 1)
-  const page_size = ref(defaultPagination?.page_size || Number(VITE_CASINO_HOME_PAGE_SIZE))
+  const page_size = ref(defaultPagination?.page_size || 21)
   const list = shallowRef<GetProperty<R, 'd'>>([])
 
   const {
