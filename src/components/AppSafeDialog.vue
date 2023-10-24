@@ -9,7 +9,6 @@ const { openNotify } = useNotify()
 const { userInfo } = storeToRefs(useAppStore())
 const { updateUserInfo } = useAppStore()
 const router = useRouter()
-// const { renderBalanceList, renderBalanceLockerList } = useCurrencyData()
 
 const activeCurrency = ref<any>()
 const activeTab = ref('deposit')
@@ -78,10 +77,6 @@ const {
   },
 })
 
-// const initBalance = computed(() => {
-// return isDeposit.value ? renderBalanceList.value : renderBalanceLockerList.value
-// })
-
 async function handleUpdate() {
   await validateAmount()
   if (isDeposit.value) {
@@ -116,7 +111,7 @@ watch(() => activeTab.value, () => {
         <div class="flex-col-start">
           <span>{{ isDeposit ? '账户货币' : '保险库货币' }}</span>
           <AppSelectCurrency
-            :currency-list="!isDeposit"
+            :type="isDeposit ? 1 : 2"
             @change="changeCurrency"
           />
         </div>

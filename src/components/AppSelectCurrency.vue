@@ -4,12 +4,13 @@ import type { CurrencyData } from '~/composables/useCurrencyData'
 interface Props {
   showBalance?: boolean // 是否展示货币余额
   network?: boolean // 是否显示协议类型
-  currencyList?: CurrencyData[] // 渲染的货币列表
+  type?: number
 }
 
 const props = withDefaults(defineProps<Props>(), {
   showBalance: true,
   network: false,
+  type: 3,
 })
 
 const emit = defineEmits(['change'])
@@ -20,29 +21,27 @@ const {
   clearSearchValue,
   currentCurrency,
   searchValue,
+  renderBalanceList,
+  renderBalanceLockerList,
   renderCurrencyList,
-  // changeCurrentCurrency,
   getVirtualCurrencyContractType,
 } = useCurrencyData()
 
 const currentNetwork = ref()
+const activeCurrency = ref()
 
 const getCurrencyList = computed(() => {
-  const activeList = props.currencyList || renderCurrencyList.value
-  // if (searchValue.value)
-  //   return activeList.filter(item => item.type.includes(searchValue.value.toLocaleUpperCase()))
-  return activeList
+  switch (props.type) {
+    case 1: return renderBalanceList.value
+    case 2: return renderBalanceLockerList.value
+    case 3: return renderCurrencyList.value
+    default: return []
+  }
 })
-// 获取当前选择货币对象
-const getCurrencyBalance = computed(() => {
-  const activeList = props.currencyList || renderCurrencyList.value
-  return activeList
-    .find(item =>
-      item.type === currentCurrency.value)
-})
+
 // 获取协议类型
 const getCurContract = computed(() => {
-  return getVirtualCurrencyContractType(getCurrencyBalance.value?.type ?? '')
+  return getVirtualCurrencyContractType(activeCurrency.value?.type ?? '')
 })
 
 // 设置协议选项的值
@@ -52,17 +51,21 @@ function getTypeVal() {
 // 选择币种
 function selectCurrency(item: CurrencyData, hide: () => void) {
   hide()
-  currentCurrency.value = item.type
-  // changeCurrentCurrency(item.type)
+  activeCurrency.value = item
+  emit('change', item)
   getTypeVal()
 }
+function getActiveValue() {
+  activeCurrency.value = getCurrencyList.value.find(item => item.type === (activeCurrency.value?.type ?? currentCurrency.value))
+  emit('change', activeCurrency.value)
+}
 
-watch(() => getCurrencyBalance.value, () => {
-  emit('change', getCurrencyBalance.value)
+watch(() => getCurrencyList.value, () => {
+  getActiveValue()
 })
 
 onMounted(() => {
-  emit('change', getCurrencyBalance.value)
+  getActiveValue()
   getTypeVal()
 })
 </script>
@@ -79,13 +82,14 @@ onMounted(() => {
           <AppAmount
             v-if="showBalance"
             style="color:var(--tg-text-white);"
-            :amount="getCurrencyBalance?.balanceWithSymbol || ''"
-            :currency-type="currentCurrency"
+            :amount="activeCurrency?.balanceWithSymbol || ''"
+            :currency-type="activeCurrency?.type || currentCurrency"
           />
           <AppCurrencyIcon
-            v-else class="wallet-text"
+            v-else
+            class="wallet-text"
             :show-name="!showBalance"
-            :currency-type="currentCurrency"
+            :currency-type="activeCurrency?.type || currentCurrency"
           />
           <BaseIcon
             class="arrow"
