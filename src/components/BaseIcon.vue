@@ -28,6 +28,7 @@ const symbolId = computed(() => `#${props.prefix}-${props.name}`)
 
 <style scoped>
 .app-svg-icon {
+  display: inline-block;
   color: var(--tg-icon-color);
   width: 1em;
   height: 1em;

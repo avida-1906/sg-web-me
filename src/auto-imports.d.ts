@@ -20,6 +20,7 @@ declare global {
   const ApiMemberFavList: typeof import('./apis/index')['ApiMemberFavList']
   const ApiMemberForgetPassword: typeof import('./apis/index')['ApiMemberForgetPassword']
   const ApiMemberFrontLoginLogList: typeof import('./apis/index')['ApiMemberFrontLoginLogList']
+  const ApiMemberGameCate: typeof import('./apis/index')['ApiMemberGameCate']
   const ApiMemberGameDetail: typeof import('./apis/index')['ApiMemberGameDetail']
   const ApiMemberGameList: typeof import('./apis/index')['ApiMemberGameList']
   const ApiMemberGameLobby: typeof import('./apis/index')['ApiMemberGameLobby']
@@ -352,6 +353,7 @@ declare global {
   const usePagination: typeof import('vue-request')['usePagination']
   const useParallax: typeof import('@vueuse/core')['useParallax']
   const useParentElement: typeof import('@vueuse/core')['useParentElement']
+  const usePayPwdDialog: typeof import('./composables/useDialogPayPwd')['usePayPwdDialog']
   const usePerformanceObserver: typeof import('@vueuse/core')['usePerformanceObserver']
   const usePermission: typeof import('@vueuse/core')['usePermission']
   const usePointer: typeof import('@vueuse/core')['usePointer']
@@ -473,6 +475,7 @@ declare module 'vue' {
     readonly ApiMemberFavList: UnwrapRef<typeof import('./apis/index')['ApiMemberFavList']>
     readonly ApiMemberForgetPassword: UnwrapRef<typeof import('./apis/index')['ApiMemberForgetPassword']>
     readonly ApiMemberFrontLoginLogList: UnwrapRef<typeof import('./apis/index')['ApiMemberFrontLoginLogList']>
+    readonly ApiMemberGameCate: UnwrapRef<typeof import('./apis/index')['ApiMemberGameCate']>
     readonly ApiMemberGameDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberGameDetail']>
     readonly ApiMemberGameList: UnwrapRef<typeof import('./apis/index')['ApiMemberGameList']>
     readonly ApiMemberGameLobby: UnwrapRef<typeof import('./apis/index')['ApiMemberGameLobby']>
@@ -805,6 +808,7 @@ declare module 'vue' {
     readonly usePagination: UnwrapRef<typeof import('vue-request')['usePagination']>
     readonly useParallax: UnwrapRef<typeof import('@vueuse/core')['useParallax']>
     readonly useParentElement: UnwrapRef<typeof import('@vueuse/core')['useParentElement']>
+    readonly usePayPwdDialog: UnwrapRef<typeof import('./composables/useDialogPayPwd')['usePayPwdDialog']>
     readonly usePerformanceObserver: UnwrapRef<typeof import('@vueuse/core')['usePerformanceObserver']>
     readonly usePermission: UnwrapRef<typeof import('@vueuse/core')['usePermission']>
     readonly usePointer: UnwrapRef<typeof import('@vueuse/core')['usePointer']>
@@ -920,6 +924,7 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberFavList: UnwrapRef<typeof import('./apis/index')['ApiMemberFavList']>
     readonly ApiMemberForgetPassword: UnwrapRef<typeof import('./apis/index')['ApiMemberForgetPassword']>
     readonly ApiMemberFrontLoginLogList: UnwrapRef<typeof import('./apis/index')['ApiMemberFrontLoginLogList']>
+    readonly ApiMemberGameCate: UnwrapRef<typeof import('./apis/index')['ApiMemberGameCate']>
     readonly ApiMemberGameDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberGameDetail']>
     readonly ApiMemberGameList: UnwrapRef<typeof import('./apis/index')['ApiMemberGameList']>
     readonly ApiMemberGameLobby: UnwrapRef<typeof import('./apis/index')['ApiMemberGameLobby']>
@@ -1252,6 +1257,7 @@ declare module '@vue/runtime-core' {
     readonly usePagination: UnwrapRef<typeof import('vue-request')['usePagination']>
     readonly useParallax: UnwrapRef<typeof import('@vueuse/core')['useParallax']>
     readonly useParentElement: UnwrapRef<typeof import('@vueuse/core')['useParentElement']>
+    readonly usePayPwdDialog: UnwrapRef<typeof import('./composables/useDialogPayPwd')['usePayPwdDialog']>
     readonly usePerformanceObserver: UnwrapRef<typeof import('@vueuse/core')['usePerformanceObserver']>
     readonly usePermission: UnwrapRef<typeof import('@vueuse/core')['usePermission']>
     readonly usePointer: UnwrapRef<typeof import('@vueuse/core')['usePointer']>

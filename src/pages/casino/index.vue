@@ -1,6 +1,4 @@
 <script setup lang='ts'>
-import { EnumCasinoGameType } from '~/utils/enums'
-
 defineOptions({
   name: 'KeepAliveCasino',
 })
@@ -9,29 +7,75 @@ const { isMobile } = storeToRefs(useWindowStore())
 const { casinoNav, casinoGameList } = storeToRefs(useCasinoStore())
 
 const router = useRouter()
-const { t } = useI18n()
 
 const tab = ref('all')
 const showAll = computed(() => tab.value === 'all')
-const showLive = computed(() => tab.value === EnumCasinoGameType.LIVE)
-const showSlot = computed(() => tab.value === EnumCasinoGameType.SLOT)
-const currentTitle = computed(() => {
-  return casinoNav.value.find(a => a.value === tab.value)?.label ?? '-'
+const currentNav = computed(() => {
+  return casinoNav.value.find(a => a.value === tab.value)
+  ?? { label: '', cid: '', icon: '', ty: -1, platform_id: '' }
 })
-// const currentIcon =
-const {
-  list: liveList,
-  total: liveTotal,
-  runAsync: runLive,
-} = useList(ApiMemberGameList)
-const {
-  list: slotList,
-  total: slotTotal,
-  runAsync: runSlot,
-} = useList(ApiMemberGameList)
+const isCat = computed(() => currentNav.value.ty === 1) // 类别
+const isPlat = computed(() => currentNav.value.ty === 2) // 场馆
+// 类别数据
+const { data: catGameData, run: runGameCate } = useRequest(ApiMemberGameCate, {
+  cacheKey: (params) => {
+    if (params && params[0])
+      return `CatGameData-${params[0]}`
 
-function viewMoreGames(gameType: string) {
-  router.push(`/casino/group/${gameType}`)
+    return ''
+  },
+  staleTime: 60 * 60 * 1000,
+})
+// 场馆数据
+const platParams = computed(() => ({
+  page: 1,
+  page_size: 21,
+  platform_id: currentNav.value.platform_id,
+}))
+const {
+  list: platGameList,
+  total: platTotal,
+  run: runPlatData,
+} = useList(ApiMemberGameList, {
+  cacheKey: (params) => {
+    if (params && params[0])
+      return `GameList-${params[0].platform_id}`
+
+    return ''
+  },
+  staleTime: 60 * 60 * 1000,
+})
+const catGameList = computed(() => {
+  if (isCat.value)
+    return catGameData.value && catGameData.value.games ? catGameData.value.games : []
+
+  if (isPlat.value)
+    return platGameList.value
+
+  return []
+})
+const catGameTotal = computed(() => {
+  if (isCat.value)
+    return catGameData.value ? catGameData.value.total : 0
+
+  if (isPlat.value)
+    return platTotal.value
+
+  return 0
+})
+
+function onTabChange() {
+  if (tab.value === 'all')
+    return
+
+  if (isCat.value)
+    return runGameCate({ cid: currentNav.value.cid })
+
+  if (isPlat.value)
+    return runPlatData(platParams.value)
+}
+function viewMoreGames() {
+  router.push(`/casino/group/category?cid=${currentNav.value.cid}`)
 }
 </script>
 
@@ -44,9 +88,13 @@ function viewMoreGames(gameType: string) {
       <AppGameSearch game-type="1" />
     </div>
     <div class="mt-24">
-      <BaseTab v-model="tab" :list="casinoNav" :center="false" size="large" />
+      <BaseTab
+        v-model="tab" :list="casinoNav" :center="false" size="large"
+        @change="onTabChange"
+      />
     </div>
     <div class="content-wrapper">
+      <!-- 大厅 -->
       <Transition name="tab-fade">
         <div v-show="showAll">
           <AppSlider
@@ -54,31 +102,26 @@ function viewMoreGames(gameType: string) {
             :icon="item.icon"
             :title="item.name"
             :data="item.games"
+            :cid="item.cid"
           />
         </div>
       </Transition>
+      <!-- 其他 -->
       <Transition name="tab-fade">
         <div v-show="!showAll" class="list-wrap">
           <div class="title">
             <BaseIcon
-              :name="showLive ? 'chess-live-casino' : 'chess-slot-machine'"
+              :name="currentNav.icon"
             />
-            <span>{{ currentTitle }}</span>
+            <span>{{ currentNav.label }}</span>
           </div>
-          <Transition name="tab-fade">
-            <AppCardList v-show="showLive" :list="liveList" />
-          </Transition>
-          <Transition name="tab-fade">
-            <AppCardList v-show="showSlot" :list="slotList" />
-          </Transition>
+          <AppCardList :list="catGameList" />
           <div class="more">
             <BaseButton
               size="md"
-              @click="viewMoreGames(
-                showLive ? EnumCasinoGameType.LIVE : EnumCasinoGameType.SLOT,
-              )"
+              @click="viewMoreGames"
             >
-              查看全部 {{ showLive ? liveTotal : slotTotal }} {{ currentTitle }}
+              查看全部 {{ catGameTotal }} {{ currentNav?.label }}
             </BaseButton>
           </div>
         </div>
@@ -99,6 +142,8 @@ function viewMoreGames(gameType: string) {
     font-size: var(--tg-font-size-base);
     color: var(--tg-text-white);
     margin-bottom: var(--tg-spacing-12);
+    display: flex;
+    align-items: center;
 
     &:hover {
       --tg-icon-color: var(--tg-text-white);
