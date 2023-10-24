@@ -28,17 +28,6 @@ const {
     return '请输入正确提币地址'
   return ''
 })
-// const {
-//   value: payPassword,
-//   errorMessage: paypasswordError,
-//   validate: paypasswordValidate,
-// } = useField<string>('paypassword', (value) => {
-//   if (!value)
-//     return '请输入交易密码'
-//   if (!payPasswordReg.test(value))
-//     return '您的交易密码含有6位数字'
-//   return ''
-// })
 const {
   run: runMemberWalletInsert,
   loading: addWalletInsertLoading,
@@ -49,8 +38,7 @@ const {
       title: '绑定',
       message: '恭喜你！绑定成功',
     })
-    closeDialog()
-    closePayPwdDialog()
+    closeAllDialog()
   },
 })
 
@@ -60,6 +48,11 @@ const currentNetwork = ref(optionsContract[0]?.value || '')
 // 获取协议类型
 function getCurContract() {
   return getVirtualCurrencyContractType(props.currencyName)
+}
+// 关闭弹框
+function closeAllDialog() {
+  closeDialog()
+  closePayPwdDialog()
 }
 async function handleBindAddress() {
   await valiAddress()
@@ -75,8 +68,7 @@ async function handleBindAddress() {
         })
       },
       toPayPwdSet: () => {
-        closeDialog()
-        closePayPwdDialog()
+        closeAllDialog()
       },
       loading: addWalletInsertLoading,
     })
@@ -99,14 +91,6 @@ async function handleBindAddress() {
     >
       <BaseInput v-model="address" :msg="addressMsg" />
     </BaseLabel>
-    <!-- <BaseLabel label="交易密码" must>
-      <BaseInput
-        v-model="payPassword"
-        :msg="paypasswordError"
-        type="password"
-        max="6"
-      />
-    </BaseLabel> -->
     <BaseButton
       bg-style="primary"
       :loading="addWalletInsertLoading"
