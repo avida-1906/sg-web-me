@@ -120,11 +120,11 @@ watch(route, (val) => {
                             <BaseButton size="md" @click="togglePop">
                               <div class="btn-txt">
                                 <span>{{ activeMenu.title }}</span>
-                                <BaseIcon
-                                  :name="isPopShow
-                                    ? 'uni-arrow-up'
-                                    : 'uni-arrow-down'"
-                                />
+                                <div class="icon" :class="{ up: isPopShow }">
+                                  <BaseIcon
+                                    name="uni-arrow-down"
+                                  />
+                                </div>
                               </div>
                             </BaseButton>
                             <template #popper="{ hide }">
@@ -170,6 +170,7 @@ watch(route, (val) => {
   li {
     cursor: pointer;
     padding: var(--tg-spacing-button-padding-vertical-xs) var(--tg-spacing-button-padding-horizontal-xs);
+    color: var(--tg-text-white);
     &:hover {
       background-color: var(--tg-text-grey-light);
       color: var(--tg-primary-main);
@@ -202,6 +203,15 @@ watch(route, (val) => {
   font-size: var(--tg-font-size-default);
   .app-svg-icon {
     font-size: var(--tg-font-size-xs);
+  }
+  .icon {
+    transition: all 200ms ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .up {
+    transform: rotate(180deg);
   }
 }
 

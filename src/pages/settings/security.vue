@@ -242,7 +242,6 @@ function generateQRCodeUrl(params: {
       title="交易密码"
       :btn-loading="payPasswordUpdateLoading"
       :badge="getPayPwdState"
-      :verified="getPayPwdState"
       @submit="submitPayPwd"
     >
       <template #top-desc>
@@ -252,14 +251,12 @@ function generateQRCodeUrl(params: {
         <BaseInputPassword
           v-model="payPassword"
           :msg="payPwdErrorMsg"
-          :disabled="getPayPwdState"
         />
       </BaseLabel>
       <BaseLabel label="确认密码" must-small>
         <BaseInputPassword
           v-model="aginPayPassword"
           :msg="aginPayPwdErrorMsg"
-          :disabled="getPayPwdState"
         />
       </BaseLabel>
     </AppSettingsContentItem>
