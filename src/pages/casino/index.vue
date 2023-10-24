@@ -24,6 +24,7 @@ const { data: catGameData, run: runGameCate } = useRequest(ApiMemberGameCate, {
 
     return ''
   },
+  staleTime: 60 * 60 * 1000,
 })
 // 场馆数据
 const platParams = computed(() => ({
@@ -42,6 +43,7 @@ const {
 
     return ''
   },
+  staleTime: 60 * 60 * 1000,
 })
 const catGameList = computed(() => {
   if (isCat.value)
