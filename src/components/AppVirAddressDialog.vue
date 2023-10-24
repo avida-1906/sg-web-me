@@ -11,6 +11,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 const closeDialog = inject('closeDialog', () => { })
 
+const { openPayPwdDialog, closePayPwdDialog } = usePayPwdDialog()
 const {
   getVirtualCurrencyContractType,
 } = useCurrencyData()
@@ -24,20 +25,20 @@ const {
   if (!value)
     return t('this_field_is_required')
   else if (!virtualCoinAddressReg.test(value))
-    return '地址格式不正确'
+    return '请输入正确提币地址'
   return ''
 })
-const {
-  value: payPassword,
-  errorMessage: paypasswordError,
-  validate: paypasswordValidate,
-} = useField<string>('paypassword', (value) => {
-  if (!value)
-    return '请输入交易密码'
-  if (!payPasswordReg.test(value))
-    return '您的交易密码含有6位数字'
-  return ''
-})
+// const {
+//   value: payPassword,
+//   errorMessage: paypasswordError,
+//   validate: paypasswordValidate,
+// } = useField<string>('paypassword', (value) => {
+//   if (!value)
+//     return '请输入交易密码'
+//   if (!payPasswordReg.test(value))
+//     return '您的交易密码含有6位数字'
+//   return ''
+// })
 const {
   run: runMemberWalletInsert,
   loading: addWalletInsertLoading,
@@ -49,6 +50,7 @@ const {
       message: '恭喜你！绑定成功',
     })
     closeDialog()
+    closePayPwdDialog()
   },
 })
 
@@ -61,14 +63,22 @@ function getCurContract() {
 }
 async function handleBindAddress() {
   await valiAddress()
-  await paypasswordValidate()
-  if (!addressMsg.value && !paypasswordError.value) {
-    runMemberWalletInsert({
-      contract_type: currentNetwork.value,
-      currency_id: props.currencyId,
-      address: address.value,
-      is_default: 2,
-      pay_password: payPassword.value,
+  if (!addressMsg.value) {
+    openPayPwdDialog({
+      runSubmit: (payPassword: string) => {
+        runMemberWalletInsert({
+          contract_type: currentNetwork.value,
+          currency_id: props.currencyId,
+          address: address.value,
+          is_default: 2,
+          pay_password: payPassword,
+        })
+      },
+      toPayPwdSet: () => {
+        closeDialog()
+        closePayPwdDialog()
+      },
+      loading: addWalletInsertLoading,
     })
   }
 }
@@ -83,19 +93,20 @@ async function handleBindAddress() {
       small
     />
     <BaseLabel
-      :label="`您${currencyName}的${currentNetwork}地址`"
+      :label="`您${currencyName}的${
+        currencyName === currentNetwork ? '' : currentNetwork}地址`"
       must
     >
       <BaseInput v-model="address" :msg="addressMsg" />
     </BaseLabel>
-    <BaseLabel label="交易密码" must>
+    <!-- <BaseLabel label="交易密码" must>
       <BaseInput
         v-model="payPassword"
         :msg="paypasswordError"
         type="password"
         max="6"
       />
-    </BaseLabel>
+    </BaseLabel> -->
     <BaseButton
       bg-style="primary"
       :loading="addWalletInsertLoading"
