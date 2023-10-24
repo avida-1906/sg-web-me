@@ -1,12 +1,7 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
 
 export const useCasinoStore = defineStore('casino', () => {
-  const { data } = useRequest(ApiMemberGameLobby, {
-    manual: false,
-    onSuccess(res) {
-      console.log('🚀 ~ file: casino.ts:6 ~ onSuccess ~ res:', res)
-    },
-  })
+  const { data } = useRequest(ApiMemberGameLobby, { manual: false })
   const casinoNav = computed(() => {
     if (data.value) {
       data.value.navs.unshift({ cid: 'all', name: data.value.name, ty: -1, platform_id: 'all', icon: data.value.icon })

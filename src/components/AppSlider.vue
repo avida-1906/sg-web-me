@@ -1,5 +1,6 @@
 <script lang="ts" setup name="app-slider">
 interface Props {
+  cid?: string
   icon: string
   title: string
   data: Array<any>
@@ -55,7 +56,7 @@ function prevPage() {
 }
 
 function goAllPage() {
-  // router.push(`/casino/group/${props.gameType}`)
+  router.push(`/casino/group/category?cid=${props.cid}`)
 }
 
 watchEffect(() => {
