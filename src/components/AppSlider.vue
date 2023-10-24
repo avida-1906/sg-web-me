@@ -1,15 +1,10 @@
 <script lang="ts" setup name="app-slider">
-interface SlideItem {
-  id: string
-  [key: string]: any
-}
-
 interface Props {
+  cid?: string
   icon: string
   title: string
-  data: Array<SlideItem>
+  data: Array<any>
   showViewAll?: boolean
-  gameType: string | number
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -61,7 +56,7 @@ function prevPage() {
 }
 
 function goAllPage() {
-  router.push(`/casino/group/${props.gameType}`)
+  router.push(`/casino/group/category?cid=${props.cid}`)
 }
 
 watchEffect(() => {
@@ -130,7 +125,7 @@ watchEffect(() => {
         :class="[galleryClass]"
       >
         <div
-          v-for="item, idx in data" :key="item.id" class="slide"
+          v-for="item, idx in data" :key="idx" class="slide"
           :class="{
             faded: idx === data.length - 1
               ? !isEnd : idx >= scrollLeftItemsCount + pageInfo.pageSize,

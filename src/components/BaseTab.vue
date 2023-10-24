@@ -20,7 +20,6 @@ const props = withDefaults(defineProps<Props>(), {
   size: 'small',
 })
 const emit = defineEmits(['update:modelValue', 'change'])
-console.log('123===>', props.list)
 const router = useRouter()
 
 function onClick(tab: TabItem) {
@@ -47,16 +46,7 @@ function onClick(tab: TabItem) {
         >
           <div class="content">
             <slot name="tab" :item="t">
-              <div
-                v-if="t.icon?.includes('%lang%')"
-                class="nav-icon"
-              >
-                <BaseImage
-                  :url="t.icon"
-                  is-game
-                />
-              </div>
-              <BaseIcon v-else-if="t.icon" :name="t.icon" />
+              <BaseIcon v-if="t.icon" :name="t.icon" />
               {{ t.label }}
             </slot>
           </div>
@@ -135,14 +125,6 @@ function onClick(tab: TabItem) {
 
       .app-svg-icon {
         margin-right: var(--tg-spacing-8);
-      }
-      .nav-icon{
-        margin-right: var(--tg-spacing-8);
-        width: 14px;
-        height: 14px;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
       }
     }
 

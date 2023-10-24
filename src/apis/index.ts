@@ -138,6 +138,14 @@ export interface IMemberReg {
   device_number: string
 }
 
+export interface CasinoGameItem {
+  platform_id: string
+  game_id: string
+  game_code: string
+  img: string
+  name: string
+}
+
 /**
  * 用户登录
  */
@@ -370,7 +378,7 @@ export function ApiMemberGameRecList(params?: {
 }
 
 /**
- * 场馆列表
+ * 大厅游戏数据
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=52e8029a-59b0-4669-a6c1-bc2d3c36d4e3
  */
 export function ApiMemberGameLobby() {
@@ -379,7 +387,8 @@ export function ApiMemberGameLobby() {
     name: string
     icon: string
     navs: {
-      ty: number
+      /** 1类别 2场馆 */
+      ty: 1 | 2
       cid: string
       platform_id: string
       name: string
@@ -392,16 +401,25 @@ export function ApiMemberGameLobby() {
       name: string
       icon: string
       total: number
-      games: {
-        platform_id: string
-        game_id: string
-        game_code: string
-        img: string
-        name: string
-      }[]
+      games: CasinoGameItem[]
     }[]
   }>('/member/game/lobby')
 }
+
+/**
+* 游戏类别数据
+* @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=dbde6b56-3f8f-4af4-8477-0ba93841c35a
+*/
+export function ApiMemberGameCate(params: { cid: string }) {
+  return httpClient.get<{
+    id: string
+    name: string
+    icon: string
+    total: number
+    games: CasinoGameItem[] | null
+  }>('/member/game/cate', params)
+}
+
 /**
    * 场馆列表
    * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=d8e0da7a-92e4-4c67-bc62-8549304bada9

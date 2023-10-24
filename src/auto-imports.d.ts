@@ -6,14 +6,10 @@
 export {}
 declare global {
   const ApiGameLunch: typeof import('./apis/index')['ApiGameLunch']
-  const ApiMemberBalanceList: typeof import('./apis/index')['ApiMemberBalanceList']
-  const ApiMemberBalanceLocker: typeof import('./apis/index')['ApiMemberBalanceLocker']
   const ApiMemberBalanceLockerUpdate: typeof import('./apis/index')['ApiMemberBalanceLockerUpdate']
   const ApiMemberBankcardDelete: typeof import('./apis/index')['ApiMemberBankcardDelete']
   const ApiMemberBankcardInsert: typeof import('./apis/index')['ApiMemberBankcardInsert']
   const ApiMemberBankcardList: typeof import('./apis/index')['ApiMemberBankcardList']
-  const ApiMemberBankcardRemove: typeof import('./apis/index')['ApiMemberBankcardRemove']
-  const ApiMemberCurrencyConfig: typeof import('./apis/index')['ApiMemberCurrencyConfig']
   const ApiMemberDetail: typeof import('./apis/index')['ApiMemberDetail']
   const ApiMemberDualVerify: typeof import('./apis/index')['ApiMemberDualVerify']
   const ApiMemberEmailCheck: typeof import('./apis/index')['ApiMemberEmailCheck']
@@ -24,6 +20,7 @@ declare global {
   const ApiMemberFavList: typeof import('./apis/index')['ApiMemberFavList']
   const ApiMemberForgetPassword: typeof import('./apis/index')['ApiMemberForgetPassword']
   const ApiMemberFrontLoginLogList: typeof import('./apis/index')['ApiMemberFrontLoginLogList']
+  const ApiMemberGameCate: typeof import('./apis/index')['ApiMemberGameCate']
   const ApiMemberGameDetail: typeof import('./apis/index')['ApiMemberGameDetail']
   const ApiMemberGameList: typeof import('./apis/index')['ApiMemberGameList']
   const ApiMemberGameLobby: typeof import('./apis/index')['ApiMemberGameLobby']
@@ -41,7 +38,6 @@ declare global {
   const ApiMemberWalletDelete: typeof import('./apis/index')['ApiMemberWalletDelete']
   const ApiMemberWalletInsert: typeof import('./apis/index')['ApiMemberWalletInsert']
   const ApiMemberWalletList: typeof import('./apis/index')['ApiMemberWalletList']
-  const ApiMemberWalletRemove: typeof import('./apis/index')['ApiMemberWalletRemove']
   const ApiSmsSend: typeof import('./apis/index')['ApiSmsSend']
   const ApiWalletBankcardList: typeof import('./apis/index')['ApiWalletBankcardList']
   const Big: typeof import('big.js')['Big']
@@ -116,7 +112,6 @@ declare global {
   const find: typeof import('lodash-es')['find']
   const findIndex: typeof import('lodash-es')['findIndex']
   const findKey: typeof import('lodash-es')['findKey']
-  const generateCurrencyData: typeof import('./stores/app')['generateCurrencyData']
   const get: typeof import('lodash-es')['get']
   const getActivePinia: typeof import('pinia')['getActivePinia']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
@@ -479,6 +474,7 @@ declare module 'vue' {
     readonly ApiMemberFavList: UnwrapRef<typeof import('./apis/index')['ApiMemberFavList']>
     readonly ApiMemberForgetPassword: UnwrapRef<typeof import('./apis/index')['ApiMemberForgetPassword']>
     readonly ApiMemberFrontLoginLogList: UnwrapRef<typeof import('./apis/index')['ApiMemberFrontLoginLogList']>
+    readonly ApiMemberGameCate: UnwrapRef<typeof import('./apis/index')['ApiMemberGameCate']>
     readonly ApiMemberGameDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberGameDetail']>
     readonly ApiMemberGameList: UnwrapRef<typeof import('./apis/index')['ApiMemberGameList']>
     readonly ApiMemberGameLobby: UnwrapRef<typeof import('./apis/index')['ApiMemberGameLobby']>
@@ -926,6 +922,7 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberFavList: UnwrapRef<typeof import('./apis/index')['ApiMemberFavList']>
     readonly ApiMemberForgetPassword: UnwrapRef<typeof import('./apis/index')['ApiMemberForgetPassword']>
     readonly ApiMemberFrontLoginLogList: UnwrapRef<typeof import('./apis/index')['ApiMemberFrontLoginLogList']>
+    readonly ApiMemberGameCate: UnwrapRef<typeof import('./apis/index')['ApiMemberGameCate']>
     readonly ApiMemberGameDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberGameDetail']>
     readonly ApiMemberGameList: UnwrapRef<typeof import('./apis/index')['ApiMemberGameList']>
     readonly ApiMemberGameLobby: UnwrapRef<typeof import('./apis/index')['ApiMemberGameLobby']>

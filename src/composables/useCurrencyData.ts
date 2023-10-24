@@ -121,35 +121,6 @@ export function useCurrencyData() {
       return list
   }
 
-  /** 生成渲染的货币列表 */
-  // const generateCurrencyData = (currency: TCurrencyObject | undefined) => {
-  //   if (!currency)
-  //     return []
-
-  //   const list: CurrencyData[] = []
-  //   for (const key in currency) {
-  //     const type = key as EnumCurrencyKey
-  //     const balanceNumber = currency[type]
-  //     if (Object.values(EnumCurrency).includes(type)) {
-  //       if (hideZeroBalance.value && Number(balanceNumber) === 0)
-  //         continue
-
-  //       list.push({
-  //         type,
-  //         balance: balanceNumber,
-  //         balanceWithSymbol: `${currencyConfig[type].prefix}${balanceNumber}`,
-  //         cur: currencyConfig[type].cur,
-  //         bankTree: currencyConfig[type].bankTree,
-  //       })
-  //     }
-  //   }
-
-  //   if (searchValue.value)
-  //     return list.filter(({ type }) => type.includes(searchValue.value.toLocaleUpperCase()))
-  //   else
-  //     return list
-  // }
-
   /** 钱包余额 */
   const renderBalanceList = computed(() => {
     return allCurrencyData(userInfo.value?.balance).filter(

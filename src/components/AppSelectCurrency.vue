@@ -4,13 +4,13 @@ import type { CurrencyData } from '~/composables/useCurrencyData'
 interface Props {
   showBalance?: boolean // 是否展示货币余额
   network?: boolean // 是否显示协议类型
-  isDeposit?: number
+  type?: number
 }
 
 const props = withDefaults(defineProps<Props>(), {
   showBalance: true,
   network: false,
-  isDeposit: 3,
+  type: 3,
 })
 
 const emit = defineEmits(['change'])
@@ -31,7 +31,7 @@ const currentNetwork = ref()
 const activeCurrency = ref()
 
 const getCurrencyList = computed(() => {
-  switch (props.isDeposit) {
+  switch (props.type) {
     case 1: return renderBalanceList.value
     case 2: return renderBalanceLockerList.value
     case 3: return renderCurrencyList.value
@@ -56,7 +56,7 @@ function selectCurrency(item: CurrencyData, hide: () => void) {
   getTypeVal()
 }
 function getActiveValue() {
-  activeCurrency.value = getCurrencyList.value.find(item => item.type === (activeCurrency.value?.type || currentCurrency.value))
+  activeCurrency.value = getCurrencyList.value.find(item => item.type === (activeCurrency.value?.type ?? currentCurrency.value))
   emit('change', activeCurrency.value)
 }
 
