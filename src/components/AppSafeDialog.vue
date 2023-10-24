@@ -5,9 +5,9 @@ import type { CurrencyData } from '~/composables/useCurrencyData'
 const closeDialog = inject('closeDialog', () => {})
 
 const { t } = useI18n()
+const appStore = useAppStore()
 const { openNotify } = useNotify()
-const { userInfo } = storeToRefs(useAppStore())
-const { updateUserInfo } = useAppStore()
+const { userInfo } = storeToRefs(appStore)
 const router = useRouter()
 
 const activeCurrency = ref<any>()
@@ -73,7 +73,7 @@ const {
     })
     resetAmount()
     resetPassword()
-    updateUserInfo()
+    appStore.updateUserInfo()
   },
 })
 
