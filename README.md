@@ -64,3 +64,5 @@ defineOptions({
   name: 'KeepAliveCasino',
 })
 ```
+
+### 不要出现any类型
