@@ -13,6 +13,7 @@ const isProvider = computed(() => currentType.value === 'provider') // 供应商
 const isCat = computed(() => currentType.value === 'category') // 类别
 // 类别游戏数据
 const cid = computed(() => isCat.value ? route.query.cid?.toString() ?? '' : '')
+const categoryPage = ref(1)
 const catBaseData = computed(() => {
   return casinoGameList.value.find(a => a.cid === cid.value) ?? {
     title: '',
@@ -96,7 +97,7 @@ const push = computed(() => {
   else if (isRec.value)
     return loadMoreRec
   else if (isCat.value)
-    return () => runCateGames({ page: 2, page_size: 21, cid: cid.value })
+    return () => runCateGames({ page: ++categoryPage.value, page_size: 21, cid: cid.value })
   return () => { }
 })
 
@@ -112,15 +113,16 @@ function onPlatTypeChecked(v: string) {
   runGameList({ ...paramsGame.value, platform_id: v })
 }
 // 排序变化
-function onSortChange(v: any) {
-  sort.value = v
-  getData()
-}
+// function onSortChange(v: any) {
+//   sort.value = v
+//   getData()
+// }
 
 // 路由变化
 const stop = watch(route, (a) => {
   currentType.value = a.params.gameType.toString()
   sort.value = EnumCasinoSortType.recommend
+  categoryPage.value = 1
   getData()
 })
 onBeforeRouteLeave(() => {
@@ -158,7 +160,7 @@ else if (isRec.value)
       </div>
       <div class="mt-24">
         <AppGroupFilter
-          :game-type="currentType" :sort-type="sort" @sort-type-change="onSortChange"
+          :game-type="currentType" :sort-type="sort"
           @plat-type-checked="onPlatTypeChecked"
         />
       </div>
