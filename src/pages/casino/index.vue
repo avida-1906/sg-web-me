@@ -62,7 +62,7 @@ function onTabChange() {
 }
 function viewMoreGames() {
   if (currentNav.value.ty === 1)
-    router.push(`/casino/group/category?cid=${currentNav.value.cid}`)
+    router.push(`/casino/group/category?cid=${currentNav.value.cid}&name=${currentNav.value.label}`)
   else if (currentNav.value.ty === 2)
     router.push(`/casino/group/provider?pid=${currentNav.value.platform_id}&name=${currentNav.value.label}`)
 }
