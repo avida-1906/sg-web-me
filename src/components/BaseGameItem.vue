@@ -13,7 +13,7 @@ const props = defineProps<Props>()
 
 const router = useRouter()
 const { isMobile } = storeToRefs(useWindowStore())
-const { platformList } = storeToRefs(useAppStore())
+const { platformList } = storeToRefs(useCasinoStore())
 const closeSearch = inject('closeSearch', () => {})
 const closeSearchH5 = inject('closeSearchH5', () => {})
 

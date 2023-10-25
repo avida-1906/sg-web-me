@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const router = useRouter()
-const { platformList } = storeToRefs(useAppStore())
+const { platformList } = storeToRefs(useCasinoStore())
 
 function handleItemClick(item: any) {
   router.push(`/casino/group/provider?pid=${item.id}&name=${item.en_name}`)

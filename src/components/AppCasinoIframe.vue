@@ -5,16 +5,14 @@ interface Props {
   isTheatre: boolean
   id: string
 }
-interface CurrencyItem {
-  id: EnumCurrencyKey
-}
 
 const props = defineProps<Props>()
 const emit = defineEmits(['changeTheatre'])
 
 const { t } = useI18n()
 const { isMobile, appContentWidth } = storeToRefs(useWindowStore())
-const { platformList, isLogin } = storeToRefs(useAppStore())
+const { isLogin } = storeToRefs(useAppStore())
+const { platformList } = storeToRefs(useCasinoStore())
 const { openRegisterDialog } = useRegisterDialog()
 const {
   bool: isShowFrameOverlay,
@@ -24,8 +22,8 @@ const {
 const { bool: isRealMoneyMode, setBool: setRealModeBool } = useBoolean(false)
 const { bool: isTrendOpen, toggle: toggleTrendOpen } = useBoolean(false)
 
-const currentCurrency = ref<CurrencyItem>()
-const currencyList = ref<CurrencyItem[]>([])
+const currentCurrency = ref<EnumCurrencyKey>()
+const currencyList = ref<EnumCurrencyKey[]>([])
 const gameFrameRef = ref()
 
 // 游戏数据接口
@@ -42,9 +40,6 @@ const {
 const id = computed(() => dataDetail.value ? dataDetail.value.id : '')
 const pid = computed(() => dataDetail.value ? dataDetail.value.platform_id : '')
 const code = computed(() => dataDetail.value ? dataDetail.value.game_id : '')
-const currencyName = computed(() => {
-  return currentCurrency.value ? currentCurrency.value.id : ''
-})
 const isFavorite = computed(() => {
   return dataDetail.value ? dataDetail.value.is_fav === 1 : false
 })
@@ -63,7 +58,7 @@ const {
 } = useRequest(() => ApiGameLunch(
   pid.value,
   code.value,
-  currencyName.value,
+  currentCurrency.value ?? '',
 ), {
   manual: true,
   onSuccess(res) {
@@ -74,6 +69,7 @@ const {
 })
 // pc自动启动游戏
 function autoLunchOnPc() {
+  console.log('autoLunchOnPc===>', pid.value, code.value, currentCurrency.value)
   !isMobile.value && isLogin.value && runLunchGame()
 }
 // 重新获取游戏地址是先清空
@@ -190,7 +186,7 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
       <span>{{ t('balance') }}</span>
       <VDropdown :distance="6">
         <div v-if="currentCurrency" class="current-currency">
-          <AppCurrencyIcon show-name :currency-type="currentCurrency.id" />
+          <AppCurrencyIcon show-name :currency-type="currentCurrency" />
           <div class="arrow">
             <BaseIcon name="uni-arrow-down" />
           </div>
@@ -203,7 +199,7 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
               @click="hide();onChooseCurrency(c)"
             >
               <div>
-                <AppCurrencyIcon show-name :currency-type="c.id" />
+                <AppCurrencyIcon show-name :currency-type="c" />
               </div>
             </a>
           </div>
@@ -273,7 +269,7 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
                     <div v-if="currentCurrency" class="current-currency">
                       <AppCurrencyIcon
                         show-name
-                        :currency-type="currentCurrency.id"
+                        :currency-type="currentCurrency"
                       />
                       <div class="arrow">
                         <BaseIcon name="uni-arrow-down" />
@@ -288,7 +284,7 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
                           @click="hide();onChooseCurrency(c)"
                         >
                           <div>
-                            <AppCurrencyIcon show-name :currency-type="c.id" />
+                            <AppCurrencyIcon show-name :currency-type="c" />
                           </div>
                         </a>
                       </div>
