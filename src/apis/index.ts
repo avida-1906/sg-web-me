@@ -437,6 +437,16 @@ export function ApiMemberGameCateGames(params: {
     seq: number
   }>>('/member/game/cate/games', params)
 }
+/**
+ * 导航娱乐城体育按钮顺序
+ */
+export function ApiMemberGameCateIndex() {
+  return httpClient.get<{
+    id: string
+    name: string
+    seq: number
+  }[]>('/member/game/cate/index')
+}
 
 /**
    * 场馆列表

@@ -1,6 +1,16 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
 
 export const useAppStore = defineStore('app', () => {
+  /** 导航排序 */
+  const navButtons = ref<any>([])
+  useRequest(ApiMemberGameCateIndex, {
+    manual: false,
+    onSuccess(res) {
+      navButtons.value = res.map((a) => {
+        return { ...a, title: a.name === '娱乐城' ? 'casino' : 'sports' }
+      })
+    },
+  })
   /** 游戏提供商数据(PG,EVO,...) */
   const { list: platformList } = useList(ApiMemberPlatformList, {
     manual: false,
@@ -56,6 +66,7 @@ export const useAppStore = defineStore('app', () => {
     removeToken,
     getToken,
     updateUserInfo,
+    navButtons,
   }
 })
 
