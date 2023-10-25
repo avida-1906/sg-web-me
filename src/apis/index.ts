@@ -425,10 +425,17 @@ export function ApiMemberGameCate(params: { cid: string }) {
  */
 export function ApiMemberGameCateGames(params: {
   cid: string
-  page: number
-  page_size: number
+  page?: number
+  page_size?: number
 }) {
-  return httpClient.get('/member/game/cate/games', params)
+  return httpClient.get<IResponseList<{
+    platform_id: string
+    id: string
+    game_id: string
+    img: string
+    name: string
+    seq: number
+  }>>('/member/game/cate/games', params)
 }
 
 /**

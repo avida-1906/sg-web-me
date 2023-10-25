@@ -88,7 +88,6 @@ function viewMoreGames() {
             :cid="item.cid"
             :ty="item.ty"
             :pid="item.platform_id"
-            :plat-name="item.name"
           />
         </div>
       </Transition>

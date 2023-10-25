@@ -8,7 +8,6 @@ interface Props {
   ty?: number
   cid?: string
   pid?: string
-  platName?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -61,9 +60,9 @@ function prevPage() {
 
 function goAllPage() {
   if (props.ty === 1)
-    router.push(`/casino/group/category?cid=${props.cid}`)
+    router.push(`/casino/group/category?cid=${props.cid}&name=${props.title}`)
   else if (props.ty === 2)
-    router.push(`/casino/group/provider?pid=${props.pid}&name=${props.platName}`)
+    router.push(`/casino/group/provider?pid=${props.pid}&name=${props.title}`)
   else if (props.gameType === 'rec')
     router.push(`/casino/group/rec?name=${props.title}`)
 }

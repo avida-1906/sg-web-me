@@ -5,7 +5,6 @@ import {
 
 const props = defineProps<{ gameType: string }>()
 const route = useRoute()
-const { casinoGameList } = storeToRefs(useCasinoStore())
 
 const currentType = ref(props.gameType)
 const isRec = computed(() => currentType.value === 'rec') // 推荐游戏
@@ -13,21 +12,6 @@ const isProvider = computed(() => currentType.value === 'provider') // 供应商
 const isCat = computed(() => currentType.value === 'category') // 类别
 // 类别游戏数据
 const cid = computed(() => isCat.value ? route.query.cid?.toString() ?? '' : '')
-const categoryPage = ref(1)
-const catBaseData = computed(() => {
-  return casinoGameList.value.find(a => a.cid === cid.value) ?? {
-    title: '',
-    list: [],
-    path: '',
-    ty: 1,
-    cid: '',
-    platform_id: '',
-    name: '',
-    icon: '',
-    total: 0,
-    games: [],
-  }
-})
 const title = computed(() => route.query.name)
 // 参数
 const pid = computed(() =>
@@ -55,13 +39,14 @@ const {
   loading: loadingRec,
   loadMore: loadMoreRec,
 } = useList(ApiMemberGameRecList)
-// 类别游戏数据
-const { runAsync: runCateGames, loading: loadingCate }
-= useRequest(ApiMemberGameCateGames, {
-  onSuccess(res) {
-    console.log('ApiMemberGameCateGames===>', res)
-  },
-})
+const paramsCate = computed(() => ({ cid: cid.value }))
+const {
+  list: cateList,
+  total: cateTotal,
+  runAsync: runCateGames,
+  loading: loadingCate,
+  loadMore: loadMoreCate,
+} = useList(ApiMemberGameCateGames)
 // 页面数据
 const list = computed(() => {
   if (isProvider.value)
@@ -69,7 +54,7 @@ const list = computed(() => {
   else if (isRec.value)
     return recList.value
   else if (isCat.value)
-    return catBaseData.value.games
+    return cateList.value
 
   return []
 })
@@ -79,7 +64,7 @@ const total = computed(() => {
   else if (isRec.value)
     return recTotal.value
   else if (isCat.value)
-    return catBaseData.value.total
+    return cateTotal.value
   return 0
 })
 const loading = computed(() => {
@@ -97,7 +82,7 @@ const push = computed(() => {
   else if (isRec.value)
     return loadMoreRec
   else if (isCat.value)
-    return () => runCateGames({ page: ++categoryPage.value, page_size: 21, cid: cid.value })
+    return loadMoreCate
   return () => { }
 })
 
@@ -107,6 +92,8 @@ function getData() {
     runGameList(paramsGame.value)
   else if (isRec.value)
     runRecList(paramsRec.value)
+  else if (isCat.value)
+    runCateGames(paramsCate.value)
 }
 // 游戏提供商选择变化
 function onPlatTypeChecked(v: string) {
@@ -122,7 +109,6 @@ function onPlatTypeChecked(v: string) {
 const stop = watch(route, (a) => {
   currentType.value = a.params.gameType.toString()
   sort.value = EnumCasinoSortType.recommend
-  categoryPage.value = 1
   getData()
 })
 onBeforeRouteLeave(() => {
@@ -132,9 +118,10 @@ onBeforeRouteLeave(() => {
 // 初始化
 if (isProvider.value)
   await application.allSettled([runGameList(paramsGame.value)])
-
 else if (isRec.value)
   await application.allSettled([runRecList(paramsRec.value)])
+else if (isCat.value)
+  await application.allSettled([runCateGames(paramsCate.value)])
 </script>
 
 <template>
