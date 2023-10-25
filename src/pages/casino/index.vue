@@ -6,6 +6,7 @@ defineOptions({
 const { isMobile } = storeToRefs(useWindowStore())
 const { casinoNav, casinoGameList } = storeToRefs(useCasinoStore())
 const router = useRouter()
+const { t } = useI18n()
 
 const tab = ref('all')
 const showAll = computed(() => tab.value === 'all')
@@ -92,7 +93,7 @@ function viewMoreGames() {
         </div>
       </Transition>
       <!-- 其他 -->
-      <Transition name="tab-fade">
+      <Transition v-show="!showAll" name="tab-fade">
         <div class="list-wrap">
           <div class="title">
             <BaseIcon
@@ -106,7 +107,7 @@ function viewMoreGames() {
               size="md"
               @click="viewMoreGames"
             >
-              查看全部 {{ catGameTotal }} {{ currentNav?.label }}
+              {{ t('view_all') }} {{ catGameTotal }} {{ currentNav?.label }}
             </BaseButton>
           </div>
         </div>
