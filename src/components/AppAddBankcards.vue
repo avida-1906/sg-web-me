@@ -34,6 +34,10 @@ const { openNotify } = useNotify()
 const currentType = ref<'1' | '2'>(props.currentType)
 const currencyId = ref(props.activeCurrency.cur ?? '')
 const { bool: isDefault, setFalse: setIsDefaultFalse } = useBoolean(false)
+const bankTypeData = ref([{ label: '银行转账', icon: 'fiat-bank', value: '1' }])
+const pixTypeData = ref([{ label: 'PIX', icon: 'fiat-bank', value: '2' }])
+const currentTypeBanks = computed(() =>
+  props.currentType === '1' ? bankTypeData.value : pixTypeData.value)
 
 const isBankType = computed(() => {
   return currentType.value === '1'
@@ -180,7 +184,10 @@ onMounted(() => {
         />
       </BaseLabel>
       <BaseLabel label="提款方式">
-        <AppWithdrawalDepositType v-model="currentType" />
+        <AppWithdrawalDepositType
+          v-model="currentType"
+          :current-type="currentTypeBanks"
+        />
       </BaseLabel>
       <BaseLabel :label="isBankType ? '请选择银行' : '请选择PIX账户类型'" must>
         <BaseSelect

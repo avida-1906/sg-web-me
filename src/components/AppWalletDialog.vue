@@ -5,7 +5,7 @@ const { t } = useI18n()
 const { bool: showWallet, setBool: setShowWalletBool } = useBoolean(true)
 const { isVirtualCurrency } = useCurrencyData()
 
-const activeCurrency = ref()
+const activeCurrency = ref<CurrencyData | null>()
 const currentTab = ref('deposit')
 const tabList = [
   { label: t('deposit'), value: 'deposit' },
@@ -36,7 +36,7 @@ function handleShow(val: boolean) {
         @change="changeCurrency"
       />
       <!-- 存款 -->
-      <template v-if="isDeposit">
+      <template v-if="isDeposit && activeCurrency">
         <AppVirtualDeposit
           v-if="isVirtualCurrency(activeCurrency?.type)"
           :active-currency="activeCurrency?.type"
@@ -44,11 +44,12 @@ function handleShow(val: boolean) {
         />
         <AppFiatDeposit
           v-else
+          :active-currency="activeCurrency"
           @show="handleShow"
         />
       </template>
       <!-- 取款 -->
-      <template v-else-if="isWithdraw">
+      <template v-else-if="isWithdraw && activeCurrency">
         <Suspense timeout="0">
           <AppWithdraw
             v-if="isVirtualCurrency(activeCurrency?.type)"

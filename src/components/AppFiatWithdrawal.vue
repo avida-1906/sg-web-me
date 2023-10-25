@@ -10,11 +10,15 @@ const props = withDefaults(defineProps<Props>(), {})
 const { isLessThanXs } = storeToRefs(useWindowStore())
 
 const amount = ref('')
+const bankTypeData = ref([{ label: '银行转账', icon: 'fiat-bank', value: '1' }])
+const pixTypeData = ref([{ label: 'PIX', icon: 'fiat-bank', value: '2' }])
 
 /** '1' 银行卡， '2' pix 除了巴西其他国家都是银行卡 */
 const currentType = computed<'1' | '2'>(() =>
   props.activeCurrency.cur === '702' ? '2' : '1',
 )
+const currentTypeBanks = computed(() =>
+  currentType.value === '1' ? bankTypeData.value : pixTypeData.value)
 
 const {
   bankcardList,
@@ -49,7 +53,7 @@ await application.allSettled(
     </div>
     <!-- 出款信息 -->
     <div v-else class="withdrawal-wrap">
-      <AppWithdrawalDepositType v-model="currentType" />
+      <AppWithdrawalDepositType v-model="currentType" :current-type="currentTypeBanks" />
       <div class="withdrawal-info">
         <BaseLabel :label="currentType === '1' ? '出款银行卡' : 'PIX账号'" must>
           <BaseSelect

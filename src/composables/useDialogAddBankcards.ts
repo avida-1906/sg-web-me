@@ -1,11 +1,11 @@
 import AppAddBankcards from '~/components/AppAddBankcards.vue'
-import type { IUserCurrencyList } from '~/stores/app'
+import type { CurrencyData } from '~/composables/useCurrencyData'
 
 export function useAddBankcardsDialog(params: {
   title: string
   openName: string
   isFirst: boolean
-  activeCurrency: IUserCurrencyList
+  activeCurrency: CurrencyData
   currentType: '1' | '2'
 }) {
   const {

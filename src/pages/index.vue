@@ -152,7 +152,7 @@ await application.allSettled([
         没加密货币？没问题。
       </div>
       <div :class="isSm ? 'h-22' : 'h-30'">
-        <BaseIcon name="cryptocurrency-logo-1" class="w-48" />
+        <BaseIcon name="cryptocurrency-logo-1" class="w-50" />
         <BaseIcon name="cryptocurrency-logo-2" class="w-70" />
         <BaseIcon name="cryptocurrency-logo-3" class="w-75" />
         <BaseIcon name="cryptocurrency-logo-4" class="w-65" />

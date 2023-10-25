@@ -738,3 +738,49 @@ export function ApiMemberBankcardDelete(data: {
 }) {
   return httpClient.post<string>('/member/bankcard/delete', data)
 }
+
+/**
+ * 支付方式列表
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=fc432cbb-655f-4eb9-9a4c-4cec7036f261
+ */
+export function ApiMemberPaymentMethodList(params: {
+  currency_id: string
+}) {
+  return httpClient.get<{
+    /** 支付方式id */
+    id: string
+    /** 优惠标签名称 */
+    pname: string
+    /** 标签值 */
+    promo: string
+    /** 方式别名 */
+    alias: string
+    /** 通道名称 */
+    name: string
+  }[]>('/member/payment/method/list', params)
+}
+
+/**
+ * 支付通道列表
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=6d059119-743a-476b-ba97-19b694216b77
+ */
+export function ApiMemberPaymentMerchantList(params: {
+  id: string
+}) {
+  return httpClient.get<{
+    /** 支付平台id */
+    id: string
+    /** 通道名称 */
+    name: string
+    /** 通道最大充值金额 */
+    amount_max: string
+    /** 通道最小充值金额 */
+    amount_min: string
+    /** 金额种类:1:固定2:范围 */
+    amount_type: string
+    /** 固定金额 */
+    amount_fixed: string
+    /** 常用金额,逗号隔开 */
+    often_amount: string
+  }[]>('/member/payment/merchant/list', params)
+}
