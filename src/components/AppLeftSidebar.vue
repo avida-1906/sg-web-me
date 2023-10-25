@@ -7,6 +7,7 @@ defineProps<Props>()
 const { t } = useI18n()
 const { isMobile } = storeToRefs(useWindowStore())
 const { triggerLeftSidebar, closeLeftSidebar } = useLeftSidebar()
+const { navButtons } = storeToRefs(useAppStore())
 const router = useRouter()
 const route = useRoute()
 
@@ -36,18 +37,11 @@ function push(path: string) {
           </div>
           <div class="game-type">
             <div
-              class="casino"
-              :class="{ active: isCasino }"
-              @click="$router.push('/casino')"
+              v-for="n in navButtons" :key="n.title"
+              :class="[n.title, { active: route.name?.toString().includes(n.title) }]"
+              @click="$router.push(`/${n.title}`)"
             >
-              <span>{{ t('casino') }}</span>
-            </div>
-            <div
-              class="sports"
-              :class="{ active: isSports }"
-              @click="$router.push('/sports')"
-            >
-              <span>{{ t('sports') }}</span>
+              <span>{{ t(n.title) }}</span>
             </div>
           </div>
         </div>
@@ -57,22 +51,12 @@ function push(path: string) {
   <AppGlobalSearch v-else @game-type-change="onGameTypeChange" />
 
   <div v-if="isMobile && !isCasino && !isSports" class="buttons">
-    <BaseAspectRatio ratio="3.5/1">
+    <BaseAspectRatio v-for="n in navButtons" :key="n.title" ratio="3.5/1">
       <div
-        class="casino"
-        :class="{ active: isCasino }"
-        @click="push('/casino')"
+        :class="[n.title, { active: route.name?.toString().includes(n.title) }]"
+        @click="push(`/${n.title}`)"
       >
-        <span>{{ t('casino') }}</span>
-      </div>
-    </BaseAspectRatio>
-    <BaseAspectRatio ratio="3.5/1">
-      <div
-        class="sports"
-        :class="{ active: isSports }"
-        @click="push('/sports')"
-      >
-        <span>{{ t('sports') }}</span>
+        <span>{{ t(n.title) }}</span>
       </div>
     </BaseAspectRatio>
   </div>

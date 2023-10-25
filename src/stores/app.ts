@@ -1,10 +1,17 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
 
 export const useAppStore = defineStore('app', () => {
-  /** 游戏提供商数据(PG,EVO,...) */
-  const { list: platformList } = useList(ApiMemberPlatformList, {
+  /** 导航排序 */
+  const navButtons = ref<any>([])
+  useRequest(ApiMemberGameCateIndex, {
     manual: false,
+    onSuccess(res) {
+      navButtons.value = res.map((a) => {
+        return { ...a, title: a.name === '娱乐城' ? 'casino' : 'sports' }
+      })
+    },
   })
+
   /** 是否登录，程序用这个变量来判断是否登录 */
   const { bool: isLogin, setTrue: setLoginTrue, setFalse: setLoginFalse } = useBoolean(!!getToken())
   /** 用户信息 */
@@ -48,7 +55,6 @@ export const useAppStore = defineStore('app', () => {
 
   return {
     isLogin,
-    platformList,
     userInfo,
     setToken,
     setLoginTrue,
@@ -56,6 +62,7 @@ export const useAppStore = defineStore('app', () => {
     removeToken,
     getToken,
     updateUserInfo,
+    navButtons,
   }
 })
 

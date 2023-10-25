@@ -14,7 +14,8 @@ const emit = defineEmits(['changeTheatre'])
 
 const { t } = useI18n()
 const { isMobile, appContentWidth } = storeToRefs(useWindowStore())
-const { platformList, isLogin } = storeToRefs(useAppStore())
+const { isLogin } = storeToRefs(useAppStore())
+const { platformList } = storeToRefs(useCasinoStore())
 const { openRegisterDialog } = useRegisterDialog()
 const {
   bool: isShowFrameOverlay,

@@ -1,6 +1,10 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
 
 export const useCasinoStore = defineStore('casino', () => {
+  /** 游戏提供商数据(PG,EVO,...) */
+  const { list: platformList } = useList(ApiMemberPlatformList, {
+    manual: false,
+  })
   const { data } = useRequest(ApiMemberGameLobby, { manual: false })
 
   const casinoNav = computed(() => {
@@ -30,6 +34,7 @@ export const useCasinoStore = defineStore('casino', () => {
       : [])
 
   return {
+    platformList,
     casinoNav,
     casinoGameList,
   }

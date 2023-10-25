@@ -12,18 +12,16 @@ defineProps<Props>()
 
 const { t } = useI18n()
 const { triggerLeftSidebar } = useLeftSidebar()
+const { navButtons } = storeToRefs(useAppStore())
 const router = useRouter()
 const route = useRoute()
-
-const isCasino = computed(() => route.name?.toString().includes('casino'))
-const isSports = computed(() => route.name?.toString().includes('sports'))
 </script>
 
 <template>
   <!-- 头部菜单或搜索栏 -->
   <div class="tg-app-left-sidebar-tiny">
     <div class="sidebar-tiny-top">
-      <div class="is-small header">
+      <div class="header is-small">
         <Transition name="menu-fade">
           <template v-if="!isSwitching">
             <div class="button" @click="triggerLeftSidebar">
@@ -33,18 +31,11 @@ const isSports = computed(() => route.name?.toString().includes('sports'))
         </Transition>
         <div v-if="!isSwitching" class="game-type">
           <div
-            class="casino"
-            :class="{ active: isCasino }"
-            @click="router.push('/casino')"
+            v-for="n in navButtons" :key="n.title"
+            :class="[n.title, { active: route.name?.toString().includes(n.title) }]"
+            @click="router.push(`/${n.title}`)"
           >
-            <span>{{ t('casino') }}</span>
-          </div>
-          <div
-            class="sports"
-            :class="{ active: isSports }"
-            @click="router.push('/sports')"
-          >
-            <span>{{ t('sports') }}</span>
+            <span>{{ t(n.title) }}</span>
           </div>
         </div>
       </div>

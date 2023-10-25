@@ -22,6 +22,7 @@ declare global {
   const ApiMemberFrontLoginLogList: typeof import('./apis/index')['ApiMemberFrontLoginLogList']
   const ApiMemberGameCate: typeof import('./apis/index')['ApiMemberGameCate']
   const ApiMemberGameCateGames: typeof import('./apis/index')['ApiMemberGameCateGames']
+  const ApiMemberGameCateIndex: typeof import('./apis/index')['ApiMemberGameCateIndex']
   const ApiMemberGameDetail: typeof import('./apis/index')['ApiMemberGameDetail']
   const ApiMemberGameList: typeof import('./apis/index')['ApiMemberGameList']
   const ApiMemberGameLobby: typeof import('./apis/index')['ApiMemberGameLobby']
@@ -44,6 +45,7 @@ declare global {
   const ApiSmsSend: typeof import('./apis/index')['ApiSmsSend']
   const ApiWalletBankcardList: typeof import('./apis/index')['ApiWalletBankcardList']
   const Big: typeof import('big.js')['Big']
+  const CHAT_EVENT_BUS: typeof import('./utils/event-bus')['CHAT_EVENT_BUS']
   const EffectScope: typeof import('vue')['EffectScope']
   const EnumCasinoApiGameType: typeof import('./utils/enums')['EnumCasinoApiGameType']
   const EnumCasinoGameType: typeof import('./utils/enums')['EnumCasinoGameType']
@@ -480,6 +482,7 @@ declare module 'vue' {
     readonly ApiMemberFrontLoginLogList: UnwrapRef<typeof import('./apis/index')['ApiMemberFrontLoginLogList']>
     readonly ApiMemberGameCate: UnwrapRef<typeof import('./apis/index')['ApiMemberGameCate']>
     readonly ApiMemberGameCateGames: UnwrapRef<typeof import('./apis/index')['ApiMemberGameCateGames']>
+    readonly ApiMemberGameCateIndex: UnwrapRef<typeof import('./apis/index')['ApiMemberGameCateIndex']>
     readonly ApiMemberGameDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberGameDetail']>
     readonly ApiMemberGameList: UnwrapRef<typeof import('./apis/index')['ApiMemberGameList']>
     readonly ApiMemberGameLobby: UnwrapRef<typeof import('./apis/index')['ApiMemberGameLobby']>
@@ -502,6 +505,7 @@ declare module 'vue' {
     readonly ApiSmsSend: UnwrapRef<typeof import('./apis/index')['ApiSmsSend']>
     readonly ApiWalletBankcardList: UnwrapRef<typeof import('./apis/index')['ApiWalletBankcardList']>
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
+    readonly CHAT_EVENT_BUS: UnwrapRef<typeof import('./utils/event-bus')['CHAT_EVENT_BUS']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly EnumCasinoApiGameType: UnwrapRef<typeof import('./utils/enums')['EnumCasinoApiGameType']>
     readonly EnumCasinoGameType: UnwrapRef<typeof import('./utils/enums')['EnumCasinoGameType']>
@@ -514,7 +518,6 @@ declare module 'vue' {
     readonly EnumSportsPanelType: UnwrapRef<typeof import('./stores/sports')['EnumSportsPanelType']>
     readonly EnumsBetSlipTabs: UnwrapRef<typeof import('./utils/enums')['EnumsBetSlipTabs']>
     readonly Local: UnwrapRef<typeof import('./utils/storage')['Local']>
-    readonly SOCKET_EVENT_BUS: UnwrapRef<typeof import('./utils/event-bus')['SOCKET_EVENT_BUS']>
     readonly STORAGE_CURRENT_GLOBAL_CURRENCY_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_CURRENT_GLOBAL_CURRENCY_KEY']>
     readonly STORAGE_HIDE_ZERO_BALANCE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_HIDE_ZERO_BALANCE_KEY']>
     readonly STORAGE_LANGUAGE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_LANGUAGE_KEY']>
@@ -932,6 +935,7 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberFrontLoginLogList: UnwrapRef<typeof import('./apis/index')['ApiMemberFrontLoginLogList']>
     readonly ApiMemberGameCate: UnwrapRef<typeof import('./apis/index')['ApiMemberGameCate']>
     readonly ApiMemberGameCateGames: UnwrapRef<typeof import('./apis/index')['ApiMemberGameCateGames']>
+    readonly ApiMemberGameCateIndex: UnwrapRef<typeof import('./apis/index')['ApiMemberGameCateIndex']>
     readonly ApiMemberGameDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberGameDetail']>
     readonly ApiMemberGameList: UnwrapRef<typeof import('./apis/index')['ApiMemberGameList']>
     readonly ApiMemberGameLobby: UnwrapRef<typeof import('./apis/index')['ApiMemberGameLobby']>
@@ -954,6 +958,7 @@ declare module '@vue/runtime-core' {
     readonly ApiSmsSend: UnwrapRef<typeof import('./apis/index')['ApiSmsSend']>
     readonly ApiWalletBankcardList: UnwrapRef<typeof import('./apis/index')['ApiWalletBankcardList']>
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
+    readonly CHAT_EVENT_BUS: UnwrapRef<typeof import('./utils/event-bus')['CHAT_EVENT_BUS']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly EnumCasinoApiGameType: UnwrapRef<typeof import('./utils/enums')['EnumCasinoApiGameType']>
     readonly EnumCasinoGameType: UnwrapRef<typeof import('./utils/enums')['EnumCasinoGameType']>
@@ -966,7 +971,6 @@ declare module '@vue/runtime-core' {
     readonly EnumSportsPanelType: UnwrapRef<typeof import('./stores/sports')['EnumSportsPanelType']>
     readonly EnumsBetSlipTabs: UnwrapRef<typeof import('./utils/enums')['EnumsBetSlipTabs']>
     readonly Local: UnwrapRef<typeof import('./utils/storage')['Local']>
-    readonly SOCKET_EVENT_BUS: UnwrapRef<typeof import('./utils/event-bus')['SOCKET_EVENT_BUS']>
     readonly STORAGE_CURRENT_GLOBAL_CURRENCY_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_CURRENT_GLOBAL_CURRENCY_KEY']>
     readonly STORAGE_HIDE_ZERO_BALANCE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_HIDE_ZERO_BALANCE_KEY']>
     readonly STORAGE_LANGUAGE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_LANGUAGE_KEY']>
