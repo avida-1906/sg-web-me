@@ -31,6 +31,7 @@ const tabList = computed(() => [
   { label: t('sports_tab_live_events'), value: 'live', icon: 'spt-ball-plate' },
   { label: t('sports_tab_starting_soon'), value: 'soon', icon: 'spt-timing' },
 ])
+// 体育场馆列表
 const { run } = useList(ApiMemberPlatformList)
 run({ game_type: 4 })
 </script>
