@@ -157,11 +157,17 @@ export function useCurrencyData() {
   const getVirtualCurrencyContractType = (currency: string) => {
     switch (currency) {
       case 'BTC': return [
-        { label: 'BTC', value: 'BTC' },
+        { label: 'Omni', value: 'Omni' },
       ]
       case 'USDT': return [
-        { label: 'TRC20', value: 'TRC20' },
         { label: 'ERC20', value: 'ERC20' },
+        { label: 'TRC20', value: 'TRC20' },
+      ]
+      case 'ETH': return [
+        { label: 'ERC20', value: 'ERC20' },
+      ]
+      case 'BNB': return [
+        { label: 'BEP20', value: 'BEP20' },
       ]
       default:return null
     }
