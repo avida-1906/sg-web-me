@@ -452,7 +452,12 @@ export function ApiMemberGameCateIndex() {
    * 场馆列表
    * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=d8e0da7a-92e4-4c67-bc62-8549304bada9
    */
-export function ApiMemberPlatformList() {
+export function ApiMemberPlatformList(params: {
+  page?: number
+  page_size?: number
+  game_type: number
+} = { page: 1, page_size: 100, game_type: 0 },
+) {
   return httpClient.get<IResponseList<{
     id: string
     en_name: string
@@ -471,7 +476,7 @@ export function ApiMemberPlatformList() {
     th_name: string
     game_num: number
     name: string
-  }>>('/member/platform/list?page=1&page_size=100&game_type=0')
+  }>>('/member/platform/list', params)
 }
 
 /**
