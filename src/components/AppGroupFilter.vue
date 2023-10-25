@@ -13,7 +13,7 @@ const emit = defineEmits(['sortTypeChange', 'platTypeChecked'])
 
 // const { t } = useI18n()
 const { appContentWidth } = storeToRefs(useWindowStore())
-const { platformList } = storeToRefs(useAppStore())
+const { platformList } = storeToRefs(useCasinoStore())
 
 const groupFilterOuter = ref()
 // const selectValue = ref(props.sortType)

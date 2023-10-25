@@ -11,10 +11,7 @@ export const useAppStore = defineStore('app', () => {
       })
     },
   })
-  /** 游戏提供商数据(PG,EVO,...) */
-  const { list: platformList } = useList(ApiMemberPlatformList, {
-    manual: false,
-  })
+
   /** 是否登录，程序用这个变量来判断是否登录 */
   const { bool: isLogin, setTrue: setLoginTrue, setFalse: setLoginFalse } = useBoolean(!!getToken())
   /** 用户信息 */
@@ -58,7 +55,6 @@ export const useAppStore = defineStore('app', () => {
 
   return {
     isLogin,
-    platformList,
     userInfo,
     setToken,
     setLoginTrue,
