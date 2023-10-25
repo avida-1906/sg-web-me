@@ -1,51 +1,25 @@
 <script setup lang="ts">
 import {
-  EnumCasinoApiGameType,
-  EnumCasinoGameType,
   EnumCasinoSortType,
 } from '~/utils/enums'
 
 const props = defineProps<{ gameType: string }>()
-const { VITE_CASINO_GAME_PAGE_SIZE } = getEnv()
-const { t } = useI18n()
 const route = useRoute()
 
 const currentType = ref(props.gameType)
-const isLive = computed(() => currentType.value === EnumCasinoGameType.LIVE) // 真人
-const isSlot = computed(() => currentType.value === EnumCasinoGameType.SLOT) // 老虎机
 const isRec = computed(() => currentType.value === 'rec') // 推荐游戏
 const isProvider = computed(() => currentType.value === 'provider') // 供应商
-const title = computed(() => {
-  if (isLive.value)
-    return t('game_type_live')
-  else if (isSlot.value)
-    return t('game_type_slot')
-  else if (isRec.value)
-    return t('game_type_rec')
-  else if (isProvider.value)
-    return route.query.name
-  return '-'
-})
-const bannerImg = computed(() => {
-  if (isLive.value)
-    return 'live'
-  else if (isSlot.value)
-    return 'slot'
-  return 'default'
-})
-// 真人、老虎机
-const gameTypeParams = computed(
-  () => isLive.value
-    ? EnumCasinoApiGameType.LIVE
-    : isSlot.value ? EnumCasinoApiGameType.SLOT : undefined)
+const isCat = computed(() => currentType.value === 'category') // 类别
+// 类别游戏数据
+const cid = computed(() => isCat.value ? route.query.cid?.toString() ?? '' : '')
+const title = computed(() => route.query.name)
+// 参数
 const pid = computed(() =>
   isProvider.value ? route.query.pid?.toString() : undefined)
-const sort = ref(
-  isLive.value ? EnumCasinoSortType.recommend : EnumCasinoSortType.hot,
-)
+
+const sort = ref(EnumCasinoSortType.recommend)
 const paramsGame = computed(() =>
   ({
-    game_type: gameTypeParams.value,
     platform_id: pid.value,
     sort: sort.value,
   }))
@@ -55,7 +29,7 @@ const {
   runAsync: runGameList,
   loading: loadingGame,
   loadMore: loadMoreGame,
-} = useList(ApiMemberGameList, {}, { page_size: VITE_CASINO_GAME_PAGE_SIZE })
+} = useList(ApiMemberGameList)
 // 推荐游戏
 const paramsRec = computed(() => ({ sort: sort.value }))
 const {
@@ -64,61 +38,77 @@ const {
   runAsync: runRecList,
   loading: loadingRec,
   loadMore: loadMoreRec,
-} = useList(ApiMemberGameRecList, {}, { page_size: VITE_CASINO_GAME_PAGE_SIZE })
+} = useList(ApiMemberGameRecList)
+const paramsCate = computed(() => ({ cid: cid.value }))
+const {
+  list: cateList,
+  total: cateTotal,
+  runAsync: runCateGames,
+  loading: loadingCate,
+  loadMore: loadMoreCate,
+} = useList(ApiMemberGameCateGames)
 // 页面数据
 const list = computed(() => {
-  if (isLive.value || isSlot.value || isProvider.value)
+  if (isProvider.value)
     return gameList.value
   else if (isRec.value)
     return recList.value
+  else if (isCat.value)
+    return cateList.value
+
   return []
 })
 const total = computed(() => {
-  if (isLive.value || isSlot.value || isProvider.value)
+  if (isProvider.value)
     return gameTotal.value
   else if (isRec.value)
     return recTotal.value
+  else if (isCat.value)
+    return cateTotal.value
   return 0
 })
 const loading = computed(() => {
-  if (isLive.value || isSlot.value || isProvider.value)
+  if (isProvider.value)
     return loadingGame.value
   else if (isRec.value)
     return loadingRec.value
+  else if (isCat.value)
+    return loadingCate.value
   return false
 })
 const push = computed(() => {
-  if (isLive.value || isSlot.value || isProvider.value)
+  if (isProvider.value)
     return loadMoreGame
   else if (isRec.value)
     return loadMoreRec
+  else if (isCat.value)
+    return loadMoreCate
   return () => { }
 })
 
 // 获取数据
 function getData() {
-  if (isLive.value || isSlot.value || isProvider.value)
+  if (isProvider.value)
     runGameList(paramsGame.value)
   else if (isRec.value)
     runRecList(paramsRec.value)
+  else if (isCat.value)
+    runCateGames(paramsCate.value)
 }
 // 游戏提供商选择变化
 function onPlatTypeChecked(v: string) {
   runGameList({ ...paramsGame.value, platform_id: v })
 }
 // 排序变化
-function onSortChange(v: any) {
-  sort.value = v
-  getData()
-}
+// function onSortChange(v: any) {
+//   sort.value = v
+//   getData()
+// }
 
 // 路由变化
 const stop = watch(route, (a) => {
   currentType.value = a.params.gameType.toString()
-  sort.value = currentType.value
-    === EnumCasinoGameType.LIVE
-    ? EnumCasinoSortType.recommend
-    : EnumCasinoSortType.hot
+  sort.value = EnumCasinoSortType.recommend
   getData()
 })
 onBeforeRouteLeave(() => {
@@ -126,11 +116,12 @@ onBeforeRouteLeave(() => {
 })
 
 // 初始化
-if (isLive.value || isSlot.value || isProvider.value)
+if (isProvider.value)
   await application.allSettled([runGameList(paramsGame.value)])
-
 else if (isRec.value)
   await application.allSettled([runRecList(paramsRec.value)])
+else if (isCat.value)
+  await application.allSettled([runCateGames(paramsCate.value)])
 </script>
 
 <template>
@@ -146,7 +137,7 @@ else if (isRec.value)
               </h1>
             </div>
             <div class="right">
-              <BaseImage :url="`/img/casino/group-banner-${bannerImg}.png`" />
+              <BaseImage url="/img/casino/group-banner-default.png" />
             </div>
           </div>
         </div>
@@ -156,9 +147,7 @@ else if (isRec.value)
       </div>
       <div class="mt-24">
         <AppGroupFilter
-          :game-type="currentType"
-          :sort-type="sort"
-          @sort-type-change="onSortChange"
+          :game-type="currentType" :sort-type="sort"
           @plat-type-checked="onPlatTypeChecked"
         />
       </div>
@@ -168,9 +157,8 @@ else if (isRec.value)
       <div class="load-more mt-24">
         <AppPercentage :total="total" :percentage="list?.length" />
         <BaseButton
-          v-show="list && list?.length < total"
-          size="md"
-          :loading="loading" @click="push"
+          v-show="list && list?.length < total" size="md" :loading="loading"
+          @click="push"
         >
           <div>
             {{ $t('load_more') }}

@@ -21,6 +21,7 @@ declare global {
   const ApiMemberForgetPassword: typeof import('./apis/index')['ApiMemberForgetPassword']
   const ApiMemberFrontLoginLogList: typeof import('./apis/index')['ApiMemberFrontLoginLogList']
   const ApiMemberGameCate: typeof import('./apis/index')['ApiMemberGameCate']
+  const ApiMemberGameCateGames: typeof import('./apis/index')['ApiMemberGameCateGames']
   const ApiMemberGameDetail: typeof import('./apis/index')['ApiMemberGameDetail']
   const ApiMemberGameList: typeof import('./apis/index')['ApiMemberGameList']
   const ApiMemberGameLobby: typeof import('./apis/index')['ApiMemberGameLobby']
@@ -478,6 +479,7 @@ declare module 'vue' {
     readonly ApiMemberForgetPassword: UnwrapRef<typeof import('./apis/index')['ApiMemberForgetPassword']>
     readonly ApiMemberFrontLoginLogList: UnwrapRef<typeof import('./apis/index')['ApiMemberFrontLoginLogList']>
     readonly ApiMemberGameCate: UnwrapRef<typeof import('./apis/index')['ApiMemberGameCate']>
+    readonly ApiMemberGameCateGames: UnwrapRef<typeof import('./apis/index')['ApiMemberGameCateGames']>
     readonly ApiMemberGameDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberGameDetail']>
     readonly ApiMemberGameList: UnwrapRef<typeof import('./apis/index')['ApiMemberGameList']>
     readonly ApiMemberGameLobby: UnwrapRef<typeof import('./apis/index')['ApiMemberGameLobby']>
@@ -929,6 +931,7 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberForgetPassword: UnwrapRef<typeof import('./apis/index')['ApiMemberForgetPassword']>
     readonly ApiMemberFrontLoginLogList: UnwrapRef<typeof import('./apis/index')['ApiMemberFrontLoginLogList']>
     readonly ApiMemberGameCate: UnwrapRef<typeof import('./apis/index')['ApiMemberGameCate']>
+    readonly ApiMemberGameCateGames: UnwrapRef<typeof import('./apis/index')['ApiMemberGameCateGames']>
     readonly ApiMemberGameDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberGameDetail']>
     readonly ApiMemberGameList: UnwrapRef<typeof import('./apis/index')['ApiMemberGameList']>
     readonly ApiMemberGameLobby: UnwrapRef<typeof import('./apis/index')['ApiMemberGameLobby']>

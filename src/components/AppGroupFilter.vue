@@ -1,8 +1,6 @@
 <script lang="ts" setup>
 import {
-  EnumCasinoApiGameType,
   EnumCasinoGameType,
-  EnumCasinoSortType,
 } from '~/utils/enums'
 
 interface Props {
@@ -13,26 +11,26 @@ const props = defineProps<Props>()
 
 const emit = defineEmits(['sortTypeChange', 'platTypeChecked'])
 
-const { t } = useI18n()
+// const { t } = useI18n()
 const { appContentWidth } = storeToRefs(useWindowStore())
 const { platformList } = storeToRefs(useAppStore())
 
 const groupFilterOuter = ref()
-const selectValue = ref(props.sortType)
-const selectOptions = [
-  { icon: 'spt-sort-az', label: 'A-Z', value: EnumCasinoSortType.nameA },
-  { icon: 'spt-sort-az', label: 'Z-A', value: EnumCasinoSortType.nameZ },
-  {
-    icon: 'chess-bonus-rounds',
-    label: t('casino_sort_popular'),
-    value: EnumCasinoSortType.hot,
-  },
-  {
-    icon: 'chess-slot-machine',
-    label: t('casino_sort_featured'),
-    value: EnumCasinoSortType.recommend,
-  },
-]
+// const selectValue = ref(props.sortType)
+// const selectOptions = [
+//   { icon: 'spt-sort-az', label: 'A-Z', value: EnumCasinoSortType.nameA },
+//   { icon: 'spt-sort-az', label: 'Z-A', value: EnumCasinoSortType.nameZ },
+//   {
+//     icon: 'chess-bonus-rounds',
+//     label: t('casino_sort_popular'),
+//     value: EnumCasinoSortType.hot,
+//   },
+//   {
+//     icon: 'chess-slot-machine',
+//     label: t('casino_sort_featured'),
+//     value: EnumCasinoSortType.recommend,
+//   },
+// ]
 const platformCheckedValues = ref([])
 
 const isCasinoGame = computed(() => {
@@ -48,16 +46,16 @@ const platformOptions = computed(() => {
     return { ...p, label, value, count, isChecked }
   }).filter((item) => {
     return props.gameType === 'live'
-      ? item.game_type === EnumCasinoApiGameType.LIVE
+      ? item.game_type === '1'
       : props.gameType === 'slot'
-        ? item.game_type === EnumCasinoApiGameType.SLOT
+        ? item.game_type === '3'
         : !!item
   })
 })
 
-function onSortSelect(v: string) {
-  emit('sortTypeChange', v)
-}
+// function onSortSelect(v: string) {
+//   emit('sortTypeChange', v)
+// }
 function onCheckedPlatform(v: string[]) {
   emit('platTypeChecked', v.join(','))
 }
@@ -135,7 +133,7 @@ function resetPlatformChecked() {
         </BaseButton>
       </template>
     </div>
-    <div class="flex-center-bet right">
+    <!-- <div class="flex-center-bet right">
       <div class="title flex-center-bet">
         <BaseIcon name="uni-bars" />
         <span class="txt">{{ $t('casino_filter_label_sort') }}</span>
@@ -155,7 +153,7 @@ function resetPlatformChecked() {
           </div>
         </template>
       </BaseSelect>
-    </div>
+    </div> -->
   </section>
 </template>
 

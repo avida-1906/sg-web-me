@@ -138,10 +138,10 @@ export interface IMemberReg {
   device_number: string
 }
 
-export interface CasinoGameItem {
+export interface CasinoLobbyGameItem {
   platform_id: string
+  id: string
   game_id: string
-  game_code: string
   img: string
   name: string
 }
@@ -379,6 +379,7 @@ export function ApiMemberGameRecList(params?: {
 
 /**
  * 大厅游戏数据
+ * ty = 1类别， ty = 2场馆
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=52e8029a-59b0-4669-a6c1-bc2d3c36d4e3
  */
 export function ApiMemberGameLobby() {
@@ -387,8 +388,7 @@ export function ApiMemberGameLobby() {
     name: string
     icon: string
     navs: {
-      /** 1类别 2场馆 */
-      ty: 1 | 2
+      ty: number
       cid: string
       platform_id: string
       name: string
@@ -401,7 +401,7 @@ export function ApiMemberGameLobby() {
       name: string
       icon: string
       total: number
-      games: CasinoGameItem[]
+      games: CasinoLobbyGameItem[]
     }[]
   }>('/member/game/lobby')
 }
@@ -416,23 +416,37 @@ export function ApiMemberGameCate(params: { cid: string }) {
     name: string
     icon: string
     total: number
-    games: CasinoGameItem[] | null
+    games: CasinoLobbyGameItem[] | null
   }>('/member/game/cate', params)
+}
+
+/**
+ * 游戏类别游戏列表（翻页）
+ */
+export function ApiMemberGameCateGames(params: {
+  cid: string
+  page?: number
+  page_size?: number
+}) {
+  return httpClient.get<IResponseList<{
+    platform_id: string
+    id: string
+    game_id: string
+    img: string
+    name: string
+    seq: number
+  }>>('/member/game/cate/games', params)
 }
 
 /**
    * 场馆列表
    * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=d8e0da7a-92e4-4c67-bc62-8549304bada9
    */
-export function ApiMemberPlatformList(
-  params?: {
-    page?: number
-    page_size?: number
-  }) {
+export function ApiMemberPlatformList() {
   return httpClient.get<IResponseList<{
     id: string
     en_name: string
-    game_type: number
+    game_type: string
     state: number
     maintained: number
     seq: number
@@ -447,7 +461,7 @@ export function ApiMemberPlatformList(
     th_name: string
     game_num: number
     name: string
-  }>>('/member/platform/list', params)
+  }>>('/member/platform/list?page=1&page_size=100&game_type=0')
 }
 
 /**

@@ -21,8 +21,7 @@ const gameProviderName = computed(() =>
   platformList.value?.find(a => a.id === props.gameInfo.platform_id)?.name ?? '-')
 
 function gameStart(item: Props['gameInfo']) {
-  const { game_id } = item
-  router.push(`/casino/games?id=${game_id}`)
+  router.push(`/casino/games?id=${item.id}`)
   if (isMobile.value)
     closeSearchH5()
 
