@@ -266,6 +266,7 @@ declare global {
   const useBrowserLocation: typeof import('@vueuse/core')['useBrowserLocation']
   const useCached: typeof import('@vueuse/core')['useCached']
   const useCasinoStore: typeof import('./stores/casino')['useCasinoStore']
+  const useChat: typeof import('./composables/useChat')['useChat']
   const useChatRulesDialog: typeof import('./composables/useDialogChatRules')['useChatRulesDialog']
   const useClipboard: typeof import('@vueuse/core')['useClipboard']
   const useCloned: typeof import('@vueuse/core')['useCloned']
@@ -725,6 +726,7 @@ declare module 'vue' {
     readonly useBrowserLocation: UnwrapRef<typeof import('@vueuse/core')['useBrowserLocation']>
     readonly useCached: UnwrapRef<typeof import('@vueuse/core')['useCached']>
     readonly useCasinoStore: UnwrapRef<typeof import('./stores/casino')['useCasinoStore']>
+    readonly useChat: UnwrapRef<typeof import('./composables/useChat')['useChat']>
     readonly useChatRulesDialog: UnwrapRef<typeof import('./composables/useDialogChatRules')['useChatRulesDialog']>
     readonly useClipboard: UnwrapRef<typeof import('@vueuse/core')['useClipboard']>
     readonly useCloned: UnwrapRef<typeof import('@vueuse/core')['useCloned']>
@@ -1178,6 +1180,7 @@ declare module '@vue/runtime-core' {
     readonly useBrowserLocation: UnwrapRef<typeof import('@vueuse/core')['useBrowserLocation']>
     readonly useCached: UnwrapRef<typeof import('@vueuse/core')['useCached']>
     readonly useCasinoStore: UnwrapRef<typeof import('./stores/casino')['useCasinoStore']>
+    readonly useChat: UnwrapRef<typeof import('./composables/useChat')['useChat']>
     readonly useChatRulesDialog: UnwrapRef<typeof import('./composables/useDialogChatRules')['useChatRulesDialog']>
     readonly useClipboard: UnwrapRef<typeof import('@vueuse/core')['useClipboard']>
     readonly useCloned: UnwrapRef<typeof import('@vueuse/core')['useCloned']>
