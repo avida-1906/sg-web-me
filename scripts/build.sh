@@ -13,6 +13,8 @@ git pull origin master --no-rebase
 serverDir="/home/rocky/sg/html/member"
 # 服务器ip
 serverIp="43.198.7.164"
+# fat 服务器ip
+fatServerIp="43.198.40.130"
 # 服务器用户名
 serverUser="rocky"
 
@@ -43,4 +45,5 @@ echo "构建完成"
 
 echo "开始上传..."
 rsync -avz ./dist/* $serverUser@$serverIp:$serverDir
+rsync -avz ./dist/* $serverUser@$fatServerIp:$serverDir
 echo "上传完成"
