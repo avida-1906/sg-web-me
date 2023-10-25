@@ -421,6 +421,17 @@ export function ApiMemberGameCate(params: { cid: string }) {
 }
 
 /**
+ * 游戏类别游戏列表（翻页）
+ */
+export function ApiMemberGameCateGames(params: {
+  cid: string
+  page: number
+  page_size: number
+}) {
+  return httpClient.get('/member/game/cate/games', params)
+}
+
+/**
    * 场馆列表
    * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=d8e0da7a-92e4-4c67-bc62-8549304bada9
    */
