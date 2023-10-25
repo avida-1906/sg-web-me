@@ -739,7 +739,6 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
   .currency-types {
     width: 100%;
     height: 100%;
-    color: var(--tg-text-dark);
     font-size: var(--tg-font-size-default);
     font-weight: var(--tg-font-weight-semibold);
 
