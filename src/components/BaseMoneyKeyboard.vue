@@ -1,31 +1,37 @@
 <script setup lang='ts'>
 interface Props {
   options?: ISelectOption[]
+  modelValue?: string
 }
 
 withDefaults(defineProps<Props>(), {
   options: () => [
-    { label: '100', value: 100 },
-    { label: '500', value: 500 },
-    { label: '1000', value: 1000 },
-    { label: '5000', value: 5000 },
-    { label: '10000', value: 10000 },
-    { label: '50000', value: 50000 },
-    { label: '100000', value: 100000 },
-    { label: '200000', value: 200000 },
+    { label: '100', value: '100' },
+    { label: '500', value: '500' },
+    { label: '1000', value: '1000' },
+    { label: '5000', value: '5000' },
+    { label: '10000', value: '10000' },
+    { label: '50000', value: '50000' },
+    { label: '100000', value: '100000' },
+    { label: '200000', value: '200000' },
   ],
 })
 
-const emit = defineEmits(['clickKey'])
+const emit = defineEmits(['update:modelValue'])
 
 function handleKey(item: ISelectOption) {
-  emit('clickKey', item)
+  emit('update:modelValue', item.value)
 }
 </script>
 
 <template>
   <div class="base-money-keyboard">
-    <div v-for="item of options" :key="item.label" class="item-key">
+    <div
+      v-for="item of options"
+      :key="item.label"
+      class="item-key"
+      :class="{ active: item.value === modelValue }"
+    >
       <BaseButton
         type="text"
         style="width: 100%;color:var(--tg-text-white);font-weight: 500;"
@@ -48,6 +54,10 @@ function handleKey(item: ISelectOption) {
     border: 2px solid var(--tg-secondary-main);
     background: var(--tg-secondary-dark);
     box-shadow: var(--tg-box-shadow);
+    &.active{
+      background-color: var(--tg-text-blue);
+      border: 2px solid var(--tg-text-blue);
+    }
   }
 }
 </style>

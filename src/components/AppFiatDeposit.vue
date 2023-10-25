@@ -18,7 +18,7 @@ const payeeInformation = ref({
 })
 const currentAisle = ref('')
 const username = ref('')
-const amount = ref('')
+const amount = ref('100')
 
 const {
   run: runPaymentMethodList,
@@ -156,7 +156,7 @@ watch(() => currentType.value, (newValue) => {
             </div>
           </BaseLabel>
           <BaseInput v-model="amount" label="充值金额" />
-          <BaseMoneyKeyboard />
+          <BaseMoneyKeyboard v-model="amount" />
           <BaseButton bg-style="primary" size="md">
             确认支付
           </BaseButton>
