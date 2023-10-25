@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import {
-  EnumCasinoApiGameType,
   EnumCasinoGameType,
   EnumCasinoSortType,
 } from '~/utils/enums'
@@ -48,9 +47,9 @@ const platformOptions = computed(() => {
     return { ...p, label, value, count, isChecked }
   }).filter((item) => {
     return props.gameType === 'live'
-      ? item.game_type === EnumCasinoApiGameType.LIVE
+      ? item.game_type === '1'
       : props.gameType === 'slot'
-        ? item.game_type === EnumCasinoApiGameType.SLOT
+        ? item.game_type === '3'
         : !!item
   })
 })

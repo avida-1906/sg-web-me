@@ -5,7 +5,6 @@ defineOptions({
 
 const { isMobile } = storeToRefs(useWindowStore())
 const { casinoNav, casinoGameList } = storeToRefs(useCasinoStore())
-
 const router = useRouter()
 
 const tab = ref('all')
@@ -17,15 +16,7 @@ const currentNav = computed(() => {
 const isCat = computed(() => currentNav.value.ty === 1) // 类别
 const isPlat = computed(() => currentNav.value.ty === 2) // 场馆
 // 类别数据
-const { data: catGameData, run: runGameCate } = useRequest(ApiMemberGameCate, {
-  cacheKey: (params) => {
-    if (params && params[0])
-      return `CatGameData-${params[0]}`
-
-    return ''
-  },
-  staleTime: 60 * 60 * 1000,
-})
+const { data: catGameData, run: runGameCate } = useRequest(ApiMemberGameCate)
 // 场馆数据
 const platParams = computed(() => ({
   page: 1,
@@ -36,15 +27,7 @@ const {
   list: platGameList,
   total: platTotal,
   run: runPlatData,
-} = useList(ApiMemberGameList, {
-  cacheKey: (params) => {
-    if (params && params[0])
-      return `GameList-${params[0].platform_id}`
-
-    return ''
-  },
-  staleTime: 60 * 60 * 1000,
-})
+} = useList(ApiMemberGameList)
 const catGameList = computed(() => {
   if (isCat.value)
     return catGameData.value && catGameData.value.games ? catGameData.value.games : []
@@ -65,17 +48,17 @@ const catGameTotal = computed(() => {
 })
 
 function onTabChange() {
-  if (tab.value === 'all')
-    return
-
   if (isCat.value)
-    return runGameCate({ cid: currentNav.value.cid })
+    runGameCate({ cid: currentNav.value.cid })
 
-  if (isPlat.value)
-    return runPlatData(platParams.value)
+  else if (isPlat.value)
+    runPlatData(platParams.value)
 }
 function viewMoreGames() {
-  router.push(`/casino/group/category?cid=${currentNav.value.cid}&ty=${currentNav.value.ty}`)
+  if (currentNav.value.ty === 1)
+    router.push(`/casino/group/category?cid=${currentNav.value.cid}`)
+  else if (currentNav.value.ty === 2)
+    router.push(`/casino/group/provider?pid=${currentNav.value.platform_id}&name=${currentNav.value.label}`)
 }
 </script>
 
@@ -104,12 +87,14 @@ function viewMoreGames() {
             :data="item.games"
             :cid="item.cid"
             :ty="item.ty"
+            :pid="item.platform_id"
+            :plat-name="item.name"
           />
         </div>
       </Transition>
       <!-- 其他 -->
       <Transition name="tab-fade">
-        <div v-show="!showAll" class="list-wrap">
+        <div class="list-wrap">
           <div class="title">
             <BaseIcon
               :name="currentNav.icon"

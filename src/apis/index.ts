@@ -379,6 +379,7 @@ export function ApiMemberGameRecList(params?: {
 
 /**
  * 大厅游戏数据
+ * ty = 1类别， ty = 2场馆
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=52e8029a-59b0-4669-a6c1-bc2d3c36d4e3
  */
 export function ApiMemberGameLobby() {
@@ -427,7 +428,7 @@ export function ApiMemberPlatformList() {
   return httpClient.get<IResponseList<{
     id: string
     en_name: string
-    game_type: number
+    game_type: string
     state: number
     maintained: number
     seq: number
