@@ -101,23 +101,26 @@ function viewMoreGames() {
       <div v-if="loadingCate || loadingPlat " class="loading">
         <BaseLoading />
       </div>
-      <div v-else class="list-wrap">
-        <div class="title">
-          <BaseIcon
-            :name="currentNav.icon"
-          />
-          <span>{{ currentNav.label }}</span>
+      <template v-else>
+        <div v-show="!showAll" class="list-wrap">
+          <div class="title">
+            <BaseIcon
+              :name="currentNav.icon"
+            />
+            <span>{{ currentNav.label }}</span>
+          </div>
+          <AppCardList :list="catGameList" />
+          <div class="more">
+            <BaseButton
+              size="md"
+              @click="viewMoreGames"
+            >
+              {{ t('view_all') }} {{ catGameTotal }} {{ currentNav?.label }}
+            </BaseButton>
+          </div>
         </div>
-        <AppCardList :list="catGameList" />
-        <div class="more">
-          <BaseButton
-            size="md"
-            @click="viewMoreGames"
-          >
-            {{ t('view_all') }} {{ catGameTotal }} {{ currentNav?.label }}
-          </BaseButton>
-        </div>
-      </div>
+      </template>
+
       <AppProviderSlider />
     </div>
   </div>
