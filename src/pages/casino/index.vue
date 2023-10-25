@@ -17,7 +17,11 @@ const currentNav = computed(() => {
 const isCat = computed(() => currentNav.value.ty === 1) // 类别
 const isPlat = computed(() => currentNav.value.ty === 2) // 场馆
 // 类别数据
-const { data: catGameData, run: runGameCate } = useRequest(ApiMemberGameCate)
+const {
+  data: catGameData,
+  run: runGameCate,
+  loading: loadingCate,
+} = useRequest(ApiMemberGameCate)
 // 场馆数据
 const platParams = computed(() => ({
   page: 1,
@@ -28,6 +32,7 @@ const {
   list: platGameList,
   total: platTotal,
   run: runPlatData,
+  loading: loadingPlat,
 } = useList(ApiMemberGameList)
 const catGameList = computed(() => {
   if (isCat.value)
@@ -93,25 +98,26 @@ function viewMoreGames() {
         </div>
       </Transition>
       <!-- 其他 -->
-      <Transition v-show="!showAll" name="tab-fade">
-        <div class="list-wrap">
-          <div class="title">
-            <BaseIcon
-              :name="currentNav.icon"
-            />
-            <span>{{ currentNav.label }}</span>
-          </div>
-          <AppCardList :list="catGameList" />
-          <div class="more">
-            <BaseButton
-              size="md"
-              @click="viewMoreGames"
-            >
-              {{ t('view_all') }} {{ catGameTotal }} {{ currentNav?.label }}
-            </BaseButton>
-          </div>
+      <div v-if="loadingCate || loadingPlat " class="loading">
+        <BaseLoading />
+      </div>
+      <div v-else class="list-wrap">
+        <div class="title">
+          <BaseIcon
+            :name="currentNav.icon"
+          />
+          <span>{{ currentNav.label }}</span>
         </div>
-      </Transition>
+        <AppCardList :list="catGameList" />
+        <div class="more">
+          <BaseButton
+            size="md"
+            @click="viewMoreGames"
+          >
+            {{ t('view_all') }} {{ catGameTotal }} {{ currentNav?.label }}
+          </BaseButton>
+        </div>
+      </div>
       <AppProviderSlider />
     </div>
   </div>
@@ -121,6 +127,13 @@ function viewMoreGames() {
 </template>
 
 <style lang='scss' scoped>
+.loading{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+}
 .list-wrap {
   margin-top: var(--tg-spacing-24);
 
