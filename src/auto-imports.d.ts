@@ -30,6 +30,8 @@ declare global {
   const ApiMemberLogout: typeof import('./apis/index')['ApiMemberLogout']
   const ApiMemberPasswordUpdate: typeof import('./apis/index')['ApiMemberPasswordUpdate']
   const ApiMemberPayPasswordUpdate: typeof import('./apis/index')['ApiMemberPayPasswordUpdate']
+  const ApiMemberPaymentMerchantList: typeof import('./apis/index')['ApiMemberPaymentMerchantList']
+  const ApiMemberPaymentMethodList: typeof import('./apis/index')['ApiMemberPaymentMethodList']
   const ApiMemberPlatformList: typeof import('./apis/index')['ApiMemberPlatformList']
   const ApiMemberReg: typeof import('./apis/index')['ApiMemberReg']
   const ApiMemberSendMailCode: typeof import('./apis/index')['ApiMemberSendMailCode']
@@ -485,6 +487,8 @@ declare module 'vue' {
     readonly ApiMemberLogout: UnwrapRef<typeof import('./apis/index')['ApiMemberLogout']>
     readonly ApiMemberPasswordUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberPasswordUpdate']>
     readonly ApiMemberPayPasswordUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberPayPasswordUpdate']>
+    readonly ApiMemberPaymentMerchantList: UnwrapRef<typeof import('./apis/index')['ApiMemberPaymentMerchantList']>
+    readonly ApiMemberPaymentMethodList: UnwrapRef<typeof import('./apis/index')['ApiMemberPaymentMethodList']>
     readonly ApiMemberPlatformList: UnwrapRef<typeof import('./apis/index')['ApiMemberPlatformList']>
     readonly ApiMemberReg: UnwrapRef<typeof import('./apis/index')['ApiMemberReg']>
     readonly ApiMemberSendMailCode: UnwrapRef<typeof import('./apis/index')['ApiMemberSendMailCode']>
@@ -934,6 +938,8 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberLogout: UnwrapRef<typeof import('./apis/index')['ApiMemberLogout']>
     readonly ApiMemberPasswordUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberPasswordUpdate']>
     readonly ApiMemberPayPasswordUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberPayPasswordUpdate']>
+    readonly ApiMemberPaymentMerchantList: UnwrapRef<typeof import('./apis/index')['ApiMemberPaymentMerchantList']>
+    readonly ApiMemberPaymentMethodList: UnwrapRef<typeof import('./apis/index')['ApiMemberPaymentMethodList']>
     readonly ApiMemberPlatformList: UnwrapRef<typeof import('./apis/index')['ApiMemberPlatformList']>
     readonly ApiMemberReg: UnwrapRef<typeof import('./apis/index')['ApiMemberReg']>
     readonly ApiMemberSendMailCode: UnwrapRef<typeof import('./apis/index')['ApiMemberSendMailCode']>

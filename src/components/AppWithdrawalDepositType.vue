@@ -1,17 +1,15 @@
 <script setup lang='ts'>
 interface Props {
-  /** '1' 银行卡， '2' pix 除了巴西其他国家都是银行卡 */
-  modelValue: '1' | '2'
+  modelValue: string
+  currentType: {
+    label: string
+    value: string
+    icon?: string
+  }[]
 }
 const props = withDefaults(defineProps<Props>(), {
-  modelValue: '1',
 })
 const emit = defineEmits(['update:modelValue'])
-
-const bankTypeData = ref([{ label: '银行转账', icon: 'fiat-bank', value: '1' }])
-const pixTypeData = ref([{ label: 'PIX', icon: 'fiat-bank', value: '2' }])
-const currentTypeBanks = computed(() =>
-  props.modelValue === '1' ? bankTypeData.value : pixTypeData.value)
 
 const changeType = function (type: string) {
   emit('update:modelValue', type)
@@ -21,11 +19,11 @@ const changeType = function (type: string) {
 <template>
   <div class="scroll-x withdrawal-deposit-type">
     <div
-      v-for="item in currentTypeBanks" :key="item.value" class="type-btn"
+      v-for="item in currentType" :key="item.value" class="type-btn"
       :class="item.value === props.modelValue ? 'active' : '' "
       @click="changeType(item.value)"
     >
-      <BaseIcon :name="item.icon" />
+      <BaseIcon :name="item.icon ?? 'fiat-bank'" />
       <span>{{ item.label }}</span>
     </div>
   </div>

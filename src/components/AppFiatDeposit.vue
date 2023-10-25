@@ -1,12 +1,13 @@
 <script setup lang='ts'>
-interface IAisleData {
-  label: string
-  value: string
-}
+import type { CurrencyData } from '~/composables/useCurrencyData'
 
+interface Props {
+  activeCurrency: CurrencyData
+}
+const props = defineProps<Props>()
 const emit = defineEmits(['show'])
 
-const currentType = ref<'1' | '2'>('1')
+const currentType = ref('')
 const bankStep = ref<'1' | '2'>('1')
 const payeeInformation = ref({
   name: '张三',
@@ -15,14 +16,47 @@ const payeeInformation = ref({
   accountOpeningBank: '开户网点：天津农商银行',
   amount: '200,000.00',
 })
-const currentAisle = ref('2')
-const aisleData = ref<IAisleData[]>([
-  { label: 'XGS/支付宝-小额', value: '1' },
-  { label: 'XGS/支付宝-小额', value: '2' },
-  { label: 'XGS/支付宝-小额', value: '3' },
-])
+const currentAisle = ref('')
 const username = ref('')
 const amount = ref('')
+
+const {
+  run: runPaymentMethodList,
+  data: paymentMethodList,
+} = useRequest(ApiMemberPaymentMethodList)
+const {
+  run: runPaymentMerchantList,
+  data: paymentMerchantList,
+} = useRequest(ApiMemberPaymentMerchantList)
+
+const paymentMethodData = computed(() => {
+  if (paymentMethodList.value) {
+    currentType.value = paymentMethodList.value[0].id
+    return paymentMethodList.value.map((i) => {
+      return {
+        label: i.name,
+        value: i.id,
+      }
+    })
+  }
+  else {
+    currentType.value = ''
+    paymentMerchantList.value = undefined
+  }
+  return []
+})
+const paymentMerchantData = computed(() => {
+  if (paymentMerchantList.value) {
+    currentAisle.value = paymentMerchantList.value[0].id
+    return paymentMerchantList.value.map((i) => {
+      return {
+        label: i.name,
+        value: i.id,
+      }
+    })
+  }
+  return []
+})
 
 const nextStep = function () {
   emit('show', false)
@@ -38,15 +72,27 @@ const toCopy = function (item: string) {
 const changeAisle = function (value: string) {
   currentAisle.value = value
 }
+
+watch(() => props.activeCurrency, (newValue) => {
+  if (newValue)
+    runPaymentMethodList({ currency_id: newValue.cur })
+}, { immediate: true })
+watch(() => currentType.value, (newValue) => {
+  if (newValue)
+    runPaymentMerchantList({ id: currentType.value })
+})
 </script>
 
 <template>
   <div class="app-fiat-currency-deposit">
     <div class="deposit-wrap">
       <AppWithdrawalDepositType
+        v-if="paymentMethodData && paymentMethodData.length"
         v-model="currentType"
+        :current-type="paymentMethodData"
       />
-      <div v-if="currentType === '1'" class="type-online-bank">
+      <!-- 目前只支持3方，字段还不确定 -->
+      <div v-if="false" class="type-online-bank">
         <div v-if="bankStep === '1'" class="bank-first">
           <BaseLabel label="存款人姓名:" label-content="为及时到账，请务必输入正确的存款人姓名">
             <BaseInput v-model="username" />
@@ -95,10 +141,13 @@ const changeAisle = function (value: string) {
       </div>
       <div v-else class="type-other">
         <div class="other-first">
-          <BaseLabel label="通道选择">
+          <BaseLabel
+            v-if="paymentMerchantList && paymentMerchantList.length"
+            label="通道选择"
+          >
             <div class="other-aisles">
               <div
-                v-for="item in aisleData" :key="item.value" class="aisle"
+                v-for="item in paymentMerchantData" :key="item.value" class="aisle"
                 :class="currentAisle === item.value ? 'active' : ''"
                 @click="changeAisle(item.value)"
               >
@@ -106,7 +155,7 @@ const changeAisle = function (value: string) {
               </div>
             </div>
           </BaseLabel>
-          <BaseInput v-model="username" label="充值金额:￥" />
+          <BaseInput v-model="amount" label="充值金额" />
           <BaseMoneyKeyboard />
           <BaseButton bg-style="primary" size="md">
             确认支付
