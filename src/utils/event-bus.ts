@@ -3,5 +3,5 @@
  * @module utils/event-bus
  */
 
-/** SOCKET 通知 */
-export const SOCKET_EVENT_BUS = 'SOCKET_EVENT_BUS'
+/** 聊天室消息 通知 */
+export const CHAT_EVENT_BUS = 'CHAT_EVENT_BUS'
