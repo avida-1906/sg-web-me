@@ -86,6 +86,9 @@ const messages: Array<ChatMessageInfo> = [
 const scrollMsg = ref()
 const { bool: showMoreBar, setFalse: setMFalse, setTrue: setMTrue } = useBoolean(false)
 
+function roomChange(room: string) {
+  console.log('room changed === ', room)
+}
 function messageWrapScroll() {
   const { height } = scrollMsg.value.getBoundingClientRect()
   if (scrollMsg.value.scrollHeight - scrollMsg.value.scrollTop - height > 100)
@@ -106,7 +109,7 @@ onMounted(() => {
 <template>
   <section class="app-chat-outer">
     <div class="header">
-      <AppChatHeader />
+      <AppChatHeader @change="roomChange" />
     </div>
     <div class="messages">
       <div ref="scrollMsg" class="scroll-y message-content" @scroll="messageWrapScroll">
