@@ -1,6 +1,14 @@
 <script setup lang='ts'>
 import type { CurrencyData } from '~/composables/useCurrencyData'
 
+interface IPaymentMerchantData {
+  label: string
+  value: string
+  type: number
+  amount_fixed: string
+  often_amount: string
+}
+type TOftenAmount = Pick<IPaymentMerchantData, 'label' | 'value'>
 interface Props {
   activeCurrency: CurrencyData
 }
@@ -17,8 +25,10 @@ const payeeInformation = ref({
   amount: '200,000.00',
 })
 const currentAisle = ref('')
+const currentAisleItem = ref<IPaymentMerchantData>()
 const username = ref('')
 const amount = ref('100')
+const oftenAmount = ref<TOftenAmount[]>()
 
 const {
   run: runPaymentMethodList,
@@ -45,13 +55,38 @@ const paymentMethodData = computed(() => {
   }
   return []
 })
+
+const strToArray = function (amounts: string) {
+  const temp = amounts.split(',').filter(str => str.trim() !== '')
+  return temp.map((i) => {
+    return {
+      label: i,
+      value: i,
+    }
+  })
+}
+
 const paymentMerchantData = computed(() => {
   if (paymentMerchantList.value) {
     currentAisle.value = paymentMerchantList.value[0].id
+    currentAisleItem.value = {
+      label: paymentMerchantList.value[0].name,
+      value: paymentMerchantList.value[0].id,
+      type: paymentMerchantList.value[0].amount_type,
+      amount_fixed: paymentMerchantList.value[0].amount_fixed,
+      often_amount: paymentMerchantList.value[0].often_amount,
+    }
+    oftenAmount.value = strToArray(paymentMerchantList.value[0].amount_type === 1
+      ? paymentMerchantList.value[0].amount_fixed
+      : paymentMerchantList.value[0].often_amount,
+    )
     return paymentMerchantList.value.map((i) => {
       return {
         label: i.name,
         value: i.id,
+        type: i.amount_type,
+        amount_fixed: i.amount_fixed,
+        often_amount: i.often_amount,
       }
     })
   }
@@ -69,8 +104,15 @@ const previous = function () {
 const toCopy = function (item: string) {
   application.copy(item)
 }
-const changeAisle = function (value: string) {
-  currentAisle.value = value
+const changeAisle = function (item: IPaymentMerchantData) {
+  currentAisle.value = item.value
+  currentAisleItem.value = item
+  oftenAmount.value = strToArray(item.type === 1 ? item.amount_fixed : item.often_amount)
+}
+function depositSubmit() {
+  console.log('amount', amount.value)
+  console.log('currentType', currentType.value)
+  console.log('currentAisle', currentAisle.value)
 }
 
 watch(() => props.activeCurrency, (newValue) => {
@@ -149,15 +191,19 @@ watch(() => currentType.value, (newValue) => {
               <div
                 v-for="item in paymentMerchantData" :key="item.value" class="aisle"
                 :class="currentAisle === item.value ? 'active' : ''"
-                @click="changeAisle(item.value)"
+                @click="changeAisle(item)"
               >
                 <span>{{ item.label }}</span>
               </div>
             </div>
           </BaseLabel>
-          <BaseInput v-model="amount" label="充值金额" />
-          <BaseMoneyKeyboard v-model="amount" />
-          <BaseButton bg-style="primary" size="md">
+          <BaseInput v-if="currentAisleItem?.type !== 1" v-model="amount" label="充值金额" />
+          <BaseMoneyKeyboard
+            v-if="oftenAmount && oftenAmount.length"
+            v-model="amount"
+            :options="oftenAmount"
+          />
+          <BaseButton bg-style="primary" size="md" @click="depositSubmit">
             确认支付
           </BaseButton>
         </div>

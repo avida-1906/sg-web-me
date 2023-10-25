@@ -34,9 +34,11 @@ const changeType = function (type: string) {
   display: flex;
   gap: .75rem;
   padding: var(--tg-spacing-2) 0;
+  flex-wrap: wrap;
   .type-btn{
     background: var(--tg-secondary-main);
-    min-width: 102px;
+    // min-width: 102px;
+    width: auto;
     padding: 0 var(--tg-spacing-12);
     text-align: center;
     height: 40px;
