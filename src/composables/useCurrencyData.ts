@@ -62,6 +62,16 @@ export const currencyConfig: Record<EnumCurrencyKey, CurrencyValue> = {
     cur: '707',
     bankTree: '',
   },
+  ETH: {
+    prefix: '',
+    cur: '708',
+    bankTree: '',
+  },
+  BNB: {
+    prefix: '',
+    cur: '709',
+    bankTree: '',
+  },
 }
 
 const {
@@ -100,7 +110,6 @@ export function useCurrencyData() {
 
     const list: CurrencyData[] = []
     for (const key in currency) {
-      console.log(key)
       const type = key as EnumCurrencyKey
       const balanceNumber = currency[type]
       if (Object.values(EnumCurrency).includes(type)) {
@@ -149,6 +158,8 @@ export function useCurrencyData() {
     const virtualList: EnumCurrencyKey[] = [
       'USDT',
       'BTC',
+      'ETH',
+      'BNB',
     ]
     return virtualList.includes(currency)
   }

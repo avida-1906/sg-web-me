@@ -782,7 +782,7 @@ export function ApiMemberPaymentMerchantList(params: {
     /** 通道最小充值金额 */
     amount_min: string
     /** 金额种类:1:固定2:范围 */
-    amount_type: string
+    amount_type: number
     /** 固定金额 */
     amount_fixed: string
     /** 常用金额,逗号隔开 */
