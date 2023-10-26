@@ -12,7 +12,7 @@ const { roomLang } = storeToRefs(chatStore)
 const { openChatRulesDialog } = useChatRulesDialog()
 const { openStatisticsDialog } = useStatisticsDialog()
 
-const maxMsgLen = 160
+const maxMsgLen = 512
 const msgInput = ref()
 const allEmojis = [
   'adesanya.webp',
@@ -185,7 +185,7 @@ function enterPress(event: KeyboardEvent) {
     <Transition>
       <div
         v-show="!sendLoading && emojis.length"
-        class="scroll-y wrap emoji-wrap layout-grid"
+        class="scroll-y emoji-wrap layout-grid wrap"
       >
         <div v-for="emo in emojis" :key="emo" class="button-wrap">
           <span class="box" @click="addEmoMsg(emo)">
