@@ -169,7 +169,8 @@ function sendMsg() {
     }
     return
   }
-  runSendMsg({ c: message.value, lang: roomLang.value })
+  if (message.value.length)
+    runSendMsg({ c: message.value, lang: roomLang.value })
 }
 
 function enterPress(event: KeyboardEvent) {

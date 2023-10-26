@@ -7,6 +7,8 @@ const chatStore = useChatStore()
 const { chatRoomList, room, topic, hideChat } = storeToRefs(chatStore)
 const { closeRightSidebar } = useRightSidebar()
 
+const chatWin = ref()
+
 emit('change', room.value.value)
 
 function chooseRoom(item: Room) {
@@ -25,9 +27,23 @@ function close() {
 }
 
 function openChat() {
-  window.open('/chat', '_blank', 'popup,width=370,height=720')
+  chatWin.value = window.open('/chat', '_blank', 'popup,width=370,height=720')
   chatStore.toggleChat()
 }
+
+watch(hideChat, (val) => {
+  if (val) {
+    socketClient.removeSubscribe(topic.value)
+    socketClient.close()
+  }
+  else {
+    chatWin.value.close()
+    setTimeout(() => {
+      socketClient.connect()
+      socketClient.addSubscribe(topic.value)
+    }, 0)
+  }
+})
 
 onMounted(() => {
   useEventBus(MQTT_CONNECT_SUCCESS_BUS).on(() => {
