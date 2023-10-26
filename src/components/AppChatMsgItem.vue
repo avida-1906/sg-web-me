@@ -26,8 +26,8 @@ withDefaults(defineProps<Props>(), {})
     </div>
     <div class="content">
       <p>
-        <AppChatUserTags :user-info="msgInfo.user" />
-        <span>: <AppChatMsgRender :msg="msgInfo.msg" /></span>
+        <AppChatUserTags :user-info="msgInfo.user" />:
+        <AppChatMsgRender :msg="msgInfo.msg" />
         <!-- <AppChatMsgOrder type="casino" order="982964823672423" />
         <AppChatMsgAt :user="{ name: 'abce24234', id: '123kjh24sdfs' }" />
         <BaseImage alt=":monkas:" url="/img/emoji/monkas.webp" class="emoji" /> -->
@@ -61,6 +61,7 @@ withDefaults(defineProps<Props>(), {})
       font-size: var(--tg-font-size-default);
       font-weight: var(--tg-font-weight-normal);
       line-height: 1.5;
+      word-break: break-all;
       .emoji {
         width: 24px;
         display: inline-block;
