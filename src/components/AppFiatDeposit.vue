@@ -52,6 +52,7 @@ const paymentMethodData = computed(() => {
   else {
     currentType.value = ''
     paymentMerchantList.value = undefined
+    oftenAmount.value = []
   }
   return []
 })
@@ -92,6 +93,12 @@ const paymentMerchantData = computed(() => {
   }
   return []
 })
+const havePaymentMethod = computed(() => {
+  return paymentMethodList.value && paymentMethodList.value.length
+})
+const havePaymentMerchant = computed(() => {
+  return paymentMerchantList.value && paymentMerchantList.value.length
+})
 
 const nextStep = function () {
   emit('show', false)
@@ -129,85 +136,94 @@ watch(() => currentType.value, (newValue) => {
   <div class="app-fiat-currency-deposit">
     <div class="deposit-wrap">
       <AppWithdrawalDepositType
-        v-if="paymentMethodData && paymentMethodData.length"
+        v-if="havePaymentMethod"
         v-model="currentType"
         :current-type="paymentMethodData"
       />
-      <!-- 目前只支持3方，字段还不确定 -->
-      <div v-if="false" class="type-online-bank">
-        <div v-if="bankStep === '1'" class="bank-first">
-          <BaseLabel label="存款人姓名:" label-content="为及时到账，请务必输入正确的存款人姓名">
-            <BaseInput v-model="username" />
-          </BaseLabel>
-          <BaseInput v-model="amount" label="充值金额" />
-          <BaseMoneyKeyboard />
-          <BaseButton bg-style="primary" size="md" @click="nextStep">
-            确认支付
-          </BaseButton>
-        </div>
-        <div v-else class="bank-second">
-          <p class="second-title">
-            收款人信息
-          </p>
-          <p
-            v-for="item, index in payeeInformation"
-            :key="index"
-            class="copy-row"
-            @click="toCopy(item)"
-          >
-            {{ item }}
-            <BaseIcon name="uni-doc" />
-          </p>
-          <p class="second-tips">
-            转账金额务必与订单金额一致
-          </p>
-          <div class="second-btns">
-            <BaseButton
-              type="line"
-              style="border-color: var(--tg-text-blue);
-              color: var(--tg-text-blue);"
-              size="md"
-              @click="previous"
+      <template v-if="havePaymentMethod">
+        <!-- 目前只支持3方，字段还不确定 -->
+        <div v-if="false" class="type-online-bank">
+          <div v-if="bankStep === '1'" class="bank-first">
+            <BaseLabel label="存款人姓名:" label-content="为及时到账，请务必输入正确的存款人姓名">
+              <BaseInput v-model="username" />
+            </BaseLabel>
+            <BaseInput v-model="amount" label="充值金额" />
+            <BaseMoneyKeyboard />
+            <BaseButton bg-style="primary" size="md" @click="nextStep">
+              确认支付
+            </BaseButton>
+          </div>
+          <div v-else class="bank-second">
+            <p class="second-title">
+              收款人信息
+            </p>
+            <p
+              v-for="item, index in payeeInformation"
+              :key="index"
+              class="copy-row"
+              @click="toCopy(item)"
             >
-              取消存款申请
-            </BaseButton>
-            <BaseButton bg-style="primary" size="md">
-              我已存款
-            </BaseButton>
-          </div>
-          <div class="second-tips2">
-            <BaseIcon name="uni-error" />
-            请转账成功后务必及时确认！否则可能造成延迟上分！
-          </div>
-        </div>
-      </div>
-      <div v-else class="type-other">
-        <div class="other-first">
-          <BaseLabel
-            v-if="paymentMerchantList && paymentMerchantList.length"
-            label="通道选择"
-          >
-            <div class="other-aisles">
-              <div
-                v-for="item in paymentMerchantData" :key="item.value" class="aisle"
-                :class="currentAisle === item.value ? 'active' : ''"
-                @click="changeAisle(item)"
+              {{ item }}
+              <BaseIcon name="uni-doc" />
+            </p>
+            <p class="second-tips">
+              转账金额务必与订单金额一致
+            </p>
+            <div class="second-btns">
+              <BaseButton
+                type="line"
+                style="border-color: var(--tg-text-blue);
+                color: var(--tg-text-blue);"
+                size="md"
+                @click="previous"
               >
-                <span>{{ item.label }}</span>
-              </div>
+                取消存款申请
+              </BaseButton>
+              <BaseButton bg-style="primary" size="md">
+                我已存款
+              </BaseButton>
             </div>
-          </BaseLabel>
-          <BaseInput v-if="currentAisleItem?.type !== 1" v-model="amount" label="充值金额" />
-          <BaseMoneyKeyboard
-            v-if="oftenAmount && oftenAmount.length"
-            v-model="amount"
-            :options="oftenAmount"
-          />
-          <BaseButton bg-style="primary" size="md" @click="depositSubmit">
-            确认支付
-          </BaseButton>
+            <div class="second-tips2">
+              <BaseIcon name="uni-error" />
+              请转账成功后务必及时确认！否则可能造成延迟上分！
+            </div>
+          </div>
         </div>
-      </div>
+        <div v-else class="type-other">
+          <div class="other-first">
+            <BaseLabel
+              v-if="havePaymentMerchant"
+              label="通道选择"
+            >
+              <div class="other-aisles">
+                <div
+                  v-for="item in paymentMerchantData" :key="item.value" class="aisle"
+                  :class="currentAisle === item.value ? 'active' : ''"
+                  @click="changeAisle(item)"
+                >
+                  <span>{{ item.label }}</span>
+                </div>
+              </div>
+            </BaseLabel>
+            <BaseInput
+              v-if="currentAisleItem?.type === 2"
+              v-model="amount"
+              label="充值金额"
+            />
+            <BaseMoneyKeyboard
+              v-if="oftenAmount && oftenAmount.length"
+              v-model="amount"
+              :options="oftenAmount"
+            />
+            <BaseButton bg-style="primary" size="md" @click="depositSubmit">
+              确认支付
+            </BaseButton>
+          </div>
+        </div>
+      </template>
+      <template v-else>
+        <BaseEmpty description="暂无数据" icon="uni-empty-betslip" />
+      </template>
     </div>
   </div>
 </template>
