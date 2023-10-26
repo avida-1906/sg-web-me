@@ -141,6 +141,7 @@ class SocketClient {
     if (this.client != null) {
       this.client.on('connect', (arg) => {
         this.#log('连接成功', 'Info: ', arg)
+        useEventBus(MQTT_CONNECT_SUCCESS).emit(MQTT_CONNECT_SUCCESS)
       })
 
       this.client.on('message', (topic, message, packet) => {
