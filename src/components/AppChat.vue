@@ -91,6 +91,9 @@ const { run: runGetHistory } = useRequest(ApiChatGetHistory, {
   onSuccess: (data) => {
     messageHistory.value = data?.reverse().map(m => ({ ...m, msg: m.c, user: { name: m.n, uid: m.u } }))
   },
+  onAfter: () => {
+    goBottom()
+  },
 })
 
 function roomChange(room: string) {
@@ -103,13 +106,16 @@ function messageWrapScroll() {
   else
     setMFalse()
 }
-
-onMounted(() => {
+function goBottom() {
   nextTick(() => {
     setTimeout(() => {
       document.querySelector('.msg-tail')?.scrollIntoView({ behavior: 'smooth' })
     }, 300)
   })
+}
+
+onMounted(() => {
+  goBottom()
 })
 </script>
 
