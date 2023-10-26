@@ -210,6 +210,10 @@ onMounted(() => {
       font-weight: var(--tg-font-weight-normal);
       padding-top: var(--tg-spacing-4);
     }
+    .message{
+      display: flex;
+      align-items: center;
+    }
   }
   .close {
     font-size: var(--tg-font-size-default);
