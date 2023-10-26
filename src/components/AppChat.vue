@@ -9,6 +9,9 @@ import type { EnumLanguageKey } from '~/types'
 // topic =  站点前缀/chat/en_IN
 // topic =  站点前缀/chat/th_TH
 
+const chatStore = useChatStore()
+const { hideChat } = storeToRefs(chatStore)
+
 const { bool: showMoreBar, setFalse: setMFalse, setTrue: setMTrue } = useBoolean(false)
 
 const scrollMsg = ref()
@@ -55,47 +58,53 @@ onMounted(() => {
     <div class="header">
       <AppChatHeader @change="roomChange" />
     </div>
-    <div class="messages">
-      <div ref="scrollMsg" class="scroll-y message-content" @scroll="messageWrapScroll">
-        <!-- <div class="time-wrap wrap">
-          <span>星期一</span>
-          <span>13:18</span>
-        </div> -->
-        <div v-for="msg, mdx in messageHistory" :key="mdx" class="wrap">
-          <AppChatMsgItem :msg-info="msg" />
-        </div>
-        <!-- <div class="time-wrap wrap">
-          <span>星期一</span>
-          <span>18:22</span>
-        </div> -->
-        <div class="wrap msg-tail" />
-      </div>
-      <Transition name="fade">
-        <div v-if="showMoreBar" class="more-wrap">
-          <BaseButton shadow size="lg">
-            <div class="icon-text stop">
-              <BaseIcon name="uni-stop" />
-              <span>聊天室因滚动而暂停</span>
-            </div>
-            <div class="icon-text go-down">
-              <BaseIcon name="uni-arrow-godown" />
-              <span>20+ 条新信息</span>
-            </div>
-          </BaseButton>
-        </div>
-      </Transition>
-    </div>
-    <div class="footer">
-      <AppChatFooter />
-    </div>
-    <!-- <div class="stack x-center y-center gap-small padding-none direction-vertical">
+    <div
+      v-if="hideChat"
+      class="stack x-center y-center direction-vertical gap-small padding-none"
+      style="height: 100%;"
+    >
       <div class="popped-chat-wrapper">
         <span>聊天室已被隐藏</span>
-        <BaseButton bg-style="primary" size="md">
+        <BaseButton bg-style="primary" size="md" @click="chatStore.toggleChat">
           显示聊天室
         </BaseButton>
       </div>
-    </div> -->
+    </div>
+    <template v-else>
+      <div class="messages">
+        <div ref="scrollMsg" class="scroll-y message-content" @scroll="messageWrapScroll">
+          <!-- <div class="time-wrap wrap">
+          <span>星期一</span>
+          <span>13:18</span>
+        </div> -->
+          <div v-for="msg, mdx in messageHistory" :key="mdx" class="wrap">
+            <AppChatMsgItem :msg-info="msg" />
+          </div>
+          <!-- <div class="time-wrap wrap">
+          <span>星期一</span>
+          <span>18:22</span>
+        </div> -->
+          <div class="wrap msg-tail" />
+        </div>
+        <Transition name="fade">
+          <div v-if="showMoreBar" class="more-wrap">
+            <BaseButton shadow size="lg">
+              <div class="icon-text stop">
+                <BaseIcon name="uni-stop" />
+                <span>聊天室因滚动而暂停</span>
+              </div>
+              <div class="icon-text go-down">
+                <BaseIcon name="uni-arrow-godown" />
+                <span>20+ 条新信息</span>
+              </div>
+            </BaseButton>
+          </div>
+        </Transition>
+      </div>
+      <div class="footer">
+        <AppChatFooter />
+      </div>
+    </template>
   </section>
 </template>
 

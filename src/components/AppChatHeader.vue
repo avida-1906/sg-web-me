@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import type { Room } from '~/types'
 
-const emit = defineEmits(['change'])
+const emit = defineEmits(['change', 'toggleChatWin'])
 
 const chatStore = useChatStore()
-const { chatRoomList, room, topic } = storeToRefs(chatStore)
+const { chatRoomList, room, topic, hideChat } = storeToRefs(chatStore)
 const { closeRightSidebar } = useRightSidebar()
 
 emit('change', room.value.value)
@@ -32,6 +32,7 @@ function close() {
 
 function openChat() {
   window.open('/chat', '_blank', 'popup,width=370,height=720')
+  chatStore.toggleChat()
 }
 
 onMounted(() => {
@@ -72,7 +73,7 @@ onUnmounted(() => {
         </template>
       </VDropdown>
     </div>
-    <div v-if="$route.path !== '/chat'" class="right-header">
+    <div v-if="$route.path !== '/chat' && !hideChat" class="right-header">
       <VTooltip placement="bottom">
         <div class="item hoverable">
           <BaseButton type="text" @click="openChat">

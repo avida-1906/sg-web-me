@@ -2,6 +2,8 @@ import type { Room } from '~/types'
 import { languageMap } from '~/modules/i18n'
 
 export const useChatStore = defineStore('chat', () => {
+  const { bool: hideChat, toggle: toggleChat } = useBoolean(false)
+
   const chatRoomList = reactive<Array<Room>>([
     { icon: 'cn', label: '中文', value: 'zh-CN' },
     { icon: 'vn', label: 'Tiếng Việt', value: 'vi-VN' },
@@ -29,6 +31,8 @@ export const useChatStore = defineStore('chat', () => {
     currentLanguage,
     topic,
     roomLang,
+    hideChat,
+    toggleChat,
   }
 })
 
