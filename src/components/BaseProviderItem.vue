@@ -1,13 +1,14 @@
 <script lang="ts" setup>
 interface Props {
   url: string
+  active?: boolean
 }
 
 defineProps<Props>()
 </script>
 
 <template>
-  <div class="base-provider-item">
+  <div class="base-provider-item" :class="{ active }">
     <div class="img-wrap">
       <BaseImage :url="url" is-cloud />
     </div>
@@ -37,6 +38,10 @@ defineProps<Props>()
   .img-wrap {
     position: absolute;
     inset: 0 0 0 0;
+  }
+
+  &.active{
+    background-color: var(--tg-text-blue);
   }
 }
 </style>

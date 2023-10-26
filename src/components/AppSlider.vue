@@ -1,9 +1,10 @@
 <script lang="ts" setup name="app-slider">
 interface Props {
-  icon: string
+  icon?: string
   title: string
   data: Array<any>
   showViewAll?: boolean
+  showArrow?: boolean
   gameType?: string
   ty?: number
   cid?: string
@@ -12,6 +13,7 @@ interface Props {
 
 const props = withDefaults(defineProps<Props>(), {
   showViewAll: true,
+  showArrow: true,
 })
 
 // await 10s
@@ -106,13 +108,13 @@ watchEffect(() => {
     <div class="header">
       <div class="title">
         <a>
-          <div class="icon">
+          <div v-if="icon" class="icon">
             <BaseIcon :name="icon" />
           </div>
           <h3>{{ title }}</h3>
         </a>
       </div>
-      <div class="arrows">
+      <div v-if="showArrow" class="arrows">
         <BaseButton type="round-line-left" :disabled="x <= 0" @click="prevPage">
           <BaseIcon name="uni-arrowleft-line" />
         </BaseButton>

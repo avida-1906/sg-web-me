@@ -137,12 +137,32 @@ export interface IMemberReg {
   parent_id?: string
   device_number: string
 }
-
 export interface CasinoLobbyGameItem {
   platform_id: string
   id: string
   game_id: string
   img: string
+  name: string
+}
+
+/** 场馆item */
+export interface ProviderItem {
+  id: string
+  en_name: string
+  game_type: string
+  state: number
+  maintained: number
+  seq: number
+  logo: string
+  created_at: number
+  updated_at: number
+  updated_uid: string
+  updated_name: string
+  zh_name: string
+  pt_name: string
+  vn_name: string
+  th_name: string
+  game_num: number
   name: string
 }
 
@@ -458,25 +478,7 @@ export function ApiMemberPlatformList(params: {
   game_type: number
 } = { page: 1, page_size: 100, game_type: 0 },
 ) {
-  return httpClient.get<IResponseList<{
-    id: string
-    en_name: string
-    game_type: string
-    state: number
-    maintained: number
-    seq: number
-    logo: string
-    created_at: number
-    updated_at: number
-    updated_uid: string
-    updated_name: string
-    zh_name: string
-    pt_name: string
-    vn_name: string
-    th_name: string
-    game_num: number
-    name: string
-  }>>('/member/platform/list', params)
+  return httpClient.get<IResponseList<ProviderItem>>('/member/platform/list', params)
 }
 
 /**

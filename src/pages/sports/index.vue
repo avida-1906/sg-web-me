@@ -32,8 +32,26 @@ const tabList = computed(() => [
   { label: t('sports_tab_starting_soon'), value: 'soon', icon: 'spt-timing' },
 ])
 // 体育场馆列表
-const { run } = useList(ApiMemberPlatformList)
-run({ game_type: 4 })
+const currentProvider = ref('')
+const {
+  run: runSportsProvider,
+  data: sportsProviderData,
+} = useRequest(ApiMemberPlatformList, {
+  onSuccess(res) {
+    currentProvider.value = res.d ? res.d[0].id : ''
+  },
+})
+const sportsProviderList = computed(() => {
+  return sportsProviderData.value && sportsProviderData.value.d
+    ? sportsProviderData.value.d
+    : []
+})
+
+function onProviderChange(id: string) {
+  console.log('体育场馆切换', id)
+}
+
+runSportsProvider({ page: 1, page_size: 100, game_type: 4 })
 </script>
 
 <template>
@@ -45,6 +63,10 @@ run({ game_type: 4 })
       <div v-if="!isMobile" class="mt-24">
         <AppGameSearch game-type="2" />
       </div>
+      <AppSportsProviderSlider
+        v-model="currentProvider" :list="sportsProviderList"
+        @change="onProviderChange"
+      />
       <div class="mt-24">
         <BaseTab
           v-model="marketType"
