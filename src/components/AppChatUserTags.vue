@@ -16,6 +16,8 @@ const levelRoleTxt = {
   diamond: 'Diamond',
   moderator: 'Moderator',
 }
+
+const { openStatisticsDialog } = useStatisticsDialog()
 </script>
 
 <template>
@@ -46,7 +48,7 @@ const levelRoleTxt = {
         </template>
       </VTooltip>
     </template>
-    <BaseButton type="text">
+    <BaseButton type="text" @click="openStatisticsDialog(userInfo.name)">
       <span class="user-name">{{ userInfo.name }}</span>
     </BaseButton>
   </div>
