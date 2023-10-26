@@ -66,7 +66,7 @@ export enum EnumCurrency {
   BRL,
   /**
    * BRL
-   * @description 巴西雷亚尔
+   * @description 以太币
    * @see https://www.rbi.org.in/
    */
   ETH,
