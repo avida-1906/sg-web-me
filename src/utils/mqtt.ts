@@ -11,6 +11,8 @@ type TMqttServer = Array<{
   protocol?: 'wss' | 'ws' | 'mqtt' | 'mqtts' | 'tcp' | 'ssl' | 'wx' | 'wxs'
 }>
 
+const chatMessageBus = useEventBus(CHAT_MESSAGE_BUS)
+
 class SocketClient {
   client: TMqttClient | null = null
 
@@ -141,11 +143,19 @@ class SocketClient {
     if (this.client != null) {
       this.client.on('connect', (arg) => {
         this.#log('连接成功', 'Info: ', arg)
-        useEventBus(MQTT_CONNECT_SUCCESS).emit(MQTT_CONNECT_SUCCESS)
+        useEventBus(MQTT_CONNECT_SUCCESS_BUS).emit(MQTT_CONNECT_SUCCESS_BUS)
       })
 
       this.client.on('message', (topic, message, packet) => {
         this.#log(`收到消息：${message.toString()}`, topic, packet)
+        try {
+          const data = JSON.parse(message.toString())
+          if (data)
+            chatMessageBus.emit(data)
+        }
+        catch (error) {
+          this.#log('收到消息解析失败', error)
+        }
       })
 
       this.client.on('error', (error) => {

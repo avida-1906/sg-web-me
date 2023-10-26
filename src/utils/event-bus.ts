@@ -4,6 +4,6 @@
  */
 
 /** 聊天室消息 通知 */
-export const CHAT_EVENT_BUS = 'CHAT_EVENT_BUS'
-/** MQTT 连接成功通知 */
-export const MQTT_CONNECT_SUCCESS = 'MQTT_CONNECT_SUCCESS'
+export const CHAT_MESSAGE_BUS = 'CHAT_MESSAGE_BUS'
+/** MQTT 连接成功 通知 */
+export const MQTT_CONNECT_SUCCESS_BUS = 'MQTT_CONNECT_SUCCESS_BUS'
