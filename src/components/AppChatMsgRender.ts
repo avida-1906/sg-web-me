@@ -56,7 +56,7 @@ export default {
     const splitByEmojiMsg = computed(() => msg.split(emojiReg))
     const matchedEmojis = computed(() => msg.match(emojiReg) ?? [])
     const matchedAtUsers = computed(() => msg.match(atUserReg))
-    console.log('matchedAtUsers === ', matchedAtUsers)
+    console.log('matchedAtUsers === ', matchedAtUsers.value)
 
     const msgHtml = computed(() => {
       const temp = []

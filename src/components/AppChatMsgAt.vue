@@ -8,11 +8,13 @@ interface Props {
 }
 
 defineProps<Props>()
+
+const { openStatisticsDialog } = useStatisticsDialog()
 </script>
 
 <template>
   <!-- :href="`?name=${user.name}&id=${user.id}&modal=user`" -->
-  <span class="chat-msg-at">
+  <span class="chat-msg-at" @click="openStatisticsDialog(user.name.slice(1))">
     <a>
       <span>{{ user.name }}</span>
     </a>
