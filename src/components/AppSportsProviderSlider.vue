@@ -25,7 +25,7 @@ function onClick(item: ProviderItem) {
     >
       <template #default="{ item }">
         <BaseProviderItem
-          :url="item.logo" :active="item.id === modelValue"
+          :url="item.logo" :active="item.id === modelValue" show-bg
           @click="onClick(item)"
         />
       </template>

@@ -64,6 +64,7 @@ runSportsProvider({ page: 1, page_size: 100, game_type: 4 })
         <AppGameSearch game-type="2" />
       </div>
       <AppSportsProviderSlider
+        v-if="sportsProviderList.length > 1"
         v-model="currentProvider" :list="sportsProviderList"
         @change="onProviderChange"
       />

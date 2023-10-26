@@ -732,7 +732,6 @@ declare module 'vue' {
     readonly useBrowserLocation: UnwrapRef<typeof import('@vueuse/core')['useBrowserLocation']>
     readonly useCached: UnwrapRef<typeof import('@vueuse/core')['useCached']>
     readonly useCasinoStore: UnwrapRef<typeof import('./stores/casino')['useCasinoStore']>
-    readonly useChat: UnwrapRef<typeof import('./composables/useChat')['useChat']>
     readonly useChatEvent: UnwrapRef<typeof import('./composables/useChatEvent')['useChatEvent']>
     readonly useChatRulesDialog: UnwrapRef<typeof import('./composables/useDialogChatRules')['useChatRulesDialog']>
     readonly useClipboard: UnwrapRef<typeof import('@vueuse/core')['useClipboard']>
@@ -1189,7 +1188,6 @@ declare module '@vue/runtime-core' {
     readonly useBrowserLocation: UnwrapRef<typeof import('@vueuse/core')['useBrowserLocation']>
     readonly useCached: UnwrapRef<typeof import('@vueuse/core')['useCached']>
     readonly useCasinoStore: UnwrapRef<typeof import('./stores/casino')['useCasinoStore']>
-    readonly useChat: UnwrapRef<typeof import('./composables/useChat')['useChat']>
     readonly useChatEvent: UnwrapRef<typeof import('./composables/useChatEvent')['useChatEvent']>
     readonly useChatRulesDialog: UnwrapRef<typeof import('./composables/useDialogChatRules')['useChatRulesDialog']>
     readonly useClipboard: UnwrapRef<typeof import('@vueuse/core')['useClipboard']>

@@ -2,13 +2,14 @@
 interface Props {
   url: string
   active?: boolean
+  showBg?: boolean
 }
 
 defineProps<Props>()
 </script>
 
 <template>
-  <div class="base-provider-item" :class="{ active }">
+  <div class="base-provider-item" :class="{ active, bg: showBg }">
     <div class="img-wrap">
       <BaseImage :url="url" is-cloud />
     </div>
@@ -38,6 +39,9 @@ defineProps<Props>()
   .img-wrap {
     position: absolute;
     inset: 0 0 0 0;
+  }
+  &.bg{
+    background-color: var(--tg-secondary-main);
   }
 
   &.active{
