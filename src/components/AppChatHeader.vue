@@ -1,30 +1,18 @@
 <script lang="ts" setup>
-import { EnumLanguage } from '~/utils/enums'
-
-interface Room {
-  icon: string
-  label: string
-  value: EnumLanguage
-}
+import type { Room } from '~/types'
 
 const emit = defineEmits(['change'])
 
+const chatStore = useChatStore()
+const { chatRoomList, room, topic } = storeToRefs(chatStore)
 const { closeRightSidebar } = useRightSidebar()
-
-const chatRoomList = reactive<Array<Room>>([
-  { icon: 'cn', label: '中文', value: EnumLanguage['zh-CN'] },
-  { icon: 'vn', label: 'Tiếng Việt', value: EnumLanguage['vi-VN'] },
-  // { icon: 'kr', label: '한국어', value: 'kr' },
-  { icon: 'br', label: 'Português', value: EnumLanguage['pt-BR'] },
-  // { icon: 'gb', label: 'English', value: 'gb' },
-  // { icon: 'in', label: 'हिन्दी', value: 'in' },
-])
-const room = ref(chatRoomList[0])
 
 emit('change', room.value.value)
 
 function chooseRoom(item: Room) {
-  room.value = item
+  socketClient.removeSubscribe(topic.value)
+
+  chatStore.setRoom(item)
   emit('change', item.value)
 }
 
@@ -35,6 +23,12 @@ function close() {
 function openChat() {
   window.open('/chat', '_blank', 'popup,width=370,height=720')
 }
+
+onMounted(() => {
+  setTimeout(() => {
+    socketClient.addSubscribe(topic.value)
+  }, 300)
+})
 </script>
 
 <template>
