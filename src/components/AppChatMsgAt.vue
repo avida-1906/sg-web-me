@@ -2,18 +2,20 @@
 interface Props {
   user: {
     name: string
-    id: string
+    id?: string
     [k: string]: any
   }
 }
 
 defineProps<Props>()
+
+const { openStatisticsDialog } = useStatisticsDialog()
 </script>
 
 <template>
-  <span class="chat-msg-at">
-    @
-    <a :href="`?name=${user.name}&id=${user.id}&modal=user`">
+  <!-- :href="`?name=${user.name}&id=${user.id}&modal=user`" -->
+  <span class="chat-msg-at" @click="openStatisticsDialog(user.name.slice(1))">
+    <a>
       <span>{{ user.name }}</span>
     </a>
   </span>

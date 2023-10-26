@@ -274,6 +274,7 @@ declare global {
   const useChat: typeof import('./composables/useChat')['useChat']
   const useChatEvent: typeof import('./composables/useChatEvent')['useChatEvent']
   const useChatRulesDialog: typeof import('./composables/useDialogChatRules')['useChatRulesDialog']
+  const useChatStore: typeof import('./stores/chat')['useChatStore']
   const useClipboard: typeof import('@vueuse/core')['useClipboard']
   const useCloned: typeof import('@vueuse/core')['useCloned']
   const useColorMode: typeof import('@vueuse/core')['useColorMode']
@@ -737,6 +738,7 @@ declare module 'vue' {
     readonly useCasinoStore: UnwrapRef<typeof import('./stores/casino')['useCasinoStore']>
     readonly useChatEvent: UnwrapRef<typeof import('./composables/useChatEvent')['useChatEvent']>
     readonly useChatRulesDialog: UnwrapRef<typeof import('./composables/useDialogChatRules')['useChatRulesDialog']>
+    readonly useChatStore: UnwrapRef<typeof import('./stores/chat')['useChatStore']>
     readonly useClipboard: UnwrapRef<typeof import('@vueuse/core')['useClipboard']>
     readonly useCloned: UnwrapRef<typeof import('@vueuse/core')['useCloned']>
     readonly useColorMode: UnwrapRef<typeof import('@vueuse/core')['useColorMode']>
@@ -1194,6 +1196,7 @@ declare module '@vue/runtime-core' {
     readonly useCasinoStore: UnwrapRef<typeof import('./stores/casino')['useCasinoStore']>
     readonly useChatEvent: UnwrapRef<typeof import('./composables/useChatEvent')['useChatEvent']>
     readonly useChatRulesDialog: UnwrapRef<typeof import('./composables/useDialogChatRules')['useChatRulesDialog']>
+    readonly useChatStore: UnwrapRef<typeof import('./stores/chat')['useChatStore']>
     readonly useClipboard: UnwrapRef<typeof import('@vueuse/core')['useClipboard']>
     readonly useCloned: UnwrapRef<typeof import('@vueuse/core')['useCloned']>
     readonly useColorMode: UnwrapRef<typeof import('@vueuse/core')['useColorMode']>

@@ -130,7 +130,7 @@ const { run: runSendMsg, loading: sendLoading } = useRequest(ApiChatSendMessage,
 })
 function addEmoMsg(emo: string) {
   const i = message.value.lastIndexOf(':')
-  message.value = `${message.value.slice(0, i + 1)}${emo.split('.')[0]} ` + ': '
+  message.value = `${message.value.slice(0, i + 1)}${emo.split('.')[0]}` + ': '
   msgInput.value?.getFocus()
 }
 function addAtUser(u: { name: string }) {
@@ -166,7 +166,7 @@ function sendMsg() {
     }
     return
   }
-  runSendMsg({ msg: message.value })
+  runSendMsg({ c: message.value })
 }
 
 function enterPress(event: KeyboardEvent) {

@@ -41,4 +41,4 @@ export const useCasinoStore = defineStore('casino', () => {
 })
 
 if (import.meta.hot)
-  import.meta.hot.accept(acceptHMRUpdate(useWindowStore, import.meta.hot))
+  import.meta.hot.accept(acceptHMRUpdate(useCasinoStore, import.meta.hot))

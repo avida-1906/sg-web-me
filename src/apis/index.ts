@@ -798,7 +798,7 @@ export function ApiMemberPaymentMerchantList(params: {
  */
 export function ApiChatSendMessage(data: {
   /** 发送的消息 */
-  msg: string
+  c: string
 }) {
   return httpClient.post<string>('/member/chat/send', data)
 }

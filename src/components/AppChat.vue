@@ -84,11 +84,17 @@
 //   },
 // ]
 const scrollMsg = ref()
+const messageHistory = ref<Array<ChatMessageInfo>>([])
 const { bool: showMoreBar, setFalse: setMFalse, setTrue: setMTrue } = useBoolean(false)
 
-const { run: runGetHistory, data: messageList } = useRequest(ApiChatGetHistory)
-const messageHistory = computed(() =>
-  messageList.value?.map(m => ({ ...m, msg: m.c, user: { name: m.n, uid: m.u } })))
+const { run: runGetHistory } = useRequest(ApiChatGetHistory, {
+  onSuccess: (data) => {
+    messageHistory.value = data?.reverse().map(m => ({ ...m, msg: m.c, user: { name: m.n, uid: m.u } }))
+  },
+  onAfter: () => {
+    goBottom()
+  },
+})
 
 function roomChange(room: string) {
   runGetHistory()
@@ -100,13 +106,16 @@ function messageWrapScroll() {
   else
     setMFalse()
 }
-
-onMounted(() => {
+function goBottom() {
   nextTick(() => {
     setTimeout(() => {
       document.querySelector('.msg-tail')?.scrollIntoView({ behavior: 'smooth' })
     }, 300)
   })
+}
+
+onMounted(() => {
+  goBottom()
 })
 </script>
 
