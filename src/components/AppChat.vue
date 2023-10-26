@@ -43,6 +43,10 @@ function goBottom() {
 
 onMounted(() => {
   goBottom()
+  const chatMessageBus = useEventBus(CHAT_MESSAGE_BUS)
+  chatMessageBus.on((m: any) => {
+    messageHistory.value.push({ ...m, msg: m.c, user: { name: m.n, uid: m.u } })
+  })
 })
 </script>
 

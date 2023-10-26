@@ -128,6 +128,7 @@ const isCommand = computed(() => message.value[0] === '/')
 const { run: runSendMsg, loading: sendLoading } = useRequest(ApiChatSendMessage, {
   onSuccess: () => {
     message.value = ''
+    goBottom()
   },
 })
 function addEmoMsg(emo: string) {
