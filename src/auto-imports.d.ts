@@ -48,6 +48,8 @@ declare global {
   const ApiWalletBankcardList: typeof import('./apis/index')['ApiWalletBankcardList']
   const Big: typeof import('big.js')['Big']
   const CHAT_EVENT_BUS: typeof import('./utils/event-bus')['CHAT_EVENT_BUS']
+  const CHAT_MESSAGE: typeof import('./utils/event-bus')['CHAT_MESSAGE']
+  const CHAT_MESSAGE_BUS: typeof import('./utils/event-bus')['CHAT_MESSAGE_BUS']
   const EffectScope: typeof import('vue')['EffectScope']
   const EnumCasinoApiGameType: typeof import('./utils/enums')['EnumCasinoApiGameType']
   const EnumCasinoGameType: typeof import('./utils/enums')['EnumCasinoGameType']
@@ -60,6 +62,8 @@ declare global {
   const EnumSportsPanelType: typeof import('./stores/sports')['EnumSportsPanelType']
   const EnumsBetSlipTabs: typeof import('./utils/enums')['EnumsBetSlipTabs']
   const Local: typeof import('./utils/storage')['Local']
+  const MQTT_CONNECT_SUCCESS: typeof import('./utils/event-bus')['MQTT_CONNECT_SUCCESS']
+  const MQTT_CONNECT_SUCCESS_BUS: typeof import('./utils/event-bus')['MQTT_CONNECT_SUCCESS_BUS']
   const SOCKET_EVENT_BUS: typeof import('./utils/event-bus')['SOCKET_EVENT_BUS']
   const STORAGE_CURRENT_GLOBAL_CURRENCY_KEY: typeof import('./utils/storage')['STORAGE_CURRENT_GLOBAL_CURRENCY_KEY']
   const STORAGE_HIDE_ZERO_BALANCE_KEY: typeof import('./utils/storage')['STORAGE_HIDE_ZERO_BALANCE_KEY']
@@ -126,6 +130,7 @@ declare global {
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const getEnv: typeof import('./utils/index')['getEnv']
+  const goBottom: typeof import('./composables/useChatEvent')['goBottom']
   const gt: typeof import('lodash-es')['gt']
   const h: typeof import('vue')['h']
   const head: typeof import('lodash-es')['head']
@@ -145,6 +150,7 @@ declare global {
   const isReadonly: typeof import('vue')['isReadonly']
   const isRef: typeof import('vue')['isRef']
   const isUndefined: typeof import('lodash-es')['isUndefined']
+  const languageMap: typeof import('./types/index')['languageMap']
   const last: typeof import('lodash-es')['last']
   const lastOneNumberReg: typeof import('./utils/regexp')['lastOneNumberReg']
   const makeDestructurable: typeof import('@vueuse/core')['makeDestructurable']
@@ -514,7 +520,7 @@ declare module 'vue' {
     readonly ApiSmsSend: UnwrapRef<typeof import('./apis/index')['ApiSmsSend']>
     readonly ApiWalletBankcardList: UnwrapRef<typeof import('./apis/index')['ApiWalletBankcardList']>
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
-    readonly CHAT_EVENT_BUS: UnwrapRef<typeof import('./utils/event-bus')['CHAT_EVENT_BUS']>
+    readonly CHAT_MESSAGE_BUS: UnwrapRef<typeof import('./utils/event-bus')['CHAT_MESSAGE_BUS']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly EnumCasinoApiGameType: UnwrapRef<typeof import('./utils/enums')['EnumCasinoApiGameType']>
     readonly EnumCasinoGameType: UnwrapRef<typeof import('./utils/enums')['EnumCasinoGameType']>
@@ -527,6 +533,7 @@ declare module 'vue' {
     readonly EnumSportsPanelType: UnwrapRef<typeof import('./stores/sports')['EnumSportsPanelType']>
     readonly EnumsBetSlipTabs: UnwrapRef<typeof import('./utils/enums')['EnumsBetSlipTabs']>
     readonly Local: UnwrapRef<typeof import('./utils/storage')['Local']>
+    readonly MQTT_CONNECT_SUCCESS_BUS: UnwrapRef<typeof import('./utils/event-bus')['MQTT_CONNECT_SUCCESS_BUS']>
     readonly STORAGE_CURRENT_GLOBAL_CURRENCY_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_CURRENT_GLOBAL_CURRENCY_KEY']>
     readonly STORAGE_HIDE_ZERO_BALANCE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_HIDE_ZERO_BALANCE_KEY']>
     readonly STORAGE_LANGUAGE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_LANGUAGE_KEY']>
@@ -591,6 +598,7 @@ declare module 'vue' {
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getEnv: UnwrapRef<typeof import('./utils/index')['getEnv']>
+    readonly goBottom: UnwrapRef<typeof import('./composables/useChatEvent')['goBottom']>
     readonly gt: UnwrapRef<typeof import('lodash-es')['gt']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly head: UnwrapRef<typeof import('lodash-es')['head']>
@@ -972,7 +980,7 @@ declare module '@vue/runtime-core' {
     readonly ApiSmsSend: UnwrapRef<typeof import('./apis/index')['ApiSmsSend']>
     readonly ApiWalletBankcardList: UnwrapRef<typeof import('./apis/index')['ApiWalletBankcardList']>
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
-    readonly CHAT_EVENT_BUS: UnwrapRef<typeof import('./utils/event-bus')['CHAT_EVENT_BUS']>
+    readonly CHAT_MESSAGE_BUS: UnwrapRef<typeof import('./utils/event-bus')['CHAT_MESSAGE_BUS']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly EnumCasinoApiGameType: UnwrapRef<typeof import('./utils/enums')['EnumCasinoApiGameType']>
     readonly EnumCasinoGameType: UnwrapRef<typeof import('./utils/enums')['EnumCasinoGameType']>
@@ -985,6 +993,7 @@ declare module '@vue/runtime-core' {
     readonly EnumSportsPanelType: UnwrapRef<typeof import('./stores/sports')['EnumSportsPanelType']>
     readonly EnumsBetSlipTabs: UnwrapRef<typeof import('./utils/enums')['EnumsBetSlipTabs']>
     readonly Local: UnwrapRef<typeof import('./utils/storage')['Local']>
+    readonly MQTT_CONNECT_SUCCESS_BUS: UnwrapRef<typeof import('./utils/event-bus')['MQTT_CONNECT_SUCCESS_BUS']>
     readonly STORAGE_CURRENT_GLOBAL_CURRENCY_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_CURRENT_GLOBAL_CURRENCY_KEY']>
     readonly STORAGE_HIDE_ZERO_BALANCE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_HIDE_ZERO_BALANCE_KEY']>
     readonly STORAGE_LANGUAGE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_LANGUAGE_KEY']>
@@ -1049,6 +1058,7 @@ declare module '@vue/runtime-core' {
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getEnv: UnwrapRef<typeof import('./utils/index')['getEnv']>
+    readonly goBottom: UnwrapRef<typeof import('./composables/useChatEvent')['goBottom']>
     readonly gt: UnwrapRef<typeof import('lodash-es')['gt']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly head: UnwrapRef<typeof import('lodash-es')['head']>

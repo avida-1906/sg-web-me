@@ -799,15 +799,18 @@ export function ApiMemberPaymentMerchantList(params: {
 export function ApiChatSendMessage(data: {
   /** 发送的消息 */
   c: string
+  lang: string
 }) {
-  return httpClient.post<string>('/member/chat/send', data)
+  return httpClient.post<string>(`/member/chat/send?lang=${data.lang}`, { c: data.c })
 }
 
 /**
  * 聊天室 获取历史记录
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=09c65522-62f2-4d99-a9d4-d2d85125487b
  */
-export function ApiChatGetHistory() {
+export function ApiChatGetHistory(params: {
+  lang: string
+}) {
   return httpClient.get<{
     /** 消息内容 */
     c: string
@@ -817,5 +820,5 @@ export function ApiChatGetHistory() {
     n: string
     /** 创建时间 */
     t: number
-  }[]>('/member/chat/history/list')
+  }[]>('/member/chat/history/list', params)
 }

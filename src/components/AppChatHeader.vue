@@ -1,31 +1,23 @@
 <script lang="ts" setup>
-import { EnumLanguage } from '~/utils/enums'
+import type { Room } from '~/types'
 
-interface Room {
-  icon: string
-  label: string
-  value: EnumLanguage
-}
+const emit = defineEmits(['change', 'toggleChatWin'])
 
-const emit = defineEmits(['change'])
-
+const chatStore = useChatStore()
+const { chatRoomList, room, topic, hideChat } = storeToRefs(chatStore)
 const { closeRightSidebar } = useRightSidebar()
-
-const chatRoomList = reactive<Array<Room>>([
-  { icon: 'cn', label: '中文', value: EnumLanguage['zh-CN'] },
-  { icon: 'vn', label: 'Tiếng Việt', value: EnumLanguage['vi-VN'] },
-  // { icon: 'kr', label: '한국어', value: 'kr' },
-  { icon: 'br', label: 'Português', value: EnumLanguage['pt-BR'] },
-  // { icon: 'gb', label: 'English', value: 'gb' },
-  // { icon: 'in', label: 'हिन्दी', value: 'in' },
-])
-const room = ref(chatRoomList[0])
 
 emit('change', room.value.value)
 
 function chooseRoom(item: Room) {
-  room.value = item
+  socketClient.removeSubscribe(topic.value)
+
+  chatStore.setRoom(item)
   emit('change', item.value)
+
+  setTimeout(() => {
+    socketClient.addSubscribe(topic.value)
+  }, 0)
 }
 
 function close() {
@@ -34,7 +26,23 @@ function close() {
 
 function openChat() {
   window.open('/chat', '_blank', 'popup,width=370,height=720')
+  chatStore.toggleChat()
 }
+
+onMounted(() => {
+  useEventBus(MQTT_CONNECT_SUCCESS_BUS).on(() => {
+    setTimeout(() => {
+      socketClient.addSubscribe(topic.value)
+    }, 0)
+  })
+  setTimeout(() => {
+    socketClient.addSubscribe(topic.value)
+  }, 0)
+})
+
+onUnmounted(() => {
+  socketClient.removeSubscribe(topic.value)
+})
 </script>
 
 <template>
@@ -64,7 +72,7 @@ function openChat() {
         </template>
       </VDropdown>
     </div>
-    <div v-if="$route.path !== '/chat'" class="right-header">
+    <div v-if="$route.path !== '/chat' && !hideChat" class="right-header">
       <VTooltip placement="bottom">
         <div class="item hoverable">
           <BaseButton type="text" @click="openChat">

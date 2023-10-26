@@ -7,10 +7,12 @@
 
 // type CommandType = '/bet' | '/user' | '/tip' | '/rain' | '/ignore' | '/unignore'
 
+const chatStore = useChatStore()
+const { roomLang } = storeToRefs(chatStore)
 const { openChatRulesDialog } = useChatRulesDialog()
 const { openStatisticsDialog } = useStatisticsDialog()
 
-const maxMsgLen = 160
+const maxMsgLen = 512
 const msgInput = ref()
 const allEmojis = [
   'adesanya.webp',
@@ -126,6 +128,7 @@ const isCommand = computed(() => message.value[0] === '/')
 const { run: runSendMsg, loading: sendLoading } = useRequest(ApiChatSendMessage, {
   onSuccess: () => {
     message.value = ''
+    goBottom()
   },
 })
 function addEmoMsg(emo: string) {
@@ -166,7 +169,7 @@ function sendMsg() {
     }
     return
   }
-  runSendMsg({ c: message.value })
+  runSendMsg({ c: message.value, lang: roomLang.value })
 }
 
 function enterPress(event: KeyboardEvent) {
@@ -182,7 +185,7 @@ function enterPress(event: KeyboardEvent) {
     <Transition>
       <div
         v-show="!sendLoading && emojis.length"
-        class="scroll-y wrap emoji-wrap layout-grid"
+        class="scroll-y emoji-wrap layout-grid wrap"
       >
         <div v-for="emo in emojis" :key="emo" class="button-wrap">
           <span class="box" @click="addEmoMsg(emo)">

@@ -1,91 +1,21 @@
 <script lang="ts" setup>
-// const messages: Array<ChatMessageInfo> = [
-//   {
-//     id: '394802',
-//     sender: {
-//       name: 'xiaoming86',
-//       uid: '5293840jk23k44h2k',
-//       level: '3',
-//       role: 'moderator',
-//     },
-//     msg: '就是本金再多，我也很少去按比例下单，',
-//   },
-//   {
-//     id: '6345436',
-//     sender: {
-//       name: 'xiaohong77',
-//       uid: '9saf7d9f9saf78s9dfi24',
-//       level: 'gold',
-//     },
-//     msg: '我不开满倍的啊。只开10X',
-//   },
-//   {
-//     id: '634sdf5436',
-//     sender: {
-//       name: 'xiaohong77',
-//       uid: '9saf7d9f9saf78s9dfi24',
-//       level: 'gold',
-//     },
-//     msg: '我不开满倍的啊。只开10X',
-//   },
-//   {
-//     id: '634ssssa5436',
-//     sender: {
-//       name: 'xiaohong77',
-//       uid: '9saf7d9f9saf78s9dfi24',
-//       level: 'gold',
-//     },
-//     msg: '我不开满倍的啊。只开10X',
-//   },
-//   {
-//     id: '632345bbcdd436',
-//     sender: {
-//       name: 'xiaohong77',
-//       uid: '9saf7d9f9saf78s9dfi24',
-//       level: 'gold',
-//     },
-//     msg: '我不开满倍的啊。只开10X',
-//   },
-//   {
-//     id: '61112bcdd436',
-//     sender: {
-//       name: 'xiaohong77',
-//       uid: '9saf7d9f9saf78s9dfi24',
-//       level: 'gold',
-//     },
-//     msg: '我不开满倍的啊。只开10X',
-//   },
-//   {
-//     id: '6546yyyd436',
-//     sender: {
-//       name: 'xiaohong77',
-//       uid: '9saf7d9f9saf78s9dfi24',
-//       level: 'gold',
-//     },
-//     msg: '我不开满倍的啊。只开10X',
-//   },
-//   {
-//     id: '7897dfbcdd436',
-//     sender: {
-//       name: 'xiaohong77',
-//       uid: '9saf7d9f9saf78s9dfi24',
-//       level: 'gold',
-//     },
-//     msg: '我不开满倍的啊。只开10X',
-//   },
-//   {
-//     id: '34634fdsfdd436',
-//     sender: {
-//       name: 'xiaohong77',
-//       uid: '9saf7d9f9saf78s9dfi24',
-//       level: 'gold',
-//     },
-//     msg: '我不开满倍的啊。只开10X',
-//   },
-// ]
+import { languageMap } from '~/modules/i18n'
+import type { EnumLanguageKey } from '~/types'
+
+// topic =  站点前缀/chat/zh_CN
+// topic =  站点前缀/chat/en_US
+// topic =  站点前缀/chat/vi_VN
+// topic =  站点前缀/chat/pt_BR
+// topic =  站点前缀/chat/en_IN
+// topic =  站点前缀/chat/th_TH
+
+const chatStore = useChatStore()
+const { hideChat } = storeToRefs(chatStore)
+
+const { bool: showMoreBar, setFalse: setMFalse, setTrue: setMTrue } = useBoolean(false)
+
 const scrollMsg = ref()
 const messageHistory = ref<Array<ChatMessageInfo>>([])
-const { bool: showMoreBar, setFalse: setMFalse, setTrue: setMTrue } = useBoolean(false)
 
 const { run: runGetHistory } = useRequest(ApiChatGetHistory, {
   onSuccess: (data) => {
@@ -96,8 +26,8 @@ const { run: runGetHistory } = useRequest(ApiChatGetHistory, {
   },
 })
 
-function roomChange(room: string) {
-  runGetHistory()
+function roomChange(room: EnumLanguageKey) {
+  runGetHistory({ lang: languageMap[room] })
 }
 function messageWrapScroll() {
   const { height } = scrollMsg.value.getBoundingClientRect()
@@ -116,6 +46,10 @@ function goBottom() {
 
 onMounted(() => {
   goBottom()
+  const chatMessageBus = useEventBus(CHAT_MESSAGE_BUS)
+  chatMessageBus.on((m: any) => {
+    messageHistory.value.push({ ...m, msg: m.c, user: { name: m.n, uid: m.u } })
+  })
 })
 </script>
 
@@ -124,43 +58,66 @@ onMounted(() => {
     <div class="header">
       <AppChatHeader @change="roomChange" />
     </div>
-    <div class="messages">
-      <div ref="scrollMsg" class="scroll-y message-content" @scroll="messageWrapScroll">
-        <!-- <div class="time-wrap wrap">
+    <div
+      v-if="hideChat"
+      class="stack x-center y-center direction-vertical gap-small padding-none"
+      style="height: 100%;"
+    >
+      <div class="popped-chat-wrapper">
+        <span>聊天室已被隐藏</span>
+        <BaseButton bg-style="primary" size="md" @click="chatStore.toggleChat">
+          显示聊天室
+        </BaseButton>
+      </div>
+    </div>
+    <template v-else>
+      <div class="messages">
+        <div ref="scrollMsg" class="scroll-y message-content" @scroll="messageWrapScroll">
+          <!-- <div class="time-wrap wrap">
           <span>星期一</span>
           <span>13:18</span>
         </div> -->
-        <div v-for="msg, mdx in messageHistory" :key="mdx" class="wrap">
-          <AppChatMsgItem :msg-info="msg" />
-        </div>
-        <!-- <div class="time-wrap wrap">
+          <div v-for="msg, mdx in messageHistory" :key="mdx" class="wrap">
+            <AppChatMsgItem :msg-info="msg" />
+          </div>
+          <!-- <div class="time-wrap wrap">
           <span>星期一</span>
           <span>18:22</span>
         </div> -->
-        <div class="wrap msg-tail" />
-      </div>
-      <Transition name="fade">
-        <div v-if="showMoreBar" class="more-wrap">
-          <BaseButton shadow size="lg">
-            <div class="icon-text stop">
-              <BaseIcon name="uni-stop" />
-              <span>聊天室因滚动而暂停</span>
-            </div>
-            <div class="icon-text go-down">
-              <BaseIcon name="uni-arrow-godown" />
-              <span>20+ 条新信息</span>
-            </div>
-          </BaseButton>
+          <div class="wrap msg-tail" />
         </div>
-      </Transition>
-    </div>
-    <div class="footer">
-      <AppChatFooter />
-    </div>
+        <Transition name="fade">
+          <div v-if="showMoreBar" class="more-wrap">
+            <BaseButton shadow size="lg">
+              <div class="icon-text stop">
+                <BaseIcon name="uni-stop" />
+                <span>聊天室因滚动而暂停</span>
+              </div>
+              <div class="icon-text go-down">
+                <BaseIcon name="uni-arrow-godown" />
+                <span>20+ 条新信息</span>
+              </div>
+            </BaseButton>
+          </div>
+        </Transition>
+      </div>
+      <div class="footer">
+        <AppChatFooter />
+      </div>
+    </template>
   </section>
 </template>
 
 <style lang="scss" scoped>
+.popped-chat-wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  color: var(--tg-secondary-light);
+  font-size: var(--tg-font-size-base);
+  font-weight: var(--tg-font-weight-semibold);
+  line-height: 1.5;
+}
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.3s ease;

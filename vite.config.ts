@@ -134,6 +134,7 @@ export default defineConfig(({ mode }) => {
           'src/utils',
           'src/apis',
           'src/http',
+          'src/types',
         ],
         vueTemplate: true,
       }),

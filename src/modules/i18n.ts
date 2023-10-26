@@ -2,11 +2,12 @@ import type { Locale } from 'vue-i18n'
 import { createI18n } from 'vue-i18n'
 import type { App } from 'vue'
 import { EnumLanguage } from '~/utils/enums'
+import type { EnumLanguageKey } from '~/types'
 
 const { VITE_I18N_DEFAULT_LANG } = getEnv()
 
 /** 映射后端的多语言值 */
-export const languageMap: IObject = {
+export const languageMap: Record<EnumLanguageKey, string> = {
   'zh-CN': 'zh_CN',
   'vi-VN': 'vi_VN',
   'pt-BR': 'pt_BR',
@@ -77,8 +78,8 @@ export function changeLanguage(langIndex: EnumLanguage) {
 }
 
 /** 获取前端本地多语言 */
-export function getCurrentLanguage() {
-  return i18n.global.locale.value
+export function getCurrentLanguage(): EnumLanguageKey {
+  return i18n.global.locale.value as EnumLanguageKey
 }
 
 /** 获取当前对应后端的多语言 */
