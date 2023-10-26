@@ -88,7 +88,7 @@ const { bool: showMoreBar, setFalse: setMFalse, setTrue: setMTrue } = useBoolean
 
 const { run: runGetHistory, data: messageList } = useRequest(ApiChatGetHistory)
 const messageHistory = computed(() =>
-  messageList.value?.map(m => ({ ...m, msg: m.c, user: { name: m.n, uid: m.u } })))
+  messageList.value?.reverse().map(m => ({ ...m, msg: m.c, user: { name: m.n, uid: m.u } })))
 
 function roomChange(room: string) {
   runGetHistory()
