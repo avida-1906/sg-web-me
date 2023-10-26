@@ -1,93 +1,97 @@
 <script lang="ts" setup>
-const messages: Array<ChatMessageInfo> = [
-  {
-    id: '394802',
-    sender: {
-      name: 'xiaoming86',
-      id: '5293840jk23k44h2k',
-      level: '3',
-      role: 'moderator',
-    },
-    html: '就是本金再多，我也很少去按比例下单，',
-  },
-  {
-    id: '6345436',
-    sender: {
-      name: 'xiaohong77',
-      id: '9saf7d9f9saf78s9dfi24',
-      level: 'gold',
-    },
-    html: '我不开满倍的啊。只开10X',
-  },
-  {
-    id: '634sdf5436',
-    sender: {
-      name: 'xiaohong77',
-      id: '9saf7d9f9saf78s9dfi24',
-      level: 'gold',
-    },
-    html: '我不开满倍的啊。只开10X',
-  },
-  {
-    id: '634ssssa5436',
-    sender: {
-      name: 'xiaohong77',
-      id: '9saf7d9f9saf78s9dfi24',
-      level: 'gold',
-    },
-    html: '我不开满倍的啊。只开10X',
-  },
-  {
-    id: '632345bbcdd436',
-    sender: {
-      name: 'xiaohong77',
-      id: '9saf7d9f9saf78s9dfi24',
-      level: 'gold',
-    },
-    html: '我不开满倍的啊。只开10X',
-  },
-  {
-    id: '61112bcdd436',
-    sender: {
-      name: 'xiaohong77',
-      id: '9saf7d9f9saf78s9dfi24',
-      level: 'gold',
-    },
-    html: '我不开满倍的啊。只开10X',
-  },
-  {
-    id: '6546yyyd436',
-    sender: {
-      name: 'xiaohong77',
-      id: '9saf7d9f9saf78s9dfi24',
-      level: 'gold',
-    },
-    html: '我不开满倍的啊。只开10X',
-  },
-  {
-    id: '7897dfbcdd436',
-    sender: {
-      name: 'xiaohong77',
-      id: '9saf7d9f9saf78s9dfi24',
-      level: 'gold',
-    },
-    html: '我不开满倍的啊。只开10X',
-  },
-  {
-    id: '34634fdsfdd436',
-    sender: {
-      name: 'xiaohong77',
-      id: '9saf7d9f9saf78s9dfi24',
-      level: 'gold',
-    },
-    html: '我不开满倍的啊。只开10X',
-  },
-]
+// const messages: Array<ChatMessageInfo> = [
+//   {
+//     id: '394802',
+//     sender: {
+//       name: 'xiaoming86',
+//       uid: '5293840jk23k44h2k',
+//       level: '3',
+//       role: 'moderator',
+//     },
+//     msg: '就是本金再多，我也很少去按比例下单，',
+//   },
+//   {
+//     id: '6345436',
+//     sender: {
+//       name: 'xiaohong77',
+//       uid: '9saf7d9f9saf78s9dfi24',
+//       level: 'gold',
+//     },
+//     msg: '我不开满倍的啊。只开10X',
+//   },
+//   {
+//     id: '634sdf5436',
+//     sender: {
+//       name: 'xiaohong77',
+//       uid: '9saf7d9f9saf78s9dfi24',
+//       level: 'gold',
+//     },
+//     msg: '我不开满倍的啊。只开10X',
+//   },
+//   {
+//     id: '634ssssa5436',
+//     sender: {
+//       name: 'xiaohong77',
+//       uid: '9saf7d9f9saf78s9dfi24',
+//       level: 'gold',
+//     },
+//     msg: '我不开满倍的啊。只开10X',
+//   },
+//   {
+//     id: '632345bbcdd436',
+//     sender: {
+//       name: 'xiaohong77',
+//       uid: '9saf7d9f9saf78s9dfi24',
+//       level: 'gold',
+//     },
+//     msg: '我不开满倍的啊。只开10X',
+//   },
+//   {
+//     id: '61112bcdd436',
+//     sender: {
+//       name: 'xiaohong77',
+//       uid: '9saf7d9f9saf78s9dfi24',
+//       level: 'gold',
+//     },
+//     msg: '我不开满倍的啊。只开10X',
+//   },
+//   {
+//     id: '6546yyyd436',
+//     sender: {
+//       name: 'xiaohong77',
+//       uid: '9saf7d9f9saf78s9dfi24',
+//       level: 'gold',
+//     },
+//     msg: '我不开满倍的啊。只开10X',
+//   },
+//   {
+//     id: '7897dfbcdd436',
+//     sender: {
+//       name: 'xiaohong77',
+//       uid: '9saf7d9f9saf78s9dfi24',
+//       level: 'gold',
+//     },
+//     msg: '我不开满倍的啊。只开10X',
+//   },
+//   {
+//     id: '34634fdsfdd436',
+//     sender: {
+//       name: 'xiaohong77',
+//       uid: '9saf7d9f9saf78s9dfi24',
+//       level: 'gold',
+//     },
+//     msg: '我不开满倍的啊。只开10X',
+//   },
+// ]
 const scrollMsg = ref()
 const { bool: showMoreBar, setFalse: setMFalse, setTrue: setMTrue } = useBoolean(false)
 
+const { run: runGetHistory, data: messageList } = useRequest(ApiChatGetHistory)
+const messageHistory = computed(() =>
+  messageList.value?.map(m => ({ ...m, msg: m.c, user: { name: m.n, uid: m.u } })))
+
 function roomChange(room: string) {
-  console.log('room changed === ', room)
+  runGetHistory()
 }
 function messageWrapScroll() {
   const { height } = scrollMsg.value.getBoundingClientRect()
@@ -113,17 +117,17 @@ onMounted(() => {
     </div>
     <div class="messages">
       <div ref="scrollMsg" class="scroll-y message-content" @scroll="messageWrapScroll">
-        <div class="time-wrap wrap">
+        <!-- <div class="time-wrap wrap">
           <span>星期一</span>
           <span>13:18</span>
-        </div>
-        <div v-for="msg in messages" :key="msg.id" class="wrap">
+        </div> -->
+        <div v-for="msg, mdx in messageHistory" :key="mdx" class="wrap">
           <AppChatMsgItem :msg-info="msg" />
         </div>
-        <div class="time-wrap wrap">
+        <!-- <div class="time-wrap wrap">
           <span>星期一</span>
           <span>18:22</span>
-        </div>
+        </div> -->
         <div class="wrap msg-tail" />
       </div>
       <Transition name="fade">

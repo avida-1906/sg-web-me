@@ -59,7 +59,7 @@ type UserLevelBadge = 'bronze' | 'silver' | 'gold' | 'diamond' | '1' | '2' | '3'
  */
 interface ChatUserInfo {
   name: string
-  id: string
+  uid: string
   level?: UserLevelBadge
   role?: ChatUserRole
   [k: string]: any
@@ -69,9 +69,9 @@ interface ChatUserInfo {
  * 聊天室消息体
  */
 interface ChatMessageInfo {
-  id: string
+  id?: string
   type?: 'tip' | 'rain'
-  sender: ChatUserInfo
+  user: ChatUserInfo
   [k: string]: any
 }
 

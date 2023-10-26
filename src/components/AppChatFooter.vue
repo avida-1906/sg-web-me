@@ -123,7 +123,11 @@ const emojis = computed(() => {
 })
 const isCommand = computed(() => message.value[0] === '/')
 
-const { run: runSendMsg, loading: sendLoading } = useRequest(ApiChatSendMessage)
+const { run: runSendMsg, loading: sendLoading } = useRequest(ApiChatSendMessage, {
+  onSuccess: () => {
+    message.value = ''
+  },
+})
 function addEmoMsg(emo: string) {
   const i = message.value.lastIndexOf(':')
   message.value = `${message.value.slice(0, i + 1)}${emo.split('.')[0]} ` + ': '
