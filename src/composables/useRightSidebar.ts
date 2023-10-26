@@ -5,6 +5,8 @@ export enum EnumRightSidebarContent {
 }
 
 export const useRightSidebar = createGlobalState(() => {
+  const { isLogin } = storeToRefs(useAppStore())
+
   let defaultRightStatus = false
   const rightStatus = Local.get(
     STORAGE_RIGHT_SIDEBAR_CONTENT,
@@ -12,8 +14,10 @@ export const useRightSidebar = createGlobalState(() => {
   // 显示内容，聊天室，投注单，通知
   const currentRightSidebarContent = ref<EnumRightSidebarContent | null>(null)
 
-  if (Object.values(EnumRightSidebarContent)
-    .includes(rightStatus as EnumRightSidebarContent)) {
+  if (
+    Object.values(EnumRightSidebarContent).includes(rightStatus as EnumRightSidebarContent)
+    && isLogin.value
+  ) {
     defaultRightStatus = true
     currentRightSidebarContent.value = rightStatus as EnumRightSidebarContent
   }
