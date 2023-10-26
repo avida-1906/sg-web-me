@@ -88,8 +88,8 @@ onUnmounted(() => {
         </template>
       </VDropdown>
     </div>
-    <div v-if="$route.path !== '/chat' && !hideChat" class="right-header">
-      <VTooltip placement="bottom">
+    <div v-if="$route.path !== '/chat'" class="right-header">
+      <VTooltip v-if="!hideChat" placement="bottom">
         <div class="item hoverable">
           <BaseButton type="text" @click="openChat">
             <BaseIcon name="uni-jump-page" />
