@@ -68,8 +68,11 @@ const {
 } = useRequest(ApiMemberBalanceLockerUpdate, {
   async onSuccess() {
     openNotify({
-      type: 'success',
-      message: '操作成功！',
+      title: isDeposit.value ? '保险库存款' : '保险库提款',
+      icon: 'navbar-wallet-notify',
+      message: isDeposit.value
+        ? `成功存放 ${updateParams.value?.amount} 进保险库`
+        : `已确认从保险库提取 ${updateParams.value?.amount}`,
     })
     resetAmount()
     resetPassword()

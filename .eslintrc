@@ -9,7 +9,8 @@
     "**/*.vsix",
     "**/*.sh",
     "**/*.svg",
-    "**/*.yml"
+    "**/*.yml",
+    "**/*.html"
   ],
   "rules": {
     "no-console": "off",
