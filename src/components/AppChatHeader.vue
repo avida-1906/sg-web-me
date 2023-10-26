@@ -1,8 +1,10 @@
 <script lang="ts" setup>
+import { EnumLanguage } from '~/utils/enums'
+
 interface Room {
   icon: string
   label: string
-  value: string
+  value: EnumLanguage
 }
 
 const emit = defineEmits(['change'])
@@ -10,12 +12,12 @@ const emit = defineEmits(['change'])
 const { closeRightSidebar } = useRightSidebar()
 
 const chatRoomList = reactive<Array<Room>>([
-  { icon: 'cn', label: '中文', value: 'cn' },
-  { icon: 'vn', label: 'Tiếng Việt', value: 'vn' },
-  { icon: 'kr', label: '한국어', value: 'kr' },
-  { icon: 'br', label: 'Português', value: 'br' },
-  { icon: 'gb', label: 'English', value: 'gb' },
-  { icon: 'in', label: 'हिन्दी', value: 'in' },
+  { icon: 'cn', label: '中文', value: EnumLanguage['zh-CN'] },
+  { icon: 'vn', label: 'Tiếng Việt', value: EnumLanguage['vi-VN'] },
+  // { icon: 'kr', label: '한국어', value: 'kr' },
+  { icon: 'br', label: 'Português', value: EnumLanguage['pt-BR'] },
+  // { icon: 'gb', label: 'English', value: 'gb' },
+  // { icon: 'in', label: 'हिन्दी', value: 'in' },
 ])
 const room = ref(chatRoomList[0])
 

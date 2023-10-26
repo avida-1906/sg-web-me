@@ -800,3 +800,20 @@ export function ApiChatSendMessage(data: {
 }) {
   return httpClient.post<string>('/member/chat/send', data)
 }
+
+/**
+ * 聊天室 获取历史记录
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=09c65522-62f2-4d99-a9d4-d2d85125487b
+ */
+export function ApiChatGetHistory() {
+  return httpClient.get<{
+    /** 消息内容 */
+    c: string
+    /** 用户id */
+    u: string
+    /** 用户名称 */
+    n: string
+    /** 创建时间 */
+    t: number
+  }[]>('/member/chat/history/list')
+}
