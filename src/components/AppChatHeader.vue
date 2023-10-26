@@ -9,12 +9,6 @@ const { closeRightSidebar } = useRightSidebar()
 
 emit('change', room.value.value)
 
-useEventBus(MQTT_CONNECT_SUCCESS_BUS).on(() => {
-  setTimeout(() => {
-    socketClient.addSubscribe(topic.value)
-  }, 0)
-})
-
 function chooseRoom(item: Room) {
   socketClient.removeSubscribe(topic.value)
 
@@ -36,6 +30,11 @@ function openChat() {
 }
 
 onMounted(() => {
+  useEventBus(MQTT_CONNECT_SUCCESS_BUS).on(() => {
+    setTimeout(() => {
+      socketClient.addSubscribe(topic.value)
+    }, 0)
+  })
   setTimeout(() => {
     socketClient.addSubscribe(topic.value)
   }, 0)
