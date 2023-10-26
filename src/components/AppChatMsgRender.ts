@@ -1,4 +1,5 @@
 import BaseImage from './BaseImage.vue'
+import AppChatMsgAt from './AppChatMsgAt.vue'
 
 const atUserReg = /@[a-z0-9]{3,14}/g
 const emojiReg = /:[a-z]+:/g
@@ -55,11 +56,23 @@ export default {
     const splitByEmojiMsg = computed(() => msg.split(emojiReg))
     const matchedEmojis = computed(() => msg.match(emojiReg) ?? [])
     const matchedAtUsers = computed(() => msg.match(atUserReg))
+    console.log('matchedAtUsers === ', matchedAtUsers)
 
     const msgHtml = computed(() => {
       const temp = []
       for (let i = 0; i < splitByEmojiMsg.value.length; i++) {
-        temp.push(splitByEmojiMsg.value[i])
+        const matchedAtUsersInner = splitByEmojiMsg.value[i].match(atUserReg)
+        if (matchedAtUsersInner && matchedAtUsersInner.length) {
+          const splitByAtUserMsgInner = splitByEmojiMsg.value[i].split(atUserReg)
+          for (let j = 0; j < splitByAtUserMsgInner.length; j++) {
+            temp.push(splitByAtUserMsgInner[j])
+            if (j < matchedAtUsersInner.length)
+              temp.push(h(AppChatMsgAt, { user: { name: matchedAtUsersInner[j] } }))
+          }
+        }
+        else {
+          temp.push(splitByEmojiMsg.value[i])
+        }
         if (
           matchedEmojis.value
           && matchedEmojis.value.length

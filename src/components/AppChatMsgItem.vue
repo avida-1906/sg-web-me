@@ -15,8 +15,6 @@ interface Props {
 }
 
 withDefaults(defineProps<Props>(), {})
-
-const localMsg = 'saf@dsf8d89 o90sdf :woods:sdfs78dsf:sus:98s7daf:kkk:'
 </script>
 
 <template>

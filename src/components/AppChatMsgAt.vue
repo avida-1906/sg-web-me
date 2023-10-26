@@ -2,7 +2,7 @@
 interface Props {
   user: {
     name: string
-    id: string
+    id?: string
     [k: string]: any
   }
 }
@@ -11,9 +11,9 @@ defineProps<Props>()
 </script>
 
 <template>
+  <!-- :href="`?name=${user.name}&id=${user.id}&modal=user`" -->
   <span class="chat-msg-at">
-    @
-    <a :href="`?name=${user.name}&id=${user.id}&modal=user`">
+    <a>
       <span>{{ user.name }}</span>
     </a>
   </span>
