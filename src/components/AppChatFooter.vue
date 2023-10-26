@@ -7,6 +7,8 @@
 
 // type CommandType = '/bet' | '/user' | '/tip' | '/rain' | '/ignore' | '/unignore'
 
+const chatStore = useChatStore()
+const { roomLang } = storeToRefs(chatStore)
 const { openChatRulesDialog } = useChatRulesDialog()
 const { openStatisticsDialog } = useStatisticsDialog()
 
@@ -166,7 +168,7 @@ function sendMsg() {
     }
     return
   }
-  runSendMsg({ c: message.value })
+  runSendMsg({ c: message.value, lang: roomLang.value })
 }
 
 function enterPress(event: KeyboardEvent) {

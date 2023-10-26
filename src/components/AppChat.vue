@@ -1,91 +1,18 @@
 <script lang="ts" setup>
-// const messages: Array<ChatMessageInfo> = [
-//   {
-//     id: '394802',
-//     sender: {
-//       name: 'xiaoming86',
-//       uid: '5293840jk23k44h2k',
-//       level: '3',
-//       role: 'moderator',
-//     },
-//     msg: '就是本金再多，我也很少去按比例下单，',
-//   },
-//   {
-//     id: '6345436',
-//     sender: {
-//       name: 'xiaohong77',
-//       uid: '9saf7d9f9saf78s9dfi24',
-//       level: 'gold',
-//     },
-//     msg: '我不开满倍的啊。只开10X',
-//   },
-//   {
-//     id: '634sdf5436',
-//     sender: {
-//       name: 'xiaohong77',
-//       uid: '9saf7d9f9saf78s9dfi24',
-//       level: 'gold',
-//     },
-//     msg: '我不开满倍的啊。只开10X',
-//   },
-//   {
-//     id: '634ssssa5436',
-//     sender: {
-//       name: 'xiaohong77',
-//       uid: '9saf7d9f9saf78s9dfi24',
-//       level: 'gold',
-//     },
-//     msg: '我不开满倍的啊。只开10X',
-//   },
-//   {
-//     id: '632345bbcdd436',
-//     sender: {
-//       name: 'xiaohong77',
-//       uid: '9saf7d9f9saf78s9dfi24',
-//       level: 'gold',
-//     },
-//     msg: '我不开满倍的啊。只开10X',
-//   },
-//   {
-//     id: '61112bcdd436',
-//     sender: {
-//       name: 'xiaohong77',
-//       uid: '9saf7d9f9saf78s9dfi24',
-//       level: 'gold',
-//     },
-//     msg: '我不开满倍的啊。只开10X',
-//   },
-//   {
-//     id: '6546yyyd436',
-//     sender: {
-//       name: 'xiaohong77',
-//       uid: '9saf7d9f9saf78s9dfi24',
-//       level: 'gold',
-//     },
-//     msg: '我不开满倍的啊。只开10X',
-//   },
-//   {
-//     id: '7897dfbcdd436',
-//     sender: {
-//       name: 'xiaohong77',
-//       uid: '9saf7d9f9saf78s9dfi24',
-//       level: 'gold',
-//     },
-//     msg: '我不开满倍的啊。只开10X',
-//   },
-//   {
-//     id: '34634fdsfdd436',
-//     sender: {
-//       name: 'xiaohong77',
-//       uid: '9saf7d9f9saf78s9dfi24',
-//       level: 'gold',
-//     },
-//     msg: '我不开满倍的啊。只开10X',
-//   },
-// ]
+import { languageMap } from '~/modules/i18n'
+import type { EnumLanguageKey } from '~/types'
+
+// topic =  站点前缀/chat/zh_CN
+// topic =  站点前缀/chat/en_US
+// topic =  站点前缀/chat/vi_VN
+// topic =  站点前缀/chat/pt_BR
+// topic =  站点前缀/chat/en_IN
+// topic =  站点前缀/chat/th_TH
+
+const { bool: showMoreBar, setFalse: setMFalse, setTrue: setMTrue } = useBoolean(false)
+
 const scrollMsg = ref()
 const messageHistory = ref<Array<ChatMessageInfo>>([])
-const { bool: showMoreBar, setFalse: setMFalse, setTrue: setMTrue } = useBoolean(false)
 
 const { run: runGetHistory } = useRequest(ApiChatGetHistory, {
   onSuccess: (data) => {
@@ -96,8 +23,8 @@ const { run: runGetHistory } = useRequest(ApiChatGetHistory, {
   },
 })
 
-function roomChange(room: string) {
-  runGetHistory()
+function roomChange(room: EnumLanguageKey) {
+  runGetHistory({ lang: languageMap[room] })
 }
 function messageWrapScroll() {
   const { height } = scrollMsg.value.getBoundingClientRect()
@@ -157,10 +84,27 @@ onMounted(() => {
     <div class="footer">
       <AppChatFooter />
     </div>
+    <!-- <div class="stack x-center y-center gap-small padding-none direction-vertical">
+      <div class="popped-chat-wrapper">
+        <span>聊天室已被隐藏</span>
+        <BaseButton bg-style="primary" size="md">
+          显示聊天室
+        </BaseButton>
+      </div>
+    </div> -->
   </section>
 </template>
 
 <style lang="scss" scoped>
+.popped-chat-wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  color: var(--tg-secondary-light);
+  font-size: var(--tg-font-size-base);
+  font-weight: var(--tg-font-weight-semibold);
+  line-height: 1.5;
+}
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.3s ease;
