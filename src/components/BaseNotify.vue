@@ -37,10 +37,10 @@ const startTime = ref(0)
 const endTime = ref(0)
 
 const iconName = computed(() => {
-  if (props.type)
-    return iconObj[props.type]
-  else
+  if (props.icon)
     return props.icon
+  else
+    return iconObj[props.type]
 })
 
 const _title = computed(() => {

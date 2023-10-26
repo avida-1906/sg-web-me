@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import AppChatMsgRender from './AppChatMsgRender'
+
 // 前面都补充一个空格
 /**
  * 解析规则：
@@ -13,6 +15,8 @@ interface Props {
 }
 
 withDefaults(defineProps<Props>(), {})
+
+const localMsg = 'saf@dsf8d89 o90sdf :woods:sdfs78dsf:sus:98s7daf:kkk:'
 </script>
 
 <template>
@@ -24,15 +28,25 @@ withDefaults(defineProps<Props>(), {})
     </div>
     <div class="content">
       <p>
-        <AppChatUserTags :user-info="msgInfo.sender" />
-        <span>:<span v-html="msgInfo.html" /></span>
-        <AppChatMsgOrder type="casino" order="982964823672423" />
+        <AppChatUserTags :user-info="msgInfo.user" />
+        <span>: <AppChatMsgRender :msg="msgInfo.msg" /></span>
+        <!-- <AppChatMsgOrder type="casino" order="982964823672423" />
         <AppChatMsgAt :user="{ name: 'abce24234', id: '123kjh24sdfs' }" />
-        <BaseImage alt=":monkas:" url="/img/emoji/monkas.webp" class="emoji" />
+        <BaseImage alt=":monkas:" url="/img/emoji/monkas.webp" class="emoji" /> -->
       </p>
     </div>
   </section>
 </template>
+
+<style>
+.base-image.emoji {
+  width: 24px;
+  display: inline-block;
+  vertical-align: middle;
+  height: auto;
+  user-select: none;
+}
+</style>
 
 <style lang="scss" scoped>
 .tg-chat-msg-item {
