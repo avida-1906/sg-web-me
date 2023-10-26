@@ -5,6 +5,8 @@ interface Room {
   value: string
 }
 
+const emit = defineEmits(['change'])
+
 const { closeRightSidebar } = useRightSidebar()
 
 const chatRoomList = reactive<Array<Room>>([
@@ -17,8 +19,11 @@ const chatRoomList = reactive<Array<Room>>([
 ])
 const room = ref(chatRoomList[0])
 
+emit('change', room.value.value)
+
 function chooseRoom(item: Room) {
   room.value = item
+  emit('change', item.value)
 }
 
 function close() {
