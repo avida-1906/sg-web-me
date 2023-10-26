@@ -14,7 +14,7 @@ type TMqttServer = Array<{
 class SocketClient {
   client: TMqttClient | null = null
 
-  subscribeList: string[] = ['test']
+  subscribeList: string[] = []
 
   /** 上一次连接登录状态 */
   lastLoginStatus: boolean | null = null
@@ -65,7 +65,6 @@ class SocketClient {
   }
 
   public async connect() {
-    return
     if (this.#MQTT_SERVER) {
       const { userInfo, isLogin } = storeToRefs(useAppStore())
 
@@ -101,7 +100,6 @@ class SocketClient {
           servers: this.#MQTT_SERVER!,
         })
         this.eventHandler()
-        this.subscribeHandler()
       })
     }
     else {
@@ -109,13 +107,32 @@ class SocketClient {
     }
   }
 
-  public subscribeHandler() {
-    if (this.client != null) {
-      this.client.subscribe(this.subscribeList, (error, granted) => {
-        if (error)
+  public addSubscribe(subscribeEvent: string) {
+    if (this.client != null && subscribeEvent) {
+      this.client.subscribe(subscribeEvent, (error, granted) => {
+        if (error) {
           this.#log('订阅失败', error)
-        else
+        }
+        else {
           this.#log('订阅成功', granted)
+          this.subscribeList.push(subscribeEvent)
+        }
+      })
+    }
+  }
+
+  public removeSubscribe(subscribeEvent: string) {
+    if (this.client != null && subscribeEvent) {
+      this.client.unsubscribe(subscribeEvent, (error: any) => {
+        if (error) {
+          this.#log('取消订阅失败', error)
+        }
+        else {
+          this.#log('取消订阅成功')
+          const index = this.subscribeList.indexOf(subscribeEvent)
+          if (index > -1)
+            this.subscribeList.splice(index, 1)
+        }
       })
     }
   }

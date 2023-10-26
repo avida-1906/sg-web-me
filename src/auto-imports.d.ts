@@ -145,6 +145,7 @@ declare global {
   const isReadonly: typeof import('vue')['isReadonly']
   const isRef: typeof import('vue')['isRef']
   const isUndefined: typeof import('lodash-es')['isUndefined']
+  const languageMap: typeof import('./types/index')['languageMap']
   const last: typeof import('lodash-es')['last']
   const lastOneNumberReg: typeof import('./utils/regexp')['lastOneNumberReg']
   const makeDestructurable: typeof import('@vueuse/core')['makeDestructurable']
