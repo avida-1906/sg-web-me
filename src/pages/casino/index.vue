@@ -86,15 +86,17 @@ function viewMoreGames() {
       <!-- 大厅 -->
       <Transition name="tab-fade">
         <div v-show="showAll">
-          <AppSlider
-            v-for="item in casinoGameList" :key="item.name"
-            :icon="item.icon"
-            :title="item.name"
-            :data="item.games"
-            :cid="item.cid"
-            :ty="item.ty"
-            :pid="item.platform_id"
-          />
+          <template v-for="item in casinoGameList" :key="item.name">
+            <AppSlider
+              v-if="item.games"
+              :icon="item.icon"
+              :title="item.name"
+              :data="item.games"
+              :cid="item.cid"
+              :ty="item.ty"
+              :pid="item.platform_id"
+            />
+          </template>
         </div>
       </Transition>
       <!-- 其他 -->
