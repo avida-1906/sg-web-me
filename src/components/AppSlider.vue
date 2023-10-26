@@ -40,7 +40,7 @@ const pageWidth = computed(() =>
 const isEnd = computed(() => {
   if (props.data) {
     const temp = (x.value + outerWidth.value)
-    / (itemWidthPercent.value * outerWidth.value)
+      / (itemWidthPercent.value * outerWidth.value)
     return temp >= props.data.length - 0.1
   }
 })
@@ -119,24 +119,17 @@ watchEffect(() => {
           <BaseIcon name="uni-arrowleft-line" />
         </BaseButton>
         <BaseButton
-          type="round-line-right"
-          :disabled="scrollLeftItemsCount + pageInfo.pageSize
-            >= data.length + 1"
-          @click="nextPage"
+          type="round-line-right" :disabled="scrollLeftItemsCount + pageInfo.pageSize
+            >= data.length + 1" @click="nextPage"
         >
           <BaseIcon name="uni-arrowright-line" />
         </BaseButton>
       </div>
     </div>
     <template v-if="data.length > 0">
-      <div
-        ref="gallery"
-        class="scroll-x gallery hide-scrollbar"
-        :class="[galleryClass]"
-      >
+      <div ref="gallery" class="scroll-x gallery hide-scrollbar" :class="[galleryClass]">
         <div
-          v-for="item, idx in data" :key="idx" class="slide"
-          :class="{
+          v-for="item, idx in data" :key="idx" class="slide" :class="{
             faded: idx === data.length - 1
               ? !isEnd : idx >= scrollLeftItemsCount + pageInfo.pageSize,
           }"
@@ -149,11 +142,8 @@ watchEffect(() => {
           </div>
         </div>
         <div
-          v-if="data.length && (showViewAll || $slots.viewAll)"
-          class="slide see-all"
-          :class="{
-            faded: scrollLeftItemsCount + pageInfo.pageSize < data.length + 1,
-          }"
+          v-if="data.length && (showViewAll || $slots.viewAll)" class="slide see-all"
+          :class="{ faded: scrollLeftItemsCount + pageInfo.pageSize < data.length + 1 }"
         >
           <div class="item" @click="goAllPage">
             <slot name="viewAll">
@@ -191,14 +181,15 @@ watchEffect(() => {
         position: relative;
         align-items: center;
         font-weight: 500;
+
         h3 {
           font-size: var(--tg-font-size-md);
           line-height: 1.5;
-          margin-left: var(--tg-spacing-8);
         }
 
         .icon {
           font-size: var(--tg-font-size-base);
+          margin-right: var(--tg-spacing-8);
         }
 
         &:hover {
