@@ -39,6 +39,10 @@ onMounted(() => {
     socketClient.addSubscribe(topic.value)
   }, 0)
 })
+
+onUnmounted(() => {
+  socketClient.removeSubscribe(topic.value)
+})
 </script>
 
 <template>

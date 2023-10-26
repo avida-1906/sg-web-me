@@ -52,7 +52,7 @@ export default {
   props: {
     msg: String,
   },
-  setup({ msg }: any) {
+  setup({ msg = '' }: any) {
     const splitByEmojiMsg = computed(() => msg.split(emojiReg))
     const matchedEmojis = computed(() => msg.match(emojiReg) ?? [])
     const matchedAtUsers = computed(() => msg.match(atUserReg))
