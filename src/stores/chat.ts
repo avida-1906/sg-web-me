@@ -12,7 +12,7 @@ export const useChatStore = defineStore('chat', () => {
   const currentLanguage = computed(() => room.value.value)
   const roomLang = computed(() => languageMap[currentLanguage.value])
   const topic = computed(() => {
-    const prefix = 'test'
+    const prefix = 'dev'
     const lang = languageMap[currentLanguage.value]
     const _topic = `${prefix}/chat/${lang}`
     return _topic
