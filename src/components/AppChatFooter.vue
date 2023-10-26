@@ -10,12 +10,6 @@
 const { openChatRulesDialog } = useChatRulesDialog()
 const { openStatisticsDialog } = useStatisticsDialog()
 
-const {
-  bool: sendLoading,
-  setTrue: setSLTrue,
-  setFalse: setSLFalse,
-} = useBoolean(false)
-
 const maxMsgLen = 160
 const msgInput = ref()
 const allEmojis = [
@@ -129,6 +123,7 @@ const emojis = computed(() => {
 })
 const isCommand = computed(() => message.value[0] === '/')
 
+const { run: runSendMsg, loading: sendLoading } = useRequest(ApiChatSendMessage)
 function addEmoMsg(emo: string) {
   const i = message.value.lastIndexOf(':')
   message.value = `${message.value.slice(0, i + 1)}${emo.split('.')[0]} ` + ': '
@@ -167,10 +162,7 @@ function sendMsg() {
     }
     return
   }
-  setSLTrue()
-  setTimeout(() => {
-    setSLFalse()
-  }, 500)
+  runSendMsg({ msg: message.value })
 }
 
 function enterPress(event: KeyboardEvent) {
@@ -186,7 +178,7 @@ function enterPress(event: KeyboardEvent) {
     <Transition>
       <div
         v-show="!sendLoading && emojis.length"
-        class="scroll-y emoji-wrap layout-grid wrap"
+        class="scroll-y wrap emoji-wrap layout-grid"
       >
         <div v-for="emo in emojis" :key="emo" class="button-wrap">
           <span class="box" @click="addEmoMsg(emo)">

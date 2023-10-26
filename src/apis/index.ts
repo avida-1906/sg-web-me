@@ -789,3 +789,14 @@ export function ApiMemberPaymentMerchantList(params: {
     often_amount: string
   }[]>('/member/payment/merchant/list', params)
 }
+
+/**
+ * 聊天室 发送消息
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=d45a32fc-e2da-4e64-b1db-3f8788dd6300
+ */
+export function ApiChatSendMessage(data: {
+  /** 发送的消息 */
+  msg: string
+}) {
+  return httpClient.post<string>('/member/chat/send', data)
+}

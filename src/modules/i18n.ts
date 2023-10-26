@@ -6,7 +6,7 @@ import { EnumLanguage } from '~/utils/enums'
 const { VITE_I18N_DEFAULT_LANG } = getEnv()
 
 /** 映射后端的多语言值 */
-const languageMap: IObject = {
+export const languageMap: IObject = {
   'zh-CN': 'zh_CN',
   'vi-VN': 'vi_VN',
   'pt-BR': 'pt_BR',
