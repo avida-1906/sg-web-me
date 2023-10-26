@@ -77,6 +77,7 @@ declare module 'vue' {
     AppSportsMarketTypeSelect: typeof import('./components/AppSportsMarketTypeSelect.vue')['default']
     AppSportsOdds: typeof import('./components/AppSportsOdds.vue')['default']
     AppSportsOutcomeLocked: typeof import('./components/AppSportsOutcomeLocked.vue')['default']
+    AppSportsProviderSlider: typeof import('./components/AppSportsProviderSlider.vue')['default']
     AppSportsSearchResult: typeof import('./components/AppSportsSearchResult.vue')['default']
     AppSportsTab: typeof import('./components/AppSportsTab.vue')['default']
     AppStack: typeof import('./components/AppStack.vue')['default']
