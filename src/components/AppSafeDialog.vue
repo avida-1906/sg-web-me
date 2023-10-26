@@ -62,6 +62,11 @@ const updateParams = computed<IMemberBalanceLockerUpdate | null>(() => {
   return null
 })
 
+function renderSvg(text: string) {
+  return `<svg aria-hidden="true" style="width:14px;height:14px;margin: 0 5px;">
+          <use xlink:href="#icon-coin-${text}"/>
+        </svg>`
+}
 const {
   run: runLockerUpdate,
   loading: lockerUpdateLoading,
@@ -71,8 +76,11 @@ const {
       title: isDeposit.value ? '保险库存款' : '保险库提款',
       icon: 'navbar-cart-notify',
       message: isDeposit.value
-        ? `成功存放 ${updateParams.value?.amount} 进保险库`
-        : `已确认从保险库提取 ${updateParams.value?.amount}`,
+        ? `成功存放 ${updateParams.value?.amount}
+        ${renderSvg(activeCurrency.value.type.toLocaleLowerCase())} 进保险库`
+        : `已确认从保险库提取 ${updateParams.value?.amount}
+        ${renderSvg(activeCurrency.value.type.toLocaleLowerCase())}
+        `,
     })
     resetAmount()
     resetPassword()
