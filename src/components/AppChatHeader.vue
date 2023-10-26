@@ -69,7 +69,7 @@ onUnmounted(() => {
       >
         <div class="chat-room-choose">
           <BaseIcon :name="room.icon" />
-          <span>SFake: {{ room.label }} </span>
+          <span>STake: {{ room.label }} </span>
           <BaseIcon class="arrow-down" name="uni-arrow-down" />
         </div>
         <template #popper="{ hide }">
