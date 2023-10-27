@@ -110,7 +110,11 @@ function clearKeyword() {
 }
 
 // 关闭方法
-provide('closeSearch', () => emit('close'))
+function emitClose() {
+  searchValue.value = ''
+  emit('close')
+}
+provide('closeSearch', emitClose)
 provide('closeSearchH5', () => leftIsExpand.value = !leftIsExpand.value)
 </script>
 
@@ -225,6 +229,8 @@ provide('closeSearchH5', () => leftIsExpand.value = !leftIsExpand.value)
   var(--tg-spacing-button-padding-vertical-xs)
   var(--tg-spacing-button-padding-horizontal-xs);
   font-size: var(--tg-font-size-default);
+  display: block;
+  font-weight: var(--tg-font-weight-semibold);
 
   &:hover {
     // background-color: var(--tg-text-lightgrey);
