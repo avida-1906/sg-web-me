@@ -132,7 +132,7 @@ class SocketClient {
           this.#log('取消订阅失败', error)
         }
         else {
-          this.#log('取消订阅成功')
+          this.#log(`取消订阅成功 ${subscribeEvent}`)
           const index = this.subscribeList.indexOf(subscribeEvent)
           if (index > -1)
             this.subscribeList.splice(index, 1)
