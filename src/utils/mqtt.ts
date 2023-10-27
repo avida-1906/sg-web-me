@@ -89,7 +89,9 @@ class SocketClient {
 
       // 随机生成10位的 客户端ID
       const r = Math.random().toString(36).slice(-10)
-      const clientId = isLogin.value ? userInfo.value?.uid : `web-random-${r}`
+      const clientId = isLogin.value
+        ? `${userInfo.value?.uid}-${Math.floor(Math.random() * 100)}`
+        : `web-random-${r}`
       this.#log('clientId', clientId)
 
       import('precompiled-mqtt').then((mqtt) => {
@@ -97,7 +99,7 @@ class SocketClient {
         this.client = mqtt.connect({
           // username: VITE_SOCKET_USERNAME,
           // password: VITE_SOCKET_PASSWORD,
-          keepalive: 60,
+          keepalive: 20,
           clientId,
           servers: this.#MQTT_SERVER!,
         })
