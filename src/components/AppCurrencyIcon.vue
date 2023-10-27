@@ -21,7 +21,7 @@ const iconUrl = computed(() => {
     <BaseIcon
       v-if="!getIsRight"
       :name="iconUrl"
-      is-cloud-img
+      use-cloud-img
     />
     <span
       v-if="showName"
@@ -32,7 +32,7 @@ const iconUrl = computed(() => {
     <BaseIcon
       v-if="getIsRight"
       :name="iconUrl"
-      is-cloud-img
+      use-cloud-img
     />
   </div>
 </template>
