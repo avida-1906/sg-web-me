@@ -43,9 +43,7 @@ const {
   loading: thirdDepositLoading,
 } = useRequest(ApiFinanceThirdDeposit, {
   onSuccess(data) {
-    const left = (screen.width - 800) / 2
-    const top = (screen.height - 600) / 2
-    window.open(data, 'MyNewWindow', `width=800, height=600, top=${top}, left=${left}`)
+    window.open(data, '_blank')
   },
 })
 
