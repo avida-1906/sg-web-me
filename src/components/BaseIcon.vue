@@ -1,24 +1,21 @@
 <script lang="ts" setup name="app-icon">
-const props = defineProps({
-  prefix: {
-    type: String,
-    default: 'icon',
-  },
-  name: {
-    type: String,
-    required: true,
-  },
+interface Props {
+  prefix?: string
+  name: string
+  useCloudImg?: boolean
+}
+const props = withDefaults(defineProps<Props>(), {
+  prefix: 'icon',
 })
 
-const isImage = computed(() => props.name.includes('%lang%'))
 const symbolId = computed(() => `#${props.prefix}-${props.name}`)
 </script>
 
 <template>
-  <div v-if="isImage" class="app-svg-icon">
+  <div v-if="useCloudImg" class="app-svg-icon">
     <BaseImage
       :url="name"
-      is-game
+      is-cloud
     />
   </div>
   <svg v-else class="app-svg-icon" aria-hidden="true">
