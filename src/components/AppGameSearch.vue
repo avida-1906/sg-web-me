@@ -42,7 +42,7 @@ const {
   list: casinoGames,
   run: runSearchCasinoGames,
 } = useList(ApiMemberGameSearch, {
-  debounceInterval: 500,
+  debounceInterval: 1000,
   onAfter(params) {
     const word = params[0].w
     isClear.value = false
@@ -139,6 +139,8 @@ onMounted(() => {
 onBeforeUnmount(() => {
   windowResizeRemove()
 })
+
+provide('closeSearch', closeOverlay)
 </script>
 
 <template>

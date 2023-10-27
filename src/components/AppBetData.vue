@@ -7,6 +7,8 @@ interface Column {
   align?: 'left' | 'center' | 'right' // 列对其方式
   xl?: boolean // 768-1200是否展示
   md?: boolean // <768是否展示
+  sort?: boolean // 是否展示排序
+  sortDirections?: 'ascend' | 'descend' // 升序 ｜ 降序
 }
 interface Props {
   mode?: 'casino' | 'sports' | 'home'

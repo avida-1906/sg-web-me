@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import AppChatMsgRender from './AppChatMsgRender'
-
 // 前面都补充一个空格
 /**
  * 解析规则：
@@ -61,7 +59,7 @@ withDefaults(defineProps<Props>(), {})
       font-size: var(--tg-font-size-default);
       font-weight: var(--tg-font-weight-normal);
       line-height: 1.5;
-      word-break: break-all;
+      word-break: break-word;
       .emoji {
         width: 24px;
         display: inline-block;

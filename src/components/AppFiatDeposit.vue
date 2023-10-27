@@ -33,11 +33,19 @@ const oftenAmount = ref<TOftenAmount[]>()
 const {
   run: runPaymentMethodList,
   data: paymentMethodList,
-} = useRequest(ApiMemberPaymentMethodList)
+} = useRequest(ApiFinanceMethodList)
 const {
   run: runPaymentMerchantList,
   data: paymentMerchantList,
-} = useRequest(ApiMemberPaymentMerchantList)
+} = useRequest(ApiFinanceMerchantList)
+const {
+  run: runThirdDeposit,
+  loading: thirdDepositLoading,
+} = useRequest(ApiFinanceThirdDeposit, {
+  onSuccess(data) {
+    window.open(data, '_blank')
+  },
+})
 
 const paymentMethodData = computed(() => {
   if (paymentMethodList.value) {
@@ -68,18 +76,19 @@ const strToArray = function (amounts: string) {
 }
 
 const paymentMerchantData = computed(() => {
-  if (paymentMerchantList.value) {
-    currentAisle.value = paymentMerchantList.value[0].id
+  const firstMerchant = paymentMerchantList.value?.[0]
+  if (firstMerchant && paymentMerchantList.value) {
+    currentAisle.value = firstMerchant.id
     currentAisleItem.value = {
-      label: paymentMerchantList.value[0].name,
-      value: paymentMerchantList.value[0].id,
-      type: paymentMerchantList.value[0].amount_type,
-      amount_fixed: paymentMerchantList.value[0].amount_fixed,
-      often_amount: paymentMerchantList.value[0].often_amount,
+      label: firstMerchant.name,
+      value: firstMerchant.id,
+      type: firstMerchant.amount_type,
+      amount_fixed: firstMerchant.amount_fixed,
+      often_amount: firstMerchant.often_amount,
     }
-    oftenAmount.value = strToArray(paymentMerchantList.value[0].amount_type === 1
-      ? paymentMerchantList.value[0].amount_fixed
-      : paymentMerchantList.value[0].often_amount,
+    oftenAmount.value = strToArray(firstMerchant.amount_type === 1
+      ? firstMerchant.amount_fixed
+      : firstMerchant.often_amount,
     )
     return paymentMerchantList.value.map((i) => {
       return {
@@ -117,9 +126,11 @@ const changeAisle = function (item: IPaymentMerchantData) {
   oftenAmount.value = strToArray(item.type === 1 ? item.amount_fixed : item.often_amount)
 }
 function depositSubmit() {
-  console.log('amount', amount.value)
-  console.log('currentType', currentType.value)
-  console.log('currentAisle', currentAisle.value)
+  runThirdDeposit({
+    amount: amount.value,
+    mid: currentType.value,
+    cid: currentAisle.value,
+  })
 }
 
 watch(() => props.activeCurrency, (newValue) => {
@@ -215,7 +226,12 @@ watch(() => currentType.value, (newValue) => {
               v-model="amount"
               :options="oftenAmount"
             />
-            <BaseButton bg-style="primary" size="md" @click="depositSubmit">
+            <BaseButton
+              bg-style="primary"
+              size="md"
+              :loading="thirdDepositLoading"
+              @click="depositSubmit"
+            >
               确认支付
             </BaseButton>
           </div>
