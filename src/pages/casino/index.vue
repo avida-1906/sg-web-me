@@ -109,6 +109,7 @@ function viewMoreGames() {
           <div class="title">
             <BaseIcon
               :name="currentNav.icon"
+              use-cloud-img
             />
             <span>{{ currentNav.label }}</span>
           </div>

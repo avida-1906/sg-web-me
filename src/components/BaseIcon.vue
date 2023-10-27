@@ -12,7 +12,7 @@ const symbolId = computed(() => `#${props.prefix}-${props.name}`)
 </script>
 
 <template>
-  <div v-if="useCloudImg" class="app-svg-icon">
+  <div v-if="useCloudImg" class="app-svg-icon" style="overflow: hidden;">
     <BaseImage
       :url="name"
       is-cloud
