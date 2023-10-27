@@ -140,7 +140,7 @@ onBeforeUnmount(() => {
   windowResizeRemove()
 })
 
-provide('closeSearch', () => isShowOverlay.value = false)
+provide('closeSearch', closeOverlay)
 </script>
 
 <template>
