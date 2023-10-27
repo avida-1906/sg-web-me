@@ -41,7 +41,7 @@ function messageWrapScroll() {
 }
 function onReceiveChatMsg(m: any) {
   const hasMsg = m.s
-    ? isValueContainInBloom(messageHistory.value.map(v => v.s), m.s)
+    ? isValueContainInBloom(messageHistory.value.map(v => v.s).filter(f => f !== undefined && f.length), m.s)
     : false
   if (!hasMsg)
     messageHistory.value.push({ ...m, id: m.s, msg: m.c, user: { name: m.n, uid: m.u } })
