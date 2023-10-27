@@ -45,5 +45,5 @@ echo "构建完成"
 
 echo "开始上传..."
 rsync -avz ./dist/* $serverUser@$serverIp:$serverDir
-# rsync -avz ./dist/* $serverUser@$fatServerIp:$serverDir
+rsync -avz ./dist/* $serverUser@$fatServerIp:$serverDir
 echo "上传完成"
