@@ -39,13 +39,6 @@ function messageWrapScroll() {
   else
     setMFalse()
 }
-function goBottom() {
-  nextTick(() => {
-    setTimeout(() => {
-      document.querySelector('.msg-tail')?.scrollIntoView({ behavior: 'smooth' })
-    }, 300)
-  })
-}
 function onReceiveChatMsg(m: any) {
   const hasMsg = isValueContainInBloom(messageHistory.value.map(v => v.s), m.s)
   if (!hasMsg)
