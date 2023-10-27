@@ -750,7 +750,7 @@ export function ApiMemberBankcardDelete(data: {
  * 支付方式列表
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=fc432cbb-655f-4eb9-9a4c-4cec7036f261
  */
-export function ApiMemberPaymentMethodList(params: {
+export function ApiFinanceMethodList(params: {
   currency_id: string
 }) {
   return httpClient.get<{
@@ -764,14 +764,14 @@ export function ApiMemberPaymentMethodList(params: {
     alias: string
     /** 通道名称 */
     name: string
-  }[]>('/member/payment/method/list', params)
+  }[]>('/finance/method/list', params)
 }
 
 /**
  * 支付通道列表
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=6d059119-743a-476b-ba97-19b694216b77
  */
-export function ApiMemberPaymentMerchantList(params: {
+export function ApiFinanceMerchantList(params: {
   id: string
 }) {
   return httpClient.get<{
@@ -789,7 +789,7 @@ export function ApiMemberPaymentMerchantList(params: {
     amount_fixed: string
     /** 常用金额,逗号隔开 */
     often_amount: string
-  }[]>('/member/payment/merchant/list', params)
+  }[]>('/finance/merchant/list', params)
 }
 
 /**
@@ -821,4 +821,18 @@ export function ApiChatGetHistory(params: {
     /** 创建时间 */
     t: number
   }[]>('/member/chat/history/list', params)
+}
+
+/**
+ * 三方支付存款
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=b88a28f8-3a76-41e8-bcf0-af00a8bb3452
+ */
+export function ApiFinanceThirdDeposit(data: {
+  amount: string
+  /** 支付方式id */
+  mid: string
+  /** 支付平台id */
+  cid: string
+}) {
+  return httpClient.post<string>('/finance/third/deposit', data)
 }
