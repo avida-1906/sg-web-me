@@ -47,7 +47,9 @@ function goBottom() {
   })
 }
 function onReceiveChatMsg(m: any) {
-  messageHistory.value.push({ ...m, id: m.s, msg: m.c, user: { name: m.n, uid: m.u } })
+  const hasMsg = isValueContainInBloom(messageHistory.value.map(v => v.s), m.s)
+  if (!hasMsg)
+    messageHistory.value.push({ ...m, id: m.s, msg: m.c, user: { name: m.n, uid: m.u } })
 }
 
 onMounted(() => {

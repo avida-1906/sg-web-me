@@ -134,6 +134,7 @@ declare global {
   const head: typeof import('lodash-es')['head']
   const httpClient: typeof import('./http/index')['httpClient']
   const ignorableWatch: typeof import('@vueuse/core')['ignorableWatch']
+  const initBloom: typeof import('./composables/useChatEvent')['initBloom']
   const inject: typeof import('vue')['inject']
   const isArray: typeof import('lodash-es')['isArray']
   const isDark: typeof import('./composables/dark')['isDark']
@@ -148,6 +149,7 @@ declare global {
   const isReadonly: typeof import('vue')['isReadonly']
   const isRef: typeof import('vue')['isRef']
   const isUndefined: typeof import('lodash-es')['isUndefined']
+  const isValueContainInBloom: typeof import('./composables/useChatEvent')['isValueContainInBloom']
   const last: typeof import('lodash-es')['last']
   const lastOneNumberReg: typeof import('./utils/regexp')['lastOneNumberReg']
   const makeDestructurable: typeof import('@vueuse/core')['makeDestructurable']
@@ -614,6 +616,7 @@ declare module 'vue' {
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
     readonly isUndefined: UnwrapRef<typeof import('lodash-es')['isUndefined']>
+    readonly isValueContainInBloom: UnwrapRef<typeof import('./composables/useChatEvent')['isValueContainInBloom']>
     readonly last: UnwrapRef<typeof import('lodash-es')['last']>
     readonly lastOneNumberReg: UnwrapRef<typeof import('./utils/regexp')['lastOneNumberReg']>
     readonly makeDestructurable: UnwrapRef<typeof import('@vueuse/core')['makeDestructurable']>
@@ -1074,6 +1077,7 @@ declare module '@vue/runtime-core' {
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
     readonly isUndefined: UnwrapRef<typeof import('lodash-es')['isUndefined']>
+    readonly isValueContainInBloom: UnwrapRef<typeof import('./composables/useChatEvent')['isValueContainInBloom']>
     readonly last: UnwrapRef<typeof import('lodash-es')['last']>
     readonly lastOneNumberReg: UnwrapRef<typeof import('./utils/regexp')['lastOneNumberReg']>
     readonly makeDestructurable: UnwrapRef<typeof import('@vueuse/core')['makeDestructurable']>
