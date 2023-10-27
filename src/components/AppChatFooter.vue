@@ -170,9 +170,8 @@ function sendMsg() {
     return
   }
   if (message.value.length)
-    runSendMsg({ c: message.value, lang: roomLang.value })
+    runSendMsg({ c: message.value, lang: roomLang.value, s: Math.random().toString(36).slice(-10) })
 }
-
 function enterPress(event: KeyboardEvent) {
   event.preventDefault()
   event.stopPropagation()
@@ -186,7 +185,7 @@ function enterPress(event: KeyboardEvent) {
     <Transition>
       <div
         v-show="!sendLoading && emojis.length"
-        class="scroll-y emoji-wrap layout-grid wrap"
+        class="scroll-y wrap emoji-wrap layout-grid"
       >
         <div v-for="emo in emojis" :key="emo" class="button-wrap">
           <span class="box" @click="addEmoMsg(emo)">

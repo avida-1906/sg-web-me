@@ -7,6 +7,8 @@ const chatStore = useChatStore()
 const { chatRoomList, room, topic, hideChat } = storeToRefs(chatStore)
 const { closeRightSidebar } = useRightSidebar()
 
+const mqttConnectSuccessEvent = useEventBus(MQTT_CONNECT_SUCCESS_BUS)
+
 const chatWin = ref()
 
 emit('change', room.value.value)
@@ -31,6 +33,12 @@ function openChat() {
   chatStore.toggleChat()
 }
 
+function onMqttConnectSuc() {
+  setTimeout(() => {
+    socketClient.addSubscribe(topic.value)
+  }, 0)
+}
+
 watch(hideChat, (val) => {
   if (val) {
     socketClient.removeSubscribe(topic.value)
@@ -44,11 +52,7 @@ watch(hideChat, (val) => {
 })
 
 onMounted(() => {
-  useEventBus(MQTT_CONNECT_SUCCESS_BUS).on(() => {
-    setTimeout(() => {
-      socketClient.addSubscribe(topic.value)
-    }, 0)
-  })
+  mqttConnectSuccessEvent.on(onMqttConnectSuc)
   setTimeout(() => {
     socketClient.addSubscribe(topic.value)
   }, 0)
@@ -56,6 +60,7 @@ onMounted(() => {
 
 onUnmounted(() => {
   socketClient.removeSubscribe(topic.value)
+  mqttConnectSuccessEvent.off(onMqttConnectSuc)
 })
 </script>
 
