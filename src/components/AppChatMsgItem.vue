@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import AppChatMsgRender from './AppChatMsgRender'
-
 // 前面都补充一个空格
 /**
  * 解析规则：
