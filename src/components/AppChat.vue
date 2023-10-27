@@ -28,6 +28,7 @@ const { run: runGetHistory } = useRequest(ApiChatGetHistory, {
 
 function roomChange(room: EnumLanguageKey) {
   runGetHistory({ lang: languageMap[room] })
+  setMFalse()
 }
 function messageWrapScroll() {
   const { height } = scrollMsg.value.getBoundingClientRect()

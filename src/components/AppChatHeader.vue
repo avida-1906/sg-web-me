@@ -34,12 +34,10 @@ function openChat() {
 watch(hideChat, (val) => {
   if (val) {
     socketClient.removeSubscribe(topic.value)
-    socketClient.close()
   }
   else {
     chatWin.value.close()
     setTimeout(() => {
-      socketClient.connect()
       socketClient.addSubscribe(topic.value)
     }, 0)
   }
