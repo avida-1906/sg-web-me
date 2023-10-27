@@ -28,6 +28,7 @@ const { run: runGetHistory } = useRequest(ApiChatGetHistory, {
 
 function roomChange(room: EnumLanguageKey) {
   runGetHistory({ lang: languageMap[room] })
+  setMFalse()
 }
 function messageWrapScroll() {
   const { height } = scrollMsg.value.getBoundingClientRect()
@@ -93,7 +94,7 @@ onMounted(() => {
                 <BaseIcon name="uni-stop" />
                 <span>聊天室因滚动而暂停</span>
               </div>
-              <div class="icon-text go-down">
+              <div class="icon-text go-down" @click.stop="goBottom">
                 <BaseIcon name="uni-arrow-godown" />
                 <span>20+ 条新信息</span>
               </div>
