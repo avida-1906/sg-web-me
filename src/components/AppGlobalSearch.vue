@@ -110,7 +110,11 @@ function clearKeyword() {
 }
 
 // 关闭方法
-provide('closeSearch', () => emit('close'))
+function emitClose() {
+  searchValue.value = ''
+  emit('close')
+}
+provide('closeSearch', emitClose)
 provide('closeSearchH5', () => leftIsExpand.value = !leftIsExpand.value)
 </script>
 
