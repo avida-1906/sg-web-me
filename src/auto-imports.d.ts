@@ -50,8 +50,6 @@ declare global {
   const ApiSmsSend: typeof import('./apis/index')['ApiSmsSend']
   const ApiWalletBankcardList: typeof import('./apis/index')['ApiWalletBankcardList']
   const Big: typeof import('big.js')['Big']
-  const CHAT_EVENT_BUS: typeof import('./utils/event-bus')['CHAT_EVENT_BUS']
-  const CHAT_MESSAGE: typeof import('./utils/event-bus')['CHAT_MESSAGE']
   const CHAT_MESSAGE_BUS: typeof import('./utils/event-bus')['CHAT_MESSAGE_BUS']
   const EffectScope: typeof import('vue')['EffectScope']
   const EnumCasinoApiGameType: typeof import('./utils/enums')['EnumCasinoApiGameType']
@@ -65,9 +63,7 @@ declare global {
   const EnumSportsPanelType: typeof import('./stores/sports')['EnumSportsPanelType']
   const EnumsBetSlipTabs: typeof import('./utils/enums')['EnumsBetSlipTabs']
   const Local: typeof import('./utils/storage')['Local']
-  const MQTT_CONNECT_SUCCESS: typeof import('./utils/event-bus')['MQTT_CONNECT_SUCCESS']
   const MQTT_CONNECT_SUCCESS_BUS: typeof import('./utils/event-bus')['MQTT_CONNECT_SUCCESS_BUS']
-  const SOCKET_EVENT_BUS: typeof import('./utils/event-bus')['SOCKET_EVENT_BUS']
   const STORAGE_CURRENT_GLOBAL_CURRENCY_KEY: typeof import('./utils/storage')['STORAGE_CURRENT_GLOBAL_CURRENCY_KEY']
   const STORAGE_HIDE_ZERO_BALANCE_KEY: typeof import('./utils/storage')['STORAGE_HIDE_ZERO_BALANCE_KEY']
   const STORAGE_LANGUAGE_KEY: typeof import('./utils/storage')['STORAGE_LANGUAGE_KEY']
@@ -88,7 +84,6 @@ declare global {
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
   const autoResetRef: typeof import('@vueuse/core')['autoResetRef']
   const axios: typeof import('axios')['default']
-  const bus: typeof import('./composables/useChatEvent')['bus']
   const chatEventBus: typeof import('./composables/useChatEvent')['chatEventBus']
   const cloneDeep: typeof import('lodash-es')['cloneDeep']
   const computed: typeof import('vue')['computed']
@@ -153,7 +148,6 @@ declare global {
   const isReadonly: typeof import('vue')['isReadonly']
   const isRef: typeof import('vue')['isRef']
   const isUndefined: typeof import('lodash-es')['isUndefined']
-  const languageMap: typeof import('./types/index')['languageMap']
   const last: typeof import('lodash-es')['last']
   const lastOneNumberReg: typeof import('./utils/regexp')['lastOneNumberReg']
   const makeDestructurable: typeof import('@vueuse/core')['makeDestructurable']
@@ -279,7 +273,6 @@ declare global {
   const useBrowserLocation: typeof import('@vueuse/core')['useBrowserLocation']
   const useCached: typeof import('@vueuse/core')['useCached']
   const useCasinoStore: typeof import('./stores/casino')['useCasinoStore']
-  const useChat: typeof import('./composables/useChat')['useChat']
   const useChatEvent: typeof import('./composables/useChatEvent')['useChatEvent']
   const useChatRulesDialog: typeof import('./composables/useDialogChatRules')['useChatRulesDialog']
   const useChatStore: typeof import('./stores/chat')['useChatStore']
@@ -558,7 +551,6 @@ declare module 'vue' {
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
     readonly axios: UnwrapRef<typeof import('axios')['default']>
-    readonly chatEventBus: UnwrapRef<typeof import('./composables/useChatEvent')['chatEventBus']>
     readonly cloneDeep: UnwrapRef<typeof import('lodash-es')['cloneDeep']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly computedAsync: UnwrapRef<typeof import('@vueuse/core')['computedAsync']>
@@ -1019,7 +1011,6 @@ declare module '@vue/runtime-core' {
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
     readonly axios: UnwrapRef<typeof import('axios')['default']>
-    readonly chatEventBus: UnwrapRef<typeof import('./composables/useChatEvent')['chatEventBus']>
     readonly cloneDeep: UnwrapRef<typeof import('lodash-es')['cloneDeep']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly computedAsync: UnwrapRef<typeof import('@vueuse/core')['computedAsync']>

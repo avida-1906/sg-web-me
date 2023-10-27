@@ -7,6 +7,8 @@ const chatStore = useChatStore()
 const { chatRoomList, room, topic, hideChat } = storeToRefs(chatStore)
 const { closeRightSidebar } = useRightSidebar()
 
+const mqttConnectSuccessEvent = useEventBus(MQTT_CONNECT_SUCCESS_BUS)
+
 const chatWin = ref()
 
 emit('change', room.value.value)
@@ -31,26 +33,26 @@ function openChat() {
   chatStore.toggleChat()
 }
 
+function onMqttConnectSuc() {
+  setTimeout(() => {
+    socketClient.addSubscribe(topic.value)
+  }, 0)
+}
+
 watch(hideChat, (val) => {
   if (val) {
     socketClient.removeSubscribe(topic.value)
-    socketClient.close()
   }
   else {
     chatWin.value.close()
     setTimeout(() => {
-      socketClient.connect()
       socketClient.addSubscribe(topic.value)
     }, 0)
   }
 })
 
 onMounted(() => {
-  useEventBus(MQTT_CONNECT_SUCCESS_BUS).on(() => {
-    setTimeout(() => {
-      socketClient.addSubscribe(topic.value)
-    }, 0)
-  })
+  mqttConnectSuccessEvent.on(onMqttConnectSuc)
   setTimeout(() => {
     socketClient.addSubscribe(topic.value)
   }, 0)
@@ -58,6 +60,7 @@ onMounted(() => {
 
 onUnmounted(() => {
   socketClient.removeSubscribe(topic.value)
+  mqttConnectSuccessEvent.off(onMqttConnectSuc)
 })
 </script>
 
@@ -69,7 +72,7 @@ onUnmounted(() => {
       >
         <div class="chat-room-choose">
           <BaseIcon :name="room.icon" />
-          <span>SFake: {{ room.label }} </span>
+          <span>STake: {{ room.label }} </span>
           <BaseIcon class="arrow-down" name="uni-arrow-down" />
         </div>
         <template #popper="{ hide }">
@@ -88,8 +91,8 @@ onUnmounted(() => {
         </template>
       </VDropdown>
     </div>
-    <div v-if="$route.path !== '/chat' && !hideChat" class="right-header">
-      <VTooltip placement="bottom">
+    <div v-if="$route.path !== '/chat'" class="right-header">
+      <VTooltip v-if="!hideChat" placement="bottom">
         <div class="item hoverable">
           <BaseButton type="text" @click="openChat">
             <BaseIcon name="uni-jump-page" />

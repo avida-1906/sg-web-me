@@ -315,9 +315,7 @@ onMounted(() => {
               <BaseIcon name="chess-air-bonus" />
               <span>Luckiest 赢</span>
             </p>
-            <p class="title-right">
-              <BaseSelect v-model="selectValue" :options="selectOptions" :small="true" />
-            </p>
+            <BaseSelect v-model="selectValue" :options="selectOptions" :small="true" />
           </div>
           <div class="trophies-cards">
             <div v-for="item, index in trophyCards" :key="index" class="t-card">
@@ -447,9 +445,6 @@ onMounted(() => {
               color: var(--tg-text-white);
               margin-left: var(--tg-spacing-8);
             }
-          }
-          .title-right{
-            width: 120px;
           }
         }
         .trophies-cards{

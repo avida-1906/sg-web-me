@@ -9,6 +9,7 @@ interface Props {
   ty?: number
   cid?: string
   pid?: string
+  useCloudImg?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -109,7 +110,7 @@ watchEffect(() => {
       <div class="title">
         <a>
           <div v-if="icon" class="icon">
-            <BaseIcon :name="icon" />
+            <BaseIcon :name="icon" :use-cloud-img="useCloudImg" />
           </div>
           <h3>{{ title }}</h3>
         </a>

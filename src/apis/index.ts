@@ -800,8 +800,10 @@ export function ApiChatSendMessage(data: {
   /** 发送的消息 */
   c: string
   lang: string
+  /** 唯一id标志 */
+  s: string
 }) {
-  return httpClient.post<string>(`/member/chat/send?lang=${data.lang}`, { c: data.c })
+  return httpClient.post<string>(`/member/chat/send?lang=${data.lang}`, { c: data.c, s: data.s })
 }
 
 /**
@@ -812,6 +814,8 @@ export function ApiChatGetHistory(params: {
   lang: string
 }) {
   return httpClient.get<{
+    /** 消息 id */
+    s: string
     /** 消息内容 */
     c: string
     /** 用户id */

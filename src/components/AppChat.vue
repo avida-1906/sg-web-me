@@ -14,12 +14,14 @@ const { hideChat } = storeToRefs(chatStore)
 
 const { bool: showMoreBar, setFalse: setMFalse, setTrue: setMTrue } = useBoolean(false)
 
+const chatMessageBus = useEventBus(CHAT_MESSAGE_BUS)
+
 const scrollMsg = ref()
 const messageHistory = ref<Array<ChatMessageInfo>>([])
 
 const { run: runGetHistory } = useRequest(ApiChatGetHistory, {
   onSuccess: (data) => {
-    messageHistory.value = data?.reverse().map(m => ({ ...m, msg: m.c, user: { name: m.n, uid: m.u } }))
+    messageHistory.value = data?.reverse().map(m => ({ ...m, id: m.s, msg: m.c, user: { name: m.n, uid: m.u } }))
   },
   onAfter: () => {
     goBottom()
@@ -28,6 +30,7 @@ const { run: runGetHistory } = useRequest(ApiChatGetHistory, {
 
 function roomChange(room: EnumLanguageKey) {
   runGetHistory({ lang: languageMap[room] })
+  setMFalse()
 }
 function messageWrapScroll() {
   const { height } = scrollMsg.value.getBoundingClientRect()
@@ -43,13 +46,17 @@ function goBottom() {
     }, 300)
   })
 }
+function onReceiveChatMsg(m: any) {
+  messageHistory.value.push({ ...m, id: m.s, msg: m.c, user: { name: m.n, uid: m.u } })
+}
 
 onMounted(() => {
   goBottom()
-  const chatMessageBus = useEventBus(CHAT_MESSAGE_BUS)
-  chatMessageBus.on((m: any) => {
-    messageHistory.value.push({ ...m, msg: m.c, user: { name: m.n, uid: m.u } })
-  })
+  chatMessageBus.on(onReceiveChatMsg)
+})
+
+onUnmounted(() => {
+  chatMessageBus.off(onReceiveChatMsg)
 })
 </script>
 
@@ -93,7 +100,7 @@ onMounted(() => {
                 <BaseIcon name="uni-stop" />
                 <span>聊天室因滚动而暂停</span>
               </div>
-              <div class="icon-text go-down">
+              <div class="icon-text go-down" @click.stop="goBottom(0)">
                 <BaseIcon name="uni-arrow-godown" />
                 <span>20+ 条新信息</span>
               </div>

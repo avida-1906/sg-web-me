@@ -78,7 +78,7 @@ function viewMoreGames() {
     </div>
     <div class="mt-24">
       <BaseTab
-        v-model="tab" :list="casinoNav" :center="false" size="large"
+        v-model="tab" :list="casinoNav" :center="false" size="large" use-cloud-img
         @change="onTabChange"
       />
     </div>
@@ -95,6 +95,7 @@ function viewMoreGames() {
               :cid="item.cid"
               :ty="item.ty"
               :pid="item.platform_id"
+              use-cloud-img
             />
           </template>
         </div>

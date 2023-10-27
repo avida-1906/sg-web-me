@@ -1,10 +1,8 @@
-export const chatEventBus = useEventBus<string>('/chat/zh_CN')
-
-export function goBottom() {
+export function goBottom(time?: number) {
   nextTick(() => {
-    setTimeout(() => {
-      document.querySelector('.msg-tail')?.scrollIntoView({ behavior: 'smooth' })
-    }, 300)
+    // setTimeout(() => {
+    document.querySelector('.msg-tail')?.scrollIntoView({ behavior: 'smooth' })
+    // }, time !== undefined ? time : 300)
   })
 }
 

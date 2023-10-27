@@ -133,7 +133,7 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
     <div class="mobile-header">
       <div class="img-wrap">
         <div class="img">
-          <BaseImage :url="dataDetail?.img" is-game />
+          <BaseImage :url="dataDetail?.img" is-cloud />
         </div>
       </div>
       <div class="info-wrap">
