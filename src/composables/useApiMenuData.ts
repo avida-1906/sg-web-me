@@ -12,6 +12,7 @@ export interface MenuItem {
   type?: 'radio'
   value?: any
   radioChange?: (val: any) => void
+  fixtureCount?: number
 }
 
 export type Menu = Array<MenuItem>
@@ -44,7 +45,14 @@ export function useApiMenuData() {
 
   // sports
   const sportsMenu = ref<Menu>([
-    { title: '滚球盘', path: '/sports/live', icon: 'spt-ball-plate', list: [], domId: '' },
+    {
+      title: '滚球盘',
+      path: '/sports/live',
+      icon: 'spt-ball-plate',
+      list: [],
+      domId: '',
+      fixtureCount: 22,
+    },
     { title: '即将开赛', path: '/sports/upcoming', icon: 'spt-timing', list: [], domId: '' },
     {
       title: '我的投注',
