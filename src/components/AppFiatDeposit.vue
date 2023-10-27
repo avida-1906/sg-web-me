@@ -40,7 +40,14 @@ const {
 } = useRequest(ApiFinanceMerchantList)
 const {
   run: runThirdDeposit,
-} = useRequest(ApiFinanceThirdDeposit)
+  loading: thirdDepositLoading,
+} = useRequest(ApiFinanceThirdDeposit, {
+  onSuccess(data) {
+    const left = (screen.width - 800) / 2
+    const top = (screen.height - 600) / 2
+    window.open(data, 'MyNewWindow', `width=800, height=600, top=${top}, left=${left}`)
+  },
+})
 
 const paymentMethodData = computed(() => {
   if (paymentMethodList.value) {
@@ -121,9 +128,6 @@ const changeAisle = function (item: IPaymentMerchantData) {
   oftenAmount.value = strToArray(item.type === 1 ? item.amount_fixed : item.often_amount)
 }
 function depositSubmit() {
-  console.log('amount', amount.value)
-  console.log('currentType', currentType.value)
-  console.log('currentAisle', currentAisle.value)
   runThirdDeposit({
     amount: amount.value,
     mid: currentType.value,
@@ -224,7 +228,12 @@ watch(() => currentType.value, (newValue) => {
               v-model="amount"
               :options="oftenAmount"
             />
-            <BaseButton bg-style="primary" size="md" @click="depositSubmit">
+            <BaseButton
+              bg-style="primary"
+              size="md"
+              :loading="thirdDepositLoading"
+              @click="depositSubmit"
+            >
               确认支付
             </BaseButton>
           </div>
