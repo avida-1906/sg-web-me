@@ -246,6 +246,7 @@ function enterPress(event: KeyboardEvent) {
         v-model="message"
         placeholder="输入您的消息"
         textarea
+        :max="maxMsgLen"
         @down-enter="enterPress"
       />
     </div>
