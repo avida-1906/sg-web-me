@@ -22,6 +22,9 @@ const active = computed(() => route.path === props.menuItem.path)
     >
       <BaseIcon v-if="menuItem.icon" :name="menuItem.icon" />
       <span>{{ menuItem.title }}</span>
+      <div v-if="menuItem.fixtureCount" class="badge-wrap">
+        <BaseBadge :count="menuItem.fixtureCount" mode="active" />
+      </div>
     </div>
   </div>
 </template>
@@ -51,6 +54,11 @@ const active = computed(() => route.path === props.menuItem.path)
     &.disabled{
       cursor: not-allowed;
       opacity: 0.5;
+    }
+    .badge-wrap {
+      margin-left: auto;
+      --tg-badge-font-size: var(--tg-font-size-xs);
+      --tg-badge-padding-x:var(--tg-spacing-6);
     }
   }
 }
