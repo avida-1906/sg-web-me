@@ -1,5 +1,6 @@
 <script setup lang='ts'>
 import type { EnumCurrencyKey } from '~/apis'
+import { currencyConfig } from '~/composables/useCurrencyData'
 
 interface Props {
   currencyType: EnumCurrencyKey
@@ -8,22 +9,19 @@ interface Props {
 }
 const props = defineProps<Props>()
 
-const { VITE_CURRENCY_ICON_URL } = getEnv()
-
 const getIsRight = computed(() => props.iconAlign === 'right')
+
+const iconUrl = computed(() => {
+  return `/currency/${currencyConfig[props.currencyType].cur}.webp`
+})
 </script>
 
 <template>
   <div class="app-currency-icon">
-    <!-- <div
-      v-if="!getIsRight"
-      class="icon"
-      :data-icon-url="VITE_CURRENCY_ICON_URL"
-      :title="currencyType"
-    /> -->
     <BaseIcon
       v-if="!getIsRight"
-      :name="`coin-${currencyType && currencyType.toLocaleLowerCase()}`"
+      :name="iconUrl"
+      use-cloud-img
     />
     <span
       v-if="showName"
@@ -33,14 +31,9 @@ const getIsRight = computed(() => props.iconAlign === 'right')
     <slot name="network" />
     <BaseIcon
       v-if="getIsRight"
-      :name="`coin-${currencyType.toLocaleLowerCase()}`"
+      :name="iconUrl"
+      use-cloud-img
     />
-    <!-- <div
-      v-if="getIsRight"
-      class="icon"
-      :data-icon-url="VITE_CURRENCY_ICON_URL"
-      :title="currencyType"
-    /> -->
   </div>
 </template>
 

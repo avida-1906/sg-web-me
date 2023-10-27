@@ -13,6 +13,7 @@ interface Props {
   full?: boolean
   center?: boolean
   size?: 'small' | 'large'
+  useCloudImg?: boolean
 }
 const props = withDefaults(defineProps<Props>(), {
   shape: 'round',
@@ -26,7 +27,6 @@ function onClick(tab: TabItem) {
   if (tab.value === props.modelValue || tab.disabled)
     return
 
-  // event.target.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' })
   emit('update:modelValue', tab.value)
   emit('change', tab.value)
   if (tab.path)
@@ -46,7 +46,7 @@ function onClick(tab: TabItem) {
         >
           <div class="content">
             <slot name="tab" :item="t">
-              <BaseIcon v-if="t.icon" :name="t.icon" />
+              <BaseIcon v-if="t.icon" :name="t.icon" :use-cloud-img="useCloudImg" />
               {{ t.label }}
             </slot>
           </div>

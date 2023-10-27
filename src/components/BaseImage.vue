@@ -8,7 +8,6 @@ interface Props {
   height?: string // 图像高度px
   fit?: 'contain' | 'fill' | 'cover' // 图像如何适应容器高度和宽度
   isCloud?: boolean
-  isGame?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -25,12 +24,9 @@ const { bool: isError, setTrue: setErrorTrue } = useBoolean(false)
 const { VITE_CASINO_IMG_CLOUD_URL } = getEnv()
 
 const imgUrl = computed(() => {
-  if (props.isGame)
+  if (props.isCloud)
     // eslint-disable-next-line max-len
     return `${VITE_CASINO_IMG_CLOUD_URL}${props.url.replace('%lang%', getCurrentLanguageForBackend())}`
-
-  if (props.isCloud)
-    return `${VITE_CASINO_IMG_CLOUD_URL}${props.url}`
 
   return props.url
 })
