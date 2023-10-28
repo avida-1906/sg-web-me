@@ -172,6 +172,7 @@ function sendMsg() {
     chatMessageBus.emit({ c: message.value, s, u: userInfo.value?.uid, n: userInfo.value?.username, t })
     runSendMsg({ c: message.value, lang: roomLang.value, s })
     message.value = ''
+    msgInput.value.getFocus()
   }
 }
 function enterPress(event: KeyboardEvent) {
