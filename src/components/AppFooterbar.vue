@@ -5,7 +5,7 @@ const { leftIsExpand, triggerLeftSidebar, closeLeftSidebar } = useLeftSidebar()
 const { openRightSidebar, closeRightSidebar } = useRightSidebar()
 
 const tabbar = ref([
-  { title: '浏览', icon: 'tabbar-menu', name: 'menu', show: true },
+  { title: '菜单', icon: 'tabbar-menu', name: 'menu', show: true },
   {
     title: '娱乐城',
     icon: 'tabbar-game',
