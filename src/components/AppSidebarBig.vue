@@ -206,6 +206,7 @@ onBeforeUnmount(() => {
       height: 45px;
       padding: 0 16px;
       cursor: pointer;
+      font-weight: var(--tg-font-weight-semibold);
 
       .app-svg-icon {
         transition: color 0.2s;

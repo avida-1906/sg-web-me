@@ -18,7 +18,12 @@ const closeSearch = inject('closeSearch', () => {})
 const closeSearchH5 = inject('closeSearchH5', () => {})
 
 const gameProviderName = computed(() =>
-  platformList.value?.find(a => a.id === props.gameInfo.platform_id)?.name ?? '-')
+  platformList.value?.find(a => a.id === props.gameInfo.platform_id)?.name ?? '-',
+)
+const isMaintained = computed(() => {
+  return platformList.value?.find(a => a.id === props.gameInfo.platform_id)?.maintained === '2'
+  ?? false
+})
 
 function gameStart(item: Props['gameInfo']) {
   router.push(`/casino/games?id=${item.id}`)
