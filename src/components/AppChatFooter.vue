@@ -9,8 +9,10 @@
 
 const chatStore = useChatStore()
 const { roomLang } = storeToRefs(chatStore)
+const { userInfo } = storeToRefs(useAppStore())
 const { openChatRulesDialog } = useChatRulesDialog()
 const { openStatisticsDialog } = useStatisticsDialog()
+const chatMessageBus = useEventBus(CHAT_MESSAGE_BUS)
 
 const maxMsgLen = 512
 const msgInput = ref()
@@ -169,8 +171,12 @@ function sendMsg() {
     }
     return
   }
-  if (message.value.length)
-    runSendMsg({ c: message.value, lang: roomLang.value, s: Math.random().toString(36).slice(-10) })
+  if (message.value.length) {
+    const t = new Date().getTime()
+    const s = `${Math.random().toString(36).slice(-10)}|${t}`
+    chatMessageBus.emit({ c: message.value, s, u: userInfo.value?.uid, n: userInfo.value?.username, t })
+    runSendMsg({ c: message.value, lang: roomLang.value, s })
+  }
 }
 function enterPress(event: KeyboardEvent) {
   event.preventDefault()

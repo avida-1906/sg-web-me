@@ -18,9 +18,17 @@ const closeSearch = inject('closeSearch', () => {})
 const closeSearchH5 = inject('closeSearchH5', () => {})
 
 const gameProviderName = computed(() =>
-  platformList.value?.find(a => a.id === props.gameInfo.platform_id)?.name ?? '-')
+  platformList.value?.find(a => a.id === props.gameInfo.platform_id)?.name ?? '-',
+)
+const isMaintained = computed(() => {
+  return platformList.value?.find(a => a.id === props.gameInfo.platform_id)?.maintained === '2'
+  ?? false
+})
 
 function gameStart(item: Props['gameInfo']) {
+  if (isMaintained.value)
+    return
+
   router.push(`/casino/games?id=${item.id}`)
   if (isMobile.value)
     closeSearchH5()
@@ -32,7 +40,10 @@ function gameStart(item: Props['gameInfo']) {
 
 <template>
   <BaseAspectRatio ratio="334/447">
-    <div class="base-game-item" @click="gameStart(gameInfo)">
+    <div
+      class="base-game-item" :class="{ maintain: isMaintained }"
+      @click="gameStart(gameInfo)"
+    >
       <BaseImage :url="gameInfo.img" :name="gameInfo.name" is-cloud />
       <div class="active-game-item">
         <div class="game-title">
@@ -85,6 +96,9 @@ function gameStart(item: Props['gameInfo']) {
         height: 32px;
         --tg-icon-color: var(--tg-text-white);
       }
+    }
+    &.maintain{
+      cursor: not-allowed;
     }
   }
   .base-game-item:hover{

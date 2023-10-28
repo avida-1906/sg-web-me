@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const router = useRouter()
 const { platformList } = storeToRefs(useCasinoStore())
+const { appContentWidth } = storeToRefs(useWindowStore())
 
 function handleItemClick(item: any) {
   router.push(`/casino/group/provider?pid=${item.id}&name=${item.en_name}`)
@@ -9,7 +10,7 @@ function handleItemClick(item: any) {
 
 <template>
   <section class="layout-spacing tg-collection-provider">
-    <div class="group-banner-wrap">
+    <div class="group-banner-wrap" :class="{ 'less-than-700': appContentWidth <= 700 }">
       <div class="group-banner-bg" />
       <div class="banner-wrap">
         <div class="banner">

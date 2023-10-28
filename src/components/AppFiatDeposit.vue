@@ -7,6 +7,8 @@ interface IPaymentMerchantData {
   type: number
   amount_fixed: string
   often_amount: string
+  amount_min: string
+  amount_max: string
 }
 type TOftenAmount = Pick<IPaymentMerchantData, 'label' | 'value'>
 interface Props {
@@ -27,8 +29,24 @@ const payeeInformation = ref({
 const currentAisle = ref('')
 const currentAisleItem = ref<IPaymentMerchantData>()
 const username = ref('')
-const amount = ref('100')
 const oftenAmount = ref<TOftenAmount[]>()
+
+const {
+  value: amount,
+  errorMessage: amountError,
+  validate: amountValidate,
+  resetField: amountReset,
+} = useField<string>('amount', (value) => {
+  const Value = Number(value)
+  if (!Value)
+    return '请输入金额'
+  else if (currentAisleItem.value && Value < Number(currentAisleItem.value?.amount_min))
+    return `最小金额为${currentAisleItem.value?.amount_min}`
+  else if (currentAisleItem.value && Value > Number(currentAisleItem.value?.amount_max))
+    return `最大金额为${currentAisleItem.value?.amount_max}`
+
+  return ''
+})
 
 const {
   run: runPaymentMethodList,
@@ -43,9 +61,15 @@ const {
   loading: thirdDepositLoading,
 } = useRequest(ApiFinanceThirdDeposit, {
   onSuccess(data) {
-    window.open(data, '_blank')
+    const newWindow = window.open(data, 'myWindow')
+    if (newWindow)
+      newWindow.focus()
   },
 })
+const {
+  run: runPaymentDepositBankList,
+  data: paymentDepositBankList,
+} = useRequest(ApiPaymentDepositBankList)
 
 const paymentMethodData = computed(() => {
   if (paymentMethodList.value) {
@@ -85,6 +109,8 @@ const paymentMerchantData = computed(() => {
       type: firstMerchant.amount_type,
       amount_fixed: firstMerchant.amount_fixed,
       often_amount: firstMerchant.often_amount,
+      amount_min: firstMerchant.amount_min,
+      amount_max: firstMerchant.amount_max,
     }
     oftenAmount.value = strToArray(firstMerchant.amount_type === 1
       ? firstMerchant.amount_fixed
@@ -97,6 +123,8 @@ const paymentMerchantData = computed(() => {
         type: i.amount_type,
         amount_fixed: i.amount_fixed,
         often_amount: i.often_amount,
+        amount_min: i.amount_min,
+        amount_max: i.amount_max,
       }
     })
   }
@@ -125,12 +153,16 @@ const changeAisle = function (item: IPaymentMerchantData) {
   currentAisleItem.value = item
   oftenAmount.value = strToArray(item.type === 1 ? item.amount_fixed : item.often_amount)
 }
-function depositSubmit() {
-  runThirdDeposit({
-    amount: amount.value,
-    mid: currentType.value,
-    cid: currentAisle.value,
-  })
+async function depositSubmit() {
+  await amountValidate()
+  if (!amountError.value) {
+    runThirdDeposit({
+      amount: amount.value,
+      mid: currentType.value,
+      cid: currentAisle.value,
+      bank_code: '',
+    })
+  }
 }
 
 watch(() => props.activeCurrency, (newValue) => {
@@ -138,8 +170,11 @@ watch(() => props.activeCurrency, (newValue) => {
     runPaymentMethodList({ currency_id: newValue.cur })
 }, { immediate: true })
 watch(() => currentType.value, (newValue) => {
-  if (newValue)
+  if (newValue) {
     runPaymentMerchantList({ id: currentType.value })
+    amountReset()
+    runPaymentDepositBankList({ id: currentType.value })
+  }
 })
 </script>
 
@@ -219,6 +254,7 @@ watch(() => currentType.value, (newValue) => {
             <BaseInput
               v-if="currentAisleItem?.type === 2"
               v-model="amount"
+              :msg="amountError"
               label="充值金额"
             />
             <BaseMoneyKeyboard
