@@ -283,7 +283,7 @@ watch(() => currentType.value, (newValue) => {
               v-if="havePaymentMerchant"
               label="通道选择"
             >
-              <div class="other-aisles">
+              <div class="other-aisles scroll-x">
                 <div
                   v-for="item in paymentMerchantData" :key="item.value" class="aisle"
                   :class="currentAisle === item.value ? 'active' : ''"
@@ -383,9 +383,9 @@ watch(() => currentType.value, (newValue) => {
           justify-content: left;
           align-items: center;
           gap: 0.75rem;
-          flex-wrap: wrap;
 
           .aisle{
+            flex-shrink: 0;
             padding: var(--tg-spacing-11) var(--tg-spacing-8);
             background-color: var(--tg-secondary-dark);
             border-radius: var(--tg-radius-default);

@@ -31,14 +31,13 @@ const changeType = function (type: string) {
 
 <style lang='scss' scoped>
 .withdrawal-deposit-type{
+  width: 100%;
   display: flex;
   gap: .75rem;
   padding: var(--tg-spacing-2) 0;
-  flex-wrap: wrap;
   .type-btn{
+    flex-shrink: 0;
     background: var(--tg-secondary-main);
-    // min-width: 102px;
-    width: auto;
     padding: 0 var(--tg-spacing-12);
     text-align: center;
     height: 40px;
