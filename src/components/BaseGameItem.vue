@@ -18,9 +18,17 @@ const closeSearch = inject('closeSearch', () => {})
 const closeSearchH5 = inject('closeSearchH5', () => {})
 
 const gameProviderName = computed(() =>
-  platformList.value?.find(a => a.id === props.gameInfo.platform_id)?.name ?? '-')
+  platformList.value?.find(a => a.id === props.gameInfo.platform_id)?.name ?? '-',
+)
+const isMaintained = computed(() => {
+  return platformList.value?.find(a => a.id === props.gameInfo.platform_id)?.maintained === '2'
+  ?? false
+})
 
 function gameStart(item: Props['gameInfo']) {
+  if (isMaintained.value)
+    return
+
   router.push(`/casino/games?id=${item.id}`)
   if (isMobile.value)
     closeSearchH5()
@@ -32,7 +40,10 @@ function gameStart(item: Props['gameInfo']) {
 
 <template>
   <BaseAspectRatio ratio="334/447">
-    <div class="base-game-item" @click="gameStart(gameInfo)">
+    <div
+      class="base-game-item" :class="{ maintain: isMaintained }"
+      @click="gameStart(gameInfo)"
+    >
       <BaseImage :url="gameInfo.img" :name="gameInfo.name" is-cloud />
       <div class="active-game-item">
         <div class="game-title">
@@ -42,6 +53,16 @@ function gameStart(item: Props['gameInfo']) {
         <div class="game-tip">
           {{ gameProviderName }}
         </div>
+      </div>
+      <div v-if="isMaintained" class="center maintain-game-item">
+        <BaseEmpty>
+          <template #icon>
+            <BaseIcon font-size="43" name="uni-maintain" />
+          </template>
+          <template #description>
+            <span style="font-size: var(--tg-font-size-xs);">场馆维护中</span>
+          </template>
+        </BaseEmpty>
       </div>
     </div>
   </BaseAspectRatio>
@@ -81,10 +102,20 @@ function gameStart(item: Props['gameInfo']) {
       }
       .game-uni-play{
         margin: 0 auto;
-        width: 32px;
-        height: 32px;
+        font-size: var(--tg-font-size-3xl);
         --tg-icon-color: var(--tg-text-white);
       }
+    }
+    &.maintain{
+      cursor: not-allowed;
+    }
+    .maintain-game-item{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      background: #{rgba($color: var(--tg-color-blue-rgb), $alpha: 0.8)};
     }
   }
   .base-game-item:hover{

@@ -151,7 +151,7 @@ export interface ProviderItem {
   en_name: string
   game_type: string
   state: number
-  maintained: number
+  maintained: string
   seq: number
   logo: string
   created_at: number

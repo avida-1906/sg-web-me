@@ -6,6 +6,7 @@ const emit = defineEmits(['change', 'toggleChatWin'])
 const chatStore = useChatStore()
 const { chatRoomList, room, topic, hideChat } = storeToRefs(chatStore)
 const { closeRightSidebar } = useRightSidebar()
+const { isGreaterThanMd } = storeToRefs(useWindowStore())
 
 const mqttConnectSuccessEvent = useEventBus(MQTT_CONNECT_SUCCESS_BUS)
 
@@ -92,7 +93,7 @@ onUnmounted(() => {
       </VDropdown>
     </div>
     <div v-if="$route.path !== '/chat'" class="right-header">
-      <VTooltip v-if="!hideChat" placement="bottom">
+      <VTooltip v-if="!hideChat && isGreaterThanMd" placement="bottom">
         <div class="item hoverable">
           <BaseButton type="text" @click="openChat">
             <BaseIcon name="uni-jump-page" />

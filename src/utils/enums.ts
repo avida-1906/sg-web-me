@@ -16,6 +16,16 @@ export enum EnumLanguage {
    * 越南语 Vietnamese
    */
   'vi-VN',
+
+  /**
+   * 泰语 Thai
+   */
+  'th-TH',
+
+  /**
+   * 印度 India
+   */
+  'hi-IN',
 }
 
 /**

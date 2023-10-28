@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const { appContentWidth } = storeToRefs(useWindowStore())
+
 const { list, page, runAsync, prev, next, hasMore } = useList(ApiMemberFavList)
 
 await application.allSettled([runAsync()])
@@ -6,7 +8,7 @@ await application.allSettled([runAsync()])
 
 <template>
   <section class="layout-spacing tg-favourites">
-    <div class="group-banner-wrap">
+    <div class="group-banner-wrap" :class="{ 'less-than-700': appContentWidth <= 700 }">
       <div class="group-banner-bg" />
       <div class="banner-wrap">
         <div class="banner">
@@ -51,56 +53,6 @@ await application.allSettled([runAsync()])
   display: flex;
   flex-direction: column;
   gap: var(--tg-spacing-24);
-}
-.group-banner-wrap {
-  position: relative;
-  .group-banner-bg {
-    position: absolute;
-    top: 0px;
-    height: 100%;
-    left: -100%;
-    width: 300%;
-    background: rgb(33, 55, 67);
-  }
-  .banner-wrap {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    grid-gap: var(--tg-spacing-button-padding-horizontal-sm);
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    line-height: 1;
-    .banner {
-      width: 100%;
-      height: 115px;
-      display: flex;
-      overflow: hidden;
-      justify-content: space-between;
-      .left {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        white-space: nowrap;
-        h1 {
-          font-weight: 600;
-          font-size: var(--tg-font-size-xl);
-          color: var(--tg-text-white);
-        }
-      }
-      .right {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        img {
-          width: auto;
-          height: 100%;
-          display: block;
-        }
-      }
-    }
-  }
 }
 .no-data{
   display: flex;

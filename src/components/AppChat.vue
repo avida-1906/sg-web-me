@@ -48,10 +48,13 @@ function goBottom2() {
   })
 }
 function onReceiveChatMsg(m: any) {
-  const hasMsg = m.s
+  const hasMsg = m.s && messageHistory.value && messageHistory.value.length
     ? isValueContainInBloom(messageHistory.value.map(v => v.s).filter(f => f !== undefined && f.length), m.s)
     : false
   if (!hasMsg) {
+    if (!messageHistory.value || !messageHistory.value.length)
+      messageHistory.value = []
+
     messageHistory.value.push({ ...m, id: m.s, msg: m.c, user: { name: m.n, uid: m.u } })
     goBottom2()
   }
