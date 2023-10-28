@@ -27,7 +27,7 @@ const payeeInformation = ref({
 const currentAisle = ref('')
 const currentAisleItem = ref<IPaymentMerchantData>()
 const username = ref('')
-const amount = ref('100')
+const amount = ref('')
 const oftenAmount = ref<TOftenAmount[]>()
 
 const {
@@ -43,7 +43,9 @@ const {
   loading: thirdDepositLoading,
 } = useRequest(ApiFinanceThirdDeposit, {
   onSuccess(data) {
-    window.open(data, '_blank')
+    const newWindow = window.open(data, 'myWindow')
+    if (newWindow)
+      newWindow.focus()
   },
 })
 

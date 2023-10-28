@@ -5,6 +5,8 @@ interface Column {
   dataIndex: string // 列数据字符索引
   slot?: string // 列插槽名称索引
   align?: 'left' | 'center' | 'right' // 列对其方式
+  sort?: boolean // 是否展示排序
+  sortDirections?: 'ascend' | 'descend' // 升序 ｜ 降序
 }
 interface Props {
   columns: Column[] // 表格列的配置项
@@ -12,10 +14,31 @@ interface Props {
   loading?: boolean // 是否加载中
 }
 
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   columns: () => [],
   dataSource: () => [],
   loading: false,
+})
+
+const emit = defineEmits(['sort'])
+const sortSource: Ref<(string | undefined)[]>
+  = ref(props.columns.map(item => item.sortDirections))
+
+// 排序变化
+function handleSort(item: Column, index: number) {
+  if (item.sort) {
+    const str = sortSource.value[index] === 'descend' ? 'ascend' : 'descend'
+    sortSource.value = []
+    sortSource.value[index] = str
+    emit('sort', {
+      col: item,
+      sortDirections: str,
+    })
+  }
+}
+
+watch(() => props.columns, () => {
+  sortSource.value = props.columns.map(item => item.sortDirections)
 })
 </script>
 
@@ -30,7 +53,26 @@ withDefaults(defineProps<Props>(), {
             :style="`width: ${typeof item.width === 'number'
               ? `${item.width}px` : item.width};text-align:${item.align}`"
           >
-            {{ item.title }}
+            <div
+              class="th-box"
+              :class="item.sort ? 'cursor-pointer' : ''"
+              @click="handleSort(item, index)"
+            >
+              <span>{{ item.title }}</span>
+              <div v-if="item.sort" class="th-sort">
+                <BaseIcon
+                  name="uni-play"
+                  :style="`transform: rotate(-90deg);
+                  ${sortSource[index] === 'ascend' ? '--tg-icon-color: #fff' : ''}`"
+                />
+                <BaseIcon
+                  name="uni-play"
+                  :style="`transform: rotate(90deg);
+                  ${sortSource[index] === 'descend' ? '--tg-icon-color: #fff' : ''}`"
+                />
+              </div>
+            </div>
+            <slot :name="`th-${item.slot}`" />
           </th>
         </tr>
       </thead>
@@ -51,7 +93,7 @@ withDefaults(defineProps<Props>(), {
           <td
             v-for="(col, n) in columns"
             :key="n" class="m-td"
-            :title="data[col.dataIndex as any]"
+            :title="data[col.dataIndex]"
             :style="`text-align:${col.align}`"
           >
             <slot
@@ -59,9 +101,9 @@ withDefaults(defineProps<Props>(), {
               :name="col.slot"
               :index="index"
             >
-              {{ data[col.dataIndex as any] || '--' }}
+              {{ data[col.dataIndex] || '--' }}
             </slot>
-            <span v-else>{{ data[col.dataIndex as any] || '--' }}</span>
+            <span v-else>{{ data[col.dataIndex] || '--' }}</span>
           </td>
         </tr>
       </tbody>
@@ -87,6 +129,16 @@ withDefaults(defineProps<Props>(), {
       font-weight: var(--tg-font-weight-semibold);
       text-align: left;
       border: none;
+      .th-box{
+        display: inline-flex;
+        align-items: center;
+        gap: var(--tg-spacing-4);
+        .th-sort{
+          display: flex;
+          flex-direction: column;
+          font-size: 7px;
+        }
+      }
     }
 
     .m-body {
@@ -100,12 +152,6 @@ withDefaults(defineProps<Props>(), {
           height: 100%;
         }
       }
-      // .m-tr-empty {
-
-      //   .m-td-empty {
-
-      //   }
-      // }
       .m-tr:nth-child(odd){
         background: var(--tg-secondary-grey);
       }
