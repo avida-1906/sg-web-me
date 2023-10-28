@@ -40,7 +40,10 @@ function gameStart(item: Props['gameInfo']) {
 
 <template>
   <BaseAspectRatio ratio="334/447">
-    <div class="base-game-item" @click="gameStart(gameInfo)">
+    <div
+      class="base-game-item" :class="{ maintain: isMaintained }"
+      @click="gameStart(gameInfo)"
+    >
       <BaseImage :url="gameInfo.img" :name="gameInfo.name" is-cloud />
       <div class="active-game-item">
         <div class="game-title">
@@ -93,6 +96,9 @@ function gameStart(item: Props['gameInfo']) {
         height: 32px;
         --tg-icon-color: var(--tg-text-white);
       }
+    }
+    &.maintain{
+      cursor: not-allowed;
     }
   }
   .base-game-item:hover{
