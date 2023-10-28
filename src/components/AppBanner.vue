@@ -43,18 +43,18 @@ function scrollRight() {
       :style="getGridAutoColumns"
     >
       <div v-for="i in 7" :key="i" class="banner-item">
-        <BaseAspectRatio class="banner-ratio" ratio="146/86">
+        <BaseAspectRatio class="banner-ratio" ratio="320/188">
           <BaseImage url="/img/home/banner-bg.png" />
           <div class="item-msg">
             <div class="msg-type">
               促销活动
             </div>
             <div class="msg-title">
-              挑战升级
+              75,000抽奖活动
             </div>
             <div class="msg-tips">
-              投注瓜分千万奖金！
-              <span>阅读更多</span>
+              每周瓜分$20,000美元奖金
+              <!-- <span>阅读更多</span> -->
             </div>
             <div class="come-play">
               了解更多
