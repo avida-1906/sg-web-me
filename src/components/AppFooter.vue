@@ -4,7 +4,7 @@
 <template>
   <div class="app-footer">
     <div class="footer-nav">
-      <div>
+      <div class="layout-spacing reset">
         <div class="nav-head">
           体育
         </div>
@@ -12,7 +12,7 @@
         <div>滚球</div>
         <div>体育博彩规则</div>
       </div>
-      <div>
+      <div class="layout-spacing reset">
         <div class="nav-head">
           娱乐城
         </div>
@@ -20,7 +20,7 @@
         <div>VIP俱乐部</div>
         <div>促销活动</div>
       </div>
-      <div>
+      <div class="layout-spacing reset">
         <div class="nav-head">
           支持
         </div>
@@ -31,7 +31,7 @@
         <div>在线支持</div>
         <div>帮助中心</div>
       </div>
-      <div>
+      <div class="layout-spacing reset">
         <div class="nav-head">
           社区
         </div>
@@ -43,7 +43,7 @@
         <div>Youtube</div>
         <div>网购</div>
       </div>
-      <div>
+      <div class="layout-spacing reset">
         <div class="nav-head">
           关于我们
         </div>
@@ -54,7 +54,7 @@
         <div>自我排除</div>
         <div>Primedice</div>
       </div>
-      <div>
+      <div class="layout-spacing reset">
         <div class="nav-head">
           语言
         </div>
@@ -124,15 +124,17 @@
     color: var(--tg-text-lightgrey);
     font-size: var(--tg-font-size-default);
     font-weight: var(--tg-font-weight-normal);
-
+    .layout-spacing{
+      align-items: flex-start;
+      gap: var(--tg-spacing-8);
+    }
     .nav-head{
       font-size: var(--tg-font-size-base);
       font-weight: 500;
       color: var(--tg-text-white);
-      margin-bottom: 10px;
+      margin-bottom: var(--tg-spacing-6);
     }
     .nav-head~div{
-      padding: 4px 0;
       cursor: pointer;
       &:hover{
         color: var(--tg-text-white);
