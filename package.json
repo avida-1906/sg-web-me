@@ -5,6 +5,7 @@
   "scripts": {
     "build": "sh ./scripts/build.sh",
     "build:test": "vite build",
+    "build:fat": "vite build --mode fat",
     "build:prod": "vite build --mode production",
     "dev": "vite --port 3690 --open --mode test",
     "lint": "eslint .",

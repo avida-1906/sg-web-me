@@ -18,9 +18,6 @@ fatServerIp="43.198.40.130"
 # 服务器用户名
 serverUser="rocky"
 
-# 环境有 test, prod
-map=(["test"]="build:test" ["prod"]="build:prod")
-
 env=$1
 
 if [ ! -n "$env" ]
@@ -28,15 +25,29 @@ then
     env="test"
 fi
 
-if [ $env != "test" ] && [ $env != "prod" ]
+if [ $env != "test" ] && [ $env != "prod" & ] && [ $env != "fat" ]
 then
-    echo "环境参数错误，请重新输入 [test, prod]"
+    echo "环境参数错误，请重新输入 [test, prod, fat]"
     read env
 fi
 
 echo "当前环境为：$env"
 echo "开始构建..."
-pnpm ${map[$env]}
+if [ $env == "test" ]
+then
+    pnpm build:test
+fi
+
+if [ $env == "prod" ]
+then
+    pnpm build:prod
+fi
+
+if [ $env == "fat" ]
+then
+    pnpm build:fat
+fi
+
 echo "构建完成"
 
 # echo "开始删除服务器文件..."
@@ -44,6 +55,18 @@ echo "构建完成"
 # echo "删除完成"
 
 echo "开始上传..."
-rsync -avz ./dist/* $serverUser@$serverIp:$serverDir
-# rsync -avz ./dist/* $serverUser@$fatServerIp:$serverDir
+if [ $env == "test" ]
+then
+    rsync -avz ./dist/* $serverUser@$serverIp:$serverDir
+fi
+
+if [ $env == "prod" ]
+then
+    rsync -avz ./dist/* $serverUser@$serverIp:$serverDir
+fi
+
+if [ $env == "fat" ]
+then
+    rsync -avz ./dist/* $serverUser@$fatServerIp:$serverDir
+fi
 echo "上传完成"
