@@ -45,7 +45,6 @@ function goBottom2() {
     setTimeout(() => {
       const { height } = scrollMsg.value.getBoundingClientRect()
       scrollMsg.value.scrollTop = scrollMsg.value.scrollHeight - height
-      msgCounter.value = 1
     }, 0)
   })
 }
@@ -53,7 +52,6 @@ function goBottom(time?: number) {
   nextTick(() => {
     setTimeout(() => {
       document.querySelector('.msg-tail')?.scrollIntoView({ behavior: 'smooth' })
-      msgCounter.value = 1
     }, time !== undefined ? time : 300)
   })
 }
@@ -72,6 +70,11 @@ function onReceiveChatMsg(m: any) {
       goBottom2()
   }
 }
+
+watch(showMoreBar, (val) => {
+  if (!val)
+    msgCounter.value = 1
+})
 
 onMounted(() => {
   goBottom()
