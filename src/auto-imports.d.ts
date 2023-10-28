@@ -47,6 +47,7 @@ declare global {
   const ApiMemberWalletDelete: typeof import('./apis/index')['ApiMemberWalletDelete']
   const ApiMemberWalletInsert: typeof import('./apis/index')['ApiMemberWalletInsert']
   const ApiMemberWalletList: typeof import('./apis/index')['ApiMemberWalletList']
+  const ApiPaymentDepositBankList: typeof import('./apis/index')['ApiPaymentDepositBankList']
   const ApiSmsSend: typeof import('./apis/index')['ApiSmsSend']
   const ApiWalletBankcardList: typeof import('./apis/index')['ApiWalletBankcardList']
   const Big: typeof import('big.js')['Big']
@@ -516,6 +517,7 @@ declare module 'vue' {
     readonly ApiMemberWalletDelete: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletDelete']>
     readonly ApiMemberWalletInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletInsert']>
     readonly ApiMemberWalletList: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletList']>
+    readonly ApiPaymentDepositBankList: UnwrapRef<typeof import('./apis/index')['ApiPaymentDepositBankList']>
     readonly ApiSmsSend: UnwrapRef<typeof import('./apis/index')['ApiSmsSend']>
     readonly ApiWalletBankcardList: UnwrapRef<typeof import('./apis/index')['ApiWalletBankcardList']>
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
@@ -977,6 +979,7 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberWalletDelete: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletDelete']>
     readonly ApiMemberWalletInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletInsert']>
     readonly ApiMemberWalletList: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletList']>
+    readonly ApiPaymentDepositBankList: UnwrapRef<typeof import('./apis/index')['ApiPaymentDepositBankList']>
     readonly ApiSmsSend: UnwrapRef<typeof import('./apis/index')['ApiSmsSend']>
     readonly ApiWalletBankcardList: UnwrapRef<typeof import('./apis/index')['ApiWalletBankcardList']>
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>

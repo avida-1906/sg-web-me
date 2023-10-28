@@ -837,6 +837,21 @@ export function ApiFinanceThirdDeposit(data: {
   mid: string
   /** 支付平台id */
   cid: string
+  /** 银行编码 */
+  bank_code: string
 }) {
   return httpClient.post<string>('/finance/third/deposit', data)
+}
+
+/**
+ * 三方支付银行列表
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=9efdb2ee-b7f7-4780-8a7e-6b7b15935935
+ */
+export function ApiPaymentDepositBankList(params: {
+  id: string
+}) {
+  return httpClient.get<{
+    id: string
+    name: string
+  }[]>('/payment/deposit/bank/list', params)
 }
