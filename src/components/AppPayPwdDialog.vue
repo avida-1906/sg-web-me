@@ -44,7 +44,6 @@ async function submit() {
         <BaseInputPassword
           v-model="payPassword"
           width-auto
-          :is-cipher-text="false"
           :msg="paypasswordError"
         />
       </div>

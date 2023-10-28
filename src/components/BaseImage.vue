@@ -18,9 +18,8 @@ const props = withDefaults(defineProps<Props>(), {
   fit: 'contain',
 })
 
-const emit = defineEmits(['clickImg'])
+const emit = defineEmits(['clickImg', 'errorImg'])
 
-const { bool: isError, setTrue: setErrorTrue } = useBoolean(false)
 const { VITE_CASINO_IMG_CLOUD_URL } = getEnv()
 
 const imgUrl = computed(() => {
@@ -39,20 +38,10 @@ function handleClick() {
 <template>
   <div class="base-image" :abc="imgUrl">
     <img
-      v-if="!isError" :style="`width: ${width}; height: ${height}; object-fit: ${fit};`"
+      :style="`width: ${width}; height: ${height}; object-fit: ${fit};`"
       loading="lazy" :src="imgUrl"
-      @click="handleClick" @error="setErrorTrue"
+      @click="handleClick" @error="emit('errorImg')"
     >
-    <div v-else class="center img-load">
-      <BaseEmpty>
-        <template #icon>
-          <BaseIcon font-size="43" name="img-error" />
-        </template>
-        <template #description>
-          <span style="font-size: var(--tg-font-size-xs);">加载失败了x_x</span>
-        </template>
-      </BaseEmpty>
-    </div>
   </div>
 </template>
 
@@ -67,12 +56,6 @@ function handleClick() {
 .base-image {
   width: 100%;
   height: 100%;
-
-  .img-load {
-    width: 100%;
-    height: 100%;
-    background-color: var(--tg-secondary-grey);
-  }
 
   img {
     border-radius: var(--tg-base-img-style-radius);
