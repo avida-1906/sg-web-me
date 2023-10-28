@@ -418,7 +418,7 @@ async function toLogin() {
     padding: var(--tg-spacing-20) var(--tg-spacing-12);
     text-align: left;
     border-radius: var(--tg-radius-default);
-    background: var(--tg-secondary-grey);
+    background: var(--tg-secondary-main);
     transition: all 0.5s;
 
     .theme {
