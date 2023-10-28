@@ -181,7 +181,9 @@ const changeAisle = function (item: IPaymentMerchantData) {
 async function depositSubmit() {
   await amountValidate()
   await selectValueValidate()
-  if (!amountError.value && !selectValueError.value) {
+  if (!amountError.value
+    && (currentTypeItem.value?.bank ? !selectValueError.value : true)
+  ) {
     runThirdDeposit({
       amount: amount.value,
       mid: currentType.value,
