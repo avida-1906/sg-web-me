@@ -160,6 +160,7 @@ function push(path: string) {
     width: 100%;
     color: var(--tg-text-white);
     font-size: var(--tg-font-size-default);
+    font-weight: var(--tg-font-weight-semibold);
 
     .casino,
     .sports {
