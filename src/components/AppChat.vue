@@ -18,6 +18,7 @@ const chatMessageBus = useEventBus(CHAT_MESSAGE_BUS)
 
 const scrollMsg = ref()
 const messageHistory = ref<Array<ChatMessageInfo>>([])
+const msgCounter = ref(1)
 
 const { run: runGetHistory } = useRequest(ApiChatGetHistory, {
   onSuccess: (data) => {
@@ -34,7 +35,7 @@ function roomChange(room: EnumLanguageKey) {
 }
 function messageWrapScroll() {
   const { height } = scrollMsg.value.getBoundingClientRect()
-  if (scrollMsg.value.scrollHeight - scrollMsg.value.scrollTop - height > 100)
+  if (scrollMsg.value.scrollHeight - scrollMsg.value.scrollTop - height > 200)
     setMTrue()
   else
     setMFalse()
@@ -44,7 +45,16 @@ function goBottom2() {
     setTimeout(() => {
       const { height } = scrollMsg.value.getBoundingClientRect()
       scrollMsg.value.scrollTop = scrollMsg.value.scrollHeight - height
+      msgCounter.value = 1
     }, 0)
+  })
+}
+function goBottom(time?: number) {
+  nextTick(() => {
+    setTimeout(() => {
+      document.querySelector('.msg-tail')?.scrollIntoView({ behavior: 'smooth' })
+      msgCounter.value = 1
+    }, time !== undefined ? time : 300)
   })
 }
 function onReceiveChatMsg(m: any) {
@@ -56,7 +66,10 @@ function onReceiveChatMsg(m: any) {
       messageHistory.value = []
 
     messageHistory.value.push({ ...m, id: m.s, msg: m.c, user: { name: m.n, uid: m.u } })
-    goBottom2()
+    if (showMoreBar.value)
+      msgCounter.value += 1
+    else
+      goBottom2()
   }
 }
 
@@ -112,7 +125,7 @@ onUnmounted(() => {
               </div>
               <div class="icon-text go-down" @click.stop="goBottom(0)">
                 <BaseIcon name="uni-arrow-godown" />
-                <span>20+ 条新信息</span>
+                <span>{{ msgCounter }}+ 条新信息</span>
               </div>
             </BaseButton>
           </div>
