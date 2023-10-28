@@ -26,6 +26,9 @@ const isMaintained = computed(() => {
 })
 
 function gameStart(item: Props['gameInfo']) {
+  if (isMaintained.value)
+    return
+
   router.push(`/casino/games?id=${item.id}`)
   if (isMobile.value)
     closeSearchH5()
