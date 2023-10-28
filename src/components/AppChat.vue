@@ -39,12 +39,22 @@ function messageWrapScroll() {
   else
     setMFalse()
 }
+function goBottom2() {
+  nextTick(() => {
+    setTimeout(() => {
+      const { height } = scrollMsg.value.getBoundingClientRect()
+      scrollMsg.value.scrollTop = scrollMsg.value.scrollHeight - height
+    }, 0)
+  })
+}
 function onReceiveChatMsg(m: any) {
   const hasMsg = m.s
     ? isValueContainInBloom(messageHistory.value.map(v => v.s).filter(f => f !== undefined && f.length), m.s)
     : false
-  if (!hasMsg)
+  if (!hasMsg) {
     messageHistory.value.push({ ...m, id: m.s, msg: m.c, user: { name: m.n, uid: m.u } })
+    goBottom2()
+  }
 }
 
 onMounted(() => {
