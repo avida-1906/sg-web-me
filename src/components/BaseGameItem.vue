@@ -15,7 +15,8 @@ const router = useRouter()
 const { isMobile } = storeToRefs(useWindowStore())
 const { platformList } = storeToRefs(useCasinoStore())
 const closeSearch = inject('closeSearch', () => {})
-const closeSearchH5 = inject('closeSearchH5', () => {})
+const closeSearchH5 = inject('closeSearchH5', () => { })
+const { bool: isError, setTrue: setErrorTrue } = useBoolean(false)
 
 const gameProviderName = computed(() =>
   platformList.value?.find(a => a.id === props.gameInfo.platform_id)?.name ?? '-',
@@ -44,7 +45,23 @@ function gameStart(item: Props['gameInfo']) {
       class="base-game-item" :class="{ maintain: isMaintained }"
       @click="gameStart(gameInfo)"
     >
-      <BaseImage :url="gameInfo.img" :name="gameInfo.name" is-cloud />
+      <BaseImage
+        v-if="!isError"
+        :url="gameInfo.img"
+        :name="gameInfo.name"
+        is-cloud
+        @error-img="setErrorTrue"
+      />
+      <div v-if="isError && !isMaintained" class="center img-load">
+        <BaseEmpty>
+          <template #icon>
+            <BaseIcon font-size="43" name="img-error" />
+          </template>
+          <template #description>
+            <span style="font-size: var(--tg-font-size-xs);">加载失败了x_x</span>
+          </template>
+        </BaseEmpty>
+      </div>
       <div class="active-game-item">
         <div class="game-title">
           {{ gameInfo.name }}
@@ -105,6 +122,11 @@ function gameStart(item: Props['gameInfo']) {
         font-size: var(--tg-font-size-3xl);
         --tg-icon-color: var(--tg-text-white);
       }
+    }
+    .img-load {
+      width: 100%;
+      height: 100%;
+      background-color: var(--tg-secondary-grey);
     }
     &.maintain{
       cursor: not-allowed;
