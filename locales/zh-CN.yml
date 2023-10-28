@@ -23,11 +23,12 @@ password_least_8_characters: 您的 password 必须含有至少 8 个字符
 password_least_1_number: 含有至少 1 个数字
 uppercase_lowercase_letter: 含有大写和小写字母
 least_8_characters: 至少 8 个字符
+reg_step: 填写您的详细信息
 reg_step1: 步骤1/2：填写您的详细信息
 reg_step2: 步骤2/2：填写您的详细信息
 code_optional: 代码（可选的）
 read_terms_conditions: 我已阅读并同意条款与条件
-agree_terms_conditions: 请完整阅读条款与条件，然后滚动至末尾将其接受。
+agree_terms_conditions: 请完整阅读条款与条件，并勾选接受。
 or_use: 或者使用
 forgot_password: 忘记密码
 no_account_yet: 还未有账户？

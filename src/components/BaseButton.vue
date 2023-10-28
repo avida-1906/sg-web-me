@@ -17,7 +17,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 const size = computed(() => props.padding0
   ? ''
-  : `var(--tg-spacing-button-padding-vertical-${props.size}) 
+  : `var(--tg-spacing-button-padding-vertical-${props.size})
 var(--tg-spacing-button-padding-horizontal-${props.size})`)
 </script>
 
@@ -45,6 +45,7 @@ var(--tg-spacing-button-padding-horizontal-${props.size})`)
   --tg-base-button-style-bg: var(--tg-secondary-main);
   --tg-base-button-style-bg-hover: var(--tg-text-grey);
   --tg-base-button-text-default-color: var(--tg-text-grey-button);
+  --tg-base-button-font-weight:var(--tg-font-weight-semibold);
 }
 </style>
 
@@ -53,7 +54,7 @@ button {
   color: var(--tg-text-white);
   font-size: var(--tg-font-size-default);
   border-radius: var(--tg-radius-default);
-  font-weight: var(--tg-font-weight-semibold);
+  font-weight: var(--tg-base-button-font-weight);
   transition: var(--tg-transition);
   line-height: 1;
 

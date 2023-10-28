@@ -129,10 +129,10 @@ export interface IMemberBalanceLockerUpdate {
 }
 
 export interface IMemberReg {
-  email: string
+  email?: string
   username: string
   password: string
-  birthday: string
+  birthday?: string
   /** 上级id，没有留空 */
   parent_id?: string
   device_number: string

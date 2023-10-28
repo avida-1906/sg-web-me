@@ -1,24 +1,19 @@
 <script setup lang='ts'>
-import type { IMemberReg } from '~/apis'
-
-const closeDialog = inject('closeDialog', () => {})
+const closeDialog = inject('closeDialog', () => { })
 
 const { t } = useI18n()
-const { bool: checkboxValue } = useBoolean(false)
+const appStore = useAppStore()
+const { openNotify } = useNotify()
+const { bool: isEmailMust } = useBoolean(true)
 const { bool: pwdStatus, setBool: setPwdStatus } = useBoolean(false)
-const { openTermsConditionsDialog } = useTermsConditionsDialog()
+const { openLoginDialog } = useLoginDialog()
 
 const curExists = ref<1 | 2>(2)
-const birthdayInputRef = ref()
-const birthday = ref('')
+const steps = ref(1)
 const {
   bool: isShowPasswordVerify,
   setTrue: setShowPasswordVerifyTrue,
   setFalse: setShowPasswordVerifyFalse,
-} = useBoolean(false)
-const {
-  bool: needSaveFormData,
-  setTrue: setNeedSaveFormDataTrue,
 } = useBoolean(false)
 
 const {
@@ -31,10 +26,10 @@ const {
     return t('pls_enter_email_address')
   else if (!emailReg.test(value))
     return t('email_address_incorrect')
-    // 请在您的电邮地址中加入 “@” 符号
-    // 请在您的电邮地址中加入 “.” 符号
-    // 电子邮件域不受支持
-    // 请输入有效的电邮地址
+  // 请在您的电邮地址中加入 “@” 符号
+  // 请在您的电邮地址中加入 “.” 符号
+  // 电子邮件域不受支持
+  // 请输入有效的电邮地址
   return ''
 })
 const {
@@ -47,9 +42,9 @@ const {
     return t('pls_enter_username')
   else if (!usernameReg.test(value))
     return '您的用户名长度必须为 3 – 14 个小写英文字母和数字组成'
-    // 此用户名已被使用，请选择另一用户名。
-    // 用户名含有无效的字符
-    // 您的用户名长度必须为 3 – 14 个字符。
+  // 此用户名已被使用，请选择另一用户名。
+  // 用户名含有无效的字符
+  // 您的用户名长度必须为 3 – 14 个字符。
   return ''
 })
 const {
@@ -67,11 +62,15 @@ const {
     return t('password_least_1_number')
   return ''
 })
-
-const regParams = computed(() =>
-  Session.get<IMemberReg>(STORAGE_REG_PARAMS_KEYWORDS)?.value,
-)
-
+const {
+  value: isAgree,
+  errorMessage: agreeErrorMsg,
+  validate: valiAgree,
+} = useField<boolean>('checkbox', (value) => {
+  if (!value)
+    return t('agree_terms_conditions')
+  return ''
+})
 const { run: runExists } = useRequest(ApiMemberExists, {
   onError() {
     if (curExists.value === 2)
@@ -81,32 +80,47 @@ const { run: runExists } = useRequest(ApiMemberExists, {
   },
 })
 
+const {
+  run: runMemberReg,
+  loading: isLoading,
+} = useRequest(ApiMemberReg, {
+  manual: true,
+  onSuccess: async (res) => {
+    appStore.setToken(res)
+    Session.remove(STORAGE_REG_PARAMS_KEYWORDS)
+    openNotify({
+      type: 'success',
+      message: '注册成功!',
+    })
+    await nextTick()
+    closeDialog()
+  },
+})
 async function getMemberReg() {
-  await validateEmail()
+  if (isEmailMust.value)
+    await validateEmail()
+
   await validateUsername()
   await validatePassword()
-  birthdayInputRef.value.valiBirthday()
+  await valiAgree()
+
   if (
-    !emailErrorMsg.value
+    ((isEmailMust.value && !emailErrorMsg.value) || !isEmailMust.value)
     && !usernameErrorMsg.value
     && !pwdErrorMsg.value
-    && birthday.value
+    && !agreeErrorMsg.value
   ) {
     const paramsReg = {
       email: email.value,
       username: username.value,
       password: password.value,
       parent_id: '',
-      birthday: birthday.value,
       device_number: application.getDeviceNumber(),
     }
-    Session.set(STORAGE_REG_PARAMS_KEYWORDS, paramsReg)
-    setNeedSaveFormDataTrue()
-    closeDialog()
-    await nextTick()
-    openTermsConditionsDialog()
+    runMemberReg(paramsReg)
   }
 }
+
 function onFocus() {
   setShowPasswordVerifyTrue()
 }
@@ -122,73 +136,211 @@ function onEmailUsernameBlur(type: 1 | 2) {
   if (type === 1 ? username.value && !usernameErrorMsg.value : email.value && !emailErrorMsg.value)
     runExists({ ty: type, val: type === 1 ? username.value : email.value })
 }
-
-/** 如果保存了自动填充 */
-if (regParams.value) {
-  email.value = regParams.value?.email
-  username.value = regParams.value?.username
-  password.value = regParams.value?.password
-  birthday.value = regParams.value?.birthday
+async function toLogin() {
+  closeDialog()
+  await nextTick()
+  openLoginDialog()
 }
-onUnmounted(() => {
-  if (!needSaveFormData.value)
-    Session.remove(STORAGE_REG_PARAMS_KEYWORDS)
-})
 </script>
 
 <template>
   <div class="app-register">
-    <div class="app-register-title">
-      {{ t('reg_step1') }}
-    </div>
-    <div class="app-register-input-box">
-      <BaseLabel :label="t('email_address')" must-small>
-        <BaseInput
-          v-model="email"
-          :msg="emailErrorMsg"
-          :placeholder="t('pls_enter_email_address')"
-          @blur="onEmailUsernameBlur(2)"
-        />
-      </BaseLabel>
-      <BaseLabel :label="t('username')" must-small>
-        <BaseInput
-          v-model="username"
-          :msg="usernameErrorMsg"
-          :placeholder="t('pls_enter_username')"
-          @blur="onEmailUsernameBlur(1)"
-        />
-      </BaseLabel>
-      <BaseLabel :label="t('password')" must-small>
-        <BaseInput
-          v-model="password"
-          :msg="pwdErrorMsg"
-          :placeholder="t('pls_enter_password')" type="password"
-          autocomplete="current-password"
-          :password="password"
-          @focus="onFocus" @blur="onPasswordBlur"
-        />
-        <AppPasswordVerify
-          v-show="isShowPasswordVerify"
-          :password="password"
-          @pass="passwordVerifyPass"
-        />
-      </BaseLabel>
-      <BaseLabel label="出生日期" must-small>
-        <BaseInputBirthday ref="birthdayInputRef" v-model="birthday" />
-      </BaseLabel>
-    </div>
-    <div class="app-register-check-box">
-      <BaseCheckBox v-model="checkboxValue">
-        {{ t('code_optional') }}
-      </BaseCheckBox>
-      <BaseButton
-        class="app-register-btn"
-        bg-style="secondary"
-        size="xl"
-        @click.stop="getMemberReg"
-      >
-        {{ t('continue') }}
-      </BaseButton>
+    <template v-if="steps === 1">
+      <div class="app-register-title">
+        {{ t('reg_step') }}
+      </div>
+      <div class="app-register-input-box">
+        <BaseLabel v-if="isEmailMust" :label="t('email_address')" must-small>
+          <BaseInput
+            v-model="email" :msg="emailErrorMsg"
+            :placeholder="t('pls_enter_email_address')"
+            @blur="onEmailUsernameBlur(2)"
+          />
+        </BaseLabel>
+        <BaseLabel :label="t('username')" must-small>
+          <BaseInput
+            v-model="username" :msg="usernameErrorMsg"
+            :placeholder="t('pls_enter_username')"
+            @blur="onEmailUsernameBlur(1)"
+          />
+        </BaseLabel>
+        <BaseLabel :label="t('password')" must-small>
+          <BaseInput
+            v-model="password" :msg="pwdErrorMsg" :placeholder="t('pls_enter_password')"
+            type="password"
+            autocomplete="current-password" :password="password" @focus="onFocus"
+            @blur="onPasswordBlur"
+          />
+          <AppPasswordVerify
+            v-show="isShowPasswordVerify" :password="password"
+            @pass="passwordVerifyPass"
+          />
+        </BaseLabel>
+      </div>
+      <div class="app-register-check-box">
+        <BaseButton
+          :loading="isLoading" class="app-register-btn" bg-style="primary"
+          size="xl" @click.stop="getMemberReg"
+        >
+          {{ t('continue') }}
+        </BaseButton>
+        <div class="agree">
+          <BaseCheckBox v-model="isAgree" :msg="agreeErrorMsg">
+            我已阅读并同意
+            <BaseButton
+              type="text" padding0 style="--tg-base-button-text-default-color:var(--tg-text-blue);
+          --tg-base-button-font-weight:var(--tg-font-weight-normal);" @click="steps = 2"
+            >
+              条款与条件
+            </BaseButton>
+          </BaseCheckBox>
+        </div>
+      </div>
+      <AppAuthLogin />
+    </template>
+    <template v-else>
+      <div class="app-register-terms-conditions">
+        <div class="title">
+          <BaseButton type="text" padding0 font-size="20" @click="steps = 1">
+            <BaseIcon name="uni-arrowleft-line" />
+          </BaseButton>
+          <span>条款与条件</span>
+        </div>
+        <div class="scroll-y terms-conditions">
+          <div>
+            <div class="terms-conditions-theme">
+              Terms and Conditions
+            </div>
+            <div class="terms-conditions-title">
+              1.STAKE.COM
+            </div>
+            <div class="terms-conditions-describe">
+              1.1 Stake.com is owned and operated by Medium Rare, N.V. (hereinafter
+              "Stake", "We" or "Us"), a company with head office at Korporaalweg
+              10, Willemstad, Curaçao. Stake is licensed and regulated by
+              the Government of Curaçao under the gaming license 8048/JAZ
+              issued to Antillephone. Some credit card payment processing
+              are handled by its wholly owned subsidiary, Medium Rare Limited.
+            </div>
+
+            <div class="terms-conditions-title">
+              2. IMPORTANT NOTICE
+            </div>
+            <div class="terms-conditions-describe">
+              2.1 BY REGISTERING ON WWW.XXX.COM
+              (THE “WEBSITE”), YOU ENTER INTO A CONTRACT WITH MEDIUM
+              RARE N.V., AND AGREE TO BE BOUND BY (I) THESE TERMS AND
+              CONDITIONS; (II) OUR PRIVACY POLICY; (III) OUR COOKIES
+              POLICY AND (IV) THE RULES APPLICABLE TO OUR BETTING
+              OR GAMING PRODUCTS AS FURTHER REFERENCED IN THESE TERMS
+              AND CONDITIONS (“TERMS AND CONDITIONS” OR “AGREEMENT”)
+              , AND THE BETTING AND/OR GAMING SPECIFIC RULES,
+              AND ARE DEEMED TO HAVE ACCEPTED AND UNDERSTOOD ALL THE TERMS.
+            </div>
+            <div class="terms-conditions-describe">
+              2.2 PLEASE READ THIS AGREEMENT CAREFULLY TO MAKE SURE
+              YOU FULLY UNDERSTAND ITS CONTENT. IF YOU HAVE ANY DOUBTS
+              AS TO YOUR RIGHTS AND OBLIGATIONS RESULTING FROM THE
+              ACCEPTANCE OF THIS AGREEMENT, PLEASE CONSULT A LEGAL
+              ADVISOR IN YOUR JURISDICTION BEFORE FURTHER USING THE
+              WEBSITE(S) AND ACCESSING ITS CONTENT. IF YOU DO NOT
+              ACCEPT THE TERMS, DO NOT USE, VISIT OR ACCESS ANY PART
+              (INCLUDING, BUT NOT LIMITED TO, SUB-DOMAINS, SOURCE
+              CODE AND/OR WEBSITE APIS, WHETHER VISIBLE OR NOT) OF THE WEBSITE.
+            </div>
+
+            <div class="terms-conditions-title">
+              3. GENERAL
+            </div>
+
+            <div class="terms-conditions-title">
+              2. IMPORTANT NOTICE
+            </div>
+            <div class="terms-conditions-describe">
+              2.1 BY REGISTERING ON WWW.XXX.COM
+              (THE “WEBSITE”), YOU ENTER INTO A CONTRACT WITH MEDIUM RARE N.V.,
+              AND AGREE TO BE BOUND BY (I) THESE TERMS AND CONDITIONS; (II)
+              OUR PRIVACY POLICY; (III) OUR COOKIES POLICY AND (IV) THE RULES
+              APPLICABLE TO OUR BETTING OR GAMING PRODUCTS AS FURTHER
+              REFERENCED IN THESE TERMS AND CONDITIONS (“TERMS AND CONDITIONS”
+              OR “AGREEMENT”), AND THE BETTING AND/OR GAMING SPECIFIC RULES,
+              AND ARE DEEMED TO HAVE ACCEPTED AND UNDERSTOOD ALL THE TERMS.
+            </div>
+            <div class="terms-conditions-describe">
+              2.2 PLEASE READ THIS AGREEMENT CAREFULLY TO MAKE SURE YOU FULLY
+              UNDERSTAND ITS CONTENT. IF YOU HAVE ANY DOUBTS AS TO YOUR RIGHTS
+              AND OBLIGATIONS RESULTING FROM THE ACCEPTANCE OF THIS AGREEMENT,
+              PLEASE CONSULT A LEGAL ADVISOR IN YOUR JURISDICTION BEFORE
+              FURTHER USING THE WEBSITE(S) AND ACCESSING ITS CONTENT. IF
+              YOU DO NOT ACCEPT THE TERMS, DO NOT USE, VISIT OR ACCESS
+              ANY PART (INCLUDING, BUT NOT LIMITED TO, SUB-DOMAINS,
+              SOURCE CODE AND/OR WEBSITE APIS, WHETHER VISIBLE OR NOT)
+              OF THE WEBSITE.
+            </div>
+            <div class="terms-conditions-title">
+              2. IMPORTANT NOTICE
+            </div>
+            <div class="terms-conditions-describe">
+              2.1 BY REGISTERING ON WWW.XXX.COM
+              (THE “WEBSITE”), YOU ENTER INTO A CONTRACT WITH MEDIUM RARE N.V.,
+              AND AGREE TO BE BOUND BY (I) THESE TERMS AND CONDITIONS; (II)
+              OUR PRIVACY POLICY; (III) OUR COOKIES POLICY AND (IV) THE RULES
+              APPLICABLE TO OUR BETTING OR GAMING PRODUCTS AS FURTHER REFERENCED
+              IN THESE TERMS AND CONDITIONS (“TERMS AND CONDITIONS” OR
+              “AGREEMENT”), AND THE BETTING AND/OR GAMING SPECIFIC RULES,
+              AND ARE DEEMED TO HAVE ACCEPTED AND UNDERSTOOD ALL THE TERMS.
+            </div>
+            <div class="terms-conditions-describe">
+              2.2 PLEASE READ THIS AGREEMENT CAREFULLY TO MAKE SURE YOU FULLY
+              UNDERSTAND ITS CONTENT. IF YOU HAVE ANY DOUBTS AS TO YOUR RIGHTS
+              AND OBLIGATIONS RESULTING FROM THE ACCEPTANCE OF THIS AGREEMENT,
+              PLEASE CONSULT A LEGAL ADVISOR IN YOUR JURISDICTION BEFORE FURTHER
+              USING THE WEBSITE(S) AND ACCESSING ITS CONTENT. IF YOU DO NOT
+              ACCEPT THE TERMS, DO NOT USE, VISIT OR ACCESS ANY PART (INCLUDING,
+              BUT NOT LIMITED TO, SUB-DOMAINS, SOURCE CODE AND/OR WEBSITE APIS,
+              WHETHER VISIBLE OR NOT) OF THE WEBSITE.
+            </div>
+            <div class="terms-conditions-title">
+              2. IMPORTANT NOTICE
+            </div>
+            <div class="terms-conditions-describe">
+              2.1 BY REGISTERING ON WWW.XXX.COM
+              (THE “WEBSITE”), YOU ENTER INTO A CONTRACT WITH MEDIUM RARE N.V.,
+              AND AGREE TO BE BOUND BY (I) THESE TERMS AND CONDITIONS; (II) OUR
+              PRIVACY POLICY; (III) OUR COOKIES POLICY AND (IV) THE RULES
+              APPLICABLE TO OUR BETTING OR GAMING PRODUCTS AS FURTHER REFERENCED
+              IN THESE TERMS AND CONDITIONS (“TERMS AND CONDITIONS” OR
+              “AGREEMENT”), AND THE BETTING AND/OR GAMING SPECIFIC RULES,
+              AND ARE DEEMED TO HAVE ACCEPTED AND UNDERSTOOD ALL THE TERMS.
+            </div>
+            <div class="terms-conditions-describe">
+              2.2 PLEASE READ THIS AGREEMENT CAREFULLY TO MAKE SURE YOU FULLY
+              UNDERSTAND ITS CONTENT. IF YOU HAVE ANY DOUBTS AS TO YOUR RIGHTS
+              AND OBLIGATIONS RESULTING FROM THE ACCEPTANCE OF THIS AGREEMENT,
+              PLEASE CONSULT A LEGAL ADVISOR IN YOUR JURISDICTION BEFORE
+              FURTHER USING THE WEBSITE(S) AND ACCESSING ITS CONTENT. IF
+              YOU DO NOT ACCEPT THE TERMS, DO NOT USE, VISIT OR ACCESS
+              ANY PART (INCLUDING, BUT NOT LIMITED TO, SUB-DOMAINS,
+              SOURCE CODE AND/OR WEBSITE APIS, WHETHER VISIBLE OR NOT)
+              OF THE WEBSITE.
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
+    <div class="app-bottom">
+      <div class="app-bottom-text">
+        <div>
+          {{ t('have_account') }}
+          <span class="text-white" @click.stop="toLogin">{{ t('login') }}</span>
+        </div>
+
+        <div class="stake-text">
+          {{ t('stake_hCaptcha') }}
+          <span>{{ t('privacy_policy') }}</span> {{ t('and') }}
+          <span>{{ t('terms_of_service') }}</span> {{ t('applicable') }}
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -205,23 +357,142 @@ onUnmounted(() => {
     line-height: normal;
     padding-bottom: var(--tg-spacing-16);
   }
+
   &-input-box {
     display: flex;
     flex-direction: column;
     gap: var(--tg-spacing-16);
   }
+
   &-check-box {
     display: flex;
     flex-direction: column;
     gap: var(--tg-spacing-16);
     padding-top: var(--tg-spacing-button-padding-vertical-xs);
-    font-weight: var(--tg-font-weight-semibold);
+
+    .agree {
+      display: flex;
+      align-items: center;
+    }
   }
+
   &-btn {
     width: 100%;
   }
-  .app-register-btn{
+
+  .app-register-btn {
     font-size: var(--tg-font-size-base);
+  }
+}
+
+.app-register-terms-conditions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--tg-spacing-12);
+
+  .title {
+    margin-top: var(--tg-spacing-12);
+    color: var(--tg-text-lightgrey);
+    text-align: center;
+    font-size: var(--tg-font-size-base);
+    font-style: normal;
+    font-weight: var(--tg-font-weight-semibold);
+    line-height: normal;
+    display: flex;
+    align-items: center;
+
+    span {
+      display: inline-block;
+      flex: 1;
+      text-align: center;
+    }
+
+    .icon {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .terms-conditions {
+    max-height: 50vh;
+    padding: var(--tg-spacing-20) var(--tg-spacing-12);
+    text-align: left;
+    border-radius: var(--tg-radius-default);
+    background: var(--tg-secondary-grey);
+    transition: all 0.5s;
+
+    .theme {
+      margin: var(--tg-spacing-12) 0;
+    }
+
+    .terms-conditions-theme {
+      color: var(--tg-text-white);
+      font-size: var(--tg-font-size-md);
+      font-weight: var(--tg-font-weight-semibold);
+    }
+
+    .terms-conditions-title {
+      color: var(--tg-text-white);
+      font-size: var(--tg-font-size-md);
+      font-weight: var(--tg-font-weight-semibold);
+      margin: var(--tg-spacing-32) 0 var(--tg-spacing-8);
+    }
+
+    .terms-conditions-describe {
+      color: var(--tg-text-lightgrey);
+      font-size: var(--tg-font-size-xs);
+      font-weight: var(--tg-font-weight-default);
+      line-height: 22px;
+    }
+  }
+
+  .check-box {
+    display: flex;
+    flex-direction: column;
+    gap: var(--tg-spacing-12);
+  }
+
+  &-btn {
+    width: 100%;
+  }
+
+}
+
+.app-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: var(--tg-spacing-12);
+  margin-top: var(--tg-spacing-12);
+
+  &-text {
+    text-align: center;
+    font-size: var(--tg-font-size-default);
+    color: var(--tg-text-lightgrey);
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+    gap: var(--tg-spacing-12);
+
+    .text-white {
+      color: var(--tg-text-white) !important;
+    }
+
+    .stake-text {
+      // font-weight: var(--tg-font-weight-semibold);
+      font-size: var(--tg-font-size-xs);
+      padding-bottom: var(--tg-spacing-20);
+      cursor: pointer;
+
+      span:hover {
+        color: var(--tg-text-white) !important;
+      }
+    }
+  }
+
+  .app-bottom-text {
+    span {
+      cursor: pointer;
+    }
   }
 }
 </style>
