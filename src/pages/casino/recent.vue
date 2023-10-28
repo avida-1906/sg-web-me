@@ -1,9 +1,10 @@
 <script setup lang="ts">
+const { appContentWidth } = storeToRefs(useWindowStore())
 </script>
 
 <template>
   <section class="layout-spacing tg-favourites">
-    <div class="group-banner-wrap">
+    <div class="group-banner-wrap" :class="{ 'less-than-700': appContentWidth <= 700 }">
       <div class="group-banner-bg" />
       <div class="banner-wrap">
         <div class="banner">

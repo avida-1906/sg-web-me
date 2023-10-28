@@ -557,6 +557,14 @@ body {
       }
     }
   }
+
+  &.less-than-700 {
+    .banner-wrap {
+      .banner {
+        height: 80px;
+      }
+    }
+  }
 }
 
 // 体育页面title
