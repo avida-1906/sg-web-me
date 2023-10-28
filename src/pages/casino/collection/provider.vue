@@ -4,6 +4,8 @@ const { platformList } = storeToRefs(useCasinoStore())
 const { appContentWidth } = storeToRefs(useWindowStore())
 
 function handleItemClick(item: any) {
+  if (item.maintained === '2')
+    return
   router.push(`/casino/group/provider?pid=${item.id}&name=${item.en_name}`)
 }
 </script>
@@ -31,7 +33,11 @@ function handleItemClick(item: any) {
     <div class="mt-24">
       <AppCardList :list="platformList" is-provider>
         <template #default="{ item }">
-          <BaseProviderItem :url="item.logo" @click="handleItemClick(item)" />
+          <BaseProviderItem
+            :url="item.logo"
+            :maintained="item.maintained"
+            @click="handleItemClick(item)"
+          />
         </template>
       </AppCardList>
     </div>

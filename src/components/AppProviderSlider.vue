@@ -3,6 +3,8 @@ const router = useRouter()
 const { platformList } = storeToRefs(useCasinoStore())
 
 function goPage(item: any) {
+  if (item.maintained === '2')
+    return
   router.push(`/casino/group/provider?pid=${item.id}&name=${item.en_name}`)
 }
 </script>
@@ -17,7 +19,11 @@ function goPage(item: any) {
       game-type="provider"
     >
       <template #default="{ item }">
-        <BaseProviderItem :url="item.logo" @click="goPage(item)" />
+        <BaseProviderItem
+          :url="item.logo"
+          :maintained="item.maintained"
+          @click="goPage(item)"
+        />
       </template>
     </AppSlider>
   </div>
