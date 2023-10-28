@@ -64,7 +64,7 @@ export interface IUserInfo {
   qq: string
   area_code: string
   /** 性别 1=男，2=女 */
-  sex: string
+  sex: number | string
   cpf: string
 }
 

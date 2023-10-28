@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { notifyType } from '~/composables/useNotify'
+import type { IUserInfo } from '~/apis'
 
 interface INotifyData {
   type: notifyType
@@ -29,7 +30,7 @@ const socialDataChanged: ISocialData = {
   wechat: false,
   qq: false,
 }
-const paramsData = ref(userInfo.value?.ext || {
+const paramsData = ref<IUserInfo>({
   uid: '',
   phone: '',
   telegram: '',
@@ -195,10 +196,11 @@ for (const k in paramsData.value) {
   ) {
     const key = k as keyof typeof paramsData.value
     watch(() => paramsData.value[key], (newValue, oldValue) => {
-      if (newValue === oldValue || oldValue === '')
+      if (newValue === oldValue)
         socialDataChanged[k] = false
       else
         socialDataChanged[k] = true
+
       if (
         socialDataChanged.facebook
         || socialDataChanged.whatsapp
@@ -220,6 +222,9 @@ watch(() => userInfo.value, (newValue) => {
   if (newValue) {
     email.value = newValue.email
     paramsData.value = newValue.ext
+    setTimeout(() => {
+      setSocialDisabledBtnTrue()
+    }, 0)
   }
 })
 watch(() => route.query, (newValue) => {
@@ -251,8 +256,13 @@ watch(() => route.query, (newValue) => {
 }, { immediate: true })
 
 onMounted(() => {
-  if (userInfo.value?.ext)
+  if (userInfo.value?.ext) {
+    paramsData.value = userInfo.value.ext
     email.value = userInfo.value?.email
+    setTimeout(() => {
+      setSocialDisabledBtnTrue()
+    }, 0)
+  }
 })
 </script>
 

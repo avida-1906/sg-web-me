@@ -24,9 +24,11 @@ export function isValueContainInBloom(strArr: Array<string>, searchStr: string) 
 }
 
 export function goBottom(time?: number) {
-  setTimeout(() => {
-    document.querySelector('.msg-tail')?.scrollIntoView({ behavior: 'smooth' })
-  }, time !== undefined ? time : 300)
+  nextTick(() => {
+    setTimeout(() => {
+      document.querySelector('.msg-tail')?.scrollIntoView({ behavior: 'smooth' })
+    }, time !== undefined ? time : 300)
+  })
 }
 
 export function useChatEvent() {
