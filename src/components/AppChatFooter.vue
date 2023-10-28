@@ -127,12 +127,7 @@ const emojis = computed(() => {
 })
 const isCommand = computed(() => message.value[0] === '/')
 
-const { run: runSendMsg, loading: sendLoading } = useRequest(ApiChatSendMessage, {
-  onSuccess: () => {
-    message.value = ''
-    goBottom()
-  },
-})
+const { run: runSendMsg, loading: sendLoading } = useRequest(ApiChatSendMessage)
 function addEmoMsg(emo: string) {
   const i = message.value.lastIndexOf(':')
   message.value = `${message.value.slice(0, i + 1)}${emo.split('.')[0]}` + ': '
@@ -176,6 +171,7 @@ function sendMsg() {
     const s = `${Math.random().toString(36).slice(-10)}|${t}`
     chatMessageBus.emit({ c: message.value, s, u: userInfo.value?.uid, n: userInfo.value?.username, t })
     runSendMsg({ c: message.value, lang: roomLang.value, s })
+    message.value = ''
   }
 }
 function enterPress(event: KeyboardEvent) {

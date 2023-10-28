@@ -10,6 +10,8 @@ export const useChatStore = defineStore('chat', () => {
     { icon: 'cn', label: '中文', value: 'zh-CN' },
     { icon: 'vn', label: 'Tiếng Việt', value: 'vi-VN' },
     { icon: 'br', label: 'Português', value: 'pt-BR' },
+    { icon: 'in', label: 'India', value: 'hi-IN' },
+    { icon: 'thai', label: 'ประเทศไทย', value: 'th-TH' },
   ])
   const room = ref(chatRoomList[0])
 
