@@ -4,6 +4,7 @@
   "packageManager": "pnpm@8.6.7",
   "scripts": {
     "build": "sh ./scripts/build.sh",
+    "build-fat": "sh ./scripts/build.sh fat",
     "build:test": "vite build",
     "build:fat": "vite build --mode fat",
     "build:prod": "vite build --mode production",
