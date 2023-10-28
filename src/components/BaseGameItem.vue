@@ -54,6 +54,16 @@ function gameStart(item: Props['gameInfo']) {
           {{ gameProviderName }}
         </div>
       </div>
+      <div v-if="isMaintained" class="center maintain-game-item">
+        <BaseEmpty>
+          <template #icon>
+            <BaseIcon font-size="43" name="uni-maintain" />
+          </template>
+          <template #description>
+            <span style="font-size: var(--tg-font-size-xs);">场馆维护中</span>
+          </template>
+        </BaseEmpty>
+      </div>
     </div>
   </BaseAspectRatio>
 </template>
@@ -92,13 +102,20 @@ function gameStart(item: Props['gameInfo']) {
       }
       .game-uni-play{
         margin: 0 auto;
-        width: 32px;
-        height: 32px;
+        font-size: var(--tg-font-size-3xl);
         --tg-icon-color: var(--tg-text-white);
       }
     }
     &.maintain{
       cursor: not-allowed;
+    }
+    .maintain-game-item{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      background: #{rgba($color: var(--tg-color-blue-rgb), $alpha: 0.8)};
     }
   }
   .base-game-item:hover{

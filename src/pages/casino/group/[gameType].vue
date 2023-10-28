@@ -5,6 +5,7 @@ import {
 
 const props = defineProps<{ gameType: string }>()
 const route = useRoute()
+const { appContentWidth } = storeToRefs(useWindowStore())
 
 const currentType = ref(props.gameType)
 const isRec = computed(() => currentType.value === 'rec') // 推荐游戏
@@ -127,7 +128,7 @@ else if (isCat.value)
 <template>
   <div>
     <section class="layout-spacing tg-game-type-page">
-      <div class="group-banner-wrap">
+      <div class="group-banner-wrap" :class="{ 'less-than-700': appContentWidth <= 700 }">
         <div class="group-banner-bg" />
         <div class="banner-wrap">
           <div class="banner">

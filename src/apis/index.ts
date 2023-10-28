@@ -764,6 +764,10 @@ export function ApiFinanceMethodList(params: {
     alias: string
     /** 通道名称 */
     name: string
+    /** 是否拥有银行选项 */
+    bank: boolean
+    /** 获取银行id */
+    zkId: string
   }[]>('/finance/method/list', params)
 }
 

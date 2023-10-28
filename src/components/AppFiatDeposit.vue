@@ -40,11 +40,21 @@ const {
   const Value = Number(value)
   if (!Value)
     return '请输入金额'
-  else if (currentAisleItem.value && Value < Number(currentAisleItem.value?.amount_min))
+  else if (currentAisleItem.value?.amount_min && Value < Number(currentAisleItem.value?.amount_min))
     return `最小金额为${currentAisleItem.value?.amount_min}`
-  else if (currentAisleItem.value && Value > Number(currentAisleItem.value?.amount_max))
+  else if (currentAisleItem.value?.amount_max && Value > Number(currentAisleItem.value?.amount_max))
     return `最大金额为${currentAisleItem.value?.amount_max}`
 
+  return ''
+})
+const {
+  value: selectValue,
+  errorMessage: selectValueError,
+  validate: selectValueValidate,
+  resetField: selectValueReset,
+} = useField<string>('selectValue', (value) => {
+  if (!value)
+    return '请选择银行'
   return ''
 })
 
@@ -136,6 +146,21 @@ const havePaymentMethod = computed(() => {
 const havePaymentMerchant = computed(() => {
   return paymentMerchantList.value && paymentMerchantList.value.length
 })
+const currentTypeItem = computed(() => {
+  if (paymentMethodList.value)
+    return paymentMethodList.value?.find(i => i.id === currentType.value)
+})
+const paymentDepositBankData = computed(() => {
+  if (paymentDepositBankList.value) {
+    return paymentDepositBankList.value.map((i) => {
+      return {
+        label: i.name,
+        value: i.id,
+      }
+    })
+  }
+  return []
+})
 
 const nextStep = function () {
   emit('show', false)
@@ -155,12 +180,15 @@ const changeAisle = function (item: IPaymentMerchantData) {
 }
 async function depositSubmit() {
   await amountValidate()
-  if (!amountError.value) {
+  await selectValueValidate()
+  if (!amountError.value
+    && (currentTypeItem.value?.bank ? !selectValueError.value : true)
+  ) {
     runThirdDeposit({
       amount: amount.value,
       mid: currentType.value,
       cid: currentAisle.value,
-      bank_code: '',
+      bank_code: selectValue.value ?? '',
     })
   }
 }
@@ -173,7 +201,9 @@ watch(() => currentType.value, (newValue) => {
   if (newValue) {
     runPaymentMerchantList({ id: currentType.value })
     amountReset()
-    runPaymentDepositBankList({ id: currentType.value })
+    selectValueReset()
+    if (currentTypeItem.value?.bank)
+      runPaymentDepositBankList({ id: currentTypeItem.value.zkId })
   }
 })
 </script>
@@ -237,6 +267,18 @@ watch(() => currentType.value, (newValue) => {
         </div>
         <div v-else class="type-other">
           <div class="other-first">
+            <BaseLabel
+              v-if="currentTypeItem && currentTypeItem.bank"
+              label="银行选择"
+              must-small
+            >
+              <BaseSelect
+                v-model="selectValue"
+                :options="paymentDepositBankData"
+                :msg="selectValueError"
+                small
+              />
+            </BaseLabel>
             <BaseLabel
               v-if="havePaymentMerchant"
               label="通道选择"

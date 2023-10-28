@@ -43,23 +43,23 @@ function scrollRight() {
       :style="getGridAutoColumns"
     >
       <div v-for="i in 7" :key="i" class="banner-item">
-        <BaseAspectRatio class="banner-ratio" ratio="386/226">
+        <BaseAspectRatio class="banner-ratio" ratio="320/188">
           <BaseImage url="/img/home/banner-bg.png" />
-          <!-- <div class="item-msg">
+          <div class="item-msg">
             <div class="msg-type">
               促销活动
             </div>
             <div class="msg-title">
-              挑战升级
+              75,000抽奖活动
             </div>
             <div class="msg-tips">
-              投注瓜分千万奖金！
-              <span>阅读更多</span>
+              每周瓜分$20,000美元奖金
+              <!-- <span>阅读更多</span> -->
             </div>
             <div class="come-play">
-              马上来玩
+              了解更多
             </div>
-          </div> -->
+          </div>
         </BaseAspectRatio>
       </div>
     </div>
@@ -148,7 +148,7 @@ function scrollRight() {
           border-radius: var(--tg-radius-default);
           padding: 13px 16px;
           border: var(--tg-border-width-default) solid var(--tg-text-white);
-          background: var(--tg-secondary-grey);
+          // background: var(--tg-secondary-grey);
           font-size: var(--tg-font-size-default);
           font-weight: 500;
         }
