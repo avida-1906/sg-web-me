@@ -7,6 +7,7 @@ export function useAddBankcardsDialog(params: {
   isFirst: boolean
   activeCurrency: CurrencyData
   currentType: '1' | '2'
+  callback?: (params?: any) => void
 }) {
   const {
     openDialog: openAddBankcardsDialog,
@@ -19,6 +20,7 @@ export function useAddBankcardsDialog(params: {
       isFirst: params.isFirst,
       activeCurrency: params.activeCurrency,
       currentType: params.currentType,
+      callback: params.callback,
     }),
   })
 

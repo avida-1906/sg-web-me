@@ -53,6 +53,7 @@ const {
   },
 })
 
+const { openWalletDialog } = useWalletDialog({ activeTab: 'cardHolder' })
 const toAddBankcards = function (item: WalletCurrencyList) {
   let isFirst = true
   let openName = ''
@@ -70,6 +71,7 @@ const toAddBankcards = function (item: WalletCurrencyList) {
     activeCurrency: item,
     /** 702 货币id */
     currentType: currentType ? '2' : '1',
+    callback: openWalletDialog,
   })
   closeDialog()
   nextTick(() => openAddBankcardsDialog())
@@ -87,6 +89,7 @@ const toAddVirAddress = function (
   nextTick(() => openVirAddressDialog({
     currencyId: item.cur,
     currencyName: item.type,
+    callback: openWalletDialog,
   }))
 }
 function toDeleteVirAddress(item: VirtualCoin, vCurrencyTitle: string) {

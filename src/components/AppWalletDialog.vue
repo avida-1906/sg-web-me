@@ -1,12 +1,19 @@
 <script setup lang='ts'>
 import type { CurrencyData } from '~/composables/useCurrencyData'
 
+interface Props {
+  activeTab?: string
+}
+const props = withDefaults(defineProps<Props>(), {
+  activeTab: 'deposit',
+})
+
 const { t } = useI18n()
 const { bool: showWallet, setBool: setShowWalletBool } = useBoolean(true)
 const { isVirtualCurrency } = useCurrencyData()
 
 const activeCurrency = ref<CurrencyData | null>()
-const currentTab = ref('deposit')
+const currentTab = ref(props.activeTab)
 const tabList = [
   { label: t('deposit'), value: 'deposit' },
   { label: t('withdraw'), value: 'withdraw' },
