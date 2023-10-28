@@ -13,6 +13,8 @@ interface Props {
   activeCurrency: CurrencyData<TTreeListType>
   /** '1' 银行卡， '2' pix 除了巴西其他国家都是银行卡 */
   currentType: '1' | '2'
+  /** 回掉 */
+  callback?: () => void
 }
 interface IBank {
   id: string
@@ -162,6 +164,9 @@ watch(() => props.activeCurrency, () => {
 onMounted(() => {
   if (props.openName)
     openName.value = props.openName
+})
+onUnmounted(() => {
+  props.callback && props.callback()
 })
 </script>
 

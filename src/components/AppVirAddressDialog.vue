@@ -2,6 +2,7 @@
 interface Props {
   currencyId?: string
   currencyName?: string
+  callback?: (params?: any) => void
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -74,6 +75,10 @@ async function handleBindAddress() {
     })
   }
 }
+
+onUnmounted(() => {
+  props.callback && props.callback()
+})
 </script>
 
 <template>

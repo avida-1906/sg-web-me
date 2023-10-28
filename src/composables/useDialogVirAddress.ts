@@ -1,6 +1,9 @@
 import AppVirAddressDialog from '~/components/AppVirAddressDialog.vue'
 
-export function useVirAddressDialog(headMsg: { title: string; icon: string }) {
+export function useVirAddressDialog(headMsg:
+{ title: string
+  icon: string
+}) {
   // const { t } = useI18n()
 
   const {
