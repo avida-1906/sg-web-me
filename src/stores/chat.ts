@@ -1,6 +1,8 @@
 import type { Room } from '~/types'
 import { languageMap } from '~/modules/i18n'
 
+const { VITE_SOCKET_PREFIX } = getEnv()
+
 export const useChatStore = defineStore('chat', () => {
   const { bool: hideChat, toggle: toggleChat } = useBoolean(false)
 
@@ -14,7 +16,7 @@ export const useChatStore = defineStore('chat', () => {
   const currentLanguage = computed(() => room.value.value)
   const roomLang = computed(() => languageMap[currentLanguage.value])
   const topic = computed(() => {
-    const prefix = 'dev'
+    const prefix = VITE_SOCKET_PREFIX
     const lang = languageMap[currentLanguage.value]
     const _topic = `${prefix}/chat/${lang}`
     return _topic
@@ -27,12 +29,12 @@ export const useChatStore = defineStore('chat', () => {
   return {
     chatRoomList,
     room,
-    setRoom,
     currentLanguage,
     topic,
     roomLang,
     hideChat,
     toggleChat,
+    setRoom,
   }
 })
 
