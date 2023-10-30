@@ -4,7 +4,7 @@ const router = useRouter()
 const route = useRoute()
 const appStore = useAppStore()
 const { isLogin } = storeToRefs(appStore)
-const { isMobile, isLessThanLg, width } = storeToRefs(useWindowStore())
+const { isMobile, width } = storeToRefs(useWindowStore())
 const {
   rightIsExpand,
   openRightSidebar,
