@@ -103,5 +103,6 @@ const msgHtml = computed(() => {
 <style lang="scss" scoped>
 span {
   font-size: var(--tg-font-size-default);
+  text-size-adjust: none;
 }
 </style>
