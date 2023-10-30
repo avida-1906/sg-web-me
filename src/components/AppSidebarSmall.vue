@@ -142,6 +142,7 @@ function itemClick(item: MenuItem) {
         position: absolute;
         right: 2px;
         font-size: 10px;
+        width: 14px;
       }
     }
   }
