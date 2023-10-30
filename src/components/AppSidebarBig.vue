@@ -207,11 +207,6 @@ onBeforeUnmount(() => {
       cursor: pointer;
       font-weight: var(--tg-font-weight-semibold);
 
-      .app-svg-icon {
-        transition: color 0.2s;
-        transform: scale(1.1);
-      }
-
       &:hover, &.active {
         background-color: var(--tg-secondary-main);
         --tg-icon-color: var(--tg-text-white);
