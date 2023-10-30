@@ -223,7 +223,7 @@ watchEffect(() => {
       //   cursor: default;
       // }
       .app-svg-icon {
-        font-size: var(--tg-font-size-lg);
+        font-size: var(--tg-font-size-default);
         --tg-icon-color: var(--tg-text-white);
       }
     }

@@ -36,8 +36,7 @@ function checkRoute(v: string) {
           <span @click="handleClick(b, i)">{{ b.label }}</span>
           <BaseIcon
             v-show="i !== list.length - 1" name="uni-arrowright-line"
-            style="font-size: var(--tg-font-size-base);
-          margin: 0 var(--tg-spacing-4);vertical-align: -3px;"
+            style="font-size: 11.2px;margin: 0 var(--tg-spacing-4);"
           />
         </div>
       </template>
