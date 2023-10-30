@@ -17,7 +17,7 @@ const columns: Column[] = [
   {
     title: '登陆时间',
     dataIndex: 'lastUsed',
-    width: 200,
+    width: 150,
     align: 'center',
   },
   {
