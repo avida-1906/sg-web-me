@@ -178,6 +178,9 @@ defineExpose({ close })
 
   .header-title {
     padding-left: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 
