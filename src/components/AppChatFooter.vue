@@ -261,10 +261,10 @@ function enterPress(event: KeyboardEvent) {
     </div>
     <div class="actions">
       <span>{{ maxMsgLen - message.length }}</span>
-      <BaseButton type="text" @click="openChatRulesDialog">
-        <BaseIcon name="uni-feather" />
+      <BaseButton class="rule" type="text" @click="openChatRulesDialog">
+        <BaseIcon name="chat-rule" />
       </BaseButton>
-      <BaseButton class="send" size="md" shadow @click="sendMsg">
+      <BaseButton bg-style="secondary" class="send" size="md" shadow @click="sendMsg">
         发送
       </BaseButton>
     </div>
@@ -407,9 +407,13 @@ function enterPress(event: KeyboardEvent) {
     justify-content: flex-end;
     align-items: center;
     gap: var(--tg-spacing-12);
-    button.send {
-      background: linear-gradient(180deg, var(--tg-sub-green-light) 0%, var(--tg-sub-green) 100%);
-      color: var(--tg-sub-green-deep);
+    // button.send {
+    //   background: linear-gradient(180deg, var(--tg-sub-green-light) 0%, var(--tg-sub-green) 100%);
+    //   color: var(--tg-sub-green-deep);
+    // }
+    button.rule {
+      padding: 0 !important;
+      width: 22px;
     }
   }
 }
