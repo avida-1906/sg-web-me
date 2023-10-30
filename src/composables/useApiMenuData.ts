@@ -18,7 +18,7 @@ export interface MenuItem {
 export type Menu = Array<MenuItem>
 
 export function useApiMenuData() {
-  const { locale } = useI18n()
+  const { locale, t } = useI18n()
   const { isLogin } = storeToRefs(useAppStore())
   const { casinoGameList } = storeToRefs(useCasinoStore())
 
@@ -228,7 +228,7 @@ export function useApiMenuData() {
     { title: '博客', path: '/blog', icon: 'chess-blog', list: [], domId: '' },
     { title: '论坛', path: '', icon: 'tabbar-chat', list: [], domId: '' },
   ].filter(i => i !== undefined))
-  const staticMenu2 = ref<Menu>([
+  const staticMenu2 = computed(() => <Menu>[
     {
       title: '赞助活动',
       path: '',
@@ -249,7 +249,7 @@ export function useApiMenuData() {
     },
     { title: '在线支持', path: '', icon: 'spt-online-support', list: [], domId: '' },
     {
-      title: '语言：',
+      title: `${t('language_title')}：${t('language_current')}`,
       path: '',
       icon: 'spt-odds',
       type: 'radio',
@@ -257,8 +257,8 @@ export function useApiMenuData() {
       radioChange: (val: EnumLanguage) => changeLanguage(val),
       list: [
         { title: '中文', path: '', icon: '', value: EnumLanguage['zh-CN'] },
-        { title: '越南语', path: '', icon: '', value: EnumLanguage['vi-VN'] },
-        { title: '巴西', path: '', icon: '', value: EnumLanguage['pt-BR'] },
+        { title: 'Tiếng Việt', path: '', icon: '', value: EnumLanguage['vi-VN'] },
+        { title: 'Português', path: '', icon: '', value: EnumLanguage['pt-BR'] },
       ],
       domId: 'static-menu-language',
     },
