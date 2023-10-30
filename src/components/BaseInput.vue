@@ -163,7 +163,7 @@ defineExpose({ getFocus })
     color: var(--tg-text-white);
     background: var(--tg-secondary-dark);
     box-shadow: var(--tg-box-shadow);
-    // border: var(--input-border-width) solid var(--input-border);
+    // border: 2px solid var(--tg-secondary-main);
     // border-radius: var(--input-border-radius);
     letter-spacing: 0;
     font-weight: var(--tg-font-weight-semibold);
