@@ -321,11 +321,12 @@ onUnmounted(() => {
             top:0;
             bottom: 0;
             margin: auto;
-            transform: scale(.7);
             transition: all .2s;
             cursor: pointer;
+            font-size: var(--tg-font-size-base);
             &:hover{
-              transform: scale(.85);
+              transform: scale(1.2);
+              --tg-icon-color:var(--tg-text-white);
             }
           }
           .next{
