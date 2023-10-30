@@ -293,12 +293,29 @@ watch(() => currentType.value, (newValue) => {
                 </div>
               </div>
             </BaseLabel>
-            <BaseInput
+            <BaseLabel
               v-if="currentAisleItem?.type === 2"
-              v-model="amount"
-              :msg="amountError"
               label="充值金额"
-            />
+              must-small
+            >
+              <BaseInput
+                v-model="amount"
+                :msg="amountError"
+              />
+            </BaseLabel>
+            <BaseLabel
+              v-else
+              label="充值金额"
+              must-small
+            >
+              <BaseSelect
+                v-if="oftenAmount && oftenAmount.length"
+                v-model="amount"
+                :options="oftenAmount"
+                :msg="selectValueError"
+                small
+              />
+            </BaseLabel>
             <BaseMoneyKeyboard
               v-if="oftenAmount && oftenAmount.length"
               v-model="amount"
