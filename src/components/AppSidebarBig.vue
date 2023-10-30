@@ -185,8 +185,7 @@ onBeforeUnmount(() => {
 }
 
 .inner-content {
-  padding: 16px;
-  padding-right: 9.6px;
+  padding: var(--tg-spacing-16);
   display: flex;
   flex-direction: column;
   gap: var(--tg-spacing-8);
@@ -207,11 +206,6 @@ onBeforeUnmount(() => {
       padding: 0 16px;
       cursor: pointer;
       font-weight: var(--tg-font-weight-semibold);
-
-      .app-svg-icon {
-        transition: color 0.2s;
-        transform: scale(1.1);
-      }
 
       &:hover, &.active {
         background-color: var(--tg-secondary-main);

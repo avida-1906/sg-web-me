@@ -95,6 +95,7 @@ function viewMoreGames() {
               :cid="item.cid"
               :ty="item.ty"
               :pid="item.platform_id"
+              :path="item.path"
               use-cloud-img
             />
           </template>
