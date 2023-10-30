@@ -19,13 +19,20 @@ withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits(['update:modelValue'])
 
+const { width } = storeToRefs(useWindowStore())
+
+const isMobile = computed(() => width.value < 385)
+
 function handleKey(item: ISelectOption) {
   emit('update:modelValue', item.value)
 }
 </script>
 
 <template>
-  <div class="base-money-keyboard">
+  <div
+    class="base-money-keyboard"
+    :style="{ 'grid-template-columns': isMobile ? 'repeat(3, 1fr)' : 'repeat(4, 1fr)' }"
+  >
     <div
       v-for="item of options"
       :key="item.label"

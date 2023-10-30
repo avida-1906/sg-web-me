@@ -15,27 +15,27 @@ interface Column {
 // ]
 const columns: Column[] = [
   {
+    title: '登陆时间',
+    dataIndex: 'lastUsed',
+    width: 200,
+    align: 'center',
+  },
+  {
     title: '浏览器',
     dataIndex: 'browser',
-    width: 100,
-    align: 'left',
+    width: 150,
+    align: 'center',
   },
   {
-    title: '靠近',
+    title: '地区',
     dataIndex: 'near',
-    width: 100,
+    width: 150,
     align: 'center',
   },
   {
-    title: 'IP地址',
+    title: 'IP',
     dataIndex: 'addr',
-    width: 100,
-    align: 'center',
-  },
-  {
-    title: '最后使用',
-    dataIndex: 'lastUsed',
-    width: 100,
+    width: 150,
     align: 'center',
   },
 ]
