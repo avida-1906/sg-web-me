@@ -7,7 +7,27 @@ interface Props {
 
 withDefaults(defineProps<Props>(), {})
 
+const docBtn = ref()
+const timer = ref()
+
+const { bool: isCopySuccess, setFalse: setCFalse, setTrue: setCTrue } = useBoolean(false)
+
 const { copy } = useClipboard()
+
+function copyClick(msg: string) {
+  if (isCopySuccess.value) {
+    clearTimeout(timer.value)
+    timer.value = null
+  }
+  copy(msg)
+  setCTrue()
+  nextTick(() => {
+    docBtn.value?.click()
+  })
+  timer.value = setTimeout(() => {
+    setCFalse()
+  }, 3000)
+}
 </script>
 
 <template>
@@ -29,17 +49,23 @@ const { copy } = useClipboard()
             </div>
             <div class="input-button-wrap">
               <VTooltip
+                v-if="isCopySuccess"
                 :triggers="['click']"
                 placement="top"
-                :hide-triggers="(triggers: any) => [...triggers, 'hover']"
+                :hide-triggers="(triggers: any) => ['click']"
               >
-                <BaseButton @click="copy(msg)">
-                  <BaseIcon name="uni-doc" />
-                </BaseButton>
+                <a ref="docBtn" class="doc-btn">
+                  <BaseButton>
+                    <BaseIcon name="uni-doc" />
+                  </BaseButton>
+                </a>
                 <template #popper>
                   <div class="tiny-menu-item-title">成功复制！</div>
                 </template>
               </VTooltip>
+              <BaseButton v-else @click="copyClick(msg)">
+                <BaseIcon name="uni-doc" />
+              </BaseButton>
             </div>
           </div>
           <span class="label-content">
@@ -144,7 +170,10 @@ const { copy } = useClipboard()
           display: inline-flex;
           --tg-base-button-style-bg: var(--tg-secondary-main);
           --tg-base-button-style-bg-hover: var(--tg-text-grey);
-
+          a.doc-btn {
+            display: block;
+            height: 100%;
+          }
           button:last-child {
             border-bottom-left-radius: 0;
             border-top-left-radius: 0;
