@@ -105,7 +105,7 @@ watch(route, (val) => {
                       </template>
                       <template v-else>
                         <div
-                          class="stack x-flex-start y-center menu-btn gap-small"
+                          class="stack x-flex-start y-center gap-small menu-btn"
                           :class="[appContentWidth > 800
                             ? 'padding-none direction-horizontal'
                             : 'padding-none direction-horizontal']"
@@ -116,7 +116,7 @@ watch(route, (val) => {
                           <VDropdown
                             :distance="10"
                           >
-                            <BaseButton size="md" @click="togglePop">
+                            <BaseButton size="sm" @click="togglePop">
                               <div class="btn-txt">
                                 <span>{{ activeMenu.title }}</span>
                                 <div class="icon" :class="{ up: isPopShow }">
@@ -200,9 +200,6 @@ watch(route, (val) => {
   position: relative;
   gap: var(--tg-spacing-8);
   font-size: var(--tg-font-size-default);
-  .app-svg-icon {
-    font-size: var(--tg-font-size-xs);
-  }
   .icon {
     transition: all 200ms ease;
     display: flex;
@@ -244,11 +241,7 @@ watch(route, (val) => {
       .menu-btn {
         .app-svg-icon.arrow-left {
           font-size: var(--tg-font-size-default);
-          transform: scale(0.7);
           --tg-icon-color: var(--tg-text-white);
-        }
-        .app-svg-icon {
-          transform: scale(0.85);
         }
         --tg-base-button-style-bg: var(--tg-secondary-dark);
         --tg-base-button-style-bg-hover: var(--tg-secondary-deepdark);
