@@ -76,9 +76,6 @@ watch(route, (val) => {
                     >
                       <div
                         class="stack y-center direction-horizontal title x-flex-start"
-                        :class="[appContentWidth > 800
-                          ? 'gap-medium padding-none'
-                          : 'gap-medium padding-none']"
                       >
                         <BaseIcon :name="icon" />
                         <span>
@@ -89,7 +86,9 @@ watch(route, (val) => {
                         </span>
                       </div>
                       <div class="close" @click="goBack">
-                        <BaseIcon name="uni-close" />
+                        <BaseButton type="text" padding0>
+                          <BaseIcon name="uni-close" />
+                        </BaseButton>
                       </div>
                     </div>
                   </div>
@@ -106,7 +105,7 @@ watch(route, (val) => {
                       </template>
                       <template v-else>
                         <div
-                          class="stack x-flex-start y-center gap-small menu-btn"
+                          class="stack x-flex-start y-center menu-btn gap-small"
                           :class="[appContentWidth > 800
                             ? 'padding-none direction-horizontal'
                             : 'padding-none direction-horizontal']"
@@ -220,14 +219,16 @@ watch(route, (val) => {
     .top {
       color: var(--tg-text-white);
       .title {
-        font-size: var(--tg-font-size-base);
-        font-weight: var(--tg-font-weight-normal);
-        .app-svg-icon {
-          font-size: var(--tg-font-size-md);
-        }
+        font-size: var(--tg-font-size-md);
+        font-weight: var(--tg-font-weight-semibold);
+        line-height: 1.5;
+        padding: 0;
+        gap: var(--tg-spacing-8);
       }
       .close {
         cursor: pointer;
+        display: flex;
+        align-items: center;
         .app-svg-icon {
           font-size: var(--tg-font-size-default);
         }

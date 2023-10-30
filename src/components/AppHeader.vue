@@ -171,7 +171,7 @@ function handleClickMenuItem(item: { name: string; path?: string }) {
           @click="setTrue"
         >
           <BaseIcon class="icon-search" name="uni-search" />
-          <span v-show="!isLessThanLg">{{ t('search') }}</span>
+          <span v-show="width > 909">{{ t('search') }}</span>
         </BaseButton>
         <VDropdown :distance="6">
           <BaseButton type="text">
@@ -267,10 +267,6 @@ function handleClickMenuItem(item: { name: string; path?: string }) {
   gap: 1rem;
   align-items: center;
 
-  .icon-size {
-    font-size: var(--tg-font-size-base);
-  }
-
   .header-box {
     display: flex;
     align-items: center;
@@ -294,10 +290,6 @@ function handleClickMenuItem(item: { name: string; path?: string }) {
       color: var(--tg-text-white);
       font-size: var(--tg-font-size-default);
       font-weight: var(--tg-font-weight-semibold);
-
-      .icon-search {
-        font-size: var(--tg-font-size-base);
-      }
     }
   }
   .header-login {
