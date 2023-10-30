@@ -74,9 +74,22 @@ const betBtnText = computed(() =>
             </div>
           </template>
         </BaseSelect>
-        <BaseButton bg-style="dark" round @click="closeRightSidebar">
+        <!-- <BaseButton bg-style="dark" round @click="closeRightSidebar">
           <BaseIcon name="uni-close" />
-        </BaseButton>
+        </BaseButton> -->
+
+        <VTooltip placement="bottom">
+          <div class="item hoverable">
+            <BaseButton type="text" @click="closeRightSidebar">
+              <BaseIcon name="uni-close" />
+            </BaseButton>
+          </div>
+          <template #popper>
+            <div class="tiny-menu-item-title">
+              折叠侧边栏
+            </div>
+          </template>
+        </VTooltip>
       </div>
       <div class="tabs">
         <BaseTab v-show="isBetSlip" v-model="betSlipType" :list="betSlipTypeTabs" />
@@ -223,6 +236,17 @@ const betBtnText = computed(() =>
       display: flex;
       align-items: center;
       gap:var(--tg-spacing-8);
+    }
+
+    .hoverable {
+      padding: var(--tg-spacing-1) var(--tg-spacing-4);
+      border-radius: 50%;
+      transition: all ease .25s;
+      background-color: transparent;
+      &:hover {
+        background-color: var(--tg-secondary-deepdark);
+        --tg-icon-color: var(--tg-text-white);
+      }
     }
   }
 
