@@ -32,8 +32,10 @@ function push(path: string) {
     <Transition name="menu-fade">
       <template v-if="!isSwitching">
         <div class="header">
-          <div class="button" @click="triggerLeftSidebar">
-            <BaseIcon name="uni-menu" />
+          <div class="button center">
+            <BaseButton font-size="16" type="text" @click="triggerLeftSidebar">
+              <BaseIcon name="uni-menu" />
+            </BaseButton>
           </div>
           <div class="game-type">
             <div
@@ -147,10 +149,6 @@ function push(path: string) {
     font-size: var(--tg-font-size-base);
     min-width: 60px;
     height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
   }
 
   .game-type {
