@@ -50,6 +50,27 @@ const {
   next,
 } = useList(ApiMemberFrontLoginLogList, {}, { page_size: 10 })
 
+function formatRelativeTime(timestampInSeconds: number) {
+  const now = Math.floor(Date.now() / 1000)
+  const diff = now - timestampInSeconds
+
+  if (diff < 60) {
+    return `${diff} 秒前`
+  }
+  else if (diff < 3600) {
+    const minutes = Math.floor(diff / 60)
+    return `${minutes} 分钟前`
+  }
+  else if (diff < 86400) {
+    const hours = Math.floor(diff / 3600)
+    return `${hours} 小时前`
+  }
+  else {
+    const days = Math.floor(diff / 86400)
+    return `${days} 天前`
+  }
+}
+
 const tableData = computed(() => {
   if (loginLogList) {
     return loginLogList.value.map((item) => {
@@ -57,7 +78,7 @@ const tableData = computed(() => {
         browser: item.browser,
         near: item.ipaddress,
         addr: item.loginip,
-        lastUsed: application.timestampToTime(Number(item.created_at) * 1000),
+        lastUsed: formatRelativeTime(item.created_at),
       }
       return temp
     })
