@@ -1,6 +1,6 @@
 <template>
   <div class="center download">
-    <a href="http://www.tfdjqp.com/app.apk" download>
+    <a href="/app.apk" download>
       <BaseButton>
         下载Android Apk
       </BaseButton>
