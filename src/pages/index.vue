@@ -333,6 +333,7 @@ await application.allSettled([
         display: flex;
         justify-content: center;
         flex-direction: column;
+        font-size: var(--tg-font-size-default);
         &.max-width{
           max-width: 350px;
         }

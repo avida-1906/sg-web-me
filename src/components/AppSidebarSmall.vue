@@ -140,7 +140,7 @@ function itemClick(item: MenuItem) {
       }
       .arrow-right {
         position: absolute;
-        right: 0;
+        right: 2px;
         font-size: 10px;
       }
     }
