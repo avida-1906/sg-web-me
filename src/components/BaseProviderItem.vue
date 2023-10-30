@@ -3,15 +3,29 @@ interface Props {
   url: string
   active?: boolean
   showBg?: boolean
+  maintained?: string
 }
 
 defineProps<Props>()
 </script>
 
 <template>
-  <div class="base-provider-item" :class="{ active, bg: showBg }">
+  <div
+    class="base-provider-item"
+    :class="{ active, bg: showBg, maintain: maintained === '2' }"
+  >
     <div class="img-wrap">
       <BaseImage :url="url" is-cloud />
+    </div>
+    <div v-if="maintained === '2'" class="center maintained-wrap">
+      <BaseEmpty>
+        <template #icon>
+          <BaseIcon font-size="20" name="uni-maintain" />
+        </template>
+        <template #description>
+          <span style="font-size: var(--tg-font-size-xs);">场馆维护中</span>
+        </template>
+      </BaseEmpty>
     </div>
   </div>
 </template>
@@ -36,9 +50,18 @@ defineProps<Props>()
     transform: translateY(-4%);
     box-shadow: 0 4px 6px 2px rgba(27, 23, 23, .2), 0 2px 4px 2px rgba(0, 0, 0, .12);
   }
+  &.maintain{
+    cursor: not-allowed;
+  }
   .img-wrap {
     position: absolute;
     inset: 0 0 0 0;
+  }
+  .maintained-wrap{
+    position: absolute;
+    inset: 0 0 0 0;
+    --tg-empty-text-padding:0;
+    background: #{rgba($color: var(--tg-color-blue-rgb), $alpha: 0.8)};
   }
   &.bg{
     background-color: var(--tg-secondary-main);

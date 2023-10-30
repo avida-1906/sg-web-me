@@ -10,6 +10,8 @@ defineProps<Props>()
 const emit = defineEmits(['update:modelValue', 'change'])
 
 function onClick(item: ProviderItem) {
+  if (item.maintained === '2')
+    return
   emit('update:modelValue', item.id)
   emit('change', item.id)
 }
@@ -25,7 +27,10 @@ function onClick(item: ProviderItem) {
     >
       <template #default="{ item }">
         <BaseProviderItem
-          :url="item.logo" :active="item.id === modelValue" show-bg
+          :url="item.logo"
+          :active="item.id === modelValue"
+          show-bg
+          :maintained="item.maintained"
           @click="onClick(item)"
         />
       </template>

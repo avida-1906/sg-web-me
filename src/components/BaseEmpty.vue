@@ -34,6 +34,12 @@ const emptyDescription = computed(
   </div>
 </template>
 
+<style>
+:root{
+  --tg-empty-text-padding: var(--tg-spacing-5) 0 var(--tg-spacing-10);
+}
+</style>
+
 <style lang="scss" scoped>
 .base-empty {
   text-align: center;
@@ -45,7 +51,7 @@ const emptyDescription = computed(
   }
 
   &-description {
-    padding: var(--tg-spacing-5) 0 var(--tg-spacing-10);
+    padding: var(--tg-empty-text-padding);
     font-size: var(--tg-font-size-default);
     color: var(--tg-text-lightgrey);
   }
