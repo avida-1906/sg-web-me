@@ -10,6 +10,7 @@ interface Props {
   cid?: string
   pid?: string
   useCloudImg?: boolean
+  path?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -69,6 +70,10 @@ function goAllPage() {
   else if (props.gameType === 'rec')
     router.push(`/casino/group/rec?name=${props.title}`)
 }
+function onTitleClick() {
+  if (props.path)
+    router.push(props.path)
+}
 
 watchEffect(() => {
   if (outerWidth.value >= 1150) {
@@ -108,12 +113,16 @@ watchEffect(() => {
   <section ref="sliderOuter" class="tg-app-slider">
     <div class="header">
       <div class="title">
-        <a>
+        <BaseButton
+          type="text" padding0
+          style="--tg-base-button-text-default-color:var(--tg-text-white);"
+          @click="onTitleClick"
+        >
           <div v-if="icon" class="icon">
             <BaseIcon :name="icon" :use-cloud-img="useCloudImg" />
           </div>
           <h3>{{ title }}</h3>
-        </a>
+        </BaseButton>
       </div>
       <div v-if="showArrow" class="arrows">
         <BaseButton type="round-line-left" :disabled="x <= 0" @click="prevPage">
@@ -165,7 +174,6 @@ watchEffect(() => {
 .tg-app-slider {
   display: flex;
   flex-direction: column;
-  // margin-bottom: -4px;
   width: 100%;
   margin-top: var(--tg-spacing-button-padding-vertical-xl);
 
@@ -175,27 +183,27 @@ watchEffect(() => {
     justify-content: space-between;
 
     .title {
-      a {
-        font-size: var(--tg-font-size-xl);
-        color: var(--tg-text-white);
-        display: inline-flex;
-        position: relative;
+      font-size: var(--tg-font-size-xl);
+      color: var(--tg-text-white);
+      display: inline-flex;
+      position: relative;
+      align-items: center;
+      font-weight: 500;
+
+      h3 {
+        font-size: var(--tg-font-size-md);
+        line-height: 1.5;
+      }
+
+      .icon {
+        font-size: var(--tg-font-size-base);
+        margin-right: var(--tg-spacing-8);
+        display: flex;
         align-items: center;
-        font-weight: 500;
+      }
 
-        h3 {
-          font-size: var(--tg-font-size-md);
-          line-height: 1.5;
-        }
-
-        .icon {
-          font-size: var(--tg-font-size-base);
-          margin-right: var(--tg-spacing-8);
-        }
-
-        &:hover {
-          --tg-icon-color: var(--tg-text-white);
-        }
+      &:hover {
+        --tg-icon-color: var(--tg-text-white);
       }
     }
 
