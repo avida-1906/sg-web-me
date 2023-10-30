@@ -185,8 +185,7 @@ onBeforeUnmount(() => {
 }
 
 .inner-content {
-  padding: 16px;
-  padding-right: 9.6px;
+  padding: var(--tg-spacing-16);
   display: flex;
   flex-direction: column;
   gap: var(--tg-spacing-8);
