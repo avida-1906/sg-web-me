@@ -76,9 +76,6 @@ watch(route, (val) => {
                     >
                       <div
                         class="stack y-center direction-horizontal title x-flex-start"
-                        :class="[appContentWidth > 800
-                          ? 'gap-medium padding-none'
-                          : 'gap-medium padding-none']"
                       >
                         <BaseIcon :name="icon" />
                         <span>
@@ -89,7 +86,9 @@ watch(route, (val) => {
                         </span>
                       </div>
                       <div class="close" @click="goBack">
-                        <BaseIcon name="uni-close" />
+                        <BaseButton type="text" padding0>
+                          <BaseIcon name="uni-close" />
+                        </BaseButton>
                       </div>
                     </div>
                   </div>
@@ -117,7 +116,7 @@ watch(route, (val) => {
                           <VDropdown
                             :distance="10"
                           >
-                            <BaseButton size="md" @click="togglePop">
+                            <BaseButton size="sm" @click="togglePop">
                               <div class="btn-txt">
                                 <span>{{ activeMenu.title }}</span>
                                 <div class="icon" :class="{ up: isPopShow }">
@@ -201,9 +200,6 @@ watch(route, (val) => {
   position: relative;
   gap: var(--tg-spacing-8);
   font-size: var(--tg-font-size-default);
-  .app-svg-icon {
-    font-size: var(--tg-font-size-xs);
-  }
   .icon {
     transition: all 200ms ease;
     display: flex;
@@ -220,14 +216,16 @@ watch(route, (val) => {
     .top {
       color: var(--tg-text-white);
       .title {
-        font-size: var(--tg-font-size-base);
-        font-weight: var(--tg-font-weight-normal);
-        .app-svg-icon {
-          font-size: var(--tg-font-size-md);
-        }
+        font-size: var(--tg-font-size-md);
+        font-weight: var(--tg-font-weight-semibold);
+        line-height: 1.5;
+        padding: 0;
+        gap: var(--tg-spacing-8);
       }
       .close {
         cursor: pointer;
+        display: flex;
+        align-items: center;
         .app-svg-icon {
           font-size: var(--tg-font-size-default);
         }
@@ -243,11 +241,7 @@ watch(route, (val) => {
       .menu-btn {
         .app-svg-icon.arrow-left {
           font-size: var(--tg-font-size-default);
-          transform: scale(0.7);
           --tg-icon-color: var(--tg-text-white);
-        }
-        .app-svg-icon {
-          transform: scale(0.85);
         }
         --tg-base-button-style-bg: var(--tg-secondary-dark);
         --tg-base-button-style-bg-hover: var(--tg-secondary-deepdark);

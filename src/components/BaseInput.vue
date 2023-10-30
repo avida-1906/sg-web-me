@@ -177,6 +177,10 @@ defineExpose({ getFocus })
     font-size: var(--tg-font-size-default);
     padding: var(--tg-spacing-8);
     transition: none;
+    &::placeholder {
+      color: var(--tg-text-white);
+      opacity: 0.3;
+    }
   }
 
   pre {
@@ -191,6 +195,10 @@ defineExpose({ getFocus })
     top: 0;
     resize: none;
     overflow: auto;
+    &::placeholder {
+      color: var(--tg-text-white);
+      opacity: 0.3;
+    }
   }
 }
 

@@ -5,7 +5,7 @@ const { openWalletDialog } = useWalletDialog()
 const { openWalletSetDialog } = useWalletSetDialog()
 // 下拉搜索是否显示
 const { bool: isMenuShown } = useBoolean(false)
-const { appContentWidth } = storeToRefs(useWindowStore())
+const { width } = storeToRefs(useWindowStore())
 const {
   currentGlobalCurrency,
   currentGlobalCurrencyBalance,
@@ -43,7 +43,7 @@ function selectCurrency(item: EnumCurrencyKey, hide: () => void) {
           bg-style="primary"
           @click.stop="openWalletDialog"
         >
-          <BaseIcon v-if="appContentWidth < 790" name="navbar-wallet" class="icon-size" />
+          <BaseIcon v-if="width < 910" name="navbar-wallet" class="icon-size" />
           <span v-else>钱包</span>
         </BaseButton>
       </div>
@@ -102,8 +102,8 @@ function selectCurrency(item: EnumCurrencyKey, hide: () => void) {
     box-shadow: 0px 1px 2px 0px #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.1)} inset, 0px -1px 2px 0px #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.1)} inset;
 
     .arrow {
-      font-size: 10px;
-      margin-left: 9px;
+      font-size: var(--tg-font-size-default);
+      margin-left: 8px;
     }
     .arrow-up{
       transform: rotate(180deg);

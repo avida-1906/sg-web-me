@@ -17,6 +17,7 @@ function goPage(item: any) {
       :data="platformList"
       :show-view-all="false"
       game-type="provider"
+      path="/casino/collection/provider"
     >
       <template #default="{ item }">
         <BaseProviderItem
