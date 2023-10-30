@@ -37,7 +37,7 @@ const currentType = ref<'1' | '2'>(props.currentType)
 const currencyId = ref(props.activeCurrency.cur ?? '')
 const { bool: isDefault, setFalse: setIsDefaultFalse } = useBoolean(false)
 const bankTypeData = ref([{ label: '银行转账', icon: 'fiat-bank', value: '1' }])
-const pixTypeData = ref([{ label: 'PIX', icon: 'fiat-bank', value: '2' }])
+const pixTypeData = ref([{ label: 'PIX', icon: 'fiat-pix', value: '2' }])
 const currentTypeBanks = computed(() =>
   props.currentType === '1' ? bankTypeData.value : pixTypeData.value)
 
