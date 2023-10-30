@@ -224,7 +224,7 @@ export function useApiMenuData() {
       list: [],
       domId: '',
     },
-    { title: 'VIP俱乐部', path: '/vip-club', icon: 'chess-vipclub', list: [], domId: '' },
+    { title: 'VIP 俱乐部', path: '/vip-club', icon: 'chess-vipclub', list: [], domId: '' },
     { title: '博客', path: '/blog', icon: 'chess-blog', list: [], domId: '' },
     { title: '论坛', path: '', icon: 'tabbar-chat', list: [], domId: '' },
   ].filter(i => i !== undefined))

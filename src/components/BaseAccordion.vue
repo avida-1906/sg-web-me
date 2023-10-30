@@ -127,7 +127,7 @@ defineExpose({ close })
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 8px;
+      font-size: 10px;
       --tg-icon-color: var(--tg-text-white);
     }
 
@@ -177,7 +177,7 @@ defineExpose({ close })
   }
 
   .header-title {
-    padding-left: 6px;
+    padding-left: 8px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

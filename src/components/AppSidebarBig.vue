@@ -64,7 +64,7 @@ onBeforeUnmount(() => {
     <div
       ref="innerRef"
       class="scroll-y scroll-contain inner-content"
-      :class="{ 'is-full-screen': isMobile }"
+      :class="{ 'is-full-screen': isMobile, 'game-padding': isCasino || isSports }"
     >
       <!-- Casino -->
       <template v-if="isMobile ? isGameTypeCasino : isCasino">
@@ -222,6 +222,9 @@ onBeforeUnmount(() => {
       height: 2px;
       width: 100%;
     }
+  }
+  &.game-padding{
+    padding-right: 9.6px;
   }
 }
 
