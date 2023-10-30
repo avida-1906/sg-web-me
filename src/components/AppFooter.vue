@@ -27,21 +27,21 @@
         <div>公平性</div>
         <div>联盟计划</div>
         <div>负责任博彩</div>
-        <div>Gameble Aware</div>
+        <div>Gameble Aware<BaseIcon name="uni-jump-page" /></div>
         <div>在线支持</div>
-        <div>帮助中心</div>
+        <div>帮助中心<BaseIcon name="uni-jump-page" /></div>
       </div>
       <div class="layout-spacing reset">
         <div class="nav-head">
           社区
         </div>
         <div>博客</div>
-        <div>论坛</div>
-        <div>Facebook</div>
-        <div>Twitter</div>
-        <div>Instagram</div>
-        <div>Youtube</div>
-        <div>网购</div>
+        <div>论坛<BaseIcon name="uni-jump-page" /></div>
+        <div>Facebook<BaseIcon name="uni-jump-page" /></div>
+        <div>Twitter<BaseIcon name="uni-jump-page" /></div>
+        <div>Instagram<BaseIcon name="uni-jump-page" /></div>
+        <div>Youtube<BaseIcon name="uni-jump-page" /></div>
+        <div>网购<BaseIcon name="uni-jump-page" /></div>
       </div>
       <div class="layout-spacing reset">
         <div class="nav-head">
@@ -52,7 +52,7 @@
         <div>反洗钱规则</div>
         <div>服务条款</div>
         <div>自我排除</div>
-        <div>Primedice</div>
+        <div>Primedice<BaseIcon name="uni-jump-page" /></div>
       </div>
       <div class="layout-spacing reset">
         <div class="nav-head">
@@ -90,7 +90,9 @@
     <BaseDivider />
     <div class="footer-copyright">
       <BaseLogo />
-      <div>© 2023 Stake.com | 版权所有</div>
+      <div class="copy-right">
+        © 2023 Stake.com | 版权所有
+      </div>
       <div>1 USDT = US$1.00</div>
     </div>
     <div class="footer-description">
@@ -104,7 +106,9 @@
       可进行所有机会与投注游戏的游戏操作。
     </div>
     <div class="footer-description">
-      支持 support@stake.com | 合作伙伴 partners@stake.com | 新闻媒体 press@stake.com
+      支持
+      <span>support@stake.com</span> | 合作伙伴 <span>partners@stake.com</span> | 新闻媒体
+      <span>press@stake.com</span>
     </div>
   </div>
 </template>
@@ -120,7 +124,7 @@
     width: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(14ch,1fr));
-    grid-gap: 1rem;
+    grid-gap: var(--tg-spacing-16);
     color: var(--tg-text-lightgrey);
     font-size: var(--tg-font-size-default);
     font-weight: var(--tg-font-weight-normal);
@@ -136,7 +140,18 @@
     }
     .nav-head~div{
       cursor: pointer;
+      font-weight: var(--tg-font-weight-semibold);
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      font-size: var(--tg-font-size-default);
+      .app-svg-icon {
+        font-size: var(--tg-font-size-xs);
+        margin-left: var(--tg-spacing-8);
+        font-weight: var(--tg-font-weight-normal);
+      }
       &:hover{
+        --tg-icon-color: var(--tg-text-white);
         color: var(--tg-text-white);
       }
     }
@@ -167,6 +182,7 @@
     color: var(--tg-text-lightgrey);
     gap:0.5rem;
     font-size: var(--tg-font-size-default);
+    line-height: 1.5;
   }
   .footer-description{
     width: 100%;
@@ -174,6 +190,9 @@
     text-align: center;
     color: var(--tg-text-lightgrey);
     font-size: var(--tg-font-size-xs);
+    span {
+      color: var(--tg-text-white);
+    }
   }
 }
 </style>

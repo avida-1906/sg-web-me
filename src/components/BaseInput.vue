@@ -163,7 +163,7 @@ defineExpose({ getFocus })
     color: var(--tg-text-white);
     background: var(--tg-secondary-dark);
     box-shadow: var(--tg-box-shadow);
-    // border: var(--input-border-width) solid var(--input-border);
+    // border: 2px solid var(--tg-secondary-main);
     // border-radius: var(--input-border-radius);
     letter-spacing: 0;
     font-weight: var(--tg-font-weight-semibold);
@@ -177,6 +177,10 @@ defineExpose({ getFocus })
     font-size: var(--tg-font-size-default);
     padding: var(--tg-spacing-8);
     transition: none;
+    &::placeholder {
+      color: var(--tg-text-white);
+      opacity: 0.3;
+    }
   }
 
   pre {
@@ -191,6 +195,10 @@ defineExpose({ getFocus })
     top: 0;
     resize: none;
     overflow: auto;
+    &::placeholder {
+      color: var(--tg-text-white);
+      opacity: 0.3;
+    }
   }
 }
 

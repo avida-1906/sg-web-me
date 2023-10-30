@@ -62,7 +62,7 @@ const resultData = computed(() => {
   if (isClear.value)
     return null
   if (isCasino.value)
-    return casinoGames.value
+    return casinoGames.value.length > 0 ? casinoGames.value : null
 
   return null
 })

@@ -11,7 +11,7 @@ const { isLessThanXs } = storeToRefs(useWindowStore())
 
 const amount = ref('')
 const bankTypeData = ref([{ label: '银行转账', icon: 'fiat-bank', value: '1' }])
-const pixTypeData = ref([{ label: 'PIX', icon: 'fiat-bank', value: '2' }])
+const pixTypeData = ref([{ label: 'PIX', icon: 'fiat-pix', value: '2' }])
 
 /** '1' 银行卡， '2' pix 除了巴西其他国家都是银行卡 */
 const currentType = computed<'1' | '2'>(() =>

@@ -322,7 +322,7 @@ onErrorCaptured((err, instance, info) => {
 
   .footer {
     width: 100%;
-    background-color: var(--tg-secondary-deepdark);
+    background-color: var(--tg-text-grey-deep); // var(--tg-secondary-deepdark);
     // #091d2a
   }
 }

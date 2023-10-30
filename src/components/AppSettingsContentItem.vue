@@ -89,6 +89,7 @@ const onSubmit = function () {
         font-size: var(--tg-font-size-default);
         color: var(--tg-text-lightgrey);
         font-weight: var(--tg-font-weight-normal);
+        line-height: 1.5;
       }
       .top-title{
         font-size: var(--tg-font-size-lg);

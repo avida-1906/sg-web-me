@@ -126,23 +126,23 @@ await application.allSettled([
       </div>
     </div>
     <!-- 老虎机  -->
-    <div class="pt-6">
+    <!-- <div class="pt-6">
       <AppSlider
         icon="chess-slot-machine"
         :game-type="EnumCasinoGameType.SLOT"
         :title="t('game_type_slot_short_name')"
         :data="slotList"
       />
-    </div>
+    </div> -->
     <!-- 真人娱乐 -->
-    <div class="pt-6">
+    <!-- <div class="pt-6">
       <AppSlider
         :game-type="EnumCasinoGameType.LIVE"
         icon="chess-live-casino"
         :title="t('game_type_live')"
         :data="liveList"
       />
-    </div>
+    </div> -->
     <!-- 加密货币 -->
     <div
       class="index-buy-cryptocurrency"
@@ -333,6 +333,7 @@ await application.allSettled([
         display: flex;
         justify-content: center;
         flex-direction: column;
+        font-size: var(--tg-font-size-default);
         &.max-width{
           max-width: 350px;
         }

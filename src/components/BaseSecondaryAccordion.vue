@@ -39,7 +39,7 @@ function toggle() {
     class="base-secondary-accordion"
     :class="[isOpen ? 'is-open' : '', `level-${level}`]"
   >
-    <div class="no-active-scale header" @click="toggle">
+    <div class="header no-active-scale" @click="toggle">
       <slot name="header">
         <div class="container">
           <div class="container">
@@ -153,7 +153,7 @@ function toggle() {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: var(--tg-font-size-xs);
+    font-size: var(--tg-font-size-base);
     width: var(--tg-spacing-18);
     height: var(--tg-spacing-18);
     svg {

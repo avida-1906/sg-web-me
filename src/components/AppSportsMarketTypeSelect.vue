@@ -52,6 +52,7 @@ function onBaseTypeChange(v: string) {
       v-model="baseType"
       :options="baseOptions"
       popper
+      :style="{ '--tg-base-select-popper-style-padding-y': 'var(--tg-spacing-13)' }"
       @select="onBaseTypeChange"
     />
     <BaseSelect

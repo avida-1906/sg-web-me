@@ -21,7 +21,7 @@ const active = computed(() => route.path === props.menuItem.path)
       :class="{ active, disabled: menuItem.token && !isLogin }"
     >
       <BaseIcon v-if="menuItem.icon" :name="menuItem.icon" />
-      <span>{{ menuItem.title }}</span>
+      <span class="menu-title">{{ menuItem.title }}</span>
       <div v-if="menuItem.fixtureCount" class="badge-wrap">
         <BaseBadge :count="menuItem.fixtureCount" mode="active" />
       </div>

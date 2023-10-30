@@ -174,7 +174,7 @@ function onClickPopper() {
   }
 
   .icon {
-    font-size: 10px;
+    font-size: 14px;
     display: flex;
     align-items: center;
     transition: all ease .25s;
@@ -294,7 +294,7 @@ function onClickPopper() {
   }
 
   .icon {
-    font-size: 10px;
+    font-size: var(--tg-font-size-base);
     position: absolute;
     top: 50%;
     transform: translateY(-50%);

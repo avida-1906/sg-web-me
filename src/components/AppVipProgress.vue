@@ -37,7 +37,9 @@ const nextInfo = computed(() => {
   <div class="app-vip-progress">
     <div class="percent-top">
       <slot><p>您的<span> VIP </span>进度</p></slot>
-      <p>{{ props.vipProgressData.percent }}%</p>
+      <p class="percent">
+        {{ props.vipProgressData.percent }}%
+      </p>
     </div>
     <div class="percent-mid">
       <BaseProgress
@@ -66,6 +68,9 @@ const nextInfo = computed(() => {
     display: flex;
     justify-content: space-between;
     margin-bottom: var(--tg-spacing-5);
+    .percent {
+      line-height: 1.5;
+    }
   }
   .percent-btm{
     display: flex;
@@ -79,6 +84,7 @@ const nextInfo = computed(() => {
         margin-left: var(--tg-spacing-3);
         color: var(--tg-text-lightgrey);
         font-weight: var(--tg-font-weight-semibold);
+        font-size: var(--tg-font-size-base);
       }
     }
   }

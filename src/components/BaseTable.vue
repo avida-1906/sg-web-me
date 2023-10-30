@@ -124,11 +124,12 @@ watch(() => props.columns, () => {
     border-spacing: 0;
     margin: 0;
     .m-th {
-      padding: 12px 20px;
+      padding: 16px; // 12px 20px;
       color: var(--tg-text-lightgrey);
       font-weight: var(--tg-font-weight-semibold);
       text-align: left;
       border: none;
+      line-height: 1.5;
       .th-box{
         display: inline-flex;
         align-items: center;
@@ -160,7 +161,8 @@ watch(() => props.columns, () => {
     .m-tr {
       border: none;
       .m-td {
-        padding: 12px 20px;
+        padding: 16px; // 12px 20px;
+        line-height: 1.5;
         border: none;
         overflow: hidden;
         white-space: nowrap;

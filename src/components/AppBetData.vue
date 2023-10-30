@@ -393,6 +393,7 @@ onMounted(() => {
     border-bottom: var(--tg-spacing-2) solid rgba(255,255,255,.05);
     span{
       padding-left: 8px;
+      font-weight: var(--tg-font-weight-semibold);
     }
     >div:hover{
       --tg-icon-color: var(--tg-text-white);
@@ -417,7 +418,8 @@ onMounted(() => {
     cursor: help;
   }
   .ranking-box{
-    font-size: var(--tg-font-size-xl);
+    font-size: var(--tg-font-size-lg);
+    display: flex;
   }
   .cursor-pointer{
     cursor: pointer;

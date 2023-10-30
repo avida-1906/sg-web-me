@@ -120,10 +120,6 @@ function itemClick(item: MenuItem) {
       font-size: var(--tg-font-size-default);
       width: 44px;
       height: 44px;
-      .app-svg-icon {
-        transition: color 0.2s;
-        transform: scale(1.1);
-      }
       &:hover, &.active {
         background: var(--tg-secondary-main);
         border-radius: var(--tg-radius-default);
@@ -144,8 +140,8 @@ function itemClick(item: MenuItem) {
       }
       .arrow-right {
         position: absolute;
-        right: 0;
-        font-size: 6.5px;
+        right: 0px;
+        font-size: 10px;
         width: 14px;
       }
     }

@@ -74,7 +74,7 @@ function gameStart(item: Props['gameInfo']) {
       <div v-if="isMaintained" class="center maintain-game-item">
         <BaseEmpty>
           <template #icon>
-            <BaseIcon font-size="43" name="uni-maintain" />
+            <BaseIcon font-size="40" name="uni-maintain" />
           </template>
           <template #description>
             <span style="font-size: var(--tg-font-size-xs);">场馆维护中</span>

@@ -720,7 +720,7 @@ export function ApiMemberFrontLoginLogList(params?: {
     browser: string
     loginip: string
     ipaddress: string
-    created_at: string
+    created_at: number
   }>>('/member/front/login/log/list', params)
 }
 

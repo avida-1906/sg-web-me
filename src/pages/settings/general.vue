@@ -68,7 +68,7 @@ const socialData = [
   { label: 'Zalo', img: '/img/settings/social-zalo.png', index: 'zalo' },
   { label: 'Viber', img: '/img/settings/social-viber.png', index: 'viber' },
   { label: 'WeChat', img: '/img/settings/social-wechat.png', index: 'wechat' },
-  { label: 'QQ', img: '/img/settings/social-qq.png', index: 'qq' },
+  // { label: 'QQ', img: '/img/settings/social-qq.png', index: 'qq' },
 ]
 const notifyData = ref<INotifyData>({
   type: 'success',

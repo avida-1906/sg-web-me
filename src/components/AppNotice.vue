@@ -11,14 +11,26 @@ const noticeList = [{}]
         <BaseIcon class="title-icon" name="navbar-notice" />
         <span>通知</span>
       </div>
-      <BaseButton
+      <!-- <BaseButton
         class="close-btn"
         type="text"
         size="md"
         @click="closeRightSidebar"
       >
         <BaseIcon class="close-icon" name="uni-close" />
-      </BaseButton>
+      </BaseButton> -->
+      <VTooltip placement="bottom">
+        <div class="item hoverable">
+          <BaseButton type="text" @click="closeRightSidebar">
+            <BaseIcon name="uni-close" />
+          </BaseButton>
+        </div>
+        <template #popper>
+          <div class="tiny-menu-item-title">
+            折叠侧边栏
+          </div>
+        </template>
+      </VTooltip>
     </div>
     <div class="notice-list">
       <div class="scroll-y scrollable scroll-contain notice-scroll">
@@ -93,6 +105,9 @@ const noticeList = [{}]
       display: inline-flex;
       padding: 8px 16px;
       font-size: var(--tg-font-size-default);
+      > span {
+        font-weight: var(--tg-font-weight-semibold);
+      }
       .title-icon{
         font-size: var(--tg-font-size-base);
         margin-right: 8px;
@@ -106,7 +121,16 @@ const noticeList = [{}]
         font-size: var(--tg-font-size-xs);
       }
     }
-
+    .hoverable {
+      padding: var(--tg-spacing-1) var(--tg-spacing-4);
+      border-radius: 50%;
+      transition: all ease .25s;
+      background-color: transparent;
+      &:hover {
+        background-color: var(--tg-secondary-deepdark);
+        --tg-icon-color: var(--tg-text-white);
+      }
+    }
   }
   .notice-list{
     width: 100%;
