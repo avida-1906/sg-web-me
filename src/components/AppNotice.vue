@@ -58,7 +58,7 @@ const noticeList = [{}]
                 已登机您 100.00000000
                 <AppCurrencyIcon
                   style="display: inline;vertical-align: middle;"
-                  :currency-type="EnumCurrency.BTC"
+                  currency-type="BTC"
                 /> 的存款
               </div>
               <div>待确认</div>
