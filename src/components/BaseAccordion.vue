@@ -39,6 +39,10 @@ function close() {
   setAutoShowBool(false)
 }
 
+watch(() => props.menuInfo.value, (val) => {
+  radioValue.value = val
+})
+
 watch(radioValue, (val) => {
   emit('radioChange', val)
 })

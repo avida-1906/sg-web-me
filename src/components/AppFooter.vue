@@ -1,4 +1,12 @@
 <script lang="ts" setup>
+import type { EnumLanguage } from '~/utils/enums'
+
+const appStore = useAppStore()
+const { userLanguage } = storeToRefs(appStore)
+
+function selectChange(v: EnumLanguage) {
+  appStore.changeLanguage(v)
+}
 </script>
 
 <template>
@@ -58,7 +66,15 @@
         <div class="nav-head">
           语言
         </div>
-        <div>中文</div>
+        <div class="select-wrap">
+          <BaseSelect
+            :model-value="userLanguage"
+            popper
+            plain-popper-label
+            :options="AllLanguages.map(a => ({ ...a, label: a.title }))"
+            @select="selectChange"
+          />
+        </div>
         <div>赔率</div>
         <div>小数式</div>
       </div>
@@ -114,6 +130,10 @@
 </template>
 
 <style scoped lang="scss">
+.select-wrap {
+  --tg-base-select-popper-style-padding-x: 0;
+  --tg-base-select-popper-style-padding-y: var(--tg-spacing-4);
+}
 .app-footer {
   /* background-color: #0F212E; */
   width: 100%;

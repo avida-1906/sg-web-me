@@ -1,6 +1,17 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
+import { getInitLangIndex, loadLanguageAsync } from '~/modules/i18n'
+import { EnumLanguage } from '~/utils/enums'
+
+export const AllLanguages = [
+  { title: '中文', path: '', icon: '', value: EnumLanguage['zh-CN'] },
+  { title: 'Tiếng Việt', path: '', icon: '', value: EnumLanguage['vi-VN'] },
+  { title: 'Português', path: '', icon: '', value: EnumLanguage['pt-BR'] },
+]
 
 export const useAppStore = defineStore('app', () => {
+  /** 当前选择的语言 */
+  const userLanguage = ref(getInitLangIndex())
+
   /** 导航排序 */
   const navButtons = ref<any>([])
   useRequest(ApiMemberGameCateIndex, {
@@ -20,6 +31,13 @@ export const useAppStore = defineStore('app', () => {
     manual: false,
   })
   const visibility = useDocumentVisibility()
+
+  /** 更换语言 */
+  function changeLanguage(langIndex: EnumLanguage) {
+    Local.set(STORAGE_LANGUAGE_KEY, langIndex)
+    loadLanguageAsync(langIndex)
+    userLanguage.value = langIndex
+  }
 
   function setToken(token: string) {
     // 将token加密后存储到本地
@@ -63,6 +81,8 @@ export const useAppStore = defineStore('app', () => {
     getToken,
     updateUserInfo,
     navButtons,
+    userLanguage,
+    changeLanguage,
   }
 })
 
