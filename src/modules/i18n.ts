@@ -55,6 +55,17 @@ export async function loadLanguageAsync(langIndex: EnumLanguage): Promise<Locale
 }
 
 export function install(app: App<Element>) {
+  const index = getInitLangIndex()
+
+  app.use(i18n)
+
+  if (index in EnumLanguage)
+    loadLanguageAsync(index)
+  else
+    loadLanguageAsync(EnumLanguage[VITE_I18N_DEFAULT_LANG])
+}
+
+export function getInitLangIndex() {
   const localStorageLanguageIndex = Local.get<
     EnumLanguage | null
   >(STORAGE_LANGUAGE_KEY)?.value
@@ -65,12 +76,7 @@ export function install(app: App<Element>) {
   else
     index = Number(EnumLanguage[VITE_I18N_DEFAULT_LANG])
 
-  app.use(i18n)
-
-  if (index in EnumLanguage)
-    loadLanguageAsync(index)
-  else
-    loadLanguageAsync(EnumLanguage[VITE_I18N_DEFAULT_LANG])
+  return index
 }
 
 /** 更换语言 */

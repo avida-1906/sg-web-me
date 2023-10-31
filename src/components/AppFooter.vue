@@ -1,4 +1,18 @@
 <script lang="ts" setup>
+import type { EnumSportsOddsType } from '~/stores/sports'
+import type { EnumLanguage } from '~/utils/enums'
+
+const appStore = useAppStore()
+const { userLanguage } = storeToRefs(appStore)
+const sportStore = useSportsStore()
+const { sportsOddsType } = storeToRefs(sportStore)
+
+function selectChange(v: EnumLanguage) {
+  appStore.changeLanguage(v)
+}
+function selectOddsChange(v: EnumSportsOddsType) {
+  sportStore.setSportsOddsType(v)
+}
 </script>
 
 <template>
@@ -54,13 +68,29 @@
         <div>自我排除</div>
         <div>Primedice<BaseIcon name="uni-jump-page" /></div>
       </div>
-      <div class="layout-spacing reset">
+      <div class="layout-spacing reset language-set last-nav">
         <div class="nav-head">
           语言
         </div>
-        <div>中文</div>
+        <div class="select-wrap">
+          <BaseSelect
+            :model-value="userLanguage"
+            popper
+            plain-popper-label
+            :options="AllLanguages.map(a => ({ ...a, label: a.title }))"
+            @select="selectChange"
+          />
+        </div>
         <div>赔率</div>
-        <div>小数式</div>
+        <div class="select-wrap">
+          <BaseSelect
+            :model-value="sportsOddsType"
+            popper
+            plain-popper-label
+            :options="AllOddsTypes.map(a => ({ ...a, label: a.title }))"
+            @select="selectOddsChange"
+          />
+        </div>
       </div>
     </div>
     <BaseDivider />
@@ -114,6 +144,14 @@
 </template>
 
 <style scoped lang="scss">
+.select-wrap {
+  --tg-base-select-popper-style-padding-x: 0;
+  --tg-base-select-popper-style-padding-y: 0;
+}
+.language-set {
+  color: var(--tg-text-white);
+  --tg-base-select-popper-style-padding-y:0;
+}
 .app-footer {
   /* background-color: #0F212E; */
   width: 100%;
@@ -153,6 +191,13 @@
       &:hover{
         --tg-icon-color: var(--tg-text-white);
         color: var(--tg-text-white);
+      }
+    }
+    .last-nav{
+      color:var(--tg-text-white);
+      gap: var(--tg-spacing-14);
+      .nav-head{
+         margin-bottom: var(--tg-spacing-0);
       }
     }
   }
