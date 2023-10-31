@@ -6,6 +6,7 @@ interface Props {
     platform_id?: string
     game_id?: string
     [k: string]: any
+    maintained: string
   }
 }
 
@@ -22,8 +23,8 @@ const gameProviderName = computed(() =>
   platformList.value?.find(a => a.id === props.gameInfo.platform_id)?.name ?? '-',
 )
 const isMaintained = computed(() => {
-  return platformList.value?.find(a => a.id === props.gameInfo.platform_id)?.maintained === '2'
-  ?? false
+  // return platformList.value?.find(a => a.id === props.gameInfo.platform_id)?.maintained === '2' ?? false
+  return props.gameInfo.maintained === '2'
 })
 
 function gameStart(item: Props['gameInfo']) {
