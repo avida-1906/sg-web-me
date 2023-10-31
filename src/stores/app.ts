@@ -77,10 +77,12 @@ export const useAppStore = defineStore('app', () => {
       updateUserInfo()
   })
 
-  watch(userInfo, () => {
-    setTimeout(() => {
-      socketClient.connect()
-    }, 0)
+  watch(userInfo, (val) => {
+    if (val?.uid) {
+      setTimeout(() => {
+        socketClient.connect()
+      }, 0)
+    }
   })
 
   return {
