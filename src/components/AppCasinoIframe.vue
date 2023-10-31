@@ -1,5 +1,6 @@
 <script setup lang='ts'>
 import type { EnumCurrencyKey } from '~/apis'
+import { currencyConfig } from '~/composables/useCurrencyData'
 
 interface Props {
   isTheatre: boolean
@@ -40,6 +41,9 @@ const {
 const id = computed(() => dataDetail.value ? dataDetail.value.id : '')
 const pid = computed(() => dataDetail.value ? dataDetail.value.platform_id : '')
 const code = computed(() => dataDetail.value ? dataDetail.value.game_id : '')
+const currencyCode = computed(() => {
+  return currentCurrency.value ? currencyConfig[currentCurrency.value].cur : '0'
+})
 const isFavorite = computed(() => {
   return dataDetail.value ? dataDetail.value.is_fav === 1 : false
 })
@@ -58,7 +62,7 @@ const {
 } = useRequest(() => ApiGameLunch(
   pid.value,
   code.value,
-  currentCurrency.value ?? '',
+  currencyCode.value,
 ), {
   manual: true,
   onSuccess(res) {
