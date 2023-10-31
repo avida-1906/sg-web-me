@@ -1,5 +1,4 @@
-import { changeLanguage } from '~/modules/i18n'
-import { EnumLanguage } from '~/utils/enums'
+import type { EnumLanguage } from '~/utils/enums'
 
 export interface MenuItem {
   title: string
@@ -31,8 +30,9 @@ export function useApiMenuData() {
     currentRightSidebarContent,
   } = useRightSidebar()
 
-  const { locale, t } = useI18n()
-  const { isLogin } = storeToRefs(useAppStore())
+  const appStore = useAppStore()
+  const { t } = useI18n()
+  const { isLogin, userLanguage } = storeToRefs(appStore)
   const { casinoGameList } = storeToRefs(useCasinoStore())
 
   // casino
@@ -301,13 +301,9 @@ export function useApiMenuData() {
       path: '',
       icon: 'spt-odds',
       type: 'radio',
-      value: EnumLanguage[locale.value as any],
-      radioChange: (val: EnumLanguage) => changeLanguage(val),
-      list: [
-        { title: '中文', path: '', icon: '', value: EnumLanguage['zh-CN'] },
-        { title: 'Tiếng Việt', path: '', icon: '', value: EnumLanguage['vi-VN'] },
-        { title: 'Português', path: '', icon: '', value: EnumLanguage['pt-BR'] },
-      ],
+      value: userLanguage.value,
+      radioChange: (val: EnumLanguage) => appStore.changeLanguage(val),
+      list: AllLanguages,
       domId: 'static-menu-language',
     },
   ])

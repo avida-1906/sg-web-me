@@ -17,6 +17,7 @@ interface Props {
   /** 边框  */
   border?: boolean
   msg?: string
+  plainPopperLabel?: boolean
 }
 const props = withDefaults(defineProps<Props>(), {
   layout: 'vertical',
@@ -71,7 +72,7 @@ function onClickPopper() {
       <div
         ref="parent"
         class="popper-label"
-        :class="{ disabled, 'show-border': border }"
+        :class="{ disabled, 'show-border': border, 'plain': plainPopperLabel }"
         @click="onClickPopper"
       >
         <slot name="label" :data="selectedOption">
@@ -163,6 +164,12 @@ function onClickPopper() {
   justify-content: space-between;
   align-items: center;
   line-height: 1;
+  &.plain {
+    background-color: transparent;
+    &:hover {
+      background-color: transparent;
+    }
+  }
   &.show-border{
     border: 2px solid  var(--tg-border-color-main);
     border-radius: var(--tg-radius-default);
