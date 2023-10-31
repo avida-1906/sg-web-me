@@ -314,7 +314,7 @@ watch(() => currentType.value, (newValue) => {
                 v-if="fixedAmount && fixedAmount.length"
                 v-model="amount"
                 :options="fixedAmount"
-                :msg="selectValueError"
+                :msg="amountError"
                 small
               />
             </BaseLabel>
