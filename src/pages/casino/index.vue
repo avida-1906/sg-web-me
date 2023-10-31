@@ -7,6 +7,7 @@ const { isMobile } = storeToRefs(useWindowStore())
 const { casinoNav, casinoGameList } = storeToRefs(useCasinoStore())
 const router = useRouter()
 const { t } = useI18n()
+const { VITE_CASINO_HOME_PAGE_SIZE } = getEnv()
 
 const tab = ref('all')
 const showAll = computed(() => tab.value === 'all')
@@ -115,7 +116,7 @@ function viewMoreGames() {
             <span>{{ currentNav.label }}</span>
           </div>
           <AppCardList :list="catGameList" />
-          <div class="more">
+          <div v-show="catGameTotal > VITE_CASINO_HOME_PAGE_SIZE" class="more">
             <BaseButton
               size="md"
               @click="viewMoreGames"

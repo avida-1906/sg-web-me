@@ -6,7 +6,6 @@ import {
 const props = defineProps<{ gameType: string }>()
 const route = useRoute()
 const { appContentWidth } = storeToRefs(useWindowStore())
-const { VITE_CASINO_GAME_PAGE_SIZE } = getEnv()
 
 const currentType = ref(props.gameType)
 const isRec = computed(() => currentType.value === 'rec') // 推荐游戏
@@ -31,7 +30,7 @@ const {
   runAsync: runGameList,
   loading: loadingGame,
   loadMore: loadMoreGame,
-} = useList(ApiMemberGameList, {}, { page_size: VITE_CASINO_GAME_PAGE_SIZE })
+} = useList(ApiMemberGameList)
 // 推荐游戏
 const paramsRec = computed(() => ({ sort: sort.value }))
 const {
@@ -40,7 +39,7 @@ const {
   runAsync: runRecList,
   loading: loadingRec,
   loadMore: loadMoreRec,
-} = useList(ApiMemberGameRecList, {}, { page_size: VITE_CASINO_GAME_PAGE_SIZE })
+} = useList(ApiMemberGameRecList)
 const paramsCate = computed(() => ({ cid: cid.value }))
 const {
   list: cateList,
@@ -48,7 +47,7 @@ const {
   runAsync: runCateGames,
   loading: loadingCate,
   loadMore: loadMoreCate,
-} = useList(ApiMemberGameCateGames, {}, { page_size: VITE_CASINO_GAME_PAGE_SIZE })
+} = useList(ApiMemberGameCateGames)
 // 页面数据
 const list = computed(() => {
   if (isProvider.value)
@@ -91,15 +90,15 @@ const push = computed(() => {
 // 获取数据
 function getData() {
   if (isProvider.value)
-    runGameList(paramsGame.value)
+    runGameList(paramsGame.value).then(() => push.value())
   else if (isRec.value)
-    runRecList(paramsRec.value)
+    runRecList(paramsRec.value).then(() => push.value())
   else if (isCat.value)
-    runCateGames(paramsCate.value)
+    runCateGames(paramsCate.value).then(() => push.value())
 }
 // 游戏提供商选择变化
 function onPlatTypeChecked(v: string) {
-  runGameList({ ...paramsGame.value, platform_id: v })
+  runGameList({ ...paramsGame.value, platform_id: v }).then(() => push.value())
 }
 // 排序变化
 // function onSortChange(v: any) {
@@ -119,11 +118,11 @@ onBeforeRouteLeave(() => {
 
 // 初始化
 if (isProvider.value)
-  await application.allSettled([runGameList(paramsGame.value)])
+  await application.allSettled([runGameList(paramsGame.value).then(() => push.value())])
 else if (isRec.value)
-  await application.allSettled([runRecList(paramsRec.value)])
+  await application.allSettled([runRecList(paramsRec.value).then(() => push.value())])
 else if (isCat.value)
-  await application.allSettled([runCateGames(paramsCate.value)])
+  await application.allSettled([runCateGames(paramsCate.value).then(() => push.value())])
 </script>
 
 <template>

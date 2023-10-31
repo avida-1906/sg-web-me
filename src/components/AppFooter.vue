@@ -2,10 +2,64 @@
 import type { EnumSportsOddsType } from '~/stores/sports'
 import type { EnumLanguage } from '~/utils/enums'
 
+const router = useRouter()
 const appStore = useAppStore()
 const { userLanguage } = storeToRefs(appStore)
 const sportStore = useSportsStore()
 const { sportsOddsType } = storeToRefs(sportStore)
+
+const menuData = [
+  {
+    title: '体育',
+    children: [
+      { title: '主页', path: '/sports' },
+      { title: '滚球', path: '/sports/live' },
+      { title: '体育博彩规则', icon: false },
+    ],
+  },
+  {
+    title: '娱乐城',
+    children: [
+      { title: '游戏', path: '/casino' },
+      { title: 'VIP俱乐部', path: '/vip-club' },
+      { title: '促销活动', path: '/promotions' },
+    ],
+  },
+  {
+    title: '支持',
+    children: [
+      { title: '公平性' },
+      { title: '联盟计划' },
+      { title: '负责人博彩' },
+      { title: 'Gameble Aware', icon: true },
+      { title: '在线支持' },
+      { title: '帮助中心', icon: true },
+    ],
+  },
+  {
+    title: '社区',
+    children: [
+      { title: '博客' },
+      { title: '论坛', icon: true },
+      { title: 'Facebook', icon: true },
+      { title: 'Twitter', icon: true },
+      { title: 'Instagram', icon: true },
+      { title: 'Youtube', icon: true },
+      { title: '网购', icon: true },
+    ],
+  },
+  {
+    title: '关于我们',
+    children: [
+      { title: '隐私政策' },
+      { title: '许可证' },
+      { title: '反洗钱规则' },
+      { title: '服务条款' },
+      { title: '自我排除' },
+      { title: 'Primedice', icon: true },
+    ],
+  },
+]
 
 function selectChange(v: EnumLanguage) {
   appStore.changeLanguage(v)
@@ -13,60 +67,22 @@ function selectChange(v: EnumLanguage) {
 function selectOddsChange(v: EnumSportsOddsType) {
   sportStore.setSportsOddsType(v)
 }
+function pathTo(tmp: { path?: string; title: string; icon?: boolean }) {
+  if (tmp.path)
+    router.push(tmp.path)
+}
 </script>
 
 <template>
   <div class="app-footer">
     <div class="footer-nav">
-      <div class="layout-spacing reset">
+      <div v-for="item, index of menuData" :key="index" class="layout-spacing reset">
         <div class="nav-head">
-          体育
+          {{ item.title }}
         </div>
-        <div>主页</div>
-        <div>滚球</div>
-        <div>体育博彩规则</div>
-      </div>
-      <div class="layout-spacing reset">
-        <div class="nav-head">
-          娱乐城
+        <div v-for="tmp of item.children" :key="tmp.title" @click="pathTo(tmp)">
+          {{ tmp.title }}<BaseIcon v-if="tmp.icon" name="uni-jump-page" />
         </div>
-        <div>游戏</div>
-        <div>VIP俱乐部</div>
-        <div>促销活动</div>
-      </div>
-      <div class="layout-spacing reset">
-        <div class="nav-head">
-          支持
-        </div>
-        <div>公平性</div>
-        <div>联盟计划</div>
-        <div>负责任博彩</div>
-        <div>Gameble Aware<BaseIcon name="uni-jump-page" /></div>
-        <div>在线支持</div>
-        <div>帮助中心<BaseIcon name="uni-jump-page" /></div>
-      </div>
-      <div class="layout-spacing reset">
-        <div class="nav-head">
-          社区
-        </div>
-        <div>博客</div>
-        <div>论坛<BaseIcon name="uni-jump-page" /></div>
-        <div>Facebook<BaseIcon name="uni-jump-page" /></div>
-        <div>Twitter<BaseIcon name="uni-jump-page" /></div>
-        <div>Instagram<BaseIcon name="uni-jump-page" /></div>
-        <div>Youtube<BaseIcon name="uni-jump-page" /></div>
-        <div>网购<BaseIcon name="uni-jump-page" /></div>
-      </div>
-      <div class="layout-spacing reset">
-        <div class="nav-head">
-          关于我们
-        </div>
-        <div>隐私政策</div>
-        <div>许可证</div>
-        <div>反洗钱规则</div>
-        <div>服务条款</div>
-        <div>自我排除</div>
-        <div>Primedice<BaseIcon name="uni-jump-page" /></div>
       </div>
       <div class="layout-spacing reset last-nav">
         <div class="nav-head">
