@@ -729,6 +729,12 @@ menu_title_settings_withdrawals: 提款
 menu_title_settings_bets: 投注
 menu_title_settings_archive: 投注档案
 menu_title_settings_other: 其他
+menu_title_settings_contact: 联系方式
+menu_title_settings_update_loginpwd: 修改密码
+menu_title_settings_update_safepwd: 资金密码
+menu_title_settings_update_safecheck: 双重验证
+menu_title_settings_private: 隐私选项
+menu_title_settings_loginsession: 登录日志
 register_date: 注册日期
 total_deposits: 总存款次数
 last_deposits: 最后一次存款

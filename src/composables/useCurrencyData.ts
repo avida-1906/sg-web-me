@@ -124,9 +124,6 @@ export function useCurrencyData() {
         })
       }
     }
-    list.sort((a, b) => {
-      return Number(a.cur) - Number(b.cur)
-    })
     if (searchValue.value)
       return list.filter(({ type }) => type.includes(searchValue.value.toLocaleUpperCase()))
     else

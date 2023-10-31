@@ -143,7 +143,19 @@ function addCommand(u: { command: string }) {
   msgInput.value?.getFocus()
 }
 function sendMsg() {
-  if (message.value[0] === '/') {
+  if (message.value.length) {
+    const t = new Date().getTime()
+    const s = `${Math.random().toString(36).slice(-10)}|${t}`
+    chatMessageBus.emit({ c: message.value, s, u: userInfo.value?.uid, n: userInfo.value?.username, t })
+    runSendMsg({ c: message.value, lang: roomLang.value, s })
+    message.value = ''
+    msgInput.value.getFocus()
+  }
+}
+function enterPress(event: KeyboardEvent) {
+  event.preventDefault()
+  event.stopPropagation()
+  if (isCommand.value) {
     const temp = message.value.split(' ')
     const firstSpaceIdx = message.value.indexOf(' ')
     const param = firstSpaceIdx !== -1 ? message.value.slice(firstSpaceIdx) : ''
@@ -166,20 +178,7 @@ function sendMsg() {
     }
     return
   }
-  if (message.value.length) {
-    const t = new Date().getTime()
-    const s = `${Math.random().toString(36).slice(-10)}|${t}`
-    chatMessageBus.emit({ c: message.value, s, u: userInfo.value?.uid, n: userInfo.value?.username, t })
-    runSendMsg({ c: message.value, lang: roomLang.value, s })
-    message.value = ''
-    msgInput.value.getFocus()
-  }
-}
-function enterPress(event: KeyboardEvent) {
-  event.preventDefault()
-  event.stopPropagation()
-  if (isCommand.value)
-    console.log('处理指令')
+  sendMsg()
 }
 </script>
 
