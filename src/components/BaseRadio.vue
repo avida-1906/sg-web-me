@@ -48,12 +48,13 @@ function onCheck() {
 :root {
   --tg-base-radio-style-just-content: flex-start;
   --tg-base-radio-style-flex-direction: row;
+  --tg-base-radio-style-color: var(--tg-text-lightgrey);
 }
 </style>
 
 <style lang='scss' scoped>
 .base-radio {
-  color: var(--tg-text-lightgrey);
+  color: var(--tg-base-radio-style-color);
   font-size: var(--tg-font-size-default);
   cursor: pointer;
   display: flex;
@@ -126,7 +127,7 @@ function onCheck() {
 }
 .active.focus{
   .icon{
-     border-color: var(--tg-border-color-deep-grey);
+    border-color: var(--tg-border-color-deep-grey);
     background-color: var(--tg-secondary-main);
   }
 }
