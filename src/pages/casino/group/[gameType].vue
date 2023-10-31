@@ -6,6 +6,7 @@ import {
 const props = defineProps<{ gameType: string }>()
 const route = useRoute()
 const { appContentWidth } = storeToRefs(useWindowStore())
+const { VITE_CASINO_GAME_PAGE_SIZE } = getEnv()
 
 const currentType = ref(props.gameType)
 const isRec = computed(() => currentType.value === 'rec') // 推荐游戏
@@ -30,7 +31,7 @@ const {
   runAsync: runGameList,
   loading: loadingGame,
   loadMore: loadMoreGame,
-} = useList(ApiMemberGameList)
+} = useList(ApiMemberGameList, {}, { page_size: VITE_CASINO_GAME_PAGE_SIZE })
 // 推荐游戏
 const paramsRec = computed(() => ({ sort: sort.value }))
 const {
@@ -39,7 +40,7 @@ const {
   runAsync: runRecList,
   loading: loadingRec,
   loadMore: loadMoreRec,
-} = useList(ApiMemberGameRecList)
+} = useList(ApiMemberGameRecList, {}, { page_size: VITE_CASINO_GAME_PAGE_SIZE })
 const paramsCate = computed(() => ({ cid: cid.value }))
 const {
   list: cateList,
@@ -47,7 +48,7 @@ const {
   runAsync: runCateGames,
   loading: loadingCate,
   loadMore: loadMoreCate,
-} = useList(ApiMemberGameCateGames)
+} = useList(ApiMemberGameCateGames, {}, { page_size: VITE_CASINO_GAME_PAGE_SIZE })
 // 页面数据
 const list = computed(() => {
   if (isProvider.value)
