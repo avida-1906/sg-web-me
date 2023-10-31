@@ -9,7 +9,6 @@ const props = withDefaults(defineProps<Props>(), {})
 
 const { isLessThanXs } = storeToRefs(useWindowStore())
 
-const amount = ref('')
 const bankTypeData = ref([{ label: '银行转账', icon: 'fiat-bank', value: '1' }])
 const pixTypeData = ref([{ label: 'PIX', icon: 'fiat-pix', value: '2' }])
 
@@ -21,29 +20,108 @@ const currentTypeBanks = computed(() =>
   currentType.value === '1' ? bankTypeData.value : pixTypeData.value)
 
 const {
-  bankcardList,
-  runAsyncBankcardList,
-  bindBanks,
-  selectBank,
-} = useApiMemberBankCardList()
+  value: selectBank,
+  errorMessage: selectBankError,
+  validate: selectBankValidate,
+  resetField: selectBankReset,
+} = useField<string>('selectBank', (value) => {
+  if (!value)
+    return '请选择出款银行'
+  return ''
+})
+const {
+  value: amount,
+  errorMessage: amountError,
+  validate: amountValidate,
+  resetField: amountReset,
+} = useField<string>('amount', (value) => {
+  if (!value)
+    return '请输入金额'
+  return ''
+})
+const {
+  value: payPassword,
+  errorMessage: payPasswordError,
+  validate: payPasswordValidate,
+  resetField: payPasswordReset,
+} = useField<string>('payPassword', (value) => {
+  if (!value)
+    return '请输入资金密码'
+  return ''
+})
+
+const {
+  runAsync: runAsyncWithdrawMethodList,
+  data: withdrawMethodList,
+} = useRequest(ApiFinanceWithdrawMethodList)
+const {
+  runAsync: runAsyncWithdrawBankcardList,
+  data: withdrawBankcardList,
+} = useRequest(ApiFinanceWithdrawBankcard)
+const {
+  run: runWithdraw,
+} = useRequest(ApiFinanceWithdraw)
+
+const bindBanks = computed(() => {
+  if (withdrawBankcardList.value) {
+    return withdrawBankcardList.value.d.map((item) => {
+      if (item.is_default === 1)
+        selectBank.value = item.bank_account
+      return {
+        label: item.bank_name,
+        value: item.bank_account,
+        icon: 'fiat-bank',
+        name: item.open_name,
+        id: item.id,
+      }
+    })
+  }
+  return []
+})
 
 const defaultBank = computed(() =>
   bindBanks.value.find(a => a.value === selectBank.value)?.label ?? '',
 )
+const bankcardId = computed(() =>
+  bindBanks.value.find(a => a.value === selectBank.value)?.id ?? '',
+)
+
+function maxNumber() {
+  amount.value = props.activeCurrency.balance
+}
+
+async function withDrawSubmit() {
+  await selectBankValidate()
+  await amountValidate()
+  await payPasswordValidate()
+  if (!selectBankError.value && !amountError.value && !payPasswordError.value) {
+    runWithdraw({
+      currency_id: props.activeCurrency.cur,
+      method_id: '',
+      amount: amount.value,
+      pay_password: payPassword.value,
+      bankcard_id: bankcardId.value,
+    })
+  }
+}
 
 watch(() => props.activeCurrency, () => {
-  runAsyncBankcardList({ currency_id: props.activeCurrency.cur })
+  runAsyncWithdrawBankcardList({ currency_id: props.activeCurrency.cur })
+  runAsyncWithdrawMethodList({ currency_id: props.activeCurrency.cur })
 })
 
 await application.allSettled(
-  [runAsyncBankcardList({ currency_id: props.activeCurrency.cur })],
+  [
+    runAsyncWithdrawBankcardList({ currency_id: props.activeCurrency.cur }),
+    runAsyncWithdrawMethodList({ currency_id: props.activeCurrency.cur }),
+  ],
 )
 </script>
 
 <template>
   <div class="app-fiat-withdrawal">
     <!-- 绑定银行卡/三方账户 -->
-    <div v-if="!bankcardList?.length" class="bank-bind">
+    <div v-if="!withdrawBankcardList?.d.length" class="bank-bind">
       <AppAddBankcards
         :is-first="true"
         :container="false"
@@ -59,14 +137,14 @@ await application.allSettled(
           <BaseSelect
             v-model="selectBank"
             :options="bindBanks"
-            must
-            theme
-            popper
-            border
+            :msg="selectBankError"
+            must theme popper border
+            :style="{ '--tg-base-select-popper-style-padding-y': 'var(--tg-spacing-12)' }"
           >
             <template #label>
               <span class="popper-label">
-                <BaseIcon v-if="defaultBank" name="fiat-bank" /> {{ defaultBank }}
+                <BaseIcon v-if="defaultBank" name="fiat-bank" />
+                {{ defaultBank }} {{ selectBank }}
               </span>
             </template>
             <template #option="{ data: { item, parentWidth } }">
@@ -86,16 +164,21 @@ await application.allSettled(
           </BaseSelect>
         </BaseLabel>
         <BaseLabel label="金额" must right-text="R$ 0.00">
-          <BaseInput v-model="amount">
+          <BaseInput v-model="amount" :msg="amountError" @on-right-button="maxNumber">
             <template #right-button>
               <span>最大值</span>
             </template>
           </BaseInput>
         </BaseLabel>
-        <BaseLabel label="双重验证" must>
-          <BaseInput v-model="amount" />
+        <BaseLabel label="资金密码" must>
+          <BaseInput
+            v-model="payPassword"
+            :msg="payPasswordError"
+            type="password"
+            max="6"
+          />
         </BaseLabel>
-        <BaseButton bg-style="primary" size="md">
+        <BaseButton bg-style="primary" size="md" @click="withDrawSubmit">
           提款
         </BaseButton>
       </div>
