@@ -98,7 +98,7 @@ function getData() {
 }
 // 游戏提供商选择变化
 function onPlatTypeChecked(v: string) {
-  runGameList({ ...paramsGame.value, platform_id: v })
+  runGameList({ ...paramsGame.value, platform_id: v }).then(() => push.value())
 }
 // 排序变化
 // function onSortChange(v: any) {
