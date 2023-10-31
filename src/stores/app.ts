@@ -77,7 +77,7 @@ export const useAppStore = defineStore('app', () => {
       updateUserInfo()
   })
 
-  watch(isLogin, () => {
+  watch(userInfo, () => {
     setTimeout(() => {
       socketClient.connect()
     }, 0)
