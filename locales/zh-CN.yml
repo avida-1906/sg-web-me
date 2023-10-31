@@ -819,6 +819,13 @@ sports_live_tv: 直播
 sports_live_favourites: 热门滚球盘
 sports_upcoming_favourites: 即将开始的热门赛事
 sports_provider: 体育场馆
+sports_odds_title: 赔率
+sports_odds_DECIMAL: 小数式
+sports_odds_FRACTION: 分数式
+sports_odds_AMERICAN: 美式
+sports_odds_INDONESIA: 印尼格式
+sports_odds_MALAYSIA: 马来格式
+sports_odds_HONGKONG: 香港格式
 welcome_guest: 欢迎
 language_title: 语言
 language_current: 中文

@@ -1,3 +1,4 @@
+import type { EnumSportsOddsType } from '~/stores/sports'
 import type { EnumLanguage } from '~/utils/enums'
 
 export interface MenuItem {
@@ -34,6 +35,8 @@ export function useApiMenuData() {
   const { t } = useI18n()
   const { isLogin, userLanguage } = storeToRefs(appStore)
   const { casinoGameList } = storeToRefs(useCasinoStore())
+  const sportStore = useSportsStore()
+  const { sportsOddsType } = storeToRefs(sportStore)
 
   // casino
   const casinoMenu = ref<Menu>([
@@ -172,19 +175,15 @@ export function useApiMenuData() {
       domId: 'sports-game-list',
     },
   ])
-  const sportOddType = ref<Menu>([
+  const sportOddType = computed(() => <Menu>[
     {
-      title: '赔率：',
+      title: `${t('sports_odds_title')}：${t(`sports_odds_${sportsOddsType.value}`)}`,
       path: '',
       icon: 'spt-odds',
-      list: [
-        { title: '小数式', path: '', icon: '' },
-        { title: '分数式', path: '', icon: '' },
-        { title: '美式', path: '', icon: '' },
-        { title: '印尼格式', path: '', icon: '' },
-        { title: '香港格式', path: '', icon: '' },
-        { title: '马来格式', path: '', icon: '' },
-      ],
+      type: 'radio',
+      value: sportsOddsType.value,
+      radioChange: (val: EnumSportsOddsType) => sportStore.setSportsOddsType(val),
+      list: AllOddsTypes,
       domId: 'sports-odds-type',
     },
   ])

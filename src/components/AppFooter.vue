@@ -1,11 +1,17 @@
 <script lang="ts" setup>
+import type { EnumSportsOddsType } from '~/stores/sports'
 import type { EnumLanguage } from '~/utils/enums'
 
 const appStore = useAppStore()
 const { userLanguage } = storeToRefs(appStore)
+const sportStore = useSportsStore()
+const { sportsOddsType } = storeToRefs(sportStore)
 
 function selectChange(v: EnumLanguage) {
   appStore.changeLanguage(v)
+}
+function selectOddsChange(v: EnumSportsOddsType) {
+  sportStore.setSportsOddsType(v)
 }
 </script>
 
@@ -62,7 +68,7 @@ function selectChange(v: EnumLanguage) {
         <div>自我排除</div>
         <div>Primedice<BaseIcon name="uni-jump-page" /></div>
       </div>
-      <div class="layout-spacing reset">
+      <div class="layout-spacing reset language-set">
         <div class="nav-head">
           语言
         </div>
@@ -76,7 +82,15 @@ function selectChange(v: EnumLanguage) {
           />
         </div>
         <div>赔率</div>
-        <div>小数式</div>
+        <div class="select-wrap">
+          <BaseSelect
+            :model-value="sportsOddsType"
+            popper
+            plain-popper-label
+            :options="AllOddsTypes.map(a => ({ ...a, label: a.title }))"
+            @select="selectOddsChange"
+          />
+        </div>
       </div>
     </div>
     <BaseDivider />
@@ -132,7 +146,10 @@ function selectChange(v: EnumLanguage) {
 <style scoped lang="scss">
 .select-wrap {
   --tg-base-select-popper-style-padding-x: 0;
-  --tg-base-select-popper-style-padding-y: var(--tg-spacing-4);
+  --tg-base-select-popper-style-padding-y: 0;
+}
+.language-set {
+  color: var(--tg-text-white);
 }
 .app-footer {
   /* background-color: #0F212E; */

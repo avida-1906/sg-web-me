@@ -6,6 +6,7 @@
 export {}
 declare global {
   const AllLanguages: typeof import('./stores/app')['AllLanguages']
+  const AllOddsTypes: typeof import('./stores/sports')['AllOddsTypes']
   const ApiChatGetHistory: typeof import('./apis/index')['ApiChatGetHistory']
   const ApiChatSendMessage: typeof import('./apis/index')['ApiChatSendMessage']
   const ApiFinanceMerchantList: typeof import('./apis/index')['ApiFinanceMerchantList']
@@ -480,6 +481,7 @@ import { UnwrapRef } from 'vue'
 declare module 'vue' {
   interface ComponentCustomProperties {
     readonly AllLanguages: UnwrapRef<typeof import('./stores/app')['AllLanguages']>
+    readonly AllOddsTypes: UnwrapRef<typeof import('./stores/sports')['AllOddsTypes']>
     readonly ApiChatGetHistory: UnwrapRef<typeof import('./apis/index')['ApiChatGetHistory']>
     readonly ApiChatSendMessage: UnwrapRef<typeof import('./apis/index')['ApiChatSendMessage']>
     readonly ApiFinanceMerchantList: UnwrapRef<typeof import('./apis/index')['ApiFinanceMerchantList']>
@@ -943,6 +945,7 @@ declare module 'vue' {
 declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
     readonly AllLanguages: UnwrapRef<typeof import('./stores/app')['AllLanguages']>
+    readonly AllOddsTypes: UnwrapRef<typeof import('./stores/sports')['AllOddsTypes']>
     readonly ApiChatGetHistory: UnwrapRef<typeof import('./apis/index')['ApiChatGetHistory']>
     readonly ApiChatSendMessage: UnwrapRef<typeof import('./apis/index')['ApiChatSendMessage']>
     readonly ApiFinanceMerchantList: UnwrapRef<typeof import('./apis/index')['ApiFinanceMerchantList']>
