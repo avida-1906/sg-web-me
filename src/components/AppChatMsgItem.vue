@@ -52,6 +52,7 @@ withDefaults(defineProps<Props>(), {})
   background: var(--tg-secondary-grey);
   .content {
     p {
+      -webkit-text-size-adjust: 100%;
       display: block;
       width: 100%;
       color: var(--tg-text-white);

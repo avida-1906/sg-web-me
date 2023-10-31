@@ -41,7 +41,7 @@ watch(() => props.timeStamp, (val) => {
 </script>
 
 <template>
-  <section>
+  <section class="tg-app-accordion-menu">
     <BaseAccordion
       v-if="menuItem.list && menuItem.list.length"
       ref="baseAccor"
@@ -64,5 +64,7 @@ watch(() => props.timeStamp, (val) => {
 </template>
 
 <style lang="scss" scoped>
-
+.tg-app-accordion-menu {
+  --tg-base-radio-style-color: var(--tg-text-white)
+}
 </style>

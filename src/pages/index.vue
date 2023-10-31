@@ -151,7 +151,10 @@ await application.allSettled([
       <div>
         没加密货币？没问题。
       </div>
-      <div :class="isSm ? 'h-22' : 'h-30'">
+      <div
+        class="icons"
+        :class="[isSm ? 'h-22' : 'h-30', appContentWidth > 860 ? 'big' : 'small']"
+      >
         <BaseIcon name="cryptocurrency-logo-1" class="w-50" />
         <BaseIcon name="cryptocurrency-logo-2" class="w-70" />
         <BaseIcon name="cryptocurrency-logo-3" class="w-75" />
@@ -506,10 +509,16 @@ await application.allSettled([
         }
       }
       &.h-30{
-        gap: var(--tg-spacing-16);
+        // gap: var(--tg-spacing-16);
         > svg {
           height: 30px;
         }
+      }
+      &.big {
+        gap: var(--tg-spacing-24);
+      }
+      &.small {
+        gap: var(--tg-spacing-16);
       }
     }
     div:nth-child(3){

@@ -24,8 +24,10 @@ const route = useRoute()
       <div class="header is-small">
         <Transition name="menu-fade">
           <template v-if="!isSwitching">
-            <div class="button" @click="triggerLeftSidebar">
-              <BaseIcon name="uni-menu" />
+            <div class="button center">
+              <BaseButton font-size="16" type="text" @click="triggerLeftSidebar">
+                <BaseIcon name="uni-menu" />
+              </BaseButton>
             </div>
           </template>
         </Transition>
@@ -160,10 +162,6 @@ const route = useRoute()
     font-size: var(--tg-font-size-base);
     min-width: 60px;
     height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
   }
 
   .game-type {

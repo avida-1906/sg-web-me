@@ -12,18 +12,11 @@ const {
   closeRightSidebar,
 } = useRightSidebar()
 const { bool: showSearchBar, setTrue } = useBoolean(false)
-const {
-  bool: showDialogLogout,
-  setTrue: setShowDialogLogoutTrue,
-  setFalse: setDialogLogoutFalse,
-} = useBoolean(false)
 const { openWalletDialog } = useWalletDialog()
 const { openVipDialog } = useVipDialog()
 const { openStatisticsDialog } = useStatisticsDialog()
 const { openSafeDialog } = useSafeDialog()
-const { runMemberLogout, logoutLoading } = useLogout(() => {
-  setDialogLogoutFalse()
-})
+const { openLogoutDialog } = useLogoutDialog()
 
 const userMenu = ref([
   { id: 1, icon: 'navbar-wallet', title: t('wallet'), name: 'wallet' },
@@ -123,7 +116,7 @@ function handleClickMenuItem(item: { name: string; path?: string }) {
       openSafeDialog()
       break
     case 'logout':
-      setShowDialogLogoutTrue()
+      openLogoutDialog()
       break
     case 'vip':
       openVipDialog()
@@ -227,41 +220,9 @@ function handleClickMenuItem(item: { name: string; path?: string }) {
       <AppLoginRegisterBtns />
     </div>
   </div>
-  <BaseDialog v-model:show="showDialogLogout" icon="uni-trend" title="登出">
-    <div class="dialog">
-      <div class="dialog-text">
-        {{ t('logout_dont_foget') }}
-      </div>
-      <BaseButton
-        class="dialog-btn"
-        type="text"
-        :loading="logoutLoading"
-        @click.stop="runMemberLogout"
-      >
-        {{ t('logout') }}
-      </BaseButton>
-    </div>
-  </BaseDialog>
 </template>
 
 <style lang="scss" scoped>
-.dialog {
-  display: flex;
-  flex-direction: column;
-  gap: var(--tg-spacing-16);
-  padding: var(--tg-spacing-16) var(--tg-spacing-16);
-
-  &-text {
-    font-size: var(--tg-font-size-xs);
-    color: var(--tg-text-lightgrey);
-  }
-
-  &-btn {
-    color: var(--tg-text-white) !important;
-    background: var(--tg-button-secondary-main);
-  }
-}
-
 .app-header {
   display: grid;
   gap: 1rem;

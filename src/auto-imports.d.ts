@@ -348,6 +348,7 @@ declare global {
   const useLocalStorage: typeof import('@vueuse/core')['useLocalStorage']
   const useLoginDialog: typeof import('./composables/useDialogLogin')['useLoginDialog']
   const useLogout: typeof import('./composables/useLoginout')['useLogout']
+  const useLogoutDialog: typeof import('./composables/useDialogLogout')['useLogoutDialog']
   const useMagicKeys: typeof import('@vueuse/core')['useMagicKeys']
   const useManualRefHistory: typeof import('@vueuse/core')['useManualRefHistory']
   const useMediaControls: typeof import('@vueuse/core')['useMediaControls']
@@ -815,6 +816,7 @@ declare module 'vue' {
     readonly useLocalStorage: UnwrapRef<typeof import('@vueuse/core')['useLocalStorage']>
     readonly useLoginDialog: UnwrapRef<typeof import('./composables/useDialogLogin')['useLoginDialog']>
     readonly useLogout: UnwrapRef<typeof import('./composables/useLoginout')['useLogout']>
+    readonly useLogoutDialog: UnwrapRef<typeof import('./composables/useDialogLogout')['useLogoutDialog']>
     readonly useMagicKeys: UnwrapRef<typeof import('@vueuse/core')['useMagicKeys']>
     readonly useManualRefHistory: UnwrapRef<typeof import('@vueuse/core')['useManualRefHistory']>
     readonly useMediaControls: UnwrapRef<typeof import('@vueuse/core')['useMediaControls']>
@@ -1276,6 +1278,7 @@ declare module '@vue/runtime-core' {
     readonly useLocalStorage: UnwrapRef<typeof import('@vueuse/core')['useLocalStorage']>
     readonly useLoginDialog: UnwrapRef<typeof import('./composables/useDialogLogin')['useLoginDialog']>
     readonly useLogout: UnwrapRef<typeof import('./composables/useLoginout')['useLogout']>
+    readonly useLogoutDialog: UnwrapRef<typeof import('./composables/useDialogLogout')['useLogoutDialog']>
     readonly useMagicKeys: UnwrapRef<typeof import('@vueuse/core')['useMagicKeys']>
     readonly useManualRefHistory: UnwrapRef<typeof import('@vueuse/core')['useManualRefHistory']>
     readonly useMediaControls: UnwrapRef<typeof import('@vueuse/core')['useMediaControls']>

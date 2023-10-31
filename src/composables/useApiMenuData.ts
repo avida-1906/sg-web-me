@@ -13,11 +13,24 @@ export interface MenuItem {
   value?: any
   radioChange?: (val: any) => void
   fixtureCount?: number
+  callBack?: () => void
 }
 
 export type Menu = Array<MenuItem>
 
 export function useApiMenuData() {
+  const { openWalletDialog } = useWalletDialog()
+  const { openSafeDialog } = useSafeDialog()
+  const { openVipDialog } = useVipDialog()
+  const { openStatisticsDialog } = useStatisticsDialog()
+  const { openLogoutDialog } = useLogoutDialog()
+  const {
+    openRightSidebar,
+    closeRightSidebar,
+    rightIsExpand,
+    currentRightSidebarContent,
+  } = useRightSidebar()
+
   const { locale, t } = useI18n()
   const { isLogin } = storeToRefs(useAppStore())
   const { casinoGameList } = storeToRefs(useCasinoStore())
@@ -176,6 +189,10 @@ export function useApiMenuData() {
     },
   ])
 
+  const getActiveShown = computed(() => {
+    return (shown: string) => rightIsExpand.value
+    && shown === currentRightSidebarContent.value
+  })
   const staticMenu1 = computed(() => <Menu>[
     isLogin.value
       ? {
@@ -187,16 +204,47 @@ export function useApiMenuData() {
               title: '钱包',
               path: '',
               icon: 'navbar-wallet',
-              modalQuery:
-          { modal: 'vault', operation: 'deposit' },
+              // modalQuery: { modal: 'vault', operation: 'deposit' },
+              callBack: () => {
+                openWalletDialog()
+              },
             },
-            { title: '保险库', path: '', icon: 'navbar-cart' },
-            { title: 'VIP', path: '', icon: 'chess-air-bonus' },
-            { title: '统计数据', path: '', icon: 'uni-trend' },
-            { title: '通知', path: '', icon: 'tabbar-bet' },
+            {
+              title: '保险库',
+              path: '',
+              icon: 'navbar-cart',
+              callBack: () => openSafeDialog(),
+            },
+            {
+              title: 'VIP',
+              path: '',
+              icon: 'chess-air-bonus',
+              callBack: () => openVipDialog(),
+            },
+            {
+              title: '统计数据',
+              path: '',
+              icon: 'uni-trend',
+              callBack: () => openStatisticsDialog(),
+            },
+            {
+              title: '通知',
+              path: '',
+              icon: 'tabbar-bet',
+              callBack: () => {
+                getActiveShown.value(EnumRightSidebarContent.NOTIFICATION)
+                  ? closeRightSidebar()
+                  : openRightSidebar(EnumRightSidebarContent.NOTIFICATION)
+              },
+            },
             { title: '体育投注', path: '/sports/my-bets', icon: 'spt-basketball' },
             { title: '设置', path: '/settings/general', icon: 'uni-set' },
-            { title: '登出', path: '', icon: 'uni-logout' },
+            {
+              title: '登出',
+              path: '',
+              icon: 'uni-logout',
+              callBack: () => openLogoutDialog(),
+            },
           ],
           domId: 'static-menu-user',
         }
@@ -282,6 +330,9 @@ export function useApiMenuData() {
     }
     else if (item.list && item.list.length) {
       openLeftSidebar()
+    }
+    else if (item.callBack) {
+      item.callBack()
     }
     else if (item.modalQuery) {
       if (isMobile.value)

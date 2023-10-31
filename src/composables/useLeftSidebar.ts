@@ -1,5 +1,5 @@
 export const useLeftSidebar = createGlobalState(() => {
-  const leftIsExpand = useDebouncedRef({ value: false, delay: 100, beforeTrigger, afterTrigger })
+  const leftIsExpand = useDebouncedRef({ value: window.innerWidth >= 1200, delay: 100, beforeTrigger, afterTrigger })
   const { bool: isSwitching, setTrue, setFalse } = useBoolean(false)
   const switchTo = ref<'big' | 'small' | ''>('')
 
