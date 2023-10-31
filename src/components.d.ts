@@ -15,7 +15,6 @@ declare module 'vue' {
     AppBanner: typeof import('./components/AppBanner.vue')['default']
     AppBannerUnlimited: typeof import('./components/AppBannerUnlimited.vue')['default']
     AppBetData: typeof import('./components/AppBetData.vue')['default']
-    AppBtnLoginReg: typeof import('./components/AppBtnLoginReg.vue')['default']
     AppCardHolder: typeof import('./components/AppCardHolder.vue')['default']
     AppCardList: typeof import('./components/AppCardList.vue')['default']
     AppCasinoIframe: typeof import('./components/AppCasinoIframe.vue')['default']
