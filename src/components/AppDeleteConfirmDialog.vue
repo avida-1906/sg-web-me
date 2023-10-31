@@ -27,9 +27,9 @@ const {
   validate: validatePassword,
 } = useField<string>('password', (value) => {
   if (!value)
-    return '请输入交易密码'
+    return '请输入资金密码'
   else if (!payPasswordReg.test(value))
-    return '请输入6位数字组成的交易密码'
+    return '请输入6位数字组成的资金密码'
   return ''
 })
 
@@ -73,9 +73,9 @@ async function deleteConfirm() {
     <div class="pay-password">
       <BaseInput
         v-model="password"
-        label="交易密码"
+        label="资金密码"
         :msg="pwdErrorMsg"
-        placeholder="请输入交易密码"
+        placeholder="请输入资金密码"
         type="password"
         max="6"
         must

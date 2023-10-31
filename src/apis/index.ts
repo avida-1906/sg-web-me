@@ -109,7 +109,7 @@ export interface IMemberDetail {
   google_key: string
   /** 1谷歌未认证 2谷歌已认证 */
   google_verify: number
-  /** 是否设置交易密码 0=未设置 1=已设置 */
+  /** 是否设置资金密码 0=未设置 1=已设置 */
   pay_password: string
   online: string
   /** 账户余额 */
@@ -567,7 +567,7 @@ export function ApiMemberWalletInsert(data: {
   address: string
   /** 是否默认：1：是，2否 */
   is_default?: number
-  /** 交易密码 */
+  /** 资金密码 */
   pay_password: string
 }) {
   return httpClient.post<string>('/member/wallet/insert', data)
@@ -638,11 +638,11 @@ export function ApiMemberEmailCheck(data: {
 }
 
 /**
-  * 设置交易密码
+  * 设置资金密码
   * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=7f28bcd5-c379-4de4-9027-cf3ce6f23695
   */
 export function ApiMemberPayPasswordUpdate(data: {
-  /** 交易密码 */
+  /** 资金密码 */
   pay_password: string
   /** 邮箱验证码 */
   code: string

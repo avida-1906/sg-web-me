@@ -23,7 +23,10 @@ export const useAppStore = defineStore('app', () => {
     manual: false,
     onSuccess(res) {
       navButtons.value = res.map((a) => {
-        return { ...a, title: a.name === '娱乐城' ? 'casino' : 'sports' }
+        return {
+          ...a,
+          title: a.name === '娱乐城' ? 'casino' : a.name === '体育' ? 'sports' : '_',
+        }
       })
     },
   })
