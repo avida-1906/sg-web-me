@@ -26,6 +26,20 @@ interface IBetSlipData {
   [key: string]: any
 }
 
+export const AllOddsTypes: Array<{
+  title: string
+  path: string
+  icon: string
+  value: EnumSportsOddsType
+}> = [
+  { title: '小数式', path: '', icon: '', value: EnumSportsOddsType.DECIMAL },
+  { title: '分数式', path: '', icon: '', value: EnumSportsOddsType.FRACTION },
+  { title: '美式', path: '', icon: '', value: EnumSportsOddsType.AMERICAN },
+  { title: '印尼格式', path: '', icon: '', value: EnumSportsOddsType.INDONESIA },
+  { title: '香港格式', path: '', icon: '', value: EnumSportsOddsType.HONGKONG },
+  { title: '马来格式', path: '', icon: '', value: EnumSportsOddsType.MALAYSIA },
+]
+
 export const useSportsStore = defineStore('sports', () => {
   /** 体育页面展示方式 */
   const sportsPanelType = ref(getSportsPanelType())

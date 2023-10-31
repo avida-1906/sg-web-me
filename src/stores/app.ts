@@ -2,7 +2,12 @@ import { acceptHMRUpdate, defineStore } from 'pinia'
 import { getInitLangIndex, loadLanguageAsync } from '~/modules/i18n'
 import { EnumLanguage } from '~/utils/enums'
 
-export const AllLanguages = [
+export const AllLanguages: Array<{
+  title: string
+  path: string
+  icon: string
+  value: EnumLanguage
+}> = [
   { title: '中文', path: '', icon: '', value: EnumLanguage['zh-CN'] },
   { title: 'Tiếng Việt', path: '', icon: '', value: EnumLanguage['vi-VN'] },
   { title: 'Português', path: '', icon: '', value: EnumLanguage['pt-BR'] },
