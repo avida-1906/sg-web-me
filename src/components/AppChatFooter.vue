@@ -9,10 +9,12 @@
 
 const chatStore = useChatStore()
 const { roomLang } = storeToRefs(chatStore)
-const { userInfo } = storeToRefs(useAppStore())
+const { userInfo, isLogin } = storeToRefs(useAppStore())
 const { openChatRulesDialog } = useChatRulesDialog()
 const { openStatisticsDialog } = useStatisticsDialog()
 const chatMessageBus = useEventBus(CHAT_MESSAGE_BUS)
+
+const { openNotify } = useNotify()
 
 const maxMsgLen = 512
 const msgInput = ref()
@@ -143,30 +145,11 @@ function addCommand(u: { command: string }) {
   msgInput.value?.getFocus()
 }
 function sendMsg() {
-  if (message.value[0] === '/') {
-    const temp = message.value.split(' ')
-    const firstSpaceIdx = message.value.indexOf(' ')
-    const param = firstSpaceIdx !== -1 ? message.value.slice(firstSpaceIdx) : ''
-    switch (temp[0]) {
-      case '/bet':
-        break
-      case '/user':
-        openStatisticsDialog(param.replace('@', ''))
-        break
-      case '/tip':
-        break
-      case '/rain':
-        break
-      case '/ignore':
-        break
-      case '/unignore':
-        break
-      default:
-        break
-    }
-    return
-  }
   if (message.value.length) {
+    if (!isLogin.value) {
+      openNotify({ type: 'error', message: '不允许此操作' })
+      return
+    }
     const t = new Date().getTime()
     const s = `${Math.random().toString(36).slice(-10)}|${t}`
     chatMessageBus.emit({ c: message.value, s, u: userInfo.value?.uid, n: userInfo.value?.username, t })
@@ -178,8 +161,36 @@ function sendMsg() {
 function enterPress(event: KeyboardEvent) {
   event.preventDefault()
   event.stopPropagation()
-  if (isCommand.value)
-    console.log('处理指令')
+  if (message.value.length) {
+    if (!isLogin.value) {
+      openNotify({ type: 'error', message: '不允许此操作' })
+      return
+    }
+    if (isCommand.value) {
+      const temp = message.value.split(' ')
+      const firstSpaceIdx = message.value.indexOf(' ')
+      const param = firstSpaceIdx !== -1 ? message.value.slice(firstSpaceIdx) : ''
+      switch (temp[0]) {
+        case '/bet':
+          break
+        case '/user':
+          openStatisticsDialog(param.replace('@', ''))
+          break
+        case '/tip':
+          break
+        case '/rain':
+          break
+        case '/ignore':
+          break
+        case '/unignore':
+          break
+        default:
+          break
+      }
+      return
+    }
+    sendMsg()
+  }
 }
 </script>
 

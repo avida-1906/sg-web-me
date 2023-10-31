@@ -67,6 +67,10 @@ export const useAppStore = defineStore('app', () => {
     setLoginFalse()
   }
 
+  onMounted(() => {
+    socketClient.connect()
+  })
+
   watch(visibility, (bool) => {
     // 如果页面可见，更新用户余额和用户信息
     if (bool === 'visible')
@@ -74,9 +78,9 @@ export const useAppStore = defineStore('app', () => {
   })
 
   watch(userInfo, () => {
-    // 如果有uid，连接socket
-    if (userInfo.value?.uid)
+    setTimeout(() => {
       socketClient.connect()
+    }, 0)
   })
 
   return {

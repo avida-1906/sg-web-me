@@ -167,8 +167,8 @@ onUnmounted(() => {
           align-items: center;
           justify-content: flex-start;
           gap: var(--tg-spacing-6);
+          font-size: var(--tg-font-size-base);
           > span {
-            font-size: var(--tg-font-size-base);
             font-weight: var(--tg-font-weight-semibold);
           }
         }

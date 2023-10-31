@@ -9,7 +9,7 @@ export function useLogout(callback?: () => void) {
   } = useRequest(ApiMemberLogout, {
     onSuccess() {
       appStore.removeToken()
-      socketClient.close()
+      // socketClient.close()
       closeRightSidebar()
       router.push('/')
       callback && callback()

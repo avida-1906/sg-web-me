@@ -90,15 +90,15 @@ const push = computed(() => {
 // 获取数据
 function getData() {
   if (isProvider.value)
-    runGameList(paramsGame.value)
+    runGameList(paramsGame.value).then(() => push.value())
   else if (isRec.value)
-    runRecList(paramsRec.value)
+    runRecList(paramsRec.value).then(() => push.value())
   else if (isCat.value)
-    runCateGames(paramsCate.value)
+    runCateGames(paramsCate.value).then(() => push.value())
 }
 // 游戏提供商选择变化
 function onPlatTypeChecked(v: string) {
-  runGameList({ ...paramsGame.value, platform_id: v })
+  runGameList({ ...paramsGame.value, platform_id: v }).then(() => push.value())
 }
 // 排序变化
 // function onSortChange(v: any) {
@@ -118,11 +118,11 @@ onBeforeRouteLeave(() => {
 
 // 初始化
 if (isProvider.value)
-  await application.allSettled([runGameList(paramsGame.value)])
+  await application.allSettled([runGameList(paramsGame.value).then(() => push.value())])
 else if (isRec.value)
-  await application.allSettled([runRecList(paramsRec.value)])
+  await application.allSettled([runRecList(paramsRec.value).then(() => push.value())])
 else if (isCat.value)
-  await application.allSettled([runCateGames(paramsCate.value)])
+  await application.allSettled([runCateGames(paramsCate.value).then(() => push.value())])
 </script>
 
 <template>
