@@ -81,6 +81,7 @@ async function submitLoginPwd() {
   <div class="tg-settings-security">
     <AppSettingsContentItem
       title="密码"
+      last-one
       :btn-loading="passwordUpdateLoading && logoutLoading"
       @submit="submitLoginPwd"
     >

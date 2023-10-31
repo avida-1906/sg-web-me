@@ -81,6 +81,7 @@ async function submitPayPwd() {
   <div class="tg-settings-security">
     <AppSettingsContentItem
       title="交易密码"
+      last-one
       :btn-loading="payPasswordUpdateLoading"
       :badge="getPayPwdState"
       @submit="submitPayPwd"
