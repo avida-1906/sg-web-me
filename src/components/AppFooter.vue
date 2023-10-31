@@ -62,7 +62,7 @@ function selectChange(v: EnumLanguage) {
         <div>自我排除</div>
         <div>Primedice<BaseIcon name="uni-jump-page" /></div>
       </div>
-      <div class="layout-spacing reset">
+      <div class="layout-spacing reset last-nav">
         <div class="nav-head">
           语言
         </div>
@@ -132,7 +132,7 @@ function selectChange(v: EnumLanguage) {
 <style scoped lang="scss">
 .select-wrap {
   --tg-base-select-popper-style-padding-x: 0;
-  --tg-base-select-popper-style-padding-y: var(--tg-spacing-4);
+  --tg-base-select-popper-style-padding-y:0;
 }
 .app-footer {
   /* background-color: #0F212E; */
@@ -173,6 +173,13 @@ function selectChange(v: EnumLanguage) {
       &:hover{
         --tg-icon-color: var(--tg-text-white);
         color: var(--tg-text-white);
+      }
+    }
+    .last-nav{
+      color:var(--tg-text-white);
+      gap: var(--tg-spacing-14);
+      .nav-head{
+         margin-bottom: var(--tg-spacing-0);
       }
     }
   }
