@@ -67,7 +67,6 @@ function onClickPopper() {
       :disabled="disabled"
       :distance="6"
       :popper-class="theme ? 'theme-black' : ''"
-      :hide-triggers="(triggers: any) => [...triggers, 'click']"
       @hide="setPopperClose"
     >
       <div
