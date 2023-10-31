@@ -85,6 +85,7 @@ function passwordVerifyPass(status: boolean) {
           autocomplete="current-password"
           :password="password"
           @focus="onFocus"
+          @down-enter="getMemberLogin"
         />
       </BaseLabel>
       <AppPasswordVerify

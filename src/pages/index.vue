@@ -30,7 +30,7 @@ const isXs = computed(() => appContentWidth.value <= widthBoundaryXs.value)
 
 const onShowMore = function () {
   toggleShowMore()
-  if (showMore)
+  if (showMore.value)
     btnText.value = '显示较少'
   else
     btnText.value = '查看更多'

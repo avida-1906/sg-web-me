@@ -177,6 +177,7 @@ const changeAisle = function (item: IPaymentMerchantData) {
   currentAisle.value = item.value
   currentAisleItem.value = item
   oftenAmount.value = strToArray(item.type === 1 ? item.amount_fixed : item.often_amount)
+  amountReset()
 }
 async function depositSubmit() {
   await amountValidate()
