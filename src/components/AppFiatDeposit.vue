@@ -72,9 +72,11 @@ const {
   loading: thirdDepositLoading,
 } = useRequest(ApiFinanceThirdDeposit, {
   onSuccess(data) {
-    const newWindow = window.open(data, 'myWindow')
-    if (newWindow)
-      newWindow.focus()
+    setTimeout(() => {
+      const newWindow = window.open(data, 'newWindow')
+      if (newWindow)
+        newWindow.focus()
+    })
   },
 })
 const {

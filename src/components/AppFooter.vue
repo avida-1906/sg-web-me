@@ -68,7 +68,7 @@ function selectOddsChange(v: EnumSportsOddsType) {
         <div>自我排除</div>
         <div>Primedice<BaseIcon name="uni-jump-page" /></div>
       </div>
-      <div class="layout-spacing reset language-set last-nav">
+      <div class="layout-spacing reset last-nav">
         <div class="nav-head">
           语言
         </div>
@@ -147,10 +147,6 @@ function selectOddsChange(v: EnumSportsOddsType) {
 .select-wrap {
   --tg-base-select-popper-style-padding-x: 0;
   --tg-base-select-popper-style-padding-y: 0;
-}
-.language-set {
-  color: var(--tg-text-white);
-  --tg-base-select-popper-style-padding-y:0;
 }
 .app-footer {
   /* background-color: #0F212E; */
