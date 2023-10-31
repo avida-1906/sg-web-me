@@ -30,6 +30,7 @@ const currentAisle = ref('')
 const currentAisleItem = ref<IPaymentMerchantData>()
 const username = ref('')
 const oftenAmount = ref<TOftenAmount[]>()
+const fixedAmount = ref<TOftenAmount[]>()
 
 const {
   value: amount,
@@ -95,6 +96,7 @@ const paymentMethodData = computed(() => {
     currentType.value = ''
     paymentMerchantList.value = undefined
     oftenAmount.value = []
+    fixedAmount.value = []
   }
   return []
 })
@@ -122,10 +124,8 @@ const paymentMerchantData = computed(() => {
       amount_min: firstMerchant.amount_min,
       amount_max: firstMerchant.amount_max,
     }
-    oftenAmount.value = strToArray(firstMerchant.amount_type === 1
-      ? firstMerchant.amount_fixed
-      : firstMerchant.often_amount,
-    )
+    oftenAmount.value = strToArray(firstMerchant.often_amount)
+    fixedAmount.value = strToArray(firstMerchant.amount_fixed)
     return paymentMerchantList.value.map((i) => {
       return {
         label: i.name,
@@ -176,7 +176,8 @@ const toCopy = function (item: string) {
 const changeAisle = function (item: IPaymentMerchantData) {
   currentAisle.value = item.value
   currentAisleItem.value = item
-  oftenAmount.value = strToArray(item.type === 1 ? item.amount_fixed : item.often_amount)
+  oftenAmount.value = strToArray(item.often_amount)
+  fixedAmount.value = strToArray(item.amount_fixed)
   amountReset()
 }
 async function depositSubmit() {
@@ -310,9 +311,9 @@ watch(() => currentType.value, (newValue) => {
               must-small
             >
               <BaseSelect
-                v-if="oftenAmount && oftenAmount.length"
+                v-if="fixedAmount && fixedAmount.length"
                 v-model="amount"
-                :options="oftenAmount"
+                :options="fixedAmount"
                 :msg="selectValueError"
                 small
               />
