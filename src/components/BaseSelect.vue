@@ -72,7 +72,12 @@ function onClickPopper() {
       <div
         ref="parent"
         class="popper-label"
-        :class="{ disabled, 'show-border': border, 'plain': plainPopperLabel }"
+        :class="{
+          disabled,
+          'show-border': border,
+          'plain': plainPopperLabel,
+          'border-red': !!msg,
+        }"
         @click="onClickPopper"
       >
         <slot name="label" :data="selectedOption">
@@ -82,6 +87,10 @@ function onClickPopper() {
         <div class="icon" :class="{ up: isPopperOpen }">
           <BaseIcon name="uni-arrow-down" />
         </div>
+      </div>
+      <div v-show="msg" class="msg">
+        <BaseIcon class="error-icon" name="uni-warning" />
+        <span>{{ msg }}</span>
       </div>
       <template #popper="{ hide }">
         <div class="scroll-y need-pad-y popper-wrap">
@@ -174,6 +183,9 @@ function onClickPopper() {
     border: 2px solid  var(--tg-border-color-main);
     border-radius: var(--tg-radius-default);
   }
+  &.border-red{
+    border-color: var(--tg-text-error);
+  }
   >span {
     display: flex;
     align-items: center;
@@ -206,7 +218,17 @@ function onClickPopper() {
     cursor: not-allowed;
   }
 }
-
+.msg {
+    margin-top: var(--tg-spacing-6);
+    font-size: var(--tg-font-size-md);
+    display: flex;
+    align-items: center;
+    span {
+      font-size: var(--tg-font-size-xs);
+      color: var(--tg-text-error);
+      margin-left: var(--tg-spacing-4);
+    }
+  }
 .popper-wrap {
   display: flex;
   flex-direction: column;
@@ -256,18 +278,6 @@ function onClickPopper() {
     color: var(--tg-text-error);
   }
 
-  .msg {
-    margin-top: var(--tg-spacing-6);
-    font-size: var(--tg-font-size-md);
-    display: flex;
-    align-items: center;
-
-    span {
-      font-size: var(--tg-font-size-xs);
-      color: var(--tg-text-error);
-      margin-left: var(--tg-spacing-4);
-    }
-  }
 }
 
 .select-warp {

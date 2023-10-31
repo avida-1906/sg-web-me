@@ -76,7 +76,7 @@ const {
       const newWindow = window.open(data, 'newWindow')
       if (newWindow)
         newWindow.focus()
-    })
+    }, 0)
   },
 })
 const {

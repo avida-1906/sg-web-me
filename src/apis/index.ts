@@ -859,3 +859,57 @@ export function ApiPaymentDepositBankList(params: {
     name: string
   }[]>('/payment/deposit/bank/list', params)
 }
+
+/**
+ * 代付方式-列表
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=65324c0c-c180-45e7-a0b9-c4780a506132
+ */
+export function ApiFinanceWithdrawMethodList(params: {
+  currency_id: string
+}) {
+  return httpClient.get<{
+    id: string
+    /** 方式别名 */
+    alias: string
+    /** 通道名称 */
+    name: string
+  }[]>('/finance/withdraw/method/list', params)
+}
+
+/**
+ * 代付平台-取款卡(原银行卡列表 使用该接口)
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=c11a2c44-2fc6-4838-a268-489205586e46
+ */
+export function ApiFinanceWithdrawBankcard(params: {
+  currency_id: string
+}) {
+  return httpClient.get<IResponseList<{
+    id: string
+    uid: string
+    username: string
+    currency_id: string
+    open_name: string
+    bank_name: string
+    bank_account: string
+    bank_area_cpf: string
+    is_default: number
+    state: number
+    created_at: number
+    updated_at: number
+    pay_password: string
+  }>>('/finance/withdraw/bankcard', params)
+}
+
+/**
+ * 法币取款申请
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=9412e69d-1dcc-463b-bf5e-61b4bbea2d60
+ */
+export function ApiFinanceWithdraw(data: {
+  currency_id: string
+  method_id: string
+  amount: string
+  pay_password: string
+  bankcard_id: string
+}) {
+  return httpClient.post<string>('/finance/withdraw', data)
+}
