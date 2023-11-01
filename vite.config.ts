@@ -220,5 +220,13 @@ export default defineConfig(({ mode }) => {
         external: /\.md$/,
       },
     },
+
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: '@import "./src/styles/global-function-mixin.scss";',
+        },
+      },
+    },
   }
 })
