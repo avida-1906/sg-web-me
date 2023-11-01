@@ -172,7 +172,7 @@ await application.allSettled([
       <AppBetData mode="home" />
     </div>
     <!-- 公司介绍 -->
-    <div class="index-introduction" :class="{ 'max-height': showMore }">
+    <div v-if="!isLogin" class="index-introduction" :class="{ 'max-height': showMore }">
       <div class="introduction-content" :class="{ 'column-count': !isSm }">
         <p>
           Stake.com 是加密货币博彩领域的全球领导者，拥有以比特币和其他加密货币进行投注的最佳赌场与体育博彩平台之一。
