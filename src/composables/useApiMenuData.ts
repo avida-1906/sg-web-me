@@ -33,10 +33,12 @@ export function useApiMenuData() {
 
   const appStore = useAppStore()
   const { t } = useI18n()
-  const { isLogin, userLanguage } = storeToRefs(appStore)
+  const { isLogin } = storeToRefs(appStore)
   const { casinoGameList } = storeToRefs(useCasinoStore())
   const sportStore = useSportsStore()
   const { sportsOddsType } = storeToRefs(sportStore)
+  const languageStore = useLanguageStore()
+  const { userLanguage, AllLanguages } = storeToRefs(languageStore)
 
   // casino
   const casinoMenu = ref<Menu>([
@@ -301,7 +303,7 @@ export function useApiMenuData() {
       icon: 'spt-odds',
       type: 'radio',
       value: userLanguage.value,
-      radioChange: (val: EnumLanguage) => appStore.changeLanguage(val),
+      radioChange: (val: EnumLanguage) => languageStore.changeLanguage(val),
       list: AllLanguages,
       domId: 'static-menu-language',
     },

@@ -3,8 +3,8 @@ import type { EnumSportsOddsType } from '~/stores/sports'
 import type { EnumLanguage } from '~/utils/enums'
 
 const router = useRouter()
-const appStore = useAppStore()
-const { userLanguage } = storeToRefs(appStore)
+const languageStore = useLanguageStore()
+const { userLanguage, AllLanguages } = storeToRefs(languageStore)
 const sportStore = useSportsStore()
 const { sportsOddsType } = storeToRefs(sportStore)
 
@@ -62,7 +62,7 @@ const menuData = [
 ]
 
 function selectChange(v: EnumLanguage) {
-  appStore.changeLanguage(v)
+  languageStore.changeLanguage(v)
 }
 function selectOddsChange(v: EnumSportsOddsType) {
   sportStore.setSportsOddsType(v)
