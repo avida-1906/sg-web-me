@@ -8,7 +8,7 @@ export function useDeleteConfirmDialog(
 ) {
   const { openDialog: openDeleteConfirm, closeDialog: closeDeleteConfirm } = useDialog({
     title: '删除确认',
-    icon: 'uni-delete',
+    icon: 'uni-delete2',
     default: () => h(AppDeleteConfirmDialog, {
       item,
       updateWalletList,

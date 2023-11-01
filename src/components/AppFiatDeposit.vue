@@ -60,7 +60,7 @@ const {
 })
 
 const {
-  run: runPaymentMethodList,
+  runAsync: runAsyncPaymentMethodList,
   data: paymentMethodList,
 } = useRequest(ApiFinanceMethodList)
 const {
@@ -76,7 +76,7 @@ const {
       const newWindow = window.open(data, 'newWindow')
       if (newWindow)
         newWindow.focus()
-    })
+    }, 0)
   },
 })
 const {
@@ -199,8 +199,8 @@ async function depositSubmit() {
 
 watch(() => props.activeCurrency, (newValue) => {
   if (newValue)
-    runPaymentMethodList({ currency_id: newValue.cur })
-}, { immediate: true })
+    runAsyncPaymentMethodList({ currency_id: newValue.cur })
+})
 watch(() => currentType.value, (newValue) => {
   if (newValue) {
     runPaymentMerchantList({ id: currentType.value })
@@ -210,6 +210,10 @@ watch(() => currentType.value, (newValue) => {
       runPaymentDepositBankList({ id: currentTypeItem.value.zkId })
   }
 })
+
+await application.allSettled([
+  runAsyncPaymentMethodList({ currency_id: props.activeCurrency.cur }),
+])
 </script>
 
 <template>

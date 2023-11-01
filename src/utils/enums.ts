@@ -33,34 +33,28 @@ export enum EnumLanguage {
  */
 export enum EnumCurrency {
   /**
-   * BTC
-   * @description 比特币是一种点对点的数字货币，基于开源软件协议，不受中央机构管控。
-   * @see https://bitcoin.org/zh_CN/
-   */
-  BTC,
+ * BRL
+ * @description 巴西雷亚尔
+ * @see https://www.rbi.org.in/
+ */
+  BRL,
   /**
-   * USDT
-   * @description 泰达币是一种基于稳定币的加密货币，其价值与美元等价。
-   * @see https://tether.to/
-   */
-  USDT,
-  /**
-   * INR
-   * @description 印度卢比
-   * @see https://www.rbi.org.in/
-   */
-  INR,
-  /**
-   * CNY
-   * @description 人名币
-   * @see https://www.rbi.org.in/
-   */
+ * CNY
+ * @description 人名币
+ * @see https://www.rbi.org.in/
+ */
   CNY,
   /**
-   * VND
-   * @description 越南盾
-   * @see https://www.rbi.org.in/
-   */
+ * INR
+ * @description 印度卢比
+ * @see https://www.rbi.org.in/
+ */
+  INR,
+  /**
+ * VND
+ * @description 越南盾
+ * @see https://www.rbi.org.in/
+ */
   VND,
   /**
    * THB
@@ -69,19 +63,25 @@ export enum EnumCurrency {
    */
   THB,
   /**
-   * BRL
-   * @description 巴西雷亚尔
-   * @see https://www.rbi.org.in/
-   */
-  BRL,
+ * USDT
+ * @description 泰达币是一种基于稳定币的加密货币，其价值与美元等价。
+ * @see https://tether.to/
+ */
+  USDT,
   /**
-   * BRL
+   * BTC
+   * @description 比特币是一种点对点的数字货币，基于开源软件协议，不受中央机构管控。
+   * @see https://bitcoin.org/zh_CN/
+   */
+  BTC,
+  /**
+   * ETH
    * @description 以太币
    * @see https://www.rbi.org.in/
    */
   ETH,
   /**
-   * BRL
+   * BNB
    * @description 币安币
    * @see https://www.rbi.org.in/
    */

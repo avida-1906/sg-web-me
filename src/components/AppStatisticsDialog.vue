@@ -33,6 +33,7 @@ const props = withDefaults(defineProps<Props>(), {
 const {
   isLessThanSm,
 } = storeToRefs(useWindowStore())
+const { isLogin } = storeToRefs(useAppStore())
 
 const { bool: loading, setFalse: setLoadingFalse } = useBoolean(true)
 
@@ -274,129 +275,132 @@ onMounted(() => {
 <template>
   <div class="app-statistics-dialog">
     <div class="statistics-content">
-      <AppVipProgress :vip-progress-data="props.vipProgressData">
-        <template #title>
-          <p class="s-user-name">
-            {{ userName }}
-          </p>
-          <div class="s-join-date">
-            <span>加入日期：</span>
-            <span>2023年9月19日</span>
-          </div>
-        </template>
-      </AppVipProgress>
-      <div class="s-tab">
-        <BaseTab v-model="tab" :list="tabList" :full="true" />
-        <!-- 数据统计 -->
-        <div v-if="tab === '1'" class="statistics-wrap">
-          <BaseTable
-            :columns="statisticsColumns"
-            :data-source="statisticsTableData"
-            :loading="loading"
-          >
-            <template #totalBet="{ record }">
-              <div class="img-text-align-right">
-                <AppAmount
-                  :amount="record.totalBet"
-                  :currency-type="record.currencyType"
-                />
-              </div>
-            </template>
-          </BaseTable>
-        </div>
-        <!-- 奖杯 -->
-        <div
-          v-else-if="tab === '2'"
-          class="trophies-wrap"
-          :class="{ 'is-mobile': isLessThanSm }"
-        >
-          <div class="trophies-title">
-            <p class="title-left">
-              <BaseIcon name="chess-air-bonus" />
-              <span>Luckiest 赢</span>
+      <template v-if="isLogin">
+        <AppVipProgress :vip-progress-data="props.vipProgressData">
+          <template #title>
+            <p class="s-user-name">
+              {{ userName }}
             </p>
-            <BaseSelect v-model="selectValue" :options="selectOptions" :small="true" />
-          </div>
-          <div class="trophies-cards">
-            <div v-for="item, index in trophyCards" :key="index" class="t-card">
-              <div class="card-icon">
-                <BaseIcon :name="item.rankIcon" />
-              </div>
-              <div class="card-content">
-                <span class="game"><span>{{ item.gameName }}</span></span>
-                <span class="tag">{{ item.provider }}</span>
-              </div>
+            <div class="s-join-date">
+              <span>加入日期：</span>
+              <span>2023年9月19日</span>
             </div>
-          </div>
-          <div v-show="selectValue === '2'" class="trophies-table">
+          </template>
+        </AppVipProgress>
+        <div class="s-tab">
+          <BaseTab v-model="tab" :list="tabList" :full="true" />
+          <!-- 数据统计 -->
+          <div v-if="tab === '1'" class="statistics-wrap">
             <BaseTable
-              :columns="trophyColumns"
-              :data-source="trophyTableData"
+              :columns="statisticsColumns"
+              :data-source="statisticsTableData"
               :loading="loading"
             >
-              <template #game="{ record }">
-                <div class="t-game">
-                  <BaseIcon :name="record.gameIcon " />
-                  <span>Valletta Megaways</span>
-                </div>
-              </template>
-              <template #trophy="{ record }">
-                <BaseIcon :name="record.trophy " />
-              </template>
-            </BaseTable>
-          </div>
-        </div>
-        <!-- 竞赛 -->
-        <div v-else-if="tab === '3'" class="competition-wrap">
-          <div class="c-title">
-            <BaseIcon name="spt-competition" />
-            最新竞赛
-          </div>
-          <div class="competition-cards">
-            <div class="c-card">
-              <div class="card-top">
-                <div>4147th</div>
-                <div>US$1.00<BaseIcon name="coin-usdc" /></div>
-              </div>
-              <div class="card-bottom">
-                <div>$100,000 竞赛 – 24 小时</div>
-                <div>2023/7/17</div>
-              </div>
-            </div>
-          </div>
-          <div class="scroll-x competition-table">
-            <BaseTable
-              :columns="competitionColumns"
-              :data-source="competitionTableData"
-              :loading="loading"
-            >
-              <template #bonus="{ record }">
-                <div class="t-bonus">
-                  {{ record.bonus }} <BaseIcon :name="record.bonusIcon" />
+              <template #totalBet="{ record }">
+                <div class="img-text-align-right">
+                  <AppAmount
+                    :amount="record.totalBet"
+                    :currency-type="record.currencyType"
+                  />
                 </div>
               </template>
             </BaseTable>
           </div>
-          <AppStack
-            :pagination-data="paginationData"
-            @previous="onPrevious" @next="onNext"
-          />
-        </div>
-        <!-- 抽奖 -->
-        <div v-else-if="tab === '4'" class="sweepstakes-wrap">
-          <div class="sweepstakes-table">
-            <BaseTable
-              :columns="SweepstakesColumns"
-              :data-source="sweepstakesTableData"
-              :loading="loading"
+          <!-- 奖杯 -->
+          <div
+            v-else-if="tab === '2'"
+            class="trophies-wrap"
+            :class="{ 'is-mobile': isLessThanSm }"
+          >
+            <div class="trophies-title">
+              <p class="title-left">
+                <BaseIcon name="chess-air-bonus" />
+                <span>Luckiest 赢</span>
+              </p>
+              <BaseSelect v-model="selectValue" :options="selectOptions" :small="true" />
+            </div>
+            <div class="trophies-cards">
+              <div v-for="item, index in trophyCards" :key="index" class="t-card">
+                <div class="card-icon">
+                  <BaseIcon :name="item.rankIcon" />
+                </div>
+                <div class="card-content">
+                  <span class="game"><span>{{ item.gameName }}</span></span>
+                  <span class="tag">{{ item.provider }}</span>
+                </div>
+              </div>
+            </div>
+            <div v-show="selectValue === '2'" class="trophies-table">
+              <BaseTable
+                :columns="trophyColumns"
+                :data-source="trophyTableData"
+                :loading="loading"
+              >
+                <template #game="{ record }">
+                  <div class="t-game">
+                    <BaseIcon :name="record.gameIcon " />
+                    <span>Valletta Megaways</span>
+                  </div>
+                </template>
+                <template #trophy="{ record }">
+                  <BaseIcon :name="record.trophy " />
+                </template>
+              </BaseTable>
+            </div>
+          </div>
+          <!-- 竞赛 -->
+          <div v-else-if="tab === '3'" class="competition-wrap">
+            <div class="c-title">
+              <BaseIcon name="spt-competition" />
+              最新竞赛
+            </div>
+            <div class="competition-cards">
+              <div class="c-card">
+                <div class="card-top">
+                  <div>4147th</div>
+                  <div>US$1.00<BaseIcon name="coin-usdc" /></div>
+                </div>
+                <div class="card-bottom">
+                  <div>$100,000 竞赛 – 24 小时</div>
+                  <div>2023/7/17</div>
+                </div>
+              </div>
+            </div>
+            <div class="scroll-x competition-table">
+              <BaseTable
+                :columns="competitionColumns"
+                :data-source="competitionTableData"
+                :loading="loading"
+              >
+                <template #bonus="{ record }">
+                  <div class="t-bonus">
+                    {{ record.bonus }} <BaseIcon :name="record.bonusIcon" />
+                  </div>
+                </template>
+              </BaseTable>
+            </div>
+            <AppStack
+              :pagination-data="paginationData"
+              @previous="onPrevious" @next="onNext"
             />
           </div>
-          <AppStack
-            :pagination-data="paginationData"
-            @previous="onPrevious" @next="onNext"
-          />
+          <!-- 抽奖 -->
+          <div v-else-if="tab === '4'" class="sweepstakes-wrap">
+            <div class="sweepstakes-table">
+              <BaseTable
+                :columns="SweepstakesColumns"
+                :data-source="sweepstakesTableData"
+                :loading="loading"
+              />
+            </div>
+            <AppStack
+              :pagination-data="paginationData"
+              @previous="onPrevious" @next="onNext"
+            />
+          </div>
         </div>
-      </div>
+      </template>
+      <AppLoginRegTipBox v-else />
     </div>
   </div>
 </template>

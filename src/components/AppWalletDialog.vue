@@ -44,16 +44,23 @@ function handleShow(val: boolean) {
       />
       <!-- 存款 -->
       <template v-if="isDeposit && activeCurrency">
-        <AppVirtualDeposit
-          v-if="isVirtualCurrency(activeCurrency?.type)"
-          :active-currency="activeCurrency?.type"
-          @show="handleShow"
-        />
-        <AppFiatDeposit
-          v-else
-          :active-currency="activeCurrency"
-          @show="handleShow"
-        />
+        <Suspense timeout="0">
+          <AppVirtualDeposit
+            v-if="isVirtualCurrency(activeCurrency?.type)"
+            :active-currency="activeCurrency?.type"
+            @show="handleShow"
+          />
+          <AppFiatDeposit
+            v-else
+            :active-currency="activeCurrency"
+            @show="handleShow"
+          />
+          <template #fallback>
+            <div class="center dialog-loading-height">
+              <BaseLoading />
+            </div>
+          </template>
+        </Suspense>
       </template>
       <!-- 取款 -->
       <template v-else-if="isWithdraw && activeCurrency">
