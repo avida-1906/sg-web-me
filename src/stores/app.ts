@@ -17,20 +17,6 @@ export const useAppStore = defineStore('app', () => {
   /** 当前选择的语言 */
   const userLanguage = ref(getInitLangIndex())
 
-  /** 导航排序 */
-  const navButtons = ref<any>([])
-  useRequest(ApiMemberGameCateIndex, {
-    manual: false,
-    onSuccess(res) {
-      navButtons.value = res.map((a) => {
-        return {
-          ...a,
-          title: a.name === '娱乐城' ? 'casino' : a.name === '体育' ? 'sports' : '_',
-        }
-      })
-    },
-  })
-
   /** 是否登录，程序用这个变量来判断是否登录 */
   const { bool: isLogin, setTrue: setLoginTrue, setFalse: setLoginFalse } = useBoolean(!!getToken())
   /** 用户信息 */
@@ -88,7 +74,6 @@ export const useAppStore = defineStore('app', () => {
     removeToken,
     getToken,
     updateUserInfo,
-    navButtons,
     userLanguage,
     changeLanguage,
   }
