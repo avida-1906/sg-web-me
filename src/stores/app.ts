@@ -1,22 +1,6 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
-import { getInitLangIndex, loadLanguageAsync } from '~/modules/i18n'
-import { EnumLanguage } from '~/utils/enums'
-
-export const AllLanguages: Array<{
-  title: string
-  path: string
-  icon: string
-  value: EnumLanguage
-}> = [
-  { title: '中文', path: '', icon: '', value: EnumLanguage['zh-CN'] },
-  { title: 'Tiếng Việt', path: '', icon: '', value: EnumLanguage['vi-VN'] },
-  { title: 'Português', path: '', icon: '', value: EnumLanguage['pt-BR'] },
-]
 
 export const useAppStore = defineStore('app', () => {
-  /** 当前选择的语言 */
-  const userLanguage = ref(getInitLangIndex())
-
   /** 是否登录，程序用这个变量来判断是否登录 */
   const { bool: isLogin, setTrue: setLoginTrue, setFalse: setLoginFalse } = useBoolean(!!getToken())
   /** 用户信息 */
@@ -25,13 +9,6 @@ export const useAppStore = defineStore('app', () => {
     manual: false,
   })
   const visibility = useDocumentVisibility()
-
-  /** 更换语言 */
-  function changeLanguage(langIndex: EnumLanguage) {
-    Local.set(STORAGE_LANGUAGE_KEY, langIndex)
-    loadLanguageAsync(langIndex)
-    userLanguage.value = langIndex
-  }
 
   function setToken(token: string) {
     // 将token加密后存储到本地
@@ -80,8 +57,6 @@ export const useAppStore = defineStore('app', () => {
     removeToken,
     getToken,
     updateUserInfo,
-    userLanguage,
-    changeLanguage,
   }
 })
 

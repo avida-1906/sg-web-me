@@ -79,12 +79,6 @@ export function getInitLangIndex() {
   return index
 }
 
-/** 更换语言 */
-export function changeLanguage(langIndex: EnumLanguage) {
-  Local.set(STORAGE_LANGUAGE_KEY, langIndex)
-  loadLanguageAsync(langIndex)
-}
-
 /** 获取前端本地多语言 */
 export function getCurrentLanguage(): EnumLanguageKey {
   return i18n.global.locale.value as EnumLanguageKey
