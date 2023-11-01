@@ -745,7 +745,7 @@ function openMiniVideo() {
                         </div>
                       </template>
                       <template #default>
-                        <div class="market">
+                        <div class="market" :class="{ 'in-mobile': isMobile }">
                           <template v-if="temp.add_local_is_select">
                             <template
                               v-for="market in temp.markets"
@@ -780,7 +780,7 @@ function openMiniVideo() {
 
                 <BaseSecondaryAccordion title="比赛地图数">
                   <template #default>
-                    <div class="market">
+                    <div class="market" :class="{ 'in-mobile': isMobile }">
                       <div class="table" :style="{ '--itemCount': 1 }">
                         <div class="column heading">
                           <span>大</span>
@@ -817,7 +817,7 @@ function openMiniVideo() {
                     </div>
                   </template>
                   <template #default>
-                    <div class="market">
+                    <div class="market" :class="{ 'in-mobile': isMobile }">
                       <div class="correct-score-wrapper">
                         <AppBallRange v-model="rangeNum" title="Team BDS" />
                         <AppBallRange title="Team Whales" />
@@ -830,7 +830,7 @@ function openMiniVideo() {
                 </BaseSecondaryAccordion>
                 <BaseSecondaryAccordion title="至少在一张地图上获胜">
                   <template #default>
-                    <div class="market">
+                    <div class="market" :class="{ 'in-mobile': isMobile }">
                       <div class="">
                         <div class="row">
                           <div class="column heading">
@@ -1136,7 +1136,9 @@ function openMiniVideo() {
   padding: var(--tg-spacing-12) var(--tg-spacing-16);
   grid-template-columns:
     repeat(auto-fit, minmax(calc(33% - var(--tg-spacing-8)/2), 1fr));
-
+  &.in-mobile {
+    grid-template-columns: 1fr;
+  }
   .table {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

@@ -75,6 +75,10 @@ const breadcrumbs = [
   { label: '美国', value: 'usa' },
   { label: '美国职业棒球大联盟', value: 'mlb' },
 ]
+
+function goFixture() {
+  router.push('/sports/soccer/simulated-reality-league/eredivisie-srl/43873334-fc-volendam-srl-fc-utrecht-srl')
+}
 </script>
 
 <template>
@@ -125,7 +129,7 @@ const breadcrumbs = [
       <!-- 队名 -->
       <div class="fixture">
         <!-- 主队名称 -->
-        <div class="teams-name">
+        <div class="teams-name" @click="goFixture">
           <div v-if="onBallHome" class="left icon">
             <BaseIcon name="spt-tennis" />
           </div>
@@ -133,7 +137,7 @@ const breadcrumbs = [
         </div>
         <span> - </span>
         <!-- 客队名称 -->
-        <div class="teams-name">
+        <div class="teams-name" @click="goFixture">
           <span>李喆</span>
           <div v-if="onBallAway" class="icon right">
             <BaseIcon name="spt-tennis" />
@@ -149,14 +153,14 @@ const breadcrumbs = [
       <!-- 队名 -->
       <div class="teams">
         <!-- 主队名称 -->
-        <div class="teams-name">
+        <div class="teams-name" @click="goFixture">
           <span>朱卡耶夫，北比特</span>
           <div v-if="onBallHome" class="icon">
             <BaseIcon name="spt-tennis" />
           </div>
         </div>
         <!-- 客队名称 -->
-        <div class="teams-name">
+        <div class="teams-name" @click="goFixture">
           <span>李喆</span>
           <div v-if="onBallAway" class="icon">
             <BaseIcon name="spt-tennis" />

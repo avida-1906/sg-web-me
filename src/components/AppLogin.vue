@@ -73,14 +73,12 @@ function passwordVerifyPass(status: boolean) {
         <BaseInput
           v-model="username"
           :msg="usernameErrorMsg"
-          :placeholder="t('pls_enter_email_or_username')"
         />
       </BaseLabel>
       <BaseLabel :label="t('password')" must-small>
         <BaseInput
           v-model="password"
           :msg="pwdErrorMsg"
-          :placeholder="t('pls_enter_password')"
           type="password"
           autocomplete="current-password"
           :password="password"

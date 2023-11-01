@@ -153,20 +153,19 @@ async function toLogin() {
         <BaseLabel v-if="isEmailMust" :label="t('email_address')" must-small>
           <BaseInput
             v-model="email" :msg="emailErrorMsg"
-            :placeholder="t('pls_enter_email_address')"
             @blur="onEmailUsernameBlur(2)"
           />
         </BaseLabel>
         <BaseLabel :label="t('username')" must-small>
           <BaseInput
             v-model="username" :msg="usernameErrorMsg"
-            :placeholder="t('pls_enter_username')"
             @blur="onEmailUsernameBlur(1)"
           />
         </BaseLabel>
         <BaseLabel :label="t('password')" must-small>
           <BaseInput
-            v-model="password" :msg="pwdErrorMsg" :placeholder="t('pls_enter_password')"
+            v-model="password"
+            :msg="pwdErrorMsg"
             type="password"
             autocomplete="current-password" :password="password" @focus="onFocus"
             @blur="onPasswordBlur"
