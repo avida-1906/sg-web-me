@@ -11,8 +11,7 @@ interface Props {
 defineProps<Props>()
 
 const { t } = useI18n()
-const { triggerLeftSidebar } = useLeftSidebar()
-const { navButtons } = storeToRefs(useAppStore())
+const { triggerLeftSidebar, navButtons } = useLeftSidebar()
 const router = useRouter()
 const route = useRoute()
 </script>

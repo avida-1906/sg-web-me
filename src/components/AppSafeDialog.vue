@@ -188,7 +188,7 @@ watch(() => activeTab.value, () => {
         v-if="userInfo && userInfo.google_verify !== 2"
         bg-style="primary"
         size="md"
-        @click="router.push('/settings/security');closeDialog()"
+        @click="router.push('/settings/security-safe-check');closeDialog()"
       >
         开启双重验证
       </BaseButton>

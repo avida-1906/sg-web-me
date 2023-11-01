@@ -2,6 +2,19 @@ export const useLeftSidebar = createGlobalState(() => {
   const leftIsExpand = useDebouncedRef({ value: window.innerWidth >= 1200, delay: 100, beforeTrigger, afterTrigger })
   const { bool: isSwitching, setTrue, setFalse } = useBoolean(false)
   const switchTo = ref<'big' | 'small' | ''>('')
+  /** 导航排序 */
+  const navButtons = ref<{ title: string }[]>([])
+  useRequest(ApiMemberGameCateIndex, {
+    manual: false,
+    onSuccess(res) {
+      navButtons.value = res.map((a) => {
+        return {
+          ...a,
+          title: a.name === '娱乐城' ? 'casino' : a.name === '体育' ? 'sports' : '_',
+        }
+      })
+    },
+  })
 
   function beforeTrigger(expand_cur: boolean) {
     setTrue()
@@ -31,5 +44,6 @@ export const useLeftSidebar = createGlobalState(() => {
     openLeftSidebar,
     closeLeftSidebar,
     triggerLeftSidebar,
+    navButtons,
   }
 })

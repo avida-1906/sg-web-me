@@ -28,7 +28,7 @@ const {
 
 function handleSet() {
   props.toPayPwdSet()
-  router.push('/settings/security')
+  router.push('/settings/security-safe-pwd')
 }
 async function submit() {
   await paypasswordValidate()

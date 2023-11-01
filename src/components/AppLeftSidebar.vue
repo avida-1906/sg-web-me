@@ -6,8 +6,7 @@ interface Props {
 defineProps<Props>()
 const { t } = useI18n()
 const { isMobile } = storeToRefs(useWindowStore())
-const { triggerLeftSidebar, closeLeftSidebar } = useLeftSidebar()
-const { navButtons } = storeToRefs(useAppStore())
+const { triggerLeftSidebar, closeLeftSidebar, navButtons } = useLeftSidebar()
 const router = useRouter()
 const route = useRoute()
 
