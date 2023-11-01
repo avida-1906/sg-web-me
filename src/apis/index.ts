@@ -905,7 +905,7 @@ export function ApiFinanceWithdrawBankcard(params: {
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=9412e69d-1dcc-463b-bf5e-61b4bbea2d60
  */
 export function ApiFinanceWithdraw(data: {
-  currency_id: string
+  currency_id: number
   method_id: string
   amount: string
   pay_password: string

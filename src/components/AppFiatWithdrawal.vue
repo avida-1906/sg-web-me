@@ -8,16 +8,14 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {})
 
 const { isLessThanXs } = storeToRefs(useWindowStore())
+const { openNotify } = useNotify()
 
-const bankTypeData = ref([{ label: '银行转账', icon: 'fiat-bank', value: '1' }])
-const pixTypeData = ref([{ label: 'PIX', icon: 'fiat-pix', value: '2' }])
+const currentWithdrawMethod = ref('')
 
 /** '1' 银行卡， '2' pix 除了巴西其他国家都是银行卡 */
 const currentType = computed<'1' | '2'>(() =>
   props.activeCurrency.cur === '702' ? '2' : '1',
 )
-const currentTypeBanks = computed(() =>
-  currentType.value === '1' ? bankTypeData.value : pixTypeData.value)
 
 const {
   value: selectBank,
@@ -60,7 +58,30 @@ const {
 } = useRequest(ApiFinanceWithdrawBankcard)
 const {
   run: runWithdraw,
-} = useRequest(ApiFinanceWithdraw)
+} = useRequest(ApiFinanceWithdraw, {
+  onSuccess() {
+    openNotify({
+      type: 'success',
+      message: '出款申请成功',
+    })
+    selectBankReset()
+    amountReset()
+    payPasswordReset()
+  },
+})
+
+const withdrawMethodData = computed(() => {
+  if (withdrawMethodList.value) {
+    currentWithdrawMethod.value = withdrawMethodList.value[0].id
+    return withdrawMethodList.value.map((item) => {
+      return {
+        label: item.name,
+        value: item.id,
+      }
+    })
+  }
+  return []
+})
 
 const bindBanks = computed(() => {
   if (withdrawBankcardList.value) {
@@ -96,8 +117,8 @@ async function withDrawSubmit() {
   await payPasswordValidate()
   if (!selectBankError.value && !amountError.value && !payPasswordError.value) {
     runWithdraw({
-      currency_id: props.activeCurrency.cur,
-      method_id: '',
+      currency_id: Number(props.activeCurrency.cur),
+      method_id: currentWithdrawMethod.value,
       amount: amount.value,
       pay_password: payPassword.value,
       bankcard_id: bankcardId.value,
@@ -131,7 +152,10 @@ await application.allSettled(
     </div>
     <!-- 出款信息 -->
     <div v-else class="withdrawal-wrap">
-      <AppWithdrawalDepositType v-model="currentType" :current-type="currentTypeBanks" />
+      <AppWithdrawalDepositType
+        v-model="currentWithdrawMethod"
+        :current-type="withdrawMethodData"
+      />
       <div class="withdrawal-info">
         <BaseLabel :label="currentType === '1' ? '出款银行卡' : 'PIX账号'" must>
           <BaseSelect
