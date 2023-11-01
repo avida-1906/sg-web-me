@@ -30,6 +30,7 @@ export const useCasinoStore = defineStore('casino', () => {
         path: a.ty === 1
           ? `/casino/group/category?cid=${a.cid}&name=${a.name}`
           : `/casino/group/provider?pid=${a.platform_id}&name=${a.name}`,
+        useCloudImg: true,
       }))
       : [])
 
