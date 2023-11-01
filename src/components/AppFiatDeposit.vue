@@ -309,7 +309,6 @@ await application.allSettled([
             <BaseLabel
               v-if="currentAisleItem?.type === 2"
               :label="`充值金额: ${activeCurrency.prefix}`"
-              must-small
             >
               <BaseInput
                 v-model="amount"
@@ -319,7 +318,6 @@ await application.allSettled([
             <BaseLabel
               v-else
               :label="`充值金额: ${activeCurrency.prefix}`"
-              must-small
             >
               <BaseSelect
                 v-if="fixedAmount && fixedAmount.length"
