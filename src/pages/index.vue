@@ -145,7 +145,7 @@ await application.allSettled([
       />
     </div> -->
     <!-- 加密货币 -->
-    <div
+    <!-- <div
       class="index-buy-cryptocurrency"
       :class="[isXs ? 'flex-wrap' : 'grid-wrap']"
     >
@@ -166,7 +166,7 @@ await application.allSettled([
           购买加密货币
         </BaseButton>
       </div>
-    </div>
+    </div> -->
     <!-- 投注 -->
     <div class="index-bet">
       <AppBetData mode="home" />
@@ -618,7 +618,7 @@ await application.allSettled([
 .is-mobile{
   .dark-background{
     &:before {
-      display: none;
+      // display: none;
     }
     .top-wrapper{
       grid-template-columns:100%;
