@@ -37,7 +37,7 @@ const {
     openNotify({
       type: 'success',
       title: '绑定',
-      message: '恭喜你！绑定成功',
+      message: '绑定成功',
     })
     closeAllDialog()
   },

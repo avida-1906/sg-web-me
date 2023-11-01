@@ -100,7 +100,8 @@ const {
   onSuccess() {
     openNotify({
       type: 'success',
-      message: '添加成功',
+      title: '绑定',
+      message: '绑定成功',
     })
     usernameReset()
     banknameReset()
