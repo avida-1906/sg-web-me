@@ -60,9 +60,9 @@ function getActiveValue() {
   emit('change', activeCurrency.value)
 }
 
-// watch(() => getCurrencyList.value, () => {
-//   getActiveValue()
-// })
+watch(() => props.type, () => {
+  getActiveValue()
+})
 
 onMounted(() => {
   getActiveValue()
