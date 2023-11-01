@@ -304,7 +304,7 @@ export function useApiMenuData() {
       type: 'radio',
       value: userLanguage.value,
       radioChange: (val: EnumLanguage) => languageStore.changeLanguage(val),
-      list: AllLanguages,
+      list: AllLanguages.value,
       domId: 'static-menu-language',
     },
   ])
