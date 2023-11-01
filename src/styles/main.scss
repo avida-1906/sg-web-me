@@ -1,7 +1,3 @@
-@function scalePixelValue($value, $idealViewportWidth: 1600, $min: 770px, $max: 1200px) {
-  @return calc(#{$value} * (clamp(#{$min}, 100vw, #{$max}) / #{$idealViewportWidth}))
-}
-
 :root {
   /* 主色&辅色 */
   --tg-primary-main: #1A2C38;
