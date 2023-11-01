@@ -289,7 +289,6 @@ function generateQRCodeUrl(params: {
               v-model="loginPassword"
               :msg="loginPwdErrorMsg"
               :disabled="doubleVerified"
-              placeholder="请输入登陆密码"
               type="password"
             />
           </BaseLabel>
@@ -299,7 +298,6 @@ function generateQRCodeUrl(params: {
                 v-model="doublePassword"
                 :msg="doublePwdErrorMsg"
                 :disabled="doubleVerified"
-                placeholder="请输入双重验证密码"
                 type="password"
               />
             </BaseLabel>

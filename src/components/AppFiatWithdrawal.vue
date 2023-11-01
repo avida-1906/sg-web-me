@@ -55,7 +55,15 @@ const {
 const {
   runAsync: runAsyncWithdrawBankcardList,
   data: withdrawBankcardList,
-} = useRequest(ApiFinanceWithdrawBankcard)
+} = useRequest(ApiFinanceWithdrawBankcard, {
+  onSuccess(data) {
+    const temp = data.d.find(i => i.is_default === 1)?.bank_account
+    if (temp)
+      selectBank.value = temp
+    else
+      selectBankReset()
+  },
+})
 const {
   run: runWithdraw,
 } = useRequest(ApiFinanceWithdraw, {
@@ -80,19 +88,21 @@ const withdrawMethodData = computed(() => {
       }
     })
   }
+  currentWithdrawMethod.value = ''
   return []
 })
 
 const bindBanks = computed(() => {
-  if (withdrawBankcardList.value) {
+  if (withdrawBankcardList.value && withdrawBankcardList.value.d) {
     return withdrawBankcardList.value.d.map((item) => {
-      if (item.is_default === 1)
-        selectBank.value = item.bank_account
+      // if (item.is_default === 1)
+      //   selectBank.value = item.bank_account
       return {
         label: item.bank_name,
         value: item.bank_account,
         icon: 'fiat-bank',
         name: item.open_name,
+        fullName: `${item.bank_name} ${item.bank_account}`,
         id: item.id,
       }
     })
@@ -101,7 +111,7 @@ const bindBanks = computed(() => {
 })
 
 const defaultBank = computed(() =>
-  bindBanks.value.find(a => a.value === selectBank.value)?.label ?? '',
+  bindBanks.value.find(a => a.value === selectBank.value)?.fullName ?? '',
 )
 const bankcardId = computed(() =>
   bindBanks.value.find(a => a.value === selectBank.value)?.id ?? '',
@@ -126,9 +136,12 @@ async function withDrawSubmit() {
   }
 }
 
-watch(() => props.activeCurrency, () => {
-  runAsyncWithdrawBankcardList({ currency_id: props.activeCurrency.cur })
-  runAsyncWithdrawMethodList({ currency_id: props.activeCurrency.cur })
+watch(() => props.activeCurrency, (newValue) => {
+  runAsyncWithdrawBankcardList({ currency_id: newValue.cur })
+  runAsyncWithdrawMethodList({ currency_id: newValue.cur })
+  selectBankReset()
+  amountReset()
+  payPasswordReset()
 })
 
 await application.allSettled(
@@ -168,7 +181,7 @@ await application.allSettled(
             <template #label>
               <span class="popper-label">
                 <BaseIcon v-if="defaultBank" name="fiat-bank" />
-                {{ defaultBank }} {{ selectBank }}
+                {{ defaultBank }}
               </span>
             </template>
             <template #option="{ data: { item, parentWidth } }">

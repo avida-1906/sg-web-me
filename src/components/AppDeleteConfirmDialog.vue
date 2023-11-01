@@ -75,7 +75,6 @@ async function deleteConfirm() {
         v-model="password"
         label="资金密码"
         :msg="pwdErrorMsg"
-        placeholder="请输入资金密码"
         type="password"
         max="6"
         must

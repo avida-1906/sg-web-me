@@ -10,16 +10,16 @@ const { t } = useI18n()
       </BaseDivider>
     </div>
     <div class="app-bottom-icon">
-      <BaseButton class="item-svg">
+      <BaseButton class="item-svg" size="sm">
         <BaseIcon name="facebook" />
       </BaseButton>
-      <BaseButton class="item-svg">
+      <BaseButton class="item-svg" size="sm">
         <BaseIcon name="google" />
       </BaseButton>
-      <BaseButton class="item-svg">
+      <BaseButton class="item-svg" size="sm">
         <BaseIcon name="line" />
       </BaseButton>
-      <BaseButton class="item-svg">
+      <BaseButton class="item-svg" size="sm">
         <BaseIcon name="messenger" />
       </BaseButton>
     </div>
@@ -28,6 +28,7 @@ const { t } = useI18n()
 
 <style lang='scss' scoped>
 .app-bottom {
+  font-size: var(--tg-font-size-default);
   display: flex;
   flex-direction: column;
   gap: var(--tg-spacing-16);

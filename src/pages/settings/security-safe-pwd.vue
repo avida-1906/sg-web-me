@@ -4,7 +4,7 @@ const { openNotify } = useNotify()
 const { userInfo } = storeToRefs(useAppStore())
 const { updateUserInfo } = useAppStore()
 const { openEmailCodeDialog, closeEmailCodeDialog } = useEmailCodeDialog()
-// 交易密码
+// 资金密码
 const {
   value: payPassword,
   errorMessage: payPwdErrorMsg,
@@ -18,7 +18,7 @@ const {
   if (!value)
     return t('pls_enter_password')
   else if (value !== payPassword.value)
-    return '两次输入的交易密码不一致'
+    return '两次输入的资金密码不一致'
   return ''
 })
 const {
@@ -29,9 +29,9 @@ const {
     openNotify({
       type: 'success',
       title: '成功',
-      message: '设置交易密码成功',
+      message: '设置资金密码成功',
     })
-    // 交易密码设置成功之后，刷新用户信息
+    // 资金密码设置成功之后，刷新用户信息
     updateUserInfo()
     closeEmailCodeDialog()
   },
@@ -45,7 +45,7 @@ function fieldVerifyPayPwd(value: string) {
   if (!value)
     return t('pls_enter_password')
   else if (!payPasswordReg.test(value))
-    return '您的交易密码含有6位数字'
+    return '您的资金密码含有6位数字'
   else if (aginPayPassword.value)
     valiAginPayPwd()
   return ''
@@ -80,14 +80,14 @@ async function submitPayPwd() {
 <template>
   <div class="tg-settings-security">
     <AppSettingsContentItem
-      title="交易密码"
+      title="资金密码"
       last-one
       :btn-loading="payPasswordUpdateLoading"
       :badge="getPayPwdState"
       @submit="submitPayPwd"
     >
       <template #top-desc>
-        交易密码将用于保护提款，保险库取款安全。
+        资金密码将用于保护提款，保险库取款安全。
       </template>
       <BaseLabel label="密码" must-small>
         <BaseInputPassword

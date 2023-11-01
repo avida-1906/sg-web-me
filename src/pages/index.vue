@@ -76,7 +76,8 @@ await application.allSettled([
           </AppVipProgress>
         </div>
         <div class="top-banner">
-          <AppBanner :mode="isSm ? 'default' : 'home'" />
+          <!-- <AppBanner :mode="isSm ? 'default' : 'home'" /> -->
+          <BaseImage url="https://mediumrare.imgix.net/welcome-top-zh.png?&dpr=2&format=auto&auto=format&w=540&q=50" />
         </div>
       </div>
     </div>
@@ -88,7 +89,7 @@ await application.allSettled([
           <span>娱乐城</span>
         </div>
         <div class="features-image">
-          <BaseImage url="/img/home/casino.png" class="base-img" />
+          <BaseImage url="https://mediumrare.imgix.net/welcome-casino-zh.jpg?&dpr=2&format=auto&auto=format&q=50&w=586" class="base-img" />
         </div>
         <div class="features-content">
           <p>最领先的在线加密货币赌场</p>
@@ -98,7 +99,7 @@ await application.allSettled([
           </p>
         </div>
         <div class="features-button">
-          <BaseButton bg-style="primary" class="w-100">
+          <BaseButton bg-style="primary" class="w-100" size="md">
             前往娱乐城
           </BaseButton>
         </div>
@@ -109,7 +110,7 @@ await application.allSettled([
           <span>体育</span>
         </div>
         <div class="features-image">
-          <BaseImage url="/img/home/sports.png" class="base-img" />
+          <BaseImage url="https://mediumrare.imgix.net/welcome-sports-zh.jpg?&dpr=2&format=auto&auto=format&q=50&w=586" class="base-img" />
         </div>
         <div class="features-content">
           <p>最棒的加密货币在线体育博彩</p>
@@ -119,7 +120,7 @@ await application.allSettled([
           </p>
         </div>
         <div class="features-button">
-          <BaseButton bg-style="primary" class="w-100">
+          <BaseButton bg-style="primary" class="w-100" size="md">
             前往体育博彩
           </BaseButton>
         </div>
@@ -144,7 +145,7 @@ await application.allSettled([
       />
     </div> -->
     <!-- 加密货币 -->
-    <div
+    <!-- <div
       class="index-buy-cryptocurrency"
       :class="[isXs ? 'flex-wrap' : 'grid-wrap']"
     >
@@ -165,7 +166,7 @@ await application.allSettled([
           购买加密货币
         </BaseButton>
       </div>
-    </div>
+    </div> -->
     <!-- 投注 -->
     <div class="index-bet">
       <AppBetData mode="home" />
@@ -301,7 +302,7 @@ await application.allSettled([
     .top-wrapper{
       display: grid;
       position: relative;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: 40% 50%;
       grid-gap: 2rem;
       justify-content: space-between;
       background-position: left 25% center;
@@ -370,7 +371,7 @@ await application.allSettled([
       }
       .top-banner{
         position: relative;
-        padding: var(--tg-spacing-24) 0;
+        // padding: var(--tg-spacing-4) 0;
       }
     }
   }
@@ -396,8 +397,9 @@ await application.allSettled([
         display: flex;
         justify-content: left;
         align-items: center;
-        position: absolute;
+        // position: absolute;
         z-index: 1;
+        line-height: 27px;
         > span {
           color: var(--tg-text-white);
           font-size: var(--tg-font-size-md);
@@ -424,6 +426,7 @@ await application.allSettled([
           color: var(--tg-text-white);
           font-size: var(--tg-font-size-base);
           font-weight: var(--tg-font-weight-bold);
+          line-height: 24px;
         }
         p:nth-child(2){
           color: var(--tg-text-lightgrey);
@@ -615,7 +618,7 @@ await application.allSettled([
 .is-mobile{
   .dark-background{
     &:before {
-      display: none;
+      // display: none;
     }
     .top-wrapper{
       grid-template-columns:100%;
