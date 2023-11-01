@@ -60,7 +60,7 @@ function getActiveValue() {
   emit('change', activeCurrency.value)
 }
 
-watch(() => getCurrencyList.value, () => {
+watch(() => props.type, () => {
   getActiveValue()
 })
 
@@ -105,7 +105,6 @@ onMounted(() => {
               v-model="searchValue"
               class="top-search"
               :clearable="searchValue?.length > 0"
-              :white-style="true"
               :style="{ 'max-width': showBalance ? '180px' : '140px' }"
               place-holder="搜索"
             />

@@ -54,7 +54,7 @@ function selectCurrency(item: EnumCurrencyKey, hide: () => void) {
               v-model="searchValue"
               class="top-search"
               :clearable="searchValue?.length > 0"
-              :white-style="true" place-holder="搜索货币"
+              place-holder="搜索货币"
             />
           </div>
           <div class="scroll-y popper-content">
