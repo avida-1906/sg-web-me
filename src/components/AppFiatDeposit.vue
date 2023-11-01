@@ -285,6 +285,11 @@ await application.allSettled([
                 :options="paymentDepositBankData"
                 :msg="selectValueError"
                 small
+                popper
+                border
+                :style="
+                  { '--tg-base-select-popper-style-padding-y': 'var(--tg-spacing-12)' }
+                "
               />
             </BaseLabel>
             <BaseLabel
@@ -304,7 +309,6 @@ await application.allSettled([
             <BaseLabel
               v-if="currentAisleItem?.type === 2"
               :label="`充值金额: ${activeCurrency.prefix}`"
-              must-small
             >
               <BaseInput
                 v-model="amount"
@@ -314,7 +318,6 @@ await application.allSettled([
             <BaseLabel
               v-else
               :label="`充值金额: ${activeCurrency.prefix}`"
-              must-small
             >
               <BaseSelect
                 v-if="fixedAmount && fixedAmount.length"
@@ -322,6 +325,11 @@ await application.allSettled([
                 :options="fixedAmount"
                 :msg="amountError"
                 small
+                popper
+                border
+                :style="
+                  { '--tg-base-select-popper-style-padding-y': 'var(--tg-spacing-12)' }
+                "
               />
             </BaseLabel>
             <BaseMoneyKeyboard
