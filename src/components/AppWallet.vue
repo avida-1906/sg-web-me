@@ -62,6 +62,7 @@ function selectCurrency(item: EnumCurrencyKey, hide: () => void) {
               v-for="item of renderBalanceList"
               :key="item.type"
               class="content-row"
+              :class="{ active: item.type === currentGlobalCurrency }"
               @click.stop="selectCurrency(item.type, hide)"
             >
               <AppAmount
@@ -155,9 +156,9 @@ function selectCurrency(item: EnumCurrencyKey, hide: () => void) {
       --tg-app-amount-width:14ch;
       line-height: 20px;
       transition: color .2s ease;
-      &:hover {
-        // background-color: var(--tg-text-lightgrey);
-        color: var(--tg-popper-hover-color-default);
+      &:hover,&.active {
+        background-color: var(--tg-text-blue);
+        // color: var(--tg-popper-hover-color-default);
       }
 
     }

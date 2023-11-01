@@ -115,7 +115,9 @@ onMounted(() => {
           >
             <div
               v-for="item of getCurrencyList"
-              :key="item.type" class="content-row"
+              :key="item.type"
+              class="content-row"
+              :class="{ active: item.type === activeCurrency?.type }"
               @click.stop="selectCurrency(item, hide)"
             >
               <AppAmount
@@ -225,9 +227,9 @@ onMounted(() => {
             --tg-app-amount-width: 14ch;
             transition: color 0.2s ease;
 
-            &:hover {
-                // background-color: var(--tg-text-lightgrey);
-                color: var(--tg-popper-hover-color-default);
+            &:hover,&.active {
+                background-color: var(--tg-text-blue);
+                // color: var(--tg-popper-hover-color-default);
             }
 
         }
