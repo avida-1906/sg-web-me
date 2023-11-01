@@ -275,7 +275,7 @@ onMounted(() => {
     >
       <BaseLabel label="电邮地址" must-small>
         <BaseInput
-          v-model="email" placeholder="请输入电邮地址"
+          v-model="email"
           :disabled="emailVerified"
           :msg="emailErrormsg"
           :class="{ 'general-base-input-background': emailVerified }"
@@ -309,7 +309,10 @@ onMounted(() => {
         />
       </BaseLabel>
       <BaseLabel label="手机号码" must-small>
-        <BaseInput v-model="paramsData.phone" placeholder="请绑定手机号码" type="number" />
+        <BaseInput
+          v-model="paramsData.phone"
+          type="number"
+        />
       </BaseLabel>
     </AppSettingsContentItem>
     <AppSettingsContentItem
