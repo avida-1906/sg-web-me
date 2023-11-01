@@ -14,6 +14,7 @@ export interface MenuItem {
   radioChange?: (val: any) => void
   fixtureCount?: number
   callBack?: () => void
+  useCloudImg?: boolean
 }
 
 export type Menu = Array<MenuItem>

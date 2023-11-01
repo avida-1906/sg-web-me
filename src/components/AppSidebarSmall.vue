@@ -77,7 +77,7 @@ function itemClick(item: MenuItem) {
       >
         <VTooltip placement="top">
           <div class="trigger" @click="itemClick(menuitem)">
-            <BaseIcon :name="menuitem.icon" />
+            <BaseIcon :name="menuitem.icon" :use-cloud-img="menuitem.useCloudImg" />
             <div
               v-if="menuitem.list && menuitem.list.length"
               class="flex-col-center arrow-right"
