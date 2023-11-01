@@ -18,6 +18,8 @@ export interface CurrencyData<T extends TTreeListType | string = string> {
   cur: string
   /** 银行列表 */
   bankTree: TBankTreeType<T>
+  /** 货币符号 */
+  prefix: string
 }
 
 interface CurrencyValue {
@@ -53,22 +55,22 @@ export const currencyConfig: Record<EnumCurrencyKey, CurrencyValue> = {
     bankTree: '017',
   },
   USDT: {
-    prefix: '',
+    prefix: 'USDT',
     cur: '706',
     bankTree: '',
   },
   BTC: {
-    prefix: '',
+    prefix: 'BTC',
     cur: '707',
     bankTree: '',
   },
   ETH: {
-    prefix: '',
+    prefix: 'ETG',
     cur: '708',
     bankTree: '',
   },
   BNB: {
-    prefix: '',
+    prefix: 'BNB',
     cur: '709',
     bankTree: '',
   },
@@ -121,6 +123,7 @@ export function useCurrencyData() {
           balanceWithSymbol: `${currencyConfig[type].prefix}${balanceNumber}`,
           cur: currencyConfig[type].cur,
           bankTree: currencyConfig[type].bankTree,
+          prefix: currencyConfig[type].prefix,
         })
       }
     }
