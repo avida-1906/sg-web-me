@@ -285,6 +285,11 @@ await application.allSettled([
                 :options="paymentDepositBankData"
                 :msg="selectValueError"
                 small
+                popper
+                border
+                :style="
+                  { '--tg-base-select-popper-style-padding-y': 'var(--tg-spacing-12)' }
+                "
               />
             </BaseLabel>
             <BaseLabel
@@ -322,6 +327,11 @@ await application.allSettled([
                 :options="fixedAmount"
                 :msg="amountError"
                 small
+                popper
+                border
+                :style="
+                  { '--tg-base-select-popper-style-padding-y': 'var(--tg-spacing-12)' }
+                "
               />
             </BaseLabel>
             <BaseMoneyKeyboard

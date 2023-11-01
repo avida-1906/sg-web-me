@@ -36,7 +36,7 @@ const error = computed(() => !!props.msg)
 const selectedOption = computed(() =>
   props.options.find(a => a.value === props.modelValue))
 const popperLabel = computed(() =>
-  props.options.find(a => a.value === props.modelValue)?.label ?? '-')
+  props.options.find(a => a.value === props.modelValue)?.label ?? '')
 
 function onChange(event: any) {
   const v = event.target.value
