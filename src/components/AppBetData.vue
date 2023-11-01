@@ -286,7 +286,7 @@ onMounted(() => {
   <div class="app-bet-data">
     <div class="bet-data-head">
       <BaseTab v-model="activeTab" :list="getTabOptions" size="large" />
-      <div v-if="isGreaterThanSm" class="select-ranking center">
+      <div v-if="isGreaterThanSm && mode !== 'home'" class="select-ranking center">
         <VTooltip placement="top">
           <div
             class="switch-hidden"
