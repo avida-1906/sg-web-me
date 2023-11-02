@@ -38,6 +38,8 @@ const currencyId = ref(props.activeCurrency.cur ?? '')
 const { bool: isDefault, setFalse: setIsDefaultFalse } = useBoolean(false)
 const bankTypeData = ref([{ label: '银行转账', icon: 'fiat-bank', value: '1' }])
 const pixTypeData = ref([{ label: 'PIX', icon: 'fiat-pix', value: '2' }])
+const callback = ref<(() => void) | undefined>(props.callback)
+
 const currentTypeBanks = computed(() =>
   props.currentType === '1' ? bankTypeData.value : pixTypeData.value)
 
@@ -146,6 +148,7 @@ const onBindBank = async function () {
         })
       },
       toPayPwdSet: () => {
+        callback.value = undefined
         closeDialog()
         closePayPwdDialog()
       },
@@ -167,7 +170,7 @@ onMounted(() => {
     openName.value = props.openName
 })
 onUnmounted(() => {
-  props.callback && props.callback()
+  callback.value && callback.value()
 })
 </script>
 
@@ -203,7 +206,11 @@ onUnmounted(() => {
           class="base-select"
         />
       </BaseLabel>
-      <BaseLabel :label="isBankType ? '银行卡号' : 'PIX账户 '" must>
+      <BaseLabel
+        v-if="isBankType || bankName"
+        :label="isBankType ? '银行卡号' : 'PIX账户 '"
+        must
+      >
         <BaseInput
           v-model="bankAccount"
           :msg="bankaccountError"
