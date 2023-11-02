@@ -104,7 +104,6 @@ function onClick() {
     border-radius: 100px;
 
     .icon {
-      background-image: url('');
       border-radius: 50%;
       width: var(--tg-spacing-10);
       height: var(--tg-spacing-10);

@@ -22,7 +22,6 @@ if [ ! -d "$pngPath" ]; then
   exit 1
 fi
 
-# 递归遍历 pngPath 下的所有 png 图片，将png转换成webp
 function png2webp() {
   for file in `ls $1`
   do
@@ -37,18 +36,19 @@ function png2webp() {
   done
 }
 
-function png2avif() {
-  for file in `ls $1`
-  do
-    if [ -d $1"/"$file ]; then
-      png2avif $1"/"$file
-    else
-      if [ ! -d ${1/$pngPath/$avifPath} ]; then
-        mkdir -p ${1/$pngPath/$avifPath}
-      fi
-      avifenc $1"/"$file ${1/$pngPath/$avifPath}"/"${file/.png/.avif}
-    fi
-  done
-}
+# function png2avif() {
+#   for file in `ls $1`
+#   do
+#     if [ -d $1"/"$file ]; then
+#       png2avif $1"/"$file
+#     else
+#       if [ ! -d ${1/$pngPath/$avifPath} ]; then
+#         mkdir -p ${1/$pngPath/$avifPath}
+#       fi
+#       ffmpeg -i $1"/"$file -compression_level 20 -pix_fmt yuv444p10le -color_primaries bt709 -color_trc bt709 -colorspace bt709 -c:v av1 -strict experimental -b:v 0 -crf 30 -y ${1/$pngPath/$avifPath}"/"${file/.png/.avif}
+#     fi
+#   done
+# }
 
 png2webp $pngPath
+# png2avif $pngPath
