@@ -8,6 +8,7 @@ interface Props {
   height?: string // 图像高度px
   fit?: 'contain' | 'fill' | 'cover' // 图像如何适应容器高度和宽度
   isCloud?: boolean
+  objectPosition?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -16,6 +17,7 @@ const props = withDefaults(defineProps<Props>(), {
   width: '100%',
   height: '100%',
   fit: 'contain',
+  objectPosition: 'center center',
 })
 
 const emit = defineEmits(['clickImg', 'errorImg'])
@@ -36,7 +38,8 @@ const imgUrl = computed(() => {
 <template>
   <div class="base-image" :abc="imgUrl">
     <img
-      :style="`width: ${width}; height: ${height}; object-fit: ${fit};`"
+      :style="`width: ${width}; height: ${height};
+      object-fit: ${fit};object-position:${objectPosition};`"
       loading="lazy"
       :src="imgUrl"
       @click="emit('clickImg')"
@@ -54,6 +57,7 @@ const imgUrl = computed(() => {
 
 <style lang="scss" scoped>
 .base-image {
+  position: relative;
   width: 100%;
   height: 100%;
 

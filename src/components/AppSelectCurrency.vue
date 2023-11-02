@@ -161,8 +161,8 @@ onMounted(() => {
         #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.1)} inset;
 
         .arrow {
-            font-size: 10px;
-            margin-left: 9px;
+            font-size: var(--tg-font-size-default);
+            margin-left: var(--tg-spacing-9);
         }
 
         .arrow-up {
