@@ -10,6 +10,10 @@ export type TCurrencyObject = Prettify<{
   -readonly [K in EnumCurrencyKey]: string;
 }>
 
+interface INotNotice {
+  noNotify?: boolean
+}
+
 /** 后端返回数组时候的数据结构 */
 interface IResponseList<T> {
   d: T[]
@@ -667,7 +671,7 @@ export function ApiMemberExists(params: {
   ty: 1 | 2
   /** 会员名或者邮箱地址 */
   val: string
-}) {
+} & INotNotice) {
   return httpClient.get<string>('/member/exists', params)
 }
 

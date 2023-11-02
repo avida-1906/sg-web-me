@@ -50,25 +50,25 @@ const paramsData = ref<IUserInfo>({
 const socialData = [
   {
     label: 'Facebook',
-    img: '/img/settings/social-facebook.png',
+    img: '/png/settings/social-facebook.png',
     index: 'facebook',
   },
   {
     label: 'WhatsApp',
-    img: '/img/settings/social-whatsapp.png',
+    img: '/png/settings/social-whatsapp.png',
     index: 'whatsapp',
   },
   {
     label: 'Telegram',
-    img: '/img/settings/social-telegram.png',
+    img: '/png/settings/social-telegram.png',
     index: 'telegram',
   },
-  { label: 'Line', img: '/img/settings/social-line.png', index: 'line' },
-  { label: 'X', img: '/img/settings/social-x.png', index: 'twitter' },
-  { label: 'Zalo', img: '/img/settings/social-zalo.png', index: 'zalo' },
-  { label: 'Viber', img: '/img/settings/social-viber.png', index: 'viber' },
-  { label: 'WeChat', img: '/img/settings/social-wechat.png', index: 'wechat' },
-  // { label: 'QQ', img: '/img/settings/social-qq.png', index: 'qq' },
+  { label: 'Line', img: '/png/settings/social-line.png', index: 'line' },
+  { label: 'X', img: '/png/settings/social-x.png', index: 'twitter' },
+  { label: 'Zalo', img: '/png/settings/social-zalo.png', index: 'zalo' },
+  { label: 'Viber', img: '/png/settings/social-viber.png', index: 'viber' },
+  { label: 'WeChat', img: '/png/settings/social-wechat.png', index: 'wechat' },
+  // { label: 'QQ', img: '/png/settings/social-qq.png', index: 'qq' },
 ]
 const notifyData = ref<INotifyData>({
   type: 'success',
@@ -273,15 +273,17 @@ onMounted(() => {
       :verified="emailVerified || emailDisabledBtn" :badge="emailVerified"
       @submit="emailSubmit"
     >
-      <BaseLabel label="电邮地址" must-small>
-        <BaseInput
-          v-model="email"
-          :disabled="emailVerified"
-          :msg="emailErrormsg"
-          :class="{ 'general-base-input-background': emailVerified }"
-          @paste="emailPaste"
-        />
-      </BaseLabel>
+      <div style="margin-top: 16px;">
+        <BaseLabel label="电邮地址" must-small>
+          <BaseInput
+            v-model="email"
+            :disabled="emailVerified"
+            :msg="emailErrormsg"
+            :class="{ 'general-base-input-background': emailVerified }"
+            @paste="emailPaste"
+          />
+        </BaseLabel>
+      </div>
       <template #btm-right>
         <BaseButton
           type="text"

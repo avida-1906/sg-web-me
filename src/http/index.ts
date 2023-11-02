@@ -128,11 +128,14 @@ class HttpClient {
           }
         }
         else {
-          openNotify({
-            type: 'error',
-            code: `${responseStatus}`,
-            message: data || '系统错误',
-          })
+          if (!response.config.params?.noNotify) {
+            // 打印请求参数
+            openNotify({
+              type: 'error',
+              code: `${responseStatus}`,
+              message: data || '系统错误',
+            })
+          }
         }
 
         // 直接抛出错误，不再执行后续操作

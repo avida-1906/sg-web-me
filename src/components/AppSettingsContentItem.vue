@@ -119,7 +119,7 @@ const onSubmit = function () {
       .mid-form{
         width: 100%;
         max-width: var(--tg-app-settings-content-item-style-max-width);
-        padding: var(--tg-spacing-16) 0 var(--tg-spacing-10);
+        padding: var(--tg-spacing-16) 0 var(--tg-spacing-16);
         display: flex;
         flex-direction: column;
         gap: 1rem;
