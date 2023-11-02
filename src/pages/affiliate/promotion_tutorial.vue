@@ -15,6 +15,9 @@ function addEvent() {
 function removeEvent() {
   window.removeEventListener('resize', eventCallback)
   mainScroll?.removeEventListener('scroll', eventCallback, false)
+  line1.remove()
+  line2.remove()
+  line3.remove()
 }
 function eventCallback() {
   line1.position()
