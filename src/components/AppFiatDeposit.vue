@@ -31,6 +31,7 @@ const currentAisleItem = ref<IPaymentMerchantData>()
 const username = ref('')
 const oftenAmount = ref<TOftenAmount[]>()
 const fixedAmount = ref<TOftenAmount[]>()
+const newWindow = ref<HTMLElement | null>(null)
 
 const {
   value: amount,
@@ -73,15 +74,10 @@ const {
 } = useRequest(ApiFinanceThirdDeposit, {
   onSuccess(data) {
     /** 解决window.open 在safari/google手机浏览器无法打开新窗口 */
-    const a = document.createElement('a')
-    a.setAttribute('href', data)
-    a.setAttribute('target', '_blank')
-    a.setAttribute('id', 'openNewWindow')
-    document.body.appendChild(a)
-    a.click()
-    setTimeout(() => {
-      document.body.removeChild(a)
-    }, 0)
+    if (newWindow.value) {
+      newWindow.value.setAttribute('href', data)
+      newWindow.value.click()
+    }
   },
 })
 const {
@@ -349,6 +345,8 @@ await application.allSettled([
       </template>
     </div>
   </div>
+  <!-- safari/google  手机浏览器无法打开新窗口 -->
+  <a ref="newWindow" href="" target="_blank" style="display: none;" />
 </template>
 
 <style lang='scss' scoped>
