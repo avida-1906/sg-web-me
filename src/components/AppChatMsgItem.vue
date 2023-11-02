@@ -9,24 +9,43 @@
  * /指令空格
  */
 interface Props {
-  msgInfo: ChatMessageInfo
+  msgInfo?: ChatMessageInfo
 }
 
 withDefaults(defineProps<Props>(), {})
+
+function getRandomInt(max: number) {
+  return Math.floor(Math.random() * max)
+}
+const randomLoads = ref<any[]>([])
+for (let i = 1; i <= getRandomInt(3) + 1; i++)
+  randomLoads.value.push({ width: `${getRandomInt(50) + 50}%` })
 </script>
 
 <template>
   <section class="tg-chat-msg-item">
-    <div v-if="msgInfo.type" class="header">
-      <div v-if="msgInfo.type === 'tip'">
-        <span>发送小费</span>
+    <template v-if="msgInfo">
+      <div v-if="msgInfo.type" class="header">
+        <div v-if="msgInfo.type === 'tip'">
+          <span>发送小费</span>
+        </div>
       </div>
-    </div>
-    <div class="content">
-      <p>
-        <AppChatUserTags :user-info="msgInfo.user" />:
-        <AppChatMsgRender :msg="msgInfo.msg" />
-      </p>
+      <div class="content">
+        <p>
+          <AppChatUserTags :user-info="msgInfo.user" />:
+          <AppChatMsgRender :msg="msgInfo.msg" />
+        </p>
+      </div>
+    </template>
+    <div v-else class="loading">
+      <BaseSkeleton
+        v-for="i, idx in randomLoads"
+        :key="idx"
+        bg="#B1BAD3"
+        height="16px"
+        :width="i.width"
+        animated="ani-opacity"
+      />
     </div>
   </section>
 </template>
@@ -47,6 +66,13 @@ withDefaults(defineProps<Props>(), {})
   padding: var(--tg-spacing-8) var(--tg-spacing-16);
   border-radius: var(--tg-radius-default);
   background: var(--tg-secondary-grey);
+  .loading {
+    display: flex;
+    flex-direction: column;
+  }
+  .loading>*+* {
+    margin-top: var(--tg-spacing-8);
+  }
   .content {
     p {
       -webkit-text-size-adjust: 100%;
