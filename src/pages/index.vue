@@ -101,8 +101,7 @@ await application.allSettled([
         <div class="features-content">
           <p>最领先的在线加密货币赌场</p>
           <p>
-            浏览我们种类繁多的赌场游戏，让 Stake 为您提供既公平又有趣的在线博彩体验。
-            直接通过您的浏览器在老虎机、真人娱乐场、21点、百家乐、轮盘以及数以千计的经典赌场游戏包括您最喜爱的 Stake 原创游戏上进行投注。
+            {{ t('casino_index_description') }}
           </p>
         </div>
         <div class="features-button">
@@ -122,8 +121,7 @@ await application.allSettled([
         <div class="features-content">
           <p>最棒的加密货币在线体育博彩</p>
           <p>
-            通过我们的体育博彩平台投注于来自世界各地的体育团队、选手及联赛。
-            在综合格斗、篮球、足球等多个体育赛事的各种博彩项目上以及滚球盘口中进行投注，享受无与伦比的体育博彩体验。
+            {{ t('sports_index_description') }}
           </p>
         </div>
         <div class="features-button">
