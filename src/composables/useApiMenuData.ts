@@ -180,7 +180,7 @@ export function useApiMenuData() {
   ])
   const sportOddType = computed(() => <Menu>[
     {
-      title: `${t('sports_odds_title')}：${t(`sports_odds_${sportsOddsType.value}`)}`,
+      title: `${t('sports_odds_title')}： ${t(`sports_odds_${sportsOddsType.value}`)}`,
       path: '',
       icon: 'spt-odds',
       type: 'radio',
@@ -299,7 +299,7 @@ export function useApiMenuData() {
     },
     { title: '在线支持', path: '', icon: 'spt-online-support', list: [], domId: '' },
     {
-      title: `${t('language_title')}：${t('language_current')}`,
+      title: `${t('language_title')}： ${t('language_current')}`,
       path: '',
       icon: 'spt-odds',
       type: 'radio',
