@@ -20,7 +20,6 @@ const {
   value: email,
   errorMessage: emailErrorMsg,
   validate: validateEmail,
-  setErrors: setEmailErrors,
   handleBlur: blurEmail,
   meta: metaEmail,
 } = useField<string>('email', (value) => {
@@ -114,9 +113,7 @@ const { run: runExists } = useRequest(ApiMemberExists, {
     }
   },
   onError() {
-    if (curExists.value === 2)
-      setEmailErrors('邮箱已存在,请重新填写邮箱')
-    else if (curExists.value === 1)
+    if (curExists.value === 1)
       setUsernameErrors('用户名已存在,请重新填写用户名')
   },
 })
@@ -164,8 +161,10 @@ function passwordVerifyPass(status: boolean) {
 }
 function onEmailUsernameBlur(type: 1 | 2) {
   curExists.value = type
-  if (type === 1 ? username.value && !usernameErrorMsg.value : email.value && !emailErrorMsg.value)
-    runExists({ ty: type, val: type === 1 ? username.value : email.value, noNotify: true })
+  if (type === 1 && username.value && !usernameErrorMsg.value)
+    runExists({ ty: type, val: username.value, noNotify: true })
+  if (type === 2 && email.value && !emailErrorMsg.value)
+    runExists({ ty: type, val: email.value })
 }
 async function toLogin() {
   closeDialog()
