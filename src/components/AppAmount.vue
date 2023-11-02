@@ -38,5 +38,7 @@ const props = defineProps<Props>()
   text-overflow: ellipsis;
   font-variant-numeric: tabular-nums;
   margin-right: var(--tg-spacing-4);
+  max-width: 12ch;
+  font-size: var(--tg-font-size-default);
 }
 </style>
