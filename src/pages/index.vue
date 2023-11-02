@@ -77,7 +77,7 @@ await application.allSettled([
         </div>
         <div class="top-banner">
           <!-- <AppBanner :mode="isSm ? 'default' : 'home'" /> -->
-          <BaseImage url="/img/home/banner.png" />
+          <BaseImage url="/png/home/banner.png" />
         </div>
       </div>
     </div>
@@ -89,7 +89,7 @@ await application.allSettled([
           <span>娱乐城</span>
         </div>
         <div class="features-image">
-          <BaseImage url="/img/home/casino.png" class="base-img" />
+          <BaseImage url="/png/home/casino.png" class="base-img" />
         </div>
         <div class="features-content">
           <p>最领先的在线加密货币赌场</p>
@@ -110,7 +110,7 @@ await application.allSettled([
           <span>体育</span>
         </div>
         <div class="features-image">
-          <BaseImage url="/img/home/sports.png" class="base-img" />
+          <BaseImage url="/png/home/sports.png" class="base-img" />
         </div>
         <div class="features-content">
           <p>最棒的加密货币在线体育博彩</p>
@@ -308,7 +308,7 @@ await application.allSettled([
       background-position: left 25% center;
       background-size: auto 120%;
       background-repeat: no-repeat;
-      background-image: url(https://stake.com/_app/immutable/assets/abstract-bg.71bdcaae.svg);
+      @include getBackgroundImage('/home/abstract_bg');
       .unauthenticated-wrapper{
         display: flex;
         flex-direction: column;
@@ -405,6 +405,9 @@ await application.allSettled([
           font-size: var(--tg-font-size-md);
           font-weight: var(--tg-font-weight-semibold);
           margin-left: var(--tg-spacing-8);
+        }
+        &:hover{
+          --tg-icon-color:var(--tg-text-white);
         }
       }
       .features-image{

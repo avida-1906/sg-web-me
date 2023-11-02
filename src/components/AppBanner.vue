@@ -44,7 +44,7 @@ function scrollRight() {
     >
       <div v-for="i in 7" :key="i" class="banner-item">
         <BaseAspectRatio class="banner-ratio" ratio="320/188">
-          <BaseImage url="/img/home/banner-bg.png" />
+          <BaseImage url="/png/home/banner_bg.png" />
           <div class="item-msg">
             <div class="msg-type">
               促销活动

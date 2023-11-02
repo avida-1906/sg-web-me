@@ -21,26 +21,26 @@ const props = withDefaults(defineProps<Props>(), {
 const emit = defineEmits(['clickImg', 'errorImg'])
 
 const { VITE_CASINO_IMG_CLOUD_URL } = getEnv()
+const suffix = document.documentElement.className.trim().split(' ').includes('webp')
 
 const imgUrl = computed(() => {
-  if (props.isCloud)
-    // eslint-disable-next-line max-len
-    return `${VITE_CASINO_IMG_CLOUD_URL}${props.url.replace('%lang%', getCurrentLanguageForBackend())}`
+  if (props.isCloud) {
+    return `${VITE_CASINO_IMG_CLOUD_URL}${props
+      .url.replace('%lang%', getCurrentLanguageForBackend())}`
+  }
 
-  return props.url
+  return suffix ? props.url.replace(/png/g, 'webp') : props.url
 })
-
-function handleClick() {
-  emit('clickImg')
-}
 </script>
 
 <template>
   <div class="base-image" :abc="imgUrl">
     <img
       :style="`width: ${width}; height: ${height}; object-fit: ${fit};`"
-      loading="lazy" :src="imgUrl"
-      @click="handleClick" @error="emit('errorImg')"
+      loading="lazy"
+      :src="imgUrl"
+      @click="emit('clickImg')"
+      @error="emit('errorImg')"
     >
   </div>
 </template>
