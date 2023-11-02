@@ -16,7 +16,7 @@ meta:
   withMenuIcon: chess-affiliate
   browserTitle: 联盟计划 – Stake.com
   withMenuMenu:
-    - {title: menu_title_promotion_tutorial, path: /affiliate/overview}
+    - {title: menu_title_promotion_tutorial, path: /affiliate/promotion_tutorial}
     - {title: menu_title_my_promotion, path: /affiliate/retention}
     - {title: menu_title_my_commission, path: /affiliate/commission}
     - {title: menu_title_my_performance, path: /affiliate/funds}

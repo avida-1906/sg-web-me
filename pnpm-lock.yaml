@@ -68,6 +68,9 @@ dependencies:
   vue-router:
     specifier: ^4.2.4
     version: 4.2.4(vue@3.3.4)
+  vue3-leaderline:
+    specifier: ^1.2.11
+    version: 1.2.11
 
 devDependencies:
   '@antfu/eslint-config':
@@ -11830,6 +11833,10 @@ packages:
       semver: 7.5.3
       typescript: 5.1.6
     dev: true
+
+  /vue3-leaderline@1.2.11:
+    resolution: {integrity: sha512-VeVpCchNR7p67wULGsHrwwdxLix25qGuw1fMrKjCrLEl+QDvW1PSCI1UsRLRuJ8tMNO5TrAta5fmURErPetQXA==}
+    dev: false
 
   /vue@3.3.4:
     resolution: {integrity: sha512-VTyEYn3yvIeY1Py0WaYGZsXnz3y5UnGi62GjVEqvEGPl6nxbOrCXbVOTQWBEJUqAyTUk2uJ5JLVnYJ6ZzGbrSw==}
