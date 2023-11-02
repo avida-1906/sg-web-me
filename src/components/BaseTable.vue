@@ -117,7 +117,7 @@ watch(() => props.columns, () => {
   font-size: var(--tg-font-size-default);
   .m-table {
     display: table;
-    table-layout: fixed;
+    table-layout: auto;
     width: 100%;
     text-align: left;
     border-collapse: separate;
@@ -130,6 +130,7 @@ watch(() => props.columns, () => {
       text-align: left;
       border: none;
       line-height: 1.5;
+      white-space: nowrap;
       .th-box{
         display: inline-flex;
         align-items: center;
@@ -166,7 +167,7 @@ watch(() => props.columns, () => {
         border: none;
         overflow: hidden;
         white-space: nowrap;
-        text-overflow: ellipsis;
+        // text-overflow: ellipsis;
         vertical-align: middle;
       }
     }
