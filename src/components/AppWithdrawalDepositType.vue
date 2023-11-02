@@ -12,6 +12,13 @@ const props = withDefaults(defineProps<Props>(), {
 const emit = defineEmits(['update:modelValue'])
 
 const changeType = function (type: string) {
+  const ref: HTMLElement | null = document.querySelector(`#id${type}`)
+  const parentRef = ref?.parentElement
+  if (parentRef && ref) {
+    const parentHalfWidth = parentRef?.offsetWidth / 2
+    const refHalfWidth = ref?.offsetWidth / 2
+    parentRef.scrollLeft = ref.offsetLeft - parentHalfWidth + refHalfWidth
+  }
   emit('update:modelValue', type)
 }
 </script>
@@ -19,7 +26,10 @@ const changeType = function (type: string) {
 <template>
   <div class="scroll-x withdrawal-deposit-type">
     <div
-      v-for="item in currentType" :key="item.value" class="type-btn"
+      v-for="item in currentType"
+      :id="`id${item.value}`"
+      :key="item.value"
+      class="type-btn"
       :class="item.value === props.modelValue ? 'active' : '' "
       @click="changeType(item.value)"
     >
@@ -35,6 +45,7 @@ const changeType = function (type: string) {
   display: flex;
   gap: .75rem;
   padding: var(--tg-spacing-2) 0;
+  overflow: hidden;
   .type-btn{
     flex-shrink: 0;
     background: var(--tg-secondary-main);
