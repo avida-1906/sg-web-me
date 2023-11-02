@@ -79,10 +79,10 @@ onMounted(() => {
         }
         .title-icon{
           font-size: var(--tg-font-size-default);
-          margin-right: 6px;
+          margin-right: var(--tg-spacing-6);
         }
         .header-icon {
-          font-size: 10px;
+          font-size: var(--tg-font-size-default);
         }
     }
     .accordion-content {

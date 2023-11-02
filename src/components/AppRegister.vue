@@ -134,7 +134,7 @@ function passwordVerifyPass(status: boolean) {
 function onEmailUsernameBlur(type: 1 | 2) {
   curExists.value = type
   if (type === 1 ? username.value && !usernameErrorMsg.value : email.value && !emailErrorMsg.value)
-    runExists({ ty: type, val: type === 1 ? username.value : email.value })
+    runExists({ ty: type, val: type === 1 ? username.value : email.value, noNotify: true })
 }
 async function toLogin() {
   closeDialog()

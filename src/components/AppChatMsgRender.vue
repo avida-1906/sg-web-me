@@ -74,7 +74,7 @@ const msgHtml = computed(() => {
       && i <= matchedEmojis.value?.length - 1) {
       const idx = allEmojis.map(m => `:${m.split('.')[0]}:`).findIndex(ele => ele === matchedEmojis.value[i])
       if (idx !== -1)
-        temp.push({ type: 'BaseImage', content: { alt: matchedEmojis.value[i], url: `/img/emoji/${allEmojis[idx]}`, class: 'emoji' } as any })
+        temp.push({ type: 'BaseImage', content: { alt: matchedEmojis.value[i], url: `/png/emoji/${allEmojis[idx]}`, class: 'emoji' } as any })
       else
         temp.push({ content: matchedEmojis.value[i], type: 'text' })
     }
