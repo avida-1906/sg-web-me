@@ -33,7 +33,7 @@ export const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  title.value = to.meta.browserTitle || 'Stake.com'
+  title.value = to.meta.browserTitle || `${to.query.name} - Stake.com`
 
   const auth = to.meta.auth || false
 

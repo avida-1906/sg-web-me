@@ -72,10 +72,15 @@ const {
   loading: thirdDepositLoading,
 } = useRequest(ApiFinanceThirdDeposit, {
   onSuccess(data) {
+    /** 解决window.open 在safari/google手机浏览器无法打开新窗口 */
+    const a = document.createElement('a')
+    a.setAttribute('href', data)
+    a.setAttribute('target', '_blank')
+    a.setAttribute('id', 'openNewWindow')
+    document.body.appendChild(a)
+    a.click()
     setTimeout(() => {
-      const newWindow = window.open(data, 'newWindow')
-      if (newWindow)
-        newWindow.focus()
+      document.body.removeChild(a)
     }, 0)
   },
 })

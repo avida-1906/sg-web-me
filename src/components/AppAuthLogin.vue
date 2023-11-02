@@ -47,6 +47,7 @@ const { t } = useI18n()
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(50px,1fr));
     grid-auto-rows: auto;
+    --tg-icon-color:var(--tg-text-white)
 
     .item-svg {
       border-radius: var(--tg-radius-default);

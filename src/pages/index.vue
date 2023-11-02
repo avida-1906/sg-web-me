@@ -77,7 +77,7 @@ await application.allSettled([
         </div>
         <div class="top-banner">
           <!-- <AppBanner :mode="isSm ? 'default' : 'home'" /> -->
-          <BaseImage url="/img/home/banner.png" />
+          <BaseImage url="/home/banner" />
         </div>
       </div>
     </div>
@@ -405,6 +405,9 @@ await application.allSettled([
           font-size: var(--tg-font-size-md);
           font-weight: var(--tg-font-weight-semibold);
           margin-left: var(--tg-spacing-8);
+        }
+        &:hover{
+          --tg-icon-color:var(--tg-text-white);
         }
       }
       .features-image{
