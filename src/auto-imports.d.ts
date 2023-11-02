@@ -86,6 +86,7 @@ declare global {
   const SportsOdds: typeof import('./utils/sports')['SportsOdds']
   const acceptHMRUpdate: typeof import('pinia')['acceptHMRUpdate']
   const add: typeof import('./utils/number')['add']
+  const allEmojis: typeof import('./stores/chat')['allEmojis']
   const application: typeof import('./utils/index')['application']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
   const autoResetRef: typeof import('@vueuse/core')['autoResetRef']
@@ -563,6 +564,7 @@ declare module 'vue' {
     readonly SportsOdds: UnwrapRef<typeof import('./utils/sports')['SportsOdds']>
     readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>
     readonly add: UnwrapRef<typeof import('./utils/number')['add']>
+    readonly allEmojis: UnwrapRef<typeof import('./stores/chat')['allEmojis']>
     readonly application: UnwrapRef<typeof import('./utils/index')['application']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
@@ -1030,6 +1032,7 @@ declare module '@vue/runtime-core' {
     readonly SportsOdds: UnwrapRef<typeof import('./utils/sports')['SportsOdds']>
     readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>
     readonly add: UnwrapRef<typeof import('./utils/number')['add']>
+    readonly allEmojis: UnwrapRef<typeof import('./stores/chat')['allEmojis']>
     readonly application: UnwrapRef<typeof import('./utils/index')['application']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>

@@ -6,7 +6,7 @@
 //  enter 加空格再次 enter 发送
 
 // type CommandType = '/bet' | '/user' | '/tip' | '/rain' | '/ignore' | '/unignore'
-
+const { t } = useI18n()
 const chatStore = useChatStore()
 const { roomLang } = storeToRefs(chatStore)
 const { userInfo, isLogin } = storeToRefs(useAppStore())
@@ -18,46 +18,6 @@ const { openNotify } = useNotify()
 
 const maxMsgLen = 512
 const msgInput = ref()
-const allEmojis = [
-  'adesanya.png',
-  'beer.png',
-  'biden.png',
-  'coffee.png',
-  'coupon.png',
-  'dendi.png',
-  'djokovic.png',
-  'doge.png',
-  'donut.png',
-  'easyms.png',
-  'eddie.png',
-  'elon.png',
-  'ezpz.png',
-  'feelsgoodman.png',
-  'gary.png',
-  'jordan.png',
-  'kanye.png',
-  'lambo.png',
-  'lebron.png',
-  'lefroge.png',
-  'mahomes.png',
-  'mcgregor.png',
-  'messi.png',
-  'monkas.png',
-  'nadal.png',
-  'nightdoge.png',
-  'pepehands.png',
-  'pikachu.png',
-  'poggers.png',
-  'rish.png',
-  'ronaldo.png',
-  'santa.png',
-  'stonks.png',
-  'sus.png',
-  'trump.png',
-  'umbrella.png',
-  'woods.png',
-  'cooldoge.png',
-]
 const message = ref('')
 const atUsers = reactive([
   { name: 'abc32434', id: '39429304' },
@@ -67,16 +27,31 @@ const atUsers = reactive([
   { name: 'flasuoi0320423', id: '932479238' },
 ])
 const allCommandList = reactive([
-  { icon: 'chat-bet', command: '/bet', param: '[bet id]', text: '查看赌注' },
-  { icon: 'chat-atuser', command: '/user', param: '@user', text: '查看玩家' },
-  { icon: 'chat-tip', command: '/tip', param: '@user', text: '给用户发送小费' },
-  { icon: 'chat-rain', command: '/rain', param: '', text: '下红包雨' },
-  { icon: 'chat-ignore', command: '/ignore', param: '@user', text: '拉入黑名单' },
+  {
+    icon: 'chat-bet',
+    command: '/bet',
+    param: '[bet id]',
+    text: t('chat_command_see_bet'),
+  },
+  {
+    icon: 'chat-atuser',
+    command: '/user',
+    param: '@user',
+    text: t('chat_command_see_user'),
+  },
+  { icon: 'chat-tip', command: '/tip', param: '@user', text: t('chat_command_tip_user') },
+  { icon: 'chat-rain', command: '/rain', param: '', text: t('chat_command_tip_rain') },
+  {
+    icon: 'chat-ignore',
+    command: '/ignore',
+    param: '@user',
+    text: t('chat_command_ignore_user'),
+  },
   {
     icon: 'chat-unignore',
     command: '/unignore',
     param: '@user',
-    text: '移出黑名单',
+    text: t('chat_command_unignore_user'),
   },
 ])
 
@@ -145,12 +120,12 @@ function addCommand(u: { command: string }) {
 function sendMsg() {
   if (trimMessage.value.length) {
     if (!isLogin.value) {
-      openNotify({ type: 'error', message: '不允许此操作' })
+      openNotify({ type: 'error', message: t('notify_error_forbid_operation') })
       return
     }
-    const t = new Date().getTime()
+    const tt = new Date().getTime()
     const s = `${Math.random().toString(36).slice(-10)}|${t}`
-    chatMessageBus.emit({ c: trimMessage.value, s, u: userInfo.value?.uid, n: userInfo.value?.username, t })
+    chatMessageBus.emit({ c: trimMessage.value, s, u: userInfo.value?.uid, n: userInfo.value?.username, t: tt })
     runSendMsg({ c: trimMessage.value, lang: roomLang.value, s })
     message.value = ''
     msgInput.value.getFocus()
@@ -161,7 +136,7 @@ function enterPress(event: KeyboardEvent) {
   event.stopPropagation()
   if (trimMessage.value.length) {
     if (!isLogin.value) {
-      openNotify({ type: 'error', message: '不允许此操作' })
+      openNotify({ type: 'error', message: t('notify_error_forbid_operation') })
       return
     }
     if (isCommand.value) {
@@ -197,7 +172,7 @@ function enterPress(event: KeyboardEvent) {
     <Transition>
       <div
         v-show="!sendLoading && emojis.length"
-        class="scroll-y emoji-wrap layout-grid wrap"
+        class="scroll-y wrap emoji-wrap layout-grid"
       >
         <div v-for="emo in emojis" :key="emo" class="button-wrap">
           <span class="box" @click="addEmoMsg(emo)">
@@ -255,7 +230,7 @@ function enterPress(event: KeyboardEvent) {
       <BaseInput
         ref="msgInput"
         v-model="message"
-        placeholder="输入您的消息"
+        :placeholder="t('chat_send_msg_placeholder')"
         textarea
         :max="maxMsgLen"
         @down-enter="enterPress"
@@ -264,7 +239,7 @@ function enterPress(event: KeyboardEvent) {
     <div class="online">
       <div class="green-dot" />
       <div>
-        <span>在线： </span>
+        <span>{{ t('active_state') }}： </span>
         <span>10,950</span>
       </div>
     </div>
@@ -274,7 +249,7 @@ function enterPress(event: KeyboardEvent) {
         <BaseIcon name="chat-rule" />
       </BaseButton>
       <BaseButton bg-style="secondary" class="send" size="md" shadow @click="sendMsg">
-        发送
+        {{ t('send') }}
       </BaseButton>
     </div>
   </section>
