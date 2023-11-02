@@ -273,15 +273,17 @@ onMounted(() => {
       :verified="emailVerified || emailDisabledBtn" :badge="emailVerified"
       @submit="emailSubmit"
     >
-      <BaseLabel label="电邮地址" must-small>
-        <BaseInput
-          v-model="email"
-          :disabled="emailVerified"
-          :msg="emailErrormsg"
-          :class="{ 'general-base-input-background': emailVerified }"
-          @paste="emailPaste"
-        />
-      </BaseLabel>
+      <div style="margin-top: 16px;">
+        <BaseLabel label="电邮地址" must-small>
+          <BaseInput
+            v-model="email"
+            :disabled="emailVerified"
+            :msg="emailErrormsg"
+            :class="{ 'general-base-input-background': emailVerified }"
+            @paste="emailPaste"
+          />
+        </BaseLabel>
+      </div>
       <template #btm-right>
         <BaseButton
           type="text"
