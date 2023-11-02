@@ -48,6 +48,9 @@ function onClick(tab: TabItem) {
             <slot name="tab" :item="t">
               <BaseIcon v-if="t.icon" :name="t.icon" :use-cloud-img="useCloudImg" />
               {{ t.label }}
+              <div v-if="t.bubble" class="bubble-wrap">
+                <div />
+              </div>
             </slot>
           </div>
         </div>
@@ -65,6 +68,20 @@ function onClick(tab: TabItem) {
 </style>
 
 <style lang='scss' scoped>
+.bubble-wrap {
+  margin-left: var(--tg-spacing-8);
+  margin-top: 1px;
+  div {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    z-index: 1;
+    background: var(--tg-primary-success);
+    animation: OnlineFlash .2s ease-out;
+    position: absolute;
+    transform: translate(-50%,-50%) scale(1)!important;
+  }
+}
 .base-tab {
   display: flex;
   max-width: 100%;

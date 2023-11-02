@@ -8,6 +8,7 @@ interface Props {
   height?: string // 图像高度px
   fit?: 'contain' | 'fill' | 'cover' // 图像如何适应容器高度和宽度
   isCloud?: boolean
+  objectPosition?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -16,12 +17,13 @@ const props = withDefaults(defineProps<Props>(), {
   width: '100%',
   height: '100%',
   fit: 'contain',
+  objectPosition: 'center center',
 })
 
 const emit = defineEmits(['clickImg', 'errorImg'])
 
 const { VITE_CASINO_IMG_CLOUD_URL } = getEnv()
-const suffix = `.${document.documentElement.className.trim().split(' ')[0]}`
+const suffix = document.documentElement.className.trim().split(' ').includes('webp')
 
 const imgUrl = computed(() => {
   if (props.isCloud) {
@@ -29,15 +31,15 @@ const imgUrl = computed(() => {
       .url.replace('%lang%', getCurrentLanguageForBackend())}`
   }
 
-  return props.url + suffix
-  // .replace(/[^/.]+$/, suffix)
+  return suffix ? props.url.replace(/png/g, 'webp') : props.url
 })
 </script>
 
 <template>
   <div class="base-image" :abc="imgUrl">
     <img
-      :style="`width: ${width}; height: ${height}; object-fit: ${fit};`"
+      :style="`width: ${width}; height: ${height};
+      object-fit: ${fit};object-position:${objectPosition};`"
       loading="lazy"
       :src="imgUrl"
       @click="emit('clickImg')"
@@ -55,6 +57,7 @@ const imgUrl = computed(() => {
 
 <style lang="scss" scoped>
 .base-image {
+  position: relative;
   width: 100%;
   height: 100%;
 

@@ -47,7 +47,10 @@ await application.allSettled([
     <!-- 头部 -->
     <div class="dark-background">
       <div class="top-wrapper">
-        <div v-if="!isLogin" class="unauthenticated-wrapper">
+        <div
+          v-if="!isLogin"
+          class="unauthenticated-wrapper" :class="{ 'is-mobile': isSm }"
+        >
           <div class="unauthenticated-content">
             <h1>更明智地下注</h1>
             <BaseButton
@@ -77,7 +80,11 @@ await application.allSettled([
         </div>
         <div class="top-banner">
           <!-- <AppBanner :mode="isSm ? 'default' : 'home'" /> -->
-          <BaseImage url="/home/banner" />
+          <BaseImage
+            fit="cover"
+            object-position="left center"
+            url="/png/home/banner.png"
+          />
         </div>
       </div>
     </div>
@@ -89,13 +96,12 @@ await application.allSettled([
           <span>娱乐城</span>
         </div>
         <div class="features-image">
-          <BaseImage url="/img/home/casino.png" class="base-img" />
+          <BaseImage url="/png/home/casino.png" class="base-img" />
         </div>
         <div class="features-content">
           <p>最领先的在线加密货币赌场</p>
           <p>
-            浏览我们种类繁多的赌场游戏，让 Stake 为您提供既公平又有趣的在线博彩体验。
-            直接通过您的浏览器在老虎机、真人娱乐场、21点、百家乐、轮盘以及数以千计的经典赌场游戏包括您最喜爱的 Stake 原创游戏上进行投注。
+            {{ t('casino_index_description') }}
           </p>
         </div>
         <div class="features-button">
@@ -110,13 +116,12 @@ await application.allSettled([
           <span>体育</span>
         </div>
         <div class="features-image">
-          <BaseImage url="/img/home/sports.png" class="base-img" />
+          <BaseImage url="/png/home/sports.png" class="base-img" />
         </div>
         <div class="features-content">
           <p>最棒的加密货币在线体育博彩</p>
           <p>
-            通过我们的体育博彩平台投注于来自世界各地的体育团队、选手及联赛。
-            在综合格斗、篮球、足球等多个体育赛事的各种博彩项目上以及滚球盘口中进行投注，享受无与伦比的体育博彩体验。
+            {{ t('sports_index_description') }}
           </p>
         </div>
         <div class="features-button">
@@ -305,10 +310,10 @@ await application.allSettled([
       grid-template-columns: 40% 50%;
       grid-gap: 2rem;
       justify-content: space-between;
-      background-position: left 25% center;
-      background-size: auto 120%;
-      background-repeat: no-repeat;
-      background-image: url(https://stake.com/_app/immutable/assets/abstract-bg.71bdcaae.svg);
+      // background-position: left 25% center;
+      // background-size: auto 120%;
+      // background-repeat: no-repeat;
+      // @include getBackgroundImage('/home/abstract_bg');
       .unauthenticated-wrapper{
         display: flex;
         flex-direction: column;
@@ -316,10 +321,18 @@ await application.allSettled([
         gap: 1rem;
         align-self: center;
         padding: var(--tg-spacing-32) 0;
+        position: relative;
+        z-index: 2;
+        &.is-mobile {
+          background-position: center;
+          background-size: cover;
+          background-repeat: no-repeat;
+          @include getBackgroundImage('/home/abstract_bg');
+        }
         .unauthenticated-content{
           display: grid;
           grid-auto-flow: row;
-          gap: 1rem;
+          gap: var(--tg-spacing-16);
           h1{
             color: var(--tg-text-white);
             font-size: var(--tg-font-size-lg);
@@ -372,6 +385,26 @@ await application.allSettled([
       .top-banner{
         position: relative;
         // padding: var(--tg-spacing-4) 0;
+        &:before {
+          content: "";
+          height: 100%;
+          width: 100%;
+          right: 75%;
+          position: absolute;
+          background-position: center;
+          background-size: cover;
+          background-repeat: no-repeat;
+          // background-image: var(--image);
+          @include getBackgroundImage('/home/abstract_bg');
+          // z-index: -1;
+        }
+        img {
+          height: 100%;
+          -o-object-fit: cover;
+          object-fit: cover;
+          -o-object-position: left;
+          object-position: left;
+        }
       }
     }
   }

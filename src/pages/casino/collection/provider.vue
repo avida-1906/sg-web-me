@@ -22,7 +22,7 @@ function handleItemClick(item: any) {
             </h1>
           </div>
           <div class="right">
-            <BaseImage url="/img/casino/group-banner-default.png" />
+            <BaseImage url="/png/casino/group-banner-default.png" />
           </div>
         </div>
       </div>
