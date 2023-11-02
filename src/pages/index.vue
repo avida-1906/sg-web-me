@@ -77,7 +77,7 @@ await application.allSettled([
         </div>
         <div class="top-banner">
           <!-- <AppBanner :mode="isSm ? 'default' : 'home'" /> -->
-          <BaseImage url="/img/home/banner.png" />
+          <BaseImage url="/home/banner" />
         </div>
       </div>
     </div>

@@ -92,16 +92,16 @@ const route = useRoute()
     font-weight: 700;
     text-shadow: var(--tg-text-shadow);
     cursor: pointer;
-    background-image: url('/img/left-side-bar/casino_bg.png');
     min-height: var(--tg-spacing-48);
     min-width: var(--tg-spacing-80);
     max-height: var(--tg-spacing-80);
     justify-content: end;
     background-position: 0 -15px;
     padding-right: var(--tg-spacing-12);
+    @include getBackgroundImage('/left-side-bar/casino_bg');
 
     &:hover, &.active {
-      background-image: url('/img/left-side-bar/casino_bg_active.png');
+      @include getBackgroundImage('/left-side-bar/casino_bg_active');
     }
 
     &:active {
@@ -112,10 +112,10 @@ const route = useRoute()
   }
 
   .sports {
-    background-image: url('/img/left-side-bar/sports_bg.png');
+    @include getBackgroundImage('/left-side-bar/sports_bg');
 
     &:hover, &.active {
-      background-image: url('/img/left-side-bar/sports_bg_active.png');
+      @include getBackgroundImage('/left-side-bar/sports_bg_active');
     }
   }
 }
@@ -180,13 +180,13 @@ const route = useRoute()
       background-size: cover;
       background-repeat: no-repeat;
       min-height: var(--tg-spacing-36);
-      background-image: url('/img/left-side-bar/casino_bg.png');
       cursor: pointer;
       border-radius: var(--tg-radius-default);
       background-position: -4px 0;
+      @include getBackgroundImage('/left-side-bar/casino_bg');
 
       &:hover {
-        background-image: url('/img/left-side-bar/casino_bg_active.png');
+        @include getBackgroundImage('/left-side-bar/casino_bg_active');
       }
 
       &:active {
@@ -197,19 +197,19 @@ const route = useRoute()
     }
 
     .sports {
-      background-image: url('/img/left-side-bar/sports_bg.png');
+      @include getBackgroundImage('/left-side-bar/sports_bg');
 
       &:hover {
-        background-image: url('/img/left-side-bar/sports_bg_active.png');
+        @include getBackgroundImage('/left-side-bar/sports_bg_active');
       }
     }
 
     .casino.active {
-      background-image: url('/img/left-side-bar/casino_bg_active.png');
+      @include getBackgroundImage('/left-side-bar/casino_bg_active');
     }
 
     .sports.active {
-      background-image: url('/img/left-side-bar/sports_bg_active.png');
+      @include getBackgroundImage('/left-side-bar/sports_bg_active');
     }
   }
 }

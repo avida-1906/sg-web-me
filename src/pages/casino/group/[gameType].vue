@@ -191,5 +191,6 @@ else if (isCat.value)
 <route lang="yaml">
 meta:
   layout: home
-  browserTitle: Play Slots Online - Best Casino Slot Games at Stake.com
+  # 在router.ts中，取route.query.name 作为浏览器动态标题
+  # browserTitle: Play Slots Online - Best Casino Slot Games at Stake.com
 </route>

@@ -22,7 +22,6 @@ if [ ! -d "$pngPath" ]; then
   exit 1
 fi
 
-# 递归遍历 pngPath 下的所有 png 图片，将png转换成webp
 function png2webp() {
   for file in `ls $1`
   do
@@ -51,5 +50,5 @@ function png2webp() {
 #   done
 # }
 
-# png2webp $pngPath
-png2avif $pngPath
+png2webp $pngPath
+# png2avif $pngPath
