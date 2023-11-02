@@ -13,7 +13,11 @@ const {
   value: username,
   errorMessage: usernameErrorMsg,
   validate: valiUsername,
+  meta: metaUsername,
+  handleBlur: blurUsername,
 } = useField<string>('username', (value) => {
+  if (!metaUsername.touched)
+    return ''
   if (!value)
     return t('pls_enter_email_or_username')
   else if (!emailReg.test(value) && !usernameReg.test(value))
@@ -25,7 +29,11 @@ const {
   value: password,
   errorMessage: pwdErrorMsg,
   validate: valiPassword,
+  meta: metaPassword,
+  handleBlur: blurPassword,
 } = useField<string>('password', (value) => {
+  if (!metaPassword.touched)
+    return ''
   if (!value)
     return t('pls_enter_password')
   else if (value.length < 8)
@@ -53,6 +61,8 @@ const {
 })
 
 async function getMemberLogin() {
+  blurUsername()
+  blurPassword()
   await valiUsername()
   await valiPassword()
   if (!usernameErrorMsg.value && !pwdErrorMsg.value)
@@ -72,7 +82,7 @@ function passwordVerifyPass(status: boolean) {
       <BaseLabel :label="t('email_or_username')" must-small>
         <BaseInput
           v-model="username"
-          :msg="usernameErrorMsg"
+          :msg="usernameErrorMsg" @blur="blurUsername();valiUsername()"
         />
       </BaseLabel>
       <BaseLabel :label="t('password')" must-small>
@@ -84,6 +94,7 @@ function passwordVerifyPass(status: boolean) {
           :password="password"
           @focus="onFocus"
           @down-enter="getMemberLogin"
+          @blur="blurPassword();valiPassword()"
         />
       </BaseLabel>
       <AppPasswordVerify

@@ -18,7 +18,7 @@ const props = withDefaults(defineProps<Props>(), {
   isCipherText: true,
   disabled: false,
 })
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(['update:modelValue', 'blur'])
 
 const inputRef = ref<HTMLElement>()
 /** 光标位置 */
@@ -36,6 +36,7 @@ const onFocus = function () {
 }
 const onBlur = function () {
   textLength.value = null
+  emit('blur')
 }
 const changeText = function (e: any) {
   const value = e.target.value

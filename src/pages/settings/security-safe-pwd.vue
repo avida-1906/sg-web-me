@@ -9,12 +9,22 @@ const {
   value: payPassword,
   errorMessage: payPwdErrorMsg,
   validate: valiPayPwd,
-} = useField<string>('payPassword', fieldVerifyPayPwd)
+  handleBlur: blurPassword,
+  meta: metaPassword,
+} = useField<string>('payPassword', (value) => {
+  if (!metaPassword.touched)
+    return ''
+  return fieldVerifyPayPwd(value)
+})
 const {
   value: aginPayPassword,
   errorMessage: aginPayPwdErrorMsg,
   validate: valiAginPayPwd,
+  handleBlur: blurAginPayPwd,
+  meta: metaAginPayPwd,
 } = useField<string>('aginPayPassword', (value) => {
+  if (!metaAginPayPwd.touched)
+    return ''
   if (!value)
     return t('pls_enter_password')
   else if (value !== payPassword.value)
@@ -52,6 +62,8 @@ function fieldVerifyPayPwd(value: string) {
 }
 // 提交支付密码
 async function submitPayPwd() {
+  blurPassword()
+  blurAginPayPwd()
   if (userInfo.value?.email_check_state === 1) {
     await valiPayPwd()
     await valiAginPayPwd()
@@ -93,12 +105,14 @@ async function submitPayPwd() {
         <BaseInputPassword
           v-model="payPassword"
           :msg="payPwdErrorMsg"
+          @blur="blurPassword();valiPayPwd()"
         />
       </BaseLabel>
       <BaseLabel label="确认密码" must-small>
         <BaseInputPassword
           v-model="aginPayPassword"
           :msg="aginPayPwdErrorMsg"
+          @blur="blurAginPayPwd();valiAginPayPwd()"
         />
       </BaseLabel>
     </AppSettingsContentItem>

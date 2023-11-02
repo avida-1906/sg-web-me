@@ -1,30 +1,24 @@
-<script>
-export default {
-  name: 'Skeleton',
-  // 使用的时候需要动态设置 高度，宽度，背景颜色，是否闪烁
-  props: {
-    bg: {
-      type: String,
-      default: '#efefef',
-    },
-    width: {
-      type: String,
-      default: '100px',
-    },
-    height: {
-      type: String,
-      default: '100px',
-    },
-    animated: {
-      type: Boolean,
-      default: false,
-    },
-  },
+<script lang="ts" setup>
+type aniType = 'ani-shan' | 'ani-opacity'
+interface Props {
+  bg?: string
+  width?: string
+  height?: string
+  animated?: aniType
 }
+
+withDefaults(defineProps<Props>(), {
+  bg: '#efefef',
+  width: '100px',
+  height: '100px',
+})
 </script>
 
 <template>
-  <div class="skeleton" :style="{ width, height }" :class="{ shan: animated }">
+  <div
+    class="skeleton"
+    :style="{ width, height }" :class="[animated]"
+  >
     <!-- 1 盒子 -->
     <div class="block" :style="{ backgroundColor: bg }" />
     <!-- 2 闪烁效果 skeleton 伪元素 --->
@@ -43,11 +37,11 @@ export default {
       border-radius: 2px;
     }
   }
-  .shan {
+  .ani-shan {
     &::after {
       content: "";
       position: absolute;
-      animation: shan 1.5s ease 0s infinite;
+      animation: ani-shan 1.5s ease 0s infinite;
       top: 0;
       width: 50%;
       height: 100%;
@@ -60,7 +54,22 @@ export default {
       transform: skewX(-45deg);
     }
   }
-  @keyframes shan {
+  .ani-opacity {
+    animation: ani-opacity 1.5s linear 0s infinite;
+  }
+
+  @keyframes ani-opacity {
+    0% {
+      opacity: 0.8;
+    }
+    60% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.8;
+    }
+  }
+  @keyframes ani-shan {
     0% {
       left: -100%;
     }

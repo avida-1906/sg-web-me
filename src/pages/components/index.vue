@@ -80,7 +80,7 @@ function copyCode(type: string) {
       copy('<BaseSelect v-model="selectValue" label="选择区号" :options="selectOptions" must />')
       break
     case 'skeleton':
-      copy('<BaseSkeleton animated />')
+      copy('<BaseSkeleton />')
       break
     case 'birthday':
       copy('<BaseInputBirthday v-model="birthday" must />')
@@ -697,7 +697,7 @@ const breadcrumbs = ['one', 'two', 'three', 'four']
     </li>
     <li class="box">
       <AppDemoCard title="skeleton">
-        <BaseSkeleton animated @click="copyCode('skeleton')" />
+        <BaseSkeleton @click="copyCode('skeleton')" />
       </AppDemoCard>
     </li>
     <li class="box">
@@ -1139,7 +1139,7 @@ const breadcrumbs = ['one', 'two', 'three', 'four']
     <li class="box">
       <AppDemoCard title="BaseSecondaryAccordion">
         <BaseSecondaryAccordion
-          title="ATP / ATP上海站，中国，男单" show-more loading
+          title="ATP / ATP上海站，中国，男单" loading show-more
           icon="spt-game-intl"
         >
           <template #side="{ isOpen }">

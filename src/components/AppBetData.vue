@@ -167,7 +167,7 @@ const getTableColumns: ComputedRef<Column[]> = computed((): Column[] => {
         title: '总投注额',
         dataIndex: 'betMoney',
         slot: 'betMoney',
-        align: 'right',
+        align: 'center',
         xl: true,
         md: true,
       },
