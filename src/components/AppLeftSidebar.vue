@@ -168,7 +168,7 @@ function push(path: string) {
       background-size: cover;
       background-repeat: no-repeat;
       min-height: var(--tg-spacing-36);
-      background-image: url('/img/left-side-bar/casino_bg.png');
+      // background-image: url('/img/left-side-bar/casino_bg.png');
       cursor: pointer;
       border-radius: var(--tg-radius-default);
 
