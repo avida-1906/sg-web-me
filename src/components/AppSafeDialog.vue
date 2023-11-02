@@ -22,7 +22,11 @@ const {
   resetField: resetAmount,
   validate: validateAmount,
   errorMessage: errAmount,
+  handleBlur: blurAmount,
+  meta: metaAmount,
 } = useField<string>('amount', (value) => {
+  if (!metaAmount.touched)
+    return ''
   if (!value)
     return '不能为空'
   else if (Number(value) === 0)
@@ -39,7 +43,11 @@ const {
   resetField: resetPassword,
   validate: validatePassword,
   errorMessage: errPassword,
+  handleBlur: blurPassword,
+  meta: metaPassword,
 } = useField<string>('password', (value) => {
+  if (!metaPassword.touched)
+    return ''
   if (!value)
     return '不能为空'
   else if (!payPasswordReg.test(value))
@@ -89,6 +97,8 @@ const {
 })
 
 async function handleUpdate() {
+  blurAmount()
+  blurPassword()
   await validateAmount()
   if (isDeposit.value) {
     if (!errAmount.value && updateParams.value)
@@ -138,6 +148,7 @@ watch(() => activeTab.value, () => {
           placeholder="0.00000000"
           :msg="errAmount"
           @on-right-button="maxNumber"
+          @blur="blurAmount();validateAmount()"
         >
           <template #right-icon>
             <AppCurrencyIcon v-if="activeCurrency" :currency-type="activeCurrency.type" />
@@ -167,6 +178,7 @@ watch(() => activeTab.value, () => {
             type="password"
             must
             max="6"
+            @blur="blurPassword();validatePassword()"
           />
         </div>
         <BaseButton
