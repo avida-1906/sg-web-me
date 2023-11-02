@@ -5,6 +5,7 @@ interface Props {
     label: string
     value: string
     icon?: string
+    promo?: string
   }[]
 }
 const props = withDefaults(defineProps<Props>(), {
@@ -12,6 +13,13 @@ const props = withDefaults(defineProps<Props>(), {
 const emit = defineEmits(['update:modelValue'])
 
 const changeType = function (type: string) {
+  const ref: HTMLElement | null = document.querySelector(`#id${type}`)
+  const parentRef = ref?.parentElement
+  if (parentRef && ref) {
+    const parentHalfWidth = parentRef?.offsetWidth / 2
+    const refHalfWidth = ref?.offsetWidth / 2
+    parentRef.scrollLeft = ref.offsetLeft - parentHalfWidth + refHalfWidth
+  }
   emit('update:modelValue', type)
 }
 </script>
@@ -19,12 +27,16 @@ const changeType = function (type: string) {
 <template>
   <div class="scroll-x withdrawal-deposit-type">
     <div
-      v-for="item in currentType" :key="item.value" class="type-btn"
+      v-for="item in currentType"
+      :id="`id${item.value}`"
+      :key="item.value"
+      class="type-btn"
       :class="item.value === props.modelValue ? 'active' : '' "
       @click="changeType(item.value)"
     >
       <BaseIcon :name="item.icon ?? 'fiat-bank'" />
-      <span>{{ item.label }}</span>
+      <span class="label">{{ item.label }}</span>
+      <span v-if="Number(item.promo) > 0" class="tag">送{{ item.promo }}%</span>
     </div>
   </div>
 </template>
@@ -35,6 +47,7 @@ const changeType = function (type: string) {
   display: flex;
   gap: .75rem;
   padding: var(--tg-spacing-2) 0;
+  overflow: hidden;
   .type-btn{
     flex-shrink: 0;
     background: var(--tg-secondary-main);
@@ -50,8 +63,10 @@ const changeType = function (type: string) {
     border-radius: var(--tg-radius-default);
     color: var(--tg-text-white);
     cursor: pointer;
+    position: relative;
+    overflow: hidden;
     &:active{
-      span, svg {
+      .label, svg {
         transform: scale(.96);
       }
     }
@@ -60,6 +75,19 @@ const changeType = function (type: string) {
     }
     &.active{
       background-color: var(--tg-text-blue);
+    }
+    .tag{
+      background-color: var(--tg-text-warn);
+      color: var(--tg-text-white);
+      font-size: 18px;
+      width: 90px;
+      height: 30px;
+      position: absolute;
+      top: -6px;
+      right: -36px;
+      transform: scale(0.41) rotate(45deg);
+      text-align: center;
+      line-height: 30px;
     }
   }
 }
