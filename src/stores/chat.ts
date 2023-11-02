@@ -3,6 +3,47 @@ import { languageMap } from '~/modules/i18n'
 
 const { VITE_SOCKET_PREFIX } = getEnv()
 
+export const allEmojis = [
+  'adesanya.png',
+  'beer.png',
+  'biden.png',
+  'coffee.png',
+  'coupon.png',
+  'dendi.png',
+  'djokovic.png',
+  'doge.png',
+  'donut.png',
+  'easyms.png',
+  'eddie.png',
+  'elon.png',
+  'ezpz.png',
+  'feelsgoodman.png',
+  'gary.png',
+  'jordan.png',
+  'kanye.png',
+  'lambo.png',
+  'lebron.png',
+  'lefroge.png',
+  'mahomes.png',
+  'mcgregor.png',
+  'messi.png',
+  'monkas.png',
+  'nadal.png',
+  'nightdoge.png',
+  'pepehands.png',
+  'pikachu.png',
+  'poggers.png',
+  'rish.png',
+  'ronaldo.png',
+  'santa.png',
+  'stonks.png',
+  'sus.png',
+  'trump.png',
+  'umbrella.png',
+  'woods.png',
+  'cooldoge.png',
+]
+
 export const useChatStore = defineStore('chat', () => {
   const { bool: hideChat, toggle: toggleChat } = useBoolean(false)
 

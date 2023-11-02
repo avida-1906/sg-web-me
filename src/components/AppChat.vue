@@ -107,9 +107,9 @@ onUnmounted(() => {
       style="height: 100%;"
     >
       <div class="popped-chat-wrapper">
-        <span>聊天室已被隐藏</span>
+        <span>{{ $t('chat_been_hide') }}</span>
         <BaseButton bg-style="primary" size="md" @click="chatStore.toggleChat">
-          显示聊天室
+          {{ $t('chat_show_room') }}
         </BaseButton>
       </div>
     </div>
@@ -144,11 +144,11 @@ onUnmounted(() => {
             <BaseButton shadow size="lg">
               <div class="icon-text stop">
                 <BaseIcon name="uni-stop" />
-                <span>聊天室因滚动而暂停</span>
+                <span>{{ $t('chat_stop_by_scroll') }}</span>
               </div>
               <div class="icon-text go-down" @click.stop="goBottom(0)">
                 <BaseIcon name="uni-arrow-godown" />
-                <span>{{ msgCounter }}+ 条新信息</span>
+                <span>{{ msgCounter }}+ {{ $t('chat_new_msgs_count') }}</span>
               </div>
             </BaseButton>
           </div>

@@ -101,7 +101,7 @@ onUnmounted(() => {
         </div>
         <template #popper>
           <div class="tiny-menu-item-title">
-            弹出式聊天室
+            {{ $t('chat_new_window') }}
           </div>
         </template>
       </VTooltip>
@@ -113,7 +113,7 @@ onUnmounted(() => {
         </div>
         <template #popper>
           <div class="tiny-menu-item-title">
-            折叠侧边栏
+            {{ $t('chat_close_side') }}
           </div>
         </template>
       </VTooltip>

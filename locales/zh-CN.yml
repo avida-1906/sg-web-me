@@ -837,3 +837,21 @@ language_title: 语言
 language_current: 中文
 casino_index_description: 浏览我们种类繁多的赌场游戏，让 Stake 为您提供既公平又有趣的在线博彩体验。直接通过您的浏览器在老虎机、真人娱乐场、21点、百家乐、轮盘以及数以千计的经典赌场游戏包括您最喜爱的 Stake 原创游戏上进行投注。
 sports_index_description: 通过我们的体育博彩平台投注于来自世界各地的体育团队、选手及联赛。在综合格斗、篮球、足球等多个体育赛事的各种博彩项目上以及滚球盘口中进行投注，享受无与伦比的体育博彩体验。
+chat_been_hide: 聊天室已被隐藏
+chat_show_room: 显示聊天室
+chat_stop_by_scroll: 聊天室因滚动而暂停
+chat_new_msgs_count: 条新信息
+chat_command_see_bet: 查看赌注
+chat_command_see_user: 查看玩家
+chat_command_tip_user: 给用户发送小费
+chat_command_tip_rain: 下红包雨
+chat_command_ignore_user: 拉入黑名单
+chat_command_unignore_user: 移出黑名单
+chat_send_msg_placeholder: 输入您的消息
+chat_new_window: 弹出式聊天室
+chat_close_side: 折叠侧边栏
+chat_send_tip_label: 发送小费
+chat_rule_full_title: 完整的规则可以在我们的
+chat_forum: 论坛
+chat_rule_find: 上找到
+notify_error_forbid_operation: 不允许此操作
