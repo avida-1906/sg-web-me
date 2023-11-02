@@ -406,6 +406,9 @@ await application.allSettled([
           font-weight: var(--tg-font-weight-semibold);
           margin-left: var(--tg-spacing-8);
         }
+        &:hover{
+          --tg-icon-color:var(--tg-text-white);
+        }
       }
       .features-image{
         .base-img{
