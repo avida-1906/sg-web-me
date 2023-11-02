@@ -157,7 +157,7 @@ watchEffect(() => {
         >
           <div class="item" @click="goAllPage">
             <slot name="viewAll">
-              <BaseImage url="/img/casino/seeAll-en.png" />
+              <BaseImage url="/png/casino/seeAll-en.png" />
               <div class="txt">
                 <span>{{ $t('view_all') }}</span>
               </div>

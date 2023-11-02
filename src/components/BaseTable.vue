@@ -43,7 +43,7 @@ watch(() => props.columns, () => {
 </script>
 
 <template>
-  <div class="m-table-wrap">
+  <div class="scroll-x scrollable m-table-wrap">
     <table class="m-table">
       <thead>
         <tr class="m-tr">
