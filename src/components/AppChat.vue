@@ -41,6 +41,9 @@ const { run: runGetHistory } = useRequest(ApiChatGetHistory, {
 })
 
 function roomChange(room: EnumLanguageKey) {
+  nextTick(() => {
+    scrollMsg.value.scrollTop = 0
+  })
   runGetHistory({ lang: languageMap[room] })
   setMFalse()
 }
@@ -140,7 +143,7 @@ onUnmounted(() => {
           <div class="wrap msg-tail" />
         </div>
         <Transition name="fade">
-          <div v-if="showMoreBar" class="more-wrap">
+          <div v-if="showMoreBar && !msgHistoryLoading" class="more-wrap">
             <BaseButton shadow size="lg">
               <div class="icon-text stop">
                 <BaseIcon name="uni-stop" />
