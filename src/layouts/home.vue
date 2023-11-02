@@ -117,7 +117,10 @@ onErrorCaptured((err, instance, info) => {
       </header>
 
       <!-- <Transition name="home-slide-fade"> :key="route.path" -->
-      <div id="main-content-scrollable" class="scroll-y scrollable">
+      <div
+        id="main-content-scrollable"
+        class="scroll-y scrollable" :class="[{ 'mobile-bottom': isMobile }]"
+      >
         <!-- 用于获取内容区宽度 -->
         <AppContent>
           <div ref="homeContainerRef" class="only-for-get-width" />
@@ -324,6 +327,9 @@ onErrorCaptured((err, instance, info) => {
     width: 100%;
     background-color: var(--tg-text-grey-deep); // var(--tg-secondary-deepdark);
     // #091d2a
+  }
+  .mobile-bottom{
+    padding-bottom: var(--tg-footerbar-height);
   }
 }
 
