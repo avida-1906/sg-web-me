@@ -47,7 +47,10 @@ await application.allSettled([
     <!-- 头部 -->
     <div class="dark-background">
       <div class="top-wrapper">
-        <div v-if="!isLogin" class="unauthenticated-wrapper">
+        <div
+          v-if="!isLogin"
+          class="unauthenticated-wrapper" :class="{ 'is-mobile': isSm }"
+        >
           <div class="unauthenticated-content">
             <h1>更明智地下注</h1>
             <BaseButton
@@ -309,10 +312,10 @@ await application.allSettled([
       grid-template-columns: 40% 50%;
       grid-gap: 2rem;
       justify-content: space-between;
-      background-position: left 25% center;
-      background-size: auto 120%;
-      background-repeat: no-repeat;
-      @include getBackgroundImage('/home/abstract_bg');
+      // background-position: left 25% center;
+      // background-size: auto 120%;
+      // background-repeat: no-repeat;
+      // @include getBackgroundImage('/home/abstract_bg');
       .unauthenticated-wrapper{
         display: flex;
         flex-direction: column;
@@ -320,6 +323,14 @@ await application.allSettled([
         gap: 1rem;
         align-self: center;
         padding: var(--tg-spacing-32) 0;
+        position: relative;
+        z-index: 2;
+        &.is-mobile {
+          background-position: center;
+          background-size: cover;
+          background-repeat: no-repeat;
+          @include getBackgroundImage('/home/abstract_bg');
+        }
         .unauthenticated-content{
           display: grid;
           grid-auto-flow: row;
@@ -376,6 +387,19 @@ await application.allSettled([
       .top-banner{
         position: relative;
         // padding: var(--tg-spacing-4) 0;
+        &:before {
+          content: "";
+          height: 100%;
+          width: 100%;
+          right: 75%;
+          position: absolute;
+          background-position: center;
+          background-size: cover;
+          background-repeat: no-repeat;
+          // background-image: var(--image);
+          @include getBackgroundImage('/home/abstract_bg');
+          // z-index: -1;
+        }
         img {
           height: 100%;
           -o-object-fit: cover;
@@ -640,13 +664,6 @@ await application.allSettled([
       grid-gap: 0;
       .top-banner{
         padding: 0;
-        img {
-          height: 100%;
-          -o-object-fit: cover;
-          object-fit: cover;
-          -o-object-position: left;
-          object-position: left;
-        }
       }
     }
   }

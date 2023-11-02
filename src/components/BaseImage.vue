@@ -57,6 +57,7 @@ const imgUrl = computed(() => {
 
 <style lang="scss" scoped>
 .base-image {
+  position: relative;
   width: 100%;
   height: 100%;
 
