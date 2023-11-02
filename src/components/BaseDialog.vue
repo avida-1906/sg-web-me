@@ -82,7 +82,6 @@ onUnmounted(() => {
         </div>
         <div class="scroll-y scroll-contain">
           <div class="modal-content">
-            {{ _show }}
             <Suspense timeout="0">
               <slot />
               <template #fallback>
