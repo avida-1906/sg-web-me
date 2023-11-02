@@ -48,6 +48,8 @@ function roomChange(room: EnumLanguageKey) {
   setMFalse()
 }
 function messageWrapScroll() {
+  if (msgHistoryLoading.value)
+    return
   const { height } = scrollMsg.value.getBoundingClientRect()
   if (scrollMsg.value.scrollHeight - scrollMsg.value.scrollTop - height > 200)
     setMTrue()
