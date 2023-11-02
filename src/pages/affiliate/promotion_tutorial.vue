@@ -5,6 +5,7 @@ const box1Ref = ref()
 const box2Ref = ref()
 const box3Ref = ref()
 const box4Ref = ref()
+const { bool: isPageReady } = useBoolean(false)
 
 let mainScroll: any
 let line1: LeaderLine, line2: LeaderLine, line3: LeaderLine
@@ -26,7 +27,7 @@ function eventCallback() {
 }
 onMounted(() => {
   mainScroll = document.getElementById('main-content-scrollable')
-  setTimeout(() => {
+  const t = setTimeout(() => {
     line1 = new LeaderLine(box2Ref.value, box1Ref.value, {
       path: 'grid',
       color: '#FF9D00',
@@ -46,7 +47,9 @@ onMounted(() => {
       startSocket: 'top',
     })
     addEvent()
-  }, 500)
+    isPageReady.value = true
+    clearTimeout(t)
+  }, 400)
 })
 onBeforeUnmount(() => {
   removeEvent()
@@ -54,7 +57,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="promotion_tutorial">
+  <div :style="{ opacity: isPageReady ? 1 : 0 }" class="promotion_tutorial">
     <div ref="box1Ref" class="box1 box">
       box1
     </div>
@@ -73,6 +76,10 @@ onBeforeUnmount(() => {
 </template>
 
 <style lang='scss' scoped>
+.promotion_tutorial{
+  position: relative;
+  transition: var(--tg-transition);
+}
 .box{
   width: 200px;
   height: 200px;

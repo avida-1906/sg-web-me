@@ -12,17 +12,33 @@ const {
   value: password,
   errorMessage: pwdErrorMsg,
   validate: valiPassword,
-} = useField<string>('password', fieldVerifyLoginPwd)
+  handleBlur: blurPassword,
+  meta: metaPassword,
+} = useField<string>('password', (value) => {
+  if (!metaPassword.touched)
+    return ''
+  return fieldVerifyLoginPwd(value)
+})
 const {
   value: newPassword,
   errorMessage: newPwdErrorMsg,
   validate: valiNewPassword,
-} = useField<string>('newPassword', fieldVerifyLoginPwd)
+  handleBlur: blurNewPassword,
+  meta: metaNewPassword,
+} = useField<string>('newPassword', (value) => {
+  if (!metaNewPassword.touched)
+    return ''
+  return fieldVerifyLoginPwd(value)
+})
 const {
   value: repeatPassword,
   errorMessage: repeatPwdErrorMsg,
   validate: valiRepeatPassword,
+  handleBlur: blurRepeatPassword,
+  meta: metaRepeatPassword,
 } = useField<string>('repeatPassword', (value) => {
+  if (!metaRepeatPassword.touched)
+    return ''
   if (!value)
     return t('pls_enter_password')
   else if (value !== newPassword.value)
@@ -56,7 +72,9 @@ function fieldVerifyLoginPwd(value: string) {
     valiRepeatPassword()
   return ''
 }
-function onBlur() {
+function onBlurNewPassword() {
+  blurNewPassword()
+  valiNewPassword()
   if (pwdStatus.value)
     setShowPasswordVerify(false)
 }
@@ -65,6 +83,9 @@ function passwordVerifyPass(status: boolean) {
 }
 // 提交登陆密码
 async function submitLoginPwd() {
+  blurPassword()
+  blurNewPassword()
+  blurRepeatPassword()
   await valiPassword()
   await valiNewPassword()
   await valiRepeatPassword()
@@ -86,7 +107,10 @@ async function submitLoginPwd() {
       @submit="submitLoginPwd"
     >
       <BaseLabel label="旧密码" must-small>
-        <BaseInput v-model="password" :msg="pwdErrorMsg" type="password" />
+        <BaseInput
+          v-model="password" :msg="pwdErrorMsg" type="password"
+          @blur="blurPassword();valiPassword()"
+        />
       </BaseLabel>
       <BaseLabel label="新密码" must-small>
         <BaseInput
@@ -94,7 +118,7 @@ async function submitLoginPwd() {
           :msg="newPwdErrorMsg"
           type="password"
           @focus="setShowPasswordVerify(true)"
-          @blur="onBlur"
+          @blur="onBlurNewPassword"
         />
         <AppPasswordVerify
           v-show="isShowPasswordVerify"
@@ -107,6 +131,7 @@ async function submitLoginPwd() {
           v-model="repeatPassword"
           :msg="repeatPwdErrorMsg"
           type="password"
+          @blur="blurRepeatPassword();valiRepeatPassword()"
         />
       </BaseLabel>
     </AppSettingsContentItem>

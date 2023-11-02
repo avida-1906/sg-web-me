@@ -66,6 +66,7 @@ const toAddBankcards = function (item: WalletCurrencyList) {
     openAddBankcardsDialog,
   } = useAddBankcardsDialog({
     title: currentType ? '绑定PIX账户' : '绑定银行卡',
+    icon: currentType ? 'fiat-pix-title' : 'fiat-bank',
     openName,
     isFirst,
     activeCurrency: item,

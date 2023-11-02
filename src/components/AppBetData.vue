@@ -48,17 +48,17 @@ const getTabOptions = computed(() => {
       { value: 'casino-mine', label: '我的投注' },
       { value: 'casino-all', label: '所有投注' },
       { value: 'casino-fy', label: '风云榜' },
-      { value: 'ranking-list', label: '竞赛排行榜' },
+      { value: 'ranking-list', label: '竞赛排行榜', bubble: true },
     ]
     case 'sports':return [
       { value: 'sports-all', label: '所有投注' },
       { value: 'sports-fy', label: '风云榜' },
-      { value: 'ranking-list', label: '竞赛排行榜' },
+      { value: 'ranking-list', label: '竞赛排行榜', bubble: true },
     ]
     case 'home': return [
       { value: 'casino-all', label: '娱乐城投注' },
       { value: 'sports-all', label: '体育投注' },
-      { value: 'ranking-list', label: '竞赛排行榜' },
+      { value: 'ranking-list', label: '竞赛排行榜', bubble: true },
     ]
   }
 })
@@ -167,7 +167,7 @@ const getTableColumns: ComputedRef<Column[]> = computed((): Column[] => {
         title: '总投注额',
         dataIndex: 'betMoney',
         slot: 'betMoney',
-        align: 'right',
+        align: 'center',
         xl: true,
         md: true,
       },
