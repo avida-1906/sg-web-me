@@ -203,7 +203,7 @@ function enterPress(event: KeyboardEvent) {
           <span class="box" @click="addEmoMsg(emo)">
             <BaseButton type="text">
               <div class="emo">
-                <BaseImage :url="`/img/emoji/${emo}`" />
+                <BaseImage :url="`/png/emoji/${emo}`" />
               </div>
             </BaseButton>
           </span>
