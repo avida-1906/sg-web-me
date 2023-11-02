@@ -44,6 +44,14 @@ function onConfirm() {
 
 provide('closeDialog', close)
 
+watch([() => props.show, () => _show.value], ([show, _show]) => {
+  if (show || _show)
+    document.body.style.overflow = 'hidden'
+
+  else
+    document.body.style.overflow = ''
+})
+
 onMounted(() => {
   if (props.funcCall) {
     setTimeout(() => {
@@ -74,6 +82,7 @@ onUnmounted(() => {
         </div>
         <div class="scroll-y scroll-contain">
           <div class="modal-content">
+            {{ _show }}
             <Suspense timeout="0">
               <slot />
               <template #fallback>
