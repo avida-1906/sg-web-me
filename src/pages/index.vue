@@ -77,7 +77,11 @@ await application.allSettled([
         </div>
         <div class="top-banner">
           <!-- <AppBanner :mode="isSm ? 'default' : 'home'" /> -->
-          <BaseImage url="/png/home/banner.png" />
+          <BaseImage
+            fit="cover"
+            object-position="left center"
+            url="/png/home/banner.png"
+          />
         </div>
       </div>
     </div>
@@ -319,7 +323,7 @@ await application.allSettled([
         .unauthenticated-content{
           display: grid;
           grid-auto-flow: row;
-          gap: 1rem;
+          gap: var(--tg-spacing-16);
           h1{
             color: var(--tg-text-white);
             font-size: var(--tg-font-size-lg);
@@ -372,6 +376,13 @@ await application.allSettled([
       .top-banner{
         position: relative;
         // padding: var(--tg-spacing-4) 0;
+        img {
+          height: 100%;
+          -o-object-fit: cover;
+          object-fit: cover;
+          -o-object-position: left;
+          object-position: left;
+        }
       }
     }
   }
@@ -629,6 +640,13 @@ await application.allSettled([
       grid-gap: 0;
       .top-banner{
         padding: 0;
+        img {
+          height: 100%;
+          -o-object-fit: cover;
+          object-fit: cover;
+          -o-object-position: left;
+          object-position: left;
+        }
       }
     }
   }

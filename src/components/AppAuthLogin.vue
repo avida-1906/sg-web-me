@@ -31,13 +31,15 @@ const { t } = useI18n()
   font-size: var(--tg-font-size-default);
   display: flex;
   flex-direction: column;
-  gap: var(--tg-spacing-16);
+  gap: var(--tg-spacing-12);
+  margin-top: -4px;
   &-divider {
     width: 100%;
     max-width: 200px;
     margin: 0 auto;
     span{
       color: var(--tg-text-lightgrey);
+      line-height: 1.5;
     }
   }
   &-icon {
