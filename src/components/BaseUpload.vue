@@ -63,16 +63,12 @@ function deleteImg() {
 
 <style lang="scss" scoped>
 .base-upload {
-  // width: 149px;
-  // height: 97px;
   height: 100%;
   width: 100%;
   position: relative;
   border-radius: var(--tg-radius-default);
   overflow: hidden;
-  // background-image: url(../icons/upload-border.svg), url(../icons/upload-type.svg), url(../icons/upload-up.svg);
   background-repeat: no-repeat;
-  // background-size: 95% 92%, 80% 80%, 25px 25px;
   background-position: center;
   background-color: var(--tg-secondary-grey);
 

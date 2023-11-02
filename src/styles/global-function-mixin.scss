@@ -3,13 +3,9 @@
 // }
 
 @mixin getBackgroundImage($image) {
-  background-image: url($image);
+  background-image: url('/png' + $image + '.png');
 
   @at-root .webp & {
-    background-image: url($image + '.webp');
+    background-image: url('/webp' + $image + '.webp');
   }
-
-  // @at-root .avif & {
-  //   background-image: url($image + '.avif');
-  // }
 }
