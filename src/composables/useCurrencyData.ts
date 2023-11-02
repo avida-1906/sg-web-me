@@ -105,6 +105,20 @@ export function useCurrencyData() {
     return balance ?? 0
   })
 
+  /**
+   * 判断是不是虚拟货币
+   * @param {EnumCurrencyKey} currency
+   */
+  const isVirtualCurrency = (currency: EnumCurrencyKey) => {
+    const virtualList: EnumCurrencyKey[] = [
+      'USDT',
+      'BTC',
+      'ETH',
+      'BNB',
+    ]
+    return virtualList.includes(currency)
+  }
+
   /** 货币列表;含筛选 */
   const allCurrencyData = (currency: TCurrencyObject | undefined) => {
     if (!currency)
@@ -120,7 +134,11 @@ export function useCurrencyData() {
         list.push({
           type,
           balance: balanceNumber,
-          balanceWithSymbol: `${currencyConfig[type].prefix}${balanceNumber}`,
+          balanceWithSymbol: `${
+            isVirtualCurrency(type)
+            ? ''
+            : currencyConfig[type].prefix}${balanceNumber
+          }`,
           cur: currencyConfig[type].cur,
           bankTree: currencyConfig[type].bankTree,
           prefix: currencyConfig[type].prefix,
@@ -149,20 +167,6 @@ export function useCurrencyData() {
   const renderCurrencyList = computed(() => {
     return allCurrencyData(userInfo.value?.balance)
   })
-
-  /**
-   * 判断是不是虚拟货币
-   * @param {EnumCurrencyKey} currency
-   */
-  const isVirtualCurrency = (currency: EnumCurrencyKey) => {
-    const virtualList: EnumCurrencyKey[] = [
-      'USDT',
-      'BTC',
-      'ETH',
-      'BNB',
-    ]
-    return virtualList.includes(currency)
-  }
 
   /** 获取虚拟币协议类型 */
   const getVirtualCurrencyContractType = (currency: string) => {

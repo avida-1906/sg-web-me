@@ -336,8 +336,8 @@ async function toLogin() {
 
         <div class="stake-text">
           {{ t('stake_hCaptcha') }}
-          <span>{{ t('privacy_policy') }}</span> {{ t('and') }}
-          <span>{{ t('terms_of_service') }}</span> {{ t('applicable') }}
+          <span class="semibold">{{ t('privacy_policy') }}</span> {{ t('and') }}
+          <span class="semibold">{{ t('terms_of_service') }}</span> {{ t('applicable') }}
         </div>
       </div>
     </div>

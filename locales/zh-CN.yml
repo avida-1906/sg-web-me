@@ -19,7 +19,7 @@ pls_enter_password: 请输入密码
 pls_enter_birthday: 请输入生日
 password_incorrect: 密码格式不正确
 password_uppercase_lowercase_letter: 密码必须含有至少 1 个大写字母和 1 个小写字母
-password_least_8_characters: 您的 password 必须含有至少 8 个字符
+password_least_8_characters: 您的密码必须含有至少 8 个字符
 password_least_1_number: 含有至少 1 个数字
 uppercase_lowercase_letter: 含有大写和小写字母
 least_8_characters: 至少 8 个字符
@@ -38,7 +38,7 @@ stake_hCaptcha: Stake受hCaptcha保护，hCaptcha
 privacy_policy: 隐私政策
 and: 和
 terms_of_service: 服务条款
-applicable: 适用
+applicable: 适用。
 balance: 余额
 casino: 娱乐城
 sports: 体育
