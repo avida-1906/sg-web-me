@@ -13,6 +13,11 @@ const chatStore = useChatStore()
 const { hideChat } = storeToRefs(chatStore)
 
 const { bool: showMoreBar, setFalse: setMFalse, setTrue: setMTrue } = useBoolean(false)
+const {
+  bool: msgHistoryLoading,
+  setFalse: setMHLFalse,
+  setTrue: setMHLTrue,
+} = useBoolean(false)
 
 const chatMessageBus = useEventBus(CHAT_MESSAGE_BUS)
 
@@ -21,11 +26,17 @@ const messageHistory = ref<Array<ChatMessageInfo>>([])
 const msgCounter = ref(1)
 
 const { run: runGetHistory } = useRequest(ApiChatGetHistory, {
+  onBefore: () => {
+    setMHLTrue()
+  },
   onSuccess: (data) => {
     messageHistory.value = data?.reverse().map(m => ({ ...m, id: m.s, msg: m.c, user: { name: m.n, uid: m.u } }))
   },
   onAfter: () => {
-    goBottom()
+    setTimeout(() => {
+      goBottom()
+      setMHLFalse()
+    }, 1200)
   },
 })
 
@@ -77,7 +88,6 @@ watch(showMoreBar, (val) => {
 })
 
 onMounted(() => {
-  goBottom()
   chatMessageBus.on(onReceiveChatMsg)
 })
 
@@ -110,7 +120,17 @@ onUnmounted(() => {
           <span>星期一</span>
           <span>13:18</span>
         </div> -->
-          <div v-for="msg, mdx in messageHistory" :key="mdx" class="wrap">
+          <template v-if="msgHistoryLoading">
+            <div v-for="i in 20" :key="i" class="wrap">
+              <AppChatMsgItem />
+            </div>
+          </template>
+          <div
+            v-for="msg, mdx in messageHistory"
+            v-show="!msgHistoryLoading"
+            :key="mdx"
+            class="wrap"
+          >
             <AppChatMsgItem :msg-info="msg" />
           </div>
           <!-- <div class="time-wrap wrap">
