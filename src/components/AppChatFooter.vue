@@ -22,10 +22,7 @@ const allEmojis = [
   'adesanya.png',
   'beer.png',
   'biden.png',
-  'blob.webp',
-  'catbread.gif',
   'coffee.png',
-  'coin.webp',
   'coupon.png',
   'dendi.png',
   'djokovic.png',
@@ -48,7 +45,6 @@ const allEmojis = [
   'monkas.png',
   'nadal.png',
   'nightdoge.png',
-  'nyancat.gif',
   'pepehands.png',
   'pikachu.png',
   'poggers.png',
@@ -128,6 +124,7 @@ const emojis = computed(() => {
     })
   }
 })
+const trimMessage = computed(() => message.value.trim())
 const isCommand = computed(() => message.value[0] === '/')
 
 const { run: runSendMsg, loading: sendLoading } = useRequest(ApiChatSendMessage)
@@ -146,15 +143,15 @@ function addCommand(u: { command: string }) {
   msgInput.value?.getFocus()
 }
 function sendMsg() {
-  if (message.value.length) {
+  if (trimMessage.value.length) {
     if (!isLogin.value) {
       openNotify({ type: 'error', message: '不允许此操作' })
       return
     }
     const t = new Date().getTime()
     const s = `${Math.random().toString(36).slice(-10)}|${t}`
-    chatMessageBus.emit({ c: message.value, s, u: userInfo.value?.uid, n: userInfo.value?.username, t })
-    runSendMsg({ c: message.value, lang: roomLang.value, s })
+    chatMessageBus.emit({ c: trimMessage.value, s, u: userInfo.value?.uid, n: userInfo.value?.username, t })
+    runSendMsg({ c: trimMessage.value, lang: roomLang.value, s })
     message.value = ''
     msgInput.value.getFocus()
   }
@@ -162,15 +159,15 @@ function sendMsg() {
 function enterPress(event: KeyboardEvent) {
   event.preventDefault()
   event.stopPropagation()
-  if (message.value.length) {
+  if (trimMessage.value.length) {
     if (!isLogin.value) {
       openNotify({ type: 'error', message: '不允许此操作' })
       return
     }
     if (isCommand.value) {
-      const temp = message.value.split(' ')
-      const firstSpaceIdx = message.value.indexOf(' ')
-      const param = firstSpaceIdx !== -1 ? message.value.slice(firstSpaceIdx) : ''
+      const temp = trimMessage.value.split(' ')
+      const firstSpaceIdx = trimMessage.value.indexOf(' ')
+      const param = firstSpaceIdx !== -1 ? trimMessage.value.slice(firstSpaceIdx) : ''
       switch (temp[0]) {
         case '/bet':
           break
