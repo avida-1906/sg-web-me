@@ -32,6 +32,7 @@ export interface BankCard {
   bank_account: string
   bank_area_cpf: string
   is_default: number
+  state: number
 }
 
 /** 绑定的钱包虚拟币地址对象 */

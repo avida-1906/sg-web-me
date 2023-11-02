@@ -147,17 +147,27 @@ if (!cardList.value)
           <div v-else class="layout-spacing reset">
             <div
               v-for="tmp in item.bankcard"
-              :key="tmp.id" class="address-row"
+              :key="tmp.id"
+              class="address-row"
+              :class="{ 'bankcard-disable': tmp.state === 2 }"
             >
               <BaseIcon name="fiat-bank" />
               <div class="bank-num">
                 <span style="padding-right: 1ch;">{{ tmp.bank_name }}</span>
                 <span>{{ tmp.bank_account }}</span>
               </div>
-              <span class="type">{{ tmp.open_name }}</span>
-              <BaseButton type="text" @click.stop="toDeleteBankcard(tmp)">
+              <span v-if="tmp.state !== 2" class="type">{{ tmp.open_name }}</span>
+              <BaseButton
+                v-if="tmp.state !== 2"
+                type="text"
+                @click.stop="toDeleteBankcard(tmp)"
+              >
                 <BaseIcon name="uni-delete" />
               </BaseButton>
+              <div v-if="tmp.state === 2" class="bankcard-disable-text">
+                <BaseIcon name="uni-disable" />
+                暂不可用
+              </div>
             </div>
             <BaseButton
               v-if="item.showAdd"
@@ -203,6 +213,7 @@ if (!cardList.value)
       font-size: var(--tg-font-size-xs);
       color: var(--tg-text-white);
       padding: 0 var(--tg-spacing-4) 0 var(--tg-spacing-16);
+      line-height: 38px;;
       .type{
         font-weight: 500;
         color: var(--tg-text-warn);

@@ -276,41 +276,6 @@ function onClickPopper() {
     background-color: var(--tg-sub-blue);
   }
 }
-.bankcard-disable{
-  position: relative;
-  &::after{
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    background-color: var(--tg-primary-main);
-    opacity: .9;
-  }
-  &:hover, &.active {
-    background-color: var(--tg-secondary-main);
-  }
-}
-.bankcard-disable-text{
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  font-size: var(--tg-font-size-default);
-  color: var(--tg-text-lightgrey);
-  top:0;
-  right:0;
-  bottom:0;
-  left:0;
-  z-index: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: var(--tg-spacing-4);
-  > svg{
-    font-size: var(--tg-font-size-md);
-  }
-}
 
 // base-select
 .base-select {
