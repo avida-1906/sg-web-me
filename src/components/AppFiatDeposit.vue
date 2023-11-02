@@ -195,6 +195,8 @@ async function depositSubmit() {
       mid: currentType.value,
       cid: currentAisle.value,
       bank_code: selectValue.value ?? '',
+      currency_name: '',
+      currency_id: props.activeCurrency.cur,
     })
   }
 }

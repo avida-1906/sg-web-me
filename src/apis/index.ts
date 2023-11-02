@@ -848,6 +848,8 @@ export function ApiFinanceThirdDeposit(data: {
   cid: string
   /** 银行编码 */
   bank_code: string
+  currency_name: string
+  currency_id: string
 }) {
   return httpClient.post<string>('/finance/third/deposit', data)
 }
