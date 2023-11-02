@@ -47,10 +47,13 @@ function onChange(event: any) {
   emit('update:modelValue', v)
   emit('select', v)
 }
-function onClickPopperItem(v: any) {
-  if (v === props.modelValue)
+function onClickPopperItem(item: any, hide: () => void) {
+  const v = item.value
+  if (item.state === 2)
     return
-
+  else if (v === props.modelValue)
+    return
+  hide()
   emit('update:modelValue', v)
   emit('select', v)
 }
@@ -100,8 +103,9 @@ function onClickPopper() {
               'popper-option-dark': theme,
               'popper-option': !theme,
               'active': item.value === modelValue,
+              'bankcard-disable': item.state === 2,
             }"
-            @click="hide();onClickPopperItem(item.value)"
+            @click="onClickPopperItem(item, hide)"
           >
             <slot
               name="option"
@@ -109,6 +113,10 @@ function onClickPopper() {
             >
               {{ item.label }}
             </slot>
+            <div v-if="item.state === 2" class="bankcard-disable-text">
+              <BaseIcon name="uni-disable" />
+              暂不可用
+            </div>
           </a>
         </div>
       </template>
@@ -266,6 +274,41 @@ function onClickPopper() {
 
   &:hover, &.active {
     background-color: var(--tg-sub-blue);
+  }
+}
+.bankcard-disable{
+  position: relative;
+  &::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: var(--tg-primary-main);
+    opacity: .9;
+  }
+  &:hover, &.active {
+    background-color: var(--tg-secondary-main);
+  }
+}
+.bankcard-disable-text{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  font-size: var(--tg-font-size-default);
+  color: var(--tg-text-lightgrey);
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--tg-spacing-4);
+  > svg{
+    font-size: var(--tg-font-size-md);
   }
 }
 
