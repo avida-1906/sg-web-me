@@ -21,7 +21,7 @@ const props = withDefaults(defineProps<Props>(), {
 const emit = defineEmits(['clickImg', 'errorImg'])
 
 const { VITE_CASINO_IMG_CLOUD_URL } = getEnv()
-const suffix = `.${document.documentElement.className.trim().split(' ')[0]}`
+const suffix = document.documentElement.className.trim().split(' ').includes('webp')
 
 const imgUrl = computed(() => {
   if (props.isCloud) {
@@ -29,8 +29,7 @@ const imgUrl = computed(() => {
       .url.replace('%lang%', getCurrentLanguageForBackend())}`
   }
 
-  return props.url + suffix
-  // .replace(/[^/.]+$/, suffix)
+  return suffix ? props.url.replace(/png/g, 'webp') : props.url
 })
 </script>
 
