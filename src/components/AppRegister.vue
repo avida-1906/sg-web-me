@@ -21,7 +21,12 @@ const {
   errorMessage: emailErrorMsg,
   validate: validateEmail,
   setErrors: setEmailErrors,
+  handleBlur: blurEmail,
+  meta: metaEmail,
 } = useField<string>('email', (value) => {
+  if (!metaEmail.touched)
+    return ''
+
   if (!value)
     return t('pls_enter_email_address')
   else if (!emailReg.test(value))
@@ -70,15 +75,7 @@ const {
   if (!value)
     return t('agree_terms_conditions')
   return ''
-})
-const { run: runExists } = useRequest(ApiMemberExists, {
-  onError() {
-    if (curExists.value === 2)
-      setEmailErrors('邮箱已存在,请重新填写邮箱')
-    else if (curExists.value === 1)
-      setUsernameErrors('用户名已存在,请重新填写用户名')
-  },
-})
+}, { initialValue: false })
 
 const {
   run: runMemberReg,
@@ -96,32 +93,66 @@ const {
     closeDialog()
   },
 })
+const { run: runExists } = useRequest(ApiMemberExists, {
+  async onSuccess() {
+    if (curExists.value === 2) {
+      await validateUsername()
+      await validatePassword()
+      await valiAgree()
+
+      if (!usernameErrorMsg.value && !pwdErrorMsg.value && !agreeErrorMsg.value
+      ) {
+        const paramsReg = {
+          email: email.value,
+          username: username.value,
+          password: password.value,
+          parent_id: '',
+          device_number: application.getDeviceNumber(),
+        }
+        runMemberReg(paramsReg)
+      }
+    }
+  },
+  onError() {
+    if (curExists.value === 2)
+      setEmailErrors('邮箱已存在,请重新填写邮箱')
+    else if (curExists.value === 1)
+      setUsernameErrors('用户名已存在,请重新填写用户名')
+  },
+})
 async function getMemberReg() {
-  if (isEmailMust.value)
-    await validateEmail()
+  // 这个不要删：有错误时直接返回，否则重复的邮箱或用户名会因通过格式校验从而进行注册请求
+  if (
+    (isEmailMust.value && emailErrorMsg.value)
+    || usernameErrorMsg.value
+    || pwdErrorMsg.value
+    || agreeErrorMsg.value
+  ) return
 
   await validateUsername()
   await validatePassword()
   await valiAgree()
 
-  if (
-    ((isEmailMust.value && !emailErrorMsg.value) || !isEmailMust.value)
-    && !usernameErrorMsg.value
-    && !pwdErrorMsg.value
-    && !agreeErrorMsg.value
-  ) {
-    const paramsReg = {
-      email: email.value,
-      username: username.value,
-      password: password.value,
-      parent_id: '',
-      device_number: application.getDeviceNumber(),
+  if (isEmailMust.value) {
+    blurEmail()
+    await validateEmail()
+    !emailErrorMsg.value && onEmailUsernameBlur(2)
+  }
+  else {
+    if (!usernameErrorMsg.value && !pwdErrorMsg.value && !agreeErrorMsg.value
+    ) {
+      const paramsReg = {
+        email: email.value,
+        username: username.value,
+        password: password.value,
+        parent_id: '',
+        device_number: application.getDeviceNumber(),
+      }
+      runMemberReg(paramsReg)
     }
-    runMemberReg(paramsReg)
   }
 }
-
-function onFocus() {
+function onPasswordFocus() {
   setShowPasswordVerifyTrue()
 }
 function onPasswordBlur() {
@@ -152,8 +183,7 @@ async function toLogin() {
       <div class="app-register-input-box">
         <BaseLabel v-if="isEmailMust" :label="t('email_address')" must-small>
           <BaseInput
-            v-model="email" :msg="emailErrorMsg"
-            @blur="onEmailUsernameBlur(2)"
+            v-model="email" :msg="emailErrorMsg" @blur="blurEmail();validateEmail()"
           />
         </BaseLabel>
         <BaseLabel :label="t('username')" must-small>
@@ -167,7 +197,7 @@ async function toLogin() {
             v-model="password"
             :msg="pwdErrorMsg"
             type="password"
-            autocomplete="current-password" :password="password" @focus="onFocus"
+            autocomplete="current-password" :password="password" @focus="onPasswordFocus"
             @blur="onPasswordBlur"
           />
           <AppPasswordVerify
@@ -181,7 +211,7 @@ async function toLogin() {
           :loading="isLoading" class="app-register-btn" bg-style="primary"
           size="xl" @click.stop="getMemberReg"
         >
-          {{ t('continue') }}
+          {{ t('reg') }}
         </BaseButton>
         <div class="agree">
           <BaseCheckBox v-model="isAgree" :msg="agreeErrorMsg">
