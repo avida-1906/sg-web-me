@@ -72,16 +72,7 @@ const {
   loading: thirdDepositLoading,
 } = useRequest(ApiFinanceThirdDeposit, {
   onSuccess(data) {
-    /** 解决window.open 在safari/google手机浏览器无法打开新窗口 */
-    const a = document.createElement('a')
-    a.setAttribute('href', data)
-    a.setAttribute('target', '_blank')
-    a.setAttribute('id', 'openNewWindow')
-    document.body.appendChild(a)
-    a.click()
-    setTimeout(() => {
-      document.body.removeChild(a)
-    }, 0)
+    location.href = data
   },
 })
 const {
@@ -97,6 +88,7 @@ const paymentMethodData = computed(() => {
         label: i.name,
         value: i.id,
         promo: i.promo,
+        pname: i.pname,
       }
     })
   }
@@ -182,6 +174,16 @@ const toCopy = function (item: string) {
   application.copy(item)
 }
 const changeAisle = function (item: IPaymentMerchantData) {
+  const ref: HTMLElement | null = document.querySelector(`#id${item.value}`)
+  const parentRef = ref?.parentElement
+  if (parentRef && ref) {
+    const parentHalfWidth = parentRef?.offsetWidth / 2
+    const refHalfWidth = ref?.offsetWidth / 2
+    const left = ref.offsetLeft - parentHalfWidth + refHalfWidth
+    // parentRef.scrollLeft = ref.offsetLeft - parentHalfWidth + refHalfWidth
+    parentRef.scrollTo({ left, behavior: 'smooth' })
+  }
+
   currentAisle.value = item.value
   currentAisleItem.value = item
   oftenAmount.value = strToArray(item.often_amount)
@@ -199,6 +201,8 @@ async function depositSubmit() {
       mid: currentType.value,
       cid: currentAisle.value,
       bank_code: selectValue.value ?? '',
+      currency_name: '',
+      currency_id: props.activeCurrency.cur,
     })
   }
 }
@@ -299,11 +303,15 @@ await application.allSettled([
             >
               <div class="other-aisles scroll-x">
                 <div
-                  v-for="item in paymentMerchantData" :key="item.value" class="aisle"
+                  v-for="item in paymentMerchantData"
+                  :id="`id${item.value}`"
+                  :key="item.value"
+                  class="aisle"
                   :class="currentAisle === item.value ? 'active' : ''"
                   @click="changeAisle(item)"
                 >
                   <span>{{ item.label }}</span>
+                  <span>{{ item.amount_min }}-{{ item.amount_max }}</span>
                 </div>
               </div>
             </BaseLabel>
@@ -412,10 +420,10 @@ await application.allSettled([
           justify-content: left;
           align-items: center;
           gap: 0.75rem;
-
+          overflow: hidden;
           .aisle{
             flex-shrink: 0;
-            padding: var(--tg-spacing-11) var(--tg-spacing-8);
+            padding: var(--tg-spacing-4) var(--tg-spacing-8);
             background-color: var(--tg-secondary-dark);
             border-radius: var(--tg-radius-default);
             box-shadow: var(--tg-box-shadow);
@@ -424,7 +432,9 @@ await application.allSettled([
             display: inline-flex;
             justify-content: center;
             align-items: center;
-            gap: .75rem;
+            // gap: .75rem;
+            flex-direction: column;
+            line-height: 17px;
             &:hover{
               opacity: .9;
             }

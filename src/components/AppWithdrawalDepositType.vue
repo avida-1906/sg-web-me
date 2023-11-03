@@ -6,6 +6,7 @@ interface Props {
     value: string
     icon?: string
     promo?: string
+    pname?: string
   }[]
 }
 const props = withDefaults(defineProps<Props>(), {
@@ -18,7 +19,9 @@ const changeType = function (type: string) {
   if (parentRef && ref) {
     const parentHalfWidth = parentRef?.offsetWidth / 2
     const refHalfWidth = ref?.offsetWidth / 2
-    parentRef.scrollLeft = ref.offsetLeft - parentHalfWidth + refHalfWidth
+    const left = ref.offsetLeft - parentHalfWidth + refHalfWidth
+    // parentRef.scrollLeft = ref.offsetLeft - parentHalfWidth + refHalfWidth
+    parentRef.scrollTo({ left, behavior: 'smooth' })
   }
   emit('update:modelValue', type)
 }
@@ -36,7 +39,14 @@ const changeType = function (type: string) {
     >
       <BaseIcon :name="item.icon ?? 'fiat-bank'" />
       <span class="label">{{ item.label }}</span>
-      <span v-if="Number(item.promo) > 0" class="tag">送{{ item.promo }}%</span>
+      <span v-if="item.pname === '赠送'" class="tag">送{{ Number(item.promo) }}%</span>
+      <span
+        v-else-if="item.pname === '推荐'
+          || item.pname === '活动'
+          || item.pname === '热门'"
+        class="tag"
+        :class="{ green: item.pname === '推荐', red: item.pname === '热门' }"
+      >{{ item.pname }}</span>
     </div>
   </div>
 </template>
@@ -88,6 +98,12 @@ const changeType = function (type: string) {
       transform: scale(0.41) rotate(45deg);
       text-align: center;
       line-height: 30px;
+    }
+    .green{
+      background-color: var(--tg-text-green);
+    }
+    .red{
+      background-color: var(--tg-text-error);
     }
   }
 }

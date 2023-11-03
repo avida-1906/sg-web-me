@@ -16,17 +16,15 @@ const tabOptions = [
   { label: t('deposit'), value: 'deposit' },
   { label: t('withdraw'), value: 'withdraw' },
 ]
+const amountRef = ref()
+const passwordRef = ref()
 
 const {
   value: amount,
   resetField: resetAmount,
   validate: validateAmount,
   errorMessage: errAmount,
-  handleBlur: blurAmount,
-  meta: metaAmount,
 } = useField<string>('amount', (value) => {
-  if (!metaAmount.touched)
-    return ''
   if (!value)
     return '不能为空'
   else if (Number(value) === 0)
@@ -43,11 +41,7 @@ const {
   resetField: resetPassword,
   validate: validatePassword,
   errorMessage: errPassword,
-  handleBlur: blurPassword,
-  meta: metaPassword,
 } = useField<string>('password', (value) => {
-  if (!metaPassword.touched)
-    return ''
   if (!value)
     return '不能为空'
   else if (!payPasswordReg.test(value))
@@ -97,8 +91,8 @@ const {
 })
 
 async function handleUpdate() {
-  blurAmount()
-  blurPassword()
+  amountRef.value.setTouchTrue()
+  passwordRef.value.setTouchTrue()
   await validateAmount()
   if (isDeposit.value) {
     if (!errAmount.value && updateParams.value)
@@ -120,6 +114,7 @@ function maxNumber() {
 
 watch(() => activeTab.value, () => {
   resetAmount()
+  amountRef.value.setTouchFalse()
   resetPassword()
 })
 </script>
@@ -143,12 +138,12 @@ watch(() => activeTab.value, () => {
           <span class="us">US$0.00</span>
         </div>
         <BaseInput
-          v-model="amount"
+          ref="amountRef" v-model="amount"
           type="number"
           placeholder="0.00000000"
           :msg="errAmount"
+          msg-after-touched
           @on-right-button="maxNumber"
-          @blur="blurAmount();validateAmount()"
         >
           <template #right-icon>
             <AppCurrencyIcon v-if="activeCurrency" :currency-type="activeCurrency.type" />
@@ -171,14 +166,14 @@ watch(() => activeTab.value, () => {
       <template v-else>
         <div>
           <BaseInput
-            v-model="password"
+            ref="passwordRef" v-model="password"
             label="密码"
             :msg="errPassword"
             placeholder=""
             type="password"
-            must
+
             max="6"
-            @blur="blurPassword();validatePassword()"
+            msg-after-touched must
           />
         </div>
         <BaseButton

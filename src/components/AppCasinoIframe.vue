@@ -145,7 +145,7 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
           <span class="game-name">{{ dataDetail?.name }}</span>
           <span class="game-provider">{{ gameProviderName }}</span>
         </div>
-        <div class="info-controls">
+        <div v-if="isLogin" class="info-controls">
           <!-- 收藏游戏 -->
           <VTooltip placement="top">
             <div
@@ -374,7 +374,7 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
               </VTooltip>
 
               <!-- 收藏游戏 -->
-              <VTooltip placement="top">
+              <VTooltip v-if="isLogin" placement="top">
                 <div
                   class="icon-button"
                   :class="{ 'is-isFavorite': isFavorite }"
