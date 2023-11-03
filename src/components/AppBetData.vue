@@ -1,15 +1,20 @@
 <script setup lang="ts">
-interface Column {
-  title?: string // 列头显示文字
-  width?: number | string // 列宽度
-  dataIndex: string // 列数据字符索引
-  slot?: string | undefined // 列插槽名称索引
-  align?: 'left' | 'center' | 'right' // 列对其方式
+// interface Column {
+//   title?: string // 列头显示文字
+//   width?: number | string // 列宽度
+//   dataIndex: string // 列数据字符索引
+//   slot?: string | undefined // 列插槽名称索引
+//   align?: 'left' | 'center' | 'right' // 列对其方式
+//   xl?: boolean // 768-1200是否展示
+//   md?: boolean // <768是否展示
+//   sort?: boolean // 是否展示排序
+//   sortDirections?: 'ascend' | 'descend' // 升序 ｜ 降序
+// }
+type RewriteColumn = {
   xl?: boolean // 768-1200是否展示
   md?: boolean // <768是否展示
-  sort?: boolean // 是否展示排序
-  sortDirections?: 'ascend' | 'descend' // 升序 ｜ 降序
-}
+} & Column
+
 interface Props {
   mode?: 'casino' | 'sports' | 'home'
 }
@@ -63,7 +68,7 @@ const getTabOptions = computed(() => {
   }
 })
 // 获取表格head
-const getTableColumns: ComputedRef<Column[]> = computed((): Column[] => {
+const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn[] => {
   switch (activeTab.value) {
     case 'casino-mine': return [
       {
@@ -222,7 +227,7 @@ const getTableColumns: ComputedRef<Column[]> = computed((): Column[] => {
     default: return []
   }
 })
-const getScaleColumns: ComputedRef<Column[]> = computed((): Column[] => {
+const getScaleColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn[] => {
   if (!isLessThanLg.value)
     return getTableColumns.value
   else if (isGreaterThanSm.value)
