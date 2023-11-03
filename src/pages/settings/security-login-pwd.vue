@@ -2,11 +2,12 @@
 const { t } = useI18n()
 const { openNotify } = useNotify()
 // 登录密码
-const { bool: pwdStatus, setBool: setPwdStatus } = useBoolean(false)
 const { runMemberLogout, logoutLoading } = useLogout()
+const { bool: pwdStatus, setBool: setPwdStatus } = useBoolean(true)
 const {
   bool: isShowPasswordVerify,
-  setBool: setShowPasswordVerify,
+  setTrue: setShowPasswordVerifyTrue,
+  setFalse: setShowPasswordVerifyFalse,
 } = useBoolean(false)
 const pwdRef = ref()
 const newPwd = ref()
@@ -20,6 +21,7 @@ const {
   value: newPassword,
   errorMessage: newPwdErrorMsg,
   validate: valiNewPassword,
+  meta: newPwdMeta,
 } = useField<string>('newPassword', fieldVerifyLoginPwd)
 const {
   value: repeatPassword,
@@ -60,8 +62,12 @@ function fieldVerifyLoginPwd(value: string) {
   return ''
 }
 function onBlurNewPassword() {
+  if (newPwdMeta.dirty) {
+    newPwd.value.setTouchTrue()
+    valiNewPassword()
+  }
   if (pwdStatus.value)
-    setShowPasswordVerify(false)
+    setShowPasswordVerifyFalse()
 }
 function passwordVerifyPass(status: boolean) {
   setPwdStatus(status)
@@ -103,7 +109,7 @@ async function submitLoginPwd() {
           :msg="newPwdErrorMsg"
           type="password"
           msg-after-touched
-          @focus="setShowPasswordVerify(true)"
+          @focus="setShowPasswordVerifyTrue"
           @blur="onBlurNewPassword"
         />
         <AppPasswordVerify

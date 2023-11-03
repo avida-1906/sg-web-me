@@ -4,20 +4,20 @@ const closeDialog = inject('closeDialog', () => { })
 const { t } = useI18n()
 const appStore = useAppStore()
 const { openNotify } = useNotify()
-const { bool: isEmailMust } = useBoolean(true)
-const { bool: pwdStatus, setBool: setPwdStatus } = useBoolean(false)
 const { openLoginDialog } = useLoginDialog()
+const { bool: isEmailMust } = useBoolean(true)
+const { bool: pwdStatus, setBool: setPwdStatus } = useBoolean(true)
+const {
+  bool: isShowPasswordVerify,
+  setTrue: setShowPasswordVerifyTrue,
+  setFalse: setShowPasswordVerifyFalse,
+} = useBoolean(false)
 
 const emailRef = ref()
 const userNameRef = ref()
 const passwordRef = ref()
 const curExists = ref<1 | 2>(2)
 const steps = ref(1)
-const {
-  bool: isShowPasswordVerify,
-  setTrue: setShowPasswordVerifyTrue,
-  setFalse: setShowPasswordVerifyFalse,
-} = useBoolean(false)
 
 const {
   value: email,
@@ -53,6 +53,7 @@ const {
   value: password,
   errorMessage: pwdErrorMsg,
   validate: validatePassword,
+  meta: pwdMeta,
 } = useField<string>('password', (value) => {
   if (!value)
     return t('pls_enter_password')
@@ -153,6 +154,10 @@ function onPasswordFocus() {
   setShowPasswordVerifyTrue()
 }
 function onPasswordBlur() {
+  if (pwdMeta.dirty) {
+    passwordRef.value.setTouchTrue()
+    validatePassword()
+  }
   if (pwdStatus.value)
     setShowPasswordVerifyFalse()
 }
@@ -198,7 +203,7 @@ async function toLogin() {
             v-model="password"
             :msg="pwdErrorMsg"
             type="password"
-            autocomplete="current-password" :password="password" msg-after-touched
+            autocomplete="current-password" msg-after-touched
             @focus="onPasswordFocus"
             @blur="onPasswordBlur"
           />

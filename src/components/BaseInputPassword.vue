@@ -10,6 +10,7 @@ interface Props {
   isCipherText?: boolean
   /** 是否禁用 */
   disabled?: boolean
+  msgAfterTouched?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -20,6 +21,12 @@ const props = withDefaults(defineProps<Props>(), {
 })
 const emit = defineEmits(['update:modelValue', 'blur'])
 
+const {
+  bool: isTouched,
+  setTrue: setTouchTrue,
+  setFalse: setTouchFalse,
+} = useBoolean(false)
+
 const inputRef = ref<HTMLElement>()
 /** 光标位置 */
 const textLength = ref<number | null>(null)
@@ -29,13 +36,19 @@ const entered = ref<number>(0)
 const inputValueList = computed(() => {
   return props.modelValue.split('')
 })
+const error = computed(() => {
+  if (props.msgAfterTouched)
+    return isTouched.value && !!props.msg
+  return !!props.msg
+})
 
 const onFocus = function () {
   inputRef.value?.focus()
   textLength.value = props.modelValue.length
 }
-const onBlur = function () {
+const onBlur = function (event: any) {
   textLength.value = null
+  !!event.target.value && setTouchTrue()
   emit('blur')
 }
 const changeText = function (e: any) {
@@ -44,6 +57,8 @@ const changeText = function (e: any) {
   entered.value = value.length
   emit('update:modelValue', value)
 }
+
+defineExpose({ setTouchTrue, setTouchFalse })
 </script>
 
 <template>
@@ -72,7 +87,7 @@ const changeText = function (e: any) {
         <b />
       </li>
     </ul>
-    <div v-show="msg" class="msg">
+    <div v-show="error" class="msg">
       <BaseIcon class="error-icon" name="uni-warning" />
       <span>{{ msg }}</span>
     </div>

@@ -18,11 +18,11 @@ const {
   appContentWidth,
 } = storeToRefs(useWindowStore())
 
-const tab = ref('4')
+const tab = ref('1')
 const tabList = [
   { value: '1', label: '大赢家' },
   { value: '2', label: '幸运赢家' },
-  { value: '4', label: '描述' },
+  // { value: '4', label: '描述' },
 ]
 const tagList = ref<ITabItem[]>([
   { label: '购买奖励回合', link: '#' },
