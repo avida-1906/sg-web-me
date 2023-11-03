@@ -653,6 +653,8 @@ function copyAppAuthLogin() {
   toast('Copied')
 }
 const breadcrumbs = ['one', 'two', 'three', 'four']
+
+const datepicker = ref()
 </script>
 
 <template>
@@ -698,6 +700,14 @@ const breadcrumbs = ['one', 'two', 'three', 'four']
     <li class="box">
       <AppDemoCard title="skeleton">
         <BaseSkeleton @click="copyCode('skeleton')" />
+      </AppDemoCard>
+    </li>
+    <li class="box">
+      <AppDemoCard title="BaseDatePicker">
+        {{ datepicker }}
+        <div class="center">
+          <BaseDatePicker v-model="datepicker" />
+        </div>
       </AppDemoCard>
     </li>
     <li class="box">
