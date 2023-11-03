@@ -18,7 +18,9 @@ const changeType = function (type: string) {
   if (parentRef && ref) {
     const parentHalfWidth = parentRef?.offsetWidth / 2
     const refHalfWidth = ref?.offsetWidth / 2
-    parentRef.scrollLeft = ref.offsetLeft - parentHalfWidth + refHalfWidth
+    const left = ref.offsetLeft - parentHalfWidth + refHalfWidth
+    // parentRef.scrollLeft = ref.offsetLeft - parentHalfWidth + refHalfWidth
+    parentRef.scrollTo({ left, behavior: 'smooth' })
   }
   emit('update:modelValue', type)
 }
