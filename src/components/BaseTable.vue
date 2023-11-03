@@ -1,13 +1,4 @@
 <script setup lang="ts">
-interface Column {
-  title?: string // 列头显示文字
-  width?: number | string // 列宽度
-  dataIndex: string // 列数据字符索引
-  slot?: string // 列插槽名称索引
-  align?: 'left' | 'center' | 'right' // 列对其方式
-  sort?: boolean // 是否展示排序
-  sortDirections?: 'ascend' | 'descend' // 升序 ｜ 降序
-}
 interface Props {
   columns: Column[] // 表格列的配置项
   dataSource?: any[] // 表格数据数组
@@ -61,13 +52,13 @@ watch(() => props.columns, () => {
               <span>{{ item.title }}</span>
               <div v-if="item.sort" class="th-sort">
                 <BaseIcon
-                  name="uni-play"
-                  :style="`transform: rotate(-90deg);
-                  ${sortSource[index] === 'ascend' ? '--tg-icon-color: #fff' : ''}`"
+                  name="uni-table-sort"
+                  :style="`${sortSource[index]
+                    === 'ascend' ? '--tg-icon-color: #fff' : ''}`"
                 />
                 <BaseIcon
-                  name="uni-play"
-                  :style="`transform: rotate(90deg);
+                  name="uni-table-sort"
+                  :style="`transform: rotate(180deg);
                   ${sortSource[index] === 'descend' ? '--tg-icon-color: #fff' : ''}`"
                 />
               </div>
@@ -111,10 +102,18 @@ watch(() => props.columns, () => {
   </div>
 </template>
 
+<style lang="scss">
+:root{
+  --tg-table-font-size:var(--tg-font-size-default);
+  --tg-table-even-background: inherit;
+  --tg-table-th-color: var(--tg-text-lightgrey);
+}
+</style>
+
 <style lang="scss" scoped>
 .m-table-wrap {
   color: var(--tg-text-lightgrey);
-  font-size: var(--tg-font-size-default);
+  font-size: var(--tg-table-font-size);
   .m-table {
     display: table;
     table-layout: auto;
@@ -125,12 +124,13 @@ watch(() => props.columns, () => {
     margin: 0;
     .m-th {
       padding: 16px; // 12px 20px;
-      color: var(--tg-text-lightgrey);
+      color: var(--tg-table-th-color);
       font-weight: var(--tg-font-weight-semibold);
       text-align: left;
       border: none;
       line-height: 1.5;
       white-space: nowrap;
+      background: var(--tg-table-even-background);
       .th-box{
         display: inline-flex;
         align-items: center;
@@ -138,7 +138,7 @@ watch(() => props.columns, () => {
         .th-sort{
           display: flex;
           flex-direction: column;
-          font-size: 7px;
+          font-size: 6px;
         }
       }
     }
@@ -156,6 +156,9 @@ watch(() => props.columns, () => {
       }
       .m-tr:nth-child(odd){
         background: var(--tg-secondary-grey);
+      }
+      .m-tr:nth-child(even){
+        background: var(--tg-table-even-background);
       }
     }
 

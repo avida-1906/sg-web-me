@@ -4,20 +4,22 @@ const closeDialog = inject('closeDialog', () => { })
 const { t } = useI18n()
 const appStore = useAppStore()
 const { openNotify } = useNotify()
-const { bool: isEmailMust } = useBoolean(true)
-const { bool: pwdStatus, setBool: setPwdStatus } = useBoolean(false)
 const { openLoginDialog } = useLoginDialog()
+const { bool: isEmailMust } = useBoolean(true)
+const { bool: pwdStatus, setBool: setPwdStatus } = useBoolean(true)
+const { bool: isCode } = useBoolean(false)
+const {
+  bool: isShowPasswordVerify,
+  setTrue: setShowPasswordVerifyTrue,
+  setFalse: setShowPasswordVerifyFalse,
+} = useBoolean(false)
 
 const emailRef = ref()
 const userNameRef = ref()
 const passwordRef = ref()
 const curExists = ref<1 | 2>(2)
 const steps = ref(1)
-const {
-  bool: isShowPasswordVerify,
-  setTrue: setShowPasswordVerifyTrue,
-  setFalse: setShowPasswordVerifyFalse,
-} = useBoolean(false)
+const code = ref('')
 
 const {
   value: email,
@@ -53,6 +55,7 @@ const {
   value: password,
   errorMessage: pwdErrorMsg,
   validate: validatePassword,
+  meta: pwdMeta,
 } = useField<string>('password', (value) => {
   if (!value)
     return t('pls_enter_password')
@@ -72,7 +75,7 @@ const {
   if (!value)
     return t('agree_terms_conditions')
   return ''
-}, { initialValue: false })
+}, { initialValue: true })
 
 const {
   run: runMemberReg,
@@ -153,6 +156,10 @@ function onPasswordFocus() {
   setShowPasswordVerifyTrue()
 }
 function onPasswordBlur() {
+  if (pwdMeta.dirty) {
+    passwordRef.value.setTouchTrue()
+    validatePassword()
+  }
   if (pwdStatus.value)
     setShowPasswordVerifyFalse()
 }
@@ -207,6 +214,14 @@ async function toLogin() {
             @pass="passwordVerifyPass"
           />
         </BaseLabel>
+        <div>
+          <div class="code-label">
+            <BaseCheckBox v-model="isCode">
+              {{ t('code_optional') }}
+            </BaseCheckBox>
+          </div>
+          <BaseInput v-show="isCode" v-model="code" />
+        </div>
       </div>
       <div class="app-register-check-box">
         <BaseButton
@@ -393,6 +408,11 @@ async function toLogin() {
     display: flex;
     flex-direction: column;
     gap: var(--tg-spacing-16);
+    .code-label{
+      display: flex;
+      justify-content: flex-start;
+      margin-bottom: var(--tg-spacing-4);
+    }
   }
 
   &-check-box {

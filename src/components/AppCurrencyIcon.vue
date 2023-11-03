@@ -12,7 +12,7 @@ const props = defineProps<Props>()
 const getIsRight = computed(() => props.iconAlign === 'right')
 
 const iconUrl = computed(() => {
-  return `/currency/${currencyConfig[props.currencyType].cur}.webp`
+  return `/currency/${currencyConfig[props.currencyType]?.cur}.webp`
 })
 </script>
 

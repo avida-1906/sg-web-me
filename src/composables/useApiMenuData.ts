@@ -269,7 +269,7 @@ export function useApiMenuData() {
     },
     {
       title: '联盟计划',
-      path: '/affiliate/overview',
+      path: '/affiliate/promotion-tutorial',
       icon: 'chess-affiliate',
       list: [],
       domId: '',

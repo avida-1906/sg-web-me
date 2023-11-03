@@ -120,7 +120,10 @@ class HttpClient {
           openNotify({
             type: 'error',
             code: `${responseStatus}`,
-            message: '登录失效，请重新登录',
+            message: `
+              Url: ${response.config.url}<br />
+              '登录失效，请重新登录'
+            `,
           })
           if (router.currentRoute.value.path !== '/') {
             router.push('/')
@@ -133,7 +136,10 @@ class HttpClient {
             openNotify({
               type: 'error',
               code: `${responseStatus}`,
-              message: data || '系统错误',
+              message: `
+                Url: ${response.config.url}<br />
+                ${data || '系统错误'},
+              `,
             })
           }
         }
@@ -209,7 +215,10 @@ class HttpClient {
           openNotify({
             type: 'error',
             code: `${status}`,
-            message: `Url: ${error.config.url}<br />发生错误：${status}`,
+            message: `
+              Url: ${error.config.url}<br />
+              发生错误：${status}
+            `,
           })
           switch (status) {
             case 404:

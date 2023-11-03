@@ -3,12 +3,8 @@ const closeDialog = inject('closeDialog', () => {})
 
 const { t } = useI18n()
 const appStore = useAppStore()
-const {
-  bool: isShowPasswordVerify,
-  setTrue: setShowPasswordVerifyTrue,
-  setBool: setShowPasswordVerifyBool,
-} = useBoolean(false)
 const { openNotify } = useNotify()
+
 const userNameRef = ref()
 const passwordRef = ref()
 const {
@@ -62,12 +58,6 @@ async function getMemberLogin() {
   if (!usernameErrorMsg.value && !pwdErrorMsg.value)
     runMemberLogin()
 }
-function onFocus() {
-  setShowPasswordVerifyTrue()
-}
-function passwordVerifyPass(status: boolean) {
-  setShowPasswordVerifyBool(!status)
-}
 </script>
 
 <template>
@@ -85,17 +75,10 @@ function passwordVerifyPass(status: boolean) {
           :msg="pwdErrorMsg"
           type="password"
           autocomplete="current-password"
-          :password="password"
           msg-after-touched
-          @focus="onFocus"
           @down-enter="getMemberLogin"
         />
       </BaseLabel>
-      <AppPasswordVerify
-        v-show="isShowPasswordVerify"
-        :password="password"
-        @pass="passwordVerifyPass"
-      />
       <BaseButton
         class="app-login-btn"
         bg-style="secondary"

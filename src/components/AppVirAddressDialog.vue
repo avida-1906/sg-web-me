@@ -18,6 +18,9 @@ const {
 } = useCurrencyData()
 const { t } = useI18n()
 const { openNotify } = useNotify()
+
+const callback = ref<(() => void) | undefined>(props.callback)
+
 const {
   value: address,
   errorMessage: addressMsg,
@@ -70,6 +73,7 @@ async function handleBindAddress() {
       },
       toPayPwdSet: () => {
         closeAllDialog()
+        callback.value = undefined
       },
       loading: addWalletInsertLoading,
     })
@@ -77,7 +81,7 @@ async function handleBindAddress() {
 }
 
 onUnmounted(() => {
-  props.callback && props.callback()
+  callback.value && callback.value()
 })
 </script>
 
