@@ -59,14 +59,77 @@ function eventCallback() {
 <template>
   <div :style="{ opacity: isPageReady ? 1 : 0 }" class="promotion_tutorial">
     <div class="relation-chart">
+      <!-- 第一级 -->
       <div class="boss box border">
-        <div class="level green">
+        <div class="level">
           <AppAgentLevel level="A" color="green" />
         </div>
-        <span>总业绩101万，总代理奖金1880</span>
-        <span>直属业绩16万，贡献1600</span>
-        <span>其他业绩85万，贡献280</span>
+        <span>
+          总业绩<span class="yellow">101万</span>，
+          总代理奖金<span class="yellow">1880</span>
+        </span>
+        <span>
+          直属业绩<span class="yellow">16万</span>，
+          贡献<span class="yellow">1600</span>
+        </span>
+        <span>
+          其他业绩<span class="yellow">85万</span>，
+          贡献<span class="yellow">280</span>
+        </span>
       </div>
+      <!-- 第二级 -->
+      <div class="line">
+        <div class="box border">
+          <span>
+            直属<span class="blue">B1</span>
+            贡献给<span class="green">A</span>：<span class="yellow">800</span>
+          </span>
+          <span>
+            其他<span class="pink">C1</span>和<span class="pink">C2</span>
+            贡献给<span class="green">A</span>：<span class="yellow">280</span>
+          </span>
+        </div>
+        <div class="box border">
+          <span>
+            直属<span class="blue">B2</span>
+            贡献给<span class="green">A</span>：<span class="yellow">500</span>
+          </span>
+        </div>
+        <div class="box border">
+          <span>
+            直属<span class="blue">B3</span>
+            贡献给<span class="green">A</span>：<span class="yellow">300</span>
+          </span>
+          <span>
+            其他<span class="pink">C1</span>
+            贡献给<span class="green">A</span>：<span class="yellow">0</span>
+          </span>
+        </div>
+      </div>
+      <div class="line">
+        <div class="box">
+          <div class="level">
+            <AppAgentLevel level="B1" color="blue" />
+          </div>
+          <span>
+            下级总业绩<span class="yellow">14万</span>
+            享受<span class="yellow">80/万</span>
+          </span>
+          <span class="grey">B1自己有效投注8万</span>
+        </div>
+        <div class="box">
+          <div class="level">
+            <AppAgentLevel level="B2" color="blue" />
+          </div>
+        </div>
+        <div class="box">
+          <div class="level">
+            <AppAgentLevel level="B3" color="blue" />
+          </div>
+        </div>
+      </div>
+
+      <!-- 第三级 -->
     </div>
     <div class="des">
       <p>
@@ -121,6 +184,10 @@ function eventCallback() {
 }
 
 .relation-chart {
+  display: flex;
+  flex-direction: column;
+  gap: var(--tg-spacing-50);
+  align-items: center;
   .yellow {
     color: var(--tg-text-warn);
   }
@@ -136,6 +203,9 @@ function eventCallback() {
   .pink {
     color: var(--tg-text-pink);
   }
+  .grey{
+    color: var(--tg-text-lightgrey);
+  }
 
   .box {
     padding: var(--tg-spacing-23) var(--tg-spacing-28);
@@ -144,6 +214,8 @@ function eventCallback() {
     display: inline-flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    background-color: var(--tg-secondary-grey);
     .level{
       position: absolute;
       left: 50%;
@@ -157,6 +229,11 @@ function eventCallback() {
 
   .boss {
     padding: var(--tg-spacing-23) var(--tg-spacing-68);
+  }
+  .line{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
   }
 }
 

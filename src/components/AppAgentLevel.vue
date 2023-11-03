@@ -14,8 +14,8 @@ defineProps<{ level: string; color: string }>()
 <style lang='scss' scoped>
 .app-agent-level {
   position: relative;
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   background-color: var(--tg-secondary-main);
   font-size: var(--tg-font-size-md);
   font-weight: var(--tg-font-weight-bold);
@@ -25,7 +25,7 @@ defineProps<{ level: string; color: string }>()
     position: absolute;
     bottom: -9px;
     width: 119%;
-    left: -5px;
+    left: -4px;
   }
 }
 
