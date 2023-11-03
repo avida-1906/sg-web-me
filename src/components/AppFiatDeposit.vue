@@ -31,7 +31,6 @@ const currentAisleItem = ref<IPaymentMerchantData>()
 const username = ref('')
 const oftenAmount = ref<TOftenAmount[]>()
 const fixedAmount = ref<TOftenAmount[]>()
-const newWindow = ref<HTMLElement | null>(null)
 
 const {
   value: amount,
@@ -73,11 +72,7 @@ const {
   loading: thirdDepositLoading,
 } = useRequest(ApiFinanceThirdDeposit, {
   onSuccess(data) {
-    /** 解决window.open 在safari/google手机浏览器无法打开新窗口 */
-    if (newWindow.value) {
-      newWindow.value.setAttribute('href', data)
-      newWindow.value.click()
-    }
+    location.href = data
   },
 })
 const {
@@ -178,6 +173,16 @@ const toCopy = function (item: string) {
   application.copy(item)
 }
 const changeAisle = function (item: IPaymentMerchantData) {
+  const ref: HTMLElement | null = document.querySelector(`#id${item.value}`)
+  const parentRef = ref?.parentElement
+  if (parentRef && ref) {
+    const parentHalfWidth = parentRef?.offsetWidth / 2
+    const refHalfWidth = ref?.offsetWidth / 2
+    const left = ref.offsetLeft - parentHalfWidth + refHalfWidth
+    // parentRef.scrollLeft = ref.offsetLeft - parentHalfWidth + refHalfWidth
+    parentRef.scrollTo({ left, behavior: 'smooth' })
+  }
+
   currentAisle.value = item.value
   currentAisleItem.value = item
   oftenAmount.value = strToArray(item.often_amount)
@@ -297,11 +302,15 @@ await application.allSettled([
             >
               <div class="other-aisles scroll-x">
                 <div
-                  v-for="item in paymentMerchantData" :key="item.value" class="aisle"
+                  v-for="item in paymentMerchantData"
+                  :id="`id${item.value}`"
+                  :key="item.value"
+                  class="aisle"
                   :class="currentAisle === item.value ? 'active' : ''"
                   @click="changeAisle(item)"
                 >
                   <span>{{ item.label }}</span>
+                  <span>{{ item.amount_min }}-{{ item.amount_max }}</span>
                 </div>
               </div>
             </BaseLabel>
@@ -347,8 +356,6 @@ await application.allSettled([
       </template>
     </div>
   </div>
-  <!-- safari/google  手机浏览器无法打开新窗口 -->
-  <a ref="newWindow" href="" target="_blank" style="display: none;" />
 </template>
 
 <style lang='scss' scoped>
@@ -412,10 +419,10 @@ await application.allSettled([
           justify-content: left;
           align-items: center;
           gap: 0.75rem;
-
+          overflow: hidden;
           .aisle{
             flex-shrink: 0;
-            padding: var(--tg-spacing-11) var(--tg-spacing-8);
+            padding: var(--tg-spacing-4) var(--tg-spacing-8);
             background-color: var(--tg-secondary-dark);
             border-radius: var(--tg-radius-default);
             box-shadow: var(--tg-box-shadow);
@@ -424,7 +431,9 @@ await application.allSettled([
             display: inline-flex;
             justify-content: center;
             align-items: center;
-            gap: .75rem;
+            // gap: .75rem;
+            flex-direction: column;
+            line-height: 17px;
             &:hover{
               opacity: .9;
             }
