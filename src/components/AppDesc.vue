@@ -92,7 +92,7 @@ onMounted(() => {
         bet: '0.00000000',
         multiple: '66,666x',
         payAmount: '257.00000000',
-        currencyType: EnumCurrency.BTC,
+        currencyType: 'BTC',
         isStealth: true,
       },
       {
@@ -102,7 +102,7 @@ onMounted(() => {
         bet: '0.00000000',
         multiple: '66,666x',
         payAmount: '257.00000000',
-        currencyType: EnumCurrency.BTC,
+        currencyType: 'BTC',
       },
       {
         rank: 'uni-rank3',
@@ -111,7 +111,7 @@ onMounted(() => {
         bet: '0.00000000',
         multiple: '66,666x',
         payAmount: '257.00000000',
-        currencyType: EnumCurrency.BTC,
+        currencyType: 'BTC',
       },
     ]
     setLoadingFalse()
