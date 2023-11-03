@@ -198,7 +198,7 @@ async function toLogin() {
             v-model="password"
             :msg="pwdErrorMsg"
             type="password"
-            autocomplete="current-password" :password="password" msg-after-touched
+            autocomplete="current-password" msg-after-touched
             @focus="onPasswordFocus"
             @blur="onPasswordBlur"
           />
