@@ -49,8 +49,8 @@ const noticeList = [{}]
                 <BaseBadge
                   status="success"
                   style="color: var(--tg-secondary-light);
-                font-size: var(--tg-font-size-xs);
-                font-weight: var(--tg-font-weight-normal);"
+                  font-size: var(--tg-font-size-xs);
+                  font-weight: var(--tg-font-weight-normal);"
                   text="1天前"
                 />
               </div>

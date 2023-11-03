@@ -1,18 +1,21 @@
 <script setup lang="ts">
 interface Props {
   modelValue: boolean
+  disabled?: boolean
 }
 const props = defineProps<Props>()
 const emit = defineEmits(['update:modelValue', 'change'])
 
 function onClick() {
+  if (props.disabled)
+    return
   emit('update:modelValue', !props.modelValue)
   emit('change', !props.modelValue)
 }
 </script>
 
 <template>
-  <div class="base-switch" :class="{ active: modelValue }" @click="onClick">
+  <div class="base-switch" :class="{ active: modelValue, disabled }" @click="onClick">
     <div class="circle" />
   </div>
 </template>
@@ -47,5 +50,9 @@ function onClick() {
   .circle {
     transform: translateX(var(--tg-spacing-16));
   }
+}
+.disabled{
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 </style>
