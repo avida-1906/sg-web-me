@@ -221,6 +221,12 @@ function copyCode(type: string) {
         />
       `)
       break
+    case 'BaseDatePicker':
+      copy(`
+        const datepicker = ref([])
+        <BaseDatePicker v-model="datepicker" />
+      `)
+      break
     default:
       break
   }
@@ -653,6 +659,8 @@ function copyAppAuthLogin() {
   toast('Copied')
 }
 const breadcrumbs = ['one', 'two', 'three', 'four']
+
+const datepicker = ref([])
 </script>
 
 <template>
@@ -698,6 +706,19 @@ const breadcrumbs = ['one', 'two', 'three', 'four']
     <li class="box">
       <AppDemoCard title="skeleton">
         <BaseSkeleton @click="copyCode('skeleton')" />
+      </AppDemoCard>
+    </li>
+    <li class="box">
+      <AppDemoCard title="BaseDatePicker">
+        {{ datepicker }}
+        <div class="center">
+          <BaseDatePicker v-model="datepicker" />
+        </div>
+        <div style="margin-top: 30px;">
+          <BaseButton @click="copyCode('BaseDatePicker')">
+            Click
+          </BaseButton>
+        </div>
       </AppDemoCard>
     </li>
     <li class="box">
