@@ -11,6 +11,7 @@ interface Props {
   mb0?: boolean
   disabled?: boolean
   max?: number | string
+  msgAfterTouched?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -24,12 +25,20 @@ const emit = defineEmits(
 )
 
 const { bool: isFocus, setTrue, setFalse } = useBoolean(false)
-
+const {
+  bool: isTouched,
+  setTrue: setTouchTrue,
+  setFalse: setTouchFalse,
+} = useBoolean(false)
 const iTextarea = ref()
 const iInput = ref()
 const _type = ref(props.type)
 
-const error = computed(() => !!props.msg)
+const error = computed(() => {
+  if (props.msgAfterTouched)
+    return isTouched.value && !!props.msg
+  return !!props.msg
+})
 const isPassword = computed(() => props.type === 'password')
 
 function toggleType() {
@@ -49,8 +58,9 @@ function onFocus() {
   emit('focus')
 }
 
-function onBlur() {
+function onBlur(event: any) {
   setFalse()
+  !!event.target.value && setTouchTrue()
   emit('blur')
 }
 
@@ -72,7 +82,7 @@ function onPaste() {
   emit('paste')
 }
 
-defineExpose({ getFocus })
+defineExpose({ getFocus, setTouchTrue, setTouchFalse })
 </script>
 
 <template>
@@ -135,7 +145,7 @@ defineExpose({ getFocus })
         </div>
       </div>
     </div>
-    <div v-show="msg" class="msg">
+    <div v-show="error" class="msg">
       <BaseIcon class="error-icon" name="uni-warning" />
       <span>{{ msg }}</span>
     </div>

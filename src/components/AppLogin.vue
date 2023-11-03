@@ -9,15 +9,13 @@ const {
   setBool: setShowPasswordVerifyBool,
 } = useBoolean(false)
 const { openNotify } = useNotify()
+const userNameRef = ref()
+const passwordRef = ref()
 const {
   value: username,
   errorMessage: usernameErrorMsg,
   validate: valiUsername,
-  meta: metaUsername,
-  handleBlur: blurUsername,
 } = useField<string>('username', (value) => {
-  if (!metaUsername.touched)
-    return ''
   if (!value)
     return t('pls_enter_email_or_username')
   else if (!emailReg.test(value) && !usernameReg.test(value))
@@ -29,11 +27,7 @@ const {
   value: password,
   errorMessage: pwdErrorMsg,
   validate: valiPassword,
-  meta: metaPassword,
-  handleBlur: blurPassword,
 } = useField<string>('password', (value) => {
-  if (!metaPassword.touched)
-    return ''
   if (!value)
     return t('pls_enter_password')
   else if (value.length < 8)
@@ -61,8 +55,8 @@ const {
 })
 
 async function getMemberLogin() {
-  blurUsername()
-  blurPassword()
+  userNameRef.value.setTouchTrue()
+  passwordRef.value.setTouchTrue()
   await valiUsername()
   await valiPassword()
   if (!usernameErrorMsg.value && !pwdErrorMsg.value)
@@ -81,20 +75,20 @@ function passwordVerifyPass(status: boolean) {
     <div class="app-login-input-box">
       <BaseLabel :label="t('email_or_username')" must-small>
         <BaseInput
-          v-model="username"
-          :msg="usernameErrorMsg" @blur="blurUsername();valiUsername()"
+          ref="userNameRef" v-model="username"
+          :msg="usernameErrorMsg" msg-after-touched
         />
       </BaseLabel>
       <BaseLabel :label="t('password')" must-small>
         <BaseInput
-          v-model="password"
+          ref="passwordRef" v-model="password"
           :msg="pwdErrorMsg"
           type="password"
           autocomplete="current-password"
           :password="password"
+          msg-after-touched
           @focus="onFocus"
           @down-enter="getMemberLogin"
-          @blur="blurPassword();valiPassword()"
         />
       </BaseLabel>
       <AppPasswordVerify
