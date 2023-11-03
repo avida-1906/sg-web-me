@@ -11,11 +11,12 @@ set +e
 pngPath=$1
 if [ ! -n "$pngPath" ]; then
   pwd=$(pwd)
-  pngPath=$pwd/../public/png
+  pngPath=$pwd/public/png
 fi
-webpPath=$pwd/../public/webp
-avifPath=$pwd/../public/avif
+webpPath=$pwd/public/webp
+avifPath=$pwd/public/avif
 
+echo "pngPath: $pngPath"
 
 if [ ! -d "$pngPath" ]; then
   echo "目录不存在"
