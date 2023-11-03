@@ -45,7 +45,7 @@ const currencyCode = computed(() => {
   return currentCurrency.value ? currencyConfig[currentCurrency.value].cur : '0'
 })
 const isFavorite = computed(() => {
-  return dataDetail.value ? dataDetail.value.is_fav === 1 : false
+  return dataDetail.value ? dataDetail.value.is_fav === '1' : false
 })
 const bigGameWrapper = computed(() => appContentWidth.value > 930)
 const gameProviderName = computed(() => {
