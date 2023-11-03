@@ -119,3 +119,23 @@ interface SportFixture {
   // groups:             Group[];
   [k: string]: any
 }
+
+/**
+ * Column 表格列配置
+ */
+interface Column {
+  /** 列头显示文字 */
+  title?: string // 
+  /** 列宽度 */
+  width?: number | string
+  /** 列数据字符索引 */
+  dataIndex: string
+  /** 列插槽名称索引 */
+  slot?: string
+  /** 列对其方式 */
+  align?: 'left' | 'center' | 'right'
+  /** 是否展示排序 */
+  sort?: boolean
+  /** ascend-升序 | descend-降序 */
+  sortDirections?: 'ascend' | 'descend' // 升序 ｜ 降序
+}
