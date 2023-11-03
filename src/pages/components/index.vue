@@ -223,7 +223,7 @@ function copyCode(type: string) {
       break
     case 'BaseDatePicker':
       copy(`
-        const datepicker = ref()
+        const datepicker = ref([])
         <BaseDatePicker v-model="datepicker" />
       `)
       break
@@ -660,7 +660,7 @@ function copyAppAuthLogin() {
 }
 const breadcrumbs = ['one', 'two', 'three', 'four']
 
-const datepicker = ref()
+const datepicker = ref([])
 </script>
 
 <template>
