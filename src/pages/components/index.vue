@@ -221,6 +221,12 @@ function copyCode(type: string) {
         />
       `)
       break
+    case 'BaseDatePicker':
+      copy(`
+        const datepicker = ref()
+        <BaseDatePicker v-model="datepicker" />
+      `)
+      break
     default:
       break
   }
@@ -707,6 +713,11 @@ const datepicker = ref()
         {{ datepicker }}
         <div class="center">
           <BaseDatePicker v-model="datepicker" />
+        </div>
+        <div style="margin-top: 30px;">
+          <BaseButton @click="copyCode('BaseDatePicker')">
+            Click
+          </BaseButton>
         </div>
       </AppDemoCard>
     </li>
