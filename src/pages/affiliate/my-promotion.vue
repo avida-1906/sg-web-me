@@ -1,4 +1,19 @@
 <script lang="ts" setup>
+const {
+  isLessThanSm,
+  widthBoundaryMd,
+  width,
+  widthBoundarySm,
+} = storeToRefs(useWindowStore())
+// 921-975
+const less975 = computed(() => {
+  return width.value > 921 && width.value < widthBoundaryMd.value
+})
+// 921-768
+const less921 = computed(() => {
+  return width.value < 921 && width.value > widthBoundarySm.value
+})
+
 const socialData = [
   {
     label: 'Facebook',
@@ -54,7 +69,14 @@ const bet = [
           </BaseButton>
         </div>
       </div>
-      <div class="item-content content-padding promotion-msg">
+      <div
+        class="item-content content-padding promotion-msg"
+        :class="{
+          'is-less-than-sm': isLessThanSm,
+          'is-less-975': less975,
+          'is-less-921': less921,
+        }"
+      >
         <div class="promotion-left">
           <BaseQrcode url="www.baidu.com" :size="92" class="qr-code" />
           <p>点击保存二维码</p>
@@ -64,7 +86,7 @@ const bet = [
             <p>我的链接</p>
             <AppCopyLine msg="stake.com/?c=r123123132132123CiS8s" />
           </div>
-          <div class="social-wrap">
+          <div class="social-wrap" :class="{ 'is-less-than-sm': isLessThanSm }">
             <div v-for="(item, index) in socialData" :key="index" class="social">
               <BaseImage
                 :url="item.img"
@@ -89,7 +111,7 @@ const bet = [
           </BaseButton>
         </div>
       </div>
-      <div class="item-content grid-wrap">
+      <div class="item-content grid-wrap" :class="{ 'is-less-than-sm': isLessThanSm }">
         <div v-for="(item, index) in commission" :key="index">
           <span>{{ item.label }} </span>
           <span class="yellow">{{ item.value }}</span>
@@ -107,7 +129,7 @@ const bet = [
           </BaseButton>
         </div>
       </div>
-      <div class="item-content grid-wrap">
+      <div class="item-content grid-wrap" :class="{ 'is-less-than-sm': isLessThanSm }">
         <div v-for="(item, index) in performance" :key="index">
           <span>{{ item.label }} </span>
           <span>{{ item.value }}</span>
@@ -125,7 +147,7 @@ const bet = [
           </BaseButton>
         </div>
       </div>
-      <div class="item-content grid-wrap">
+      <div class="item-content grid-wrap" :class="{ 'is-less-than-sm': isLessThanSm }">
         <div v-for="(item, index) in bet" :key="index">
           <span>{{ item.label }} </span>
           <span :class="{ green: index === 2 }">{{ item.value }}</span>
@@ -168,6 +190,18 @@ const bet = [
     display: flex;
     gap: var(--tg-spacing-50);
     background-color: var(--tg-primary-main);
+    &.is-less-than-sm{
+      flex-direction: column;
+      gap: var(--tg-spacing-12);
+    }
+    &.is-less-975{
+      gap: var(--tg-spacing-20);
+    }
+    &.is-less-921{
+      .promotion-right{
+        flex: 1;
+      }
+    }
     .promotion-left{
       text-align: center;
       .qr-code{
@@ -187,6 +221,10 @@ const bet = [
         gap: var(--tg-spacing-12);
         justify-content: space-between;
         margin-top: 14px;
+        &.is-less-than-sm{
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+        }
         .social{
           display: flex;
           flex-direction: column;
@@ -207,6 +245,9 @@ const bet = [
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 1px;
+    &.is-less-than-sm{
+      grid-template-columns: repeat(1, 1fr);
+    }
     > div{
       background-color: var(--tg-primary-main);
       padding: var(--tg-spacing-12) var(--tg-spacing-16);
