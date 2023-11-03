@@ -36,7 +36,7 @@ const { run: runGetHistory } = useRequest(ApiChatGetHistory, {
     setTimeout(() => {
       goBottom()
       setMHLFalse()
-    }, 1200)
+    }, 800)
   },
 })
 
