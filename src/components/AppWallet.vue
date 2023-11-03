@@ -55,6 +55,7 @@ function selectCurrency(item: EnumCurrencyKey, hide: () => void) {
               class="top-search"
               :clearable="searchValue?.length > 0"
               place-holder="搜索货币"
+              shape="square"
             />
           </div>
           <div class="scroll-y popper-content">
