@@ -403,6 +403,7 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
               <BaseSwitch
                 v-model="isRealMoneyMode"
                 class="switch"
+                :disabled="!isLogin"
                 @change="onSwitchRealMoneyMode"
               />
               <span
