@@ -2,7 +2,7 @@ import type { AxiosResponse, InternalAxiosRequestConfig } from 'axios'
 import { getCurrentLanguageForBackend } from '~/modules/i18n'
 import { router } from '~/modules/router'
 
-const { VITE_HTTP_TIMEOUT, VITE_HTTP_BASEURL, PROD } = getEnv()
+const { VITE_HTTP_TIMEOUT, VITE_HTTP_BASEURL, PROD, MODE } = getEnv()
 
 interface IResponse<T> {
   status: boolean
@@ -121,7 +121,7 @@ class HttpClient {
             type: 'error',
             code: `${responseStatus}`,
             message: `
-              Url: ${response.config.url}<br />
+              ${MODE === 'test' ? `Url: ${response.config.url}<br />` : ''}
               '登录失效，请重新登录'
             `,
           })
@@ -137,8 +137,8 @@ class HttpClient {
               type: 'error',
               code: `${responseStatus}`,
               message: `
-                Url: ${response.config.url}<br />
-                ${data || '系统错误'},
+                ${MODE === 'test' ? `Url: ${response.config.url}<br />` : ''}
+                ${data || '系统错误'}
               `,
             })
           }
@@ -216,7 +216,7 @@ class HttpClient {
             type: 'error',
             code: `${status}`,
             message: `
-              Url: ${error.config.url}<br />
+              ${MODE === 'test' ? `Url: ${error.config.url}<br />` : ''}
               发生错误：${status}
             `,
           })
