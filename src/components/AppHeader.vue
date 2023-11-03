@@ -27,7 +27,7 @@ const userMenu = ref([
     icon: 'chess-affiliate',
     title: t('affiliate'),
     name: 'affiliate',
-    path: '/affiliate/overview',
+    path: '/affiliate/promotion-tutorial',
   },
   {
     id: 5,
