@@ -75,7 +75,7 @@ const {
   if (!value)
     return t('agree_terms_conditions')
   return ''
-}, { initialValue: false })
+}, { initialValue: true })
 
 const {
   run: runMemberReg,
