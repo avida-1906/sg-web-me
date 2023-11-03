@@ -240,12 +240,12 @@ export function ApiMemberGameList(params?: {
     game_id: string
     img: string
     online: number
-    is_hot: number
+    is_hot: string
     sorting: number
     created_at: number
-    is_new: number
+    is_new: string
     tag_id: string
-    is_fav: number
+    is_fav: string
   }>>('/member/game/list', params)
 }
 
@@ -268,14 +268,14 @@ export function ApiMemberGameDetail(id: string) {
     game_id: string
     img: string
     online: number
-    is_hot: number
+    is_hot: string
     sorting: number
     created_at: number
-    is_new: number
+    is_new: string
     tag_id: string
     currency: string
     lang: string
-    is_fav: number
+    is_fav: string
   }>(`/member/game/detail?id=${id}`)
 }
 
@@ -306,14 +306,14 @@ export function ApiMemberGameSearch(params: { w: string }) {
     game_id: string
     img: string
     online: number
-    is_hot: number
+    is_hot: string
     sorting: number
     created_at: number
-    is_new: number
+    is_new: string
     tag_id: string
     currency: string
     lang: string
-    is_fav: number
+    is_fav: string
   }>>('/member/game/search', params)
 }
 
@@ -340,14 +340,14 @@ export function ApiMemberFavList(
     game_id: string
     img: string
     online: number
-    is_hot: number
+    is_hot: string
     sorting: number
     created_at: number
-    is_new: number
+    is_new: string
     tag_id: string
     currency: string
     lang: string
-    is_fav: number
+    is_fav: string
   }>>('/member/fav/list', params)
 }
 
@@ -391,14 +391,14 @@ export function ApiMemberGameRecList(params?: {
     game_id: string
     img: string
     online: number
-    is_hot: number
+    is_hot: string
     sorting: number
     created_at: number
-    is_new: number
+    is_new: string
     tag_id: string
     currency: string
     lang: string
-    is_fav: number
+    is_fav: string
   }>>('/member/game/rec/list', params)
 }
 

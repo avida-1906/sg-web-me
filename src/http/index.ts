@@ -2,7 +2,7 @@ import type { AxiosResponse, InternalAxiosRequestConfig } from 'axios'
 import { getCurrentLanguageForBackend } from '~/modules/i18n'
 import { router } from '~/modules/router'
 
-const { VITE_HTTP_TIMEOUT, VITE_HTTP_BASEURL, PROD } = getEnv()
+const { VITE_HTTP_TIMEOUT, VITE_HTTP_BASEURL, PROD, MODE } = getEnv()
 
 interface IResponse<T> {
   status: boolean
@@ -120,7 +120,10 @@ class HttpClient {
           openNotify({
             type: 'error',
             code: `${responseStatus}`,
-            message: '登录失效，请重新登录',
+            message: `
+              ${MODE === 'test' ? `Url: ${response.config.url}<br />` : ''}
+              '登录失效，请重新登录'
+            `,
           })
           if (router.currentRoute.value.path !== '/') {
             router.push('/')
@@ -133,7 +136,10 @@ class HttpClient {
             openNotify({
               type: 'error',
               code: `${responseStatus}`,
-              message: data || '系统错误',
+              message: `
+                ${MODE === 'test' ? `Url: ${response.config.url}<br />` : ''}
+                ${data || '系统错误'}
+              `,
             })
           }
         }
@@ -209,7 +215,10 @@ class HttpClient {
           openNotify({
             type: 'error',
             code: `${status}`,
-            message: `Url: ${error.config.url}<br />发生错误：${status}`,
+            message: `
+              ${MODE === 'test' ? `Url: ${error.config.url}<br />` : ''}
+              发生错误：${status}
+            `,
           })
           switch (status) {
             case 404:

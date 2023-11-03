@@ -26,6 +26,8 @@
   --tg-text-error: #ed4163;
   --tg-text-warn: #FF9800;
   --tg-text-green: #00E701;
+  --tg-text-green-light: #69E244;
+  --tg-text-pink:#FFB1FB;
   --tg-text-blue: #1475E1;
   --tg-text-lightblue: #4391e7;
   --tg-text-dark: #05080a;
@@ -421,7 +423,7 @@ body {
       color: var(--tg-popper-color-default);
       border: 0;
       box-shadow: var(--tg-box-shadow-lg);
-    
+
       .app-svg-icon {
         --tg-icon-color: var(--tg-popper-color-icon-default);
       }

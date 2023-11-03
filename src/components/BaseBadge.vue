@@ -87,6 +87,7 @@ onMounted(() => {
   --tg-badge-font-size: var(--tg-font-size-default);
   --tg-badge-padding-x:var(--tg-spacing-8);
   --tg-badge-line-height: 1.5;
+  --tg-badge-size:8px;
 }
 </style>
 
@@ -112,8 +113,8 @@ onMounted(() => {
     position: relative;
     top: -1px;
     display: inline-block;
-    width: 8px;
-    height: 8px;
+    width: var(--tg-badge-size);
+    height: var(--tg-badge-size);
     vertical-align: middle;
     border-radius: 50%;
   }

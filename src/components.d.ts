@@ -9,6 +9,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     AppAccordionMenu: typeof import('./components/AppAccordionMenu.vue')['default']
     AppAddBankcards: typeof import('./components/AppAddBankcards.vue')['default']
+    AppAgentLevel: typeof import('./components/AppAgentLevel.vue')['default']
     AppAmount: typeof import('./components/AppAmount.vue')['default']
     AppAuthLogin: typeof import('./components/AppAuthLogin.vue')['default']
     AppBallRange: typeof import('./components/AppBallRange.vue')['default']
@@ -105,6 +106,7 @@ declare module 'vue' {
     BaseCheckBox: typeof import('./components/BaseCheckBox.vue')['default']
     BaseCheckboxGroup: typeof import('./components/BaseCheckboxGroup.vue')['default']
     BaseCollapse: typeof import('./components/BaseCollapse.vue')['default']
+    BaseDatePicker: typeof import('./components/BaseDatePicker.vue')['default']
     BaseDialog: typeof import('./components/BaseDialog.vue')['default']
     BaseDivider: typeof import('./components/BaseDivider.vue')['default']
     BaseDragDialog: typeof import('./components/BaseDragDialog.vue')['default']
