@@ -23,21 +23,26 @@
 
 <style lang="scss" scoped>
 .tg-base-loading {
+  font-size: var(--tg-font-size-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--tg-spacing-24);
   .svg-box:first-child {
     transform-origin: top right;
     background-position: top right;
   }
   .svg-box:nth-child(2) {
-    animation-delay: 240ms;
+    animation-delay: 320ms;
   }
   .svg-box:last-child {
     transform-origin: bottom left;
-    animation-delay: 480ms;
+    animation-delay: 640ms;
     background-position: bottom left;
   }
 }
 .animate-prop {
-  animation-duration: 720ms;
+  animation-duration: 960ms;
   animation-timing-function: linear;
   animation-fill-mode: forwards;
   animation-iteration-count: infinite;
@@ -140,131 +145,6 @@
   100% {
     background-image: var(--type3-small);
     transform: scale(1) rotateZ(0deg);
-  }
-}
-
-.tg-base-loading {
-  font-size: var(--tg-font-size-md);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--tg-spacing-24);
-
-  .item {
-    position: relative;
-    animation-name: scaleRotateUp;
-
-    .small,
-    .big {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      display: flex;
-    }
-
-    .small {
-      animation-name: opacityUp;
-      opacity: 1;
-    }
-
-    .big {
-      animation-name: opacityDown;
-      opacity: 0;
-    }
-  }
-
-  .item:first-child {
-    transform-origin: center right;
-  }
-
-  .item:nth-child(2) {
-    animation-delay: 300ms;
-
-    .small,
-    .big {
-      animation-delay: 300ms;
-    }
-  }
-
-  .item:last-child {
-    transform-origin: center left;
-    animation-delay: 600ms;
-
-    .small,
-    .big {
-      animation-delay: 600ms;
-    }
-  }
-}
-
-@keyframes scaleRotateUp {
-  0% {
-    transform: scale(1) rotateZ(0);
-  }
-
-  30% {
-    transform: scale(1.8) rotateZ(30deg);
-  }
-
-  // 80% {
-  //   transform: scale(1) rotateZ(0);
-  // }
-
-  100% {
-    transform: scale(1) rotateZ(0);
-  }
-}
-
-@keyframes opacityUp {
-  0% {
-    opacity: 1;
-  }
-
-  35% {
-    opacity: 0;
-  }
-
-  50% {
-    opacity: 0;
-  }
-
-  65% {
-    opacity: 0;
-  }
-
-  90% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes opacityDown {
-  0% {
-    opacity: 0;
-  }
-
-  35% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 1;
-  }
-
-  65% {
-    opacity: 1;
-  }
-
-  90% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 0;
   }
 }
 </style>
