@@ -8,47 +8,6 @@ const { msg } = defineProps<Props>()
 const atUserReg = /@[a-z0-9]{3,14}/g
 const emojiReg = /:[a-z]+:/g
 
-const allEmojis = [
-  'adesanya.png',
-  'beer.png',
-  'biden.png',
-  'coffee.png',
-  'coupon.png',
-  'dendi.png',
-  'djokovic.png',
-  'doge.png',
-  'donut.png',
-  'easyms.png',
-  'eddie.png',
-  'elon.png',
-  'ezpz.png',
-  'feelsgoodman.png',
-  'gary.png',
-  'jordan.png',
-  'kanye.png',
-  'lambo.png',
-  'lebron.png',
-  'lefroge.png',
-  'mahomes.png',
-  'mcgregor.png',
-  'messi.png',
-  'monkas.png',
-  'nadal.png',
-  'nightdoge.png',
-  'pepehands.png',
-  'pikachu.png',
-  'poggers.png',
-  'rish.png',
-  'ronaldo.png',
-  'santa.png',
-  'stonks.png',
-  'sus.png',
-  'trump.png',
-  'umbrella.png',
-  'woods.png',
-  'cooldoge.png',
-]
-
 const splitByEmojiMsg = computed(() => msg.split(emojiReg))
 const matchedEmojis = computed(() => msg.match(emojiReg) ?? [])
 // const matchedAtUsers = computed(() => msg.match(atUserReg))

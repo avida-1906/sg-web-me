@@ -27,7 +27,7 @@ for (let i = 1; i <= getRandomInt(3) + 1; i++)
     <template v-if="msgInfo">
       <div v-if="msgInfo.type" class="header">
         <div v-if="msgInfo.type === 'tip'">
-          <span>发送小费</span>
+          <span>{{ $t('chat_send_tip_label') }}</span>
         </div>
       </div>
       <div class="content">

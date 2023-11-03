@@ -67,7 +67,7 @@ await application.allSettled([
         <div
           v-else
           class="top-vip-info"
-          :class="isSm ? 'max-width-mobile' : 'max-width'"
+          :class="isSm ? 'is-mobile max-width-mobile' : 'max-width'"
         >
           <AppVipProgress :vip-progress-data="vipProgressData">
             <template #title>
@@ -78,7 +78,7 @@ await application.allSettled([
             </p>
           </AppVipProgress>
         </div>
-        <div class="top-banner">
+        <div v-if="isLogin ? !isSm : true" class="top-banner">
           <!-- <AppBanner :mode="isSm ? 'default' : 'home'" /> -->
           <BaseImage
             fit="cover"
@@ -351,12 +351,19 @@ await application.allSettled([
         justify-content: center;
         flex-direction: column;
         font-size: var(--tg-font-size-default);
+        position: relative;
+        z-index: 1;
+        --tg-vip-style-icon-size: var(--tg-font-size-base);
         &.max-width{
           max-width: 350px;
         }
         &.max-width-mobile{
           width: calc(100% - 2em);
           margin: 0 auto;
+          background-position: center;
+          background-size: cover;
+          background-repeat: no-repeat;
+          @include getBackgroundImage('/home/abstract_bg');
         }
         padding-top: var(--tg-spacing-32);
         padding-bottom: var(--tg-spacing-64);

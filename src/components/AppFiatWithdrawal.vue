@@ -104,6 +104,7 @@ const bindBanks = computed(() => {
         name: item.open_name,
         fullName: `${item.bank_name} ${item.bank_account}`,
         id: item.id,
+        state: item.state,
       }
     })
   }

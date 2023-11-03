@@ -60,6 +60,12 @@ const nextInfo = computed(() => {
   </div>
 </template>
 
+<style>
+:root {
+  --tg-vip-style-icon-size: var(--tg-font-size-default);
+}
+</style>
+
 <style lang='scss' scoped>
 .app-vip-progress{
   .percent-top{
@@ -75,11 +81,12 @@ const nextInfo = computed(() => {
   .percent-btm{
     display: flex;
     justify-content: space-between;
-    margin-top: var(--tg-spacing-2);
+    margin-top: var(--tg-spacing-5);
     > div{
       display: flex;
       justify-content: center;
       align-items: center;
+      font-size: var(--tg-vip-style-icon-size);
       > span {
         margin-left: var(--tg-spacing-3);
         color: var(--tg-text-lightgrey);
