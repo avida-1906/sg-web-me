@@ -216,6 +216,7 @@ function eventCallback() {
     align-items: center;
     justify-content: center;
     background-color: var(--tg-secondary-grey);
+    font-weight: var(--tg-font-weight-normal);
     .level{
       position: absolute;
       left: 50%;
