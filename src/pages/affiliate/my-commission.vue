@@ -26,6 +26,7 @@ const columns: Column[] = [
     title: '佣金',
     dataIndex: 'commission',
     align: 'center',
+    slot: 'commission',
   },
   {
     title: '详情',
@@ -34,7 +35,21 @@ const columns: Column[] = [
     slot: 'operate',
   },
 ]
-const tableData: any = ref([
+const tableData = ref([
+  {
+    settleTime: '10/11/2011 23:56:56',
+    type: '体育',
+    performanceNum: '999,999',
+    contributeNum: '999,999',
+    commission: '999,999',
+  },
+  {
+    settleTime: '10/11/2011 23:56:56',
+    type: '体育',
+    performanceNum: '999,999',
+    contributeNum: '999,999',
+    commission: '999,999',
+  },
   {
     settleTime: '10/11/2011 23:56:56',
     type: '体育',
@@ -48,6 +63,9 @@ const tableData: any = ref([
 <template>
   <div>
     <BaseTable :columns="columns" :data-source="tableData" :loading="loading">
+      <template #commission="{ record }">
+        <span style="color:var(--tg-text-warn)">{{ record.contributeNum }}</span>
+      </template>
       <template #operate>
         <BaseButton type="text" padding0 font-size="12" style="color:var(--tg-text-blue)">
           查看
@@ -59,7 +77,9 @@ const tableData: any = ref([
 
 <style lang="scss">
 :root {
-  --tg-table-font-size: var(--tg-font-size-xs)
+  --tg-table-font-size: var(--tg-font-size-xs);
+  --tg-table-even-background: var(--tg-primary-main);
+  --tg-table-th-color: var(--tg-text-white);
 }
 </style>
 
