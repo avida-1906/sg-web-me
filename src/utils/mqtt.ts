@@ -5,10 +5,11 @@ import { type MqttClient as TMqttClient } from 'precompiled-mqtt'
  * user = "rmqtt", password = "www.123.com",
  */
 
+type TMqttProtocol = 'wss' | 'ws' | 'mqtt' | 'mqtts' | 'tcp' | 'ssl' | 'wx' | 'wxs'
 type TMqttServer = Array<{
   host: string
   port: number
-  protocol?: 'wss' | 'ws' | 'mqtt' | 'mqtts' | 'tcp' | 'ssl' | 'wx' | 'wxs'
+  protocol?: TMqttProtocol
 }>
 
 const chatMessageBus = useEventBus(CHAT_MESSAGE_BUS)
@@ -43,16 +44,24 @@ class SocketClient {
 
     const list = VITE_SOCKET_URL_LIST_STRING.split(',')
     const result: TMqttServer = []
-    list.forEach((item) => {
+
+    for (let i = 0; i < list.length; i++) {
+      const item = list[i]
       const [protocol, host, port] = item.split('|')
+
+      if (!host || !port) {
+        this.#log('请在 env文件中 配置连接地址')
+        return
+      }
+
       result.push({
         host,
         port: Number(port),
-        protocol: protocol as any,
+        protocol: protocol as TMqttProtocol,
       })
-    })
+    }
+
     this.#MQTT_SERVER = result
-    console.log('this.#MQTT_SERVER', this.#MQTT_SERVER)
   }
 
   /** 断开重新连接 */

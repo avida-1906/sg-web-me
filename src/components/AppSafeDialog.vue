@@ -114,6 +114,7 @@ function maxNumber() {
 
 watch(() => activeTab.value, () => {
   resetAmount()
+  amountRef.value.setTouchFalse()
   resetPassword()
 })
 </script>

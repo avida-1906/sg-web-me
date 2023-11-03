@@ -1,13 +1,13 @@
 <script setup lang="ts">
-interface Column {
-  title?: string // 列头显示文字
-  width?: number | string // 列宽度
-  dataIndex: string // 列数据字符索引
-  slot?: string // 列插槽名称索引
-  align?: 'left' | 'center' | 'right' // 列对其方式
-  sort?: boolean // 是否展示排序
-  sortDirections?: 'ascend' | 'descend' // 升序 ｜ 降序
-}
+// interface Column {
+//   title?: string // 列头显示文字
+//   width?: number | string // 列宽度
+//   dataIndex: string // 列数据字符索引
+//   slot?: string // 列插槽名称索引
+//   align?: 'left' | 'center' | 'right' // 列对其方式
+//   sort?: boolean // 是否展示排序
+//   sortDirections?: 'ascend' | 'descend' // 升序 ｜ 降序
+// }
 interface Props {
   columns: Column[] // 表格列的配置项
   dataSource?: any[] // 表格数据数组
@@ -111,10 +111,16 @@ watch(() => props.columns, () => {
   </div>
 </template>
 
+<style lang="scss">
+:root{
+  --tg-table-font-size:var(--tg-font-size-default)
+}
+</style>
+
 <style lang="scss" scoped>
 .m-table-wrap {
   color: var(--tg-text-lightgrey);
-  font-size: var(--tg-font-size-default);
+  font-size: var(--tg-table-font-size);
   .m-table {
     display: table;
     table-layout: auto;

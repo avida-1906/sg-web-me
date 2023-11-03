@@ -7,6 +7,7 @@ const { openNotify } = useNotify()
 const { openLoginDialog } = useLoginDialog()
 const { bool: isEmailMust } = useBoolean(true)
 const { bool: pwdStatus, setBool: setPwdStatus } = useBoolean(true)
+const { bool: isCode } = useBoolean(false)
 const {
   bool: isShowPasswordVerify,
   setTrue: setShowPasswordVerifyTrue,
@@ -18,6 +19,7 @@ const userNameRef = ref()
 const passwordRef = ref()
 const curExists = ref<1 | 2>(2)
 const steps = ref(1)
+const code = ref('')
 
 const {
   value: email,
@@ -73,7 +75,7 @@ const {
   if (!value)
     return t('agree_terms_conditions')
   return ''
-}, { initialValue: false })
+}, { initialValue: true })
 
 const {
   run: runMemberReg,
@@ -212,6 +214,14 @@ async function toLogin() {
             @pass="passwordVerifyPass"
           />
         </BaseLabel>
+        <div>
+          <div class="code-label">
+            <BaseCheckBox v-model="isCode">
+              {{ t('code_optional') }}
+            </BaseCheckBox>
+          </div>
+          <BaseInput v-show="isCode" v-model="code" />
+        </div>
       </div>
       <div class="app-register-check-box">
         <BaseButton
@@ -398,6 +408,11 @@ async function toLogin() {
     display: flex;
     flex-direction: column;
     gap: var(--tg-spacing-16);
+    .code-label{
+      display: flex;
+      justify-content: flex-start;
+      margin-bottom: var(--tg-spacing-4);
+    }
   }
 
   &-check-box {
