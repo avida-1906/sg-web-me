@@ -107,6 +107,7 @@ onMounted(() => {
               :clearable="searchValue?.length > 0"
               :style="{ 'max-width': showBalance ? '180px' : '140px' }"
               place-holder="搜索"
+              shape="square"
             />
           </div>
           <div

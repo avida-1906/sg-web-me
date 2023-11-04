@@ -113,10 +113,10 @@ function onClickPopper() {
             >
               {{ item.label }}
             </slot>
-            <div v-if="item.state === 2" class="bankcard-disable-text">
+            <!-- <div v-if="item.state === 2" class="bankcard-disable-text">
               <BaseIcon name="uni-disable" />
               暂不可用
-            </div>
+            </div> -->
           </a>
         </div>
       </template>

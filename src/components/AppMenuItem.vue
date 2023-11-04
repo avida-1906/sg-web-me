@@ -51,7 +51,7 @@ const active = computed(() => route.path === props.menuItem.path)
     transform: none!important;
     background-color: transparent;
     overflow: hidden;
-    &:hover, &.active {
+    &:hover:not(.disabled), &.active:not(.disabled) {
       background-color: var(--tg-secondary-main);
     }
     &.disabled{

@@ -156,6 +156,6 @@ function onClear() {
 }
 
 .round {
-  border-radius: 4px;
+  border-radius: 100px;
 }
 </style>

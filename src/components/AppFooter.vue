@@ -111,27 +111,99 @@ function pathTo(tmp: { path?: string; title: string; icon?: boolean }) {
     </div>
     <BaseDivider />
     <div class="footer-support">
-      <BaseAspectRatio
-        v-for="i in 10"
-        :key="i"
-        ratio="116/35"
-        width="133.33px"
-        style="margin: 0 auto;"
-      >
-        <BaseIcon name="litecoin" style="width: 100%; height: 100%" />
-      </BaseAspectRatio>
+      <BaseImage
+        url="/png/footer/ltc.png"
+        height="auto"
+        width="auto"
+        style="height: auto;width: auto;margin: 0 auto;"
+      />
+      <BaseImage
+        url="/png/footer/bitcoin.png"
+        height="auto"
+        width="auto"
+        style="height: auto;width: auto;margin: 0 auto;"
+      />
+      <BaseImage
+        url="/png/footer/ethereum.png"
+        height="auto"
+        width="auto"
+        style="height: auto;width: auto;margin: 0 auto;"
+      />
+      <BaseImage
+        url="/png/footer/tron.png"
+        height="auto"
+        width="auto"
+        style="height: auto;width: auto;margin: 0 auto;"
+      />
+      <BaseImage
+        url="/png/footer/ripple.png"
+        height="auto"
+        width="auto"
+        style="height: auto;width: auto;margin: 0 auto;"
+      />
+      <BaseImage
+        url="/png/footer/dogecoin.png"
+        height="auto"
+        width="auto"
+        style="height: auto;width: auto;margin: 0 auto;"
+      />
+      <BaseImage
+        url="/png/footer/bitcoin_cash.png"
+        height="auto"
+        width="auto"
+        style="height: auto;width: auto;margin: 0 auto;"
+      />
+      <BaseImage
+        url="/png/footer/tether.png"
+        height="auto"
+        width="auto"
+        style="height: auto;width: auto;margin: 0 auto;"
+      />
+      <BaseImage
+        url="/png/footer/safe_gamble.png"
+        height="auto"
+        width="auto"
+        style="height: auto;width: auto;margin: 0 auto;"
+      />
+      <BaseImage
+        url="/png/footer/18plus.png"
+        height="auto"
+        width="auto"
+        style="height: auto;width: auto;margin: 0 auto;"
+      />
     </div>
     <BaseDivider />
     <div class="footer-sponsor">
-      <BaseAspectRatio
-        v-for="i in 4"
-        :key="i"
+      <!-- <BaseAspectRatio
         ratio="116/35"
         width="133.33px"
         style="margin: 0 auto;"
-      >
-        <BaseIcon name="litecoin" style="width: 100%; height: 100%" />
-      </BaseAspectRatio>
+      > -->
+      <BaseImage
+        url="/png/footer/verified.png"
+        height="auto"
+        width="auto"
+        style="height: auto;width: auto;margin: 0 auto;"
+      />
+      <BaseImage
+        url="/png/footer/official.png"
+        height="auto"
+        width="auto"
+        style="height: auto;width: auto;margin: 0 auto;"
+      />
+      <BaseImage
+        url="/png/footer/main.png"
+        height="auto"
+        width="auto"
+        style="height: auto;width: auto;margin: 0 auto;"
+      />
+      <BaseImage
+        url="/png/footer/ufc.png"
+        height="auto"
+        width="auto"
+        style="height: auto;width: auto;margin: 0 auto;"
+      />
+      <!-- </BaseAspectRatio> -->
     </div>
     <BaseDivider />
     <div class="footer-copyright">
@@ -217,7 +289,7 @@ function pathTo(tmp: { path?: string; title: string; icon?: boolean }) {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     gap:2rem;
   }
@@ -226,7 +298,7 @@ function pathTo(tmp: { path?: string; title: string; icon?: boolean }) {
     display: flex;
     gap:0.5rem;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     gap:2rem;
   }

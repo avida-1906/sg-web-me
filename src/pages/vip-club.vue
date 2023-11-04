@@ -428,8 +428,13 @@ const toVip = function () {
           </div>
         </div>
         <div class="banner-right">
-          <BaseImage v-if="!isSm" url="https://mediumrare.imgix.net//vip-club-header.png?&amp;dpr=2&amp;format=auto&amp;auto=format&amp;q=50" />
-          <BaseImage v-else url="https://mediumrare.imgix.net//vip-club-header-mobile.png?&amp;dpr=2&amp;format=auto&amp;auto=format&amp;q=50" width="80px" class="base-image" />
+          <BaseImage v-if="!isSm" url="/png/vip-club/vip_club_header.png" />
+          <BaseImage
+            v-else
+            url="/png/vip-club/vip_club_header_mobile.png"
+            width="80px"
+            class="base-image"
+          />
         </div>
       </div>
     </div>
@@ -445,7 +450,7 @@ const toVip = function () {
         <div class="t-steps" :class="{ 'steps-is-sm': isSm }">
           <div class="step-item">
             <div class="img-wrap">
-              <BaseImage url="https://stake.com/_app/immutable/assets/Step1.387bc52a.jpg" />
+              <BaseImage url="/png/vip-club/step1.png" />
             </div>
             <p>
               第一步
@@ -456,7 +461,7 @@ const toVip = function () {
           </div>
           <div class="step-item">
             <div class="img-wrap">
-              <BaseImage url="https://stake.com/_app/immutable/assets/Step2.846182e2.jpg" />
+              <BaseImage url="/png/vip-club/step2.png" />
             </div>
             <p>
               第二步
@@ -467,7 +472,7 @@ const toVip = function () {
           </div>
           <div class="step-item">
             <div class="img-wrap">
-              <BaseImage url="https://stake.com/_app/immutable/assets/Step3.78df2edc.jpg" />
+              <BaseImage url="/png/vip-club/step3.png" />
             </div>
             <p>
               第三步

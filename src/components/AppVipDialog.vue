@@ -94,7 +94,7 @@ const showContent = function () {
     <div class="scroll-y vip-content">
       <div v-if="tab === '1'" class="vip-progress">
         <div class="vip-image">
-          <BaseImage url="https://mediumrare.imgix.net/vip-modal.png?&dpr=2&format=auto&auto=format&q=50" />
+          <BaseImage url="/png/vip-club/vip_modal.png" />
         </div>
         <AppVipProgress :vip-progress-data="props.vipProgressData" />
         <div class="progress-text">

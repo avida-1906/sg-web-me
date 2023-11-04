@@ -34,7 +34,7 @@ watch(() => props.columns, () => {
 </script>
 
 <template>
-  <div class="scroll-x scrollable m-table-wrap">
+  <div class="scrollable scroll-x m-table-wrap">
     <table class="m-table">
       <thead>
         <tr class="m-tr">
@@ -131,6 +131,7 @@ watch(() => props.columns, () => {
       line-height: 1.5;
       white-space: nowrap;
       background: var(--tg-table-even-background);
+      vertical-align: middle;
       .th-box{
         display: inline-flex;
         align-items: center;

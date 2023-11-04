@@ -607,7 +607,7 @@ body {
 }
 
 // 银行卡禁用
-.bankcard-disable{
+.bankcard-disable, .bankcard-disable-card-holder{
   position: relative;
   &::after{
     content: '';
@@ -617,10 +617,13 @@ body {
     left: 0;
     bottom: 0;
     background-color: var(--tg-primary-main);
-    opacity: .9;
+    opacity: .5;
+    cursor: not-allowed;
   }
+}
+.bankcard-disable{
   &:hover, &.active {
-    background-color: var(--tg-secondary-main) !important;
+    background-color: initial !important;
   }
 }
 .bankcard-disable-text{
