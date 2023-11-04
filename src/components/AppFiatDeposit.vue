@@ -17,6 +17,7 @@ interface Props {
 const props = defineProps<Props>()
 const emit = defineEmits(['show'])
 
+const amountRef = ref()
 const currentType = ref('')
 const bankStep = ref<'1' | '2'>('1')
 const payeeInformation = ref({
@@ -40,7 +41,7 @@ const {
 } = useField<string>('amount', (value) => {
   const Value = Number(value)
   if (!Value)
-    return '请输入金额'
+    return currentAisleItem.value?.type === 1 ? '请选择金额' : '请输入金额'
   else if (currentAisleItem.value?.amount_min && Value < Number(currentAisleItem.value?.amount_min))
     return `最小金额为${currentAisleItem.value?.amount_min}`
   else if (currentAisleItem.value?.amount_max && Value > Number(currentAisleItem.value?.amount_max))
@@ -191,6 +192,8 @@ const changeAisle = function (item: IPaymentMerchantData) {
   amountReset()
 }
 async function depositSubmit() {
+  if (amountRef.value)
+    amountRef.value.setTouchTrue()
   await amountValidate()
   await selectValueValidate()
   if (!amountError.value
@@ -320,8 +323,10 @@ await application.allSettled([
               :label="`充值金额: ${activeCurrency.prefix}`"
             >
               <BaseInput
+                ref="amountRef"
                 v-model="amount"
                 :msg="amountError"
+                msg-after-touched
               />
             </BaseLabel>
             <BaseLabel
