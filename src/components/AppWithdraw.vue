@@ -3,9 +3,10 @@ import type { CurrencyData } from '~/composables/useCurrencyData'
 
 interface Props {
   activeCurrency: CurrencyData
+  currentNetwork: string
 }
 
-defineProps<Props>()
+const props = defineProps<Props>()
 
 const { t } = useI18n()
 const {
@@ -37,6 +38,23 @@ const {
   return ''
 })
 
+const {
+  data: walletList,
+  runAsync: runAsyncWalletList,
+} = useList(ApiMemberWalletList)
+
+const addrOptions = computed(() => {
+  if (walletList.value && walletList.value.d) {
+    return walletList.value.d.map((i) => {
+      return {
+        label: `${i.contract_type} ${i.address}`,
+        value: i.id,
+      }
+    })
+  }
+  return []
+})
+
 function onAmountInput() {
   if (amount.value)
     setAmount(application.numberToCurrency(+amount.value))
@@ -46,6 +64,20 @@ async function handleWithdraw() {
   await valiAmount()
   await valiPaypwd()
 }
+
+watch(() => [props.activeCurrency, props.currentNetwork], () => {
+  runAsyncWalletList({
+    contract_type: props.currentNetwork,
+    currency_id: props.activeCurrency.cur,
+  })
+})
+
+application.allSettled([
+  runAsyncWalletList({
+    contract_type: props.currentNetwork,
+    currency_id: props.activeCurrency.cur,
+  }),
+])
 </script>
 
 <template>
@@ -55,7 +87,8 @@ async function handleWithdraw() {
       :current-currency="activeCurrency?.type"
       must
     >
-      <BaseInput v-model="address" :msg="addressMsg" />
+      <!-- <BaseInput v-model="address" :msg="addressMsg" /> -->
+      <BaseSelect v-model="address" :options="addrOptions" small />
     </BaseLabel>
     <div class="amount">
       <div class="top">
