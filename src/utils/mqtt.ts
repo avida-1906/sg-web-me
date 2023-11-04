@@ -216,11 +216,11 @@ class SocketClient {
       })
 
       this.client.on('packetreceive', (packetreceiveInfo) => {
-        this.#log('收到数据包 《《《《《《《《《《《', packetreceiveInfo)
+        // this.#log('收到数据包 《《《《《《《《《《《', packetreceiveInfo)
       })
 
       this.client.on('packetsend', (packetsendInfo) => {
-        this.#log('发送数据包 》》》》》》》》》》》', packetsendInfo)
+        // this.#log('发送数据包 》》》》》》》》》》》', packetsendInfo)
       })
     }
   }

@@ -9,6 +9,11 @@ export const useAppStore = defineStore('app', () => {
     manual: false,
   })
   const visibility = useDocumentVisibility()
+  const mqttConnectSuccessBus = useEventBus(MQTT_CONNECT_SUCCESS_BUS)
+  const mqttDisconnectBus = useEventBus(MQTT_DISCONNECT_BUS)
+
+  /** MQTT是否已连接 */
+  const { bool: mqttIsConnected, setTrue: setMqttConnectedTrue, setFalse: setMqttConnectedFalse } = useBoolean(false)
 
   function setToken(token: string) {
     // 将token加密后存储到本地
@@ -30,27 +35,21 @@ export const useAppStore = defineStore('app', () => {
     setLoginFalse()
   }
 
-  onMounted(() => {
-    socketClient.connect()
-  })
-
   watch(visibility, (bool) => {
     // 如果页面可见，更新用户余额和用户信息
     if (bool === 'visible')
       updateUserInfo()
   })
 
-  watch(userInfo, (val) => {
-    if (val?.uid) {
-      setTimeout(() => {
-        socketClient.connect()
-      }, 0)
-    }
+  onMounted(() => {
+    mqttConnectSuccessBus.on(() => setMqttConnectedTrue())
+    mqttDisconnectBus.on(() => setMqttConnectedFalse())
   })
 
   return {
     isLogin,
     userInfo,
+    mqttIsConnected,
     setToken,
     setLoginTrue,
     setLoginFalse,
