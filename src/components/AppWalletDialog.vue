@@ -12,6 +12,7 @@ const { t } = useI18n()
 const { bool: showWallet, setBool: setShowWalletBool } = useBoolean(true)
 const { isVirtualCurrency } = useCurrencyData()
 
+const currentNetwork = ref('')
 const activeCurrency = ref<CurrencyData | null>()
 const currentTab = ref(props.activeTab)
 const tabList = [
@@ -24,8 +25,9 @@ const isDeposit = computed(() => currentTab.value === 'deposit')
 const isWithdraw = computed(() => currentTab.value === 'withdraw')
 const isCardHolder = computed(() => currentTab.value === 'cardHolder')
 
-function changeCurrency(item: CurrencyData) {
+function changeCurrency(item: CurrencyData, network: string) {
   activeCurrency.value = item
+  currentNetwork.value = network
 }
 function handleShow(val: boolean) {
   setShowWalletBool(val)
@@ -68,6 +70,7 @@ function handleShow(val: boolean) {
           <AppWithdraw
             v-if="isVirtualCurrency(activeCurrency?.type)"
             :active-currency="activeCurrency"
+            :current-network="currentNetwork"
           />
           <AppFiatWithdrawal v-else :active-currency="activeCurrency" />
           <template #fallback>

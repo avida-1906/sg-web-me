@@ -1,10 +1,14 @@
 <script lang="ts" setup>
+import type { TTreeListType } from '~/composables/useApiMemberTreeList'
 import type { CurrencyData } from '~/composables/useCurrencyData'
 
 interface Props {
   showBalance?: boolean // 是否展示货币余额
   network?: boolean // 是否显示协议类型
   type?: number
+}
+interface IContractMap {
+  [key: string]: TTreeListType
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -25,10 +29,17 @@ const {
   renderBalanceLockerList,
   renderCurrencyList,
   getVirtualCurrencyContractType,
+  isVirtualCurrency,
 } = useCurrencyData()
 
 const currentNetwork = ref()
 const activeCurrency = ref()
+const contractMap: IContractMap = {
+  USDT: '018001',
+  BTC: '018002',
+  ETH: '018003',
+  BNB: '018004',
+}
 
 const getCurrencyList = computed(() => {
   switch (props.type) {
@@ -39,29 +50,56 @@ const getCurrencyList = computed(() => {
   }
 })
 
-// 获取协议类型
+// 获取协议api
+const {
+  data: contractList,
+  runAsync: getContract,
+} = useApiMemberTreeList(contractMap[activeCurrency.value?.type])
+
 const getCurContract = computed(() => {
-  return getVirtualCurrencyContractType(activeCurrency.value?.type ?? '')
+  if (contractList.value) {
+    return contractList.value.map((item) => {
+      return {
+        label: item.name,
+        value: item.id,
+      }
+    })
+  }
 })
+
+// 获取协议类型
+// const getCurContract = computed(() => {
+//   return getVirtualCurrencyContractType(activeCurrency.value?.type ?? '')
+// })
 
 // 设置协议选项的值
 function getTypeVal() {
   currentNetwork.value = getCurContract.value ? getCurContract.value[0]?.value : ''
+  emit('change', activeCurrency.value, currentNetwork.value)
 }
 // 选择币种
 function selectCurrency(item: CurrencyData, hide: () => void) {
   hide()
   activeCurrency.value = item
-  emit('change', item)
   getTypeVal()
+  emit('change', item, currentNetwork.value)
 }
 function getActiveValue() {
   activeCurrency.value = getCurrencyList.value.find(item => item.type === (activeCurrency.value?.type ?? currentCurrency.value))
-  emit('change', activeCurrency.value)
+  emit('change', activeCurrency.value, currentNetwork.value)
 }
 
 watch(() => props.type, () => {
   getActiveValue()
+})
+watch(() => currentNetwork.value, () => {
+  emit('change', activeCurrency.value, currentNetwork.value)
+})
+watch(() => activeCurrency.value, async () => {
+  if (isVirtualCurrency(activeCurrency.value?.type)) {
+    await getContract({ level: contractMap[activeCurrency.value?.type] })
+    getTypeVal()
+  }
 })
 
 onMounted(() => {

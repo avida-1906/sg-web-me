@@ -1,5 +1,5 @@
 export type TTreeListType =
-'001' | '002' | '003' | '004' | '005' | '006' | '007' | '008' | '011' | '015' | '016' | '017'
+'001' | '002' | '003' | '004' | '005' | '006' | '007' | '008' | '011' | '015' | '016' | '017' | '018001' | '018002' | '018003' | '018004'
 
 /**
  * 获取后端辅助数据
@@ -27,18 +27,25 @@ export type TTreeListType =
  * 016=印度银行列表
  *
  * 017=泰国银行列表
+ *
+ * 018001=USDT协议
+ *
+ * 018002=BTC协议
+ *
+ * 018003=ETH协议
+ *
+ * 018004=BNB协议
  */
 export function useApiMemberTreeList(type: TTreeListType) {
-  const { data, loading, error, run } = useRequest(ApiMemberTreeList)
-
-  run({
-    level: type,
-  })
+  const { data, loading, error, run, runAsync } = useRequest(ApiMemberTreeList)
+  if (type)
+    run({ level: type })
 
   return {
     data,
     loading,
     error,
     run,
+    runAsync,
   }
 }

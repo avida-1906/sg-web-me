@@ -118,7 +118,7 @@ export function useCurrencyData() {
     const currency = currentGlobalCurrency.value
     const balance = userInfo.value?.balance[currency]
     const symbol = isVirtualCurrency(currency) ? '' : currencyConfig[currency].prefix
-    return symbol + balance ?? 0
+    return balance ? symbol + balance : 0
   })
 
   /** 货币列表;含筛选 */
