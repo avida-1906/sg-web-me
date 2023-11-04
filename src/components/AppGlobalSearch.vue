@@ -42,6 +42,9 @@ const keywordList = computed(() => {
     return keywordSports.value
   return []
 })
+const searchPlaceholder = computed(() => isCasino.value
+  ? t('search_game')
+  : t('search_events'))
 const {
   list: casinoGames,
   run: runSearchCasinoGames,
@@ -124,6 +127,7 @@ provide('closeSearchH5', () => leftIsExpand.value = !leftIsExpand.value)
     <BaseSearch
       v-model.trim="searchValue"
       class="search-input"
+      :place-holder="searchPlaceholder"
       clearable
       @focus="showOverlayTrue"
       @clear="setClearTrue"
