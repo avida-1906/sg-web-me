@@ -18,7 +18,7 @@ const { openStatisticsDialog } = useStatisticsDialog()
 const { openSafeDialog } = useSafeDialog()
 const { openLogoutDialog } = useLogoutDialog()
 
-const userMenu = ref([
+const userMenu = computed(() => ([
   { id: 1, icon: 'navbar-wallet', title: t('wallet'), name: 'wallet' },
   { id: 2, icon: 'navbar-cart', title: t('safe'), name: 'safe' },
   { id: 3, icon: 'spt-airbonus', title: 'VIP', name: 'vip' },
@@ -74,8 +74,8 @@ const userMenu = ref([
     title: t('logout'),
     name: 'logout',
   },
-])
-const newsMenu = ref([
+]))
+const newsMenu = computed(() => ([
   {
     id: 1,
     icon: 'chess-discuss',
@@ -91,7 +91,7 @@ const newsMenu = ref([
     name: 'bet-slip',
     shown: EnumRightSidebarContent.BETTING,
   },
-])
+]))
 
 // 选中状态
 const getActiveState = computed(() => {
