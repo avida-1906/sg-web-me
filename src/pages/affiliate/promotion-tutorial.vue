@@ -1,7 +1,7 @@
 <script setup lang='ts'>
 import LeaderLine from 'vue3-leaderline'
 
-const { bool: isPageReady } = useBoolean(true)
+const { bool: isPageReady } = useBoolean(false)
 const bossRef = ref()
 const box1Ref = ref()
 const box2Ref = ref()
@@ -38,14 +38,26 @@ function addEvent() {
 function removeEvent() {
   window.removeEventListener('resize', eventCallback)
   mainScroll?.removeEventListener('scroll', eventCallback, false)
-  line1.remove()
-  line2.remove()
-  line3.remove()
+  lineGroup.forEach((line) => {
+    line.remove()
+  })
 }
 function eventCallback() {
-  line1.position()
-  line2.position()
-  line3.position()
+  lineGroup.forEach((line) => {
+    line.position()
+  })
+  // line1.position()
+  // line2.position()
+  // line3.position()
+  // line4.position()
+  // line5.position()
+  // line6.position()
+  // line7.position()
+  // line8.position()
+  // line9.position()
+  // line10.position()
+  // line11.position()
+  // line12.position()
 }
 onMounted(() => {
   mainScroll = document.getElementById('main-content-scrollable')
@@ -111,7 +123,28 @@ onMounted(() => {
       startSocket: 'top',
       endPlug: 'behind',
     })
-    // lineGroup.push(line1,line2,line3,line4,line5,line6,line7,line8,line9,line10,line11,line12)
+    line10 = new LeaderLine(box10Ref.value, box7Ref.value, {
+      path: 'straight',
+      color: '#FF9D00',
+      size: 2,
+      startSocket: 'top',
+      endPlug: 'behind',
+    })
+    line11 = new LeaderLine(box11Ref.value, box8Ref.value, {
+      path: 'straight',
+      color: '#FF9D00',
+      size: 2,
+      startSocket: 'top',
+      endPlug: 'behind',
+    })
+    line12 = new LeaderLine(box12Ref.value, box9Ref.value, {
+      path: 'straight',
+      color: '#FF9D00',
+      size: 2,
+      startSocket: 'top',
+      endPlug: 'behind',
+    })
+    lineGroup.push(line1, line2, line3, line4, line5, line6, line7, line8, line9, line10, line11, line12)
     addEvent()
     isPageReady.value = true
     clearTimeout(t)
@@ -145,114 +178,113 @@ onBeforeUnmount(() => {
       </div>
       <!-- 第二级 -->
       <div class="row">
-        <div ref="box1Ref" class="box border">
-          <span>
-            直属<span class="blue">B1</span>
-            贡献给<span class="green">A</span>：<span class="yellow">800</span>
-          </span>
-          <span>
-            其他<span class="pink">C1</span>和<span class="pink">C2</span>
-            贡献给<span class="green">A</span>：<span class="yellow">280</span>
-          </span>
-        </div>
-        <div ref="box2Ref" class="box border">
-          <span>
-            直属<span class="blue">B2</span>
-            贡献给<span class="green">A</span>：<span class="yellow">500</span>
-          </span>
-        </div>
-        <div ref="box3Ref" class="box border">
-          <span>
-            直属<span class="blue">B3</span>
-            贡献给<span class="green">A</span>：<span class="yellow">300</span>
-          </span>
-          <span>
-            其他<span class="pink">C1</span>
-            贡献给<span class="green">A</span>：<span class="yellow">0</span>
-          </span>
-        </div>
-      </div>
-      <div class="row">
-        <div ref="box4Ref" class="box">
-          <div class="level">
-            <AppAgentLevel level="B1" color="blue" />
+        <div class="col">
+          <div ref="box1Ref" class="box border">
+            <span>
+              直属<span class="blue">B1</span>
+              贡献给<span class="green">A</span>：<span class="yellow">800</span>
+            </span>
+            <span>
+              其他<span class="pink">C1</span>和<span class="pink">C2</span>
+              贡献给<span class="green">A</span>：<span class="yellow">280</span>
+            </span>
           </div>
-          <span>
-            下级总业绩<span class="yellow">14万</span>
-            享受<span class="yellow">80/万</span>
-          </span>
-          <span class="grey">B1自己有效投注8万</span>
-        </div>
-        <div ref="box5Ref" class="box">
-          <div class="level">
-            <AppAgentLevel level="B2" color="blue" />
+          <div ref="box4Ref" class="box">
+            <div class="level">
+              <AppAgentLevel level="B1" color="blue" />
+            </div>
+            <span>
+              下级总业绩<span class="yellow">14万</span>
+              享受<span class="yellow">80/万</span>
+            </span>
+            <span class="grey">B1自己有效投注8万</span>
           </div>
-          <span>B2无下级自身无收益</span>
-          <span class="grey">B2自己有效投注5万</span>
-        </div>
-        <div ref="box6Ref" class="box">
-          <div class="level">
-            <AppAgentLevel level="B3" color="blue" />
+          <div ref="box7Ref" class="box border">
+            <span>
+              贡献给<span class="green">A</span>：<span class="yellow">200</span>
+            </span>
+            <span>
+              贡献给<span class="blue">B1</span>：<span class="yellow">800</span>
+            </span>
           </div>
-          <span>
-            下级总业绩<span class="yellow">71万</span>
-            享受<span class="yellow">100/万</span>
-          </span>
-          <span class="grey">B3自己有效投注3万</span>
-        </div>
-      </div>
-
-      <!-- 第三级 -->
-      <div class="row">
-        <div ref="box7Ref" class="box border">
-          <span>
-            贡献给<span class="green">A</span>：<span class="yellow">200</span>
-          </span>
-          <span>
-            贡献给<span class="blue">B1</span>：<span class="yellow">800</span>
-          </span>
-        </div>
-        <div ref="box8Ref" class="box border">
-          <span>
-            贡献给<span class="green">A</span>：<span class="yellow">800</span>
-          </span>
-          <span>
-            贡献给<span class="blue">B1</span>：<span class="yellow">320</span>
-          </span>
-        </div>
-        <div ref="box9Ref" class="box border">
-          <span>
-            贡献给<span class="green">A</span>：<span class="yellow">0</span>
-          </span>
-          <span>
-            贡献给<span class="blue">B3</span>：<span class="yellow">7100</span>
-          </span>
-        </div>
-      </div>
-      <div class="row">
-        <div ref="box10Ref" class="box">
-          <div class="level">
-            <AppAgentLevel level="C1" color="pink" />
+          <div ref="box10Ref" class="box">
+            <div class="level">
+              <AppAgentLevel level="C1" color="pink" />
+            </div>
+            <span>C1无下级自身无收益</span>
+            <span class="grey">C1自己有效投注10万</span>
           </div>
-          <span>C1无下级自身无收益</span>
-          <span class="grey">C1自己有效投注10万</span>
         </div>
-        <div ref="box11Ref" class="box">
-          <div class="level">
-            <AppAgentLevel level="C2" color="pink" />
+        <div class="col">
+          <div ref="box2Ref" class="box border">
+            <span>
+              直属<span class="blue">B2</span>
+              贡献给<span class="green">A</span>：<span class="yellow">500</span>
+            </span>
           </div>
-          <span>C2无下级自身无收益</span>
-          <span class="grey">C2自己有效投注4万</span>
+          <div ref="box5Ref" class="box">
+            <div class="level">
+              <AppAgentLevel level="B2" color="blue" />
+            </div>
+            <span>B2无下级自身无收益</span>
+            <span class="grey">B2自己有效投注5万</span>
+          </div>
+          <div ref="box8Ref" class="box border">
+            <span>
+              贡献给<span class="green">A</span>：<span class="yellow">800</span>
+            </span>
+            <span>
+              贡献给<span class="blue">B1</span>：<span class="yellow">320</span>
+            </span>
+          </div>
+          <div ref="box11Ref" class="box">
+            <div class="level">
+              <AppAgentLevel level="C2" color="pink" />
+            </div>
+            <span>C2无下级自身无收益</span>
+            <span class="grey">C2自己有效投注4万</span>
+          </div>
         </div>
-        <div ref="box12Ref" class="box">
-          <div class="level">
-            <AppAgentLevel level="C3" color="pink" />
+        <div class="col">
+          <div ref="box3Ref" class="box border">
+            <span>
+              直属<span class="blue">B3</span>
+              贡献给<span class="green">A</span>：<span class="yellow">300</span>
+            </span>
+            <span>
+              其他<span class="pink">C1</span>
+              贡献给<span class="green">A</span>：<span class="yellow">0</span>
+            </span>
           </div>
-          <span>C3无下级自身无收益</span>
-          <span class="grey">C3自己有效投注71万</span>
+          <div ref="box6Ref" class="box">
+            <div class="level">
+              <AppAgentLevel level="B3" color="blue" />
+            </div>
+            <span>
+              下级总业绩<span class="yellow">71万</span>
+              享受<span class="yellow">100/万</span>
+            </span>
+            <span class="grey">B3自己有效投注3万</span>
+          </div>
+          <div ref="box9Ref" class="box border">
+            <span>
+              贡献给<span class="green">A</span>：<span class="yellow">0</span>
+            </span>
+            <span>
+              贡献给<span class="blue">B3</span>：<span class="yellow">7100</span>
+            </span>
+          </div>
+          <div ref="box12Ref" class="box">
+            <div class="level">
+              <AppAgentLevel level="C3" color="pink" />
+            </div>
+            <span>C3无下级自身无收益</span>
+            <span class="grey">C3自己有效投注71万</span>
+          </div>
         </div>
       </div>
     </div>
+
     <div class="des">
       <p>
         <span class="title">举例说明如下:</span>
@@ -297,7 +329,6 @@ onBeforeUnmount(() => {
 <style lang='scss' scoped>
 .promotion_tutorial {
   position: relative;
-  transition: var(--tg-transition);
   font-size: var(--tg-font-size-xs);
   font-weight: var(--tg-font-weight-semibold);
   color: var(--tg-text-white);
@@ -358,7 +389,14 @@ onBeforeUnmount(() => {
   .row{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 100%;
+  }
+  .col{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--tg-spacing-50);
   }
 }
 
