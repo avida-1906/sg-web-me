@@ -76,10 +76,6 @@ export const currencyConfig: Record<EnumCurrencyKey, CurrencyValue> = {
   },
 }
 
-const {
-  bool: hideZeroBalance,
-} = useBoolean(Local.get<boolean | undefined>(STORAGE_HIDE_ZERO_BALANCE_KEY)?.value)
-
 /**
  * 使用货币数据
  */
@@ -89,6 +85,10 @@ export function useCurrencyData() {
     userInfo,
   } = storeToRefs(appStore)
 
+  const {
+    bool: hideZeroBalance,
+  } = useBoolean(Local.get<boolean | undefined>(STORAGE_HIDE_ZERO_BALANCE_KEY)?.value)
+
   // 搜索内容
   const searchValue = ref('')
   // 是否隐藏零余额
@@ -97,13 +97,6 @@ export function useCurrencyData() {
   const currentGlobalCurrency = ref<EnumCurrencyKey>(getLocalCurrentGlobalCurrency())
   /** 当前选择的货币,用在充值和提现的下拉列表 */
   const currentCurrency = ref(currentGlobalCurrency.value)
-
-  /** 用户当前选择的货币余额 */
-  const currentGlobalCurrencyBalance = computed(() => {
-    const currency = currentGlobalCurrency.value
-    const balance = userInfo.value?.balance[currency]
-    return balance ?? 0
-  })
 
   /**
    * 判断是不是虚拟货币
@@ -118,6 +111,14 @@ export function useCurrencyData() {
     ]
     return virtualList.includes(currency)
   }
+
+  /** 用户当前选择的货币余额 */
+  const currentGlobalCurrencyBalance = computed(() => {
+    const currency = currentGlobalCurrency.value
+    const balance = userInfo.value?.balance[currency]
+    const symbol = isVirtualCurrency(currency) ? '' : currencyConfig[currency].prefix
+    return symbol + balance ?? 0
+  })
 
   /** 货币列表;含筛选 */
   const allCurrencyData = (currency: TCurrencyObject | undefined) => {
