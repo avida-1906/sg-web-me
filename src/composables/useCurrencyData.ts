@@ -28,6 +28,18 @@ interface CurrencyValue {
   bankTree: string
 }
 
+interface IContractMap {
+  [key: string]: TTreeListType
+}
+
+/** 虚拟币协议tree类型 */
+export const contractMap: IContractMap = {
+  USDT: '018001',
+  BTC: '018002',
+  ETH: '018003',
+  BNB: '018004',
+}
+
 export const currencyConfig: Record<EnumCurrencyKey, CurrencyValue> = {
   CNY: {
     prefix: '¥',
@@ -218,6 +230,23 @@ export function useCurrencyData() {
     searchValue.value = ''
   }
 
+  // 获取协议api
+  const {
+    data: contractList,
+    runAsync: runAsyncGetContract,
+  } = useApiMemberTreeList()
+
+  const curContractList = computed(() => {
+    if (contractList.value) {
+      return contractList.value.map((item) => {
+        return {
+          label: item.name,
+          value: item.id,
+        }
+      })
+    }
+  })
+
   return {
     currentGlobalCurrency,
     currentGlobalCurrencyBalance,
@@ -232,5 +261,7 @@ export function useCurrencyData() {
     changeGlobalCurrency,
     setHideZeroBalance,
     getVirtualCurrencyContractType,
+    runAsyncGetContract,
+    curContractList,
   }
 }

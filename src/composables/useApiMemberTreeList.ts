@@ -36,7 +36,7 @@ export type TTreeListType =
  *
  * 018004=BNB协议
  */
-export function useApiMemberTreeList(type: TTreeListType) {
+export function useApiMemberTreeList(type?: TTreeListType) {
   const { data, loading, error, run, runAsync } = useRequest(ApiMemberTreeList)
   if (type)
     run({ level: type })

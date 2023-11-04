@@ -1,14 +1,11 @@
 <script lang="ts" setup>
-import type { TTreeListType } from '~/composables/useApiMemberTreeList'
+import { contractMap } from '~/composables/useCurrencyData'
 import type { CurrencyData } from '~/composables/useCurrencyData'
 
 interface Props {
   showBalance?: boolean // 是否展示货币余额
   network?: boolean // 是否显示协议类型
   type?: number
-}
-interface IContractMap {
-  [key: string]: TTreeListType
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -28,18 +25,13 @@ const {
   renderBalanceList,
   renderBalanceLockerList,
   renderCurrencyList,
-  getVirtualCurrencyContractType,
   isVirtualCurrency,
+  runAsyncGetContract,
+  curContractList,
 } = useCurrencyData()
 
 const currentNetwork = ref()
 const activeCurrency = ref()
-const contractMap: IContractMap = {
-  USDT: '018001',
-  BTC: '018002',
-  ETH: '018003',
-  BNB: '018004',
-}
 
 const getCurrencyList = computed(() => {
   switch (props.type) {
@@ -50,31 +42,9 @@ const getCurrencyList = computed(() => {
   }
 })
 
-// 获取协议api
-const {
-  data: contractList,
-  runAsync: getContract,
-} = useApiMemberTreeList(contractMap[activeCurrency.value?.type])
-
-const getCurContract = computed(() => {
-  if (contractList.value) {
-    return contractList.value.map((item) => {
-      return {
-        label: item.name,
-        value: item.id,
-      }
-    })
-  }
-})
-
-// 获取协议类型
-// const getCurContract = computed(() => {
-//   return getVirtualCurrencyContractType(activeCurrency.value?.type ?? '')
-// })
-
 // 设置协议选项的值
 function getTypeVal() {
-  currentNetwork.value = getCurContract.value ? getCurContract.value[0]?.value : ''
+  currentNetwork.value = curContractList.value ? curContractList.value[0]?.value : ''
   emit('change', activeCurrency.value, currentNetwork.value)
 }
 // 选择币种
@@ -97,7 +67,7 @@ watch(() => currentNetwork.value, () => {
 })
 watch(() => activeCurrency.value, async () => {
   if (isVirtualCurrency(activeCurrency.value?.type)) {
-    await getContract({ level: contractMap[activeCurrency.value?.type] })
+    await runAsyncGetContract({ level: contractMap[activeCurrency.value?.type] })
     getTypeVal()
   }
 })
@@ -175,9 +145,9 @@ onMounted(() => {
       </template>
     </VDropdown>
     <BaseSelect
-      v-if="network && getCurContract?.length"
+      v-if="network && curContractList?.length"
       v-model="currentNetwork"
-      :options="getCurContract"
+      :options="curContractList"
       popper
     />
   </div>
