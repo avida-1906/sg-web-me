@@ -164,6 +164,7 @@ function onClickPopper() {
   --tg-base-select-popper-style-padding-y: var(--tg-spacing-button-padding-vertical-md);
   --tg-base-select-popper-label-color: var(--tg-text-white);
   --tg-base-select-popper-label-hover-color: var(--tg-text-white);
+  --tg-base-select-style-font-size: var(--tg-font-size-default);
 }
 </style>
 
@@ -171,7 +172,7 @@ function onClickPopper() {
 .popper-label {
   padding: var(--tg-base-select-popper-style-padding-y) var(--tg-base-select-popper-style-padding-x);
   font-weight: var(--tg-font-weight-semibold);
-  font-size: var(--tg-font-size-default);
+  font-size: var(--tg-base-select-style-font-size);
   color: var(--tg-base-select-popper-label-color);
   background-color: var(--tg-secondary-dark);
   border-radius: var(--tg-radius-sm);
@@ -280,7 +281,7 @@ function onClickPopper() {
 // base-select
 .base-select {
   color: var(--tg-text-lightgrey);
-  font-size: var(--tg-font-size-default);
+  font-size: var(--tg-base-select-style-font-size);
 
   .must {
     color: var(--tg-text-error);
