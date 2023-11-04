@@ -62,7 +62,7 @@ const tableData = ref([
 </script>
 
 <template>
-  <div>
+  <div class="page-direct-user">
     <BaseTable :columns="columns" :data-source="tableData" :loading="loading">
       <template #th-online>
         <div>次数</div>
@@ -80,7 +80,7 @@ const tableData = ref([
         </span>
       </template>
       <template #online>
-        <div>
+        <div class="flex-colum">
           <BaseBadge
             color="var(--tg-text-green)"
             text="在线"
@@ -103,4 +103,12 @@ const tableData = ref([
 }
 </style>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.page-direct-user{
+  .flex-colum{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+</style>

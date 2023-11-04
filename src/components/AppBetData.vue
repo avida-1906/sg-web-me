@@ -365,6 +365,12 @@ onMounted(() => {
   </div>
 </template>
 
+<style lang="scss">
+:root {
+  --tg-table-font-size: var(--tg-font-size-default);
+}
+</style>
+
 <style lang="scss" scoped>
 .app-bet-data{
   .bet-data-head{
