@@ -661,6 +661,7 @@ function copyAppAuthLogin() {
 const breadcrumbs = ['one', 'two', 'three', 'four']
 
 const datepicker = ref([])
+const currentPage = ref(1)
 </script>
 
 <template>
@@ -719,6 +720,16 @@ const datepicker = ref([])
             Click
           </BaseButton>
         </div>
+      </AppDemoCard>
+    </li>
+    <li class="box">
+      <AppDemoCard title="BasePagination">
+        {{ currentPage }}
+        <AppContent>
+          <div class="center">
+            <BasePagination v-model:current-page="currentPage" :total="1007" />
+          </div>
+        </AppContent>
       </AppDemoCard>
     </li>
     <li class="box">
@@ -1372,6 +1383,7 @@ const datepicker = ref([])
   padding: 5px;
   position: relative;
   text-align: center;
+  color: white;
 }
 
 .icon-wrap {

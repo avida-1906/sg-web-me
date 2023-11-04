@@ -12,6 +12,7 @@ interface Props {
   disabled?: boolean
   max?: number | string
   msgAfterTouched?: boolean
+  textCenter?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -125,7 +126,11 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse })
             :placeholder="placeholder"
             :type="_type"
             :disabled="disabled"
-            :class="{ 'p-r-0': $slots['right-icon'], 'p-l-0': $slots['left-icon'] }"
+            :class="{
+              'p-r-0': $slots['right-icon'],
+              'p-l-0': $slots['left-icon'],
+              'text-center': textCenter,
+            }"
             :autocomplete="`new-${_type}`"
             @input="onInput"
             @focus="onFocus"
@@ -319,6 +324,10 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse })
       &::placeholder {
         color: var(--tg-text-white);
         opacity: 0.3;
+      }
+
+      &.text-center {
+        text-align: center;
       }
 
       // &::-webkit-outer-spin-button,
