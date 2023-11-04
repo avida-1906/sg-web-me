@@ -87,8 +87,8 @@ class SocketClient {
     }
   }
 
-  public async connect(test: string) {
-    this.#log('MQTT CONNECT', test)
+  public async connect(msg: string) {
+    this.#log('MQTT CONNECT', msg)
     if (this.#MQTT_SERVER) {
       const { userInfo, isLogin } = storeToRefs(useAppStore())
 
@@ -97,7 +97,7 @@ class SocketClient {
 
       if (this.lastLoginStatus === isLogin.value) {
         if (this.client != null) {
-          this.#log('登录状态相同，且已经连接过，不执行连接', test)
+          this.#log('登录状态相同，且已经连接过，不执行连接', msg)
           return
         }
       }

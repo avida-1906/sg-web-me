@@ -4,7 +4,6 @@ const { VITE_SOCKET_PREFIX } = getEnv()
 const appStore = useAppStore()
 const { isLogin, userInfo, mqttIsConnected } = storeToRefs(appStore)
 const refreshBalanceBus = useEventBus(REFRESH_BALANCE_BUS)
-const { openNotify } = useNotify()
 
 function handleUpdated() {
   const loading = document.querySelector('#full-loading')
@@ -30,10 +29,6 @@ onMounted(() => {
     socketClient.connect('没登录连接')
 
   refreshBalanceBus.on(() => {
-    openNotify({
-      type: 'error',
-      message: '收到刷新余额通知',
-    })
     appStore.getBalanceData()
   })
 })
