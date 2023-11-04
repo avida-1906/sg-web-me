@@ -144,7 +144,6 @@ function pathTo(tmp: { path?: string; title: string; icon?: boolean }) {
         :key="index"
         :ratio="item.ratio"
         :width="item.with"
-        style="margin: 0 auto;"
       >
         <BaseImage :url="item.url" />
       </BaseAspectRatio>

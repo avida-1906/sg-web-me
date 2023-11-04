@@ -83,6 +83,7 @@ const tableData = ref([
   --tg-table-line-height:1;
   --tg-table-th-padding: var(--tg-spacing-21);
   --tg-table-td-padding: var(--tg-spacing-13);
+  --tg-table-th-font-weight: var(--tg-font-weight-normal);
   .flex-colum{
     display: flex;
     flex-direction: column;

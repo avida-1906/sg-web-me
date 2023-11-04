@@ -110,6 +110,7 @@ watch(() => props.columns, () => {
   --tg-table-line-height:1.5;
   --tg-table-th-padding: var(--tg-spacing-16);
   --tg-table-td-padding: var(--tg-spacing-16);
+  --tg-table-th-font-weight: var(--tg-font-weight-semibold);
 }
 </style>
 
@@ -128,7 +129,7 @@ watch(() => props.columns, () => {
     .m-th {
       padding: var(--tg-table-th-padding); // 12px 20px;
       color: var(--tg-table-th-color);
-      font-weight: var(--tg-font-weight-semibold);
+      font-weight: var(--tg-table-th-font-weight);
       text-align: left;
       border: none;
       line-height: var(--tg-table-line-height);
