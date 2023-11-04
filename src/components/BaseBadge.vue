@@ -107,7 +107,7 @@ onMounted(() => {
 .m-badge {
   line-height: 1;
   position: relative;
-  display: inline-block;
+  // display: inline-block;
   width: fit-content;
   .u-status-dot {
     position: relative;

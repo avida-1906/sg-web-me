@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 const appStore = useAppStore()
 const { userInfo } = storeToRefs(appStore)
+const { isMobile } = storeToRefs(useWindowStore())
 </script>
 
 <template>
@@ -8,8 +9,14 @@ const { userInfo } = storeToRefs(appStore)
     <div class="left">
       <BaseIcon class="agent-badge" name="agent-badge" />
       <div class="info">
-        <div>{{ $t('user_account') }}：<span>{{ userInfo?.username }}</span></div>
-        <div>{{ $t('user_superior') }}ID：<span>直属会员</span></div>
+        <div>
+          <span>{{ $t('user_account') }}：</span>
+          <span
+            class="user-name"
+            :class="{ 'is-mobile': isMobile }"
+          >{{ userInfo?.username }}</span>
+        </div>
+        <div><span>{{ $t('user_superior') }}ID：</span><span>直属会员</span></div>
       </div>
     </div>
     <div class="right">
@@ -39,6 +46,8 @@ const { userInfo } = storeToRefs(appStore)
     align-items: stretch;
     justify-content: flex-start;
     gap: var(--tg-spacing-8);
+    max-width: 50%;
+    overflow: hidden;
     .agent-badge {
       font-size: var(--tg-font-size-5xl);
     }
@@ -48,7 +57,23 @@ const { userInfo } = storeToRefs(appStore)
       flex-direction: column;
       justify-content: space-between;
       line-height: var(--tg-spacing-20);
-      span {
+      overflow: hidden;
+      white-space: nowrap;
+      > div {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+      }
+      .user-name {
+        display: inline-block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        &.is-mobile {
+          max-width: 80px;
+        }
+      }
+      span:last-child {
         color: var(--tg-text-white);
       }
     }

@@ -8,6 +8,7 @@ const columns: Column[] = [
     align: 'center',
     sort: true,
     sortDirections: 'descend',
+    slot: 'settleTime',
   },
   {
     title: '账号',
@@ -27,10 +28,11 @@ const columns: Column[] = [
     dataIndex: 'lastLogin',
     align: 'center',
     sort: true,
+    slot: 'lastLogin',
   },
   {
     title: '在线状态',
-    dataIndex: 'online',
+    dataIndex: 'isOnline',
     align: 'center',
     sort: true,
     slot: 'online',
@@ -42,30 +44,44 @@ const tableData = ref([
     account: 'jacky666',
     isFirstLive: 1,
     lastLogin: '10/11/2011 23:56:56',
-    online: '999,999',
+    isOnline: 1,
   },
   {
     settleTime: '10/11/2011 23:56:56',
     account: 'jacky666',
     isFirstLive: 0,
     lastLogin: '10/11/2011 23:56:56',
-    online: '999,999',
+    isOnline: 0,
   },
   {
     settleTime: '10/11/2011 23:56:56',
     account: 'jacky666',
     isFirstLive: 1,
     lastLogin: '10/11/2011 23:56:56',
-    online: '999,999',
+    isOnline: 1,
   },
 ])
 </script>
 
 <template>
-  <div>
+  <div class="page-direct-user">
     <BaseTable :columns="columns" :data-source="tableData" :loading="loading">
       <template #th-online>
-        <div>次数</div>
+        <div style="margin-top: var(--tg-spacing-4);">
+          次数
+        </div>
+      </template>
+      <template #settleTime>
+        <div class="flex-colum">
+          <div>10/11/2011 </div>
+          <div>23:56:56</div>
+        </div>
+      </template>
+      <template #lastLogin>
+        <div class="flex-colum">
+          <div>10/11/2011 </div>
+          <div>23:56:56</div>
+        </div>
       </template>
       <template #account="{ record }">
         <div class="center" style="gap: var(--tg-spacing-4);">
@@ -79,11 +95,11 @@ const tableData = ref([
           {{ record.isFirstLive ? '是' : '否' }}
         </span>
       </template>
-      <template #online>
-        <div>
+      <template #online="{ record }">
+        <div class="flex-colum">
           <BaseBadge
-            color="var(--tg-text-green)"
-            text="在线"
+            :color="record.isOnline ? 'var(--tg-text-green)' : 'var(--tg-text-lightgrey)'"
+            :text="record.isOnline ? '在线' : '离线'"
           />
           <div style="color: white;">
             8次
@@ -94,13 +110,20 @@ const tableData = ref([
   </div>
 </template>
 
-<style lang="scss">
-:root {
+<style lang="scss" scoped>
+.page-direct-user{
   --tg-table-font-size: var(--tg-font-size-xs);
   --tg-table-even-background: var(--tg-primary-main);
   --tg-table-th-color: var(--tg-text-white);
   --tg-badge-size:10px;
+  --tg-table-line-height:1;
+  --tg-table-th-padding: var(--tg-spacing-13);
+  --tg-table-td-padding: var(--tg-spacing-13);
+  .flex-colum{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--tg-spacing-4);
+  }
 }
 </style>
-
-<style lang="scss" scoped></style>

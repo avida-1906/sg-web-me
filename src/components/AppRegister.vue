@@ -148,6 +148,7 @@ async function getMemberReg() {
         parent_id: '',
         device_number: application.getDeviceNumber(),
       }
+      appStore.setMqttConnectedFalse()
       runMemberReg(paramsReg)
     }
   }
@@ -234,8 +235,9 @@ async function toLogin() {
           <BaseCheckBox v-model="isAgree" :msg="agreeErrorMsg">
             我已阅读并同意
             <BaseButton
-              type="text" padding0 style="--tg-base-button-text-default-color:var(--tg-text-blue);
-          --tg-base-button-font-weight:var(--tg-font-weight-normal);" @click="steps = 2"
+              type="text" padding0
+              style="--tg-base-button-text-default-color:var(--tg-text-white);"
+              @click="steps = 2"
             >
               条款与条件
             </BaseButton>
@@ -383,8 +385,12 @@ async function toLogin() {
 
         <div class="stake-text">
           {{ t('stake_hCaptcha') }}
-          <span class="semibold">{{ t('privacy_policy') }}</span> {{ t('and') }}
-          <span class="semibold">{{ t('terms_of_service') }}</span> {{ t('applicable') }}
+          <span class="semibold" style="color: var(--tg-text-white);">
+            {{ t('privacy_policy') }}
+          </span> {{ t('and') }}
+          <span class="semibold" style="color: var(--tg-text-white);">
+            {{ t('terms_of_service') }}
+          </span> {{ t('applicable') }}
         </div>
       </div>
     </div>

@@ -16,6 +16,12 @@ const box9Ref = ref()
 const box10Ref = ref()
 const box11Ref = ref()
 const box12Ref = ref()
+const box4LevelRef = ref()
+const box5LevelRef = ref()
+const box6LevelRef = ref()
+const box10LevelRef = ref()
+const box11LevelRef = ref()
+const box12LevelRef = ref()
 
 let mainScroll: any
 const lineGroup: LeaderLine[] = []
@@ -53,39 +59,57 @@ function removeEvent() {
 onMounted(() => {
   mainScroll = document.getElementById('main-content-scrollable')
   const t = setTimeout(() => {
-    line1 = new LeaderLine(box1Ref.value, bossRef.value, {
-      path: 'grid',
-      color: '#FF9D00',
-      size: 2,
-      startSocket: 'top',
-    })
+    line1 = new LeaderLine(
+      LeaderLine.pointAnchor({
+        element: box1Ref.value,
+        x: isMobile.value
+          ? box1Ref.value.clientWidth * 0.35
+          : box1Ref.value.clientWidth * 0.5,
+        y: 0,
+      }),
+      bossRef.value,
+      {
+        path: 'grid',
+        color: '#FF9D00',
+        size: 2,
+        startSocket: 'top',
+      })
     line2 = new LeaderLine(box2Ref.value, bossRef.value, {
       path: 'straight',
       color: '#FF9D00',
       size: 2,
       startSocket: 'top',
     })
-    line3 = new LeaderLine(box3Ref.value, bossRef.value, {
-      path: 'grid',
-      color: '#FF9D00',
-      size: 2,
-      startSocket: 'top',
-    })
-    line4 = new LeaderLine(box4Ref.value, box1Ref.value, {
+    line3 = new LeaderLine(
+      LeaderLine.pointAnchor({
+        element: box3Ref.value,
+        x: isMobile.value
+          ? box3Ref.value.clientWidth * 0.65
+          : box3Ref.value.clientWidth * 0.5,
+        y: 0,
+      }),
+      bossRef.value,
+      {
+        path: 'grid',
+        color: '#FF9D00',
+        size: 2,
+        startSocket: 'top',
+      })
+    line4 = new LeaderLine(box4LevelRef.value, box1Ref.value, {
       path: 'straight',
       color: '#FF9D00',
       size: 2,
       startSocket: 'top',
       endPlug: 'behind',
     })
-    line5 = new LeaderLine(box5Ref.value, box2Ref.value, {
+    line5 = new LeaderLine(box5LevelRef.value, box2Ref.value, {
       path: 'straight',
       color: '#FF9D00',
       size: 2,
       startSocket: 'top',
       endPlug: 'behind',
     })
-    line6 = new LeaderLine(box6Ref.value, box3Ref.value, {
+    line6 = new LeaderLine(box6LevelRef.value, box3Ref.value, {
       path: 'straight',
       color: '#FF9D00',
       size: 2,
@@ -113,21 +137,21 @@ onMounted(() => {
       size: 2,
       startSocket: 'top',
     })
-    line10 = new LeaderLine(box10Ref.value, box7Ref.value, {
+    line10 = new LeaderLine(box10LevelRef.value, box7Ref.value, {
       path: 'straight',
       color: '#FF9D00',
       size: 2,
       startSocket: 'top',
       endPlug: 'behind',
     })
-    line11 = new LeaderLine(box11Ref.value, box8Ref.value, {
+    line11 = new LeaderLine(box11LevelRef.value, box8Ref.value, {
       path: 'straight',
       color: '#FF9D00',
       size: 2,
       startSocket: 'top',
       endPlug: 'behind',
     })
-    line12 = new LeaderLine(box12Ref.value, box9Ref.value, {
+    line12 = new LeaderLine(box12LevelRef.value, box9Ref.value, {
       path: 'straight',
       color: '#FF9D00',
       size: 2,
@@ -195,7 +219,7 @@ onBeforeUnmount(() => {
           </span>
         </div>
         <div ref="box4Ref" class="box b4">
-          <div class="level">
+          <div ref="box4LevelRef" class="level">
             <AppAgentLevel level="B1" color="blue" />
           </div>
           <span>
@@ -205,14 +229,14 @@ onBeforeUnmount(() => {
           <span class="grey">B1自己有效投注8万</span>
         </div>
         <div ref="box5Ref" class="box b5">
-          <div class="level">
+          <div ref="box5LevelRef" class="level">
             <AppAgentLevel level="B2" color="blue" />
           </div>
           <span>B2无下级自身无收益</span>
           <span class="grey">B2自己有效投注5万</span>
         </div>
         <div ref="box6Ref" class="box b6">
-          <div class="level">
+          <div ref="box6LevelRef" class="level">
             <AppAgentLevel level="B3" color="blue" />
           </div>
           <span>
@@ -247,21 +271,21 @@ onBeforeUnmount(() => {
           </span>
         </div>
         <div ref="box10Ref" class="box b10">
-          <div class="level">
+          <div ref="box10LevelRef" class="level">
             <AppAgentLevel level="C1" color="pink" />
           </div>
           <span>C1无下级自身无收益</span>
           <span class="grey">C1自己有效投注10万</span>
         </div>
         <div ref="box11Ref" class="box b11">
-          <div class="level">
+          <div ref="box11LevelRef" class="level">
             <AppAgentLevel level="C2" color="pink" />
           </div>
           <span>C2无下级自身无收益</span>
           <span class="grey">C2自己有效投注4万</span>
         </div>
         <div ref="box12Ref" class="box b12">
-          <div class="level">
+          <div ref="box12LevelRef" class="level">
             <AppAgentLevel level="C3" color="pink" />
           </div>
           <span>C3无下级自身无收益</span>

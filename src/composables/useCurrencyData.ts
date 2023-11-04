@@ -87,6 +87,7 @@ export function useCurrencyData() {
 
   const {
     bool: hideZeroBalance,
+    setBool: setHideZeroBalance,
   } = useBoolean(Local.get<boolean | undefined>(STORAGE_HIDE_ZERO_BALANCE_KEY)?.value)
 
   // 搜索内容
@@ -229,6 +230,7 @@ export function useCurrencyData() {
     isVirtualCurrency,
     clearSearchValue,
     changeGlobalCurrency,
+    setHideZeroBalance,
     getVirtualCurrencyContractType,
   }
 }
