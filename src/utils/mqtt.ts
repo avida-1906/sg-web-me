@@ -14,6 +14,8 @@ type TMqttServer = Array<{
 
 const chatMessageBus = useEventBus(CHAT_MESSAGE_BUS)
 const refreshBalanceBus = useEventBus(REFRESH_BALANCE_BUS)
+const mqttDisconnectBus = useEventBus(MQTT_DISCONNECT_BUS)
+const mqttConnectSuccessBus = useEventBus(MQTT_CONNECT_SUCCESS_BUS)
 
 /**
  * 刷新余额
@@ -22,6 +24,7 @@ const refreshBalanceBus = useEventBus(REFRESH_BALANCE_BUS)
 const refreshBalanceThrottle = throttle(() => {
   refreshBalanceBus.emit(REFRESH_BALANCE_BUS)
 }, 5000)
+
 class SocketClient {
   client: TMqttClient | null = null
 
@@ -76,14 +79,16 @@ class SocketClient {
   public endOrConnect() {
     if (this.client != null) {
       this.#log('已经连接, 断开连接中...')
+      mqttDisconnectBus.emit(MQTT_DISCONNECT_BUS)
       const opts: any = null
       this.client.end(true, opts, () => {
-        this.connect()
+        this.connect('断开 重新连接')
       })
     }
   }
 
-  public async connect() {
+  public async connect(test: string) {
+    this.#log('MQTT CONNECT', test)
     if (this.#MQTT_SERVER) {
       const { userInfo, isLogin } = storeToRefs(useAppStore())
 
@@ -92,7 +97,7 @@ class SocketClient {
 
       if (this.lastLoginStatus === isLogin.value) {
         if (this.client != null) {
-          this.#log('已经连接')
+          this.#log('登录状态相同，且已经连接过，不执行连接', test)
           return
         }
       }
@@ -106,7 +111,7 @@ class SocketClient {
 
       // 随机生成10位的 客户端ID
       const r = Math.random().toString(36).slice(-10)
-      const clientId = isLogin.value
+      const clientId = (isLogin.value && userInfo.value?.uid)
         ? `${userInfo.value?.uid}-${Math.floor(Math.random() * 100)}`
         : `web-random-${r}`
       this.#log('clientId', clientId)
@@ -129,10 +134,11 @@ class SocketClient {
   }
 
   public addSubscribe(subscribeEvent: string) {
+    this.#log('开始订阅', subscribeEvent)
     if (this.client != null && subscribeEvent) {
       this.client.subscribe(subscribeEvent, (error, granted) => {
         if (error) {
-          this.#log('订阅失败', error)
+          this.#log(`订阅失败${subscribeEvent}`, error)
         }
         else {
           this.#log('订阅成功', granted)
@@ -162,7 +168,7 @@ class SocketClient {
     if (this.client != null) {
       this.client.on('connect', (arg) => {
         this.#log('连接成功', 'Info: ', arg)
-        useEventBus(MQTT_CONNECT_SUCCESS_BUS).emit(MQTT_CONNECT_SUCCESS_BUS)
+        mqttConnectSuccessBus.emit(MQTT_CONNECT_SUCCESS_BUS)
       })
 
       this.client.on('message', (topic, message, packet) => {
@@ -174,7 +180,7 @@ class SocketClient {
             if (data)
               chatMessageBus.emit(data)
           }
-          else if (topic === 'balance') {
+          else if (topic.includes('balance')) {
             // 刷新用户余额
             refreshBalanceThrottle()
           }

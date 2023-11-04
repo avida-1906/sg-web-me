@@ -117,6 +117,9 @@ class HttpClient {
         if (data === 'token') {
           this.cancelAllRequest()
           appStore.removeToken()
+          appStore.removeUserInfo()
+          appStore.setMqttConnectedFalse()
+          socketClient.connect('token失效 重新连接')
           openNotify({
             type: 'error',
             code: `${responseStatus}`,

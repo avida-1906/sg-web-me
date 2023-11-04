@@ -55,8 +55,10 @@ async function getMemberLogin() {
   passwordRef.value.setTouchTrue()
   await valiUsername()
   await valiPassword()
-  if (!usernameErrorMsg.value && !pwdErrorMsg.value)
+  if (!usernameErrorMsg.value && !pwdErrorMsg.value) {
+    appStore.setMqttConnectedFalse()
     runMemberLogin()
+  }
 }
 </script>
 

@@ -920,3 +920,11 @@ export function ApiFinanceWithdraw(data: {
 }) {
   return httpClient.post<string>('/finance/withdraw', data)
 }
+
+/**
+ * 查询余额 /member/balance
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=9aabea35-99e8-4d35-b58a-abbcb05ba837
+ */
+export function ApiMemberBalance() {
+  return httpClient.get<TCurrencyObject>('/member/balance')
+}

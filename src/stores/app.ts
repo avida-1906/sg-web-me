@@ -4,11 +4,24 @@ export const useAppStore = defineStore('app', () => {
   /** 是否登录，程序用这个变量来判断是否登录 */
   const { bool: isLogin, setTrue: setLoginTrue, setFalse: setLoginFalse } = useBoolean(!!getToken())
   /** 用户信息 */
-  const { data: userInfo, runAsync: updateUserInfo } = useRequest(ApiMemberDetail, {
+  const { data: _userInfo, runAsync: updateUserInfo } = useRequest(ApiMemberDetail, {
     ready: isLogin,
     manual: false,
   })
+  const { data: balanceData, runAsync: getBalanceData } = useRequest(ApiMemberBalance)
   const visibility = useDocumentVisibility()
+  const mqttConnectSuccessBus = useEventBus(MQTT_CONNECT_SUCCESS_BUS)
+  const mqttDisconnectBus = useEventBus(MQTT_DISCONNECT_BUS)
+
+  /** MQTT是否已连接 */
+  const { bool: mqttIsConnected, setTrue: setMqttConnectedTrue, setFalse: setMqttConnectedFalse } = useBoolean(false)
+
+  const userInfo = computed(() => {
+    if (balanceData.value && _userInfo.value)
+      _userInfo.value.balance = balanceData.value
+
+    return _userInfo.value
+  })
 
   function setToken(token: string) {
     // 将token加密后存储到本地
@@ -30,9 +43,9 @@ export const useAppStore = defineStore('app', () => {
     setLoginFalse()
   }
 
-  onMounted(() => {
-    socketClient.connect()
-  })
+  function removeUserInfo() {
+    _userInfo.value = undefined
+  }
 
   watch(visibility, (bool) => {
     // 如果页面可见，更新用户余额和用户信息
@@ -40,23 +53,31 @@ export const useAppStore = defineStore('app', () => {
       updateUserInfo()
   })
 
-  watch(userInfo, (val) => {
-    if (val?.uid) {
-      setTimeout(() => {
-        socketClient.connect()
-      }, 0)
-    }
+  onMounted(() => {
+    mqttConnectSuccessBus.on(() => {
+      console.log('设置mqtt连接成功')
+      setMqttConnectedTrue()
+    })
+    mqttDisconnectBus.on(() => {
+      console.log('设置mqtt连接失败')
+      setMqttConnectedFalse()
+    })
   })
 
   return {
     isLogin,
     userInfo,
+    mqttIsConnected,
     setToken,
     setLoginTrue,
     setLoginFalse,
     removeToken,
     getToken,
     updateUserInfo,
+    removeUserInfo,
+    setMqttConnectedTrue,
+    setMqttConnectedFalse,
+    getBalanceData,
   }
 })
 
