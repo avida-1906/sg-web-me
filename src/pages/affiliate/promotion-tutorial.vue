@@ -42,6 +42,9 @@ function addEvent() {
   mainScroll?.addEventListener('scroll', eventCallback, false)
 }
 function removeEvent() {
+  lineGroup.forEach((line) => {
+    line.remove()
+  })
   AnimEvent.remove(eventCallback)
   window.removeEventListener('resize', eventCallback)
   mainScroll?.removeEventListener('scroll', eventCallback, false)
