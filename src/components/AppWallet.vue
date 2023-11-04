@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import type { EnumCurrencyKey } from '~/apis'
 
+const route = useRoute()
+const isCasinoGame = computed(() => route.name === 'casino-games')
 const { openWalletDialog } = useWalletDialog()
 const { openWalletSetDialog } = useWalletSetDialog()
 // 下拉搜索是否显示
@@ -28,7 +30,12 @@ function selectCurrency(item: EnumCurrencyKey, hide: () => void) {
     <VDropdown v-model:shown="isMenuShown" :distance="6" @apply-show="clearSearchValue">
       <div class="flex-box">
         <BaseButton class="wallet" type="text" size="sm">
+          <span v-if="isCasinoGame" class="in-play">
+            (游戏使用中)
+            <AppCurrencyIcon :show-name="true" :currency-type="currentGlobalCurrency" />
+          </span>
           <AppAmount
+            v-else
             style="color:var(--tg-text-white);"
             :amount="currentGlobalCurrencyBalance"
             :currency-type="currentGlobalCurrency"
@@ -103,7 +110,12 @@ function selectCurrency(item: EnumCurrencyKey, hide: () => void) {
     background-color: var(--tg-secondary-dark);
     border-radius: var(--tg-radius-sm) 0px 0px var(--tg-radius-sm);
     box-shadow: 0px 1px 2px 0px #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.1)} inset, 0px -1px 2px 0px #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.1)} inset;
-
+  .in-play{
+      color: var( --tg-text-white);
+      display: inline-flex;
+      gap: var(--tg-spacing-8);
+      align-items: center;
+    }
     .arrow {
       font-size: var(--tg-font-size-default);
       margin-left: 8px;
