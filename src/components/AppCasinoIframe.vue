@@ -392,6 +392,34 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
                   </div>
                 </template>
               </VTooltip>
+              <div class="line" />
+
+              <!-- 切换货币 -->
+              <VDropdown v-if="isLogin" :distance="6">
+                <div v-if="currentCurrency" class="current-currency">
+                  <AppCurrencyIcon
+                    show-name
+                    :currency-type="currentCurrency"
+                  />
+                  <div class="arrow">
+                    <BaseIcon name="uni-arrow-down" />
+                  </div>
+                </div>
+                <template #popper="{ hide }">
+                  <div v-if="currencyList.length" class="scroll-y popper">
+                    <a
+                      v-for="c, i in currencyList"
+                      :key="i"
+                      class="popper-option currency-types"
+                      @click="hide();onChooseCurrency(c)"
+                    >
+                      <div>
+                        <AppCurrencyIcon show-name :currency-type="c" />
+                      </div>
+                    </a>
+                  </div>
+                </template>
+              </VDropdown>
             </div>
             <div class="logo">
               <BaseIcon name="app-logo" />
@@ -675,8 +703,41 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
     .left {
       font-size: var(--tg-font-size-default);
       display: flex;
+      align-items: center;
       padding-right: var(--tg-spacing-8);
-      border-right: 1px solid var(--tg-secondary-main);
+
+      .line{
+        width: 1px;
+        height: 40px;
+        background-color:var(--tg-secondary-main) ;
+        margin-right: var(--tg-spacing-16);
+      }
+      .current-currency {
+      color: var(--tg-text-white);
+      font-weight: var(--tg-font-weight-semibold);
+      background-color: var(--tg-secondary-dark);
+      border-radius: var(--tg-radius-default);
+      padding: var(--tg-spacing-4);
+      display: flex;
+      align-items: center;
+      gap: var(--tg-spacing-8);
+      cursor: pointer;
+
+      &:hover {
+        background-color: var(--tg-secondary-deepdark);
+        --tg-icon-color: var(--tg-text-white)
+      }
+
+      &:active {
+        transform: scale(0.98);
+      }
+
+      .arrow {
+        font-size: 10px;
+        display: flex;
+        align-items: center;
+      }
+    }
     }
 
     .logo {
@@ -717,6 +778,8 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
   var(--tg-spacing-button-padding-vertical-sm)
   var(--tg-spacing-button-padding-horizontal-sm);
   cursor: pointer;
+  display: flex;
+  align-items: center;
 
   &:hover {
     --tg-icon-color: var(--tg-text-white);
