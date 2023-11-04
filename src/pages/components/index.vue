@@ -227,6 +227,12 @@ function copyCode(type: string) {
         <BaseDatePicker v-model="datepicker" />
       `)
       break
+    case 'BasePagination':
+      copy(`
+        const currentPage = ref(1)
+        <BasePagination v-model:current-page="currentPage" :total="1007" />
+      `)
+      break
     default:
       break
   }
@@ -725,11 +731,14 @@ const currentPage = ref(1)
     <li class="box">
       <AppDemoCard title="BasePagination">
         {{ currentPage }}
-        <AppContent>
-          <div class="center">
-            <BasePagination v-model:current-page="currentPage" :total="1007" />
-          </div>
-        </AppContent>
+        <div class="center">
+          <BasePagination v-model:current-page="currentPage" :total="1007" />
+        </div>
+        <div style="margin-top: 30px;">
+          <BaseButton @click="copyCode('BasePagination')">
+            Click
+          </BaseButton>
+        </div>
       </AppDemoCard>
     </li>
     <li class="box">
