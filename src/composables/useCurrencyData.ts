@@ -98,13 +98,6 @@ export function useCurrencyData() {
   /** 当前选择的货币,用在充值和提现的下拉列表 */
   const currentCurrency = ref(currentGlobalCurrency.value)
 
-  /** 用户当前选择的货币余额 */
-  const currentGlobalCurrencyBalance = computed(() => {
-    const currency = currentGlobalCurrency.value
-    const balance = userInfo.value?.balance[currency]
-    return balance ?? 0
-  })
-
   /**
    * 判断是不是虚拟货币
    * @param {EnumCurrencyKey} currency
@@ -118,6 +111,14 @@ export function useCurrencyData() {
     ]
     return virtualList.includes(currency)
   }
+
+  /** 用户当前选择的货币余额 */
+  const currentGlobalCurrencyBalance = computed(() => {
+    const currency = currentGlobalCurrency.value
+    const balance = userInfo.value?.balance[currency]
+    const symbol = isVirtualCurrency(currency) ? '' : currencyConfig[currency].prefix
+    return symbol + balance ?? 0
+  })
 
   /** 货币列表;含筛选 */
   const allCurrencyData = (currency: TCurrencyObject | undefined) => {
