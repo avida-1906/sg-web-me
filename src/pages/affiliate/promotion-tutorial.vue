@@ -62,7 +62,9 @@ onMounted(() => {
     line1 = new LeaderLine(
       LeaderLine.pointAnchor({
         element: box1Ref.value,
-        x: isMobile.value ? 35 : 50,
+        x: isMobile.value
+          ? box1Ref.value.clientWidth * 0.35
+          : box1Ref.value.clientWidth * 0.5,
         y: 0,
       }),
       bossRef.value,
@@ -81,7 +83,9 @@ onMounted(() => {
     line3 = new LeaderLine(
       LeaderLine.pointAnchor({
         element: box3Ref.value,
-        x: isMobile.value ? 65 : 50,
+        x: isMobile.value
+          ? box3Ref.value.clientWidth * 0.65
+          : box3Ref.value.clientWidth * 0.5,
         y: 0,
       }),
       bossRef.value,
