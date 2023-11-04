@@ -94,6 +94,7 @@ watch(route, (val) => {
                       </div>
                     </div>
                   </div>
+                  <AppUserAgentInfo v-if="route.path.includes('/affiliate/')" />
                   <div
                     class="stack direction-horizontal padding-none content-outer"
                     :class="[
