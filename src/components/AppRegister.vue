@@ -235,8 +235,9 @@ async function toLogin() {
           <BaseCheckBox v-model="isAgree" :msg="agreeErrorMsg">
             我已阅读并同意
             <BaseButton
-              type="text" padding0 style="--tg-base-button-text-default-color:var(--tg-text-blue);
-          --tg-base-button-font-weight:var(--tg-font-weight-normal);" @click="steps = 2"
+              type="text" padding0
+              style="--tg-base-button-text-default-color:var(--tg-text-white);"
+              @click="steps = 2"
             >
               条款与条件
             </BaseButton>
