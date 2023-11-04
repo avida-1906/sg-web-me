@@ -9,8 +9,10 @@ export function useLogout(callback?: () => void) {
   } = useRequest(ApiMemberLogout, {
     onSuccess() {
       appStore.removeToken()
-      // socketClient.close()
+      appStore.removeUserInfo()
+      appStore.setMqttConnectedFalse()
       closeRightSidebar()
+      socketClient.connect('退出 重新连接')
       router.push('/')
       callback && callback()
     },

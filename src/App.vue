@@ -1,7 +1,10 @@
 <script setup lang="ts">
 const { VITE_SOCKET_PREFIX } = getEnv()
 
-const { isLogin, userInfo, mqttIsConnected } = storeToRefs(useAppStore())
+const appStore = useAppStore()
+const { isLogin, userInfo, mqttIsConnected } = storeToRefs(appStore)
+const refreshBalanceBus = useEventBus(REFRESH_BALANCE_BUS)
+const { openNotify } = useNotify()
 
 function handleUpdated() {
   const loading = document.querySelector('#full-loading')
@@ -12,14 +15,28 @@ function handleUpdated() {
   }
 }
 
-// 如果登录，并且用户信息存在，就订阅用户余额刷新
-watch([isLogin, userInfo, mqttIsConnected], ([_isLogin, _userInfo, _mqttIsConnected]) => {
+watch([isLogin, userInfo], ([_isLogin, _userInfo]) => {
   if (_isLogin && _userInfo?.uid)
-    socketClient.connect()
+    socketClient.connect('登录连接')
+})
 
+watch([isLogin, userInfo, mqttIsConnected], ([_isLogin, _userInfo, _mqttIsConnected]) => {
   if (_isLogin && _userInfo?.uid && _mqttIsConnected)
-    socketClient.addSubscribe(`${VITE_SOCKET_PREFIX}/balance/${_userInfo.uid}`)
-}, { immediate: true, deep: true })
+    socketClient.addSubscribe(`${VITE_SOCKET_PREFIX}/balance/${_userInfo?.uid}`)
+})
+
+onMounted(() => {
+  if (!isLogin.value)
+    socketClient.connect('没登录连接')
+
+  refreshBalanceBus.on(() => {
+    openNotify({
+      type: 'error',
+      message: '收到刷新余额通知',
+    })
+    appStore.getBalanceData()
+  })
+})
 </script>
 
 <template>

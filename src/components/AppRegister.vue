@@ -148,6 +148,7 @@ async function getMemberReg() {
         parent_id: '',
         device_number: application.getDeviceNumber(),
       }
+      appStore.setMqttConnectedFalse()
       runMemberReg(paramsReg)
     }
   }
