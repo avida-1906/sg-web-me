@@ -70,6 +70,7 @@ declare global {
   const EnumsBetSlipTabs: typeof import('./utils/enums')['EnumsBetSlipTabs']
   const Local: typeof import('./utils/storage')['Local']
   const MQTT_CONNECT_SUCCESS_BUS: typeof import('./utils/event-bus')['MQTT_CONNECT_SUCCESS_BUS']
+  const REFRESH_BALANCE_BUS: typeof import('./utils/event-bus')['REFRESH_BALANCE_BUS']
   const STORAGE_CURRENT_GLOBAL_CURRENCY_KEY: typeof import('./utils/storage')['STORAGE_CURRENT_GLOBAL_CURRENCY_KEY']
   const STORAGE_HIDE_ZERO_BALANCE_KEY: typeof import('./utils/storage')['STORAGE_HIDE_ZERO_BALANCE_KEY']
   const STORAGE_LANGUAGE_KEY: typeof import('./utils/storage')['STORAGE_LANGUAGE_KEY']
@@ -548,6 +549,7 @@ declare module 'vue' {
     readonly EnumsBetSlipTabs: UnwrapRef<typeof import('./utils/enums')['EnumsBetSlipTabs']>
     readonly Local: UnwrapRef<typeof import('./utils/storage')['Local']>
     readonly MQTT_CONNECT_SUCCESS_BUS: UnwrapRef<typeof import('./utils/event-bus')['MQTT_CONNECT_SUCCESS_BUS']>
+    readonly REFRESH_BALANCE_BUS: UnwrapRef<typeof import('./utils/event-bus')['REFRESH_BALANCE_BUS']>
     readonly STORAGE_CURRENT_GLOBAL_CURRENCY_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_CURRENT_GLOBAL_CURRENCY_KEY']>
     readonly STORAGE_HIDE_ZERO_BALANCE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_HIDE_ZERO_BALANCE_KEY']>
     readonly STORAGE_LANGUAGE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_LANGUAGE_KEY']>
@@ -1016,6 +1018,7 @@ declare module '@vue/runtime-core' {
     readonly EnumsBetSlipTabs: UnwrapRef<typeof import('./utils/enums')['EnumsBetSlipTabs']>
     readonly Local: UnwrapRef<typeof import('./utils/storage')['Local']>
     readonly MQTT_CONNECT_SUCCESS_BUS: UnwrapRef<typeof import('./utils/event-bus')['MQTT_CONNECT_SUCCESS_BUS']>
+    readonly REFRESH_BALANCE_BUS: UnwrapRef<typeof import('./utils/event-bus')['REFRESH_BALANCE_BUS']>
     readonly STORAGE_CURRENT_GLOBAL_CURRENCY_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_CURRENT_GLOBAL_CURRENCY_KEY']>
     readonly STORAGE_HIDE_ZERO_BALANCE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_HIDE_ZERO_BALANCE_KEY']>
     readonly STORAGE_LANGUAGE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_LANGUAGE_KEY']>
