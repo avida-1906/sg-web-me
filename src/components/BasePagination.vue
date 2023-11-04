@@ -125,6 +125,10 @@ function enterToPage() {
   emit('update:currentPage', page)
 }
 
+function pageSizeChange() {
+  emit('update:currentPage', 1)
+}
+
 watchEffect(() => {
   const halfPagerCount = (props.pagerCount - 1) / 2
   setShowPrevMoreFalse()
@@ -200,6 +204,7 @@ watchEffect(() => {
       <BaseSelect
         v-model="pageSize"
         :options="pageSizes.map(i => ({ value: i, label: `${i}条/页` }))"
+        @change="pageSizeChange"
       />
     </div>
     <div class="pager-jumper">
