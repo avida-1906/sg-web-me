@@ -16,6 +16,8 @@ declare module 'vue-router' {
     withMenuIcon?: string
     /** layout with-menu 菜单数据 */
     withMenuMenu?: Array<{ title: string; path: string }>
+    /** layout with-menu 移动端菜单展示方式 */
+    withMenuMobileType?: 'tabs' | 'select'
   }
 }
 

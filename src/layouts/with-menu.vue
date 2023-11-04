@@ -9,13 +9,15 @@ const { animatingMounted } = useLayoutAnimate({ aniMounted: true })
 const { appContentWidth } = storeToRefs(useWindowStore())
 
 const { bool: layoutLoading, setFalse: setLFalse } = useBoolean(true)
+const { bool: isPopShow, setTrue: setPTrue, setFalse: setPFalse } = useBoolean(false)
 
 const menuData = computed<any>(() =>
-  route.meta.withMenuMenu?.map(m => ({ ...m, title: t(m.title) })))
+  route.meta.withMenuMenu?.map((m, idx) => ({ ...m, title: t(m.title), value: idx, label: t(m.title) })))
 const icon = computed<any>(() => route.meta.withMenuIcon)
+const withMenuMobileType = computed(() => route.meta.withMenuMobileType)
 
 const activeMenu = ref(menuData.value.filter((m: any) => m.path === route.path)[0])
-const { bool: isPopShow, setTrue: setPTrue, setFalse: setPFalse } = useBoolean(false)
+const curMenuTab = ref(activeMenu.value.value)
 
 function togglePop() {
   if (isPopShow.value)
@@ -92,6 +94,7 @@ watch(route, (val) => {
                       </div>
                     </div>
                   </div>
+                  <AppUserAgentInfo v-if="route.path.includes('/affiliate/')" />
                   <div
                     class="stack direction-horizontal padding-none content-outer"
                     :class="[
@@ -104,7 +107,15 @@ watch(route, (val) => {
                         <BaseMenu :data="menuData" />
                       </template>
                       <template v-else>
+                        <div v-if="withMenuMobileType === 'tabs'" class="menu-tabs">
+                          <BaseTab
+                            v-model="curMenuTab"
+                            :center="false"
+                            :list="menuData"
+                          />
+                        </div>
                         <div
+                          v-else
                           class="stack x-flex-start y-center gap-small menu-btn"
                           :class="[appContentWidth > 800
                             ? 'padding-none direction-horizontal'
@@ -161,6 +172,14 @@ watch(route, (val) => {
 </template>
 
 <style lang="scss" scoped>
+.menu-tabs {
+  display: flex;
+  padding-bottom: var(--tg-spacing-8);
+  > div {
+    flex: 1;
+    width: 0;
+  }
+}
 .pop-menu {
   padding: var(--tg-spacing-4) 0;
   font-size: var(--tg-font-size-default);
