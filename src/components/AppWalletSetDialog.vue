@@ -1,7 +1,16 @@
 <script setup lang="ts">
+interface Props {
+  setHideZeroBalance?: (bool: boolean) => void
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  setHideZeroBalance: () => { },
+})
+
 const { hideZeroBalance } = useCurrencyData()
 
 function onSwitch() {
+  props.setHideZeroBalance(hideZeroBalance.value)
   Local.set(STORAGE_HIDE_ZERO_BALANCE_KEY, hideZeroBalance.value)
 }
 </script>

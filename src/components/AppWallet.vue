@@ -11,6 +11,7 @@ const {
   currentGlobalCurrencyBalance,
   searchValue,
   renderBalanceList,
+  setHideZeroBalance,
   changeGlobalCurrency,
   clearSearchValue,
 } = useCurrencyData()
@@ -80,7 +81,7 @@ function selectCurrency(item: EnumCurrencyKey, hide: () => void) {
             <BaseButton
               type="text"
               class="bottom-btn"
-              @click=" hide();openWalletSetDialog()"
+              @click=" hide();openWalletSetDialog({ setHideZeroBalance })"
             >
               <BaseIcon class="icon-wallet-set" name="navbar-wallet" />
               <span>钱包设置</span>
