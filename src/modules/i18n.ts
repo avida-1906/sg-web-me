@@ -38,7 +38,6 @@ function setI18nLanguage(lang: Locale) {
 }
 
 export async function loadLanguageAsync(langIndex: EnumLanguage): Promise<Locale> {
-  console.log('loadLanguageAsync === ', langIndex)
   const lang = EnumLanguage[langIndex]
   // If the same language
   if (i18n.global.locale.value === lang)
@@ -57,7 +56,6 @@ export async function loadLanguageAsync(langIndex: EnumLanguage): Promise<Locale
 
 export function install(app: App<Element>) {
   const index = getInitLangIndex()
-  console.log('language install === ', index, VITE_I18N_DEFAULT_LANG)
 
   app.use(i18n)
 
