@@ -12,9 +12,10 @@
 <route lang="yaml">
 meta:
   layout: with-menu
+  browserTitle: 联盟计划 – Stake.com
   withMenuTitle: affiliate
   withMenuIcon: chess-affiliate
-  browserTitle: 联盟计划 – Stake.com
+  withMenuMobileType: tabs
   withMenuMenu:
     - {title: menu_title_promotion_tutorial, path: /affiliate/promotion-tutorial}
     - {title: menu_title_my_promotion, path: /affiliate/my-promotion}
