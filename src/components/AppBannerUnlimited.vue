@@ -14,31 +14,31 @@ const {
 
 const bannerData = [
   {
-    imgUrl: 'https://stake.com/_app/immutable/assets/bespoke.732ab8da.png',
+    imgUrl: '/png/vip-club/bespoke.png',
     title: 'Bespoke',
     desc: '与您的专属 VIP 服务代表合作，根据您的投注需求定制福利。',
     value: 1,
   },
   {
-    imgUrl: 'https://stake.com/_app/immutable/assets/boost.82696ea3.png',
+    imgUrl: '/png/vip-club/boost.png',
     title: '助推奖金',
     desc: '您可以预期每周和每月根据您的游戏量获得奖金。玩得越多，获得的奖金就越多。',
     value: 2,
   },
   {
-    imgUrl: 'https://stake.com/_app/immutable/assets/cashback.246348a4.png',
+    imgUrl: '/png/vip-club/cashback.png',
     title: '近期游戏表现奖金',
     desc: '运气不佳？Stake 会在您每次升级时根据您的损失提供额外资金。',
     value: 3,
   },
   {
-    imgUrl: 'https://stake.com/_app/immutable/assets/host.2f60d1cc.png',
+    imgUrl: '/png/vip-club/host.png',
     title: '专属 VIP 服务代表',
     desc: '被分配一名将支持并满足您的投注需求的专属 VIP 服务代表。',
     value: 4,
   },
   {
-    imgUrl: 'https://stake.com/_app/immutable/assets/levelup.ca1eacfa.png',
+    imgUrl: '/png/vip-club/levelup.png',
     title: '升级奖金',
     desc: '在每达到下个级别后获取奖金。所达级别越高，升级奖金就越大。',
     value: 5,
