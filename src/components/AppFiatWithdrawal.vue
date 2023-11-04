@@ -293,6 +293,8 @@ await application.allSettled(
         flex-direction: column;
         align-items: self-start;
       }
+      user-select: none;
+      -webkit-user-select: none;
     }
   }
 }

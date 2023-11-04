@@ -149,25 +149,24 @@ if (!cardList.value)
               v-for="tmp in item.bankcard"
               :key="tmp.id"
               class="address-row"
-              :class="{ 'bankcard-disable': tmp.state === 2 }"
+              :class="{ 'bankcard-disable-card-holder': tmp.state === 2 }"
             >
               <BaseIcon name="fiat-bank" />
               <div class="bank-num">
                 <span style="padding-right: 1ch;">{{ tmp.bank_name }}</span>
                 <span>{{ tmp.bank_account }}</span>
               </div>
-              <span v-if="tmp.state !== 2" class="type">{{ tmp.open_name }}</span>
+              <span class="type">{{ tmp.open_name }}</span>
               <BaseButton
-                v-if="tmp.state !== 2"
                 type="text"
                 @click.stop="toDeleteBankcard(tmp)"
               >
                 <BaseIcon name="uni-delete" />
               </BaseButton>
-              <div v-if="tmp.state === 2" class="bankcard-disable-text">
+              <!-- <div v-if="tmp.state === 2" class="bankcard-disable-text">
                 <BaseIcon name="uni-disable" />
                 暂不可用
-              </div>
+              </div> -->
             </div>
             <BaseButton
               v-if="item.showAdd"
