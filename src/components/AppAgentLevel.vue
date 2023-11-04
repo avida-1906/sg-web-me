@@ -4,7 +4,7 @@ defineProps<{ level: string; color: string }>()
 
 <template>
   <div class="app-agent-level" :class="[color]">
-    {{ level }}
+    <span class="level">{{ level }}</span>
     <div class="img">
       <BaseImage url="/png/affiliate/boss_bg.png" />
     </div>
@@ -21,6 +21,10 @@ defineProps<{ level: string; color: string }>()
   font-weight: var(--tg-font-weight-bold);
   text-align: center;
   border-radius: 50%;
+  .level{
+    display: block;
+    transform: translateY(-2px);
+  }
   .img{
     position: absolute;
     bottom: -9px;

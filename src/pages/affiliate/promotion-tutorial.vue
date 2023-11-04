@@ -1,14 +1,36 @@
 <script setup lang='ts'>
-import type LeaderLine from 'vue3-leaderline'
+import LeaderLine from 'vue3-leaderline'
 
+const { bool: isPageReady } = useBoolean(true)
+const bossRef = ref()
 const box1Ref = ref()
 const box2Ref = ref()
 const box3Ref = ref()
 const box4Ref = ref()
-const { bool: isPageReady } = useBoolean(true)
+const box5Ref = ref()
+const box6Ref = ref()
+const box7Ref = ref()
+const box8Ref = ref()
+const box9Ref = ref()
+const box10Ref = ref()
+const box11Ref = ref()
+const box12Ref = ref()
 
 let mainScroll: any
-let line1: LeaderLine, line2: LeaderLine, line3: LeaderLine
+const lineGroup: LeaderLine[] = []
+let line1: LeaderLine,
+  line2: LeaderLine,
+  line3: LeaderLine,
+  line4: LeaderLine,
+  line5: LeaderLine,
+  line6: LeaderLine,
+  line7: LeaderLine,
+  line8: LeaderLine,
+  line9: LeaderLine,
+  line10: LeaderLine,
+  line11: LeaderLine,
+  line12: LeaderLine
+
 function addEvent() {
   window.addEventListener('resize', eventCallback)
   mainScroll?.addEventListener('scroll', eventCallback, false)
@@ -25,42 +47,86 @@ function eventCallback() {
   line2.position()
   line3.position()
 }
-// onMounted(() => {
-//   mainScroll = document.getElementById('main-content-scrollable')
-//   const t = setTimeout(() => {
-//     line1 = new LeaderLine(box2Ref.value, box1Ref.value, {
-//       path: 'grid',
-//       color: '#FF9D00',
-//       size: 2,
-//       startSocket: 'top',
-//     })
-//     line2 = new LeaderLine(box3Ref.value, box1Ref.value, {
-//       path: 'straight',
-//       color: '#FF9D00',
-//       size: 2,
-//       startSocket: 'top',
-//     })
-//     line3 = new LeaderLine(box4Ref.value, box1Ref.value, {
-//       path: 'grid',
-//       color: '#FF9D00',
-//       size: 2,
-//       startSocket: 'top',
-//     })
-//     addEvent()
-//     isPageReady.value = true
-//     clearTimeout(t)
-//   }, 400)
-// })
-// onBeforeUnmount(() => {
-//   removeEvent()
-// })
+onMounted(() => {
+  mainScroll = document.getElementById('main-content-scrollable')
+  const t = setTimeout(() => {
+    line1 = new LeaderLine(box1Ref.value, bossRef.value, {
+      path: 'grid',
+      color: '#FF9D00',
+      size: 2,
+      startSocket: 'top',
+    })
+    line2 = new LeaderLine(box2Ref.value, bossRef.value, {
+      path: 'straight',
+      color: '#FF9D00',
+      size: 2,
+      startSocket: 'top',
+    })
+    line3 = new LeaderLine(box3Ref.value, bossRef.value, {
+      path: 'grid',
+      color: '#FF9D00',
+      size: 2,
+      startSocket: 'top',
+    })
+    line4 = new LeaderLine(box4Ref.value, box1Ref.value, {
+      path: 'straight',
+      color: '#FF9D00',
+      size: 2,
+      startSocket: 'top',
+      endPlug: 'behind',
+    })
+    line5 = new LeaderLine(box5Ref.value, box2Ref.value, {
+      path: 'straight',
+      color: '#FF9D00',
+      size: 2,
+      startSocket: 'top',
+      endPlug: 'behind',
+    })
+    line6 = new LeaderLine(box6Ref.value, box3Ref.value, {
+      path: 'straight',
+      color: '#FF9D00',
+      size: 2,
+      startSocket: 'top',
+      endPlug: 'behind',
+    })
+    line7 = new LeaderLine(box7Ref.value, box4Ref.value, {
+      path: 'straight',
+      color: '#FF9D00',
+      size: 2,
+      startSocket: 'top',
+      endPlug: 'behind',
+    })
+    line8 = new LeaderLine(box8Ref.value, box4Ref.value, {
+      path: 'grid',
+      color: '#FF9D00',
+      size: 2,
+      startSocket: 'top',
+      endPlug: 'behind',
+      endSocket: 'bottom',
+    })
+    line9 = new LeaderLine(box9Ref.value, box6Ref.value, {
+      path: 'straight',
+      color: '#FF9D00',
+      size: 2,
+      startSocket: 'top',
+      endPlug: 'behind',
+    })
+    // lineGroup.push(line1,line2,line3,line4,line5,line6,line7,line8,line9,line10,line11,line12)
+    addEvent()
+    isPageReady.value = true
+    clearTimeout(t)
+  }, 400)
+})
+onBeforeUnmount(() => {
+  removeEvent()
+})
 </script>
 
 <template>
   <div :style="{ opacity: isPageReady ? 1 : 0 }" class="promotion_tutorial">
     <div class="relation-chart">
       <!-- 第一级 -->
-      <div class="boss box border">
+      <div ref="bossRef" class="boss box border">
         <div class="level">
           <AppAgentLevel level="A" color="green" />
         </div>
@@ -78,8 +144,8 @@ function eventCallback() {
         </span>
       </div>
       <!-- 第二级 -->
-      <div class="line">
-        <div class="box border">
+      <div class="row">
+        <div ref="box1Ref" class="box border">
           <span>
             直属<span class="blue">B1</span>
             贡献给<span class="green">A</span>：<span class="yellow">800</span>
@@ -89,13 +155,13 @@ function eventCallback() {
             贡献给<span class="green">A</span>：<span class="yellow">280</span>
           </span>
         </div>
-        <div class="box border">
+        <div ref="box2Ref" class="box border">
           <span>
             直属<span class="blue">B2</span>
             贡献给<span class="green">A</span>：<span class="yellow">500</span>
           </span>
         </div>
-        <div class="box border">
+        <div ref="box3Ref" class="box border">
           <span>
             直属<span class="blue">B3</span>
             贡献给<span class="green">A</span>：<span class="yellow">300</span>
@@ -106,8 +172,8 @@ function eventCallback() {
           </span>
         </div>
       </div>
-      <div class="line">
-        <div class="box">
+      <div class="row">
+        <div ref="box4Ref" class="box">
           <div class="level">
             <AppAgentLevel level="B1" color="blue" />
           </div>
@@ -117,19 +183,75 @@ function eventCallback() {
           </span>
           <span class="grey">B1自己有效投注8万</span>
         </div>
-        <div class="box">
+        <div ref="box5Ref" class="box">
           <div class="level">
             <AppAgentLevel level="B2" color="blue" />
           </div>
+          <span>B2无下级自身无收益</span>
+          <span class="grey">B2自己有效投注5万</span>
         </div>
-        <div class="box">
+        <div ref="box6Ref" class="box">
           <div class="level">
             <AppAgentLevel level="B3" color="blue" />
           </div>
+          <span>
+            下级总业绩<span class="yellow">71万</span>
+            享受<span class="yellow">100/万</span>
+          </span>
+          <span class="grey">B3自己有效投注3万</span>
         </div>
       </div>
 
       <!-- 第三级 -->
+      <div class="row">
+        <div ref="box7Ref" class="box border">
+          <span>
+            贡献给<span class="green">A</span>：<span class="yellow">200</span>
+          </span>
+          <span>
+            贡献给<span class="blue">B1</span>：<span class="yellow">800</span>
+          </span>
+        </div>
+        <div ref="box8Ref" class="box border">
+          <span>
+            贡献给<span class="green">A</span>：<span class="yellow">800</span>
+          </span>
+          <span>
+            贡献给<span class="blue">B1</span>：<span class="yellow">320</span>
+          </span>
+        </div>
+        <div ref="box9Ref" class="box border">
+          <span>
+            贡献给<span class="green">A</span>：<span class="yellow">0</span>
+          </span>
+          <span>
+            贡献给<span class="blue">B3</span>：<span class="yellow">7100</span>
+          </span>
+        </div>
+      </div>
+      <div class="row">
+        <div ref="box10Ref" class="box">
+          <div class="level">
+            <AppAgentLevel level="C1" color="pink" />
+          </div>
+          <span>C1无下级自身无收益</span>
+          <span class="grey">C1自己有效投注10万</span>
+        </div>
+        <div ref="box11Ref" class="box">
+          <div class="level">
+            <AppAgentLevel level="C2" color="pink" />
+          </div>
+          <span>C2无下级自身无收益</span>
+          <span class="grey">C2自己有效投注4万</span>
+        </div>
+        <div ref="box12Ref" class="box">
+          <div class="level">
+            <AppAgentLevel level="C3" color="pink" />
+          </div>
+          <span>C3无下级自身无收益</span>
+          <span class="grey">C3自己有效投注71万</span>
+        </div>
+      </div>
     </div>
     <div class="des">
       <p>
@@ -188,6 +310,7 @@ function eventCallback() {
   flex-direction: column;
   gap: var(--tg-spacing-50);
   align-items: center;
+  margin-bottom: var(--tg-spacing-35);
   .yellow {
     color: var(--tg-text-warn);
   }
@@ -222,6 +345,7 @@ function eventCallback() {
       left: 50%;
       top: 0;
       transform: translate(-50%,-60%);
+      z-index: 1;
     }
   }
   .border {
@@ -231,7 +355,7 @@ function eventCallback() {
   .boss {
     padding: var(--tg-spacing-23) var(--tg-spacing-68);
   }
-  .line{
+  .row{
     display: flex;
     justify-content: space-between;
     width: 100%;

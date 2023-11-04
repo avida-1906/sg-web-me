@@ -43,7 +43,7 @@ function gameStart(item: Props['gameInfo']) {
 <template>
   <BaseAspectRatio ratio="334/447">
     <div
-      class="base-game-item" :class="{ maintain: isMaintained }"
+      class="base-game-item" :class="{ 'maintain': isMaintained, 'pc-item': !isMobile }"
       @click="gameStart(gameInfo)"
     >
       <BaseImage
@@ -141,10 +141,10 @@ function gameStart(item: Props['gameInfo']) {
       background: #{rgba($color: var(--tg-color-blue-rgb), $alpha: 0.8)};
     }
   }
-  .base-game-item:hover{
+  .pc-item:hover{
     top: -7px;
   }
-  .base-game-item:hover .active-game-item{
+  .pc-item:hover .active-game-item{
     opacity: 0.88;
   }
 </style>
