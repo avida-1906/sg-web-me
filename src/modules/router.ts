@@ -48,9 +48,6 @@ router.beforeEach((to, from, next) => {
     }
   }
 
-  if (httpClient.cancelTokenList.length > 0)
-    httpClient.cancelAllRequest()
-
   next()
 })
 

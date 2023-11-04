@@ -13,7 +13,15 @@ type TMqttServer = Array<{
 }>
 
 const chatMessageBus = useEventBus(CHAT_MESSAGE_BUS)
+const refreshBalanceBus = useEventBus(REFRESH_BALANCE_BUS)
 
+/**
+ * 刷新余额
+ * @description 5秒内只能触发一次
+ */
+const refreshBalanceThrottle = throttle(() => {
+  refreshBalanceBus.emit(REFRESH_BALANCE_BUS)
+}, 5000)
 class SocketClient {
   client: TMqttClient | null = null
 
@@ -159,10 +167,17 @@ class SocketClient {
 
       this.client.on('message', (topic, message, packet) => {
         this.#log(`收到消息：${message.toString()}`, topic, packet)
+
         try {
-          const data = JSON.parse(message.toString())
-          if (data)
-            chatMessageBus.emit(data)
+          if (topic.includes('chat')) {
+            const data = JSON.parse(message.toString())
+            if (data)
+              chatMessageBus.emit(data)
+          }
+          else if (topic === 'balance') {
+            // 刷新用户余额
+            refreshBalanceThrottle()
+          }
         }
         catch (error) {
           this.#log('收到消息解析失败', error)
