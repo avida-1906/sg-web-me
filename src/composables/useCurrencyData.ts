@@ -76,10 +76,6 @@ export const currencyConfig: Record<EnumCurrencyKey, CurrencyValue> = {
   },
 }
 
-const {
-  bool: hideZeroBalance,
-} = useBoolean(Local.get<boolean | undefined>(STORAGE_HIDE_ZERO_BALANCE_KEY)?.value)
-
 /**
  * 使用货币数据
  */
@@ -88,6 +84,10 @@ export function useCurrencyData() {
   const {
     userInfo,
   } = storeToRefs(appStore)
+
+  const {
+    bool: hideZeroBalance,
+  } = useBoolean(Local.get<boolean | undefined>(STORAGE_HIDE_ZERO_BALANCE_KEY)?.value)
 
   // 搜索内容
   const searchValue = ref('')

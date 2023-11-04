@@ -227,6 +227,12 @@ function copyCode(type: string) {
         <BaseDatePicker v-model="datepicker" />
       `)
       break
+    case 'BasePagination':
+      copy(`
+        const currentPage = ref(1)
+        <BasePagination v-model:current-page="currentPage" :total="1007" />
+      `)
+      break
     default:
       break
   }
@@ -661,6 +667,7 @@ function copyAppAuthLogin() {
 const breadcrumbs = ['one', 'two', 'three', 'four']
 
 const datepicker = ref([])
+const currentPage = ref(1)
 </script>
 
 <template>
@@ -716,6 +723,19 @@ const datepicker = ref([])
         </div>
         <div style="margin-top: 30px;">
           <BaseButton @click="copyCode('BaseDatePicker')">
+            Click
+          </BaseButton>
+        </div>
+      </AppDemoCard>
+    </li>
+    <li class="box">
+      <AppDemoCard title="BasePagination">
+        {{ currentPage }}
+        <div class="center">
+          <BasePagination v-model:current-page="currentPage" :total="1007" />
+        </div>
+        <div style="margin-top: 30px;">
+          <BaseButton @click="copyCode('BasePagination')">
             Click
           </BaseButton>
         </div>
@@ -1372,6 +1392,7 @@ const datepicker = ref([])
   padding: 5px;
   position: relative;
   text-align: center;
+  color: white;
 }
 
 .icon-wrap {

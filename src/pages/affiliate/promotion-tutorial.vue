@@ -42,6 +42,9 @@ function addEvent() {
   mainScroll?.addEventListener('scroll', eventCallback, false)
 }
 function removeEvent() {
+  lineGroup.forEach((line) => {
+    line.remove()
+  })
   AnimEvent.remove(eventCallback)
   window.removeEventListener('resize', eventCallback)
   mainScroll?.removeEventListener('scroll', eventCallback, false)
@@ -329,7 +332,7 @@ onBeforeUnmount(() => {
     ;
     grid-template-columns: auto 1fr auto;
     grid-template-rows: repeat(5, auto);
-    gap: 50px 10px;
+    gap: var(--tg-spacing-50) var(--tg-spacing-10);
   }
 
   .b1 {
@@ -443,7 +446,7 @@ onBeforeUnmount(() => {
 
 .is-mobile {
   .box {
-    padding: 6px 10px;
+    padding: var(--tg-spacing-6) var(--tg-spacing-10);
     min-width: 100px;
 
     .level {

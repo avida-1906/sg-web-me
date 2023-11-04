@@ -125,6 +125,7 @@ declare module 'vue' {
     BaseMoneyKeyboard: typeof import('./components/BaseMoneyKeyboard.vue')['default']
     BaseNotify: typeof import('./components/BaseNotify.vue')['default']
     BaseNumericKeypad: typeof import('./components/BaseNumericKeypad.vue')['default']
+    BasePagination: typeof import('./components/BasePagination.vue')['default']
     BaseProgress: typeof import('./components/BaseProgress.vue')['default']
     BaseProviderItem: typeof import('./components/BaseProviderItem.vue')['default']
     BaseQrcode: typeof import('./components/BaseQrcode.vue')['default']
