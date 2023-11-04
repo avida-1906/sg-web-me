@@ -60,7 +60,24 @@ const menuData = [
     ],
   },
 ]
-
+const supportCurrency = [
+  '/png/footer/ltc.png',
+  '/png/footer/bitcoin.png',
+  '/png/footer/ethereum.png',
+  '/png/footer/tron.png',
+  '/png/footer/ripple.png',
+  '/png/footer/dogecoin.png',
+  '/png/footer/bitcoin_cash.png',
+  '/png/footer/tether.png',
+  '/png/footer/safe_gamble.png',
+  '/png/footer/18plus.png',
+]
+const partner = [
+  { url: '/png/footer/verified.png', ratio: '120/59.63', with: '120px' },
+  { url: '/png/footer/official.png', ratio: '146.44/60', with: '146.44px' },
+  { url: '/png/footer/main.png', ratio: '82.81/60', with: '82.81px' },
+  { url: '/png/footer/ufc.png', ratio: '151/60', with: '151px' },
+]
 function selectChange(v: EnumLanguage) {
   languageStore.changeLanguage(v)
 }
@@ -111,99 +128,26 @@ function pathTo(tmp: { path?: string; title: string; icon?: boolean }) {
     </div>
     <BaseDivider />
     <div class="footer-support">
-      <BaseImage
-        url="/png/footer/ltc.png"
-        height="auto"
-        width="auto"
-        style="height: auto;width: auto;margin: 0 auto;"
-      />
-      <BaseImage
-        url="/png/footer/bitcoin.png"
-        height="auto"
-        width="auto"
-        style="height: auto;width: auto;margin: 0 auto;"
-      />
-      <BaseImage
-        url="/png/footer/ethereum.png"
-        height="auto"
-        width="auto"
-        style="height: auto;width: auto;margin: 0 auto;"
-      />
-      <BaseImage
-        url="/png/footer/tron.png"
-        height="auto"
-        width="auto"
-        style="height: auto;width: auto;margin: 0 auto;"
-      />
-      <BaseImage
-        url="/png/footer/ripple.png"
-        height="auto"
-        width="auto"
-        style="height: auto;width: auto;margin: 0 auto;"
-      />
-      <BaseImage
-        url="/png/footer/dogecoin.png"
-        height="auto"
-        width="auto"
-        style="height: auto;width: auto;margin: 0 auto;"
-      />
-      <BaseImage
-        url="/png/footer/bitcoin_cash.png"
-        height="auto"
-        width="auto"
-        style="height: auto;width: auto;margin: 0 auto;"
-      />
-      <BaseImage
-        url="/png/footer/tether.png"
-        height="auto"
-        width="auto"
-        style="height: auto;width: auto;margin: 0 auto;"
-      />
-      <BaseImage
-        url="/png/footer/safe_gamble.png"
-        height="auto"
-        width="auto"
-        style="height: auto;width: auto;margin: 0 auto;"
-      />
-      <BaseImage
-        url="/png/footer/18plus.png"
-        height="auto"
-        width="auto"
-        style="height: auto;width: auto;margin: 0 auto;"
-      />
+      <BaseAspectRatio
+        v-for="url, index of supportCurrency"
+        :key="index"
+        ratio="116/35"
+        width="133.33px"
+      >
+        <BaseImage :url="url" />
+      </BaseAspectRatio>
     </div>
     <BaseDivider />
     <div class="footer-sponsor">
-      <!-- <BaseAspectRatio
-        ratio="116/35"
-        width="133.33px"
+      <BaseAspectRatio
+        v-for="item, index of partner"
+        :key="index"
+        :ratio="item.ratio"
+        :width="item.with"
         style="margin: 0 auto;"
-      > -->
-      <BaseImage
-        url="/png/footer/verified.png"
-        height="auto"
-        width="auto"
-        style="height: auto;width: auto;margin: 0 auto;"
-      />
-      <BaseImage
-        url="/png/footer/official.png"
-        height="auto"
-        width="auto"
-        style="height: auto;width: auto;margin: 0 auto;"
-      />
-      <BaseImage
-        url="/png/footer/main.png"
-        height="auto"
-        width="auto"
-        style="height: auto;width: auto;margin: 0 auto;"
-      />
-      <BaseImage
-        url="/png/footer/ufc.png"
-        height="auto"
-        width="auto"
-        style="height: auto;width: auto;margin: 0 auto;"
-      />
-      <!-- </BaseAspectRatio> -->
+      >
+        <BaseImage :url="item.url" />
+      </BaseAspectRatio>
     </div>
     <BaseDivider />
     <div class="footer-copyright">
