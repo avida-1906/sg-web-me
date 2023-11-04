@@ -70,7 +70,7 @@ export function getInitLangIndex() {
     EnumLanguage | null
   >(STORAGE_LANGUAGE_KEY)?.value
   let index: number
-  if (localStorageLanguageIndex)
+  if (localStorageLanguageIndex !== null && localStorageLanguageIndex !== undefined && localStorageLanguageIndex >= 0)
     index = Number(localStorageLanguageIndex)
 
   else

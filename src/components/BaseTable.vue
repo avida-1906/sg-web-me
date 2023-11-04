@@ -104,9 +104,12 @@ watch(() => props.columns, () => {
 
 <style lang="scss">
 :root{
-  --tg-table-font-size:var(--tg-font-size-default);
+  --tg-table-font-size: var(--tg-font-size-default);
   --tg-table-even-background: inherit;
   --tg-table-th-color: var(--tg-text-lightgrey);
+  --tg-table-line-height:1.5;
+  --tg-table-th-padding: var(--tg-spacing-16);
+  --tg-table-td-padding: var(--tg-spacing-16);
 }
 </style>
 
@@ -123,12 +126,12 @@ watch(() => props.columns, () => {
     border-spacing: 0;
     margin: 0;
     .m-th {
-      padding: 16px; // 12px 20px;
+      padding: var(--tg-table-th-padding); // 12px 20px;
       color: var(--tg-table-th-color);
       font-weight: var(--tg-font-weight-semibold);
       text-align: left;
       border: none;
-      line-height: 1.5;
+      line-height: var(--tg-table-line-height);
       white-space: nowrap;
       background: var(--tg-table-even-background);
       vertical-align: middle;
@@ -166,8 +169,8 @@ watch(() => props.columns, () => {
     .m-tr {
       border: none;
       .m-td {
-        padding: 16px; // 12px 20px;
-        line-height: 1.5;
+        padding: var(--tg-table-td-padding); // 12px 20px;
+        line-height: var(--tg-table-line-height);
         border: none;
         overflow: hidden;
         white-space: nowrap;
