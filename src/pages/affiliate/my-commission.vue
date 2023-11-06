@@ -115,6 +115,7 @@ const selectCurrencyOptions: ISelectOption[] = [
   gap: var(--tg-spacing-20);
   .table-filter{
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: var(--tg-spacing-16);
     font-size: var(--tg-font-size-xs);
