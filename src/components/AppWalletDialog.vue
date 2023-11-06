@@ -17,7 +17,7 @@ const activeCurrency = ref<CurrencyData | null>()
 const currentTab = ref(props.activeTab)
 const tabList = [
   { label: t('deposit'), value: 'deposit' },
-  { label: t('withdraw'), value: 'withdraw' },
+  { label: '提款', value: 'withdraw' },
   { label: '卡包', value: 'cardHolder' },
 ]
 
