@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 interface Props {
   /** 当前页码 */
-  currentPage: number
+  currentPage?: number
   /** 总页数 */
   total: number
   /** 页码按钮个数 */
@@ -12,6 +12,7 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
+  currentPage: 1,
   pagerCount: 7,
   pageSizes: () => [10, 20, 30, 40, 50, 100],
   disabled: false,
@@ -102,20 +103,24 @@ function onPagerClick(event: UIEvent) {
     if (newPage > pageCount.value!)
       newPage = pageCount.value!
   }
-  if (newPage !== props.currentPage)
+  if (newPage !== props.currentPage) {
     emit('update:currentPage', newPage)
+    emit('change', newPage)
+  }
 }
 
 function prevPage() {
   if (props.disabled || props.currentPage <= 1)
     return
   emit('update:currentPage', props.currentPage - 1)
+  emit('change', props.currentPage - 1)
 }
 
 function nextPage() {
   if (props.disabled || props.currentPage >= pageCount.value)
     return
   emit('update:currentPage', props.currentPage + 1)
+  emit('change', props.currentPage + 1)
 }
 
 function enterToPage() {
@@ -123,10 +128,12 @@ function enterToPage() {
   if (props.disabled || page < 1 || page > pageCount.value)
     return
   emit('update:currentPage', page)
+  emit('change', page)
 }
 
 function pageSizeChange() {
   emit('update:currentPage', 1)
+  emit('change', 1)
 }
 
 watchEffect(() => {
