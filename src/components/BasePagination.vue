@@ -158,12 +158,12 @@ watchEffect(() => {
         :class="{ disabled: currentPage <= 1 }"
         @click="prevPage"
       >
-        上一页
+        {{ $t('page_prev') }}
       </div>
       <ul v-if="appContentWidth > 800" class="pager-wrap" @click="onPagerClick">
         <li
           v-if="pageCount > 1"
-          class="number item"
+          class="item number"
           :class="{ active: currentPage === 1 }"
         >
           1
@@ -197,25 +197,26 @@ watchEffect(() => {
         </li>
       </ul>
       <div v-else class="pager-bar">
-        {{ currentPage }}页/{{ pageCount }}页
+        {{ currentPage }}{{ $t('page_label') }}/{{ pageCount }}{{ $t('page_label') }}
       </div>
       <div
         class="btn-next"
         :class="{ disabled: currentPage >= pageCount }"
         @click="nextPage"
       >
-        下一页
+        {{ $t('page_next') }}
       </div>
     </div>
     <div v-if="appContentWidth > 800" class="pager-sizes">
       <BaseSelect
         v-model="pageSize"
-        :options="pageSizes.map(i => ({ value: i, label: `${i}条/页` }))"
+        :options="pageSizes.map(i =>
+          ({ value: i, label: `${i}${$t('page_sizer_label')}` }))"
         @change="pageSizeChange"
       />
     </div>
     <div class="pager-jumper">
-      <span>跳至</span>
+      <span>{{ $t('jump_to') }}</span>
       <div class="mid">
         <BaseInput
           v-model="jumpPage"
@@ -226,7 +227,7 @@ watchEffect(() => {
           @down-enter="enterToPage"
         />
       </div>
-      <span>页</span>
+      <span>{{ $t('page_label') }}</span>
     </div>
   </div>
 </template>

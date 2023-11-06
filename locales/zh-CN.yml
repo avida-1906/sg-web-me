@@ -701,8 +701,11 @@ finance_funds_campaign_sort_created: 创建日
 finance_funds_campaign_sort_deposit_count: 存款次数
 finance_funds_transfer_commission_txt: 把联盟佣金转入可用余额
 finance_funds_transfer_commission_withdraw: 提取可用佣金
+page_label: 页
+page_sizer_label: 条/页
 page_prev: 上一页
 page_next: 下一页
+jump_to: 跳至
 currency_byte_coin: 加密货币
 currency_law_coin: 法定货币
 menu_title_promotion_tutorial: 推广教程
@@ -832,6 +835,7 @@ sports_odds_AMERICAN: 美式
 sports_odds_INDONESIA: 印尼格式
 sports_odds_MALAYSIA: 马来格式
 sports_odds_HONGKONG: 香港格式
+sports_live_unlogin_tip: 请登录以观看直播
 welcome_guest: 欢迎
 language_title: 语言
 language_current: 中文
@@ -860,3 +864,6 @@ user_superior: 上级
 can_receive: 可领取
 receive_commission: 领取佣金
 commission_history: 佣金历史
+window_minimize: 最小化
+empty_game: 暂无游戏
+copy_success: 成功复制

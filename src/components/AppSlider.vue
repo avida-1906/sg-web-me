@@ -166,7 +166,7 @@ watchEffect(() => {
         </div>
       </div>
     </template>
-    <BaseEmpty v-else icon="empty-game" description="暂无游戏" />
+    <BaseEmpty v-else icon="empty-game" :description="$t('empty_game')" />
   </section>
 </template>
 

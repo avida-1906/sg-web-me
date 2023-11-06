@@ -661,7 +661,7 @@ useTitle(title)
                   </div>
                 </template>
                 <div v-else class="wrapper-grid-center">
-                  <span>请登录以观看直播。</span>
+                  <span>{{ $t('sports_live_unlogin_tip') }}。</span>
                   <div class="center">
                     <AppLoginRegisterBtns />
                   </div>
@@ -672,7 +672,7 @@ useTitle(title)
                   <BaseButton type="text" padding0 @click="openMiniVideo">
                     <span class="mini-video">
                       <BaseIcon name="uni-small-screen" />
-                      <span>最小化</span>
+                      <span>{{ $t('window_minimize') }}</span>
                     </span>
                   </BaseButton>
                 </span>
@@ -966,7 +966,7 @@ useTitle(title)
                 </div>
               </div>
               <div v-if="showRecent" class="spotlight is-open variant-dark">
-                <div class="no-active-scale header">
+                <div class="header no-active-scale">
                   <span>近期游戏记录</span>
                   <BaseButton type="text" @click="setSRFalse()">
                     <BaseIcon name="uni-close-white" />
