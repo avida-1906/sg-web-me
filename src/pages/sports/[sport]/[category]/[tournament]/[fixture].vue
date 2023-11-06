@@ -580,6 +580,8 @@ const eventData = reactive({
   widgetUrl: 'https://disir.oddin.gg/lol/match?availableData=tournament&availableData=teams&availableData=players&awayTeamId=dGVhbS9vZDpjb21wZXRpdG9yOjExOTk%3D&brandToken=a91d9435-1130-42f5-88d3-00361e69b932&darkMode=true&homeTeamId=dGVhbS9vZDpjb21wZXRpdG9yOjEwMzU%3D&id=bWF0Y2gvb2Q6bWF0Y2g6NDg0NTMw&lang=zh&layout=default&t=4254007617&theme=dark&timeframe=THREE_MONTHS&tournamentId=dG91cm5hbWVudC9vZDp0b3VybmFtZW50OjQ1MzA%3D&type=teams',
 })
 
+const title = computed(() =>
+  `${eventData.data.competitors.map(c => c.name).join(' VS ')} - Stake.com`)
 const breadcrumb = computed(() => {
   const { id: t_id, slug: t_slug } = eventData
   const competitors = eventData.data.competitors
@@ -614,6 +616,8 @@ function selectOutcome(v: string, tempid: string, marketid: string) {
 function openMiniVideo() {
   useDragDialog({ type: 'live', url: '', dialogId: '123456' })
 }
+
+useTitle(title)
 </script>
 
 <template>
