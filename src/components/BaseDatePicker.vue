@@ -97,7 +97,7 @@ onMounted(() => {
       <BaseIcon :class="{ 'arrow-up': arrowUp }" name="uni-arrow-down" />
     </div>
     <div v-if="!isValid" class="error">
-      <BaseIcon name="uni-warning" /><span>请选择正确的开始时间和结束时间</span>
+      <BaseIcon name="uni-warning" /><span>{{ $t('date_picker_error') }}</span>
     </div>
   </div>
 </template>
