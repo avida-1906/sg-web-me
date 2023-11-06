@@ -64,50 +64,58 @@ const tableData = ref([
 </script>
 
 <template>
-  <div class="page-direct-user">
-    <BaseTable :columns="columns" :data-source="tableData" :loading="loading">
-      <template #th-online>
-        <div style="margin-top: var(--tg-spacing-4);">
-          次数
-        </div>
-      </template>
-      <template #settleTime>
-        <div class="flex-colum">
-          <div>10/11/2011 </div>
-          <div>23:56:56</div>
-        </div>
-      </template>
-      <template #lastLogin>
-        <div class="flex-colum">
-          <div>10/11/2011 </div>
-          <div>23:56:56</div>
-        </div>
-      </template>
-      <template #account="{ record }">
-        <div class="center" style="gap: var(--tg-spacing-4);">
-          <BaseIcon name="chat-star-gold" />
-          <span>{{ record.account }}</span>
-          <BaseIcon name="uni-doc" />
-        </div>
-      </template>
-      <template #firstLive="{ record }">
-        <span :style="{ color: record.isFirstLive ? '' : 'var(--tg-text-error)' }">
-          {{ record.isFirstLive ? '是' : '否' }}
-        </span>
-      </template>
-      <template #online="{ record }">
-        <div class="flex-colum">
-          <BaseBadge
-            :color="record.isOnline ? 'var(--tg-text-green)' : 'var(--tg-text-lightgrey)'"
-            :text="record.isOnline ? '在线' : '离线'"
-          />
-          <div style="color: white;">
-            8次
+  <AppAffiliateContent>
+    <template #default>
+      <BaseTable
+        class="page-direct-user"
+        :columns="columns"
+        :data-source="tableData"
+        :loading="loading"
+      >
+        <template #th-online>
+          <div style="margin-top: var(--tg-spacing-4);">
+            次数
           </div>
-        </div>
-      </template>
-    </BaseTable>
-  </div>
+        </template>
+        <template #settleTime>
+          <div class="flex-colum">
+            <div>10/11/2011 </div>
+            <div>23:56:56</div>
+          </div>
+        </template>
+        <template #lastLogin>
+          <div class="flex-colum">
+            <div>10/11/2011 </div>
+            <div>23:56:56</div>
+          </div>
+        </template>
+        <template #account="{ record }">
+          <div class="center" style="gap: var(--tg-spacing-4);">
+            <BaseIcon name="chat-star-gold" />
+            <span>{{ record.account }}</span>
+            <BaseIcon name="uni-doc" />
+          </div>
+        </template>
+        <template #firstLive="{ record }">
+          <span :style="{ color: record.isFirstLive ? '' : 'var(--tg-text-error)' }">
+            {{ record.isFirstLive ? '是' : '否' }}
+          </span>
+        </template>
+        <template #online="{ record }">
+          <div class="flex-colum">
+            <BaseBadge
+              :color="record.isOnline
+                ? 'var(--tg-text-green)' : 'var(--tg-text-lightgrey)'"
+              :text="record.isOnline ? '在线' : '离线'"
+            />
+            <div style="color: white;">
+              8次
+            </div>
+          </div>
+        </template>
+      </BaseTable>
+    </template>
+  </AppAffiliateContent>
 </template>
 
 <style lang="scss" scoped>

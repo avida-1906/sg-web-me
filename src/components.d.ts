@@ -9,6 +9,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     AppAccordionMenu: typeof import('./components/AppAccordionMenu.vue')['default']
     AppAddBankcards: typeof import('./components/AppAddBankcards.vue')['default']
+    AppAffiliateContent: typeof import('./components/AppAffiliateContent.vue')['default']
     AppAgentLevel: typeof import('./components/AppAgentLevel.vue')['default']
     AppAmount: typeof import('./components/AppAmount.vue')['default']
     AppAuthLogin: typeof import('./components/AppAuthLogin.vue')['default']

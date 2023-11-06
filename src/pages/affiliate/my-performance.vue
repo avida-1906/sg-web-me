@@ -60,19 +60,26 @@ const tableData = ref([
 </script>
 
 <template>
-  <div class="page-my-performance">
-    <BaseTable :columns="columns" :data-source="tableData" :loading="loading">
-      <template #settleTime>
-        <div class="flex-colum">
-          <div>10/11/2011 </div>
-          <div>23:56:56</div>
-        </div>
-      </template>
-      <template #commission="{ record }">
-        <span style="color:var(--tg-text-warn)">{{ record.contributeNum }}</span>
-      </template>
-    </BaseTable>
-  </div>
+  <AppAffiliateContent>
+    <template #default>
+      <BaseTable
+        class="page-my-performance"
+        :columns="columns"
+        :data-source="tableData"
+        :loading="loading"
+      >
+        <template #settleTime>
+          <div class="flex-colum">
+            <div>10/11/2011 </div>
+            <div>23:56:56</div>
+          </div>
+        </template>
+        <template #commission="{ record }">
+          <span style="color:var(--tg-text-warn)">{{ record.contributeNum }}</span>
+        </template>
+      </BaseTable>
+    </template>
+  </AppAffiliateContent>
 </template>
 
 <style lang="scss" scoped>
