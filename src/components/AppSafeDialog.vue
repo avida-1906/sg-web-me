@@ -92,7 +92,8 @@ const {
 
 async function handleUpdate() {
   amountRef.value.setTouchTrue()
-  passwordRef.value.setTouchTrue()
+  if (passwordRef.value)
+    passwordRef.value.setTouchTrue()
   await validateAmount()
   if (isDeposit.value) {
     if (!errAmount.value && updateParams.value)
