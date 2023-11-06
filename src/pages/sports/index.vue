@@ -76,6 +76,14 @@ runSportsProvider({ page: 1, page_size: 100, game_type: 4 })
           :center="false"
         />
       </div>
+      <div class="mt-24">
+        <BaseTab
+          v-model="marketType"
+          size="large"
+          :list="tabList"
+          :center="false"
+        />
+      </div>
     </div>
 
     <!-- 大厅 -->

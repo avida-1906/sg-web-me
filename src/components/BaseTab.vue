@@ -14,6 +14,7 @@ interface Props {
   center?: boolean
   size?: 'small' | 'large'
   useCloudImg?: boolean
+  lineStyle?: boolean
 }
 const props = withDefaults(defineProps<Props>(), {
   shape: 'round',
@@ -37,7 +38,7 @@ function onClick(tab: TabItem) {
 <template>
   <div class="base-tab" :class="{ center }">
     <div class="scroll-x base-tab-wrap" :class="{ full }">
-      <div class="tab-wrap" :class="[shape]">
+      <div class="tab-wrap" :class="[shape, { 'line-style': lineStyle }]">
         <div
           v-for="t, i in list" :key="i" class="tab"
           :class="[`tab-${size}`,
