@@ -1,4 +1,8 @@
 <script setup lang='ts'>
+const props = defineProps<{
+  autoFocus?: boolean
+}>()
+
 const emit = defineEmits(['gameTypeChange', 'close'])
 const { isMobile } = storeToRefs(useWindowStore())
 const { leftIsExpand } = useLeftSidebar()
@@ -28,6 +32,7 @@ const gameTypeList = [
   { label: t('sports'), value: '2' },
 ]
 const searchValue = ref('')
+const baseSearchRef = ref()
 // 近期搜索关键字
 const keywordLive = ref(
   Local.get<any[]>(STORAGE_SEARCH_KEYWORDS_LIVE)?.value ?? [],
@@ -127,12 +132,18 @@ function emitClose() {
 }
 provide('closeSearch', emitClose)
 provide('closeSearchH5', () => leftIsExpand.value = !leftIsExpand.value)
+
+onMounted(() => {
+  if (props.autoFocus)
+    baseSearchRef.value.manualFocus()
+})
 </script>
 
 <template>
   <div class="app-global-search" :class="{ 'in-pc': !isMobile }">
     <div v-show="!isMobile" class="overlay" @click="emitClose" />
     <BaseSearch
+      ref="baseSearchRef"
       v-model.trim="searchValue"
       class="search-input"
       :place-holder="searchPlaceholder"
