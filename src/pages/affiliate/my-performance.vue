@@ -84,13 +84,8 @@ const tableData = ref([
 
 <style lang="scss" scoped>
 .page-my-performance {
-  --tg-table-font-size: var(--tg-font-size-xs);
-  --tg-table-even-background: var(--tg-primary-main);
-  --tg-table-th-color: var(--tg-text-white);
-  --tg-table-line-height:1;
   --tg-table-th-padding: var(--tg-spacing-21);
   --tg-table-td-padding: var(--tg-spacing-13);
-  --tg-table-th-font-weight: var(--tg-font-weight-normal);
   .flex-colum{
     display: flex;
     flex-direction: column;

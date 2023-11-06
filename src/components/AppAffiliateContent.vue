@@ -12,6 +12,7 @@ const selectCurrencyOptions: ISelectOption[] = [
 
 <template>
   <div class="layout-spacing reset app-affiliate-content">
+    <slot name="content-top" />
     <div class="table-filter">
       <BaseDatePicker v-model="date" />
       <BaseSelect v-model="selectSize" :options="selectTypeOptions" />
@@ -25,6 +26,11 @@ const selectCurrencyOptions: ISelectOption[] = [
 
 <style lang="scss" scoped>
 .app-affiliate-content {
+  --tg-table-font-size: var(--tg-font-size-xs);
+  --tg-table-even-background: var(--tg-primary-main);
+  --tg-table-th-color: var(--tg-text-white);
+  --tg-table-line-height:1;
+  --tg-table-th-font-weight: var(--tg-font-weight-normal);
   --tg-base-select-style-color: var(--tg-text-lightgrey);
   --tg-base-select-style-padding-y: var(--tg-spacing-8);
   --tg-base-select-style-padding-right: var(--tg-spacing-28);
