@@ -134,6 +134,10 @@ onMounted(() => {
   font-weight: var(--tg-font-weight-semibold);
   color: var(--tg-secondary-light);
   line-height: 1.5;
+  transition: border-color 200ms ease;
+  &:hover {
+    border-color: var(--tg-border-color-deep-grey);
+  }
   .separator {
     color: var(--tg-text-white);
   }
