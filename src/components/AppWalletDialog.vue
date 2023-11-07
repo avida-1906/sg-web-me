@@ -24,6 +24,12 @@ const tabList = [
 const isDeposit = computed(() => currentTab.value === 'deposit')
 const isWithdraw = computed(() => currentTab.value === 'withdraw')
 const isCardHolder = computed(() => currentTab.value === 'cardHolder')
+const isVirCurrency = computed(() => {
+  if (activeCurrency.value)
+    return isVirtualCurrency(activeCurrency.value.type)
+
+  return false
+})
 
 function changeCurrency(item: CurrencyData, network: string) {
   activeCurrency.value = item
@@ -41,14 +47,14 @@ function handleShow(val: boolean) {
       <AppSelectCurrency
         v-show="showWallet && !isCardHolder"
         :show-balance="isWithdraw"
-        :network="true"
+        :network="isVirCurrency"
         @change="changeCurrency"
       />
       <!-- 存款 -->
       <template v-if="isDeposit && activeCurrency">
         <Suspense timeout="0">
           <AppVirtualDeposit
-            v-if="isVirtualCurrency(activeCurrency?.type)"
+            v-if="isVirCurrency"
             :active-currency="activeCurrency?.type"
             @show="handleShow"
           />
@@ -68,7 +74,7 @@ function handleShow(val: boolean) {
       <template v-else-if="isWithdraw && activeCurrency">
         <Suspense timeout="0">
           <AppWithdraw
-            v-if="isVirtualCurrency(activeCurrency?.type)"
+            v-if="isVirCurrency"
             :active-currency="activeCurrency"
             :current-network="currentNetwork"
           />

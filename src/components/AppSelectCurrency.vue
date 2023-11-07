@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { contractMap } from '~/composables/useCurrencyData'
 import type { CurrencyData } from '~/composables/useCurrencyData'
 
 interface Props {
@@ -25,9 +24,7 @@ const {
   renderBalanceList,
   renderBalanceLockerList,
   renderCurrencyList,
-  isVirtualCurrency,
-  runAsyncGetContract,
-  curContractList,
+  getVirtualCurrencyContractType,
 } = useCurrencyData()
 
 const currentNetwork = ref()
@@ -42,11 +39,17 @@ const getCurrencyList = computed(() => {
   }
 })
 
-// 设置协议选项的值
+// 获取协议类型
+const curContractList = computed(() => {
+  return getVirtualCurrencyContractType(activeCurrency.value?.type)
+})
+
+// 设置协议默认值
 function getTypeVal() {
   currentNetwork.value = curContractList.value ? curContractList.value[0]?.value : ''
   emit('change', activeCurrency.value, currentNetwork.value)
 }
+
 // 选择币种
 function selectCurrency(item: CurrencyData, hide: () => void) {
   hide()
@@ -64,12 +67,6 @@ watch(() => props.type, () => {
 })
 watch(() => currentNetwork.value, () => {
   emit('change', activeCurrency.value, currentNetwork.value)
-})
-watch(() => activeCurrency.value, async () => {
-  if (isVirtualCurrency(activeCurrency.value?.type)) {
-    await runAsyncGetContract({ level: contractMap[activeCurrency.value?.type] })
-    getTypeVal()
-  }
 })
 
 onMounted(() => {

@@ -1,5 +1,5 @@
 export type TTreeListType =
-'001' | '002' | '003' | '004' | '005' | '006' | '007' | '008' | '011' | '015' | '016' | '017' | '018001' | '018002' | '018003' | '018004'
+'001' | '002' | '003' | '004' | '005' | '006' | '007' | '008' | '011' | '015' | '016' | '017' | '018001' | '018002' | '018003' | '018004' | '018'
 
 /**
  * 获取后端辅助数据
@@ -35,6 +35,8 @@ export type TTreeListType =
  * 018003=ETH协议
  *
  * 018004=BNB协议
+ *
+ * 018=所有虚拟币协议
  */
 export function useApiMemberTreeList(type?: TTreeListType) {
   const { data, loading, error, run, runAsync } = useRequest(ApiMemberTreeList)

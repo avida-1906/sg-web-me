@@ -182,26 +182,6 @@ export function useCurrencyData() {
     return allCurrencyData(userInfo.value?.balance)
   })
 
-  /** 获取虚拟币协议类型 */
-  const getVirtualCurrencyContractType = (currency: string) => {
-    switch (currency) {
-      case 'BTC': return [
-        { label: 'Omni', value: 'Omni' },
-      ]
-      case 'USDT': return [
-        { label: 'ERC20', value: 'ERC20' },
-        { label: 'TRC20', value: 'TRC20' },
-      ]
-      case 'ETH': return [
-        { label: 'ERC20', value: 'ERC20' },
-      ]
-      case 'BNB': return [
-        { label: 'BEP20', value: 'BEP20' },
-      ]
-      default:return null
-    }
-  }
-
   /** 获取本地存储的当前全局选择的货币 */
   function getLocalCurrentGlobalCurrency(): EnumCurrencyKey {
     const currency = Local.get<
@@ -230,12 +210,11 @@ export function useCurrencyData() {
     searchValue.value = ''
   }
 
-  // 获取协议api
+  /** 获取虚拟币协议api */
   const {
     data: contractList,
     runAsync: runAsyncGetContract,
   } = useApiMemberTreeList()
-
   const curContractList = computed(() => {
     if (contractList.value) {
       return contractList.value.map((item) => {
@@ -246,6 +225,41 @@ export function useCurrencyData() {
       })
     }
   })
+
+  /** 获取所有虚拟币协议 */
+  const {
+    data: allContractList,
+  } = useApiMemberTreeList('018')
+
+  const allContractListData = computed(() => {
+    if (allContractList.value?.length) {
+      const res: Record<string, any> = {}
+      for (const item of allContractList.value) {
+        if (item.pid === '1800') {
+          res[item.name] = []
+        }
+        else {
+          const parent = allContractList.value.find(i => i.id === item.pid)
+          if (parent) {
+            res[parent.name]
+              ? res[parent.name].push({ label: item.name, value: item.id })
+              : res[parent.name] = []
+          }
+        }
+      }
+      return res
+    }
+    return {}
+  })
+
+  const getVirtualCurrencyContractType = (currency: string) => {
+    return allContractListData.value[currency]
+  }
+
+  /** 根据协议id获取对应的名称 */
+  const getVirContractName = (id: string) => {
+    return allContractList.value?.find(item => item.id === id)?.name
+  }
 
   return {
     currentGlobalCurrency,
@@ -263,5 +277,7 @@ export function useCurrencyData() {
     getVirtualCurrencyContractType,
     runAsyncGetContract,
     curContractList,
+    allContractListData,
+    getVirContractName,
   }
 }
