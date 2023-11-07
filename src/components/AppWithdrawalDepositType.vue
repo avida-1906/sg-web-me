@@ -57,7 +57,10 @@ const changeType = function (type: string) {
   display: flex;
   gap: .75rem;
   padding: var(--tg-spacing-2) 0;
-  overflow: hidden;
+  // overflow: hidden;
+  &::-webkit-scrollbar-thumb{
+    display: none;
+  }
   .type-btn{
     flex-shrink: 0;
     background: var(--tg-secondary-main);

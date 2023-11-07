@@ -425,7 +425,10 @@ await application.allSettled([
           justify-content: left;
           align-items: center;
           gap: 0.75rem;
-          overflow: hidden;
+          // overflow: hidden;
+          &::-webkit-scrollbar-thumb{
+              display: none;
+            }
           .aisle{
             flex-shrink: 0;
             padding: var(--tg-spacing-4) var(--tg-spacing-8);

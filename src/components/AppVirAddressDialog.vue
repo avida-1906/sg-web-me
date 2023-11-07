@@ -46,13 +46,27 @@ const {
   },
 })
 
-const optionsContract = getCurContract() || []
-const currentNetwork = ref(optionsContract[0]?.value || '')
+const currentNetwork = ref()
 
 // 获取协议类型
-function getCurContract() {
+const curContractList = computed(() => {
   return getVirtualCurrencyContractType(props.currencyName)
+})
+
+// 设置协议默认值
+function getTypeVal() {
+  currentNetwork.value = curContractList.value ? curContractList.value[0]?.value : ''
 }
+
+// 协议名称
+const curNetworkName = computed(() => {
+  if (curContractList.value) {
+    return curContractList.value.find(
+      (item: ISelectOption) => item.value === currentNetwork.value)?.label
+  }
+  return ''
+})
+
 // 关闭弹框
 function closeAllDialog() {
   closeDialog()
@@ -64,7 +78,7 @@ async function handleBindAddress() {
     openPayPwdDialog({
       runSubmit: (payPassword: string) => {
         runMemberWalletInsert({
-          contract_type: currentNetwork.value,
+          contract_type: Number(currentNetwork.value),
           currency_id: props.currencyId,
           address: address.value,
           is_default: 2,
@@ -80,6 +94,10 @@ async function handleBindAddress() {
   }
 }
 
+watch(() => curContractList.value, () => {
+  getTypeVal()
+})
+
 onUnmounted(() => {
   callback.value && callback.value()
 })
@@ -88,14 +106,14 @@ onUnmounted(() => {
 <template>
   <div class="layout-spacing reset app-vir-address">
     <BaseSelect
+      v-if="curContractList?.length"
       v-model="currentNetwork"
       label="选择协议"
-      :options="optionsContract"
+      :options="curContractList"
       small
     />
     <BaseLabel
-      :label="`您${currencyName}的${
-        currencyName === currentNetwork ? '' : currentNetwork}地址`"
+      :label="`您${currencyName}的${curNetworkName}地址`"
       must
     >
       <BaseInput v-model="address" :msg="addressMsg" />
@@ -111,9 +129,15 @@ onUnmounted(() => {
   </div>
 </template>
 
+<style>
+:root{
+  --tg-app-vir-address-style-padding: 0 var(--tg-spacing-16) var(--tg-spacing-16);
+}
+</style>
+
 <style scoped lang="scss">
 .app-vir-address {
-  padding: 0 var(--tg-spacing-16) var(--tg-spacing-16);
+  padding: var(--tg-app-vir-address-style-padding);
   gap: var(--tg-spacing-12);
 }
 </style>

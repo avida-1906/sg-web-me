@@ -9,6 +9,8 @@ interface Props {
 const props = defineProps<Props>()
 
 const { t } = useI18n()
+const { openNotify } = useNotify()
+
 const {
   value: address,
   errorMessage: addressMsg,
@@ -42,88 +44,151 @@ const {
   data: walletList,
   runAsync: runAsyncWalletList,
 } = useList(ApiMemberWalletList)
+const {
+  runAsync: runAsyncWithdrawCoin,
+} = useRequest(ApiFinanceWithdrawCoin, {
+  onSuccess(data) {
+    openNotify({
+      type: 'success',
+      message: data,
+    })
+  },
+})
 
 const addrOptions = computed(() => {
   if (walletList.value && walletList.value.d) {
     return walletList.value.d.map((i) => {
       return {
-        label: `${i.contract_type} ${i.address}`,
+        label: i.address,
         value: i.id,
       }
     })
   }
   return []
 })
+const defaultAddress = computed(() => {
+  return walletList.value?.d?.find(i => i.id === address.value)?.address ?? ''
+})
 
 function onAmountInput() {
   if (amount.value)
     setAmount(application.numberToCurrency(+amount.value))
 }
+function maxNumber() {
+  setAmount(props.activeCurrency.balance)
+}
 async function handleWithdraw() {
   await valiAddress()
   await valiAmount()
   await valiPaypwd()
+  if (!addressMsg.value && !amountMsg.value && !paypwdMsg.value) {
+    console.log(address.value)
+    console.log(amount.value)
+    console.log(paypwd.value)
+    runAsyncWithdrawCoin({
+      currency_id: Number(props.activeCurrency.cur),
+      contract_id: props.currentNetwork,
+      amount: amount.value,
+      pay_password: paypwd.value,
+    })
+  }
 }
 
-watch(() => [props.activeCurrency, props.currentNetwork], () => {
-  runAsyncWalletList({
-    contract_type: props.currentNetwork,
-    currency_id: props.activeCurrency.cur,
-  })
-})
-
-application.allSettled([
-  runAsyncWalletList({
-    contract_type: props.currentNetwork,
-    currency_id: props.activeCurrency.cur,
-  }),
-])
+watch(() => props.currentNetwork, () => {
+  if (props.currentNetwork) {
+    runAsyncWalletList({
+      contract_type: props.currentNetwork,
+      currency_id: props.activeCurrency.cur,
+    })
+  }
+}, { immediate: true })
 </script>
 
 <template>
-  <div class="app-withdraw">
-    <BaseLabel
-      :label="`${activeCurrency?.type}地址`"
-      :current-currency="activeCurrency?.type"
-      must
-    >
-      <!-- <BaseInput v-model="address" :msg="addressMsg" /> -->
-      <BaseSelect v-model="address" :options="addrOptions" small />
-    </BaseLabel>
-    <div class="amount">
-      <div class="top">
-        <span class="label">金额<span style="color: var(--tg-text-error);">*</span></span>
-        <span class="us">US$0.00</span>
-      </div>
-      <BaseInput
-        v-model="amount"
-        type="number"
-        placeholder="0.00000000"
-        :msg="amountMsg"
-        @blur="onAmountInput"
+  <template v-if="addrOptions.length">
+    <!-- 虚拟币提款 -->
+    <div class="app-withdraw withdrawal-info">
+      <BaseLabel
+        :label="`${activeCurrency?.type}地址`"
+        :current-currency="activeCurrency?.type"
+        must
       >
-        <template #right-icon>
-          <AppCurrencyIcon :currency-type="activeCurrency?.type" />
-        </template>
-        <template #right-button>
-          <span>最大值</span>
-        </template>
-      </BaseInput>
+        <!-- <BaseInput v-model="address" :msg="addressMsg" /> -->
+        <BaseSelect
+          v-model="address"
+          :options="addrOptions"
+          small popper theme border
+          :style="{ '--tg-base-select-popper-style-padding-y': 'var(--tg-spacing-12)' }"
+        >
+          111
+          <template #label>
+            <span class="popper-label">
+              <AppCurrencyIcon
+                v-if="defaultAddress"
+                :currency-type="activeCurrency?.type"
+              />
+              {{ defaultAddress }}
+            </span>
+          </template>
+          <template #option="{ data: { item, parentWidth } }">
+            <div
+              class="scroll-x bank-options"
+              :style="{ width: `${parentWidth + 24}px` }"
+            >
+              <div class="option-row">
+                <AppCurrencyIcon :currency-type="activeCurrency?.type" />
+                <div class="bank-info">
+                  <p>{{ item.label }}</p>
+                </div>
+              </div>
+            </div>
+          </template>
+        </BaseSelect>
+      </BaseLabel>
+      <div class="amount">
+        <div class="top">
+          <span class="label">金额<span style="color: var(--tg-text-error);">*</span></span>
+          <span class="us">US$0.00</span>
+        </div>
+        <BaseInput
+          v-model="amount"
+          type="number"
+          placeholder="0.00000000"
+          :msg="amountMsg"
+          @blur="onAmountInput"
+          @on-right-button="maxNumber"
+        >
+          <template #right-icon>
+            <AppCurrencyIcon :currency-type="activeCurrency?.type" />
+          </template>
+          <template #right-button>
+            <span>最大值</span>
+          </template>
+        </BaseInput>
+      </div>
+      <BaseLabel label="资金密码" must>
+        <BaseInput v-model="paypwd" :msg="paypwdMsg" type="password" max="6" />
+      </BaseLabel>
+      <BaseButton bg-style="primary" size="md" @click="handleWithdraw">
+        提款
+      </BaseButton>
+      <div class="tips">
+        <span>最低提款金额为 0.00020000</span>
+        <AppCurrencyIcon class="currency-icon" :currency-type="activeCurrency?.type" />
+        <span>。我们将从您的余额扣除0.00007000</span>
+        <AppCurrencyIcon class="currency-icon" :currency-type="activeCurrency?.type" />
+        <span>作为您提款的交易费用。</span>
+      </div>
     </div>
-    <BaseLabel label="双重验证" must>
-      <BaseInput v-model="paypwd" :msg="paypwdMsg" must />
-    </BaseLabel>
-    <BaseButton bg-style="primary" size="md" @click="handleWithdraw">
-      提款
-    </BaseButton>
-    <div class="tips">
-      <span>最低提款金额为 0.00020000</span>
-      <AppCurrencyIcon class="currency-icon" :currency-type="activeCurrency?.type" />
-      <span>。我们将从您的余额扣除0.00007000</span>
-      <AppCurrencyIcon class="currency-icon" :currency-type="activeCurrency?.type" />
-      <span>作为您提款的交易费用。</span>
-    </div>
-  </div>
+  </template>
+  <!-- 虚拟币地址添加 -->
+  <template v-else>
+    <AppVirAddressDialog
+      :currency-id="activeCurrency.cur"
+      :currency-name="activeCurrency.type"
+      style="--tg-app-vir-address-style-padding: 0"
+    />
+  </template>
 </template>
 
 <style lang='scss' scoped>
@@ -131,7 +196,6 @@ application.allSettled([
   display: flex;
   flex-direction: column;
   gap: var(--tg-spacing-12);
-
   .address {
     display: flex;
     flex-direction: column;
@@ -169,6 +233,47 @@ application.allSettled([
       display: inline-block;
       vertical-align: middle;
       padding:0  var(--tg-spacing-4);
+    }
+  }
+}
+// select
+.withdrawal-info{
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+      .popper-label{
+        display: flex;
+        align-items: center;
+        gap: .25rem;
+      }
+    }
+.bank-options{
+  .option-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--tg-text-white);
+    cursor: pointer;
+    > svg{
+      width: 40px;
+      height: 40px;
+    }
+    .bank-info{
+      display: flex;
+      align-items: center;
+      :nth-child(1){
+        margin-right: var(--tg-spacing-5);
+      }
+      p{
+        margin: var(--tg-spacing-2) 0;
+      }
+      &.is-mobile{
+        flex-direction: column;
+        align-items: self-start;
+      }
+      user-select: none;
+      -webkit-user-select: none;
     }
   }
 }

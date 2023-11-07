@@ -565,7 +565,7 @@ export function ApiMemberBankcardInsert(data: {
    */
 export function ApiMemberWalletInsert(data: {
   /** 合约类型 */
-  contract_type: string
+  contract_type: number
   /** 货币id */
   currency_id: string
   /** 钱包地址 */
@@ -927,4 +927,17 @@ export function ApiFinanceWithdraw(data: {
  */
 export function ApiMemberBalance() {
   return httpClient.get<TCurrencyObject>('/member/balance')
+}
+
+/**
+ * 虚拟币取款申请
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=92ca9d78-f919-4210-9067-b0204b71f89f
+ */
+export function ApiFinanceWithdrawCoin(data: {
+  currency_id: number
+  contract_id: string
+  amount: string
+  pay_password: string
+}) {
+  return httpClient.post<string>('/finance/withdraw/coin', data)
 }

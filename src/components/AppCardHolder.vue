@@ -15,6 +15,7 @@ const cardList: Ref<WalletCurrencyList[] | null> = ref(null)
 const {
   isVirtualCurrency,
   renderCurrencyList,
+  getVirContractName,
 } = useCurrencyData()
 // 会员卡包
 const {
@@ -128,7 +129,9 @@ if (!cardList.value)
               :key="tmp.id"
               class="address-row"
             >
-              <span class="type">{{ tmp.contract_type }}</span>
+              <span class="type">{{
+                getVirContractName(tmp.contract_type.toString())
+              }}</span>
               <span class="bank-num">{{ tmp.address }}</span>
               <BaseButton type="text" @click.stop="toDeleteVirAddress(tmp, item.type)">
                 <BaseIcon name="uni-delete" />
