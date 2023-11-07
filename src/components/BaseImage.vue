@@ -58,8 +58,8 @@ const imgUrl = computed(() => {
 <style lang="scss" scoped>
 .base-image {
   position: relative;
-  width: 100%;
-  height: 100%;
+  // width: 100%;
+  // height: 100%;
 
   img {
     border-radius: var(--tg-base-img-style-radius);
