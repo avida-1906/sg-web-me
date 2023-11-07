@@ -50,9 +50,7 @@ const tableData = ref([
 <template>
   <AppAffiliateContent>
     <template #content-top>
-      <div style="display: inline-flex;">
-        <BaseTab v-model="tab" :list="tabList" line-style />
-      </div>
+      <BaseTab v-model="tab" :list="tabList" line-style :center="false" />
     </template>
     <template #default>
       <BaseTable
