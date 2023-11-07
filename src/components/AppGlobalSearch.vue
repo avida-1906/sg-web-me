@@ -1,4 +1,8 @@
 <script setup lang='ts'>
+const props = defineProps<{
+  autoFocus?: boolean
+}>()
+
 const emit = defineEmits(['gameTypeChange', 'close'])
 const { isMobile } = storeToRefs(useWindowStore())
 const { leftIsExpand } = useLeftSidebar()
@@ -12,16 +16,23 @@ const {
 } = useBoolean(false)
 const { bool: isClear, setTrue: setClearTrue } = useBoolean(true)
 const { bool: isInputing, setTrue: setInputingTrue } = useBoolean(false)
-const initCasino = computed(() => route.name?.toString().includes('casino'))
-const initSports = computed(() => route.name?.toString().includes('sports'))
+const initCasino = route.name?.toString().includes('casino')
+const initSports = route.name?.toString().includes('sports')
+const initOthers = !initCasino && !initSports
+const {
+  bool: isShowTypeSelect,
+  setTrue: showTypeSelect,
+  setFalse: hideTypeSelect,
+} = useBoolean(!initOthers)
 
 // 搜索栏
-const gameType = ref(initCasino.value ? '1' : initSports.value ? '2' : '1')
+const gameType = ref(initCasino ? '1' : initSports ? '2' : '1')
 const gameTypeList = [
   { label: t('casino'), value: '1' },
   { label: t('sports'), value: '2' },
 ]
 const searchValue = ref('')
+const baseSearchRef = ref()
 // 近期搜索关键字
 const keywordLive = ref(
   Local.get<any[]>(STORAGE_SEARCH_KEYWORDS_LIVE)?.value ?? [],
@@ -115,27 +126,38 @@ function clearKeyword() {
 // 关闭方法
 function emitClose() {
   searchValue.value = ''
+  showOverlayFalse()
+  initOthers && hideTypeSelect()
   emit('close')
 }
 provide('closeSearch', emitClose)
 provide('closeSearchH5', () => leftIsExpand.value = !leftIsExpand.value)
+
+onMounted(() => {
+  if (props.autoFocus)
+    baseSearchRef.value.manualFocus()
+})
 </script>
 
 <template>
   <div class="app-global-search" :class="{ 'in-pc': !isMobile }">
-    <div v-show="!isMobile" class="overlay" @click="emit('close')" />
+    <div v-show="!isMobile" class="overlay" @click="emitClose" />
     <BaseSearch
+      ref="baseSearchRef"
       v-model.trim="searchValue"
       class="search-input"
       :place-holder="searchPlaceholder"
       clearable
-      @focus="showOverlayTrue"
+      @focus="showOverlayTrue();showTypeSelect()"
       @clear="setClearTrue"
-      @close="emit('close')"
+      @close="emitClose"
       @input="onBaseSearchInput"
     >
-      <template #left>
-        <VDropdown :distance="6" @show="setTrue()" @hide="setFalse">
+      <template v-if="isShowTypeSelect" #left>
+        <VDropdown
+          :distance="6"
+          @show="setTrue()" @hide="setFalse"
+        >
           <button class="tips">
             <span>{{ gameLabel }}</span>
             <BaseIcon :name="`uni-arrow-${isPopperShow ? 'up' : 'down'}-big`" />
@@ -156,7 +178,7 @@ provide('closeSearchH5', () => leftIsExpand.value = !leftIsExpand.value)
     <div
       v-show="isShowOverlay || !isMobile"
       class="search-overlay"
-      @click.self="showOverlayFalse"
+      @click.self="showOverlayFalse();initOthers && hideTypeSelect()"
     >
       <div class="scroll-y warp">
         <div v-if="!resultData" class="no-result">

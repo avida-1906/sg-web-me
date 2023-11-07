@@ -60,7 +60,7 @@ function copyClick(msg: string) {
                   </BaseButton>
                 </a>
                 <template #popper>
-                  <div class="tiny-menu-item-title">成功复制！</div>
+                  <div class="tiny-menu-item-title">{{ $t('copy_success') }}！</div>
                 </template>
               </VTooltip>
               <BaseButton v-else @click="copyClick(msg)">

@@ -268,5 +268,5 @@ const bet = [
 
 <route lang="yaml">
 meta:
-  browserTitle: 联盟保留计划 – Stake.com
+  browserTitle: 我的推广 – Stake.com
 </route>

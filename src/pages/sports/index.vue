@@ -115,4 +115,5 @@ runSportsProvider({ page: 1, page_size: 100, game_type: 4 })
 <route lang="yaml">
 meta:
   layout: home
+  browserTitle: 加密货币与比特币在线体育博彩 – Stake.com 体育博彩
 </route>

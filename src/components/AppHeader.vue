@@ -213,7 +213,7 @@ function handleClickMenuItem(item: { name: string; path?: string }) {
       </div>
       <AppGlobalSearch
         v-if="showSearchBar && !isMobile"
-        @close="() => showSearchBar = false"
+        auto-focus @close="() => showSearchBar = false"
       />
     </div>
     <div v-else class="header-login">

@@ -239,11 +239,10 @@ function pathTo(tmp: { path?: string; title: string; icon?: boolean }) {
   .footer-sponsor{
     width: 100%;
     display: flex;
-    gap:0.5rem;
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
-    gap:2rem;
+    gap:3.575rem;
   }
   .footer-copyright{
     width: 100%;

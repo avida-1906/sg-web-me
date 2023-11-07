@@ -22,6 +22,11 @@ const {
 } = useBoolean(false)
 const { bool: isRealMoneyMode, setBool: setRealModeBool } = useBoolean(false)
 const { bool: isTrendOpen, toggle: toggleTrendOpen } = useBoolean(false)
+const {
+  bool: isShowIframe,
+  setTrue: showIframe,
+  setFalse: hideIframe,
+} = useBoolean(false)
 
 const currentCurrency = ref<EnumCurrencyKey>()
 const currencyList = ref<EnumCurrencyKey[]>([])
@@ -66,6 +71,7 @@ const {
 ), {
   manual: true,
   onSuccess(res) {
+    showIframe()
     // H5模式直接打开游戏
     if (isMobile.value)
       return location.href = res
@@ -78,6 +84,7 @@ function autoLunchOnPc() {
 }
 // 重新获取游戏地址是先清空
 function clearUrl() {
+  hideIframe()
   mutateGameUrl('')
 }
 // 切换路由时重新获取detail
@@ -330,6 +337,7 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
               </div>
             </div>
             <iframe
+              v-if="isShowIframe"
               ref="gameFrameRef"
               :src="gameUrl"
               frameborder="0"

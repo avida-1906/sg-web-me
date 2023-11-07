@@ -14,6 +14,7 @@ interface Props {
   center?: boolean
   size?: 'small' | 'large'
   useCloudImg?: boolean
+  lineStyle?: boolean
 }
 const props = withDefaults(defineProps<Props>(), {
   shape: 'round',
@@ -36,8 +37,8 @@ function onClick(tab: TabItem) {
 
 <template>
   <div class="base-tab" :class="{ center }">
-    <div class="scroll-x base-tab-wrap" :class="{ full }">
-      <div class="tab-wrap" :class="[shape]">
+    <div class="scroll-x base-tab-wrap" :class="{ full, 'hide-scrollbar': lineStyle }">
+      <div class="tab-wrap" :class="[shape, { 'line-style': lineStyle }]">
         <div
           v-for="t, i in list" :key="i" class="tab"
           :class="[`tab-${size}`,
@@ -71,6 +72,7 @@ function onClick(tab: TabItem) {
 .bubble-wrap {
   margin-left: var(--tg-spacing-8);
   margin-top: 1px;
+
   div {
     width: 8px;
     height: 8px;
@@ -79,9 +81,10 @@ function onClick(tab: TabItem) {
     background: var(--tg-primary-success);
     animation: OnlineFlash .2s ease-out;
     position: absolute;
-    transform: translate(-50%,-50%) scale(1)!important;
+    transform: translate(-50%, -50%) scale(1) !important;
   }
 }
+
 .base-tab {
   display: flex;
   max-width: 100%;
@@ -167,6 +170,22 @@ function onClick(tab: TabItem) {
     }
   }
 
+  // 横线风格
+  .line-style {
+    background-color: transparent;
+    gap: 0;
+    .tab{
+      background-color: transparent;
+      border-radius: 0;
+      border-bottom-style: solid;
+      border-bottom-width: 2px;
+      border-bottom-color: var(--tg-secondary-main);
+      &.active{
+        border-bottom-color: var(--tg-text-blue);
+        color: var(--tg-text-blue);
+      }
+    }
+  }
 }
 
 .full {

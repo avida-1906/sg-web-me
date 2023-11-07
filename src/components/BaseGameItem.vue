@@ -31,7 +31,7 @@ function gameStart(item: Props['gameInfo']) {
   if (isMaintained.value)
     return
 
-  router.push(`/casino/games?id=${item.id}`)
+  router.push(`/casino/games?id=${item.id}&name=${item.name}`)
   if (isMobile.value)
     closeSearchH5()
 

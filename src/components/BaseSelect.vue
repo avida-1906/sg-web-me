@@ -159,6 +159,7 @@ function onClickPopper() {
   --tg-base-select-style-padding-x: var(--tg-spacing-10);
   --tg-base-select-style-padding-y: var(--tg-spacing-11);
   --tg-base-select-style-padding-right: var(--tg-base-select-style-padding-x);
+  --tg-base-select-style-color: var(--tg-text-white);
   --tg-base-select-hover-bg-color: var(--tg-secondary-deepdark);
   --tg-base-select-popper-style-padding-x: var(--tg-spacing-button-padding-horizontal-md);
   --tg-base-select-popper-style-padding-y: var(--tg-spacing-button-padding-vertical-md);
@@ -302,7 +303,7 @@ function onClickPopper() {
     border-color: var(--tg-border-color-main);
     background-color: var(--tg-secondary-dark);
     box-shadow: var(--tg-box-shadow);
-    color: var(--tg-text-white);
+    color: --tg-base-select-style-color;
     position: relative;
     border-radius: var(--tg-radius-default);
 
@@ -320,7 +321,7 @@ function onClickPopper() {
   }
 
   .icon {
-    font-size: var(--tg-font-size-base);
+    font-size: var(--tg-font-size-default);
     position: absolute;
     top: 50%;
     transform: translateY(-50%);

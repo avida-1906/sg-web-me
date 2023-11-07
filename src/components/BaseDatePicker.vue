@@ -97,7 +97,7 @@ onMounted(() => {
       <BaseIcon :class="{ 'arrow-up': arrowUp }" name="uni-arrow-down" />
     </div>
     <div v-if="!isValid" class="error">
-      <BaseIcon name="uni-warning" /><span>请选择正确的开始时间和结束时间</span>
+      <BaseIcon name="uni-warning" /><span>{{ $t('date_picker_error') }}</span>
     </div>
   </div>
 </template>
@@ -134,6 +134,10 @@ onMounted(() => {
   font-weight: var(--tg-font-weight-semibold);
   color: var(--tg-secondary-light);
   line-height: 1.5;
+  transition: border-color 200ms ease;
+  &:hover {
+    border-color: var(--tg-border-color-deep-grey);
+  }
   .separator {
     color: var(--tg-text-white);
   }

@@ -16,6 +16,7 @@ const emit = defineEmits(
 )
 
 const { bool: isFocus, setTrue, setFalse } = useBoolean(false)
+const inputRef = ref()
 
 function onInput(event: any) {
   const v = event.target.value
@@ -39,6 +40,11 @@ function onClear() {
   if (!props.modelValue)
     emit('close')
 }
+function manualFocus() {
+  inputRef.value.focus()
+}
+
+defineExpose({ manualFocus })
 </script>
 
 <template>
@@ -49,6 +55,7 @@ function onClear() {
     <div class="content-box">
       <BaseIcon name="uni-search" class="search-icon" />
       <input
+        ref="inputRef"
         :value="modelValue"
         type="text"
         :placeholder="placeHolder"

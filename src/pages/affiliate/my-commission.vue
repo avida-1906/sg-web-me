@@ -62,40 +62,57 @@ const tableData = ref([
 </script>
 
 <template>
-  <div class="page-my-commission">
-    <BaseTable :columns="columns" :data-source="tableData" :loading="loading">
-      <template #settleTime>
-        <div class="flex-colum">
-          <div>10/11/2011 </div>
-          <div>23:56:56</div>
-        </div>
-      </template>
-      <template #commission="{ record }">
-        <span style="color:var(--tg-text-warn)">{{ record.contributeNum }}</span>
-      </template>
-      <template #operate>
-        <BaseButton type="text" padding0 font-size="12" style="color:var(--tg-text-blue)">
-          查看
-        </BaseButton>
-      </template>
-    </BaseTable>
-  </div>
+  <AppAffiliateContent>
+    <template #grand-total>
+      <div>
+        累计佣金：<span class="color-warn" style="font-weight: 500;">999,999,999.00</span>
+      </div>
+    </template>
+    <template #default>
+      <BaseTable
+        class="page-my-commission"
+        :columns="columns"
+        :data-source="tableData"
+        :loading="loading"
+      >
+        <template #settleTime>
+          <div class="flex-colum">
+            <div>10/11/2011 </div>
+            <div>23:56:56</div>
+          </div>
+        </template>
+        <template #commission="{ record }">
+          <span class="color-warn">{{ record.contributeNum }}</span>
+        </template>
+        <template #operate>
+          <BaseButton
+            type="text"
+            padding0
+            font-size="12"
+            style="color:var(--tg-text-blue)"
+          >
+            查看
+          </BaseButton>
+        </template>
+      </BaseTable>
+    </template>
+  </AppAffiliateContent>
 </template>
 
 <style lang="scss" scoped>
 .page-my-commission {
-  --tg-table-font-size: var(--tg-font-size-xs);
-  --tg-table-even-background: var(--tg-primary-main);
-  --tg-table-th-color: var(--tg-text-white);
-  --tg-table-line-height:1;
   --tg-table-th-padding: var(--tg-spacing-21);
   --tg-table-td-padding: var(--tg-spacing-13);
-  --tg-table-th-font-weight: var(--tg-font-weight-normal);
+
   .flex-colum{
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: var(--tg-spacing-4);
   }
+
+}
+.color-warn{
+  color:var(--tg-text-warn)
 }
 </style>
