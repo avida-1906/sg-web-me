@@ -7,17 +7,19 @@ const route = useRoute()
 const { animatingMounted } = useLayoutAnimate({ aniMounted: true })
 
 const { appContentWidth } = storeToRefs(useWindowStore())
+const { isLogin } = storeToRefs(useAppStore())
 
 const { bool: layoutLoading, setFalse: setLFalse } = useBoolean(true)
 const { bool: isPopShow, setTrue: setPTrue, setFalse: setPFalse } = useBoolean(false)
 
 const menuData = computed<any>(() =>
-  route.meta.withMenuMenu?.map((m, idx) => ({ ...m, title: t(m.title), value: idx, label: t(m.title) })))
+  route.meta.withMenuMenu?.map((m, idx) => ({ ...m, title: t(m.title), value: idx, label: t(m.title) }))
+    .filter(f => f.token ? isLogin.value : true))
 const icon = computed<any>(() => route.meta.withMenuIcon)
 const withMenuMobileType = computed(() => route.meta.withMenuMobileType)
 
 const activeMenu = ref(menuData.value.filter((m: any) => m.path === route.path)[0])
-const curMenuTab = ref(activeMenu.value.value)
+const curMenuTab = ref(activeMenu.value?.value)
 
 function togglePop() {
   if (isPopShow.value)
@@ -45,6 +47,11 @@ onMounted(() => {
 
 onUpdated(() => {
   setLFalse()
+})
+
+watch(menuData, (val) => {
+  activeMenu.value = val.filter((m: any) => m.path === route.path)[0]
+  curMenuTab.value = activeMenu.value?.value
 })
 
 watch(route, (val) => {
@@ -94,7 +101,9 @@ watch(route, (val) => {
                       </div>
                     </div>
                   </div>
-                  <AppUserAgentInfo v-if="route.path.includes('/affiliate/')" />
+                  <AppUserAgentInfo
+                    v-if="isLogin && route.path.includes('/affiliate/')"
+                  />
                   <div
                     class="stack direction-horizontal padding-none content-outer"
                     :class="[
@@ -139,13 +148,14 @@ watch(route, (val) => {
                             </BaseButton>
                             <template #popper="{ hide }">
                               <ul class="pop-menu">
-                                <li
-                                  v-for="mi in menuData" :key="mi.path"
-                                  :class="{ active: activeMenu.path === mi.path }"
-                                  @click="goPage(mi, hide)"
-                                >
-                                  {{ mi.title }}
-                                </li>
+                                <template v-for="mi in menuData" :key="mi.path">
+                                  <li
+                                    :class="{ active: activeMenu.path === mi.path }"
+                                    @click="goPage(mi, hide)"
+                                  >
+                                    {{ mi.title }}
+                                  </li>
+                                </template>
                               </ul>
                             </template>
                           </VDropdown>
