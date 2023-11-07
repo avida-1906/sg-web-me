@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+const { t } = useI18n()
 const route = useRoute()
 const { isMobile, appContentWidth } = storeToRefs(useWindowStore())
 const appStore = useAppStore()
@@ -581,7 +582,7 @@ const eventData = reactive({
 })
 
 const title = computed(() =>
-  `${eventData.data.competitors.map(c => c.name).join(' VS ')} - Stake.com`)
+  `${eventData.data.competitors.map(c => c.name).join(` ${t('sports_vs')} `)} - Stake.com`)
 const breadcrumb = computed(() => {
   const { id: t_id, slug: t_slug } = eventData
   const competitors = eventData.data.competitors
@@ -966,7 +967,7 @@ useTitle(title)
                 </div>
               </div>
               <div v-if="showRecent" class="spotlight is-open variant-dark">
-                <div class="header no-active-scale">
+                <div class="no-active-scale header">
                   <span>近期游戏记录</span>
                   <BaseButton type="text" @click="setSRFalse()">
                     <BaseIcon name="uni-close-white" />
