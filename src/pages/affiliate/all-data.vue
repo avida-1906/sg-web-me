@@ -58,7 +58,7 @@ const tableData = ref([
   <AppAffiliateContent mode="account">
     <template #default>
       <BaseTable
-        class="page-direct-user"
+        class="page-all-data"
         :columns="columns"
         :data-source="tableData"
         :loading="loading"
@@ -76,7 +76,7 @@ const tableData = ref([
 </template>
 
 <style lang="scss" scoped>
-.page-direct-user {
+.page-all-data {
   --tg-badge-size: 10px;
   --tg-table-th-padding: var(--tg-spacing-21);
   --tg-table-td-padding: var(--tg-spacing-21);

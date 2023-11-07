@@ -50,7 +50,7 @@ function fieldVerifyLoginPwd(value: string) {
 
 <style lang="scss" scoped>
 .page-new-subagent{
-  gap: 20px;
+  gap: var(--tg-spacing-20);
   max-width: 420px;
   margin: auto;
 }
