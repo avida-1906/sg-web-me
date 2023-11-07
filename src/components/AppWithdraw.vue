@@ -82,14 +82,12 @@ async function handleWithdraw() {
   await valiAmount()
   await valiPaypwd()
   if (!addressMsg.value && !amountMsg.value && !paypwdMsg.value) {
-    console.log(address.value)
-    console.log(amount.value)
-    console.log(paypwd.value)
     runAsyncWithdrawCoin({
       currency_id: Number(props.activeCurrency.cur),
       contract_id: props.currentNetwork,
       amount: amount.value,
       pay_password: paypwd.value,
+      wallet_id: address.value,
     })
   }
 }
@@ -113,14 +111,12 @@ watch(() => props.currentNetwork, () => {
         :current-currency="activeCurrency?.type"
         must
       >
-        <!-- <BaseInput v-model="address" :msg="addressMsg" /> -->
         <BaseSelect
           v-model="address"
           :options="addrOptions"
-          small popper theme border
+          small theme popper border
           :style="{ '--tg-base-select-popper-style-padding-y': 'var(--tg-spacing-12)' }"
         >
-          111
           <template #label>
             <span class="popper-label">
               <AppCurrencyIcon
