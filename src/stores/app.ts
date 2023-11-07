@@ -50,7 +50,7 @@ export const useAppStore = defineStore('app', () => {
   watch(visibility, (bool) => {
     // 如果页面可见，更新用户余额和用户信息
     if (bool === 'visible')
-      updateUserInfo()
+      getBalanceData()
   })
 
   onMounted(() => {
