@@ -1,6 +1,6 @@
 <script setup lang="ts">
 interface Props {
-  imgType?: 'frontId' | 'backId' | 'address' | 'fund' // 上传图片用途
+  imgType?: 'frontId' | 'backId' | 'address' | 'fund' | 'common' // 上传图片用途
   disabled?: boolean // 禁用
   accept?: string // 可选文件类型
   // showDelete?: boolean // 是否显示删除按钮
@@ -27,6 +27,8 @@ const getBackground = computed(() => {
       return 'address-bg'
     case 'fund':
       return 'fund-bg'
+    case 'common':
+      return 'common-bg'
   }
 })
 
@@ -117,5 +119,8 @@ function deleteImg() {
 .fund-bg{
   background-image: url(../icons/upload-border.svg), url(../icons/upload-fund.svg), url(../icons/upload-up.svg);
   background-size: 95% 92%, 80% 80%, 25px 25px;
+}
+.common-bg{
+  background-image: url(../icons/upload-common.svg);
 }
 </style>

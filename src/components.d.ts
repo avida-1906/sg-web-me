@@ -37,6 +37,7 @@ declare module 'vue' {
     AppDesc: typeof import('./components/AppDesc.vue')['default']
     AppEmailCodeDialog: typeof import('./components/AppEmailCodeDialog.vue')['default']
     AppErrorPage: typeof import('./components/AppErrorPage.vue')['default']
+    AppFeedback: typeof import('./components/AppFeedback.vue')['default']
     AppFiatDeposit: typeof import('./components/AppFiatDeposit.vue')['default']
     AppFiatWithdrawal: typeof import('./components/AppFiatWithdrawal.vue')['default']
     AppFooter: typeof import('./components/AppFooter.vue')['default']
