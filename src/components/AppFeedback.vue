@@ -180,6 +180,7 @@ function textInput() {
           padding: var(--tg-spacing-12);
           border-radius: var(--tg-radius-default);
           font-size: var(--tg-font-size-xs);
+          color: var(--tg-text-lightgrey);
           &:focus{
             outline: none;
           }
