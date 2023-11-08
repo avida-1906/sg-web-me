@@ -310,6 +310,8 @@ declare global {
   const useDevicePixelRatio: typeof import('@vueuse/core')['useDevicePixelRatio']
   const useDevicesList: typeof import('@vueuse/core')['useDevicesList']
   const useDialog: typeof import('./composables/useDialog')['useDialog']
+  const useDialogBetSlip: typeof import('./composables/useDialogBetSlip')['useDialogBetSlip']
+  const useDialogCasinoBetDetail: typeof import('./composables/useDialogCasinoBetDetail')['useDialogCasinoBetDetail']
   const useDialogDepositDetail: typeof import('./composables/useDialogDepositDetail')['useDialogDepositDetail']
   const useDialogMessage: typeof import('./composables/useDialogMessage')['useDialogMessage']
   const useDialogNotice: typeof import('./composables/useDialogNotice')['useDialogNotice']
@@ -796,6 +798,7 @@ declare module 'vue' {
     readonly useDevicePixelRatio: UnwrapRef<typeof import('@vueuse/core')['useDevicePixelRatio']>
     readonly useDevicesList: UnwrapRef<typeof import('@vueuse/core')['useDevicesList']>
     readonly useDialog: UnwrapRef<typeof import('./composables/useDialog')['useDialog']>
+    readonly useDialogBetSlip: UnwrapRef<typeof import('./composables/useDialogBetSlip')['useDialogBetSlip']>
     readonly useDialogDepositDetail: UnwrapRef<typeof import('./composables/useDialogDepositDetail')['useDialogDepositDetail']>
     readonly useDialogMessage: UnwrapRef<typeof import('./composables/useDialogMessage')['useDialogMessage']>
     readonly useDialogNotice: UnwrapRef<typeof import('./composables/useDialogNotice')['useDialogNotice']>
@@ -1276,6 +1279,7 @@ declare module '@vue/runtime-core' {
     readonly useDevicePixelRatio: UnwrapRef<typeof import('@vueuse/core')['useDevicePixelRatio']>
     readonly useDevicesList: UnwrapRef<typeof import('@vueuse/core')['useDevicesList']>
     readonly useDialog: UnwrapRef<typeof import('./composables/useDialog')['useDialog']>
+    readonly useDialogBetSlip: UnwrapRef<typeof import('./composables/useDialogBetSlip')['useDialogBetSlip']>
     readonly useDialogDepositDetail: UnwrapRef<typeof import('./composables/useDialogDepositDetail')['useDialogDepositDetail']>
     readonly useDialogMessage: UnwrapRef<typeof import('./composables/useDialogMessage')['useDialogMessage']>
     readonly useDialogNotice: UnwrapRef<typeof import('./composables/useDialogNotice')['useDialogNotice']>

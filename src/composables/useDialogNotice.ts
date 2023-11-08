@@ -6,7 +6,7 @@ export function useDialogNotice() {
   const { openDialog: openNoticeDialog, closeDialog: closeNoticeDialog } = useDialog({
     title: t('notice'),
     icon: 'navbar-notice',
-    default: () => h(AppDialogNotice),
+    default: data => h(AppDialogNotice, { data }),
   })
 
   return {

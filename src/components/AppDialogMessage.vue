@@ -1,5 +1,12 @@
 <script setup lang='ts'>
-// 123
+interface Props {
+  data: {
+    [t: string]: any
+    title: string
+    content: string
+  }
+}
+defineProps<Props>()
 </script>
 
 <template>

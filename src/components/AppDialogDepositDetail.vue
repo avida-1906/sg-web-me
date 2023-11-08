@@ -1,5 +1,15 @@
 <script setup lang='ts'>
-// 123
+interface Props {
+  data: {
+    [t: string]: any
+  }
+}
+defineProps<Props>()
+const closeDialog = inject('closeDialog', () => {})
+
+function service() {
+  closeDialog()
+}
 </script>
 
 <template>
@@ -37,7 +47,7 @@
         </span>
       </div>
     </div>
-    <BaseButton style="display: block; margin: 0 auto;">
+    <BaseButton style="display: block; margin: 0 auto;" @click="service">
       如需帮助，请联系在线支持
     </BaseButton>
   </div>
