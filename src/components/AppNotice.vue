@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import AppSiteMessage from './AppSiteMessage.vue'
+import AppFeedback from './AppFeedback.vue'
 
 const { closeRightSidebar } = useRightSidebar()
 
@@ -18,7 +19,7 @@ const getComponent = computed(() => {
     case 'znx': return AppSiteMessage
     case 'gg': return ''
     case 'pmd': return ''
-    case 'fk': return ''
+    case 'fk': return AppFeedback
   }
 })
 </script>

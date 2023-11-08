@@ -6,6 +6,7 @@
 // const emit = defineEmits(['update:modelValue'])
 const text = ref('')
 const textLength = ref(0)
+const tab = ref(1)
 const placeholder = '我们已经设置了巨额奖金，专门收集反馈意见，以便我们优化系统和功能，给您带来更好的体验！一旦被采纳，将根据重要程度给予奖励（未采纳除外）'
 
 function textInput() {
@@ -14,13 +15,23 @@ function textInput() {
 </script>
 
 <template>
-  <div class="app-feedback">
+  <div class="app-feedback scroll-y scrollable scroll-contain notice-scroll">
     <div class="feedback-tab-wrap">
       <div class="tab-left">
-        <BaseButton bg-style="primary" class="tab-btn">
+        <BaseButton
+          :bg-style="tab === 1 ? 'primary' : undefined"
+          :type="tab !== 1 ? 'line' : undefined"
+          class="tab-btn"
+          @click="tab = 1"
+        >
           创建反馈
         </BaseButton>
-        <BaseButton type="line" class="tab-btn">
+        <BaseButton
+          :bg-style="tab === 2 ? 'primary' : undefined"
+          :type="tab !== 2 ? 'line' : undefined"
+          class="tab-btn"
+          @click="tab = 2"
+        >
           我的反馈
         </BaseButton>
       </div>
@@ -32,7 +43,7 @@ function textInput() {
       </div>
     </div>
     <div class="content-wrap">
-      <div v-if="false" class="create-feedback">
+      <div v-if="tab === 1" class="create-feedback">
         <div class="text">
           <p class="label">
             反馈内容<span>（你提我改）</span>
@@ -130,9 +141,11 @@ function textInput() {
 <style lang='scss' scoped>
 .app-feedback {
   white-space: pre-line;
+  padding: var(--tg-spacing-11) var(--tg-spacing-16);
   .feedback-tab-wrap {
     display: flex;
     justify-content: space-between;
+    line-height: 30px;
     .tab-left, .tab-right{
       display: flex;
       align-items: center;
@@ -146,6 +159,7 @@ function textInput() {
     .tab-btn{
       padding: var(--tg-spacing-6) var(--tg-spacing-10) !important;
       border-radius: 100px;
+      width: 78px;
     }
   }
   .content-wrap{
