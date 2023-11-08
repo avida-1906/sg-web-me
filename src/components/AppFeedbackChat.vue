@@ -35,6 +35,9 @@ onMounted(() => {
         <div class="time-wrap">
           23-02-25 11:48:32
         </div>
+        <template v-for="msg in messageHistory" :key="msg.id">
+          <AppFeedbackChatMsg :message="msg" />
+        </template>
         <div class="wrap msg-tail" />
       </div>
     </div>
@@ -91,6 +94,7 @@ onMounted(() => {
         width: 100%;
       }
       .time-wrap {
+        text-align: center;
         color: var(--tg-text-grey);
         font-size: var(--tg-font-size-default);
       }
