@@ -874,3 +874,6 @@ choose_bonus_receive_label: 你可以自由选择您想要的币种进行领取
 current_exchange_rate: 当前汇率
 bonus_receive_expect: 预计可领取
 confirm_receive: 确认领取
+site_message: 站内信
+announcement: 公告
+deposit_detail: 存款详情

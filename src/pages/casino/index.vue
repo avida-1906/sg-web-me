@@ -67,6 +67,11 @@ function viewMoreGames() {
   else if (currentNav.value.ty === 2)
     router.push(`/casino/group/provider?pid=${currentNav.value.platform_id}&name=${currentNav.value.label}`)
 }
+
+// dialog
+const {
+  openMessageDialog,
+} = useDialogMessage()
 </script>
 
 <template>
@@ -82,6 +87,11 @@ function viewMoreGames() {
         v-model="tab" :list="casinoNav" :center="false" size="large" use-cloud-img
         @change="onTabChange"
       />
+    </div>
+    <div class="mt-24">
+      <BaseButton @click="openMessageDialog">
+        站内信
+      </BaseButton>
     </div>
     <div class="content-wrapper">
       <!-- 大厅 -->
