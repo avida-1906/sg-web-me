@@ -945,3 +945,50 @@ export function ApiFinanceWithdrawCoin(data: {
 }) {
   return httpClient.post<string>('/finance/withdraw/coin', data)
 }
+
+/**
+ * 建议反馈对话列表
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=feac25f6-1830-4cbe-bc4b-d547c28ec44f
+ */
+export function ApiGetFeedbackChatList(data: {
+  /** 反馈ID */
+  feed_id: string
+}) {
+  return httpClient.post<Array<{
+    images?: string
+    description?: string
+    content: string
+    created_at: number
+    feed_id: string
+    uid: string
+    id: string
+  }>>('/member/feedback/chat/list', data)
+}
+
+/**
+ * 新增反馈消息
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=4640e6ab-44d1-4ac5-83dd-093964c5545b
+ */
+export function ApiAddFeedbackChatMsg(data: {
+  /** 反馈ID */
+  feed_id: string
+  /** 聊天内容 */
+  content: string
+  /** 来源 1会员 2商户后台 */
+  source: 1 | 2
+}) {
+  return httpClient.post<string>('/member/feedback/chat/insert', data)
+}
+
+/**
+ * 文件上传
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=9d5e6346-ba11-4f4f-8960-82a9c96cf4ed
+ */
+export function ApiMemberUpload(data: {
+  /** 类型 */
+  upload_type: string
+  /** 文件 */
+  upload_file: File
+}) {
+  return httpClient.post<string>('/member/upload', data)
+}

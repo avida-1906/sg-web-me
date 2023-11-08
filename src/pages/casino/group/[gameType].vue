@@ -1,128 +1,22 @@
 <script setup lang="ts">
-import {
-  EnumCasinoSortType,
-} from '~/utils/enums'
-
 const props = defineProps<{ gameType: string }>()
-const route = useRoute()
+
 const { appContentWidth } = storeToRefs(useWindowStore())
+const route = useRoute()
+const title = computed(() => route.query.name)
+const { bool: loading } = useBoolean(false)
 
 const currentType = ref(props.gameType)
-const isRec = computed(() => currentType.value === 'rec') // 推荐游戏
-const isProvider = computed(() => currentType.value === 'provider') // 供应商
-const isCat = computed(() => currentType.value === 'category') // 类别
-// 类别游戏数据
-const cid = computed(() => isCat.value ? route.query.cid?.toString() ?? '' : '')
-const title = computed(() => route.query.name)
-// 参数
-const pid = computed(() =>
-  isProvider.value ? route.query.pid?.toString() : undefined)
 
-const sort = ref(EnumCasinoSortType.recommend)
-const paramsGame = computed(() =>
-  ({
-    platform_id: pid.value,
-    sort: sort.value,
-  }))
-const {
-  list: gameList,
-  total: gameTotal,
-  runAsync: runGameList,
-  loading: loadingGame,
-  loadMore: loadMoreGame,
-} = useList(ApiMemberGameList)
-// 推荐游戏
-const paramsRec = computed(() => ({ sort: sort.value }))
-const {
-  list: recList,
-  total: recTotal,
-  runAsync: runRecList,
-  loading: loadingRec,
-  loadMore: loadMoreRec,
-} = useList(ApiMemberGameRecList)
-const paramsCate = computed(() => ({ cid: cid.value }))
-const {
-  list: cateList,
-  total: cateTotal,
-  runAsync: runCateGames,
-  loading: loadingCate,
-  loadMore: loadMoreCate,
-} = useList(ApiMemberGameCateGames)
-// 页面数据
-const list = computed(() => {
-  if (isProvider.value)
-    return gameList.value
-  else if (isRec.value)
-    return recList.value
-  else if (isCat.value)
-    return cateList.value
-
-  return []
-})
-const total = computed(() => {
-  if (isProvider.value)
-    return gameTotal.value
-  else if (isRec.value)
-    return recTotal.value
-  else if (isCat.value)
-    return cateTotal.value
-  return 0
-})
-const loading = computed(() => {
-  if (isProvider.value)
-    return loadingGame.value
-  else if (isRec.value)
-    return loadingRec.value
-  else if (isCat.value)
-    return loadingCate.value
-  return false
-})
-const push = computed(() => {
-  if (isProvider.value)
-    return loadMoreGame
-  else if (isRec.value)
-    return loadMoreRec
-  else if (isCat.value)
-    return loadMoreCate
-  return () => { }
-})
-
-// 获取数据
-function getData() {
-  if (isProvider.value)
-    runGameList(paramsGame.value).then(() => push.value())
-  else if (isRec.value)
-    runRecList(paramsRec.value).then(() => push.value())
-  else if (isCat.value)
-    runCateGames(paramsCate.value).then(() => push.value())
+function handleBeforeUnmounted() {
+  loading.value = true
 }
-// 游戏提供商选择变化
-function onPlatTypeChecked(v: string) {
-  runGameList({ ...paramsGame.value, platform_id: v }).then(() => push.value())
+function handleMounted() {
+  const t = setTimeout(() => {
+    loading.value = false
+    clearTimeout(t)
+  }, 500)
 }
-// 排序变化
-// function onSortChange(v: any) {
-//   sort.value = v
-//   getData()
-// }
-
-// 路由变化
-const stop = watch(route, (a) => {
-  currentType.value = a.params.gameType.toString()
-  sort.value = EnumCasinoSortType.recommend
-  getData()
-})
-onBeforeRouteLeave(() => {
-  stop()
-})
-
-// 初始化
-if (isProvider.value)
-  await application.allSettled([runGameList(paramsGame.value).then(() => push.value())])
-else if (isRec.value)
-  await application.allSettled([runRecList(paramsRec.value).then(() => push.value())])
-else if (isCat.value)
-  await application.allSettled([runCateGames(paramsCate.value).then(() => push.value())])
 </script>
 
 <template>
@@ -148,24 +42,17 @@ else if (isCat.value)
       </div>
       <div class="mt-24">
         <AppGroupFilter
-          :game-type="currentType" :sort-type="sort"
-          @plat-type-checked="onPlatTypeChecked"
+          :game-type="currentType"
         />
       </div>
-      <div class="mt-24">
-        <AppCardList :list="list ?? []" />
+      <div v-show="loading" class="loading">
+        <BaseLoading />
       </div>
-      <div class="load-more mt-24">
-        <AppPercentage :total="total" :percentage="list?.length" />
-        <BaseButton
-          v-show="list && list?.length < total" size="md" :loading="loading"
-          @click="push"
-        >
-          <div>
-            {{ $t('load_more') }}
-          </div>
-        </BaseButton>
-      </div>
+      <AppCasinoGameTypeGameList
+        :key="route.fullPath" :game-type="gameType"
+        @vue:mounted="handleMounted"
+        @vue:before-unmount="handleBeforeUnmounted"
+      />
       <AppProviderSlider />
     </section>
     <AppBetData />
@@ -173,18 +60,12 @@ else if (isCat.value)
 </template>
 
 <style lang="scss" scoped>
-.load-more {
-  text-align: center;
+.loading{
+  width: 100%;
+  height: 500px;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: var(--tg-spacing-16);
-
-  button {
-    width: 184px;
-    height: 44px;
-  }
 }
 </style>
 
