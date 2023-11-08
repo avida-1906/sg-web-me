@@ -102,6 +102,16 @@ const { openBetSlipDialog } = useDialogBetSlip()
       <BaseButton @click="openBetSlipDialog({ type: 'casino', data: {} })">
         娱乐城投注详情
       </BaseButton>
+      <BaseButton
+        @click="openBetSlipDialog({ type: 'sports', data: { betType: 'single' } })"
+      >
+        体育投注详情-单式
+      </BaseButton>
+      <BaseButton
+        @click="openBetSlipDialog({ type: 'sports', data: { betType: 'multi' } })"
+      >
+        体育投注详情-复式
+      </BaseButton>
     </div>
     <div class="content-wrapper">
       <!-- 大厅 -->
