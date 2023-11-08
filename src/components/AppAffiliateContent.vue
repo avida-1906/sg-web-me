@@ -1,4 +1,16 @@
 <script lang="ts" setup>
+interface Props {
+  mode?: 'currency' | 'account'
+}
+
+withDefaults(defineProps<Props>(), {
+  mode: 'currency',
+})
+
+const {
+  value: searchValue,
+} = useField<string>('password')
+
 const date = ref([])
 const currentPage = ref(1)
 const selectSize: Ref<number> = ref(0)
@@ -16,7 +28,18 @@ const selectCurrencyOptions: ISelectOption[] = [
     <div class="table-filter">
       <BaseDatePicker v-model="date" />
       <BaseSelect v-model="selectSize" :options="selectTypeOptions" />
-      <BaseSelect v-model="selectSize" :options="selectCurrencyOptions" />
+      <BaseSelect
+        v-if="mode === 'currency'"
+        v-model="selectSize"
+        :options="selectCurrencyOptions"
+      />
+      <div v-else style="max-width: 95px;">
+        <BaseInput v-model="searchValue" placeholder="账号">
+          <template #right-icon>
+            <BaseIcon name="uni-search" />
+          </template>
+        </BaseInput>
+      </div>
       <slot name="grand-total" />
     </div>
     <slot />

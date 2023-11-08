@@ -39,6 +39,7 @@ function changeBar(item: { name: string; path?: string }) {
       break
     case 'bet':
     case 'user-bet':
+      leftIsExpand.value && closeLeftSidebar()
       if (activeBar.value === name) {
         activeBar.value = route.path.includes('/casino') ? 'game' : 'sport'
         closeRightSidebar()
@@ -49,6 +50,7 @@ function changeBar(item: { name: string; path?: string }) {
       }
       break
     case 'chat':
+      leftIsExpand.value && closeLeftSidebar()
       if (activeBar.value === name) {
         activeBar.value = route.path.includes('/casino') ? 'game' : 'sport'
         closeRightSidebar()

@@ -934,8 +934,12 @@ export function ApiMemberBalance() {
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=92ca9d78-f919-4210-9067-b0204b71f89f
  */
 export function ApiFinanceWithdrawCoin(data: {
+  /** 货币id */
   currency_id: number
+  /** 协议id */
   contract_id: string
+  /** 地址id */
+  wallet_id: string
   amount: string
   pay_password: string
 }) {
