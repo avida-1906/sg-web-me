@@ -37,6 +37,7 @@ declare module 'vue' {
     AppDemoCard: typeof import('./components/AppDemoCard.vue')['default']
     AppDesc: typeof import('./components/AppDesc.vue')['default']
     AppDialogMessage: typeof import('./components/AppDialogMessage.vue')['default']
+    AppDialogNotice: typeof import('./components/AppDialogNotice.vue')['default']
     AppEmailCodeDialog: typeof import('./components/AppEmailCodeDialog.vue')['default']
     AppErrorPage: typeof import('./components/AppErrorPage.vue')['default']
     AppFiatDeposit: typeof import('./components/AppFiatDeposit.vue')['default']
@@ -145,6 +146,7 @@ declare module 'vue' {
     BaseTable: typeof import('./components/BaseTable.vue')['default']
     BaseTag: typeof import('./components/BaseTag.vue')['default']
     BaseUpload: typeof import('./components/BaseUpload.vue')['default']
+    copy: typeof import('./components/AppDialogMessage copy.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
