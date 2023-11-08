@@ -95,7 +95,7 @@ onMounted(() => {
       }
       .time-wrap {
         text-align: center;
-        color: var(--tg-text-grey);
+        color: var(--tg-text-grey-secondary);
         font-size: var(--tg-font-size-default);
       }
     }
