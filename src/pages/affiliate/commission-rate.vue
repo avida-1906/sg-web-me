@@ -50,7 +50,13 @@ const tableData = ref([
 <template>
   <AppAffiliateContent>
     <template #content-top>
-      <BaseTab v-model="tab" :list="tabList" line-style :center="false" />
+      <BaseTab
+        v-model="tab"
+        style="--tg-tab-style-color: var(--tg-text-lightgrey);"
+        :list="tabList"
+        line-style
+        :center="false"
+      />
     </template>
     <template #default>
       <BaseTable
@@ -71,7 +77,6 @@ const tableData = ref([
 .page-commission-rate {
   --tg-table-th-padding: var(--tg-spacing-21);
   --tg-table-td-padding: var(--tg-spacing-21);
-
   .flex-colum {
     display: flex;
     flex-direction: column;
