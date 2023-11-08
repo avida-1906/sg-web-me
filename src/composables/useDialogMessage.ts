@@ -6,7 +6,7 @@ export function useDialogMessage() {
   const { openDialog: openMessageDialog, closeDialog: closeMessageDialog } = useDialog({
     title: t('site_message'),
     icon: 'navbar-notice',
-    default: () => h(AppDialogMessage),
+    default: data => h(AppDialogMessage, { data }),
   })
 
   return {

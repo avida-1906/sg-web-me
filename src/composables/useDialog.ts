@@ -30,6 +30,7 @@ export function useDialog({
       show: false,
       funcCall: true,
       onClose: () => {
+        console.log('onClose123123123')
         closeDialog()
       },
       onCancel: () => {

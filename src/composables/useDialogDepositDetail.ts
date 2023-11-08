@@ -9,7 +9,7 @@ export function useDialogDepositDetail() {
   } = useDialog({
     title: t('deposit_detail'),
     icon: 'navbar-notice',
-    default: () => h(AppDialogDepositDetail),
+    default: data => h(AppDialogDepositDetail, { data }),
   })
 
   return {

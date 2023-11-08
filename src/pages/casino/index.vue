@@ -72,6 +72,7 @@ function viewMoreGames() {
 const { openMessageDialog } = useDialogMessage()
 const { openNoticeDialog } = useDialogNotice()
 const { openDepositDetailDialog } = useDialogDepositDetail()
+const { openBetSlipDialog } = useDialogBetSlip()
 </script>
 
 <template>
@@ -97,6 +98,9 @@ const { openDepositDetailDialog } = useDialogDepositDetail()
       </BaseButton>
       <BaseButton @click="openDepositDetailDialog">
         存款详情
+      </BaseButton>
+      <BaseButton @click="openBetSlipDialog({ type: 'casino', data: {} })">
+        娱乐城投注详情
       </BaseButton>
     </div>
     <div class="content-wrapper">
