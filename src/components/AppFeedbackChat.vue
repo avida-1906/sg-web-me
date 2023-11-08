@@ -23,6 +23,10 @@ function goBack() {
 onMounted(() => {
   runGetHistory({ feed_id: '90153251929807' })
 })
+
+onUnmounted(() => {
+  goBack()
+})
 </script>
 
 <template>
