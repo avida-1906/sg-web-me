@@ -44,9 +44,11 @@ const getComponent = computed(() => {
       </VTooltip>
     </div>
     <BaseTab v-model="tab" :list="tabList" line-style full :center="false" />
-    <keep-alive>
-      <component :is="getComponent" />
-    </keep-alive>
+    <div class="notice-content">
+      <keep-alive>
+        <component :is="getComponent" />
+      </keep-alive>
+    </div>
   </div>
 </template>
 
@@ -100,87 +102,14 @@ const getComponent = computed(() => {
       }
     }
   }
-  // .notice-list{
-  //   width: 100%;
-  //   display: flex;
-  //   flex: 1;
-  //   justify-content: center;
-  //   flex-direction: column;
-  //   overflow: hidden;
-  //   background: var(--tg-secondary-dark);
-  //   .notice-scroll{
-  //     padding: 12px 16px;
-  //     gap: 12px;
-  //     color: var(--tg-secondary-light);
-  //     .contain-top{
-  //       display: flex;
-  //       justify-content: space-between;
-  //       align-items: center;
-  //       font-size: var(--tg-font-size-default);
-  //       font-weight: 500;
-  //       span:hover{
-  //         cursor: pointer;
-  //       }
-  //     }
-  //     .contain-item{
-  //       display: flex;
-  //       height: 80px;
-  //       min-height: 80px;
-  //       max-height: 80px;
-  //       width: 100%;
-  //       overflow: hidden;
-  //       .item-left{
-  //         width: 60px;
-  //         height: 100%;
-  //         font-size: var(--tg-font-size-lg);
-  //         --tg-icon-color:var(--tg-primary-success);
-  //         background: var(--tg-secondary-grey);
-  //         border-radius:
-  //         var(--tg-radius-default)
-  //         var(--tg-radius-none)
-  //         var(--tg-radius-none)
-  //         var(--tg-radius-default);
-  //       }
-  //       .item-right{
-  //         display: flex;
-  //         flex: 1;
-  //         height: 100%;
-  //         padding: 9px 12px;
-  //         font-size: var(--tg-font-size-default);
-  //         flex-direction: column;
-  //         justify-content: space-between;
-  //         background: var(--tg-secondary-main);
-  //         border-radius:
-  //         var(--tg-radius-none)
-  //         var(--tg-radius-default)
-  //          var(--tg-radius-default)
-  //          var(--tg-radius-none);
-  //         .right-state{
-  //           display: flex;
-  //           color:var(--tg-text-white);
-  //           font-size: var(--tg-font-size-default);
-  //           font-weight: 500;
-  //           justify-content: space-between;
-  //           align-items: center;
-  //         }
-  //       }
-  //     }
-  //     .empty-notice{
-  //       height: 100%;
-  //       display: flex;
-  //       flex-direction: column;
-  //       align-items: center;
-  //       justify-content: center;
-  //       padding: 16px;
-  //       color: var(--tg-secondary-light);
-  //       font-size: var(--tg-font-size-default);
-  //       .empty-text{
-  //         color:var(--tg-text-white);
-  //         font-weight: var(--tg-font-weight-semibold);
-  //         margin: 36px auto 8px;
-  //       }
-  //     }
-  //   }
-  // }
+  .notice-content{
+    width: 100%;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    flex-direction: column;
+    overflow: hidden;
+    background: var(--tg-secondary-dark);
+  }
 }
 </style>

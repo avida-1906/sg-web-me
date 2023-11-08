@@ -3,65 +3,56 @@ const noticeList = [{}]
 </script>
 
 <template>
-  <div class="notice-list">
-    <div class="scroll-y scrollable scroll-contain notice-scroll">
-      <template v-if="noticeList.length > 0">
-        <div class="contain-top">
-          <span>新推出</span>
-          <span>标记全部为已读</span>
+  <!-- <div class="notice-list"> -->
+  <div class="scroll-y scrollable scroll-contain notice-scroll">
+    <template v-if="noticeList.length > 0">
+      <div class="contain-top">
+        <span>新推出</span>
+        <span>标记全部为已读</span>
+      </div>
+      <div v-for="i in 12" :key="i" class="contain-item">
+        <div class="center item-left">
+          <BaseIcon name="navbar-wallet" class="icon-size" />
         </div>
-        <div v-for="i in 12" :key="i" class="contain-item">
-          <div class="center item-left">
-            <BaseIcon name="navbar-wallet" class="icon-size" />
-          </div>
-          <div class="item-right">
-            <div class="right-state">
-              <span>存款待定中{{ i }}</span>
-              <BaseBadge
-                status="success" style="color: var(--tg-secondary-light);
+        <div class="item-right">
+          <div class="right-state">
+            <span>存款待定中{{ i }}</span>
+            <BaseBadge
+              status="success" style="color: var(--tg-secondary-light);
                   font-size: var(--tg-font-size-xs);
                   font-weight: var(--tg-font-weight-normal);" text="1天前"
-              />
-            </div>
-            <div>
-              已登机您 100.00000000
-              <AppCurrencyIcon
-                style="display: inline;
-                vertical-align: middle;"
-                currency-type="BTC"
-              /> 的存款
-            </div>
-            <div>待确认</div>
+            />
           </div>
+          <div>
+            已登机您 100.00000000
+            <AppCurrencyIcon
+              style="display: inline;
+                vertical-align: middle;"
+              currency-type="BTC"
+            /> 的存款
+          </div>
+          <div>待确认</div>
         </div>
-      </template>
-      <div v-else class="empty-notice">
-        <BaseEmpty>
-          <template #icon>
-            <BaseIcon font-size="62" name="notice-empty" />
-          </template>
-          <template #description>
-            <div class="empty-text">
-              暂无通知
-            </div>
-            <div>您的互动将在此处显示</div>
-          </template>
-        </BaseEmpty>
       </div>
+    </template>
+    <div v-else class="empty-notice">
+      <BaseEmpty>
+        <template #icon>
+          <BaseIcon font-size="62" name="notice-empty" />
+        </template>
+        <template #description>
+          <div class="empty-text">
+            暂无通知
+          </div>
+          <div>您的互动将在此处显示</div>
+        </template>
+      </BaseEmpty>
     </div>
   </div>
+  <!-- </div> -->
 </template>
 
 <style lang="scss" scoped>
-  .notice-list {
-      width: 100%;
-      display: flex;
-      flex: 1;
-      justify-content: center;
-      flex-direction: column;
-      overflow: hidden;
-      background: var(--tg-secondary-dark);
-
       .notice-scroll {
           padding: 12px 16px;
           gap: 12px;
@@ -137,5 +128,4 @@ const noticeList = [{}]
               }
           }
       }
-  }
 </style>
