@@ -17,6 +17,7 @@ function textInput() {
 }
 
 function feedbackItemClick() {
+  chatStore.setFeedbackItem({ feed_id: '980eew0rw8r' })
   chatStore.toggleShowFeedbackChat()
 }
 </script>

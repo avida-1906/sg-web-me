@@ -1,4 +1,10 @@
 <script lang="ts" setup>
+interface Props {
+  feedId: string
+}
+
+const props = defineProps<Props>()
+
 const { t } = useI18n()
 const { openNotify } = useNotify()
 
@@ -10,7 +16,7 @@ const message = ref('')
 
 const trimMessage = computed(() => message.value.trim())
 const params = computed(() => ({
-  feed_id: 'xxx',
+  feed_id: props.feedId,
   content: trimMessage.value,
   source: 1,
 }))

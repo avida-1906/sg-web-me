@@ -1,11 +1,7 @@
 <script lang="ts" setup>
-interface Props {
-  feedBackItem: any
-}
-
-defineProps<Props>()
-
 const chatStore = useChatStore()
+
+const { feedBackItem } = storeToRefs(chatStore)
 
 const scrollMsg = ref()
 const messageHistory = ref<Array<any>>([])
@@ -47,8 +43,8 @@ onMounted(() => {
         </template>
       </div>
     </div>
-    <div class="footer">
-      <AppFeedbackChatFooter />
+    <div v-if="feedBackItem" class="footer">
+      <AppFeedbackChatFooter :feed-id="feedBackItem.feed_id" />
     </div>
   </div>
 </template>
