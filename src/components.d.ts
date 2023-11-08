@@ -77,6 +77,7 @@ declare module 'vue' {
     AppSettingsContentItem: typeof import('./components/AppSettingsContentItem.vue')['default']
     AppSidebarBig: typeof import('./components/AppSidebarBig.vue')['default']
     AppSidebarSmall: typeof import('./components/AppSidebarSmall.vue')['default']
+    AppSiteMessage: typeof import('./components/AppSiteMessage.vue')['default']
     AppSlider: typeof import('./components/AppSlider.vue')['default']
     AppSportsBetButton: typeof import('./components/AppSportsBetButton.vue')['default']
     AppSportsBetSlip: typeof import('./components/AppSportsBetSlip.vue')['default']
