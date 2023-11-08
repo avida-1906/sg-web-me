@@ -954,7 +954,15 @@ export function ApiGetFeedbackChatList(data: {
   /** 反馈ID */
   feed_id: string
 }) {
-  return httpClient.post<Array<{ images: string; description: string }>>('/member/feedback/chat/list', data)
+  return httpClient.post<Array<{
+    images?: string
+    description?: string
+    content: string
+    created_at: number
+    feed_id: string
+    uid: string
+    id: string
+  }>>('/member/feedback/chat/list', data)
 }
 
 /**
