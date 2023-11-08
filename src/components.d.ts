@@ -36,6 +36,7 @@ declare module 'vue' {
     AppDeleteConfirmDialog: typeof import('./components/AppDeleteConfirmDialog.vue')['default']
     AppDemoCard: typeof import('./components/AppDemoCard.vue')['default']
     AppDesc: typeof import('./components/AppDesc.vue')['default']
+    AppDialogDepositDetail: typeof import('./components/AppDialogDepositDetail.vue')['default']
     AppDialogMessage: typeof import('./components/AppDialogMessage.vue')['default']
     AppDialogNotice: typeof import('./components/AppDialogNotice.vue')['default']
     AppEmailCodeDialog: typeof import('./components/AppEmailCodeDialog.vue')['default']
@@ -147,7 +148,6 @@ declare module 'vue' {
     BaseTable: typeof import('./components/BaseTable.vue')['default']
     BaseTag: typeof import('./components/BaseTag.vue')['default']
     BaseUpload: typeof import('./components/BaseUpload.vue')['default']
-    copy: typeof import('./components/AppDialogMessage copy.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
