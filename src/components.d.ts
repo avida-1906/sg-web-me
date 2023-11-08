@@ -47,6 +47,7 @@ declare module 'vue' {
     AppErrorPage: typeof import('./components/AppErrorPage.vue')['default']
     AppFeedback: typeof import('./components/AppFeedback.vue')['default']
     AppFeedbackChat: typeof import('./components/AppFeedbackChat.vue')['default']
+    AppFeedbackChatFooter: typeof import('./components/AppFeedbackChatFooter.vue')['default']
     AppFeedbackChatMsg: typeof import('./components/AppFeedbackChatMsg.vue')['default']
     AppFiatDeposit: typeof import('./components/AppFiatDeposit.vue')['default']
     AppFiatWithdrawal: typeof import('./components/AppFiatWithdrawal.vue')['default']

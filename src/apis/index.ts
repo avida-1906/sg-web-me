@@ -975,7 +975,7 @@ export function ApiAddFeedbackChatMsg(data: {
   /** 聊天内容 */
   content: string
   /** 来源 1会员 2商户后台 */
-  source: 1 | 2
+  source: number
 }) {
   return httpClient.post<string>('/member/feedback/chat/insert', data)
 }

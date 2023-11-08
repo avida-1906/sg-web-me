@@ -118,7 +118,7 @@ function addCommand(u: { command: string }) {
   msgInput.value?.getFocus()
 }
 function sendMsg() {
-  if (trimMessage.value.length) {
+  if (trimMessage.value.length && !sendLoading.value) {
     if (!isLogin.value) {
       openNotify({ type: 'error', message: t('notify_error_forbid_operation') })
       return
@@ -172,7 +172,7 @@ function enterPress(event: KeyboardEvent) {
     <Transition>
       <div
         v-show="!sendLoading && emojis.length"
-        class="scroll-y wrap emoji-wrap layout-grid"
+        class="scroll-y emoji-wrap layout-grid wrap"
       >
         <div v-for="emo in emojis" :key="emo" class="button-wrap">
           <span class="box" @click="addEmoMsg(emo)">
