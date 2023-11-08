@@ -69,9 +69,9 @@ function viewMoreGames() {
 }
 
 // dialog
-const {
-  openMessageDialog,
-} = useDialogMessage()
+const { openMessageDialog } = useDialogMessage()
+const { openNoticeDialog } = useDialogNotice()
+const { openDepositDetailDialog } = useDialogDepositDetail()
 </script>
 
 <template>
@@ -91,6 +91,12 @@ const {
     <div class="mt-24">
       <BaseButton @click="openMessageDialog">
         站内信
+      </BaseButton>
+      <BaseButton @click="openNoticeDialog">
+        公告
+      </BaseButton>
+      <BaseButton @click="openDepositDetailDialog">
+        存款详情
       </BaseButton>
     </div>
     <div class="content-wrapper">

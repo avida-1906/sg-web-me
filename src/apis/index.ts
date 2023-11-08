@@ -971,3 +971,16 @@ export function ApiAddFeedbackChatMsg(data: {
 }) {
   return httpClient.post<string>('/member/feedback/chat/insert', data)
 }
+
+/**
+ * 文件上传
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=9d5e6346-ba11-4f4f-8960-82a9c96cf4ed
+ */
+export function ApiMemberUpload(data: {
+  /** 类型 */
+  upload_type: string
+  /** 文件 */
+  upload_file: File
+}) {
+  return httpClient.post<string>('/member/upload', data)
+}
