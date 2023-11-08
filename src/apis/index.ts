@@ -945,3 +945,29 @@ export function ApiFinanceWithdrawCoin(data: {
 }) {
   return httpClient.post<string>('/finance/withdraw/coin', data)
 }
+
+/**
+ * 建议反馈对话列表
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=feac25f6-1830-4cbe-bc4b-d547c28ec44f
+ */
+export function ApiGetFeedbackChatList(data: {
+  /** 反馈ID */
+  feed_id: string
+}) {
+  return httpClient.post<Array<{ images: string; description: string }>>('/member/feedback/chat/list', data)
+}
+
+/**
+ * 新增反馈消息
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=4640e6ab-44d1-4ac5-83dd-093964c5545b
+ */
+export function ApiAddFeedbackChatMsg(data: {
+  /** 反馈ID */
+  feed_id: string
+  /** 聊天内容 */
+  content: string
+  /** 来源 1会员 2商户后台 */
+  source: 1 | 2
+}) {
+  return httpClient.post<string>('/member/feedback/chat/insert', data)
+}
