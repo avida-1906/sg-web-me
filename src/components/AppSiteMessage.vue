@@ -3,7 +3,6 @@ const noticeList = [{}]
 </script>
 
 <template>
-  <!-- <div class="notice-list"> -->
   <div class="scroll-y scrollable scroll-contain notice-scroll">
     <template v-if="noticeList.length > 0">
       <div class="contain-top">
@@ -49,7 +48,6 @@ const noticeList = [{}]
       </BaseEmpty>
     </div>
   </div>
-  <!-- </div> -->
 </template>
 
 <style lang="scss" scoped>

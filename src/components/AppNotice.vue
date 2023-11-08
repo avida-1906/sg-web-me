@@ -47,7 +47,13 @@ const getComponent = computed(() => {
         </template>
       </VTooltip>
     </div>
-    <BaseTab v-model="tab" :list="tabList" line-style full :center="false" />
+    <BaseTab
+      v-model="tab"
+      :list="tabList"
+      :center="false"
+      style="padding-top: var(--tg-spacing-8);"
+      line-style full
+    />
     <div class="notice-content">
       <keep-alive>
         <component :is="getComponent" />
@@ -59,6 +65,8 @@ const getComponent = computed(() => {
 <style lang="scss" scoped>
 .app-notice {
   --tg-tab-style-inner-padding-x: 0;
+  --tg-tab-style-color: var(--tg-text-lightgrey);
+  --tg-tab-style-line-active-text-color: var(--tg-text-white);
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -71,20 +79,20 @@ const getComponent = computed(() => {
     align-items: center;
     background: var(--tg-secondary-dark);
     position: relative;
-    box-shadow: var(--tg-box-shadow-lg);
+    box-shadow: var(--tg-header-shadow);
     flex-shrink: 0;
     touch-action: none;
     .head-title{
       color:var(--tg-text-white);
       display: inline-flex;
-      padding: 8px 16px;
+      padding: var(--tg-spacing-8) var(--tg-spacing-16);
       font-size: var(--tg-font-size-default);
       > span {
         font-weight: var(--tg-font-weight-semibold);
       }
       .title-icon{
         font-size: var(--tg-font-size-base);
-        margin-right: 8px;
+        margin-right: var(--tg-spacing-8);
       }
     }
     .close-btn{
@@ -98,7 +106,7 @@ const getComponent = computed(() => {
     .hoverable {
       padding: var(--tg-spacing-1) var(--tg-spacing-4);
       border-radius: 50%;
-      transition: all ease .25s;
+      transition: var(--tg-transition);
       background-color: transparent;
       &:hover {
         background-color: var(--tg-secondary-deepdark);

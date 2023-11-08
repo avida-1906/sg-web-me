@@ -669,10 +669,41 @@ const breadcrumbs = ['one', 'two', 'three', 'four']
 
 const datepicker = ref([])
 const currentPage = ref(1)
+const { openMessageDialog } = useDialogMessage()
+const { openNoticeDialog } = useDialogNotice()
+const { openDepositDetailDialog } = useDialogDepositDetail()
+const { openBetSlipDialog } = useDialogBetSlip()
 </script>
 
 <template>
   <ul class="demo-page">
+    <li class="box">
+      <AppDemoCard title="站内信、公告、存款详情、注单弹窗">
+        <BaseButton @click="openMessageDialog">
+          站内信
+        </BaseButton>
+        <BaseButton @click="openNoticeDialog">
+          公告
+        </BaseButton>
+        <BaseButton @click="openDepositDetailDialog">
+          存款详情
+        </BaseButton>
+        <BaseButton @click="openBetSlipDialog({ type: 'casino', data: {} })">
+          娱乐城投注详情
+        </BaseButton>
+        <BaseButton
+          @click="openBetSlipDialog({ type: 'sports', data: { betType: 'single' } })"
+        >
+          体育投注详情-单式
+        </BaseButton>
+        <BaseButton
+          @click="openBetSlipDialog({ type: 'sports', data: { betType: 'multi' } })"
+        >
+          体育投注详情-复式
+        </BaseButton>
+      </AppDemoCard>
+    </li>
+
     <li class="box">
       <AppDemoCard title="BaseBreadcrumbs">
         <BaseBreadcrumbs :list="breadcrumbs" />
