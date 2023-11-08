@@ -318,6 +318,7 @@ declare global {
   const useDevicePixelRatio: typeof import('@vueuse/core')['useDevicePixelRatio']
   const useDevicesList: typeof import('@vueuse/core')['useDevicesList']
   const useDialog: typeof import('./composables/useDialog')['useDialog']
+  const useDialogMessage: typeof import('./composables/useDialogMessage')['useDialogMessage']
   const useDisplayMedia: typeof import('@vueuse/core')['useDisplayMedia']
   const useDocumentVisibility: typeof import('@vueuse/core')['useDocumentVisibility']
   const useDragDialog: typeof import('./composables/useDragDialog')['useDragDialog']
@@ -798,6 +799,7 @@ declare module 'vue' {
     readonly useDevicePixelRatio: UnwrapRef<typeof import('@vueuse/core')['useDevicePixelRatio']>
     readonly useDevicesList: UnwrapRef<typeof import('@vueuse/core')['useDevicesList']>
     readonly useDialog: UnwrapRef<typeof import('./composables/useDialog')['useDialog']>
+    readonly useDialogMessage: UnwrapRef<typeof import('./composables/useDialogMessage')['useDialogMessage']>
     readonly useDisplayMedia: UnwrapRef<typeof import('@vueuse/core')['useDisplayMedia']>
     readonly useDocumentVisibility: UnwrapRef<typeof import('@vueuse/core')['useDocumentVisibility']>
     readonly useDragDialog: UnwrapRef<typeof import('./composables/useDragDialog')['useDragDialog']>
@@ -1271,6 +1273,7 @@ declare module '@vue/runtime-core' {
     readonly useDevicePixelRatio: UnwrapRef<typeof import('@vueuse/core')['useDevicePixelRatio']>
     readonly useDevicesList: UnwrapRef<typeof import('@vueuse/core')['useDevicesList']>
     readonly useDialog: UnwrapRef<typeof import('./composables/useDialog')['useDialog']>
+    readonly useDialogMessage: UnwrapRef<typeof import('./composables/useDialogMessage')['useDialogMessage']>
     readonly useDisplayMedia: UnwrapRef<typeof import('@vueuse/core')['useDisplayMedia']>
     readonly useDocumentVisibility: UnwrapRef<typeof import('@vueuse/core')['useDocumentVisibility']>
     readonly useDragDialog: UnwrapRef<typeof import('./composables/useDragDialog')['useDragDialog']>
