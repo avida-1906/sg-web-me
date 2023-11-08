@@ -67,12 +67,6 @@ function viewMoreGames() {
   else if (currentNav.value.ty === 2)
     router.push(`/casino/group/provider?pid=${currentNav.value.platform_id}&name=${currentNav.value.label}`)
 }
-
-// dialog
-const { openMessageDialog } = useDialogMessage()
-const { openNoticeDialog } = useDialogNotice()
-const { openDepositDetailDialog } = useDialogDepositDetail()
-const { openBetSlipDialog } = useDialogBetSlip()
 </script>
 
 <template>
@@ -88,30 +82,6 @@ const { openBetSlipDialog } = useDialogBetSlip()
         v-model="tab" :list="casinoNav" :center="false" size="large" use-cloud-img
         @change="onTabChange"
       />
-    </div>
-    <div class="mt-24">
-      <BaseButton @click="openMessageDialog">
-        站内信
-      </BaseButton>
-      <BaseButton @click="openNoticeDialog">
-        公告
-      </BaseButton>
-      <BaseButton @click="openDepositDetailDialog">
-        存款详情
-      </BaseButton>
-      <BaseButton @click="openBetSlipDialog({ type: 'casino', data: {} })">
-        娱乐城投注详情
-      </BaseButton>
-      <BaseButton
-        @click="openBetSlipDialog({ type: 'sports', data: { betType: 'single' } })"
-      >
-        体育投注详情-单式
-      </BaseButton>
-      <BaseButton
-        @click="openBetSlipDialog({ type: 'sports', data: { betType: 'multi' } })"
-      >
-        体育投注详情-复式
-      </BaseButton>
     </div>
     <div class="content-wrapper">
       <!-- 大厅 -->
