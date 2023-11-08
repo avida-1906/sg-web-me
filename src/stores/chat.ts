@@ -46,6 +46,10 @@ export const allEmojis = [
 
 export const useChatStore = defineStore('chat', () => {
   const { bool: hideChat, toggle: toggleChat } = useBoolean(false)
+  const {
+    bool: showFeedbackChat,
+    toggle: toggleShowFeedbackChat,
+  } = useBoolean(false)
 
   const chatRoomList = reactive<Array<Room>>([
     { icon: 'cn', label: '中文', value: 'zh-CN' },
@@ -78,6 +82,8 @@ export const useChatStore = defineStore('chat', () => {
     hideChat,
     toggleChat,
     setRoom,
+    showFeedbackChat,
+    toggleShowFeedbackChat,
   }
 })
 

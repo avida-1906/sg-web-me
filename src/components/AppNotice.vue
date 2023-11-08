@@ -1,6 +1,9 @@
 <script lang="ts" setup>
 import AppSiteMessage from './AppSiteMessage.vue'
+import AppFeedbackChat from './AppFeedbackChat.vue'
 import AppFeedback from './AppFeedback.vue'
+
+const { showFeedbackChat } = storeToRefs(useChatStore())
 
 const { closeRightSidebar } = useRightSidebar()
 
@@ -19,7 +22,7 @@ const getComponent = computed(() => {
     case 'znx': return AppSiteMessage
     case 'gg': return ''
     case 'pmd': return ''
-    case 'fk': return AppFeedback
+    case 'fk': return showFeedbackChat.value ? AppFeedbackChat : AppFeedback
   }
 })
 </script>
