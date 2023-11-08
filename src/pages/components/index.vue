@@ -607,7 +607,6 @@ const columns: any = ref([
   },
 ])
 const tableData: any = ref([])
-const { openReceiveBonusDialog } = useDialogReceiveBonus()
 
 onMounted(() => {
   setTimeout(() => {
@@ -643,7 +642,6 @@ onMounted(() => {
     ]
     setFalse()
   }, 3000)
-  openReceiveBonusDialog()
 })
 function handleClickHead(menu: object) {
   console.log(menu)
