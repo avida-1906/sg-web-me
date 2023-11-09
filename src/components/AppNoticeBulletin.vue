@@ -1,10 +1,11 @@
 <script lang="ts" setup>
-const noticeList = [{}]
+const { openNoticeDialog } = useDialogNotice()
+const { bool: loading, setBool: setLoadingBool } = useBoolean(false)
 
 const pageCurrent = ref(0)
 const pageSize = 10
 const pageTotal = 3
-const { bool: loading, setBool: setLoadingBool } = useBoolean(false)
+const noticeList = [{}]
 
 const isFinished = computed(() => {
   return pageCurrent.value >= pageTotal
@@ -31,7 +32,12 @@ function handleLoad() {
         <span>新推出</span>
         <span>标记全部为已读</span>
       </div>
-      <div v-for="i in pageCurrent * pageSize" :key="i" class="contain-item">
+      <div
+        v-for="i in pageCurrent * pageSize"
+        :key="i"
+        class="contain-item cursor-pointer"
+        @click="openNoticeDialog"
+      >
         <div class="center item-left">
           <BaseIcon name="navbar-wallet" class="icon-size" />
         </div>
