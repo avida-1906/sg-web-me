@@ -2,12 +2,19 @@
 const appStore = useAppStore()
 const { userInfo } = storeToRefs(appStore)
 const { isMobile } = storeToRefs(useWindowStore())
+const { openAgentGradeDialog } = useDialogAgentGrade()
+
+function openDialog() {
+  openAgentGradeDialog()
+}
 </script>
 
 <template>
   <div class="app-user-agent-info">
     <div class="left">
-      <BaseIcon class="agent-badge" name="agent-badge" />
+      <div class="cursor-pointer" @click="openDialog">
+        <BaseIcon class="agent-badge" name="agent-badge" />
+      </div>
       <div class="info">
         <div>
           <span>{{ $t('user_account') }}：</span>
