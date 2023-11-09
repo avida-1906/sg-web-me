@@ -77,6 +77,10 @@ watch(() => tab.value, () => {
   if (tab.value === 2 && !feedbackList.value?.d?.length)
     runFeedbackList()
 })
+
+onActivated(() => {
+  runFeedbackList()
+})
 </script>
 
 <template>
