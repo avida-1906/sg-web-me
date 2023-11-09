@@ -8,8 +8,10 @@ interface Props {
 
 const props = defineProps<Props>()
 
+const { t } = useI18n()
 const chatStore = useChatStore()
 const { isVirtualCurrency } = useCurrencyData()
+const { openNotify } = useNotify()
 
 const currentNetwork = ref('')
 const activeCurrency = ref<CurrencyData | null>()
@@ -24,6 +26,7 @@ const isVirCurrency = computed(() => {
 const { run: runDrawBonus, loading } = useRequest(ApiMemberFeedbackBonusDraw, {
   onSuccess: () => {
     chatStore.setFeedbackItem({ ...props.feedBackItem, bonusState: 2 })
+    openNotify({ type: 'success', message: t('receive_success') })
   },
 })
 
@@ -68,7 +71,7 @@ function changeCurrency(item: CurrencyData, network: string) {
       <BaseButton size="md" @click="closeDialog">
         {{ $t('cancel') }}
       </BaseButton>
-      <BaseButton bg-style="primary" size="md" @click="receiveBonus">
+      <BaseButton bg-style="primary" size="md" :loading="loading" @click="receiveBonus">
         {{ $t('confirm_receive') }}
       </BaseButton>
     </div>
