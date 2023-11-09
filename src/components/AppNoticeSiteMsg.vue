@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-const { openMessageDialog } = useDialogMessage()
+// const { openMessageDialog } = useDialogMessage()
+const { openDepositDetailDialog } = useDialogDepositDetail()
 const { bool: loading, setBool: setLoadingBool } = useBoolean(false)
 
 const noticeList = [{}]
@@ -36,7 +37,7 @@ function handleLoad() {
         v-for="i in pageCurrent * pageSize"
         :key="i"
         class="contain-item cursor-pointer"
-        @click="openMessageDialog"
+        @click="openDepositDetailDialog"
       >
         <div class="center item-left">
           <BaseIcon name="navbar-wallet" class="icon-size" />

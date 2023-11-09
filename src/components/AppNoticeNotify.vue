@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const { openDepositDetailDialog } = useDialogDepositDetail()
+const { openBetSlipDialog } = useDialogBetSlip()
 const { bool: loading, setBool: setLoadingBool } = useBoolean(false)
 
 const pageCurrent = ref(0)
@@ -36,25 +36,25 @@ function handleLoad() {
         v-for="i in pageCurrent * pageSize"
         :key="i"
         class="contain-item cursor-pointer"
-        @click="openDepositDetailDialog"
+        @click="openBetSlipDialog"
       >
         <div class="center item-left">
           <BaseIcon name="navbar-wallet" class="icon-size" />
         </div>
         <div class="item-right">
           <div class="right-state">
-            <span>存款待定中{{ i }}</span>
+            <span>复式投注已结算{{ i }}</span>
             <BaseBadge
               status="success" style="color: var(--tg-secondary-light);
                     font-size: var(--tg-font-size-xs);
                     font-weight: var(--tg-font-weight-normal);" text="1天前"
             />
           </div>
-          <div>
-            已登机您 100.00000000
+          <div style="white-space:normal;">
+            您含有3项赛事的复式投注赢得了100.00000000
             <AppCurrencyIcon
               style="display: inline-flex;vertical-align: bottom;" currency-type="BTC"
-            /> 的存款
+            />
           </div>
           <div>待确认</div>
         </div>
