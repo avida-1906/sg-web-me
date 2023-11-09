@@ -680,9 +680,7 @@ const baseListLoading = ref(false)
 function loadMore() {
   baseListLoading.value = true
   const t = setTimeout(() => {
-    baseListList.value.push(Math.ceil(Math.random() * 10))
-    baseListList.value.push(Math.ceil(Math.random() * 10))
-    baseListList.value.push(Math.ceil(Math.random() * 10))
+    baseListList.value.push(Math.ceil(Math.random() * 10), Math.ceil(Math.random() * 10), Math.ceil(Math.random() * 10))
     console.log('list.value===>', baseListList.value.length)
     baseListLoading.value = false
     if (baseListList.value.length >= 15)
