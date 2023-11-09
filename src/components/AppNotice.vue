@@ -58,16 +58,15 @@ const getComponent = computed(() => {
       line-style
     />
     <div class="notice-content">
-      <!-- <keep-alive> -->
-      <component :is="getComponent" />
-      <!-- </keep-alive> -->
+      <keep-alive>
+        <component :is="getComponent" />
+      </keep-alive>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .app-notice {
-  // --tg-tab-style-inner-padding-x: 0;
   --tg-tab-style-color: var(--tg-text-lightgrey);
   --tg-tab-style-line-active-text-color: var(--tg-text-white);
   height: 100%;
