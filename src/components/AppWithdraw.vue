@@ -43,7 +43,13 @@ const {
 const {
   data: walletList,
   runAsync: runAsyncWalletList,
-} = useList(ApiMemberWalletList)
+} = useRequest(ApiMemberWalletList, {
+  onSuccess(data) {
+    const temp = data.d.find(i => i.is_default === 1)?.id
+    if (temp)
+      address.value = temp
+  },
+})
 const {
   runAsync: runAsyncWithdrawCoin,
 } = useRequest(ApiFinanceWithdrawCoin, {
@@ -97,6 +103,8 @@ watch(() => props.currentNetwork, () => {
     runAsyncWalletList({
       contract_type: props.currentNetwork,
       currency_id: props.activeCurrency.cur,
+      page: 1,
+      page_size: 10,
     })
   }
 }, { immediate: true })

@@ -8,6 +8,7 @@ const chatStore = useChatStore()
 
 const { openNotify } = useNotify()
 
+const imageUrl = ref('')
 const textLength = ref(0)
 const tab = ref(1)
 const placeholder = '我们已经设置了巨额奖金，专门收集反馈意见，以便我们优化系统和功能，给您带来更好的体验！一旦被采纳，将根据重要程度给予奖励（未采纳除外）'
@@ -49,9 +50,9 @@ const {
 })
 
 const amountTotal = computed(() => {
-  return feedbackList?.value?.d.reduce((total, item) => {
+  return feedbackList?.value?.d?.reduce((total, item) => {
     return total + Number(item.amount)
-  }, 0)
+  }, 0) ?? 0
 })
 
 async function submitFeedback() {
@@ -70,7 +71,7 @@ function textInput() {
 
 function feedbackItemClick(item: any) {
   chatStore.setFeedbackItem({ ...item, feed_id: item.id })
-  chatStore.toggleShowFeedbackChat()
+  chatStore.setFeedbackChatTrue()
 }
 
 watch(() => tab.value, () => {
@@ -135,7 +136,7 @@ onActivated(() => {
             图片
           </p>
           <div class="file">
-            <BaseUpload img-type="common" accept="image/*, video/*" />
+            <BaseUpload v-model="imageUrl" img-type="common" />
           </div>
           <div class="tips">
             支持图片与视频上传，大小不得超过50M

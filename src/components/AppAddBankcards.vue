@@ -222,7 +222,7 @@ onUnmounted(() => {
         :msg="bankAreaCpfError"
         label="开户行地址"
       />
-      <div class="checkbox-wrap">
+      <div v-if="currentType === '1'" class="checkbox-wrap">
         <span>是否设为默认卡号</span>
         <BaseCheckBox v-model="isDefault" />
       </div>

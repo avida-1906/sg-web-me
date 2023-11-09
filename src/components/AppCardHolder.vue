@@ -162,6 +162,7 @@ if (!cardList.value)
               <span class="type">{{ tmp.open_name }}</span>
               <BaseButton
                 type="text"
+                style="z-index: 10;"
                 @click.stop="toDeleteBankcard(tmp)"
               >
                 <BaseIcon name="uni-delete" />

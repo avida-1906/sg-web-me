@@ -1,5 +1,8 @@
 <script lang="ts" setup>
-import AppSiteMessage from './AppSiteMessage.vue'
+import AppNoticeSiteMsg from './AppNoticeSiteMsg.vue'
+import AppNoticeNotify from './AppNoticeNotify.vue'
+import AppNoticeBulletin from './AppNoticeBulletin.vue'
+import AppNoticeSwiper from './AppNoticeSwiper.vue'
 import AppFeedbackChat from './AppFeedbackChat.vue'
 import AppFeedback from './AppFeedback.vue'
 
@@ -18,10 +21,10 @@ const tabList = [
 
 const getComponent = computed(() => {
   switch (tab.value) {
-    case 'tx': return ''
-    case 'znx': return AppSiteMessage
-    case 'gg': return ''
-    case 'pmd': return ''
+    case 'tz': return AppNoticeNotify
+    case 'znx': return AppNoticeSiteMsg
+    case 'gg': return AppNoticeBulletin
+    case 'pmd': return AppNoticeSwiper
     case 'fk': return showFeedbackChat.value ? AppFeedbackChat : AppFeedback
   }
 })
@@ -52,7 +55,7 @@ const getComponent = computed(() => {
       :list="tabList"
       :center="false"
       style="padding-top: var(--tg-spacing-8);"
-      line-style full
+      line-style
     />
     <div class="notice-content">
       <keep-alive>
@@ -64,7 +67,6 @@ const getComponent = computed(() => {
 
 <style lang="scss" scoped>
 .app-notice {
-  --tg-tab-style-inner-padding-x: 0;
   --tg-tab-style-color: var(--tg-text-lightgrey);
   --tg-tab-style-line-active-text-color: var(--tg-text-white);
   height: 100%;
