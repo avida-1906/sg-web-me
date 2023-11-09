@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 interface Props {
   feedId: string
+  allowSend: boolean
 }
 
 const props = defineProps<Props>()
@@ -24,14 +25,19 @@ const params = computed(() => ({
 const { run: runSendMsg, loading: sendLoading } = useRequest(ApiAddFeedbackChatMsg)
 
 function sendMsg() {
-  if (trimMessage.value.length && !sendLoading.value) {
-    if (!isLogin.value) {
-      openNotify({ type: 'error', message: t('notify_error_forbid_operation') })
-      return
+  if (props.allowSend) {
+    if (trimMessage.value.length && !sendLoading.value) {
+      if (!isLogin.value) {
+        openNotify({ type: 'error', message: t('notify_error_forbid_operation') })
+        return
+      }
+      runSendMsg(params.value)
+      message.value = ''
+      msgInput.value.getFocus()
     }
-    runSendMsg(params.value)
-    message.value = ''
-    msgInput.value.getFocus()
+  }
+  else {
+    openNotify({ type: 'error', message: t('wait_office_reply') })
   }
 }
 

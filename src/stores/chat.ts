@@ -1,9 +1,9 @@
 import type { Room } from '~/types'
 import { languageMap } from '~/modules/i18n'
 
-interface FeedBackItem {
+export interface FeedBackItem {
   feed_id: string
-  bonusState: number
+  bonusState: 1 | 2
   [k: string]: any
 }
 
@@ -56,7 +56,7 @@ export const useChatStore = defineStore('chat', () => {
     bool: showFeedbackChat,
     toggle: toggleShowFeedbackChat,
   } = useBoolean(false)
-  const feedBackItem = ref<FeedBackItem>()
+  const feedBackItem = ref<FeedBackItem | undefined>()
 
   const chatRoomList = reactive<Array<Room>>([
     { icon: 'cn', label: '中文', value: 'zh-CN' },
@@ -80,7 +80,7 @@ export const useChatStore = defineStore('chat', () => {
     room.value = r
   }
 
-  function setFeedbackItem(v: FeedBackItem) {
+  function setFeedbackItem(v?: FeedBackItem) {
     feedBackItem.value = v
   }
 

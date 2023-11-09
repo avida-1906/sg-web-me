@@ -1,7 +1,17 @@
 <script lang="ts" setup>
 import type { CurrencyData } from '~/composables/useCurrencyData'
+import type { FeedBackItem } from '~/stores/chat'
 
+interface Props {
+  feedBackItem: FeedBackItem
+}
+
+const props = defineProps<Props>()
+
+const { t } = useI18n()
+const chatStore = useChatStore()
 const { isVirtualCurrency } = useCurrencyData()
+const { openNotify } = useNotify()
 
 const currentNetwork = ref('')
 const activeCurrency = ref<CurrencyData | null>()
@@ -13,6 +23,23 @@ const isVirCurrency = computed(() => {
   return false
 })
 
+const { run: runDrawBonus, loading } = useRequest(ApiMemberFeedbackBonusDraw, {
+  onSuccess: () => {
+    chatStore.setFeedbackItem({ ...props.feedBackItem, bonusState: 2 })
+    openNotify({ type: 'success', message: t('receive_success') })
+  },
+})
+
+const closeDialog = inject('closeDialog', () => {})
+
+function receiveBonus() {
+  if (props.feedBackItem
+    && props.feedBackItem.bonusState === 1
+    && props.feedBackItem.feed_id
+    && !loading.value)
+    runDrawBonus({ feed_id: props.feedBackItem.feed_id })
+}
+
 function changeCurrency(item: CurrencyData, network: string) {
   activeCurrency.value = item
   currentNetwork.value = network
@@ -22,7 +49,7 @@ function changeCurrency(item: CurrencyData, network: string) {
 <template>
   <div class="app-receive-bonus">
     <div class="money">
-      200USDT
+      {{ feedBackItem.amount }}USDT
     </div>
     <div class="choose-label">
       {{ $t('choose_bonus_receive_label') }}：
@@ -41,10 +68,10 @@ function changeCurrency(item: CurrencyData, network: string) {
       {{ $t('bonus_receive_expect') }}：<AppAmount amount="99999900" currency-type="BNB" />
     </div>
     <div class="buttons">
-      <BaseButton size="md">
+      <BaseButton size="md" @click="closeDialog">
         {{ $t('cancel') }}
       </BaseButton>
-      <BaseButton bg-style="primary" size="md">
+      <BaseButton bg-style="primary" size="md" :loading="loading" @click="receiveBonus">
         {{ $t('confirm_receive') }}
       </BaseButton>
     </div>
