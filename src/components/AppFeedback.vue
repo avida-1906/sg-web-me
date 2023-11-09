@@ -71,7 +71,7 @@ function textInput() {
 
 function feedbackItemClick(item: any) {
   chatStore.setFeedbackItem({ ...item, feed_id: item.id })
-  chatStore.toggleShowFeedbackChat()
+  chatStore.setFeedbackChatTrue()
 }
 
 watch(() => tab.value, () => {

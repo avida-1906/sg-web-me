@@ -54,7 +54,8 @@ export const useChatStore = defineStore('chat', () => {
   const { bool: hideChat, toggle: toggleChat } = useBoolean(false)
   const {
     bool: showFeedbackChat,
-    toggle: toggleShowFeedbackChat,
+    setFalse: setFeedbackChatFalse,
+    setTrue: setFeedbackChatTrue,
   } = useBoolean(false)
   const feedBackItem = ref<FeedBackItem | undefined>()
 
@@ -94,7 +95,8 @@ export const useChatStore = defineStore('chat', () => {
     toggleChat,
     setRoom,
     showFeedbackChat,
-    toggleShowFeedbackChat,
+    setFeedbackChatFalse,
+    setFeedbackChatTrue,
     feedBackItem,
     setFeedbackItem,
   }
