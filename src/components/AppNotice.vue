@@ -1,5 +1,8 @@
 <script lang="ts" setup>
-import AppSiteMessage from './AppSiteMessage.vue'
+import AppNoticeSiteMsg from './AppNoticeSiteMsg.vue'
+import AppNoticeNotify from './AppNoticeNotify.vue'
+import AppNoticeBulletin from './AppNoticeBulletin.vue'
+import AppNoticeSwiper from './AppNoticeSwiper.vue'
 import AppFeedbackChat from './AppFeedbackChat.vue'
 import AppFeedback from './AppFeedback.vue'
 
@@ -18,10 +21,10 @@ const tabList = [
 
 const getComponent = computed(() => {
   switch (tab.value) {
-    case 'tx': return ''
-    case 'znx': return AppSiteMessage
-    case 'gg': return ''
-    case 'pmd': return ''
+    case 'tz': return AppNoticeNotify
+    case 'znx': return AppNoticeSiteMsg
+    case 'gg': return AppNoticeBulletin
+    case 'pmd': return AppNoticeSwiper
     case 'fk': return showFeedbackChat.value ? AppFeedbackChat : AppFeedback
   }
 })
@@ -55,9 +58,9 @@ const getComponent = computed(() => {
       line-style
     />
     <div class="notice-content">
-      <keep-alive>
-        <component :is="getComponent" />
-      </keep-alive>
+      <!-- <keep-alive> -->
+      <component :is="getComponent" />
+      <!-- </keep-alive> -->
     </div>
   </div>
 </template>
