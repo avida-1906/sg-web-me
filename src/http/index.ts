@@ -263,7 +263,7 @@ class HttpClient {
   }
 
   post<T>(url: string, data?: any, config?: AxiosRequestConfig<any>): Promise<T> {
-    return this.instance.post(url, data || {}, config)
+    return this.instance.post(url, data, config)
   }
 }
 
