@@ -4,14 +4,61 @@
 // const props = withDefaults(defineProps<Props>(), {
 // })
 // const emit = defineEmits(['update:modelValue'])
-const text = ref('')
+const { openNotify } = useNotify()
+
 const textLength = ref(0)
 const tab = ref(1)
 const placeholder = '我们已经设置了巨额奖金，专门收集反馈意见，以便我们优化系统和功能，给您带来更好的体验！一旦被采纳，将根据重要程度给予奖励（未采纳除外）'
 
-function textInput() {
-  textLength.value = text.value.length
+const {
+  value: feedbackText,
+  errorMessage: feedbackTextError,
+  validate: feedbackTextValidate,
+} = useField<string>('feedbackText', (value) => {
+  if (!value)
+    return '请输入反馈内容'
+  return ''
+})
+
+const {
+  run: runFeedbackInsert,
+} = useRequest(ApiMemberFeedbackInsert, {
+  onSuccess() {
+    openNotify({
+      type: 'success',
+      message: '反馈提交成功！',
+    })
+  },
+})
+const {
+  run: runFeedbackList,
+  data: feedbackList,
+} = useRequest(ApiMemberFeedbackList)
+
+async function submitFeedback() {
+  await feedbackTextValidate()
+  if (!feedbackTextError.value)
+    runFeedbackInsert({ images: '111.png,222.png', description: feedbackText.value })
 }
+
+const amountTotal = computed(() => {
+  return feedbackList?.value?.d.reduce((total, item) => {
+    return total + Number(item.amount)
+  }, 0)
+})
+
+function getAmount() {
+
+}
+
+function textInput() {
+  textLength.value = feedbackText.value.length
+}
+
+watch(() => tab.value, () => {
+  if (tab.value === 2)
+    runFeedbackList()
+})
 </script>
 
 <template>
@@ -35,9 +82,9 @@ function textInput() {
           我的反馈
         </BaseButton>
       </div>
-      <div class="tab-right">
-        <p>100.00$</p>
-        <BaseButton bg-style="primary" class="tab-btn">
+      <div v-if="amountTotal" class="tab-right">
+        <p>{{ amountTotal }}$</p>
+        <BaseButton bg-style="primary" class="tab-btn" @click="getAmount">
           一键领取
         </BaseButton>
       </div>
@@ -49,7 +96,7 @@ function textInput() {
             反馈内容<span>（你提我改）</span>
           </p>
           <textarea
-            v-model="text"
+            v-model="feedbackText"
             maxlength="200"
             cols="30"
             rows="8"
@@ -57,7 +104,8 @@ function textInput() {
             @input="textInput"
           />
           <p class="length">
-            {{ textLength }}/200
+            <span class="error">{{ feedbackTextError }}</span>
+            <span>{{ textLength }}/200</span>
           </p>
         </div>
         <div class="img-video">
@@ -65,7 +113,7 @@ function textInput() {
             图片
           </p>
           <div class="file">
-            <BaseUpload img-type="common" />
+            <BaseUpload img-type="common" accept="image/*, video/*" />
           </div>
           <div class="tips">
             支持图片与视频上传，大小不得超过50M
@@ -83,54 +131,47 @@ function textInput() {
           <BaseButton type="line" style="border-color: var(--tg-text-blue);">
             取消
           </BaseButton>
-          <BaseButton bg-style="primary">
+          <BaseButton bg-style="primary" @click="submitFeedback">
             提交
           </BaseButton>
         </div>
       </div>
       <div v-else class="feedback-list">
-        <div class="msg-item">
+        <div v-for="item, index in feedbackList?.d" :key="index" class="msg-item">
           <div class="line">
             <div>
-              反馈状态：<span class="state">处理中</span>
+              反馈状态：<span
+                :style="{
+                  color: item.state === 1
+                    ? 'var(--tg-text-warn)'
+                    : 'var(--tg-text-white)',
+                }"
+              >
+                {{ item.state === 1 ? '处理中' : '已完成' }}
+              </span>
             </div>
-            <div class="unread color-grey">
-              有未读消息
-              <div />
+            <div
+              class="unread"
+              :style="{
+                color: item.newest_m !== 0
+                  ? 'var(--tg-text-lightgrey)'
+                  : 'var(--tg-text-white)',
+              }"
+            >
+              {{ item.newest_m !== 0 ? '有消息未读' : '已读' }}
+              <div v-if="item.newest_m !== 0" />
             </div>
           </div>
           <div class="line">
-            <div>
-              反馈ID: 1231313
+            <div class="text-overflow-hide">
+              反馈ID: {{ item.id }}
             </div>
-            <div class="color-grey">
-              12:12:12-10/10/2023
+            <div class="text-overflow-hide color-grey">
+              {{ application.timestampToTime(item.created_at * 1000) }}
             </div>
           </div>
           <div class="text-overflow-hide">
-            内容: 内容：问我为啥的服务问嗯是的卫计委猥琐大叔的猥琐大叔的猥琐大叔的
-          </div>
-        </div>
-        <div class="msg-item">
-          <div class="line">
-            <div>
-              反馈状态：<span class="state">处理中</span>
-            </div>
-            <div class="unread color-grey">
-              有未读消息
-              <div />
-            </div>
-          </div>
-          <div class="line">
-            <div>
-              反馈ID: 1231313
-            </div>
-            <div class="color-grey">
-              12:12:12-10/10/2023
-            </div>
-          </div>
-          <div class="text-overflow-hide">
-            内容: 内容：问我为啥的服务问嗯是的卫计委猥琐大叔的猥琐大叔的猥琐大叔的
+            内容: {{ item.description }}
           </div>
         </div>
       </div>
@@ -187,7 +228,14 @@ function textInput() {
         }
         .length{
           width: 100%;
-          text-align: right;
+          color: var(--tg-text-lightgrey);
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          .error{
+            color: var(--tg-text-error);
+            font-size: var(--tg-font-size-xs);
+          }
         }
         .file{
           width: 80px;

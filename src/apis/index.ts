@@ -992,3 +992,46 @@ export function ApiMemberUpload(data: {
 }) {
   return httpClient.post<string>('/member/upload', data)
 }
+
+/**
+ * 新增建议反馈
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=f92f7729-5149-4a27-b42b-719a3ccf504e
+ */
+export function ApiMemberFeedbackInsert(data: {
+  /** 多个图片用逗号隔开 */
+  images: string
+  /** 反馈描述 */
+  description: string
+}) {
+  return httpClient.post<string>('/member/feedback/insert', data)
+}
+
+/**
+ * 建议反馈列表
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=c46ed809-7302-4046-9ad7-7eac70271c75
+ */
+export function ApiMemberFeedbackList() {
+  return httpClient.post<IResponseList<{
+    id: string
+    uid: string
+    username: string
+    /** 消息数量 */
+    replys: number
+    newest: number
+    /** 会员新消息数 */
+    newest_m: number
+    created_at: number
+    updatd_at: number
+    images: string[]
+    /** 第一条消息 */
+    description: string
+    /** 操作人 */
+    updatd_by: string
+    /** 状态 1待处理 2已采纳 3已忽略 */
+    state: number
+    /** 采纳金 */
+    amount: string
+    /**  采纳金领取状态 1待领取 2已领取 */
+    bonusState: number
+  }>>('/member/feedback/list', { })
+}
