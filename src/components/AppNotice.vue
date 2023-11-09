@@ -52,7 +52,7 @@ const getComponent = computed(() => {
       :list="tabList"
       :center="false"
       style="padding-top: var(--tg-spacing-8);"
-      line-style full
+      line-style
     />
     <div class="notice-content">
       <keep-alive>
@@ -64,7 +64,7 @@ const getComponent = computed(() => {
 
 <style lang="scss" scoped>
 .app-notice {
-  --tg-tab-style-inner-padding-x: 0;
+  // --tg-tab-style-inner-padding-x: 0;
   --tg-tab-style-color: var(--tg-text-lightgrey);
   --tg-tab-style-line-active-text-color: var(--tg-text-white);
   height: 100%;
