@@ -1,4 +1,4 @@
-import type { AxiosResponse, InternalAxiosRequestConfig } from 'axios'
+import type { AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios'
 import { getCurrentLanguageForBackend } from '~/modules/i18n'
 import { router } from '~/modules/router'
 
@@ -258,12 +258,12 @@ class HttpClient {
     this.cancelTokenList = []
   }
 
-  get<T>(url: string, params?: any): Promise<T> {
-    return this.instance.get(url, { params })
+  get<T>(url: string, config?: AxiosRequestConfig<any>): Promise<T> {
+    return this.instance.get(url, config)
   }
 
-  post<T>(url: string, data?: any): Promise<T> {
-    return this.instance.post(url, data)
+  post<T>(url: string, data?: any, config?: AxiosRequestConfig<any>): Promise<T> {
+    return this.instance.post(url, data || {}, config)
   }
 }
 
