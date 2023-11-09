@@ -1,6 +1,7 @@
 <script setup lang='ts'>
 interface Props {
   finished: boolean
+  loading: boolean
 }
 const props = defineProps<Props>()
 const emit = defineEmits(['load'])
@@ -10,7 +11,7 @@ const { stop, isSupported } = useIntersectionObserver(
   target,
   ([{ isIntersecting }], observerElement) => {
     if (isSupported.value) {
-      if (isIntersecting && !props.finished)
+      if (isIntersecting && !props.finished && !props.loading)
         emit('load')
 
       else if (isIntersecting && props.finished)
