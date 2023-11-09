@@ -246,7 +246,7 @@ export function ApiMemberGameList(params?: {
     is_new: string
     tag_id: string
     is_fav: string
-  }>>('/member/game/list', params)
+  }>>('/member/game/list', { params })
 }
 
 /**
@@ -284,7 +284,7 @@ export function ApiMemberGameDetail(id: string) {
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=b75f9a13-ec49-4eea-bc24-1e7de8bb9e7a
  */
 export function ApiGameLunch(pid: string, game_id: string, cur: string) {
-  return httpClient.get<string>(`/game/launch/${pid}`, { code: game_id, cur })
+  return httpClient.get<string>(`/game/launch/${pid}`, { params: { code: game_id, cur } })
 }
 
 /**
@@ -314,7 +314,7 @@ export function ApiMemberGameSearch(params: { w: string }) {
     currency: string
     lang: string
     is_fav: string
-  }>>('/member/game/search', params)
+  }>>('/member/game/search', { params })
 }
 
 /**
@@ -348,7 +348,7 @@ export function ApiMemberFavList(
     currency: string
     lang: string
     is_fav: string
-  }>>('/member/fav/list', params)
+  }>>('/member/fav/list', { params })
 }
 
 /**
@@ -399,7 +399,7 @@ export function ApiMemberGameRecList(params?: {
     currency: string
     lang: string
     is_fav: string
-  }>>('/member/game/rec/list', params)
+  }>>('/member/game/rec/list', { params })
 }
 
 /**
@@ -442,7 +442,7 @@ export function ApiMemberGameCate(params: { cid: string }) {
     icon: string
     total: number
     games: CasinoLobbyGameItem[] | null
-  }>('/member/game/cate', params)
+  }>('/member/game/cate', { params })
 }
 
 /**
@@ -460,7 +460,7 @@ export function ApiMemberGameCateGames(params: {
     img: string
     name: string
     seq: number
-  }>>('/member/game/cate/games', params)
+  }>>('/member/game/cate/games', { params })
 }
 /**
  * 导航娱乐城体育按钮顺序
@@ -483,7 +483,7 @@ export function ApiMemberPlatformList(params: {
   game_type: number
 } = { page: 1, page_size: 100, game_type: 0 },
 ) {
-  return httpClient.get<IResponseList<ProviderItem>>('/member/platform/list', params)
+  return httpClient.get<IResponseList<ProviderItem>>('/member/platform/list', { params })
 }
 
 /**
@@ -500,7 +500,7 @@ export function ApiMemberWalletList(
     page_size?: number
   },
 ) {
-  return httpClient.get<IResponseList<VirtualCoin>>('/member/wallet/list', params)
+  return httpClient.get<IResponseList<VirtualCoin>>('/member/wallet/list', { params })
 }
 
 /**
@@ -520,7 +520,7 @@ export function ApiMemberBankcardList(params: {
   page?: string
   currency_id: string
 }) {
-  return httpClient.get<IResponseList<BankCard>>('/member/bankcard/list', params)
+  return httpClient.get<IResponseList<BankCard>>('/member/bankcard/list', { params })
 }
 
 /**
@@ -540,7 +540,7 @@ export function ApiMemberTreeList(params: {
     name: string
     pid: string
     sortlevel: string
-  }[]>('/member/tree/list', params)
+  }[]>('/member/tree/list', { params })
 }
 
 /**
@@ -673,7 +673,7 @@ export function ApiMemberExists(params: {
   /** 会员名或者邮箱地址 */
   val: string
 } & INotNotice) {
-  return httpClient.get<string>('/member/exists', params)
+  return httpClient.get<string>('/member/exists', { params })
 }
 
 /**
@@ -683,7 +683,7 @@ export function ApiMemberExists(params: {
 export function ApiMemberForgetPassword(params: {
   email: string
 }) {
-  return httpClient.get<string>('/member/forget/password', params)
+  return httpClient.get<string>('/member/forget/password', { params })
 }
 
 /**
@@ -726,7 +726,7 @@ export function ApiMemberFrontLoginLogList(params?: {
     loginip: string
     ipaddress: string
     created_at: number
-  }>>('/member/front/login/log/list', params)
+  }>>('/member/front/login/log/list', { params })
 }
 
 /**
@@ -773,7 +773,7 @@ export function ApiFinanceMethodList(params: {
     bank: boolean
     /** 获取银行id */
     zkId: string
-  }[]>('/finance/method/list', params)
+  }[]>('/finance/method/list', { params })
 }
 
 /**
@@ -798,7 +798,7 @@ export function ApiFinanceMerchantList(params: {
     amount_fixed: string
     /** 常用金额,逗号隔开 */
     often_amount: string
-  }[]>('/finance/merchant/list', params)
+  }[]>('/finance/merchant/list', { params })
 }
 
 /**
@@ -833,7 +833,7 @@ export function ApiChatGetHistory(params: {
     n: string
     /** 创建时间 */
     t: number
-  }[]>('/member/chat/history/list', params)
+  }[]>('/member/chat/history/list', { params })
 }
 
 /**
@@ -864,7 +864,7 @@ export function ApiPaymentDepositBankList(params: {
   return httpClient.get<{
     id: string
     name: string
-  }[]>('/payment/deposit/bank/list', params)
+  }[]>('/payment/deposit/bank/list', { params })
 }
 
 /**
@@ -880,7 +880,7 @@ export function ApiFinanceWithdrawMethodList(params: {
     alias: string
     /** 通道名称 */
     name: string
-  }[]>('/finance/withdraw/method/list', params)
+  }[]>('/finance/withdraw/method/list', { params })
 }
 
 /**
@@ -904,7 +904,7 @@ export function ApiFinanceWithdrawBankcard(params: {
     created_at: number
     updated_at: number
     pay_password: string
-  }>>('/finance/withdraw/bankcard', params)
+  }>>('/finance/withdraw/bankcard', { params })
 }
 
 /**
@@ -975,7 +975,7 @@ export function ApiAddFeedbackChatMsg(data: {
   /** 聊天内容 */
   content: string
   /** 来源 1会员 2商户后台 */
-  source: 1 | 2
+  source: number
 }) {
   return httpClient.post<string>('/member/feedback/chat/insert', data)
 }

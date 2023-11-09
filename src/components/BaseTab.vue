@@ -65,6 +65,8 @@ function onClick(tab: TabItem) {
   --tg-tab-style-wrap-bg-color: var(--tg-secondary-dark);
   --tg-tab-style-inner-padding-y: var(--tg-spacing-11);
   --tg-tab-style-inner-padding-x: var(--tg-spacing-20);
+  --tg-tab-style-color: var(--tg-text-white);
+  --tg-tab-style-line-active-text-color: var(--tg-text-blue);
 }
 </style>
 
@@ -121,7 +123,7 @@ function onClick(tab: TabItem) {
   .tab {
     flex: 1;
     font-size: var(--tg-font-size-default);
-    color: var(--tg-text-white);
+    color: var(--tg-tab-style-color);
     padding: var(--tg-tab-style-inner-padding-y) var(--tg-tab-style-inner-padding-x);
     display: flex;
     align-items: center;
@@ -182,7 +184,7 @@ function onClick(tab: TabItem) {
       border-bottom-color: var(--tg-secondary-main);
       &.active{
         border-bottom-color: var(--tg-text-blue);
-        color: var(--tg-text-blue);
+        color: var(--tg-tab-style-line-active-text-color);
       }
     }
   }

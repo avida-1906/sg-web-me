@@ -21,8 +21,8 @@ const vipProgressData = ref<IVipProgressData>({
   percent: 30,
   currentLevel: 2,
 })
-const { list: liveList, runAsync: runLive } = useList(ApiMemberGameList)
-const { list: slotList, runAsync: runSlot } = useList(ApiMemberGameList)
+// const { list: liveList, runAsync: runLive } = useList(ApiMemberGameList)
+// const { list: slotList, runAsync: runSlot } = useList(ApiMemberGameList)
 const { openRegisterDialog } = useRegisterDialog()
 
 const isSm = computed(() => appContentWidth.value <= widthBoundarySm.value)
@@ -36,10 +36,10 @@ const onShowMore = function () {
     btnText.value = '查看更多'
 }
 
-await application.allSettled([
-  runLive({ game_type: 1 }),
-  runSlot({ game_type: 3 }),
-])
+// await application.allSettled([
+//   runLive({ game_type: 1 }),
+//   runSlot({ game_type: 3 }),
+// ])
 </script>
 
 <template>

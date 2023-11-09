@@ -62,7 +62,7 @@ watch(() => tab.value, () => {
 </script>
 
 <template>
-  <div class="app-feedback scroll-y scrollable scroll-contain notice-scroll">
+  <div class="scroll-y app-feedback scrollable scroll-contain notice-scroll">
     <div class="feedback-tab-wrap">
       <div class="tab-left">
         <BaseButton

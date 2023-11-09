@@ -1,4 +1,8 @@
 <script lang="ts" setup>
+const chatStore = useChatStore()
+
+const { feedBackItem } = storeToRefs(chatStore)
+
 const scrollMsg = ref()
 const messageHistory = ref<Array<any>>([])
 
@@ -9,27 +13,30 @@ const { run: runGetHistory } = useRequest(ApiGetFeedbackChatList, {
     messageHistory.value = data?.reverse()
   },
   onAfter: () => {
-    setTimeout(() => {
-      goBottom()
-    }, 800)
   },
 })
 
-function goBottom(time?: number) {
-  nextTick(() => {
-    setTimeout(() => {
-      document.querySelector('.msg-tail')?.scrollIntoView({ behavior: 'smooth' })
-    }, time !== undefined ? time : 300)
-  })
+function goBack() {
+  chatStore.toggleShowFeedbackChat()
 }
 
 onMounted(() => {
   runGetHistory({ feed_id: '90153251929807' })
 })
+
+onUnmounted(() => {
+  goBack()
+})
 </script>
 
 <template>
   <div class="app-feedback-chat">
+    <div class="header">
+      <div class="go-back" @click="goBack">
+        <BaseIcon name="uni-arrowleft-line" />
+        <span>返回上级页面</span>
+      </div>
+    </div>
     <div class="messages">
       <div ref="scrollMsg" class="scroll-y message-content">
         <div class="time-wrap">
@@ -38,11 +45,10 @@ onMounted(() => {
         <template v-for="msg in messageHistory" :key="msg.id">
           <AppFeedbackChatMsg :message="msg" />
         </template>
-        <div class="wrap msg-tail" />
       </div>
     </div>
-    <div class="footer">
-      footer
+    <div v-if="feedBackItem" class="footer">
+      <AppFeedbackChatFooter :feed-id="feedBackItem.feed_id" />
     </div>
   </div>
 </template>
@@ -55,17 +61,27 @@ onMounted(() => {
   background: var(--tg-secondary-dark);
   .header {
     position: relative;
-    background: var(--tg-secondary-dark);
     width: 100%;
-    height: var(--tg-header-height);
+    height: var(--tg-spacing-50);
     z-index: var(--tg-z-index-10);
-    box-shadow: var(--tg-box-shadow-lg);
+    .go-back {
+      height: 100%;
+      width: fit-content;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: var(--tg-spacing-8);
+      color: var(--tg-text-white);
+      font-size: var(--tg-font-size-default);
+      padding-left: var(--tg-spacing-16);
+      cursor: pointer;
+    }
   }
   .messages {
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: flex-start;
     overflow: hidden;
     position: relative;
     flex-grow: 1;
@@ -77,6 +93,7 @@ onMounted(() => {
       overflow-y: scroll;
       word-break: break-word;
       padding: var(--tg-spacing-8) var(--tg-spacing-16);
+      padding-top: 0;
       display: flex;
       flex-direction: column;
       overflow-anchor: none;
