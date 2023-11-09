@@ -1,21 +1,34 @@
 <script setup lang="ts">
 interface Props {
+  modelValue: string
   imgType?: 'frontId' | 'backId' | 'address' | 'fund' | 'common' // 上传图片用途
   disabled?: boolean // 禁用
   accept?: string // 可选文件类型
   // showDelete?: boolean // 是否显示删除按钮
-  imageUrl?: string // 显示图片地址
+  // imageUrl?: string // 显示图片地址
 }
 
 const props = withDefaults(defineProps<Props>(), {
+  modelValue: '',
   imgType: 'frontId',
   disabled: false,
-  accept: 'image/png, image/jpg, application/pdf',
+  accept: 'image/png, image/jpg',
   // showDelete: true,
-  imageUrl: '',
+  // imageUrl: '',
 })
 
-const emit = defineEmits(['selectFile', 'deleteFile'])
+const emit = defineEmits(['update:modelValue', 'delete'])
+const { VITE_CASINO_IMG_CLOUD_URL } = getEnv()
+
+const {
+  data: fileUrl,
+  run: runFileUpload,
+  loading: fileUploadLoading,
+} = useRequest(ApiMemberUpload, {
+  onSuccess() {
+    emit('update:modelValue', fileUrl.value)
+  },
+})
 
 const getBackground = computed(() => {
   switch (props.imgType) {
@@ -31,35 +44,47 @@ const getBackground = computed(() => {
       return 'common-bg'
   }
 })
+const getUrl = computed(() => {
+  return props.modelValue ? (`${VITE_CASINO_IMG_CLOUD_URL}/${props.modelValue}`) : ''
+})
 
 function changFile(event: any) {
   const file = event.target.files[0]
   if (file) {
-    // const reader = new FileReader()
-    // reader.readAsDataURL(file)
-    // reader.onloadend = function (e) {
-    //   imageUrl.value = e.target?.result
-    // }
-    emit('selectFile', file)
+    runFileUpload({
+      upload_type: 1,
+      upload_file: file,
+    })
   }
 }
 function deleteImg() {
-  emit('deleteFile')
+  emit('update:modelValue', '')
 }
 </script>
 
 <template>
-  <div :class="`base-upload ${getBackground}`">
-    <div v-if="imageUrl" class="img-box">
-      <BaseImage class="file-img" :url="imageUrl" alt="" />
-      <div v-if="!disabled" class="icon-upload-delete" @click.stop="deleteImg">
+  <div class="base-upload" :class="[getBackground]">
+    <div v-if="getUrl" class="center img-box">
+      <BaseImage class="file-img" is-network :url="getUrl" />
+      <BaseButton
+        v-if="!disabled"
+        class="icon-upload-delete"
+        type="text"
+        @click.stop="deleteImg"
+      >
         <BaseIcon name="upload-delete" />
-      </div>
+      </BaseButton>
+      <!-- <div v-if="!disabled" class="icon-upload-delete" @click.stop="deleteImg">
+        <BaseIcon name="upload-delete" />
+      </div> -->
     </div>
     <input
       v-else class="input-file" type="file" :accept="accept" :disabled="disabled"
       @change="changFile"
     >
+    <div v-if="fileUploadLoading" class="img-box center">
+      <BaseLoading style="transform: scale(0.5);" />
+    </div>
   </div>
 </template>
 
@@ -93,14 +118,6 @@ function deleteImg() {
     position: absolute;
     top: 0;
     right: 0;
-    padding-top: var(--tg-spacing-input-padding-vertical);
-    padding-right: var(--tg-spacing-input-padding-vertical);
-    cursor: pointer;
-  }
-
-  .file-img {
-    width: 100%;
-    height: 100%;
   }
 }
 .front-id-bg{

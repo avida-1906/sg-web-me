@@ -12,6 +12,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 const closeDialog = inject('closeDialog', () => { })
 
+const { bool: isDefault, setFalse: setIsDefaultFalse } = useBoolean(false)
 const { openPayPwdDialog, closePayPwdDialog } = usePayPwdDialog()
 const {
   getVirtualCurrencyContractType,
@@ -81,7 +82,7 @@ async function handleBindAddress() {
           contract_type: Number(currentNetwork.value),
           currency_id: props.currencyId,
           address: address.value,
-          is_default: 2,
+          is_default: isDefault.value ? 1 : 2,
           pay_password: payPassword,
         })
       },
@@ -118,6 +119,10 @@ onUnmounted(() => {
     >
       <BaseInput v-model="address" :msg="addressMsg" />
     </BaseLabel>
+    <div class="checkbox-wrap">
+      <span>是否设为默认地址</span>
+      <BaseCheckBox v-model="isDefault" />
+    </div>
     <BaseButton
       bg-style="primary"
       :loading="addWalletInsertLoading"
@@ -139,5 +144,14 @@ onUnmounted(() => {
 .app-vir-address {
   padding: var(--tg-app-vir-address-style-padding);
   gap: var(--tg-spacing-12);
+  .checkbox-wrap{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      > span {
+        color: var(--tg-text-lightgrey);
+        font-weight: var(--tg-font-weight-semibold);
+      }
+    }
 }
 </style>

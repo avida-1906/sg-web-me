@@ -8,6 +8,7 @@ interface Props {
   height?: string // 图像高度px
   fit?: 'contain' | 'fill' | 'cover' // 图像如何适应容器高度和宽度
   isCloud?: boolean
+  isNetwork?: boolean
   objectPosition?: string
 }
 
@@ -30,6 +31,8 @@ const imgUrl = computed(() => {
     return `${VITE_CASINO_IMG_CLOUD_URL}${props
       .url.replace('%lang%', getCurrentLanguageForBackend())}`
   }
+  if (props.isNetwork)
+    return props.url
 
   return suffix ? props.url.replace(/png/g, 'webp') : props.url
 })

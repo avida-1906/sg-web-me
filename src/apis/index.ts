@@ -985,12 +985,12 @@ export function ApiAddFeedbackChatMsg(data: {
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=9d5e6346-ba11-4f4f-8960-82a9c96cf4ed
  */
 export function ApiMemberUpload(data: {
-  /** 类型 */
-  upload_type: string
-  /** 文件 */
+  upload_type: number
   upload_file: File
 }) {
-  return httpClient.post<string>('/member/upload', data)
+  return httpClient.post<string>('/member/upload', data, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  })
 }
 
 /**
