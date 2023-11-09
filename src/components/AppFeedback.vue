@@ -36,12 +36,17 @@ const {
   run: runFeedbackList,
   data: feedbackList,
 } = useRequest(ApiMemberFeedbackList)
-
-async function submitFeedback() {
-  await feedbackTextValidate()
-  if (!feedbackTextError.value)
-    runFeedbackInsert({ images: '111.png,222.png', description: feedbackText.value })
-}
+const {
+  run: runFeedbackBonusDraw,
+} = useRequest(ApiMemberFeedbackBonusDraw, {
+  onSuccess() {
+    openNotify({
+      type: 'success',
+      message: '领取成功！',
+    })
+    runFeedbackList()
+  },
+})
 
 const amountTotal = computed(() => {
   return feedbackList?.value?.d.reduce((total, item) => {
@@ -49,8 +54,14 @@ const amountTotal = computed(() => {
   }, 0)
 })
 
-function getAmount() {
+async function submitFeedback() {
+  await feedbackTextValidate()
+  if (!feedbackTextError.value)
+    runFeedbackInsert({ images: '111.png,222.png', description: feedbackText.value })
+}
 
+function getAmount() {
+  runFeedbackBonusDraw({ feed_id: '' })
 }
 
 function textInput() {
@@ -63,7 +74,7 @@ function feedbackItemClick(item: any) {
 }
 
 watch(() => tab.value, () => {
-  if (tab.value === 2)
+  if (tab.value === 2 && !feedbackList.value?.d?.length)
     runFeedbackList()
 })
 </script>
@@ -198,7 +209,8 @@ watch(() => tab.value, () => {
   .feedback-tab-wrap {
     display: flex;
     justify-content: space-between;
-    line-height: 30px;
+    line-height: 28px;
+    min-height:28px;
     .tab-left, .tab-right{
       display: flex;
       align-items: center;
