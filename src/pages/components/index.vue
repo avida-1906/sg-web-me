@@ -673,10 +673,42 @@ const { openMessageDialog } = useDialogMessage()
 const { openNoticeDialog } = useDialogNotice()
 const { openDepositDetailDialog } = useDialogDepositDetail()
 const { openBetSlipDialog } = useDialogBetSlip()
+
+const baseListList = ref([1, 2, 3])
+const baseListFinished = ref(false)
+const baseListLoading = ref(false)
+function loadMore() {
+  baseListLoading.value = true
+  const t = setTimeout(() => {
+    baseListList.value.push(Math.ceil(Math.random() * 10))
+    baseListList.value.push(Math.ceil(Math.random() * 10))
+    baseListList.value.push(Math.ceil(Math.random() * 10))
+    console.log('list.value===>', baseListList.value.length)
+    baseListLoading.value = false
+    if (baseListList.value.length >= 15)
+      baseListFinished.value = true
+
+    clearTimeout(t)
+  }, 1500)
+}
 </script>
 
 <template>
   <ul class="demo-page">
+    <li class="box">
+      <AppDemoCard title="BaseList">
+        <div class="base-list-box">
+          <BaseList
+            :loading="baseListLoading"
+            :finished="baseListFinished" @load="loadMore"
+          >
+            <div v-for="i in baseListList" :key="i" class="item">
+              {{ i }}
+            </div>
+          </BaseList>
+        </div>
+      </AppDemoCard>
+    </li>
     <li class="box">
       <AppDemoCard title="站内信、公告、存款详情、注单弹窗">
         <BaseButton @click="openMessageDialog">
@@ -1411,6 +1443,20 @@ const { openBetSlipDialog } = useDialogBetSlip()
 </template>
 
 <style lang="scss" scoped>
+.base-list-box{
+  width: 500px;
+  height: 600px;
+  border: 1px solid white;
+  .item{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #72ACED;
+    border-bottom: 2px solid red;
+  }
+}
 .tips {
   color: #fff;
   font-weight: bold;
