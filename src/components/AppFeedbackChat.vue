@@ -7,7 +7,7 @@ const { feedBackItem } = storeToRefs(chatStore)
 const scrollMsg = ref()
 const messageHistory = ref<Array<any>>([])
 
-const { run: runGetHistory } = useRequest(ApiGetFeedbackChatList, {
+const { run: runGetHistory, loading } = useRequest(ApiGetFeedbackChatList, {
   onBefore: () => {
   },
   onSuccess: (data) => {
@@ -21,12 +21,29 @@ function goBack() {
   chatStore.toggleShowFeedbackChat()
 }
 
+function init() {
+  if (feedBackItem.value && feedBackItem.value.feed_id)
+    runGetHistory({ feed_id: feedBackItem.value.feed_id })
+}
+
+function reset() {
+  goBack()
+}
+
 onMounted(() => {
-  runGetHistory({ feed_id: '90153251929807' })
+  init()
+})
+
+onActivated(() => {
+  init()
+})
+
+onDeactivated(() => {
+  chatStore.setFeedbackItem()
 })
 
 onUnmounted(() => {
-  goBack()
+  reset()
 })
 </script>
 
@@ -40,13 +57,13 @@ onUnmounted(() => {
     </div>
     <div class="messages">
       <div ref="scrollMsg" class="scroll-y message-content">
-        <div class="time-wrap">
-          23-02-25 11:48:32
+        <div v-if="messageHistory.length" class="time-wrap">
+          {{ application.timestampToTime(messageHistory[0].created_at) }}
         </div>
         <template v-for="msg in messageHistory" :key="msg.id">
           <AppFeedbackChatMsg :message="msg" />
         </template>
-        <template v-if="feedBackItem && feedBackItem.bonusState > 0">
+        <template v-if="!loading && feedBackItem && feedBackItem.bonusState > 0">
           <AppFeedbackChatMsg
             :message="{
               uid: '',

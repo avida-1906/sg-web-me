@@ -1029,7 +1029,7 @@ export function ApiMemberFeedbackList() {
     updatd_by: string
     /** 状态 1待处理 2已采纳 3已忽略 */
     state: number
-    /** 采纳金 */
+    /** 采纳金 usdt */
     amount: string
     /**  采纳金领取状态 1待领取 2已领取 */
     bonusState: number
