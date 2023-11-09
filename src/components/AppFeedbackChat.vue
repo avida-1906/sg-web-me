@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+const { userInfo } = storeToRefs(useAppStore())
 const chatStore = useChatStore()
 
 const { feedBackItem } = storeToRefs(chatStore)
@@ -44,6 +45,37 @@ onUnmounted(() => {
         </div>
         <template v-for="msg in messageHistory" :key="msg.id">
           <AppFeedbackChatMsg :message="msg" />
+        </template>
+        <template v-if="feedBackItem && feedBackItem.bonusState > 0">
+          <AppFeedbackChatMsg
+            :message="{
+              uid: '',
+              content: '',
+              id: '',
+              created_at: 0,
+              feed_id: feedBackItem.feed_id,
+            }"
+          >
+            <AppBonusEnvelope
+              :amount="feedBackItem.amount"
+              :bonus-state="feedBackItem.bonusState"
+            />
+          </AppFeedbackChatMsg>
+          <AppFeedbackChatMsg
+            v-if="feedBackItem.bonusState === 2"
+            :message="{
+              uid: userInfo?.uid ?? '',
+              content: '',
+              id: '',
+              created_at: 0,
+              feed_id: feedBackItem.feed_id,
+            }"
+          >
+            <AppBonusEnvelope
+              :amount="feedBackItem.amount"
+              :bonus-state="feedBackItem.bonusState"
+            />
+          </AppFeedbackChatMsg>
         </template>
       </div>
     </div>

@@ -9,6 +9,7 @@ interface Props {
     uid: string
     id: string
   }
+
 }
 
 const props = defineProps<Props>()
@@ -30,9 +31,11 @@ const isOwn = computed(() => props.message.uid === userInfo.value?.uid)
       >
         {{ $t('official_service') }}
       </div>
-      <div class="text message">
-        {{ message.content }}
-      </div>
+      <slot>
+        <div class="text message">
+          {{ message.content }}
+        </div>
+      </slot>
     </div>
   </div>
 </template>

@@ -3,6 +3,7 @@ import { languageMap } from '~/modules/i18n'
 
 interface FeedBackItem {
   feed_id: string
+  bonusState: number
   [k: string]: any
 }
 
