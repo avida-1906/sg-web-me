@@ -4,6 +4,7 @@ const { userInfo } = storeToRefs(appStore)
 const { isMobile } = storeToRefs(useWindowStore())
 const { openAgentGradeDialog } = useDialogAgentGrade()
 const { openAgentCommissionRecordDialog } = useDialogAgentCommissionRecord()
+const { openAgentCommissionDrawDialog } = useDialogAgentCommissionDraw()
 
 function openDialog() {
   openAgentGradeDialog()
@@ -11,6 +12,10 @@ function openDialog() {
 
 function commissionRecord() {
   openAgentCommissionRecordDialog()
+}
+
+function drawDialog() {
+  openAgentCommissionDrawDialog()
 }
 </script>
 
@@ -34,7 +39,7 @@ function commissionRecord() {
     <div class="right">
       <div>{{ $t('can_receive') }}：<span class="money">999,999.00</span></div>
       <div class="btns">
-        <BaseButton bg-style="primary" round>
+        <BaseButton bg-style="primary" round @click="drawDialog">
           {{ $t('receive_commission') }}
         </BaseButton>
         <BaseButton type="line" round @click="commissionRecord">
