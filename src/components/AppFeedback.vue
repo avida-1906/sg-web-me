@@ -4,6 +4,9 @@
 // const props = withDefaults(defineProps<Props>(), {
 // })
 // const emit = defineEmits(['update:modelValue'])
+
+const chatStore = useChatStore()
+
 const text = ref('')
 const textLength = ref(0)
 const tab = ref(1)
@@ -11,6 +14,11 @@ const placeholder = '我们已经设置了巨额奖金，专门收集反馈意�
 
 function textInput() {
   textLength.value = text.value.length
+}
+
+function feedbackItemClick() {
+  chatStore.setFeedbackItem({ feed_id: '980eew0rw8r' })
+  chatStore.toggleShowFeedbackChat()
 }
 </script>
 
@@ -89,7 +97,7 @@ function textInput() {
         </div>
       </div>
       <div v-else class="feedback-list">
-        <div class="msg-item">
+        <div class="msg-item" @click="feedbackItemClick">
           <div class="line">
             <div>
               反馈状态：<span class="state">处理中</span>
@@ -111,7 +119,7 @@ function textInput() {
             内容: 内容：问我为啥的服务问嗯是的卫计委猥琐大叔的猥琐大叔的猥琐大叔的
           </div>
         </div>
-        <div class="msg-item">
+        <div class="msg-item" @click="feedbackItemClick">
           <div class="line">
             <div>
               反馈状态：<span class="state">处理中</span>

@@ -1,9 +1,7 @@
 <script lang="ts" setup>
-interface Props {
-  feedBackItem: any
-}
+const chatStore = useChatStore()
 
-defineProps<Props>()
+const { feedBackItem } = storeToRefs(chatStore)
 
 const scrollMsg = ref()
 const messageHistory = ref<Array<any>>([])
@@ -18,15 +16,23 @@ const { run: runGetHistory } = useRequest(ApiGetFeedbackChatList, {
   },
 })
 
+function goBack() {
+  chatStore.toggleShowFeedbackChat()
+}
+
 onMounted(() => {
   runGetHistory({ feed_id: '90153251929807' })
+})
+
+onUnmounted(() => {
+  goBack()
 })
 </script>
 
 <template>
   <div class="app-feedback-chat">
     <div class="header">
-      <div class="go-back">
+      <div class="go-back" @click="goBack">
         <BaseIcon name="uni-arrowleft-line" />
         <span>返回上级页面</span>
       </div>
@@ -41,8 +47,8 @@ onMounted(() => {
         </template>
       </div>
     </div>
-    <div class="footer">
-      <AppFeedbackChatFooter />
+    <div v-if="feedBackItem" class="footer">
+      <AppFeedbackChatFooter :feed-id="feedBackItem.feed_id" />
     </div>
   </div>
 </template>
@@ -60,6 +66,7 @@ onMounted(() => {
     z-index: var(--tg-z-index-10);
     .go-back {
       height: 100%;
+      width: fit-content;
       display: flex;
       align-items: center;
       justify-content: flex-start;

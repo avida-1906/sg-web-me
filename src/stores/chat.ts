@@ -1,6 +1,11 @@
 import type { Room } from '~/types'
 import { languageMap } from '~/modules/i18n'
 
+interface FeedBackItem {
+  feed_id: string
+  [k: string]: any
+}
+
 const { VITE_SOCKET_PREFIX } = getEnv()
 
 export const allEmojis = [
@@ -46,6 +51,11 @@ export const allEmojis = [
 
 export const useChatStore = defineStore('chat', () => {
   const { bool: hideChat, toggle: toggleChat } = useBoolean(false)
+  const {
+    bool: showFeedbackChat,
+    toggle: toggleShowFeedbackChat,
+  } = useBoolean(false)
+  const feedBackItem = ref<FeedBackItem>()
 
   const chatRoomList = reactive<Array<Room>>([
     { icon: 'cn', label: '中文', value: 'zh-CN' },
@@ -69,6 +79,10 @@ export const useChatStore = defineStore('chat', () => {
     room.value = r
   }
 
+  function setFeedbackItem(v: FeedBackItem) {
+    feedBackItem.value = v
+  }
+
   return {
     chatRoomList,
     room,
@@ -78,6 +92,10 @@ export const useChatStore = defineStore('chat', () => {
     hideChat,
     toggleChat,
     setRoom,
+    showFeedbackChat,
+    toggleShowFeedbackChat,
+    feedBackItem,
+    setFeedbackItem,
   }
 })
 
