@@ -1,21 +1,45 @@
 <script lang="ts" setup>
 interface Props {
-  received: boolean
+  /** 1待领取 2已领取 */
+  bonusState: 1 | 2
+  amount: string
 }
 
-defineProps<Props>()
+const props = defineProps<Props>()
+
+const chatStore = useChatStore()
+
+const { feedBackItem } = storeToRefs(chatStore)
+
+const { run: runDrawBonus, loading } = useRequest(ApiMemberFeedbackBonusDraw, {
+  onSuccess: () => {
+    chatStore.setFeedbackItem({ ...feedBackItem.value, bonusState: 2 })
+  },
+})
+
+function receiveBonus() {
+  if (props.bonusState === 1
+    && feedBackItem.value
+    && feedBackItem.value.feed_id
+    && !loading.value)
+    runDrawBonus({ feed_id: feedBackItem.value.feed_id })
+}
 </script>
 
 <template>
-  <div class="app-bonus-envelope" :class="{ disabled: received }">
+  <div
+    class="app-bonus-envelope"
+    :class="{ disabled: bonusState === 2 }"
+    @click="receiveBonus"
+  >
     <div class="top">
       <BaseIcon name="uni-transfer" class="transfer" />
       <div>
         <div class="money">
-          ¥1000.00
+          {{ amount }}
         </div>
         <div class="label">
-          {{ received ? '已领取' : '待领取' }}
+          {{ bonusState === 2 ? '已领取' : '待领取' }}
         </div>
       </div>
     </div>
