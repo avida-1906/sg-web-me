@@ -1037,11 +1037,11 @@ export function ApiMemberFeedbackList() {
 }
 
 /**
- * 意见反馈奖励领取
+ * 反馈奖励领取
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=da38bee1-174d-4dad-a31f-9ed84ea77bde
  */
 export function ApiMemberFeedbackBonusDraw(data: {
-  /** 反馈ID 为空领取所有 */
+  /** 反馈ID */
   feed_id: string
 }) {
   return httpClient.post<string>('/member/feedback/bonus/draw', data)
