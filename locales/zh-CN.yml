@@ -882,3 +882,4 @@ receive_success: 领取成功
 wait_office_reply: 请等待官方客服回复
 agent_level_label: 代理等级
 agent_level_up_condition: 晋升条件(流水)
+receive_record_label: 领取记录

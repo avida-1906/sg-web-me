@@ -3,9 +3,14 @@ const appStore = useAppStore()
 const { userInfo } = storeToRefs(appStore)
 const { isMobile } = storeToRefs(useWindowStore())
 const { openAgentGradeDialog } = useDialogAgentGrade()
+const { openAgentCommissionRecordDialog } = useDialogAgentCommissionRecord()
 
 function openDialog() {
   openAgentGradeDialog()
+}
+
+function commissionRecord() {
+  openAgentCommissionRecordDialog()
 }
 </script>
 
@@ -32,7 +37,7 @@ function openDialog() {
         <BaseButton bg-style="primary" round>
           {{ $t('receive_commission') }}
         </BaseButton>
-        <BaseButton type="line" round>
+        <BaseButton type="line" round @click="commissionRecord">
           {{ $t('commission_history') }}
         </BaseButton>
       </div>

@@ -313,6 +313,7 @@ declare global {
   const useDevicePixelRatio: typeof import('@vueuse/core')['useDevicePixelRatio']
   const useDevicesList: typeof import('@vueuse/core')['useDevicesList']
   const useDialog: typeof import('./composables/useDialog')['useDialog']
+  const useDialogAgentCommissionRecord: typeof import('./composables/useDialogAgentCommissionRecord')['useDialogAgentCommissionRecord']
   const useDialogAgentGrade: typeof import('./composables/useDialogAgentGrade')['useDialogAgentGrade']
   const useDialogBetSlip: typeof import('./composables/useDialogBetSlip')['useDialogBetSlip']
   const useDialogDepositDetail: typeof import('./composables/useDialogDepositDetail')['useDialogDepositDetail']
@@ -804,6 +805,7 @@ declare module 'vue' {
     readonly useDevicePixelRatio: UnwrapRef<typeof import('@vueuse/core')['useDevicePixelRatio']>
     readonly useDevicesList: UnwrapRef<typeof import('@vueuse/core')['useDevicesList']>
     readonly useDialog: UnwrapRef<typeof import('./composables/useDialog')['useDialog']>
+    readonly useDialogAgentCommissionRecord: UnwrapRef<typeof import('./composables/useDialogAgentCommissionRecord')['useDialogAgentCommissionRecord']>
     readonly useDialogAgentGrade: UnwrapRef<typeof import('./composables/useDialogAgentGrade')['useDialogAgentGrade']>
     readonly useDialogBetSlip: UnwrapRef<typeof import('./composables/useDialogBetSlip')['useDialogBetSlip']>
     readonly useDialogDepositDetail: UnwrapRef<typeof import('./composables/useDialogDepositDetail')['useDialogDepositDetail']>
@@ -1289,6 +1291,7 @@ declare module '@vue/runtime-core' {
     readonly useDevicePixelRatio: UnwrapRef<typeof import('@vueuse/core')['useDevicePixelRatio']>
     readonly useDevicesList: UnwrapRef<typeof import('@vueuse/core')['useDevicesList']>
     readonly useDialog: UnwrapRef<typeof import('./composables/useDialog')['useDialog']>
+    readonly useDialogAgentCommissionRecord: UnwrapRef<typeof import('./composables/useDialogAgentCommissionRecord')['useDialogAgentCommissionRecord']>
     readonly useDialogAgentGrade: UnwrapRef<typeof import('./composables/useDialogAgentGrade')['useDialogAgentGrade']>
     readonly useDialogBetSlip: UnwrapRef<typeof import('./composables/useDialogBetSlip')['useDialogBetSlip']>
     readonly useDialogDepositDetail: UnwrapRef<typeof import('./composables/useDialogDepositDetail')['useDialogDepositDetail']>
