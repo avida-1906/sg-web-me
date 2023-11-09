@@ -1,21 +1,47 @@
 <script lang="ts" setup>
-const menuData = [
-  { title: '测试111', value: '123' },
-  { title: '测试1332221', value: '222' },
-  { title: '测试19999991', value: '333' },
-]
-const curmenu = ref(menuData[0].value)
+const list = ref([1, 2, 3])
+const finished = ref(false)
+function loadMore() {
+  const t = setTimeout(() => {
+    list.value.push(Math.ceil(Math.random() * 10))
+    list.value.push(Math.ceil(Math.random() * 10))
+    list.value.push(Math.ceil(Math.random() * 10))
+    console.log('list.value===>', list.value.length)
+    if (list.value.length >= 15)
+      finished.value = true
+    clearTimeout(t)
+  }, 1500)
+}
 </script>
 
 <template>
   <div class="tg-blog">
-    <BaseMenu v-model="curmenu" :data="menuData" />
+    <div class="box">
+      <BaseList :finished="finished" @load="loadMore">
+        <div v-for="i in list" :key="i" class="item">
+          {{ i }}
+        </div>
+      </BaseList>
+    </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .tg-blog {
 
+}
+.box{
+  width: 500px;
+  height: 600px;
+  .item{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #72ACED;
+    border-bottom: 2px solid red;
+  }
 }
 </style>
 
