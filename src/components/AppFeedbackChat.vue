@@ -7,11 +7,16 @@ const { feedBackItem } = storeToRefs(chatStore)
 const scrollMsg = ref()
 const messageHistory = ref<Array<any>>([])
 
+const canSendMsg = computed(() =>
+  messageHistory.value && messageHistory.value.length
+    ? messageHistory.value[messageHistory.value.length - 1].uid !== userInfo.value?.uid
+    : true)
+
 const { run: runGetHistory, loading } = useRequest(ApiGetFeedbackChatList, {
   onBefore: () => {
   },
   onSuccess: (data) => {
-    messageHistory.value = data?.reverse()
+    messageHistory.value = data?.reverse() ?? []
   },
   onAfter: () => {
   },
@@ -97,7 +102,7 @@ onUnmounted(() => {
       </div>
     </div>
     <div v-if="feedBackItem" class="footer">
-      <AppFeedbackChatFooter :feed-id="feedBackItem.feed_id" />
+      <AppFeedbackChatFooter :feed-id="feedBackItem.feed_id" :allow-send="canSendMsg" />
     </div>
   </div>
 </template>

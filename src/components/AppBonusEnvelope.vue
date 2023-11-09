@@ -27,7 +27,7 @@ function openDialog() {
       <BaseIcon name="uni-transfer" class="transfer" />
       <div>
         <div class="money">
-          {{ amount }}
+          USDT{{ amount }}
         </div>
         <div class="label">
           {{ bonusState === 2 ? '已领取' : '待领取' }}
