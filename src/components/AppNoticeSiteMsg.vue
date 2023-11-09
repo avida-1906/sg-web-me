@@ -37,22 +37,16 @@ function handleLoad() {
         </div>
         <div class="item-right">
           <div class="right-state">
-            <span>存款待定中{{ i }}</span>
+            <span>代理代存{{ i }}</span>
             <BaseBadge
               status="success" style="color: var(--tg-secondary-light);
                     font-size: var(--tg-font-size-xs);
-                    font-weight: var(--tg-font-weight-normal);" text="1天前"
+                    font-weight: var(--tg-font-weight-normal);" text="2030/10/31 13:35:19"
             />
           </div>
-          <div>
-            已登机您 100.00000000
-            <AppCurrencyIcon
-              style="display: inline;
-                  vertical-align: middle;"
-              currency-type="BTC"
-            /> 的存款
-          </div>
-          <div>待确认</div>
+          <div>您的代存订单：2023123456789</div>
+          <div>金额：10000.0000 USDT</div>
+          <div>状态：成功</div>
         </div>
       </div>
     </div>
@@ -94,15 +88,13 @@ function handleLoad() {
 
     .contain-item {
         display: flex;
-        height: 80px;
-        min-height: 80px;
-        max-height: 80px;
+        min-height: 60px;
         width: 100%;
         overflow: hidden;
 
         .item-left {
             width: 56px;
-            height: 100%;
+            min-height: 100%;
             font-size: var(--tg-font-size-lg);
             --tg-icon-color: var(--tg-primary-success);
             background: var(--tg-secondary-grey);
@@ -112,8 +104,9 @@ function handleLoad() {
 
         .item-right {
             display: flex;
+            gap: 6px;
             flex: 1;
-            height: 100%;
+            min-height: 100%;
             padding: 9px 12px;
             font-size: var(--tg-font-size-default);
             flex-direction: column;

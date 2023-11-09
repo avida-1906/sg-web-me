@@ -37,21 +37,17 @@ function handleLoad() {
         </div>
         <div class="item-right">
           <div class="right-state">
-            <span>存款待定中{{ i }}</span>
-            <BaseBadge
-              status="success" style="color: var(--tg-secondary-light);
+            <span>百家乐争霸赛{{ i }}</span>
+            <span
+              style="color: var(--tg-secondary-light);
                     font-size: var(--tg-font-size-xs);
-                    font-weight: var(--tg-font-weight-normal);" text="1天前"
-            />
+                    font-weight: var(--tg-font-weight-normal);"
+            >2030/10/31 13:35:19</span>
           </div>
-          <div>
-            已登机您 100.00000000
-            <AppCurrencyIcon
-              style="display: inline;
-                  vertical-align: middle;" currency-type="BTC"
-            /> 的存款
+          <div style="white-space:normal;line-height: 1.43;">
+            尊敬的客户：亚洲顶级真人品牌，开创行业最高奖金赛事,“百家乐争霸赛”火热进行中，
+            9月16日至11月26日的每周六/周日20:00定时开赛，22场比赛，超大奖圈，百万奖金等您来拿！
           </div>
-          <div>待确认</div>
         </div>
       </div>
     </div>
@@ -93,15 +89,13 @@ function handleLoad() {
 
     .contain-item {
         display: flex;
-        height: 80px;
-        min-height: 80px;
-        max-height: 80px;
+        min-height: 60px;
         width: 100%;
         overflow: hidden;
 
         .item-left {
             width: 56px;
-            height: 100%;
+            min-height: 100%;
             font-size: var(--tg-font-size-lg);
             --tg-icon-color: var(--tg-primary-success);
             background: var(--tg-secondary-grey);
@@ -111,8 +105,9 @@ function handleLoad() {
 
         .item-right {
             display: flex;
+            gap: 6px;
             flex: 1;
-            height: 100%;
+            min-height: 100%;
             padding: 9px 12px;
             font-size: var(--tg-font-size-default);
             flex-direction: column;

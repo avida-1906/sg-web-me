@@ -47,8 +47,7 @@ function handleLoad() {
           <div>
             已登机您 100.00000000
             <AppCurrencyIcon
-              style="display: inline;
-                  vertical-align: middle;" currency-type="BTC"
+              style="display: inline-flex;vertical-align: bottom;" currency-type="BTC"
             /> 的存款
           </div>
           <div>待确认</div>
@@ -93,15 +92,13 @@ function handleLoad() {
 
     .contain-item {
         display: flex;
-        height: 80px;
-        min-height: 80px;
-        max-height: 80px;
+        min-height: 60px;
         width: 100%;
         overflow: hidden;
 
         .item-left {
             width: 56px;
-            height: 100%;
+            min-height: 100%;
             font-size: var(--tg-font-size-lg);
             --tg-icon-color: var(--tg-primary-success);
             background: var(--tg-secondary-grey);
@@ -112,7 +109,8 @@ function handleLoad() {
         .item-right {
             display: flex;
             flex: 1;
-            height: 100%;
+            gap: 6px;
+            min-height: 100%;
             padding: 9px 12px;
             font-size: var(--tg-font-size-default);
             flex-direction: column;
