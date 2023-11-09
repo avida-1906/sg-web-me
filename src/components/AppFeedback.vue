@@ -4,6 +4,8 @@
 // const props = withDefaults(defineProps<Props>(), {
 // })
 // const emit = defineEmits(['update:modelValue'])
+const chatStore = useChatStore()
+
 const { openNotify } = useNotify()
 
 const textLength = ref(0)
@@ -64,6 +66,11 @@ function getAmount() {
 
 function textInput() {
   textLength.value = feedbackText.value.length
+}
+
+function feedbackItemClick(item: any) {
+  chatStore.setFeedbackItem({ ...item, feed_id: item.id })
+  chatStore.toggleShowFeedbackChat()
 }
 
 watch(() => tab.value, () => {
@@ -148,7 +155,12 @@ watch(() => tab.value, () => {
         </div>
       </div>
       <div v-else class="feedback-list">
-        <div v-for="item, index in feedbackList?.d" :key="index" class="msg-item">
+        <div
+          v-for="item, index in feedbackList?.d"
+          :key="index"
+          class="msg-item"
+          @click="feedbackItemClick(item)"
+        >
           <div class="line">
             <div>
               反馈状态：<span

@@ -7,22 +7,13 @@ interface Props {
 
 const props = defineProps<Props>()
 
-const chatStore = useChatStore()
+const { openReceiveBonusDialog } = useDialogReceiveBonus()
 
-const { feedBackItem } = storeToRefs(chatStore)
+const { feedBackItem } = storeToRefs(useChatStore())
 
-const { run: runDrawBonus, loading } = useRequest(ApiMemberFeedbackBonusDraw, {
-  onSuccess: () => {
-    chatStore.setFeedbackItem({ ...feedBackItem.value, bonusState: 2 })
-  },
-})
-
-function receiveBonus() {
-  if (props.bonusState === 1
-    && feedBackItem.value
-    && feedBackItem.value.feed_id
-    && !loading.value)
-    runDrawBonus({ feed_id: feedBackItem.value.feed_id })
+function openDialog() {
+  if (props.bonusState === 1)
+    openReceiveBonusDialog({ feedBackItem: feedBackItem.value })
 }
 </script>
 
@@ -30,7 +21,7 @@ function receiveBonus() {
   <div
     class="app-bonus-envelope"
     :class="{ disabled: bonusState === 2 }"
-    @click="receiveBonus"
+    @click="openDialog"
   >
     <div class="top">
       <BaseIcon name="uni-transfer" class="transfer" />

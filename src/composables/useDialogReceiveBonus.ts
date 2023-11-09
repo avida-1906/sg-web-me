@@ -9,7 +9,7 @@ export function useDialogReceiveBonus() {
     title: t('receive_bonus'),
     icon: 'chat-tip',
     maxWidth: 342,
-    default: () => h(AppReceiveBonusDialog),
+    default: ({ feedBackItem }) => h(AppReceiveBonusDialog, { feedBackItem }),
   })
 
   return {
