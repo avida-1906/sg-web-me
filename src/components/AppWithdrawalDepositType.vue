@@ -38,7 +38,7 @@ const changeType = function (type: string) {
       @click="changeType(item.value)"
     >
       <BaseIcon
-        :name="`/payment/deposit/${item.icon}.webp`"
+        :name="`/payment/deposit/${item.icon ?? 'dft'}.webp`"
         use-cloud-img
       />
       <span class="label">{{ item.label }}</span>
