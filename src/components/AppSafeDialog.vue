@@ -126,7 +126,7 @@ watch(() => activeTab.value, () => {
       <BaseTab v-model="activeTab" :list="tabOptions" />
       <div class="center">
         <div class="flex-col-start">
-          <span>{{ isDeposit ? '账户货币' : '保险库货币' }}</span>
+          <span>货币</span>
           <AppSelectCurrency
             :type="isDeposit ? 1 : 2"
             @change="changeCurrency"
