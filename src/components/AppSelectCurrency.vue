@@ -28,7 +28,7 @@ const {
 } = useCurrencyData()
 
 const currentNetwork = ref()
-const activeCurrency = ref()
+const activeCurrency = ref<CurrencyData>()
 
 const getCurrencyList = computed(() => {
   switch (props.type) {
@@ -41,7 +41,9 @@ const getCurrencyList = computed(() => {
 
 // 获取协议类型
 const curContractList = computed(() => {
-  return getVirtualCurrencyContractType(activeCurrency.value?.type)
+  if (!activeCurrency.value)
+    return []
+  return getVirtualCurrencyContractType(activeCurrency.value.type)
 })
 
 // 设置协议默认值
