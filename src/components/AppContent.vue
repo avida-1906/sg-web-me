@@ -4,7 +4,7 @@ defineProps<{ isGamePage?: boolean }>()
 
 <template>
   <section class="page-content" :class="{ 'p-0': isGamePage }">
-    <div class="home-container margin-auto">
+    <div class="margin-auto" :class="[{ 'home-container': !isGamePage }]">
       <slot />
     </div>
   </section>
