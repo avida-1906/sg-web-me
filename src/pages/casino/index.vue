@@ -83,7 +83,6 @@ function viewMoreGames() {
         @change="onTabChange"
       />
     </div>
-    <BaseButton>123</BaseButton>
     <div class="content-wrapper">
       <!-- 大厅 -->
       <Transition name="tab-fade">
