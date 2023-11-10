@@ -25,8 +25,8 @@ const params = computed(() => ({
 const { run: runSendMsg, loading: sendLoading } = useRequest(ApiAddFeedbackChatMsg)
 
 function sendMsg() {
-  if (props.allowSend) {
-    if (trimMessage.value.length && !sendLoading.value) {
+  if (trimMessage.value.length && !sendLoading.value) {
+    if (props.allowSend) {
       if (!isLogin.value) {
         openNotify({ type: 'error', message: t('notify_error_forbid_operation') })
         return
@@ -35,9 +35,9 @@ function sendMsg() {
       message.value = ''
       msgInput.value.getFocus()
     }
-  }
-  else {
-    openNotify({ type: 'error', message: t('wait_office_reply') })
+    else {
+      openNotify({ type: 'error', message: t('wait_office_reply') })
+    }
   }
 }
 
