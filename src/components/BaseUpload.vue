@@ -69,7 +69,10 @@ function deleteImg(index: number) {
     </div>
     <div v-if="urlList.length < much" class="upload-border upload-box">
       <div v-show="!fileUploadLoading" class="center width-100">
-        <BaseIcon name="uni-close" font-size="21px" style="transform: rotate(45deg)" />
+        <BaseIcon
+          name="uni-close"
+          style="transform: rotate(45deg);--tg-base-button-font-size:21px;"
+        />
       </div>
       <input
         class="width-100 input-file position-abs"

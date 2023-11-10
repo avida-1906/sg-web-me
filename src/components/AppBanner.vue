@@ -65,12 +65,18 @@ function scrollRight() {
     </div>
     <template v-if="appContentWidth > 768">
       <div class="arrow arrow-left">
-        <BaseButton type="text" font-size="24" @click="scrollLeft">
+        <BaseButton
+          type="text"
+          style="--tg-base-button-font-size:24px;" @click="scrollLeft"
+        >
           <BaseIcon name="uni-arrow-left" />
         </BaseButton>
       </div>
       <div class="arrow arrow-right">
-        <BaseButton type="text" font-size="24" @click="scrollRight">
+        <BaseButton
+          type="text"
+          style="--tg-base-button-font-size:24px;" @click="scrollRight"
+        >
           <BaseIcon name="uni-arrow-right" />
         </BaseButton>
       </div>

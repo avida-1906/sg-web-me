@@ -7,7 +7,6 @@ interface Props {
   loading?: boolean
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
   shadow?: boolean
-  fontSize?: string
   padding0?: boolean
   customPadding?: boolean
 }
@@ -30,10 +29,7 @@ withDefaults(defineProps<Props>(), {
     <div v-if="loading" class="loading">
       <BaseIcon name="chess-frame2" class="ani-roll" />
     </div>
-    <div
-      v-else class="content"
-      :style="{ fontSize: fontSize ? `var(--tg-spacing-${fontSize})` : '' }"
-    >
+    <div v-else class="content">
       <slot />
     </div>
   </button>
@@ -44,6 +40,7 @@ withDefaults(defineProps<Props>(), {
   --tg-base-button-style-bg: var(--tg-secondary-main);
   --tg-base-button-style-bg-hover: var(--tg-text-grey);
   --tg-base-button-text-default-color: var(--tg-text-grey-button);
+  --tg-base-button-font-size: var(--tg-font-size-default);
   --tg-base-button-font-weight: var(--tg-font-weight-semibold);
   --tg-base-button-padding-y: var(--tg-spacing-button-padding-vertical-xs);
   --tg-base-button-padding-x: var(--tg-spacing-button-padding-horizontal-xs);
@@ -53,7 +50,7 @@ withDefaults(defineProps<Props>(), {
 <style lang="scss" scoped>
 button {
   color: var(--tg-text-white);
-  font-size: var(--tg-font-size-default);
+  font-size: var(--tg-base-button-font-size);
   border-radius: var(--tg-radius-default);
   font-weight: var(--tg-base-button-font-weight);
   transition: var(--tg-transition);

@@ -20,7 +20,7 @@ defineProps<Props>()
     <div v-if="maintained === '2'" class="center maintained-wrap">
       <BaseEmpty>
         <template #icon>
-          <BaseIcon font-size="20" name="uni-maintain" />
+          <BaseIcon style="--tg-base-button-font-size:20px" name="uni-maintain" />
         </template>
         <template #description>
           <span style="font-size: var(--tg-font-size-xs);">场馆维护中</span>

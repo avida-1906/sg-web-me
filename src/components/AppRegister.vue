@@ -249,7 +249,10 @@ async function toLogin() {
     <template v-else>
       <div class="app-register-terms-conditions">
         <div class="title">
-          <BaseButton type="text" padding0 font-size="20" @click="steps = 1">
+          <BaseButton
+            type="text" padding0 style="--tg-base-button-font-size:20px;"
+            @click="steps = 1"
+          >
             <BaseIcon name="uni-arrowleft-line" />
           </BaseButton>
           <span>条款与条件</span>

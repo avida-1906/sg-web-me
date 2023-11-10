@@ -104,7 +104,7 @@ function openDialogDetail() {
   <div v-else class="empty-notice">
     <BaseEmpty>
       <template #icon>
-        <BaseIcon font-size="62" name="notice-empty" />
+        <BaseIcon style="--tg-base-button-font-size:62px;" name="notice-empty" />
       </template>
       <template #description>
         <div class="empty-text">

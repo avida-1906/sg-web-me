@@ -88,8 +88,7 @@ const tableData = ref([
           <BaseButton
             type="text"
             padding0
-            font-size="12"
-            style="color:var(--tg-text-blue)"
+            style="color:var(--tg-text-blue);--tg-base-button-font-size:12px;"
           >
             查看
           </BaseButton>

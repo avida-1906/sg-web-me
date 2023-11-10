@@ -56,7 +56,7 @@ function gameStart(item: Props['gameInfo']) {
       <div v-if="isError && !isMaintained" class="center img-load">
         <BaseEmpty>
           <template #icon>
-            <BaseIcon font-size="43" name="img-error" />
+            <BaseIcon style="--tg-base-button-font-size:43px;" name="img-error" />
           </template>
           <template #description>
             <span style="font-size: var(--tg-font-size-xs);">加载失败了x_x</span>
@@ -75,7 +75,7 @@ function gameStart(item: Props['gameInfo']) {
       <div v-if="isMaintained" class="center maintain-game-item">
         <BaseEmpty>
           <template #icon>
-            <BaseIcon font-size="40" name="uni-maintain" />
+            <BaseIcon style="--tg-base-button-font-size:40px" name="uni-maintain" />
           </template>
           <template #description>
             <span style="font-size: var(--tg-font-size-xs);">场馆维护中</span>

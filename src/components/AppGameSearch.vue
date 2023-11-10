@@ -181,7 +181,10 @@ provide('closeSearch', closeOverlay)
             <div v-if="keywordList.length" class="recent">
               <div class="title">
                 <label>{{ t('search_recent') }}</label>
-                <BaseButton type="text" font-size="14" @click="clearKeyword">
+                <BaseButton
+                  type="text"
+                  style="--tg-base-button-font-size:14px;" @click="clearKeyword"
+                >
                   {{ t('search_clear') }}({{ keywordList.length }})
                 </BaseButton>
               </div>

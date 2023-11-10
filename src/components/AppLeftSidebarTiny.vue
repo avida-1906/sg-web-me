@@ -24,7 +24,10 @@ const route = useRoute()
         <Transition name="menu-fade">
           <template v-if="!isSwitching">
             <div class="button center">
-              <BaseButton font-size="16" type="text" @click="triggerLeftSidebar">
+              <BaseButton
+                style="--tg-base-button-font-size:16px;"
+                type="text" @click="triggerLeftSidebar"
+              >
                 <BaseIcon name="uni-menu" />
               </BaseButton>
             </div>
