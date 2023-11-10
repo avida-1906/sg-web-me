@@ -1,8 +1,4 @@
 <script lang="ts" setup>
-import AppNoticeSiteMsg from './AppNoticeSiteMsg.vue'
-import AppNoticeNotify from './AppNoticeNotify.vue'
-import AppNoticeBulletin from './AppNoticeBulletin.vue'
-import AppNoticeSwiper from './AppNoticeSwiper.vue'
 import AppFeedbackChat from './AppFeedbackChat.vue'
 import AppFeedback from './AppFeedback.vue'
 
@@ -10,6 +6,10 @@ const { showFeedbackChat } = storeToRefs(useChatStore())
 
 const { closeRightSidebar } = useRightSidebar()
 
+const A = defineAsyncComponent(() => import('./AppNoticeNotify.vue'))
+const B = defineAsyncComponent(() => import('./AppNoticeNotify.vue'))
+const C = defineAsyncComponent(() => import('./AppNoticeNotify.vue'))
+const D = defineAsyncComponent(() => import('./AppNoticeNotify.vue'))
 const tab = ref('tz')
 const tabList = [
   { label: '通知', value: 'tz' },
@@ -21,10 +21,10 @@ const tabList = [
 
 const getComponent = computed(() => {
   switch (tab.value) {
-    case 'tz': return AppNoticeNotify
-    case 'znx': return AppNoticeSiteMsg
-    case 'gg': return AppNoticeBulletin
-    case 'pmd': return AppNoticeSwiper
+    case 'tz': return A
+    case 'znx': return B
+    case 'gg': return C
+    case 'pmd': return D
     case 'fk': return showFeedbackChat.value ? AppFeedbackChat : AppFeedback
   }
 })
@@ -35,7 +35,7 @@ const getComponent = computed(() => {
     <div class="notice-head">
       <div class="center head-title">
         <BaseIcon class="title-icon" name="navbar-notice" />
-        <span>通知</span>
+        <span>消息中心</span>
       </div>
       <VTooltip placement="bottom">
         <div class="item hoverable">
@@ -59,7 +59,7 @@ const getComponent = computed(() => {
     />
     <div class="notice-content">
       <keep-alive>
-        <component :is="getComponent" />
+        <component :is="getComponent" :mode="tab" />
       </keep-alive>
     </div>
   </div>
