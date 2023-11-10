@@ -79,7 +79,7 @@ async function toForgetPassword() {
     gap: var(--tg-spacing-12);
     .text-white {
       cursor: pointer;
-      color: var(--tg-text-white) !important;
+      color: var(--tg-text-white);
       font-weight: var(--tg-font-weight-semibold);
     }
     .stake-text {
@@ -87,7 +87,7 @@ async function toForgetPassword() {
       padding-bottom: var(--tg-spacing-20);
       cursor: pointer;
       span:hover {
-        color: var(--tg-text-white) !important;
+        color: var(--tg-text-white);
       }
     }
   }

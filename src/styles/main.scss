@@ -625,6 +625,7 @@ body {
 }
 .bankcard-disable{
   &:hover, &.active {
+    /* 需要覆盖页面的背景色 权重不够*/
     background-color: initial !important;
   }
 }

@@ -166,12 +166,12 @@ watch(active, (val) => {
     >
       <div v-if="_data.length > 1" class="arrows-overlay">
         <div class="left">
-          <BaseButton type="text" @click="slideToPrev">
+          <BaseButton type="text" padding0 @click="slideToPrev">
             <BaseIcon name="uni-arrow-left" />
           </BaseButton>
         </div>
         <div class="right">
-          <BaseButton type="text" @click="slideToNext">
+          <BaseButton type="text" padding0 @click="slideToNext">
             <BaseIcon name="uni-arrow-right" />
           </BaseButton>
         </div>
@@ -249,7 +249,6 @@ watch(active, (val) => {
       right: -7.5px;
     }
     button {
-      padding: 0 !important;
       font-size: var(--tg-font-size-xs);
       transition: all 0.2s;
       transform: scale(0.8);

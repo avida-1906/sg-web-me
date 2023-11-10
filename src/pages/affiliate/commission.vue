@@ -75,7 +75,7 @@
     gap: var(--tg-spacing-12);
     border: 2px dashed;
     border-radius: var(--tg-radius-xs);
-    color: var(--tg-text-lightgrey) !important;
+    color: var(--tg-text-lightgrey);
     font-size: var(--tg-font-size-default);
     .app-svg-icon {
       pointer-events: none;

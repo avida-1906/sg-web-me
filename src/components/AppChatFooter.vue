@@ -245,7 +245,7 @@ function enterPress(event: KeyboardEvent) {
     </div>
     <div class="actions">
       <span>{{ maxMsgLen - message.length }}</span>
-      <BaseButton class="rule" type="text" @click="openChatRulesDialog">
+      <BaseButton class="rule" padding0 type="text" @click="openChatRulesDialog">
         <BaseIcon name="chat-rule" />
       </BaseButton>
       <BaseButton bg-style="secondary" class="send" size="md" shadow @click="sendMsg">
@@ -396,7 +396,6 @@ function enterPress(event: KeyboardEvent) {
     //   color: var(--tg-sub-green-deep);
     // }
     button.rule {
-      padding: 0 !important;
       width: 22px;
     }
   }

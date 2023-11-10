@@ -45,7 +45,7 @@ const {
   runAsync: runAsyncWalletList,
 } = useRequest(ApiMemberWalletList, {
   onSuccess(data) {
-    const temp = data.d.find(i => i.is_default === 1)?.id
+    const temp = data?.d?.find(i => i.is_default === 1)?.id
     if (temp)
       address.value = temp
   },

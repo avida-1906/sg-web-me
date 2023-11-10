@@ -159,7 +159,7 @@ onMounted(() => {
   animation-fill-mode: forwards;
   animation-timing-function: linear;
   animation-name: countDown;
-  animation-duration: 4s!important;
+  animation-duration: 4s;
   border-bottom-left-radius: var(--tg-radius-default); //
 }
 .notify-slide-fade-enter-active {
