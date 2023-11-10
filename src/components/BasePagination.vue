@@ -134,6 +134,7 @@ function enterToPage() {
 function pageSizeChange() {
   emit('update:currentPage', 1)
   emit('change', 1)
+  jumpPage.value = 1
 }
 
 watchEffect(() => {

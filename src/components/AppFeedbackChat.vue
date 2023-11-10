@@ -23,7 +23,7 @@ const { run: runGetHistory, loading } = useRequest(ApiGetFeedbackChatList, {
 })
 
 function goBack() {
-  chatStore.toggleShowFeedbackChat()
+  chatStore.setFeedbackChatFalse()
 }
 
 function init() {

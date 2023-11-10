@@ -2,12 +2,29 @@
 const appStore = useAppStore()
 const { userInfo } = storeToRefs(appStore)
 const { isMobile } = storeToRefs(useWindowStore())
+const { openAgentGradeDialog } = useDialogAgentGrade()
+const { openAgentCommissionRecordDialog } = useDialogAgentCommissionRecord()
+const { openAgentCommissionDrawDialog } = useDialogAgentCommissionDraw()
+
+function openDialog() {
+  openAgentGradeDialog()
+}
+
+function commissionRecord() {
+  openAgentCommissionRecordDialog()
+}
+
+function drawDialog() {
+  openAgentCommissionDrawDialog()
+}
 </script>
 
 <template>
   <div class="app-user-agent-info">
     <div class="left">
-      <BaseIcon class="agent-badge" name="agent-badge" />
+      <div class="cursor-pointer" @click="openDialog">
+        <BaseIcon class="agent-badge" name="agent-badge" />
+      </div>
       <div class="info">
         <div>
           <span>{{ $t('user_account') }}：</span>
@@ -22,10 +39,10 @@ const { isMobile } = storeToRefs(useWindowStore())
     <div class="right">
       <div>{{ $t('can_receive') }}：<span class="money">999,999.00</span></div>
       <div class="btns">
-        <BaseButton bg-style="primary" round>
+        <BaseButton bg-style="primary" round @click="drawDialog">
           {{ $t('receive_commission') }}
         </BaseButton>
-        <BaseButton type="line" round>
+        <BaseButton type="line" round @click="commissionRecord">
           {{ $t('commission_history') }}
         </BaseButton>
       </div>
