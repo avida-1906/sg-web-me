@@ -14,7 +14,7 @@ const activeCurrency = ref<any>()
 const activeTab = ref('deposit')
 const tabOptions = [
   { label: t('deposit'), value: 'deposit' },
-  { label: t('withdraw'), value: 'withdraw' },
+  { label: '提款', value: 'withdraw' },
 ]
 const amountRef = ref()
 const passwordRef = ref()
@@ -223,13 +223,9 @@ watch(() => activeTab.value, () => {
     flex-direction: column;
     align-items: flex-start;
     position: relative;
-    span{
-      color: var(--tg-text-lightgrey);
-      font-weight: var(--tg-font-weight-semibold);
-      position: absolute;
-      top: 50%;
-      transform: translate(-118%, -50%);
-    }
+    color: var(--tg-text-lightgrey);
+    font-weight: var(--tg-font-weight-semibold);
+    line-height: 21px;
   }
   .safe-bottom{
     display: flex;
