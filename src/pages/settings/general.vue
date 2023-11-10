@@ -280,6 +280,7 @@ onMounted(() => {
             :disabled="emailVerified"
             :msg="emailErrormsg"
             :class="{ 'general-base-input-background': emailVerified }"
+            msg-after-touched
             @paste="emailPaste"
           />
         </BaseLabel>

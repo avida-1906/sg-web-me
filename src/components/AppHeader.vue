@@ -301,7 +301,7 @@ function handleClickMenuItem(item: { name: string; path?: string }) {
     &:active {
       transform: scale(0.95);
       .menu-btn {
-        color: var(--tg-text-blue) !important;
+        color: var(--tg-text-blue);
       }
     }
 

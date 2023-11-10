@@ -48,7 +48,7 @@ const { openStatisticsDialog } = useStatisticsDialog()
         </template>
       </VTooltip>
     </template>
-    <BaseButton type="text" @click="openStatisticsDialog(userInfo.name)">
+    <BaseButton type="text" padding0 @click="openStatisticsDialog(userInfo.name)">
       <span class="user-name">{{ userInfo.name }}</span>
     </BaseButton>
   </div>
@@ -64,9 +64,6 @@ const { openStatisticsDialog } = useStatisticsDialog()
   font-size: var(--tg-font-size-default);
   font-weight: var(--tg-font-weight-semibold);
   line-height: 1.5;
-  button {
-    padding: 0 !important;
-  }
   .user-level-tag {
     display: flex;
   }
