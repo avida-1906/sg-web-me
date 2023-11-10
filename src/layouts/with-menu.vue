@@ -266,7 +266,7 @@ watch(route, (val) => {
       }
     }
     .content-outer {
-
+      align-items: stretch;
       .menu-btn {
         .app-svg-icon.arrow-left {
           font-size: var(--tg-font-size-default);
@@ -274,6 +274,8 @@ watch(route, (val) => {
         }
         --tg-base-button-style-bg: var(--tg-secondary-dark);
         --tg-base-button-style-bg-hover: var(--tg-secondary-deepdark);
+      }
+      .left {
       }
       .right {
         position: relative;
@@ -291,6 +293,7 @@ watch(route, (val) => {
           overflow: hidden;
           position: relative;
           border-radius: var(--tg-radius-md);
+          min-height: 100%;
         }
       }
     }

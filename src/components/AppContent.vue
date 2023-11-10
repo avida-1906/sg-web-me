@@ -1,10 +1,12 @@
 <script lang="ts" setup>
-defineProps<{ isGamePage?: boolean }>()
+const route = useRoute()
+// 是否游戏页面
+const isCasinoGames = computed(() => route.name === 'casino-games')
 </script>
 
 <template>
-  <section class="page-content" :class="{ 'p-0': isGamePage }">
-    <div class="home-container margin-auto">
+  <section class="page-content" :class="{ 'p-0': isCasinoGames }">
+    <div class="margin-auto" :class="[{ 'home-container': !isCasinoGames }]">
       <slot />
     </div>
   </section>

@@ -30,14 +30,11 @@ const { animatingSuspense, getSuspenseStatus } = useLayoutAnimate({ aniSuspense:
 // 内容区宽度
 const homeContainerRef = ref<HTMLElement | null>(null)
 const { width } = useElementSize(homeContainerRef)
-const route = useRoute()
 const { leftIsExpand, isSwitching, switchTo, triggerLeftSidebar } = useLeftSidebar()
 const { rightIsExpand, rightContainerIs0, currentRightSidebarContent } = useRightSidebar()
 
 const keepAliveList = ref<string[]>(['KeepAliveCasino'])
 
-// 是否游戏页面
-const isCasinoGames = computed(() => route.name === 'casino-games')
 // home-overlay 是否显示
 const homeOverlayIsShow = computed(() => {
   return leftIsExpand.value && isLessThanLg.value && !isMobile.value
@@ -127,7 +124,7 @@ onErrorCaptured((err, instance, info) => {
         </AppContent>
         <slot>
           <div :class="{ 'home-slide-fade-enter-active': animatingSuspense }">
-            <AppContent :is-game-page="isCasinoGames">
+            <AppContent>
               <RouterView v-slot="{ Component }">
                 <template v-if="Component">
                   <KeepAlive :include="keepAliveList" :max="10">
