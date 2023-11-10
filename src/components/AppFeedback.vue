@@ -3,7 +3,7 @@ const chatStore = useChatStore()
 
 const { openNotify } = useNotify()
 
-const imageUrl = ref('')
+const imageUrl: Ref<string[]> = ref([])
 const textLength = ref(0)
 const tab = ref(1)
 const placeholder = '我们已经设置了巨额奖金，专门收集反馈意见，以便我们优化系统和功能，给您带来更好的体验！一旦被采纳，将根据重要程度给予奖励（未采纳除外）'
@@ -54,7 +54,7 @@ const amountTotal = computed(() => {
 async function submitFeedback() {
   await feedbackTextValidate()
   if (!feedbackTextError.value)
-    runFeedbackInsert({ images: imageUrl.value, description: feedbackText.value })
+    runFeedbackInsert({ images: imageUrl.value[0] ?? '', description: feedbackText.value })
 }
 
 function getAmount() {
@@ -127,7 +127,7 @@ onActivated(() => {
             图片
           </p>
           <div class="file">
-            <BaseUpload v-model="imageUrl" img-type="common" />
+            <BaseUpload v-model="imageUrl" :much="5" img-type="common" />
           </div>
           <div class="tips">
             支持图片与视频上传，大小不得超过50M
@@ -250,11 +250,16 @@ onActivated(() => {
         }
         textarea{
           width: 100%;
-          background: var(--tg-secondary-main);
+          background: var(--tg-primary-main);
           padding: var(--tg-spacing-12);
           border-radius: var(--tg-radius-default);
           font-size: var(--tg-font-size-xs);
           color: var(--tg-text-lightgrey);
+          border: var(--tg-border-width-sm) solid var(--tg-border-color-main);
+          transition: var(--tg-transition);
+          &:hover{
+            border-color: var(--tg-border-color-deep-grey);
+          }
           &:focus{
             outline: none;
           }
@@ -270,10 +275,10 @@ onActivated(() => {
             font-size: var(--tg-font-size-xs);
           }
         }
-        .file{
-          width: 80px;
-          height: 80px;
-        }
+        // .file{
+        //   width: 80px;
+        //   height: 80px;
+        // }
         .tips{
           margin-top: var(--tg-spacing-8);
           font-size: var(--tg-font-size-default);

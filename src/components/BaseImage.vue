@@ -21,7 +21,7 @@ const props = withDefaults(defineProps<Props>(), {
   objectPosition: 'center center',
 })
 
-const emit = defineEmits(['clickImg', 'errorImg'])
+const emit = defineEmits(['clickImg', 'errorImg', 'loadImg'])
 
 const { VITE_CASINO_IMG_CLOUD_URL } = getEnv()
 const suffix = document.documentElement.className.trim().split(' ').includes('webp')
@@ -45,6 +45,7 @@ const imgUrl = computed(() => {
       object-fit: ${fit};object-position:${objectPosition};`"
       loading="lazy"
       :src="imgUrl"
+      @load="emit('loadImg')"
       @click="emit('clickImg')"
       @error="emit('errorImg')"
     >
