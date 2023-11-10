@@ -14,7 +14,7 @@ const activeCurrency = ref<any>()
 const activeTab = ref('deposit')
 const tabOptions = [
   { label: t('deposit'), value: 'deposit' },
-  { label: t('withdraw'), value: 'withdraw' },
+  { label: '提款', value: 'withdraw' },
 ]
 const amountRef = ref()
 const passwordRef = ref()
@@ -126,7 +126,7 @@ watch(() => activeTab.value, () => {
       <BaseTab v-model="activeTab" :list="tabOptions" />
       <div class="center">
         <div class="flex-col-start">
-          <span>{{ isDeposit ? '账户货币' : '保险库货币' }}</span>
+          <span>货币</span>
           <AppSelectCurrency
             :type="isDeposit ? 1 : 2"
             @change="changeCurrency"
@@ -223,13 +223,9 @@ watch(() => activeTab.value, () => {
     flex-direction: column;
     align-items: flex-start;
     position: relative;
-    span{
-      color: var(--tg-text-lightgrey);
-      font-weight: var(--tg-font-weight-semibold);
-      position: absolute;
-      top: 50%;
-      transform: translate(-118%, -50%);
-    }
+    color: var(--tg-text-lightgrey);
+    font-weight: var(--tg-font-weight-semibold);
+    line-height: 21px;
   }
   .safe-bottom{
     display: flex;

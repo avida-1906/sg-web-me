@@ -28,18 +28,6 @@ interface CurrencyValue {
   bankTree: string
 }
 
-interface IContractMap {
-  [key: string]: TTreeListType
-}
-
-/** 虚拟币协议tree类型 */
-export const contractMap: IContractMap = {
-  USDT: '018001',
-  BTC: '018002',
-  ETH: '018003',
-  BNB: '018004',
-}
-
 export const currencyConfig: Record<EnumCurrencyKey, CurrencyValue> = {
   CNY: {
     prefix: '¥',
@@ -210,22 +198,6 @@ export function useCurrencyData() {
     searchValue.value = ''
   }
 
-  /** 获取虚拟币协议api */
-  const {
-    data: contractList,
-    runAsync: runAsyncGetContract,
-  } = useApiMemberTreeList()
-  const curContractList = computed(() => {
-    if (contractList.value) {
-      return contractList.value.map((item) => {
-        return {
-          label: item.name,
-          value: item.id,
-        }
-      })
-    }
-  })
-
   /** 获取所有虚拟币协议 */
   const {
     data: allContractList,
@@ -233,7 +205,7 @@ export function useCurrencyData() {
 
   const allContractListData = computed(() => {
     if (allContractList.value?.length) {
-      const res: Record<string, any> = {}
+      const res: Record<string, { label: string; value: string }[]> = {}
       for (const item of allContractList.value) {
         if (item.pid === '1800') {
           res[item.name] = []
@@ -243,7 +215,7 @@ export function useCurrencyData() {
           if (parent) {
             res[parent.name]
               ? res[parent.name].push({ label: item.name, value: item.id })
-              : res[parent.name] = []
+              : res[parent.name] = [{ label: item.name, value: item.id }]
           }
         }
       }
@@ -252,13 +224,13 @@ export function useCurrencyData() {
     return {}
   })
 
-  const getVirtualCurrencyContractType = (currency: string) => {
+  const getVirtualCurrencyContractType = (currency: EnumCurrencyKey) => {
     return allContractListData.value[currency]
   }
 
   /** 根据协议id获取对应的名称 */
-  const getVirContractName = (id: string) => {
-    return allContractList.value?.find(item => item.id === id)?.name
+  const getVirContractName = (id: string): string => {
+    return allContractList.value?.find(item => item.id === id)?.name ?? ''
   }
 
   return {
@@ -270,14 +242,12 @@ export function useCurrencyData() {
     searchValue,
     hideZeroBalance,
     renderCurrencyList,
+    allContractListData,
     isVirtualCurrency,
     clearSearchValue,
     changeGlobalCurrency,
     setHideZeroBalance,
     getVirtualCurrencyContractType,
-    runAsyncGetContract,
-    curContractList,
-    allContractListData,
     getVirContractName,
   }
 }
