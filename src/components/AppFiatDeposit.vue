@@ -90,6 +90,7 @@ const paymentMethodData = computed(() => {
         value: i.id,
         promo: i.promo,
         pname: i.pname,
+        icon: i.alias,
       }
     })
   }
