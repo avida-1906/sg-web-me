@@ -125,10 +125,11 @@ watchEffect(() => {
         </BaseButton>
       </div>
       <div v-if="showArrow" class="arrows">
-        <BaseButton type="round-line-left" :disabled="x <= 0" @click="prevPage">
+        <BaseButton type="round-line-left" padding0 :disabled="x <= 0" @click="prevPage">
           <BaseIcon name="uni-arrowleft-line" />
         </BaseButton>
         <BaseButton
+          padding0
           type="round-line-right" :disabled="scrollLeftItemsCount + pageInfo.pageSize
             >= data.length + 1" @click="nextPage"
         >
@@ -216,7 +217,6 @@ watchEffect(() => {
       button {
         width: 51px;
         height: 37px;
-        padding: 0 !important;
       }
 
       // button:disabled {

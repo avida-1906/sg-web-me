@@ -37,7 +37,7 @@ const { runMemberLogout, logoutLoading } = useLogout(() => {
   }
 
   &-btn {
-    color: var(--tg-text-white) !important;
+    color: var(--tg-text-white);
     background: var(--tg-button-secondary-main);
   }
 }

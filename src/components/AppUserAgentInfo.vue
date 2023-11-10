@@ -39,10 +39,10 @@ function drawDialog() {
     <div class="right">
       <div>{{ $t('can_receive') }}：<span class="money">999,999.00</span></div>
       <div class="btns">
-        <BaseButton bg-style="primary" round @click="drawDialog">
+        <BaseButton bg-style="primary" padding0 round @click="drawDialog">
           {{ $t('receive_commission') }}
         </BaseButton>
-        <BaseButton type="line" round @click="commissionRecord">
+        <BaseButton type="line" round padding0 @click="commissionRecord">
           {{ $t('commission_history') }}
         </BaseButton>
       </div>
@@ -103,10 +103,10 @@ function drawDialog() {
     color: var(--tg-text-white);
     button {
       height: 24px;
-      width: 68px;
-      padding: 0 !important;
+      min-width: 68px;
       box-sizing: border-box;
       font-size: var(--tg-font-size-xs);
+      padding: 0 var(--tg-spacing-6);
     }
     .money {
       color: var(--tg-text-warn);

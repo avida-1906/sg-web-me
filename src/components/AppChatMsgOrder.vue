@@ -8,7 +8,7 @@ defineProps<Props>()
 </script>
 
 <template>
-  <BaseButton type="text">
+  <BaseButton type="text" padding0>
     <span class="chat-msg-order">
       <span class="label">{{ type }}: #</span>
       <span class="order">{{ application.formatNumber(order) }}</span>
@@ -18,7 +18,6 @@ defineProps<Props>()
 
 <style lang="scss" scoped>
 button {
-  padding: 0 !important;
   height: auto;
   font-size: var(--tg-font-size-default);
   color: var(--tg-secondary-light);
