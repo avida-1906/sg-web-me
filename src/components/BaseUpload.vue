@@ -15,7 +15,7 @@ withDefaults(defineProps<Props>(), {
   much: 1,
 })
 
-const emit = defineEmits(['update:modelValue', 'delete'])
+const emit = defineEmits(['update:modelValue'])
 const { VITE_CASINO_IMG_CLOUD_URL } = getEnv()
 
 const urlList: Ref<string[]> = ref([])
@@ -67,16 +67,20 @@ function deleteImg(index: number) {
         </BaseButton>
       </div>
     </div>
-    <div v-if="urlList.length < much" class="upload-border input-upload">
-      <div class="upload-box center">
+    <div v-if="urlList.length < much" class="upload-border upload-box">
+      <div v-show="!fileUploadLoading" class="center width-100">
         <BaseIcon name="uni-close" font-size="21px" style="transform: rotate(45deg)" />
       </div>
       <input
-        class="input-file" type="file" :accept="accept" :disabled="disabled" title=""
+        class="width-100 input-file position-abs"
+        type="file"
+        :accept="accept"
+        :disabled="disabled"
+        title=""
         @change="changFile"
       >
-      <div v-if="fileUploadLoading" class="upload-box center">
-        <BaseLoading style="transform: scale(0.5);" />
+      <div v-show="fileUploadLoading" class="width-100 position-abs center">
+        <BaseIcon name="chess-frame2" class="ani-roll" />
       </div>
     </div>
   </div>
@@ -93,40 +97,39 @@ function deleteImg(index: number) {
 .base-upload{
   display: flex;
   gap: var(--tg-spacing-12);
+  flex-wrap: wrap;
   .upload-border{
     border: var(--tg-border-width-sm) solid var(--tg-border-color-main);
     border-radius: var(--tg-radius-default);
   }
+  .position-abs{
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
 }
 .upload-box {
+  position: relative;
   width: var(--tg-base-upload-with);
   height: var(--tg-base-upload-height);
-  position: relative;
+  overflow: hidden;
+  background-color: var(--tg-primary-main);
+  transition: var(--tg-transition);
   .icon-upload-delete {
     position: absolute;
     top: 0;
     right: 0;
   }
-}
-.input-upload {
-  width: var(--tg-base-upload-with);
-  height: var(--tg-base-upload-height);
-  position: relative;
-  overflow: hidden;
-  background-color: var(--tg-primary-main);
-  transition: var(--tg-transition);
   &:hover{
     border-color: var(--tg-border-color-deep-grey);
   }
-  .input-file {
-    position: absolute;
-    left: 0;
-    top: 0;
+  .width-100{
     width: 100%;
     height: 100%;
+  }
+  .input-file {
     opacity: 0;
     cursor: pointer;
   }
-
 }
 </style>
