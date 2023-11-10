@@ -37,7 +37,10 @@ const changeType = function (type: string) {
       :class="item.value === props.modelValue ? 'active' : '' "
       @click="changeType(item.value)"
     >
-      <BaseIcon :name="item.icon ?? 'fiat-bank'" />
+      <BaseIcon
+        :name="`/payment/deposit/${item.icon ?? 'dft'}.webp`"
+        use-cloud-img
+      />
       <span class="label">{{ item.label }}</span>
       <span v-if="item.pname === '赠送'" class="tag">送{{ Number(item.promo) }}%</span>
       <span

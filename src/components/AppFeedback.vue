@@ -1,9 +1,4 @@
 <script setup lang='ts'>
-// interface Props {
-// }
-// const props = withDefaults(defineProps<Props>(), {
-// })
-// const emit = defineEmits(['update:modelValue'])
 const chatStore = useChatStore()
 
 const { openNotify } = useNotify()
@@ -25,6 +20,7 @@ const {
 
 const {
   run: runFeedbackInsert,
+  loading: feedbackInsertLoading,
 } = useRequest(ApiMemberFeedbackInsert, {
   onSuccess() {
     openNotify({
@@ -58,7 +54,7 @@ const amountTotal = computed(() => {
 async function submitFeedback() {
   await feedbackTextValidate()
   if (!feedbackTextError.value)
-    runFeedbackInsert({ images: '111.png,222.png', description: feedbackText.value })
+    runFeedbackInsert({ images: imageUrl.value, description: feedbackText.value })
 }
 
 function getAmount() {
@@ -66,18 +62,13 @@ function getAmount() {
 }
 
 function textInput() {
-  textLength.value = feedbackText.value.length
+  textLength.value = feedbackText.value?.length
 }
 
 function feedbackItemClick(item: any) {
   chatStore.setFeedbackItem({ ...item, feed_id: item.id })
   chatStore.setFeedbackChatTrue()
 }
-
-watch(() => tab.value, () => {
-  if (tab.value === 2 && !feedbackList.value?.d?.length)
-    runFeedbackList()
-})
 
 onActivated(() => {
   runFeedbackList()
@@ -154,54 +145,67 @@ onActivated(() => {
           <BaseButton type="line" style="border-color: var(--tg-text-blue);">
             取消
           </BaseButton>
-          <BaseButton bg-style="primary" @click="submitFeedback">
+          <BaseButton
+            bg-style="primary"
+            :loading="feedbackInsertLoading"
+            @click="submitFeedback"
+          >
             提交
           </BaseButton>
         </div>
       </div>
       <div v-else class="feedback-list">
-        <div
-          v-for="item, index in feedbackList?.d"
-          :key="index"
-          class="msg-item"
-          @click="feedbackItemClick(item)"
-        >
-          <div class="line">
-            <div>
-              反馈状态：<span
+        <template v-if="feedbackList?.d?.length">
+          <div
+            v-for="item, index in feedbackList?.d"
+            :key="index"
+            class="msg-item"
+            @click="feedbackItemClick(item)"
+          >
+            <div class="line">
+              <div>
+                反馈状态：<span
+                  :style="{
+                    color: item.state === 1
+                      ? 'var(--tg-text-warn)'
+                      : 'var(--tg-text-white)',
+                  }"
+                >
+                  {{ item.state === 1 ? '处理中' : '已完成' }}
+                </span>
+              </div>
+              <div
+                class="unread"
                 :style="{
-                  color: item.state === 1
-                    ? 'var(--tg-text-warn)'
+                  color: item.newest_m !== 0
+                    ? 'var(--tg-text-lightgrey)'
                     : 'var(--tg-text-white)',
                 }"
               >
-                {{ item.state === 1 ? '处理中' : '已完成' }}
-              </span>
+                {{ item.newest_m !== 0 ? '有消息未读' : '已读' }}
+                <div v-if="item.newest_m !== 0" />
+              </div>
             </div>
-            <div
-              class="unread"
-              :style="{
-                color: item.newest_m !== 0
-                  ? 'var(--tg-text-lightgrey)'
-                  : 'var(--tg-text-white)',
-              }"
-            >
-              {{ item.newest_m !== 0 ? '有消息未读' : '已读' }}
-              <div v-if="item.newest_m !== 0" />
+            <div class="line">
+              <div class="text-overflow-hide">
+                反馈ID: {{ item.id }}
+              </div>
+              <div class="text-overflow-hide color-grey">
+                {{ application.timestampToTime(item.created_at * 1000) }}
+              </div>
             </div>
-          </div>
-          <div class="line">
             <div class="text-overflow-hide">
-              反馈ID: {{ item.id }}
-            </div>
-            <div class="text-overflow-hide color-grey">
-              {{ application.timestampToTime(item.created_at * 1000) }}
+              内容: {{ item.description }}
             </div>
           </div>
-          <div class="text-overflow-hide">
-            内容: {{ item.description }}
-          </div>
-        </div>
+        </template>
+        <template v-else>
+          <BaseEmpty
+            description="暂无内容"
+            icon="navbar-user-bet"
+            style="padding-top: 100px;"
+          />
+        </template>
       </div>
     </div>
   </div>

@@ -68,6 +68,9 @@ watch(() => props.type, () => {
 watch(() => currentNetwork.value, () => {
   emit('change', activeCurrency.value, currentNetwork.value)
 })
+watch(() => renderCurrencyList.value, () => {
+  getActiveValue()
+})
 
 onMounted(() => {
   getActiveValue()

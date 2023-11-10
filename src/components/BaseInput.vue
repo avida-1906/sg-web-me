@@ -132,6 +132,7 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse })
               'text-center': textCenter,
             }"
             :autocomplete="`new-${_type}`"
+            title=""
             @input="onInput"
             @focus="onFocus"
             @blur="onBlur"

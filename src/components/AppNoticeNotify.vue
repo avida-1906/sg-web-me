@@ -1,10 +1,22 @@
 <script lang="ts" setup>
-const noticeList = [{}]
+interface Props {
+  mode: string
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  mode: '',
+})
+
+const { openBetSlipDialog } = useDialogBetSlip()
+const { openDepositDetailDialog } = useDialogDepositDetail()
+const { openNoticeDialog } = useDialogNotice()
+const { openMessageDialog } = useDialogMessage()
+const { bool: loading, setBool: setLoadingBool } = useBoolean(false)
 
 const pageCurrent = ref(0)
 const pageSize = 10
 const pageTotal = 3
-const { bool: loading, setBool: setLoadingBool } = useBoolean(false)
+const noticeList = [{}]
 
 const isFinished = computed(() => {
   return pageCurrent.value >= pageTotal
@@ -16,6 +28,19 @@ function handleLoad() {
     pageCurrent.value++
     setLoadingBool(false)
   }, 1200)
+}
+function openDialogDetail() {
+  switch (props.mode) {
+    case 'tz': return openBetSlipDialog({
+      type: 'sports',
+      data: {
+        betType: 'single',
+      },
+    })
+    case 'znx': return openDepositDetailDialog()
+    case 'gg': return openNoticeDialog()
+    case 'pmd': return openMessageDialog()
+  }
 }
 </script>
 
@@ -31,26 +56,47 @@ function handleLoad() {
         <span>新推出</span>
         <span>标记全部为已读</span>
       </div>
-      <div v-for="i in pageCurrent * pageSize" :key="i" class="contain-item">
+      <div
+        v-for="i in pageCurrent * pageSize"
+        :key="i"
+        class="contain-item cursor-pointer"
+        @click="openDialogDetail"
+      >
         <div class="center item-left">
           <BaseIcon name="navbar-wallet" class="icon-size" />
         </div>
         <div class="item-right">
           <div class="right-state">
-            <span>存款待定中{{ i }}</span>
+            <span>复式投注已结算{{ i }}</span>
             <BaseBadge
               status="success" style="color: var(--tg-secondary-light);
                     font-size: var(--tg-font-size-xs);
                     font-weight: var(--tg-font-weight-normal);" text="1天前"
             />
           </div>
-          <div>
-            已登机您 100.00000000
+          <!-- 通知 -->
+          <div v-if="mode === 'tz'" style="white-space:normal;line-height: 1.43;">
+            您含有3项赛事的复式投注赢得了100.00000000
             <AppCurrencyIcon
-              style="display: inline-flex;vertical-align: bottom;" currency-type="BTC"
-            /> 的存款
+              style="display: inline-flex;vertical-align: middle;" currency-type="BTC"
+            />
           </div>
-          <div>待确认</div>
+          <!-- 站内信 -->
+          <template v-else-if="mode === 'znx'">
+            <div>您的代存订单：2023123456789</div>
+            <div>金额：10000.0000 USDT</div>
+            <div>状态：成功</div>
+          </template>
+          <!-- 公告 -->
+          <div v-else-if="mode === 'gg'" style="white-space:normal;line-height: 1.43;">
+            尊敬的客户：亚洲顶级真人品牌，开创行业最高奖金赛事,“百家乐争霸赛”火热进行中，
+            9月16日至11月26日的每周六/周日20:00定时开赛，22场比赛，超大奖圈，百万奖金等您来拿！
+          </div>
+          <!-- 跑马灯 -->
+          <div v-else style="white-space:normal;line-height: 1.43;">
+            尊敬的客户：11月1日至11月30日，每日使用USDT进行取款，
+            当日累计成功提款金额≥2,000元，点击【立即申请】即有几率获得随机幸运礼金，最高1,000元彩金！
+          </div>
         </div>
       </div>
     </div>
