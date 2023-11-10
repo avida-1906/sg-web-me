@@ -9,30 +9,29 @@ interface Props {
   shadow?: boolean
   fontSize?: string
   padding0?: boolean
+  customPadding?: boolean
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   type: 'default',
   size: 'xs',
 })
-const size = computed(() => props.padding0
-  ? ''
-  : `var(--tg-spacing-button-padding-vertical-${props.size})
-var(--tg-spacing-button-padding-horizontal-${props.size})`)
 </script>
 
 <template>
   <button
-    :disabled="loading || disabled" :class="[type, bgStyle, { round, shadow }]" :style="{
-      padding: size,
-    }"
+    :disabled="loading || disabled" :class="[type, bgStyle, size, {
+      round,
+      shadow,
+      padding0,
+      'custom-padding': customPadding,
+    }]"
   >
     <div v-if="loading" class="loading">
       <BaseIcon name="chess-frame2" class="ani-roll" />
     </div>
     <div
-      v-else
-      class="content"
+      v-else class="content"
       :style="{ fontSize: fontSize ? `var(--tg-spacing-${fontSize})` : '' }"
     >
       <slot />
@@ -45,7 +44,9 @@ var(--tg-spacing-button-padding-horizontal-${props.size})`)
   --tg-base-button-style-bg: var(--tg-secondary-main);
   --tg-base-button-style-bg-hover: var(--tg-text-grey);
   --tg-base-button-text-default-color: var(--tg-text-grey-button);
-  --tg-base-button-font-weight:var(--tg-font-weight-semibold);
+  --tg-base-button-font-weight: var(--tg-font-weight-semibold);
+  --tg-base-button-padding-y: var(--tg-spacing-button-padding-vertical-xs);
+  --tg-base-button-padding-x: var(--tg-spacing-button-padding-horizontal-xs);
 }
 </style>
 
@@ -57,6 +58,34 @@ button {
   font-weight: var(--tg-base-button-font-weight);
   transition: var(--tg-transition);
   line-height: 1;
+
+  &.xs {
+    padding: var(--tg-spacing-button-padding-vertical-xs) var(--tg-spacing-button-padding-horizontal-xs);
+  }
+
+  &.sm {
+    padding: var(--tg-spacing-button-padding-vertical-sm) var(--tg-spacing-button-padding-horizontal-sm);
+  }
+
+  &.md {
+    padding: var(--tg-spacing-button-padding-vertical-md) var(--tg-spacing-button-padding-horizontal-md);
+  }
+
+  &.lg {
+    padding: var(--tg-spacing-button-padding-vertical-lg) var(--tg-spacing-button-padding-horizontal-lg);
+  }
+
+  &.xl {
+    padding: var(--tg-spacing-button-padding-vertical-xl) var(--tg-spacing-button-padding-horizontal-xl);
+  }
+
+  &.padding0 {
+    padding: 0;
+  }
+
+  &.custom-padding {
+    padding: var(--tg-base-button-padding-y) var(--tg-base-button-padding-x);
+  }
 
   .loading {
     display: flex;
@@ -115,6 +144,7 @@ button {
 
   &:active:not(:disabled) {
     background-color: var(--tg-secondary-main);
+
     .content {
       transform: scale(0.96);
     }
