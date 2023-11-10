@@ -215,7 +215,7 @@ export function useCurrencyData() {
           if (parent) {
             res[parent.name]
               ? res[parent.name].push({ label: item.name, value: item.id })
-              : res[parent.name] = []
+              : res[parent.name] = [{ label: item.name, value: item.id }]
           }
         }
       }
