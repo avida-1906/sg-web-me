@@ -44,10 +44,12 @@ function cancelPayment() {
     </template>
     <template v-if="depositStep === '2'">
       <AppCurrencyIcon
-        class="currency-icon"
         :show-name="true"
         :currency-type="activeCurrency"
         icon-align="right"
+        style="--tg-app-currency-icon-style-color:var(--tg-text-white);
+        --tg-app-currency-icon-style-margin: 0 auto;
+        "
       >
         <template #network>
           <span style="padding-right: var(--tg-spacing-5);">TRC20</span>
@@ -105,12 +107,6 @@ function cancelPayment() {
         font-size: var(--tg-font-size-xs);
         font-weight: 500;
     }
-
-    .currency-icon {
-        color: var(--tg-text-white);
-        margin: 0 auto;
-    }
-
     .box-btn {
         display: grid;
         grid-template-columns: repeat(2, 1fr);

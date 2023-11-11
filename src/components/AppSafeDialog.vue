@@ -156,10 +156,10 @@ watch(() => activeTab.value, () => {
       </div>
       <BaseButton
         v-if="isDeposit"
-        class="safe-btn"
         bg-style="secondary"
         size="xl"
         :loading="lockerUpdateLoading"
+        style="font-size: var(--tg-font-size-base);"
         @click="handleUpdate"
       >
         存入保险库
@@ -178,7 +178,7 @@ watch(() => activeTab.value, () => {
           />
         </div>
         <BaseButton
-          class="safe-btn"
+          style="font-size: var(--tg-font-size-base);"
           bg-style="secondary"
           size="xl"
           :loading="lockerUpdateLoading"
@@ -214,9 +214,6 @@ watch(() => activeTab.value, () => {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    .safe-btn{
-      font-size: var(--tg-font-size-base);
-    }
   }
   .flex-col-start{
     display: flex;

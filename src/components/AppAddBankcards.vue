@@ -203,7 +203,7 @@ onUnmounted(() => {
           v-model="bankName"
           :msg="banknameError"
           :options="bankSelectOptions"
-          class="base-select"
+          style="--tg-base-select-style-padding-y: var(--tg-spacing-8)"
         />
       </BaseLabel>
       <BaseLabel
@@ -254,9 +254,6 @@ onUnmounted(() => {
       align-items: center;
       gap: .25rem;
       margin-bottom: var(--tg-spacing-5);
-    }
-    .base-select{
-      --tg-base-select-style-padding-y: var(--tg-spacing-8);
     }
     .checkbox-wrap{
       display: flex;

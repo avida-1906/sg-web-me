@@ -571,7 +571,11 @@ const toVip = function () {
                 <div class="content-wrap">
                   <p>Stake Telegram 频道的账号是 (@StakeCasino)。</p>
                   <div>
-                    <BaseButton type="text" class="base-btn">
+                    <BaseButton
+                      type="text"
+                      style="--tg-base-button-text-default-color:var(--tg-text-white);"
+                      size="none"
+                    >
                       如果您已经下载了 Telegram，请点击这里加入。
                     </BaseButton>
                   </div>
@@ -635,7 +639,11 @@ const toVip = function () {
                     接下来将剩余百分比乘以您达到下个级别所剩下的总投注需求即可。
                   </p>
                   <div>
-                    <BaseButton type="text" class="base-btn">
+                    <BaseButton
+                      type="text"
+                      style="--tg-base-button-text-default-color:var(--tg-text-white);"
+                      size="none"
+                    >
                       点击这里以了解更多
                     </BaseButton>
                   </div>
@@ -942,10 +950,6 @@ const toVip = function () {
           padding: var(--tg-spacing-16) var(--tg-spacing-20);
           p{
             line-height: 21px;
-          }
-          .base-btn{
-            color: var(--tg-text-white);
-            padding: 0 !important;
           }
         }
       }

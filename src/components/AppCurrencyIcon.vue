@@ -37,12 +37,20 @@ const iconUrl = computed(() => {
   </div>
 </template>
 
+<style lang="scss">
+  :root{
+    --tg-app-currency-icon-style-color: inherit;
+    --tg-app-currency-icon-style-margin:0;
+  }
+</style>
+
 <style lang='scss' scoped>
 .app-currency-icon {
   font-size: inherit;
-  color: inherit;
+  color: --tg-app-currency-icon-style-color;
   display: flex;
   align-items: center;
+  margin: --tg-app-currency-icon-style-margin;
 
   .icon {
     width: 14px;

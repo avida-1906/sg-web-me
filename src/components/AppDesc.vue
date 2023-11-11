@@ -154,8 +154,10 @@ onMounted(() => {
     <div v-show="showContent" class="wrap">
       <div class="desc-tab">
         <BaseTab
-          v-model="tab" :list="tabList" :center="false"
-          class="app-desc-base-tab"
+          v-model="tab"
+          :list="tabList"
+          :center="false"
+          style="--tg-tab-style-wrap-bg-color: var(--tg-primary-main);"
         />
       </div>
       <!-- 描述内容 -->
@@ -166,7 +168,7 @@ onMounted(() => {
             http://c.hiphotos.baidu.com/image/
             pic/item/30adcbef76094b36de8a2fe5a1cc7cd98d109d99.jpg"
             fit="cover"
-            class="app-desc-base-image"
+            style="--tg-base-img-style-radius: var(--tg-radius-xs);"
           />
         </div>
         <div class="c-text">
@@ -256,9 +258,6 @@ onMounted(() => {
 </template>
 
 <style lang="scss" scoped>
-.app-desc-base-tab{
-  --tg-tab-style-wrap-bg-color: var(--tg-primary-main);
-}
 .app-desc-base-image{
   --tg-base-img-style-radius: var(--tg-radius-xs);
 }

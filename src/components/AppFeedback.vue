@@ -82,7 +82,10 @@ onActivated(() => {
         <BaseButton
           :bg-style="tab === 1 ? 'primary' : undefined"
           :type="tab !== 1 ? 'line' : undefined"
-          class="tab-btn"
+          style="
+          --tg-base-button-padding-y: var(--tg-spacing-6);
+           --tg-base-button-padding-x: var(--tg-spacing-10);"
+          custom-padding
           @click="tab = 1"
         >
           创建反馈
@@ -90,7 +93,10 @@ onActivated(() => {
         <BaseButton
           :bg-style="tab === 2 ? 'primary' : undefined"
           :type="tab !== 2 ? 'line' : undefined"
-          class="tab-btn"
+          style="
+          --tg-base-button-padding-y: var(--tg-spacing-6);
+           --tg-base-button-padding-x: var(--tg-spacing-10);"
+          custom-padding
           @click="tab = 2"
         >
           我的反馈
@@ -98,7 +104,12 @@ onActivated(() => {
       </div>
       <div v-if="amountTotal" class="tab-right">
         <p>{{ amountTotal }}$</p>
-        <BaseButton bg-style="primary" class="tab-btn" @click="getAmount">
+        <BaseButton
+          bg-style="primary" style="
+          --tg-base-button-padding-y: var(--tg-spacing-6);
+           --tg-base-button-padding-x: var(--tg-spacing-10);"
+          custom-padding @click="getAmount"
+        >
           一键领取
         </BaseButton>
       </div>
