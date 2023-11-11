@@ -46,7 +46,7 @@ export const useSportsStore = defineStore('sports', () => {
   /** 投注单数据 */
   const betSlipData = ref<IBetSlipData[]>([])
   /** 当前场馆ID */
-  const currentProvider = ref('')
+  const currentProvider = ref(Local.get<string>(STORAGE_SPORTS_CURRENT_PROVIDER)?.value)
 
   /** 获取场馆列表 */
   const {
@@ -54,12 +54,13 @@ export const useSportsStore = defineStore('sports', () => {
     data: sportsProviderData,
   } = useList(ApiMemberPlatformList, {
     onSuccess(res) {
-      if (res.d) {
+      if (res.d && !Local.get<string>(STORAGE_SPORTS_CURRENT_PROVIDER)) {
         currentProvider.value = res.d[0].id
         Local.set(STORAGE_SPORTS_CURRENT_PROVIDER, res.d[0].id)
       }
     },
   })
+  runSportsProvider({ game_type: 4 })
 
   /** 场馆列表 */
   const providerList = computed(() => {
@@ -105,7 +106,6 @@ export const useSportsStore = defineStore('sports', () => {
     currentProvider,
     providerList,
     changeProvider,
-    runSportsProvider,
   }
 })
 

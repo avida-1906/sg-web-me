@@ -41,7 +41,6 @@ const onShowMore = function () {
 //   runLive({ game_type: 1 }),
 //   runSlot({ game_type: 3 }),
 // ])
-sportsStore.runSportsProvider({ game_type: 4 })
 </script>
 
 <template>
