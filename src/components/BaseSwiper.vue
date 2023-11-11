@@ -166,12 +166,12 @@ watch(active, (val) => {
     >
       <div v-if="_data.length > 1" class="arrows-overlay">
         <div class="left">
-          <BaseButton type="text" padding0 @click="slideToPrev">
+          <BaseButton type="text" size="none" @click="slideToPrev">
             <BaseIcon name="uni-arrow-left" />
           </BaseButton>
         </div>
         <div class="right">
-          <BaseButton type="text" padding0 @click="slideToNext">
+          <BaseButton type="text" size="none" @click="slideToNext">
             <BaseIcon name="uni-arrow-right" />
           </BaseButton>
         </div>

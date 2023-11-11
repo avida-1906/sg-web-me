@@ -5,9 +5,8 @@ interface Props {
   bgStyle?: 'primary' | 'secondary' | 'dark'
   disabled?: boolean
   loading?: boolean
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+  size?: 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'
   shadow?: boolean
-  padding0?: boolean
   customPadding?: boolean
 }
 
@@ -22,7 +21,6 @@ withDefaults(defineProps<Props>(), {
     :disabled="loading || disabled" :class="[type, bgStyle, size, {
       round,
       shadow,
-      padding0,
       'custom-padding': customPadding,
     }]"
   >
@@ -56,6 +54,9 @@ button {
   transition: var(--tg-transition);
   line-height: 1;
 
+  &.none{
+    padding: 0;
+  }
   &.xs {
     padding: var(--tg-spacing-button-padding-vertical-xs) var(--tg-spacing-button-padding-horizontal-xs);
   }
@@ -74,10 +75,6 @@ button {
 
   &.xl {
     padding: var(--tg-spacing-button-padding-vertical-xl) var(--tg-spacing-button-padding-horizontal-xl);
-  }
-
-  &.padding0 {
-    padding: 0;
   }
 
   &.custom-padding {

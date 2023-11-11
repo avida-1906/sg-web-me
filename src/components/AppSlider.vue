@@ -114,7 +114,7 @@ watchEffect(() => {
     <div class="header">
       <div class="title">
         <BaseButton
-          type="text" padding0
+          type="text" size="none"
           style="--tg-base-button-text-default-color:var(--tg-text-white);"
           @click="onTitleClick"
         >
@@ -125,11 +125,14 @@ watchEffect(() => {
         </BaseButton>
       </div>
       <div v-if="showArrow" class="arrows">
-        <BaseButton type="round-line-left" padding0 :disabled="x <= 0" @click="prevPage">
+        <BaseButton
+          type="round-line-left" size="none"
+          :disabled="x <= 0" @click="prevPage"
+        >
           <BaseIcon name="uni-arrowleft-line" />
         </BaseButton>
         <BaseButton
-          padding0
+          size="none"
           type="round-line-right" :disabled="scrollLeftItemsCount + pageInfo.pageSize
             >= data.length + 1" @click="nextPage"
         >

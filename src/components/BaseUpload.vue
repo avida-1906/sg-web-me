@@ -60,7 +60,7 @@ function deleteImg(index: number) {
         <BaseButton
           v-if="!disabled"
           type="text"
-          padding0
+          size="none"
           @click.stop="deleteImg(index)"
         >
           <BaseIcon name="upload-delete" />

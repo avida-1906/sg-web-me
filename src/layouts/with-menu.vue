@@ -76,7 +76,7 @@ watch(route, (val) => {
                 >
                   <div class="wrap-flex">
                     <div
-                      class="stack y-center padding-none direction-horizontal top"
+                      class="stack y-center padding-none top direction-horizontal"
                       :class="[
                         appContentWidth > 800
                           ? 'x-space-between stretch gap-medium'
@@ -95,7 +95,7 @@ watch(route, (val) => {
                         </span>
                       </div>
                       <div class="close" @click="goBack">
-                        <BaseButton type="text" padding0>
+                        <BaseButton type="text" size="none">
                           <BaseIcon name="uni-close" />
                         </BaseButton>
                       </div>

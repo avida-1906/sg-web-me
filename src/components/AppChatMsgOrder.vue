@@ -8,7 +8,7 @@ defineProps<Props>()
 </script>
 
 <template>
-  <BaseButton type="text" padding0>
+  <BaseButton type="text" size="none">
     <span class="chat-msg-order">
       <span class="label">{{ type }}: #</span>
       <span class="order">{{ application.formatNumber(order) }}</span>

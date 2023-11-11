@@ -80,7 +80,7 @@ await application.allSettled([
       <span v-if="timer">{{ countdown }}秒后重新发送邮件</span>
       <BaseButton
         v-else
-        padding0
+        size="none"
         type="text"
         :loading="sendMailCodeLoading"
         @click="runAsyncMemberSendMailCode"

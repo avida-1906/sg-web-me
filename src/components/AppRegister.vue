@@ -235,7 +235,7 @@ async function toLogin() {
           <BaseCheckBox v-model="isAgree" :msg="agreeErrorMsg">
             我已阅读并同意
             <BaseButton
-              type="text" padding0
+              type="text" size="none"
               style="--tg-base-button-text-default-color:var(--tg-text-white);"
               @click="steps = 2"
             >
@@ -250,7 +250,7 @@ async function toLogin() {
       <div class="app-register-terms-conditions">
         <div class="title">
           <BaseButton
-            type="text" padding0 style="--tg-base-button-font-size:20px;"
+            type="text" size="none" style="--tg-base-button-font-size:20px;"
             @click="steps = 1"
           >
             <BaseIcon name="uni-arrowleft-line" />

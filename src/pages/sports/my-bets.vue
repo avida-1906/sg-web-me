@@ -41,7 +41,7 @@ const { page, prev, next, hasMore } = useList(ApiMemberFavList)
         <template #default>
           <BaseButton
             type="text"
-            padding0
+            size="none"
             style=" --tg-base-button-text-default-color:var(--tg-text-white)"
             @click="router.push('/sports')"
           >

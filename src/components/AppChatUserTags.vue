@@ -48,7 +48,7 @@ const { openStatisticsDialog } = useStatisticsDialog()
         </template>
       </VTooltip>
     </template>
-    <BaseButton type="text" padding0 @click="openStatisticsDialog(userInfo.name)">
+    <BaseButton type="text" size="none" @click="openStatisticsDialog(userInfo.name)">
       <span class="user-name">{{ userInfo.name }}</span>
     </BaseButton>
   </div>

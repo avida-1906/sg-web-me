@@ -670,7 +670,7 @@ useTitle(title)
               </div>
               <div class="live-stream-scoreboard-footer">
                 <span v-show="openLiveSwitch" class="mini-video">
-                  <BaseButton type="text" padding0 @click="openMiniVideo">
+                  <BaseButton type="text" size="none" @click="openMiniVideo">
                     <span class="mini-video">
                       <BaseIcon name="uni-small-screen" />
                       <span>{{ $t('window_minimize') }}</span>
@@ -813,10 +813,10 @@ useTitle(title)
                     <div
                       class="odd-switch-buttons"
                     >
-                      <BaseButton type="text" padding0 @click.stop="">
+                      <BaseButton type="text" size="none" @click.stop="">
                         赔率滑块
                       </BaseButton>
-                      <BaseButton type="text" padding0 @click.stop="">
+                      <BaseButton type="text" size="none" @click.stop="">
                         全部
                       </BaseButton>
                     </div>
@@ -967,7 +967,7 @@ useTitle(title)
                 </div>
               </div>
               <div v-if="showRecent" class="spotlight is-open variant-dark">
-                <div class="no-active-scale header">
+                <div class="header no-active-scale">
                   <span>近期游戏记录</span>
                   <BaseButton type="text" @click="setSRFalse()">
                     <BaseIcon name="uni-close-white" />

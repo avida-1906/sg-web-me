@@ -130,7 +130,7 @@ function goFixture() {
       <div class="fixture">
         <!-- 主队名称 -->
         <div class="teams-name" @click="goFixture">
-          <div v-if="onBallHome" class="left icon">
+          <div v-if="onBallHome" class="icon left">
             <BaseIcon name="spt-tennis" />
           </div>
           <span>朱卡耶夫，北比特</span>
@@ -185,7 +185,8 @@ function goFixture() {
         <div class="options-wrapper">
           <VTooltip placement="top">
             <BaseButton
-              type="text" padding0 :disabled="checkDragDialog(`${fakeDragDialogId}trend`)"
+              type="text" size="none"
+              :disabled="checkDragDialog(`${fakeDragDialogId}trend`)"
               @click="openDragDialog('trend')"
             >
               <BaseIcon name="uni-trend" />
@@ -198,7 +199,8 @@ function goFixture() {
           </VTooltip>
           <VTooltip placement="top">
             <BaseButton
-              type="text" padding0 :disabled="checkDragDialog(`${fakeDragDialogId}live`)"
+              type="text" size="none"
+              :disabled="checkDragDialog(`${fakeDragDialogId}live`)"
               @click="openDragDialog('live')"
             >
               <BaseIcon name="spt-live" />
@@ -271,7 +273,8 @@ function goFixture() {
       <div v-if="isH5Layout" class="options-wrapper">
         <VTooltip placement="top">
           <BaseButton
-            type="text" padding0 :disabled="checkDragDialog(`${fakeDragDialogId}trend`)"
+            type="text" size="none"
+            :disabled="checkDragDialog(`${fakeDragDialogId}trend`)"
             @click="openDragDialog('trend')"
           >
             <BaseIcon name="uni-trend" />
@@ -284,7 +287,8 @@ function goFixture() {
         </VTooltip>
         <VTooltip placement="top">
           <BaseButton
-            type="text" padding0 :disabled="checkDragDialog(`${fakeDragDialogId}live`)"
+            type="text" size="none"
+            :disabled="checkDragDialog(`${fakeDragDialogId}live`)"
             @click="openDragDialog('live')"
           >
             <BaseIcon name="spt-live" />
@@ -297,7 +301,7 @@ function goFixture() {
         </VTooltip>
       </div>
       <BaseButton
-        class="text-btn" type="text" padding0
+        class="text-btn" type="text" size="none"
         @click="router.push('/sports/a/b/c/d')"
       >
         <span>+25</span>

@@ -39,10 +39,10 @@ function drawDialog() {
     <div class="right">
       <div>{{ $t('can_receive') }}：<span class="money">999,999.00</span></div>
       <div class="btns">
-        <BaseButton bg-style="primary" padding0 round @click="drawDialog">
+        <BaseButton bg-style="primary" size="none" round @click="drawDialog">
           {{ $t('receive_commission') }}
         </BaseButton>
-        <BaseButton type="line" round padding0 @click="commissionRecord">
+        <BaseButton type="line" round size="none" @click="commissionRecord">
           {{ $t('commission_history') }}
         </BaseButton>
       </div>

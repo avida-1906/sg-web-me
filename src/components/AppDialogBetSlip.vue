@@ -26,10 +26,10 @@ const slipList = computed(() => isBetSingle.value ? ['1.89'] : ['1.89', '1.89', 
       </div>
       <div class="order-id">
         <span>ID 93,425,567</span>
-        <BaseButton type="text" padding0>
+        <BaseButton type="text" size="none">
           <BaseIcon name="uni-doc" />
         </BaseButton>
-        <BaseButton type="text" padding0>
+        <BaseButton type="text" size="none">
           <BaseIcon name="uni-link" />
         </BaseButton>
       </div>
@@ -88,10 +88,10 @@ const slipList = computed(() => isBetSingle.value ? ['1.89'] : ['1.89', '1.89', 
               10-11
             </div>
             <div class="btns">
-              <BaseButton type="text" padding0>
+              <BaseButton type="text" size="none">
                 <BaseIcon name="spt-live" />
               </BaseButton>
-              <BaseButton type="text" padding0>
+              <BaseButton type="text" size="none">
                 <BaseIcon name="uni-trend" />
               </BaseButton>
             </div>

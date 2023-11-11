@@ -106,7 +106,7 @@ const betBtnText = computed(() =>
         />
         <BaseButton
           type="text"
-          padding0
+          size="none"
           style="--tg-base-button-text-default-color:var(--tg-text-white);"
         >
           {{ t('clear_all') }}
@@ -141,7 +141,7 @@ const betBtnText = computed(() =>
             <template #default>
               <BaseButton
                 type="text"
-                padding0
+                size="none"
                 style=" --tg-base-button-text-default-color:var(--tg-text-white)"
                 @click="router.push('/sports')"
               >

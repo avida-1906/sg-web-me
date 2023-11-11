@@ -124,7 +124,7 @@ function handleClick(item: TabItem) {
     <div class="scroll-x">
       <div class="tab-wrap">
         <div v-for="tab in showList" :key="tab.value" class="tab">
-          <BaseButton type="text" padding0 @click="handleClick(tab)">
+          <BaseButton type="text" size="none" @click="handleClick(tab)">
             <div class="button" :class="{ active: tab.id === modelValue }">
               <div class="dot" />
               <div class="main">

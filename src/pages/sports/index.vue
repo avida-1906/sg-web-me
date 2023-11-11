@@ -82,7 +82,7 @@ runSportsProvider({ page: 1, page_size: 100, game_type: 4 })
     <template v-if="marketType === 'all'">
       <SportsLive on-page />
       <BaseButton
-        class="check-more" type="text" padding0
+        class="check-more" type="text" size="none"
         @click="router.push('/sports/live')"
       >
         {{ t('view_all') }}

@@ -43,7 +43,7 @@ const isFirst = computed(() => props.index === 0)
           深圳市足球俱乐部 - 长春亚泰
         </div>
       </div>
-      <BaseButton type="text" padding0>
+      <BaseButton type="text" size="none">
         <BaseIcon name="uni-close" />
       </BaseButton>
     </div>
