@@ -73,6 +73,7 @@ declare global {
   const EnumSportsOddsType: typeof import('./stores/sports')['EnumSportsOddsType']
   const EnumSportsPanelType: typeof import('./stores/sports')['EnumSportsPanelType']
   const EnumsBetSlipTabs: typeof import('./utils/enums')['EnumsBetSlipTabs']
+  const FEEDBACK_CHAT_MESSAGE_BUS: typeof import('./utils/event-bus')['FEEDBACK_CHAT_MESSAGE_BUS']
   const Local: typeof import('./utils/storage')['Local']
   const MQTT_CONNECT_SUCCESS_BUS: typeof import('./utils/event-bus')['MQTT_CONNECT_SUCCESS_BUS']
   const MQTT_DISCONNECT_BUS: typeof import('./utils/event-bus')['MQTT_DISCONNECT_BUS']
@@ -566,6 +567,7 @@ declare module 'vue' {
     readonly EnumSportsOddsType: UnwrapRef<typeof import('./stores/sports')['EnumSportsOddsType']>
     readonly EnumSportsPanelType: UnwrapRef<typeof import('./stores/sports')['EnumSportsPanelType']>
     readonly EnumsBetSlipTabs: UnwrapRef<typeof import('./utils/enums')['EnumsBetSlipTabs']>
+    readonly FEEDBACK_CHAT_MESSAGE_BUS: UnwrapRef<typeof import('./utils/event-bus')['FEEDBACK_CHAT_MESSAGE_BUS']>
     readonly Local: UnwrapRef<typeof import('./utils/storage')['Local']>
     readonly MQTT_CONNECT_SUCCESS_BUS: UnwrapRef<typeof import('./utils/event-bus')['MQTT_CONNECT_SUCCESS_BUS']>
     readonly MQTT_DISCONNECT_BUS: UnwrapRef<typeof import('./utils/event-bus')['MQTT_DISCONNECT_BUS']>
@@ -1052,6 +1054,7 @@ declare module '@vue/runtime-core' {
     readonly EnumSportsOddsType: UnwrapRef<typeof import('./stores/sports')['EnumSportsOddsType']>
     readonly EnumSportsPanelType: UnwrapRef<typeof import('./stores/sports')['EnumSportsPanelType']>
     readonly EnumsBetSlipTabs: UnwrapRef<typeof import('./utils/enums')['EnumsBetSlipTabs']>
+    readonly FEEDBACK_CHAT_MESSAGE_BUS: UnwrapRef<typeof import('./utils/event-bus')['FEEDBACK_CHAT_MESSAGE_BUS']>
     readonly Local: UnwrapRef<typeof import('./utils/storage')['Local']>
     readonly MQTT_CONNECT_SUCCESS_BUS: UnwrapRef<typeof import('./utils/event-bus')['MQTT_CONNECT_SUCCESS_BUS']>
     readonly MQTT_DISCONNECT_BUS: UnwrapRef<typeof import('./utils/event-bus')['MQTT_DISCONNECT_BUS']>
