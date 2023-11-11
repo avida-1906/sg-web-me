@@ -5,38 +5,24 @@ const { openRegisterDialog } = useRegisterDialog()
 </script>
 
 <template>
-  <BaseButton type="text" class="login" @click.stop="openLoginDialog()">
-    {{ t('login') }}
-  </BaseButton>
-  <BaseButton
-    class="reg"
-    bg-style="primary"
-    @click.stop="openRegisterDialog()"
-  >
-    {{ t('reg') }}
-  </BaseButton>
+  <div class="btn-box">
+    <BaseButton type="text" custom-padding @click.stop="openLoginDialog()">
+      {{ t('login') }}
+    </BaseButton>
+    <BaseButton
+      custom-padding
+      bg-style="primary"
+      @click.stop="openRegisterDialog()"
+    >
+      {{ t('reg') }}
+    </BaseButton>
+  </div>
 </template>
 
 <style lang="scss" scoped>
-.login {
-  width: 68px;
-  height: 44px;
-  padding:
-  var(--tg-spacing-button-padding-vertical-md)
-  var(--tg-spacing-button-padding-vertical-2xl) !important;
-  color: var(--tg-text-white);
-}
-
-.reg {
-  display: flex;
-  width: 68px;
-  height: 44px;
-  padding:
-  var(--tg-spacing-button-padding-vertical-md)
-  var(--tg-spacing-button-padding-vertical-2xl) !important;
-  justify-content: center;
-  align-items: center;
-  border-radius: 4px;
-  background: #1475E1;
+.btn-box{
+  --tg-base-button-padding-y: var(--tg-spacing-button-padding-vertical-md);
+  --tg-base-button-padding-x: var(--tg-spacing-button-padding-horizontal-md);
+  --tg-base-button-text-default-color: var(--tg-text-white);
 }
 </style>

@@ -45,10 +45,12 @@ onActivated(() => {
 
 onDeactivated(() => {
   chatStore.setFeedbackItem()
+  messageHistory.value = []
 })
 
 onUnmounted(() => {
   reset()
+  messageHistory.value = []
 })
 </script>
 
@@ -63,7 +65,7 @@ onUnmounted(() => {
     <div class="messages">
       <div ref="scrollMsg" class="scroll-y message-content">
         <div v-if="messageHistory.length" class="time-wrap">
-          {{ application.timestampToTime(messageHistory[0].created_at) }}
+          {{ application.timestampToTime(messageHistory[0].created_at * 1000) }}
         </div>
         <template v-for="msg in messageHistory" :key="msg.id">
           <AppFeedbackChatMsg :message="msg" />
