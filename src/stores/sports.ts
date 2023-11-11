@@ -60,7 +60,7 @@ export const useSportsStore = defineStore('sports', () => {
       }
     },
   })
-  runSportsProvider({ page: 1, page_size: 100, game_type: 4 })
+  runSportsProvider({ game_type: 4 })
 
   /** 场馆列表 */
   const providerList = computed(() => {
