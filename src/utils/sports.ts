@@ -6,7 +6,22 @@
 export const SPORTS_PLAT_ID = 'SPORTS_PLAT_ID'
 
 export class Sports {
+  /**
+   * 获取当前体育平台ID
+   * @returns {string}
+   */
+  static getSportsPlatId() {
+    return Local.get<string>(STORAGE_SPORTS_CURRENT_PROVIDER)?.value ?? ''
+  }
 
+  /**
+   * 替换字符串中的体育ID
+   * @param {string} str
+   * @returns {string}
+   */
+  static replaceSportsPlatId(str: string) {
+    return str.replace(SPORTS_PLAT_ID, this.getSportsPlatId())
+  }
 }
 
 /**
