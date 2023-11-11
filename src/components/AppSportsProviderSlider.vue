@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { ProviderItem } from '~/apis/index'
+import type { ProviderItem } from '~/apis/types'
 
 interface Props {
   list: ProviderItem[]
