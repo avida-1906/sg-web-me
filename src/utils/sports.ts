@@ -1,3 +1,10 @@
+/**
+ * 体育ID
+ *
+ * 用来替换掉字符串中的体育ID
+ */
+export const SPORTS_PLAT_ID = 'SPORTS_PLAT_ID'
+
 export class Sports {
 
 }
