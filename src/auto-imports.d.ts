@@ -62,6 +62,9 @@ declare global {
   const ApiSmsSend: typeof import('./apis/index')['ApiSmsSend']
   const ApiSportCompetitionList: typeof import('./apis/sport')['ApiSportCompetitionList']
   const ApiSportCount: typeof import('./apis/sport')['ApiSportCount']
+  const ApiSportEventDelta: typeof import('./apis/sport')['ApiSportEventDelta']
+  const ApiSportEventInfo: typeof import('./apis/sport')['ApiSportEventInfo']
+  const ApiSportEventList: typeof import('./apis/sport')['ApiSportEventList']
   const ApiSportSidebar: typeof import('./apis/sport')['ApiSportSidebar']
   const ApiWalletBankcardList: typeof import('./apis/index')['ApiWalletBankcardList']
   const Big: typeof import('big.js')['Big']
@@ -148,6 +151,7 @@ declare global {
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const getEnv: typeof import('./utils/index')['getEnv']
+  const getSportsProvider: typeof import('./apis/sport')['getSportsProvider']
   const gt: typeof import('lodash-es')['gt']
   const h: typeof import('vue')['h']
   const head: typeof import('lodash-es')['head']
@@ -560,6 +564,9 @@ declare module 'vue' {
     readonly ApiSmsSend: UnwrapRef<typeof import('./apis/index')['ApiSmsSend']>
     readonly ApiSportCompetitionList: UnwrapRef<typeof import('./apis/sport')['ApiSportCompetitionList']>
     readonly ApiSportCount: UnwrapRef<typeof import('./apis/sport')['ApiSportCount']>
+    readonly ApiSportEventDelta: UnwrapRef<typeof import('./apis/sport')['ApiSportEventDelta']>
+    readonly ApiSportEventInfo: UnwrapRef<typeof import('./apis/sport')['ApiSportEventInfo']>
+    readonly ApiSportEventList: UnwrapRef<typeof import('./apis/sport')['ApiSportEventList']>
     readonly ApiSportSidebar: UnwrapRef<typeof import('./apis/sport')['ApiSportSidebar']>
     readonly ApiWalletBankcardList: UnwrapRef<typeof import('./apis/index')['ApiWalletBankcardList']>
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
@@ -644,6 +651,7 @@ declare module 'vue' {
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getEnv: UnwrapRef<typeof import('./utils/index')['getEnv']>
+    readonly getSportsProvider: UnwrapRef<typeof import('./apis/sport')['getSportsProvider']>
     readonly gt: UnwrapRef<typeof import('lodash-es')['gt']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly head: UnwrapRef<typeof import('lodash-es')['head']>
@@ -1050,6 +1058,9 @@ declare module '@vue/runtime-core' {
     readonly ApiSmsSend: UnwrapRef<typeof import('./apis/index')['ApiSmsSend']>
     readonly ApiSportCompetitionList: UnwrapRef<typeof import('./apis/sport')['ApiSportCompetitionList']>
     readonly ApiSportCount: UnwrapRef<typeof import('./apis/sport')['ApiSportCount']>
+    readonly ApiSportEventDelta: UnwrapRef<typeof import('./apis/sport')['ApiSportEventDelta']>
+    readonly ApiSportEventInfo: UnwrapRef<typeof import('./apis/sport')['ApiSportEventInfo']>
+    readonly ApiSportEventList: UnwrapRef<typeof import('./apis/sport')['ApiSportEventList']>
     readonly ApiSportSidebar: UnwrapRef<typeof import('./apis/sport')['ApiSportSidebar']>
     readonly ApiWalletBankcardList: UnwrapRef<typeof import('./apis/index')['ApiWalletBankcardList']>
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
@@ -1134,6 +1145,7 @@ declare module '@vue/runtime-core' {
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getEnv: UnwrapRef<typeof import('./utils/index')['getEnv']>
+    readonly getSportsProvider: UnwrapRef<typeof import('./apis/sport')['getSportsProvider']>
     readonly gt: UnwrapRef<typeof import('lodash-es')['gt']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly head: UnwrapRef<typeof import('lodash-es')['head']>
