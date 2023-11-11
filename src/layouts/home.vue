@@ -119,7 +119,7 @@ onErrorCaptured((err, instance, info) => {
         class="scroll-y scrollable" :class="[{ 'mobile-bottom': isMobile }]"
       >
         <!-- 用于获取内容区宽度 -->
-        <AppContent>
+        <AppContent except>
           <div ref="homeContainerRef" class="only-for-get-width" />
         </AppContent>
         <slot>
