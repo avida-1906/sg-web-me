@@ -92,8 +92,3 @@ watch(currentGame, (a) => {
   margin-bottom: var(--tg-spacing-24);
 }
 </style>
-
-<route lang="yaml">
-meta:
-  layout: home
-</route>

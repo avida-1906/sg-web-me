@@ -11,6 +11,7 @@ const props = defineProps<Props>()
 
 const router = useRouter()
 const { appContentWidth } = storeToRefs(useWindowStore())
+const { currentProvider } = storeToRefs(useSportsStore())
 
 const _data = reactive(props.breadcrumb)
 
@@ -29,7 +30,7 @@ function goBack() {
   if (_data.length > 1)
     goPath()
   else
-    router.push('/sports')
+    router.push(`/sports/${currentProvider.value}`)
 }
 
 function collect() {

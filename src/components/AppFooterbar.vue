@@ -3,6 +3,7 @@ const router = useRouter()
 const route = useRoute()
 const { leftIsExpand, triggerLeftSidebar, closeLeftSidebar } = useLeftSidebar()
 const { openRightSidebar, closeRightSidebar } = useRightSidebar()
+const { currentProvider } = storeToRefs(useSportsStore())
 
 const tabbar = ref([
   { title: '浏览', icon: 'tabbar-menu', name: 'menu', show: true },
@@ -20,7 +21,7 @@ const tabbar = ref([
     icon: 'spt-basketball',
     name: 'sport',
     show: true,
-    path: '/sports',
+    path: `/sports/${currentProvider.value}`,
   },
   { title: '聊天室', icon: 'tabbar-chat', name: 'chat', show: true },
 ])

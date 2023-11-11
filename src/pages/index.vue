@@ -13,6 +13,8 @@ const {
   widthBoundaryXs,
 } = storeToRefs(useWindowStore())
 const { isLogin, userInfo } = storeToRefs(useAppStore())
+const sportsStore = useSportsStore()
+const { currentProvider } = storeToRefs(sportsStore)
 const { openVipDialog } = useVipDialog()
 const { openWalletDialog } = useWalletDialog()
 
@@ -110,7 +112,10 @@ const onShowMore = function () {
           </BaseButton>
         </div>
       </div>
-      <div class="features-sports" @click="router.push('/sports')">
+      <div
+        class="features-sports"
+        @click="router.push(`/sports/${currentProvider}`)"
+      >
         <div class="features-title">
           <BaseIcon name="spt-basketball" />
           <span>体育</span>

@@ -6,6 +6,7 @@ interface Props {
 defineProps<Props>()
 const { t } = useI18n()
 const { isMobile } = storeToRefs(useWindowStore())
+const { currentProvider } = storeToRefs(useSportsStore())
 const { triggerLeftSidebar, closeLeftSidebar, navButtons } = useLeftSidebar()
 const router = useRouter()
 const route = useRoute()
@@ -19,7 +20,8 @@ const gameType = ref(isCasino.value ? '1' : isSports.value ? '2' : '')
 function onGameTypeChange(v: string) {
   gameType.value = v
 }
-function push(path: string) {
+function push(title: string) {
+  const path = title === 'casino' ? '/casino' : `/sports/${currentProvider.value}`
   router.push(path)
   closeLeftSidebar()
 }
@@ -43,7 +45,7 @@ function push(path: string) {
             <div
               v-for="n in navButtons" :key="n.title"
               :class="[n.title, { active: route.name?.toString().includes(n.title) }]"
-              @click="$router.push(`/${n.title}`)"
+              @click="push(n.title)"
             >
               <span>{{ t(n.title) }}</span>
             </div>
@@ -58,7 +60,7 @@ function push(path: string) {
     <BaseAspectRatio v-for="n in navButtons" :key="n.title" ratio="3.5/1">
       <div
         :class="[n.title, { active: route.name?.toString().includes(n.title) }]"
-        @click="push(`/${n.title}`)"
+        @click="push(n.title)"
       >
         <span>{{ t(n.title) }}</span>
       </div>

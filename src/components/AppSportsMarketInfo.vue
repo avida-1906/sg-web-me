@@ -10,6 +10,7 @@ const props = defineProps<Props>()
 const { t } = useI18n()
 const router = useRouter()
 const { width } = storeToRefs(useWindowStore())
+const { currentProvider } = storeToRefs(useSportsStore())
 const { checkDragDialog } = useDragDialogList()
 const fakeDragDialogId = Math.ceil(Math.random() * 100000)
 
@@ -37,10 +38,11 @@ function openDragDialog(type: 'trend' | 'live') {
 function onBreadcrumbsClick({ list, index }: { list: ISelectOption[]; index: number }) {
   let path = ''
   if (isH5Layout.value)
-    path = `/sports/${list.map(a => a.value).join('/')}`
+    path = `/sports/${currentProvider.value}/${list.map(a => a.value).join('/')}`
 
   else
-    path = `/sports/${list.slice(0, index + 1).map(a => a.value).join('/')}`
+    // eslint-disable-next-line max-len
+    path = `/sports/${currentProvider.value}/${list.slice(0, index + 1).map(a => a.value).join('/')}`
 
   console.log('🚀 ~ file: BaseBreadcrumbs.vue:15 ~ handleClick ~ path:', path)
   router.push(path)
@@ -302,7 +304,7 @@ function goFixture() {
       </div>
       <BaseButton
         class="text-btn" type="text" size="none"
-        @click="router.push('/sports/a/b/c/d')"
+        @click="router.push(`/sports/${currentProvider}/a/b/c/d`)"
       >
         <span>+25</span>
       </BaseButton>

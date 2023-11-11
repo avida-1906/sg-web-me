@@ -12,8 +12,13 @@ defineProps<Props>()
 
 const { t } = useI18n()
 const { triggerLeftSidebar, navButtons } = useLeftSidebar()
+const { currentProvider } = storeToRefs(useSportsStore())
 const router = useRouter()
 const route = useRoute()
+function push(title: string) {
+  const path = title === 'casino' ? '/casino' : `/sports/${currentProvider.value}`
+  router.push(path)
+}
 </script>
 
 <template>
@@ -37,7 +42,7 @@ const route = useRoute()
           <div
             v-for="n in navButtons" :key="n.title"
             :class="[n.title, { active: route.name?.toString().includes(n.title) }]"
-            @click="router.push(`/${n.title}`)"
+            @click="push(n.title)"
           >
             <span>{{ t(n.title) }}</span>
           </div>

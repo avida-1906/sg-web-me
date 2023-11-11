@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+const feedChatMessageBus = useEventBus(FEEDBACK_CHAT_MESSAGE_BUS)
 const { userInfo } = storeToRefs(useAppStore())
 const chatStore = useChatStore()
 
@@ -7,6 +8,7 @@ const { feedBackItem } = storeToRefs(chatStore)
 const scrollMsg = ref()
 const messageHistory = ref<Array<any>>([])
 
+const params = computed(() => ({ feed_id: feedBackItem.value?.feed_id ?? '' }))
 const canSendMsg = computed(() =>
   messageHistory.value && messageHistory.value.length
     ? messageHistory.value[messageHistory.value.length - 1].uid !== userInfo.value?.uid
@@ -27,16 +29,23 @@ function goBack() {
 }
 
 function init() {
-  if (feedBackItem.value && feedBackItem.value.feed_id)
-    runGetHistory({ feed_id: feedBackItem.value.feed_id })
+  if (params.value.feed_id.length)
+    runGetHistory(params.value)
 }
 
 function reset() {
   goBack()
 }
 
+function onReceiveChatMsg(m: any) {
+  console.log('m === ', m)
+  if (params.value.feed_id.length)
+    runGetHistory(params.value)
+}
+
 onMounted(() => {
   init()
+  feedChatMessageBus.on(onReceiveChatMsg)
 })
 
 onActivated(() => {
@@ -51,6 +60,7 @@ onDeactivated(() => {
 onUnmounted(() => {
   reset()
   messageHistory.value = []
+  feedChatMessageBus.off(onReceiveChatMsg)
 })
 </script>
 
