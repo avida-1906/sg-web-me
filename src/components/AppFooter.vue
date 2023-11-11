@@ -6,14 +6,14 @@ const router = useRouter()
 const languageStore = useLanguageStore()
 const { userLanguage, AllLanguages } = storeToRefs(languageStore)
 const sportStore = useSportsStore()
-const { sportsOddsType } = storeToRefs(sportStore)
+const { sportsOddsType, currentProvider } = storeToRefs(sportStore)
 
 const menuData = [
   {
     title: '体育',
     children: [
-      { title: '主页', path: '/sports' },
-      { title: '滚球', path: '/sports/live' },
+      { title: '主页', path: `/sport/${currentProvider}` },
+      { title: '滚球', path: `/sports/${currentProvider}/live` },
       { title: '体育博彩规则', icon: false },
     ],
   },

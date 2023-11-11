@@ -36,6 +36,7 @@ export function useApiMenuData() {
   const { t } = useI18n()
   const { isLogin } = storeToRefs(appStore)
   const { casinoGameList } = storeToRefs(useCasinoStore())
+  const { currentProvider } = storeToRefs(useSportsStore())
   const sportStore = useSportsStore()
   const { sportsOddsType } = storeToRefs(sportStore)
   const languageStore = useLanguageStore()
@@ -66,16 +67,17 @@ export function useApiMenuData() {
   const sportsMenu = ref<Menu>([
     {
       title: '滚球盘',
-      path: '/sports/live',
+      path: `/sports/${currentProvider}/live`,
       icon: 'spt-ball-plate',
       list: [],
       domId: '',
       fixtureCount: 22,
     },
-    { title: '即将开赛', path: '/sports/upcoming', icon: 'spt-timing', list: [], domId: '' },
+    // eslint-disable-next-line max-len
+    { title: '即将开赛', path: `/sports/${currentProvider}/upcoming`, icon: 'spt-timing', list: [], domId: '' },
     {
       title: '我的投注',
-      path: '/sports/my-bets',
+      path: `/sports/${currentProvider}/my-bets`,
       icon: 'spt-user-bet',
       list: [],
       domId: '',
@@ -239,7 +241,8 @@ export function useApiMenuData() {
                   : openRightSidebar(EnumRightSidebarContent.NOTIFICATION)
               },
             },
-            { title: '体育投注', path: '/sports/my-bets', icon: 'spt-basketball' },
+            // eslint-disable-next-line max-len
+            { title: '体育投注', path: `/sports/${currentProvider}/my-bets`, icon: 'spt-basketball' },
             { title: '设置', path: '/settings/general', icon: 'uni-set' },
             {
               title: '登出',

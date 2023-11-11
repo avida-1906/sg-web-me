@@ -52,7 +52,7 @@ function resetPlatformChecked() {
         </BaseButton>
         <template #popper>
           <div>
-            <section class="base-check-pop-inner scroll-y">
+            <section class="scroll-y base-check-pop-inner">
               <BaseCheckboxGroup
                 v-model="typeCheckedList" :list="typeAllList" size="mid"
                 @check="onCheckedPlatform"

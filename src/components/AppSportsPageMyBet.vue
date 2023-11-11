@@ -3,6 +3,7 @@ defineProps<{ onPage?: boolean }>()
 
 const router = useRouter()
 const { t } = useI18n()
+const { currentProvider } = storeToRefs(useSportsStore())
 
 const currentTab = ref('1')
 const tabList = [
@@ -43,7 +44,7 @@ const { page, prev, next, hasMore } = useList(ApiMemberFavList)
             type="text"
             size="none"
             style=" --tg-base-button-text-default-color:var(--tg-text-white)"
-            @click="router.push('/sports')"
+            @click="router.push(`/sports/${currentProvider}`)"
           >
             {{ t('sports_betting_now') }}
           </BaseButton>

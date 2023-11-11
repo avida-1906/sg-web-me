@@ -4,6 +4,7 @@ import { EnumsBetSlipTabs } from '~/utils/enums'
 const { t } = useI18n()
 const router = useRouter()
 const { closeRightSidebar } = useRightSidebar()
+const { currentProvider } = storeToRefs(useSportsStore())
 
 const type = ref(EnumsBetSlipTabs.betSlip)
 const typeOptions = [
@@ -57,7 +58,7 @@ const betBtnText = computed(() =>
           v-model="type"
           style="--tg-base-select-hover-bg-color:var(--tg-secondary-dark);
           --tg-base-select-popper-style-padding-x:0;"
-          :options="typeOptions" no-hover popper
+          :options="typeOptions" popper no-hover
         >
           <template #label="{ data }">
             <div class="type-select">
@@ -143,7 +144,7 @@ const betBtnText = computed(() =>
                 type="text"
                 size="none"
                 style=" --tg-base-button-text-default-color:var(--tg-text-white)"
-                @click="router.push('/sports')"
+                @click="router.push(`/sports/${currentProvider}`)"
               >
                 {{t('sports_betting_now')}}
               </BaseButton>
@@ -191,7 +192,10 @@ const betBtnText = computed(() =>
         </BaseButton>
       </template>
       <!-- 我的投注 -->
-      <BaseButton v-else size="md" @click="router.push('/sports/my-bets')">
+      <BaseButton
+        v-else size="md"
+        @click="router.push(`/sports/${currentProvider}/my-bets`)"
+      >
         {{ t('view_all') }}
       </BaseButton>
     </div>

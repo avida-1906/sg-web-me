@@ -1,19 +1,15 @@
 <script setup lang='ts'>
-import SportsLive from '~/pages/sports/live/index.vue'
-import SportsUpComing from '~/pages/sports/upcoming/index.vue'
-import SportsMyBets from '~/pages/sports/my-bets.vue'
-import SportsFavourites from '~/pages/sports/favourites.vue'
-
 defineOptions({
   name: 'KeepAliveSports',
 })
-
+const props = defineProps<{ platId: string }>()
 const { t } = useI18n()
 const router = useRouter()
 const { isMobile } = storeToRefs(useWindowStore())
 const { isLogin } = storeToRefs(useAppStore())
 const sportsStore = useSportsStore()
 const { currentProvider, providerList } = storeToRefs(sportsStore)
+sportsStore.changeProvider(props.platId)
 
 const marketType = ref('all')
 const tabList = computed(() => [
@@ -61,23 +57,23 @@ const tabList = computed(() => [
 
     <!-- 大厅 -->
     <template v-if="marketType === 'all'">
-      <SportsLive on-page />
+      <AppSportsPageLive on-page />
       <BaseButton
         class="check-more" type="text" padding0
-        @click="router.push('/sports/live')"
+        @click="router.push(`/sports/${currentProvider}/live`)"
       >
         {{ t('view_all') }}
       </BaseButton>
       <AppSportsHotEvent />
     </template>
     <!-- 我的投注 -->
-    <SportsMyBets v-else-if="marketType === 'my-bet'" on-page />
+    <AppSportsPageMyBet v-else-if="marketType === 'my-bet'" on-page />
     <!-- 收藏夹 -->
-    <SportsFavourites v-else-if="marketType === 'fav'" on-page />
+    <AppSportsPageFavourites v-else-if="marketType === 'fav'" on-page />
     <!-- 滚球 -->
-    <SportsLive v-else-if="marketType === 'live'" on-page />
+    <AppSportsPageLive v-else-if="marketType === 'live'" on-page />
     <!-- 即将开赛 -->
-    <SportsUpComing v-else-if="marketType === 'soon'" on-page />
+    <AppSportsPageUpcoming v-else-if="marketType === 'soon'" on-page />
     <div class="layout-spacing">
       <AppBetData mode="sports" />
     </div>

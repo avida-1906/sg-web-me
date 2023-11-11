@@ -5,6 +5,7 @@ const route = useRoute()
 const appStore = useAppStore()
 const { isLogin } = storeToRefs(appStore)
 const { isMobile, width } = storeToRefs(useWindowStore())
+const { currentProvider } = storeToRefs(useSportsStore())
 const {
   rightIsExpand,
   openRightSidebar,
@@ -140,7 +141,7 @@ function handleClickMenuItem(item: { name: string; path?: string }) {
         : openRightSidebar(EnumRightSidebarContent.NOTIFICATION)
       break
     case 'sports-betting':
-      router.push('/sports/my-bets')
+      router.push(`/sports/${currentProvider}/my-bets`)
       break
     default:
       break
