@@ -31,7 +31,6 @@ function fieldVerifyLoginPwd(value: string) {
         <BaseIcon name="navbar-user" />
       </template>
     </BaseInput>
-
     <BaseInput
       v-model="password"
       :msg="pwdErrorMsg"

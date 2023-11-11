@@ -52,20 +52,27 @@ export const useSportsStore = defineStore('sports', () => {
   const {
     run: runSportsProvider,
     data: sportsProviderData,
-  } = useRequest(ApiMemberPlatformList, {
+  } = useList(ApiMemberPlatformList, {
     onSuccess(res) {
-      currentProvider.value = res.d ? res.d[0].id : ''
+      if (res.d) {
+        currentProvider.value = res.d[0].id
+        Local.set(STORAGE_SPORTS_CURRENT_PROVIDER, res.d[0].id)
+      }
     },
   })
-  runSportsProvider({ page: 1, page_size: 100, game_type: 4 })
+  runSportsProvider({ game_type: 4 })
+
+  /** 场馆列表 */
   const providerList = computed(() => {
     return sportsProviderData.value && sportsProviderData.value.d
       ? sportsProviderData.value.d
       : []
   })
+
   /** 切换场馆 */
   function changeProvider(id: string) {
     currentProvider.value = id
+    Local.set(STORAGE_SPORTS_CURRENT_PROVIDER, id)
   }
 
   /** 渲染赔率 */
@@ -74,11 +81,13 @@ export const useSportsStore = defineStore('sports', () => {
       return Number(SportsOdds.convert(odds, sportsOddsType.value))
     })
   }
+
   /** 设置当前体育赔率展示方式 */
   function setSportsOddsType(type: EnumSportsOddsType) {
     sportsOddsType.value = type
     Local.set(STORAGE_SPORTS_ODDS_TYPE_KEY, type)
   }
+
   /** 获取当前体育赔率展示方式 */
   function getSportsOddsType() {
     const value = Local.get<EnumSportsOddsType>(STORAGE_SPORTS_ODDS_TYPE_KEY)?.value

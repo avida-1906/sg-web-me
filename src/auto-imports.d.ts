@@ -9,6 +9,7 @@ declare global {
   const ApiAddFeedbackChatMsg: typeof import('./apis/index')['ApiAddFeedbackChatMsg']
   const ApiChatGetHistory: typeof import('./apis/index')['ApiChatGetHistory']
   const ApiChatSendMessage: typeof import('./apis/index')['ApiChatSendMessage']
+  const ApiCount: typeof import('./apis/sport')['ApiCount']
   const ApiFinanceMerchantList: typeof import('./apis/index')['ApiFinanceMerchantList']
   const ApiFinanceMethodList: typeof import('./apis/index')['ApiFinanceMethodList']
   const ApiFinanceThirdDeposit: typeof import('./apis/index')['ApiFinanceThirdDeposit']
@@ -59,6 +60,9 @@ declare global {
   const ApiMemberWalletList: typeof import('./apis/index')['ApiMemberWalletList']
   const ApiPaymentDepositBankList: typeof import('./apis/index')['ApiPaymentDepositBankList']
   const ApiSmsSend: typeof import('./apis/index')['ApiSmsSend']
+  const ApiSportCompetitionList: typeof import('./apis/sport')['ApiSportCompetitionList']
+  const ApiSportCount: typeof import('./apis/sport')['ApiSportCount']
+  const ApiSportSidebar: typeof import('./apis/sport')['ApiSportSidebar']
   const ApiWalletBankcardList: typeof import('./apis/index')['ApiWalletBankcardList']
   const Big: typeof import('big.js')['Big']
   const CHAT_MESSAGE_BUS: typeof import('./utils/event-bus')['CHAT_MESSAGE_BUS']
@@ -86,9 +90,11 @@ declare global {
   const STORAGE_RIGHT_SIDEBAR_CONTENT: typeof import('./utils/storage')['STORAGE_RIGHT_SIDEBAR_CONTENT']
   const STORAGE_SEARCH_KEYWORDS_LIVE: typeof import('./utils/storage')['STORAGE_SEARCH_KEYWORDS_LIVE']
   const STORAGE_SEARCH_KEYWORDS_SPORTS: typeof import('./utils/storage')['STORAGE_SEARCH_KEYWORDS_SPORTS']
+  const STORAGE_SPORTS_CURRENT_PROVIDER: typeof import('./utils/storage')['STORAGE_SPORTS_CURRENT_PROVIDER']
   const STORAGE_SPORTS_ODDS_TYPE_KEY: typeof import('./utils/storage')['STORAGE_SPORTS_ODDS_TYPE_KEY']
   const STORAGE_SPORTS_PANEL_TYPE_KEY: typeof import('./utils/storage')['STORAGE_SPORTS_PANEL_TYPE_KEY']
   const STORAGE_TOKEN_KEY: typeof import('./utils/storage')['STORAGE_TOKEN_KEY']
+  const STORAGE_sports_current_provider: typeof import('./utils/storage')['STORAGE_sports_current_provider']
   const Session: typeof import('./utils/storage')['Session']
   const Sports: typeof import('./utils/sports')['Sports']
   const SportsOdds: typeof import('./utils/sports')['SportsOdds']
@@ -553,6 +559,9 @@ declare module 'vue' {
     readonly ApiMemberWalletList: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletList']>
     readonly ApiPaymentDepositBankList: UnwrapRef<typeof import('./apis/index')['ApiPaymentDepositBankList']>
     readonly ApiSmsSend: UnwrapRef<typeof import('./apis/index')['ApiSmsSend']>
+    readonly ApiSportCompetitionList: UnwrapRef<typeof import('./apis/sport')['ApiSportCompetitionList']>
+    readonly ApiSportCount: UnwrapRef<typeof import('./apis/sport')['ApiSportCount']>
+    readonly ApiSportSidebar: UnwrapRef<typeof import('./apis/sport')['ApiSportSidebar']>
     readonly ApiWalletBankcardList: UnwrapRef<typeof import('./apis/index')['ApiWalletBankcardList']>
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
     readonly CHAT_MESSAGE_BUS: UnwrapRef<typeof import('./utils/event-bus')['CHAT_MESSAGE_BUS']>
@@ -580,6 +589,7 @@ declare module 'vue' {
     readonly STORAGE_RIGHT_SIDEBAR_CONTENT: UnwrapRef<typeof import('./utils/storage')['STORAGE_RIGHT_SIDEBAR_CONTENT']>
     readonly STORAGE_SEARCH_KEYWORDS_LIVE: UnwrapRef<typeof import('./utils/storage')['STORAGE_SEARCH_KEYWORDS_LIVE']>
     readonly STORAGE_SEARCH_KEYWORDS_SPORTS: UnwrapRef<typeof import('./utils/storage')['STORAGE_SEARCH_KEYWORDS_SPORTS']>
+    readonly STORAGE_SPORTS_CURRENT_PROVIDER: UnwrapRef<typeof import('./utils/storage')['STORAGE_SPORTS_CURRENT_PROVIDER']>
     readonly STORAGE_SPORTS_ODDS_TYPE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_SPORTS_ODDS_TYPE_KEY']>
     readonly STORAGE_SPORTS_PANEL_TYPE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_SPORTS_PANEL_TYPE_KEY']>
     readonly STORAGE_TOKEN_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_TOKEN_KEY']>
@@ -1040,6 +1050,9 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberWalletList: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletList']>
     readonly ApiPaymentDepositBankList: UnwrapRef<typeof import('./apis/index')['ApiPaymentDepositBankList']>
     readonly ApiSmsSend: UnwrapRef<typeof import('./apis/index')['ApiSmsSend']>
+    readonly ApiSportCompetitionList: UnwrapRef<typeof import('./apis/sport')['ApiSportCompetitionList']>
+    readonly ApiSportCount: UnwrapRef<typeof import('./apis/sport')['ApiSportCount']>
+    readonly ApiSportSidebar: UnwrapRef<typeof import('./apis/sport')['ApiSportSidebar']>
     readonly ApiWalletBankcardList: UnwrapRef<typeof import('./apis/index')['ApiWalletBankcardList']>
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
     readonly CHAT_MESSAGE_BUS: UnwrapRef<typeof import('./utils/event-bus')['CHAT_MESSAGE_BUS']>
@@ -1067,6 +1080,7 @@ declare module '@vue/runtime-core' {
     readonly STORAGE_RIGHT_SIDEBAR_CONTENT: UnwrapRef<typeof import('./utils/storage')['STORAGE_RIGHT_SIDEBAR_CONTENT']>
     readonly STORAGE_SEARCH_KEYWORDS_LIVE: UnwrapRef<typeof import('./utils/storage')['STORAGE_SEARCH_KEYWORDS_LIVE']>
     readonly STORAGE_SEARCH_KEYWORDS_SPORTS: UnwrapRef<typeof import('./utils/storage')['STORAGE_SEARCH_KEYWORDS_SPORTS']>
+    readonly STORAGE_SPORTS_CURRENT_PROVIDER: UnwrapRef<typeof import('./utils/storage')['STORAGE_SPORTS_CURRENT_PROVIDER']>
     readonly STORAGE_SPORTS_ODDS_TYPE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_SPORTS_ODDS_TYPE_KEY']>
     readonly STORAGE_SPORTS_PANEL_TYPE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_SPORTS_PANEL_TYPE_KEY']>
     readonly STORAGE_TOKEN_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_TOKEN_KEY']>
