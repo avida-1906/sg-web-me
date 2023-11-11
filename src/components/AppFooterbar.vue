@@ -21,7 +21,7 @@ const tabbar = ref([
     icon: 'spt-basketball',
     name: 'sport',
     show: true,
-    path: `/sports/${currentProvider}`,
+    path: `/sports/${currentProvider.value}`,
   },
   { title: '聊天室', icon: 'tabbar-chat', name: 'chat', show: true },
 ])

@@ -71,6 +71,8 @@ export const useSportsStore = defineStore('sports', () => {
 
   /** 切换场馆 */
   function changeProvider(id: string) {
+    if (currentProvider.value === id)
+      return
     currentProvider.value = id
     Local.set(STORAGE_SPORTS_CURRENT_PROVIDER, id)
   }

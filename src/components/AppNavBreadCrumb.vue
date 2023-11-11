@@ -30,7 +30,7 @@ function goBack() {
   if (_data.length > 1)
     goPath()
   else
-    router.push(`/sports/${currentProvider}`)
+    router.push(`/sports/${currentProvider.value}`)
 }
 
 function collect() {
