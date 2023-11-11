@@ -1,7 +1,8 @@
 <script lang="ts" setup>
+const props = defineProps<{ except?: boolean }>()
 const route = useRoute()
 // 是否游戏页面
-const isCasinoGames = computed(() => route.name === 'casino-games')
+const isCasinoGames = computed(() => route.name === 'casino-games' && !props.except)
 </script>
 
 <template>

@@ -108,7 +108,7 @@ onErrorCaptured((err, instance, info) => {
 
     <div class="main-content" :class="{ 'not-mobile': !isMobile }">
       <header class="navigation">
-        <AppContent>
+        <AppContent except>
           <AppHeader />
         </AppContent>
       </header>
@@ -144,7 +144,7 @@ onErrorCaptured((err, instance, info) => {
         </slot>
 
         <footer class="footer">
-          <AppContent>
+          <AppContent except>
             <AppFooter />
           </AppContent>
         </footer>
