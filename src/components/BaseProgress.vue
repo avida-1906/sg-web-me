@@ -70,7 +70,7 @@ const lineColor = computed(() => {
     <template v-if="showInfo">
       <Transition mode="out-in">
         <span v-if="percent >= 100" class="m-success">
-          <BaseIcon name="password-hook-2" />
+          <BaseIcon class="u-icon" name="password-hook-2" />
         </span>
         <p v-else class="u-progress-text">
           {{ percent >= 100 ? 100 : percent }}%

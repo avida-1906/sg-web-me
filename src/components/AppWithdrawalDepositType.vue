@@ -42,14 +42,18 @@ const changeType = function (type: string) {
         use-cloud-img
       />
       <span class="label">{{ item.label }}</span>
-      <span v-if="item.pname === '赠送'" class="tag">送{{ Number(item.promo) }}%</span>
+      <span v-if="item.pname === '赠送'" class="tag">
+        <span>送{{ Number(item.promo) }}%</span>
+      </span>
       <span
         v-else-if="item.pname === '推荐'
           || item.pname === '活动'
           || item.pname === '热门'"
         class="tag"
         :class="{ green: item.pname === '推荐', red: item.pname === '热门' }"
-      >{{ item.pname }}</span>
+      >
+        <span>{{ item.pname }}</span>
+      </span>
     </div>
   </div>
 </template>
@@ -60,7 +64,6 @@ const changeType = function (type: string) {
   display: flex;
   gap: .75rem;
   padding: var(--tg-spacing-2) 0;
-  // overflow: hidden;
   &::-webkit-scrollbar-thumb{
     display: none;
   }
@@ -69,12 +72,11 @@ const changeType = function (type: string) {
     background: var(--tg-secondary-main);
     padding: 0 var(--tg-spacing-12);
     text-align: center;
-    height: 40px;
+    height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: .5rem;
-    // box-shadow: var(--tg-box-shadow);
     box-shadow: 0px 2px 3px -1px rgba(0, 0, 0, 0.30);
     border-radius: var(--tg-radius-default);
     color: var(--tg-text-white);
@@ -93,17 +95,20 @@ const changeType = function (type: string) {
       background-color: var(--tg-text-blue);
     }
     .tag{
+      position: absolute;
+      top: 0;
+      right: 0;
       background-color: var(--tg-text-warn);
       color: var(--tg-text-white);
-      font-size: 18px;
-      width: 90px;
-      height: 30px;
-      position: absolute;
-      top: -6px;
-      right: -36px;
-      transform: scale(0.41) rotate(45deg);
+      font-size: var(--tg-font-size-xs);
+      font-weight: 500;
+      padding: var(--tg-spacing-1) var(--tg-spacing-2);
+      border-radius: var(--tg-radius-none) var(--tg-radius-default);
       text-align: center;
-      line-height: 30px;
+      span{
+        display: inline-block;
+        transform: scale(0.67);
+      }
     }
     .green{
       background-color: var(--tg-text-green);
