@@ -38,11 +38,11 @@ function openDragDialog(type: 'trend' | 'live') {
 function onBreadcrumbsClick({ list, index }: { list: ISelectOption[]; index: number }) {
   let path = ''
   if (isH5Layout.value)
-    path = `/sports/${currentProvider}/${list.map(a => a.value).join('/')}`
+    path = `/sports/${currentProvider.value}/${list.map(a => a.value).join('/')}`
 
   else
     // eslint-disable-next-line max-len
-    path = `/sports/${currentProvider}/${list.slice(0, index + 1).map(a => a.value).join('/')}`
+    path = `/sports/${currentProvider.value}/${list.slice(0, index + 1).map(a => a.value).join('/')}`
 
   console.log('🚀 ~ file: BaseBreadcrumbs.vue:15 ~ handleClick ~ path:', path)
   router.push(path)

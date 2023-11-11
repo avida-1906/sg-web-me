@@ -12,8 +12,8 @@ const menuData = [
   {
     title: '体育',
     children: [
-      { title: '主页', path: `/sport/${currentProvider}` },
-      { title: '滚球', path: `/sports/${currentProvider}/live` },
+      { title: '主页', path: `/sport/${currentProvider.value}` },
+      { title: '滚球', path: `/sports/${currentProvider.value}/live` },
       { title: '体育博彩规则', icon: false },
     ],
   },

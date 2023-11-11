@@ -595,11 +595,12 @@ const breadcrumb = computed(() => {
     },
   } = eventData.tournament
   return [
-    { path: `/sports/${currentProvider}/${sslug}`, title: sname, id: sid },
-    { path: `/sports/${currentProvider}/${sslug}/${cslug}`, title: cname, id: cid },
-    { path: `/sports/${currentProvider}/${sslug}/${cslug}/${slug}`, title: name, id },
+    { path: `/sports/${currentProvider.value}/${sslug}`, title: sname, id: sid },
+    { path: `/sports/${currentProvider.value}/${sslug}/${cslug}`, title: cname, id: cid },
+    // eslint-disable-next-line max-len
+    { path: `/sports/${currentProvider.value}/${sslug}/${cslug}/${slug}`, title: name, id },
     {
-      path: `/sports/${currentProvider}/${sslug}/${cslug}/${slug}/${t_slug}`,
+      path: `/sports/${currentProvider.value}/${sslug}/${cslug}/${slug}/${t_slug}`,
       title: competitors.map(i => i.abbreviation).join(' - '),
       id: t_id,
     },

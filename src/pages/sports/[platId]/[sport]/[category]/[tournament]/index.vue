@@ -534,17 +534,17 @@ const baseType = ref('winner')
 
 const breadcrumb = computed(() => [
   {
-    path: `/sports/${currentProvider}/${sport}`,
+    path: `/sports/${currentProvider.value}/${sport}`,
     title: data.category.sport.name,
     id: data.category.sport.id,
   },
   {
-    path: `/sports/${currentProvider}/${sport}/${category}`,
+    path: `/sports/${currentProvider.value}/${sport}/${category}`,
     title: data.category.name,
     id: data.category.id,
   },
   // eslint-disable-next-line max-len
-  { path: `/sports/${currentProvider}/${sport}/${category}/${tournament}`, title: data.name, id: data.id },
+  { path: `/sports/${currentProvider.value}/${sport}/${category}/${tournament}`, title: data.name, id: data.id },
 ])
 const tabs = computed(() => [
   { value: 'live-upcoming', label: '滚球与即将开赛的盘口' },

@@ -45,7 +45,7 @@ function push(title: string) {
             <div
               v-for="n in navButtons" :key="n.title"
               :class="[n.title, { active: route.name?.toString().includes(n.title) }]"
-              @click="push(`/${n.title}`)"
+              @click="push(n.title)"
             >
               <span>{{ t(n.title) }}</span>
             </div>
@@ -60,7 +60,7 @@ function push(title: string) {
     <BaseAspectRatio v-for="n in navButtons" :key="n.title" ratio="3.5/1">
       <div
         :class="[n.title, { active: route.name?.toString().includes(n.title) }]"
-        @click="push(`/${n.title}`)"
+        @click="push(n.title)"
       >
         <span>{{ t(n.title) }}</span>
       </div>

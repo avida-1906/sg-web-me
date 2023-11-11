@@ -67,17 +67,17 @@ export function useApiMenuData() {
   const sportsMenu = ref<Menu>([
     {
       title: '滚球盘',
-      path: `/sports/${currentProvider}/live`,
+      path: `/sports/${currentProvider.value}/live`,
       icon: 'spt-ball-plate',
       list: [],
       domId: '',
       fixtureCount: 22,
     },
     // eslint-disable-next-line max-len
-    { title: '即将开赛', path: `/sports/${currentProvider}/upcoming`, icon: 'spt-timing', list: [], domId: '' },
+    { title: '即将开赛', path: `/sports/${currentProvider.value}/upcoming`, icon: 'spt-timing', list: [], domId: '' },
     {
       title: '我的投注',
-      path: `/sports/${currentProvider}/my-bets`,
+      path: `/sports/${currentProvider.value}/my-bets`,
       icon: 'spt-user-bet',
       list: [],
       domId: '',
@@ -242,7 +242,7 @@ export function useApiMenuData() {
               },
             },
             // eslint-disable-next-line max-len
-            { title: '体育投注', path: `/sports/${currentProvider}/my-bets`, icon: 'spt-basketball' },
+            { title: '体育投注', path: `/sports/${currentProvider.value}/my-bets`, icon: 'spt-basketball' },
             { title: '设置', path: '/settings/general', icon: 'uni-set' },
             {
               title: '登出',

@@ -42,7 +42,7 @@ function push(title: string) {
           <div
             v-for="n in navButtons" :key="n.title"
             :class="[n.title, { active: route.name?.toString().includes(n.title) }]"
-            @click="push(`/${n.title}`)"
+            @click="push(n.title)"
           >
             <span>{{ t(n.title) }}</span>
           </div>
