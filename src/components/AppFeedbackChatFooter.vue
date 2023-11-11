@@ -6,10 +6,12 @@ interface Props {
 
 const props = defineProps<Props>()
 
+const feedChatMessageBus = useEventBus(FEEDBACK_CHAT_MESSAGE_BUS)
+
 const { t } = useI18n()
 const { openNotify } = useNotify()
 
-const { isLogin } = storeToRefs(useAppStore())
+const { isLogin, userInfo } = storeToRefs(useAppStore())
 
 const maxMsgLen = 512
 const msgInput = ref()
@@ -22,7 +24,12 @@ const params = computed(() => ({
   source: 1,
 }))
 
-const { run: runSendMsg, loading: sendLoading } = useRequest(ApiAddFeedbackChatMsg)
+const { run: runSendMsg, loading: sendLoading } = useRequest(ApiAddFeedbackChatMsg, {
+  onSuccess: () => {
+    const tt = Math.ceil(new Date().getTime() / 1000)
+    feedChatMessageBus.emit({ content: trimMessage.value, feed_id: props.feedId, create_at: tt, id: `id-${tt}`, uid: userInfo.value?.uid })
+  },
+})
 
 function sendMsg() {
   if (trimMessage.value.length && !sendLoading.value) {
