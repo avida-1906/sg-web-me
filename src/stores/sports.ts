@@ -46,7 +46,7 @@ export const useSportsStore = defineStore('sports', () => {
   /** 投注单数据 */
   const betSlipData = ref<IBetSlipData[]>([])
   /** 当前场馆ID */
-  const currentProvider = ref(Local.get<string>(STORAGE_SPORTS_CURRENT_PROVIDER)?.value)
+  const currentProvider = ref(Local.get<string>(STORAGE_SPORTS_CURRENT_PROVIDER)?.value ?? '')
 
   /** 获取场馆列表 */
   const {
