@@ -33,6 +33,9 @@ export function useList<R extends IResponseList<unknown>, P extends unknown[]>(
   } = useRequest<R, P>(service, {
     ...options,
     onSuccess(response: any) {
+      if (options?.onSuccess)
+        options.onSuccess(response, params.value)
+
       if (page.value === 1)
         total.value = get(response, 't', 0)
 
