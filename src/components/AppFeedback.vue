@@ -54,7 +54,7 @@ const amountTotal = computed(() => {
 async function submitFeedback() {
   await feedbackTextValidate()
   if (!feedbackTextError.value)
-    runFeedbackInsert({ images: imageUrl.value[0] ?? '', description: feedbackText.value })
+    runFeedbackInsert({ images: imageUrl.value.length ? imageUrl.value.join(',') : '', description: feedbackText.value })
 }
 
 function getAmount() {

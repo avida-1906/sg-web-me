@@ -83,6 +83,14 @@ function onPaste() {
   emit('paste')
 }
 
+function onCompositionStart() {
+  console.log('composition start')
+}
+
+function onCompositionEnd() {
+  console.log('composition end')
+}
+
 defineExpose({ getFocus, setTouchTrue, setTouchFalse })
 </script>
 
@@ -115,6 +123,8 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse })
               @blur="onBlur"
               @keydown.enter="keyDownEnter"
               @paste="onPaste"
+              @compositionstart="onCompositionStart"
+              @compositionend="onCompositionEnd"
             />
           </div>
           <input
@@ -138,6 +148,8 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse })
             @blur="onBlur"
             @paste="onPaste"
             @keydown.enter="keyDownEnter"
+            @compositionstart="onCompositionStart"
+            @compositionend="onCompositionEnd"
           >
           <div v-if="isPassword" class="eye" @click="toggleType">
             <BaseIcon :name="`uni-eye-${_type === 'password' ? 'open' : 'close'}`" />

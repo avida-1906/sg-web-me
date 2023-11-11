@@ -200,7 +200,7 @@ watch(() => activeTab.value, () => {
       >
         开启双重验证
       </BaseButton>
-      <BaseButton class="more-btn" type="text">
+      <BaseButton size="none" type="text">
         了解更多有关保险库的信息
       </BaseButton>
     </div>
@@ -233,12 +233,6 @@ watch(() => activeTab.value, () => {
     padding:1rem;
     gap: 1rem;
     color: var(--tg-text-lightgrey);
-    .more-btn{
-      padding:
-      var(--tg-spacing-button-padding-vertical-none)
-      var(--tg-spacing-button-padding-horizontal-none) !important;
-      font-size: var(--tg-font-size-default);
-    }
   }
   .amount {
     display: flex;
