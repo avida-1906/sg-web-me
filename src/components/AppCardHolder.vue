@@ -117,9 +117,11 @@ if (!cardList.value)
       >
         <template #top-right>
           <AppCurrencyIcon
-            class="currency-icon"
             show-name
             :currency-type="item.type"
+            style="
+            --tg-app-currency-icon-style-margin: 0 var(--tg-spacing-8) 0 0;
+            --tg-app-currency-icon-style-color: var(--tg-text-white);"
           />
         </template>
         <template #content>
@@ -194,10 +196,6 @@ if (!cardList.value)
   padding-bottom: var(--tg-spacing-16);
   .wallet-address{
     gap:  var(--tg-spacing-6) 0;
-    .currency-icon{
-      margin-right:  var(--tg-spacing-8);
-      color: var(--tg-text-white);
-    }
     .layout-spacing{
       gap:  var(--tg-spacing-6) 0;
       background: var(--tg-primary-main);

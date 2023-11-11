@@ -213,7 +213,6 @@ onBeforeUnmount(() => {
       <BaseButton
         :loading="isLoading"
         :disabled="!isRead"
-        class="app-register-terms-conditions-btn"
         bg-style="secondary" @click.stop="getStartGame"
       >
         {{ t('start_game') }}

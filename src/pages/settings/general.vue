@@ -280,6 +280,12 @@ onMounted(() => {
             :disabled="emailVerified"
             :msg="emailErrormsg"
             :class="{ 'general-base-input-background': emailVerified }"
+            :style="
+              {
+                '--tg-base-input-style-background-color': emailVerified
+                  ? 'var(--tg-secondary-main)' : '',
+              }
+            "
             msg-after-touched
             @paste="emailPaste"
           />
@@ -308,7 +314,8 @@ onMounted(() => {
         <BaseSelect
           v-model="paramsData.area_code"
           :options="areaCodeOptions || []"
-          class="general-base-select"
+          style="--tg-base-select-style-padding-x: var(--tg-spacing-6);
+          --tg-base-select-style-padding-y: var(--tg-spacing-7);"
         />
       </BaseLabel>
       <BaseLabel label="手机号码" must-small>
@@ -322,7 +329,7 @@ onMounted(() => {
       title="社交账号"
       :verified="socialDisabledBtn"
       last-one
-      class="general-app-settings-content-item"
+      style="--tg-app-settings-content-item-style-max-width: 100%;"
       @submit="socialSubmit"
     >
       <div class="social-wrap" :class="{ 'is-less-than-xs': isLessThanXs }">
@@ -349,13 +356,6 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .tg-settings-general {
-  .general-base-select{
-    --tg-base-select-style-padding-x: var(--tg-spacing-6);
-    --tg-base-select-style-padding-y: var(--tg-spacing-7);
-  }
-  .general-app-settings-content-item{
-    --tg-app-settings-content-item-style-max-width: 100%;
-  }
   .general-base-input-background{
     --tg-base-input-style-background-color: var(--tg-secondary-main);
   }

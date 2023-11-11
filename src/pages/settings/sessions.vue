@@ -103,7 +103,12 @@ application.allSettled([loginLogRunAsync()])
       >
         <template #action="{ record }">
           <div class="slot-action">
-            <BaseButton type="text" size="xs" class="but-action">
+            <BaseButton
+              type="text"
+              size="xs"
+              style="--tg-base-button-padding-x:var(--tg-spacing-7);
+            --tg-base-button-padding-y:var(--tg-spacing-8);"
+            >
               <span>
                 {{ record.action }}
               </span>
@@ -140,9 +145,6 @@ application.allSettled([loginLogRunAsync()])
   .slot-action{
     span{
       color: var(--tg-text-error);
-    }
-    .but-action{
-      padding: var(--tg-spacing-7) 0 var(--tg-spacing-8) !important;
     }
   }
 }

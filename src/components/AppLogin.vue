@@ -82,7 +82,6 @@ async function getMemberLogin() {
         />
       </BaseLabel>
       <BaseButton
-        class="app-login-btn"
         bg-style="secondary"
         :loading="isLoading"
         size="xl"
