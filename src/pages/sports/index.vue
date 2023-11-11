@@ -12,6 +12,8 @@ const { t } = useI18n()
 const router = useRouter()
 const { isMobile } = storeToRefs(useWindowStore())
 const { isLogin } = storeToRefs(useAppStore())
+const sportsStore = useSportsStore()
+const { currentProvider, providerList } = storeToRefs(sportsStore)
 
 const marketType = ref('all')
 const tabList = computed(() => [
@@ -31,27 +33,6 @@ const tabList = computed(() => [
   { label: t('sports_tab_live_events'), value: 'live', icon: 'spt-ball-plate' },
   { label: t('sports_tab_starting_soon'), value: 'soon', icon: 'spt-timing' },
 ])
-// 体育场馆列表
-const currentProvider = ref('')
-const {
-  run: runSportsProvider,
-  data: sportsProviderData,
-} = useRequest(ApiMemberPlatformList, {
-  onSuccess(res) {
-    currentProvider.value = res.d ? res.d[0].id : ''
-  },
-})
-const sportsProviderList = computed(() => {
-  return sportsProviderData.value && sportsProviderData.value.d
-    ? sportsProviderData.value.d
-    : []
-})
-
-function onProviderChange(id: string) {
-  console.log('体育场馆切换', id)
-}
-
-runSportsProvider({ page: 1, page_size: 100, game_type: 4 })
 </script>
 
 <template>
@@ -64,9 +45,9 @@ runSportsProvider({ page: 1, page_size: 100, game_type: 4 })
         <AppGameSearch game-type="2" />
       </div>
       <AppSportsProviderSlider
-        v-if="sportsProviderList.length > 1"
-        v-model="currentProvider" :list="sportsProviderList"
-        @change="onProviderChange"
+        v-if="providerList.length > 1"
+        v-model="currentProvider" :list="providerList"
+        @change="sportsStore.changeProvider"
       />
       <div class="mt-24">
         <BaseTab
@@ -82,7 +63,7 @@ runSportsProvider({ page: 1, page_size: 100, game_type: 4 })
     <template v-if="marketType === 'all'">
       <SportsLive on-page />
       <BaseButton
-        class="check-more" type="text" size="none"
+        class="check-more" type="text" padding0
         @click="router.push('/sports/live')"
       >
         {{ t('view_all') }}
