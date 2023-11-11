@@ -2,7 +2,6 @@
 const { t } = useI18n()
 const route = useRoute()
 const { isMobile, appContentWidth } = storeToRefs(useWindowStore())
-const { currentProvider } = storeToRefs(useSportsStore())
 const appStore = useAppStore()
 const { isLogin } = storeToRefs(appStore)
 const { bool: showRecent, setFalse: setSRFalse } = useBoolean(true)
@@ -595,12 +594,12 @@ const breadcrumb = computed(() => {
     },
   } = eventData.tournament
   return [
-    { path: `/sports/${currentProvider.value}/${sslug}`, title: sname, id: sid },
-    { path: `/sports/${currentProvider.value}/${sslug}/${cslug}`, title: cname, id: cid },
-    // eslint-disable-next-line max-len
-    { path: `/sports/${currentProvider.value}/${sslug}/${cslug}/${slug}`, title: name, id },
+    { path: `/sports/${SPORTS_PLAT_ID}/${sslug}`, title: sname, id: sid },
+    { path: `/sports/${SPORTS_PLAT_ID}/${sslug}/${cslug}`, title: cname, id: cid },
+
+    { path: `/sports/${SPORTS_PLAT_ID}/${sslug}/${cslug}/${slug}`, title: name, id },
     {
-      path: `/sports/${currentProvider.value}/${sslug}/${cslug}/${slug}/${t_slug}`,
+      path: `/sports/${SPORTS_PLAT_ID}/${sslug}/${cslug}/${slug}/${t_slug}`,
       title: competitors.map(i => i.abbreviation).join(' - '),
       id: t_id,
     },

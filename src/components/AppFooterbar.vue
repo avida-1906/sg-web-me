@@ -3,7 +3,6 @@ const router = useRouter()
 const route = useRoute()
 const { leftIsExpand, triggerLeftSidebar, closeLeftSidebar } = useLeftSidebar()
 const { openRightSidebar, closeRightSidebar } = useRightSidebar()
-const { currentProvider } = storeToRefs(useSportsStore())
 
 const tabbar = ref([
   { title: '浏览', icon: 'tabbar-menu', name: 'menu', show: true },
@@ -19,9 +18,9 @@ const tabbar = ref([
   {
     title: '体育',
     icon: 'spt-basketball',
-    name: 'sport',
+    name: 'sports',
     show: true,
-    path: `/sports/${currentProvider.value}`,
+    path: `/sports/${SPORTS_PLAT_ID}`,
   },
   { title: '聊天室', icon: 'tabbar-chat', name: 'chat', show: true },
 ])
@@ -34,7 +33,7 @@ function changeBar(item: { name: string; path?: string }) {
       closeRightSidebar()
       triggerLeftSidebar()
       if (activeBar.value === name)
-        activeBar.value = route.path.includes('/casino') ? 'game' : 'sport'
+        activeBar.value = route.path.includes('/casino') ? 'game' : 'sports'
       else
         activeBar.value = name
       break
@@ -42,7 +41,7 @@ function changeBar(item: { name: string; path?: string }) {
     case 'user-bet':
       leftIsExpand.value && closeLeftSidebar()
       if (activeBar.value === name) {
-        activeBar.value = route.path.includes('/casino') ? 'game' : 'sport'
+        activeBar.value = route.path.includes('/casino') ? 'game' : 'sports'
         closeRightSidebar()
       }
       else {
@@ -53,7 +52,7 @@ function changeBar(item: { name: string; path?: string }) {
     case 'chat':
       leftIsExpand.value && closeLeftSidebar()
       if (activeBar.value === name) {
-        activeBar.value = route.path.includes('/casino') ? 'game' : 'sport'
+        activeBar.value = route.path.includes('/casino') ? 'game' : 'sports'
         closeRightSidebar()
       }
       else {
@@ -62,7 +61,7 @@ function changeBar(item: { name: string; path?: string }) {
       }
       break
     case 'game':
-    case 'sport':
+    case 'sports':
       activeBar.value = name
       leftIsExpand.value && closeLeftSidebar()
       closeRightSidebar()
@@ -77,7 +76,7 @@ function changeBar(item: { name: string; path?: string }) {
       break
   }
   if (path)
-    router.push(path)
+    router.push(Sports.replaceSportsPlatId(path))
 }
 </script>
 

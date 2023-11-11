@@ -6,14 +6,14 @@ const router = useRouter()
 const languageStore = useLanguageStore()
 const { userLanguage, AllLanguages } = storeToRefs(languageStore)
 const sportStore = useSportsStore()
-const { sportsOddsType, currentProvider } = storeToRefs(sportStore)
+const { sportsOddsType } = storeToRefs(sportStore)
 
 const menuData = [
   {
     title: '体育',
     children: [
-      { title: '主页', path: `/sports/${currentProvider.value}` },
-      { title: '滚球', path: `/sports/${currentProvider.value}/live` },
+      { title: '主页', path: `/sports/${SPORTS_PLAT_ID}` },
+      { title: '滚球', path: `/sports/${SPORTS_PLAT_ID}/live` },
       { title: '体育博彩规则', icon: false },
     ],
   },
@@ -86,7 +86,7 @@ function selectOddsChange(v: EnumSportsOddsType) {
 }
 function pathTo(tmp: { path?: string; title: string; icon?: boolean }) {
   if (tmp.path)
-    router.push(tmp.path)
+    router.push(Sports.replaceSportsPlatId(tmp.path))
 }
 </script>
 
