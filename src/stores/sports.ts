@@ -60,7 +60,6 @@ export const useSportsStore = defineStore('sports', () => {
       }
     },
   })
-  runSportsProvider({ game_type: 4 })
 
   /** 场馆列表 */
   const providerList = computed(() => {
@@ -106,6 +105,7 @@ export const useSportsStore = defineStore('sports', () => {
     currentProvider,
     providerList,
     changeProvider,
+    runSportsProvider,
   }
 })
 
