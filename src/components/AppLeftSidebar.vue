@@ -6,7 +6,6 @@ interface Props {
 defineProps<Props>()
 const { t } = useI18n()
 const { isMobile } = storeToRefs(useWindowStore())
-const { currentProvider } = storeToRefs(useSportsStore())
 const { triggerLeftSidebar, closeLeftSidebar, navButtons } = useLeftSidebar()
 const router = useRouter()
 const route = useRoute()
@@ -21,7 +20,7 @@ function onGameTypeChange(v: string) {
   gameType.value = v
 }
 function push(title: string) {
-  const path = title === 'casino' ? '/casino' : `/sports/${currentProvider.value}`
+  const path = title === 'casino' ? '/casino' : `/sports/${Sports.getSportsPlatId()}`
   router.push(path)
   closeLeftSidebar()
 }
