@@ -56,7 +56,7 @@ export const useSportsStore = defineStore('sports', () => {
     onSuccess(res) {
       if (res.d) {
         currentProvider.value = res.d[0].id
-        Local.set('STORAGE_SPORTS_CURRENT_PROVIDER', res.d[0].id)
+        Local.set(STORAGE_SPORTS_CURRENT_PROVIDER, res.d[0].id)
       }
     },
   })
@@ -72,7 +72,7 @@ export const useSportsStore = defineStore('sports', () => {
   /** 切换场馆 */
   function changeProvider(id: string) {
     currentProvider.value = id
-    Local.set('STORAGE_SPORTS_CURRENT_PROVIDER', id)
+    Local.set(STORAGE_SPORTS_CURRENT_PROVIDER, id)
   }
 
   /** 渲染赔率 */
