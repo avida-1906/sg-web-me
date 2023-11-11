@@ -41,33 +41,45 @@ export const AllOddsTypes: Array<{
 ]
 
 export const useSportsStore = defineStore('sports', () => {
-  /** 体育页面展示方式 */
-  const sportsPanelType = ref(getSportsPanelType())
   /** 体育赔率展示方式 */
   const sportsOddsType = ref(getSportsOddsType())
   /** 投注单数据 */
   const betSlipData = ref<IBetSlipData[]>([])
+  /** 当前场馆ID */
+  const currentProvider = ref('')
+
+  /** 获取场馆列表 */
+  const {
+    run: runSportsProvider,
+    data: sportsProviderData,
+  } = useList(ApiMemberPlatformList, {
+    onSuccess(res) {
+      if (res.d) {
+        currentProvider.value = res.d[0].id
+        Local.set(STORAGE_SPORTS_CURRENT_PROVIDER, res.d[0].id)
+      }
+    },
+  })
+  runSportsProvider({ game_type: 4 })
+
+  /** 场馆列表 */
+  const providerList = computed(() => {
+    return sportsProviderData.value && sportsProviderData.value.d
+      ? sportsProviderData.value.d
+      : []
+  })
+
+  /** 切换场馆 */
+  function changeProvider(id: string) {
+    currentProvider.value = id
+    Local.set(STORAGE_SPORTS_CURRENT_PROVIDER, id)
+  }
 
   /** 渲染赔率 */
   const renderOdds = (odds: number) => {
     return computed(() => {
       return Number(SportsOdds.convert(odds, sportsOddsType.value))
     })
-  }
-
-  /** 设置当前体育数据展示方式 */
-  function setSportsPanelType(type: EnumSportsPanelType) {
-    sportsPanelType.value = type
-    Local.set(STORAGE_SPORTS_PANEL_TYPE_KEY, type)
-  }
-
-  /** 获取当前体育数据展示方式 */
-  function getSportsPanelType() {
-    const value = Local.get<EnumSportsPanelType>(STORAGE_SPORTS_PANEL_TYPE_KEY)?.value
-    if (value)
-      return value
-    else
-      return EnumSportsPanelType.STANDARD
   }
 
   /** 设置当前体育赔率展示方式 */
@@ -86,14 +98,14 @@ export const useSportsStore = defineStore('sports', () => {
   }
 
   return {
-    sportsPanelType,
     sportsOddsType,
     betSlipData,
     renderOdds,
-    setSportsPanelType,
-    getSportsPanelType,
     setSportsOddsType,
     getSportsOddsType,
+    currentProvider,
+    providerList,
+    changeProvider,
   }
 })
 
