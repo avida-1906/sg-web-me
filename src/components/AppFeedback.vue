@@ -70,6 +70,11 @@ function feedbackItemClick(item: any) {
   chatStore.setFeedbackChatTrue()
 }
 
+function seeFeedback() {
+  tab.value = 2
+  runFeedbackList()
+}
+
 onActivated(() => {
   runFeedbackList()
 })
@@ -97,7 +102,7 @@ onActivated(() => {
           --tg-base-button-padding-y: var(--tg-spacing-6);
            --tg-base-button-padding-x: var(--tg-spacing-10);"
           custom-padding
-          @click="tab = 2"
+          @click="seeFeedback"
         >
           我的反馈
         </BaseButton>
