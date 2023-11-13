@@ -40,6 +40,16 @@ interface ISelectOption {
   value: string | number
 }
 
+interface ISelectOptionString {
+  label: string
+  value: string
+}
+
+interface ISelectOptionNumber {
+  label: string
+  value: number
+}
+
 interface IObject {
   [key: string]: any
 }

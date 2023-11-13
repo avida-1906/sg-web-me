@@ -4,6 +4,8 @@ interface Props {
   active?: boolean
   disabled?: boolean
   isNa?: boolean
+  title: string
+  odds: string
 }
 withDefaults(defineProps<Props>(), {
   layout: 'vertical',
@@ -28,14 +30,14 @@ function clickHandler() {
     </template>
     <div v-else class="content" :class="[layout]">
       <div class="name">
-        汉夫曼，扬尼克
+        {{ title || '-' }}
       </div>
       <span v-if="disabled" class="status">{{ t('sports_status_timeout') }}</span>
       <AppSportsOdds
         v-else :style="`--tg-sports-odds-color:${active
           ? 'var(--tg-text-white)' : ''}`"
         :arrow="layout === 'horizontal' ? 'left' : 'right'"
-        odds="1.65"
+        :odds="odds || '0.00'"
       />
     </div>
   </div>
