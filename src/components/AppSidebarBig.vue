@@ -11,8 +11,6 @@ const {
   casinoMenu,
   casinoGameList,
   casinoGameProvider,
-  sportHotGames,
-  sportEsports,
   staticMenu1,
   staticMenu2,
   menuItemClick,
@@ -21,7 +19,12 @@ const { t } = useI18n()
 const route = useRoute()
 const { isMobile } = storeToRefs(useWindowStore())
 const { isLogin } = storeToRefs(useAppStore())
-const { sportOddType, sportsMenu, sportGameList } = storeToRefs(useSportsStore())
+const {
+  sportOddType,
+  sportsMenu,
+  sportHotGames,
+  sportGameList,
+} = storeToRefs(useSportsStore())
 
 const innerRef = ref()
 const timeStamp = ref(0)
@@ -116,15 +119,6 @@ onBeforeUnmount(() => {
           </div>
           <div class="content-line" />
           <div v-for="item, i in sportHotGames" :key="i">
-            <AppAccordionMenu
-              :menu-item="item"
-              :time-stamp="timeStamp"
-              @close-other-menu="closeMenu"
-            />
-          </div>
-        </div>
-        <div class="menu-box">
-          <div v-for="item, i in sportEsports" :key="i">
             <AppAccordionMenu
               :menu-item="item"
               :time-stamp="timeStamp"

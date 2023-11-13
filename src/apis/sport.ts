@@ -40,34 +40,26 @@ export function ApiSportCount(data: {
  */
 export function ApiSportSidebar() {
   return httpClient.post<{
-    top: {
-      /** 球种Id */
-      si: number
-      /** 球种名称 */
-      sn: string
-      /** 热门联赛 */
+    menu: {
+      menu_id: number
+      name: string
       list: {
-        /** 联赛id */
-        ci: number
-        /** 联赛名称 */
-        cn: string
+        si: number
+        sn: string
+        list: {
+          ci: string
+          cn: string
+        }[]
       }[]
     }[]
     all: {
-      /** 球种Id */
       si: number
-      /** 球种名称 */
       sn: string
     }[]
-    /** 滚球赛事总数 */
     rbc: number
-    /** 滚球赛事 */
     rbl: {
-      /** 球种Id */
       si: number
-      /** 球种名称 */
       sn: string
-      /** 数量 */
       c: number
     }[]
   }>(`/sport/${getSportsPlatId()}/sidebar`)

@@ -3,7 +3,7 @@
 
 <template>
   <div class="tg-sports-outrights">
-    冠军投注
+    冠军投注outrights
   </div>
 </template>
 

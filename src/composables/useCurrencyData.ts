@@ -83,6 +83,7 @@ export function useCurrencyData() {
   const appStore = useAppStore()
   const {
     userInfo,
+    allContractList,
   } = storeToRefs(appStore)
 
   const {
@@ -198,11 +199,7 @@ export function useCurrencyData() {
     searchValue.value = ''
   }
 
-  /** 获取所有虚拟币协议 */
-  const {
-    data: allContractList,
-  } = useApiMemberTreeList('018')
-
+  /** 虚拟币协议格式化 */
   const allContractListData = computed(() => {
     if (allContractList.value?.length) {
       const res: Record<string, { label: string; value: string }[]> = {}
