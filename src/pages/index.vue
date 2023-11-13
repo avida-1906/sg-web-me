@@ -10,12 +10,9 @@ const { bool: showMore, toggle: toggleShowMore } = useBoolean(false)
 const {
   appContentWidth,
   widthBoundarySm,
-  widthBoundaryXs,
 } = storeToRefs(useWindowStore())
 const { isLogin, userInfo } = storeToRefs(useAppStore())
-const sportsStore = useSportsStore()
 const { openVipDialog } = useVipDialog()
-const { openWalletDialog } = useWalletDialog()
 
 const btnText = ref('查看更多')
 const vipProgressData = ref<IVipProgressData>({
@@ -27,7 +24,6 @@ const vipProgressData = ref<IVipProgressData>({
 const { openRegisterDialog } = useRegisterDialog()
 
 const isSm = computed(() => appContentWidth.value <= widthBoundarySm.value)
-const isXs = computed(() => appContentWidth.value <= widthBoundaryXs.value)
 
 const onShowMore = function () {
   toggleShowMore()
@@ -113,7 +109,7 @@ const onShowMore = function () {
       </div>
       <div
         class="features-sports"
-        @click="router.push(`/sports/${Sports.getSportsPlatId()}`)"
+        @click="router.push(`/sports/${getSportsPlatId()}`)"
       >
         <div class="features-title">
           <BaseIcon name="spt-basketball" />

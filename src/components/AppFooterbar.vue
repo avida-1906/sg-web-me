@@ -76,7 +76,7 @@ function changeBar(item: { name: string; path?: string }) {
       break
   }
   if (path)
-    router.push(Sports.replaceSportsPlatId(path))
+    router.push(replaceSportsPlatId(path))
 }
 </script>
 

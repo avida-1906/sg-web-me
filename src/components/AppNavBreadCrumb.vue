@@ -22,14 +22,14 @@ function goPath(
   const p = _data.pop()
   const _d = d ?? p
   if (_d && _d.path)
-    router.push(Sports.replaceSportsPlatId(_d.path))
+    router.push(replaceSportsPlatId(_d.path))
 }
 
 function goBack() {
   if (_data.length > 1)
     goPath()
   else
-    router.push(`/sports/${Sports.getSportsPlatId()}`)
+    router.push(`/sports/${getSportsPlatId()}`)
 }
 
 function collect() {

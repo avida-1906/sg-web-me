@@ -20,7 +20,7 @@ function onGameTypeChange(v: string) {
   gameType.value = v
 }
 function push(title: string) {
-  const path = title === 'casino' ? '/casino' : `/sports/${Sports.getSportsPlatId()}`
+  const path = title === 'casino' ? '/casino' : `/sports/${getSportsPlatId()}`
   router.push(path)
   closeLeftSidebar()
 }

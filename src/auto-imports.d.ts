@@ -154,6 +154,7 @@ declare global {
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const getEnv: typeof import('./utils/index')['getEnv']
+  const getSportsPlatId: typeof import('./utils/sports')['getSportsPlatId']
   const getSportsProvider: typeof import('./apis/sport')['getSportsProvider']
   const gt: typeof import('lodash-es')['gt']
   const h: typeof import('vue')['h']
@@ -229,6 +230,7 @@ declare global {
   const refDefault: typeof import('@vueuse/core')['refDefault']
   const refThrottled: typeof import('@vueuse/core')['refThrottled']
   const refWithControl: typeof import('@vueuse/core')['refWithControl']
+  const replaceSportsPlatId: typeof import('./utils/sports')['replaceSportsPlatId']
   const resolveComponent: typeof import('vue')['resolveComponent']
   const resolveRef: typeof import('@vueuse/core')['resolveRef']
   const resolveUnref: typeof import('@vueuse/core')['resolveUnref']
@@ -605,7 +607,6 @@ declare module 'vue' {
     readonly STORAGE_SPORTS_PANEL_TYPE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_SPORTS_PANEL_TYPE_KEY']>
     readonly STORAGE_TOKEN_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_TOKEN_KEY']>
     readonly Session: UnwrapRef<typeof import('./utils/storage')['Session']>
-    readonly Sports: UnwrapRef<typeof import('./utils/sports')['Sports']>
     readonly SportsOdds: UnwrapRef<typeof import('./utils/sports')['SportsOdds']>
     readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>
     readonly add: UnwrapRef<typeof import('./utils/number')['add']>
@@ -657,6 +658,7 @@ declare module 'vue' {
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getEnv: UnwrapRef<typeof import('./utils/index')['getEnv']>
+    readonly getSportsPlatId: UnwrapRef<typeof import('./utils/sports')['getSportsPlatId']>
     readonly gt: UnwrapRef<typeof import('lodash-es')['gt']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly head: UnwrapRef<typeof import('lodash-es')['head']>
@@ -731,6 +733,7 @@ declare module 'vue' {
     readonly refDefault: UnwrapRef<typeof import('@vueuse/core')['refDefault']>
     readonly refThrottled: UnwrapRef<typeof import('@vueuse/core')['refThrottled']>
     readonly refWithControl: UnwrapRef<typeof import('@vueuse/core')['refWithControl']>
+    readonly replaceSportsPlatId: UnwrapRef<typeof import('./utils/sports')['replaceSportsPlatId']>
     readonly resolveComponent: UnwrapRef<typeof import('vue')['resolveComponent']>
     readonly resolveRef: UnwrapRef<typeof import('@vueuse/core')['resolveRef']>
     readonly resolveUnref: UnwrapRef<typeof import('@vueuse/core')['resolveUnref']>
@@ -1101,7 +1104,6 @@ declare module '@vue/runtime-core' {
     readonly STORAGE_SPORTS_PANEL_TYPE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_SPORTS_PANEL_TYPE_KEY']>
     readonly STORAGE_TOKEN_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_TOKEN_KEY']>
     readonly Session: UnwrapRef<typeof import('./utils/storage')['Session']>
-    readonly Sports: UnwrapRef<typeof import('./utils/sports')['Sports']>
     readonly SportsOdds: UnwrapRef<typeof import('./utils/sports')['SportsOdds']>
     readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>
     readonly add: UnwrapRef<typeof import('./utils/number')['add']>
@@ -1153,6 +1155,7 @@ declare module '@vue/runtime-core' {
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getEnv: UnwrapRef<typeof import('./utils/index')['getEnv']>
+    readonly getSportsPlatId: UnwrapRef<typeof import('./utils/sports')['getSportsPlatId']>
     readonly gt: UnwrapRef<typeof import('lodash-es')['gt']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly head: UnwrapRef<typeof import('lodash-es')['head']>
@@ -1227,6 +1230,7 @@ declare module '@vue/runtime-core' {
     readonly refDefault: UnwrapRef<typeof import('@vueuse/core')['refDefault']>
     readonly refThrottled: UnwrapRef<typeof import('@vueuse/core')['refThrottled']>
     readonly refWithControl: UnwrapRef<typeof import('@vueuse/core')['refWithControl']>
+    readonly replaceSportsPlatId: UnwrapRef<typeof import('./utils/sports')['replaceSportsPlatId']>
     readonly resolveComponent: UnwrapRef<typeof import('vue')['resolveComponent']>
     readonly resolveRef: UnwrapRef<typeof import('@vueuse/core')['resolveRef']>
     readonly resolveUnref: UnwrapRef<typeof import('@vueuse/core')['resolveUnref']>

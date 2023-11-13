@@ -306,7 +306,7 @@ export function useApiMenuData() {
       if ((isMobile.value || isLessThanLg.value) && leftIsExpand.value)
         closeLeftSidebar()
 
-      router.push(Sports.replaceSportsPlatId(item.path))
+      router.push(replaceSportsPlatId(item.path))
     }
     else if (item.list && item.list.length) {
       openLeftSidebar()

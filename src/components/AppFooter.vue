@@ -86,7 +86,7 @@ function selectOddsChange(v: EnumSportsOddsType) {
 }
 function pathTo(tmp: { path?: string; title: string; icon?: boolean }) {
   if (tmp.path)
-    router.push(Sports.replaceSportsPlatId(tmp.path))
+    router.push(replaceSportsPlatId(tmp.path))
 }
 </script>
 
