@@ -3,7 +3,8 @@ interface Props {
   showBreadcrumb?: boolean
   isStandard?: boolean
   showMore?: boolean
-  tournament?: SportTournament
+  leagueName?: string
+  eventCount?: number
   autoShow?: boolean
 }
 withDefaults(defineProps<Props>(), {
@@ -14,14 +15,14 @@ withDefaults(defineProps<Props>(), {
 
 <template>
   <BaseSecondaryAccordion
-    :title="tournament?.name"
+    :title="leagueName"
     :show-more="showMore"
     level="2"
     :init="autoShow"
   >
     <template #side="{ isOpen }">
       <div v-show="!isOpen" class="accordion-badge-wrap">
-        <BaseBadge :count="tournament?.fixtureCount" />
+        <BaseBadge :count="eventCount" />
       </div>
     </template>
     <template #default>

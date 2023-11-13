@@ -15,6 +15,10 @@ export function ApiSportCount(data: {
   ic: number
 }) {
   return httpClient.post<{
+    /** count 总数 */
+    c: number
+    /** 即将开赛总数 */
+    nc: number
     list: {
     /** 球种Id */
       si: number
@@ -26,6 +30,8 @@ export function ApiSportCount(data: {
       tc: number
       /** liveCount 滚球数量 */
       lc: number
+      /** 即将开赛数量 */
+      nc: number
       /** outrightCount 冠军赛数量 */
       oc: number
       /** count 总数 */
