@@ -112,11 +112,13 @@ async function submitLoginPwd() {
           @focus="setShowPasswordVerifyTrue"
           @blur="onBlurNewPassword"
         />
-        <AppPasswordVerify
-          v-show="isShowPasswordVerify"
-          :password="newPassword"
-          @pass="passwordVerifyPass"
-        />
+        <div class="hidden-wrap">
+          <AppPasswordVerify
+            v-show="isShowPasswordVerify"
+            :password="newPassword"
+            @pass="passwordVerifyPass"
+          />
+        </div>
       </BaseLabel>
       <BaseLabel label="确认新密码" must-small>
         <BaseInput
@@ -131,6 +133,13 @@ async function submitLoginPwd() {
 </template>
 
 <style lang="scss" scoped>
+.hidden-wrap {
+  width: 0;
+  height: 0;
+  position: relative;
+  z-index: -10;
+  overflow: hidden;
+}
 .tg-settings-security {
   color: var(--tg-text-lightgrey);
   font-size: var(--tg-font-size-default);
