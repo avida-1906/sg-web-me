@@ -49,6 +49,8 @@ declare global {
   const ApiMemberGameSearch: typeof import('./apis/index')['ApiMemberGameSearch']
   const ApiMemberLogin: typeof import('./apis/index')['ApiMemberLogin']
   const ApiMemberLogout: typeof import('./apis/index')['ApiMemberLogout']
+  const ApiMemberNoticeAllList: typeof import('./apis/index')['ApiMemberNoticeAllList']
+  const ApiMemberNoticeList: typeof import('./apis/index')['ApiMemberNoticeList']
   const ApiMemberPasswordUpdate: typeof import('./apis/index')['ApiMemberPasswordUpdate']
   const ApiMemberPayPasswordUpdate: typeof import('./apis/index')['ApiMemberPayPasswordUpdate']
   const ApiMemberPlatformList: typeof import('./apis/index')['ApiMemberPlatformList']
@@ -558,6 +560,8 @@ declare module 'vue' {
     readonly ApiMemberGameSearch: UnwrapRef<typeof import('./apis/index')['ApiMemberGameSearch']>
     readonly ApiMemberLogin: UnwrapRef<typeof import('./apis/index')['ApiMemberLogin']>
     readonly ApiMemberLogout: UnwrapRef<typeof import('./apis/index')['ApiMemberLogout']>
+    readonly ApiMemberNoticeAllList: UnwrapRef<typeof import('./apis/index')['ApiMemberNoticeAllList']>
+    readonly ApiMemberNoticeList: UnwrapRef<typeof import('./apis/index')['ApiMemberNoticeList']>
     readonly ApiMemberPasswordUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberPasswordUpdate']>
     readonly ApiMemberPayPasswordUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberPayPasswordUpdate']>
     readonly ApiMemberPlatformList: UnwrapRef<typeof import('./apis/index')['ApiMemberPlatformList']>
@@ -1057,6 +1061,8 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberGameSearch: UnwrapRef<typeof import('./apis/index')['ApiMemberGameSearch']>
     readonly ApiMemberLogin: UnwrapRef<typeof import('./apis/index')['ApiMemberLogin']>
     readonly ApiMemberLogout: UnwrapRef<typeof import('./apis/index')['ApiMemberLogout']>
+    readonly ApiMemberNoticeAllList: UnwrapRef<typeof import('./apis/index')['ApiMemberNoticeAllList']>
+    readonly ApiMemberNoticeList: UnwrapRef<typeof import('./apis/index')['ApiMemberNoticeList']>
     readonly ApiMemberPasswordUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberPasswordUpdate']>
     readonly ApiMemberPayPasswordUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberPayPasswordUpdate']>
     readonly ApiMemberPlatformList: UnwrapRef<typeof import('./apis/index')['ApiMemberPlatformList']>
