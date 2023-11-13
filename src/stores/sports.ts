@@ -52,6 +52,8 @@ export const useSportsStore = defineStore('sports', () => {
   const currentProvider = ref(Local.get<string>(STORAGE_SPORTS_CURRENT_PROVIDER)?.value ?? '')
   /** 当前滚球选中的体育项目 */
   const currentLiveNav = ref(0)
+  /** 当前即将开赛选中的体育项目 */
+  const currentUpcomingNav = ref(0)
 
   /** 获取场馆列表 */
   const {
@@ -87,7 +89,12 @@ export const useSportsStore = defineStore('sports', () => {
 
   /** 滚球计数 */
   const liveCount = computed(() => {
-    return sidebarData.value ? sidebarData.value.rbc : 0
+    if (allSportsCount.value) {
+      return allSportsCount.value.list.reduce((acc, cur) => {
+        return acc + cur.lc
+      }, 0)
+    }
+    return 0
   })
 
   /** 侧边栏菜单 */
@@ -170,13 +177,27 @@ export const useSportsStore = defineStore('sports', () => {
 
   /** 滚球导航 */
   const sportLiveNavs = computed(() => {
-    if (sidebarData.value) {
-      return sidebarData.value.rbl.map((item) => {
+    if (allSportsCount.value) {
+      return allSportsCount.value.list.filter(a => a.lc > 0).map((b) => {
         return {
-          ...item,
-          icon: 'spt-american-football',
+          ...b, icon: 'spt-american-football', count: b.lc,
         }
       })
+    }
+    return []
+  })
+
+  /** 即将开赛导航 */
+  const upcomingNavs = computed(() => {
+    if (allSportsCount.value) {
+      return [
+        // eslint-disable-next-line max-len
+        { si: 0, sn: t('finance_other_tab_all'), icon: 'uni-all', count: allSportsCount.value.nc },
+        ...allSportsCount.value.list.filter(a => a.nc > 0).map((b) => {
+          return {
+            ...b, icon: 'spt-american-football', count: b.nc,
+          }
+        })]
     }
     return []
   })
@@ -241,6 +262,8 @@ export const useSportsStore = defineStore('sports', () => {
     sportGameList,
     sportLiveNavs,
     currentLiveNav,
+    upcomingNavs,
+    currentUpcomingNav,
   }
 })
 

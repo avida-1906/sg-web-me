@@ -9,7 +9,39 @@ function onBaseTypeChange(v: string) {
   baseType.value = v
 }
 
-ApiSportEventList({ si: 1, m: 2, page: 1, page_size: 100 })
+const { data, run } = useRequest(() =>
+  ApiSportEventList({ si: currentLiveNav.value, m: 3, page: 1, page_size: 100 }),
+{
+  refreshDeps: [currentLiveNav],
+})
+const list = computed(() => {
+  if (data.value && data.value.list) {
+    const origin = data.value.list
+    const arr = []
+    for (let i = 0; i < origin.length; i++) {
+      if (i === 0) {
+        arr.push({ ci: origin[i].ci, cn: origin[i].cn, list: [origin[i]] })
+        continue
+      }
+      const index = arr.findIndex(a => a.ci === origin[i].ci)
+      if (index > -1) {
+        arr[index].list.push(origin[i])
+        continue
+      }
+      else {
+        arr.push({ ci: origin[i].ci, cn: origin[i].cn, list: [origin[i]] })
+        continue
+      }
+    }
+    console.log('ApiSportEventList===>', arr)
+    return arr
+  }
+  return []
+})
+
+watch(currentLiveNav, () => {
+  run()
+})
 </script>
 
 <template>
@@ -27,12 +59,10 @@ ApiSportEventList({ si: 1, m: 2, page: 1, page_size: 100 })
     <AppSportsTab v-model="currentLiveNav" :list="sportLiveNavs" />
     <div class="market-wrapper">
       <AppSportsMarket
+        v-for="item in list" :key="item.ci"
         :is-standard="isStandard"
-        :tournament="{ name: '澳大利亚 / 女子联赛', id: '123' }"
-      />
-      <AppSportsMarket
-        :is-standard="isStandard"
-        :tournament="{ name: '澳大利亚 / 女子联赛', id: '123' }"
+        :league-name="item.cn"
+        :event-count="item.list.length"
       />
     </div>
 
@@ -45,15 +75,17 @@ ApiSportEventList({ si: 1, m: 2, page: 1, page_size: 100 })
 <style lang="scss" scoped>
 .tg-sports-type {
   margin-top: var(--tg-spacing-24);
-  &.on-page{
+
+  &.on-page {
     margin-top: 0;
   }
 }
-.market-wrapper{
+
+.market-wrapper {
   display: flex;
   flex-direction: column;
   gap: var(--tg-spacing-12);
-  margin-bottom:  var(--tg-spacing-24);
+  margin-bottom: var(--tg-spacing-24);
 }
 </style>
 
