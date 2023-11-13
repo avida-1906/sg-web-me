@@ -898,3 +898,11 @@ export function ApiMemberFeedbackBonusDraw(data: {
 }) {
   return httpClient.post<string>('/member/feedback/bonus/draw', data)
 }
+
+/**
+ * 待领取总奖励金额
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=79fde42e-8f48-44e6-85f9-ffd107d4e32b
+ */
+export function ApiMemberFeedbackBonusAll() {
+  return httpClient.get<string>('/member/feedback/bonus/reward')
+}

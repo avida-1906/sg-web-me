@@ -3,6 +3,8 @@ const chatStore = useChatStore()
 
 const { openNotify } = useNotify()
 
+const { openReceiveBonusDialog } = useDialogReceiveBonus()
+
 const imageUrl: Ref<string[]> = ref([])
 const textLength = ref(0)
 const tab = ref(1)
@@ -45,6 +47,7 @@ const {
   },
 })
 const { run: runUpdateFeedback } = useRequest(ApiMemberFeedbackUpdate)
+const { run: getTotalBonus, data: totalBonus } = useRequest(ApiMemberFeedbackBonusAll)
 
 const amountTotal = computed(() => {
   return feedbackList?.value?.d?.reduce((total, item) => {
@@ -79,8 +82,14 @@ function seeFeedback() {
   runFeedbackList()
 }
 
+function openTotalBonus() {
+  if (totalBonus.value && +totalBonus.value > 0)
+    openReceiveBonusDialog({ totalBonus: totalBonus.value })
+}
+
 onActivated(() => {
   runFeedbackList()
+  getTotalBonus()
 })
 </script>
 
@@ -175,6 +184,11 @@ onActivated(() => {
         </div>
       </div>
       <div v-else class="feedback-list">
+        <div class="total-bonus" @click="openTotalBonus">
+          <span>待领取奖金：</span>
+          <span class="money">{{ totalBonus }}USDT</span>
+          <BaseIcon name="chess-proms" />
+        </div>
         <template v-if="feedbackList?.d?.length">
           <div
             v-for="item, index in feedbackList?.d"
@@ -232,6 +246,22 @@ onActivated(() => {
 </template>
 
 <style lang='scss' scoped>
+.total-bonus {
+  cursor: pointer;
+  color: var(--tg-text-white);
+  font-size: var(--tg-font-size-default);
+  font-weight: var(--tg-font-weight-semibold);
+  line-height: 1.5;
+  margin-top: var(--tg-spacing-16);
+  display: inline-block;
+  .money {
+    color: var(--tg-text-warn);
+  }
+  svg {
+    margin-left: var(--tg-spacing-12);
+    vertical-align: middle;
+  }
+}
 .app-feedback {
   white-space: pre-line;
   padding: var(--tg-spacing-11) var(--tg-spacing-16);
