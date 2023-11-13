@@ -4,16 +4,13 @@ defineProps<{ onPage?: boolean }>()
 const { t } = useI18n()
 const { sportLiveNavs, currentLiveNav } = storeToRefs(useSportsStore())
 const { bool: isStandard } = useBoolean(true)
-const baseType = ref('winner')
-function onBaseTypeChange(v: string) {
-  baseType.value = v
-}
-
 const { data, run } = useRequest(() =>
   ApiSportEventList({ si: currentLiveNav.value, m: 3, page: 1, page_size: 100 }),
 {
   refreshDeps: [currentLiveNav],
 })
+
+const baseType = ref('winner')
 const list = computed(() => {
   if (data.value && data.value.list) {
     const origin = data.value.list
@@ -39,8 +36,17 @@ const list = computed(() => {
   return []
 })
 
+function onBaseTypeChange(v: string) {
+  baseType.value = v
+}
+
 watch(currentLiveNav, () => {
   run()
+})
+
+onMounted(() => {
+  if (currentLiveNav.value !== -1)
+    run()
 })
 </script>
 
@@ -63,6 +69,8 @@ watch(currentLiveNav, () => {
         :is-standard="isStandard"
         :league-name="item.cn"
         :event-count="item.list.length"
+        :event-list="item.list"
+        :base-type="baseType"
       />
     </div>
 

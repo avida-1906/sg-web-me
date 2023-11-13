@@ -51,7 +51,7 @@ export const useSportsStore = defineStore('sports', () => {
   /** 当前场馆ID */
   const currentProvider = ref(Local.get<string>(STORAGE_SPORTS_CURRENT_PROVIDER)?.value ?? '')
   /** 当前滚球选中的体育项目 */
-  const currentLiveNav = ref(0)
+  const currentLiveNav = ref(-1)
   /** 当前即将开赛选中的体育项目 */
   const currentUpcomingNav = ref(0)
 

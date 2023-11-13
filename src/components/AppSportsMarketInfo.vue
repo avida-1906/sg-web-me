@@ -1,9 +1,13 @@
 <script setup lang='ts'>
+import type { ILeagueItem } from '~/apis/types'
+
 interface Props {
   index: number
   isStandard: boolean // 标准盘或三项投注
   isLast?: boolean // 是否列表最后一个
   showBreadcrumb?: boolean // 始终展示联赛数据
+  data: ILeagueItem
+  baseType: string
 }
 const props = defineProps<Props>()
 
@@ -27,6 +31,48 @@ const baseGridAreaClass = computed(() => {
   return isH5Layout.value ? 'grid-three-option-574' : 'grid-three-option-normal'
 })
 const baseGridClass = computed(() => isH5Layout.value ? 'grid-setup-574' : 'grid-setup')
+// 当前的盘口类型
+const isHandicap = computed(() => props.baseType === EnumSportMarketType.HANDICAP)
+const isTotal = computed(() => props.baseType === EnumSportMarketType.TOTAL)
+const isWinner = computed(() => !isHandicap.value && !isTotal.value)
+// 需要展示的盘口分类
+const standardMarketFiltered = computed(() => {
+  if (isHandicap.value)
+    return props.data.ml.filter(a => a.bt === 1)
+
+  else if (isTotal.value)
+    return props.data.ml.filter(a => a.bt === 2)
+
+  else
+    return props.data.ml.filter(a => a.bt !== 1 && a.bt !== 2)
+})
+const standardMarketName = computed(() => standardMarketFiltered.value[0].btn)
+const standardMarketBtns = computed(() => {
+  if (isHandicap.value) {
+    return standardMarketFiltered.value[0].ms.map((a) => {
+      return {
+        title: `${a.sn}(${a.hdp})`,
+        ...a,
+      }
+    })
+  }
+  else if (isTotal.value) {
+    return standardMarketFiltered.value[0].ms.map((a) => {
+      return {
+        title: `${a.sn}${a.hdp}`,
+        ...a,
+      }
+    })
+  }
+  else {
+    return standardMarketFiltered.value[0].ms.map((a) => {
+      return {
+        title: a.sn,
+        ...a,
+      }
+    })
+  }
+})
 
 // 打开实时数据或直播
 function openDragDialog(type: 'trend' | 'live') {
@@ -113,14 +159,14 @@ function goFixture() {
               />
             </svg>
           </div>
-          <span class="text">{{ statusText }}</span>
+          <span class="text">{{ data.rbt }}</span>
 
           <!-- H5时比分显示在这里 -->
           <div v-if="isH5Layout" class="fixture-score-h5">
             <!-- 局分 -->
             <span>1-4</span>
             <!-- 总分 -->
-            <span class="total">0-1</span>
+            <span class="total">{{ data.hp }}-{{ data.ap }}</span>
           </div>
         </div>
       </div>
@@ -134,12 +180,12 @@ function goFixture() {
           <div v-if="onBallHome" class="icon left">
             <BaseIcon name="spt-tennis" />
           </div>
-          <span>朱卡耶夫，北比特</span>
+          <span>{{ data.htn }}</span>
         </div>
         <span> - </span>
         <!-- 客队名称 -->
         <div class="teams-name" @click="goFixture">
-          <span>李喆</span>
+          <span>{{ data.atn }}</span>
           <div v-if="onBallAway" class="icon right">
             <BaseIcon name="spt-tennis" />
           </div>
@@ -155,14 +201,14 @@ function goFixture() {
       <div class="teams">
         <!-- 主队名称 -->
         <div class="teams-name" @click="goFixture">
-          <span>朱卡耶夫，北比特</span>
+          <span>{{ data.htn }}</span>
           <div v-if="onBallHome" class="icon">
             <BaseIcon name="spt-tennis" />
           </div>
         </div>
         <!-- 客队名称 -->
         <div class="teams-name" @click="goFixture">
-          <span>李喆</span>
+          <span>{{ data.atn }}</span>
           <div v-if="onBallAway" class="icon">
             <BaseIcon name="spt-tennis" />
           </div>
@@ -179,8 +225,8 @@ function goFixture() {
           </div>
           <!-- 总分 -->
           <div class="score-wrapper total">
-            <span>2</span>
-            <span>3</span>
+            <span>{{ data.hp }}</span>
+            <span>{{ data.ap }}</span>
           </div>
         </div>
         <div class="options-wrapper">
@@ -219,11 +265,13 @@ function goFixture() {
     <!-- 标准盘 -->
     <template v-if="isStandard">
       <div class="market-name" style="--area: marketName0;">
-        <span>获胜</span>
+        <span>{{ standardMarketName }}</span>
       </div>
       <div class="outcomes" style="--area: outcomes0;">
-        <AppSportsBetButton />
-        <AppSportsBetButton />
+        <AppSportsBetButton
+          v-for="market in standardMarketBtns" :key="market.wid"
+          :title="market.title" :odds="market.ov"
+        />
       </div>
     </template>
     <!-- 三项投注 -->
@@ -305,7 +353,7 @@ function goFixture() {
         class="text-btn" type="text" size="none"
         @click="router.push(`/sports/${getSportsPlatId()}/a/b/c/d`)"
       >
-        <span>+25</span>
+        <span>+{{ data.mc }}</span>
       </BaseButton>
     </div>
   </div>
