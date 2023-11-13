@@ -5,7 +5,13 @@ import type { ILeagueItem } from './types'
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=b9bcba6d-49cf-4de9-a304-cf80caf8f46c
  */
 export function ApiSportCount(data: {
-  /** 是否取得串关数量 0:全部 1:支援串关 2:不支援串关 */
+  /** 是否取得串关数量
+   *
+   * 0:全部
+   *
+   * 1:支援串关
+   *
+   * 2:不支援串关 */
   ic: number
 }) {
   return httpClient.post<{
@@ -74,7 +80,11 @@ export function ApiSportSidebar() {
 export function ApiSportCompetitionList(data: {
   /** 球种Id */
   si: number
-  /** 种类 normal:一般赛事 outright:冠军赛 */
+  /** 种类
+   *
+   * normal:一般赛事
+   *
+   * outright:冠军赛 */
   kind: string
 }) {
   return httpClient.post<{
@@ -123,7 +133,18 @@ export function ApiSportCompetitionList(data: {
 export function ApiSportEventList(data: {
   /** 球种Id */
   si: number
-  /** market 0:取所有 1:早盘 2:今日 3:滚球 4:即将开赛 5:即将开赛及滚球 */
+  /** market
+   * 0:取所有
+   *
+   * 1:早盘
+   *
+   * 2:今日
+   *
+   * 3:滚球
+   *
+   * 4:即将开赛
+   *
+   * 5:即将开赛及滚球 */
   m: number
   page: number
   page_size: number
@@ -158,7 +179,11 @@ export function ApiSportEventDelta(data: {
       m: number
       /** 赛事ID */
       ei: string
-      /** Action, 0:更新或次插入赛事, 1:移除赛事 */
+      /** Action
+       *
+       * 0:更新或次插入赛事
+       *
+       * 1:移除赛事 */
       ac: string
       /** 赛事更新时间 */
       ts: number
@@ -215,7 +240,11 @@ export function ApiSportEventInfo(data: {
       ep: number
       /** 赛事状态 */
       es: number
-      /** 是否取得串關數量 0:全部 1:只限串關 */
+      /** 是否取得串關數量
+       *
+       * 0:全部
+       *
+       * 1:只限串關 */
       ic: number
       /** 是否热门 */
       hot: number
@@ -233,7 +262,11 @@ export function ApiSportEventInfo(data: {
       pgid: string
       /** 地区 */
       pgn: string
-      /** 赛事是否有现场直播Url, 0:没有, 1:有 */
+      /** 赛事是否有现场直播Url,
+       *
+       * 0:没有,
+       *
+       * 1:有 */
       ls: number
       /** 现场直播 URL清单 */
       lsu: []

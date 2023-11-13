@@ -110,6 +110,7 @@ function viewMoreGames() {
         <div v-show="!showAll" class="list-wrap">
           <div class="title">
             <BaseIcon
+              v-if="currentNav.icon"
               :name="currentNav.icon"
               use-cloud-img
             />
