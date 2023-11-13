@@ -59,87 +59,6 @@ export function useApiMenuData() {
   ])
   const casinoGameProvider = ref<Menu>([{ title: '游戏提供商', path: '/casino/collection/provider', icon: 'chess-game-provider', list: [], domId: '' }])
 
-  // sports
-  const sportHotGames = ref<Menu>([
-    {
-      title: '足球',
-      path: '',
-      icon: 'spt-soccer',
-      list: [
-        { title: 'Live & Upcoming', path: '', icon: 'spt-ball-plate' },
-        { title: 'Outrights', path: '', icon: 'spt-timing' },
-        { title: '激斗峡谷', path: '', icon: '' },
-        { title: '激斗峡谷', path: '', icon: '' },
-      ],
-      domId: 'sports-hot-game-football',
-    },
-    {
-      title: '网球',
-      path: '',
-      icon: 'spt-tennis',
-      list: [
-        { title: 'Live & Upcoming', path: '', icon: 'spt-ball-plate' },
-        { title: 'Outrights', path: '', icon: 'spt-timing' },
-        { title: '激斗峡谷', path: '', icon: '' },
-        { title: '激斗峡谷', path: '', icon: '' },
-      ],
-      domId: 'sports-hot-game-tennis',
-    },
-    {
-      title: '美式橄榄球',
-      path: '',
-      icon: 'spt-american-football',
-      list: [
-        { title: 'Live & Upcoming', path: '', icon: 'spt-ball-plate' },
-        { title: 'Outrights', path: '', icon: 'spt-timing' },
-        { title: '激斗峡谷', path: '', icon: '' },
-        { title: '激斗峡谷', path: '', icon: '' },
-      ],
-      domId: 'sports-hot-game-use-football',
-    },
-    {
-      title: '棒球',
-      path: '',
-      icon: 'spt-baseball',
-      list: [
-        { title: 'Live & Upcoming', path: '', icon: 'spt-ball-plate' },
-        { title: 'Outrights', path: '', icon: 'spt-timing' },
-        { title: '激斗峡谷', path: '', icon: '' },
-        { title: '激斗峡谷', path: '', icon: '' },
-      ],
-      domId: 'sports-hot-game-use-baseball',
-    },
-    {
-      title: '篮球',
-      path: '',
-      icon: 'spt-basketball',
-      list: [
-        { title: 'Live & Upcoming', path: '', icon: 'spt-ball-plate' },
-        { title: 'Outrights', path: '', icon: 'spt-timing' },
-        { title: '激斗峡谷', path: '', icon: '' },
-        { title: '激斗峡谷', path: '', icon: '' },
-      ],
-      domId: 'sports-hot-game-use-basketball',
-    },
-  ])
-  const sportEsports = ref<Menu>([
-    {
-      title: '所有电子竞技',
-      path: '',
-      icon: 'spt-all-esports',
-      list: [
-        { title: '彩虹六号', path: '', icon: '' },
-        { title: '传说对决', path: '', icon: '' },
-        { title: '刀塔2', path: '', icon: '' },
-        { title: '激斗峡谷', path: '', icon: '' },
-        { title: '激斗峡谷', path: '', icon: '' },
-        { title: '激斗峡谷', path: '', icon: '' },
-        { title: '激斗峡谷', path: '', icon: '' },
-      ],
-      domId: 'sports-e-sports',
-    },
-  ])
-
   const getActiveShown = computed(() => {
     return (shown: string) => rightIsExpand.value
     && shown === currentRightSidebarContent.value
@@ -296,8 +215,6 @@ export function useApiMenuData() {
     casinoMenu,
     casinoGameList,
     casinoGameProvider,
-    sportHotGames,
-    sportEsports,
     staticMenu1,
     staticMenu2,
     menuItemClick,
