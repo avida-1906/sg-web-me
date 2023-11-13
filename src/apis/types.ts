@@ -174,7 +174,13 @@ export interface ProviderItem {
 export interface ILeagueItem {
   /** 球种Id */
   si: number
-  /** market 1:早盘 2:今日 3:滚球 */
+  /** market
+   *
+   * 1:早盘
+   *
+   * 2:今日
+   *
+   * 3:滚球 */
   m: number
   /** 赛事ID */
   ei: string
@@ -208,7 +214,11 @@ export interface ILeagueItem {
   ep: number
   /** 赛事状态 */
   es: number
-  /** 是否取得串关数量 1:支援串关 2:不支援串关 */
+  /** 是否取得串关数量
+   *
+   * 1:支援串关
+   *
+   * 2:不支援串关 */
   ic: string
   /** 是否热门 */
   hot: number
@@ -220,7 +230,11 @@ export interface ILeagueItem {
   pol: {
     [key: string]: number
   }
-  /** 赛事是否有现场直播Url 0:没有 1:有 */
+  /** 赛事是否有现场直播Url
+   *
+   * 0:没有
+   *
+   * 1:有 */
   ls: number
   /** 现场直播 URL清单 */
   lsu: []
