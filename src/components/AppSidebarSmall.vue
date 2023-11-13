@@ -13,7 +13,6 @@ const {
   casinoMenu,
   casinoGameList,
   casinoGameProvider,
-  sportsMenu,
   sportHotGames,
   sportEsports,
   sportGameList,
@@ -22,6 +21,7 @@ const {
   staticMenu2,
   menuItemClick,
 } = useApiMenuData()
+const { sportsMenu } = storeToRefs(useSportsStore())
 
 const routePath = computed(() => route.path)
 const isCasino = computed(() => route.name?.toString().includes('casino'))

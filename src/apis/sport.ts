@@ -15,21 +15,23 @@ export function ApiSportCount(data: {
   ic: number
 }) {
   return httpClient.post<{
+    list: {
     /** 球种Id */
-    si: number
-    /** 球种名称 */
-    sn: string
-    /** earlyCount 早盘数量 */
-    ec: number
-    /** todayCount 今日数量 */
-    tc: number
-    /** liveCount 滚球数量 */
-    lc: number
-    /** outrightCount 冠军赛数量 */
-    oc: number
-    /** count 总数 */
-    c: number
-  }[]>(`/sport/${Sports.getSportsPlatId()}/count`, data)
+      si: number
+      /** 球种名称 */
+      sn: string
+      /** earlyCount 早盘数量 */
+      ec: number
+      /** todayCount 今日数量 */
+      tc: number
+      /** liveCount 滚球数量 */
+      lc: number
+      /** outrightCount 冠军赛数量 */
+      oc: number
+      /** count 总数 */
+      c: number
+    }[]
+  }>(`/sport/${Sports.getSportsPlatId()}/count`, data)
 }
 
 /**
@@ -314,4 +316,17 @@ export function ApiSportEventInfo(data: {
       ts: 1699616882
     }[]
   }>(`/sport/${Sports.getSportsPlatId()}/event/info`, data)
+}
+
+/**
+ * 首页大类
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=ae1fee09-d03e-4f27-a7bb-6a2bbdc4d74f
+ */
+export function ApiSportMenuMain() {
+  return httpClient.post<{
+    list: {
+      menu_id: number
+      menu_name: string
+    }[]
+  }>(`/sport/${Sports.getSportsPlatId()}/menu/main`)
 }

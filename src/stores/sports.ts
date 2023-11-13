@@ -69,6 +69,45 @@ export const useSportsStore = defineStore('sports', () => {
       : []
   })
 
+  /** 体育计数源 */
+  const { data: allSportsCount } = useRequest(() => ApiSportCount({ ic: 0 }), { manual: false })
+  /** 当前滚球计数 */
+  const liveCount = computed(() => {
+    if (allSportsCount.value) {
+      return allSportsCount.value.list.reduce((acc, cur) => {
+        return acc + cur.lc
+      }, 0)
+    }
+    return 0
+  })
+
+  /** 侧边栏数据源 */
+  const { data: sidebarData } = useRequest(ApiSportSidebar, { manual: false })
+
+  /** 侧边栏菜单 */
+  const sportsMenu = computed(() => {
+    return [
+      {
+        title: '滚球盘',
+        path: `/sports/${SPORTS_PLAT_ID}/live`,
+        icon: 'spt-ball-plate',
+        list: [],
+        domId: '',
+        fixtureCount: liveCount.value,
+      },
+      // eslint-disable-next-line max-len
+      { title: '即将开赛', path: `/sports/${SPORTS_PLAT_ID}/upcoming`, icon: 'spt-timing', list: [], domId: '' },
+      {
+        title: '我的投注',
+        path: `/sports/${SPORTS_PLAT_ID}/my-bets`,
+        icon: 'spt-user-bet',
+        list: [],
+        domId: '',
+        token: true,
+      },
+    ]
+  })
+
   /** 切换场馆 */
   function changeProvider(id: string) {
     if (currentProvider.value === id)
@@ -98,7 +137,6 @@ export const useSportsStore = defineStore('sports', () => {
     else
       return EnumSportsOddsType.DECIMAL
   }
-
   return {
     sportsOddsType,
     betSlipData,
@@ -108,6 +146,10 @@ export const useSportsStore = defineStore('sports', () => {
     currentProvider,
     providerList,
     changeProvider,
+    allSportsCount,
+    sidebarData,
+    liveCount,
+    sportsMenu,
   }
 })
 

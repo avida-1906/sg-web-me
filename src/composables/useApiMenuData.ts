@@ -63,26 +63,6 @@ export function useApiMenuData() {
   const casinoGameProvider = ref<Menu>([{ title: '游戏提供商', path: '/casino/collection/provider', icon: 'chess-game-provider', list: [], domId: '' }])
 
   // sports
-  const sportsMenu = ref<Menu>([
-    {
-      title: '滚球盘',
-      path: `/sports/${SPORTS_PLAT_ID}/live`,
-      icon: 'spt-ball-plate',
-      list: [],
-      domId: '',
-      fixtureCount: 22,
-    },
-    // eslint-disable-next-line max-len
-    { title: '即将开赛', path: `/sports/${SPORTS_PLAT_ID}/upcoming`, icon: 'spt-timing', list: [], domId: '' },
-    {
-      title: '我的投注',
-      path: `/sports/${SPORTS_PLAT_ID}/my-bets`,
-      icon: 'spt-user-bet',
-      list: [],
-      domId: '',
-      token: true,
-    },
-  ])
   const sportHotGames = ref<Menu>([
     {
       title: '足球',
@@ -348,7 +328,6 @@ export function useApiMenuData() {
     casinoMenu,
     casinoGameList,
     casinoGameProvider,
-    sportsMenu,
     sportHotGames,
     sportEsports,
     sportGameList,
