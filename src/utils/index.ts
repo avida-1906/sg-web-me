@@ -24,6 +24,10 @@ class Application {
     language = EnumLanguage[VITE_I18N_DEFAULT_LANG],
   ): string {
     const languageStr = EnumLanguage[language]
+
+    if (timestamp.toString().length !== 13)
+      timestamp = timestamp * 1000
+
     return new Intl.DateTimeFormat(
       languageStr,
       { dateStyle: 'short', timeStyle: 'medium' },

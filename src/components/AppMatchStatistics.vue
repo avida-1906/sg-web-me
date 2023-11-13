@@ -1,5 +1,11 @@
 <script lang="ts" setup>
+import type { IBasePanelType } from '~/types'
+
 type Qualifier = 'home' | 'away'
+
+defineProps<{
+  data: IBasePanelType
+}>()
 
 const eventData = {
   eventStatus: {
@@ -176,7 +182,7 @@ function mapHeadArea(
       <!-- competitor -->
       <div class="chromatic-ignore heading" style="grid-area: competitor_title;">
         <span class="match-status-label">
-          {{ '第四节' }}
+          {{ data.startTime }}
         </span>
       </div>
       <div class="competitor-item border" style="grid-area: competitor_home;">
@@ -184,14 +190,14 @@ function mapHeadArea(
           src="https://img-cdn001.akamaized.net/ls/crest/medium/4389.png" width="20" height="20"
           style="width:20px;height: 20px;"
         >
-        <span>旧金山49人美式足球队</span>
+        <span>{{ data.homeTeamName }}</span>
       </div>
       <div class="competitor-item" style="grid-area: competitor_away;">
         <img
           src="https://img-cdn001.akamaized.net/ls/crest/medium/6118.png" width="20" height="20"
           style="width:20px;height: 20px;"
         >
-        <span>卡尔达斯</span>
+        <span>{{ data.awayTeamName }}</span>
       </div>
 
       <!-- corners yellowCards redCards -->
@@ -255,10 +261,10 @@ function mapHeadArea(
         class="fill-frame completed match-score border"
         style="grid-area: matchScore_home;"
       >
-        <span>2</span>
+        <span>{{ data.homeTeamScore }}</span>
       </div>
       <div class="match-score fill-frame" style="grid-area: matchScore_away;">
-        <span>1</span>
+        <span>{{ data.awayTeamScore }}</span>
       </div>
     </div>
   </div>

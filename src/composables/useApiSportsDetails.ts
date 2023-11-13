@@ -1,5 +1,5 @@
 import type { TPat } from '~/apis/types'
-import type { IBreadCrumbItem } from '~/types'
+import type { IBasePanelType, IBreadCrumbItem } from '~/types'
 
 /** 列表类型 */
 export interface IDataListItem {
@@ -84,6 +84,40 @@ export function useApiSportDetails(si: number, ei: string) {
     return data
   })
 
+  /** 基础数据面板 */
+  const basePanelData = computed<IBasePanelType>(() => {
+    const data: IBasePanelType = {
+      startTime: '',
+      homeTeamName: '',
+      awayTeamName: '',
+      remark: '',
+      homeTeamScore: 0,
+      awayTeamScore: 0,
+    }
+
+    if (
+      false
+      || !sportInfo.value
+      || !sportInfo.value.list
+      || !sportInfo.value.list.length
+    )
+      return data
+
+    const _map: IBasePanelType = {
+      startTime: application.timestampToTime(sportInfo.value.list[0].ed),
+      homeTeamName: sportInfo.value.list[0].htn,
+      awayTeamName: sportInfo.value.list[0].atn,
+      remark: '',
+      homeTeamScore: sportInfo.value.list[0].hp,
+      awayTeamScore: sportInfo.value.list[0].ap,
+    }
+
+    console.error(sportInfo.value.list[0].ed)
+    Object.assign(data, _map)
+
+    return data
+  })
+
   /** 数据列表 */
   const dataList = computed<IDataListItem[]>(() => {
     const data: IDataListItem[] = []
@@ -126,5 +160,6 @@ export function useApiSportDetails(si: number, ei: string) {
     dataList,
     breadcrumbData,
     handicapListData,
+    basePanelData,
   }
 }

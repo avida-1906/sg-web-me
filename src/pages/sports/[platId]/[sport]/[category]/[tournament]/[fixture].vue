@@ -5,7 +5,12 @@ const appStore = useAppStore()
 const { isLogin } = storeToRefs(appStore)
 const { bool: showRecent, setFalse: setSRFalse } = useBoolean(true)
 const { bool: openLiveSwitch } = useBoolean(false)
-const { breadcrumbData, handicapListData, dataList } = useApiSportDetails(1, '54095899')
+const {
+  breadcrumbData,
+  handicapListData,
+  dataList,
+  basePanelData,
+} = useApiSportDetails(1, '54095899')
 
 const sport = route.params.sport
 // const category = route.params.category
@@ -46,7 +51,7 @@ useTitle(title)
                   '--sport-image': `url(/img/match-statistics/${sport}.jpg)`,
                 }"
               >
-                <AppMatchStatistics v-if="appContentWidth >= 900" />
+                <AppMatchStatistics v-if="appContentWidth >= 900" :data="basePanelData" />
               </div>
               <div v-else class="livestream-wrap">
                 <template v-if="isLogin">
@@ -208,7 +213,7 @@ useTitle(title)
                     <template #default>
                       <div class="market" :class="{ 'in-mobile': isMobile }">
                         <div class="table" :style="{ '--itemCount': 1 }">
-                          <div class="column heading">
+                          <div class="heading column">
                             <span>大</span>
                           </div>
                           <div class="column heading">
