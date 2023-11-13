@@ -43,7 +43,7 @@ const { page, prev, next, hasMore } = useList(ApiMemberFavList)
             type="text"
             size="none"
             style=" --tg-base-button-text-default-color:var(--tg-text-white)"
-            @click="router.push(`/sports/${Sports.getSportsPlatId()}`)"
+            @click="router.push(`/sports/${getSportsPlatId()}`)"
           >
             {{ t('sports_betting_now') }}
           </BaseButton>

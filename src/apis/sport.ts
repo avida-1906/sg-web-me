@@ -31,7 +31,7 @@ export function ApiSportCount(data: {
       /** count 总数 */
       c: number
     }[]
-  }>(`/sport/${Sports.getSportsPlatId()}/count`, data)
+  }>(`/sport/${getSportsPlatId()}/count`, data)
 }
 
 /**
@@ -70,7 +70,7 @@ export function ApiSportSidebar() {
       /** 数量 */
       c: number
     }[]
-  }>(`/sport/${Sports.getSportsPlatId()}/sidebar`)
+  }>(`/sport/${getSportsPlatId()}/sidebar`)
 }
 
 /**
@@ -123,7 +123,7 @@ export function ApiSportCompetitionList(data: {
         c: number
       }[]
     }[]
-  }>(`/sport/${Sports.getSportsPlatId()}/competition/list`, data)
+  }>(`/sport/${getSportsPlatId()}/competition/list`, data)
 }
 
 /**
@@ -154,7 +154,7 @@ export function ApiSportEventList(data: {
     delta: number
     /** 联赛列表 */
     list: ILeagueItem[]
-  }>(`/sport/${Sports.getSportsPlatId()}/event/list`, data)
+  }>(`/sport/${getSportsPlatId()}/event/list`, data)
 }
 
 /**
@@ -193,7 +193,7 @@ export function ApiSportEventDelta(data: {
       pgid: string
       v: ILeagueItem[]
     }[]
-  }>(`/sport/${Sports.getSportsPlatId()}/event/delta`, data)
+  }>(`/sport/${getSportsPlatId()}/event/delta`, data)
 }
 
 /**
@@ -315,7 +315,7 @@ export function ApiSportEventInfo(data: {
       /** 赛事更新时间 */
       ts: 1699616882
     }[]
-  }>(`/sport/${Sports.getSportsPlatId()}/event/info`, data)
+  }>(`/sport/${getSportsPlatId()}/event/info`, data)
 }
 
 /**
@@ -328,5 +328,5 @@ export function ApiSportMenuMain() {
       menu_id: number
       menu_name: string
     }[]
-  }>(`/sport/${Sports.getSportsPlatId()}/menu/main`)
+  }>(`/sport/${getSportsPlatId()}/menu/main`)
 }

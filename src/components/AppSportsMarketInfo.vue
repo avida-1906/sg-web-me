@@ -37,11 +37,11 @@ function openDragDialog(type: 'trend' | 'live') {
 function onBreadcrumbsClick({ list, index }: { list: ISelectOption[]; index: number }) {
   let path = ''
   if (isH5Layout.value)
-    path = `/sports/${Sports.getSportsPlatId()}/${list.map(a => a.value).join('/')}`
+    path = `/sports/${getSportsPlatId()}/${list.map(a => a.value).join('/')}`
 
   else
     // eslint-disable-next-line max-len
-    path = `/sports/${Sports.getSportsPlatId()}/${list.slice(0, index + 1).map(a => a.value).join('/')}`
+    path = `/sports/${getSportsPlatId()}/${list.slice(0, index + 1).map(a => a.value).join('/')}`
 
   console.log('🚀 ~ file: BaseBreadcrumbs.vue:15 ~ handleClick ~ path:', path)
   router.push(path)
@@ -303,7 +303,7 @@ function goFixture() {
       </div>
       <BaseButton
         class="text-btn" type="text" size="none"
-        @click="router.push(`/sports/${Sports.getSportsPlatId()}/a/b/c/d`)"
+        @click="router.push(`/sports/${getSportsPlatId()}/a/b/c/d`)"
       >
         <span>+25</span>
       </BaseButton>

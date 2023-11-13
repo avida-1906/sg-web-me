@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import type { EnumCurrencyKey } from '~/apis'
+import type { EnumCurrencyKey } from '~/apis/types'
 import { currencyConfig } from '~/composables/useCurrencyData'
 
 interface Props {

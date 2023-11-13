@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { EnumCurrencyKey } from '~/apis'
+import type { EnumCurrencyKey } from '~/apis/types'
 
 const route = useRoute()
 const isCasinoGame = computed(() => route.name === 'casino-games')

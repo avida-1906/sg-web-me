@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { CurrencyData } from '~/composables/useCurrencyData'
-import type { BankCard, VirtualCoin } from '~/apis'
+import type { BankCard, VirtualCoin } from '~/apis/types'
 
 type WalletCurrencyList = {
   coin?: VirtualCoin[] // 绑定的虚拟币

@@ -15,7 +15,7 @@ const { triggerLeftSidebar, navButtons } = useLeftSidebar()
 const router = useRouter()
 const route = useRoute()
 function push(title: string) {
-  const path = title === 'casino' ? '/casino' : `/sports/${Sports.getSportsPlatId()}`
+  const path = title === 'casino' ? '/casino' : `/sports/${getSportsPlatId()}`
   router.push(path)
 }
 </script>
@@ -24,7 +24,7 @@ function push(title: string) {
   <!-- 头部菜单或搜索栏 -->
   <div class="tg-app-left-sidebar-tiny">
     <div class="sidebar-tiny-top">
-      <div class="is-small header">
+      <div class="header is-small">
         <Transition name="menu-fade">
           <template v-if="!isSwitching">
             <div class="button center">

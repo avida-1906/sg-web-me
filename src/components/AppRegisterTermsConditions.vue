@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import type { IMemberReg } from '~/apis'
+import type { IMemberReg } from '~/apis/types'
 
 const closeDialog = inject('closeDialog', () => {})
 
