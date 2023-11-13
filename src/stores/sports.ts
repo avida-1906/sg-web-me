@@ -110,6 +110,37 @@ export const useSportsStore = defineStore('sports', () => {
       },
     ]
   })
+  /** 顶级体育项目 */
+  const sportHotGames = computed<Menu>(() => {
+    if (sidebarData.value) {
+      // eslint-disable-next-line max-len
+      const topGamesObj = sidebarData.value.menu.find(a => a.menu_id === 3) ?? { list: [] }
+
+      return topGamesObj?.list.map((sport) => {
+        return {
+          title: sport.sn,
+          path: '',
+          icon: 'spt-soccer',
+          domId: `sports-hot-game-${sport.si}`,
+          list: [
+            // eslint-disable-next-line max-len
+            { title: 'Live & Upcoming', path: `/sports/${SPORTS_PLAT_ID}/${sport.si}`, icon: 'spt-ball-plate' },
+            // eslint-disable-next-line max-len
+            { title: 'Outrights', path: `/sports/${SPORTS_PLAT_ID}/${sport.si}/outrights`, icon: 'spt-timing' },
+            ...sport.list.map((league) => {
+              return {
+                title: league.cn,
+                icon: 'spt-soccer',
+                path: `/sports/${SPORTS_PLAT_ID}/${sport.si}/${league.ci}`,
+              }
+            }),
+          ],
+        }
+      })
+    }
+    return []
+  })
+  /** 体育项目 */
   const sportGameList = computed(() => {
     if (sidebarData.value) {
       const list = sidebarData.value.all.map((item) => {
@@ -187,6 +218,7 @@ export const useSportsStore = defineStore('sports', () => {
     sidebarData,
     liveCount,
     sportsMenu,
+    sportHotGames,
     sportGameList,
   }
 })

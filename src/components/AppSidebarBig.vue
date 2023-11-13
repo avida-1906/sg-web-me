@@ -11,7 +11,6 @@ const {
   casinoMenu,
   casinoGameList,
   casinoGameProvider,
-  sportHotGames,
   sportEsports,
   staticMenu1,
   staticMenu2,
@@ -21,7 +20,12 @@ const { t } = useI18n()
 const route = useRoute()
 const { isMobile } = storeToRefs(useWindowStore())
 const { isLogin } = storeToRefs(useAppStore())
-const { sportOddType, sportsMenu, sportGameList } = storeToRefs(useSportsStore())
+const {
+  sportOddType,
+  sportsMenu,
+  sportHotGames,
+  sportGameList,
+} = storeToRefs(useSportsStore())
 
 const innerRef = ref()
 const timeStamp = ref(0)
