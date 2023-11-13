@@ -35,6 +35,7 @@ declare global {
   const ApiMemberFeedbackBonusDraw: typeof import('./apis/index')['ApiMemberFeedbackBonusDraw']
   const ApiMemberFeedbackInsert: typeof import('./apis/index')['ApiMemberFeedbackInsert']
   const ApiMemberFeedbackList: typeof import('./apis/index')['ApiMemberFeedbackList']
+  const ApiMemberFeedbackUpdate: typeof import('./apis/index')['ApiMemberFeedbackUpdate']
   const ApiMemberForgetPassword: typeof import('./apis/index')['ApiMemberForgetPassword']
   const ApiMemberFrontLoginLogList: typeof import('./apis/index')['ApiMemberFrontLoginLogList']
   const ApiMemberGameCate: typeof import('./apis/index')['ApiMemberGameCate']
@@ -542,6 +543,7 @@ declare module 'vue' {
     readonly ApiMemberFeedbackBonusDraw: UnwrapRef<typeof import('./apis/index')['ApiMemberFeedbackBonusDraw']>
     readonly ApiMemberFeedbackInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberFeedbackInsert']>
     readonly ApiMemberFeedbackList: UnwrapRef<typeof import('./apis/index')['ApiMemberFeedbackList']>
+    readonly ApiMemberFeedbackUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberFeedbackUpdate']>
     readonly ApiMemberForgetPassword: UnwrapRef<typeof import('./apis/index')['ApiMemberForgetPassword']>
     readonly ApiMemberFrontLoginLogList: UnwrapRef<typeof import('./apis/index')['ApiMemberFrontLoginLogList']>
     readonly ApiMemberGameCate: UnwrapRef<typeof import('./apis/index')['ApiMemberGameCate']>
@@ -1039,6 +1041,7 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberFeedbackBonusDraw: UnwrapRef<typeof import('./apis/index')['ApiMemberFeedbackBonusDraw']>
     readonly ApiMemberFeedbackInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberFeedbackInsert']>
     readonly ApiMemberFeedbackList: UnwrapRef<typeof import('./apis/index')['ApiMemberFeedbackList']>
+    readonly ApiMemberFeedbackUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberFeedbackUpdate']>
     readonly ApiMemberForgetPassword: UnwrapRef<typeof import('./apis/index')['ApiMemberForgetPassword']>
     readonly ApiMemberFrontLoginLogList: UnwrapRef<typeof import('./apis/index')['ApiMemberFrontLoginLogList']>
     readonly ApiMemberGameCate: UnwrapRef<typeof import('./apis/index')['ApiMemberGameCate']>

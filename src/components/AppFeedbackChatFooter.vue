@@ -39,12 +39,12 @@ function sendMsg() {
         return
       }
       runSendMsg(params.value)
-      message.value = ''
       msgInput.value.getFocus()
     }
     else {
       openNotify({ type: 'error', message: t('wait_office_reply') })
     }
+    message.value = ''
   }
 }
 
