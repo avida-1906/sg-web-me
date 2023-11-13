@@ -107,6 +107,27 @@ export const useSportsStore = defineStore('sports', () => {
       },
     ]
   })
+  const sportGameList = computed(() => {
+    if (sidebarData.value) {
+      const list = sidebarData.value.all.map((item) => {
+        return {
+          title: item.sn,
+          path: `/sports/${SPORTS_PLAT_ID}/item.si`,
+          icon: 'spt-basketball',
+        }
+      })
+      return [
+        {
+          title: '体育项目',
+          path: '',
+          icon: 'spt-basketball',
+          list,
+          domId: 'sports-game-list',
+        },
+      ]
+    }
+    return []
+  })
 
   /** 切换场馆 */
   function changeProvider(id: string) {
@@ -150,6 +171,7 @@ export const useSportsStore = defineStore('sports', () => {
     sidebarData,
     liveCount,
     sportsMenu,
+    sportGameList,
   }
 })
 
