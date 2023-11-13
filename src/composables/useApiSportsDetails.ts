@@ -10,7 +10,6 @@ type IBreadcrumb = Pick<
 /**
  * @module src/composables/useApiSportsDetails.ts
  * @description 体育赛事详情接口
- *
  * @param si 球种ID
  * @param ei 赛事ID
  */
