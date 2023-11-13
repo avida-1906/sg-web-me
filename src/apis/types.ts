@@ -276,3 +276,113 @@ export interface ILeagueItem {
   /** 赛事更新时间 */
   ts: number
 }
+
+/** 赛事详情 */
+export interface ISportEventInfo {
+  /** 赛事ID */
+  ei: string
+  /** 球种Id */
+  si: number
+  /** 球种名称 */
+  sn: string
+  /** market 1:早盤 */
+  m: number
+  /** 聯賽id */
+  ci: string
+  /** 联赛名称 */
+  cn: string
+  /** 主队id */
+  hti: string
+  /** 主队名称 */
+  htn: string
+  /** 客队id */
+  ati: string
+  /** 客队名称 */
+  atn: string
+  /** 滚球时间 */
+  rbt: string
+  /** RBTimeStatus */
+  rbts: number
+  /** 玩法总数 */
+  mc: number
+  /** 赛事开始时间 */
+  ed: number
+  /** 当前是第几盘或者第几局 */
+  ep: number
+  /** 赛事状态 */
+  es: number
+  /** 是否取得串關數量
+   *
+   * 0:全部
+   *
+   * 1:只限串關 */
+  ic: number
+  /** 是否热门 */
+  hot: number
+  /** orderNumber */
+  on: number
+  /** 主队比分 */
+  hp: number
+  /** 客队比分 */
+  ap: number
+  /** 比分列表 */
+  pol: {
+    [key: string]: number
+  }
+  /** 地區id */
+  pgid: string
+  /** 地区 */
+  pgn: string
+  /** 赛事是否有现场直播Url,
+   *
+   * 0:没有,
+   *
+   * 1:有 */
+  ls: number
+  /** 现场直播 URL清单 */
+  lsu: []
+  /** 赛事的更多信息。每个体育的额外信息将有所不同 */
+  eifo: string
+  /** 盘口标签列表 */
+  tgl: {
+    /** 盘口标签Id */
+    tgi: number
+    /** 盘口标签名称 */
+    tgn: string
+  }[]
+  /** 盘口清单 */
+  ml: {
+    /** MarketlineId */
+    mlid: string
+    /** BetType */
+    bt: number
+    /** BetTypeName */
+    btn: string
+    pid: number
+    /** PeriodName */
+    pn: string
+    /** MarketLineLevel */
+    mll: number
+    /** MarketlineStatusId */
+    mls: number
+    /** 对应的盘口标签 */
+    tgis: number[]
+    /** WagerSelections */
+    ms: {
+      /** WagerSelectionId */
+      wid: string
+      /** SelectionId */
+      sid: string
+      /** 球种名称 */
+      sn: string
+      /** Handicap */
+      hdp: string
+      /** Specifiers */
+      sp: null
+      /** OddsList 内的欧洲盘 OV */
+      ov: string
+    }[]
+  }[]
+  /** 赛事更新时间 */
+  ts: 1699616882
+}

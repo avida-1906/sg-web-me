@@ -1,10 +1,8 @@
 <script lang="ts" setup>
-interface BreadCrumbItem {
-  path: string
-  title: string
-}
+import type { IBreadCrumbItem } from '~/types'
+
 interface Props {
-  breadcrumb: Array<BreadCrumbItem>
+  breadcrumb: Array<IBreadCrumbItem>
 }
 
 const props = defineProps<Props>()
@@ -15,7 +13,7 @@ const { appContentWidth } = storeToRefs(useWindowStore())
 const _data = reactive(props.breadcrumb)
 
 function goPath(
-  { d, disabled }: { d?: BreadCrumbItem; disabled?: boolean } = {},
+  { d, disabled }: { d?: IBreadCrumbItem; disabled?: boolean } = {},
 ) {
   if (disabled)
     return
