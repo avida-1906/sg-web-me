@@ -59,25 +59,6 @@ export function useApiMenuData() {
   ])
   const casinoGameProvider = ref<Menu>([{ title: '游戏提供商', path: '/casino/collection/provider', icon: 'chess-game-provider', list: [], domId: '' }])
 
-  // sports
-  const sportEsports = ref<Menu>([
-    {
-      title: '所有电子竞技',
-      path: '',
-      icon: 'spt-all-esports',
-      list: [
-        { title: '彩虹六号', path: '', icon: '' },
-        { title: '传说对决', path: '', icon: '' },
-        { title: '刀塔2', path: '', icon: '' },
-        { title: '激斗峡谷', path: '', icon: '' },
-        { title: '激斗峡谷', path: '', icon: '' },
-        { title: '激斗峡谷', path: '', icon: '' },
-        { title: '激斗峡谷', path: '', icon: '' },
-      ],
-      domId: 'sports-e-sports',
-    },
-  ])
-
   const getActiveShown = computed(() => {
     return (shown: string) => rightIsExpand.value
     && shown === currentRightSidebarContent.value
@@ -234,7 +215,6 @@ export function useApiMenuData() {
     casinoMenu,
     casinoGameList,
     casinoGameProvider,
-    sportEsports,
     staticMenu1,
     staticMenu2,
     menuItemClick,

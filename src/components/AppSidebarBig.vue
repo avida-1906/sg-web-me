@@ -11,7 +11,6 @@ const {
   casinoMenu,
   casinoGameList,
   casinoGameProvider,
-  sportEsports,
   staticMenu1,
   staticMenu2,
   menuItemClick,
@@ -120,15 +119,6 @@ onBeforeUnmount(() => {
           </div>
           <div class="content-line" />
           <div v-for="item, i in sportHotGames" :key="i">
-            <AppAccordionMenu
-              :menu-item="item"
-              :time-stamp="timeStamp"
-              @close-other-menu="closeMenu"
-            />
-          </div>
-        </div>
-        <div class="menu-box">
-          <div v-for="item, i in sportEsports" :key="i">
             <AppAccordionMenu
               :menu-item="item"
               :time-stamp="timeStamp"

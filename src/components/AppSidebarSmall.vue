@@ -13,7 +13,6 @@ const {
   casinoMenu,
   casinoGameList,
   casinoGameProvider,
-  sportEsports,
   staticMenu1,
   staticMenu2,
   menuItemClick,
@@ -42,7 +41,6 @@ const menuData = computed(() => {
     return [
       sportsMenu,
       sportHotGames,
-      sportEsports,
       sportGameList,
       sportOddType,
       staticMenu1,
