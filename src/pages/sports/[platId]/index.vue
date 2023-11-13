@@ -8,7 +8,7 @@ const router = useRouter()
 const { isMobile } = storeToRefs(useWindowStore())
 const { isLogin } = storeToRefs(useAppStore())
 const sportsStore = useSportsStore()
-const { currentProvider, providerList } = storeToRefs(sportsStore)
+const { currentProvider, providerList, liveCount } = storeToRefs(sportsStore)
 sportsStore.changeProvider(props.platId)
 
 const marketType = ref('all')
@@ -29,6 +29,9 @@ const tabList = computed(() => [
   { label: t('sports_tab_live_events'), value: 'live', icon: 'spt-ball-plate' },
   { label: t('sports_tab_starting_soon'), value: 'soon', icon: 'spt-timing' },
 ])
+ApiSportEventList({ si: 2, m: 3, page: 1, page_size: 100 })
+ApiSportMenuMain()
+// ApiSportSidebar()
 </script>
 
 <template>
