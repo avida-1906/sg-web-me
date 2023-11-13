@@ -27,6 +27,7 @@ const {
   setFalse: setTouchFalse,
 } = useBoolean(false)
 
+const inputValue = ref(props.modelValue)
 const inputRef = ref<HTMLElement>()
 /** 光标位置 */
 const textLength = ref<number | null>(null)
@@ -52,7 +53,8 @@ const onBlur = function (event: any) {
   emit('blur')
 }
 const changeText = function (e: any) {
-  const value = e.target.value
+  const value = e.target.value.replace(/\D/g, '')
+  inputValue.value = value
   textLength.value = value.length
   entered.value = value.length
   emit('update:modelValue', value)
@@ -65,12 +67,13 @@ defineExpose({ setTouchTrue, setTouchFalse })
   <div class="base-input-password">
     <input
       ref="inputRef"
-      :value="modelValue"
-      type="number"
+      v-model="inputValue"
+      type="text"
       maxlength="6"
       :disabled="disabled"
       @input="changeText"
       @blur="onBlur"
+      @paste.prevent
     >
     <ul class="password-wrap" :class="{ 'width-auto': widthAuto }" @click="onFocus">
       <li
