@@ -36,7 +36,6 @@ export function useApiMenuData() {
   const { t } = useI18n()
   const { isLogin } = storeToRefs(appStore)
   const { casinoGameList } = storeToRefs(useCasinoStore())
-  const { currentProvider } = storeToRefs(useSportsStore())
   const sportStore = useSportsStore()
   const { sportsOddsType } = storeToRefs(sportStore)
   const languageStore = useLanguageStore()

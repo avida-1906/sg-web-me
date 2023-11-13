@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 const route = useRoute()
-const { currentProvider } = storeToRefs(useSportsStore())
 
 const sport = route.params.sport
 const category = route.params.category
@@ -296,12 +295,12 @@ const data = {
 const { bool: isStandard } = useBoolean(true)
 const baseType = ref('winner')
 
-const breadcrumb = computed(() => [
+const breadcrumb = [
   // eslint-disable-next-line max-len
-  { path: `/sports/${currentProvider.value}/${sport}`, title: data.sport.name, id: data.sport.id },
+  { path: `/sports/${SPORTS_PLAT_ID}/${sport}`, title: data.sport.name, id: data.sport.id },
   // eslint-disable-next-line max-len
-  { path: `/sports/${currentProvider.value}/${sport}/${category}`, title: data.name, id: data.id },
-])
+  { path: `/sports/${SPORTS_PLAT_ID}/${sport}/${category}`, title: data.name, id: data.id },
+]
 const tabs = computed(() => [
   { value: 'live-upcoming', label: '滚球与即将开赛的盘口' },
   { value: 'outrights', label: '冠军投注' },

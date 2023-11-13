@@ -4,7 +4,6 @@ import { EnumsBetSlipTabs } from '~/utils/enums'
 const { t } = useI18n()
 const router = useRouter()
 const { closeRightSidebar } = useRightSidebar()
-const { currentProvider } = storeToRefs(useSportsStore())
 
 const type = ref(EnumsBetSlipTabs.betSlip)
 const typeOptions = [
@@ -144,7 +143,7 @@ const betBtnText = computed(() =>
                 type="text"
                 size="none"
                 style=" --tg-base-button-text-default-color:var(--tg-text-white)"
-                @click="router.push(`/sports/${currentProvider}`)"
+                @click="router.push(`/sports/${Sports.getSportsPlatId()}`)"
               >
                 {{t('sports_betting_now')}}
               </BaseButton>
@@ -194,7 +193,7 @@ const betBtnText = computed(() =>
       <!-- 我的投注 -->
       <BaseButton
         v-else size="md"
-        @click="router.push(`/sports/${currentProvider}/my-bets`)"
+        @click="router.push(`/sports/${Sports.getSportsPlatId()}/my-bets`)"
       >
         {{ t('view_all') }}
       </BaseButton>

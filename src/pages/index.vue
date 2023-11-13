@@ -14,7 +14,6 @@ const {
 } = storeToRefs(useWindowStore())
 const { isLogin, userInfo } = storeToRefs(useAppStore())
 const sportsStore = useSportsStore()
-const { currentProvider } = storeToRefs(sportsStore)
 const { openVipDialog } = useVipDialog()
 const { openWalletDialog } = useWalletDialog()
 
@@ -114,7 +113,7 @@ const onShowMore = function () {
       </div>
       <div
         class="features-sports"
-        @click="router.push(`/sports/${currentProvider}`)"
+        @click="router.push(`/sports/${Sports.getSportsPlatId()}`)"
       >
         <div class="features-title">
           <BaseIcon name="spt-basketball" />

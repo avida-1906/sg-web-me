@@ -5,7 +5,6 @@ const route = useRoute()
 const appStore = useAppStore()
 const { isLogin } = storeToRefs(appStore)
 const { isMobile, width } = storeToRefs(useWindowStore())
-const { currentProvider } = storeToRefs(useSportsStore())
 const {
   rightIsExpand,
   openRightSidebar,
