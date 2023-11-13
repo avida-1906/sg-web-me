@@ -88,7 +88,7 @@ const eventData = reactive({
       {
         language: 'zh',
         name: 'Huya',
-        streamUrl: 'https://liveshare.huya.com/iframe/lpl?needStop=true',
+        streamUrl: '',
       },
     ],
     __typename: 'SportFixtureDataMatch',
@@ -639,7 +639,17 @@ useTitle(title)
                   <div class="wrapper">
                     <span class="tip">直播视频将在赛事进行之前开始。</span>
                   </div>
-                  <video autoplay controls playsinline disablepictureinpicture="" controlslist="nodownload nofullscreen" class="" src="blob:https://liveshare.huya.com/72a92f58-c32f-4bd1-a287-d355b40c7b59"><track kind="captions"></video>
+                  <video
+                    autoplay
+                    controls
+                    playsinline
+                    disablepictureinpicture=""
+                    controlslist="nodownload nofullscreen"
+                    class=""
+                    src=""
+                  >
+                    <track kind="captions">
+                  </video>
                   <!-- <div class="content">
                     <div class="player-view">
                       <div class="ratio-wrap">
@@ -784,7 +794,7 @@ useTitle(title)
                   <template #default>
                     <div class="market" :class="{ 'in-mobile': isMobile }">
                       <div class="table" :style="{ '--itemCount': 1 }">
-                        <div class="column heading">
+                        <div class="heading column">
                           <span>大</span>
                         </div>
                         <div class="column heading">

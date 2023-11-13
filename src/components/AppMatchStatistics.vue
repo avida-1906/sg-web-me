@@ -73,7 +73,7 @@ const eventData = {
       {
         language: 'zh',
         name: 'Huya',
-        streamUrl: 'https://liveshare.huya.com/iframe/lpl?needStop=true',
+        streamUrl: '',
       },
     ],
     __typename: 'SportFixtureDataMatch',
