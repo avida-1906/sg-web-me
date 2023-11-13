@@ -50,6 +50,8 @@ export const useSportsStore = defineStore('sports', () => {
   const betSlipData = ref<IBetSlipData[]>([])
   /** 当前场馆ID */
   const currentProvider = ref(Local.get<string>(STORAGE_SPORTS_CURRENT_PROVIDER)?.value ?? '')
+  /** 当前滚球选中的体育项目 */
+  const currentLiveNav = ref(0)
 
   /** 获取场馆列表 */
   const {
@@ -85,7 +87,12 @@ export const useSportsStore = defineStore('sports', () => {
   })
 
   /** 侧边栏数据源 */
-  const { data: sidebarData } = useRequest(ApiSportSidebar, { manual: false })
+  const { data: sidebarData } = useRequest(ApiSportSidebar, {
+    manual: false,
+    onSuccess(res) {
+      currentLiveNav.value = res.rbl[0]?.si ?? 0
+    },
+  })
 
   /** 侧边栏菜单 */
   const sportsMenu = computed(() => {
@@ -162,6 +169,19 @@ export const useSportsStore = defineStore('sports', () => {
     }
     return []
   })
+  /** 滚球导航 */
+  const sportLiveNavs = computed(() => {
+    if (sidebarData.value) {
+      return sidebarData.value.rbl.map((item) => {
+        return {
+          ...item,
+          icon: 'spt-american-football',
+        }
+      })
+    }
+    return []
+  })
+
   const sportOddType = computed(() => <Menu>[
     {
       title: `${t('sports_odds_title')}： ${t(`sports_odds_${sportsOddsType.value}`)}`,
@@ -220,6 +240,8 @@ export const useSportsStore = defineStore('sports', () => {
     sportsMenu,
     sportHotGames,
     sportGameList,
+    sportLiveNavs,
+    currentLiveNav,
   }
 })
 
