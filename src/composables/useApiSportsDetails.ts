@@ -1,11 +1,20 @@
-import type { ISportEventInfo } from '~/apis/types'
+import type { TPat } from '~/apis/types'
 import type { IBreadCrumbItem } from '~/types'
 
-/** 面包屑类型 */
-type IBreadcrumb = Pick<
-  ISportEventInfo,
-  'sn' | 'si' | 'pgn' | 'pgid' | 'cn' | 'ci' | 'htn' | 'hti' | 'atn' | 'ati'
->
+/** 列表类型 */
+export interface IDataListItem {
+  /** 标题 */
+  title: string
+  /** 样式 */
+  patType: TPat
+  /** 数据 */
+  betList: {
+    /** 名称 */
+    name: string
+    /** 赔率 */
+    odds: string
+  }[]
+}
 
 /**
  * @module src/composables/useApiSportsDetails.ts
@@ -51,11 +60,71 @@ export function useApiSportDetails(si: number, ei: string) {
     return data
   })
 
+  /** 盘口标签列表数据 */
+  const handicapListData = computed<ISelectOptionNumber[]>(() => {
+    const data: ISelectOptionNumber[] = []
+
+    if (
+      false
+      || !sportInfo.value
+      || !sportInfo.value.list
+      || !sportInfo.value.list.length
+    )
+      return []
+
+    const tgl = sportInfo.value.list[0].tgl || []
+
+    tgl.forEach((item) => {
+      data.push({
+        label: item.tgn,
+        value: item.tgi,
+      })
+    })
+
+    return data
+  })
+
+  /** 数据列表 */
+  const dataList = computed<IDataListItem[]>(() => {
+    const data: IDataListItem[] = []
+
+    if (
+      false
+      || !sportInfo.value
+      || !sportInfo.value.list
+      || !sportInfo.value.list.length
+    )
+      return []
+
+    const ml = sportInfo.value.list[0].ml || []
+
+    ml.forEach((item) => {
+      const betList = item.ms || []
+      const patType = item.pat
+      const betListData = betList.map((bet) => {
+        return {
+          name: bet.sn,
+          odds: bet.ov,
+        }
+      })
+
+      data.push({
+        patType,
+        title: item.btn,
+        betList: betListData,
+      })
+    })
+
+    return data
+  })
+
   onMounted(() => {
     runGetSportInfo({ si, ei })
   })
 
   return {
+    dataList,
     breadcrumbData,
+    handicapListData,
   }
 }

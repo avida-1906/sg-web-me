@@ -86,6 +86,7 @@ declare global {
   const EnumSportsPanelType: typeof import('./stores/sports')['EnumSportsPanelType']
   const EnumsBetSlipTabs: typeof import('./utils/enums')['EnumsBetSlipTabs']
   const FEEDBACK_CHAT_MESSAGE_BUS: typeof import('./utils/event-bus')['FEEDBACK_CHAT_MESSAGE_BUS']
+  const IDataListPat: typeof import('./composables/useApiSportsDetails')['IDataListPat']
   const Local: typeof import('./utils/storage')['Local']
   const MQTT_CONNECT_SUCCESS_BUS: typeof import('./utils/event-bus')['MQTT_CONNECT_SUCCESS_BUS']
   const MQTT_DISCONNECT_BUS: typeof import('./utils/event-bus')['MQTT_DISCONNECT_BUS']

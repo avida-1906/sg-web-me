@@ -1,6 +1,9 @@
 /** 货币的Key */
 export type EnumCurrencyKey = keyof typeof EnumCurrency
 
+/** 版型ID */
+export type TPat = 1 | 2 | 3 | 4
+
 /** 后端金额接口数据 */
 export type TCurrencyObject = Prettify<{
   uid: string
@@ -365,6 +368,8 @@ export interface ISportEventInfo {
     mll: number
     /** MarketlineStatusId */
     mls: number
+    /** 版型id */
+    pat: TPat
     /** 对应的盘口标签 */
     tgis: number[]
     /** WagerSelections */

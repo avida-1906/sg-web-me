@@ -91,28 +91,6 @@ const {
   setTrue: setSocialDisabledBtnTrue,
   setFalse: setSocialDisabledBtnFalse,
 } = useBoolean(true)
-const { data: areaCodeData } = useApiMemberTreeList('011')
-const { run: runMemberUpdate } = useRequest(ApiMemberUpdate, {
-  onSuccess() {
-    openNotify(notifyData.value)
-  },
-})
-const {
-  run: runEmailCheckRequest,
-  loading: loadingEmailCheckRequest,
-} = useRequest(ApiMemberEmailCheckRequest, {
-  onSuccess() {
-    openNotify(notifyData.value)
-  },
-})
-
-const areaCodeOptions = computed(() => {
-  return areaCodeData.value?.map((item) => {
-    const temp = { label: item.name, value: item.id }
-    return temp
-  })
-})
-const emailVerified = computed(() => userInfo.value?.email_check_state === 1)
 
 const {
   value: email,
@@ -124,19 +102,47 @@ const {
   return ''
 })
 
-const emailSubmit = async function () {
+const { data: areaCodeData } = useApiMemberTreeList('011')
+const { run: runMemberUpdate } = useRequest(ApiMemberUpdate, {
+  onSuccess() {
+    openNotify(notifyData.value)
+  },
+})
+const {
+  run: runEmailCheckRequest,
+  loading: loadingEmailCheckRequest,
+} = useRequest(ApiMemberEmailCheckRequest, {
+  onSuccess() {
+    openNotify({
+      type: 'email',
+      title: '邮电已发送',
+      message: `验证邮电已发送至 +${email.value}`,
+    })
+  },
+})
+
+const areaCodeOptions = computed(() => {
+  return areaCodeData.value?.map((item) => {
+    const temp = { label: item.name, value: item.id }
+    return temp
+  })
+})
+const emailVerified = computed(() => userInfo.value?.email_check_state === 1)
+
+async function emailSubmit() {
   await emailValidate()
   if (!emailErrormsg.value) {
-    runMemberUpdate({ record: { email: email.value }, uid: paramsData.value.uid })
+    await runMemberUpdate({ record: { email: email.value }, uid: paramsData.value.uid })
     notifyData.value = {
       type: 'email',
       title: '成功更新电邮地址',
       message: `电邮地址已更新为 ${email.value}`,
     }
     setEmailDisabledBtnTrue()
+    emailCheck()
   }
 }
-const numberSubmit = function () {
+function numberSubmit() {
   runMemberUpdate({
     record: {
       phone: paramsData.value.phone,
@@ -151,21 +157,17 @@ const numberSubmit = function () {
   }
   setPhoneDisabledBtnTrue()
 }
-const socialSubmit = function () {
+function socialSubmit() {
   const { sex, ...rest } = paramsData.value
   runMemberUpdate({ record: { sex: sex.toString(), ...rest }, uid: paramsData.value.uid })
   notifyData.value = { type: 'success', message: '修改成功' }
   setSocialDisabledBtnTrue()
 }
-const emailCheck = function () {
+
+function emailCheck() {
   runEmailCheckRequest({ email: email.value })
-  notifyData.value = {
-    type: 'email',
-    title: '邮电已发送',
-    message: `验证邮电已发送至 +${email.value}`,
-  }
 }
-const emailPaste = function () {
+function emailPaste() {
   setTimeout(() => {
     setEmailDisabledBtnFalse()
   }, 0)
