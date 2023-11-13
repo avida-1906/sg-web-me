@@ -40,7 +40,7 @@ function receiveBonus() {
     && props.feedBackItem.feed_id
     && !loading.value)
     runDrawBonus({ feed_id: props.feedBackItem.feed_id })
-  else
+  else if (props.totalBonus && +props.totalBonus > 0)
     runDrawBonus({ feed_id: '' })
 }
 
