@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import type { BankCard, VirtualCoin } from '~/apis'
+import type { BankCard, VirtualCoin } from '~/apis/types'
 
 interface Props {
   item: VirtualCoin | BankCard

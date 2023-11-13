@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import type { IMemberBalanceLockerUpdate } from '~/apis'
+import type { IMemberBalanceLockerUpdate } from '~/apis/types'
 import type { CurrencyData } from '~/composables/useCurrencyData'
 
 const closeDialog = inject('closeDialog', () => {})

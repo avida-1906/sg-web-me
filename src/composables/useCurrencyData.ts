@@ -1,4 +1,4 @@
-import type { EnumCurrencyKey, TCurrencyObject } from '~/apis'
+import type { EnumCurrencyKey, TCurrencyObject } from '~/apis/types'
 import type { TTreeListType } from '~/composables/useApiMemberTreeList'
 
 type TBankTreeType<T extends TTreeListType | string>

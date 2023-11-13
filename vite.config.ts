@@ -213,7 +213,7 @@ export default defineConfig(({ mode }) => {
     },
 
     build: {
-      minify: 'terser',
+      minify: false,
       assetsInlineLimit: 0,
       chunkSizeWarningLimit: 600,
       rollupOptions: {

@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import type { EnumCurrencyKey } from '~/apis'
+import type { EnumCurrencyKey } from '~/apis/types'
 
 interface Props {
   label?: string // 标签

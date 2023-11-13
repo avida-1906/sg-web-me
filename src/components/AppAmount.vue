@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import type { EnumCurrencyKey } from '~/apis'
+import type { EnumCurrencyKey } from '~/apis/types'
 
 interface Props {
   amount: string | number
@@ -16,7 +16,7 @@ const props = defineProps<Props>()
   </div>
 </template>
 
-<style lang='scss'>
+<style>
 :root{
   --tg-app-amount-width: auto
 }

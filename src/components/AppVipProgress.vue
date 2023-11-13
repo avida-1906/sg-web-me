@@ -98,7 +98,7 @@ const nextInfo = computed(() => {
 }
 </style>
 
-<style lang='scss'>
+<style lang='scss' scoped>
 .app-vip-progress{
   .percent-mid{
     .m-progress-inner{

@@ -1,5 +1,5 @@
 import AppDeleteConfirmDialog from '~/components/AppDeleteConfirmDialog.vue'
-import type { BankCard, VirtualCoin } from '~/apis'
+import type { BankCard, VirtualCoin } from '~/apis/types'
 
 export function useDeleteConfirmDialog(
   item: VirtualCoin | BankCard,

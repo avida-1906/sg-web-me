@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { notifyType } from '~/composables/useNotify'
-import type { IUserInfo } from '~/apis'
+import type { IUserInfo } from '~/apis/types'
 
 interface INotifyData {
   type: notifyType
