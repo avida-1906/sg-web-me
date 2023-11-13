@@ -8,6 +8,10 @@ export const useAppStore = defineStore('app', () => {
     ready: isLogin,
     manual: false,
   })
+  /** 获取所有虚拟币协议 */
+  const {
+    data: allContractList,
+  } = useApiMemberTreeList('018')
   const { data: balanceData, runAsync: getBalanceData } = useRequest(ApiMemberBalance)
   const visibility = useDocumentVisibility()
   const mqttConnectSuccessBus = useEventBus(MQTT_CONNECT_SUCCESS_BUS)
@@ -68,6 +72,7 @@ export const useAppStore = defineStore('app', () => {
     isLogin,
     userInfo,
     mqttIsConnected,
+    allContractList,
     setToken,
     setLoginTrue,
     setLoginFalse,
