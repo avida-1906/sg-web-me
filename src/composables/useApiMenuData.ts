@@ -1,4 +1,3 @@
-import type { EnumSportsOddsType } from '~/stores/sports'
 import type { EnumLanguage } from '~/utils/enums'
 
 export interface MenuItem {
@@ -36,8 +35,6 @@ export function useApiMenuData() {
   const { t } = useI18n()
   const { isLogin } = storeToRefs(appStore)
   const { casinoGameList } = storeToRefs(useCasinoStore())
-  const sportStore = useSportsStore()
-  const { sportsOddsType } = storeToRefs(sportStore)
   const languageStore = useLanguageStore()
   const { userLanguage, AllLanguages } = storeToRefs(languageStore)
 
@@ -140,35 +137,6 @@ export function useApiMenuData() {
         { title: '激斗峡谷', path: '', icon: '' },
       ],
       domId: 'sports-e-sports',
-    },
-  ])
-  const sportGameList = ref<Menu>([
-    {
-      title: '体育项目',
-      path: '',
-      icon: 'spt-basketball',
-      list: [
-        { title: '澳洲足球', path: '', icon: 'spt-basketball' },
-        { title: '板球', path: '', icon: 'spt-basketball' },
-        { title: '棒球', path: '', icon: 'spt-basketball' },
-        { title: '足球', path: '', icon: 'spt-basketball' },
-        { title: '篮球', path: '', icon: 'spt-basketball' },
-        { title: '桌球', path: '', icon: 'spt-basketball' },
-        { title: '登山', path: '', icon: 'spt-basketball' },
-      ],
-      domId: 'sports-game-list',
-    },
-  ])
-  const sportOddType = computed(() => <Menu>[
-    {
-      title: `${t('sports_odds_title')}： ${t(`sports_odds_${sportsOddsType.value}`)}`,
-      path: '',
-      icon: 'spt-odds',
-      type: 'radio',
-      value: sportsOddsType.value,
-      radioChange: (val: EnumSportsOddsType) => sportStore.setSportsOddsType(val),
-      list: AllOddsTypes,
-      domId: 'sports-odds-type',
     },
   ])
 
@@ -330,8 +298,6 @@ export function useApiMenuData() {
     casinoGameProvider,
     sportHotGames,
     sportEsports,
-    sportGameList,
-    sportOddType,
     staticMenu1,
     staticMenu2,
     menuItemClick,

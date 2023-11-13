@@ -1,3 +1,5 @@
+import type { Menu } from '~/composables/useApiMenuData'
+
 export enum EnumSportsPanelType {
   /** 三项投注 */
   THREE = 'THREE',
@@ -41,6 +43,7 @@ export const AllOddsTypes: Array<{
 ]
 
 export const useSportsStore = defineStore('sports', () => {
+  const { t } = useI18n()
   /** 体育赔率展示方式 */
   const sportsOddsType = ref(getSportsOddsType())
   /** 投注单数据 */
@@ -112,7 +115,7 @@ export const useSportsStore = defineStore('sports', () => {
       const list = sidebarData.value.all.map((item) => {
         return {
           title: item.sn,
-          path: `/sports/${SPORTS_PLAT_ID}/item.si`,
+          path: `/sports/${SPORTS_PLAT_ID}/${item.si}`,
           icon: 'spt-basketball',
         }
       })
@@ -128,6 +131,18 @@ export const useSportsStore = defineStore('sports', () => {
     }
     return []
   })
+  const sportOddType = computed(() => <Menu>[
+    {
+      title: `${t('sports_odds_title')}： ${t(`sports_odds_${sportsOddsType.value}`)}`,
+      path: '',
+      icon: 'spt-odds',
+      type: 'radio',
+      value: sportsOddsType.value,
+      radioChange: (val: EnumSportsOddsType) => setSportsOddsType(val),
+      list: AllOddsTypes,
+      domId: 'sports-odds-type',
+    },
+  ])
 
   /** 切换场馆 */
   function changeProvider(id: string) {
@@ -160,6 +175,7 @@ export const useSportsStore = defineStore('sports', () => {
   }
   return {
     sportsOddsType,
+    sportOddType,
     betSlipData,
     renderOdds,
     setSportsOddsType,
