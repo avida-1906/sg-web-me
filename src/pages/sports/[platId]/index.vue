@@ -29,7 +29,6 @@ const tabList = computed(() => [
   { label: t('sports_tab_live_events'), value: 'live', icon: 'spt-ball-plate' },
   { label: t('sports_tab_starting_soon'), value: 'soon', icon: 'spt-timing' },
 ])
-ApiSportEventList({ si: 1, m: 0, page: 1, page_size: 100 })
 </script>
 
 <template>

@@ -2,18 +2,14 @@
 defineProps<{ onPage?: boolean }>()
 
 const { t } = useI18n()
-
-const currentGame = ref('2')
-const gameList = [
-  { name: '网球', id: '2', num: 22 },
-  { name: '足球', id: '3', num: 30 },
-  { name: '美式橄榄球', id: '4', num: 5 },
-]
+const { sportLiveNavs, currentLiveNav } = storeToRefs(useSportsStore())
 const { bool: isStandard } = useBoolean(true)
 const baseType = ref('winner')
 function onBaseTypeChange(v: string) {
   baseType.value = v
 }
+
+ApiSportEventList({ si: 1, m: 2, page: 1, page_size: 100 })
 </script>
 
 <template>
@@ -28,7 +24,7 @@ function onBaseTypeChange(v: string) {
         @base-type-change="onBaseTypeChange"
       />
     </div>
-    <AppSportsTab v-model="currentGame" :list="gameList" />
+    <AppSportsTab v-model="currentLiveNav" :list="sportLiveNavs" />
     <div class="market-wrapper">
       <AppSportsMarket
         :is-standard="isStandard"
