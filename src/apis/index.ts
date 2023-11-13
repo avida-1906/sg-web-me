@@ -823,6 +823,16 @@ export function ApiAddFeedbackChatMsg(data: {
 }
 
 /**
+ * 反馈对话状态已读更新
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=b8bc6fbd-42e4-4100-bf71-7a8fe961cc01
+ */
+export function ApiMemberFeedbackUpdate(data: {
+  id: string
+}) {
+  return httpClient.post<string>('/member/feedback/update', data)
+}
+
+/**
  * 文件上传
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=9d5e6346-ba11-4f4f-8960-82a9c96cf4ed
  */
@@ -887,4 +897,90 @@ export function ApiMemberFeedbackBonusDraw(data: {
   feed_id: string
 }) {
   return httpClient.post<string>('/member/feedback/bonus/draw', data)
+}
+
+/**
+ * 待领取总奖励金额
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=79fde42e-8f48-44e6-85f9-ffd107d4e32b
+ */
+export function ApiMemberFeedbackBonusAll() {
+  return httpClient.get<string>('/member/feedback/bonus/reward')
+}
+
+/**
+ * 所有会员公告和跑马灯-登陆前调用
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=cca2216f-630e-4c7b-b02c-56393674ef7d
+ */
+export function ApiMemberNoticeAllList(params: {
+  /** 1-公告  2-跑马灯 */
+  types: string
+}) {
+  return httpClient.get<{
+    notice: {
+      /** ID */
+      id: string
+      /** 公告类型 1-公告  2-跑马灯 */
+      notice_type: number
+      /** 公告标题 */
+      title: string
+      /** 开始时间 */
+      start_time: number
+      /** 结束时间 */
+      end_time: number
+      /** 弹跳位置 1-不限制 2-登录前 3-登陆后 */
+      bounce_location: number
+      /** 弹跳频率 1-不限制 2-自定义 */
+      bounce_frequency: number
+      /** 自定义频率次数 */
+      bounce_frequency_limit: number
+      /** 弹窗内容类型 1-文字 2-图片 */
+      pop_up_type: number
+      /** 内容 */
+      content: {
+        [key: string]: string
+      }
+      /** 图片地址 */
+      image_url: {
+        [key: string]: string
+      }
+    }[]
+  }>('/member/notice/all/list', { params })
+}
+
+/**
+ * 所有会员公告和跑马灯-登陆后调用
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=9dda76e7-05ff-4b80-b536-cdcf1b9da762
+ */
+export function ApiMemberNoticeList(params: {
+  /** 1-公告  2-跑马灯 */
+  types: string
+}) {
+  return httpClient.get<{
+    /** ID */
+    id: string
+    /** 公告类型 1-公告  2-跑马灯 */
+    notice_type: number
+    /** 公告标题 */
+    title: string
+    /** 开始时间 */
+    start_time: number
+    /** 结束时间 */
+    end_time: number
+    /** 弹跳位置 1-不限制 2-登录前 3-登陆后 */
+    bounce_location: number
+    /** 弹跳频率 1-不限制 2-自定义 */
+    bounce_frequency: number
+    /** 自定义频率次数 */
+    bounce_frequency_limit: number
+    /** 弹窗内容类型 1-文字 2-图片 */
+    pop_up_type: number
+    /** 内容 */
+    content: {
+      [key: string]: string
+    }
+    /** 图片地址 */
+    image_url: {
+      [key: string]: string
+    }
+  }[]>('/member/notice/list', { params })
 }

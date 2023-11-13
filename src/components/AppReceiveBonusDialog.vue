@@ -3,7 +3,8 @@ import type { CurrencyData } from '~/composables/useCurrencyData'
 import type { FeedBackItem } from '~/stores/chat'
 
 interface Props {
-  feedBackItem: FeedBackItem
+  feedBackItem?: FeedBackItem
+  totalBonus?: string
 }
 
 const props = defineProps<Props>()
@@ -25,7 +26,8 @@ const isVirCurrency = computed(() => {
 
 const { run: runDrawBonus, loading } = useRequest(ApiMemberFeedbackBonusDraw, {
   onSuccess: () => {
-    chatStore.setFeedbackItem({ ...props.feedBackItem, bonusState: 2 })
+    if (props.feedBackItem)
+      chatStore.setFeedbackItem({ ...props.feedBackItem, bonusState: 2 })
     openNotify({ type: 'success', message: t('receive_success') })
   },
 })
@@ -38,6 +40,8 @@ function receiveBonus() {
     && props.feedBackItem.feed_id
     && !loading.value)
     runDrawBonus({ feed_id: props.feedBackItem.feed_id })
+  else if (props.totalBonus && +props.totalBonus > 0)
+    runDrawBonus({ feed_id: '' })
 }
 
 function changeCurrency(item: CurrencyData, network: string) {
@@ -49,7 +53,7 @@ function changeCurrency(item: CurrencyData, network: string) {
 <template>
   <div class="app-receive-bonus">
     <div class="money">
-      {{ feedBackItem.amount }}USDT
+      {{ feedBackItem?.amount ?? totalBonus }}USDT
     </div>
     <div class="choose-label">
       {{ $t('choose_bonus_receive_label') }}：

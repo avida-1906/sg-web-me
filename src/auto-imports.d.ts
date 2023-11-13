@@ -32,9 +32,11 @@ declare global {
   const ApiMemberFavDelete: typeof import('./apis/index')['ApiMemberFavDelete']
   const ApiMemberFavInsert: typeof import('./apis/index')['ApiMemberFavInsert']
   const ApiMemberFavList: typeof import('./apis/index')['ApiMemberFavList']
+  const ApiMemberFeedbackBonusAll: typeof import('./apis/index')['ApiMemberFeedbackBonusAll']
   const ApiMemberFeedbackBonusDraw: typeof import('./apis/index')['ApiMemberFeedbackBonusDraw']
   const ApiMemberFeedbackInsert: typeof import('./apis/index')['ApiMemberFeedbackInsert']
   const ApiMemberFeedbackList: typeof import('./apis/index')['ApiMemberFeedbackList']
+  const ApiMemberFeedbackUpdate: typeof import('./apis/index')['ApiMemberFeedbackUpdate']
   const ApiMemberForgetPassword: typeof import('./apis/index')['ApiMemberForgetPassword']
   const ApiMemberFrontLoginLogList: typeof import('./apis/index')['ApiMemberFrontLoginLogList']
   const ApiMemberGameCate: typeof import('./apis/index')['ApiMemberGameCate']
@@ -47,6 +49,8 @@ declare global {
   const ApiMemberGameSearch: typeof import('./apis/index')['ApiMemberGameSearch']
   const ApiMemberLogin: typeof import('./apis/index')['ApiMemberLogin']
   const ApiMemberLogout: typeof import('./apis/index')['ApiMemberLogout']
+  const ApiMemberNoticeAllList: typeof import('./apis/index')['ApiMemberNoticeAllList']
+  const ApiMemberNoticeList: typeof import('./apis/index')['ApiMemberNoticeList']
   const ApiMemberPasswordUpdate: typeof import('./apis/index')['ApiMemberPasswordUpdate']
   const ApiMemberPayPasswordUpdate: typeof import('./apis/index')['ApiMemberPayPasswordUpdate']
   const ApiMemberPlatformList: typeof import('./apis/index')['ApiMemberPlatformList']
@@ -539,9 +543,11 @@ declare module 'vue' {
     readonly ApiMemberFavDelete: UnwrapRef<typeof import('./apis/index')['ApiMemberFavDelete']>
     readonly ApiMemberFavInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberFavInsert']>
     readonly ApiMemberFavList: UnwrapRef<typeof import('./apis/index')['ApiMemberFavList']>
+    readonly ApiMemberFeedbackBonusAll: UnwrapRef<typeof import('./apis/index')['ApiMemberFeedbackBonusAll']>
     readonly ApiMemberFeedbackBonusDraw: UnwrapRef<typeof import('./apis/index')['ApiMemberFeedbackBonusDraw']>
     readonly ApiMemberFeedbackInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberFeedbackInsert']>
     readonly ApiMemberFeedbackList: UnwrapRef<typeof import('./apis/index')['ApiMemberFeedbackList']>
+    readonly ApiMemberFeedbackUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberFeedbackUpdate']>
     readonly ApiMemberForgetPassword: UnwrapRef<typeof import('./apis/index')['ApiMemberForgetPassword']>
     readonly ApiMemberFrontLoginLogList: UnwrapRef<typeof import('./apis/index')['ApiMemberFrontLoginLogList']>
     readonly ApiMemberGameCate: UnwrapRef<typeof import('./apis/index')['ApiMemberGameCate']>
@@ -554,6 +560,8 @@ declare module 'vue' {
     readonly ApiMemberGameSearch: UnwrapRef<typeof import('./apis/index')['ApiMemberGameSearch']>
     readonly ApiMemberLogin: UnwrapRef<typeof import('./apis/index')['ApiMemberLogin']>
     readonly ApiMemberLogout: UnwrapRef<typeof import('./apis/index')['ApiMemberLogout']>
+    readonly ApiMemberNoticeAllList: UnwrapRef<typeof import('./apis/index')['ApiMemberNoticeAllList']>
+    readonly ApiMemberNoticeList: UnwrapRef<typeof import('./apis/index')['ApiMemberNoticeList']>
     readonly ApiMemberPasswordUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberPasswordUpdate']>
     readonly ApiMemberPayPasswordUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberPayPasswordUpdate']>
     readonly ApiMemberPlatformList: UnwrapRef<typeof import('./apis/index')['ApiMemberPlatformList']>
@@ -1036,9 +1044,11 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberFavDelete: UnwrapRef<typeof import('./apis/index')['ApiMemberFavDelete']>
     readonly ApiMemberFavInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberFavInsert']>
     readonly ApiMemberFavList: UnwrapRef<typeof import('./apis/index')['ApiMemberFavList']>
+    readonly ApiMemberFeedbackBonusAll: UnwrapRef<typeof import('./apis/index')['ApiMemberFeedbackBonusAll']>
     readonly ApiMemberFeedbackBonusDraw: UnwrapRef<typeof import('./apis/index')['ApiMemberFeedbackBonusDraw']>
     readonly ApiMemberFeedbackInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberFeedbackInsert']>
     readonly ApiMemberFeedbackList: UnwrapRef<typeof import('./apis/index')['ApiMemberFeedbackList']>
+    readonly ApiMemberFeedbackUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberFeedbackUpdate']>
     readonly ApiMemberForgetPassword: UnwrapRef<typeof import('./apis/index')['ApiMemberForgetPassword']>
     readonly ApiMemberFrontLoginLogList: UnwrapRef<typeof import('./apis/index')['ApiMemberFrontLoginLogList']>
     readonly ApiMemberGameCate: UnwrapRef<typeof import('./apis/index')['ApiMemberGameCate']>
@@ -1051,6 +1061,8 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberGameSearch: UnwrapRef<typeof import('./apis/index')['ApiMemberGameSearch']>
     readonly ApiMemberLogin: UnwrapRef<typeof import('./apis/index')['ApiMemberLogin']>
     readonly ApiMemberLogout: UnwrapRef<typeof import('./apis/index')['ApiMemberLogout']>
+    readonly ApiMemberNoticeAllList: UnwrapRef<typeof import('./apis/index')['ApiMemberNoticeAllList']>
+    readonly ApiMemberNoticeList: UnwrapRef<typeof import('./apis/index')['ApiMemberNoticeList']>
     readonly ApiMemberPasswordUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberPasswordUpdate']>
     readonly ApiMemberPayPasswordUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberPayPasswordUpdate']>
     readonly ApiMemberPlatformList: UnwrapRef<typeof import('./apis/index')['ApiMemberPlatformList']>
