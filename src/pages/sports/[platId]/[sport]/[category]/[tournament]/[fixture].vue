@@ -582,7 +582,11 @@ const eventData = reactive({
 })
 
 const title = computed(() =>
-  `${eventData.data.competitors.map(c => c.name).join(` ${t('sports_vs')} `)} - Stake.com`)
+  `${eventData.data.competitors.map(
+      c => c.name,
+    ).join(` ${t('sports_vs')} `)
+  } - Stake.com`,
+)
 const breadcrumb = computed(() => {
   const { id: t_id, slug: t_slug } = eventData
   const competitors = eventData.data.competitors
@@ -605,11 +609,19 @@ const breadcrumb = computed(() => {
     },
   ]
 })
-const groupTabs = computed(() => eventData.groups.filter(g => g.rank > 0)
-  .map(g => ({ ...g, value: g.name, label: g.translation })))
+
+const groupTabs = computed(
+  () => eventData.groups.filter(g => g.rank > 0)
+    .map(
+      g => (
+        { ...g, value: g.name, label: g.translation }
+      ),
+    ),
+)
 const curGroupTab = ref(groupTabs.value[0].value)
 const curGroups = computed(() =>
-  eventData.group.filter(g => g.name === curGroupTab.value))
+  eventData.group.filter(g => g.name === curGroupTab.value),
+)
 
 function onOpenLiveSwitch() { }
 function selectOutcome(v: string, tempid: string, marketid: string) {
@@ -640,10 +652,10 @@ useTitle(title)
               </div>
               <div v-else class="livestream-wrap">
                 <template v-if="isLogin">
-                  <!-- <div class="wrapper">
+                  <div class="wrapper">
                     <span class="tip">直播视频将在赛事进行之前开始。</span>
-                  </div> -->
-                  <!-- <video autoplay controls playsinline disablepictureinpicture="" controlslist="nodownload nofullscreen" class="" src="blob:https://liveshare.huya.com/72a92f58-c32f-4bd1-a287-d355b40c7b59"><track kind="captions"></video> -->
+                  </div>
+                  <video autoplay controls playsinline disablepictureinpicture="" controlslist="nodownload nofullscreen" class="" src="blob:https://liveshare.huya.com/72a92f58-c32f-4bd1-a287-d355b40c7b59"><track kind="captions"></video>
                   <!-- <div class="content">
                     <div class="player-view">
                       <div class="ratio-wrap">
@@ -968,7 +980,7 @@ useTitle(title)
                 </div>
               </div>
               <div v-if="showRecent" class="spotlight is-open variant-dark">
-                <div class="header no-active-scale">
+                <div class="no-active-scale header">
                   <span>近期游戏记录</span>
                   <BaseButton type="text" @click="setSRFalse()">
                     <BaseIcon name="uni-close-white" />
