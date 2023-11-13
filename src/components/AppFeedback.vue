@@ -50,9 +50,10 @@ const { run: runUpdateFeedback } = useRequest(ApiMemberFeedbackUpdate)
 const { run: getTotalBonus, data: totalBonus } = useRequest(ApiMemberFeedbackBonusAll)
 
 const amountTotal = computed(() => {
-  return feedbackList?.value?.d?.reduce((total, item) => {
-    return total + Number(item.amount)
-  }, 0) ?? 0
+  return totalBonus.value ? +totalBonus.value : 0
+  // return feedbackList?.value?.d?.reduce((total, item) => {
+  //   return total + Number(item.amount)
+  // }, 0) ?? 0
 })
 
 async function submitFeedback() {
@@ -184,7 +185,11 @@ onActivated(() => {
         </div>
       </div>
       <div v-else class="feedback-list">
-        <div class="total-bonus" @click="openTotalBonus">
+        <div
+          v-if="totalBonus && +totalBonus > 0"
+          class="total-bonus"
+          @click="openTotalBonus"
+        >
           <span>待领取奖金：</span>
           <span class="money">{{ totalBonus }}USDT</span>
           <BaseIcon name="chess-proms" />
