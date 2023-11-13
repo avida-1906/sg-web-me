@@ -823,6 +823,16 @@ export function ApiAddFeedbackChatMsg(data: {
 }
 
 /**
+ * 反馈对话状态已读更新
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=b8bc6fbd-42e4-4100-bf71-7a8fe961cc01
+ */
+export function ApiMemberFeedbackUpdate(data: {
+  id: string
+}) {
+  return httpClient.post<string>('/member/feedback/update', data)
+}
+
+/**
  * 文件上传
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=9d5e6346-ba11-4f4f-8960-82a9c96cf4ed
  */

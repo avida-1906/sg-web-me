@@ -44,6 +44,7 @@ const {
     runFeedbackList()
   },
 })
+const { run: runUpdateFeedback } = useRequest(ApiMemberFeedbackUpdate)
 
 const amountTotal = computed(() => {
   return feedbackList?.value?.d?.reduce((total, item) => {
@@ -66,6 +67,9 @@ function textInput() {
 }
 
 function feedbackItemClick(item: any) {
+  if (item.newest_m > 0)
+    runUpdateFeedback({ id: item.id })
+
   chatStore.setFeedbackItem({ ...item, feed_id: item.id })
   chatStore.setFeedbackChatTrue()
 }
