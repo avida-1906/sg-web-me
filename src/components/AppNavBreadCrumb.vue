@@ -10,21 +10,21 @@ const props = defineProps<Props>()
 const router = useRouter()
 const { appContentWidth } = storeToRefs(useWindowStore())
 
-const _data = reactive(props.breadcrumb)
+const _data = ref(props.breadcrumb)
 
 function goPath(
   { d, disabled }: { d?: IBreadCrumbItem; disabled?: boolean } = {},
 ) {
   if (disabled)
     return
-  const p = _data.pop()
+  const p = _data.value.pop()
   const _d = d ?? p
   if (_d && _d.path)
     router.push(replaceSportsPlatId(_d.path))
 }
 
 function goBack() {
-  if (_data.length > 1)
+  if (_data.value.length > 1)
     goPath()
   else
     router.push(`/sports/${getSportsPlatId()}`)
@@ -33,6 +33,10 @@ function goBack() {
 function collect() {
   console.log('收藏第一个')
 }
+
+watch(() => props.breadcrumb, (val) => {
+  _data.value = val
+})
 </script>
 
 <template>
