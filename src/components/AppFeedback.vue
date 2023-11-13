@@ -81,6 +81,7 @@ function feedbackItemClick(item: any) {
 function seeFeedback() {
   tab.value = 2
   runFeedbackList()
+  getTotalBonus()
 }
 
 function openTotalBonus() {

@@ -281,6 +281,8 @@ declare global {
   const useApiMemberTreeList: typeof import('./composables/useApiMemberTreeList')['useApiMemberTreeList']
   const useApiMenuData: typeof import('./composables/useApiMenuData')['useApiMenuData']
   const useApiSendMsg: typeof import('./composables/useApiSendMsg')['useApiSendMsg']
+  const useApiSportDetails: typeof import('./composables/useApiSportsDetails')['useApiSportDetails']
+  const useApiSportsDetails: typeof import('./composables/useApiSportsDetails')['useApiSportsDetails']
   const useAppStore: typeof import('./stores/app')['useAppStore']
   const useArrayDifference: typeof import('@vueuse/core')['useArrayDifference']
   const useArrayEvery: typeof import('@vueuse/core')['useArrayEvery']
@@ -788,6 +790,7 @@ declare module 'vue' {
     readonly useApiMemberTreeList: UnwrapRef<typeof import('./composables/useApiMemberTreeList')['useApiMemberTreeList']>
     readonly useApiMenuData: UnwrapRef<typeof import('./composables/useApiMenuData')['useApiMenuData']>
     readonly useApiSendMsg: UnwrapRef<typeof import('./composables/useApiSendMsg')['useApiSendMsg']>
+    readonly useApiSportDetails: UnwrapRef<typeof import('./composables/useApiSportsDetails')['useApiSportDetails']>
     readonly useAppStore: UnwrapRef<typeof import('./stores/app')['useAppStore']>
     readonly useArrayDifference: UnwrapRef<typeof import('@vueuse/core')['useArrayDifference']>
     readonly useArrayEvery: UnwrapRef<typeof import('@vueuse/core')['useArrayEvery']>
@@ -1289,6 +1292,7 @@ declare module '@vue/runtime-core' {
     readonly useApiMemberTreeList: UnwrapRef<typeof import('./composables/useApiMemberTreeList')['useApiMemberTreeList']>
     readonly useApiMenuData: UnwrapRef<typeof import('./composables/useApiMenuData')['useApiMenuData']>
     readonly useApiSendMsg: UnwrapRef<typeof import('./composables/useApiSendMsg')['useApiSendMsg']>
+    readonly useApiSportDetails: UnwrapRef<typeof import('./composables/useApiSportsDetails')['useApiSportDetails']>
     readonly useAppStore: UnwrapRef<typeof import('./stores/app')['useAppStore']>
     readonly useArrayDifference: UnwrapRef<typeof import('@vueuse/core')['useArrayDifference']>
     readonly useArrayEvery: UnwrapRef<typeof import('@vueuse/core')['useArrayEvery']>

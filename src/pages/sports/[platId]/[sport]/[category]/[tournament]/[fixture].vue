@@ -6,6 +6,7 @@ const appStore = useAppStore()
 const { isLogin } = storeToRefs(appStore)
 const { bool: showRecent, setFalse: setSRFalse } = useBoolean(true)
 const { bool: openLiveSwitch } = useBoolean(false)
+const { breadcrumbData } = useApiSportDetails(1, '54222287')
 
 const sport = route.params.sport
 // const category = route.params.category
@@ -87,7 +88,7 @@ const eventData = reactive({
       {
         language: 'zh',
         name: 'Huya',
-        streamUrl: 'https://liveshare.huya.com/iframe/lpl?needStop=true',
+        streamUrl: '',
       },
     ],
     __typename: 'SportFixtureDataMatch',
@@ -587,28 +588,6 @@ const title = computed(() =>
     ).join(` ${t('sports_vs')} `)
   } - Stake.com`,
 )
-const breadcrumb = computed(() => {
-  const { id: t_id, slug: t_slug } = eventData
-  const competitors = eventData.data.competitors
-  const {
-    id, name, slug, category: {
-      id: cid, name: cname, slug: cslug, sport: {
-        id: sid, name: sname, slug: sslug,
-      },
-    },
-  } = eventData.tournament
-  return [
-    { path: `/sports/${SPORTS_PLAT_ID}/${sslug}`, title: sname, id: sid },
-    { path: `/sports/${SPORTS_PLAT_ID}/${sslug}/${cslug}`, title: cname, id: cid },
-
-    { path: `/sports/${SPORTS_PLAT_ID}/${sslug}/${cslug}/${slug}`, title: name, id },
-    {
-      path: `/sports/${SPORTS_PLAT_ID}/${sslug}/${cslug}/${slug}/${t_slug}`,
-      title: competitors.map(i => i.abbreviation).join(' - '),
-      id: t_id,
-    },
-  ]
-})
 
 const groupTabs = computed(
   () => eventData.groups.filter(g => g.rank > 0)
@@ -638,7 +617,12 @@ useTitle(title)
   <div class="tg-sports-tournament-fixture-betdetail">
     <div class="sports-detail-wrapper">
       <div class="layout-spacing no-bottom-spacing variant-normal">
-        <AppNavBreadCrumb :breadcrumb="breadcrumb" />
+        <div style="color: white">
+          <pre>
+            {{ breadcrumbData }}
+          </pre>
+        </div>
+        <AppNavBreadCrumb :breadcrumb="breadcrumbData" />
         <div class="content-wrapper">
           <div class="content" :class="{ stacked: appContentWidth < 900 }">
             <div class="fixture-column">
@@ -655,7 +639,17 @@ useTitle(title)
                   <div class="wrapper">
                     <span class="tip">直播视频将在赛事进行之前开始。</span>
                   </div>
-                  <video autoplay controls playsinline disablepictureinpicture="" controlslist="nodownload nofullscreen" class="" src="blob:https://liveshare.huya.com/72a92f58-c32f-4bd1-a287-d355b40c7b59"><track kind="captions"></video>
+                  <video
+                    autoplay
+                    controls
+                    playsinline
+                    disablepictureinpicture=""
+                    controlslist="nodownload nofullscreen"
+                    class=""
+                    src=""
+                  >
+                    <track kind="captions">
+                  </video>
                   <!-- <div class="content">
                     <div class="player-view">
                       <div class="ratio-wrap">
@@ -800,7 +794,7 @@ useTitle(title)
                   <template #default>
                     <div class="market" :class="{ 'in-mobile': isMobile }">
                       <div class="table" :style="{ '--itemCount': 1 }">
-                        <div class="column heading">
+                        <div class="heading column">
                           <span>大</span>
                         </div>
                         <div class="column heading">
@@ -947,26 +941,26 @@ useTitle(title)
                 <div
                   class="iframe-box"
                 >
-                  <iframe
+                  <!-- <iframe
                     title="url"
                     src="https://disir.oddin.gg/lol/scoreboard?brandToken=a91d9435-1130-42f5-88d3-00361e69b932&darkMode=true&id=bWF0Y2gvb2Q6bWF0Y2g6NTAyNzY0&lang=zh&layout=&t=959746778&theme=dark"
                     scrolling="yes"
                     height="219"
                     class=""
-                  />
+                  /> -->
                 </div>
               </div>
               <div class="iframe-widget tracker desktop widget-container">
                 <div
                   class="iframe-box"
                 >
-                  <iframe
+                  <!-- <iframe
                     title="url"
                     :src="eventData.widgetUrl"
                     scrolling="yes"
                     height="730"
                     class=""
-                  />
+                  /> -->
                 </div>
                 <!-- <div class="expand-wrapper">
                   <BaseIcon name="uni-arrow-up-big" />
