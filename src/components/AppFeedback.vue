@@ -84,9 +84,11 @@ function feedbackItemClick(item: any) {
 }
 
 function seeFeedback() {
-  tab.value = 2
   runFeedbackList()
   getTotalBonus()
+}
+function tabChange() {
+  tab.value === 2 && seeFeedback()
 }
 
 function openTotalBonus() {
@@ -110,29 +112,8 @@ onActivated(() => {
           :center="false"
           line-style
           need-scroll-into-view
+          @change="tabChange"
         />
-        <!-- <BaseButton
-          :bg-style="tab === 1 ? 'primary' : undefined"
-          :type="tab !== 1 ? 'line' : undefined"
-          style="
-          --tg-base-button-padding-y: var(--tg-spacing-6);
-           --tg-base-button-padding-x: var(--tg-spacing-10);"
-          custom-padding
-          @click="tab = 1"
-        >
-          创建反馈
-        </BaseButton>
-        <BaseButton
-          :bg-style="tab === 2 ? 'primary' : undefined"
-          :type="tab !== 2 ? 'line' : undefined"
-          style="
-          --tg-base-button-padding-y: var(--tg-spacing-6);
-           --tg-base-button-padding-x: var(--tg-spacing-10);"
-          custom-padding
-          @click="seeFeedback"
-        >
-          我的反馈
-        </BaseButton> -->
       </div>
       <!-- <div class="tab-right">
         <p>{{ amountTotal }}USDT</p>

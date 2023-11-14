@@ -61,9 +61,9 @@ const getComponent = computed(() => {
       />
     </div>
     <div class="notice-content">
-      <!-- <keep-alive> -->
-      <component :is="getComponent" :mode="tab" />
-      <!-- </keep-alive> -->
+      <keep-alive>
+        <component :is="getComponent" :mode="tab" />
+      </keep-alive>
     </div>
   </div>
 </template>
