@@ -11,8 +11,6 @@ import 'dayjs/locale/hi'
 dayjs.extend(isLeapYear)
 dayjs.extend(weekday)
 
-const { userLanguage } = useLanguageStore()
-
 const format: { [t: string]: string } = {
   'en': 'ddd, MMM D h:mm A',
   'zh-CN': 'MM月DD日 ddd HH:mm',
@@ -37,6 +35,8 @@ export function timeCheckIsLeapYear(ts: number) {
 
 /** 赛事时间转换 */
 export function timeFullTimeFormat(ts: number) {
+  const userLanguage = Local.get<number>(STORAGE_LANGUAGE_KEY)?.value ?? 0
+
   dayjs.locale(langKey[EnumLanguage[userLanguage]])
   if (EnumLanguage[userLanguage] === 'vi-VN')
     return dayjs(ts).format(format[EnumLanguage[userLanguage]]).replace('T', 'Th ').replace('tháng', 'Thg')
