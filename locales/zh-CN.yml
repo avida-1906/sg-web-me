@@ -896,3 +896,10 @@ vip_week_salary: 周俸禄
 vip_month_salary: 月俸禄
 grade: 等级
 vip_promotion_exp: 晋级经验
+day0: 周日
+day1: 周一
+day2: 周二
+day3: 周三
+day4: 周四
+day5: 周五
+day6: 周六
