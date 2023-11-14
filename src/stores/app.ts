@@ -22,6 +22,7 @@ export const useAppStore = defineStore('app', () => {
 
   /** 汇率列表 */
   const { run: runGetExchangeRate, data: exchangeRateData } = useRequest(ApiMemberExchangeRate)
+  runGetExchangeRate()
 
   const userInfo = computed(() => {
     if (balanceData.value && _userInfo.value)
