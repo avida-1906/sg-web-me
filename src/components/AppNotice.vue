@@ -2,32 +2,32 @@
 import AppFeedbackChat from './AppFeedbackChat.vue'
 import AppFeedback from './AppFeedback.vue'
 
+enum EnumPage { tz, znx, gg, pmd, fk }
 const { showFeedbackChat } = storeToRefs(useChatStore())
-
 const { closeRightSidebar } = useRightSidebar()
 
-const { isMobile } = storeToRefs(useWindowStore())
+// const { isMobile } = storeToRefs(useWindowStore())
 
 const A = defineAsyncComponent(() => import('./AppNoticeNotify.vue'))
 const B = defineAsyncComponent(() => import('./AppNoticeNotify.vue'))
 const C = defineAsyncComponent(() => import('./AppNoticeNotify.vue'))
 const D = defineAsyncComponent(() => import('./AppNoticeNotify.vue'))
-const tab = ref('tz')
+const tab = ref(EnumPage[0])
 const tabList = [
-  { label: '通知', value: 'tz' },
-  { label: '站内信', value: 'znx' },
-  { label: '公告', value: 'gg' },
-  { label: '跑马灯', value: 'pmd' },
-  { label: '有奖反馈', value: 'fk' },
+  { label: '通知', value: EnumPage[0] },
+  { label: '站内信', value: EnumPage[1] },
+  { label: '公告', value: EnumPage[2] },
+  { label: '跑马灯', value: EnumPage[3] },
+  { label: '有奖反馈', value: EnumPage[4] },
 ]
 
 const getComponent = computed(() => {
   switch (tab.value) {
-    case 'tz': return A
-    case 'znx': return B
-    case 'gg': return C
-    case 'pmd': return D
-    case 'fk': return showFeedbackChat.value ? AppFeedbackChat : AppFeedback
+    case EnumPage[0]: return A
+    case EnumPage[1]: return B
+    case EnumPage[2]: return C
+    case EnumPage[3]: return D
+    case EnumPage[4]: return showFeedbackChat.value ? AppFeedbackChat : AppFeedback
   }
 })
 </script>
@@ -52,27 +52,26 @@ const getComponent = computed(() => {
         </template>
       </VTooltip>
     </div>
-    <BaseTab
-      v-model="tab"
-      :list="tabList"
-      :center="false"
-      style="padding-top: var(--tg-spacing-8);"
-      line-style
-      :full="isMobile"
-      need-scroll-into-view
-    />
+    <div class="tab-box">
+      <BaseTab
+        v-model="tab"
+        :list="tabList"
+        :center="false"
+        need-scroll-into-view
+      />
+    </div>
     <div class="notice-content">
-      <keep-alive>
-        <component :is="getComponent" :mode="tab" />
-      </keep-alive>
+      <!-- <keep-alive> -->
+      <component :is="getComponent" :mode="tab" />
+      <!-- </keep-alive> -->
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .app-notice {
-  --tg-tab-style-color: var(--tg-text-lightgrey);
-  --tg-tab-style-line-active-text-color: var(--tg-text-white);
+  // --tg-tab-style-color: var(--tg-text-lightgrey);
+  // --tg-tab-style-line-active-text-color: var(--tg-text-white);
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -119,6 +118,11 @@ const getComponent = computed(() => {
         --tg-icon-color: var(--tg-text-white);
       }
     }
+  }
+  .tab-box{
+    padding: var(--tg-spacing-24) var(--tg-spacing-16) 0;
+    --tg-tab-style-wrap-bg-color:#1A2C38;
+    --tg-tab-style-inner-padding-x: var(--tg-spacing-16);
   }
   .notice-content{
     width: 100%;

@@ -12,7 +12,7 @@ const props = withDefaults(defineProps<Props>(), {
   modelValue: () => [],
   imgType: 'common',
   disabled: false,
-  accept: () => ['image/png', 'image/jpg'],
+  accept: () => ['image/png', 'image/jpg', 'image/jpeg'],
   much: 1,
   size: 10,
 })
@@ -36,6 +36,7 @@ const {
 function changFile(event: any) {
   const file = event.target.files[0]
   if (file) {
+    console.log(file)
     if (!props.accept.includes(file.type)) {
       const str = []
       for (const type of props.accept)
