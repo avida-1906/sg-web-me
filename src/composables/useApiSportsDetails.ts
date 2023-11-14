@@ -23,7 +23,7 @@ export interface IDataListItem {
  * @param ei 赛事ID
  */
 export function useApiSportDetails(si: number, ei: string) {
-  const { data: sportInfo, run: runGetSportInfo } = useRequest(ApiSportEventInfo)
+  const { data: sportInfo, runAsync: runGetSportInfo } = useRequest(ApiSportEventInfo)
 
   /** 面包屑数据 */
   const breadcrumbData = computed<IBreadCrumbItem[]>(() => {
@@ -112,7 +112,6 @@ export function useApiSportDetails(si: number, ei: string) {
       awayTeamScore: sportInfo.value.list[0].ap,
     }
 
-    console.error(sportInfo.value.list[0].ed)
     Object.assign(data, _map)
 
     return data
@@ -153,7 +152,7 @@ export function useApiSportDetails(si: number, ei: string) {
   })
 
   onMounted(() => {
-    runGetSportInfo({ si, ei })
+    // runGetSportInfo({ si, ei })
   })
 
   return {
@@ -161,5 +160,6 @@ export function useApiSportDetails(si: number, ei: string) {
     breadcrumbData,
     handicapListData,
     basePanelData,
+    runGetSportInfo,
   }
 }
