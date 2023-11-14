@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import type { ILeagueItem } from '~/apis/types'
+import type { ISportEventInfo } from '~/apis/types'
 
 interface Props {
   showBreadcrumb?: boolean
@@ -8,7 +8,7 @@ interface Props {
   autoShow?: boolean
   leagueName?: string
   eventCount?: number
-  eventList: ILeagueItem[]
+  eventList: ISportEventInfo[]
   baseType: string
 }
 withDefaults(defineProps<Props>(), {

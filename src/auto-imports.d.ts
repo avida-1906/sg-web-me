@@ -249,6 +249,7 @@ declare global {
   const socketClient: typeof import('./utils/mqtt')['socketClient']
   const sortBy: typeof import('lodash-es')['sortBy']
   const split: typeof import('lodash-es')['split']
+  const sportsDataGroupByLeague: typeof import('./utils/sports')['sportsDataGroupByLeague']
   const storeToRefs: typeof import('pinia')['storeToRefs']
   const sub: typeof import('./utils/number')['sub']
   const syncRef: typeof import('@vueuse/core')['syncRef']
@@ -760,6 +761,7 @@ declare module 'vue' {
     readonly socketClient: UnwrapRef<typeof import('./utils/mqtt')['socketClient']>
     readonly sortBy: UnwrapRef<typeof import('lodash-es')['sortBy']>
     readonly split: UnwrapRef<typeof import('lodash-es')['split']>
+    readonly sportsDataGroupByLeague: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupByLeague']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
     readonly sub: UnwrapRef<typeof import('./utils/number')['sub']>
     readonly syncRef: UnwrapRef<typeof import('@vueuse/core')['syncRef']>
@@ -1264,6 +1266,7 @@ declare module '@vue/runtime-core' {
     readonly socketClient: UnwrapRef<typeof import('./utils/mqtt')['socketClient']>
     readonly sortBy: UnwrapRef<typeof import('lodash-es')['sortBy']>
     readonly split: UnwrapRef<typeof import('lodash-es')['split']>
+    readonly sportsDataGroupByLeague: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupByLeague']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
     readonly sub: UnwrapRef<typeof import('./utils/number')['sub']>
     readonly syncRef: UnwrapRef<typeof import('@vueuse/core')['syncRef']>

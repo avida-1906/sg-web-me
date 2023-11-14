@@ -12,27 +12,9 @@ const { data, run } = useRequest(() =>
 
 const baseType = ref('winner')
 const list = computed(() => {
-  if (data.value && data.value.list) {
-    const origin = data.value.list
-    const arr = []
-    for (let i = 0; i < origin.length; i++) {
-      if (i === 0) {
-        arr.push({ ci: origin[i].ci, cn: origin[i].cn, list: [origin[i]] })
-        continue
-      }
-      const index = arr.findIndex(a => a.ci === origin[i].ci)
-      if (index > -1) {
-        arr[index].list.push(origin[i])
-        continue
-      }
-      else {
-        arr.push({ ci: origin[i].ci, cn: origin[i].cn, list: [origin[i]] })
-        continue
-      }
-    }
-    console.log('ApiSportEventList===>', arr)
-    return arr
-  }
+  if (data.value && data.value.list)
+    return sportsDataGroupByLeague(data.value.list)
+
   return []
 })
 

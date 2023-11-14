@@ -1,12 +1,12 @@
 <script setup lang='ts'>
-import type { ILeagueItem } from '~/apis/types'
+import type { ISportEventInfo } from '~/apis/types'
 
 interface Props {
   index: number
   isStandard: boolean // 标准盘或三项投注
   isLast?: boolean // 是否列表最后一个
   showBreadcrumb?: boolean // 始终展示联赛数据
-  data: ILeagueItem
+  data: ISportEventInfo
   baseType: string
 }
 const props = defineProps<Props>()
@@ -46,10 +46,10 @@ const standardMarketFiltered = computed(() => {
   else
     return props.data.ml.filter(a => a.bt !== 1 && a.bt !== 2)
 })
-const standardMarketName = computed(() => standardMarketFiltered.value[0].btn)
+const standardMarketName = computed(() => standardMarketFiltered.value[0]?.btn)
 const standardMarketBtns = computed(() => {
   if (isHandicap.value) {
-    return standardMarketFiltered.value[0].ms.map((a) => {
+    return standardMarketFiltered.value[0]?.ms.map((a) => {
       return {
         title: `${a.sn}(${a.hdp})`,
         ...a,
@@ -57,7 +57,7 @@ const standardMarketBtns = computed(() => {
     })
   }
   else if (isTotal.value) {
-    return standardMarketFiltered.value[0].ms.map((a) => {
+    return standardMarketFiltered.value[0]?.ms.map((a) => {
       return {
         title: `${a.sn}${a.hdp}`,
         ...a,
@@ -65,13 +65,26 @@ const standardMarketBtns = computed(() => {
     })
   }
   else {
-    return standardMarketFiltered.value[0].ms.map((a) => {
+    return standardMarketFiltered.value[0]?.ms.map((a) => {
       return {
         title: a.sn,
         ...a,
       }
     })
   }
+})
+// 面包屑
+const breadcrumbs = computed(() => {
+  const data = props.data
+  const sport = { label: data.sn, value: `${data.si}` }
+  const area = { label: data.pgn, value: `${data.pgid}` }
+  const league = { label: data.cn, value: `${data.ci}` }
+  return [sport, area, league]
+})
+// 详情路径
+const eventDetailPath = computed(() => {
+  const data = props.data
+  return `/sports/${SPORTS_PLAT_ID}/${data.si}/${data.pgid}/${data.ci}/${data.ei}`
 })
 
 // 打开实时数据或直播
@@ -117,15 +130,12 @@ const statusText = computed(() => {
 const onBall = ref(Math.ceil(Math.random() * 2))
 const onBallHome = computed(() => onBall.value === 1)
 const onBallAway = computed(() => onBall.value === 2)
-const breadcrumbs = [
-  { label: '棒球', value: 'baseball' },
-  { label: '美国', value: 'usa' },
-  { label: '美国职业棒球大联盟', value: 'mlb' },
-]
 
 function goFixture() {
   router.push('/sports/soccer/simulated-reality-league/eredivisie-srl/43873334-fc-volendam-srl-fc-utrecht-srl')
 }
+console.log('data====>', props.data)
+console.log('是否已经开赛', dayjs().isAfter((props.data.ed * 1000)))
 </script>
 
 <template>
@@ -351,7 +361,7 @@ function goFixture() {
       </div>
       <BaseButton
         class="text-btn" type="text" size="none"
-        @click="router.push(`/sports/${getSportsPlatId()}/a/b/c/d`)"
+        @click="router.push(replaceSportsPlatId(eventDetailPath))"
       >
         <span>+{{ data.mc }}</span>
       </BaseButton>
