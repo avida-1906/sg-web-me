@@ -61,6 +61,7 @@ const data = reactive([
         </div>
       </template>
     </BaseTable>
+    <AppVipRuleDesc />
   </div>
 </template>
 

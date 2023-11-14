@@ -51,6 +51,7 @@ const data = reactive([
         {{ record.multiple }}{{ t('multiple') }}
       </template>
     </BaseTable>
+    <AppVipRuleDesc />
   </div>
 </template>
 
