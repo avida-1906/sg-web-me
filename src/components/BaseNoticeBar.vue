@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const props = withDefaults(defineProps<{
   /** 滚动速度 */
-  speed: number
+  speed?: number
 }>(), {
   speed: 80,
 })
