@@ -20,7 +20,6 @@
   line-height: 1.5;
   h3 {
     font-size: var(--tg-font-size-default);
-    padding-top: var(--tg-spacing-16);
     padding-bottom: var(--tg-spacing-8);
   }
   ul {
