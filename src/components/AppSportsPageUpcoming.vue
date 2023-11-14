@@ -6,13 +6,34 @@ const { upcomingNavs, currentUpcomingNav } = storeToRefs(useSportsStore())
 
 const isAll = computed(() => currentUpcomingNav.value === 0)
 const { bool: isStandard, setBool: setStandard } = useBoolean(true)
+
+const { data, run } = useRequest(() =>
+  ApiSportEventList({ si: currentUpcomingNav.value, m: 4, page: 1, page_size: 100 }),
+{
+  refreshDeps: [currentUpcomingNav],
+})
+
 const baseType = ref('winner')
+const list = computed(() => {
+  if (data.value && data.value.list)
+    return sportsDataGroupByLeague(data.value.list)
+
+  return []
+})
+
 function onBaseTypeChange(v: string) {
   baseType.value = v
 }
+
 watch(currentUpcomingNav, (a) => {
   if (a === 0)
     setStandard(true)
+
+  run()
+})
+
+onMounted(() => {
+  run()
 })
 </script>
 
@@ -32,8 +53,13 @@ watch(currentUpcomingNav, (a) => {
 
     <div class="market-wrapper">
       <AppSportsMarket
-        :is-standard="isStandard" show-breadcrumb
-        :tournament="{ name: '网球', id: '123' }"
+        v-for="item in list" :key="item.ci"
+        :is-standard="isStandard"
+        :league-name="item.cn"
+        :event-count="item.list.length"
+        :event-list="item.list"
+        :base-type="baseType"
+        show-breadcrumb
       />
     </div>
 
