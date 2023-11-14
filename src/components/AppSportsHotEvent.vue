@@ -1,11 +1,16 @@
 <script setup lang='ts'>
 const { t } = useI18n()
+const { data } = useRequest(() =>
+  ApiSportEventList({ si: 0, m: 0, hot: 1, page: 1, page_size: 100 }),
+{ manual: false },
+)
 
-// 三项投注选项
-const threeType = ref('home')
-const threeOptions = [
-  { label: t('home_space_title'), value: 'home' },
-]
+const list = computed(() => {
+  if (data.value && data.value.list)
+    return sportsDataGroupByLeague(data.value.list)
+
+  return []
+})
 </script>
 
 <template>
@@ -15,28 +20,17 @@ const threeOptions = [
         <BaseIcon name="uni-popular" />
         <h6>{{ t('sports_hot_event') }}</h6>
       </div>
-      <div class="right">
-        <VTooltip placement="top">
-          <BaseButton size="sm" type="text" disabled>
-            <BaseIcon name="uni-three-top" />
-          </BaseButton>
-          <template #popper>
-            <div class="tiny-menu-item-title">
-              {{ t('sports_three_options') }}
-            </div>
-          </template>
-        </VTooltip>
-        <BaseSelect
-          v-model="threeType"
-          :options="threeOptions"
-          disabled popper
-        />
-      </div>
     </div>
 
     <div class="market-wrapper">
-      <AppSportsMarket show-more :tournament="{ name: 'ATP东京站，日本，男单', id: '123' }" />
-      <AppSportsMarket :tournament="{ name: 'ATP东京站，日本，男单', id: '123' }" />
+      <AppSportsMarket
+        v-for="item in list" :key="item.ci"
+        :league-name="item.cn"
+        :event-count="item.list.length"
+        :event-list="item.list"
+        base-type="winner"
+        is-standard
+      />
     </div>
   </div>
 </template>

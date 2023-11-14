@@ -901,3 +901,10 @@ grade: 等级
 vip_promotion_exp: 晋级经验
 turnover_multiple: 流水倍数
 multiple: 倍
+day0: 周日
+day1: 周一
+day2: 周二
+day3: 周三
+day4: 周四
+day5: 周五
+day6: 周六
