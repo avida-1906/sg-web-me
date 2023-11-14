@@ -135,6 +135,7 @@ function goFixture() {
   router.push('/sports/soccer/simulated-reality-league/eredivisie-srl/43873334-fc-volendam-srl-fc-utrecht-srl')
 }
 console.log('data====>', props.data)
+console.log('是否已经开赛', dayjs().isAfter((props.data.ed * 1000)))
 </script>
 
 <template>
