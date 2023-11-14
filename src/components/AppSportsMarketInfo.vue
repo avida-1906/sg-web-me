@@ -136,6 +136,7 @@ function goFixture() {
 }
 console.log('data====>', props.data)
 console.log('是否已经开赛', dayjs().isAfter((props.data.ed * 1000)))
+console.log('时间格式化', timeFullTimeFormat(props.data.ed * 1000))
 </script>
 
 <template>

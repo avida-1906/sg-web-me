@@ -58,7 +58,7 @@ const dayMax = computed(() => {
       return 30
 
     if (month.value === 2)
-      return year.value && dayjs(`${year.value}`).isLeapYear() ? 29 : 28
+      return year.value && timeCheckIsLeapYear(year.value) ? 29 : 28
   }
 
   return 31
