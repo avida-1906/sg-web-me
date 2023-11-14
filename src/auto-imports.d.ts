@@ -28,6 +28,7 @@ declare global {
   const ApiMemberDualVerify: typeof import('./apis/index')['ApiMemberDualVerify']
   const ApiMemberEmailCheck: typeof import('./apis/index')['ApiMemberEmailCheck']
   const ApiMemberEmailCheckRequest: typeof import('./apis/index')['ApiMemberEmailCheckRequest']
+  const ApiMemberExchangeRate: typeof import('./apis/index')['ApiMemberExchangeRate']
   const ApiMemberExists: typeof import('./apis/index')['ApiMemberExists']
   const ApiMemberFavDelete: typeof import('./apis/index')['ApiMemberFavDelete']
   const ApiMemberFavInsert: typeof import('./apis/index')['ApiMemberFavInsert']
@@ -81,6 +82,7 @@ declare global {
   const EnumCurrency: typeof import('./utils/enums')['EnumCurrency']
   const EnumLanguage: typeof import('./utils/enums')['EnumLanguage']
   const EnumRightSidebarContent: typeof import('./composables/useRightSidebar')['EnumRightSidebarContent']
+  const EnumSportMarketType: typeof import('./utils/enums')['EnumSportMarketType']
   const EnumSportType: typeof import('./utils/enums')['EnumSportType']
   const EnumSportsOddsType: typeof import('./stores/sports')['EnumSportsOddsType']
   const EnumSportsPanelType: typeof import('./stores/sports')['EnumSportsPanelType']
@@ -247,6 +249,7 @@ declare global {
   const socketClient: typeof import('./utils/mqtt')['socketClient']
   const sortBy: typeof import('lodash-es')['sortBy']
   const split: typeof import('lodash-es')['split']
+  const sportsDataGroupByLeague: typeof import('./utils/sports')['sportsDataGroupByLeague']
   const storeToRefs: typeof import('pinia')['storeToRefs']
   const sub: typeof import('./utils/number')['sub']
   const syncRef: typeof import('@vueuse/core')['syncRef']
@@ -542,6 +545,7 @@ declare module 'vue' {
     readonly ApiMemberDualVerify: UnwrapRef<typeof import('./apis/index')['ApiMemberDualVerify']>
     readonly ApiMemberEmailCheck: UnwrapRef<typeof import('./apis/index')['ApiMemberEmailCheck']>
     readonly ApiMemberEmailCheckRequest: UnwrapRef<typeof import('./apis/index')['ApiMemberEmailCheckRequest']>
+    readonly ApiMemberExchangeRate: UnwrapRef<typeof import('./apis/index')['ApiMemberExchangeRate']>
     readonly ApiMemberExists: UnwrapRef<typeof import('./apis/index')['ApiMemberExists']>
     readonly ApiMemberFavDelete: UnwrapRef<typeof import('./apis/index')['ApiMemberFavDelete']>
     readonly ApiMemberFavInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberFavInsert']>
@@ -595,6 +599,7 @@ declare module 'vue' {
     readonly EnumCurrency: UnwrapRef<typeof import('./utils/enums')['EnumCurrency']>
     readonly EnumLanguage: UnwrapRef<typeof import('./utils/enums')['EnumLanguage']>
     readonly EnumRightSidebarContent: UnwrapRef<typeof import('./composables/useRightSidebar')['EnumRightSidebarContent']>
+    readonly EnumSportMarketType: UnwrapRef<typeof import('./utils/enums')['EnumSportMarketType']>
     readonly EnumSportType: UnwrapRef<typeof import('./utils/enums')['EnumSportType']>
     readonly EnumSportsOddsType: UnwrapRef<typeof import('./stores/sports')['EnumSportsOddsType']>
     readonly EnumSportsPanelType: UnwrapRef<typeof import('./stores/sports')['EnumSportsPanelType']>
@@ -756,6 +761,7 @@ declare module 'vue' {
     readonly socketClient: UnwrapRef<typeof import('./utils/mqtt')['socketClient']>
     readonly sortBy: UnwrapRef<typeof import('lodash-es')['sortBy']>
     readonly split: UnwrapRef<typeof import('lodash-es')['split']>
+    readonly sportsDataGroupByLeague: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupByLeague']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
     readonly sub: UnwrapRef<typeof import('./utils/number')['sub']>
     readonly syncRef: UnwrapRef<typeof import('@vueuse/core')['syncRef']>
@@ -1044,6 +1050,7 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberDualVerify: UnwrapRef<typeof import('./apis/index')['ApiMemberDualVerify']>
     readonly ApiMemberEmailCheck: UnwrapRef<typeof import('./apis/index')['ApiMemberEmailCheck']>
     readonly ApiMemberEmailCheckRequest: UnwrapRef<typeof import('./apis/index')['ApiMemberEmailCheckRequest']>
+    readonly ApiMemberExchangeRate: UnwrapRef<typeof import('./apis/index')['ApiMemberExchangeRate']>
     readonly ApiMemberExists: UnwrapRef<typeof import('./apis/index')['ApiMemberExists']>
     readonly ApiMemberFavDelete: UnwrapRef<typeof import('./apis/index')['ApiMemberFavDelete']>
     readonly ApiMemberFavInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberFavInsert']>
@@ -1097,6 +1104,7 @@ declare module '@vue/runtime-core' {
     readonly EnumCurrency: UnwrapRef<typeof import('./utils/enums')['EnumCurrency']>
     readonly EnumLanguage: UnwrapRef<typeof import('./utils/enums')['EnumLanguage']>
     readonly EnumRightSidebarContent: UnwrapRef<typeof import('./composables/useRightSidebar')['EnumRightSidebarContent']>
+    readonly EnumSportMarketType: UnwrapRef<typeof import('./utils/enums')['EnumSportMarketType']>
     readonly EnumSportType: UnwrapRef<typeof import('./utils/enums')['EnumSportType']>
     readonly EnumSportsOddsType: UnwrapRef<typeof import('./stores/sports')['EnumSportsOddsType']>
     readonly EnumSportsPanelType: UnwrapRef<typeof import('./stores/sports')['EnumSportsPanelType']>
@@ -1258,6 +1266,7 @@ declare module '@vue/runtime-core' {
     readonly socketClient: UnwrapRef<typeof import('./utils/mqtt')['socketClient']>
     readonly sortBy: UnwrapRef<typeof import('lodash-es')['sortBy']>
     readonly split: UnwrapRef<typeof import('lodash-es')['split']>
+    readonly sportsDataGroupByLeague: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupByLeague']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
     readonly sub: UnwrapRef<typeof import('./utils/number')['sub']>
     readonly syncRef: UnwrapRef<typeof import('@vueuse/core')['syncRef']>

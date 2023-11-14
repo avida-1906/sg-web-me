@@ -104,6 +104,7 @@ watch(route, (val) => {
                   <AppUserAgentInfo
                     v-if="isLogin && route.path.includes('/affiliate/')"
                   />
+                  <AppVipInfoBar v-if="isLogin && route.path.includes('/vip/')" />
                   <div
                     class="stack direction-horizontal padding-none content-outer"
                     :class="[
@@ -125,7 +126,7 @@ watch(route, (val) => {
                         </div>
                         <div
                           v-else
-                          class="stack x-flex-start y-center gap-small menu-btn"
+                          class="stack x-flex-start y-center menu-btn gap-small"
                           :class="[appContentWidth > 800
                             ? 'padding-none direction-horizontal'
                             : 'padding-none direction-horizontal']"

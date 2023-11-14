@@ -233,3 +233,13 @@ export enum EnumSportType {
   /** 自行车赛 */
   'cycling',
 }
+
+/** 体育盘口类型枚举 */
+export enum EnumSportMarketType {
+  /** 获胜盘 */
+  WINNER = 'winner',
+  /** 让分盘 */
+  HANDICAP = 'handicap',
+  /** 总分盘 */
+  TOTAL = 'total',
+}

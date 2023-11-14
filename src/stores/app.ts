@@ -20,6 +20,9 @@ export const useAppStore = defineStore('app', () => {
   /** MQTT是否已连接 */
   const { bool: mqttIsConnected, setTrue: setMqttConnectedTrue, setFalse: setMqttConnectedFalse } = useBoolean(false)
 
+  /** 汇率列表 */
+  const { run: runGetExchangeRate, data: exchangeRateData } = useRequest(ApiMemberExchangeRate)
+
   const userInfo = computed(() => {
     if (balanceData.value && _userInfo.value)
       _userInfo.value.balance = balanceData.value
@@ -83,6 +86,8 @@ export const useAppStore = defineStore('app', () => {
     setMqttConnectedTrue,
     setMqttConnectedFalse,
     getBalanceData,
+    exchangeRateData,
+    runGetExchangeRate,
   }
 })
 

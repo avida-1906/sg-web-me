@@ -51,10 +51,19 @@ export const useSportsStore = defineStore('sports', () => {
   /** 当前场馆ID */
   const currentProvider = ref(Local.get<string>(STORAGE_SPORTS_CURRENT_PROVIDER)?.value ?? '')
   /** 当前滚球选中的体育项目 */
-  const currentLiveNav = ref(0)
+  const currentLiveNav = ref(-1)
   /** 当前即将开赛选中的体育项目 */
   const currentUpcomingNav = ref(0)
 
+  /** 体育计数源 */
+  const { data: allSportsCount, run: runSportsCount } = useRequest(() => ApiSportCount({ ic: 0 }))
+
+  /** 侧边栏数据源 */
+  const { data: sidebarData, run: runSportsSidebar } = useRequest(ApiSportSidebar, {
+    onSuccess(res) {
+      currentLiveNav.value = res.rbl[0]?.si ?? 0
+    },
+  })
   /** 获取场馆列表 */
   const {
     run: runSportsProvider,
@@ -65,6 +74,8 @@ export const useSportsStore = defineStore('sports', () => {
         currentProvider.value = res.d[0].id
         Local.set(STORAGE_SPORTS_CURRENT_PROVIDER, res.d[0].id)
       }
+      runSportsCount()
+      runSportsSidebar()
     },
   })
   runSportsProvider({ game_type: 4 })
@@ -74,17 +85,6 @@ export const useSportsStore = defineStore('sports', () => {
     return sportsProviderData.value && sportsProviderData.value.d
       ? sportsProviderData.value.d
       : []
-  })
-
-  /** 体育计数源 */
-  const { data: allSportsCount } = useRequest(() => ApiSportCount({ ic: 0 }), { manual: false })
-
-  /** 侧边栏数据源 */
-  const { data: sidebarData } = useRequest(ApiSportSidebar, {
-    manual: false,
-    onSuccess(res) {
-      currentLiveNav.value = res.rbl[0]?.si ?? 0
-    },
   })
 
   /** 滚球计数 */

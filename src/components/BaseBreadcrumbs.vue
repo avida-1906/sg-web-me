@@ -18,7 +18,7 @@ function handleClick(item: BreadcrumbItem, index: number) {
   emit('itemClick', { list: props.list, item, index })
 }
 function checkRoute(v: string) {
-  return route.path.includes(v)
+  return route.path.split('/').includes(v)
 }
 </script>
 

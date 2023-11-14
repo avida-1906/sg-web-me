@@ -1,0 +1,27 @@
+<script lang="ts" setup>
+</script>
+
+<template>
+  <RouterView />
+</template>
+
+<style lang="scss" scoped>
+
+</style>
+
+<route lang="yaml">
+meta:
+  layout: with-menu
+  browserTitle: VIP – Stake.com
+  withMenuTitle: vip
+  withMenuIcon: uni-checklist
+  withMenuMobileType: tabs
+  withMenuMenu:
+    - title: vip_promotion_bonus
+      path: /vip/promotion-bonus
+      token: false
+    - {title: vip_water_back, path: /vip/water-back, token: false}
+    - {title: vip_day_salary, path: /vip/day-salary, token: false}
+    - {title: vip_week_salary, path: /vip/week-salary, token: false}
+    - {title: vip_month_salary, path: /vip/month-salary, token: false}
+</route>

@@ -4,43 +4,31 @@ defineProps<{ onPage?: boolean }>()
 const { t } = useI18n()
 const { sportLiveNavs, currentLiveNav } = storeToRefs(useSportsStore())
 const { bool: isStandard } = useBoolean(true)
-const baseType = ref('winner')
-function onBaseTypeChange(v: string) {
-  baseType.value = v
-}
-
 const { data, run } = useRequest(() =>
   ApiSportEventList({ si: currentLiveNav.value, m: 3, page: 1, page_size: 100 }),
 {
   refreshDeps: [currentLiveNav],
 })
+
+const baseType = ref('winner')
 const list = computed(() => {
-  if (data.value && data.value.list) {
-    const origin = data.value.list
-    const arr = []
-    for (let i = 0; i < origin.length; i++) {
-      if (i === 0) {
-        arr.push({ ci: origin[i].ci, cn: origin[i].cn, list: [origin[i]] })
-        continue
-      }
-      const index = arr.findIndex(a => a.ci === origin[i].ci)
-      if (index > -1) {
-        arr[index].list.push(origin[i])
-        continue
-      }
-      else {
-        arr.push({ ci: origin[i].ci, cn: origin[i].cn, list: [origin[i]] })
-        continue
-      }
-    }
-    console.log('ApiSportEventList===>', arr)
-    return arr
-  }
+  if (data.value && data.value.list)
+    return sportsDataGroupByLeague(data.value.list)
+
   return []
 })
 
+function onBaseTypeChange(v: string) {
+  baseType.value = v
+}
+
 watch(currentLiveNav, () => {
   run()
+})
+
+onMounted(() => {
+  if (currentLiveNav.value !== -1)
+    run()
 })
 </script>
 
@@ -63,6 +51,8 @@ watch(currentLiveNav, () => {
         :is-standard="isStandard"
         :league-name="item.cn"
         :event-count="item.list.length"
+        :event-list="item.list"
+        :base-type="baseType"
       />
     </div>
 

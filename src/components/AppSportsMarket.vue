@@ -1,11 +1,15 @@
 <script setup lang='ts'>
+import type { ISportEventInfo } from '~/apis/types'
+
 interface Props {
   showBreadcrumb?: boolean
   isStandard?: boolean
   showMore?: boolean
+  autoShow?: boolean
   leagueName?: string
   eventCount?: number
-  autoShow?: boolean
+  eventList: ISportEventInfo[]
+  baseType: string
 }
 withDefaults(defineProps<Props>(), {
   isStandard: true,
@@ -28,16 +32,11 @@ withDefaults(defineProps<Props>(), {
     <template #default>
       <div class="wrapper">
         <AppSportsMarketInfo
+          v-for="item, i in eventList" :key="item.hti"
           :show-breadcrumb="showBreadcrumb"
-          :is-standard="isStandard" :index="0"
-        />
-        <AppSportsMarketInfo
-          :show-breadcrumb="showBreadcrumb"
-          :is-standard="isStandard" :index="1"
-        />
-        <AppSportsMarketInfo
-          :show-breadcrumb="showBreadcrumb"
-          :is-standard="isStandard" :index="2" is-last
+          :is-standard="isStandard" :index="i"
+          :data="item"
+          :base-type="baseType"
         />
       </div>
     </template>
