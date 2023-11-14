@@ -888,3 +888,11 @@ current_wait_receive_label: 您当前待领取金额为
 current_wait_receive_desc: 您可自由选择您想要的币种进行领取
 commission_wallet_money_label: 佣金钱包和余额
 currency_exchange_rate: 兑换领取币总汇率
+vip: VIP
+vip_promotion_bonus: 晋级奖金
+vip_water_back: 反水
+vip_day_salary: 日俸禄
+vip_week_salary: 周俸禄
+vip_month_salary: 月俸禄
+grade: 等级
+vip_promotion_exp: 晋级经验

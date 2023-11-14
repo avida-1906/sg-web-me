@@ -13,7 +13,6 @@ const {
 } = useRightSidebar()
 const { bool: showSearchBar, setTrue } = useBoolean(false)
 const { openWalletDialog } = useWalletDialog()
-const { openVipDialog } = useVipDialog()
 const { openStatisticsDialog } = useStatisticsDialog()
 const { openSafeDialog } = useSafeDialog()
 const { openLogoutDialog } = useLogoutDialog()
@@ -21,7 +20,13 @@ const { openLogoutDialog } = useLogoutDialog()
 const userMenu = computed(() => ([
   { id: 1, icon: 'navbar-wallet', title: t('wallet'), name: 'wallet' },
   { id: 2, icon: 'navbar-cart', title: t('safe'), name: 'safe' },
-  { id: 3, icon: 'spt-airbonus', title: 'VIP', name: 'vip' },
+  {
+    id: 3,
+    icon: 'spt-airbonus',
+    title: 'VIP',
+    name: 'vip',
+    path: '/vip/promotion-bonus',
+  },
   {
     id: 4,
     icon: 'chess-affiliate',
@@ -117,9 +122,6 @@ function handleClickMenuItem(item: { name: string; path?: string }) {
       break
     case 'logout':
       openLogoutDialog()
-      break
-    case 'vip':
-      openVipDialog()
       break
     case 'statistical-data':
       openStatisticsDialog()
