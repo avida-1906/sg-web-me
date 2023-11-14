@@ -166,13 +166,25 @@ console.log('data====>', props.data)
       <!-- 队名 -->
       <div class="fixture">
         <!-- 主队名称 -->
-        <div class="teams-name" @click="goEventDetailPage">
-          <span>{{ data.htn }}</span>
+        <div class="teams-name">
+          <BaseButton
+            type="text" size="none"
+            style="--tg-base-button-text-default-color:var(--tg-text-white);"
+            @click="goEventDetailPage"
+          >
+            <span>{{ data.htn }}</span>
+          </BaseButton>
         </div>
         <span> - </span>
         <!-- 客队名称 -->
-        <div class="teams-name" @click="goEventDetailPage">
-          <span>{{ data.atn }}</span>
+        <div class="teams-name">
+          <BaseButton
+            type="text" size="none"
+            style="--tg-base-button-text-default-color:var(--tg-text-white);"
+            @click="goEventDetailPage"
+          >
+            <span>{{ data.atn }}</span>
+          </BaseButton>
         </div>
       </div>
     </template>
@@ -184,12 +196,24 @@ console.log('data====>', props.data)
       <!-- 队名 -->
       <div class="teams">
         <!-- 主队名称 -->
-        <div class="teams-name" @click="goEventDetailPage">
-          <span>{{ data.htn }}</span>
+        <div class="teams-name">
+          <BaseButton
+            type="text" size="none"
+            style="--tg-base-button-text-default-color:var(--tg-text-white);"
+            @click="goEventDetailPage"
+          >
+            <span>{{ data.htn }}</span>
+          </BaseButton>
         </div>
         <!-- 客队名称 -->
-        <div class="teams-name" @click="goEventDetailPage">
-          <span>{{ data.atn }}</span>
+        <div class="teams-name">
+          <BaseButton
+            type="text" size="none"
+            style="--tg-base-button-text-default-color:var(--tg-text-white);"
+            @click="goEventDetailPage"
+          >
+            <span>{{ data.atn }}</span>
+          </BaseButton>
         </div>
       </div>
 
