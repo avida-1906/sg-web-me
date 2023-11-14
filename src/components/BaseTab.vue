@@ -78,6 +78,7 @@ function onClick(tab: TabItem, i: number) {
   --tg-tab-style-inner-padding-x: var(--tg-spacing-20);
   --tg-tab-style-color: var(--tg-text-white);
   --tg-tab-style-line-active-text-color: var(--tg-text-blue);
+  --tg-tab-style-box-padding:var(--tg-spacing-5) var(--tg-spacing-6);
 }
 </style>
 
@@ -108,7 +109,7 @@ function onClick(tab: TabItem, i: number) {
   max-width: 100%;
 
   .tab-wrap {
-    padding: var(--tg-spacing-5) var(--tg-spacing-6);
+    padding: var(--tg-tab-style-box-padding);
     background-color: var(--tg-tab-style-wrap-bg-color);
     flex: 1;
     display: flex;

@@ -86,6 +86,12 @@ const eventDetailPath = computed(() => {
   const data = props.data
   return `/sports/${SPORTS_PLAT_ID}/${data.si}/${data.pgid}/${data.ci}/${data.ei}`
 })
+// 正在滚球
+const isOnAir = computed(() => props.data.m === 3)
+// 是否已经开赛
+const isStarted = computed(() => dayjs().isAfter((props.data.ed * 1000)))
+// 时间格式化
+const timeText = computed(() => timeFullTimeFormat(props.data.ed * 1000))
 
 // 打开实时数据或直播
 function openDragDialog(type: 'trend' | 'live') {
@@ -106,37 +112,10 @@ function onBreadcrumbsClick({ list, index }: { list: ISelectOption[]; index: num
   router.push(path)
 }
 
-// TODO: 假状态
-const statusIndex = ref(Math.ceil(Math.random() * 5))
-const isCountdown = computed(() => statusIndex.value === 2)
-const isOnAir = computed(() => statusIndex.value === 4)
-const isFinish = computed(() => statusIndex.value === 5)
-const statusText = computed(() => {
-  switch (statusIndex.value) {
-    case 1:
-      return '10月11日周三 14:30'
-    case 2:
-      return '开始时间： 48分钟后'
-    case 3:
-      return '即将开赛'
-    case 4:
-      return '第一盘'
-    case 5:
-      return ''
-    default:
-      return '-'
-  }
-})
-const onBall = ref(Math.ceil(Math.random() * 2))
-const onBallHome = computed(() => onBall.value === 1)
-const onBallAway = computed(() => onBall.value === 2)
-
-function goFixture() {
-  router.push('/sports/soccer/simulated-reality-league/eredivisie-srl/43873334-fc-volendam-srl-fc-utrecht-srl')
+function goEventDetailPage() {
+  router.push(replaceSportsPlatId(eventDetailPath.value))
 }
 console.log('data====>', props.data)
-console.log('是否已经开赛', dayjs().isAfter((props.data.ed * 1000)))
-console.log('时间格式化', timeFullTimeFormat(props.data.ed * 1000))
 </script>
 
 <template>
@@ -152,14 +131,12 @@ console.log('时间格式化', timeFullTimeFormat(props.data.ed * 1000))
         <div class="fixture-details">
           <!-- 状态 -->
           <div
-            v-if="isOnAir || isFinish" class="status"
-            :class="{ live: isOnAir, end: isFinish }"
+            v-if="isOnAir" class="status"
+            :class="{ live: isOnAir }"
           >
-            {{ isOnAir ? t('sports_status_live') : isFinish
-              ? t('sports_status_finished') : ''
-            }}
+            {{ t('sports_status_live') }}
           </div>
-          <div v-else-if="isCountdown">
+          <!-- <div v-else-if="isCountdown">
             <svg height="12" width="12" viewBox="0 0 20 20" class="svelte-l8nfzs">
               <circle r="10" cx="10" cy="10" fill="#72ACED" />
               <circle
@@ -169,15 +146,17 @@ console.log('时间格式化', timeFullTimeFormat(props.data.ed * 1000))
                 transform="rotate(-90) translate(-20)"
               />
             </svg>
-          </div>
-          <span class="text">{{ data.rbt }}</span>
+          </div> -->
+          <span v-if="!isStarted" class="text">{{ timeText }}</span>
+          <span v-else-if="isStarted && !isOnAir" class="text">
+            {{ t('sports_tab_starting_soon') }}
+          </span>
+          <span v-else-if="isOnAir" class="text">{{ data.rbt }}</span>
 
           <!-- H5时比分显示在这里 -->
           <div v-if="isH5Layout" class="fixture-score-h5">
-            <!-- 局分 -->
-            <span>1-4</span>
             <!-- 总分 -->
-            <span class="total">{{ data.hp }}-{{ data.ap }}</span>
+            <span v-if="isOnAir" class="total">{{ data.hp }}-{{ data.ap }}</span>
           </div>
         </div>
       </div>
@@ -187,19 +166,25 @@ console.log('时间格式化', timeFullTimeFormat(props.data.ed * 1000))
       <!-- 队名 -->
       <div class="fixture">
         <!-- 主队名称 -->
-        <div class="teams-name" @click="goFixture">
-          <div v-if="onBallHome" class="icon left">
-            <BaseIcon name="spt-tennis" />
-          </div>
-          <span>{{ data.htn }}</span>
+        <div class="teams-name">
+          <BaseButton
+            type="text" size="none"
+            style="--tg-base-button-text-default-color:var(--tg-text-white);"
+            @click="goEventDetailPage"
+          >
+            <span>{{ data.htn }}</span>
+          </BaseButton>
         </div>
         <span> - </span>
         <!-- 客队名称 -->
-        <div class="teams-name" @click="goFixture">
-          <span>{{ data.atn }}</span>
-          <div v-if="onBallAway" class="icon right">
-            <BaseIcon name="spt-tennis" />
-          </div>
+        <div class="teams-name">
+          <BaseButton
+            type="text" size="none"
+            style="--tg-base-button-text-default-color:var(--tg-text-white);"
+            @click="goEventDetailPage"
+          >
+            <span>{{ data.atn }}</span>
+          </BaseButton>
         </div>
       </div>
     </template>
@@ -211,31 +196,32 @@ console.log('时间格式化', timeFullTimeFormat(props.data.ed * 1000))
       <!-- 队名 -->
       <div class="teams">
         <!-- 主队名称 -->
-        <div class="teams-name" @click="goFixture">
-          <span>{{ data.htn }}</span>
-          <div v-if="onBallHome" class="icon">
-            <BaseIcon name="spt-tennis" />
-          </div>
+        <div class="teams-name">
+          <BaseButton
+            type="text" size="none"
+            style="--tg-base-button-text-default-color:var(--tg-text-white);"
+            @click="goEventDetailPage"
+          >
+            <span>{{ data.htn }}</span>
+          </BaseButton>
         </div>
         <!-- 客队名称 -->
-        <div class="teams-name" @click="goFixture">
-          <span>{{ data.atn }}</span>
-          <div v-if="onBallAway" class="icon">
-            <BaseIcon name="spt-tennis" />
-          </div>
+        <div class="teams-name">
+          <BaseButton
+            type="text" size="none"
+            style="--tg-base-button-text-default-color:var(--tg-text-white);"
+            @click="goEventDetailPage"
+          >
+            <span>{{ data.atn }}</span>
+          </BaseButton>
         </div>
       </div>
 
       <!-- 滚球比分 -->
       <div class="fixture-score">
         <div class="fixture-score-wrapper">
-          <div class="score-wrapper">
-            <!-- 局分 -->
-            <span>0</span>
-            <span>6</span>
-          </div>
           <!-- 总分 -->
-          <div class="score-wrapper total">
+          <div v-if="isOnAir" class="total score-wrapper">
             <span>{{ data.hp }}</span>
             <span>{{ data.ap }}</span>
           </div>
@@ -362,7 +348,7 @@ console.log('时间格式化', timeFullTimeFormat(props.data.ed * 1000))
       </div>
       <BaseButton
         class="text-btn" type="text" size="none"
-        @click="router.push(replaceSportsPlatId(eventDetailPath))"
+        @click="goEventDetailPage"
       >
         <span>+{{ data.mc }}</span>
       </BaseButton>
