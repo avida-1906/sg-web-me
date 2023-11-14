@@ -59,6 +59,7 @@ const getComponent = computed(() => {
       style="padding-top: var(--tg-spacing-8);"
       line-style
       :full="isMobile"
+      need-scroll-into-view
     />
     <div class="notice-content">
       <keep-alive>

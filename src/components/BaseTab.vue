@@ -15,6 +15,7 @@ interface Props {
   size?: 'small' | 'large'
   useCloudImg?: boolean
   lineStyle?: boolean
+  needScrollIntoView?: boolean
 }
 const props = withDefaults(defineProps<Props>(), {
   shape: 'round',
@@ -34,7 +35,7 @@ function onClick(tab: TabItem, i: number) {
   emit('change', tab.value)
   if (tab.path)
     router.push(tab.path)
-  curTabRef.value[i]?.scrollIntoView({
+  props.needScrollIntoView && curTabRef.value[i]?.scrollIntoView({
     behavior: 'smooth', block: 'end', inline: 'nearest',
   })
 }
