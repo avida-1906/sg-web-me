@@ -10,7 +10,8 @@ const {
   handicapListData,
   dataList,
   basePanelData,
-} = useApiSportDetails(1, '54095899')
+  runGetSportInfo,
+} = useApiSportDetails(1, '54222287')
 
 const sport = route.params.sport
 // const category = route.params.category
@@ -35,6 +36,10 @@ watchEffect(() => {
 })
 
 useTitle(title)
+
+await application.allSettled([
+  runGetSportInfo({ si: 1, ei: '54222287' }),
+])
 </script>
 
 <template>
@@ -94,7 +99,7 @@ useTitle(title)
                   </div>
                 </div>
               </div>
-              <div class="live-stream-scoreboard-footer">
+              <!-- <div class="live-stream-scoreboard-footer">
                 <span v-show="openLiveSwitch" class="mini-video">
                   <BaseButton type="text" size="none" @click="openMiniVideo">
                     <span class="mini-video">
@@ -113,7 +118,7 @@ useTitle(title)
                 <span class="blinking-dash">
                   <span class="red-circle" />
                 </span>
-              </div>
+              </div> -->
               <div class="fixture-notice">
                 <span>如果您在赢家盘口的选择在第 9 局开始时领先但最终却输掉比赛，则可赢得奖金！</span>
                 <a class="link">条款与条件适用。</a>
@@ -213,7 +218,7 @@ useTitle(title)
                     <template #default>
                       <div class="market" :class="{ 'in-mobile': isMobile }">
                         <div class="table" :style="{ '--itemCount': 1 }">
-                          <div class="heading column">
+                          <div class="column heading">
                             <span>大</span>
                           </div>
                           <div class="column heading">
