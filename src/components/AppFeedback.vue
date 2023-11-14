@@ -161,10 +161,10 @@ onActivated(() => {
             图片
           </p>
           <div class="file">
-            <BaseUpload v-model="imageUrl" :much="5" img-type="common" />
+            <BaseUpload v-model="imageUrl" :much="5" img-type="common" :size="10" />
           </div>
           <div class="tips">
-            仅能上传：png/jpg格式，最多上传5张，单张最大100M
+            仅能上传：png/jpg格式，最多上传5张，单张最大10M
           </div>
         </div>
         <div class="rule">

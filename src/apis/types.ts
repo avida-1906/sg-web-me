@@ -121,7 +121,7 @@ export interface IMemberDetail {
   /** 账户余额 */
   balance: TCurrencyObject
   /** 保险库余额 */
-  locker: TCurrencyObject
+  balance_locker: TCurrencyObject
   /** 用户信息 */
   ext: IUserInfo
 }
