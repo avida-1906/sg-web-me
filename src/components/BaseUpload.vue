@@ -3,20 +3,23 @@ interface Props {
   modelValue: string[]
   imgType?: 'common' // 上传图片用途
   disabled?: boolean // 禁用
-  accept?: string // 可选文件类型
+  accept?: string[] // 可选文件类型
   much?: number // 可上传文件数量
+  size?: number // 上传文件大小，单位MB
 }
 
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   modelValue: () => [],
   imgType: 'common',
   disabled: false,
-  accept: 'image/png, image/jpg',
+  accept: () => ['image/png', 'image/jpg'],
   much: 1,
+  size: 10,
 })
 
 const emit = defineEmits(['update:modelValue'])
 const { VITE_CASINO_IMG_CLOUD_URL } = getEnv()
+const { openNotify } = useNotify()
 
 const urlList: Ref<string[]> = ref([])
 const {
@@ -33,10 +36,31 @@ const {
 function changFile(event: any) {
   const file = event.target.files[0]
   if (file) {
-    runFileUpload({
-      upload_type: 1,
-      upload_file: file,
-    })
+    if (!props.accept.includes(file.type)) {
+      const str = []
+      for (const type of props.accept)
+        str.push(type.split('/')[1])
+      openNotify({
+        type: 'error',
+        title: '错误',
+        message: `仅能上传：${str.join('/')}格式`,
+      })
+      event.target.value = ''
+    }
+    else if (file.size / 1024 / 1024 > props.size) {
+      openNotify({
+        type: 'error',
+        title: '错误',
+        message: `单张图片最大${props.size}MB`,
+      })
+      event.target.value = ''
+    }
+    else {
+      runFileUpload({
+        upload_type: 1,
+        upload_file: file,
+      })
+    }
   }
 }
 function deleteImg(index: number) {
@@ -78,7 +102,7 @@ function deleteImg(index: number) {
       <input
         class="width-100 input-file position-abs"
         type="file"
-        :accept="accept"
+        :accept="accept.join(',')"
         :disabled="disabled"
         title=""
         @change="changFile"
