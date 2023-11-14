@@ -28,6 +28,7 @@ declare global {
   const ApiMemberDualVerify: typeof import('./apis/index')['ApiMemberDualVerify']
   const ApiMemberEmailCheck: typeof import('./apis/index')['ApiMemberEmailCheck']
   const ApiMemberEmailCheckRequest: typeof import('./apis/index')['ApiMemberEmailCheckRequest']
+  const ApiMemberExchangeRate: typeof import('./apis/index')['ApiMemberExchangeRate']
   const ApiMemberExists: typeof import('./apis/index')['ApiMemberExists']
   const ApiMemberFavDelete: typeof import('./apis/index')['ApiMemberFavDelete']
   const ApiMemberFavInsert: typeof import('./apis/index')['ApiMemberFavInsert']
@@ -544,6 +545,7 @@ declare module 'vue' {
     readonly ApiMemberDualVerify: UnwrapRef<typeof import('./apis/index')['ApiMemberDualVerify']>
     readonly ApiMemberEmailCheck: UnwrapRef<typeof import('./apis/index')['ApiMemberEmailCheck']>
     readonly ApiMemberEmailCheckRequest: UnwrapRef<typeof import('./apis/index')['ApiMemberEmailCheckRequest']>
+    readonly ApiMemberExchangeRate: UnwrapRef<typeof import('./apis/index')['ApiMemberExchangeRate']>
     readonly ApiMemberExists: UnwrapRef<typeof import('./apis/index')['ApiMemberExists']>
     readonly ApiMemberFavDelete: UnwrapRef<typeof import('./apis/index')['ApiMemberFavDelete']>
     readonly ApiMemberFavInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberFavInsert']>
@@ -1048,6 +1050,7 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberDualVerify: UnwrapRef<typeof import('./apis/index')['ApiMemberDualVerify']>
     readonly ApiMemberEmailCheck: UnwrapRef<typeof import('./apis/index')['ApiMemberEmailCheck']>
     readonly ApiMemberEmailCheckRequest: UnwrapRef<typeof import('./apis/index')['ApiMemberEmailCheckRequest']>
+    readonly ApiMemberExchangeRate: UnwrapRef<typeof import('./apis/index')['ApiMemberExchangeRate']>
     readonly ApiMemberExists: UnwrapRef<typeof import('./apis/index')['ApiMemberExists']>
     readonly ApiMemberFavDelete: UnwrapRef<typeof import('./apis/index')['ApiMemberFavDelete']>
     readonly ApiMemberFavInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberFavInsert']>
