@@ -163,7 +163,7 @@ export function useCurrencyData() {
 
   /** 保险库余额 */
   const renderBalanceLockerList = computed(() => {
-    return allCurrencyData(userInfo.value?.locker)
+    return allCurrencyData(userInfo.value?.balance_locker)
   })
 
   /** 钱包弹框，下拉选择 */

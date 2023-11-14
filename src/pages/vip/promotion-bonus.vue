@@ -61,6 +61,7 @@ const data = reactive([
         </div>
       </template>
     </BaseTable>
+    <AppVipRuleDesc />
   </div>
 </template>
 
@@ -73,6 +74,9 @@ const data = reactive([
   justify-content: flex-end;
 }
 .vip-promotion-bonus {
+  display: flex;
+  flex-direction: column;
+  gap: var(--tg-spacing-14);
   --tg-table-even-background: var(--tg-primary-main);
 }
 </style>

@@ -71,6 +71,7 @@ const columns = computed<Column[]>(() => [
         <div>VIP{{ record.vip }}</div>
       </template>
     </BaseTable>
+    <AppVipRuleDesc />
   </div>
 </template>
 

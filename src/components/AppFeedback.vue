@@ -8,7 +8,7 @@ const { openReceiveBonusDialog } = useDialogReceiveBonus()
 const imageUrl: Ref<string[]> = ref([])
 const textLength = ref(0)
 const tab = ref(1)
-const placeholder = '我们已经设置了巨额奖金，专门收集反馈意见，以便我们优化系统和功能，给您带来更好的体验！一旦被采纳，将根据重要程度给予奖励（未采纳除外）'
+const placeholder = '您的任何意见对我们都很重要，凡事有价值意见都将被采纳，一旦采纳将视重要程度给予不同现金奖励，欢迎您畅所欲言！'
 
 const {
   value: feedbackText,
@@ -59,11 +59,12 @@ const amountTotal = computed(() => {
 async function submitFeedback() {
   await feedbackTextValidate()
   if (!feedbackTextError.value)
-    runFeedbackInsert({ images: imageUrl.value.length ? imageUrl.value.join(',') : '', description: feedbackText.value })
+    runFeedbackInsert({ images: imageUrl.value.length ? JSON.stringify(imageUrl.value) : '', description: feedbackText.value })
 }
 
 function getAmount() {
-  runFeedbackBonusDraw({ feed_id: '' })
+  if (+amountTotal.value > 0)
+    runFeedbackBonusDraw({ feed_id: '' })
 }
 
 function textInput() {
@@ -122,17 +123,19 @@ onActivated(() => {
           我的反馈
         </BaseButton>
       </div>
-      <div v-if="amountTotal" class="tab-right">
-        <p>{{ amountTotal }}$</p>
+      <!-- <div class="tab-right">
+        <p>{{ amountTotal }}USDT</p>
         <BaseButton
           bg-style="primary" style="
           --tg-base-button-padding-y: var(--tg-spacing-6);
            --tg-base-button-padding-x: var(--tg-spacing-10);"
-          custom-padding @click="getAmount"
+          custom-padding
+          :disabled="!(+amountTotal > 0)"
+          @click="getAmount"
         >
           一键领取
         </BaseButton>
-      </div>
+      </div> -->
     </div>
     <div class="content-wrap">
       <div v-if="tab === 1" class="create-feedback">
@@ -158,10 +161,10 @@ onActivated(() => {
             图片
           </p>
           <div class="file">
-            <BaseUpload v-model="imageUrl" :much="5" img-type="common" />
+            <BaseUpload v-model="imageUrl" :much="5" img-type="common" :size="10" />
           </div>
           <div class="tips">
-            支持图片与视频上传，大小不得超过50M
+            仅能上传：png/jpg格式，最多上传5张，单张最大10M
           </div>
         </div>
         <div class="rule">
@@ -187,13 +190,22 @@ onActivated(() => {
       </div>
       <div v-else class="feedback-list">
         <div
-          v-if="totalBonus && +totalBonus > 0"
           class="total-bonus"
-          @click="openTotalBonus"
         >
           <span>待领取奖金：</span>
           <span class="money">{{ totalBonus }}USDT</span>
-          <BaseIcon name="chess-proms" />
+          <!-- <BaseIcon name="chess-proms" /> -->
+          <BaseButton
+            bg-style="primary" style="
+          --tg-base-button-padding-y: var(--tg-spacing-6);
+           --tg-base-button-padding-x: var(--tg-spacing-10);"
+            custom-padding
+            round
+            :disabled="!totalBonus || !(+totalBonus > 0)"
+            @click="openTotalBonus"
+          >
+            领取
+          </BaseButton>
         </div>
         <template v-if="feedbackList?.d?.length">
           <div
@@ -263,9 +275,12 @@ onActivated(() => {
   .money {
     color: var(--tg-text-warn);
   }
-  svg {
+  svg, button {
     margin-left: var(--tg-spacing-12);
     vertical-align: middle;
+  }
+  button {
+    margin-left: var(--tg-spacing-12);
   }
 }
 .app-feedback {

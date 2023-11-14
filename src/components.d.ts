@@ -112,6 +112,7 @@ declare module 'vue' {
     AppVipDialog: typeof import('./components/AppVipDialog.vue')['default']
     AppVipInfoBar: typeof import('./components/AppVipInfoBar.vue')['default']
     AppVipProgress: typeof import('./components/AppVipProgress.vue')['default']
+    AppVipRuleDesc: typeof import('./components/AppVipRuleDesc.vue')['default']
     AppVirAddressDialog: typeof import('./components/AppVirAddressDialog.vue')['default']
     AppVirtualDeposit: typeof import('./components/AppVirtualDeposit.vue')['default']
     AppWallet: typeof import('./components/AppWallet.vue')['default']
