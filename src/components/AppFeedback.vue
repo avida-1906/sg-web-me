@@ -9,6 +9,10 @@ const imageUrl: Ref<string[]> = ref([])
 const textLength = ref(0)
 const tab = ref(1)
 const placeholder = '您的任何意见对我们都很重要，凡事有价值意见都将被采纳，一旦采纳将视重要程度给予不同现金奖励，欢迎您畅所欲言！'
+const tabList = [
+  { label: '创建反馈', value: 1 },
+  { label: '我的反馈', value: 2 },
+]
 
 const {
   value: feedbackText,
@@ -100,7 +104,14 @@ onActivated(() => {
   <div class="scroll-y app-feedback scrollable scroll-contain notice-scroll">
     <div class="feedback-tab-wrap">
       <div class="tab-left">
-        <BaseButton
+        <BaseTab
+          v-model="tab"
+          :list="tabList"
+          :center="false"
+          line-style
+          need-scroll-into-view
+        />
+        <!-- <BaseButton
           :bg-style="tab === 1 ? 'primary' : undefined"
           :type="tab !== 1 ? 'line' : undefined"
           style="
@@ -121,7 +132,7 @@ onActivated(() => {
           @click="seeFeedback"
         >
           我的反馈
-        </BaseButton>
+        </BaseButton> -->
       </div>
       <!-- <div class="tab-right">
         <p>{{ amountTotal }}USDT</p>
@@ -295,6 +306,10 @@ onActivated(() => {
       display: flex;
       align-items: center;
       gap: 12px;
+      --tg-tab-style-color: var(--tg-text-lightgrey);
+      --tg-tab-style-line-active-text-color: var(--tg-text-white);
+      --tg-tab-style-inner-padding-y: var(--tg-spacing-1);
+      --tg-tab-style-box-padding:0;
     }
     .tab-right{
       p:nth-child(1){
