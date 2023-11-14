@@ -151,7 +151,7 @@ export function ApiSportEventList(data: {
     /** 资料更新时间 */
     delta: number
     /** 联赛列表 */
-    list: ILeagueItem[]
+    list: ISportEventInfo[]
   }>(`/sport/${getSportsPlatId()}/event/list`, data)
 }
 
