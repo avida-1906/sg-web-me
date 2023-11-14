@@ -24,7 +24,9 @@ const props = withDefaults(defineProps<Props>(), {
 const emit = defineEmits(['update:modelValue', 'change'])
 const router = useRouter()
 
-function onClick(tab: TabItem) {
+const curTabRef = ref<Array<Element | null>>([])
+
+function onClick(tab: TabItem, i: number) {
   if (tab.value === props.modelValue || tab.disabled)
     return
 
@@ -32,18 +34,27 @@ function onClick(tab: TabItem) {
   emit('change', tab.value)
   if (tab.path)
     router.push(tab.path)
+  curTabRef.value[i]?.scrollIntoView({
+    behavior: 'smooth', block: 'end', inline: 'nearest',
+  })
 }
 </script>
 
 <template>
   <div class="base-tab" :class="{ center }">
     <div class="scroll-x base-tab-wrap" :class="{ full, 'hide-scrollbar': lineStyle }">
-      <div class="tab-wrap" :class="[shape, { 'line-style': lineStyle }]">
+      <div
+        class="tab-wrap"
+        :class="[shape, { 'line-style': lineStyle }]"
+        :style="{ 'grid-template-columns': `repeat(${list.length},1fr)` }"
+      >
         <div
-          v-for="t, i in list" :key="i" class="tab"
+          v-for="t, i in list" :key="i"
+          :ref="el => curTabRef[i] = (el as Element)"
+          class="tab"
           :class="[`tab-${size}`,
                    { active: t.value === modelValue, disabled: t.disabled }]"
-          @click="onClick(t)"
+          @click="onClick(t, i)"
         >
           <div class="content">
             <slot name="tab" :item="t">
@@ -100,8 +111,9 @@ function onClick(tab: TabItem) {
     padding: var(--tg-spacing-5) var(--tg-spacing-6);
     background-color: var(--tg-tab-style-wrap-bg-color);
     flex: 1;
-    display: flex;
+    display: grid;
     gap: var(--tg-spacing-5);
+    scroll-snap-type: x mandatory;
   }
 
   .square {
