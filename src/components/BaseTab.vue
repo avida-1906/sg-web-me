@@ -47,7 +47,6 @@ function onClick(tab: TabItem, i: number) {
       <div
         class="tab-wrap"
         :class="[shape, { 'line-style': lineStyle }]"
-        :style="{ 'grid-template-columns': `repeat(${list.length},1fr)` }"
       >
         <div
           v-for="t, i in list" :key="i"
@@ -112,7 +111,7 @@ function onClick(tab: TabItem, i: number) {
     padding: var(--tg-spacing-5) var(--tg-spacing-6);
     background-color: var(--tg-tab-style-wrap-bg-color);
     flex: 1;
-    display: grid;
+    display: flex;
     gap: var(--tg-spacing-5);
     scroll-snap-type: x mandatory;
   }
