@@ -6,6 +6,8 @@ const { showFeedbackChat } = storeToRefs(useChatStore())
 
 const { closeRightSidebar } = useRightSidebar()
 
+const { isMobile } = storeToRefs(useWindowStore())
+
 const A = defineAsyncComponent(() => import('./AppNoticeNotify.vue'))
 const B = defineAsyncComponent(() => import('./AppNoticeNotify.vue'))
 const C = defineAsyncComponent(() => import('./AppNoticeNotify.vue'))
@@ -56,6 +58,8 @@ const getComponent = computed(() => {
       :center="false"
       style="padding-top: var(--tg-spacing-8);"
       line-style
+      :full="isMobile"
+      need-scroll-into-view
     />
     <div class="notice-content">
       <keep-alive>
