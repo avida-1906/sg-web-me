@@ -37,7 +37,7 @@ function onBaseTypeChange(v: string) {
 <template>
   <div class="sports-market-type-select">
     <VTooltip placement="top">
-      <BaseButton :disabled="disabled" size="sm" type="text" @click="toggleBase">
+      <BaseButton disabled size="sm" type="text" @click="toggleBase">
         <BaseIcon v-if="modelValue" name="uni-three-top" />
         <BaseIcon v-else name="uni-standard" />
       </BaseButton>
