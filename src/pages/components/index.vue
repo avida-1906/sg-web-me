@@ -694,6 +694,11 @@ function loadMore() {
 <template>
   <ul class="demo-page">
     <li class="box">
+      <AppDemoCard title="BaseNoticeBar">
+        <BaseNoticeBar />
+      </AppDemoCard>
+    </li>
+    <li class="box">
       <AppDemoCard title="BaseList">
         <div class="base-list-box">
           <BaseList

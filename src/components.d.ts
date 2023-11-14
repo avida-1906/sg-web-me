@@ -145,6 +145,7 @@ declare module 'vue' {
     BaseLogo: typeof import('./components/BaseLogo.vue')['default']
     BaseMenu: typeof import('./components/BaseMenu.vue')['default']
     BaseMoneyKeyboard: typeof import('./components/BaseMoneyKeyboard.vue')['default']
+    BaseNoticeBar: typeof import('./components/BaseNoticeBar.vue')['default']
     BaseNotify: typeof import('./components/BaseNotify.vue')['default']
     BaseNumericKeypad: typeof import('./components/BaseNumericKeypad.vue')['default']
     BasePagination: typeof import('./components/BasePagination.vue')['default']
