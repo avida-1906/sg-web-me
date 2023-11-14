@@ -123,7 +123,7 @@ onActivated(() => {
           我的反馈
         </BaseButton>
       </div>
-      <div class="tab-right">
+      <!-- <div class="tab-right">
         <p>{{ amountTotal }}USDT</p>
         <BaseButton
           bg-style="primary" style="
@@ -135,7 +135,7 @@ onActivated(() => {
         >
           一键领取
         </BaseButton>
-      </div>
+      </div> -->
     </div>
     <div class="content-wrap">
       <div v-if="tab === 1" class="create-feedback">
@@ -191,11 +191,21 @@ onActivated(() => {
       <div v-else class="feedback-list">
         <div
           class="total-bonus"
-          @click="openTotalBonus"
         >
           <span>待领取奖金：</span>
           <span class="money">{{ totalBonus }}USDT</span>
-          <BaseIcon name="chess-proms" />
+          <!-- <BaseIcon name="chess-proms" /> -->
+          <BaseButton
+            bg-style="primary" style="
+          --tg-base-button-padding-y: var(--tg-spacing-6);
+           --tg-base-button-padding-x: var(--tg-spacing-10);"
+            custom-padding
+            round
+            :disabled="!totalBonus || !(+totalBonus > 0)"
+            @click="openTotalBonus"
+          >
+            领取
+          </BaseButton>
         </div>
         <template v-if="feedbackList?.d?.length">
           <div
@@ -265,9 +275,12 @@ onActivated(() => {
   .money {
     color: var(--tg-text-warn);
   }
-  svg {
+  svg, button {
     margin-left: var(--tg-spacing-12);
     vertical-align: middle;
+  }
+  button {
+    margin-left: var(--tg-spacing-12);
   }
 }
 .app-feedback {
