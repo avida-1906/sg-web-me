@@ -433,6 +433,7 @@ declare global {
   const usePreferredReducedMotion: typeof import('@vueuse/core')['usePreferredReducedMotion']
   const usePrevious: typeof import('@vueuse/core')['usePrevious']
   const useRafFn: typeof import('@vueuse/core')['useRafFn']
+  const useRateExchange: typeof import('./composables/useRateExchange')['useRateExchange']
   const useRefHistory: typeof import('@vueuse/core')['useRefHistory']
   const useRegisterDialog: typeof import('./composables/useDialogRegister')['useRegisterDialog']
   const useRequest: typeof import('vue-request')['useRequest']
@@ -947,6 +948,7 @@ declare module 'vue' {
     readonly usePreferredReducedMotion: UnwrapRef<typeof import('@vueuse/core')['usePreferredReducedMotion']>
     readonly usePrevious: UnwrapRef<typeof import('@vueuse/core')['usePrevious']>
     readonly useRafFn: UnwrapRef<typeof import('@vueuse/core')['useRafFn']>
+    readonly useRateExchange: UnwrapRef<typeof import('./composables/useRateExchange')['useRateExchange']>
     readonly useRefHistory: UnwrapRef<typeof import('@vueuse/core')['useRefHistory']>
     readonly useRegisterDialog: UnwrapRef<typeof import('./composables/useDialogRegister')['useRegisterDialog']>
     readonly useRequest: UnwrapRef<typeof import('vue-request')['useRequest']>
@@ -1455,6 +1457,7 @@ declare module '@vue/runtime-core' {
     readonly usePreferredReducedMotion: UnwrapRef<typeof import('@vueuse/core')['usePreferredReducedMotion']>
     readonly usePrevious: UnwrapRef<typeof import('@vueuse/core')['usePrevious']>
     readonly useRafFn: UnwrapRef<typeof import('@vueuse/core')['useRafFn']>
+    readonly useRateExchange: UnwrapRef<typeof import('./composables/useRateExchange')['useRateExchange']>
     readonly useRefHistory: UnwrapRef<typeof import('@vueuse/core')['useRefHistory']>
     readonly useRegisterDialog: UnwrapRef<typeof import('./composables/useDialogRegister')['useRegisterDialog']>
     readonly useRequest: UnwrapRef<typeof import('vue-request')['useRequest']>

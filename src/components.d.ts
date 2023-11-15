@@ -10,7 +10,6 @@ declare module 'vue' {
     AppAccordionMenu: typeof import('./components/AppAccordionMenu.vue')['default']
     AppAddBankcards: typeof import('./components/AppAddBankcards.vue')['default']
     AppAffiliateContent: typeof import('./components/AppAffiliateContent.vue')['default']
-    AppAgentCommissionDraw: typeof import('./components/AppAgentCommissionDraw.vue')['default']
     AppAgentCommissionDrawDialog: typeof import('./components/AppAgentCommissionDrawDialog.vue')['default']
     AppAgentCommissionRecordDialog: typeof import('./components/AppAgentCommissionRecordDialog.vue')['default']
     AppAgentGradeDialog: typeof import('./components/AppAgentGradeDialog.vue')['default']
