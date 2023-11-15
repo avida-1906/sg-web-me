@@ -140,7 +140,7 @@ onUnmounted(() => {
     justify-content: center;
     font-size: var(--tg-font-size-default);
     .overlay {
-      position: absolute;
+      position: fixed;
       left: 0;
       top: -100px;
       bottom: 0;
