@@ -78,19 +78,19 @@ const {
   },
 })
 
-const withdrawMethodData = computed(() => {
-  if (withdrawMethodList.value) {
-    currentWithdrawMethod.value = withdrawMethodList.value[0].id
-    return withdrawMethodList.value.map((item) => {
-      return {
-        label: item.name,
-        value: item.id,
-      }
-    })
-  }
-  currentWithdrawMethod.value = ''
-  return []
-})
+// const withdrawMethodData = computed(() => {
+//   if (withdrawMethodList.value) {
+//     currentWithdrawMethod.value = withdrawMethodList.value[0].id
+//     return withdrawMethodList.value.map((item) => {
+//       return {
+//         label: item.name,
+//         value: item.id,
+//       }
+//     })
+//   }
+//   currentWithdrawMethod.value = ''
+//   return []
+// })
 
 const bindBanks = computed(() => {
   if (withdrawBankcardList.value && withdrawBankcardList.value.d) {
@@ -166,10 +166,10 @@ await application.allSettled(
     </div>
     <!-- 出款信息 -->
     <div v-else class="withdrawal-wrap">
-      <AppWithdrawalDepositType
+      <!-- <AppWithdrawalDepositType
         v-model="currentWithdrawMethod"
         :current-type="withdrawMethodData"
-      />
+      /> -->
       <div class="withdrawal-info">
         <BaseLabel :label="currentType === '1' ? '出款银行卡' : 'PIX账号'" must>
           <BaseSelect
@@ -267,6 +267,7 @@ await application.allSettled(
       }
     }
   }
+
 }
 .bank-options{
   .option-row {
