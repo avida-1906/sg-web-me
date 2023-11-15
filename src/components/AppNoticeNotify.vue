@@ -1,25 +1,49 @@
 <script lang="ts" setup>
+import { getCurrentLanguageForBackend } from '~/modules/i18n'
+
 interface Props {
   mode: string
 }
-
 const props = withDefaults(defineProps<Props>(), {
   mode: '',
 })
+
+enum EnumPage {tz, znx, gg, pmd, fk }
 
 const { openBetSlipDialog } = useDialogBetSlip()
 const { openDepositDetailDialog } = useDialogDepositDetail()
 const { openNoticeDialog } = useDialogNotice()
 const { openMessageDialog } = useDialogMessage()
-const { bool: loading, setBool: setLoadingBool } = useBoolean(false)
+const { bool: loading, setBool: setLoadingBool } = useBoolean(true)
+// 登录前
+// const {
+//   data: noticeAllList,
+//   run: runMemberNoticeAllList,
+//   // loading: memberNoticeListLoading,
+// } = useRequest(ApiMemberNoticeAllList, {
+//   onSuccess() {
+
+//   },
+// })
+// 登录后
+const {
+  data: noticeList,
+  run: runMemberNoticeList,
+  // loading: memberNoticeListLoading,
+} = useRequest(ApiMemberNoticeList, {
+  onSuccess() {
+
+  },
+})
 
 const pageCurrent = ref(0)
 const pageSize = 10
 const pageTotal = 3
-const noticeList = [{}]
+// const noticeList = [{}]
 
 const isFinished = computed(() => {
-  return pageCurrent.value >= pageTotal
+  // return pageCurrent.value >= pageTotal
+  return true
 })
 
 function handleLoad() {
@@ -29,24 +53,36 @@ function handleLoad() {
     setLoadingBool(false)
   }, 1200)
 }
-function openDialogDetail() {
+function openDialogDetail(item: any) {
   switch (props.mode) {
-    case 'tz': return openBetSlipDialog({
+    case EnumPage[0]: return openBetSlipDialog({
       type: 'sports',
       data: {
         betType: 'single',
       },
     })
-    case 'znx': return openDepositDetailDialog()
-    case 'gg': return openNoticeDialog()
-    case 'pmd': return openMessageDialog()
+    case EnumPage[1]: return openDepositDetailDialog()
+    case EnumPage[2]: return openNoticeDialog(item)
+    case EnumPage[3]: return openMessageDialog(item)
   }
 }
+function pageInit() {
+  switch (props.mode) {
+    case EnumPage[0]: break
+    case EnumPage[1]: break
+    case EnumPage[2]: runMemberNoticeList({ types: '1' }) // runMemberNoticeAllList({ types: '1' })
+      break
+    case EnumPage[3]: runMemberNoticeList({ types: '2' }) // runMemberNoticeAllList({ types: '2' })
+      break
+  }
+}
+
+pageInit()
 </script>
 
 <template>
   <BaseList
-    v-if="noticeList.length > 0"
+    v-if="noticeList && noticeList.length > 0"
     :finished="isFinished"
     :loading="loading"
     @load="handleLoad"
@@ -57,17 +93,17 @@ function openDialogDetail() {
         <span>标记全部为已读</span>
       </div>
       <div
-        v-for="i in pageCurrent * pageSize"
-        :key="i"
+        v-for="item of noticeList"
+        :key="item.id"
         class="contain-item cursor-pointer"
-        @click="openDialogDetail"
+        @click="openDialogDetail(item)"
       >
         <div class="center item-left">
           <BaseIcon name="navbar-wallet" class="icon-size" />
         </div>
         <div class="item-right">
           <div class="right-state">
-            <span>复式投注已结算{{ i }}</span>
+            <span>{{ item.title }}</span>
             <BaseBadge
               status="success" style="color: var(--tg-secondary-light);
                     font-size: var(--tg-font-size-xs);
@@ -75,28 +111,30 @@ function openDialogDetail() {
             />
           </div>
           <!-- 通知 -->
-          <div v-if="mode === 'tz'" style="white-space:normal;line-height: 1.43;">
+          <div v-if="mode === EnumPage[0]" style="white-space:normal;line-height: 1.43;">
             您含有3项赛事的复式投注赢得了100.00000000
             <AppCurrencyIcon
               style="display: inline-flex;vertical-align: middle;" currency-type="BTC"
             />
           </div>
           <!-- 站内信 -->
-          <template v-else-if="mode === 'znx'">
+          <template v-else-if="mode === EnumPage[1]">
             <div>您的代存订单：2023123456789</div>
             <div>金额：10000.0000 USDT</div>
             <div>状态：成功</div>
           </template>
           <!-- 公告 -->
-          <div v-else-if="mode === 'gg'" style="white-space:normal;line-height: 1.43;">
-            尊敬的客户：亚洲顶级真人品牌，开创行业最高奖金赛事,“百家乐争霸赛”火热进行中，
-            9月16日至11月26日的每周六/周日20:00定时开赛，22场比赛，超大奖圈，百万奖金等您来拿！
-          </div>
+          <div
+            v-else-if="mode === EnumPage[2]"
+            style="white-space:normal;line-height: 1.43;"
+            v-html="item.content[getCurrentLanguageForBackend()]"
+          />
           <!-- 跑马灯 -->
-          <div v-else style="white-space:normal;line-height: 1.43;">
-            尊敬的客户：11月1日至11月30日，每日使用USDT进行取款，
-            当日累计成功提款金额≥2,000元，点击【立即申请】即有几率获得随机幸运礼金，最高1,000元彩金！
-          </div>
+          <div
+            v-else
+            style="white-space:normal;line-height: 1.43;"
+            v-html="item.content[getCurrentLanguageForBackend()]"
+          />
         </div>
       </div>
     </div>
@@ -104,7 +142,7 @@ function openDialogDetail() {
   <div v-else class="empty-notice">
     <BaseEmpty>
       <template #icon>
-        <BaseIcon style="--tg-base-button-font-size:62px;" name="notice-empty" />
+        <BaseIcon font-size="62px" name="notice-empty" />
       </template>
       <template #description>
         <div class="empty-text">
