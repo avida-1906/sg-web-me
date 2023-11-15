@@ -21,6 +21,9 @@ const {
   value: feedbackText,
   errorMessage: feedbackTextError,
   validate: feedbackTextValidate,
+  meta: feedbacTextMeta,
+  handleBlur,
+  resetField,
 } = useField<string>('feedbackText', (value) => {
   if (!value)
     return '请输入反馈内容'
@@ -34,6 +37,7 @@ const {
   onSuccess() {
     feedbackText.value = ''
     imageUrl.value = []
+    resetField()
     openNotify({
       type: 'success',
       message: '反馈提交成功！',
@@ -66,6 +70,7 @@ const { run: getTotalBonus, data: totalBonus } = useRequest(ApiMemberFeedbackBon
 // })
 
 async function submitFeedback() {
+  handleBlur()
   await feedbackTextValidate()
   if (!feedbackTextError.value)
     runFeedbackInsert({ images: imageUrl.value.length ? JSON.stringify(imageUrl.value) : '', description: feedbackText.value })
@@ -147,8 +152,9 @@ onActivated(() => {
             rows="8"
             :placeholder="placeholder"
             @input="textInput"
+            @blur="handleBlur"
           />
-          <p class="length">
+          <p v-show="feedbacTextMeta.touched" class="length">
             <span class="error">{{ feedbackTextError }}</span>
             <span>{{ textLength }}/200</span>
           </p>
