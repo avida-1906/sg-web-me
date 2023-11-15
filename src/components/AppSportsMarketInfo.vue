@@ -88,14 +88,13 @@ const eventDetailPath = computed(() => {
 })
 // 一小时倒计时
 const isCountdown = computed(() => {
-  const resTime = (props.data.ed * 1000) - new Date().getTime()
-  const oneHour = 1000 * 60 * 60
-  return resTime < oneHour && resTime > 60000
+  const startsTime = dayjs(props.data.ed * 1000)
+  const resTime = startsTime.diff(dayjs(), 'minute')
+  return resTime <= 60 && resTime >= 1
 })
 const countdownMins = computed(() => {
-  const currentTime = dayjs()
   const startsTime = dayjs(props.data.ed * 1000)
-  return startsTime.diff(currentTime, 'minute')
+  return startsTime.diff(dayjs(), 'minute')
 })
 // 是否已经开赛
 const isStarted = computed(() => dayjs().isAfter((props.data.ed * 1000)))
