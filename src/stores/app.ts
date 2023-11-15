@@ -12,7 +12,10 @@ export const useAppStore = defineStore('app', () => {
   const {
     data: allContractList,
   } = useApiMemberTreeList('018')
+  /** 获取用户余额 */
   const { data: balanceData, runAsync: getBalanceData } = useRequest(ApiMemberBalance)
+  /** 获取用户锁定余额 */
+  const { data: lockerData, runAsync: getLockerData } = useRequest(ApiMemberBalanceLocker)
   const visibility = useDocumentVisibility()
   const mqttConnectSuccessBus = useEventBus(MQTT_CONNECT_SUCCESS_BUS)
   const mqttDisconnectBus = useEventBus(MQTT_DISCONNECT_BUS)
@@ -27,6 +30,9 @@ export const useAppStore = defineStore('app', () => {
   const userInfo = computed(() => {
     if (balanceData.value && _userInfo.value)
       _userInfo.value.balance = balanceData.value
+
+    if (lockerData.value && _userInfo.value)
+      _userInfo.value.balance_locker = lockerData.value
 
     return _userInfo.value
   })
@@ -77,6 +83,7 @@ export const useAppStore = defineStore('app', () => {
     userInfo,
     mqttIsConnected,
     allContractList,
+    exchangeRateData,
     setToken,
     setLoginTrue,
     setLoginFalse,
@@ -87,8 +94,8 @@ export const useAppStore = defineStore('app', () => {
     setMqttConnectedTrue,
     setMqttConnectedFalse,
     getBalanceData,
-    exchangeRateData,
     runGetExchangeRate,
+    getLockerData,
   }
 })
 

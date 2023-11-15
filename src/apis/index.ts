@@ -993,3 +993,11 @@ export function ApiMemberNoticeList(params: {
 export function ApiMemberExchangeRate() {
   return httpClient.get<Array<ExchangeRateData>>('/member/exchange/rate/list')
 }
+
+/**
+ * 保险库余额查询
+ * @see null
+ */
+export function ApiMemberBalanceLocker() {
+  return httpClient.get<TCurrencyObject>('/member/balance/locker')
+}
