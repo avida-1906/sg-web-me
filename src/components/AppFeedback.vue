@@ -3,7 +3,10 @@ const chatStore = useChatStore()
 
 const { openNotify } = useNotify()
 
-const { openReceiveBonusDialog } = useDialogReceiveBonus()
+const { openReceiveBonusDialog, closeReceiveBonusDialog } = useDialogReceiveBonus(() => {
+  seeFeedback()
+  closeReceiveBonusDialog()
+})
 
 const imageUrl: Ref<string[]> = ref([])
 const textLength = ref(0)
@@ -29,6 +32,8 @@ const {
   loading: feedbackInsertLoading,
 } = useRequest(ApiMemberFeedbackInsert, {
   onSuccess() {
+    feedbackText.value = ''
+    imageUrl.value = []
     openNotify({
       type: 'success',
       message: '反馈提交成功！',
@@ -39,26 +44,26 @@ const {
   run: runFeedbackList,
   data: feedbackList,
 } = useRequest(ApiMemberFeedbackList)
-const {
-  run: runFeedbackBonusDraw,
-} = useRequest(ApiMemberFeedbackBonusDraw, {
-  onSuccess() {
-    openNotify({
-      type: 'success',
-      message: '领取成功！',
-    })
-    runFeedbackList()
-  },
-})
+// const {
+//   run: runFeedbackBonusDraw,
+// } = useRequest(ApiMemberFeedbackBonusDraw, {
+//   onSuccess() {
+//     openNotify({
+//       type: 'success',
+//       message: '领取成功！',
+//     })
+//     runFeedbackList()
+//   },
+// })
 const { run: runUpdateFeedback } = useRequest(ApiMemberFeedbackUpdate)
 const { run: getTotalBonus, data: totalBonus } = useRequest(ApiMemberFeedbackBonusAll)
 
-const amountTotal = computed(() => {
-  return totalBonus.value ? +totalBonus.value : 0
-  // return feedbackList?.value?.d?.reduce((total, item) => {
-  //   return total + Number(item.amount)
-  // }, 0) ?? 0
-})
+// const amountTotal = computed(() => {
+//   return totalBonus.value ? +totalBonus.value : 0
+//   // return feedbackList?.value?.d?.reduce((total, item) => {
+//   //   return total + Number(item.amount)
+//   // }, 0) ?? 0
+// })
 
 async function submitFeedback() {
   await feedbackTextValidate()
@@ -66,10 +71,10 @@ async function submitFeedback() {
     runFeedbackInsert({ images: imageUrl.value.length ? JSON.stringify(imageUrl.value) : '', description: feedbackText.value })
 }
 
-function getAmount() {
-  if (+amountTotal.value > 0)
-    runFeedbackBonusDraw({ feed_id: '' })
-}
+// function getAmount() {
+//   if (+amountTotal.value > 0)
+//     runFeedbackBonusDraw({ feed_id: '' })
+// }
 
 function textInput() {
   textLength.value = feedbackText.value?.length
