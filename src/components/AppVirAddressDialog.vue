@@ -99,6 +99,10 @@ watch(() => curContractList.value, () => {
   getTypeVal()
 })
 
+onMounted(() => {
+  getTypeVal()
+})
+
 onUnmounted(() => {
   callback.value && callback.value()
 })

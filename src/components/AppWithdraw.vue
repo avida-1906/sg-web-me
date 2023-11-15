@@ -123,7 +123,7 @@ watch(() => props.currentNetwork, () => {
           v-model="address"
           :options="addrOptions"
           small theme popper border
-          :style="{ '--tg-base-select-popper-style-padding-y': 'var(--tg-spacing-12)' }"
+          style="--tg-base-select-popper-style-padding-y: var(--tg-spacing-12)"
         >
           <template #label>
             <span class="popper-label">
