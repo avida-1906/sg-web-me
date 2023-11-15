@@ -69,7 +69,7 @@ onUnmounted(() => {
     <div class="header">
       <div class="go-back" @click="goBack">
         <BaseIcon name="uni-arrowleft-line" />
-        <span>返回上级页面</span>
+        <span>返回</span>
       </div>
     </div>
     <div class="messages">

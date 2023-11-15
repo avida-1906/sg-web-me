@@ -1,6 +1,6 @@
 import AppReceiveBonusDialog from '~/components/AppReceiveBonusDialog.vue'
 
-export function useDialogReceiveBonus() {
+export function useDialogReceiveBonus(cb?: () => void) {
   const { t } = useI18n()
   const {
     openDialog: openReceiveBonusDialog,
@@ -10,7 +10,13 @@ export function useDialogReceiveBonus() {
     icon: 'chat-tip',
     maxWidth: 342,
     default: ({ feedBackItem, totalBonus }) =>
-      h(AppReceiveBonusDialog, { feedBackItem, totalBonus }),
+      h(AppReceiveBonusDialog, {
+        feedBackItem,
+        totalBonus,
+      }),
+    onDialogClose: () => {
+      cb && cb()
+    },
   })
 
   return {

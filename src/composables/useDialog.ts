@@ -8,6 +8,7 @@ interface DialogOptions {
   showButtons?: boolean
   onCancel?: () => void
   onConfirm?: () => void
+  onDialogClose?: () => void
   default: (params?: any) => Component
 }
 
@@ -15,7 +16,7 @@ export function useDialog({
   title,
   icon,
   default:
-  defaultSlot, maxWidth, showButtons, onCancel, onConfirm,
+  defaultSlot, maxWidth, showButtons, onCancel, onConfirm, onDialogClose,
 }: DialogOptions) {
   const app = ref()
   const div = ref()
@@ -30,8 +31,8 @@ export function useDialog({
       show: false,
       funcCall: true,
       onClose: () => {
-        console.log('onClose123123123')
         closeDialog()
+        onDialogClose && onDialogClose()
       },
       onCancel: () => {
         onCancel && onCancel()
