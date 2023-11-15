@@ -12,7 +12,7 @@ const params = computed(() => ({ feed_id: feedBackItem.value?.feed_id ?? '' }))
 const canSendMsg = computed(() =>
   messageHistory.value && messageHistory.value.length
     ? messageHistory.value[messageHistory.value.length - 1].uid !== userInfo.value?.uid
-    : true)
+    : false)
 
 const { run: runGetHistory, loading } = useRequest(ApiGetFeedbackChatList, {
   onBefore: () => {
@@ -26,6 +26,7 @@ const { run: runGetHistory, loading } = useRequest(ApiGetFeedbackChatList, {
 
 function goBack() {
   chatStore.setFeedbackChatFalse()
+  chatStore.setFeedbackItem()
 }
 
 function init() {
@@ -113,7 +114,10 @@ onUnmounted(() => {
         </template>
       </div>
     </div>
-    <div v-if="feedBackItem" class="footer">
+    <div
+      v-if="feedBackItem && canSendMsg && feedBackItem.bonusState !== 1"
+      class="footer"
+    >
       <AppFeedbackChatFooter :feed-id="feedBackItem.feed_id" :allow-send="canSendMsg" />
     </div>
   </div>

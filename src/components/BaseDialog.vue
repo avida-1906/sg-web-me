@@ -46,10 +46,10 @@ provide('closeDialog', close)
 
 watch([() => props.show, () => _show.value], ([show, _show]) => {
   if (show || _show)
-    document.body.style.overflow = 'hidden'
+    document.body.classList.add('tg-popup-parent--hidden')
 
   else
-    document.body.style.overflow = ''
+    document.body.classList.remove('tg-popup-parent--hidden')
 })
 
 onMounted(() => {

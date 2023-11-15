@@ -21,9 +21,9 @@ const isOwn = computed(() => props.message.uid === userInfo.value?.uid)
 
 <template>
   <div class="app-feedback-chat-msg" :class="{ 'is-own': isOwn }">
-    <div class="avatar">
+    <!-- <div class="avatar">
       <BaseImage url="/png/avatar.png" />
-    </div>
+    </div> -->
     <div class="content" :class="{ 'is-own': isOwn }">
       <div
         v-if="!isOwn"
@@ -60,6 +60,7 @@ const isOwn = computed(() => props.message.uid === userInfo.value?.uid)
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    max-width: 80%;
     &.is-own {
       flex-direction: row-reverse;
     }
