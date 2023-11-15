@@ -56,14 +56,17 @@ export const useSportsStore = defineStore('sports', () => {
   const currentUpcomingNav = ref(0)
 
   /** 体育计数源 */
-  const { data: allSportsCount, run: runSportsCount } = useRequest(() => ApiSportCount({ ic: 0 }))
+  const { data: allSportsCount, run: runSportsCount } = useRequest(() =>
+    ApiSportCount({ ic: 0 }),
+  {
+    onSuccess(res) {
+      currentLiveNav.value = res.list.find(a => a.lc > 0)?.si ?? 0
+    },
+  },
+  )
 
   /** 侧边栏数据源 */
-  const { data: sidebarData, run: runSportsSidebar } = useRequest(ApiSportSidebar, {
-    onSuccess(res) {
-      currentLiveNav.value = res.rbl[0]?.si ?? 0
-    },
-  })
+  const { data: sidebarData, run: runSportsSidebar } = useRequest(ApiSportSidebar)
 
   /** 获取场馆列表 */
   const {
