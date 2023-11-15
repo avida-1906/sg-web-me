@@ -9,7 +9,6 @@ const { openReceiveBonusDialog, closeReceiveBonusDialog } = useDialogReceiveBonu
 })
 
 const imageUrl: Ref<string[]> = ref([])
-const textLength = ref(0)
 const tab = ref(1)
 const placeholder = '您的任何意见对我们都很重要，凡事有价值意见都将被采纳，一旦采纳将视重要程度给予不同现金奖励，欢迎您畅所欲言！'
 const tabList = [
@@ -30,6 +29,8 @@ const {
   return ''
 })
 
+const textLength = computed(() => feedbackText.value?.length ?? 0)
+
 const {
   run: runFeedbackInsert,
   loading: feedbackInsertLoading,
@@ -48,41 +49,14 @@ const {
   run: runFeedbackList,
   data: feedbackList,
 } = useRequest(ApiMemberFeedbackList)
-// const {
-//   run: runFeedbackBonusDraw,
-// } = useRequest(ApiMemberFeedbackBonusDraw, {
-//   onSuccess() {
-//     openNotify({
-//       type: 'success',
-//       message: '领取成功！',
-//     })
-//     runFeedbackList()
-//   },
-// })
 const { run: runUpdateFeedback } = useRequest(ApiMemberFeedbackUpdate)
 const { run: getTotalBonus, data: totalBonus } = useRequest(ApiMemberFeedbackBonusAll)
-
-// const amountTotal = computed(() => {
-//   return totalBonus.value ? +totalBonus.value : 0
-//   // return feedbackList?.value?.d?.reduce((total, item) => {
-//   //   return total + Number(item.amount)
-//   // }, 0) ?? 0
-// })
 
 async function submitFeedback() {
   handleBlur()
   await feedbackTextValidate()
   if (!feedbackTextError.value)
     runFeedbackInsert({ images: imageUrl.value.length ? JSON.stringify(imageUrl.value) : '', description: feedbackText.value })
-}
-
-// function getAmount() {
-//   if (+amountTotal.value > 0)
-//     runFeedbackBonusDraw({ feed_id: '' })
-// }
-
-function textInput() {
-  textLength.value = feedbackText.value?.length
 }
 
 function feedbackItemClick(item: any) {
@@ -152,7 +126,6 @@ onActivated(() => {
             cols="30"
             rows="8"
             :placeholder="placeholder"
-            @input="textInput"
             @blur="handleBlur"
           />
           <p class="length">
