@@ -9,7 +9,6 @@ const { openReceiveBonusDialog, closeReceiveBonusDialog } = useDialogReceiveBonu
 })
 
 const imageUrl: Ref<string[]> = ref([])
-const textLength = ref(0)
 const tab = ref(1)
 const placeholder = '您的任何意见对我们都很重要，凡事有价值意见都将被采纳，一旦采纳将视重要程度给予不同现金奖励，欢迎您畅所欲言！'
 const tabList = [
@@ -21,11 +20,16 @@ const {
   value: feedbackText,
   errorMessage: feedbackTextError,
   validate: feedbackTextValidate,
+  meta: feedbacTextMeta,
+  handleBlur,
+  resetField,
 } = useField<string>('feedbackText', (value) => {
   if (!value)
     return '请输入反馈内容'
   return ''
 })
+
+const textLength = computed(() => feedbackText.value?.length ?? 0)
 
 const {
   run: runFeedbackInsert,
@@ -34,6 +38,7 @@ const {
   onSuccess() {
     feedbackText.value = ''
     imageUrl.value = []
+    resetField()
     openNotify({
       type: 'success',
       message: '反馈提交成功！',
@@ -44,40 +49,14 @@ const {
   run: runFeedbackList,
   data: feedbackList,
 } = useRequest(ApiMemberFeedbackList)
-// const {
-//   run: runFeedbackBonusDraw,
-// } = useRequest(ApiMemberFeedbackBonusDraw, {
-//   onSuccess() {
-//     openNotify({
-//       type: 'success',
-//       message: '领取成功！',
-//     })
-//     runFeedbackList()
-//   },
-// })
 const { run: runUpdateFeedback } = useRequest(ApiMemberFeedbackUpdate)
 const { run: getTotalBonus, data: totalBonus } = useRequest(ApiMemberFeedbackBonusAll)
 
-// const amountTotal = computed(() => {
-//   return totalBonus.value ? +totalBonus.value : 0
-//   // return feedbackList?.value?.d?.reduce((total, item) => {
-//   //   return total + Number(item.amount)
-//   // }, 0) ?? 0
-// })
-
 async function submitFeedback() {
+  handleBlur()
   await feedbackTextValidate()
   if (!feedbackTextError.value)
     runFeedbackInsert({ images: imageUrl.value.length ? JSON.stringify(imageUrl.value) : '', description: feedbackText.value })
-}
-
-// function getAmount() {
-//   if (+amountTotal.value > 0)
-//     runFeedbackBonusDraw({ feed_id: '' })
-// }
-
-function textInput() {
-  textLength.value = feedbackText.value?.length
 }
 
 function feedbackItemClick(item: any) {
@@ -138,7 +117,8 @@ onActivated(() => {
       <div v-if="tab === 1" class="create-feedback">
         <div class="text">
           <p class="label">
-            反馈内容<span>（你提我改）</span>
+            反馈内容<span class="error-text">*</span>
+            <!-- <span>（你提我改）</span> -->
           </p>
           <textarea
             v-model="feedbackText"
@@ -146,10 +126,13 @@ onActivated(() => {
             cols="30"
             rows="8"
             :placeholder="placeholder"
-            @input="textInput"
+            @blur="handleBlur"
           />
           <p class="length">
-            <span class="error">{{ feedbackTextError }}</span>
+            <span
+              class="error"
+              :class="{ show: feedbacTextMeta.touched }"
+            >{{ feedbackTextError }}</span>
             <span>{{ textLength }}/200</span>
           </p>
         </div>
@@ -261,6 +244,12 @@ onActivated(() => {
 </template>
 
 <style lang='scss' scoped>
+.error-text {
+  font-size: var(--tg-font-size-xl);
+  color: var(--tg-text-error) !important;
+  line-height: 0;
+  vertical-align: middle;
+}
 .total-bonus {
   cursor: pointer;
   color: var(--tg-text-white);
@@ -345,6 +334,10 @@ onActivated(() => {
           .error{
             color: var(--tg-text-error);
             font-size: var(--tg-font-size-xs);
+            opacity: 0;
+            &.show {
+              opacity: 1;
+            }
           }
         }
         // .file{

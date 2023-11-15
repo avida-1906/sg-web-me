@@ -172,6 +172,13 @@ export interface ProviderItem {
   name: string
 }
 
+/** 汇率数据对象 */
+export type ExchangeRateData = {
+  [k in EnumCurrencyKey]: {
+    [k in EnumCurrencyKey]: string
+  }
+}
+
 /** ================= 体育 ====================== */
 /** 联赛item */
 export interface ILeagueItem {

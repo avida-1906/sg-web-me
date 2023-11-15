@@ -24,7 +24,7 @@ const isOwn = computed(() => props.message.uid === userInfo.value?.uid)
     <div class="avatar">
       <BaseImage url="/png/avatar.png" />
     </div>
-    <div class="content">
+    <div class="content" :class="{ 'is-own': isOwn }">
       <div
         v-if="!isOwn"
         class="name"
@@ -56,6 +56,13 @@ const isOwn = computed(() => props.message.uid === userInfo.value?.uid)
     overflow: hidden;
   }
   .content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    &.is-own {
+      flex-direction: row-reverse;
+    }
     .name {
       font-size: var(--tg-font-size-xs);
       font-weight: var(--tg-font-weight-semibold);

@@ -86,8 +86,9 @@ const {
     })
     resetAmount()
     resetPassword()
-    // appStore.getBalanceData()
-    appStore.updateUserInfo()
+    appStore.getBalanceData()
+    appStore.getLockerData()
+    // appStore.updateUserInfo()
   },
 })
 
