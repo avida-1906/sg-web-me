@@ -104,7 +104,6 @@ declare module 'vue' {
     AppSportsPageMyBet: typeof import('./components/AppSportsPageMyBet.vue')['default']
     AppSportsPageUpcoming: typeof import('./components/AppSportsPageUpcoming.vue')['default']
     AppSportsProviderSlider: typeof import('./components/AppSportsProviderSlider.vue')['default']
-    AppSportsRegion: typeof import('./components/AppSportsRegion.vue')['default']
     AppSportsSearchResult: typeof import('./components/AppSportsSearchResult.vue')['default']
     AppSportsTab: typeof import('./components/AppSportsTab.vue')['default']
     AppStack: typeof import('./components/AppStack.vue')['default']
@@ -168,7 +167,6 @@ declare module 'vue' {
     BaseTable: typeof import('./components/BaseTable.vue')['default']
     BaseTag: typeof import('./components/BaseTag.vue')['default']
     BaseUpload: typeof import('./components/BaseUpload.vue')['default']
-    copy: typeof import('./components/AppSportsMarket copy.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

@@ -46,10 +46,9 @@ provide('closeDialog', close)
 
 watch([() => props.show, () => _show.value], ([show, _show]) => {
   if (show || _show)
-    document.body.style.overflow = 'hidden'
-
+    document.body.classList.add('tg-popup-parent--hidden')
   else
-    document.body.style.overflow = ''
+    document.body.classList.remove('tg-popup-parent--hidden')
 })
 
 onMounted(() => {
@@ -68,7 +67,7 @@ onUnmounted(() => {
 
 <template>
   <Transition>
-    <section v-if="show || _show" class="tg-base-dialog">
+    <section v-if="show || _show" class="tg-base-dialog" @touchmove.stop>
       <div class="overlay" @click="closeOnClickOverlay && close()" />
       <div class="card" :style="`--tg-dialog-style-maxwidth:${maxWidth}px`">
         <div v-if="icon || title" class="header">
@@ -140,7 +139,7 @@ onUnmounted(() => {
     justify-content: center;
     font-size: var(--tg-font-size-default);
     .overlay {
-      position: absolute;
+      position: fixed;
       left: 0;
       top: -100px;
       bottom: 0;
@@ -150,6 +149,7 @@ onUnmounted(() => {
       z-index: var(--tg-z-index-50);
     }
     .card {
+      pointer-events: initial;
       position: relative;
       z-index: var(--tg-z-index-secondary);
       width: 100%;

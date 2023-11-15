@@ -272,7 +272,8 @@ onMounted(() => {
   <div v-if="paramsData" class="tg-settings-general">
     <AppSettingsContentItem
       title="电邮地址"
-      :verified="emailVerified || emailDisabledBtn" :badge="emailVerified"
+      :verified="emailVerified || emailDisabledBtn"
+      :badge="emailVerified"
       @submit="emailSubmit"
     >
       <div style="margin-top: 16px;">

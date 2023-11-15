@@ -180,6 +180,11 @@ body {
   --tg-icon-color: var(--tg-text-lightgrey);
 }
 
+.tg-popup-parent--hidden {
+  overflow: hidden;
+  pointer-events: none;
+}
+
 .center {
   display: flex;
   justify-content: center;
