@@ -86,12 +86,24 @@ const eventDetailPath = computed(() => {
   const data = props.data
   return `/sports/${SPORTS_PLAT_ID}/${data.si}/${data.pgid}/${data.ci}/${data.ei}`
 })
-// 正在滚球
-const isOnAir = computed(() => props.data.m === 3)
+// 一小时倒计时
+const isCountdown = computed(() => {
+  const startsTime = dayjs(props.data.ed * 1000)
+  const resTime = startsTime.diff(dayjs(), 'minute')
+  return resTime <= 60 && resTime >= 1
+})
+const countdownMins = computed(() => {
+  const startsTime = dayjs(props.data.ed * 1000)
+  return startsTime.diff(dayjs(), 'minute')
+})
 // 是否已经开赛
 const isStarted = computed(() => dayjs().isAfter((props.data.ed * 1000)))
 // 时间格式化
 const timeText = computed(() => timeFullTimeFormat(props.data.ed * 1000))
+// 正在滚球
+const isOnAir = computed(() => props.data.m === 3)
+// 是否有直播
+const isHasliveStream = computed(() => props.data.ls === 1)
 
 // 打开实时数据或直播
 function openDragDialog(type: 'trend' | 'live') {
@@ -130,28 +142,35 @@ console.log('data====>', props.data)
       <div class="wrapper">
         <div class="fixture-details">
           <!-- 状态 -->
-          <div
-            v-if="isOnAir" class="status"
-            :class="{ live: isOnAir }"
-          >
-            {{ t('sports_status_live') }}
-          </div>
-          <!-- <div v-else-if="isCountdown">
-            <svg height="12" width="12" viewBox="0 0 20 20" class="svelte-l8nfzs">
-              <circle r="10" cx="10" cy="10" fill="#72ACED" />
-              <circle
-                r="5" cx="10" cy="10" fill="transparent" stroke="#105EB4"
-                stroke-width="10.5"
-                stroke-dasharray="calc(42 * 31.4 / 100) 31.4"
-                transform="rotate(-90) translate(-20)"
-              />
-            </svg>
-          </div> -->
-          <span v-if="!isStarted" class="text">{{ timeText }}</span>
+          <template v-if="isCountdown">
+            <div>
+              <svg height="12" width="12" viewBox="0 0 20 20" class="svelte-l8nfzs">
+                <circle r="10" cx="10" cy="10" fill="#72ACED" />
+                <circle
+                  r="5" cx="10" cy="10" fill="transparent" stroke="#105EB4"
+                  stroke-width="10.5"
+                  stroke-dasharray="calc(42 * 31.4 / 100) 31.4"
+                  transform="rotate(-90) translate(-20)"
+                />
+              </svg>
+            </div>
+            <span class="text">
+              {{ t('sports_starts_in', { minutes: countdownMins }) }}
+            </span>
+          </template>
+          <template v-if="isOnAir">
+            <div
+              class="status"
+              :class="{ live: isOnAir }"
+            >
+              {{ t('sports_status_live') }}
+            </div>
+            <span class="text">{{ data.rbt }}</span>
+          </template>
+          <span v-if="!isStarted && !isCountdown" class="text">{{ timeText }}</span>
           <span v-else-if="isStarted && !isOnAir" class="text">
             {{ t('sports_tab_starting_soon') }}
           </span>
-          <span v-else-if="isOnAir" class="text">{{ data.rbt }}</span>
 
           <!-- H5时比分显示在这里 -->
           <div v-if="isH5Layout" class="fixture-score-h5">
@@ -227,7 +246,7 @@ console.log('data====>', props.data)
           </div>
         </div>
         <div class="options-wrapper">
-          <VTooltip placement="top">
+          <!-- <VTooltip placement="top">
             <BaseButton
               type="text" size="none"
               :disabled="checkDragDialog(`${fakeDragDialogId}trend`)"
@@ -240,8 +259,8 @@ console.log('data====>', props.data)
                 {{ t('sports_live_trend') }}
               </div>
             </template>
-          </VTooltip>
-          <VTooltip placement="top">
+          </VTooltip> -->
+          <VTooltip v-if="isHasliveStream" placement="top">
             <BaseButton
               type="text" size="none"
               :disabled="checkDragDialog(`${fakeDragDialogId}live`)"
@@ -317,7 +336,7 @@ console.log('data====>', props.data)
     <!-- 更多盘口 -->
     <div class="market-count" :class="{ 'market-count-h5': isH5Layout }">
       <div v-if="isH5Layout" class="options-wrapper">
-        <VTooltip placement="top">
+        <!-- <VTooltip placement="top">
           <BaseButton
             type="text" size="none"
             :disabled="checkDragDialog(`${fakeDragDialogId}trend`)"
@@ -330,8 +349,8 @@ console.log('data====>', props.data)
               {{ t('sports_live_trend') }}
             </div>
           </template>
-        </VTooltip>
-        <VTooltip placement="top">
+        </VTooltip> -->
+        <VTooltip v-if="isHasliveStream" placement="top">
           <BaseButton
             type="text" size="none"
             :disabled="checkDragDialog(`${fakeDragDialogId}live`)"
