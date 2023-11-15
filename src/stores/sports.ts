@@ -64,6 +64,7 @@ export const useSportsStore = defineStore('sports', () => {
       currentLiveNav.value = res.rbl[0]?.si ?? 0
     },
   })
+
   /** 获取场馆列表 */
   const {
     run: runSportsProvider,
@@ -85,6 +86,13 @@ export const useSportsStore = defineStore('sports', () => {
     return sportsProviderData.value && sportsProviderData.value.d
       ? sportsProviderData.value.d
       : []
+  })
+
+  /** 所有球种名称与id */
+  const allSportsNameData = computed(() => {
+    if (sidebarData.value)
+      return sidebarData.value.all
+    return []
   })
 
   /** 滚球计数 */
@@ -244,6 +252,12 @@ export const useSportsStore = defineStore('sports', () => {
     else
       return EnumSportsOddsType.DECIMAL
   }
+
+  /** 通过球种id获取名称 */
+  function getSportsNameBySi(si: number) {
+    return allSportsNameData.value.find(a => a.si === si)?.sn ?? '-'
+  }
+
   return {
     sportsOddsType,
     sportOddType,
@@ -264,6 +278,8 @@ export const useSportsStore = defineStore('sports', () => {
     currentLiveNav,
     upcomingNavs,
     currentUpcomingNav,
+    allSportsNameData,
+    getSportsNameBySi,
   }
 })
 

@@ -148,6 +148,8 @@ export function ApiSportEventList(data: {
   page_size: number
   /** 是否热门 */
   hot?: number
+  /** 联赛id */
+  ci?: string[]
 }) {
   return httpClient.post<{
     /** 资料更新时间 */
