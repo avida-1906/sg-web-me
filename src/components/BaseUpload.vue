@@ -12,7 +12,7 @@ const props = withDefaults(defineProps<Props>(), {
   modelValue: () => [],
   imgType: 'common',
   disabled: false,
-  accept: () => ['image/png', 'image/jpg', 'image/jpeg'],
+  accept: () => ['image/png', 'image/jpg'],
   much: 1,
   size: 10,
 })

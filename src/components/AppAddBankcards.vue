@@ -36,12 +36,12 @@ const { openNotify } = useNotify()
 const currentType = ref<'1' | '2'>(props.currentType)
 const currencyId = ref(props.activeCurrency.cur ?? '')
 const { bool: isDefault, setFalse: setIsDefaultFalse } = useBoolean(false)
-const bankTypeData = ref([{ label: '银行转账', icon: 'fiat-bank', value: '1' }])
-const pixTypeData = ref([{ label: 'PIX', icon: 'fiat-pix', value: '2' }])
+// const bankTypeData = ref([{ label: '银行转账', icon: 'fiat-bank', value: '1' }])
+// const pixTypeData = ref([{ label: 'PIX', icon: 'fiat-pix', value: '2' }])
 const callback = ref<(() => void) | undefined>(props.callback)
 
-const currentTypeBanks = computed(() =>
-  props.currentType === '1' ? bankTypeData.value : pixTypeData.value)
+// const currentTypeBanks = computed(() =>
+//   props.currentType === '1' ? bankTypeData.value : pixTypeData.value)
 
 const isBankType = computed(() => {
   return currentType.value === '1'
@@ -74,7 +74,7 @@ const {
   resetField: bankaccountReset,
 } = useField<string>('bankaccount', (value) => {
   if (!value)
-    return isBankType.value ? '请输入银行卡号码' : '请输入PIX账户'
+    return isBankType.value ? '请输入银行卡号码' : '请输入第三方账户'
   else if (value.length < 4 || value.length > 30)
     return isBankType.value ? '请输入 4 - 30 位数字组成的正确银行卡号' : '请输入 4 - 30 位数字组成的正确PIX账户'
   return ''
@@ -182,7 +182,7 @@ onUnmounted(() => {
         请先绑定提款方式，再进行提款！
       </div>
       <BaseLabel
-        :label="isBankType ? '开户人姓名' : '账户人姓名'"
+        label="开户人姓名"
         :must="props.isFirst"
         :label-content="props.isFirst ? '绑定后不可更改' : ''"
       >
@@ -192,12 +192,12 @@ onUnmounted(() => {
           :disabled="!props.isFirst"
         />
       </BaseLabel>
-      <BaseLabel label="提款方式">
+      <!-- <BaseLabel label="提款方式">
         <AppWithdrawalDepositType
           v-model="currentType"
           :current-type="currentTypeBanks"
         />
-      </BaseLabel>
+      </BaseLabel> -->
       <BaseLabel :label="isBankType ? '请选择银行' : '请选择PIX账户类型'" must>
         <BaseSelect
           v-model="bankName"
@@ -207,8 +207,7 @@ onUnmounted(() => {
         />
       </BaseLabel>
       <BaseLabel
-        v-if="isBankType || bankName"
-        :label="isBankType ? '银行卡号' : 'PIX账户 '"
+        :label="isBankType ? '银行卡号' : '请输入第三方账户 '"
         must
       >
         <BaseInput
