@@ -201,7 +201,7 @@ await application.allSettled(
             </template>
           </BaseSelect>
         </BaseLabel>
-        <BaseLabel label="金额" must right-text="R$ 0.00">
+        <BaseLabel label="金额" must>
           <BaseInput v-model="amount" :msg="amountError" @on-right-button="maxNumber">
             <template #right-button>
               <span>最大值</span>

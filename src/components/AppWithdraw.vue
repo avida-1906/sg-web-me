@@ -130,7 +130,7 @@ watch(() => props.currentNetwork, () => {
         <BaseSelect
           v-model="address"
           :options="addrOptions"
-          small theme popper border
+          theme popper small border
           style="--tg-base-select-popper-style-padding-y: var(--tg-spacing-12)"
         >
           <template #label>
@@ -160,7 +160,7 @@ watch(() => props.currentNetwork, () => {
       <div class="amount">
         <div class="top">
           <span class="label">金额<span style="color: var(--tg-text-error);">*</span></span>
-          <span class="us">US$0.00</span>
+          <!-- <span class="us">US$0.00</span> -->
         </div>
         <BaseInput
           v-model="amount"
