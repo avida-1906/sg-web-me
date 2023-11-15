@@ -68,7 +68,7 @@ onUnmounted(() => {
 
 <template>
   <Transition>
-    <section v-if="show || _show" class="tg-base-dialog">
+    <section v-if="show || _show" class="tg-base-dialog" @touchmove.stop>
       <div class="overlay" @click="closeOnClickOverlay && close()" />
       <div class="card" :style="`--tg-dialog-style-maxwidth:${maxWidth}px`">
         <div v-if="icon || title" class="header">
