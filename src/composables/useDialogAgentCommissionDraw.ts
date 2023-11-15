@@ -1,4 +1,4 @@
-import AppAgentCommissionDraw from '~/components/AppAgentCommissionDraw.vue'
+import AppAgentCommissionDrawDialog from '~/components/AppAgentCommissionDrawDialog.vue'
 
 export function useDialogAgentCommissionDraw() {
   const { t } = useI18n()
@@ -8,7 +8,7 @@ export function useDialogAgentCommissionDraw() {
   } = useDialog({
     title: t('receive_agent_commission_label'),
     icon: 'chat-tip',
-    default: () => h(AppAgentCommissionDraw),
+    default: () => h(AppAgentCommissionDrawDialog),
   })
 
   return {

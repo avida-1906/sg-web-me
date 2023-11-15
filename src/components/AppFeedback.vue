@@ -143,7 +143,8 @@ onActivated(() => {
       <div v-if="tab === 1" class="create-feedback">
         <div class="text">
           <p class="label">
-            反馈内容<span>（你提我改）</span>
+            反馈内容<span class="error-text">*</span>
+            <!-- <span>（你提我改）</span> -->
           </p>
           <textarea
             v-model="feedbackText"
@@ -154,8 +155,11 @@ onActivated(() => {
             @input="textInput"
             @blur="handleBlur"
           />
-          <p v-show="feedbacTextMeta.touched" class="length">
-            <span class="error">{{ feedbackTextError }}</span>
+          <p class="length">
+            <span
+              class="error"
+              :class="{ show: feedbacTextMeta.touched }"
+            >{{ feedbackTextError }}</span>
             <span>{{ textLength }}/200</span>
           </p>
         </div>
@@ -267,6 +271,12 @@ onActivated(() => {
 </template>
 
 <style lang='scss' scoped>
+.error-text {
+  font-size: var(--tg-font-size-xl);
+  color: var(--tg-text-error) !important;
+  line-height: 0;
+  vertical-align: middle;
+}
 .total-bonus {
   cursor: pointer;
   color: var(--tg-text-white);
@@ -351,6 +361,10 @@ onActivated(() => {
           .error{
             color: var(--tg-text-error);
             font-size: var(--tg-font-size-xs);
+            opacity: 0;
+            &.show {
+              opacity: 1;
+            }
           }
         }
         // .file{

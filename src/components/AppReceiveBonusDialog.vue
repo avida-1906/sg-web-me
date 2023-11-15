@@ -10,6 +10,8 @@ interface Props {
 const props = defineProps<Props>()
 
 const { t } = useI18n()
+const appStore = useAppStore()
+const { exchangeRateData } = storeToRefs(appStore)
 const chatStore = useChatStore()
 const { isVirtualCurrency } = useCurrencyData()
 const { openNotify } = useNotify()
@@ -17,6 +19,19 @@ const { openNotify } = useNotify()
 const currentNetwork = ref('')
 const activeCurrency = ref<CurrencyData | null>()
 
+const rate = computed(() => {
+  const temp = exchangeRateData.value && exchangeRateData.value.length
+    ? exchangeRateData.value[0]
+    : undefined
+  if (temp && temp.USDT && activeCurrency.value)
+    return temp.USDT[activeCurrency.value.type] || '1'
+  return '1'
+})
+const money = computed(() => props.feedBackItem?.amount ?? props.totalBonus)
+const ratedMoney = computed(() => {
+  if (rate.value && activeCurrency.value)
+    return mul(+money.value, +rate.value)
+})
 const isVirCurrency = computed(() => {
   if (activeCurrency.value)
     return isVirtualCurrency(activeCurrency.value.type)
@@ -65,11 +80,12 @@ function changeCurrency(item: CurrencyData, network: string) {
         @change="changeCurrency"
       />
       <div class="rate">
-        {{ $t('current_exchange_rate') }}：6.75
+        {{ $t('current_exchange_rate') }}：{{ rate }}
       </div>
     </div>
-    <div class="about-receive">
-      {{ $t('bonus_receive_expect') }}：<AppAmount amount="99999900" currency-type="BNB" />
+    <div v-if="activeCurrency" class="about-receive">
+      {{ $t('bonus_receive_expect') }}：
+      <AppAmount :amount="`${ratedMoney}`" :currency-type="activeCurrency.type" />
     </div>
     <div class="buttons">
       <BaseButton size="md" @click="closeDialog">

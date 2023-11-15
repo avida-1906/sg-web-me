@@ -8,7 +8,6 @@ export function useDialogReceiveBonus(cb?: () => void) {
   } = useDialog({
     title: t('receive_bonus'),
     icon: 'chat-tip',
-    maxWidth: 342,
     default: ({ feedBackItem, totalBonus }) =>
       h(AppReceiveBonusDialog, {
         feedBackItem,
