@@ -42,21 +42,13 @@ function onConfirm() {
   emit('confirm')
 }
 
-function moveFunc(e: Event) {
-  e.preventDefault()
-}
-
 provide('closeDialog', close)
 
 watch([() => props.show, () => _show.value], ([show, _show]) => {
-  if (show || _show) {
+  if (show || _show)
     document.body.classList.add('tg-popup-parent--hidden')
-    document.body.addEventListener('touchmove', moveFunc, false)
-  }
-  else {
+  else
     document.body.classList.remove('tg-popup-parent--hidden')
-    document.body.removeEventListener('touchmove', moveFunc)
-  }
 })
 
 onMounted(() => {
@@ -157,6 +149,7 @@ onUnmounted(() => {
       z-index: var(--tg-z-index-50);
     }
     .card {
+      pointer-events: initial;
       position: relative;
       z-index: var(--tg-z-index-secondary);
       width: 100%;
