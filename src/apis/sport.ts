@@ -227,3 +227,16 @@ export function ApiSportMenuMain() {
     }[]
   }>(`/sport/${getSportsPlatId()}/menu/main`)
 }
+
+/**
+ * 冠军列表
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=30bb4469-a21f-4267-b30c-b6e8555a6b89
+ */
+export function ApiSportOutrightList(data: {
+  /** 球种id */
+  si: number
+  page: number
+  page_size: number
+}) {
+  return httpClient.post(`/sport/${getSportsPlatId()}/outright/list`, data)
+}

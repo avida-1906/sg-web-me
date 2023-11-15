@@ -1,26 +1,24 @@
 <script lang="ts" setup>
 interface Props {
-  tournament: SportTournament
-  autoShow?: boolean
+  title: string
+  autoShow: boolean
+  count: number
 }
-
 defineProps<Props>()
+const list = [{ name: '123' }]
 </script>
 
 <template>
-  <BaseSecondaryAccordion :title="tournament.name" level="2" :init="autoShow">
+  <BaseSecondaryAccordion :title="title" level="2" :init="autoShow">
     <template #side="{ isOpen }">
       <div v-show="!isOpen" class="accordion-badge-wrap">
-        <BaseBadge :count="tournament.fixtureCount" />
+        <BaseBadge :count="count" />
       </div>
     </template>
     <div class="fixture-wrapper">
-      <div class="group-time">
-        2024年1月7日
-      </div>
       <div
-        v-for="fixture in tournament.fixtureList"
-        :key="fixture.id"
+        v-for="fixture in list"
+        :key="fixture.name"
         class="outright-preview"
       >
         <span class="name">
@@ -38,7 +36,7 @@ defineProps<Props>()
           />
         </div>
         <span class="market-count">
-          <a class="link">+{{ fixture.marketCount }}</a>
+          <a class="link">+20</a>
         </span>
       </div>
     </div>

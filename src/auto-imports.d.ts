@@ -72,6 +72,7 @@ declare global {
   const ApiSportEventInfo: typeof import('./apis/sport')['ApiSportEventInfo']
   const ApiSportEventList: typeof import('./apis/sport')['ApiSportEventList']
   const ApiSportMenuMain: typeof import('./apis/sport')['ApiSportMenuMain']
+  const ApiSportOutrightList: typeof import('./apis/sport')['ApiSportOutrightList']
   const ApiSportSidebar: typeof import('./apis/sport')['ApiSportSidebar']
   const ApiWalletBankcardList: typeof import('./apis/index')['ApiWalletBankcardList']
   const Big: typeof import('big.js')['Big']
@@ -594,6 +595,7 @@ declare module 'vue' {
     readonly ApiSportEventInfo: UnwrapRef<typeof import('./apis/sport')['ApiSportEventInfo']>
     readonly ApiSportEventList: UnwrapRef<typeof import('./apis/sport')['ApiSportEventList']>
     readonly ApiSportMenuMain: UnwrapRef<typeof import('./apis/sport')['ApiSportMenuMain']>
+    readonly ApiSportOutrightList: UnwrapRef<typeof import('./apis/sport')['ApiSportOutrightList']>
     readonly ApiSportSidebar: UnwrapRef<typeof import('./apis/sport')['ApiSportSidebar']>
     readonly ApiWalletBankcardList: UnwrapRef<typeof import('./apis/index')['ApiWalletBankcardList']>
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
@@ -1103,6 +1105,7 @@ declare module '@vue/runtime-core' {
     readonly ApiSportEventInfo: UnwrapRef<typeof import('./apis/sport')['ApiSportEventInfo']>
     readonly ApiSportEventList: UnwrapRef<typeof import('./apis/sport')['ApiSportEventList']>
     readonly ApiSportMenuMain: UnwrapRef<typeof import('./apis/sport')['ApiSportMenuMain']>
+    readonly ApiSportOutrightList: UnwrapRef<typeof import('./apis/sport')['ApiSportOutrightList']>
     readonly ApiSportSidebar: UnwrapRef<typeof import('./apis/sport')['ApiSportSidebar']>
     readonly ApiWalletBankcardList: UnwrapRef<typeof import('./apis/index')['ApiWalletBankcardList']>
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
