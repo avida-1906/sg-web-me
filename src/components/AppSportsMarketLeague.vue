@@ -1,18 +1,15 @@
 <script setup lang='ts'>
 interface Props {
   showBreadcrumb?: boolean
-  isStandard?: boolean
+  isStandard: boolean
   showMore?: boolean
-  autoShow?: boolean
+  autoShow: boolean
   leagueName: string
   leagueId: string
   baseType: string
-  isRegionOpen: boolean
+  isRegionOpen: boolean // 父级是否展开
 }
-const props = withDefaults(defineProps<Props>(), {
-  isStandard: true,
-  autoShow: true,
-})
+const props = defineProps<Props>()
 const route = useRoute()
 const sport = route.params.sport
 const isRegionOpen = computed(() => props.isRegionOpen)
@@ -35,12 +32,12 @@ function onAccordionOpen() {
 }
 
 watch(isRegionOpen, (a) => {
-  if (a)
+  if (a && props.autoShow)
     getEventsData()
 })
 
 onMounted(() => {
-  if (props.autoShow)
+  if (props.autoShow && props.isRegionOpen)
     getEventsData()
 })
 </script>
