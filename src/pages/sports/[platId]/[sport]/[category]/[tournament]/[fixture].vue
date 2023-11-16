@@ -146,82 +146,80 @@ await application.allSettled([
                   <BaseEmpty icon="uni-empty-handicap" description="暂无可用盘口" />
                 </div>
 
+                <!-- <pre style="color: white">
+                  {{ dataList }}
+                </pre> -->
                 <template v-if="currentTab !== -1">
                   <template v-for="item in dataList" :key="item.mlid">
                     <!-- 样式1 -->
-                    <!-- <BaseSecondaryAccordion v-if="item.patType === 1" title="标题1">
+                    <!-- <BaseSecondaryAccordion v-if="item.pat === 1" :title="item.btn">
                       <template #default>
                         <div class="market" :class="{ 'in-mobile': isMobile }">
                           <AppSportsBetButton
-                            v-for="outcome in item.patType1BetList"
-                            :key="outcome.name"
-                            :title="outcome.name"
-                            :odds="outcome.odds"
+                            v-for="outcome in item.ms"
+                            :key="outcome.wid"
+                            :title="outcome.sn"
+                            :odds="outcome.ov"
                             layout="horizontal"
                           />
                         </div>
                       </template>
                     </BaseSecondaryAccordion> -->
                     <!-- 样式2 -->
-                    <BaseSecondaryAccordion v-if="item.patType === 2" title="标题2">
+                    <!-- <BaseSecondaryAccordion v-if="item.pat === 2" :title="item.btn">
                       <template #default>
                         <div class="market" :class="{ 'in-mobile': isMobile }">
                           <div class="table" :style="{ '--itemCount': 1 }">
                             <template
-                              v-for="nameItem in Object.keys(item.patType2BetMap)"
-                              :key="nameItem"
+                              v-for="nameItem in item.ms"
+                              :key="nameItem.wid"
                             >
                               <div class="column heading">
-                                <span>{{ nameItem }}</span>
+                                <span>{{ nameItem.sn }}</span>
                               </div>
                             </template>
                             <template
                               v-for="
-                                valueItem in interleaveArrays(...Object.values(item.patType2BetMap))
+                                valueItem in item.qqq
                               "
-                              :key="valueItem.name"
+                              :key="valueItem.wid"
                             >
                               <div class="column">
                                 <AppSportsBetButton
                                   layout="horizontal"
-                                  :title="valueItem.name"
-                                  :odds="valueItem.odds"
+                                  :title="valueItem.hdp"
+                                  :odds="valueItem.ov"
                                 />
                               </div>
                             </template>
                           </div>
                         </div>
-                        <!-- <div class="load-more-container">
-                          <BaseButton type="text" size="md">
-                            Load More
-                          </BaseButton>
-                        </div> -->
                       </template>
-                    </BaseSecondaryAccordion>
+                    </BaseSecondaryAccordion> -->
                     <!-- 样式3 -->
                     <!-- <BaseSecondaryAccordion
-                      v-if="item.patType === 3"
-                      title="标题3"
+                      v-if="item.pat === 3"
+                      :title="item.btn"
                     >
                       <template #default>
                         <div class="market" :class="{ 'in-mobile': isMobile }">
                           <AppSportsBetButton
-                            v-for="outcome in item.patType1BetList"
-                            :key="outcome.name"
-                            :title="outcome.name"
-                            :odds="`${outcome.odds}`"
+                            v-for="outcome in item.ms"
+                            :key="outcome.wid"
+                            :title="outcome.sn"
+                            :odds="`${outcome.ov}`"
                             layout="horizontal"
                           />
                         </div>
                       </template>
                     </BaseSecondaryAccordion> -->
                     <!-- 样式4 -->
-                    <!-- <BaseSecondaryAccordion v-if="item.patType === 4" title="标题4">
+                    <BaseSecondaryAccordion v-if="item.pat === 4" :title="item.btn">
                       <template #default>
                         <div class="market" :class="{ 'in-mobile': isMobile }">
                           <div class="table-row-3" :style="{ '--itemCount': 1 }">
                             <template
-                              v-for="nameItem in Object.keys(item.patType2BetMap)"
+                              v-for="nameItem in 3"
                               :key="nameItem"
                             >
                               <div class="column heading">
@@ -230,13 +228,8 @@ await application.allSettled([
                             </template>
                           </div>
                         </div>
-                        <div class="load-more-container">
-                          <BaseButton type="text" size="md">
-                            Load More
-                          </BaseButton>
-                        </div>
                       </template>
-                    </BaseSecondaryAccordion> -->
+                    </BaseSecondaryAccordion>
                   </template>
                 </template>
               </div>
