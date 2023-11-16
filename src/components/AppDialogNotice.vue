@@ -1,27 +1,35 @@
 <script setup lang='ts'>
+import { getCurrentLanguageForBackend } from '~/modules/i18n'
+
 interface Props {
   data: {
     [t: string]: any
     title: string
-    content: string
+    content: {
+      [t: string]: string
+    }
   }
 }
-defineProps<Props>()
+const props = defineProps<Props>()
+
+console.log(props.data)
 </script>
 
 <template>
   <div class="dialog-notice">
     <div class="title">
-      USDT首存活动
+      {{ data.title }}
     </div>
-    <div class="text">
-      不管是运营一个网站、公众号，还是运营一个APP，都会涉及到活动运营。
-      在一场活动中，需要借助活动文案来写清楚活动的时间、参与方式、奖品等基本要素，
-      让用户通过文案了解活动。本文就通过以下几个方面来分享我对活动文案的一些理解，
-      并附上文案的改写实例~不管是运营一个网站、公众号，还是运营一个APP，都会涉及到活动运营。
-      在一场活动中，需要借助活动文案来写清楚活动的时间、参与方式、奖品等基本要素，让用户通过
-      文案了解活动。本文就通过以下几个方面来分享我对活动文案的一些理解，并附上文案的改写实例~
-    </div>
+    <div
+      v-if="data.pop_up_type === 1"
+      class="text"
+      v-html="data.content[getCurrentLanguageForBackend()]"
+    />
+    <BaseImage
+      v-else-if="data.pop_up_type === 2"
+      :url="data.image_url[getCurrentLanguageForBackend()]"
+      is-network
+    />
   </div>
 </template>
 

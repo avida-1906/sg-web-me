@@ -56,10 +56,10 @@ const {
 
 const { openWalletDialog } = useWalletDialog({ activeTab: 'cardHolder' })
 const toAddBankcards = function (item: WalletCurrencyList) {
-  let isFirst = true
+  const isFirst = false
   let openName = ''
   if (item.bankcard?.length) {
-    isFirst = false
+    // isFirst = false
     openName = item.bankcard[0].open_name
   }
   const currentType = item.cur === '702'
@@ -103,8 +103,8 @@ function toDeleteBankcard(item: BankCard) {
   openDeleteConfirm()
 }
 
-if (!cardList.value)
-  await application.allSettled([runAsyncWalletBankcardList()])
+// if (!cardList.value)
+await application.allSettled([runAsyncWalletBankcardList()])
 </script>
 
 <template>
