@@ -139,7 +139,7 @@ onUnmounted(() => {
     justify-content: center;
     font-size: var(--tg-font-size-default);
     .overlay {
-      position: fixed;
+      position: absolute;
       left: 0;
       top: -100px;
       bottom: 0;
@@ -149,7 +149,6 @@ onUnmounted(() => {
       z-index: var(--tg-z-index-50);
     }
     .card {
-      pointer-events: initial;
       position: relative;
       z-index: var(--tg-z-index-secondary);
       width: 100%;
