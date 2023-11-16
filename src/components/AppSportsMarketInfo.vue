@@ -74,13 +74,7 @@ const standardMarketBtns = computed(() => {
   }
 })
 // 面包屑
-const breadcrumbs = computed(() => {
-  const data = props.data
-  const sport = { label: data.sn, value: `${data.si}` }
-  const area = { label: data.pgn, value: `${data.pgid}` }
-  const league = { label: data.cn, value: `${data.ci}` }
-  return [sport, area, league]
-})
+const breadcrumbs = computed(() => sportsDataBreadcrumbs(props.data))
 // 详情路径
 const eventDetailPath = computed(() => {
   const data = props.data

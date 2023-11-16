@@ -1,4 +1,4 @@
-import type { ILeagueItem, ISportEventInfo } from './types'
+import type { ILeagueItem, ISportEventInfo, ISportOutrightsInfo } from './types'
 
 /**
  * 获取所有体育计数
@@ -238,5 +238,7 @@ export function ApiSportOutrightList(data: {
   page: number
   page_size: number
 }) {
-  return httpClient.post(`/sport/${getSportsPlatId()}/outright/list`, data)
+  return httpClient.post<{
+    list: ISportOutrightsInfo[]
+  }>(`/sport/${getSportsPlatId()}/outright/list`, data)
 }

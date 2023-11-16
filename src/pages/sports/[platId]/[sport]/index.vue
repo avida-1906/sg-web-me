@@ -12,7 +12,7 @@ const { data: competitionListData } = useRequest(() =>
   manual: false,
 })
 
-const curTab = ref('1')
+const curTab = ref(route.query.outrights ? '2' : '1')
 const baseType = ref('winner')
 
 const sportName = computed(() => sportsStore.getSportsNameBySi(+sport))
@@ -43,6 +43,10 @@ const breadcrumb = computed(() => [
 function onBaseTypeChange(v: string) {
   baseType.value = v
 }
+
+watch(route, (a) => {
+  curTab.value = a.query.outrights ? '2' : '1'
+})
 </script>
 
 <template>

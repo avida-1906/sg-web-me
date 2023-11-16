@@ -1,42 +1,37 @@
 <script lang="ts" setup>
+import type { ISportOutrightsInfo } from '~/apis/types'
+
 interface Props {
-  title: string
   autoShow: boolean
-  count: number
+  data: ISportOutrightsInfo
 }
-defineProps<Props>()
-const list = [{ name: '123' }]
+const props = defineProps<Props>()
+const breadcrumbs = computed(() => sportsDataBreadcrumbs(props.data))
 </script>
 
 <template>
-  <BaseSecondaryAccordion :title="title" level="2" :init="autoShow">
+  <BaseSecondaryAccordion :title="data.cn" level="2" :init="autoShow">
     <template #side="{ isOpen }">
       <div v-show="!isOpen" class="accordion-badge-wrap">
-        <BaseBadge :count="count" />
+        <BaseBadge :count="1" />
       </div>
     </template>
     <div class="fixture-wrapper">
       <div
-        v-for="fixture in list"
-        :key="fixture.name"
         class="outright-preview"
       >
         <span class="name">
           <a class="link">
-            {{ fixture.name }}
+            {{ data.oen }}
           </a>
         </span>
         <div class="breadcrumb">
-          <BaseBreadcrumbs
-            :list="[
-              { label: '网球', value: 'tennis' },
-              { label: 'ITF女子', value: 'itf-women' },
-              { label: 'ITF China 11A, Women Singles', value: 'itf-china-women-singles' },
-            ]"
-          />
+          <BaseBreadcrumbs :list="breadcrumbs" />
         </div>
         <span class="market-count">
-          <a class="link">+20</a>
+          <BaseButton type="text" size="none">
+            +{{ data.ml[0].ms.length }}
+          </BaseButton>
         </span>
       </div>
     </div>
@@ -53,6 +48,7 @@ const list = [{ name: '123' }]
       "breadcrumb breadcrumb";
   font-size: var(--tg-font-size-default);
   font-weight: var(--tg-font-weight-semibold);
+  line-height: 1.3;
 }
 .group-time {
   display: flex;
