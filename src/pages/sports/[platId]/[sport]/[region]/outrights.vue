@@ -1,16 +1,14 @@
 <script lang="ts" setup>
+// 123
 </script>
 
 <template>
   <div class="tg-sports-outrights">
-    冠军投注outrights
+    按联赛分类的冠军
   </div>
 </template>
 
 <style lang="scss" scoped>
-.tg-sports-outrights {
-
-}
 </style>
 
 <route lang="yaml">

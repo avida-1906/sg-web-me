@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import LeagueOutrights from './outrights.vue'
+
 const route = useRoute()
 const sport = route.params.sport ? +route.params.sport : 0
 const region = route.params.region ? route.params.region.toString() : ''
@@ -8,9 +10,6 @@ const { data } = useRequest(() =>
   ApiSportEventList({ m: 5, si: sport, pgid: region, page: 1, page_size: 100 }), {
   manual: false,
 })
-const list = computed(() => {
-  return data.value ? sportsDataGroupByLeague(data.value.list) : []
-})
 
 const baseType = ref('winner')
 const curTab = ref(route.query.outrights ? '2' : '1')
@@ -19,7 +18,18 @@ const tabs = [
   { value: '2', label: '冠军投注' },
 ]
 
+const isLiveAndUpcoming = computed(() => curTab.value === '1')
+const isOutrights = computed(() => curTab.value === '2')
+// 球种名称
 const sportName = computed(() => sportsStore.getSportsNameBySi(sport))
+// 地区名称
+const regionName = computed(() => {
+  return data.value ? data.value.list[0].pgn : '-'
+})
+// 联赛数据
+const leagueList = computed(() => {
+  return data.value ? sportsDataGroupByLeague(data.value.list) : []
+})
 const breadcrumb = computed(() => [
   {
     path: `/sports/${SPORTS_PLAT_ID}/${sport}`,
@@ -28,7 +38,7 @@ const breadcrumb = computed(() => [
   },
   {
     path: `/sports/${SPORTS_PLAT_ID}/${sport}/${region}`,
-    title: sportName.value,
+    title: regionName.value,
     id: region,
   },
 ])
@@ -47,17 +57,24 @@ function onBaseTypeChange(v: string) {
           <BaseTab v-model="curTab" :list="tabs" size="large" :center="false" />
         </div>
         <AppSportsMarketTypeSelect
+          v-show="isLiveAndUpcoming"
           v-model="isStandard" :base-type="baseType"
           @base-type-change="onBaseTypeChange"
         />
       </div>
-      <div class="layout-spacing no-bottom-spacing sort-tournament">
+      <!-- 滚球及即将开赛 -->
+      <div
+        v-if="isLiveAndUpcoming"
+        class="layout-spacing no-bottom-spacing sort-tournament"
+      >
         <AppSportsMarket
-          v-for="league, i in list" :key="league.ci" :is-standard="isStandard"
+          v-for="league, i in leagueList" :key="league.ci" :is-standard="isStandard"
           :league-name="league.cn" :event-count="league.list.length" :base-type="baseType"
           :event-list="league.list" :auto-show="i === 0"
         />
       </div>
+      <!-- 冠军 -->
+      <LeagueOutrights v-else-if="isOutrights" />
     </div>
     <AppBetData />
   </div>

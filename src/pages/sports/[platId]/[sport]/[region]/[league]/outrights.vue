@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+// 123
 </script>
 
 <template>
@@ -8,9 +9,6 @@
 </template>
 
 <style lang="scss" scoped>
-.tg-sports-tournament-fixture-outrights {
-
-}
 </style>
 
 <route lang="yaml">
