@@ -182,7 +182,12 @@ body {
 
 .tg-popup-parent--hidden {
   overflow: hidden;
-  // width: calc(100% - 6px);
+}
+
+.tg-popup-parent--hidden--safari {
+  position: fixed;
+  height: 100%;
+  width: 100%;
 }
 
 .center {
