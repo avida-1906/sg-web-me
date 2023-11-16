@@ -602,6 +602,7 @@ time_november: 十一月
 time_december: 十二月
 time_birthday: 出生日期
 time_month: 月度
+date: 日期
 tour: 导览
 try_again: 重试
 try_help_center: 试试我们的帮助中心
@@ -934,6 +935,8 @@ validate_msg_regexp_bank_number: 请输入 4 - 30 位数字组成的正确银行
 validate_msg_regexp_pix_account: 请输入 4 - 30 位数字组成的正确PIX账户
 validate_msg_input_branch_address: 请输入正确开户支行地址
 validate_msg_withdraw_way: 请先绑定提款方式，再进行提款
+validate_msg_input_pay_pwd: 请输入资金密码
+validate_msg_input_paypwd_6: 请输入6位数字组成的资金密码
 label_bank_number: 银行卡号
 label_branch_address: 开户行地址
 label_account_holder_name: 开户人姓名
@@ -943,6 +946,7 @@ label_draw_time: 领取时间
 label_contribute_count: 贡献人数
 label_bind: 绑定
 success_bind: 绑定成功
+success_delete: 删除成功
 tip_msg_bind_once: 绑定后不可更改
 tip_msg_is_default_bank_number: 是否设为默认卡号
 tip_msg_all_bind_account: 所有绑定账户
@@ -972,3 +976,28 @@ service_transfer: 客服转账
 bind_pix_account: 绑定PIX账户
 bind_bank_card: 绑定银行卡
 data_empty: 暂无数据
+chat_rule_1: 请勿在聊天时发送垃圾消息并避免使用过多的大写字母。
+chat_rule_2: 请勿骚扰或冒犯其他用户及 Stake 工作人员。
+chat_rule_3: 请勿分享您或其他玩家的任何个人信息（包括社交媒体账号）。
+chat_rule_4: 请勿向其他用户讨钱或要求贷款、下红包雨、或小费。
+chat_rule_5: 严禁使用除了主账户外您任何其他账户聊天。
+chat_rule_6: 不允许可被视为诈骗的可疑行为。
+chat_rule_7: 请勿从事任何形式的广告/交易/销售/购买/提供服务。
+chat_rule_8: 请勿讨论直播主、 Twitch 或任何其他类似平台。
+chat_rule_9: 请勿使用网址缩短服务。一定要提交完整的链接。
+chat_rule_10: 请勿分享编码、脚本或任何机器人程序的服务。
+chat_rule_11: 请只使用聊天室指定的语言聊天，潜在的滥用行为将受到制裁。
+chat_rule_12: 严禁谈论政治与宗教话题。
+user_confirm_delete_draw_way: 请您确认删除以下提款方式吗？
+confirm_delete: 确认删除
+big_winner: 大赢家
+lucky_winner: 幸运赢家
+description: 描述
+buy_bonus_round: 购买奖励回合
+pirate: 海盗
+sea: 海洋
+switch_wave: 切换波动性
+house_edge: 庄家优势
+investor: 投资者
+win: 胜
+win_equal_lose: 胜平负
