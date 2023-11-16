@@ -35,8 +35,8 @@ const {
 function changFile(event: any) {
   const file = event.target.files[0]
   if (file) {
-    // console.log(file)
-    if (!props.accept.includes(file.type)) {
+    if (props.accept.join(',').search(file.name.split('.').pop()) === -1) {
+      // if (!props.accept.includes(file.type)) {
       const str = []
       for (const type of props.accept)
         str.push(type.split('/')[1])
