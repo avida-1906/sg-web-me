@@ -96,8 +96,10 @@ const messageImages = computed(() =>
       .message-images {
         display: flex;
         gap: 2%;
+        flex-wrap: wrap;
         >* {
-          min-width: 32%;
+          width: 32%;
+          margin-top: 8px;
         }
       }
     }
