@@ -18,7 +18,6 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const emit = defineEmits(['update:modelValue'])
-const { VITE_CASINO_IMG_CLOUD_URL } = getEnv()
 const { openNotify } = useNotify()
 
 const urlList: Ref<string[]> = ref([])
@@ -36,7 +35,7 @@ const {
 function changFile(event: any) {
   const file = event.target.files[0]
   if (file) {
-    console.log(file)
+    // console.log(file)
     if (!props.accept.includes(file.type)) {
       const str = []
       for (const type of props.accept)
@@ -79,7 +78,7 @@ function deleteImg(index: number) {
     >
       <BaseImage
         is-network
-        :url="`${VITE_CASINO_IMG_CLOUD_URL}/${item}`"
+        :url="item"
       />
       <div class="icon-upload-delete">
         <BaseButton

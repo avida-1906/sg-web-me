@@ -2,6 +2,7 @@
 interface Props {
   currencyId?: string
   currencyName?: string
+  isWithdraw?: boolean
   callback?: (params?: any) => void
 }
 
@@ -10,6 +11,7 @@ const props = withDefaults(defineProps<Props>(), {
   currencyName: '',
 })
 
+const emit = defineEmits(['added'])
 const closeDialog = inject('closeDialog', () => { })
 
 const { bool: isDefault, setFalse: setIsDefaultFalse } = useBoolean(false)
@@ -43,7 +45,11 @@ const {
       title: '绑定',
       message: '绑定成功',
     })
-    closeAllDialog()
+    if (props.isWithdraw) {
+      closePayPwdDialog()
+      emit('added')
+    }
+    else { closeAllDialog() }
   },
 })
 
