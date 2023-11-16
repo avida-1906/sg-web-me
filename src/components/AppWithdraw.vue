@@ -107,14 +107,8 @@ function updateContract() {
 }
 
 watch(() => props.currentNetwork, () => {
-  if (props.currentNetwork) {
-    runAsyncWalletList({
-      contract_type: props.currentNetwork,
-      currency_id: props.activeCurrency.cur,
-      page: 1,
-      page_size: 10,
-    })
-  }
+  if (props.currentNetwork)
+    updateContract()
 }, { immediate: true })
 </script>
 

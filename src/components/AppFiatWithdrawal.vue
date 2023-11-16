@@ -48,10 +48,10 @@ const {
   return ''
 })
 
-const {
-  runAsync: runAsyncWithdrawMethodList,
-  data: withdrawMethodList,
-} = useRequest(ApiFinanceWithdrawMethodList)
+// const {
+//   runAsync: runAsyncWithdrawMethodList,
+//   data: withdrawMethodList,
+// } = useRequest(ApiFinanceWithdrawMethodList)
 const {
   runAsync: runAsyncWithdrawBankcardList,
   data: withdrawBankcardList,
@@ -121,7 +121,9 @@ const bankcardId = computed(() =>
 function maxNumber() {
   amount.value = props.activeCurrency.balance
 }
-
+function updateBank() {
+  runAsyncWithdrawBankcardList({ currency_id: props.activeCurrency.cur })
+}
 async function withDrawSubmit() {
   await selectBankValidate()
   await amountValidate()
@@ -139,7 +141,7 @@ async function withDrawSubmit() {
 
 watch(() => props.activeCurrency, (newValue) => {
   runAsyncWithdrawBankcardList({ currency_id: newValue.cur })
-  runAsyncWithdrawMethodList({ currency_id: newValue.cur })
+  // runAsyncWithdrawMethodList({ currency_id: newValue.cur })
   selectBankReset()
   amountReset()
   payPasswordReset()
@@ -148,7 +150,7 @@ watch(() => props.activeCurrency, (newValue) => {
 await application.allSettled(
   [
     runAsyncWithdrawBankcardList({ currency_id: props.activeCurrency.cur }),
-    runAsyncWithdrawMethodList({ currency_id: props.activeCurrency.cur }),
+    // runAsyncWithdrawMethodList({ currency_id: props.activeCurrency.cur }),
   ],
 )
 </script>
@@ -156,12 +158,13 @@ await application.allSettled(
 <template>
   <div class="app-fiat-withdrawal">
     <!-- 绑定银行卡/三方账户 -->
-    <div v-if="!withdrawBankcardList?.d.length" class="bank-bind">
+    <div v-if="!withdrawBankcardList?.d?.length" class="bank-bind">
       <AppAddBankcards
         :is-first="true"
         :container="false"
         :active-currency="activeCurrency"
         :current-type="currentType"
+        @added="updateBank"
       />
     </div>
     <!-- 出款信息 -->

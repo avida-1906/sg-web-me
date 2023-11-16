@@ -8,12 +8,14 @@ const props = withDefaults(defineProps<{
 
 const baseNoticeRef = ref<HTMLElement | null>(null)
 const scrollContentRef = ref<HTMLElement | null>(null)
+const prefixRef = ref<HTMLElement | null>(null)
 
-const { width } = useElementSize(baseNoticeRef)
+const { width: baseNoticeWidth } = useElementSize(baseNoticeRef)
+const { width: prefixWidth } = useElementSize(prefixRef)
 
 /** 运动时间 */
 const scrollTime = computed(() => {
-  const _width = width.value
+  const _width = baseNoticeWidth.value
   const _speed = props.speed
   return `${_width / _speed}s`
 })
@@ -41,8 +43,9 @@ function startScroll() {
     class="base-notice-bar"
     :style="
       {
-        '--base-notice-scroll-width': `${width}px`,
+        '--base-notice-scroll-width': `${baseNoticeWidth}px`,
         '--base-notice-scroll-time': scrollTime,
+        '--base-notice-prefix-width': `${prefixWidth}px`,
       }
     "
     @mouseenter="stopScroll"
@@ -51,15 +54,19 @@ function startScroll() {
     <div ref="scrollContentRef" class="scroll-content">
       <slot />
     </div>
+    <div ref="prefixRef" class="prefix">
+      <slot name="prefix" />
+    </div>
   </section>
 </template>
 
 <style>
 :root {
-  --base-notice-bar-color: #fff;
-  --base-notice-bar-background-color: #f00;
-  --base-notice-bar-height: 80px;
-  --base-notice-bar-radius: var(--tg-radius-md);
+  --base-notice-bar-color: var(--tg-secondary-light);
+  --base-notice-bar-background-color: var(--tg-secondary-dark);
+  --base-notice-bar-height: 40px;
+  --base-notice-bar-radius: 40px;
+  --base-notice-bar-font-size: var(--tg-font-size-default);
 }
 </style>
 
@@ -70,15 +77,16 @@ function startScroll() {
     }
 
     100% {
-      transform: translateX(-100%);
+      transform: translateX(calc(-100% + var(--base-notice-prefix-width)));
     }
   }
 
   .base-notice-bar {
     color: var(--base-notice-bar-color);
-    border: 1px solid var(--base-notice-bar-background-color);
+    background-color: var(--base-notice-bar-background-color);
     height: var(--base-notice-bar-height);
     border-radius: var(--base-notice-bar-radius);
+    font-size: var(--base-notice-bar-font-size);
 
     white-space: nowrap;
     overflow: hidden;
@@ -88,9 +96,24 @@ function startScroll() {
     align-items: center;
     justify-content: left;
 
+    position: relative;
+
+      .prefix {
+        background-color: var(--base-notice-bar-background-color);
+
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
     .scroll-content {
       display: inline-block;
       animation: scroll var(--base-notice-scroll-time) linear infinite;
+
     }
   }
 </style>

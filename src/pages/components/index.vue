@@ -696,9 +696,15 @@ function loadMore() {
     <li class="box">
       <AppDemoCard title="BaseNoticeBar">
         <BaseNoticeBar>
-          123
-          <span style="color: red; font-size: 30px;">哈哈哈</span>
-          555
+          <template #prefix>
+            <div style="padding: 0 20px;">
+              <BaseIcon name="uni-speaker" />
+            </div>
+          </template>
+          BaseNoticeBar,
+          BaseNoticeBar,
+          BaseNoticeBar,
+          BaseNoticeBar,
         </BaseNoticeBar>
       </AppDemoCard>
     </li>
