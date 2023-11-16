@@ -1,11 +1,22 @@
 <script lang="ts" setup>
-// 123
+const route = useRoute()
+const sport = route.params.sport ? +route.params.sport : 0
+const league = route.params.league ? route.params.league.toString() : ''
+
+const { data } = useRequest(() =>
+  ApiSportOutrightList({ si: sport, page: 1, page_size: 100 }), {
+  manual: false,
+})
+const list = computed(() => {
+  return data.value ? data.value.list.filter(a => a.ci === league) : []
+})
 </script>
 
 <template>
-  <div class="tg-sports-tournament-fixture-outrights">
-    当前国家某种赛事的冠军投注
-  </div>
+  <AppOutrightPreview
+    v-for="item, i in list" :key="item.ci"
+    :auto-show="i === 0" :data="item"
+  />
 </template>
 
 <style lang="scss" scoped>
