@@ -17,16 +17,13 @@ console.log(props.data)
 
 <template>
   <div class="dialog-notice">
-    <div class="title">
-      {{ data.title }}
-    </div>
     <div
       v-if="data.pop_up_type === 1"
       class="text"
       v-html="data.content[getCurrentLanguageForBackend()]"
     />
     <BaseImage
-      v-else-if="data.pop_up_type === 2"
+      v-if="data.pop_up_type === 2"
       :url="data.image_url[getCurrentLanguageForBackend()]"
       is-network
     />

@@ -913,11 +913,11 @@ export function ApiMemberFeedbackBonusAll() {
  * 所有会员公告和跑马灯-登陆前调用
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=cca2216f-630e-4c7b-b02c-56393674ef7d
  */
-export function ApiMemberNoticeAllList(params: {
-  /** 1-公告  2-跑马灯 */
-  types: string
-}) {
+export function ApiMemberNoticeAllList() {
   return httpClient.get<{
+    marquee: {
+      [key: string]: any
+    }[]
     notice: {
       /** ID */
       id: string
@@ -946,7 +946,7 @@ export function ApiMemberNoticeAllList(params: {
         [key: string]: string
       }
     }[]
-  }>('/member/notice/all/list', { params })
+  }>('/member/notice/all/list')
 }
 
 /**

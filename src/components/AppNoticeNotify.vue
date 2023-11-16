@@ -15,17 +15,7 @@ const { openDepositDetailDialog } = useDialogDepositDetail()
 const { openNoticeDialog } = useDialogNotice()
 const { openMessageDialog } = useDialogMessage()
 const { bool: loading, setBool: setLoadingBool } = useBoolean(true)
-// 登录前
-// const {
-//   data: noticeAllList,
-//   run: runMemberNoticeAllList,
-//   // loading: memberNoticeListLoading,
-// } = useRequest(ApiMemberNoticeAllList, {
-//   onSuccess() {
-
-//   },
-// })
-// 登录后
+// 公告&跑马灯
 const {
   data: noticeList,
   run: runMemberNoticeList,
@@ -44,6 +34,9 @@ const pageTotal = 3
 const isFinished = computed(() => {
   // return pageCurrent.value >= pageTotal
   return true
+})
+const isState = computed(() => {
+  return props.mode === EnumPage[0] || props.mode === EnumPage[1]
 })
 
 function handleLoad() {
@@ -76,6 +69,14 @@ function pageInit() {
       break
   }
 }
+function getIntervalDay(start: number) {
+  const time = new Date().getTime() / 1000
+  // if (time > start && time < end) { return '正在进行' }
+  // else {
+  const hour = (time - start) / (60 * 60)
+  return hour < 24 ? `${Math.floor(hour)}小时前` : `${Math.floor(hour / 24)}天前`
+  // }
+}
 
 pageInit()
 </script>
@@ -88,9 +89,11 @@ pageInit()
     @load="handleLoad"
   >
     <div class="notice-scroll">
-      <div class="contain-top">
-        <span>新推出</span>
-        <span>标记全部为已读</span>
+      <div v-if="isState" class="contain-top">
+        <!-- <span>标记全部为已读</span> -->
+        <BaseButton type="text" size="none">
+          标记全部为已读
+        </BaseButton>
       </div>
       <div
         v-for="item of noticeList"
@@ -105,10 +108,14 @@ pageInit()
           <div class="right-state">
             <span>{{ item.title }}</span>
             <BaseBadge
-              status="success" style="color: var(--tg-secondary-light);
-                    font-size: var(--tg-font-size-xs);
-                    font-weight: var(--tg-font-weight-normal);" text="1天前"
+              v-if="isState"
+              class="state-text"
+              status="success" :text="getIntervalDay(item.start_time)"
             />
+            <span
+              v-else
+              class="state-text"
+            >{{ getIntervalDay(item.start_time) }}</span>
           </div>
           <!-- 通知 -->
           <div v-if="mode === EnumPage[0]" style="white-space:normal;line-height: 1.43;">
@@ -163,17 +170,19 @@ pageInit()
     color: var(--tg-secondary-light);
 
     .contain-top {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
         font-size: var(--tg-font-size-default);
         font-weight: 500;
-
+        margin: 4px 0;
+        text-align: right;
         span:hover {
-            cursor: pointer;
+          cursor: pointer;
         }
     }
-
+    .state-text{
+      color: var(--tg-secondary-light);
+      font-size: var(--tg-font-size-xs);
+      font-weight: var(--tg-font-weight-normal);
+    }
     .contain-item {
         display: flex;
         min-height: 60px;
