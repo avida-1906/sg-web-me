@@ -10,6 +10,7 @@ const {
   handicapListData,
   dataList,
   basePanelData,
+  currentTab,
   runGetSportInfo,
 } = useApiSportDetails()
 
@@ -18,16 +19,9 @@ const fixture = route.params.fixture
 
 const searchHandicap = ref('')
 
-const curGroupTab = ref<number>(-1)
-
 const title = computed(() =>
   'Stake.com',
 )
-
-watchEffect(() => {
-  if (handicapListData.value.length)
-    curGroupTab.value = handicapListData.value[0].value
-})
 
 useTitle(title)
 
@@ -120,7 +114,7 @@ await application.allSettled([
               <div class="groups">
                 <div>
                   <BaseTab
-                    v-model="curGroupTab"
+                    v-model="currentTab"
                     :list="handicapListData"
                     size="large"
                     :center="false"
@@ -137,7 +131,7 @@ await application.allSettled([
                   <BaseEmpty icon="uni-empty-handicap" description="暂无可用盘口" />
                 </div>
 
-                <template v-for="item in dataList" :key="item.title">
+                <template v-for="item in dataList" :key="item.mlid">
                   <!-- 样式1 -->
                   <BaseSecondaryAccordion v-if="item.patType === 1" :title="item.title">
                     <template #default>
@@ -212,7 +206,7 @@ await application.allSettled([
                     <template #default>
                       <div class="market" :class="{ 'in-mobile': isMobile }">
                         <div class="table" :style="{ '--itemCount': 1 }">
-                          <div class="heading column">
+                          <div class="column heading">
                             <span>大</span>
                           </div>
                           <div class="column heading">

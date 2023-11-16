@@ -3,6 +3,7 @@ import type { IBasePanelType, IBreadCrumbItem } from '~/types'
 
 /** 列表类型 */
 export interface IDataListItem {
+  mlid: string
   /** 标题 */
   title: string
   /** 样式 */
@@ -21,6 +22,9 @@ export interface IDataListItem {
  * @description 体育赛事详情接口
  */
 export function useApiSportDetails() {
+  /** 当前选中的Tab */
+  const currentTab = ref<number>(-1)
+
   const { data: sportInfo, runAsync: runGetSportInfo } = useRequest(ApiSportEventInfo)
 
   /** 面包屑数据 */
@@ -150,7 +154,7 @@ export function useApiSportDetails() {
 
   /** 数据列表 */
   const dataList = computed<IDataListItem[]>(() => {
-    const data: IDataListItem[] = []
+    let data: IDataListItem[] = []
 
     if (
       false
@@ -162,9 +166,12 @@ export function useApiSportDetails() {
 
     const ml = sportInfo.value.list[0].ml || []
 
-    ml.forEach((item) => {
+    data = ml.filter((item) => {
+      return item.tgis.includes(currentTab.value)
+    }).map((item) => {
       const betList = item.ms || []
       const patType = item.pat
+
       const betListData = betList.map((bet) => {
         return {
           name: bet.sn,
@@ -172,14 +179,20 @@ export function useApiSportDetails() {
         }
       })
 
-      data.push({
+      return {
+        mlid: item.mlid,
         patType,
         title: item.btn,
         betList: betListData,
-      })
+      }
     })
 
     return data
+  })
+
+  watchEffect(() => {
+    if (handicapListData.value.length)
+      currentTab.value = handicapListData.value[0].value
   })
 
   return {
@@ -187,6 +200,7 @@ export function useApiSportDetails() {
     breadcrumbData,
     handicapListData,
     basePanelData,
+    currentTab,
     runGetSportInfo,
   }
 }
