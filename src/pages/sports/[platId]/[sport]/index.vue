@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import RegionOutrights from './outrights.vue'
-
 const { t } = useI18n()
 const sportsStore = useSportsStore()
 const route = useRoute()
@@ -54,9 +52,9 @@ watch(route, (a) => {
 
 <template>
   <div class="tg-sports-index tg-sports-hotlive">
-    <div class="layout-spacing variant-normal no-bottom-spacing">
+    <div class="wrapper">
       <AppNavBreadCrumb :breadcrumb="breadcrumb" />
-      <div class="sports-page-title">
+      <div class="tab-box">
         <div class="left">
           <BaseTab
             v-model="curTab" :list="tabs" size="large"
@@ -72,13 +70,13 @@ watch(route, (a) => {
       <!-- 滚球及即将开赛 -->
       <template v-if="isLiveAndUpcoming">
         <!-- 热门 -->
-        <div class="sports-page-title">
-          <div class="left">
-            <BaseIcon name="uni-popular" />
-            <h6>{{ t('casino_sort_popular') }} {{ sportName }}</h6>
+        <div class="sub-wrapper">
+          <div class="sports-page-title">
+            <div class="left">
+              <BaseIcon name="uni-popular" />
+              <h6>{{ t('casino_sort_popular') }} {{ sportName }}</h6>
+            </div>
           </div>
-        </div>
-        <div class="layout-spacing no-bottom-spacing sort-tournament">
           <AppSportsMarketRegion
             v-for="region, index in hotSportList"
             :key="region.pgid"
@@ -91,8 +89,9 @@ watch(route, (a) => {
             :league-list="region.cl"
           />
         </div>
+
         <!-- 按字母顺序排序 -->
-        <div class="layout-spacing sort-tournament">
+        <div class="sub-wrapper">
           <h3 class="sub-title">
             <BaseIcon name="spt-sort-az" />
             <span>按字母顺序排列</span>
@@ -111,38 +110,29 @@ watch(route, (a) => {
         </div>
       </template>
       <!-- 冠军 -->
-      <RegionOutrights v-else-if="isOutrights" />
+      <AppSportsOutrights v-else-if="isOutrights" :level="1" />
 
-      <div class="layout-spacing">
-        <AppBetData mode="sports" />
-      </div>
+      <AppBetData mode="sports" />
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.grid-column-200 {
-  display: grid;
-  grid-gap: var(--tg-spacing-8);
-  grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
-  padding: var(--tg-spacing-16);
-}
-.game-like {
+.tab-box{
   display: flex;
   align-items: center;
-  color: var(--tg-text-white);
-  background: var(--tg-secondary-main);
-  box-shadow: var(--tg-box-shadow);
-  border-radius: var(--tg-radius-default);
-  padding: var(--tg-spacing-8) var(--tg-spacing-16);
-  overflow: hidden;
-  font-size: var(--tg-font-size-default);
-  font-weight: var(--tg-font-weight-semibold);
-  line-height: var(--tg-spacing-26);
+  justify-content: space-between;
 }
-.sort-tournament >*+* {
-  margin-top: var(--tg-spacing-12);
+.wrapper,.sub-wrapper{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap:  var(--tg-spacing-24);
 }
+.sub-wrapper{
+  gap:  var(--tg-spacing-12);
+}
+
 .sub-title {
   color: var(--tg-text-white);
   text-align: left;

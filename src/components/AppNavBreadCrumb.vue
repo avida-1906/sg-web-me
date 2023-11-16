@@ -43,7 +43,10 @@ watch(() => props.breadcrumb, (val) => {
   <div class="scroll-x app-nav-bread-crumb">
     <div class="back">
       <BaseButton size="md" @click="goBack">
-        <BaseIcon name="uni-arrow-left" class="arrow-left" />
+        <BaseIcon
+          style="font-size: var(--tg-font-size-default);transform: scale(1.25);"
+          name="uni-arrow-left" class="arrow-left"
+        />
       </BaseButton>
     </div>
     <div class="scroll-x breadcrumb-wrapper remove-end-border">

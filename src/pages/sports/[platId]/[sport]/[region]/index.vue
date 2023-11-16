@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import LeagueOutrights from './outrights.vue'
-
 const route = useRoute()
 const sport = route.params.sport ? +route.params.sport : 0
 const region = route.params.region ? route.params.region.toString() : ''
@@ -50,11 +48,14 @@ function onBaseTypeChange(v: string) {
 
 <template>
   <div class="tg-sports-category-index">
-    <div class="layout-spacing variant-normal">
+    <div class="wrapper">
       <AppNavBreadCrumb :breadcrumb="breadcrumb" />
-      <div class="sports-page-title">
+      <div class="tab-box">
         <div class="left">
-          <BaseTab v-model="curTab" :list="tabs" size="large" :center="false" />
+          <BaseTab
+            v-model="curTab" :list="tabs" size="large"
+            :center="false"
+          />
         </div>
         <AppSportsMarketTypeSelect
           v-show="isLiveAndUpcoming"
@@ -65,7 +66,7 @@ function onBaseTypeChange(v: string) {
       <!-- 滚球及即将开赛 -->
       <div
         v-if="isLiveAndUpcoming"
-        class="layout-spacing no-bottom-spacing sort-tournament"
+        class="sub-wrapper"
       >
         <AppSportsMarket
           v-for="league, i in leagueList" :key="league.ci" :is-standard="isStandard"
@@ -74,15 +75,27 @@ function onBaseTypeChange(v: string) {
         />
       </div>
       <!-- 冠军 -->
-      <LeagueOutrights v-else-if="isOutrights" />
+      <AppSportsOutrights v-else-if="isOutrights" :level="2" />
+
+      <AppBetData />
     </div>
-    <AppBetData />
   </div>
 </template>
 
 <style lang="scss" scoped>
-.sort-tournament >*+* {
-  margin-top: var(--tg-spacing-12);
+.tab-box{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.wrapper,.sub-wrapper{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap:  var(--tg-spacing-24);
+}
+.sub-wrapper{
+  gap:  var(--tg-spacing-12);
 }
 .tg-sports-category-index {
   margin-top: var(--tg-spacing-32);

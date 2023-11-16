@@ -256,6 +256,7 @@ declare global {
   const sportsDataBreadcrumbs: typeof import('./utils/sports')['sportsDataBreadcrumbs']
   const sportsDataGroupByLeague: typeof import('./utils/sports')['sportsDataGroupByLeague']
   const sportsOutrightsGoupByRegion: typeof import('./utils/sports')['sportsOutrightsGoupByRegion']
+  const sportsOutrightsGroupByLeague: typeof import('./utils/sports')['sportsOutrightsGroupByLeague']
   const sportsOutrightsGroupByRegion: typeof import('./utils/sports')['sportsOutrightsGroupByRegion']
   const storeToRefs: typeof import('pinia')['storeToRefs']
   const sub: typeof import('./utils/number')['sub']
