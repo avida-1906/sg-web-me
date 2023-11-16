@@ -1,4 +1,4 @@
-import type { ISportEventInfo } from '~/apis/types'
+import type { ISportEventInfo, ISportOutrightsInfo } from '~/apis/types'
 
 /**
  * 体育ID
@@ -151,6 +151,32 @@ export function sportsDataGroupByLeague(origin: ISportEventInfo[]) {
     else
       arr.push({ ci: origin[i].ci, cn: origin[i].cn, list: [origin[i]] })
   }
-  console.log('ApiSportEventList===>', arr)
+  console.log('盘口根据联赛组合===>', arr)
   return arr
+}
+/** 冠军盘口根据地区组合方法 */
+export function sportsOutrightsGroupByRegion(origin: ISportOutrightsInfo[]) {
+  const arr = []
+  for (let i = 0; i < origin.length; i++) {
+    if (i === 0) {
+      arr.push({ pgid: origin[i].pgid, pgn: origin[i].pgn, list: [origin[i]] })
+      continue
+    }
+
+    const index = arr.findIndex(a => a.pgid === origin[i].pgid)
+    if (index > -1)
+      arr[index].list.push(origin[i])
+    else
+      arr.push({ pgid: origin[i].pgid, pgn: origin[i].pgn, list: [origin[i]] })
+  }
+  console.log('冠军盘口根据地区组合===>', arr)
+  return arr
+}
+
+/** 盘口数据组合面包屑 */
+export function sportsDataBreadcrumbs(data: ISportEventInfo | ISportOutrightsInfo) {
+  const sport = { label: data.sn, value: `${data.si}` }
+  const area = { label: data.pgn, value: `${data.pgid}` }
+  const league = { label: data.cn, value: `${data.ci}` }
+  return [sport, area, league]
 }

@@ -2,104 +2,13 @@
 const route = useRoute()
 const sport = route.params.sport
 
-ApiSportOutrightList({ si: +sport, page: 1, page_size: 100 })
-const isOpen = true
-
-const list = [
-  {
-    si: 1,
-    sn: '足球',
-    pgid: '100',
-    pgn: '地区1',
-    ci: '11',
-    cn: '联赛1',
-  },
-  {
-    si: 1,
-    sn: '足球',
-    pgid: '200',
-    pgn: '地区2',
-    ci: '21',
-    cn: '联赛1',
-  },
-  {
-    si: 1,
-    sn: '足球',
-    pgid: '300',
-    pgn: '地区3',
-    ci: '31',
-    cn: '联赛1',
-  },
-  {
-    si: 1,
-    sn: '足球',
-    pgid: '100',
-    pgn: '地区1',
-    ci: '12',
-    cn: '联赛2',
-  },
-  {
-    si: 1,
-    sn: '足球',
-    pgid: '500',
-    pgn: '地区5',
-    ci: '51',
-    cn: '联赛1',
-  },
-  {
-    si: 1,
-    sn: '足球',
-    pgid: '100',
-    pgn: '地区1',
-    ci: '13',
-    cn: '联赛3',
-  },
-  {
-    si: 1,
-    sn: '足球',
-    pgid: '400',
-    pgn: '地区4',
-    ci: '41',
-    cn: '联赛1',
-  },
-  {
-    si: 1,
-    sn: '足球',
-    pgid: '500',
-    pgn: '地区5',
-    ci: '52',
-    cn: '联赛2',
-  },
-  {
-    si: 1,
-    sn: '足球',
-    pgid: '600',
-    pgn: '地区6',
-    ci: '61',
-    cn: '联赛1',
-  },
-  {
-    si: 1,
-    sn: '足球',
-    pgid: '200',
-    pgn: '地区2',
-    ci: '22',
-    cn: '联赛2',
-  },
-]
-
-const arr = []
-for (let i = 0; i < list.length; i++) {
-  if (i === 0) {
-    const league = { ci: list[i].ci, cn: list[i].cn, list: [list[i]] }
-    const region = { pgid: list[i].pgid, pgn: list[i].pgn, list: [league] }
-    arr.push(region)
-    continue
-  }
-  // 地区
-  // const rIndex = arr.
-}
-console.log('🚀 ~ file: outrights.vue:92 ~ arr:', arr)
+const { data } = useRequest(() =>
+  ApiSportOutrightList({ si: +sport, page: 1, page_size: 100 }), {
+  manual: false,
+})
+const list = computed(() => {
+  return data.value ? sportsOutrightsGroupByRegion(data.value.list) : []
+})
 </script>
 
 <template>
@@ -113,14 +22,23 @@ console.log('🚀 ~ file: outrights.vue:92 ~ arr:', arr)
     </div>
   </div>
   <BaseSecondaryAccordion
-    title="234"
+    v-for="region, i in list" :key="region.pgid"
+    :title="region.pgn"
     level="1"
-    :init="true"
+    :init="i === 0"
     icon="spt-game-intl"
   >
-    <div v-show="isOpen" class="content" :class="{ 'is-open': isOpen }">
+    <template #side="{ isOpen }">
+      <div v-show="!isOpen" class="accordion-badge-wrap">
+        <BaseBadge :count="region.list.length" />
+      </div>
+    </template>
+    <div class="content is-open">
       <div class="acc-box">
-        <AppOutrightPreview title="123" :auto-show="true" :count="20" />
+        <AppOutrightPreview
+          v-for="league, ii in region.list" :key="league.ci"
+          :auto-show="ii === 0" :data="league"
+        />
       </div>
     </div>
   </BaseSecondaryAccordion>

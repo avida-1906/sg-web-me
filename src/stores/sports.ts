@@ -148,7 +148,7 @@ export const useSportsStore = defineStore('sports', () => {
             // eslint-disable-next-line max-len
             { title: 'Live & Upcoming', path: `/sports/${SPORTS_PLAT_ID}/${sport.si}`, icon: 'spt-ball-plate' },
             // eslint-disable-next-line max-len
-            { title: 'Outrights', path: `/sports/${SPORTS_PLAT_ID}/${sport.si}/outrights`, icon: 'spt-timing' },
+            { title: 'Outrights', path: `/sports/${SPORTS_PLAT_ID}/${sport.si}?outrights=2`, icon: 'spt-timing' },
             ...sport.list.map((league) => {
               return {
                 title: league.cn,
