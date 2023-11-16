@@ -61,6 +61,7 @@ declare global {
   const ApiMemberTreeList: typeof import('./apis/index')['ApiMemberTreeList']
   const ApiMemberUpdate: typeof import('./apis/index')['ApiMemberUpdate']
   const ApiMemberUpload: typeof import('./apis/index')['ApiMemberUpload']
+  const ApiMemberVipConfig: typeof import('./apis/index')['ApiMemberVipConfig']
   const ApiMemberWalletDelete: typeof import('./apis/index')['ApiMemberWalletDelete']
   const ApiMemberWalletInsert: typeof import('./apis/index')['ApiMemberWalletInsert']
   const ApiMemberWalletList: typeof import('./apis/index')['ApiMemberWalletList']
@@ -589,6 +590,7 @@ declare module 'vue' {
     readonly ApiMemberTreeList: UnwrapRef<typeof import('./apis/index')['ApiMemberTreeList']>
     readonly ApiMemberUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberUpdate']>
     readonly ApiMemberUpload: UnwrapRef<typeof import('./apis/index')['ApiMemberUpload']>
+    readonly ApiMemberVipConfig: UnwrapRef<typeof import('./apis/index')['ApiMemberVipConfig']>
     readonly ApiMemberWalletDelete: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletDelete']>
     readonly ApiMemberWalletInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletInsert']>
     readonly ApiMemberWalletList: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletList']>
@@ -1102,6 +1104,7 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberTreeList: UnwrapRef<typeof import('./apis/index')['ApiMemberTreeList']>
     readonly ApiMemberUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberUpdate']>
     readonly ApiMemberUpload: UnwrapRef<typeof import('./apis/index')['ApiMemberUpload']>
+    readonly ApiMemberVipConfig: UnwrapRef<typeof import('./apis/index')['ApiMemberVipConfig']>
     readonly ApiMemberWalletDelete: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletDelete']>
     readonly ApiMemberWalletInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletInsert']>
     readonly ApiMemberWalletList: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletList']>
