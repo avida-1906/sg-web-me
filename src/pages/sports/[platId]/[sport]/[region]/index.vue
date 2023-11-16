@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 const route = useRoute()
 const sport = route.params.sport ? +route.params.sport : 0
-const region = route.params.region ? route.params.region.toString() : ''
+const region = ref(route.params.region ? route.params.region.toString() : '')
 const { bool: isStandard } = useBoolean(true)
 const sportsStore = useSportsStore()
-const { data } = useRequest(() =>
-  ApiSportEventList({ m: 5, si: sport, pgid: region, page: 1, page_size: 100 }), {
+const { data, run } = useRequest(() =>
+  ApiSportEventList({ m: 5, si: sport, pgid: region.value, page: 1, page_size: 100 }), {
   manual: false,
 })
 
@@ -42,6 +42,15 @@ const breadcrumb = computed(() => [
 function onBaseTypeChange(v: string) {
   baseType.value = v
 }
+
+const stop = watch(route, (a) => {
+  region.value = a.params.region ? a.params.region.toString() : ''
+  run()
+})
+
+onBeforeUnmount(() => {
+  stop()
+})
 </script>
 
 <template>
