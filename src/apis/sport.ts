@@ -1,4 +1,4 @@
-import type { ILeagueItem, ISportEventInfo } from './types'
+import type { ILeagueItem, ISportEventInfo, ISportOutrightsInfo } from './types'
 
 /**
  * 获取所有体育计数
@@ -226,4 +226,19 @@ export function ApiSportMenuMain() {
       menu_name: string
     }[]
   }>(`/sport/${getSportsPlatId()}/menu/main`)
+}
+
+/**
+ * 冠军列表
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=30bb4469-a21f-4267-b30c-b6e8555a6b89
+ */
+export function ApiSportOutrightList(data: {
+  /** 球种id */
+  si: number
+  page: number
+  page_size: number
+}) {
+  return httpClient.post<{
+    list: ISportOutrightsInfo[]
+  }>(`/sport/${getSportsPlatId()}/outright/list`, data)
 }

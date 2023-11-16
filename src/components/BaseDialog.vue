@@ -19,7 +19,16 @@ const emit = defineEmits(['update:show', 'close', 'cancel', 'confirm'])
 
 const { bool: _show, setTrue: setBShowTrue, setFalse: setBShowFalse } = useBoolean(false)
 
+const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent)
+
+const scrollTop = ref(0)
+
 function updateShow(value: boolean) {
+  if (value) {
+    scrollTop.value = document.scrollingElement?.scrollTop
+                        || document.documentElement.scrollTop
+                        || document.body.scrollTop
+  }
   emit('update:show', value)
   if (!value) {
     setTimeout(() => {
@@ -42,20 +51,26 @@ function onConfirm() {
   emit('confirm')
 }
 
-function moveFunc(e: Event) {
-  e.preventDefault()
-}
-
 provide('closeDialog', close)
 
 watch([() => props.show, () => _show.value], ([show, _show]) => {
   if (show || _show) {
-    document.body.classList.add('tg-popup-parent--hidden')
-    document.body.addEventListener('touchmove', moveFunc, false)
+    if (isSafari) {
+      document.body.classList.add('tg-popup-parent--hidden--safari')
+      document.body.style.top = `${-scrollTop.value}px`
+    }
+    else {
+      document.body.classList.add('tg-popup-parent--hidden')
+    }
   }
   else {
-    document.body.classList.remove('tg-popup-parent--hidden')
-    document.body.removeEventListener('touchmove', moveFunc)
+    if (isSafari) {
+      document.body.classList.remove('tg-popup-parent--hidden--safari')
+      document.documentElement.scrollTop = document.body.scrollTop = scrollTop.value
+    }
+    else {
+      document.body.classList.remove('tg-popup-parent--hidden')
+    }
   }
 })
 
@@ -147,7 +162,7 @@ onUnmounted(() => {
     justify-content: center;
     font-size: var(--tg-font-size-default);
     .overlay {
-      position: fixed;
+      position: absolute;
       left: 0;
       top: -100px;
       bottom: 0;

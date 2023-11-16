@@ -97,23 +97,25 @@ async function handleWithdraw() {
     })
   }
 }
+function updateContract() {
+  runAsyncWalletList({
+    contract_type: props.currentNetwork,
+    currency_id: props.activeCurrency.cur,
+    page: 1,
+    page_size: 10,
+  })
+}
 
 watch(() => props.currentNetwork, () => {
-  if (props.currentNetwork) {
-    runAsyncWalletList({
-      contract_type: props.currentNetwork,
-      currency_id: props.activeCurrency.cur,
-      page: 1,
-      page_size: 10,
-    })
-  }
+  if (props.currentNetwork)
+    updateContract()
 }, { immediate: true })
 </script>
 
 <template>
   <template v-if="addrOptions.length">
     <!-- 虚拟币提款 -->
-    <div class="app-withdraw withdrawal-info">
+    <div class="withdrawal-info app-withdraw">
       <BaseLabel
         :label="`${activeCurrency?.type}地址`"
         :current-currency="activeCurrency?.type"
@@ -122,7 +124,7 @@ watch(() => props.currentNetwork, () => {
         <BaseSelect
           v-model="address"
           :options="addrOptions"
-          small theme popper border
+          theme popper small border
           style="--tg-base-select-popper-style-padding-y: var(--tg-spacing-12)"
         >
           <template #label>
@@ -152,7 +154,7 @@ watch(() => props.currentNetwork, () => {
       <div class="amount">
         <div class="top">
           <span class="label">金额<span style="color: var(--tg-text-error);">*</span></span>
-          <span class="us">US$0.00</span>
+          <!-- <span class="us">US$0.00</span> -->
         </div>
         <BaseInput
           v-model="amount"
@@ -188,9 +190,11 @@ watch(() => props.currentNetwork, () => {
   <!-- 虚拟币地址添加 -->
   <template v-else>
     <AppVirAddressDialog
+      is-withdraw
       :currency-id="activeCurrency.cur"
       :currency-name="activeCurrency.type"
       style="--tg-app-vir-address-style-padding: 0"
+      @added="updateContract"
     />
   </template>
 </template>

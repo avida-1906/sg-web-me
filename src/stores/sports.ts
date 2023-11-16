@@ -56,14 +56,17 @@ export const useSportsStore = defineStore('sports', () => {
   const currentUpcomingNav = ref(0)
 
   /** 体育计数源 */
-  const { data: allSportsCount, run: runSportsCount } = useRequest(() => ApiSportCount({ ic: 0 }))
+  const { data: allSportsCount, run: runSportsCount } = useRequest(() =>
+    ApiSportCount({ ic: 0 }),
+  {
+    onSuccess(res) {
+      currentLiveNav.value = res.list.find(a => a.lc > 0)?.si ?? 0
+    },
+  },
+  )
 
   /** 侧边栏数据源 */
-  const { data: sidebarData, run: runSportsSidebar } = useRequest(ApiSportSidebar, {
-    onSuccess(res) {
-      currentLiveNav.value = res.rbl[0]?.si ?? 0
-    },
-  })
+  const { data: sidebarData, run: runSportsSidebar } = useRequest(ApiSportSidebar)
 
   /** 获取场馆列表 */
   const {
@@ -145,7 +148,7 @@ export const useSportsStore = defineStore('sports', () => {
             // eslint-disable-next-line max-len
             { title: 'Live & Upcoming', path: `/sports/${SPORTS_PLAT_ID}/${sport.si}`, icon: 'spt-ball-plate' },
             // eslint-disable-next-line max-len
-            { title: 'Outrights', path: `/sports/${SPORTS_PLAT_ID}/${sport.si}/outrights`, icon: 'spt-timing' },
+            { title: 'Outrights', path: `/sports/${SPORTS_PLAT_ID}/${sport.si}?outrights=2`, icon: 'spt-timing' },
             ...sport.list.map((league) => {
               return {
                 title: league.cn,

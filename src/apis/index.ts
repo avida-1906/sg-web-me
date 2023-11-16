@@ -991,7 +991,7 @@ export function ApiMemberNoticeList(params: {
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=8184892e-c125-49b0-8f8d-e5c60da4fc78
  */
 export function ApiMemberExchangeRate() {
-  return httpClient.get<Array<ExchangeRateData>>('/member/exchange/rate/list')
+  return httpClient.get<ExchangeRateData>('/member/exchange/rate/list')
 }
 
 /**

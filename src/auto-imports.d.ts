@@ -72,6 +72,7 @@ declare global {
   const ApiSportEventInfo: typeof import('./apis/sport')['ApiSportEventInfo']
   const ApiSportEventList: typeof import('./apis/sport')['ApiSportEventList']
   const ApiSportMenuMain: typeof import('./apis/sport')['ApiSportMenuMain']
+  const ApiSportOutrightList: typeof import('./apis/sport')['ApiSportOutrightList']
   const ApiSportSidebar: typeof import('./apis/sport')['ApiSportSidebar']
   const ApiWalletBankcardList: typeof import('./apis/index')['ApiWalletBankcardList']
   const Big: typeof import('big.js')['Big']
@@ -94,6 +95,7 @@ declare global {
   const MQTT_CONNECT_SUCCESS_BUS: typeof import('./utils/event-bus')['MQTT_CONNECT_SUCCESS_BUS']
   const MQTT_DISCONNECT_BUS: typeof import('./utils/event-bus')['MQTT_DISCONNECT_BUS']
   const REFRESH_BALANCE_BUS: typeof import('./utils/event-bus')['REFRESH_BALANCE_BUS']
+  const REFRESH_MEMBER_BUS: typeof import('./utils/event-bus')['REFRESH_MEMBER_BUS']
   const SPORTS_PLAT_ID: typeof import('./utils/sports')['SPORTS_PLAT_ID']
   const STORAGE_CURRENT_GLOBAL_CURRENCY_KEY: typeof import('./utils/storage')['STORAGE_CURRENT_GLOBAL_CURRENCY_KEY']
   const STORAGE_HIDE_ZERO_BALANCE_KEY: typeof import('./utils/storage')['STORAGE_HIDE_ZERO_BALANCE_KEY']
@@ -250,7 +252,10 @@ declare global {
   const socketClient: typeof import('./utils/mqtt')['socketClient']
   const sortBy: typeof import('lodash-es')['sortBy']
   const split: typeof import('lodash-es')['split']
+  const sportsDataBreadcrumbs: typeof import('./utils/sports')['sportsDataBreadcrumbs']
   const sportsDataGroupByLeague: typeof import('./utils/sports')['sportsDataGroupByLeague']
+  const sportsOutrightsGoupByRegion: typeof import('./utils/sports')['sportsOutrightsGoupByRegion']
+  const sportsOutrightsGroupByRegion: typeof import('./utils/sports')['sportsOutrightsGroupByRegion']
   const storeToRefs: typeof import('pinia')['storeToRefs']
   const sub: typeof import('./utils/number')['sub']
   const syncRef: typeof import('@vueuse/core')['syncRef']
@@ -594,6 +599,7 @@ declare module 'vue' {
     readonly ApiSportEventInfo: UnwrapRef<typeof import('./apis/sport')['ApiSportEventInfo']>
     readonly ApiSportEventList: UnwrapRef<typeof import('./apis/sport')['ApiSportEventList']>
     readonly ApiSportMenuMain: UnwrapRef<typeof import('./apis/sport')['ApiSportMenuMain']>
+    readonly ApiSportOutrightList: UnwrapRef<typeof import('./apis/sport')['ApiSportOutrightList']>
     readonly ApiSportSidebar: UnwrapRef<typeof import('./apis/sport')['ApiSportSidebar']>
     readonly ApiWalletBankcardList: UnwrapRef<typeof import('./apis/index')['ApiWalletBankcardList']>
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
@@ -615,6 +621,7 @@ declare module 'vue' {
     readonly MQTT_CONNECT_SUCCESS_BUS: UnwrapRef<typeof import('./utils/event-bus')['MQTT_CONNECT_SUCCESS_BUS']>
     readonly MQTT_DISCONNECT_BUS: UnwrapRef<typeof import('./utils/event-bus')['MQTT_DISCONNECT_BUS']>
     readonly REFRESH_BALANCE_BUS: UnwrapRef<typeof import('./utils/event-bus')['REFRESH_BALANCE_BUS']>
+    readonly REFRESH_MEMBER_BUS: UnwrapRef<typeof import('./utils/event-bus')['REFRESH_MEMBER_BUS']>
     readonly SPORTS_PLAT_ID: UnwrapRef<typeof import('./utils/sports')['SPORTS_PLAT_ID']>
     readonly STORAGE_CURRENT_GLOBAL_CURRENCY_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_CURRENT_GLOBAL_CURRENCY_KEY']>
     readonly STORAGE_HIDE_ZERO_BALANCE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_HIDE_ZERO_BALANCE_KEY']>
@@ -767,7 +774,9 @@ declare module 'vue' {
     readonly socketClient: UnwrapRef<typeof import('./utils/mqtt')['socketClient']>
     readonly sortBy: UnwrapRef<typeof import('lodash-es')['sortBy']>
     readonly split: UnwrapRef<typeof import('lodash-es')['split']>
+    readonly sportsDataBreadcrumbs: UnwrapRef<typeof import('./utils/sports')['sportsDataBreadcrumbs']>
     readonly sportsDataGroupByLeague: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupByLeague']>
+    readonly sportsOutrightsGroupByRegion: UnwrapRef<typeof import('./utils/sports')['sportsOutrightsGroupByRegion']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
     readonly sub: UnwrapRef<typeof import('./utils/number')['sub']>
     readonly syncRef: UnwrapRef<typeof import('@vueuse/core')['syncRef']>
@@ -1103,6 +1112,7 @@ declare module '@vue/runtime-core' {
     readonly ApiSportEventInfo: UnwrapRef<typeof import('./apis/sport')['ApiSportEventInfo']>
     readonly ApiSportEventList: UnwrapRef<typeof import('./apis/sport')['ApiSportEventList']>
     readonly ApiSportMenuMain: UnwrapRef<typeof import('./apis/sport')['ApiSportMenuMain']>
+    readonly ApiSportOutrightList: UnwrapRef<typeof import('./apis/sport')['ApiSportOutrightList']>
     readonly ApiSportSidebar: UnwrapRef<typeof import('./apis/sport')['ApiSportSidebar']>
     readonly ApiWalletBankcardList: UnwrapRef<typeof import('./apis/index')['ApiWalletBankcardList']>
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
@@ -1124,6 +1134,7 @@ declare module '@vue/runtime-core' {
     readonly MQTT_CONNECT_SUCCESS_BUS: UnwrapRef<typeof import('./utils/event-bus')['MQTT_CONNECT_SUCCESS_BUS']>
     readonly MQTT_DISCONNECT_BUS: UnwrapRef<typeof import('./utils/event-bus')['MQTT_DISCONNECT_BUS']>
     readonly REFRESH_BALANCE_BUS: UnwrapRef<typeof import('./utils/event-bus')['REFRESH_BALANCE_BUS']>
+    readonly REFRESH_MEMBER_BUS: UnwrapRef<typeof import('./utils/event-bus')['REFRESH_MEMBER_BUS']>
     readonly SPORTS_PLAT_ID: UnwrapRef<typeof import('./utils/sports')['SPORTS_PLAT_ID']>
     readonly STORAGE_CURRENT_GLOBAL_CURRENCY_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_CURRENT_GLOBAL_CURRENCY_KEY']>
     readonly STORAGE_HIDE_ZERO_BALANCE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_HIDE_ZERO_BALANCE_KEY']>
@@ -1276,7 +1287,9 @@ declare module '@vue/runtime-core' {
     readonly socketClient: UnwrapRef<typeof import('./utils/mqtt')['socketClient']>
     readonly sortBy: UnwrapRef<typeof import('lodash-es')['sortBy']>
     readonly split: UnwrapRef<typeof import('lodash-es')['split']>
+    readonly sportsDataBreadcrumbs: UnwrapRef<typeof import('./utils/sports')['sportsDataBreadcrumbs']>
     readonly sportsDataGroupByLeague: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupByLeague']>
+    readonly sportsOutrightsGroupByRegion: UnwrapRef<typeof import('./utils/sports')['sportsOutrightsGroupByRegion']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
     readonly sub: UnwrapRef<typeof import('./utils/number')['sub']>
     readonly syncRef: UnwrapRef<typeof import('@vueuse/core')['syncRef']>

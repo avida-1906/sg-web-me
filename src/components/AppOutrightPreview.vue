@@ -1,44 +1,57 @@
 <script lang="ts" setup>
-interface Props {
-  tournament: SportTournament
-  autoShow?: boolean
-}
+import type { ISportOutrightsInfo } from '~/apis/types'
 
-defineProps<Props>()
+interface Props {
+  autoShow: boolean
+  data: ISportOutrightsInfo
+}
+const props = defineProps<Props>()
+
+const router = useRouter()
+const { width } = storeToRefs(useWindowStore())
+
+const isH5Layout = computed(() => width.value < 575)
+const breadcrumbs = computed(() => sportsDataBreadcrumbs(props.data))
+
+// 联赛跳转
+function onBreadcrumbsClick({ list, index }: { list: ISelectOption[]; index: number }) {
+  let path = ''
+  if (isH5Layout.value)
+    path = `/sports/${getSportsPlatId()}/${list.map(a => a.value).join('/')}`
+
+  else
+    // eslint-disable-next-line max-len
+    path = `/sports/${getSportsPlatId()}/${list.slice(0, index + 1).map(a => a.value).join('/')}`
+  router.push(path)
+}
 </script>
 
 <template>
-  <BaseSecondaryAccordion :title="tournament.name" level="2" :init="autoShow">
+  <BaseSecondaryAccordion :title="data.cn" level="2" :init="autoShow">
     <template #side="{ isOpen }">
       <div v-show="!isOpen" class="accordion-badge-wrap">
-        <BaseBadge :count="tournament.fixtureCount" />
+        <BaseBadge :count="1" />
       </div>
     </template>
     <div class="fixture-wrapper">
-      <div class="group-time">
-        2024年1月7日
-      </div>
       <div
-        v-for="fixture in tournament.fixtureList"
-        :key="fixture.id"
         class="outright-preview"
       >
         <span class="name">
           <a class="link">
-            {{ fixture.name }}
+            {{ data.oen }}
           </a>
         </span>
         <div class="breadcrumb">
           <BaseBreadcrumbs
-            :list="[
-              { label: '网球', value: 'tennis' },
-              { label: 'ITF女子', value: 'itf-women' },
-              { label: 'ITF China 11A, Women Singles', value: 'itf-china-women-singles' },
-            ]"
+            :list="breadcrumbs" :only-last="isH5Layout"
+            @item-click="onBreadcrumbsClick"
           />
         </div>
         <span class="market-count">
-          <a class="link">+{{ fixture.marketCount }}</a>
+          <BaseButton type="text" size="none">
+            +{{ data.ml[0].ms.length }}
+          </BaseButton>
         </span>
       </div>
     </div>
@@ -55,6 +68,7 @@ defineProps<Props>()
       "breadcrumb breadcrumb";
   font-size: var(--tg-font-size-default);
   font-weight: var(--tg-font-weight-semibold);
+  line-height: 1.3;
 }
 .group-time {
   display: flex;

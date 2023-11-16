@@ -48,10 +48,10 @@ const {
   return ''
 })
 
-const {
-  runAsync: runAsyncWithdrawMethodList,
-  data: withdrawMethodList,
-} = useRequest(ApiFinanceWithdrawMethodList)
+// const {
+//   runAsync: runAsyncWithdrawMethodList,
+//   data: withdrawMethodList,
+// } = useRequest(ApiFinanceWithdrawMethodList)
 const {
   runAsync: runAsyncWithdrawBankcardList,
   data: withdrawBankcardList,
@@ -78,19 +78,19 @@ const {
   },
 })
 
-const withdrawMethodData = computed(() => {
-  if (withdrawMethodList.value) {
-    currentWithdrawMethod.value = withdrawMethodList.value[0].id
-    return withdrawMethodList.value.map((item) => {
-      return {
-        label: item.name,
-        value: item.id,
-      }
-    })
-  }
-  currentWithdrawMethod.value = ''
-  return []
-})
+// const withdrawMethodData = computed(() => {
+//   if (withdrawMethodList.value) {
+//     currentWithdrawMethod.value = withdrawMethodList.value[0].id
+//     return withdrawMethodList.value.map((item) => {
+//       return {
+//         label: item.name,
+//         value: item.id,
+//       }
+//     })
+//   }
+//   currentWithdrawMethod.value = ''
+//   return []
+// })
 
 const bindBanks = computed(() => {
   if (withdrawBankcardList.value && withdrawBankcardList.value.d) {
@@ -121,7 +121,9 @@ const bankcardId = computed(() =>
 function maxNumber() {
   amount.value = props.activeCurrency.balance
 }
-
+function updateBank() {
+  runAsyncWithdrawBankcardList({ currency_id: props.activeCurrency.cur })
+}
 async function withDrawSubmit() {
   await selectBankValidate()
   await amountValidate()
@@ -139,7 +141,7 @@ async function withDrawSubmit() {
 
 watch(() => props.activeCurrency, (newValue) => {
   runAsyncWithdrawBankcardList({ currency_id: newValue.cur })
-  runAsyncWithdrawMethodList({ currency_id: newValue.cur })
+  // runAsyncWithdrawMethodList({ currency_id: newValue.cur })
   selectBankReset()
   amountReset()
   payPasswordReset()
@@ -148,7 +150,7 @@ watch(() => props.activeCurrency, (newValue) => {
 await application.allSettled(
   [
     runAsyncWithdrawBankcardList({ currency_id: props.activeCurrency.cur }),
-    runAsyncWithdrawMethodList({ currency_id: props.activeCurrency.cur }),
+    // runAsyncWithdrawMethodList({ currency_id: props.activeCurrency.cur }),
   ],
 )
 </script>
@@ -156,20 +158,21 @@ await application.allSettled(
 <template>
   <div class="app-fiat-withdrawal">
     <!-- 绑定银行卡/三方账户 -->
-    <div v-if="!withdrawBankcardList?.d.length" class="bank-bind">
+    <div v-if="!withdrawBankcardList?.d?.length" class="bank-bind">
       <AppAddBankcards
         :is-first="true"
         :container="false"
         :active-currency="activeCurrency"
         :current-type="currentType"
+        @added="updateBank"
       />
     </div>
     <!-- 出款信息 -->
     <div v-else class="withdrawal-wrap">
-      <AppWithdrawalDepositType
+      <!-- <AppWithdrawalDepositType
         v-model="currentWithdrawMethod"
         :current-type="withdrawMethodData"
-      />
+      /> -->
       <div class="withdrawal-info">
         <BaseLabel :label="currentType === '1' ? '出款银行卡' : 'PIX账号'" must>
           <BaseSelect
@@ -201,7 +204,7 @@ await application.allSettled(
             </template>
           </BaseSelect>
         </BaseLabel>
-        <BaseLabel label="金额" must right-text="R$ 0.00">
+        <BaseLabel label="金额" must>
           <BaseInput v-model="amount" :msg="amountError" @on-right-button="maxNumber">
             <template #right-button>
               <span>最大值</span>
@@ -267,6 +270,7 @@ await application.allSettled(
       }
     }
   }
+
 }
 .bank-options{
   .option-row {

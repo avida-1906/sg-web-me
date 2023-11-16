@@ -173,9 +173,12 @@ export interface ProviderItem {
 }
 
 /** 汇率数据对象 */
-export type ExchangeRateData = {
-  [k in EnumCurrencyKey]: {
-    [k in EnumCurrencyKey]: string
+export interface ExchangeRateData {
+  date: number
+  rates: {
+    [k in EnumCurrencyKey]: {
+      [k in EnumCurrencyKey]: string
+    }
   }
 }
 
@@ -397,4 +400,35 @@ export interface ISportEventInfo {
   }[]
   /** 赛事更新时间 */
   ts: 1699616882
+}
+
+/** 冠军盘口数据 */
+export interface ISportOutrightsInfo {
+  si: number
+  sn: string
+  pgid: string
+  pgn: string
+  ci: string
+  cn: string
+  ei: string
+  oen: string
+  ed: number
+  mc: number
+  ml: {
+    mlid: string
+    bt: number
+    btn: string
+    pid: number
+    pn: string
+    mll: number
+    mls: number
+    ms: {
+      wid: string
+      sid: string
+      sn: string
+      hdp: string
+      sp?: any
+      ov: string
+    }[]
+  }[]
 }

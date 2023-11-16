@@ -1,17 +1,27 @@
 <script lang="ts" setup>
+import RegionOutrights from './outrights.vue'
+
 const { t } = useI18n()
 const sportsStore = useSportsStore()
 const route = useRoute()
 const sport = route.params.sport
-const sportName = computed(() => sportsStore.getSportsNameBySi(+sport))
-const curTab = ref('1')
-const baseType = ref('winner')
 const { bool: isStandard } = useBoolean(true)
 const { data: competitionListData } = useRequest(() =>
   ApiSportCompetitionList({ si: +sport, kind: 'normal' }),
 {
   manual: false,
 })
+
+const curTab = ref(route.query.outrights ? '2' : '1')
+const baseType = ref('winner')
+
+const sportName = computed(() => sportsStore.getSportsNameBySi(+sport))
+const tabs = computed(() => [
+  { value: '1', label: '滚球与即将开赛的盘口' },
+  { value: '2', label: '冠军投注' },
+])
+const isLiveAndUpcoming = computed(() => curTab.value === '1')
+const isOutrights = computed(() => curTab.value === '2')
 const allRegionList = computed(() => {
   if (competitionListData.value)
     return competitionListData.value.list
@@ -30,14 +40,13 @@ const breadcrumb = computed(() => [
     id: sport,
   },
 ])
-const tabs = computed(() => [
-  { value: '1', label: '滚球与即将开赛的盘口' },
-  { value: '2', label: '冠军投注' },
-])
-
 function onBaseTypeChange(v: string) {
   baseType.value = v
 }
+
+watch(route, (a) => {
+  curTab.value = a.query.outrights ? '2' : '1'
+})
 </script>
 
 <template>
@@ -46,50 +55,63 @@ function onBaseTypeChange(v: string) {
       <AppNavBreadCrumb :breadcrumb="breadcrumb" />
       <div class="sports-page-title">
         <div class="left">
-          <BaseTab v-model="curTab" :list="tabs" size="large" :center="false" />
+          <BaseTab
+            v-model="curTab" :list="tabs" size="large"
+            :center="false"
+          />
         </div>
         <AppSportsMarketTypeSelect
+          v-show="isLiveAndUpcoming"
           v-model="isStandard" :base-type="baseType"
           @base-type-change="onBaseTypeChange"
         />
       </div>
-      <!-- 热门 -->
-      <div class="sports-page-title">
-        <div class="left">
-          <BaseIcon name="uni-popular" />
-          <h6>{{ t('casino_sort_popular') }} {{ sportName }}</h6>
+      <!-- 滚球及即将开赛 -->
+      <template v-if="isLiveAndUpcoming">
+        <!-- 热门 -->
+        <div class="sports-page-title">
+          <div class="left">
+            <BaseIcon name="uni-popular" />
+            <h6>{{ t('casino_sort_popular') }} {{ sportName }}</h6>
+          </div>
         </div>
-      </div>
-      <div class="layout-spacing no-bottom-spacing sort-tournament">
-        <AppSportsMarketRegion
-          v-for="region, index in hotSportList"
-          :key="region.pgid"
-          :title="region.pgn"
-          icon="spt-game-intl"
-          :init="index > 0 ? false : true"
-          :count="region.c"
-          :is-standard="isStandard"
-          :base-type="baseType"
-          :league-list="region.cl"
-        />
-      </div>
-      <!-- 按字母顺序排序 -->
-      <div class="layout-spacing sort-tournament">
-        <h3 class="sub-title">
-          <BaseIcon name="spt-sort-az" />
-          <span>按字母顺序排列</span>
-        </h3>
-        <AppSportsMarketRegion
-          v-for="region in allRegionList"
-          :key="region.pgid"
-          :title="region.pgn"
-          icon="spt-game-intl"
-          :init="false"
-          :count="region.c"
-          :is-standard="isStandard"
-          :base-type="baseType"
-          :league-list="region.cl"
-        />
+        <div class="layout-spacing no-bottom-spacing sort-tournament">
+          <AppSportsMarketRegion
+            v-for="region, index in hotSportList"
+            :key="region.pgid"
+            :title="region.pgn"
+            icon="spt-game-intl"
+            :init="index > 0 ? false : true"
+            :count="region.c"
+            :is-standard="isStandard"
+            :base-type="baseType"
+            :league-list="region.cl"
+          />
+        </div>
+        <!-- 按字母顺序排序 -->
+        <div class="layout-spacing sort-tournament">
+          <h3 class="sub-title">
+            <BaseIcon name="spt-sort-az" />
+            <span>按字母顺序排列</span>
+          </h3>
+          <AppSportsMarketRegion
+            v-for="region in allRegionList"
+            :key="region.pgid"
+            :title="region.pgn"
+            icon="spt-game-intl"
+            :init="false"
+            :count="region.c"
+            :is-standard="isStandard"
+            :base-type="baseType"
+            :league-list="region.cl"
+          />
+        </div>
+      </template>
+      <!-- 冠军 -->
+      <RegionOutrights v-else-if="isOutrights" />
+
+      <div class="layout-spacing">
+        <AppBetData mode="sports" />
       </div>
     </div>
   </div>
@@ -130,14 +152,6 @@ function onBaseTypeChange(v: string) {
   .app-svg-icon {
     margin-right: var(--tg-spacing-8);
   }
-}
-.acc-box {
-  display: grid;
-  grid-auto-flow: row;
-  justify-content: stretch;
-  align-items: center;
-  gap: var(--tg-spacing-12);
-  padding: var(--tg-spacing-8);
 }
 .tg-sports-index {
   margin-top: var(--tg-spacing-32);

@@ -3,7 +3,7 @@ import type { CurrencyData } from '~/composables/useCurrencyData'
 import type { TTreeListType } from '~/composables/useApiMemberTreeList'
 
 interface Props {
-  /** 是否首次绑定 */
+  /** 提款内绑定为true，卡包内绑定为false */
   isFirst?: boolean
   /** 户名 */
   openName?: string
@@ -28,6 +28,8 @@ const props = withDefaults(defineProps<Props>(), {
   openName: '',
   container: true,
 })
+
+const emit = defineEmits(['added'])
 const closeDialog = inject('closeDialog', () => {})
 
 const { openNotify } = useNotify()
@@ -110,8 +112,10 @@ const {
     bankaccountReset()
     bankAreaCpfReset()
     setIsDefaultFalse()
-    closeDialog()
     closePayPwdDialog()
+    if (!props.isFirst)
+      closeDialog()
+    emit('added')
   },
 })
 
@@ -226,8 +230,11 @@ onUnmounted(() => {
         <BaseCheckBox v-model="isDefault" />
       </div>
       <BaseButton bg-style="primary" size="md" @click="onBindBank">
-        提交
+        {{ isFirst ? '提交' : '绑定' }}
       </BaseButton>
+      <div v-if="!props.isFirst" class="bind-point">
+        所有绑定账户<span>姓名必须一致</span>，请谨慎确认姓名，更改姓名将会非常麻烦
+      </div>
     </div>
   </div>
 </template>
@@ -261,6 +268,15 @@ onUnmounted(() => {
       > span {
         color: var(--tg-text-lightgrey);
         font-weight: var(--tg-font-weight-semibold);
+      }
+    }
+    .bind-point{
+      color: #B1BAD3;
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1.4;
+      span{
+        color: #fff;
       }
     }
   }

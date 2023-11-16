@@ -17,6 +17,9 @@ const props = defineProps<Props>()
 const { userInfo } = storeToRefs(useAppStore())
 
 const isOwn = computed(() => props.message.uid === userInfo.value?.uid)
+
+const messageImages = computed(() =>
+  props.message.images && props.message.images.length ? JSON.parse(props.message.images) : [])
 </script>
 
 <template>
@@ -34,6 +37,14 @@ const isOwn = computed(() => props.message.uid === userInfo.value?.uid)
       <slot>
         <div class="text message">
           {{ message.content }}
+          <div v-if="messageImages.length" class="message-images">
+            <BaseImage
+              v-for="item in messageImages"
+              :key="item"
+              :url="item"
+              is-network
+            />
+          </div>
         </div>
       </slot>
     </div>
@@ -81,6 +92,15 @@ const isOwn = computed(() => props.message.uid === userInfo.value?.uid)
         line-height: var(--tg-spacing-20);
         text-align: left;
         white-space: initial;
+      }
+      .message-images {
+        display: flex;
+        gap: 2%;
+        flex-wrap: wrap;
+        >* {
+          width: 32%;
+          margin-top: 8px;
+        }
       }
     }
   }

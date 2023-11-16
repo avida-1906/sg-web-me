@@ -2,7 +2,6 @@
 interface Props {
   title?: string
   icon?: string
-  showMore?: boolean
   loading?: boolean
   init?: boolean
   count: number
@@ -15,27 +14,8 @@ interface Props {
   }[]
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  init: true,
-})
-const emit = defineEmits(['more', 'open', 'close'])
-
-const { bool: isOpen, setBool } = useBoolean(props.init)
-const openCount = ref(0)
-
-function toggle() {
-  setBool(!isOpen.value)
-  if (isOpen.value) {
-    openCount.value += 1
-    emit('open', openCount.value)
-  }
-  else {
-    emit('close')
-  }
-}
-function loadMore() {
-  emit('more')
-}
+const props = defineProps<Props>()
+const { bool: isOpen, toggle: toggleOpen } = useBoolean(props.init)
 </script>
 
 <template>
@@ -43,22 +23,20 @@ function loadMore() {
     class="base-secondary-accordion level-1"
     :class="[isOpen ? 'is-open' : '']"
   >
-    <div class="no-active-scale header" @click="toggle">
-      <slot name="header">
+    <div class="no-active-scale header" @click="toggleOpen">
+      <div class="container">
         <div class="container">
+          <BaseIcon v-if="icon" :name="icon" />
           <div class="container">
-            <BaseIcon v-if="icon" :name="icon" />
-            <div class="container">
-              <div class="center">
-                <span>{{ title }}</span>
-              </div>
+            <div class="center">
+              <span>{{ title }}</span>
             </div>
           </div>
-          <div v-show="!isOpen" class="accordion-badge-wrap">
-            <BaseBadge :count="count" />
-          </div>
         </div>
-      </slot>
+        <div v-show="!isOpen" class="accordion-badge-wrap">
+          <BaseBadge :count="count" />
+        </div>
+      </div>
       <div class="arrow">
         <BaseIcon
           name="uni-arrow-down" :style="{ transform: `rotate(${isOpen ? 0 : 90}deg)` }"
@@ -77,17 +55,6 @@ function loadMore() {
           :league-id="league.ci"
           :is-region-open="isOpen"
         />
-      </div>
-    </div>
-    <div v-if="showMore" class="show-more">
-      <hr>
-      <div class="load-more-box">
-        <BaseButton type="text" @click="loadMore">
-          <span v-if="!loading">加载更多</span>
-          <span v-else class="ani-scale">
-            <BaseIcon name="spt-soccer" />
-          </span>
-        </BaseButton>
       </div>
     </div>
   </div>

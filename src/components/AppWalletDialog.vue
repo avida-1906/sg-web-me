@@ -8,9 +8,12 @@ const props = withDefaults(defineProps<Props>(), {
   activeTab: 'deposit',
 })
 
+const closeDialog = inject('closeDialog', () => { })
+const { userInfo } = storeToRefs(useAppStore())
 const { t } = useI18n()
 const { bool: showWallet, setBool: setShowWalletBool } = useBoolean(true)
 const { isVirtualCurrency } = useCurrencyData()
+const router = useRouter()
 
 const currentNetwork = ref('')
 const activeCurrency = ref<CurrencyData | null>()
@@ -88,18 +91,30 @@ function handleShow(val: boolean) {
       </template>
     </div>
     <!-- 卡包 -->
-    <KeepAlive>
-      <template v-if="isCardHolder">
-        <Suspense timeout="0">
-          <AppCardHolder />
-          <template #fallback>
-            <div class="center dialog-loading-height">
-              <BaseLoading />
-            </div>
-          </template>
-        </Suspense>
-      </template>
-    </KeepAlive>
+    <!-- <KeepAlive> -->
+    <template v-if="isCardHolder">
+      <Suspense timeout="0">
+        <AppCardHolder />
+        <template #fallback>
+          <div class="center dialog-loading-height">
+            <BaseLoading />
+          </div>
+        </template>
+      </Suspense>
+    </template>
+    <!-- </KeepAlive> -->
+  </div>
+  <div v-if="isWithdraw && userInfo && userInfo.google_verify !== 2" class="safe-bottom">
+    <div>
+      通过双重验证提高您的账户安全性
+    </div>
+    <BaseButton
+      bg-style="primary"
+      size="md"
+      @click="router.push('/settings/security-safe-check'); closeDialog()"
+    >
+      开启双重验证
+    </BaseButton>
   </div>
 </template>
 
@@ -116,4 +131,14 @@ function handleShow(val: boolean) {
     gap: var(--tg-spacing-12);
   }
 }
+  .safe-bottom{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    background-color: #0f212e;
+    padding:1rem;
+    gap: 1rem;
+    color: var(--tg-text-lightgrey);
+  }
 </style>
