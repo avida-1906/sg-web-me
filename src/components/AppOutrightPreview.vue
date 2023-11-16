@@ -6,7 +6,24 @@ interface Props {
   data: ISportOutrightsInfo
 }
 const props = defineProps<Props>()
+
+const router = useRouter()
+const { width } = storeToRefs(useWindowStore())
+
+const isH5Layout = computed(() => width.value < 575)
 const breadcrumbs = computed(() => sportsDataBreadcrumbs(props.data))
+
+// 联赛跳转
+function onBreadcrumbsClick({ list, index }: { list: ISelectOption[]; index: number }) {
+  let path = ''
+  if (isH5Layout.value)
+    path = `/sports/${getSportsPlatId()}/${list.map(a => a.value).join('/')}`
+
+  else
+    // eslint-disable-next-line max-len
+    path = `/sports/${getSportsPlatId()}/${list.slice(0, index + 1).map(a => a.value).join('/')}`
+  router.push(path)
+}
 </script>
 
 <template>
@@ -26,7 +43,10 @@ const breadcrumbs = computed(() => sportsDataBreadcrumbs(props.data))
           </a>
         </span>
         <div class="breadcrumb">
-          <BaseBreadcrumbs :list="breadcrumbs" />
+          <BaseBreadcrumbs
+            :list="breadcrumbs" :only-last="isH5Layout"
+            @item-click="onBreadcrumbsClick"
+          />
         </div>
         <span class="market-count">
           <BaseButton type="text" size="none">

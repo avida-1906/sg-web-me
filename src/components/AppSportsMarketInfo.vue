@@ -113,8 +113,6 @@ function onBreadcrumbsClick({ list, index }: { list: ISelectOption[]; index: num
   else
     // eslint-disable-next-line max-len
     path = `/sports/${getSportsPlatId()}/${list.slice(0, index + 1).map(a => a.value).join('/')}`
-
-  console.log('🚀 ~ file: BaseBreadcrumbs.vue:15 ~ handleClick ~ path:', path)
   router.push(path)
 }
 
