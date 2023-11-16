@@ -28,6 +28,8 @@ const props = withDefaults(defineProps<Props>(), {
   openName: '',
   container: true,
 })
+
+const emit = defineEmits(['added'])
 const closeDialog = inject('closeDialog', () => {})
 
 const { openNotify } = useNotify()
@@ -110,8 +112,10 @@ const {
     bankaccountReset()
     bankAreaCpfReset()
     setIsDefaultFalse()
-    closeDialog()
     closePayPwdDialog()
+    if (!props.isFirst)
+      closeDialog()
+    emit('added')
   },
 })
 
