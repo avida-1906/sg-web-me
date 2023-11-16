@@ -12,6 +12,8 @@ interface IPaginationData {
   total: number
 }
 
+const { t } = useI18n()
+
 const paginationData = ref<IPaginationData>(
   {
     pageSize: 10,
@@ -22,20 +24,20 @@ const paginationData = ref<IPaginationData>(
 
 const columns = reactive<IColumns[]>([
   {
-    title: '领取时间',
+    title: t('label_draw_time'),
     width: 90,
     dataIndex: 'time',
     slot: 'time',
     align: 'left',
   },
   {
-    title: '贡献人数',
+    title: t('label_contribute_count'),
     width: 100,
     dataIndex: 'count',
     align: 'center',
   },
   {
-    title: '金额',
+    title: t('amount'),
     width: 130,
     dataIndex: 'amount',
     slot: 'amount',

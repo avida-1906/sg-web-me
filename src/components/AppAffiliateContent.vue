@@ -7,6 +7,8 @@ withDefaults(defineProps<Props>(), {
   mode: 'currency',
 })
 
+const { t } = useI18n()
+
 const {
   value: searchValue,
 } = useField<string>('password')
@@ -14,12 +16,12 @@ const {
 const date = ref([])
 const currentPage = ref(1)
 const selectSize: Ref<number> = ref(0)
-const selectTypeOptions: ISelectOption[] = [
-  { label: '全部类型', value: 0 },
-]
-const selectCurrencyOptions: ISelectOption[] = [
-  { label: '货币种类', value: 0 },
-]
+const selectTypeOptions = computed<ISelectOption[]>(() => [
+  { label: t('label_all_type'), value: 0 },
+])
+const selectCurrencyOptions = computed<ISelectOption[]>(() => [
+  { label: t('label_currency_types'), value: 0 },
+])
 </script>
 
 <template>
@@ -34,7 +36,7 @@ const selectCurrencyOptions: ISelectOption[] = [
         :options="selectCurrencyOptions"
       />
       <div v-else style="max-width: 95px;">
-        <BaseInput v-model="searchValue" placeholder="账号">
+        <BaseInput v-model="searchValue" :placeholder="t('user_account')">
           <template #right-icon>
             <BaseIcon name="uni-search" />
           </template>

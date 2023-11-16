@@ -12,6 +12,8 @@ const props = withDefaults(defineProps<Props>(), {
   mode: 'home',
 })
 
+const { t } = useI18n()
+
 const { isLessThanLg, isGreaterThanSm } = storeToRefs(useWindowStore())
 // loading加载
 const { bool: loading, setFalse: setLoadingFalse } = useBoolean(true)
@@ -39,20 +41,20 @@ const selectOptions: ISelectOption[] = [
 const getTabOptions = computed(() => {
   switch (props.mode) {
     case 'casino': return [
-      { value: 'casino-mine', label: '我的投注' },
-      { value: 'casino-all', label: '所有投注' },
-      { value: 'casino-fy', label: '风云榜' },
-      { value: 'ranking-list', label: '竞赛排行榜', bubble: true },
+      { value: 'casino-mine', label: t('my_bets') },
+      { value: 'casino-all', label: t('all_bets') },
+      { value: 'casino-fy', label: t('billboard') },
+      { value: 'ranking-list', label: t('competition_board'), bubble: true },
     ]
     case 'sports':return [
-      { value: 'sports-all', label: '所有投注' },
-      { value: 'sports-fy', label: '风云榜' },
-      { value: 'ranking-list', label: '竞赛排行榜', bubble: true },
+      { value: 'sports-all', label: t('all_bets') },
+      { value: 'sports-fy', label: t('billboard') },
+      { value: 'ranking-list', label: t('competition_board'), bubble: true },
     ]
     case 'home': return [
-      { value: 'casino-all', label: '娱乐城投注' },
-      { value: 'sports-all', label: '体育投注' },
-      { value: 'ranking-list', label: '竞赛排行榜', bubble: true },
+      { value: 'casino-all', label: t('casino_bets') },
+      { value: 'sports-all', label: t('sports_betting') },
+      { value: 'ranking-list', label: t('competition_board'), bubble: true },
     ]
   }
 })
@@ -61,7 +63,7 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
   switch (activeTab.value) {
     case 'casino-mine': return [
       {
-        title: '游戏',
+        title: t('game'),
         // width: 100,
         dataIndex: 'gameName',
         slot: 'gameName',
@@ -70,24 +72,24 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
         md: true,
       },
       {
-        title: '时间',
+        title: t('time'),
         dataIndex: 'time',
         align: 'center',
       },
       {
-        title: '投注额',
+        title: t('bet_amount'),
         dataIndex: 'betMoney',
         slot: 'betMoney',
         align: 'right',
       },
       {
-        title: '乘数',
+        title: t('multiple_count'),
         dataIndex: 'multiplier',
         align: 'right',
         xl: true,
       },
       {
-        title: '支付额',
+        title: t('sports_payment_amount'),
         dataIndex: 'payMoney',
         slot: 'payMoney',
         align: 'right',
@@ -98,7 +100,7 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
     case 'casino-all':
     case 'casino-fy': return [
       {
-        title: '游戏',
+        title: t('game'),
         // width: 100,
         dataIndex: 'gameName',
         slot: 'gameName',
@@ -107,31 +109,31 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
         md: true,
       },
       {
-        title: '玩家',
+        title: t('gamer'),
         dataIndex: 'player',
         slot: 'player',
         align: 'center',
         xl: true,
       },
       {
-        title: '时间',
+        title: t('time'),
         dataIndex: 'time',
         align: 'center',
       },
       {
-        title: '投注额',
+        title: t('bet_amount'),
         dataIndex: 'betMoney',
         slot: 'betMoney',
         align: 'right',
       },
       {
-        title: '乘数',
+        title: t('multiple_count'),
         dataIndex: 'multiplier',
         align: 'right',
         xl: true,
       },
       {
-        title: '支付额',
+        title: t('sports_payment_amount'),
         dataIndex: 'payMoney',
         slot: 'payMoney',
         align: 'right',
@@ -141,7 +143,7 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
     ]
     case 'ranking-list': return [
       {
-        title: '排名',
+        title: t('ranking'),
         // width: 100,
         dataIndex: '',
         slot: 'ranking',
@@ -150,7 +152,7 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
         md: true,
       },
       {
-        title: '玩家',
+        title: t('gamer'),
         dataIndex: 'player',
         slot: 'player',
         align: 'center',
@@ -158,7 +160,7 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
         md: true,
       },
       {
-        title: '总投注额',
+        title: t('wagered'),
         dataIndex: 'betMoney',
         slot: 'betMoney',
         align: 'right',
@@ -166,7 +168,7 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
         md: true,
       },
       {
-        title: '奖金',
+        title: t('finance_other_tab_bonus'),
         dataIndex: 'payMoney',
         slot: 'payMoney',
         align: 'right',
@@ -177,7 +179,7 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
     case 'sports-all':
     case 'sports-fy':return [
       {
-        title: '赛事',
+        title: t('sports_event'),
         // width: 100,
         dataIndex: 'gameName',
         slot: 'gameName',
@@ -186,26 +188,26 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
         md: true,
       },
       {
-        title: '玩家',
+        title: t('gamer'),
         dataIndex: 'player',
         slot: 'player',
         align: 'center',
         xl: true,
       },
       {
-        title: '时间',
+        title: t('time'),
         dataIndex: 'time',
         align: 'center',
         xl: true,
       },
       {
-        title: '赔率',
+        title: t('sports_odds_title'),
         dataIndex: 'multiplier',
         align: 'right',
         xl: true,
       },
       {
-        title: '投注额',
+        title: t('bet_amount'),
         dataIndex: 'betMoney',
         slot: 'betMoney',
         align: 'right',
@@ -291,7 +293,7 @@ onMounted(() => {
           </div>
           <template #popper>
             <div class="tiny-menu-item-title">
-              {{ `隐身模式${isHidden ? '开启' : '关闭'}` }}
+              {{ `${t('hidden_mode')}${isHidden ? t('turn_on') : t('close')}` }}
             </div>
           </template>
         </VTooltip>
@@ -301,11 +303,11 @@ onMounted(() => {
     <div v-show="activeTab === 'ranking-list'" class="ranking-time">
       <div class="center cursor-pointer">
         <BaseIcon name="spt-competition" />
-        <span>$100,000 竞赛 – 24 小时</span>
+        <span>$100,000 {{ t('competition') }} – {{ t('time_hour', { delta: 24 }) }}</span>
       </div>
       <div class="center cursor-pointer">
         <BaseIcon name="uni-trend" />
-        <span>结束时间： 8小时后</span>
+        <span>{{ t('end_time') }}： {{ t('time_hour_after', { delta: 8 }) }}</span>
       </div>
     </div>
     <BaseTable
@@ -324,11 +326,11 @@ onMounted(() => {
           <VTooltip placement="top">
             <div class="center stealth-box">
               <BaseIcon name="uni-hidden" />
-              <span style="padding-left: 5px;">隐身</span>
+              <span style="padding-left: 5px;">{{ t('hidden_user') }}</span>
             </div>
             <template #popper>
               <div class="tiny-menu-item-title">
-                此玩家启用了私密功能
+                {{ t('user_turn_on_hidden') }}
               </div>
             </template>
           </VTooltip>

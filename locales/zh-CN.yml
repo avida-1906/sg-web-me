@@ -2,6 +2,7 @@ login: 登录
 reg: 注册
 register: 创建账户
 continue: 继续
+gamer: 玩家
 start_game: 开始游戏
 email_or_username: 电邮地址或用户名
 pls_enter_email_or_username: 请输入电邮地址或用户名
@@ -39,7 +40,9 @@ privacy_policy: 隐私政策
 and: 和
 terms_of_service: 服务条款
 applicable: 适用。
+time: 时间
 balance: 余额
+amount: 金额
 casino: 娱乐城
 sports: 体育
 game: 游戏
@@ -57,6 +60,11 @@ logout_dont_foget: 别忘了在您离开之前先查看我们丰富的娱乐城�
 chat_room: 聊天室
 bet_slip: 投注单
 my_bets: 我的投注
+all_bets: 所有投注
+casino_bets: 娱乐城投注
+billboard: 风云榜
+competition_board: 竞赛排行榜
+competition: 竞赛
 currency: 货币
 network: 网络
 deposit: 存款
@@ -574,6 +582,8 @@ time_future_later_today: 今天晚些时候
 time_future_next_week: 下周
 time_future_tomorrow: 明天
 time_hour_ago: '{delta} 小时前'
+time_hour_after: '{delta} 小时后'
+time_hour: '{delta} 小时'
 time_just_now: 刚才
 time_minute_ago: '{delta} 分钟前'
 time_week_ago: '{delta} 周前'
@@ -742,6 +752,7 @@ register_date: 注册日期
 total_deposits: 总存款次数
 last_deposits: 最后一次存款
 wagered: 总投注额
+bet_amount: 投注额
 notify_title_error: 错误
 notify_title_success: 成功
 tennis: 网球
@@ -791,6 +802,7 @@ politics-entertainment: 特技比赛
 formula-1: 一级方程式
 cross-country: 越野赛
 cycling: 自行车赛
+sports_event: 赛事
 sports_status_timeout: 暂停
 sports_status_live: 滚球
 sports_status_close: 关闭
@@ -799,6 +811,7 @@ sports_status_settled: 已结算
 sports_status_finished: 已结束
 sports_duplicate_bet: 重复下注
 sports_estimated_payment_amount: 预计支付额
+sports_payment_amount: 支付额
 sports_single_bet: 单项投注
 sports_multi_bet: 复式投注
 sports_active: 活跃
@@ -868,6 +881,7 @@ commission_history: 佣金历史
 window_minimize: 最小化
 empty_game: 暂无游戏
 copy_success: 成功复制
+end_time: 结束时间
 date_picker_error: 请选择正确的开始时间和结束时间
 sports_vs: 对
 receive_bonus: 领取奖金
@@ -911,3 +925,50 @@ vip_rule_5: 保级说明：会员在达到某VIP等级后，若上个月充值�
 vip_rule_6: 稽核说明：VIP所赠送的奖金需1倍流水（即稽核、打码或有效投注）才能提现，打码不限游戏平台
 vip_rule_7: 活动声明：本功能仅限账号本人进行正常游戏投注，禁止租借账号、无风险投注(对赌、对刷、低赔刷水)、恶意套利、使用外挂程式、机器人、利用协议、漏洞、接口、群控或其他技术手段参与，一经查核属实，本平台有权终止会员登录、暂停会员使用网站、及没收奖金和不当盈利的权利，无需特别通知
 vip_rule_8: 解释说明：会员领取VIP奖励时，本平台将默认会员同意且遵守对应条件等相关规定，为避免文字理解歧义，本平台保有本活动最终解释权
+validate_msg_input_name: 请输入正确姓名
+validate_msg_choose_bank: 请选择银行
+validate_msg_choose_pix_account_type: 请选择PIX账户类型
+validate_msg_input_bank_number: 请输入银行卡号码
+validate_msg_input_third_account: 请输入第三方账户
+validate_msg_regexp_bank_number: 请输入 4 - 30 位数字组成的正确银行卡号
+validate_msg_regexp_pix_account: 请输入 4 - 30 位数字组成的正确PIX账户
+validate_msg_input_branch_address: 请输入正确开户支行地址
+validate_msg_withdraw_way: 请先绑定提款方式，再进行提款
+label_bank_number: 银行卡号
+label_branch_address: 开户行地址
+label_account_holder_name: 开户人姓名
+label_all_type: 全部类型
+label_currency_types: 货币种类
+label_draw_time: 领取时间
+label_contribute_count: 贡献人数
+label_bind: 绑定
+success_bind: 绑定成功
+tip_msg_bind_once: 绑定后不可更改
+tip_msg_is_default_bank_number: 是否设为默认卡号
+tip_msg_all_bind_account: 所有绑定账户
+tip_msg_name_identical: 姓名必须一致
+tip_msg_name_edit: 请谨慎确认姓名，更改姓名将会非常麻烦
+promo_activity: 促销活动
+promo_lottery_activity: 抽奖活动
+weekly_share: 每周瓜分
+vip_banner_tip_1: 与您的专属 VIP 服务代表合作，根据您的投注需求定制福利。
+vip_banner_tip_2: 您可以预期每周和每月根据您的游戏量获得奖金。玩得越多，获得的奖金就越多。
+vip_banner_tip_3: 运气不佳？Stake 会在您每次升级时根据您的损失提供额外资金。
+vip_banner_tip_4: 被分配一名将支持并满足您的投注需求的专属 VIP 服务代表。
+vip_banner_tip_5: 在每达到下个级别后获取奖金。所达级别越高，升级奖金就越大。
+booster_bonus: 助推奖金
+upgrade_bonus: 升级奖金
+recent_game_perform_bonus: 近期游戏表现奖金
+dedicated_vip_servicer: 专属 VIP 服务代表
+multiple_count: 乘数
+ranking: 排名
+hidden_user: 隐身
+hidden_mode: 隐身模式
+user_turn_on_hidden: 此玩家启用了私密功能
+turn_on: 开启
+received: 已领取
+wait_receive: 待领取
+service_transfer: 客服转账
+bind_pix_account: 绑定PIX账户
+bind_bank_card: 绑定银行卡
+data_empty: 暂无数据
