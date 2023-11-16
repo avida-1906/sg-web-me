@@ -24,8 +24,12 @@ export const useAppStore = defineStore('app', () => {
   const { bool: mqttIsConnected, setTrue: setMqttConnectedTrue, setFalse: setMqttConnectedFalse } = useBoolean(false)
 
   /** 汇率列表 */
-  const { run: runGetExchangeRate, data: exchangeRateData } = useRequest(ApiMemberExchangeRate)
-  runGetExchangeRate()
+  const {
+    run: runGetExchangeRate,
+    data: exchangeRateData,
+  } = useRequest(ApiMemberExchangeRate, {
+    ready: isLogin,
+  })
 
   const userInfo = computed(() => {
     if (balanceData.value && _userInfo.value)
