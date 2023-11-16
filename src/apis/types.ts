@@ -173,9 +173,12 @@ export interface ProviderItem {
 }
 
 /** 汇率数据对象 */
-export type ExchangeRateData = {
-  [k in EnumCurrencyKey]: {
-    [k in EnumCurrencyKey]: string
+export interface ExchangeRateData {
+  date: number
+  rates: {
+    [k in EnumCurrencyKey]: {
+      [k in EnumCurrencyKey]: string
+    }
   }
 }
 

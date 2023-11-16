@@ -20,9 +20,7 @@ const currentNetwork = ref('')
 const activeCurrency = ref<CurrencyData | null>()
 
 const rate = computed(() => {
-  const temp = exchangeRateData.value && exchangeRateData.value.length
-    ? exchangeRateData.value[0]
-    : undefined
+  const temp = exchangeRateData.value?.rates
   if (temp && temp.USDT && activeCurrency.value)
     return temp.USDT[activeCurrency.value.type] || '1'
   return '1'
