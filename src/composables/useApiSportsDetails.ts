@@ -19,10 +19,8 @@ export interface IDataListItem {
 /**
  * @module src/composables/useApiSportsDetails.ts
  * @description 体育赛事详情接口
- * @param si 球种ID
- * @param ei 赛事ID
  */
-export function useApiSportDetails(si: number, ei: string) {
+export function useApiSportDetails() {
   const { data: sportInfo, runAsync: runGetSportInfo } = useRequest(ApiSportEventInfo)
 
   /** 面包屑数据 */
@@ -112,6 +110,39 @@ export function useApiSportDetails(si: number, ei: string) {
       awayTeamScore: sportInfo.value.list[0].ap,
     }
 
+    const pol = sportInfo.value.list[0].pol
+
+    /**
+     * 3 主队红牌
+     * 4 客队红牌
+     * 5 主队⻩牌
+     * 6 客队⻩牌
+     * 7 主队⾓球
+     * 8 客队⾓球
+     */
+    if (pol) {
+      if (pol['3'] !== undefined || pol['4'] !== undefined) {
+        _map.redCard = {
+          homeTeam: pol['3'] || 0,
+          awayTeam: pol['4'] || 0,
+        }
+      }
+
+      if (pol['5'] !== undefined || pol['6'] !== undefined) {
+        _map.yellowCard = {
+          homeTeam: pol['5'] || 0,
+          awayTeam: pol['6'] || 0,
+        }
+      }
+
+      if (pol['7'] !== undefined || pol['8'] !== undefined) {
+        _map.corner = {
+          homeTeam: pol['7'] || 0,
+          awayTeam: pol['8'] || 0,
+        }
+      }
+    }
+
     Object.assign(data, _map)
 
     return data
@@ -149,10 +180,6 @@ export function useApiSportDetails(si: number, ei: string) {
     })
 
     return data
-  })
-
-  onMounted(() => {
-    // runGetSportInfo({ si, ei })
   })
 
   return {

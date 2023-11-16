@@ -11,12 +11,11 @@ const {
   dataList,
   basePanelData,
   runGetSportInfo,
-} = useApiSportDetails(1, '54222287')
+} = useApiSportDetails()
 
 const sport = route.params.sport
-// const category = route.params.category
-// const tournament = route.params.tournament
-// const fixture = route.params.fixture
+const fixture = route.params.fixture
+
 const searchHandicap = ref('')
 
 const curGroupTab = ref<number>(-1)
@@ -24,11 +23,6 @@ const curGroupTab = ref<number>(-1)
 const title = computed(() =>
   'Stake.com',
 )
-
-function onOpenLiveSwitch() { }
-function openMiniVideo() {
-  useDragDialog({ type: 'live', url: '', dialogId: '123456' })
-}
 
 watchEffect(() => {
   if (handicapListData.value.length)
@@ -38,7 +32,7 @@ watchEffect(() => {
 useTitle(title)
 
 await application.allSettled([
-  runGetSportInfo({ si: 1, ei: '54222287' }),
+  runGetSportInfo({ si: Number(sport), ei: `${fixture}` }),
 ])
 </script>
 
@@ -56,7 +50,7 @@ await application.allSettled([
                   '--sport-image': `url(/img/match-statistics/${sport}.jpg)`,
                 }"
               >
-                <AppMatchStatistics v-if="appContentWidth >= 900" :data="basePanelData" />
+                <AppMatchStatistics :data="basePanelData" />
               </div>
               <div v-else class="livestream-wrap">
                 <template v-if="isLogin">
@@ -218,7 +212,7 @@ await application.allSettled([
                     <template #default>
                       <div class="market" :class="{ 'in-mobile': isMobile }">
                         <div class="table" :style="{ '--itemCount': 1 }">
-                          <div class="column heading">
+                          <div class="heading column">
                             <span>大</span>
                           </div>
                           <div class="column heading">

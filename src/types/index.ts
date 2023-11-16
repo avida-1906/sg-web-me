@@ -27,4 +27,25 @@ export interface IBasePanelType {
   homeTeamScore: number
   /** 客队分数 */
   awayTeamScore: number
+  /** 角球 */
+  corner?: {
+    /** 主队角球 */
+    homeTeam: number
+    /** 客队角球 */
+    awayTeam: number
+  }
+  /** 红牌 */
+  redCard?: {
+    /** 主队红牌 */
+    homeTeam: number
+    /** 客队红牌 */
+    awayTeam: number
+  }
+  /** 黄牌 */
+  yellowCard?: {
+    /** 主队黄牌 */
+    homeTeam: number
+    /** 客队黄牌 */
+    awayTeam: number
+  }
 }
