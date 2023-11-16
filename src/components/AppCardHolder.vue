@@ -9,6 +9,8 @@ type WalletCurrencyList = {
   showAdd: boolean // 是否可添加
 } & CurrencyData
 
+const { t } = useI18n()
+
 const closeDialog = inject('closeDialog', () => { })
 const cardList: Ref<WalletCurrencyList[] | null> = ref(null)
 
@@ -66,7 +68,7 @@ const toAddBankcards = function (item: WalletCurrencyList) {
   const {
     openAddBankcardsDialog,
   } = useAddBankcardsDialog({
-    title: currentType ? '绑定PIX账户' : '绑定银行卡',
+    title: currentType ? t('bind_pix_account') : t('bind_bank_card'),
     icon: currentType ? 'fiat-pix-title' : 'fiat-bank',
     openName,
     isFirst,
@@ -84,7 +86,7 @@ const toAddVirAddress = function (
   const {
     openVirAddressDialog,
   } = useVirAddressDialog({
-    title: `绑定${item.type}`,
+    title: `${t('label_bind')}${item.type}`,
     icon: item.type,
   })
   closeDialog()
@@ -186,7 +188,11 @@ await application.allSettled([runAsyncWalletBankcardList()])
           </div>
         </template>
       </BaseCollapse>
-      <BaseEmpty v-if="!cardList?.length" description="暂无数据" icon="uni-empty-betslip" />
+      <BaseEmpty
+        v-if="!cardList?.length"
+        :description="t('data_empty')"
+        icon="uni-empty-betslip"
+      />
     </div>
   </div>
 </template>

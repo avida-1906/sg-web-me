@@ -32,6 +32,8 @@ const props = withDefaults(defineProps<Props>(), {
 const emit = defineEmits(['added'])
 const closeDialog = inject('closeDialog', () => {})
 
+const { t } = useI18n()
+
 const { openNotify } = useNotify()
 
 /** '1' 银行卡， '2' pix 除了巴西其他国家都是银行卡 */
@@ -56,7 +58,7 @@ const {
   resetField: usernameReset,
 } = useField<string>('username', (value) => {
   if (!value || value.trim() === '' || value.trim().length > 20)
-    return '请输入正确姓名'
+    return t('validate_msg_input_name')
   return ''
 })
 const {
@@ -66,7 +68,7 @@ const {
   resetField: banknameReset,
 } = useField<string>('bankname', (value) => {
   if (!value)
-    return isBankType.value ? '请选择银行' : '请选择PIX账户类型'
+    return isBankType.value ? t('validate_msg_choose_bank') : t('validate_msg_choose_pix_account_type')
   return ''
 })
 const {
@@ -76,9 +78,9 @@ const {
   resetField: bankaccountReset,
 } = useField<string>('bankaccount', (value) => {
   if (!value)
-    return isBankType.value ? '请输入银行卡号码' : '请输入第三方账户'
+    return isBankType.value ? t('validate_msg_input_bank_number') : t('validate_msg_input_third_account')
   else if (value.length < 4 || value.length > 30)
-    return isBankType.value ? '请输入 4 - 30 位数字组成的正确银行卡号' : '请输入 4 - 30 位数字组成的正确PIX账户'
+    return isBankType.value ? t('validate_msg_regexp_bank_number') : t('validate_msg_regexp_pix_account')
   return ''
 })
 const {
@@ -88,7 +90,7 @@ const {
   resetField: bankAreaCpfReset,
 } = useField<string>('bankAreaCpf', (value) => {
   if (value && value.length > 100)
-    return '请输入正确开户支行地址'
+    return t('validate_msg_input_branch_address')
   return ''
 })
 
@@ -104,8 +106,8 @@ const {
   onSuccess() {
     openNotify({
       type: 'success',
-      title: '绑定',
-      message: '绑定成功',
+      title: t('label_bind'),
+      message: t('success_bind'),
     })
     usernameReset()
     banknameReset()
@@ -183,12 +185,12 @@ onUnmounted(() => {
     <div class="bind-identity">
       <div v-if="props.isFirst " class="bind-tips">
         <BaseIcon name="uni-warning" />
-        请先绑定提款方式，再进行提款！
+        {{ t('validate_msg_withdraw_way') }}！
       </div>
       <BaseLabel
-        label="开户人姓名"
+        :label="t('label_account_holder_name')"
         :must="props.isFirst"
-        :label-content="props.isFirst ? '绑定后不可更改' : ''"
+        :label-content="props.isFirst ? t('tip_msg_bind_once') : ''"
       >
         <BaseInput
           v-model="openName"
@@ -202,7 +204,11 @@ onUnmounted(() => {
           :current-type="currentTypeBanks"
         />
       </BaseLabel> -->
-      <BaseLabel :label="isBankType ? '请选择银行' : '请选择PIX账户类型'" must>
+      <BaseLabel
+        :label="isBankType
+          ? t('validate_msg_choose_bank') : t('validate_msg_choose_pix_account_type')"
+        must
+      >
         <BaseSelect
           v-model="bankName"
           :msg="banknameError"
@@ -211,7 +217,8 @@ onUnmounted(() => {
         />
       </BaseLabel>
       <BaseLabel
-        :label="isBankType ? '银行卡号' : '请输入第三方账户 '"
+        :label="isBankType
+          ? t('label_bank_number') : t('validate_msg_input_third_account')"
         must
       >
         <BaseInput
@@ -223,17 +230,18 @@ onUnmounted(() => {
         v-if="isBankType"
         v-model="bankAreaCpf"
         :msg="bankAreaCpfError"
-        label="开户行地址"
+        :label="t('label_branch_address')"
       />
       <div v-if="currentType === '1'" class="checkbox-wrap">
-        <span>是否设为默认卡号</span>
+        <span>{{ t('tip_msg_is_default_bank_number') }}</span>
         <BaseCheckBox v-model="isDefault" />
       </div>
       <BaseButton bg-style="primary" size="md" @click="onBindBank">
-        {{ isFirst ? '提交' : '绑定' }}
+        {{ isFirst ? t('submit') : t('label_bind') }}
       </BaseButton>
       <div v-if="!props.isFirst" class="bind-point">
-        所有绑定账户<span>姓名必须一致</span>，请谨慎确认姓名，更改姓名将会非常麻烦
+        {{ t('tip_msg_all_bind_account') }}
+        <span>{{ t('tip_msg_name_identical') }}</span>，{{ t('tip_msg_name_edit') }}
       </div>
     </div>
   </div>

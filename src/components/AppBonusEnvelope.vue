@@ -30,12 +30,12 @@ function openDialog() {
           USDT{{ amount }}
         </div>
         <div class="label">
-          {{ bonusState === 2 ? '已领取' : '待领取' }}
+          {{ bonusState === 2 ? $t('received') : $t('wait_receive') }}
         </div>
       </div>
     </div>
     <div class="bot">
-      客服转账
+      {{ $t('service_transfer') }}
     </div>
   </div>
 </template>

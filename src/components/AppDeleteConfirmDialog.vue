@@ -12,6 +12,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 const closeDialog = inject('closeDialog', () => { })
 
+const { t } = useI18n()
 const { openNotify } = useNotify()
 
 const isBankcard = computed(() => 'bank_name' in props.item)
@@ -27,9 +28,9 @@ const {
   validate: validatePassword,
 } = useField<string>('password', (value) => {
   if (!value)
-    return '请输入资金密码'
+    return t('validate_msg_input_pay_pwd')
   else if (!payPasswordReg.test(value))
-    return '请输入6位数字组成的资金密码'
+    return t('validate_msg_input_paypwd_6')
   return ''
 })
 
@@ -42,7 +43,7 @@ const { run: runDelete } = useRequest(api.value, {
     closeDialog()
     openNotify({
       type: 'success',
-      message: '删除成功',
+      message: t('success_delete'),
     })
     await props.updateWalletList()
   },
@@ -57,7 +58,7 @@ async function deleteConfirm() {
 <template>
   <div class="app-delete-confirm">
     <div class="title">
-      请您确认删除以下提款方式吗？
+      {{ t('user_confirm_delete_draw_way') }}
     </div>
     <div class="currency-type">
       <div>
@@ -73,7 +74,7 @@ async function deleteConfirm() {
     <div class="pay-password">
       <BaseInput
         v-model="password"
-        label="资金密码"
+        :label="t('menu_title_settings_update_safepwd')"
         :msg="pwdErrorMsg"
         type="password"
         max="6"
@@ -87,10 +88,10 @@ async function deleteConfirm() {
         color: var(--tg-text-blue);"
         @click="cancel"
       >
-        取消
+        {{ t('cancel') }}
       </BaseButton>
       <BaseButton bg-style="primary" @click="deleteConfirm">
-        确认删除
+        {{ t('confirm_delete') }}
       </BaseButton>
     </div>
   </div>
