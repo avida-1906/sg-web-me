@@ -1,6 +1,13 @@
 import type { TPat } from '~/apis/types'
 import type { IBasePanelType, IBreadCrumbItem } from '~/types'
 
+interface IBetObject {
+/** 名称 */
+  name: string
+  /** 赔率 */
+  odds: string
+}
+
 /** 列表类型 */
 export interface IDataListItem {
   mlid: string
@@ -8,13 +15,10 @@ export interface IDataListItem {
   title: string
   /** 样式 */
   patType: TPat
-  /** 数据 */
-  betList: {
-    /** 名称 */
-    name: string
-    /** 赔率 */
-    odds: string
-  }[]
+  /** 样式1数据 */
+  patType1BetList: IBetObject[]
+  /** 样式2数据 */
+  patType2BetMap: Record<string, IBetObject[]>
 }
 
 /**
@@ -24,6 +28,8 @@ export interface IDataListItem {
 export function useApiSportDetails() {
   /** 当前选中的Tab */
   const currentTab = ref<number>(-1)
+  /** 搜索名称 */
+  const searchName = ref<string>('')
 
   const { data: sportInfo, runAsync: runGetSportInfo } = useRequest(ApiSportEventInfo)
 
@@ -166,24 +172,51 @@ export function useApiSportDetails() {
 
     const ml = sportInfo.value.list[0].ml || []
 
+    console.error(ml.filter(item => item.pat === 2))
+
     data = ml.filter((item) => {
-      return item.tgis.includes(currentTab.value)
+      return item.tgis.includes(currentTab.value) && item.btn.includes(searchName.value.trim())
     }).map((item) => {
       const betList = item.ms || []
       const patType = item.pat
 
-      const betListData = betList.map((bet) => {
+      const patType1BetList = betList.map((bet) => {
         return {
           name: bet.sn,
           odds: bet.ov,
         }
       })
 
+      betList.forEach((bet) => {
+        const sp = bet.sp || ''
+        const totalValue = sp.split('=')[1]
+
+        if (totalValue)
+          bet.sn = bet.sn.replace('{total}', totalValue)
+      })
+
+      // 按照 sn字段 分组
+      const snGroup = betList.reduce((prev, cur) => {
+        const sn = cur.sn
+        const odds = cur.ov
+        const snGroup = prev[sn] || []
+
+        snGroup.push({
+          name: sn,
+          odds,
+        })
+
+        prev[sn] = snGroup
+
+        return prev
+      }, {} as Record<string, IBetObject[]>)
+
       return {
         mlid: item.mlid,
         patType,
         title: item.btn,
-        betList: betListData,
+        patType1BetList,
+        patType2BetMap: snGroup,
       }
     })
 
@@ -201,6 +234,7 @@ export function useApiSportDetails() {
     handicapListData,
     basePanelData,
     currentTab,
+    searchName,
     runGetSportInfo,
   }
 }

@@ -11,18 +11,33 @@ const {
   dataList,
   basePanelData,
   currentTab,
+  searchName,
   runGetSportInfo,
 } = useApiSportDetails()
 
 const sport = route.params.sport
 const fixture = route.params.fixture
 
-const searchHandicap = ref('')
+const title = computed(() => {
+  if (breadcrumbData.value.length)
+    return breadcrumbData.value[breadcrumbData.value.length - 1].title
 
-const title = computed(() =>
-  'Stake.com',
-)
+  return 'Stake.com'
+})
 
+function interleaveArrays<T>(...arrays: T[][]): T[] {
+  const resultArray: T[] = []
+  const maxLength = Math.max(...arrays.map(arr => arr.length))
+
+  for (let i = 0; i < maxLength; i++) {
+    arrays.forEach((arr) => {
+      if (arr[i])
+        resultArray.push(arr[i])
+    })
+  }
+
+  return resultArray
+}
 useTitle(title)
 
 await application.allSettled([
@@ -122,7 +137,7 @@ await application.allSettled([
                 </div>
                 <div class="search-wrap">
                   <BaseSearch
-                    v-model="searchHandicap"
+                    v-model="searchName"
                     shape="square"
                     place-holder="搜索"
                   />
@@ -131,175 +146,98 @@ await application.allSettled([
                   <BaseEmpty icon="uni-empty-handicap" description="暂无可用盘口" />
                 </div>
 
-                <template v-for="item in dataList" :key="item.mlid">
-                  <!-- 样式1 -->
-                  <BaseSecondaryAccordion v-if="item.patType === 1" :title="item.title">
-                    <template #default>
-                      <div class="market" :class="{ 'in-mobile': isMobile }">
-                        <AppSportsBetButton
-                          v-for="outcome in item.betList"
-                          :key="outcome.name"
-                          :title="outcome.name"
-                          :odds="outcome.odds"
-                          layout="horizontal"
-                        />
-                      </div>
-                    </template>
-                  </BaseSecondaryAccordion>
-                  <!-- 样式2 -->
-                  <BaseSecondaryAccordion v-if="item.patType === 2" :title="item.title">
-                    <template #default>
-                      <div class="market" :class="{ 'in-mobile': isMobile }">
-                        <template
-                          v-for="market in [
-                            {
-                              id: '49b58ff9-cecc-466e-9502-3f5ce21afdfb',
-                              name: '获胜 (incl. extra innings)',
-                              status: 'active',
-                              extId: '251',
-                              specifiers: '',
-                              customBetAvailable: false,
-                              provider: 'betradar',
-                              outcomes: [
-                                {
-                                  active: true,
-                                  id: '2c6f85d5-8322-4ba4-9b10-a89e0a95834f',
-                                  odds: 4.55,
-                                  name: '洛杉矶道奇队',
-                                  customBetAvailable: false,
-                                  __typename: 'SportMarketOutcome',
-                                },
-                                {
-                                  active: true,
-                                  id: 'b40d0802-92c6-432c-895a-3818c70cec0b',
-                                  odds: 1.22,
-                                  name: '亚利桑那响尾蛇队',
-                                  customBetAvailable: false,
-                                  __typename: 'SportMarketOutcome',
-                                },
-                                {
-                                  active: true,
-                                  id: '2c6f85d5-8322-4ba4-9b10-a89e0a95834f',
-                                  odds: 4.55,
-                                  name: '洛杉矶道奇队',
-                                  customBetAvailable: false,
-                                  __typename: 'SportMarketOutcome',
-                                },
-                              ],
-                            },
-                          ]"
-                          :key="market.id"
-                        >
+                <template v-if="currentTab !== -1">
+                  <template v-for="item in dataList" :key="item.mlid">
+                    <!-- 样式1 -->
+                    <!-- <BaseSecondaryAccordion v-if="item.patType === 1" title="标题1">
+                      <template #default>
+                        <div class="market" :class="{ 'in-mobile': isMobile }">
                           <AppSportsBetButton
-                            v-for="outcome in market.outcomes"
-                            :key="outcome.id"
+                            v-for="outcome in item.patType1BetList"
+                            :key="outcome.name"
+                            :title="outcome.name"
+                            :odds="outcome.odds"
+                            layout="horizontal"
+                          />
+                        </div>
+                      </template>
+                    </BaseSecondaryAccordion> -->
+                    <!-- 样式2 -->
+                    <BaseSecondaryAccordion v-if="item.patType === 2" title="标题2">
+                      <template #default>
+                        <div class="market" :class="{ 'in-mobile': isMobile }">
+                          <div class="table" :style="{ '--itemCount': 1 }">
+                            <template
+                              v-for="nameItem in Object.keys(item.patType2BetMap)"
+                              :key="nameItem"
+                            >
+                              <div class="column heading">
+                                <span>{{ nameItem }}</span>
+                              </div>
+                            </template>
+                            <template
+                              v-for="
+                                valueItem in interleaveArrays(...Object.values(item.patType2BetMap))
+                              "
+                              :key="valueItem.name"
+                            >
+                              <div class="column">
+                                <AppSportsBetButton
+                                  layout="horizontal"
+                                  :title="valueItem.name"
+                                  :odds="valueItem.odds"
+                                />
+                              </div>
+                            </template>
+                          </div>
+                        </div>
+                        <!-- <div class="load-more-container">
+                          <BaseButton type="text" size="md">
+                            Load More
+                          </BaseButton>
+                        </div> -->
+                      </template>
+                    </BaseSecondaryAccordion>
+                    <!-- 样式3 -->
+                    <!-- <BaseSecondaryAccordion
+                      v-if="item.patType === 3"
+                      title="标题3"
+                    >
+                      <template #default>
+                        <div class="market" :class="{ 'in-mobile': isMobile }">
+                          <AppSportsBetButton
+                            v-for="outcome in item.patType1BetList"
+                            :key="outcome.name"
                             :title="outcome.name"
                             :odds="`${outcome.odds}`"
                             layout="horizontal"
                           />
-                        </template>
-                      </div>
-                    </template>
-                  </BaseSecondaryAccordion>
-                  <!-- 样式3 -->
-                  <BaseSecondaryAccordion v-if="item.patType === 3" :title="item.title">
-                    <template #default>
-                      <div class="market" :class="{ 'in-mobile': isMobile }">
-                        <div class="table" :style="{ '--itemCount': 1 }">
-                          <div class="column heading">
-                            <span>大</span>
-                          </div>
-                          <div class="column heading">
-                            <span>小</span>
-                          </div>
-                          <div class="column">
-                            <AppSportsBetButton
-                              layout="horizontal"
-                              title="outcome.name"
-                              odds="0"
-                            />
-                          </div>
-                          <div class="column">
-                            <AppSportsBetButton
-                              layout="horizontal"
-                              title="outcome.name"
-                              odds="0"
-                            />
+                        </div>
+                      </template>
+                    </BaseSecondaryAccordion> -->
+                    <!-- 样式4 -->
+                    <!-- <BaseSecondaryAccordion v-if="item.patType === 4" title="标题4">
+                      <template #default>
+                        <div class="market" :class="{ 'in-mobile': isMobile }">
+                          <div class="table-row-3" :style="{ '--itemCount': 1 }">
+                            <template
+                              v-for="nameItem in Object.keys(item.patType2BetMap)"
+                              :key="nameItem"
+                            >
+                              <div class="column heading">
+                                <span>{{ nameItem }}</span>
+                              </div>
+                            </template>
                           </div>
                         </div>
-                      </div>
-                      <div class="load-more-container">
-                        <BaseButton type="text" size="md">
-                          Load More
-                        </BaseButton>
-                      </div>
-                    </template>
-                  </BaseSecondaryAccordion>
-                  <!-- 样式4 -->
-                  <BaseSecondaryAccordion v-if="item.patType === 4" :title="item.title">
-                    <template #default>
-                      <div class="market" :class="{ 'in-mobile': isMobile }">
-                        <div class="table-row-3" :style="{ '--itemCount': 1 }">
-                          <div class="heading column">
-                            <span>大</span>
-                          </div>
-                          <div class="column heading">
-                            <span>小</span>
-                          </div>
-                          <div class="column heading">
-                            <span>小</span>
-                          </div>
-                          <div class="column">
-                            <AppSportsBetButton
-                              layout="horizontal"
-                              title="outcome.name"
-                              odds="0"
-                            />
-                          </div>
-                          <div class="column">
-                            <AppSportsBetButton
-                              layout="horizontal"
-                              title="outcome.name"
-                              odds="0"
-                            />
-                          </div>
-                          <div class="column">
-                            <AppSportsBetButton
-                              layout="horizontal"
-                              title="outcome.name"
-                              odds="0"
-                            />
-                          </div>
-                          <div class="column">
-                            <AppSportsBetButton
-                              layout="horizontal"
-                              title="outcome.name"
-                              odds="0"
-                            />
-                          </div>
-                          <div class="column">
-                            <AppSportsBetButton
-                              layout="horizontal"
-                              title="outcome.name"
-                              odds="0"
-                            />
-                          </div>
-                          <div class="column">
-                            <AppSportsBetButton
-                              layout="horizontal"
-                              title="outcome.name"
-                              odds="0"
-                            />
-                          </div>
+                        <div class="load-more-container">
+                          <BaseButton type="text" size="md">
+                            Load More
+                          </BaseButton>
                         </div>
-                      </div>
-                      <div class="load-more-container">
-                        <BaseButton type="text" size="md">
-                          Load More
-                        </BaseButton>
-                      </div>
-                    </template>
-                  </BaseSecondaryAccordion>
+                      </template>
+                    </BaseSecondaryAccordion> -->
+                  </template>
                 </template>
               </div>
             </div>
