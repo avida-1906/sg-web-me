@@ -16,6 +16,7 @@ const chatMessageBus = useEventBus(CHAT_MESSAGE_BUS)
 const refreshBalanceBus = useEventBus(REFRESH_BALANCE_BUS)
 const mqttDisconnectBus = useEventBus(MQTT_DISCONNECT_BUS)
 const mqttConnectSuccessBus = useEventBus(MQTT_CONNECT_SUCCESS_BUS)
+const refreshMemberBus = useEventBus(REFRESH_MEMBER_BUS)
 
 /**
  * 刷新余额
@@ -23,6 +24,14 @@ const mqttConnectSuccessBus = useEventBus(MQTT_CONNECT_SUCCESS_BUS)
  */
 const refreshBalanceThrottle = throttle(() => {
   refreshBalanceBus.emit(REFRESH_BALANCE_BUS)
+}, 5000)
+
+/**
+ * 刷新用户信息
+ * @description 5秒内只能触发一次
+ */
+const refreshMemberThrottle = throttle(() => {
+  refreshMemberBus.emit(REFRESH_MEMBER_BUS)
 }, 5000)
 
 class SocketClient {
@@ -183,6 +192,10 @@ class SocketClient {
           else if (topic.includes('balance')) {
             // 刷新用户余额
             refreshBalanceThrottle()
+          }
+          else if (topic.includes('member')) {
+            // 刷新用户信息
+            refreshMemberThrottle()
           }
         }
         catch (error) {

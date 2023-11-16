@@ -93,6 +93,13 @@ const messageImages = computed(() =>
         text-align: left;
         white-space: initial;
       }
+      .message-images {
+        display: flex;
+        gap: 2%;
+        >* {
+          min-width: 32%;
+        }
+      }
     }
   }
 }
