@@ -1,0 +1,105 @@
+<script lang="ts" setup>
+import LeagueOutrights from './outrights.vue'
+
+const route = useRoute()
+const sport = route.params.sport ? +route.params.sport : 0
+const region = route.params.region ? route.params.region.toString() : ''
+const league = route.params.league ? route.params.league.toString() : ''
+const { bool: isStandard } = useBoolean(true)
+const sportsStore = useSportsStore()
+const { data } = useRequest(() =>
+  ApiSportEventList({ m: 5, si: sport, ci: [league], page: 1, page_size: 100 }), {
+  manual: false,
+})
+
+const baseType = ref('winner')
+const curTab = ref(route.query.outrights ? '2' : '1')
+const tabs = [
+  { value: '1', label: '滚球与即将开赛的盘口' },
+  { value: '2', label: '冠军投注' },
+]
+
+const isLiveAndUpcoming = computed(() => curTab.value === '1')
+const isOutrights = computed(() => curTab.value === '2')
+// 球种名称
+const sportName = computed(() => sportsStore.getSportsNameBySi(sport))
+// 地区名称
+const regionName = computed(() => {
+  return data.value ? data.value.list[0].pgn : '-'
+})
+// 联赛名称
+const leagueName = computed(() => {
+  return data.value ? data.value.list[0].cn : '-'
+})
+// 赛事数据
+const eventList = computed(() => {
+  return data.value ? data.value.list : []
+})
+const breadcrumb = computed(() => [
+  {
+    path: `/sports/${SPORTS_PLAT_ID}/${sport}`,
+    title: sportName.value,
+    id: sport,
+  },
+  {
+    path: `/sports/${SPORTS_PLAT_ID}/${sport}/${region}`,
+    title: regionName.value,
+    id: region,
+  },
+  {
+    path: `/sports/${SPORTS_PLAT_ID}/${sport}/${region}/${league}`,
+    title: leagueName.value,
+    id: league,
+  },
+])
+
+function onBaseTypeChange(v: string) {
+  baseType.value = v
+}
+</script>
+
+<template>
+  <div class="tg-sports-category-index">
+    <div class="layout-spacing variant-normal">
+      <AppNavBreadCrumb :breadcrumb="breadcrumb" />
+      <div class="sports-page-title">
+        <div class="left">
+          <BaseTab v-model="curTab" :list="tabs" size="large" :center="false" />
+        </div>
+        <AppSportsMarketTypeSelect
+          v-show="isLiveAndUpcoming"
+          v-model="isStandard" :base-type="baseType"
+          @base-type-change="onBaseTypeChange"
+        />
+      </div>
+      <!-- 滚球及即将开赛 -->
+      <div
+        v-if="isLiveAndUpcoming"
+        class="layout-spacing no-bottom-spacing sort-tournament"
+      >
+        <AppSportsMarket
+          :is-standard="isStandard"
+          :league-name="leagueName" :event-count="eventList.length" :base-type="baseType"
+          :event-list="eventList" auto-show
+        />
+      </div>
+      <!-- 冠军 -->
+      <LeagueOutrights v-else-if="isOutrights" />
+    </div>
+    <AppBetData />
+  </div>
+</template>
+
+<style lang="scss" scoped>
+.sort-tournament >*+* {
+  margin-top: var(--tg-spacing-12);
+}
+.tg-sports-category-index {
+  margin-top: var(--tg-spacing-32);
+}
+</style>
+
+<route lang="yaml">
+meta:
+  layout: home
+</route>

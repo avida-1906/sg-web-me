@@ -31,6 +31,7 @@ const {
 const currentCurrency = ref<EnumCurrencyKey>()
 const currencyList = ref<EnumCurrencyKey[]>([])
 const gameFrameRef = ref()
+const { bool: isFavorite } = useBoolean(false)
 
 // 游戏数据接口
 const {
@@ -40,6 +41,7 @@ const {
   onSuccess(res) {
     currencyList.value = JSON.parse(res.currency)
     currentCurrency.value = currencyList.value[0]
+    isFavorite.value = res.is_fav === '1'
     overlayTrue()
   },
 })
@@ -48,9 +50,6 @@ const pid = computed(() => dataDetail.value ? dataDetail.value.platform_id : '')
 const code = computed(() => dataDetail.value ? dataDetail.value.game_id : '')
 const currencyCode = computed(() => {
   return currentCurrency.value ? currencyConfig[currentCurrency.value].cur : '0'
-})
-const isFavorite = computed(() => {
-  return dataDetail.value ? dataDetail.value.is_fav === '1' : false
 })
 const bigGameWrapper = computed(() => appContentWidth.value > 930)
 const gameProviderName = computed(() => {
@@ -119,13 +118,13 @@ function onClickTrend() {
 // 添加收藏
 const { run: runFavInsert } = useRequest(() => ApiMemberFavInsert(id.value), {
   onSuccess() {
-    runDetail()
+    isFavorite.value = true
   },
 })
 // 删除收藏
 const { run: runFavDelete } = useRequest(() => ApiMemberFavDelete(id.value), {
   onSuccess() {
-    runDetail()
+    isFavorite.value = false
   },
 })
 function onClickFavorite() {
