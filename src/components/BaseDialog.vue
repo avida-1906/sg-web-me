@@ -54,7 +54,6 @@ function onConfirm() {
 provide('closeDialog', close)
 
 watch([() => props.show, () => _show.value], ([show, _show]) => {
-  console.log('scrollTop === ', scrollTop.value)
   if (show || _show) {
     if (isSafari) {
       document.body.classList.add('tg-popup-parent--hidden--safari')
