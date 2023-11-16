@@ -13,7 +13,10 @@ export const useAppStore = defineStore('app', () => {
     data: allContractList,
   } = useApiMemberTreeList('018')
   /** 获取用户余额 */
-  const { data: balanceData, runAsync: getBalanceData } = useRequest(ApiMemberBalance)
+  const { data: balanceData, runAsync: getBalanceData } = useRequest(ApiMemberBalance, {
+    ready: isLogin,
+    manual: false,
+  })
   /** 获取用户锁定余额 */
   const { data: lockerData, runAsync: getLockerData } = useRequest(ApiMemberBalanceLocker)
   const visibility = useDocumentVisibility()
