@@ -4,10 +4,10 @@ import RegionOutrights from './outrights.vue'
 const { t } = useI18n()
 const sportsStore = useSportsStore()
 const route = useRoute()
-const sport = route.params.sport
+const sport = route.params.sport ? +route.params.sport : 0
 const { bool: isStandard } = useBoolean(true)
 const { data: competitionListData } = useRequest(() =>
-  ApiSportCompetitionList({ si: +sport, kind: 'normal' }),
+  ApiSportCompetitionList({ si: sport, kind: 'normal' }),
 {
   manual: false,
 })
@@ -15,11 +15,11 @@ const { data: competitionListData } = useRequest(() =>
 const curTab = ref(route.query.outrights ? '2' : '1')
 const baseType = ref('winner')
 
-const sportName = computed(() => sportsStore.getSportsNameBySi(+sport))
-const tabs = computed(() => [
+const sportName = computed(() => sportsStore.getSportsNameBySi(sport))
+const tabs = [
   { value: '1', label: '滚球与即将开赛的盘口' },
   { value: '2', label: '冠军投注' },
-])
+]
 const isLiveAndUpcoming = computed(() => curTab.value === '1')
 const isOutrights = computed(() => curTab.value === '2')
 const allRegionList = computed(() => {
