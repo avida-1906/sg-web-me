@@ -1,5 +1,14 @@
 <script lang="ts" setup>
-// 123
+const route = useRoute()
+const sport = route.params.sport
+
+const { data } = useRequest(() =>
+  ApiSportOutrightList({ si: +sport, page: 1, page_size: 100 }), {
+  manual: false,
+})
+const list = computed(() => {
+  return data.value ? sportsOutrightsGroupByRegion(data.value.list) : []
+})
 </script>
 
 <template>
