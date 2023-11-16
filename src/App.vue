@@ -4,6 +4,7 @@ const { VITE_SOCKET_PREFIX } = getEnv()
 const appStore = useAppStore()
 const { isLogin, userInfo, mqttIsConnected } = storeToRefs(appStore)
 const refreshBalanceBus = useEventBus(REFRESH_BALANCE_BUS)
+const refreshMemberBus = useEventBus(REFRESH_MEMBER_BUS)
 
 function handleUpdated() {
   const loading = document.querySelector('#full-loading')
@@ -20,8 +21,10 @@ watch([isLogin, userInfo], ([_isLogin, _userInfo]) => {
 })
 
 watch([isLogin, userInfo, mqttIsConnected], ([_isLogin, _userInfo, _mqttIsConnected]) => {
-  if (_isLogin && _userInfo?.uid && _mqttIsConnected)
+  if (_isLogin && _userInfo?.uid && _mqttIsConnected) {
     socketClient.addSubscribe(`${VITE_SOCKET_PREFIX}/balance/${_userInfo?.uid}`)
+    socketClient.addSubscribe(`${VITE_SOCKET_PREFIX}/member/${_userInfo?.uid}`)
+  }
 })
 
 onMounted(() => {
@@ -30,6 +33,9 @@ onMounted(() => {
 
   refreshBalanceBus.on(() => {
     appStore.getBalanceData()
+  })
+  refreshMemberBus.on(() => {
+    appStore.updateUserInfo()
   })
 })
 </script>
