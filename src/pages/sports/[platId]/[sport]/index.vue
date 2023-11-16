@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import RegionOutrights from './outrights.vue'
-
 const { t } = useI18n()
 const sportsStore = useSportsStore()
 const route = useRoute()
@@ -112,7 +110,7 @@ watch(route, (a) => {
         </div>
       </template>
       <!-- 冠军 -->
-      <RegionOutrights v-else-if="isOutrights" />
+      <AppSportsOutrights v-else-if="isOutrights" :level="1" />
 
       <AppBetData mode="sports" />
     </div>

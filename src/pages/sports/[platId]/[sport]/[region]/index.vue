@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import LeagueOutrights from './outrights.vue'
-
 const route = useRoute()
 const sport = route.params.sport ? +route.params.sport : 0
 const region = route.params.region ? route.params.region.toString() : ''
@@ -77,7 +75,7 @@ function onBaseTypeChange(v: string) {
         />
       </div>
       <!-- 冠军 -->
-      <LeagueOutrights v-else-if="isOutrights" />
+      <AppSportsOutrights v-else-if="isOutrights" :level="2" />
 
       <AppBetData />
     </div>

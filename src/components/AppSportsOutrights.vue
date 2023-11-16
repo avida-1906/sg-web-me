@@ -1,18 +1,35 @@
 <script setup lang='ts'>
-const route = useRoute()
-const sport = route.params.sport ? +route.params.sport : 0
+interface Props {
+  level: 1 | 2 | 3
+}
+const props = defineProps<Props>()
 
+const route = useRoute()
+const sportId = route.params.sport ? +route.params.sport : 0
+const regionId = route.params.region ? route.params.region.toString() : ''
+const leagueId = route.params.league ? route.params.league.toString() : ''
+// 冠军数据
 const { data } = useRequest(() =>
-  ApiSportOutrightList({ si: sport, page: 1, page_size: 100 }), {
+  ApiSportOutrightList({ si: sportId, page: 1, page_size: 100 }), {
   manual: false,
 })
-const list = computed(() => {
+
+const isSport = computed(() => props.level === 1)
+const isRegion = computed(() => props.level === 2)
+const isLeague = computed(() => props.level === 3)
+const sportlist = computed(() => {
   return data.value ? sportsOutrightsGroupByRegion(data.value.list) : []
+})
+const regionList = computed(() => {
+  return data.value ? data.value.list.filter(a => a.pgid === regionId) : []
+})
+const leagueList = computed(() => {
+  return data.value ? data.value.list.filter(a => a.ci === leagueId) : []
 })
 </script>
 
 <template>
-  <div class="sub-wrapper">
+  <div v-if="isSport" class="sub-wrapper">
     <div class="sports-page-title">
       <div class="sports-page-title">
         <div class="left">
@@ -22,7 +39,7 @@ const list = computed(() => {
       </div>
     </div>
     <BaseSecondaryAccordion
-      v-for="region, i in list" :key="region.pgid"
+      v-for="region, i in sportlist" :key="region.pgid"
       :title="region.pgn"
       level="1"
       :init="i === 0"
@@ -43,6 +60,20 @@ const list = computed(() => {
       </div>
     </BaseSecondaryAccordion>
   </div>
+
+  <div v-else-if="isRegion" class="acc-box">
+    <AppOutrightPreview
+      v-for="league, i in regionList" :key="league.ci"
+      :auto-show="i === 0" :data="league"
+    />
+  </div>
+
+  <template v-else-if="isLeague">
+    <AppOutrightPreview
+      v-for="item, i in leagueList" :key="item.ci"
+      :auto-show="i === 0" :data="item"
+    />
+  </template>
 </template>
 
 <style lang='scss' scoped>
