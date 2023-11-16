@@ -37,7 +37,6 @@ const breadcrumb = computed(() => [
   {
     path: '',
     title: sportName.value,
-    id: sport,
   },
 ])
 

@@ -32,12 +32,10 @@ const breadcrumb = computed(() => [
   {
     path: `/sports/${SPORTS_PLAT_ID}/${sport}`,
     title: sportName.value,
-    id: sport,
   },
   {
-    path: `/sports/${SPORTS_PLAT_ID}/${sport}/${region}`,
+    path: '',
     title: regionName.value,
-    id: region,
   },
 ])
 
