@@ -10,6 +10,7 @@ import type {
   IUserInfo,
   ProviderItem,
   TCurrencyObject,
+  VipConfig,
   VirtualCoin,
 } from './types'
 import { httpClient } from '~/http'
@@ -1000,4 +1001,12 @@ export function ApiMemberExchangeRate() {
  */
 export function ApiMemberBalanceLocker() {
   return httpClient.get<TCurrencyObject>('/member/balance/locker')
+}
+
+/**
+ * 会员vip配置
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=bdd0cb62-0a93-4516-885d-ce714ea52c56
+ */
+export function ApiMemberVipConfig() {
+  return httpClient.get<{ [k: string]: VipConfig }>('/member/vip/config')
 }

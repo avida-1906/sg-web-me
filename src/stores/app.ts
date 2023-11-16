@@ -32,6 +32,11 @@ export const useAppStore = defineStore('app', () => {
     manual: false,
   })
 
+  const { run: runGetVipConfig, data: vipConfigData } = useRequest(ApiMemberVipConfig, {
+    ready: isLogin,
+    manual: false,
+  })
+
   const userInfo = computed(() => {
     if (balanceData.value && _userInfo.value)
       _userInfo.value.balance = balanceData.value
@@ -101,6 +106,8 @@ export const useAppStore = defineStore('app', () => {
     getBalanceData,
     runGetExchangeRate,
     getLockerData,
+    vipConfigData,
+    runGetVipConfig,
   }
 })
 

@@ -102,6 +102,7 @@ export interface IMemberDetail {
   reg_device_no: string
   agency_rebate_state: number
   state: string
+  score: string
   source: string
   member_type: number
   bonus_state: number
@@ -180,6 +181,34 @@ export interface ExchangeRateData {
       [k in EnumCurrencyKey]: string
     }
   }
+}
+
+/** vip 等级配置对象 */
+export interface VipConfig {
+  /** 等级 */
+  level: string
+  /** 等级别称 */
+  alias: string
+  /** 会员人数 */
+  member_count: number
+  /** 经验要求 */
+  score: string
+  /** 晋级礼金 */
+  up_gift: string
+  /** 每日礼金 */
+  daily_gift: string
+  /** 每周礼金 */
+  weekly_gift: string
+  /** 每月礼金 */
+  monthly_gift: string
+  /** 是否默认 */
+  is_default: 0 | 1
+  /** 返水配置 */
+  rebate_config: any
+  /** 添加时间 */
+  created_at: number
+  /** 修改时间 */
+  updated_at: number
 }
 
 /** ================= 体育 ====================== */
