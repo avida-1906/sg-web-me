@@ -43,6 +43,8 @@ const columns = computed<Column[]>(() => filterPlatformColumn.value.toReversed()
 watch(tabList, (val) => {
   if (val && val.length)
     tab.value = val[0].value
+}, {
+  immediate: true,
 })
 </script>
 
