@@ -7,6 +7,7 @@ interface Props {
 const props = defineProps<Props>()
 const emit = defineEmits(['close'])
 
+const { t } = useI18n()
 const { openLoginDialog, closeLoginDialog } = useLoginDialog()
 const { openRegisterDialog, closeRegisterDialog } = useRegisterDialog()
 const { bool: isFullScreen, toggle: toggleFullScreen } = useBoolean(false)
@@ -16,7 +17,7 @@ let posX: globalThis.Ref<number>, posY: globalThis.Ref<number>
 
 const isTrend = computed(() => props.type === 'trend')
 const isLive = computed(() => props.type === 'live')
-const title = computed(() => isTrend.value ? '实时统计' : '直播')
+const title = computed(() => isTrend.value ? t('sports_live_trend') : t('sports_live_tv'))
 const computedStyle = computed(() => {
   if (dragRef.value) {
     const { width, height } = dragRef.value.getBoundingClientRect()
@@ -82,26 +83,26 @@ onMounted(() => {
     <div class="content">
       <template v-if="isLive">
         <div v-if="!isLogin.value" class="no-login">
-          <span>请登录以观看直播。</span>
+          <span>{{ t('sports_live_unlogin_tip') }}。</span>
           <div class="btns">
             <BaseButton
               size="md" type="text"
               style="--tg-base-button-text-default-color:var( --tg-text-white);"
               @click="handleLoginRegister('login')"
             >
-              登录
+              {{ t('login') }}
             </BaseButton>
             <BaseButton
               size="md" bg-style="primary"
               @click="handleLoginRegister('register')"
             >
-              注册
+              {{ t('reg') }}
             </BaseButton>
           </div>
         </div>
         <template v-else>
           <div class="no-live">
-            直播视频将在赛事进行之前开始。
+            {{ t('live_start_on_event') }}。
           </div>
 
           <!-- <video

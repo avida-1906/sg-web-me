@@ -1117,3 +1117,13 @@ fresh_competition: 最新竞赛
 deal_pend: 待处理
 adopted: 已采纳
 ignored: 已忽略
+next_vip_amount: 距离{vip}还差{amount}流水
+empty_vip: 暂无级别
+copper: 铜
+silver: 银
+gold: 金
+yours: 您的
+progress: 进度
+live_start_on_event: 直播视频将在赛事进行之前开始
+load_fail: 加载失败了
+plat_maintain: 场馆维护中
