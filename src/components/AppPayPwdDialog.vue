@@ -64,10 +64,10 @@ async function submit() {
           size="sm"
           @click="closeDialog"
         >
-          取消
+          {{ t('cancel') }}
         </BaseButton>
         <BaseButton bg-style="primary" size="md" @click="handleSet">
-          前往设置
+          {{ t('go_set') }}
         </BaseButton>
       </div>
     </template>

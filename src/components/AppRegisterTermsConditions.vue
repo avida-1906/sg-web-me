@@ -37,7 +37,7 @@ const {
     setNeedBackFalse()
     openNotify({
       type: 'success',
-      message: '注册成功!',
+      message: t('success_register'),
     })
     await nextTick()
     closeDialog()
@@ -79,7 +79,7 @@ onBeforeUnmount(() => {
 <template>
   <div class="app-register-terms-conditions">
     <div class="title">
-      步骤 2/2： 阅读并接受条款与条件
+      {{ t('step_label') }} 2/2： {{ t('read_and_accept') }}
     </div>
     <div ref="scrollRef" class="scroll-y terms-conditions">
       <div>

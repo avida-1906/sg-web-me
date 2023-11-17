@@ -31,9 +31,13 @@ least_8_characters: 至少 8 个字符
 reg_step: 填写您的详细信息
 reg_step1: 步骤1/2：填写您的详细信息
 reg_step2: 步骤2/2：填写您的详细信息
+step_label: 步骤
 code_optional: 代码（可选的）
+read_and_agree: 我已阅读并同意
+terms_conditions: 条款与条件
 read_terms_conditions: 我已阅读并同意条款与条件
 agree_terms_conditions: 请完整阅读条款与条件，并勾选接受。
+read_and_accept: 阅读并接受条款与条件
 or_use: 或者使用
 forgot_password: 忘记密码
 no_account_yet: 还未有账户？
@@ -1090,3 +1094,13 @@ mark_all_read: 标记全部为已读
 empty_notify: 暂无通知
 tip_show_action: 您的互动将在此处显示
 tip_for_set_safepwd: 为了您的资金安全，请先设置资金密码。
+go_set: 前往设置
+showing: 正显示
+in_all_game: 款游戏中的
+now_show_game_num: 正显示 {total} 款游戏中的 {percentage} 个
+validate_msg_user_name_tip: 您的用户名长度必须为 3 – 14 个小写英文字母和数字组成
+success_register: 注册成功!
+user_name_exist: 用户名已存在,请重新填写用户名
+currency_disable: 无法使用货币
+save: 保存
+verified: 已验证
