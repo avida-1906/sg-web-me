@@ -1078,7 +1078,6 @@ withdraw_bank: 出款银行卡
 pix_account: PIX账号
 max: 最大值
 sports_rule: 体育博彩规则
-footer_desc: Stake 由 Medium Rare N.V. 所属和经营，注册编号： 145353，注册地址：Korporaalweg 10, Willemstad, Curaçao。请通过 support@stake.com 与我们联系。 支付代理公司是 Medium Rare Limited，地址于 7-9 Riga Feraiou, LIZANTIA COURT, Office 310, Agioi Omologites,1087 Nicosia, Cyprus 以及注册号：HE 410775 Stake 由库拉索政府授权和监管，并根据颁发给 Antillephone 的 8048/JAZ 号许可证运营。 Stake 已通过所有合规性审查，并获得合法授权，可进行所有机会与投注游戏的游戏操作。
 scan: 浏览
 change_byte_addr: 您确定要更换您的 {delta} 存款地址吗？
 attention: 请注意
@@ -1090,3 +1089,4 @@ need_login_tip: 您必须登录进行此操作
 mark_all_read: 标记全部为已读
 empty_notify: 暂无通知
 tip_show_action: 您的互动将在此处显示
+tip_for_set_safepwd: 为了您的资金安全，请先设置资金密码。
