@@ -65,7 +65,7 @@ const {
   data: withdrawBankcardList,
 } = useRequest(ApiFinanceWithdrawBankcard, {
   onSuccess(data) {
-    const temp = data.d.find(i => i.is_default === 1)?.bank_account
+    const temp = data.d.find(i => i.is_default === 1 && i.state !== 2)?.bank_account
     if (temp)
       selectBank.value = temp
     else
