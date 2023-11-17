@@ -5,10 +5,21 @@ import type {
 
 interface Props {
   index: number
+  /**
+   * 下注类型
+   *
+   * 单项：EnumsBetSlipBetSlipTabStatus.single
+   *
+   * 组合：EnumsBetSlipBetSlipTabStatus.multi
+   */
   betSlipType: EnumsBetSlipBetSlipTabStatusType
+  /** 错误 */
   error?: boolean
+  /** 禁用 */
   disabled?: boolean
+  /** 是否已结算 */
   isClosed?: boolean
+  /** 是否是滚球 */
   isLive?: boolean
 }
 const props = withDefaults(defineProps<Props>(), {
