@@ -58,10 +58,10 @@ const {
 
 const { openWalletDialog } = useWalletDialog({ activeTab: 'cardHolder' })
 const toAddBankcards = function (item: WalletCurrencyList) {
-  const isFirst = false
+  let isFirst = true
   let openName = ''
   if (item.bankcard?.length) {
-    // isFirst = false
+    isFirst = false
     openName = item.bankcard[0].open_name
   }
   const currentType = item.cur === '702'

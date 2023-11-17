@@ -115,12 +115,18 @@ function toggle() {
   --tg-secondaryAccordion-header-title-color: var(--tg-text-white);
   --tg-secondaryAccordion-content-background: var(--tg-primary-main);
   --tg-secondaryAccordion-content-border-color: var(--tg-text-grey-deep);
+  .arrow {
+    --tg-icon-color: var(--tg-text-white);
+  }
 }
 .level-2 {
   --tg-secondaryAccordion-header-background: var(--tg-secondary-grey);
   --tg-secondaryAccordion-header-title-color: var(--tg-text-grey-light);
   --tg-secondaryAccordion-content-background: var(--tg-secondary-grey);
   --tg-secondaryAccordion-content-border-color: var(--tg-secondary-main);
+  .arrow {
+    --tg-icon-color: var(--tg-text-lightgrey);
+  }
 }
 .level-3 {
   --tg-secondaryAccordion-header-background: var(--tg-secondary-dark);

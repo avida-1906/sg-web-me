@@ -37,7 +37,6 @@ const breadcrumb = computed(() => [
   {
     path: '',
     title: sportName.value,
-    id: sport,
   },
 ])
 
@@ -45,8 +44,12 @@ function onBaseTypeChange(v: string) {
   baseType.value = v
 }
 
-watch(route, (a) => {
+const stop = watch(route, (a) => {
   curTab.value = a.query.outrights ? '2' : '1'
+})
+
+onBeforeUnmount(() => {
+  stop()
 })
 </script>
 

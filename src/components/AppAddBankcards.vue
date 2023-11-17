@@ -5,6 +5,7 @@ import type { TTreeListType } from '~/composables/useApiMemberTreeList'
 interface Props {
   /** 提款内绑定为true，卡包内绑定为false */
   isFirst?: boolean
+  isWithdraw?: boolean
   /** 户名 */
   openName?: string
   /** 是否需要padding */
@@ -27,6 +28,7 @@ const props = withDefaults(defineProps<Props>(), {
   isFirst: false,
   openName: '',
   container: true,
+  isWithdraw: false,
 })
 
 const emit = defineEmits(['added'])
@@ -115,7 +117,7 @@ const {
     bankAreaCpfReset()
     setIsDefaultFalse()
     closePayPwdDialog()
-    if (!props.isFirst)
+    if (!props.isWithdraw)
       closeDialog()
     emit('added')
   },
@@ -183,14 +185,14 @@ onUnmounted(() => {
 <template>
   <div class="app-add-bankcards" :class="{ 'is-first': props.container }">
     <div class="bind-identity">
-      <div v-if="props.isFirst " class="bind-tips">
+      <div v-if="props.isWithdraw " class="bind-tips">
         <BaseIcon name="uni-warning" />
         {{ t('validate_msg_withdraw_way') }}！
       </div>
       <BaseLabel
         :label="t('label_account_holder_name')"
         :must="props.isFirst"
-        :label-content="props.isFirst ? t('tip_msg_bind_once') : ''"
+        :label-content="props.isWithdraw ? t('tip_msg_bind_once') : ''"
       >
         <BaseInput
           v-model="openName"

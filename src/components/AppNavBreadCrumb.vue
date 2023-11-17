@@ -30,10 +30,6 @@ function goBack() {
     router.push(`/sports/${getSportsPlatId()}`)
 }
 
-function collect() {
-  console.log('收藏第一个')
-}
-
 watch(() => props.breadcrumb, (val) => {
   _data.value = val
 })
@@ -65,9 +61,6 @@ watch(() => props.breadcrumb, (val) => {
         <span v-if="idx !== _data.length - 1 && appContentWidth > 700" class="slash" />
       </template>
     </div>
-    <BaseButton v-if="_data.length === 1" size="md" @click="collect">
-      <BaseIcon name="uni-favorites" />
-    </BaseButton>
   </div>
 </template>
 

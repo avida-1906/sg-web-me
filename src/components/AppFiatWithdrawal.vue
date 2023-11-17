@@ -34,7 +34,13 @@ const {
   resetField: amountReset,
 } = useField<string>('amount', (value) => {
   if (!value)
-    return '请输入金额'
+    return '不能为空'
+  else if (Number(value) === 0)
+    return '存入金额不能为0'
+  else if (Number(value) < 0)
+    return '存入金额不能为负数'
+  else if (value && Number(value) > Number(props.activeCurrency.balance))
+    return '金额不能超过最大值'
   return ''
 })
 const {
@@ -161,6 +167,7 @@ await application.allSettled(
     <div v-if="!withdrawBankcardList?.d?.length" class="bank-bind">
       <AppAddBankcards
         :is-first="true"
+        :is-withdraw="true"
         :container="false"
         :active-currency="activeCurrency"
         :current-type="currentType"
@@ -205,7 +212,13 @@ await application.allSettled(
           </BaseSelect>
         </BaseLabel>
         <BaseLabel label="金额" must>
-          <BaseInput v-model="amount" :msg="amountError" @on-right-button="maxNumber">
+          <BaseInput
+            v-model="amount"
+            :msg="amountError"
+            type="number"
+            placeholder="0.00000000"
+            @on-right-button="maxNumber"
+          >
             <template #right-button>
               <span>最大值</span>
             </template>

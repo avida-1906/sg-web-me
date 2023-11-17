@@ -154,6 +154,7 @@ export function sportsDataGroupByLeague(origin: ISportEventInfo[]) {
   console.log('盘口根据联赛组合===>', arr)
   return arr
 }
+
 /** 冠军盘口根据地区组合方法 */
 export function sportsOutrightsGroupByRegion(origin: ISportOutrightsInfo[]) {
   const arr = []
