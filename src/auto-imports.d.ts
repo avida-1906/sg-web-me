@@ -72,6 +72,7 @@ declare global {
   const ApiSportAddFavorite: typeof import('./apis/sport')['ApiSportAddFavorite']
   const ApiSportCompetitionList: typeof import('./apis/sport')['ApiSportCompetitionList']
   const ApiSportCount: typeof import('./apis/sport')['ApiSportCount']
+  const ApiSportDelFavorite: typeof import('./apis/sport')['ApiSportDelFavorite']
   const ApiSportEventDelta: typeof import('./apis/sport')['ApiSportEventDelta']
   const ApiSportEventInfo: typeof import('./apis/sport')['ApiSportEventInfo']
   const ApiSportEventList: typeof import('./apis/sport')['ApiSportEventList']
@@ -259,6 +260,7 @@ declare global {
   const split: typeof import('lodash-es')['split']
   const sportsDataBreadcrumbs: typeof import('./utils/sports')['sportsDataBreadcrumbs']
   const sportsDataGroupByLeague: typeof import('./utils/sports')['sportsDataGroupByLeague']
+  const sportsDataGroupBySport: typeof import('./utils/sports')['sportsDataGroupBySport']
   const sportsOutrightsGoupByRegion: typeof import('./utils/sports')['sportsOutrightsGoupByRegion']
   const sportsOutrightsGroupByLeague: typeof import('./utils/sports')['sportsOutrightsGroupByLeague']
   const sportsOutrightsGroupByRegion: typeof import('./utils/sports')['sportsOutrightsGroupByRegion']
@@ -607,6 +609,7 @@ declare module 'vue' {
     readonly ApiSportAddFavorite: UnwrapRef<typeof import('./apis/sport')['ApiSportAddFavorite']>
     readonly ApiSportCompetitionList: UnwrapRef<typeof import('./apis/sport')['ApiSportCompetitionList']>
     readonly ApiSportCount: UnwrapRef<typeof import('./apis/sport')['ApiSportCount']>
+    readonly ApiSportDelFavorite: UnwrapRef<typeof import('./apis/sport')['ApiSportDelFavorite']>
     readonly ApiSportEventDelta: UnwrapRef<typeof import('./apis/sport')['ApiSportEventDelta']>
     readonly ApiSportEventInfo: UnwrapRef<typeof import('./apis/sport')['ApiSportEventInfo']>
     readonly ApiSportEventList: UnwrapRef<typeof import('./apis/sport')['ApiSportEventList']>
@@ -789,6 +792,7 @@ declare module 'vue' {
     readonly split: UnwrapRef<typeof import('lodash-es')['split']>
     readonly sportsDataBreadcrumbs: UnwrapRef<typeof import('./utils/sports')['sportsDataBreadcrumbs']>
     readonly sportsDataGroupByLeague: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupByLeague']>
+    readonly sportsDataGroupBySport: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupBySport']>
     readonly sportsOutrightsGroupByRegion: UnwrapRef<typeof import('./utils/sports')['sportsOutrightsGroupByRegion']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
     readonly sub: UnwrapRef<typeof import('./utils/number')['sub']>
@@ -1127,6 +1131,7 @@ declare module '@vue/runtime-core' {
     readonly ApiSportAddFavorite: UnwrapRef<typeof import('./apis/sport')['ApiSportAddFavorite']>
     readonly ApiSportCompetitionList: UnwrapRef<typeof import('./apis/sport')['ApiSportCompetitionList']>
     readonly ApiSportCount: UnwrapRef<typeof import('./apis/sport')['ApiSportCount']>
+    readonly ApiSportDelFavorite: UnwrapRef<typeof import('./apis/sport')['ApiSportDelFavorite']>
     readonly ApiSportEventDelta: UnwrapRef<typeof import('./apis/sport')['ApiSportEventDelta']>
     readonly ApiSportEventInfo: UnwrapRef<typeof import('./apis/sport')['ApiSportEventInfo']>
     readonly ApiSportEventList: UnwrapRef<typeof import('./apis/sport')['ApiSportEventList']>
@@ -1309,6 +1314,7 @@ declare module '@vue/runtime-core' {
     readonly split: UnwrapRef<typeof import('lodash-es')['split']>
     readonly sportsDataBreadcrumbs: UnwrapRef<typeof import('./utils/sports')['sportsDataBreadcrumbs']>
     readonly sportsDataGroupByLeague: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupByLeague']>
+    readonly sportsDataGroupBySport: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupBySport']>
     readonly sportsOutrightsGroupByRegion: UnwrapRef<typeof import('./utils/sports')['sportsOutrightsGroupByRegion']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
     readonly sub: UnwrapRef<typeof import('./utils/number')['sub']>

@@ -16,7 +16,46 @@ const router = useRouter()
 const { width } = storeToRefs(useWindowStore())
 const { isLogin } = storeToRefs(useAppStore())
 const { checkDragDialog } = useDragDialogList()
-const fakeDragDialogId = Math.ceil(Math.random() * 100000)
+const { currentGlobalCurrency } = useCurrencyData()
+const sportsStore = useSportsStore()
+const { allSportsSi, sportsFavoriteData } = storeToRefs(sportsStore)
+/** 是否收藏 */
+const isFavorite = computed(() => {
+  if (sportsFavoriteData.value)
+    return sportsFavoriteData.value.list.findIndex(a => a.ei === props.data.ei) > -1
+
+  return false
+})
+/** 添加收藏 */
+const { run: runAddFavorite } = useRequest(() =>
+  ApiSportAddFavorite({
+    si: props.data.si,
+    eis: [props.data.ei],
+    cur: currencyConfig[currentGlobalCurrency.value].cur,
+  }),
+{
+  onSuccess() {
+    sportsStore.runGetFavoriteList({
+      sis: allSportsSi.value,
+      cur: currencyConfig[currentGlobalCurrency.value].cur,
+    })
+  },
+})
+/** 删除收藏 */
+const { run: runDelFavorite } = useRequest(() =>
+  ApiSportDelFavorite({
+    si: props.data.si,
+    eis: [props.data.ei],
+    cur: currencyConfig[currentGlobalCurrency.value].cur,
+  }),
+{
+  onSuccess() {
+    sportsStore.runGetFavoriteList({
+      sis: allSportsSi.value,
+      cur: currencyConfig[currentGlobalCurrency.value].cur,
+    })
+  },
+})
 
 const isH5Layout = computed(() => width.value < 575)
 const baseGridAreaClass = computed(() => {
@@ -105,7 +144,7 @@ const isHasliveStream = computed(() => props.data.ls === 1)
 
 // 打开实时数据或直播
 function openDragDialog(type: 'trend' | 'live') {
-  const dialogId = fakeDragDialogId + type
+  const dialogId = props.data.ei + type
   useDragDialog({ type, url: '', dialogId })
 }
 // 联赛跳转
@@ -119,10 +158,18 @@ function onBreadcrumbsClick({ list, index }: { list: ISelectOption[]; index: num
     path = `/sports/${getSportsPlatId()}/${list.slice(0, index + 1).map(a => a.value).join('/')}`
   router.push(path)
 }
+// 操作收藏
+function favHandler() {
+  if (isFavorite.value)
+    runDelFavorite()
 
+  else
+    runAddFavorite()
+}
 function goEventDetailPage() {
   router.push(replaceSportsPlatId(eventDetailPath.value))
 }
+
 console.log('data====>', props.data)
 </script>
 
@@ -259,7 +306,7 @@ console.log('data====>', props.data)
           <VTooltip v-if="isHasliveStream" placement="top">
             <BaseButton
               type="text" size="none"
-              :disabled="checkDragDialog(`${fakeDragDialogId}live`)"
+              :disabled="checkDragDialog(`${data.ei}live`)"
               @click="openDragDialog('live')"
             >
               <BaseIcon name="spt-live" />
@@ -347,7 +394,7 @@ console.log('data====>', props.data)
         <VTooltip v-if="isHasliveStream" placement="top">
           <BaseButton
             type="text" size="none"
-            :disabled="checkDragDialog(`${fakeDragDialogId}live`)"
+            :disabled="checkDragDialog(`${data.ei}live`)"
             @click="openDragDialog('live')"
           >
             <BaseIcon name="spt-live" />
@@ -365,9 +412,9 @@ console.log('data====>', props.data)
       >
         <span>+{{ data.mc }}</span>
       </BaseButton>
-      <BaseButton v-if="isLogin" type="text" size="none">
+      <BaseButton v-if="isLogin" type="text" size="none" @click="favHandler">
         <BaseIcon
-          name="chess-star"
+          :name="`${isFavorite ? 'uni-favorites' : 'chess-star'}`"
         />
       </BaseButton>
     </div>

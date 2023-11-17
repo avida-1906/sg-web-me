@@ -1,11 +1,7 @@
 <script lang="ts" setup>
 defineProps<{ onPage?: boolean }>()
+
 const { sportLiveNavs, currentLiveNav } = storeToRefs(useSportsStore())
-const { currentGlobalCurrency } = useCurrencyData()
-ApiSportGetFavoriteList({
-  sis: [1],
-  cur: currencyConfig[currentGlobalCurrency.value].cur,
-})
 </script>
 
 <template>
