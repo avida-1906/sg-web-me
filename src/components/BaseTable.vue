@@ -75,7 +75,7 @@ watch(() => props.columns, () => {
           <td class="m-td-empty" :colspan="columns.length">
             <BaseEmpty>
               <template #description>
-                <span>暂无数据</span>
+                <span>{{ $t('data_empty') }}</span>
               </template>
             </BaseEmpty>
           </td>

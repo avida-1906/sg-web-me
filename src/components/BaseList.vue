@@ -6,6 +6,8 @@ interface Props {
 const props = defineProps<Props>()
 const emit = defineEmits(['load'])
 
+const { t } = useI18n()
+
 const target = ref(null)
 const { stop, isSupported } = useIntersectionObserver(
   target,
@@ -19,7 +21,7 @@ const { stop, isSupported } = useIntersectionObserver(
     }
   },
 )
-const moreText = computed(() => props.finished ? '没有更多了' : '加载中...')
+const moreText = computed(() => props.finished ? t('no_more') : t('loading_label'))
 </script>
 
 <template>

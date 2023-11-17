@@ -19,6 +19,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits(['update:modelValue'])
 const { openNotify } = useNotify()
+const { t } = useI18n()
 
 const urlList: Ref<string[]> = ref([])
 const {
@@ -42,16 +43,16 @@ function changFile(event: any) {
         str.push(type.split('/')[1])
       openNotify({
         type: 'error',
-        title: '错误',
-        message: `仅能上传：${str.join('/')}格式`,
+        title: t('notify_title_error'),
+        message: t('image_upload_only', { ty: str.join('/') }),
       })
       event.target.value = ''
     }
     else if (file.size / 1024 / 1024 > props.size) {
       openNotify({
         type: 'error',
-        title: '错误',
-        message: `单张图片最大${props.size}MB`,
+        title: t('notify_title_error'),
+        message: t('image_upload_size', { size: `${props.size}MB` }),
       })
       event.target.value = ''
     }
