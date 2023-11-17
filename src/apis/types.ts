@@ -470,3 +470,18 @@ export interface ISportOutrightsInfo {
     }[]
   }[]
 }
+
+export interface DepositInfo {
+  /** 金额 */
+  amount: string
+  /** 支付通道ID */
+  cid: string
+  /** 货币ID */
+  currency_id: string
+  /** 货币名称 */
+  currency_name: string
+  /** 支付方式ID */
+  mid: string
+  /** 银行编码-三方支付存款时使用 */
+  bank_code?: string
+}
