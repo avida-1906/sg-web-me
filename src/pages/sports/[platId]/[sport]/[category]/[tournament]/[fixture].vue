@@ -25,19 +25,6 @@ const title = computed(() => {
   return 'Stake.com'
 })
 
-function interleaveArrays<T>(...arrays: T[][]): T[] {
-  const resultArray: T[] = []
-  const maxLength = Math.max(...arrays.map(arr => arr.length))
-
-  for (let i = 0; i < maxLength; i++) {
-    arrays.forEach((arr) => {
-      if (arr[i])
-        resultArray.push(arr[i])
-    })
-  }
-
-  return resultArray
-}
 useTitle(title)
 
 await application.allSettled([
@@ -152,7 +139,7 @@ await application.allSettled([
                 <template v-if="currentTab !== -1">
                   <template v-for="item in dataList" :key="item.mlid">
                     <!-- 样式1 -->
-                    <!-- <BaseSecondaryAccordion v-if="item.pat === 1" :title="item.btn">
+                    <BaseSecondaryAccordion v-if="item.pat === 1" :title="item.btn">
                       <template #default>
                         <div class="market" :class="{ 'in-mobile': isMobile }">
                           <AppSportsBetButton
@@ -164,9 +151,9 @@ await application.allSettled([
                           />
                         </div>
                       </template>
-                    </BaseSecondaryAccordion> -->
+                    </BaseSecondaryAccordion>
                     <!-- 样式2 -->
-                    <!-- <BaseSecondaryAccordion v-if="item.pat === 2" :title="item.btn">
+                    <BaseSecondaryAccordion v-if="item.pat === 2" :title="item.btn">
                       <template #default>
                         <div class="market" :class="{ 'in-mobile': isMobile }">
                           <div class="table" :style="{ '--itemCount': 1 }">
@@ -195,9 +182,9 @@ await application.allSettled([
                           </div>
                         </div>
                       </template>
-                    </BaseSecondaryAccordion> -->
+                    </BaseSecondaryAccordion>
                     <!-- 样式3 -->
-                    <!-- <BaseSecondaryAccordion
+                    <BaseSecondaryAccordion
                       v-if="item.pat === 3"
                       :title="item.btn"
                     >
@@ -212,18 +199,18 @@ await application.allSettled([
                           />
                         </div>
                       </template>
-                    </BaseSecondaryAccordion> -->
+                    </BaseSecondaryAccordion>
                     <!-- 样式4 -->
                     <BaseSecondaryAccordion v-if="item.pat === 4" :title="item.btn">
                       <template #default>
                         <div class="market" :class="{ 'in-mobile': isMobile }">
                           <div class="table-row-3" :style="{ '--itemCount': 1 }">
                             <template
-                              v-for="nameItem in 3"
-                              :key="nameItem"
+                              v-for="nameItem in item.qqq"
+                              :key="nameItem.wid"
                             >
                               <div class="column heading">
-                                <span>{{ nameItem }}</span>
+                                <span>{{ nameItem.sn }}</span>
                               </div>
                             </template>
                           </div>

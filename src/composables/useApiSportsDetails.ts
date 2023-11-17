@@ -172,29 +172,29 @@ export function useApiSportDetails() {
 
     const ml = sportInfo.value.list[0].ml || []
 
-    console.error('ml', ml.filter(item => item.pat === 4))
+    console.error('pat===2', ml.filter(item => item.pat === 2))
+    console.error('pat===4', ml.filter(item => item.pat === 4))
 
     /** 过滤出渲染的数据 */
     const _filter = ml.filter((item) => {
-      // return item.tgis.includes(currentTab.value) && item.btn.includes(searchName.value.trim())
-      return true
+      return item.tgis.includes(currentTab.value) && item.btn.includes(searchName.value.trim())
     })
 
     const renderList: any[] = []
     for (let i = 0; i < _filter.length; i++) {
       const item = _filter[i]
       if (item.pat === 1 || item.pat === 3) {
-        // renderList.push(item)
+        renderList.push(item)
       }
       else if (item.pat === 2) {
-        // const aaaaaa = renderList.find(ii => ii?.btn === item.btn)
-        // if (aaaaaa) {
-        //   aaaaaa.qqq.push(...item.ms)
-        // }
-        // else {
-        //   item.qqq = [...item.ms]
-        //   renderList.push(item)
-        // }
+        const aaaaaa = renderList.find(ii => ii?.btn === item.btn)
+        if (aaaaaa) {
+          aaaaaa.qqq.push(...item.ms)
+        }
+        else {
+          item.qqq = [...item.ms]
+          renderList.push(item)
+        }
       }
       else if (item.pat === 4) {
         const aaaaaa = renderList.find(ii => ii?.btn === item.btn)
