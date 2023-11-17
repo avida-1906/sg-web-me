@@ -53,6 +53,7 @@ const standardMarketBtns = computed(() => {
       return {
         title: `${a.sn}(${a.hdp})`,
         ...a,
+        disabled: standardMarketFiltered.value[0].mls !== 1,
       }
     })
   }
@@ -61,6 +62,7 @@ const standardMarketBtns = computed(() => {
       return {
         title: `${a.sn}${a.hdp}`,
         ...a,
+        disabled: standardMarketFiltered.value[0].mls !== 1,
       }
     })
   }
@@ -69,6 +71,7 @@ const standardMarketBtns = computed(() => {
       return {
         title: a.sn,
         ...a,
+        disabled: standardMarketFiltered.value[0].mls !== 1,
       }
     })
   }
@@ -278,7 +281,7 @@ console.log('data====>', props.data)
       <div class="outcomes" style="--area: outcomes0;">
         <AppSportsBetButton
           v-for="market in standardMarketBtns" :key="market.wid"
-          :title="market.title" :odds="market.ov"
+          :title="market.title" :odds="market.ov" :disabled="market.disabled"
         />
       </div>
     </template>

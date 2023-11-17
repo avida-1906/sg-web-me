@@ -405,7 +405,7 @@ export interface ISportEventInfo {
     pn: string
     /** MarketLineLevel */
     mll: number
-    /** MarketlineStatusId */
+    /** 0:关盘  1:开盘  2:锁盘 */
     mls: number
     /** 版型id */
     pat: TPat
