@@ -15,7 +15,7 @@ const {
   if (!value)
     return t('pls_enter_email_or_username')
   else if (!emailReg.test(value) && !usernameReg.test(value))
-    return '请输入正确的电邮地址或 3 - 14 个小写英文和数字组成的用户名'
+    return t('validate_msg_user_name')
 
   return ''
 })
@@ -46,7 +46,7 @@ const {
   onSuccess: (res: string) => {
     closeDialog()
     appStore.setToken(res)
-    openNotify({ type: 'user', message: `欢迎${username.value}！` })
+    openNotify({ type: 'user', message: `${t('welcome_guest')}${username.value}！` })
   },
 })
 

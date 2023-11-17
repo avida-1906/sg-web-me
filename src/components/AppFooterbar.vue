@@ -1,28 +1,35 @@
 <script setup lang="ts">
+const { t } = useI18n()
 const router = useRouter()
 const route = useRoute()
 const { leftIsExpand, triggerLeftSidebar, closeLeftSidebar } = useLeftSidebar()
 const { openRightSidebar, closeRightSidebar } = useRightSidebar()
 
 const tabbar = ref([
-  { title: '浏览', icon: 'tabbar-menu', name: 'menu', show: true },
+  { title: t('scan'), icon: 'tabbar-menu', name: 'menu', show: true },
   {
-    title: '娱乐城',
+    title: t('casino'),
     icon: 'tabbar-game',
     name: 'game',
     show: true,
     path: '/casino',
   },
-  { title: '投注', icon: 'tabbar-bet', name: 'bet', show: true, path: '' },
-  { title: '投注单', icon: 'spt-user-bet', name: 'user-bet', show: false },
   {
-    title: '体育',
+    title: t('menu_title_settings_bets'),
+    icon: 'tabbar-bet',
+    name: 'bet',
+    show: true,
+    path: '',
+  },
+  { title: t('bet_slip'), icon: 'spt-user-bet', name: 'user-bet', show: false },
+  {
+    title: t('sports'),
     icon: 'spt-basketball',
     name: 'sports',
     show: true,
     path: `/sports/${SPORTS_PLAT_ID}`,
   },
-  { title: '聊天室', icon: 'tabbar-chat', name: 'chat', show: true },
+  { title: t('chat_room'), icon: 'tabbar-chat', name: 'chat', show: true },
 ])
 const activeBar = ref('')
 

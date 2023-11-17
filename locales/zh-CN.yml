@@ -13,6 +13,9 @@ pls_enter_two-step_verification: 请输入双重验证
 email_address: 电邮地址
 pls_enter_email_address: 请输入电邮地址
 email_address_incorrect: 电邮地址格式不正确
+reset_pwd_email: 已发送密码重置电邮
+already_send_email_user: 我们已发送账户恢复电邮至
+recover_pwd: 恢复密码
 username: 用户名
 pls_enter_username: 请输入用户名
 username_incorrect: 您的用户名长度必须为 3 – 14 个字符。
@@ -38,6 +41,11 @@ register_account: 注册账户
 have_account: 已有账户？
 stake_hCaptcha: Stake受hCaptcha保护，hCaptcha
 privacy_policy: 隐私政策
+responsible_casino: 负责任博彩
+license: 许可证
+self_exclusion: 自我排除
+anti_money_laundering_rule: 反洗钱规则
+copyright: 版权所有
 and: 和
 terms_of_service: 服务条款
 applicable: 适用。
@@ -56,6 +64,7 @@ sports_betting: 体育投注
 setting: 设置
 stake_safety: Stake安全
 online_support: 在线支持
+vip_club: VIP俱乐部
 logout: 登出
 logout_dont_foget: 别忘了在您离开之前先查看我们丰富的娱乐城与体育博彩促销活动！
 chat_room: 聊天室
@@ -608,6 +617,9 @@ time_birthday: 出生日期
 time_month: 月度
 date: 日期
 tour: 导览
+community: 社区
+blog: 博客
+help_center: 帮助中心
 try_again: 重试
 try_help_center: 试试我们的帮助中心
 try_use_different_keywords: 尝试使用不同的关键字或输入您的完整问题
@@ -877,6 +889,8 @@ chat_send_tip_label: 发送小费
 chat_rule_full_title: 完整的规则可以在我们的
 chat_forum: 论坛
 chat_rule_find: 上找到
+about_us: 关于我们
+online_shopping: 网购
 notify_error_forbid_operation: 不允许此操作
 user_account: 账号
 user_superior: 上级
@@ -897,6 +911,9 @@ bonus_receive_expect: 预计可领取
 confirm_receive: 确认领取
 site_message: 站内信
 notice: 公告
+marquee: 跑马灯
+reward_feedback: 有奖反馈
+message_center: 消息中心
 deposit_detail: 存款详情
 official_service: 官方客服
 receive_success: 领取成功
@@ -1004,15 +1021,19 @@ description: 描述
 buy_bonus_round: 购买奖励回合
 pirate: 海盗
 sea: 海洋
+fairness: 公平性
 switch_wave: 切换波动性
 house_edge: 庄家优势
 investor: 投资者
+partner: 合作伙伴
+media: 新闻媒体
 win: 胜
 win_equal_lose: 胜平负
 transaction_way: 交易方式
 transaction_time: 交易时间
 credit_card: 信用卡
 need_online_service: 如需帮助，请联系在线支持
+support: 支持
 success_send_code: 验证码发送成功
 code: 验证码
 after_seconds_send_code: 秒后重新发送邮件
@@ -1056,3 +1077,16 @@ withdraw_apply_success: 出款申请成功
 withdraw_bank: 出款银行卡
 pix_account: PIX账号
 max: 最大值
+sports_rule: 体育博彩规则
+footer_desc: Stake 由 Medium Rare N.V. 所属和经营，注册编号： 145353，注册地址：Korporaalweg 10, Willemstad, Curaçao。请通过 support@stake.com 与我们联系。 支付代理公司是 Medium Rare Limited，地址于 7-9 Riga Feraiou, LIZANTIA COURT, Office 310, Agioi Omologites,1087 Nicosia, Cyprus 以及注册号：HE 410775 Stake 由库拉索政府授权和监管，并根据颁发给 Antillephone 的 8048/JAZ 号许可证运营。 Stake 已通过所有合规性审查，并获得合法授权，可进行所有机会与投注游戏的游戏操作。
+scan: 浏览
+change_byte_addr: 您确定要更换您的 {delta} 存款地址吗？
+attention: 请注意
+change_byte_addr_1: 您一旦更换存款地址，旧地址便将被禁用。只有新地址才可用于存款。请切勿再使用旧地址进行任何存款。
+change_byte_addr_2: 请在您更换存款地址前先确保您已无任何待处理的存款交易。
+action_no_cancel: 此操作无法撤消
+validate_msg_user_name: 请输入正确的电邮地址或 3 - 14 个小写英文和数字组成的用户名
+need_login_tip: 您必须登录进行此操作
+mark_all_read: 标记全部为已读
+empty_notify: 暂无通知
+tip_show_action: 您的互动将在此处显示

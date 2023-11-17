@@ -10,6 +10,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 enum EnumPage {tz, znx, gg, pmd, fk }
 
+const { t } = useI18n()
 const { openBetSlipDialog } = useDialogBetSlip()
 const { openDepositDetailDialog } = useDialogDepositDetail()
 const { openNoticeDialog } = useDialogNotice()
@@ -74,7 +75,9 @@ function getIntervalDay(start: number) {
   // if (time > start && time < end) { return '正在进行' }
   // else {
   const hour = (time - start) / (60 * 60)
-  return hour < 24 ? `${Math.floor(hour)}小时前` : `${Math.floor(hour / 24)}天前`
+  return hour < 24
+    ? `${t('time_hour_ago', { delta: Math.floor(hour) })}`
+    : `${t('time_day_ago', { delta: Math.floor(hour / 24) })}`
   // }
 }
 
@@ -92,7 +95,7 @@ pageInit()
       <div v-if="isState" class="contain-top">
         <!-- <span>标记全部为已读</span> -->
         <BaseButton type="text" size="none">
-          标记全部为已读
+          {{ t('mark_all_read') }}
         </BaseButton>
       </div>
       <div
@@ -153,9 +156,9 @@ pageInit()
       </template>
       <template #description>
         <div class="empty-text">
-          暂无通知
+          {{ t('empty_notify') }}
         </div>
-        <div>您的互动将在此处显示</div>
+        <div>{{ t('tip_show_action') }}</div>
       </template>
     </BaseEmpty>
   </div>
