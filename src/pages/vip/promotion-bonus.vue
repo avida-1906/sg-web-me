@@ -42,8 +42,8 @@ const data = computed(() =>
           }"
         >
           <span
-            v-if="userInfo && +userInfo.vip === +record.level"
-          >1USDT/</span>{{ record.score }}USDT
+            v-if="userInfo && userInfo.score && +userInfo.vip === +record.level"
+          >{{ userInfo.score }}USDT/</span>{{ record.score }}USDT
         </div>
       </template>
       <template #up_gift="{ record }">
