@@ -1,6 +1,7 @@
 import type {
   BankCard,
   CasinoLobbyGameItem,
+  EnumCurrencyKey,
   ExchangeRateData,
   IMemberBalanceLockerUpdate,
   IMemberDetail,
@@ -10,6 +11,7 @@ import type {
   IUserInfo,
   ProviderItem,
   TCurrencyObject,
+  VipConfig,
   VirtualCoin,
 } from './types'
 import { httpClient } from '~/http'
@@ -912,11 +914,11 @@ export function ApiMemberFeedbackBonusAll() {
  * 所有会员公告和跑马灯-登陆前调用
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=cca2216f-630e-4c7b-b02c-56393674ef7d
  */
-export function ApiMemberNoticeAllList(params: {
-  /** 1-公告  2-跑马灯 */
-  types: string
-}) {
+export function ApiMemberNoticeAllList() {
   return httpClient.get<{
+    marquee: {
+      [key: string]: any
+    }[]
     notice: {
       /** ID */
       id: string
@@ -945,7 +947,7 @@ export function ApiMemberNoticeAllList(params: {
         [key: string]: string
       }
     }[]
-  }>('/member/notice/all/list', { params })
+  }>('/member/notice/all/list')
 }
 
 /**
@@ -1000,4 +1002,50 @@ export function ApiMemberExchangeRate() {
  */
 export function ApiMemberBalanceLocker() {
   return httpClient.get<TCurrencyObject>('/member/balance/locker')
+}
+
+/**
+ * 会员vip配置
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=bdd0cb62-0a93-4516-885d-ce714ea52c56
+ */
+export function ApiMemberVipConfig() {
+  return httpClient.get<{ [k: string]: VipConfig }>('/member/vip/config')
+}
+
+/**
+ * vip 奖金领取历史
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=96ca75cd-8d54-4ad7-a194-49f24524f1c9
+ */
+export function ApiMemberVipBonusRecord() {
+  return httpClient.get<string>('/member/vip/bonus/apply/list')
+}
+
+/**
+ * vip 奖金领取
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=b913c96a-70ba-485c-b1f0-4b3ef8f89769
+ */
+export function ApiMemberApplyVipBonus(params: {
+  /** 选择币种领取 */
+  cur: EnumCurrencyKey
+}) {
+  return httpClient.get<{
+    id: number
+    uid: string
+    username: string
+    level_id: number
+    vip: number
+    top_uid: string
+    top_name: string
+    parent_uid: string
+    parent_name: string
+    currency_id: number
+    receive_currency_id: number
+    amount: number
+    receive_amount: number
+    cash_type: number
+    tester: number
+    state: number
+    created_at: number
+    updated_at: number
+  }[]>('/member/vip/bonus/apply', { params })
 }

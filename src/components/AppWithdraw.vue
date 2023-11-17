@@ -27,7 +27,13 @@ const {
   validate: valiAmount,
 } = useField<string>('amount', (value) => {
   if (!value)
-    return t('this_field_is_required')
+    return '不能为空'
+  else if (Number(value) === 0)
+    return '存入金额不能为0'
+  else if (Number(value) < 0)
+    return '存入金额不能为负数'
+  else if (value && Number(value) > Number(props.activeCurrency.balance))
+    return '金额不能超过最大值'
   return ''
 })
 const {

@@ -1,18 +1,20 @@
 <script lang="ts" setup>
 const { t } = useI18n()
+const appStore = useAppStore()
+const { vipConfigData } = storeToRefs(appStore)
 
 const columns = computed<Column[]>(() => [
   {
     title: t('grade'),
-    dataIndex: 'vip',
+    dataIndex: 'level',
     align: 'left',
-    slot: 'vip',
+    slot: 'level',
   },
   {
     title: t('vip_day_salary_bonus'),
-    dataIndex: 'bonus',
+    dataIndex: 'daily_gift',
     align: 'center',
-    slot: 'bonus',
+    slot: 'daily_gift',
   },
   {
     title: t('turnover_multiple'),
@@ -22,29 +24,19 @@ const columns = computed<Column[]>(() => [
   },
 ])
 
-const data = reactive([
-  { vip: 1, multiple: 0, bonus: '18.00' },
-  { vip: 2, multiple: 1, bonus: '18.00' },
-  { vip: 3, multiple: 2, bonus: '18.00' },
-  { vip: 4, multiple: 3, bonus: '18.00' },
-  { vip: 5, multiple: 4, bonus: '18.00' },
-  { vip: 6, multiple: 5, bonus: '18.00' },
-  { vip: 7, multiple: 6, bonus: '18.00' },
-  { vip: 8, multiple: 7, bonus: '18.00' },
-  { vip: 9, multiple: 8, bonus: '18.00' },
-  { vip: 10, multiple: 9, bonus: '18.00' },
-])
+const data = computed(() =>
+  vipConfigData.value ? Object.values(vipConfigData.value).sort((a, b) => +a.level - +b.level) : [])
 </script>
 
 <template>
   <div class="vip-day-salary">
     <BaseTable :columns="columns" :data-source="data">
-      <template #vip="{ record }">
-        <div>VIP{{ record.vip }}</div>
+      <template #level="{ record }">
+        <div>VIP{{ record.level }}</div>
       </template>
-      <template #bonus="{ record }">
+      <template #daily_gift="{ record }">
         <div class="flex-center color-orange">
-          <AppAmount :amount="record.bonus" currency-type="USDT" />
+          <AppAmount :amount="record.daily_gift" currency-type="USDT" />
         </div>
       </template>
       <template #multiple="{ record }">

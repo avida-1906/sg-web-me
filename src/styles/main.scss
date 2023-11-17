@@ -589,14 +589,17 @@ body {
 
   .left {
     display: flex;
+    align-items: center;
     font-size: var(--tg-font-size-md);
     color: var(--tg-text-white);
     font-weight: var(--tg-font-weight-semibold);
     gap: var(--tg-spacing-8);
+    line-height: 1.5;
   }
 
   .right {
     display: flex;
+    align-items: center;
   }
 }
 

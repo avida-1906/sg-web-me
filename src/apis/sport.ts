@@ -150,6 +150,8 @@ export function ApiSportEventList(data: {
   hot?: number
   /** 联赛id */
   ci?: string[]
+  /** 地区id */
+  pgid?: string
 }) {
   return httpClient.post<{
     /** 资料更新时间 */

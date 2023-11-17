@@ -34,7 +34,7 @@ const baseGridClass = computed(() => isH5Layout.value ? 'grid-setup-574' : 'grid
 // 当前的盘口类型
 const isHandicap = computed(() => props.baseType === EnumSportMarketType.HANDICAP)
 const isTotal = computed(() => props.baseType === EnumSportMarketType.TOTAL)
-const isWinner = computed(() => !isHandicap.value && !isTotal.value)
+// const isWinner = computed(() => !isHandicap.value && !isTotal.value)
 // 需要展示的盘口分类
 const standardMarketFiltered = computed(() => {
   if (isHandicap.value)
@@ -53,6 +53,7 @@ const standardMarketBtns = computed(() => {
       return {
         title: `${a.sn}(${a.hdp})`,
         ...a,
+        disabled: standardMarketFiltered.value[0].mls !== 1,
       }
     })
   }
@@ -61,6 +62,7 @@ const standardMarketBtns = computed(() => {
       return {
         title: `${a.sn}${a.hdp}`,
         ...a,
+        disabled: standardMarketFiltered.value[0].mls !== 1,
       }
     })
   }
@@ -69,6 +71,7 @@ const standardMarketBtns = computed(() => {
       return {
         title: a.sn,
         ...a,
+        disabled: standardMarketFiltered.value[0].mls !== 1,
       }
     })
   }
@@ -278,12 +281,12 @@ console.log('data====>', props.data)
       <div class="outcomes" style="--area: outcomes0;">
         <AppSportsBetButton
           v-for="market in standardMarketBtns" :key="market.wid"
-          :title="market.title" :odds="market.ov"
+          :title="market.title" :odds="market.ov" :disabled="market.disabled"
         />
       </div>
     </template>
     <!-- 三项投注 -->
-    <template v-else>
+    <!-- <template v-else>
       <div class="market-name" style="--area: marketName0;">
         <span>获胜</span>
       </div>
@@ -312,10 +315,8 @@ console.log('data====>', props.data)
         style="--area: outcomes2;"
       >
         <AppSportsOutcomeLocked />
-        <!-- <AppSportsBetButton layout="horizontal" />
-        <AppSportsBetButton layout="horizontal" /> -->
       </div>
-    </template>
+    </template> -->
 
     <!-- 联赛分类 -->
     <div v-if="showBreadcrumb || (!isStandard && !isH5Layout)" class="breadcrumb">

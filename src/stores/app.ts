@@ -13,7 +13,10 @@ export const useAppStore = defineStore('app', () => {
     data: allContractList,
   } = useApiMemberTreeList('018')
   /** 获取用户余额 */
-  const { data: balanceData, runAsync: getBalanceData } = useRequest(ApiMemberBalance)
+  const { data: balanceData, runAsync: getBalanceData } = useRequest(ApiMemberBalance, {
+    ready: isLogin,
+    manual: false,
+  })
   /** 获取用户锁定余额 */
   const { data: lockerData, runAsync: getLockerData } = useRequest(ApiMemberBalanceLocker)
   const visibility = useDocumentVisibility()
@@ -28,6 +31,11 @@ export const useAppStore = defineStore('app', () => {
     run: runGetExchangeRate,
     data: exchangeRateData,
   } = useRequest(ApiMemberExchangeRate, {
+    ready: isLogin,
+    manual: false,
+  })
+
+  const { run: runGetVipConfig, data: vipConfigData } = useRequest(ApiMemberVipConfig, {
     ready: isLogin,
     manual: false,
   })
@@ -101,6 +109,8 @@ export const useAppStore = defineStore('app', () => {
     getBalanceData,
     runGetExchangeRate,
     getLockerData,
+    vipConfigData,
+    runGetVipConfig,
   }
 })
 

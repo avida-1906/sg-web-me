@@ -34,24 +34,24 @@ const slipList = computed(() => isBetSingle.value ? ['1.89'] : ['1.89', '1.89', 
         </BaseButton>
       </div>
       <div class="des">
-        <span>投资者：Tese0000001</span><br>
+        <span>{{ t('investor') }}：Tese0000001</span><br>
         <span class="time">于2023/07/07 17:42</span>
       </div>
     </div>
     <div v-if="isCasino" class="casino-bottom">
       <div class="item">
-        <label>投注:</label>
+        <label>{{ t('menu_title_settings_bets') }}:</label>
         <span>
           4.00000000
           <AppCurrencyIcon currency-type="BRL" />
         </span>
       </div>
       <div class="item">
-        <label>乘数:</label>
+        <label>{{ t('multiple_count') }}:</label>
         <span>1.00x</span>
       </div>
       <div class="item">
-        <label>投注:</label>
+        <label>{{ t('menu_title_settings_bets') }}:</label>
         <span>
           4.00000000
           <AppCurrencyIcon currency-type="BRL" />
@@ -65,7 +65,7 @@ const slipList = computed(() => isBetSingle.value ? ['1.89'] : ['1.89', '1.89', 
       >
         <div v-show="i === 0 || isBetSingle" class="header">
           <div class="status">
-            胜
+            {{ t('win') }}
           </div>
           <div class="time">
             17:42 2023/07/06
@@ -77,10 +77,10 @@ const slipList = computed(() => isBetSingle.value ? ['1.89'] : ['1.89', '1.89', 
             <span>日本 - 西班牙</span>
           </div>
           <div class="market">
-            胜平负
+            {{ t('win_equal_lose') }}
           </div>
           <div class="odd-box">
-            <span>胜</span>
+            <span>{{ t('win') }}</span>
             <span>{{ slip }}</span>
           </div>
           <div class="result-box">
@@ -99,18 +99,18 @@ const slipList = computed(() => isBetSingle.value ? ['1.89'] : ['1.89', '1.89', 
           <div v-show="i === slipList.length - 1" class="total-box">
             <div class="line" />
             <div class="item">
-              <label>赔率</label>
+              <label>{{ t('sports_odds_title') }}</label>
               <span class="odds">1.08</span>
             </div>
             <div class="item">
-              <label>投注额</label>
+              <label>{{ t('bet_amount') }}</label>
               <span>
                 1.00000000
                 <AppCurrencyIcon currency-type="BRL" />
               </span>
             </div>
             <div class="item">
-              <label>支付额</label>
+              <label>{{ t('sports_payment_amount') }}</label>
               <span>
                 1.00000000
                 <AppCurrencyIcon currency-type="BRL" />

@@ -24,6 +24,10 @@ function onBreadcrumbsClick({ list, index }: { list: ISelectOption[]; index: num
     path = `/sports/${getSportsPlatId()}/${list.slice(0, index + 1).map(a => a.value).join('/')}`
   router.push(path)
 }
+// 冠军投注页面
+function goOutrightsPage() {
+  router.push(`/sports/${getSportsPlatId()}/outrights?si=${props.data.si}&ci=${props.data.ci}`)
+}
 </script>
 
 <template>
@@ -49,7 +53,7 @@ function onBreadcrumbsClick({ list, index }: { list: ISelectOption[]; index: num
           />
         </div>
         <span class="market-count">
-          <BaseButton type="text" size="none">
+          <BaseButton type="text" size="none" @click="goOutrightsPage">
             +{{ data.ml[0].ms.length }}
           </BaseButton>
         </span>

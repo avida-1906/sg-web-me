@@ -37,7 +37,14 @@ const messageImages = computed(() =>
       <slot>
         <div class="text message">
           {{ message.content }}
-          <div v-if="messageImages.length" class="message-images">
+          <div
+            v-if="messageImages.length"
+            class="message-images"
+            :class="[
+              `images-num-${messageImages.length}`,
+              messageImages.length > 2 ? 'images-num-more-than-3' : '',
+            ]"
+          >
             <BaseImage
               v-for="item in messageImages"
               :key="item"
@@ -98,8 +105,16 @@ const messageImages = computed(() =>
         gap: 2%;
         flex-wrap: wrap;
         >* {
-          width: 32%;
           margin-top: 8px;
+        }
+        &.images-num-1 > * {
+          width: 100%;
+        }
+        &.images-num-2 > * {
+          width: 48%;
+        }
+        &.images-num-more-than-3 > * {
+          width: 32%;
         }
       }
     }

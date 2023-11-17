@@ -105,6 +105,9 @@ const { bool: isOpen, toggle: toggleOpen } = useBoolean(props.init)
   --tg-secondaryAccordion-header-title-color: var(--tg-text-white);
   --tg-secondaryAccordion-content-background: var(--tg-primary-main);
   --tg-secondaryAccordion-content-border-color: var(--tg-text-grey-deep);
+  .arrow {
+    --tg-icon-color: var(--tg-text-white);
+  }
 }
 .level-2 {
   --tg-secondaryAccordion-header-background: var(--tg-secondary-grey);

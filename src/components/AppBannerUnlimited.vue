@@ -6,6 +6,7 @@ interface IBannerData {
   value: number
 }
 
+const { t } = useI18n()
 const {
   appContentWidth,
   widthBoundaryXs,
@@ -16,31 +17,31 @@ const bannerData = [
   {
     imgUrl: '/png/vip-club/bespoke.png',
     title: 'Bespoke',
-    desc: '与您的专属 VIP 服务代表合作，根据您的投注需求定制福利。',
+    desc: t('vip_banner_tip_1'),
     value: 1,
   },
   {
     imgUrl: '/png/vip-club/boost.png',
-    title: '助推奖金',
-    desc: '您可以预期每周和每月根据您的游戏量获得奖金。玩得越多，获得的奖金就越多。',
+    title: t('booster_bonus'),
+    desc: t('vip_banner_tip_2'),
     value: 2,
   },
   {
     imgUrl: '/png/vip-club/cashback.png',
-    title: '近期游戏表现奖金',
-    desc: '运气不佳？Stake 会在您每次升级时根据您的损失提供额外资金。',
+    title: t('recent_game_perform_bonus'),
+    desc: t('vip_banner_tip_3'),
     value: 3,
   },
   {
     imgUrl: '/png/vip-club/host.png',
-    title: '专属 VIP 服务代表',
-    desc: '被分配一名将支持并满足您的投注需求的专属 VIP 服务代表。',
+    title: t('dedicated_vip_servicer'),
+    desc: 'vip_banner_tip_4',
     value: 4,
   },
   {
     imgUrl: '/png/vip-club/levelup.png',
-    title: '升级奖金',
-    desc: '在每达到下个级别后获取奖金。所达级别越高，升级奖金就越大。',
+    title: t('upgrade_bonus'),
+    desc: t('vip_banner_tip_5'),
     value: 5,
   },
 ]

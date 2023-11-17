@@ -11,6 +11,7 @@ interface Column {
   align?: 'left' | 'center' | 'right'
 }
 
+const { t } = useI18n()
 const { bool: showContent, toggle: toggleShowContent } = useBoolean(true)
 const { bool: loading, setFalse: setLoadingFalse } = useBoolean(true)
 const {
@@ -20,57 +21,57 @@ const {
 
 const tab = ref('1')
 const tabList = [
-  { value: '1', label: '大赢家' },
-  { value: '2', label: '幸运赢家' },
-  // { value: '4', label: '描述' },
+  { value: '1', label: t('big_winner') },
+  { value: '2', label: t('lucky_winner') },
+  // { value: '4', label: t('description') },
 ]
 const tagList = ref<ITabItem[]>([
-  { label: '购买奖励回合', link: '#' },
+  { label: t('buy_bonus_round'), link: '#' },
   { label: 'Hacksaw Gaming', link: '#' },
-  { label: '海盗', link: '#' },
-  { label: '推荐游戏', link: '#' },
-  { label: '海洋', link: '#' },
-  { label: '老虎机', link: '#' },
-  { label: '切换波动性', link: '#' },
+  { label: t('pirate'), link: '#' },
+  { label: t('game_type_rec'), link: '#' },
+  { label: t('sea'), link: '#' },
+  { label: t('game_type_slot_short_name'), link: '#' },
+  { label: t('switch_wave'), link: '#' },
 ])
 const columns = ref<Column[]>([
   {
-    title: '排名',
+    title: t('ranking'),
     width: 100,
     dataIndex: 'rank',
     slot: 'rank',
     align: 'left',
   },
   {
-    title: '玩家',
+    title: t('gamer'),
     width: 100,
     dataIndex: 'player',
     slot: 'player',
     align: 'center',
   },
   {
-    title: '日期',
+    title: t('date'),
     width: 150,
     dataIndex: 'date',
     slot: 'date',
     align: 'center',
   },
   {
-    title: '投注',
+    title: t('menu_title_settings_bets'),
     width: 100,
     dataIndex: 'bet',
     slot: 'bet',
     align: 'center',
   },
   {
-    title: '乘数',
+    title: t('multiple_count'),
     width: 100,
     dataIndex: 'multiple',
     slot: 'multiple',
     align: 'center',
   },
   {
-    title: '支付额',
+    title: t('sports_payment_amount'),
     width: 150,
     dataIndex: 'payAmount',
     slot: 'payAmount',
@@ -132,11 +133,11 @@ onMounted(() => {
           <VTooltip placement="top">
             <div class="cursor-help">
               <BaseIcon name="uni-hidden" />
-              <span>隐身</span>
+              <span>{{ t('hidden_user') }}</span>
             </div>
             <template #popper>
               <div class="tiny-menu-item-title">
-                此玩家启用了私密功能
+                {{ t('user_turn_on_hidden') }}
               </div>
             </template>
           </VTooltip>
@@ -173,7 +174,7 @@ onMounted(() => {
         </div>
         <div class="c-text">
           <div class="text-tags">
-            <p><a href="#">庄稼优势：<span>3.78%</span></a></p>
+            <p><a href="#">{{ t('house_edge') }}：<span>3.78%</span></a></p>
           </div>
           <div class="text-tags">
             <p v-for="item, index in tagList" :key="index">
@@ -223,11 +224,11 @@ onMounted(() => {
           <template #player="{ record }">
             <VTooltip v-if="record.isStealth" placement="top">
               <div class="cursor-help">
-                <BaseIcon name="uni-hidden" /> <span>隐身</span>
+                <BaseIcon name="uni-hidden" /> <span>{{ t('hidden_user') }}</span>
               </div>
               <template #popper>
                 <div class="tiny-menu-item-title">
-                  此玩家启用了私密功能
+                  {{ t('user_turn_on_hidden') }}
                 </div>
               </template>
             </VTooltip>

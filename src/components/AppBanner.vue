@@ -7,6 +7,8 @@ const props = withDefaults(defineProps<Props>(), {
   mode: 'default',
 })
 
+const { t } = useI18n()
+
 const { appContentWidth } = storeToRefs(useWindowStore())
 
 const scrollRef = ref()
@@ -47,17 +49,17 @@ function scrollRight() {
           <BaseImage url="/png/home/banner_bg.png" />
           <div class="item-msg">
             <div class="msg-type">
-              促销活动
+              {{ t('promo_activity') }}
             </div>
             <div class="msg-title">
-              75,000抽奖活动
+              75,000{{ t('promo_lottery_activity') }}
             </div>
             <div class="msg-tips">
-              每周瓜分$20,000美元奖金
+              {{ t('weekly_share') }}$20,000美元奖金
               <!-- <span>阅读更多</span> -->
             </div>
             <div class="come-play">
-              了解更多
+              {{ t('learn_more') }}
             </div>
           </div>
         </BaseAspectRatio>

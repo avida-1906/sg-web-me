@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { getCurrentLanguageForBackend } from '~/modules/i18n'
+
 interface IVipProgressData {
   percent: number
   currentLevel: number
@@ -7,12 +9,24 @@ interface IVipProgressData {
 const { t } = useI18n()
 const router = useRouter()
 const { bool: showMore, toggle: toggleShowMore } = useBoolean(false)
+
 const {
   appContentWidth,
   widthBoundarySm,
 } = storeToRefs(useWindowStore())
 const { isLogin, userInfo } = storeToRefs(useAppStore())
 const { openVipDialog } = useVipDialog()
+// const { openNoticeDialog } = useDialogNotice()
+// 公告弹框和跑马灯
+const {
+  data: noticeData,
+  run: runMemberNoticeAllList,
+  loading: memberNoticeAllListLoading,
+} = useRequest(ApiMemberNoticeAllList, {
+  onSuccess() {
+    // openNoticeDialog(noticeData.value?.notice[0])
+  },
+})
 
 const btnText = ref('查看更多')
 const vipProgressData = ref<IVipProgressData>({
@@ -33,6 +47,7 @@ const onShowMore = function () {
     btnText.value = '查看更多'
 }
 
+runMemberNoticeAllList()
 // await application.allSettled([
 //   runLive({ game_type: 1 }),
 //   runSlot({ game_type: 3 }),
@@ -84,6 +99,24 @@ const onShowMore = function () {
           />
         </div>
       </div>
+    </div>
+    <!-- 滚动消息 -->
+    <div v-if="!memberNoticeAllListLoading" class="mt-24">
+      <BaseNoticeBar>
+        <template #prefix>
+          <div style="padding: 0 20px;">
+            <BaseIcon name="uni-speaker" />
+          </div>
+        </template>
+        <template #default>
+          <div style="display: flex;gap: 100px;">
+            <span
+              v-for="item of noticeData?.marquee"
+              :key="item.id"
+            >{{ `${item.title}：${item.content[getCurrentLanguageForBackend()]}` }}</span>
+          </div>
+        </template>
+      </BaseNoticeBar>
     </div>
     <!-- 玩法类型 -->
     <div class="index-features">
