@@ -26,9 +26,13 @@ const list = computed(() => {
   return null
 })
 
-watch(sportsFavoriteList, (a) => {
-  if (a.length > 0)
-    currentSi.value = a[0].si
+const stop = watch(sportsFavoriteData, (a) => {
+  if (a && currentSi.value !== -1)
+    currentSi.value = a.list[0].si
+})
+
+onBeforeUnmount(() => {
+  stop()
 })
 </script>
 
