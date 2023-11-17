@@ -24,6 +24,8 @@ interface IColumns {
 
 const { t } = useI18n()
 
+const { renderBalanceList } = useCurrencyData()
+
 const columns = reactive<IColumns[]>([
   {
     title: t('label_draw_time'),
@@ -61,7 +63,7 @@ const { run: runGetRecord, data } = useRequest(ApiMemberVipBonusRecord)
 runGetRecord()
 
 function getCurrencyName(id: string | number): EnumCurrencyKey {
-  return Object.values(currencyConfig).filter(c => +c.cur === +id)[0].name
+  return renderBalanceList.value.filter(c => +c.cur === +id)[0].type
 }
 
 // function onPrevious() {
