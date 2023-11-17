@@ -204,7 +204,15 @@ export interface VipConfig {
   /** 是否默认 */
   is_default: 0 | 1
   /** 返水配置 */
-  rebate_config: any
+  rebate_config: {
+    game_type: string
+    data: {
+      id: string
+      rate: string
+      name: string
+      [k: string]: string
+    }[]
+  }[]
   /** 添加时间 */
   created_at: number
   /** 修改时间 */

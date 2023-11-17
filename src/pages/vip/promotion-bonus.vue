@@ -38,11 +38,11 @@ const data = computed(() =>
         <div
           :class="{
             'user-level-vip':
-              userInfo && userInfo.score && +userInfo.score === +record.score,
+              userInfo && +userInfo.vip === +record.level,
           }"
         >
           <span
-            v-if="userInfo && userInfo.score && +userInfo.score === +record.score"
+            v-if="userInfo && +userInfo.vip === +record.level"
           >1USDT/</span>{{ record.score }}USDT
         </div>
       </template>
@@ -57,6 +57,13 @@ const data = computed(() =>
 </template>
 
 <style lang="scss" scoped>
+.user-level-vip {
+  background-color: var(--tg-text-green);
+  color: var(--tg-secondary-dark);
+  max-width: 290px;
+  margin: 0 auto;
+  border-radius: 20px;
+}
 .color-orange {
   color: var(--tg-text-warn);
 }

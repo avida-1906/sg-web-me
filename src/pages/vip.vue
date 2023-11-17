@@ -20,7 +20,7 @@ meta:
     - title: vip_promotion_bonus
       path: /vip/promotion-bonus
       token: false
-    - {title: vip_water_back, path: /vip/water-back, token: false}
+    - {title: vip_water_back, path: /vip/rebate, token: false}
     - {title: vip_day_salary, path: /vip/day-salary, token: false}
     - {title: vip_week_salary, path: /vip/week-salary, token: false}
     - {title: vip_month_salary, path: /vip/month-salary, token: false}
