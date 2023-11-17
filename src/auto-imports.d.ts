@@ -273,6 +273,7 @@ declare global {
   const timeCheckIsLeapYear: typeof import('./utils/time')['timeCheckIsLeapYear']
   const timeCheckIsLeapyear: typeof import('./utils/time')['timeCheckIsLeapyear']
   const timeFullTimeFormat: typeof import('./utils/time')['timeFullTimeFormat']
+  const timeToFromNow: typeof import('./utils/time')['timeToFromNow']
   const toFixed: typeof import('./utils/number')['toFixed']
   const toNumber: typeof import('lodash-es')['toNumber']
   const toRaw: typeof import('vue')['toRaw']
@@ -799,6 +800,7 @@ declare module 'vue' {
     readonly throttledWatch: UnwrapRef<typeof import('@vueuse/core')['throttledWatch']>
     readonly timeCheckIsLeapYear: UnwrapRef<typeof import('./utils/time')['timeCheckIsLeapYear']>
     readonly timeFullTimeFormat: UnwrapRef<typeof import('./utils/time')['timeFullTimeFormat']>
+    readonly timeToFromNow: UnwrapRef<typeof import('./utils/time')['timeToFromNow']>
     readonly toFixed: UnwrapRef<typeof import('./utils/number')['toFixed']>
     readonly toNumber: UnwrapRef<typeof import('lodash-es')['toNumber']>
     readonly toRaw: UnwrapRef<typeof import('vue')['toRaw']>
@@ -1318,6 +1320,7 @@ declare module '@vue/runtime-core' {
     readonly throttledWatch: UnwrapRef<typeof import('@vueuse/core')['throttledWatch']>
     readonly timeCheckIsLeapYear: UnwrapRef<typeof import('./utils/time')['timeCheckIsLeapYear']>
     readonly timeFullTimeFormat: UnwrapRef<typeof import('./utils/time')['timeFullTimeFormat']>
+    readonly timeToFromNow: UnwrapRef<typeof import('./utils/time')['timeToFromNow']>
     readonly toFixed: UnwrapRef<typeof import('./utils/number')['toFixed']>
     readonly toNumber: UnwrapRef<typeof import('lodash-es')['toNumber']>
     readonly toRaw: UnwrapRef<typeof import('vue')['toRaw']>

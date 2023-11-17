@@ -1,5 +1,6 @@
 import isLeapYear from 'dayjs/plugin/isLeapYear'
 import weekday from 'dayjs/plugin/weekday'
+import relativeTime from 'dayjs/plugin/relativeTime'
 
 import 'dayjs/locale/en'
 import 'dayjs/locale/zh-cn'
@@ -10,6 +11,7 @@ import 'dayjs/locale/hi'
 
 dayjs.extend(isLeapYear)
 dayjs.extend(weekday)
+dayjs.extend(relativeTime)
 
 const format: { [t: string]: string } = {
   'en': 'ddd, MMM D h:mm A',
@@ -42,4 +44,12 @@ export function timeFullTimeFormat(ts: number) {
     return dayjs(ts).format(format[EnumLanguage[userLanguage]]).replace('T', 'Th ').replace('tháng', 'Thg')
 
   return dayjs(ts).format(format[EnumLanguage[userLanguage]])
+}
+
+/** 过去时间转换 */
+export function timeToFromNow(ts: number) {
+  const userLanguage = Local.get<number>(STORAGE_LANGUAGE_KEY)?.value ?? 0
+
+  dayjs.locale(langKey[EnumLanguage[userLanguage]])
+  return dayjs(ts).fromNow()
 }
