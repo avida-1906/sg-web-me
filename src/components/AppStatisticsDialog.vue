@@ -30,6 +30,8 @@ const props = withDefaults(defineProps<Props>(), {
 })
 // const emit = defineEmits(['update:modelValue'])
 
+const { t } = useI18n()
+
 const {
   isLessThanSm,
 } = storeToRefs(useWindowStore())
@@ -39,36 +41,36 @@ const { bool: loading, setFalse: setLoadingFalse } = useBoolean(true)
 
 const tab = ref('3')
 const tabList = [
-  { label: '统计数据', value: '1' },
-  { label: '奖杯', value: '2' },
-  { label: '竞赛', value: '3' },
-  { label: '抽奖活动', value: '4' },
+  { label: t('statistical_data'), value: '1' },
+  { label: t('trophy'), value: '2' },
+  { label: t('competition'), value: '3' },
+  { label: t('promo_lottery_activity'), value: '4' },
 ]
 // 数据统计表 head
 const statisticsColumns = ref<IColumns[]>([
   {
-    title: '投注',
+    title: t('menu_title_settings_bets'),
     width: 60,
     dataIndex: 'bet',
     slot: 'bet',
     align: 'left',
   },
   {
-    title: '赢',
+    title: t('win_label'),
     width: 100,
     dataIndex: 'win',
     slot: 'win',
     align: 'center',
   },
   {
-    title: '输',
+    title: t('lose'),
     width: 100,
     dataIndex: 'lose',
     slot: 'lose',
     align: 'center',
   },
   {
-    title: '总投注额',
+    title: t('wagered'),
     width: 130,
     dataIndex: 'totalBet',
     slot: 'totalBet',
@@ -82,8 +84,8 @@ const competitionTableData: any = ref([])
 // 奖杯select
 const selectValue = ref('2')
 const selectOptions = [
-  { value: '1', label: '最幸运奖杯' },
-  { value: '2', label: '最大之赢' },
+  { value: '1', label: t('lucky_trophy') },
+  { value: '2', label: t('big_win') },
 ]
 const trophyCards = ref([
   { rankIcon: 'uni-cup1', gameName: 'Spellbinding Mystery', provider: 'Pragmatic' },
@@ -92,21 +94,21 @@ const trophyCards = ref([
 ])
 const trophyColumns = ref<IColumns[]>([
   {
-    title: '游戏',
+    title: t('game'),
     width: 200,
     dataIndex: 'game',
     slot: 'game',
     align: 'left',
   },
   {
-    title: '游戏提供商',
+    title: t('casino_provider'),
     width: 100,
     dataIndex: 'provider',
     slot: 'provider',
     align: 'center',
   },
   {
-    title: '奖杯',
+    title: t('trophy'),
     width: 100,
     dataIndex: 'trophy',
     slot: 'trophy',
@@ -117,25 +119,25 @@ const trophyColumns = ref<IColumns[]>([
 // 竞赛
 const competitionColumns = ref<IColumns[]>([
   {
-    title: '竞赛名称',
+    title: t('competition_name'),
     dataIndex: 'name',
     slot: 'name',
     align: 'left',
   },
   {
-    title: '日期',
+    title: t('date'),
     dataIndex: 'date',
     slot: 'date',
     align: 'center',
   },
   {
-    title: '排名',
+    title: t('ranking'),
     dataIndex: 'rank',
     slot: 'rank',
     align: 'center',
   },
   {
-    title: '奖金',
+    title: t('finance_other_tab_bonus'),
     dataIndex: 'bonus',
     slot: 'bonus',
     align: 'right',
@@ -144,21 +146,21 @@ const competitionColumns = ref<IColumns[]>([
 // 抽奖活动 head
 const SweepstakesColumns = ref<IColumns[]>([
   {
-    title: '投注',
+    title: t('menu_title_settings_bets'),
     width: 200,
     dataIndex: 'bet',
     slot: 'bet',
     align: 'left',
   },
   {
-    title: '日期',
+    title: t('date'),
     width: 120,
     dataIndex: 'date',
     slot: 'date',
     align: 'center',
   },
   {
-    title: '抽奖卷',
+    title: t('raffle_ticket'),
     width: 80,
     dataIndex: 'lottery',
     slot: 'lottery',
@@ -174,11 +176,9 @@ const paginationData = ref<IPaginationData>(
 )
 
 const onPrevious = function () {
-  console.log('上一页1')
   paginationData.value.page--
 }
 const onNext = function () {
-  console.log('下一页2')
   paginationData.value.page++
 }
 
@@ -282,7 +282,7 @@ onMounted(() => {
               {{ userName }}
             </p>
             <div class="s-join-date">
-              <span>加入日期：</span>
+              <span>{{ t('in_date') }}：</span>
               <span>2023年9月19日</span>
             </div>
           </template>
@@ -315,7 +315,7 @@ onMounted(() => {
             <div class="trophies-title">
               <p class="title-left">
                 <BaseIcon name="chess-air-bonus" />
-                <span>Luckiest 赢</span>
+                <span>Luckiest {{ t('win_label') }}</span>
               </p>
               <BaseSelect v-model="selectValue" :options="selectOptions" :small="true" />
             </div>
@@ -352,7 +352,7 @@ onMounted(() => {
           <div v-else-if="tab === '3'" class="competition-wrap">
             <div class="c-title">
               <BaseIcon name="spt-competition" />
-              最新竞赛
+              {{ t('fresh_competition') }}
             </div>
             <div class="competition-cards">
               <div class="c-card">
@@ -361,7 +361,10 @@ onMounted(() => {
                   <div>US$1.00<BaseIcon name="coin-usdc" /></div>
                 </div>
                 <div class="card-bottom">
-                  <div>$100,000 竞赛 – 24 小时</div>
+                  <div>
+                    <span>$100,000 {{ $t('competition') }}</span> –
+                    <span>{{ t('time_hour', { delta: 24 }) }}</span>
+                  </div>
                   <div>2023/7/17</div>
                 </div>
               </div>

@@ -26,11 +26,12 @@ const {
   resetField: selectBankReset,
 } = useField<string>('selectBank', (value) => {
   if (!value)
-    return t('choose_draw_bank')
+    return currentType.value === '1' ? t('choose_draw_bank') : '请选择PIX账号'
   return ''
 })
 const {
   value: amount,
+  setValue: setAmount,
   errorMessage: amountError,
   validate: amountValidate,
   resetField: amountReset,
@@ -65,7 +66,9 @@ const {
   data: withdrawBankcardList,
 } = useRequest(ApiFinanceWithdrawBankcard, {
   onSuccess(data) {
-    const temp = data.d.find(i => i.is_default === 1 && i.state !== 2)?.bank_account
+    const temp = currentType.value === '1'
+      ? data.d.find(i => i.is_default === 1 && i.state !== 2)?.bank_account
+      : data.d.find(i => i.state !== 2)?.bank_account
     if (temp)
       selectBank.value = temp
     else
@@ -82,6 +85,7 @@ const {
     })
     selectBankReset()
     amountReset()
+    initAmount()
     payPasswordReset()
   },
 })
@@ -132,6 +136,9 @@ function maxNumber() {
 function updateBank() {
   runAsyncWithdrawBankcardList({ currency_id: props.activeCurrency.cur })
 }
+function initAmount() {
+  setAmount(`0.${props.activeCurrency.balance.replace(/\d/g, '0').split('.')[1]}`, false)
+}
 async function withDrawSubmit() {
   await selectBankValidate()
   await amountValidate()
@@ -152,7 +159,12 @@ watch(() => props.activeCurrency, (newValue) => {
   // runAsyncWithdrawMethodList({ currency_id: newValue.cur })
   selectBankReset()
   amountReset()
+  initAmount()
   payPasswordReset()
+})
+
+onMounted(() => {
+  initAmount()
 })
 
 await application.allSettled(

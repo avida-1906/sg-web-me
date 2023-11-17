@@ -65,6 +65,9 @@ affiliate: 联盟计划
 transaction_record: 交易记录
 statistical_data: 统计数据
 sports_betting: 体育投注
+trophy: 奖杯
+lucky_trophy: 最幸运奖杯
+big_win: 最大之赢
 setting: 设置
 stake_safety: Stake安全
 online_support: 在线支持
@@ -79,6 +82,7 @@ casino_bets: 娱乐城投注
 billboard: 风云榜
 competition_board: 竞赛排行榜
 competition: 竞赛
+competition_name: 竞赛名称
 currency: 货币
 network: 网络
 deposit: 存款
@@ -1021,6 +1025,8 @@ user_confirm_delete_draw_way: 请您确认删除以下提款方式吗？
 confirm_delete: 确认删除
 big_winner: 大赢家
 lucky_winner: 幸运赢家
+win_label: 赢
+lose: 输
 description: 描述
 buy_bonus_round: 购买奖励回合
 pirate: 海盗
@@ -1104,3 +1110,6 @@ user_name_exist: 用户名已存在,请重新填写用户名
 currency_disable: 无法使用货币
 save: 保存
 verified: 已验证
+raffle_ticket: 抽奖券
+in_date: 加入日期
+fresh_competition: 最新竞赛
