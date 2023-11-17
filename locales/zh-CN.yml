@@ -877,6 +877,7 @@ notify_error_forbid_operation: 不允许此操作
 user_account: 账号
 user_superior: 上级
 can_receive: 可领取
+receive_type: 领取类型
 receive_commission: 领取佣金
 commission_history: 佣金历史
 window_minimize: 最小化

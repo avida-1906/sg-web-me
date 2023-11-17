@@ -1,5 +1,14 @@
 <script lang="ts" setup>
-// 123
+const { openVipBonusRecordDialog } = useDialogVipBonusRecord()
+const { openReceiveBonusDialog } = useDialogReceiveBonus()
+
+function openRecord() {
+  openVipBonusRecordDialog()
+}
+
+function openReceive() {
+  openReceiveBonusDialog({ vipBonus: '1002' })
+}
 </script>
 
 <template>
@@ -8,10 +17,10 @@
     <div class="info">
       <span>距离VIP2还差100万流水</span>
       <div class="btns">
-        <BaseButton bg-style="primary" size="none" round>
+        <BaseButton bg-style="primary" size="none" round @click="openReceive">
           {{ $t('receive_commission') }}
         </BaseButton>
-        <BaseButton type="line" round size="none">
+        <BaseButton type="line" round size="none" @click="openRecord">
           {{ $t('commission_history') }}
         </BaseButton>
       </div>

@@ -200,39 +200,47 @@ function mapHeadArea(
         <span>{{ data.awayTeamName }}</span>
       </div>
 
-      <!-- corners yellowCards redCards -->
-      <div class="heading center" style="grid-area: corners_title;">
-        <BaseIcon name="uni-ruler" />
-      </div>
-      <span class="fill-frame border" style="grid-area: corners_home;">
-        <span>6</span>
-      </span>
-      <span class="fill-frame" style="grid-area: corners_away;">
-        <span>5</span>
-      </span>
+      <!-- 角球 -->
+      <template v-if="data.corner">
+        <div class="heading center" style="grid-area: corners_title;">
+          <BaseIcon name="uni-ruler" />
+        </div>
+        <span class="fill-frame border" style="grid-area: corners_home;">
+          <span>{{ data.corner.homeTeam }}</span>
+        </span>
+        <span class="fill-frame" style="grid-area: corners_away;">
+          <span>{{ data.corner.awayTeam }}</span>
+        </span>
+      </template>
 
-      <div class="heading center" style="grid-area: yellowCards_title;">
-        <BaseIcon name="uni-warn-rect" />
-      </div>
-      <span class="fill-frame border" style="grid-area: yellowCards_home;">
-        <span>6</span>
-      </span>
-      <span class="fill-frame" style="grid-area: yellowCards_away;">
-        <span>5</span>
-      </span>
+      <!-- 黄牌 -->
+      <template v-if="data.yellowCard">
+        <div class="heading center" style="grid-area: yellowCards_title;">
+          <BaseIcon name="uni-warn-rect" />
+        </div>
+        <span class="fill-frame border" style="grid-area: yellowCards_home;">
+          <span>{{ data.yellowCard.homeTeam }}</span>
+        </span>
+        <span class="fill-frame" style="grid-area: yellowCards_away;">
+          <span>{{ data.yellowCard.awayTeam }}</span>
+        </span>
+      </template>
 
-      <div class="heading center" style="grid-area: redCards_title;">
-        <BaseIcon name="uni-error-rect" />
-      </div>
-      <span class="fill-frame border" style="grid-area: redCards_home;">
-        <span>6</span>
-      </span>
-      <span class="fill-frame" style="grid-area: redCards_away;">
-        <span>5</span>
-      </span>
+      <!-- 红牌 -->
+      <template v-if="data.redCard">
+        <div class="heading center" style="grid-area: redCards_title;">
+          <BaseIcon name="uni-error-rect" />
+        </div>
+        <span class="fill-frame border" style="grid-area: redCards_home;">
+          <span>{{ data.redCard.homeTeam }}</span>
+        </span>
+        <span class="fill-frame" style="grid-area: redCards_away;">
+          <span>{{ data.redCard.awayTeam }}</span>
+        </span>
+      </template>
 
-      <!-- period -->
-      <template v-for="p, idx in eventData.eventStatus.periodScores" :key="idx">
+      <!-- 1，2，3 场 -->
+      <!-- <template v-for="p, idx in eventData.eventStatus.periodScores" :key="idx">
         <div class="heading center" :style="`grid-area: period_title_${idx}`">
           <span>{{ idx + 1 }}st</span>
         </div>
@@ -242,16 +250,16 @@ function mapHeadArea(
         <span class="fill-frame" :style="`grid-area: period_away_${idx}`">
           <span>{{ p.awayScore }}</span>
         </span>
-      </template>
+      </template> -->
 
       <!-- gameScore -->
-      <div class="heading center" style="grid-area: gameScore_title;" />
+      <!-- <div class="heading center" style="grid-area: gameScore_title;" />
       <span class="fill-frame border" style="grid-area: gameScore_home;">
         <span>0</span>
       </span>
       <span class="fill-frame" style="grid-area: gameScore_away;">
         <span>16</span>
-      </span>
+      </span> -->
 
       <!-- matchScore -->
       <div class="heading center" style="grid-area: matchScore_title;">
@@ -272,8 +280,8 @@ function mapHeadArea(
 
 <style lang="scss" scoped>
 .wrapper.has-background {
-  min-width: 250px;
-  max-width: calc(100% - var(--tg-spacing-32));
+  // min-width: 250px;
+  // max-width: calc(100% - var(--tg-spacing-32));
   border-radius: var(--tg-radius-default);
   width: auto;
 }

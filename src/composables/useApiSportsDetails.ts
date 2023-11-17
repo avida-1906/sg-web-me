@@ -1,28 +1,36 @@
 import type { TPat } from '~/apis/types'
 import type { IBasePanelType, IBreadCrumbItem } from '~/types'
 
+interface IBetObject {
+/** 名称 */
+  name: string
+  /** 赔率 */
+  odds: string
+}
+
 /** 列表类型 */
 export interface IDataListItem {
+  mlid: string
   /** 标题 */
   title: string
   /** 样式 */
   patType: TPat
-  /** 数据 */
-  betList: {
-    /** 名称 */
-    name: string
-    /** 赔率 */
-    odds: string
-  }[]
+  /** 样式1数据 */
+  patType1BetList: IBetObject[]
+  /** 样式2数据 */
+  patType2BetMap: Record<string, IBetObject[]>
 }
 
 /**
  * @module src/composables/useApiSportsDetails.ts
  * @description 体育赛事详情接口
- * @param si 球种ID
- * @param ei 赛事ID
  */
-export function useApiSportDetails(si: number, ei: string) {
+export function useApiSportDetails() {
+  /** 当前选中的Tab */
+  const currentTab = ref<number>(-1)
+  /** 搜索名称 */
+  const searchName = ref<string>('')
+
   const { data: sportInfo, runAsync: runGetSportInfo } = useRequest(ApiSportEventInfo)
 
   /** 面包屑数据 */
@@ -112,13 +120,46 @@ export function useApiSportDetails(si: number, ei: string) {
       awayTeamScore: sportInfo.value.list[0].ap,
     }
 
+    const pol = sportInfo.value.list[0].pol
+
+    /**
+     * 3 主队红牌
+     * 4 客队红牌
+     * 5 主队⻩牌
+     * 6 客队⻩牌
+     * 7 主队⾓球
+     * 8 客队⾓球
+     */
+    if (pol) {
+      if (pol['3'] !== undefined || pol['4'] !== undefined) {
+        _map.redCard = {
+          homeTeam: pol['3'] || 0,
+          awayTeam: pol['4'] || 0,
+        }
+      }
+
+      if (pol['5'] !== undefined || pol['6'] !== undefined) {
+        _map.yellowCard = {
+          homeTeam: pol['5'] || 0,
+          awayTeam: pol['6'] || 0,
+        }
+      }
+
+      if (pol['7'] !== undefined || pol['8'] !== undefined) {
+        _map.corner = {
+          homeTeam: pol['7'] || 0,
+          awayTeam: pol['8'] || 0,
+        }
+      }
+    }
+
     Object.assign(data, _map)
 
     return data
   })
 
   /** 数据列表 */
-  const dataList = computed<IDataListItem[]>(() => {
+  const dataList = computed<any[]>(() => {
     const data: IDataListItem[] = []
 
     if (
@@ -131,28 +172,50 @@ export function useApiSportDetails(si: number, ei: string) {
 
     const ml = sportInfo.value.list[0].ml || []
 
-    ml.forEach((item) => {
-      const betList = item.ms || []
-      const patType = item.pat
-      const betListData = betList.map((bet) => {
-        return {
-          name: bet.sn,
-          odds: bet.ov,
-        }
-      })
+    console.error('pat===2', ml.filter(item => item.pat === 2))
+    console.error('pat===4', ml.filter(item => item.pat === 4))
 
-      data.push({
-        patType,
-        title: item.btn,
-        betList: betListData,
-      })
+    /** 过滤出渲染的数据 */
+    const _filter = ml.filter((item) => {
+      return item.tgis.includes(currentTab.value) && item.btn.includes(searchName.value.trim())
     })
 
-    return data
+    const renderList: any[] = []
+    for (let i = 0; i < _filter.length; i++) {
+      const item = _filter[i]
+      if (item.pat === 1 || item.pat === 3) {
+        renderList.push(item)
+      }
+      else if (item.pat === 2) {
+        const aaaaaa = renderList.find(ii => ii?.btn === item.btn)
+        if (aaaaaa) {
+          aaaaaa.qqq.push(...item.ms)
+        }
+        else {
+          item.qqq = [...item.ms]
+          renderList.push(item)
+        }
+      }
+      else if (item.pat === 4) {
+        const aaaaaa = renderList.find(ii => ii?.btn === item.btn)
+        if (aaaaaa) {
+          aaaaaa.qqq.push(...item.ms)
+        }
+        else {
+          item.qqq = [...item.ms]
+          renderList.push(item)
+        }
+      }
+    }
+
+    console.error('renderList', renderList)
+
+    return renderList
   })
 
-  onMounted(() => {
-    // runGetSportInfo({ si, ei })
+  watchEffect(() => {
+    if (handicapListData.value.length)
+      currentTab.value = handicapListData.value[0].value
   })
 
   return {
@@ -160,6 +223,8 @@ export function useApiSportDetails(si: number, ei: string) {
     breadcrumbData,
     handicapListData,
     basePanelData,
+    currentTab,
+    searchName,
     runGetSportInfo,
   }
 }

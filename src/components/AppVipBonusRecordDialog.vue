@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import type { EnumCurrencyKey } from '~/apis/types'
+
 interface IColumns {
   title?: string
   width?: number | string
@@ -26,14 +28,14 @@ const columns = reactive<IColumns[]>([
   {
     title: t('label_draw_time'),
     width: 90,
-    dataIndex: 'time',
-    slot: 'time',
+    dataIndex: 'created_at',
+    slot: 'created_at',
     align: 'left',
   },
   {
-    title: t('label_contribute_count'),
+    title: t('receive_type'),
     width: 100,
-    dataIndex: 'count',
+    dataIndex: 'cash_type',
     align: 'center',
   },
   {
@@ -46,11 +48,21 @@ const columns = reactive<IColumns[]>([
 ])
 
 const tableData = reactive([
-  { time: 1699517005157, count: 999, amount: '9999.8880', currencyType: 'BNB' },
-  { time: 1699517005188, count: 888, amount: '9999.8880', currencyType: 'BNB' },
-  { time: 1699517005122, count: 777, amount: '9999.8880', currencyType: 'BNB' },
-  { time: 1699517005000, count: 666, amount: '9999.8880', currencyType: 'BNB' },
+  {
+    created_at: 1699517005157,
+    cash_type: 1,
+    amount: '9999.8880',
+    receive_currency_id: 703,
+  },
 ])
+
+const { run: runGetRecord, data } = useRequest(ApiMemberVipBonusRecord)
+
+runGetRecord()
+
+function getCurrencyName(id: string | number): EnumCurrencyKey {
+  return Object.values(currencyConfig).filter(c => +c.cur === +id)[0].name
+}
 
 // function onPrevious() {
 //   paginationData.value.page--
@@ -62,21 +74,21 @@ const tableData = reactive([
 </script>
 
 <template>
-  <div class="app-agent-commission-record">
+  <div class="app-vip-bonus-record">
     <BaseTable
-      v-if="tableData && tableData.length"
+      v-if="data && data.length"
       :columns="columns"
       :data-source="tableData"
     >
       <!-- :loading="loading" -->
-      <template #time="{ record }">
-        <div>{{ record.time }}</div>
+      <template #created_at="{ record }">
+        <div>{{ record.created_at }}</div>
       </template>
       <template #amount="{ record }">
         <div class="to-right">
           <AppAmount
             :amount="record.amount"
-            :currency-type="record.currencyType"
+            :currency-type="getCurrencyName(record.receive_currency_id)"
           />
         </div>
       </template>
@@ -96,7 +108,7 @@ const tableData = reactive([
   align-items: center;
   justify-content: flex-end;
 }
-.app-agent-commission-record {
+.app-vip-bonus-record {
   padding: 0 var(--tg-spacing-16) var(--tg-spacing-16);
 }
 </style>

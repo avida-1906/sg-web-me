@@ -5,9 +5,12 @@ import type { FeedBackItem } from '~/stores/chat'
 interface Props {
   feedBackItem?: FeedBackItem
   totalBonus?: string
+  vipBonus?: string
 }
 
 const props = defineProps<Props>()
+
+const emit = defineEmits(['confirm'])
 
 const { t } = useI18n()
 const appStore = useAppStore()
@@ -25,7 +28,8 @@ const rate = computed(() => {
     return temp.USDT[activeCurrency.value.type] || '1'
   return '1'
 })
-const money = computed(() => props.feedBackItem?.amount ?? props.totalBonus)
+const money = computed(() =>
+  props.feedBackItem?.amount ?? props.totalBonus ?? props.vipBonus)
 const ratedMoney = computed(() => {
   if (rate.value && activeCurrency.value)
     return mul(+money.value, +rate.value)
@@ -45,16 +49,27 @@ const { run: runDrawBonus, loading } = useRequest(ApiMemberFeedbackBonusDraw, {
   },
 })
 
+const { run: runDrawVipBonus, loading: vipLoading } = useRequest(ApiMemberApplyVipBonus, {
+  onSuccess: () => {
+    openNotify({ type: 'success', message: t('receive_success') })
+  },
+})
+
 const closeDialog = inject('closeDialog', () => {})
 
 function receiveBonus() {
+  emit('confirm')
   if (props.feedBackItem
     && props.feedBackItem.bonusState === 1
     && props.feedBackItem.feed_id
     && !loading.value)
     runDrawBonus({ feed_id: props.feedBackItem.feed_id })
+
   else if (props.totalBonus && +props.totalBonus > 0)
     runDrawBonus({ feed_id: '' })
+
+  else if (props.vipBonus)
+    runDrawVipBonus({ cur: activeCurrency.value?.type ?? 'USDT' })
 }
 
 function changeCurrency(item: CurrencyData, network: string) {
@@ -66,7 +81,7 @@ function changeCurrency(item: CurrencyData, network: string) {
 <template>
   <div class="app-receive-bonus">
     <div class="money">
-      {{ feedBackItem?.amount ?? totalBonus }}USDT
+      {{ money }}USDT
     </div>
     <div class="choose-label">
       {{ $t('choose_bonus_receive_label') }}：
@@ -89,7 +104,12 @@ function changeCurrency(item: CurrencyData, network: string) {
       <BaseButton size="md" @click="closeDialog">
         {{ $t('cancel') }}
       </BaseButton>
-      <BaseButton bg-style="primary" size="md" :loading="loading" @click="receiveBonus">
+      <BaseButton
+        bg-style="primary"
+        size="md"
+        :loading="loading || vipLoading"
+        @click="receiveBonus"
+      >
         {{ $t('confirm_receive') }}
       </BaseButton>
     </div>

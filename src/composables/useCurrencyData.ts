@@ -26,6 +26,7 @@ interface CurrencyValue {
   prefix: string
   cur: string
   bankTree: string
+  name: EnumCurrencyKey
 }
 
 export const currencyConfig: Record<EnumCurrencyKey, CurrencyValue> = {
@@ -33,46 +34,55 @@ export const currencyConfig: Record<EnumCurrencyKey, CurrencyValue> = {
     prefix: '¥',
     cur: '701',
     bankTree: '002',
+    name: 'CNY',
   },
   BRL: {
     prefix: 'R$',
     cur: '702',
     bankTree: '015',
+    name: 'BRL',
   },
   INR: {
     prefix: '₹',
     cur: '703',
     bankTree: '016',
+    name: 'INR',
   },
   VND: {
     prefix: '₫',
     cur: '704',
     bankTree: '003',
+    name: 'VND',
   },
   THB: {
     prefix: '฿',
     cur: '705',
     bankTree: '017',
+    name: 'THB',
   },
   USDT: {
     prefix: 'USDT',
     cur: '706',
     bankTree: '',
+    name: 'USDT',
   },
   BTC: {
     prefix: 'BTC',
     cur: '707',
     bankTree: '',
+    name: 'BTC',
   },
   ETH: {
     prefix: 'ETG',
     cur: '708',
     bankTree: '',
+    name: 'ETH',
   },
   BNB: {
     prefix: 'BNB',
     cur: '709',
     bankTree: '',
+    name: 'BNB',
   },
 }
 

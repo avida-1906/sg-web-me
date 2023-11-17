@@ -434,6 +434,7 @@ export interface ISportEventInfo {
       /** OddsList 内的欧洲盘 OV */
       ov: string
     }[]
+    [key: string]: any
   }[]
   /** 赛事更新时间 */
   ts: 1699616882
