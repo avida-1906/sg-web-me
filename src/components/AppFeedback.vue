@@ -265,7 +265,6 @@ onActivated(() => {
   color: var(--tg-text-white);
   font-size: var(--tg-font-size-default);
   font-weight: var(--tg-font-weight-semibold);
-  line-height: 1.5;
   margin-top: var(--tg-spacing-16);
   display: inline-flex;
   align-items: center;
