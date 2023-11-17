@@ -67,16 +67,6 @@ function pageInit() {
       break
   }
 }
-function getIntervalDay(start: number) {
-  const time = new Date().getTime() / 1000
-  // if (time > start && time < end) { return '正在进行' }
-  // else {
-  const hour = (time - start) / (60 * 60)
-  return hour < 24
-    ? `${t('time_hour_ago', { delta: Math.floor(hour) })}`
-    : `${t('time_day_ago', { delta: Math.floor(hour / 24) })}`
-  // }
-}
 
 pageInit()
 </script>
@@ -110,12 +100,12 @@ pageInit()
             <BaseBadge
               v-if="isState"
               class="state-text"
-              status="success" :text="getIntervalDay(item.start_time)"
+              status="success" :text="timeToFromNow(item.start_time * 1000)"
             />
             <span
               v-else
               class="state-text"
-            >{{ getIntervalDay(item.start_time) }}</span>
+            >{{ timeToFromNow(item.start_time * 1000) }}</span>
           </div>
           <!-- 通知 -->
           <div v-if="mode === EnumPage[0]" style="white-space:normal;line-height: 1.43;">
