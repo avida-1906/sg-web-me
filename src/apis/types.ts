@@ -1,3 +1,5 @@
+import type { CurrencyCode } from '~/composables/useCurrencyData'
+
 /** 货币的Key */
 export type EnumCurrencyKey = keyof typeof EnumCurrency
 
@@ -177,8 +179,8 @@ export interface ProviderItem {
 export interface ExchangeRateData {
   date: number
   rates: {
-    [k in EnumCurrencyKey]: {
-      [k in EnumCurrencyKey]: string
+    [k in CurrencyCode]: {
+      [k in CurrencyCode]: string
     }
   }
 }
