@@ -17,6 +17,8 @@ interface Props {
 const props = defineProps<Props>()
 const emit = defineEmits(['show'])
 
+const { t } = useI18n()
+
 const amountRef = ref()
 const currentType = ref('')
 const bankStep = ref<'1' | '2'>('1')
@@ -41,11 +43,11 @@ const {
 } = useField<string>('amount', (value) => {
   const Value = Number(value)
   if (!Value)
-    return currentAisleItem.value?.type === 1 ? '请选择金额' : '请输入金额'
+    return currentAisleItem.value?.type === 1 ? t('select_amount') : t('input_amount')
   else if (currentAisleItem.value?.amount_min && Value < Number(currentAisleItem.value?.amount_min))
-    return `最小金额为${currentAisleItem.value?.amount_min}`
+    return `${t('min_amount_is')}${currentAisleItem.value?.amount_min}`
   else if (currentAisleItem.value?.amount_max && Value > Number(currentAisleItem.value?.amount_max))
-    return `最大金额为${currentAisleItem.value?.amount_max}`
+    return `${t('max_amount_is')}${currentAisleItem.value?.amount_max}`
 
   return ''
 })
@@ -56,7 +58,7 @@ const {
   resetField: selectValueReset,
 } = useField<string>('selectValue', (value) => {
   if (!value)
-    return '请选择银行'
+    return t('validate_msg_choose_bank')
   return ''
 })
 
@@ -242,18 +244,21 @@ await application.allSettled([
         <!-- 目前只支持3方，字段还不确定 -->
         <div v-if="false" class="type-online-bank">
           <div v-if="bankStep === '1'" class="bank-first">
-            <BaseLabel label="存款人姓名:" label-content="为及时到账，请务必输入正确的存款人姓名">
+            <BaseLabel
+              :label="`${t('deposit_name')}:`"
+              :label-content="t('deposit_name_tip')"
+            >
               <BaseInput v-model="username" />
             </BaseLabel>
-            <BaseInput v-model="amount" label="充值金额" />
+            <BaseInput v-model="amount" :label="t('deposit_amount')" />
             <BaseMoneyKeyboard />
             <BaseButton bg-style="primary" size="md" @click="nextStep">
-              确认支付
+              {{ t('confirm_pay') }}
             </BaseButton>
           </div>
           <div v-else class="bank-second">
             <p class="second-title">
-              收款人信息
+              {{ t('payee_info') }}
             </p>
             <p
               v-for="item, index in payeeInformation"
@@ -265,7 +270,7 @@ await application.allSettled([
               <BaseIcon name="uni-doc" />
             </p>
             <p class="second-tips">
-              转账金额务必与订单金额一致
+              {{ t('transfer_amount_equal_order') }}
             </p>
             <div class="second-btns">
               <BaseButton
@@ -275,15 +280,15 @@ await application.allSettled([
                 size="md"
                 @click="previous"
               >
-                取消存款申请
+                {{ t('cancel_deposit') }}
               </BaseButton>
               <BaseButton bg-style="primary" size="md">
-                我已存款
+                {{ t('already_deposit') }}
               </BaseButton>
             </div>
             <div class="second-tips2">
               <BaseIcon name="uni-error" />
-              请转账成功后务必及时确认！否则可能造成延迟上分！
+              {{ t('confirm_transfer_ontime') }}
             </div>
           </div>
         </div>
@@ -291,7 +296,7 @@ await application.allSettled([
           <div class="other-first">
             <BaseLabel
               v-if="currentTypeItem && currentTypeItem.bank"
-              label="银行选择"
+              :label="t('bank_choose')"
               must-small
             >
               <BaseSelect
@@ -303,7 +308,7 @@ await application.allSettled([
             </BaseLabel>
             <BaseLabel
               v-if="havePaymentMerchant"
-              label="通道选择"
+              :label="t('channel_choose')"
             >
               <div class="other-aisles scroll-x">
                 <div
@@ -321,7 +326,7 @@ await application.allSettled([
             </BaseLabel>
             <BaseLabel
               v-if="currentAisleItem?.type === 2"
-              :label="`充值金额: ${activeCurrency.prefix}`"
+              :label="`${t('deposit_amount')}: ${activeCurrency.prefix}`"
             >
               <BaseInput
                 ref="amountRef"
@@ -332,7 +337,7 @@ await application.allSettled([
             </BaseLabel>
             <BaseLabel
               v-else
-              :label="`充值金额: ${activeCurrency.prefix}`"
+              :label="`${t('deposit_amount')}: ${activeCurrency.prefix}`"
             >
               <BaseSelect
                 v-if="fixedAmount && fixedAmount.length"
@@ -353,13 +358,13 @@ await application.allSettled([
               :loading="thirdDepositLoading"
               @click="depositSubmit"
             >
-              确认支付
+              {{ t('confirm_pay') }}
             </BaseButton>
           </div>
         </div>
       </template>
       <template v-else>
-        <BaseEmpty description="暂无数据" icon="uni-empty-betslip" />
+        <BaseEmpty :description="t('data_empty')" icon="uni-empty-betslip" />
       </template>
     </div>
   </div>

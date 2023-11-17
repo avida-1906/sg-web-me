@@ -7,6 +7,8 @@ interface Props {
 }
 const props = withDefaults(defineProps<Props>(), {})
 
+const { t } = useI18n()
+
 const { isLessThanXs } = storeToRefs(useWindowStore())
 const { openNotify } = useNotify()
 
@@ -24,7 +26,7 @@ const {
   resetField: selectBankReset,
 } = useField<string>('selectBank', (value) => {
   if (!value)
-    return '请选择出款银行'
+    return t('choose_draw_bank')
   return ''
 })
 const {
@@ -34,13 +36,13 @@ const {
   resetField: amountReset,
 } = useField<string>('amount', (value) => {
   if (!value)
-    return '不能为空'
+    return t('validate_require')
   else if (Number(value) === 0)
-    return '存入金额不能为0'
+    return `${t('validate_deposit_amount')}0`
   else if (Number(value) < 0)
-    return '存入金额不能为负数'
+    return t('validate_deposit_amount_pos')
   else if (value && Number(value) > Number(props.activeCurrency.balance))
-    return '金额不能超过最大值'
+    return t('validate_deposit_amount_max')
   return ''
 })
 const {
@@ -50,7 +52,7 @@ const {
   resetField: payPasswordReset,
 } = useField<string>('payPassword', (value) => {
   if (!value)
-    return '请输入资金密码'
+    return t('validate_msg_input_pay_pwd')
   return ''
 })
 
@@ -76,7 +78,7 @@ const {
   onSuccess() {
     openNotify({
       type: 'success',
-      message: '出款申请成功',
+      message: t('withdraw_apply_success'),
     })
     selectBankReset()
     amountReset()
@@ -181,7 +183,10 @@ await application.allSettled(
         :current-type="withdrawMethodData"
       /> -->
       <div class="withdrawal-info">
-        <BaseLabel :label="currentType === '1' ? '出款银行卡' : 'PIX账号'" must>
+        <BaseLabel
+          :label="currentType === '1' ? t('withdraw_bank') : t('pix_account')"
+          must
+        >
           <BaseSelect
             v-model="selectBank"
             :options="bindBanks"
@@ -211,7 +216,7 @@ await application.allSettled(
             </template>
           </BaseSelect>
         </BaseLabel>
-        <BaseLabel label="金额" must>
+        <BaseLabel :label="t('amount')" must>
           <BaseInput
             v-model="amount"
             :msg="amountError"
@@ -220,11 +225,11 @@ await application.allSettled(
             @on-right-button="maxNumber"
           >
             <template #right-button>
-              <span>最大值</span>
+              <span>{{ t('max') }}</span>
             </template>
           </BaseInput>
         </BaseLabel>
-        <BaseLabel label="资金密码" must>
+        <BaseLabel :label="t('menu_title_settings_update_safepwd')" must>
           <BaseInput
             v-model="payPassword"
             :msg="payPasswordError"
@@ -233,7 +238,7 @@ await application.allSettled(
           />
         </BaseLabel>
         <BaseButton bg-style="primary" size="md" @click="withDrawSubmit">
-          提款
+          {{ t('menu_title_settings_withdrawals') }}
         </BaseButton>
       </div>
     </div>
