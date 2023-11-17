@@ -45,7 +45,7 @@ const {
   if (!value)
     return t('pls_enter_username')
   else if (!usernameReg.test(value))
-    return '您的用户名长度必须为 3 – 14 个小写英文字母和数字组成'
+    return t('validate_msg_user_name_tip')
   // 此用户名已被使用，请选择另一用户名。
   // 用户名含有无效的字符
   // 您的用户名长度必须为 3 – 14 个字符。
@@ -87,7 +87,7 @@ const {
     Session.remove(STORAGE_REG_PARAMS_KEYWORDS)
     openNotify({
       type: 'success',
-      message: '注册成功!',
+      message: t('success_register'),
     })
     await nextTick()
     closeDialog()
@@ -115,7 +115,7 @@ const { run: runExists } = useRequest(ApiMemberExists, {
   },
   onError() {
     if (curExists.value === 1)
-      setUsernameErrors('用户名已存在,请重新填写用户名')
+      setUsernameErrors(t('user_name_exist'))
   },
 })
 async function getMemberReg() {
@@ -233,13 +233,13 @@ async function toLogin() {
         </BaseButton>
         <div class="agree">
           <BaseCheckBox v-model="isAgree" :msg="agreeErrorMsg">
-            我已阅读并同意
+            {{ t('read_and_agree') }}
             <BaseButton
               type="text" size="none"
               style="--tg-base-button-text-default-color:var(--tg-text-white);"
               @click="steps = 2"
             >
-              条款与条件
+              {{ t('terms_conditions') }}
             </BaseButton>
           </BaseCheckBox>
         </div>
@@ -255,7 +255,7 @@ async function toLogin() {
           >
             <BaseIcon name="uni-arrowleft-line" />
           </BaseButton>
-          <span>条款与条件</span>
+          <span>{{ t('terms_conditions') }}</span>
         </div>
         <div class="scroll-y terms-conditions">
           <div>

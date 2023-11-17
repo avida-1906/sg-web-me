@@ -18,7 +18,7 @@ const props = withDefaults(defineProps<Props>(), {
   lastOne: false,
   verified: false,
   badge: false,
-  btnText: '保存',
+  btnText: 'save',
 })
 const emit = defineEmits(['submit'])
 
@@ -32,7 +32,7 @@ const onSubmit = function () {
     <div class="content-top">
       <div class="top-title">
         <span>{{ props.title }}</span>
-        <span v-if="props.badge" class="badge">已验证</span>
+        <span v-if="props.badge" class="badge">{{ $t('verified') }}</span>
       </div>
       <div class="top-desc">
         <slot name="top-desc" />
@@ -58,7 +58,7 @@ const onSubmit = function () {
           :disabled="props.verified"
           @click="onSubmit"
         >
-          {{ btnText }}
+          {{ $t(btnText) }}
         </BaseButton>
       </div>
     </div>

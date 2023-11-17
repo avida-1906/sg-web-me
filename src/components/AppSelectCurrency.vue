@@ -116,7 +116,7 @@ onMounted(() => {
               class="top-search"
               :clearable="searchValue?.length > 0"
               :style="{ 'max-width': showBalance ? '180px' : '140px' }"
-              place-holder="搜索"
+              :place-holder="$t('search')"
               shape="square"
             />
           </div>
@@ -140,7 +140,7 @@ onMounted(() => {
               <AppCurrencyIcon v-else show-name :currency-type="item.type" />
             </div>
             <div v-show="!getCurrencyList.length" class="balance-not">
-              无法使用货币
+              {{ $t('currency_disable') }}
             </div>
           </div>
         </div>

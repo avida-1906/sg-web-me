@@ -24,7 +24,7 @@ const componentPercent = computed<number>(() => {
       :show-info="false"
     />
     <span class="text">
-      正显示 {{ props.total }} 款游戏中的 {{ props.percentage }} 个
+      {{ $t('now_show_game_num', { total: props.total, percentage: props.percentage }) }}
     </span>
   </div>
 </template>
