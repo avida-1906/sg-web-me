@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 const { t } = useI18n()
-const sportsStore = useSportsStore()
+const { sidebarData } = storeToRefs(useSportsStore())
 const route = useRoute()
 const sport = route.params.sport ? +route.params.sport : 0
 const { bool: isStandard } = useBoolean(true)
@@ -32,7 +32,11 @@ const allRegionList = computed(() => {
   return []
 })
 // 球种名称
-const sportName = computed(() => sportsStore.getSportsNameBySi(sport))
+const sportName = computed(() => {
+  if (sidebarData.value)
+    return sidebarData.value.all.find(a => a.si === sport)?.sn ?? '-'
+  return '-'
+})
 const breadcrumb = computed(() => [
   {
     path: '',

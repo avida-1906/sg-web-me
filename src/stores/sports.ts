@@ -44,6 +44,7 @@ export const AllOddsTypes: Array<{
 
 export const useSportsStore = defineStore('sports', () => {
   const { t } = useI18n()
+  const { currentGlobalCurrency } = useCurrencyData()
   /** 体育赔率展示方式 */
   const sportsOddsType = ref(getSportsOddsType())
   /** 投注单数据 */
@@ -62,11 +63,24 @@ export const useSportsStore = defineStore('sports', () => {
     onSuccess(res) {
       currentLiveNav.value = res.list.find(a => a.lc > 0)?.si ?? 0
     },
-  },
-  )
+  })
+
+  /** 赛事收藏数据源 */
+  const {
+    data: sportsFavoriteData,
+    run: runGetFavoriteList,
+  } = useRequest(ApiSportGetFavoriteList)
 
   /** 侧边栏数据源 */
-  const { data: sidebarData, run: runSportsSidebar } = useRequest(ApiSportSidebar)
+  const { data: sidebarData, run: runSportsSidebar } = useRequest(ApiSportSidebar, {
+    onSuccess(res) {
+      const allSportsSi = res.all.map(a => a.si)
+      runGetFavoriteList({
+        sis: allSportsSi,
+        cur: currencyConfig[currentGlobalCurrency.value].cur,
+      })
+    },
+  })
 
   /** 获取场馆列表 */
   const {
@@ -89,13 +103,6 @@ export const useSportsStore = defineStore('sports', () => {
     return sportsProviderData.value && sportsProviderData.value.d
       ? sportsProviderData.value.d
       : []
-  })
-
-  /** 所有球种名称与id */
-  const allSportsNameData = computed(() => {
-    if (sidebarData.value)
-      return sidebarData.value.all
-    return []
   })
 
   /** 滚球计数 */
@@ -213,6 +220,21 @@ export const useSportsStore = defineStore('sports', () => {
     return []
   })
 
+  /** 所有球种的si */
+  const allSportsSi = computed(() => {
+    if (sidebarData.value)
+      return sidebarData.value.all.map(a => a.si)
+    return []
+  })
+
+  /** 收藏数据根据球种组合 */
+  const sportsFavoriteList = computed(() => {
+    if (sportsFavoriteData.value)
+      return sportsDataGroupBySport(sportsFavoriteData.value.list)
+
+    return []
+  })
+
   const sportOddType = computed(() => <Menu>[
     {
       title: `${t('sports_odds_title')}： ${t(`sports_odds_${sportsOddsType.value}`)}`,
@@ -256,11 +278,6 @@ export const useSportsStore = defineStore('sports', () => {
       return EnumSportsOddsType.DECIMAL
   }
 
-  /** 通过球种id获取名称 */
-  function getSportsNameBySi(si: number) {
-    return allSportsNameData.value.find(a => a.si === si)?.sn ?? '-'
-  }
-
   return {
     sportsOddsType,
     sportOddType,
@@ -281,8 +298,10 @@ export const useSportsStore = defineStore('sports', () => {
     currentLiveNav,
     upcomingNavs,
     currentUpcomingNav,
-    allSportsNameData,
-    getSportsNameBySi,
+    sportsFavoriteList,
+    allSportsSi,
+    runGetFavoriteList,
+    sportsFavoriteData,
   }
 })
 

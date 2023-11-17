@@ -174,6 +174,25 @@ export function sportsOutrightsGroupByRegion(origin: ISportOutrightsInfo[]) {
   return arr
 }
 
+/** 收藏数据根据球种组合方法 */
+export function sportsDataGroupBySport(origin: ISportEventInfo[]) {
+  const arr = []
+  for (let i = 0; i < origin.length; i++) {
+    if (i === 0) {
+      arr.push({ si: origin[i].si, sn: origin[i].sn, list: [origin[i]] })
+      continue
+    }
+
+    const index = arr.findIndex(a => a.si === origin[i].si)
+    if (index > -1)
+      arr[index].list.push(origin[i])
+    else
+      arr.push({ si: origin[i].si, sn: origin[i].sn, list: [origin[i]] })
+  }
+  console.log('收藏数据根据球种组合===>', arr)
+  return arr
+}
+
 /** 盘口数据组合面包屑 */
 export function sportsDataBreadcrumbs(data: ISportEventInfo | ISportOutrightsInfo) {
   const sport = { label: data.sn, value: `${data.si}` }

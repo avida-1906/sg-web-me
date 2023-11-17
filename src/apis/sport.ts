@@ -253,7 +253,11 @@ export function ApiSportGetFavoriteList(data: {
   sis: Array<number>
   cur: string
 }) {
-  return httpClient.post(`/sport/${getSportsPlatId()}/favorite/get`, data)
+  return httpClient.post<{
+    /** 资料更新时间 */
+    delta: number
+    list: ISportEventInfo[]
+  }>(`/sport/${getSportsPlatId()}/favorite/get`, data)
 }
 
 /**
@@ -266,5 +270,18 @@ export function ApiSportAddFavorite(data: {
   eis: string[]
   cur: string
 }) {
-  httpClient.post(`/sport/${getSportsPlatId()}/favorite/add`, data)
+  return httpClient.post(`/sport/${getSportsPlatId()}/favorite/add`, data)
+}
+
+/**
+ * 删除收藏
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=fb17c977-b030-46c3-822a-419330f5b893
+ * /favorite/add
+ */
+export function ApiSportDelFavorite(data: {
+  si: number
+  eis: string[]
+  cur: string
+}) {
+  return httpClient.post(`/sport/${getSportsPlatId()}/favorite/del`, data)
 }
