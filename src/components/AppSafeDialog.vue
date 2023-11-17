@@ -26,11 +26,9 @@ const {
   errorMessage: errAmount,
 } = useField<string>('amount', (value) => {
   if (!value)
-    return '不能为空'
-  else if (Number(value) === 0)
-    return '存入金额不能为0'
-  else if (Number(value) < 0)
-    return '存入金额不能为负数'
+    return '最小金额不可小于等于0'
+  else if (Number(value) <= 0)
+    return '最小金额不可小于等于0'
   else if (activeCurrency.value && Number(value) > Number(activeCurrency.value?.balance))
     return '金额不能超过最大值'
 
@@ -43,7 +41,7 @@ const {
   errorMessage: errPassword,
 } = useField<string>('password', (value) => {
   if (!value)
-    return '不能为空'
+    return '最小字符长度为6'
   else if (!payPasswordReg.test(value))
     return '支付密码格式错误'
 

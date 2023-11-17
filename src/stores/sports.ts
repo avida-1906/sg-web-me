@@ -227,14 +227,6 @@ export const useSportsStore = defineStore('sports', () => {
     return []
   })
 
-  /** 收藏数据根据球种组合 */
-  const sportsFavoriteList = computed(() => {
-    if (sportsFavoriteData.value)
-      return sportsDataGroupBySport(sportsFavoriteData.value.list)
-
-    return []
-  })
-
   const sportOddType = computed(() => <Menu>[
     {
       title: `${t('sports_odds_title')}： ${t(`sports_odds_${sportsOddsType.value}`)}`,
@@ -298,10 +290,9 @@ export const useSportsStore = defineStore('sports', () => {
     currentLiveNav,
     upcomingNavs,
     currentUpcomingNav,
-    sportsFavoriteList,
+    sportsFavoriteData,
     allSportsSi,
     runGetFavoriteList,
-    sportsFavoriteData,
   }
 })
 

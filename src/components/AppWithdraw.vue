@@ -89,6 +89,9 @@ function onAmountInput() {
 function maxNumber() {
   setAmount(props.activeCurrency.balance)
 }
+function initAmount() {
+  setAmount(`0.${props.activeCurrency.balance.replace(/\d/g, '0').split('.')[1]}`, false)
+}
 async function handleWithdraw() {
   await valiAddress()
   await valiAmount()
@@ -111,6 +114,10 @@ function updateContract() {
     page_size: 10,
   })
 }
+
+onMounted(() => {
+  initAmount()
+})
 
 watch(() => props.currentNetwork, () => {
   if (props.currentNetwork)
