@@ -132,10 +132,6 @@ await application.allSettled([
                 <div v-if="!dataList.length" class="no-markets">
                   <BaseEmpty icon="uni-empty-handicap" description="暂无可用盘口" />
                 </div>
-
-                <!-- <pre style="color: white">
-                  {{ dataList }}
-                </pre> -->
                 <template v-if="currentTab !== -1">
                   <template v-for="item in dataList" :key="item.mlid">
                     <!-- 样式1 -->
@@ -167,7 +163,7 @@ await application.allSettled([
                             </template>
                             <template
                               v-for="
-                                valueItem in item.qqq
+                                valueItem in item.other
                               "
                               :key="valueItem.wid"
                             >
@@ -206,7 +202,7 @@ await application.allSettled([
                         <div class="market" :class="{ 'in-mobile': isMobile }">
                           <div class="table-row-3" :style="{ '--itemCount': 1 }">
                             <template
-                              v-for="nameItem in item.qqq"
+                              v-for="nameItem in item.other"
                               :key="nameItem.wid"
                             >
                               <div class="column heading">
