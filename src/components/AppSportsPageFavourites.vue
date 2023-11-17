@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+const { t } = useI18n()
 const { sportsFavoriteData } = storeToRefs(useSportsStore())
 
 const currentSi = ref(-1)
@@ -38,16 +39,21 @@ onBeforeUnmount(() => {
 
 <template>
   <div class="tg-sports-favourites">
-    <AppSportsTab v-show="navs.length > 0" v-model="currentSi" :list="navs" />
-    <div v-if="list" class="market-wrapper">
-      <AppSportsMarket
-        v-for="item in list" :key="item.ci"
-        :is-standard="true"
-        :league-name="item.cn"
-        :event-count="item.list.length"
-        :event-list="item.list"
-        base-type="winner"
-      />
+    <template v-if="navs.length > 0">
+      <AppSportsTab v-show="navs.length > 0" v-model="currentSi" :list="navs" />
+      <div v-if="list" class="market-wrapper">
+        <AppSportsMarket
+          v-for="item in list" :key="item.ci"
+          :is-standard="true"
+          :league-name="item.cn"
+          :event-count="item.list.length"
+          :event-list="item.list"
+          base-type="winner"
+        />
+      </div>
+    </template>
+    <div v-else class="empty">
+      <BaseEmpty icon="empty-2" :description="t('data_empty')" />
     </div>
   </div>
 </template>
@@ -58,6 +64,13 @@ onBeforeUnmount(() => {
   flex-direction: column;
   gap: var(--tg-spacing-12);
   margin-bottom: var(--tg-spacing-24);
+}
+.empty{
+  width: 100%;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>
 
