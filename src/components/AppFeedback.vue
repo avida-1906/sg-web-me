@@ -9,6 +9,12 @@ const { openReceiveBonusDialog, closeReceiveBonusDialog } = useDialogReceiveBonu
   closeReceiveBonusDialog()
 })
 
+const state: any = {
+  1: t('deal_pend'),
+  2: t('adopted'),
+  3: t('ignored'),
+}
+
 const imageUrl: Ref<string[]> = ref([])
 const tab = ref(1)
 const placeholder = t('feedback_placeholder')
@@ -79,6 +85,10 @@ function tabChange() {
 function openTotalBonus() {
   if (totalBonus.value && +totalBonus.value > 0)
     openReceiveBonusDialog({ totalBonus: totalBonus.value })
+}
+
+function getStatusText(s: number) {
+  return state[s]
 }
 
 onActivated(() => {
@@ -203,7 +213,7 @@ onActivated(() => {
                       : 'var(--tg-text-white)',
                   }"
                 >
-                  {{ item.state === 1 ? t('dealing') : t('checklist_completed') }}
+                  {{ getStatusText(item.state) }}
                 </span>
               </div>
               <div
@@ -257,7 +267,8 @@ onActivated(() => {
   font-weight: var(--tg-font-weight-semibold);
   line-height: 1.5;
   margin-top: var(--tg-spacing-16);
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   .money {
     color: var(--tg-text-warn);
   }

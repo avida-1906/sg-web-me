@@ -36,6 +36,7 @@ const data = computed(() =>
       </template>
       <template #score="{ record }">
         <div
+          class="score-wrap"
           :class="{
             'user-level-vip':
               userInfo && +userInfo.vip === +record.level,
@@ -59,6 +60,14 @@ const data = computed(() =>
 </template>
 
 <style lang="scss" scoped>
+.score-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  svg {
+    margin-left: var(--tg-spacing-8);
+  }
+}
 .user-level-vip {
   background-color: var(--tg-text-green);
   color: var(--tg-secondary-dark);
