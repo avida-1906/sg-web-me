@@ -3,7 +3,6 @@ const route = useRoute()
 const sport = route.params.sport ? +route.params.sport : 0
 const region = ref(route.params.region ? route.params.region.toString() : '')
 const { bool: isStandard } = useBoolean(true)
-const sportsStore = useSportsStore()
 const { data, run } = useRequest(() =>
   ApiSportEventList({ m: 5, si: sport, pgid: region.value, page: 1, page_size: 100 }), {
   manual: false,
@@ -19,11 +18,9 @@ const tabs = [
 const isLiveAndUpcoming = computed(() => curTab.value === '1')
 const isOutrights = computed(() => curTab.value === '2')
 // 球种名称
-const sportName = computed(() => sportsStore.getSportsNameBySi(sport))
+const sportName = computed(() => data.value ? data.value.list[0].sn : '-')
 // 地区名称
-const regionName = computed(() => {
-  return data.value ? data.value.list[0].pgn : '-'
-})
+const regionName = computed(() => data.value ? data.value.list[0].pgn : '-')
 // 联赛数据
 const leagueList = computed(() => {
   return data.value ? sportsDataGroupByLeague(data.value.list) : []

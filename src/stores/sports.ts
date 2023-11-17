@@ -105,13 +105,6 @@ export const useSportsStore = defineStore('sports', () => {
       : []
   })
 
-  /** 所有球种名称与id */
-  const allSportsNameData = computed(() => {
-    if (sidebarData.value)
-      return sidebarData.value.all
-    return []
-  })
-
   /** 滚球计数 */
   const liveCount = computed(() => {
     if (allSportsCount.value) {
@@ -285,11 +278,6 @@ export const useSportsStore = defineStore('sports', () => {
       return EnumSportsOddsType.DECIMAL
   }
 
-  /** 通过球种id获取名称 */
-  function getSportsNameBySi(si: number) {
-    return allSportsNameData.value.find(a => a.si === si)?.sn ?? '-'
-  }
-
   return {
     sportsOddsType,
     sportOddType,
@@ -310,8 +298,6 @@ export const useSportsStore = defineStore('sports', () => {
     currentLiveNav,
     upcomingNavs,
     currentUpcomingNav,
-    allSportsNameData,
-    getSportsNameBySi,
     sportsFavoriteList,
     allSportsSi,
     runGetFavoriteList,
