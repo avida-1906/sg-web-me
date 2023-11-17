@@ -81,7 +81,7 @@ function changeCurrency(item: CurrencyData, network: string) {
 <template>
   <div class="app-receive-bonus">
     <div class="money">
-      {{ money }}USDT
+      {{ money }}<BaseIcon name="coin-usdt" />
     </div>
     <div class="choose-label">
       {{ $t('choose_bonus_receive_label') }}：

@@ -38,11 +38,11 @@ function changeCurrency(item: CurrencyData, network: string) {
 <template>
   <div class="app-agent-commission-draw-bonus">
     <div class="money">
-      {{ '1000' }}USDT
+      {{ '1000' }}<BaseIcon name="coin-usdt" />
     </div>
     <div class="choose-label">
       <span>{{ $t('current_wait_receive_label') }}：</span>
-      <span class="orange-text">{{ '1000' }}USDT</span>
+      <span class="orange-text">{{ '1000' }}<BaseIcon name="coin-usdt" /></span>
       <span>{{ $t('current_wait_receive_desc') }}</span>
     </div>
     <div class="currency-wrap">
