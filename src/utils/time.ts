@@ -47,7 +47,7 @@ export function timeFullTimeFormat(ts: number) {
 }
 
 /** 过去时间转换 */
-export function timeToFromNow(ts: number) {
+export function timeToFromNow(ts: number): string {
   const userLanguage = Local.get<number>(STORAGE_LANGUAGE_KEY)?.value ?? 0
 
   dayjs.locale(langKey[EnumLanguage[userLanguage]])

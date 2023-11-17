@@ -11,7 +11,6 @@ ApiSportGetFavoriteList({
 <template>
   <div class="tg-sports-favourites" :class="{ 'on-page': onPage }">
     <AppSportsTab v-model="currentLiveNav" :list="sportLiveNavs" />
-    timeToFromNow:{{ timeToFromNow() }}
     <div v-if="!onPage" class="layout-spacing">
       <AppBetData mode="sports" />
     </div>
