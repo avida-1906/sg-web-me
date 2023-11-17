@@ -27,7 +27,7 @@ function openDialog() {
       <BaseIcon name="uni-transfer" class="transfer" />
       <div>
         <div class="money">
-          USDT{{ amount }}
+          ${{ amount }}
         </div>
         <div class="label">
           {{ bonusState === 2 ? $t('received') : $t('wait_receive') }}
