@@ -437,6 +437,7 @@ declare global {
   const useObjectUrl: typeof import('@vueuse/core')['useObjectUrl']
   const useOffsetPagination: typeof import('@vueuse/core')['useOffsetPagination']
   const useOnline: typeof import('@vueuse/core')['useOnline']
+  const useOption: typeof import('./composables/useOption')['useOption']
   const usePageLeave: typeof import('@vueuse/core')['usePageLeave']
   const usePagination: typeof import('vue-request')['usePagination']
   const useParallax: typeof import('@vueuse/core')['useParallax']
@@ -969,6 +970,7 @@ declare module 'vue' {
     readonly useObjectUrl: UnwrapRef<typeof import('@vueuse/core')['useObjectUrl']>
     readonly useOffsetPagination: UnwrapRef<typeof import('@vueuse/core')['useOffsetPagination']>
     readonly useOnline: UnwrapRef<typeof import('@vueuse/core')['useOnline']>
+    readonly useOption: UnwrapRef<typeof import('./composables/useOption')['useOption']>
     readonly usePageLeave: UnwrapRef<typeof import('@vueuse/core')['usePageLeave']>
     readonly usePagination: UnwrapRef<typeof import('vue-request')['usePagination']>
     readonly useParallax: UnwrapRef<typeof import('@vueuse/core')['useParallax']>
@@ -1495,6 +1497,7 @@ declare module '@vue/runtime-core' {
     readonly useObjectUrl: UnwrapRef<typeof import('@vueuse/core')['useObjectUrl']>
     readonly useOffsetPagination: UnwrapRef<typeof import('@vueuse/core')['useOffsetPagination']>
     readonly useOnline: UnwrapRef<typeof import('@vueuse/core')['useOnline']>
+    readonly useOption: UnwrapRef<typeof import('./composables/useOption')['useOption']>
     readonly usePageLeave: UnwrapRef<typeof import('@vueuse/core')['usePageLeave']>
     readonly usePagination: UnwrapRef<typeof import('vue-request')['usePagination']>
     readonly useParallax: UnwrapRef<typeof import('@vueuse/core')['useParallax']>

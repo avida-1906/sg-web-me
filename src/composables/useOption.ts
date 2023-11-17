@@ -20,7 +20,7 @@ type TSelect = 'rollingBallSelectOption'
  * 选择器
  * @description 用于项目所有选择器列表
  */
-export function useSelect(type: TSelect) {
+export function useOption(type: TSelect) {
   const optionMap = {
     rollingBallSelectOption,
   }
