@@ -1,9 +1,11 @@
 <script setup lang='ts'>
-import { EnumsBetSlipTabs } from '~/utils/enums'
+import type {
+  EnumsBetSlipBetSlipTabStatus as EnumsBetSlipBetSlipTabStatusType,
+} from '~/utils/enums'
 
 interface Props {
   index: number
-  betSlipType: EnumsBetSlipTabs.single | EnumsBetSlipTabs.multi
+  betSlipType: EnumsBetSlipBetSlipTabStatusType
   error?: boolean
   disabled?: boolean
   isClosed?: boolean
@@ -11,13 +13,15 @@ interface Props {
 }
 const props = withDefaults(defineProps<Props>(), {
   index: 0,
-  betSlipType: EnumsBetSlipTabs.single,
+  betSlipType: EnumsBetSlipBetSlipTabStatus.single,
 })
 const { t } = useI18n()
 
 const isBetSingle = computed(() =>
-  props.betSlipType === EnumsBetSlipTabs.single)
-const isBetMulti = computed(() => props.betSlipType === EnumsBetSlipTabs.multi)
+  props.betSlipType === EnumsBetSlipBetSlipTabStatus.single)
+const isBetMulti = computed(
+  () => props.betSlipType === EnumsBetSlipBetSlipTabStatus.multi,
+)
 const isFirst = computed(() => props.index === 0)
 </script>
 

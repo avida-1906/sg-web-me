@@ -1,6 +1,7 @@
 import type {
   BankCard,
   CasinoLobbyGameItem,
+  DepositInfo,
   EnumCurrencyKey,
   ExchangeRateData,
   IMemberBalanceLockerUpdate,
@@ -618,6 +619,8 @@ export function ApiFinanceMethodList(params: {
     bank: boolean
     /** 获取银行id */
     zkId: string
+    /** 1-在线⽀付 2-公司⼊款/货币⼊款 */
+    payment_type: number
   }[]>('/finance/method/list', { params })
 }
 
@@ -685,17 +688,7 @@ export function ApiChatGetHistory(params: {
  * 三方支付存款
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=b88a28f8-3a76-41e8-bcf0-af00a8bb3452
  */
-export function ApiFinanceThirdDeposit(data: {
-  amount: string
-  /** 支付方式id */
-  mid: string
-  /** 支付平台id */
-  cid: string
-  /** 银行编码 */
-  bank_code: string
-  currency_name: string
-  currency_id: string
-}) {
+export function ApiFinanceThirdDeposit(data: DepositInfo) {
   return httpClient.post<string>('/finance/third/deposit', data)
 }
 
@@ -1048,4 +1041,68 @@ export function ApiMemberApplyVipBonus(params: {
     created_at: number
     updated_at: number
   }[]>('/member/vip/bonus/apply', { params })
+}
+/**
+ * 公司入款存款
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=7b826674-bdb4-4456-b82f-22b640f2b4b5
+ */
+export function ApiPaymentDepositBankApplication(data: DepositInfo) {
+  return httpClient.post<{
+    id: string
+    amount: string
+    currency_id: string
+    bankcard: {
+      id: string
+      open_name: string
+      bank_id: string
+      bank_account: string
+      level: string
+      client_type: string
+      state: number
+      bank_area_cpf: string
+    }
+  }>('/payment/deposit/bank/application', data)
+}
+
+/**
+ * 虚拟币入款存款
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=02920906-b9b2-49c9-8095-284e4caf061a
+ */
+export function ApiPaymentDepositCoinApplication(data: DepositInfo) {
+  return httpClient.post<{
+    id: string
+    amount: string
+    currency_id: string
+    deposit_coin: {
+      id: string
+      currency_id: string
+      contract_type: string
+      currency_name: string
+      wallet_address: string
+      state: number
+      remarks: string
+    }
+  }>('/payment/deposit/coin/application', data)
+}
+
+/**
+ * 公司入款存款-我已存款
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=564020fc-9a00-46f7-b357-c2ea767c451a
+ */
+export function ApiPaymentDepositBankConfirm(data: {
+  /** 订单号 */
+  id: string
+}) {
+  return httpClient.post<boolean>('/payment/deposit/bank/confirm', data)
+}
+
+/**
+ * 虚拟币入款存款-我已存款
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=be9c387f-f8f7-4e56-a8a6-4df82c54343f
+ */
+export function ApiPaymentDepositCoinConfirm(data: {
+  /** 订单号 */
+  id: string
+}) {
+  return httpClient.post<string>('/payment/deposit/coin/confirm', data)
 }

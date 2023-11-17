@@ -21,20 +21,20 @@ const { t } = useI18n()
 
 const amountRef = ref()
 const currentType = ref('')
-const bankStep = ref<'1' | '2'>('1')
-const payeeInformation = ref({
-  name: '张三',
-  bankNumber: '6228480445839939573',
-  bankName: '中国农业银行',
-  accountOpeningBank: '开户网点：天津农商银行',
-  amount: '200,000.00',
-})
+// const payeeInformation = ref({
+//   name: '张三',
+//   bankNumber: '6228480445839939573',
+//   bankName: '中国农业银行',
+//   accountOpeningBank: '开户网点：天津农商银行',
+//   amount: '200,000.00',
+// })
 const currentAisle = ref('')
 const currentAisleItem = ref<IPaymentMerchantData>()
-const username = ref('')
+// const username = ref('')
 const oftenAmount = ref<TOftenAmount[]>()
 const fixedAmount = ref<TOftenAmount[]>()
 
+const { bool: isConfirmPayment, setBool: setConfirmPayment } = useBoolean(false)
 const {
   value: amount,
   errorMessage: amountError,
@@ -78,10 +78,36 @@ const {
     location.href = data
   },
 })
+const nextStep = function () {
+  emit('show', false)
+  setConfirmPayment(true)
+}
+const previous = function () {
+  emit('show', true)
+  amountReset()
+  setConfirmPayment(false)
+}
 const {
   run: runPaymentDepositBankList,
   data: paymentDepositBankList,
 } = useRequest(ApiPaymentDepositBankList)
+const {
+  run: runPaymentDepositBankApplication,
+  data: paymentDepositBankInfo,
+  loading: paymentDepositBankInfoLoading,
+} = useRequest(ApiPaymentDepositBankApplication, {
+  onSuccess() {
+    nextStep()
+  },
+})
+const {
+  run: runPaymentDepositBankConfirm,
+  loading: paymentDepositBankConfirmLoading,
+} = useRequest(ApiPaymentDepositBankConfirm, {
+  onSuccess() {
+    previous()
+  },
+})
 
 const paymentMethodData = computed(() => {
   if (paymentMethodList.value) {
@@ -166,14 +192,6 @@ const paymentDepositBankData = computed(() => {
   return []
 })
 
-const nextStep = function () {
-  emit('show', false)
-  bankStep.value = '2'
-}
-const previous = function () {
-  emit('show', true)
-  bankStep.value = '1'
-}
 const toCopy = function (item: string) {
   application.copy(item)
 }
@@ -202,14 +220,25 @@ async function depositSubmit() {
   if (!amountError.value
     && (currentTypeItem.value?.bank ? !selectValueError.value : true)
   ) {
-    runThirdDeposit({
-      amount: amount.value,
-      mid: currentType.value,
-      cid: currentAisle.value,
-      bank_code: selectValue.value ?? '',
-      currency_name: '',
-      currency_id: props.activeCurrency.cur,
-    })
+    if (currentTypeItem.value?.payment_type === 2) { // 公司入款存款
+      runPaymentDepositBankApplication({
+        amount: amount.value,
+        cid: currentAisle.value,
+        mid: currentType.value,
+        currency_id: props.activeCurrency.cur,
+        currency_name: props.activeCurrency.type,
+      })
+    }
+    else { // 三方支付存款
+      runThirdDeposit({
+        amount: amount.value,
+        cid: currentAisle.value,
+        mid: currentType.value,
+        bank_code: selectValue.value ?? '',
+        currency_id: props.activeCurrency.cur,
+        currency_name: props.activeCurrency.type,
+      })
+    }
   }
 }
 
@@ -235,19 +264,11 @@ await application.allSettled([
 <template>
   <div class="app-fiat-currency-deposit">
     <div class="deposit-wrap">
-      <AppWithdrawalDepositType
-        v-if="havePaymentMethod"
-        v-model="currentType"
-        :current-type="paymentMethodData"
-      />
       <template v-if="havePaymentMethod">
-        <!-- 目前只支持3方，字段还不确定 -->
-        <div v-if="false" class="type-online-bank">
-          <div v-if="bankStep === '1'" class="bank-first">
-            <BaseLabel
-              :label="`${t('deposit_name')}:`"
-              :label-content="t('deposit_name_tip')"
-            >
+        <!-- 公司入款存款 -->
+        <div v-if="isConfirmPayment" class="type-online-bank">
+          <!-- <div v-if="bankStep === '1'" class="bank-first">
+            <BaseLabel label="存款人姓名:" label-content="为及时到账，请务必输入正确的存款人姓名">
               <BaseInput v-model="username" />
             </BaseLabel>
             <BaseInput v-model="amount" :label="t('deposit_amount')" />
@@ -255,23 +276,53 @@ await application.allSettled([
             <BaseButton bg-style="primary" size="md" @click="nextStep">
               {{ t('confirm_pay') }}
             </BaseButton>
-          </div>
-          <div v-else class="bank-second">
-            <p class="second-title">
-              {{ t('payee_info') }}
-            </p>
+          </div> -->
+          <div class="bank-second">
+            <div>
+              <p class="second-title">
+                收款人姓名
+              </p>
+              <p
+                class="copy-row"
+                @click="toCopy(paymentDepositBankInfo?.bankcard.open_name ?? '')"
+              >
+                {{ paymentDepositBankInfo?.bankcard.open_name }}
+                <BaseIcon name="uni-doc" />
+              </p>
+            </div>
             <p
-              v-for="item, index in payeeInformation"
-              :key="index"
               class="copy-row"
-              @click="toCopy(item)"
+              @click="toCopy(paymentDepositBankInfo?.bankcard.bank_account ?? '')"
             >
-              {{ item }}
+              {{ paymentDepositBankInfo?.bankcard.bank_account }}
               <BaseIcon name="uni-doc" />
             </p>
-            <p class="second-tips">
-              {{ t('transfer_amount_equal_order') }}
+            <p
+              class="copy-row"
+              @click="toCopy(paymentDepositBankInfo?.bankcard.bank_id ?? '')"
+            >
+              <span class="center" style="gap: 8px;">
+                <BaseIcon name="fiat-bank" />
+                {{ paymentDepositBankInfo?.bankcard.bank_id }}
+              </span>
+              <BaseIcon name="uni-doc" />
             </p>
+            <p
+              class="copy-row"
+              @click="toCopy(paymentDepositBankInfo?.bankcard.bank_area_cpf ?? '')"
+            >
+              开户网点：{{ paymentDepositBankInfo?.bankcard.bank_area_cpf }}
+              <BaseIcon name="uni-doc" />
+            </p>
+            <div>
+              <p class="copy-row" @click="toCopy(paymentDepositBankInfo?.amount ?? '')">
+                转账金额：{{ paymentDepositBankInfo?.amount }}
+                <BaseIcon name="uni-doc" />
+              </p>
+              <p class="second-tips">
+                转账金额务必与订单金额一致
+              </p>
+            </div>
             <div class="second-btns">
               <BaseButton
                 type="line"
@@ -282,8 +333,15 @@ await application.allSettled([
               >
                 {{ t('cancel_deposit') }}
               </BaseButton>
-              <BaseButton bg-style="primary" size="md">
-                {{ t('already_deposit') }}
+              <BaseButton
+                bg-style="primary"
+                size="md"
+                :loading="paymentDepositBankConfirmLoading"
+                @click="runPaymentDepositBankConfirm(
+                  { id: paymentDepositBankInfo?.id ?? '' },
+                )"
+              >
+                我已存款
               </BaseButton>
             </div>
             <div class="second-tips2">
@@ -292,7 +350,13 @@ await application.allSettled([
             </div>
           </div>
         </div>
+        <!-- 三方支付存款 -->
         <div v-else class="type-other">
+          <AppWithdrawalDepositType
+            v-if="havePaymentMethod"
+            v-model="currentType"
+            :current-type="paymentMethodData"
+          />
           <div class="other-first">
             <BaseLabel
               v-if="currentTypeItem && currentTypeItem.bank"
@@ -355,7 +419,7 @@ await application.allSettled([
             <BaseButton
               bg-style="primary"
               size="md"
-              :loading="thirdDepositLoading"
+              :loading="thirdDepositLoading || paymentDepositBankInfoLoading"
               @click="depositSubmit"
             >
               {{ t('confirm_pay') }}
@@ -375,15 +439,16 @@ await application.allSettled([
   .deposit-wrap{
     display: flex;
       flex-direction: column;
-      gap: .75rem;
+      gap: 16px;
     .type-online-bank{
       .bank-first,.bank-second{
         display: flex;
         flex-direction: column;
-        gap: .75rem;
+        gap: 16px;
       }
       .bank-second{
         .second-title{
+          margin-bottom: 4px;
           color: var(--tg-text-lightgrey);
         }
         .copy-row{
@@ -401,7 +466,7 @@ await application.allSettled([
         .second-tips{
           color:var(--tg-text-error);
           font-size: var(--tg-font-size-xs);
-          margin-top: -4px;
+          margin-top: 4px;
         }
         .second-btns{
           display: flex;
@@ -413,7 +478,7 @@ await application.allSettled([
         }
         .second-tips2{
           display: flex;
-          justify-content: center;
+          justify-content: left;
           align-items: center;
           color:var(--tg-text-error);
           font-size: var(--tg-font-size-xs);
