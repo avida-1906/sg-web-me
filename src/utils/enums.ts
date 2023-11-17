@@ -123,15 +123,33 @@ export enum EnumCasinoSortType {
 }
 
 /**
- * 体育下注单分类枚举
+ * 体育下注单状态枚举 (Head)
  */
-export enum EnumsBetSlipTabs {
-  betSlip, // 投注单
-  myBets, // 我的投注
-  single, // 单项投注
-  multi, // 复式投注
-  active, // 活跃
-  settled, // 已结算
+export enum EnumsBetSlipHeadStatus {
+  /** 投注单 */
+  betSlip,
+  /** 我的投注 */
+  myBets,
+}
+
+/**
+ * 体育下注单状态枚举 (投注单-Tab)
+ */
+export enum EnumsBetSlipBetSlipTabStatus {
+  /** 单项投注 */
+  single,
+  /** 复式投注 */
+  multi,
+}
+
+/**
+ * 体育下注单状态枚举 (我的投注-Tab)
+ */
+export enum EnumsBetSlipMyBetsTabStatus {
+  /** 活跃 */
+  active,
+  /** 已结算 */
+  settled,
 }
 
 /**

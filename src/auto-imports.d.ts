@@ -91,6 +91,10 @@ declare global {
   const EnumSportType: typeof import('./utils/enums')['EnumSportType']
   const EnumSportsOddsType: typeof import('./stores/sports')['EnumSportsOddsType']
   const EnumSportsPanelType: typeof import('./stores/sports')['EnumSportsPanelType']
+  const EnumsBetSlipBetSlipTabStatus: typeof import('./utils/enums')['EnumsBetSlipBetSlipTabStatus']
+  const EnumsBetSlipHeadStatus: typeof import('./utils/enums')['EnumsBetSlipHeadStatus']
+  const EnumsBetSlipMyBetsTabStatus: typeof import('./utils/enums')['EnumsBetSlipMyBetsTabStatus']
+  const EnumsBetSlipStatus: typeof import('./utils/enums')['EnumsBetSlipStatus']
   const EnumsBetSlipTabs: typeof import('./utils/enums')['EnumsBetSlipTabs']
   const FEEDBACK_CHAT_MESSAGE_BUS: typeof import('./utils/event-bus')['FEEDBACK_CHAT_MESSAGE_BUS']
   const IDataListPat: typeof import('./composables/useApiSportsDetails')['IDataListPat']
@@ -457,7 +461,7 @@ declare global {
   const useScriptTag: typeof import('@vueuse/core')['useScriptTag']
   const useScroll: typeof import('@vueuse/core')['useScroll']
   const useScrollLock: typeof import('@vueuse/core')['useScrollLock']
-  const useSelect: typeof import('./composables/useOption')['useSelect']
+  const useSelect: typeof import('./composables/useSelect')['useSelect']
   const useSeoMeta: typeof import('@vueuse/head')['useSeoMeta']
   const useSessionStorage: typeof import('@vueuse/core')['useSessionStorage']
   const useShare: typeof import('@vueuse/core')['useShare']
@@ -623,7 +627,9 @@ declare module 'vue' {
     readonly EnumSportType: UnwrapRef<typeof import('./utils/enums')['EnumSportType']>
     readonly EnumSportsOddsType: UnwrapRef<typeof import('./stores/sports')['EnumSportsOddsType']>
     readonly EnumSportsPanelType: UnwrapRef<typeof import('./stores/sports')['EnumSportsPanelType']>
-    readonly EnumsBetSlipTabs: UnwrapRef<typeof import('./utils/enums')['EnumsBetSlipTabs']>
+    readonly EnumsBetSlipBetSlipTabStatus: UnwrapRef<typeof import('./utils/enums')['EnumsBetSlipBetSlipTabStatus']>
+    readonly EnumsBetSlipHeadStatus: UnwrapRef<typeof import('./utils/enums')['EnumsBetSlipHeadStatus']>
+    readonly EnumsBetSlipMyBetsTabStatus: UnwrapRef<typeof import('./utils/enums')['EnumsBetSlipMyBetsTabStatus']>
     readonly FEEDBACK_CHAT_MESSAGE_BUS: UnwrapRef<typeof import('./utils/event-bus')['FEEDBACK_CHAT_MESSAGE_BUS']>
     readonly Local: UnwrapRef<typeof import('./utils/storage')['Local']>
     readonly MQTT_CONNECT_SUCCESS_BUS: UnwrapRef<typeof import('./utils/event-bus')['MQTT_CONNECT_SUCCESS_BUS']>
@@ -980,7 +986,7 @@ declare module 'vue' {
     readonly useScriptTag: UnwrapRef<typeof import('@vueuse/core')['useScriptTag']>
     readonly useScroll: UnwrapRef<typeof import('@vueuse/core')['useScroll']>
     readonly useScrollLock: UnwrapRef<typeof import('@vueuse/core')['useScrollLock']>
-    readonly useSelect: UnwrapRef<typeof import('./composables/useOption')['useSelect']>
+    readonly useSelect: UnwrapRef<typeof import('./composables/useSelect')['useSelect']>
     readonly useSeoMeta: UnwrapRef<typeof import('@vueuse/head')['useSeoMeta']>
     readonly useSessionStorage: UnwrapRef<typeof import('@vueuse/core')['useSessionStorage']>
     readonly useShare: UnwrapRef<typeof import('@vueuse/core')['useShare']>
@@ -1140,7 +1146,9 @@ declare module '@vue/runtime-core' {
     readonly EnumSportType: UnwrapRef<typeof import('./utils/enums')['EnumSportType']>
     readonly EnumSportsOddsType: UnwrapRef<typeof import('./stores/sports')['EnumSportsOddsType']>
     readonly EnumSportsPanelType: UnwrapRef<typeof import('./stores/sports')['EnumSportsPanelType']>
-    readonly EnumsBetSlipTabs: UnwrapRef<typeof import('./utils/enums')['EnumsBetSlipTabs']>
+    readonly EnumsBetSlipBetSlipTabStatus: UnwrapRef<typeof import('./utils/enums')['EnumsBetSlipBetSlipTabStatus']>
+    readonly EnumsBetSlipHeadStatus: UnwrapRef<typeof import('./utils/enums')['EnumsBetSlipHeadStatus']>
+    readonly EnumsBetSlipMyBetsTabStatus: UnwrapRef<typeof import('./utils/enums')['EnumsBetSlipMyBetsTabStatus']>
     readonly FEEDBACK_CHAT_MESSAGE_BUS: UnwrapRef<typeof import('./utils/event-bus')['FEEDBACK_CHAT_MESSAGE_BUS']>
     readonly Local: UnwrapRef<typeof import('./utils/storage')['Local']>
     readonly MQTT_CONNECT_SUCCESS_BUS: UnwrapRef<typeof import('./utils/event-bus')['MQTT_CONNECT_SUCCESS_BUS']>
@@ -1497,7 +1505,7 @@ declare module '@vue/runtime-core' {
     readonly useScriptTag: UnwrapRef<typeof import('@vueuse/core')['useScriptTag']>
     readonly useScroll: UnwrapRef<typeof import('@vueuse/core')['useScroll']>
     readonly useScrollLock: UnwrapRef<typeof import('@vueuse/core')['useScrollLock']>
-    readonly useSelect: UnwrapRef<typeof import('./composables/useOption')['useSelect']>
+    readonly useSelect: UnwrapRef<typeof import('./composables/useSelect')['useSelect']>
     readonly useSeoMeta: UnwrapRef<typeof import('@vueuse/head')['useSeoMeta']>
     readonly useSessionStorage: UnwrapRef<typeof import('@vueuse/core')['useSessionStorage']>
     readonly useShare: UnwrapRef<typeof import('@vueuse/core')['useShare']>
