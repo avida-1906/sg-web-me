@@ -1061,6 +1061,7 @@ bonus_rule: 奖励规则
 feedback_bonus_tip: 我们已经设置了巨额奖金，专门收集反馈意见，以便我们优化系统和功能，给您带来更好的体验！一旦被采纳，将根据重要程度给予奖励（未采纳除外）
 bonus_not_apply: 待领取奖金
 feedback_status: 反馈状态
+feedback_status_done: 已处理
 dealing: 处理中
 content_text: 内容
 select_amount: 请选择金额
