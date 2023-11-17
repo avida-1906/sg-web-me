@@ -9,6 +9,9 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 enum EnumPage {tz, znx, gg, pmd, fk }
+const pageCurrent = ref(1)
+const pageSize = 10
+const pageTotal = ref(0)
 
 const { t } = useI18n()
 const { openBetSlipDialog } = useDialogBetSlip()
@@ -23,18 +26,12 @@ const {
   // loading: memberNoticeListLoading,
 } = useRequest(ApiMemberNoticeList, {
   onSuccess() {
-
+    pageTotal.value = noticeList.value?.length ?? 0
   },
 })
 
-const pageCurrent = ref(0)
-const pageSize = 10
-const pageTotal = 3
-// const noticeList = [{}]
-
 const isFinished = computed(() => {
-  // return pageCurrent.value >= pageTotal
-  return true
+  return (pageCurrent.value * pageSize) >= pageTotal.value
 })
 const isState = computed(() => {
   return props.mode === EnumPage[0] || props.mode === EnumPage[1]
