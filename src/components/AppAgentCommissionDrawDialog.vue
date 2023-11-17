@@ -83,6 +83,10 @@ function changeCurrency(item: CurrencyData, network: string) {
 <style lang="scss" scoped>
 .orange-text {
   color: var(--tg-text-warn);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--tg-spacing-4);
+  margin-right: var(--tg-spacing-4);
 }
 .app-agent-commission-draw-bonus {
   display: flex;
@@ -98,6 +102,9 @@ function changeCurrency(item: CurrencyData, network: string) {
     color: var(--tg-text-white);
     font-size: var(--tg-font-size-lg);
     font-weight: var(--tg-font-weight-semibold);
+    display: flex;
+    align-items: center;
+    gap: var(--tg-spacing-4);
   }
   .choose-label {
     color: var(--tg-secondary-light);

@@ -131,6 +131,9 @@ function changeCurrency(item: CurrencyData, network: string) {
     color: var(--tg-text-white);
     font-size: var(--tg-font-size-lg);
     font-weight: var(--tg-font-weight-semibold);
+    display: flex;
+    align-items: center;
+    gap: var(--tg-spacing-4);
   }
   .choose-label {
     color: var(--tg-secondary-light);
