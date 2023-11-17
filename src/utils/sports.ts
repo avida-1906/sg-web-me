@@ -151,7 +151,6 @@ export function sportsDataGroupByLeague(origin: ISportEventInfo[]) {
     else
       arr.push({ ci: origin[i].ci, cn: origin[i].cn, list: [origin[i]] })
   }
-  console.log('盘口根据联赛组合===>', arr)
   return arr
 }
 
@@ -170,7 +169,6 @@ export function sportsOutrightsGroupByRegion(origin: ISportOutrightsInfo[]) {
     else
       arr.push({ pgid: origin[i].pgid, pgn: origin[i].pgn, list: [origin[i]] })
   }
-  console.log('冠军盘口根据地区组合===>', arr)
   return arr
 }
 
@@ -189,7 +187,6 @@ export function sportsDataGroupBySport(origin: ISportEventInfo[]) {
     else
       arr.push({ si: origin[i].si, sn: origin[i].sn, list: [origin[i]] })
   }
-  console.log('收藏数据根据球种组合===>', arr)
   return arr
 }
 

@@ -151,7 +151,12 @@ onActivated(() => {
             {{ t('image') }}
           </p>
           <div class="file">
-            <BaseUpload v-model="imageUrl" :much="5" img-type="common" :size="10" />
+            <BaseUpload
+              v-model="imageUrl"
+              :much="5"
+              img-type="common"
+              is-webp
+            />
           </div>
           <div class="tips">
             {{ t('image_upload_tip') }}

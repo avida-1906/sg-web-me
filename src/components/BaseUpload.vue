@@ -6,6 +6,7 @@ interface Props {
   accept?: string[] // 可选文件类型
   much?: number // 可上传文件数量
   size?: number // 上传文件大小，单位MB
+  isWebp?: boolean // 是否转换成webp
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -14,7 +15,8 @@ const props = withDefaults(defineProps<Props>(), {
   disabled: false,
   accept: () => ['image/png', 'image/jpg'],
   much: 1,
-  size: 10,
+  size: 30,
+  isWebp: false,
 })
 
 const emit = defineEmits(['update:modelValue'])
@@ -57,16 +59,57 @@ function changFile(event: any) {
       event.target.value = ''
     }
     else {
-      runFileUpload({
-        upload_type: 1,
-        upload_file: file,
-      })
+      if (props.isWebp) {
+        processFile(file).then((blob) => {
+          runFileUpload({
+            upload_type: 1,
+            upload_file: new File([blob as Blob], `${new Date().getTime()}.webp`),
+          })
+        }).catch((err) => {
+          openNotify({
+            type: 'error',
+            title: '错误',
+            message: err.message,
+          })
+        })
+      }
+      else {
+        runFileUpload({
+          upload_type: 1,
+          upload_file: file,
+        })
+      }
     }
   }
 }
 function deleteImg(index: number) {
   urlList.value.splice(index, 1)
   emit('update:modelValue', urlList.value)
+}
+function processFile(file: File) {
+  return new Promise((resolve, reject) => {
+    const rawImage = new Image()
+    rawImage.addEventListener('load', () => {
+      resolve(rawImage)
+    })
+    rawImage.src = URL.createObjectURL(file)
+  }).then((rawImage: any) => {
+    // Convert image to webp ObjectURL via a canvas blob
+    return new Promise((resolve, reject) => {
+      const canvas = document.createElement('canvas')
+      const ctx = canvas.getContext('2d')
+
+      canvas.width = rawImage.width
+      canvas.height = rawImage.height
+      if (ctx) {
+        ctx.drawImage(rawImage, 0, 0)
+        canvas.toBlob((blob) => {
+          resolve(blob)
+        }, 'image/webp')
+      }
+      else { reject(new Error('上传失败')) }
+    })
+  })
 }
 </script>
 

@@ -169,8 +169,6 @@ function favHandler() {
 function goEventDetailPage() {
   router.push(replaceSportsPlatId(eventDetailPath.value))
 }
-
-console.log('data====>', props.data)
 </script>
 
 <template>
