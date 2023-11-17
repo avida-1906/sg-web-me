@@ -16,12 +16,14 @@ const props = withDefaults(defineProps<Props>(), {
   },
 })
 
+const { t } = useI18n()
+
 const levels = [
-  { level: 0, icon: 'chat-star-bronze', label: '暂无级别' },
-  { level: 1, icon: 'chat-star-bronze', label: '铜' },
-  { level: 2, icon: 'chat-star-silver', label: '银' },
-  { level: 3, icon: 'chat-star-gold', label: '金' },
-  { level: 4, icon: 'chat-star-bronze', label: '暂无级别' },
+  { level: 0, icon: 'chat-star-bronze', label: t('empty_vip') },
+  { level: 1, icon: 'chat-star-bronze', label: t('copper') },
+  { level: 2, icon: 'chat-star-silver', label: t('silver') },
+  { level: 3, icon: 'chat-star-gold', label: t('gold') },
+  { level: 4, icon: 'chat-star-bronze', label: t('empty_vip') },
 ]
 
 const currentInfo = computed(() => {
@@ -36,7 +38,7 @@ const nextInfo = computed(() => {
   <slot name="title" />
   <div class="app-vip-progress">
     <div class="percent-top">
-      <slot><p>您的<span> VIP </span>进度</p></slot>
+      <slot><p>{{ t('yours') }}<span> VIP </span>{{ t('progress') }}</p></slot>
       <p class="percent">
         {{ props.vipProgressData.percent }}%
       </p>

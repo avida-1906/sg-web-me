@@ -15,7 +15,7 @@ function openReceive() {
   <div class="app-vip-info-bar">
     <BaseIcon class="vip-badge" name="vip10" />
     <div class="info">
-      <span>距离VIP2还差100万流水</span>
+      <span>{{ $t('next_vip_amount', { vip: 'VIP2', amount: '100万' }) }}</span>
       <div class="btns">
         <BaseButton bg-style="primary" size="none" round @click="openReceive">
           {{ $t('receive_commission') }}

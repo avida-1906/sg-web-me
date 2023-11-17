@@ -59,7 +59,9 @@ function gameStart(item: Props['gameInfo']) {
             <BaseIcon style="--tg-base-button-font-size:43px;" name="img-error" />
           </template>
           <template #description>
-            <span style="font-size: var(--tg-font-size-xs);">加载失败了x_x</span>
+            <span style="font-size: var(--tg-font-size-xs);">
+              {{ $t('load_fail') }}x_x
+            </span>
           </template>
         </BaseEmpty>
       </div>
@@ -78,7 +80,9 @@ function gameStart(item: Props['gameInfo']) {
             <BaseIcon style="--tg-base-button-font-size:40px" name="uni-maintain" />
           </template>
           <template #description>
-            <span style="font-size: var(--tg-font-size-xs);">场馆维护中</span>
+            <span style="font-size: var(--tg-font-size-xs);">
+              {{ $t('plat_maintain') }}
+            </span>
           </template>
         </BaseEmpty>
       </div>
