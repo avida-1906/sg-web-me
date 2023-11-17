@@ -6,21 +6,21 @@ interface IColumns {
   slot?: string
   align?: 'left' | 'center' | 'right'
 }
-interface IPaginationData {
-  pageSize: number
-  page: number
-  total: number
-}
+// interface IPaginationData {
+//   pageSize: number
+//   page: number
+//   total: number
+// }
+
+// const paginationData = ref<IPaginationData>(
+//   {
+//     pageSize: 10,
+//     page: 2,
+//     total: 21,
+//   },
+// )
 
 const { t } = useI18n()
-
-const paginationData = ref<IPaginationData>(
-  {
-    pageSize: 10,
-    page: 2,
-    total: 21,
-  },
-)
 
 const columns = reactive<IColumns[]>([
   {
@@ -52,18 +52,19 @@ const tableData = reactive([
   { time: 1699517005000, count: 666, amount: '9999.8880', currencyType: 'BNB' },
 ])
 
-function onPrevious() {
-  paginationData.value.page--
-}
+// function onPrevious() {
+//   paginationData.value.page--
+// }
 
-function onNext() {
-  paginationData.value.page++
-}
+// function onNext() {
+//   paginationData.value.page++
+// }
 </script>
 
 <template>
   <div class="app-agent-commission-record">
     <BaseTable
+      v-if="tableData && tableData.length"
       :columns="columns"
       :data-source="tableData"
     >
@@ -80,11 +81,12 @@ function onNext() {
         </div>
       </template>
     </BaseTable>
-    <AppStack
+    <!-- <AppStack
       :pagination-data="paginationData"
       @previous="onPrevious"
       @next="onNext"
-    />
+    /> -->
+    <BaseEmpty v-else :description="t('data_empty')" />
   </div>
 </template>
 
