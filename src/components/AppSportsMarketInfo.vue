@@ -14,6 +14,7 @@ const props = defineProps<Props>()
 const { t } = useI18n()
 const router = useRouter()
 const { width } = storeToRefs(useWindowStore())
+const { isLogin } = storeToRefs(useAppStore())
 const { checkDragDialog } = useDragDialogList()
 const fakeDragDialogId = Math.ceil(Math.random() * 100000)
 
@@ -364,6 +365,11 @@ console.log('data====>', props.data)
       >
         <span>+{{ data.mc }}</span>
       </BaseButton>
+      <BaseButton v-if="isLogin" type="text" size="none">
+        <BaseIcon
+          name="chess-star"
+        />
+      </BaseButton>
     </div>
   </div>
 </template>
@@ -614,6 +620,9 @@ console.log('data====>', props.data)
 .market-count {
   grid-area: marketCount;
   justify-self: center;
+  display: flex;
+  align-items: center;
+  gap: var(--tg-spacing-12);
 }
 
 .market-count-h5 {

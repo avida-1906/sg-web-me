@@ -244,3 +244,27 @@ export function ApiSportOutrightList(data: {
     list: ISportOutrightsInfo[]
   }>(`/sport/${getSportsPlatId()}/outright/list`, data)
 }
+
+/**
+ * 获取收藏
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=bf0538b1-2dae-474d-ad17-1670d56fb8f5
+ */
+export function ApiSportGetFavoriteList(data: {
+  sis: Array<number>
+  cur: string
+}) {
+  return httpClient.post(`/sport/${getSportsPlatId()}/favorite/get`, data)
+}
+
+/**
+ * 加入收藏
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=df4beeeb-d4c2-451b-af7f-11ba328e54d3
+ * /favorite/add
+ */
+export function ApiSportAddFavorite(data: {
+  si: number
+  eis: string[]
+  cur: string
+}) {
+  httpClient.post(`/sport/${getSportsPlatId()}/favorite/add`, data)
+}
