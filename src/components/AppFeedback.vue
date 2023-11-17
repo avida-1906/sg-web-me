@@ -173,7 +173,7 @@ onActivated(() => {
           class="total-bonus"
         >
           <span>{{ t('bonus_not_apply') }}：</span>
-          <span class="money">{{ totalBonus }}USDT</span>
+          <span class="money">{{ totalBonus }}<BaseIcon name="coin-usdt" /></span>
           <!-- <BaseIcon name="chess-proms" /> -->
           <BaseButton
             bg-style="primary" style="

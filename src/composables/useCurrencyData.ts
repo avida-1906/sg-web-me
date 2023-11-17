@@ -5,6 +5,12 @@ type TBankTreeType<T extends TTreeListType | string>
 = T extends TTreeListType ? TTreeListType : string
 
 /**
+ * 币种 code
+ */
+export type CurrencyCode =
+  '701' | '702' | '703' | '704' | '705' | '706' | '707' | '708' | '709'
+
+/**
  * 页面渲染的货币列表
  */
 export interface CurrencyData<T extends TTreeListType | string = string> {
@@ -15,7 +21,7 @@ export interface CurrencyData<T extends TTreeListType | string = string> {
   /** 带货币符号的余额 */
   balanceWithSymbol: string
   /** 货币id */
-  cur: string
+  cur: CurrencyCode
   /** 银行列表 */
   bankTree: TBankTreeType<T>
   /** 货币符号 */
@@ -24,7 +30,7 @@ export interface CurrencyData<T extends TTreeListType | string = string> {
 
 interface CurrencyValue {
   prefix: string
-  cur: string
+  cur: CurrencyCode
   bankTree: string
 }
 

@@ -24,8 +24,8 @@ const activeCurrency = ref<CurrencyData | null>()
 
 const rate = computed(() => {
   const temp = exchangeRateData.value?.rates
-  if (temp && temp.USDT && activeCurrency.value)
-    return temp.USDT[activeCurrency.value.type] || '1'
+  if (temp && temp['706'] && activeCurrency.value)
+    return temp['706'][activeCurrency.value.cur] || '1'
   return '1'
 })
 const money = computed(() =>
@@ -81,7 +81,7 @@ function changeCurrency(item: CurrencyData, network: string) {
 <template>
   <div class="app-receive-bonus">
     <div class="money">
-      {{ money }}USDT
+      {{ money }}<BaseIcon name="coin-usdt" />
     </div>
     <div class="choose-label">
       {{ $t('choose_bonus_receive_label') }}：
