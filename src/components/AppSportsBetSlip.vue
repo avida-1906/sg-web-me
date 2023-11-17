@@ -1,23 +1,38 @@
 <script setup lang='ts'>
-import { EnumsBetSlipTabs } from '~/utils/enums'
+import type {
+  EnumsBetSlipBetSlipTabStatus as EnumsBetSlipBetSlipTabStatusType,
+} from '~/utils/enums'
 
 interface Props {
   index: number
-  betSlipType: EnumsBetSlipTabs.single | EnumsBetSlipTabs.multi
+  /**
+   * 下注类型
+   *
+   * 单项：EnumsBetSlipBetSlipTabStatus.single
+   *
+   * 组合：EnumsBetSlipBetSlipTabStatus.multi
+   */
+  betSlipType: EnumsBetSlipBetSlipTabStatusType
+  /** 错误 */
   error?: boolean
+  /** 禁用 */
   disabled?: boolean
+  /** 是否已结算 */
   isClosed?: boolean
+  /** 是否是滚球 */
   isLive?: boolean
 }
 const props = withDefaults(defineProps<Props>(), {
   index: 0,
-  betSlipType: EnumsBetSlipTabs.single,
+  betSlipType: EnumsBetSlipBetSlipTabStatus.single,
 })
 const { t } = useI18n()
 
 const isBetSingle = computed(() =>
-  props.betSlipType === EnumsBetSlipTabs.single)
-const isBetMulti = computed(() => props.betSlipType === EnumsBetSlipTabs.multi)
+  props.betSlipType === EnumsBetSlipBetSlipTabStatus.single)
+const isBetMulti = computed(
+  () => props.betSlipType === EnumsBetSlipBetSlipTabStatus.multi,
+)
 const isFirst = computed(() => props.index === 0)
 </script>
 

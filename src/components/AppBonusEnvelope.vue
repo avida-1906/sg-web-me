@@ -27,7 +27,7 @@ function openDialog() {
       <BaseIcon name="uni-transfer" class="transfer" />
       <div>
         <div class="money">
-          USDT{{ amount }}
+          <BaseIcon name="coin-usdt" />{{ amount }}
         </div>
         <div class="label">
           {{ bonusState === 2 ? $t('received') : $t('wait_receive') }}
@@ -74,6 +74,11 @@ function openDialog() {
     .money {
       font-size: var(--tg-font-size-lg);
       font-weight: var(--tg-font-weight-bold);
+      display: flex;
+      align-items: center;
+      gap: var(--tg-spacing-4);
+      margin-bottom: var(--tg-spacing-4);
+      padding-top: var(--tg-spacing-4);
     }
     .label {
       font-size: var(--tg-font-size-xs);

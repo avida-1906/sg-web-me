@@ -9,7 +9,11 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 enum EnumPage {tz, znx, gg, pmd, fk }
+const pageCurrent = ref(1)
+const pageSize = 10
+const pageTotal = ref(0)
 
+const { t } = useI18n()
 const { openBetSlipDialog } = useDialogBetSlip()
 const { openDepositDetailDialog } = useDialogDepositDetail()
 const { openNoticeDialog } = useDialogNotice()
@@ -22,18 +26,12 @@ const {
   // loading: memberNoticeListLoading,
 } = useRequest(ApiMemberNoticeList, {
   onSuccess() {
-
+    pageTotal.value = noticeList.value?.length ?? 0
   },
 })
 
-const pageCurrent = ref(0)
-const pageSize = 10
-const pageTotal = 3
-// const noticeList = [{}]
-
 const isFinished = computed(() => {
-  // return pageCurrent.value >= pageTotal
-  return true
+  return (pageCurrent.value * pageSize) >= pageTotal.value
 })
 const isState = computed(() => {
   return props.mode === EnumPage[0] || props.mode === EnumPage[1]
@@ -74,7 +72,9 @@ function getIntervalDay(start: number) {
   // if (time > start && time < end) { return '正在进行' }
   // else {
   const hour = (time - start) / (60 * 60)
-  return hour < 24 ? `${Math.floor(hour)}小时前` : `${Math.floor(hour / 24)}天前`
+  return hour < 24
+    ? `${t('time_hour_ago', { delta: Math.floor(hour) })}`
+    : `${t('time_day_ago', { delta: Math.floor(hour / 24) })}`
   // }
 }
 
@@ -92,7 +92,7 @@ pageInit()
       <div v-if="isState" class="contain-top">
         <!-- <span>标记全部为已读</span> -->
         <BaseButton type="text" size="none">
-          标记全部为已读
+          {{ t('mark_all_read') }}
         </BaseButton>
       </div>
       <div
@@ -153,9 +153,9 @@ pageInit()
       </template>
       <template #description>
         <div class="empty-text">
-          暂无通知
+          {{ t('empty_notify') }}
         </div>
-        <div>您的互动将在此处显示</div>
+        <div>{{ t('tip_show_action') }}</div>
       </template>
     </BaseEmpty>
   </div>

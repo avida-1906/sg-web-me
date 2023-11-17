@@ -4,13 +4,13 @@
 
 <template>
   <div class="get-new-crypto">
-    <span class="title">您确定要更换您的 BTC 存款地址吗？</span>
+    <span class="title">{{ $t('change_byte_addr', { delta: 'USDT' }) }}</span>
     <div class="content">
-      <span>请注意：</span>
+      <span>{{ $t('attention') }}：</span>
       <ul>
-        <li>您一旦更换存款地址，旧地址便将被禁用。只有新地址才可用于存款。请切勿再使用旧地址进行任何存款。</li>
-        <li>请在您更换存款地址前先确保您已无任何待处理的存款交易。</li>
-        <li>此操作无法撤消。</li>
+        <li>{{ $t('change_byte_addr_1') }}</li>
+        <li>{{ $t('change_byte_addr_2') }}</li>
+        <li>{{ $t('action_no_cancel') }}。</li>
       </ul>
     </div>
   </div>

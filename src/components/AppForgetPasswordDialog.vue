@@ -1,6 +1,7 @@
 <script setup lang='ts'>
 const closeDialog = inject('closeDialog', () => {})
 const { openNotify } = useNotify()
+const { t } = useI18n()
 
 const {
   value: email,
@@ -8,9 +9,9 @@ const {
   validate: emailValidate,
 } = useField<string>('email', (value) => {
   if (!value)
-    return '请输入电邮地址'
+    return t('pls_enter_email_address')
   else if (!emailReg.test(value))
-    return '电邮地址格式不正确'
+    return t('email_address_incorrect')
   return ''
 })
 
@@ -20,8 +21,8 @@ const {
   onSuccess() {
     openNotify({
       type: 'email',
-      title: '已发送密码重置电邮',
-      message: `我们已发送账户恢复电邮至 ${email.value}`,
+      title: t('reset_pwd_email'),
+      message: `${t('already_send_email_user')} ${email.value}`,
     })
     closeDialog()
   },
@@ -36,7 +37,7 @@ async function sendEmail() {
 
 <template>
   <div class="app-forget-password-dialog">
-    <BaseLabel label="电邮地址" must-small>
+    <BaseLabel :label="t('email_address')" must-small>
       <BaseInput v-model="email" :msg="emailErrorMsg" />
     </BaseLabel>
     <BaseButton
@@ -45,7 +46,7 @@ async function sendEmail() {
       class="forget-password-base-button"
       @click="sendEmail"
     >
-      恢复密码
+      {{ t('recover_pwd') }}
     </BaseButton>
   </div>
 </template>

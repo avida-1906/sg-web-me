@@ -67,7 +67,11 @@ declare global {
   const ApiMemberWalletDelete: typeof import('./apis/index')['ApiMemberWalletDelete']
   const ApiMemberWalletInsert: typeof import('./apis/index')['ApiMemberWalletInsert']
   const ApiMemberWalletList: typeof import('./apis/index')['ApiMemberWalletList']
+  const ApiPaymentDepositBankApplication: typeof import('./apis/index')['ApiPaymentDepositBankApplication']
+  const ApiPaymentDepositBankConfirm: typeof import('./apis/index')['ApiPaymentDepositBankConfirm']
   const ApiPaymentDepositBankList: typeof import('./apis/index')['ApiPaymentDepositBankList']
+  const ApiPaymentDepositCoinApplication: typeof import('./apis/index')['ApiPaymentDepositCoinApplication']
+  const ApiPaymentDepositCoinConfirm: typeof import('./apis/index')['ApiPaymentDepositCoinConfirm']
   const ApiSmsSend: typeof import('./apis/index')['ApiSmsSend']
   const ApiSportAddFavorite: typeof import('./apis/sport')['ApiSportAddFavorite']
   const ApiSportCompetitionList: typeof import('./apis/sport')['ApiSportCompetitionList']
@@ -94,6 +98,10 @@ declare global {
   const EnumSportType: typeof import('./utils/enums')['EnumSportType']
   const EnumSportsOddsType: typeof import('./stores/sports')['EnumSportsOddsType']
   const EnumSportsPanelType: typeof import('./stores/sports')['EnumSportsPanelType']
+  const EnumsBetSlipBetSlipTabStatus: typeof import('./utils/enums')['EnumsBetSlipBetSlipTabStatus']
+  const EnumsBetSlipHeadStatus: typeof import('./utils/enums')['EnumsBetSlipHeadStatus']
+  const EnumsBetSlipMyBetsTabStatus: typeof import('./utils/enums')['EnumsBetSlipMyBetsTabStatus']
+  const EnumsBetSlipStatus: typeof import('./utils/enums')['EnumsBetSlipStatus']
   const EnumsBetSlipTabs: typeof import('./utils/enums')['EnumsBetSlipTabs']
   const FEEDBACK_CHAT_MESSAGE_BUS: typeof import('./utils/event-bus')['FEEDBACK_CHAT_MESSAGE_BUS']
   const IDataListPat: typeof import('./composables/useApiSportsDetails')['IDataListPat']
@@ -431,6 +439,7 @@ declare global {
   const useObjectUrl: typeof import('@vueuse/core')['useObjectUrl']
   const useOffsetPagination: typeof import('@vueuse/core')['useOffsetPagination']
   const useOnline: typeof import('@vueuse/core')['useOnline']
+  const useOption: typeof import('./composables/useOption')['useOption']
   const usePageLeave: typeof import('@vueuse/core')['usePageLeave']
   const usePagination: typeof import('vue-request')['usePagination']
   const useParallax: typeof import('@vueuse/core')['useParallax']
@@ -462,7 +471,7 @@ declare global {
   const useScriptTag: typeof import('@vueuse/core')['useScriptTag']
   const useScroll: typeof import('@vueuse/core')['useScroll']
   const useScrollLock: typeof import('@vueuse/core')['useScrollLock']
-  const useSelect: typeof import('./composables/useOption')['useSelect']
+  const useSelect: typeof import('./composables/useSelect')['useSelect']
   const useSeoMeta: typeof import('@vueuse/head')['useSeoMeta']
   const useSessionStorage: typeof import('@vueuse/core')['useSessionStorage']
   const useShare: typeof import('@vueuse/core')['useShare']
@@ -604,7 +613,11 @@ declare module 'vue' {
     readonly ApiMemberWalletDelete: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletDelete']>
     readonly ApiMemberWalletInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletInsert']>
     readonly ApiMemberWalletList: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletList']>
+    readonly ApiPaymentDepositBankApplication: UnwrapRef<typeof import('./apis/index')['ApiPaymentDepositBankApplication']>
+    readonly ApiPaymentDepositBankConfirm: UnwrapRef<typeof import('./apis/index')['ApiPaymentDepositBankConfirm']>
     readonly ApiPaymentDepositBankList: UnwrapRef<typeof import('./apis/index')['ApiPaymentDepositBankList']>
+    readonly ApiPaymentDepositCoinApplication: UnwrapRef<typeof import('./apis/index')['ApiPaymentDepositCoinApplication']>
+    readonly ApiPaymentDepositCoinConfirm: UnwrapRef<typeof import('./apis/index')['ApiPaymentDepositCoinConfirm']>
     readonly ApiSmsSend: UnwrapRef<typeof import('./apis/index')['ApiSmsSend']>
     readonly ApiSportAddFavorite: UnwrapRef<typeof import('./apis/sport')['ApiSportAddFavorite']>
     readonly ApiSportCompetitionList: UnwrapRef<typeof import('./apis/sport')['ApiSportCompetitionList']>
@@ -631,7 +644,9 @@ declare module 'vue' {
     readonly EnumSportType: UnwrapRef<typeof import('./utils/enums')['EnumSportType']>
     readonly EnumSportsOddsType: UnwrapRef<typeof import('./stores/sports')['EnumSportsOddsType']>
     readonly EnumSportsPanelType: UnwrapRef<typeof import('./stores/sports')['EnumSportsPanelType']>
-    readonly EnumsBetSlipTabs: UnwrapRef<typeof import('./utils/enums')['EnumsBetSlipTabs']>
+    readonly EnumsBetSlipBetSlipTabStatus: UnwrapRef<typeof import('./utils/enums')['EnumsBetSlipBetSlipTabStatus']>
+    readonly EnumsBetSlipHeadStatus: UnwrapRef<typeof import('./utils/enums')['EnumsBetSlipHeadStatus']>
+    readonly EnumsBetSlipMyBetsTabStatus: UnwrapRef<typeof import('./utils/enums')['EnumsBetSlipMyBetsTabStatus']>
     readonly FEEDBACK_CHAT_MESSAGE_BUS: UnwrapRef<typeof import('./utils/event-bus')['FEEDBACK_CHAT_MESSAGE_BUS']>
     readonly Local: UnwrapRef<typeof import('./utils/storage')['Local']>
     readonly MQTT_CONNECT_SUCCESS_BUS: UnwrapRef<typeof import('./utils/event-bus')['MQTT_CONNECT_SUCCESS_BUS']>
@@ -959,6 +974,7 @@ declare module 'vue' {
     readonly useObjectUrl: UnwrapRef<typeof import('@vueuse/core')['useObjectUrl']>
     readonly useOffsetPagination: UnwrapRef<typeof import('@vueuse/core')['useOffsetPagination']>
     readonly useOnline: UnwrapRef<typeof import('@vueuse/core')['useOnline']>
+    readonly useOption: UnwrapRef<typeof import('./composables/useOption')['useOption']>
     readonly usePageLeave: UnwrapRef<typeof import('@vueuse/core')['usePageLeave']>
     readonly usePagination: UnwrapRef<typeof import('vue-request')['usePagination']>
     readonly useParallax: UnwrapRef<typeof import('@vueuse/core')['useParallax']>
@@ -990,7 +1006,7 @@ declare module 'vue' {
     readonly useScriptTag: UnwrapRef<typeof import('@vueuse/core')['useScriptTag']>
     readonly useScroll: UnwrapRef<typeof import('@vueuse/core')['useScroll']>
     readonly useScrollLock: UnwrapRef<typeof import('@vueuse/core')['useScrollLock']>
-    readonly useSelect: UnwrapRef<typeof import('./composables/useOption')['useSelect']>
+    readonly useSelect: UnwrapRef<typeof import('./composables/useSelect')['useSelect']>
     readonly useSeoMeta: UnwrapRef<typeof import('@vueuse/head')['useSeoMeta']>
     readonly useSessionStorage: UnwrapRef<typeof import('@vueuse/core')['useSessionStorage']>
     readonly useShare: UnwrapRef<typeof import('@vueuse/core')['useShare']>
@@ -1126,7 +1142,11 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberWalletDelete: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletDelete']>
     readonly ApiMemberWalletInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletInsert']>
     readonly ApiMemberWalletList: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletList']>
+    readonly ApiPaymentDepositBankApplication: UnwrapRef<typeof import('./apis/index')['ApiPaymentDepositBankApplication']>
+    readonly ApiPaymentDepositBankConfirm: UnwrapRef<typeof import('./apis/index')['ApiPaymentDepositBankConfirm']>
     readonly ApiPaymentDepositBankList: UnwrapRef<typeof import('./apis/index')['ApiPaymentDepositBankList']>
+    readonly ApiPaymentDepositCoinApplication: UnwrapRef<typeof import('./apis/index')['ApiPaymentDepositCoinApplication']>
+    readonly ApiPaymentDepositCoinConfirm: UnwrapRef<typeof import('./apis/index')['ApiPaymentDepositCoinConfirm']>
     readonly ApiSmsSend: UnwrapRef<typeof import('./apis/index')['ApiSmsSend']>
     readonly ApiSportAddFavorite: UnwrapRef<typeof import('./apis/sport')['ApiSportAddFavorite']>
     readonly ApiSportCompetitionList: UnwrapRef<typeof import('./apis/sport')['ApiSportCompetitionList']>
@@ -1153,7 +1173,9 @@ declare module '@vue/runtime-core' {
     readonly EnumSportType: UnwrapRef<typeof import('./utils/enums')['EnumSportType']>
     readonly EnumSportsOddsType: UnwrapRef<typeof import('./stores/sports')['EnumSportsOddsType']>
     readonly EnumSportsPanelType: UnwrapRef<typeof import('./stores/sports')['EnumSportsPanelType']>
-    readonly EnumsBetSlipTabs: UnwrapRef<typeof import('./utils/enums')['EnumsBetSlipTabs']>
+    readonly EnumsBetSlipBetSlipTabStatus: UnwrapRef<typeof import('./utils/enums')['EnumsBetSlipBetSlipTabStatus']>
+    readonly EnumsBetSlipHeadStatus: UnwrapRef<typeof import('./utils/enums')['EnumsBetSlipHeadStatus']>
+    readonly EnumsBetSlipMyBetsTabStatus: UnwrapRef<typeof import('./utils/enums')['EnumsBetSlipMyBetsTabStatus']>
     readonly FEEDBACK_CHAT_MESSAGE_BUS: UnwrapRef<typeof import('./utils/event-bus')['FEEDBACK_CHAT_MESSAGE_BUS']>
     readonly Local: UnwrapRef<typeof import('./utils/storage')['Local']>
     readonly MQTT_CONNECT_SUCCESS_BUS: UnwrapRef<typeof import('./utils/event-bus')['MQTT_CONNECT_SUCCESS_BUS']>
@@ -1481,6 +1503,7 @@ declare module '@vue/runtime-core' {
     readonly useObjectUrl: UnwrapRef<typeof import('@vueuse/core')['useObjectUrl']>
     readonly useOffsetPagination: UnwrapRef<typeof import('@vueuse/core')['useOffsetPagination']>
     readonly useOnline: UnwrapRef<typeof import('@vueuse/core')['useOnline']>
+    readonly useOption: UnwrapRef<typeof import('./composables/useOption')['useOption']>
     readonly usePageLeave: UnwrapRef<typeof import('@vueuse/core')['usePageLeave']>
     readonly usePagination: UnwrapRef<typeof import('vue-request')['usePagination']>
     readonly useParallax: UnwrapRef<typeof import('@vueuse/core')['useParallax']>
@@ -1512,7 +1535,7 @@ declare module '@vue/runtime-core' {
     readonly useScriptTag: UnwrapRef<typeof import('@vueuse/core')['useScriptTag']>
     readonly useScroll: UnwrapRef<typeof import('@vueuse/core')['useScroll']>
     readonly useScrollLock: UnwrapRef<typeof import('@vueuse/core')['useScrollLock']>
-    readonly useSelect: UnwrapRef<typeof import('./composables/useOption')['useSelect']>
+    readonly useSelect: UnwrapRef<typeof import('./composables/useSelect')['useSelect']>
     readonly useSeoMeta: UnwrapRef<typeof import('@vueuse/head')['useSeoMeta']>
     readonly useSessionStorage: UnwrapRef<typeof import('@vueuse/core')['useSessionStorage']>
     readonly useShare: UnwrapRef<typeof import('@vueuse/core')['useShare']>

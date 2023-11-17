@@ -5,6 +5,7 @@ import AppFeedback from './AppFeedback.vue'
 enum EnumPage { tz, znx, gg, pmd, fk }
 const { showFeedbackChat } = storeToRefs(useChatStore())
 const { closeRightSidebar } = useRightSidebar()
+const { t } = useI18n()
 
 // const { isMobile } = storeToRefs(useWindowStore())
 
@@ -14,11 +15,11 @@ const C = defineAsyncComponent(() => import('./AppNoticeNotify.vue'))
 const D = defineAsyncComponent(() => import('./AppNoticeNotify.vue'))
 const tab = ref(EnumPage[0])
 const tabList = [
-  { label: '通知', value: EnumPage[0] },
-  { label: '站内信', value: EnumPage[1] },
-  { label: '公告', value: EnumPage[2] },
-  { label: '跑马灯', value: EnumPage[3] },
-  { label: '有奖反馈', value: EnumPage[4] },
+  { label: t('notification'), value: EnumPage[0] },
+  { label: t('site_message'), value: EnumPage[1] },
+  { label: t('notice'), value: EnumPage[2] },
+  { label: t('marquee'), value: EnumPage[3] },
+  { label: t('reward_feedback'), value: EnumPage[4] },
 ]
 
 const getComponent = computed(() => {
@@ -37,7 +38,7 @@ const getComponent = computed(() => {
     <div class="notice-head">
       <div class="center head-title">
         <BaseIcon class="title-icon" name="navbar-notice" />
-        <span>消息中心</span>
+        <span>{{ t('message_center') }}</span>
       </div>
       <VTooltip placement="bottom">
         <div class="item hoverable">
@@ -47,7 +48,7 @@ const getComponent = computed(() => {
         </div>
         <template #popper>
           <div class="tiny-menu-item-title">
-            折叠侧边栏
+            {{ t('chat_close_side') }}
           </div>
         </template>
       </VTooltip>

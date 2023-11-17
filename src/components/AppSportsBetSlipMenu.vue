@@ -1,52 +1,66 @@
 <script setup lang='ts'>
-import { EnumsBetSlipTabs } from '~/utils/enums'
-
 const { t } = useI18n()
 const router = useRouter()
 const { closeRightSidebar } = useRightSidebar()
 
-const type = ref(EnumsBetSlipTabs.betSlip)
-const typeOptions = [
-  { label: t('bet_slip'), value: EnumsBetSlipTabs.betSlip, num: 5, icon: 'spt-user-bet' },
+const { selected: headSelectValue, list: headSelectData } = useSelect([
+  {
+    label: t('bet_slip'),
+    value: EnumsBetSlipHeadStatus.betSlip,
+    num: 15,
+    icon: 'spt-user-bet',
+  },
   {
     label: t('my_bets'),
-    value: EnumsBetSlipTabs.myBets,
+    value: EnumsBetSlipHeadStatus.myBets,
     num: 0,
     icon: 'navbar-user-bet',
   },
-]
-// 投注单Tab
-const betSlipType = ref<EnumsBetSlipTabs.single | EnumsBetSlipTabs.multi>(
-  EnumsBetSlipTabs.single,
-)
-const betSlipTypeTabs = [
-  { label: t('sports_single_bet'), value: EnumsBetSlipTabs.single, icon: 'navbar-bet' },
+])
+
+const { selected: betOrderSelectValue, list: betOrderData } = useSelect([
+  {
+    label: t('sports_single_bet'),
+    value: EnumsBetSlipBetSlipTabStatus.single,
+    icon: 'navbar-bet',
+  },
   {
     label: t('sports_multi_bet'),
-    value: EnumsBetSlipTabs.multi,
+    value: EnumsBetSlipBetSlipTabStatus.multi,
     icon: 'navbar-bet-mult',
   },
-]
-// 我的投注Tab
-const myBetsType = ref(EnumsBetSlipTabs.active)
-const myBetsTypeTabs = [
-  { label: t('sports_active'), value: EnumsBetSlipTabs.active, icon: 'navbar-active' },
-  { label: t('sports_settled'), value: EnumsBetSlipTabs.settled, icon: 'navbar-settled' },
-]
-// 下注选项
-const bettingOption = ref('1')
-const bettingOptions = [
+])
+
+const { selected: myBetSelectValue, list: myBetData } = useSelect([
+  {
+    label: t('sports_active'),
+    value: EnumsBetSlipMyBetsTabStatus.active,
+    icon: 'navbar-active',
+  },
+  {
+    label: t('sports_settled'),
+    value: EnumsBetSlipMyBetsTabStatus.settled,
+    icon: 'navbar-settled',
+  },
+])
+
+const { selected: betOrderFilterValue, list: betOrderFilterData } = useSelect([
   { label: t('sports_accept_any_odds'), value: '1' },
   { label: t('sports_accept_higher_odds'), value: '2' },
   { label: t('sports_accept_none_odds'), value: '3' },
-]
+])
 
-const isBetSlip = computed(() => type.value === EnumsBetSlipTabs.betSlip)
-const isMyBets = computed(() => type.value === EnumsBetSlipTabs.myBets)
-const isBetSingle = computed(() => betSlipType.value === EnumsBetSlipTabs.single)
-const isBetMulti = computed(() => betSlipType.value === EnumsBetSlipTabs.multi)
+const isBetSlip = computed(() => headSelectValue.value === EnumsBetSlipHeadStatus.betSlip)
+const isMyBets = computed(() => headSelectValue.value === EnumsBetSlipHeadStatus.myBets)
+const isBetSingle = computed(
+  () => betOrderSelectValue.value === EnumsBetSlipBetSlipTabStatus.single,
+)
+const isBetMulti = computed(
+  () => betOrderSelectValue.value === EnumsBetSlipBetSlipTabStatus.multi,
+)
 const betBtnText = computed(() =>
-  betSlipTypeTabs.find(b => b.value === betSlipType.value)?.label ?? '-')
+  betOrderData.value.find(b => b.value === betOrderSelectValue.value)?.label ?? '-',
+)
 </script>
 
 <template>
@@ -54,10 +68,10 @@ const betBtnText = computed(() =>
     <div class="header">
       <div class="navigation-header">
         <BaseSelect
-          v-model="type"
+          v-model="headSelectValue"
           style="--tg-base-select-hover-bg-color:var(--tg-secondary-dark);
           --tg-base-select-popper-style-padding-x:0;"
-          :options="typeOptions" popper no-hover
+          :options="headSelectData" no-hover popper
         >
           <template #label="{ data }">
             <div class="type-select">
@@ -74,9 +88,6 @@ const betBtnText = computed(() =>
             </div>
           </template>
         </BaseSelect>
-        <!-- <BaseButton bg-style="dark" round @click="closeRightSidebar">
-          <BaseIcon name="uni-close" />
-        </BaseButton> -->
 
         <VTooltip placement="bottom">
           <div class="item hoverable">
@@ -92,22 +103,28 @@ const betBtnText = computed(() =>
         </VTooltip>
       </div>
       <div class="tabs">
-        <BaseTab v-show="isBetSlip" v-model="betSlipType" :list="betSlipTypeTabs" />
-        <BaseTab v-show="isMyBets" v-model="myBetsType" :list="myBetsTypeTabs" />
+        <BaseTab
+          v-show="isBetSlip"
+          v-model="betOrderSelectValue"
+          :list="betOrderData"
+        />
+        <BaseTab v-show="isMyBets" v-model="myBetSelectValue" :list="myBetData" />
       </div>
       <div v-show="isBetSlip" class="actions">
         <BaseSelect
-          v-model="bettingOption"
-          style="--tg-base-select-hover-bg-color:var(--tg-secondary-dark);
-          --tg-base-select-popper-style-padding-x:0;
-          --tg-base-select-popper-style-padding-y:0;
-          --tg-base-select-popper-label-color:var(--tg-text-lightgrey);"
-          :options="bettingOptions" no-hover popper
+          v-model="betOrderFilterValue"
+          style="
+            --tg-base-select-hover-bg-color: var(--tg-secondary-dark);
+            --tg-base-select-popper-style-padding-x: 0;
+            --tg-base-select-popper-style-padding-y: 0;
+            --tg-base-select-popper-label-color: var(--tg-text-lightgrey);
+          "
+          :options="betOrderFilterData" no-hover popper
         />
         <BaseButton
           type="text"
           size="none"
-          style="--tg-base-button-text-default-color:var(--tg-text-white);"
+          style="--tg-base-button-text-default-color: var(--tg-text-white);"
         >
           {{ t('clear_all') }}
         </BaseButton>
@@ -116,11 +133,11 @@ const betBtnText = computed(() =>
 
     <div class="bet-list">
       <div class="scroll-y betlist-scroll">
-        <AppSportsBetSlip :bet-slip-type="betSlipType" :index="0" />
-        <AppSportsBetSlip :bet-slip-type="betSlipType" :index="1" is-live />
-        <AppSportsBetSlip :bet-slip-type="betSlipType" :index="2" error />
+        <AppSportsBetSlip :bet-slip-type="betOrderSelectValue" :index="0" />
+        <AppSportsBetSlip :bet-slip-type="betOrderSelectValue" :index="1" is-live />
+        <AppSportsBetSlip :bet-slip-type="betOrderSelectValue" :index="2" error />
         <AppSportsBetSlip
-          :bet-slip-type="betSlipType"
+          :bet-slip-type="betOrderSelectValue"
           :index="3" disabled is-closed
         />
 

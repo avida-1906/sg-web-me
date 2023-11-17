@@ -327,6 +327,47 @@ export interface ILeagueItem {
   ts: number
 }
 
+/** 赛事详情 ml-ms */
+export interface ISportEventInfoMlMs {
+  /** WagerSelectionId */
+  wid: string
+  /** SelectionId */
+  sid: string
+  /** 球种名称 */
+  sn: string
+  /** Handicap */
+  hdp: string
+  /** Specifiers */
+  sp: null
+  /** OddsList 内的欧洲盘 OV */
+  ov: string
+}
+
+/** 赛事详情 ml */
+export interface ISportEventInfoMl {
+  /** MarketlineId */
+  mlid: string
+  /** BetType */
+  bt: number
+  /** BetTypeName */
+  btn: string
+  pid: number
+  /** PeriodName */
+  pn: string
+  /** MarketLineLevel */
+  mll: number
+  /** 0:关盘  1:开盘  2:锁盘 */
+  mls: number
+  /** 版型id */
+  pat: TPat
+  /** 对应的盘口标签 */
+  tgis: number[]
+  /** WagerSelections */
+  ms: ISportEventInfoMlMs[]
+  /** 用来组装接口返回的数据，比如后端返回的list中，其中两条在某些条件上是表现一样的，前端页面上是用一个元素显示 */
+  other: ISportEventInfoMlMs[]
+}
+
 /** 赛事详情 */
 export interface ISportEventInfo {
   /** 赛事ID */
@@ -401,41 +442,7 @@ export interface ISportEventInfo {
     tgn: string
   }[]
   /** 盘口清单 */
-  ml: {
-    /** MarketlineId */
-    mlid: string
-    /** BetType */
-    bt: number
-    /** BetTypeName */
-    btn: string
-    pid: number
-    /** PeriodName */
-    pn: string
-    /** MarketLineLevel */
-    mll: number
-    /** 0:关盘  1:开盘  2:锁盘 */
-    mls: number
-    /** 版型id */
-    pat: TPat
-    /** 对应的盘口标签 */
-    tgis: number[]
-    /** WagerSelections */
-    ms: {
-      /** WagerSelectionId */
-      wid: string
-      /** SelectionId */
-      sid: string
-      /** 球种名称 */
-      sn: string
-      /** Handicap */
-      hdp: string
-      /** Specifiers */
-      sp: null
-      /** OddsList 内的欧洲盘 OV */
-      ov: string
-    }[]
-    [key: string]: any
-  }[]
+  ml: ISportEventInfoMl[]
   /** 赛事更新时间 */
   ts: 1699616882
 }
@@ -469,4 +476,19 @@ export interface ISportOutrightsInfo {
       ov: string
     }[]
   }[]
+}
+
+export interface DepositInfo {
+  /** 金额 */
+  amount: string
+  /** 支付通道ID */
+  cid: string
+  /** 货币ID */
+  currency_id: string
+  /** 货币名称 */
+  currency_name: string
+  /** 支付方式ID */
+  mid: string
+  /** 银行编码-三方支付存款时使用 */
+  bank_code?: string
 }

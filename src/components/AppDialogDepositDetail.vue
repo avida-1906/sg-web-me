@@ -19,28 +19,28 @@ function service() {
     </div>
     <div class="content">
       <div class="item">
-        <label>交易方式:</label>
-        <span class="data">信用卡</span>
+        <label>{{ $t('transaction_way') }}:</label>
+        <span class="data">{{ $t('credit_card') }}</span>
       </div>
       <div class="item">
-        <label>币种:</label>
+        <label>{{ $t('currency_type') }}:</label>
         <span class="data">
           <AppCurrencyIcon :show-name="true" currency-type="BRL" />
         </span>
       </div>
       <div class="item">
-        <label>状态:</label>
+        <label>{{ $t('status') }}:</label>
         <span class="data">
           <AppCurrencyIcon currency-type="BRL" />
-          确认中
+          {{ $t('status_pending') }}
         </span>
       </div>
       <div class="item">
-        <label>交易时间:</label>
+        <label>{{ $t('transaction_time') }}:</label>
         <span class="data">17:30 2023/07/06</span>
       </div>
       <div class="item">
-        <label>交易方式:</label>
+        <label>{{ $t('transaction_way') }}:</label>
         <span class="data">
           167069483525334
           <AppCurrencyIcon currency-type="BRL" />
@@ -48,7 +48,7 @@ function service() {
       </div>
     </div>
     <BaseButton style="display: block; margin: 0 auto;" @click="service">
-      如需帮助，请联系在线支持
+      {{ $t('need_online_service') }}
     </BaseButton>
   </div>
 </template>
