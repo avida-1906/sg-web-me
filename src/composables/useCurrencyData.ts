@@ -33,32 +33,32 @@ export const currencyConfig: Record<EnumCurrencyKey, CurrencyValue> = {
   CNY: {
     prefix: '¥',
     cur: '701',
-    bankTree: '002',
     name: 'CNY',
+    bankTree: '019001',
   },
   BRL: {
     prefix: 'R$',
     cur: '702',
-    bankTree: '015',
     name: 'BRL',
+    bankTree: '019002',
   },
   INR: {
     prefix: '₹',
     cur: '703',
-    bankTree: '016',
     name: 'INR',
+    bankTree: '019003',
   },
   VND: {
     prefix: '₫',
     cur: '704',
-    bankTree: '003',
     name: 'VND',
+    bankTree: '019004',
   },
   THB: {
     prefix: '฿',
     cur: '705',
-    bankTree: '017',
     name: 'THB',
+    bankTree: '019005',
   },
   USDT: {
     prefix: 'USDT',

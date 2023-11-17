@@ -9,6 +9,8 @@ const props = withDefaults(defineProps<Props>(), {
   loading: () => ref(false),
 })
 
+const { t } = useI18n()
+
 const timer = ref()
 const countdown = ref(60)
 
@@ -28,8 +30,8 @@ const {
     }, 1000)
     openNotify({
       type: 'success',
-      title: '成功',
-      message: '验证码发送成功',
+      title: t('notify_title_success'),
+      message: t('success_send_code'),
     })
   },
 })
@@ -39,9 +41,9 @@ const {
   validate: valiemailCode,
 } = useField<string>('emailCode', (value) => {
   if (!value)
-    return '请输入验证码'
+    return t('validate_msg_input_code')
   else if (value.length !== 6)
-    return '您的邮箱验证码含有6位数字'
+    return t('validate_msg_regexp_code')
   return ''
 })
 
@@ -63,7 +65,7 @@ await application.allSettled([
 
 <template>
   <div class="layout-spacing reset app-email-code">
-    <BaseLabel label="验证码:">
+    <BaseLabel :label="`${t('code')}:`">
       <div class="code-box">
         <BaseInputPassword
           v-model="emailCode"
@@ -74,10 +76,10 @@ await application.allSettled([
       </div>
     </BaseLabel>
     <BaseButton bg-style="secondary" size="md" :loading="loading.value" @click="submit">
-      确定
+      {{ t('confirm') }}
     </BaseButton>
     <div class="second-tips">
-      <span v-if="timer">{{ countdown }}秒后重新发送邮件</span>
+      <span v-if="timer">{{ countdown }}{{ t('after_seconds_send_code') }}</span>
       <BaseButton
         v-else
         size="none"
@@ -85,7 +87,7 @@ await application.allSettled([
         :loading="sendMailCodeLoading"
         @click="runAsyncMemberSendMailCode"
       >
-        重新发送验证码
+        {{ t('resend_code') }}
       </BaseButton>
     </div>
   </div>

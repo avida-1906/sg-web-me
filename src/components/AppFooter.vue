@@ -2,64 +2,14 @@
 import type { EnumSportsOddsType } from '~/stores/sports'
 import type { EnumLanguage } from '~/utils/enums'
 
+const { t } = useI18n()
+
 const router = useRouter()
 const languageStore = useLanguageStore()
 const { userLanguage, AllLanguages } = storeToRefs(languageStore)
 const sportStore = useSportsStore()
 const { sportsOddsType } = storeToRefs(sportStore)
 
-const menuData = [
-  {
-    title: '体育',
-    children: [
-      { title: '主页', path: `/sports/${SPORTS_PLAT_ID}` },
-      { title: '滚球', path: `/sports/${SPORTS_PLAT_ID}/live` },
-      { title: '体育博彩规则', icon: false },
-    ],
-  },
-  {
-    title: '娱乐城',
-    children: [
-      { title: '游戏', path: '/casino' },
-      { title: 'VIP俱乐部', path: '/vip-club' },
-      { title: '促销活动', path: '/promotions' },
-    ],
-  },
-  {
-    title: '支持',
-    children: [
-      { title: '公平性' },
-      { title: '联盟计划' },
-      { title: '负责人博彩' },
-      { title: 'Gameble Aware', icon: true },
-      { title: '在线支持' },
-      { title: '帮助中心', icon: true },
-    ],
-  },
-  {
-    title: '社区',
-    children: [
-      { title: '博客' },
-      { title: '论坛', icon: true },
-      { title: 'Facebook', icon: true },
-      { title: 'Twitter', icon: true },
-      { title: 'Instagram', icon: true },
-      { title: 'Youtube', icon: true },
-      { title: '网购', icon: true },
-    ],
-  },
-  {
-    title: '关于我们',
-    children: [
-      { title: '隐私政策' },
-      { title: '许可证' },
-      { title: '反洗钱规则' },
-      { title: '服务条款' },
-      { title: '自我排除' },
-      { title: 'Primedice', icon: true },
-    ],
-  },
-]
 const supportCurrency = [
   '/png/footer/ltc.png',
   '/png/footer/bitcoin.png',
@@ -78,6 +28,60 @@ const partner = [
   { url: '/png/footer/main.png', ratio: '82.81/60', with: '82.81px' },
   { url: '/png/footer/ufc.png', ratio: '151/60', with: '151px' },
 ]
+
+const menuData = computed(() => [
+  {
+    title: t('sports'),
+    children: [
+      { title: t('home_space_title'), path: `/sports/${SPORTS_PLAT_ID}` },
+      { title: t('sports_status_live'), path: `/sports/${SPORTS_PLAT_ID}/live` },
+      { title: t('sports_rule'), icon: false },
+    ],
+  },
+  {
+    title: t('casino'),
+    children: [
+      { title: t('game'), path: '/casino' },
+      { title: t('vip_club'), path: '/vip-club' },
+      { title: t('promo_activity'), path: '/promotions' },
+    ],
+  },
+  {
+    title: t('support'),
+    children: [
+      { title: t('fairness') },
+      { title: t('affiliate') },
+      { title: t('responsible_casino') },
+      { title: 'Gameble Aware', icon: true },
+      { title: t('online_support') },
+      { title: t('help_center'), icon: true },
+    ],
+  },
+  {
+    title: t('community'),
+    children: [
+      { title: t('blog') },
+      { title: t('chat_forum'), icon: true },
+      { title: 'Facebook', icon: true },
+      { title: 'Twitter', icon: true },
+      { title: 'Instagram', icon: true },
+      { title: 'Youtube', icon: true },
+      { title: t('online_shopping'), icon: true },
+    ],
+  },
+  {
+    title: t('about_us'),
+    children: [
+      { title: t('privacy_policy') },
+      { title: t('license') },
+      { title: t('anti_money_laundering_rule') },
+      { title: t('terms_of_service') },
+      { title: t('self_exclusion') },
+      { title: 'Primedice', icon: true },
+    ],
+  },
+])
+
 function selectChange(v: EnumLanguage) {
   languageStore.changeLanguage(v)
 }
@@ -103,7 +107,7 @@ function pathTo(tmp: { path?: string; title: string; icon?: boolean }) {
       </div>
       <div class="layout-spacing reset last-nav">
         <div class="nav-head">
-          语言
+          {{ t('language_title') }}
         </div>
         <div class="select-wrap">
           <BaseSelect
@@ -114,7 +118,7 @@ function pathTo(tmp: { path?: string; title: string; icon?: boolean }) {
             @select="selectChange"
           />
         </div>
-        <div>赔率</div>
+        <div>{{ t('sports_odds_title') }}</div>
         <div class="select-wrap">
           <BaseSelect
             :model-value="sportsOddsType"
@@ -152,23 +156,21 @@ function pathTo(tmp: { path?: string; title: string; icon?: boolean }) {
     <div class="footer-copyright">
       <BaseLogo />
       <div class="copy-right">
-        © 2023 Stake.com | 版权所有
+        © 2023 Stake.com | {{ t('copyright') }}
       </div>
       <div>1 USDT = US$1.00</div>
     </div>
     <div class="footer-description">
-      Stake 由 Medium Rare N.V. 所属和经营，注册编号： 145353，注册地址：
-      Korporaalweg 10, Willemstad, Curaçao。请通过 support@stake.com
-      与我们联系。 支付代理公司是 Medium Rare Limited，地址于 7-9 Riga
-      Feraiou, LIZANTIA COURT, Office 310, Agioi Omologites,
-      1087 Nicosia, Cyprus 以及注册号：HE 410775 Stake
-      由库拉索政府授权和监管，并根据颁发给 Antillephone 的 8048/JAZ
-      号许可证运营。 Stake 已通过所有合规性审查，并获得合法授权，
-      可进行所有机会与投注游戏的游戏操作。
+      Stake 由 Medium Rare N.V. 所属和经营，注册编号： 145353，注册地址：Korporaalweg 10,
+      Willemstad, Curaçao。请通过 support@stake.com 与我们联系。 支付代理公司是 Medium Rare Limited，
+      地址于 7-9 Riga Feraiou, LIZANTIA COURT, Office 310, Agioi Omologites,1087 Nicosia,
+      Cyprus 以及注册号：HE 410775 Stake 由库拉索政府授权和监管，并根据颁发给 Antillephone 的 8048/JAZ 号许可证运营。
+      Stake 已通过所有合规性审查，并获得合法授权，可进行所有机会与投注游戏的游戏操作。
     </div>
     <div class="footer-description">
-      支持
-      <span>support@stake.com</span> | 合作伙伴 <span>partners@stake.com</span> | 新闻媒体
+      {{ t('support') }}
+      <span>support@stake.com</span> | {{ t('partner') }}
+      <span>partners@stake.com</span> | {{ t('media') }}
       <span>press@stake.com</span>
     </div>
   </div>

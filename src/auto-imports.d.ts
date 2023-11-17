@@ -67,13 +67,19 @@ declare global {
   const ApiMemberWalletDelete: typeof import('./apis/index')['ApiMemberWalletDelete']
   const ApiMemberWalletInsert: typeof import('./apis/index')['ApiMemberWalletInsert']
   const ApiMemberWalletList: typeof import('./apis/index')['ApiMemberWalletList']
+  const ApiPaymentDepositBankApplication: typeof import('./apis/index')['ApiPaymentDepositBankApplication']
+  const ApiPaymentDepositBankConfirm: typeof import('./apis/index')['ApiPaymentDepositBankConfirm']
   const ApiPaymentDepositBankList: typeof import('./apis/index')['ApiPaymentDepositBankList']
+  const ApiPaymentDepositCoinApplication: typeof import('./apis/index')['ApiPaymentDepositCoinApplication']
+  const ApiPaymentDepositCoinConfirm: typeof import('./apis/index')['ApiPaymentDepositCoinConfirm']
   const ApiSmsSend: typeof import('./apis/index')['ApiSmsSend']
+  const ApiSportAddFavorite: typeof import('./apis/sport')['ApiSportAddFavorite']
   const ApiSportCompetitionList: typeof import('./apis/sport')['ApiSportCompetitionList']
   const ApiSportCount: typeof import('./apis/sport')['ApiSportCount']
   const ApiSportEventDelta: typeof import('./apis/sport')['ApiSportEventDelta']
   const ApiSportEventInfo: typeof import('./apis/sport')['ApiSportEventInfo']
   const ApiSportEventList: typeof import('./apis/sport')['ApiSportEventList']
+  const ApiSportGetFavoriteList: typeof import('./apis/sport')['ApiSportGetFavoriteList']
   const ApiSportMenuMain: typeof import('./apis/sport')['ApiSportMenuMain']
   const ApiSportOutrightList: typeof import('./apis/sport')['ApiSportOutrightList']
   const ApiSportSidebar: typeof import('./apis/sport')['ApiSportSidebar']
@@ -275,6 +281,7 @@ declare global {
   const timeCheckIsLeapYear: typeof import('./utils/time')['timeCheckIsLeapYear']
   const timeCheckIsLeapyear: typeof import('./utils/time')['timeCheckIsLeapyear']
   const timeFullTimeFormat: typeof import('./utils/time')['timeFullTimeFormat']
+  const timeToFromNow: typeof import('./utils/time')['timeToFromNow']
   const toFixed: typeof import('./utils/number')['toFixed']
   const toNumber: typeof import('lodash-es')['toNumber']
   const toRaw: typeof import('vue')['toRaw']
@@ -603,13 +610,19 @@ declare module 'vue' {
     readonly ApiMemberWalletDelete: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletDelete']>
     readonly ApiMemberWalletInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletInsert']>
     readonly ApiMemberWalletList: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletList']>
+    readonly ApiPaymentDepositBankApplication: UnwrapRef<typeof import('./apis/index')['ApiPaymentDepositBankApplication']>
+    readonly ApiPaymentDepositBankConfirm: UnwrapRef<typeof import('./apis/index')['ApiPaymentDepositBankConfirm']>
     readonly ApiPaymentDepositBankList: UnwrapRef<typeof import('./apis/index')['ApiPaymentDepositBankList']>
+    readonly ApiPaymentDepositCoinApplication: UnwrapRef<typeof import('./apis/index')['ApiPaymentDepositCoinApplication']>
+    readonly ApiPaymentDepositCoinConfirm: UnwrapRef<typeof import('./apis/index')['ApiPaymentDepositCoinConfirm']>
     readonly ApiSmsSend: UnwrapRef<typeof import('./apis/index')['ApiSmsSend']>
+    readonly ApiSportAddFavorite: UnwrapRef<typeof import('./apis/sport')['ApiSportAddFavorite']>
     readonly ApiSportCompetitionList: UnwrapRef<typeof import('./apis/sport')['ApiSportCompetitionList']>
     readonly ApiSportCount: UnwrapRef<typeof import('./apis/sport')['ApiSportCount']>
     readonly ApiSportEventDelta: UnwrapRef<typeof import('./apis/sport')['ApiSportEventDelta']>
     readonly ApiSportEventInfo: UnwrapRef<typeof import('./apis/sport')['ApiSportEventInfo']>
     readonly ApiSportEventList: UnwrapRef<typeof import('./apis/sport')['ApiSportEventList']>
+    readonly ApiSportGetFavoriteList: UnwrapRef<typeof import('./apis/sport')['ApiSportGetFavoriteList']>
     readonly ApiSportMenuMain: UnwrapRef<typeof import('./apis/sport')['ApiSportMenuMain']>
     readonly ApiSportOutrightList: UnwrapRef<typeof import('./apis/sport')['ApiSportOutrightList']>
     readonly ApiSportSidebar: UnwrapRef<typeof import('./apis/sport')['ApiSportSidebar']>
@@ -801,6 +814,7 @@ declare module 'vue' {
     readonly throttledWatch: UnwrapRef<typeof import('@vueuse/core')['throttledWatch']>
     readonly timeCheckIsLeapYear: UnwrapRef<typeof import('./utils/time')['timeCheckIsLeapYear']>
     readonly timeFullTimeFormat: UnwrapRef<typeof import('./utils/time')['timeFullTimeFormat']>
+    readonly timeToFromNow: UnwrapRef<typeof import('./utils/time')['timeToFromNow']>
     readonly toFixed: UnwrapRef<typeof import('./utils/number')['toFixed']>
     readonly toNumber: UnwrapRef<typeof import('lodash-es')['toNumber']>
     readonly toRaw: UnwrapRef<typeof import('vue')['toRaw']>
@@ -1122,13 +1136,19 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberWalletDelete: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletDelete']>
     readonly ApiMemberWalletInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletInsert']>
     readonly ApiMemberWalletList: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletList']>
+    readonly ApiPaymentDepositBankApplication: UnwrapRef<typeof import('./apis/index')['ApiPaymentDepositBankApplication']>
+    readonly ApiPaymentDepositBankConfirm: UnwrapRef<typeof import('./apis/index')['ApiPaymentDepositBankConfirm']>
     readonly ApiPaymentDepositBankList: UnwrapRef<typeof import('./apis/index')['ApiPaymentDepositBankList']>
+    readonly ApiPaymentDepositCoinApplication: UnwrapRef<typeof import('./apis/index')['ApiPaymentDepositCoinApplication']>
+    readonly ApiPaymentDepositCoinConfirm: UnwrapRef<typeof import('./apis/index')['ApiPaymentDepositCoinConfirm']>
     readonly ApiSmsSend: UnwrapRef<typeof import('./apis/index')['ApiSmsSend']>
+    readonly ApiSportAddFavorite: UnwrapRef<typeof import('./apis/sport')['ApiSportAddFavorite']>
     readonly ApiSportCompetitionList: UnwrapRef<typeof import('./apis/sport')['ApiSportCompetitionList']>
     readonly ApiSportCount: UnwrapRef<typeof import('./apis/sport')['ApiSportCount']>
     readonly ApiSportEventDelta: UnwrapRef<typeof import('./apis/sport')['ApiSportEventDelta']>
     readonly ApiSportEventInfo: UnwrapRef<typeof import('./apis/sport')['ApiSportEventInfo']>
     readonly ApiSportEventList: UnwrapRef<typeof import('./apis/sport')['ApiSportEventList']>
+    readonly ApiSportGetFavoriteList: UnwrapRef<typeof import('./apis/sport')['ApiSportGetFavoriteList']>
     readonly ApiSportMenuMain: UnwrapRef<typeof import('./apis/sport')['ApiSportMenuMain']>
     readonly ApiSportOutrightList: UnwrapRef<typeof import('./apis/sport')['ApiSportOutrightList']>
     readonly ApiSportSidebar: UnwrapRef<typeof import('./apis/sport')['ApiSportSidebar']>
@@ -1320,6 +1340,7 @@ declare module '@vue/runtime-core' {
     readonly throttledWatch: UnwrapRef<typeof import('@vueuse/core')['throttledWatch']>
     readonly timeCheckIsLeapYear: UnwrapRef<typeof import('./utils/time')['timeCheckIsLeapYear']>
     readonly timeFullTimeFormat: UnwrapRef<typeof import('./utils/time')['timeFullTimeFormat']>
+    readonly timeToFromNow: UnwrapRef<typeof import('./utils/time')['timeToFromNow']>
     readonly toFixed: UnwrapRef<typeof import('./utils/number')['toFixed']>
     readonly toNumber: UnwrapRef<typeof import('lodash-es')['toNumber']>
     readonly toRaw: UnwrapRef<typeof import('vue')['toRaw']>

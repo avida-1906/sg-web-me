@@ -22,7 +22,7 @@ function openRegister() {
 
 <template>
   <div class="app-btn-login-reg">
-    <span>您必须登录进行此操作……</span>
+    <span>{{ t('need_login_tip') }}……</span>
     <div class="buttons">
       <BaseButton size="md" @click.stop="openLogin">
         {{ t('login') }}

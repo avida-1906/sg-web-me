@@ -14,8 +14,6 @@ interface IColumns {
 //   total: number
 // }
 
-const { t } = useI18n()
-
 // const paginationData = ref<IPaginationData>(
 //   {
 //     pageSize: 10,
@@ -23,6 +21,8 @@ const { t } = useI18n()
 //     total: 21,
 //   },
 // )
+
+const { t } = useI18n()
 
 const columns = reactive<IColumns[]>([
   {
@@ -56,7 +56,7 @@ const tableData = reactive([
   },
 ])
 
-const { run: runGetRecord } = useRequest(ApiMemberVipBonusRecord)
+const { run: runGetRecord, data } = useRequest(ApiMemberVipBonusRecord)
 
 runGetRecord()
 
@@ -76,6 +76,7 @@ function getCurrencyName(id: string | number): EnumCurrencyKey {
 <template>
   <div class="app-vip-bonus-record">
     <BaseTable
+      v-if="data && data.length"
       :columns="columns"
       :data-source="tableData"
     >
@@ -97,6 +98,7 @@ function getCurrencyName(id: string | number): EnumCurrencyKey {
       @previous="onPrevious"
       @next="onNext"
     /> -->
+    <BaseEmpty v-else :description="t('data_empty')" />
   </div>
 </template>
 

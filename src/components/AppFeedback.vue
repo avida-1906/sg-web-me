@@ -1,4 +1,5 @@
 <script setup lang='ts'>
+const { t } = useI18n()
 const chatStore = useChatStore()
 
 const { openNotify } = useNotify()
@@ -10,10 +11,10 @@ const { openReceiveBonusDialog, closeReceiveBonusDialog } = useDialogReceiveBonu
 
 const imageUrl: Ref<string[]> = ref([])
 const tab = ref(1)
-const placeholder = '您的任何意见对我们都很重要，凡事有价值意见都将被采纳，一旦采纳将视重要程度给予不同现金奖励，欢迎您畅所欲言！'
+const placeholder = t('feedback_placeholder')
 const tabList = [
-  { label: '创建反馈', value: 1 },
-  { label: '我的反馈', value: 2 },
+  { label: t('create_feedback'), value: 1 },
+  { label: t('user_feedback'), value: 2 },
 ]
 
 const {
@@ -25,7 +26,7 @@ const {
   resetField,
 } = useField<string>('feedbackText', (value) => {
   if (!value)
-    return '请输入反馈内容'
+    return t('input_feedback')
   return ''
 })
 
@@ -41,7 +42,7 @@ const {
     resetField()
     openNotify({
       type: 'success',
-      message: '反馈提交成功！',
+      message: t('success_submit_feedback'),
     })
   },
 })
@@ -117,8 +118,7 @@ onActivated(() => {
       <div v-if="tab === 1" class="create-feedback">
         <div class="text">
           <p class="label">
-            反馈内容<span class="error-text">*</span>
-            <!-- <span>（你提我改）</span> -->
+            {{ t('feedback_content') }}<span class="error-text">*</span>
           </p>
           <textarea
             v-model="feedbackText"
@@ -138,33 +138,33 @@ onActivated(() => {
         </div>
         <div class="img-video">
           <p class="label">
-            图片
+            {{ t('image') }}
           </p>
           <div class="file">
             <BaseUpload v-model="imageUrl" :much="5" img-type="common" :size="10" />
           </div>
           <div class="tips">
-            仅能上传：png/jpg格式，最多上传5张，单张最大10M
+            {{ t('image_upload_tip') }}
           </div>
         </div>
         <div class="rule">
           <p class="label">
-            奖励规则
+            {{ t('bonus_rule') }}
           </p>
           <div class="rule-text">
-            我们已经设置了巨额奖金，专门收集反馈意见，以便我们优化系统和功能，给您带来更好的体验！一旦被采纳，将根据重要程度给予奖励（未采纳除外）
+            {{ t('feedback_bonus_tip') }}
           </div>
         </div>
         <div class="buts">
           <BaseButton type="line" style="border-color: var(--tg-text-blue);">
-            取消
+            {{ t('cancel') }}
           </BaseButton>
           <BaseButton
             bg-style="primary"
             :loading="feedbackInsertLoading"
             @click="submitFeedback"
           >
-            提交
+            {{ t('submit') }}
           </BaseButton>
         </div>
       </div>
@@ -172,7 +172,7 @@ onActivated(() => {
         <div
           class="total-bonus"
         >
-          <span>待领取奖金：</span>
+          <span>{{ t('bonus_not_apply') }}：</span>
           <span class="money">{{ totalBonus }}USDT</span>
           <!-- <BaseIcon name="chess-proms" /> -->
           <BaseButton
@@ -184,7 +184,7 @@ onActivated(() => {
             :disabled="!totalBonus || !(+totalBonus > 0)"
             @click="openTotalBonus"
           >
-            领取
+            {{ t('receive') }}
           </BaseButton>
         </div>
         <template v-if="feedbackList?.d?.length">
@@ -196,14 +196,14 @@ onActivated(() => {
           >
             <div class="line">
               <div>
-                反馈状态：<span
+                {{ t('feedback_status') }}：<span
                   :style="{
                     color: item.state === 1
                       ? 'var(--tg-text-warn)'
                       : 'var(--tg-text-white)',
                   }"
                 >
-                  {{ item.state === 1 ? '处理中' : '已完成' }}
+                  {{ item.state === 1 ? t('dealing') : t('checklist_completed') }}
                 </span>
               </div>
               <div
@@ -214,26 +214,26 @@ onActivated(() => {
                     : 'var(--tg-text-white)',
                 }"
               >
-                {{ item.newest_m !== 0 ? '有消息未读' : '已读' }}
+                {{ item.newest_m !== 0 ? t('message_has_unseen') : t('message_seen') }}
                 <div v-if="item.newest_m !== 0" />
               </div>
             </div>
             <div class="line">
               <div class="text-overflow-hide">
-                反馈ID: {{ item.id }}
+                {{ t('feedback') }}ID: {{ item.id }}
               </div>
               <div class="text-overflow-hide color-grey">
                 {{ application.timestampToTime(item.created_at * 1000) }}
               </div>
             </div>
             <div class="text-overflow-hide">
-              内容: {{ item.description }}
+              {{ t('content_text') }}: {{ item.description }}
             </div>
           </div>
         </template>
         <template v-else>
           <BaseEmpty
-            description="暂无内容"
+            :description="t('no_content')"
             icon="navbar-user-bet"
             style="padding-top: 100px;"
           />
