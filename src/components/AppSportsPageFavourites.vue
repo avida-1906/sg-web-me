@@ -27,7 +27,7 @@ const list = computed(() => {
 })
 
 const stop = watch(sportsFavoriteData, (a) => {
-  if (a && currentSi.value !== -1)
+  if (a && currentSi.value === -1)
     currentSi.value = a.list[0].si
 })
 
