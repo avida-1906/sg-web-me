@@ -11,8 +11,8 @@ const { openReceiveBonusDialog, closeReceiveBonusDialog } = useDialogReceiveBonu
 
 const state: any = {
   1: t('deal_pend'),
-  2: t('adopted'),
-  3: t('ignored'),
+  2: t('feedback_status_done'),
+  3: t('feedback_status_done'),
 }
 
 const imageUrl: Ref<string[]> = ref([])
