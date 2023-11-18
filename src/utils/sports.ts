@@ -223,12 +223,9 @@ export function getCartObject(
   // 总分
   else if (mlObject.bt === 2)
     sn = `${msObject.sn} ${msObject.hdp}`
-  // 获胜
-  else if (mlObject.bt === 3 || mlObject.bt === 4)
-    sn = msObject.sn
-  // 其它
+  // 获胜以及其它
   else
-    sn = `${msObject.sn} ${msObject.hdp}`
+    sn = msObject.sn
 
   return {
     wid: msObject.wid,
