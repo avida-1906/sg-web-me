@@ -681,6 +681,8 @@ view_all: 查看全部
 view_conversation: 查看对话
 view_more: 显示更多
 view_more_details: 查看更多详情
+view_more_2: 查看更多
+view_less: 显示较少
 view_post: 查看帖子
 we_run_on_intercom: 我们在 Intercom 上运行
 with_teamname: '与 {teamname} 对话'
@@ -1274,3 +1276,11 @@ tip_safepwd: 资金密码将用于保护提款，保险库取款安全。
 login_time: 登录时间
 browser: 浏览器
 area: 地区
+wise_bet: 更明智地下注
+reg_now: 立即注册
+welcome_back: 欢迎归来
+user_vip_pro: 您的 VIP 进度
+most_advance_casino: 最领先的在线加密货币赌场
+go_casino: 前往娱乐城
+best_sports: 最棒的加密货币在线体育博彩
+go_sports: 前往体育博彩

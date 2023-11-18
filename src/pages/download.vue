@@ -2,7 +2,7 @@
   <div class="center download">
     <a href="/app.apk" download>
       <BaseButton>
-        下载Android Apk
+        {{ $t('download') }}Android Apk
       </BaseButton>
     </a>
   </div>
