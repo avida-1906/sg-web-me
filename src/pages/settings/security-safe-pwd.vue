@@ -21,7 +21,7 @@ const {
   if (!value)
     return t('pls_enter_password')
   else if (value !== payPassword.value)
-    return '两次输入的资金密码不一致'
+    return t('validate_msg_safepwd_unequal')
   return ''
 })
 const {
@@ -31,8 +31,8 @@ const {
   onSuccess() {
     openNotify({
       type: 'success',
-      title: '成功',
-      message: '设置资金密码成功',
+      title: t('notify_title_success'),
+      message: t('success_set_safepwd'),
     })
     // 资金密码设置成功之后，刷新用户信息
     updateUserInfo()
@@ -48,7 +48,7 @@ function fieldVerifyPayPwd(value: string) {
   if (!value)
     return t('pls_enter_password')
   else if (!payPasswordReg.test(value))
-    return '您的资金密码含有6位数字'
+    return t('tip_safepwd_six')
   else if (aginPayPassword.value)
     valiAginPayPwd()
   return ''
@@ -75,8 +75,8 @@ async function submitPayPwd() {
   else {
     openNotify({
       type: 'error',
-      title: '错误',
-      message: '邮箱未验证',
+      title: t('notify_title_error'),
+      message: t('email_uncheck'),
     })
   }
 }
@@ -85,16 +85,16 @@ async function submitPayPwd() {
 <template>
   <div class="tg-settings-security">
     <AppSettingsContentItem
-      title="资金密码"
+      :title="t('menu_title_settings_update_safepwd')"
       last-one
       :btn-loading="payPasswordUpdateLoading"
       :badge="getPayPwdState"
       @submit="submitPayPwd"
     >
       <template #top-desc>
-        资金密码将用于保护提款，保险库取款安全。
+        {{ t('tip_safepwd') }}
       </template>
-      <BaseLabel label="密码" must-small>
+      <BaseLabel :label="t('password')" must-small>
         <BaseInputPassword
           ref="pwdRef"
           v-model="payPassword"
@@ -102,7 +102,7 @@ async function submitPayPwd() {
           msg-after-touched
         />
       </BaseLabel>
-      <BaseLabel label="确认密码" must-small>
+      <BaseLabel :label="t('confirm_pwd')" must-small>
         <BaseInputPassword
           ref="aginPwdRef" v-model="aginPayPassword"
           :msg="aginPayPwdErrorMsg"

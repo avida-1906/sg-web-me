@@ -7,6 +7,8 @@ interface Column {
   align?: 'left' | 'center' | 'right'
 }
 
+const { t } = useI18n()
+
 // const selectValue = ref('1')
 // const selectOptions = [
 //   { label: '全部', value: '1' },
@@ -15,19 +17,19 @@ interface Column {
 // ]
 const columns: Column[] = [
   {
-    title: '登陆时间',
+    title: t('login_time'),
     dataIndex: 'lastUsed',
     width: 150,
     align: 'center',
   },
   {
-    title: '浏览器',
+    title: t('browser'),
     dataIndex: 'browser',
     width: 150,
     align: 'center',
   },
   {
-    title: '地区',
+    title: t('area'),
     dataIndex: 'near',
     width: 150,
     align: 'center',
@@ -55,19 +57,19 @@ function formatRelativeTime(timestampInSeconds: number) {
   const diff = now - timestampInSeconds
 
   if (diff < 60) {
-    return `${diff} 秒前`
+    return t('last_seconds', { delta: diff })
   }
   else if (diff < 3600) {
     const minutes = Math.floor(diff / 60)
-    return `${minutes} 分钟前`
+    return t('last_minutes', { delta: minutes })
   }
   else if (diff < 86400) {
     const hours = Math.floor(diff / 3600)
-    return `${hours} 小时前`
+    return t('last_hours', { delta: hours })
   }
   else {
     const days = Math.floor(diff / 86400)
-    return `${days} 天前`
+    return t('last_days', { delta: days })
   }
 }
 

@@ -12,8 +12,9 @@ live: 真人
 email_or_username: 电邮地址或用户名
 pls_enter_email_or_username: 请输入电邮地址或用户名
 email_or_username_incorrect: 电邮地址或用户名格式不正确
-two-step_verification: 双重验证
-pls_enter_two-step_verification: 请输入双重验证
+two_step_verification: 双重验证
+pls_enter_two_step_verification: 请输入双重验证
+tip_start_double_check: 启用双重验证以让您的账户更加安全。
 email_address: 电邮地址
 pls_enter_email_address: 请输入电邮地址
 email_address_incorrect: 电邮地址格式不正确
@@ -27,6 +28,7 @@ password: 密码
 old_pwd: 旧密码
 new_pwd: 新密码
 confirm_new_pwd: 确认新密码
+confirm_pwd: 确认密码
 pls_enter_password: 请输入密码
 pls_enter_birthday: 请输入生日
 password_incorrect: 密码格式不正确
@@ -282,6 +284,10 @@ january_date: '1 月 {date} 日'
 join_conversation: 加入对话
 july_date: '7 月 {date} 日'
 june_date: '6 月 {date} 日'
+last_seconds: '{delta} 秒前'
+last_minutes: '{delta} 分钟前'
+last_hours: '{delta} 小时前'
+last_days: '{delta} 天前'
 last_active_hours_ago: '上次在线为 {mins} 小时前'
 last_active_mins_ago: '上次在线为 {mins} 分钟前'
 last_active_over_a_week: 上次在线为超过 1 周前
@@ -1254,4 +1260,16 @@ refuse_rain: 拒绝接收红包雨
 marketing: 营销
 receive_market_email: 接收营销电邮
 validate_msg_pwd_unequal: 两次输入的密码不一致
+validate_msg_safepwd_unequal: 两次输入的资金密码不一致
 success_update_pwd: 修改密码成功
+pls_input_double_check_pwd: 请输入双重验证密码
+success_set_double_check: 设置双重验证密码成功
+copy_to_google: 将代码复制到您的身份验证器应用程序（Authenticator App）
+hide_from_others: 防止他人看到此页！
+success_set_safepwd: 设置资金密码成功
+tip_safepwd_six: 您的资金密码含有6位数字
+email_uncheck: 邮箱未验证
+tip_safepwd: 资金密码将用于保护提款，保险库取款安全。
+login_time: 登录时间
+browser: 浏览器
+area: 地区
