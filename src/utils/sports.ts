@@ -4,7 +4,7 @@ import type {
   ISportEventInfoMlMs,
   ISportOutrightsInfo,
 } from '~/apis/types'
-import type { IMarketInfo } from '~/types'
+import type { ICartInfo } from '~/types'
 
 /**
  * 体育ID
@@ -214,7 +214,7 @@ export function getCartObject(
   mlObject: ISportEventInfoMl,
   msObject: ISportEventInfoMlMs,
   infoList1: ISportEventInfo,
-): IMarketInfo {
+): ICartInfo {
   let sn = ''
   // 让分盘
   if (mlObject.bt === 1)

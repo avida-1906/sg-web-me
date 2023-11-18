@@ -188,7 +188,7 @@ export function useApiSportDetails() {
         const _infoList = sportInfo.value.list[0]
         for (let j = 0; j < item.ms.length; j++) {
           const _ms = item.ms[j]
-          _ms.marketInfo = getCartObject(item, _ms, _infoList)
+          _ms.cartInfo = getCartObject(item, _ms, _infoList)
         }
 
         renderList.push(item)
@@ -200,7 +200,7 @@ export function useApiSportDetails() {
         const _infoList = sportInfo.value.list[0]
         for (let j = 0; j < item.ms.length; j++) {
           const _ms = item.ms[j]
-          _ms.marketInfo = getCartObject(_msObject || item, _ms, _infoList)
+          _ms.cartInfo = getCartObject(_msObject || item, _ms, _infoList)
         }
 
         if (_msObject) {
