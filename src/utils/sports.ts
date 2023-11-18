@@ -271,7 +271,7 @@ export class SportsCart {
   /** 预计总盈利 */
   get totalProfit() {
     return this.dataList.reduce((a, b) => {
-      return a + mul(b.amount, Number(b.ov))
+      return Number(add(a, Number(mul(b.amount, Number(b.ov)))))
     }, 0)
   }
 
