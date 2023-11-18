@@ -1212,3 +1212,10 @@ total_agency_bonus: 总代理奖金
 contribute: 贡献
 contribute_to: 贡献给
 direct: 直属
+sub_total_performance: 下级总业绩
+enjoy: 享受
+user_effect_bet: 自己有效投注{num}万
+sub_self_no_profit: 无下级自身无收益
+activity_name: 活动名称
+label_no_collect: 暂无任何收藏，请使用
+put_collect: 把游戏添加到收藏夹中。
