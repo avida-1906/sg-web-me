@@ -17,9 +17,11 @@ const appStore = useAppStore()
 const { exchangeRateData } = storeToRefs(appStore)
 const chatStore = useChatStore()
 const { openNotify } = useNotify()
+const { width } = useWindowSize()
 
 const currentNetwork = ref('')
 const activeCurrency = ref<CurrencyData | null>()
+const isMobile = ref(width.value < 768)
 
 const rate = computed(() => {
   const temp = exchangeRateData.value?.rates
@@ -80,7 +82,7 @@ function changeCurrency(item: CurrencyData, network: string) {
 </script>
 
 <template>
-  <div class="app-receive-bonus">
+  <div class="app-receive-bonus" :class="{ 'is-mobile': isMobile }">
     <div class="choose-label">
       <span>{{ $t('current_wait_receive_label') }}：</span>
       <span class="money">{{ money }}<BaseIcon name="coin-usdt" /></span>
@@ -129,6 +131,12 @@ function changeCurrency(item: CurrencyData, network: string) {
   padding: var(--tg-spacing-4) var(--tg-spacing-16) var(--tg-spacing-16);
   font-size: var(--tg-font-size-default);
   color: var(--tg-text-white);
+  &.is-mobile {
+    .choose-label {
+      display: inline;
+      text-align: left;
+    }
+  }
   .money {
     color: var(--tg-text-warn);
     font-size: var(--tg-font-size-default);

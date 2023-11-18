@@ -3,29 +3,36 @@ import type { ICartInfo } from '~/types'
 
 interface Props {
   layout?: 'horizontal' | 'vertical'
-  active?: boolean
   disabled?: boolean
   isNa?: boolean
   title: string
   odds: string
   cartInfo: ICartInfo
 }
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   layout: 'vertical',
 })
 
+const sportStore = useSportsStore()
 const { t } = useI18n()
 const { openRightSidebar, rightIsExpand } = useRightSidebar()
 
 function clickHandler() {
   if (!rightIsExpand.value)
     openRightSidebar(EnumRightSidebarContent.BETTING)
+
+  sportStore.cart.add(props.cartInfo)
 }
 </script>
 
 <template>
   <div
-    class="app-sports-bet-button" :class="{ active, disabled, 'is-na': isNa }"
+    class="app-sports-bet-button"
+    :class="{
+      'active': sportStore.cart.checkWid(props.cartInfo.wid),
+      disabled,
+      'is-na': isNa,
+    }"
     @click="clickHandler"
   >
     <template v-if="isNa">
@@ -37,8 +44,10 @@ function clickHandler() {
       </div>
       <span v-if="disabled" class="status">{{ t('sports_status_timeout') }}</span>
       <AppSportsOdds
-        v-else :style="`--tg-sports-odds-color:${active
-          ? 'var(--tg-text-white)' : ''}`"
+        v-else
+        :style="
+          `--tg-sports-odds-color: ${sportStore.cart.checkWid(props.cartInfo.wid)
+            ? 'var(--tg-text-white)' : ''}`"
         :arrow="layout === 'horizontal' ? 'left' : 'right'"
         :odds="odds || '0.00'"
       />

@@ -284,13 +284,18 @@ export class SportsCart {
    * 从购物车删除数据
    * @param {number} index
    */
-  remove(index: number) {
+  removeItem(index: number) {
     if (index > this.dataList.length - 1) {
       console.error('购物车删除数据失败，索引超出范围')
       return
     }
 
     this.dataList.splice(index, 1)
+  }
+
+  /** 从购物车删除所有数据 */
+  removeAll() {
+    this.dataList = []
   }
 
   /** 更新所有amount */
@@ -308,5 +313,10 @@ export class SportsCart {
   updateCurrency(currency: EnumCurrencyKey) {
     this.currency = currency
     this.updateAmount()
+  }
+
+  /** 检查wid 是否在购物车中 */
+  checkWid(wid: string) {
+    return this.dataList.findIndex(a => a.wid === wid) > -1
   }
 }

@@ -44,7 +44,7 @@ export const useSportsStore = defineStore('sports', () => {
   /** 当前即将开赛选中的体育项目 */
   const currentUpcomingNav = ref(0)
   /** 购物车 */
-  const cart = ref(new SportsCart(currentGlobalCurrency.value))
+  const cart = reactive(new SportsCart(currentGlobalCurrency.value))
 
   /** 体育计数源 */
   const { data: allSportsCount, run: runSportsCount } = useRequest(() =>

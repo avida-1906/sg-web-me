@@ -10,6 +10,7 @@ declare global {
   const ApiChatGetHistory: typeof import('./apis/index')['ApiChatGetHistory']
   const ApiChatSendMessage: typeof import('./apis/index')['ApiChatSendMessage']
   const ApiCount: typeof import('./apis/sport')['ApiCount']
+  const ApiFinanceMerchantCoinList: typeof import('./apis/index')['ApiFinanceMerchantCoinList']
   const ApiFinanceMerchantList: typeof import('./apis/index')['ApiFinanceMerchantList']
   const ApiFinanceMethodList: typeof import('./apis/index')['ApiFinanceMethodList']
   const ApiFinanceThirdDeposit: typeof import('./apis/index')['ApiFinanceThirdDeposit']
@@ -560,6 +561,7 @@ declare module 'vue' {
     readonly ApiAddFeedbackChatMsg: UnwrapRef<typeof import('./apis/index')['ApiAddFeedbackChatMsg']>
     readonly ApiChatGetHistory: UnwrapRef<typeof import('./apis/index')['ApiChatGetHistory']>
     readonly ApiChatSendMessage: UnwrapRef<typeof import('./apis/index')['ApiChatSendMessage']>
+    readonly ApiFinanceMerchantCoinList: UnwrapRef<typeof import('./apis/index')['ApiFinanceMerchantCoinList']>
     readonly ApiFinanceMerchantList: UnwrapRef<typeof import('./apis/index')['ApiFinanceMerchantList']>
     readonly ApiFinanceMethodList: UnwrapRef<typeof import('./apis/index')['ApiFinanceMethodList']>
     readonly ApiFinanceThirdDeposit: UnwrapRef<typeof import('./apis/index')['ApiFinanceThirdDeposit']>
@@ -1089,6 +1091,7 @@ declare module '@vue/runtime-core' {
     readonly ApiAddFeedbackChatMsg: UnwrapRef<typeof import('./apis/index')['ApiAddFeedbackChatMsg']>
     readonly ApiChatGetHistory: UnwrapRef<typeof import('./apis/index')['ApiChatGetHistory']>
     readonly ApiChatSendMessage: UnwrapRef<typeof import('./apis/index')['ApiChatSendMessage']>
+    readonly ApiFinanceMerchantCoinList: UnwrapRef<typeof import('./apis/index')['ApiFinanceMerchantCoinList']>
     readonly ApiFinanceMerchantList: UnwrapRef<typeof import('./apis/index')['ApiFinanceMerchantList']>
     readonly ApiFinanceMethodList: UnwrapRef<typeof import('./apis/index')['ApiFinanceMethodList']>
     readonly ApiFinanceThirdDeposit: UnwrapRef<typeof import('./apis/index')['ApiFinanceThirdDeposit']>
