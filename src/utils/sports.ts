@@ -1,8 +1,10 @@
 import type {
   ISportEventInfo,
   ISportEventInfoMl,
-  ISportEventInfoMlMs, ISportOutrightsInfo,
+  ISportEventInfoMlMs,
+  ISportOutrightsInfo,
 } from '~/apis/types'
+import type { IMarketInfo } from '~/types'
 
 /**
  * 体育ID
@@ -212,7 +214,7 @@ export function getCartObject(
   mlObject: ISportEventInfoMl,
   msObject: ISportEventInfoMlMs,
   infoList1: ISportEventInfo,
-) {
+): IMarketInfo {
   return {
     wid: msObject.wid,
     mlid: mlObject.mlid,
