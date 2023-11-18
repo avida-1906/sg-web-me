@@ -84,13 +84,13 @@ const defaultAddress = computed(() => {
 
 function onAmountInput() {
   if (amount.value)
-    setAmount(application.numberToCurrency(+amount.value))
+    setAmount(toFixed(Number(amount.value), 8) || '0.00000000', true)
 }
 function maxNumber() {
   setAmount(props.activeCurrency.balance)
 }
 function initAmount() {
-  setAmount(`0.${props.activeCurrency.balance.replace(/\d/g, '0').split('.')[1]}`, false)
+  setAmount('0.00000000', false)
 }
 async function handleWithdraw() {
   await valiAddress()

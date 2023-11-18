@@ -137,7 +137,7 @@ function updateBank() {
   runAsyncWithdrawBankcardList({ currency_id: props.activeCurrency.cur })
 }
 function initAmount() {
-  setAmount(`0.${props.activeCurrency.balance.replace(/\d/g, '0').split('.')[1]}`, false)
+  setAmount('0.00', false)
 }
 async function withDrawSubmit() {
   await selectBankValidate()
@@ -152,6 +152,10 @@ async function withDrawSubmit() {
       bankcard_id: bankcardId.value,
     })
   }
+}
+function formatAmount() {
+  if (amount.value)
+    setAmount(toFixed(Number(amount.value), 2) || '0.00', true)
 }
 
 watch(() => props.activeCurrency, (newValue) => {
@@ -240,8 +244,9 @@ await application.allSettled(
             v-model="amount"
             :msg="amountError"
             type="number"
-            placeholder="0.00000000"
+            placeholder="0.00"
             @on-right-button="maxNumber"
+            @blur="formatAmount"
           >
             <template #right-button>
               <span>{{ t('max') }}</span>
