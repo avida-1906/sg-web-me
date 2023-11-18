@@ -3,7 +3,7 @@ const props = withDefaults(defineProps<{
   /** 滚动速度 */
   speed?: number
 }>(), {
-  speed: 80,
+  speed: 20,
 })
 
 const baseNoticeRef = ref<HTMLElement | null>(null)
@@ -15,9 +15,7 @@ const { width: prefixWidth } = useElementSize(prefixRef)
 
 /** 运动时间 */
 const scrollTime = computed(() => {
-  const _width = baseNoticeWidth.value
-  const _speed = props.speed
-  return `${_width / _speed}s`
+  return `${props.speed}s`
 })
 
 /** 暂停滚动 */
