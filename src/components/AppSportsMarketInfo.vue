@@ -65,7 +65,6 @@ const baseGridClass = computed(() => isH5Layout.value ? 'grid-setup-574' : 'grid
 // 当前的盘口类型
 const isHandicap = computed(() => props.baseType === EnumSportMarketType.HANDICAP)
 const isTotal = computed(() => props.baseType === EnumSportMarketType.TOTAL)
-const isWinner = computed(() => props.baseType === EnumSportMarketType.WINNER)
 // 需要展示的盘口分类
 const standardMarketFiltered = computed(() => {
   if (isHandicap.value)
@@ -74,11 +73,8 @@ const standardMarketFiltered = computed(() => {
   else if (isTotal.value)
     return props.data.ml.filter(a => a.bt === 2)
 
-  else if (isWinner.value)
-    return props.data.ml.filter(a => a.bt === 3 || a.bt === 4)
-
   else
-    return props.data.ml.filter(a => a.bt < 1 || a.bt > 4)
+    return props.data.ml.filter(a => a.bt !== 1 && a.bt !== 2)
 })
 const standardMarketName = computed(() => standardMarketFiltered.value[0]?.btn)
 const standardMarketBtns = computed(() => {
@@ -102,20 +98,10 @@ const standardMarketBtns = computed(() => {
       }
     })
   }
-  else if (isWinner.value) {
-    return standardMarketFiltered.value[0]?.ms.map((a) => {
-      return {
-        title: a.sn,
-        ...a,
-        disabled: standardMarketFiltered.value[0].mls !== 1,
-        cartInfo: getCartObject(standardMarketFiltered.value[0], a, props.data),
-      }
-    })
-  }
   else {
     return standardMarketFiltered.value[0]?.ms.map((a) => {
       return {
-        title: `${a.sn} ${a.hdp}`,
+        title: a.sn,
         ...a,
         disabled: standardMarketFiltered.value[0].mls !== 1,
         cartInfo: getCartObject(standardMarketFiltered.value[0], a, props.data),
