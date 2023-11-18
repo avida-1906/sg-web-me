@@ -129,6 +129,7 @@ const cartDataList = computed(() => sportStore.cart.dataList)
           type="text"
           size="none"
           style="--tg-base-button-text-default-color: var(--tg-text-white);"
+          @click="sportStore.cart.removeAll()"
         >
           {{ t('clear_all') }}
         </BaseButton>
@@ -137,7 +138,6 @@ const cartDataList = computed(() => sportStore.cart.dataList)
 
     <div class="bet-list">
       <div class="scroll-y betlist-scroll">
-        {{ sportStore.cart.dataList }}
         <template
           v-for="item, index in cartDataList"
           :key="item.wid"
