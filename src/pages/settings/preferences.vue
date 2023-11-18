@@ -10,51 +10,51 @@ const { bool: isMarketing } = useBoolean(true)
   <div class="tg-settings-preferences">
     <AppSettingsContentItem title="隐私">
       <template #top-desc>
-        用户隐私是 Stake 的核心价值之一。 这些设置将允许您在其他玩家面前完全匿名。
+        {{ $t('preferences_tip_1') }}
       </template>
       <div class="switch-item">
         <BaseSwitch v-model="isStealth" class="switch" />
         <div class="right">
-          <p>启用隐身模式</p>
-          <p>您的投注不会出现在公开投注动态和投注预览中</p>
+          <p>{{ $t('turn_on_hide_mode') }}</p>
+          <p>{{ $t('preferences_tip_2') }}</p>
         </div>
       </div>
       <div class="switch-item">
         <BaseSwitch v-model="hideStatistics" class="switch" />
         <div class="right">
-          <p>隐藏所有统计数据</p>
-          <p>其他用户将无法查看您的输赢和投注的统计数据</p>
+          <p>{{ $t('hide_all_statistic') }}</p>
+          <p>{{ $t('preferences_tip_3') }}</p>
         </div>
       </div>
       <div class="switch-item">
         <BaseSwitch v-model="hideContest" class="switch" />
         <div class="right">
-          <p>隐藏所有竞赛记录</p>
-          <p>其他用户将无法查看您的竞赛记录</p>
+          <p>{{ $t('hide_all_competition_record') }}</p>
+          <p>{{ $t('preferences_tip_4') }}</p>
         </div>
       </div>
       <template #btm-left>
-        请容许长达 30 秒的时间使更新生效。
+        {{ $t('preferences_tip_5') }}
       </template>
     </AppSettingsContentItem>
     <AppSettingsContentItem title="社区">
       <div class="switch-item">
         <BaseSwitch v-model="isRed" class="switch" />
         <div class="right">
-          <p>拒绝接收红包雨</p>
-          <p>防止您在聊天室中收到红包雨</p>
+          <p>{{ $t('refuse_rain') }}</p>
+          <p>{{ $t('preferences_tip_6') }}</p>
         </div>
       </div>
       <template #btm-left>
-        请容许长达 30 秒的时间使更新生效。
+        {{ $t('preferences_tip_5') }}
       </template>
     </AppSettingsContentItem>
-    <AppSettingsContentItem title="营销" last-one>
+    <AppSettingsContentItem :title="$t('marketing')" last-one>
       <div class="switch-item">
         <BaseSwitch v-model="isMarketing" class="switch" />
         <div class="right">
-          <p>接收营销电邮</p>
-          <p>选择不接收营销电邮或优惠</p>
+          <p>{{ $t('receive_market_email') }}</p>
+          <p>{{ $t('preferences_tip_7') }}</p>
         </div>
       </div>
     </AppSettingsContentItem>

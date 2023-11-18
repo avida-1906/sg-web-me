@@ -11,6 +11,7 @@ interface ISocialData {
   [key: string]: boolean
 }
 
+const { t } = useI18n()
 const route = useRoute()
 const router = useRouter()
 const { openNotify } = useNotify()
@@ -73,7 +74,7 @@ const socialData = [
 const notifyData = ref<INotifyData>({
   type: 'success',
   title: '',
-  message: '修改成功',
+  message: t('success_edit'),
 })
 
 const {
@@ -98,7 +99,7 @@ const {
   validate: emailValidate,
 } = useField<string>('email', (value) => {
   if (!emailReg.test(value))
-    return '请填写正确的电邮地址'
+    return t('validate_msg_input_email')
   return ''
 })
 
@@ -115,8 +116,8 @@ const {
   onSuccess() {
     openNotify({
       type: 'email',
-      title: '邮电已发送',
-      message: `验证邮电已发送至 +${email.value}`,
+      title: t('tip_email_sent'),
+      message: `${t('tip_email_to')} +${email.value}`,
     })
   },
 })
@@ -135,8 +136,8 @@ async function emailSubmit() {
     await runMemberUpdate({ record: { email: email.value }, uid: paramsData.value.uid })
     notifyData.value = {
       type: 'email',
-      title: '成功更新电邮地址',
-      message: `电邮地址已更新为 ${email.value}`,
+      title: t('success_update_email'),
+      message: `${t('email_update_to')} ${email.value}`,
     }
     setEmailDisabledBtnTrue()
     emailCheck()
@@ -152,15 +153,15 @@ function numberSubmit() {
   })
   notifyData.value = {
     type: 'phone',
-    title: '成功更新手机号码',
-    message: `手机号码已更新为 +${paramsData.value.phone}`,
+    title: t('success_update_phone'),
+    message: `${t('phone_update_to')} +${paramsData.value.phone}`,
   }
   setPhoneDisabledBtnTrue()
 }
 function socialSubmit() {
   const { sex, ...rest } = paramsData.value
   runMemberUpdate({ record: { sex: sex.toString(), ...rest }, uid: paramsData.value.uid })
-  notifyData.value = { type: 'success', message: '修改成功' }
+  notifyData.value = { type: 'success', message: t('success_edit') }
   setSocialDisabledBtnTrue()
 }
 
@@ -235,7 +236,7 @@ watch(() => route.query, (newValue) => {
     && newValue.uid && newValue.captcha) {
     const { run } = useRequest(ApiMemberEmailCheck, {
       async onSuccess() {
-        openNotify({ type: 'email', title: '验证成功', message: '恭喜您电邮验证成功!' })
+        openNotify({ type: 'email', title: t('success_verify'), message: t('congratulate_email_success') })
         await updateUserInfo()
       },
       onAfter() {
@@ -271,13 +272,13 @@ onMounted(() => {
 <template>
   <div v-if="paramsData" class="tg-settings-general">
     <AppSettingsContentItem
-      title="电邮地址"
+      :title="t('email_address')"
       :verified="emailVerified || emailDisabledBtn"
       :badge="emailVerified"
       @submit="emailSubmit"
     >
       <div style="margin-top: 16px;">
-        <BaseLabel label="电邮地址" must-small>
+        <BaseLabel :label="t('email_address')" must-small>
           <BaseInput
             v-model="email"
             :disabled="emailVerified"
@@ -301,19 +302,19 @@ onMounted(() => {
           :loading="loadingEmailCheckRequest"
           @click="emailCheck"
         >
-          重新发送电邮
+          {{ t('resend_email') }}
         </BaseButton>
       </template>
     </AppSettingsContentItem>
     <AppSettingsContentItem
-      title="手机号码"
+      :title="t('phone')"
       :verified="phoneDisabledBtn"
       @submit="numberSubmit"
     >
       <template #top-desc>
-        我们只服务国际电话区号列表中所列有的区域。
+        {{ t('tip_phone') }}
       </template>
-      <BaseLabel label="国际电话区号" must-small>
+      <BaseLabel :label="t('intl_phone_pre')" must-small>
         <BaseSelect
           v-model="paramsData.area_code"
           :options="areaCodeOptions || []"
@@ -321,7 +322,7 @@ onMounted(() => {
           --tg-base-select-style-padding-y: var(--tg-spacing-7);"
         />
       </BaseLabel>
-      <BaseLabel label="手机号码" must-small>
+      <BaseLabel :label="t('phone')" must-small>
         <BaseInput
           v-model="paramsData.phone"
           type="number"
@@ -329,7 +330,7 @@ onMounted(() => {
       </BaseLabel>
     </AppSettingsContentItem>
     <AppSettingsContentItem
-      title="社交账号"
+      :title="t('social_account')"
       :verified="socialDisabledBtn"
       last-one
       style="--tg-app-settings-content-item-style-max-width: 100%;"
