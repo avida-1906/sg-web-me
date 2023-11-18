@@ -1,5 +1,5 @@
 import type { AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios'
-import { getCurrentLanguageForBackend } from '~/modules/i18n'
+import { getCurrentLanguageForBackend, i18n } from '~/modules/i18n'
 import { router } from '~/modules/router'
 
 const { VITE_HTTP_TIMEOUT, VITE_HTTP_BASEURL, PROD, MODE } = getEnv()
@@ -16,7 +16,7 @@ type IResponseInterceptors = (
   value: AxiosResponse<any>
 ) => AxiosResponse<any> | Promise<Error>
 
-const { t } = useI18n()
+const { t } = i18n.global
 const { openNotify } = useNotify()
 const { openLoginDialog } = useLoginDialog()
 
