@@ -79,11 +79,10 @@ function changeCurrency(item: CurrencyData, network: string) {
 
 <template>
   <div class="app-receive-bonus">
-    <div class="money">
-      {{ money }}<BaseIcon name="coin-usdt" />
-    </div>
     <div class="choose-label">
-      {{ $t('choose_bonus_receive_label') }}：
+      <span>{{ $t('current_wait_receive_label') }}：</span>
+      <span class="money">{{ money }}<BaseIcon name="coin-usdt" /></span>
+      <span>{{ $t('choose_bonus_receive_label') }}</span>
     </div>
     <div class="currency-wrap">
       <AppSelectCurrency
@@ -127,16 +126,23 @@ function changeCurrency(item: CurrencyData, network: string) {
   font-size: var(--tg-font-size-default);
   color: var(--tg-text-white);
   .money {
-    color: var(--tg-text-white);
-    font-size: var(--tg-font-size-lg);
+    color: var(--tg-text-warn);
+    font-size: var(--tg-font-size-default);
     font-weight: var(--tg-font-weight-semibold);
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: var(--tg-spacing-4);
+    svg {
+      margin-right: var(--tg-spacing-6);
+    }
   }
   .choose-label {
+    display: flex;
+    align-items: center;
     color: var(--tg-secondary-light);
     line-height: var(--tg-spacing-20);
+    flex-wrap: wrap;
+    word-break: break-all;
   }
   .currency-wrap {
     display: flex;
