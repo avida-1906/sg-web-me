@@ -634,8 +634,6 @@ declare module 'vue' {
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
     readonly CHAT_MESSAGE_BUS: UnwrapRef<typeof import('./utils/event-bus')['CHAT_MESSAGE_BUS']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
-    readonly EnumCasinoApiGameType: UnwrapRef<typeof import('./utils/enums')['EnumCasinoApiGameType']>
-    readonly EnumCasinoGameType: UnwrapRef<typeof import('./utils/enums')['EnumCasinoGameType']>
     readonly EnumCasinoSortType: UnwrapRef<typeof import('./utils/enums')['EnumCasinoSortType']>
     readonly EnumCurrency: UnwrapRef<typeof import('./utils/enums')['EnumCurrency']>
     readonly EnumLanguage: UnwrapRef<typeof import('./utils/enums')['EnumLanguage']>
@@ -1163,8 +1161,6 @@ declare module '@vue/runtime-core' {
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
     readonly CHAT_MESSAGE_BUS: UnwrapRef<typeof import('./utils/event-bus')['CHAT_MESSAGE_BUS']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
-    readonly EnumCasinoApiGameType: UnwrapRef<typeof import('./utils/enums')['EnumCasinoApiGameType']>
-    readonly EnumCasinoGameType: UnwrapRef<typeof import('./utils/enums')['EnumCasinoGameType']>
     readonly EnumCasinoSortType: UnwrapRef<typeof import('./utils/enums')['EnumCasinoSortType']>
     readonly EnumCurrency: UnwrapRef<typeof import('./utils/enums')['EnumCurrency']>
     readonly EnumLanguage: UnwrapRef<typeof import('./utils/enums')['EnumLanguage']>

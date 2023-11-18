@@ -1,4 +1,9 @@
-import type { ISportEventInfoMl, TPat } from '~/apis/types'
+import type {
+  ISportEventInfo,
+  ISportEventInfoMl,
+  ISportEventInfoMlMs,
+  TPat,
+} from '~/apis/types'
 import type { IBasePanelType, IBreadCrumbItem } from '~/types'
 
 interface IBetObject {
@@ -160,8 +165,6 @@ export function useApiSportDetails() {
 
   /** 数据列表 */
   const dataList = computed<ISportEventInfoMl[]>(() => {
-    const data: IDataListItem[] = []
-
     if (
       false
       || !sportInfo.value
@@ -183,10 +186,25 @@ export function useApiSportDetails() {
     for (let i = 0; i < _filter.length; i++) {
       const item = _filter[i]
       if (item.pat === 1 || item.pat === 3) {
+        // 组合购物车需要的数据
+        const _infoList = sportInfo.value.list[0]
+        for (let j = 0; j < item.ms.length; j++) {
+          const _ms = item.ms[j]
+          _ms.marketInfo = getCartObject(item, _ms, _infoList)
+        }
+
         renderList.push(item)
       }
       else if (item.pat === 2 || item.pat === 4) {
         const _msObject = renderList.find(ii => ii?.btn === item.btn)
+
+        // 组合购物车需要的数据
+        const _infoList = sportInfo.value.list[0]
+        for (let j = 0; j < item.ms.length; j++) {
+          const _ms = item.ms[j]
+          _ms.marketInfo = getCartObject(_msObject || item, _ms, _infoList)
+        }
+
         if (_msObject) {
           _msObject.other.push(...item.ms)
         }
@@ -197,8 +215,40 @@ export function useApiSportDetails() {
       }
     }
 
+    console.error('renderList', renderList)
+
     return renderList
   })
+
+  /**
+   * 获取购物车需要的对象
+   * @param infoList1 info 接口 list[0] 对象
+   * @param mlObject infoList1.ml 对象
+   * @param msObject infoList1.ml.ms 对象
+   */
+  function getCartObject(
+    mlObject: ISportEventInfoMl,
+    msObject: ISportEventInfoMlMs,
+    infoList1: ISportEventInfo,
+  ) {
+    return {
+      wid: msObject.wid,
+      mlid: mlObject.mlid,
+      mll: mlObject.mll,
+      pid: mlObject.pid,
+      bt: mlObject.bt,
+      ov: msObject.ov,
+      m: infoList1.m,
+      ei: infoList1.ei,
+      si: infoList1.si,
+      hdp: msObject.hdp,
+      sid: msObject.sid,
+      homeTeamName: infoList1.htn,
+      awayTeamName: infoList1.atn,
+      btn: mlObject.btn,
+      sn: infoList1.sn,
+    }
+  }
 
   watchEffect(() => {
     if (handicapListData.value.length)
