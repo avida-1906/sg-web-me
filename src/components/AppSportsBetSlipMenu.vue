@@ -1,7 +1,9 @@
 <script setup lang='ts'>
 const { t } = useI18n()
 const router = useRouter()
+const appStore = useAppStore()
 const { closeRightSidebar } = useRightSidebar()
+const { currentGlobalCurrency } = storeToRefs(appStore)
 
 const { selected: headSelectValue, list: headSelectData } = useSelect([
   {
@@ -187,12 +189,12 @@ const betBtnText = computed(() =>
           <!-- 单式 -->
           <div v-show="isBetSingle" class="calculation-item">
             <span>{{ t('sports_total_bet_amount') }}</span>
-            <AppAmount amount="0.00000000" currency-type="BTC" />
+            <AppAmount amount="0.00000000" :currency-type="currentGlobalCurrency" />
           </div>
 
           <div class="calculation-item">
             <span>{{ t('sports_estimated_payment_amount') }}</span>
-            <AppAmount amount="0.00000000" currency-type="BTC" />
+            <AppAmount amount="0.00000000" :currency-type="currentGlobalCurrency" />
           </div>
         </div>
 
