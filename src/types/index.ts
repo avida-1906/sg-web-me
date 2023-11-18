@@ -114,3 +114,11 @@ export interface ICartInfo {
   /** 选项名称 */
   sn: string
 }
+
+/**
+ * 购物车数据
+ * @desc 相对于 ICartInfo 带有amount，用来存储购物车中的金额
+ */
+export type ICartInfoData = ICartInfo & {
+  amount: number
+}

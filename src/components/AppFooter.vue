@@ -8,7 +8,7 @@ const router = useRouter()
 const languageStore = useLanguageStore()
 const { userLanguage, AllLanguages } = storeToRefs(languageStore)
 const sportStore = useSportsStore()
-const { sportsOddsType } = storeToRefs(sportStore)
+const { sportsOddsType, AllOddsTypes } = storeToRefs(sportStore)
 
 const supportCurrency = [
   '/png/footer/ltc.png',
