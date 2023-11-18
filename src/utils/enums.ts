@@ -89,26 +89,6 @@ export enum EnumCurrency {
 }
 
 /**
- * casino游戏类型枚举
- */
-export enum EnumCasinoGameType {
-  /** 真人 */
-  LIVE = 'live',
-  /** 电子 */
-  SLOT = 'slot',
-}
-
-/**
- * casino游戏类型接口参数枚举
- */
-export enum EnumCasinoApiGameType {
-  /** 真人 */
-  LIVE = 1,
-  /** 电子 */
-  SLOT = 3,
-}
-
-/**
  * casino游戏排序枚举
  */
 export enum EnumCasinoSortType {

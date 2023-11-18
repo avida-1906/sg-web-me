@@ -33,8 +33,6 @@ const vipProgressData = ref<IVipProgressData>({
   percent: 30,
   currentLevel: 2,
 })
-// const { list: liveList, runAsync: runLive } = useList(ApiMemberGameList)
-// const { list: slotList, runAsync: runSlot } = useList(ApiMemberGameList)
 const { openRegisterDialog } = useRegisterDialog()
 
 const isSm = computed(() => appContentWidth.value <= widthBoundarySm.value)
@@ -48,10 +46,6 @@ const onShowMore = function () {
 }
 
 runMemberNoticeAllList()
-// await application.allSettled([
-//   runLive({ game_type: 1 }),
-//   runSlot({ game_type: 3 }),
-// ])
 </script>
 
 <template>
@@ -164,24 +158,6 @@ runMemberNoticeAllList()
         </div>
       </div>
     </div>
-    <!-- 老虎机  -->
-    <!-- <div class="pt-6">
-      <AppSlider
-        icon="chess-slot-machine"
-        :game-type="EnumCasinoGameType.SLOT"
-        :title="t('game_type_slot_short_name')"
-        :data="slotList"
-      />
-    </div> -->
-    <!-- 真人娱乐 -->
-    <!-- <div class="pt-6">
-      <AppSlider
-        :game-type="EnumCasinoGameType.LIVE"
-        icon="chess-live-casino"
-        :title="t('game_type_live')"
-        :data="liveList"
-      />
-    </div> -->
     <!-- 加密货币 -->
     <!-- <div
       class="index-buy-cryptocurrency"

@@ -6,7 +6,10 @@ const route = useRoute()
 const title = computed(() => route.query.name)
 const { bool: loading } = useBoolean(false)
 
+const gameListRef = ref()
 const currentType = ref(props.gameType)
+const sortType = ref(EnumCasinoSortType.recommend)
+const pids = ref('')
 
 function handleBeforeUnmounted() {
   loading.value = true
@@ -17,6 +20,24 @@ function handleMounted() {
     clearTimeout(t)
   }, 500)
 }
+// 游戏提供商选择变化
+function onPlatTypeChecked(v: string) {
+  pids.value = v
+  nextTick(() => {
+    gameListRef.value.getData()
+  })
+}
+// 排序变化
+function onSortChange(v: any) {
+  sortType.value = v
+  nextTick(() => {
+    gameListRef.value.getData()
+  })
+}
+
+watch(route, (a) => {
+  currentType.value = a.params.gameType.toString()
+})
 </script>
 
 <template>
@@ -43,13 +64,17 @@ function handleMounted() {
       <div class="mt-24">
         <AppGroupFilter
           :game-type="currentType"
+          :sort-type="sortType"
+          @plat-type-checked="onPlatTypeChecked"
+          @sort-type-change="onSortChange"
         />
       </div>
       <div v-show="loading" class="loading">
         <BaseLoading />
       </div>
       <AppCasinoGameTypeGameList
-        :key="route.fullPath" :game-type="gameType"
+        ref="gameListRef"
+        :key="route.fullPath" :game-type="gameType" :sort-type="sortType" :pids="pids"
         @vue:mounted="handleMounted"
         @vue:before-unmount="handleBeforeUnmounted"
       />
