@@ -45,12 +45,14 @@ const { run: runDrawBonus, loading } = useRequest(ApiMemberFeedbackBonusDraw, {
     if (props.feedBackItem)
       chatStore.setFeedbackItem({ ...props.feedBackItem, bonusState: 2 })
     openNotify({ type: 'success', message: t('receive_success') })
+    appStore.getBalanceData()
   },
 })
 
 const { run: runDrawVipBonus, loading: vipLoading } = useRequest(ApiMemberApplyVipBonus, {
   onSuccess: () => {
     openNotify({ type: 'success', message: t('receive_success') })
+    appStore.getBalanceData()
   },
 })
 
