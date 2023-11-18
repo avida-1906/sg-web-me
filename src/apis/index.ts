@@ -104,24 +104,20 @@ export function ApiMemberGameDetail(id: string) {
     id: string
     platform_id: string
     name: string
-    zh_name: string
-    en_name: string
-    pt_name: string
-    th_name: string
-    vn_name: string
-    client_type: string
-    game_type: number
+    game_type: string
+    zk_online: number
+    online: number
     game_id: string
     img: string
-    online: number
-    is_hot: string
     sorting: number
     created_at: number
+    rtp: string
+    percent: string
+    updated_at: string
+    is_hot: string
     is_new: string
-    tag_id: string
-    currency: string
-    lang: string
     is_fav: string
+    currencys: EnumCurrencyKey[]
   }>(`/member/game/detail?id=${id}`)
 }
 

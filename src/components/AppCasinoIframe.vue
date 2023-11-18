@@ -39,7 +39,7 @@ const {
   runAsync: runDetail,
 } = useRequest(() => ApiMemberGameDetail(props.id), {
   onSuccess(res) {
-    currencyList.value = JSON.parse(res.currency)
+    currencyList.value = res.currencys
     currentCurrency.value = currencyList.value[0]
     isFavorite.value = res.is_fav === '1'
     overlayTrue()
