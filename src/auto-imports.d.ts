@@ -87,6 +87,7 @@ declare global {
   const ApiWalletBankcardList: typeof import('./apis/index')['ApiWalletBankcardList']
   const Big: typeof import('big.js')['Big']
   const CHAT_MESSAGE_BUS: typeof import('./utils/event-bus')['CHAT_MESSAGE_BUS']
+  const Cart: typeof import('./utils/sports')['Cart']
   const EffectScope: typeof import('vue')['EffectScope']
   const EnumCasinoApiGameType: typeof import('./utils/enums')['EnumCasinoApiGameType']
   const EnumCasinoGameType: typeof import('./utils/enums')['EnumCasinoGameType']
@@ -126,6 +127,7 @@ declare global {
   const STORAGE_sports_current_provider: typeof import('./utils/storage')['STORAGE_sports_current_provider']
   const Session: typeof import('./utils/storage')['Session']
   const Sports: typeof import('./utils/sports')['Sports']
+  const SportsCart: typeof import('./utils/sports')['SportsCart']
   const SportsOdds: typeof import('./utils/sports')['SportsOdds']
   const acceptHMRUpdate: typeof import('pinia')['acceptHMRUpdate']
   const add: typeof import('./utils/number')['add']
@@ -666,6 +668,7 @@ declare module 'vue' {
     readonly STORAGE_SPORTS_PANEL_TYPE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_SPORTS_PANEL_TYPE_KEY']>
     readonly STORAGE_TOKEN_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_TOKEN_KEY']>
     readonly Session: UnwrapRef<typeof import('./utils/storage')['Session']>
+    readonly SportsCart: UnwrapRef<typeof import('./utils/sports')['SportsCart']>
     readonly SportsOdds: UnwrapRef<typeof import('./utils/sports')['SportsOdds']>
     readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>
     readonly add: UnwrapRef<typeof import('./utils/number')['add']>
@@ -1194,6 +1197,7 @@ declare module '@vue/runtime-core' {
     readonly STORAGE_SPORTS_PANEL_TYPE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_SPORTS_PANEL_TYPE_KEY']>
     readonly STORAGE_TOKEN_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_TOKEN_KEY']>
     readonly Session: UnwrapRef<typeof import('./utils/storage')['Session']>
+    readonly SportsCart: UnwrapRef<typeof import('./utils/sports')['SportsCart']>
     readonly SportsOdds: UnwrapRef<typeof import('./utils/sports')['SportsOdds']>
     readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>
     readonly add: UnwrapRef<typeof import('./utils/number')['add']>

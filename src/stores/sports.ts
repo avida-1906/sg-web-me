@@ -88,6 +88,8 @@ export const useSportsStore = defineStore('sports', () => {
   const currentLiveNav = ref(-1)
   /** 当前即将开赛选中的体育项目 */
   const currentUpcomingNav = ref(0)
+  /** 购物车 */
+  const cart = ref(new SportsCart(currentGlobalCurrency.value))
 
   /** 体育计数源 */
   const { data: allSportsCount, run: runSportsCount } = useRequest(() =>
@@ -327,12 +329,8 @@ export const useSportsStore = defineStore('sports', () => {
     sportsOddsType,
     sportOddType,
     betSlipData,
-    renderOdds,
-    setSportsOddsType,
-    getSportsOddsType,
     currentProvider,
     providerList,
-    changeProvider,
     allSportsCount,
     sidebarData,
     liveCount,
@@ -345,6 +343,11 @@ export const useSportsStore = defineStore('sports', () => {
     currentUpcomingNav,
     sportsFavoriteData,
     allSportsSi,
+    cart,
+    renderOdds,
+    setSportsOddsType,
+    getSportsOddsType,
+    changeProvider,
     refreshSportsFavList,
   }
 })
