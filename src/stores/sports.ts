@@ -102,7 +102,7 @@ export const useSportsStore = defineStore('sports', () => {
   const {
     data: sportsFavoriteData,
     run: runGetFavoriteList,
-  } = useRequest(ApiSportGetFavoriteList)
+  } = useRequest(ApiSportGetFavoriteList, { throttleInterval: 1500 })
 
   /** 侧边栏数据源 */
   const { data: sidebarData, run: runSportsSidebar } = useRequest(ApiSportSidebar, {
@@ -315,6 +315,14 @@ export const useSportsStore = defineStore('sports', () => {
       return EnumSportsOddsType.DECIMAL
   }
 
+  /** 更新收藏赛事列表 */
+  function refreshSportsFavList() {
+    runGetFavoriteList({
+      sis: allSportsSi.value,
+      cur: currencyConfig[currentGlobalCurrency.value].cur,
+    })
+  }
+
   return {
     sportsOddsType,
     sportOddType,
@@ -337,7 +345,7 @@ export const useSportsStore = defineStore('sports', () => {
     currentUpcomingNav,
     sportsFavoriteData,
     allSportsSi,
-    runGetFavoriteList,
+    refreshSportsFavList,
   }
 })
 

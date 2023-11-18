@@ -17,14 +17,10 @@ const { width } = storeToRefs(useWindowStore())
 const { isLogin, currentGlobalCurrency } = storeToRefs(useAppStore())
 const { checkDragDialog } = useDragDialogList()
 const sportsStore = useSportsStore()
-const { allSportsSi, sportsFavoriteData } = storeToRefs(sportsStore)
+const { sportsFavoriteData } = storeToRefs(sportsStore)
 /** 是否收藏 */
-const isFavorite = computed(() => {
-  if (sportsFavoriteData.value && sportsFavoriteData.value.list)
-    return sportsFavoriteData.value.list.findIndex(a => a.ei === props.data.ei) > -1
+const { bool: isFavorite } = useBoolean(false)
 
-  return false
-})
 /** 添加收藏 */
 const { run: runAddFavorite } = useRequest(() =>
   ApiSportAddFavorite({
@@ -34,10 +30,8 @@ const { run: runAddFavorite } = useRequest(() =>
   }),
 {
   onSuccess() {
-    sportsStore.runGetFavoriteList({
-      sis: allSportsSi.value,
-      cur: currencyConfig[currentGlobalCurrency.value].cur,
-    })
+    isFavorite.value = true
+    sportsStore.refreshSportsFavList()
   },
 })
 /** 删除收藏 */
@@ -49,10 +43,8 @@ const { run: runDelFavorite } = useRequest(() =>
   }),
 {
   onSuccess() {
-    sportsStore.runGetFavoriteList({
-      sis: allSportsSi.value,
-      cur: currencyConfig[currentGlobalCurrency.value].cur,
-    })
+    isFavorite.value = false
+    sportsStore.refreshSportsFavList()
   },
 })
 
@@ -168,6 +160,21 @@ function favHandler() {
 function goEventDetailPage() {
   router.push(replaceSportsPlatId(eventDetailPath.value))
 }
+
+const stop = watch(sportsFavoriteData, (a) => {
+  if (a && a.list)
+    isFavorite.value = a.list.findIndex(a => a.ei === props.data.ei) > -1
+})
+
+onMounted(() => {
+  if (sportsFavoriteData.value && sportsFavoriteData.value.list) {
+    const fl = sportsFavoriteData.value.list
+    isFavorite.value = fl.findIndex(a => a.ei === props.data.ei) > -1
+  }
+})
+onBeforeUnmount(() => {
+  stop()
+})
 </script>
 
 <template>
