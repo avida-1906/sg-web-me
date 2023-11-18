@@ -21,7 +21,7 @@
                 <div class="row-wrap right">
                   <div class="col">
                     <a class="link">
-                      <span>下载</span>
+                      <span>{{ $t('download') }}</span>
                       <BaseIcon name="uni-jump-page" />
                     </a>
                   </div>

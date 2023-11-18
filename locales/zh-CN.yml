@@ -216,6 +216,7 @@ discovery_mode_entry_text: 需要帮助？
 dismiss: 关闭
 dont_show_suggestions: 不显示建议
 download_transcript: 下载对话
+download: 下载
 email: 电子邮件
 emoji_picker: 表情符号选取器
 empty_conversations: 来自团队的消息将显示在此处

@@ -10,11 +10,11 @@ const tab = ref('')
 
 const allPlatforms = computed(() => platformList.value.concat(providerList.value))
 const tabList = computed(() => [
-  { label: '电子', value: '3' },
-  { label: '捕鱼', value: 'by' },
-  { label: '棋牌', value: 'qp' },
-  { label: '真人', value: '1' },
-  { label: '体育', value: '4' },
+  { label: t('slot'), value: '3' },
+  { label: t('fishing'), value: 'by' },
+  { label: t('chess'), value: 'qp' },
+  { label: t('live'), value: '1' },
+  { label: t('sports'), value: '4' },
 ].filter(item =>
   allPlatforms.value.filter(p => p.game_type === item.value).length))
 const filteredPlatforms = computed(() =>
