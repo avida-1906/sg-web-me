@@ -28,7 +28,7 @@
                   <div class="col">
                     <AppAmount
                       amount="0.01888888"
-                      :currency-type="EnumCurrency.BTC"
+                      currency-type="BTC"
                     />
                   </div>
                   <div class="col bot">

@@ -15,7 +15,7 @@ const {
   validate: validateDoublePwd,
 } = useField<string>('doublePassword', (value) => {
   if (!value)
-    return '请输入双重验证密码'
+    return t('pls_input_double_check_pwd')
   return ''
 })
 const {
@@ -25,7 +25,7 @@ const {
   onSuccess() {
     openNotify({
       type: 'success',
-      message: '设置双重验证密码成功',
+      message: t('success_set_double_check'),
     })
     updateUserInfo()
   },
@@ -76,7 +76,7 @@ function generateQRCodeUrl(params: {
 <template>
   <div class="tg-settings-security">
     <AppSettingsContentItem
-      title="双重验证"
+      :title="t('two_step_verification')"
       last-one
       :btn-loading="dualVerifyLoading"
       :verified="doubleVerified"
@@ -84,22 +84,22 @@ function generateQRCodeUrl(params: {
       @submit="submitDoublePassword"
     >
       <template #top-desc>
-        启用双重验证以让您的账户更加安全。
+        {{ t('tip_start_double_check') }}
       </template>
       <div class="two-step-verification">
         <AppCopyLine
           v-if="userInfo"
-          label="将代码复制到您的身份验证器应用程序（Authenticator App）"
+          :label="t('copy_to_google')"
           :msg="userInfo.google_key"
         />
         <p class="mt-16">
-          防止他人看到此页！
+          {{ t('hide_from_others') }}
         </p>
         <div v-if="getQRcodeUrl" class="qr-wrap">
           <BaseQrcode :url="getQRcodeUrl" class="mt-16" />
         </div>
         <div class="mt-16">
-          <BaseLabel label="密码" must-small>
+          <BaseLabel :label="t('password')" must-small>
             <BaseInput
               v-model="loginPassword"
               :msg="loginPwdErrorMsg"
@@ -108,7 +108,7 @@ function generateQRCodeUrl(params: {
             />
           </BaseLabel>
           <div class="mt-16">
-            <BaseLabel label="双重验证" must-small>
+            <BaseLabel :label="t('menu_title_settings_update_safecheck')" must-small>
               <BaseInput
                 v-model="doublePassword"
                 :msg="doublePwdErrorMsg"
