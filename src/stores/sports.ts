@@ -31,52 +31,7 @@ interface IBetSlipData {
   [key: string]: any
 }
 
-export const AllOddsTypes: Array<{
-  title: string
-  path: string
-  icon: string
-  value: EnumSportsOddsType
-}> = [
-  {
-    title: t('sports_odds_DECIMAL'),
-    path: '',
-    icon: '',
-    value: EnumSportsOddsType.DECIMAL,
-  },
-  {
-    title: t('sports_odds_FRACTION'),
-    path: '',
-    icon: '',
-    value: EnumSportsOddsType.FRACTION,
-  },
-  {
-    title: t('sports_odds_AMERICAN'),
-    path: '',
-    icon: '',
-    value: EnumSportsOddsType.AMERICAN,
-  },
-  {
-    title: t('sports_odds_INDONESIA'),
-    path: '',
-    icon: '',
-    value: EnumSportsOddsType.INDONESIA,
-  },
-  {
-    title: t('sports_odds_HONGKONG'),
-    path: '',
-    icon: '',
-    value: EnumSportsOddsType.HONGKONG,
-  },
-  {
-    title: t('sports_odds_MALAYSIA'),
-    path: '',
-    icon: '',
-    value: EnumSportsOddsType.MALAYSIA,
-  },
-]
-
 export const useSportsStore = defineStore('sports', () => {
-  const { t } = useI18n()
   const { isLogin, currentGlobalCurrency } = storeToRefs(useAppStore())
   /** 体育赔率展示方式 */
   const sportsOddsType = ref(getSportsOddsType())
@@ -142,6 +97,13 @@ export const useSportsStore = defineStore('sports', () => {
     },
   })
   runSportsProvider({ game_type: 4 })
+
+  const AllOddsTypes = computed<Array<{
+    title: string
+    path: string
+    icon: string
+    value: EnumSportsOddsType
+  }>>(() => Object.values(EnumSportsOddsType).map(m => ({ title: t(m), path: '', icon: '', value: m })))
 
   /** 场馆列表 */
   const providerList = computed(() => {
@@ -274,13 +236,13 @@ export const useSportsStore = defineStore('sports', () => {
 
   const sportOddType = computed(() => <Menu>[
     {
-      title: `${t('sports_odds_title')}： ${t(`sports_odds_${sportsOddsType.value}`)}`,
+      title: `${t('sports_odds_title')}： ${t(sportsOddsType.value)}`,
       path: '',
       icon: 'spt-odds',
       type: 'radio',
       value: sportsOddsType.value,
       radioChange: (val: EnumSportsOddsType) => setSportsOddsType(val),
-      list: AllOddsTypes,
+      list: AllOddsTypes.value,
       domId: 'sports-odds-type',
     },
   ])
@@ -324,6 +286,7 @@ export const useSportsStore = defineStore('sports', () => {
   }
 
   return {
+    AllOddsTypes,
     sportsOddsType,
     sportOddType,
     betSlipData,
