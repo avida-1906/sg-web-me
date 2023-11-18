@@ -23,7 +23,9 @@ defineProps<Props>()
           <BaseIcon style="--tg-base-button-font-size:20px" name="uni-maintain" />
         </template>
         <template #description>
-          <span style="font-size: var(--tg-font-size-xs);">场馆维护中</span>
+          <span style="font-size: var(--tg-font-size-xs);">
+            {{ $t('plat_maintain') }}
+          </span>
         </template>
       </BaseEmpty>
     </div>

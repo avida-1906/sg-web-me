@@ -39,7 +39,7 @@ function toggle() {
     class="base-secondary-accordion"
     :class="[isOpen ? 'is-open' : '', `level-${level}`]"
   >
-    <div class="header no-active-scale" @click="toggle">
+    <div class="no-active-scale header" @click="toggle">
       <slot name="header">
         <div class="container">
           <div class="container">
@@ -68,7 +68,7 @@ function toggle() {
       <hr>
       <div class="load-more-box">
         <BaseButton type="text" @click="loadMore">
-          <span v-if="!loading">加载更多</span>
+          <span v-if="!loading">{{ $t('load_more') }}</span>
           <span v-else class="ani-scale">
             <BaseIcon name="spt-soccer" />
           </span>
