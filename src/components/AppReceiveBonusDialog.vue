@@ -62,10 +62,10 @@ function receiveBonus() {
     && props.feedBackItem.bonusState === 1
     && props.feedBackItem.feed_id
     && !loading.value)
-    runDrawBonus({ feed_id: props.feedBackItem.feed_id })
+    runDrawBonus({ feed_id: props.feedBackItem.feed_id, cur: activeCurrency.value?.cur ?? '706' })
 
   else if (props.totalBonus && +props.totalBonus > 0)
-    runDrawBonus({ feed_id: '' })
+    runDrawBonus({ feed_id: '', cur: activeCurrency.value?.cur ?? '706' })
 
   else if (props.vipBonus)
     runDrawVipBonus({ cur: activeCurrency.value?.type ?? 'USDT' })
