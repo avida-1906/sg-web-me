@@ -1,4 +1,7 @@
 import type { Menu } from '~/composables/useApiMenuData'
+import { i18n } from '~/modules/i18n'
+
+const { t } = i18n.global
 
 export enum EnumSportsPanelType {
   /** 三项投注 */
@@ -34,12 +37,42 @@ export const AllOddsTypes: Array<{
   icon: string
   value: EnumSportsOddsType
 }> = [
-  { title: '小数式', path: '', icon: '', value: EnumSportsOddsType.DECIMAL },
-  { title: '分数式', path: '', icon: '', value: EnumSportsOddsType.FRACTION },
-  { title: '美式', path: '', icon: '', value: EnumSportsOddsType.AMERICAN },
-  { title: '印尼格式', path: '', icon: '', value: EnumSportsOddsType.INDONESIA },
-  { title: '香港格式', path: '', icon: '', value: EnumSportsOddsType.HONGKONG },
-  { title: '马来格式', path: '', icon: '', value: EnumSportsOddsType.MALAYSIA },
+  {
+    title: t('sports_odds_DECIMAL'),
+    path: '',
+    icon: '',
+    value: EnumSportsOddsType.DECIMAL,
+  },
+  {
+    title: t('sports_odds_FRACTION'),
+    path: '',
+    icon: '',
+    value: EnumSportsOddsType.FRACTION,
+  },
+  {
+    title: t('sports_odds_AMERICAN'),
+    path: '',
+    icon: '',
+    value: EnumSportsOddsType.AMERICAN,
+  },
+  {
+    title: t('sports_odds_INDONESIA'),
+    path: '',
+    icon: '',
+    value: EnumSportsOddsType.INDONESIA,
+  },
+  {
+    title: t('sports_odds_HONGKONG'),
+    path: '',
+    icon: '',
+    value: EnumSportsOddsType.HONGKONG,
+  },
+  {
+    title: t('sports_odds_MALAYSIA'),
+    path: '',
+    icon: '',
+    value: EnumSportsOddsType.MALAYSIA,
+  },
 ]
 
 export const useSportsStore = defineStore('sports', () => {
@@ -131,7 +164,7 @@ export const useSportsStore = defineStore('sports', () => {
   const sportsMenu = computed(() => {
     return [
       {
-        title: '滚球盘',
+        title: t('sports_tab_live_events'),
         path: `/sports/${SPORTS_PLAT_ID}/live`,
         icon: 'spt-ball-plate',
         list: [],
@@ -139,9 +172,9 @@ export const useSportsStore = defineStore('sports', () => {
         fixtureCount: liveCount.value,
       },
       // eslint-disable-next-line max-len
-      { title: '即将开赛', path: `/sports/${SPORTS_PLAT_ID}/upcoming`, icon: 'spt-timing', list: [], domId: '' },
+      { title: t('sports_tab_starting_soon'), path: `/sports/${SPORTS_PLAT_ID}/upcoming`, icon: 'spt-timing', list: [], domId: '' },
       {
-        title: '我的投注',
+        title: t('my_bets'),
         path: `/sports/${SPORTS_PLAT_ID}/my-bets`,
         icon: 'spt-user-bet',
         list: [],
@@ -194,7 +227,7 @@ export const useSportsStore = defineStore('sports', () => {
       })
       return [
         {
-          title: '体育项目',
+          title: t('sports_events'),
           path: '',
           icon: 'spt-basketball',
           list,
