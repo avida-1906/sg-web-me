@@ -49,3 +49,68 @@ export interface IBasePanelType {
     awayTeam: number
   }
 }
+
+/**
+ * 赛事信息
+ *
+ * 用来存储赛事信息的数据结构，用在右侧投注面板和获取赛事信息的接口
+ */
+export interface IMarketInfo {
+  /** 投注项id，最内层id 大小玩法选择大的投注选项id */
+  wid: string
+  /** 盘口id， 让球、大小 那层的id */
+  mlid: string
+  /** 坑位 (当有多个不同分数的让分盘时，各盘口的序号) */
+  mll: number
+  /**
+   * 1:全场
+   *
+   * 2:上半场
+   *
+   * 3:下半场
+   */
+  pid: number
+  /**
+   * 玩法id
+   *
+   * 玩法种类id
+   *
+   * ex:让球 1
+   *
+   * 大小 2
+   *
+   * 独赢 3
+   */
+  bt: number
+  /** 赔率 */
+  ov: string
+  /**
+   * 1:早盘
+   *
+   * 2:今日
+   *
+   * 3:滚球
+   */
+  m: number
+  /** 赛事id */
+  ei: string
+  /** 球种Id */
+  si: number
+  /** handicap */
+  hdp: string
+  /**
+   * 下注种类id，ex: 大小裡面的大=1 小=2
+   */
+  sid: string
+
+  /** 主队名称 */
+  homeTeamName: string
+  /** 客队名称 */
+  awayTeamName: string
+
+  /** 盘口名称 */
+  btn: string
+
+  /** 选项名称 */
+  sn: string
+}
