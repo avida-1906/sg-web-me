@@ -1,9 +1,11 @@
 <script lang="ts" setup>
+const { t } = useI18n()
+
 // loading加载
 const { bool: loading } = useBoolean(false)
 const columns: Column[] = [
   {
-    title: '统计时间',
+    title: t('statistical_time'),
     dataIndex: 'settleTime',
     align: 'center',
     sort: true,
@@ -11,27 +13,27 @@ const columns: Column[] = [
     slot: 'settleTime',
   },
   {
-    title: '账号',
+    title: t('user_account'),
     dataIndex: 'account',
     align: 'center',
     slot: 'account',
   },
   {
-    title: '是否首存',
+    title: t('is_first_deposit'),
     dataIndex: 'isFirstLive',
     align: 'center',
     slot: 'firstLive',
     sort: true,
   },
   {
-    title: '上次登录',
+    title: t('last_login'),
     dataIndex: 'lastLogin',
     align: 'center',
     sort: true,
     slot: 'lastLogin',
   },
   {
-    title: '在线状态',
+    title: t('online_status'),
     dataIndex: 'isOnline',
     align: 'center',
     sort: true,
@@ -74,7 +76,7 @@ const tableData = ref([
       >
         <template #th-online>
           <div style="margin-top: var(--tg-spacing-4);">
-            次数
+            {{ t('times') }}
           </div>
         </template>
         <template #settleTime>
@@ -98,7 +100,8 @@ const tableData = ref([
         </template>
         <template #firstLive="{ record }">
           <span :style="{ color: record.isFirstLive ? '' : 'var(--tg-text-error)' }">
-            {{ record.isFirstLive ? '是' : '否' }}
+            {{ record.isFirstLive
+              ? t('attribute_collector_positive') : t('attribute_collector_negative') }}
           </span>
         </template>
         <template #online="{ record }">
@@ -106,10 +109,10 @@ const tableData = ref([
             <BaseBadge
               :color="record.isOnline
                 ? 'var(--tg-text-green)' : 'var(--tg-text-lightgrey)'"
-              :text="record.isOnline ? '在线' : '离线'"
+              :text="record.isOnline ? t('active_state') : t('offline')"
             />
             <div style="color: white;">
-              8次
+              8{{ t('seq') }}
             </div>
           </div>
         </template>

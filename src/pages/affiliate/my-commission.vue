@@ -1,36 +1,38 @@
 <script lang="ts" setup>
+const { t } = useI18n()
+
 // loading加载
 const { bool: loading } = useBoolean(false)
 const columns: Column[] = [
   {
-    title: '结算时间',
+    title: t('settle_time'),
     dataIndex: 'settleTime',
     align: 'center',
     slot: 'settleTime',
   },
   {
-    title: '类型',
+    title: t('label_type'),
     dataIndex: 'type',
     align: 'center',
   },
   {
-    title: '业绩',
+    title: t('performance'),
     dataIndex: 'performanceNum',
     align: 'center',
   },
   {
-    title: '贡献人数',
+    title: t('label_contribute_count'),
     dataIndex: 'contributeNum',
     align: 'center',
   },
   {
-    title: '佣金',
+    title: t('finance_funds_transfer_sort_commission'),
     dataIndex: 'commission',
     align: 'center',
     slot: 'commission',
   },
   {
-    title: '详情',
+    title: t('detail'),
     dataIndex: '',
     align: 'center',
     slot: 'operate',
@@ -65,7 +67,8 @@ const tableData = ref([
   <AppAffiliateContent>
     <template #grand-total>
       <div>
-        累计佣金：<span class="color-warn" style="font-weight: 500;">999,999,999.00</span>
+        {{ t('accu_commission') }}：
+        <span class="color-warn" style="font-weight: 500;">999,999,999.00</span>
       </div>
     </template>
     <template #default>
@@ -90,7 +93,7 @@ const tableData = ref([
             size="none"
             style="color:var(--tg-text-blue);--tg-base-button-font-size:12px;"
           >
-            查看
+            {{ t('view_label') }}
           </BaseButton>
         </template>
       </BaseTable>
