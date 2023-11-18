@@ -1,4 +1,5 @@
 <script setup lang='ts'>
+import type { ICartInfoData } from '~/types'
 import type {
   EnumsBetSlipBetSlipTabStatus as EnumsBetSlipBetSlipTabStatusType,
 } from '~/utils/enums'
@@ -21,6 +22,8 @@ interface Props {
   isClosed?: boolean
   /** 是否是滚球 */
   isLive?: boolean
+  /** 渲染的List数据 */
+  cartInfoData: ICartInfoData
 }
 const props = withDefaults(defineProps<Props>(), {
   index: 0,

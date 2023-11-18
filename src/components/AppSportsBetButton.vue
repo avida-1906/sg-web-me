@@ -10,16 +10,19 @@ interface Props {
   odds: string
   cartInfo: ICartInfo
 }
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   layout: 'vertical',
 })
 
+const sportStore = useSportsStore()
 const { t } = useI18n()
 const { openRightSidebar, rightIsExpand } = useRightSidebar()
 
 function clickHandler() {
   if (!rightIsExpand.value)
     openRightSidebar(EnumRightSidebarContent.BETTING)
+
+  sportStore.cart.add(props.cartInfo)
 }
 </script>
 

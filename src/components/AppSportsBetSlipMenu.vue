@@ -4,6 +4,7 @@ const router = useRouter()
 const appStore = useAppStore()
 const { closeRightSidebar } = useRightSidebar()
 const { currentGlobalCurrency } = storeToRefs(appStore)
+const sportStore = useSportsStore()
 
 const { selected: headSelectValue, list: headSelectData } = useSelect([
   {
@@ -63,6 +64,7 @@ const isBetMulti = computed(
 const betBtnText = computed(() =>
   betOrderData.value.find(b => b.value === betOrderSelectValue.value)?.label ?? '-',
 )
+const cartDataList = computed(() => sportStore.cart.dataList)
 </script>
 
 <template>
@@ -135,13 +137,17 @@ const betBtnText = computed(() =>
 
     <div class="bet-list">
       <div class="scroll-y betlist-scroll">
-        <AppSportsBetSlip :bet-slip-type="betOrderSelectValue" :index="0" />
-        <AppSportsBetSlip :bet-slip-type="betOrderSelectValue" :index="1" is-live />
-        <AppSportsBetSlip :bet-slip-type="betOrderSelectValue" :index="2" error />
-        <AppSportsBetSlip
-          :bet-slip-type="betOrderSelectValue"
-          :index="3" disabled is-closed
-        />
+        {{ sportStore.cart.dataList }}
+        <template
+          v-for="item, index in cartDataList"
+          :key="item.wid"
+        >
+          <AppSportsBetSlip
+            :bet-slip-type="betOrderSelectValue"
+            :cart-info-data="item"
+            :index="index"
+          />
+        </template>
 
         <!-- 无数据缺省，不要删！ -->
         <!-- <div class="empty">
