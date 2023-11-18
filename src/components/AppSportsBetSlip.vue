@@ -27,6 +27,8 @@ const props = withDefaults(defineProps<Props>(), {
   betSlipType: EnumsBetSlipBetSlipTabStatus.single,
 })
 const { t } = useI18n()
+const appStore = useAppStore()
+const { currentGlobalCurrency } = storeToRefs(appStore)
 
 const isBetSingle = computed(() =>
   props.betSlipType === EnumsBetSlipBetSlipTabStatus.single)
@@ -88,7 +90,7 @@ const isFirst = computed(() => props.index === 0)
             :disabled="disabled"
           >
             <template #right-icon>
-              <BaseIcon name="coin-btc" />
+              <AppCurrencyIcon :currency-type="currentGlobalCurrency" />
             </template>
           </BaseInput>
         </div>
@@ -98,7 +100,7 @@ const isFirst = computed(() => props.index === 0)
         <div class="estimated-amount">
           <AppAmount
             style="--tg-app-amount-width:12ch;"
-            amount="289339339.05000001" currency-type="BTC"
+            amount="289339339.05000001" :currency-type="currentGlobalCurrency"
           />
         </div>
       </div>
