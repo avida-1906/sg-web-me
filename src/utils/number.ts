@@ -50,6 +50,9 @@ export function sub(arg1: number, arg2: number): string {
  * @return {string} arg1乘以arg2的精确结果
  */
 export function mul(arg1: number, arg2: number): string {
+  if (!arg1 || !arg2)
+    return '0'
+
   return scientificToString(Big(arg1).times(Big(arg2)).toPrecision())
 }
 

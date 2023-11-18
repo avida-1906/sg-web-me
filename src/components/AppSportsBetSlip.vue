@@ -32,6 +32,9 @@ const props = withDefaults(defineProps<Props>(), {
 const { t } = useI18n()
 const appStore = useAppStore()
 const { currentGlobalCurrency } = storeToRefs(appStore)
+const sportStore = useSportsStore()
+
+const amount = ref(0)
 
 const isBetSingle = computed(() =>
   props.betSlipType === EnumsBetSlipBetSlipTabStatus.single)
@@ -39,6 +42,10 @@ const isBetMulti = computed(
   () => props.betSlipType === EnumsBetSlipBetSlipTabStatus.multi,
 )
 const isFirst = computed(() => props.index === 0)
+
+watch(currentGlobalCurrency, () => {
+  amount.value = 0
+})
 </script>
 
 <template>
@@ -57,33 +64,39 @@ const isFirst = computed(() => props.index === 0)
           {{ t('sports_status_live') }}
         </div>
         <div class="text">
-          深圳市足球俱乐部 - 长春亚泰
+          {{ cartInfoData.homeTeamName }} - {{ cartInfoData.awayTeamName }}
         </div>
       </div>
-      <BaseButton type="text" size="none">
-        <BaseIcon name="uni-close" />
+      <BaseButton
+        type="text" size="none"
+        @click="sportStore.cart.removeItem(index)"
+      >
+        <BaseIcon
+          name="uni-close"
+        />
       </BaseButton>
     </div>
     <div class="content">
       <!-- 盘口类型 -->
       <div class="market-name">
-        获胜
+        {{ cartInfoData.btn }}
       </div>
       <!-- 最大下注金额 -->
       <div class="max-bet" />
       <!-- 下注盘口 -->
       <div class="outcome-name">
-        <span>Sprynar, Pavel</span>
+        <span>{{ cartInfoData.sn }}</span>
       </div>
       <!-- 状态或赔率 -->
       <div v-if="isClosed" class="closed">
         {{ t('sports_settled') }}
       </div>
-      <AppSportsOdds v-else odds="2.35" arrow="left" />
+      <AppSportsOdds v-else :odds="cartInfoData.ov" arrow="left" />
       <!-- 单式金额输入框 -->
       <div v-show="isBetSingle" class="footer">
         <div class="bet-amount">
           <BaseInput
+            v-model="amount"
             type="number"
             placeholder="0.00000000"
             mb0
@@ -99,8 +112,8 @@ const isFirst = computed(() => props.index === 0)
         </div>
         <div class="estimated-amount">
           <AppAmount
-            style="--tg-app-amount-width:12ch;"
-            amount="289339339.05000001" :currency-type="currentGlobalCurrency"
+            :amount="mul(amount, Number(cartInfoData.ov))"
+            :currency-type="currentGlobalCurrency"
           />
         </div>
       </div>
