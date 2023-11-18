@@ -31,9 +31,9 @@ const {
 })
 const {
   value: amount,
-  setValue: setAmount,
   errorMessage: amountError,
   validate: amountValidate,
+  setValue: setAmount,
   resetField: amountReset,
 } = useField<string>('amount', (value) => {
   if (!value)
@@ -85,7 +85,6 @@ const {
     })
     selectBankReset()
     amountReset()
-    initAmount()
     payPasswordReset()
   },
 })
@@ -136,9 +135,6 @@ function maxNumber() {
 function updateBank() {
   runAsyncWithdrawBankcardList({ currency_id: props.activeCurrency.cur })
 }
-function initAmount() {
-  setAmount('0.00', false)
-}
 async function withDrawSubmit() {
   await selectBankValidate()
   await amountValidate()
@@ -155,7 +151,7 @@ async function withDrawSubmit() {
 }
 function formatAmount() {
   if (amount.value)
-    setAmount(toFixed(Number(amount.value), 2) || '0.00', true)
+    setAmount(Number.parseInt(amount.value).toString())
 }
 
 watch(() => props.activeCurrency, (newValue) => {
@@ -163,12 +159,7 @@ watch(() => props.activeCurrency, (newValue) => {
   // runAsyncWithdrawMethodList({ currency_id: newValue.cur })
   selectBankReset()
   amountReset()
-  initAmount()
   payPasswordReset()
-})
-
-onMounted(() => {
-  initAmount()
 })
 
 await application.allSettled(
@@ -244,7 +235,6 @@ await application.allSettled(
             v-model="amount"
             :msg="amountError"
             type="number"
-            placeholder="0.00"
             @on-right-button="maxNumber"
             @blur="formatAmount"
           >

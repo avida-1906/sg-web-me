@@ -84,14 +84,12 @@ const defaultAddress = computed(() => {
 
 function onAmountInput() {
   if (amount.value)
-    setAmount(toFixed(Number(amount.value), 8) || '0.00000000', true)
+    setAmount(Number.parseInt(amount.value).toString())
 }
 function maxNumber() {
   setAmount(props.activeCurrency.balance)
 }
-function initAmount() {
-  setAmount('0.00000000', false)
-}
+
 async function handleWithdraw() {
   await valiAddress()
   await valiAmount()
@@ -114,10 +112,6 @@ function updateContract() {
     page_size: 10,
   })
 }
-
-onMounted(() => {
-  initAmount()
-})
 
 watch(() => props.currentNetwork, () => {
   if (props.currentNetwork)
@@ -172,7 +166,6 @@ watch(() => props.currentNetwork, () => {
         <BaseInput
           v-model="amount"
           type="number"
-          placeholder="0.00000000"
           :msg="amountMsg"
           @blur="onAmountInput"
           @on-right-button="maxNumber"
