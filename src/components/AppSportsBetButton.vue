@@ -1,4 +1,6 @@
 <script setup lang='ts'>
+import type { ICartInfo } from '~/types'
+
 interface Props {
   layout?: 'horizontal' | 'vertical'
   active?: boolean
@@ -6,6 +8,7 @@ interface Props {
   isNa?: boolean
   title: string
   odds: string
+  cartInfo: ICartInfo
 }
 withDefaults(defineProps<Props>(), {
   layout: 'vertical',

@@ -1,10 +1,11 @@
 import type {
+  EnumCurrencyKey,
   ISportEventInfo,
   ISportEventInfoMl,
   ISportEventInfoMlMs,
   ISportOutrightsInfo,
 } from '~/apis/types'
-import type { IMarketInfo } from '~/types'
+import type { ICartInfo, ICartInfoData } from '~/types'
 
 /**
  * 体育ID
@@ -214,7 +215,18 @@ export function getCartObject(
   mlObject: ISportEventInfoMl,
   msObject: ISportEventInfoMlMs,
   infoList1: ISportEventInfo,
-): IMarketInfo {
+): ICartInfo {
+  let sn = ''
+  // 让分盘
+  if (mlObject.bt === 1)
+    sn = `${msObject.sn} (${msObject.hdp})`
+  // 总分
+  else if (mlObject.bt === 2)
+    sn = `${msObject.sn} ${msObject.hdp}`
+  // 获胜以及其它
+  else
+    sn = msObject.sn
+
   return {
     wid: msObject.wid,
     mlid: mlObject.mlid,
@@ -230,6 +242,71 @@ export function getCartObject(
     homeTeamName: infoList1.htn,
     awayTeamName: infoList1.atn,
     btn: mlObject.btn,
-    sn: infoList1.sn,
+    sn,
+  }
+}
+
+/**
+ * 体育购物车类
+ */
+export class SportsCart {
+  /** 购物车数据 */
+  dataList: ICartInfoData[] = []
+
+  /** 货币类型 */
+  currency: EnumCurrencyKey = EnumCurrency[0] as EnumCurrencyKey
+
+  /** 购物车数量 */
+  get count() {
+    return this.dataList.length
+  }
+
+  constructor(currency: EnumCurrencyKey) {
+    this.currency = currency
+  }
+
+  /**
+   * 添加数据到购物车
+   * @param {ICartInfo} data
+   */
+  add(data: ICartInfo) {
+    let suffixLength = 2
+    if (application.isVirtualCurrency(this.currency))
+      suffixLength = 8
+
+    this.dataList.push({
+      ...data,
+      amount: Number(toFixed(0, suffixLength)),
+    })
+  }
+
+  /**
+   * 从购物车删除数据
+   * @param {number} index
+   */
+  remove(index: number) {
+    if (index > this.dataList.length - 1) {
+      console.error('购物车删除数据失败，索引超出范围')
+      return
+    }
+
+    this.dataList.splice(index, 1)
+  }
+
+  /** 更新所有amount */
+  updateAmount() {
+    let suffixLength = 2
+    if (application.isVirtualCurrency(this.currency))
+      suffixLength = 8
+
+    this.dataList.forEach((a) => {
+      a.amount = Number(toFixed(0, suffixLength))
+    })
+  }
+
+  /** 更新货币 */
+  updateCurrency(currency: EnumCurrencyKey) {
+    this.currency = currency
+    this.updateAmount()
   }
 }

@@ -55,7 +55,7 @@ export interface IBasePanelType {
  *
  * 用来存储赛事信息的数据结构，用在右侧投注面板和获取赛事信息的接口
  */
-export interface IMarketInfo {
+export interface ICartInfo {
   /** 投注项id，最内层id 大小玩法选择大的投注选项id */
   wid: string
   /** 盘口id， 让球、大小 那层的id */
@@ -113,4 +113,12 @@ export interface IMarketInfo {
 
   /** 选项名称 */
   sn: string
+}
+
+/**
+ * 购物车数据
+ * @desc 相对于 ICartInfo 带有amount，用来存储购物车中的金额
+ */
+export type ICartInfoData = ICartInfo & {
+  amount: number
 }

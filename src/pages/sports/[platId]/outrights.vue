@@ -9,8 +9,39 @@ const { data } = useRequest(() =>
 })
 
 const outrightsData = computed(() => {
-  if (data.value)
-    return data.value.list.find(a => a.ci === ci)
+  if (data.value && data.value.list) {
+    const marketInfo = data.value.list.find(a => a.ci === ci)
+    if (marketInfo) {
+      marketInfo.ml = marketInfo.ml.map((a) => {
+        return {
+          ...a,
+          ms: a.ms.map((b) => {
+            return {
+              ...b,
+              cartInfo: {
+                wid: b.wid,
+                mlid: a.mlid,
+                mll: a.mll,
+                pid: a.pid,
+                bt: a.bt,
+                ov: b.ov,
+                m: 100,
+                ei: marketInfo.ei,
+                si: marketInfo.si,
+                hdp: b.hdp,
+                sid: b.sid,
+                homeTeamName: marketInfo.oen,
+                awayTeamName: '',
+                btn: a.btn,
+                sn: b.sn,
+              },
+            }
+          }),
+        }
+      })
+    }
+    return marketInfo
+  }
 })
 const sportName = computed(() => outrightsData.value ? outrightsData.value.sn : '')
 const regionName = computed(() => outrightsData.value ? outrightsData.value.pgn : '')
@@ -49,7 +80,7 @@ const breadcrumb = computed(() => [
         >
           <div class="btn-box">
             <AppSportsBetButton
-              v-for="item in market.ms" :key="item.wid"
+              v-for="item in market.ms" :key="item.wid" :cart-info="item.cartInfo"
               :title="item.sn" :odds="item.ov" layout="horizontal"
             />
           </div>

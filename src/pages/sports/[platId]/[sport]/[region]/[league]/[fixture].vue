@@ -143,6 +143,7 @@ await application.allSettled([
                             :key="outcome.wid"
                             :title="outcome.sn"
                             :odds="outcome.ov"
+                            :cart-info="outcome.cartInfo"
                             layout="horizontal"
                           />
                         </div>
@@ -171,6 +172,7 @@ await application.allSettled([
                                 <AppSportsBetButton
                                   layout="horizontal"
                                   :title="valueItem.hdp"
+                                  :cart-info="valueItem.cartInfo"
                                   :odds="valueItem.ov"
                                 />
                               </div>
@@ -191,6 +193,7 @@ await application.allSettled([
                             :key="outcome.wid"
                             :title="outcome.sn"
                             :odds="`${outcome.ov}`"
+                            :cart-info="outcome.cartInfo"
                             layout="horizontal"
                           />
                         </div>

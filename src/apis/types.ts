@@ -1,5 +1,5 @@
 import type { CurrencyCode } from '~/composables/useCurrencyData'
-import type { IMarketInfo } from '~/types'
+import type { ICartInfo } from '~/types'
 
 /** 货币的Key */
 export type EnumCurrencyKey = keyof typeof EnumCurrency
@@ -345,7 +345,7 @@ export interface ISportEventInfoMlMs {
   /** OddsList 内的欧洲盘 OV */
   ov: string
   /** 需要传递给组件的props，用于加入到购物车的 */
-  marketInfo: IMarketInfo
+  cartInfo: ICartInfo
 }
 
 /** 赛事详情 ml */
