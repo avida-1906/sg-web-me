@@ -98,14 +98,14 @@ const toAddVirAddress = function (
 function toDeleteVirAddress(item: VirtualCoin, vCurrencyTitle: string) {
   openDeleteConfirm({
     item,
-    runAsyncWalletBankcardList,
+    updateWalletList: runAsyncWalletBankcardList,
     vCurrencyTitle,
   })
 }
 function toDeleteBankcard(item: BankCard) {
   openDeleteConfirm({
     item,
-    runAsyncWalletBankcardList,
+    updateWalletList: runAsyncWalletBankcardList,
   })
 }
 
@@ -165,7 +165,7 @@ await application.allSettled([runAsyncWalletBankcardList()])
               class="address-row"
               :class="{ 'bankcard-disable-card-holder': tmp.state === 2 }"
             >
-              <BaseIcon name="fiat-bank" />
+              <BaseIcon :name="item.cur === '702' ? 'fiat-pix-title' : 'fiat-bank'" />
               <div class="bank-num">
                 <span style="padding-right: 1ch;">{{ tmp.bank_name }}</span>
                 <span>{{ tmp.bank_account }}</span>

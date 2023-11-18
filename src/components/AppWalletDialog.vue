@@ -40,6 +40,10 @@ function changeCurrency(item: CurrencyData, network: string) {
 function handleShow(val: boolean) {
   setShowWalletBool(val)
 }
+
+watch(() => currentTab.value, () => {
+  setShowWalletBool(true)
+})
 </script>
 
 <template>
@@ -57,7 +61,8 @@ function handleShow(val: boolean) {
         <Suspense timeout="0">
           <AppVirtualDeposit
             v-if="isVirCurrency"
-            :active-currency="activeCurrency?.type"
+            :active-currency="activeCurrency"
+            :current-network="currentNetwork"
             @show="handleShow"
           />
           <AppFiatDeposit
@@ -103,7 +108,10 @@ function handleShow(val: boolean) {
     </template>
     <!-- </KeepAlive> -->
   </div>
-  <div v-if="isWithdraw && userInfo && userInfo.google_verify !== 2" class="safe-bottom">
+  <div
+    v-if="(isWithdraw || isDeposit) && userInfo && userInfo.google_verify !== 2"
+    class="safe-bottom"
+  >
     <div>
       通过双重验证提高您的账户安全性
     </div>

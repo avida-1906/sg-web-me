@@ -1120,7 +1120,7 @@ bank_choose: 银行选择
 channel_choose: 通道选择
 choose_draw_bank: 请选择出款银行
 validate_require: 不能为空
-validate_deposit_amount: 存入金额不能为
+validate_amount: 金额不能为
 validate_deposit_amount_pos: 存入金额不能为负数
 validate_deposit_amount_max: 金额不能超过最大值
 withdraw_apply_success: 出款申请成功
