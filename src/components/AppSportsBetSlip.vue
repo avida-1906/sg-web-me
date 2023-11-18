@@ -46,6 +46,10 @@ const isFirst = computed(() => props.index === 0)
 watch(currentGlobalCurrency, () => {
   amount.value = 0
 })
+
+watchEffect(() => {
+  sportStore.cart.updateItemAmount(props.cartInfoData.wid, amount.value)
+})
 </script>
 
 <template>

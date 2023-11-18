@@ -261,6 +261,20 @@ export class SportsCart {
     return this.dataList.length
   }
 
+  /** 总投注额 */
+  get totalAmount() {
+    return this.dataList.reduce((a, b) => {
+      return a + Number(b.amount)
+    }, 0)
+  }
+
+  /** 预计总盈利 */
+  get totalProfit() {
+    return this.dataList.reduce((a, b) => {
+      return a + mul(b.amount, Number(b.ov))
+    }, 0)
+  }
+
   constructor(currency: EnumCurrencyKey) {
     this.currency = currency
   }
@@ -318,5 +332,16 @@ export class SportsCart {
   /** 检查wid 是否在购物车中 */
   checkWid(wid: string) {
     return this.dataList.findIndex(a => a.wid === wid) > -1
+  }
+
+  /**
+   * 更新amout
+   * @param {string} wid 列表唯一值
+   * @param {number} amount
+   */
+  updateItemAmount(wid: string, amount: number) {
+    const index = this.dataList.findIndex(a => a.wid === wid)
+    if (index > -1)
+      this.dataList[index].amount = amount
   }
 }

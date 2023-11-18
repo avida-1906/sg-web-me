@@ -195,11 +195,13 @@ const cartDataList = computed(() => sportStore.cart.dataList)
           <!-- 单式 -->
           <div v-show="isBetSingle" class="calculation-item">
             <span>{{ t('sports_total_bet_amount') }}</span>
+            {{ sportStore.cart.totalAmount }}
             <AppAmount amount="0.00000000" :currency-type="currentGlobalCurrency" />
           </div>
 
           <div class="calculation-item">
             <span>{{ t('sports_estimated_payment_amount') }}</span>
+            {{ sportStore.cart.totalProfit }}
             <AppAmount amount="0.00000000" :currency-type="currentGlobalCurrency" />
           </div>
         </div>
