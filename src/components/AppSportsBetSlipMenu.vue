@@ -178,7 +178,7 @@ const betBtnText = computed(() =>
         <!-- 复式投注额输入框 -->
         <BaseInput v-show="isBetMulti" type="number" placeholder="0.00000000">
           <template #right-icon>
-            <BaseIcon name="coin-btc" />
+            <AppCurrencyIcon :currency-type="currentGlobalCurrency" />
           </template>
         </BaseInput>
         <div class="betslip-calculation-summary">

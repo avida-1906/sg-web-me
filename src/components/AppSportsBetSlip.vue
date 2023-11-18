@@ -39,9 +39,6 @@ const isFirst = computed(() => props.index === 0)
 </script>
 
 <template>
-  <div v-if="isBetSingle && index === 1" class="duplicate-bet mt12">
-    {{ t('sports_duplicate_bet') }}
-  </div>
   <div
     class="app-sports-bet-slip" :class="{
       mt12: !isFirst && isBetSingle,
