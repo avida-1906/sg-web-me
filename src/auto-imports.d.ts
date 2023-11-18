@@ -80,6 +80,7 @@ declare global {
   const ApiSportEventDelta: typeof import('./apis/sport')['ApiSportEventDelta']
   const ApiSportEventInfo: typeof import('./apis/sport')['ApiSportEventInfo']
   const ApiSportEventList: typeof import('./apis/sport')['ApiSportEventList']
+  const ApiSportEventSearch: typeof import('./apis/sport')['ApiSportEventSearch']
   const ApiSportGetFavoriteList: typeof import('./apis/sport')['ApiSportGetFavoriteList']
   const ApiSportMenuMain: typeof import('./apis/sport')['ApiSportMenuMain']
   const ApiSportOutrightList: typeof import('./apis/sport')['ApiSportOutrightList']
@@ -287,6 +288,7 @@ declare global {
   const timeCheckIsLeapyear: typeof import('./utils/time')['timeCheckIsLeapyear']
   const timeFullTimeFormat: typeof import('./utils/time')['timeFullTimeFormat']
   const timeToFromNow: typeof import('./utils/time')['timeToFromNow']
+  const timeToSportsTimeFormat: typeof import('./utils/time')['timeToSportsTimeFormat']
   const toFixed: typeof import('./utils/number')['toFixed']
   const toNumber: typeof import('lodash-es')['toNumber']
   const toRaw: typeof import('vue')['toRaw']
@@ -628,6 +630,7 @@ declare module 'vue' {
     readonly ApiSportEventDelta: UnwrapRef<typeof import('./apis/sport')['ApiSportEventDelta']>
     readonly ApiSportEventInfo: UnwrapRef<typeof import('./apis/sport')['ApiSportEventInfo']>
     readonly ApiSportEventList: UnwrapRef<typeof import('./apis/sport')['ApiSportEventList']>
+    readonly ApiSportEventSearch: UnwrapRef<typeof import('./apis/sport')['ApiSportEventSearch']>
     readonly ApiSportGetFavoriteList: UnwrapRef<typeof import('./apis/sport')['ApiSportGetFavoriteList']>
     readonly ApiSportMenuMain: UnwrapRef<typeof import('./apis/sport')['ApiSportMenuMain']>
     readonly ApiSportOutrightList: UnwrapRef<typeof import('./apis/sport')['ApiSportOutrightList']>
@@ -820,8 +823,8 @@ declare module 'vue' {
     readonly throttledRef: UnwrapRef<typeof import('@vueuse/core')['throttledRef']>
     readonly throttledWatch: UnwrapRef<typeof import('@vueuse/core')['throttledWatch']>
     readonly timeCheckIsLeapYear: UnwrapRef<typeof import('./utils/time')['timeCheckIsLeapYear']>
-    readonly timeFullTimeFormat: UnwrapRef<typeof import('./utils/time')['timeFullTimeFormat']>
     readonly timeToFromNow: UnwrapRef<typeof import('./utils/time')['timeToFromNow']>
+    readonly timeToSportsTimeFormat: UnwrapRef<typeof import('./utils/time')['timeToSportsTimeFormat']>
     readonly toFixed: UnwrapRef<typeof import('./utils/number')['toFixed']>
     readonly toNumber: UnwrapRef<typeof import('lodash-es')['toNumber']>
     readonly toRaw: UnwrapRef<typeof import('vue')['toRaw']>
@@ -1156,6 +1159,7 @@ declare module '@vue/runtime-core' {
     readonly ApiSportEventDelta: UnwrapRef<typeof import('./apis/sport')['ApiSportEventDelta']>
     readonly ApiSportEventInfo: UnwrapRef<typeof import('./apis/sport')['ApiSportEventInfo']>
     readonly ApiSportEventList: UnwrapRef<typeof import('./apis/sport')['ApiSportEventList']>
+    readonly ApiSportEventSearch: UnwrapRef<typeof import('./apis/sport')['ApiSportEventSearch']>
     readonly ApiSportGetFavoriteList: UnwrapRef<typeof import('./apis/sport')['ApiSportGetFavoriteList']>
     readonly ApiSportMenuMain: UnwrapRef<typeof import('./apis/sport')['ApiSportMenuMain']>
     readonly ApiSportOutrightList: UnwrapRef<typeof import('./apis/sport')['ApiSportOutrightList']>
@@ -1348,8 +1352,8 @@ declare module '@vue/runtime-core' {
     readonly throttledRef: UnwrapRef<typeof import('@vueuse/core')['throttledRef']>
     readonly throttledWatch: UnwrapRef<typeof import('@vueuse/core')['throttledWatch']>
     readonly timeCheckIsLeapYear: UnwrapRef<typeof import('./utils/time')['timeCheckIsLeapYear']>
-    readonly timeFullTimeFormat: UnwrapRef<typeof import('./utils/time')['timeFullTimeFormat']>
     readonly timeToFromNow: UnwrapRef<typeof import('./utils/time')['timeToFromNow']>
+    readonly timeToSportsTimeFormat: UnwrapRef<typeof import('./utils/time')['timeToSportsTimeFormat']>
     readonly toFixed: UnwrapRef<typeof import('./utils/number')['toFixed']>
     readonly toNumber: UnwrapRef<typeof import('lodash-es')['toNumber']>
     readonly toRaw: UnwrapRef<typeof import('vue')['toRaw']>

@@ -36,7 +36,7 @@ export function timeCheckIsLeapYear(ts: number) {
 }
 
 /** 赛事时间转换 */
-export function timeFullTimeFormat(ts: number) {
+export function timeToSportsTimeFormat(ts: number) {
   const userLanguage = Local.get<number>(STORAGE_LANGUAGE_KEY)?.value ?? 0
 
   dayjs.locale(langKey[EnumLanguage[userLanguage]])
