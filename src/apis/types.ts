@@ -345,7 +345,7 @@ export interface ISportEventInfoMlMs {
   /** OddsList 内的欧洲盘 OV */
   ov: string
   /** 需要传递给组件的props，用于加入到购物车的 */
-  marketInfo: ICartInfo
+  cartInfo: ICartInfo
 }
 
 /** 赛事详情 ml */
