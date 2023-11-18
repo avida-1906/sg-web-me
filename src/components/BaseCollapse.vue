@@ -3,6 +3,7 @@ interface Props {
   icon?: string // 标题图标
   title?: string // 标题
   autoShow?: boolean // 是否自动展开
+  close?: number
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -23,6 +24,10 @@ function handleClickHeader() {
   else
     emit('clickClose')
 }
+
+watch(() => props.close, () => {
+  setAutoShowBool(false)
+})
 
 onMounted(() => {
   if (isShow.value)
