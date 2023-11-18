@@ -1,42 +1,38 @@
 <script lang="ts" setup>
-import {
-  EnumCasinoGameType,
-} from '~/utils/enums'
-
 interface Props {
   gameType: string
-  sortType?: string
+  sortType: string
 }
 const props = defineProps<Props>()
 
 const emit = defineEmits(['sortTypeChange', 'platTypeChecked'])
 
-// const { t } = useI18n()
+const { t } = useI18n()
 const { appContentWidth } = storeToRefs(useWindowStore())
 const { platformList } = storeToRefs(useCasinoStore())
 
 const groupFilterOuter = ref()
-// const selectValue = ref(props.sortType)
-// const selectOptions = [
-//   { icon: 'spt-sort-az', label: 'A-Z', value: EnumCasinoSortType.nameA },
-//   { icon: 'spt-sort-az', label: 'Z-A', value: EnumCasinoSortType.nameZ },
-//   {
-//     icon: 'chess-bonus-rounds',
-//     label: t('casino_sort_popular'),
-//     value: EnumCasinoSortType.hot,
-//   },
-//   {
-//     icon: 'chess-slot-machine',
-//     label: t('casino_sort_featured'),
-//     value: EnumCasinoSortType.recommend,
-//   },
-// ]
+const selectValue = ref(props.sortType)
+const selectOptions = [
+  { icon: 'spt-sort-az', label: 'A-Z', value: EnumCasinoSortType.nameA },
+  { icon: 'spt-sort-az', label: 'Z-A', value: EnumCasinoSortType.nameZ },
+  {
+    icon: 'chess-bonus-rounds',
+    label: t('casino_sort_popular'),
+    value: EnumCasinoSortType.hot,
+  },
+  {
+    icon: 'chess-slot-machine',
+    label: t('casino_sort_featured'),
+    value: EnumCasinoSortType.recommend,
+  },
+]
 const platformCheckedValues = ref([])
 
-const isCasinoGame = computed(() => {
-  return (Object.values(EnumCasinoGameType) as Array<string>)
-    .includes(props.gameType)
-})
+// const isRec = computed(() => props.gameType === 'rec') // 推荐游戏
+const isProvider = computed(() => props.gameType === 'provider') // 供应商
+// const isCat = computed(() => props.gameType === 'category') // 类别
+
 const platformOptions = computed(() => {
   return platformList.value.map((p) => {
     const label = p.en_name
@@ -44,18 +40,12 @@ const platformOptions = computed(() => {
     const count = p.game_num
     const isChecked = false
     return { ...p, label, value, count, isChecked }
-  }).filter((item) => {
-    return props.gameType === 'live'
-      ? item.game_type === '1'
-      : props.gameType === 'slot'
-        ? item.game_type === '3'
-        : !!item
   })
 })
 
-// function onSortSelect(v: string) {
-//   emit('sortTypeChange', v)
-// }
+function onSortSelect(v: string) {
+  emit('sortTypeChange', v)
+}
 function onCheckedPlatform(v: string[]) {
   emit('platTypeChecked', v.join(','))
 }
@@ -73,7 +63,7 @@ function resetPlatformChecked() {
     :class="{ 'less-than-700': appContentWidth < 700 }"
   >
     <div class="flex-center-bet left">
-      <template v-if="isCasinoGame">
+      <template v-if="!isProvider">
         <div class="flex-center-bet title">
           <BaseIcon name="uni-bars" />
           <span class="txt">{{ $t('casino_filter_label') }}</span>
@@ -133,7 +123,7 @@ function resetPlatformChecked() {
         </BaseButton>
       </template>
     </div>
-    <!-- <div class="flex-center-bet right">
+    <div class="flex-center-bet right">
       <div class="title flex-center-bet">
         <BaseIcon name="uni-bars" />
         <span class="txt">{{ $t('casino_filter_label_sort') }}</span>
@@ -153,7 +143,7 @@ function resetPlatformChecked() {
           </div>
         </template>
       </BaseSelect>
-    </div> -->
+    </div>
   </section>
 </template>
 

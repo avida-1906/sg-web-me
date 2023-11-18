@@ -1,9 +1,5 @@
 <script setup lang='ts'>
-import {
-  EnumCasinoSortType,
-} from '~/utils/enums'
-
-const props = defineProps<{ gameType: string }>()
+const props = defineProps<{ gameType: string; sortType: string; pids: string }>()
 const route = useRoute()
 
 const { VITE_CASINO_GAME_PAGE_SIZE } = getEnv()
@@ -19,11 +15,10 @@ const cid = computed(() => isCat.value ? route.query.cid?.toString() ?? '' : '')
 const pid = computed(() =>
   isProvider.value ? route.query.pid?.toString() : undefined)
 
-const sort = ref(EnumCasinoSortType.recommend)
 const paramsGame = computed(() =>
   ({
     platform_id: pid.value,
-    sort: sort.value,
+    sort: props.sortType,
   }))
 const {
   list: gameList,
@@ -33,7 +28,7 @@ const {
   loadMore: loadMoreGame,
 } = useList(ApiMemberGameList, {}, { page_size: VITE_CASINO_GAME_PAGE_SIZE })
 // 推荐游戏
-const paramsRec = computed(() => ({ sort: sort.value }))
+const paramsRec = computed(() => ({ sort: props.sortType, platform_id: props.pids }))
 const {
   list: recList,
   total: recTotal,
@@ -41,7 +36,12 @@ const {
   loading: loadingRec,
   loadMore: loadMoreRec,
 } = useList(ApiMemberGameRecList, {}, { page_size: VITE_CASINO_GAME_PAGE_SIZE })
-const paramsCate = computed(() => ({ cid: cid.value }))
+// 类别游戏
+const paramsCate = computed(() => ({
+  cid: cid.value,
+  sort: props.sortType,
+  platform_id: props.pids,
+}))
 const {
   list: cateList,
   total: cateTotal,
@@ -89,25 +89,18 @@ const push = computed(() => {
 })
 
 // 获取数据
-// function getData() {
-//   if (isProvider.value)
-//     runGameList(paramsGame.value)
+function getData() {
+  if (isProvider.value)
+    runGameList(paramsGame.value)
 
-//   else if (isRec.value)
-//     runRecList(paramsRec.value)
+  else if (isRec.value)
+    runRecList(paramsRec.value)
 
-//   else if (isCat.value)
-//     runCateGames(paramsCate.value)
-// }
-// 游戏提供商选择变化
-// function onPlatTypeChecked(v: string) {
-//   runGameList({ ...paramsGame.value, platform_id: v })
-// }
-// 排序变化
-// function onSortChange(v: any) {
-//   sort.value = v
-//   getData()
-// }
+  else if (isCat.value)
+    runCateGames(paramsCate.value)
+}
+
+defineExpose({ getData })
 
 // 初始化
 if (isProvider.value)

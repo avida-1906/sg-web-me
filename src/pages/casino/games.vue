@@ -7,7 +7,7 @@ const { bool: isTheatre, setBool } = useBoolean(false) // 影院模式
 const id = ref(query.id?.toString() ?? '')
 const appIframeRef = ref()
 
-const { list: recGameList, run } = useList(ApiMemberGameRecList)
+const { list: recGameList } = useList(ApiMemberGameRecList, { manual: false })
 
 const stop = watch(route, (a) => {
   id.value = a.query.id?.toString() ?? ''
@@ -19,8 +19,6 @@ const stop = watch(route, (a) => {
 onBeforeRouteLeave(() => {
   stop()
 })
-
-run()
 </script>
 
 <template>
