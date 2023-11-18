@@ -24,6 +24,9 @@ username: 用户名
 pls_enter_username: 请输入用户名
 username_incorrect: 您的用户名长度必须为 3 – 14 个字符。
 password: 密码
+old_pwd: 旧密码
+new_pwd: 新密码
+confirm_new_pwd: 确认新密码
 pls_enter_password: 请输入密码
 pls_enter_birthday: 请输入生日
 password_incorrect: 密码格式不正确
@@ -1212,3 +1215,43 @@ total_agency_bonus: 总代理奖金
 contribute: 贡献
 contribute_to: 贡献给
 direct: 直属
+sub_total_performance: 下级总业绩
+enjoy: 享受
+user_effect_bet: 自己有效投注{num}万
+sub_self_no_profit: 无下级自身无收益
+activity_name: 活动名称
+label_no_collect: 暂无任何收藏，请使用
+put_collect: 把游戏添加到收藏夹中。
+success_edit: 修改成功
+validate_msg_input_email: success_edit
+tip_email_sent: 邮电已发送
+tip_email_to: 验证邮电已发送至
+success_update_email: 成功更新电邮地址
+email_update_to: 电邮地址已更新为
+success_update_phone: 成功更新手机号码
+phone_update_to: 手机号码已更新为
+success_verify: 验证成功
+congratulate_email_success: 恭喜您电邮验证成功!
+resend_email: 重新发送电邮
+phone: 手机号码
+tip_phone: 我们只服务国际电话区号列表中所列有的区域。
+intl_phone_pre: 国际电话区号
+social_account: 社交账号
+action: 行动
+cancel_ignore: 解除拉黑
+level_desc: 等级描述
+preferences_tip_1: 用户隐私是 Stake 的核心价值之一。 这些设置将允许您在其他玩家面前完全匿名。
+preferences_tip_2: 您的投注不会出现在公开投注动态和投注预览中
+preferences_tip_3: 其他用户将无法查看您的输赢和投注的统计数据
+preferences_tip_4: 其他用户将无法查看您的竞赛记录
+preferences_tip_5: 请容许长达 30 秒的时间使更新生效。
+preferences_tip_6: 防止您在聊天室中收到红包雨
+preferences_tip_7: 选择不接收营销电邮或优惠
+turn_on_hide_mode: 启用隐身模式
+hide_all_statistic: 隐藏所有统计数据
+hide_all_competition_record: 隐藏所有竞赛记录
+refuse_rain: 拒绝接收红包雨
+marketing: 营销
+receive_market_email: 接收营销电邮
+validate_msg_pwd_unequal: 两次输入的密码不一致
+success_update_pwd: 修改密码成功

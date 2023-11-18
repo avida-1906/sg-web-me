@@ -64,12 +64,16 @@ const data = reactive([
       <div class="select-sort">
         <BaseSelect
           v-model="campaignName"
-          label="活动名称"
+          :label="t('activity_name')"
           :options="campaignOptions"
         />
       </div>
       <div class="select-sort">
-        <BaseSelect v-model="sortedBy" label="排序依据" :options="sortedOptions" />
+        <BaseSelect
+          v-model="sortedBy"
+          :label="t('casino_filter_label_sort')"
+          :options="sortedOptions"
+        />
       </div>
     </div>
     <div class="content">

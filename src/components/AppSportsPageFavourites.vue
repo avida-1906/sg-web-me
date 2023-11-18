@@ -5,7 +5,7 @@ const { sportsFavoriteData } = storeToRefs(useSportsStore())
 const currentSi = ref(-1)
 /** 收藏数据根据球种组合 */
 const sportsFavoriteList = computed(() => {
-  if (sportsFavoriteData.value)
+  if (sportsFavoriteData.value && sportsFavoriteData.value.list)
     return sportsDataGroupBySport(sportsFavoriteData.value.list)
 
   return []

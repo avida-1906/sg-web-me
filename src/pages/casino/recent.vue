@@ -10,7 +10,7 @@ const { appContentWidth } = storeToRefs(useWindowStore())
         <div class="banner">
           <div class="left">
             <h1>
-              <span>近期游戏记录</span>
+              <span>{{ $t('recent_game_record') }}</span>
             </h1>
           </div>
           <div class="right">

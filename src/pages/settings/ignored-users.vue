@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-const { bool: loading } = useBoolean(false)
 interface IColumns {
   title?: string
   dataIndex: string
@@ -7,15 +6,20 @@ interface IColumns {
   align?: 'left' | 'center' | 'right'
   width?: number
 }
+
+const { t } = useI18n()
+
+const { bool: loading } = useBoolean(false)
+
 const columns: IColumns[] = [
   {
-    title: '行动',
+    title: t('action'),
     dataIndex: 'action',
     slot: 'action',
     align: 'center',
   },
   {
-    title: '玩家',
+    title: t('gamer'),
     dataIndex: 'player',
     slot: 'player',
     align: 'center',
@@ -35,7 +39,7 @@ const tableData: any = [
 ]
 const paginationData = {
   pageSize: 10,
-  pageNumber: 1,
+  page: 1,
   total: 0,
 }
 </script>
@@ -60,7 +64,7 @@ const paginationData = {
             </div>
             <template #popper>
               <div class="tiny-menu-item-title">
-                等级描述
+                {{ t('level_desc') }}
               </div>
             </template>
           </VTooltip>

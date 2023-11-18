@@ -96,7 +96,7 @@ pageInit()
         </div>
         <div class="item-right">
           <div class="right-state">
-            <span>{{ item.title }}</span>
+            <span class="title">{{ item.title }}</span>
             <BaseBadge
               v-if="isState"
               class="state-text"
@@ -201,6 +201,7 @@ pageInit()
             background: var(--tg-secondary-main);
             border-radius:
                 var(--tg-radius-none) var(--tg-radius-default) var(--tg-radius-default) var(--tg-radius-none);
+            width: 0;
 
             .right-state {
                 display: flex;
@@ -209,6 +210,14 @@ pageInit()
                 font-weight: 500;
                 justify-content: space-between;
                 align-items: center;
+                .title {
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                }
+                .state-text{
+                  flex: 1;
+                  text-align: right;
+                }
             }
         }
     }

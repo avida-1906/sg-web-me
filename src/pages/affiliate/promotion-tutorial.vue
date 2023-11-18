@@ -202,26 +202,27 @@ onBeforeUnmount(() => {
             <span class="green">A</span>：<span class="yellow">800</span>
           </span>
           <span>
-            其他<span class="pink">C1</span>和<span class="pink">C2</span>
+            {{ $t('surveys_multiselect_other_option_value') }}
+            <span class="pink">C1</span>和<span class="pink">C2</span>
             {{ $t('contribute_to') }}
             <span class="green">A</span>：<span class="yellow">280</span>
           </span>
         </div>
         <div ref="box2Ref" class="box b2 border">
           <span>
-            直属<span class="blue">B2</span>
+            {{ $t('direct') }}<span class="blue">B2</span>
             {{ $t('contribute_to') }}
             <span class="green">A</span>：<span class="yellow">500</span>
           </span>
         </div>
         <div ref="box3Ref" class="box b3 border">
           <span>
-            直属<span class="blue">B3</span>
+            {{ $t('direct') }}<span class="blue">B3</span>
             {{ $t('contribute_to') }}
             <span class="green">A</span>：<span class="yellow">300</span>
           </span>
           <span>
-            其他<span class="pink">C1</span>
+            {{ $t('surveys_multiselect_other_option_value') }}<span class="pink">C1</span>
             {{ $t('contribute_to') }}
             <span class="green">A</span>：<span class="yellow">0</span>
           </span>
@@ -231,27 +232,29 @@ onBeforeUnmount(() => {
             <AppAgentLevel level="B1" color="blue" />
           </div>
           <span>
-            下级总业绩<span class="yellow">14{{ $t('ten_thousand') }}</span>
-            享受<span class="yellow">80/{{ $t('ten_thousand') }}</span>
+            {{ $t('sub_total_performance') }}
+            <span class="yellow">14{{ $t('ten_thousand') }}</span>
+            {{ $t('enjoy') }}<span class="yellow">80/{{ $t('ten_thousand') }}</span>
           </span>
-          <span class="grey">B1自己有效投注8万</span>
+          <span class="grey">B1{{ $t('user_effect_bet', { num: 8 }) }}</span>
         </div>
         <div ref="box5Ref" class="box b5">
           <div ref="box5LevelRef" class="level">
             <AppAgentLevel level="B2" color="blue" />
           </div>
-          <span>B2无下级自身无收益</span>
-          <span class="grey">B2自己有效投注5万</span>
+          <span>B2{{ $t('sub_self_no_profit') }}</span>
+          <span class="grey">B2{{ $t('user_effect_bet', { num: 5 }) }}</span>
         </div>
         <div ref="box6Ref" class="box b6">
           <div ref="box6LevelRef" class="level">
             <AppAgentLevel level="B3" color="blue" />
           </div>
           <span>
-            下级总业绩<span class="yellow">71{{ $t('ten_thousand') }}</span>
-            享受<span class="yellow">100/{{ $t('ten_thousand') }}</span>
+            {{ $t('sub_total_performance') }}
+            <span class="yellow">71{{ $t('ten_thousand') }}</span>
+            {{ $t('enjoy') }}<span class="yellow">100/{{ $t('ten_thousand') }}</span>
           </span>
-          <span class="grey">B3自己有效投注3万</span>
+          <span class="grey">B3{{ $t('user_effect_bet', { num: 3 }) }}</span>
         </div>
         <!-- 第三级 -->
         <div ref="box7Ref" class="box b7 border">
@@ -288,22 +291,22 @@ onBeforeUnmount(() => {
           <div ref="box10LevelRef" class="level">
             <AppAgentLevel level="C1" color="pink" />
           </div>
-          <span>C1无下级自身无收益</span>
-          <span class="grey">C1自己有效投注10万</span>
+          <span>C1{{ $t('sub_self_no_profit') }}</span>
+          <span class="grey">C1{{ $t('user_effect_bet', { num: 10 }) }}</span>
         </div>
         <div ref="box11Ref" class="box b11">
           <div ref="box11LevelRef" class="level">
             <AppAgentLevel level="C2" color="pink" />
           </div>
-          <span>C2无下级自身无收益</span>
-          <span class="grey">C2自己有效投注4万</span>
+          <span>C2{{ $t('sub_self_no_profit') }}</span>
+          <span class="grey">C2{{ $t('user_effect_bet', { num: 4 }) }}</span>
         </div>
         <div ref="box12Ref" class="box b12">
           <div ref="box12LevelRef" class="level">
             <AppAgentLevel level="C3" color="pink" />
           </div>
-          <span>C3无下级自身无收益</span>
-          <span class="grey">C3自己有效投注71万</span>
+          <span>C3{{ $t('sub_self_no_profit') }}</span>
+          <span class="grey">C3{{ $t('user_effect_bet', { num: 71 }) }}</span>
         </div>
       </div>
     </div>
