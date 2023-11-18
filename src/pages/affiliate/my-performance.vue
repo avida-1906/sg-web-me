@@ -1,33 +1,35 @@
 <script lang="ts" setup>
+const { t } = useI18n()
+
 // loading加载
 const { bool: loading } = useBoolean(false)
 const columns: Column[] = [
   {
-    title: '加入时间',
+    title: t('join_time'),
     dataIndex: 'settleTime',
     align: 'center',
     slot: 'settleTime',
   },
   {
-    title: '账号',
+    title: t('user_account'),
     dataIndex: 'type',
     align: 'center',
   },
   {
-    title: '下级人数',
+    title: t('sub_count'),
     dataIndex: 'performanceNum',
     align: 'center',
     sort: true,
     sortDirections: 'descend',
   },
   {
-    title: '业绩',
+    title: t('performance'),
     dataIndex: 'contributeNum',
     align: 'center',
     sort: true,
   },
   {
-    title: '贡献佣金',
+    title: t('label_contribute_commission'),
     dataIndex: 'commission',
     align: 'center',
     slot: 'commission',

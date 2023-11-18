@@ -110,6 +110,7 @@ active_hour_ago: '{hours} 小时前在线'
 active_minute_ago: '{minutes} 分钟前在线'
 active_state: 在线
 active_week_ago: 1 周前在线
+offline: 离线
 add_participant: 添加成员
 add_person: 添加成员
 ai_answer: 人工智能答案
@@ -285,6 +286,8 @@ learn_more: 了解更多
 leave_us_a_message: 给我们留言
 leave_your_email: 留下你的邮箱
 loading: 正在加载
+more: 更多
+seq: 次
 march_date: '3 月 {date} 日'
 may_date: '5 月 {date} 日'
 message: 消息
@@ -663,6 +666,7 @@ upload_max_files_allowed: '最多允许 {limit} 个文件'
 upload_max_files_size: '最大文件大小为 {limit}MB'
 user_says: '{firstName}说…'
 usual_reply_time_header_label: 平常的回复时间
+view_label: 查看
 view_all: 查看全部
 view_conversation: 查看对话
 view_more: 显示更多
@@ -786,6 +790,7 @@ total_deposits: 总存款次数
 last_deposits: 最后一次存款
 independent_deposit: 独立存款
 commission_rate: 佣金率
+times: 次数
 wagered: 总投注额
 bet_amount: 投注额
 notify_title_error: 错误
@@ -989,6 +994,7 @@ label_bank_number: 银行卡号
 label_branch_address: 开户行地址
 label_account_holder_name: 开户人姓名
 label_all_type: 全部类型
+label_type: 类型
 label_currency_types: 货币种类
 label_draw_time: 领取时间
 label_contribute_count: 贡献人数
@@ -1166,8 +1172,43 @@ player_id: 玩家ID
 activity_clicks: 活动点击量
 recommend_users: 推荐用户
 new_active: 创建新活动
+activity: 活动
 commission_cal_tip: 我们所有的游戏都带有不同的庄家优势百分比。您可以使用以下公式来计算您的佣金
 sports_cal_tip: 所有体育投注均以 {rate} 的理论庄家优势进行。您可以使用以下公式来计算您的佣金
 commission_encourage: 您若是个影响力极佳并能触及广大群众，或是处在其他特殊情况下的联盟会员，可请联系我们杰出的支持团队。经与联盟经理人讨论后，我们可争取为您定制一套联盟计划。这可能包括更高的佣金。
 statistical_time: 统计时间
 withdraw_amount: 提款金额
+deposit_amount_label: 存款金额
+deposit_draw_diff: 存款和提款差额
+current_amount: 当前余额
+receive_amount: 领取总额
+agent_commission: 代理佣金
+is_first_deposit: 是否首存
+last_login: 上次登录
+online_status: 在线状态
+settle_time: 结算时间
+performance: 业绩
+detail: 详情
+accu_commission: 累计佣金
+sub_count: 下级人数
+label_contribute_commission: 贡献佣金
+received_commission: 已领取佣金
+last_commission: 上次佣金
+team_num: 团队总数
+direct_mem: 直属成员
+other_mem: 其他成员
+total_performance: 总业绩
+direct_performance: 直属业绩
+other_performance: 其他业绩
+total_effect_bets: 有效投注总额
+total_bet_order: 总投注单
+slash_win_lose_total: 总赢/输
+promo_info: 推广信息
+click_save_qr: 点击保存二维码
+my_link: 我的链接
+sub_bet: 下属的投注
+ten_thousand: 万
+total_agency_bonus: 总代理奖金
+contribute: 贡献
+contribute_to: 贡献给
+direct: 直属

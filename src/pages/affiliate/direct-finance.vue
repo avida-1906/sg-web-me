@@ -1,32 +1,34 @@
 <script lang="ts" setup>
+const { t } = useI18n()
+
 // loading加载
 const { bool: loading } = useBoolean(false)
 const columns: Column[] = [
   {
-    title: '玩家ID',
+    title: t('player_id'),
     dataIndex: 'account',
     align: 'center',
     slot: 'account',
   },
   {
-    title: '统计时间',
+    title: t('statistical_time'),
     dataIndex: 'settleTime',
     align: 'center',
   },
   {
-    title: '存款金额',
+    title: t('deposit_amount_label'),
     dataIndex: 'isFirstLive',
     align: 'center',
     slot: 'firstLive',
   },
   {
-    title: '提款金额',
+    title: t('withdraw_amount'),
     dataIndex: 'lastLogin',
     align: 'center',
     slot: 'lastLogin',
   },
   {
-    title: '存款和取款差额',
+    title: t('deposit_draw_diff'),
     dataIndex: 'isOnline',
     align: 'center',
     slot: 'online',
@@ -68,17 +70,17 @@ const tableData = ref([
       >
         <template #th-online>
           <div style="margin-top: var(--tg-spacing-4);">
-            当前余额
+            {{ t('current_amount') }}
           </div>
         </template>
         <template #th-firstLive>
           <div style="margin-top: var(--tg-spacing-4);">
-            次数
+            {{ t('times') }}
           </div>
         </template>
         <template #th-lastLogin>
           <div style="margin-top: var(--tg-spacing-4);">
-            次数
+            {{ t('times') }}
           </div>
         </template>
         <template #account="{ record }">

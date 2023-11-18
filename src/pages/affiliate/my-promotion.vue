@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+const { t } = useI18n()
+
 const {
   isLessThanSm,
   widthBoundaryMd,
@@ -35,24 +37,24 @@ const socialData = [
 ]
 
 const commission = [
-  { label: '累计佣金', value: '999,999' },
-  { label: '已领取佣金', value: '999,999' },
-  { label: '上次佣金', value: '999,999' },
+  { label: t('accu_commission'), value: '999,999' },
+  { label: t('received_commission'), value: '999,999' },
+  { label: t('last_commission'), value: '999,999' },
 ]
 
 const performance = [
-  { label: '团队总数', value: '99999人' },
-  { label: '直属成员', value: '99999人' },
-  { label: '其他成员', value: '99999人' },
-  { label: '总业绩', value: '999,99.00$' },
-  { label: '直属业绩', value: '999,99.00$' },
-  { label: '其他业绩', value: '999,99.00$' },
+  { label: t('team_num'), value: '99999人' },
+  { label: t('direct_mem'), value: '99999人' },
+  { label: t('other_mem'), value: '99999人' },
+  { label: t('total_performance'), value: '999,99.00$' },
+  { label: t('direct_performance'), value: '999,99.00$' },
+  { label: t('other_performance'), value: '999,99.00$' },
 ]
 
 const bet = [
-  { label: '有效投注总额', value: '999,99.00' },
-  { label: '总投注单', value: '999,99.00' },
-  { label: '总赢/输', value: '999,99.00' },
+  { label: t('total_effect_bets'), value: '999,99.00' },
+  { label: t('total_bet_order'), value: '999,99.00' },
+  { label: t('slash_win_lose_total'), value: '999,99.00' },
 ]
 </script>
 
@@ -61,11 +63,11 @@ const bet = [
     <div class="retention-item">
       <div class="item-title">
         <div class="title-left">
-          推广信息
+          {{ t('promo_info') }}
         </div>
         <div class="title-btn">
           <BaseButton type="text">
-            更多
+            {{ t('more') }}
           </BaseButton>
         </div>
       </div>
@@ -79,11 +81,11 @@ const bet = [
       >
         <div class="promotion-left">
           <BaseQrcode url="www.baidu.com" :size="92" class="qr-code" />
-          <p>点击保存二维码</p>
+          <p>{{ t('click_save_qr') }}</p>
         </div>
         <div class="promotion-right">
           <div class="link">
-            <p>我的链接</p>
+            <p>{{ t('my_link') }}</p>
             <AppCopyLine msg="stake.com/?c=r123123132132123CiS8s" />
           </div>
           <div class="social-wrap" :class="{ 'is-less-than-sm': isLessThanSm }">
@@ -103,11 +105,11 @@ const bet = [
     <div class="retention-item">
       <div class="item-title">
         <div class="title-left">
-          佣金
+          {{ t('finance_funds_transfer_sort_commission') }}
         </div>
         <div class="title-btn">
           <BaseButton type="text">
-            更多
+            {{ t('more') }}
           </BaseButton>
         </div>
       </div>
@@ -121,11 +123,11 @@ const bet = [
     <div class="retention-item">
       <div class="item-title">
         <div class="title-left">
-          业绩
+          {{ t('performance') }}
         </div>
         <div class="title-btn">
           <BaseButton type="text">
-            更多
+            {{ t('more') }}
           </BaseButton>
         </div>
       </div>
@@ -139,11 +141,11 @@ const bet = [
     <div class="retention-item">
       <div class="item-title">
         <div class="title-left">
-          下属的投注
+          {{ t('sub_bet') }}
         </div>
         <div class="title-btn">
           <BaseButton type="text">
-            更多
+            {{ t('more') }}
           </BaseButton>
         </div>
       </div>

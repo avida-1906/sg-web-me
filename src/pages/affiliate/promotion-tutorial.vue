@@ -178,44 +178,52 @@ onBeforeUnmount(() => {
           <AppAgentLevel level="A" color="green" />
         </div>
         <span>
-          总业绩<span class="yellow">101万</span>，
-          总代理奖金<span class="yellow">1880</span>
+          {{ $t('total_performance') }}
+          <span class="yellow">101{{ $t('ten_thousand') }}</span>，
+          {{ $t('total_agency_bonus') }}<span class="yellow">1880</span>
         </span>
         <span>
-          直属业绩<span class="yellow">16万</span>，
-          贡献<span class="yellow">1600</span>
+          {{ $t('direct_performance') }}
+          <span class="yellow">16{{ $t('ten_thousand') }}</span>，
+          {{ $t('contribute') }}<span class="yellow">1600</span>
         </span>
         <span>
-          其他业绩<span class="yellow">85万</span>，
-          贡献<span class="yellow">280</span>
+          {{ $t('other_performance') }}
+          <span class="yellow">85{{ $t('ten_thousand') }}</span>，
+          {{ $t('contribute') }}<span class="yellow">280</span>
         </span>
       </div>
       <div class="grid-box">
         <!-- 第一级 -->
         <div ref="box1Ref" class="box b1 border">
           <span>
-            直属<span class="blue">B1</span>
-            贡献给<span class="green">A</span>：<span class="yellow">800</span>
+            {{ $t('direct') }}<span class="blue">B1</span>
+            {{ $t('contribute_to') }}
+            <span class="green">A</span>：<span class="yellow">800</span>
           </span>
           <span>
             其他<span class="pink">C1</span>和<span class="pink">C2</span>
-            贡献给<span class="green">A</span>：<span class="yellow">280</span>
+            {{ $t('contribute_to') }}
+            <span class="green">A</span>：<span class="yellow">280</span>
           </span>
         </div>
         <div ref="box2Ref" class="box b2 border">
           <span>
             直属<span class="blue">B2</span>
-            贡献给<span class="green">A</span>：<span class="yellow">500</span>
+            {{ $t('contribute_to') }}
+            <span class="green">A</span>：<span class="yellow">500</span>
           </span>
         </div>
         <div ref="box3Ref" class="box b3 border">
           <span>
             直属<span class="blue">B3</span>
-            贡献给<span class="green">A</span>：<span class="yellow">300</span>
+            {{ $t('contribute_to') }}
+            <span class="green">A</span>：<span class="yellow">300</span>
           </span>
           <span>
             其他<span class="pink">C1</span>
-            贡献给<span class="green">A</span>：<span class="yellow">0</span>
+            {{ $t('contribute_to') }}
+            <span class="green">A</span>：<span class="yellow">0</span>
           </span>
         </div>
         <div ref="box4Ref" class="box b4">
@@ -223,8 +231,8 @@ onBeforeUnmount(() => {
             <AppAgentLevel level="B1" color="blue" />
           </div>
           <span>
-            下级总业绩<span class="yellow">14万</span>
-            享受<span class="yellow">80/万</span>
+            下级总业绩<span class="yellow">14{{ $t('ten_thousand') }}</span>
+            享受<span class="yellow">80/{{ $t('ten_thousand') }}</span>
           </span>
           <span class="grey">B1自己有效投注8万</span>
         </div>
@@ -240,34 +248,40 @@ onBeforeUnmount(() => {
             <AppAgentLevel level="B3" color="blue" />
           </div>
           <span>
-            下级总业绩<span class="yellow">71万</span>
-            享受<span class="yellow">100/万</span>
+            下级总业绩<span class="yellow">71{{ $t('ten_thousand') }}</span>
+            享受<span class="yellow">100/{{ $t('ten_thousand') }}</span>
           </span>
           <span class="grey">B3自己有效投注3万</span>
         </div>
         <!-- 第三级 -->
         <div ref="box7Ref" class="box b7 border">
           <span>
-            贡献给<span class="green">A</span>：<span class="yellow">200</span>
+            {{ $t('contribute_to') }}
+            <span class="green">A</span>：<span class="yellow">200</span>
           </span>
           <span>
-            贡献给<span class="blue">B1</span>：<span class="yellow">800</span>
+            {{ $t('contribute_to') }}
+            <span class="blue">B1</span>：<span class="yellow">800</span>
           </span>
         </div>
         <div ref="box8Ref" class="box b8 border">
           <span>
-            贡献给<span class="green">A</span>：<span class="yellow">800</span>
+            {{ $t('contribute_to') }}
+            <span class="green">A</span>：<span class="yellow">800</span>
           </span>
           <span>
-            贡献给<span class="blue">B1</span>：<span class="yellow">320</span>
+            {{ $t('contribute_to') }}
+            <span class="blue">B1</span>：<span class="yellow">320</span>
           </span>
         </div>
         <div ref="box9Ref" class="box b9 border">
           <span>
-            贡献给<span class="green">A</span>：<span class="yellow">0</span>
+            {{ $t('contribute_to') }}
+            <span class="green">A</span>：<span class="yellow">0</span>
           </span>
           <span>
-            贡献给<span class="blue">B3</span>：<span class="yellow">7100</span>
+            {{ $t('contribute_to') }}
+            <span class="blue">B3</span>：<span class="yellow">7100</span>
           </span>
         </div>
         <div ref="box10Ref" class="box b10">
