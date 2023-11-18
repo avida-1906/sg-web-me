@@ -1,7 +1,5 @@
 import type {
-  ISportEventInfo,
   ISportEventInfoMl,
-  ISportEventInfoMlMs,
   TPat,
 } from '~/apis/types'
 import type { IBasePanelType, IBreadCrumbItem } from '~/types'
@@ -219,36 +217,6 @@ export function useApiSportDetails() {
 
     return renderList
   })
-
-  /**
-   * 获取购物车需要的对象
-   * @param infoList1 info 接口 list[0] 对象
-   * @param mlObject infoList1.ml 对象
-   * @param msObject infoList1.ml.ms 对象
-   */
-  function getCartObject(
-    mlObject: ISportEventInfoMl,
-    msObject: ISportEventInfoMlMs,
-    infoList1: ISportEventInfo,
-  ) {
-    return {
-      wid: msObject.wid,
-      mlid: mlObject.mlid,
-      mll: mlObject.mll,
-      pid: mlObject.pid,
-      bt: mlObject.bt,
-      ov: msObject.ov,
-      m: infoList1.m,
-      ei: infoList1.ei,
-      si: infoList1.si,
-      hdp: msObject.hdp,
-      sid: msObject.sid,
-      homeTeamName: infoList1.htn,
-      awayTeamName: infoList1.atn,
-      btn: mlObject.btn,
-      sn: infoList1.sn,
-    }
-  }
 
   watchEffect(() => {
     if (handicapListData.value.length)

@@ -1,4 +1,8 @@
-import type { ISportEventInfo, ISportOutrightsInfo } from '~/apis/types'
+import type {
+  ISportEventInfo,
+  ISportEventInfoMl,
+  ISportEventInfoMlMs, ISportOutrightsInfo,
+} from '~/apis/types'
 
 /**
  * 体育ID
@@ -196,4 +200,34 @@ export function sportsDataBreadcrumbs(data: ISportEventInfo | ISportOutrightsInf
   const area = { label: data.pgn, value: `${data.pgid}` }
   const league = { label: data.cn, value: `${data.ci}` }
   return [sport, area, league]
+}
+
+/**
+   * 获取购物车需要的对象
+   * @param infoList1 info 接口 list[0] 对象
+   * @param mlObject infoList1.ml 对象
+   * @param msObject infoList1.ml.ms 对象
+   */
+export function getCartObject(
+  mlObject: ISportEventInfoMl,
+  msObject: ISportEventInfoMlMs,
+  infoList1: ISportEventInfo,
+) {
+  return {
+    wid: msObject.wid,
+    mlid: mlObject.mlid,
+    mll: mlObject.mll,
+    pid: mlObject.pid,
+    bt: mlObject.bt,
+    ov: msObject.ov,
+    m: infoList1.m,
+    ei: infoList1.ei,
+    si: infoList1.si,
+    hdp: msObject.hdp,
+    sid: msObject.sid,
+    homeTeamName: infoList1.htn,
+    awayTeamName: infoList1.atn,
+    btn: mlObject.btn,
+    sn: infoList1.sn,
+  }
 }
