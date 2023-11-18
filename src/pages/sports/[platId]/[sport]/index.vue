@@ -21,13 +21,13 @@ const isLiveAndUpcoming = computed(() => curTab.value === '1')
 const isOutrights = computed(() => curTab.value === '2')
 // 热门地区
 const hotSportList = computed(() => {
-  if (competitionListData.value)
+  if (competitionListData.value && competitionListData.value.hot)
     return competitionListData.value.hot
   return []
 })
 // 所有地区
 const allRegionList = computed(() => {
-  if (competitionListData.value)
+  if (competitionListData.value && competitionListData.value.list)
     return competitionListData.value.list
   return []
 })
