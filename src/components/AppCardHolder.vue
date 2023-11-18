@@ -7,6 +7,7 @@ type WalletCurrencyList = {
   bankcard?: BankCard[] // 绑定的银行卡
   addressNum: number // 虚拟币已绑定地址的数量
   showAdd: boolean // 是否可添加
+  shown: number // 控制展开关闭
 } & CurrencyData
 
 const { t } = useI18n()
@@ -35,6 +36,7 @@ const {
           coin: currentCoin,
           addressNum: currentCoin.length,
           showAdd: currentCoin.length < 3,
+          shown: 0,
         })
       }
       else { // 银行卡
@@ -45,6 +47,7 @@ const {
           showAdd: item.cur === '702'
             ? currentBankcard.length < 1
             : currentBankcard.length < 3,
+          shown: 0,
         })
       }
     }
@@ -79,6 +82,9 @@ const toAddBankcards = function (item: WalletCurrencyList) {
   closeDialog()
   nextTick(() => openAddBankcardsDialog())
 }
+
+let lastShown = -1
+
 const toAddVirAddress = function (
   item: WalletCurrencyList,
 ) {
@@ -108,6 +114,12 @@ function toDeleteBankcard(item: BankCard) {
     updateWalletList: runAsyncWalletBankcardList,
   })
 }
+function handleShow(index: number) {
+  if (lastShown > -1 && cardList.value)
+    cardList.value[lastShown].shown = new Date().getTime()
+
+  lastShown = index
+}
 
 // if (!cardList.value)
 await application.allSettled([runAsyncWalletBankcardList()])
@@ -117,9 +129,11 @@ await application.allSettled([runAsyncWalletBankcardList()])
   <div class="app-card-holder">
     <div class="layout-spacing reset wallet-address">
       <BaseCollapse
-        v-for="item in cardList"
+        v-for="item, index in cardList"
         :key="item.type"
+        :close="item.shown"
         :title="item.addressNum?.toString() || '0'"
+        @click-show="handleShow(index)"
       >
         <template #top-right>
           <AppCurrencyIcon

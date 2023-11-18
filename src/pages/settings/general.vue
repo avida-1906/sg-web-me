@@ -105,8 +105,17 @@ const {
 
 const { data: areaCodeData } = useApiMemberTreeList('011')
 const { run: runMemberUpdate } = useRequest(ApiMemberUpdate, {
-  onSuccess() {
+  onSuccess(data, params) {
     openNotify(notifyData.value)
+    if (params[0].record.email) {
+      notifyData.value = {
+        type: 'email',
+        title: t('success_update_email'),
+        message: `${t('email_update_to')} ${email.value}`,
+      }
+      setEmailDisabledBtnTrue()
+      emailCheck()
+    }
   },
 })
 const {
@@ -132,16 +141,8 @@ const emailVerified = computed(() => userInfo.value?.email_check_state === 1)
 
 async function emailSubmit() {
   await emailValidate()
-  if (!emailErrormsg.value) {
-    await runMemberUpdate({ record: { email: email.value }, uid: paramsData.value.uid })
-    notifyData.value = {
-      type: 'email',
-      title: t('success_update_email'),
-      message: `${t('email_update_to')} ${email.value}`,
-    }
-    setEmailDisabledBtnTrue()
-    emailCheck()
-  }
+  if (!emailErrormsg.value)
+    runMemberUpdate({ record: { email: email.value }, uid: paramsData.value.uid })
 }
 function numberSubmit() {
   runMemberUpdate({

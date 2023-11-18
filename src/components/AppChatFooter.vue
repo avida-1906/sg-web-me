@@ -124,7 +124,7 @@ function sendMsg() {
       return
     }
     const tt = new Date().getTime()
-    const s = `${Math.random().toString(36).slice(-10)}|${t}`
+    const s = `${Math.random().toString(36).slice(-10)}|${tt}`
     chatMessageBus.emit({ c: trimMessage.value, s, u: userInfo.value?.uid, n: userInfo.value?.username, t: tt })
     runSendMsg({ c: trimMessage.value, lang: roomLang.value, s })
     message.value = ''

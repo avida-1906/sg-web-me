@@ -15,6 +15,7 @@ import type {
   VipConfig,
   VirtualCoin,
 } from './types'
+import type { CurrencyCode } from '~/composables/useCurrencyData'
 import { httpClient } from '~/http'
 
 /**
@@ -887,6 +888,8 @@ export function ApiMemberFeedbackList() {
 export function ApiMemberFeedbackBonusDraw(data: {
   /** 反馈ID */
   feed_id: string
+  /** 币种 */
+  cur: CurrencyCode
 }) {
   return httpClient.post<string>('/member/feedback/bonus/draw', data)
 }
