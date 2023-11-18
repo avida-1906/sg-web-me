@@ -175,6 +175,7 @@ declare global {
   const findKey: typeof import('lodash-es')['findKey']
   const get: typeof import('lodash-es')['get']
   const getActivePinia: typeof import('pinia')['getActivePinia']
+  const getCartObject: typeof import('./utils/sports')['getCartObject']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const getEnv: typeof import('./utils/index')['getEnv']
@@ -713,6 +714,7 @@ declare module 'vue' {
     readonly findKey: UnwrapRef<typeof import('lodash-es')['findKey']>
     readonly get: UnwrapRef<typeof import('lodash-es')['get']>
     readonly getActivePinia: UnwrapRef<typeof import('pinia')['getActivePinia']>
+    readonly getCartObject: UnwrapRef<typeof import('./utils/sports')['getCartObject']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getEnv: UnwrapRef<typeof import('./utils/index')['getEnv']>
@@ -1240,6 +1242,7 @@ declare module '@vue/runtime-core' {
     readonly findKey: UnwrapRef<typeof import('lodash-es')['findKey']>
     readonly get: UnwrapRef<typeof import('lodash-es')['get']>
     readonly getActivePinia: UnwrapRef<typeof import('pinia')['getActivePinia']>
+    readonly getCartObject: UnwrapRef<typeof import('./utils/sports')['getCartObject']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getEnv: UnwrapRef<typeof import('./utils/index')['getEnv']>
