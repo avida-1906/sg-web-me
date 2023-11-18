@@ -483,6 +483,7 @@ export interface ISportOutrightsInfo {
   }[]
 }
 
+/** 存款请求接口对象 */
 export interface DepositInfo {
   /** 金额 */
   amount: string
