@@ -223,7 +223,7 @@ export function getCartObject(
   else if (mlObject.bt === 2)
     sn = `${msObject.sn} ${msObject.hdp}`
   // 获胜
-  else if (mlObject.bt === 3)
+  else if (mlObject.bt === 3 || mlObject.bt === 4)
     sn = msObject.sn
   // 其它
   else
