@@ -1,3 +1,5 @@
+import type { EnumCurrencyKey } from '~/apis/types'
+
 const { VITE_I18N_DEFAULT_LANG } = getEnv()
 
 interface IFormatNumberOptions {
@@ -156,6 +158,20 @@ class Application {
 
     else
       return integerPart
+  }
+
+  /**
+   * 判断是不是虚拟货币
+   * @param {EnumCurrencyKey} currency
+   */
+  isVirtualCurrency(currency: EnumCurrencyKey) {
+    const virtualList: EnumCurrencyKey[] = [
+      'USDT',
+      'BTC',
+      'ETH',
+      'BNB',
+    ]
+    return virtualList.includes(currency)
   }
 }
 

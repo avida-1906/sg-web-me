@@ -1,6 +1,10 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
+import type { EnumCurrencyKey } from '~/apis/types'
 
 export const useAppStore = defineStore('app', () => {
+  /** 当前全局选择的货币 */
+  const currentGlobalCurrency = ref<EnumCurrencyKey>(getLocalCurrentGlobalCurrency())
+
   /** 是否登录，程序用这个变量来判断是否登录 */
   const { bool: isLogin, setTrue: setLoginTrue, setFalse: setLoginFalse } = useBoolean(!!getToken())
   /** 用户信息 */
@@ -50,6 +54,16 @@ export const useAppStore = defineStore('app', () => {
     return _userInfo.value
   })
 
+  /** 用户当前选择的货币余额 */
+  const currentGlobalCurrencyBalance = computed(() => {
+    const currency = currentGlobalCurrency.value
+    const balance = userInfo.value?.balance[currency]
+    const symbol = application.isVirtualCurrency(currency)
+      ? ''
+      : currencyConfig[currency].prefix
+    return balance ? symbol + balance : 0
+  })
+
   function setToken(token: string) {
     // 将token加密后存储到本地
     const _token = window.btoa(token)
@@ -72,6 +86,29 @@ export const useAppStore = defineStore('app', () => {
 
   function removeUserInfo() {
     _userInfo.value = undefined
+  }
+
+  /** 获取本地存储的当前全局选择的货币 */
+  function getLocalCurrentGlobalCurrency(): EnumCurrencyKey {
+    const currency = Local.get<
+      EnumCurrencyKey
+    >(STORAGE_CURRENT_GLOBAL_CURRENCY_KEY)?.value
+
+    if (currency)
+      return currency
+    else
+      return EnumCurrency[0] as EnumCurrencyKey
+  }
+
+  /** 设置本地存储的当前全局选择的货币 */
+  function setLocalCurrentGlobalCurrency(currency: EnumCurrencyKey) {
+    Local.set(STORAGE_CURRENT_GLOBAL_CURRENCY_KEY, currency)
+  }
+
+  /** 改变全局货币 */
+  function changeGlobalCurrency(currency: EnumCurrencyKey) {
+    currentGlobalCurrency.value = currency
+    setLocalCurrentGlobalCurrency(currency)
   }
 
   watch(visibility, (bool) => {
@@ -97,6 +134,9 @@ export const useAppStore = defineStore('app', () => {
     mqttIsConnected,
     allContractList,
     exchangeRateData,
+    currentGlobalCurrency,
+    vipConfigData,
+    currentGlobalCurrencyBalance,
     setToken,
     setLoginTrue,
     setLoginFalse,
@@ -109,8 +149,8 @@ export const useAppStore = defineStore('app', () => {
     getBalanceData,
     runGetExchangeRate,
     getLockerData,
-    vipConfigData,
     runGetVipConfig,
+    changeGlobalCurrency,
   }
 })
 

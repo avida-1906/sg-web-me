@@ -2,6 +2,7 @@
 import type { EnumCurrencyKey } from '~/apis/types'
 
 const route = useRoute()
+const appStore = useAppStore()
 const isCasinoGame = computed(() => route.name === 'casino-games')
 const { openWalletDialog } = useWalletDialog()
 const { openWalletSetDialog } = useWalletSetDialog()
@@ -11,16 +12,17 @@ const { width } = storeToRefs(useWindowStore())
 const {
   currentGlobalCurrency,
   currentGlobalCurrencyBalance,
+} = storeToRefs(appStore)
+const {
   searchValue,
   renderBalanceList,
   setHideZeroBalance,
-  changeGlobalCurrency,
   clearSearchValue,
 } = useCurrencyData()
 
 // 选择币种
 function selectCurrency(item: EnumCurrencyKey, hide: () => void) {
-  changeGlobalCurrency(item)
+  appStore.changeGlobalCurrency(item)
   hide()
 }
 </script>

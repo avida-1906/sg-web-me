@@ -16,7 +16,6 @@ const { t } = useI18n()
 const appStore = useAppStore()
 const { exchangeRateData } = storeToRefs(appStore)
 const chatStore = useChatStore()
-const { isVirtualCurrency } = useCurrencyData()
 const { openNotify } = useNotify()
 
 const currentNetwork = ref('')
@@ -36,7 +35,7 @@ const ratedMoney = computed(() => {
 })
 const isVirCurrency = computed(() => {
   if (activeCurrency.value)
-    return isVirtualCurrency(activeCurrency.value.type)
+    return application.isVirtualCurrency(activeCurrency.value.type)
 
   return false
 })

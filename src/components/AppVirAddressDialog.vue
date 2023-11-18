@@ -1,20 +1,25 @@
 <script setup lang="ts">
+import type { EnumCurrencyKey } from '~/apis/types'
+
 interface Props {
   currencyId?: string
-  currencyName?: string
+  currencyName?: EnumCurrencyKey
   isWithdraw?: boolean
   callback?: (params?: any) => void
 }
 
 const props = withDefaults(defineProps<Props>(), {
   currencyId: '',
-  currencyName: '',
+  // 刚开始的默认值是空字符串，会导致不符合EnumCurrencyKey类型
+  // 不确定是否有用。
+  // 随意写了个默认值，符合EnumCurrencyKey类型
+  currencyName: 'BTC',
 })
 
 const emit = defineEmits(['added'])
 const closeDialog = inject('closeDialog', () => { })
 
-const { bool: isDefault, setFalse: setIsDefaultFalse } = useBoolean(false)
+const { bool: isDefault } = useBoolean(false)
 const { openPayPwdDialog, closePayPwdDialog } = usePayPwdDialog()
 const {
   getVirtualCurrencyContractType,

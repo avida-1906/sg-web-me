@@ -90,6 +90,7 @@ export function useCurrencyData() {
   const {
     userInfo,
     allContractList,
+    currentGlobalCurrency,
   } = storeToRefs(appStore)
 
   const {
@@ -99,34 +100,9 @@ export function useCurrencyData() {
 
   // 搜索内容
   const searchValue = ref('')
-  // 是否隐藏零余额
 
-  /** 当前全局选择的货币 */
-  const currentGlobalCurrency = ref<EnumCurrencyKey>(getLocalCurrentGlobalCurrency())
   /** 当前选择的货币,用在充值和提现的下拉列表 */
   const currentCurrency = ref(currentGlobalCurrency.value)
-
-  /**
-   * 判断是不是虚拟货币
-   * @param {EnumCurrencyKey} currency
-   */
-  const isVirtualCurrency = (currency: EnumCurrencyKey) => {
-    const virtualList: EnumCurrencyKey[] = [
-      'USDT',
-      'BTC',
-      'ETH',
-      'BNB',
-    ]
-    return virtualList.includes(currency)
-  }
-
-  /** 用户当前选择的货币余额 */
-  const currentGlobalCurrencyBalance = computed(() => {
-    const currency = currentGlobalCurrency.value
-    const balance = userInfo.value?.balance[currency]
-    const symbol = isVirtualCurrency(currency) ? '' : currencyConfig[currency].prefix
-    return balance ? symbol + balance : 0
-  })
 
   /** 货币列表;含筛选 */
   const allCurrencyData = (currency: TCurrencyObject | undefined) => {
@@ -144,7 +120,7 @@ export function useCurrencyData() {
           type,
           balance: balanceNumber,
           balanceWithSymbol: `${
-            isVirtualCurrency(type)
+            application.isVirtualCurrency(type)
             ? ''
             : currencyConfig[type].prefix}${balanceNumber
           }`,
@@ -176,29 +152,6 @@ export function useCurrencyData() {
   const renderCurrencyList = computed(() => {
     return allCurrencyData(userInfo.value?.balance)
   })
-
-  /** 获取本地存储的当前全局选择的货币 */
-  function getLocalCurrentGlobalCurrency(): EnumCurrencyKey {
-    const currency = Local.get<
-      EnumCurrencyKey
-    >(STORAGE_CURRENT_GLOBAL_CURRENCY_KEY)?.value
-
-    if (currency)
-      return currency
-    else
-      return EnumCurrency[0] as EnumCurrencyKey
-  }
-
-  /** 设置本地存储的当前全局选择的货币 */
-  function setLocalCurrentGlobalCurrency(currency: EnumCurrencyKey) {
-    Local.set(STORAGE_CURRENT_GLOBAL_CURRENCY_KEY, currency)
-  }
-
-  /** 改变全局货币 */
-  function changeGlobalCurrency(currency: EnumCurrencyKey) {
-    currentGlobalCurrency.value = currency
-    setLocalCurrentGlobalCurrency(currency)
-  }
 
   /** 清空搜索内容 */
   function clearSearchValue() {
@@ -237,8 +190,6 @@ export function useCurrencyData() {
   }
 
   return {
-    currentGlobalCurrency,
-    currentGlobalCurrencyBalance,
     renderBalanceList,
     renderBalanceLockerList,
     currentCurrency,
@@ -246,9 +197,7 @@ export function useCurrencyData() {
     hideZeroBalance,
     renderCurrencyList,
     allContractListData,
-    isVirtualCurrency,
     clearSearchValue,
-    changeGlobalCurrency,
     setHideZeroBalance,
     getVirtualCurrencyContractType,
     getVirContractName,

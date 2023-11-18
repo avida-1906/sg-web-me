@@ -6,8 +6,6 @@ interface Props {
 
 defineProps<Props>()
 
-const { isVirtualCurrency } = useCurrencyData()
-
 const currentNetwork = ref('')
 const activeCurrency = ref<CurrencyData | null>()
 
@@ -21,7 +19,7 @@ const commissionWallet = reactive([
 
 const isVirCurrency = computed(() => {
   if (activeCurrency.value)
-    return isVirtualCurrency(activeCurrency.value.type)
+    return application.isVirtualCurrency(activeCurrency.value.type)
 
   return false
 })

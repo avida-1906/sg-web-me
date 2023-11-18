@@ -12,7 +12,6 @@ const closeDialog = inject('closeDialog', () => { })
 const { userInfo } = storeToRefs(useAppStore())
 const { t } = useI18n()
 const { bool: showWallet, setBool: setShowWalletBool } = useBoolean(true)
-const { isVirtualCurrency } = useCurrencyData()
 const router = useRouter()
 
 const currentNetwork = ref('')
@@ -29,7 +28,7 @@ const isWithdraw = computed(() => currentTab.value === 'withdraw')
 const isCardHolder = computed(() => currentTab.value === 'cardHolder')
 const isVirCurrency = computed(() => {
   if (activeCurrency.value)
-    return isVirtualCurrency(activeCurrency.value.type)
+    return application.isVirtualCurrency(activeCurrency.value.type)
 
   return false
 })

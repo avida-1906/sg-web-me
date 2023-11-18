@@ -44,8 +44,7 @@ export const AllOddsTypes: Array<{
 
 export const useSportsStore = defineStore('sports', () => {
   const { t } = useI18n()
-  const { isLogin } = storeToRefs(useAppStore())
-  const { currentGlobalCurrency } = useCurrencyData()
+  const { isLogin, currentGlobalCurrency } = storeToRefs(useAppStore())
   /** 体育赔率展示方式 */
   const sportsOddsType = ref(getSportsOddsType())
   /** 投注单数据 */

@@ -15,7 +15,6 @@ const closeDialog = inject('closeDialog', () => { })
 const cardList: Ref<WalletCurrencyList[] | null> = ref(null)
 
 const {
-  isVirtualCurrency,
   renderCurrencyList,
   getVirContractName,
 } = useCurrencyData()
@@ -28,7 +27,7 @@ const {
     const temp: WalletCurrencyList[] = []
     for (const item of renderCurrencyList.value) {
       const currentBankcard = walletBankcard.value?.bankcard[item.cur] || []
-      if (isVirtualCurrency(item.type)) { // 虚拟币
+      if (application.isVirtualCurrency(item.type)) { // 虚拟币
         const currentCoin = walletBankcard.value?.coin[item.cur] || []
         temp.push({
           ...item,
@@ -127,7 +126,10 @@ await application.allSettled([runAsyncWalletBankcardList()])
           />
         </template>
         <template #content>
-          <div v-if="isVirtualCurrency(item.type)" class="layout-spacing reset">
+          <div
+            v-if="application.isVirtualCurrency(item.type)"
+            class="layout-spacing reset"
+          >
             <div
               v-for="tmp in item.coin"
               :key="tmp.id"
