@@ -39,9 +39,9 @@ export function useApiMenuData() {
   const { userLanguage, AllLanguages } = storeToRefs(languageStore)
 
   // casino
-  const casinoMenu = ref<Menu>([
+  const casinoMenu = computed<Menu>(() => [
     {
-      title: '收藏夹',
+      title: t('sports_tab_favourites'),
       path: '/casino/favourites',
       icon: 'chess-star',
       list: [],
@@ -49,7 +49,7 @@ export function useApiMenuData() {
       token: true,
     },
     {
-      title: '近期游戏记录',
+      title: t('recent_game_record'),
       path: '/casino/recent',
       icon: 'chess-game-record',
       list: [],
@@ -57,7 +57,7 @@ export function useApiMenuData() {
       token: true,
     },
   ])
-  const casinoGameProvider = ref<Menu>([{ title: '游戏提供商', path: '/casino/collection/provider', icon: 'chess-game-provider', list: [], domId: '' }])
+  const casinoGameProvider = ref<Menu>([{ title: t('casino_provider'), path: '/casino/collection/provider', icon: 'chess-game-provider', list: [], domId: '' }])
 
   const getActiveShown = computed(() => {
     return (shown: string) => rightIsExpand.value
@@ -66,12 +66,12 @@ export function useApiMenuData() {
   const staticMenu1 = computed(() => <Menu>[
     isLogin.value
       ? {
-          title: '个人资料',
+          title: t('profile'),
           path: '',
           icon: 'navbar-user',
           list: [
             {
-              title: '钱包',
+              title: t('wallet'),
               path: '',
               icon: 'navbar-wallet',
               // modalQuery: { modal: 'vault', operation: 'deposit' },
@@ -80,7 +80,7 @@ export function useApiMenuData() {
               },
             },
             {
-              title: '保险库',
+              title: t('safe'),
               path: '',
               icon: 'navbar-cart',
               callBack: () => openSafeDialog(),
@@ -92,13 +92,13 @@ export function useApiMenuData() {
               callBack: () => openVipDialog(),
             },
             {
-              title: '统计数据',
+              title: t('statistical_data'),
               path: '',
               icon: 'uni-trend',
               callBack: () => openStatisticsDialog(),
             },
             {
-              title: '通知',
+              title: t('notification'),
               path: '',
               icon: 'tabbar-bet',
               callBack: () => {
@@ -108,10 +108,10 @@ export function useApiMenuData() {
               },
             },
             // eslint-disable-next-line max-len
-            { title: '体育投注', path: `/sports/${SPORTS_PLAT_ID}/my-bets`, icon: 'spt-basketball' },
-            { title: '设置', path: '/settings/general', icon: 'uni-set' },
+            { title: t('sports_betting'), path: `/sports/${SPORTS_PLAT_ID}/my-bets`, icon: 'spt-basketball' },
+            { title: t('setting'), path: '/settings/general', icon: 'uni-set' },
             {
-              title: '登出',
+              title: t('logout'),
               path: '',
               icon: 'uni-logout',
               callBack: () => openLogoutDialog(),
@@ -121,7 +121,7 @@ export function useApiMenuData() {
         }
       : undefined,
     {
-      title: '促销活动',
+      title: t('promo_activity'),
       path: '',
       icon: 'chess-gameshow',
       list: [
@@ -132,24 +132,30 @@ export function useApiMenuData() {
           path: '/promotions/promotion/weekly-giveaway',
           icon: 'navbar-user',
         },
-        { title: '查看全部', path: '/promotions', icon: 'navbar-user' },
+        { title: t('view_all'), path: '/promotions', icon: 'navbar-user' },
       ],
       domId: 'static-menu-promotion',
     },
     {
-      title: '联盟计划',
+      title: t('affiliate'),
       path: '/affiliate/promotion-tutorial',
       icon: 'chess-affiliate',
       list: [],
       domId: '',
     },
-    { title: 'VIP 俱乐部', path: '/vip-club', icon: 'chess-vipclub', list: [], domId: '' },
-    { title: '博客', path: '/blog', icon: 'chess-blog', list: [], domId: '' },
-    { title: '论坛', path: '', icon: 'tabbar-chat', list: [], domId: '' },
+    {
+      title: `VIP ${t('club')}`,
+      path: '/vip-club',
+      icon: 'chess-vipclub',
+      list: [],
+      domId: '',
+    },
+    { title: t('blog'), path: '/blog', icon: 'chess-blog', list: [], domId: '' },
+    { title: t('chat_forum'), path: '', icon: 'tabbar-chat', list: [], domId: '' },
   ].filter(i => i !== undefined))
   const staticMenu2 = computed(() => <Menu>[
     {
-      title: '赞助活动',
+      title: t('sponsor_activity'),
       path: '',
       icon: 'spt-sponsorship',
       list: [
@@ -160,13 +166,19 @@ export function useApiMenuData() {
       domId: 'static-menu-sponsor',
     },
     {
-      title: '负责任博彩',
+      title: t('responsible_casino'),
       path: '/responsible-gambling',
       icon: 'spt-secure',
       list: [],
       domId: '',
     },
-    { title: '在线支持', path: '', icon: 'spt-online-support', list: [], domId: '' },
+    {
+      title: t('online_support'),
+      path: '',
+      icon: 'spt-online-support',
+      list: [],
+      domId: '',
+    },
     {
       title: `${t('language_title')}： ${t('language_current')}`,
       path: '',

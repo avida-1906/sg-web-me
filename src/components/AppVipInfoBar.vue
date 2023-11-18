@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+const { userInfo } = storeToRefs(useAppStore())
+
 const { openVipBonusRecordDialog } = useDialogVipBonusRecord()
 const { openReceiveBonusDialog } = useDialogReceiveBonus()
 
@@ -13,7 +15,7 @@ function openReceive() {
 
 <template>
   <div class="app-vip-info-bar">
-    <BaseIcon class="vip-badge" name="vip10" />
+    <BaseIcon class="vip-badge" :name="`vip${userInfo?.vip ?? '0'}`" />
     <div class="info">
       <span>{{ $t('next_vip_amount', { vip: 'VIP2', amount: '100万' }) }}</span>
       <div class="btns">
