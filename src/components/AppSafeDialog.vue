@@ -91,6 +91,16 @@ const {
 })
 
 async function handleUpdate() {
+  if (userInfo.value?.pay_password !== '1') {
+    openNotify({
+      title: '错误',
+      icon: 'error',
+      message: '请先设置资金密码',
+    })
+    closeDialog()
+    router.push('/settings/security-safe-pwd')
+    return
+  }
   amountRef.value.setTouchTrue()
   if (passwordRef.value)
     passwordRef.value.setTouchTrue()

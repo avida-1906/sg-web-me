@@ -96,7 +96,9 @@ pageInit()
         </div>
         <div class="item-right">
           <div class="right-state">
-            <span class="title">{{ item.title }}</span>
+            <div style="white-space: break-spaces;line-height: 1.43;">
+              {{ item.title }}
+            </div>
             <BaseBadge
               v-if="isState"
               class="state-text"
@@ -204,6 +206,7 @@ pageInit()
             width: 0;
 
             .right-state {
+                width: 100%;
                 display: flex;
                 color: var(--tg-text-white);
                 font-size: var(--tg-font-size-default);

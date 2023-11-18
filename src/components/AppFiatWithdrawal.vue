@@ -39,7 +39,7 @@ const {
   if (!value)
     return t('validate_require')
   else if (Number(value) === 0)
-    return `${t('validate_deposit_amount')}0`
+    return `${t('validate_amount')}0`
   else if (Number(value) < 0)
     return t('validate_deposit_amount_pos')
   else if (value && Number(value) > Number(props.activeCurrency.balance))
@@ -208,7 +208,10 @@ await application.allSettled(
           >
             <template #label>
               <span class="popper-label">
-                <BaseIcon v-if="defaultBank" name="fiat-bank" />
+                <BaseIcon
+                  v-if="defaultBank"
+                  :name="currentType === '1' ? 'fiat-bank' : 'fiat-pix-title'"
+                />
                 {{ defaultBank }}
               </span>
             </template>
@@ -218,7 +221,11 @@ await application.allSettled(
                 :style="{ width: `${parentWidth + 24}px` }"
               >
                 <div class="option-row">
-                  <BaseIcon name="fiat-bank" />
+                  <BaseIcon
+                    font-size="40px"
+                    :name="currentType === '1'
+                      ? 'fiat-bank' : 'fiat-pix-title'"
+                  />
                   <div class="bank-info" :class="{ 'is-mobile': isLessThanXs }">
                     <p>{{ item.label }}</p>
                     <p>{{ item.value }}</p>
@@ -309,10 +316,6 @@ await application.allSettled(
     gap: 0.75rem;
     color: var(--tg-text-white);
     cursor: pointer;
-    > svg{
-      width: 40px;
-      height: 40px;
-    }
     .bank-info{
       display: flex;
       align-items: center;

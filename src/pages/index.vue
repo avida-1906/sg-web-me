@@ -28,7 +28,7 @@ const {
   },
 })
 
-const btnText = ref('查看更多')
+const btnText = ref(t('view_more_2'))
 const vipProgressData = ref<IVipProgressData>({
   percent: 30,
   currentLevel: 2,
@@ -40,9 +40,9 @@ const isSm = computed(() => appContentWidth.value <= widthBoundarySm.value)
 const onShowMore = function () {
   toggleShowMore()
   if (showMore.value)
-    btnText.value = '显示较少'
+    btnText.value = t('view_less')
   else
-    btnText.value = '查看更多'
+    btnText.value = t('view_more_2')
 }
 
 runMemberNoticeAllList()
@@ -58,14 +58,14 @@ runMemberNoticeAllList()
           class="unauthenticated-wrapper" :class="{ 'is-mobile': isSm }"
         >
           <div class="unauthenticated-content">
-            <h1>更明智地下注</h1>
+            <h1>{{ t('wise_bet') }}</h1>
             <BaseButton
               bg-style="primary"
               round
               size="md"
               @click="openRegisterDialog"
             >
-              <span class="register-text">立即注册</span>
+              <span class="register-text">{{ t('reg_now') }}</span>
             </BaseButton>
             <AppAuthLogin />
           </div>
@@ -77,10 +77,10 @@ runMemberNoticeAllList()
         >
           <AppVipProgress :vip-progress-data="vipProgressData">
             <template #title>
-              <h1>欢迎归来，{{ userInfo?.username }}</h1>
+              <h1>{{ t('welcome_back') }}，{{ userInfo?.username }}</h1>
             </template>
             <p @click="openVipDialog">
-              您的 VIP 进度 <BaseIcon name="uni-arrowright-line" />
+              {{ t('user_vip_pro') }} <BaseIcon name="uni-arrowright-line" />
             </p>
           </AppVipProgress>
         </div>
@@ -117,20 +117,20 @@ runMemberNoticeAllList()
       <div class="features-casino" @click="router.push('/casino')">
         <div class="features-title">
           <BaseIcon name="tabbar-game" />
-          <span>娱乐城</span>
+          <span>{{ t('casino') }}</span>
         </div>
         <div class="features-image">
           <BaseImage url="/png/home/casino.png" class="base-img" />
         </div>
         <div class="features-content">
-          <p>最领先的在线加密货币赌场</p>
+          <p>{{ t('most_advance_casino') }}</p>
           <p>
             {{ t('casino_index_description') }}
           </p>
         </div>
         <div class="features-button">
           <BaseButton bg-style="primary" class="w-100" size="md">
-            前往娱乐城
+            {{ t('go_casino') }}
           </BaseButton>
         </div>
       </div>
@@ -140,20 +140,20 @@ runMemberNoticeAllList()
       >
         <div class="features-title">
           <BaseIcon name="spt-basketball" />
-          <span>体育</span>
+          <span>{{ t('sports') }}</span>
         </div>
         <div class="features-image">
           <BaseImage url="/png/home/sports.png" class="base-img" />
         </div>
         <div class="features-content">
-          <p>最棒的加密货币在线体育博彩</p>
+          <p>{{ t('best_sports') }}</p>
           <p>
             {{ t('sports_index_description') }}
           </p>
         </div>
         <div class="features-button">
           <BaseButton bg-style="primary" class="w-100" size="md">
-            前往体育博彩
+            {{ t('go_sports') }}
           </BaseButton>
         </div>
       </div>
