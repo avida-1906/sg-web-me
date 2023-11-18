@@ -26,7 +26,11 @@ function fieldVerifyLoginPwd(value: string) {
 
 <template>
   <div class="layout-spacing reset page-new-subagent">
-    <BaseInput v-model="username" :msg="usernameErrorMsg" placeholder="输入会员账号">
+    <BaseInput
+      v-model="username"
+      :msg="usernameErrorMsg"
+      :placeholder="t('input_mem_account')"
+    >
       <template #left-icon>
         <BaseIcon name="navbar-user" />
       </template>
@@ -34,7 +38,7 @@ function fieldVerifyLoginPwd(value: string) {
     <BaseInput
       v-model="password"
       :msg="pwdErrorMsg"
-      placeholder="请输入密码"
+      :placeholder="t('pls_enter_password')"
       type="password"
     >
       <template #left-icon>
@@ -42,7 +46,7 @@ function fieldVerifyLoginPwd(value: string) {
       </template>
     </BaseInput>
     <BaseButton bg-style="primary" size="md">
-      提交注册
+      {{ t('submit_reg') }}
     </BaseButton>
   </div>
 </template>

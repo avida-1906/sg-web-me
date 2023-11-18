@@ -1,28 +1,30 @@
 <script lang="ts" setup>
+const { t } = useI18n()
+
 // loading加载
 const { bool: loading } = useBoolean(false)
 const tab = ref('dz')
 const tabList = [
-  { label: '电子', value: 'dz' },
-  { label: '捕鱼', value: 'by' },
-  { label: '棋牌', value: 'qp' },
-  { label: '真人', value: 'zr' },
-  { label: '体育', value: 'ty' },
+  { label: t('slot'), value: 'dz' },
+  { label: t('fishing'), value: 'by' },
+  { label: t('chess'), value: 'qp' },
+  { label: t('live'), value: 'zr' },
+  { label: t('sports'), value: 'ty' },
 ]
 const columns: Column[] = [
   {
-    title: '级别',
+    title: t('class'),
     dataIndex: 'settleTime',
     align: 'center',
     slot: 'settleTime',
   },
   {
-    title: '有效投注',
+    title: t('effective_bet'),
     dataIndex: 'contributeNum',
     align: 'center',
   },
   {
-    title: '返佣金额',
+    title: t('rebate_amount'),
     dataIndex: 'commission',
     align: 'center',
     slot: 'commission',

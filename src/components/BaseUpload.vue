@@ -71,6 +71,7 @@ function changFile(event: any) {
             title: '错误',
             message: err.message,
           })
+          event.target.value = ''
         })
       }
       else {
@@ -105,7 +106,7 @@ function processFile(file: File) {
         ctx.drawImage(rawImage, 0, 0)
         canvas.toBlob((blob) => {
           resolve(blob)
-        }, 'image/webp')
+        }, 'image/webp', 0)
       }
       else { reject(new Error('上传失败')) }
     })

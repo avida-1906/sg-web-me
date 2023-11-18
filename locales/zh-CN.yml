@@ -5,6 +5,10 @@ continue: 继续
 gamer: 玩家
 currency_type: 币种
 start_game: 开始游戏
+slot: 电子
+fishing: 捕鱼
+chess: 棋牌
+live: 真人
 email_or_username: 电邮地址或用户名
 pls_enter_email_or_username: 请输入电邮地址或用户名
 email_or_username_incorrect: 电邮地址或用户名格式不正确
@@ -737,6 +741,8 @@ finance_funds_campaign_sort_created: 创建日
 finance_funds_campaign_sort_deposit_count: 存款次数
 finance_funds_transfer_commission_txt: 把联盟佣金转入可用余额
 finance_funds_transfer_commission_withdraw: 提取可用佣金
+avai_commission: 可用佣金
+total_commission: 总佣金
 page_label: 页
 page_sizer_label: 条/页
 page_prev: 上一页
@@ -777,6 +783,8 @@ menu_title_settings_loginsession: 登录日志
 register_date: 注册日期
 total_deposits: 总存款次数
 last_deposits: 最后一次存款
+independent_deposit: 独立存款
+commission_rate: 佣金率
 wagered: 总投注额
 bet_amount: 投注额
 notify_title_error: 错误
@@ -949,6 +957,10 @@ grade: 等级
 vip_promotion_exp: 晋级经验
 turnover_multiple: 流水倍数
 multiple: 倍
+effective_bet: 有效投注
+total_win_lose: 总输赢
+rebate_amount: 返佣金额
+bet_order_num: 投注单数量
 rule_desc: 规则说明
 vip_rule_1: 晋级标准：满足VIP晋级要求（即打码都满足条件），即可晋级相应VIP等级，获得相应晋级奖金，如连续晋级多级，可领取全部等级晋级奖金
 vip_rule_2: 日俸禄：达到VIP等级对应日俸禄要求，即可领取对应日奖金，每日00:00重置
@@ -971,6 +983,7 @@ validate_msg_input_pay_pwd: 请输入资金密码
 validate_msg_input_paypwd_6: 请输入6位数字组成的资金密码
 validate_msg_input_code: 请输入验证码
 validate_msg_regexp_code: 您的邮箱验证码含有6位数字
+label_email_check: 邮箱验证
 label_bank_number: 银行卡号
 label_branch_address: 开户行地址
 label_account_holder_name: 开户人姓名
@@ -979,6 +992,8 @@ label_currency_types: 货币种类
 label_draw_time: 领取时间
 label_contribute_count: 贡献人数
 label_bind: 绑定
+title_input_paypwd: 输入资金密码
+title_wallet_set: 钱包设置
 success_bind: 绑定成功
 success_delete: 删除成功
 tip_msg_bind_once: 绑定后不可更改
@@ -1030,6 +1045,7 @@ lucky_winner: 幸运赢家
 win_label: 赢
 lose: 输
 description: 描述
+link: 链接
 buy_bonus_round: 购买奖励回合
 pirate: 海盗
 sea: 海洋
@@ -1123,6 +1139,7 @@ adopted: 已采纳
 ignored: 已忽略
 next_vip_amount: 距离{vip}还差{amount}流水
 empty_vip: 暂无级别
+class: 级别
 copper: 铜
 silver: 银
 gold: 金
@@ -1135,3 +1152,21 @@ no_more: 没有更多了
 loading_label: 加载中...
 recent_game_record: 近期游戏记录
 profile: 个人资料
+chat_rule_title: 聊天室规则
+delete_confirm: 删除确认
+login_fail_tip: 登录失效，请重新登录
+sys_error: 系统错误
+res_timeout: 响应超时
+find_error: 发生错误
+input_mem_account: 输入会员账号
+submit_reg: 提交注册
+join_time: 加入时间
+player_id: 玩家ID
+activity_clicks: 活动点击量
+recommend_users: 推荐用户
+new_active: 创建新活动
+commission_cal_tip: 我们所有的游戏都带有不同的庄家优势百分比。您可以使用以下公式来计算您的佣金
+sports_cal_tip: 所有体育投注均以 {rate} 的理论庄家优势进行。您可以使用以下公式来计算您的佣金
+commission_encourage: 您若是个影响力极佳并能触及广大群众，或是处在其他特殊情况下的联盟会员，可请联系我们杰出的支持团队。经与联盟经理人讨论后，我们可争取为您定制一套联盟计划。这可能包括更高的佣金。
+statistical_time: 统计时间
+withdraw_amount: 提款金额

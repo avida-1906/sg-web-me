@@ -1,26 +1,28 @@
 <script lang="ts" setup>
+const { t } = useI18n()
+
 // loading加载
 const { bool: loading } = useBoolean(false)
 const columns: Column[] = [
   {
-    title: '玩家ID',
+    title: t('player_id'),
     dataIndex: 'account',
     align: 'center',
     slot: 'account',
   },
   {
-    title: '统计时间',
+    title: t('statistical_time'),
     dataIndex: 'settleTime',
     align: 'center',
   },
   {
-    title: '提款金额',
+    title: t('withdraw_amount'),
     dataIndex: 'lastLogin',
     align: 'center',
     slot: 'lastLogin',
   },
   {
-    title: '总输赢',
+    title: t('total_win_lose'),
     dataIndex: 'isOnline',
     align: 'center',
     slot: 'online',
@@ -62,7 +64,7 @@ const tableData = ref([
       >
         <template #th-lastLogin>
           <div style="margin-top: var(--tg-spacing-4);">
-            投注单数量
+            {{ t('bet_order_num') }}
           </div>
         </template>
         <template #account="{ record }">

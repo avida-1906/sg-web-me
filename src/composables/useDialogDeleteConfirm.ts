@@ -6,8 +6,10 @@ export function useDeleteConfirmDialog(
   updateWalletList: () => void,
   vCurrencyTitle?: string,
 ) {
+  const { t } = useI18n()
+
   const { openDialog: openDeleteConfirm, closeDialog: closeDeleteConfirm } = useDialog({
-    title: '删除确认',
+    title: t('delete_confirm'),
     icon: 'uni-delete2',
     default: () => h(AppDeleteConfirmDialog, {
       item,

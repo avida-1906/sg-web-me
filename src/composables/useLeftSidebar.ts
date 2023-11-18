@@ -10,7 +10,9 @@ export const useLeftSidebar = createGlobalState(() => {
       navButtons.value = res.map((a) => {
         return {
           ...a,
-          title: a.name === '娱乐城' ? 'casino' : a.name === '体育' ? 'sports' : '_',
+          title: +a.id === 2
+            ? 'casino'
+            : +a.id === 3 ? 'sports' : '_',
         }
       })
     },

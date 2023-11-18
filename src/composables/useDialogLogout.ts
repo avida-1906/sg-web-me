@@ -1,8 +1,10 @@
 import AppLogoutDialog from '~/components/AppLogoutDialog.vue'
 
 export function useLogoutDialog() {
+  const { t } = useI18n()
+
   const { openDialog: openLogoutDialog, closeDialog: closeLogoutDialog } = useDialog({
-    title: '登出',
+    title: t('logout'),
     icon: 'uni-logout',
     default: () => h(AppLogoutDialog),
   })

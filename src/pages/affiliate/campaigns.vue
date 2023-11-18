@@ -15,23 +15,23 @@ const showContent = function () {}
   <div class="tg-affiliate-campaigns">
     <div class="stats-grid">
       <div class="stat">
-        <span>活动点击量</span>
+        <span>{{ $t('activity_clicks') }}</span>
         <span>0</span>
       </div>
       <div class="stat">
-        <span>推荐用户</span>
+        <span>{{ $t('recommend_users') }}</span>
         <span>0</span>
       </div>
       <div class="stat">
-        <span>总存款次数</span>
+        <span>{{ $t('total_deposits') }}</span>
         <span>0</span>
       </div>
       <div class="stat">
-        <span>独立存款</span>
+        <span>{{ $t('independent_deposit') }}</span>
         <span>0</span>
       </div>
       <div class="stat">
-        <span>可用金额</span>
+        <span>{{ $t('finance_funds_transfer_sort_available') }}</span>
         <span>
           0.00000000
           <BaseIcon name="coin-btc" />
@@ -51,7 +51,7 @@ const showContent = function () {}
         </template>
         <template #top-right>
           <div class="top-right">
-            <span>佣金： 0.00000000</span>
+            <span>{{ $t('finance_funds_transfer_sort_commission') }}： 0.00000000</span>
             <BaseIcon name="coin-btc" />
           </div>
         </template>
@@ -60,37 +60,37 @@ const showContent = function () {}
             <div>
               <section class="stats-grid">
                 <div class="stat">
-                  <span>活动点击量</span>
+                  <span>{{ $t('activity_clicks') }}</span>
                   <span class="value">0</span>
                 </div>
                 <div class="stat">
-                  <span>推荐用户</span>
+                  <span>{{ $t('recommend_users') }}</span>
                   <span class="value">0</span>
                 </div>
                 <div class="stat">
-                  <span>总存款次数</span>
+                  <span>{{ $t('total_deposits') }}</span>
                   <span class="value">0</span>
                 </div>
                 <div class="stat">
-                  <span>独立存款</span>
+                  <span>{{ $t('independent_deposit') }}</span>
                   <span class="value">0</span>
                 </div>
                 <div class="stat">
-                  <span>佣金率</span>
+                  <span>{{ $t('commission_rate') }}</span>
                   <span class="value">0.10</span>
                 </div>
               </section>
               <AppCopyLine
-                title="链接"
+                :title="$t('link')"
                 msg="HB3XU3LIJ56T6YTUOM4FKW33NU5DE2DCFEZEKUT2IUXGYNJEJF2A"
               />
             </div>
             <div class="balance-grid">
               <section>
-                <span>可用佣金</span>
+                <span>{{ $t('avai_commission') }}</span>
               </section>
               <section>
-                <span>总佣金</span>
+                <span>{{ $t('total_commission') }}</span>
               </section>
             </div>
           </div>
@@ -101,7 +101,7 @@ const showContent = function () {}
       <AppStack />
     </div>
     <BaseButton>
-      创建新活动
+      {{ $t('new_active') }}
     </BaseButton>
   </div>
 </template>

@@ -1,30 +1,32 @@
 <script lang="ts" setup>
+const { t } = useI18n()
+
 // loading加载
 const { bool: loading } = useBoolean(false)
 const columns: Column[] = [
   {
-    title: '加入时间',
+    title: t('join_time'),
     dataIndex: 'settleTime',
     align: 'center',
   },
   {
-    title: '玩家ID',
+    title: t('player_id'),
     dataIndex: 'account',
     align: 'center',
     slot: 'account',
   },
   {
-    title: '存款',
+    title: t('deposit'),
     dataIndex: 'isFirstLive',
     align: 'center',
   },
   {
-    title: '有效投注',
+    title: t('effective_bet'),
     dataIndex: 'lastLogin',
     align: 'center',
   },
   {
-    title: '总输赢',
+    title: t('total_win_lose'),
     dataIndex: 'isOnline',
     align: 'center',
   },
