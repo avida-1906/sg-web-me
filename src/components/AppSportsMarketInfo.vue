@@ -21,7 +21,7 @@ const sportsStore = useSportsStore()
 const { allSportsSi, sportsFavoriteData } = storeToRefs(sportsStore)
 /** 是否收藏 */
 const isFavorite = computed(() => {
-  if (sportsFavoriteData.value)
+  if (sportsFavoriteData.value && sportsFavoriteData.value.list)
     return sportsFavoriteData.value.list.findIndex(a => a.ei === props.data.ei) > -1
 
   return false
@@ -325,10 +325,13 @@ function goEventDetailPage() {
         <span>{{ standardMarketName }}</span>
       </div>
       <div class="outcomes" style="--area: outcomes0;">
-        <AppSportsBetButton
-          v-for="market in standardMarketBtns" :key="market.wid"
-          :title="market.title" :odds="market.ov" :disabled="market.disabled"
-        />
+        <template v-if="standardMarketBtns">
+          <AppSportsBetButton
+            v-for="market in standardMarketBtns" :key="market.wid"
+            :title="market.title" :odds="market.ov" :disabled="market.disabled"
+          />
+        </template>
+        <AppSportsOutcomeLocked v-else />
       </div>
     </template>
     <!-- 三项投注 -->
