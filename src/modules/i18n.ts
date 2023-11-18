@@ -15,7 +15,7 @@ export const languageMap: Record<EnumLanguageKey, string> = {
   'th-TH': 'th_TH',
 }
 
-const i18n = createI18n({
+export const i18n = createI18n({
   legacy: false,
   locale: '',
   messages: {},
