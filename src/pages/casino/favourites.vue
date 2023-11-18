@@ -14,7 +14,7 @@ await application.allSettled([runAsync()])
         <div class="banner">
           <div class="left">
             <h1>
-              <span>收藏夹</span>
+              <span>{{ $t('sports_tab_favourites') }}</span>
             </h1>
           </div>
           <div class="right">
@@ -28,11 +28,11 @@ await application.allSettled([runAsync()])
       <AppCardList :list="list" />
     </template>
     <div v-else class="no-data">
-      暂无任何收藏，请使用
+      {{ $t('label_no_collect') }}
       <div class="icon">
         <BaseIcon name="chess-star" />
       </div>
-      把游戏添加到收藏夹中。
+      {{ $t('put_collect') }}
     </div>
     <div class="btns">
       <BaseButton type="text" :disabled="page === 1" @click="prev">

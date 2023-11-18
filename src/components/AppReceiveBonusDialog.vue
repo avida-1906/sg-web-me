@@ -96,7 +96,9 @@ function changeCurrency(item: CurrencyData, network: string) {
     </div>
     <div v-if="activeCurrency" class="about-receive">
       {{ $t('bonus_receive_expect') }}：
-      <AppAmount :amount="`${ratedMoney}`" :currency-type="activeCurrency.type" />
+      <span>
+        <AppAmount :amount="`${ratedMoney}`" :currency-type="activeCurrency.type" />
+      </span>
     </div>
     <div class="buttons">
       <BaseButton size="md" @click="closeDialog">
@@ -149,6 +151,8 @@ function changeCurrency(item: CurrencyData, network: string) {
     align-items: center;
     justify-content: center;
     gap: var(--tg-spacing-8);
+    flex-wrap: wrap;
+    width: 100%;
     .rate {
       font-weight: var(--tg-font-weight-semibold);
     }
@@ -158,6 +162,9 @@ function changeCurrency(item: CurrencyData, network: string) {
     align-items: center;
     justify-content: center;
     font-weight: var(--tg-font-weight-semibold);
+    > span {
+      color: var(--tg-text-warn);
+    }
   }
   .buttons {
     display: flex;
