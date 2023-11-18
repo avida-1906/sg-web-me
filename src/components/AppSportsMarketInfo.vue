@@ -82,18 +82,20 @@ const standardMarketBtns = computed(() => {
   if (isHandicap.value) {
     return standardMarketFiltered.value[0]?.ms.map((a) => {
       return {
-        title: `${a.sn}(${a.hdp})`,
+        title: `${a.sn} (${a.hdp})`,
         ...a,
         disabled: standardMarketFiltered.value[0].mls !== 1,
+        cartInfo: getCartObject(standardMarketFiltered.value[0], a, props.data),
       }
     })
   }
   else if (isTotal.value) {
     return standardMarketFiltered.value[0]?.ms.map((a) => {
       return {
-        title: `${a.sn}${a.hdp}`,
+        title: `${a.sn} ${a.hdp}`,
         ...a,
         disabled: standardMarketFiltered.value[0].mls !== 1,
+        cartInfo: getCartObject(standardMarketFiltered.value[0], a, props.data),
       }
     })
   }
@@ -103,6 +105,7 @@ const standardMarketBtns = computed(() => {
         title: a.sn,
         ...a,
         disabled: standardMarketFiltered.value[0].mls !== 1,
+        cartInfo: getCartObject(standardMarketFiltered.value[0], a, props.data),
       }
     })
   }
@@ -335,6 +338,7 @@ onBeforeUnmount(() => {
           <AppSportsBetButton
             v-for="market in standardMarketBtns" :key="market.wid"
             :title="market.title" :odds="market.ov" :disabled="market.disabled"
+            :cart-info="market.cartInfo"
           />
         </template>
         <AppSportsOutcomeLocked v-else />

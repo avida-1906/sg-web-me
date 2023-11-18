@@ -215,6 +215,20 @@ export function getCartObject(
   msObject: ISportEventInfoMlMs,
   infoList1: ISportEventInfo,
 ): IMarketInfo {
+  let sn = ''
+  // 让分盘
+  if (mlObject.bt === 1)
+    sn = `${msObject.sn} (${msObject.hdp})`
+  // 总分
+  else if (mlObject.bt === 2)
+    sn = `${msObject.sn} ${msObject.hdp}`
+  // 获胜
+  else if (mlObject.bt === 3)
+    sn = msObject.sn
+  // 其它
+  else
+    sn = `${msObject.sn} ${msObject.hdp}`
+
   return {
     wid: msObject.wid,
     mlid: mlObject.mlid,
@@ -230,6 +244,6 @@ export function getCartObject(
     homeTeamName: infoList1.htn,
     awayTeamName: infoList1.atn,
     btn: mlObject.btn,
-    sn: infoList1.sn,
+    sn,
   }
 }
