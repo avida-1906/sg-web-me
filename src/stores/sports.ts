@@ -44,6 +44,7 @@ export const AllOddsTypes: Array<{
 
 export const useSportsStore = defineStore('sports', () => {
   const { t } = useI18n()
+  const { isLogin } = storeToRefs(useAppStore())
   const { currentGlobalCurrency } = useCurrencyData()
   /** 体育赔率展示方式 */
   const sportsOddsType = ref(getSportsOddsType())
@@ -73,12 +74,24 @@ export const useSportsStore = defineStore('sports', () => {
 
   /** 侧边栏数据源 */
   const { data: sidebarData, run: runSportsSidebar } = useRequest(ApiSportSidebar, {
+    refreshDeps: isLogin,
+    refreshDepsAction: () => {
+      if (sidebarData.value && isLogin.value) {
+        const allSportsSi = sidebarData.value.all.map(a => a.si)
+        runGetFavoriteList({
+          sis: allSportsSi,
+          cur: currencyConfig[currentGlobalCurrency.value].cur,
+        })
+      }
+    },
     onSuccess(res) {
-      const allSportsSi = res.all.map(a => a.si)
-      runGetFavoriteList({
-        sis: allSportsSi,
-        cur: currencyConfig[currentGlobalCurrency.value].cur,
-      })
+      if (isLogin.value) {
+        const allSportsSi = res.all.map(a => a.si)
+        runGetFavoriteList({
+          sis: allSportsSi,
+          cur: currencyConfig[currentGlobalCurrency.value].cur,
+        })
+      }
     },
   })
 
