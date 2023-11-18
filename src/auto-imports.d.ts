@@ -10,6 +10,7 @@ declare global {
   const ApiChatGetHistory: typeof import('./apis/index')['ApiChatGetHistory']
   const ApiChatSendMessage: typeof import('./apis/index')['ApiChatSendMessage']
   const ApiCount: typeof import('./apis/sport')['ApiCount']
+  const ApiFinanceMerchantCoinList: typeof import('./apis/index')['ApiFinanceMerchantCoinList']
   const ApiFinanceMerchantList: typeof import('./apis/index')['ApiFinanceMerchantList']
   const ApiFinanceMethodList: typeof import('./apis/index')['ApiFinanceMethodList']
   const ApiFinanceThirdDeposit: typeof import('./apis/index')['ApiFinanceThirdDeposit']
@@ -80,6 +81,7 @@ declare global {
   const ApiSportEventDelta: typeof import('./apis/sport')['ApiSportEventDelta']
   const ApiSportEventInfo: typeof import('./apis/sport')['ApiSportEventInfo']
   const ApiSportEventList: typeof import('./apis/sport')['ApiSportEventList']
+  const ApiSportEventSearch: typeof import('./apis/sport')['ApiSportEventSearch']
   const ApiSportGetFavoriteList: typeof import('./apis/sport')['ApiSportGetFavoriteList']
   const ApiSportMenuMain: typeof import('./apis/sport')['ApiSportMenuMain']
   const ApiSportOutrightList: typeof import('./apis/sport')['ApiSportOutrightList']
@@ -287,6 +289,7 @@ declare global {
   const timeCheckIsLeapyear: typeof import('./utils/time')['timeCheckIsLeapyear']
   const timeFullTimeFormat: typeof import('./utils/time')['timeFullTimeFormat']
   const timeToFromNow: typeof import('./utils/time')['timeToFromNow']
+  const timeToSportsTimeFormat: typeof import('./utils/time')['timeToSportsTimeFormat']
   const toFixed: typeof import('./utils/number')['toFixed']
   const toNumber: typeof import('lodash-es')['toNumber']
   const toRaw: typeof import('vue')['toRaw']
@@ -558,6 +561,7 @@ declare module 'vue' {
     readonly ApiAddFeedbackChatMsg: UnwrapRef<typeof import('./apis/index')['ApiAddFeedbackChatMsg']>
     readonly ApiChatGetHistory: UnwrapRef<typeof import('./apis/index')['ApiChatGetHistory']>
     readonly ApiChatSendMessage: UnwrapRef<typeof import('./apis/index')['ApiChatSendMessage']>
+    readonly ApiFinanceMerchantCoinList: UnwrapRef<typeof import('./apis/index')['ApiFinanceMerchantCoinList']>
     readonly ApiFinanceMerchantList: UnwrapRef<typeof import('./apis/index')['ApiFinanceMerchantList']>
     readonly ApiFinanceMethodList: UnwrapRef<typeof import('./apis/index')['ApiFinanceMethodList']>
     readonly ApiFinanceThirdDeposit: UnwrapRef<typeof import('./apis/index')['ApiFinanceThirdDeposit']>
@@ -628,6 +632,7 @@ declare module 'vue' {
     readonly ApiSportEventDelta: UnwrapRef<typeof import('./apis/sport')['ApiSportEventDelta']>
     readonly ApiSportEventInfo: UnwrapRef<typeof import('./apis/sport')['ApiSportEventInfo']>
     readonly ApiSportEventList: UnwrapRef<typeof import('./apis/sport')['ApiSportEventList']>
+    readonly ApiSportEventSearch: UnwrapRef<typeof import('./apis/sport')['ApiSportEventSearch']>
     readonly ApiSportGetFavoriteList: UnwrapRef<typeof import('./apis/sport')['ApiSportGetFavoriteList']>
     readonly ApiSportMenuMain: UnwrapRef<typeof import('./apis/sport')['ApiSportMenuMain']>
     readonly ApiSportOutrightList: UnwrapRef<typeof import('./apis/sport')['ApiSportOutrightList']>
@@ -820,8 +825,8 @@ declare module 'vue' {
     readonly throttledRef: UnwrapRef<typeof import('@vueuse/core')['throttledRef']>
     readonly throttledWatch: UnwrapRef<typeof import('@vueuse/core')['throttledWatch']>
     readonly timeCheckIsLeapYear: UnwrapRef<typeof import('./utils/time')['timeCheckIsLeapYear']>
-    readonly timeFullTimeFormat: UnwrapRef<typeof import('./utils/time')['timeFullTimeFormat']>
     readonly timeToFromNow: UnwrapRef<typeof import('./utils/time')['timeToFromNow']>
+    readonly timeToSportsTimeFormat: UnwrapRef<typeof import('./utils/time')['timeToSportsTimeFormat']>
     readonly toFixed: UnwrapRef<typeof import('./utils/number')['toFixed']>
     readonly toNumber: UnwrapRef<typeof import('lodash-es')['toNumber']>
     readonly toRaw: UnwrapRef<typeof import('vue')['toRaw']>
@@ -1086,6 +1091,7 @@ declare module '@vue/runtime-core' {
     readonly ApiAddFeedbackChatMsg: UnwrapRef<typeof import('./apis/index')['ApiAddFeedbackChatMsg']>
     readonly ApiChatGetHistory: UnwrapRef<typeof import('./apis/index')['ApiChatGetHistory']>
     readonly ApiChatSendMessage: UnwrapRef<typeof import('./apis/index')['ApiChatSendMessage']>
+    readonly ApiFinanceMerchantCoinList: UnwrapRef<typeof import('./apis/index')['ApiFinanceMerchantCoinList']>
     readonly ApiFinanceMerchantList: UnwrapRef<typeof import('./apis/index')['ApiFinanceMerchantList']>
     readonly ApiFinanceMethodList: UnwrapRef<typeof import('./apis/index')['ApiFinanceMethodList']>
     readonly ApiFinanceThirdDeposit: UnwrapRef<typeof import('./apis/index')['ApiFinanceThirdDeposit']>
@@ -1156,6 +1162,7 @@ declare module '@vue/runtime-core' {
     readonly ApiSportEventDelta: UnwrapRef<typeof import('./apis/sport')['ApiSportEventDelta']>
     readonly ApiSportEventInfo: UnwrapRef<typeof import('./apis/sport')['ApiSportEventInfo']>
     readonly ApiSportEventList: UnwrapRef<typeof import('./apis/sport')['ApiSportEventList']>
+    readonly ApiSportEventSearch: UnwrapRef<typeof import('./apis/sport')['ApiSportEventSearch']>
     readonly ApiSportGetFavoriteList: UnwrapRef<typeof import('./apis/sport')['ApiSportGetFavoriteList']>
     readonly ApiSportMenuMain: UnwrapRef<typeof import('./apis/sport')['ApiSportMenuMain']>
     readonly ApiSportOutrightList: UnwrapRef<typeof import('./apis/sport')['ApiSportOutrightList']>
@@ -1348,8 +1355,8 @@ declare module '@vue/runtime-core' {
     readonly throttledRef: UnwrapRef<typeof import('@vueuse/core')['throttledRef']>
     readonly throttledWatch: UnwrapRef<typeof import('@vueuse/core')['throttledWatch']>
     readonly timeCheckIsLeapYear: UnwrapRef<typeof import('./utils/time')['timeCheckIsLeapYear']>
-    readonly timeFullTimeFormat: UnwrapRef<typeof import('./utils/time')['timeFullTimeFormat']>
     readonly timeToFromNow: UnwrapRef<typeof import('./utils/time')['timeToFromNow']>
+    readonly timeToSportsTimeFormat: UnwrapRef<typeof import('./utils/time')['timeToSportsTimeFormat']>
     readonly toFixed: UnwrapRef<typeof import('./utils/number')['toFixed']>
     readonly toNumber: UnwrapRef<typeof import('lodash-es')['toNumber']>
     readonly toRaw: UnwrapRef<typeof import('vue')['toRaw']>

@@ -285,3 +285,27 @@ export function ApiSportDelFavorite(data: {
 }) {
   return httpClient.post(`/sport/${getSportsPlatId()}/favorite/del`, data)
 }
+
+/**
+ * 赛事搜索
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=540a58d7-8a27-4123-9074-7a5d7272e09d
+ */
+export function ApiSportEventSearch(data: { word: string }) {
+  return httpClient.post<{
+    list: {
+      si: number
+      sn: string
+      c: number
+      list: {
+        pgid: string
+        pgn: string
+        ci: string
+        cn: string
+        ei: string
+        ed: number
+        htn: string
+        atn: string
+      }[]
+    }[]
+  }>(`/sport/${getSportsPlatId()}/event/search`, data)
+}

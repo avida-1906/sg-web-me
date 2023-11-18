@@ -1105,3 +1105,30 @@ export function ApiPaymentDepositCoinConfirm(data: {
 }) {
   return httpClient.post<string>('/payment/deposit/coin/confirm', data)
 }
+
+/**
+ * 虚拟币支付通道-列表
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=360094b9-8633-4379-a464-edb4834db91a
+ */
+export function ApiFinanceMerchantCoinList(params: {
+  /** 货币id */
+  currency_id: string
+  /** 协议id */
+  contract_id: string
+}) {
+  return httpClient.get<{
+    /** 通道id */
+    id: string
+    /** 通道名称 */
+    name: string
+    /** 支付方式id */
+    method_id: string
+    amount_max: string
+    amount_min: string
+    amount_type: number
+    amount_fixed: string
+    often_amount: string
+    /** 1-在线⽀付 2-公司⼊款/货币⼊款 */
+    payment_type: number
+  }[]>('/finance/merchant/coin/list', { params })
+}

@@ -1,17 +1,74 @@
 <script setup lang='ts'>
-const { t } = useI18n()
+const props = defineProps<{
+  data?: {
+    list: {
+      si: number
+      sn: string
+      c: number
+      list: {
+        pgid: string
+        pgn: string
+        ci: string
+        cn: string
+        ei: string
+        ed: number
+        htn: string
+        atn: string
+      }[]
+    }[]
+  }
+}>()
 
-const currentTab = ref('1')
-const tabList = ref([
-  { label: '足球', value: '1', num: '5' },
-  { label: '篮球', value: '2', num: '5' },
-  { label: '赛车', value: '3', num: '10' },
-])
-const breadList = ref([
-  { value: '1', label: '电子足球' },
-  { value: '2', label: 'Gt Sports League' },
-  { value: '3', label: 'GT Nations League' },
-])
+const router = useRouter()
+const { width } = storeToRefs(useWindowStore())
+
+const currentTab = ref(props.data?.list[0].si ?? 0)
+const isH5Layout = computed(() => width.value < 575)
+const tabList = computed(() => {
+  if (props.data) {
+    return props.data.list.map((a) => {
+      return {
+        label: a.sn,
+        value: a.si,
+        num: a.c,
+      }
+    })
+  }
+
+  return []
+})
+const list = computed(() => {
+  if (props.data) {
+    const dataFindBySi = props.data.list.find(a => a.si === currentTab.value)
+
+    if (dataFindBySi) {
+      return dataFindBySi.list.map((b) => {
+        const sport = { label: dataFindBySi.sn, value: `${dataFindBySi.si}` }
+        const area = { label: b.pgn, value: `${b.pgid}` }
+        const league = { label: b.cn, value: `${b.ci}` }
+        return {
+          ...b,
+          breadcrumb: [sport, area, league],
+          time: timeToSportsTimeFormat(b.ed * 1000),
+          path: `/sports/${SPORTS_PLAT_ID}/${dataFindBySi.si}/${b.pgid}/${b.ci}/${b.ei}`,
+        }
+      })
+    }
+    return []
+  }
+  return []
+})
+// 联赛跳转
+function onBreadcrumbsClick({ list, index }: { list: ISelectOption[]; index: number }) {
+  let path = ''
+  if (isH5Layout.value)
+    path = `/sports/${getSportsPlatId()}/${list.map(a => a.value).join('/')}`
+
+  else
+    // eslint-disable-next-line max-len
+    path = `/sports/${getSportsPlatId()}/${list.slice(0, index + 1).map(a => a.value).join('/')}`
+  router.push(path)
+}
 </script>
 
 <template>
@@ -26,15 +83,15 @@ const breadList = ref([
     </BaseTab>
 
     <div class="result-list">
-      <div v-for="i in 5" :key="i" class="result-item">
+      <div v-for="item, in list" :key="item.ci" class="result-item">
         <div class="game-name">
-          <span>Sevilla FC (Mad)</span> -
-          <span>FC Barcelona (Moic)</span>
+          <span>{{ item.htn }}</span> -
+          <span>{{ item.atn }}</span>
         </div>
         <div class="status">
-          {{ t('sports_status_finished') }}
+          {{ item.time }}
         </div>
-        <BaseBreadcrumbs :list="breadList" />
+        <BaseBreadcrumbs :list="item.breadcrumb" @item-click="onBreadcrumbsClick" />
       </div>
     </div>
   </div>
@@ -87,7 +144,7 @@ const breadList = ref([
     }
 
     .status {
-      background-color: var(--tg-secondary-deepdark);
+      // background-color: var(--tg-secondary-deepdark);
       border-radius: var(--tg-radius-sm);
       padding: 0 var(--tg-spacing-4);
       line-height: 1.5;
