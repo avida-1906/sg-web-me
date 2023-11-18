@@ -17,10 +17,11 @@ const appStore = useAppStore()
 const { exchangeRateData } = storeToRefs(appStore)
 const chatStore = useChatStore()
 const { openNotify } = useNotify()
-const { isMobile } = useWindowStore()
+const { width } = useWindowSize()
 
 const currentNetwork = ref('')
 const activeCurrency = ref<CurrencyData | null>()
+const isMobile = ref(width.value < 768)
 
 const rate = computed(() => {
   const temp = exchangeRateData.value?.rates
