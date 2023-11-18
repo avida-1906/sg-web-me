@@ -14,6 +14,7 @@ const { t } = useI18n()
 const closeDialog = inject('closeDialog', () => { })
 const cardList: Ref<WalletCurrencyList[] | null> = ref(null)
 
+const { openDeleteConfirm } = useDeleteConfirmDialog()
 const {
   renderCurrencyList,
   getVirContractName,
@@ -54,7 +55,6 @@ const {
     cardList.value = temp
   },
 })
-
 const { openWalletDialog } = useWalletDialog({ activeTab: 'cardHolder' })
 const toAddBankcards = function (item: WalletCurrencyList) {
   let isFirst = true
@@ -96,12 +96,17 @@ const toAddVirAddress = function (
   }))
 }
 function toDeleteVirAddress(item: VirtualCoin, vCurrencyTitle: string) {
-  const { openDeleteConfirm } = useDeleteConfirmDialog(item, runAsyncWalletBankcardList, vCurrencyTitle)
-  openDeleteConfirm()
+  openDeleteConfirm({
+    item,
+    runAsyncWalletBankcardList,
+    vCurrencyTitle,
+  })
 }
 function toDeleteBankcard(item: BankCard) {
-  const { openDeleteConfirm } = useDeleteConfirmDialog(item, runAsyncWalletBankcardList)
-  openDeleteConfirm()
+  openDeleteConfirm({
+    item,
+    runAsyncWalletBankcardList,
+  })
 }
 
 // if (!cardList.value)
