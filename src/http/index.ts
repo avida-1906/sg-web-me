@@ -16,6 +16,7 @@ type IResponseInterceptors = (
   value: AxiosResponse<any>
 ) => AxiosResponse<any> | Promise<Error>
 
+const { t } = useI18n()
 const { openNotify } = useNotify()
 const { openLoginDialog } = useLoginDialog()
 
@@ -125,7 +126,7 @@ class HttpClient {
             code: `${responseStatus}`,
             message: `
               ${MODE === 'test' ? `Url: ${response.config.url}<br />` : ''}
-              '登录失效，请重新登录'
+              ${t('login_fail_tip')}
             `,
           })
           if (router.currentRoute.value.path !== '/') {
@@ -141,7 +142,7 @@ class HttpClient {
               code: `${responseStatus}`,
               message: `
                 ${MODE === 'test' ? `Url: ${response.config.url}<br />` : ''}
-                ${data || '系统错误'}
+                ${data || t('sys_error')}
               `,
             })
           }
@@ -210,7 +211,7 @@ class HttpClient {
         }
         // 判断响应超时
         if (error.code === 'ECONNABORTED' && error.message.includes('timeout')) {
-          errorMessage.message = '响应超时'
+          errorMessage.message = t('res_timeout')
           return Promise.reject(errorMessage)
         }
         if (error.response) {
@@ -220,7 +221,7 @@ class HttpClient {
             code: `${status}`,
             message: `
               ${MODE === 'test' ? `Url: ${error.config.url}<br />` : ''}
-              发生错误：${status}
+              ${t('find_error')}：${status}
             `,
           })
           switch (status) {

@@ -5,20 +5,19 @@
   <div class="tg-affiliate-commission">
     <div class="commission-wrap">
       <div class="item">
-        <h1>娱乐城</h1>
-        <p>我们所有的游戏都带有不同的庄家优势百分比。您可以使用以下公式来计算您的佣金：</p>
+        <h1>{{ $t('casino') }}</h1>
+        <p>{{ $t('commission_cal_tip') }}：</p>
         <code>(Edge as decimal * wagered / 2) * commission rate</code>
       </div>
       <div class="item">
-        <h1>体育博彩</h1>
-        <p>所有体育投注均以 3% 的理论庄家优势进行。您可以使用以下公式来计算您的佣金：</p>
+        <h1>{{ $t('sports') }}</h1>
+        <p>{{ $t('sports_cal_tip', { rate: '3%' }) }}：</p>
         <code>(0.03 * wagered / 2) * commission rate</code>
       </div>
     </div>
     <div class="tg-affiliate-commission-bottom">
       <BaseIcon name="uni-tips" />
-      您若是个影响力极佳并能触及广大群众，或是处在其他特殊情况下的联盟会员，可请联系我们杰出的支持团队。
-      经与联盟经理人讨论后，我们可争取为您定制一套联盟计划。这可能包括更高的佣金。
+      {{ $t('commission_encourage') }}
     </div>
   </div>
 </template>

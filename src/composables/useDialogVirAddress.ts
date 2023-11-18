@@ -4,8 +4,6 @@ export function useVirAddressDialog(headMsg:
 { title: string
   icon: string
 }) {
-  // const { t } = useI18n()
-
   const {
     openDialog: openVirAddressDialog,
     closeDialog: closeVirAddressDialog,
