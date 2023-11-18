@@ -31,7 +31,7 @@ const {
   if (!value)
     return t('pls_enter_password')
   else if (value !== newPassword.value)
-    return '两次输入的密码不一致'
+    return t('validate_msg_pwd_unequal')
   return ''
 })
 const {
@@ -41,8 +41,8 @@ const {
   onSuccess() {
     openNotify({
       type: 'success',
-      title: '成功',
-      message: '修改密码成功',
+      title: t('notify_title_success'),
+      message: t('success_update_pwd'),
     })
     // 修改密码成功之后退出登陆
     runMemberLogout()
@@ -92,18 +92,18 @@ async function submitLoginPwd() {
 <template>
   <div class="tg-settings-security">
     <AppSettingsContentItem
-      title="密码"
+      :title="t('password')"
       last-one
       :btn-loading="passwordUpdateLoading && logoutLoading"
       @submit="submitLoginPwd"
     >
-      <BaseLabel label="旧密码" must-small>
+      <BaseLabel :label="t('old_pwd')" must-small>
         <BaseInput
           ref="pwdRef" v-model="password" :msg="pwdErrorMsg"
           type="password" msg-after-touched
         />
       </BaseLabel>
-      <BaseLabel label="新密码" must-small>
+      <BaseLabel :label="t('new_pwd')" must-small>
         <BaseInput
           ref="newPwd" v-model="newPassword"
           :msg="newPwdErrorMsg"
@@ -120,7 +120,7 @@ async function submitLoginPwd() {
           />
         </div>
       </BaseLabel>
-      <BaseLabel label="确认新密码" must-small>
+      <BaseLabel :label="t('confirm_new_pwd')" must-small>
         <BaseInput
           ref="repeatPwd" v-model="repeatPassword"
           :msg="repeatPwdErrorMsg"
