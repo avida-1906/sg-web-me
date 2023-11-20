@@ -1,5 +1,6 @@
 <script setup lang='ts'>
-const list = [1, 2, 3]
+const x = Math.ceil(Math.random() * 2)
+const list = x === 1 ? [1, 2, 3] : [1]
 const data = {
   startTime: '',
   homeTeamName: '',
