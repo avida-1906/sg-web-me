@@ -13,6 +13,10 @@ const props = withDefaults(defineProps<Props>(), {
   layout: 'vertical',
 })
 
+const betButton = ref<HTMLElement | null>(null)
+
+// domTransition
+
 const sportStore = useSportsStore()
 const { t } = useI18n()
 const { openRightSidebar, rightIsExpand } = useRightSidebar()
@@ -21,15 +25,38 @@ function clickHandler() {
   if (!rightIsExpand.value)
     openRightSidebar(EnumRightSidebarContent.BETTING)
 
-  if (sportStore.cart.checkWid(props.cartInfo.wid))
+  if (sportStore.cart.checkWid(props.cartInfo.wid)) {
     sportStore.cart.remove(props.cartInfo.wid)
-  else
+  }
+  else {
     sportStore.cart.add(props.cartInfo)
+    setTimeout(() => {
+      startDomTransition()
+    }, 30)
+  }
+}
+
+function startDomTransition() {
+  const startDom = betButton.value
+  const endDom = document.getElementById(EnumSportEndDomID.PC_CART_END_DOM)
+  const sportsBetSlipDom = document.querySelector('.app-sports-bet-slip') as HTMLElement
+  let topOffset = '0px'
+
+  if (sportsBetSlipDom)
+    topOffset = getStyle(sportsBetSlipDom, 'height')
+
+  if (!startDom || !endDom)
+    return
+
+  domTransition(startDom, endDom, {
+    topOffset: Number.parseFloat(topOffset),
+  })
 }
 </script>
 
 <template>
   <div
+    ref="betButton"
     class="app-sports-bet-button"
     :class="{
       'active': sportStore.cart.checkWid(props.cartInfo.wid),

@@ -62,8 +62,7 @@ const changeType = function (type: string) {
 .withdrawal-deposit-type{
   width: 100%;
   display: flex;
-  gap: .75rem;
-  padding: var(--tg-spacing-2) 0;
+  gap: var(--tg-spacing-12);
   &::-webkit-scrollbar-thumb{
     display: none;
   }

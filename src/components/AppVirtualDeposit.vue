@@ -10,6 +10,7 @@ const props = defineProps<Props>()
 
 const emit = defineEmits(['show'])
 const currentAisle = ref()
+const depositStep = ref('1')
 
 const { t } = useI18n()
 const {
@@ -18,13 +19,13 @@ const {
   validate: amountValidate,
   resetField: amountReset,
 } = useField<string>('amount', (value) => {
-  // const Value = Number(value)
-  // if (!Value)
-  //   return currentAisleItem.value?.type === 1 ? t('select_amount') : t('input_amount')
-  // else if (currentAisleItem.value?.amount_min && Value < Number(currentAisleItem.value?.amount_min))
-  //   return `${t('min_amount_is')}${currentAisleItem.value?.amount_min}`
-  // else if (currentAisleItem.value?.amount_max && Value > Number(currentAisleItem.value?.amount_max))
-  //   return `${t('max_amount_is')}${currentAisleItem.value?.amount_max}`
+  const Value = Number(value)
+  if (!Value)
+    return currentAisle.value?.amount_type === 1 ? t('select_amount') : t('input_amount')
+  else if (currentAisle.value?.amount_min && Value < Number(currentAisle.value?.amount_min))
+    return `${t('min_amount_is')}${currentAisle.value?.amount_min}`
+  else if (currentAisle.value?.amount_max && Value > Number(currentAisle.value?.amount_max))
+    return `${t('max_amount_is')}${currentAisle.value?.amount_max}`
 
   return ''
 })
@@ -39,6 +40,7 @@ const {
 const {
   runAsync: runAsyncFinanceMerchantCoinList,
   data: paymentMethodCoinList,
+  loading: financeMerchantCoinListLoad,
 } = useRequest(ApiFinanceMerchantCoinList, {
   onSuccess() {
     currentAisle.value = paymentMethodCoinList.value
@@ -52,12 +54,18 @@ const {
   loading: paymentDepositCoinInfoLoading,
 } = useRequest(ApiPaymentDepositCoinApplication, {
   onSuccess() {
-
+    depositStep.value = '2'
+    emit('show', false)
   },
 })
-
-const currentAddress = ref('0xa9869670e7f9db1f6b916b90b2b7ebc546480e67')
-const depositStep = ref('1')
+const {
+  run: runPaymentDepositCoinConfirm,
+  loading: paymentDepositCoinConfirmLoading,
+} = useRequest(ApiPaymentDepositCoinConfirm, {
+  onSuccess() {
+    cancelPayment()
+  },
+})
 
 const oftenAmount = computed(() => {
   const arr = currentAisle.value.often_amount.split(',')
@@ -69,49 +77,50 @@ const oftenAmount = computed(() => {
   })
 })
 
-function confirmPayment() {
-  if (currentAisle.value.payment_type === 1) { // 三方支付存款
-    runThirdDeposit({
-      amount: amount.value,
-      cid: currentAisle.value,
-      mid: currentAisle.value.method_id,
-      currency_id: props.activeCurrency.cur,
-      currency_name: props.activeCurrency.type,
-    })
+async function confirmPayment() {
+  await amountValidate()
+  if (!amountError.value) {
+    if (currentAisle.value.payment_type === 1) { // 三方支付存款
+      runThirdDeposit({
+        amount: amount.value,
+        bank_code: '',
+        cid: currentAisle.value.id,
+        mid: currentAisle.value.method_id,
+        currency_id: props.activeCurrency.cur,
+        currency_name: props.activeCurrency.type,
+      })
+    }
+    else if (currentAisle.value.payment_type === 2) { // 虚拟币存款
+      runPaymentDepositCoinApplication({
+        amount: amount.value,
+        cid: currentAisle.value.id,
+        currency_id: props.activeCurrency.cur,
+        currency_name: props.activeCurrency.type,
+        mid: currentAisle.value.method_id,
+      })
+    }
   }
-  else if (currentAisle.value.payment_type === 2) { // 虚拟币存款
-    runPaymentDepositCoinApplication({
-      amount: amount.value,
-      cid: currentAisle.value.id,
-      currency_id: props.activeCurrency.cur,
-      currency_name: props.activeCurrency.type,
-      mid: currentAisle.value.method_id,
-    })
-  }
-
-  depositStep.value = '2'
-  emit('show', false)
 }
 function cancelPayment() {
+  amountReset()
   depositStep.value = '1'
   emit('show', true)
-}
-function changeAisle(item) {
-  currentAisle.value = item
 }
 const toCopy = function (item: string) {
   application.copy(item)
 }
 
 watch(() => props.activeCurrency, (newValue) => {
+  amountReset()
   if (newValue) {
-    runAsyncFinanceMerchantCoinList({
+    (!financeMerchantCoinListLoad.value) && runAsyncFinanceMerchantCoinList({
       currency_id: props.activeCurrency.cur,
       contract_id: props.currentNetwork,
     })
   }
 })
 watch(() => props.currentNetwork, (newValue) => {
+  amountReset()
   if (newValue) {
     runAsyncFinanceMerchantCoinList({
       currency_id: props.activeCurrency.cur,
@@ -140,23 +149,39 @@ await application.allSettled([
               :key="item.id"
               class="aisle"
               :class="currentAisle.id === item.id ? 'active' : ''"
-              @click="changeAisle(item)"
+              @click="currentAisle = item"
             >
               <span>{{ item.name }}</span>
               <span>{{ item.amount_min }}-{{ item.amount_max }}</span>
             </div>
           </div>
         </BaseLabel>
-        <BaseInput
+        <!-- <BaseInput
           v-model="amount" :label="`充值金额: ${activeCurrency.type}`"
           :msg="amountError"
-        />
+        /> -->
+        <BaseLabel
+          :label="`${t('deposit_amount')}: ${activeCurrency.prefix}`"
+        >
+          <BaseSelect
+            v-if="oftenAmount && oftenAmount.length"
+            v-model="amount"
+            :options="oftenAmount"
+            :msg="amountError"
+            small
+          />
+        </BaseLabel>
         <BaseMoneyKeyboard
           v-if="oftenAmount && oftenAmount.length"
           v-model="amount"
           :options="oftenAmount"
         />
-        <BaseButton bg-style="primary" size="md" @click="confirmPayment">
+        <BaseButton
+          bg-style="primary"
+          size="md"
+          :loading="paymentDepositCoinInfoLoading || thirdDepositLoading"
+          @click="confirmPayment"
+        >
           确认支付
         </BaseButton>
       </template>
@@ -165,51 +190,66 @@ await application.allSettled([
       </template>
     </template>
     <template v-if="depositStep === '2'">
-      <AppCurrencyIcon
-        :show-name="true"
-        :currency-type="activeCurrency.type"
-        icon-align="right"
-        style="--tg-app-currency-icon-style-color:var(--tg-text-white);
-        --tg-app-currency-icon-style-margin: 0 auto;
-        "
-      >
-        <template #network>
-          <span style="padding-right: var(--tg-spacing-5);">TRC20</span>
-        </template>
-      </AppCurrencyIcon>
-      <BaseQrcode url="www.google.com" />
-      <div>
-        <BaseInput v-model="currentAddress" label="转入地址">
-          <template #right-icon>
-            <BaseIcon name="uni-doc" />
+      <div class="center">
+        <AppCurrencyIcon
+          :show-name="true"
+          :currency-type="activeCurrency.type"
+          icon-align="right"
+        >
+          <template #network>
+            <span style="padding-right: var(--tg-spacing-4);">
+              {{ paymentDepositCoinInfo?.deposit_coin.contract_type }}
+            </span>
           </template>
-        </BaseInput>
+        </AppCurrencyIcon>
+      </div>
+      <BaseQrcode :url="paymentDepositCoinInfo?.deposit_coin.wallet_address ?? ''" />
+      <div>
+        <p class="second-title">
+          转入地址
+        </p>
+        <p
+          class="copy-row"
+          @click="toCopy(paymentDepositCoinInfo?.deposit_coin.wallet_address ?? '')"
+        >
+          {{ paymentDepositCoinInfo?.deposit_coin.wallet_address }}
+          <BaseIcon name="uni-doc" />
+        </p>
         <div class="warn-msg">
           请确认发送USDT到此地址，充值需要全网确认才能到账，请耐心等待！
         </div>
       </div>
       <div>
-        <BaseInput v-model="amount" :label="`转入金额: ${activeCurrency.type}`">
-          <template #right-icon>
-            <BaseIcon name="uni-doc" />
-          </template>
-        </BaseInput>
+        <p class="second-title">
+          转入金额：{{ activeCurrency.type }}
+        </p>
+        <p
+          class="copy-row"
+          @click="toCopy(amount ?? '')"
+        >
+          {{ amount }}
+          <BaseIcon name="uni-doc" />
+        </p>
         <div class="warn-msg">
           请确认收款地址存入完整金额（不含手续费），否则可能导致无法上分
         </div>
       </div>
-
       <div class="box-btn">
         <BaseButton
           type="line"
           style="border-color: var(--tg-text-blue);
           color: var(--tg-text-blue);"
-          size="md"
+          size="sm"
           @click="cancelPayment"
         >
           取消存款申请
         </BaseButton>
-        <BaseButton bg-style="primary" size="md">
+        <BaseButton
+          bg-style="primary"
+          size="md"
+          :loading="paymentDepositCoinConfirmLoading"
+          @click="runPaymentDepositCoinConfirm({ id: paymentDepositCoinInfo ?.id ?? '' })"
+        >
           我已存款
         </BaseButton>
       </div>
@@ -221,12 +261,12 @@ await application.allSettled([
 .app-virtual-deposit {
     display: flex;
     flex-direction: column;
-    gap: var(--tg-spacing-12);
+    gap: var(--tg-spacing-16);
     .other-aisles{
       display: flex;
       justify-content: left;
       align-items: center;
-      gap: 0.75rem;
+      gap: var(--tg-spacing-12);
       // overflow: hidden;
       &::-webkit-scrollbar-thumb{
           display: none;
@@ -242,7 +282,6 @@ await application.allSettled([
         display: inline-flex;
         justify-content: center;
         align-items: center;
-        // gap: .75rem;
         flex-direction: column;
         line-height: 17px;
         &:hover{
@@ -259,11 +298,28 @@ await application.allSettled([
         }
       }
     }
+    .second-title{
+      margin-bottom: var(--tg-spacing-4);
+      color: var(--tg-text-lightgrey);
+    }
+    .copy-row{
+      max-width: 100%;
+      border-radius: var(--tg-radius-default);
+      border: 1px solid var(--tg-secondary-main);
+      padding: var(--tg-spacing-12) var(--tg-spacing-12);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--tg-text-white);
+      cursor: pointer;
+      background-color: var(--tg-secondary-dark);
+    }
     .warn-msg {
         line-height: 1;
         color: var(--tg-text-error);
         font-size: var(--tg-font-size-xs);
         font-weight: 500;
+        margin-top: var(--tg-spacing-4);
     }
     .box-btn {
         display: grid;

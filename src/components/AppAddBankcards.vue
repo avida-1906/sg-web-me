@@ -3,8 +3,9 @@ import type { CurrencyData } from '~/composables/useCurrencyData'
 import type { TTreeListType } from '~/composables/useApiMemberTreeList'
 
 interface Props {
-  /** 提款内绑定为true，卡包内绑定为false */
+  /** 是否第一次绑定 */
   isFirst?: boolean
+  /** 是否在存款内绑定 */
   isWithdraw?: boolean
   /** 户名 */
   openName?: string
@@ -239,9 +240,9 @@ onUnmounted(() => {
         <BaseCheckBox v-model="isDefault" />
       </div>
       <BaseButton bg-style="primary" size="md" @click="onBindBank">
-        {{ isFirst ? t('submit') : t('label_bind') }}
+        {{ isWithdraw ? t('submit') : t('label_bind') }}
       </BaseButton>
-      <div v-if="!props.isFirst" class="bind-point">
+      <div v-if="!isWithdraw" class="bind-point">
         {{ t('tip_msg_all_bind_account') }}
         <span>{{ t('tip_msg_name_identical') }}</span>，{{ t('tip_msg_name_edit') }}
       </div>

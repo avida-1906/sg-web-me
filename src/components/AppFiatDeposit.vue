@@ -328,7 +328,7 @@ await application.allSettled([
                 type="line"
                 style="border-color: var(--tg-text-blue);
                 color: var(--tg-text-blue);"
-                size="md"
+                size="sm"
                 @click="previous"
               >
                 {{ t('cancel_deposit') }}
@@ -356,6 +356,7 @@ await application.allSettled([
             v-if="havePaymentMethod"
             v-model="currentType"
             :current-type="paymentMethodData"
+            style="margin-bottom: 12px;"
           />
           <div class="other-first">
             <BaseLabel
@@ -439,23 +440,23 @@ await application.allSettled([
   .deposit-wrap{
     display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: var(--tg-spacing-16);
     .type-online-bank{
       .bank-first,.bank-second{
         display: flex;
         flex-direction: column;
-        gap: 16px;
+        gap: var(--tg-spacing-16);
       }
       .bank-second{
         .second-title{
-          margin-bottom: 4px;
+          margin-bottom: var(--tg-spacing-4);
           color: var(--tg-text-lightgrey);
         }
         .copy-row{
           max-width: 100%;
           border-radius: var(--tg-radius-default);
           border: 1px solid var(--tg-secondary-main);
-          padding: var(--tg-spacing-15) var(--tg-spacing-12);
+          padding: var(--tg-spacing-12) var(--tg-spacing-12);
           display: flex;
           justify-content: space-between;
           align-items: center;
@@ -466,12 +467,11 @@ await application.allSettled([
         .second-tips{
           color:var(--tg-text-error);
           font-size: var(--tg-font-size-xs);
-          margin-top: 4px;
+          margin-top: var(--tg-spacing-4);
         }
         .second-btns{
           display: flex;
-          align-items: center;
-          gap: 1rem;
+          gap: var(--tg-spacing-12);
           button{
             width: 100%;
           }
@@ -490,12 +490,12 @@ await application.allSettled([
       .other-first{
         display: flex;
         flex-direction: column;
-        gap: .75rem;
+        gap: 16px;
         .other-aisles{
           display: flex;
           justify-content: left;
           align-items: center;
-          gap: 0.75rem;
+          gap: var(--tg-spacing-12);
           // overflow: hidden;
           &::-webkit-scrollbar-thumb{
               display: none;
