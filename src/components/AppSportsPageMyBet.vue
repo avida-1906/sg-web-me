@@ -3,13 +3,18 @@ defineProps<{ onPage?: boolean }>()
 
 const router = useRouter()
 const { t } = useI18n()
+const { currentGlobalCurrency } = storeToRefs(useAppStore())
 
-const currentTab = ref('1')
+const currentTab = ref(0)
 const tabList = [
-  { label: t('sports_active'), value: '1' },
-  { label: t('sports_settled'), value: '2' },
+  { label: t('sports_active'), value: 0 },
+  { label: t('sports_settled'), value: 1 },
 ]
-const { page, prev, next, hasMore } = useList(ApiMemberFavList)
+ApiSportBetList({
+  kind: 'normal',
+  settle: currentTab.value,
+  cur: currencyConfig[currentGlobalCurrency.value].cur,
+})
 </script>
 
 <template>
@@ -51,10 +56,10 @@ const { page, prev, next, hasMore } = useList(ApiMemberFavList)
       </BaseEmpty>
     </div>
     <div class="btns">
-      <BaseButton type="text" :disabled="page === 1" @click="prev">
+      <BaseButton type="text">
         {{ $t('page_prev') }}
       </BaseButton>
-      <BaseButton type="text" :disabled="!hasMore" @click="next">
+      <BaseButton type="text">
         {{ $t('page_next') }}
       </BaseButton>
     </div>
