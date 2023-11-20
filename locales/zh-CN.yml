@@ -1094,8 +1094,9 @@ success_submit_feedback: 反馈提交成功！
 feedback_content: 反馈内容
 image: 图片
 image_upload_only: 仅能上传：{ty}格式
-image_upload_tip: 仅能上传：png/jpg格式，最多上传5张，单张最大10M
+image_upload_tip: 仅能上传：png/jpg格式，最多上传5张，单张最大1M
 image_upload_size: 单张图片最大{size}
+image_upload_failed: 图片上传失败
 bonus_rule: 奖励规则
 feedback_bonus_tip: 我们已经设置了巨额奖金，专门收集反馈意见，以便我们优化系统和功能，给您带来更好的体验！一旦被采纳，将根据重要程度给予奖励（未采纳除外）
 bonus_not_apply: 待领取奖金
