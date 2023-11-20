@@ -134,6 +134,7 @@ await application.allSettled([runAsyncWalletBankcardList()])
         :close="item.shown"
         :title="item.addressNum?.toString() || '0'"
         @click-show="handleShow(index)"
+        @click-close="lastShown === index ? lastShown = -1 : ''"
       >
         <template #top-right>
           <AppCurrencyIcon
