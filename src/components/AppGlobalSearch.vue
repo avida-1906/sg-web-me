@@ -56,6 +56,7 @@ const keywordList = computed(() => {
 const searchPlaceholder = computed(() => isCasino.value
   ? t('search_game')
   : t('search_events'))
+// 娱乐城搜索接口
 const {
   list: casinoGames,
   run: runSearchCasinoGames,
@@ -75,12 +76,33 @@ const {
     Local.set(STORAGE_SEARCH_KEYWORDS_LIVE, keywordLive.value)
   },
 })
+// 体育搜索接口
+const { data: sportsData, run: runSearchSports } = useRequest(
+  () => ApiSportEventSearch({ word: searchValue.value }),
+  {
+    onAfter() {
+      const word = searchValue.value
+      isClear.value = false
+      isInputing.value = false
+
+      // 去重
+      if (keywordSports.value.includes(word))
+        keywordSports.value.splice(keywordSports.value.findIndex(t => t === word), 1)
+
+      keywordSports.value.unshift(word)
+      keywordSports.value = keywordSports.value.slice(0, 5)
+      Local.set(STORAGE_SEARCH_KEYWORDS_SPORTS, keywordSports.value)
+    },
+  },
+)
 // 搜索结果
 const resultData = computed(() => {
   if (isClear.value)
     return null
   if (isCasino.value)
     return casinoGames.value.length > 0 ? casinoGames.value : null
+  if (isSports.value && sportsData.value && sportsData.value.list)
+    return sportsData.value.list
 
   return null
 })
@@ -92,11 +114,18 @@ function onBaseSearchInput() {
     setInputingTrue()
     runSearchCasinoGames({ w: searchValue.value })
   }
+  else if (isSports.value && searchValue.value.length >= 3) {
+    setInputingTrue()
+    runSearchSports()
+  }
 }
 function onClickKeyword(k: string) {
   setInputingTrue()
   searchValue.value = k
-  runSearchCasinoGames({ w: searchValue.value })
+  if (isCasino.value)
+    runSearchCasinoGames({ w: searchValue.value })
+  else if (isSports.value)
+    runSearchSports()
 }
 function onCloseKeyword(k: string) {
   if (isCasino.value) {
@@ -216,7 +245,7 @@ onMounted(() => {
         <AppCardList v-if="isCasino && resultData" :list="resultData" />
 
         <!-- sports -->
-        <AppSportsSearchResult v-if="isSports && resultData" />
+        <AppSportsSearchResult v-if="isSports && resultData" :data="sportsData" />
       </div>
     </div>
   </div>

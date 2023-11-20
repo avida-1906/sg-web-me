@@ -167,6 +167,7 @@ onMounted(() => {
 })
 onBeforeUnmount(() => {
   windowResizeRemove()
+  closeOverlay()
 })
 
 provide('closeSearch', closeOverlay)
