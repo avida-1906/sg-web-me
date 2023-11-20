@@ -1,6 +1,9 @@
 <script setup lang='ts'>
+const { t } = useI18n()
 const x = Math.ceil(Math.random() * 2)
 const list = x === 1 ? [1, 2, 3] : [1]
+const status = x === 1 ? 'win' : 'lose'
+const statusText = x === 1 ? t('win') : t('lose')
 const data = {
   startTime: '',
   homeTeamName: '',
@@ -15,7 +18,12 @@ const data = {
   <div class="sports-my-bet-slip">
     <div class="record">
       <div class="header">
-        <span>15:40 2023/11/20</span>
+        <div class="left">
+          <div class="status" :class="[status]">
+            {{ statusText }}
+          </div>
+          <span>15:40 2023/11/20</span>
+        </div>
         <BaseButton type="text" size="none">
           <BaseIcon name="uni-share-slip" />
         </BaseButton>
@@ -76,15 +84,15 @@ const data = {
         <!-- 总计 -->
         <div class="total-box">
           <div class="item">
-            <label>赔率</label>
+            <label>{{ t('sports_odds_title') }}</label>
             <span class="odds">2.12</span>
           </div>
           <div class="item">
-            <label>投注额</label>
+            <label>{{ t('bet_amount') }}</label>
             <AppAmount :amount="0.000001" currency-type="BNB" />
           </div>
           <div class="item">
-            <label>预计支付额</label>
+            <label>{{ t('sports_estimated_payment_amount') }}</label>
             <AppAmount :amount="0.000001" currency-type="BNB" />
           </div>
         </div>
@@ -142,6 +150,30 @@ const data = {
   background: var(--tg-secondary-main);
   padding: var(--tg-spacing-8) var(--tg-spacing-12);
   border-radius: var(--tg-radius-default) var(--tg-radius-default) 0 0;
+
+  .left {
+    .status {
+      font-size: var(--tg-font-size-xs);
+      display: inline-flex;
+      font-weight: 600;
+      align-items: center;
+      justify-content: center;
+      color: var(--tg-text-lightgrey);
+      border-radius: 3px;
+      padding: 0 var(--tg-spacing-4);
+      font-feature-settings: "tnum";
+      white-space: nowrap;
+      line-height: 1.5;
+      margin-right: var(--tg-spacing-8);
+      color: var(--tg-text-grey-deep);
+      &.win{
+        background-color: var(--tg-text-green);
+      }
+      &.lose{
+        background-color: var(--tg-secondary-light);
+      }
+    }
+  }
 }
 
 .content {
@@ -215,13 +247,14 @@ const data = {
         }
       }
     }
-    .score{
+
+    .score {
       margin-top: var(--tg-spacing-8);
       margin-bottom: var(--tg-spacing-2);
     }
 
     &.is-multi {
-      &::before{
+      &::before {
         display: flex;
         content: "";
         height: 3px;
@@ -231,22 +264,24 @@ const data = {
             var(--tg-secondary-grey) 50%, var(--tg-secondary-grey) 100%) 1px -6px/0.7rem 0.7rem repeat-x;
       }
 
-      &::after{
+      &::after {
         display: flex;
         content: "";
         height: 6px;
         width: 100%;
         background: radial-gradient(circle,
-        var(--tg-secondary-dark), var(--tg-secondary-dark) 50%,
-        var(--tg-secondary-grey) 50%, var(--tg-secondary-grey) 100%) 1px 1px/0.7rem 0.7rem repeat-x;
+            var(--tg-secondary-dark), var(--tg-secondary-dark) 50%,
+            var(--tg-secondary-grey) 50%, var(--tg-secondary-grey) 100%) 1px 1px/0.7rem 0.7rem repeat-x;
       }
-      &:first-of-type::before{
+
+      &:first-of-type::before {
         display: flex;
         content: "";
         height: 0;
         width: 100%;
       }
-      &:last-of-type::after{
+
+      &:last-of-type::after {
         display: flex;
         content: "";
         height: 0;
