@@ -21,7 +21,10 @@ function clickHandler() {
   if (!rightIsExpand.value)
     openRightSidebar(EnumRightSidebarContent.BETTING)
 
-  sportStore.cart.add(props.cartInfo)
+  if (sportStore.cart.checkWid(props.cartInfo.wid))
+    sportStore.cart.remove(props.cartInfo.wid)
+  else
+    sportStore.cart.add(props.cartInfo)
 }
 </script>
 

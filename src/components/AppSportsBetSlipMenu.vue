@@ -10,13 +10,11 @@ const { selected: headSelectValue, list: headSelectData } = useSelect([
   {
     label: t('bet_slip'),
     value: EnumsBetSlipHeadStatus.betSlip,
-    num: 15,
     icon: 'spt-user-bet',
   },
   {
     label: t('my_bets'),
     value: EnumsBetSlipHeadStatus.myBets,
-    num: 0,
     icon: 'navbar-user-bet',
   },
 ])
@@ -65,6 +63,9 @@ const betBtnText = computed(() =>
   betOrderData.value.find(b => b.value === betOrderSelectValue.value)?.label ?? '-',
 )
 const cartDataList = computed(() => sportStore.cart.dataList)
+const betCount = computed(() => {
+  return sportStore.cart.count
+})
 </script>
 
 <template>
@@ -81,7 +82,7 @@ const cartDataList = computed(() => sportStore.cart.dataList)
             <div class="type-select">
               <BaseIcon :name="data?.icon" />
               <span>{{ data?.label }}</span>
-              <BaseBadge v-if="data?.num" :count="data?.num" mode="active" />
+              <BaseBadge v-if="betCount" :count="betCount" mode="active" />
             </div>
           </template>
           <template #option="{ data: { item } }">
@@ -138,16 +139,15 @@ const cartDataList = computed(() => sportStore.cart.dataList)
 
     <div class="bet-list">
       <div class="scroll-y betlist-scroll">
-        <template
-          v-for="item, index in cartDataList"
-          :key="item.wid"
-        >
+        <TransitionGroup name="list">
           <AppSportsBetSlip
+            v-for="item, index in cartDataList"
+            :key="item.wid"
             :bet-slip-type="betOrderSelectValue"
             :cart-info-data="item"
             :index="index"
           />
-        </template>
+        </TransitionGroup>
 
         <!-- 无数据缺省，不要删！ -->
         <!-- <div class="empty">
@@ -382,5 +382,14 @@ const cartDataList = computed(() => sportStore.cart.dataList)
       color: var(--tg-text-error);
     }
   }
+}
+
+.list-enter-active{
+  transition: all 0.5s cubic-bezier(0.47, 1.64, 0.41, 0.8);
+}
+
+.list-enter-from {
+  opacity: 0;
+  transform: translateX(100%);
 }
 </style>

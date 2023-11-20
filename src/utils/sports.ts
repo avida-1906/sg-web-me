@@ -298,13 +298,12 @@ export class SportsCart {
    * 从购物车删除数据
    * @param {number} index
    */
-  removeItem(index: number) {
-    if (index > this.dataList.length - 1) {
-      console.error('购物车删除数据失败，索引超出范围')
-      return
-    }
-
-    this.dataList.splice(index, 1)
+  remove(wid: string) {
+    const index = this.dataList.findIndex(a => a.wid === wid)
+    if (index > -1)
+      this.dataList.splice(index, 1)
+    else
+      console.error('购物车中没有该数据')
   }
 
   /** 从购物车删除所有数据 */

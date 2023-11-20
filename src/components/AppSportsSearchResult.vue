@@ -21,6 +21,8 @@ const props = defineProps<{
 
 const router = useRouter()
 const { width } = storeToRefs(useWindowStore())
+const closeSearch = inject('closeSearch', () => {})
+const closeSearchH5 = inject('closeSearch', () => {})
 
 const currentTab = ref(props.data?.list[0].si ?? 0)
 const isH5Layout = computed(() => width.value < 575)
@@ -61,13 +63,28 @@ const list = computed(() => {
 // 联赛跳转
 function onBreadcrumbsClick({ list, index }: { list: ISelectOption[]; index: number }) {
   let path = ''
-  if (isH5Layout.value)
+  if (isH5Layout.value) {
     path = `/sports/${getSportsPlatId()}/${list.map(a => a.value).join('/')}`
+    router.push(path)
+    closeSearchH5()
+  }
 
-  else
+  else {
     // eslint-disable-next-line max-len
     path = `/sports/${getSportsPlatId()}/${list.slice(0, index + 1).map(a => a.value).join('/')}`
-  router.push(path)
+    router.push(path)
+    closeSearch()
+  }
+}
+function goEventDetail(path: string) {
+  if (isH5Layout.value) {
+    router.push(replaceSportsPlatId(path))
+    closeSearchH5()
+  }
+  else {
+    router.push(replaceSportsPlatId(path))
+    closeSearch()
+  }
 }
 </script>
 
@@ -85,8 +102,18 @@ function onBreadcrumbsClick({ list, index }: { list: ISelectOption[]; index: num
     <div class="result-list">
       <div v-for="item, in list" :key="item.ci" class="result-item">
         <div class="game-name">
-          <span>{{ item.htn }}</span> -
-          <span>{{ item.atn }}</span>
+          <BaseButton
+            type="text" size="none"
+            @click="goEventDetail(item.path)"
+          >
+            <span>{{ item.htn }}</span>
+          </BaseButton> -
+          <BaseButton
+            type="text" size="none"
+            @click="goEventDetail(item.path)"
+          >
+            <span>{{ item.atn }}</span>
+          </BaseButton>
         </div>
         <div class="status">
           {{ item.time }}
