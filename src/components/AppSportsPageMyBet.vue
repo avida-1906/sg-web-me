@@ -1,111 +1,40 @@
-<script lang="ts" setup>
-defineProps<{ onPage?: boolean }>()
+<script setup lang='ts'>
+interface Props {
+  onPage?: boolean
+}
+defineProps<Props>()
 
-const router = useRouter()
 const { t } = useI18n()
-const { currentGlobalCurrency } = storeToRefs(useAppStore())
 
-const currentTab = ref(0)
-const tabList = [
+const currentType = ref(0)
+const typeOptions = [
   { label: t('sports_active'), value: 0 },
   { label: t('sports_settled'), value: 1 },
 ]
-ApiSportBetList({
-  kind: 'normal',
-  settle: currentTab.value,
-  cur: currencyConfig[currentGlobalCurrency.value].cur,
-})
 </script>
 
 <template>
-  <div class="tg-sports-my-bets" :class="{ 'on-page': onPage }">
-    <div class="sports-page-title">
+  <div class="sports-my-bets">
+    <div v-if="onPage" class="sports-page-title">
       <div class="left">
         <BaseIcon name="spt-user-bet" />
         <h6>{{ t('my_bets') }}</h6>
       </div>
-    </div>
-    <div class="tab-bar">
-      <BaseTab v-model="currentTab" :list="tabList" :center="false" />
-    </div>
-    <div style="width: 428px;">
-      <AppSportsMyBetSlip />
-    </div>
-
-    <!-- <div class="empty">
-      <BaseEmpty>
-        <template #icon>
-          <div>
-            <BaseIcon
-              style="
-                font-size: var(--tg-empty-icon-size);
-                margin-bottom: var(--tg-spacing-24);"
-              name="uni-empty-betslip"
-            />
-          </div>
-        </template>
-        <template #description>
-          <span>{{ t('sports_no_active_bet') }}</span>
-        </template>
-        <template #default>
-          <BaseButton
-            type="text"
-            size="none"
-            style=" --tg-base-button-text-default-color:var(--tg-text-white)"
-            @click="router.push(`/sports/${getSportsPlatId()}`)"
-          >
-            {{ t('sports_betting_now') }}
-          </BaseButton>
-        </template>
-      </BaseEmpty>
-    </div> -->
-    <div class="btns">
-      <BaseButton type="text">
-        {{ $t('page_prev') }}
-      </BaseButton>
-      <BaseButton type="text">
-        {{ $t('page_next') }}
-      </BaseButton>
-    </div>
-    <div v-if="!onPage" class="layout-spacing">
-      <AppBetData mode="sports" />
+      <div class="right">
+        <BaseSelect
+          v-model="currentType"
+          style="
+          --tg-base-select-popper-style-padding-y:var(--tg-spacing-13);
+          --tg-base-select-popper-style-padding-x:var(--tg-spacing-16)"
+          :options="typeOptions" popper
+        />
+      </div>
     </div>
   </div>
 </template>
 
-<style lang="scss" scoped>
-.tg-sports-my-bets {
-  margin-top: var(--tg-spacing-24);
-  padding-top: var(--tg-spacing-12);
-  &.on-page{
-    margin-top: 0;
-    padding-top: 0;
-  }
+<style lang='scss' scoped>
+.sports-my-bets{
 
-  .tab-bar {
-    margin-top: var(--tg-spacing-24);
-    margin-bottom: var(--tg-spacing-24);
-  }
-
-  .empty {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100%;
-    justify-content: center;
-    min-height: 150px;
-  }
-
-  .btns {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: var(--tg-spacing-56);
-  }
 }
 </style>
-
-<route lang="yaml">
-meta:
-  layout: home
-</route>

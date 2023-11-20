@@ -89,7 +89,7 @@ const data = {
         </div>
         <!-- 兑现按钮 -->
         <div class="cashout">
-          <BaseButton size="md">
+          <BaseButton size="md" shadow>
             提前兑现
           </BaseButton>
         </div>

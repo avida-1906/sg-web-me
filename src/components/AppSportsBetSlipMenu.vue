@@ -237,7 +237,7 @@ watch(() => sportStore.cart.count, () => {
       <!-- 我的投注 -->
       <BaseButton
         v-else size="md"
-        @click="router.push(`/sports/${getSportsPlatId()}/my-bets`)"
+        @click="router.push(`/my-bets?type=sports`)"
       >
         {{ t('view_all') }}
       </BaseButton>

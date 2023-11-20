@@ -56,6 +56,14 @@ export function useApiMenuData() {
       domId: '',
       token: true,
     },
+    {
+      title: t('my_bets'),
+      path: '/my-bets?type=casino',
+      icon: 'spt-user-bet',
+      list: [],
+      domId: '',
+      token: true,
+    },
   ])
   const casinoGameProvider = ref<Menu>([{ title: t('casino_provider'), path: '/casino/collection/provider', icon: 'chess-game-provider', list: [], domId: '' }])
 
