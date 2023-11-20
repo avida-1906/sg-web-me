@@ -352,7 +352,6 @@ export class SportsCart {
   updateAllData(data: IBetInfoBack, fn?: IBetInfoChangeCallback) {
     const ovIsChange = this.dataList.some((item) => {
       const wsi = data.wsi.find(a => a.wid === item.wid)
-      console.error(Number(wsi?.ov), Number(item.ov))
       return Number(wsi?.ov) !== Number(item.ov)
     })
     const { wsi, bi } = data

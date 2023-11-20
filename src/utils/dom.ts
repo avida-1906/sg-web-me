@@ -56,7 +56,7 @@ export function domTransition(
 
     // 动画结束后移除动画元素
     animatedDiv.addEventListener('transitionend', () => {
-      document.body.removeChild(animatedDiv)
+      animatedDiv.remove()
     })
   })
 }

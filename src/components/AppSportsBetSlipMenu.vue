@@ -80,7 +80,6 @@ const betCount = computed(() => {
 })
 
 function startSetInterval() {
-  console.error('startSetInterval')
   timer = setInterval(() => {
     runGetSportPlaceBetInfo({
       ic: betOrderSelectValue.value,
@@ -91,7 +90,6 @@ function startSetInterval() {
 }
 
 function closeSetInterval() {
-  console.error('closeSetInterval')
   clearInterval(timer)
   timer = null
 }
