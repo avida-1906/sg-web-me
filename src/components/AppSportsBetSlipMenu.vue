@@ -80,6 +80,7 @@ const betCount = computed(() => {
 })
 
 function startSetInterval() {
+  console.log('开始购物车轮训')
   timer = setInterval(() => {
     runGetSportPlaceBetInfo({
       ic: betOrderSelectValue.value,
@@ -90,6 +91,7 @@ function startSetInterval() {
 }
 
 function closeSetInterval() {
+  console.log('结束购物车轮训')
   clearInterval(timer)
   timer = null
 }
@@ -107,6 +109,8 @@ watch(() => sportStore.cart.count, (val) => {
   else {
     closeSetInterval()
   }
+}, {
+  immediate: true,
 })
 
 onUnmounted(() => {
