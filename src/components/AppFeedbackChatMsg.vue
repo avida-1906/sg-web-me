@@ -116,7 +116,8 @@ function seeImage(s: string) {
       .message-images {
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
+        justify-content: flex-start;
+        gap: 2%;
         >* {
           cursor: pointer;
           width: 76px;
