@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<Props>(), {
   disabled: false,
   accept: () => ['image/png', 'image/jpg'],
   much: 1,
-  size: 30,
+  size: 10,
   isWebp: false,
 })
 
@@ -50,14 +50,14 @@ function changFile(event: any) {
       })
       event.target.value = ''
     }
-    else if (file.size / 1024 / 1024 > props.size) {
-      openNotify({
-        type: 'error',
-        title: t('notify_title_error'),
-        message: t('image_upload_size', { size: `${props.size}MB` }),
-      })
-      event.target.value = ''
-    }
+    // else if (file.size / 1024 / 1024 > props.size) {
+    //   openNotify({
+    //     type: 'error',
+    //     title: t('notify_title_error'),
+    //     message: t('image_upload_size', { size: `${props.size}MB` }),
+    //   })
+    //   event.target.value = ''
+    // }
     else {
       if (props.isWebp) {
         processFile(file).then((blob) => {
@@ -68,7 +68,7 @@ function changFile(event: any) {
         }).catch((err) => {
           openNotify({
             type: 'error',
-            title: '错误',
+            title: t('notify_title_error'),
             message: err.message,
           })
           event.target.value = ''
@@ -108,7 +108,7 @@ function processFile(file: File) {
           resolve(blob)
         }, 'image/webp', 0)
       }
-      else { reject(new Error('上传失败')) }
+      else { reject(new Error(t('image_upload_failed'))) }
     })
   })
 }
