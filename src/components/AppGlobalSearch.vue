@@ -358,9 +358,9 @@ onMounted(() => {
   top: 0;
   left: 0;
   width: 100%;
-  margin: 0;
+  margin: 0 ;
   max-width: 1200px;
-  padding: 57px 3vw 0;
+  margin-top: 57px;
 
   .search-input {
     position: relative;

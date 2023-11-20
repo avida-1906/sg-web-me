@@ -229,6 +229,7 @@ function handleClickMenuItem(item: { name: string; path?: string }) {
   display: grid;
   gap: 1rem;
   align-items: center;
+  position: relative;
 
   .header-box {
     display: flex;
