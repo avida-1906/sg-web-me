@@ -56,6 +56,7 @@ onActivated(() => {
 onDeactivated(() => {
   chatStore.setFeedbackItem()
   messageHistory.value = []
+  chatStore.setFeedbackChatFalse()
 })
 
 onUnmounted(() => {
