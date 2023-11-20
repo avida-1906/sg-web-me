@@ -73,7 +73,7 @@ watchEffect(() => {
       </div>
       <BaseButton
         type="text" size="none"
-        @click="sportStore.cart.removeItem(index)"
+        @click="sportStore.cart.remove(cartInfoData.wid)"
       >
         <BaseIcon
           name="uni-close"

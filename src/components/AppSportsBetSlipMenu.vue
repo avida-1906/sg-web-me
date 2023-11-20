@@ -10,13 +10,11 @@ const { selected: headSelectValue, list: headSelectData } = useSelect([
   {
     label: t('bet_slip'),
     value: EnumsBetSlipHeadStatus.betSlip,
-    num: 15,
     icon: 'spt-user-bet',
   },
   {
     label: t('my_bets'),
     value: EnumsBetSlipHeadStatus.myBets,
-    num: 0,
     icon: 'navbar-user-bet',
   },
 ])
@@ -65,6 +63,9 @@ const betBtnText = computed(() =>
   betOrderData.value.find(b => b.value === betOrderSelectValue.value)?.label ?? '-',
 )
 const cartDataList = computed(() => sportStore.cart.dataList)
+const betCount = computed(() => {
+  return sportStore.cart.count
+})
 </script>
 
 <template>
@@ -81,7 +82,7 @@ const cartDataList = computed(() => sportStore.cart.dataList)
             <div class="type-select">
               <BaseIcon :name="data?.icon" />
               <span>{{ data?.label }}</span>
-              <BaseBadge v-if="data?.num" :count="data?.num" mode="active" />
+              <BaseBadge v-if="betCount" :count="betCount" mode="active" />
             </div>
           </template>
           <template #option="{ data: { item } }">
