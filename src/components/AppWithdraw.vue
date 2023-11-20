@@ -122,7 +122,7 @@ watch(() => props.currentNetwork, () => {
 <template>
   <template v-if="addrOptions.length">
     <!-- 虚拟币提款 -->
-    <div class="withdrawal-info app-withdraw">
+    <div class="app-withdraw">
       <BaseLabel
         :label="`${activeCurrency?.type}地址`"
         :current-currency="activeCurrency?.type"
@@ -209,21 +209,11 @@ watch(() => props.currentNetwork, () => {
 .app-withdraw {
   display: flex;
   flex-direction: column;
-  gap: var(--tg-spacing-12);
-  .address {
+  gap: var(--tg-spacing-16);
+  .popper-label{
     display: flex;
-    flex-direction: column;
-
-    .label {
-      font-weight: var(--tg-font-weight-semibold);
-      display: flex;
-      align-items: center;
-      margin-bottom: var(--tg-spacing-4);
-
-      span {
-        margin-left: var(--tg-spacing-4);
-      }
-    }
+    align-items: center;
+    gap: .25rem;
   }
 
   .amount {
@@ -250,17 +240,6 @@ watch(() => props.currentNetwork, () => {
     }
   }
 }
-// select
-.withdrawal-info{
-      display: flex;
-      flex-direction: column;
-      gap: .75rem;
-      .popper-label{
-        display: flex;
-        align-items: center;
-        gap: .25rem;
-      }
-    }
 .bank-options{
   .option-row {
     display: flex;
