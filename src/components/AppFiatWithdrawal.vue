@@ -200,6 +200,7 @@ await application.allSettled(
             :msg="selectBankError"
             must theme popper border
             :style="{ '--tg-base-select-popper-style-padding-y': 'var(--tg-spacing-12)' }"
+            @focus="selectBankError && selectBankReset()"
           >
             <template #label>
               <span class="popper-label">

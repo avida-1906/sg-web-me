@@ -22,7 +22,7 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   layout: 'vertical',
 })
-const emit = defineEmits(['update:modelValue', 'select'])
+const emit = defineEmits(['update:modelValue', 'select', 'focus'])
 
 const {
   bool: isPopperOpen,
@@ -71,6 +71,7 @@ function onClickPopper() {
       :distance="6"
       :popper-class="theme ? 'theme-black' : ''"
       @hide="setPopperClose"
+      @show="emit('focus')"
     >
       <div
         ref="parent"
