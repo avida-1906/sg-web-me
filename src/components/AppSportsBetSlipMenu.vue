@@ -139,16 +139,15 @@ const betCount = computed(() => {
 
     <div class="bet-list">
       <div class="scroll-y betlist-scroll">
-        <template
-          v-for="item, index in cartDataList"
-          :key="item.wid"
-        >
+        <TransitionGroup name="list">
           <AppSportsBetSlip
+            v-for="item, index in cartDataList"
+            :key="item.wid"
             :bet-slip-type="betOrderSelectValue"
             :cart-info-data="item"
             :index="index"
           />
-        </template>
+        </TransitionGroup>
 
         <!-- 无数据缺省，不要删！ -->
         <!-- <div class="empty">
@@ -383,5 +382,14 @@ const betCount = computed(() => {
       color: var(--tg-text-error);
     }
   }
+}
+
+.list-enter-active{
+  transition: all 0.5s cubic-bezier(0.47, 1.64, 0.41, 0.8);
+}
+
+.list-enter-from {
+  opacity: 0;
+  transform: translateX(100%);
 }
 </style>
