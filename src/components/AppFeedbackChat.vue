@@ -173,7 +173,7 @@ onUnmounted(() => {
       flex-direction: column;
       overflow-anchor: none;
       overscroll-behavior: contain;
-      gap: var(--tg-spacing-8);
+      gap: var(--tg-spacing-16);
       .msg-tail {
         position: relative;
         margin: 0;
