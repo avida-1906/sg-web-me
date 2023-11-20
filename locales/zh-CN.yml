@@ -1232,7 +1232,7 @@ activity_name: 活动名称
 label_no_collect: 暂无任何收藏，请使用
 put_collect: 把游戏添加到收藏夹中。
 success_edit: 修改成功
-validate_msg_input_email: success_edit
+this_contains_invalid_email_characters: 这含有无效的电子邮件字符
 tip_email_sent: 邮电已发送
 tip_email_to: 验证邮电已发送至
 success_update_email: 成功更新电邮地址
