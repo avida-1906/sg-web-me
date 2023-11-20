@@ -85,6 +85,7 @@ declare global {
   const ApiSportGetFavoriteList: typeof import('./apis/sport')['ApiSportGetFavoriteList']
   const ApiSportMenuMain: typeof import('./apis/sport')['ApiSportMenuMain']
   const ApiSportOutrightList: typeof import('./apis/sport')['ApiSportOutrightList']
+  const ApiSportPlaceBetInfo: typeof import('./apis/sport')['ApiSportPlaceBetInfo']
   const ApiSportSidebar: typeof import('./apis/sport')['ApiSportSidebar']
   const ApiWalletBankcardList: typeof import('./apis/index')['ApiWalletBankcardList']
   const Big: typeof import('big.js')['Big']
@@ -182,6 +183,7 @@ declare global {
   const get: typeof import('lodash-es')['get']
   const getActivePinia: typeof import('pinia')['getActivePinia']
   const getCartObject: typeof import('./utils/sports')['getCartObject']
+  const getCurrencyConfig: typeof import('./composables/useCurrencyData')['getCurrencyConfig']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const getEnv: typeof import('./utils/index')['getEnv']
@@ -639,6 +641,7 @@ declare module 'vue' {
     readonly ApiSportGetFavoriteList: UnwrapRef<typeof import('./apis/sport')['ApiSportGetFavoriteList']>
     readonly ApiSportMenuMain: UnwrapRef<typeof import('./apis/sport')['ApiSportMenuMain']>
     readonly ApiSportOutrightList: UnwrapRef<typeof import('./apis/sport')['ApiSportOutrightList']>
+    readonly ApiSportPlaceBetInfo: UnwrapRef<typeof import('./apis/sport')['ApiSportPlaceBetInfo']>
     readonly ApiSportSidebar: UnwrapRef<typeof import('./apis/sport')['ApiSportSidebar']>
     readonly ApiWalletBankcardList: UnwrapRef<typeof import('./apis/index')['ApiWalletBankcardList']>
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
@@ -727,6 +730,7 @@ declare module 'vue' {
     readonly get: UnwrapRef<typeof import('lodash-es')['get']>
     readonly getActivePinia: UnwrapRef<typeof import('pinia')['getActivePinia']>
     readonly getCartObject: UnwrapRef<typeof import('./utils/sports')['getCartObject']>
+    readonly getCurrencyConfig: UnwrapRef<typeof import('./composables/useCurrencyData')['getCurrencyConfig']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getEnv: UnwrapRef<typeof import('./utils/index')['getEnv']>
@@ -1172,6 +1176,7 @@ declare module '@vue/runtime-core' {
     readonly ApiSportGetFavoriteList: UnwrapRef<typeof import('./apis/sport')['ApiSportGetFavoriteList']>
     readonly ApiSportMenuMain: UnwrapRef<typeof import('./apis/sport')['ApiSportMenuMain']>
     readonly ApiSportOutrightList: UnwrapRef<typeof import('./apis/sport')['ApiSportOutrightList']>
+    readonly ApiSportPlaceBetInfo: UnwrapRef<typeof import('./apis/sport')['ApiSportPlaceBetInfo']>
     readonly ApiSportSidebar: UnwrapRef<typeof import('./apis/sport')['ApiSportSidebar']>
     readonly ApiWalletBankcardList: UnwrapRef<typeof import('./apis/index')['ApiWalletBankcardList']>
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
@@ -1260,6 +1265,7 @@ declare module '@vue/runtime-core' {
     readonly get: UnwrapRef<typeof import('lodash-es')['get']>
     readonly getActivePinia: UnwrapRef<typeof import('pinia')['getActivePinia']>
     readonly getCartObject: UnwrapRef<typeof import('./utils/sports')['getCartObject']>
+    readonly getCurrencyConfig: UnwrapRef<typeof import('./composables/useCurrencyData')['getCurrencyConfig']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getEnv: UnwrapRef<typeof import('./utils/index')['getEnv']>

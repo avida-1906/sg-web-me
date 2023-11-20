@@ -1,4 +1,10 @@
-import type { ILeagueItem, ISportEventInfo, ISportOutrightsInfo } from './types'
+import type {
+  IBetInfoBack,
+  ILeagueItem,
+  ISportEventInfo,
+  ISportOutrightsInfo,
+} from './types'
+import type { IBetInfo } from '~/types'
 
 /**
  * 获取所有体育计数
@@ -308,4 +314,19 @@ export function ApiSportEventSearch(data: { word: string }) {
       }[]
     }[]
   }>(`/sport/${getSportsPlatId()}/event/search`, data)
+}
+
+/**
+ * 索取投注信息
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=f83af7ce-84be-4ef9-a20e-d76d31e5b418
+ */
+export function ApiSportPlaceBetInfo(data: {
+  /** 0:非串关 1:串关 */
+  ic: 0 | 1
+  /** 投注内容 */
+  bi: IBetInfo[]
+  /** 货币 */
+  cur: string
+}) {
+  return httpClient.post<IBetInfoBack>(`/sport/${getSportsPlatId()}/place/betinfo`, data)
 }

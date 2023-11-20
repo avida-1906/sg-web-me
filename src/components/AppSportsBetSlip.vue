@@ -208,6 +208,7 @@ watchEffect(() => {
     padding: var(--tg-spacing-8) var(--tg-spacing-12) var(--tg-spacing-12);
     box-shadow: var(--tg-header-shadow);
     background: var(--tg-secondary-grey);
+    --tg-sports-odds-text-align: end;
     grid-template-areas:
       "market market market market maxBet maxBet"
       "outcome outcome outcome outcome outcome odds"

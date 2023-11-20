@@ -1,13 +1,23 @@
 <script setup lang='ts'>
 const chatScrollContent = ref<HTMLElement | null>(null)
 
+let timer: any = null
+
 const { t } = useI18n()
 const router = useRouter()
 const appStore = useAppStore()
 const { closeRightSidebar } = useRightSidebar()
 const { currentGlobalCurrency } = storeToRefs(appStore)
 const sportStore = useSportsStore()
+const { bool: ovIsChange, setBool: setOvChangeStateBool } = useBoolean(false)
 
+const { run: runGetSportPlaceBetInfo } = useRequest(ApiSportPlaceBetInfo, {
+  onSuccess(placeBetInfo) {
+    sportStore.cart.updateAllData(placeBetInfo, (_ovIsChange) => {
+      setOvChangeStateBool(_ovIsChange)
+    })
+  },
+})
 const { selected: headSelectValue, list: headSelectData } = useSelect([
   {
     label: t('bet_slip'),
@@ -69,11 +79,40 @@ const betCount = computed(() => {
   return sportStore.cart.count
 })
 
-watch(() => sportStore.cart.count, () => {
-  nextTick(() => {
-    if (chatScrollContent.value)
-      chatScrollContent.value.scrollTop = chatScrollContent.value?.scrollHeight ?? 0
-  })
+function startSetInterval() {
+  console.error('startSetInterval')
+  timer = setInterval(() => {
+    runGetSportPlaceBetInfo({
+      ic: betOrderSelectValue.value,
+      bi: sportStore.cart.dataList,
+      cur: getCurrencyConfig(currentGlobalCurrency.value).cur,
+    })
+  }, 1000 * 10)
+}
+
+function closeSetInterval() {
+  console.error('closeSetInterval')
+  clearInterval(timer)
+  timer = null
+}
+
+watch(() => sportStore.cart.count, (val) => {
+  if (val) {
+    nextTick(() => {
+      if (chatScrollContent.value)
+        chatScrollContent.value.scrollTop = chatScrollContent.value?.scrollHeight ?? 0
+    })
+
+    if (!timer)
+      startSetInterval()
+  }
+  else {
+    closeSetInterval()
+  }
+})
+
+onUnmounted(() => {
+  closeSetInterval()
 })
 </script>
 
@@ -223,15 +262,18 @@ watch(() => sportStore.cart.count, () => {
           </div>
         </div>
 
-        <div class="message">
+        <div v-if="ovIsChange" class="message">
           <div class="icon">
             <BaseIcon class="error-icon" name="uni-warning" />
           </div>
           <span>{{ t('sports_odds_has_changed') }}</span>
         </div>
 
-        <BaseButton size="md" bg-style="primary">
-          {{ t('sports_bet') }}{{ betBtnText }}
+        <BaseButton
+          size="md"
+          bg-style="primary"
+        >
+          {{ t('sports_bet') }} {{ ovIsChange }} {{ betBtnText }}
         </BaseButton>
       </template>
       <!-- 我的投注 -->
