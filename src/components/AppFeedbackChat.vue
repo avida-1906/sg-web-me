@@ -124,6 +124,11 @@ onUnmounted(() => {
 </template>
 
 <style lang="scss" scoped>
+.time-wrap {
+  text-align: center;
+  color: var(--tg-text-grey-secondary);
+  font-size: var(--tg-font-size-default);
+}
 .app-feedback-chat {
   display: flex;
   flex-direction: column;
@@ -168,22 +173,15 @@ onUnmounted(() => {
       flex-direction: column;
       overflow-anchor: none;
       overscroll-behavior: contain;
+      gap: var(--tg-spacing-8);
       .msg-tail {
         position: relative;
         margin: 0;
         padding: 0;
         height: 0;
       }
-      > *+* {
-        margin-top: var(--tg-spacing-8);
-      }
       .wrap {
         width: 100%;
-      }
-      .time-wrap {
-        text-align: center;
-        color: var(--tg-text-grey-secondary);
-        font-size: var(--tg-font-size-default);
       }
     }
   }
