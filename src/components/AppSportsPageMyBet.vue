@@ -28,7 +28,11 @@ ApiSportBetList({
     <div class="tab-bar">
       <BaseTab v-model="currentTab" :list="tabList" :center="false" />
     </div>
-    <div class="empty">
+    <div style="width: 428px;">
+      <AppSportsMyBetSlip />
+    </div>
+
+    <!-- <div class="empty">
       <BaseEmpty>
         <template #icon>
           <div>
@@ -54,7 +58,7 @@ ApiSportBetList({
           </BaseButton>
         </template>
       </BaseEmpty>
-    </div>
+    </div> -->
     <div class="btns">
       <BaseButton type="text">
         {{ $t('page_prev') }}

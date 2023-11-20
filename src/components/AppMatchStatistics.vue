@@ -3,9 +3,12 @@ import type { IBasePanelType } from '~/types'
 
 type Qualifier = 'home' | 'away'
 
-defineProps<{
+withDefaults(defineProps<{
   data: IBasePanelType
-}>()
+  round?: boolean // 是否圆角
+}>(), {
+  round: true,
+})
 
 const eventData = {
   eventStatus: {
@@ -173,7 +176,7 @@ function mapHeadArea(
 </script>
 
 <template>
-  <div class="box-shadow app-match-statistics wrapper has-background">
+  <div class="app-match-statistics wrapper has-background" :class="{ round }">
     <div
       class="content scroll-x" :style="{
         'grid-template-areas': gridAreas,
@@ -282,12 +285,12 @@ function mapHeadArea(
 .wrapper.has-background {
   // min-width: 250px;
   // max-width: calc(100% - var(--tg-spacing-32));
-  border-radius: var(--tg-radius-default);
   width: auto;
-}
-
-.wrapper.box-shadow {
-  box-shadow: var(--tg-header-shadow);
+  &.round{
+    border-radius: var(--tg-radius-default);
+    box-shadow: var(--tg-header-shadow);
+    overflow: hidden;
+  }
 }
 
 .wrapper {
@@ -309,7 +312,7 @@ function mapHeadArea(
     align-items: center;
     overflow: auto;
     width: 100%;
-    border-radius: var(--tg-radius-default);
+    // border-radius: var(--tg-radius-default);
 
     >* {
       padding: var(--tg-spacing-8);
