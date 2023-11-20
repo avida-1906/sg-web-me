@@ -22,6 +22,7 @@ const passwordRef = ref()
 const {
   value: amount,
   resetField: resetAmount,
+  setValue: setAmount,
   validate: validateAmount,
   errorMessage: errAmount,
 } = useField<string>('amount', (value) => {
@@ -122,6 +123,10 @@ function maxNumber() {
   if (activeCurrency.value)
     amount.value = activeCurrency.value.balance
 }
+function formatAmount() {
+  if (amount.value)
+    setAmount(Number.parseInt(amount.value).toString())
+}
 
 watch(() => activeTab.value, () => {
   resetAmount()
@@ -151,9 +156,9 @@ watch(() => activeTab.value, () => {
         <BaseInput
           ref="amountRef" v-model="amount"
           type="number"
-          placeholder="0.00000000"
           :msg="errAmount"
           msg-after-touched
+          @blur="formatAmount"
           @on-right-button="maxNumber"
         >
           <template #right-icon>
