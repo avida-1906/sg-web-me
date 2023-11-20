@@ -253,7 +253,8 @@ onMounted(() => {
 
     .justify-content {
         .content-row {
-            justify-content: center;
+          padding-left: 30%;
+          padding-right: 30%;
         }
     }
 
