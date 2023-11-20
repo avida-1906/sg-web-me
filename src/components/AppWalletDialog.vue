@@ -135,7 +135,7 @@ watch(() => currentTab.value, () => {
     padding-bottom: var(--tg-spacing-16);
     display: flex;
     flex-direction: column;
-    gap: var(--tg-spacing-12);
+    gap: var(--tg-spacing-16);
   }
 }
   .safe-bottom{

@@ -241,3 +241,13 @@ export enum EnumSportMarketType {
   /** 总分盘 */
   TOTAL = 'total',
 }
+
+/**
+ * 体育EndDom枚举
+ */
+export enum EnumSportEndDomID {
+  /** PC样式 购物车的EndDom */
+  PC_CART_END_DOM = 'PC_CART_END_DOM',
+  /** H5样式 下的EndDom */
+  H5_CART_END_DOM = 'H5_CART_END_DOM',
+}

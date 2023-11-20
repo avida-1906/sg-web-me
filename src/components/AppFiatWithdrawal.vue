@@ -291,11 +291,11 @@ await application.allSettled(
   .withdrawal-wrap{
     display: flex;
     flex-direction: column;
-    gap: .75rem;
+    gap:  var(--tg-spacing-16);
     .withdrawal-info{
       display: flex;
       flex-direction: column;
-      gap: .75rem;
+      gap: var(--tg-spacing-16);
       .popper-label{
         display: flex;
         align-items: center;

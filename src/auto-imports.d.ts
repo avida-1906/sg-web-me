@@ -97,6 +97,7 @@ declare global {
   const EnumCurrency: typeof import('./utils/enums')['EnumCurrency']
   const EnumLanguage: typeof import('./utils/enums')['EnumLanguage']
   const EnumRightSidebarContent: typeof import('./composables/useRightSidebar')['EnumRightSidebarContent']
+  const EnumSportEndDomID: typeof import('./utils/enums')['EnumSportEndDomID']
   const EnumSportMarketType: typeof import('./utils/enums')['EnumSportMarketType']
   const EnumSportType: typeof import('./utils/enums')['EnumSportType']
   const EnumSportsOddsType: typeof import('./stores/sports')['EnumSportsOddsType']
@@ -168,6 +169,7 @@ declare global {
   const defineComponent: typeof import('vue')['defineComponent']
   const defineStore: typeof import('pinia')['defineStore']
   const div: typeof import('./utils/number')['div']
+  const domTransition: typeof import('./utils/dom')['domTransition']
   const eagerComputed: typeof import('@vueuse/core')['eagerComputed']
   const effectScope: typeof import('vue')['effectScope']
   const emailReg: typeof import('./utils/regexp')['emailReg']
@@ -185,6 +187,7 @@ declare global {
   const getEnv: typeof import('./utils/index')['getEnv']
   const getSportsPlatId: typeof import('./utils/sports')['getSportsPlatId']
   const getSportsProvider: typeof import('./apis/sport')['getSportsProvider']
+  const getStyle: typeof import('./utils/dom')['getStyle']
   const gt: typeof import('lodash-es')['gt']
   const h: typeof import('vue')['h']
   const head: typeof import('lodash-es')['head']
@@ -645,6 +648,7 @@ declare module 'vue' {
     readonly EnumCurrency: UnwrapRef<typeof import('./utils/enums')['EnumCurrency']>
     readonly EnumLanguage: UnwrapRef<typeof import('./utils/enums')['EnumLanguage']>
     readonly EnumRightSidebarContent: UnwrapRef<typeof import('./composables/useRightSidebar')['EnumRightSidebarContent']>
+    readonly EnumSportEndDomID: UnwrapRef<typeof import('./utils/enums')['EnumSportEndDomID']>
     readonly EnumSportMarketType: UnwrapRef<typeof import('./utils/enums')['EnumSportMarketType']>
     readonly EnumSportType: UnwrapRef<typeof import('./utils/enums')['EnumSportType']>
     readonly EnumSportsOddsType: UnwrapRef<typeof import('./stores/sports')['EnumSportsOddsType']>
@@ -710,6 +714,7 @@ declare module 'vue' {
     readonly defineComponent: UnwrapRef<typeof import('vue')['defineComponent']>
     readonly defineStore: UnwrapRef<typeof import('pinia')['defineStore']>
     readonly div: UnwrapRef<typeof import('./utils/number')['div']>
+    readonly domTransition: UnwrapRef<typeof import('./utils/dom')['domTransition']>
     readonly eagerComputed: UnwrapRef<typeof import('@vueuse/core')['eagerComputed']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
     readonly emailReg: UnwrapRef<typeof import('./utils/regexp')['emailReg']>
@@ -726,6 +731,7 @@ declare module 'vue' {
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getEnv: UnwrapRef<typeof import('./utils/index')['getEnv']>
     readonly getSportsPlatId: UnwrapRef<typeof import('./utils/sports')['getSportsPlatId']>
+    readonly getStyle: UnwrapRef<typeof import('./utils/dom')['getStyle']>
     readonly gt: UnwrapRef<typeof import('lodash-es')['gt']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly head: UnwrapRef<typeof import('lodash-es')['head']>
@@ -1175,6 +1181,7 @@ declare module '@vue/runtime-core' {
     readonly EnumCurrency: UnwrapRef<typeof import('./utils/enums')['EnumCurrency']>
     readonly EnumLanguage: UnwrapRef<typeof import('./utils/enums')['EnumLanguage']>
     readonly EnumRightSidebarContent: UnwrapRef<typeof import('./composables/useRightSidebar')['EnumRightSidebarContent']>
+    readonly EnumSportEndDomID: UnwrapRef<typeof import('./utils/enums')['EnumSportEndDomID']>
     readonly EnumSportMarketType: UnwrapRef<typeof import('./utils/enums')['EnumSportMarketType']>
     readonly EnumSportType: UnwrapRef<typeof import('./utils/enums')['EnumSportType']>
     readonly EnumSportsOddsType: UnwrapRef<typeof import('./stores/sports')['EnumSportsOddsType']>
@@ -1240,6 +1247,7 @@ declare module '@vue/runtime-core' {
     readonly defineComponent: UnwrapRef<typeof import('vue')['defineComponent']>
     readonly defineStore: UnwrapRef<typeof import('pinia')['defineStore']>
     readonly div: UnwrapRef<typeof import('./utils/number')['div']>
+    readonly domTransition: UnwrapRef<typeof import('./utils/dom')['domTransition']>
     readonly eagerComputed: UnwrapRef<typeof import('@vueuse/core')['eagerComputed']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
     readonly emailReg: UnwrapRef<typeof import('./utils/regexp')['emailReg']>
@@ -1256,6 +1264,7 @@ declare module '@vue/runtime-core' {
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getEnv: UnwrapRef<typeof import('./utils/index')['getEnv']>
     readonly getSportsPlatId: UnwrapRef<typeof import('./utils/sports')['getSportsPlatId']>
+    readonly getStyle: UnwrapRef<typeof import('./utils/dom')['getStyle']>
     readonly gt: UnwrapRef<typeof import('lodash-es')['gt']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly head: UnwrapRef<typeof import('lodash-es')['head']>

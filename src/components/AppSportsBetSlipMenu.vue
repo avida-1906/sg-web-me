@@ -1,4 +1,6 @@
 <script setup lang='ts'>
+const chatScrollContent = ref<HTMLElement | null>(null)
+
 const { t } = useI18n()
 const router = useRouter()
 const appStore = useAppStore()
@@ -65,6 +67,13 @@ const betBtnText = computed(() =>
 const cartDataList = computed(() => sportStore.cart.dataList)
 const betCount = computed(() => {
   return sportStore.cart.count
+})
+
+watch(() => sportStore.cart.count, () => {
+  nextTick(() => {
+    if (chatScrollContent.value)
+      chatScrollContent.value.scrollTop = chatScrollContent.value?.scrollHeight ?? 0
+  })
 })
 </script>
 
@@ -138,8 +147,8 @@ const betCount = computed(() => {
     </div>
 
     <div class="bet-list">
-      <div class="scroll-y betlist-scroll">
-        <TransitionGroup name="list">
+      <div ref="chatScrollContent" class="scroll-y betlist-scroll">
+        <TransitionGroup name="list" tag="div">
           <AppSportsBetSlip
             v-for="item, index in cartDataList"
             :key="item.wid"
@@ -147,8 +156,12 @@ const betCount = computed(() => {
             :cart-info-data="item"
             :index="index"
           />
+          <!-- 用来执行添加到购物车动画的 -->
+          <div
+            :id="EnumSportEndDomID.PC_CART_END_DOM"
+            :key="EnumSportEndDomID.PC_CART_END_DOM"
+          />
         </TransitionGroup>
-
         <!-- 无数据缺省，不要删！ -->
         <!-- <div class="empty">
           <BaseEmpty>
