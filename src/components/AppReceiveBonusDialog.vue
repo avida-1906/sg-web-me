@@ -12,6 +12,8 @@ const props = defineProps<Props>()
 
 const emit = defineEmits(['confirm'])
 
+const closeDialog = inject('closeDialog', () => {})
+
 const { t } = useI18n()
 const appStore = useAppStore()
 const { exchangeRateData } = storeToRefs(appStore)
@@ -48,6 +50,7 @@ const { run: runDrawBonus, loading } = useRequest(ApiMemberFeedbackBonusDraw, {
       chatStore.setFeedbackItem({ ...props.feedBackItem, bonusState: 2 })
     openNotify({ type: 'success', message: t('receive_success') })
     appStore.getBalanceData()
+    closeDialog()
   },
 })
 
@@ -55,10 +58,9 @@ const { run: runDrawVipBonus, loading: vipLoading } = useRequest(ApiMemberApplyV
   onSuccess: () => {
     openNotify({ type: 'success', message: t('receive_success') })
     appStore.getBalanceData()
+    closeDialog()
   },
 })
-
-const closeDialog = inject('closeDialog', () => {})
 
 function receiveBonus() {
   emit('confirm')
