@@ -126,12 +126,18 @@ export type ICartInfo = {
  */
 export type ICartInfoData = ICartInfo & {
   amount: number
-  /** 0:关盘 1:开盘 */
+  /**
+   * 0:关盘
+   *
+   * 1:开盘
+   */
   os: 0 | 1
   /** 最⼤投注额 */
   maa: number
   /** 最⼩投注额 */
   mia: number
+  /** 是否变成了结果 */
+  result?: 'fulfilled' | 'rejected'
 }
 
 /**
