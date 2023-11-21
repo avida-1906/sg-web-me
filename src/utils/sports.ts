@@ -283,11 +283,17 @@ export class SportsCart {
   /** 添加数据到购物车
    * @param {ICartInfo} data
    */
-  add(data: ICartInfo) {
+  async add(data: ICartInfo) {
     // 如果dataList中的object的result有一个不是undefined，就清空购物车
     // 因为不是undefined的话，说明已经投注过了
-    if (this.dataList.some(a => a.result !== undefined))
+    if (this.dataList.some(a => a.result !== undefined)) {
       this.removeAll()
+      await new Promise((resolve) => {
+        setTimeout(() => {
+          resolve(null)
+        }, 30)
+      })
+    }
 
     let suffixLength = 2
     if (application.isVirtualCurrency(this.currency))

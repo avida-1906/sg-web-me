@@ -116,10 +116,23 @@ const isBetBtnDisabled = computed(() => {
   if (isBetAmountOverBalance.value)
     return true
 
-  // 判断 sportStore.cart.dataList 中的每一项的amount是否为0
-  const isAmountZero = sportStore.cart.dataList.some(item => item.amount <= 0)
-  if (isAmountZero)
-    return true
+  if (betOrderSelectValue.value === EnumsBetSlipBetSlipTabStatus.single) {
+    /**
+     * 单式投注
+     *判断 sportStore.cart.dataList 中的每一项的amount是否为0
+     */
+    const isAmountZero = sportStore.cart.dataList.some(item => item.amount <= 0)
+    if (isAmountZero)
+      return true
+  }
+  else {
+    /**
+     * 复式投注
+     * 判断 duplexInputValue.value 是否小于等于0
+     */
+    if (Number(duplexInputValue.value) <= 0)
+      return true
+  }
 })
 
 async function fetchBet(list: IBetArgs[]) {
@@ -136,11 +149,23 @@ async function fetchBet(list: IBetArgs[]) {
   console.log('successWidList', successWidList)
   console.log('failWidList', failWidList)
 
-  list.forEach((item, index) => {
-    const wid = item.bl[0].bi[0].wid
-    const _result = result[index].status
-    sportStore.cart.updateListResult(wid, _result)
-  })
+  // 单式
+  if (betOrderSelectValue.value === EnumsBetSlipBetSlipTabStatus.single) {
+    list.forEach((item, index) => {
+      const wid = item.bl[0].bi[0].wid
+      const _result = result[index].status
+      sportStore.cart.updateListResult(wid, _result)
+    })
+  }
+
+  // 复式
+  if (betOrderSelectValue.value === EnumsBetSlipBetSlipTabStatus.multi) {
+    const _result = result[0].status
+    list[0].bl[0].bi.forEach((item) => {
+      const wid = item.wid
+      sportStore.cart.updateListResult(wid, _result)
+    })
+  }
 
   if (successList.length)
     betSuccess()
@@ -170,14 +195,18 @@ function betSuccess() {
   })
 }
 
+function runGetSportPlaceBetInfoHandle() {
+  runGetSportPlaceBetInfo({
+    ic: betOrderSelectValue.value,
+    bi: sportStore.cart.dataList,
+    cur: getCurrencyConfig(currentGlobalCurrency.value).cur,
+  })
+}
+
 function startSetInterval() {
   console.log('开始购物车轮训')
   timer = setInterval(() => {
-    runGetSportPlaceBetInfo({
-      ic: betOrderSelectValue.value,
-      bi: sportStore.cart.dataList,
-      cur: getCurrencyConfig(currentGlobalCurrency.value).cur,
-    })
+    runGetSportPlaceBetInfoHandle()
   }, 1000 * 10)
 }
 
@@ -189,20 +218,21 @@ function closeSetInterval() {
 
 function bet() {
   if (betOrderSelectValue.value === 1) {
-    // 复式投注
-    fetchBet([
+    const betList = [
       {
         ao: betOrderFilterValue.value,
         bl: [
           {
             pt: betOrderSelectValue.value,
-            a: Number(duplexTotalProfit.value),
+            a: Number(toFixed(Number(duplexTotalProfit.value), 2)),
             bi: sportStore.cart.dataList,
           },
         ],
         cur: getCurrencyConfig(currentGlobalCurrency.value).cur,
       },
-    ])
+    ]
+    // 复式投注
+    fetchBet(betList)
   }
   else {
     // 单式投注
@@ -219,12 +249,6 @@ function bet() {
     }))
 
     fetchBet(betList)
-
-    // runGetSportPlaceBet({
-    //   ao: betOrderFilterValue.value,
-    //   bl: blList,
-    //   cur: getCurrencyConfig(currentGlobalCurrency.value).cur,
-    // })
   }
 }
 
@@ -235,8 +259,10 @@ watch(() => sportStore.cart.count, (val) => {
         chatScrollContent.value.scrollTop = chatScrollContent.value?.scrollHeight ?? 0
     })
 
-    if (!timer)
+    if (!timer) {
+      runGetSportPlaceBetInfoHandle()
       startSetInterval()
+    }
   }
   else {
     closeSetInterval()
@@ -295,6 +321,7 @@ onUnmounted(() => {
           v-show="isBetSlip"
           v-model="betOrderSelectValue"
           :list="betOrderData"
+          @change="runGetSportPlaceBetInfoHandle"
         />
         <BaseTab v-show="isMyBets" v-model="myBetSelectValue" :list="myBetData" />
       </div>
