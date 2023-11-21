@@ -352,15 +352,15 @@ export class SportsCart {
   updateAllData(data: IBetInfoBack, fn?: IBetInfoChangeCallback) {
     const { wsi, bi } = data
     const duplexOv = bi[0].ov
-    const ovIsChange = this.dataList.some((item) => {
-      const wsi = data.wsi.find(a => a.wid === item.wid)
-      return Number(wsi?.ov) !== Number(item.ov)
-    })
     this.dataList.forEach((item) => {
       item.ov = wsi.find(a => a.wid === item.wid)?.ov ?? ''
       item.os = wsi.find(a => a.wid === item.wid)?.os ?? 0
       item.maa = bi.find(a => a.wid === item.wid)?.maa ?? 0
       item.mia = bi.find(a => a.wid === item.wid)?.mia ?? 0
+    })
+    const ovIsChange = this.dataList.some((item) => {
+      const wsi = data.wsi.find(a => a.wid === item.wid)
+      return Number(wsi?.ov) !== Number(item.ov)
     })
 
     if (fn)

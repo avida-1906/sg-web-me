@@ -27,7 +27,9 @@ const {
 } = useRequest(ApiSportPlaceBetInfo, {
   onSuccess(placeBetInfo) {
     sportStore.cart.updateAllData(placeBetInfo, (_ovIsChange, _duplexOv) => {
-      setOvChangeStateBool(_ovIsChange)
+      if (ovIsChange.value !== _ovIsChange)
+        setOvChangeStateBool(_ovIsChange)
+
       duplexOv.value = _duplexOv
     })
   },
@@ -121,8 +123,11 @@ const isBetBtnDisabled = computed(() => {
 })
 
 async function fetchBet(list: IBetArgs[]) {
+  betLoading.value = true
   const promiseList = list.map(item => ApiSportPlaceBet(item))
   const result = await Promise.allSettled(promiseList)
+  betLoading.value = false
+
   const successList = result.filter(item => item.status === 'fulfilled')
   const failList = result.filter(item => item.status === 'rejected')
   if (successList.length)
@@ -223,6 +228,7 @@ watch(() => sportStore.cart.count, (val) => {
   }
   else {
     closeSetInterval()
+    setOvChangeStateBool(false)
   }
 }, {
   immediate: true,
@@ -241,7 +247,7 @@ onUnmounted(() => {
           v-model="headSelectValue"
           style="--tg-base-select-hover-bg-color:var(--tg-secondary-dark);
           --tg-base-select-popper-style-padding-x:0;"
-          :options="headSelectData" popper no-hover
+          :options="headSelectData" no-hover popper
         >
           <template #label="{ data }">
             <div class="type-select">
@@ -399,16 +405,22 @@ onUnmounted(() => {
         </div>
 
         <BaseButton
+          v-if="ovIsChange"
+          size="md"
+          bg-style="primary"
+          @click="setOvChangeStateBool(false)"
+        >
+          接受新赔率
+        </BaseButton>
+        <BaseButton
+          v-else
           size="md"
           bg-style="primary"
           :disabled="isBetBtnDisabled"
           :loading="betLoading"
           @click="bet"
         >
-          {{ isBetAmountOverBalance }}
-          {{ t('sports_bet') }}
-          {{ ovIsChange }}
-          {{ betBtnText }}
+          {{ t('sports_bet') }}{{ betBtnText }}
         </BaseButton>
       </template>
       <!-- 我的投注 -->
