@@ -312,6 +312,7 @@ export const useSportsStore = defineStore('sports', () => {
     getSportsOddsType,
     changeProvider,
     refreshSportsFavList,
+    runSportsCount,
   }
 })
 

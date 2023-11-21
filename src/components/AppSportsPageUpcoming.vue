@@ -2,7 +2,8 @@
 defineProps<{ onPage?: boolean }>()
 
 const { t } = useI18n()
-const { upcomingNavs, currentUpcomingNav } = storeToRefs(useSportsStore())
+const sportsStore = useSportsStore()
+const { upcomingNavs, currentUpcomingNav } = storeToRefs(sportsStore)
 
 const isAll = computed(() => currentUpcomingNav.value === 0)
 const { bool: isStandard, setBool: setStandard } = useBoolean(true)
@@ -14,6 +15,10 @@ const { data, run } = useRequest(() =>
 })
 /** 定时更新数据 */
 const { startTimer, stopTimer } = useSportsDataUpdate(run, 30)
+const {
+  startTimer: startCount,
+  stopTimer: stopCount,
+} = useSportsDataUpdate(sportsStore.runSportsCount, 30)
 
 const baseType = ref('winner')
 const list = computed(() => {
@@ -34,9 +39,13 @@ watch(currentUpcomingNav, (a) => {
   startTimer()
 })
 
-startTimer()
+onBeforeMount(() => {
+  startTimer()
+  startCount()
+})
 onBeforeUnmount(() => {
   stopTimer()
+  stopCount()
 })
 </script>
 
