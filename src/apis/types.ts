@@ -1,5 +1,5 @@
 import type { CurrencyCode } from '~/composables/useCurrencyData'
-import type { ICartInfo } from '~/types'
+import type { IBetInfo, ICartInfo } from '~/types'
 
 /** 货币的Key */
 export type EnumCurrencyKey = keyof typeof EnumCurrency
@@ -497,4 +497,57 @@ export interface DepositInfo {
   mid: string
   /** 银行编码-三方支付存款时使用 */
   bank_code?: string
+}
+
+/**
+ * 投注信息详情
+ */
+export interface IBetInfoBack {
+  /** 盘口资讯 */
+  wsi: {
+    /** 盘口Id */
+    wid: string
+    /** 赔率 */
+    ov: string
+    /** 盘口状态 0:关盘 1:开盘 */
+    os: 0 | 1
+  }[]
+  /** 下注资讯 */
+  bi: {
+    /** 盘口id */
+    wid: string
+    /** 最大下注额 */
+    maa: number
+    /** 最小下注额 */
+    mia: number
+    /** 赔率 */
+    ov: string
+    /** 串关类型 */
+    pt: number
+    /** 注单数量 */
+    bc: number
+  }[]
+}
+
+/**
+ * 体育投注参数
+ */
+export interface IBetArgs {
+  /**
+   * 0:不接受任何赔率变化
+   *
+   * 1:接受更高赔率
+   *
+   * 2:接受任何赔率
+   */
+  ao: 0 | 1 | 2
+  bl: {
+    /** 0:非串关 1:串关 */
+    pt: 0 | 1
+    /** 投注金额 */
+    a: number
+    bi: IBetInfo[]
+  }[]
+  /** 货币 */
+  cur: CurrencyCode
 }

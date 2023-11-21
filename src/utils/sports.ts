@@ -1,11 +1,12 @@
 import type {
   EnumCurrencyKey,
+  IBetInfoBack,
   ISportEventInfo,
   ISportEventInfoMl,
   ISportEventInfoMlMs,
   ISportOutrightsInfo,
 } from '~/apis/types'
-import type { ICartInfo, ICartInfoData } from '~/types'
+import type { IBetInfoChangeCallback, ICartInfo, ICartInfoData } from '~/types'
 
 /**
  * 体育ID
@@ -279,8 +280,7 @@ export class SportsCart {
     this.currency = currency
   }
 
-  /**
-   * 添加数据到购物车
+  /** 添加数据到购物车
    * @param {ICartInfo} data
    */
   add(data: ICartInfo) {
@@ -291,11 +291,13 @@ export class SportsCart {
     this.dataList.push({
       ...data,
       amount: Number(toFixed(0, suffixLength)),
+      os: 1,
+      maa: 0,
+      mia: 0,
     })
   }
 
-  /**
-   * 从购物车删除数据
+  /** 从购物车删除数据
    * @param {number} index
    */
   remove(wid: string) {
@@ -333,8 +335,7 @@ export class SportsCart {
     return this.dataList.findIndex(a => a.wid === wid) > -1
   }
 
-  /**
-   * 更新amout
+  /** 更新amout
    * @param {string} wid 列表唯一值
    * @param {number} amount
    */
@@ -342,5 +343,27 @@ export class SportsCart {
     const index = this.dataList.findIndex(a => a.wid === wid)
     if (index > -1)
       this.dataList[index].amount = amount
+  }
+
+  /** 更新所有数据的赔率，状态等...
+   * @param {IBetInfoBack} data
+   * @param {IBetInfoChangeCallback} fn 回调函数
+   */
+  updateAllData(data: IBetInfoBack, fn?: IBetInfoChangeCallback) {
+    const { wsi, bi } = data
+    const duplexOv = bi[0].ov
+    const ovIsChange = this.dataList.some((item) => {
+      const wsi = data.wsi.find(a => a.wid === item.wid)
+      return Number(wsi?.ov) !== Number(item.ov)
+    })
+    this.dataList.forEach((item) => {
+      item.ov = wsi.find(a => a.wid === item.wid)?.ov ?? ''
+      item.os = wsi.find(a => a.wid === item.wid)?.os ?? 0
+      item.maa = bi.find(a => a.wid === item.wid)?.maa ?? 0
+      item.mia = bi.find(a => a.wid === item.wid)?.mia ?? 0
+    })
+
+    if (fn)
+      fn(ovIsChange, duplexOv)
   }
 }

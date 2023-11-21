@@ -30,9 +30,11 @@ function clickHandler() {
   }
   else {
     sportStore.cart.add(props.cartInfo)
-    setTimeout(() => {
-      startDomTransition()
-    }, 30)
+    if (document.querySelector('.app-sports-bet-slip')) {
+      setTimeout(() => {
+        startDomTransition()
+      }, 30)
+    }
   }
 }
 

@@ -182,7 +182,7 @@ await application.allSettled([
           :loading="paymentDepositCoinInfoLoading || thirdDepositLoading"
           @click="confirmPayment"
         >
-          确认支付
+          {{ t('confirm_pay') }}
         </BaseButton>
       </template>
       <template v-else>
@@ -206,7 +206,7 @@ await application.allSettled([
       <BaseQrcode :url="paymentDepositCoinInfo?.deposit_coin.wallet_address ?? ''" />
       <div>
         <p class="second-title">
-          转入地址
+          {{ t('transfer_in_addr') }}
         </p>
         <p
           class="copy-row"
@@ -216,12 +216,12 @@ await application.allSettled([
           <BaseIcon name="uni-doc" />
         </p>
         <div class="warn-msg">
-          请确认发送USDT到此地址，充值需要全网确认才能到账，请耐心等待！
+          {{ t('confirm_pls_addr_tip') }}
         </div>
       </div>
       <div>
         <p class="second-title">
-          转入金额：{{ activeCurrency.type }}
+          {{ t('transfer_in_amount') }}：{{ activeCurrency.type }}
         </p>
         <p
           class="copy-row"
@@ -231,7 +231,7 @@ await application.allSettled([
           <BaseIcon name="uni-doc" />
         </p>
         <div class="warn-msg">
-          请确认收款地址存入完整金额（不含手续费），否则可能导致无法上分
+          {{ t('pls_confirm_deposit_addr') }}
         </div>
       </div>
       <div class="box-btn">
@@ -242,7 +242,7 @@ await application.allSettled([
           size="sm"
           @click="cancelPayment"
         >
-          取消存款申请
+          {{ t('cancel_deposit') }}
         </BaseButton>
         <BaseButton
           bg-style="primary"
@@ -250,7 +250,7 @@ await application.allSettled([
           :loading="paymentDepositCoinConfirmLoading"
           @click="runPaymentDepositCoinConfirm({ id: paymentDepositCoinInfo ?.id ?? '' })"
         >
-          我已存款
+          {{ t('already_deposit') }}
         </BaseButton>
       </div>
     </template>

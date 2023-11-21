@@ -18,7 +18,7 @@ function resetUpDown() {
   }, 3200)
 }
 watch(props, () => {
-  if (saveNum.value !== props.odds) {
+  if (+saveNum.value !== +props.odds) {
     upDown.value = +props.odds > +saveNum.value ? 'up' : 'down'
     resetUpDown()
     saveNum.value = props.odds
@@ -38,6 +38,7 @@ watch(props, () => {
 <style>
 :root {
   --tg-sports-odds-color: var(--tg-text-lightblue);
+  --tg-sports-odds-text-align: start;
 }
 </style>
 
@@ -51,6 +52,7 @@ watch(props, () => {
     font-weight: var(--tg-font-weight-bold);
     font-size: var(--tg-font-size-default);
     color: var(--tg-sports-odds-color);
+    text-align: var(--tg-sports-odds-text-align);
   }
 
   .icon {

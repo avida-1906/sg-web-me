@@ -37,7 +37,7 @@ const {
   if (!value)
     return t('this_field_is_required')
   else if (!virtualCoinAddressReg.test(value))
-    return '请输入正确提币地址'
+    return t('pls_input_virtual_addr')
   return ''
 })
 const {
@@ -47,8 +47,8 @@ const {
   onSuccess() {
     openNotify({
       type: 'success',
-      title: '绑定',
-      message: '绑定成功',
+      title: t('label_bind'),
+      message: t('success_bind'),
     })
     if (props.isWithdraw) {
       closePayPwdDialog()
@@ -124,18 +124,18 @@ onUnmounted(() => {
     <BaseSelect
       v-if="curContractList?.length"
       v-model="currentNetwork"
-      label="选择协议"
+      :label="t('choose_protocol')"
       :options="curContractList"
       small
     />
     <BaseLabel
-      :label="`您${currencyName}的${curNetworkName}地址`"
+      :label="t('your_virtual_addr', { currencyName, curNetworkName })"
       must
     >
       <BaseInput v-model="address" :msg="addressMsg" />
     </BaseLabel>
     <div class="checkbox-wrap">
-      <span>是否设为默认地址</span>
+      <span>{{ t('is_default_addr') }}</span>
       <BaseCheckBox v-model="isDefault" />
     </div>
     <BaseButton
@@ -144,7 +144,7 @@ onUnmounted(() => {
       size="md"
       @click="handleBindAddress"
     >
-      绑定
+      {{ t('label_bind') }}
     </BaseButton>
   </div>
 </template>

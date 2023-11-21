@@ -33,7 +33,7 @@ function selectCurrency(item: EnumCurrencyKey, hide: () => void) {
       <div class="flex-box">
         <BaseButton class="wallet" type="text" size="sm">
           <span v-if="isCasinoGame" class="in-play">
-            (游戏使用中)
+            ({{ $t('use_in_game') }})
             <AppCurrencyIcon :show-name="true" :currency-type="currentGlobalCurrency" />
           </span>
           <AppAmount
@@ -55,7 +55,7 @@ function selectCurrency(item: EnumCurrencyKey, hide: () => void) {
           @click.stop="openWalletDialog"
         >
           <BaseIcon v-if="width < 910" name="navbar-wallet" class="icon-size" />
-          <span v-else>钱包</span>
+          <span v-else>{{ $t('wallet') }}</span>
         </BaseButton>
       </div>
       <template #popper="{ hide }">
@@ -65,7 +65,7 @@ function selectCurrency(item: EnumCurrencyKey, hide: () => void) {
               v-model="searchValue"
               class="top-search"
               :clearable="searchValue?.length > 0"
-              place-holder="搜索货币"
+              :place-holder="$t('search_currency')"
               shape="square"
             />
           </div>
@@ -84,7 +84,7 @@ function selectCurrency(item: EnumCurrencyKey, hide: () => void) {
               />
             </div>
             <div v-show="!renderBalanceList.length" class="balance-not">
-              无法使用货币
+              {{ $t('currency_disable') }}
             </div>
           </div>
           <div class="popper-bottom">
@@ -95,7 +95,7 @@ function selectCurrency(item: EnumCurrencyKey, hide: () => void) {
               @click=" hide();openWalletSetDialog({ setHideZeroBalance })"
             >
               <BaseIcon class="icon-wallet-set" name="navbar-wallet" />
-              <span>钱包设置</span>
+              <span>{{ $t('title_wallet_set') }}</span>
             </BaseButton>
           </div>
         </div>

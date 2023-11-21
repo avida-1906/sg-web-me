@@ -54,7 +54,7 @@ export const useAppStore = defineStore('app', () => {
     return _userInfo.value
   })
 
-  /** 用户当前选择的货币余额 */
+  /** 用户当前选择的货币余额, 带有符号前缀 */
   const currentGlobalCurrencyBalance = computed(() => {
     const currency = currentGlobalCurrency.value
     const balance = userInfo.value?.balance[currency]
@@ -62,6 +62,13 @@ export const useAppStore = defineStore('app', () => {
       ? ''
       : currencyConfig[currency].prefix
     return balance ? symbol + balance : 0
+  })
+
+  /** 用户当前选择的货币余额, 数字 */
+  const currentGlobalCurrencyBalanceNumber = computed(() => {
+    const currency = currentGlobalCurrency.value
+    const balance = userInfo.value?.balance[currency]
+    return balance ? Number(balance) : 0
   })
 
   function setToken(token: string) {
@@ -137,6 +144,7 @@ export const useAppStore = defineStore('app', () => {
     currentGlobalCurrency,
     vipConfigData,
     currentGlobalCurrencyBalance,
+    currentGlobalCurrencyBalanceNumber,
     setToken,
     setLoginTrue,
     setLoginFalse,

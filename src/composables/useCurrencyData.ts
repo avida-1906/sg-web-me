@@ -83,6 +83,15 @@ export const currencyConfig: Record<EnumCurrencyKey, CurrencyValue> = {
 }
 
 /**
+ *  获取货币配置
+ * @param currency 货币类型
+ * @returns
+ */
+export function getCurrencyConfig(currency: EnumCurrencyKey) {
+  return currencyConfig[currency]
+}
+
+/**
  * 使用货币数据
  */
 export function useCurrencyData() {
@@ -122,11 +131,11 @@ export function useCurrencyData() {
           balanceWithSymbol: `${
             application.isVirtualCurrency(type)
             ? ''
-            : currencyConfig[type].prefix}${balanceNumber
+            : getCurrencyConfig(type).prefix}${balanceNumber
           }`,
-          cur: currencyConfig[type].cur,
-          bankTree: currencyConfig[type].bankTree,
-          prefix: currencyConfig[type].prefix,
+          cur: getCurrencyConfig(type).cur,
+          bankTree: getCurrencyConfig(type).bankTree,
+          prefix: getCurrencyConfig(type).prefix,
         })
       }
     }

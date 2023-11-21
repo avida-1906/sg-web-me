@@ -51,11 +51,9 @@ export interface IBasePanelType {
 }
 
 /**
- * 赛事信息
- *
- * 用来存储赛事信息的数据结构，用在右侧投注面板和获取赛事信息的接口
+ * 体育投注数据类型
  */
-export interface ICartInfo {
+export interface IBetInfo {
   /** 投注项id，最内层id 大小玩法选择大的投注选项id */
   wid: string
   /** 盘口id， 让球、大小 那层的id */
@@ -102,7 +100,14 @@ export interface ICartInfo {
    * 下注种类id，ex: 大小裡面的大=1 小=2
    */
   sid: string
+}
 
+/**
+ * 赛事信息
+ *
+ * 用来存储赛事信息的数据结构，用在右侧投注面板和获取赛事信息的接口
+ */
+export type ICartInfo = {
   /** 主队名称 */
   homeTeamName: string
   /** 客队名称 */
@@ -113,7 +118,7 @@ export interface ICartInfo {
 
   /** 选项名称 */
   sn: string
-}
+} & IBetInfo
 
 /**
  * 购物车数据
@@ -121,4 +126,17 @@ export interface ICartInfo {
  */
 export type ICartInfoData = ICartInfo & {
   amount: number
+  /** 0:关盘 1:开盘 */
+  os: 0 | 1
+  /** 最⼤投注额 */
+  maa: number
+  /** 最⼩投注额 */
+  mia: number
 }
+
+/**
+ * 赛事信息改变回调函数
+ * @param {boolean} ovIsChange 赔率是否改变
+ * @param {string} duplexOv 复式下的总赔率
+ */
+export type IBetInfoChangeCallback = (ovIsChange: boolean, duplexOv: string) => void
