@@ -80,8 +80,8 @@ function makeMarketInfo(item: ISportsMyBetSlipItemBi) {
         <!-- 盘口信息 -->
         <div class="bet-outcome-list">
           <div
-            v-for="item, in list"
-            :key="item.si + item.ei + item.btn + item.sn" class="ticket"
+            v-for="item in list"
+            :key="item.sn + item.hdp + item.ov" class="ticket"
             :class="{ 'is-multi': list.length > 1 }"
           >
             <div class="overview">
