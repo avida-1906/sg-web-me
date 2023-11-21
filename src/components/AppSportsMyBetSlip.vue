@@ -71,9 +71,9 @@ function makeMarketInfo(item: ISportsMyBetSlipItemBi) {
           </div>
           <span>{{ timeToFormat(slipData.bt) }}</span>
         </div>
-        <BaseButton type="text" size="none">
+        <!-- <BaseButton type="text" size="none">
           <BaseIcon name="uni-share-slip" />
-        </BaseButton>
+        </BaseButton> -->
       </div>
 
       <div class="content">
