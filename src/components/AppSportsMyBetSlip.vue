@@ -1,16 +1,64 @@
 <script setup lang='ts'>
+import type { IBasePanelType } from '~/types'
 import type { ISportsMyBetSlipItem } from '~/apis/types'
 
+type ISportsMyBetSlipItemWithShowRe = {
+  [K in keyof ISportsMyBetSlipItem]: K extends 'bi' ? Array<{ showResult: boolean; result: IBasePanelType } & ISportsMyBetSlipItem['bi'][number]> : ISportsMyBetSlipItem[K];
+}
+type ISportsMyBetSlipItemBi = ISportsMyBetSlipItemWithShowRe['bi'][number]
 interface Props {
   data: ISportsMyBetSlipItem
 }
+
 const props = defineProps<Props>()
 
 const { t } = useI18n()
-const x = Math.ceil(Math.random() * 2)
-const list = computed(() => props.data.bi)
-const status = x === 1 ? 'win' : 'lose'
-const statusText = x === 1 ? t('win') : t('lose')
+const { currentGlobalCurrency } = storeToRefs(useAppStore())
+const statusObj: { [t: number]: string } = {
+  0: t('sports_active'),
+  1: t('win_label'),
+  2: t('lose'),
+  3: t('sports_status_tie'),
+  4: t('sports_status_win_half'),
+  5: t('sports_status_lose_half'),
+  6: t('sports_status_lose_part'),
+}
+/** 添加开关赛果 */
+const slipData = ref<ISportsMyBetSlipItemWithShowRe>(addShowResult(props.data))
+
+const list = computed(() => slipData.value.bi)
+const isSettled = computed(() => slipData.value.os === 1) // 是否已结算
+const statusText = computed(() => statusObj[slipData.value.oc])
+const status = computed(() =>
+  slipData.value.oc === 1 || slipData.value.oc === 3 ? 'win' : 'lose',
+)
+
+function addShowResult(origin: ISportsMyBetSlipItem) {
+  const copyData = cloneDeep(origin)
+  copyData.bi = copyData.bi.map((a: ISportsMyBetSlipItemBi) => {
+    return {
+      ...a,
+      showResult: false,
+      result: {
+        startTime: timeToSportsTimeFormat(a.ed),
+        homeTeamName: a.htn,
+        awayTeamName: a.atn,
+        remark: '',
+        homeTeamScore: a.re.split(':')[0],
+        awayTeamScore: a.re.split(':')[1],
+      },
+    }
+  })
+  return copyData
+}
+function makeMarketInfo(item: ISportsMyBetSlipItemBi) {
+  switch (item.bt) {
+    case 1:return `${item.sn} (${item.hdp})`
+    case 2:return `${item.sn} ${item.hdp}`
+    default:
+      return item.sn
+  }
+}
 </script>
 
 <template>
@@ -18,10 +66,10 @@ const statusText = x === 1 ? t('win') : t('lose')
     <div class="record">
       <div class="header">
         <div class="left">
-          <div class="status" :class="[status]">
+          <div v-if="isSettled" class="status" :class="[status]">
             {{ statusText }}
           </div>
-          <span>15:40 2023/11/20</span>
+          <span>{{ timeToFormat(slipData.bt) }}</span>
         </div>
         <BaseButton type="text" size="none">
           <BaseIcon name="uni-share-slip" />
@@ -32,7 +80,8 @@ const statusText = x === 1 ? t('win') : t('lose')
         <!-- 盘口信息 -->
         <div class="bet-outcome-list">
           <div
-            v-for="item, i in list" :key="i" class="ticket"
+            v-for="item, in list"
+            :key="item.si + item.ei + item.btn + item.sn" class="ticket"
             :class="{ 'is-multi': list.length > 1 }"
           >
             <div class="overview">
@@ -41,38 +90,44 @@ const statusText = x === 1 ? t('win') : t('lose')
                   type="text" size="none"
                   style="--tg-base-button-text-default-color:var(--tg-text-white)"
                 >
-                  <span>{{ item.on }}</span>
+                  <span class="team-name">{{ item.htn }} - {{ item.atn }}</span>
                 </BaseButton>
                 <span>{{ item.btn }}</span>
               </div>
               <div class="odds-wrapper">
                 <div class="outcome-name">
-                  低于242.5
+                  {{ makeMarketInfo(item) }}
                 </div>
                 <div class="odds">
-                  2.12
+                  {{ item.ov }}
                 </div>
               </div>
               <div class="wrapper">
                 <div class="fixture-details">
-                  11月21日周二 08:00
+                  {{ timeToSportsTimeFormat(item.ed) }}
                 </div>
                 <div class="icons">
-                  <BaseButton type="text" size="none">
+                  <!-- <BaseButton type="text" size="none">
                     <BaseIcon name="uni-trend" />
                   </BaseButton>
                   <BaseButton type="text" size="none">
                     <BaseIcon name="spt-live" />
-                  </BaseButton>
-                  <BaseButton type="text" size="none">
+                  </BaseButton> -->
+                  <BaseButton
+                    type="text"
+                    size="none" @click="item.showResult = !item.showResult"
+                  >
                     <BaseIcon name="uni-score-board" />
                   </BaseButton>
                 </div>
               </div>
             </div>
-            <!-- <div class="score">
-              <AppMatchStatistics :round="false" :data="data" />
-            </div> -->
+            <div class="score">
+              <AppMatchStatistics
+                v-show="item.showResult" :round="false"
+                :data="item.result"
+              />
+            </div>
           </div>
         </div>
         <!-- logo分割线 -->
@@ -84,22 +139,19 @@ const statusText = x === 1 ? t('win') : t('lose')
         <div class="total-box">
           <div class="item">
             <label>{{ t('sports_odds_title') }}</label>
-            <span class="odds">2.12</span>
+            <span class="odds">{{ slipData.ov }}</span>
           </div>
           <div class="item">
             <label>{{ t('bet_amount') }}</label>
-            <AppAmount :amount="0.000001" currency-type="BNB" />
+            <AppAmount :amount="slipData.a" :currency-type="currentGlobalCurrency" />
           </div>
           <div class="item">
             <label>{{ t('sports_estimated_payment_amount') }}</label>
-            <AppAmount :amount="0.000001" currency-type="BNB" />
+            <AppAmount
+              :amount="isSettled ? slipData.pa : slipData.mwa"
+              :currency-type="currentGlobalCurrency"
+            />
           </div>
-        </div>
-        <!-- 兑现按钮 -->
-        <div class="cashout">
-          <BaseButton size="md" shadow>
-            提前兑现
-          </BaseButton>
         </div>
       </div>
     </div>
@@ -219,6 +271,11 @@ const statusText = x === 1 ? t('win') : t('lose')
         flex-direction: column;
         gap: var(--tg-spacing-4);
         max-width: 100%;
+        .team-name{
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
       }
 
       .odds-wrapper {
@@ -323,7 +380,7 @@ const statusText = x === 1 ? t('win') : t('lose')
 .total-box {
   grid-area: total;
   width: 100%;
-  padding: var(--tg-spacing-12);
+  padding: 0 var(--tg-spacing-12);
 
   .item {
     width: 100%;
@@ -337,12 +394,5 @@ const statusText = x === 1 ? t('win') : t('lose')
       color: var(--tg-text-lightblue);
     }
   }
-}
-
-.cashout {
-  grid-area: cashoutButton;
-  display: flex;
-  flex-direction: column;
-  padding: 0 var(--tg-spacing-12);
 }
 </style>

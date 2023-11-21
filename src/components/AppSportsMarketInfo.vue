@@ -129,7 +129,7 @@ const countdownMins = computed(() => {
 // 是否已经开赛
 const isStarted = computed(() => dayjs().isAfter((props.data.ed * 1000)))
 // 时间格式化
-const timeText = computed(() => timeToSportsTimeFormat(props.data.ed * 1000))
+const timeText = computed(() => timeToSportsTimeFormat(props.data.ed))
 // 正在滚球
 const isOnAir = computed(() => props.data.m === 3)
 // 是否有直播

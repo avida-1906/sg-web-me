@@ -572,10 +572,10 @@ export interface ISportsMyBetSlipItem {
   /** 结算时间 */
   st: number
   bi: {
+    /** 盘口类型 */
+    bt: number
     /** 下注类型名称 */
     btn: string
-    /** 赛事名称 */
-    on: string
     /** 球种Id */
     si: number
     /** 赛事ID */
@@ -586,5 +586,13 @@ export interface ISportsMyBetSlipItem {
     sn: string
     /** 赛果 */
     re: string
+    /** 盘口 */
+    hdp: string
+    /** 主队名 */
+    htn: string
+    /** 客队名 */
+    atn: string
+    /** 开赛时间 */
+    ed: number
   }[]
 }

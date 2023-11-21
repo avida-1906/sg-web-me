@@ -20,7 +20,7 @@ const { data } = useRequest(() => ApiSportBetList({
   settle: currentType.value,
   cur: currencyConfig[currentGlobalCurrency.value].cur,
 }),
-{ manual: false, refreshDeps: currentGlobalCurrency })
+{ manual: false, refreshDeps: [currentGlobalCurrency, currentType] })
 const list = computed(() => data.value && data.value.list ? data.value.list : [])
 
 const columnCount = computed(() => {
@@ -32,7 +32,7 @@ const columnCount = computed(() => {
 })
 
 watch(props, (a) => {
-  if (a.slipType)
+  if (a.slipType === 0 || a.slipType === 1)
     currentType.value = a.slipType
 })
 </script>

@@ -102,12 +102,12 @@ pageInit()
             <BaseBadge
               v-if="isState"
               class="state-text"
-              status="success" :text="timeToFromNow(item.start_time * 1000)"
+              status="success" :text="timeToFromNow(item.start_time)"
             />
             <span
               v-else
               class="state-text"
-            >{{ timeToFromNow(item.start_time * 1000) }}</span>
+            >{{ timeToFromNow(item.start_time) }}</span>
           </div>
           <!-- 通知 -->
           <div v-if="mode === EnumPage[0]" style="white-space:normal;line-height: 1.43;">
