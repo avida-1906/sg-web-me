@@ -139,7 +139,7 @@ export const useSportsStore = defineStore('sports', () => {
       { title: t('sports_tab_starting_soon'), path: `/sports/${SPORTS_PLAT_ID}/upcoming`, icon: 'spt-timing', list: [], domId: '' },
       {
         title: t('my_bets'),
-        path: '/my-bets?type=sports',
+        path: `/sports/${SPORTS_PLAT_ID}/my-bets?type=sports`,
         icon: 'spt-user-bet',
         list: [],
         domId: '',

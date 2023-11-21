@@ -74,6 +74,7 @@ declare module 'vue' {
     AppNotice: typeof import('./components/AppNotice.vue')['default']
     AppNoticeNotify: typeof import('./components/AppNoticeNotify.vue')['default']
     AppOutrightPreview: typeof import('./components/AppOutrightPreview.vue')['default']
+    AppPageMyBets: typeof import('./components/AppPageMyBets.vue')['default']
     AppPasswordVerify: typeof import('./components/AppPasswordVerify.vue')['default']
     AppPayPwdDialog: typeof import('./components/AppPayPwdDialog.vue')['default']
     AppPercentage: typeof import('./components/AppPercentage.vue')['default']
