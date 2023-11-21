@@ -1,5 +1,5 @@
 import type { CurrencyCode } from '~/composables/useCurrencyData'
-import type { IBetInfo, ICartInfo } from '~/types'
+import type { ICartInfo, ICartInfoData } from '~/types'
 
 /** 货币的Key */
 export type EnumCurrencyKey = keyof typeof EnumCurrency
@@ -546,7 +546,7 @@ export interface IBetArgs {
     pt: 0 | 1
     /** 投注金额 */
     a: number
-    bi: IBetInfo[]
+    bi: ICartInfoData[]
   }[]
   /** 货币 */
   cur: CurrencyCode

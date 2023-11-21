@@ -42,13 +42,23 @@ const isBetMulti = computed(
   () => props.betSlipType === EnumsBetSlipBetSlipTabStatus.multi,
 )
 const isFirst = computed(() => props.index === 0)
+const isError = computed(() => {
+  return props.error || props.cartInfoData.result === 'rejected'
+})
+const isDisabled = computed(() => {
+  return props.disabled || props.cartInfoData.os === 0
+})
 
-watch(currentGlobalCurrency, () => {
-  amount.value = 0
+watch(currentGlobalCurrency, (_currency) => {
+  sportStore.cart.updateCurrency(_currency)
 })
 
 watchEffect(() => {
   sportStore.cart.updateItemAmount(props.cartInfoData.wid, amount.value)
+})
+
+watch(() => props.cartInfoData.amount, () => {
+  amount.value = props.cartInfoData.amount
 })
 </script>
 
@@ -58,8 +68,8 @@ watchEffect(() => {
       mt12: !isFirst && isBetSingle,
       mt8: !isFirst && isBetMulti,
       before: !isFirst && isBetMulti,
-      error,
-      disabled,
+      error: isError,
+      disabled: isDisabled,
     }"
   >
     <div class="header" :class="{ 'round-header': isFirst || isBetSingle }">
@@ -68,6 +78,13 @@ watchEffect(() => {
           {{ t('sports_status_live') }}
         </div>
         <div class="text">
+          <span
+            :style="{
+              color: cartInfoData.result === 'fulfilled' ? 'green' : 'red',
+            }"
+          >
+            {{ cartInfoData.result }}
+          </span>
           {{ cartInfoData.homeTeamName }} - {{ cartInfoData.awayTeamName }}
         </div>
       </div>
@@ -97,14 +114,14 @@ watchEffect(() => {
       </div>
       <AppSportsOdds v-else :odds="cartInfoData.ov" arrow="left" />
       <!-- 单式金额输入框 -->
-      <div v-show="isBetSingle" class="footer">
+      <div v-show="isBetSingle && cartInfoData.result === undefined" class="footer">
         <div class="bet-amount">
           <BaseInput
             v-model="amount"
             type="number"
             placeholder="0.00000000"
             mb0
-            :disabled="disabled"
+            :disabled="isDisabled"
           >
             <template #right-icon>
               <AppCurrencyIcon :currency-type="currentGlobalCurrency" />
