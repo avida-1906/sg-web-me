@@ -4,10 +4,11 @@ const sport = route.params.sport ? +route.params.sport : 0
 const region = route.params.region ? route.params.region.toString() : ''
 const league = route.params.league ? route.params.league.toString() : ''
 const { bool: isStandard } = useBoolean(true)
-const { data } = useRequest(() =>
-  ApiSportEventList({ m: 5, si: sport, ci: [league], page: 1, page_size: 100 }), {
-  manual: false,
-})
+const { data, run } = useRequest(() =>
+  ApiSportEventList({ m: 5, si: sport, ci: [league], page: 1, page_size: 100 }),
+)
+/** 定时更新数据 */
+const { startTimer, stopTimer } = useSportsDataUpdate(run, 30)
 
 const baseType = ref('winner')
 const curTab = ref(route.query.outrights ? '2' : '1')
@@ -55,6 +56,11 @@ const breadcrumb = computed(() => [
 function onBaseTypeChange(v: string) {
   baseType.value = v
 }
+
+startTimer()
+onBeforeUnmount(() => {
+  stopTimer()
+})
 </script>
 
 <template>

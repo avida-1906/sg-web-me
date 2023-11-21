@@ -12,6 +12,8 @@ const { data, run } = useRequest(() =>
 {
   refreshDeps: [currentUpcomingNav],
 })
+/** 定时更新数据 */
+const { startTimer, stopTimer } = useSportsDataUpdate(run, 30)
 
 const baseType = ref('winner')
 const list = computed(() => {
@@ -29,11 +31,12 @@ watch(currentUpcomingNav, (a) => {
   if (a === 0)
     setStandard(true)
 
-  run()
+  startTimer()
 })
 
-onMounted(() => {
-  run()
+startTimer()
+onBeforeUnmount(() => {
+  stopTimer()
 })
 </script>
 

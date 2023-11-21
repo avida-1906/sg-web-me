@@ -4,9 +4,10 @@ const sport = route.params.sport ? +route.params.sport : 0
 const region = ref(route.params.region ? route.params.region.toString() : '')
 const { bool: isStandard } = useBoolean(true)
 const { data, run } = useRequest(() =>
-  ApiSportEventList({ m: 5, si: sport, pgid: region.value, page: 1, page_size: 100 }), {
-  manual: false,
-})
+  ApiSportEventList({ m: 5, si: sport, pgid: region.value, page: 1, page_size: 100 }),
+)
+/** 定时更新数据 */
+const { startTimer, stopTimer } = useSportsDataUpdate(run, 30)
 
 const baseType = ref('winner')
 const curTab = ref(route.query.outrights ? '2' : '1')
@@ -46,13 +47,14 @@ function onBaseTypeChange(v: string) {
   baseType.value = v
 }
 
-const stop = watch(route, (a) => {
+watch(route, (a) => {
   region.value = a.params.region ? a.params.region.toString() : ''
-  run()
+  startTimer()
 })
 
+startTimer()
 onBeforeUnmount(() => {
-  stop()
+  stopTimer()
 })
 </script>
 
