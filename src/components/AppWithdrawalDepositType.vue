@@ -43,7 +43,7 @@ const changeType = function (type: string) {
       />
       <span class="label">{{ item.label }}</span>
       <span v-if="item.pname === '赠送'" class="tag">
-        <span>送{{ Number(item.promo) }}%</span>
+        <span>{{ $t('present') }}{{ Number(item.promo) }}%</span>
       </span>
       <span
         v-else-if="item.pname === '推荐'

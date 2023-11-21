@@ -27,13 +27,13 @@ const {
   validate: valiAmount,
 } = useField<string>('amount', (value) => {
   if (!value)
-    return '不能为空'
+    return t('validate_require')
   else if (Number(value) === 0)
-    return '存入金额不能为0'
+    return t('validate_deposit_amount_zero')
   else if (Number(value) < 0)
-    return '存入金额不能为负数'
+    return t('validate_deposit_amount_pos')
   else if (value && Number(value) > Number(props.activeCurrency.balance))
-    return '金额不能超过最大值'
+    return t('validate_deposit_amount_max')
   return ''
 })
 const {
@@ -124,14 +124,14 @@ watch(() => props.currentNetwork, () => {
     <!-- 虚拟币提款 -->
     <div class="app-withdraw">
       <BaseLabel
-        :label="`${activeCurrency?.type}地址`"
+        :label="`${activeCurrency?.type}${t('address')}`"
         :current-currency="activeCurrency?.type"
         must
       >
         <BaseSelect
           v-model="address"
           :options="addrOptions"
-          theme popper small border
+          small theme popper border
           style="--tg-base-select-popper-style-padding-y: var(--tg-spacing-12)"
         >
           <template #label>
@@ -160,7 +160,8 @@ watch(() => props.currentNetwork, () => {
       </BaseLabel>
       <div class="amount">
         <div class="top">
-          <span class="label">金额<span style="color: var(--tg-text-error);">*</span></span>
+          <span class="label">{{ t('amount') }}
+            <span style="color: var(--tg-text-error);">*</span></span>
           <!-- <span class="us">US$0.00</span> -->
         </div>
         <BaseInput
@@ -174,22 +175,22 @@ watch(() => props.currentNetwork, () => {
             <AppCurrencyIcon :currency-type="activeCurrency?.type" />
           </template>
           <template #right-button>
-            <span>最大值</span>
+            <span>{{ t('max') }}</span>
           </template>
         </BaseInput>
       </div>
-      <BaseLabel label="资金密码" must>
+      <BaseLabel :label="t('menu_title_settings_update_safepwd')" must>
         <BaseInput v-model="paypwd" :msg="paypwdMsg" type="password" max="6" />
       </BaseLabel>
       <BaseButton bg-style="primary" size="md" @click="handleWithdraw">
-        提款
+        {{ t('menu_title_settings_withdrawals') }}
       </BaseButton>
       <div class="tips">
-        <span>最低提款金额为 0.00020000</span>
+        <span>{{ t('withdrawal_min_amount') }} 0.00020000</span>
         <AppCurrencyIcon class="currency-icon" :currency-type="activeCurrency?.type" />
-        <span>。我们将从您的余额扣除0.00007000</span>
+        <span>。{{ t('withdrawal_fee_tip') }}0.00007000</span>
         <AppCurrencyIcon class="currency-icon" :currency-type="activeCurrency?.type" />
-        <span>作为您提款的交易费用。</span>
+        <span>{{ t('withdrawal_as_fee') }}。</span>
       </div>
     </div>
   </template>
