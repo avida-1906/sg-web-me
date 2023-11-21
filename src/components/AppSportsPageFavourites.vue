@@ -1,6 +1,10 @@
 <script lang="ts" setup>
 const { t } = useI18n()
-const { sportsFavoriteData } = storeToRefs(useSportsStore())
+const sportsStore = useSportsStore()
+const { sportsFavoriteData } = storeToRefs(sportsStore)
+/** 定时更新数据 */
+const { startTimer, stopTimer }
+= useSportsDataUpdate(sportsStore.refreshSportsFavList, 30)
 
 const currentSi = ref(-1)
 /** 收藏数据根据球种组合 */
@@ -21,19 +25,22 @@ const navs = computed(() => {
   })
 })
 const list = computed(() => {
-  if (sportsFavoriteData.value)
+  if (sportsFavoriteData.value && sportsFavoriteData.value.list)
     return sportsDataGroupByLeague(sportsFavoriteData.value.list.filter(a => a.si === currentSi.value))
 
   return null
 })
 
-const stop = watch(sportsFavoriteData, (a) => {
-  if (a && currentSi.value === -1)
+watch(sportsFavoriteData, (a) => {
+  if (a && a.list && currentSi.value === -1)
     currentSi.value = a.list[0].si
 })
 
+onMounted(() => {
+  startTimer()
+})
 onBeforeUnmount(() => {
-  stop()
+  stopTimer()
 })
 </script>
 
