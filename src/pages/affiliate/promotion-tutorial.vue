@@ -313,7 +313,7 @@ onBeforeUnmount(() => {
 
     <div class="des">
       <p>
-        <span class="title">举例说明如下:</span>
+        <span class="title">{{ $t('for_example') }}:</span>
         <span>本站点返佣以有效投注为依据，假设返佣比例为左上角表格。A在本站第一个发现商机，
           马上发展了B1、B2和B3，B1又往下发展了C1和C2，B2无下级，B3只发展了比较有实力的C3。
           几天后，B1本人的有效投注为8万，B2本人的有效投注为5万，B3本人的有效投注为3万，C1本
@@ -324,13 +324,13 @@ onBeforeUnmount(() => {
         </span>
       </p>
       <p>
-        <span class="label">1、直属团队: </span>
+        <span class="label">1、{{ $t('direct_team') }}: </span>
         <span>(1) B1，B2，B3贡献给A: (8万+5万+3万)x100/万=1600。</span>
         <span>(2) C1和C2贡献给B1: (10万+4万)x80/万=1120。 </span>
         <span>(3) C3贡献给B3: 71万x100/万=7100。</span>
       </p>
       <p>
-        <span class="label">2、其他团队: </span>
+        <span class="label">2、{{ $t('other_team') }}: </span>
         <span>是指下级、下下级、下下下级...等发展的成员，统一叫其他团队；因本系统可无限发展下级，为便于解说，
           本文只取2级结构作为例子阐述。</span>
         <span>(1)来自C1和C2：因B1总业绩14万，只享受80/万的返佣比例，而A总业绩101万，享受100/万的
@@ -340,7 +340,7 @@ onBeforeUnmount(() => {
           那么A和B3之间产生的返佣差额为：100-100=0/万，C3贡献给A：71万x0/万=0。</span>
       </p>
       <p>
-        <span class="label">3、总结说明:</span>
+        <span class="label">3、{{ $t('summary') }}:</span>
         <span>(1)C3给力，间接让A的所有业绩都享受更高返佣比例。</span>
         <span>(2)B2可能比较懒，没有发展下级，则无收益。</span>
         <span>(3)B3虽然加入比较晚，且属于A的下级，但其下级C3给力，让B3直接享受更高返佣比例，所以B3无论

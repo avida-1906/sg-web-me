@@ -92,7 +92,11 @@ const {
   setTrue: setSocialDisabledBtnTrue,
   setFalse: setSocialDisabledBtnFalse,
 } = useBoolean(true)
-
+const {
+  bool: msgAfterTouched,
+  setFalse: setMsgAfterTouchedFalse,
+  setTrue: setMsgAfterTouchedTrue,
+} = useBoolean(true)
 const {
   value: email,
   errorMessage: emailErrormsg,
@@ -169,8 +173,10 @@ function socialSubmit() {
   setSocialDisabledBtnTrue()
 }
 
-function emailCheck() {
-  runEmailCheckRequest({ email: email.value })
+async function emailCheck() {
+  await emailValidate()
+  if (!emailErrormsg.value)
+    runEmailCheckRequest({ email: email.value })
 }
 function emailPaste() {
   setTimeout(() => {
@@ -294,7 +300,9 @@ onMounted(() => {
                   ? 'var(--tg-secondary-main)' : '',
               }
             "
-            msg-after-touched
+            :msg-after-touched="msgAfterTouched"
+            @blur="setMsgAfterTouchedFalse"
+            @focus="setMsgAfterTouchedTrue"
             @paste="emailPaste"
           />
         </BaseLabel>
