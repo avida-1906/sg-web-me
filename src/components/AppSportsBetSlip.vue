@@ -34,7 +34,15 @@ const appStore = useAppStore()
 const { currentGlobalCurrency } = storeToRefs(appStore)
 const sportStore = useSportsStore()
 
-const amount = ref(0)
+const {
+  value: amount,
+  errorMessage: amountErrorMsg,
+} = useField<number>('amount', (value) => {
+  if (value < props.cartInfoData.mia || value > props.cartInfoData.maa)
+    return `请输入 ${props.cartInfoData.mia} - ${props.cartInfoData.maa} 之间的金额`
+
+  return ''
+})
 
 const isBetSingle = computed(() =>
   props.betSlipType === EnumsBetSlipBetSlipTabStatus.single,
@@ -66,7 +74,8 @@ watch(currentGlobalCurrency, (_currency) => {
 })
 
 watchEffect(() => {
-  sportStore.cart.updateItemAmount(props.cartInfoData.wid, amount.value)
+  if (amount.value !== undefined)
+    sportStore.cart.updateItemAmount(props.cartInfoData.wid, amount.value)
 })
 
 watch(() => props.cartInfoData.amount, () => {
@@ -90,13 +99,10 @@ watch(() => props.cartInfoData.amount, () => {
           {{ t('sports_status_live') }}
         </div>
         <div class="text">
-          <span
-            :style="{
-              color: cartInfoData.result === 'fulfilled' ? 'green' : 'red',
-            }"
-          >
-            {{ cartInfoData.result }}
-          </span>
+          <BaseIcon
+            v-if="cartInfoData.result"
+            :name="cartInfoData.result === 'fulfilled' ? 'sport-success' : 'sport-error'"
+          />
           {{ cartInfoData.homeTeamName }} - {{ cartInfoData.awayTeamName }}
         </div>
       </div>
@@ -131,9 +137,11 @@ watch(() => props.cartInfoData.amount, () => {
           <BaseInput
             v-model="amount"
             type="number"
-            placeholder="0.00000000"
             mb0
+            :placeholder="`${cartInfoData.mia} - ${cartInfoData.maa}`"
+            :msg="amountErrorMsg"
             :disabled="isDisabled"
+            :msg-after-touched="true"
           >
             <template #right-icon>
               <AppCurrencyIcon :currency-type="currentGlobalCurrency" />
@@ -145,7 +153,7 @@ watch(() => props.cartInfoData.amount, () => {
         </div>
         <div class="estimated-amount">
           <AppAmount
-            :amount="mul(amount, Number(cartInfoData.ov))"
+            :amount="mul(amount ?? 0, Number(cartInfoData.ov))"
             :currency-type="currentGlobalCurrency"
           />
         </div>

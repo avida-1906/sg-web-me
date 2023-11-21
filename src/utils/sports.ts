@@ -281,6 +281,9 @@ export class SportsCart {
    * 当购物车中数据的result不为undefined时，显示重新使用投注单
    */
   get isShowReuse() {
+    if (this.dataList.length === 0)
+      return false
+
     return this.dataList.every(a => a.result !== undefined)
   }
 
