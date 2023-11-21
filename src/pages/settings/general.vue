@@ -98,8 +98,11 @@ const {
   errorMessage: emailErrormsg,
   validate: emailValidate,
 } = useField<string>('email', (value) => {
+  if (!value)
+    return t('this_field_is_required')
+
   if (!emailReg.test(value))
-    return t('validate_msg_input_email')
+    return t('this_contains_invalid_email_characters')
   return ''
 })
 

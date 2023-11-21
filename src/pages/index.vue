@@ -94,7 +94,7 @@ runMemberNoticeAllList()
         </div>
       </div>
     </div>
-    <!-- 滚动消息 -->
+    <!-- 滚动（跑马灯）消息 -->
     <div v-if="!memberNoticeAllListLoading" class="mt-24">
       <BaseNoticeBar>
         <template #prefix>
@@ -107,7 +107,8 @@ runMemberNoticeAllList()
             <span
               v-for="item of noticeData?.marquee"
               :key="item.id"
-            >{{ `${item.title}：${item.content[getCurrentLanguageForBackend()]}` }}</span>
+            >{{ `${item.title}：${
+              item.content[getCurrentLanguageForBackend()] ?? ''}` }}</span>
           </div>
         </template>
       </BaseNoticeBar>

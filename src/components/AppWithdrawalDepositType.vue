@@ -43,7 +43,7 @@ const changeType = function (type: string) {
       />
       <span class="label">{{ item.label }}</span>
       <span v-if="item.pname === '赠送'" class="tag">
-        <span>送{{ Number(item.promo) }}%</span>
+        <span>{{ $t('present') }}{{ Number(item.promo) }}%</span>
       </span>
       <span
         v-else-if="item.pname === '推荐'
@@ -62,8 +62,7 @@ const changeType = function (type: string) {
 .withdrawal-deposit-type{
   width: 100%;
   display: flex;
-  gap: .75rem;
-  padding: var(--tg-spacing-2) 0;
+  gap: var(--tg-spacing-12);
   &::-webkit-scrollbar-thumb{
     display: none;
   }

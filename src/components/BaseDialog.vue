@@ -89,47 +89,49 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <Transition>
-    <section v-if="show || _show" class="tg-base-dialog" @touchmove.stop>
-      <div class="overlay" @click="closeOnClickOverlay && close()" />
-      <div class="card" :style="`--tg-dialog-style-maxwidth:${maxWidth}px`">
-        <div v-if="icon || title" class="header">
-          <h2>
-            <BaseIcon v-if="icon" :name="icon" />
-            <span>{{ title }}</span>
-          </h2>
-          <div class="close" @click="close">
+  <Teleport to="body" :disabled="!teleport">
+    <Transition>
+      <section v-if="show || _show" class="tg-base-dialog" @touchmove.stop>
+        <div class="overlay" @click="closeOnClickOverlay && close()" />
+        <div class="card" :style="`--tg-dialog-style-maxwidth:${maxWidth}px`">
+          <div v-if="icon || title" class="header">
+            <h2>
+              <BaseIcon v-if="icon" :name="icon" />
+              <span>{{ title }}</span>
+            </h2>
+            <div class="close" @click="close">
+              <BaseIcon name="uni-close" />
+            </div>
+          </div>
+          <div class="scroll-y scroll-contain">
+            <div class="modal-content">
+              <Suspense timeout="0">
+                <slot />
+                <template #fallback>
+                  <div class="center dialog-loading-height">
+                    <BaseLoading />
+                  </div>
+                </template>
+              </Suspense>
+            </div>
+          </div>
+          <div v-if="showButtons" class="footer-buttons">
+            <div class="buttons">
+              <BaseButton size="md" @click="onCancel">
+                {{ $t('cancel') }}
+              </BaseButton>
+              <BaseButton bg-style="secondary" size="md" @click="onConfirm">
+                {{ $t('confirm') }}
+              </BaseButton>
+            </div>
+          </div>
+          <div v-if="!icon && !title" class="close-only" @click="close">
             <BaseIcon name="uni-close" />
           </div>
         </div>
-        <div class="scroll-y scroll-contain">
-          <div class="modal-content">
-            <Suspense timeout="0">
-              <slot />
-              <template #fallback>
-                <div class="center dialog-loading-height">
-                  <BaseLoading />
-                </div>
-              </template>
-            </Suspense>
-          </div>
-        </div>
-        <div v-if="showButtons" class="footer-buttons">
-          <div class="buttons">
-            <BaseButton size="md" @click="onCancel">
-              {{ $t('cancel') }}
-            </BaseButton>
-            <BaseButton bg-style="secondary" size="md" @click="onConfirm">
-              {{ $t('confirm') }}
-            </BaseButton>
-          </div>
-        </div>
-        <div v-if="!icon && !title" class="close-only" @click="close">
-          <BaseIcon name="uni-close" />
-        </div>
-      </div>
-    </section>
-  </Transition>
+      </section>
+    </Transition>
+  </Teleport>
 </template>
 
 <style>

@@ -16,10 +16,19 @@ const props = defineProps<Props>()
 
 const { userInfo } = storeToRefs(useAppStore())
 
+const { bool: showFixedImage, setTrue: setFITrue } = useBoolean(false)
+
+const curImage = ref('')
+
 const isOwn = computed(() => props.message.uid === userInfo.value?.uid)
 
 const messageImages = computed(() =>
   props.message.images && props.message.images.length ? JSON.parse(props.message.images) : [])
+
+function seeImage(s: string) {
+  curImage.value = s
+  setFITrue()
+}
 </script>
 
 <template>
@@ -36,7 +45,7 @@ const messageImages = computed(() =>
       </div>
       <slot>
         <div class="text message">
-          {{ message.content }}
+          <span>{{ message.content }}</span>
           <div
             v-if="messageImages.length"
             class="message-images"
@@ -50,12 +59,16 @@ const messageImages = computed(() =>
               :key="item"
               :url="item"
               is-network
+              @click="seeImage(item)"
             />
           </div>
         </div>
       </slot>
     </div>
   </div>
+  <BaseDialog v-model:show="showFixedImage" teleport>
+    <BaseImage is-network :url="curImage" />
+  </BaseDialog>
 </template>
 
 <style lang="scss" scoped>
@@ -102,20 +115,24 @@ const messageImages = computed(() =>
       }
       .message-images {
         display: flex;
-        gap: 2%;
         flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 2%;
         >* {
+          cursor: pointer;
+          width: 76px;
           margin-top: 8px;
+          aspect-ratio: 1/1;
         }
-        &.images-num-1 > * {
-          width: 100%;
-        }
-        &.images-num-2 > * {
-          width: 48%;
-        }
-        &.images-num-more-than-3 > * {
-          width: 32%;
-        }
+        // &.images-num-1 > * {
+        //   width: 100%;
+        // }
+        // &.images-num-2 > * {
+        //   width: 48%;
+        // }
+        // &.images-num-more-than-3 > * {
+        //   width: 32%;
+        // }
       }
     }
   }

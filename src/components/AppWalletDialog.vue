@@ -17,11 +17,11 @@ const router = useRouter()
 const currentNetwork = ref('')
 const activeCurrency = ref<CurrencyData | null>()
 const currentTab = ref(props.activeTab)
-const tabList = [
+const tabList = computed(() => [
   { label: t('deposit'), value: 'deposit' },
-  { label: '提款', value: 'withdraw' },
-  { label: '卡包', value: 'cardHolder' },
-]
+  { label: t('menu_title_settings_withdrawals'), value: 'withdraw' },
+  { label: t('card_wallet'), value: 'cardHolder' },
+])
 
 const isDeposit = computed(() => currentTab.value === 'deposit')
 const isWithdraw = computed(() => currentTab.value === 'withdraw')
@@ -113,14 +113,14 @@ watch(() => currentTab.value, () => {
     class="safe-bottom"
   >
     <div>
-      通过双重验证提高您的账户安全性
+      {{ t('improve_safe_level') }}
     </div>
     <BaseButton
       bg-style="primary"
       size="md"
       @click="router.push('/settings/security-safe-check'); closeDialog()"
     >
-      开启双重验证
+      {{ t('turn_on_double_check') }}
     </BaseButton>
   </div>
 </template>
@@ -135,7 +135,7 @@ watch(() => currentTab.value, () => {
     padding-bottom: var(--tg-spacing-16);
     display: flex;
     flex-direction: column;
-    gap: var(--tg-spacing-12);
+    gap: var(--tg-spacing-16);
   }
 }
   .safe-bottom{

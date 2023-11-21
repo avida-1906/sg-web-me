@@ -75,6 +75,7 @@ declare global {
   const ApiPaymentDepositCoinConfirm: typeof import('./apis/index')['ApiPaymentDepositCoinConfirm']
   const ApiSmsSend: typeof import('./apis/index')['ApiSmsSend']
   const ApiSportAddFavorite: typeof import('./apis/sport')['ApiSportAddFavorite']
+  const ApiSportBetList: typeof import('./apis/sport')['ApiSportBetList']
   const ApiSportCompetitionList: typeof import('./apis/sport')['ApiSportCompetitionList']
   const ApiSportCount: typeof import('./apis/sport')['ApiSportCount']
   const ApiSportDelFavorite: typeof import('./apis/sport')['ApiSportDelFavorite']
@@ -493,6 +494,8 @@ declare global {
   const useSorted: typeof import('@vueuse/core')['useSorted']
   const useSpeechRecognition: typeof import('@vueuse/core')['useSpeechRecognition']
   const useSpeechSynthesis: typeof import('@vueuse/core')['useSpeechSynthesis']
+  const useSportsDataTimer: typeof import('./composables/useSportsDataUpdate')['useSportsDataTimer']
+  const useSportsDataUpdate: typeof import('./composables/useSportsDataUpdate')['useSportsDataUpdate']
   const useSportsStore: typeof import('./stores/sports')['useSportsStore']
   const useStatisticsDialog: typeof import('./composables/useDialogStatistical')['useStatisticsDialog']
   const useStepper: typeof import('@vueuse/core')['useStepper']
@@ -634,6 +637,7 @@ declare module 'vue' {
     readonly ApiPaymentDepositCoinConfirm: UnwrapRef<typeof import('./apis/index')['ApiPaymentDepositCoinConfirm']>
     readonly ApiSmsSend: UnwrapRef<typeof import('./apis/index')['ApiSmsSend']>
     readonly ApiSportAddFavorite: UnwrapRef<typeof import('./apis/sport')['ApiSportAddFavorite']>
+    readonly ApiSportBetList: UnwrapRef<typeof import('./apis/sport')['ApiSportBetList']>
     readonly ApiSportCompetitionList: UnwrapRef<typeof import('./apis/sport')['ApiSportCompetitionList']>
     readonly ApiSportCount: UnwrapRef<typeof import('./apis/sport')['ApiSportCount']>
     readonly ApiSportDelFavorite: UnwrapRef<typeof import('./apis/sport')['ApiSportDelFavorite']>
@@ -1036,6 +1040,7 @@ declare module 'vue' {
     readonly useSorted: UnwrapRef<typeof import('@vueuse/core')['useSorted']>
     readonly useSpeechRecognition: UnwrapRef<typeof import('@vueuse/core')['useSpeechRecognition']>
     readonly useSpeechSynthesis: UnwrapRef<typeof import('@vueuse/core')['useSpeechSynthesis']>
+    readonly useSportsDataUpdate: UnwrapRef<typeof import('./composables/useSportsDataUpdate')['useSportsDataUpdate']>
     readonly useSportsStore: UnwrapRef<typeof import('./stores/sports')['useSportsStore']>
     readonly useStatisticsDialog: UnwrapRef<typeof import('./composables/useDialogStatistical')['useStatisticsDialog']>
     readonly useStepper: UnwrapRef<typeof import('@vueuse/core')['useStepper']>
@@ -1171,6 +1176,7 @@ declare module '@vue/runtime-core' {
     readonly ApiPaymentDepositCoinConfirm: UnwrapRef<typeof import('./apis/index')['ApiPaymentDepositCoinConfirm']>
     readonly ApiSmsSend: UnwrapRef<typeof import('./apis/index')['ApiSmsSend']>
     readonly ApiSportAddFavorite: UnwrapRef<typeof import('./apis/sport')['ApiSportAddFavorite']>
+    readonly ApiSportBetList: UnwrapRef<typeof import('./apis/sport')['ApiSportBetList']>
     readonly ApiSportCompetitionList: UnwrapRef<typeof import('./apis/sport')['ApiSportCompetitionList']>
     readonly ApiSportCount: UnwrapRef<typeof import('./apis/sport')['ApiSportCount']>
     readonly ApiSportDelFavorite: UnwrapRef<typeof import('./apis/sport')['ApiSportDelFavorite']>
@@ -1573,6 +1579,7 @@ declare module '@vue/runtime-core' {
     readonly useSorted: UnwrapRef<typeof import('@vueuse/core')['useSorted']>
     readonly useSpeechRecognition: UnwrapRef<typeof import('@vueuse/core')['useSpeechRecognition']>
     readonly useSpeechSynthesis: UnwrapRef<typeof import('@vueuse/core')['useSpeechSynthesis']>
+    readonly useSportsDataUpdate: UnwrapRef<typeof import('./composables/useSportsDataUpdate')['useSportsDataUpdate']>
     readonly useSportsStore: UnwrapRef<typeof import('./stores/sports')['useSportsStore']>
     readonly useStatisticsDialog: UnwrapRef<typeof import('./composables/useDialogStatistical')['useStatisticsDialog']>
     readonly useStepper: UnwrapRef<typeof import('@vueuse/core')['useStepper']>

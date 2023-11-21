@@ -241,7 +241,7 @@ onUnmounted(() => {
           v-model="headSelectValue"
           style="--tg-base-select-hover-bg-color:var(--tg-secondary-dark);
           --tg-base-select-popper-style-padding-x:0;"
-          :options="headSelectData" no-hover popper
+          :options="headSelectData" popper no-hover
         >
           <template #label="{ data }">
             <div class="type-select">
@@ -414,7 +414,7 @@ onUnmounted(() => {
       <!-- 我的投注 -->
       <BaseButton
         v-else size="md"
-        @click="router.push(`/sports/${getSportsPlatId()}/my-bets`)"
+        @click="router.push(`/my-bets?type=sports`)"
       >
         {{ t('view_all') }}
       </BaseButton>

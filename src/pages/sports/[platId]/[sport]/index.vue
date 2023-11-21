@@ -4,11 +4,11 @@ const { sidebarData } = storeToRefs(useSportsStore())
 const route = useRoute()
 const sport = route.params.sport ? +route.params.sport : 0
 const { bool: isStandard } = useBoolean(true)
-const { data: competitionListData } = useRequest(() =>
+const { data: competitionListData, run } = useRequest(() =>
   ApiSportCompetitionList({ si: sport, kind: 'normal' }),
-{
-  manual: false,
-})
+)
+/** 定时更新数据 */
+const { startTimer, stopTimer } = useSportsDataUpdate(run, 30)
 
 const curTab = ref(route.query.outrights ? '2' : '1')
 const baseType = ref('winner')
@@ -48,12 +48,13 @@ function onBaseTypeChange(v: string) {
   baseType.value = v
 }
 
-const stop = watch(route, (a) => {
+watch(route, (a) => {
   curTab.value = a.query.outrights ? '2' : '1'
 })
 
+startTimer()
 onBeforeUnmount(() => {
-  stop()
+  stopTimer()
 })
 </script>
 

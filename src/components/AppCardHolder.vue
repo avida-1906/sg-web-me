@@ -134,15 +134,15 @@ await application.allSettled([runAsyncWalletBankcardList()])
         :close="item.shown"
         :title="item.addressNum?.toString() || '0'"
         @click-show="handleShow(index)"
+        @click-close="lastShown === index ? lastShown = -1 : ''"
       >
         <template #top-right>
-          <AppCurrencyIcon
-            show-name
-            :currency-type="item.type"
-            style="
-            --tg-app-currency-icon-style-margin: 0 var(--tg-spacing-8) 0 0;
-            --tg-app-currency-icon-style-color: var(--tg-text-white);"
-          />
+          <div style="width: 8ch;">
+            <AppCurrencyIcon
+              show-name
+              :currency-type="item.type"
+            />
+          </div>
         </template>
         <template #content>
           <div

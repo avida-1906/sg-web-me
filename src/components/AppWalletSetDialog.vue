@@ -23,10 +23,10 @@ function onSwitch() {
       </div>
       <div class="row-right">
         <div class="row-title">
-          隐藏零数余额
+          {{ $t('hide_zero_wallet') }}
         </div>
         <div class="row-text">
-          您为零数的余额不会显示在钱包中
+          {{ $t('zero_wallet_hidden') }}
         </div>
       </div>
     </div>

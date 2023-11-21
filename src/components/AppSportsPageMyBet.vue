@@ -1,102 +1,85 @@
-<script lang="ts" setup>
-defineProps<{ onPage?: boolean }>()
+<script setup lang='ts'>
+interface Props {
+  onPage?: boolean
+  slipType?: number
+}
+const props = defineProps<Props>()
 
-const router = useRouter()
 const { t } = useI18n()
+const { appContentWidth } = storeToRefs(useWindowStore())
+const columnCount = computed(() => {
+  if (appContentWidth.value > 1000)
+    return 3
+  else if (appContentWidth.value > 650)
+    return 2
+  return 1
+})
 
-const currentTab = ref('1')
-const tabList = [
-  { label: t('sports_active'), value: '1' },
-  { label: t('sports_settled'), value: '2' },
+const currentType = ref(props.slipType ?? 0)
+const typeOptions = [
+  { label: t('sports_active'), value: 0 },
+  { label: t('sports_settled'), value: 1 },
 ]
-const { page, prev, next, hasMore } = useList(ApiMemberFavList)
+
+watch(props, (a) => {
+  if (a.slipType)
+    currentType.value = a.slipType
+})
 </script>
 
 <template>
-  <div class="tg-sports-my-bets" :class="{ 'on-page': onPage }">
-    <div class="sports-page-title">
+  <div class="sports-my-bets">
+    <div v-if="onPage" class="sports-page-title title">
       <div class="left">
         <BaseIcon name="spt-user-bet" />
         <h6>{{ t('my_bets') }}</h6>
       </div>
+      <div class="right">
+        <BaseSelect
+          v-model="currentType" style="
+          --tg-base-select-popper-style-padding-y:var(--tg-spacing-13);
+          --tg-base-select-popper-style-padding-x:var(--tg-spacing-16)"
+          :options="typeOptions" popper
+        />
+      </div>
     </div>
-    <div class="tab-bar">
-      <BaseTab v-model="currentTab" :list="tabList" :center="false" />
-    </div>
-    <div class="empty">
-      <BaseEmpty>
-        <template #icon>
-          <div>
-            <BaseIcon
-              style="
-                font-size: var(--tg-empty-icon-size);
-                margin-bottom: var(--tg-spacing-24);"
-              name="uni-empty-betslip"
-            />
-          </div>
-        </template>
-        <template #description>
-          <span>{{ t('sports_no_active_bet') }}</span>
-        </template>
-        <template #default>
-          <BaseButton
-            type="text"
-            size="none"
-            style=" --tg-base-button-text-default-color:var(--tg-text-white)"
-            @click="router.push(`/sports/${getSportsPlatId()}`)"
-          >
-            {{ t('sports_betting_now') }}
-          </BaseButton>
-        </template>
-      </BaseEmpty>
-    </div>
-    <div class="btns">
-      <BaseButton type="text" :disabled="page === 1" @click="prev">
-        {{ $t('page_prev') }}
-      </BaseButton>
-      <BaseButton type="text" :disabled="!hasMore" @click="next">
-        {{ $t('page_next') }}
-      </BaseButton>
-    </div>
-    <div v-if="!onPage" class="layout-spacing">
-      <AppBetData mode="sports" />
+    <div class="slip-wrapper" :style="`column-count:${columnCount}`">
+      <div class="child">
+        <AppSportsMyBetSlip />
+      </div>
+      <div class="child">
+        <AppSportsMyBetSlip />
+      </div>
+      <div class="child">
+        <AppSportsMyBetSlip />
+      </div>
+      <div class="child">
+        <AppSportsMyBetSlip />
+      </div>
+      <div class="child">
+        <AppSportsMyBetSlip />
+      </div>
+      <div class="child">
+        <AppSportsMyBetSlip />
+      </div>
     </div>
   </div>
 </template>
 
-<style lang="scss" scoped>
-.tg-sports-my-bets {
-  margin-top: var(--tg-spacing-24);
-  padding-top: var(--tg-spacing-12);
-  &.on-page{
-    margin-top: 0;
-    padding-top: 0;
-  }
+<style lang='scss' scoped>
+.title{
+  margin-bottom: var(--tg-spacing-24);
+}
+.slip-wrapper {
+  width: 100%;
+  column-count: var(--column-count);
+  column-gap: 16px;
+  margin: var(--tg-spacing-24) 0;
 
-  .tab-bar {
-    margin-top: var(--tg-spacing-24);
-    margin-bottom: var(--tg-spacing-24);
-  }
-
-  .empty {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100%;
-    justify-content: center;
-    min-height: 150px;
-  }
-
-  .btns {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: var(--tg-spacing-56);
+  .child {
+    margin-bottom: 8px;
+    break-inside: avoid;
+    width: 100%;
   }
 }
 </style>
-
-<route lang="yaml">
-meta:
-  layout: home
-</route>

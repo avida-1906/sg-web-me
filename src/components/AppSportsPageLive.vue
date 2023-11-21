@@ -9,6 +9,8 @@ const { data, run } = useRequest(() =>
 {
   refreshDeps: [currentLiveNav],
 })
+/** 定时更新数据 */
+const { startTimer, stopTimer } = useSportsDataUpdate(run)
 
 const baseType = ref('winner')
 const list = computed(() => {
@@ -22,13 +24,17 @@ function onBaseTypeChange(v: string) {
   baseType.value = v
 }
 
+/** 切换球种 */
 watch(currentLiveNav, () => {
-  run()
+  startTimer()
 })
 
 onMounted(() => {
   if (currentLiveNav.value !== -1)
-    run()
+    startTimer()
+})
+onBeforeUnmount(() => {
+  stopTimer()
 })
 </script>
 
