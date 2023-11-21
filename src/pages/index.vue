@@ -8,6 +8,8 @@ interface IVipProgressData {
 
 const { t } = useI18n()
 const router = useRouter()
+const { openRegisterDialog } = useRegisterDialog()
+const { openSwiperNoticeDialog } = useDialogSwiperNotice()
 const { bool: showMore, toggle: toggleShowMore } = useBoolean(false)
 
 const {
@@ -24,6 +26,7 @@ const {
   loading: memberNoticeAllListLoading,
 } = useRequest(ApiMemberNoticeAllList, {
   onSuccess() {
+    // openSwiperNoticeDialog(noticeData.value?.notice)
     // openNoticeDialog(noticeData.value?.notice[0])
   },
 })
@@ -33,7 +36,6 @@ const vipProgressData = ref<IVipProgressData>({
   percent: 30,
   currentLevel: 2,
 })
-const { openRegisterDialog } = useRegisterDialog()
 
 const isSm = computed(() => appContentWidth.value <= widthBoundarySm.value)
 

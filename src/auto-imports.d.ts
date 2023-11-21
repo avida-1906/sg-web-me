@@ -389,6 +389,7 @@ declare global {
   const useDialogMessage: typeof import('./composables/useDialogMessage')['useDialogMessage']
   const useDialogNotice: typeof import('./composables/useDialogNotice')['useDialogNotice']
   const useDialogReceiveBonus: typeof import('./composables/useDialogReceiveBonus')['useDialogReceiveBonus']
+  const useDialogSwiperNotice: typeof import('./composables/useDialogSwiperNotice')['useDialogSwiperNotice']
   const useDialogVipBonusRecord: typeof import('./composables/useDialogVipBonusRecord')['useDialogVipBonusRecord']
   const useDisplayMedia: typeof import('@vueuse/core')['useDisplayMedia']
   const useDocumentVisibility: typeof import('@vueuse/core')['useDocumentVisibility']
@@ -937,6 +938,7 @@ declare module 'vue' {
     readonly useDialogMessage: UnwrapRef<typeof import('./composables/useDialogMessage')['useDialogMessage']>
     readonly useDialogNotice: UnwrapRef<typeof import('./composables/useDialogNotice')['useDialogNotice']>
     readonly useDialogReceiveBonus: UnwrapRef<typeof import('./composables/useDialogReceiveBonus')['useDialogReceiveBonus']>
+    readonly useDialogSwiperNotice: UnwrapRef<typeof import('./composables/useDialogSwiperNotice')['useDialogSwiperNotice']>
     readonly useDialogVipBonusRecord: UnwrapRef<typeof import('./composables/useDialogVipBonusRecord')['useDialogVipBonusRecord']>
     readonly useDisplayMedia: UnwrapRef<typeof import('@vueuse/core')['useDisplayMedia']>
     readonly useDocumentVisibility: UnwrapRef<typeof import('@vueuse/core')['useDocumentVisibility']>
@@ -1478,6 +1480,7 @@ declare module '@vue/runtime-core' {
     readonly useDialogMessage: UnwrapRef<typeof import('./composables/useDialogMessage')['useDialogMessage']>
     readonly useDialogNotice: UnwrapRef<typeof import('./composables/useDialogNotice')['useDialogNotice']>
     readonly useDialogReceiveBonus: UnwrapRef<typeof import('./composables/useDialogReceiveBonus')['useDialogReceiveBonus']>
+    readonly useDialogSwiperNotice: UnwrapRef<typeof import('./composables/useDialogSwiperNotice')['useDialogSwiperNotice']>
     readonly useDialogVipBonusRecord: UnwrapRef<typeof import('./composables/useDialogVipBonusRecord')['useDialogVipBonusRecord']>
     readonly useDisplayMedia: UnwrapRef<typeof import('@vueuse/core')['useDisplayMedia']>
     readonly useDocumentVisibility: UnwrapRef<typeof import('@vueuse/core')['useDocumentVisibility']>
