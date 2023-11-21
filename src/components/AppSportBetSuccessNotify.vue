@@ -6,13 +6,24 @@ interface Props {
   currencyType: EnumCurrencyKey
   showName?: boolean
   betSlipTabValue: string
+  /**
+   * 笔数
+   */
+  num?: number
 }
-defineProps<Props>()
+const props = defineProps<Props>()
+
+const numStr = computed(() => {
+  if (props.num && props.num > 1)
+    return `${props.num}笔`
+
+  return ''
+})
 </script>
 
 <template>
   <div class="app-sport-bet-success-notify">
-    已成功压下总值
+    已成功压下 {{ numStr }} 总值
     <AppAmount
       class="amount"
       :show-name="showName"

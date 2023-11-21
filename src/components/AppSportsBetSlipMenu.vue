@@ -8,6 +8,7 @@ let timer: any = null
 const duplexInputValue = ref('')
 // 复式总赔率
 const duplexOv = ref('')
+const betLoading = ref(false)
 
 const { t } = useI18n()
 const router = useRouter()
@@ -77,14 +78,6 @@ const { selected: betOrderFilterValue, list: betOrderFilterData } = useSelect([
   { label: t('sports_accept_none_odds'), value: EnumOddsChange.notAcceptAnyOddsChange },
 ])
 
-const {
-  run: runGetSportPlaceBet,
-} = useRequest(ApiSportPlaceBet, {
-  onSuccess() {
-    betSuccess()
-  },
-})
-
 const isBetSlip = computed(() => headSelectValue.value === EnumsBetSlipHeadStatus.betSlip)
 const isMyBets = computed(() => headSelectValue.value === EnumsBetSlipHeadStatus.myBets)
 const isBetSingle = computed(
@@ -122,10 +115,19 @@ const isBetBtnDisabled = computed(() => {
     return true
 
   // 判断 sportStore.cart.dataList 中的每一项的amount是否为0
-  const isAmountZero = sportStore.cart.dataList.every(item => item.amount <= 0)
+  const isAmountZero = sportStore.cart.dataList.some(item => item.amount <= 0)
   if (isAmountZero)
     return true
 })
+
+async function fetchBet(list: IBetArgs[]) {
+  const promiseList = list.map(item => ApiSportPlaceBet(item))
+  const result = await Promise.allSettled(promiseList)
+  const successList = result.filter(item => item.status === 'fulfilled')
+  const failList = result.filter(item => item.status === 'rejected')
+  if (successList.length)
+    betSuccess()
+}
 
 function betSuccess() {
   const message = betOrderSelectValue.value === EnumsBetSlipBetSlipTabStatus.single
@@ -134,6 +136,9 @@ function betSuccess() {
   const amount = betOrderSelectValue.value === EnumsBetSlipBetSlipTabStatus.single
     ? sportStore.cart.totalProfit
     : duplexTotalProfit.value
+  const num = betOrderSelectValue.value === EnumsBetSlipBetSlipTabStatus.single
+    ? sportStore.cart.count
+    : 1
   openNotify({
     type: 'success',
     message: () => h(
@@ -142,6 +147,7 @@ function betSuccess() {
         amount,
         currencyType: currentGlobalCurrency.value,
         betSlipTabValue: message,
+        num,
       },
     ),
   })
@@ -167,17 +173,19 @@ function closeSetInterval() {
 function bet() {
   if (betOrderSelectValue.value === 1) {
     // 复式投注
-    runGetSportPlaceBet({
-      ao: betOrderFilterValue.value,
-      bl: [
-        {
-          pt: betOrderSelectValue.value,
-          a: Number(duplexTotalProfit.value),
-          bi: sportStore.cart.dataList,
-        },
-      ],
-      cur: getCurrencyConfig(currentGlobalCurrency.value).cur,
-    })
+    fetchBet([
+      {
+        ao: betOrderFilterValue.value,
+        bl: [
+          {
+            pt: betOrderSelectValue.value,
+            a: Number(duplexTotalProfit.value),
+            bi: sportStore.cart.dataList,
+          },
+        ],
+        cur: getCurrencyConfig(currentGlobalCurrency.value).cur,
+      },
+    ])
   }
   else {
     // 单式投注
@@ -193,10 +201,7 @@ function bet() {
       cur: getCurrencyConfig(currentGlobalCurrency.value).cur,
     }))
 
-    console.error('betList', betList)
-
-    for (const item of betList)
-      runGetSportPlaceBet(item)
+    fetchBet(betList)
 
     // runGetSportPlaceBet({
     //   ao: betOrderFilterValue.value,
@@ -397,6 +402,7 @@ onUnmounted(() => {
           size="md"
           bg-style="primary"
           :disabled="isBetBtnDisabled"
+          :loading="betLoading"
           @click="bet"
         >
           {{ isBetAmountOverBalance }}
