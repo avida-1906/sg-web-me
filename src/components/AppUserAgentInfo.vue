@@ -37,7 +37,11 @@ function drawDialog() {
       </div>
     </div>
     <div class="right">
-      <div>{{ $t('can_receive') }}：<span class="money">999,999.00</span></div>
+      <!-- <span class="money">999,999.00</span> -->
+      <div class="up">
+        {{ $t('can_receive') }}：
+        <span class="money"><AppAmount amount="999999" currency-type="USDT" /></span>
+      </div>
       <div class="btns">
         <BaseButton bg-style="primary" size="none" round @click="drawDialog">
           {{ $t('receive_commission') }}
@@ -107,6 +111,10 @@ function drawDialog() {
       box-sizing: border-box;
       font-size: var(--tg-font-size-xs);
       padding: 0 var(--tg-spacing-6);
+    }
+    .up {
+      display: flex;
+      align-items: center;
     }
     .money {
       color: var(--tg-text-warn);

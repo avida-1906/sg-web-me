@@ -1132,3 +1132,53 @@ export function ApiFinanceMerchantCoinList(params: {
     payment_type: number
   }[]>('/finance/merchant/coin/list', { params })
 }
+
+/**
+ * 会员站点banner列表
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=1da00228-93c5-4100-9bfc-02ee66985214
+ */
+export function ApiMemberBannerList(params: {
+  /** 类型 */
+  banner_type: string
+}) {
+  return httpClient.get<{
+    /** banner类型 1-娱乐城 2-体育 */
+    banner_type: number
+    /** 客户端 */
+    client: string[]
+    /** 内容 */
+    content: {
+      [key: string]: string
+    }
+    /** 创建时间 */
+    created_at: number
+    /** 创建人 */
+    created_by: string
+    /** ID */
+    id: string
+    /** 图片纤细 */
+    image_info: {
+      [key: string]: any
+    }
+    /** 图片地址 */
+    image_url: {
+      [key: string]: string
+    }
+    /** 跳转类型 1-自定义 2-娱乐城 3-体育 4-优惠活动 5-联盟中心 */
+    jump_type: number
+    /** 跳转url */
+    jump_url: string
+    /** 排序字段 */
+    mobile_seq: number
+    /** 排序字段 */
+    pc_seq: number
+    /** 状态 1-显示 2-隐藏 */
+    state: number
+    /** UID */
+    uid: string
+    /** 修改时间 */
+    updated_at: number
+    /** 修改人 */
+    updated_by: string
+  }[]>('/member/banner/list', { params })
+}
