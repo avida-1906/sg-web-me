@@ -42,7 +42,7 @@ onBeforeUnmount(() => {
       <div class="sports-page-title">
         <div class="left">
           <BaseIcon name="spt-sort-az" />
-          <span>按字母顺序排列</span>
+          <span>{{ $t('order_by_alpha') }}</span>
         </div>
       </div>
     </div>
