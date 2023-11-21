@@ -333,7 +333,7 @@ export class SportsCart {
   }
 
   /** 更新所有amount */
-  updateAmount() {
+  updateAllAmount() {
     let suffixLength = 2
     if (application.isVirtualCurrency(this.currency))
       suffixLength = 8
@@ -346,7 +346,7 @@ export class SportsCart {
   /** 更新货币 */
   updateCurrency(currency: EnumCurrencyKey) {
     this.currency = currency
-    this.updateAmount()
+    this.updateAllAmount()
   }
 
   /**
@@ -411,5 +411,7 @@ export class SportsCart {
     this.dataList.forEach((item) => {
       item.result = undefined
     })
+
+    this.updateAllAmount()
   }
 }

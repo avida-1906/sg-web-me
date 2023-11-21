@@ -49,12 +49,16 @@ const isDisabled = computed(() => {
   return props.disabled || props.cartInfoData.os === 0
 })
 
-watch(currentGlobalCurrency, () => {
-  amount.value = 0
+watch(currentGlobalCurrency, (_currency) => {
+  sportStore.cart.updateCurrency(_currency)
 })
 
 watchEffect(() => {
   sportStore.cart.updateItemAmount(props.cartInfoData.wid, amount.value)
+})
+
+watch(() => props.cartInfoData.amount, () => {
+  amount.value = props.cartInfoData.amount
 })
 </script>
 
