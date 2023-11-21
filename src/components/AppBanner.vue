@@ -8,8 +8,16 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const { t } = useI18n()
-
 const { appContentWidth } = storeToRefs(useWindowStore())
+// const {
+//   runAsync: runMemberBannerList,
+//   data: bannerList,
+//   loading: MemberBannerListLoad,
+// } = useRequest(ApiMemberBannerList, {
+//   onSuccess() {
+
+//   },
+// })
 
 const scrollRef = ref()
 
@@ -35,6 +43,10 @@ function scrollLeft() {
 function scrollRight() {
   scrollRef.value.scrollLeft += scrollRef.value.offsetWidth
 }
+
+// runMemberBannerList({
+//   banner_type: '2',
+// })
 </script>
 
 <template>
