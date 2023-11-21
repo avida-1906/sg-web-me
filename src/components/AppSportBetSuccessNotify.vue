@@ -38,8 +38,14 @@ const numStr = computed(() => {
 .app-sport-bet-success-notify {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  word-break: break-all;
+  padding-top: var(--tg-spacing-4);
+  line-height: 1.3;
 }
 .amount {
   margin: 0 5px;
+  flex-wrap: nowrap;
+  display: flex;
 }
 </style>
