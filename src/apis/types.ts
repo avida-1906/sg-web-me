@@ -511,6 +511,14 @@ export interface IBetInfoBack {
     ov: string
     /** 盘口状态 0:关盘 1:开盘 */
     os: 0 | 1
+    /**
+     * 1:早盘
+     *
+     * 2:今日
+     *
+     * 3:滚球
+     */
+    m: number
   }[]
   /** 下注资讯 */
   bi: {

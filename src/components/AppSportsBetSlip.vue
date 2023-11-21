@@ -21,7 +21,7 @@ interface Props {
   /** 是否已结算 */
   isClosed?: boolean
   /** 是否是滚球 */
-  isLive?: boolean
+  live?: boolean
   /** 渲染的List数据 */
   cartInfoData: ICartInfoData
 }
@@ -68,6 +68,13 @@ const isError = computed(() => {
 const isDisabled = computed(() => {
   return props.disabled || props.cartInfoData.os === 0
 })
+const isLive = computed(() => {
+  if (props.live)
+    return true
+
+  if (props.cartInfoData.m === 3)
+    return true
+})
 
 watch(currentGlobalCurrency, (_currency) => {
   sportStore.cart.updateCurrency(_currency)
@@ -98,11 +105,11 @@ watch(() => props.cartInfoData.amount, () => {
         <div v-if="isLive" class="status live">
           {{ t('sports_status_live') }}
         </div>
+        <BaseIcon
+          v-if="cartInfoData.result"
+          :name="cartInfoData.result === 'fulfilled' ? 'sport-success' : 'sport-error'"
+        />
         <div class="text">
-          <BaseIcon
-            v-if="cartInfoData.result"
-            :name="cartInfoData.result === 'fulfilled' ? 'sport-success' : 'sport-error'"
-          />
           {{ cartInfoData.homeTeamName }} - {{ cartInfoData.awayTeamName }}
         </div>
       </div>

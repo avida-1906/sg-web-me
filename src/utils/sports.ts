@@ -403,6 +403,7 @@ export class SportsCart {
     this.dataList.forEach((item) => {
       item.ov = wsi.find(a => a.wid === item.wid)?.ov ?? ''
       item.os = wsi.find(a => a.wid === item.wid)?.os ?? 0
+      item.m = wsi.find(a => a.wid === item.wid)?.m ?? 0
       item.maa = bi.find(a => a.wid === item.wid)?.maa ?? 0
       item.mia = bi.find(a => a.wid === item.wid)?.mia ?? 0
     })
