@@ -551,3 +551,48 @@ export interface IBetArgs {
   /** 货币 */
   cur: CurrencyCode
 }
+
+export interface ISportsMyBetSlipItem {
+  /** 投注金额 */
+  a: number
+  /** 赔率 */
+  ov: string
+  /** 最多可赢 */
+  mwa: number
+  /** 投注时间 */
+  bt: number
+  /** 注单号 */
+  ono: string
+  /** 注单状态 0未结算 1已结算 */
+  os: number
+  /** 0:未结算 1:赢 2:输 3:平 4:赢一半 5:输一半 6:输部分 */
+  oc: number
+  /** 净盈利(输赢多少钱) */
+  pa: number
+  /** 结算时间 */
+  st: number
+  bi: {
+    /** 盘口类型 */
+    bt: number
+    /** 下注类型名称 */
+    btn: string
+    /** 球种Id */
+    si: number
+    /** 赛事ID */
+    ei: string
+    /** 赔率 */
+    ov: string
+    /** 下注选项 */
+    sn: string
+    /** 赛果 */
+    re: string
+    /** 盘口 */
+    hdp: string
+    /** 主队名 */
+    htn: string
+    /** 客队名 */
+    atn: string
+    /** 开赛时间 */
+    ed: number
+  }[]
+}

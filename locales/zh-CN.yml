@@ -862,11 +862,15 @@ sports_status_interrupted: 中断
 sports_status_settled: 已结算
 sports_status_finished: 已结束
 sports_duplicate_bet: 重复下注
+sports_status_tie: 平
+sports_status_win_half: 赢一半
+sports_status_lose_half: 输一半
+sports_status_lose_part: 输部分
 sports_estimated_payment_amount: 预计支付额
 sports_payment_amount: 支付额
 sports_single_bet: 单项投注
 sports_multi_bet: 复式投注
-sports_active: 活跃
+sports_active: 未结算
 sports_settled: 已结算
 sports_accept_any_odds: 接受任何赔率
 sports_accept_higher_odds: 只接受更高的赔率

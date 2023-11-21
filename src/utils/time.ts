@@ -30,20 +30,24 @@ const langKey: { [t: string]: string } = {
   'hi-IN': 'hi',
 }
 
-/** 检查是否闰年 */
-export function timeCheckIsLeapYear(ts: number) {
-  return dayjs(ts).isLeapYear()
+function checkTs(ts: number) {
+  return `${ts}`.length !== 13 ? ts * 1000 : ts
 }
 
-/** 赛事时间转换 */
+/** 检查是否闰年 */
+export function timeCheckIsLeapYear(ts: number) {
+  return dayjs(checkTs(ts)).isLeapYear()
+}
+
+/** 赛事开赛时间转换 */
 export function timeToSportsTimeFormat(ts: number) {
   const userLanguage = Local.get<number>(STORAGE_LANGUAGE_KEY)?.value ?? 0
 
   dayjs.locale(langKey[EnumLanguage[userLanguage]])
   if (EnumLanguage[userLanguage] === 'vi-VN')
-    return dayjs(ts).format(format[EnumLanguage[userLanguage]]).replace('T', 'Th ').replace('tháng', 'Thg')
+    return dayjs(checkTs(ts)).format(format[EnumLanguage[userLanguage]]).replace('T', 'Th ').replace('tháng', 'Thg')
 
-  return dayjs(ts).format(format[EnumLanguage[userLanguage]])
+  return dayjs(checkTs(ts)).format(format[EnumLanguage[userLanguage]])
 }
 
 /** 过去时间转换 */
@@ -51,5 +55,10 @@ export function timeToFromNow(ts: number): string {
   const userLanguage = Local.get<number>(STORAGE_LANGUAGE_KEY)?.value ?? 0
 
   dayjs.locale(langKey[EnumLanguage[userLanguage]])
-  return dayjs(ts).fromNow()
+  return dayjs(checkTs(ts)).fromNow()
+}
+
+/** 时间转换 */
+export function timeToFormat(ts: number) {
+  return dayjs(checkTs(ts)).format('HH:mm YYYY/MM/DD')
 }

@@ -3,10 +3,11 @@ const route = useRoute()
 const si = route.query.si ? +route.query.si : 0
 const ci = route.query.ci ? route.query.ci.toString() : ''
 // 冠军数据
-const { data } = useRequest(() =>
-  ApiSportOutrightList({ si, page: 1, page_size: 100 }), {
-  manual: false,
-})
+const { data, run } = useRequest(() =>
+  ApiSportOutrightList({ si, page: 1, page_size: 100 }),
+)
+/** 定时更新数据 */
+const { startTimer, stopTimer } = useSportsDataUpdate(run, 30)
 
 const outrightsData = computed(() => {
   if (data.value && data.value.list) {
@@ -66,6 +67,13 @@ const breadcrumb = computed(() => [
     title: eventName.value,
   },
 ])
+
+onBeforeMount(() => {
+  startTimer()
+})
+onBeforeUnmount(() => {
+  stopTimer()
+})
 </script>
 
 <template>

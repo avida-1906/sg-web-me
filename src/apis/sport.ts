@@ -4,6 +4,7 @@ import type {
   ILeagueItem,
   ISportEventInfo,
   ISportOutrightsInfo,
+  ISportsMyBetSlipItem,
 } from './types'
 import type { CurrencyCode } from '~/composables/useCurrencyData'
 import type { IBetInfo } from '~/types'
@@ -352,5 +353,7 @@ export function ApiSportBetList(data: {
   /** 进入货币 */
   cur: string
 }) {
-  return httpClient.post(`/sport/${getSportsPlatId()}/betlist`, data)
+  return httpClient.post<{
+    list: ISportsMyBetSlipItem[]
+  }>(`/sport/${getSportsPlatId()}/betlist`, data)
 }

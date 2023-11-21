@@ -2,7 +2,8 @@
 defineProps<{ onPage?: boolean }>()
 
 const { t } = useI18n()
-const { sportLiveNavs, currentLiveNav } = storeToRefs(useSportsStore())
+const sportsStore = useSportsStore()
+const { sportLiveNavs, currentLiveNav } = storeToRefs(sportsStore)
 const { bool: isStandard } = useBoolean(true)
 const { data, run } = useRequest(() =>
   ApiSportEventList({ si: currentLiveNav.value, m: 3, page: 1, page_size: 100 }),
@@ -10,7 +11,11 @@ const { data, run } = useRequest(() =>
   refreshDeps: [currentLiveNav],
 })
 /** 定时更新数据 */
-const { startTimer, stopTimer } = useSportsDataUpdate(run)
+const { startTimer: startLive, stopTimer: stopLive } = useSportsDataUpdate(run)
+const {
+  startTimer: startCount,
+  stopTimer: stopCount,
+} = useSportsDataUpdate(sportsStore.runSportsCount)
 
 const baseType = ref('winner')
 const list = computed(() => {
@@ -26,15 +31,18 @@ function onBaseTypeChange(v: string) {
 
 /** 切换球种 */
 watch(currentLiveNav, () => {
-  startTimer()
+  startLive()
 })
 
 onMounted(() => {
   if (currentLiveNav.value !== -1)
-    startTimer()
+    startLive()
+
+  startCount()
 })
 onBeforeUnmount(() => {
-  stopTimer()
+  stopLive()
+  stopCount()
 })
 </script>
 

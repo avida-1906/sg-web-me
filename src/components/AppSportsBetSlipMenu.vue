@@ -472,7 +472,7 @@ onUnmounted(() => {
       <!-- 我的投注 -->
       <BaseButton
         v-else size="md"
-        @click="router.push(`/my-bets?type=sports`)"
+        @click="router.push(`/sports/${getSportsPlatId()}/my-bets?type=sports`)"
       >
         {{ t('view_all') }}
       </BaseButton>

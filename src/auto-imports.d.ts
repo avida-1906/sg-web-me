@@ -27,6 +27,7 @@ declare global {
   const ApiMemberBankcardDelete: typeof import('./apis/index')['ApiMemberBankcardDelete']
   const ApiMemberBankcardInsert: typeof import('./apis/index')['ApiMemberBankcardInsert']
   const ApiMemberBankcardList: typeof import('./apis/index')['ApiMemberBankcardList']
+  const ApiMemberBannerList: typeof import('./apis/index')['ApiMemberBannerList']
   const ApiMemberDetail: typeof import('./apis/index')['ApiMemberDetail']
   const ApiMemberDualVerify: typeof import('./apis/index')['ApiMemberDualVerify']
   const ApiMemberEmailCheck: typeof import('./apis/index')['ApiMemberEmailCheck']
@@ -297,6 +298,7 @@ declare global {
   const timeCheckIsLeapYear: typeof import('./utils/time')['timeCheckIsLeapYear']
   const timeCheckIsLeapyear: typeof import('./utils/time')['timeCheckIsLeapyear']
   const timeFullTimeFormat: typeof import('./utils/time')['timeFullTimeFormat']
+  const timeToFormat: typeof import('./utils/time')['timeToFormat']
   const timeToFromNow: typeof import('./utils/time')['timeToFromNow']
   const timeToSportsTimeFormat: typeof import('./utils/time')['timeToSportsTimeFormat']
   const toFixed: typeof import('./utils/number')['toFixed']
@@ -589,6 +591,7 @@ declare module 'vue' {
     readonly ApiMemberBankcardDelete: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardDelete']>
     readonly ApiMemberBankcardInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardInsert']>
     readonly ApiMemberBankcardList: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardList']>
+    readonly ApiMemberBannerList: UnwrapRef<typeof import('./apis/index')['ApiMemberBannerList']>
     readonly ApiMemberDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberDetail']>
     readonly ApiMemberDualVerify: UnwrapRef<typeof import('./apis/index')['ApiMemberDualVerify']>
     readonly ApiMemberEmailCheck: UnwrapRef<typeof import('./apis/index')['ApiMemberEmailCheck']>
@@ -844,6 +847,7 @@ declare module 'vue' {
     readonly throttledRef: UnwrapRef<typeof import('@vueuse/core')['throttledRef']>
     readonly throttledWatch: UnwrapRef<typeof import('@vueuse/core')['throttledWatch']>
     readonly timeCheckIsLeapYear: UnwrapRef<typeof import('./utils/time')['timeCheckIsLeapYear']>
+    readonly timeToFormat: UnwrapRef<typeof import('./utils/time')['timeToFormat']>
     readonly timeToFromNow: UnwrapRef<typeof import('./utils/time')['timeToFromNow']>
     readonly timeToSportsTimeFormat: UnwrapRef<typeof import('./utils/time')['timeToSportsTimeFormat']>
     readonly toFixed: UnwrapRef<typeof import('./utils/number')['toFixed']>
@@ -1128,6 +1132,7 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberBankcardDelete: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardDelete']>
     readonly ApiMemberBankcardInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardInsert']>
     readonly ApiMemberBankcardList: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardList']>
+    readonly ApiMemberBannerList: UnwrapRef<typeof import('./apis/index')['ApiMemberBannerList']>
     readonly ApiMemberDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberDetail']>
     readonly ApiMemberDualVerify: UnwrapRef<typeof import('./apis/index')['ApiMemberDualVerify']>
     readonly ApiMemberEmailCheck: UnwrapRef<typeof import('./apis/index')['ApiMemberEmailCheck']>
@@ -1383,6 +1388,7 @@ declare module '@vue/runtime-core' {
     readonly throttledRef: UnwrapRef<typeof import('@vueuse/core')['throttledRef']>
     readonly throttledWatch: UnwrapRef<typeof import('@vueuse/core')['throttledWatch']>
     readonly timeCheckIsLeapYear: UnwrapRef<typeof import('./utils/time')['timeCheckIsLeapYear']>
+    readonly timeToFormat: UnwrapRef<typeof import('./utils/time')['timeToFormat']>
     readonly timeToFromNow: UnwrapRef<typeof import('./utils/time')['timeToFromNow']>
     readonly timeToSportsTimeFormat: UnwrapRef<typeof import('./utils/time')['timeToSportsTimeFormat']>
     readonly toFixed: UnwrapRef<typeof import('./utils/number')['toFixed']>

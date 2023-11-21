@@ -142,7 +142,7 @@ function handleClickMenuItem(item: { name: string; path?: string }) {
         : openRightSidebar(EnumRightSidebarContent.NOTIFICATION)
       break
     case 'sports-betting':
-      router.push(`/sports/${getSportsPlatId()}/my-bets`)
+      router.push(`/sports/${getSportsPlatId()}/my-bets?type=sports`)
       break
     default:
       break
