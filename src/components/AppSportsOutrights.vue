@@ -9,10 +9,11 @@ const sportId = route.params.sport ? +route.params.sport : 0
 const regionId = route.params.region ? route.params.region.toString() : ''
 const leagueId = route.params.league ? route.params.league.toString() : ''
 // 冠军数据
-const { data } = useRequest(() =>
-  ApiSportOutrightList({ si: sportId, page: 1, page_size: 100 }), {
-  manual: false,
-})
+const { data, run } = useRequest(() =>
+  ApiSportOutrightList({ si: sportId, page: 1, page_size: 100 }),
+)
+/** 定时更新数据 */
+const { startTimer, stopTimer } = useSportsDataUpdate(run, 30)
 
 const isSport = computed(() => props.level === 1)
 const isRegion = computed(() => props.level === 2)
@@ -25,6 +26,13 @@ const regionList = computed(() => {
 })
 const leagueList = computed(() => {
   return data.value ? data.value.list.filter(a => a.ci === leagueId) : []
+})
+
+onBeforeMount(() => {
+  startTimer()
+})
+onBeforeUnmount(() => {
+  stopTimer()
 })
 </script>
 

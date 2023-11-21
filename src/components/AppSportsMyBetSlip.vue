@@ -1,17 +1,16 @@
 <script setup lang='ts'>
+import type { ISportsMyBetSlipItem } from '~/apis/types'
+
+interface Props {
+  data: ISportsMyBetSlipItem
+}
+const props = defineProps<Props>()
+
 const { t } = useI18n()
 const x = Math.ceil(Math.random() * 2)
-const list = x === 1 ? [1, 2, 3] : [1]
+const list = computed(() => props.data.bi)
 const status = x === 1 ? 'win' : 'lose'
 const statusText = x === 1 ? t('win') : t('lose')
-const data = {
-  startTime: '',
-  homeTeamName: '',
-  awayTeamName: '',
-  remark: '',
-  homeTeamScore: 0,
-  awayTeamScore: 0,
-}
 </script>
 
 <template>
@@ -42,9 +41,9 @@ const data = {
                   type="text" size="none"
                   style="--tg-base-button-text-default-color:var(--tg-text-white)"
                 >
-                  <span>华盛顿奇才 - 密尔沃基雄鹿</span>
+                  <span>{{ item.on }}</span>
                 </BaseButton>
-                <span>总得分 (包含加时)</span>
+                <span>{{ item.btn }}</span>
               </div>
               <div class="odds-wrapper">
                 <div class="outcome-name">

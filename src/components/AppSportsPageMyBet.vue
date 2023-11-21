@@ -7,6 +7,22 @@ const props = defineProps<Props>()
 
 const { t } = useI18n()
 const { appContentWidth } = storeToRefs(useWindowStore())
+const { currentGlobalCurrency } = storeToRefs(useAppStore())
+
+const currentType = ref(props.slipType ?? 0)
+const typeOptions = [
+  { label: t('sports_active'), value: 0 },
+  { label: t('sports_settled'), value: 1 },
+]
+
+const { data } = useRequest(() => ApiSportBetList({
+  kind: 'normal',
+  settle: currentType.value,
+  cur: currencyConfig[currentGlobalCurrency.value].cur,
+}),
+{ manual: false, refreshDeps: currentGlobalCurrency })
+const list = computed(() => data.value && data.value.list ? data.value.list : [])
+
 const columnCount = computed(() => {
   if (appContentWidth.value > 1000)
     return 3
@@ -14,12 +30,6 @@ const columnCount = computed(() => {
     return 2
   return 1
 })
-
-const currentType = ref(props.slipType ?? 0)
-const typeOptions = [
-  { label: t('sports_active'), value: 0 },
-  { label: t('sports_settled'), value: 1 },
-]
 
 watch(props, (a) => {
   if (a.slipType)
@@ -44,23 +54,8 @@ watch(props, (a) => {
       </div>
     </div>
     <div class="slip-wrapper" :style="`column-count:${columnCount}`">
-      <div class="child">
-        <AppSportsMyBetSlip />
-      </div>
-      <div class="child">
-        <AppSportsMyBetSlip />
-      </div>
-      <div class="child">
-        <AppSportsMyBetSlip />
-      </div>
-      <div class="child">
-        <AppSportsMyBetSlip />
-      </div>
-      <div class="child">
-        <AppSportsMyBetSlip />
-      </div>
-      <div class="child">
-        <AppSportsMyBetSlip />
+      <div v-for="item in list" :key="item.ono" class="child">
+        <AppSportsMyBetSlip :data="item" />
       </div>
     </div>
   </div>
