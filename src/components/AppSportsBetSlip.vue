@@ -42,6 +42,12 @@ const isBetMulti = computed(
   () => props.betSlipType === EnumsBetSlipBetSlipTabStatus.multi,
 )
 const isFirst = computed(() => props.index === 0)
+const isError = computed(() => {
+  return props.error || props.cartInfoData.result === 'rejected'
+})
+const isDisabled = computed(() => {
+  return props.disabled || props.cartInfoData.os === 0
+})
 
 watch(currentGlobalCurrency, () => {
   amount.value = 0
@@ -58,8 +64,8 @@ watchEffect(() => {
       mt12: !isFirst && isBetSingle,
       mt8: !isFirst && isBetMulti,
       before: !isFirst && isBetMulti,
-      error,
-      disabled,
+      error: isError,
+      disabled: isDisabled,
     }"
   >
     <div class="header" :class="{ 'round-header': isFirst || isBetSingle }">
@@ -111,7 +117,7 @@ watchEffect(() => {
             type="number"
             placeholder="0.00000000"
             mb0
-            :disabled="disabled"
+            :disabled="isDisabled"
           >
             <template #right-icon>
               <AppCurrencyIcon :currency-type="currentGlobalCurrency" />
