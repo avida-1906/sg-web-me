@@ -51,7 +51,8 @@ export const useSportsStore = defineStore('sports', () => {
     ApiSportCount({ ic: 0 }),
   {
     onSuccess(res) {
-      currentLiveNav.value = res.list.find(a => a.lc > 0)?.si ?? 0
+      if (currentLiveNav.value === -1)
+        currentLiveNav.value = res.list.find(a => a.lc > 0)?.si ?? 0
     },
   })
 

@@ -1310,3 +1310,11 @@ withdrawal_min_amount: 最低提款金额为
 withdrawal_fee_tip: 我们将从您的余额扣除
 withdrawal_as_fee: 作为您提款的交易费用
 present: 送
+order_label: 笔
+bet_tip_amount_tip: 已成功压下 {numStr} 总值
+de: 的
+bet_more_than_balance: 您的投注额不能大于余额。
+order_by_alpha: 按字母顺序排列
+sport_in_coming: 滚球与即将开赛的盘口
+champion_bet: 冠军投注
+empty_cap: 暂无可用盘口

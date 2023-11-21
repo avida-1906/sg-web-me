@@ -51,7 +51,7 @@ await application.allSettled([
               <div v-else class="livestream-wrap">
                 <template v-if="isLogin">
                   <div class="wrapper">
-                    <span class="tip">直播视频将在赛事进行之前开始。</span>
+                    <span class="tip">{{ $t('live_start_on_event') }}。</span>
                   </div>
                   <video
                     autoplay
@@ -126,11 +126,11 @@ await application.allSettled([
                   <BaseSearch
                     v-model="searchName"
                     shape="square"
-                    place-holder="搜索"
+                    :place-holder="$t('search')"
                   />
                 </div>
                 <div v-if="!dataList.length" class="no-markets">
-                  <BaseEmpty icon="uni-empty-handicap" description="暂无可用盘口" />
+                  <BaseEmpty icon="uni-empty-handicap" :description="$t('empty_cap')" />
                 </div>
                 <template v-if="currentTab !== -1">
                   <template v-for="item in dataList" :key="item.mlid">
@@ -257,9 +257,9 @@ await application.allSettled([
                   </div>
                 </div>
               </div>
-              <div v-if="showRecent" class="spotlight is-open variant-dark">
-                <div class="no-active-scale header">
-                  <span>近期游戏记录</span>
+              <div v-if="showRecent" class="is-open spotlight variant-dark">
+                <div class="header no-active-scale">
+                  <span>{{ $t('recent_game_record') }}</span>
                   <BaseButton type="text" @click="setSRFalse()">
                     <BaseIcon name="uni-close-white" />
                   </BaseButton>

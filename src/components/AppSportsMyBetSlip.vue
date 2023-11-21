@@ -71,9 +71,9 @@ function makeMarketInfo(item: ISportsMyBetSlipItemBi) {
           </div>
           <span>{{ timeToFormat(slipData.bt) }}</span>
         </div>
-        <BaseButton type="text" size="none">
+        <!-- <BaseButton type="text" size="none">
           <BaseIcon name="uni-share-slip" />
-        </BaseButton>
+        </BaseButton> -->
       </div>
 
       <div class="content">
@@ -154,6 +154,7 @@ function makeMarketInfo(item: ISportsMyBetSlipItemBi) {
           </div>
         </div>
       </div>
+      <div class="decorate" />
     </div>
   </div>
 </template>
@@ -176,14 +177,10 @@ function makeMarketInfo(item: ISportsMyBetSlipItemBi) {
   font-size: var(--tg-font-size-default);
   flex-direction: column;
   width: 100%;
-
-  &::after {
-    content: "";
-    position: absolute;
-    left: 0;
+  .decorate{
+    transform: translateY(-1px);
     height: 6px;
     width: 100%;
-    bottom: -4px;
     background:
       radial-gradient(circle, transparent, transparent 50%,
         var(--tg-secondary-grey) 50%,

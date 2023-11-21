@@ -212,8 +212,8 @@ async function fetchBet(list: IBetArgs[]) {
 
 function betSuccess() {
   const message = betOrderSelectValue.value === EnumsBetSlipBetSlipTabStatus.single
-    ? '单项投注'
-    : '复式投注'
+    ? t('sports_single_bet')
+    : t('sports_multi_bet')
   const amount = betOrderSelectValue.value === EnumsBetSlipBetSlipTabStatus.single
     ? sportStore.cart.totalProfit
     : duplexTotalProfit.value
@@ -350,7 +350,7 @@ onUnmounted(() => {
           </div>
           <template #popper>
             <div class="tiny-menu-item-title">
-              折叠侧边栏
+              {{ t('chat_close_side') }}
             </div>
           </template>
         </VTooltip>
