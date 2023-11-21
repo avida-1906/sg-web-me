@@ -284,6 +284,25 @@ export class SportsCart {
     return this.dataList.every(a => a.result !== undefined)
   }
 
+  /**
+   * 判断当前是否存在两项有同样的赛事ID（ei）,如果有，返回相同的ei数组
+   * @desc 用于串关投注时，判断是否可以投注
+   */
+  get getExistSameEventIdList(): string[] {
+    const seen: Set<string> = new Set()
+    const duplicates: Set<string> = new Set()
+
+    for (const item of this.dataList.map(a => a.ei)) {
+      if (seen.has(item))
+        duplicates.add(item)
+
+      else
+        seen.add(item)
+    }
+
+    return Array.from(duplicates)
+  }
+
   constructor(currency: EnumCurrencyKey) {
     this.currency = currency
   }

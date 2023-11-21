@@ -339,8 +339,9 @@ export function ApiSportPlaceBetInfo(data: {
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=3285b34f-36a0-4b50-898e-a71ace74f229
  */
 export function ApiSportPlaceBet(data: IBetArgs) {
-  return httpClient.post<boolean>(`/sport/${getSportsPlatId()}/place/bet`, data)
+  return httpClient.post<string>(`/sport/${getSportsPlatId()}/place/bet`, data)
 }
+
 /*
  * 投注记录
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=ed6c7a9f-30aa-4cf6-89d7-130fa962a136

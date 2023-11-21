@@ -20,6 +20,7 @@ const {
   currentGlobalCurrencyBalanceNumber,
 } = storeToRefs(appStore)
 const sportStore = useSportsStore()
+/** 赔率是否变化 */
 const { bool: ovIsChange, setBool: setOvChangeStateBool } = useBoolean(false)
 
 const {
@@ -132,6 +133,44 @@ const isBetBtnDisabled = computed(() => {
      */
     if (Number(duplexInputValue.value) <= 0)
       return true
+  }
+})
+/** 是否显示错误提示 */
+const errorInfo = computed<{
+  /** 是否显示错误提示 */
+  bool: boolean
+  /** 错误提示信息 */
+  errorMess: string
+}>(() => {
+  // 赔率变化
+  if (ovIsChange.value) {
+    return {
+      bool: true,
+      errorMess: t('sports_odds_has_changed'),
+    }
+  }
+
+  // 余额不足
+  if (isBetAmountOverBalance.value) {
+    return {
+      bool: true,
+      errorMess: '您的投注额不能大于余额。',
+    }
+  }
+
+  // 如果是复式投注，判断是否存在同一赛事的多重投注项
+  if (betOrderSelectValue.value === EnumsBetSlipBetSlipTabStatus.multi) {
+    if (sportStore.cart.getExistSameEventIdList.length) {
+      return {
+        bool: true,
+        errorMess: '来自同一赛事的多重投注项不能结合成复式投注。',
+      }
+    }
+  }
+
+  return {
+    bool: false,
+    errorMess: '',
   }
 })
 
@@ -370,14 +409,15 @@ onUnmounted(() => {
             :key="EnumSportEndDomID.PC_CART_END_DOM"
           />
         </TransitionGroup>
-        <!-- 无数据缺省，不要删！ -->
-        <!-- <div class="empty">
+        <!-- 无数据缺省 -->
+        <div v-if="cartDataList.length === 0" class="empty">
           <BaseEmpty>
             <template #icon>
               <BaseIcon
                 style="
-              font-size: var(--tg-empty-icon-size);
-              margin-bottom: var(--tg-spacing-24);"
+                  font-size: var(--tg-empty-icon-size);
+                  margin-bottom: var(--tg-spacing-24);
+                "
                 name="uni-empty-betslip"
               />
             </template>
@@ -391,11 +431,11 @@ onUnmounted(() => {
                 style=" --tg-base-button-text-default-color:var(--tg-text-white)"
                 @click="router.push(`/sports/${getSportsPlatId()}`)"
               >
-                {{t('sports_betting_now')}}
+                {{ t('sports_betting_now') }}
               </BaseButton>
             </template>
           </BaseEmpty>
-        </div> -->
+        </div>
       </div>
     </div>
 
@@ -441,13 +481,13 @@ onUnmounted(() => {
             />
           </div>
         </div>
-
-        <div v-if="ovIsChange || isBetAmountOverBalance" class="message">
+        <div
+          v-if="errorInfo.bool" class="message"
+        >
           <div class="icon">
             <BaseIcon class="error-icon" name="uni-warning" />
           </div>
-          <span v-if="ovIsChange">{{ t('sports_odds_has_changed') }}</span>
-          <span v-else-if="isBetAmountOverBalance">您的投注额不能大于余额。</span>
+          <span>{{ errorInfo.errorMess }}</span>
         </div>
 
         <BaseButton

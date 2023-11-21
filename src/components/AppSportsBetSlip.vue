@@ -37,13 +37,25 @@ const sportStore = useSportsStore()
 const amount = ref(0)
 
 const isBetSingle = computed(() =>
-  props.betSlipType === EnumsBetSlipBetSlipTabStatus.single)
+  props.betSlipType === EnumsBetSlipBetSlipTabStatus.single,
+)
 const isBetMulti = computed(
   () => props.betSlipType === EnumsBetSlipBetSlipTabStatus.multi,
 )
 const isFirst = computed(() => props.index === 0)
 const isError = computed(() => {
-  return props.error || props.cartInfoData.result === 'rejected'
+  if (props.error)
+    return true
+
+  if (props.cartInfoData.result === 'rejected')
+    return true
+
+  if (
+    true
+    && sportStore.cart.getExistSameEventIdList.includes(props.cartInfoData.ei)
+    && props.betSlipType === EnumsBetSlipBetSlipTabStatus.multi
+  )
+    return true
 })
 const isDisabled = computed(() => {
   return props.disabled || props.cartInfoData.os === 0
