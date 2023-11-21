@@ -13,9 +13,11 @@ interface Props {
 }
 const props = defineProps<Props>()
 
+const { t } = useI18n()
+
 const numStr = computed(() => {
   if (props.num && props.num > 1)
-    return `${props.num}笔`
+    return `${props.num}${t('order_label')}`
 
   return ''
 })
@@ -23,14 +25,14 @@ const numStr = computed(() => {
 
 <template>
   <div class="app-sport-bet-success-notify">
-    已成功压下 {{ numStr }} 总值
+    {{ t('bet_tip_amount_tip', { numStr }) }}
     <AppAmount
       class="amount"
       :show-name="showName"
       :amount="amount"
       :currency-type="currencyType"
     />
-    {{ betSlipTabValue ? `的${betSlipTabValue}` : '' }}
+    {{ betSlipTabValue ? `${t('de')}${betSlipTabValue}` : '' }}
   </div>
 </template>
 

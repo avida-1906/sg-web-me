@@ -131,8 +131,8 @@ async function fetchBet(list: IBetArgs[]) {
 
 function betSuccess() {
   const message = betOrderSelectValue.value === EnumsBetSlipBetSlipTabStatus.single
-    ? '单项投注'
-    : '复式投注'
+    ? t('sports_single_bet')
+    : t('sports_multi_bet')
   const amount = betOrderSelectValue.value === EnumsBetSlipBetSlipTabStatus.single
     ? sportStore.cart.totalProfit
     : duplexTotalProfit.value
@@ -241,7 +241,7 @@ onUnmounted(() => {
           v-model="headSelectValue"
           style="--tg-base-select-hover-bg-color:var(--tg-secondary-dark);
           --tg-base-select-popper-style-padding-x:0;"
-          :options="headSelectData" popper no-hover
+          :options="headSelectData" no-hover popper
         >
           <template #label="{ data }">
             <div class="type-select">
@@ -267,7 +267,7 @@ onUnmounted(() => {
           </div>
           <template #popper>
             <div class="tiny-menu-item-title">
-              折叠侧边栏
+              {{ t('chat_close_side') }}
             </div>
           </template>
         </VTooltip>
@@ -395,7 +395,7 @@ onUnmounted(() => {
             <BaseIcon class="error-icon" name="uni-warning" />
           </div>
           <span v-if="ovIsChange">{{ t('sports_odds_has_changed') }}</span>
-          <span v-else-if="isBetAmountOverBalance">您的投注额不能大于余额。</span>
+          <span v-else-if="isBetAmountOverBalance">{{ t('bet_more_than_balance') }}</span>
         </div>
 
         <BaseButton
