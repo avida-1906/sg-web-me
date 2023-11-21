@@ -1,5 +1,5 @@
 import type { CurrencyCode } from '~/composables/useCurrencyData'
-import type { ICartInfo } from '~/types'
+import type { IBetInfo, ICartInfo } from '~/types'
 
 /** 货币的Key */
 export type EnumCurrencyKey = keyof typeof EnumCurrency
@@ -527,4 +527,27 @@ export interface IBetInfoBack {
     /** 注单数量 */
     bc: number
   }[]
+}
+
+/**
+ * 体育投注参数
+ */
+export interface IBetArgs {
+  /**
+   * 0:不接受任何赔率变化
+   *
+   * 1:接受更高赔率
+   *
+   * 2:接受任何赔率
+   */
+  ao: 0 | 1 | 2
+  bl: {
+    /** 0:非串关 1:串关 */
+    pt: 0 | 1
+    /** 投注金额 */
+    a: number
+    bi: IBetInfo[]
+  }[]
+  /** 货币 */
+  cur: CurrencyCode
 }

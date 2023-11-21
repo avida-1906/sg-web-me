@@ -350,11 +350,12 @@ export class SportsCart {
    * @param {IBetInfoChangeCallback} fn 回调函数
    */
   updateAllData(data: IBetInfoBack, fn?: IBetInfoChangeCallback) {
+    const { wsi, bi } = data
+    const duplexOv = bi[0].ov
     const ovIsChange = this.dataList.some((item) => {
       const wsi = data.wsi.find(a => a.wid === item.wid)
       return Number(wsi?.ov) !== Number(item.ov)
     })
-    const { wsi, bi } = data
     this.dataList.forEach((item) => {
       item.ov = wsi.find(a => a.wid === item.wid)?.ov ?? ''
       item.os = wsi.find(a => a.wid === item.wid)?.os ?? 0
@@ -363,6 +364,6 @@ export class SportsCart {
     })
 
     if (fn)
-      fn(ovIsChange)
+      fn(ovIsChange, duplexOv)
   }
 }

@@ -1,9 +1,11 @@
 import type {
+  IBetArgs,
   IBetInfoBack,
   ILeagueItem,
   ISportEventInfo,
   ISportOutrightsInfo,
 } from './types'
+import type { CurrencyCode } from '~/composables/useCurrencyData'
 import type { IBetInfo } from '~/types'
 
 /**
@@ -326,7 +328,15 @@ export function ApiSportPlaceBetInfo(data: {
   /** 投注内容 */
   bi: IBetInfo[]
   /** 货币 */
-  cur: string
+  cur: CurrencyCode
 }) {
   return httpClient.post<IBetInfoBack>(`/sport/${getSportsPlatId()}/place/betinfo`, data)
+}
+
+/**
+ * 体育投注
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=3285b34f-36a0-4b50-898e-a71ace74f229
+ */
+export function ApiSportPlaceBet(data: IBetArgs) {
+  return httpClient.post<boolean>(`/sport/${getSportsPlatId()}/place/bet`, data)
 }

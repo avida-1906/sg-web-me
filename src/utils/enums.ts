@@ -133,6 +133,18 @@ export enum EnumsBetSlipMyBetsTabStatus {
 }
 
 /**
+ * 投注赔率变化枚举
+ */
+export enum EnumOddsChange {
+  /** 接受任何赔率变化 */
+  acceptAnyOddsChange = 2,
+  /** 只接受更高的赔率 */
+  acceptHigherOdds = 1,
+  /** 不接受任何赔率变化 */
+  notAcceptAnyOddsChange = 0,
+}
+
+/**
  * 所有体育类型枚举
  */
 export enum EnumSportType {
