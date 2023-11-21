@@ -88,7 +88,7 @@ watch(props, (a) => {
   margin: var(--tg-spacing-24) 0;
 
   .child {
-    margin-bottom: 8px;
+    margin-bottom: 3px;
     break-inside: avoid;
     width: 100%;
   }
