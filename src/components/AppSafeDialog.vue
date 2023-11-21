@@ -22,7 +22,6 @@ const passwordRef = ref()
 const {
   value: amount,
   resetField: resetAmount,
-  setValue: setAmount,
   validate: validateAmount,
   errorMessage: errAmount,
 } = useField<string>('amount', (value) => {
@@ -123,10 +122,6 @@ function maxNumber() {
   if (activeCurrency.value)
     amount.value = activeCurrency.value.balance
 }
-function formatAmount() {
-  if (amount.value)
-    setAmount(Number.parseInt(amount.value).toString())
-}
 
 watch(() => activeTab.value, () => {
   resetAmount()
@@ -158,7 +153,6 @@ watch(() => activeTab.value, () => {
           type="number"
           :msg="errAmount"
           msg-after-touched
-          @blur="formatAmount"
           @on-right-button="maxNumber"
         >
           <template #right-icon>
@@ -187,7 +181,6 @@ watch(() => activeTab.value, () => {
             :msg="errPassword"
             placeholder=""
             type="password"
-
             max="6"
             msg-after-touched must
           />
@@ -199,7 +192,7 @@ watch(() => activeTab.value, () => {
           :loading="lockerUpdateLoading"
           @click="handleUpdate"
         >
-          保险库取款
+          保险库取出
         </BaseButton>
       </template>
     </div>

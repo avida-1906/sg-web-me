@@ -40,6 +40,7 @@ const {
   errorMessage: amountError,
   validate: amountValidate,
   resetField: amountReset,
+  setValue: setAmount,
 } = useField<string>('amount', (value) => {
   const Value = Number(value)
   if (!Value)
@@ -192,6 +193,10 @@ const paymentDepositBankData = computed(() => {
   return []
 })
 
+function formatAmount() {
+  if (amount.value)
+    setAmount(Number.parseInt(amount.value).toString())
+}
 const toCopy = function (item: string) {
   application.copy(item)
 }
@@ -398,6 +403,7 @@ await application.allSettled([
                 v-model="amount"
                 :msg="amountError"
                 msg-after-touched
+                @blur="formatAmount"
               />
             </BaseLabel>
             <BaseLabel
