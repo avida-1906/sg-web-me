@@ -276,6 +276,14 @@ export class SportsCart {
     }, 0)
   }
 
+  /** 是否显示重新使用投注单
+   *
+   * 当购物车中数据的result不为undefined时，显示重新使用投注单
+   */
+  get isShowReuse() {
+    return this.dataList.every(a => a.result !== undefined)
+  }
+
   constructor(currency: EnumCurrencyKey) {
     this.currency = currency
   }
@@ -394,5 +402,14 @@ export class SportsCart {
     const index = this.dataList.findIndex(a => a.wid === wid)
     if (index > -1)
       this.dataList[index].result = result
+  }
+
+  /**
+   * 重新使用投注单
+   */
+  reuse() {
+    this.dataList.forEach((item) => {
+      item.result = undefined
+    })
   }
 }

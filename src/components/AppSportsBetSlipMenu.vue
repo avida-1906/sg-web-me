@@ -326,15 +326,22 @@ onUnmounted(() => {
         <BaseTab v-show="isMyBets" v-model="myBetSelectValue" :list="myBetData" />
       </div>
       <div v-show="isBetSlip" class="actions">
+        <BaseButton
+          v-if="sportStore.cart.isShowReuse"
+          type="text"
+          size="none"
+          style="--tg-base-button-text-default-color: var(--tg-text-white);"
+          @click="sportStore.cart.reuse()"
+        >
+          重新使用投注单
+        </BaseButton>
         <BaseSelect
+          v-else
           v-model="betOrderFilterValue"
-          style="
-            --tg-base-select-hover-bg-color: var(--tg-secondary-dark);
-            --tg-base-select-popper-style-padding-x: 0;
-            --tg-base-select-popper-style-padding-y: 0;
-            --tg-base-select-popper-label-color: var(--tg-text-lightgrey);
-          "
-          :options="betOrderFilterData" no-hover popper
+          class="bet-order-filter"
+          :options="betOrderFilterData"
+          no-hover
+          popper
         />
         <BaseButton
           type="text"
@@ -632,5 +639,12 @@ onUnmounted(() => {
 .list-enter-from {
   opacity: 0;
   transform: translateX(100%);
+}
+
+.bet-order-filter {
+  --tg-base-select-hover-bg-color: var(--tg-secondary-dark);
+  --tg-base-select-popper-style-padding-x: 0;
+  --tg-base-select-popper-style-padding-y: 0;
+  --tg-base-select-popper-label-color: var(--tg-text-lightgrey);
 }
 </style>
