@@ -1,15 +1,21 @@
 <script setup lang='ts'>
 const { t } = useI18n()
-const { data } = useRequest(() =>
+const { data, run } = useRequest(() =>
   ApiSportEventList({ si: 0, m: 0, hot: 1, page: 1, page_size: 100 }),
-{ manual: false },
 )
+/** 定时更新数据 */
+const { startTimer, stopTimer } = useSportsDataUpdate(run, 30)
 
 const list = computed(() => {
   if (data.value && data.value.list)
     return sportsDataGroupByLeague(data.value.list)
 
   return []
+})
+
+startTimer()
+onBeforeUnmount(() => {
+  stopTimer()
 })
 </script>
 

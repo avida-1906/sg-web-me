@@ -1,7 +1,7 @@
 <script setup lang='ts'>
 interface Props {
   onPage?: boolean
-  slipType: number
+  slipType?: number
 }
 const props = defineProps<Props>()
 
@@ -22,7 +22,8 @@ const typeOptions = [
 ]
 
 watch(props, (a) => {
-  currentType.value = a.slipType
+  if (a.slipType)
+    currentType.value = a.slipType
 })
 </script>
 
