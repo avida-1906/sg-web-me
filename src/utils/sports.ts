@@ -284,6 +284,11 @@ export class SportsCart {
    * @param {ICartInfo} data
    */
   add(data: ICartInfo) {
+    // 如果dataList中的object的result有一个不是undefined，就清空购物车
+    // 因为不是undefined的话，说明已经投注过了
+    if (this.dataList.some(a => a.result !== undefined))
+      this.removeAll()
+
     let suffixLength = 2
     if (application.isVirtualCurrency(this.currency))
       suffixLength = 8
@@ -330,9 +335,16 @@ export class SportsCart {
     this.updateAmount()
   }
 
-  /** 检查wid 是否在购物车中 */
+  /**
+   * 检查wid 是否在购物车中，并且result为undefined
+   * @param {string} wid
+   */
   checkWid(wid: string) {
-    return this.dataList.findIndex(a => a.wid === wid) > -1
+    const index = this.dataList.findIndex(a => a.wid === wid)
+    if (index > -1 && this.dataList[index].result === undefined)
+      return true
+    else
+      return false
   }
 
   /** 更新amout
@@ -365,5 +377,16 @@ export class SportsCart {
 
     if (fn)
       fn(ovIsChange, duplexOv)
+  }
+
+  /**
+   * 更新列表的 Result 状态
+   * @param {string} wid 唯一值
+   * @param {'fulfilled' | 'rejected'} result
+   */
+  updateListResult(wid: string, result: 'fulfilled' | 'rejected') {
+    const index = this.dataList.findIndex(a => a.wid === wid)
+    if (index > -1)
+      this.dataList[index].result = result
   }
 }

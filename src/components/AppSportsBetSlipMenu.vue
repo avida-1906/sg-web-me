@@ -129,7 +129,19 @@ async function fetchBet(list: IBetArgs[]) {
   betLoading.value = false
 
   const successList = result.filter(item => item.status === 'fulfilled')
-  const failList = result.filter(item => item.status === 'rejected')
+
+  const successWidList = list.filter((item, index) => result[index].status === 'fulfilled').map(item => item.bl[0].bi[0].wid)
+  const failWidList = list.filter((item, index) => result[index].status === 'rejected').map(item => item.bl[0].bi[0].wid)
+
+  console.log('successWidList', successWidList)
+  console.log('failWidList', failWidList)
+
+  list.forEach((item, index) => {
+    const wid = item.bl[0].bi[0].wid
+    const _result = result[index].status
+    sportStore.cart.updateListResult(wid, _result)
+  })
+
   if (successList.length)
     betSuccess()
 }

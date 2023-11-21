@@ -68,6 +68,13 @@ watchEffect(() => {
           {{ t('sports_status_live') }}
         </div>
         <div class="text">
+          <span
+            :style="{
+              color: cartInfoData.result === 'fulfilled' ? 'green' : 'red',
+            }"
+          >
+            {{ cartInfoData.result }}
+          </span>
           {{ cartInfoData.homeTeamName }} - {{ cartInfoData.awayTeamName }}
         </div>
       </div>
@@ -97,7 +104,7 @@ watchEffect(() => {
       </div>
       <AppSportsOdds v-else :odds="cartInfoData.ov" arrow="left" />
       <!-- 单式金额输入框 -->
-      <div v-show="isBetSingle" class="footer">
+      <div v-show="isBetSingle && cartInfoData.result === undefined" class="footer">
         <div class="bet-amount">
           <BaseInput
             v-model="amount"

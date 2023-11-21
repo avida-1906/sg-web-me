@@ -132,6 +132,8 @@ export type ICartInfoData = ICartInfo & {
   maa: number
   /** 最⼩投注额 */
   mia: number
+  /** 是否变成了结果 */
+  result?: 'fulfilled' | 'rejected'
 }
 
 /**
