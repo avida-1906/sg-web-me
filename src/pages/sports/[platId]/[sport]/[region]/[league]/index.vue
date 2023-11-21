@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+const { t } = useI18n()
 const route = useRoute()
 const sport = route.params.sport ? +route.params.sport : 0
 const region = route.params.region ? route.params.region.toString() : ''
@@ -12,10 +13,10 @@ const { startTimer, stopTimer } = useSportsDataUpdate(run, 30)
 
 const baseType = ref('winner')
 const curTab = ref(route.query.outrights ? '2' : '1')
-const tabs = [
-  { value: '1', label: '滚球与即将开赛的盘口' },
-  { value: '2', label: '冠军投注' },
-]
+const tabs = computed(() => [
+  { value: '1', label: t('sport_in_coming') },
+  { value: '2', label: t('champion_bet') },
+])
 
 const isLiveAndUpcoming = computed(() => curTab.value === '1')
 const isOutrights = computed(() => curTab.value === '2')

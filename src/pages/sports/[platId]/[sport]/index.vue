@@ -12,10 +12,10 @@ const { startTimer, stopTimer } = useSportsDataUpdate(run, 30)
 
 const curTab = ref(route.query.outrights ? '2' : '1')
 const baseType = ref('winner')
-const tabs = [
-  { value: '1', label: '滚球与即将开赛的盘口' },
-  { value: '2', label: '冠军投注' },
-]
+const tabs = computed(() => [
+  { value: '1', label: t('sport_in_coming') },
+  { value: '2', label: t('champion_bet') },
+])
 
 const isLiveAndUpcoming = computed(() => curTab.value === '1')
 const isOutrights = computed(() => curTab.value === '2')
@@ -102,7 +102,7 @@ onBeforeUnmount(() => {
         <div class="sub-wrapper">
           <h3 class="sub-title">
             <BaseIcon name="spt-sort-az" />
-            <span>按字母顺序排列</span>
+            <span>{{ t('order_by_alpha') }}</span>
           </h3>
           <AppSportsMarketRegion
             v-for="region in allRegionList"
