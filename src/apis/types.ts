@@ -534,6 +534,8 @@ export interface IBetInfoBack {
     pt: number
     /** 注单数量 */
     bc: number
+    /** 实际赛事ID */
+    cei: string
   }[]
 }
 

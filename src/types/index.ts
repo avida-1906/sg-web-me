@@ -138,6 +138,8 @@ export type ICartInfoData = ICartInfo & {
   mia: number
   /** 是否变成了结果 */
   result?: 'fulfilled' | 'rejected'
+  /** 实际赛事ID */
+  cei?: string
 }
 
 /**
