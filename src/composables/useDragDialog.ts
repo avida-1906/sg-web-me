@@ -1,4 +1,5 @@
 import { render } from 'vue'
+import { i18n } from '~/modules/i18n'
 import BaseDragDialog from '~/components/BaseDragDialog.vue'
 
 interface Props {
@@ -6,6 +7,7 @@ interface Props {
   url: string
   dialogId: string
 }
+const { t } = i18n.global
 
 export function useDragDialog(props: Props) {
   const { isLogin } = storeToRefs(useAppStore())
@@ -25,6 +27,7 @@ export function useDragDialog(props: Props) {
   const vNode = h(BaseDragDialog, {
     ...props,
     isLogin,
+    t,
     onClose: () => {
       removeDiv()
     },
