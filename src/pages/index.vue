@@ -6,10 +6,11 @@ interface IVipProgressData {
   currentLevel: number
 }
 
+const width = 430
 const { t } = useI18n()
 const router = useRouter()
 const { openRegisterDialog } = useRegisterDialog()
-const { openSwiperNoticeDialog } = useDialogSwiperNotice()
+const { openSwiperNoticeDialog } = useDialogSwiperNotice(width)
 const { bool: showMore, toggle: toggleShowMore } = useBoolean(false)
 
 const {
@@ -25,11 +26,10 @@ const {
   run: runMemberNoticeAllList,
   loading: memberNoticeAllListLoading,
 } = useRequest(ApiMemberNoticeAllList, {
-  onSuccess() {
-    // for (const item of noticeData.value?.notice)
-    //   item.value = item.id
-    // openSwiperNoticeDialog(noticeData.value?.notice)
-    // openNoticeDialog(noticeData.value?.notice[0])
+  onSuccess(data) {
+    for (const item of data.notice)
+      item.value = item.id
+    openSwiperNoticeDialog(data.notice)
   },
 })
 

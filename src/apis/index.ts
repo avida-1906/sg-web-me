@@ -912,6 +912,7 @@ export function ApiMemberNoticeAllList() {
       [key: string]: any
     }[]
     notice: {
+      value?: string
       /** ID */
       id: string
       /** 公告类型 1-公告  2-跑马灯 */

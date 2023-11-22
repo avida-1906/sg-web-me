@@ -4,32 +4,22 @@ import { getCurrentLanguageForBackend } from '~/modules/i18n'
 interface Props {
   data: any[]
 }
-const props = defineProps<Props>()
-
-console.log(props.data)
+defineProps<Props>()
 </script>
 
 <template>
-  <div class="dialog-notice">
-    <BaseSwiper
-      :data="data"
-      :width="420"
-      padding0
-    >
-      <template #default="{ item }">
-        <BaseImage
-          :url="item.image_url[getCurrentLanguageForBackend()]"
-          is-network
-          width="420px"
-        />
-      </template>
-    </BaseSwiper>
-  </div>
+  <BaseSwiper
+    :data="data"
+    mode="notice"
+  >
+    <template #default="{ item }">
+      <BaseImage
+        :url="item.image_url[getCurrentLanguageForBackend()]"
+        is-network
+      />
+    </template>
+  </BaseSwiper>
 </template>
 
 <style lang='scss' scoped>
-.dialog-notice {
-  --tg-dialog-style-maxwidth: 1000px;
-    // padding: 0 var(--tg-spacing-16) var(--tg-spacing-16);
-}
 </style>
