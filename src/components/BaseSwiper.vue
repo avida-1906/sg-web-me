@@ -2,6 +2,8 @@
 interface SwiperItem {
   value: string | number
   label: string
+  id?: string | number
+  [k: string]: any
 }
 
 interface Props {
@@ -26,7 +28,7 @@ const touchStartPoint = ref()
 const touchEndPoint = ref()
 const swiperTrack = ref()
 
-const width = props.width ? ref(props.width) : useElementSize(swiperOuter).width
+const width = useElementSize(swiperOuter).width
 
 const outerWidth = computed(() => Math.floor(width.value))
 const trackOuterWidth = computed(() => Math.ceil(outerWidth.value * _data.value.length))
@@ -165,7 +167,6 @@ watch(active, (val) => {
       class="swiper-outer center-mode"
       :style="{
         '--swiper-outer-width': `${outerWidth}px`,
-        'width': 'var(--swiper-outer-width)',
       }"
     >
       <div v-if="_data.length > 1" class="arrows-overlay">
@@ -204,7 +205,7 @@ watch(active, (val) => {
               isDragging ? 'visible' : '',
             ]"
           >
-            <slot :name="`item${idx}`">
+            <slot :item="item">
               <BaseButton size="md">
                 <span class="label">{{ item.label }}</span>
               </BaseButton>

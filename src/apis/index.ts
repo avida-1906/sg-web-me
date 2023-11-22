@@ -1199,3 +1199,33 @@ export function ApiMemberBannerList(params: {
 export function ApiMemberVipBonusAmount() {
   return httpClient.get<string>('/member/vip/bonus/amount')
 }
+
+/**
+ * 三方登录 url - google
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=7cc18fc1-9c12-4e47-a8cf-45d30276e674
+ */
+export function ApiMemberThirdAuthUrl(params: {
+  state: string
+  type: string
+}) {
+  return httpClient.get<string>(`/member/third/auth/${params.type}/url`, {
+    headers: {
+      state: params.state,
+    },
+  })
+}
+
+/**
+ * 三方登录注册
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=81413d60-d816-45c0-8df0-47436a1bd837
+ */
+export function ApiMemberThirdReg(data: {
+  email: string
+  username: string
+  parent_id: string
+  device_number: string
+  third_type: number
+  third_id: string
+}) {
+  return httpClient.post<string>('/member/third/register', data)
+}

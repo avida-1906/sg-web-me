@@ -26,6 +26,8 @@ const {
   loading: memberNoticeAllListLoading,
 } = useRequest(ApiMemberNoticeAllList, {
   onSuccess() {
+    // for (const item of noticeData.value?.notice)
+    //   item.value = item.id
     // openSwiperNoticeDialog(noticeData.value?.notice)
     // openNoticeDialog(noticeData.value?.notice[0])
   },
