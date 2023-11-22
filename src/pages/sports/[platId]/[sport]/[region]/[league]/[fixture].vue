@@ -225,9 +225,20 @@ await application.allSettled([
             </div>
             <!-- 右侧热门热门赛事 -->
             <div v-if="appContentWidth >= 900" class="sticky-column">
-              <div>123</div>
+              <div class="hot-events">
+                <div class="title">
+                  <BaseIcon name="uni-popular" />
+                  <span>热门足球</span>
+                </div>
+                <AppSportsHotEventInfo />
+                <AppSportsHotEventInfo />
+                <AppSportsHotEventInfo />
+                <AppSportsHotEventInfo />
+                <AppSportsHotEventInfo />
+                <AppSportsHotEventInfo />
+              </div>
               <div v-if="showRecent" class="is-open spotlight variant-dark">
-                <div class="no-active-scale header">
+                <div class="header no-active-scale">
                   <span>{{ $t('recent_game_record') }}</span>
                   <BaseButton type="text" @click="setSRFalse()">
                     <BaseIcon name="uni-close-white" />
@@ -707,6 +718,23 @@ video {
         }
       }
     }
+  }
+}
+.hot-events{
+  width: 100%;
+  padding: var(--tg-spacing-13) var(--tg-spacing-16) ;
+  font-size: var( --tg-font-size-default);
+  font-weight: var(--tg-font-weight-semibold);
+  color: var(--tg-text-lightgrey);
+  background-color: var( --tg-secondary-dark);
+  border-radius: var(--tg-radius-default);
+  display:flex ;
+  flex-direction: column;
+  gap: var(--tg-spacing-16);
+  .title{
+    display: flex;
+    align-items: center;
+    gap: var(--tg-spacing-4);
   }
 }
 </style>
