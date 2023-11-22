@@ -130,7 +130,7 @@ const bankcardId = computed(() =>
 )
 
 function maxNumber() {
-  amount.value = props.activeCurrency.balance
+  setAmount(Number.parseInt(props.activeCurrency.balance).toString())
 }
 function updateBank() {
   runAsyncWithdrawBankcardList({ currency_id: props.activeCurrency.cur })

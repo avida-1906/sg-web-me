@@ -87,7 +87,7 @@ function onAmountInput() {
     setAmount(Number.parseInt(amount.value).toString())
 }
 function maxNumber() {
-  setAmount(props.activeCurrency.balance)
+  setAmount(Number.parseInt(props.activeCurrency.balance).toString())
 }
 
 async function handleWithdraw() {

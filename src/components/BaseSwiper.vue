@@ -7,6 +7,7 @@ interface SwiperItem {
 interface Props {
   data: SwiperItem[]
   modelValue?: string | number
+  width?: number
 }
 
 const props = defineProps<Props>()
@@ -25,7 +26,7 @@ const touchStartPoint = ref()
 const touchEndPoint = ref()
 const swiperTrack = ref()
 
-const { width } = useElementSize(swiperOuter)
+const width = props.width ? ref(props.width) : useElementSize(swiperOuter).width
 
 const outerWidth = computed(() => Math.floor(width.value))
 const trackOuterWidth = computed(() => Math.ceil(outerWidth.value * _data.value.length))
@@ -162,7 +163,10 @@ watch(active, (val) => {
     <div
       ref="swiperOuter"
       class="swiper-outer center-mode"
-      :style="{ '--swiper-outer-width': `${outerWidth}px` }"
+      :style="{
+        '--swiper-outer-width': `${outerWidth}px`,
+        'width': 'var(--swiper-outer-width)',
+      }"
     >
       <div v-if="_data.length > 1" class="arrows-overlay">
         <div class="left">
@@ -192,7 +196,7 @@ watch(active, (val) => {
         >
           <div
             v-for="item, idx in _data"
-            :key="`${idx}_${item.value}`"
+            :key="`${idx}_${item.value ?? item.id}`"
             class="slide-wrap"
             :class="[
               `slide-position-${idx + 1}`,
@@ -200,9 +204,11 @@ watch(active, (val) => {
               isDragging ? 'visible' : '',
             ]"
           >
-            <BaseButton size="md">
-              <span class="label">{{ item.label }}</span>
-            </BaseButton>
+            <slot :name="`item${idx}`">
+              <BaseButton size="md">
+                <span class="label">{{ item.label }}</span>
+              </BaseButton>
+            </slot>
           </div>
         </div>
       </div>
