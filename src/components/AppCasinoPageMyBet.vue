@@ -66,10 +66,10 @@ const tableData = [
     />
     <div class="btns">
       <BaseButton type="text">
-        上一页
+        {{ t('page_prev') }}
       </BaseButton>
       <BaseButton type="text">
-        下一页
+        {{ t('page_next') }}
       </BaseButton>
     </div>
   </div>
