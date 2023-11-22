@@ -95,6 +95,7 @@ declare global {
   const ApiSportPlaceBet: typeof import('./apis/sport')['ApiSportPlaceBet']
   const ApiSportPlaceBetInfo: typeof import('./apis/sport')['ApiSportPlaceBetInfo']
   const ApiSportSidebar: typeof import('./apis/sport')['ApiSportSidebar']
+  const ApiSportsEventHot: typeof import('./apis/sport')['ApiSportsEventHot']
   const ApiWalletBankcardList: typeof import('./apis/index')['ApiWalletBankcardList']
   const Big: typeof import('big.js')['Big']
   const CHAT_MESSAGE_BUS: typeof import('./utils/event-bus')['CHAT_MESSAGE_BUS']
@@ -667,6 +668,7 @@ declare module 'vue' {
     readonly ApiSportPlaceBet: UnwrapRef<typeof import('./apis/sport')['ApiSportPlaceBet']>
     readonly ApiSportPlaceBetInfo: UnwrapRef<typeof import('./apis/sport')['ApiSportPlaceBetInfo']>
     readonly ApiSportSidebar: UnwrapRef<typeof import('./apis/sport')['ApiSportSidebar']>
+    readonly ApiSportsEventHot: UnwrapRef<typeof import('./apis/sport')['ApiSportsEventHot']>
     readonly ApiWalletBankcardList: UnwrapRef<typeof import('./apis/index')['ApiWalletBankcardList']>
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
     readonly CHAT_MESSAGE_BUS: UnwrapRef<typeof import('./utils/event-bus')['CHAT_MESSAGE_BUS']>
@@ -1215,6 +1217,7 @@ declare module '@vue/runtime-core' {
     readonly ApiSportPlaceBet: UnwrapRef<typeof import('./apis/sport')['ApiSportPlaceBet']>
     readonly ApiSportPlaceBetInfo: UnwrapRef<typeof import('./apis/sport')['ApiSportPlaceBetInfo']>
     readonly ApiSportSidebar: UnwrapRef<typeof import('./apis/sport')['ApiSportSidebar']>
+    readonly ApiSportsEventHot: UnwrapRef<typeof import('./apis/sport')['ApiSportsEventHot']>
     readonly ApiWalletBankcardList: UnwrapRef<typeof import('./apis/index')['ApiWalletBankcardList']>
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
     readonly CHAT_MESSAGE_BUS: UnwrapRef<typeof import('./utils/event-bus')['CHAT_MESSAGE_BUS']>

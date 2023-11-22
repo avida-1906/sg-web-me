@@ -239,6 +239,13 @@ export const useSportsStore = defineStore('sports', () => {
     return []
   })
 
+  /** 所有球种名称sid对应列表 */
+  const allSportsNameList = computed(() => {
+    if (sidebarData.value)
+      return sidebarData.value.all
+    return []
+  })
+
   const sportOddType = computed(() => <Menu>[
     {
       title: `${t('sports_odds_title')}： ${t(sportsOddsType.value)}`,
@@ -309,6 +316,7 @@ export const useSportsStore = defineStore('sports', () => {
     currentUpcomingNav,
     sportsFavoriteData,
     allSportsSi,
+    allSportsNameList,
     cart,
     renderOdds,
     setSportsOddsType,

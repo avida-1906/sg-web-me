@@ -359,3 +359,25 @@ export function ApiSportBetList(data: {
     list: ISportsMyBetSlipItem[]
   }>(`/sport/${getSportsPlatId()}/betlist`, data)
 }
+
+/**
+ * 热门赛事
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=b4f7b09e-0d3e-420b-8069-a47531f8885f
+ */
+export function ApiSportsEventHot(data: {
+  si: number
+  page: 1
+  page_size: 10
+}) {
+  return httpClient.post<{
+    list: {
+      ci: string
+      cn: string
+      ei: string
+      htn: string
+      atn: string
+      pgid: string
+      ed: number
+    }[]
+  }>(`/sport/${getSportsPlatId()}/event/hot`, data)
+}

@@ -1,36 +1,49 @@
 <script setup lang='ts'>
-// 123
+defineProps<{
+  data: {
+    ci: string
+    cn: string
+    ei: string
+    htn: string
+    atn: string
+    pgid: string
+    ed: number
+    path: string
+    date: string
+    time: string
+  }
+}>()
 </script>
 
 <template>
   <div class="hot-event-info">
     <div class="header">
       <div class="icon">
-        <BaseImage />
+        <BaseImage url="" />
       </div>
       <div class="team-name">
-        英格兰超级联赛
+        {{ data.cn }}
       </div>
     </div>
     <div class="content">
       <div class="team">
         <div class="icon">
-          <BaseImage />
+          <BaseImage url="" />
         </div>
-        <span>埃弗顿</span>
+        <span>{{ data.htn }}</span>
       </div>
       <div class="time-box">
         <div class="date">
-          2023 | 11月16日
+          {{ data.date }}
         </div>
         <div class="time">
-          02：12
+          {{ data.time }}
         </div>
       </div>
       <div class="team">
-        <span>埃弗顿</span>
+        <span>{{ data.atn }}</span>
         <div class="icon">
-          <BaseImage />
+          <BaseImage url="" />
         </div>
       </div>
     </div>
@@ -41,6 +54,12 @@
 .hot-event-info {
   width: 100%;
   line-height: 1.5;
+  cursor: pointer;
+  transition: var(--tg-transition);
+
+  &:active {
+    transform: scale(0.96);
+  }
 
   .header {
     width: 100%;
@@ -62,6 +81,10 @@
       font-size: var(--tg-font-size-default);
       font-weight: var(--tg-font-weight-semibold);
       color: var(--tg-text-white);
+      width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 
@@ -76,30 +99,44 @@
     font-size: var(--tg-font-size-xs);
     font-weight: var(--tg-font-weight-semibold);
     color: var(--tg-text-white);
-    .team{
+
+    .team {
       display: flex;
       align-items: center;
       gap: var(--tg-spacing-8);
-      .icon{
+      width: 100%;
+      max-width: 113px;
+
+      .icon {
         width: 32px;
         height: 32px;
         overflow: hidden;
       }
+      span {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+      }
     }
   }
-  .time-box{
+
+  .time-box {
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: space-between;
     gap: var(--tg-spacing-12);
-    .date{
+    flex-shrink: 0;
+
+    .date {
       border-radius: 0 0 var(--tg-radius-sm) var(--tg-radius-sm);
       background-color: var(--tg-primary-main);
       padding: 0 var(--tg-spacing-5);
       border: 1px solid #{rgba($color: var(--tg-text-white), $alpha: 0.12)};
     }
-    .time{
+
+    .time {
       font-size: var(--tg-font-size-lg);
     }
   }
