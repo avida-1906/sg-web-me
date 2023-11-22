@@ -14,16 +14,17 @@ const activeCurrency = ref<any>()
 const activeTab = ref('deposit')
 const tabOptions = [
   { label: t('deposit'), value: 'deposit' },
-  { label: '提款', value: 'withdraw' },
+  { label: '取款', value: 'withdraw' },
 ]
 const amountRef = ref()
 const passwordRef = ref()
 
 const {
   value: amount,
+  errorMessage: errAmount,
   resetField: resetAmount,
   validate: validateAmount,
-  errorMessage: errAmount,
+  setValue: setAmount,
 } = useField<string>('amount', (value) => {
   if (!value)
     return '最小金额不可小于等于0'
@@ -82,7 +83,7 @@ const {
         ${renderSvg(activeCurrency.value.type.toLocaleLowerCase())}
         `,
     })
-    resetAmount()
+    reset()
     resetPassword()
     appStore.getBalanceData()
     appStore.getLockerData()
@@ -117,14 +118,21 @@ async function handleUpdate() {
 }
 function changeCurrency(item: CurrencyData) {
   activeCurrency.value = item
+  reset()
 }
 function maxNumber() {
   if (activeCurrency.value)
     amount.value = activeCurrency.value.balance
 }
+function reset() {
+  resetAmount()
+  setAmount(application.sliceOrPad(0, application.isVirtualCurrency(activeCurrency.value.type) ? 8 : 2), false)
+}
+function handleBlur() {
+  setAmount(Number(amount.value).toFixed(application.isVirtualCurrency(activeCurrency.value.type) ? 8 : 2).toString(), true)
+}
 
 watch(() => activeTab.value, () => {
-  resetAmount()
   amountRef.value.setTouchFalse()
   resetPassword()
 })
@@ -153,6 +161,7 @@ watch(() => activeTab.value, () => {
           type="number"
           :msg="errAmount"
           msg-after-touched
+          @blur="handleBlur"
           @on-right-button="maxNumber"
         >
           <template #right-icon>
