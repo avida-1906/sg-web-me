@@ -118,6 +118,7 @@ declare global {
   const Local: typeof import('./utils/storage')['Local']
   const MQTT_CONNECT_SUCCESS_BUS: typeof import('./utils/event-bus')['MQTT_CONNECT_SUCCESS_BUS']
   const MQTT_DISCONNECT_BUS: typeof import('./utils/event-bus')['MQTT_DISCONNECT_BUS']
+  const PromoTransactionType: typeof import('./utils/enums')['PromoTransactionType']
   const REFRESH_BALANCE_BUS: typeof import('./utils/event-bus')['REFRESH_BALANCE_BUS']
   const REFRESH_MEMBER_BUS: typeof import('./utils/event-bus')['REFRESH_MEMBER_BUS']
   const SPORTS_PLAT_ID: typeof import('./utils/sports')['SPORTS_PLAT_ID']
@@ -679,6 +680,7 @@ declare module 'vue' {
     readonly Local: UnwrapRef<typeof import('./utils/storage')['Local']>
     readonly MQTT_CONNECT_SUCCESS_BUS: UnwrapRef<typeof import('./utils/event-bus')['MQTT_CONNECT_SUCCESS_BUS']>
     readonly MQTT_DISCONNECT_BUS: UnwrapRef<typeof import('./utils/event-bus')['MQTT_DISCONNECT_BUS']>
+    readonly PromoTransactionType: UnwrapRef<typeof import('./utils/enums')['PromoTransactionType']>
     readonly REFRESH_BALANCE_BUS: UnwrapRef<typeof import('./utils/event-bus')['REFRESH_BALANCE_BUS']>
     readonly REFRESH_MEMBER_BUS: UnwrapRef<typeof import('./utils/event-bus')['REFRESH_MEMBER_BUS']>
     readonly SPORTS_PLAT_ID: UnwrapRef<typeof import('./utils/sports')['SPORTS_PLAT_ID']>
@@ -1222,6 +1224,7 @@ declare module '@vue/runtime-core' {
     readonly Local: UnwrapRef<typeof import('./utils/storage')['Local']>
     readonly MQTT_CONNECT_SUCCESS_BUS: UnwrapRef<typeof import('./utils/event-bus')['MQTT_CONNECT_SUCCESS_BUS']>
     readonly MQTT_DISCONNECT_BUS: UnwrapRef<typeof import('./utils/event-bus')['MQTT_DISCONNECT_BUS']>
+    readonly PromoTransactionType: UnwrapRef<typeof import('./utils/enums')['PromoTransactionType']>
     readonly REFRESH_BALANCE_BUS: UnwrapRef<typeof import('./utils/event-bus')['REFRESH_BALANCE_BUS']>
     readonly REFRESH_MEMBER_BUS: UnwrapRef<typeof import('./utils/event-bus')['REFRESH_MEMBER_BUS']>
     readonly SPORTS_PLAT_ID: UnwrapRef<typeof import('./utils/sports')['SPORTS_PLAT_ID']>

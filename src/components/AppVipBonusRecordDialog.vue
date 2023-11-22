@@ -65,6 +65,13 @@ runGetRecord()
 function getCurrencyName(id: string | number): EnumCurrencyKey {
   return renderBalanceList.value.filter(c => +c.cur === +id)[0].type
 }
+console.log(PromoTransactionType.rebate, Object.entries(PromoTransactionType))
+
+function getCashType(cashType: string) {
+  const temp
+    = Object.entries(PromoTransactionType).filter(([k, v]) => +k === +cashType)[0]
+  return temp ? t(temp[1]) : '-'
+}
 
 // function onPrevious() {
 //   paginationData.value.page--
@@ -85,6 +92,9 @@ function getCurrencyName(id: string | number): EnumCurrencyKey {
       <!-- :loading="loading" -->
       <template #created_at="{ record }">
         <div>{{ record.created_at }}</div>
+      </template>
+      <template #cash_type="{ record }">
+        {{ getCashType(record.cash_type) }}
       </template>
       <template #amount="{ record }">
         <div class="to-right">
