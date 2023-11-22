@@ -1182,3 +1182,11 @@ export function ApiMemberBannerList(params: {
     updated_by: string
   }[]>('/member/banner/list', { params })
 }
+
+/**
+ * 查询会员 vip 总待领取奖金
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=eab43035-6f7d-408e-b9b9-122e4f745c16
+ */
+export function ApiMemberVipBonusAmount() {
+  return httpClient.get<string>('/member/vip/bonus/amount')
+}

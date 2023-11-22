@@ -64,6 +64,7 @@ declare global {
   const ApiMemberTreeList: typeof import('./apis/index')['ApiMemberTreeList']
   const ApiMemberUpdate: typeof import('./apis/index')['ApiMemberUpdate']
   const ApiMemberUpload: typeof import('./apis/index')['ApiMemberUpload']
+  const ApiMemberVipBonusAmount: typeof import('./apis/index')['ApiMemberVipBonusAmount']
   const ApiMemberVipBonusRecord: typeof import('./apis/index')['ApiMemberVipBonusRecord']
   const ApiMemberVipConfig: typeof import('./apis/index')['ApiMemberVipConfig']
   const ApiMemberWalletDelete: typeof import('./apis/index')['ApiMemberWalletDelete']
@@ -629,6 +630,7 @@ declare module 'vue' {
     readonly ApiMemberTreeList: UnwrapRef<typeof import('./apis/index')['ApiMemberTreeList']>
     readonly ApiMemberUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberUpdate']>
     readonly ApiMemberUpload: UnwrapRef<typeof import('./apis/index')['ApiMemberUpload']>
+    readonly ApiMemberVipBonusAmount: UnwrapRef<typeof import('./apis/index')['ApiMemberVipBonusAmount']>
     readonly ApiMemberVipBonusRecord: UnwrapRef<typeof import('./apis/index')['ApiMemberVipBonusRecord']>
     readonly ApiMemberVipConfig: UnwrapRef<typeof import('./apis/index')['ApiMemberVipConfig']>
     readonly ApiMemberWalletDelete: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletDelete']>
@@ -1171,6 +1173,7 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberTreeList: UnwrapRef<typeof import('./apis/index')['ApiMemberTreeList']>
     readonly ApiMemberUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberUpdate']>
     readonly ApiMemberUpload: UnwrapRef<typeof import('./apis/index')['ApiMemberUpload']>
+    readonly ApiMemberVipBonusAmount: UnwrapRef<typeof import('./apis/index')['ApiMemberVipBonusAmount']>
     readonly ApiMemberVipBonusRecord: UnwrapRef<typeof import('./apis/index')['ApiMemberVipBonusRecord']>
     readonly ApiMemberVipConfig: UnwrapRef<typeof import('./apis/index')['ApiMemberVipConfig']>
     readonly ApiMemberWalletDelete: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletDelete']>

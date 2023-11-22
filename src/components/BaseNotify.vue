@@ -188,6 +188,7 @@ onMounted(() => {
   display: flex;
   align-items: stretch;
   justify-content: flex-start;
+  width: fit-content;
   .left {
     padding: var(--tg-spacing-27) var(--tg-spacing-19);
     background: var(--tg-secondary-grey);
