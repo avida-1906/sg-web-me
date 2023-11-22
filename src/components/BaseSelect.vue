@@ -5,6 +5,7 @@ interface Props {
     [text: string]: any
     label: string
     value: any
+    disabled?: boolean
   }[]
   label?: string
   layout?: 'horizontal' | 'vertical'
@@ -49,7 +50,7 @@ function onChange(event: any) {
 }
 function onClickPopperItem(item: any, hide: () => void) {
   const v = item.value
-  if (item.state === 2)
+  if (item.state === 2 || item.disabled)
     return
   else if (v === props.modelValue)
     return
@@ -105,6 +106,7 @@ function onClickPopper() {
               'popper-option': !theme,
               'active': item.value === modelValue,
               'bankcard-disable': item.state === 2,
+              'disabled': item.disabled,
             }"
             @click="onClickPopperItem(item, hide)"
           >
@@ -139,6 +141,7 @@ function onClickPopper() {
             :key="i"
             :selected="o.value === modelValue"
             :value="o.value"
+            :disabled="o.disabled"
           >
             {{ o.label }}
           </option>
@@ -215,7 +218,7 @@ function onClickPopper() {
     transform: rotate(180deg);
   }
 
-  &:hover {
+  &:hover:not(.disabled) {
     color: var(--tg-base-select-popper-label-hover-color);
     background-color: var(--tg-base-select-hover-bg-color);
     --tg-icon-color: var(--tg-text-white)
@@ -265,6 +268,13 @@ function onClickPopper() {
   &.active {
     --tg-icon-color: var(--tg-text-blue);
     color: var(--tg-popper-hover-color-default);
+  }
+  &.disabled:not(.active){
+    opacity: 0.5;
+    cursor: not-allowed;
+    &:hover{
+      color: var(--tg-popper-color-default);
+    }
   }
 }
 
@@ -319,6 +329,9 @@ function onClickPopper() {
     &.error {
       border-color: var(--tg-text-error);
     }
+    &.disabled {
+      cursor: not-allowed;
+    }
   }
 
   .icon {
@@ -332,10 +345,6 @@ function onClickPopper() {
     display: flex;
     align-items: center;
   }
-}
-
-.disabled {
-  cursor: not-allowed;
 }
 
 .vertical {
