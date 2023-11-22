@@ -40,11 +40,11 @@ const tabList = computed(() => [
       <div v-if="!isMobile" class="mt-24">
         <AppGameSearch game-type="2" />
       </div>
-      <AppSportsProviderSlider
+      <!-- <AppSportsProviderSlider
         v-if="providerList.length > 1"
         v-model="currentProvider" :list="providerList"
         @change="sportsStore.changeProvider"
-      />
+      /> -->
       <div class="mt-24">
         <BaseTab
           v-model="marketType"
