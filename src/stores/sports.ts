@@ -160,6 +160,7 @@ export const useSportsStore = defineStore('sports', () => {
           title: sport.sn,
           path: '',
           icon: 'spt-soccer',
+          useCloudImg: false,
           domId: `sports-hot-game-${sport.si}`,
           list: [
             // eslint-disable-next-line max-len
@@ -169,7 +170,8 @@ export const useSportsStore = defineStore('sports', () => {
             ...sport.list.map((league) => {
               return {
                 title: league.cn,
-                icon: 'spt-soccer',
+                icon: league.cpic,
+                useCloudImg: true,
                 path: `/sports/${SPORTS_PLAT_ID}/${sport.si}/${league.ci}`,
               }
             }),

@@ -64,6 +64,7 @@ export function ApiSportSidebar() {
         list: {
           ci: string
           cn: string
+          cpic: string
         }[]
       }[]
     }[]

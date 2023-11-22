@@ -3,11 +3,11 @@ interface Props {
   type: 'trend' | 'live'
   url: string
   isLogin: globalThis.Ref<boolean>
+  t: (key: string) => string
 }
 const props = defineProps<Props>()
 const emit = defineEmits(['close'])
 
-const { t } = useI18n()
 const { openLoginDialog, closeLoginDialog } = useLoginDialog()
 const { openRegisterDialog, closeRegisterDialog } = useRegisterDialog()
 const { bool: isFullScreen, toggle: toggleFullScreen } = useBoolean(false)
@@ -17,7 +17,9 @@ let posX: globalThis.Ref<number>, posY: globalThis.Ref<number>
 
 const isTrend = computed(() => props.type === 'trend')
 const isLive = computed(() => props.type === 'live')
-const title = computed(() => isTrend.value ? t('sports_live_trend') : t('sports_live_tv'))
+const title = computed(() =>
+  isTrend.value ? props.t('sports_live_trend') : props.t('sports_live_tv'),
+)
 const computedStyle = computed(() => {
   if (dragRef.value) {
     const { width, height } = dragRef.value.getBoundingClientRect()

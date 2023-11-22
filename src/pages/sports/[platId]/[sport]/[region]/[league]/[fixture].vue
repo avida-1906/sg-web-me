@@ -144,6 +144,7 @@ await application.allSettled([
                             :title="outcome.sn"
                             :odds="outcome.ov"
                             :cart-info="outcome.cartInfo"
+                            :disabled="item.mls === 2"
                             layout="horizontal"
                           />
                         </div>
@@ -174,6 +175,7 @@ await application.allSettled([
                                   :title="valueItem.hdp"
                                   :cart-info="valueItem.cartInfo"
                                   :odds="valueItem.ov"
+                                  :disabled="item.mls === 2"
                                 />
                               </div>
                             </template>
@@ -194,6 +196,7 @@ await application.allSettled([
                             :title="outcome.sn"
                             :odds="`${outcome.ov}`"
                             :cart-info="outcome.cartInfo"
+                            :disabled="item.mls === 2"
                             layout="horizontal"
                           />
                         </div>
@@ -220,45 +223,11 @@ await application.allSettled([
                 </template>
               </div>
             </div>
+            <!-- 右侧热门热门赛事 -->
             <div v-if="appContentWidth >= 900" class="sticky-column">
-              <div class="iframe-widget tracker desktop widget-container">
-                <div
-                  class="iframe-box"
-                >
-                  <!-- <iframe
-                    title="url"
-                    src="https://disir.oddin.gg/lol/scoreboard?brandToken=a91d9435-1130-42f5-88d3-00361e69b932&darkMode=true&id=bWF0Y2gvb2Q6bWF0Y2g6NTAyNzY0&lang=zh&layout=&t=959746778&theme=dark"
-                    scrolling="yes"
-                    height="219"
-                    class=""
-                  /> -->
-                </div>
-              </div>
-              <div class="iframe-widget tracker desktop widget-container">
-                <div
-                  class="iframe-box"
-                >
-                  <!-- <iframe
-                    title="url"
-                    :src="eventData.widgetUrl"
-                    scrolling="yes"
-                    height="730"
-                    class=""
-                  /> -->
-                </div>
-                <!-- <div class="expand-wrapper">
-                  <BaseIcon name="uni-arrow-up-big" />
-                </div> -->
-              </div>
-              <div class="loader-wrapper">
-                <div class="loader">
-                  <div class="wobble">
-                    <BaseIcon name="spt-league-of-legends" />
-                  </div>
-                </div>
-              </div>
+              <div>123</div>
               <div v-if="showRecent" class="is-open spotlight variant-dark">
-                <div class="header no-active-scale">
+                <div class="no-active-scale header">
                   <span>{{ $t('recent_game_record') }}</span>
                   <BaseButton type="text" @click="setSRFalse()">
                     <BaseIcon name="uni-close-white" />
