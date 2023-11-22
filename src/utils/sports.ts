@@ -428,6 +428,7 @@ export class SportsCart {
       item.m = _wsiObject?.m ?? 0
       item.maa = _biObject?.maa ?? 0
       item.mia = _biObject?.mia ?? 0
+      item.cei = _biObject?.cei ?? ''
     })
     const ovIsChange = this.dataList.some((item) => {
       const wsi = data.wsi.find(a => a.wid === item.wid)
