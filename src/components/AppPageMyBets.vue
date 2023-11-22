@@ -38,7 +38,8 @@ const isSports = computed(() => currentTab.value === 'sports')
       />
     </div>
 
-    <AppSportsPageMyBet v-if="isSports" :slip-type="sportsSlipType" />
+    <AppCasinoPageMyBet v-if="isCasino" />
+    <AppSportsPageMyBet v-else-if="isSports" :slip-type="sportsSlipType" />
 
     <div class="layout-spacing">
       <AppBetData v-if="isCasino" mode="casino" />
