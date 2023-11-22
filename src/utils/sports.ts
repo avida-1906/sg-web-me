@@ -276,6 +276,13 @@ export class SportsCart {
     }, 0)
   }
 
+  /** 预计总支付额 */
+  get totalPay() {
+    return this.dataList.reduce((a, b) => {
+      return Number(add(a, Number(b.amount)))
+    }, 0)
+  }
+
   /** 是否显示重新使用投注单
    *
    * 当购物车中数据的result不为undefined时，显示重新使用投注单

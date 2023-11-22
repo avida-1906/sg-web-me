@@ -107,9 +107,9 @@ const duplexTotalProfit = computed(() => {
 /** 您的投注额不能超过余额 */
 const isBetAmountOverBalance = computed(() => {
   if (betOrderSelectValue.value === EnumsBetSlipBetSlipTabStatus.single)
-    return currentGlobalCurrencyBalanceNumber.value < +sportStore.cart.totalProfit
+    return currentGlobalCurrencyBalanceNumber.value < +sportStore.cart.totalPay
 
-  else return currentGlobalCurrencyBalanceNumber.value < +duplexTotalProfit.value
+  else return currentGlobalCurrencyBalanceNumber.value < Number(duplexInputValue.value)
 })
 /** 错误信息 */
 const errorInfo = computed<{
@@ -123,6 +123,14 @@ const errorInfo = computed<{
     return {
       bool: true,
       errorMess: t('sports_odds_has_changed'),
+    }
+  }
+
+  // 余额不足
+  if (isBetAmountOverBalance.value) {
+    return {
+      bool: true,
+      errorMess: '您的投注额不能大于余额。',
     }
   }
 
@@ -147,14 +155,6 @@ const errorInfo = computed<{
         bool: true,
         errorMess: `复式投注项组合不能超过 ${VITE_SPORT_MULTI_BET_MAX} 个。`,
       }
-    }
-  }
-
-  // 余额不足
-  if (isBetAmountOverBalance.value) {
-    return {
-      bool: true,
-      errorMess: '您的投注额不能大于余额。',
     }
   }
 
@@ -235,8 +235,8 @@ function betSuccess() {
     ? t('sports_single_bet')
     : t('sports_multi_bet')
   const amount = betOrderSelectValue.value === EnumsBetSlipBetSlipTabStatus.single
-    ? sportStore.cart.totalProfit
-    : duplexTotalProfit.value
+    ? sportStore.cart.totalPay
+    : Number(duplexInputValue.value)
   const num = betOrderSelectValue.value === EnumsBetSlipBetSlipTabStatus.single
     ? sportStore.cart.count
     : 1
@@ -286,7 +286,7 @@ function bet() {
         bl: [
           {
             pt: betOrderSelectValue.value,
-            a: Number(toFixed(Number(duplexTotalProfit.value), 2)),
+            a: Number(toFixed(Number(duplexInputValue.value), 2)),
             bi: sportStore.cart.dataList,
           },
         ],
