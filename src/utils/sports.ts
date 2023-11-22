@@ -401,11 +401,14 @@ export class SportsCart {
     const { wsi, bi } = data
     const duplexOv = bi[0].ov
     this.dataList.forEach((item) => {
-      item.ov = wsi.find(a => a.wid === item.wid)?.ov ?? ''
-      item.os = wsi.find(a => a.wid === item.wid)?.os ?? 0
-      item.m = wsi.find(a => a.wid === item.wid)?.m ?? 0
-      item.maa = bi.find(a => a.wid === item.wid)?.maa ?? 0
-      item.mia = bi.find(a => a.wid === item.wid)?.mia ?? 0
+      const _wsiObject = wsi.find(a => a.wid === item.wid)
+      const _biObject = bi.find(a => a.wid === item.wid)
+
+      item.ov = _wsiObject?.ov ?? ''
+      item.os = _wsiObject?.os ?? 0
+      item.m = _wsiObject?.m ?? 0
+      item.maa = _biObject?.maa ?? 0
+      item.mia = _biObject?.mia ?? 0
     })
     const ovIsChange = this.dataList.some((item) => {
       const wsi = data.wsi.find(a => a.wid === item.wid)

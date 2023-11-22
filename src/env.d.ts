@@ -19,6 +19,8 @@ interface ImportMetaEnv {
   readonly VITE_CASINO_GAME_PAGE_SIZE: number
   /** 订阅聊天消息topic前缀 */
   readonly VITE_SOCKET_PREFIX: string
+  /** 复式投注项组合最大数量（现在只有IM，写死10个，后期可能会变） */
+  readonly VITE_SPORT_MULTI_BET_MAX: number
 }
 
 interface ImportMeta {
