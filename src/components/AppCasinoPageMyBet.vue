@@ -28,7 +28,7 @@ const columns = [
     width: 90,
     dataIndex: 'amount',
     slot: 'amount',
-    align: 'left',
+    align: 'center',
   },
   {
     title: '乘数',
@@ -63,20 +63,7 @@ const tableData = [
       v-if="tableData && tableData.length"
       :columns="columns"
       :data-source="tableData"
-    >
-      <!-- :loading="loading" -->
-      <template #time="{ record }">
-        <div>{{ record.time }}</div>
-      </template>
-      <template #amount="{ record }">
-        <div class="to-right">
-          <AppAmount
-            :amount="record.amount"
-            :currency-type="record.currencyType"
-          />
-        </div>
-      </template>
-    </BaseTable>
+    />
     <div class="btns">
       <BaseButton type="text">
         上一页

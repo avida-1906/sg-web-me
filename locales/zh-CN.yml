@@ -1322,3 +1322,5 @@ for_example: 举例说明如下
 direct_team: 直属团队
 other_team: 其他团队
 summary: 总结说明
+no_bonus_now: 暂无可领取活动礼金
+fail_bonus: 领取失败
