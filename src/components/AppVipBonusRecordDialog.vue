@@ -44,8 +44,8 @@ const columns = reactive<IColumns[]>([
   {
     title: t('amount'),
     width: 130,
-    dataIndex: 'amount',
-    slot: 'amount',
+    dataIndex: 'receive_amount',
+    slot: 'receive_amount',
     align: 'right',
   },
 ])
@@ -88,10 +88,10 @@ function getCashType(cashType: string) {
       <template #cash_type="{ record }">
         {{ getCashType(record.cash_type) }}
       </template>
-      <template #amount="{ record }">
+      <template #receive_amount="{ record }">
         <div class="to-right">
           <AppAmount
-            :amount="record.amount"
+            :amount="record.receive_amount"
             :currency-type="getCurrencyName(record.receive_currency_id)"
           />
         </div>
