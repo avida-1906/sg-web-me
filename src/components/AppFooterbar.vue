@@ -90,15 +90,22 @@ function changeBar(item: { name: string; path?: string }) {
 <template>
   <div class="app-footer-bar page-content">
     <div
-      v-for="item of tabbar"
+      v-for="item, index of tabbar"
       v-show="item.show"
       :key="item.icon"
       class="bar-item"
       :class="{ 'active-bar': activeBar === item.name }"
     >
       <BaseButton type="text" @click.stop="changeBar(item)">
-        <div class="bar-btn">
-          <BaseIcon class="bar-icon" :name="item.icon" />
+        <div
+          :id="index === 2 ? EnumSportEndDomID.H5_CART_END_DOM : ''"
+          class="bar-btn"
+        >
+          <BaseIcon
+
+            class="bar-icon"
+            :name="item.icon"
+          />
           <span>{{ item.title }}</span>
         </div>
       </BaseButton>
