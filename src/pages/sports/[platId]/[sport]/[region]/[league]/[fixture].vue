@@ -144,6 +144,7 @@ await application.allSettled([
                             :title="outcome.sn"
                             :odds="outcome.ov"
                             :cart-info="outcome.cartInfo"
+                            :disabled="item.mls === 2"
                             layout="horizontal"
                           />
                         </div>
@@ -174,6 +175,7 @@ await application.allSettled([
                                   :title="valueItem.hdp"
                                   :cart-info="valueItem.cartInfo"
                                   :odds="valueItem.ov"
+                                  :disabled="item.mls === 2"
                                 />
                               </div>
                             </template>
@@ -194,6 +196,7 @@ await application.allSettled([
                             :title="outcome.sn"
                             :odds="`${outcome.ov}`"
                             :cart-info="outcome.cartInfo"
+                            :disabled="item.mls === 2"
                             layout="horizontal"
                           />
                         </div>
@@ -258,7 +261,7 @@ await application.allSettled([
                 </div>
               </div>
               <div v-if="showRecent" class="is-open spotlight variant-dark">
-                <div class="header no-active-scale">
+                <div class="no-active-scale header">
                   <span>{{ $t('recent_game_record') }}</span>
                   <BaseButton type="text" @click="setSRFalse()">
                     <BaseIcon name="uni-close-white" />
