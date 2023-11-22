@@ -19,6 +19,7 @@ const { openNotify } = useNotify()
 const {
   currentGlobalCurrency,
   currentGlobalCurrencyBalanceNumber,
+  isLogin,
 } = storeToRefs(appStore)
 const sportStore = useSportsStore()
 /** 赔率是否变化 */
@@ -110,7 +111,7 @@ const isBetAmountOverBalance = computed(() => {
 
   else return currentGlobalCurrencyBalanceNumber.value < +duplexTotalProfit.value
 })
-/** 是否显示错误提示 */
+/** 错误信息 */
 const errorInfo = computed<{
   /** 是否显示错误提示 */
   bool: boolean
@@ -125,11 +126,10 @@ const errorInfo = computed<{
     }
   }
 
-  // 余额不足
-  if (isBetAmountOverBalance.value) {
+  if (sportStore.cart.isExistCloseCaps) {
     return {
       bool: true,
-      errorMess: '您的投注额不能大于余额。',
+      errorMess: '您的投注单里不能含有已关闭的盘口投注项',
     }
   }
 
@@ -147,6 +147,14 @@ const errorInfo = computed<{
         bool: true,
         errorMess: `复式投注项组合不能超过 ${VITE_SPORT_MULTI_BET_MAX} 个。`,
       }
+    }
+  }
+
+  // 余额不足
+  if (isBetAmountOverBalance.value) {
+    return {
+      bool: true,
+      errorMess: '您的投注额不能大于余额。',
     }
   }
 
@@ -247,6 +255,9 @@ function betSuccess() {
 }
 
 function runGetSportPlaceBetInfoHandle() {
+  if (isLogin.value === false)
+    return
+
   runGetSportPlaceBetInfo({
     ic: betOrderSelectValue.value,
     bi: sportStore.cart.dataList,
@@ -303,7 +314,7 @@ function bet() {
   }
 }
 
-watch(() => sportStore.cart.count, (val) => {
+watch(() => sportStore.cart.count, (val, oVal) => {
   if (val) {
     nextTick(() => {
       if (chatScrollContent.value)
@@ -311,6 +322,12 @@ watch(() => sportStore.cart.count, (val) => {
     })
 
     if (!timer) {
+      runGetSportPlaceBetInfoHandle()
+      startSetInterval()
+    }
+
+    if (oVal && val > oVal) {
+      closeSetInterval()
       runGetSportPlaceBetInfoHandle()
       startSetInterval()
     }

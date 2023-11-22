@@ -306,6 +306,15 @@ export class SportsCart {
     return Array.from(duplicates)
   }
 
+  /**
+   * 获取是否有关盘的盘口
+   * @desc os 0:关盘 1:开盘
+   * @returns {boolean}
+   */
+  get isExistCloseCaps() {
+    return this.dataList.some(a => a.os === 0)
+  }
+
   constructor(currency: EnumCurrencyKey) {
     this.currency = currency
   }
