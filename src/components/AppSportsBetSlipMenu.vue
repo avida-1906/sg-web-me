@@ -3,6 +3,7 @@ import AppSportBetSuccessNotify from './AppSportBetSuccessNotify.vue'
 import type { IBetArgs } from '~/apis/types'
 
 const chatScrollContent = ref<HTMLElement | null>(null)
+const { VITE_SPORT_MULTI_BET_MAX } = getEnv()
 
 let timer: any = null
 const duplexInputValue = ref('')
@@ -109,32 +110,6 @@ const isBetAmountOverBalance = computed(() => {
 
   else return currentGlobalCurrencyBalanceNumber.value < +duplexTotalProfit.value
 })
-/** 投注按钮是否禁用 */
-const isBetBtnDisabled = computed(() => {
-  if (sportStore.cart.count === 0)
-    return true
-
-  if (isBetAmountOverBalance.value)
-    return true
-
-  if (betOrderSelectValue.value === EnumsBetSlipBetSlipTabStatus.single) {
-    /**
-     * 单式投注
-     *判断 sportStore.cart.dataList 中的每一项的amount是否为0
-     */
-    const isAmountZero = sportStore.cart.dataList.some(item => item.amount <= 0)
-    if (isAmountZero)
-      return true
-  }
-  else {
-    /**
-     * 复式投注
-     * 判断 duplexInputValue.value 是否小于等于0
-     */
-    if (Number(duplexInputValue.value) <= 0)
-      return true
-  }
-})
 /** 是否显示错误提示 */
 const errorInfo = computed<{
   /** 是否显示错误提示 */
@@ -166,12 +141,49 @@ const errorInfo = computed<{
         errorMess: '来自同一赛事的多重投注项不能结合成复式投注。',
       }
     }
+
+    if (sportStore.cart.count > VITE_SPORT_MULTI_BET_MAX) {
+      return {
+        bool: true,
+        errorMess: `复式投注项组合不能超过 ${VITE_SPORT_MULTI_BET_MAX} 个。`,
+      }
+    }
   }
 
   return {
     bool: false,
     errorMess: '',
   }
+})
+
+/** 投注按钮是否禁用 */
+const isBetBtnDisabled = computed(() => {
+  if (sportStore.cart.count === 0)
+    return true
+
+  if (isBetAmountOverBalance.value)
+    return true
+
+  if (betOrderSelectValue.value === EnumsBetSlipBetSlipTabStatus.single) {
+    /**
+     * 单式投注
+     *判断 sportStore.cart.dataList 中的每一项的amount是否为0
+     */
+    const isAmountZero = sportStore.cart.dataList.some(item => item.amount <= 0)
+    if (isAmountZero)
+      return true
+  }
+  else {
+    /**
+     * 复式投注
+     * 判断 duplexInputValue.value 是否小于等于0
+     */
+    if (Number(duplexInputValue.value) <= 0)
+      return true
+  }
+
+  if (errorInfo.value.bool)
+    return true
 })
 
 async function fetchBet(list: IBetArgs[]) {
