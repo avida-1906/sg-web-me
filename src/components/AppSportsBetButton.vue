@@ -15,8 +15,6 @@ const props = withDefaults(defineProps<Props>(), {
 
 const betButton = ref<HTMLElement | null>(null)
 
-// domTransition
-
 const windowStore = useWindowStore()
 const sportStore = useSportsStore()
 const { t } = useI18n()
@@ -55,8 +53,6 @@ function mobileDomTransition() {
 function startDomTransition() {
   const startDom = betButton.value
   const endDom = isMobile.value ? document.getElementById(EnumSportEndDomID.H5_CART_END_DOM) : document.getElementById(EnumSportEndDomID.PC_CART_END_DOM)
-  console.log('startDom', startDom)
-  console.log('endDom', endDom)
   const sportsBetSlipDom = document.querySelector('.app-sports-bet-slip') as HTMLElement
   let topOffset = '0px'
 
