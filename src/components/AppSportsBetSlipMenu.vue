@@ -36,6 +36,7 @@ const {
 const sportStore = useSportsStore()
 /** 赔率是否变化 */
 const { bool: ovIsChange, setBool: setOvChangeStateBool } = useBoolean(false)
+const { openRegisterDialog } = useRegisterDialog()
 
 const {
   run: runGetSportPlaceBetInfo,
@@ -554,24 +555,35 @@ onUnmounted(() => {
           <span>{{ errorInfo.errorMess }}</span>
         </div>
 
-        <BaseButton
-          v-if="ovIsChange"
-          size="md"
-          bg-style="primary"
-          @click="setOvChangeStateBool(false)"
-        >
-          接受新赔率
-        </BaseButton>
-        <BaseButton
-          v-else
-          size="md"
-          bg-style="primary"
-          :disabled="isBetBtnDisabled"
-          :loading="betLoading"
-          @click="bet"
-        >
-          {{ t('sports_bet') }}{{ betBtnText }}
-        </BaseButton>
+        <template v-if="!isLogin">
+          <BaseButton
+            size="md"
+            bg-style="primary"
+            @click="openRegisterDialog"
+          >
+            注册进行投注
+          </BaseButton>
+        </template>
+        <template v-else>
+          <BaseButton
+            v-if="ovIsChange"
+            size="md"
+            bg-style="primary"
+            @click="setOvChangeStateBool(false)"
+          >
+            接受新赔率
+          </BaseButton>
+          <BaseButton
+            v-else
+            size="md"
+            bg-style="primary"
+            :disabled="isBetBtnDisabled"
+            :loading="betLoading"
+            @click="bet"
+          >
+            {{ t('sports_bet') }}{{ betBtnText }}
+          </BaseButton>
+        </template>
       </template>
       <!-- 我的投注 -->
       <BaseButton

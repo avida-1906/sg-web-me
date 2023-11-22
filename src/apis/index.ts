@@ -1009,7 +1009,16 @@ export function ApiMemberVipConfig() {
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=96ca75cd-8d54-4ad7-a194-49f24524f1c9
  */
 export function ApiMemberVipBonusRecord() {
-  return httpClient.get<string>('/member/vip/bonus/apply/list')
+  return httpClient.get<{
+    amount: string
+    cash_type: string
+    created_at: number
+    currency_id: CurrencyCode
+    id: string
+    receive_amount: string
+    receive_currency_id: CurrencyCode
+    updated_at: number
+  }[]>('/member/vip/bonus/apply/list')
 }
 
 /**
@@ -1018,7 +1027,7 @@ export function ApiMemberVipBonusRecord() {
  */
 export function ApiMemberApplyVipBonus(params: {
   /** 选择币种领取 */
-  cur: EnumCurrencyKey
+  cur: CurrencyCode
 }) {
   return httpClient.get<{
     id: number

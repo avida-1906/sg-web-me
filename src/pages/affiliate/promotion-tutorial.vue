@@ -314,39 +314,26 @@ onBeforeUnmount(() => {
     <div class="des">
       <p>
         <span class="title">{{ $t('for_example') }}:</span>
-        <span>本站点返佣以有效投注为依据，假设返佣比例为左上角表格。A在本站第一个发现商机，
-          马上发展了B1、B2和B3，B1又往下发展了C1和C2，B2无下级，B3只发展了比较有实力的C3。
-          几天后，B1本人的有效投注为8万，B2本人的有效投注为5万，B3本人的有效投注为3万，C1本
-          人的有效投注为10万，C2本人的有效投注为4万，C3本人的有效投注达71万，则B1总业绩来自
-          C1和C2共14万，对应返佣比例为80/万；B2无下级业绩为0；B3下级C3给力，总业绩为71万，
-          对应返佣比例为100/万；A有来自直属团队16万和来自其他团队85万，总业绩为101万，对应返
-          佣比例是100/万。那么他们之间的收益计算方式如下:
-        </span>
+        <span>{{ $t('promotion_tutorial_example_desc') }}:</span>
       </p>
       <p>
         <span class="label">1、{{ $t('direct_team') }}: </span>
-        <span>(1) B1，B2，B3贡献给A: (8万+5万+3万)x100/万=1600。</span>
-        <span>(2) C1和C2贡献给B1: (10万+4万)x80/万=1120。 </span>
-        <span>(3) C3贡献给B3: 71万x100/万=7100。</span>
+        <span>{{ $t('promotion_tutorial_direct_team_1') }}</span>
+        <span>{{ $t('promotion_tutorial_direct_team_2') }}</span>
+        <span>{{ $t('promotion_tutorial_direct_team_3') }}</span>
       </p>
       <p>
         <span class="label">2、{{ $t('other_team') }}: </span>
-        <span>是指下级、下下级、下下下级...等发展的成员，统一叫其他团队；因本系统可无限发展下级，为便于解说，
-          本文只取2级结构作为例子阐述。</span>
-        <span>(1)来自C1和C2：因B1总业绩14万，只享受80/万的返佣比例，而A总业绩101万，享受100/万的
-          返佣比例，那么A和B1之间产生了返佣差额为：100-80=20/万，此差额即为C1和C2贡献给A的部分，所
-          以C1和C2贡献给A：(10万+4万)×20/万=280。</span>
-        <span>(2)来自C3：因B3总业绩71万，享受100/万的返佣比例，A总业绩101万，享受100/万的返佣比例，
-          那么A和B3之间产生的返佣差额为：100-100=0/万，C3贡献给A：71万x0/万=0。</span>
+        <span>{{ $t('promotion_tutorial_other_team_1') }}</span>
+        <span>{{ $t('promotion_tutorial_other_team_2') }}</span>
+        <span>{{ $t('promotion_tutorial_other_team_3') }}</span>
       </p>
       <p>
         <span class="label">3、{{ $t('summary') }}:</span>
-        <span>(1)C3给力，间接让A的所有业绩都享受更高返佣比例。</span>
-        <span>(2)B2可能比较懒，没有发展下级，则无收益。</span>
-        <span>(3)B3虽然加入比较晚，且属于A的下级，但其下级C3给力，让B3直接享受更高返佣比例，所以B3无论
-          何时加入，处于谁的下级，不管身处于第几级，收益永远不受影响，不再吃他人下级的亏，发展也不被制约。
-        </span>
-        <span>(4)这是一套绝对公平公正的代理模式，并不会因为谁加入得晚，而永远被踩在脚下。</span>
+        <span>{{ $t('promotion_tutorial_summary_1') }}</span>
+        <span>{{ $t('promotion_tutorial_summary_2') }}</span>
+        <span>{{ $t('promotion_tutorial_summary_3') }}</span>
+        <span>{{ $t('promotion_tutorial_summary_4') }}</span>
       </p>
     </div>
   </div>

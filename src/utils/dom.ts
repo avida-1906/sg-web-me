@@ -16,7 +16,7 @@ export function domTransition(
   }) {
   const defaultOptions = {
     duration: 500,
-    easing: 'ease-in-out',
+    easing: 'ease',
     height: '30px',
     backgroundColor: 'var(--tg-text-blue)',
     topOffset: 0,
@@ -31,7 +31,7 @@ export function domTransition(
 
   // 创建一个新的div元素，用于动画效果
   const animatedDiv = document.createElement('div')
-  animatedDiv.style.position = 'absolute'
+  animatedDiv.style.position = 'fixed'
   animatedDiv.style.left = `${startDomRect.left}px`
   animatedDiv.style.top = `${startDomRect.top}px`
   animatedDiv.style.width = `${startDomRect.width}px`
@@ -52,7 +52,7 @@ export function domTransition(
     animatedDiv.style.top = `${endDomRect.top - mergedOptions.topOffset}px`
     animatedDiv.style.width = `${endDomRect.width}px`
     animatedDiv.style.height = mergedOptions.height
-    animatedDiv.style.opacity = '0'
+    animatedDiv.style.opacity = '0.07'
 
     // 动画结束后移除动画元素
     animatedDiv.addEventListener('transitionend', () => {

@@ -263,3 +263,27 @@ export enum EnumSportEndDomID {
   /** H5样式 下的EndDom */
   H5_CART_END_DOM = 'H5_CART_END_DOM',
 }
+
+/**
+ *  活动红利相关的帐变类型
+ */
+export enum PromoTransactionType {
+  /** 会员返水 */
+  'rebate' = 814,
+  /** 活动红利 */
+  'activity' = 815,
+  /** 人工红利派发 */
+  'admin_activity' = 816,
+  /** 存款优惠 */
+  'deposit_bonus' = 817,
+  /** vip晋级礼金 */
+  'vip_upgrade' = 818,
+  /** vip日红包 */
+  'vip_day' = 819,
+  /** vip周红包 */
+  'vip_week' = 820,
+  /** vip月红包 */
+  'vip_monthly' = 821,
+  /** vip生日礼金 */
+  'vip_birthday' = 822,
+}

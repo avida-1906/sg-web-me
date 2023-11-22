@@ -38,23 +38,15 @@ const columns = reactive<IColumns[]>([
     title: t('receive_type'),
     width: 100,
     dataIndex: 'cash_type',
+    slot: 'cash_type',
     align: 'center',
   },
   {
     title: t('amount'),
     width: 130,
-    dataIndex: 'amount',
-    slot: 'amount',
+    dataIndex: 'receive_amount',
+    slot: 'receive_amount',
     align: 'right',
-  },
-])
-
-const tableData = reactive([
-  {
-    created_at: 1699517005157,
-    cash_type: 1,
-    amount: '9999.8880',
-    receive_currency_id: 703,
   },
 ])
 
@@ -64,6 +56,13 @@ runGetRecord()
 
 function getCurrencyName(id: string | number): EnumCurrencyKey {
   return renderBalanceList.value.filter(c => +c.cur === +id)[0].type
+}
+
+function getCashType(cashType: string) {
+  const temp
+    = Object.entries(PromoTransactionType)
+      .filter(([k, v]) => +k > 0 && +k === +cashType)[0]
+  return temp ? t(`transaction_${temp[1]}`) : '-'
 }
 
 // function onPrevious() {
@@ -80,16 +79,19 @@ function getCurrencyName(id: string | number): EnumCurrencyKey {
     <BaseTable
       v-if="data && data.length"
       :columns="columns"
-      :data-source="tableData"
+      :data-source="data"
     >
       <!-- :loading="loading" -->
       <template #created_at="{ record }">
         <div>{{ record.created_at }}</div>
       </template>
-      <template #amount="{ record }">
+      <template #cash_type="{ record }">
+        {{ getCashType(record.cash_type) }}
+      </template>
+      <template #receive_amount="{ record }">
         <div class="to-right">
           <AppAmount
-            :amount="record.amount"
+            :amount="record.receive_amount"
             :currency-type="getCurrencyName(record.receive_currency_id)"
           />
         </div>

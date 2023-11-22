@@ -15,14 +15,14 @@ const props = withDefaults(defineProps<Props>(), {
 
 const betButton = ref<HTMLElement | null>(null)
 
-// domTransition
-
+const windowStore = useWindowStore()
 const sportStore = useSportsStore()
 const { t } = useI18n()
 const { openRightSidebar, rightIsExpand } = useRightSidebar()
+const { isMobile } = storeToRefs(windowStore)
 
 function clickHandler() {
-  if (!rightIsExpand.value)
+  if (!rightIsExpand.value && !isMobile.value)
     openRightSidebar(EnumRightSidebarContent.BETTING)
 
   if (sportStore.cart.checkWid(props.cartInfo.wid)) {
@@ -30,17 +30,29 @@ function clickHandler() {
   }
   else {
     sportStore.cart.add(props.cartInfo)
-    if (document.querySelector('.app-sports-bet-slip')) {
-      setTimeout(() => {
-        startDomTransition()
-      }, 30)
-    }
+    if (isMobile.value)
+      mobileDomTransition()
+
+    else
+      pcDomTransition()
   }
+}
+
+function pcDomTransition() {
+  if (document.querySelector('.app-sports-bet-slip')) {
+    setTimeout(() => {
+      startDomTransition()
+    }, 30)
+  }
+}
+
+function mobileDomTransition() {
+  startDomTransition()
 }
 
 function startDomTransition() {
   const startDom = betButton.value
-  const endDom = document.getElementById(EnumSportEndDomID.PC_CART_END_DOM)
+  const endDom = isMobile.value ? document.getElementById(EnumSportEndDomID.H5_CART_END_DOM) : document.getElementById(EnumSportEndDomID.PC_CART_END_DOM)
   const sportsBetSlipDom = document.querySelector('.app-sports-bet-slip') as HTMLElement
   let topOffset = '0px'
 
