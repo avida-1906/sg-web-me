@@ -17,6 +17,7 @@ const refreshBalanceBus = useEventBus(REFRESH_BALANCE_BUS)
 const mqttDisconnectBus = useEventBus(MQTT_DISCONNECT_BUS)
 const mqttConnectSuccessBus = useEventBus(MQTT_CONNECT_SUCCESS_BUS)
 const refreshMemberBus = useEventBus(REFRESH_MEMBER_BUS)
+const refreshAuthBus = useEventBus(REFRESH_AUTH_BUS)
 
 /**
  * 刷新余额
@@ -182,10 +183,9 @@ class SocketClient {
 
       this.client.on('message', (topic, message, packet) => {
         this.#log(`收到消息：${message.toString()}`, topic, packet)
-
+        const data = JSON.parse(message.toString())
         try {
           if (topic.includes('chat')) {
-            const data = JSON.parse(message.toString())
             if (data)
               chatMessageBus.emit(data)
           }
@@ -196,6 +196,10 @@ class SocketClient {
           else if (topic.includes('member')) {
             // 刷新用户信息
             refreshMemberThrottle()
+          }
+          else if (topic.includes('auth')) {
+            // 第三方登录状态推送
+            refreshAuthBus.emit(data)
           }
         }
         catch (error) {

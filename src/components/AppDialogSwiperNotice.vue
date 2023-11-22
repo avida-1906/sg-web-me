@@ -16,7 +16,7 @@ console.log(props.data)
       :width="420"
       padding0
     >
-      <template v-for="item, index of data" #[`item${index}`] :key="item.id">
+      <template #default="{ item }">
         <BaseImage
           :url="item.image_url[getCurrentLanguageForBackend()]"
           is-network

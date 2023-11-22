@@ -1,0 +1,74 @@
+<script lang="ts" setup>
+const { t } = useI18n()
+
+const isEmailEmptyAndMust = ref(true)
+const emailRef = ref()
+const userNameRef = ref()
+
+const {
+  value: email,
+  errorMessage: emailErrorMsg,
+  validate: validateEmail,
+} = useField<string>('email', (value) => {
+  if (!value)
+    return t('pls_enter_email_address')
+  else if (!emailReg.test(value))
+    return t('email_address_incorrect')
+  return ''
+})
+const {
+  value: username,
+  errorMessage: usernameErrorMsg,
+  validate: validateUsername,
+  setErrors: setUsernameErrors,
+} = useField<string>('username', (value) => {
+  if (!value)
+    return t('pls_enter_username')
+  else if (!usernameReg.test(value))
+    return t('validate_msg_user_name_tip')
+  return ''
+})
+
+const { run: runExists } = useRequest(ApiMemberExists, {
+  async onSuccess() {
+  },
+  onError() {
+  },
+})
+
+function onEmailUsernameBlur(type: 1 | 2) {
+  if (type === 1 && username.value && !usernameErrorMsg.value)
+    runExists({ ty: type, val: username.value, noNotify: true })
+  if (type === 2 && email.value && !emailErrorMsg.value)
+    runExists({ ty: type, val: email.value })
+}
+</script>
+
+<template>
+  <div>
+    <div class="app-register-input-box">
+      <BaseLabel v-if="isEmailEmptyAndMust" :label="t('email_address')" must-small>
+        <BaseInput
+          ref="emailRef" v-model="email" :msg="emailErrorMsg" msg-after-touched
+          @blur="onEmailUsernameBlur(2)"
+        />
+      </BaseLabel>
+      <BaseLabel :label="t('username')" must-small>
+        <BaseInput
+          ref="userNameRef" v-model="username"
+          :msg="usernameErrorMsg"
+          msg-after-touched @blur="onEmailUsernameBlur(1)"
+        />
+      </BaseLabel>
+    </div>
+    <div class="btns">
+      <BaseButton bg-style="secondary" size="sm">
+        继续
+      </BaseButton>
+    </div>
+  </div>
+</template>
+
+<style lang="scss" scoped>
+
+</style>
