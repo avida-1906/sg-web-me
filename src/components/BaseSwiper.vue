@@ -9,7 +9,6 @@ interface SwiperItem {
 interface Props {
   data: SwiperItem[]
   modelValue?: string | number
-  width?: number
 }
 
 const props = defineProps<Props>()

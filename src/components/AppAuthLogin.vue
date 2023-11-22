@@ -12,6 +12,7 @@ type AuthTypesKeys = keyof typeof AuthTypes
 const { VITE_SOCKET_PREFIX } = getEnv()
 
 const { t } = useI18n()
+const { openThirdAuthFormDialog } = useDialogThirdAuthForm()
 const refreshAuthBus = useEventBus(REFRESH_AUTH_BUS)
 
 const state = ref(Math.random().toString(36).slice(-10))
