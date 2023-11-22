@@ -1,7 +1,19 @@
 <script lang="ts" setup>
-const { t } = useI18n()
+interface Props {
+  data: {
+    id: string
+    email: string
+    name: string
+  }
+  ty: 1 | 2 | 3 | 4
+}
 
-const isEmailEmptyAndMust = ref(true)
+const props = defineProps<Props>()
+
+const { t } = useI18n()
+const appStore = useAppStore()
+
+const { bool: isEmailEmptyAndMust, setBool: setEmailShow } = useBoolean(false)
 const emailRef = ref()
 const userNameRef = ref()
 
@@ -36,33 +48,59 @@ const { run: runExists } = useRequest(ApiMemberExists, {
   },
 })
 
+const { run: runThirdReg } = useRequest(ApiMemberThirdReg, {
+  onSuccess: (data) => {
+    appStore.setToken(data)
+    setTimeout(() => {
+      location.reload()
+    }, 100)
+  },
+})
+
 function onEmailUsernameBlur(type: 1 | 2) {
   if (type === 1 && username.value && !usernameErrorMsg.value)
     runExists({ ty: type, val: username.value, noNotify: true })
   if (type === 2 && email.value && !emailErrorMsg.value)
     runExists({ ty: type, val: email.value })
 }
+
+async function submit() {
+  if (isEmailEmptyAndMust.value)
+    await validateEmail()
+
+  await validateUsername()
+  runThirdReg({
+    email: props.data.email ?? email.value,
+    username: username.value,
+    third_id: props.data.id,
+    third_type: props.ty,
+  })
+}
+
+onMounted(() => {
+  if (props.data && !props.data.email)
+    setEmailShow(true)
+})
 </script>
 
 <template>
-  <div>
+  <div class="app-auth-third-form">
     <div class="app-register-input-box">
       <BaseLabel v-if="isEmailEmptyAndMust" :label="t('email_address')" must-small>
         <BaseInput
-          ref="emailRef" v-model="email" :msg="emailErrorMsg" msg-after-touched
+          ref="emailRef" v-model="email" :msg="emailErrorMsg"
           @blur="onEmailUsernameBlur(2)"
         />
       </BaseLabel>
+      <!-- msg-after-touched  -->
       <BaseLabel :label="t('username')" must-small>
         <BaseInput
           ref="userNameRef" v-model="username"
           :msg="usernameErrorMsg"
-          msg-after-touched @blur="onEmailUsernameBlur(1)"
+          @blur="onEmailUsernameBlur(1)"
         />
       </BaseLabel>
-    </div>
-    <div class="btns">
-      <BaseButton bg-style="secondary" size="sm">
+      <BaseButton bg-style="secondary" size="md" @click="submit">
         继续
       </BaseButton>
     </div>
@@ -70,5 +108,12 @@ function onEmailUsernameBlur(type: 1 | 2) {
 </template>
 
 <style lang="scss" scoped>
-
+.app-auth-third-form {
+  padding: var(--tg-spacing-button-padding-horizontal-sm) var(--tg-spacing-button-padding-horizontal-sm);
+  .app-register-input-box {
+    display: flex;
+    flex-direction: column;
+    gap: var(--tg-spacing-16);
+  }
+}
 </style>

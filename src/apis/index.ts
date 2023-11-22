@@ -1222,8 +1222,8 @@ export function ApiMemberThirdAuthUrl(params: {
 export function ApiMemberThirdReg(data: {
   email: string
   username: string
-  parent_id: string
-  device_number: string
+  parent_id?: string
+  device_number?: string
   third_type: number
   third_id: string
 }) {
