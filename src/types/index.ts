@@ -142,7 +142,14 @@ export type ICartInfoData = ICartInfo & {
 
 /**
  * 赛事信息改变回调函数
- * @param {boolean} ovIsChange 赔率是否改变
- * @param {string} duplexOv 复式下的总赔率
  */
-export type IBetInfoChangeCallback = (ovIsChange: boolean, duplexOv: string) => void
+export type IBetInfoChangeCallback = (
+  /** 赔率是否改变 */
+  ovIsChange: boolean,
+  /** 复式下的总赔率 */
+  duplexOv: string,
+  /** 复式下的最小投注额 */
+  mia: number,
+  /** 复式下的最大投注额 */
+  maa: number
+) => void

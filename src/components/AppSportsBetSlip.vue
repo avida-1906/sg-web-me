@@ -75,6 +75,13 @@ const isLive = computed(() => {
   if (props.cartInfoData.m === 3)
     return true
 })
+const suffixLength = computed(() =>
+  application.getCurrencySuffixLength(currentGlobalCurrency.value),
+)
+
+function inputBlur() {
+  amount.value = application.sliceOrPad(amount.value, suffixLength.value) as any
+}
 
 watch(currentGlobalCurrency, (_currency) => {
   sportStore.cart.updateCurrency(_currency)
@@ -86,7 +93,8 @@ watchEffect(() => {
 })
 
 watch(() => props.cartInfoData.amount, () => {
-  amount.value = props.cartInfoData.amount
+  if (props.cartInfoData.amount <= 0)
+    amount.value = '' as any
 })
 </script>
 
@@ -142,6 +150,7 @@ watch(() => props.cartInfoData.amount, () => {
       <div v-show="isBetSingle && cartInfoData.result === undefined" class="footer">
         <div class="bet-amount">
           <BaseInput
+            :key="currentGlobalCurrency"
             v-model="amount"
             type="number"
             mb0
@@ -149,6 +158,7 @@ watch(() => props.cartInfoData.amount, () => {
             :msg="amountErrorMsg"
             :disabled="isDisabled"
             :msg-after-touched="true"
+            @blur="inputBlur"
           >
             <template #right-icon>
               <AppCurrencyIcon :currency-type="currentGlobalCurrency" />
@@ -160,7 +170,12 @@ watch(() => props.cartInfoData.amount, () => {
         </div>
         <div class="estimated-amount">
           <AppAmount
-            :amount="mul(amount ?? 0, Number(cartInfoData.ov))"
+            :amount="
+              application.sliceOrPad(
+                +mul(amount ?? 0, Number(cartInfoData.ov)),
+                suffixLength,
+              )
+            "
             :currency-type="currentGlobalCurrency"
           />
         </div>

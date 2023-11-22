@@ -377,6 +377,7 @@ export class SportsCart {
       suffixLength = 8
 
     this.dataList.forEach((a) => {
+      console.error((toFixed(0, suffixLength)))
       a.amount = Number(toFixed(0, suffixLength))
     })
   }
@@ -416,6 +417,8 @@ export class SportsCart {
   updateAllData(data: IBetInfoBack, fn?: IBetInfoChangeCallback) {
     const { wsi, bi } = data
     const duplexOv = bi[0].ov
+    const mia = bi[0] ? bi[0].mia : 0
+    const maa = bi[0] ? bi[0].maa : 0
     this.dataList.forEach((item) => {
       const _wsiObject = wsi.find(a => a.wid === item.wid)
       const _biObject = bi.find(a => a.wid === item.wid)
@@ -432,7 +435,7 @@ export class SportsCart {
     })
 
     if (fn)
-      fn(ovIsChange, duplexOv)
+      fn(ovIsChange, duplexOv, mia, maa)
   }
 
   /**

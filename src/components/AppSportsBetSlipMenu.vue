@@ -6,11 +6,23 @@ const chatScrollContent = ref<HTMLElement | null>(null)
 const { VITE_SPORT_MULTI_BET_MAX } = getEnv()
 
 let timer: any = null
-const duplexInputValue = ref('')
 // 复式总赔率
 const duplexOv = ref('')
 const betLoading = ref(false)
+// 复式投注项的最小投注额
+const multiMia = ref(0)
+// 复式投注项的最大投注额
+const multiMaa = ref(0)
 
+const {
+  value: duplexInputValue,
+  errorMessage: amountErrorMsg,
+} = useField<number>('amount', (value) => {
+  if (value < multiMia.value || value > multiMaa.value)
+    return `请输入 ${multiMia.value} - ${multiMaa.value} 之间的金额`
+
+  return ''
+})
 const { t } = useI18n()
 const router = useRouter()
 const appStore = useAppStore()
@@ -29,11 +41,13 @@ const {
   run: runGetSportPlaceBetInfo,
 } = useRequest(ApiSportPlaceBetInfo, {
   onSuccess(placeBetInfo) {
-    sportStore.cart.updateAllData(placeBetInfo, (_ovIsChange, _duplexOv) => {
+    sportStore.cart.updateAllData(placeBetInfo, (_ovIsChange, _duplexOv, _mia, _maa) => {
       if (ovIsChange.value !== _ovIsChange)
         setOvChangeStateBool(_ovIsChange)
 
       duplexOv.value = _duplexOv
+      multiMia.value = _mia
+      multiMaa.value = _maa
     })
   },
 })
@@ -194,6 +208,10 @@ const isBetBtnDisabled = computed(() => {
     return true
 })
 
+const suffixLength = computed(() =>
+  application.getCurrencySuffixLength(currentGlobalCurrency.value),
+)
+
 async function fetchBet(list: IBetArgs[]) {
   betLoading.value = true
   const promiseList = list.map(item => ApiSportPlaceBet(item))
@@ -258,6 +276,9 @@ function runGetSportPlaceBetInfoHandle() {
   if (isLogin.value === false)
     return
 
+  if (sportStore.cart.count === 0)
+    return
+
   runGetSportPlaceBetInfo({
     ic: betOrderSelectValue.value,
     bi: sportStore.cart.dataList,
@@ -314,6 +335,12 @@ function bet() {
   }
 }
 
+function inputBlur() {
+  duplexInputValue.value = application.sliceOrPad(
+    duplexInputValue.value, suffixLength.value,
+  ) as any
+}
+
 watch(() => sportStore.cart.count, (val, oVal) => {
   if (val) {
     nextTick(() => {
@@ -338,6 +365,11 @@ watch(() => sportStore.cart.count, (val, oVal) => {
   }
 }, {
   immediate: true,
+})
+
+watch(currentGlobalCurrency, () => {
+  runGetSportPlaceBetInfoHandle()
+  duplexInputValue.value = '' as any
 })
 
 onUnmounted(() => {
@@ -476,7 +508,10 @@ onUnmounted(() => {
           v-show="isBetMulti"
           v-model="duplexInputValue"
           type="number"
-          placeholder="0.00000000"
+          :msg="amountErrorMsg"
+          :msg-after-touched="true"
+          :placeholder="`${multiMia} - ${multiMaa}`"
+          @blur="inputBlur"
         >
           <template #right-icon>
             <AppCurrencyIcon :currency-type="currentGlobalCurrency" />
@@ -491,7 +526,7 @@ onUnmounted(() => {
           <div v-show="isBetSingle" class="calculation-item">
             <span>{{ t('sports_total_bet_amount') }}</span>
             <AppAmount
-              :amount="sportStore.cart.totalAmount"
+              :amount="application.sliceOrPad(sportStore.cart.totalAmount, suffixLength)"
               :currency-type="currentGlobalCurrency"
             />
           </div>
@@ -500,12 +535,12 @@ onUnmounted(() => {
             <span>{{ t('sports_estimated_payment_amount') }}</span>
             <AppAmount
               v-if="betOrderSelectValue === EnumsBetSlipBetSlipTabStatus.single"
-              :amount="sportStore.cart.totalProfit"
+              :amount="application.sliceOrPad(sportStore.cart.totalProfit, suffixLength)"
               :currency-type="currentGlobalCurrency"
             />
             <AppAmount
               v-if="betOrderSelectValue === EnumsBetSlipBetSlipTabStatus.multi"
-              :amount="duplexTotalProfit"
+              :amount="application.sliceOrPad(+duplexTotalProfit, suffixLength)"
               :currency-type="currentGlobalCurrency"
             />
           </div>

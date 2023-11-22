@@ -188,6 +188,7 @@ declare global {
   const getActivePinia: typeof import('pinia')['getActivePinia']
   const getCartObject: typeof import('./utils/sports')['getCartObject']
   const getCurrencyConfig: typeof import('./composables/useCurrencyData')['getCurrencyConfig']
+  const getCurrencySuffixLength: typeof import('./utils/currency')['getCurrencySuffixLength']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const getEnv: typeof import('./utils/index')['getEnv']
