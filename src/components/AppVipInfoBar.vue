@@ -21,7 +21,6 @@ function openRecord() {
 
 async function openReceive() {
   await runGetVipBonusAmount()
-  console.log(vipBonusAmount.value)
   if (vipBonusAmount.value && +vipBonusAmount.value > 0)
     openReceiveBonusDialog({ vipBonus: vipBonusAmount.value })
   else

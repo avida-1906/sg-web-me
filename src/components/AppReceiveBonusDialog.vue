@@ -74,7 +74,7 @@ function receiveBonus() {
     runDrawBonus({ feed_id: '', cur: activeCurrency.value?.cur ?? '706' })
 
   else if (props.vipBonus)
-    runDrawVipBonus({ cur: activeCurrency.value?.type ?? 'USDT' })
+    runDrawVipBonus({ cur: activeCurrency.value?.cur ?? '706' })
 }
 
 function changeCurrency(item: CurrencyData, network: string) {

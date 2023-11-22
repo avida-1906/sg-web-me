@@ -1018,7 +1018,7 @@ export function ApiMemberVipBonusRecord() {
  */
 export function ApiMemberApplyVipBonus(params: {
   /** 选择币种领取 */
-  cur: EnumCurrencyKey
+  cur: CurrencyCode
 }) {
   return httpClient.get<{
     id: number
