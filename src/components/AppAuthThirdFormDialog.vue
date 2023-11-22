@@ -51,9 +51,9 @@ const { run: runExists } = useRequest(ApiMemberExists, {
 const { run: runThirdReg } = useRequest(ApiMemberThirdReg, {
   onSuccess: (data) => {
     appStore.setToken(data)
-    setTimeout(() => {
-      location.reload()
-    }, 100)
+    // setTimeout(() => {
+    //   location.reload()
+    // }, 100)
   },
 })
 
