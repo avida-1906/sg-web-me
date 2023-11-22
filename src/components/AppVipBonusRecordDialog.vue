@@ -38,6 +38,7 @@ const columns = reactive<IColumns[]>([
     title: t('receive_type'),
     width: 100,
     dataIndex: 'cash_type',
+    slot: 'cash_type',
     align: 'center',
   },
   {
@@ -49,15 +50,6 @@ const columns = reactive<IColumns[]>([
   },
 ])
 
-const tableData = reactive([
-  {
-    created_at: 1699517005157,
-    cash_type: 1,
-    amount: '9999.8880',
-    receive_currency_id: 703,
-  },
-])
-
 const { run: runGetRecord, data } = useRequest(ApiMemberVipBonusRecord)
 
 runGetRecord()
@@ -65,12 +57,12 @@ runGetRecord()
 function getCurrencyName(id: string | number): EnumCurrencyKey {
   return renderBalanceList.value.filter(c => +c.cur === +id)[0].type
 }
-console.log(PromoTransactionType.rebate, Object.entries(PromoTransactionType))
 
 function getCashType(cashType: string) {
   const temp
-    = Object.entries(PromoTransactionType).filter(([k, v]) => +k === +cashType)[0]
-  return temp ? t(temp[1]) : '-'
+    = Object.entries(PromoTransactionType)
+      .filter(([k, v]) => +k > 0 && +k === +cashType)[0]
+  return temp ? t(`transaction_${temp[1]}`) : '-'
 }
 
 // function onPrevious() {
@@ -87,7 +79,7 @@ function getCashType(cashType: string) {
     <BaseTable
       v-if="data && data.length"
       :columns="columns"
-      :data-source="tableData"
+      :data-source="data"
     >
       <!-- :loading="loading" -->
       <template #created_at="{ record }">

@@ -314,20 +314,14 @@ onBeforeUnmount(() => {
     <div class="des">
       <p>
         <span class="title">{{ $t('for_example') }}:</span>
-        <span>本站点返佣以有效投注为依据，假设返佣比例为左上角表格。A在本站第一个发现商机，
-          马上发展了B1、B2和B3，B1又往下发展了C1和C2，B2无下级，B3只发展了比较有实力的C3。
-          几天后，B1本人的有效投注为8万，B2本人的有效投注为5万，B3本人的有效投注为3万，C1本
-          人的有效投注为10万，C2本人的有效投注为4万，C3本人的有效投注达71万，则B1总业绩来自
-          C1和C2共14万，对应返佣比例为80/万；B2无下级业绩为0；B3下级C3给力，总业绩为71万，
-          对应返佣比例为100/万；A有来自直属团队16万和来自其他团队85万，总业绩为101万，对应返
-          佣比例是100/万。那么他们之间的收益计算方式如下:
+        <span>{{ $t('promotion_tutorial_example_desc') }}:
         </span>
       </p>
       <p>
         <span class="label">1、{{ $t('direct_team') }}: </span>
-        <span>(1) B1，B2，B3贡献给A: (8万+5万+3万)x100/万=1600。</span>
-        <span>(2) C1和C2贡献给B1: (10万+4万)x80/万=1120。 </span>
-        <span>(3) C3贡献给B3: 71万x100/万=7100。</span>
+        <span>{{ $t('promotion_tutorial_direct_team_1') }}</span>
+        <span>{{ $t('promotion_tutorial_direct_team_2') }}</span>
+        <span>{{ $t('promotion_tutorial_direct_team_3') }}</span>
       </p>
       <p>
         <span class="label">2、{{ $t('other_team') }}: </span>
