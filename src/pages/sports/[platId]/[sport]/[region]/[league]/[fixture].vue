@@ -144,6 +144,7 @@ await application.allSettled([
                             :title="outcome.sn"
                             :odds="outcome.ov"
                             :cart-info="outcome.cartInfo"
+                            :disabled="item.mls === 2"
                             layout="horizontal"
                           />
                         </div>
@@ -174,6 +175,7 @@ await application.allSettled([
                                   :title="valueItem.hdp"
                                   :cart-info="valueItem.cartInfo"
                                   :odds="valueItem.ov"
+                                  :disabled="item.mls === 2"
                                 />
                               </div>
                             </template>
@@ -194,6 +196,7 @@ await application.allSettled([
                             :title="outcome.sn"
                             :odds="`${outcome.ov}`"
                             :cart-info="outcome.cartInfo"
+                            :disabled="item.mls === 2"
                             layout="horizontal"
                           />
                         </div>
