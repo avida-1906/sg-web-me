@@ -16,7 +16,6 @@ declare module 'vue' {
     AppAgentLevel: typeof import('./components/AppAgentLevel.vue')['default']
     AppAmount: typeof import('./components/AppAmount.vue')['default']
     AppAuthLogin: typeof import('./components/AppAuthLogin.vue')['default']
-    AppAuthThirdForm: typeof import('./components/AppAuthThirdForm.vue')['default']
     AppAuthThirdFormDialog: typeof import('./components/AppAuthThirdFormDialog.vue')['default']
     AppBallRange: typeof import('./components/AppBallRange.vue')['default']
     AppBanner: typeof import('./components/AppBanner.vue')['default']

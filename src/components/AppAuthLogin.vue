@@ -12,31 +12,53 @@ type AuthTypesKeys = keyof typeof AuthTypes
 const { VITE_SOCKET_PREFIX } = getEnv()
 
 const { t } = useI18n()
+const { openNotify } = useNotify()
+const appStore = useAppStore()
 const { openThirdAuthFormDialog } = useDialogThirdAuthForm()
 const refreshAuthBus = useEventBus(REFRESH_AUTH_BUS)
 
+const ty = ref()
 const state = ref(Math.random().toString(36).slice(-10))
+const gWin = ref()
 
 const topic = computed(() => `${VITE_SOCKET_PREFIX}/auth/${state.value}`)
 
 const { run: runGetAuthUrl } = useRequest(ApiMemberThirdAuthUrl, {
   onSuccess: (data) => {
-    const gWin = window.open('', '_blank', 'popup=yes,width=600,height=600')
+    gWin.value = window.open('', '_blank', 'popup=yes,width=600,height=600')
     setTimeout(() => {
-      data && gWin?.location.replace(data)
+      data && gWin.value?.location.replace(data)
     }, 1000)
   },
 })
 
 function goAuth(type: AuthTypesKeys) {
-  socketClient.addSubscribe(topic.value)
+  ty.value = AuthTypes[type]
   runGetAuthUrl({ state: state.value, type })
 }
 
 onMounted(() => {
-  refreshAuthBus.on(() => {
+  socketClient.addSubscribe(topic.value)
+  refreshAuthBus.on((data: any) => {
+    gWin.value.close()
+    if (data) {
+      if (data.action === 'register')
+        openThirdAuthFormDialog({ data: data.extra_data, ty: ty.value })
 
+      else if (data.action === 'success')
+        appStore.setToken(data.extra_data)
+        // setTimeout(() => {
+        //   location.reload()
+        // }, 100)
+
+      else if (data.action === 'error')
+        openNotify({ type: 'error', message: data.extra_data })
+    }
   })
+})
+
+onUnmounted(() => {
+  socketClient.removeSubscribe(topic.value)
 })
 </script>
 

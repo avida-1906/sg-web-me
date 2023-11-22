@@ -6,7 +6,7 @@ export function useDialogThirdAuthForm() {
     closeDialog: closeThirdAuthFormDialog,
   } = useDialog({
     title: '注册 Auth',
-    default: () => h(AppAuthThirdFormDialog),
+    default: ({ data, ty }) => h(AppAuthThirdFormDialog, { data, ty }),
   })
 
   return {
