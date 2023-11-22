@@ -3,42 +3,42 @@ const { t } = useI18n()
 
 const columns = [
   {
-    title: '游戏',
+    title: t('game'),
     width: 90,
     dataIndex: 'game',
     slot: 'game',
     align: 'left',
   },
   {
-    title: '投注编号',
+    title: t('bet_number'),
     width: 90,
     dataIndex: 'id',
     slot: 'id',
     align: 'center',
   },
   {
-    title: '日期',
+    title: t('date'),
     width: 90,
     dataIndex: 'time',
     slot: 'time',
     align: 'center',
   },
   {
-    title: '投注额',
+    title: t('bet_amount'),
     width: 90,
     dataIndex: 'amount',
     slot: 'amount',
     align: 'center',
   },
   {
-    title: '乘数',
+    title: t('multiple_count'),
     width: 90,
     dataIndex: 'x',
     slot: 'x',
     align: 'center',
   },
   {
-    title: '支付额',
+    title: t('sports_payment_amount'),
     width: 90,
     dataIndex: 'pay',
     slot: 'pay',
