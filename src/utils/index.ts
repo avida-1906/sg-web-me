@@ -173,6 +173,52 @@ class Application {
     ]
     return virtualList.includes(currency)
   }
+
+  /**
+ * 获取货币后缀长度
+ * @param {EnumCurrencyKey} currency 货币类型
+ * @returns {number} 后缀长度
+ */
+  getCurrencySuffixLength(currency: EnumCurrencyKey) {
+    if (this.isVirtualCurrency(currency))
+      return 8
+    else
+      return 2
+  }
+
+  /**
+   * 根据长度截取字符串，或者在后面补0
+   * @param {number} val 数字
+   * @param {number} suffixLength 小数点后需要的长度
+   *
+   * @example sliceOrPad(0.2, 2) => 0.20
+   * @example sliceOrPad(0.28, 8) => 0.28000000
+   */
+  sliceOrPad(val: number, suffixLength: number) {
+    // 转换为字符串，以便处理小数点后的部分
+    const valStr = val.toString()
+
+    // 检查是否有小数点
+    if (valStr.includes('.')) {
+      const [integerPart, decimalPart] = valStr.split('.')
+
+      // 如果小数点后的长度小于指定的长度，则在后面补0
+      if (decimalPart.length < suffixLength) {
+        const paddedDecimalPart = decimalPart.padEnd(suffixLength, '0')
+        return `${integerPart}.${paddedDecimalPart}`
+      }
+      else {
+        // 否则，截取小数点后指定长度的部分
+        const slicedDecimalPart = decimalPart.slice(0, suffixLength)
+        return `${integerPart}.${slicedDecimalPart}`
+      }
+    }
+    else {
+      // 如果没有小数点，则在后面补足指定长度的小数部分
+      const paddedDecimalPart = '0'.repeat(suffixLength)
+      return `${valStr}.${paddedDecimalPart}`
+    }
+  }
 }
 
 export const application = new Application()

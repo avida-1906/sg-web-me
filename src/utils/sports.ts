@@ -276,6 +276,13 @@ export class SportsCart {
     }, 0)
   }
 
+  /** 预计总支付额 */
+  get totalPay() {
+    return this.dataList.reduce((a, b) => {
+      return Number(add(a, Number(b.amount)))
+    }, 0)
+  }
+
   /** 是否显示重新使用投注单
    *
    * 当购物车中数据的result不为undefined时，显示重新使用投注单
@@ -304,6 +311,15 @@ export class SportsCart {
     }
 
     return Array.from(duplicates)
+  }
+
+  /**
+   * 获取是否有关盘的盘口
+   * @desc os 0:关盘 1:开盘
+   * @returns {boolean}
+   */
+  get isExistCloseCaps() {
+    return this.dataList.some(a => a.os === 0)
   }
 
   constructor(currency: EnumCurrencyKey) {
@@ -361,6 +377,7 @@ export class SportsCart {
       suffixLength = 8
 
     this.dataList.forEach((a) => {
+      console.error((toFixed(0, suffixLength)))
       a.amount = Number(toFixed(0, suffixLength))
     })
   }
@@ -400,6 +417,8 @@ export class SportsCart {
   updateAllData(data: IBetInfoBack, fn?: IBetInfoChangeCallback) {
     const { wsi, bi } = data
     const duplexOv = bi[0].ov
+    const mia = bi[0] ? bi[0].mia : 0
+    const maa = bi[0] ? bi[0].maa : 0
     this.dataList.forEach((item) => {
       const _wsiObject = wsi.find(a => a.wid === item.wid)
       const _biObject = bi.find(a => a.wid === item.wid)
@@ -416,7 +435,7 @@ export class SportsCart {
     })
 
     if (fn)
-      fn(ovIsChange, duplexOv)
+      fn(ovIsChange, duplexOv, mia, maa)
   }
 
   /**
