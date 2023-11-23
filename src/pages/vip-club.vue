@@ -90,7 +90,7 @@ const tableData: ITableData[] = [
     text: '2,500 万美元',
   },
   {
-    text: '月度奖金',
+    text: t('monthly_bonus'),
     sticky: true,
   },
   {
@@ -132,7 +132,7 @@ const tableData: ITableData[] = [
     ],
   },
   {
-    text: '升级奖金',
+    text: t('upgrade_bonus'),
     sticky: true,
   },
   {
@@ -174,7 +174,7 @@ const tableData: ITableData[] = [
     ],
   },
   {
-    text: '返水',
+    text: t('vip_water_back'),
     sticky: true,
   },
   {
@@ -216,7 +216,7 @@ const tableData: ITableData[] = [
     ],
   },
   {
-    text: '周度奖金',
+    text: t('weekly_bonus'),
     sticky: true,
   },
   {
@@ -258,7 +258,7 @@ const tableData: ITableData[] = [
     ],
   },
   {
-    text: '每日奖金/充值奖金',
+    text: t('day_deposit_bonus'),
     sticky: true,
   },
   {
@@ -289,7 +289,7 @@ const tableData: ITableData[] = [
     ],
   },
   {
-    text: '奖金增长',
+    text: t('bonus_up'),
     sticky: true,
   },
   {
@@ -327,7 +327,7 @@ const tableData: ITableData[] = [
     ],
   },
   {
-    text: '专属 VIP 服务代表',
+    text: t('dedicated_vip_servicer'),
     sticky: true,
   },
   {
@@ -354,7 +354,7 @@ const tableData: ITableData[] = [
     ],
   },
   {
-    text: 'Bespoke 奖金',
+    text: `Bespoke ${t('finance_other_tab_bonus')}`,
     sticky: true,
   },
   {
@@ -412,18 +412,18 @@ const vipData = reactive([
 const menuValue = ref('1')
 const menuData: IMenuData[] = [
   {
-    title: '常规',
-    label: '常规',
+    title: t('menu_title_settings_general'),
+    label: t('menu_title_settings_general'),
     value: '1',
   },
   {
-    title: '福利',
-    label: '福利',
+    title: t('promo'),
+    label: t('promo'),
     value: '2',
   },
   {
-    title: 'VIP 服务代表',
-    label: 'VIP 服务代表',
+    title: t('dedicated_vip_servicer'),
+    label: t('dedicated_vip_servicer'),
     value: '3',
   },
 ]
@@ -442,10 +442,10 @@ const toVip = function () {
       <div class="banner-wrap" :class="{ 'banner-is-sm': isSm }">
         <div class="banner-left">
           <p class="left-title">
-            无与伦比的 VIP 体验
+            {{ t('vip_club_tip_1') }}
           </p>
           <p class="left-desc">
-            解锁专属福利并获得无需任何附加条件即可立即提取的奖金。
+            {{ t('vip_club_tip_2') }}
           </p>
           <div class="left-btns">
             <BaseButton
@@ -453,10 +453,10 @@ const toVip = function () {
               size="md"
               @click="router.push('/casino')"
             >
-              <span>开始游戏</span>
+              <span>{{ t('start_game') }}</span>
             </BaseButton>
             <BaseButton size="md" @click.prevent="toVip">
-              <a href="#">查看 VIP 级别表</a>
+              <a href="#">{{ t('look_vip_level') }}</a>
             </BaseButton>
           </div>
         </div>
@@ -475,10 +475,10 @@ const toVip = function () {
       <!-- 入门 -->
       <div class="vip-tutorial">
         <p class="title">
-          入门手册
+          {{ t('beginner_handbook') }}
         </p>
         <p class="desc">
-          成为 VIP 是个既简单又富有回报的过程
+          {{ t('vip_club_tip_3') }}
         </p>
         <div class="t-steps" :class="{ 'steps-is-sm': isSm }">
           <div class="step-item">
@@ -486,10 +486,10 @@ const toVip = function () {
               <BaseImage url="/png/vip-club/step1.png" />
             </div>
             <p>
-              第一步
+              {{ t('checklist_card_first_step') }}
             </p>
             <p>
-              立即注册以开始在赌场或体育盘口上进行投注。
+              {{ t('vip_club_tip_4') }}。
             </p>
           </div>
           <div class="step-item">
@@ -497,10 +497,10 @@ const toVip = function () {
               <BaseImage url="/png/vip-club/step2.png" />
             </div>
             <p>
-              第二步
+              {{ t('step_num', { num: '二' }) }}
             </p>
             <p>
-              您的每笔赌注都会影响您 VIP 级别的进度。达到下个级别以解锁更多福利。
+              {{ t('vip_club_tip_5') }}
             </p>
           </div>
           <div class="step-item">
@@ -508,10 +508,10 @@ const toVip = function () {
               <BaseImage url="/png/vip-club/step3.png" />
             </div>
             <p>
-              第三步
+              {{ t('step_num', { num: '三' }) }}
             </p>
             <p>
-              立即领取您的奖金。领取每日、周度和月度奖金的过程既简单又容易。
+              {{ t('vip_club_tip_6') }}
             </p>
           </div>
         </div>
@@ -519,20 +519,20 @@ const toVip = function () {
       <!-- 轮播图 -->
       <div class="vip-slider">
         <p class="title">
-          体验
+          {{ t('experience') }}
         </p>
         <p class="desc">
-          Stake 通过不间断送出的奖金提供了独特且无与伦比的体验
+          {{ t('vip_club_tip_7') }}
         </p>
         <AppBannerUnlimited class="vip-slider-wrap" />
       </div>
       <!-- 奖励 -->
       <div class="vip-award">
         <p class="title">
-          奖励
+          {{ t('bonus_label') }}
         </p>
         <p class="desc">
-          每次升级都能获得更棒的奖励
+          {{ t('vip_club_tip_8') }}
         </p>
         <div class="scroll-x">
           <div ref="award" class="a-table">
@@ -559,10 +559,10 @@ const toVip = function () {
       <!-- 问题 -->
       <div class="vip-question">
         <p class="title">
-          常见问题
+          {{ t('normal_ques') }}
         </p>
         <p class="desc">
-          联系我们屡获殊荣的支持团队
+          {{ t('vip_club_tip_9') }}
         </p>
         <div class="question-wrap" :class="{ 'question-is-sm': isSm }">
           <div class="q-menu">
@@ -570,106 +570,98 @@ const toVip = function () {
             <BaseTab v-else v-model="menuValue" :list="menuData" />
           </div>
           <div v-if="menuValue === '1'" class="q-content">
-            <BaseCollapse title="为什么 Stake 的 VIP 计划是最出色的？">
+            <BaseCollapse :title="t('vip_club_tip_10')">
               <template #content>
                 <div class="content-wrap">
-                  <p>由于我们发放给玩家的奖金数额居多，Stake 的 VIP 计划一向都被评为最佳的在线赌场体验之一。</p>
+                  <p>{{ t('vip_club_tip_11') }}</p>
                   <p>
-                    此外，我们屡获殊荣的支持团队将全天候在线回答您的任何问题。
-                    我们在众多在线赌场中拥有最高的客户满意度，也与此同时创建了由全球最热情的一些博彩爱好者所组成的社区。
+                    {{ t('vip_club_tip_12') }}
                   </p>
                 </div>
               </template>
             </BaseCollapse>
-            <BaseCollapse title="Stake 一共发放了多少奖金？">
+            <BaseCollapse :title="t('vip_club_tip_15')">
               <template #content>
                 <div class="content-wrap">
-                  <p>我们至今为止已送出了超过 10 亿美元的奖金。这也是我们具有最出色的在线 VIP 计划的主要原因。</p>
-                  <p>我们坚信奖励玩家的投注量和忠诚度。</p>
+                  <p>{{ t('vip_club_tip_13') }}</p>
+                  <p>{{ t('vip_club_tip_14') }}</p>
                 </div>
               </template>
             </BaseCollapse>
-            <BaseCollapse title="如何参加 $75,000 周度抽奖活动？">
+            <BaseCollapse :title="t('vip_club_tip_16')">
               <template #content>
                 <div class="content-wrap">
                   <p>
-                    您在 Stake 的每 $1,000 投注能换来一张抽奖券，而您只需要一张抽奖券便能参加抽奖活动。
-                    投注得越多，获得的抽奖券就越多，您的获胜机会也会因而增加。
+                    {{ t('vip_club_tip_17') }}
                   </p>
                 </div>
               </template>
             </BaseCollapse>
-            <BaseCollapse title="如何加入 Stake Telegram 频道？">
+            <BaseCollapse :title="t('vip_club_tip_18')">
               <template #content>
                 <div class="content-wrap">
-                  <p>Stake Telegram 频道的账号是 (@StakeCasino)。</p>
+                  <p>{{ t('vip_club_tip_19') }}</p>
                   <div>
                     <BaseButton
                       type="text"
                       style="--tg-base-button-text-default-color:var(--tg-text-white);"
                       size="none"
                     >
-                      如果您已经下载了 Telegram，请点击这里加入。
+                      {{ t('vip_club_tip_20') }}
                     </BaseButton>
                   </div>
                 </div>
               </template>
             </BaseCollapse>
-            <BaseCollapse title="如何加入 Stake VIP Telegram 频道？">
+            <BaseCollapse :title="t('vip_club_tip_21')">
               <template #content>
                 <div class="content-wrap">
-                  <p>一旦达到铜级，您便可以请在线支持把您添加到 Stake VIP Telegram 频道。</p>
-                  <p>您也可以通过加入 Stake Telegram 频道（@StakeCasino）找到更多相关的信息。</p>
+                  <p>{{ t('vip_club_tip_22') }}</p>
+                  <p>{{ t('vip_club_tip_23') }}</p>
                 </div>
               </template>
             </BaseCollapse>
           </div>
           <div v-else-if="menuValue === '2'" class="q-content">
-            <BaseCollapse title="什么是近期游戏表现奖金？">
+            <BaseCollapse :title="t('vip_club_tip_24')">
               <template #content>
                 <div class="content-wrap">
-                  <p>这是由您的 VIP 服务代表主要根据您的总投注和运气酌情给予的奖金。</p>
+                  <p>{{ t('vip_club_tip_25') }}</p>
                 </div>
               </template>
             </BaseCollapse>
-            <BaseCollapse title="什么是返水？">
+            <BaseCollapse :title="t('vip_club_tip_26')">
               <template #content>
                 <div class="content-wrap">
-                  <p>返水是退还给您的玩家佣金（庄家优势）的百分比。</p>
+                  <p>{{ t('vip_club_tip_27') }}</p>
                 </div>
               </template>
             </BaseCollapse>
-            <BaseCollapse title="充值奖金是什么？该如何领取我的充值奖金？">
+            <BaseCollapse :title="t('vip_club_tip_28')">
               <template #content>
                 <div class="content-wrap">
-                  <p> 充值奖金是根据玩家近期的投注表现计算的。玩家可以选择每日、每小时或每 10 分钟的领取间隔。</p>
+                  <p>{{ t('vip_club_tip_29') }}</p>
                   <p>
-                    点击账户右上角的主用户菜单，在下拉菜单中点击 “VIP” 。
-                    在出现的模式窗口上点击 “充值奖金” 选项卡，然后再点击 “领取充值奖金” 即可。
-                    您能否被分配一名服务代表将取决于您的总投注额。
+                    {{ t('vip_club_tip_30') }}
                   </p>
                 </div>
               </template>
             </BaseCollapse>
-            <BaseCollapse title="月度奖金将在何时发放？">
+            <BaseCollapse :title="t('vip_club_tip_31')">
               <template #content>
                 <div class="content-wrap">
                   <p>
-                    月度奖金将会每月发放一次，日期一般在 15 日左右。
-                    但在某些情况下，发放日可能会稍晚或甚至提早，而这就是为什么它是 Stake 最令人期待的奖金之一。
-                    月度奖金一旦发放后，您便将收到电邮通知。为确保您不会错过奖金，请记得也要查看您电邮中的垃圾邮件文件夹。
+                    {{ t('vip_club_tip_32') }}
                   </p>
-                  <p>铜、银和金级的玩家们将通过每日充值奖金领取奖金，而铂金与钻石级的玩家将一次性地领取他们的奖金。</p>
+                  <p>{{ t('vip_club_tip_33') }}</p>
                 </div>
               </template>
             </BaseCollapse>
-            <BaseCollapse title="如何计算达到下个级别所需要投注的金额?">
+            <BaseCollapse :title="t('vip_club_tip_34')">
               <template #content>
                 <div class="content-wrap">
                   <p>
-                    首先点击账户右上角的主用户菜单，
-                    在下拉菜单中点击 “VIP” 查看您 VIP 进度条上的百分比，然后从 100% 减去此数目以获得剩余百分比。
-                    接下来将剩余百分比乘以您达到下个级别所剩下的总投注需求即可。
+                    {{ t('vip_club_tip_35') }}
                   </p>
                   <div>
                     <BaseButton
@@ -677,87 +669,77 @@ const toVip = function () {
                       style="--tg-base-button-text-default-color:var(--tg-text-white);"
                       size="none"
                     >
-                      点击这里以了解更多
+                      {{ t('click_more') }}
                     </BaseButton>
                   </div>
                 </div>
               </template>
             </BaseCollapse>
-            <BaseCollapse title="每次升级后我会得到哪些奖励？">
+            <BaseCollapse :title="t('vip_club_tip_36')">
               <template #content>
                 <div class="content-wrap">
-                  <p>升级奖金：这是每次升级都会增加的固定奖金。我们将根据您在升级前的盈亏情况以近期游戏表现奖金的形式添加额外金额。</p>
+                  <p>{{ t('vip_club_tip_37') }}</p>
                   <p>
-                    周度与月度奖金：根据您的 VIP 级别您将得到一笔基础金额，
-                    之后您在相应的时间段内每投注的 $1,000 将得到额外的金额。
+                    {{ t('vip_club_tip_38') }}
                   </p>
-                  <p>每日奖金：充值奖金在到期后将由您的 VIP 服务代表更新。</p>
+                  <p>{{ t('vip_club_tip_39') }}</p>
                 </div>
               </template>
             </BaseCollapse>
-            <BaseCollapse title="奖金数额是如何计算的？">
+            <BaseCollapse :title="t('vip_club_tip_40')">
               <template #content>
                 <div class="content-wrap">
                   <p>
-                    您所得到的奖金数额是按照您的总投注额和利润计算的。我们坚信玩家们无论输赢都应该得到奖励。
-                    只奖励输钱的玩家并不公平，但如果您的运气真的欠佳，我们会再额外增加您的奖金数额！
+                    {{ t('vip_club_tip_41') }}
                   </p>
                 </div>
               </template>
             </BaseCollapse>
           </div>
           <div v-else-if="menuValue === '3'" class="q-content">
-            <BaseCollapse title="我的 VIP 服务代表能为我做什么？">
+            <BaseCollapse :title="t('vip_club_tip_42')">
               <template #content>
                 <div class="content-wrap">
                   <p>
-                    您的 VIP 服务代表将确保您的游戏表现会得到奖励。
-                    他们会帮您更新充值奖金、在您的升级过程中给予指导、审查您的体育限制、
-                    评估您是否可获得额外奖金以及处理您在网站上遇到的任何问题。
+                    {{ t('vip_club_tip_43') }}
                   </p>
                 </div>
               </template>
             </BaseCollapse>
-            <BaseCollapse title="在被分配了一名 VIP 服务代表后，所获得的充值奖金是一个持续的还是可更新的福利？">
+            <BaseCollapse :title="t('vip_club_tip_44')">
               <template #content>
                 <div class="content-wrap">
                   <p>
-                    当您达到铂金 IV 级别并被分配一名 VIP 服务代表后，您将开始获得可更新的周度充值奖金。
-                    每当您的周度充值奖金到期时，您便可联系您的 VIP 服务代表以更新您在接下来 7 天内可领取的充值奖金。
+                    {{ t('vip_club_tip_45') }}
                   </p>
-                  <p>充值奖金的数额是取决于您每周在游戏中的表现，如果您那一周内在利润方面的运气不佳，您将会得到额外的奖金。</p>
+                  <p>{{ t('vip_club_tip_46') }}</p>
                 </div>
               </template>
             </BaseCollapse>
-            <BaseCollapse title="VIP 服务代表的职责包括了什么，与常规的在线支持人员又有何不同？">
+            <BaseCollapse :title="t('vip_club_tip_47')">
               <template #content>
                 <div class="content-wrap">
                   <p>
-                    VIP 服务代表只分配给铂金 IV 级别以上的玩家。
-                    他们可以回答您有关 VIP 计划的问题并确保您领取所有应得的奖金。
-                    VIP 服务代表也能够在确保奖金符合您需求的同时更频繁地发送更大的奖金。
+                    {{ t('vip_club_tip_48') }}
                   </p>
-                  <p>在线支持可以帮助您解决在平台上遇到的任何技术问题。</p>
+                  <p>{{ t('vip_club_tip_49') }}</p>
                 </div>
               </template>
             </BaseCollapse>
-            <BaseCollapse title="我什么时候可以被分配 VIP 服务代表？">
+            <BaseCollapse :title="t('vip_club_tip_50')">
               <template #content>
                 <div class="content-wrap">
                   <p>
-                    玩家一旦达到铂金 IV 级后便会被分配一名 VIP 服务代表。
-                    这名服务代表将成为您的专属支持人员，帮助您解决所有疑问并在您的游戏过程中提供任何所需的指导。
-                    请注意，您是否符合资格还取决于您近期的活动。
+                    {{ t('vip_club_tip_51') }}
                   </p>
                 </div>
               </template>
             </BaseCollapse>
-            <BaseCollapse title="万一我的 VIP 服务代表休假去了该怎么办？">
+            <BaseCollapse :title="t('vip_club_tip_52')">
               <template #content>
                 <div class="content-wrap">
                   <p>
-                    请确保向您的 VIP 服务代表索取他特有 VIP 服务频道的邀请链接。
-                    如果您漏掉了这一步，您可以联系在线支持获取一个 VIP 备份链接。这将是您的服务代表回来之前的临时备份代表。
+                    {{ t('vip_club_tip_53') }}
                   </p>
                 </div>
               </template>
@@ -768,11 +750,11 @@ const toVip = function () {
       <!-- 更多 -->
       <div class="vip-more">
         <div class="more-left">
-          <p>还有更多问题？</p>
-          <p>使用我们的知识指南或到我们的社区论坛上提问。</p>
+          <p>{{ t('has_more_q') }}</p>
+          <p>{{ t('vip_club_tip_54') }}</p>
           <div>
             <BaseButton bg-style="primary">
-              了解更多
+              {{ t('learn_more') }}
             </BaseButton>
           </div>
         </div>
@@ -780,10 +762,10 @@ const toVip = function () {
           <div />
         </div>
         <div class="more-right">
-          <p>24 小时在线客户支持</p>
-          <p>由真人提供的有效支持。我们可以通过即时在线聊天和电邮帮助您进行设置与故障排除。</p>
+          <p>{{ t('online_24_sup') }}</p>
+          <p>{{ t('vip_club_tip_55') }}</p>
           <div>
-            <BaseButton>与我们聊天</BaseButton>
+            <BaseButton>{{ t('chat_us') }}</BaseButton>
           </div>
         </div>
       </div>
