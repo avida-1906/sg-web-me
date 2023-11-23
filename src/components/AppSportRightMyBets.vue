@@ -1,4 +1,10 @@
 <script lang="ts" setup>
+import type { EnumsBetSlipHeadStatus } from '~/utils/enums'
+
+const emit = defineEmits<{
+  changeHeadSelectValue: [value: EnumsBetSlipHeadStatus]
+}>()
+
 const { t } = useI18n()
 const router = useRouter()
 

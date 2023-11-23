@@ -1,6 +1,11 @@
 <script setup lang='ts'>
 import AppSportBetSuccessNotify from './AppSportBetSuccessNotify.vue'
 import type { IBetArgs } from '~/apis/types'
+import { EnumsBetSlipHeadStatus } from '~/utils/enums'
+
+const emit = defineEmits<{
+  changeHeadSelectValue: [value: EnumsBetSlipHeadStatus] // 具名元组语法
+}>()
 
 const chatScrollContent = ref<HTMLElement | null>(null)
 const { VITE_SPORT_MULTI_BET_MAX } = getEnv()
@@ -458,87 +463,98 @@ onUnmounted(() => {
     </div>
 
     <div class="footer">
-      <!-- 投注单 -->
-      <!-- 复式投注额输入框 -->
-      <BaseInput
-        v-show="isBetMulti"
-        v-model="duplexInputValue"
-        type="number"
-        :msg="amountErrorMsg"
-        :msg-after-touched="true"
-        :placeholder="`${multiMia} - ${multiMaa}`"
-        @blur="inputBlur"
-      >
-        <template #right-icon>
-          <AppCurrencyIcon :currency-type="currentGlobalCurrency" />
-        </template>
-      </BaseInput>
-      <div class="betslip-calculation-summary">
-        <div v-show="isBetMulti" class="calculation-item">
-          <span>{{ t('sports_total_odds') }}</span>
-          <AppSportsOdds :odds="duplexOv" arrow="left" />
-        </div>
-        <!-- 单式 -->
-        <div v-show="isBetSingle" class="calculation-item">
-          <span>{{ t('sports_total_bet_amount') }}</span>
-          <AppAmount
-            :amount="application.sliceOrPad(sportStore.cart.totalAmount, suffixLength)"
-            :currency-type="currentGlobalCurrency"
-          />
-        </div>
-
-        <div class="calculation-item">
-          <span>{{ t('sports_estimated_payment_amount') }}</span>
-          <AppAmount
-            v-if="betOrderSelectValue === EnumsBetSlipBetSlipTabStatus.single"
-            :amount="application.sliceOrPad(sportStore.cart.totalProfit, suffixLength)"
-            :currency-type="currentGlobalCurrency"
-          />
-          <AppAmount
-            v-if="betOrderSelectValue === EnumsBetSlipBetSlipTabStatus.multi"
-            :amount="application.sliceOrPad(+duplexTotalProfit, suffixLength)"
-            :currency-type="currentGlobalCurrency"
-          />
-        </div>
-      </div>
-      <div
-        v-if="errorInfo.bool" class="message"
-      >
-        <div class="icon">
-          <BaseIcon class="error-icon" name="uni-warning" />
-        </div>
-        <span>{{ errorInfo.errorMess }}</span>
-      </div>
-
-      <template v-if="!isLogin">
+      <template v-if="sportStore.cart.isShowReuse">
         <BaseButton
-          v-if="ovIsChange"
           size="md"
           bg-style="primary"
-          @click="openRegisterDialog"
+          @click="emit('changeHeadSelectValue', EnumsBetSlipHeadStatus.myBets)"
         >
-          注册进行投注
+          查看我的投注
         </BaseButton>
       </template>
       <template v-else>
-        <BaseButton
-          v-if="ovIsChange"
-          size="md"
-          bg-style="primary"
-          @click="setOvChangeStateBool(false)"
+        <!-- 投注单 -->
+        <!-- 复式投注额输入框 -->
+        <BaseInput
+          v-show="isBetMulti"
+          v-model="duplexInputValue"
+          type="number"
+          :msg="amountErrorMsg"
+          :msg-after-touched="true"
+          :placeholder="`${multiMia} - ${multiMaa}`"
+          @blur="inputBlur"
         >
-          接受新赔率
-        </BaseButton>
-        <BaseButton
-          v-else
-          size="md"
-          bg-style="primary"
-          :disabled="isBetBtnDisabled"
-          :loading="betLoading"
-          @click="bet"
+          <template #right-icon>
+            <AppCurrencyIcon :currency-type="currentGlobalCurrency" />
+          </template>
+        </BaseInput>
+        <div class="betslip-calculation-summary">
+          <div v-show="isBetMulti" class="calculation-item">
+            <span>{{ t('sports_total_odds') }}</span>
+            <AppSportsOdds :odds="duplexOv" arrow="left" />
+          </div>
+          <!-- 单式 -->
+          <div v-show="isBetSingle" class="calculation-item">
+            <span>{{ t('sports_total_bet_amount') }}</span>
+            <AppAmount
+              :amount="application.sliceOrPad(sportStore.cart.totalAmount, suffixLength)"
+              :currency-type="currentGlobalCurrency"
+            />
+          </div>
+
+          <div class="calculation-item">
+            <span>{{ t('sports_estimated_payment_amount') }}</span>
+            <AppAmount
+              v-if="betOrderSelectValue === EnumsBetSlipBetSlipTabStatus.single"
+              :amount="application.sliceOrPad(sportStore.cart.totalProfit, suffixLength)"
+              :currency-type="currentGlobalCurrency"
+            />
+            <AppAmount
+              v-if="betOrderSelectValue === EnumsBetSlipBetSlipTabStatus.multi"
+              :amount="application.sliceOrPad(+duplexTotalProfit, suffixLength)"
+              :currency-type="currentGlobalCurrency"
+            />
+          </div>
+        </div>
+        <div
+          v-if="errorInfo.bool" class="message"
         >
-          {{ t('sports_bet') }}{{ betBtnText }}
-        </BaseButton>
+          <div class="icon">
+            <BaseIcon class="error-icon" name="uni-warning" />
+          </div>
+          <span>{{ errorInfo.errorMess }}</span>
+        </div>
+
+        <template v-if="!isLogin">
+          <BaseButton
+            v-if="ovIsChange"
+            size="md"
+            bg-style="primary"
+            @click="openRegisterDialog"
+          >
+            注册进行投注
+          </BaseButton>
+        </template>
+        <template v-else>
+          <BaseButton
+            v-if="ovIsChange"
+            size="md"
+            bg-style="primary"
+            @click="setOvChangeStateBool(false)"
+          >
+            接受新赔率
+          </BaseButton>
+          <BaseButton
+            v-else
+            size="md"
+            bg-style="primary"
+            :disabled="isBetBtnDisabled"
+            :loading="betLoading"
+            @click="bet"
+          >
+            {{ t('sports_bet') }}{{ betBtnText }}
+          </BaseButton>
+        </template>
       </template>
     </div>
   </div>
