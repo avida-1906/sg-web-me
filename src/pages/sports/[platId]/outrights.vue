@@ -6,7 +6,7 @@ const ci = route.query.ci ? route.query.ci.toString() : ''
 const params = computed(() => ({ si, page: 1, page_size: 100 }))
 const { data, run, runAsync } = useRequest(ApiSportOutrightList)
 /** 定时更新数据 */
-const { startTimer, stopTimer } = useSportsDataUpdate(() => run(params.value), 30, false)
+const { startTimer, stopTimer } = useSportsDataUpdate(() => run(params.value))
 
 const outrightsData = computed(() => {
   if (data.value && data.value.list) {

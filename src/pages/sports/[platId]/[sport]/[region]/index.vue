@@ -4,11 +4,12 @@ const route = useRoute()
 const sport = route.params.sport ? +route.params.sport : 0
 const region = ref(route.params.region ? route.params.region.toString() : '')
 const { bool: isStandard } = useBoolean(true)
-const { data, run } = useRequest(() =>
-  ApiSportEventList({ m: 5, si: sport, pgid: region.value, page: 1, page_size: 100 }),
-)
+const params = computed(() => {
+  return { m: 5, si: sport, pgid: region.value, page: 1, page_size: 100 }
+})
+const { data, run, runAsync } = useRequest(ApiSportEventList)
 /** 定时更新数据 */
-const { startTimer, stopTimer } = useSportsDataUpdate(run, 30)
+const { startTimer, stopTimer } = useSportsDataUpdate(() => run(params.value))
 
 const baseType = ref('winner')
 const curTab = ref(route.query.outrights ? '2' : '1')
@@ -53,10 +54,14 @@ watch(route, (a) => {
   startTimer()
 })
 
-startTimer()
+onMounted(() => {
+  startTimer()
+})
 onBeforeUnmount(() => {
   stopTimer()
 })
+
+await application.allSettled([runAsync(params.value)])
 </script>
 
 <template>

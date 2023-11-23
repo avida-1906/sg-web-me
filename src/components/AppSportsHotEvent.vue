@@ -3,7 +3,7 @@ const { t } = useI18n()
 const params = ref({ si: 0, m: 0, hot: 1, page: 1, page_size: 50 })
 const { data, runAsync, run } = useRequest(ApiSportEventList)
 /** 定时更新数据 */
-const { startTimer, stopTimer } = useSportsDataUpdate(() => run(params.value), 30, false)
+const { startTimer, stopTimer } = useSportsDataUpdate(() => run(params.value))
 
 const list = computed(() => {
   if (data.value && data.value.list)

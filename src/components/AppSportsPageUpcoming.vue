@@ -14,11 +14,11 @@ const { data, run } = useRequest(() =>
   refreshDeps: [currentUpcomingNav],
 })
 /** 定时更新数据 */
-const { startTimer, stopTimer } = useSportsDataUpdate(run, 30)
+const { startTimer, stopTimer } = useSportsDataUpdate(run, 30, true)
 const {
   startTimer: startCount,
   stopTimer: stopCount,
-} = useSportsDataUpdate(sportsStore.runSportsCount, 30)
+} = useSportsDataUpdate(sportsStore.runSportsCount, 30, true)
 
 const baseType = ref('winner')
 const list = computed(() => {

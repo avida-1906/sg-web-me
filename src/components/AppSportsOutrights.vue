@@ -12,7 +12,7 @@ const leagueId = route.params.league ? route.params.league.toString() : ''
 const params = computed(() => ({ si: sportId, page: 1, page_size: 100 }))
 const { data, run, runAsync } = useRequest(ApiSportOutrightList)
 /** 定时更新数据 */
-const { startTimer, stopTimer } = useSportsDataUpdate(() => run(params.value), 30, false)
+const { startTimer, stopTimer } = useSportsDataUpdate(() => run(params.value))
 
 const isSport = computed(() => props.level === 1)
 const isRegion = computed(() => props.level === 2)

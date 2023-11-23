@@ -4,7 +4,7 @@ const sportsStore = useSportsStore()
 const { sportsFavoriteData } = storeToRefs(sportsStore)
 /** 定时更新数据 */
 const { startTimer, stopTimer }
-= useSportsDataUpdate(sportsStore.refreshSportsFavList, 30)
+= useSportsDataUpdate(sportsStore.refreshSportsFavList)
 
 const currentSi = ref(-1)
 /** 收藏数据根据球种组合 */

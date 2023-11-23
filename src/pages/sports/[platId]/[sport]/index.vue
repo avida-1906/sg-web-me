@@ -7,7 +7,7 @@ const { bool: isStandard } = useBoolean(true)
 const params = computed(() => ({ si: sport, kind: 'normal' }))
 const { data: competitionListData, run, runAsync } = useRequest(ApiSportCompetitionList)
 /** 定时更新数据 */
-const { startTimer, stopTimer } = useSportsDataUpdate(() => run(params.value), 30, false)
+const { startTimer, stopTimer } = useSportsDataUpdate(() => run(params.value))
 
 const curTab = ref(route.query.outrights ? '2' : '1')
 const baseType = ref('winner')
