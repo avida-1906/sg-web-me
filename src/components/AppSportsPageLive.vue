@@ -6,7 +6,9 @@ const router = useRouter()
 const sportsStore = useSportsStore()
 const { sportLiveNavs, currentLiveNav } = storeToRefs(sportsStore)
 const { bool: isStandard } = useBoolean(true)
-const params = ref({ si: currentLiveNav.value, m: 3, page: 1, page_size: 50 })
+const params = computed(() => {
+  return { si: currentLiveNav.value, m: 3, page: 1, page_size: 50 }
+})
 const { data, run, runAsync } = useRequest(ApiSportEventList,
   {
     refreshDeps: [currentLiveNav],
@@ -51,7 +53,9 @@ onBeforeUnmount(() => {
   stopLive()
   stopCount()
 })
-await application.allSettled([runAsync(params.value)])
+
+if (currentLiveNav.value !== -1 && !props.onPage)
+  await application.allSettled([runAsync(params.value)])
 </script>
 
 <template>
