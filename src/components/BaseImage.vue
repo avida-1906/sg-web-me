@@ -39,7 +39,7 @@ const imgUrl = computed(() => {
 </script>
 
 <template>
-  <div class="base-image" :abc="imgUrl">
+  <div class="base-image">
     <img
       :style="`width: ${width}; height: ${height};
       object-fit: ${fit};object-position:${objectPosition};`"
