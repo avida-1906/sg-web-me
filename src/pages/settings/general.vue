@@ -15,7 +15,8 @@ const { t } = useI18n()
 const route = useRoute()
 const router = useRouter()
 const { openNotify } = useNotify()
-const { userInfo } = storeToRefs(useAppStore())
+const appStore = useAppStore()
+const { userInfo } = storeToRefs(appStore)
 const { updateUserInfo } = useAppStore()
 const { isLessThanXs } = storeToRefs(useWindowStore())
 
@@ -123,6 +124,7 @@ const { run: runMemberUpdate } = useRequest(ApiMemberUpdate, {
       setEmailDisabledBtnTrue()
       emailCheck()
     }
+    appStore.updateUserInfo()
   },
 })
 const {
