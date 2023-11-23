@@ -8,8 +8,6 @@ import type {
 } from '~/apis/types'
 import type { IBetInfoChangeCallback, ICartInfo, ICartInfoData } from '~/types'
 
-const { openNotify } = useNotify()
-
 /**
  * 体育ID
  *
