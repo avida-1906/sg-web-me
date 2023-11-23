@@ -97,33 +97,18 @@ function changeBar(item: { name: string; path?: string }) {
       :class="{ 'active-bar': activeBar === item.name }"
     >
       <BaseButton type="text" @click.stop="changeBar(item)">
-        <BaseBadge
-          v-if="item.name === 'bet' || item.name === 'user-bet'"
-          mode="active"
-          :count="5"
-        >
-          <div
-            :id="index === 2 ? EnumSportEndDomID.H5_CART_END_DOM : ''"
-            class="bar-btn"
-          >
-            <BaseIcon
-
-              class="bar-icon"
-              :name="item.icon"
-            />
-            <span>{{ item.title }}</span>
-          </div>
-        </BaseBadge>
         <div
-          v-else
           :id="index === 2 ? EnumSportEndDomID.H5_CART_END_DOM : ''"
           class="bar-btn"
         >
-          <BaseIcon
-
-            class="bar-icon"
-            :name="item.icon"
-          />
+          <BaseBadge
+            v-if="item.name === 'bet' || item.name === 'user-bet'"
+            mode="active"
+            :count="5"
+          >
+            <BaseIcon class="bar-icon" :name="item.icon" />
+          </BaseBadge>
+          <BaseIcon v-else class="bar-icon" :name="item.icon" />
           <span>{{ item.title }}</span>
         </div>
       </BaseButton>
