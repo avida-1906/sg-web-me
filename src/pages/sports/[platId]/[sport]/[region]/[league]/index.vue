@@ -5,8 +5,8 @@ const sport = route.params.sport ? +route.params.sport : 0
 const region = route.params.region ? route.params.region.toString() : ''
 const league = route.params.league ? route.params.league.toString() : ''
 const { bool: isStandard } = useBoolean(true)
-const params = computed(() => {
-  return { m: 5, si: sport, ci: [league], page: 1, page_size: 100 }
+const params = ref({
+  m: 5, si: sport, ci: [league], page: 1, page_size: 100,
 })
 const { data, run, runAsync } = useRequest(ApiSportEventList)
 /** 定时更新数据 */
@@ -58,6 +58,12 @@ const breadcrumb = computed(() => [
 function onBaseTypeChange(v: string) {
   baseType.value = v
 }
+watch(route, (r) => {
+  params.value.si = r.params.sport ? +r.params.sport : 0
+  params.value.ci = [r.params.league ? r.params.league.toString() : '']
+  run(params.value)
+  startTimer()
+})
 
 onMounted(() => {
   startTimer()

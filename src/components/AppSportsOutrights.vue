@@ -47,6 +47,7 @@ await application.allSettled([runAsync(params.value)])
         </div>
       </div>
     </div>
+    <AppSportsLoadingEmpty :list="sportlist" />
     <BaseSecondaryAccordion
       v-for="region, i in sportlist" :key="region.pgid"
       :title="region.pgn"
@@ -71,6 +72,7 @@ await application.allSettled([runAsync(params.value)])
   </div>
 
   <div v-else-if="isRegion" class="acc-box">
+    <AppSportsLoadingEmpty :list="regionList" />
     <AppOutrightPreview
       v-for="league, i in regionList" :key="league.ci"
       :auto-show="i === 0" :data="league"
@@ -78,6 +80,7 @@ await application.allSettled([runAsync(params.value)])
   </div>
 
   <template v-else-if="isLeague">
+    <AppSportsLoadingEmpty :list="leagueList" />
     <AppOutrightPreview
       v-for="item, i in leagueList" :key="item.ci"
       :auto-show="i === 0" :data="item"

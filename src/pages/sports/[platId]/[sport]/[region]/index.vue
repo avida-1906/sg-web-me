@@ -51,6 +51,7 @@ function onBaseTypeChange(v: string) {
 
 watch(route, (a) => {
   region.value = a.params.region ? a.params.region.toString() : ''
+  run(params.value)
   startTimer()
 })
 
