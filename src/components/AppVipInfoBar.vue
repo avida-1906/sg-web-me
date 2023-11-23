@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 const { t } = useI18n()
 const { openNotify } = useNotify()
-const { userInfo, isLogin } = storeToRefs(useAppStore())
+const { userInfo, isLogin, vipConfigData } = storeToRefs(useAppStore())
 
 const { openVipBonusRecordDialog } = useDialogVipBonusRecord()
 const { openReceiveBonusDialog } = useDialogReceiveBonus()
@@ -20,6 +20,15 @@ const nextVip = computed(() => {
     return +userInfo.value.vip + 1
   else
     return '-'
+})
+const nextScore = computed(() => {
+  if (userInfo.value && +userInfo.value.vip >= 0 && vipConfigData.value) {
+    const temp = vipConfigData.value[`v${nextVip.value}`]
+    const curScore = +userInfo.value.score >= 0 ? +userInfo.value.score : 0
+    if (temp)
+      return +temp.score - curScore
+  }
+  return '-'
 })
 
 function openRecord() {
@@ -40,7 +49,9 @@ async function openReceive() {
     <BaseIcon class="vip-badge" :name="`vip${userInfo?.vip ?? '0'}`" />
     <div class="info">
       <span class="water">
-        <span>{{ $t('next_vip_amount', { vip: `VIP${nextVip}`, amount: '100' }) }}</span>
+        <span>
+          {{ $t('next_vip_amount', { vip: `VIP${nextVip}`, amount: nextScore }) }}
+        </span>
         <BaseIcon name="coin-usdt" />
         <span>{{ $t('water') }}</span>
       </span>
