@@ -159,7 +159,8 @@ export const useSportsStore = defineStore('sports', () => {
         return {
           title: sport.sn,
           path: '',
-          icon: 'spt-soccer',
+          icon: sport.spic,
+          useCloudImg: true,
           domId: `sports-hot-game-${sport.si}`,
           list: [
             // eslint-disable-next-line max-len
@@ -169,7 +170,8 @@ export const useSportsStore = defineStore('sports', () => {
             ...sport.list.map((league) => {
               return {
                 title: league.cn,
-                icon: 'spt-soccer',
+                icon: league.cpic,
+                useCloudImg: true,
                 path: `/sports/${SPORTS_PLAT_ID}/${sport.si}/${league.ci}`,
               }
             }),
@@ -187,7 +189,8 @@ export const useSportsStore = defineStore('sports', () => {
         return {
           title: item.sn,
           path: `/sports/${SPORTS_PLAT_ID}/${item.si}`,
-          icon: 'spt-basketball',
+          icon: item.spic,
+          useCloudImg: true,
         }
       })
       return [
@@ -208,7 +211,7 @@ export const useSportsStore = defineStore('sports', () => {
     if (allSportsCount.value) {
       return allSportsCount.value.list.filter(a => a.lc > 0).map((b) => {
         return {
-          ...b, icon: 'spt-american-football', count: b.lc,
+          ...b, icon: b.spic, count: b.lc, useCloudImg: true,
         }
       })
     }
@@ -223,7 +226,7 @@ export const useSportsStore = defineStore('sports', () => {
         { si: 0, sn: t('finance_other_tab_all'), icon: 'uni-all', count: allSportsCount.value.nc },
         ...allSportsCount.value.list.filter(a => a.nc > 0).map((b) => {
           return {
-            ...b, icon: 'spt-american-football', count: b.nc,
+            ...b, icon: b.spic, count: b.nc, useCloudImg: true,
           }
         })]
     }
@@ -234,6 +237,13 @@ export const useSportsStore = defineStore('sports', () => {
   const allSportsSi = computed(() => {
     if (sidebarData.value)
       return sidebarData.value.all.map(a => a.si)
+    return []
+  })
+
+  /** 所有球种名称sid对应列表 */
+  const allSportsNameList = computed(() => {
+    if (sidebarData.value)
+      return sidebarData.value.all
     return []
   })
 
@@ -307,6 +317,7 @@ export const useSportsStore = defineStore('sports', () => {
     currentUpcomingNav,
     sportsFavoriteData,
     allSportsSi,
+    allSportsNameList,
     cart,
     renderOdds,
     setSportsOddsType,

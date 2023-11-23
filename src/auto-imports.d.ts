@@ -61,6 +61,9 @@ declare global {
   const ApiMemberPlatformList: typeof import('./apis/index')['ApiMemberPlatformList']
   const ApiMemberReg: typeof import('./apis/index')['ApiMemberReg']
   const ApiMemberSendMailCode: typeof import('./apis/index')['ApiMemberSendMailCode']
+  const ApiMemberThirdAuthUrl: typeof import('./apis/index')['ApiMemberThirdAuthUrl']
+  const ApiMemberThirdGoogleUrl: typeof import('./apis/index')['ApiMemberThirdGoogleUrl']
+  const ApiMemberThirdReg: typeof import('./apis/index')['ApiMemberThirdReg']
   const ApiMemberTreeList: typeof import('./apis/index')['ApiMemberTreeList']
   const ApiMemberUpdate: typeof import('./apis/index')['ApiMemberUpdate']
   const ApiMemberUpload: typeof import('./apis/index')['ApiMemberUpload']
@@ -70,6 +73,7 @@ declare global {
   const ApiMemberWalletDelete: typeof import('./apis/index')['ApiMemberWalletDelete']
   const ApiMemberWalletInsert: typeof import('./apis/index')['ApiMemberWalletInsert']
   const ApiMemberWalletList: typeof import('./apis/index')['ApiMemberWalletList']
+  const ApiMemeberThirdReg: typeof import('./apis/index')['ApiMemeberThirdReg']
   const ApiPaymentDepositBankApplication: typeof import('./apis/index')['ApiPaymentDepositBankApplication']
   const ApiPaymentDepositBankConfirm: typeof import('./apis/index')['ApiPaymentDepositBankConfirm']
   const ApiPaymentDepositBankList: typeof import('./apis/index')['ApiPaymentDepositBankList']
@@ -91,6 +95,7 @@ declare global {
   const ApiSportPlaceBet: typeof import('./apis/sport')['ApiSportPlaceBet']
   const ApiSportPlaceBetInfo: typeof import('./apis/sport')['ApiSportPlaceBetInfo']
   const ApiSportSidebar: typeof import('./apis/sport')['ApiSportSidebar']
+  const ApiSportsEventHot: typeof import('./apis/sport')['ApiSportsEventHot']
   const ApiWalletBankcardList: typeof import('./apis/index')['ApiWalletBankcardList']
   const Big: typeof import('big.js')['Big']
   const CHAT_MESSAGE_BUS: typeof import('./utils/event-bus')['CHAT_MESSAGE_BUS']
@@ -119,6 +124,7 @@ declare global {
   const MQTT_CONNECT_SUCCESS_BUS: typeof import('./utils/event-bus')['MQTT_CONNECT_SUCCESS_BUS']
   const MQTT_DISCONNECT_BUS: typeof import('./utils/event-bus')['MQTT_DISCONNECT_BUS']
   const PromoTransactionType: typeof import('./utils/enums')['PromoTransactionType']
+  const REFRESH_AUTH_BUS: typeof import('./utils/event-bus')['REFRESH_AUTH_BUS']
   const REFRESH_BALANCE_BUS: typeof import('./utils/event-bus')['REFRESH_BALANCE_BUS']
   const REFRESH_MEMBER_BUS: typeof import('./utils/event-bus')['REFRESH_MEMBER_BUS']
   const SPORTS_PLAT_ID: typeof import('./utils/sports')['SPORTS_PLAT_ID']
@@ -393,6 +399,7 @@ declare global {
   const useDialogNotice: typeof import('./composables/useDialogNotice')['useDialogNotice']
   const useDialogReceiveBonus: typeof import('./composables/useDialogReceiveBonus')['useDialogReceiveBonus']
   const useDialogSwiperNotice: typeof import('./composables/useDialogSwiperNotice')['useDialogSwiperNotice']
+  const useDialogThirdAuthForm: typeof import('./composables/useDialogThirdAuthForm')['useDialogThirdAuthForm']
   const useDialogVipBonusRecord: typeof import('./composables/useDialogVipBonusRecord')['useDialogVipBonusRecord']
   const useDisplayMedia: typeof import('@vueuse/core')['useDisplayMedia']
   const useDocumentVisibility: typeof import('@vueuse/core')['useDocumentVisibility']
@@ -629,6 +636,8 @@ declare module 'vue' {
     readonly ApiMemberPlatformList: UnwrapRef<typeof import('./apis/index')['ApiMemberPlatformList']>
     readonly ApiMemberReg: UnwrapRef<typeof import('./apis/index')['ApiMemberReg']>
     readonly ApiMemberSendMailCode: UnwrapRef<typeof import('./apis/index')['ApiMemberSendMailCode']>
+    readonly ApiMemberThirdAuthUrl: UnwrapRef<typeof import('./apis/index')['ApiMemberThirdAuthUrl']>
+    readonly ApiMemberThirdReg: UnwrapRef<typeof import('./apis/index')['ApiMemberThirdReg']>
     readonly ApiMemberTreeList: UnwrapRef<typeof import('./apis/index')['ApiMemberTreeList']>
     readonly ApiMemberUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberUpdate']>
     readonly ApiMemberUpload: UnwrapRef<typeof import('./apis/index')['ApiMemberUpload']>
@@ -659,6 +668,7 @@ declare module 'vue' {
     readonly ApiSportPlaceBet: UnwrapRef<typeof import('./apis/sport')['ApiSportPlaceBet']>
     readonly ApiSportPlaceBetInfo: UnwrapRef<typeof import('./apis/sport')['ApiSportPlaceBetInfo']>
     readonly ApiSportSidebar: UnwrapRef<typeof import('./apis/sport')['ApiSportSidebar']>
+    readonly ApiSportsEventHot: UnwrapRef<typeof import('./apis/sport')['ApiSportsEventHot']>
     readonly ApiWalletBankcardList: UnwrapRef<typeof import('./apis/index')['ApiWalletBankcardList']>
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
     readonly CHAT_MESSAGE_BUS: UnwrapRef<typeof import('./utils/event-bus')['CHAT_MESSAGE_BUS']>
@@ -681,6 +691,7 @@ declare module 'vue' {
     readonly MQTT_CONNECT_SUCCESS_BUS: UnwrapRef<typeof import('./utils/event-bus')['MQTT_CONNECT_SUCCESS_BUS']>
     readonly MQTT_DISCONNECT_BUS: UnwrapRef<typeof import('./utils/event-bus')['MQTT_DISCONNECT_BUS']>
     readonly PromoTransactionType: UnwrapRef<typeof import('./utils/enums')['PromoTransactionType']>
+    readonly REFRESH_AUTH_BUS: UnwrapRef<typeof import('./utils/event-bus')['REFRESH_AUTH_BUS']>
     readonly REFRESH_BALANCE_BUS: UnwrapRef<typeof import('./utils/event-bus')['REFRESH_BALANCE_BUS']>
     readonly REFRESH_MEMBER_BUS: UnwrapRef<typeof import('./utils/event-bus')['REFRESH_MEMBER_BUS']>
     readonly SPORTS_PLAT_ID: UnwrapRef<typeof import('./utils/sports')['SPORTS_PLAT_ID']>
@@ -944,6 +955,7 @@ declare module 'vue' {
     readonly useDialogNotice: UnwrapRef<typeof import('./composables/useDialogNotice')['useDialogNotice']>
     readonly useDialogReceiveBonus: UnwrapRef<typeof import('./composables/useDialogReceiveBonus')['useDialogReceiveBonus']>
     readonly useDialogSwiperNotice: UnwrapRef<typeof import('./composables/useDialogSwiperNotice')['useDialogSwiperNotice']>
+    readonly useDialogThirdAuthForm: UnwrapRef<typeof import('./composables/useDialogThirdAuthForm')['useDialogThirdAuthForm']>
     readonly useDialogVipBonusRecord: UnwrapRef<typeof import('./composables/useDialogVipBonusRecord')['useDialogVipBonusRecord']>
     readonly useDisplayMedia: UnwrapRef<typeof import('@vueuse/core')['useDisplayMedia']>
     readonly useDocumentVisibility: UnwrapRef<typeof import('@vueuse/core')['useDocumentVisibility']>
@@ -1173,6 +1185,8 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberPlatformList: UnwrapRef<typeof import('./apis/index')['ApiMemberPlatformList']>
     readonly ApiMemberReg: UnwrapRef<typeof import('./apis/index')['ApiMemberReg']>
     readonly ApiMemberSendMailCode: UnwrapRef<typeof import('./apis/index')['ApiMemberSendMailCode']>
+    readonly ApiMemberThirdAuthUrl: UnwrapRef<typeof import('./apis/index')['ApiMemberThirdAuthUrl']>
+    readonly ApiMemberThirdReg: UnwrapRef<typeof import('./apis/index')['ApiMemberThirdReg']>
     readonly ApiMemberTreeList: UnwrapRef<typeof import('./apis/index')['ApiMemberTreeList']>
     readonly ApiMemberUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberUpdate']>
     readonly ApiMemberUpload: UnwrapRef<typeof import('./apis/index')['ApiMemberUpload']>
@@ -1203,6 +1217,7 @@ declare module '@vue/runtime-core' {
     readonly ApiSportPlaceBet: UnwrapRef<typeof import('./apis/sport')['ApiSportPlaceBet']>
     readonly ApiSportPlaceBetInfo: UnwrapRef<typeof import('./apis/sport')['ApiSportPlaceBetInfo']>
     readonly ApiSportSidebar: UnwrapRef<typeof import('./apis/sport')['ApiSportSidebar']>
+    readonly ApiSportsEventHot: UnwrapRef<typeof import('./apis/sport')['ApiSportsEventHot']>
     readonly ApiWalletBankcardList: UnwrapRef<typeof import('./apis/index')['ApiWalletBankcardList']>
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
     readonly CHAT_MESSAGE_BUS: UnwrapRef<typeof import('./utils/event-bus')['CHAT_MESSAGE_BUS']>
@@ -1225,6 +1240,7 @@ declare module '@vue/runtime-core' {
     readonly MQTT_CONNECT_SUCCESS_BUS: UnwrapRef<typeof import('./utils/event-bus')['MQTT_CONNECT_SUCCESS_BUS']>
     readonly MQTT_DISCONNECT_BUS: UnwrapRef<typeof import('./utils/event-bus')['MQTT_DISCONNECT_BUS']>
     readonly PromoTransactionType: UnwrapRef<typeof import('./utils/enums')['PromoTransactionType']>
+    readonly REFRESH_AUTH_BUS: UnwrapRef<typeof import('./utils/event-bus')['REFRESH_AUTH_BUS']>
     readonly REFRESH_BALANCE_BUS: UnwrapRef<typeof import('./utils/event-bus')['REFRESH_BALANCE_BUS']>
     readonly REFRESH_MEMBER_BUS: UnwrapRef<typeof import('./utils/event-bus')['REFRESH_MEMBER_BUS']>
     readonly SPORTS_PLAT_ID: UnwrapRef<typeof import('./utils/sports')['SPORTS_PLAT_ID']>
@@ -1488,6 +1504,7 @@ declare module '@vue/runtime-core' {
     readonly useDialogNotice: UnwrapRef<typeof import('./composables/useDialogNotice')['useDialogNotice']>
     readonly useDialogReceiveBonus: UnwrapRef<typeof import('./composables/useDialogReceiveBonus')['useDialogReceiveBonus']>
     readonly useDialogSwiperNotice: UnwrapRef<typeof import('./composables/useDialogSwiperNotice')['useDialogSwiperNotice']>
+    readonly useDialogThirdAuthForm: UnwrapRef<typeof import('./composables/useDialogThirdAuthForm')['useDialogThirdAuthForm']>
     readonly useDialogVipBonusRecord: UnwrapRef<typeof import('./composables/useDialogVipBonusRecord')['useDialogVipBonusRecord']>
     readonly useDisplayMedia: UnwrapRef<typeof import('@vueuse/core')['useDisplayMedia']>
     readonly useDocumentVisibility: UnwrapRef<typeof import('@vueuse/core')['useDocumentVisibility']>

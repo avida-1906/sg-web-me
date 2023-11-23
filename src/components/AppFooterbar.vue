@@ -101,11 +101,14 @@ function changeBar(item: { name: string; path?: string }) {
           :id="index === 2 ? EnumSportEndDomID.H5_CART_END_DOM : ''"
           class="bar-btn"
         >
-          <BaseIcon
-
-            class="bar-icon"
-            :name="item.icon"
-          />
+          <BaseBadge
+            v-if="item.name === 'bet' || item.name === 'user-bet'"
+            mode="active"
+            :count="5"
+          >
+            <BaseIcon class="bar-icon" :name="item.icon" />
+          </BaseBadge>
+          <BaseIcon v-else class="bar-icon" :name="item.icon" />
           <span>{{ item.title }}</span>
         </div>
       </BaseButton>
@@ -115,6 +118,7 @@ function changeBar(item: { name: string; path?: string }) {
 
 <style lang="scss" scoped>
 .app-footer-bar {
+  --tg-badge-font-size:var(--tg-font-size-xs);
   position: fixed;
   bottom: 0;
   left: 0;

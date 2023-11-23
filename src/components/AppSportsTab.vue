@@ -4,6 +4,7 @@ interface ListItem {
   sn: string
   count: number
   icon: string
+  useCloudImg?: boolean
 }
 interface Props {
   list: ListItem[]
@@ -27,7 +28,7 @@ function handleClick(item: ListItem) {
               <div class="dot" />
               <div class="main">
                 <div class="icon">
-                  <BaseIcon :name="tab.icon" />
+                  <BaseIcon :name="tab.icon" :use-cloud-img="tab.useCloudImg" />
                   <BaseBadge
                     :mode="tab.si === modelValue ? 'active' : 'black'"
                     style="--tg-badge-font-size:var(--tg-font-size-xs);

@@ -495,8 +495,10 @@ export interface DepositInfo {
   currency_name: string
   /** 支付方式ID */
   mid: string
-  /** 银行编码-三方支付存款时使用 */
+  /** 银行编码-三方支付存款时使用 payment_type = 1 */
   bank_code?: string
+  /** 存款人姓名-公司入款存款使用 payment_type = 2 */
+  realname?: string
 }
 
 /**
@@ -606,6 +608,8 @@ export interface ISportsMyBetSlipItem {
     htn: string
     /** 客队名 */
     atn: string
+    atpic: string
+    htpic: string
     /** 开赛时间 */
     ed: number
   }[]

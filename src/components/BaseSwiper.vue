@@ -2,15 +2,19 @@
 interface SwiperItem {
   value: string | number
   label: string
+  id?: string | number
+  [k: string]: any
 }
 
 interface Props {
+  mode?: 'default' | 'notice'
   data: SwiperItem[]
   modelValue?: string | number
-  width?: number
 }
 
-const props = defineProps<Props>()
+const props = withDefaults(defineProps<Props>(), {
+  mode: 'default',
+})
 
 const emit = defineEmits(['update:modelValue', 'change'])
 
@@ -26,7 +30,7 @@ const touchStartPoint = ref()
 const touchEndPoint = ref()
 const swiperTrack = ref()
 
-const width = props.width ? ref(props.width) : useElementSize(swiperOuter).width
+const width = useElementSize(swiperOuter).width
 
 const outerWidth = computed(() => Math.floor(width.value))
 const trackOuterWidth = computed(() => Math.ceil(outerWidth.value * _data.value.length))
@@ -159,23 +163,32 @@ watch(active, (val) => {
 </script>
 
 <template>
-  <div class="swiper-wrapper">
+  <div class="swiper-wrapper" :class="[`swiper-${mode}`]">
     <div
       ref="swiperOuter"
       class="swiper-outer center-mode"
       :style="{
         '--swiper-outer-width': `${outerWidth}px`,
-        'width': 'var(--swiper-outer-width)',
       }"
     >
       <div v-if="_data.length > 1" class="arrows-overlay">
         <div class="left">
-          <BaseButton type="text" size="none" @click="slideToPrev">
+          <BaseButton
+            type="text"
+            size="none"
+            style="font-size: inherit;"
+            @click="slideToPrev"
+          >
             <BaseIcon name="uni-arrow-left" />
           </BaseButton>
         </div>
         <div class="right">
-          <BaseButton type="text" size="none" @click="slideToNext">
+          <BaseButton
+            type="text"
+            size="none"
+            style="font-size: inherit;"
+            @click="slideToNext"
+          >
             <BaseIcon name="uni-arrow-right" />
           </BaseButton>
         </div>
@@ -204,7 +217,7 @@ watch(active, (val) => {
               isDragging ? 'visible' : '',
             ]"
           >
-            <slot :name="`item${idx}`">
+            <slot :item="item">
               <BaseButton size="md">
                 <span class="label">{{ item.label }}</span>
               </BaseButton>
@@ -295,6 +308,32 @@ watch(active, (val) => {
           display: flex;
           width: 100%;
         }
+      }
+    }
+  }
+}
+.swiper-notice{
+  padding:0;
+  .swiper-outer{
+    .swiper-track-wrap .track .slide-wrap{
+      padding: 0 ;
+    }
+    .arrows-overlay{
+      --tg-icon-color:var(--tg-text-white);
+      .left,.right{
+        font-size: var(--tg-font-size-lg);
+        width: 28px;
+        height: 56px;
+        border-radius: var(--tg-radius-default);
+      }
+      .left{
+        left: 4px;
+        background: linear-gradient(270deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
+      }
+      .right{
+        right: 4px;
+        background: linear-gradient(-270deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
+        justify-content: flex-end;
       }
     }
   }

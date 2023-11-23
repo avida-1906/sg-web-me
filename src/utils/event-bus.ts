@@ -15,3 +15,5 @@ export const REFRESH_BALANCE_BUS = 'REFRESH_BALANCE_BUS'
 export const FEEDBACK_CHAT_MESSAGE_BUS = 'FEEDBACK_CHAT_MESSAGE_BUS'
 /** 刷新用户信息通知 */
 export const REFRESH_MEMBER_BUS = 'REFRESH_MEMBER_BUS'
+/** 第三方登录状态通知 */
+export const REFRESH_AUTH_BUS = 'REFRESH_AUTH_BUS'

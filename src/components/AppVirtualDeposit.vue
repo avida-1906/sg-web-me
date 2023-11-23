@@ -30,6 +30,16 @@ const {
   return ''
 })
 const {
+  value: depositName,
+  errorMessage: depositNameError,
+  validate: depositNameValidate,
+  resetField: depositNameReset,
+} = useField<string>('depositName', (value) => {
+  if (!value)
+    return '存款人姓名必填'
+  return ''
+})
+const {
   run: runThirdDeposit,
   loading: thirdDepositLoading,
 } = useRequest(ApiFinanceThirdDeposit, {
@@ -76,9 +86,16 @@ const oftenAmount = computed(() => {
     }
   })
 })
+const getFinanceMerchantCoinParam = computed(() => {
+  return {
+    currency_id: props.activeCurrency.cur,
+    contract_id: props.currentNetwork,
+  }
+})
 
 async function confirmPayment() {
   await amountValidate()
+  await depositNameValidate()
   if (!amountError.value) {
     if (currentAisle.value.payment_type === 1) { // 三方支付存款
       runThirdDeposit({
@@ -88,21 +105,24 @@ async function confirmPayment() {
         mid: currentAisle.value.method_id,
         currency_id: props.activeCurrency.cur,
         currency_name: props.activeCurrency.type,
+
       })
     }
-    else if (currentAisle.value.payment_type === 2) { // 虚拟币存款
-      runPaymentDepositCoinApplication({
+    else if (currentAisle.value.payment_type === 2) { // 虚拟币存款(公司入款)
+      !depositNameError.value && runPaymentDepositCoinApplication({
         amount: amount.value,
         cid: currentAisle.value.id,
         currency_id: props.activeCurrency.cur,
         currency_name: props.activeCurrency.type,
         mid: currentAisle.value.method_id,
+        realname: depositName.value,
       })
     }
   }
 }
 function cancelPayment() {
   amountReset()
+  depositNameReset()
   depositStep.value = '1'
   emit('show', true)
 }
@@ -112,28 +132,19 @@ const toCopy = function (item: string) {
 
 watch(() => props.activeCurrency, (newValue) => {
   amountReset()
-  if (newValue) {
-    (!financeMerchantCoinListLoad.value) && runAsyncFinanceMerchantCoinList({
-      currency_id: props.activeCurrency.cur,
-      contract_id: props.currentNetwork,
-    })
-  }
+  depositNameReset()
+  if (newValue)
+    (!financeMerchantCoinListLoad.value) && runAsyncFinanceMerchantCoinList(getFinanceMerchantCoinParam.value)
 })
 watch(() => props.currentNetwork, (newValue) => {
   amountReset()
-  if (newValue) {
-    runAsyncFinanceMerchantCoinList({
-      currency_id: props.activeCurrency.cur,
-      contract_id: props.currentNetwork,
-    })
-  }
+  depositNameReset()
+  if (newValue)
+    runAsyncFinanceMerchantCoinList(getFinanceMerchantCoinParam.value)
 })
 
 await application.allSettled([
-  runAsyncFinanceMerchantCoinList({
-    currency_id: props.activeCurrency.cur,
-    contract_id: props.currentNetwork,
-  }),
+  runAsyncFinanceMerchantCoinList(getFinanceMerchantCoinParam.value),
 ])
 </script>
 
@@ -155,6 +166,13 @@ await application.allSettled([
               <span>{{ item.amount_min }}-{{ item.amount_max }}</span>
             </div>
           </div>
+        </BaseLabel>
+        <BaseLabel
+          v-if="currentAisle.payment_type === 2"
+          label="存款人姓名:"
+          label-content="为及时到账，请务必输入正确的存款人姓名"
+        >
+          <BaseInput v-model="depositName" :msg="depositNameError" />
         </BaseLabel>
         <!-- <BaseInput
           v-model="amount" :label="`充值金额: ${activeCurrency.type}`"

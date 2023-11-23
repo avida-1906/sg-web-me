@@ -59,6 +59,6 @@ export function timeToFromNow(ts: number): string {
 }
 
 /** 时间转换 */
-export function timeToFormat(ts: number) {
-  return dayjs(checkTs(ts)).format('HH:mm YYYY/MM/DD')
+export function timeToFormat(ts: number, format = 'HH:mm YYYY/MM/DD') {
+  return dayjs(checkTs(ts)).format(format)
 }

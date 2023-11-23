@@ -1,25 +1,85 @@
 <script setup lang='ts'>
+// 1:FB, 2:Google, 3:Twitch, 4:Line
+enum AuthTypes {
+  'fb' = 1,
+  'google' = 2,
+  'twitch' = 3,
+  'line' = 4,
+}
+
+type AuthTypesKeys = keyof typeof AuthTypes
+
+const { VITE_SOCKET_PREFIX } = getEnv()
+
 const { t } = useI18n()
+const { openNotify } = useNotify()
+const appStore = useAppStore()
+const { openThirdAuthFormDialog } = useDialogThirdAuthForm()
+const refreshAuthBus = useEventBus(REFRESH_AUTH_BUS)
+
+const ty = ref()
+const state = ref(Math.random().toString(36).slice(-10))
+const gWin = ref()
+
+const topic = computed(() => `${VITE_SOCKET_PREFIX}/auth/${state.value}`)
+
+const { run: runGetAuthUrl } = useRequest(ApiMemberThirdAuthUrl, {
+  onSuccess: (data) => {
+    gWin.value = window.open('', '_blank', 'popup=yes,width=600,height=600')
+    setTimeout(() => {
+      data && gWin.value?.location.replace(data)
+    }, 1000)
+  },
+})
+
+function goAuth(type: AuthTypesKeys) {
+  ty.value = AuthTypes[type]
+  runGetAuthUrl({ state: state.value, type })
+}
+
+onMounted(() => {
+  socketClient.addSubscribe(topic.value)
+  refreshAuthBus.on((data: any) => {
+    gWin.value.close()
+    if (data) {
+      if (data.action === 'register')
+        openThirdAuthFormDialog({ data: data.extra_data, ty: ty.value })
+
+      else if (data.action === 'success')
+        appStore.setToken(data.extra_data)
+        // setTimeout(() => {
+        //   location.reload()
+        // }, 100)
+
+      else if (data.action === 'error')
+        openNotify({ type: 'error', message: data.extra_data })
+    }
+  })
+})
+
+onUnmounted(() => {
+  socketClient.removeSubscribe(topic.value)
+})
 </script>
 
 <template>
   <div class="app-bottom">
     <div class="app-bottom-divider">
       <BaseDivider title-placement="center" spacing="8" size="1">
-        <span>        {{ t('or_use') }}</span>
+        <span>{{ t('or_use') }}</span>
       </BaseDivider>
     </div>
     <div class="app-bottom-icon">
-      <BaseButton class="item-svg" size="sm">
+      <BaseButton class="item-svg" size="sm" @click="goAuth('fb')">
         <BaseIcon name="facebook" />
       </BaseButton>
-      <BaseButton class="item-svg" size="sm">
+      <BaseButton class="item-svg" size="sm" @click="goAuth('google')">
         <BaseIcon name="google" />
       </BaseButton>
-      <BaseButton class="item-svg" size="sm">
+      <BaseButton class="item-svg" size="sm" @click="goAuth('line')">
         <BaseIcon name="line" />
       </BaseButton>
-      <BaseButton class="item-svg" size="sm">
+      <BaseButton class="item-svg" size="sm" @click="goAuth('twitch')">
         <BaseIcon name="messenger" />
       </BaseButton>
     </div>

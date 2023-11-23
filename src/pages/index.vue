@@ -6,10 +6,11 @@ interface IVipProgressData {
   currentLevel: number
 }
 
+const width = 430
 const { t } = useI18n()
 const router = useRouter()
 const { openRegisterDialog } = useRegisterDialog()
-const { openSwiperNoticeDialog } = useDialogSwiperNotice()
+const { openSwiperNoticeDialog } = useDialogSwiperNotice(width)
 const { bool: showMore, toggle: toggleShowMore } = useBoolean(false)
 
 const {
@@ -25,9 +26,10 @@ const {
   run: runMemberNoticeAllList,
   loading: memberNoticeAllListLoading,
 } = useRequest(ApiMemberNoticeAllList, {
-  onSuccess() {
-    // openSwiperNoticeDialog(noticeData.value?.notice)
-    // openNoticeDialog(noticeData.value?.notice[0])
+  onSuccess(data) {
+    for (const item of data.notice)
+      item.value = item.id
+    openSwiperNoticeDialog(data.notice)
   },
 })
 
@@ -192,105 +194,73 @@ runMemberNoticeAllList()
     <div v-if="!isLogin" class="index-introduction" :class="{ 'max-height': showMore }">
       <div class="introduction-content" :class="{ 'column-count': !isSm }">
         <p>
-          Stake.com 是加密货币博彩领域的全球领导者，拥有以比特币和其他加密货币进行投注的最佳赌场与体育博彩平台之一。
-          成立于 2017 年的 Stake.com 现已发展成为在线博彩行业中最值得信赖的品牌之一，并在全球许多市场上提供了种类繁多的赌场游戏。
-          玩家可以在 Stake 这单一的平台上同时享受安全、可靠及有趣的在线博彩体验！
-          除了赌场外，Stake.com 也提供了能在世界上最大型的体育项目、联赛与比赛上进行投注的动态体育博彩平台。
-          具有最新更新的赔率和各种各样的投注选项，不难理解为什么 Stake 即是使用加密货币进行体育投注最实用的方式。
+          {{ t('company_intro_tip_1') }}
         </p>
         <p>
-          Stake.com 是业内最负盛名的加密货币赌场与体育博彩平台之一。
-          作为UFC 在拉丁美洲和亚洲的官方博彩合作伙伴以及沃特福德足球俱乐部的主要赞助商，
-          Stake 是例如 Drake、伊斯利 · 阿迪萨亚、何塞 · 奥尔多等许多业内重头人物与超级巨星所信任的优质博彩合作伙伴。
+          {{ t('company_intro_tip_2') }}
         </p>
         <p>
-          Stake.com 在库拉索获得许可，提供安全、可靠及公平的平台。
-          Stake.com 由 Medium Rare N.V.
-          根据颁发给由库拉索政府授权和监管的 Antillephone 的游戏许可证 8048/JAZ 运营。
-          凭借良好的声誉、安全可靠的平台以及赌场与体育博彩上的各种投注选项，Stake 是个在世界各地都具有活跃社区的在线博彩平台。
+          {{ t('company_intro_tip_3') }}
         </p>
-        <h1>Stake 加密货币赌场体验</h1>
+        <h1>{{ t('company_intro_tip_title_1') }}</h1>
         <p>
-          Stake 加密货币赌场具有来自许多游戏提供商的数千多款赌场游戏，带给玩家无与伦比的体验。
-          Stake 的赌场游戏在类型与玩法上各不相同，而这也包括了老虎机、21点、轮盘、百家乐和其他桌面游戏等经典游戏。
+          {{ t('company_intro_tip_4') }}
         </p>
         <p>
-          为了让玩家获得身临其境的博彩体验，Stake 提供的真人娱乐场游戏具有真人荷官，
-          通过现场直播视频让玩家在各种各样的真人娱乐场游戏中获得正宗的赌场游戏体验。
+          {{ t('company_intro_tip_5') }}
         </p>
         <p>
-          Stake 除了提供来自许多游戏提供商不同类型的赌场游戏外，
-          我们还拥有自己的 Stake 原创游戏，而这些游戏还是 Stake.com 最受欢迎的游戏之一，
-          例如 Dice、Plinko、Mines、Crash、Limbo、Hilo等经典游戏。
+          {{ t('company_intro_tip_6') }}
         </p>
         <p>
-          由我们才华横溢的团队制作以提供业内最优质、最公平的赌场游戏体验，
-          Stake 原创游戏都是可证明公平的游戏且具有业内最低的庄家优势，并也同时确保玩家能获得值得信赖的博彩体验以及居高的玩家回报率（RTP）
+          {{ t('company_intro_tip_7') }}
         </p>
         <p>
-          除了种类繁多的游戏、原创游戏的精美设计和各式各样的投注选项，
-          Stake 也为使用比特币（BTC）、以太币（ETH）、狗狗币（DOGE）、比特币现金（BCH）、瑞波币（XRP）、
-          波场币（TRX）以及柚子币（EOS）进行投注的玩家带来了最具吸引力和娱乐性的在线赌场体验之一。
+          {{ t('company_intro_tip_8') }}
         </p>
 
-        <h1>Stake.com 加密货币体育博彩</h1>
+        <h1>{{ t('company_intro_tip_title_2') }}</h1>
         <p>
-          Stake.com 的在线体育博彩让玩家能轻松投注于全球最大型的体育赛事。
-          体育博彩玩家可以在我们的平台上投注于他们最喜爱的体育项目，
-          例如足球、篮球、综合格斗、电子竞技、冰上曲棍球、板球、美式足球、网球、乒乓球、棒球、飞镖、一级方程式等，
-          这甚至还包括了政治与娱乐！
+          {{ t('company_intro_tip_9') }}
         </p>
         <p>
-          Stake.com 为玩家提供了在 UFC、英超联赛、NBA、NFL、CFL、MLB、意甲联赛、西甲联赛，
-          还有甚至像《英雄联盟》和 Dota 2的电子竞技联赛这类各种大型的联赛和锦标赛上进行投注的机会。
-          无论是哪个体育联赛，您都能在 Stake 找到它的投注盘口！
+          {{ t('company_intro_tip_10') }}
         </p>
-        <p>Stake 为想在实时赛事上投注的玩家提供了实时体育博彩，以多种实时投注选项满足最活跃的体育博彩玩家。</p>
-        <h1>Stake 的促销活动、奖金以及 VIP 计划</h1>
-        <p>Stake 具有简单易用的用户界面以及高质量的用户体验，为 Stake 社区活跃的成员带来不同的促销活动与奖金。</p>
-        <p>Stake 为玩家们准备的促销活动包括了定期的体育博彩促销活动和赌场促销活动。</p>
+        <p>{{ t('company_intro_tip_11') }}</p>
+        <h1>{{ t('company_intro_tip_title_3') }}</h1>
+        <p>{{ t('company_intro_tip_12') }}</p>
+        <p>{{ t('company_intro_tip_13') }}</p>
         <p>
-          除了为赌场与体育博彩玩家们举办惊人的 $50,000 周度送奖活动和 Stake 每日竞赛外，
-          Stake 也时常以 UFC、NBA、英超联赛等大型赛事或新推出的游戏进行特别的促销活动与奖金发放。
+          {{ t('company_intro_tip_14') }}
         </p>
         <p>
-          注册了 Stake.com 账户之后，您接下来便可以根据您在 Stake 平台上的总投注额成为 VIP 并提高您 VIP 俱乐部的会员级别。
-          VIP 会员将能享受特殊福利，例如重装奖金、返水、升级奖金、周度助推奖金以及通过电邮发送的月度奖金。
+          {{ t('company_intro_tip_15') }}
         </p>
         <p>
-          符合条件的伯金 IV VIP 会员也将被分配一名专属的 VIP 服务代表。
-          除此之外，Stake 所提供的全面 VIP 计划还会根据不同类型的玩家的累积使用量来满足他们的需求。
-          有关 VIP 计划的更多信息，请参阅我们的 VIP 计划概述。
+          {{ t('company_intro_tip_16') }}
         </p>
-        <h1>Stake 加密货币博彩的即时存款与提款的功能</h1>
+        <h1>{{ t('company_intro_tip_title_4') }}</h1>
         <p>
-          在 Stake 的在线赌场与体育博彩上使用比特币或其他可用的加密货币进行投注与管理资金其实十分容易。
-          要把资金存入您的 Stake.com 账户以使用您选择的加密货币进行体育投注，请遵循下列简单的步骤：
+          {{ t('company_intro_tip_17') }}
         </p>
         <ul>
-          <li>第一步：前往钱包 > 存款。</li>
+          <li>{{ t('company_intro_tip_step_1') }}</li>
           <li>
-            第二步：选择您想使用的货币。我们支持比特币（BTC）、以太币（ETH）、狗狗币（DOGE）、莱特币（LTC）等各种货币。
-            复制您所选货币的存款地址。
+            {{ t('company_intro_tip_step_2') }}
           </li>
-          <li>第三步：在您的加密货币钱包或交易所发送货币时，将您的存款地址输入为接收地址。</li>
+          <li>{{ t('company_intro_tip_step_3') }}</li>
           <li>
-            附加说明：如果您想使用法定货币存款，
-            您可以前往钱包 > 购买加密货币以通过 MoonPay 使用法定货币为 Stake 账户购买加密货币。
+            {{ t('company_intro_tip_step_4') }}
           </li>
         </ul>
         <p>
-          您在 Stake 的存款与提款都是即时的，并且可任您选择任何可用的加密货币。
-          无论您是想在我们的赌场游戏或体育赛事上进行投注，Stake 都提供了简单明了的过程。
+          {{ t('company_intro_tip_18') }}
         </p>
         <p>
-          MoonPay 具有许多受支持的支付方式，
-          您可以使用 Visa、MasterCard、Apple Pay、Google Pay 等购买加密货币来存款以进行投注。
-          有关您所在辖区支持的支付方式完整列表，请参阅 MoonPay 文档。
+          {{ t('company_intro_tip_19') }}
         </p>
         <p>
-          具有蓬勃发展的社区、活跃的聊天室以及一个专门为客户解决游戏或账户方面任何问题的支持团队，
-          Stake.com 因此成功展示了它能成为最领先的加密货币赌场及体育博彩平台的原因。
+          {{ t('company_intro_tip_20') }}
         </p>
       </div>
       <div class="introduction-more">

@@ -53,6 +53,16 @@ const {
   return ''
 })
 const {
+  value: depositName,
+  errorMessage: depositNameError,
+  validate: depositNameValidate,
+  resetField: depositNameReset,
+} = useField<string>('depositName', (value) => {
+  if (!value)
+    return '存款人姓名必填'
+  return ''
+})
+const {
   value: selectValue,
   errorMessage: selectValueError,
   validate: selectValueValidate,
@@ -86,6 +96,7 @@ const nextStep = function () {
 const previous = function () {
   emit('show', true)
   amountReset()
+  depositNameReset()
   setConfirmPayment(false)
 }
 const {
@@ -222,16 +233,18 @@ async function depositSubmit() {
     amountRef.value.setTouchTrue()
   await amountValidate()
   await selectValueValidate()
+  await depositNameValidate()
   if (!amountError.value
     && (currentTypeItem.value?.bank ? !selectValueError.value : true)
   ) {
     if (currentTypeItem.value?.payment_type === 2) { // 公司入款存款
-      runPaymentDepositBankApplication({
+      !depositNameError.value && runPaymentDepositBankApplication({
         amount: amount.value,
         cid: currentAisle.value,
         mid: currentType.value,
         currency_id: props.activeCurrency.cur,
         currency_name: props.activeCurrency.type,
+        realname: depositName.value,
       })
     }
     else { // 三方支付存款
@@ -248,8 +261,10 @@ async function depositSubmit() {
 }
 
 watch(() => props.activeCurrency, (newValue) => {
-  if (newValue)
+  if (newValue) {
+    depositNameReset()
     runAsyncPaymentMethodList({ currency_id: newValue.cur })
+  }
 })
 watch(() => currentType.value, (newValue) => {
   if (newValue) {
@@ -393,6 +408,13 @@ await application.allSettled([
                   <span>{{ item.amount_min }}-{{ item.amount_max }}</span>
                 </div>
               </div>
+            </BaseLabel>
+            <BaseLabel
+              v-if="currentTypeItem?.payment_type === 2"
+              label="存款人姓名:"
+              label-content="为及时到账，请务必输入正确的存款人姓名"
+            >
+              <BaseInput v-model="depositName" :msg="depositNameError" />
             </BaseLabel>
             <BaseLabel
               v-if="currentAisleItem?.type === 2"

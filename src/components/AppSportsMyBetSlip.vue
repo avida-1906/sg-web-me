@@ -46,6 +46,8 @@ function addShowResult(origin: ISportsMyBetSlipItem) {
         remark: '',
         homeTeamScore: a.re.split(':')[0],
         awayTeamScore: a.re.split(':')[1],
+        atpic: a.atpic,
+        htpic: a.htpic,
       },
     }
   })

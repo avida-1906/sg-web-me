@@ -14,6 +14,7 @@ interface IMenuData {
   value: string
 }
 
+const { t } = useI18n()
 const {
   appContentWidth,
   widthBoundarySm,
@@ -22,14 +23,14 @@ const router = useRouter()
 
 const tableData: ITableData[] = [
   {
-    text: 'VIP 级别对照',
+    text: t('vip_level_compare'),
     sticky: true,
   },
   {
     child: [
       {
         icon: 'chat-star-bronze',
-        text: '铜',
+        text: t('copper'),
       },
     ],
   },
@@ -37,11 +38,11 @@ const tableData: ITableData[] = [
     child: [
       {
         icon: 'chat-star-silver',
-        text: '银',
+        text: t('silver'),
       },
       {
         icon: 'chat-star-gold',
-        text: '金',
+        text: t('gold'),
       },
     ],
   },
@@ -49,7 +50,7 @@ const tableData: ITableData[] = [
     child: [
       {
         icon: 'chat-star-1',
-        text: '铂金 I – III',
+        text: `${t('platinum')} I – III`,
       },
     ],
   },
@@ -57,7 +58,7 @@ const tableData: ITableData[] = [
     child: [
       {
         icon: 'chat-star-4',
-        text: '铂金 IV – VI',
+        text: `${t('platinum')} IV – VI`,
       },
     ],
   },
@@ -65,12 +66,12 @@ const tableData: ITableData[] = [
     child: [
       {
         icon: 'chat-star-diamond',
-        text: '钻石',
+        text: t('diamond'),
       },
     ],
   },
   {
-    text: '投注金额',
+    text: t('bet_amount_label'),
     sticky: true,
   },
   {
