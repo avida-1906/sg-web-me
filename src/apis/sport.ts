@@ -45,6 +45,8 @@ export function ApiSportCount(data: {
       oc: number
       /** count 总数 */
       c: number
+      /** 球种图片 */
+      spic: string
     }[]
   }>(`/sport/${getSportsPlatId()}/count`, data)
 }
@@ -61,6 +63,7 @@ export function ApiSportSidebar() {
       list: {
         si: number
         sn: string
+        spic: string
         list: {
           ci: string
           cn: string
@@ -71,12 +74,7 @@ export function ApiSportSidebar() {
     all: {
       si: number
       sn: string
-    }[]
-    rbc: number
-    rbl: {
-      si: number
-      sn: string
-      c: number
+      spic: string
     }[]
   }>(`/sport/${getSportsPlatId()}/sidebar`)
 }
