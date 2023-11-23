@@ -1,15 +1,19 @@
+import { i18n } from '~/modules/i18n'
+
+const { t } = i18n.global
+
 /** 滚球筛选项目 */
 const rollingBallSelectOption: ISelectOption[] = [
   {
-    label: '总分盘',
+    label: t('sports_total_market'),
     value: '1',
   },
   {
-    label: '让分盘',
+    label: t('sports_handicap_market'),
     value: '2',
   },
   {
-    label: '获胜盘',
+    label: t('sports_winner_market'),
     value: '3',
   },
 ]

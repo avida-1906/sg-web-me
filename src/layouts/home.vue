@@ -186,7 +186,8 @@ onErrorCaptured((err, instance, info) => {
               currentRightSidebarContent === EnumRightSidebarContent.BETTING
             "
           >
-            <AppSportsBetSlipMenu />
+            <!-- <AppSportsBetSlipMenu /> -->
+            <AppSportRightBet />
           </template>
         </div>
       </div>
