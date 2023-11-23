@@ -450,6 +450,12 @@ export interface ISportEventInfo {
   ml: ISportEventInfoMl[]
   /** 赛事更新时间 */
   ts: 1699616882
+  /** 客队图标 */
+  atpic: string
+  /** 主队图标 */
+  htpic: string
+  /** 球种图标 */
+  spic: string
 }
 
 /** 冠军盘口数据 */

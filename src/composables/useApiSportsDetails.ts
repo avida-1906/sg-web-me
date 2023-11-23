@@ -104,6 +104,9 @@ export function useApiSportDetails() {
       remark: '',
       homeTeamScore: 0,
       awayTeamScore: 0,
+      atpic: '',
+      htpic: '',
+      spic: '',
     }
 
     if (
@@ -114,16 +117,20 @@ export function useApiSportDetails() {
     )
       return data
 
+    const list0 = sportInfo.value.list[0]
     const _map: IBasePanelType = {
-      startTime: application.timestampToTime(sportInfo.value.list[0].ed),
-      homeTeamName: sportInfo.value.list[0].htn,
-      awayTeamName: sportInfo.value.list[0].atn,
+      startTime: application.timestampToTime(list0.ed),
+      homeTeamName: list0.htn,
+      awayTeamName: list0.atn,
       remark: '',
-      homeTeamScore: sportInfo.value.list[0].hp,
-      awayTeamScore: sportInfo.value.list[0].ap,
+      homeTeamScore: list0.hp,
+      awayTeamScore: list0.ap,
+      atpic: list0.atpic,
+      htpic: list0.htpic,
+      spic: list0.spic,
     }
 
-    const pol = sportInfo.value.list[0].pol
+    const pol = list0.pol
 
     /**
      * 3 主队红牌
