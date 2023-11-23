@@ -160,6 +160,7 @@ bot_answers_instantly: 机器人会立即回答
 bot_expectation_text: 我们的机器人可以回答许多常见问题
 bot_is_still_thinking: 机器人仍在思考……
 bot_is_thinking: 机器人正在思考……
+normal_ques: 常见问题
 browse_collections: 浏览收藏
 by_email: 通过电子邮件
 by_web_notification: 通过网页通知
@@ -968,7 +969,7 @@ commission_wallet_money_label: 佣金钱包和余额
 currency_exchange_rate: 兑换领取币总汇率
 vip: VIP
 vip_promotion_bonus: 晋级奖金
-vip_water_back: 反水
+vip_water_back: 返水
 vip_day_salary: 日俸禄
 vip_week_salary: 周俸禄
 vip_month_salary: 月俸禄
@@ -1034,6 +1035,9 @@ vip_banner_tip_4: 被分配一名将支持并满足您的投注需求的专属 V
 vip_banner_tip_5: 在每达到下个级别后获取奖金。所达级别越高，升级奖金就越大。
 booster_bonus: 助推奖金
 upgrade_bonus: 升级奖金
+monthly_bonus: 月度奖金
+weekly_bonus: 周度奖金
+day_deposit_bonus: 每日奖金/充值奖金
 recent_game_perform_bonus: 近期游戏表现奖金
 dedicated_vip_servicer: 专属 VIP 服务代表
 multiple_count: 乘数
@@ -1102,6 +1106,7 @@ image_upload_tip: 仅能上传：png/jpg格式，最多上传5张，单张最大
 image_upload_size: 单张图片最大{size}
 image_upload_failed: 图片上传失败
 bonus_rule: 奖励规则
+bonus_label: 奖励
 feedback_bonus_tip: 我们已经设置了巨额奖金，专门收集反馈意见，以便我们优化系统和功能，给您带来更好的体验！一旦被采纳，将根据重要程度给予奖励（未采纳除外）
 bonus_not_apply: 待领取奖金
 feedback_status: 反馈状态
@@ -1384,3 +1389,71 @@ company_intro_tip_19:  MoonPay 具有许多受支持的支付方式，您可以�
 company_intro_tip_20: 具有蓬勃发展的社区、活跃的聊天室以及一个专门为客户解决游戏或账户方面任何问题的支持团队，Stake.com 因此成功展示了它能成为最领先的加密货币赌场及体育博彩平台的原因。
 vip_level_compare: VIP 级别对照
 bet_amount_label: 投注金额
+bonus_up: 奖金增长
+promo: 福利
+look_vip_level: 查看 VIP 级别表
+beginner_handbook: 入门手册
+step_num: 第{num}步
+experience: 体验
+click_more: 点击这里以了解更多
+has_more_q: 还有更多问题？
+online_24_sup: 24 小时在线客户支持
+vip_club_tip_1: 无与伦比的 VIP 体验
+vip_club_tip_2: 解锁专属福利并获得无需任何附加条件即可立即提取的奖金。
+vip_club_tip_3: 成为 VIP 是个既简单又富有回报的过程
+vip_club_tip_4: 立即注册以开始在赌场或体育盘口上进行投注
+vip_club_tip_5: 您的每笔赌注都会影响您 VIP 级别的进度。达到下个级别以解锁更多福利。
+vip_club_tip_6: 立即领取您的奖金。领取每日、周度和月度奖金的过程既简单又容易。
+vip_club_tip_7: Stake 通过不间断送出的奖金提供了独特且无与伦比的体验
+vip_club_tip_8: 每次升级都能获得更棒的奖励
+vip_club_tip_9: 联系我们屡获殊荣的支持团队
+vip_club_tip_10: 为什么 Stake 的 VIP 计划是最出色的？
+vip_club_tip_11: 由于我们发放给玩家的奖金数额居多，Stake 的 VIP 计划一向都被评为最佳的在线赌场体验之一。
+vip_club_tip_12: 此外，我们屡获殊荣的支持团队将全天候在线回答您的任何问题。我们在众多在线赌场中拥有最高的客户满意度，也与此同时创建了由全球最热情的一些博彩爱好者所组成的社区。
+vip_club_tip_13: 我们至今为止已送出了超过 10 亿美元的奖金。这也是我们具有最出色的在线 VIP 计划的主要原因。
+vip_club_tip_14: 我们坚信奖励玩家的投注量和忠诚度。
+vip_club_tip_15: Stake 一共发放了多少奖金？
+vip_club_tip_16: 如何参加 $75,000 周度抽奖活动？
+vip_club_tip_17: 您在 Stake 的每 $1,000 投注能换来一张抽奖券，而您只需要一张抽奖券便能参加抽奖活动。投注得越多，获得的抽奖券就越多，您的获胜机会也会因而增加。
+vip_club_tip_18: 如何加入 Stake Telegram 频道？
+vip_club_tip_19: Stake Telegram 频道的账号是 (@StakeCasino)。
+vip_club_tip_20: 如果您已经下载了 Telegram，请点击这里加入。
+vip_club_tip_21: 如何加入 Stake VIP Telegram 频道？
+vip_club_tip_22: 一旦达到铜级，您便可以请在线支持把您添加到 Stake VIP Telegram 频道。
+vip_club_tip_23: 您也可以通过加入 Stake Telegram 频道（@StakeCasino）找到更多相关的信息。
+vip_club_tip_24: 什么是近期游戏表现奖金？
+vip_club_tip_25: 这是由您的 VIP 服务代表主要根据您的总投注和运气酌情给予的奖金。
+vip_club_tip_26: 什么是返水？
+vip_club_tip_27: 返水是退还给您的玩家佣金（庄家优势）的百分比。
+vip_club_tip_28: 充值奖金是什么？该如何领取我的充值奖金？
+vip_club_tip_29: 充值奖金是根据玩家近期的投注表现计算的。玩家可以选择每日、每小时或每 10 分钟的领取间隔。
+vip_club_tip_30: 点击账户右上角的主用户菜单，在下拉菜单中点击 “VIP” 。在出现的模式窗口上点击 “充值奖金” 选项卡，然后再点击 “领取充值奖金” 即可。您能否被分配一名服务代表将取决于您的总投注额。
+vip_club_tip_31: 月度奖金将在何时发放？
+vip_club_tip_32: 月度奖金将会每月发放一次，日期一般在 15 日左右。但在某些情况下，发放日可能会稍晚或甚至提早，而这就是为什么它是 Stake 最令人期待的奖金之一。月度奖金一旦发放后，您便将收到电邮通知。为确保您不会错过奖金，请记得也要查看您电邮中的垃圾邮件文件夹。
+vip_club_tip_33: 铜、银和金级的玩家们将通过每日充值奖金领取奖金，而铂金与钻石级的玩家将一次性地领取他们的奖金。
+vip_club_tip_34: 如何计算达到下个级别所需要投注的金额?
+vip_club_tip_35: 首先点击账户右上角的主用户菜单，在下拉菜单中点击 “VIP” 查看您 VIP 进度条上的百分比，然后从 100% 减去此数目以获得剩余百分比。接下来将剩余百分比乘以您达到下个级别所剩下的总投注需求即可。
+vip_club_tip_36: 每次升级后我会得到哪些奖励？
+vip_club_tip_37: 升级奖金：这是每次升级都会增加的固定奖金。我们将根据您在升级前的盈亏情况以近期游戏表现奖金的形式添加额外金额。
+vip_club_tip_38: 周度与月度奖金：根据您的 VIP 级别您将得到一笔基础金额，之后您在相应的时间段内每投注的 $1,000 将得到额外的金额。
+vip_club_tip_39: 每日奖金：充值奖金在到期后将由您的 VIP 服务代表更新。
+vip_club_tip_40: 奖金数额是如何计算的？
+vip_club_tip_41: 您所得到的奖金数额是按照您的总投注额和利润计算的。我们坚信玩家们无论输赢都应该得到奖励。只奖励输钱的玩家并不公平，但如果您的运气真的欠佳，我们会再额外增加您的奖金数额！
+vip_club_tip_42: 我的 VIP 服务代表能为我做什么？
+vip_club_tip_43: 您的 VIP 服务代表将确保您的游戏表现会得到奖励。他们会帮您更新充值奖金、在您的升级过程中给予指导、审查您的体育限制、评估您是否可获得额外奖金以及处理您在网站上遇到的任何问题。
+vip_club_tip_44: 在被分配了一名 VIP 服务代表后，所获得的充值奖金是一个持续的还是可更新的福利？
+vip_club_tip_45: 当您达到铂金 IV 级别并被分配一名 VIP 服务代表后，您将开始获得可更新的周度充值奖金。每当您的周度充值奖金到期时，您便可联系您的 VIP 服务代表以更新您在接下来 7 天内可领取的充值奖金。
+vip_club_tip_46: 充值奖金的数额是取决于您每周在游戏中的表现，如果您那一周内在利润方面的运气不佳，您将会得到额外的奖金。
+vip_club_tip_47: VIP 服务代表的职责包括了什么，与常规的在线支持人员又有何不同？
+vip_club_tip_48: VIP 服务代表只分配给铂金 IV 级别以上的玩家。他们可以回答您有关 VIP 计划的问题并确保您领取所有应得的奖金。VIP 服务代表也能够在确保奖金符合您需求的同时更频繁地发送更大的奖金。
+vip_club_tip_49: 在线支持可以帮助您解决在平台上遇到的任何技术问题。
+vip_club_tip_50: 我什么时候可以被分配 VIP 服务代表？
+vip_club_tip_51: 玩家一旦达到铂金 IV 级后便会被分配一名 VIP 服务代表。这名服务代表将成为您的专属支持人员，帮助您解决所有疑问并在您的游戏过程中提供任何所需的指导。请注意，您是否符合资格还取决于您近期的活动。
+vip_club_tip_52: 万一我的 VIP 服务代表休假去了该怎么办？
+vip_club_tip_53: 请确保向您的 VIP 服务代表索取他特有 VIP 服务频道的邀请链接。如果您漏掉了这一步，您可以联系在线支持获取一个 VIP 备份链接。这将是您的服务代表回来之前的临时备份代表。
+vip_club_tip_54: 使用我们的知识指南或到我们的社区论坛上提问。
+vip_club_tip_55: 由真人提供的有效支持。我们可以通过即时在线聊天和电邮帮助您进行设置与故障排除。
+chat_us: 与我们聊天
+
+
+
