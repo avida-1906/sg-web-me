@@ -36,7 +36,7 @@ const {
   resetField: depositNameReset,
 } = useField<string>('depositName', (value) => {
   if (!value)
-    return '存款人姓名必填'
+    return t('pls_input_deposit_name')
   return ''
 })
 const {
@@ -169,8 +169,8 @@ await application.allSettled([
         </BaseLabel>
         <BaseLabel
           v-if="currentAisle.payment_type === 2"
-          label="存款人姓名:"
-          label-content="为及时到账，请务必输入正确的存款人姓名"
+          :label="`${t('deposit_name')}:`"
+          :label-content="t('deposit_name_tip')"
         >
           <BaseInput v-model="depositName" :msg="depositNameError" />
         </BaseLabel>

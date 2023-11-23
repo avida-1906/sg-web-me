@@ -759,6 +759,9 @@ finance_funds_campaign_sort_created: 创建日
 finance_funds_campaign_sort_deposit_count: 存款次数
 finance_funds_transfer_commission_txt: 把联盟佣金转入可用余额
 finance_funds_transfer_commission_withdraw: 提取可用佣金
+finance_funds_vault_draw: 保险库提款
+success_deposit: 成功存放 {amount} {icon} 进保险库
+confirm_draw_vault: 已确认从保险库提取 {amount} {icon}
 avai_commission: 可用佣金
 total_commission: 总佣金
 page_label: 页
@@ -1151,6 +1154,7 @@ mark_all_read: 标记全部为已读
 empty_notify: 暂无通知
 tip_show_action: 您的互动将在此处显示
 tip_for_set_safepwd: 为了您的资金安全，请先设置资金密码。
+tip_set_safe: 请先设置资金密码
 go_set: 前往设置
 showing: 正显示
 in_all_game: 款游戏中的
@@ -1454,6 +1458,12 @@ vip_club_tip_53: 请确保向您的 VIP 服务代表索取他特有 VIP 服务�
 vip_club_tip_54: 使用我们的知识指南或到我们的社区论坛上提问。
 vip_club_tip_55: 由真人提供的有效支持。我们可以通过即时在线聊天和电邮帮助您进行设置与故障排除。
 chat_us: 与我们聊天
-
+pls_input_deposit_name: 存款人姓名必填
+min_amount_0: 最小金额不可小于等于0
+min_len_6: 最小字符长度为6
+safe_pwd_error: 支付密码格式错误
+save_to_vault: 存入保险库
+draw_vault: 保险库取出
+vault_info: 了解更多有关保险库的信息
 
 

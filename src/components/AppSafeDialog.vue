@@ -14,7 +14,7 @@ const activeCurrency = ref<any>()
 const activeTab = ref('deposit')
 const tabOptions = [
   { label: t('deposit'), value: 'deposit' },
-  { label: '取款', value: 'withdraw' },
+  { label: t('withdraw'), value: 'withdraw' },
 ]
 const amountRef = ref()
 const passwordRef = ref()
@@ -27,11 +27,11 @@ const {
   setValue: setAmount,
 } = useField<string>('amount', (value) => {
   if (!value)
-    return '最小金额不可小于等于0'
+    return t('min_amount_0')
   else if (Number(value) <= 0)
-    return '最小金额不可小于等于0'
+    return t('min_amount_0')
   else if (activeCurrency.value && Number(value) > Number(activeCurrency.value?.balance))
-    return '金额不能超过最大值'
+    return t('validate_deposit_amount_max')
 
   return ''
 })
@@ -42,9 +42,9 @@ const {
   errorMessage: errPassword,
 } = useField<string>('password', (value) => {
   if (!value)
-    return '最小字符长度为6'
+    return t('min_len_6')
   else if (!payPasswordReg.test(value))
-    return '支付密码格式错误'
+    return t('safe_pwd_error')
 
   return ''
 })
@@ -74,14 +74,20 @@ const {
 } = useRequest(ApiMemberBalanceLockerUpdate, {
   async onSuccess() {
     openNotify({
-      title: isDeposit.value ? '保险库存款' : '保险库提款',
+      title: isDeposit.value
+        ? t('finance_other_tab_vault_deposit')
+        : t('finance_funds_vault_draw'),
       icon: 'navbar-cart-notify',
       message: isDeposit.value
-        ? `成功存放 ${updateParams.value?.amount}
-        ${renderSvg(activeCurrency.value.type.toLocaleLowerCase())} 进保险库`
-        : `已确认从保险库提取 ${updateParams.value?.amount}
-        ${renderSvg(activeCurrency.value.type.toLocaleLowerCase())}
-        `,
+        ? t('success_deposit',
+          {
+            amount: updateParams.value?.amount,
+            icon: renderSvg(activeCurrency.value.type.toLocaleLowerCase()),
+          })
+        : t('confirm_draw_vault', {
+          amount: updateParams.value?.amount,
+          icon: renderSvg(activeCurrency.value.type.toLocaleLowerCase()),
+        }),
     })
     reset()
     resetPassword()
@@ -94,9 +100,9 @@ const {
 async function handleUpdate() {
   if (userInfo.value?.pay_password !== '1') {
     openNotify({
-      title: '错误',
+      title: t('notify_title_error'),
       icon: 'error',
-      message: '请先设置资金密码',
+      message: t('tip_set_safe'),
     })
     closeDialog()
     router.push('/settings/security-safe-pwd')
@@ -144,7 +150,7 @@ watch(() => activeTab.value, () => {
       <BaseTab v-model="activeTab" :list="tabOptions" />
       <div class="center">
         <div class="flex-col-start">
-          <span>货币</span>
+          <span>{{ t('currency') }}</span>
           <AppSelectCurrency
             :type="isDeposit ? 1 : 2"
             @change="changeCurrency"
@@ -153,7 +159,7 @@ watch(() => activeTab.value, () => {
       </div>
       <div class="amount">
         <div class="top">
-          <span class="label">金额</span>
+          <span class="label">{{ t('amount') }}</span>
           <span class="us">US$0.00</span>
         </div>
         <BaseInput
@@ -168,7 +174,7 @@ watch(() => activeTab.value, () => {
             <AppCurrencyIcon v-if="activeCurrency" :currency-type="activeCurrency.type" />
           </template>
           <template #right-button>
-            <span>最大值</span>
+            <span>{{ t('max') }}</span>
           </template>
         </BaseInput>
       </div>
@@ -180,13 +186,13 @@ watch(() => activeTab.value, () => {
         style="font-size: var(--tg-font-size-base);"
         @click="handleUpdate"
       >
-        存入保险库
+        {{ t('save_to_vault') }}
       </BaseButton>
       <template v-else>
         <div>
           <BaseInput
             ref="passwordRef" v-model="password"
-            label="密码"
+            :label="t('password')"
             :msg="errPassword"
             placeholder=""
             type="password"
@@ -201,13 +207,13 @@ watch(() => activeTab.value, () => {
           :loading="lockerUpdateLoading"
           @click="handleUpdate"
         >
-          保险库取出
+          {{ t('draw_vault') }}
         </BaseButton>
       </template>
     </div>
     <div class="safe-bottom">
       <div v-if="userInfo && userInfo.google_verify !== 2">
-        通过双重验证提高您的账户安全性
+        {{ t('improve_safe_level') }}
       </div>
       <BaseButton
         v-if="userInfo && userInfo.google_verify !== 2"
@@ -215,10 +221,10 @@ watch(() => activeTab.value, () => {
         size="md"
         @click="router.push('/settings/security-safe-check');closeDialog()"
       >
-        开启双重验证
+        {{ t('turn_on_double_check') }}
       </BaseButton>
       <BaseButton size="none" type="text">
-        了解更多有关保险库的信息
+        {{ t('vault_info') }}
       </BaseButton>
     </div>
   </div>
