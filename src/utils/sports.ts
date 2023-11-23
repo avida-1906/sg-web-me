@@ -439,26 +439,26 @@ export class SportsCart {
   updateAllData(data: IBetInfoBack, fn?: IBetInfoChangeCallback) {
     const { wsi, bi } = data
 
-    if (!bi) {
+    if (!bi)
       console.error('bi 不存在')
-      openNotify({
-        type: 'error',
-        message: 'betinfo接口 / bi字段为null',
-      })
-      return
-    }
 
-    const duplexOv = bi[0].ov
-    // 复式下的最小赔率
-    const mia = bi[0] ? bi[0].mia : 0
-    // 复式下的最大赔率
-    const maa = bi[0] ? bi[0].maa : 0
-    // 复式下的串关类型
-    const pt = bi[0] ? bi[0].pt : 0
+    let duplexOv = ''
+    let mia = 0
+    let maa = 0
+    let pt = 0
+
+    if (bi) {
+      duplexOv = bi[0].ov
+      // 复式下的最小赔率
+      mia = bi[0] ? bi[0].mia : 0
+      // 复式下的最大赔率
+      maa = bi[0] ? bi[0].maa : 0
+      // 复式下的串关类型
+      pt = bi[0] ? bi[0].pt : 0
+    }
 
     this.dataList.forEach((item) => {
       const _wsiObject = wsi.find(a => a.wid === item.wid)
-      const _biObject = bi.find(a => a.wid === item.wid)
 
       item.ov = _wsiObject?.ov ?? ''
       item.os = _wsiObject?.os ?? 0
@@ -466,11 +466,14 @@ export class SportsCart {
       item.hp = _wsiObject?.hp ?? 0
       item.ap = _wsiObject?.ap ?? 0
 
-      item.maa = _biObject?.maa ?? 0
-      item.mia = _biObject?.mia ?? 0
-      item.cei = _biObject?.cei ?? ''
-      // 复式下的串关类型，单式不需要管这个值
-      item.pt = _biObject?.pt ?? pt
+      if (bi) {
+        const _biObject = bi.find(a => a.wid === item.wid)
+        item.maa = _biObject?.maa ?? 0
+        item.mia = _biObject?.mia ?? 0
+        item.cei = _biObject?.cei ?? ''
+        // 复式下的串关类型，单式不需要管这个值
+        item.pt = _biObject?.pt ?? pt
+      }
     })
     const ovIsChange = this.dataList.some((item) => {
       const wsi = data.wsi.find(a => a.wid === item.wid)

@@ -107,29 +107,6 @@ const errorInfo = computed<{
   /** 错误提示信息 */
   errorMess: string
 }>(() => {
-  // 赔率变化
-  if (ovIsChange.value) {
-    return {
-      bool: true,
-      errorMess: t('sports_odds_has_changed'),
-    }
-  }
-
-  if (fetchBetInfoStatus.value === false) {
-    return {
-      bool: true,
-      errorMess: '获取投注信息失败',
-    }
-  }
-
-  // 余额不足
-  if (isBetAmountOverBalance.value) {
-    return {
-      bool: true,
-      errorMess: '您的投注额不能大于余额。',
-    }
-  }
-
   if (sportStore.cart.isExistCloseCaps) {
     return {
       bool: true,
@@ -142,21 +119,17 @@ const errorInfo = computed<{
     if (sportStore.cart.getExistSameEventIdList.length) {
       return {
         bool: true,
-        errorMess: '来自同一赛事的多重投注项不能结合成复式投注。',
-      }
-    }
-
-    if (sportStore.cart.getNotSupportWidList.length) {
-      return {
-        bool: true,
         errorMess: '同一场赛事的多个投注项不能组合为复式投注',
       }
     }
 
-    if (sportStore.cart.getExistIcList.length) {
+    if (
+      sportStore.cart.getNotSupportWidList.length
+      || sportStore.cart.getExistIcList.length
+    ) {
       return {
         bool: true,
-        errorMess: '存在ic != 1 的投注项，不能组合为复式投注',
+        errorMess: '您有不支持复式投注的投注项',
       }
     }
 
@@ -165,6 +138,29 @@ const errorInfo = computed<{
         bool: true,
         errorMess: `复式投注项组合不能超过 ${VITE_SPORT_MULTI_BET_MAX} 个。`,
       }
+    }
+  }
+
+  // 赔率变化
+  if (ovIsChange.value) {
+    return {
+      bool: true,
+      errorMess: '赔率已变更，您需先接受赔率更改方可进行投注',
+    }
+  }
+
+  // 余额不足
+  if (isBetAmountOverBalance.value) {
+    return {
+      bool: true,
+      errorMess: '您的投注额不能大于余额。',
+    }
+  }
+
+  if (fetchBetInfoStatus.value === false) {
+    return {
+      bool: true,
+      errorMess: '获取投注信息失败',
     }
   }
 
@@ -348,8 +344,7 @@ watch(() => sportStore.cart.count, (val, oVal) => {
       runGetSportPlaceBetInfoHandle()
       startSetInterval()
     }
-
-    if (oVal && val > oVal) {
+    else if (val !== oVal && val !== 0) {
       closeSetInterval()
       runGetSportPlaceBetInfoHandle()
       startSetInterval()
