@@ -8,6 +8,8 @@ import type {
 } from '~/apis/types'
 import type { IBetInfoChangeCallback, ICartInfo, ICartInfoData } from '~/types'
 
+const { openNotify } = useNotify()
+
 /**
  * 体育ID
  *
@@ -439,6 +441,10 @@ export class SportsCart {
 
     if (!bi) {
       console.error('bi 不存在')
+      openNotify({
+        type: 'error',
+        message: 'betinfo接口 / bi字段为null',
+      })
       return
     }
 
