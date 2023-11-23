@@ -9,7 +9,7 @@ const sportId = route.params.sport ? +route.params.sport : 0
 const regionId = route.params.region ? route.params.region.toString() : ''
 const leagueId = route.params.league ? route.params.league.toString() : ''
 // 冠军数据
-const params = computed(() => ({ si: sportId, page: 1, page_size: 100 }))
+const params = ref({ si: sportId, page: 1, page_size: 100 })
 const { data, run, runAsync } = useRequest(ApiSportOutrightList)
 /** 定时更新数据 */
 const { startTimer, stopTimer } = useSportsDataUpdate(() => run(params.value))
@@ -18,13 +18,20 @@ const isSport = computed(() => props.level === 1)
 const isRegion = computed(() => props.level === 2)
 const isLeague = computed(() => props.level === 3)
 const sportlist = computed(() => {
-  return data.value ? sportsOutrightsGroupByRegion(data.value.d) : []
+  return data.value && data.value.d ? sportsOutrightsGroupByRegion(data.value.d) : []
 })
 const regionList = computed(() => {
-  return data.value ? data.value.d.filter(a => a.pgid === regionId) : []
+  return data.value && data.value.d ? data.value.d.filter(a => a.pgid === regionId) : []
 })
 const leagueList = computed(() => {
-  return data.value ? data.value.d.filter(a => a.ci === leagueId) : []
+  return data.value && data.value.d ? data.value.d.filter(a => a.ci === leagueId) : []
+})
+
+watch(route, (r) => {
+  if (r.fullPath.includes('outrights=2')) {
+    params.value.si = r.params.sport ? +r.params.sport : 0
+    run(params.value)
+  }
 })
 
 onBeforeMount(() => {

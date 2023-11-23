@@ -47,11 +47,13 @@ function onBaseTypeChange(v: string) {
   baseType.value = v
 }
 
-watch(route, (a) => {
-  curTab.value = a.query.outrights ? '2' : '1'
-  params.value.si = a.params.sport ? +a.params.sport : 0
-  run(params.value)
-  startTimer()
+watch(route, (r) => {
+  if (r.name === 'sports-platId-sport') {
+    curTab.value = r.query.outrights ? '2' : '1'
+    params.value.si = r.params.sport ? +r.params.sport : 0
+    run(params.value)
+    startTimer()
+  }
 })
 
 onMounted(() => {

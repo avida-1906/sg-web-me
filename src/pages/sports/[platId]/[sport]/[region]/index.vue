@@ -49,10 +49,12 @@ function onBaseTypeChange(v: string) {
   baseType.value = v
 }
 
-watch(route, (a) => {
-  region.value = a.params.region ? a.params.region.toString() : ''
-  run(params.value)
-  startTimer()
+watch(route, (r) => {
+  if (r.name === 'sports-platId-sport-region') {
+    region.value = r.params.region ? r.params.region.toString() : ''
+    run(params.value)
+    startTimer()
+  }
 })
 
 onMounted(() => {

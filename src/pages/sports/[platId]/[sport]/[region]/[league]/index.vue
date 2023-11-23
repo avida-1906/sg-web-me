@@ -59,10 +59,12 @@ function onBaseTypeChange(v: string) {
   baseType.value = v
 }
 watch(route, (r) => {
-  params.value.si = r.params.sport ? +r.params.sport : 0
-  params.value.ci = [r.params.league ? r.params.league.toString() : '']
-  run(params.value)
-  startTimer()
+  if (r.name === 'sports-platId-sport-region-league') {
+    params.value.si = r.params.sport ? +r.params.sport : 0
+    params.value.ci = [r.params.league ? r.params.league.toString() : '']
+    run(params.value)
+    startTimer()
+  }
 })
 
 onMounted(() => {
