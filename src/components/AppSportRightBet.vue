@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import AppSportRightBetSlip from './AppSportRightBetSlip.vue'
 import AppSportRightMyBets from './AppSportRightMyBets.vue'
+import { EnumsBetSlipHeadStatus } from '~/utils/enums'
 
 const { t } = useI18n()
 const sportStore = useSportsStore()
@@ -30,6 +31,11 @@ const renderComponent = computed(() => {
       return AppSportRightMyBets
   }
 })
+
+function changeHeadSelectValue(value: EnumsBetSlipHeadStatus) {
+  console.error('changeHeadSelectValue', value)
+  headSelectValue.value = value
+}
 </script>
 
 <template>
@@ -72,7 +78,10 @@ const renderComponent = computed(() => {
     </div>
     <div class="content">
       <KeepAlive>
-        <component :is="renderComponent" />
+        <component
+          :is="renderComponent"
+          @change-head-select-value="changeHeadSelectValue"
+        />
       </KeepAlive>
     </div>
   </div>

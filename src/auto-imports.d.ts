@@ -337,6 +337,7 @@ declare global {
   const useApiMemberTreeList: typeof import('./composables/useApiMemberTreeList')['useApiMemberTreeList']
   const useApiMenuData: typeof import('./composables/useApiMenuData')['useApiMenuData']
   const useApiSendMsg: typeof import('./composables/useApiSendMsg')['useApiSendMsg']
+  const useApiSportBetList: typeof import('./composables/useApiSportBetList')['useApiSportBetList']
   const useApiSportDetails: typeof import('./composables/useApiSportsDetails')['useApiSportDetails']
   const useApiSportsDetails: typeof import('./composables/useApiSportsDetails')['useApiSportsDetails']
   const useAppStore: typeof import('./stores/app')['useAppStore']
@@ -894,6 +895,7 @@ declare module 'vue' {
     readonly useApiMemberTreeList: UnwrapRef<typeof import('./composables/useApiMemberTreeList')['useApiMemberTreeList']>
     readonly useApiMenuData: UnwrapRef<typeof import('./composables/useApiMenuData')['useApiMenuData']>
     readonly useApiSendMsg: UnwrapRef<typeof import('./composables/useApiSendMsg')['useApiSendMsg']>
+    readonly useApiSportBetList: UnwrapRef<typeof import('./composables/useApiSportBetList')['useApiSportBetList']>
     readonly useApiSportDetails: UnwrapRef<typeof import('./composables/useApiSportsDetails')['useApiSportDetails']>
     readonly useAppStore: UnwrapRef<typeof import('./stores/app')['useAppStore']>
     readonly useArrayDifference: UnwrapRef<typeof import('@vueuse/core')['useArrayDifference']>
@@ -1443,6 +1445,7 @@ declare module '@vue/runtime-core' {
     readonly useApiMemberTreeList: UnwrapRef<typeof import('./composables/useApiMemberTreeList')['useApiMemberTreeList']>
     readonly useApiMenuData: UnwrapRef<typeof import('./composables/useApiMenuData')['useApiMenuData']>
     readonly useApiSendMsg: UnwrapRef<typeof import('./composables/useApiSendMsg')['useApiSendMsg']>
+    readonly useApiSportBetList: UnwrapRef<typeof import('./composables/useApiSportBetList')['useApiSportBetList']>
     readonly useApiSportDetails: UnwrapRef<typeof import('./composables/useApiSportsDetails')['useApiSportDetails']>
     readonly useAppStore: UnwrapRef<typeof import('./stores/app')['useAppStore']>
     readonly useArrayDifference: UnwrapRef<typeof import('@vueuse/core')['useArrayDifference']>

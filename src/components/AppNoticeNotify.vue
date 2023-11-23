@@ -96,9 +96,9 @@ pageInit()
         </div>
         <div class="item-right">
           <div class="right-state">
-            <div style="white-space: break-spaces;line-height: 1.43;">
+            <!-- <div style="white-space: break-spaces;line-height: 1.43;">
               {{ item.title }}
-            </div>
+            </div> -->
             <BaseBadge
               v-if="isState"
               class="state-text"

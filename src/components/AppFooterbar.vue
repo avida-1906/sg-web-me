@@ -4,6 +4,7 @@ const router = useRouter()
 const route = useRoute()
 const { leftIsExpand, triggerLeftSidebar, closeLeftSidebar } = useLeftSidebar()
 const { openRightSidebar, closeRightSidebar } = useRightSidebar()
+const sportStore = useSportsStore()
 
 const tabbar = ref([
   { title: t('scan'), icon: 'tabbar-menu', name: 'menu', show: true },
@@ -104,7 +105,7 @@ function changeBar(item: { name: string; path?: string }) {
           <BaseBadge
             v-if="item.name === 'bet' || item.name === 'user-bet'"
             mode="active"
-            :count="5"
+            :count="sportStore.cart.count"
           >
             <BaseIcon class="bar-icon" :name="item.icon" />
           </BaseBadge>
