@@ -166,7 +166,8 @@ export function ApiSportEventList(data: {
     /** 资料更新时间 */
     delta: number
     /** 联赛列表 */
-    list: ISportEventInfo[]
+    d: ISportEventInfo[]
+    t: number
   }>(`/sport/${getSportsPlatId()}/event/list`, data)
 }
 
@@ -250,7 +251,8 @@ export function ApiSportOutrightList(data: {
   page_size: number
 }) {
   return httpClient.post<{
-    list: ISportOutrightsInfo[]
+    d: ISportOutrightsInfo[]
+    t: number
   }>(`/sport/${getSportsPlatId()}/outright/list`, data)
 }
 
@@ -265,7 +267,8 @@ export function ApiSportGetFavoriteList(data: {
   return httpClient.post<{
     /** 资料更新时间 */
     delta: number
-    list: ISportEventInfo[]
+    d: ISportEventInfo[]
+    t: number
   }>(`/sport/${getSportsPlatId()}/favorite/get`, data)
 }
 

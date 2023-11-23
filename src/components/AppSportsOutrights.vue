@@ -18,13 +18,13 @@ const isSport = computed(() => props.level === 1)
 const isRegion = computed(() => props.level === 2)
 const isLeague = computed(() => props.level === 3)
 const sportlist = computed(() => {
-  return data.value ? sportsOutrightsGroupByRegion(data.value.list) : []
+  return data.value ? sportsOutrightsGroupByRegion(data.value.d) : []
 })
 const regionList = computed(() => {
-  return data.value ? data.value.list.filter(a => a.pgid === regionId) : []
+  return data.value ? data.value.d.filter(a => a.pgid === regionId) : []
 })
 const leagueList = computed(() => {
-  return data.value ? data.value.list.filter(a => a.ci === leagueId) : []
+  return data.value ? data.value.d.filter(a => a.ci === leagueId) : []
 })
 
 onBeforeMount(() => {

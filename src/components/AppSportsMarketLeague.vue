@@ -18,8 +18,8 @@ const isRegionOpen = computed(() => props.isRegionOpen)
 const { data, run, loading } = useRequest(() =>
   ApiSportEventList({ si: +sport, m: 5, ci: [props.leagueId], page: 1, page_size: 100 }),
 )
-const eventList = computed(() => data.value ? data.value.list : [])
-const eventCount = computed(() => data.value ? data.value.list.length : props.count)
+const eventList = computed(() => data.value ? data.value.d : [])
+const eventCount = computed(() => data.value ? data.value.d.length : props.count)
 
 // 获取数据
 function getEventsData() {

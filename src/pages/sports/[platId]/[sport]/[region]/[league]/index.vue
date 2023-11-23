@@ -22,23 +22,23 @@ const tabs = computed(() => [
 const isLiveAndUpcoming = computed(() => curTab.value === '1')
 const isOutrights = computed(() => curTab.value === '2')
 // 球种名称
-const sportName = computed(() => data.value && data.value.list
-  ? data.value.list[0].sn
+const sportName = computed(() => data.value && data.value.d
+  ? data.value.d[0].sn
   : '-',
 )
 // 地区名称
-const regionName = computed(() => data.value && data.value.list
-  ? data.value.list[0].pgn
+const regionName = computed(() => data.value && data.value.d
+  ? data.value.d[0].pgn
   : '-',
 )
 // 联赛名称
-const leagueName = computed(() => data.value && data.value.list
-  ? data.value.list[0].cn
+const leagueName = computed(() => data.value && data.value.d
+  ? data.value.d[0].cn
   : '-',
 )
 // 赛事数据
 const eventList = computed(() => {
-  return data.value && data.value.list ? data.value.list : []
+  return data.value && data.value.d ? data.value.d : []
 })
 const breadcrumb = computed(() => [
   {
