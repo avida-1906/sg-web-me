@@ -53,12 +53,7 @@ watch(props, (a) => {
         />
       </div>
     </div>
-    <div v-show="loading" class="loading">
-      <BaseLoading />
-    </div>
-    <div v-if="!loading && list.length === 0" class="empty">
-      <BaseEmpty icon="empty-2" :description="t('data_empty')" />
-    </div>
+    <AppSportsLoadingEmpty :loading="loading" :list="list" />
     <div
       v-if="!loading && list.length > 0"
       class="slip-wrapper" :style="`column-count:${columnCount}`"
@@ -73,13 +68,6 @@ watch(props, (a) => {
 <style lang='scss' scoped>
 .title{
   margin-bottom: var(--tg-spacing-24);
-}
-.loading{
-  width: 100%;
-  height: 250px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 .slip-wrapper {
   width: 100%;

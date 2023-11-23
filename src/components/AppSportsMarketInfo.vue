@@ -15,7 +15,7 @@ const { t } = useI18n()
 const router = useRouter()
 const { width } = storeToRefs(useWindowStore())
 const { isLogin, currentGlobalCurrency } = storeToRefs(useAppStore())
-const { checkDragDialog } = useDragDialogList()
+// const { checkDragDialog } = useDragDialogList()
 const sportsStore = useSportsStore()
 const { sportsFavoriteData } = storeToRefs(sportsStore)
 /** 是否收藏 */
@@ -133,13 +133,13 @@ const timeText = computed(() => timeToSportsTimeFormat(props.data.ed))
 // 正在滚球
 const isOnAir = computed(() => props.data.m === 3)
 // 是否有直播
-const isHasliveStream = computed(() => props.data.ls === 1)
+// const isHasliveStream = computed(() => props.data.ls === 1)
 
 // 打开实时数据或直播
-function openDragDialog(type: 'trend' | 'live') {
-  const dialogId = props.data.ei + type
-  useDragDialog({ type, url: '', dialogId })
-}
+// function openDragDialog(type: 'trend' | 'live') {
+//   const dialogId = props.data.ei + type
+//   useDragDialog({ type, url: '', dialogId })
+// }
 // 联赛跳转
 function onBreadcrumbsClick({ list, index }: { list: ISelectOption[]; index: number }) {
   let path = ''
@@ -309,7 +309,7 @@ onBeforeUnmount(() => {
               </div>
             </template>
           </VTooltip> -->
-          <VTooltip v-if="isHasliveStream" placement="top">
+          <!-- <VTooltip v-if="isHasliveStream" placement="top">
             <BaseButton
               type="text" size="none"
               :disabled="checkDragDialog(`${data.ei}live`)"
@@ -322,7 +322,7 @@ onBeforeUnmount(() => {
                 {{ t('sports_live_tv') }}
               </div>
             </template>
-          </VTooltip>
+          </VTooltip> -->
         </div>
       </div>
     </template>
@@ -401,7 +401,7 @@ onBeforeUnmount(() => {
             </div>
           </template>
         </VTooltip> -->
-        <VTooltip v-if="isHasliveStream" placement="top">
+        <!-- <VTooltip v-if="isHasliveStream" placement="top">
           <BaseButton
             type="text" size="none"
             :disabled="checkDragDialog(`${data.ei}live`)"
@@ -414,7 +414,7 @@ onBeforeUnmount(() => {
               {{ t('sports_live_tv') }}
             </div>
           </template>
-        </VTooltip>
+        </VTooltip> -->
       </div>
       <BaseButton
         class="text-btn" type="text" size="none"
