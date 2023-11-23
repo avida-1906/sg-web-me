@@ -40,7 +40,6 @@ function goAuth(type: AuthTypesKeys) {
 onMounted(() => {
   socketClient.addSubscribe(topic.value)
   refreshAuthBus.on((data: any) => {
-    gWin.value.close()
     if (data) {
       if (data.action === 'register')
         openThirdAuthFormDialog({ data: data.extra_data, ty: ty.value })
@@ -54,6 +53,9 @@ onMounted(() => {
       else if (data.action === 'error')
         openNotify({ type: 'error', message: data.extra_data })
     }
+    setTimeout(() => {
+      gWin.value.close()
+    }, 1500)
   })
 })
 

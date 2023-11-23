@@ -1,28 +1,37 @@
 <script lang="ts" setup>
-defineProps<{ onPage?: boolean }>()
+const props = defineProps<{ onPage?: boolean; onLobby?: boolean }>()
 
 const { t } = useI18n()
+const router = useRouter()
 const sportsStore = useSportsStore()
 const { sportLiveNavs, currentLiveNav } = storeToRefs(sportsStore)
 const { bool: isStandard } = useBoolean(true)
-const { data, run } = useRequest(() =>
-  ApiSportEventList({ si: currentLiveNav.value, m: 3, page: 1, page_size: 100 }),
-{
-  refreshDeps: [currentLiveNav],
+const params = computed(() => {
+  return { si: currentLiveNav.value, m: 3, page: 1, page_size: 50 }
 })
+const { data, run, runAsync } = useRequest(ApiSportEventList,
+  {
+    refreshDeps: [currentLiveNav],
+  },
+)
 /** 定时更新数据 */
-const { startTimer: startLive, stopTimer: stopLive } = useSportsDataUpdate(run)
+const { startTimer: startLive, stopTimer: stopLive }
+= useSportsDataUpdate(() => run(params.value))
 const {
   startTimer: startCount,
   stopTimer: stopCount,
 } = useSportsDataUpdate(sportsStore.runSportsCount)
 
 const baseType = ref('winner')
-const list = computed(() => {
+const groupedList = computed(() => {
   if (data.value && data.value.list)
     return sportsDataGroupByLeague(data.value.list)
-
   return []
+})
+const list = computed(() => {
+  if (props.onLobby)
+    return groupedList.value.slice(0, 3)
+  return groupedList.value
 })
 
 function onBaseTypeChange(v: string) {
@@ -44,6 +53,9 @@ onBeforeUnmount(() => {
   stopLive()
   stopCount()
 })
+
+if (currentLiveNav.value !== -1 && !props.onPage)
+  await application.allSettled([runAsync(params.value)])
 </script>
 
 <template>
@@ -69,6 +81,13 @@ onBeforeUnmount(() => {
         :base-type="baseType"
       />
     </div>
+    <BaseButton
+      v-if="groupedList.length > 3 && onLobby"
+      class="check-more" type="text" padding0
+      @click="router.push(`/sports/${getSportsPlatId()}/live`)"
+    >
+      {{ t('view_all') }}
+    </BaseButton>
 
     <div v-if="!onPage" class="layout-spacing">
       <AppBetData mode="sports" />
@@ -83,6 +102,12 @@ onBeforeUnmount(() => {
   &.on-page {
     margin-top: 0;
   }
+}
+.check-more{
+  display: block;
+  margin-top: -12px;
+  padding-left: var(--tg-spacing-16);
+  margin-bottom: var(--tg-spacing-24);
 }
 
 .market-wrapper {

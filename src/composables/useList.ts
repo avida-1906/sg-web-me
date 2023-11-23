@@ -97,7 +97,6 @@ export function useList<R extends IResponseList<unknown>, P extends unknown[]>(
   }
 
   watch([page, page_size], () => {
-    console.log('watch([page', page)
     if (params.value && Array.isArray(params.value))
       _run(...getParams(...params.value))
   })
