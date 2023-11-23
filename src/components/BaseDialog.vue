@@ -137,6 +137,7 @@ onUnmounted(() => {
 <style>
 :root {
   --tg-dialog-style-maxwidth: 500px;
+  --tg-dialog_style-bg: var(--tg-primary-main);
 }
 </style>
 
@@ -181,7 +182,7 @@ onUnmounted(() => {
       max-width: var(--tg-dialog-style-maxwidth);
       max-height: calc(100% - 4em);
       border-radius: var(--tg-radius-default);
-      background: var(--tg-primary-main);
+      background: var(--tg-dialog_style-bg);
       overflow: hidden;
       display: flex;
       flex-direction: column;

@@ -15,6 +15,13 @@ const {
   manual: false,
 })
 
+const nextVip = computed(() => {
+  if (userInfo.value && +userInfo.value.vip >= 0)
+    return +userInfo.value.vip + 1
+  else
+    return '-'
+})
+
 function openRecord() {
   openVipBonusRecordDialog()
 }
@@ -32,7 +39,7 @@ async function openReceive() {
   <div class="app-vip-info-bar">
     <BaseIcon class="vip-badge" :name="`vip${userInfo?.vip ?? '0'}`" />
     <div class="info">
-      <span>{{ $t('next_vip_amount', { vip: 'VIP2', amount: '100万' }) }}</span>
+      <span>{{ $t('next_vip_amount', { vip: `VIP${nextVip}`, amount: '100万' }) }}</span>
       <div class="btns">
         <BaseButton
           bg-style="primary"
