@@ -32,7 +32,7 @@ const {
   value: username,
   errorMessage: usernameErrorMsg,
   validate: validateUsername,
-  setErrors: setUsernameErrors,
+  // setErrors: setUsernameErrors,
 } = useField<string>('username', (value) => {
   if (!value)
     return t('pls_enter_username')
@@ -101,7 +101,7 @@ onMounted(() => {
         />
       </BaseLabel>
       <BaseButton bg-style="secondary" size="md" @click="submit">
-        继续
+        {{ t('continue') }}
       </BaseButton>
     </div>
   </div>

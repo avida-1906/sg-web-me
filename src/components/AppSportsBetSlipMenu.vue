@@ -5,6 +5,8 @@ import type { IBetArgs } from '~/apis/types'
 const chatScrollContent = ref<HTMLElement | null>(null)
 const { VITE_SPORT_MULTI_BET_MAX } = getEnv()
 
+const { t } = useI18n()
+
 let timer: any = null
 // 复式总赔率
 const duplexOv = ref('')
@@ -19,11 +21,11 @@ const {
   errorMessage: amountErrorMsg,
 } = useField<number>('amount', (value) => {
   if (value < multiMia.value || value > multiMaa.value)
-    return `请输入 ${multiMia.value} - ${multiMaa.value} 之间的金额`
+    return t('pls_input_min_max_amount', { min: multiMia.value, max: multiMaa.value })
+    // return `请输入 ${multiMia.value} - ${multiMaa.value} 之间的金额`
 
   return ''
 })
-const { t } = useI18n()
 const router = useRouter()
 const appStore = useAppStore()
 const { closeRightSidebar } = useRightSidebar()
@@ -145,14 +147,14 @@ const errorInfo = computed<{
   if (isBetAmountOverBalance.value) {
     return {
       bool: true,
-      errorMess: '您的投注额不能大于余额。',
+      errorMess: t('bet_more_than_balance'),
     }
   }
 
   if (sportStore.cart.isExistCloseCaps) {
     return {
       bool: true,
-      errorMess: '您的投注单里不能含有已关闭的盘口投注项',
+      errorMess: t('bet_no_close_tip'),
     }
   }
 
@@ -161,14 +163,14 @@ const errorInfo = computed<{
     if (sportStore.cart.getExistSameEventIdList.length) {
       return {
         bool: true,
-        errorMess: '来自同一赛事的多重投注项不能结合成复式投注。',
+        errorMess: t('same_event_no_multi'),
       }
     }
 
     if (sportStore.cart.count > VITE_SPORT_MULTI_BET_MAX) {
       return {
         bool: true,
-        errorMess: `复式投注项组合不能超过 ${VITE_SPORT_MULTI_BET_MAX} 个。`,
+        errorMess: t('multi_bet_max', { max: VITE_SPORT_MULTI_BET_MAX }),
       }
     }
   }
@@ -434,7 +436,7 @@ onUnmounted(() => {
           style="--tg-base-button-text-default-color: var(--tg-text-white);"
           @click="sportStore.cart.reuse()"
         >
-          重新使用投注单
+          {{ t('reuse_bet') }}
         </BaseButton>
         <BaseSelect
           v-else
@@ -561,7 +563,7 @@ onUnmounted(() => {
             bg-style="primary"
             @click="openRegisterDialog"
           >
-            注册进行投注
+            {{ t('reg_bet') }}
           </BaseButton>
         </template>
         <template v-else>
@@ -571,7 +573,7 @@ onUnmounted(() => {
             bg-style="primary"
             @click="setOvChangeStateBool(false)"
           >
-            接受新赔率
+            {{ t('accept_odd') }}
           </BaseButton>
           <BaseButton
             v-else

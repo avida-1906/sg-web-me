@@ -1345,6 +1345,10 @@ promotion_tutorial_summary_1: (1)C3给力，间接让A的所有业绩都享受�
 promotion_tutorial_summary_2: (2)B2可能比较懒，没有发展下级，则无收益。
 promotion_tutorial_summary_3: (3)B3虽然加入比较晚，且属于A的下级，但其下级C3给力，让B3直接享受更高返佣比例，所以B3无论何时加入，处于谁的下级，不管身处于第几级，收益永远不受影响，不再吃他人下级的亏，发展也不被制约。
 promotion_tutorial_summary_4: (4)这是一套绝对公平公正的代理模式，并不会因为谁加入得晚，而永远被踩在脚下。
-
-
-
+pls_input_min_max_amount: 请输入 {min} - {max} 之间的金额
+bet_no_close_tip: 您的投注单里不能含有已关闭的盘口投注项
+same_event_no_multi: 来自同一赛事的多重投注项不能结合成复式投注。
+multi_bet_max: 复式投注项组合不能超过 {max} 个。
+reuse_bet: 重新使用投注单
+reg_bet: 注册进行投注
+accept_odd: 接受新赔率
