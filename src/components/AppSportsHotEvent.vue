@@ -12,7 +12,9 @@ const list = computed(() => {
   return []
 })
 
-startTimer()
+onMounted(() => {
+  startTimer()
+})
 onBeforeUnmount(() => {
   stopTimer()
 })
