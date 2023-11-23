@@ -2,6 +2,7 @@ import type {
   IBetArgs,
   IBetInfoBack,
   ILeagueItem,
+  IResponseList,
   ISportEventInfo,
   ISportOutrightsInfo,
   ISportsBetListArgs,
@@ -250,10 +251,7 @@ export function ApiSportOutrightList(data: {
   page: number
   page_size: number
 }) {
-  return httpClient.post<{
-    d: ISportOutrightsInfo[]
-    t: number
-  }>(`/sport/${getSportsPlatId()}/outright/list`, data)
+  return httpClient.post<IResponseList<ISportOutrightsInfo>>(`/sport/${getSportsPlatId()}/outright/list`, data)
 }
 
 /**
@@ -364,19 +362,16 @@ export function ApiSportsEventHot(data: {
   page: 1
   page_size: 10
 }) {
-  return httpClient.post<{
-    t: number
-    d: {
-      ci: string
-      cn: string
-      ei: string
-      htn: string
-      atn: string
-      atpic: string
-      htpic: string
-      cpic: string
-      pgid: string
-      ed: number
-    }[]
-  }>(`/sport/${getSportsPlatId()}/event/hot`, data)
+  return httpClient.post <IResponseList<{
+    ci: string
+    cn: string
+    ei: string
+    htn: string
+    atn: string
+    atpic: string
+    htpic: string
+    cpic: string
+    pgid: string
+    ed: number
+  }>>(`/sport/${getSportsPlatId()}/event/hot`, data)
 }
