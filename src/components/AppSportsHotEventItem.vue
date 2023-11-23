@@ -6,6 +6,8 @@ defineProps<{
     ei: string
     htn: string
     atn: string
+    atpic: string
+    htpic: string
     pgid: string
     ed: number
     path: string
@@ -28,7 +30,7 @@ defineProps<{
     <div class="content">
       <div class="team">
         <div class="icon">
-          <BaseImage url="" />
+          <BaseImage :url="data.htpic" />
         </div>
         <span>{{ data.htn }}</span>
       </div>
@@ -43,7 +45,7 @@ defineProps<{
       <div class="team">
         <span>{{ data.atn }}</span>
         <div class="icon">
-          <BaseImage url="" />
+          <BaseImage :url="data.atpic" />
         </div>
       </div>
     </div>

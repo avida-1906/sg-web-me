@@ -189,17 +189,11 @@ function mapHeadArea(
         </span>
       </div>
       <div class="competitor-item border" style="grid-area: competitor_home;">
-        <img
-          src="https://img-cdn001.akamaized.net/ls/crest/medium/4389.png" width="20" height="20"
-          style="width:20px;height: 20px;"
-        >
+        <BaseImage :url="data.htpic" width="20px" height="20px" />
         <span>{{ data.homeTeamName }}</span>
       </div>
       <div class="competitor-item" style="grid-area: competitor_away;">
-        <img
-          src="https://img-cdn001.akamaized.net/ls/crest/medium/6118.png" width="20" height="20"
-          style="width:20px;height: 20px;"
-        >
+        <BaseImage :url="data.atpic" width="20px" height="20px" />
         <span>{{ data.awayTeamName }}</span>
       </div>
 
@@ -336,6 +330,7 @@ function mapHeadArea(
       align-items: center;
       justify-self: stretch;
       color: var(--tg-text-white);
+      gap: var(--tg-spacing-4);
 
       img {
         width: var(--tg-spacing-20);
