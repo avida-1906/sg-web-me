@@ -1171,7 +1171,8 @@ fresh_competition: 最新竞赛
 deal_pend: 待处理
 adopted: 已采纳
 ignored: 已忽略
-next_vip_amount: 距离{vip}还差{amount}流水
+next_vip_amount: 距离 {vip} 还差 {amount}
+water: 流水
 empty_vip: 暂无级别
 class: 级别
 copper: 铜

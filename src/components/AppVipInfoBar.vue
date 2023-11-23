@@ -39,7 +39,11 @@ async function openReceive() {
   <div class="app-vip-info-bar">
     <BaseIcon class="vip-badge" :name="`vip${userInfo?.vip ?? '0'}`" />
     <div class="info">
-      <span>{{ $t('next_vip_amount', { vip: `VIP${nextVip}`, amount: '100万' }) }}</span>
+      <span class="water">
+        <span>{{ $t('next_vip_amount', { vip: `VIP${nextVip}`, amount: '100' }) }}</span>
+        <BaseIcon name="coin-usdt" />
+        <span>{{ $t('water') }}</span>
+      </span>
       <div class="btns">
         <BaseButton
           bg-style="primary"
@@ -84,6 +88,11 @@ async function openReceive() {
       box-sizing: border-box;
       font-size: var(--tg-font-size-xs);
       padding: 0 var(--tg-spacing-6);
+    }
+    .water {
+      display: flex;
+      align-items: center;
+      gap: var(--tg-spacing-4);
     }
     .btns {
       display: flex;
