@@ -10,6 +10,8 @@ interface Props {
 
 const props = defineProps<Props>()
 
+const closeDialog = inject('closeDialog', () => { })
+
 const { t } = useI18n()
 const appStore = useAppStore()
 
@@ -51,6 +53,7 @@ const { run: runExists } = useRequest(ApiMemberExists, {
 const { run: runThirdReg } = useRequest(ApiMemberThirdReg, {
   onSuccess: (data) => {
     appStore.setToken(data)
+    closeDialog()
     // setTimeout(() => {
     //   location.reload()
     // }, 100)
