@@ -407,12 +407,12 @@ export interface ISportEventInfo {
   ep: number
   /** 赛事状态 */
   es: number
-  /** 是否取得串關數量
+  /** 是否取得串关数量
    *
-   * 0:全部
+   * 1:支援串关
    *
-   * 1:只限串關 */
-  ic: number
+   * 2:不支援串关 */
+  ic: 1 | 2
   /** 是否热门 */
   hot: number
   /** orderNumber */
@@ -511,8 +511,8 @@ export interface IBetInfoBack {
     wid: string
     /** 赔率 */
     ov: string
-    /** 盘口状态 0:关盘 1:开盘 */
-    os: 0 | 1
+    /** 盘口状态 0:关盘 1:开盘 2:不支援串关 */
+    os: 0 | 1 | 2
     /**
      * 1:早盘
      *
@@ -521,9 +521,13 @@ export interface IBetInfoBack {
      * 3:滚球
      */
     m: number
+    /** 主队比分 */
+    hp: number
+    /** 客队比分 */
+    ap: number
   }[]
   /** 下注资讯 */
-  bi: {
+  bi?: {
     /** 盘口id */
     wid: string
     /** 最大下注额 */
@@ -554,8 +558,8 @@ export interface IBetArgs {
    */
   ao: 0 | 1 | 2
   bl: {
-    /** 0:非串关 1:串关 */
-    pt: 0 | 1
+    /** 串关类型(betinfo 接口返回) */
+    pt: number
     /** 投注金额 */
     a: number
     bi: ICartInfoData[]
