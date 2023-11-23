@@ -11,8 +11,19 @@ const props = defineProps<Props>()
 const emit = defineEmits(['show'])
 const currentAisle = ref()
 const depositStep = ref('1')
+const backDepositInfo: {
+  address: string
+  amount: string
+  id?: string
+} = reactive({
+  address: '',
+  amount: '',
+})
 
 const { t } = useI18n()
+const {
+  getVirContractName,
+} = useCurrencyData()
 const {
   value: amount,
   errorMessage: amountError,
@@ -40,11 +51,12 @@ const {
   return ''
 })
 const {
-  run: runThirdDeposit,
-  loading: thirdDepositLoading,
-} = useRequest(ApiFinanceThirdDeposit, {
+  run: runFinanceThirdCoinDeposit,
+  loading: financeThirdCoinDepositLoading,
+} = useRequest(ApiFinanceThirdCoinDeposit, {
   onSuccess(data) {
-    location.href = data
+    backDepositInfo.address = data.address
+    backDepositInit(data)
   },
 })
 const {
@@ -60,12 +72,11 @@ const {
 })
 const {
   run: runPaymentDepositCoinApplication,
-  data: paymentDepositCoinInfo,
   loading: paymentDepositCoinInfoLoading,
 } = useRequest(ApiPaymentDepositCoinApplication, {
-  onSuccess() {
-    depositStep.value = '2'
-    emit('show', false)
+  onSuccess(data) {
+    backDepositInfo.address = data.deposit_coin.wallet_address
+    backDepositInit(data)
   },
 })
 const {
@@ -98,14 +109,13 @@ async function confirmPayment() {
   await depositNameValidate()
   if (!amountError.value) {
     if (currentAisle.value.payment_type === 1) { // 三方支付存款
-      runThirdDeposit({
+      runFinanceThirdCoinDeposit({
         amount: amount.value,
         bank_code: '',
         cid: currentAisle.value.id,
         mid: currentAisle.value.method_id,
         currency_id: props.activeCurrency.cur,
         currency_name: props.activeCurrency.type,
-
       })
     }
     else if (currentAisle.value.payment_type === 2) { // 虚拟币存款(公司入款)
@@ -128,6 +138,12 @@ function cancelPayment() {
 }
 const toCopy = function (item: string) {
   application.copy(item)
+}
+function backDepositInit(data: { amount: string; id?: string }) {
+  backDepositInfo.amount = data.amount
+  backDepositInfo.id = data.id
+  depositStep.value = '2'
+  emit('show', false)
 }
 
 watch(() => props.activeCurrency, (newValue) => {
@@ -197,7 +213,7 @@ await application.allSettled([
         <BaseButton
           bg-style="primary"
           size="md"
-          :loading="paymentDepositCoinInfoLoading || thirdDepositLoading"
+          :loading="paymentDepositCoinInfoLoading || financeThirdCoinDepositLoading"
           @click="confirmPayment"
         >
           {{ t('confirm_pay') }}
@@ -216,21 +232,21 @@ await application.allSettled([
         >
           <template #network>
             <span style="padding-right: var(--tg-spacing-4);">
-              {{ paymentDepositCoinInfo?.deposit_coin.contract_type }}
+              {{ getVirContractName(currentNetwork) }}
             </span>
           </template>
         </AppCurrencyIcon>
       </div>
-      <BaseQrcode :url="paymentDepositCoinInfo?.deposit_coin.wallet_address ?? ''" />
+      <BaseQrcode :url="backDepositInfo.address" />
       <div>
         <p class="second-title">
           {{ t('transfer_in_addr') }}
         </p>
         <p
           class="copy-row"
-          @click="toCopy(paymentDepositCoinInfo?.deposit_coin.wallet_address ?? '')"
+          @click="toCopy(backDepositInfo.address)"
         >
-          {{ paymentDepositCoinInfo?.deposit_coin.wallet_address }}
+          {{ backDepositInfo.address }}
           <BaseIcon name="uni-doc" />
         </p>
         <div class="warn-msg">
@@ -243,16 +259,16 @@ await application.allSettled([
         </p>
         <p
           class="copy-row"
-          @click="toCopy(amount ?? '')"
+          @click="toCopy(backDepositInfo.amount)"
         >
-          {{ amount }}
+          {{ backDepositInfo.amount }}
           <BaseIcon name="uni-doc" />
         </p>
         <div class="warn-msg">
           {{ t('pls_confirm_deposit_addr') }}
         </div>
       </div>
-      <div class="box-btn">
+      <div v-if="backDepositInfo.id" class="box-btn">
         <BaseButton
           type="line"
           style="border-color: var(--tg-text-blue);
@@ -266,7 +282,7 @@ await application.allSettled([
           bg-style="primary"
           size="md"
           :loading="paymentDepositCoinConfirmLoading"
-          @click="runPaymentDepositCoinConfirm({ id: paymentDepositCoinInfo ?.id ?? '' })"
+          @click="runPaymentDepositCoinConfirm({ id: backDepositInfo.id ?? '' })"
         >
           {{ t('already_deposit') }}
         </BaseButton>

@@ -909,7 +909,11 @@ export function ApiMemberFeedbackBonusAll() {
 export function ApiMemberNoticeAllList() {
   return httpClient.get<{
     marquee: {
-      [key: string]: any
+      id: string
+      /** 内容 */
+      content: {
+        [key: string]: string
+      }
     }[]
     notice: {
       value?: string
@@ -1229,4 +1233,17 @@ export function ApiMemberThirdReg(data: {
   third_id: string
 }) {
   return httpClient.post<string>('/member/third/register', data)
+}
+
+/**
+ * 虚拟币三方支付存款
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=aa741251-f806-449e-ad2a-20537448feaf
+ */
+export function ApiFinanceThirdCoinDeposit(data: DepositInfo) {
+  return httpClient.post<{
+    /** 支付地址，可生成qr code */
+    address: string
+    /** 实际支付金额 */
+    amount: string
+  }>('/finance/third/coin/deposit', data)
 }
