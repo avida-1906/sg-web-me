@@ -66,7 +66,7 @@ export const useSportsStore = defineStore('sports', () => {
   const { data: sidebarData, run: runSportsSidebar } = useRequest(ApiSportSidebar, {
     refreshDeps: isLogin,
     refreshDepsAction: () => {
-      if (sidebarData.value && isLogin.value) {
+      if (sidebarData.value && sidebarData.value.all && isLogin.value) {
         const allSportsSi = sidebarData.value.all.map(a => a.si)
         runGetFavoriteList({
           sis: allSportsSi,
@@ -151,11 +151,11 @@ export const useSportsStore = defineStore('sports', () => {
 
   /** 顶级体育项目 */
   const sportHotGames = computed<Menu>(() => {
-    if (sidebarData.value) {
+    if (sidebarData.value && sidebarData.value.menu) {
       // eslint-disable-next-line max-len
       const topGamesObj = sidebarData.value.menu.find(a => a.menu_id === 3) ?? { list: [] }
 
-      return topGamesObj?.list.map((sport) => {
+      return topGamesObj?.list?.map((sport) => {
         return {
           title: sport.sn,
           path: '',
@@ -184,7 +184,7 @@ export const useSportsStore = defineStore('sports', () => {
 
   /** 体育项目 */
   const sportGameList = computed(() => {
-    if (sidebarData.value) {
+    if (sidebarData.value && sidebarData.value.all) {
       const list = sidebarData.value.all.map((item) => {
         return {
           title: item.sn,
@@ -235,14 +235,14 @@ export const useSportsStore = defineStore('sports', () => {
 
   /** 所有球种的si */
   const allSportsSi = computed(() => {
-    if (sidebarData.value)
+    if (sidebarData.value && sidebarData.value.all)
       return sidebarData.value.all.map(a => a.si)
     return []
   })
 
   /** 所有球种名称sid对应列表 */
   const allSportsNameList = computed(() => {
-    if (sidebarData.value)
+    if (sidebarData.value && sidebarData.value.all)
       return sidebarData.value.all
     return []
   })
