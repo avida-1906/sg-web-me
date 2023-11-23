@@ -4,7 +4,6 @@ defineOptions({
 })
 const props = defineProps<{ platId: string }>()
 const { t } = useI18n()
-const router = useRouter()
 const { isMobile } = storeToRefs(useWindowStore())
 const { isLogin } = storeToRefs(useAppStore())
 const sportsStore = useSportsStore()
@@ -57,13 +56,7 @@ const tabList = computed(() => [
 
     <!-- 大厅 -->
     <template v-if="marketType === 'all'">
-      <AppSportsPageLive on-page />
-      <BaseButton
-        class="check-more" type="text" padding0
-        @click="router.push(`/sports/${currentProvider}/live`)"
-      >
-        {{ t('view_all') }}
-      </BaseButton>
+      <AppSportsPageLive on-page on-lobby />
       <AppSportsHotEvent />
     </template>
     <!-- 我的投注 -->
@@ -81,12 +74,7 @@ const tabList = computed(() => [
 </template>
 
 <style lang='scss' scoped>
-.check-more{
-  display: block;
-  margin-top: -12px;
-  padding-left: var(--tg-spacing-16);
-  margin-bottom: var(--tg-spacing-24);
-}
+
 </style>
 
 <route lang="yaml">

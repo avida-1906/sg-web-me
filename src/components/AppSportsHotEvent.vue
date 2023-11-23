@@ -1,10 +1,9 @@
 <script setup lang='ts'>
 const { t } = useI18n()
-const { data, run } = useRequest(() =>
-  ApiSportEventList({ si: 0, m: 0, hot: 1, page: 1, page_size: 100 }),
-)
+const params = ref({ si: 0, m: 0, hot: 1, page: 1, page_size: 50 })
+const { data, runAsync, run } = useRequest(ApiSportEventList)
 /** 定时更新数据 */
-const { startTimer, stopTimer } = useSportsDataUpdate(run, 30)
+const { startTimer, stopTimer } = useSportsDataUpdate(() => run(params.value), 30)
 
 const list = computed(() => {
   if (data.value && data.value.list)
@@ -17,6 +16,8 @@ startTimer()
 onBeforeUnmount(() => {
   stopTimer()
 })
+
+await application.allSettled([runAsync(params.value)])
 </script>
 
 <template>

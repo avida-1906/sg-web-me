@@ -10,7 +10,6 @@ export function useSportsDataUpdate(callback: () => void, duration = 10) {
     if (timer)
       stopTimer()
 
-    callback()
     timer = setInterval(() => callback(), duration * 1000)
   }
 
