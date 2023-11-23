@@ -10,14 +10,15 @@ const props = defineProps<Props>()
 const router = useRouter()
 const { appContentWidth } = storeToRefs(useWindowStore())
 
-const _data = ref(props.breadcrumb)
+const _data = ref([...props.breadcrumb])
 
 function goPath(
   { d, disabled }: { d?: IBreadCrumbItem; disabled?: boolean } = {},
 ) {
   if (disabled)
     return
-  const p = _data.value.pop()
+  _data.value.pop()
+  const p = _data.value[_data.value.length - 1]
   const _d = d ?? p
   if (_d && _d.path)
     router.push(replaceSportsPlatId(_d.path))

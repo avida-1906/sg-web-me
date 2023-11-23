@@ -57,7 +57,7 @@ function toggle() {
       </slot>
       <div class="arrow">
         <BaseIcon
-          name="uni-arrow-down" :style="{ transform: `rotate(${isOpen ? 0 : 90}deg)` }"
+          name="uni-arrow-down" :style="{ transform: `rotate(${isOpen ? 180 : 0}deg)` }"
         />
       </div>
     </div>

@@ -48,8 +48,12 @@ onMounted(() => {
         <slot name="top-right" />
         <div class="header-icon">
           <BaseIcon
-            style="display: block;"
-            :name="`uni-arrow-${isShow ? 'down' : 'left'}`"
+            name="uni-arrow-down"
+            :style="{
+              transform: `rotate(${isShow ? 180 : 0}deg)`,
+              display: 'block',
+              transition: 'none',
+            }"
           />
         </div>
       </div>

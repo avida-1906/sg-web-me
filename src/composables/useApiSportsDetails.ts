@@ -52,15 +52,15 @@ export function useApiSportDetails() {
     data.push(
       {
         title: list.sn,
-        path: `/sports/${SPORTS_PLAT_ID}/${list.si}`,
+        path: `/sports/${getSportsPlatId()}/${list.si}`,
       },
       {
         title: list.pgn,
-        path: `/sports/${SPORTS_PLAT_ID}/${list.si}/${list.pgid}`,
+        path: `/sports/${getSportsPlatId()}/${list.si}/${list.pgid}`,
       },
       {
         title: list.cn,
-        path: `/sports/${SPORTS_PLAT_ID}/${list.si}/${list.pgid}/${list.ci}`,
+        path: `/sports/${getSportsPlatId()}/${list.si}/${list.pgid}/${list.ci}`,
       },
       {
         title: `${list.htn} - ${list.atn}`,

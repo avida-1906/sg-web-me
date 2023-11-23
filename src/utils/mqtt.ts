@@ -183,9 +183,9 @@ class SocketClient {
 
       this.client.on('message', (topic, message, packet) => {
         this.#log(`收到消息：${message.toString()}`, topic, packet)
-        const data = JSON.parse(message.toString())
         try {
           if (topic.includes('chat')) {
+            const data = JSON.parse(message.toString())
             if (data)
               chatMessageBus.emit(data)
           }
@@ -198,6 +198,7 @@ class SocketClient {
             refreshMemberThrottle()
           }
           else if (topic.includes('auth')) {
+            const data = JSON.parse(message.toString())
             // 第三方登录状态推送
             refreshAuthBus.emit(data)
           }
