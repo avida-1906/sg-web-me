@@ -4,6 +4,7 @@ import type {
   ILeagueItem,
   ISportEventInfo,
   ISportOutrightsInfo,
+  ISportsBetListArgs,
   ISportsMyBetSlipItem,
 } from './types'
 import type { CurrencyCode } from '~/composables/useCurrencyData'
@@ -345,14 +346,7 @@ export function ApiSportPlaceBet(data: IBetArgs) {
  * 投注记录
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=ed6c7a9f-30aa-4cf6-89d7-130fa962a136
  */
-export function ApiSportBetList(data: {
-  /** 体育种类，目前只有 normal  normal:一般赛事  esport:电竞 vr:虚拟 all:全部 */
-  kind: 'normal'
-  /** 是否结算，0:未结算 1:已结算 */
-  settle: number
-  /** 进入货币 */
-  cur: string
-}) {
+export function ApiSportBetList(data: ISportsBetListArgs) {
   return httpClient.post<{
     list: ISportsMyBetSlipItem[]
   }>(`/sport/${getSportsPlatId()}/betlist`, data)

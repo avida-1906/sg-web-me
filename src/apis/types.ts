@@ -614,3 +614,12 @@ export interface ISportsMyBetSlipItem {
     ed: number
   }[]
 }
+
+export interface ISportsBetListArgs {
+  /** 体育种类，目前只有 normal  normal:一般赛事  esport:电竞 vr:虚拟 all:全部 */
+  kind: 'normal'
+  /** 是否结算，0:未结算 1:已结算 */
+  settle: number
+  /** 进入货币 */
+  cur: CurrencyCode
+}

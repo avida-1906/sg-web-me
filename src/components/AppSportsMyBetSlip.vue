@@ -145,12 +145,21 @@ function makeMarketInfo(item: ISportsMyBetSlipItemBi) {
           </div>
           <div class="item">
             <label>{{ t('bet_amount') }}</label>
-            <AppAmount :amount="slipData.a" :currency-type="currentGlobalCurrency" />
+            <AppAmount
+              :amount="application.sliceOrPad(
+                slipData.a,
+                application.getCurrencySuffixLength(currentGlobalCurrency),
+              )"
+              :currency-type="currentGlobalCurrency"
+            />
           </div>
           <div class="item">
             <label>{{ t('sports_estimated_payment_amount') }}</label>
             <AppAmount
-              :amount="isSettled ? slipData.pa : slipData.mwa"
+              :amount="application.sliceOrPad(
+                isSettled ? slipData.pa : slipData.mwa,
+                application.getCurrencySuffixLength(currentGlobalCurrency),
+              )"
               :currency-type="currentGlobalCurrency"
             />
           </div>
