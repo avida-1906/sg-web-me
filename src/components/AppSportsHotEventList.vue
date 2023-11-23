@@ -8,8 +8,8 @@ const { data } = useRequest(
   { manual: false },
 )
 const list = computed(() => {
-  if (data.value && data.value.list) {
-    return data.value.list.map((a) => {
+  if (data.value && data.value.d) {
+    return data.value.d.map((a) => {
       return {
         ...a,
         path: `/sports/${props.si}/${a.pgid}/${a.ci}/${a.ei}`,

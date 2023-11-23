@@ -6,8 +6,8 @@ const { data, runAsync, run } = useRequest(ApiSportEventList)
 const { startTimer, stopTimer } = useSportsDataUpdate(() => run(params.value))
 
 const list = computed(() => {
-  if (data.value && data.value.list)
-    return sportsDataGroupByLeague(data.value.list)
+  if (data.value && data.value.d)
+    return sportsDataGroupByLeague(data.value.d)
 
   return []
 })
