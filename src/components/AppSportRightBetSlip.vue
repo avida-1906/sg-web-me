@@ -55,6 +55,7 @@ const {
   },
   onError() {
     setFetchBetInfoStatus(false)
+    closeSetInterval()
   },
 })
 
@@ -643,7 +644,7 @@ onUnmounted(() => {
     line-height: 1.5;
 
     .icon {
-      margin-top: var(--tg-spacing-3);
+      margin-top: var(--tg-spacing-1);
       margin-bottom: var(--tg-spacing-3);
       margin-left: var(--tg-spacing-4);
       display: flex;
