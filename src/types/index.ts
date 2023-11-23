@@ -31,6 +31,8 @@ export interface IBasePanelType {
   atpic: string
   /** 主队图标 */
   htpic: string
+  /** 球种图标 */
+  spic: string
   /** 角球 */
   corner?: {
     /** 主队角球 */
