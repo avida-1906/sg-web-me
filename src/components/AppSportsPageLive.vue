@@ -16,11 +16,11 @@ const { data, run, runAsync } = useRequest(ApiSportEventList,
 )
 /** 定时更新数据 */
 const { startTimer: startLive, stopTimer: stopLive }
-= useSportsDataUpdate(() => run(params.value))
+= useSportsDataUpdate(() => run(params.value), 10, true)
 const {
   startTimer: startCount,
   stopTimer: stopCount,
-} = useSportsDataUpdate(sportsStore.runSportsCount)
+} = useSportsDataUpdate(sportsStore.runSportsCount, 10, true)
 
 const baseType = ref('winner')
 const groupedList = computed(() => {

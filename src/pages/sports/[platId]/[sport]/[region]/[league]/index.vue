@@ -5,11 +5,12 @@ const sport = route.params.sport ? +route.params.sport : 0
 const region = route.params.region ? route.params.region.toString() : ''
 const league = route.params.league ? route.params.league.toString() : ''
 const { bool: isStandard } = useBoolean(true)
-const { data, run } = useRequest(() =>
-  ApiSportEventList({ m: 5, si: sport, ci: [league], page: 1, page_size: 100 }),
-)
+const params = computed(() => {
+  return { m: 5, si: sport, ci: [league], page: 1, page_size: 100 }
+})
+const { data, run, runAsync } = useRequest(ApiSportEventList)
 /** 定时更新数据 */
-const { startTimer, stopTimer } = useSportsDataUpdate(run, 30)
+const { startTimer, stopTimer } = useSportsDataUpdate(() => run(params.value))
 
 const baseType = ref('winner')
 const curTab = ref(route.query.outrights ? '2' : '1')
@@ -58,10 +59,14 @@ function onBaseTypeChange(v: string) {
   baseType.value = v
 }
 
-startTimer()
+onMounted(() => {
+  startTimer()
+})
 onBeforeUnmount(() => {
   stopTimer()
 })
+
+await application.allSettled([runAsync(params.value)])
 </script>
 
 <template>

@@ -8,6 +8,7 @@ interface Props {
   leagueId: string
   baseType: string
   isRegionOpen: boolean // 父级是否展开
+  count: number
 }
 const props = defineProps<Props>()
 const route = useRoute()
@@ -18,7 +19,7 @@ const { data, run, loading } = useRequest(() =>
   ApiSportEventList({ si: +sport, m: 5, ci: [props.leagueId], page: 1, page_size: 100 }),
 )
 const eventList = computed(() => data.value ? data.value.list : [])
-const eventCount = computed(() => data.value ? data.value.list.length : 0)
+const eventCount = computed(() => data.value ? data.value.list.length : props.count)
 
 // 获取数据
 function getEventsData() {

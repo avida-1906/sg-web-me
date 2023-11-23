@@ -2,12 +2,12 @@
  * 更新数据定时器
  * @param callback
  * @param duration 单位/秒
- * @param immediate 立即调用接口默认true
+ * @param immediate 立即调用接口默认
  */
 export function useSportsDataUpdate(
   callback: () => void,
-  duration = 10,
-  immediate = true,
+  duration = 30,
+  immediate?: boolean,
 ) {
   let timer: any = null
 

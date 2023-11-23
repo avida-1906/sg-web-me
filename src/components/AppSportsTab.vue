@@ -33,7 +33,7 @@ function handleClick(item: ListItem) {
                     :mode="tab.si === modelValue ? 'active' : 'black'"
                     style="--tg-badge-font-size:var(--tg-font-size-xs);
                     --tg-badge-padding-x:var(--tg-spacing-6);"
-                    class="badge" :count="tab.count"
+                    class="badge" :count="tab.count" :max="9999"
                   />
                 </div>
                 <div class="name">

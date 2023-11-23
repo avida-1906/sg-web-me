@@ -21,7 +21,7 @@ const { bool: isOpen, toggle: toggleOpen } = useBoolean(props.init)
 <template>
   <div
     class="base-secondary-accordion level-1"
-    :class="[isOpen ? 'is-open' : '']"
+    :class="{ 'is-open': isOpen }"
   >
     <div class="no-active-scale header" @click="toggleOpen">
       <div class="container">
@@ -54,6 +54,7 @@ const { bool: isOpen, toggle: toggleOpen } = useBoolean(props.init)
           :league-name="league.cn"
           :league-id="league.ci"
           :is-region-open="isOpen"
+          :count="league.c"
         />
       </div>
     </div>

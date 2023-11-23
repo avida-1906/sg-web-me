@@ -479,6 +479,7 @@ export interface ISportOutrightsInfo {
     mll: number
     mls: number
     ms: {
+      cartInfo: any
       wid: string
       sid: string
       sn: string

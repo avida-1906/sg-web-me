@@ -120,6 +120,14 @@ const {
     previous()
   },
 })
+const {
+  run: runPaymentDepositBankCancel,
+  loading: paymentDepositBankCancelLoading,
+} = useRequest(ApiPaymentDepositBankCancel, {
+  onSuccess() {
+    previous()
+  },
+})
 
 const paymentMethodData = computed(() => {
   if (paymentMethodList.value) {
@@ -349,7 +357,9 @@ await application.allSettled([
                 style="border-color: var(--tg-text-blue);
                 color: var(--tg-text-blue);"
                 size="sm"
-                @click="previous"
+                :loading="paymentDepositBankCancelLoading"
+                @click="runPaymentDepositBankCancel(
+                  { id: paymentDepositBankInfo?.id ?? '' })"
               >
                 {{ t('cancel_deposit') }}
               </BaseButton>
@@ -358,8 +368,7 @@ await application.allSettled([
                 size="md"
                 :loading="paymentDepositBankConfirmLoading"
                 @click="runPaymentDepositBankConfirm(
-                  { id: paymentDepositBankInfo?.id ?? '' },
-                )"
+                  { id: paymentDepositBankInfo?.id ?? '' })"
               >
                 我已存款
               </BaseButton>

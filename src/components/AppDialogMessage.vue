@@ -15,9 +15,9 @@ defineProps<Props>()
 
 <template>
   <div class="dialog-message">
-    <div class="title">
+    <!-- <div class="title">
       {{ data.title }}
-    </div>
+    </div> -->
     <div
       class="text"
       v-html="data.content[getCurrentLanguageForBackend()]"

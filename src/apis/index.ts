@@ -909,7 +909,11 @@ export function ApiMemberFeedbackBonusAll() {
 export function ApiMemberNoticeAllList() {
   return httpClient.get<{
     marquee: {
-      [key: string]: any
+      id: string
+      /** 内容 */
+      content: {
+        [key: string]: string
+      }
     }[]
     notice: {
       value?: string
@@ -1229,4 +1233,39 @@ export function ApiMemberThirdReg(data: {
   third_id: string
 }) {
   return httpClient.post<string>('/member/third/register', data)
+}
+
+/**
+ * 虚拟币三方支付存款
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=aa741251-f806-449e-ad2a-20537448feaf
+ */
+export function ApiFinanceThirdCoinDeposit(data: DepositInfo) {
+  return httpClient.post<{
+    /** 支付地址，可生成qr code */
+    address: string
+    /** 实际支付金额 */
+    amount: string
+  }>('/finance/third/coin/deposit', data)
+}
+
+/**
+ * 公司入款存款-取消存款
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=ede3a53b-1f69-4cb5-9c93-7226ce205466
+ */
+export function ApiPaymentDepositBankCancel(data: {
+  /** 订单号 */
+  id: string
+}) {
+  return httpClient.post<string>('/payment/deposit/bank/cancel', data)
+}
+
+/**
+ * 虚拟币入款存款-取消存款
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=a4edef45-f839-4f88-9928-5197ffee1ab7
+ */
+export function ApiPaymentDepositCoinCancel(data: {
+  /** 订单号 */
+  id: string
+}) {
+  return httpClient.post<string>('/payment/deposit/coin/cancel', data)
 }

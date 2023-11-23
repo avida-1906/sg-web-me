@@ -1,26 +1,28 @@
 <script lang="ts" setup>
-defineProps<{ onPage?: boolean }>()
+const props = defineProps<{ onPage?: boolean }>()
 
 const { t } = useI18n()
 const sportsStore = useSportsStore()
 const { upcomingNavs, currentUpcomingNav } = storeToRefs(sportsStore)
 
+const baseType = ref('winner')
 const isAll = computed(() => currentUpcomingNav.value === 0)
 const { bool: isStandard, setBool: setStandard } = useBoolean(true)
-
-const { data, run } = useRequest(() =>
-  ApiSportEventList({ si: currentUpcomingNav.value, m: 4, page: 1, page_size: 100 }),
-{
-  refreshDeps: [currentUpcomingNav],
+const params = computed(() => {
+  return { si: currentUpcomingNav.value, m: 4, page: 1, page_size: 100 }
 })
+const { data, run, runAsync } = useRequest(ApiSportEventList,
+  {
+    refreshDeps: [currentUpcomingNav],
+  })
 /** 定时更新数据 */
-const { startTimer, stopTimer } = useSportsDataUpdate(run, 30)
+const { startTimer, stopTimer }
+= useSportsDataUpdate(() => run(params.value), 30, props.onPage)
 const {
   startTimer: startCount,
   stopTimer: stopCount,
-} = useSportsDataUpdate(sportsStore.runSportsCount, 30)
+} = useSportsDataUpdate(sportsStore.runSportsCount, 30, true)
 
-const baseType = ref('winner')
 const list = computed(() => {
   if (data.value && data.value.list)
     return sportsDataGroupByLeague(data.value.list)
@@ -39,7 +41,7 @@ watch(currentUpcomingNav, (a) => {
   startTimer()
 })
 
-onBeforeMount(() => {
+onMounted(() => {
   startTimer()
   startCount()
 })
@@ -47,6 +49,9 @@ onBeforeUnmount(() => {
   stopTimer()
   stopCount()
 })
+
+if (!props.onPage)
+  await application.allSettled([runAsync(params.value)])
 </script>
 
 <template>
