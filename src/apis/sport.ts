@@ -365,7 +365,8 @@ export function ApiSportsEventHot(data: {
   page_size: 10
 }) {
   return httpClient.post<{
-    list: {
+    t: number
+    d: {
       ci: string
       cn: string
       ei: string
