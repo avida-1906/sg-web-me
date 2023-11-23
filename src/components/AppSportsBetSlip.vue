@@ -40,7 +40,6 @@ const {
 } = useField<number>('amount', (value) => {
   if (value < props.cartInfoData.mia || value > props.cartInfoData.maa)
     return t('pls_input_min_max_amount', { min: props.cartInfoData.mia, max: props.cartInfoData.maa })
-    // return `请输入 ${props.cartInfoData.mia} - ${props.cartInfoData.maa} 之间的金额`
 
   return ''
 })
