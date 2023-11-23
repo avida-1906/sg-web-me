@@ -280,9 +280,7 @@ function makeMarketInfo(item: ISportsMyBetSlipItemBi) {
         gap: var(--tg-spacing-4);
         max-width: 100%;
         .team-name{
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
+          text-align: left;
         }
       }
 
