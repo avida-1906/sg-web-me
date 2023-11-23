@@ -27,6 +27,10 @@ export interface IBasePanelType {
   homeTeamScore: number
   /** 客队分数 */
   awayTeamScore: number
+  /** 客队图标 */
+  atpic: string
+  /** 主队图标 */
+  htpic: string
   /** 角球 */
   corner?: {
     /** 主队角球 */

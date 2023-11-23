@@ -374,6 +374,9 @@ export function ApiSportsEventHot(data: {
       ei: string
       htn: string
       atn: string
+      atpic: string
+      htpic: string
+      cpic: string
       pgid: string
       ed: number
     }[]

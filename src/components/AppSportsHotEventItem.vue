@@ -6,7 +6,10 @@ defineProps<{
     ei: string
     htn: string
     atn: string
+    atpic: string
+    htpic: string
     pgid: string
+    cpic: string
     ed: number
     path: string
     date: string
@@ -19,7 +22,7 @@ defineProps<{
   <div class="hot-event-info" @click="$router.push(data.path)">
     <div class="header">
       <div class="icon">
-        <BaseImage url="" />
+        <BaseImage :url="data.cpic" />
       </div>
       <div class="team-name">
         {{ data.cn }}
@@ -28,7 +31,7 @@ defineProps<{
     <div class="content">
       <div class="team">
         <div class="icon">
-          <BaseImage url="" />
+          <BaseImage :url="data.htpic" />
         </div>
         <span>{{ data.htn }}</span>
       </div>
@@ -43,7 +46,7 @@ defineProps<{
       <div class="team">
         <span>{{ data.atn }}</span>
         <div class="icon">
-          <BaseImage url="" />
+          <BaseImage :url="data.atpic" />
         </div>
       </div>
     </div>

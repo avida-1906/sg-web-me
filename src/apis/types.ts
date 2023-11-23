@@ -604,6 +604,8 @@ export interface ISportsMyBetSlipItem {
     htn: string
     /** 客队名 */
     atn: string
+    atpic: string
+    htpic: string
     /** 开赛时间 */
     ed: number
   }[]
