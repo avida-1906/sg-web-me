@@ -19,7 +19,7 @@ defineProps<{
 </script>
 
 <template>
-  <div class="hot-event-info" @click="$router.push(data.path)">
+  <div class="hot-event-info" @click="$router.push(replaceSportsPlatId(data.path))">
     <div class="header">
       <div class="icon">
         <BaseImage :url="data.cpic" />

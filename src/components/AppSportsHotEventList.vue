@@ -12,7 +12,7 @@ const list = computed(() => {
     return data.value.d.map((a) => {
       return {
         ...a,
-        path: `/sports/${props.si}/${a.pgid}/${a.ci}/${a.ei}`,
+        path: `/sports/${SPORTS_PLAT_ID}/${props.si}/${a.pgid}/${a.ci}/${a.ei}`,
         date: timeToFormat(a.ed, 'YYYY - MM - DD'),
         time: timeToFormat(a.ed, 'HH : mm'),
       }
