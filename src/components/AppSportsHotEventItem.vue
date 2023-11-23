@@ -9,6 +9,7 @@ defineProps<{
     atpic: string
     htpic: string
     pgid: string
+    cpic: string
     ed: number
     path: string
     date: string
@@ -21,7 +22,7 @@ defineProps<{
   <div class="hot-event-info" @click="$router.push(data.path)">
     <div class="header">
       <div class="icon">
-        <BaseImage url="" />
+        <BaseImage :url="data.cpic" />
       </div>
       <div class="team-name">
         {{ data.cn }}
