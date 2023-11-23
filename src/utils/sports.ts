@@ -244,6 +244,7 @@ export function getCartObject(
     awayTeamName: infoList1.atn,
     btn: mlObject.btn,
     sn,
+    ic: infoList1.ic,
   }
 }
 
@@ -315,11 +316,26 @@ export class SportsCart {
 
   /**
    * 获取是否有关盘的盘口
-   * @desc os 0:关盘 1:开盘
+   * @desc os 0:关盘 1:开盘 2:不支援串关
    * @returns {boolean}
    */
   get isExistCloseCaps() {
     return this.dataList.some(a => a.os === 0)
+  }
+
+  /**
+   * 获取不支持串关的 wid 列表
+   */
+  get getNotSupportWidList() {
+    return this.dataList.filter(a => a.os === 2).map(a => a.wid)
+  }
+
+  /**
+   * 获取 是否存在 ic != 1 的盘口
+   * @return ic 列表
+   */
+  get getExistIcList() {
+    return this.dataList.filter(a => a.ic !== 1).map(a => a.ic)
   }
 
   constructor(currency: EnumCurrencyKey) {
@@ -348,9 +364,13 @@ export class SportsCart {
     this.dataList.push({
       ...data,
       amount: Number(toFixed(0, suffixLength)),
+      // 下面的值是初始化用的，会在 updateAllData 方法中更新
       os: 1,
       maa: 0,
       mia: 0,
+      pt: 0,
+      hp: 0,
+      ap: 0,
     })
   }
 
@@ -416,9 +436,20 @@ export class SportsCart {
    */
   updateAllData(data: IBetInfoBack, fn?: IBetInfoChangeCallback) {
     const { wsi, bi } = data
+
+    if (!bi) {
+      console.error('bi 不存在')
+      return
+    }
+
     const duplexOv = bi[0].ov
+    // 复式下的最小赔率
     const mia = bi[0] ? bi[0].mia : 0
+    // 复式下的最大赔率
     const maa = bi[0] ? bi[0].maa : 0
+    // 复式下的串关类型
+    const pt = bi[0] ? bi[0].pt : 0
+
     this.dataList.forEach((item) => {
       const _wsiObject = wsi.find(a => a.wid === item.wid)
       const _biObject = bi.find(a => a.wid === item.wid)
@@ -426,9 +457,14 @@ export class SportsCart {
       item.ov = _wsiObject?.ov ?? ''
       item.os = _wsiObject?.os ?? 0
       item.m = _wsiObject?.m ?? 0
+      item.hp = _wsiObject?.hp ?? 0
+      item.ap = _wsiObject?.ap ?? 0
+
       item.maa = _biObject?.maa ?? 0
       item.mia = _biObject?.mia ?? 0
       item.cei = _biObject?.cei ?? ''
+      // 复式下的串关类型，单式不需要管这个值
+      item.pt = _biObject?.pt ?? pt
     })
     const ovIsChange = this.dataList.some((item) => {
       const wsi = data.wsi.find(a => a.wid === item.wid)

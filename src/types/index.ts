@@ -118,6 +118,13 @@ export type ICartInfo = {
 
   /** 选项名称 */
   sn: string
+
+  /** 是否取得串关数量
+   *
+   * 1:支援串关
+   *
+   * 2:不支援串关 */
+  ic: 1 | 2
 } & IBetInfo
 
 /**
@@ -130,8 +137,10 @@ export type ICartInfoData = ICartInfo & {
    * 0:关盘
    *
    * 1:开盘
+   *
+   * 2:不支援串关
    */
-  os: 0 | 1
+  os: 0 | 1 | 2
   /** 最⼤投注额 */
   maa: number
   /** 最⼩投注额 */
@@ -140,6 +149,12 @@ export type ICartInfoData = ICartInfo & {
   result?: 'fulfilled' | 'rejected'
   /** 实际赛事ID */
   cei?: string
+  /** 串关类型 */
+  pt: number
+  /** 客队比分 */
+  ap: number
+  /** 主队比分 */
+  hp: number
 }
 
 /**
