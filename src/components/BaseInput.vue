@@ -101,7 +101,12 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse })
       <div class="input-wrap" :class="{ mb0 }">
         <div
           class="input-box"
-          :class="{ 'active': isFocus, error, 'radio-r-o': $slots['right-button'] }"
+          :class="{
+            'active': isFocus,
+            error,
+            'check-dom-error': error,
+            'radio-r-o': $slots['right-button'],
+          }"
         >
           <div v-show="$slots['left-icon']" class="left-icon">
             <slot name="left-icon" />

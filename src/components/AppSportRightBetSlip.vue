@@ -297,7 +297,34 @@ function closeSetInterval() {
   timer = null
 }
 
-function bet() {
+async function checkBetListErrorStatus() {
+  await new Promise(resolve => setTimeout(resolve, 30))
+  return new Promise((resolve, reject) => {
+    const checkDomError = document.querySelector('.app-sports-bet-slip-container .check-dom-error')
+
+    if (checkDomError) {
+      if (EnumsBetSlipBetSlipTabStatus.single === betOrderSelectValue.value) {
+        const parentDom = checkDomError.closest('.app-sports-bet-slip')
+        if (parentDom) {
+          parentDom.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+          })
+          reject(new Error('Bet List Error'))
+        }
+      }
+    }
+    else {
+      resolve(true)
+    }
+  })
+}
+
+async function bet() {
+  const checkBetListErrorStatusResult = await checkBetListErrorStatus()
+  if (!checkBetListErrorStatusResult)
+    return
+
   if (betOrderSelectValue.value === 1) {
     // 复式投注
     const betList = [
@@ -375,7 +402,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="app-sports-bet-slip-menu">
+  <div class="app-sports-bet-slip-container">
     <div class="header">
       <div class="tabs">
         <BaseTab
@@ -561,7 +588,7 @@ onUnmounted(() => {
 </template>
 
 <style lang='scss' scoped>
-.app-sports-bet-slip-menu {
+.app-sports-bet-slip-container {
   color: var(--tg-text-white);
   font-size: var(--tg-font-size-default);
   height: 100%;
