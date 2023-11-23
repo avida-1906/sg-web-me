@@ -76,9 +76,11 @@ declare global {
   const ApiMemberWalletList: typeof import('./apis/index')['ApiMemberWalletList']
   const ApiMemeberThirdReg: typeof import('./apis/index')['ApiMemeberThirdReg']
   const ApiPaymentDepositBankApplication: typeof import('./apis/index')['ApiPaymentDepositBankApplication']
+  const ApiPaymentDepositBankCancel: typeof import('./apis/index')['ApiPaymentDepositBankCancel']
   const ApiPaymentDepositBankConfirm: typeof import('./apis/index')['ApiPaymentDepositBankConfirm']
   const ApiPaymentDepositBankList: typeof import('./apis/index')['ApiPaymentDepositBankList']
   const ApiPaymentDepositCoinApplication: typeof import('./apis/index')['ApiPaymentDepositCoinApplication']
+  const ApiPaymentDepositCoinCancel: typeof import('./apis/index')['ApiPaymentDepositCoinCancel']
   const ApiPaymentDepositCoinConfirm: typeof import('./apis/index')['ApiPaymentDepositCoinConfirm']
   const ApiSmsSend: typeof import('./apis/index')['ApiSmsSend']
   const ApiSportAddFavorite: typeof import('./apis/sport')['ApiSportAddFavorite']
@@ -651,9 +653,11 @@ declare module 'vue' {
     readonly ApiMemberWalletInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletInsert']>
     readonly ApiMemberWalletList: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletList']>
     readonly ApiPaymentDepositBankApplication: UnwrapRef<typeof import('./apis/index')['ApiPaymentDepositBankApplication']>
+    readonly ApiPaymentDepositBankCancel: UnwrapRef<typeof import('./apis/index')['ApiPaymentDepositBankCancel']>
     readonly ApiPaymentDepositBankConfirm: UnwrapRef<typeof import('./apis/index')['ApiPaymentDepositBankConfirm']>
     readonly ApiPaymentDepositBankList: UnwrapRef<typeof import('./apis/index')['ApiPaymentDepositBankList']>
     readonly ApiPaymentDepositCoinApplication: UnwrapRef<typeof import('./apis/index')['ApiPaymentDepositCoinApplication']>
+    readonly ApiPaymentDepositCoinCancel: UnwrapRef<typeof import('./apis/index')['ApiPaymentDepositCoinCancel']>
     readonly ApiPaymentDepositCoinConfirm: UnwrapRef<typeof import('./apis/index')['ApiPaymentDepositCoinConfirm']>
     readonly ApiSmsSend: UnwrapRef<typeof import('./apis/index')['ApiSmsSend']>
     readonly ApiSportAddFavorite: UnwrapRef<typeof import('./apis/sport')['ApiSportAddFavorite']>
@@ -1202,9 +1206,11 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberWalletInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletInsert']>
     readonly ApiMemberWalletList: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletList']>
     readonly ApiPaymentDepositBankApplication: UnwrapRef<typeof import('./apis/index')['ApiPaymentDepositBankApplication']>
+    readonly ApiPaymentDepositBankCancel: UnwrapRef<typeof import('./apis/index')['ApiPaymentDepositBankCancel']>
     readonly ApiPaymentDepositBankConfirm: UnwrapRef<typeof import('./apis/index')['ApiPaymentDepositBankConfirm']>
     readonly ApiPaymentDepositBankList: UnwrapRef<typeof import('./apis/index')['ApiPaymentDepositBankList']>
     readonly ApiPaymentDepositCoinApplication: UnwrapRef<typeof import('./apis/index')['ApiPaymentDepositCoinApplication']>
+    readonly ApiPaymentDepositCoinCancel: UnwrapRef<typeof import('./apis/index')['ApiPaymentDepositCoinCancel']>
     readonly ApiPaymentDepositCoinConfirm: UnwrapRef<typeof import('./apis/index')['ApiPaymentDepositCoinConfirm']>
     readonly ApiSmsSend: UnwrapRef<typeof import('./apis/index')['ApiSmsSend']>
     readonly ApiSportAddFavorite: UnwrapRef<typeof import('./apis/sport')['ApiSportAddFavorite']>

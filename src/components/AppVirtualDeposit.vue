@@ -87,6 +87,14 @@ const {
     cancelPayment()
   },
 })
+const {
+  run: runPaymentDepositCoinCancel,
+  loading: paymentDepositCoinCancelLoading,
+} = useRequest(ApiPaymentDepositCoinCancel, {
+  onSuccess() {
+    cancelPayment()
+  },
+})
 
 const oftenAmount = computed(() => {
   const arr = currentAisle.value.often_amount.split(',')
@@ -274,7 +282,8 @@ await application.allSettled([
           style="border-color: var(--tg-text-blue);
           color: var(--tg-text-blue);"
           size="sm"
-          @click="cancelPayment"
+          :loading="paymentDepositCoinCancelLoading"
+          @click="runPaymentDepositCoinCancel({ id: backDepositInfo.id ?? '' })"
         >
           {{ t('cancel_deposit') }}
         </BaseButton>
