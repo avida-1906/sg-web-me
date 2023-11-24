@@ -1,9 +1,9 @@
 import type {
   IBetArgs,
   IBetInfoBack,
-  ILeagueItem,
   IResponseList,
   ISportEventInfo,
+  ISportEventList,
   ISportOutrightsInfo,
   ISportsBetListArgs,
   ISportsMyBetSlipItem,
@@ -188,27 +188,7 @@ export function ApiSportEventDelta(data: {
   return httpClient.post<{
     /** 资料更新时间 */
     delta: number
-    list: {
-      /** 球种Id */
-      si: number
-      /** market 1:早盤 */
-      m: number
-      /** 赛事ID */
-      ei: string
-      /** Action
-       *
-       * 0:更新或次插入赛事
-       *
-       * 1:移除赛事 */
-      ac: string
-      /** 赛事更新时间 */
-      ts: number
-      /** 聯賽id */
-      ci: string
-      /** 地區id */
-      pgid: string
-      v: ILeagueItem[]
-    }[]
+    list: ISportEventList[]
   }>(`/sport/${getSportsPlatId()}/event/delta`, data)
 }
 

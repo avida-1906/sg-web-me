@@ -490,6 +490,10 @@ export function ApiMemberEmailCheck(data: {
   * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=7f28bcd5-c379-4de4-9027-cf3ce6f23695
   */
 export function ApiMemberPayPasswordUpdate(data: {
+  /** 1-设置 2-修改 */
+  types: 1 | 2
+  /** 原资金密码 修改时使用 */
+  old_pay_password?: string
   /** 资金密码 */
   pay_password: string
   /** 邮箱验证码 */

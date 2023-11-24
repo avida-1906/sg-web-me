@@ -20,6 +20,7 @@ const {
   widthBoundarySm,
 } = storeToRefs(useWindowStore())
 const router = useRouter()
+usePageTitle({ prefix: t('vip_club') })
 
 const tableData: ITableData[] = [
   {
@@ -1019,5 +1020,4 @@ const toVip = function () {
 <route lang="yaml">
 meta:
   layout: home
-  browserTitle: VIP 俱乐部 – Stake.com
 </route>

@@ -34,6 +34,8 @@ const appStore = useAppStore()
 const { openNotify } = useNotify()
 // 获取betInfo接口是否成功
 const { bool: fetchBetInfoStatus, setBool: setFetchBetInfoStatus } = useBoolean(true)
+/** 是否支持当前货币 */
+const { bool: isSupportCurrency, setBool: setSupportCurrencyStatus } = useBoolean(true)
 const {
   currentGlobalCurrency,
   currentGlobalCurrencyBalanceNumber,
@@ -49,14 +51,18 @@ const {
 } = useRequest(ApiSportPlaceBetInfo, {
   onSuccess(placeBetInfo) {
     setFetchBetInfoStatus(true)
-    sportStore.cart.updateAllData(placeBetInfo, (_ovIsChange, _duplexOv, _mia, _maa) => {
-      if (ovIsChange.value !== _ovIsChange)
-        setOvChangeStateBool(_ovIsChange)
+    sportStore.cart.updateAllData(
+      placeBetInfo,
+      (_ovIsChange, _duplexOv, _mia, _maa, _isSupportCurrency) => {
+        if (ovIsChange.value !== _ovIsChange)
+          setOvChangeStateBool(_ovIsChange)
 
-      duplexOv.value = _duplexOv
-      multiMia.value = _mia
-      multiMaa.value = _maa
-    })
+        duplexOv.value = _duplexOv
+        multiMia.value = _mia
+        multiMaa.value = _maa
+        setSupportCurrencyStatus(_isSupportCurrency)
+      },
+    )
   },
   onError() {
     setFetchBetInfoStatus(false)
@@ -113,6 +119,13 @@ const errorInfo = computed<{
   /** 错误提示信息 */
   errorMess: string
 }>(() => {
+  if (isSupportCurrency.value === false) {
+    return {
+      bool: true,
+      errorMess: '该场馆暂不支持您所选择的币种',
+    }
+  }
+
   if (sportStore.cart.isExistCloseCaps) {
     return {
       bool: true,
@@ -426,8 +439,8 @@ onUnmounted(() => {
           v-model="betOrderFilterValue"
           class="bet-order-filter"
           :options="betOrderFilterData"
-          no-hover
-          popper
+
+          popper no-hover
         />
         <BaseButton
           type="text"

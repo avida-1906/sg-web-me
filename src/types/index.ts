@@ -176,7 +176,9 @@ export type IBetInfoChangeCallback = (
   /** 复式下的最小投注额 */
   mia: number,
   /** 复式下的最大投注额 */
-  maa: number
+  maa: number,
+  /** 是否支持当前货币 */
+  isSupportCurrency: boolean
 ) => void
 
 /**

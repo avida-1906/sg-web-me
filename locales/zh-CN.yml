@@ -1142,6 +1142,7 @@ withdraw_bank: 出款银行卡
 pix_account: PIX账号
 max: 最大值
 sports_rule: 体育博彩规则
+sports_label: 体育博彩
 scan: 浏览
 change_byte_addr: 您确定要更换您的 {delta} 存款地址吗？
 attention: 请注意
@@ -1304,7 +1305,7 @@ best_sports: 最棒的加密货币在线体育博彩
 go_sports: 前往体育博彩
 pls_input_virtual_addr: 请输入正确提币地址
 choose_protocol: 选择协议
-your_virtual_addr: 您{currencyName}的{curNetworkName}地址
+your_virtual_addr: 您{currencyName}的
 is_default_addr: 是否设为默认地址
 transfer_in_addr: 转入地址
 confirm_pls_addr_tip: 请确认发送USDT到此地址，充值需要全网确认才能到账，请耐心等待！
@@ -1477,3 +1478,6 @@ special_promo: 专属定制福利
 vip_up_tip: 您的进度是通过您在娱乐城和体育博彩中的总投注额累积起来的。只要您的级别上升，就表示能获得更大的奖励和独家 VIP 待遇。
 vip_up_tip_2: 所有已结算的体育投注将回报加快 3 倍的进展速度。结算为无效的赌注并不包括在内。
 learn_more_vip: 了解更多有关成为 Stake VIP 的消息
+index_title_prefix: Stake：加密货币赌场和体育投注
+index_title_suffix: 在线 BTC 赌场
+btc_sport_title: 加密货币与比特币在线体育博彩

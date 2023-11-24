@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+usePageTitle({ prefix: 'chat_room', isT: true })
 </script>
 
 <template>

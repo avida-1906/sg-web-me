@@ -37,7 +37,8 @@ const {
   resetField: amountReset,
 } = useField<string>('amount', (value) => {
   if (!value)
-    return t('validate_require')
+    // return t('validate_require')
+    return '请输入金额'
   else if (Number(value) === 0)
     return `${t('validate_amount')}0`
   else if (Number(value) < 0)

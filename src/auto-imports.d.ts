@@ -130,6 +130,7 @@ declare global {
   const REFRESH_AUTH_BUS: typeof import('./utils/event-bus')['REFRESH_AUTH_BUS']
   const REFRESH_BALANCE_BUS: typeof import('./utils/event-bus')['REFRESH_BALANCE_BUS']
   const REFRESH_MEMBER_BUS: typeof import('./utils/event-bus')['REFRESH_MEMBER_BUS']
+  const SPORTS_DATA_CHANGE_BUS: typeof import('./utils/event-bus')['SPORTS_DATA_CHANGE_BUS']
   const SPORTS_PLAT_ID: typeof import('./utils/sports')['SPORTS_PLAT_ID']
   const STORAGE_CURRENT_GLOBAL_CURRENCY_KEY: typeof import('./utils/storage')['STORAGE_CURRENT_GLOBAL_CURRENCY_KEY']
   const STORAGE_HIDE_ZERO_BALANCE_KEY: typeof import('./utils/storage')['STORAGE_HIDE_ZERO_BALANCE_KEY']
@@ -145,8 +146,10 @@ declare global {
   const STORAGE_TOKEN_KEY: typeof import('./utils/storage')['STORAGE_TOKEN_KEY']
   const STORAGE_sports_current_provider: typeof import('./utils/storage')['STORAGE_sports_current_provider']
   const Session: typeof import('./utils/storage')['Session']
+  const SocketClient: typeof import('./utils/mqtt')['SocketClient']
   const Sports: typeof import('./utils/sports')['Sports']
   const SportsCart: typeof import('./utils/sports')['SportsCart']
+  const SportsNotify: typeof import('./utils/sports')['SportsNotify']
   const SportsOdds: typeof import('./utils/sports')['SportsOdds']
   const acceptHMRUpdate: typeof import('pinia')['acceptHMRUpdate']
   const add: typeof import('./utils/number')['add']
@@ -293,6 +296,8 @@ declare global {
   const socketClient: typeof import('./utils/mqtt')['socketClient']
   const sortBy: typeof import('lodash-es')['sortBy']
   const split: typeof import('lodash-es')['split']
+  const sportDataChangeThrottle: typeof import('./utils/mqtt')['sportDataChangeThrottle']
+  const sportDeltaBus: typeof import('./utils/mqtt')['sportDeltaBus']
   const sportsDataBreadcrumbs: typeof import('./utils/sports')['sportsDataBreadcrumbs']
   const sportsDataGroupByLeague: typeof import('./utils/sports')['sportsDataGroupByLeague']
   const sportsDataGroupByLeagueLoadMore: typeof import('./utils/sports')['sportsDataGroupByLeagueLoadMore']
@@ -474,6 +479,7 @@ declare global {
   const useOnline: typeof import('@vueuse/core')['useOnline']
   const useOption: typeof import('./composables/useOption')['useOption']
   const usePageLeave: typeof import('@vueuse/core')['usePageLeave']
+  const usePageTitle: typeof import('./composables/usePageTitle')['usePageTitle']
   const usePagination: typeof import('vue-request')['usePagination']
   const useParallax: typeof import('@vueuse/core')['useParallax']
   const useParentElement: typeof import('@vueuse/core')['useParentElement']
@@ -703,6 +709,7 @@ declare module 'vue' {
     readonly REFRESH_AUTH_BUS: UnwrapRef<typeof import('./utils/event-bus')['REFRESH_AUTH_BUS']>
     readonly REFRESH_BALANCE_BUS: UnwrapRef<typeof import('./utils/event-bus')['REFRESH_BALANCE_BUS']>
     readonly REFRESH_MEMBER_BUS: UnwrapRef<typeof import('./utils/event-bus')['REFRESH_MEMBER_BUS']>
+    readonly SPORTS_DATA_CHANGE_BUS: UnwrapRef<typeof import('./utils/event-bus')['SPORTS_DATA_CHANGE_BUS']>
     readonly SPORTS_PLAT_ID: UnwrapRef<typeof import('./utils/sports')['SPORTS_PLAT_ID']>
     readonly STORAGE_CURRENT_GLOBAL_CURRENCY_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_CURRENT_GLOBAL_CURRENCY_KEY']>
     readonly STORAGE_HIDE_ZERO_BALANCE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_HIDE_ZERO_BALANCE_KEY']>
@@ -717,7 +724,9 @@ declare module 'vue' {
     readonly STORAGE_SPORTS_PANEL_TYPE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_SPORTS_PANEL_TYPE_KEY']>
     readonly STORAGE_TOKEN_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_TOKEN_KEY']>
     readonly Session: UnwrapRef<typeof import('./utils/storage')['Session']>
+    readonly SocketClient: UnwrapRef<typeof import('./utils/mqtt')['SocketClient']>
     readonly SportsCart: UnwrapRef<typeof import('./utils/sports')['SportsCart']>
+    readonly SportsNotify: UnwrapRef<typeof import('./utils/sports')['SportsNotify']>
     readonly SportsOdds: UnwrapRef<typeof import('./utils/sports')['SportsOdds']>
     readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>
     readonly add: UnwrapRef<typeof import('./utils/number')['add']>
@@ -860,6 +869,8 @@ declare module 'vue' {
     readonly socketClient: UnwrapRef<typeof import('./utils/mqtt')['socketClient']>
     readonly sortBy: UnwrapRef<typeof import('lodash-es')['sortBy']>
     readonly split: UnwrapRef<typeof import('lodash-es')['split']>
+    readonly sportDataChangeThrottle: UnwrapRef<typeof import('./utils/mqtt')['sportDataChangeThrottle']>
+    readonly sportDeltaBus: UnwrapRef<typeof import('./utils/mqtt')['sportDeltaBus']>
     readonly sportsDataBreadcrumbs: UnwrapRef<typeof import('./utils/sports')['sportsDataBreadcrumbs']>
     readonly sportsDataGroupByLeague: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupByLeague']>
     readonly sportsDataGroupByLeagueLoadMore: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupByLeagueLoadMore']>
@@ -1036,6 +1047,7 @@ declare module 'vue' {
     readonly useOnline: UnwrapRef<typeof import('@vueuse/core')['useOnline']>
     readonly useOption: UnwrapRef<typeof import('./composables/useOption')['useOption']>
     readonly usePageLeave: UnwrapRef<typeof import('@vueuse/core')['usePageLeave']>
+    readonly usePageTitle: UnwrapRef<typeof import('./composables/usePageTitle')['usePageTitle']>
     readonly usePagination: UnwrapRef<typeof import('vue-request')['usePagination']>
     readonly useParallax: UnwrapRef<typeof import('@vueuse/core')['useParallax']>
     readonly useParentElement: UnwrapRef<typeof import('@vueuse/core')['useParentElement']>
@@ -1258,6 +1270,7 @@ declare module '@vue/runtime-core' {
     readonly REFRESH_AUTH_BUS: UnwrapRef<typeof import('./utils/event-bus')['REFRESH_AUTH_BUS']>
     readonly REFRESH_BALANCE_BUS: UnwrapRef<typeof import('./utils/event-bus')['REFRESH_BALANCE_BUS']>
     readonly REFRESH_MEMBER_BUS: UnwrapRef<typeof import('./utils/event-bus')['REFRESH_MEMBER_BUS']>
+    readonly SPORTS_DATA_CHANGE_BUS: UnwrapRef<typeof import('./utils/event-bus')['SPORTS_DATA_CHANGE_BUS']>
     readonly SPORTS_PLAT_ID: UnwrapRef<typeof import('./utils/sports')['SPORTS_PLAT_ID']>
     readonly STORAGE_CURRENT_GLOBAL_CURRENCY_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_CURRENT_GLOBAL_CURRENCY_KEY']>
     readonly STORAGE_HIDE_ZERO_BALANCE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_HIDE_ZERO_BALANCE_KEY']>
@@ -1272,7 +1285,9 @@ declare module '@vue/runtime-core' {
     readonly STORAGE_SPORTS_PANEL_TYPE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_SPORTS_PANEL_TYPE_KEY']>
     readonly STORAGE_TOKEN_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_TOKEN_KEY']>
     readonly Session: UnwrapRef<typeof import('./utils/storage')['Session']>
+    readonly SocketClient: UnwrapRef<typeof import('./utils/mqtt')['SocketClient']>
     readonly SportsCart: UnwrapRef<typeof import('./utils/sports')['SportsCart']>
+    readonly SportsNotify: UnwrapRef<typeof import('./utils/sports')['SportsNotify']>
     readonly SportsOdds: UnwrapRef<typeof import('./utils/sports')['SportsOdds']>
     readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>
     readonly add: UnwrapRef<typeof import('./utils/number')['add']>
@@ -1415,6 +1430,8 @@ declare module '@vue/runtime-core' {
     readonly socketClient: UnwrapRef<typeof import('./utils/mqtt')['socketClient']>
     readonly sortBy: UnwrapRef<typeof import('lodash-es')['sortBy']>
     readonly split: UnwrapRef<typeof import('lodash-es')['split']>
+    readonly sportDataChangeThrottle: UnwrapRef<typeof import('./utils/mqtt')['sportDataChangeThrottle']>
+    readonly sportDeltaBus: UnwrapRef<typeof import('./utils/mqtt')['sportDeltaBus']>
     readonly sportsDataBreadcrumbs: UnwrapRef<typeof import('./utils/sports')['sportsDataBreadcrumbs']>
     readonly sportsDataGroupByLeague: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupByLeague']>
     readonly sportsDataGroupByLeagueLoadMore: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupByLeagueLoadMore']>
@@ -1591,6 +1608,7 @@ declare module '@vue/runtime-core' {
     readonly useOnline: UnwrapRef<typeof import('@vueuse/core')['useOnline']>
     readonly useOption: UnwrapRef<typeof import('./composables/useOption')['useOption']>
     readonly usePageLeave: UnwrapRef<typeof import('@vueuse/core')['usePageLeave']>
+    readonly usePageTitle: UnwrapRef<typeof import('./composables/usePageTitle')['usePageTitle']>
     readonly usePagination: UnwrapRef<typeof import('vue-request')['usePagination']>
     readonly useParallax: UnwrapRef<typeof import('@vueuse/core')['useParallax']>
     readonly useParentElement: UnwrapRef<typeof import('@vueuse/core')['useParentElement']>

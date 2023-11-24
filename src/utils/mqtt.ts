@@ -1,4 +1,5 @@
 import { type MqttClient as TMqttClient } from 'precompiled-mqtt'
+import type { ISportEventList } from '~/apis/types'
 
 /**
  * ws://34.92.35.218:8088
@@ -18,6 +19,7 @@ const mqttDisconnectBus = useEventBus(MQTT_DISCONNECT_BUS)
 const mqttConnectSuccessBus = useEventBus(MQTT_CONNECT_SUCCESS_BUS)
 const refreshMemberBus = useEventBus(REFRESH_MEMBER_BUS)
 const refreshAuthBus = useEventBus(REFRESH_AUTH_BUS)
+export const sportDeltaBus = useEventBus<ISportEventList[]>(SPORTS_DATA_CHANGE_BUS)
 
 /**
  * 刷新余额
@@ -35,7 +37,15 @@ const refreshMemberThrottle = throttle(() => {
   refreshMemberBus.emit(REFRESH_MEMBER_BUS)
 }, 5000)
 
-class SocketClient {
+/**
+ * 通知体育数据刷新
+ * @description 5秒内只能触发一次
+ */
+export const sportDataChangeThrottle = throttle((data: ISportEventList[]) => {
+  sportDeltaBus.emit(data)
+})
+
+export class SocketClient {
   client: TMqttClient | null = null
 
   subscribeList: string[] = []
@@ -182,7 +192,9 @@ class SocketClient {
       })
 
       this.client.on('message', (topic, message, packet) => {
-        this.#log(`收到消息：${message.toString()}`, topic, packet)
+        if (!topic.includes('sport/delta'))
+          this.#log(`收到消息：${message.toString()}`, topic, packet)
+
         try {
           if (topic.includes('chat')) {
             const data = JSON.parse(message.toString())
@@ -201,6 +213,14 @@ class SocketClient {
             const data = JSON.parse(message.toString())
             // 第三方登录状态推送
             refreshAuthBus.emit(data)
+          }
+          else if (topic.includes('sport/delta')) {
+            const data = JSON.parse(message.toString())
+            if (data.v)
+              data.v = JSON.parse(data.v)
+
+            // 体育比分推送
+            sportDataChangeThrottle(data)
           }
         }
         catch (error) {

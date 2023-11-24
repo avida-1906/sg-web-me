@@ -1,3 +1,7 @@
+<script setup lang="ts">
+usePageTitle({ prefix: 'download', isT: true })
+</script>
+
 <template>
   <div class="center download">
     <a href="/app.apk" download>

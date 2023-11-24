@@ -23,7 +23,7 @@ const title = computed(() => {
   return 'Stake.com'
 })
 
-useTitle(title)
+usePageTitle({ prefix: title })
 
 watch(
   () => route.params,
@@ -35,7 +35,7 @@ watch(
 </script>
 
 <template>
-  <div v-if="loading" class="loading-content-height center">
+  <div v-if="loading" class="center loading-content-height">
     <BaseLoading />
   </div>
   <div v-else class="tg-sports-tournament-fixture-betdetail">
@@ -233,7 +233,7 @@ watch(
               <AppSportsHotEventList :si="+route.params.sport" />
 
               <div v-if="showRecent" class="is-open spotlight variant-dark">
-                <div class="no-active-scale header">
+                <div class="header no-active-scale">
                   <span>{{ $t('recent_game_record') }}</span>
                   <BaseButton type="text" @click="setSRFalse()">
                     <BaseIcon name="uni-close-white" />

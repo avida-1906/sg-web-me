@@ -15,9 +15,11 @@ const {
   value: address,
   errorMessage: addressMsg,
   validate: valiAddress,
+  resetField: resetAddress,
 } = useField<string>('address', (value) => {
   if (!value)
-    return t('this_field_is_required')
+    // return t('this_field_is_required')
+    return '请选择地址'
   return ''
 })
 const {
@@ -27,7 +29,8 @@ const {
   validate: valiAmount,
 } = useField<string>('amount', (value) => {
   if (!value)
-    return t('validate_require')
+    // return t('validate_require')
+    return '请输入金额'
   else if (Number(value) === 0)
     return t('validate_deposit_amount_zero')
   else if (Number(value) < 0)
@@ -42,7 +45,8 @@ const {
   validate: valiPaypwd,
 } = useField<string>('paypwd', (value) => {
   if (!value)
-    return t('this_field_is_required')
+    // return t('this_field_is_required')
+    return '请输入资金密码'
   return ''
 })
 
@@ -131,8 +135,10 @@ watch(() => props.currentNetwork, () => {
         <BaseSelect
           v-model="address"
           :options="addrOptions"
+          :msg="addressMsg"
           small theme popper border
           style="--tg-base-select-popper-style-padding-y: var(--tg-spacing-12)"
+          @focus="addressMsg && resetAddress()"
         >
           <template #label>
             <span class="popper-label">
@@ -171,9 +177,9 @@ watch(() => props.currentNetwork, () => {
           @blur="onAmountInput"
           @on-right-button="maxNumber"
         >
-          <template #right-icon>
+          <!-- <template #right-icon>
             <AppCurrencyIcon :currency-type="activeCurrency?.type" />
-          </template>
+          </template> -->
           <template #right-button>
             <span>{{ t('max') }}</span>
           </template>
@@ -185,13 +191,13 @@ watch(() => props.currentNetwork, () => {
       <BaseButton bg-style="primary" size="md" @click="handleWithdraw">
         {{ t('menu_title_settings_withdrawals') }}
       </BaseButton>
-      <div class="tips">
+      <!-- <div class="tips">
         <span>{{ t('withdrawal_min_amount') }} 0.00020000</span>
         <AppCurrencyIcon class="currency-icon" :currency-type="activeCurrency?.type" />
         <span>。{{ t('withdrawal_fee_tip') }}0.00007000</span>
         <AppCurrencyIcon class="currency-icon" :currency-type="activeCurrency?.type" />
         <span>{{ t('withdrawal_as_fee') }}。</span>
-      </div>
+      </div> -->
     </div>
   </template>
   <!-- 虚拟币地址添加 -->
@@ -232,14 +238,14 @@ watch(() => props.currentNetwork, () => {
       }
     }
   }
-  .tips{
-    font-size: var(--tg-font-size-xs);
-    .currency-icon{
-      display: inline-block;
-      vertical-align: middle;
-      padding:0  var(--tg-spacing-4);
-    }
-  }
+  // .tips{
+  //   font-size: var(--tg-font-size-xs);
+  //   .currency-icon{
+  //     display: inline-block;
+  //     vertical-align: middle;
+  //     padding:0  var(--tg-spacing-4);
+  //   }
+  // }
 }
 .bank-options{
   .option-row {

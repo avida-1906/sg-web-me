@@ -513,7 +513,7 @@ export interface DepositInfo {
  */
 export interface IBetInfoBack {
   /** 盘口资讯 */
-  wsi: {
+  wsi?: {
     /** 盘口Id */
     wid: string
     /** 赔率 */
@@ -533,6 +533,10 @@ export interface IBetInfoBack {
     /** 客队比分 */
     ap: number
   }[]
+  /**
+   * 3 说明不支持这个币种，其它两个不用管
+   */
+  status: 1 | 2 | 3
   /** 下注资讯 */
   bi?: {
     /** 盘口id */
@@ -631,4 +635,29 @@ export interface ISportsBetListArgs {
   cur: CurrencyCode
   page?: number
   page_size?: number
+}
+
+/**
+ * 赛事列表数据
+ */
+export interface ISportEventList {
+  /** 球种Id */
+  si: number
+  /** market 1:早盤 */
+  m: number
+  /** 赛事ID */
+  ei: string
+  /** Action
+   *
+   * 0:更新或次插入赛事
+   *
+   * 1:移除赛事 */
+  ac: string
+  /** 赛事更新时间 */
+  ts: number
+  /** 聯賽id */
+  ci: string
+  /** 地區id */
+  pgid: string
+  v: ILeagueItem[]
 }

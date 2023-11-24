@@ -25,6 +25,8 @@ export function useApiSportBetList(settle: Ref<number>, isFetch?: boolean) {
     onBefore() {
       _list.value = []
     },
+  }, {
+    page_size: 20,
   })
 
   const currentGlobalCurCode = computed(() => {

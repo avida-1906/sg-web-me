@@ -35,7 +35,8 @@ const {
   validate: valiAddress,
 } = useField<string>('address', (value) => {
   if (!value)
-    return t('this_field_is_required')
+    // return t('this_field_is_required')
+    return '请输入提币地址'
   else if (!virtualCoinAddressReg.test(value))
     return t('pls_input_virtual_addr')
   return ''
@@ -128,12 +129,14 @@ onUnmounted(() => {
       :options="curContractList"
       small
     />
-    <BaseLabel
-      :label="t('your_virtual_addr', { currencyName, curNetworkName })"
-      must
-    >
+    <div>
+      <div class="label-wrap">
+        {{ t('your_virtual_addr', { currencyName }) }}<span class="network">{{
+          curNetworkName }}</span>{{ t('address') }}<span class="must">*</span>
+      </div>
       <BaseInput v-model="address" :msg="addressMsg" />
-    </BaseLabel>
+    </div>
+    <!-- </BaseLabel> -->
     <div class="checkbox-wrap">
       <span>{{ t('is_default_addr') }}</span>
       <BaseCheckBox v-model="isDefault" />
@@ -159,6 +162,17 @@ onUnmounted(() => {
 .app-vir-address {
   padding: var(--tg-app-vir-address-style-padding);
   gap: var(--tg-spacing-12);
+  .label-wrap{
+    margin-bottom: var(--tg-spacing-4);
+    font-weight: var(--tg-font-weight-semibold);
+    color: var(--tg-text-lightgrey);
+    .network{
+      color: var(--tg-text-warn);
+    }
+    .must{
+      color: var(--tg-text-error);
+    }
+  }
   .checkbox-wrap{
       display: flex;
       align-items: center;
