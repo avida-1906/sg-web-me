@@ -6,6 +6,7 @@ export enum EnumRightSidebarContent {
 
 export const useRightSidebar = createGlobalState(() => {
   const { isLogin } = storeToRefs(useAppStore())
+  const { isMobile } = useWindowStore()
 
   let defaultRightStatus = false
   const rightStatus = Local.get(
@@ -25,6 +26,9 @@ export const useRightSidebar = createGlobalState(() => {
   // 右侧是否展开
   const { bool: rightIsExpand, setTrue: setRightIsExpandTrue, setFalse: setRightIsExpandFalse } = useBoolean(defaultRightStatus)
   const { bool: rightContainerIs0, setTrue: setRightContainerIs0True, setFalse: setRightContainerIs0False } = useBoolean(!defaultRightStatus)
+
+  if (isMobile)
+    useLockScroll(rightIsExpand)
 
   function openRightSidebar(rightSidebarContent?: EnumRightSidebarContent) {
     // 打开右侧侧边栏

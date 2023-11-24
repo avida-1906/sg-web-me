@@ -85,6 +85,9 @@ const addrOptions = computed(() => {
 const defaultAddress = computed(() => {
   return walletList.value?.d?.find(i => i.id === address.value)?.address ?? ''
 })
+const getContractId = computed(() => {
+  return props.currentNetwork
+})
 
 function onAmountInput() {
   if (amount.value)
@@ -124,9 +127,9 @@ watch(() => props.currentNetwork, () => {
 </script>
 
 <template>
-  <template v-if="addrOptions.length">
+  <div>
     <!-- 虚拟币提款 -->
-    <div class="app-withdraw">
+    <div v-if="addrOptions.length" class="app-withdraw">
       <BaseLabel
         :label="`${activeCurrency?.type}${t('address')}`"
         :current-currency="activeCurrency?.type"
@@ -178,8 +181,8 @@ watch(() => props.currentNetwork, () => {
           @on-right-button="maxNumber"
         >
           <!-- <template #right-icon>
-            <AppCurrencyIcon :currency-type="activeCurrency?.type" />
-          </template> -->
+              <AppCurrencyIcon :currency-type="activeCurrency?.type" />
+            </template> -->
           <template #right-button>
             <span>{{ t('max') }}</span>
           </template>
@@ -192,24 +195,24 @@ watch(() => props.currentNetwork, () => {
         {{ t('menu_title_settings_withdrawals') }}
       </BaseButton>
       <!-- <div class="tips">
-        <span>{{ t('withdrawal_min_amount') }} 0.00020000</span>
-        <AppCurrencyIcon class="currency-icon" :currency-type="activeCurrency?.type" />
-        <span>。{{ t('withdrawal_fee_tip') }}0.00007000</span>
-        <AppCurrencyIcon class="currency-icon" :currency-type="activeCurrency?.type" />
-        <span>{{ t('withdrawal_as_fee') }}。</span>
-      </div> -->
+          <span>{{ t('withdrawal_min_amount') }} 0.00020000</span>
+          <AppCurrencyIcon class="currency-icon" :currency-type="activeCurrency?.type" />
+          <span>。{{ t('withdrawal_fee_tip') }}0.00007000</span>
+          <AppCurrencyIcon class="currency-icon" :currency-type="activeCurrency?.type" />
+          <span>{{ t('withdrawal_as_fee') }}。</span>
+        </div> -->
     </div>
-  </template>
-  <!-- 虚拟币地址添加 -->
-  <template v-else>
+    <!-- 虚拟币地址添加 -->
     <AppVirAddressDialog
+      v-else
       is-withdraw
       :currency-id="activeCurrency.cur"
       :currency-name="activeCurrency.type"
+      :contract-id="getContractId"
       style="--tg-app-vir-address-style-padding: 0"
       @added="updateContract"
     />
-  </template>
+  </div>
 </template>
 
 <style lang='scss' scoped>

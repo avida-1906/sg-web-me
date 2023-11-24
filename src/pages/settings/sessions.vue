@@ -28,6 +28,7 @@ const columns: Column[] = [
     dataIndex: 'browser',
     width: 150,
     align: 'center',
+    slot: 'browser',
   },
   {
     title: t('area'),
@@ -116,6 +117,13 @@ application.allSettled([loginLogRunAsync()])
                 {{ record.action }}
               </span>
             </BaseButton>
+          </div>
+        </template>
+        <template #browser="{ record }">
+          <div>
+            {{ record.browser.length > 20
+              ? (`${record.browser.slice(0, 20)}...`)
+              : record.browser }}
           </div>
         </template>
       </BaseTable>

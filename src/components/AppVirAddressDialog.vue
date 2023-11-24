@@ -5,6 +5,7 @@ interface Props {
   currencyId?: string
   currencyName?: EnumCurrencyKey
   isWithdraw?: boolean
+  contractId?: string
   callback?: (params?: any) => void
 }
 
@@ -68,7 +69,7 @@ const curContractList = computed(() => {
 
 // 设置协议默认值
 function getTypeVal() {
-  currentNetwork.value = curContractList.value ? curContractList.value[0]?.value : ''
+  currentNetwork.value = props.contractId || (curContractList.value ? curContractList.value[0]?.value : '')
 }
 
 // 协议名称
@@ -110,6 +111,9 @@ async function handleBindAddress() {
 watch(() => curContractList.value, () => {
   getTypeVal()
 })
+watch(() => props.contractId, () => {
+  currentNetwork.value = props.contractId
+})
 
 onMounted(() => {
   getTypeVal()
@@ -127,6 +131,7 @@ onUnmounted(() => {
       v-model="currentNetwork"
       :label="t('choose_protocol')"
       :options="curContractList"
+      :disabled="isWithdraw"
       small
     />
     <div>
