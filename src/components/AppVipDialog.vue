@@ -16,66 +16,68 @@ const props = withDefaults(defineProps<Props>(), {
   },
 })
 
+const { t } = useI18n()
+
 const tab = ref('1')
 const tabList = [
-  { label: '进展程度', value: '1' },
-  { label: '福利', value: '2' },
+  { label: t('progress_level'), value: '1' },
+  { label: t('promo'), value: '2' },
 ]
 const welfareList = [
   {
-    title: '铜',
+    title: t('copper'),
     icon: 'chat-star-bronze',
     contents: [
-      '支持人员将按照您所选的货币发送奖金',
-      '启用返水功能',
-      '周度奖金',
-      '月度奖金',
-      'VIP Telegram 频道访问权',
+      t('send_currency_bonus'),
+      t('turn_on_rebate'),
+      t('weekly_bonus'),
+      t('monthly_bonus'),
+      t('vip_tg_right'),
     ],
   },
   {
-    title: '银',
+    title: t('silver'),
     icon: 'chat-star-silver',
     contents: [
-      '支持人员将按照您所选的货币发送奖金',
-      '周度和月度奖金增加',
+      t('send_currency_bonus'),
+      t('week_monthly_bonus_up'),
     ],
   },
   {
-    title: '金',
+    title: t('gold'),
     icon: 'chat-star-gold',
     contents: [
-      '支持人员将按照您所选的货币发送奖金',
-      '周度和月度奖金增加',
+      t('send_currency_bonus'),
+      t('week_monthly_bonus_up'),
     ],
   },
   {
-    title: '铂金 I – III',
+    title: `${t('platinum')} I – III`,
     icon: 'chat-star-1',
     contents: [
-      '支持人员将按照您所选的货币发送奖金',
-      '周度和月度奖金增加',
+      t('send_currency_bonus'),
+      t('week_monthly_bonus_up'),
       '14–42 天，每日奖金（充值奖金）',
     ],
   },
   {
-    title: '铂金 IV – VI',
+    title: `${t('platinum')} IV – VI`,
     icon: 'chat-star-4',
     contents: [
-      '专属 VIP 服务代表',
-      'VIP 服务代表将按照您所选的货币发送奖金',
-      '每日和周度奖金增加',
-      '月度奖金',
+      t('dedicated_vip_servicer'),
+      t('vip_send_currency_bonus'),
+      t('day_week_bonus_up'),
+      t('monthly_bonus'),
     ],
   },
   {
-    title: '钻石',
+    title: t('diamond'),
     icon: 'chat-star-diamond',
     contents: [
-      'VIP 服务代表将按照您所选的货币发送奖金',
-      '专属定制福利',
-      '每日和周度奖金增加',
-      '月度奖金',
+      t('vip_send_currency_bonus'),
+      t('special_promo'),
+      t('day_week_bonus_up'),
+      t('monthly_bonus'),
     ],
   },
 
@@ -98,12 +100,12 @@ const showContent = function () {
         </div>
         <AppVipProgress :vip-progress-data="props.vipProgressData" />
         <div class="progress-text">
-          您的进度是通过您在娱乐城和体育博彩中的总投注额累积起来的。只要您的级别上升，就表示能获得更大的奖励和独家 VIP 待遇。
+          {{ t('vip_up_tip') }}
         </div>
         <div class="progress-tips">
           <BaseIcon name="uni-tips" />
           <p>
-            所有已结算的体育投注将回报加快 3 倍的进展速度。结算为无效的赌注并不包括在内。
+            {{ t('vip_up_tip_2') }}
           </p>
         </div>
       </div>
@@ -123,7 +125,7 @@ const showContent = function () {
     </div>
     <div class="vip-footer-more">
       <a href="#">
-        了解更多有关成为 Stake VIP 的消息
+        {{ t('learn_more_vip') }}
       </a>
     </div>
   </div>

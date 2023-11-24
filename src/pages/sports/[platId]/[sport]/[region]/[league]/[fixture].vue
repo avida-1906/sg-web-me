@@ -12,11 +12,9 @@ const {
   basePanelData,
   currentTab,
   searchName,
+  loading,
   runGetSportInfo,
 } = useApiSportDetails()
-
-const sport = route.params.sport
-const fixture = route.params.fixture
 
 const title = computed(() => {
   if (breadcrumbData.value.length)
@@ -27,13 +25,20 @@ const title = computed(() => {
 
 useTitle(title)
 
-await application.allSettled([
-  runGetSportInfo({ si: Number(sport), ei: `${fixture}` }),
-])
+watch(
+  () => route.params,
+  (value) => {
+    runGetSportInfo({ si: Number(route.params.sport), ei: `${route.params.fixture}` })
+  },
+  { immediate: true },
+)
 </script>
 
 <template>
-  <div class="tg-sports-tournament-fixture-betdetail">
+  <div v-if="loading" class="loading-content-height center">
+    <BaseLoading />
+  </div>
+  <div v-else class="tg-sports-tournament-fixture-betdetail">
     <div class="sports-detail-wrapper">
       <div class="layout-spacing no-bottom-spacing variant-normal">
         <AppNavBreadCrumb :breadcrumb="breadcrumbData" />
@@ -43,7 +48,7 @@ await application.allSettled([
               <div
                 v-if="!openLiveSwitch"
                 class="background match-statistics" :style="{
-                  '--sport-image': `url(/img/match-statistics/${sport}.jpg)`,
+                  '--sport-image': `url(/img/match-statistics/${route.params.sport}.jpg)`,
                 }"
               >
                 <AppMatchStatistics :data="basePanelData" />
@@ -225,10 +230,10 @@ await application.allSettled([
             </div>
             <!-- 右侧热门热门赛事 -->
             <div v-if="appContentWidth >= 900" class="sticky-column">
-              <AppSportsHotEventList :si="+sport" />
+              <AppSportsHotEventList :si="+route.params.sport" />
 
               <div v-if="showRecent" class="is-open spotlight variant-dark">
-                <div class="header no-active-scale">
+                <div class="no-active-scale header">
                   <span>{{ $t('recent_game_record') }}</span>
                   <BaseButton type="text" @click="setSRFalse()">
                     <BaseIcon name="uni-close-white" />

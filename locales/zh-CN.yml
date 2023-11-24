@@ -1466,5 +1466,14 @@ safe_pwd_error: 支付密码格式错误
 save_to_vault: 存入保险库
 draw_vault: 保险库取出
 vault_info: 了解更多有关保险库的信息
-
-
+progress_level: 进展程度
+send_currency_bonus: 支持人员将按照您所选的货币发送奖金
+turn_on_rebate: 启用返水功能
+vip_tg_right: VIP Telegram 频道访问权
+week_monthly_bonus_up: 周度和月度奖金增加
+vip_send_currency_bonus: VIP 服务代表将按照您所选的货币发送奖金
+day_week_bonus_up: 每日和周度奖金增加
+special_promo: 专属定制福利
+vip_up_tip: 您的进度是通过您在娱乐城和体育博彩中的总投注额累积起来的。只要您的级别上升，就表示能获得更大的奖励和独家 VIP 待遇。
+vip_up_tip_2: 所有已结算的体育投注将回报加快 3 倍的进展速度。结算为无效的赌注并不包括在内。
+learn_more_vip: 了解更多有关成为 Stake VIP 的消息
