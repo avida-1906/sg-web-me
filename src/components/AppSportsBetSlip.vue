@@ -18,8 +18,6 @@ interface Props {
   error?: boolean
   /** 禁用 */
   disabled?: boolean
-  /** 是否已结算 */
-  isClosed?: boolean
   /** 是否是滚球 */
   live?: boolean
   /** 渲染的List数据 */
@@ -89,6 +87,10 @@ const isLive = computed(() => {
 const suffixLength = computed(() =>
   application.getCurrencySuffixLength(currentGlobalCurrency.value),
 )
+/** 是否已关闭 */
+const isClosed = computed(() => {
+  return props.cartInfoData.os === 0
+})
 
 function inputBlur() {
   amount.value = application.sliceOrPad(amount.value, suffixLength.value) as any
@@ -154,7 +156,7 @@ watch(() => props.cartInfoData.amount, () => {
       </div>
       <!-- 状态或赔率 -->
       <div v-if="isClosed" class="closed">
-        {{ t('sports_settled') }}
+        已关闭
       </div>
       <AppSportsOdds v-else :odds="cartInfoData.ov" arrow="left" />
       <!-- 单式金额输入框 -->
