@@ -26,6 +26,8 @@ export const useRightSidebar = createGlobalState(() => {
   const { bool: rightIsExpand, setTrue: setRightIsExpandTrue, setFalse: setRightIsExpandFalse } = useBoolean(defaultRightStatus)
   const { bool: rightContainerIs0, setTrue: setRightContainerIs0True, setFalse: setRightContainerIs0False } = useBoolean(!defaultRightStatus)
 
+  useLockScroll(rightIsExpand)
+
   function openRightSidebar(rightSidebarContent?: EnumRightSidebarContent) {
     // 打开右侧侧边栏
     setRightIsExpandTrue()
