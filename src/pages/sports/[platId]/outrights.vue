@@ -3,14 +3,14 @@ const route = useRoute()
 const si = route.query.si ? +route.query.si : 0
 const ci = route.query.ci ? route.query.ci.toString() : ''
 // 冠军数据
-const params = computed(() => ({ si, page: 1, page_size: 100 }))
+const params = computed(() => ({ si, page: 1, page_size: 1000 }))
 const { data, run, runAsync } = useRequest(ApiSportOutrightList)
 /** 定时更新数据 */
 const { startTimer, stopTimer } = useSportsDataUpdate(() => run(params.value))
 
 const outrightsData = computed(() => {
-  if (data.value && data.value.list) {
-    const marketInfo = data.value.list.find(a => a.ci === ci)
+  if (data.value && data.value.d) {
+    const marketInfo = data.value.d.find(a => a.ci === ci)
     if (marketInfo) {
       marketInfo.ml = marketInfo.ml.map((a) => {
         return {
