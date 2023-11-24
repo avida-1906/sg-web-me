@@ -172,7 +172,7 @@ export const useSportsStore = defineStore('sports', () => {
                 title: league.cn,
                 icon: league.cpic,
                 useCloudImg: true,
-                path: `/sports/${SPORTS_PLAT_ID}/${sport.si}/${league.ci}`,
+                path: `/sports/${SPORTS_PLAT_ID}/${sport.si}/${league.pgid}/${league.ci}`,
               }
             }),
           ],

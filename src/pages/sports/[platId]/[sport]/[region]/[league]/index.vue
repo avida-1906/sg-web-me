@@ -5,8 +5,8 @@ const sport = route.params.sport ? +route.params.sport : 0
 const region = route.params.region ? route.params.region.toString() : ''
 const league = route.params.league ? route.params.league.toString() : ''
 const { bool: isStandard } = useBoolean(true)
-const params = computed(() => {
-  return { m: 5, si: sport, ci: [league], page: 1, page_size: 100 }
+const params = ref({
+  m: 5, si: sport, ci: [league], page: 1, page_size: 100,
 })
 const { data, run, runAsync } = useRequest(ApiSportEventList)
 /** 定时更新数据 */
@@ -22,23 +22,23 @@ const tabs = computed(() => [
 const isLiveAndUpcoming = computed(() => curTab.value === '1')
 const isOutrights = computed(() => curTab.value === '2')
 // 球种名称
-const sportName = computed(() => data.value && data.value.list
-  ? data.value.list[0].sn
+const sportName = computed(() => data.value && data.value.d
+  ? data.value.d[0].sn
   : '-',
 )
 // 地区名称
-const regionName = computed(() => data.value && data.value.list
-  ? data.value.list[0].pgn
+const regionName = computed(() => data.value && data.value.d
+  ? data.value.d[0].pgn
   : '-',
 )
 // 联赛名称
-const leagueName = computed(() => data.value && data.value.list
-  ? data.value.list[0].cn
+const leagueName = computed(() => data.value && data.value.d
+  ? data.value.d[0].cn
   : '-',
 )
 // 赛事数据
 const eventList = computed(() => {
-  return data.value && data.value.list ? data.value.list : []
+  return data.value && data.value.d ? data.value.d : []
 })
 const breadcrumb = computed(() => [
   {
@@ -58,6 +58,14 @@ const breadcrumb = computed(() => [
 function onBaseTypeChange(v: string) {
   baseType.value = v
 }
+watch(route, (r) => {
+  if (r.name === 'sports-platId-sport-region-league') {
+    params.value.si = r.params.sport ? +r.params.sport : 0
+    params.value.ci = [r.params.league ? r.params.league.toString() : '']
+    run(params.value)
+    startTimer()
+  }
+})
 
 onMounted(() => {
   startTimer()

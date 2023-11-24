@@ -9,8 +9,8 @@ const { startTimer, stopTimer }
 const currentSi = ref(-1)
 /** 收藏数据根据球种组合 */
 const sportsFavoriteList = computed(() => {
-  if (sportsFavoriteData.value && sportsFavoriteData.value.list)
-    return sportsDataGroupBySport(sportsFavoriteData.value.list)
+  if (sportsFavoriteData.value && sportsFavoriteData.value.d)
+    return sportsDataGroupBySport(sportsFavoriteData.value.d)
 
   return []
 })
@@ -25,15 +25,15 @@ const navs = computed(() => {
   })
 })
 const list = computed(() => {
-  if (sportsFavoriteData.value && sportsFavoriteData.value.list)
-    return sportsDataGroupByLeague(sportsFavoriteData.value.list.filter(a => a.si === currentSi.value))
+  if (sportsFavoriteData.value && sportsFavoriteData.value.d)
+    return sportsDataGroupByLeague(sportsFavoriteData.value.d.filter(a => a.si === currentSi.value))
 
   return null
 })
 
 watch(sportsFavoriteData, (a) => {
-  if (a && a.list && currentSi.value === -1)
-    currentSi.value = a.list[0].si
+  if (a && a.d && currentSi.value === -1)
+    currentSi.value = a.d[0].si
 })
 
 onMounted(() => {

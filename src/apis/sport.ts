@@ -70,6 +70,7 @@ export function ApiSportSidebar() {
           ci: string
           cn: string
           cpic: string
+          pgid: string
         }[]
       }[]
     }[]
@@ -167,7 +168,8 @@ export function ApiSportEventList(data: {
     /** 资料更新时间 */
     delta: number
     /** 联赛列表 */
-    list: ISportEventInfo[]
+    d: ISportEventInfo[]
+    t: number
   }>(`/sport/${getSportsPlatId()}/event/list`, data)
 }
 
@@ -250,9 +252,7 @@ export function ApiSportOutrightList(data: {
   page: number
   page_size: number
 }) {
-  return httpClient.post<{
-    list: ISportOutrightsInfo[]
-  }>(`/sport/${getSportsPlatId()}/outright/list`, data)
+  return httpClient.post<IResponseList<ISportOutrightsInfo>>(`/sport/${getSportsPlatId()}/outright/list`, data)
 }
 
 /**
@@ -266,7 +266,8 @@ export function ApiSportGetFavoriteList(data: {
   return httpClient.post<{
     /** 资料更新时间 */
     delta: number
-    list: ISportEventInfo[]
+    d: ISportEventInfo[]
+    t: number
   }>(`/sport/${getSportsPlatId()}/favorite/get`, data)
 }
 
@@ -360,18 +361,16 @@ export function ApiSportsEventHot(data: {
   page: 1
   page_size: 10
 }) {
-  return httpClient.post<{
-    list: {
-      ci: string
-      cn: string
-      ei: string
-      htn: string
-      atn: string
-      atpic: string
-      htpic: string
-      cpic: string
-      pgid: string
-      ed: number
-    }[]
-  }>(`/sport/${getSportsPlatId()}/event/hot`, data)
+  return httpClient.post <IResponseList<{
+    ci: string
+    cn: string
+    ei: string
+    htn: string
+    atn: string
+    atpic: string
+    htpic: string
+    cpic: string
+    pgid: string
+    ed: number
+  }>>(`/sport/${getSportsPlatId()}/event/hot`, data)
 }

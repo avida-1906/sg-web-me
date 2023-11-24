@@ -24,8 +24,8 @@ const {
 
 const baseType = ref('winner')
 const groupedList = computed(() => {
-  if (data.value && data.value.list)
-    return sportsDataGroupByLeague(data.value.list)
+  if (data.value && data.value.d)
+    return sportsDataGroupByLeague(data.value.d)
   return []
 })
 const list = computed(() => {
