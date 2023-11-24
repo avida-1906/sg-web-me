@@ -43,7 +43,7 @@ const refreshMemberThrottle = throttle(() => {
  */
 export const sportDataChangeThrottle = throttle((data: ISportEventList[]) => {
   sportDeltaBus.emit(data)
-})
+}, 5000)
 
 export class SocketClient {
   client: TMqttClient | null = null
