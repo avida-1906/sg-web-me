@@ -30,11 +30,29 @@ const {
           <BaseLoading />
         </div>
         <div v-else>
-          <AppSportsMyBetSlip
-            v-for="item in sportBetList"
-            :key="item.ono"
-            :data="item"
-          />
+          <div v-if="sportBetList.length">
+            <AppSportsMyBetSlip
+              v-for="item in sportBetList"
+              :key="item.ono"
+              :data="item"
+            />
+          </div>
+          <div v-else>
+            <BaseEmpty>
+              <template #icon>
+                <BaseIcon
+                  style="
+                  font-size: var(--tg-empty-icon-size);
+                  margin-bottom: var(--tg-spacing-24);
+                "
+                  name="uni-empty-betslip"
+                />
+              </template>
+              <template #description>
+                <span>暂无数据</span>
+              </template>
+            </BaseEmpty>
+          </div>
         </div>
       </div>
     </div>
