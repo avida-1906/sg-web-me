@@ -8,11 +8,10 @@ const tabList = [
   { label: t('casino'), value: 'casino' },
   { label: t('sports'), value: 'sports' },
 ]
-const sportsSlipType = ref(0)
-const typeOptions = [
-  { label: t('sports_active'), value: 0 },
-  { label: t('sports_settled'), value: 1 },
-]
+const {
+  settle,
+  settleList,
+} = useSportSelectSettle()
 
 const isCasino = computed(() => currentTab.value === 'casino')
 const isSports = computed(() => currentTab.value === 'sports')
@@ -30,16 +29,16 @@ const isSports = computed(() => currentTab.value === 'sports')
       <BaseTab v-model="currentTab" :list="tabList" :center="false" />
       <BaseSelect
         v-show="isSports"
-        v-model="sportsSlipType"
+        v-model="settle"
         style="
           --tg-base-select-popper-style-padding-y:var(--tg-spacing-13);
           --tg-base-select-popper-style-padding-x:var(--tg-spacing-16)"
-        :options="typeOptions" popper
+        :options="settleList" popper
       />
     </div>
 
     <AppCasinoPageMyBet v-if="isCasino" />
-    <AppSportsPageMyBet v-else-if="isSports" :slip-type="sportsSlipType" />
+    <AppSportsPageMyBet v-else-if="isSports" :key="settle" :settle="settle" />
 
     <div class="layout-spacing">
       <AppBetData v-if="isCasino" mode="casino" />

@@ -629,4 +629,6 @@ export interface ISportsBetListArgs {
   settle: number
   /** 进入货币 */
   cur: CurrencyCode
+  page?: number
+  page_size?: number
 }
