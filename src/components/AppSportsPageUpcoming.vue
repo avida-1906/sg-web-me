@@ -1,46 +1,103 @@
 <script lang="ts" setup>
+import type { ISportEventInfo } from '~/apis/types'
+
 const props = defineProps<{ onPage?: boolean }>()
 
 const { t } = useI18n()
 const sportsStore = useSportsStore()
 const { upcomingNavs, currentUpcomingNav } = storeToRefs(sportsStore)
-
-const baseType = ref('winner')
-const isAll = computed(() => currentUpcomingNav.value === 0)
 const { bool: isStandard } = useBoolean(true)
+
+let timer: any = null
+const baseType = ref('winner')
+const page = ref(1)
+const pageSize = ref(10)
+const total = ref(0)
+const curTotal = ref(0)
+const list = ref< {
+  ci: string
+  cn: string
+  list: ISportEventInfo[]
+}[]>([])
 const params = computed(() => {
-  return { si: currentUpcomingNav.value, m: 4, page: 1, page_size: 100 }
+  return {
+    si: currentUpcomingNav.value,
+    m: 4,
+    page: page.value,
+    page_size: pageSize.value,
+  }
 })
-const { data, run, runAsync } = useRequest(ApiSportEventList,
+const isAll = computed(() => currentUpcomingNav.value === 0)
+const { run, runAsync } = useRequest(ApiSportEventList,
   {
     refreshDeps: [currentUpcomingNav],
+    onSuccess(res) {
+      if (res.d) {
+        total.value = res.t
+        curTotal.value = curTotal.value + res.d.length
+
+        if (page.value === 1) {
+          const groupedList = sportsDataGroupByLeague(res.d)
+          return list.value = groupedList
+        }
+
+        list.value = sportsDataGroupByLeagueLoadMore(list.value, res.d)
+      }
+    },
   })
-/** 定时更新数据 */
-const { startTimer: startUpcoming, stopTimer: stopUpcoming }
-= useSportsDataUpdate(() => run(params.value), 30, true)
+
+/** 定时更新count */
 const {
   startTimer: startCount,
   stopTimer: stopCount,
-} = useSportsDataUpdate(sportsStore.runSportsCount, 30, true)
+} = useSportsDataUpdate(sportsStore.runSportsCount, 60, true)
 
-const list = computed(() => {
-  if (data.value && data.value.d)
-    return sportsDataGroupByLeague(data.value.d)
+// 基础的获取数据
+function getData() {
+  run(params.value)
+}
+/** 定时更新数据 */
+function startUpcoming() {
+  if (timer)
+    stopUpcoming()
 
-  return []
-})
-
+  timer = setInterval(() => {
+    page.value = 1
+    run({ si: currentUpcomingNav.value, m: 4, page: page.value, page_size: curTotal.value })
+    curTotal.value = 0
+  }, 60000)
+}
+function stopUpcoming() {
+  clearInterval(timer)
+  timer = null
+}
+function loadMore() {
+  page.value++
+  pageSize.value = 10
+  getData()
+}
+function reset() {
+  page.value = 1
+  pageSize.value = 10
+  total.value = 0
+  curTotal.value = 0
+  list.value = []
+}
 function onBaseTypeChange(v: string) {
   baseType.value = v
 }
 
 watch(currentUpcomingNav, () => {
+  reset()
+  getData()
   startUpcoming()
 })
 
 onMounted(() => {
-  if (props.onPage)
+  if (props.onPage) {
+    getData()
     startUpcoming()
+  }
 
   startCount()
 })
@@ -52,10 +109,7 @@ onBeforeUnmount(() => {
 // 即将开赛页面使用全局loading并延迟调用计时器，因计时器会马上进行一次请求
 if (!props.onPage) {
   await application.allSettled([runAsync(params.value)])
-  const t = setTimeout(() => {
-    startUpcoming()
-    clearTimeout(t)
-  }, 30000)
+  startUpcoming()
 }
 </script>
 
@@ -83,6 +137,9 @@ if (!props.onPage) {
         :base-type="baseType"
         show-breadcrumb
       />
+      <BaseButton v-show="curTotal < total" size="none" type="text" @click="loadMore">
+        {{ t('load_more') }}
+      </BaseButton>
     </div>
 
     <div v-if="!onPage" class="layout-spacing">
@@ -102,6 +159,7 @@ if (!props.onPage) {
 .market-wrapper {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: var(--tg-spacing-12);
   margin-bottom: var(--tg-spacing-24);
 }
