@@ -296,6 +296,7 @@ declare global {
   const socketClient: typeof import('./utils/mqtt')['socketClient']
   const sortBy: typeof import('lodash-es')['sortBy']
   const split: typeof import('lodash-es')['split']
+  const sportDataChangeThrottle: typeof import('./utils/mqtt')['sportDataChangeThrottle']
   const sportDeltaBus: typeof import('./utils/mqtt')['sportDeltaBus']
   const sportsDataBreadcrumbs: typeof import('./utils/sports')['sportsDataBreadcrumbs']
   const sportsDataGroupByLeague: typeof import('./utils/sports')['sportsDataGroupByLeague']
@@ -867,6 +868,7 @@ declare module 'vue' {
     readonly socketClient: UnwrapRef<typeof import('./utils/mqtt')['socketClient']>
     readonly sortBy: UnwrapRef<typeof import('lodash-es')['sortBy']>
     readonly split: UnwrapRef<typeof import('lodash-es')['split']>
+    readonly sportDataChangeThrottle: UnwrapRef<typeof import('./utils/mqtt')['sportDataChangeThrottle']>
     readonly sportDeltaBus: UnwrapRef<typeof import('./utils/mqtt')['sportDeltaBus']>
     readonly sportsDataBreadcrumbs: UnwrapRef<typeof import('./utils/sports')['sportsDataBreadcrumbs']>
     readonly sportsDataGroupByLeague: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupByLeague']>
@@ -1426,6 +1428,7 @@ declare module '@vue/runtime-core' {
     readonly socketClient: UnwrapRef<typeof import('./utils/mqtt')['socketClient']>
     readonly sortBy: UnwrapRef<typeof import('lodash-es')['sortBy']>
     readonly split: UnwrapRef<typeof import('lodash-es')['split']>
+    readonly sportDataChangeThrottle: UnwrapRef<typeof import('./utils/mqtt')['sportDataChangeThrottle']>
     readonly sportDeltaBus: UnwrapRef<typeof import('./utils/mqtt')['sportDeltaBus']>
     readonly sportsDataBreadcrumbs: UnwrapRef<typeof import('./utils/sports')['sportsDataBreadcrumbs']>
     readonly sportsDataGroupByLeague: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupByLeague']>

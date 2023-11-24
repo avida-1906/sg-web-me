@@ -37,6 +37,14 @@ const refreshMemberThrottle = throttle(() => {
   refreshMemberBus.emit(REFRESH_MEMBER_BUS)
 }, 5000)
 
+/**
+ * 通知体育数据刷新
+ * @description 5秒内只能触发一次
+ */
+export const sportDataChangeThrottle = throttle((data: ISportEventList[]) => {
+  sportDeltaBus.emit(data)
+})
+
 export class SocketClient {
   client: TMqttClient | null = null
 
@@ -212,7 +220,7 @@ export class SocketClient {
               data.v = JSON.parse(data.v)
 
             // 体育比分推送
-            sportDeltaBus.emit(data)
+            sportDataChangeThrottle(data)
           }
         }
         catch (error) {
