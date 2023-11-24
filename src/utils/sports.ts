@@ -1,3 +1,4 @@
+import type { SocketClient } from './mqtt'
 import type {
   EnumCurrencyKey,
   IBetInfoBack,
@@ -397,7 +398,6 @@ export class SportsCart {
       suffixLength = 8
 
     this.dataList.forEach((a) => {
-      console.error((toFixed(0, suffixLength)))
       a.amount = Number(toFixed(0, suffixLength))
     })
   }
@@ -435,10 +435,11 @@ export class SportsCart {
    * @param {IBetInfoChangeCallback} fn 回调函数
    */
   updateAllData(data: IBetInfoBack, fn?: IBetInfoChangeCallback) {
-    const { wsi, bi } = data
+    const { wsi, bi, status } = data
+    const isSupportCurrency = status !== 3
 
     if (!bi)
-      console.error('bi 不存在')
+      console.log('bi 不存在')
 
     let duplexOv = ''
     let mia = 0
@@ -456,13 +457,15 @@ export class SportsCart {
     }
 
     this.dataList.forEach((item) => {
-      const _wsiObject = wsi.find(a => a.wid === item.wid)
+      if (wsi) {
+        const _wsiObject = wsi.find(a => a.wid === item.wid)
 
-      item.ov = _wsiObject?.ov ?? ''
-      item.os = _wsiObject?.os ?? 0
-      item.m = _wsiObject?.m ?? 0
-      item.hp = _wsiObject?.hp ?? 0
-      item.ap = _wsiObject?.ap ?? 0
+        item.ov = _wsiObject?.ov ?? ''
+        item.os = _wsiObject?.os ?? 0
+        item.m = _wsiObject?.m ?? 0
+        item.hp = _wsiObject?.hp ?? 0
+        item.ap = _wsiObject?.ap ?? 0
+      }
 
       if (bi) {
         const _biObject = bi.find(a => a.wid === item.wid)
@@ -473,13 +476,18 @@ export class SportsCart {
         item.pt = _biObject?.pt ?? pt
       }
     })
-    const ovIsChange = this.dataList.some((item) => {
-      const wsi = data.wsi.find(a => a.wid === item.wid)
-      return Number(wsi?.ov) !== Number(item.ov)
-    })
+
+    // 是否有赔率变化
+    let ovIsChange = false
+    if (wsi) {
+      ovIsChange = this.dataList.some((item) => {
+        const _wsi = wsi.find(a => a.wid === item.wid)
+        return Number(_wsi?.ov) !== Number(item.ov)
+      })
+    }
 
     if (fn)
-      fn(ovIsChange, duplexOv, mia, maa)
+      fn(ovIsChange, duplexOv, mia, maa, isSupportCurrency)
   }
 
   /**
@@ -502,5 +510,19 @@ export class SportsCart {
     })
 
     this.updateAllAmount()
+  }
+}
+
+/**
+ * 体育通知
+ * @desc 用于通知体育页面的数据更新，使用两种方式，一种通过websocket，一种通过setInterval
+ */
+export class SportsNotify {
+  constructor(mqtt: SocketClient) {
+    console.log('SportsNotify', mqtt)
+  }
+
+  subscribe() {
+
   }
 }

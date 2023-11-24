@@ -513,7 +513,7 @@ export interface DepositInfo {
  */
 export interface IBetInfoBack {
   /** 盘口资讯 */
-  wsi: {
+  wsi?: {
     /** 盘口Id */
     wid: string
     /** 赔率 */
@@ -533,6 +533,10 @@ export interface IBetInfoBack {
     /** 客队比分 */
     ap: number
   }[]
+  /**
+   * 3 说明不支持这个币种，其它两个不用管
+   */
+  status: 1 | 2 | 3
   /** 下注资讯 */
   bi?: {
     /** 盘口id */
