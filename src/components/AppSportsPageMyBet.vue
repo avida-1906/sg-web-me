@@ -70,8 +70,8 @@ const paginationData = computed(() => {
     <AppStack
       v-if="!loading && sportBetList.length > 0"
       :pagination-data="paginationData"
-      @previous="prev"
-      @next="next"
+      scroll
+      @previous="prev" @next="next"
     />
   </div>
 </template>
