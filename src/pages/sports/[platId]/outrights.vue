@@ -3,7 +3,7 @@ const route = useRoute()
 const si = route.query.si ? +route.query.si : 0
 const ci = route.query.ci ? route.query.ci.toString() : ''
 // 冠军数据
-const params = computed(() => ({ si, page: 1, page_size: 100 }))
+const params = computed(() => ({ si, page: 1, page_size: 1000 }))
 const { data, run, runAsync } = useRequest(ApiSportOutrightList)
 /** 定时更新数据 */
 const { startTimer, stopTimer } = useSportsDataUpdate(() => run(params.value))
