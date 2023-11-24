@@ -85,6 +85,9 @@ const addrOptions = computed(() => {
 const defaultAddress = computed(() => {
   return walletList.value?.d?.find(i => i.id === address.value)?.address ?? ''
 })
+const getContractId = computed(() => {
+  return props.currentNetwork
+})
 
 function onAmountInput() {
   if (amount.value)
@@ -124,92 +127,90 @@ watch(() => props.currentNetwork, () => {
 </script>
 
 <template>
-  <template v-if="addrOptions.length">
-    <!-- 虚拟币提款 -->
-    <div class="app-withdraw">
-      <BaseLabel
-        :label="`${activeCurrency?.type}${t('address')}`"
-        :current-currency="activeCurrency?.type"
-        must
+  <!-- 虚拟币提款 -->
+  <div v-if="addrOptions.length" class="app-withdraw">
+    <BaseLabel
+      :label="`${activeCurrency?.type}${t('address')}`"
+      :current-currency="activeCurrency?.type"
+      must
+    >
+      <BaseSelect
+        v-model="address"
+        :options="addrOptions"
+        :msg="addressMsg"
+        small theme popper border
+        style="--tg-base-select-popper-style-padding-y: var(--tg-spacing-12)"
+        @focus="addressMsg && resetAddress()"
       >
-        <BaseSelect
-          v-model="address"
-          :options="addrOptions"
-          :msg="addressMsg"
-          small theme popper border
-          style="--tg-base-select-popper-style-padding-y: var(--tg-spacing-12)"
-          @focus="addressMsg && resetAddress()"
-        >
-          <template #label>
-            <span class="popper-label">
-              <AppCurrencyIcon
-                v-if="defaultAddress"
-                :currency-type="activeCurrency?.type"
-              />
-              {{ defaultAddress }}
-            </span>
-          </template>
-          <template #option="{ data: { item, parentWidth } }">
-            <div
-              class="scroll-x bank-options"
-              :style="{ width: `${parentWidth + 24}px` }"
-            >
-              <div class="option-row">
-                <AppCurrencyIcon :currency-type="activeCurrency?.type" />
-                <div class="bank-info">
-                  <p>{{ item.label }}</p>
-                </div>
+        <template #label>
+          <span class="popper-label">
+            <AppCurrencyIcon
+              v-if="defaultAddress"
+              :currency-type="activeCurrency?.type"
+            />
+            {{ defaultAddress }}
+          </span>
+        </template>
+        <template #option="{ data: { item, parentWidth } }">
+          <div
+            class="scroll-x bank-options"
+            :style="{ width: `${parentWidth + 24}px` }"
+          >
+            <div class="option-row">
+              <AppCurrencyIcon :currency-type="activeCurrency?.type" />
+              <div class="bank-info">
+                <p>{{ item.label }}</p>
               </div>
             </div>
-          </template>
-        </BaseSelect>
-      </BaseLabel>
-      <div class="amount">
-        <div class="top">
-          <span class="label">{{ t('amount') }}
-            <span style="color: var(--tg-text-error);">*</span></span>
-          <!-- <span class="us">US$0.00</span> -->
-        </div>
-        <BaseInput
-          v-model="amount"
-          type="number"
-          :msg="amountMsg"
-          @blur="onAmountInput"
-          @on-right-button="maxNumber"
-        >
-          <!-- <template #right-icon>
+          </div>
+        </template>
+      </BaseSelect>
+    </BaseLabel>
+    <div class="amount">
+      <div class="top">
+        <span class="label">{{ t('amount') }}
+          <span style="color: var(--tg-text-error);">*</span></span>
+        <!-- <span class="us">US$0.00</span> -->
+      </div>
+      <BaseInput
+        v-model="amount"
+        type="number"
+        :msg="amountMsg"
+        @blur="onAmountInput"
+        @on-right-button="maxNumber"
+      >
+        <!-- <template #right-icon>
             <AppCurrencyIcon :currency-type="activeCurrency?.type" />
           </template> -->
-          <template #right-button>
-            <span>{{ t('max') }}</span>
-          </template>
-        </BaseInput>
-      </div>
-      <BaseLabel :label="t('menu_title_settings_update_safepwd')" must>
-        <BaseInput v-model="paypwd" :msg="paypwdMsg" type="password" max="6" />
-      </BaseLabel>
-      <BaseButton bg-style="primary" size="md" @click="handleWithdraw">
-        {{ t('menu_title_settings_withdrawals') }}
-      </BaseButton>
-      <!-- <div class="tips">
+        <template #right-button>
+          <span>{{ t('max') }}</span>
+        </template>
+      </BaseInput>
+    </div>
+    <BaseLabel :label="t('menu_title_settings_update_safepwd')" must>
+      <BaseInput v-model="paypwd" :msg="paypwdMsg" type="password" max="6" />
+    </BaseLabel>
+    <BaseButton bg-style="primary" size="md" @click="handleWithdraw">
+      {{ t('menu_title_settings_withdrawals') }}
+    </BaseButton>
+    <!-- <div class="tips">
         <span>{{ t('withdrawal_min_amount') }} 0.00020000</span>
         <AppCurrencyIcon class="currency-icon" :currency-type="activeCurrency?.type" />
         <span>。{{ t('withdrawal_fee_tip') }}0.00007000</span>
         <AppCurrencyIcon class="currency-icon" :currency-type="activeCurrency?.type" />
         <span>{{ t('withdrawal_as_fee') }}。</span>
       </div> -->
-    </div>
-  </template>
+  </div>
   <!-- 虚拟币地址添加 -->
-  <template v-else>
-    <AppVirAddressDialog
-      is-withdraw
-      :currency-id="activeCurrency.cur"
-      :currency-name="activeCurrency.type"
-      style="--tg-app-vir-address-style-padding: 0"
-      @added="updateContract"
-    />
-  </template>
+  <AppVirAddressDialog
+    v-else
+    is-withdraw
+    :currency-id="activeCurrency.cur"
+    :currency-name="activeCurrency.type"
+    :contract-id="getContractId"
+    style="--tg-app-vir-address-style-padding: 0"
+    @added="updateContract"
+  />
 </template>
 
 <style lang='scss' scoped>
