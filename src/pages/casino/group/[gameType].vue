@@ -36,7 +36,8 @@ function onSortChange(v: any) {
 }
 
 watch(route, (a) => {
-  currentType.value = a.params.gameType.toString()
+  if (a.params.gameType)
+    currentType.value = a.params.gameType.toString()
 })
 </script>
 
