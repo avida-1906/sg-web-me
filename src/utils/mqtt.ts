@@ -35,7 +35,7 @@ const refreshMemberThrottle = throttle(() => {
   refreshMemberBus.emit(REFRESH_MEMBER_BUS)
 }, 5000)
 
-class SocketClient {
+export class SocketClient {
   client: TMqttClient | null = null
 
   subscribeList: string[] = []

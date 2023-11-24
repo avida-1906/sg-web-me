@@ -1,3 +1,4 @@
+import type { SocketClient } from './mqtt'
 import type {
   EnumCurrencyKey,
   IBetInfoBack,
@@ -509,5 +510,19 @@ export class SportsCart {
     })
 
     this.updateAllAmount()
+  }
+}
+
+/**
+ * 体育通知
+ * @desc 用于通知体育页面的数据更新，使用两种方式，一种通过websocket，一种通过setInterval
+ */
+export class SportsNotify {
+  constructor(mqtt: SocketClient) {
+    console.log('SportsNotify', mqtt)
+  }
+
+  subscribe() {
+
   }
 }
