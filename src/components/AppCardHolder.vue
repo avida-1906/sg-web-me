@@ -153,12 +153,18 @@ await application.allSettled([runAsyncWalletBankcardList()])
               v-for="tmp in item.coin"
               :key="tmp.id"
               class="address-row"
+              :class="{ 'bankcard-disable-card-holder': tmp.state === 2 }"
             >
+              <BaseIcon :name="`coin-${item.type.toLocaleLowerCase()}-title`" />
+              <span class="bank-num">{{ tmp.address }}</span>
               <span class="type">{{
                 getVirContractName(tmp.contract_type.toString())
               }}</span>
-              <span class="bank-num">{{ tmp.address }}</span>
-              <BaseButton type="text" @click.stop="toDeleteVirAddress(tmp, item.type)">
+              <BaseButton
+                type="text"
+                style="z-index: var(--tg-z-index-10);"
+                @click.stop="toDeleteVirAddress(tmp, item.type)"
+              >
                 <BaseIcon name="uni-delete" />
               </BaseButton>
             </div>
@@ -187,7 +193,7 @@ await application.allSettled([runAsyncWalletBankcardList()])
               <span class="type">{{ tmp.open_name }}</span>
               <BaseButton
                 type="text"
-                style="z-index: 10;"
+                style="z-index: var(--tg-z-index-10);"
                 @click.stop="toDeleteBankcard(tmp)"
               >
                 <BaseIcon name="uni-delete" />
