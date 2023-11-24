@@ -191,13 +191,13 @@ watch(() => props.currentNetwork, () => {
       <BaseButton bg-style="primary" size="md" @click="handleWithdraw">
         {{ t('menu_title_settings_withdrawals') }}
       </BaseButton>
-      <div class="tips">
+      <!-- <div class="tips">
         <span>{{ t('withdrawal_min_amount') }} 0.00020000</span>
         <AppCurrencyIcon class="currency-icon" :currency-type="activeCurrency?.type" />
         <span>。{{ t('withdrawal_fee_tip') }}0.00007000</span>
         <AppCurrencyIcon class="currency-icon" :currency-type="activeCurrency?.type" />
         <span>{{ t('withdrawal_as_fee') }}。</span>
-      </div>
+      </div> -->
     </div>
   </template>
   <!-- 虚拟币地址添加 -->
@@ -238,14 +238,14 @@ watch(() => props.currentNetwork, () => {
       }
     }
   }
-  .tips{
-    font-size: var(--tg-font-size-xs);
-    .currency-icon{
-      display: inline-block;
-      vertical-align: middle;
-      padding:0  var(--tg-spacing-4);
-    }
-  }
+  // .tips{
+  //   font-size: var(--tg-font-size-xs);
+  //   .currency-icon{
+  //     display: inline-block;
+  //     vertical-align: middle;
+  //     padding:0  var(--tg-spacing-4);
+  //   }
+  // }
 }
 .bank-options{
   .option-row {
