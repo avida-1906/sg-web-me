@@ -1304,7 +1304,7 @@ best_sports: 最棒的加密货币在线体育博彩
 go_sports: 前往体育博彩
 pls_input_virtual_addr: 请输入正确提币地址
 choose_protocol: 选择协议
-your_virtual_addr: 您{currencyName}的{curNetworkName}地址
+your_virtual_addr: 您{currencyName}的
 is_default_addr: 是否设为默认地址
 transfer_in_addr: 转入地址
 confirm_pls_addr_tip: 请确认发送USDT到此地址，充值需要全网确认才能到账，请耐心等待！
