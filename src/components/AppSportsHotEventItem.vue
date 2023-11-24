@@ -22,7 +22,7 @@ defineProps<{
   <div class="hot-event-info" @click="$router.push(replaceSportsPlatId(data.path))">
     <div class="header">
       <div class="icon">
-        <BaseImage :url="data.cpic" />
+        <AppSportImage :url="data.cpic" is-cloud />
       </div>
       <div class="team-name">
         {{ data.cn }}
@@ -31,9 +31,9 @@ defineProps<{
     <div class="content">
       <div class="team">
         <div class="icon">
-          <BaseImage :url="data.htpic" />
+          <AppSportImage :url="data.htpic" is-cloud />
         </div>
-        <span>{{ data.htn }}</span>
+        <span class="text">{{ data.htn }}</span>
       </div>
       <div class="time-box">
         <div class="date">
@@ -46,7 +46,7 @@ defineProps<{
       <div class="team">
         <span>{{ data.atn }}</span>
         <div class="icon">
-          <BaseImage :url="data.atpic" />
+          <AppSportImage :url="data.atpic" is-cloud />
         </div>
       </div>
     </div>
@@ -78,6 +78,7 @@ defineProps<{
       height: 20px;
       border-radius: 50%;
       overflow: hidden;
+      --app-sport-image-error-icon-size: 20px;
     }
 
     .team-name {
@@ -107,19 +108,26 @@ defineProps<{
       display: flex;
       align-items: center;
       gap: var(--tg-spacing-8);
-      width: 100%;
-      max-width: 113px;
+      width: 113px;
 
       .icon {
         width: 32px;
         height: 32px;
         overflow: hidden;
+        --app-sport-image-error-icon-size: 32px;
       }
+
       span {
         display: -webkit-box;
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 2;
         overflow: hidden;
+        flex: 1;
+      }
+
+      &:last-child {
+        justify-content: flex-end;
+        text-align: right;
       }
     }
   }

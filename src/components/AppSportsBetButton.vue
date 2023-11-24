@@ -18,11 +18,14 @@ const betButton = ref<HTMLElement | null>(null)
 const windowStore = useWindowStore()
 const sportStore = useSportsStore()
 const { t } = useI18n()
-const { openRightSidebar, rightIsExpand } = useRightSidebar()
+const { openRightSidebar, rightIsExpand, currentRightSidebarContent } = useRightSidebar()
 const { isMobile } = storeToRefs(windowStore)
 
 function clickHandler() {
   if (!rightIsExpand.value && !isMobile.value)
+    openRightSidebar(EnumRightSidebarContent.BETTING)
+
+  else if (currentRightSidebarContent.value !== EnumRightSidebarContent.BETTING && !isMobile.value)
     openRightSidebar(EnumRightSidebarContent.BETTING)
 
   if (sportStore.cart.checkWid(props.cartInfo.wid)) {

@@ -189,11 +189,12 @@ function mapHeadArea(
         </span>
       </div>
       <div class="competitor-item border" style="grid-area: competitor_home;">
-        <BaseImage :url="data.htpic" is-cloud width="20px" height="20px" />
+        <!-- <BaseImage :url="data.htpic" is-cloud width="20px" height="20px" /> -->
+        <AppSportImage :url="data.htpic" is-cloud />
         <span>{{ data.homeTeamName }}</span>
       </div>
       <div class="competitor-item" style="grid-area: competitor_away;">
-        <BaseImage :url="data.atpic" is-cloud width="20px" height="20px" />
+        <AppSportImage :url="data.atpic" is-cloud width="20px" height="20px" />
         <span>{{ data.awayTeamName }}</span>
       </div>
 
@@ -260,7 +261,7 @@ function mapHeadArea(
 
       <!-- matchScore -->
       <div class="heading center" style="grid-area: matchScore_title;">
-        <BaseImage :url="data.spic" is-cloud width="20px" height="20px" />
+        <AppSportImage :url="data.spic" is-cloud width="20px" height="20px" />
       </div>
       <div
         class="fill-frame completed match-score border"
@@ -297,7 +298,7 @@ function mapHeadArea(
     --tg-icon-color: var(--tg-text-white);
 
     .app-svg-icon {
-      font-size: var(--tg-font-size-base);
+      font-size: var(--tg-font-size-lg);
     }
 
     display: grid;
