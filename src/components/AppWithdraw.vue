@@ -15,9 +15,11 @@ const {
   value: address,
   errorMessage: addressMsg,
   validate: valiAddress,
+  resetField: resetAddress,
 } = useField<string>('address', (value) => {
   if (!value)
-    return t('this_field_is_required')
+    // return t('this_field_is_required')
+    return '请选择地址'
   return ''
 })
 const {
@@ -27,7 +29,8 @@ const {
   validate: valiAmount,
 } = useField<string>('amount', (value) => {
   if (!value)
-    return t('validate_require')
+    // return t('validate_require')
+    return '请输入金额'
   else if (Number(value) === 0)
     return t('validate_deposit_amount_zero')
   else if (Number(value) < 0)
@@ -42,7 +45,8 @@ const {
   validate: valiPaypwd,
 } = useField<string>('paypwd', (value) => {
   if (!value)
-    return t('this_field_is_required')
+    // return t('this_field_is_required')
+    return '请输入资金密码'
   return ''
 })
 
@@ -131,8 +135,10 @@ watch(() => props.currentNetwork, () => {
         <BaseSelect
           v-model="address"
           :options="addrOptions"
+          :msg="addressMsg"
           small theme popper border
           style="--tg-base-select-popper-style-padding-y: var(--tg-spacing-12)"
+          @focus="addressMsg && resetAddress()"
         >
           <template #label>
             <span class="popper-label">
@@ -171,9 +177,9 @@ watch(() => props.currentNetwork, () => {
           @blur="onAmountInput"
           @on-right-button="maxNumber"
         >
-          <template #right-icon>
+          <!-- <template #right-icon>
             <AppCurrencyIcon :currency-type="activeCurrency?.type" />
-          </template>
+          </template> -->
           <template #right-button>
             <span>{{ t('max') }}</span>
           </template>
