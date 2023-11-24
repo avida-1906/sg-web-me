@@ -126,6 +126,9 @@ const countdownMins = computed(() => {
   const startsTime = dayjs(props.data.ed * 1000)
   return startsTime.diff(dayjs(), 'minute')
 })
+const countDownPrecent = computed(() => {
+  return ((60 - countdownMins.value) / 60 * 100).toFixed()
+})
 // 是否已经开赛
 const isStarted = computed(() => dayjs().isAfter((props.data.ed * 1000)))
 // 时间格式化
@@ -164,13 +167,13 @@ function goEventDetailPage() {
 }
 
 const stop = watch(sportsFavoriteData, (a) => {
-  if (a && a.list)
-    isFavorite.value = a.list.findIndex(a => a.ei === props.data.ei) > -1
+  if (a && a.d)
+    isFavorite.value = a.d.findIndex(a => a.ei === props.data.ei) > -1
 })
 
 onMounted(() => {
-  if (sportsFavoriteData.value && sportsFavoriteData.value.list) {
-    const fl = sportsFavoriteData.value.list
+  if (sportsFavoriteData.value && sportsFavoriteData.value.d) {
+    const fl = sportsFavoriteData.value.d
     isFavorite.value = fl.findIndex(a => a.ei === props.data.ei) > -1
   }
 })
@@ -198,7 +201,7 @@ onBeforeUnmount(() => {
                 <circle
                   r="5" cx="10" cy="10" fill="transparent" stroke="#105EB4"
                   stroke-width="10.5"
-                  stroke-dasharray="calc(42 * 31.4 / 100) 31.4"
+                  :stroke-dasharray="`calc(${countDownPrecent} * 31.4 / 100) 31.4`"
                   transform="rotate(-90) translate(-20)"
                 />
               </svg>
