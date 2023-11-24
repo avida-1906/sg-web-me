@@ -1,9 +1,8 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import type { EnumCurrencyKey } from '~/apis/types'
 
-const sportsNotify = new SportsNotify(socketClient)
-
 export const useAppStore = defineStore('app', () => {
+  const sportsNotify = new SportsNotify(socketClient)
   /** 当前全局选择的货币 */
   const currentGlobalCurrency = ref<EnumCurrencyKey>(getLocalCurrentGlobalCurrency())
 
