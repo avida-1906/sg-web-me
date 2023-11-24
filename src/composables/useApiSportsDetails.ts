@@ -34,7 +34,7 @@ export function useApiSportDetails() {
   /** 搜索名称 */
   const searchName = ref<string>('')
 
-  const { data: sportInfo, runAsync: runGetSportInfo } = useRequest(ApiSportEventInfo)
+  const { data: sportInfo, runAsync: runGetSportInfo, loading } = useRequest(ApiSportEventInfo)
 
   /** 面包屑数据 */
   const breadcrumbData = computed<IBreadCrumbItem[]>(() => {
@@ -237,6 +237,8 @@ export function useApiSportDetails() {
     basePanelData,
     currentTab,
     searchName,
+    sportInfo,
+    loading,
     runGetSportInfo,
   }
 }

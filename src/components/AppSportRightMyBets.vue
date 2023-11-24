@@ -7,32 +7,53 @@ const emit = defineEmits<{
 
 const { t } = useI18n()
 const router = useRouter()
-// const {} = useApiSportBetList()
 
-const { selected: myBetSelectValue, list: myBetData } = useSelect([
-  {
-    label: t('sports_active'),
-    value: EnumsBetSlipMyBetsTabStatus.active,
-    icon: 'navbar-active',
-  },
-  {
-    label: t('sports_settled'),
-    value: EnumsBetSlipMyBetsTabStatus.settled,
-    icon: 'navbar-settled',
-  },
-])
+const {
+  settle,
+  settleList,
+} = useSportSelectSettle()
+
+const {
+  sportBetList,
+  loading,
+} = useApiSportBetList(settle)
 </script>
 
 <template>
   <div class="app-sport-right-my-bets">
     <div class="tabs">
-      <BaseTab v-model="myBetSelectValue" :list="myBetData" />
+      <BaseTab v-model="settle" :list="settleList" />
     </div>
     <div class="my-bet-center">
       <div class="scroll-y scrollable center-content">
-        <p v-for="item in 200" :key="item">
-          1
-        </p>
+        <div v-if="loading" class="center h-100">
+          <BaseLoading />
+        </div>
+        <div v-else>
+          <div v-if="sportBetList.length">
+            <AppSportsMyBetSlip
+              v-for="item in sportBetList"
+              :key="item.ono"
+              :data="item"
+            />
+          </div>
+          <div v-else>
+            <BaseEmpty>
+              <template #icon>
+                <BaseIcon
+                  style="
+                  font-size: var(--tg-empty-icon-size);
+                  margin-bottom: var(--tg-spacing-24);
+                "
+                  name="uni-empty-betslip"
+                />
+              </template>
+              <template #description>
+                <span>暂无数据</span>
+              </template>
+            </BaseEmpty>
+          </div>
+        </div>
       </div>
     </div>
     <footer class="footer">
@@ -48,6 +69,14 @@ const { selected: myBetSelectValue, list: myBetData } = useSelect([
 </template>
 
 <style lang="scss" scoped>
+.list-enter-active{
+  transition: all 0.5s cubic-bezier(0.47, 1.64, 0.41, 0.8);
+}
+
+.list-enter-from {
+  opacity: 0;
+  transform: translateX(100%);
+}
 .app-sport-right-my-bets {
   height: 100%;
   display: flex;

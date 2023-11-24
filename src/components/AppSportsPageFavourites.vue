@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 const { t } = useI18n()
 const sportsStore = useSportsStore()
-const { sportsFavoriteData } = storeToRefs(sportsStore)
+const { sportsFavoriteData, allSportsCount } = storeToRefs(sportsStore)
 /** 定时更新数据 */
 const { startTimer, stopTimer }
 = useSportsDataUpdate(sportsStore.refreshSportsFavList)
@@ -20,7 +20,8 @@ const navs = computed(() => {
       si: a.si,
       sn: a.sn,
       count: a.list.length,
-      icon: 'spt-soccer',
+      icon: allSportsCount.value?.list.find(b => b.si === a.si)?.spic ?? '',
+      useCloudImg: true,
     }
   })
 })

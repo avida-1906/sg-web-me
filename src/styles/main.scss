@@ -209,6 +209,10 @@ body {
   padding: 0 3vw;
 }
 
+.loading-content-height {
+  height: calc(100vh - var(--tg-header-height));
+}
+
 .home-container {
   width: 100%;
   max-width: 1200px;
