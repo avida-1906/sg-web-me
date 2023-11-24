@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+usePageTitle({ prefix: 'responsible_casino', isT: true })
 </script>
 
 <template>

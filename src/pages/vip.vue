@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+usePageTitle({ prefix: 'VIP' })
 </script>
 
 <template>
@@ -12,7 +13,6 @@
 <route lang="yaml">
 meta:
   layout: with-menu
-  browserTitle: VIP – Stake.com
   withMenuTitle: vip
   withMenuIcon: uni-checklist
   withMenuMobileType: tabs

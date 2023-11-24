@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+usePageTitle({ prefix: 'transaction_record', isT: true })
 </script>
 
 <template>

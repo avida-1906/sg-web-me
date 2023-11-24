@@ -12,6 +12,11 @@ const router = useRouter()
 const { openRegisterDialog } = useRegisterDialog()
 const { openSwiperNoticeDialog } = useDialogSwiperNotice(width)
 const { bool: showMore, toggle: toggleShowMore } = useBoolean(false)
+usePageTitle({
+  prefix: t('index_title_prefix'),
+  suffix: t('index_title_suffix'),
+  isHost: false,
+})
 
 const {
   appContentWidth,
@@ -705,5 +710,5 @@ runMemberNoticeAllList()
 <route lang="yaml">
 meta:
   layout: home
-  browserTitle: Stake.com – 最领先的加密货币赌场及体育博彩平台
+  # browserTitle: Stake.com – 最领先的加密货币赌场及体育博彩平台
 </route>

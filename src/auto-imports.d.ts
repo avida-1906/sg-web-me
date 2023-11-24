@@ -473,6 +473,7 @@ declare global {
   const useOnline: typeof import('@vueuse/core')['useOnline']
   const useOption: typeof import('./composables/useOption')['useOption']
   const usePageLeave: typeof import('@vueuse/core')['usePageLeave']
+  const usePageTitle: typeof import('./composables/usePageTitle')['usePageTitle']
   const usePagination: typeof import('vue-request')['usePagination']
   const useParallax: typeof import('@vueuse/core')['useParallax']
   const useParentElement: typeof import('@vueuse/core')['useParentElement']
@@ -1034,6 +1035,7 @@ declare module 'vue' {
     readonly useOnline: UnwrapRef<typeof import('@vueuse/core')['useOnline']>
     readonly useOption: UnwrapRef<typeof import('./composables/useOption')['useOption']>
     readonly usePageLeave: UnwrapRef<typeof import('@vueuse/core')['usePageLeave']>
+    readonly usePageTitle: UnwrapRef<typeof import('./composables/usePageTitle')['usePageTitle']>
     readonly usePagination: UnwrapRef<typeof import('vue-request')['usePagination']>
     readonly useParallax: UnwrapRef<typeof import('@vueuse/core')['useParallax']>
     readonly useParentElement: UnwrapRef<typeof import('@vueuse/core')['useParentElement']>
@@ -1588,6 +1590,7 @@ declare module '@vue/runtime-core' {
     readonly useOnline: UnwrapRef<typeof import('@vueuse/core')['useOnline']>
     readonly useOption: UnwrapRef<typeof import('./composables/useOption')['useOption']>
     readonly usePageLeave: UnwrapRef<typeof import('@vueuse/core')['usePageLeave']>
+    readonly usePageTitle: UnwrapRef<typeof import('./composables/usePageTitle')['usePageTitle']>
     readonly usePagination: UnwrapRef<typeof import('vue-request')['usePagination']>
     readonly useParallax: UnwrapRef<typeof import('@vueuse/core')['useParallax']>
     readonly useParentElement: UnwrapRef<typeof import('@vueuse/core')['useParentElement']>

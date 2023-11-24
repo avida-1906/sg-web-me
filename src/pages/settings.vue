@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+usePageTitle({ prefix: 'setting', isT: true })
 </script>
 
 <template>
@@ -21,7 +22,6 @@ meta:
   layout: with-menu
   withMenuTitle: setting
   withMenuIcon: uni-set
-  browserTitle: 设置 – Stake.com
   withMenuMenu:
     - {title: menu_title_settings_contact, path: /settings/general,}
     - {title: menu_title_settings_update_loginpwd, path: /settings/security-login-pwd}

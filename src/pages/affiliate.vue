@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+usePageTitle({ prefix: 'affiliate', isT: true })
 </script>
 
 <template>
@@ -12,7 +13,6 @@
 <route lang="yaml">
 meta:
   layout: with-menu
-  browserTitle: 联盟计划 – Stake.com
   withMenuTitle: affiliate
   withMenuIcon: chess-affiliate
   withMenuMobileType: tabs

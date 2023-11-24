@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-// 123
+usePageTitle({ prefix: 'blog', isT: true })
 </script>
 
 <template>
