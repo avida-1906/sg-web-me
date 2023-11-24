@@ -184,7 +184,9 @@ export class SocketClient {
       })
 
       this.client.on('message', (topic, message, packet) => {
-        this.#log(`收到消息：${message.toString()}`, topic, packet)
+        if (!topic.includes('sport/delta'))
+          this.#log(`收到消息：${message.toString()}`, topic, packet)
+
         try {
           if (topic.includes('chat')) {
             const data = JSON.parse(message.toString())
