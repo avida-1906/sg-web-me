@@ -9,6 +9,7 @@ const { upcomingNavs, currentUpcomingNav } = storeToRefs(sportsStore)
 const { bool: isStandard } = useBoolean(true)
 
 let timer: any = null
+const scrollDom = ref()
 const baseType = ref('winner')
 const page = ref(1)
 const pageSize = ref(10)
@@ -72,8 +73,16 @@ function stopUpcoming() {
   timer = null
 }
 function loadMore() {
-  page.value++
-  pageSize.value = 10
+  if (curTotal.value >= 100) {
+    curTotal.value = 0
+    page.value = 1
+    pageSize.value = 100
+    scrollDom.value.scrollTo({ top: 0 })
+  }
+  else {
+    page.value++
+    pageSize.value = 10
+  }
   getData()
 }
 function reset() {
@@ -177,6 +186,7 @@ watch(currentUpcomingNav, () => {
 })
 
 onMounted(() => {
+  scrollDom.value = document.getElementById('main-content-scrollable')
   if (props.onPage) {
     getData()
     startUpcoming()
