@@ -116,6 +116,13 @@ const eventDetailPath = computed(() => {
   const data = props.data
   return `/sports/${SPORTS_PLAT_ID}/${data.si}/${data.pgid}/${data.ci}/${data.ei}`
 })
+// 距离开赛大于1小时
+const isMoreThan1Hour = computed(() => {
+  const startsTime = dayjs(props.data.ed * 1000)
+  const resTime = startsTime.diff(dayjs(), 'minute')
+  return resTime > 60
+})
+const timeText = computed(() => timeToSportsTimeFormat(props.data.ed))
 // 一小时倒计时
 const isCountdown = computed(() => {
   const startsTime = dayjs(props.data.ed * 1000)
@@ -126,13 +133,16 @@ const countdownMins = computed(() => {
   const startsTime = dayjs(props.data.ed * 1000)
   return startsTime.diff(dayjs(), 'minute')
 })
-const countDownPrecent = computed(() => {
+const countDownPercent = computed(() => {
   return ((60 - countdownMins.value) / 60 * 100).toFixed()
+})
+const isLastMin = computed(() => {
+  const startsTime = dayjs(props.data.ed * 1000)
+  const resSec = startsTime.diff(dayjs(), 'second')
+  return resSec < 60 && resSec > 1
 })
 // 是否已经开赛
 const isStarted = computed(() => dayjs().isAfter((props.data.ed * 1000)))
-// 时间格式化
-const timeText = computed(() => timeToSportsTimeFormat(props.data.ed))
 // 正在滚球
 const isOnAir = computed(() => props.data.m === 3)
 // 是否有直播
@@ -194,14 +204,15 @@ onBeforeUnmount(() => {
       <div class="wrapper">
         <div class="fixture-details">
           <!-- 状态 -->
-          <template v-if="isCountdown">
+          <span v-if="isMoreThan1Hour" class="text">{{ timeText }}</span>
+          <template v-else-if="isCountdown">
             <div>
               <svg height="12" width="12" viewBox="0 0 20 20" class="svelte-l8nfzs">
                 <circle r="10" cx="10" cy="10" fill="#72ACED" />
                 <circle
                   r="5" cx="10" cy="10" fill="transparent" stroke="#105EB4"
                   stroke-width="10.5"
-                  :stroke-dasharray="`calc(${countDownPrecent} * 31.4 / 100) 31.4`"
+                  :stroke-dasharray="`calc(${countDownPercent} * 31.4 / 100) 31.4`"
                   transform="rotate(-90) translate(-20)"
                 />
               </svg>
@@ -210,7 +221,10 @@ onBeforeUnmount(() => {
               {{ t('sports_starts_in', { minutes: countdownMins }) }}
             </span>
           </template>
-          <template v-if="isOnAir">
+          <span v-else-if="isLastMin || (isStarted && !isOnAir)" class="text">
+            {{ t('sports_tab_starting_soon') }}
+          </span>
+          <template v-else-if="isOnAir">
             <div
               class="status"
               :class="{ live: isOnAir }"
@@ -219,10 +233,6 @@ onBeforeUnmount(() => {
             </div>
             <span class="text">{{ data.rbt }}</span>
           </template>
-          <span v-if="!isStarted && !isCountdown" class="text">{{ timeText }}</span>
-          <span v-else-if="isStarted && !isOnAir" class="text">
-            {{ t('sports_tab_starting_soon') }}
-          </span>
 
           <!-- H5时比分显示在这里 -->
           <div v-if="isH5Layout" class="fixture-score-h5">

@@ -295,6 +295,7 @@ declare global {
   const split: typeof import('lodash-es')['split']
   const sportsDataBreadcrumbs: typeof import('./utils/sports')['sportsDataBreadcrumbs']
   const sportsDataGroupByLeague: typeof import('./utils/sports')['sportsDataGroupByLeague']
+  const sportsDataGroupByLeagueLoadMore: typeof import('./utils/sports')['sportsDataGroupByLeagueLoadMore']
   const sportsDataGroupBySport: typeof import('./utils/sports')['sportsDataGroupBySport']
   const sportsOutrightsGoupByRegion: typeof import('./utils/sports')['sportsOutrightsGoupByRegion']
   const sportsOutrightsGroupByLeague: typeof import('./utils/sports')['sportsOutrightsGroupByLeague']
@@ -861,6 +862,7 @@ declare module 'vue' {
     readonly split: UnwrapRef<typeof import('lodash-es')['split']>
     readonly sportsDataBreadcrumbs: UnwrapRef<typeof import('./utils/sports')['sportsDataBreadcrumbs']>
     readonly sportsDataGroupByLeague: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupByLeague']>
+    readonly sportsDataGroupByLeagueLoadMore: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupByLeagueLoadMore']>
     readonly sportsDataGroupBySport: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupBySport']>
     readonly sportsOutrightsGroupByRegion: UnwrapRef<typeof import('./utils/sports')['sportsOutrightsGroupByRegion']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
@@ -1415,6 +1417,7 @@ declare module '@vue/runtime-core' {
     readonly split: UnwrapRef<typeof import('lodash-es')['split']>
     readonly sportsDataBreadcrumbs: UnwrapRef<typeof import('./utils/sports')['sportsDataBreadcrumbs']>
     readonly sportsDataGroupByLeague: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupByLeague']>
+    readonly sportsDataGroupByLeagueLoadMore: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupByLeagueLoadMore']>
     readonly sportsDataGroupBySport: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupBySport']>
     readonly sportsOutrightsGroupByRegion: UnwrapRef<typeof import('./utils/sports')['sportsOutrightsGroupByRegion']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>

@@ -1,3 +1,5 @@
+import type { ISportEventInfo } from '~/apis/types'
+
 export type EnumLanguageKey = keyof typeof EnumLanguage
 
 export interface Room {
@@ -176,3 +178,12 @@ export type IBetInfoChangeCallback = (
   /** 复式下的最大投注额 */
   maa: number
 ) => void
+
+/**
+ * 赛事根据联赛组合
+ */
+export type ISportDataGroupedByLeague = {
+  ci: string
+  cn: string
+  list: ISportEventInfo[]
+}[]
