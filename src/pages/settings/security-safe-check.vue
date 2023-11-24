@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 const { t } = useI18n()
+usePageTitle({ prefix: t('two_step_verification') })
 const { openNotify } = useNotify()
 const { userInfo } = storeToRefs(useAppStore())
 const { updateUserInfo } = useAppStore()
@@ -145,6 +146,4 @@ function generateQRCodeUrl(params: {
 </style>
 
 <route lang="yaml">
-meta:
-  browserTitle: 双重验证 – Stake.com
   </route>

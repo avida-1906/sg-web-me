@@ -3,6 +3,7 @@ defineOptions({
   name: 'KeepAliveCasino',
 })
 
+usePageTitle({ prefix: 'btc_casino_title', suffix: 'casino_game', isT: true })
 const { isMobile } = storeToRefs(useWindowStore())
 const { casinoNav, casinoGameList } = storeToRefs(useCasinoStore())
 const router = useRouter()
@@ -178,5 +179,4 @@ function viewMoreGames() {
 name: casino-home
 meta:
   layout: home
-  browserTitle: 在线加密货币与比特币赌场 – Stake.com 赌场游戏
 </route>

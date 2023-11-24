@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+usePageTitle({ prefix: 'transaction_bet', isT: true })
 </script>
 
 <template>
@@ -145,6 +146,4 @@
 </style>
 
 <route lang="yaml">
-meta:
-  browserTitle: 投注交易 – Stake.com
   </route>

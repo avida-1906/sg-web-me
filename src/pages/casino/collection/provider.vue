@@ -1,4 +1,5 @@
 <script setup lang="ts">
+usePageTitle({ prefix: 'Casino Game Providers - Best Creators of Gambling Games' })
 const router = useRouter()
 const { platformList } = storeToRefs(useCasinoStore())
 const { appContentWidth } = storeToRefs(useWindowStore())
@@ -54,5 +55,4 @@ function handleItemClick(item: any) {
 <route lang="yaml">
 meta:
   layout: home
-  browserTitle: Casino Game Providers - Best Creators of Gambling Games
 </route>

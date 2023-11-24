@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 const { t } = useI18n()
+usePageTitle({ prefix: t('menu_title_my_promotion') })
 
 const {
   isLessThanSm,
@@ -269,6 +270,4 @@ const bet = [
 </style>
 
 <route lang="yaml">
-meta:
-  browserTitle: 我的推广 – Stake.com
 </route>

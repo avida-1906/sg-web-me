@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+usePageTitle({ prefix: 'affiliate_overview', isT: true })
 </script>
 
 <template>
@@ -85,6 +86,4 @@
 </style>
 
 <route lang="yaml">
-meta:
-  browserTitle: 联盟计划概述 – Stake.com
 </route>

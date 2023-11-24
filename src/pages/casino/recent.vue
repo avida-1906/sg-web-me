@@ -1,4 +1,5 @@
 <script setup lang="ts">
+usePageTitle({ prefix: 'recent_casino_game', isT: true })
 const { appContentWidth } = storeToRefs(useWindowStore())
 </script>
 
@@ -37,5 +38,4 @@ const { appContentWidth } = storeToRefs(useWindowStore())
 <route lang="yaml">
 meta:
   layout: home
-  browserTitle: 近期赌场游戏记录 – Stake.com
 </route>

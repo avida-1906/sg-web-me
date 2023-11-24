@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 const { t } = useI18n()
+usePageTitle({ prefix: t('transaction_withdraw') })
 
 const tabList = reactive([
   { label: t('currency_byte_coin'), value: 'byte_coin' },
@@ -22,6 +23,4 @@ const tabList = reactive([
 </style>
 
 <route lang="yaml">
-meta:
-  browserTitle: 提款交易 – Stake.com
   </route>

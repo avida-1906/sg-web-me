@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+usePageTitle({ prefix: 'affiliate_bonus', isT: true })
 </script>
 
 <template>
@@ -91,6 +92,4 @@
 </style>
 
 <route lang="yaml">
-meta:
-  browserTitle: 联盟佣金 – Stake.com
 </route>

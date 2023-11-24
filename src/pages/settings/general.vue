@@ -20,6 +20,8 @@ const { userInfo } = storeToRefs(appStore)
 const { updateUserInfo } = useAppStore()
 const { isLessThanXs } = storeToRefs(useWindowStore())
 
+usePageTitle({ prefix: t('set_general') })
+
 /** 社交账号改变 */
 const socialDataChanged: ISocialData = {
   facebook: false,
@@ -400,6 +402,4 @@ onMounted(() => {
 </style>
 
 <route lang="yaml">
-meta:
-  browserTitle: 设置常规 – Stake.com
 </route>

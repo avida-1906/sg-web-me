@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 const { t } = useI18n()
+usePageTitle({ prefix: t('menu_title_settings_update_safepwd') })
 const router = useRouter()
 const { openNotify } = useNotify()
 const { userInfo } = storeToRefs(useAppStore())
@@ -285,6 +286,4 @@ onUnmounted(() => {
 </style>
 
 <route lang="yaml">
-meta:
-  browserTitle: 资金密码 – Stake.com
   </route>

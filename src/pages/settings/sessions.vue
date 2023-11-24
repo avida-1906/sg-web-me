@@ -8,6 +8,7 @@ interface Column {
 }
 
 const { t } = useI18n()
+usePageTitle({ prefix: t('account_session') })
 
 // const selectValue = ref('1')
 // const selectOptions = [
@@ -153,6 +154,4 @@ application.allSettled([loginLogRunAsync()])
 </style>
 
 <route lang="yaml">
-meta:
-  browserTitle: 账户会话 – Stake.com
 </route>

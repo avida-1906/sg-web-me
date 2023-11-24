@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 const { t } = useI18n()
+usePageTitle({ prefix: t('login_pwd') })
 const { openNotify } = useNotify()
 // 登录密码
 const { runMemberLogout, logoutLoading } = useLogout()
@@ -161,6 +162,4 @@ async function submitLoginPwd() {
 </style>
 
 <route lang="yaml">
-meta:
-  browserTitle: 登录密码 – Stake.com
   </route>

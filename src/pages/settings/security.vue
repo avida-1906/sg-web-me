@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 const { t } = useI18n()
+usePageTitle({ prefix: t('menu_title_settings_security') })
 const { openNotify } = useNotify()
 const { userInfo } = storeToRefs(useAppStore())
 const { updateUserInfo } = useAppStore()
@@ -330,6 +331,4 @@ function generateQRCodeUrl(params: {
 </style>
 
 <route lang="yaml">
-meta:
-  browserTitle: 安全 – Stake.com
   </route>
