@@ -9,8 +9,8 @@ const { data, run, runAsync } = useRequest(ApiSportOutrightList)
 const { startTimer, stopTimer } = useSportsDataUpdate(() => run(params.value))
 
 const outrightsData = computed(() => {
-  if (data.value && data.value.list) {
-    const marketInfo = data.value.list.find(a => a.ci === ci)
+  if (data.value && data.value.d) {
+    const marketInfo = data.value.d.find(a => a.ci === ci)
     if (marketInfo) {
       marketInfo.ml = marketInfo.ml.map((a) => {
         return {
