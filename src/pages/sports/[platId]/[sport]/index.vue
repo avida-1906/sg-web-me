@@ -43,7 +43,7 @@ const breadcrumb = computed(() => [
   },
 ])
 
-usePageTitle({ prefix: sportName.value })
+usePageTitle({ prefix: sportName })
 
 function onBaseTypeChange(v: string) {
   baseType.value = v
