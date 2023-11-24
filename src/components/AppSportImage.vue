@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 interface Props {
-  errIcon: string
+  errIcon?: string
 }
 
 withDefaults(defineProps<Props>(), {
