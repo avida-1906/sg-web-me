@@ -1142,6 +1142,7 @@ withdraw_bank: 出款银行卡
 pix_account: PIX账号
 max: 最大值
 sports_rule: 体育博彩规则
+sports_label: 体育博彩
 scan: 浏览
 change_byte_addr: 您确定要更换您的 {delta} 存款地址吗？
 attention: 请注意
@@ -1479,3 +1480,4 @@ vip_up_tip_2: 所有已结算的体育投注将回报加快 3 倍的进展速度
 learn_more_vip: 了解更多有关成为 Stake VIP 的消息
 index_title_prefix: Stake：加密货币赌场和体育投注
 index_title_suffix: 在线 BTC 赌场
+btc_sport_title: 加密货币与比特币在线体育博彩

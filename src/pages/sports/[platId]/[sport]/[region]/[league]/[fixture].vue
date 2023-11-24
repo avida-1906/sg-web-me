@@ -23,7 +23,7 @@ const title = computed(() => {
   return 'Stake.com'
 })
 
-useTitle(title)
+usePageTitle({ prefix: title })
 
 watch(
   () => route.params,

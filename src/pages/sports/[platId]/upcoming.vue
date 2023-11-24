@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-// 123
+usePageTitle({ prefix: 'sports_tab_starting_soon', isT: true })
 </script>
 
 <template>

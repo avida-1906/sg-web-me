@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 const { t } = useI18n()
+usePageTitle({ prefix: t('btc_sport_title') })
 const route = useRoute()
 const sport = route.params.sport ? +route.params.sport : 0
 const region = route.params.region ? route.params.region.toString() : ''
