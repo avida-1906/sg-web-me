@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 const { t } = useI18n()
+usePageTitle({ prefix: t('affiliate_refer_user') })
 
 const sortedOptions = [
   { label: t('finance_funds_campaign_sort_created'), value: '0' },
@@ -118,6 +119,4 @@ const data = reactive([
 </style>
 
 <route lang="yaml">
-meta:
-  browserTitle: 联盟计划推荐用户 – Stake.com
 </route>

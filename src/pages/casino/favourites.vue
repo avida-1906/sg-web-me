@@ -1,4 +1,5 @@
 <script setup lang="ts">
+usePageTitle({ prefix: 'hot_casino_game', isT: true })
 const { appContentWidth } = storeToRefs(useWindowStore())
 
 const { list, page, runAsync, prev, next, hasMore } = useList(ApiMemberFavList)
@@ -74,5 +75,4 @@ await application.allSettled([runAsync()])
 <route lang="yaml">
 meta:
   layout: home
-  browserTitle: 热门赌场游戏 – Stake.com
 </route>

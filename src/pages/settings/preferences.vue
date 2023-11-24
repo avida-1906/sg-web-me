@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+usePageTitle({ prefix: 'menu_title_settings_preferences', isT: true })
+
 const { bool: isStealth } = useBoolean(false)
 const { bool: hideStatistics } = useBoolean(true)
 const { bool: hideContest } = useBoolean(false)
@@ -91,6 +93,4 @@ const { bool: isMarketing } = useBoolean(true)
 </style>
 
 <route lang="yaml">
-meta:
-  browserTitle: 首选项 – Stake.com
 </route>

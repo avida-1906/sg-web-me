@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+usePageTitle({ prefix: 'menu_title_settings_offers', isT: true })
 </script>
 
 <template>
@@ -12,6 +13,4 @@
 </style>
 
 <route lang="yaml">
-meta:
-  browserTitle: 优惠 – Stake.com
 </route>

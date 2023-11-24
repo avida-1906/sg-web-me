@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 const { t } = useI18n()
+usePageTitle({ prefix: t('transaction_other') })
 
 const tabList = reactive([
   { label: t('finance_other_tab_all'), value: '' },
@@ -42,6 +43,4 @@ const tabList = reactive([
 </style>
 
 <route lang="yaml">
-meta:
-  browserTitle: 其他交易 – Stake.com
   </route>

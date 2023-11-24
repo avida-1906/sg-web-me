@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+usePageTitle({ prefix: 'transaction_archive', isT: true })
 </script>
 
 <template>
@@ -134,6 +135,4 @@
 </style>
 
 <route lang="yaml">
-meta:
-  browserTitle: 交易档案 – Stake.com
   </route>

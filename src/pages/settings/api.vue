@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+usePageTitle({ prefix: 'token_set', isT: true })
 </script>
 
 <template>
@@ -12,6 +13,4 @@
 </style>
 
 <route lang="yaml">
-meta:
-  browserTitle: API 令牌设置 – Stake.com
 </route>

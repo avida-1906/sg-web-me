@@ -8,6 +8,7 @@ interface IColumns {
 }
 
 const { t } = useI18n()
+usePageTitle({ prefix: t('menu_title_settings_ignoredusers') })
 
 const { bool: loading } = useBoolean(false)
 
@@ -101,6 +102,4 @@ const paginationData = {
 </style>
 
 <route lang="yaml">
-meta:
-  browserTitle: 黑名单 – Stake.com
 </route>

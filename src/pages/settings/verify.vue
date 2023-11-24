@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+usePageTitle({ prefix: 'check_account', isT: true })
 </script>
 
 <template>
@@ -12,6 +13,4 @@
 </style>
 
 <route lang="yaml">
-meta:
-  browserTitle: 验证账户 – Stake.com
   </route>

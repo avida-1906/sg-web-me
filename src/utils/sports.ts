@@ -7,8 +7,13 @@ import type {
   ISportEventInfoMlMs,
   ISportOutrightsInfo,
 } from '~/apis/types'
+import type {
+  IBetInfoChangeCallback,
+  ICartInfo,
+  ICartInfoData,
+  ISportDataGroupedByLeague,
+} from '~/types'
 import { getCurrentLanguageForBackend } from '~/modules/i18n'
-import type { IBetInfoChangeCallback, ICartInfo, ICartInfoData } from '~/types'
 
 /**
  * 体育ID
@@ -160,6 +165,22 @@ export function sportsDataGroupByLeague(origin: ISportEventInfo[]) {
       arr[index].list.push(origin[i])
     else
       arr.push({ ci: origin[i].ci, cn: origin[i].cn, list: [origin[i]] })
+  }
+  return arr
+}
+
+/** 加载更多的时候盘口根据联赛组合方法 */
+export function sportsDataGroupByLeagueLoadMore(
+  origin: ISportDataGroupedByLeague,
+  newData: ISportEventInfo[],
+) {
+  const arr: ISportDataGroupedByLeague = cloneDeep(origin)
+  for (let i = 0; i < newData.length; i++) {
+    const index = arr.findIndex(a => a.ci === newData[i].ci)
+    if (index > -1)
+      arr[index].list.push(newData[i])
+    else
+      arr.push({ ci: newData[i].ci, cn: newData[i].cn, list: [newData[i]] })
   }
   return arr
 }

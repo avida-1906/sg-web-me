@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+usePageTitle({ prefix: 'affiliate_activity', isT: true })
 const campaignsList = [
   {
     title: '活动名称01',
@@ -175,6 +176,4 @@ const showContent = function () {}
 </style>
 
 <route lang="yaml">
-meta:
-  browserTitle: 联盟活动 – Stake.com
 </route>

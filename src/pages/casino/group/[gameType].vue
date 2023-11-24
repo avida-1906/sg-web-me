@@ -11,6 +11,8 @@ const currentType = ref(props.gameType)
 const sortType = ref(EnumCasinoSortType.recommend)
 const pids = ref('')
 
+usePageTitle({ prefix: title })
+
 function handleBeforeUnmounted() {
   loading.value = true
 }
@@ -98,6 +100,4 @@ watch(route, (a) => {
 <route lang="yaml">
 meta:
   layout: home
-  # 在router.ts中，取route.query.name 作为浏览器动态标题
-  # browserTitle: Play Slots Online - Best Casino Slot Games at Stake.com
 </route>
