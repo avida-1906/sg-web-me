@@ -1,4 +1,5 @@
 import { type MqttClient as TMqttClient } from 'precompiled-mqtt'
+import type { ISportEventList } from '~/apis/types'
 
 /**
  * ws://34.92.35.218:8088
@@ -18,6 +19,7 @@ const mqttDisconnectBus = useEventBus(MQTT_DISCONNECT_BUS)
 const mqttConnectSuccessBus = useEventBus(MQTT_CONNECT_SUCCESS_BUS)
 const refreshMemberBus = useEventBus(REFRESH_MEMBER_BUS)
 const refreshAuthBus = useEventBus(REFRESH_AUTH_BUS)
+export const sportDeltaBus = useEventBus<ISportEventList[]>(SPORTS_DATA_CHANGE_BUS)
 
 /**
  * 刷新余额
@@ -201,6 +203,14 @@ export class SocketClient {
             const data = JSON.parse(message.toString())
             // 第三方登录状态推送
             refreshAuthBus.emit(data)
+          }
+          else if (topic.includes('sport/delta')) {
+            const data = JSON.parse(message.toString())
+            if (data.v)
+              data.v = JSON.parse(data.v)
+
+            // 体育比分推送
+            sportDeltaBus.emit(data)
           }
         }
         catch (error) {
