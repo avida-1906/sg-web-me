@@ -4,6 +4,7 @@ defineOptions({
 })
 const props = defineProps<{ platId: string }>()
 const { t } = useI18n()
+usePageTitle({ prefix: t('btc_sport_title'), suffix: t('sports_label') })
 const { isMobile } = storeToRefs(useWindowStore())
 const { isLogin } = storeToRefs(useAppStore())
 const sportsStore = useSportsStore()
@@ -80,5 +81,4 @@ const tabList = computed(() => [
 <route lang="yaml">
 meta:
   layout: home
-  browserTitle: 加密货币与比特币在线体育博彩 – Stake.com 体育博彩
 </route>

@@ -1,4 +1,5 @@
 <script setup lang='ts'>
+usePageTitle({ prefix: 'champion_bet', isT: true })
 const route = useRoute()
 const si = route.query.si ? +route.query.si : 0
 const ci = route.query.ci ? route.query.ci.toString() : ''
@@ -130,5 +131,4 @@ await application.allSettled([runAsync(params.value)])
 <route lang="yaml">
 meta:
   layout: home
-  browserTitle: 加密货币与比特币在线体育博彩 – Stake.com 体育博彩
   </route>

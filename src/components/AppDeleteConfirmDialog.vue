@@ -14,6 +14,9 @@ const closeDialog = inject('closeDialog', () => { })
 
 const { t } = useI18n()
 const { openNotify } = useNotify()
+const {
+  getVirContractName,
+} = useCurrencyData()
 
 const isBankcard = computed(() => 'bank_name' in props.item)
 const bankcardItem = computed(() => props.item as BankCard)
@@ -65,7 +68,8 @@ async function deleteConfirm() {
         {{ isBankcard ? bankcardItem.bank_name : vCurrencyTitle }}
       </div>
       <div class="type-right">
-        {{ isBankcard ? bankcardItem.open_name : virtualCoinItem.contract_type }}
+        {{ isBankcard ? bankcardItem.open_name
+          : getVirContractName(virtualCoinItem.contract_type.toString()) }}
       </div>
     </div>
     <div class="currency-number">
