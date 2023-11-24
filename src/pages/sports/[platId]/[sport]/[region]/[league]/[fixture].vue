@@ -48,7 +48,7 @@ watch(
               <div
                 v-if="!openLiveSwitch"
                 class="background match-statistics" :style="{
-                  '--sport-image': `url(/img/match-statistics/${sport}.jpg)`,
+                  '--sport-image': `url(/img/match-statistics/${route.params.sport}.jpg)`,
                 }"
               >
                 <AppMatchStatistics :data="basePanelData" />
@@ -230,7 +230,7 @@ watch(
             </div>
             <!-- 右侧热门热门赛事 -->
             <div v-if="appContentWidth >= 900" class="sticky-column">
-              <AppSportsHotEventList :si="+sport" />
+              <AppSportsHotEventList :si="+route.params.sport" />
 
               <div v-if="showRecent" class="is-open spotlight variant-dark">
                 <div class="no-active-scale header">
