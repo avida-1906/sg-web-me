@@ -9,7 +9,11 @@ const {
   errorMessage: oldPayPwdErrorMsg,
   validate: valiOldPayPwd,
   resetField: resetOldPayPwd,
-} = useField<string>('payPassword', fieldVerifyPayPwd)
+} = useField<string>('payPassword', (value) => {
+  if (!payPasswordReg.test(value))
+    return '仅支持6位纯数字'
+  return ''
+})
 const {
   value: payPassword,
   errorMessage: payPwdErrorMsg,
@@ -99,11 +103,11 @@ const getMailState = computed(() => {
 function fieldVerifyPayPwd(value: string) {
   if (!payPasswordReg.test(value))
     return '仅支持6位纯数字'
-    // return t('pls_enter_password')
+  // return t('pls_enter_password')
   // else if (!payPasswordReg.test(value))
   //   return t('tip_safepwd_six')
-  // else if (aginPayPassword.value)
-  //   valiAginPayPwd()
+  else if (aginPayPassword.value)
+    valiAginPayPwd()
   return ''
 }
 // 提交资金密码
