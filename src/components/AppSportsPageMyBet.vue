@@ -1,27 +1,27 @@
 <script setup lang='ts'>
 interface Props {
   onPage?: boolean
-  slipType?: number
+  settle?: number
 }
 const props = defineProps<Props>()
 
 const { t } = useI18n()
 const { appContentWidth } = storeToRefs(useWindowStore())
-const { currentGlobalCurrency } = storeToRefs(useAppStore())
 
-const currentType = ref(props.slipType ?? 0)
-const typeOptions = [
-  { label: t('sports_active'), value: 0 },
-  { label: t('sports_settled'), value: 1 },
-]
+const {
+  settle,
+  settleList,
+} = useSportSelectSettle(props.settle)
 
-const { data, loading } = useRequest(() => ApiSportBetList({
-  kind: 'normal',
-  settle: currentType.value,
-  cur: currencyConfig[currentGlobalCurrency.value].cur,
-}),
-{ manual: false, refreshDeps: [currentGlobalCurrency, currentType] })
-const list = computed(() => data.value && data.value.list ? data.value.list : [])
+const {
+  sportBetList,
+  loading,
+  total,
+  page,
+  page_size,
+  next,
+  prev,
+} = useApiSportBetList(settle)
 
 const columnCount = computed(() => {
   if (appContentWidth.value > 1000)
@@ -31,9 +31,12 @@ const columnCount = computed(() => {
   return 1
 })
 
-watch(props, (a) => {
-  if (a.slipType === 0 || a.slipType === 1)
-    currentType.value = a.slipType
+const paginationData = computed(() => {
+  return {
+    pageSize: page_size.value,
+    page: page.value,
+    total: total.value,
+  }
 })
 </script>
 
@@ -46,22 +49,30 @@ watch(props, (a) => {
       </div>
       <div class="right">
         <BaseSelect
-          v-model="currentType" style="
-          --tg-base-select-popper-style-padding-y:var(--tg-spacing-13);
-          --tg-base-select-popper-style-padding-x:var(--tg-spacing-16)"
-          :options="typeOptions" popper
+          v-model="settle"
+          style="
+            --tg-base-select-popper-style-padding-y: var(--tg-spacing-13);
+            --tg-base-select-popper-style-padding-x: var(--tg-spacing-16)"
+          :options="settleList"
+          popper
         />
       </div>
     </div>
-    <AppSportsLoadingEmpty :loading="loading" :list="list" />
+    <AppSportsLoadingEmpty :loading="loading" :list="sportBetList" />
     <div
-      v-if="!loading && list.length > 0"
+      v-if="!loading && sportBetList.length > 0"
       class="slip-wrapper" :style="`column-count:${columnCount}`"
     >
-      <div v-for="item in list" :key="item.ono" class="child">
+      <div v-for="item in sportBetList" :key="item.ono" class="child">
         <AppSportsMyBetSlip :data="item" />
       </div>
     </div>
+    <AppStack
+      v-if="!loading && sportBetList.length > 0"
+      :pagination-data="paginationData"
+      @previous="prev"
+      @next="next"
+    />
   </div>
 </template>
 

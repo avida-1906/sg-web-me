@@ -2,6 +2,7 @@ import type {
   IBetArgs,
   IBetInfoBack,
   ILeagueItem,
+  IResponseList,
   ISportEventInfo,
   ISportOutrightsInfo,
   ISportsBetListArgs,
@@ -347,9 +348,7 @@ export function ApiSportPlaceBet(data: IBetArgs) {
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=ed6c7a9f-30aa-4cf6-89d7-130fa962a136
  */
 export function ApiSportBetList(data: ISportsBetListArgs) {
-  return httpClient.post<{
-    list: ISportsMyBetSlipItem[]
-  }>(`/sport/${getSportsPlatId()}/betlist`, data)
+  return httpClient.post<IResponseList<ISportsMyBetSlipItem>>(`/sport/${getSportsPlatId()}/betlist`, data)
 }
 
 /**

@@ -511,6 +511,7 @@ declare global {
   const useSorted: typeof import('@vueuse/core')['useSorted']
   const useSpeechRecognition: typeof import('@vueuse/core')['useSpeechRecognition']
   const useSpeechSynthesis: typeof import('@vueuse/core')['useSpeechSynthesis']
+  const useSportSelectSettle: typeof import('./composables/useSportSelectSettle')['useSportSelectSettle']
   const useSportsDataTimer: typeof import('./composables/useSportsDataUpdate')['useSportsDataTimer']
   const useSportsDataUpdate: typeof import('./composables/useSportsDataUpdate')['useSportsDataUpdate']
   const useSportsStore: typeof import('./stores/sports')['useSportsStore']
@@ -1071,6 +1072,7 @@ declare module 'vue' {
     readonly useSorted: UnwrapRef<typeof import('@vueuse/core')['useSorted']>
     readonly useSpeechRecognition: UnwrapRef<typeof import('@vueuse/core')['useSpeechRecognition']>
     readonly useSpeechSynthesis: UnwrapRef<typeof import('@vueuse/core')['useSpeechSynthesis']>
+    readonly useSportSelectSettle: UnwrapRef<typeof import('./composables/useSportSelectSettle')['useSportSelectSettle']>
     readonly useSportsDataUpdate: UnwrapRef<typeof import('./composables/useSportsDataUpdate')['useSportsDataUpdate']>
     readonly useSportsStore: UnwrapRef<typeof import('./stores/sports')['useSportsStore']>
     readonly useStatisticsDialog: UnwrapRef<typeof import('./composables/useDialogStatistical')['useStatisticsDialog']>
@@ -1624,6 +1626,7 @@ declare module '@vue/runtime-core' {
     readonly useSorted: UnwrapRef<typeof import('@vueuse/core')['useSorted']>
     readonly useSpeechRecognition: UnwrapRef<typeof import('@vueuse/core')['useSpeechRecognition']>
     readonly useSpeechSynthesis: UnwrapRef<typeof import('@vueuse/core')['useSpeechSynthesis']>
+    readonly useSportSelectSettle: UnwrapRef<typeof import('./composables/useSportSelectSettle')['useSportSelectSettle']>
     readonly useSportsDataUpdate: UnwrapRef<typeof import('./composables/useSportsDataUpdate')['useSportsDataUpdate']>
     readonly useSportsStore: UnwrapRef<typeof import('./stores/sports')['useSportsStore']>
     readonly useStatisticsDialog: UnwrapRef<typeof import('./composables/useDialogStatistical')['useStatisticsDialog']>
