@@ -456,6 +456,7 @@ declare global {
   const useList: typeof import('./composables/useList')['useList']
   const useLoadMore: typeof import('vue-request')['useLoadMore']
   const useLocalStorage: typeof import('@vueuse/core')['useLocalStorage']
+  const useLockScroll: typeof import('./composables/useLockScroll')['useLockScroll']
   const useLoginDialog: typeof import('./composables/useDialogLogin')['useLoginDialog']
   const useLogout: typeof import('./composables/useLoginout')['useLogout']
   const useLogoutDialog: typeof import('./composables/useDialogLogout')['useLogoutDialog']
@@ -1024,6 +1025,7 @@ declare module 'vue' {
     readonly useList: UnwrapRef<typeof import('./composables/useList')['useList']>
     readonly useLoadMore: UnwrapRef<typeof import('vue-request')['useLoadMore']>
     readonly useLocalStorage: UnwrapRef<typeof import('@vueuse/core')['useLocalStorage']>
+    readonly useLockScroll: UnwrapRef<typeof import('./composables/useLockScroll')['useLockScroll']>
     readonly useLoginDialog: UnwrapRef<typeof import('./composables/useDialogLogin')['useLoginDialog']>
     readonly useLogout: UnwrapRef<typeof import('./composables/useLoginout')['useLogout']>
     readonly useLogoutDialog: UnwrapRef<typeof import('./composables/useDialogLogout')['useLogoutDialog']>
@@ -1585,6 +1587,7 @@ declare module '@vue/runtime-core' {
     readonly useList: UnwrapRef<typeof import('./composables/useList')['useList']>
     readonly useLoadMore: UnwrapRef<typeof import('vue-request')['useLoadMore']>
     readonly useLocalStorage: UnwrapRef<typeof import('@vueuse/core')['useLocalStorage']>
+    readonly useLockScroll: UnwrapRef<typeof import('./composables/useLockScroll')['useLockScroll']>
     readonly useLoginDialog: UnwrapRef<typeof import('./composables/useDialogLogin')['useLoginDialog']>
     readonly useLogout: UnwrapRef<typeof import('./composables/useLoginout')['useLogout']>
     readonly useLogoutDialog: UnwrapRef<typeof import('./composables/useDialogLogout')['useLogoutDialog']>
