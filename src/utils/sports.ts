@@ -5,6 +5,7 @@ import type {
   ISportEventInfo,
   ISportEventInfoMl,
   ISportEventInfoMlMs,
+  ISportEventList,
   ISportOutrightsInfo,
 } from '~/apis/types'
 import type {
@@ -151,7 +152,10 @@ export class SportsOdds {
   }
 }
 
-/** 盘口根据联赛组合方法 */
+/**
+ * 盘口根据联赛组合方法
+ * @param origin 赛事详情数据
+ */
 export function sportsDataGroupByLeague(origin: ISportEventInfo[]) {
   const arr = []
   for (let i = 0; i < origin.length; i++) {
@@ -169,7 +173,11 @@ export function sportsDataGroupByLeague(origin: ISportEventInfo[]) {
   return arr
 }
 
-/** 加载更多的时候盘口根据联赛组合方法 */
+/**
+ * 加载更多的时候盘口根据联赛组合方法
+ * @param origin 原已经根据联赛组合的数据
+ * @param newData 新赛事数据
+ */
 export function sportsDataGroupByLeagueLoadMore(
   origin: ISportDataGroupedByLeague,
   newData: ISportEventInfo[],
@@ -185,7 +193,25 @@ export function sportsDataGroupByLeagueLoadMore(
   return arr
 }
 
-/** 冠军盘口根据地区组合方法 */
+export function sportsDataUpdateByMqtt(
+  origin: ISportDataGroupedByLeague,
+  newData: ISportEventList[],
+) {
+  const arr: ISportDataGroupedByLeague = cloneDeep(origin)
+  for (let i = 0; i < newData.length; i++) {
+    for (let ii = 0; ii < arr.length; ii++) {
+      const index = arr[ii].list.findIndex(a => a.ei === newData[i].ei)
+      if (index > -1)
+        arr[ii].list.splice(index, 1, newData[i].v[0])
+    }
+  }
+  return arr
+}
+
+/**
+ * 冠军盘口根据地区组合方法
+ * @param origin 冠军盘口数据
+ */
 export function sportsOutrightsGroupByRegion(origin: ISportOutrightsInfo[]) {
   const arr = []
   for (let i = 0; i < origin.length; i++) {
@@ -203,7 +229,10 @@ export function sportsOutrightsGroupByRegion(origin: ISportOutrightsInfo[]) {
   return arr
 }
 
-/** 收藏数据根据球种组合方法 */
+/**
+ * 收藏数据根据球种组合方法
+ * @param origin 赛事详情
+ */
 export function sportsDataGroupBySport(origin: ISportEventInfo[]) {
   const arr = []
   for (let i = 0; i < origin.length; i++) {
@@ -221,7 +250,10 @@ export function sportsDataGroupBySport(origin: ISportEventInfo[]) {
   return arr
 }
 
-/** 盘口数据组合面包屑 */
+/**
+ * 盘口数据组合面包屑
+ * @param data 赛事详情 ｜ 冠军盘口数据
+ */
 export function sportsDataBreadcrumbs(data: ISportEventInfo | ISportOutrightsInfo) {
   const sport = { label: data.sn, value: `${data.si}` }
   const area = { label: data.pgn, value: `${data.pgid}` }

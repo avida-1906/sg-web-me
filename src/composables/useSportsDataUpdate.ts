@@ -1,7 +1,7 @@
 /**
  * 更新数据定时器
  * @param callback
- * @param duration 单位/秒
+ * @param duration 单位/秒 默认120秒
  * @param immediate 立即调用接口默认
  */
 export function useSportsDataUpdate(

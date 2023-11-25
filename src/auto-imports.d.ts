@@ -303,6 +303,7 @@ declare global {
   const sportsDataGroupByLeague: typeof import('./utils/sports')['sportsDataGroupByLeague']
   const sportsDataGroupByLeagueLoadMore: typeof import('./utils/sports')['sportsDataGroupByLeagueLoadMore']
   const sportsDataGroupBySport: typeof import('./utils/sports')['sportsDataGroupBySport']
+  const sportsDataUpdateByMqtt: typeof import('./utils/sports')['sportsDataUpdateByMqtt']
   const sportsOutrightsGoupByRegion: typeof import('./utils/sports')['sportsOutrightsGoupByRegion']
   const sportsOutrightsGroupByLeague: typeof import('./utils/sports')['sportsOutrightsGroupByLeague']
   const sportsOutrightsGroupByRegion: typeof import('./utils/sports')['sportsOutrightsGroupByRegion']
@@ -877,6 +878,7 @@ declare module 'vue' {
     readonly sportsDataGroupByLeague: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupByLeague']>
     readonly sportsDataGroupByLeagueLoadMore: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupByLeagueLoadMore']>
     readonly sportsDataGroupBySport: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupBySport']>
+    readonly sportsDataUpdateByMqtt: UnwrapRef<typeof import('./utils/sports')['sportsDataUpdateByMqtt']>
     readonly sportsOutrightsGroupByRegion: UnwrapRef<typeof import('./utils/sports')['sportsOutrightsGroupByRegion']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
     readonly sub: UnwrapRef<typeof import('./utils/number')['sub']>
@@ -1439,6 +1441,7 @@ declare module '@vue/runtime-core' {
     readonly sportsDataGroupByLeague: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupByLeague']>
     readonly sportsDataGroupByLeagueLoadMore: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupByLeagueLoadMore']>
     readonly sportsDataGroupBySport: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupBySport']>
+    readonly sportsDataUpdateByMqtt: UnwrapRef<typeof import('./utils/sports')['sportsDataUpdateByMqtt']>
     readonly sportsOutrightsGroupByRegion: UnwrapRef<typeof import('./utils/sports')['sportsOutrightsGroupByRegion']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
     readonly sub: UnwrapRef<typeof import('./utils/number')['sub']>
