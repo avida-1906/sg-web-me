@@ -1,6 +1,6 @@
 <script setup lang='ts'>
 const { t } = useI18n()
-const { progress, currentLevel, nextLevel } = useVipInfo()
+const { vip, progress, currentLevel, nextLevel } = useVipInfo()
 </script>
 
 <template>
@@ -22,10 +22,10 @@ const { progress, currentLevel, nextLevel } = useVipInfo()
     </div>
     <div class="percent-btm">
       <div>
-        <span>{{ currentLevel?.alias }}</span>
+        <BaseIcon :name="`vip${vip}`" /> <span>{{ currentLevel?.alias }}</span>
       </div>
       <div>
-        <span>{{ nextLevel?.alias }}</span>
+        <BaseIcon :name="`vip${nextLevel?.level}`" /> <span>{{ nextLevel?.alias }}</span>
       </div>
     </div>
   </div>
@@ -59,11 +59,14 @@ const { progress, currentLevel, nextLevel } = useVipInfo()
       align-items: center;
       font-size: var(--tg-vip-style-icon-size);
       > span {
-        margin-left: var(--tg-spacing-3);
+        margin-left: var(--tg-spacing-6);
         color: var(--tg-text-lightgrey);
         font-weight: var(--tg-font-weight-semibold);
         font-size: var(--tg-font-size-base);
       }
+    }
+    svg {
+      font-size: var(--tg-font-size-xl);
     }
   }
 }
