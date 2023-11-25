@@ -159,7 +159,7 @@ export class SportsOdds {
  * @param origin 赛事详情数据
  */
 export function sportsDataGroupByLeague(origin: ISportEventInfo[]) {
-  const arr = []
+  const arr: ISportDataGroupedByLeague = []
   for (let i = 0; i < origin.length; i++) {
     if (i === 0) {
       arr.push({ ci: origin[i].ci, cn: origin[i].cn, list: [origin[i]] })
@@ -195,6 +195,11 @@ export function sportsDataGroupByLeagueLoadMore(
   return arr
 }
 
+/**
+ * 盘口根据联赛组合监听mqtt通知更新
+ * @param origin
+ * @param newData
+ */
 export function sportsDataUpdateByMqtt(
   origin: ISportDataGroupedByLeague,
   newData: ISportEventList[],
@@ -508,8 +513,6 @@ export class SportsCart {
       if (ov)
         ovIsLower = Number(ov) < Number(this.dataList[index].ov)
 
-      console.error('ovIsChange', ovIsChange, 'ovIsLower', ovIsLower)
-
       fn({ ovIsChange, ovIsLower })
     }
 
@@ -544,18 +547,14 @@ export class SportsCart {
     }
 
     /** os和ov有变化的数据 */
-    const osOvIsChangeList = this.dataList.filter((item) => {
+    const osOvIsChangeWidList = this.dataList.filter((item) => {
       if (wsi) {
         const _wsi = wsi.find(a => a.wid === item.wid)
         return Number(_wsi?.ov) !== Number(item.ov) || _wsi?.os !== item.os
       }
       return true
-    }).map<ISportListToCartData>((item) => {
-      return {
-        wid: item.wid,
-        ov: item?.ov,
-        os: item?.os,
-      }
+    }).map<string>((item) => {
+      return item.wid
     })
 
     this.dataList.forEach((item) => {
@@ -596,6 +595,16 @@ export class SportsCart {
         return Number(_wsi?.ov) < Number(item.ov)
       })
     }
+
+    const osOvIsChangeList = this.dataList.filter((item) => {
+      return osOvIsChangeWidList.includes(item.wid)
+    }).map<ISportListToCartData>((item) => {
+      return {
+        wid: item.wid,
+        ov: item.ov,
+        os: item.os,
+      }
+    })
 
     if (fn)
       fn({ ovIsChange, mia, maa, isSupportCurrency, ovIsLower, osOvIsChangeList })

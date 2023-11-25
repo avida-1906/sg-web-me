@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import type { ISportEventInfo, ISportEventList } from '~/apis/types'
+import type { ISportEventList } from '~/apis/types'
+import type { ISportDataGroupedByLeague } from '~/types'
 
 const { t } = useI18n()
 usePageTitle({ prefix: t('btc_sport_title') })
@@ -12,16 +13,11 @@ const { VITE_SPORT_EVENT_PAGE_SIZE, VITE_SPORT_EVENT_PAGE_SIZE_MAX } = getEnv()
 const baseType = ref('winner')
 const curTab = ref(route.query.outrights ? '2' : '1')
 let timer: any = null
-const scrollDom = ref()
 const page = ref(1)
 const pageSize = ref(+VITE_SPORT_EVENT_PAGE_SIZE)
 const total = ref(0)
 const curTotal = ref(0)
-const list = ref< {
-  ci: string
-  cn: string
-  list: ISportEventInfo[]
-}[]>([])
+const list = ref<ISportDataGroupedByLeague>([])
 const params = computed(() => {
   return {
     m: 5,
@@ -95,7 +91,7 @@ function loadMore() {
     curTotal.value = 0
     page.value = 1
     pageSize.value = +VITE_SPORT_EVENT_PAGE_SIZE_MAX
-    scrollDom.value.scrollTo({ top: 0 })
+    scrollMainContentToTop()
   }
   else {
     page.value++
@@ -129,7 +125,6 @@ watch(route, (r) => {
 })
 
 onMounted(() => {
-  scrollDom.value = document.getElementById('main-content-scrollable')
   startTimer()
   sportDeltaBus.on(updateDataByMqtt)
 })

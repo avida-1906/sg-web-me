@@ -31,6 +31,7 @@ watch(route, (r) => {
   if (r.fullPath.includes('outrights=2')) {
     params.value.si = r.params.sport ? +r.params.sport : 0
     run(params.value)
+    startTimer()
   }
 })
 

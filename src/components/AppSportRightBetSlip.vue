@@ -52,8 +52,9 @@ const {
 } = useRequest(ApiSportPlaceBetInfo, {
   onSuccess(placeBetInfo) {
     setFetchBetInfoStatus(true)
+
     sportStore.cart.updateAllData(
-      placeBetInfo,
+      cloneDeep(placeBetInfo),
       (_data) => {
         if (ovIsChange.value !== _data.ovIsChange)
           setOvChangeState(_data.ovIsChange)
@@ -63,6 +64,7 @@ const {
 
         multiMia.value = _data.mia
         multiMaa.value = _data.maa
+
         setSupportCurrencyStatus(_data.isSupportCurrency)
         sendSportsCartToListEvent(_data.osOvIsChangeList)
       },
@@ -418,7 +420,7 @@ function sendSportsCartToListEvent(_data: ISportListToCartData[]) {
   if (_data.length === 0)
     return
 
-  console.log('发送列表通知123', _data)
+  console.error('购物车 ov， os发生了变化', _data)
 
   for (const item of _data)
     sportsCartToListBus.emit(item)
