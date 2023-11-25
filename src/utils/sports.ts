@@ -543,6 +543,21 @@ export class SportsCart {
       pt = bi[0] ? bi[0].pt : 0
     }
 
+    /** os和ov有变化的数据 */
+    const osOvIsChangeList = this.dataList.filter((item) => {
+      if (wsi) {
+        const _wsi = wsi.find(a => a.wid === item.wid)
+        return Number(_wsi?.ov) !== Number(item.ov) || _wsi?.os !== item.os
+      }
+      return true
+    }).map<ISportListToCartData>((item) => {
+      return {
+        wid: item.wid,
+        ov: item?.ov,
+        os: item?.os,
+      }
+    })
+
     this.dataList.forEach((item) => {
       if (wsi) {
         const _wsiObject = wsi.find(a => a.wid === item.wid)
@@ -581,22 +596,6 @@ export class SportsCart {
         return Number(_wsi?.ov) < Number(item.ov)
       })
     }
-
-    /** os和ov有变化的数据 */
-    const osOvIsChangeList = this.dataList.filter((item) => {
-      if (wsi) {
-        const _wsi = wsi.find(a => a.wid === item.wid)
-        return Number(_wsi?.ov) !== Number(item.ov) || _wsi?.os !== item.os
-      }
-      return false
-    }).map<ISportListToCartData>((item) => {
-      console.error('osOvIsChangeList123123', item)
-      return {
-        wid: item.wid,
-        ov: item?.ov,
-        os: item?.os,
-      }
-    })
 
     if (fn)
       fn({ ovIsChange, mia, maa, isSupportCurrency, ovIsLower, osOvIsChangeList })
