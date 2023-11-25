@@ -30,7 +30,7 @@ export function useLockScroll(show?: boolean | Ref | ComputedRef) {
   }
 
   const stop = watch(b, (val) => {
-    if (show !== undefined) {
+    if (show !== void 0) {
       if (val)
         setScrollTop()
       nextTick(() => {
@@ -42,7 +42,7 @@ export function useLockScroll(show?: boolean | Ref | ComputedRef) {
     }
   }, { immediate: true })
 
-  if (show === undefined)
+  if (show === void 0)
     stop()
 
   return {

@@ -1,11 +1,6 @@
 <script setup lang="ts">
 import { getCurrentLanguageForBackend } from '~/modules/i18n'
 
-interface IVipProgressData {
-  percent: number
-  currentLevel: number
-}
-
 const width = 430
 const { t } = useI18n()
 const router = useRouter()
@@ -23,7 +18,6 @@ const {
   widthBoundarySm,
 } = storeToRefs(useWindowStore())
 const { isLogin, userInfo } = storeToRefs(useAppStore())
-const { openVipDialog } = useVipDialog()
 // const { openNoticeDialog } = useDialogNotice()
 // 公告弹框和跑马灯
 const {
@@ -39,10 +33,6 @@ const {
 })
 
 const btnText = ref(t('view_more_2'))
-const vipProgressData = ref<IVipProgressData>({
-  percent: 30,
-  currentLevel: 2,
-})
 
 const isSm = computed(() => appContentWidth.value <= widthBoundarySm.value)
 
@@ -52,6 +42,10 @@ const onShowMore = function () {
     btnText.value = t('view_less')
   else
     btnText.value = t('view_more_2')
+}
+
+function goVip() {
+  router.push('/vip/promotion-bonus')
 }
 
 runMemberNoticeAllList()
@@ -84,11 +78,11 @@ runMemberNoticeAllList()
           class="top-vip-info"
           :class="isSm ? 'is-mobile max-width-mobile' : 'max-width'"
         >
-          <AppVipProgress :vip-progress-data="vipProgressData">
+          <AppVipProgress>
             <template #title>
               <h1>{{ t('welcome_back') }}，{{ userInfo?.username }}</h1>
             </template>
-            <p @click="openVipDialog">
+            <p @click="goVip">
               {{ t('user_vip_pro') }} <BaseIcon name="uni-arrowright-line" />
             </p>
           </AppVipProgress>

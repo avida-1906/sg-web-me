@@ -22,7 +22,7 @@ const emit = defineEmits(['clickHead', 'clickItem', 'radioChange'])
 
 const { bool: isShow, setBool: setAutoShowBool } = useBoolean(props.autoShow)
 
-const radioValue = ref(props.menuInfo.value === undefined ? '' : props.menuInfo.value)
+const radioValue = ref(props.menuInfo.value === void 0 ? '' : props.menuInfo.value)
 
 const showDown = computed(() => {
   return props.menuInfo?.list?.length

@@ -114,6 +114,7 @@ export default defineConfig(({ mode }) => {
               'get',
               'isArray',
               'concat',
+              'floor',
             ],
             'big.js': ['Big'],
             'vee-validate': ['useField'], // https://vee-validate.logaretm.com/v4/api/use-field/

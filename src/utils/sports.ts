@@ -347,7 +347,7 @@ export class SportsCart {
     if (this.dataList.length === 0)
       return false
 
-    return this.dataList.every(a => a.result !== undefined)
+    return this.dataList.every(a => a.result !== void 0)
   }
 
   /**
@@ -403,7 +403,7 @@ export class SportsCart {
   async add(data: ICartInfo) {
     // 如果dataList中的object的result有一个不是undefined，就清空购物车
     // 因为不是undefined的话，说明已经投注过了
-    if (this.dataList.some(a => a.result !== undefined)) {
+    if (this.dataList.some(a => a.result !== void 0)) {
       this.removeAll()
       await new Promise((resolve) => {
         setTimeout(() => {
@@ -468,7 +468,7 @@ export class SportsCart {
    */
   checkWid(wid: string) {
     const index = this.dataList.findIndex(a => a.wid === wid)
-    if (index > -1 && this.dataList[index].result === undefined)
+    if (index > -1 && this.dataList[index].result === void 0)
       return true
     else
       return false
@@ -495,13 +495,11 @@ export class SportsCart {
     if (!bi)
       console.log('bi 不存在')
 
-    let duplexOv = ''
     let mia = 0
     let maa = 0
     let pt = 0
 
     if (bi) {
-      duplexOv = bi[0].ov
       // 复式下的最小赔率
       mia = bi[0] ? bi[0].mia : 0
       // 复式下的最大赔率
@@ -540,8 +538,17 @@ export class SportsCart {
       })
     }
 
+    // 是否有低于当前赔率
+    let ovIsLower = false
+    if (wsi) {
+      ovIsLower = this.dataList.some((item) => {
+        const _wsi = wsi.find(a => a.wid === item.wid)
+        return Number(_wsi?.ov) < Number(item.ov)
+      })
+    }
+
     if (fn)
-      fn(ovIsChange, mia, maa, isSupportCurrency)
+      fn({ ovIsChange, mia, maa, isSupportCurrency, ovIsLower })
   }
 
   /**

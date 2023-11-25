@@ -130,7 +130,9 @@ declare global {
   const REFRESH_AUTH_BUS: typeof import('./utils/event-bus')['REFRESH_AUTH_BUS']
   const REFRESH_BALANCE_BUS: typeof import('./utils/event-bus')['REFRESH_BALANCE_BUS']
   const REFRESH_MEMBER_BUS: typeof import('./utils/event-bus')['REFRESH_MEMBER_BUS']
+  const SPORTS_CART_TO_LIST_BUS: typeof import('./utils/event-bus')['SPORTS_CART_TO_LIST_BUS']
   const SPORTS_DATA_CHANGE_BUS: typeof import('./utils/event-bus')['SPORTS_DATA_CHANGE_BUS']
+  const SPORTS_LIST_TO_CART_BUS: typeof import('./utils/event-bus')['SPORTS_LIST_TO_CART_BUS']
   const SPORTS_PLAT_ID: typeof import('./utils/sports')['SPORTS_PLAT_ID']
   const STORAGE_CURRENT_GLOBAL_CURRENCY_KEY: typeof import('./utils/storage')['STORAGE_CURRENT_GLOBAL_CURRENCY_KEY']
   const STORAGE_HIDE_ZERO_BALANCE_KEY: typeof import('./utils/storage')['STORAGE_HIDE_ZERO_BALANCE_KEY']
@@ -198,6 +200,7 @@ declare global {
   const find: typeof import('lodash-es')['find']
   const findIndex: typeof import('lodash-es')['findIndex']
   const findKey: typeof import('lodash-es')['findKey']
+  const floor: typeof import('lodash-es')['floor']
   const get: typeof import('lodash-es')['get']
   const getActivePinia: typeof import('pinia')['getActivePinia']
   const getCartObject: typeof import('./utils/sports')['getCartObject']
@@ -299,11 +302,13 @@ declare global {
   const sportDataChange: typeof import('./utils/mqtt')['sportDataChange']
   const sportDataChangeThrottle: typeof import('./utils/mqtt')['sportDataChangeThrottle']
   const sportDeltaBus: typeof import('./utils/mqtt')['sportDeltaBus']
+  const sportsCartToListBus: typeof import('./utils/event-bus')['sportsCartToListBus']
   const sportsDataBreadcrumbs: typeof import('./utils/sports')['sportsDataBreadcrumbs']
   const sportsDataGroupByLeague: typeof import('./utils/sports')['sportsDataGroupByLeague']
   const sportsDataGroupByLeagueLoadMore: typeof import('./utils/sports')['sportsDataGroupByLeagueLoadMore']
   const sportsDataGroupBySport: typeof import('./utils/sports')['sportsDataGroupBySport']
   const sportsDataUpdateByMqtt: typeof import('./utils/sports')['sportsDataUpdateByMqtt']
+  const sportsListToCartBus: typeof import('./utils/event-bus')['sportsListToCartBus']
   const sportsOutrightsGoupByRegion: typeof import('./utils/sports')['sportsOutrightsGoupByRegion']
   const sportsOutrightsGroupByLeague: typeof import('./utils/sports')['sportsOutrightsGroupByLeague']
   const sportsOutrightsGroupByRegion: typeof import('./utils/sports')['sportsOutrightsGroupByRegion']
@@ -556,6 +561,7 @@ declare global {
   const useVModels: typeof import('@vueuse/core')['useVModels']
   const useVibrate: typeof import('@vueuse/core')['useVibrate']
   const useVipDialog: typeof import('./composables/useDialogVip')['useVipDialog']
+  const useVipInfo: typeof import('./composables/useVipInfo')['useVipInfo']
   const useVirAddressDialog: typeof import('./composables/useDialogVirAddress')['useVirAddressDialog']
   const useVirtualList: typeof import('@vueuse/core')['useVirtualList']
   const useWakeLock: typeof import('@vueuse/core')['useWakeLock']
@@ -712,7 +718,9 @@ declare module 'vue' {
     readonly REFRESH_AUTH_BUS: UnwrapRef<typeof import('./utils/event-bus')['REFRESH_AUTH_BUS']>
     readonly REFRESH_BALANCE_BUS: UnwrapRef<typeof import('./utils/event-bus')['REFRESH_BALANCE_BUS']>
     readonly REFRESH_MEMBER_BUS: UnwrapRef<typeof import('./utils/event-bus')['REFRESH_MEMBER_BUS']>
+    readonly SPORTS_CART_TO_LIST_BUS: UnwrapRef<typeof import('./utils/event-bus')['SPORTS_CART_TO_LIST_BUS']>
     readonly SPORTS_DATA_CHANGE_BUS: UnwrapRef<typeof import('./utils/event-bus')['SPORTS_DATA_CHANGE_BUS']>
+    readonly SPORTS_LIST_TO_CART_BUS: UnwrapRef<typeof import('./utils/event-bus')['SPORTS_LIST_TO_CART_BUS']>
     readonly SPORTS_PLAT_ID: UnwrapRef<typeof import('./utils/sports')['SPORTS_PLAT_ID']>
     readonly STORAGE_CURRENT_GLOBAL_CURRENCY_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_CURRENT_GLOBAL_CURRENCY_KEY']>
     readonly STORAGE_HIDE_ZERO_BALANCE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_HIDE_ZERO_BALANCE_KEY']>
@@ -777,6 +785,7 @@ declare module 'vue' {
     readonly find: UnwrapRef<typeof import('lodash-es')['find']>
     readonly findIndex: UnwrapRef<typeof import('lodash-es')['findIndex']>
     readonly findKey: UnwrapRef<typeof import('lodash-es')['findKey']>
+    readonly floor: UnwrapRef<typeof import('lodash-es')['floor']>
     readonly get: UnwrapRef<typeof import('lodash-es')['get']>
     readonly getActivePinia: UnwrapRef<typeof import('pinia')['getActivePinia']>
     readonly getCartObject: UnwrapRef<typeof import('./utils/sports')['getCartObject']>
@@ -874,11 +883,13 @@ declare module 'vue' {
     readonly split: UnwrapRef<typeof import('lodash-es')['split']>
     readonly sportDataChange: UnwrapRef<typeof import('./utils/mqtt')['sportDataChange']>
     readonly sportDeltaBus: UnwrapRef<typeof import('./utils/mqtt')['sportDeltaBus']>
+    readonly sportsCartToListBus: UnwrapRef<typeof import('./utils/event-bus')['sportsCartToListBus']>
     readonly sportsDataBreadcrumbs: UnwrapRef<typeof import('./utils/sports')['sportsDataBreadcrumbs']>
     readonly sportsDataGroupByLeague: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupByLeague']>
     readonly sportsDataGroupByLeagueLoadMore: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupByLeagueLoadMore']>
     readonly sportsDataGroupBySport: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupBySport']>
     readonly sportsDataUpdateByMqtt: UnwrapRef<typeof import('./utils/sports')['sportsDataUpdateByMqtt']>
+    readonly sportsListToCartBus: UnwrapRef<typeof import('./utils/event-bus')['sportsListToCartBus']>
     readonly sportsOutrightsGroupByRegion: UnwrapRef<typeof import('./utils/sports')['sportsOutrightsGroupByRegion']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
     readonly sub: UnwrapRef<typeof import('./utils/number')['sub']>
@@ -1125,6 +1136,7 @@ declare module 'vue' {
     readonly useVModels: UnwrapRef<typeof import('@vueuse/core')['useVModels']>
     readonly useVibrate: UnwrapRef<typeof import('@vueuse/core')['useVibrate']>
     readonly useVipDialog: UnwrapRef<typeof import('./composables/useDialogVip')['useVipDialog']>
+    readonly useVipInfo: UnwrapRef<typeof import('./composables/useVipInfo')['useVipInfo']>
     readonly useVirAddressDialog: UnwrapRef<typeof import('./composables/useDialogVirAddress')['useVirAddressDialog']>
     readonly useVirtualList: UnwrapRef<typeof import('@vueuse/core')['useVirtualList']>
     readonly useWakeLock: UnwrapRef<typeof import('@vueuse/core')['useWakeLock']>
@@ -1275,7 +1287,9 @@ declare module '@vue/runtime-core' {
     readonly REFRESH_AUTH_BUS: UnwrapRef<typeof import('./utils/event-bus')['REFRESH_AUTH_BUS']>
     readonly REFRESH_BALANCE_BUS: UnwrapRef<typeof import('./utils/event-bus')['REFRESH_BALANCE_BUS']>
     readonly REFRESH_MEMBER_BUS: UnwrapRef<typeof import('./utils/event-bus')['REFRESH_MEMBER_BUS']>
+    readonly SPORTS_CART_TO_LIST_BUS: UnwrapRef<typeof import('./utils/event-bus')['SPORTS_CART_TO_LIST_BUS']>
     readonly SPORTS_DATA_CHANGE_BUS: UnwrapRef<typeof import('./utils/event-bus')['SPORTS_DATA_CHANGE_BUS']>
+    readonly SPORTS_LIST_TO_CART_BUS: UnwrapRef<typeof import('./utils/event-bus')['SPORTS_LIST_TO_CART_BUS']>
     readonly SPORTS_PLAT_ID: UnwrapRef<typeof import('./utils/sports')['SPORTS_PLAT_ID']>
     readonly STORAGE_CURRENT_GLOBAL_CURRENCY_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_CURRENT_GLOBAL_CURRENCY_KEY']>
     readonly STORAGE_HIDE_ZERO_BALANCE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_HIDE_ZERO_BALANCE_KEY']>
@@ -1340,6 +1354,7 @@ declare module '@vue/runtime-core' {
     readonly find: UnwrapRef<typeof import('lodash-es')['find']>
     readonly findIndex: UnwrapRef<typeof import('lodash-es')['findIndex']>
     readonly findKey: UnwrapRef<typeof import('lodash-es')['findKey']>
+    readonly floor: UnwrapRef<typeof import('lodash-es')['floor']>
     readonly get: UnwrapRef<typeof import('lodash-es')['get']>
     readonly getActivePinia: UnwrapRef<typeof import('pinia')['getActivePinia']>
     readonly getCartObject: UnwrapRef<typeof import('./utils/sports')['getCartObject']>
@@ -1437,11 +1452,13 @@ declare module '@vue/runtime-core' {
     readonly split: UnwrapRef<typeof import('lodash-es')['split']>
     readonly sportDataChange: UnwrapRef<typeof import('./utils/mqtt')['sportDataChange']>
     readonly sportDeltaBus: UnwrapRef<typeof import('./utils/mqtt')['sportDeltaBus']>
+    readonly sportsCartToListBus: UnwrapRef<typeof import('./utils/event-bus')['sportsCartToListBus']>
     readonly sportsDataBreadcrumbs: UnwrapRef<typeof import('./utils/sports')['sportsDataBreadcrumbs']>
     readonly sportsDataGroupByLeague: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupByLeague']>
     readonly sportsDataGroupByLeagueLoadMore: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupByLeagueLoadMore']>
     readonly sportsDataGroupBySport: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupBySport']>
     readonly sportsDataUpdateByMqtt: UnwrapRef<typeof import('./utils/sports')['sportsDataUpdateByMqtt']>
+    readonly sportsListToCartBus: UnwrapRef<typeof import('./utils/event-bus')['sportsListToCartBus']>
     readonly sportsOutrightsGroupByRegion: UnwrapRef<typeof import('./utils/sports')['sportsOutrightsGroupByRegion']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
     readonly sub: UnwrapRef<typeof import('./utils/number')['sub']>
@@ -1688,6 +1705,7 @@ declare module '@vue/runtime-core' {
     readonly useVModels: UnwrapRef<typeof import('@vueuse/core')['useVModels']>
     readonly useVibrate: UnwrapRef<typeof import('@vueuse/core')['useVibrate']>
     readonly useVipDialog: UnwrapRef<typeof import('./composables/useDialogVip')['useVipDialog']>
+    readonly useVipInfo: UnwrapRef<typeof import('./composables/useVipInfo')['useVipInfo']>
     readonly useVirAddressDialog: UnwrapRef<typeof import('./composables/useDialogVirAddress')['useVirAddressDialog']>
     readonly useVirtualList: UnwrapRef<typeof import('@vueuse/core')['useVirtualList']>
     readonly useWakeLock: UnwrapRef<typeof import('@vueuse/core')['useWakeLock']>

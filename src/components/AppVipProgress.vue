@@ -1,37 +1,6 @@
 <script setup lang='ts'>
-interface IVipProgressData {
-  percent: number // vip进度百分比
-  currentLevel: number // 当前vip级别
-}
-interface Props {
-  vipProgressData: IVipProgressData
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  vipProgressData: () => {
-    return {
-      percent: 0,
-      currentLevel: 0,
-    }
-  },
-})
-
 const { t } = useI18n()
-
-const levels = [
-  { level: 0, icon: 'chat-star-bronze', label: t('empty_vip') },
-  { level: 1, icon: 'chat-star-bronze', label: t('copper') },
-  { level: 2, icon: 'chat-star-silver', label: t('silver') },
-  { level: 3, icon: 'chat-star-gold', label: t('gold') },
-  { level: 4, icon: 'chat-star-bronze', label: t('empty_vip') },
-]
-
-const currentInfo = computed(() => {
-  return levels.find(i => i.level === props.vipProgressData.currentLevel)
-})
-const nextInfo = computed(() => {
-  return levels.find(i => i.level === (props.vipProgressData.currentLevel + 1))
-})
+const { vip, progress, currentLevel, nextLevel } = useVipInfo()
 </script>
 
 <template>
@@ -40,23 +9,23 @@ const nextInfo = computed(() => {
     <div class="percent-top">
       <slot><p>{{ t('yours') }}<span> VIP </span>{{ t('progress') }}</p></slot>
       <p class="percent">
-        {{ props.vipProgressData.percent }}%
+        {{ progress }}%
       </p>
     </div>
     <div class="percent-mid">
       <BaseProgress
         width="100%"
-        :percent="props.vipProgressData.percent"
+        :percent="progress"
         :show-info="false"
         :stroke-width="14"
       />
     </div>
     <div class="percent-btm">
       <div>
-        <BaseIcon :name="currentInfo!.icon" /> <span>{{ currentInfo?.label }}</span>
+        <BaseIcon :name="`vip${vip}`" /> <span>{{ currentLevel?.alias }}</span>
       </div>
       <div>
-        <BaseIcon :name="nextInfo!.icon" /> <span>{{ nextInfo?.label }}</span>
+        <BaseIcon :name="`vip${nextLevel?.level}`" /> <span>{{ nextLevel?.alias }}</span>
       </div>
     </div>
   </div>
@@ -90,11 +59,14 @@ const nextInfo = computed(() => {
       align-items: center;
       font-size: var(--tg-vip-style-icon-size);
       > span {
-        margin-left: var(--tg-spacing-3);
+        margin-left: var(--tg-spacing-6);
         color: var(--tg-text-lightgrey);
         font-weight: var(--tg-font-weight-semibold);
         font-size: var(--tg-font-size-base);
       }
+    }
+    svg {
+      font-size: var(--tg-font-size-xl);
     }
   }
 }
