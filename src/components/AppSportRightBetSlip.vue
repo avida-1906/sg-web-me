@@ -52,8 +52,6 @@ const {
 } = useRequest(ApiSportPlaceBetInfo, {
   onSuccess(placeBetInfo) {
     setFetchBetInfoStatus(true)
-    if (placeBetInfo.wsi)
-      placeBetInfo.wsi[0].ov = '100'
 
     sportStore.cart.updateAllData(
       cloneDeep(placeBetInfo),
