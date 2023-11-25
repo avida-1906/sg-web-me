@@ -16,6 +16,7 @@ usePageTitle({ prefix: t('account_session') })
 //   { label: '活跃', value: '2' },
 //   { label: '不活跃', value: '3' },
 // ]
+const popperShow: Ref<boolean[]> = ref([])
 const columns: Column[] = [
   {
     title: t('login_time'),
@@ -54,25 +55,10 @@ const {
   next,
 } = useList(ApiMemberFrontLoginLogList, {}, { page_size: 10 })
 
-function formatRelativeTime(timestampInSeconds: number) {
-  const now = Math.floor(Date.now() / 1000)
-  const diff = now - timestampInSeconds
-
-  if (diff < 60) {
-    return t('last_seconds', { delta: diff })
-  }
-  else if (diff < 3600) {
-    const minutes = Math.floor(diff / 60)
-    return t('last_minutes', { delta: minutes })
-  }
-  else if (diff < 86400) {
-    const hours = Math.floor(diff / 3600)
-    return t('last_hours', { delta: hours })
-  }
-  else {
-    const days = Math.floor(diff / 86400)
-    return t('last_days', { delta: days })
-  }
+function handleShow(index: number) {
+  setTimeout(() => {
+    popperShow.value[index] = false
+  }, 3000)
 }
 
 const tableData = computed(() => {
@@ -82,7 +68,7 @@ const tableData = computed(() => {
         browser: item.browser,
         near: item.ipaddress,
         addr: item.loginip,
-        lastUsed: formatRelativeTime(item.created_at),
+        lastUsed: timeToFromNow(item.created_at),
       }
       return temp
     })
@@ -119,12 +105,23 @@ application.allSettled([loginLogRunAsync()])
             </BaseButton>
           </div>
         </template>
-        <template #browser="{ record }">
-          <div>
-            {{ record.browser.length > 20
-              ? (`${record.browser.slice(0, 20)}...`)
-              : record.browser }}
-          </div>
+        <template #browser="{ record, index }">
+          <VDropdown
+            v-model:shown="popperShow[index]"
+            :distance="6"
+            @show="handleShow(index)"
+          >
+            <div>
+              {{ record.browser.length > 20
+                ? (`${record.browser.slice(0, 20)}...`)
+                : record.browser }}
+            </div>
+            <template #popper>
+              <div class="popper-text">
+                {{ record.browser }}
+              </div>
+            </template>
+          </VDropdown>
         </template>
       </BaseTable>
     </div>
@@ -158,6 +155,13 @@ application.allSettled([loginLogRunAsync()])
       color: var(--tg-text-error);
     }
   }
+
+}
+.popper-text{
+  max-width: 300px;
+  max-height: inherit;
+  padding: var(--tg-spacing-12);
+  line-height: 1.2;
 }
 </style>
 

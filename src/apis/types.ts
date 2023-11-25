@@ -23,6 +23,7 @@ export interface IResponseList<T> {
   d: T[]
   t: number
   s: number
+  [k: string]: any
 }
 
 /** 绑定的钱包银行卡对象 */
@@ -223,113 +224,6 @@ export interface VipConfig {
 }
 
 /** ================= 体育 ====================== */
-/** 联赛item */
-export interface ILeagueItem {
-  /** 球种Id */
-  si: number
-  /** market
-   *
-   * 1:早盘
-   *
-   * 2:今日
-   *
-   * 3:滚球 */
-  m: number
-  /** 赛事ID */
-  ei: string
-  /** 地区id */
-  pgid: string
-  /** 地区名称 */
-  pgn: string
-  /** 联赛ID */
-  ci: string
-  /** 联赛名称 */
-  cn: string
-  /** 主队id */
-  hti: string
-  /** 主队名称 */
-  htn: string
-  /** 客队id */
-  ati: string
-  /** 客队名称 */
-  atn: string
-  /** 赛事进行时间 */
-  est: string
-  /** 滚球时间 */
-  rbt: string
-  /** RBTimeStatus */
-  rbts: number
-  /** 玩法总数 */
-  mc: number
-  /** 赛事开始时间 */
-  ed: number
-  /** 当前是第几盘或者第几局 */
-  ep: number
-  /** 赛事状态 */
-  es: number
-  /** 是否取得串关数量
-   *
-   * 1:支援串关
-   *
-   * 2:不支援串关 */
-  ic: string
-  /** 是否热门 */
-  hot: number
-  /** 主队比分 */
-  hp: number
-  /** 客队比分 */
-  ap: number
-  /** 特别字段，需要询问后端 */
-  pol: {
-    [key: string]: number
-  }
-  /** 赛事是否有现场直播Url
-   *
-   * 0:没有
-   *
-   * 1:有 */
-  ls: number
-  /** 现场直播 URL清单 */
-  lsu: []
-  /** 赛事的更多信息。每个体育的额外信息将有所不同 */
-  eifo: string
-  /** 盘口清单 */
-  ml: {
-    /** MarketlineId */
-    mlid: string
-    mlei: string
-    /** BetType */
-    bt: number
-    /** BetTypeName */
-    btn: string
-    /** PeriodId */
-    pid: number
-    /** PeriodName */
-    pn: string
-    /** MarketLineLevel */
-    mll: number
-    /** MarketlineStatusId */
-    mls: number
-    /**  WagerSelections */
-    ms: {
-      /** WagerSelectionId */
-      wid: string
-      /** SelectionId */
-      sid: string
-      /** SelectionName */
-      sn: string
-      /** Handicap */
-      hdp: string
-      /** Specifiers */
-      sp: null
-      /**  OddsList 内的欧洲盘 OV */
-      ov: string
-    }[]
-  }[]
-  /** 赛事更新时间 */
-  ts: number
-}
-
 /** 赛事详情 ml-ms */
 export interface ISportEventInfoMlMs {
   /** WagerSelectionId */
@@ -659,5 +553,5 @@ export interface ISportEventList {
   ci: string
   /** 地區id */
   pgid: string
-  v: ILeagueItem[]
+  v: ISportEventInfo[]
 }
