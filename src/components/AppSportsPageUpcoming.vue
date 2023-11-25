@@ -51,7 +51,7 @@ const { run, runAsync } = useRequest(ApiSportEventList,
 const {
   startTimer: startCount,
   stopTimer: stopCount,
-} = useSportsDataUpdate(sportsStore.runSportsCount, 60, true)
+} = useSportsDataUpdate(sportsStore.runSportsCount, 120, true)
 
 // 基础的获取数据
 function getData() {
@@ -66,7 +66,7 @@ function startUpcoming() {
     page.value = 1
     run({ si: currentUpcomingNav.value, m: 4, page: page.value, page_size: curTotal.value })
     curTotal.value = 0
-  }, 60000)
+  }, 120000)
 }
 function stopUpcoming() {
   clearInterval(timer)
