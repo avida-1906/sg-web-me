@@ -6,7 +6,7 @@
  */
 export function useSportsDataUpdate(
   callback: () => void,
-  duration = 30,
+  duration = 120,
   immediate?: boolean,
 ) {
   let timer: any = null
