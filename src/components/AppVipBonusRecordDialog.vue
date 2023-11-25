@@ -8,19 +8,13 @@ interface IColumns {
   slot?: string
   align?: 'left' | 'center' | 'right'
 }
-// interface IPaginationData {
-//   pageSize: number
-//   page: number
-//   total: number
-// }
 
-// const paginationData = ref<IPaginationData>(
-//   {
-//     pageSize: 10,
-//     page: 2,
-//     total: 21,
-//   },
-// )
+const today = dayjs()
+const dayOptions = [
+  { label: '今日', value: '0' },
+  { label: '近7日', value: '6' },
+  { label: '近30日', value: '29' },
+]
 
 const { t } = useI18n()
 
@@ -49,10 +43,24 @@ const columns = reactive<IColumns[]>([
     align: 'right',
   },
 ])
+const dayType = ref(dayOptions[0].value)
 
-const { run: runGetRecord, data } = useRequest(ApiMemberVipBonusRecord)
+const {
+  list: data,
+  runAsync: runGetRecordAsync,
+  page,
+  page_size,
+  total,
+  prev,
+  next,
+} = useList(ApiMemberVipBonusRecord, {}, { page_size: 10 })
 
-runGetRecord()
+const params = computed(() => ({
+  page: page.value,
+  page_size: page_size.value,
+  start_time: today.subtract(+dayType.value, 'day').startOf('day').unix(),
+  end_time: today.endOf('day').unix(),
+}))
 
 function getCurrencyName(id: string | number): EnumCurrencyKey {
   return renderBalanceList.value.filter(c => +c.cur === +id)[0].type
@@ -65,48 +73,91 @@ function getCashType(cashType: string) {
   return temp ? t(`transaction_${temp[1]}`) : '-'
 }
 
-// function onPrevious() {
-//   paginationData.value.page--
-// }
+function onPrevious() {
+  prev()
+}
 
-// function onNext() {
-//   paginationData.value.page++
-// }
+function onNext() {
+  next()
+}
+
+runGetRecordAsync(params.value)
+
+watch(() => params.value.start_time, () => {
+  setTimeout(() => {
+    runGetRecordAsync(params.value)
+  }, 0)
+})
 </script>
 
 <template>
   <div class="app-vip-bonus-record">
-    <BaseTable
-      v-if="data && data.length"
-      :columns="columns"
-      :data-source="data"
-    >
-      <!-- :loading="loading" -->
-      <template #created_at="{ record }">
-        <div>{{ record.created_at }}</div>
-      </template>
-      <template #cash_type="{ record }">
-        {{ getCashType(record.cash_type) }}
-      </template>
-      <template #receive_amount="{ record }">
-        <div class="to-right">
-          <AppAmount
-            :amount="record.receive_amount"
-            :currency-type="getCurrencyName(record.receive_currency_id)"
-          />
-        </div>
-      </template>
-    </BaseTable>
-    <!-- <AppStack
-      :pagination-data="paginationData"
-      @previous="onPrevious"
-      @next="onNext"
-    /> -->
+    <div class="filters">
+      <BaseSelect
+        v-model="dayType"
+        :options="dayOptions"
+        class="select-box"
+      />
+      <div class="total">
+        <span class="label">领取总额：</span>
+        <AppAmount currency-type="USDT" amount="9999.0000" />
+      </div>
+    </div>
+    <template v-if="data && data.length">
+      <BaseTable
+        :columns="columns"
+        :data-source="data"
+      >
+        <!-- :loading="loading" -->
+        <template #created_at="{ record }">
+          <div>{{ timeToFormat(record.created_at) }}</div>
+        </template>
+        <template #cash_type="{ record }">
+          {{ getCashType(record.cash_type) }}
+        </template>
+        <template #receive_amount="{ record }">
+          <div class="to-right">
+            <AppAmount
+              :amount="record.receive_amount"
+              :currency-type="getCurrencyName(record.receive_currency_id)"
+            />
+          </div>
+        </template>
+      </BaseTable>
+      <div class="pages">
+        <AppStack
+          :pagination-data="{ page, pageSize: page_size, total }"
+          @previous="onPrevious"
+          @next="onNext"
+        />
+      </div>
+    </template>
     <BaseEmpty v-else :description="t('data_empty')" />
   </div>
 </template>
 
 <style lang="scss" scoped>
+.filters {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--tg-font-size-default);
+  font-weight: var(--tg-font-weight-semibold);
+  --tg-base-select-style-padding-y: var(--tg-spacing-6);
+  .select-box {
+    width: 80px;
+  }
+  .total {
+    display: flex;
+    color: var(--tg-text-warn);
+    > .label {
+      color: var(--tg-text-white);
+    }
+  }
+}
+.pages {
+  margin-top: var(--tg-spacing-16);
+}
 .to-right {
   display: flex;
   align-items: center;

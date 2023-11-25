@@ -1017,8 +1017,13 @@ export function ApiMemberVipConfig() {
  * vip 奖金领取历史
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=96ca75cd-8d54-4ad7-a194-49f24524f1c9
  */
-export function ApiMemberVipBonusRecord() {
-  return httpClient.get<{
+export function ApiMemberVipBonusRecord(params: {
+  page: number
+  page_size: number
+  start_time: number
+  end_time: number
+}) {
+  return httpClient.get<IResponseList<{
     amount: string
     cash_type: string
     created_at: number
@@ -1027,7 +1032,7 @@ export function ApiMemberVipBonusRecord() {
     receive_amount: string
     receive_currency_id: CurrencyCode
     updated_at: number
-  }[]>('/member/vip/bonus/apply/list')
+  }>>('/member/vip/bonus/apply/list', { params })
 }
 
 /**
