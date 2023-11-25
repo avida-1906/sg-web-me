@@ -21,13 +21,15 @@ const refreshMemberBus = useEventBus(REFRESH_MEMBER_BUS)
 const refreshAuthBus = useEventBus(REFRESH_AUTH_BUS)
 export const sportDeltaBus = useEventBus<ISportEventList[]>(SPORTS_DATA_CHANGE_BUS)
 
+const sportDeltaDataList: ISportEventList[] = []
+
 /**
  * 刷新余额
  * @description 5秒内只能触发一次
  */
 const refreshBalanceThrottle = throttle(() => {
   refreshBalanceBus.emit(REFRESH_BALANCE_BUS)
-}, 5000)
+}, 5 * 1000)
 
 /**
  * 刷新用户信息
@@ -35,15 +37,24 @@ const refreshBalanceThrottle = throttle(() => {
  */
 const refreshMemberThrottle = throttle(() => {
   refreshMemberBus.emit(REFRESH_MEMBER_BUS)
-}, 5000)
+}, 5 * 1000)
 
+let sportTimer: any = null
 /**
  * 通知体育数据刷新
- * @description 5秒内只能触发一次
+ * @description 3秒内的数都会被合并
  */
-export const sportDataChangeThrottle = throttle((data: ISportEventList[]) => {
-  sportDeltaBus.emit(data)
-}, 5000)
+export function sportDataChange(obj: ISportEventList) {
+  sportDeltaDataList.push(obj)
+
+  if (sportTimer)
+    clearTimeout(sportTimer)
+
+  sportTimer = setTimeout(() => {
+    sportDeltaBus.emit(cloneDeep(sportDeltaDataList))
+    sportDeltaDataList.length = 0
+  }, 4 * 1000)
+}
 
 export class SocketClient {
   client: TMqttClient | null = null
@@ -219,8 +230,7 @@ export class SocketClient {
             if (data.v)
               data.v = JSON.parse(data.v)
 
-            // 体育比分推送
-            sportDataChangeThrottle(data)
+            sportDataChange(data)
           }
         }
         catch (error) {
