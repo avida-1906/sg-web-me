@@ -95,9 +95,9 @@ export function useApiMenuData() {
             },
             {
               title: 'VIP',
-              path: '',
+              path: '/vip/promotion-bonus',
               icon: 'chess-air-bonus',
-              callBack: () => openVipDialog(),
+              // callBack: () => openVipDialog(),
             },
             {
               title: t('statistical_data'),
