@@ -43,16 +43,14 @@ const { run, runAsync } = useRequest(ApiSportEventList,
         total.value = res.t
         curTotal.value = curTotal.value + res.d.length
 
-        if (page.value === 1) {
-          const groupedList = sportsDataGroupByLeague(res.d)
-          return list.value = groupedList
-        }
+        if (page.value === 1)
+          return list.value = sportsDataGroupByLeague(res.d)
 
         list.value = sportsDataGroupByLeagueLoadMore(list.value, res.d)
       }
     },
   })
-/** 分页、定时器、监听更新数据 start */
+/** 👷 分页、定时器、监听更新数据 start 👷 */
 function startUpcoming() {
   if (timer)
     stopUpcoming()
@@ -93,7 +91,7 @@ function reset() {
 function updateDataByMqtt(data: ISportEventList[]) {
   list.value = sportsDataUpdateByMqtt(list.value, data)
 }
-/** 分页、定时器、监听更新数据 end */
+/** 🚧 分页、定时器、监听更新数据 end 🚧 */
 
 function onBaseTypeChange(v: string) {
   baseType.value = v
@@ -121,7 +119,6 @@ onBeforeUnmount(() => {
   sportDeltaBus.off(updateDataByMqtt)
 })
 
-// 即将开赛页面使用全局loading并延迟调用计时器，因计时器会马上进行一次请求
 if (!props.onPage) {
   await application.allSettled([runAsync(params.value)])
   startUpcoming()
