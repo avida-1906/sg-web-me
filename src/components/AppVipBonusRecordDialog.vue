@@ -10,13 +10,14 @@ interface IColumns {
 }
 
 const today = dayjs()
-const dayOptions = [
-  { label: '今日', value: '0' },
-  { label: '近7日', value: '6' },
-  { label: '近30日', value: '29' },
-]
 
 const { t } = useI18n()
+
+const dayOptions = [
+  { label: t('today'), value: '0' },
+  { label: t('last_days_mid', { delta: 7 }), value: '6' },
+  { label: t('last_days_mid', { delta: 30 }), value: '29' },
+]
 
 const { renderBalanceList } = useCurrencyData()
 
@@ -100,7 +101,7 @@ watch(() => params.value.start_time, () => {
         class="select-box"
       />
       <div v-if="backData" class="total">
-        <span class="label">领取总额：</span>
+        <span class="label">{{ t('receive_amount') }}：</span>
         <AppAmount
           currency-type="USDT"
           :amount="+backData.total_amount > 0 ? backData.total_amount : '0.00'"
