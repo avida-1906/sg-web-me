@@ -112,6 +112,7 @@ class HttpClient {
       const { status, data } = response.data as IResponse<any>
       const responseStatus = response.status
       const appStore = useAppStore()
+      const { closeRightSidebar, rightIsExpand } = useRightSidebar()
 
       if (!status) {
         // 如果后端返回token，关闭所有请求，清除token
@@ -121,6 +122,9 @@ class HttpClient {
           appStore.removeUserInfo()
           appStore.setMqttConnectedFalse()
           socketClient.connect('token失效 重新连接')
+          if (rightIsExpand.value)
+            closeRightSidebar()
+
           openNotify({
             type: 'error',
             code: `${responseStatus}`,
