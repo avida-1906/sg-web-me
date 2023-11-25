@@ -10,6 +10,9 @@ const props = withDefaults(defineProps<Props>(), {
 const saveNum = ref(props.odds)
 const upDown = ref('')
 let timer: any
+
+const sportsStore = useSportsStore()
+
 function resetUpDown() {
   clearTimeout(timer)
   timer = setTimeout(() => {
@@ -28,7 +31,7 @@ watch(props, () => {
 
 <template>
   <div class="app-sports-odds" :class="[arrow]">
-    <span class="odds">{{ odds }}</span>
+    <span class="odds">{{ sportsStore.renderOdds(+odds) }}</span>
     <div class="icon arrow-odds" :class="`odds-${upDown}`">
       <BaseIcon :name="`uni-tri-${upDown}`" />
     </div>

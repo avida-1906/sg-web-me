@@ -287,7 +287,7 @@ export const useSportsStore = defineStore('sports', () => {
     if (value)
       return value
     else
-      return EnumSportsOddsType.DECIMAL
+      return EnumSportsOddsType.AMERICAN
   }
 
   /** 更新收藏赛事列表 */
