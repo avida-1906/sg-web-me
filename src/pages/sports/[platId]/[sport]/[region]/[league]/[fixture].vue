@@ -28,7 +28,8 @@ usePageTitle({ prefix: title })
 watch(
   () => route.params,
   (value) => {
-    runGetSportInfo({ si: Number(route.params.sport), ei: `${route.params.fixture}` })
+    if (route.params.sport && route.params.fixture)
+      runGetSportInfo({ si: Number(route.params.sport), ei: `${route.params.fixture}` })
   },
   { immediate: true },
 )
@@ -164,7 +165,7 @@ watch(
                               v-for="nameItem in item.ms"
                               :key="nameItem.wid"
                             >
-                              <div class="column heading">
+                              <div class="heading column">
                                 <span>{{ nameItem.sn }}</span>
                               </div>
                             </template>

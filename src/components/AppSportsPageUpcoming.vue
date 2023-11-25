@@ -9,6 +9,7 @@ const { upcomingNavs, currentUpcomingNav } = storeToRefs(sportsStore)
 const { bool: isStandard } = useBoolean(true)
 
 let timer: any = null
+const scrollDom = ref()
 const baseType = ref('winner')
 const page = ref(1)
 const pageSize = ref(10)
@@ -72,8 +73,16 @@ function stopUpcoming() {
   timer = null
 }
 function loadMore() {
-  page.value++
-  pageSize.value = 10
+  if (curTotal.value >= 100) {
+    curTotal.value = 0
+    page.value = 1
+    pageSize.value = 100
+    scrollDom.value.scrollTo({ top: 0 })
+  }
+  else {
+    page.value++
+    pageSize.value = 10
+  }
   getData()
 }
 function reset() {
@@ -86,6 +95,89 @@ function reset() {
 function onBaseTypeChange(v: string) {
   baseType.value = v
 }
+function updateDate(data: any) {
+  console.log('🚀 ~监听新数据', typeof data, data)
+  console.log('原来的list===>', list.value)
+}
+
+// TODO：替换数据方法
+const arrOld = [
+  {
+    ci: 1,
+    cn: '第一个联赛',
+    list: [
+      { ei: '001', en: '第1场赛事', num: '第一次赔率' },
+      { ei: '002', en: '第2场赛事', num: '第一次赔率' },
+      { ei: '003', en: '第3场赛事', num: '第一次赔率' },
+      { ei: '004', en: '第4场赛事', num: '第一次赔率' },
+      { ei: '005', en: '第5场赛事', num: '第一次赔率' },
+    ],
+  },
+  {
+    ci: 2,
+    cn: '第2个联赛',
+    list: [
+      { ei: '006', en: '第1场赛事', num: '第一次赔率' },
+      { ei: '007', en: '第2场赛事', num: '第一次赔率' },
+      { ei: '008', en: '第3场赛事', num: '第一次赔率' },
+      { ei: '009', en: '第4场赛事', num: '第一次赔率' },
+      { ei: '010', en: '第5场赛事', num: '第一次赔率' },
+    ],
+  },
+  {
+    ci: 3,
+    cn: '第3个联赛',
+    list: [
+      { ei: '011', en: '第1场赛事', num: '第一次赔率' },
+      { ei: '012', en: '第2场赛事', num: '第一次赔率' },
+      { ei: '013', en: '第3场赛事', num: '第一次赔率' },
+      { ei: '014', en: '第4场赛事', num: '第一次赔率' },
+      { ei: '015', en: '第5场赛事', num: '第一次赔率' },
+    ],
+  },
+  {
+    ci: 4,
+    cn: '第4个联赛',
+    list: [
+      { ei: '016', en: '第1场赛事', num: '第一次赔率' },
+      { ei: '017', en: '第2场赛事', num: '第一次赔率' },
+      { ei: '018', en: '第3场赛事', num: '第一次赔率' },
+      { ei: '019', en: '第4场赛事', num: '第一次赔率' },
+      { ei: '020', en: '第5场赛事', num: '第一次赔率' },
+    ],
+  },
+]
+const newData = { ei: '013', en: '第3场赛事', num: '😂😂😂😂😂😂😂' }
+function test(origin: {
+  ci: number
+  cn: string
+  list: {
+    ei: string
+    en: string
+    num: string
+  }[]
+}[], newData: {
+  ei: string
+  en: string
+  num: string
+}) {
+  const arr: {
+    ci: number
+    cn: string
+    list: {
+      ei: string
+      en: string
+      num: string
+    }[]
+  }[] = cloneDeep(origin)
+  for (let i = 0; i < arr.length; i++) {
+    const index = arr[i].list.findIndex(a => a.ei === newData.ei)
+    if (index > -1)
+      arr[i].list.splice(index, 1, newData)
+  }
+  console.log('origin====>', arr)
+}
+test(arrOld, newData)
 
 watch(currentUpcomingNav, () => {
   reset()
@@ -94,12 +186,14 @@ watch(currentUpcomingNav, () => {
 })
 
 onMounted(() => {
+  scrollDom.value = document.getElementById('main-content-scrollable')
   if (props.onPage) {
     getData()
     startUpcoming()
   }
 
   startCount()
+  sportDeltaBus.on(updateDate)
 })
 onBeforeUnmount(() => {
   stopUpcoming()
