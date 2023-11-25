@@ -95,6 +95,7 @@ function refreshDetail() {
 function onChooseCurrency(v: any) {
   clearUrl()
   currentCurrency.value = v
+  overlayTrue()
   autoLunchOnPc()
 }
 // 切换试玩真钱模式
