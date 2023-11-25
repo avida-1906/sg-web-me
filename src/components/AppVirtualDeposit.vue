@@ -41,16 +41,6 @@ const {
   return ''
 })
 const {
-  value: depositName,
-  errorMessage: depositNameError,
-  validate: depositNameValidate,
-  resetField: depositNameReset,
-} = useField<string>('depositName', (value) => {
-  if (!value)
-    return t('pls_input_deposit_name')
-  return ''
-})
-const {
   run: runFinanceThirdCoinDeposit,
   loading: financeThirdCoinDepositLoading,
 } = useRequest(ApiFinanceThirdCoinDeposit, {
@@ -114,7 +104,6 @@ const getFinanceMerchantCoinParam = computed(() => {
 
 async function confirmPayment() {
   await amountValidate()
-  await depositNameValidate()
   if (!amountError.value) {
     if (currentAisle.value.payment_type === 1) { // 三方支付存款
       runFinanceThirdCoinDeposit({
@@ -127,20 +116,18 @@ async function confirmPayment() {
       })
     }
     else if (currentAisle.value.payment_type === 2) { // 虚拟币存款(公司入款)
-      !depositNameError.value && runPaymentDepositCoinApplication({
+      runPaymentDepositCoinApplication({
         amount: amount.value,
         cid: currentAisle.value.id,
         currency_id: props.activeCurrency.cur,
         currency_name: props.activeCurrency.type,
         mid: currentAisle.value.method_id,
-        realname: depositName.value,
       })
     }
   }
 }
 function cancelPayment() {
   amountReset()
-  depositNameReset()
   depositStep.value = '1'
   emit('show', true)
 }
@@ -164,7 +151,6 @@ watch(() => props.currentNetwork, (newValue) => {
 })
 watch(() => currentAisle.value, () => {
   amountReset()
-  depositNameReset()
 })
 
 await application.allSettled([
@@ -190,13 +176,6 @@ await application.allSettled([
               <span>{{ item.amount_min }}-{{ item.amount_max }}</span>
             </div>
           </div>
-        </BaseLabel>
-        <BaseLabel
-          v-if="currentAisle.payment_type === 2"
-          :label="`${t('deposit_name')}:`"
-          :label-content="t('deposit_name_tip')"
-        >
-          <BaseInput v-model="depositName" :msg="depositNameError" />
         </BaseLabel>
         <!-- <BaseInput
           v-model="amount" :label="`充值金额: ${activeCurrency.type}`"

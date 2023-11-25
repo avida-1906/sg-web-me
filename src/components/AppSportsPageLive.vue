@@ -118,7 +118,6 @@ onBeforeUnmount(() => {
 
 if (currentLiveNav.value !== -1 && !props.onPage) {
   await application.allSettled([runAsync(params.value)])
-  console.log('curTotal===>', curTotal.value)
   startLive()
 }
 </script>
