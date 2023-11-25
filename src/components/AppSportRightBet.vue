@@ -33,7 +33,6 @@ const renderComponent = computed(() => {
 })
 
 function changeHeadSelectValue(value: EnumsBetSlipHeadStatus) {
-  console.error('changeHeadSelectValue', value)
   headSelectValue.value = value
 }
 </script>

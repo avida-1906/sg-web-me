@@ -41,7 +41,9 @@ const {
 } = storeToRefs(appStore)
 const sportStore = useSportsStore()
 /** 赔率是否变化 */
-const { bool: ovIsChange, setBool: setOvChangeStateBool } = useBoolean(false)
+const { bool: ovIsChange, setBool: setOvChangeState } = useBoolean(false)
+/** 是否有更低的赔率变化 */
+const { bool: ovIsLower, setBool: setOvIsLower } = useBoolean(false)
 const { openRegisterDialog } = useRegisterDialog()
 
 const {
@@ -51,13 +53,16 @@ const {
     setFetchBetInfoStatus(true)
     sportStore.cart.updateAllData(
       placeBetInfo,
-      (_ovIsChange, _mia, _maa, _isSupportCurrency) => {
-        if (ovIsChange.value !== _ovIsChange)
-          setOvChangeStateBool(_ovIsChange)
+      (_data) => {
+        if (ovIsChange.value !== _data.ovIsChange)
+          setOvChangeState(_data.ovIsChange)
 
-        multiMia.value = _mia
-        multiMaa.value = _maa
-        setSupportCurrencyStatus(_isSupportCurrency)
+        if (ovIsLower.value !== _data.ovIsLower)
+          setOvIsLower(_data.ovIsLower)
+
+        multiMia.value = _data.mia
+        multiMaa.value = _data.maa
+        setSupportCurrencyStatus(_data.isSupportCurrency)
       },
     )
   },
@@ -152,11 +157,27 @@ const errorInfo = computed<{
     }
   }
 
-  // 赔率变化
-  if (ovIsChange.value) {
-    return {
-      bool: true,
-      errorMess: '赔率已变更，您需先接受赔率更改方可进行投注',
+  // 不接受任何赔率变化
+  if (betOrderFilterValue.value === EnumOddsChange.notAcceptAnyOddsChange) {
+    // 赔率变化
+    if (ovIsChange.value) {
+      return {
+        bool: true,
+        errorMess: '赔率已变更，您需先接受赔率更改方可进行投注',
+      }
+    }
+  }
+
+  if (betOrderFilterValue.value === EnumOddsChange.acceptHigherOdds) {
+    // 赔率变化
+    if (ovIsChange.value) {
+      // 有更低的赔率变化
+      if (ovIsLower.value) {
+        return {
+          bool: true,
+          errorMess: '赔率已变更，您需先接受赔率更改方可进行投注',
+        }
+      }
     }
   }
 
@@ -416,7 +437,7 @@ watch(() => sportStore.cart.count, (val, oVal) => {
   }
   else {
     closeSetInterval()
-    setOvChangeStateBool(false)
+    setOvChangeState(false)
   }
 }, {
   immediate: true,
@@ -462,8 +483,8 @@ onUnmounted(() => {
           v-model="betOrderFilterValue"
           class="bet-order-filter"
           :options="betOrderFilterData"
-
-          no-hover popper
+          no-hover
+          popper
         />
         <BaseButton
           type="text"
@@ -605,7 +626,7 @@ onUnmounted(() => {
             v-if="ovIsChange"
             size="md"
             bg-style="primary"
-            @click="setOvChangeStateBool(false)"
+            @click="setOvChangeState(false)"
           >
             接受新赔率
           </BaseButton>
