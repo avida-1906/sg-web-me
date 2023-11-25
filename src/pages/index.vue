@@ -18,7 +18,6 @@ const {
   widthBoundarySm,
 } = storeToRefs(useWindowStore())
 const { isLogin, userInfo } = storeToRefs(useAppStore())
-const { openVipDialog } = useVipDialog()
 // const { openNoticeDialog } = useDialogNotice()
 // 公告弹框和跑马灯
 const {
@@ -43,6 +42,10 @@ const onShowMore = function () {
     btnText.value = t('view_less')
   else
     btnText.value = t('view_more_2')
+}
+
+function goVip() {
+  router.push('/vip/promotion-bonus')
 }
 
 runMemberNoticeAllList()
@@ -79,7 +82,7 @@ runMemberNoticeAllList()
             <template #title>
               <h1>{{ t('welcome_back') }}，{{ userInfo?.username }}</h1>
             </template>
-            <p @click="openVipDialog">
+            <p @click="goVip">
               {{ t('user_vip_pro') }} <BaseIcon name="uni-arrowright-line" />
             </p>
           </AppVipProgress>
