@@ -89,7 +89,7 @@ function onClickPopper() {
           <span>{{ popperLabel }}</span>
         </slot>
 
-        <div class="icon" :class="{ up: isPopperOpen }">
+        <div v-if="!disabled" class="icon" :class="{ up: isPopperOpen }">
           <BaseIcon name="uni-arrow-down" />
         </div>
       </div>
@@ -146,7 +146,7 @@ function onClickPopper() {
             {{ o.label }}
           </option>
         </select>
-        <div class="icon">
+        <div v-if="!disabled" class="icon">
           <BaseIcon name="uni-arrow-down" />
         </div>
       </div>

@@ -57,7 +57,7 @@ function startUpcoming() {
 
   timer = setInterval(() => {
     page.value = 1
-    run({ si: currentUpcomingNav.value, m: 4, page: page.value, page_size: curTotal.value })
+    run({ ...params.value, page_size: curTotal.value })
     curTotal.value = 0
   }, 120000)
 }

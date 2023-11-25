@@ -58,7 +58,7 @@ function startLive() {
 
   timer = setInterval(() => {
     page.value = 1
-    run({ si: currentLiveNav.value, m: 3, page: page.value, page_size: curTotal.value })
+    run({ ...params.value, page_size: curTotal.value })
     curTotal.value = 0
   }, 60000)
 }
@@ -107,7 +107,7 @@ watch(currentLiveNav, () => {
 
 onMounted(() => {
   scrollDom.value = document.getElementById('main-content-scrollable')
-  if (currentLiveNav.value !== -1) {
+  if (currentLiveNav.value !== -1 && props.onPage) {
     getData()
     startLive()
   }
@@ -123,6 +123,7 @@ onBeforeUnmount(() => {
 
 if (currentLiveNav.value !== -1 && !props.onPage) {
   await application.allSettled([runAsync(params.value)])
+  console.log('curTotal===>', curTotal.value)
   startLive()
 }
 </script>
@@ -149,13 +150,14 @@ if (currentLiveNav.value !== -1 && !props.onPage) {
         :event-list="item.list"
         :base-type="baseType"
       />
+      <BaseButton
+        v-show="curTotal < total && !onLobby"
+        size="none" type="text" @click="loadMore"
+      >
+        {{ t('load_more') }}
+      </BaseButton>
     </div>
-    <BaseButton
-      v-show="curTotal < total && !onLobby"
-      size="none" type="text" @click="loadMore"
-    >
-      {{ t('load_more') }}
-    </BaseButton>
+
     <BaseButton
       v-if="list.length > 3 && onLobby"
       class="check-more" type="text" padding0
@@ -188,6 +190,7 @@ if (currentLiveNav.value !== -1 && !props.onPage) {
 .market-wrapper {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: var(--tg-spacing-12);
   margin-bottom: var(--tg-spacing-24);
 }
