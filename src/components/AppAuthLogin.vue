@@ -9,6 +9,8 @@ enum AuthTypes {
 
 type AuthTypesKeys = keyof typeof AuthTypes
 
+const closeDialog = inject('closeDialog', () => { })
+
 const { VITE_SOCKET_PREFIX } = getEnv()
 
 const { t } = useI18n()
@@ -53,8 +55,9 @@ onMounted(() => {
       else if (data.action === 'error')
         openNotify({ type: 'error', message: data.extra_data })
     }
+    closeDialog()
     setTimeout(() => {
-      gWin.value.close()
+      gWin.value?.close()
     }, 1500)
   })
 })

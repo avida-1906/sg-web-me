@@ -189,8 +189,7 @@ function mapHeadArea(
         </span>
       </div>
       <div class="competitor-item border" style="grid-area: competitor_home;">
-        <!-- <BaseImage :url="data.htpic" is-cloud width="20px" height="20px" /> -->
-        <AppSportImage :url="data.htpic" is-cloud />
+        <AppSportImage :url="data.htpic" is-cloud width="20px" height="20px" />
         <span>{{ data.homeTeamName }}</span>
       </div>
       <div class="competitor-item" style="grid-area: competitor_away;">

@@ -151,12 +151,12 @@ const errorInfo = computed<{
         errorMess: '您有不支持复式投注的投注项',
       }
     }
+  }
 
-    if (sportStore.cart.count > VITE_SPORT_MULTI_BET_MAX) {
-      return {
-        bool: true,
-        errorMess: `复式投注项组合不能超过 ${VITE_SPORT_MULTI_BET_MAX} 个。`,
-      }
+  if (sportStore.cart.count > VITE_SPORT_MULTI_BET_MAX) {
+    return {
+      bool: true,
+      errorMess: `复式投注项组合不能超过 ${VITE_SPORT_MULTI_BET_MAX} 个。`,
     }
   }
 
@@ -386,6 +386,13 @@ watch(() => sportStore.cart.count, (val, oVal) => {
         chatScrollContent.value.scrollTop = chatScrollContent.value?.scrollHeight ?? 0
     })
 
+    if (val > VITE_SPORT_MULTI_BET_MAX)
+      return
+
+    const _oVal = oVal ?? 0
+    if (val > _oVal)
+      emit('changeHeadSelectValue', EnumsBetSlipHeadStatus.betSlip)
+
     if (!timer) {
       runGetSportPlaceBetInfoHandle()
       startSetInterval()
@@ -440,7 +447,7 @@ onUnmounted(() => {
           class="bet-order-filter"
           :options="betOrderFilterData"
 
-          popper no-hover
+          no-hover popper
         />
         <BaseButton
           type="text"
@@ -567,7 +574,6 @@ onUnmounted(() => {
 
         <template v-if="!isLogin">
           <BaseButton
-            v-if="ovIsChange"
             size="md"
             bg-style="primary"
             @click="openRegisterDialog"

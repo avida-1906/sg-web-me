@@ -227,9 +227,9 @@ onUnmounted(() => {
               :disabled="!!timer"
               custom-padding
               :style="{
-                '--tg-base-button-style-bg': timer ? '#557086' : '',
+                '--tg-base-button-style-bg': timer ? 'var(--tg-text-grey)' : '',
                 'width': '105px',
-                '--tg-base-button-padding-y': '13px',
+                '--tg-base-button-padding-y': 'var(--tg-spacing-13)',
               }"
               @click="runAsyncMemberSendMailCode"
             >
@@ -239,6 +239,12 @@ onUnmounted(() => {
             </BaseButton>
           </div>
         </BaseLabel>
+        <div v-if="getPayPwdState" class="forget-pwd">
+          忘记资金密码？前往
+          <BaseButton size="none" type="text">
+            联系客服
+          </BaseButton>
+        </div>
       </template>
 
       <!-- <template #top-desc>
@@ -281,6 +287,12 @@ onUnmounted(() => {
     justify-content: center;
     align-items: flex-start;
     gap: var(--tg-spacing-10);
+  }
+  .forget-pwd{
+    font-size: var(--tg-font-size-default);
+    text-align: center;
+    margin-top: var(--tg-spacing-30);
+    --tg-base-button-text-default-color: var(--tg-text-blue);
   }
 }
 </style>
