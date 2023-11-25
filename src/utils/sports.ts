@@ -541,7 +541,7 @@ export class SportsCart {
     }
 
     if (fn)
-      fn(ovIsChange, duplexOv, mia, maa, isSupportCurrency)
+      fn(ovIsChange, mia, maa, isSupportCurrency)
   }
 
   /**

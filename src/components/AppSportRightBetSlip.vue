@@ -11,8 +11,6 @@ const chatScrollContent = ref<HTMLElement | null>(null)
 const { VITE_SPORT_MULTI_BET_MAX } = getEnv()
 
 let timer: any = null
-// 复式总赔率
-const duplexOv = ref('')
 const betLoading = ref(false)
 // 复式投注项的最小投注额
 const multiMia = ref(0)
@@ -53,11 +51,10 @@ const {
     setFetchBetInfoStatus(true)
     sportStore.cart.updateAllData(
       placeBetInfo,
-      (_ovIsChange, _duplexOv, _mia, _maa, _isSupportCurrency) => {
+      (_ovIsChange, _mia, _maa, _isSupportCurrency) => {
         if (ovIsChange.value !== _ovIsChange)
           setOvChangeStateBool(_ovIsChange)
 
-        duplexOv.value = _duplexOv
         multiMia.value = _mia
         multiMaa.value = _maa
         setSupportCurrencyStatus(_isSupportCurrency)
@@ -99,12 +96,7 @@ const betBtnText = computed(() =>
   betOrderData.value.find(b => b.value === betOrderSelectValue.value)?.label ?? '-',
 )
 const cartDataList = computed(() => sportStore.cart.dataList)
-/** 复式tab下的预计支付额 */
-const duplexTotalProfit = computed(() => {
-  const _duplexOv = Number(duplexOv.value)
-  const val = Number(duplexInputValue.value)
-  return mul(_duplexOv, val)
-})
+
 /** 您的投注额不能超过余额 */
 const isBetAmountOverBalance = computed(() => {
   if (betOrderSelectValue.value === EnumsBetSlipBetSlipTabStatus.single)
@@ -222,6 +214,25 @@ const isBetBtnDisabled = computed(() => {
 const suffixLength = computed(() =>
   application.getCurrencySuffixLength(currentGlobalCurrency.value),
 )
+
+/** 复式总赔率 */
+const duplexOv = computed(() => {
+  if (sportStore.cart.count === 0)
+    return '0.00'
+
+  const v = sportStore.cart.dataList.reduce((prev, cur) => {
+    return +mul(prev, +cur.ov)
+  }, 1)
+
+  return toFixed(v, 2)
+})
+
+/** 复式tab下的预计支付额 */
+const duplexTotalProfit = computed(() => {
+  const _duplexOv = Number(duplexOv.value)
+  const val = Number(duplexInputValue.value)
+  return mul(_duplexOv, val)
+})
 
 async function fetchBet(list: IBetArgs[]) {
   betLoading.value = true
@@ -543,7 +554,10 @@ onUnmounted(() => {
         <div class="betslip-calculation-summary">
           <div v-show="isBetMulti" class="calculation-item">
             <span>{{ t('sports_total_odds') }}</span>
-            <AppSportsOdds :odds="duplexOv" arrow="left" />
+            <AppSportsOdds
+              :odds="duplexOv"
+              arrow="left"
+            />
           </div>
           <!-- 单式 -->
           <div v-show="isBetSingle" class="calculation-item">
