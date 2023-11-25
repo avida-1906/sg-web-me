@@ -29,7 +29,7 @@ const { run: runGetAuthUrl } = useRequest(ApiMemberThirdAuthUrl, {
   onSuccess: (data) => {
     setTimeout(() => {
       data && gWin.value?.location.replace(data)
-    }, 1000)
+    }, 0)
   },
 })
 
