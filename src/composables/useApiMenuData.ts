@@ -21,7 +21,6 @@ export type Menu = Array<MenuItem>
 export function useApiMenuData() {
   const { openWalletDialog } = useWalletDialog()
   const { openSafeDialog } = useSafeDialog()
-  const { openVipDialog } = useVipDialog()
   const { openStatisticsDialog } = useStatisticsDialog()
   const { openLogoutDialog } = useLogoutDialog()
   const {
@@ -97,7 +96,6 @@ export function useApiMenuData() {
               title: 'VIP',
               path: '/vip/promotion-bonus',
               icon: 'chess-air-bonus',
-              // callBack: () => openVipDialog(),
             },
             {
               title: t('statistical_data'),
