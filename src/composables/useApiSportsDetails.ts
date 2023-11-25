@@ -187,35 +187,57 @@ export function useApiSportDetails() {
       return item.tgis.includes(currentTab.value) && item.btn.includes(searchName.value.trim())
     })
 
+    /**
+     * 遍历 _filter，将 item.ms 循环，把 sn 中{total}替换成 sp字段中的值
+     */
+    _filter.forEach((_mlItem) => {
+      const _ms = _mlItem.ms
+      _ms.forEach((item) => {
+        const _sn = item.sn
+        const _spStr = item.sp
+        if (_spStr) {
+          const _spObject = application.urlParamsToObject(_spStr)
+          const _spKeys = Object.keys(_spObject)
+
+          _spKeys.forEach((key) => {
+            const _value = _spObject[key]
+            const _reg = new RegExp(`{${key}}`, 'g')
+            item.sn = _sn.replace(_reg, _value)
+          })
+        }
+      })
+    })
+
     const renderList: ISportEventInfoMl[] = []
     for (let i = 0; i < _filter.length; i++) {
-      const item = _filter[i]
-      if (item.pat === 1 || item.pat === 3) {
+      const mlItem = _filter[i]
+      if (mlItem.pat === 1 || mlItem.pat === 3) {
         // 组合购物车需要的数据
         const _infoList = sportInfo.value.list[0]
-        for (let j = 0; j < item.ms.length; j++) {
-          const _ms = item.ms[j]
-          _ms.cartInfo = getCartObject(item, _ms, _infoList)
+        for (let j = 0; j < mlItem.ms.length; j++) {
+          const _ms = mlItem.ms[j]
+
+          _ms.cartInfo = getCartObject(mlItem, _ms, _infoList)
         }
 
-        renderList.push(item)
+        renderList.push(mlItem)
       }
-      else if (item.pat === 2 || item.pat === 4) {
-        const _msObject = renderList.find(ii => ii?.btn === item.btn)
+      else if (mlItem.pat === 2 || mlItem.pat === 4) {
+        const _msObject = renderList.find(ii => ii?.btn === mlItem.btn)
 
         // 组合购物车需要的数据
         const _infoList = sportInfo.value.list[0]
-        for (let j = 0; j < item.ms.length; j++) {
-          const _ms = item.ms[j]
-          _ms.cartInfo = getCartObject(_msObject || item, _ms, _infoList)
+        for (let j = 0; j < mlItem.ms.length; j++) {
+          const _ms = mlItem.ms[j]
+          _ms.cartInfo = getCartObject(_msObject || mlItem, _ms, _infoList)
         }
 
         if (_msObject) {
-          _msObject.other.push(...item.ms)
+          _msObject.other.push(...mlItem.ms)
         }
         else {
-          item.other = [...item.ms]
-          renderList.push(item)
+          mlItem.other = [...mlItem.ms]
+          renderList.push(mlItem)
         }
       }
     }

@@ -94,7 +94,8 @@ function startDomTransition() {
         v-else
         :style="
           `--tg-sports-odds-color: ${sportStore.cart.checkWid(props.cartInfo.wid)
-            ? 'var(--tg-text-white)' : ''}`"
+            ? 'var(--tg-text-white)' : ''}`
+        "
         :arrow="layout === 'horizontal' ? 'left' : 'right'"
         :odds="odds || '0.00'"
       />
