@@ -166,6 +166,10 @@ watch(() => props.currentNetwork, (newValue) => {
   if (newValue)
     runAsyncFinanceMerchantCoinList(getFinanceMerchantCoinParam.value)
 })
+watch(() => currentAisle.value, () => {
+  amountReset()
+  depositNameReset()
+})
 
 await application.allSettled([
   runAsyncFinanceMerchantCoinList(getFinanceMerchantCoinParam.value),
