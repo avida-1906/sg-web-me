@@ -7,7 +7,7 @@ export function useDialogThirdAuthForm() {
     openDialog: openThirdAuthFormDialog,
     closeDialog: closeThirdAuthFormDialog,
   } = useDialog({
-    title: `${t('reg')} Auth`,
+    title: `${t('reg')}`,
     default: ({ data, ty }) => h(AppAuthThirdFormDialog, { data, ty }),
   })
 
