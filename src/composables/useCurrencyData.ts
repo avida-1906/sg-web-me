@@ -71,7 +71,7 @@ export const currencyConfig: Record<EnumCurrencyKey, CurrencyValue> = {
     bankTree: '',
   },
   ETH: {
-    prefix: 'ETG',
+    prefix: 'ETH',
     cur: '708',
     bankTree: '',
   },

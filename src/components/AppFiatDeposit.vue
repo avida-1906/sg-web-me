@@ -59,7 +59,7 @@ const {
   resetField: depositNameReset,
 } = useField<string>('depositName', (value) => {
   if (!value)
-    return '存款人姓名必填'
+    return '请输入存款人姓名'
   return ''
 })
 const {
