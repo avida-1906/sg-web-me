@@ -272,10 +272,8 @@ async function depositSubmit() {
 }
 
 watch(() => props.activeCurrency, (newValue) => {
-  if (newValue) {
-    depositNameReset()
+  if (newValue)
     runAsyncPaymentMethodList({ currency_id: newValue.cur })
-  }
 })
 watch(() => currentType.value, (newValue) => {
   if (newValue) {

@@ -155,14 +155,10 @@ function backDepositInit(data: { amount: string; id?: string }) {
 }
 
 watch(() => props.activeCurrency, (newValue) => {
-  amountReset()
-  depositNameReset()
   if (newValue)
     (!financeMerchantCoinListLoad.value) && runAsyncFinanceMerchantCoinList(getFinanceMerchantCoinParam.value)
 })
 watch(() => props.currentNetwork, (newValue) => {
-  amountReset()
-  depositNameReset()
   if (newValue)
     runAsyncFinanceMerchantCoinList(getFinanceMerchantCoinParam.value)
 })
