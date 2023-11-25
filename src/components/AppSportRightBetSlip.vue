@@ -416,6 +416,11 @@ watch(currentGlobalCurrency, () => {
   duplexInputValue.value = '' as any
 })
 
+watch(isLogin, (val) => {
+  if (val)
+    runGetSportPlaceBetInfoHandle()
+})
+
 onUnmounted(() => {
   closeSetInterval()
 })

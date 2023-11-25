@@ -29,8 +29,10 @@ const props = withDefaults(defineProps<Props>(), {
 })
 const { t } = useI18n()
 const appStore = useAppStore()
-const { currentGlobalCurrency } = storeToRefs(appStore)
+const { currentGlobalCurrency, isLogin } = storeToRefs(appStore)
 const sportStore = useSportsStore()
+
+const notLoginAmount = ref('')
 
 const {
   value: amount,
@@ -163,6 +165,7 @@ watch(() => props.cartInfoData.amount, () => {
       <div v-show="isBetSingle && cartInfoData.result === undefined" class="footer">
         <div class="bet-amount">
           <BaseInput
+            v-if="isLogin"
             :key="currentGlobalCurrency"
             v-model="amount"
             type="number"
@@ -172,6 +175,17 @@ watch(() => props.cartInfoData.amount, () => {
             :disabled="isDisabled"
             :msg-after-touched="true"
             @blur="inputBlur"
+          >
+            <template #right-icon>
+              <AppCurrencyIcon :currency-type="currentGlobalCurrency" />
+            </template>
+          </BaseInput>
+          <BaseInput
+            v-else
+            v-model="notLoginAmount"
+            type="number"
+            mb0
+            placeholder=""
           >
             <template #right-icon>
               <AppCurrencyIcon :currency-type="currentGlobalCurrency" />
