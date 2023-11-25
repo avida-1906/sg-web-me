@@ -213,11 +213,16 @@ export default defineConfig(({ mode }) => {
     },
 
     build: {
-      minify: false,
+      minify: 'terser',
       assetsInlineLimit: 0,
       chunkSizeWarningLimit: 600,
       rollupOptions: {
         external: /\.md$/,
+      },
+      terserOptions: {
+        compress: {
+          drop_console: `${env.VITE_DROP_CONSOLE}` === 'true',
+        },
       },
     },
 
