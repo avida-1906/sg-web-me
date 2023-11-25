@@ -46,13 +46,14 @@ const columns = reactive<IColumns[]>([
 const dayType = ref(dayOptions[0].value)
 
 const {
-  list: data,
+  list: records,
   runAsync: runGetRecordAsync,
   page,
   page_size,
   total,
   prev,
   next,
+  data: backData,
 } = useList(ApiMemberVipBonusRecord, {}, { page_size: 10 })
 
 const params = computed(() => ({
@@ -98,15 +99,18 @@ watch(() => params.value.start_time, () => {
         :options="dayOptions"
         class="select-box"
       />
-      <div class="total">
+      <div v-if="backData" class="total">
         <span class="label">领取总额：</span>
-        <AppAmount currency-type="USDT" amount="9999.0000" />
+        <AppAmount
+          currency-type="USDT"
+          :amount="+backData.total_amount > 0 ? backData.total_amount : '0.00'"
+        />
       </div>
     </div>
-    <template v-if="data && data.length">
+    <template v-if="records && records.length">
       <BaseTable
         :columns="columns"
-        :data-source="data"
+        :data-source="records"
       >
         <!-- :loading="loading" -->
         <template #created_at="{ record }">
