@@ -157,7 +157,7 @@ export class SportsOdds {
  * @param origin 赛事详情数据
  */
 export function sportsDataGroupByLeague(origin: ISportEventInfo[]) {
-  const arr = []
+  const arr: ISportDataGroupedByLeague = []
   for (let i = 0; i < origin.length; i++) {
     if (i === 0) {
       arr.push({ ci: origin[i].ci, cn: origin[i].cn, list: [origin[i]] })
@@ -193,6 +193,11 @@ export function sportsDataGroupByLeagueLoadMore(
   return arr
 }
 
+/**
+ * 盘口根据联赛组合监听mqtt通知更新
+ * @param origin
+ * @param newData
+ */
 export function sportsDataUpdateByMqtt(
   origin: ISportDataGroupedByLeague,
   newData: ISportEventList[],

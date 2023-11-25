@@ -19,7 +19,6 @@ const { VITE_SPORT_EVENT_PAGE_SIZE, VITE_SPORT_EVENT_PAGE_SIZE_MAX } = getEnv()
 const { bool: isSelfOpen } = useBoolean(props.autoShow)
 
 let timer: any = null
-const scrollDom = ref()
 const page = ref(1)
 const pageSize = ref(+VITE_SPORT_EVENT_PAGE_SIZE)
 const total = ref(props.count)
@@ -68,7 +67,7 @@ function loadMore() {
   if (curTotal.value >= +VITE_SPORT_EVENT_PAGE_SIZE_MAX) {
     page.value = 1
     pageSize.value = +VITE_SPORT_EVENT_PAGE_SIZE_MAX
-    scrollDom.value.scrollTo({ top: 0 })
+    scrollMainContentToTop()
   }
   else {
     page.value++
@@ -111,7 +110,6 @@ watch(isRegionOpen, (a) => {
 })
 
 onMounted(() => {
-  scrollDom.value = document.getElementById('main-content-scrollable')
   if (props.autoShow && props.isRegionOpen)
     getEventsData()
 })

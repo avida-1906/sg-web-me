@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import type { ISportEventInfo, ISportEventList } from '~/apis/types'
+import type { ISportEventList } from '~/apis/types'
+import type { ISportDataGroupedByLeague } from '~/types'
 
 const props = defineProps<{ onPage?: boolean }>()
 
@@ -15,17 +16,12 @@ const {
 } = useSportsDataUpdate(sportsStore.runSportsCount, 120, true)
 
 let timer: any = null
-const scrollDom = ref()
 const baseType = ref('winner')
 const page = ref(1)
 const pageSize = ref(+VITE_SPORT_EVENT_PAGE_SIZE)
 const total = ref(0)
 const curTotal = ref(0)
-const list = ref< {
-  ci: string
-  cn: string
-  list: ISportEventInfo[]
-}[]>([])
+const list = ref<ISportDataGroupedByLeague>([])
 const params = computed(() => {
   return {
     si: currentUpcomingNav.value,
@@ -73,7 +69,7 @@ function loadMore() {
     curTotal.value = 0
     page.value = 1
     pageSize.value = +VITE_SPORT_EVENT_PAGE_SIZE_MAX
-    scrollDom.value.scrollTo({ top: 0 })
+    scrollMainContentToTop()
   }
   else {
     page.value++
@@ -104,7 +100,6 @@ watch(currentUpcomingNav, () => {
 })
 
 onMounted(() => {
-  scrollDom.value = document.getElementById('main-content-scrollable')
   if (props.onPage) {
     getData()
     startUpcoming()

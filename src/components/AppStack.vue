@@ -18,7 +18,6 @@ const props = withDefaults(defineProps<Props>(), {
   },
 })
 const emit = defineEmits(['previous', 'next'])
-const scrollDom = ref()
 
 const maxPage = computed(() => {
   return Math.ceil(props.paginationData.total / props.paginationData.pageSize)
@@ -29,19 +28,15 @@ const toPrevious = function () {
     return
   emit('previous')
   if (props.scroll)
-    scrollDom.value.scrollTo({ top: 0 })
+    scrollMainContentToTop()
 }
 const toNext = function () {
   if (props.paginationData.total === 0 || props.paginationData.page === maxPage.value)
     return
   emit('next')
   if (props.scroll)
-    scrollDom.value.scrollTo({ top: 0 })
+    scrollMainContentToTop()
 }
-
-onMounted(() => {
-  scrollDom.value = document.getElementById('main-content-scrollable')
-})
 </script>
 
 <template>

@@ -1,5 +1,6 @@
 <script setup lang='ts'>
-import type { ISportEventInfo, ISportEventList } from '~/apis/types'
+import type { ISportEventList } from '~/apis/types'
+import type { ISportDataGroupedByLeague } from '~/types'
 
 const { VITE_SPORT_EVENT_PAGE_SIZE, VITE_SPORT_EVENT_PAGE_SIZE_MAX } = getEnv()
 const { t } = useI18n()
@@ -10,11 +11,7 @@ const page = ref(1)
 const pageSize = ref(+VITE_SPORT_EVENT_PAGE_SIZE)
 const total = ref(0)
 const curTotal = ref(0)
-const list = ref< {
-  ci: string
-  cn: string
-  list: ISportEventInfo[]
-}[]>([])
+const list = ref<ISportDataGroupedByLeague>([])
 const params = computed(() => {
   return {
     si: 0, m: 0, hot: 1, page: page.value, page_size: pageSize.value,

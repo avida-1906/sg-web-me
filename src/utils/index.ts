@@ -230,3 +230,11 @@ export const application = new Application()
 export function getEnv() {
   return import.meta.env
 }
+
+/**
+ * 滚动内容区域到顶部
+ */
+export function scrollMainContentToTop() {
+  const dom = document.getElementById('main-content-scrollable')
+  dom && dom.scrollTo({ top: 0 })
+}
