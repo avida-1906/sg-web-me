@@ -26,10 +26,12 @@ export const SPORTS_LIST_TO_CART_BUS = 'LIST_TO_CART_BUS'
 /** 体育购物车向列表通知 */
 export const SPORTS_CART_TO_LIST_BUS = 'CART_TO_LIST_BUS'
 
+/** 体育列表向购物车通知 */
 export const sportsListToCartBus = useEventBus<
     ISportListToCartData
 >(SPORTS_LIST_TO_CART_BUS)
 
+/** 体育购物车向列表通知 */
 export const sportsCartToListBus = useEventBus<
 ISportListToCartData
 >(SPORTS_CART_TO_LIST_BUS)
