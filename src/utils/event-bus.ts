@@ -3,6 +3,8 @@
  * @module utils/event-bus
  */
 
+import type { ISportListToCartData } from '~/types'
+
 /** 聊天室消息 通知 */
 export const CHAT_MESSAGE_BUS = 'CHAT_MESSAGE_BUS'
 /** MQTT 连接成功 通知 */
@@ -19,3 +21,15 @@ export const REFRESH_MEMBER_BUS = 'REFRESH_MEMBER_BUS'
 export const REFRESH_AUTH_BUS = 'REFRESH_AUTH_BUS'
 /** 体育数据变化通知 */
 export const SPORTS_DATA_CHANGE_BUS = 'SPORTS_DATA_CHANGE_BUS'
+/** 体育列表向购物车通知 */
+export const SPORTS_LIST_TO_CART_BUS = 'LIST_TO_CART_BUS'
+/** 体育购物车向列表通知 */
+export const SPORTS_CART_TO_LIST_BUS = 'CART_TO_LIST_BUS'
+
+export const sportsListToCartBus = useEventBus<
+    ISportListToCartData
+>(SPORTS_LIST_TO_CART_BUS)
+
+export const sportsCartToListBus = useEventBus<
+ISportListToCartData
+>(SPORTS_CART_TO_LIST_BUS)

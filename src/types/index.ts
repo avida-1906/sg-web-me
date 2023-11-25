@@ -191,3 +191,21 @@ export type ISportDataGroupedByLeague = {
   cn: string
   list: ISportEventInfo[]
 }[]
+
+/**
+ * 列表和购物车通知传递的数据类型
+ */
+export interface ISportListToCartData {
+  /** 盘口id */
+  wid: string
+  /** 赔率 */
+  ov: string
+  /**
+   * 0:关盘
+   *
+   * 1:开盘
+   *
+   * 2:不支援串关
+   */
+  os: 0 | 1 | 2
+}
