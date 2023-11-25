@@ -91,7 +91,7 @@ function changeBar(item: { name: string; path?: string }) {
 <template>
   <div class="app-footer-bar page-content">
     <div
-      v-for="item, index of tabbar"
+      v-for="item of tabbar"
       v-show="item.show"
       :key="item.icon"
       class="bar-item"
@@ -99,7 +99,6 @@ function changeBar(item: { name: string; path?: string }) {
     >
       <BaseButton type="text" @click.stop="changeBar(item)">
         <div
-          :id="index === 2 ? EnumSportEndDomID.H5_CART_END_DOM : ''"
           class="bar-btn"
         >
           <BaseBadge
@@ -114,6 +113,7 @@ function changeBar(item: { name: string; path?: string }) {
         </div>
       </BaseButton>
     </div>
+    <div :id="EnumSportEndDomID.H5_CART_END_DOM" class="h5-end-dom" />
   </div>
 </template>
 
@@ -130,6 +130,13 @@ function changeBar(item: { name: string; path?: string }) {
   justify-items: center;
   background: var(--tg-secondary-dark);
   overflow: hidden;
+  .h5-end-dom {
+    position: absolute;
+    width: 20px;
+    left: 50%;
+    top: 0;
+    transform: translate(-50%,0);
+  }
   .bar-item{
     width: 100%;
     height: 100%;
