@@ -39,12 +39,12 @@ const data = computed(() =>
           class="score-wrap"
           :class="{
             'user-level-vip':
-              userInfo && +userInfo.vip === +record.level,
+              userInfo && +userInfo.vip + 1 === +record.level,
           }"
         >
           <span
-            v-if="userInfo && userInfo.score && +userInfo.vip === +record.level"
-          >{{ userInfo.score }}
+            v-if="userInfo && +userInfo.vip + 1 === +record.level"
+          >{{ userInfo.score || '0' }}
             <BaseIcon name="coin-usdt" />/</span>{{ record.score }}
           <BaseIcon name="coin-usdt" />
         </div>
@@ -64,6 +64,11 @@ const data = computed(() =>
   display: flex;
   align-items: center;
   justify-content: center;
+  > span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   svg {
     margin-left: var(--tg-spacing-8);
   }

@@ -200,6 +200,7 @@ declare global {
   const find: typeof import('lodash-es')['find']
   const findIndex: typeof import('lodash-es')['findIndex']
   const findKey: typeof import('lodash-es')['findKey']
+  const floor: typeof import('lodash-es')['floor']
   const get: typeof import('lodash-es')['get']
   const getActivePinia: typeof import('pinia')['getActivePinia']
   const getCartObject: typeof import('./utils/sports')['getCartObject']
@@ -560,6 +561,7 @@ declare global {
   const useVModels: typeof import('@vueuse/core')['useVModels']
   const useVibrate: typeof import('@vueuse/core')['useVibrate']
   const useVipDialog: typeof import('./composables/useDialogVip')['useVipDialog']
+  const useVipInfo: typeof import('./composables/useVipInfo')['useVipInfo']
   const useVirAddressDialog: typeof import('./composables/useDialogVirAddress')['useVirAddressDialog']
   const useVirtualList: typeof import('@vueuse/core')['useVirtualList']
   const useWakeLock: typeof import('@vueuse/core')['useWakeLock']
@@ -783,6 +785,7 @@ declare module 'vue' {
     readonly find: UnwrapRef<typeof import('lodash-es')['find']>
     readonly findIndex: UnwrapRef<typeof import('lodash-es')['findIndex']>
     readonly findKey: UnwrapRef<typeof import('lodash-es')['findKey']>
+    readonly floor: UnwrapRef<typeof import('lodash-es')['floor']>
     readonly get: UnwrapRef<typeof import('lodash-es')['get']>
     readonly getActivePinia: UnwrapRef<typeof import('pinia')['getActivePinia']>
     readonly getCartObject: UnwrapRef<typeof import('./utils/sports')['getCartObject']>
@@ -1133,6 +1136,7 @@ declare module 'vue' {
     readonly useVModels: UnwrapRef<typeof import('@vueuse/core')['useVModels']>
     readonly useVibrate: UnwrapRef<typeof import('@vueuse/core')['useVibrate']>
     readonly useVipDialog: UnwrapRef<typeof import('./composables/useDialogVip')['useVipDialog']>
+    readonly useVipInfo: UnwrapRef<typeof import('./composables/useVipInfo')['useVipInfo']>
     readonly useVirAddressDialog: UnwrapRef<typeof import('./composables/useDialogVirAddress')['useVirAddressDialog']>
     readonly useVirtualList: UnwrapRef<typeof import('@vueuse/core')['useVirtualList']>
     readonly useWakeLock: UnwrapRef<typeof import('@vueuse/core')['useWakeLock']>
@@ -1350,6 +1354,7 @@ declare module '@vue/runtime-core' {
     readonly find: UnwrapRef<typeof import('lodash-es')['find']>
     readonly findIndex: UnwrapRef<typeof import('lodash-es')['findIndex']>
     readonly findKey: UnwrapRef<typeof import('lodash-es')['findKey']>
+    readonly floor: UnwrapRef<typeof import('lodash-es')['floor']>
     readonly get: UnwrapRef<typeof import('lodash-es')['get']>
     readonly getActivePinia: UnwrapRef<typeof import('pinia')['getActivePinia']>
     readonly getCartObject: UnwrapRef<typeof import('./utils/sports')['getCartObject']>
@@ -1700,6 +1705,7 @@ declare module '@vue/runtime-core' {
     readonly useVModels: UnwrapRef<typeof import('@vueuse/core')['useVModels']>
     readonly useVibrate: UnwrapRef<typeof import('@vueuse/core')['useVibrate']>
     readonly useVipDialog: UnwrapRef<typeof import('./composables/useDialogVip')['useVipDialog']>
+    readonly useVipInfo: UnwrapRef<typeof import('./composables/useVipInfo')['useVipInfo']>
     readonly useVirAddressDialog: UnwrapRef<typeof import('./composables/useDialogVirAddress')['useVirAddressDialog']>
     readonly useVirtualList: UnwrapRef<typeof import('@vueuse/core')['useVirtualList']>
     readonly useWakeLock: UnwrapRef<typeof import('@vueuse/core')['useWakeLock']>
