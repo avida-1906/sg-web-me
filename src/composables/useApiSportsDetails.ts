@@ -220,8 +220,6 @@ export function useApiSportDetails() {
       }
     }
 
-    console.error('renderList', renderList)
-
     return renderList
   })
 

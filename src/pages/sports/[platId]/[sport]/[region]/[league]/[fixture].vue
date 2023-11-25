@@ -28,7 +28,7 @@ usePageTitle({ prefix: title })
 watch(
   () => route.params,
   (value) => {
-    if (route.params.sport && route.params.fixture)
+    if (value.sport && value.fixture)
       runGetSportInfo({ si: Number(route.params.sport), ei: `${route.params.fixture}` })
   },
   { immediate: true },
@@ -165,7 +165,7 @@ watch(
                               v-for="nameItem in item.ms"
                               :key="nameItem.wid"
                             >
-                              <div class="heading column">
+                              <div class="column heading">
                                 <span>{{ nameItem.sn }}</span>
                               </div>
                             </template>
@@ -234,7 +234,7 @@ watch(
               <AppSportsHotEventList :si="+route.params.sport" />
 
               <div v-if="showRecent" class="is-open spotlight variant-dark">
-                <div class="header no-active-scale">
+                <div class="no-active-scale header">
                   <span>{{ $t('recent_game_record') }}</span>
                   <BaseButton type="text" @click="setSRFalse()">
                     <BaseIcon name="uni-close-white" />
