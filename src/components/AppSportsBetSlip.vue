@@ -29,8 +29,10 @@ const props = withDefaults(defineProps<Props>(), {
 })
 const { t } = useI18n()
 const appStore = useAppStore()
-const { currentGlobalCurrency } = storeToRefs(appStore)
+const { currentGlobalCurrency, isLogin } = storeToRefs(appStore)
 const sportStore = useSportsStore()
+
+const notLoginAmount = ref('')
 
 const {
   value: amount,
@@ -96,12 +98,21 @@ function inputBlur() {
   amount.value = application.sliceOrPad(amount.value, suffixLength.value) as any
 }
 
+onMounted(() => {
+  if (!isLogin.value) {
+    notLoginAmount.value = application.sliceOrPad(
+      0,
+      suffixLength.value,
+    )
+  }
+})
+
 watch(currentGlobalCurrency, (_currency) => {
   sportStore.cart.updateCurrency(_currency)
 })
 
 watchEffect(() => {
-  if (amount.value !== undefined)
+  if (amount.value !== void 0)
     sportStore.cart.updateItemAmount(props.cartInfoData.wid, amount.value)
 })
 
@@ -160,9 +171,10 @@ watch(() => props.cartInfoData.amount, () => {
       </div>
       <AppSportsOdds v-else :odds="cartInfoData.ov" arrow="left" />
       <!-- 单式金额输入框 -->
-      <div v-show="isBetSingle && cartInfoData.result === undefined" class="footer">
+      <div v-show="isBetSingle && cartInfoData.result === void 0" class="footer">
         <div class="bet-amount">
           <BaseInput
+            v-if="isLogin"
             :key="currentGlobalCurrency"
             v-model="amount"
             type="number"
@@ -172,6 +184,17 @@ watch(() => props.cartInfoData.amount, () => {
             :disabled="isDisabled"
             :msg-after-touched="true"
             @blur="inputBlur"
+          >
+            <template #right-icon>
+              <AppCurrencyIcon :currency-type="currentGlobalCurrency" />
+            </template>
+          </BaseInput>
+          <BaseInput
+            v-else
+            v-model="notLoginAmount"
+            type="number"
+            mb0
+            placeholder=""
           >
             <template #right-icon>
               <AppCurrencyIcon :currency-type="currentGlobalCurrency" />

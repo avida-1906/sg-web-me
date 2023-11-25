@@ -11,7 +11,7 @@ export function useSportSelectSettle(settleValue?: number) {
     { label: t('sports_settled'), value: 1, icon: 'navbar-settled' },
   ])
 
-  if (settleValue !== undefined)
+  if (settleValue !== void 0)
     settle.value = settleValue
 
   return {

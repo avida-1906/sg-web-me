@@ -88,7 +88,7 @@ class Application {
       if (
         typeof value === 'object'
         || Array.isArray(value)
-        || value === undefined
+        || value === void 0
         || value === null
         || value === ''
       )

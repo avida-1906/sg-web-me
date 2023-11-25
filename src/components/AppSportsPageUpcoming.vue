@@ -7,12 +7,18 @@ const { t } = useI18n()
 const sportsStore = useSportsStore()
 const { upcomingNavs, currentUpcomingNav } = storeToRefs(sportsStore)
 const { bool: isStandard } = useBoolean(true)
+const { VITE_SPORT_EVENT_PAGE_SIZE, VITE_SPORT_EVENT_PAGE_SIZE_MAX } = getEnv()
+/** 定时更新count */
+const {
+  startTimer: startCount,
+  stopTimer: stopCount,
+} = useSportsDataUpdate(sportsStore.runSportsCount, 120, true)
 
 let timer: any = null
 const scrollDom = ref()
 const baseType = ref('winner')
 const page = ref(1)
-const pageSize = ref(10)
+const pageSize = ref(+VITE_SPORT_EVENT_PAGE_SIZE)
 const total = ref(0)
 const curTotal = ref(0)
 const list = ref< {
@@ -37,27 +43,14 @@ const { run, runAsync } = useRequest(ApiSportEventList,
         total.value = res.t
         curTotal.value = curTotal.value + res.d.length
 
-        if (page.value === 1) {
-          const groupedList = sportsDataGroupByLeague(res.d)
-          return list.value = groupedList
-        }
+        if (page.value === 1)
+          return list.value = sportsDataGroupByLeague(res.d)
 
         list.value = sportsDataGroupByLeagueLoadMore(list.value, res.d)
       }
     },
   })
-
-/** 定时更新count */
-const {
-  startTimer: startCount,
-  stopTimer: stopCount,
-} = useSportsDataUpdate(sportsStore.runSportsCount, 120, true)
-
-// 基础的获取数据
-function getData() {
-  run(params.value)
-}
-/** 定时更新数据 */
+/** 👷 分页、定时器、监听更新数据 start 👷 */
 function startUpcoming() {
   if (timer)
     stopUpcoming()
@@ -72,31 +65,36 @@ function stopUpcoming() {
   clearInterval(timer)
   timer = null
 }
+function getData() {
+  run(params.value)
+}
 function loadMore() {
-  if (curTotal.value >= 100) {
+  if (curTotal.value >= +VITE_SPORT_EVENT_PAGE_SIZE_MAX) {
     curTotal.value = 0
     page.value = 1
-    pageSize.value = 100
+    pageSize.value = +VITE_SPORT_EVENT_PAGE_SIZE_MAX
     scrollDom.value.scrollTo({ top: 0 })
   }
   else {
     page.value++
-    pageSize.value = 10
+    pageSize.value = +VITE_SPORT_EVENT_PAGE_SIZE
   }
   getData()
 }
 function reset() {
   page.value = 1
-  pageSize.value = 10
+  pageSize.value = +VITE_SPORT_EVENT_PAGE_SIZE
   total.value = 0
   curTotal.value = 0
   list.value = []
 }
-function onBaseTypeChange(v: string) {
-  baseType.value = v
-}
 function updateDataByMqtt(data: ISportEventList[]) {
   list.value = sportsDataUpdateByMqtt(list.value, data)
+}
+/** 🚧 分页、定时器、监听更新数据 end 🚧 */
+
+function onBaseTypeChange(v: string) {
+  baseType.value = v
 }
 
 watch(currentUpcomingNav, () => {
@@ -121,7 +119,6 @@ onBeforeUnmount(() => {
   sportDeltaBus.off(updateDataByMqtt)
 })
 
-// 即将开赛页面使用全局loading并延迟调用计时器，因计时器会马上进行一次请求
 if (!props.onPage) {
   await application.allSettled([runAsync(params.value)])
   startUpcoming()

@@ -9,7 +9,7 @@ const sportId = route.params.sport ? +route.params.sport : 0
 const regionId = route.params.region ? route.params.region.toString() : ''
 const leagueId = route.params.league ? route.params.league.toString() : ''
 // 冠军数据
-const params = ref({ si: sportId, page: 1, page_size: 1000 })
+const params = ref({ si: sportId, page: 1, page_size: 100 })
 const { data, run, runAsync } = useRequest(ApiSportOutrightList)
 /** 定时更新数据 */
 const { startTimer, stopTimer } = useSportsDataUpdate(() => run(params.value))

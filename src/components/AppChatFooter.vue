@@ -89,8 +89,9 @@ const emojiName = computed(() => {
     return message.value.slice(i + 1)
   return undefined
 })
+
 const emojis = computed(() => {
-  if (emojiName.value === undefined) {
+  if (emojiName.value === void 0) {
     return []
   }
   else {
@@ -172,7 +173,7 @@ function enterPress(event: KeyboardEvent) {
     <Transition>
       <div
         v-show="!sendLoading && emojis.length"
-        class="scroll-y emoji-wrap layout-grid wrap"
+        class="scroll-y wrap emoji-wrap layout-grid"
       >
         <div v-for="emo in emojis" :key="emo" class="button-wrap">
           <span class="box" @click="addEmoMsg(emo)">

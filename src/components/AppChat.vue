@@ -68,12 +68,12 @@ function goBottom(time?: number) {
   nextTick(() => {
     setTimeout(() => {
       document.querySelector('.msg-tail')?.scrollIntoView({ behavior: 'smooth' })
-    }, time !== undefined ? time : 300)
+    }, time !== void 0 ? time : 300)
   })
 }
 function onReceiveChatMsg(m: any) {
   const hasMsg = m.s && messageHistory.value && messageHistory.value.length
-    ? isValueContainInBloom(messageHistory.value.map(v => v.s).filter(f => f !== undefined && f.length), m.s)
+    ? isValueContainInBloom(messageHistory.value.map(v => v.s).filter(f => f !== void 0 && f.length), m.s)
     : false
   if (!hasMsg) {
     if (!messageHistory.value || !messageHistory.value.length)

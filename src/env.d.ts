@@ -21,6 +21,10 @@ interface ImportMetaEnv {
   readonly VITE_SOCKET_PREFIX: string
   /** 复式投注项组合最大数量（现在只有IM，写死10个，后期可能会变） */
   readonly VITE_SPORT_MULTI_BET_MAX: number
+  /** 体育赛事数据单页条数 */
+  readonly VITE_SPORT_EVENT_PAGE_SIZE : number
+   /** 体育赛事数据条数上限 */
+  readonly VITE_SPORT_EVENT_PAGE_SIZE_MAX : number
   /** 是否删除 console */
   readonly VITE_DROP_CONSOLE: boolean
 }

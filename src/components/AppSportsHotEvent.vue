@@ -1,22 +1,81 @@
 <script setup lang='ts'>
+import type { ISportEventInfo, ISportEventList } from '~/apis/types'
+
+const { VITE_SPORT_EVENT_PAGE_SIZE, VITE_SPORT_EVENT_PAGE_SIZE_MAX } = getEnv()
 const { t } = useI18n()
-const params = ref({ si: 0, m: 0, hot: 1, page: 1, page_size: 50 })
-const { data, runAsync, run } = useRequest(ApiSportEventList)
-/** 定时更新数据 */
-const { startTimer, stopTimer } = useSportsDataUpdate(() => run(params.value))
 
-const list = computed(() => {
-  if (data.value && data.value.d)
-    return sportsDataGroupByLeague(data.value.d)
-
-  return []
+let timer: any = null
+const scrollDom = ref()
+const page = ref(1)
+const pageSize = ref(+VITE_SPORT_EVENT_PAGE_SIZE)
+const total = ref(0)
+const curTotal = ref(0)
+const list = ref< {
+  ci: string
+  cn: string
+  list: ISportEventInfo[]
+}[]>([])
+const params = computed(() => {
+  return {
+    si: 0, m: 0, hot: 1, page: page.value, page_size: pageSize.value,
+  }
 })
+const { runAsync, run } = useRequest(ApiSportEventList, {
+  onSuccess(res) {
+    if (res.d) {
+      total.value = res.t
+      curTotal.value = curTotal.value + res.d.length
+
+      if (page.value === 1)
+        return list.value = sportsDataGroupByLeague(res.d)
+
+      list.value = sportsDataGroupByLeagueLoadMore(list.value, res.d)
+    }
+  },
+})
+/** 👷 分页、定时器、监听更新数据 start 👷 */
+function startTimer() {
+  if (timer)
+    stopTimer()
+
+  timer = setInterval(() => {
+    page.value = 1
+    run({ si: 0, m: 0, hot: 1, page: page.value, page_size: curTotal.value })
+    curTotal.value = 0
+  }, 60000)
+}
+function stopTimer() {
+  clearInterval(timer)
+  timer = null
+}
+function getData() {
+  run(params.value)
+}
+function loadMore() {
+  if (curTotal.value >= +VITE_SPORT_EVENT_PAGE_SIZE_MAX) {
+    curTotal.value = 0
+    page.value = 1
+    pageSize.value = +VITE_SPORT_EVENT_PAGE_SIZE_MAX
+    scrollDom.value.scrollTo({ top: 0 })
+  }
+  else {
+    page.value++
+    pageSize.value = +VITE_SPORT_EVENT_PAGE_SIZE
+  }
+  getData()
+}
+function updateDataByMqtt(data: ISportEventList[]) {
+  list.value = sportsDataUpdateByMqtt(list.value, data)
+}
+/** 🚧 分页、定时器、监听更新数据 end 🚧 */
 
 onMounted(() => {
   startTimer()
+  sportDeltaBus.on(updateDataByMqtt)
 })
 onBeforeUnmount(() => {
   stopTimer()
+  sportDeltaBus.off(updateDataByMqtt)
 })
 
 await application.allSettled([runAsync(params.value)])
@@ -40,17 +99,18 @@ await application.allSettled([runAsync(params.value)])
         base-type="winner"
         is-standard
       />
+      <BaseButton v-show="curTotal < total" size="none" type="text" @click="loadMore">
+        {{ t('load_more') }}
+      </BaseButton>
     </div>
   </div>
 </template>
 
 <style lang='scss' scoped>
-.sports-hot-event{
-
-}
 .market-wrapper {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: var(--tg-spacing-12);
   margin-bottom: var(--tg-spacing-24);
   margin-top: var(--tg-spacing-12);

@@ -1,13 +1,10 @@
 import type { ISportsMyBetSlipItem } from '~/apis/types'
-import { i18n } from '~/modules/i18n'
-
-const { t } = i18n.global
 
 /**
  * 获取体育投注记录
  */
 export function useApiSportBetList(settle: Ref<number>, isFetch?: boolean) {
-  if (isFetch === undefined)
+  if (isFetch === void 0)
     isFetch = true
 
   const { currentGlobalCurrency } = storeToRefs(useAppStore())

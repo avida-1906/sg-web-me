@@ -9,10 +9,10 @@ interface Props {
 const props = defineProps<Props>()
 
 const _icon = computed(() => {
-  if (props.icon !== undefined)
+  if (props.icon !== void 0)
     return props.icon
 
-  else if (props.type !== undefined)
+  else if (props.type !== void 0)
     return `spt-${props.type}`
 
   else
