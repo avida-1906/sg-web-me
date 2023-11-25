@@ -152,7 +152,7 @@ onUnmounted(() => {
       size="md"
       @click="handleBindAddress"
     >
-      {{ t('label_bind') }}
+      {{ isWithdraw ? t('submit') : t('label_bind') }}
     </BaseButton>
   </div>
 </template>
