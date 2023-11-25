@@ -495,13 +495,11 @@ export class SportsCart {
     if (!bi)
       console.log('bi 不存在')
 
-    let duplexOv = ''
     let mia = 0
     let maa = 0
     let pt = 0
 
     if (bi) {
-      duplexOv = bi[0].ov
       // 复式下的最小赔率
       mia = bi[0] ? bi[0].mia : 0
       // 复式下的最大赔率
@@ -540,8 +538,17 @@ export class SportsCart {
       })
     }
 
+    // 是否有低于当前赔率
+    let ovIsLower = false
+    if (wsi) {
+      ovIsLower = this.dataList.some((item) => {
+        const _wsi = wsi.find(a => a.wid === item.wid)
+        return Number(_wsi?.ov) < Number(item.ov)
+      })
+    }
+
     if (fn)
-      fn(ovIsChange, mia, maa, isSupportCurrency)
+      fn({ ovIsChange, mia, maa, isSupportCurrency, ovIsLower })
   }
 
   /**

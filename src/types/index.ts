@@ -169,14 +169,18 @@ export type ICartInfoData = ICartInfo & {
  * 赛事信息改变回调函数
  */
 export type IBetInfoChangeCallback = (
-  /** 赔率是否改变 */
-  ovIsChange: boolean,
-  /** 复式下的最小投注额 */
-  mia: number,
-  /** 复式下的最大投注额 */
-  maa: number,
-  /** 是否支持当前货币 */
-  isSupportCurrency: boolean
+  data: {
+    /** 赔率是否改变 */
+    ovIsChange: boolean
+    /** 复式下的最小投注额 */
+    mia: number
+    /** 复式下的最大投注额 */
+    maa: number
+    /** 是否支持当前货币 */
+    isSupportCurrency: boolean
+    /** 是否有更低的赔率 */
+    ovIsLower: boolean
+  }
 ) => void
 
 /**
@@ -187,3 +191,21 @@ export type ISportDataGroupedByLeague = {
   cn: string
   list: ISportEventInfo[]
 }[]
+
+/**
+ * 列表和购物车通知传递的数据类型
+ */
+export interface ISportListToCartData {
+  /** 盘口id */
+  wid: string
+  /** 赔率 */
+  ov: string
+  /**
+   * 0:关盘
+   *
+   * 1:开盘
+   *
+   * 2:不支援串关
+   */
+  os: 0 | 1 | 2
+}
