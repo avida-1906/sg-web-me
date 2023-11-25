@@ -7,12 +7,18 @@ const { t } = useI18n()
 const sportsStore = useSportsStore()
 const { upcomingNavs, currentUpcomingNav } = storeToRefs(sportsStore)
 const { bool: isStandard } = useBoolean(true)
+const { VITE_SPORT_EVENT_PAGE_SIZE, VITE_SPORT_EVENT_PAGE_SIZE_MAX } = getEnv()
+/** 定时更新count */
+const {
+  startTimer: startCount,
+  stopTimer: stopCount,
+} = useSportsDataUpdate(sportsStore.runSportsCount, 120, true)
 
 let timer: any = null
 const scrollDom = ref()
 const baseType = ref('winner')
 const page = ref(1)
-const pageSize = ref(10)
+const pageSize = ref(+VITE_SPORT_EVENT_PAGE_SIZE)
 const total = ref(0)
 const curTotal = ref(0)
 const list = ref< {
@@ -46,18 +52,7 @@ const { run, runAsync } = useRequest(ApiSportEventList,
       }
     },
   })
-
-/** 定时更新count */
-const {
-  startTimer: startCount,
-  stopTimer: stopCount,
-} = useSportsDataUpdate(sportsStore.runSportsCount, 120, true)
-
-// 基础的获取数据
-function getData() {
-  run(params.value)
-}
-/** 定时更新数据 */
+/** 分页、定时器、监听更新数据 start */
 function startUpcoming() {
   if (timer)
     stopUpcoming()
@@ -72,31 +67,36 @@ function stopUpcoming() {
   clearInterval(timer)
   timer = null
 }
+function getData() {
+  run(params.value)
+}
 function loadMore() {
-  if (curTotal.value >= 100) {
+  if (curTotal.value >= +VITE_SPORT_EVENT_PAGE_SIZE_MAX) {
     curTotal.value = 0
     page.value = 1
-    pageSize.value = 100
+    pageSize.value = +VITE_SPORT_EVENT_PAGE_SIZE_MAX
     scrollDom.value.scrollTo({ top: 0 })
   }
   else {
     page.value++
-    pageSize.value = 10
+    pageSize.value = +VITE_SPORT_EVENT_PAGE_SIZE
   }
   getData()
 }
 function reset() {
   page.value = 1
-  pageSize.value = 10
+  pageSize.value = +VITE_SPORT_EVENT_PAGE_SIZE
   total.value = 0
   curTotal.value = 0
   list.value = []
 }
-function onBaseTypeChange(v: string) {
-  baseType.value = v
-}
 function updateDataByMqtt(data: ISportEventList[]) {
   list.value = sportsDataUpdateByMqtt(list.value, data)
+}
+/** 分页、定时器、监听更新数据 end */
+
+function onBaseTypeChange(v: string) {
+  baseType.value = v
 }
 
 watch(currentUpcomingNav, () => {
