@@ -27,7 +27,6 @@ const topic = computed(() => `${VITE_SOCKET_PREFIX}/auth/${state.value}`)
 
 const { run: runGetAuthUrl } = useRequest(ApiMemberThirdAuthUrl, {
   onSuccess: (data) => {
-    gWin.value = window.open('', '_blank', 'popup=yes,width=600,height=600')
     setTimeout(() => {
       data && gWin.value?.location.replace(data)
     }, 1000)
@@ -35,6 +34,7 @@ const { run: runGetAuthUrl } = useRequest(ApiMemberThirdAuthUrl, {
 })
 
 function goAuth(type: AuthTypesKeys) {
+  gWin.value = window.open('', '_blank', 'popup=yes,width=600,height=600')
   ty.value = AuthTypes[type]
   runGetAuthUrl({ state: state.value, type })
 }
