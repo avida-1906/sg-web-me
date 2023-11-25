@@ -1278,3 +1278,30 @@ export function ApiPaymentDepositCoinCancel(data: {
 }) {
   return httpClient.post<string>('/payment/deposit/coin/cancel', data)
 }
+
+/**
+ * 会员站内信列表
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=6bdb3b5f-bd0e-40f6-9494-8b89bb001184
+ */
+export function ApiMemberStationInfoList() {
+  return httpClient.get<{
+    id: string
+    title: string
+    content: {
+      [key: string]: string
+    }
+    created_at: number
+    state: number
+  }[]>('/member/station/info/list')
+}
+
+/**
+ * 会员站内信修改状态已读
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=dc22d396-50b4-46ee-a01b-2343ac338ced
+ */
+export function ApiMemberStationInfoDetailUpdateState(data: {
+  /** 站内信id */
+  id: string
+}) {
+  return httpClient.post<string>(`/member/station/info/detail/update/state?id=${data.id}`)
+}

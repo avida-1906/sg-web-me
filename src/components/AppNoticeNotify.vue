@@ -29,12 +29,40 @@ const {
     pageTotal.value = noticeList.value?.length ?? 0
   },
 })
+// 站内信
+const {
+  data: stationInfoList,
+  run: runMemberStationInfoList,
+  // loading: memberNoticeListLoading,
+} = useRequest(ApiMemberStationInfoList, {
+  onSuccess() {
+    pageTotal.value = stationInfoList.value?.length ?? 0
+  },
+})
+// 标记已读
+const {
+  // data: stationInfoList,
+  run: runStationInfoDetailUpdateState,
+  // loading: memberNoticeListLoading,
+} = useRequest(ApiMemberStationInfoDetailUpdateState, {
+  onSuccess() {
+
+  },
+})
 
 const isFinished = computed(() => {
   return (pageCurrent.value * pageSize) >= pageTotal.value
 })
 const isState = computed(() => {
   return props.mode === EnumPage[0] || props.mode === EnumPage[1]
+})
+const getList: ComputedRef<any[] | undefined> = computed(() => {
+  switch (props.mode) {
+    case EnumPage[0]: break
+    case EnumPage[1]: return stationInfoList.value
+    case EnumPage[2]:
+    case EnumPage[3]: return noticeList.value
+  }
 })
 
 function handleLoad() {
@@ -52,7 +80,10 @@ function openDialogDetail(item: any) {
         betType: 'single',
       },
     })
-    case EnumPage[1]: return openDepositDetailDialog()
+    case EnumPage[1]:
+      runStationInfoDetailUpdateState({ id: item.id })
+      openDepositDetailDialog()
+      return
     case EnumPage[2]: return openNoticeDialog(item)
     case EnumPage[3]: return openMessageDialog(item)
   }
@@ -60,7 +91,8 @@ function openDialogDetail(item: any) {
 function pageInit() {
   switch (props.mode) {
     case EnumPage[0]: break
-    case EnumPage[1]: break
+    case EnumPage[1]: runMemberStationInfoList()
+      break
     case EnumPage[2]: runMemberNoticeList({ types: '1' }) // runMemberNoticeAllList({ types: '1' })
       break
     case EnumPage[3]: runMemberNoticeList({ types: '2' }) // runMemberNoticeAllList({ types: '2' })
@@ -73,7 +105,7 @@ pageInit()
 
 <template>
   <BaseList
-    v-if="noticeList && noticeList.length > 0"
+    v-if="getList && getList.length > 0"
     :finished="isFinished"
     :loading="loading"
     @load="handleLoad"
@@ -86,7 +118,7 @@ pageInit()
         </BaseButton>
       </div>
       <div
-        v-for="item of noticeList"
+        v-for="item of getList"
         :key="item.id"
         class="contain-item cursor-pointer"
         @click="openDialogDetail(item)"
@@ -100,14 +132,14 @@ pageInit()
               {{ item.title }}
             </div> -->
             <BaseBadge
-              v-if="isState"
+              v-if="isState && item.state === 0"
               class="state-text"
-              status="success" :text="timeToFromNow(item.start_time)"
+              status="success" :text="timeToFromNow(item.start_time ?? item.created_at)"
             />
             <span
               v-else
               class="state-text"
-            >{{ timeToFromNow(item.start_time) }}</span>
+            >{{ timeToFromNow(item.start_time ?? item.created_at) }}</span>
           </div>
           <!-- 通知 -->
           <div v-if="mode === EnumPage[0]" style="white-space:normal;line-height: 1.43;">
@@ -118,9 +150,9 @@ pageInit()
           </div>
           <!-- 站内信 -->
           <template v-else-if="mode === EnumPage[1]">
-            <div>您的代存订单：2023123456789</div>
-            <div>金额：10000.0000 USDT</div>
-            <div>状态：成功</div>
+            <div style="white-space:normal">
+              {{ item.content[getCurrentLanguageForBackend()] }}
+            </div>
           </template>
           <!-- 公告 -->
           <div
