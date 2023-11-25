@@ -43,6 +43,7 @@ onMounted(() => {
   socketClient.addSubscribe(topic.value)
   refreshAuthBus.on((data: any) => {
     if (data) {
+      closeDialog()
       if (data.action === 'register')
         openThirdAuthFormDialog({ data: data.extra_data, ty: ty.value })
 
@@ -55,7 +56,6 @@ onMounted(() => {
       else if (data.action === 'error')
         openNotify({ type: 'error', message: data.extra_data })
     }
-    closeDialog()
     setTimeout(() => {
       gWin.value?.close()
     }, 1500)
