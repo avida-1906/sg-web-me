@@ -189,6 +189,9 @@ export function useApiSportDetails() {
 
     /**
      * 遍历 _filter，将 item.ms 循环，把 sn 中{total}替换成 sp字段中的值
+     *
+     * sn: 大 {total},sp: "total=2.5" => 大 2.5
+     * sn: 大 {total} 小 {xxxx},sp: "total=2.5&xxxx=3.5" => 大 2.5 小 3.5
      */
     _filter.forEach((_mlItem) => {
       const _ms = _mlItem.ms

@@ -23,6 +23,7 @@ export interface IResponseList<T> {
   d: T[]
   t: number
   s: number
+  [k: string]: any
 }
 
 /** 绑定的钱包银行卡对象 */

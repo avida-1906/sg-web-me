@@ -1500,3 +1500,5 @@ transaction_bet: 投注交易
 transaction_deposit: 存款交易
 transaction_other: 其他交易
 transaction_withdraw: 提款交易
+today: 今日
+last_days_mid: 近{delta}日
