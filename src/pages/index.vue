@@ -1,11 +1,6 @@
 <script setup lang="ts">
 import { getCurrentLanguageForBackend } from '~/modules/i18n'
 
-interface IVipProgressData {
-  percent: number
-  currentLevel: number
-}
-
 const width = 430
 const { t } = useI18n()
 const router = useRouter()
@@ -39,10 +34,6 @@ const {
 })
 
 const btnText = ref(t('view_more_2'))
-const vipProgressData = ref<IVipProgressData>({
-  percent: 30,
-  currentLevel: 2,
-})
 
 const isSm = computed(() => appContentWidth.value <= widthBoundarySm.value)
 
@@ -84,7 +75,7 @@ runMemberNoticeAllList()
           class="top-vip-info"
           :class="isSm ? 'is-mobile max-width-mobile' : 'max-width'"
         >
-          <AppVipProgress :vip-progress-data="vipProgressData">
+          <AppVipProgress>
             <template #title>
               <h1>{{ t('welcome_back') }}，{{ userInfo?.username }}</h1>
             </template>
