@@ -9,9 +9,9 @@ interface IColumns {
   align?: 'left' | 'center' | 'right'
 }
 
-const today = dayjs(new Date()).format('YYYY-MM-DD')
+const today = dayjs()
 const dayOptions = [
-  { label: '今日', value: '1' },
+  { label: '今日', value: '0' },
   { label: '近7日', value: '7' },
   { label: '近30日', value: '30' },
 ]
@@ -58,8 +58,8 @@ const {
 const params = computed(() => ({
   page: page.value,
   page_size: page_size.value,
-  start_time: 0,
-  end_time: dayjs(today).endOf('day').unix(),
+  start_time: today.subtract(+dayType.value, 'day').startOf('day').unix(),
+  end_time: today.endOf('day').unix(),
 }))
 
 function getCurrencyName(id: string | number): EnumCurrencyKey {
@@ -104,7 +104,7 @@ runGetRecordAsync(params.value)
       >
         <!-- :loading="loading" -->
         <template #created_at="{ record }">
-          <div>{{ record.created_at }}</div>
+          <div>{{ timeToFormat(record.created_at) }}</div>
         </template>
         <template #cash_type="{ record }">
           {{ getCashType(record.cash_type) }}
