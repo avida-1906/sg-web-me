@@ -112,7 +112,7 @@ watch(currentGlobalCurrency, (_currency) => {
 })
 
 watchEffect(() => {
-  if (amount.value !== undefined)
+  if (amount.value !== void 0)
     sportStore.cart.updateItemAmount(props.cartInfoData.wid, amount.value)
 })
 
@@ -171,7 +171,7 @@ watch(() => props.cartInfoData.amount, () => {
       </div>
       <AppSportsOdds v-else :odds="cartInfoData.ov" arrow="left" />
       <!-- 单式金额输入框 -->
-      <div v-show="isBetSingle && cartInfoData.result === undefined" class="footer">
+      <div v-show="isBetSingle && cartInfoData.result === void 0" class="footer">
         <div class="bet-amount">
           <BaseInput
             v-if="isLogin"

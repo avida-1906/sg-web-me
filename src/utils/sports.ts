@@ -347,7 +347,7 @@ export class SportsCart {
     if (this.dataList.length === 0)
       return false
 
-    return this.dataList.every(a => a.result !== undefined)
+    return this.dataList.every(a => a.result !== void 0)
   }
 
   /**
@@ -403,7 +403,7 @@ export class SportsCart {
   async add(data: ICartInfo) {
     // 如果dataList中的object的result有一个不是undefined，就清空购物车
     // 因为不是undefined的话，说明已经投注过了
-    if (this.dataList.some(a => a.result !== undefined)) {
+    if (this.dataList.some(a => a.result !== void 0)) {
       this.removeAll()
       await new Promise((resolve) => {
         setTimeout(() => {
@@ -468,7 +468,7 @@ export class SportsCart {
    */
   checkWid(wid: string) {
     const index = this.dataList.findIndex(a => a.wid === wid)
-    if (index > -1 && this.dataList[index].result === undefined)
+    if (index > -1 && this.dataList[index].result === void 0)
       return true
     else
       return false

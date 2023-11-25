@@ -158,7 +158,7 @@ export function useApiMenuData() {
     },
     { title: t('blog'), path: '/blog', icon: 'chess-blog', list: [], domId: '' },
     { title: t('chat_forum'), path: '', icon: 'tabbar-chat', list: [], domId: '' },
-  ].filter(i => i !== undefined))
+  ].filter(i => i !== void 0))
   const staticMenu2 = computed(() => <Menu>[
     {
       title: t('sponsor_activity'),

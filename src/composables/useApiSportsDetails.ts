@@ -141,21 +141,21 @@ export function useApiSportDetails() {
      * 8 客队⾓球
      */
     if (pol) {
-      if (pol['3'] !== undefined || pol['4'] !== undefined) {
+      if (pol['3'] !== void 0 || pol['4'] !== void 0) {
         _map.redCard = {
           homeTeam: pol['3'] || 0,
           awayTeam: pol['4'] || 0,
         }
       }
 
-      if (pol['5'] !== undefined || pol['6'] !== undefined) {
+      if (pol['5'] !== void 0 || pol['6'] !== void 0) {
         _map.yellowCard = {
           homeTeam: pol['5'] || 0,
           awayTeam: pol['6'] || 0,
         }
       }
 
-      if (pol['7'] !== undefined || pol['8'] !== undefined) {
+      if (pol['7'] !== void 0 || pol['8'] !== void 0) {
         _map.corner = {
           homeTeam: pol['7'] || 0,
           awayTeam: pol['8'] || 0,

@@ -13,7 +13,7 @@ const cid = computed(() => isCat.value ? route.query.cid?.toString() ?? '' : '')
 
 // 参数
 const pid = computed(() =>
-  isProvider.value ? route.query.pid?.toString() : undefined)
+  isProvider.value ? route.query.pid?.toString() : void 0)
 
 const paramsGame = computed(() =>
   ({

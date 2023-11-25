@@ -47,7 +47,7 @@ watch(() => props.timeStamp, (val) => {
       ref="baseAccor"
       :dom-id="menuItem.domId"
       :menu-info="menuItem"
-      :auto-show="curDomId === undefined ? false : curDomId === menuItem.domId"
+      :auto-show="(curDomId === void 0) ? false : curDomId === menuItem.domId"
       @click-head="handleClickHead"
       @click-item="handleClickItem"
       @radio-change="radioChangeValue"

@@ -13,7 +13,7 @@ function getUuid() {
 
 const getNotificationList = (function () {
   let notificationList = document.querySelector('.notification-list')
-  if (notificationList === null || notificationList === undefined) {
+  if (notificationList === null || notificationList === void 0) {
     notificationList = document.createElement('div')
     notificationList.className = 'notification-list'
     document.body.appendChild(notificationList)
@@ -90,12 +90,12 @@ export function useNotify({
           onNotifyClick && onNotifyClick()
         },
       }, {
-        default: () => defaultSlot !== undefined ? defaultSlot() : null,
+        default: () => defaultSlot !== void 0 ? defaultSlot() : null,
         title: () => {
-          return title === undefined ? null : (typeof title === 'string' ? null : title())
+          return title === void 0 ? null : (typeof title === 'string' ? null : title())
         },
         message: () => {
-          return message === undefined ? null : (typeof message === 'string' ? null : message())
+          return message === void 0 ? null : (typeof message === 'string' ? null : message())
         },
       })))
       install(app.value[uuid])
