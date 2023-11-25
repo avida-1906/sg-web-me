@@ -26,16 +26,14 @@ const { runAsync, run } = useRequest(ApiSportEventList, {
       total.value = res.t
       curTotal.value = curTotal.value + res.d.length
 
-      if (page.value === 1) {
-        const groupedList = sportsDataGroupByLeague(res.d)
-        return list.value = groupedList
-      }
+      if (page.value === 1)
+        return list.value = sportsDataGroupByLeague(res.d)
 
       list.value = sportsDataGroupByLeagueLoadMore(list.value, res.d)
     }
   },
 })
-/** 分页、定时器、监听更新数据 */
+/** 👷 分页、定时器、监听更新数据 start 👷 */
 function startTimer() {
   if (timer)
     stopTimer()
@@ -69,6 +67,7 @@ function loadMore() {
 function updateDataByMqtt(data: ISportEventList[]) {
   list.value = sportsDataUpdateByMqtt(list.value, data)
 }
+/** 🚧 分页、定时器、监听更新数据 end 🚧 */
 
 onMounted(() => {
   startTimer()
