@@ -211,6 +211,9 @@ const paymentDepositBankData = computed(() => {
   }
   return []
 })
+const isPaymentDepositBank = computed(() => {
+  return currentTypeItem.value?.payment_type === 2
+})
 
 function formatAmount() {
   if (amount.value)
@@ -245,7 +248,7 @@ async function depositSubmit() {
   if (!amountError.value
     && (currentTypeItem.value?.bank ? !selectValueError.value : true)
   ) {
-    if (currentTypeItem.value?.payment_type === 2) { // 公司入款存款
+    if (isPaymentDepositBank.value) { // 公司入款存款
       !depositNameError.value && runPaymentDepositBankApplication({
         amount: amount.value,
         cid: currentAisle.value,
@@ -269,15 +272,14 @@ async function depositSubmit() {
 }
 
 watch(() => props.activeCurrency, (newValue) => {
-  if (newValue) {
-    depositNameReset()
+  if (newValue)
     runAsyncPaymentMethodList({ currency_id: newValue.cur })
-  }
 })
 watch(() => currentType.value, (newValue) => {
   if (newValue) {
     runPaymentMerchantList({ id: currentType.value })
     amountReset()
+    depositNameReset()
     selectValueReset()
     if (currentTypeItem.value?.bank)
       runPaymentDepositBankList({ id: currentTypeItem.value.zkId })
@@ -401,7 +403,7 @@ await application.allSettled([
               />
             </BaseLabel>
             <BaseLabel
-              v-if="havePaymentMerchant"
+              v-show="havePaymentMerchant && !isPaymentDepositBank"
               :label="t('channel_choose')"
             >
               <div class="other-aisles scroll-x">
@@ -419,7 +421,7 @@ await application.allSettled([
               </div>
             </BaseLabel>
             <BaseLabel
-              v-if="currentTypeItem?.payment_type === 2"
+              v-if="isPaymentDepositBank"
               label="存款人姓名:"
               label-content="为及时到账，请务必输入正确的存款人姓名"
             >

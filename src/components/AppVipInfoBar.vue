@@ -63,10 +63,10 @@ async function openReceive() {
           :loading="getBonusLoading"
           @click="openReceive"
         >
-          {{ $t('receive_commission') }}
+          {{ $t('one_receive') }}
         </BaseButton>
         <BaseButton type="line" round size="none" @click="openRecord">
-          {{ $t('commission_history') }}
+          {{ $t('receive_record_label') }}
         </BaseButton>
       </div>
     </div>
