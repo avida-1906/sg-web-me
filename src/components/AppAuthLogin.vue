@@ -42,19 +42,24 @@ function goAuth(type: AuthTypesKeys) {
 onMounted(() => {
   socketClient.addSubscribe(topic.value)
   refreshAuthBus.on((data: any) => {
+    closeDialog()
     if (data) {
-      closeDialog()
-      if (data.action === 'register')
-        openThirdAuthFormDialog({ data: data.extra_data, ty: ty.value })
+      if (data.action === 'register') {
+        setTimeout(() => {
+          openThirdAuthFormDialog({ data: data.extra_data, ty: ty.value })
+        }, 0)
+      }
 
-      else if (data.action === 'success')
+      else if (data.action === 'success') {
         appStore.setToken(data.extra_data)
         // setTimeout(() => {
         //   location.reload()
         // }, 100)
+      }
 
-      else if (data.action === 'error')
+      else if (data.action === 'error') {
         openNotify({ type: 'error', message: data.extra_data })
+      }
     }
     setTimeout(() => {
       gWin.value?.close()
