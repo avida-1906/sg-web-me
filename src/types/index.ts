@@ -171,8 +171,6 @@ export type ICartInfoData = ICartInfo & {
 export type IBetInfoChangeCallback = (
   /** 赔率是否改变 */
   ovIsChange: boolean,
-  /** 复式下的总赔率 */
-  duplexOv: string,
   /** 复式下的最小投注额 */
   mia: number,
   /** 复式下的最大投注额 */

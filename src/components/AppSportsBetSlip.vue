@@ -98,6 +98,15 @@ function inputBlur() {
   amount.value = application.sliceOrPad(amount.value, suffixLength.value) as any
 }
 
+onMounted(() => {
+  if (!isLogin.value) {
+    notLoginAmount.value = application.sliceOrPad(
+      0,
+      suffixLength.value,
+    )
+  }
+})
+
 watch(currentGlobalCurrency, (_currency) => {
   sportStore.cart.updateCurrency(_currency)
 })
