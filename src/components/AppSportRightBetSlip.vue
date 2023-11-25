@@ -1,6 +1,7 @@
 <script setup lang='ts'>
 import AppSportBetSuccessNotify from './AppSportBetSuccessNotify.vue'
 import type { IBetArgs } from '~/apis/types'
+import type { ISportListToCartData } from '~/types'
 import { EnumsBetSlipHeadStatus } from '~/utils/enums'
 
 const emit = defineEmits<{
@@ -63,6 +64,7 @@ const {
         multiMia.value = _data.mia
         multiMaa.value = _data.maa
         setSupportCurrencyStatus(_data.isSupportCurrency)
+        sendSportsCartToListEvent(_data.osOvIsChangeList)
       },
     )
   },
@@ -411,6 +413,38 @@ function inputBlur() {
   ) as any
 }
 
+/** betinfo接口发送改变通知列表更新数据 */
+function sendSportsCartToListEvent(_data: ISportListToCartData[]) {
+  if (_data.length === 0)
+    return
+
+  console.log('发送列表通知123', _data)
+
+  for (const item of _data)
+    sportsCartToListBus.emit(item)
+}
+
+/** 处理列表通知发送的数据 */
+function eventHandler(_data: ISportListToCartData) {
+  console.log('收到列表发送的数据', _data)
+  sportStore.cart.updateOvOs(_data, (data) => {
+    if (ovIsChange.value !== data.ovIsChange)
+      setOvChangeState(data.ovIsChange)
+
+    if (ovIsLower.value !== data.ovIsLower)
+      setOvIsLower(data.ovIsLower)
+  })
+}
+/** 监听列表发送的事件 */
+function addListToCartEvent() {
+  sportsListToCartBus.on(eventHandler)
+}
+
+/** 移除列表发送的事件 */
+function removeListToCartEvent() {
+  sportsListToCartBus.off(eventHandler)
+}
+
 watch(() => sportStore.cart.count, (val, oVal) => {
   if (val) {
     nextTick(() => {
@@ -453,8 +487,13 @@ watch(isLogin, (val) => {
     runGetSportPlaceBetInfoHandle()
 })
 
+onMounted(() => {
+  addListToCartEvent()
+})
+
 onUnmounted(() => {
   closeSetInterval()
+  removeListToCartEvent()
 })
 </script>
 
