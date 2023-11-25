@@ -12,7 +12,9 @@ import type {
   IBetInfoChangeCallback,
   ICartInfo,
   ICartInfoData,
+  IListToCartCallback,
   ISportDataGroupedByLeague,
+  ISportListToCartData,
 } from '~/types'
 import { getCurrentLanguageForBackend } from '~/modules/i18n'
 
@@ -484,7 +486,40 @@ export class SportsCart {
       this.dataList[index].amount = amount
   }
 
-  /** 更新所有数据的赔率，状态等...
+  /**
+   * 通过wid，更新赔率，os
+   */
+  updateOvOs(_data: ISportListToCartData, fn?: IListToCartCallback) {
+    const { wid, ov, os } = _data
+    const index = this.dataList.findIndex(a => a.wid === wid)
+
+    if (fn) {
+      /**
+     * 是否有赔率变化
+     */
+      let ovIsChange = false
+      if (ov)
+        ovIsChange = Number(ov) !== Number(this.dataList[index].ov)
+
+      /**
+       * 是否有低于当前赔率
+       */
+      let ovIsLower = false
+      if (ov)
+        ovIsLower = Number(ov) < Number(this.dataList[index].ov)
+
+      console.error('ovIsChange', ovIsChange, 'ovIsLower', ovIsLower)
+
+      fn({ ovIsChange, ovIsLower })
+    }
+
+    if (index > -1) {
+      this.dataList[index].ov = ov
+      this.dataList[index].os = os
+    }
+  }
+
+  /** 更新所有数据的赔率，状态等...，通过betinfo接口返回的数据
    * @param {IBetInfoBack} data
    * @param {IBetInfoChangeCallback} fn 回调函数
    */
@@ -507,6 +542,21 @@ export class SportsCart {
       // 复式下的串关类型
       pt = bi[0] ? bi[0].pt : 0
     }
+
+    /** os和ov有变化的数据 */
+    const osOvIsChangeList = this.dataList.filter((item) => {
+      if (wsi) {
+        const _wsi = wsi.find(a => a.wid === item.wid)
+        return Number(_wsi?.ov) !== Number(item.ov) || _wsi?.os !== item.os
+      }
+      return true
+    }).map<ISportListToCartData>((item) => {
+      return {
+        wid: item.wid,
+        ov: item?.ov,
+        os: item?.os,
+      }
+    })
 
     this.dataList.forEach((item) => {
       if (wsi) {
@@ -548,7 +598,7 @@ export class SportsCart {
     }
 
     if (fn)
-      fn({ ovIsChange, mia, maa, isSupportCurrency, ovIsLower })
+      fn({ ovIsChange, mia, maa, isSupportCurrency, ovIsLower, osOvIsChangeList })
   }
 
   /**
