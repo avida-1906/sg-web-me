@@ -40,7 +40,7 @@ function startTimer() {
 
   timer = setInterval(() => {
     page.value = 1
-    run({ si: 0, m: 0, hot: 1, page: page.value, page_size: curTotal.value })
+    run({ ...params.value, page_size: curTotal.value })
     curTotal.value = 0
   }, 60000)
 }
