@@ -12,8 +12,8 @@ interface IColumns {
 const today = dayjs()
 const dayOptions = [
   { label: '今日', value: '0' },
-  { label: '近7日', value: '7' },
-  { label: '近30日', value: '30' },
+  { label: '近7日', value: '6' },
+  { label: '近30日', value: '29' },
 ]
 
 const { t } = useI18n()
@@ -82,6 +82,12 @@ function onNext() {
 }
 
 runGetRecordAsync(params.value)
+
+watch(() => params.value.start_time, () => {
+  setTimeout(() => {
+    runGetRecordAsync(params.value)
+  }, 0)
+})
 </script>
 
 <template>
