@@ -398,7 +398,7 @@ export interface DepositInfo {
   mid: string
   /** 银行编码-三方支付存款时使用 payment_type = 1 */
   bank_code?: string
-  /** 存款人姓名-公司入款存款使用 payment_type = 2 */
+  /** 存款人姓名-法币公司入款存款使用 payment_type = 2 */
   realname?: string
 }
 
