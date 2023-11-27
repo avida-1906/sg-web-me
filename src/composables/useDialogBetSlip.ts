@@ -8,11 +8,12 @@ export function useDialogBetSlip() {
     closeDialog: closeBetSlipDialog,
   } = useDialog({
     title: t('menu_title_settings_bets'),
-    icon: 'navbar-notice',
+    icon: 'uni-checklist',
     default: (p: { type: 'casino' | 'sports'; data: any }) => h(AppDialogBetSlip,
       {
         type: p.type,
-        data: p.data,
+        sportsData: p.data,
+        casinoData: p.data,
       },
     ),
   })
