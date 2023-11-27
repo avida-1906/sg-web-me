@@ -13,38 +13,28 @@ const { VITE_SPORT_MULTI_BET_MAX } = getEnv()
 
 let timer: any = null
 const betLoading = ref(false)
-// 复式投注项的最小投注额
-const multiMia = ref(0)
-// 复式投注项的最大投注额
-const multiMaa = ref(0)
 
-const {
-  value: duplexInputValue,
-  errorMessage: amountErrorMsg,
-} = useField<number>('amount', (value) => {
-  if (value < multiMia.value || value > multiMaa.value)
-    return `请输入 ${multiMia.value} - ${multiMaa.value} 之间的金额`
-
-  return ''
-})
 const { t } = useI18n()
 const router = useRouter()
 const appStore = useAppStore()
 const { openNotify } = useNotify()
 // 获取betInfo接口是否成功
 const { bool: fetchBetInfoStatus, setBool: setFetchBetInfoStatus } = useBoolean(true)
-/** 是否支持当前货币 */
-const { bool: isSupportCurrency, setBool: setSupportCurrencyStatus } = useBoolean(true)
 const {
   currentGlobalCurrency,
   currentGlobalCurrencyBalanceNumber,
   isLogin,
 } = storeToRefs(appStore)
 const sportStore = useSportsStore()
-/** 赔率是否变化 */
-const { bool: ovIsChange, setBool: setOvChangeState } = useBoolean(false)
-/** 是否有更低的赔率变化 */
-const { bool: ovIsLower, setBool: setOvIsLower } = useBoolean(false)
+const {
+  value: duplexInputValue,
+  errorMessage: amountErrorMsg,
+} = useField<number>('amount', (value) => {
+  if (value < sportStore.cart.multiMia || value > sportStore.cart.multiMaa)
+    return `请输入 ${sportStore.cart.multiMia} - ${sportStore.cart.multiMaa} 之间的金额`
+
+  return ''
+})
 const { openRegisterDialog } = useRegisterDialog()
 
 const {
@@ -56,16 +46,6 @@ const {
     sportStore.cart.updateAllData(
       cloneDeep(placeBetInfo),
       (_data) => {
-        if (ovIsChange.value !== _data.ovIsChange)
-          setOvChangeState(_data.ovIsChange)
-
-        if (ovIsLower.value !== _data.ovIsLower)
-          setOvIsLower(_data.ovIsLower)
-
-        multiMia.value = _data.mia
-        multiMaa.value = _data.maa
-
-        setSupportCurrencyStatus(_data.isSupportCurrency)
         sendSportsCartToListEvent(_data.osOvIsChangeList)
       },
     )
@@ -127,7 +107,7 @@ const errorInfo = computed<{
     }
   }
 
-  if (isSupportCurrency.value === false) {
+  if (sportStore.cart.isSupportCurrency === false) {
     return {
       bool: true,
       errorMess: '该场馆暂不支持您所选择的币种',
@@ -164,14 +144,14 @@ const errorInfo = computed<{
   if (sportStore.cart.count > VITE_SPORT_MULTI_BET_MAX) {
     return {
       bool: true,
-      errorMess: `复式投注项组合不能超过 ${VITE_SPORT_MULTI_BET_MAX} 个。`,
+      errorMess: `投注项组合不能超过 ${VITE_SPORT_MULTI_BET_MAX} 个。`,
     }
   }
 
   // 不接受任何赔率变化
   if (betOrderFilterValue.value === EnumOddsChange.notAcceptAnyOddsChange) {
     // 赔率变化
-    if (ovIsChange.value) {
+    if (sportStore.cart.ovIsChange) {
       return {
         bool: true,
         errorMess: '赔率已变更，您需先接受赔率更改方可进行投注',
@@ -181,9 +161,9 @@ const errorInfo = computed<{
 
   if (betOrderFilterValue.value === EnumOddsChange.acceptHigherOdds) {
     // 赔率变化
-    if (ovIsChange.value) {
+    if (sportStore.cart.ovIsChange) {
       // 有更低的赔率变化
-      if (ovIsLower.value) {
+      if (sportStore.cart.ovIsLower) {
         return {
           bool: true,
           errorMess: '赔率已变更，您需先接受赔率更改方可进行投注',
@@ -200,6 +180,31 @@ const errorInfo = computed<{
     }
   }
 
+  // 投注金额最多只能输入两位小数
+  if (sportStore.cart.isOnlyTwoDecimal && sportStore.cart.isExistMoreThanTwoDecimal) {
+    return {
+      bool: true,
+      errorMess: '投注金额最多只能输入两位小数',
+    }
+  }
+
+  // 金额是不是10的倍数
+  if (sportStore.cart.isTenMultiple && sportStore.cart.isTenMultipleBool) {
+    return {
+      bool: true,
+      errorMess: '投注金额必须是10的倍数',
+    }
+  }
+
+  // 金额是否存在小数点后五位的情况
+  if (sportStore.cart.isFiveDecimal && sportStore.cart.isExistFiveDecimal) {
+    return {
+      bool: true,
+      errorMess: '投注金额最多只能输入两位小数',
+    }
+  }
+
+  // 获取投注信息失败
   if (fetchBetInfoStatus.value === false) {
     return {
       bool: true,
@@ -436,13 +441,7 @@ function sendSportsCartToListEvent(_data: ISportListToCartData[]) {
 /** 处理列表通知发送的数据 */
 function eventHandler(_data: ISportListToCartData) {
   console.log('收到列表发送的数据', _data)
-  sportStore.cart.updateOvOs(_data, (data) => {
-    if (ovIsChange.value !== data.ovIsChange)
-      setOvChangeState(data.ovIsChange)
-
-    if (ovIsLower.value !== data.ovIsLower)
-      setOvIsLower(data.ovIsLower)
-  })
+  sportStore.cart.updateOvOs(_data)
 }
 /** 监听列表发送的事件 */
 function addListToCartEvent() {
@@ -480,7 +479,7 @@ watch(() => sportStore.cart.count, (val, oVal) => {
   }
   else {
     closeSetInterval()
-    setOvChangeState(false)
+    sportStore.cart.setOvIsChangeBool(false)
   }
 }, {
   immediate: true,
@@ -613,7 +612,7 @@ onUnmounted(() => {
           type="number"
           :msg="amountErrorMsg"
           :msg-after-touched="true"
-          :placeholder="`${multiMia} - ${multiMaa}`"
+          :placeholder="`${sportStore.cart.multiMia} - ${sportStore.cart.multiMaa}`"
           @blur="inputBlur"
         >
           <template #right-icon>
@@ -671,10 +670,10 @@ onUnmounted(() => {
         </template>
         <template v-else>
           <BaseButton
-            v-if="ovIsChange"
+            v-if="sportStore.cart.ovIsChange"
             size="md"
             bg-style="primary"
-            @click="setOvChangeState(false)"
+            @click="sportStore.cart.setOvIsChangeBool(false)"
           >
             接受新赔率
           </BaseButton>

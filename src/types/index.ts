@@ -165,28 +165,22 @@ export type ICartInfoData = ICartInfo & {
   hp: number
 }
 
-/**
- * 更新购物车数据，反应数据是否有变化
- */
-export interface IUpdateCartData {
-  /** 赔率是否改变 */
-  ovIsChange: boolean
-  /** 是否有更低的赔率 */
-  ovIsLower: boolean
-}
+// /**
+//  * 更新购物车数据，反应数据是否有变化
+//  */
+// export interface IUpdateCartData {
+//   /** 赔率是否改变 */
+//   ovIsChange: boolean
+//   /** 是否有更低的赔率 */
+//   ovIsLower: boolean
+// }
 
 /**
  * 赛事信息改变回调函数
  */
 export type IBetInfoChangeCallback = (
-  data: IUpdateCartData & {
-    /** 复式下的最小投注额 */
-    mia: number
-    /** 复式下的最大投注额 */
-    maa: number
-    /** 是否支持当前货币 */
-    isSupportCurrency: boolean
-    /** */
+  data: {
+    /** os和ov有变化的数据 */
     osOvIsChangeList: ISportListToCartData[]
   }
 ) => void
@@ -194,7 +188,7 @@ export type IBetInfoChangeCallback = (
 /**
  * 列表通知回调函数
  */
-export type IListToCartCallback = (data: IUpdateCartData) => void
+// export type IListToCartCallback = (data: IUpdateCartData) => void
 
 /**
  * 赛事根据联赛组合

@@ -403,6 +403,20 @@ export interface DepositInfo {
 }
 
 /**
+ * 3:不支援的币种
+ *
+ * 4:只接受两位小数
+ *
+ * 5:要10的倍数
+ *
+ * 6:只接受小数点后5位
+ */
+export type IBetInfoDl = 3 | 4 | 5 | 6
+/**
+ * 3:不支援的币种
+ */
+export type IBetInfoStatus = 1 | 2 | 3
+/**
  * 投注信息详情
  */
 export interface IBetInfoBack {
@@ -427,10 +441,11 @@ export interface IBetInfoBack {
     /** 客队比分 */
     ap: number
   }[]
+  dl: IBetInfoDl
   /**
-   * 3 说明不支持这个币种，其它两个不用管
+   * 3:不支援的币种
    */
-  status: 1 | 2 | 3
+  status: IBetInfoStatus
   /** 下注资讯 */
   bi?: {
     /** 盘口id */
