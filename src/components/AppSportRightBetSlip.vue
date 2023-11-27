@@ -353,6 +353,12 @@ function runGetSportPlaceBetInfoHandle() {
   if (sportStore.cart.count === 0)
     return
 
+  if (
+    sportStore.cart.getExistSameEventIdList.length
+    || sportStore.cart.getExistIcList.length
+  )
+    return
+
   runGetSportPlaceBetInfo({
     ic: betOrderSelectValue.value,
     bi: sportStore.cart.dataList,
