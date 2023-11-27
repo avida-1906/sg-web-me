@@ -2,6 +2,7 @@ export const useLeftSidebar = createGlobalState(() => {
   const leftIsExpand = useDebouncedRef({ value: window.innerWidth >= 1200, delay: 100, beforeTrigger, afterTrigger })
   const { bool: isSwitching, setTrue, setFalse } = useBoolean(false)
   const switchTo = ref<'big' | 'small' | ''>('')
+  const after = ref()
   /** 导航排序 */
   const navButtons = ref<{ title: string }[]>([])
   useRequest(ApiMemberGameCateIndex, {
@@ -28,12 +29,14 @@ export const useLeftSidebar = createGlobalState(() => {
   function afterTrigger() {
     setFalse()
     switchTo.value = ''
+    after.value && after.value()
   }
   function openLeftSidebar() {
     leftIsExpand.value = true
   }
-  function closeLeftSidebar() {
+  function closeLeftSidebar(fn?: () => void) {
     leftIsExpand.value = false
+    after.value = fn
   }
   function triggerLeftSidebar() {
     leftIsExpand.value = !leftIsExpand.value
