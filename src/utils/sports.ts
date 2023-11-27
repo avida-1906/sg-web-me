@@ -89,7 +89,7 @@ export class SportsOdds {
    * @returns {string}
    */
   static convertToFractionOdds(odds: number) {
-    const numerator = ((odds - 1) * 100)
+    const numerator = +mul(+sub(odds, 1), 100)
     const denominator = 100
 
     const gcd = this.findGCD(numerator, denominator)
@@ -107,7 +107,7 @@ export class SportsOdds {
   static convertToAmericanOdds(odds: number) {
     // 当小数式赔率大于等于2时，计算美式正赔
     // 当小数式赔率小于2时，计算美式负赔
-    const americanOdds = odds >= 2 ? ((odds - 1) * 100) : -100 / (odds - 1)
+    const americanOdds = odds >= 2 ? (mul((+sub(odds, 1)), 100)) : div(-100, (+sub(odds, 1)))
     return `${americanOdds}`
   }
 

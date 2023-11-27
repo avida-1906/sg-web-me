@@ -271,7 +271,7 @@ export const useSportsStore = defineStore('sports', () => {
   /** 渲染赔率 */
   const renderOdds = (odds: number) => {
     return computed(() => {
-      return Number(SportsOdds.convert(odds, sportsOddsType.value))
+      return SportsOdds.convert(odds, sportsOddsType.value).toString()
     })
   }
 

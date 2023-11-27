@@ -10,7 +10,6 @@ const { t } = useI18n()
 const router = useRouter()
 const { isMobile } = storeToRefs(useWindowStore())
 const { closeRightSidebar } = useRightSidebar()
-const sportsStore = useSportsStore()
 
 const {
   settle,
@@ -20,7 +19,6 @@ const {
 const {
   sportBetList,
   loading,
-  totalUnsettled,
 } = useApiSportBetList(settle)
 
 function toMyBets() {
@@ -29,11 +27,6 @@ function toMyBets() {
 
   router.push(`/sports/${getSportsPlatId()}/my-bets?type=sports`)
 }
-
-watchEffect(() => {
-  if (totalUnsettled.value)
-    sportsStore.cart.setUnsettledCount(totalUnsettled.value)
-})
 </script>
 
 <template>
