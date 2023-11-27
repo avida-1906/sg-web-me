@@ -106,6 +106,7 @@ watch(() => props.columns, () => {
 :root{
   --tg-table-font-size: var(--tg-font-size-default);
   --tg-table-even-background: inherit;
+  --tg-table-odd-background: var(--tg-secondary-grey);
   --tg-table-th-color: var(--tg-text-lightgrey);
   --tg-table-line-height:1.5;
   --tg-table-th-padding: var(--tg-spacing-16);
@@ -160,7 +161,7 @@ watch(() => props.columns, () => {
         }
       }
       .m-tr:nth-child(odd){
-        background: var(--tg-secondary-grey);
+        background: var(--tg-table-odd-background);
       }
       .m-tr:nth-child(even){
         background: var(--tg-table-even-background);

@@ -46,6 +46,16 @@ function changeBar(item: { name: string; path?: string }) {
         activeBar.value = name
       break
     case 'bet':
+      leftIsExpand.value && closeLeftSidebar()
+      if (activeBar.value === name) {
+        activeBar.value = route.path.includes('/casino') ? 'game' : 'sports'
+        closeRightSidebar()
+      }
+      else {
+        activeBar.value = name
+        openRightSidebar(EnumRightSidebarContent.CASINOBET)
+      }
+      break
     case 'user-bet':
       leftIsExpand.value && closeLeftSidebar()
       if (activeBar.value === name) {
