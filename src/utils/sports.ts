@@ -663,6 +663,7 @@ export class SportsCart {
         wid: item.wid,
         ov: item.ov,
         os: item.os,
+        ei: item.ei,
       }
     })
 

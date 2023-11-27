@@ -215,4 +215,6 @@ export interface ISportListToCartData {
    * 2:不支援串关
    */
   os: 0 | 1 | 2
+  /** 赛事ID */
+  ei: string
 }
