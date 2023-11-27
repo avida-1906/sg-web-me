@@ -27,9 +27,7 @@ export const router = createRouter({
   history: createWebHistory(),
   routes,
   scrollBehavior() {
-    setTimeout(() => {
-      document.querySelector('.only-for-get-width')?.scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'center' })
-    }, 0)
+    scrollToTop()
   },
 })
 

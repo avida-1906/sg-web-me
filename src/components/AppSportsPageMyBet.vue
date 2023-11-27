@@ -38,6 +38,16 @@ const paginationData = computed(() => {
     total: total.value,
   }
 })
+
+function pagePrev() {
+  scrollToTop()
+  prev()
+}
+
+function pageNext() {
+  scrollToTop()
+  next()
+}
 </script>
 
 <template>
@@ -72,7 +82,7 @@ const paginationData = computed(() => {
       class="stack-padding"
       :pagination-data="paginationData"
       scroll
-      @previous="prev" @next="next"
+      @previous="pagePrev" @next="pageNext"
     />
   </div>
 </template>

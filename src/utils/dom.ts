@@ -69,3 +69,12 @@ export function domTransition(
 export function getStyle(dom: HTMLElement, styleName: any) {
   return window.getComputedStyle(dom)[styleName]
 }
+
+/**
+ * 滚动到顶部
+ */
+export function scrollToTop() {
+  setTimeout(() => {
+    document.querySelector('.only-for-get-width')?.scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'center' })
+  }, 0)
+}

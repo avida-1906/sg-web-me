@@ -12,7 +12,11 @@ const chatScrollContent = ref<HTMLElement | null>(null)
 const { VITE_SPORT_MULTI_BET_MAX } = getEnv()
 
 let timer: any = null
-const betLoading = ref(false)
+const {
+  bool: betLoading,
+  setTrue: setBetLoadingTrue,
+  setFalse: setBetLoadingFalse,
+} = useBoolean(false)
 
 const { t } = useI18n()
 const router = useRouter()
@@ -75,9 +79,11 @@ const { selected: betOrderFilterValue, list: betOrderFilterData } = useSelect([
   { label: t('sports_accept_none_odds'), value: EnumOddsChange.notAcceptAnyOddsChange },
 ])
 
+/** 单式投注 */
 const isBetSingle = computed(
   () => betOrderSelectValue.value === EnumsBetSlipBetSlipTabStatus.single,
 )
+/** 复式投注 */
 const isBetMulti = computed(
   () => betOrderSelectValue.value === EnumsBetSlipBetSlipTabStatus.multi,
 )
@@ -88,7 +94,7 @@ const cartDataList = computed(() => sportStore.cart.dataList)
 
 /** 您的投注额不能超过余额 */
 const isBetAmountOverBalance = computed(() => {
-  if (betOrderSelectValue.value === EnumsBetSlipBetSlipTabStatus.single)
+  if (isBetSingle.value)
     return currentGlobalCurrencyBalanceNumber.value < +sportStore.cart.totalPay
 
   else return currentGlobalCurrencyBalanceNumber.value < Number(duplexInputValue.value)
@@ -122,7 +128,7 @@ const errorInfo = computed<{
   }
 
   // 如果是复式投注，判断是否存在同一赛事的多重投注项
-  if (betOrderSelectValue.value === EnumsBetSlipBetSlipTabStatus.multi) {
+  if (isBetMulti.value) {
     if (sportStore.cart.getExistSameEventIdList.length) {
       return {
         bool: true,
@@ -226,7 +232,7 @@ const isBetBtnDisabled = computed(() => {
   if (isBetAmountOverBalance.value)
     return true
 
-  if (betOrderSelectValue.value === EnumsBetSlipBetSlipTabStatus.single) {
+  if (isBetSingle.value) {
     /**
      * 单式投注
      *判断 sportStore.cart.dataList 中的每一项的amount是否为0
@@ -271,11 +277,15 @@ const duplexTotalProfit = computed(() => {
   return mul(_duplexOv, val)
 })
 
+/**
+ * 投注请求
+ * @param list 投注列表
+ */
 async function fetchBet(list: IBetArgs[]) {
-  betLoading.value = true
+  setBetLoadingTrue()
   const promiseList = list.map(item => ApiSportPlaceBet(item))
   const result = await Promise.allSettled(promiseList)
-  betLoading.value = false
+  setBetLoadingFalse()
 
   const successList = result.filter(item => item.status === 'fulfilled')
 
@@ -286,7 +296,7 @@ async function fetchBet(list: IBetArgs[]) {
   console.log('failWidList', failWidList)
 
   // 单式
-  if (betOrderSelectValue.value === EnumsBetSlipBetSlipTabStatus.single) {
+  if (isBetSingle.value) {
     list.forEach((item, index) => {
       const wid = item.bl[0].bi[0].wid
       const _result = result[index].status
@@ -295,7 +305,7 @@ async function fetchBet(list: IBetArgs[]) {
   }
 
   // 复式
-  if (betOrderSelectValue.value === EnumsBetSlipBetSlipTabStatus.multi) {
+  if (isBetMulti.value) {
     const _result = result[0].status
     list[0].bl[0].bi.forEach((item) => {
       const wid = item.wid
@@ -304,18 +314,23 @@ async function fetchBet(list: IBetArgs[]) {
   }
 
   if (successList.length)
-    betSuccess()
+    betSuccessTip(successWidList)
 }
 
-function betSuccess() {
-  const message = betOrderSelectValue.value === EnumsBetSlipBetSlipTabStatus.single
+/**
+ * 投注成功提示
+ * @param successLength 成功的api数量
+ */
+function betSuccessTip(widSuccessList: string[]) {
+  const message = isBetSingle.value
     ? t('sports_single_bet')
     : t('sports_multi_bet')
-  const amount = betOrderSelectValue.value === EnumsBetSlipBetSlipTabStatus.single
-    ? sportStore.cart.totalPay
+  const amount = isBetSingle.value
+    ? sportStore.cart.getAmountByWidList(widSuccessList)
     : Number(duplexInputValue.value)
-  const num = betOrderSelectValue.value === EnumsBetSlipBetSlipTabStatus.single
-    ? sportStore.cart.count
+
+  const num = isBetSingle.value
+    ? widSuccessList.length
     : 1
   openNotify({
     type: 'success',
@@ -381,6 +396,11 @@ async function checkBetListErrorStatus() {
   })
 }
 
+/**
+ * 投注方法
+ *
+ * 组装参数
+ */
 async function bet() {
   const checkBetListErrorStatusResult = await checkBetListErrorStatus()
   if (!checkBetListErrorStatusResult)
