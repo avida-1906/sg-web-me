@@ -40,6 +40,7 @@ const {
   return ''
 })
 const { openRegisterDialog } = useRegisterDialog()
+const { isMobile } = storeToRefs(useWindowStore())
 
 const {
   run: runGetSportPlaceBetInfo,
@@ -90,7 +91,12 @@ const isBetMulti = computed(
 const betBtnText = computed(() =>
   betOrderData.value.find(b => b.value === betOrderSelectValue.value)?.label ?? '-',
 )
-const cartDataList = computed(() => sportStore.cart.dataList)
+const cartDataList = computed(() => {
+  if (isMobile.value)
+    return sportStore.cart.dataList.slice().reverse()
+
+  return sportStore.cart.dataList
+})
 
 /** 您的投注额不能超过余额 */
 const isBetAmountOverBalance = computed(() => {
@@ -354,9 +360,15 @@ function runGetSportPlaceBetInfoHandle() {
     return
 
   if (
-    sportStore.cart.getExistSameEventIdList.length
-    || sportStore.cart.getExistIcList.length
+    isBetMulti.value
+    && (
+      sportStore.cart.getExistSameEventIdList.length
+      || sportStore.cart.getExistIcList.length
+    )
   )
+    return
+
+  if (sportStore.cart.count > VITE_SPORT_MULTI_BET_MAX)
     return
 
   runGetSportPlaceBetInfo({
@@ -479,11 +491,20 @@ function removeListToCartEvent() {
   sportsListToCartBus.off(eventHandler)
 }
 
+function firstInputFocus() {
+  if (chatScrollContent.value && chatScrollContent.value?.querySelector('input'))
+    chatScrollContent.value?.querySelector('input')?.focus()
+}
+
 watch(() => sportStore.cart.count, (val, oVal) => {
   if (val) {
     nextTick(() => {
-      if (chatScrollContent.value)
-        chatScrollContent.value.scrollTop = chatScrollContent.value?.scrollHeight ?? 0
+      if (chatScrollContent.value) {
+        if (isMobile.value)
+          chatScrollContent.value.scrollTop = 0
+        else
+          chatScrollContent.value.scrollTop = chatScrollContent.value?.scrollHeight ?? 0
+      }
     })
 
     if (val > VITE_SPORT_MULTI_BET_MAX)
@@ -523,6 +544,7 @@ watch(isLogin, (val) => {
 
 onMounted(() => {
   addListToCartEvent()
+  firstInputFocus()
 })
 
 onUnmounted(() => {
