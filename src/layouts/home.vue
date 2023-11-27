@@ -116,7 +116,7 @@ onErrorCaptured((err, instance, info) => {
       <!-- <Transition name="home-slide-fade"> :key="route.path" -->
       <div
         id="main-content-scrollable"
-        class="scroll-y scrollable" :class="[{ 'mobile-bottom': isMobile }]"
+        class="scrollable scroll-y" :class="[{ 'mobile-bottom': isMobile }]"
       >
         <!-- 用于获取内容区宽度 -->
         <AppContent except>
@@ -188,6 +188,12 @@ onErrorCaptured((err, instance, info) => {
           >
             <!-- <AppSportsBetSlipMenu /> -->
             <AppSportRightBet />
+          </template>
+          <template
+            v-if="currentRightSidebarContent === EnumRightSidebarContent.CASINOBET
+            "
+          >
+            <AppCasinoBet />
           </template>
         </div>
       </div>

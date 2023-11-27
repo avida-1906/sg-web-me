@@ -6,10 +6,13 @@ type RewriteColumn = {
 
 interface Props {
   mode?: 'casino' | 'sports' | 'home'
+  showTab?: boolean
+  tabVal?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
   mode: 'home',
+  showTab: true,
 })
 
 const { t } = useI18n()
@@ -234,6 +237,11 @@ function changeHidden() {
     setIsHiddenTrue()
 }
 
+watch(() => props.tabVal, (newValue) => {
+  if (newValue)
+    activeTab.value = newValue
+})
+
 onMounted(() => {
   tableData.value = [
     {
@@ -281,7 +289,7 @@ onMounted(() => {
 <template>
   <div class="app-bet-data">
     <div class="bet-data-head">
-      <BaseTab v-model="activeTab" :list="getTabOptions" size="large" />
+      <BaseTab v-show="showTab" v-model="activeTab" :list="getTabOptions" size="large" />
       <div v-if="isGreaterThanSm && mode !== 'home'" class="select-ranking center">
         <VTooltip placement="top">
           <div
@@ -420,7 +428,7 @@ onMounted(() => {
   .cursor-pointer{
     cursor: pointer;
     &:active{
-      transform: scale(0.96);
+      transform: scale(0.98);
     }
   }
 }
