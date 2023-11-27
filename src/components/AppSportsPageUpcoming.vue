@@ -1,6 +1,5 @@
 <script lang="ts" setup>
-import type { ISportEventList } from '~/apis/types'
-import type { ISportDataGroupedByLeague } from '~/types'
+import type { ISportEventInfo, ISportEventList } from '~/apis/types'
 
 const props = defineProps<{ onPage?: boolean }>()
 
@@ -20,8 +19,7 @@ const baseType = ref('winner')
 const page = ref(1)
 const pageSize = ref(+VITE_SPORT_EVENT_PAGE_SIZE)
 const total = ref(0)
-const curTotal = ref(0)
-const list = ref<ISportDataGroupedByLeague>([])
+const list = ref<ISportEventInfo[]>([])
 const params = computed(() => {
   return {
     si: currentUpcomingNav.value,
@@ -37,15 +35,17 @@ const { run, runAsync } = useRequest(ApiSportEventList,
     onSuccess(res) {
       if (res.d) {
         total.value = res.t
-        curTotal.value = curTotal.value + res.d.length
-
         if (page.value === 1)
-          return list.value = sportsDataGroupByLeague(res.d)
+          return list.value = res.d
 
-        list.value = sportsDataGroupByLeagueLoadMore(list.value, res.d)
+        list.value = [...cloneDeep(list.value), ...res.d]
       }
     },
   })
+const curTotal = computed(() => list.value.length)
+const leagueName = computed(() => {
+  return upcomingNavs.value.find(a => a.si === currentUpcomingNav.value)?.sn ?? '-'
+})
 /** 👷 分页、定时器、监听更新数据 start 👷 */
 function startUpcoming() {
   if (timer)
@@ -54,7 +54,6 @@ function startUpcoming() {
   timer = setInterval(() => {
     page.value = 1
     run({ ...params.value, page_size: curTotal.value })
-    curTotal.value = 0
   }, 120000)
 }
 function stopUpcoming() {
@@ -66,7 +65,6 @@ function getData() {
 }
 function loadMore() {
   if (curTotal.value >= +VITE_SPORT_EVENT_PAGE_SIZE_MAX) {
-    curTotal.value = 0
     page.value = 1
     pageSize.value = +VITE_SPORT_EVENT_PAGE_SIZE_MAX
     scrollMainContentToTop()
@@ -81,11 +79,17 @@ function reset() {
   page.value = 1
   pageSize.value = +VITE_SPORT_EVENT_PAGE_SIZE
   total.value = 0
-  curTotal.value = 0
   list.value = []
 }
 function updateDataByMqtt(data: ISportEventList[]) {
-  list.value = sportsDataUpdateByMqtt(list.value, data)
+  const arr: ISportEventInfo[] = cloneDeep(list.value)
+
+  for (let i = 0; i < data.length; i++) {
+    const index = arr.findIndex(a => a.ei === data[i].ei)
+    if (index > -1)
+      arr.splice(index, 1, data[i].v[0])
+  }
+  list.value = arr
 }
 /** 🚧 分页、定时器、监听更新数据 end 🚧 */
 
@@ -136,17 +140,10 @@ if (!props.onPage) {
 
     <div class="market-wrapper">
       <AppSportsMarket
-        v-for="item in list" :key="item.ci"
         :is-standard="isStandard"
-        :league-name="item.cn"
-        :event-count="item.list.length"
-        :event-list="item.list"
-        :base-type="baseType"
-        show-breadcrumb
+        :league-name="leagueName" :event-count="total" :base-type="baseType"
+        :event-list="list" auto-show :show-more="curTotal < total" @more="loadMore"
       />
-      <BaseButton v-show="curTotal < total" size="none" type="text" @click="loadMore">
-        {{ t('load_more') }}
-      </BaseButton>
     </div>
 
     <div v-if="!onPage" class="layout-spacing">

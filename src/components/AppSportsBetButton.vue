@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import type { ICartInfo } from '~/types'
+import type { ICartInfo, ISportListToCartData } from '~/types'
 
 interface Props {
   layout?: 'horizontal' | 'vertical'
@@ -20,6 +20,13 @@ const sportStore = useSportsStore()
 const { t } = useI18n()
 const { openRightSidebar, rightIsExpand, currentRightSidebarContent } = useRightSidebar()
 const { isMobile } = storeToRefs(windowStore)
+
+const listToCartData = ref<ISportListToCartData>({
+  wid: props.cartInfo.wid,
+  ov: props.odds,
+  os: props.disabled ? 0 : 1,
+})
+const _disabled = ref(props.disabled)
 
 function clickHandler() {
   if (!rightIsExpand.value && !isMobile.value)
@@ -69,6 +76,44 @@ function startDomTransition() {
     topOffset: Number.parseFloat(topOffset),
   })
 }
+
+/** 数据改变，向购物车发送数据 */
+function listToCartEventEmit() {
+  sportsListToCartBus.emit(listToCartData.value)
+}
+/** 处理列表通知发送的数据 */
+function eventHandler(_data: ISportListToCartData) {
+  if (_data.wid === listToCartData.value.wid) {
+    listToCartData.value.ov = _data.ov
+    listToCartData.value.os = _data.os
+    _disabled.value = _data.os !== 1
+  }
+}
+/** 监听列表发送的事件 */
+function addListToCartEvent() {
+  sportsCartToListBus.on(eventHandler)
+}
+/** 移除列表发送的事件 */
+function removeListToCartEvent() {
+  sportsCartToListBus.off(eventHandler)
+}
+
+watch(() => props.disabled, (val) => {
+  _disabled.value = val
+  listToCartData.value.os = val ? 0 : 1
+  listToCartEventEmit()
+})
+watch(() => props.odds, (val) => {
+  listToCartData.value.ov = val
+  listToCartEventEmit()
+})
+
+onMounted(() => {
+  addListToCartEvent()
+})
+onBeforeUnmount(() => {
+  removeListToCartEvent()
+})
 </script>
 
 <template>
@@ -77,7 +122,7 @@ function startDomTransition() {
     class="app-sports-bet-button"
     :class="{
       'active': sportStore.cart.checkWid(props.cartInfo.wid),
-      disabled,
+      'disabled': _disabled,
       'is-na': isNa,
     }"
     @click="clickHandler"
@@ -89,7 +134,7 @@ function startDomTransition() {
       <div class="name">
         {{ title || '-' }}
       </div>
-      <span v-if="disabled" class="status">{{ t('sports_status_timeout') }}</span>
+      <span v-if="_disabled" class="status">{{ t('sports_status_timeout') }}</span>
       <AppSportsOdds
         v-else
         :style="
@@ -97,7 +142,7 @@ function startDomTransition() {
             ? 'var(--tg-text-white)' : ''}`
         "
         :arrow="layout === 'horizontal' ? 'left' : 'right'"
-        :odds="odds || '0.00'"
+        :odds="listToCartData.ov || '0.00'"
       />
     </div>
   </div>

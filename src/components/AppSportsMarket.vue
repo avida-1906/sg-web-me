@@ -15,6 +15,11 @@ withDefaults(defineProps<Props>(), {
   isStandard: true,
   autoShow: true,
 })
+const emit = defineEmits(['more'])
+
+function onMoreClick() {
+  emit('more')
+}
 </script>
 
 <template>
@@ -23,6 +28,7 @@ withDefaults(defineProps<Props>(), {
     :show-more="showMore"
     level="2"
     :init="autoShow"
+    @more="onMoreClick"
   >
     <template #side="{ isOpen }">
       <div v-show="!isOpen" class="accordion-badge-wrap">

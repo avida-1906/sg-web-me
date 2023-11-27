@@ -208,10 +208,14 @@ export function useApiMenuData() {
   function menuItemClick(item: MenuItem) {
     Local.set(STORAGE_MENU_EXPAND_DOMID, item.domId || '')
     if (item.path && item.path.length) {
-      if ((isMobile.value || isLessThanLg.value) && leftIsExpand.value)
-        closeLeftSidebar()
-
-      router.push(replaceSportsPlatId(item.path))
+      if ((isMobile.value || isLessThanLg.value) && leftIsExpand.value) {
+        closeLeftSidebar(() => {
+          router.push(replaceSportsPlatId(item.path!))
+        })
+      }
+      else {
+        router.push(replaceSportsPlatId(item.path))
+      }
     }
     else if (item.list && item.list.length) {
       openLeftSidebar()

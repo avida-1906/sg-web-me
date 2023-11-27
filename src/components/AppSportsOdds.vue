@@ -20,11 +20,11 @@ function resetUpDown() {
     clearTimeout(timer)
   }, 3200)
 }
-watch(props, () => {
-  if (+saveNum.value !== +props.odds) {
-    upDown.value = +props.odds > +saveNum.value ? 'up' : 'down'
+watch(() => props.odds, (newOdds) => {
+  if (+saveNum.value !== +newOdds) {
+    upDown.value = +newOdds > +saveNum.value ? 'up' : 'down'
     resetUpDown()
-    saveNum.value = props.odds
+    saveNum.value = newOdds
   }
 })
 </script>
