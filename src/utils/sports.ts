@@ -663,6 +663,7 @@ export class SportsCart {
         wid: item.wid,
         ov: item.ov,
         os: item.os,
+        ei: item.ei,
       }
     })
 
@@ -699,6 +700,16 @@ export class SportsCart {
    */
   setOvIsChangeBool(bool: boolean) {
     this.ovIsChange = bool
+  }
+
+  /**
+   * 根据wid 列表 获取购物车数据中的amount总和
+   * @param {string[]} widList
+   */
+  getAmountByWidList(widList: string[]) {
+    return this.dataList.filter(a => widList.includes(a.wid)).reduce((a, b) => {
+      return Number(add(a, Number(b.amount)))
+    }, 0)
   }
 }
 

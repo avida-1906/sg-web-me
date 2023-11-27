@@ -28,7 +28,10 @@ function handleClick(item: ListItem) {
               <div class="dot" />
               <div class="main">
                 <div class="icon">
-                  <BaseIcon :name="tab.icon" :use-cloud-img="tab.useCloudImg" />
+                  <BaseIcon
+                    :class="{ 'icon-act': tab.si === modelValue }"
+                    :name="tab.icon" :use-cloud-img="tab.useCloudImg"
+                  />
                   <BaseBadge
                     :mode="tab.si === modelValue ? 'active' : 'black'"
                     style="--tg-badge-font-size:var(--tg-font-size-xs);
@@ -99,6 +102,9 @@ function handleClick(item: ListItem) {
           display: flex;
           align-items: center;
           justify-content: center;
+          .icon-act{
+            filter: brightness(2);
+          }
 
           .badge {
             position: absolute;

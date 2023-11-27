@@ -166,6 +166,10 @@ onUnmounted(() => {
       last-one
       :btn-loading="payPasswordUpdateLoading"
       :verified="getMailState"
+      :style="{
+        '--tg-app-settings-content-item-style-max-width':
+          getMailState ? '100%' : '420px',
+      }"
       @submit="submitPayPwd"
     >
       <div v-if="getMailState" class="mail-not-bind">
