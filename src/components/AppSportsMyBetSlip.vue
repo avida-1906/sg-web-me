@@ -106,7 +106,10 @@ function makeMarketInfo(item: ISportsMyBetSlipItemBi) {
               </div>
               <div class="wrapper">
                 <div class="fixture-details">
-                  {{ timeToSportsTimeFormat(item.ed) }}
+                  <span v-if="isSettled" style="color:var( --tg-text-warn)">
+                    {{ item.re }}
+                  </span>
+                  <span v-else>{{ timeToSportsTimeFormat(item.ed) }}</span>
                 </div>
                 <div class="icons">
                   <!-- <BaseButton type="text" size="none">
@@ -394,6 +397,9 @@ function makeMarketInfo(item: ISportsMyBetSlipItemBi) {
     align-items: center;
     justify-content: space-between;
     color: var(--tg-text-white);
+    label{
+      color: var(--tg-text-lightgrey);
+    }
 
     .odds {
       font-weight: var(--tg-font-weight-semibold);
