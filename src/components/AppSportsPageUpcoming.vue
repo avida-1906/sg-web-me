@@ -140,7 +140,7 @@ if (!props.onPage) {
 
     <div class="market-wrapper">
       <AppSportsMarket
-        :is-standard="isStandard"
+        :is-standard="isStandard" show-breadcrumb
         :league-name="leagueName" :event-count="total" :base-type="baseType"
         :event-list="list" auto-show :show-more="curTotal < total" @more="loadMore"
       />
