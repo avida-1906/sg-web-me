@@ -5,7 +5,8 @@ import type { ISportListToCartData } from '~/types'
 import { EnumsBetSlipHeadStatus } from '~/utils/enums'
 
 const emit = defineEmits<{
-  changeHeadSelectValue: [value: EnumsBetSlipHeadStatus] // 具名元组语法
+  changeHeadSelectValue: [value: EnumsBetSlipHeadStatus]
+  getBetList: []
 }>()
 
 const chatScrollContent = ref<HTMLElement | null>(null)
@@ -319,8 +320,10 @@ async function fetchBet(list: IBetArgs[]) {
     })
   }
 
-  if (successList.length)
+  if (successList.length) {
     betSuccessTip(successWidList)
+    emit('getBetList')
+  }
 }
 
 /**

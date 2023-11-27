@@ -18,9 +18,27 @@ const { selected: headSelectValue, list: headSelectData } = useSelect([
     icon: 'navbar-user-bet',
   },
 ])
+const {
+  settle,
+} = useSportSelectSettle()
+const {
+  totalUnsettled,
+  fetch: getBetListData,
+} = useApiSportBetList(settle)
 
 const betCount = computed(() => {
   return sportStore.cart.count
+})
+
+const unsettledCount = computed(() => {
+  return totalUnsettled.value
+})
+
+const headRenderCount = computed(() => {
+  if (headSelectValue.value === EnumsBetSlipHeadStatus.betSlip)
+    return betCount.value
+  else if (headSelectValue.value === EnumsBetSlipHeadStatus.myBets)
+    return unsettledCount.value
 })
 
 const renderComponent = computed(() => {
@@ -50,14 +68,23 @@ function changeHeadSelectValue(value: EnumsBetSlipHeadStatus) {
           <div class="type-select">
             <BaseIcon :name="data?.icon" />
             <span>{{ data?.label }}</span>
-            <BaseBadge v-if="betCount" :count="betCount" mode="active" />
+            <BaseBadge v-if="headRenderCount" :count="headRenderCount" mode="active" />
           </div>
         </template>
         <template #option="{ data: { item } }">
           <div class="type-option">
             <BaseIcon :name="item.icon" />
             <span>{{ item.label }}</span>
-            <BaseBadge v-if="item?.num" :count="item?.num" mode="active" />
+            <BaseBadge
+              v-if="item.value === 0 && betCount"
+              :count="betCount"
+              mode="active"
+            />
+            <BaseBadge
+              v-if="item.value === 1 && unsettledCount"
+              :count="unsettledCount"
+              mode="active"
+            />
           </div>
         </template>
       </BaseSelect>
@@ -80,6 +107,7 @@ function changeHeadSelectValue(value: EnumsBetSlipHeadStatus) {
         <component
           :is="renderComponent"
           @change-head-select-value="changeHeadSelectValue"
+          @get-bet-list="getBetListData()"
         />
       </KeepAlive>
     </div>
