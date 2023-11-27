@@ -22,10 +22,11 @@ const { vip, progress, currentLevel, nextLevel } = useVipInfo()
     </div>
     <div class="percent-btm">
       <div>
-        <BaseIcon :name="`vip${vip}`" /> <span>{{ currentLevel?.alias }}</span>
+        <BaseIcon :name="`vip${vip}`" /> <span>{{ `VIP${currentLevel?.level}` }}</span>
       </div>
       <div>
-        <BaseIcon :name="`vip${nextLevel?.level}`" /> <span>{{ nextLevel?.alias }}</span>
+        <BaseIcon :name="`vip${nextLevel?.level}`" />
+        <span style="color:var(--tg-text-white)">{{ `VIP${nextLevel?.level}` }}</span>
       </div>
     </div>
   </div>

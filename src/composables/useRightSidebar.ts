@@ -2,6 +2,7 @@ export enum EnumRightSidebarContent {
   CHATROOM = 'chatroom',
   BETTING = 'betting',
   NOTIFICATION = 'notification',
+  CASINOBET = 'casinobet',
 }
 
 export const useRightSidebar = createGlobalState(() => {
