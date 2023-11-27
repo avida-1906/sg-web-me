@@ -48,7 +48,7 @@ const { bool: isOpen, toggle: toggleOpen } = useBoolean(props.init)
         <AppSportsMarketLeague
           v-for="league, i in leagueList"
           :key="league.ci"
-          :auto-show="i === 0"
+          :auto-show="leagueList[0].c < 10 ? true : i === 0"
           :is-standard="isStandard"
           :base-type="baseType"
           :league-name="league.cn"

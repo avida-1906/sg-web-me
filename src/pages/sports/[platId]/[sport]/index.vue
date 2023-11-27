@@ -100,7 +100,7 @@ await application.allSettled([runAsync(params.value)])
             :key="region.pgid"
             :title="region.pgn"
             icon="spt-game-intl"
-            :init="index > 0 ? false : true"
+            :init="index === 0"
             :count="region.c"
             :is-standard="isStandard"
             :base-type="baseType"
