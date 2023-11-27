@@ -31,7 +31,7 @@ watch(() => props.odds, (newOdds) => {
 
 <template>
   <div class="app-sports-odds" :class="[arrow]">
-    <span class="odds">{{ sportsStore.renderOdds(+odds) }}</span>
+    <span class="odds" v-html="sportsStore.renderOdds(+odds).value" />
     <div class="icon arrow-odds" :class="`odds-${upDown}`">
       <BaseIcon :name="`uni-tri-${upDown}`" />
     </div>

@@ -28,7 +28,7 @@ const {
   onSuccess(data) {
     for (const item of data.notice)
       item.value = item.id
-    openSwiperNoticeDialog(data.notice)
+    data.notice.length > 0 && openSwiperNoticeDialog(data.notice)
   },
 })
 
