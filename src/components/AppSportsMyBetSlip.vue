@@ -8,12 +8,15 @@ type ISportsMyBetSlipItemWithShowRe = {
 type ISportsMyBetSlipItemBi = ISportsMyBetSlipItemWithShowRe['bi'][number]
 interface Props {
   data: ISportsMyBetSlipItem
+  isDialog?: boolean
 }
 
 const props = defineProps<Props>()
 
 const { t } = useI18n()
 const { currentGlobalCurrency } = storeToRefs(useAppStore())
+const { openBetSlipDialog } = useDialogBetSlip()
+
 const statusObj: { [t: number]: string } = {
   0: t('sports_active'),
   1: t('win_label'),
@@ -62,7 +65,7 @@ function makeMarketInfo(item: ISportsMyBetSlipItemBi) {
   }
 }
 function showDetail() {
-
+  openBetSlipDialog({ type: 'sports', data: props.data })
 }
 </script>
 
@@ -76,7 +79,7 @@ function showDetail() {
           </div>
           <span>{{ timeToFormat(slipData.bt) }}</span>
         </div>
-        <BaseButton type="text" size="none" @click="showDetail">
+        <BaseButton v-if="!isDialog" type="text" size="none" @click="showDetail">
           <BaseIcon name="uni-share-slip" />
         </BaseButton>
       </div>
@@ -122,6 +125,7 @@ function showDetail() {
                     <BaseIcon name="spt-live" />
                   </BaseButton> -->
                   <BaseButton
+                    v-if="!isDialog"
                     type="text"
                     size="none" @click="item.showResult = !item.showResult"
                   >
@@ -140,7 +144,8 @@ function showDetail() {
         </div>
         <!-- logo分割线 -->
         <div class="hr">
-          <img class="logo" draggable="false" src="https://stake.com/_app/immutable/assets/stake-dark.0aaa7847.svg">
+          <img v-if="!isDialog" class="logo" draggable="false" src="https://stake.com/_app/immutable/assets/stake-dark.0aaa7847.svg">
+          <img v-else class="logo" draggable="false" src="https://stake.com/_app/immutable/assets/stake-light.5be6dc2d.svg">
         </div>
 
         <!-- 总计 -->
