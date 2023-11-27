@@ -106,7 +106,10 @@ function makeMarketInfo(item: ISportsMyBetSlipItemBi) {
               </div>
               <div class="wrapper">
                 <div class="fixture-details">
-                  {{ timeToSportsTimeFormat(item.ed) }}
+                  <span v-if="isSettled" style="color:var( --tg-text-warn)">
+                    {{ item.re }}
+                  </span>
+                  <span v-else>{{ timeToSportsTimeFormat(item.ed) }}</span>
                 </div>
                 <div class="icons">
                   <!-- <BaseButton type="text" size="none">
