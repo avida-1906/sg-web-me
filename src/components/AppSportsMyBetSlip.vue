@@ -394,6 +394,9 @@ function makeMarketInfo(item: ISportsMyBetSlipItemBi) {
     align-items: center;
     justify-content: space-between;
     color: var(--tg-text-white);
+    label{
+      color: var(--tg-text-lightgrey);
+    }
 
     .odds {
       font-weight: var(--tg-font-weight-semibold);
