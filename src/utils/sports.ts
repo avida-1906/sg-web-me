@@ -2,6 +2,8 @@ import type { SocketClient } from './mqtt'
 import type {
   EnumCurrencyKey,
   IBetInfoBack,
+  IBetInfoDl,
+  IBetInfoStatus,
   ISportEventInfo,
   ISportEventInfoMl,
   ISportEventInfoMlMs,
@@ -12,7 +14,6 @@ import type {
   IBetInfoChangeCallback,
   ICartInfo,
   ICartInfoData,
-  IListToCartCallback,
   ISportDataGroupedByLeague,
   ISportListToCartData,
 } from '~/types'
@@ -320,6 +321,66 @@ export class SportsCart {
   /** 货币类型 */
   currency: EnumCurrencyKey = EnumCurrency[0] as EnumCurrencyKey
 
+  /** 是否有赔率变化 */
+  ovIsChange = false
+
+  /** 是否有更低的赔率 */
+  ovIsLower = false
+
+  /** 复式下的金额最小值 */
+  multiMia = 0
+
+  /** 复式下的金额最大值 */
+  multiMaa = 0
+
+  /** 是否支持当前货币 */
+  isSupportCurrency = true
+
+  /** 输入金额是否只支持两位小数 */
+  isOnlyTwoDecimal = true
+
+  /** 输入金额是否要10的倍数 */
+  isTenMultiple = true
+
+  /** 输入金额是否支持小数点后五位 */
+  isFiveDecimal = false
+
+  /** 金额是否存在超过两位小数的情况 */
+  get isExistMoreThanTwoDecimal() {
+    return this.dataList.some((item) => {
+      const amount = String(item.amount)
+      const amountArr = amount.split('.')
+      if (amountArr.length > 1 && amountArr[1].length > 2)
+        return true
+      else
+        return false
+    })
+  }
+
+  /** 金额是否存在不是10的倍数 */
+  get isTenMultipleBool() {
+    return this.dataList.every((item) => {
+      const amount = String(item.amount)
+      const amountArr = amount.split('.')
+      if (amountArr.length > 1 && Number(amountArr[1]) % 10 === 0)
+        return true
+      else
+        return false
+    })
+  }
+
+  /** 金额是否存在小数点后五位的情况 */
+  get isExistFiveDecimal() {
+    return this.dataList.some((item) => {
+      const amount = String(item.amount)
+      const amountArr = amount.split('.')
+      if (amountArr.length > 1 && amountArr[1].length > 5)
+        return true
+      else
+        return false
+    })
+  }
+
   /** 购物车数量 */
   get count() {
     return this.dataList.length
@@ -494,27 +555,15 @@ export class SportsCart {
   /**
    * 通过wid，更新赔率，os
    */
-  updateOvOs(_data: ISportListToCartData, fn?: IListToCartCallback) {
+  updateOvOs(_data: ISportListToCartData) {
     const { wid, ov, os } = _data
     const index = this.dataList.findIndex(a => a.wid === wid)
 
-    if (fn) {
-      /**
-     * 是否有赔率变化
-     */
-      let ovIsChange = false
-      if (ov)
-        ovIsChange = Number(ov) !== Number(this.dataList[index].ov)
+    if (ov)
+      this.ovIsChange = Number(ov) !== Number(this.dataList[index].ov)
 
-      /**
-       * 是否有低于当前赔率
-       */
-      let ovIsLower = false
-      if (ov)
-        ovIsLower = Number(ov) < Number(this.dataList[index].ov)
-
-      fn({ ovIsChange, ovIsLower })
-    }
+    if (ov)
+      this.ovIsLower = Number(ov) < Number(this.dataList[index].ov)
 
     if (index > -1) {
       this.dataList[index].ov = ov
@@ -522,26 +571,37 @@ export class SportsCart {
     }
   }
 
+  /**
+   * 将betinfo的 dl 和 wsi 数据转换成购物车需要的数据
+   */
+  dlStatesToRenderData(dl: IBetInfoDl, status: IBetInfoStatus) {
+    this.isSupportCurrency = status !== 3
+
+    // dl 不需要处理为3的情况，因为不支持的币种，使用status来判断
+    this.isOnlyTwoDecimal = dl === 4
+    this.isTenMultiple = dl === 5
+    this.isFiveDecimal = dl === 6
+  }
+
   /** 更新所有数据的赔率，状态等...，通过betinfo接口返回的数据
    * @param {IBetInfoBack} data
    * @param {IBetInfoChangeCallback} fn 回调函数
    */
   updateAllData(data: IBetInfoBack, fn?: IBetInfoChangeCallback) {
-    const { wsi, bi, status } = data
-    const isSupportCurrency = status !== 3
+    const { wsi, bi, dl, status } = data
+
+    this.dlStatesToRenderData(dl, status)
 
     if (!bi)
       console.log('bi 不存在')
 
-    let mia = 0
-    let maa = 0
     let pt = 0
 
     if (bi) {
       // 复式下的最小赔率
-      mia = bi[0] ? bi[0].mia : 0
+      this.multiMia = bi[0] ? bi[0].mia : 0
       // 复式下的最大赔率
-      maa = bi[0] ? bi[0].maa : 0
+      this.multiMaa = bi[0] ? bi[0].maa : 0
       // 复式下的串关类型
       pt = bi[0] ? bi[0].pt : 0
     }
@@ -578,24 +638,24 @@ export class SportsCart {
       }
     })
 
-    // 是否有赔率变化
-    let ovIsChange = false
     if (wsi) {
-      ovIsChange = this.dataList.some((item) => {
+      this.ovIsChange = this.dataList.some((item) => {
         const _wsi = wsi.find(a => a.wid === item.wid)
         return Number(_wsi?.ov) !== Number(item.ov)
       })
     }
 
-    // 是否有低于当前赔率
-    let ovIsLower = false
     if (wsi) {
-      ovIsLower = this.dataList.some((item) => {
+      this.ovIsLower = this.dataList.some((item) => {
         const _wsi = wsi.find(a => a.wid === item.wid)
         return Number(_wsi?.ov) < Number(item.ov)
       })
     }
 
+    /**
+     * os和ov有变化的数据
+     * @desc 用于通知列表更新
+     */
     const osOvIsChangeList = this.dataList.filter((item) => {
       return osOvIsChangeWidList.includes(item.wid)
     }).map<ISportListToCartData>((item) => {
@@ -607,7 +667,7 @@ export class SportsCart {
     })
 
     if (fn)
-      fn({ ovIsChange, mia, maa, isSupportCurrency, ovIsLower, osOvIsChangeList })
+      fn({ osOvIsChangeList })
   }
 
   /**
@@ -630,6 +690,15 @@ export class SportsCart {
     })
 
     this.updateAllAmount()
+  }
+
+  /**
+   * 设置ovIsChange 值
+   * @param {boolean} bool
+   * @returns {void}
+   */
+  setOvIsChangeBool(bool: boolean) {
+    this.ovIsChange = bool
   }
 }
 
