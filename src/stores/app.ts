@@ -21,6 +21,11 @@ export const useAppStore = defineStore('app', () => {
   const { data: balanceData, runAsync: getBalanceData } = useRequest(ApiMemberBalance, {
     ready: isLogin,
     manual: false,
+    throttleInterval: 1500,
+    throttleOptions: {
+      leading: true,
+      trailing: false,
+    },
   })
   /** 获取用户锁定余额 */
   const { data: lockerData, runAsync: getLockerData } = useRequest(ApiMemberBalanceLocker)
