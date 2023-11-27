@@ -1305,3 +1305,13 @@ export function ApiMemberStationInfoDetailUpdateState(data: {
 }) {
   return httpClient.post<string>(`/member/station/info/detail/update/state?id=${data.id}`)
 }
+
+/**
+ * 测试环境下使用，删除三方登录用户数据
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=af64b5e3-b754-4865-aab4-358c59612464
+ */
+export function ApiDevDeleteThirdAuth(data: {
+  email: string
+}) {
+  return httpClient.post<string>('/member/third/auth/delete', data)
+}
