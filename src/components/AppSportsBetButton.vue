@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import type { ICartInfo } from '~/types'
+import type { ICartInfo, ISportListToCartData } from '~/types'
 
 interface Props {
   layout?: 'horizontal' | 'vertical'
@@ -69,6 +69,27 @@ function startDomTransition() {
     topOffset: Number.parseFloat(topOffset),
   })
 }
+
+/** 处理列表通知发送的数据 */
+function eventHandler(_data: ISportListToCartData) {
+  console.log('收到列表发送的数据', _data)
+}
+/** 监听列表发送的事件 */
+function addListToCartEvent() {
+  sportsListToCartBus.on(eventHandler)
+}
+
+/** 移除列表发送的事件 */
+function removeListToCartEvent() {
+  sportsListToCartBus.off(eventHandler)
+}
+
+onMounted(() => {
+  addListToCartEvent()
+})
+onBeforeUnmount(() => {
+  removeListToCartEvent()
+})
 </script>
 
 <template>
