@@ -7,6 +7,8 @@ const emit = defineEmits<{
 
 const { t } = useI18n()
 const router = useRouter()
+const { isMobile } = storeToRefs(useWindowStore())
+const { closeRightSidebar } = useRightSidebar()
 
 const {
   settle,
@@ -17,6 +19,13 @@ const {
   sportBetList,
   loading,
 } = useApiSportBetList(settle)
+
+function toMyBets() {
+  if (isMobile.value)
+    closeRightSidebar()
+
+  router.push(`/sports/${getSportsPlatId()}/my-bets?type=sports`)
+}
 </script>
 
 <template>
@@ -60,7 +69,7 @@ const {
       <!-- 我的投注 -->
       <BaseButton
         size="md"
-        @click="router.push(`/sports/${getSportsPlatId()}/my-bets?type=sports`)"
+        @click="toMyBets"
       >
         {{ t('view_all') }}
       </BaseButton>
