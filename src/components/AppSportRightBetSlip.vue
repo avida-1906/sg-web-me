@@ -120,6 +120,13 @@ const errorInfo = computed<{
   /** 错误提示信息 */
   errorMess: string
 }>(() => {
+  if (sportStore.cart.count === 0) {
+    return {
+      bool: false,
+      errorMess: '',
+    }
+  }
+
   if (isSupportCurrency.value === false) {
     return {
       bool: true,

@@ -69,6 +69,7 @@ const paginationData = computed(() => {
     </div>
     <AppStack
       v-if="!loading && sportBetList.length > 0"
+      class="stack-padding"
       :pagination-data="paginationData"
       scroll
       @previous="prev" @next="next"
@@ -91,5 +92,8 @@ const paginationData = computed(() => {
     break-inside: avoid;
     width: 100%;
   }
+}
+.stack-padding {
+  padding-bottom: 30px;
 }
 </style>
