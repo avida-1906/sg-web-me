@@ -79,7 +79,7 @@ function startDomTransition() {
 
 /** 数据改变，向购物车发送数据 */
 function listToCartEventEmit() {
-  sportsCartToListBus.emit(listToCartData.value)
+  sportsListToCartBus.emit(listToCartData.value)
 }
 /** 处理列表通知发送的数据 */
 function eventHandler(_data: ISportListToCartData) {
