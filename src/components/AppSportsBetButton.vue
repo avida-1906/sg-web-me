@@ -83,10 +83,11 @@ function listToCartEventEmit() {
 }
 /** 处理列表通知发送的数据 */
 function eventHandler(_data: ISportListToCartData) {
-  if (_data.wid === listToCartData.value.wid) {
-    listToCartData.value.ov = _data.ov
+  if (_data.ei === props.cartInfo.ei) {
     listToCartData.value.os = _data.os
     _disabled.value = _data.os !== 1
+    if (_data.wid === listToCartData.value.wid)
+      listToCartData.value.ov = _data.ov
   }
 }
 /** 监听列表发送的事件 */

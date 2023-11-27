@@ -61,6 +61,9 @@ function makeMarketInfo(item: ISportsMyBetSlipItemBi) {
       return item.sn
   }
 }
+function showDetail() {
+
+}
 </script>
 
 <template>
@@ -73,9 +76,9 @@ function makeMarketInfo(item: ISportsMyBetSlipItemBi) {
           </div>
           <span>{{ timeToFormat(slipData.bt) }}</span>
         </div>
-        <!-- <BaseButton type="text" size="none">
+        <BaseButton type="text" size="none" @click="showDetail">
           <BaseIcon name="uni-share-slip" />
-        </BaseButton> -->
+        </BaseButton>
       </div>
 
       <div class="content">
