@@ -37,6 +37,14 @@ export function useApiSportBetList(settle: Ref<number>, isFetch?: boolean) {
     return _list.value
   })
 
+  /** 未结算total */
+  const totalUnsettled = computed(() => {
+    if (_list.value.length === 0 || settle.value === 1)
+      return 0
+
+    return total.value
+  })
+
   function fetch() {
     runGetSportBetList({
       kind: 'normal',
@@ -59,8 +67,10 @@ export function useApiSportBetList(settle: Ref<number>, isFetch?: boolean) {
     total,
     page,
     page_size,
+    totalUnsettled,
     runGetSportBetList,
     next,
     prev,
+    fetch,
   }
 }
