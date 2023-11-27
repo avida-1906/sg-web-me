@@ -5,16 +5,16 @@ const { isMobile } = storeToRefs(useWindowStore())
 
 const { selected: headSelectValue, list: headSelectData } = useSelect([
   {
-    label: '我的投注',
+    label: t('my_bets'),
     value: 'casino-mine',
   }, {
-    label: '所有投注',
+    label: t('all_bets'),
     value: 'casino-all',
   }, {
-    label: '风云榜',
+    label: t('billboard'),
     value: 'casino-fy',
   }, {
-    label: '竞赛',
+    label: t('competition'),
     value: 'ranking-list',
   },
 ])
