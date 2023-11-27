@@ -29,7 +29,9 @@ const numStr = computed(() => {
     <AppAmount
       class="amount"
       :show-name="showName"
-      :amount="amount"
+      :amount="
+        application.sliceOrPad(+amount, application.getCurrencySuffixLength(currencyType))
+      "
       :currency-type="currencyType"
     />
     {{ betSlipTabValue ? `${t('de')}${betSlipTabValue}` : '' }}
