@@ -14,10 +14,16 @@ const pageSize = 10
 const pageTotal = ref(0)
 
 const { t } = useI18n()
+// 投注详情
 const { openBetSlipDialog } = useDialogBetSlip()
-const { openDepositDetailDialog } = useDialogDepositDetail()
+// 存款详情
+// const { openDepositDetailDialog } = useDialogDepositDetail()
+// 公告
 const { openNoticeDialog } = useDialogNotice()
-const { openMessageDialog } = useDialogMessage()
+// 站内信
+const { openMessageDialog: openMessageZnxDialog } = useDialogMessage(t('site_message'))
+// 跑马灯
+const { openMessageDialog: openMessagePmdDialog } = useDialogMessage(t('marquee'))
 const { bool: loading, setBool: setLoadingBool } = useBoolean(true)
 // 公告&跑马灯
 const {
@@ -41,12 +47,12 @@ const {
 })
 // 标记已读
 const {
-  // data: stationInfoList,
   run: runStationInfoDetailUpdateState,
-  // loading: memberNoticeListLoading,
 } = useRequest(ApiMemberStationInfoDetailUpdateState, {
-  onSuccess() {
-
+  onSuccess(data, params) {
+    const item = stationInfoList.value?.find(item => item.id === params[0].id)
+    item && (item.state = 1)
+    stationInfoList.value = [...(stationInfoList.value ?? [])]
   },
 })
 
@@ -58,7 +64,7 @@ const isState = computed(() => {
 })
 const getList: ComputedRef<any[] | undefined> = computed(() => {
   switch (props.mode) {
-    case EnumPage[0]: break
+    case EnumPage[0]: return []
     case EnumPage[1]: return stationInfoList.value
     case EnumPage[2]:
     case EnumPage[3]: return noticeList.value
@@ -82,10 +88,10 @@ function openDialogDetail(item: any) {
     })
     case EnumPage[1]:
       runStationInfoDetailUpdateState({ id: item.id })
-      openDepositDetailDialog()
+      openMessageZnxDialog(item)
       return
     case EnumPage[2]: return openNoticeDialog(item)
-    case EnumPage[3]: return openMessageDialog(item)
+    case EnumPage[3]: return openMessagePmdDialog(item)
   }
 }
 function pageInit() {
@@ -132,7 +138,7 @@ pageInit()
               {{ item.title }}
             </div> -->
             <BaseBadge
-              v-if="isState && item.state === 0"
+              v-if="isState && item.state === 2"
               class="state-text"
               status="success" :text="timeToFromNow(item.start_time ?? item.created_at)"
             />
@@ -142,7 +148,7 @@ pageInit()
             >{{ timeToFromNow(item.start_time ?? item.created_at) }}</span>
           </div>
           <!-- 通知 -->
-          <div v-if="mode === EnumPage[0]" style="white-space:normal;line-height: 1.43;">
+          <div v-if="mode === EnumPage[0]" class="content-text">
             您含有3项赛事的复式投注赢得了100.00000000
             <AppCurrencyIcon
               style="display: inline-flex;vertical-align: middle;" currency-type="BTC"
@@ -150,20 +156,20 @@ pageInit()
           </div>
           <!-- 站内信 -->
           <template v-else-if="mode === EnumPage[1]">
-            <div style="white-space:normal">
+            <div class="content-text">
               {{ item.content[getCurrentLanguageForBackend()] }}
             </div>
           </template>
           <!-- 公告 -->
           <div
             v-else-if="mode === EnumPage[2]"
-            style="white-space:normal;line-height: 1.43;"
+            class="content-text"
             v-html="item.content[getCurrentLanguageForBackend()]"
           />
           <!-- 跑马灯 -->
           <div
             v-else
-            style="white-space:normal;line-height: 1.43;"
+            class="content-text"
             v-html="item.content[getCurrentLanguageForBackend()]"
           />
         </div>
@@ -234,25 +240,23 @@ pageInit()
             justify-content: space-between;
             background: var(--tg-secondary-main);
             border-radius:
-                var(--tg-radius-none) var(--tg-radius-default) var(--tg-radius-default) var(--tg-radius-none);
-            width: 0;
-
+              var(--tg-radius-none) var(--tg-radius-default) var(--tg-radius-default) var(--tg-radius-none);
             .right-state {
-                width: 100%;
-                display: flex;
-                color: var(--tg-text-white);
-                font-size: var(--tg-font-size-default);
-                font-weight: 500;
-                justify-content: space-between;
-                align-items: center;
-                .title {
-                  overflow: hidden;
-                  text-overflow: ellipsis;
-                }
-                .state-text{
-                  flex: 1;
-                  text-align: right;
-                }
+              width: 100%;
+              display: flex;
+              color: var(--tg-text-white);
+              font-size: var(--tg-font-size-default);
+              font-weight: 500;
+              justify-content: space-between;
+              align-items: center;
+              .state-text{
+                flex: 1;
+                text-align: right;
+              }
+            }
+            .content-text{
+              white-space: normal;
+              line-height: 1.43;
             }
         }
     }
