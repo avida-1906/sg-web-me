@@ -12,6 +12,7 @@ interface Props {
     cn: string
     c: number
   }[]
+  isHotGame?: boolean
 }
 
 const props = defineProps<Props>()
@@ -48,7 +49,7 @@ const { bool: isOpen, toggle: toggleOpen } = useBoolean(props.init)
         <AppSportsMarketLeague
           v-for="league, i in leagueList"
           :key="league.ci"
-          :auto-show="leagueList[0].c < 10 ? true : i === 0"
+          :auto-show="isHotGame ? leagueList[0].c < 10 ? true : i === 0 : i === 0 "
           :is-standard="isStandard"
           :base-type="baseType"
           :league-name="league.cn"
