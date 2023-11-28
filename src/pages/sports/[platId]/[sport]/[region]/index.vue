@@ -75,7 +75,7 @@ function startTimer() {
 
   timer = setInterval(() => {
     page.value = 1
-    run({ ...params.value, page_size: curTotal.value })
+    run({ ...params.value, page_size: curTotal.value > 10 ? curTotal.value : 10 })
     curTotal.value = 0
   }, 120000)
 }

@@ -38,10 +38,8 @@ const { bool: isOpen, toggle: toggleOpen } = useBoolean(props.init)
           <BaseBadge :count="count" />
         </div>
       </div>
-      <div class="arrow">
-        <BaseIcon
-          name="uni-arrow-down" :style="{ transform: `rotate(${isOpen ? 0 : 90}deg)` }"
-        />
+      <div class="arrow" :class="{ down: isOpen }">
+        <BaseIcon name="uni-arrow-left" />
       </div>
     </div>
     <div v-show="isOpen" class="content" :class="{ 'is-open': isOpen }">
@@ -151,8 +149,9 @@ const { bool: isOpen, toggle: toggleOpen } = useBoolean(props.init)
     font-size: var(--tg-font-size-base);
     width: var(--tg-spacing-18);
     height: var(--tg-spacing-18);
-    svg {
-      transition: all 50ms;
+    transition: all ease .25s;
+    &.down{
+      transform: rotate(-90deg);
     }
   }
   .header {

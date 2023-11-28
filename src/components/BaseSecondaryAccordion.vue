@@ -56,10 +56,8 @@ function toggle() {
           <slot name="side" :is-open="isOpen" />
         </div>
       </slot>
-      <div class="arrow">
-        <BaseIcon
-          name="uni-arrow-down" :style="{ transform: `rotate(${isOpen ? 180 : 0}deg)` }"
-        />
+      <div class="arrow" :class="{ down: isOpen }">
+        <BaseIcon name="uni-arrow-left" />
       </div>
     </div>
     <div v-if="isOpen" class="content" :class="{ 'is-open': isOpen }">
@@ -163,8 +161,9 @@ function toggle() {
     font-size: var(--tg-font-size-base);
     width: var(--tg-spacing-18);
     height: var(--tg-spacing-18);
-    svg {
-      transition: all 50ms;
+    transition: all ease .25s;
+    &.down{
+      transform: rotate(-90deg);
     }
   }
   .header {
