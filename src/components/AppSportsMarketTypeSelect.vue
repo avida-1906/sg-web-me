@@ -16,9 +16,9 @@ const { t } = useI18n()
 // 标准盘选项
 const baseType = ref(props.baseType)
 const baseOptions = [
-  { label: t('sports_handicap_market'), value: EnumSportMarketType.HANDICAP },
-  { label: t('sports_total_market'), value: EnumSportMarketType.TOTAL },
   { label: t('sports_winner_market'), value: EnumSportMarketType.WINNER },
+  { label: t('sports_total_market'), value: EnumSportMarketType.TOTAL },
+  { label: t('sports_handicap_market'), value: EnumSportMarketType.HANDICAP },
 ]
 // 三项投注选项
 const threeType = ref('home')

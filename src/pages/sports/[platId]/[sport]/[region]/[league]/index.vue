@@ -3,6 +3,7 @@ import type { ISportEventInfo, ISportEventList } from '~/apis/types'
 
 const { t } = useI18n()
 usePageTitle({ prefix: t('btc_sport_title') })
+const { width } = storeToRefs(useWindowStore())
 const route = useRoute()
 const sport = route.params.sport ? +route.params.sport : 0
 const region = route.params.region ? route.params.region.toString() : ''
@@ -44,6 +45,7 @@ const tabs = computed(() => [
   { value: '1', label: t('sport_in_coming') },
   { value: '2', label: t('champion_bet') },
 ])
+const isOver814 = computed(() => width.value > 814)
 const isLiveAndUpcoming = computed(() => curTab.value === '1')
 const isOutrights = computed(() => curTab.value === '2')
 // 球种名称
@@ -161,11 +163,18 @@ await application.allSettled([runAsync(params.value)])
           />
         </div>
         <AppSportsMarketTypeSelect
+          v-if="isOver814"
           v-show="isLiveAndUpcoming"
           v-model="isStandard" :base-type="baseType"
           @base-type-change="onBaseTypeChange"
         />
       </div>
+      <AppSportsMarketTypeSelect
+        v-if="!isOver814"
+        v-show="isLiveAndUpcoming"
+        v-model="isStandard" :base-type="baseType"
+        @base-type-change="onBaseTypeChange"
+      />
       <!-- 滚球及即将开赛 -->
       <div
         v-if="isLiveAndUpcoming"

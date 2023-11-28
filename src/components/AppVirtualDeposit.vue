@@ -248,7 +248,7 @@ await application.allSettled([
           <BaseIcon name="uni-doc" />
         </p>
         <div class="warn-msg">
-          {{ t('confirm_pls_addr_tip') }}
+          {{ t('confirm_pls_addr_tip', { type: activeCurrency.type }) }}
         </div>
       </div>
       <div>
