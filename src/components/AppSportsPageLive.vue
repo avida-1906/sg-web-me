@@ -5,7 +5,7 @@ import type { ISportDataGroupedByLeague } from '~/types'
 const props = defineProps<{ onPage?: boolean; onLobby?: boolean }>()
 
 const { t } = useI18n()
-const router = useRouter()
+// const router = useRouter()
 const sportsStore = useSportsStore()
 const { sportLiveNavs, currentLiveNav } = storeToRefs(sportsStore)
 const { bool: isStandard } = useBoolean(true)
@@ -42,11 +42,11 @@ const { run, runAsync } = useRequest(ApiSportEventList,
     },
   },
 )
-const listCutted = computed(() => {
-  if (props.onLobby)
-    return list.value.slice(0, 3)
-  return list.value
-})
+// const listCutted = computed(() => {
+//   if (props.onLobby)
+//     return list.value.slice(0, 3)
+//   return list.value
+// })
 /** 👷 分页、定时器、监听更新数据 start 👷 */
 function startLive() {
   if (timer)
@@ -137,7 +137,7 @@ if (currentLiveNav.value !== -1 && !props.onPage) {
     <AppSportsTab v-model="currentLiveNav" :list="sportLiveNavs" />
     <div class="market-wrapper">
       <AppSportsMarket
-        v-for="item in listCutted" :key="item.ci"
+        v-for="item in list" :key="item.ci"
         :is-standard="isStandard"
         :league-name="item.cn"
         :event-count="item.list.length"
@@ -145,20 +145,20 @@ if (currentLiveNav.value !== -1 && !props.onPage) {
         :base-type="baseType"
       />
       <BaseButton
-        v-show="curTotal < total && !onLobby"
+        v-show="curTotal < total "
         size="none" type="text" @click="loadMore"
       >
         {{ t('load_more') }}
       </BaseButton>
     </div>
 
-    <BaseButton
+    <!-- <BaseButton
       v-if="list.length > 3 && onLobby"
       class="check-more" type="text" padding0
       @click="router.push(`/sports/${getSportsPlatId()}/live`)"
     >
       {{ t('view_all') }}
-    </BaseButton>
+    </BaseButton> -->
 
     <div v-if="!onPage" class="layout-spacing">
       <AppBetData mode="sports" />
