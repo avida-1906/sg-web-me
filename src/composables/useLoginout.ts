@@ -2,7 +2,6 @@
 export function useLogout(callback?: () => void) {
   const { closeRightSidebar } = useRightSidebar()
   const appStore = useAppStore()
-  const router = useRouter()
   const {
     run: runMemberLogout,
     loading: logoutLoading,
@@ -13,8 +12,11 @@ export function useLogout(callback?: () => void) {
       appStore.setMqttConnectedFalse()
       closeRightSidebar()
       socketClient.connect('退出 重新连接')
-      router.push('/')
       callback && callback()
+      setTimeout(() => {
+        Local.clear()
+        location.replace('/')
+      }, 0)
     },
   })
 

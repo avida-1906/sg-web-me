@@ -368,7 +368,7 @@ export class SportsCart {
 
       const amountArr = amount.split('.')
       // 判断小数点后面是不是0或者undefined
-      if (amountArr[1] === '0' || amountArr[1] === void 0) {
+      if (amountArr[1] === void 0 || Number(amountArr[1]) === 0) {
         if (Number(amountArr[0]) % 10 === 0)
           return false
         else
