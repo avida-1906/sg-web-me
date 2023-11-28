@@ -13,30 +13,30 @@ const sportStore = useSportsStore()
 
 // const activeBar = ref('')
 const tabbar = ref([
-  { title: t('scan'), icon: 'tabbar-menu', name: 'menu', show: true },
+  { title: 'scan', icon: 'tabbar-menu', name: 'menu', show: true },
   {
-    title: t('casino'),
+    title: 'casino',
     icon: 'tabbar-game',
     name: 'game',
     show: true,
     path: '/casino',
   },
   {
-    title: t('menu_title_settings_bets'),
+    title: 'menu_title_settings_bets',
     icon: 'tabbar-bet',
     name: 'bet',
     show: true,
     path: '',
   },
-  { title: t('bet_slip'), icon: 'spt-user-bet', name: 'user-bet', show: false },
+  { title: 'bet_slip', icon: 'spt-user-bet', name: 'user-bet', show: false },
   {
-    title: t('sports'),
+    title: 'sports',
     icon: 'spt-basketball',
     name: 'sports',
     show: true,
     path: `/sports/${SPORTS_PLAT_ID}`,
   },
-  { title: t('chat_room'), icon: 'tabbar-chat', name: 'chat', show: true },
+  { title: 'chat_room', icon: 'tabbar-chat', name: 'chat', show: true },
 ])
 
 const getActiveBar = computed(() => {
@@ -170,7 +170,7 @@ watch(() => getActiveBar.value, (newValue) => {
             <BaseIcon class="bar-icon" :name="item.icon" />
           </BaseBadge>
           <BaseIcon v-else class="bar-icon" :name="item.icon" />
-          <span>{{ item.title }}</span>
+          <span>{{ t(item.title) }}</span>
         </div>
       </BaseButton>
     </div>
