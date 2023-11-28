@@ -4,27 +4,34 @@ import AppSportRightMyBets from './AppSportRightMyBets.vue'
 import { EnumsBetSlipHeadStatus } from '~/utils/enums'
 
 const { t } = useI18n()
+const { isLogin } = storeToRefs(useAppStore())
 const sportStore = useSportsStore()
 const { closeRightSidebar } = useRightSidebar()
-const { selected: headSelectValue, list: headSelectData } = useSelect([
-  {
-    label: t('bet_slip'),
-    value: EnumsBetSlipHeadStatus.betSlip,
-    icon: 'spt-user-bet',
-  },
-  {
-    label: t('my_bets'),
-    value: EnumsBetSlipHeadStatus.myBets,
-    icon: 'navbar-user-bet',
-  },
-])
+const headSelectValue = ref<EnumsBetSlipHeadStatus>(EnumsBetSlipHeadStatus.betSlip)
+const headSelectData = computed(() => {
+  return [
+    {
+      label: t('bet_slip'),
+      value: EnumsBetSlipHeadStatus.betSlip,
+      icon: 'spt-user-bet',
+    },
+    {
+      label: t('my_bets'),
+      value: EnumsBetSlipHeadStatus.myBets,
+      icon: 'navbar-user-bet',
+      disabled: !isLogin.value,
+    },
+  ]
+})
+
 const {
   settle,
 } = useSportSelectSettle()
+
 const {
   totalUnsettled,
   fetch: getBetListData,
-} = useApiSportBetList(settle)
+} = useApiSportBetList(settle, false)
 
 const betCount = computed(() => {
   return sportStore.cart.count
@@ -53,6 +60,11 @@ const renderComponent = computed(() => {
 function changeHeadSelectValue(value: EnumsBetSlipHeadStatus) {
   headSelectValue.value = value
 }
+
+onMounted(() => {
+  if (isLogin.value)
+    getBetListData()
+})
 </script>
 
 <template>
