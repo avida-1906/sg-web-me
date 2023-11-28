@@ -400,6 +400,8 @@ export interface DepositInfo {
   bank_code?: string
   /** 存款人姓名-法币公司入款存款使用 payment_type = 2 */
   realname?: string
+  /** 法币公司入款存款时使用 */
+  bankcard_id?: string
 }
 
 /**

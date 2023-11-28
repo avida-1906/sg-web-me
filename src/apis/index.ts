@@ -622,6 +622,8 @@ export function ApiFinanceMethodList(params: {
     zkId: string
     /** 1-在线⽀付 2-公司⼊款/货币⼊款 */
     payment_type: number
+    /** 银行卡id */
+    bankcard_id: string
   }[]>('/finance/method/list', { params })
 }
 
