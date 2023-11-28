@@ -2,10 +2,16 @@
 const { t } = useI18n()
 const router = useRouter()
 const route = useRoute()
-const { leftIsExpand, triggerLeftSidebar, closeLeftSidebar } = useLeftSidebar()
-const { openRightSidebar, closeRightSidebar } = useRightSidebar()
+const { leftIsExpand, openLeftSidebar, closeLeftSidebar } = useLeftSidebar()
+const {
+  rightIsExpand,
+  currentRightSidebarContent,
+  openRightSidebar,
+  closeRightSidebar,
+} = useRightSidebar()
 const sportStore = useSportsStore()
 
+// const activeBar = ref('')
 const tabbar = ref([
   { title: t('scan'), icon: 'tabbar-menu', name: 'menu', show: true },
   {
@@ -32,70 +38,115 @@ const tabbar = ref([
   },
   { title: t('chat_room'), icon: 'tabbar-chat', name: 'chat', show: true },
 ])
-const activeBar = ref('')
+
+const getActiveBar = computed(() => {
+  if (leftIsExpand.value) {
+    return 'menu'
+  }
+  else if (rightIsExpand.value) {
+    if (currentRightSidebarContent.value === EnumRightSidebarContent.CASINOBET)
+      return 'bet'
+
+    else if (currentRightSidebarContent.value === EnumRightSidebarContent.BETTING)
+      return 'user-bet'
+
+    else if (currentRightSidebarContent.value === EnumRightSidebarContent.CHATROOM)
+      return 'chat'
+
+    else
+      return ''
+  }
+  else {
+    if (route.path.includes('/casino'))
+      return 'game'
+
+    else if (route.path.includes('/sports'))
+      return 'sports'
+
+    else
+      return ''
+  }
+})
 
 function changeBar(item: { name: string; path?: string }) {
   const { name, path } = item
   switch (name) {
     case 'menu':
-      closeRightSidebar()
-      triggerLeftSidebar()
-      if (activeBar.value === name)
-        activeBar.value = route.path.includes('/casino') ? 'game' : 'sports'
-      else
-        activeBar.value = name
+      openLeftSidebar()
+      rightIsExpand.value && closeRightSidebar()
       break
-    case 'bet':
+    case 'bet':// 投注
       leftIsExpand.value && closeLeftSidebar()
-      if (activeBar.value === name) {
-        activeBar.value = route.path.includes('/casino') ? 'game' : 'sports'
-        closeRightSidebar()
-      }
-      else {
-        activeBar.value = name
-        openRightSidebar(EnumRightSidebarContent.CASINOBET)
-      }
+      openRightSidebar(EnumRightSidebarContent.CASINOBET)
       break
-    case 'user-bet':
+    case 'user-bet':// 投注单
       leftIsExpand.value && closeLeftSidebar()
-      if (activeBar.value === name) {
-        activeBar.value = route.path.includes('/casino') ? 'game' : 'sports'
-        closeRightSidebar()
-      }
-      else {
-        activeBar.value = name
-        openRightSidebar(EnumRightSidebarContent.BETTING)
-      }
+      openRightSidebar(EnumRightSidebarContent.BETTING)
       break
     case 'chat':
       leftIsExpand.value && closeLeftSidebar()
-      if (activeBar.value === name) {
-        activeBar.value = route.path.includes('/casino') ? 'game' : 'sports'
-        closeRightSidebar()
-      }
-      else {
-        activeBar.value = name
-        openRightSidebar(EnumRightSidebarContent.CHATROOM)
-      }
+      openRightSidebar(EnumRightSidebarContent.CHATROOM)
       break
     case 'game':
     case 'sports':
-      activeBar.value = name
       leftIsExpand.value && closeLeftSidebar()
-      closeRightSidebar()
-      if (name === 'game') {
-        tabbar.value[2].show = true
-        tabbar.value[3].show = false
-      }
-      else {
-        tabbar.value[2].show = false
-        tabbar.value[3].show = true
-      }
+      rightIsExpand.value && closeRightSidebar()
       break
   }
+  // activeBar.value = name
   if (path)
     router.push(replaceSportsPlatId(path))
 }
+
+watch(() => getActiveBar.value, (newValue) => {
+  if (newValue === 'game') {
+    tabbar.value[2].show = true
+    tabbar.value[3].show = false
+  }
+  else if (newValue === 'sports') {
+    tabbar.value[2].show = false
+    tabbar.value[3].show = true
+  }
+})
+// watch([leftIsExpand, rightIsExpand, currentRightSidebarContent], () => {
+//   if (leftIsExpand.value) {
+//     activeBar.value = 'menu'
+//   }
+//   else if (rightIsExpand.value) {
+//     if (currentRightSidebarContent.value === EnumRightSidebarContent.CASINOBET)
+//       activeBar.value = 'bet'
+
+//     else if (currentRightSidebarContent.value === EnumRightSidebarContent.BETTING)
+//       activeBar.value = 'user-bet'
+
+//     else if (currentRightSidebarContent.value === EnumRightSidebarContent.CHATROOM)
+//       activeBar.value = 'chat'
+
+//     else
+//       activeBar.value = ''
+//   }
+//   else {
+//     if (route.path.includes('/casino'))
+//       activeBar.value = 'game'
+
+//     else if (route.path.includes('/sports'))
+//       activeBar.value = 'sports'
+
+//     else
+//       activeBar.value = ''
+//   }
+// }, { immediate: true })
+
+// watch(() => route.path, (newValue) => {
+//   if (route.path.includes('/casino'))
+//     activeBar.value = 'game'
+
+//   else if (route.path.includes('/sports'))
+//     activeBar.value = 'sports'
+
+//   else
+//     activeBar.value = leftIsExpand.value ? 'menu' : ''
+// })
 </script>
 
 <template>
@@ -105,7 +156,7 @@ function changeBar(item: { name: string; path?: string }) {
       v-show="item.show"
       :key="item.icon"
       class="bar-item"
-      :class="{ 'active-bar': activeBar === item.name }"
+      :class="{ 'active-bar': item.name === getActiveBar }"
     >
       <BaseButton type="text" @click.stop="changeBar(item)">
         <div
@@ -172,7 +223,7 @@ function changeBar(item: { name: string; path?: string }) {
 
   }
   .active-bar{
-    --tg-icon-color: var(--tg-text-lightblue);
+    --tg-icon-color: #fff;
     position: relative;
     &:before{
       content: "";
