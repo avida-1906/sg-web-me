@@ -1,4 +1,7 @@
 import type { EnumCurrencyKey } from '~/apis/types'
+import { i18n } from '~/modules/i18n'
+
+const { t } = i18n.global
 
 const { VITE_I18N_DEFAULT_LANG } = getEnv()
 
@@ -67,7 +70,7 @@ class Application {
     const { copy: _copy, copied } = useClipboard({ legacy: true })
     _copy(str).then(() => {
       if (copied.value)
-        toast('Copied')
+        toast(t('copied'))
     })
   }
 
