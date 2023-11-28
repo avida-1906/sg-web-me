@@ -15,7 +15,7 @@ const {
 } = useSportsDataUpdate(sportsStore.runSportsCount, 120, true)
 
 let timer: any = null
-const baseType = ref('winner')
+const baseType = ref('handicap')
 const page = ref(1)
 const pageSize = ref(+VITE_SPORT_EVENT_PAGE_SIZE)
 const total = ref(0)

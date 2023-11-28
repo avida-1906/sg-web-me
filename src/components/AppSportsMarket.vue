@@ -28,6 +28,7 @@ function onMoreClick() {
     :show-more="showMore"
     level="2"
     :init="autoShow"
+    :disabled="eventList.length === 0"
     @more="onMoreClick"
   >
     <template #side="{ isOpen }">

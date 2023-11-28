@@ -6,6 +6,7 @@ interface Props {
   loading?: boolean
   level?: string | number
   init?: boolean
+  disabled?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -39,7 +40,7 @@ function toggle() {
     class="base-secondary-accordion"
     :class="[isOpen ? 'is-open' : '', `level-${level}`]"
   >
-    <div class="no-active-scale header" @click="toggle">
+    <div class="no-active-scale header" :class="{ disabled }" @click="toggle">
       <slot name="header">
         <div class="container">
           <div class="container">
@@ -200,6 +201,10 @@ function toggle() {
         text-align: left;
         justify-content: flex-start;
       }
+    }
+    &.disabled{
+      cursor: not-allowed;
+      pointer-events: none;
     }
   }
   .content {

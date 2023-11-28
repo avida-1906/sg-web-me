@@ -11,7 +11,7 @@ const { bool: isStandard } = useBoolean(true)
 const { VITE_SPORT_EVENT_PAGE_SIZE, VITE_SPORT_EVENT_PAGE_SIZE_MAX } = getEnv()
 
 let timer: any = null
-const baseType = ref('winner')
+const baseType = ref('handicap')
 const curTab = ref(route.query.outrights ? '2' : '1')
 const si = ref(sport)
 const ci = ref([league])
