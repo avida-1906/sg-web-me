@@ -105,9 +105,10 @@ export class SportsOdds {
    * @returns {string}
    */
   static convertToAmericanOdds(odds: number) {
+    console.error('odds', odds)
     // 当小数式赔率大于等于2时，计算美式正赔
     // 当小数式赔率小于2时，计算美式负赔
-    const americanOdds = odds >= 2 ? (mul((+sub(odds, 1)), 100)) : div(-100, (+sub(odds, 1)))
+    const americanOdds = odds >= 2 ? (mul((+sub(odds, 1)), 100)) : div(100, (+sub(1, odds)))
     return `${americanOdds}`
   }
 
@@ -361,11 +362,21 @@ export class SportsCart {
   get isTenMultipleBool() {
     return this.dataList.every((item) => {
       const amount = String(item.amount)
+
+      // if (amount === '0' || amount === '')
+      //   return false
+
       const amountArr = amount.split('.')
-      if (amountArr.length > 1 && Number(amountArr[1]) % 10 === 0)
+      // 判断小数点后面是不是0或者undefined
+      if (amountArr[1] === '0' || amountArr[1] === void 0) {
+        if (Number(amountArr[0]) % 10 === 0)
+          return false
+        else
+          return true
+      }
+      else {
         return true
-      else
-        return false
+      }
     })
   }
 
