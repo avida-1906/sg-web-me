@@ -135,7 +135,7 @@ function cancelPayment() {
   emit('show', true)
 }
 const toCopy = function (item: string) {
-  application.copy(item)
+  application.copy(item, t)
 }
 function backDepositInit(data: { amount: string; id?: string }) {
   backDepositInfo.amount = data.amount
@@ -248,7 +248,7 @@ await application.allSettled([
           <BaseIcon name="uni-doc" />
         </p>
         <div class="warn-msg">
-          {{ t('confirm_pls_addr_tip') }}
+          {{ t('confirm_pls_addr_tip', { type: activeCurrency.type }) }}
         </div>
       </div>
       <div>

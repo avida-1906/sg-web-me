@@ -1308,7 +1308,7 @@ choose_protocol: 选择协议
 your_virtual_addr: 您{currencyName}的
 is_default_addr: 是否设为默认地址
 transfer_in_addr: 转入地址
-confirm_pls_addr_tip: 请确认发送USDT到此地址，充值需要全网确认才能到账，请耐心等待！
+confirm_pls_addr_tip: 请确认发送{ type }到此地址，充值需要全网确认才能到账，请耐心等待！
 transfer_in_amount: 转入金额
 pls_confirm_deposit_addr: 请确认收款地址存入完整金额（不含手续费），否则可能导致无法上分
 use_in_game: 游戏使用中
@@ -1505,3 +1505,4 @@ last_days_mid: 近{delta}日
 one_receive: 一键领取
 on: 于
 add_one_bet: 把以上 1 项投注 加入我的投注单
+copied: 复制成功

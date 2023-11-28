@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 const { t } = useI18n()
 const { sidebarData } = storeToRefs(useSportsStore())
+const { width } = storeToRefs(useWindowStore())
 const route = useRoute()
 const sport = computed(() => route.params.sport ? +route.params.sport : 0)
 const { bool: isStandard } = useBoolean(true)
@@ -16,6 +17,7 @@ const tabs = computed(() => [
   { value: '2', label: t('champion_bet') },
 ])
 
+const isOver814 = computed(() => width.value > 814)
 const isLiveAndUpcoming = computed(() => curTab.value === '1')
 const isOutrights = computed(() => curTab.value === '2')
 // 热门地区
@@ -81,11 +83,18 @@ await application.allSettled([runAsync(params.value)])
           />
         </div>
         <AppSportsMarketTypeSelect
+          v-if="isOver814"
           v-show="isLiveAndUpcoming"
           v-model="isStandard" :base-type="baseType"
           @base-type-change="onBaseTypeChange"
         />
       </div>
+      <AppSportsMarketTypeSelect
+        v-if="!isOver814"
+        v-show="isLiveAndUpcoming"
+        v-model="isStandard" :base-type="baseType"
+        @base-type-change="onBaseTypeChange"
+      />
       <!-- 滚球及即将开赛 -->
       <template v-if="isLiveAndUpcoming">
         <!-- 热门 -->
