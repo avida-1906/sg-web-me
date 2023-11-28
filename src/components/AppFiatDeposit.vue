@@ -220,7 +220,7 @@ function formatAmount() {
     setAmount(Number.parseInt(amount.value).toString())
 }
 const toCopy = function (item: string) {
-  application.copy(item)
+  application.copy(item, t)
 }
 const changeAisle = function (item: IPaymentMerchantData) {
   const ref: HTMLElement | null = document.querySelector(`#id${item.value}`)
@@ -335,15 +335,11 @@ await application.allSettled([
               {{ formatBankAccount(paymentDepositBankInfo?.bankcard.bank_account ?? '') }}
               <BaseIcon name="uni-doc" />
             </p>
-            <p
-              class="copy-row"
-              @click="toCopy(paymentDepositBankInfo?.bankcard.bank_id ?? '')"
-            >
+            <p class="copy-row">
               <span class="center" style="gap: 8px;">
                 <BaseIcon name="fiat-bank" />
                 {{ paymentDepositBankInfo?.bankcard.bank_id }}
               </span>
-              <BaseIcon name="uni-doc" />
             </p>
             <p
               v-if="activeCurrency.type === 'CNY'"

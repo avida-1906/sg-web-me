@@ -62,12 +62,12 @@ class Application {
     else { return toFixed(number, this.#CURRENCY_DEFAULT_DECIMAL) }
   }
 
-  copy(str: string) {
+  copy(str: string, t: any) {
     /** legacy 兼容http复制 */
     const { copy: _copy, copied } = useClipboard({ legacy: true })
     _copy(str).then(() => {
       if (copied.value)
-        toast('Copied')
+        toast(t('copied'))
     })
   }
 
