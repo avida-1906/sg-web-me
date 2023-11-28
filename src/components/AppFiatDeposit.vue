@@ -256,6 +256,7 @@ async function depositSubmit() {
         currency_id: props.activeCurrency.cur,
         currency_name: props.activeCurrency.type,
         realname: depositName.value,
+        bankcard_id: currentTypeItem.value?.bankcard_id,
       })
     }
     else { // 三方支付存款

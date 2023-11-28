@@ -25,8 +25,8 @@ const columns = reactive<IColumns[]>([
   {
     title: t('label_draw_time'),
     width: 90,
-    dataIndex: 'created_at',
-    slot: 'created_at',
+    dataIndex: 'updated_at',
+    slot: 'updated_at',
     align: 'left',
   },
   {
@@ -114,8 +114,8 @@ watch(() => params.value.start_time, () => {
         :data-source="records"
       >
         <!-- :loading="loading" -->
-        <template #created_at="{ record }">
-          <div>{{ timeToFormat(record.created_at) }}</div>
+        <template #updated_at="{ record }">
+          <div>{{ timeToFormat(record.updated_at) }}</div>
         </template>
         <template #cash_type="{ record }">
           {{ getCashType(record.cash_type) }}
