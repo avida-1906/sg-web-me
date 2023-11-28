@@ -15,12 +15,16 @@ interface IMenuData {
 }
 
 const { t } = useI18n()
+const { vipConfigData } = storeToRefs(useAppStore())
 const {
   appContentWidth,
   widthBoundarySm,
 } = storeToRefs(useWindowStore())
 const router = useRouter()
 usePageTitle({ prefix: t('vip_club') })
+
+const vipArray = computed(() =>
+  vipConfigData.value ? Object.values(vipConfigData.value).sort((a, b) => +a.level - (+b.level)) : [])
 
 const tableData: ITableData[] = [
   {
@@ -379,34 +383,45 @@ const tableData: ITableData[] = [
   },
 ]
 
-const vipData = reactive([
+const vipCols = reactive<Array<{
+  title: string
+  key: string
+}>>([
+  {
+    title: 'VIP级别对照',
+    key: 'level',
+  },
   {
     title: '投注金额',
-    data: { 1: 2, 2: 2, 3: 4, 4: 5, 5: 5, 6: 7, 7: 8, 8: 9, 9: 12, 10: 15 },
+    key: 'score',
   },
   {
     title: '月度奖金',
-    data: { 1: 2, 2: 2, 3: 4, 4: 5, 5: 5, 6: 7, 7: 8, 8: 9, 9: 12, 10: 15 },
+    key: 'monthly_gift',
   },
   {
     title: '升级奖金',
-    data: { 1: 2, 2: 2, 3: 4, 4: 5, 5: 5, 6: 7, 7: 8, 8: 9, 9: 12, 10: 15 },
-  },
-  {
-    title: '返水',
-    data: { 1: 2, 2: 2, 3: 4, 4: 5, 5: 5, 6: 7, 7: 8, 8: 9, 9: 12, 10: 15 },
+    key: 'up_gift',
   },
   {
     title: '周度奖金',
-    data: { 1: 2, 2: 2, 3: 4, 4: 5, 5: 5, 6: 7, 7: 8, 8: 9, 9: 12, 10: 15 },
+    key: 'weekly_gift',
   },
   {
-    title: '每日奖金',
-    data: { 1: 2, 2: 2, 3: 4, 4: 5, 5: 5, 6: 7, 7: 8, 8: 9, 9: 12, 10: 15 },
+    title: '每日奖金<br/>充值奖金',
+    key: 'daily_gift',
   },
   {
-    title: '专属VIP客服',
-    data: { 1: 2, 2: 2, 3: 4, 4: 5, 5: 5, 6: 7, 7: 8, 8: 9, 9: 12, 10: 15 },
+    title: '奖金增长',
+    key: 'member_count',
+  },
+  {
+    title: '专属VIP客服代表',
+    key: 'member_count',
+  },
+  {
+    title: 'BESPOKE',
+    key: 'member_count',
   },
 ])
 
@@ -536,8 +551,12 @@ const toVip = function () {
           {{ t('vip_club_tip_8') }}
         </p>
         <div class="scroll-x">
-          <div ref="award" class="a-table">
-            <div
+          <div
+            ref="award"
+            class="a-table"
+            :style="{ 'grid-template-columns': `repeat(${vipArray.length + 1}, 1fr)` }"
+          >
+            <!-- <div
               v-for="item, index in tableData"
               :key="index"
               class="table-item"
@@ -553,7 +572,25 @@ const toVip = function () {
                   <span v-if="second.text">{{ second.text }}</span>
                 </div>
               </template>
-            </div>
+            </div> -->
+            <template
+              v-for="item, idx in vipCols"
+              :key="idx"
+            >
+              <div class="table-item sticky" v-html="item.title" />
+              <div
+                v-for="vtem, vdx in vipArray"
+                :key="`${idx}_${vdx}`"
+                class="table-item"
+              >
+                <div v-if="item.key === 'level'">
+                  VIP{{ vtem.level }}
+                </div>
+                <div v-else>
+                  {{ item.key !== undefined ? vtem[item.key] : '--' }}
+                </div>
+              </div>
+            </template>
           </div>
         </div>
       </div>
@@ -902,6 +939,7 @@ const toVip = function () {
         grid-gap: .125rem;
         margin-top: var(--tg-spacing-42);
         min-width: 43rem;
+        width: fit-content;
         .table-item{
           width: 100%;
           height: 100%;
