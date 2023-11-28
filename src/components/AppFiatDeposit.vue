@@ -335,15 +335,11 @@ await application.allSettled([
               {{ formatBankAccount(paymentDepositBankInfo?.bankcard.bank_account ?? '') }}
               <BaseIcon name="uni-doc" />
             </p>
-            <p
-              class="copy-row"
-              @click="toCopy(paymentDepositBankInfo?.bankcard.bank_id ?? '')"
-            >
+            <p class="copy-row">
               <span class="center" style="gap: 8px;">
                 <BaseIcon name="fiat-bank" />
                 {{ paymentDepositBankInfo?.bankcard.bank_id }}
               </span>
-              <BaseIcon name="uni-doc" />
             </p>
             <p
               v-if="activeCurrency.type === 'CNY'"
