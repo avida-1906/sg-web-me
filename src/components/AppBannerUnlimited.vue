@@ -35,7 +35,7 @@ const bannerData = [
   {
     imgUrl: '/png/vip-club/host.png',
     title: t('dedicated_vip_servicer'),
-    desc: 'vip_banner_tip_4',
+    desc: t('vip_banner_tip_4'),
     value: 4,
   },
   {
