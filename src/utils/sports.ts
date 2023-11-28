@@ -564,17 +564,19 @@ export class SportsCart {
   }
 
   /**
-   * 通过wid，更新赔率，os
+   * 通过wid，更新ov，os
    */
   updateOvOs(_data: ISportListToCartData) {
     const { wid, ov, os } = _data
     const index = this.dataList.findIndex(a => a.wid === wid)
 
-    if (ov)
-      this.ovIsChange = Number(ov) !== Number(this.dataList[index].ov)
+    if (index !== -1) {
+      if (ov)
+        this.ovIsChange = Number(ov) !== Number(this.dataList[index].ov)
 
-    if (ov)
-      this.ovIsLower = Number(ov) < Number(this.dataList[index].ov)
+      if (ov)
+        this.ovIsLower = Number(ov) < Number(this.dataList[index].ov)
+    }
 
     if (index > -1) {
       this.dataList[index].ov = ov
