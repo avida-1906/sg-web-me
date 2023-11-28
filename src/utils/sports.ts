@@ -105,11 +105,11 @@ export class SportsOdds {
    * @returns {string}
    */
   static convertToAmericanOdds(odds: number) {
-    console.error('odds', odds)
     // 当小数式赔率大于等于2时，计算美式正赔
     // 当小数式赔率小于2时，计算美式负赔
     const americanOdds = odds >= 2 ? (mul((+sub(odds, 1)), 100)) : div(100, (+sub(1, odds)))
-    return `${americanOdds}`
+    const _a = (+americanOdds).toFixed()
+    return `${_a}`
   }
 
   /**
