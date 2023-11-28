@@ -53,6 +53,7 @@ watch(route, (r) => {
   if (r.name === 'sports-platId-sport') {
     curTab.value = r.query.outrights ? '2' : '1'
     params.value.si = r.params.sport ? +r.params.sport : 0
+    competitionListData.value = undefined
     run(params.value)
     startTimer()
   }
@@ -100,11 +101,12 @@ await application.allSettled([runAsync(params.value)])
             :key="region.pgid"
             :title="region.pgn"
             icon="spt-game-intl"
-            :init="index > 0 ? false : true"
+            :init="index === 0"
             :count="region.c"
             :is-standard="isStandard"
             :base-type="baseType"
             :league-list="region.cl"
+            is-hot-game
           />
         </div>
 

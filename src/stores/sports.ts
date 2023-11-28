@@ -51,8 +51,15 @@ export const useSportsStore = defineStore('sports', () => {
     ApiSportCount({ ic: 0 }),
   {
     onSuccess(res) {
-      if (currentLiveNav.value === -1)
-        currentLiveNav.value = res.list.find(a => a.lc > 0)?.si ?? 0
+      // 滚球
+      const liveArr = res.list.filter(a => a.lc > 0)
+      if (liveArr.length > 0) {
+        if (currentLiveNav.value === -1)
+          currentLiveNav.value = liveArr[0].si
+
+        else if (!liveArr.find(a => a.si === currentLiveNav.value))
+          currentLiveNav.value = liveArr[0].si
+      }
     },
   })
 

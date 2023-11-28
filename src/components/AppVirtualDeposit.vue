@@ -9,6 +9,7 @@ interface Props {
 const props = defineProps<Props>()
 
 const emit = defineEmits(['show'])
+const amountRef = ref()
 const currentAisle = ref()
 const depositStep = ref('1')
 const backDepositInfo: {
@@ -103,6 +104,8 @@ const getFinanceMerchantCoinParam = computed(() => {
 })
 
 async function confirmPayment() {
+  if (amountRef.value)
+    amountRef.value.setTouchTrue()
   await amountValidate()
   if (!amountError.value) {
     if (currentAisle.value.payment_type === 1) { // 三方支付存款
@@ -177,11 +180,19 @@ await application.allSettled([
             </div>
           </div>
         </BaseLabel>
-        <!-- <BaseInput
-          v-model="amount" :label="`充值金额: ${activeCurrency.type}`"
-          :msg="amountError"
-        /> -->
         <BaseLabel
+          v-if="currentAisle.amount_type === 2"
+          :label="`${t('deposit_amount')}: ${activeCurrency.prefix}`"
+        >
+          <BaseInput
+            ref="amountRef"
+            v-model="amount"
+            :msg="amountError"
+            msg-after-touched
+          />
+        </BaseLabel>
+        <BaseLabel
+          v-else
           :label="`${t('deposit_amount')}: ${activeCurrency.prefix}`"
         >
           <BaseSelect

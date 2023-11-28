@@ -270,6 +270,13 @@ async function depositSubmit() {
     }
   }
 }
+function formatBankAccount(s: string) {
+  if (s.length > 10)
+    return s.replace(/(\d{4})(?=\d)/g, '$1 ')
+
+  else
+    return s.replace(/(\d{4})(?=\d)/, '$1 ').replace(/(.{8})(?=.)/, '$1 ')
+}
 
 watch(() => props.activeCurrency, (newValue) => {
   if (newValue)
@@ -324,7 +331,7 @@ await application.allSettled([
               class="copy-row"
               @click="toCopy(paymentDepositBankInfo?.bankcard.bank_account ?? '')"
             >
-              {{ paymentDepositBankInfo?.bankcard.bank_account }}
+              {{ formatBankAccount(paymentDepositBankInfo?.bankcard.bank_account ?? '') }}
               <BaseIcon name="uni-doc" />
             </p>
             <p
@@ -338,6 +345,7 @@ await application.allSettled([
               <BaseIcon name="uni-doc" />
             </p>
             <p
+              v-if="activeCurrency.type === 'CNY'"
               class="copy-row"
               @click="toCopy(paymentDepositBankInfo?.bankcard.bank_area_cpf ?? '')"
             >
@@ -346,7 +354,7 @@ await application.allSettled([
             </p>
             <div>
               <p class="copy-row" @click="toCopy(paymentDepositBankInfo?.amount ?? '')">
-                转账金额：{{ paymentDepositBankInfo?.amount }}
+                转账金额：{{ `${paymentDepositBankInfo?.amount} ${activeCurrency.prefix}` }}
                 <BaseIcon name="uni-doc" />
               </p>
               <p class="second-tips">
