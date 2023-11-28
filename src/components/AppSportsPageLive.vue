@@ -5,7 +5,6 @@ import type { ISportDataGroupedByLeague } from '~/types'
 const props = defineProps<{ onPage?: boolean; onLobby?: boolean }>()
 
 const { t } = useI18n()
-// const router = useRouter()
 const sportsStore = useSportsStore()
 const { sportLiveNavs, currentLiveNav } = storeToRefs(sportsStore)
 const { bool: isStandard } = useBoolean(true)
@@ -17,7 +16,7 @@ const {
 } = useSportsDataUpdate(sportsStore.runSportsCount, 60, true)
 
 let timer: any = null
-const baseType = ref('winner')
+const baseType = ref('handicap')
 const page = ref(1)
 const pageSize = ref(+VITE_SPORT_EVENT_PAGE_SIZE)
 const total = ref(0)
@@ -42,11 +41,38 @@ const { run, runAsync } = useRequest(ApiSportEventList,
     },
   },
 )
-// const listCutted = computed(() => {
-//   if (props.onLobby)
-//     return list.value.slice(0, 3)
-//   return list.value
-// })
+const listFiltered = computed(() => {
+  const origin: ISportDataGroupedByLeague = cloneDeep(list.value)
+  let arr: ISportDataGroupedByLeague = []
+
+  if (baseType.value === EnumSportMarketType.HANDICAP) {
+    arr = origin.map((league) => {
+      const list = league.list.filter((event) => {
+        return event.ml.findIndex(market => market.bt === 1) > -1
+      })
+
+      return { cn: league.cn, ci: league.ci, list }
+    })
+  }
+  else if (baseType.value === EnumSportMarketType.TOTAL) {
+    arr = origin.map((league) => {
+      const list = league.list.filter((event) => {
+        return event.ml.findIndex(market => market.bt === 2) > -1
+      })
+      return { cn: league.cn, ci: league.ci, list }
+    })
+  }
+  if (baseType.value === EnumSportMarketType.WINNER) {
+    arr = origin.map((league) => {
+      const list = league.list.filter((event) => {
+        return event.ml.findIndex(market => market.bt === 3 || market.bt === 4) > -1
+      })
+      return { cn: league.cn, ci: league.ci, list }
+    })
+  }
+  return arr
+})
+
 /** 👷 分页、定时器、监听更新数据 start 👷 */
 function startLive() {
   if (timer)
@@ -137,12 +163,13 @@ if (currentLiveNav.value !== -1 && !props.onPage) {
     <AppSportsTab v-model="currentLiveNav" :list="sportLiveNavs" />
     <div class="market-wrapper">
       <AppSportsMarket
-        v-for="item in list" :key="item.ci"
+        v-for="item in listFiltered" :key="item.ci + item.list.length"
         :is-standard="isStandard"
         :league-name="item.cn"
         :event-count="item.list.length"
         :event-list="item.list"
         :base-type="baseType"
+        :auto-show="item.list.length > 0"
       />
       <BaseButton
         v-show="curTotal < total "
@@ -151,14 +178,6 @@ if (currentLiveNav.value !== -1 && !props.onPage) {
         {{ t('load_more') }}
       </BaseButton>
     </div>
-
-    <!-- <BaseButton
-      v-if="list.length > 3 && onLobby"
-      class="check-more" type="text" padding0
-      @click="router.push(`/sports/${getSportsPlatId()}/live`)"
-    >
-      {{ t('view_all') }}
-    </BaseButton> -->
 
     <div v-if="!onPage" class="layout-spacing">
       <AppBetData mode="sports" />

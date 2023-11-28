@@ -9,16 +9,16 @@ const emit = defineEmits(['update:modelValue', 'baseTypeChange'])
 
 const { t } = useI18n()
 
-const marketTypeText = computed(() => props.modelValue
-  ? t('sports_three_options')
-  : t('sports_standard'),
-)
+// const marketTypeText = computed(() => props.modelValue
+//   ? t('sports_three_options')
+//   : t('sports_standard'),
+// )
 // 标准盘选项
 const baseType = ref(props.baseType)
 const baseOptions = [
-  { label: t('sports_winner_market'), value: EnumSportMarketType.WINNER },
   { label: t('sports_handicap_market'), value: EnumSportMarketType.HANDICAP },
   { label: t('sports_total_market'), value: EnumSportMarketType.TOTAL },
+  { label: t('sports_winner_market'), value: EnumSportMarketType.WINNER },
 ]
 // 三项投注选项
 const threeType = ref('home')
@@ -26,9 +26,9 @@ const threeOptions = [
   { label: t('home_space_title'), value: 'home' },
 ]
 
-function toggleBase() {
-  emit('update:modelValue', !props.modelValue)
-}
+// function toggleBase() {
+//   emit('update:modelValue', !props.modelValue)
+// }
 function onBaseTypeChange(v: string) {
   emit('baseTypeChange', v)
 }

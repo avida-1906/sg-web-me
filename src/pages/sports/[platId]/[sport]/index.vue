@@ -10,7 +10,7 @@ const { data: competitionListData, run, runAsync } = useRequest(ApiSportCompetit
 const { startTimer, stopTimer } = useSportsDataUpdate(() => run(params.value))
 
 const curTab = ref(route.query.outrights ? '2' : '1')
-const baseType = ref('winner')
+const baseType = ref('handicap')
 const tabs = computed(() => [
   { value: '1', label: t('sport_in_coming') },
   { value: '2', label: t('champion_bet') },
