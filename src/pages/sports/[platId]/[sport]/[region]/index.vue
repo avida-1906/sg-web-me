@@ -10,7 +10,7 @@ const region = ref(route.params.region ? route.params.region.toString() : '')
 const { bool: isStandard } = useBoolean(true)
 const { VITE_SPORT_EVENT_PAGE_SIZE, VITE_SPORT_EVENT_PAGE_SIZE_MAX } = getEnv()
 
-const baseType = ref('winner')
+const baseType = ref('handicap')
 const curTab = ref(route.query.outrights ? '2' : '1')
 let timer: any = null
 const page = ref(1)
