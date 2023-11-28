@@ -1,7 +1,4 @@
 import type { EnumCurrencyKey } from '~/apis/types'
-import { i18n } from '~/modules/i18n'
-
-const { t } = i18n.global
 
 const { VITE_I18N_DEFAULT_LANG } = getEnv()
 
@@ -65,7 +62,7 @@ class Application {
     else { return toFixed(number, this.#CURRENCY_DEFAULT_DECIMAL) }
   }
 
-  copy(str: string) {
+  copy(str: string, t: any) {
     /** legacy 兼容http复制 */
     const { copy: _copy, copied } = useClipboard({ legacy: true })
     _copy(str).then(() => {

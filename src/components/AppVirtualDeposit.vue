@@ -135,7 +135,7 @@ function cancelPayment() {
   emit('show', true)
 }
 const toCopy = function (item: string) {
-  application.copy(item)
+  application.copy(item, t)
 }
 function backDepositInit(data: { amount: string; id?: string }) {
   backDepositInfo.amount = data.amount

@@ -220,7 +220,7 @@ function formatAmount() {
     setAmount(Number.parseInt(amount.value).toString())
 }
 const toCopy = function (item: string) {
-  application.copy(item)
+  application.copy(item, t)
 }
 const changeAisle = function (item: IPaymentMerchantData) {
   const ref: HTMLElement | null = document.querySelector(`#id${item.value}`)
