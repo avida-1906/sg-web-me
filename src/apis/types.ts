@@ -535,6 +535,8 @@ export interface ISportsMyBetSlipItem {
     htpic: string
     /** 开赛时间 */
     ed: number
+    hp: number
+    ap: number
   }[]
 }
 
