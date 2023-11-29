@@ -35,6 +35,10 @@ const statusText = computed(() => statusObj[slipData.value.oc])
 const status = computed(() =>
   slipData.value.oc === 1 || slipData.value.oc === 3 ? 'win' : 'lose',
 )
+// 是否已经开赛
+function checkIsStarted(ts: number) {
+  return dayjs().isAfter((ts * 1000))
+}
 
 function addShowResult(origin: ISportsMyBetSlipItem) {
   const copyData = cloneDeep(origin)
@@ -115,7 +119,9 @@ function showDetail() {
                   <span v-if="isSettled" style="color:var( --tg-text-warn)">
                     {{ item.hp }} - {{ item.ap }}
                   </span>
-                  <span v-else>{{ timeToSportsTimeFormat(item.ed) }}</span>
+                  <span v-else-if="!checkIsStarted(item.ed)">
+                    {{ timeToSportsTimeFormat(item.ed) }}
+                  </span>
                 </div>
                 <div class="icons">
                   <!-- <BaseButton type="text" size="none">
