@@ -57,7 +57,7 @@ const {
   runAsync: runAsyncWalletList,
 } = useRequest(ApiMemberWalletList, {
   onSuccess(data) {
-    const temp = data?.d?.find(i => i.is_default === 1)?.id
+    const temp = data?.d?.find(i => i.is_default === 1 && i.state !== 2)?.id
     if (temp)
       address.value = temp
   },
@@ -89,7 +89,7 @@ const addrOptions = computed(() => {
   return []
 })
 const defaultAddress = computed(() => {
-  return walletList.value?.d?.find(i => i.id === address.value && i.state !== 2)?.address ?? ''
+  return walletList.value?.d?.find(i => i.id === address.value)?.address ?? ''
 })
 const getContractId = computed(() => {
   return props.currentNetwork
@@ -149,7 +149,7 @@ watch(() => props.currentNetwork, () => {
           v-model="address"
           :options="addrOptions"
           :msg="addressMsg"
-          small popper theme border
+          small theme popper border
           style="--tg-base-select-popper-style-padding-y: var(--tg-spacing-12)"
           @focus="addressMsg && resetAddress()"
         >
