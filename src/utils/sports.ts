@@ -385,7 +385,7 @@ export class SportsCart {
     return this.dataList.some((item) => {
       const amount = String(item.amount)
       const amountArr = amount.split('.')
-      if (amountArr.length > 1 && amountArr[1].length > 5)
+      if (amountArr.length > 1 && amountArr[1] && `${Number.parseFloat(amountArr[1])}`.length > 5)
         return true
       else
         return false
