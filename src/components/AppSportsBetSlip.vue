@@ -333,6 +333,7 @@ watchEffect(() => {
         text-align: left;
         display: inline-flex;
         align-items: center;
+        word-break: break-all;
       }
     }
 
