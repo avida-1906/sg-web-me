@@ -729,6 +729,9 @@ export class SportsCart {
 export class SportsNotify {
   mqtt: SocketClient
 
+  /** 是否订阅了体育数据变化 */
+  isSubscribed = false
+
   constructor(_mqtt: SocketClient) {
     this.mqtt = _mqtt
   }
@@ -739,8 +742,23 @@ export class SportsNotify {
    * dev/sport/delta/{lang}
    */
   subscribe() {
+    console.error('订阅体育数据变化')
     const lang = getCurrentLanguageForBackend()
+    this.mqtt.addSubscribe(`sport/delta/${lang}`, () => {
+      this.isSubscribed = true
+    })
+  }
 
-    this.mqtt.addSubscribe(`sport/delta/${lang}`)
+  /**
+   * 取消订阅体育数据变化
+   *
+   * dev/sport/delta/{lang}
+   */
+  unsubscribe() {
+    console.error('取消订阅体育数据变化')
+    const lang = getCurrentLanguageForBackend()
+    this.mqtt.removeSubscribe(`sport/delta/${lang}`, () => {
+      this.isSubscribed = false
+    })
   }
 }

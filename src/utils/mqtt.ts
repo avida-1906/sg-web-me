@@ -164,7 +164,7 @@ export class SocketClient {
     }
   }
 
-  public addSubscribe(subscribeEvent: string) {
+  public addSubscribe(subscribeEvent: string, successFn?: () => void) {
     this.#log('开始订阅', subscribeEvent)
     if (this.client != null && subscribeEvent) {
       this.client.subscribe(subscribeEvent, (error, granted) => {
@@ -173,13 +173,15 @@ export class SocketClient {
         }
         else {
           this.#log('订阅成功', granted)
+          if (successFn)
+            successFn()
           this.subscribeList.push(subscribeEvent)
         }
       })
     }
   }
 
-  public removeSubscribe(subscribeEvent: string) {
+  public removeSubscribe(subscribeEvent: string, successFn?: () => void) {
     if (this.client != null && subscribeEvent) {
       this.client.unsubscribe(subscribeEvent, (error: any) => {
         if (error) {
@@ -190,6 +192,9 @@ export class SocketClient {
           const index = this.subscribeList.indexOf(subscribeEvent)
           if (index > -1)
             this.subscribeList.splice(index, 1)
+
+          if (successFn)
+            successFn()
         }
       })
     }
