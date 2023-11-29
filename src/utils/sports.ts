@@ -385,7 +385,7 @@ export class SportsCart {
     return this.dataList.some((item) => {
       const amount = String(item.amount)
       const amountArr = amount.split('.')
-      if (amountArr.length > 1 && amountArr[1] && `${Number.parseFloat(amountArr[1])}`.length > 5)
+      if (amountArr.length > 1 && amountArr[1] && `${amountArr[1]}`.length > 5)
         return true
       else
         return false
@@ -497,7 +497,7 @@ export class SportsCart {
 
     this.dataList.push({
       ...data,
-      amount: Number(toFixed(0, suffixLength)),
+      amount: '' as any,
       // 下面的值是初始化用的，会在 updateAllData 方法中更新
       os: 1,
       maa: 0,
@@ -524,14 +524,20 @@ export class SportsCart {
     this.dataList = []
   }
 
-  /** 更新所有amount */
-  updateAllAmount() {
+  /**
+   * 更新所有amount
+   * @param {number} amount
+   */
+  updateAllAmount(amount?: number) {
     let suffixLength = 2
     if (application.isVirtualCurrency(this.currency))
       suffixLength = 8
 
     this.dataList.forEach((a) => {
-      a.amount = Number(toFixed(0, suffixLength))
+      if (amount)
+        a.amount = toFixed(amount, suffixLength) as any
+      else
+        a.amount = '' as any
     })
   }
 
@@ -551,16 +557,6 @@ export class SportsCart {
       return true
     else
       return false
-  }
-
-  /** 更新amout
-   * @param {string} wid 列表唯一值
-   * @param {number} amount
-   */
-  updateItemAmount(wid: string, amount: number) {
-    const index = this.dataList.findIndex(a => a.wid === wid)
-    if (index > -1)
-      this.dataList[index].amount = amount
   }
 
   /**
