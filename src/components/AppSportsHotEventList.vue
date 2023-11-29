@@ -11,14 +11,14 @@ const { data } = useRequest(
 )
 const list = computed(() => {
   if (data.value && data.value.d) {
-    return data.value.d.map((a) => {
+    return data.value.d.filter(b => b.ei !== fixture).map((a) => {
       return {
         ...a,
         path: `/sports/${SPORTS_PLAT_ID}/${props.si}/${a.pgid}/${a.ci}/${a.ei}`,
         date: timeToFormat(a.ed, 'YYYY - MM - DD'),
         time: timeToFormat(a.ed, 'HH : mm'),
       }
-    }).filter(b => b.ei !== fixture)
+    })
   }
   return []
 })
