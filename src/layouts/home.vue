@@ -26,6 +26,8 @@ const {
   widthBoundarySm,
 } = storeToRefs(windowStore)
 const { animatingSuspense, getSuspenseStatus } = useLayoutAnimate({ aniSuspense: true })
+const route = useRoute()
+const sportsNotify = new SportsNotify(socketClient)
 
 // 内容区宽度
 const homeContainerRef = ref<HTMLElement | null>(null)
@@ -56,6 +58,21 @@ function suspenseResolved() {
 
 watch(() => width.value, (newWidth) => {
   windowStore.setAppContentWidth(newWidth)
+})
+
+watch(() => route.path, () => {
+  if (route.path.includes('sports')) {
+    if (!sportsNotify.isSubscribed)
+      sportsNotify.subscribe()
+  }
+  else {
+    if (sportsNotify.isSubscribed)
+      sportsNotify.unsubscribe()
+  }
+}, { immediate: true })
+
+onBeforeUnmount(() => {
+  sportsNotify.unsubscribe()
 })
 
 onErrorCaptured((err, instance, info) => {

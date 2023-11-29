@@ -2,7 +2,6 @@ import { acceptHMRUpdate, defineStore } from 'pinia'
 import type { EnumCurrencyKey } from '~/apis/types'
 
 export const useAppStore = defineStore('app', () => {
-  const sportsNotify = new SportsNotify(socketClient)
   /** 当前全局选择的货币 */
   const currentGlobalCurrency = ref<EnumCurrencyKey>(getLocalCurrentGlobalCurrency())
 
@@ -134,7 +133,6 @@ export const useAppStore = defineStore('app', () => {
     mqttConnectSuccessBus.on(() => {
       console.log('设置mqtt连接成功')
       setMqttConnectedTrue()
-      sportsNotify.subscribe()
     })
     mqttDisconnectBus.on(() => {
       console.log('设置mqtt连接失败')
