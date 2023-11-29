@@ -70,6 +70,15 @@ const getList: ComputedRef<any[] | undefined> = computed(() => {
     case EnumPage[3]: return noticeList.value
   }
 })
+const getIcon = computed(() => {
+  switch (props.mode) {
+    case EnumPage[0]: return 'navbar-wallet'
+    case EnumPage[1]: return 'uni-notice-znx'
+    case EnumPage[2]:return 'uni-notice-gg'
+    case EnumPage[3]: return 'uni-notice-pmd'
+    default: return ''
+  }
+})
 
 function handleLoad() {
   setLoadingBool(true)
@@ -130,7 +139,7 @@ pageInit()
         @click="openDialogDetail(item)"
       >
         <div class="center item-left">
-          <BaseIcon name="navbar-wallet" class="icon-size" />
+          <BaseIcon :name="getIcon" />
         </div>
         <div class="item-right">
           <div class="right-state">
