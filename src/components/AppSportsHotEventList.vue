@@ -1,6 +1,8 @@
 <script setup lang='ts'>
 const props = defineProps<{ si: number }>()
 
+const route = useRoute()
+const fixture = route.params.fixture ? route.params.fixture.toString() : ''
 const { t } = useI18n()
 const { allSportsNameList } = storeToRefs(useSportsStore())
 const { data } = useRequest(
@@ -16,7 +18,7 @@ const list = computed(() => {
         date: timeToFormat(a.ed, 'YYYY - MM - DD'),
         time: timeToFormat(a.ed, 'HH : mm'),
       }
-    })
+    }).filter(b => b.ei !== fixture)
   }
   return []
 })
