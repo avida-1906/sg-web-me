@@ -1,10 +1,20 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
+import type { ProviderItem } from '~/apis/types'
 
 export const useCasinoStore = defineStore('casino', () => {
   /** 游戏提供商数据(PG,EVO,...) */
-  const { list: platformList } = useList(ApiMemberPlatformList, {
+  const { list } = useList(ApiMemberPlatformList, {
     manual: false,
   })
+  const platformList = computed(() => {
+    const arr: ProviderItem[] = []
+    for (let i = 0; i < list.value.length; i++) {
+      if (!arr.find(a => a.venue_id === list.value[i].venue_id))
+        arr.push(list.value[i])
+    }
+    return arr
+  })
+
   const { data } = useRequest(ApiMemberGameLobby, { manual: false })
 
   const casinoNav = computed(() => {

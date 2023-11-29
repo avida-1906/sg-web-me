@@ -175,6 +175,7 @@ export interface ProviderItem {
   th_name: string
   game_num: number
   name: string
+  venue_id: string
 }
 
 /** 汇率数据对象 */
