@@ -429,16 +429,16 @@ onBeforeUnmount(() => {
           </template>
         </VTooltip> -->
       </div>
+      <BaseButton v-if="isLogin" type="text" size="none" @click="favHandler">
+        <BaseIcon
+          :name="`${isFavorite ? 'uni-favorites' : 'chess-star'}`"
+        />
+      </BaseButton>
       <BaseButton
         class="text-btn" type="text" size="none"
         @click="goEventDetailPage"
       >
         <span>+{{ data.mc }}</span>
-      </BaseButton>
-      <BaseButton v-if="isLogin" type="text" size="none" @click="favHandler">
-        <BaseIcon
-          :name="`${isFavorite ? 'uni-favorites' : 'chess-star'}`"
-        />
       </BaseButton>
     </div>
   </div>
