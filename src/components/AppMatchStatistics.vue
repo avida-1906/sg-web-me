@@ -1,139 +1,53 @@
 <script lang="ts" setup>
 import type { IBasePanelType } from '~/types'
 
-type Qualifier = 'home' | 'away'
-
-withDefaults(defineProps<{
+const props = withDefaults(defineProps<{
   data: IBasePanelType
   round?: boolean // 是否圆角
 }>(), {
   round: true,
 })
 
-const eventData = {
-  eventStatus: {
-    __typename: 'SportFixtureEventStatusData',
-    homeScore: 1,
-    awayScore: 0,
-    matchStatus: '上半场',
-    clock: {
-      matchTime: '45:00',
-      remainingTime: null,
-    },
-    periodScores: [
-      {
-        homeScore: 1,
-        awayScore: 0,
-        matchStatus: '上半场',
-      },
-      {
-        homeScore: 1,
-        awayScore: 5,
-        matchStatus: '第二盘',
-      },
-    ],
-    currentTeamServing: null,
-    homeGameScore: '0',
-    awayGameScore: '0',
-    statistic: {
-      yellowCards: {
-        away: 0,
-        home: 0,
-      },
-      redCards: {
-        away: 0,
-        home: 0,
-      },
-      corners: {
-        home: 1,
-        away: 1,
-      },
-    },
+type HeadType = Array<{
+  key: string
+  show?: boolean
+  periodScores?: Array<{ [prop: string]: any }>
+}>
+
+const head = computed(() => [
+  {
+    key: 'competitor',
   },
-  data: {
-    startTime: 'Sat, 07 Oct 2023 06:00:00 GMT',
-    competitors: [
-      {
-        name: 'Bintang Ampenan FC',
-        extId: 'sr:competitor:1063998',
-        countryCode: 'ID',
-        abbreviation: 'BIN',
-        iconPath: null,
-      },
-      {
-        name: 'PS Hamzanwadi',
-        extId: 'sr:competitor:1063984',
-        countryCode: 'ID',
-        abbreviation: 'PS ',
-        iconPath: null,
-      },
-    ],
-    teams: [
-      {
-        name: 'Bintang Ampenan FC',
-        qualifier: 'home',
-      },
-      {
-        name: 'PS Hamzanwadi',
-        qualifier: 'away',
-      },
-    ],
-    tvChannels: [
-      {
-        language: 'zh',
-        name: 'Huya',
-        streamUrl: '',
-      },
-    ],
-    __typename: 'SportFixtureDataMatch',
+  {
+    key: 'corners',
+    show: !!props.data.corner,
   },
-}
+  {
+    key: 'yellowCards',
+    show: !!props.data.yellowCard,
+  },
+  {
+    key: 'redCards',
+    show: !!props.data.redCard,
+  },
+  {
+    key: 'period',
+    periodScores: [],
+    show: !!props.data.period,
+  },
+  {
+    key: 'gameScore',
+    show: !!props.data.gameScore,
+  },
+  {
+    key: 'matchScore',
+  },
+])
 
 const scoreBoard = computed(() => {
-  const head = [
-    {
-      key: 'competitor',
-      value: (q: Qualifier) =>
-        eventData.data.teams.filter(t => t.qualifier === q)[0]?.name,
-      title: eventData.eventStatus.matchStatus,
-    },
-    {
-      key: 'corners',
-      value: (q: Qualifier) =>
-        eventData.eventStatus.statistic.corners[q],
-      icon: 'uni-ruler',
-    },
-    {
-      key: 'yellowCards',
-      value: (q: Qualifier) =>
-        eventData.eventStatus.statistic.yellowCards[q],
-      icon: 'uni-warn-rect',
-    },
-    {
-      key: 'redCards',
-      value: (q: Qualifier) =>
-        eventData.eventStatus.statistic.redCards[q],
-      icon: 'uni-error-rect',
-    },
-    {
-      key: 'period',
-      periodScores: eventData.eventStatus.periodScores.map(p =>
-        ({ ...p, value: (q: Qualifier) => p[`${q}Score`] })),
-    },
-    {
-      key: 'gameScore',
-      value: (q: Qualifier) => eventData.eventStatus[`${q}GameScore`],
-    },
-    {
-      key: 'matchScore',
-      value: (q: Qualifier) =>
-        eventData.eventStatus[`${q}Score`],
-      icon: 'soccer',
-    },
-  ]
-  const headTitle = mapHeadArea(head, 'title')
-  const headHome = mapHeadArea(head, 'home')
-  const headAway = mapHeadArea(head, 'away')
+  const headTitle = mapHeadArea(head.value, 'title')
+  const headHome = mapHeadArea(head.value, 'home')
+  const headAway = mapHeadArea(head.value, 'away')
   return {
     head,
     headTitle,
@@ -151,24 +65,27 @@ const gridAreas = computed(() => {
 })
 
 function mapHeadArea(
-  head: Array<{ key: string; periodScores?: Array<{ [prop: string]: any }> }>,
+  head: HeadType,
   label: string,
 ) {
   return head.reduce((accumulator: any, currentValue) => {
-    if (currentValue.periodScores && currentValue.periodScores.length) {
-      accumulator.push(...currentValue.periodScores.map((p, idx) => ({
-        ...p,
-        key: currentValue.key,
-        name: `${currentValue.key}_${label}_${idx}`,
-        qualifier: label,
-      })))
-    }
-    else {
-      accumulator.push({
-        ...currentValue,
-        name: `${currentValue.key}_${label}`,
-        qualifier: label,
-      })
+    console.log('currentValue', currentValue)
+    if (currentValue.show !== undefined ? currentValue.show : true) {
+      if (currentValue.periodScores && currentValue.periodScores.length) {
+        accumulator.push(...currentValue.periodScores.map((p, idx) => ({
+          ...p,
+          key: currentValue.key,
+          name: `${currentValue.key}_${label}_${idx}`,
+          qualifier: label,
+        })))
+      }
+      else {
+        accumulator.push({
+          ...currentValue,
+          name: `${currentValue.key}_${label}`,
+          qualifier: label,
+        })
+      }
     }
     return accumulator
   }, [])

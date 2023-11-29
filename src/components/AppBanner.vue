@@ -1,25 +1,27 @@
 <script setup lang="ts">
+import { getCurrentLanguageForBackend } from '~/modules/i18n'
+
 interface Props {
   mode?: 'home' | 'default'
+  type?: 'casino' | 'sports'
 }
 
 const props = withDefaults(defineProps<Props>(), {
   mode: 'default',
+  type: 'casino',
 })
 
-const { t } = useI18n()
+// const { t } = useI18n()
 const { appContentWidth } = storeToRefs(useWindowStore())
-// const {
-//   runAsync: runMemberBannerList,
-//   data: bannerList,
-//   loading: MemberBannerListLoad,
-// } = useRequest(ApiMemberBannerList, {
-//   onSuccess() {
-
-//   },
-// })
+const {
+  runAsync: runMemberBannerList,
+  data: bannerList,
+  // loading: MemberBannerListLoad,
+} = useRequest(ApiMemberBannerList)
 
 const scrollRef = ref()
+const { bool: showLeft, setBool: setShowLeftBool } = useBoolean(false)
+const { bool: showRight, setBool: setShowRightBool } = useBoolean(true)
 
 const getGridAutoColumns = computed(() => {
   if (props.mode === 'home') {
@@ -43,10 +45,15 @@ function scrollLeft() {
 function scrollRight() {
   scrollRef.value.scrollLeft += scrollRef.value.offsetWidth
 }
+function handleScroll(event: Event) {
+  const target = event.target as Element
+  target.scrollLeft <= 0 ? setShowLeftBool(false) : setShowLeftBool(true)
+  target.scrollLeft >= (target.scrollWidth - target.clientWidth - 1) ? setShowRightBool(false) : setShowRightBool(true)
+}
 
-// runMemberBannerList({
-//   banner_type: '2',
-// })
+runMemberBannerList({
+  banner_type: props.type === 'casino' ? '2' : '1',
+})
 </script>
 
 <template>
@@ -55,11 +62,13 @@ function scrollRight() {
       ref="scrollRef"
       class="banner-scroll scroll-x hide-scrollbar"
       :style="getGridAutoColumns"
+      @scroll="handleScroll"
     >
-      <div v-for="i in 7" :key="i" class="banner-item">
+      <div v-for="item in bannerList" :key="item.id" class="banner-item">
         <BaseAspectRatio class="banner-ratio" ratio="320/188">
-          <BaseImage url="/png/home/banner_bg.png" />
-          <div class="item-msg">
+          <!-- <BaseImage url="/png/home/banner_bg.png" /> -->
+          <BaseImage :url="item.image_url[getCurrentLanguageForBackend()]" is-network />
+          <!-- <div class="item-msg">
             <div class="msg-type">
               {{ t('promo_activity') }}
             </div>
@@ -68,17 +77,16 @@ function scrollRight() {
             </div>
             <div class="msg-tips">
               {{ t('weekly_share') }}$20,000美元奖金
-              <!-- <span>阅读更多</span> -->
             </div>
             <div class="come-play">
               {{ t('learn_more') }}
             </div>
-          </div>
+          </div> -->
         </BaseAspectRatio>
       </div>
     </div>
     <template v-if="appContentWidth > 768">
-      <div class="arrow arrow-left">
+      <div v-show="showLeft" class="arrow arrow-left">
         <BaseButton
           type="text"
           style="--tg-base-button-font-size:24px;" @click="scrollLeft"
@@ -86,7 +94,7 @@ function scrollRight() {
           <BaseIcon name="uni-arrow-left" />
         </BaseButton>
       </div>
-      <div class="arrow arrow-right">
+      <div v-show="showRight" class="arrow arrow-right">
         <BaseButton
           type="text"
           style="--tg-base-button-font-size:24px;" @click="scrollRight"
