@@ -292,6 +292,7 @@ function showDetail() {
         max-width: 100%;
         .team-name{
           text-align: left;
+          word-break: break-all;
         }
       }
 
