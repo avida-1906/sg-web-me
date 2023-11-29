@@ -68,7 +68,7 @@ function pageNext() {
         />
       </div>
     </div>
-    <AppSportsLoadingEmpty :loading="loading" :list="sportBetList" />
+    <AppSportsLoadingEmpty :loading="loading" :list="sportBetList" :settle="settle" />
     <div
       v-if="!loading && sportBetList.length > 0"
       class="slip-wrapper" :style="`column-count:${columnCount}`"

@@ -213,7 +213,7 @@ const errorInfo = computed<{
   if (sportStore.cart.isFiveDecimal && sportStore.cart.isExistFiveDecimal) {
     return {
       bool: true,
-      errorMess: '投注金额最多只能输入两位小数',
+      errorMess: '投注金额最多只能输入五位小数',
     }
   }
 
