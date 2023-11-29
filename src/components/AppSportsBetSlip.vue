@@ -117,7 +117,7 @@ watchEffect(() => {
 })
 
 watch(() => props.cartInfoData.amount, () => {
-  if (props.cartInfoData.amount <= 0)
+  if (props.cartInfoData.amount < 0)
     amount.value = '' as any
 })
 </script>
