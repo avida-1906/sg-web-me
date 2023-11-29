@@ -24,7 +24,9 @@ const active = computed(() => route.path === props.menuItem.path)
         v-if="menuItem.icon" :name="menuItem.icon"
         :use-cloud-img="menuItem.useCloudImg"
       />
-      <span class="menu-title">{{ menuItem.title }}</span>
+      <div class="menu-title">
+        {{ menuItem.title }}
+      </div>
       <div v-if="menuItem.fixtureCount" class="badge-wrap">
         <BaseBadge :count="menuItem.fixtureCount" mode="active" />
       </div>
@@ -57,6 +59,13 @@ const active = computed(() => route.path === props.menuItem.path)
     &.disabled{
       cursor: not-allowed;
       opacity: 0.5;
+    }
+    .menu-title {
+      flex: 1;
+      width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
     .badge-wrap {
       margin-left: auto;
