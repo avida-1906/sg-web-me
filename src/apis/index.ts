@@ -284,7 +284,12 @@ export function ApiMemberGameCate(params: { cid: string }) {
     name: string
     icon: string
     total: number
-    games: CasinoLobbyGameItem[] | null
+    sums: {
+      platform_id: string
+      platform_name: string
+      total: number
+    }[]
+    games: CasinoLobbyGameItem[]
   }>('/member/game/cate', { params })
 }
 

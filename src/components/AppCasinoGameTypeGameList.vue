@@ -1,5 +1,10 @@
 <script setup lang='ts'>
-const props = defineProps<{ gameType: string; sortType: string; pids: string }>()
+interface Props {
+  gameType: string
+  sortType: string
+  pids: string
+}
+const props = defineProps<Props>()
 const route = useRoute()
 
 const { VITE_CASINO_GAME_PAGE_SIZE } = getEnv()

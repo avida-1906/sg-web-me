@@ -2,16 +2,49 @@
 const props = defineProps<{ gameType: string }>()
 
 const { appContentWidth } = storeToRefs(useWindowStore())
+const { platformList } = storeToRefs(useCasinoStore())
 const route = useRoute()
 const title = computed(() => route.query.name)
 const { bool: loading } = useBoolean(false)
+usePageTitle({ prefix: title })
 
 const gameListRef = ref()
 const currentType = ref(props.gameType)
 const sortType = ref(EnumCasinoSortType.recommend)
 const pids = ref('')
+const cid = ref(route.query.cid ? route.query.cid?.toString() ?? '' : '')
 
-usePageTitle({ prefix: title })
+const isRec = computed(() => currentType.value === 'rec') // 推荐游戏
+const isCat = computed(() => currentType.value === 'category') // 类别
+
+// 类别场馆列表
+const {
+  data: catGameData,
+  run: runGameCate,
+} = useRequest(ApiMemberGameCate)
+
+const platformOptions = computed(() => {
+  if (isCat.value && catGameData.value) {
+    return catGameData.value.sums.map((a) => {
+      return {
+        label: a.platform_name,
+        value: a.platform_id,
+        count: a.total,
+        isChecked: false,
+      }
+    })
+  }
+  else if (isRec.value) {
+    return platformList.value.map((p) => {
+      const label = p.name
+      const value = p.id
+      const count = p.game_num
+      const isChecked = false
+      return { ...p, label, value, count, isChecked }
+    })
+  }
+  return []
+})
 
 function handleBeforeUnmounted() {
   loading.value = true
@@ -38,8 +71,17 @@ function onSortChange(v: any) {
 }
 
 watch(route, (a) => {
-  if (a.params.gameType)
+  if (a.params.gameType) {
     currentType.value = a.params.gameType.toString()
+    cid.value = a.query.cid ? route.query.cid?.toString() ?? '' : ''
+    if (isCat.value)
+      runGameCate({ cid: cid.value })
+  }
+})
+
+onMounted(() => {
+  if (isCat.value)
+    runGameCate({ cid: cid.value })
 })
 </script>
 
@@ -68,6 +110,7 @@ watch(route, (a) => {
         <AppGroupFilter
           :game-type="currentType"
           :sort-type="sortType"
+          :platform-options="platformOptions"
           @plat-type-checked="onPlatTypeChecked"
           @sort-type-change="onSortChange"
         />
