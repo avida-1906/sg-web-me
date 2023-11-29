@@ -47,8 +47,8 @@ function addShowResult(origin: ISportsMyBetSlipItem) {
         homeTeamName: a.htn,
         awayTeamName: a.atn,
         remark: '',
-        homeTeamScore: a.re.split(':')[0],
-        awayTeamScore: a.re.split(':')[1],
+        homeTeamScore: a.hp,
+        awayTeamScore: a.ap,
         atpic: a.atpic,
         htpic: a.htpic,
       },
@@ -113,7 +113,7 @@ function showDetail() {
               <div class="wrapper">
                 <div class="fixture-details">
                   <span v-if="isSettled" style="color:var( --tg-text-warn)">
-                    {{ item.re }}
+                    {{ item.hp }} - {{ item.ap }}
                   </span>
                   <span v-else>{{ timeToSportsTimeFormat(item.ed) }}</span>
                 </div>
