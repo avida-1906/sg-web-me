@@ -22,11 +22,17 @@ interface Props {
   live?: boolean
   /** 渲染的List数据 */
   cartInfoData: ICartInfoData
+  modelValue?: string | number
 }
 const props = withDefaults(defineProps<Props>(), {
   index: 0,
   betSlipType: EnumsBetSlipBetSlipTabStatus.single,
 })
+
+const emit = defineEmits(
+  ['update:modelValue'],
+)
+
 const { t } = useI18n()
 const appStore = useAppStore()
 const { currentGlobalCurrency, isLogin } = storeToRefs(appStore)
@@ -94,10 +100,6 @@ const isClosed = computed(() => {
   return props.cartInfoData.os === 0
 })
 
-function inputBlur() {
-  amount.value = application.sliceOrPad(amount.value, suffixLength.value) as any
-}
-
 onMounted(() => {
   if (!isLogin.value) {
     notLoginAmount.value = application.sliceOrPad(
@@ -112,13 +114,7 @@ watch(currentGlobalCurrency, (_currency) => {
 })
 
 watchEffect(() => {
-  if (amount.value !== void 0)
-    sportStore.cart.updateItemAmount(props.cartInfoData.wid, amount.value)
-})
-
-watch(() => props.cartInfoData.amount, () => {
-  if (props.cartInfoData.amount < 0)
-    amount.value = '' as any
+  amount.value = props.modelValue as any
 })
 </script>
 
@@ -176,14 +172,14 @@ watch(() => props.cartInfoData.amount, () => {
           <BaseInput
             v-if="isLogin"
             :key="currentGlobalCurrency"
-            v-model="amount"
+            :model-value="modelValue"
             type="number"
             mb0
             :placeholder="`${cartInfoData.mia} - ${cartInfoData.maa}`"
             :msg="amountErrorMsg"
             :disabled="isDisabled"
             :msg-after-touched="true"
-            @blur="inputBlur"
+            @update:model-value="emit('update:modelValue', $event)"
           >
             <template #right-icon>
               <AppCurrencyIcon :currency-type="currentGlobalCurrency" />
@@ -416,6 +412,7 @@ watch(() => props.cartInfoData.amount, () => {
 
 .disabled {
   opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .before {

@@ -4,10 +4,7 @@ import type { IBetArgs } from '~/apis/types'
 import type { ISportListToCartData } from '~/types'
 import { EnumsBetSlipHeadStatus } from '~/utils/enums'
 
-const emit = defineEmits<{
-  changeHeadSelectValue: [value: EnumsBetSlipHeadStatus]
-  getBetList: []
-}>()
+const emit = defineEmits(['changeHeadSelectValue', 'getBetList'])
 
 const chatScrollContent = ref<HTMLElement | null>(null)
 const { VITE_SPORT_MULTI_BET_MAX } = getEnv()
@@ -601,6 +598,7 @@ onUnmounted(() => {
           <AppSportsBetSlip
             v-for="item, index in cartDataList"
             :key="item.wid"
+            v-model="item.amount"
             :bet-slip-type="betOrderSelectValue"
             :cart-info-data="item"
             :title="

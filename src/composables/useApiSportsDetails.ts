@@ -248,9 +248,9 @@ export function useApiSportDetails() {
     return renderList
   })
 
-  watchEffect(() => {
-    if (handicapListData.value.length)
-      currentTab.value = handicapListData.value[0].value
+  watch(handicapListData, (val, oVal) => {
+    if (val.length !== oVal.length)
+      currentTab.value = val[0].value
   })
 
   return {
