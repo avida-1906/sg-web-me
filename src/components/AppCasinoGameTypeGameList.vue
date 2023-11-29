@@ -94,18 +94,16 @@ const push = computed(() => {
 })
 
 // 获取数据
-function getData() {
-  if (isProvider.value)
-    runGameList(paramsGame.value)
+// function getData() {
+//   if (isProvider.value)
+//     runGameList(paramsGame.value)
 
-  else if (isRec.value)
-    runRecList(paramsRec.value)
+//   else if (isRec.value)
+//     runRecList(paramsRec.value)
 
-  else if (isCat.value)
-    runCateGames(paramsCate.value)
-}
-
-defineExpose({ getData })
+//   else if (isCat.value)
+//     runCateGames(paramsCate.value)
+// }
 
 // 初始化
 if (isProvider.value)

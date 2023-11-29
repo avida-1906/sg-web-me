@@ -46,7 +46,7 @@ function resetPlatformChecked() {
   if (!platformCheckedValues.value.length)
     return
   platformCheckedValues.value = []
-  emit('platTypeChecked', undefined)
+  emit('platTypeChecked', '')
 }
 </script>
 

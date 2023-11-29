@@ -8,9 +8,8 @@ const title = computed(() => route.query.name)
 const { bool: loading } = useBoolean(false)
 usePageTitle({ prefix: title })
 
-const gameListRef = ref()
 const currentType = ref(props.gameType)
-const sortType = ref(EnumCasinoSortType.recommend)
+const sortType = ref(EnumCasinoSortType.hot)
 const pids = ref('')
 const cid = ref(route.query.cid ? route.query.cid?.toString() ?? '' : '')
 
@@ -58,16 +57,10 @@ function handleMounted() {
 // 游戏提供商选择变化
 function onPlatTypeChecked(v: string) {
   pids.value = v
-  nextTick(() => {
-    gameListRef.value.getData()
-  })
 }
 // 排序变化
 function onSortChange(v: any) {
   sortType.value = v
-  nextTick(() => {
-    gameListRef.value.getData()
-  })
 }
 
 watch(route, (a) => {
@@ -75,8 +68,7 @@ watch(route, (a) => {
     currentType.value = a.params.gameType.toString()
     cid.value = a.query.cid ? route.query.cid?.toString() ?? '' : ''
     pids.value = ''
-    if (isCat.value)
-      runGameCate({ cid: cid.value })
+    sortType.value = EnumCasinoSortType.hot
   }
 })
 
@@ -120,10 +112,9 @@ onMounted(() => {
         <BaseLoading />
       </div>
       <AppCasinoGameTypeGameList
-        ref="gameListRef"
-        :key="route.fullPath" :game-type="gameType" :sort-type="sortType" :pids="pids"
-        @vue:mounted="handleMounted"
-        @vue:before-unmount="handleBeforeUnmounted"
+        :key="route.fullPath + pids + sortType" :game-type="gameType"
+        :sort-type="sortType" :pids="pids"
+        @vue:mounted="handleMounted" @vue:before-unmount="handleBeforeUnmounted"
       />
       <AppProviderSlider />
     </section>
