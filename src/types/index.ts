@@ -56,6 +56,14 @@ export interface IBasePanelType {
     /** 客队黄牌 */
     awayTeam: number
   }
+  period?: {
+    homeTeam: number
+    awayTeam: number
+  }[]
+  gameScore?: {
+    homeTeam: number
+    awayTeam: number
+  }
 }
 
 /**
