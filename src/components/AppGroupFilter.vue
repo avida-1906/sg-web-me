@@ -2,6 +2,12 @@
 interface Props {
   gameType: string
   sortType: string
+  platformOptions: {
+    label: string
+    value: string
+    count: number
+    isChecked: boolean
+  }[]
 }
 const props = defineProps<Props>()
 
@@ -9,7 +15,6 @@ const emit = defineEmits(['sortTypeChange', 'platTypeChecked'])
 
 const { t } = useI18n()
 const { appContentWidth } = storeToRefs(useWindowStore())
-const { platformList } = storeToRefs(useCasinoStore())
 
 const groupFilterOuter = ref()
 const selectValue = ref(props.sortType)
@@ -29,19 +34,7 @@ const selectOptions = [
 ]
 const platformCheckedValues = ref([])
 
-// const isRec = computed(() => props.gameType === 'rec') // 推荐游戏
 const isProvider = computed(() => props.gameType === 'provider') // 供应商
-// const isCat = computed(() => props.gameType === 'category') // 类别
-
-const platformOptions = computed(() => {
-  return platformList.value.map((p) => {
-    const label = p.en_name
-    const value = p.id
-    const count = p.game_num
-    const isChecked = false
-    return { ...p, label, value, count, isChecked }
-  })
-})
 
 function onSortSelect(v: string) {
   emit('sortTypeChange', v)
