@@ -73,7 +73,7 @@ function viewMoreGames() {
 <template>
   <div class="layout-spacing">
     <div class="hero-wrapper mt-24">
-      <AppBanner />
+      <AppBanner type="casino" />
     </div>
     <div v-if="!isMobile" class="mt-24">
       <AppGameSearch game-type="1" />
