@@ -12,9 +12,12 @@ const {
   basePanelData,
   currentTab,
   searchName,
-  loading,
   runGetSportInfo,
 } = useApiSportDetails()
+
+useIntervalFn(() => {
+  runGetSportInfo({ si: Number(route.params.sport), ei: `${route.params.fixture}` })
+}, 10 * 1000)
 
 const title = computed(() => {
   if (breadcrumbData.value.length)
@@ -36,10 +39,7 @@ watch(
 </script>
 
 <template>
-  <div v-if="loading" class="center loading-content-height">
-    <BaseLoading />
-  </div>
-  <div v-else class="tg-sports-tournament-fixture-betdetail">
+  <div class="tg-sports-tournament-fixture-betdetail">
     <div class="sports-detail-wrapper">
       <div class="layout-spacing no-bottom-spacing variant-normal">
         <AppNavBreadCrumb :breadcrumb="breadcrumbData" />
@@ -115,10 +115,10 @@ watch(
                   <span class="red-circle" />
                 </span>
               </div> -->
-              <div class="fixture-notice">
+              <!-- <div class="fixture-notice">
                 <span>如果您在赢家盘口的选择在第 9 局开始时领先但最终却输掉比赛，则可赢得奖金！</span>
                 <a class="link">条款与条件适用。</a>
-              </div>
+              </div> -->
               <div class="groups">
                 <div>
                   <BaseTab
