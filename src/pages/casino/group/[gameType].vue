@@ -74,6 +74,7 @@ watch(route, (a) => {
   if (a.params.gameType) {
     currentType.value = a.params.gameType.toString()
     cid.value = a.query.cid ? route.query.cid?.toString() ?? '' : ''
+    pids.value = ''
     if (isCat.value)
       runGameCate({ cid: cid.value })
   }
