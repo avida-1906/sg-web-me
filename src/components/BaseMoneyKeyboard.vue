@@ -62,7 +62,7 @@ function handleKey(item: ISelectOption) {
     background: var(--tg-secondary-dark);
     box-shadow: var(--tg-box-shadow);
     &.active{
-      background-color: var(--tg-text-blue);
+      border-color: var(--tg-text-blue);
       border: 2px solid var(--tg-text-blue);
     }
   }

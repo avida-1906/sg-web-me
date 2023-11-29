@@ -27,6 +27,7 @@ const {
   setValue: setAmount,
   errorMessage: amountMsg,
   validate: valiAmount,
+  resetField: amountReset,
 } = useField<string>('amount', (value) => {
   if (!value)
     // return t('validate_require')
@@ -43,6 +44,7 @@ const {
   value: paypwd,
   errorMessage: paypwdMsg,
   validate: valiPaypwd,
+  resetField: payPasswordReset,
 } = useField<string>('paypwd', (value) => {
   if (!value)
     // return t('this_field_is_required')
@@ -63,11 +65,14 @@ const {
 const {
   runAsync: runAsyncWithdrawCoin,
 } = useRequest(ApiFinanceWithdrawCoin, {
-  onSuccess(data) {
+  onSuccess() {
     openNotify({
       type: 'success',
-      message: data,
+      message: t('withdraw_apply_success'),
     })
+    resetAddress()
+    amountReset()
+    payPasswordReset()
   },
 })
 
@@ -77,13 +82,14 @@ const addrOptions = computed(() => {
       return {
         label: i.address,
         value: i.id,
+        state: i.state,
       }
     })
   }
   return []
 })
 const defaultAddress = computed(() => {
-  return walletList.value?.d?.find(i => i.id === address.value)?.address ?? ''
+  return walletList.value?.d?.find(i => i.id === address.value && i.state !== 2)?.address ?? ''
 })
 const getContractId = computed(() => {
   return props.currentNetwork
@@ -121,8 +127,12 @@ function updateContract() {
 }
 
 watch(() => props.currentNetwork, () => {
-  if (props.currentNetwork)
+  if (props.currentNetwork) {
+    resetAddress()
+    amountReset()
+    payPasswordReset()
     updateContract()
+  }
 }, { immediate: true })
 </script>
 
@@ -139,7 +149,7 @@ watch(() => props.currentNetwork, () => {
           v-model="address"
           :options="addrOptions"
           :msg="addressMsg"
-          small theme popper border
+          small popper theme border
           style="--tg-base-select-popper-style-padding-y: var(--tg-spacing-12)"
           @focus="addressMsg && resetAddress()"
         >
