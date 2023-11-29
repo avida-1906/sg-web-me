@@ -57,6 +57,7 @@ const changeText = function (e: any) {
   inputValue.value = value
   textLength.value = value.length
   entered.value = value.length
+  entered.value >= 6 && inputRef.value?.blur()
   emit('update:modelValue', value)
 }
 
