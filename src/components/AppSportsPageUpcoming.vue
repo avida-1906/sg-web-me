@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { ISportEventInfo, ISportEventList } from '~/apis/types'
+import type { EnumSportMarketType } from '~/utils/enums'
 
 const props = defineProps<{ onPage?: boolean }>()
 
@@ -7,7 +8,10 @@ const { t } = useI18n()
 const sportsStore = useSportsStore()
 const { upcomingNavs, currentUpcomingNav } = storeToRefs(sportsStore)
 const { bool: isStandard } = useBoolean(true)
-const { VITE_SPORT_EVENT_PAGE_SIZE, VITE_SPORT_EVENT_PAGE_SIZE_MAX } = getEnv()
+const {
+  VITE_SPORT_EVENT_PAGE_SIZE, VITE_SPORT_EVENT_PAGE_SIZE_MAX,
+  VITE_SPORT_DEFAULT_MARKET_TYPE,
+} = getEnv()
 /** 定时更新count */
 const {
   startTimer: startCount,
@@ -15,7 +19,7 @@ const {
 } = useSportsDataUpdate(sportsStore.runSportsCount, 120, true)
 
 let timer: any = null
-const baseType = ref('handicap')
+const baseType = ref(VITE_SPORT_DEFAULT_MARKET_TYPE)
 const page = ref(1)
 const pageSize = ref(+VITE_SPORT_EVENT_PAGE_SIZE)
 const total = ref(0)
@@ -93,7 +97,7 @@ function updateDataByMqtt(data: ISportEventList[]) {
 }
 /** 🚧 分页、定时器、监听更新数据 end 🚧 */
 
-function onBaseTypeChange(v: string) {
+function onBaseTypeChange(v: EnumSportMarketType) {
   baseType.value = v
 }
 

@@ -61,7 +61,10 @@ const tabList = computed(() => [
       <AppSportsHotEvent />
     </template>
     <!-- 我的投注 -->
-    <AppSportsPageMyBet v-else-if="marketType === 'my-bet'" on-page />
+    <AppSportsPageMyBet
+      v-else-if="marketType === 'my-bet'" on-page
+      @go-lobby="marketType = 'all'"
+    />
     <!-- 收藏夹 -->
     <AppSportsPageFavourites v-else-if="marketType === 'fav'" on-page />
     <!-- 滚球 -->

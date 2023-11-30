@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { ISportEventInfo, ISportEventList } from '~/apis/types'
+import type { EnumSportMarketType } from '~/utils/enums'
 
 const { t } = useI18n()
 usePageTitle({ prefix: t('btc_sport_title') })
@@ -9,10 +10,13 @@ const sport = route.params.sport ? +route.params.sport : 0
 const region = route.params.region ? route.params.region.toString() : ''
 const league = route.params.league ? route.params.league.toString() : ''
 const { bool: isStandard } = useBoolean(true)
-const { VITE_SPORT_EVENT_PAGE_SIZE, VITE_SPORT_EVENT_PAGE_SIZE_MAX } = getEnv()
+const {
+  VITE_SPORT_EVENT_PAGE_SIZE,
+  VITE_SPORT_EVENT_PAGE_SIZE_MAX, VITE_SPORT_DEFAULT_MARKET_TYPE,
+} = getEnv()
 
 let timer: any = null
-const baseType = ref('handicap')
+const baseType = ref(VITE_SPORT_DEFAULT_MARKET_TYPE)
 const curTab = ref(route.query.outrights ? '2' : '1')
 const si = ref(sport)
 const ci = ref([league])
@@ -125,7 +129,7 @@ function updateDataByMqtt(data: ISportEventList[]) {
 }
 /** 🚧 分页、定时器、监听更新数据 end 🚧 */
 
-function onBaseTypeChange(v: string) {
+function onBaseTypeChange(v: EnumSportMarketType) {
   baseType.value = v
 }
 

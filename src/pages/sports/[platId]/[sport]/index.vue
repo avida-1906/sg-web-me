@@ -1,7 +1,10 @@
 <script lang="ts" setup>
+import type { EnumSportMarketType } from '~/utils/enums'
+
 const { t } = useI18n()
 const { sidebarData } = storeToRefs(useSportsStore())
 const { width } = storeToRefs(useWindowStore())
+const { VITE_SPORT_DEFAULT_MARKET_TYPE } = getEnv()
 const route = useRoute()
 const sport = computed(() => route.params.sport ? +route.params.sport : 0)
 const { bool: isStandard } = useBoolean(true)
@@ -11,7 +14,7 @@ const { data: competitionListData, run, runAsync } = useRequest(ApiSportCompetit
 const { startTimer, stopTimer } = useSportsDataUpdate(() => run(params.value))
 
 const curTab = ref(route.query.outrights ? '2' : '1')
-const baseType = ref('handicap')
+const baseType = ref(VITE_SPORT_DEFAULT_MARKET_TYPE)
 const tabs = computed(() => [
   { value: '1', label: t('sport_in_coming') },
   { value: '2', label: t('champion_bet') },
@@ -47,7 +50,7 @@ const breadcrumb = computed(() => [
 
 usePageTitle({ prefix: sportName })
 
-function onBaseTypeChange(v: string) {
+function onBaseTypeChange(v: EnumSportMarketType) {
   baseType.value = v
 }
 
