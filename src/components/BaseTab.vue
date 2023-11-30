@@ -24,6 +24,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 const emit = defineEmits(['update:modelValue', 'change'])
 const router = useRouter()
+const { isMobile } = storeToRefs(useWindowStore())
 
 const curTabRef = ref<Array<Element | null>>([])
 
@@ -53,7 +54,11 @@ function onClick(tab: TabItem, i: number) {
           :ref="el => curTabRef[i] = (el as Element)"
           class="tab"
           :class="[`tab-${size}`,
-                   { active: t.value === modelValue, disabled: t.disabled }]"
+                   {
+                     'active': t.value === modelValue,
+                     'disabled': t.disabled,
+                     'is-mobile': isMobile,
+                   }]"
           @click="onClick(t, i)"
         >
           <div class="content">
@@ -169,7 +174,7 @@ function onClick(tab: TabItem, i: number) {
       }
     }
 
-    &:hover {
+    &:hover:not(.is-mobile) {
       background-color: var(--tg-secondary-main);
       --tg-icon-color: var(--tg-text-white);
     }
