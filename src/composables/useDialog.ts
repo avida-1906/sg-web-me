@@ -6,6 +6,7 @@ interface DialogOptions {
   icon?: string
   maxWidth?: number
   showButtons?: boolean
+  transparent?: boolean
   onCancel?: () => void
   onConfirm?: () => void
   onDialogClose?: () => void
@@ -16,7 +17,7 @@ export function useDialog({
   title,
   icon,
   default:
-  defaultSlot, maxWidth, showButtons, onCancel, onConfirm, onDialogClose,
+  defaultSlot, maxWidth, showButtons, transparent, onCancel, onConfirm, onDialogClose,
 }: DialogOptions) {
   const app = ref()
   const div = ref()
@@ -30,6 +31,7 @@ export function useDialog({
       showButtons,
       show: false,
       funcCall: true,
+      transparent,
       onClose: () => {
         closeDialog()
         onDialogClose && onDialogClose()

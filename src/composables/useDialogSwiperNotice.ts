@@ -6,6 +6,7 @@ export function useDialogSwiperNotice(width: number) {
     closeDialog: closeSwiperNoticeDialog,
   } = useDialog({
     maxWidth: width,
+    // transparent: true,
     // title: t('notice'),
     // icon: 'navbar-notice',
     default: data => h(AppDialogSwiperNotice, { data }),

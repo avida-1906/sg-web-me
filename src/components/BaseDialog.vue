@@ -8,6 +8,7 @@ interface Props {
   funcCall?: boolean
   maxWidth?: number
   showButtons?: boolean
+  transparent?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -20,6 +21,9 @@ const emit = defineEmits(['update:show', 'close', 'cancel', 'confirm'])
 const { bool: _show, setTrue: setBShowTrue, setFalse: setBShowFalse } = useBoolean(false)
 
 useLockScroll(_show)
+
+const background = computed(() =>
+  props.transparent ? 'transparent' : '--tg-dialog_style-bg')
 
 function updateShow(value: boolean) {
   emit('update:show', value)
@@ -65,7 +69,10 @@ onUnmounted(() => {
     <Transition>
       <section v-if="show || _show" class="tg-base-dialog" @touchmove.stop>
         <div class="overlay" @click="closeOnClickOverlay && close()" />
-        <div class="card" :style="`--tg-dialog-style-maxwidth:${maxWidth}px`">
+        <div
+          class="card"
+          :style="`--tg-dialog-style-maxwidth:${maxWidth}px;background: ${background}`"
+        >
           <div v-if="icon || title" class="header">
             <h2>
               <BaseIcon v-if="icon" :name="icon" />
