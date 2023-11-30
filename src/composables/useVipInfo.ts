@@ -27,10 +27,17 @@ export function useVipInfo() {
       return floor(score.value / +nextLevel.value.score, 1)
     return 100
   })
+  const scoreToNext = computed(() => {
+    if (nextLevel.value)
+      return +nextLevel.value.score - score.value
+    else
+      return 0
+  })
 
   return {
     vip,
     score,
+    scoreToNext,
     prevLevel,
     currentLevel,
     nextLevel,
