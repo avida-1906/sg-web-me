@@ -1,7 +1,9 @@
 <script lang="ts" setup>
 import type { ISportDataGroupedByLeague } from '~/types'
+import { EnumSportMarketType } from '~/utils/enums'
 
 const { t } = useI18n()
+const { VITE_SPORT_DEFAULT_MARKET_TYPE } = getEnv()
 const { bool: isStandard } = useBoolean(true)
 const sportsStore = useSportsStore()
 const { sportsFavoriteData, allSportsCount, currentFavNav } = storeToRefs(sportsStore)
@@ -58,7 +60,7 @@ const list = computed(() => {
   return arr
 })
 
-function onBaseTypeChange(v: string) {
+function onBaseTypeChange(v: EnumSportMarketType) {
   baseType.value = v
 }
 

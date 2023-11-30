@@ -116,6 +116,7 @@ function reset() {
   list.value = []
 }
 function updateDataByMqtt(data: ISportEventList[]) {
+  console.log('🚀 ~ file: AppSportsPageLive.vue:119 ~ updateDataByMqtt ~ data:', data)
   list.value = sportsDataUpdateByMqtt(list.value, data)
 }
 /** 🚧 分页、定时器、监听更新数据 end 🚧 */
