@@ -56,7 +56,7 @@ function toggle() {
           <slot name="side" :is-open="isOpen" />
         </div>
       </slot>
-      <div class="arrow" :class="{ down: isOpen }">
+      <div v-show="!disabled" class="arrow" :class="{ down: isOpen }">
         <BaseIcon name="uni-arrow-left" />
       </div>
     </div>
