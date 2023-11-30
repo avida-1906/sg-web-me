@@ -28,6 +28,7 @@ const {
 const { animatingSuspense, getSuspenseStatus } = useLayoutAnimate({ aniSuspense: true })
 const route = useRoute()
 const sportsNotify = new SportsNotify(socketClient)
+const { mqttIsConnected } = storeToRefs(useAppStore())
 
 // 内容区宽度
 const homeContainerRef = ref<HTMLElement | null>(null)
@@ -60,16 +61,23 @@ watch(() => width.value, (newWidth) => {
   windowStore.setAppContentWidth(newWidth)
 })
 
-watch(() => route.path, () => {
-  if (route.path.includes('sports')) {
-    if (!sportsNotify.isSubscribed)
-      sportsNotify.subscribe()
-  }
-  else {
-    if (sportsNotify.isSubscribed)
-      sportsNotify.unsubscribe()
-  }
-}, { immediate: true })
+// 同时监听 route.path和mqttIsConnected
+watch(
+  [() => route.path, () => mqttIsConnected.value],
+  ([newPath, newMqttIsConnected]) => {
+    if (newMqttIsConnected) {
+      if (newPath.includes('sports')) {
+        if (!sportsNotify.isSubscribed)
+          sportsNotify.subscribe()
+      }
+      else {
+        if (sportsNotify.isSubscribed)
+          sportsNotify.unsubscribe()
+      }
+    }
+  },
+  { immediate: true },
+)
 
 onBeforeUnmount(() => {
   sportsNotify.unsubscribe()
