@@ -1,7 +1,7 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
 
 export const useWindowStore = defineStore('window', () => {
-  const { width } = useWindowSize()
+  const { width, height: windowHeight } = useWindowSize()
 
   /** 内容区域宽度 */
   const appContentWidth = ref(0)
@@ -65,6 +65,7 @@ export const useWindowStore = defineStore('window', () => {
     isGreaterThanXl,
     isMobile,
     appContentWidth,
+    windowHeight,
     setAppContentWidth,
   }
 })

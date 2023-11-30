@@ -38,7 +38,7 @@ const {
   return ''
 })
 const { openRegisterDialog } = useRegisterDialog()
-const { isMobile } = storeToRefs(useWindowStore())
+const { isMobile, windowHeight } = storeToRefs(useWindowStore())
 
 const {
   run: runGetSportPlaceBetInfo,
@@ -572,6 +572,7 @@ onUnmounted(() => {
   <div class="app-sports-bet-slip-container">
     <div class="header">
       <div class="tabs">
+        {{ windowHeight }}
         <BaseTab
           v-model="betOrderSelectValue"
           :list="betOrderData"
