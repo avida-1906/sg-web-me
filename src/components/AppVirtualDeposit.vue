@@ -116,6 +116,7 @@ async function confirmPayment() {
         mid: currentAisle.value.method_id,
         currency_id: props.activeCurrency.cur,
         currency_name: props.activeCurrency.type,
+        bankcard_id: currentAisle.value.bankcard_id,
       })
     }
     else if (currentAisle.value.payment_type === 2) { // 虚拟币存款(公司入款)
