@@ -18,22 +18,18 @@ const iconUrl = computed(() => {
 
 <template>
   <div class="app-currency-icon">
-    <BaseIcon
-      v-if="!getIsRight"
-      :name="iconUrl"
-      use-cloud-img
-    />
+    <div v-if="!getIsRight" class="icon">
+      <BaseImage :url="iconUrl" use-cloud-img is-cloud />
+    </div>
     <span
       v-if="showName"
       class="name"
       :style="`margin-${getIsRight ? 'right' : 'left'}: var(--tg-spacing-4);`"
     >{{ currencyType }}</span>
     <slot name="network" />
-    <BaseIcon
-      v-if="getIsRight"
-      :name="iconUrl"
-      use-cloud-img
-    />
+    <div v-if="getIsRight" class="icon">
+      <BaseImage :url="iconUrl" is-cloud />
+    </div>
   </div>
 </template>
 
@@ -55,8 +51,6 @@ const iconUrl = computed(() => {
   .icon {
     width: 14px;
     height: 14px;
-    border-radius: 50%;
-    background-color: red;
   }
 
   .name {
