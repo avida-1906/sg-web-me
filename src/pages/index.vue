@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { getCurrentLanguageForBackend } from '~/modules/i18n'
 
+defineOptions({
+  name: 'KeepAliveIndexHome',
+})
+
 const width = 430
 const { t } = useI18n()
 const router = useRouter()
