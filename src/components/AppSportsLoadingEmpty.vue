@@ -4,8 +4,15 @@ defineProps<{
   list: any[]
   settle?: number
 }>()
+const emit = defineEmits(['goLobby'])
+
 const { t } = useI18n()
 const router = useRouter()
+
+function goToBet() {
+  router.push(`/sports/${getSportsPlatId()}`)
+  emit('goLobby')
+}
 </script>
 
 <template>
@@ -31,7 +38,7 @@ const router = useRouter()
           type="text"
           size="none"
           style=" --tg-base-button-text-default-color:var(--tg-text-white)"
-          @click="router.push(`/sports/${getSportsPlatId()}`)"
+          @click="goToBet"
         >
           {{ t('sports_betting_now') }}
         </BaseButton>
