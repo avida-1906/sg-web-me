@@ -121,7 +121,7 @@ function addCommand(u: { command: string }) {
 function sendMsg() {
   if (trimMessage.value.length && !sendLoading.value) {
     if (!isLogin.value) {
-      openNotify({ type: 'error', message: t('notify_error_forbid_operation') })
+      openNotify({ type: 'error', message: t('need_login_tip') })
       return
     }
     const tt = new Date().getTime()
@@ -137,7 +137,7 @@ function enterPress(event: KeyboardEvent) {
   event.stopPropagation()
   if (trimMessage.value.length) {
     if (!isLogin.value) {
-      openNotify({ type: 'error', message: t('notify_error_forbid_operation') })
+      openNotify({ type: 'error', message: t('need_login_tip') })
       return
     }
     if (isCommand.value) {
@@ -173,7 +173,7 @@ function enterPress(event: KeyboardEvent) {
     <Transition>
       <div
         v-show="!sendLoading && emojis.length"
-        class="scroll-y wrap emoji-wrap layout-grid"
+        class="scroll-y emoji-wrap layout-grid wrap"
       >
         <div v-for="emo in emojis" :key="emo" class="button-wrap">
           <span class="box" @click="addEmoMsg(emo)">
