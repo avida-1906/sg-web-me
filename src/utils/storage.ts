@@ -17,6 +17,7 @@ export const STORAGE_SPORTS_ODDS_TYPE_KEY = 'sports_odds_type'
 export const STORAGE_CURRENT_GLOBAL_CURRENCY_KEY = 'current_global_currency'
 export const STORAGE_HIDE_ZERO_BALANCE_KEY = 'hide_zero_balance'
 export const STORAGE_SPORTS_CURRENT_PROVIDER = 'sports_current_provider'
+export const STORAGE_SPORTS_BET_ORDER = 'sports_bet_order'
 
 export class Local {
   static set<T>(key: string, value: any) {

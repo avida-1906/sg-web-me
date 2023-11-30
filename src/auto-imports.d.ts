@@ -135,6 +135,7 @@ declare global {
   const STORAGE_RIGHT_SIDEBAR_CONTENT: typeof import('./utils/storage')['STORAGE_RIGHT_SIDEBAR_CONTENT']
   const STORAGE_SEARCH_KEYWORDS_LIVE: typeof import('./utils/storage')['STORAGE_SEARCH_KEYWORDS_LIVE']
   const STORAGE_SEARCH_KEYWORDS_SPORTS: typeof import('./utils/storage')['STORAGE_SEARCH_KEYWORDS_SPORTS']
+  const STORAGE_SPORTS_BET_ORDER: typeof import('./utils/storage')['STORAGE_SPORTS_BET_ORDER']
   const STORAGE_SPORTS_CURRENT_PROVIDER: typeof import('./utils/storage')['STORAGE_SPORTS_CURRENT_PROVIDER']
   const STORAGE_SPORTS_ODDS_TYPE_KEY: typeof import('./utils/storage')['STORAGE_SPORTS_ODDS_TYPE_KEY']
   const STORAGE_SPORTS_PANEL_TYPE_KEY: typeof import('./utils/storage')['STORAGE_SPORTS_PANEL_TYPE_KEY']
@@ -717,6 +718,7 @@ declare module 'vue' {
     readonly STORAGE_RIGHT_SIDEBAR_CONTENT: UnwrapRef<typeof import('./utils/storage')['STORAGE_RIGHT_SIDEBAR_CONTENT']>
     readonly STORAGE_SEARCH_KEYWORDS_LIVE: UnwrapRef<typeof import('./utils/storage')['STORAGE_SEARCH_KEYWORDS_LIVE']>
     readonly STORAGE_SEARCH_KEYWORDS_SPORTS: UnwrapRef<typeof import('./utils/storage')['STORAGE_SEARCH_KEYWORDS_SPORTS']>
+    readonly STORAGE_SPORTS_BET_ORDER: UnwrapRef<typeof import('./utils/storage')['STORAGE_SPORTS_BET_ORDER']>
     readonly STORAGE_SPORTS_CURRENT_PROVIDER: UnwrapRef<typeof import('./utils/storage')['STORAGE_SPORTS_CURRENT_PROVIDER']>
     readonly STORAGE_SPORTS_ODDS_TYPE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_SPORTS_ODDS_TYPE_KEY']>
     readonly STORAGE_SPORTS_PANEL_TYPE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_SPORTS_PANEL_TYPE_KEY']>
@@ -1291,6 +1293,7 @@ declare module '@vue/runtime-core' {
     readonly STORAGE_RIGHT_SIDEBAR_CONTENT: UnwrapRef<typeof import('./utils/storage')['STORAGE_RIGHT_SIDEBAR_CONTENT']>
     readonly STORAGE_SEARCH_KEYWORDS_LIVE: UnwrapRef<typeof import('./utils/storage')['STORAGE_SEARCH_KEYWORDS_LIVE']>
     readonly STORAGE_SEARCH_KEYWORDS_SPORTS: UnwrapRef<typeof import('./utils/storage')['STORAGE_SEARCH_KEYWORDS_SPORTS']>
+    readonly STORAGE_SPORTS_BET_ORDER: UnwrapRef<typeof import('./utils/storage')['STORAGE_SPORTS_BET_ORDER']>
     readonly STORAGE_SPORTS_CURRENT_PROVIDER: UnwrapRef<typeof import('./utils/storage')['STORAGE_SPORTS_CURRENT_PROVIDER']>
     readonly STORAGE_SPORTS_ODDS_TYPE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_SPORTS_ODDS_TYPE_KEY']>
     readonly STORAGE_SPORTS_PANEL_TYPE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_SPORTS_PANEL_TYPE_KEY']>
