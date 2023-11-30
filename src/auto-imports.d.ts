@@ -196,6 +196,7 @@ declare global {
   const getActivePinia: typeof import('pinia')['getActivePinia']
   const getCartObject: typeof import('./utils/sports')['getCartObject']
   const getCurrencyConfig: typeof import('./composables/useCurrencyData')['getCurrencyConfig']
+  const getCurrencyConfigByCode: typeof import('./composables/useCurrencyData')['getCurrencyConfigByCode']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const getEnv: typeof import('./utils/index')['getEnv']
@@ -779,6 +780,7 @@ declare module 'vue' {
     readonly getActivePinia: UnwrapRef<typeof import('pinia')['getActivePinia']>
     readonly getCartObject: UnwrapRef<typeof import('./utils/sports')['getCartObject']>
     readonly getCurrencyConfig: UnwrapRef<typeof import('./composables/useCurrencyData')['getCurrencyConfig']>
+    readonly getCurrencyConfigByCode: UnwrapRef<typeof import('./composables/useCurrencyData')['getCurrencyConfigByCode']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getEnv: UnwrapRef<typeof import('./utils/index')['getEnv']>
@@ -1354,6 +1356,7 @@ declare module '@vue/runtime-core' {
     readonly getActivePinia: UnwrapRef<typeof import('pinia')['getActivePinia']>
     readonly getCartObject: UnwrapRef<typeof import('./utils/sports')['getCartObject']>
     readonly getCurrencyConfig: UnwrapRef<typeof import('./composables/useCurrencyData')['getCurrencyConfig']>
+    readonly getCurrencyConfigByCode: UnwrapRef<typeof import('./composables/useCurrencyData')['getCurrencyConfigByCode']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getEnv: UnwrapRef<typeof import('./utils/index')['getEnv']>
