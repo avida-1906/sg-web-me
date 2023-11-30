@@ -34,6 +34,7 @@ const {
   value: address,
   errorMessage: addressMsg,
   validate: valiAddress,
+  resetField: resetAddress,
 } = useField<string>('address', (value) => {
   if (!value)
     // return t('this_field_is_required')
@@ -112,6 +113,7 @@ watch(() => curContractList.value, () => {
   getTypeVal()
 })
 watch(() => props.contractId, () => {
+  resetAddress()
   currentNetwork.value = props.contractId
 })
 

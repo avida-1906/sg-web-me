@@ -14,7 +14,7 @@ export function useLogout(callback?: () => void) {
       socketClient.connect('退出 重新连接')
       callback && callback()
       setTimeout(() => {
-        Local.clear()
+        // Local.clear()
         location.replace('/')
       }, 0)
     },

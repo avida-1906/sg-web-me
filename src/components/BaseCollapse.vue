@@ -52,7 +52,6 @@ onMounted(() => {
             :style="{
               transform: `rotate(${isShow ? 180 : 0}deg)`,
               display: 'block',
-              transition: 'none',
             }"
           />
         </div>

@@ -19,7 +19,7 @@ const { selected: headSelectValue, list: headSelectData } = useSelect([
   },
 ])
 
-headSelectValue.value = 'casino-fy'
+headSelectValue.value = 'casino-mine'
 
 watch(() => isMobile.value, (newValue) => {
   if (!newValue)

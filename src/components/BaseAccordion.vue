@@ -58,7 +58,7 @@ defineExpose({ close })
       :style="isShow ? 'background-color: #213743;' : ''"
       @click="handleClickHeader"
     >
-      <div class="flex-center">
+      <div class="title flex-center">
         <BaseIcon :name="menuInfo.icon" :use-cloud-img="menuInfo.useCloudImg" />
         <span class="header-title">{{ menuInfo.title }}</span>
       </div>
@@ -122,6 +122,11 @@ defineExpose({ close })
     align-items: center;
     justify-content: space-between;
     cursor: pointer;
+    .title {
+      flex: 1;
+      justify-content: flex-start;
+      width: 0;
+    }
 
     .header-icon {
       width: var(--tg-spacing-24);

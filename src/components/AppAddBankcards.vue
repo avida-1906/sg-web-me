@@ -172,6 +172,10 @@ watch(() => props.currentType, () => {
 watch(() => props.activeCurrency, () => {
   currencyId.value = props.activeCurrency.cur
   runBankTreeList({ level: props.activeCurrency.bankTree })
+  usernameReset()
+  banknameReset()
+  bankaccountReset()
+  bankAreaCpfReset()
 })
 
 onMounted(() => {
