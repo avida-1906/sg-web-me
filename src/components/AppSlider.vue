@@ -119,7 +119,12 @@ watchEffect(() => {
           @click="onTitleClick"
         >
           <div v-if="icon" class="icon">
-            <BaseIcon :name="icon" :use-cloud-img="useCloudImg" />
+            <AppSportImage
+              v-if="useCloudImg"
+              style="width: 16px;height: 16px;--app-sport-image-error-icon-size:16px;"
+              :url="icon" is-cloud
+            />
+            <BaseIcon v-else :name="icon" />
           </div>
           <h3>{{ title }}</h3>
         </BaseButton>

@@ -77,7 +77,12 @@ function itemClick(item: MenuItem) {
       >
         <VTooltip placement="top">
           <div class="trigger" @click="itemClick(menuitem)">
-            <BaseIcon :name="menuitem.icon" :use-cloud-img="menuitem.useCloudImg" />
+            <AppSportImage
+              v-if="menuitem.useCloudImg"
+              style="width: 14px;height: 14px;--app-sport-image-error-icon-size:14px;"
+              :url="menuitem.icon" is-cloud
+            />
+            <BaseIcon v-else :name="menuitem.icon" />
             <div
               v-if="menuitem.list && menuitem.list.length"
               class="flex-col-center arrow-right"

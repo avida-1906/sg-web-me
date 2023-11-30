@@ -59,7 +59,12 @@ defineExpose({ close })
       @click="handleClickHeader"
     >
       <div class="title flex-center">
-        <BaseIcon :name="menuInfo.icon" :use-cloud-img="menuInfo.useCloudImg" />
+        <AppSportImage
+          v-if="menuInfo.useCloudImg"
+          style="width: 14px;height: 14px;--app-sport-image-error-icon-size:14px;"
+          :url="menuInfo.icon" is-cloud
+        />
+        <BaseIcon v-else :name="menuInfo.icon" />
         <span class="header-title">{{ menuInfo.title }}</span>
       </div>
       <template v-if="showDown">
