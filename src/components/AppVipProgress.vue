@@ -1,6 +1,8 @@
 <script setup lang='ts'>
 const { t } = useI18n()
-const { vip, progress, currentLevel, nextLevel } = useVipInfo()
+const { vip, progress, currentLevel, nextLevel, isMaxLevel } = useVipInfo()
+
+console.log(useVipInfo(), 2111111)
 </script>
 
 <template>
@@ -24,7 +26,7 @@ const { vip, progress, currentLevel, nextLevel } = useVipInfo()
       <div>
         <BaseIcon :name="`vip${vip}`" /> <span>{{ `VIP${currentLevel?.level}` }}</span>
       </div>
-      <div>
+      <div v-if="!isMaxLevel">
         <BaseIcon :name="`vip${nextLevel?.level}`" />
         <span style="color:var(--tg-text-white)">{{ `VIP${nextLevel?.level}` }}</span>
       </div>
