@@ -101,77 +101,84 @@ watch(route, (val) => {
                       </div>
                     </div>
                   </div>
-                  <AppUserAgentInfo
-                    v-if="isLogin && route.path.includes('/affiliate/')"
-                  />
-                  <AppVipInfoBar v-if="isLogin && route.path.includes('/vip/')" />
-                  <div
-                    class="stack direction-horizontal padding-none content-outer"
-                    :class="[
-                      appContentWidth > 800
-                        ? 'direction-horizontal x-flex-start y-flex-start gap-larger'
-                        : 'direction-vertical x-stretch y-center gap-small']"
+                  <template
+                    v-if="route.path === '/transactions' || route.path === '/settings'"
                   >
-                    <div class="left">
-                      <template v-if="appContentWidth > 800">
-                        <BaseMenu :data="menuData" />
-                      </template>
-                      <template v-else>
-                        <div v-if="withMenuMobileType === 'tabs'" class="menu-tabs">
-                          <BaseTab
-                            v-model="curMenuTab"
-                            :center="false"
-                            :list="menuData"
-                          />
-                        </div>
-                        <div
-                          v-else
-                          class="stack x-flex-start y-center menu-btn gap-small"
-                          :class="[appContentWidth > 800
-                            ? 'padding-none direction-horizontal'
-                            : 'padding-none direction-horizontal']"
-                        >
-                          <BaseButton size="md" @click="$router.go(-1)">
-                            <BaseIcon name="uni-arrow-left" class="arrow-left" />
-                          </BaseButton>
-                          <VDropdown
-                            :distance="10"
+                    <BaseMenu :data="menuData" />
+                  </template>
+                  <template v-else>
+                    <AppUserAgentInfo
+                      v-if="isLogin && route.path.includes('/affiliate/')"
+                    />
+                    <AppVipInfoBar v-if="isLogin && route.path.includes('/vip/')" />
+                    <div
+                      class="stack direction-horizontal padding-none content-outer"
+                      :class="[
+                        appContentWidth > 800
+                          ? 'direction-horizontal x-flex-start y-flex-start gap-larger'
+                          : 'direction-vertical x-stretch y-center gap-small']"
+                    >
+                      <div class="left">
+                        <template v-if="appContentWidth > 800">
+                          <BaseMenu :data="menuData" />
+                        </template>
+                        <template v-else>
+                          <div v-if="withMenuMobileType === 'tabs'" class="menu-tabs">
+                            <BaseTab
+                              v-model="curMenuTab"
+                              :center="false"
+                              :list="menuData"
+                            />
+                          </div>
+                          <div
+                            v-else
+                            class="stack x-flex-start y-center menu-btn gap-small"
+                            :class="[appContentWidth > 800
+                              ? 'padding-none direction-horizontal'
+                              : 'padding-none direction-horizontal']"
                           >
-                            <BaseButton size="sm" @click="togglePop">
-                              <div class="btn-txt">
-                                <span>{{ activeMenu.title }}</span>
-                                <div class="icon" :class="{ up: isPopShow }">
-                                  <BaseIcon
-                                    name="uni-arrow-down"
-                                  />
-                                </div>
-                              </div>
+                            <BaseButton size="md" @click="$router.go(-1)">
+                              <BaseIcon name="uni-arrow-left" class="arrow-left" />
                             </BaseButton>
-                            <template #popper="{ hide }">
-                              <ul class="pop-menu">
-                                <template v-for="mi in menuData" :key="mi.path">
-                                  <li
-                                    :class="{ active: activeMenu.path === mi.path }"
-                                    @click="goPage(mi, hide)"
-                                  >
-                                    {{ mi.title }}
-                                  </li>
-                                </template>
-                              </ul>
-                            </template>
-                          </VDropdown>
+                            <VDropdown
+                              :distance="10"
+                            >
+                              <BaseButton size="sm" @click="togglePop">
+                                <div class="btn-txt">
+                                  <span>{{ activeMenu.title }}</span>
+                                  <div class="icon" :class="{ up: isPopShow }">
+                                    <BaseIcon
+                                      name="uni-arrow-down"
+                                    />
+                                  </div>
+                                </div>
+                              </BaseButton>
+                              <template #popper="{ hide }">
+                                <ul class="pop-menu">
+                                  <template v-for="mi in menuData" :key="mi.path">
+                                    <li
+                                      :class="{ active: activeMenu.path === mi.path }"
+                                      @click="goPage(mi, hide)"
+                                    >
+                                      {{ mi.title }}
+                                    </li>
+                                  </template>
+                                </ul>
+                              </template>
+                            </VDropdown>
+                          </div>
+                        </template>
+                      </div>
+                      <div class="right" :class="{ loading: layoutLoading }">
+                        <div v-if="layoutLoading" class="layout-loading">
+                          <BaseLoading />
                         </div>
-                      </template>
-                    </div>
-                    <div class="right" :class="{ loading: layoutLoading }">
-                      <div v-if="layoutLoading" class="layout-loading">
-                        <BaseLoading />
-                      </div>
-                      <div class="content-container">
-                        <RouterView />
+                        <div class="content-container">
+                          <RouterView />
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </template>
                 </div>
               </div>
             </div>

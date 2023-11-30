@@ -4,7 +4,7 @@ const router = useRouter()
 const route = useRoute()
 const appStore = useAppStore()
 const { isLogin } = storeToRefs(appStore)
-const { isMobile, width } = storeToRefs(useWindowStore())
+const { isMobile, width, appContentWidth } = storeToRefs(useWindowStore())
 const {
   rightIsExpand,
   openRightSidebar,
@@ -45,7 +45,7 @@ const userMenu = computed(() => ([
     icon: 'tabbar-bet',
     title: t('transaction_record'),
     name: 'transaction-record',
-    path: '/transactions/deposits',
+    path: appContentWidth.value <= 800 ? '/transactions' : '/transactions/deposits',
   },
   {
 
@@ -59,7 +59,7 @@ const userMenu = computed(() => ([
     icon: 'uni-set',
     title: t('setting'),
     name: 'setting',
-    path: '/settings/general',
+    path: appContentWidth.value <= 800 ? '/settings' : '/settings/general',
   },
   {
     id: 9,
