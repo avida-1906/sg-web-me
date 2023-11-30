@@ -39,7 +39,7 @@ function onMoreClick() {
     <template #default>
       <div class="wrapper">
         <AppSportsMarketInfo
-          v-for="item, i in eventList" :key="item.hti"
+          v-for="item, i in eventList" :key="item.ei"
           :show-breadcrumb="showBreadcrumb"
           :is-standard="isStandard" :index="i"
           :data="item"
