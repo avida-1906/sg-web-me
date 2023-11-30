@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 const { t } = useI18n()
 const { openNotify } = useNotify()
-const { userInfo, isLogin, vipConfigData } = storeToRefs(useAppStore())
+const { userInfo, isLogin } = storeToRefs(useAppStore())
+const { nextLevel, scoreToNext } = useVipInfo()
 
 const { openVipBonusRecordDialog } = useDialogVipBonusRecord()
 const { openReceiveBonusDialog } = useDialogReceiveBonus()
@@ -13,22 +14,6 @@ const {
 } = useRequest(ApiMemberVipBonusAmount, {
   ready: isLogin,
   manual: false,
-})
-
-const nextVip = computed(() => {
-  if (userInfo.value && +userInfo.value.vip >= 0)
-    return +userInfo.value.vip + 1
-  else
-    return '-'
-})
-const nextScore = computed(() => {
-  if (userInfo.value && +userInfo.value.vip >= 0 && vipConfigData.value) {
-    const temp = vipConfigData.value[`v${nextVip.value}`]
-    const curScore = +userInfo.value.score >= 0 ? +userInfo.value.score : 0
-    if (temp)
-      return +temp.score - curScore
-  }
-  return '-'
 })
 
 function openRecord() {
@@ -48,12 +33,16 @@ async function openReceive() {
   <div class="app-vip-info-bar">
     <BaseIcon class="vip-badge" :name="`vip${userInfo?.vip ?? '0'}`" />
     <div class="info">
-      <span class="water">
+      <span v-if="nextLevel" class="water">
         <span>
-          {{ $t('next_vip_amount', { vip: `VIP${nextVip}`, amount: nextScore }) }}
+          {{ $t('next_vip_amount',
+                { vip: `VIP${nextLevel.level}`, amount: scoreToNext }) }}
         </span>
         <BaseIcon name="coin-usdt" />
         <span>{{ $t('water') }}</span>
+      </span>
+      <span v-else class="water">
+        已到达最高等级
       </span>
       <div class="btns">
         <BaseButton

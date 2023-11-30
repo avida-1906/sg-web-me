@@ -3,6 +3,8 @@ import type { Room } from '~/types'
 
 const emit = defineEmits(['change', 'toggleChatWin'])
 
+const { VITE_SITE_NAME } = getEnv()
+
 const chatStore = useChatStore()
 const { chatRoomList, room, topic, hideChat } = storeToRefs(chatStore)
 const { closeRightSidebar } = useRightSidebar()
@@ -73,7 +75,7 @@ onUnmounted(() => {
       >
         <div class="chat-room-choose">
           <BaseIcon :name="room.icon" />
-          <span>STake: {{ room.label }} </span>
+          <span>{{ VITE_SITE_NAME }}: {{ room.label }} </span>
           <BaseIcon class="arrow-down" name="uni-arrow-down" />
         </div>
         <template #popper="{ hide }">
