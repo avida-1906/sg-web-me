@@ -9,7 +9,7 @@ const { sportsFavoriteData, allSportsCount, currentFavNav } = storeToRefs(sports
 const { startTimer, stopTimer }
 = useSportsDataUpdate(sportsStore.refreshSportsFavList)
 
-const baseType = ref('handicap')
+const baseType = ref(VITE_SPORT_DEFAULT_MARKET_TYPE)
 /** 收藏数据根据球种组合 */
 const sportsFavoriteList = computed(() => {
   if (sportsFavoriteData.value && sportsFavoriteData.value.d)

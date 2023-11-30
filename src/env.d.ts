@@ -27,6 +27,8 @@ interface ImportMetaEnv {
   readonly VITE_SPORT_EVENT_PAGE_SIZE_MAX : number
   /** 是否删除 console */
   readonly VITE_DROP_CONSOLE: boolean
+  /** 默认展示盘口 */
+  readonly VITE_SPORT_DEFAULT_MARKET_TYPE : 'winner'|'handicap'|'total'
 }
 
 interface ImportMeta {
