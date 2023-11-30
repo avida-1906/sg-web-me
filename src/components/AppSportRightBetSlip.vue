@@ -580,7 +580,6 @@ onUnmounted(() => {
   <div class="app-sports-bet-slip-container">
     <div class="header">
       <div class="tabs">
-        {{ windowHeight }}
         <BaseTab
           v-model="betOrderSelectValue"
           :list="betOrderData"
