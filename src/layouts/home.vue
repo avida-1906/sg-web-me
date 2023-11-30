@@ -35,7 +35,7 @@ const { width } = useElementSize(homeContainerRef)
 const { leftIsExpand, isSwitching, switchTo, triggerLeftSidebar } = useLeftSidebar()
 const { rightIsExpand, rightContainerIs0, currentRightSidebarContent } = useRightSidebar()
 
-const keepAliveList = ref<string[]>(['KeepAliveCasino'])
+const keepAliveList = ref<string[]>(['KeepAliveCasino', 'KeepAliveIndexHome'])
 
 // home-overlay 是否显示
 const homeOverlayIsShow = computed(() => {

@@ -34,7 +34,10 @@ watch(
     if (value.sport && value.fixture)
       runGetSportInfo({ si: Number(route.params.sport), ei: `${route.params.fixture}` })
   },
-  { immediate: true },
+)
+
+await application.allSettled([
+  runGetSportInfo({ si: Number(route.params.sport), ei: `${route.params.fixture}` })],
 )
 </script>
 
