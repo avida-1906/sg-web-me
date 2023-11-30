@@ -28,10 +28,13 @@ function handleClick(item: ListItem) {
               <div class="dot" />
               <div class="main">
                 <div class="icon">
-                  <BaseIcon
+                  <AppSportImage
+                    v-if="tab.useCloudImg"
                     :class="{ 'icon-act': tab.si === modelValue }"
-                    :name="tab.icon" :use-cloud-img="tab.useCloudImg"
+                    :url="tab.icon" is-cloud
+                    style="--app-sport-image-error-icon-size:28px;"
                   />
+                  <BaseIcon v-else :name="tab.icon" />
                   <BaseBadge
                     :mode="tab.si === modelValue ? 'active' : 'black'"
                     style="--tg-badge-font-size:var(--tg-font-size-xs);
@@ -98,6 +101,8 @@ function handleClick(item: ListItem) {
 
         .icon {
           font-size: 28px;
+          width: 28px;
+          height: 28px;
           position: relative;
           display: flex;
           align-items: center;

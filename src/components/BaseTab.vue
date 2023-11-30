@@ -63,7 +63,12 @@ function onClick(tab: TabItem, i: number) {
         >
           <div class="content">
             <slot name="tab" :item="t">
-              <BaseIcon v-if="t.icon" :name="t.icon" :use-cloud-img="useCloudImg" />
+              <AppSportImage
+                v-if="useCloudImg"
+                style="width: 14px;height: 14px;--app-sport-image-error-icon-size:14px;"
+                :url="t.icon" is-cloud
+              />
+              <BaseIcon v-else-if="t.icon" :name="t.icon" />
               {{ t.label }}
               <div v-if="t.bubble" class="bubble-wrap">
                 <div />
@@ -162,10 +167,7 @@ function onClick(tab: TabItem, i: number) {
       justify-content: center;
       flex: 1 0;
       white-space: nowrap;
-
-      .app-svg-icon {
-        margin-right: var(--tg-spacing-8);
-      }
+      gap: var(--tg-spacing-8);
     }
 
     &:active {

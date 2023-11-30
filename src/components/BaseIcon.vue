@@ -2,7 +2,6 @@
 interface Props {
   prefix?: string
   name: string
-  useCloudImg?: boolean
 }
 const props = withDefaults(defineProps<Props>(), {
   prefix: 'icon',
@@ -12,13 +11,7 @@ const symbolId = computed(() => `#${props.prefix}-${props.name}`)
 </script>
 
 <template>
-  <div v-if="useCloudImg" class="app-svg-icon" style="overflow: hidden;">
-    <BaseImage
-      :url="name"
-      is-cloud
-    />
-  </div>
-  <svg v-else class="app-svg-icon" aria-hidden="true">
+  <svg class="app-svg-icon" aria-hidden="true">
     <use :xlink:href="symbolId" />
   </svg>
 </template>
