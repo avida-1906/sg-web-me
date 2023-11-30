@@ -1,12 +1,15 @@
 <script lang="ts" setup>
+import type { ISportDataGroupedByLeague } from '~/types'
+
 const { t } = useI18n()
+const { bool: isStandard } = useBoolean(true)
 const sportsStore = useSportsStore()
-const { sportsFavoriteData, allSportsCount } = storeToRefs(sportsStore)
+const { sportsFavoriteData, allSportsCount, currentFavNav } = storeToRefs(sportsStore)
 /** 定时更新数据 */
 const { startTimer, stopTimer }
 = useSportsDataUpdate(sportsStore.refreshSportsFavList)
 
-const currentSi = ref(-1)
+const baseType = ref('handicap')
 /** 收藏数据根据球种组合 */
 const sportsFavoriteList = computed(() => {
   if (sportsFavoriteData.value && sportsFavoriteData.value.d)
@@ -18,7 +21,7 @@ const navs = computed(() => {
   return sportsFavoriteList.value.map((a) => {
     return {
       si: a.si,
-      sn: a.sn,
+      sn: allSportsCount.value?.list.find(b => b.si === a.si)?.sn ?? '',
       count: a.list.length,
       icon: allSportsCount.value?.list.find(b => b.si === a.si)?.spic ?? '',
       useCloudImg: true,
@@ -26,16 +29,38 @@ const navs = computed(() => {
   })
 })
 const list = computed(() => {
-  if (sportsFavoriteData.value && sportsFavoriteData.value.d)
-    return sportsDataGroupByLeague(sportsFavoriteData.value.d.filter(a => a.si === currentSi.value))
-
-  return null
+  let arr: ISportDataGroupedByLeague = []
+  if (sportsFavoriteData.value && sportsFavoriteData.value.d) {
+    // eslint-disable-next-line max-len
+    const list = sportsFavoriteList.value.find(a => a.si === currentFavNav.value)?.list ?? []
+    if (baseType.value === EnumSportMarketType.HANDICAP) {
+      arr = sportsDataGroupByLeague(
+        list.filter((event) => {
+          return event.ml.findIndex(market => market.bt === 1) > -1
+        }),
+      )
+    }
+    else if (baseType.value === EnumSportMarketType.TOTAL) {
+      arr = sportsDataGroupByLeague(
+        list.filter((event) => {
+          return event.ml.findIndex(market => market.bt === 2) > -1
+        }),
+      )
+    }
+    else if (baseType.value === EnumSportMarketType.WINNER) {
+      arr = sportsDataGroupByLeague(
+        list.filter((event) => {
+          return event.ml.findIndex(market => market.bt === 3 || market.bt === 4) > -1
+        }),
+      )
+    }
+  }
+  return arr
 })
 
-watch(sportsFavoriteData, (a) => {
-  if (a && a.d && currentSi.value === -1)
-    currentSi.value = a.d[0].si
-})
+function onBaseTypeChange(v: string) {
+  baseType.value = v
+}
 
 onMounted(() => {
   startTimer()
@@ -47,16 +72,26 @@ onBeforeUnmount(() => {
 
 <template>
   <div class="tg-sports-favourites">
+    <div class="sports-page-title">
+      <div class="left">
+        <BaseIcon name="uni-favorites" />
+        <h6>{{ t('sports_title_favourites') }}</h6>
+      </div>
+      <AppSportsMarketTypeSelect
+        v-model="isStandard" :base-type="baseType"
+        @base-type-change="onBaseTypeChange"
+      />
+    </div>
     <template v-if="navs.length > 0">
-      <AppSportsTab v-show="navs.length > 0" v-model="currentSi" :list="navs" />
-      <div v-if="list" class="market-wrapper">
+      <AppSportsTab v-show="navs.length > 0" v-model="currentFavNav" :list="navs" />
+      <div class="market-wrapper">
         <AppSportsMarket
           v-for="item in list" :key="item.ci"
           :is-standard="true"
           :league-name="item.cn"
           :event-count="item.list.length"
           :event-list="item.list"
-          base-type="winner"
+          :base-type="baseType"
         />
       </div>
     </template>
