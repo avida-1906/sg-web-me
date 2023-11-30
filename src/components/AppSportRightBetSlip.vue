@@ -281,6 +281,14 @@ const duplexTotalProfit = computed(() => {
   return mul(_duplexOv, val)
 })
 
+/** 是否显示当前页面footer */
+const isShowFooter = computed(() => {
+  if (windowHeight.value < 500 && isMobile.value)
+    return false
+
+  return true
+})
+
 /**
  * 投注请求
  * @param list 投注列表
@@ -659,7 +667,7 @@ onUnmounted(() => {
       </div>
     </div>
 
-    <div class="footer">
+    <div v-if="isShowFooter" class="footer">
       <template v-if="sportStore.cart.isShowReuse">
         <BaseButton
           size="md"
