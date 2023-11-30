@@ -104,8 +104,8 @@ watch(() => getActiveBar.value, (newValue) => {
     tabbar.value[3].show = false
   }
   else if (newValue === 'sports') {
-    tabbar.value[2].show = false
     tabbar.value[3].show = true
+    tabbar.value[2].show = false
   }
 })
 // watch([leftIsExpand, rightIsExpand, currentRightSidebarContent], () => {
