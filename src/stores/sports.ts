@@ -43,6 +43,8 @@ export const useSportsStore = defineStore('sports', () => {
   const currentLiveNav = ref(-1)
   /** 当前即将开赛选中的体育项目 */
   const currentUpcomingNav = ref(0)
+  /** 当前收藏选中的体育项目 */
+  const currentFavNav = ref(-1)
   /** 购物车 */
   const cart = reactive(new SportsCart(currentGlobalCurrency.value))
 
@@ -67,7 +69,15 @@ export const useSportsStore = defineStore('sports', () => {
   const {
     data: sportsFavoriteData,
     run: runGetFavoriteList,
-  } = useRequest(ApiSportGetFavoriteList, { throttleInterval: 1500 })
+  } = useRequest(ApiSportGetFavoriteList, {
+    throttleInterval: 1500,
+    onSuccess(res) {
+      if (res && res.d) {
+        if (currentFavNav.value === -1 || !res.d.find(a => a.si === currentFavNav.value))
+          return currentFavNav.value = res.d[0].si
+      }
+    },
+  })
 
   /** 侧边栏数据源 */
   const { data: sidebarData, run: runSportsSidebar } = useRequest(ApiSportSidebar, {
@@ -326,6 +336,7 @@ export const useSportsStore = defineStore('sports', () => {
     allSportsSi,
     allSportsNameList,
     cart,
+    currentFavNav,
     renderOdds,
     setSportsOddsType,
     getSportsOddsType,
