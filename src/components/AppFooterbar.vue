@@ -163,7 +163,7 @@ watch(() => getActiveBar.value, (newValue) => {
           class="bar-btn"
         >
           <BaseBadge
-            v-if="item.name === 'bet' || item.name === 'user-bet'"
+            v-if="item.name === 'user-bet'"
             mode="active"
             :count="sportStore.cart.count"
           >
