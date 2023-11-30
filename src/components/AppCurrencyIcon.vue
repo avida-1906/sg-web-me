@@ -19,7 +19,7 @@ const iconUrl = computed(() => {
 <template>
   <div class="app-currency-icon">
     <div v-if="!getIsRight" class="icon">
-      <BaseImage :url="iconUrl" use-cloud-img is-cloud />
+      <BaseImage :url="iconUrl" is-cloud />
     </div>
     <span
       v-if="showName"
