@@ -69,7 +69,6 @@ function mapHeadArea(
   label: string,
 ) {
   return head.reduce((accumulator: any, currentValue) => {
-    console.log('currentValue', currentValue)
     if (currentValue.show !== undefined ? currentValue.show : true) {
       if (currentValue.periodScores && currentValue.periodScores.length) {
         accumulator.push(...currentValue.periodScores.map((p, idx) => ({
