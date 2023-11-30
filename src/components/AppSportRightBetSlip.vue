@@ -2,7 +2,7 @@
 import AppSportBetSuccessNotify from './AppSportBetSuccessNotify.vue'
 import type { IBetArgs } from '~/apis/types'
 import type { ISportListToCartData } from '~/types'
-import { EnumsBetSlipHeadStatus } from '~/utils/enums'
+import { EnumOddsChange, EnumsBetSlipHeadStatus } from '~/utils/enums'
 
 const emit = defineEmits(['changeHeadSelectValue', 'getBetList'])
 
@@ -496,6 +496,20 @@ function firstInputFocus() {
     chatScrollContent.value?.querySelector('input')?.focus()
 }
 
+function initBetOrderSelectValue() {
+  const v = Local.get<EnumOddsChange>(STORAGE_SPORTS_BET_ORDER)?.value
+  if (v)
+    betOrderFilterValue.value = v
+
+  else
+    betOrderFilterValue.value = EnumOddsChange.notAcceptAnyOddsChange
+}
+
+function setBetOrderSelectValue(v: EnumOddsChange) {
+  betOrderFilterValue.value = v
+  Local.set(STORAGE_SPORTS_BET_ORDER, v)
+}
+
 watch(() => sportStore.cart.count, (val, oVal) => {
   if (val) {
     nextTick(() => {
@@ -545,6 +559,7 @@ watch(isLogin, (val) => {
 onMounted(() => {
   addListToCartEvent()
   firstInputFocus()
+  initBetOrderSelectValue()
 })
 
 onUnmounted(() => {
@@ -580,6 +595,7 @@ onUnmounted(() => {
           :options="betOrderFilterData"
           no-hover
           popper
+          @select="setBetOrderSelectValue"
         />
         <BaseButton
           type="text"
