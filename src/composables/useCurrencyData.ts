@@ -90,6 +90,16 @@ export const currencyConfig: Record<EnumCurrencyKey, CurrencyValue> = {
 export function getCurrencyConfig(currency: EnumCurrencyKey) {
   return currencyConfig[currency]
 }
+export function getCurrencyConfigByCode(currencyCode: CurrencyCode): {
+  prefix: string
+  cur: CurrencyCode
+  bankTree: string
+  name: EnumCurrencyKey
+} {
+  return Object.entries(currencyConfig)
+    .map(([k, v]: [string, any]) =>
+      ({ name: k, ...v })).filter(i => i.cur === currencyCode)[0]!
+}
 
 /**
  * 使用货币数据

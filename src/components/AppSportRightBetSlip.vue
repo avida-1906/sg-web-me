@@ -38,7 +38,7 @@ const {
   return ''
 })
 const { openRegisterDialog } = useRegisterDialog()
-const { isMobile } = storeToRefs(useWindowStore())
+const { isMobile, windowHeight } = storeToRefs(useWindowStore())
 
 const {
   run: runGetSportPlaceBetInfo,
@@ -279,6 +279,14 @@ const duplexTotalProfit = computed(() => {
   const _duplexOv = Number(duplexOv.value)
   const val = Number(duplexInputValue.value)
   return mul(_duplexOv, val)
+})
+
+/** 是否显示当前页面footer */
+const isShowFooter = computed(() => {
+  if (windowHeight.value < 500 && isMobile.value)
+    return false
+
+  return true
 })
 
 /**
@@ -658,7 +666,7 @@ onUnmounted(() => {
       </div>
     </div>
 
-    <div class="footer">
+    <div v-if="isShowFooter" class="footer">
       <template v-if="sportStore.cart.isShowReuse">
         <BaseButton
           size="md"

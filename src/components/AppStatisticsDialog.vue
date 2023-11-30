@@ -190,21 +190,21 @@ onMounted(() => {
         win: '38',
         lose: '38',
         totalBet: '23.00000000',
-        currencyType: EnumCurrency.BTC,
+        currencyType: '702',
       },
       {
         bet: '567',
         win: '38',
         lose: '38',
         totalBet: '23.00000000',
-        currencyType: EnumCurrency.BTC,
+        currencyType: '702',
       },
       {
         bet: '567',
         win: '38',
         lose: '38',
         totalBet: '23.00000000',
-        currencyType: EnumCurrency.BTC,
+        currencyType: '702',
       },
     ]
     setLoadingFalse()
@@ -297,10 +297,12 @@ onMounted(() => {
               :loading="loading"
             >
               <template #totalBet="{ record }">
-                <div class="img-text-align-right">
+                <div
+                  class="img-text-align-right"
+                >
                   <AppAmount
                     :amount="record.totalBet"
-                    :currency-type="record.currencyType"
+                    :currency-type="getCurrencyConfigByCode(record.currencyType)?.name"
                   />
                 </div>
               </template>
