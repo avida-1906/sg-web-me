@@ -5,13 +5,16 @@ const route = useRoute()
 const { leftIsExpand, openLeftSidebar, closeLeftSidebar } = useLeftSidebar()
 const {
   rightIsExpand,
+  rightContainerIs0,
   currentRightSidebarContent,
   openRightSidebar,
   closeRightSidebar,
 } = useRightSidebar()
 const sportStore = useSportsStore()
 
-// const activeBar = ref('')
+const activeName = ref('')
+let timer: undefined | NodeJS.Timeout
+
 const tabbar = ref([
   { title: 'scan', icon: 'tabbar-menu', name: 'menu', show: true },
   {
@@ -40,40 +43,47 @@ const tabbar = ref([
 ])
 
 const getActiveBar = computed(() => {
+  let name = ''
   if (leftIsExpand.value) {
-    return 'menu'
+    name = 'menu'
   }
-  else if (rightIsExpand.value) {
+  else if (!rightContainerIs0.value) {
     if (currentRightSidebarContent.value === EnumRightSidebarContent.CASINOBET)
-      return 'bet'
+      name = 'bet'
 
     else if (currentRightSidebarContent.value === EnumRightSidebarContent.BETTING)
-      return 'user-bet'
+      name = 'user-bet'
 
     else if (currentRightSidebarContent.value === EnumRightSidebarContent.CHATROOM)
-      return 'chat'
+      name = 'chat'
 
     else
-      return ''
+      name = ''
   }
   else {
     if (route.path.includes('/casino'))
-      return 'game'
+      name = 'game'
 
     else if (route.path.includes('/sports'))
-      return 'sports'
+      name = 'sports'
 
     else
-      return ''
+      name = ''
   }
+  clearTimeout(timer)
+  timer = setTimeout(() => {
+    activeName.value = name
+  }, 100)
+  return activeName.value
 })
 
 function changeBar(item: { name: string; path?: string }) {
   const { name, path } = item
+  activeName.value = name
   switch (name) {
     case 'menu':
-      openLeftSidebar()
       rightIsExpand.value && closeRightSidebar()
+      openLeftSidebar()
       break
     case 'bet':// 投注
       leftIsExpand.value && closeLeftSidebar()
@@ -93,12 +103,11 @@ function changeBar(item: { name: string; path?: string }) {
       rightIsExpand.value && closeRightSidebar()
       break
   }
-  // activeBar.value = name
   if (path)
     router.push(replaceSportsPlatId(path))
 }
 
-watch(() => getActiveBar.value, (newValue) => {
+watch(() => activeName.value, (newValue) => {
   if (newValue === 'game') {
     tabbar.value[2].show = true
     tabbar.value[3].show = false
@@ -110,42 +119,35 @@ watch(() => getActiveBar.value, (newValue) => {
 })
 // watch([leftIsExpand, rightIsExpand, currentRightSidebarContent], () => {
 //   if (leftIsExpand.value) {
-//     activeBar.value = 'menu'
+//     activeName.value = 'menu'
 //   }
-//   else if (rightIsExpand.value) {
-//     if (currentRightSidebarContent.value === EnumRightSidebarContent.CASINOBET)
-//       activeBar.value = 'bet'
-
-//     else if (currentRightSidebarContent.value === EnumRightSidebarContent.BETTING)
-//       activeBar.value = 'user-bet'
-
-//     else if (currentRightSidebarContent.value === EnumRightSidebarContent.CHATROOM)
-//       activeBar.value = 'chat'
-
-//     else
-//       activeBar.value = ''
+//   else if (rightIsExpand.value
+//     && currentRightSidebarContent.value === EnumRightSidebarContent.NOTIFICATION) {
+//     activeName.value = ''
 //   }
-//   else {
-//     if (route.path.includes('/casino'))
-//       activeBar.value = 'game'
+//   else if (!leftIsExpand.value && !rightIsExpand.value) {
+//     setTimeout(() => {
+//       if (route.path.includes('/casino'))
+//         activeName.value = 'game'
 
-//     else if (route.path.includes('/sports'))
-//       activeBar.value = 'sports'
+//       else if (route.path.includes('/sports'))
+//         activeName.value = 'sports'
 
-//     else
-//       activeBar.value = ''
+//       else
+//         activeName.value = ''
+//     }, 100)
 //   }
 // }, { immediate: true })
 
 // watch(() => route.path, (newValue) => {
 //   if (route.path.includes('/casino'))
-//     activeBar.value = 'game'
+//     activeName.value = 'game'
 
 //   else if (route.path.includes('/sports'))
-//     activeBar.value = 'sports'
+//     activeName.value = 'sports'
 
 //   else
-//     activeBar.value = leftIsExpand.value ? 'menu' : ''
+//     activeName.value = leftIsExpand.value ? 'menu' : ''
 // })
 </script>
 
