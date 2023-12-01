@@ -3,8 +3,6 @@ set -e
 
 env=$1
 
-# 仓库地址
-repoUrl="http://munuyk.com/sg-release/web-sg.git"
 # 桌面git仓库目录
 localRepoDir="$HOME/Desktop/work/build-file/web-sg"
 
