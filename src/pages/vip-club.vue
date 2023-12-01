@@ -640,7 +640,7 @@ const toVip = function () {
             <BaseCollapse :title="t('vip_club_tip_18', site)">
               <template #content>
                 <div class="content-wrap">
-                  <p>{{ t('vip_club_tip_19', { tg: '（@StakeCasino）', ...site }) }}</p>
+                  <p>{{ t('vip_club_tip_19', { tg: '（@MeiboCasino）', ...site }) }}</p>
                   <div>
                     <BaseButton
                       type="text"
@@ -657,7 +657,7 @@ const toVip = function () {
               <template #content>
                 <div class="content-wrap">
                   <p>{{ t('vip_club_tip_22', site) }}</p>
-                  <p>{{ t('vip_club_tip_23', { tg: '（@StakeCasino）', ...site }) }}</p>
+                  <p>{{ t('vip_club_tip_23', { tg: '（@MeiboCasino）', ...site }) }}</p>
                 </div>
               </template>
             </BaseCollapse>
