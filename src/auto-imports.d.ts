@@ -220,6 +220,7 @@ declare global {
   const isReactive: typeof import('vue')['isReactive']
   const isReadonly: typeof import('vue')['isReadonly']
   const isRef: typeof import('vue')['isRef']
+  const isTestEnv: typeof import('./utils/index')['isTestEnv']
   const isUndefined: typeof import('lodash-es')['isUndefined']
   const isValueContainInBloom: typeof import('./composables/useChatEvent')['isValueContainInBloom']
   const last: typeof import('lodash-es')['last']
@@ -806,6 +807,7 @@ declare module 'vue' {
     readonly isReactive: UnwrapRef<typeof import('vue')['isReactive']>
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
+    readonly isTestEnv: UnwrapRef<typeof import('./utils/index')['isTestEnv']>
     readonly isUndefined: UnwrapRef<typeof import('lodash-es')['isUndefined']>
     readonly isValueContainInBloom: UnwrapRef<typeof import('./composables/useChatEvent')['isValueContainInBloom']>
     readonly last: UnwrapRef<typeof import('lodash-es')['last']>
@@ -1383,6 +1385,7 @@ declare module '@vue/runtime-core' {
     readonly isReactive: UnwrapRef<typeof import('vue')['isReactive']>
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
+    readonly isTestEnv: UnwrapRef<typeof import('./utils/index')['isTestEnv']>
     readonly isUndefined: UnwrapRef<typeof import('lodash-es')['isUndefined']>
     readonly isValueContainInBloom: UnwrapRef<typeof import('./composables/useChatEvent')['isValueContainInBloom']>
     readonly last: UnwrapRef<typeof import('lodash-es')['last']>

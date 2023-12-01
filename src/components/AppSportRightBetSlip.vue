@@ -626,7 +626,9 @@ onUnmounted(() => {
             :bet-slip-type="betOrderSelectValue"
             :cart-info-data="item"
             :title="
-              JSON.stringify(item).replaceAll(',', ',\n').replaceAll('{', '{\n').replaceAll('}', '\n}')
+              isTestEnv()
+                ? JSON.stringify(item).replaceAll(',', ',\n').replaceAll('{', '{\n').replaceAll('}', '\n}')
+                : ''
             "
             :index="index"
           />

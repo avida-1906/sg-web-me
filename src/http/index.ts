@@ -2,7 +2,7 @@ import type { AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } fr
 import { getCurrentLanguageForBackend, i18n } from '~/modules/i18n'
 import { router } from '~/modules/router'
 
-const { VITE_HTTP_TIMEOUT, VITE_HTTP_BASEURL, PROD, MODE } = getEnv()
+const { VITE_HTTP_TIMEOUT, VITE_HTTP_BASEURL, PROD } = getEnv()
 
 interface IResponse<T> {
   status: boolean
@@ -129,7 +129,7 @@ class HttpClient {
             type: 'error',
             code: `${responseStatus}`,
             message: `
-              ${MODE === 'test' ? `Url: ${response.config.url}<br />` : ''}
+              ${isTestEnv() ? `Url: ${response.config.url}<br />` : ''}
               ${t('login_fail_tip')}
             `,
           })
@@ -145,7 +145,7 @@ class HttpClient {
               type: 'error',
               code: `${responseStatus}`,
               message: `
-                ${MODE === 'test' ? `Url: ${response.config.url}<br />` : ''}
+                ${isTestEnv() ? `Url: ${response.config.url}<br />` : ''}
                 ${data || t('sys_error')}
               `,
             })
@@ -224,7 +224,7 @@ class HttpClient {
             type: 'error',
             code: `${status}`,
             message: `
-              ${MODE === 'test' ? `Url: ${error.config.url}<br />` : ''}
+              ${isTestEnv() ? `Url: ${error.config.url}<br />` : ''}
               ${t('find_error')}：${status}
             `,
           })
