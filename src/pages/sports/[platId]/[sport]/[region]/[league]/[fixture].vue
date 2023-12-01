@@ -12,7 +12,10 @@ const {
   basePanelData,
   currentTab,
   searchName,
+  loading,
+  requestCount,
   runGetSportInfo,
+  resetRequestCount,
 } = useApiSportDetails()
 
 useIntervalFn(() => {
@@ -31,18 +34,20 @@ usePageTitle({ prefix: title })
 watch(
   () => route.params,
   (value) => {
-    if (value.sport && value.fixture)
+    if (value.sport && value.fixture) {
+      resetRequestCount()
       runGetSportInfo({ si: Number(route.params.sport), ei: `${route.params.fixture}` })
+    }
   },
-)
-
-await application.allSettled([
-  runGetSportInfo({ si: Number(route.params.sport), ei: `${route.params.fixture}` })],
+  { immediate: true },
 )
 </script>
 
 <template>
-  <div class="tg-sports-tournament-fixture-betdetail">
+  <div v-if="loading && requestCount === 0" class="sports-details-loading-content-height">
+    <BaseLoading class="loading" />
+  </div>
+  <div v-else class="tg-sports-tournament-fixture-betdetail">
     <div class="sports-detail-wrapper">
       <div class="layout-spacing no-bottom-spacing variant-normal">
         <AppNavBreadCrumb :breadcrumb="breadcrumbData" />
@@ -263,6 +268,23 @@ await application.allSettled([
 </template>
 
 <style lang="scss" scoped>
+.sports-details-loading-content-height {
+  overflow: hidden;
+  height: calc(100vh - var(--tg-header-height));
+  .loading {
+    margin-top: 200px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .sports-details-loading-content-height {
+    overflow: hidden;
+    height: calc(100vh - var(--tg-header-height) - var(--tg-footerbar-height));
+    .loading {
+      margin-top: 150px;
+    }
+  }
+}
 .wrapper-grid-center {
   display: grid;
   grid-auto-flow: row;
