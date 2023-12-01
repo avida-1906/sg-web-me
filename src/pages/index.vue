@@ -6,6 +6,7 @@ defineOptions({
 })
 
 const { VITE_SITE_NAME } = getEnv()
+const location = useBrowserLocation()
 const width = 430
 const { t } = useI18n()
 const router = useRouter()
@@ -24,6 +25,9 @@ const {
 } = storeToRefs(useWindowStore())
 const { isLogin, userInfo } = storeToRefs(useAppStore())
 // const { openNoticeDialog } = useDialogNotice()
+
+const hostSite = computed(() => ({ host: location.value.hostname, site: VITE_SITE_NAME }))
+
 // 公告弹框和跑马灯
 const {
   data: noticeData,
@@ -136,7 +140,7 @@ runMemberNoticeAllList()
         <div class="features-content">
           <p>{{ t('most_advance_casino') }}</p>
           <p>
-            {{ t('casino_index_description', { site: VITE_SITE_NAME }) }}
+            {{ t('casino_index_description', hostSite) }}
           </p>
         </div>
         <div class="features-button">
@@ -200,54 +204,73 @@ runMemberNoticeAllList()
     <div v-if="!isLogin" class="index-introduction" :class="{ 'max-height': showMore }">
       <div class="introduction-content" :class="{ 'column-count': !isSm }">
         <p>
-          {{ t('company_intro_tip_1') }}
+          {{ t('company_intro_tip_1',
+               hostSite) }}
         </p>
         <p>
-          {{ t('company_intro_tip_2') }}
+          {{ t('company_intro_tip_2',
+               hostSite) }}
         </p>
         <p>
-          {{ t('company_intro_tip_3') }}
+          {{ t('company_intro_tip_3',
+               hostSite) }}
         </p>
-        <h1>{{ t('company_intro_tip_title_1') }}</h1>
+        <h1>{{ t('company_intro_tip_title_1', hostSite) }}</h1>
         <p>
-          {{ t('company_intro_tip_4') }}
-        </p>
-        <p>
-          {{ t('company_intro_tip_5') }}
+          {{ t('company_intro_tip_4', hostSite) }}
         </p>
         <p>
-          {{ t('company_intro_tip_6') }}
+          {{ t('company_intro_tip_5',
+               hostSite) }}
         </p>
         <p>
-          {{ t('company_intro_tip_7') }}
+          {{ t('company_intro_tip_6',
+               hostSite) }}
         </p>
         <p>
-          {{ t('company_intro_tip_8') }}
+          {{ t('company_intro_tip_7', hostSite) }}
+        </p>
+        <p>
+          {{ t('company_intro_tip_8', hostSite) }}
         </p>
 
-        <h1>{{ t('company_intro_tip_title_2') }}</h1>
+        <h1>{{ t('company_intro_tip_title_2', hostSite) }}</h1>
         <p>
-          {{ t('company_intro_tip_9') }}
+          {{ t('company_intro_tip_9', hostSite) }}
         </p>
         <p>
-          {{ t('company_intro_tip_10') }}
-        </p>
-        <p>{{ t('company_intro_tip_11') }}</p>
-        <h1>{{ t('company_intro_tip_title_3') }}</h1>
-        <p>{{ t('company_intro_tip_12') }}</p>
-        <p>{{ t('company_intro_tip_13') }}</p>
-        <p>
-          {{ t('company_intro_tip_14') }}
+          {{ t('company_intro_tip_10',
+               hostSite) }}
         </p>
         <p>
-          {{ t('company_intro_tip_15') }}
+          {{ t('company_intro_tip_11',
+               hostSite) }}
+        </p>
+        <h1>
+          {{ t('company_intro_tip_title_3',
+               hostSite) }}
+        </h1>
+        <p>
+          {{ t('company_intro_tip_12',
+               hostSite) }}
         </p>
         <p>
-          {{ t('company_intro_tip_16') }}
+          {{ t('company_intro_tip_13',
+               hostSite) }}
         </p>
-        <h1>{{ t('company_intro_tip_title_4') }}</h1>
         <p>
-          {{ t('company_intro_tip_17') }}
+          {{ t('company_intro_tip_14',
+               hostSite) }}
+        </p>
+        <p>
+          {{ t('company_intro_tip_15', hostSite) }}
+        </p>
+        <p>
+          {{ t('company_intro_tip_16', hostSite) }}
+        </p>
+        <h1>{{ t('company_intro_tip_title_4', hostSite) }}</h1>
+        <p>
+          {{ t('company_intro_tip_17', hostSite) }}
         </p>
         <ul>
           <li>{{ t('company_intro_tip_step_1') }}</li>
@@ -256,17 +279,17 @@ runMemberNoticeAllList()
           </li>
           <li>{{ t('company_intro_tip_step_3') }}</li>
           <li>
-            {{ t('company_intro_tip_step_4') }}
+            {{ t('company_intro_tip_step_4', hostSite) }}
           </li>
         </ul>
         <p>
-          {{ t('company_intro_tip_18') }}
+          {{ t('company_intro_tip_18', hostSite) }}
         </p>
         <p>
           {{ t('company_intro_tip_19') }}
         </p>
         <p>
-          {{ t('company_intro_tip_20') }}
+          {{ t('company_intro_tip_20', hostSite) }}
         </p>
       </div>
       <div class="introduction-more">
