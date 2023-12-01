@@ -15,7 +15,7 @@ export const useCasinoStore = defineStore('casino', () => {
     return arr
   })
 
-  const { data } = useRequest(ApiMemberGameLobby, { manual: false })
+  const { data, runAsync: runAsyncGameLobby } = useRequest(ApiMemberGameLobby, { manual: false })
 
   const casinoNav = computed(() => {
     if (data.value) {
@@ -48,6 +48,7 @@ export const useCasinoStore = defineStore('casino', () => {
     platformList,
     casinoNav,
     casinoGameList,
+    runAsyncGameLobby,
   }
 })
 

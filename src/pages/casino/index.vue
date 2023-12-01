@@ -5,7 +5,8 @@ defineOptions({
 
 usePageTitle({ prefix: 'btc_casino_title', suffix: 'casino_game', isT: true })
 const { isMobile } = storeToRefs(useWindowStore())
-const { casinoNav, casinoGameList } = storeToRefs(useCasinoStore())
+const casinoStore = useCasinoStore()
+const { casinoNav, casinoGameList } = storeToRefs(casinoStore)
 const router = useRouter()
 const { t } = useI18n()
 const { VITE_CASINO_HOME_PAGE_SIZE } = getEnv()
@@ -68,6 +69,8 @@ function viewMoreGames() {
   else if (currentNav.value.ty === 2)
     router.push(`/casino/group/provider?pid=${currentNav.value.platform_id}&name=${currentNav.value.label}`)
 }
+
+await application.allSettled([casinoStore.runAsyncGameLobby()])
 </script>
 
 <template>
