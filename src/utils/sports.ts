@@ -202,7 +202,7 @@ export function sportsDataGroupByLeagueLoadMore(
  * @param origin
  * @param newData
  */
-export function sportsDataUpdateByMqtt(
+export function sportsDataGroupedByLeagueUpdateByMqtt(
   origin: ISportDataGroupedByLeague,
   newData: ISportEventList[],
 ) {
@@ -216,6 +216,28 @@ export function sportsDataUpdateByMqtt(
         else
           arr[ii].list.splice(index, 1)
       }
+    }
+  }
+  return arr
+}
+
+/**
+ * 赛事数据监听mqtt通知更新
+ * @param origin
+ * @param newData
+ */
+export function sportsEventInfoListUpdateByMqtt(
+  origin: ISportEventInfo[],
+  newData: ISportEventList[],
+) {
+  const arr: ISportEventInfo[] = cloneDeep(origin)
+  for (let i = 0; i < newData.length; i++) {
+    const index = arr.findIndex(a => a.ei === newData[i].ei)
+    if (index > -1) {
+      if (Array.isArray(newData[i].v))
+        arr.splice(index, 1, newData[i].v[0])
+      else
+        arr.splice(index, 1)
     }
   }
   return arr

@@ -118,14 +118,7 @@ function reset() {
   list.value = []
 }
 function updateDataByMqtt(data: ISportEventList[]) {
-  const arr: ISportEventInfo[] = cloneDeep(list.value)
-
-  for (let i = 0; i < data.length; i++) {
-    const index = arr.findIndex(a => a.ei === data[i].ei)
-    if (index > -1)
-      arr.splice(index, 1, data[i].v[0])
-  }
-  list.value = arr
+  list.value = sportsEventInfoListUpdateByMqtt(list.value, data)
 }
 /** 🚧 分页、定时器、监听更新数据 end 🚧 */
 

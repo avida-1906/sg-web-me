@@ -98,7 +98,7 @@ function loadMore() {
   getData()
 }
 function updateDataByMqtt(data: ISportEventList[]) {
-  list.value = sportsDataUpdateByMqtt(list.value, data)
+  list.value = sportsDataGroupedByLeagueUpdateByMqtt(list.value, data)
 }
 /** 🚧 分页、定时器、监听更新数据 end 🚧 */
 
