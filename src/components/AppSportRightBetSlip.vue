@@ -127,7 +127,7 @@ const errorInfo = computed<{
   if (sportStore.cart.isExistCloseCaps) {
     return {
       bool: true,
-      errorMess: '您的投注单里不能含有已关闭的盘口投注项',
+      errorMess: '您有暂停的投注项',
     }
   }
 
@@ -154,7 +154,7 @@ const errorInfo = computed<{
   if (sportStore.cart.count > VITE_SPORT_MULTI_BET_MAX) {
     return {
       bool: true,
-      errorMess: `投注项组合不能超过 ${VITE_SPORT_MULTI_BET_MAX} 个。`,
+      errorMess: `同时最多只能添加 ${VITE_SPORT_MULTI_BET_MAX} 个投注项。`,
     }
   }
 
@@ -194,7 +194,7 @@ const errorInfo = computed<{
   if (sportStore.cart.isOnlyTwoDecimal && sportStore.cart.isExistMoreThanTwoDecimal) {
     return {
       bool: true,
-      errorMess: '投注金额最多只能输入两位小数',
+      errorMess: '不支持小数位超过2位的投注金额',
     }
   }
 
@@ -202,7 +202,7 @@ const errorInfo = computed<{
   if (sportStore.cart.isTenMultiple && sportStore.cart.isTenMultipleBool) {
     return {
       bool: true,
-      errorMess: '投注金额必须是10的倍数',
+      errorMess: '只支持10的整数倍的投注金额',
     }
   }
 
@@ -210,7 +210,7 @@ const errorInfo = computed<{
   if (sportStore.cart.isFiveDecimal && sportStore.cart.isExistFiveDecimal) {
     return {
       bool: true,
-      errorMess: '投注金额最多只能输入五位小数',
+      errorMess: '不支持小数位超过5位的投注金额',
     }
   }
 
