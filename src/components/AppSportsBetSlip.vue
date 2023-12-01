@@ -39,6 +39,7 @@ const { currentGlobalCurrency, isLogin } = storeToRefs(appStore)
 const sportStore = useSportsStore()
 
 const notLoginAmount = ref('')
+const router = useRouter()
 
 const {
   value: amount,
@@ -99,6 +100,15 @@ const suffixLength = computed(() =>
 const isClosed = computed(() => {
   return props.cartInfoData.os === 0
 })
+// 详情路径
+const eventDetailPath = computed(() => {
+  const data = props.cartInfoData
+  return `/sports/${SPORTS_PLAT_ID}/${data.si}/${data.pgid}/${data.ci}/${data.ei}`
+})
+
+function goEventDetailPage() {
+  router.push(replaceSportsPlatId(eventDetailPath.value))
+}
 
 onMounted(() => {
   if (!isLogin.value) {
@@ -137,7 +147,7 @@ watchEffect(() => {
           v-if="cartInfoData.result"
           :name="cartInfoData.result === 'fulfilled' ? 'sport-success' : 'sport-error'"
         />
-        <div class="text">
+        <div class="text" @click="goEventDetailPage">
           {{ cartInfoData.homeTeamName }} - {{ cartInfoData.awayTeamName }}
         </div>
       </div>

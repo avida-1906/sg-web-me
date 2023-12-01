@@ -401,7 +401,7 @@ export interface DepositInfo {
   bank_code?: string
   /** 存款人姓名-法币公司入款存款使用 payment_type = 2 */
   realname?: string
-  /** 法币公司入款存款 虚拟币三方支付存款 使用 */
+  /** 法币公司入款存款 虚拟币存款 使用 */
   bankcard_id?: string
 }
 
@@ -537,6 +537,10 @@ export interface ISportsMyBetSlipItem {
     ed: number
     hp: number
     ap: number
+    /** 地区Id */
+    pgid: string
+    /** 联赛id */
+    ci: string
   }[]
 }
 

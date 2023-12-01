@@ -33,8 +33,19 @@ export function useApiSportDetails() {
   const currentTab = ref<number>(-1)
   /** 搜索名称 */
   const searchName = ref<string>('')
+  /** 请求次数，用来渲染Loading */
+  const requestCount = ref<number>(0)
 
-  const { data: sportInfo, runAsync: runGetSportInfo, loading } = useRequest(ApiSportEventInfo)
+  const { data: sportInfo, runAsync: runGetSportInfo, loading } = useRequest(
+    ApiSportEventInfo, {
+      onSuccess: () => {
+        requestCount.value++
+      },
+      onError: () => {
+        requestCount.value++
+      },
+    },
+  )
 
   /** 面包屑数据 */
   const breadcrumbData = computed<IBreadCrumbItem[]>(() => {
@@ -248,6 +259,10 @@ export function useApiSportDetails() {
     return renderList
   })
 
+  function resetRequestCount() {
+    requestCount.value = 0
+  }
+
   watch(handicapListData, (val, oVal) => {
     if (val.length !== oVal.length)
       currentTab.value = val[0].value
@@ -262,6 +277,8 @@ export function useApiSportDetails() {
     searchName,
     sportInfo,
     loading,
+    requestCount,
     runGetSportInfo,
+    resetRequestCount,
   }
 }

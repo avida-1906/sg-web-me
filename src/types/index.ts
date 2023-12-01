@@ -141,6 +141,10 @@ export type ICartInfo = {
    *
    * 2:不支援串关 */
   ic: 1 | 2
+  /** 地区Id */
+  pgid: string
+  /** 联赛id */
+  ci: string
 } & IBetInfo
 
 /**
