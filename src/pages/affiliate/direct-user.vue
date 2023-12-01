@@ -107,6 +107,7 @@ const tableData = ref([
         <template #online="{ record }">
           <div class="flex-colum">
             <BaseBadge
+              :max="99999"
               :color="record.isOnline
                 ? 'var(--tg-text-green)' : 'var(--tg-text-lightgrey)'"
               :text="record.isOnline ? t('active_state') : t('offline')"

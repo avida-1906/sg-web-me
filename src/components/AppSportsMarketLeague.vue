@@ -124,7 +124,7 @@ onBeforeUnmount(() => {
   >
     <template #side="{ isOpen }">
       <div v-show="!isOpen" class="accordion-badge-wrap">
-        <BaseBadge :count="total" />
+        <BaseBadge :count="total" :max="99999" />
       </div>
     </template>
     <template #default>

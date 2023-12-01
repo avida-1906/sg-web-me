@@ -65,7 +65,7 @@ await application.allSettled([runAsync(params.value)])
     >
       <template #side="{ isOpen }">
         <div v-show="!isOpen" class="accordion-badge-wrap">
-          <BaseBadge :count="region.list.length" />
+          <BaseBadge :count="region.list.length" :max="99999" />
         </div>
       </template>
       <div class="content is-open">

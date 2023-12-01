@@ -33,7 +33,7 @@ const active = computed(() => route.path === props.menuItem.path)
         {{ menuItem.title }}
       </div>
       <div v-if="menuItem.fixtureCount" class="badge-wrap">
-        <BaseBadge :count="menuItem.fixtureCount" mode="active" />
+        <BaseBadge :count="menuItem.fixtureCount" mode="active" :max="99999" />
       </div>
     </div>
   </div>

@@ -168,6 +168,7 @@ watch(() => activeName.value, (newValue) => {
             v-if="item.name === 'user-bet'"
             mode="active"
             :count="sportStore.cart.count"
+            :max="99999"
           >
             <BaseIcon class="bar-icon" :name="item.icon" />
           </BaseBadge>
