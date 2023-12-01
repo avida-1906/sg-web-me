@@ -37,6 +37,8 @@ const { t } = useI18n()
 const appStore = useAppStore()
 const { currentGlobalCurrency, isLogin } = storeToRefs(appStore)
 const sportStore = useSportsStore()
+const { isMobile } = storeToRefs(useWindowStore())
+const { closeRightSidebar } = useRightSidebar()
 
 const notLoginAmount = ref('')
 const router = useRouter()
@@ -107,6 +109,9 @@ const eventDetailPath = computed(() => {
 })
 
 function goEventDetailPage() {
+  if (isMobile.value)
+    closeRightSidebar()
+
   router.push(replaceSportsPlatId(eventDetailPath.value))
 }
 
