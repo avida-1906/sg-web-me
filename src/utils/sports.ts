@@ -533,6 +533,7 @@ export class SportsCart {
       pt: 0,
       hp: 0,
       ap: 0,
+      new_wid: data.wid,
     })
   }
 
@@ -591,6 +592,7 @@ export class SportsCart {
    * 通过wid，更新ov，os
    */
   updateOvOs(_data: ISportListToCartData) {
+    console.error('更新ov，os')
     const { wid, ov, os } = _data
     const index = this.dataList.findIndex(a => a.wid === wid)
 
@@ -625,6 +627,7 @@ export class SportsCart {
    * @param {IBetInfoChangeCallback} fn 回调函数
    */
   updateAllData(data: IBetInfoBack, fn?: IBetInfoChangeCallback) {
+    console.error('更新所有数据的赔率，状态等...，通过betinfo接口返回的数据')
     const { wsi, bi, dl, status } = data
 
     this.dlStatesToRenderData(dl, status)
@@ -663,6 +666,7 @@ export class SportsCart {
         item.m = _wsiObject?.m ?? 0
         item.hp = _wsiObject?.hp ?? 0
         item.ap = _wsiObject?.ap ?? 0
+        item.new_wid = _wsiObject?.new_wid ?? '0'
       }
 
       if (bi) {

@@ -175,6 +175,8 @@ export type ICartInfoData = ICartInfo & {
   ap: number
   /** 主队比分 */
   hp: number
+  /** 新的盘口Id */
+  new_wid: string
 }
 
 // /**
