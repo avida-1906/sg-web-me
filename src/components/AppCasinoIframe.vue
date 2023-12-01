@@ -430,7 +430,7 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
               </VDropdown>
             </div>
             <div class="logo">
-              <BaseIcon name="app-logo" />
+              <BaseLogo />
             </div>
             <div class="right">
               <span
