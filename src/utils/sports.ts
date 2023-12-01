@@ -210,8 +210,12 @@ export function sportsDataUpdateByMqtt(
   for (let i = 0; i < newData.length; i++) {
     for (let ii = 0; ii < arr.length; ii++) {
       const index = arr[ii].list.findIndex(a => a.ei === newData[i].ei)
-      if (index > -1)
-        arr[ii].list.splice(index, 1, newData[i].v[0])
+      if (index > -1) {
+        if (Array.isArray(newData[i].v))
+          arr[ii].list.splice(index, 1, newData[i].v[0])
+        else
+          arr[ii].list.splice(index, 1)
+      }
     }
   }
   return arr
