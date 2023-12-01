@@ -16,6 +16,7 @@ const props = defineProps<Props>()
 const { t } = useI18n()
 const { currentGlobalCurrency } = storeToRefs(useAppStore())
 const { openBetSlipDialog } = useDialogBetSlip()
+const router = useRouter()
 
 const statusObj: { [t: number]: string } = {
   0: t('sports_active'),
@@ -35,6 +36,11 @@ const statusText = computed(() => statusObj[slipData.value.oc])
 const status = computed(() =>
   slipData.value.oc === 1 || slipData.value.oc === 3 ? 'win' : 'lose',
 )
+
+function goEventDetailPage(data: ISportsMyBetSlipItemBi) {
+  router.push(replaceSportsPlatId(`/sports/${SPORTS_PLAT_ID}/${data.si}/${data.pgid ?? 0}/${data.ci ?? 0}/${data.ei}`))
+}
+
 // 是否已经开赛
 function checkIsStarted(ts: number) {
   return dayjs().isAfter((ts * 1000))
@@ -88,6 +94,10 @@ function showDetail() {
         </BaseButton>
       </div>
 
+      <!-- <pre>
+        {{ data }}
+      </pre> -->
+
       <div class="content">
         <!-- 盘口信息 -->
         <div class="bet-outcome-list">
@@ -101,6 +111,7 @@ function showDetail() {
                 <BaseButton
                   type="text" size="none"
                   style="--tg-base-button-text-default-color:var(--tg-text-white)"
+                  @click="goEventDetailPage(item)"
                 >
                   <span class="team-name">{{ item.htn }} - {{ item.atn }}</span>
                 </BaseButton>

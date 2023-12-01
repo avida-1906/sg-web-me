@@ -537,6 +537,10 @@ export interface ISportsMyBetSlipItem {
     ed: number
     hp: number
     ap: number
+    /** 地区Id */
+    pgid: string
+    /** 联赛id */
+    ci: string
   }[]
 }
 

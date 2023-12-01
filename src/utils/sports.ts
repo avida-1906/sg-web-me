@@ -309,6 +309,8 @@ export function getCartObject(
     btn: mlObject.btn,
     sn,
     ic: infoList1.ic,
+    pgid: infoList1.pgid,
+    ci: infoList1.ci,
   }
 }
 
