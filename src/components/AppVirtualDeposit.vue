@@ -126,6 +126,7 @@ async function confirmPayment() {
         currency_id: props.activeCurrency.cur,
         currency_name: props.activeCurrency.type,
         mid: currentAisle.value.method_id,
+        bankcard_id: currentAisle.value.bankcard_id,
       })
     }
   }
