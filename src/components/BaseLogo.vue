@@ -8,12 +8,6 @@ withDefaults(defineProps<Props>(), {
   mode: 'light',
   useSmall: false,
 })
-
-const router = useRouter()
-
-function pathTo() {
-  router.push('/')
-}
 </script>
 
 <template>
@@ -21,7 +15,6 @@ function pathTo() {
     <BaseAspectRatio
       ratio="150/53"
       class="aspect-ratio"
-      @click="pathTo"
     >
       <BaseImage :url="`/img/logo/logo_${mode}.svg`">
       <!-- <BaseIcon
