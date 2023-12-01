@@ -164,10 +164,8 @@ function showDetail() {
         </div>
         <!-- logo分割线 -->
         <div class="hr">
-          <img v-if="!isDialog" class="logo" draggable="false" src="https://stake.com/_app/immutable/assets/stake-dark.0aaa7847.svg">
-          <img v-else class="logo" draggable="false" src="https://stake.com/_app/immutable/assets/stake-light.5be6dc2d.svg">
+          <BaseLogo :mode="!isDialog ? 'dark' : 'light'" />
         </div>
-
         <!-- 总计 -->
         <div class="total-box">
           <div class="item">

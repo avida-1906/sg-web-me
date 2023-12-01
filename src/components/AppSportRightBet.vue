@@ -74,13 +74,16 @@ onMounted(() => {
         v-model="headSelectValue"
         style="--tg-base-select-hover-bg-color:var(--tg-secondary-dark);
           --tg-base-select-popper-style-padding-x:0;"
-        :options="headSelectData" no-hover popper
+        :options="headSelectData" popper no-hover
       >
         <template #label="{ data }">
           <div class="type-select">
             <BaseIcon :name="data?.icon" />
             <span>{{ data?.label }}</span>
-            <BaseBadge v-if="headRenderCount" :count="headRenderCount" mode="active" />
+            <BaseBadge
+              v-if="headRenderCount" :count="headRenderCount" :max="99999"
+              mode="active"
+            />
           </div>
         </template>
         <template #option="{ data: { item } }">
@@ -89,12 +92,12 @@ onMounted(() => {
             <span>{{ item.label }}</span>
             <BaseBadge
               v-if="item.value === 0 && betCount"
-              :count="betCount"
+              :count="betCount" :max="99999"
               mode="active"
             />
             <BaseBadge
               v-if="item.value === 1 && unsettledCount"
-              :count="unsettledCount"
+              :count="unsettledCount" :max="99999"
               mode="active"
             />
           </div>

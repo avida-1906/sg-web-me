@@ -33,7 +33,7 @@ function onMoreClick() {
   >
     <template #side="{ isOpen }">
       <div v-show="!isOpen" class="accordion-badge-wrap">
-        <BaseBadge :count="eventCount" />
+        <BaseBadge :count="eventCount" :max="99999" />
       </div>
     </template>
     <template #default>

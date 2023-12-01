@@ -34,7 +34,7 @@ function goOutrightsPage() {
   <BaseSecondaryAccordion :title="data.cn" level="2" :init="autoShow">
     <template #side="{ isOpen }">
       <div v-show="!isOpen" class="accordion-badge-wrap">
-        <BaseBadge :count="1" />
+        <BaseBadge :count="1" :max="99999" />
       </div>
     </template>
     <div class="fixture-wrapper">
