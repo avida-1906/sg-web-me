@@ -12,16 +12,21 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 // const { t } = useI18n()
+const router = useRouter()
+const { bool: showLeft, setBool: setShowLeftBool } = useBoolean(false)
+const { bool: showRight, setBool: setShowRightBool } = useBoolean(true)
 const { appContentWidth } = storeToRefs(useWindowStore())
 const {
   runAsync: runMemberBannerList,
   data: bannerList,
   // loading: MemberBannerListLoad,
-} = useRequest(ApiMemberBannerList)
+} = useRequest(ApiMemberBannerList, {
+  onSuccess(data) {
+    data.length <= 3 && setShowRightBool(false)
+  },
+})
 
 const scrollRef = ref()
-const { bool: showLeft, setBool: setShowLeftBool } = useBoolean(false)
-const { bool: showRight, setBool: setShowRightBool } = useBoolean(true)
 
 const getGridAutoColumns = computed(() => {
   if (props.mode === 'home') {
@@ -50,9 +55,29 @@ function handleScroll(event: Event) {
   target.scrollLeft <= 0 ? setShowLeftBool(false) : setShowLeftBool(true)
   target.scrollLeft >= (target.scrollWidth - target.clientWidth - 1) ? setShowRightBool(false) : setShowRightBool(true)
 }
+function jumpToUrl(item: { type: number; url: string }) {
+  /** 跳转类型 1-自定义 2-娱乐城 3-体育 4-优惠活动 5-联盟中心 */
+  switch (item.type) {
+    case 1:
+      window.location.href = item.url
+      break
+    case 2:
+      router.push('/casino')
+      break
+    case 3:
+      router.push('/sports/401')
+      break
+    case 4:
+      router.push('/promotions')
+      break
+    case 5:
+      router.push('/affiliate/promotion-tutorial')
+      break
+  }
+}
 
 runMemberBannerList({
-  banner_type: props.type === 'casino' ? '2' : '1',
+  banner_type: props.type === 'casino' ? '1' : '2',
 })
 </script>
 
@@ -64,12 +89,17 @@ runMemberBannerList({
       :style="getGridAutoColumns"
       @scroll="handleScroll"
     >
-      <div v-for="item in bannerList" :key="item.id" class="banner-item">
+      <div
+        v-for="item in bannerList"
+        :key="item.id"
+        class="banner-item"
+        @click="jumpToUrl({ type: item.jump_type, url: item.jump_url })"
+      >
         <BaseAspectRatio class="banner-ratio" ratio="320/188">
           <!-- <BaseImage url="/png/home/banner_bg.png" /> -->
           <BaseImage :url="item.image_url[getCurrentLanguageForBackend()]" is-network />
-          <!-- <div class="item-msg">
-            <div class="msg-type">
+          <div class="item-msg">
+            <!-- <div class="msg-type">
               {{ t('promo_activity') }}
             </div>
             <div class="msg-title">
@@ -77,11 +107,18 @@ runMemberBannerList({
             </div>
             <div class="msg-tips">
               {{ t('weekly_share') }}$20,000美元奖金
+            </div> -->
+            <div
+              v-if="item.image_info.button_state === 1"
+              class="come-play"
+              @click.stop="jumpToUrl({
+                type: item.image_info.button_jump_type,
+                url: item.image_info.button_jump_url,
+              })"
+            >
+              {{ item.image_info.button_text }}
             </div>
-            <div class="come-play">
-              {{ t('learn_more') }}
-            </div>
-          </div> -->
+          </div>
         </BaseAspectRatio>
       </div>
     </div>
@@ -140,7 +177,7 @@ runMemberBannerList({
         color: var(--tg-text-white);
         left: 8px;
         top: 0;
-        max-width: 182px;
+        min-width: 182px;
         height: 100%;
         padding: 16px;
         div+div{
