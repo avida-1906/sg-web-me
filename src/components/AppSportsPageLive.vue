@@ -45,6 +45,7 @@ const { run, runAsync } = useRequest(ApiSportEventList,
     },
   },
 )
+/** 过滤无当前盘口的类型的赛事 */
 const listFiltered = computed(() => {
   const origin: ISportDataGroupedByLeague = cloneDeep(list.value)
   let arr: ISportDataGroupedByLeague = []
