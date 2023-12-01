@@ -708,5 +708,4 @@ runMemberNoticeAllList()
 <route lang="yaml">
 meta:
   layout: home
-  # browserTitle: Stake.com – 最领先的加密货币赌场及体育博彩平台
 </route>

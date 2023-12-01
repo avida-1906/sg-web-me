@@ -2,6 +2,7 @@
 import type { IMemberReg } from '~/apis/types'
 
 const closeDialog = inject('closeDialog', () => {})
+const { VITE_SITE_NAME } = getEnv()
 
 const { openNotify } = useNotify()
 const { t } = useI18n()
@@ -87,12 +88,14 @@ onBeforeUnmount(() => {
           Terms and Conditions
         </div>
         <div class="terms-conditions-title">
-          1.STAKE.COM
+          1.{{ VITE_SITE_NAME }}.COM
         </div>
         <div class="terms-conditions-describe">
-          1.1 Stake.com is owned and operated by Medium Rare, N.V. (hereinafter
-          "Stake", "We" or "Us"), a company with head office at Korporaalweg
-          10, Willemstad, Curaçao. Stake is licensed and regulated by
+          1.1 {{ VITE_SITE_NAME }}.com is owned and operated by Medium Rare,
+          N.V. (hereinafter "{{ VITE_SITE_NAME }}",
+          "We" or "Us"), a company with head office at Korporaalweg
+          10, Willemstad, Curaçao.
+          {{ VITE_SITE_NAME }} is licensed and regulated by
           the Government of Curaçao under the gaming license 8048/JAZ
           issued to Antillephone. Some credit card payment processing
           are handled by its wholly owned subsidiary, Medium Rare Limited.
