@@ -5,6 +5,7 @@ defineOptions({
   name: 'KeepAliveIndexHome',
 })
 
+const { VITE_SITE_NAME } = getEnv()
 const width = 430
 const { t } = useI18n()
 const router = useRouter()
@@ -135,7 +136,7 @@ runMemberNoticeAllList()
         <div class="features-content">
           <p>{{ t('most_advance_casino') }}</p>
           <p>
-            {{ t('casino_index_description') }}
+            {{ t('casino_index_description', { site: VITE_SITE_NAME }) }}
           </p>
         </div>
         <div class="features-button">
@@ -708,5 +709,4 @@ runMemberNoticeAllList()
 <route lang="yaml">
 meta:
   layout: home
-  # browserTitle: Stake.com – 最领先的加密货币赌场及体育博彩平台
 </route>

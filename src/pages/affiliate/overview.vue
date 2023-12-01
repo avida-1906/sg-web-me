@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 usePageTitle({ prefix: 'affiliate_overview', isT: true })
+const { VITE_SITE_NAME } = getEnv()
 </script>
 
 <template>
@@ -11,11 +12,11 @@ usePageTitle({ prefix: 'affiliate_overview', isT: true })
       poster="https://i.vimeocdn.com/video/1099128577-5eb60cef9d3a000730614dd90ba15bfc447f5f1fa9cabce1af812db291d7841f-d?mw=1100&mh=620&q=70"
     />
     <p>
-      加入 Stake.com 的联盟计划，以推荐我们的品牌赚钱!
-      每当一位用户通过您的推荐链接注册并使用 Stake.com，您便会收到联盟佣金。
+      加入 {{ VITE_SITE_NAME }}.com 的联盟计划，以推荐我们的品牌赚钱!
+      每当一位用户通过您的推荐链接注册并使用 {{ VITE_SITE_NAME }}.com，您便会收到联盟佣金。
     </p>
     <p>
-      身为 Stake.com 的联盟会员，所赚的佣金将以推荐用户在娱乐城和体育博彩中的总投注为依据。
+      身为 {{ VITE_SITE_NAME }}.com 的联盟会员，所赚的佣金将以推荐用户在娱乐城和体育博彩中的总投注为依据。
       这跟传统联盟计划的不同之处在于无论推荐用户是赢或输，您都能获得同样的佣金！
     </p>
 

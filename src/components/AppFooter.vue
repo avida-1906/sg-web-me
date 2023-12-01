@@ -3,6 +3,7 @@ import type { EnumSportsOddsType } from '~/stores/sports'
 import type { EnumLanguage } from '~/utils/enums'
 
 const { t } = useI18n()
+const { VITE_SITE_NAME } = getEnv()
 
 const router = useRouter()
 const languageStore = useLanguageStore()
@@ -156,22 +157,18 @@ function pathTo(tmp: { path?: string; title: string; icon?: boolean }) {
     <div class="footer-copyright">
       <BaseLogo />
       <div class="copy-right">
-        © 2023 Stake.com | {{ t('copyright') }}
+        © 2023 {{ VITE_SITE_NAME }}.com | {{ t('copyright') }}
       </div>
       <div>1 USDT = US$1.00</div>
     </div>
     <div class="footer-description">
-      Stake 由 Medium Rare N.V. 所属和经营，注册编号： 145353，注册地址：Korporaalweg 10,
-      Willemstad, Curaçao。请通过 support@stake.com 与我们联系。 支付代理公司是 Medium Rare Limited，
-      地址于 7-9 Riga Feraiou, LIZANTIA COURT, Office 310, Agioi Omologites,1087 Nicosia,
-      Cyprus 以及注册号：HE 410775 Stake 由库拉索政府授权和监管，并根据颁发给 Antillephone 的 8048/JAZ 号许可证运营。
-      Stake 已通过所有合规性审查，并获得合法授权，可进行所有机会与投注游戏的游戏操作。
+      {{ t('footer_desc', { email: `support@${VITE_SITE_NAME}.com` }) }}
     </div>
     <div class="footer-description">
       {{ t('support') }}
-      <span>support@stake.com</span> | {{ t('partner') }}
-      <span>partners@stake.com</span> | {{ t('media') }}
-      <span>press@stake.com</span>
+      <span>support@{{ VITE_SITE_NAME }}.com</span> | {{ t('partner') }}
+      <span>partners@{{ VITE_SITE_NAME }}.com</span> | {{ t('media') }}
+      <span>press@{{ VITE_SITE_NAME }}.com</span>
     </div>
   </div>
 </template>

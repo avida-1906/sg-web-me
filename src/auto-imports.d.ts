@@ -297,7 +297,9 @@ declare global {
   const sportsDataGroupByLeague: typeof import('./utils/sports')['sportsDataGroupByLeague']
   const sportsDataGroupByLeagueLoadMore: typeof import('./utils/sports')['sportsDataGroupByLeagueLoadMore']
   const sportsDataGroupBySport: typeof import('./utils/sports')['sportsDataGroupBySport']
+  const sportsDataGroupedByLeagueUpdateByMqtt: typeof import('./utils/sports')['sportsDataGroupedByLeagueUpdateByMqtt']
   const sportsDataUpdateByMqtt: typeof import('./utils/sports')['sportsDataUpdateByMqtt']
+  const sportsEventInfoListUpdateByMqtt: typeof import('./utils/sports')['sportsEventInfoListUpdateByMqtt']
   const sportsListToCartBus: typeof import('./utils/event-bus')['sportsListToCartBus']
   const sportsOutrightsGoupByRegion: typeof import('./utils/sports')['sportsOutrightsGoupByRegion']
   const sportsOutrightsGroupByLeague: typeof import('./utils/sports')['sportsOutrightsGroupByLeague']
@@ -881,7 +883,8 @@ declare module 'vue' {
     readonly sportsDataGroupByLeague: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupByLeague']>
     readonly sportsDataGroupByLeagueLoadMore: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupByLeagueLoadMore']>
     readonly sportsDataGroupBySport: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupBySport']>
-    readonly sportsDataUpdateByMqtt: UnwrapRef<typeof import('./utils/sports')['sportsDataUpdateByMqtt']>
+    readonly sportsDataGroupedByLeagueUpdateByMqtt: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupedByLeagueUpdateByMqtt']>
+    readonly sportsEventInfoListUpdateByMqtt: UnwrapRef<typeof import('./utils/sports')['sportsEventInfoListUpdateByMqtt']>
     readonly sportsListToCartBus: UnwrapRef<typeof import('./utils/event-bus')['sportsListToCartBus']>
     readonly sportsOutrightsGroupByRegion: UnwrapRef<typeof import('./utils/sports')['sportsOutrightsGroupByRegion']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
@@ -1457,7 +1460,8 @@ declare module '@vue/runtime-core' {
     readonly sportsDataGroupByLeague: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupByLeague']>
     readonly sportsDataGroupByLeagueLoadMore: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupByLeagueLoadMore']>
     readonly sportsDataGroupBySport: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupBySport']>
-    readonly sportsDataUpdateByMqtt: UnwrapRef<typeof import('./utils/sports')['sportsDataUpdateByMqtt']>
+    readonly sportsDataGroupedByLeagueUpdateByMqtt: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupedByLeagueUpdateByMqtt']>
+    readonly sportsEventInfoListUpdateByMqtt: UnwrapRef<typeof import('./utils/sports')['sportsEventInfoListUpdateByMqtt']>
     readonly sportsListToCartBus: UnwrapRef<typeof import('./utils/event-bus')['sportsListToCartBus']>
     readonly sportsOutrightsGroupByRegion: UnwrapRef<typeof import('./utils/sports')['sportsOutrightsGroupByRegion']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>

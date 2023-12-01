@@ -45,6 +45,7 @@ const { run, runAsync } = useRequest(ApiSportEventList,
     },
   },
 )
+/** 过滤无当前盘口的类型的赛事 */
 const listFiltered = computed(() => {
   const origin: ISportDataGroupedByLeague = cloneDeep(list.value)
   let arr: ISportDataGroupedByLeague = []
@@ -116,8 +117,7 @@ function reset() {
   list.value = []
 }
 function updateDataByMqtt(data: ISportEventList[]) {
-  console.log('🚀 ~ file: AppSportsPageLive.vue:119 ~ updateDataByMqtt ~ data:', data)
-  list.value = sportsDataUpdateByMqtt(list.value, data)
+  list.value = sportsDataGroupedByLeagueUpdateByMqtt(list.value, data)
 }
 /** 🚧 分页、定时器、监听更新数据 end 🚧 */
 
