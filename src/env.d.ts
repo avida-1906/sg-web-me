@@ -1,6 +1,8 @@
 /// <reference types="vite/client" />
 
 interface ImportMetaEnv {
+  /** 站点名称 */
+  readonly VITE_SITE_NAME: string
   /** 默认语言 */
   readonly VITE_I18N_DEFAULT_LANG: 'zh-CN' | 'pt-BR' | 'vi-VN'
   /** 网络请求 URL */

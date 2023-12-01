@@ -1,11 +1,12 @@
 <script lang="ts" setup>
+const { VITE_SITE_NAME } = getEnv()
 </script>
 
 <template>
   <section class="modal-content-normal">
     <ol class="rules-content">
       <li v-for="r in 12" :key="r">
-        <span>{{ $t(`chat_rule_${r}`) }}</span>
+        <span>{{ $t(`chat_rule_${r}`, { site: VITE_SITE_NAME }) }}</span>
       </li>
     </ol>
     <div class="center">

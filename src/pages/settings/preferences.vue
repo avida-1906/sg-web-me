@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 usePageTitle({ prefix: 'menu_title_settings_preferences', isT: true })
+const { VITE_SITE_NAME } = getEnv()
 
 const { bool: isStealth } = useBoolean(false)
 const { bool: hideStatistics } = useBoolean(true)
@@ -12,7 +13,7 @@ const { bool: isMarketing } = useBoolean(true)
   <div class="tg-settings-preferences">
     <AppSettingsContentItem title="隐私">
       <template #top-desc>
-        {{ $t('preferences_tip_1') }}
+        {{ $t('preferences_tip_1', { site: VITE_SITE_NAME }) }}
       </template>
       <div class="switch-item">
         <BaseSwitch v-model="isStealth" class="switch" />

@@ -52,7 +52,7 @@ forgot_password: 忘记密码
 no_account_yet: 还未有账户？
 register_account: 注册账户
 have_account: 已有账户？
-stake_hCaptcha: Stake受hCaptcha保护，hCaptcha
+stake_hCaptcha: '{site}受hCaptcha保护，hCaptcha'
 privacy_policy: 隐私政策
 responsible_casino: 负责任博彩
 license: 许可证
@@ -78,7 +78,7 @@ trophy: 奖杯
 lucky_trophy: 最幸运奖杯
 big_win: 最大之赢
 setting: 设置
-stake_safety: Stake安全
+stake_safety: '{site}安全'
 online_support: 在线支持
 vip_club: VIP俱乐部
 club: 俱乐部
@@ -914,7 +914,7 @@ sports_starts_in: '开始时间：{minutes}分钟后'
 welcome_guest: 欢迎
 language_title: 语言
 language_current: 中文
-casino_index_description: 浏览我们种类繁多的赌场游戏，让 Stake 为您提供既公平又有趣的在线博彩体验。直接通过您的浏览器在老虎机、真人娱乐场、21点、百家乐、轮盘以及数以千计的经典赌场游戏包括您最喜爱的 Stake 原创游戏上进行投注。
+casino_index_description: 浏览我们种类繁多的赌场游戏，让 {site} 为您提供既公平又有趣的在线博彩体验。直接通过您的浏览器在老虎机、真人娱乐场、21点、百家乐、轮盘以及数以千计的经典赌场游戏包括您最喜爱的 {site} 原创游戏上进行投注。
 sports_index_description: 通过我们的体育博彩平台投注于来自世界各地的体育团队、选手及联赛。在综合格斗、篮球、足球等多个体育赛事的各种博彩项目上以及滚球盘口中进行投注，享受无与伦比的体育博彩体验。
 chat_been_hide: 聊天室已被隐藏
 chat_show_room: 显示聊天室
@@ -1034,7 +1034,7 @@ promo_lottery_activity: 抽奖活动
 weekly_share: 每周瓜分
 vip_banner_tip_1: 与您的专属 VIP 服务代表合作，根据您的投注需求定制福利。
 vip_banner_tip_2: 您可以预期每周和每月根据您的游戏量获得奖金。玩得越多，获得的奖金就越多。
-vip_banner_tip_3: 运气不佳？Stake 会在您每次升级时根据您的损失提供额外资金。
+vip_banner_tip_3: 运气不佳？{site} 会在您每次升级时根据您的损失提供额外资金。
 vip_banner_tip_4: 被分配一名将支持并满足您的投注需求的专属 VIP 服务代表。
 vip_banner_tip_5: 在每达到下个级别后获取奖金。所达级别越高，升级奖金就越大。
 booster_bonus: 助推奖金
@@ -1058,7 +1058,7 @@ bind_pix_account: 绑定PIX账户
 bind_bank_card: 绑定银行卡
 data_empty: 暂无数据
 chat_rule_1: 请勿在聊天时发送垃圾消息并避免使用过多的大写字母。
-chat_rule_2: 请勿骚扰或冒犯其他用户及 Stake 工作人员。
+chat_rule_2: 请勿骚扰或冒犯其他用户及 {site} 工作人员。
 chat_rule_3: 请勿分享您或其他玩家的任何个人信息（包括社交媒体账号）。
 chat_rule_4: 请勿向其他用户讨钱或要求贷款、下红包雨、或小费。
 chat_rule_5: 严禁使用除了主账户外您任何其他账户聊天。
@@ -1269,7 +1269,7 @@ social_account: 社交账号
 action: 行动
 cancel_ignore: 解除拉黑
 level_desc: 等级描述
-preferences_tip_1: 用户隐私是 Stake 的核心价值之一。 这些设置将允许您在其他玩家面前完全匿名。
+preferences_tip_1: 用户隐私是 {site} 的核心价值之一。 这些设置将允许您在其他玩家面前完全匿名。
 preferences_tip_2: 您的投注不会出现在公开投注动态和投注预览中
 preferences_tip_3: 其他用户将无法查看您的输赢和投注的统计数据
 preferences_tip_4: 其他用户将无法查看您的竞赛记录

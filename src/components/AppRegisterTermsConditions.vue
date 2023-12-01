@@ -229,7 +229,7 @@ onBeforeUnmount(() => {
         </div>
 
         <div class="stake-text">
-          {{ t('stake_hCaptcha') }}
+          {{ t('stake_hCaptcha', { site: VITE_SITE_NAME }) }}
           <span>{{ t('privacy_policy') }}</span> {{ t('and') }}
           <span>{{ t('terms_of_service') }}</span> {{ t('applicable') }}
         </div>
