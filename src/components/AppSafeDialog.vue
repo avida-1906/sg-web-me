@@ -1,13 +1,13 @@
 <script setup lang='ts'>
 import type { IMemberBalanceLockerUpdate } from '~/apis/types'
-import type { CurrencyData } from '~/composables/useCurrencyData'
+import type { CurrencyCode, CurrencyData } from '~/composables/useCurrencyData'
 
 const closeDialog = inject('closeDialog', () => {})
 
 const { t } = useI18n()
 const appStore = useAppStore()
 const { openNotify } = useNotify()
-const { userInfo } = storeToRefs(appStore)
+const { userInfo, exchangeRateData } = storeToRefs(appStore)
 const router = useRouter()
 
 const activeCurrency = ref<any>()
@@ -61,6 +61,14 @@ const updateParams = computed<IMemberBalanceLockerUpdate | null>(() => {
     }
   }
   return null
+})
+const getUsRate = computed(() => {
+  const str: CurrencyCode = activeCurrency.value?.cur
+  if (str === '706')
+    return Number(amount.value).toFixed(2)
+  return str
+    ? (Number(exchangeRateData.value?.rates[str]['706']) * Number(amount.value)).toFixed(2)
+    : 0.00
 })
 
 function renderSvg(text: string) {
@@ -123,6 +131,7 @@ async function handleUpdate() {
   }
 }
 function changeCurrency(item: CurrencyData) {
+  console.log(item)
   activeCurrency.value = item
   reset()
 }
@@ -142,6 +151,10 @@ watch(() => activeTab.value, () => {
   amountRef.value.setTouchFalse()
   resetPassword()
 })
+
+onMounted(() => {
+  console.log(exchangeRateData.value)
+})
 </script>
 
 <template>
@@ -160,7 +173,7 @@ watch(() => activeTab.value, () => {
       <div class="amount">
         <div class="top">
           <span class="label">{{ t('amount') }}</span>
-          <span class="us">US$0.00</span>
+          <span class="us">US${{ getUsRate }}</span>
         </div>
         <BaseInput
           ref="amountRef" v-model="amount"
