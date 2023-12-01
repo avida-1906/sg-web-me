@@ -1394,7 +1394,7 @@ company_intro_tip_step_4: 附加说明：如果您想使用法定货币存款，
 company_intro_tip_18: 您在 {site} 的存款与提款都是即时的，并且可任您选择任何可用的加密货币。无论您是想在我们的赌场游戏或体育赛事上进行投注，{site} 都提供了简单明了的过程。
 company_intro_tip_19:  MoonPay 具有许多受支持的支付方式，您可以使用 Visa、MasterCard、Apple Pay、Google Pay 等购买加密货币来存款以进行投注。有关您所在辖区支持的支付方式完整列表，请参阅 MoonPay 文档。
 company_intro_tip_20: 具有蓬勃发展的社区、活跃的聊天室以及一个专门为客户解决游戏或账户方面任何问题的支持团队，{host} 因此成功展示了它能成为最领先的加密货币赌场及体育博彩平台的原因。
-vip_level_compare: VIP 级别对照
+vip_level_compare: VIP 级别对
 bet_amount_label: 投注金额
 bonus_up: 奖金增长
 promo: 福利
@@ -1411,23 +1411,23 @@ vip_club_tip_3: 成为 VIP 是个既简单又富有回报的过程
 vip_club_tip_4: 立即注册以开始在赌场或体育盘口上进行投注
 vip_club_tip_5: 您的每笔赌注都会影响您 VIP 级别的进度。达到下个级别以解锁更多福利。
 vip_club_tip_6: 立即领取您的奖金。领取每日、周度和月度奖金的过程既简单又容易。
-vip_club_tip_7: Stake 通过不间断送出的奖金提供了独特且无与伦比的体验
+vip_club_tip_7: '{site} 通过不间断送出的奖金提供了独特且无与伦比的体验'
 vip_club_tip_8: 每次升级都能获得更棒的奖励
 vip_club_tip_9: 联系我们屡获殊荣的支持团队
-vip_club_tip_10: 为什么 Stake 的 VIP 计划是最出色的？
-vip_club_tip_11: 由于我们发放给玩家的奖金数额居多，Stake 的 VIP 计划一向都被评为最佳的在线赌场体验之一。
+vip_club_tip_10: 为什么 {site} 的 VIP 计划是最出色的？
+vip_club_tip_11: 由于我们发放给玩家的奖金数额居多，{site} 的 VIP 计划一向都被评为最佳的在线赌场体验之一。
 vip_club_tip_12: 此外，我们屡获殊荣的支持团队将全天候在线回答您的任何问题。我们在众多在线赌场中拥有最高的客户满意度，也与此同时创建了由全球最热情的一些博彩爱好者所组成的社区。
 vip_club_tip_13: 我们至今为止已送出了超过 10 亿美元的奖金。这也是我们具有最出色的在线 VIP 计划的主要原因。
 vip_club_tip_14: 我们坚信奖励玩家的投注量和忠诚度。
-vip_club_tip_15: Stake 一共发放了多少奖金？
+vip_club_tip_15: '{site} 一共发放了多少奖金？'
 vip_club_tip_16: 如何参加 $75,000 周度抽奖活动？
-vip_club_tip_17: 您在 Stake 的每 $1,000 投注能换来一张抽奖券，而您只需要一张抽奖券便能参加抽奖活动。投注得越多，获得的抽奖券就越多，您的获胜机会也会因而增加。
-vip_club_tip_18: 如何加入 Stake Telegram 频道？
-vip_club_tip_19: Stake Telegram 频道的账号是 {tg}。
+vip_club_tip_17: 您在 {site} 的每 $1,000 投注能换来一张抽奖券，而您只需要一张抽奖券便能参加抽奖活动。投注得越多，获得的抽奖券就越多，您的获胜机会也会因而增加。
+vip_club_tip_18: 如何加入 {site} Telegram 频道？
+vip_club_tip_19: '{site} Telegram 频道的账号是 {tg}。'
 vip_club_tip_20: 如果您已经下载了 Telegram，请点击这里加入。
-vip_club_tip_21: 如何加入 Stake VIP Telegram 频道？
-vip_club_tip_22: 一旦达到铜级，您便可以请在线支持把您添加到 Stake VIP Telegram 频道。
-vip_club_tip_23: 您也可以通过加入 Stake Telegram 频道{tg}找到更多相关的信息。
+vip_club_tip_21: 如何加入 {site} VIP Telegram 频道？
+vip_club_tip_22: 一旦达到铜级，您便可以请在线支持把您添加到 {site} VIP Telegram 频道。
+vip_club_tip_23: 您也可以通过加入 {site} Telegram 频道{tg}找到更多相关的信息。
 vip_club_tip_24: 什么是近期游戏表现奖金？
 vip_club_tip_25: 这是由您的 VIP 服务代表主要根据您的总投注和运气酌情给予的奖金。
 vip_club_tip_26: 什么是返水？
@@ -1436,7 +1436,7 @@ vip_club_tip_28: 充值奖金是什么？该如何领取我的充值奖金？
 vip_club_tip_29: 充值奖金是根据玩家近期的投注表现计算的。玩家可以选择每日、每小时或每 10 分钟的领取间隔。
 vip_club_tip_30: 点击账户右上角的主用户菜单，在下拉菜单中点击 “VIP” 。在出现的模式窗口上点击 “充值奖金” 选项卡，然后再点击 “领取充值奖金” 即可。您能否被分配一名服务代表将取决于您的总投注额。
 vip_club_tip_31: 月度奖金将在何时发放？
-vip_club_tip_32: 月度奖金将会每月发放一次，日期一般在 15 日左右。但在某些情况下，发放日可能会稍晚或甚至提早，而这就是为什么它是 Stake 最令人期待的奖金之一。月度奖金一旦发放后，您便将收到电邮通知。为确保您不会错过奖金，请记得也要查看您电邮中的垃圾邮件文件夹。
+vip_club_tip_32: 月度奖金将会每月发放一次，日期一般在 15 日左右。但在某些情况下，发放日可能会稍晚或甚至提早，而这就是为什么它是 {site} 最令人期待的奖金之一。月度奖金一旦发放后，您便将收到电邮通知。为确保您不会错过奖金，请记得也要查看您电邮中的垃圾邮件文件夹。
 vip_club_tip_33: 铜、银和金级的玩家们将通过每日充值奖金领取奖金，而铂金与钻石级的玩家将一次性地领取他们的奖金。
 vip_club_tip_34: 如何计算达到下个级别所需要投注的金额?
 vip_club_tip_35: 首先点击账户右上角的主用户菜单，在下拉菜单中点击 “VIP” 查看您 VIP 进度条上的百分比，然后从 100% 减去此数目以获得剩余百分比。接下来将剩余百分比乘以您达到下个级别所剩下的总投注需求即可。
@@ -1478,8 +1478,8 @@ day_week_bonus_up: 每日和周度奖金增加
 special_promo: 专属定制福利
 vip_up_tip: 您的进度是通过您在娱乐城和体育博彩中的总投注额累积起来的。只要您的级别上升，就表示能获得更大的奖励和独家 VIP 待遇。
 vip_up_tip_2: 所有已结算的体育投注将回报加快 3 倍的进展速度。结算为无效的赌注并不包括在内。
-learn_more_vip: 了解更多有关成为 Stake VIP 的消息
-index_title_prefix: Stake：加密货币赌场和体育投注
+learn_more_vip: 了解更多有关成为 {site} VIP 的消息
+index_title_prefix: '{site}：加密货币赌场和体育投注'
 index_title_suffix: 在线 BTC 赌场
 btc_sport_title: 加密货币与比特币在线体育博彩
 affiliate_activity: 联盟活动
@@ -1507,4 +1507,4 @@ one_receive: 一键领取
 on: 于
 add_one_bet: 把以上 1 项投注 加入我的投注单
 copied: 复制成功
-footer_desc: Stake 由 Medium Rare N.V. 所属和经营，注册编号： 145353，注册地址：Korporaalweg 10,Willemstad, Curaçao。请通过 {email} 与我们联系。 支付代理公司是 Medium Rare Limited，地址于 7-9 Riga Feraiou, LIZANTIA COURT, Office 310, Agioi Omologites,1087 Nicosia,Cyprus 以及注册号：HE 410775 Stake 由库拉索政府授权和监管，并根据颁发给 Antillephone 的 8048/JAZ 号许可证运营。Stake 已通过所有合规性审查，并获得合法授权，可进行所有机会与投注游戏的游戏操作。
+footer_desc: '{site} 由 Medium Rare N.V. 所属和经营，注册编号： 145353，注册地址：Korporaalweg 10,Willemstad, Curaçao。请通过 {email} 与我们联系。 支付代理公司是 Medium Rare Limited，地址于 7-9 Riga Feraiou, LIZANTIA COURT, Office 310, Agioi Omologites,1087 Nicosia,Cyprus 以及注册号：HE 410775 {site} 由库拉索政府授权和监管，并根据颁发给 Antillephone 的 8048/JAZ 号许可证运营。{site} 已通过所有合规性审查，并获得合法授权，可进行所有机会与投注游戏的游戏操作。'
