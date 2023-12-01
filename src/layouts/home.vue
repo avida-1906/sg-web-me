@@ -156,7 +156,7 @@ onErrorCaptured((err, instance, info) => {
                     <Suspense timeout="0" @resolve="suspenseResolved">
                       <component :is="Component" />
                       <template #fallback>
-                        <div class="center loading-content-height">
+                        <div class="loading loading-content-height">
                           <BaseLoading />
                         </div>
                       </template>
@@ -231,10 +231,16 @@ onErrorCaptured((err, instance, info) => {
 .loading-content-height {
   height: calc(100vh - var(--tg-header-height));
 }
+.loading{
+  padding-top: 200px;
+}
 
 @media screen and (max-width: 767px) {
   .loading-content-height {
     height: calc(100vh - var(--tg-header-height) - var(--tg-footerbar-height));
+  }
+  .loading{
+    padding-top: 150px;
   }
 }
 

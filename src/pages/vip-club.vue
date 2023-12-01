@@ -14,6 +14,7 @@ interface IMenuData {
   value: string
 }
 
+const { VITE_SITE_NAME } = getEnv()
 const { t } = useI18n()
 const { vipConfigData } = storeToRefs(useAppStore())
 const {
@@ -23,6 +24,7 @@ const {
 const router = useRouter()
 usePageTitle({ prefix: t('vip_club') })
 
+const site = computed(() => ({ site: VITE_SITE_NAME }))
 const vipArray = computed(() =>
   vipConfigData.value ? Object.values(vipConfigData.value).sort((a, b) => +a.level - (+b.level)) : [])
 
@@ -538,7 +540,7 @@ const toVip = function () {
           {{ t('experience') }}
         </p>
         <p class="desc">
-          {{ t('vip_club_tip_7') }}
+          {{ t('vip_club_tip_7', site) }}
         </p>
         <AppBannerUnlimited class="vip-slider-wrap" />
       </div>
@@ -608,17 +610,17 @@ const toVip = function () {
             <BaseTab v-else v-model="menuValue" :list="menuData" />
           </div>
           <div v-if="menuValue === '1'" class="q-content">
-            <BaseCollapse :title="t('vip_club_tip_10')">
+            <BaseCollapse :title="t('vip_club_tip_10', site)">
               <template #content>
                 <div class="content-wrap">
-                  <p>{{ t('vip_club_tip_11') }}</p>
+                  <p>{{ t('vip_club_tip_11', site) }}</p>
                   <p>
                     {{ t('vip_club_tip_12') }}
                   </p>
                 </div>
               </template>
             </BaseCollapse>
-            <BaseCollapse :title="t('vip_club_tip_15')">
+            <BaseCollapse :title="t('vip_club_tip_15', site)">
               <template #content>
                 <div class="content-wrap">
                   <p>{{ t('vip_club_tip_13') }}</p>
@@ -630,15 +632,15 @@ const toVip = function () {
               <template #content>
                 <div class="content-wrap">
                   <p>
-                    {{ t('vip_club_tip_17') }}
+                    {{ t('vip_club_tip_17', site) }}
                   </p>
                 </div>
               </template>
             </BaseCollapse>
-            <BaseCollapse :title="t('vip_club_tip_18')">
+            <BaseCollapse :title="t('vip_club_tip_18', site)">
               <template #content>
                 <div class="content-wrap">
-                  <p>{{ t('vip_club_tip_19', { tg: '（@StakeCasino）' }) }}</p>
+                  <p>{{ t('vip_club_tip_19', { tg: '（@StakeCasino）', ...site }) }}</p>
                   <div>
                     <BaseButton
                       type="text"
@@ -651,11 +653,11 @@ const toVip = function () {
                 </div>
               </template>
             </BaseCollapse>
-            <BaseCollapse :title="t('vip_club_tip_21')">
+            <BaseCollapse :title="t('vip_club_tip_21', site)">
               <template #content>
                 <div class="content-wrap">
-                  <p>{{ t('vip_club_tip_22') }}</p>
-                  <p>{{ t('vip_club_tip_23', { tg: '（@StakeCasino）' }) }}</p>
+                  <p>{{ t('vip_club_tip_22', site) }}</p>
+                  <p>{{ t('vip_club_tip_23', { tg: '（@StakeCasino）', ...site }) }}</p>
                 </div>
               </template>
             </BaseCollapse>
@@ -689,7 +691,7 @@ const toVip = function () {
               <template #content>
                 <div class="content-wrap">
                   <p>
-                    {{ t('vip_club_tip_32') }}
+                    {{ t('vip_club_tip_32', site) }}
                   </p>
                   <p>{{ t('vip_club_tip_33') }}</p>
                 </div>

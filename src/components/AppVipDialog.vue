@@ -16,6 +16,7 @@ const props = withDefaults(defineProps<Props>(), {
   },
 })
 
+const { VITE_SITE_NAME } = getEnv()
 const { t } = useI18n()
 
 const tab = ref('1')
@@ -125,7 +126,7 @@ const showContent = function () {
     </div>
     <div class="vip-footer-more">
       <a href="#">
-        {{ t('learn_more_vip') }}
+        {{ t('learn_more_vip', { site: VITE_SITE_NAME }) }}
       </a>
     </div>
   </div>

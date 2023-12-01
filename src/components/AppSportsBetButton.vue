@@ -127,6 +127,8 @@ onBeforeUnmount(() => {
       'disabled': _disabled,
       'is-na': isNa,
     }"
+    :title="JSON.stringify(cartInfo).replaceAll(',', ',\n').replaceAll('{', '{\n').replaceAll('}', '\n}')
+    "
     @click="clickHandler"
   >
     <template v-if="isNa">
