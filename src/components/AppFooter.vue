@@ -162,7 +162,8 @@ function pathTo(tmp: { path?: string; title: string; icon?: boolean }) {
       <div>1 USDT = US$1.00</div>
     </div>
     <div class="footer-description">
-      {{ t('footer_desc', { email: `support@${VITE_SITE_NAME}.com` }) }}
+      {{ t('footer_desc',
+           { email: `support@${VITE_SITE_NAME}.com`, site: VITE_SITE_NAME }) }}
     </div>
     <div class="footer-description">
       {{ t('support') }}

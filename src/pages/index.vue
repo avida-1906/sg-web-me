@@ -14,7 +14,7 @@ const { openRegisterDialog } = useRegisterDialog()
 const { openSwiperNoticeDialog } = useDialogSwiperNotice(width)
 const { bool: showMore, toggle: toggleShowMore } = useBoolean(false)
 usePageTitle({
-  prefix: t('index_title_prefix'),
+  prefix: t('index_title_prefix', { site: VITE_SITE_NAME }),
   suffix: t('index_title_suffix'),
   isHost: false,
 })
