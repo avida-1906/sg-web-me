@@ -125,12 +125,13 @@ await application.allSettled([runAsync(params.value)])
 
     <div class="market-wrapper">
       <AppSportsMarket
-        v-for="item in listFiltered" :key="item.ci"
+        v-for="item in listFiltered" :key="item.ci + item.list.length"
         :league-name="item.cn"
         :event-count="item.list.length"
         :event-list="item.list"
         :base-type="baseType"
         is-standard
+        :auto-show="item.list.length > 0"
       />
       <BaseButton v-show="curTotal < total" size="none" type="text" @click="loadMore">
         {{ t('load_more') }}
