@@ -23,7 +23,7 @@ const title = computed(() => {
   if (breadcrumbData.value.length)
     return breadcrumbData.value[breadcrumbData.value.length - 1].title
 
-  return 'Stake.com'
+  return location.host
 })
 
 usePageTitle({ prefix: title })
@@ -63,9 +63,8 @@ await application.allSettled([
                     <span class="tip">{{ $t('live_start_on_event') }}。</span>
                   </div>
                   <video
-                    autoplay
-                    controls
-                    playsinline
+
+                    controls autoplay playsinline
                     disablepictureinpicture=""
                     controlslist="nodownload nofullscreen"
                     class=""

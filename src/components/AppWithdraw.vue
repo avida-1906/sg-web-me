@@ -62,6 +62,11 @@ const {
       address.value = temp
   },
 })
+
+const defaultAddress = computed(() => {
+  return walletList.value?.d?.find(i => i.id === address.value)
+})
+
 const {
   runAsync: runAsyncWithdrawCoin,
 } = useRequest(ApiFinanceWithdrawCoin, {
@@ -70,7 +75,7 @@ const {
       type: 'success',
       message: t('withdraw_apply_success'),
     })
-    resetAddress()
+    defaultAddress.value?.is_default !== 1 && resetAddress()
     amountReset()
     payPasswordReset()
   },
@@ -88,9 +93,7 @@ const addrOptions = computed(() => {
   }
   return []
 })
-const defaultAddress = computed(() => {
-  return walletList.value?.d?.find(i => i.id === address.value)?.address ?? ''
-})
+
 const getContractId = computed(() => {
   return props.currentNetwork
 })
@@ -159,7 +162,7 @@ watch(() => props.currentNetwork, () => {
                 v-if="defaultAddress"
                 :currency-type="activeCurrency?.type"
               />
-              {{ defaultAddress }}
+              {{ defaultAddress?.address }}
             </span>
           </template>
           <template #option="{ data: { item, parentWidth } }">

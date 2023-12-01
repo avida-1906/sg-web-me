@@ -6,6 +6,7 @@ interface IBannerData {
   value: number
 }
 
+const { VITE_SITE_NAME } = getEnv()
 const { t } = useI18n()
 const {
   appContentWidth,
@@ -29,7 +30,7 @@ const bannerData = [
   {
     imgUrl: '/png/vip-club/cashback.png',
     title: t('recent_game_perform_bonus'),
-    desc: t('vip_banner_tip_3'),
+    desc: t('vip_banner_tip_3', { site: VITE_SITE_NAME }),
     value: 3,
   },
   {

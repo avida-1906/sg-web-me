@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+const { VITE_SITE_NAME } = getEnv()
 const { t } = useI18n()
 const router = useRouter()
 const route = useRoute()
@@ -64,7 +65,7 @@ const userMenu = computed(() => ([
   {
     id: 9,
     icon: 'spt-secure',
-    title: t('stake_safety'),
+    title: t('stake_safety', { site: VITE_SITE_NAME }),
     name: 'stake-safety',
   },
   {
