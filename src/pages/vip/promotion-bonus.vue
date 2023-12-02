@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 const { t } = useI18n()
-const appStore = useAppStore()
-const { userInfo, vipConfigData } = storeToRefs(appStore)
+const { vip, score, vipConfigArray } = useVipInfo()
 
 const columns = computed<Column[]>(() => [
   {
@@ -23,14 +22,11 @@ const columns = computed<Column[]>(() => [
     slot: 'up_gift',
   },
 ])
-
-const data = computed(() =>
-  vipConfigData.value ? Object.values(vipConfigData.value).sort((a, b) => +a.level - +b.level) : [])
 </script>
 
 <template>
   <div class="vip-promotion-bonus">
-    <BaseTable :columns="columns" :data-source="data">
+    <BaseTable :columns="columns" :data-source="vipConfigArray">
       <template #level="{ record }">
         <div>VIP{{ record.level }}</div>
       </template>
@@ -39,14 +35,20 @@ const data = computed(() =>
           class="score-wrap"
           :class="{
             'user-level-vip':
-              userInfo && +userInfo.vip + 1 === +record.level,
+              +vip + 1 === +record.level,
           }"
         >
           <span
-            v-if="userInfo && +userInfo.vip + 1 === +record.level"
-          >{{ userInfo.score || '0' }}
-            <BaseIcon name="coin-usdt" />/</span>{{ record.score }}
-          <BaseIcon name="coin-usdt" />
+            class="text"
+            :style="{ '--progress-width': floor(score / record.score, 1) }"
+          >
+            <span
+              v-if="+vip + 1 === +record.level"
+            >
+              {{ score }}<BaseIcon name="coin-usdt" />/
+            </span>
+            {{ record.score }}<BaseIcon name="coin-usdt" />
+          </span>
         </div>
       </template>
       <template #up_gift="{ record }">
@@ -74,11 +76,29 @@ const data = computed(() =>
   }
 }
 .user-level-vip {
-  background-color: var(--tg-text-green);
-  color: var(--tg-secondary-dark);
+  background: rgba($color: var(--tg-color-green-rgb), $alpha: 0.3);
+  color: var(--tg-text-black);
   max-width: 290px;
   margin: 0 auto;
   border-radius: 20px;
+  font-weight: var(--tg-font-weight-semibold);
+  position: relative;
+  overflow: hidden;
+  span {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: var(--progress-width);
+    height: 100%;
+    background-color: var(--tg-text-green);
+    border-radius: 20px;
+  }
 }
 .color-orange {
   color: var(--tg-text-warn);

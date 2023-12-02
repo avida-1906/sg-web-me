@@ -14,7 +14,7 @@ const columns = [
     width: 90,
     dataIndex: 'bill_no',
     slot: 'bill_no',
-    align: 'center',
+    align: 'left',
   },
   {
     title: t('date'),
@@ -28,7 +28,7 @@ const columns = [
     width: 90,
     dataIndex: 'bet_amount',
     slot: 'bet_amount',
-    align: 'center',
+    align: 'right',
   },
   // {
   //   title: t('multiple_count'),
@@ -42,7 +42,7 @@ const columns = [
     width: 90,
     dataIndex: 'net_amount',
     slot: 'net_amount',
-    align: 'center',
+    align: 'right',
   },
 ]
 
@@ -54,17 +54,54 @@ await application.allSettled([runAsync({})])
 
 <template>
   <div class="casino-my-bets">
+    <div v-if="list.length === 0" class="empty">
+      <BaseEmpty>
+        <template #icon>
+          <BaseIcon style="font-size: var(--tg-empty-icon-size);" name="empty-1" />
+        </template>
+        <template #description>
+          <span>{{ t('empty_casino_bet') }}</span>
+        </template>
+        <template #default>
+          <BaseButton
+            type="text"
+            size="none"
+            style=" --tg-base-button-text-default-color:var(--tg-text-white)"
+            @click="$router.push('/casino')"
+          >
+            {{ t('sports_betting_now') }}
+          </BaseButton>
+        </template>
+      </BaseEmpty>
+    </div>
     <BaseTable
+      v-else
       :columns="columns"
       :data-source="list"
     >
+      <template #game_name="{ record: { game_name, game_class } }">
+        <div class="game_name">
+          <BaseIcon
+            v-if="game_class === '1'" style="font-size: 16px;"
+            name="chess-live-casino"
+          />
+          <BaseIcon v-else style="font-size: 16px;" name="chess-slot-machine" />
+          {{ game_name }}
+        </div>
+      </template>
+      <template #bill_no="{ record: { bill_no } }">
+        <div class="bill_no">
+          <BaseIcon style="font-size: 16px;" name="tabbar-bet" />
+          <span>{{ bill_no }}</span>
+        </div>
+      </template>
       <template #bet_time="{ record: { bet_time } }">
         <div>
           {{ timeToFormat(bet_time) }}
         </div>
       </template>
       <template #bet_amount="{ record: { bet_amount, currency_id } }">
-        <div>
+        <div class="amount">
           <AppAmount
             :amount="bet_amount"
             :currency-type="getCurrencyConfigByCode(currency_id)?.name"
@@ -72,7 +109,7 @@ await application.allSettled([runAsync({})])
         </div>
       </template>
       <template #net_amount="{ record: { net_amount, currency_id } }">
-        <div>
+        <div class="amount" :class="{ win: net_amount > 0 }">
           <AppAmount
             :amount="net_amount"
             :currency-type="getCurrencyConfigByCode(currency_id)?.name"
@@ -99,5 +136,38 @@ await application.allSettled([runAsync({})])
   display: flex;
   justify-content: center;
 
+}
+.empty{
+  width: 100%;
+  height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.game_name{
+  display: flex;
+  align-items: center;
+  gap: var(--tg-spacing-4);
+}
+.bill_no{
+  display: flex;
+  align-items: center;
+  gap: var(--tg-spacing-4);
+  span{
+    display: inline-block;
+    max-width: 9ch;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: var(--tg-text-white);
+    font-weight: var(--tg-font-weight-semibold);
+  }
+}
+.amount{
+  display: flex;
+  justify-content: flex-end;
+  &.win{
+    color: var(--tg-text-green);
+  }
 }
 </style>

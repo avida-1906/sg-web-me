@@ -277,7 +277,7 @@ group_conversation_name_and_1_other_also_particiapting: '{participant_name} 和�
 group_conversation_name_and_multiple_others_also_participating: '{participant_name} 和另外 {other_participant_count} 人也在参与'
 group_conversation_one_person_also_participating: 另外 1 人也在参与
 help_space_title: 帮助
-hi_name: "您好，{first_name} \U0001F44B"
+hi_name: "您好，{first_name} 👋"
 hi_there: 您好 👋
 home_space_title: 主页
 how_can_we_help: 我们能提供什么帮助？
@@ -1508,4 +1508,18 @@ on: 于
 add_one_bet: 把以上 1 项投注 加入我的投注单
 copied: 复制成功
 footer_desc: '{site} 由 Medium Rare N.V. 所属和经营，注册编号： 145353，注册地址：Korporaalweg 10,Willemstad, Curaçao。请通过 {email} 与我们联系。 支付代理公司是 Medium Rare Limited，地址于 7-9 Riga Feraiou, LIZANTIA COURT, Office 310, Agioi Omologites,1087 Nicosia,Cyprus 以及注册号：HE 410775 {site} 由库拉索政府授权和监管，并根据颁发给 Antillephone 的 8048/JAZ 号许可证运营。{site} 已通过所有合规性审查，并获得合法授权，可进行所有机会与投注游戏的游戏操作。'
-none_bets_yet: 暂无{settle}的赌注
+order: 订单
+plat_not_sup_currency: 该场馆暂不支持您所选择的币种
+has_stop_bet: 您有暂停的投注项
+cant_form_multiple: 同一场赛事的多个投注项不能组合为复式投注
+no_sup_multiple: 您有不支持复式投注的投注项
+bet_one_max: 同时最多只能添加 {max} 个投注项。
+bet_odd_change: 赔率已变更，您需先接受赔率更改方可进行投注
+bet_sup_10x: 只支持10的整数倍的投注金额
+bet_fixed_x: 不支持小数位超过{fixed}位的投注金额
+failed_get_betinfo: 获取投注信息失败
+view_my_bets: 查看我的投注
+closed: 已关闭
+empty_unsettle_bet: 暂无未结算的赌注
+empty_settle_bet: 暂无已结算的赌注
+empty_casino_bet: 暂无娱乐城投注
