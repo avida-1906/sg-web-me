@@ -35,7 +35,7 @@ const { bool: isOpen, toggle: toggleOpen } = useBoolean(props.init)
           </div>
         </div>
         <div v-show="!isOpen" class="accordion-badge-wrap">
-          <BaseBadge :count="count" />
+          <BaseBadge :count="count" :max="99999" />
         </div>
       </div>
       <div class="arrow" :class="{ down: isOpen }">

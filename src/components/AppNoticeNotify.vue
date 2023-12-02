@@ -148,7 +148,7 @@ pageInit()
             </div> -->
             <BaseBadge
               v-if="isState && item.state === 2"
-              class="state-text"
+              class="state-text" :max="99999"
               status="success" :text="timeToFromNow(item.start_time ?? item.created_at)"
             />
             <span

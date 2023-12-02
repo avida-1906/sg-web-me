@@ -1186,9 +1186,12 @@ export function ApiMemberBannerList(params: {
     created_by: string
     /** ID */
     id: string
-    /** 图片纤细 */
+    /** 图片明细 */
     image_info: {
-      [key: string]: any
+      button_state: number
+      button_jump_type: number
+      button_text: string
+      button_jump_url: string
     }
     /** 图片地址 */
     image_url: {
@@ -1204,12 +1207,6 @@ export function ApiMemberBannerList(params: {
     pc_seq: number
     /** 状态 1-显示 2-隐藏 */
     state: number
-    /** UID */
-    uid: string
-    /** 修改时间 */
-    updated_at: number
-    /** 修改人 */
-    updated_by: string
   }[]>('/member/banner/list', { params })
 }
 

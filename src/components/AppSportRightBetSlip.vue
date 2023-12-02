@@ -46,6 +46,10 @@ const {
   onSuccess(placeBetInfo) {
     setFetchBetInfoStatus(true)
 
+    // 用来调试赔率变化的错误信息的
+    // if (placeBetInfo.wsi && placeBetInfo.wsi.length > 0)
+    //   placeBetInfo.wsi[0].ov = '0.01'
+
     sportStore.cart.updateAllData(
       cloneDeep(placeBetInfo),
       (_data) => {
@@ -109,6 +113,8 @@ const errorInfo = computed<{
   bool: boolean
   /** 错误提示信息 */
   errorMess: string
+  /** 针对赔率专门返回一个值，用来是否显示接受赔率变化按钮 */
+  isShowAcceptOddsBtn?: boolean
 }>(() => {
   if (sportStore.cart.count === 0) {
     return {
@@ -165,6 +171,7 @@ const errorInfo = computed<{
       return {
         bool: true,
         errorMess: '赔率已变更，您需先接受赔率更改方可进行投注',
+        isShowAcceptOddsBtn: true,
       }
     }
   }
@@ -177,6 +184,7 @@ const errorInfo = computed<{
         return {
           bool: true,
           errorMess: '赔率已变更，您需先接受赔率更改方可进行投注',
+          isShowAcceptOddsBtn: true,
         }
       }
     }
@@ -626,7 +634,9 @@ onUnmounted(() => {
             :bet-slip-type="betOrderSelectValue"
             :cart-info-data="item"
             :title="
-              JSON.stringify(item).replaceAll(',', ',\n').replaceAll('{', '{\n').replaceAll('}', '\n}')
+              isTestEnv()
+                ? JSON.stringify(item).replaceAll(',', ',\n').replaceAll('{', '{\n').replaceAll('}', '\n}')
+                : ''
             "
             :index="index"
           />
@@ -743,7 +753,7 @@ onUnmounted(() => {
         </template>
         <template v-else>
           <BaseButton
-            v-if="sportStore.cart.ovIsChange"
+            v-if="errorInfo.isShowAcceptOddsBtn"
             size="md"
             bg-style="primary"
             @click="sportStore.cart.setOvIsChangeBool(false)"

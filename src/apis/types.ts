@@ -443,6 +443,8 @@ export interface IBetInfoBack {
     hp: number
     /** 客队比分 */
     ap: number
+    /** 新的盘口Id */
+    new_wid: string
   }[]
   dl: IBetInfoDl
   /**

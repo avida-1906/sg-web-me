@@ -34,6 +34,11 @@ export const router = createRouter({
 router.beforeEach((to, from, next) => {
   const auth = to.meta.auth || false
 
+  if (to.path === '/') {
+    next('/casino')
+    return
+  }
+
   if (auth) {
     const appStore = useAppStore()
     const { isLogin } = storeToRefs(appStore)

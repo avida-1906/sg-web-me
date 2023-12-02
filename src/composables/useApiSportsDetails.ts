@@ -47,6 +47,14 @@ export function useApiSportDetails() {
     },
   )
 
+  /** 是不是关盘 */
+  const isClose = computed<boolean>(() => {
+    if (sportInfo.value?.status === 3)
+      return true
+
+    return false
+  })
+
   /** 面包屑数据 */
   const breadcrumbData = computed<IBreadCrumbItem[]>(() => {
     const data: IBreadCrumbItem[] = []

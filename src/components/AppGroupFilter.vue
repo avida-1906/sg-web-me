@@ -66,7 +66,7 @@ function resetPlatformChecked() {
             <BaseButton bg-style="dark" size="sm">
               <div class="btn-arrow-down">
                 <span>{{ $t('casino_provider') }}</span>
-                <BaseBadge :count="platformOptions.length" mode="active" />
+                <BaseBadge :count="platformOptions.length" mode="active" :max="99999" />
                 <BaseIcon name="uni-arrow-down" />
               </div>
             </BaseButton>

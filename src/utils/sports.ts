@@ -533,6 +533,7 @@ export class SportsCart {
       pt: 0,
       hp: 0,
       ap: 0,
+      new_wid: data.wid,
     })
   }
 
@@ -654,6 +655,17 @@ export class SportsCart {
       return item.wid
     })
 
+    if (wsi) {
+      this.ovIsChange = this.dataList.some((item) => {
+        const _wsi = wsi.find(a => a.wid === item.wid)
+        return Number(_wsi?.ov) !== Number(item.ov)
+      })
+      this.ovIsLower = this.dataList.some((item) => {
+        const _wsi = wsi.find(a => a.wid === item.wid)
+        return Number(_wsi?.ov) < Number(item.ov)
+      })
+    }
+
     this.dataList.forEach((item) => {
       if (wsi) {
         const _wsiObject = wsi.find(a => a.wid === item.wid)
@@ -663,6 +675,7 @@ export class SportsCart {
         item.m = _wsiObject?.m ?? 0
         item.hp = _wsiObject?.hp ?? 0
         item.ap = _wsiObject?.ap ?? 0
+        item.new_wid = _wsiObject?.new_wid ?? '0'
       }
 
       if (bi) {
@@ -674,20 +687,6 @@ export class SportsCart {
         item.pt = _biObject?.pt ?? pt
       }
     })
-
-    if (wsi) {
-      this.ovIsChange = this.dataList.some((item) => {
-        const _wsi = wsi.find(a => a.wid === item.wid)
-        return Number(_wsi?.ov) !== Number(item.ov)
-      })
-    }
-
-    if (wsi) {
-      this.ovIsLower = this.dataList.some((item) => {
-        const _wsi = wsi.find(a => a.wid === item.wid)
-        return Number(_wsi?.ov) < Number(item.ov)
-      })
-    }
 
     /**
      * os和ov有变化的数据

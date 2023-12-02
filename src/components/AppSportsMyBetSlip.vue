@@ -16,7 +16,7 @@ const props = defineProps<Props>()
 const { t } = useI18n()
 const { currentGlobalCurrency } = storeToRefs(useAppStore())
 const { openBetSlipDialog } = useDialogBetSlip()
-const router = useRouter()
+// const router = useRouter()
 
 const statusObj: { [t: number]: string } = {
   0: t('sports_active'),
@@ -37,8 +37,11 @@ const status = computed(() =>
   slipData.value.oc === 1 || slipData.value.oc === 3 ? 'win' : 'lose',
 )
 
+/**
+ * 跳转详情，先不要，等后端关盘的赛事查询详情再说
+ */
 function goEventDetailPage(data: ISportsMyBetSlipItemBi) {
-  router.push(replaceSportsPlatId(`/sports/${SPORTS_PLAT_ID}/${data.si}/${data.pgid ?? 0}/${data.ci ?? 0}/${data.ei}`))
+  // router.push(replaceSportsPlatId(`/sports/${SPORTS_PLAT_ID}/${data.si}/${data.pgid ?? 0}/${data.ci ?? 0}/${data.ei}`))
 }
 
 // 是否已经开赛
@@ -107,7 +110,7 @@ function showDetail() {
             :class="{ 'is-multi': list.length > 1 }"
           >
             <div class="overview">
-              <div class="title-wrapper">
+              <div class="title-wrapper" :title="JSON.stringify(item)">
                 <BaseButton
                   type="text" size="none"
                   style="--tg-base-button-text-default-color:var(--tg-text-white)"
@@ -161,10 +164,8 @@ function showDetail() {
         </div>
         <!-- logo分割线 -->
         <div class="hr">
-          <img v-if="!isDialog" class="logo" draggable="false" src="https://stake.com/_app/immutable/assets/stake-dark.0aaa7847.svg">
-          <img v-else class="logo" draggable="false" src="https://stake.com/_app/immutable/assets/stake-light.5be6dc2d.svg">
+          <BaseLogo :mode="!isDialog ? 'dark' : 'light'" />
         </div>
-
         <!-- 总计 -->
         <div class="total-box">
           <div class="item">

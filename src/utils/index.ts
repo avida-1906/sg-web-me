@@ -232,6 +232,13 @@ export function getEnv() {
 }
 
 /**
+ * 是不是test环境
+ */
+export function isTestEnv() {
+  return getEnv().MODE === 'test'
+}
+
+/**
  * 滚动内容区域到顶部
  */
 export function scrollMainContentToTop() {

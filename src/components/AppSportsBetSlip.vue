@@ -37,11 +37,11 @@ const { t } = useI18n()
 const appStore = useAppStore()
 const { currentGlobalCurrency, isLogin } = storeToRefs(appStore)
 const sportStore = useSportsStore()
-const { isMobile } = storeToRefs(useWindowStore())
-const { closeRightSidebar } = useRightSidebar()
+// const { isMobile } = storeToRefs(useWindowStore())
+// const { closeRightSidebar } = useRightSidebar()
 
 const notLoginAmount = ref('')
-const router = useRouter()
+// const router = useRouter()
 
 const {
   value: amount,
@@ -103,16 +103,19 @@ const isClosed = computed(() => {
   return props.cartInfoData.os === 0
 })
 // 详情路径
-const eventDetailPath = computed(() => {
-  const data = props.cartInfoData
-  return `/sports/${SPORTS_PLAT_ID}/${data.si}/${data.pgid}/${data.ci}/${data.ei}`
-})
+// const eventDetailPath = computed(() => {
+//   const data = props.cartInfoData
+//   return `/sports/${SPORTS_PLAT_ID}/${data.si}/${data.pgid}/${data.ci}/${data.ei}`
+// })
 
+/**
+ * 跳转详情，先不要，等后端关盘的赛事查询详情再说
+ */
 function goEventDetailPage() {
-  if (isMobile.value)
-    closeRightSidebar()
+  // if (isMobile.value)
+  //   closeRightSidebar()
 
-  router.push(replaceSportsPlatId(eventDetailPath.value))
+  // router.push(replaceSportsPlatId(eventDetailPath.value))
 }
 
 onMounted(() => {

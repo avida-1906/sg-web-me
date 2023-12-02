@@ -206,6 +206,12 @@ export function ApiSportEventInfo(data: {
     /** 资料更新时间 */
     delta: number
     list: ISportEventInfo[]
+    /**
+     * 1:成功
+     *
+     * 3:赛事已结束
+     */
+    status: 1 | 3
   }>(`/sport/${getSportsPlatId()}/event/info`, data)
 }
 

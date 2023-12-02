@@ -1,27 +1,26 @@
 <script setup lang="ts">
 interface Props {
+  mode?: 'light' | 'dark'
   useSmall?: boolean
 }
 
 withDefaults(defineProps<Props>(), {
+  mode: 'light',
   useSmall: false,
 })
-
-const router = useRouter()
-
-function pathTo() {
-  router.push('/')
-}
 </script>
 
 <template>
   <div class="base-logo">
     <BaseAspectRatio
-      ratio="2/1"
+      ratio="150/53"
       class="aspect-ratio"
-      @click="pathTo"
     >
-      <BaseIcon class="icon-app-logo" :name="useSmall ? 'app-logo-small' : 'app-logo'" />
+      <BaseImage :url="`/img/logo/logo_${mode}.svg`">
+      <!-- <BaseIcon
+        class="icon-app-logo"
+        :name="useSmall ? 'app-logo-small' : 'logo'" /> -->
+      </baseimage>
     </BaseAspectRatio>
   </div>
 </template>
@@ -29,7 +28,7 @@ function pathTo() {
 <style lang="scss" scoped>
 .base-logo {
   .aspect-ratio{
-    max-width: 67px;
+    max-width: 95px;
     min-width: 30px;
     cursor: pointer;
     &:active {

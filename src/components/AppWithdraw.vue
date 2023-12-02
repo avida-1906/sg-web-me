@@ -98,10 +98,10 @@ const getContractId = computed(() => {
   return props.currentNetwork
 })
 
-function onAmountInput() {
-  if (amount.value)
-    setAmount(Number.parseInt(amount.value).toString())
-}
+// function onAmountInput() {
+//   if (amount.value)
+//     setAmount(Number.parseInt(amount.value).toString())
+// }
 function maxNumber() {
   setAmount(Number.parseInt(props.activeCurrency.balance).toString())
 }
@@ -190,7 +190,6 @@ watch(() => props.currentNetwork, () => {
           v-model="amount"
           type="number"
           :msg="amountMsg"
-          @blur="onAmountInput"
           @on-right-button="maxNumber"
         >
           <!-- <template #right-icon>
