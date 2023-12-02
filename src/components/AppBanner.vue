@@ -65,7 +65,7 @@ function jumpToUrl(item: { type: number; url: string }) {
       router.push('/casino')
       break
     case 3:
-      router.push('/sports/401')
+      router.push(`/sports/${getSportsPlatId()}`)
       break
     case 4:
       router.push('/promotions')
