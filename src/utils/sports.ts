@@ -337,6 +337,8 @@ export function getCartObject(
     ic: infoList1.ic,
     pgid: infoList1.pgid,
     ci: infoList1.ci,
+    ap: infoList1.ap,
+    hp: infoList1.hp,
   }
 }
 
@@ -531,8 +533,8 @@ export class SportsCart {
       maa: 0,
       mia: 0,
       pt: 0,
-      hp: 0,
-      ap: 0,
+      hp: data.hp,
+      ap: data.ap,
       new_wid: data.wid,
     })
   }

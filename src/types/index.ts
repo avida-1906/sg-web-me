@@ -145,6 +145,10 @@ export type ICartInfo = {
   pgid: string
   /** 联赛id */
   ci: string
+  /** 客队比分 */
+  ap: number
+  /** 主队比分 */
+  hp: number
 } & IBetInfo
 
 /**
