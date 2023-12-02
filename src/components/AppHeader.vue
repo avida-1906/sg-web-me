@@ -5,7 +5,7 @@ const router = useRouter()
 const route = useRoute()
 const appStore = useAppStore()
 const { isLogin } = storeToRefs(appStore)
-const { isMobile, width, appContentWidth } = storeToRefs(useWindowStore())
+const { isMobile, appContentWidth } = storeToRefs(useWindowStore())
 const {
   rightIsExpand,
   openRightSidebar,
@@ -156,7 +156,7 @@ function handleClickMenuItem(item: { name: string; path?: string }) {
     class="app-header"
     :style="{ 'grid-template-columns': `1fr ${isLogin ? 'auto' : ''} 1fr` }"
   >
-    <BaseLogo :use-small="width < 376" />
+    <BaseLogo />
     <AppWallet v-if="isLogin" />
     <div v-if="isLogin" class="header-box">
       <div class="header-right">
@@ -167,7 +167,7 @@ function handleClickMenuItem(item: { name: string; path?: string }) {
           @click="setTrue"
         >
           <BaseIcon class="icon-search" name="uni-search" />
-          <span v-show="width > 909">{{ t('search') }}</span>
+          <span v-show="appContentWidth > 606">{{ t('search') }}</span>
         </BaseButton>
         <VDropdown :distance="6">
           <BaseButton type="text">
