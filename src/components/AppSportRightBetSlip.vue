@@ -42,7 +42,7 @@ const { openRegisterDialog } = useRegisterDialog()
 const { isMobile, windowHeight } = storeToRefs(useWindowStore())
 
 const {
-  run: runGetSportPlaceBetInfo,
+  runAsync: runGetSportPlaceBetInfo,
 } = useRequest(ApiSportPlaceBetInfo, {
   onSuccess(placeBetInfo) {
     setFetchBetInfoStatus(true)
@@ -369,7 +369,7 @@ function betSuccessTip(widSuccessList: string[]) {
   })
 }
 
-function runGetSportPlaceBetInfoHandle() {
+async function runGetSportPlaceBetInfoHandle() {
   if (isLogin.value === false)
     return
 
@@ -388,7 +388,7 @@ function runGetSportPlaceBetInfoHandle() {
   if (sportStore.cart.count > VITE_SPORT_MULTI_BET_MAX)
     return
 
-  runGetSportPlaceBetInfo({
+  await runGetSportPlaceBetInfo({
     ic: betOrderSelectValue.value,
     bi: sportStore.cart.dataList,
     cur: getCurrencyConfig(currentGlobalCurrency.value).cur,
@@ -408,6 +408,11 @@ function closeSetInterval() {
   timer = null
 }
 
+/**
+ * 检查投注列表是否存在错误
+ *
+ * 具体指的是输入框输入错误
+ */
 async function checkBetListErrorStatus() {
   await new Promise(resolve => setTimeout(resolve, 30))
   return new Promise((resolve, reject) => {
@@ -439,6 +444,12 @@ async function checkBetListErrorStatus() {
 async function bet() {
   const checkBetListErrorStatusResult = await checkBetListErrorStatus()
   if (!checkBetListErrorStatusResult)
+    return
+
+  await runGetSportPlaceBetInfoHandle()
+  await nextTick()
+
+  if (errorInfo.value.bool)
     return
 
   if (betOrderSelectValue.value === 1) {

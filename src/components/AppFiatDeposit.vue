@@ -16,6 +16,7 @@ interface Props {
 }
 const props = defineProps<Props>()
 const emit = defineEmits(['show'])
+const closeDialog = inject('closeDialog', () => { })
 
 const { t } = useI18n()
 
@@ -117,7 +118,8 @@ const {
   loading: paymentDepositBankConfirmLoading,
 } = useRequest(ApiPaymentDepositBankConfirm, {
   onSuccess() {
-    previous()
+    // previous()
+    closeDialog()
   },
 })
 const {
@@ -377,7 +379,7 @@ await application.allSettled([
                 @click="runPaymentDepositBankConfirm(
                   { id: paymentDepositBankInfo?.id ?? '' })"
               >
-                我已存款
+                {{ t('already_deposit') }}
               </BaseButton>
             </div>
             <div class="second-tips2">

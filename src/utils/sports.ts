@@ -388,6 +388,8 @@ export function getCartObject(
     ic: infoList1.ic,
     pgid: infoList1.pgid,
     ci: infoList1.ci,
+    ap: infoList1.ap,
+    hp: infoList1.hp,
   }
 }
 
@@ -582,8 +584,8 @@ export class SportsCart {
       maa: 0,
       mia: 0,
       pt: 0,
-      hp: 0,
-      ap: 0,
+      hp: data.hp,
+      ap: data.ap,
       new_wid: data.wid,
     })
   }
@@ -647,10 +649,10 @@ export class SportsCart {
     const index = this.dataList.findIndex(a => a.wid === wid)
 
     if (index !== -1) {
-      if (ov)
+      if (ov && this.ovIsChange === false)
         this.ovIsChange = Number(ov) !== Number(this.dataList[index].ov)
 
-      if (ov)
+      if (ov && this.ovIsLower === false)
         this.ovIsLower = Number(ov) < Number(this.dataList[index].ov)
     }
 
@@ -706,11 +708,14 @@ export class SportsCart {
       return item.wid
     })
 
-    if (wsi) {
+    if (wsi && this.ovIsChange === false) {
       this.ovIsChange = this.dataList.some((item) => {
         const _wsi = wsi.find(a => a.wid === item.wid)
         return Number(_wsi?.ov) !== Number(item.ov)
       })
+    }
+
+    if (wsi && this.ovIsLower === false) {
       this.ovIsLower = this.dataList.some((item) => {
         const _wsi = wsi.find(a => a.wid === item.wid)
         return Number(_wsi?.ov) < Number(item.ov)
@@ -781,12 +786,13 @@ export class SportsCart {
   }
 
   /**
-   * 设置ovIsChange 值
+   * 设置ovIsChange 和 ovIsLower 值
    * @param {boolean} bool
    * @returns {void}
    */
   setOvIsChangeBool(bool: boolean) {
     this.ovIsChange = bool
+    this.ovIsLower = bool
   }
 
   /**

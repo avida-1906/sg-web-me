@@ -148,7 +148,11 @@ watch(
                 <template v-if="currentTab !== -1">
                   <template v-for="item in dataList" :key="item.mlid">
                     <!-- 样式1 -->
-                    <BaseSecondaryAccordion v-if="item.pat === 1" :title="item.btn">
+                    <BaseSecondaryAccordion
+                      v-if="item.pat === 1"
+                      :title="item.btn"
+                      data-style="1"
+                    >
                       <template #default>
                         <div class="market" :class="{ 'in-mobile': isMobile }">
                           <AppSportsBetButton
@@ -164,7 +168,11 @@ watch(
                       </template>
                     </BaseSecondaryAccordion>
                     <!-- 样式2 -->
-                    <BaseSecondaryAccordion v-if="item.pat === 2" :title="item.btn">
+                    <BaseSecondaryAccordion
+                      v-if="item.pat === 2"
+                      :title="item.btn"
+                      data-style="2"
+                    >
                       <template #default>
                         <div class="market" :class="{ 'in-mobile': isMobile }">
                           <div class="table" :style="{ '--itemCount': 1 }">
@@ -200,6 +208,7 @@ watch(
                     <BaseSecondaryAccordion
                       v-if="item.pat === 3"
                       :title="item.btn"
+                      data-style="3"
                     >
                       <template #default>
                         <div class="market" :class="{ 'in-mobile': isMobile }">
@@ -216,7 +225,11 @@ watch(
                       </template>
                     </BaseSecondaryAccordion>
                     <!-- 样式4 -->
-                    <BaseSecondaryAccordion v-if="item.pat === 4" :title="item.btn">
+                    <BaseSecondaryAccordion
+                      v-if="item.pat === 4"
+                      :title="item.btn"
+                      data-style="4"
+                    >
                       <template #default>
                         <div class="market" :class="{ 'in-mobile': isMobile }">
                           <div class="table-row-3" :style="{ '--itemCount': 1 }">

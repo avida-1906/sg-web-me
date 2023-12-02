@@ -77,6 +77,7 @@ async function submit() {
     username: username.value,
     third_id: props.data.id,
     third_type: props.ty,
+    device_number: application.getDeviceNumber(),
   })
 }
 
