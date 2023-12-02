@@ -56,7 +56,7 @@ function gameStart(item: Props['gameInfo']) {
       <div v-if="isError && !isMaintained" class="center img-load">
         <BaseEmpty>
           <template #icon>
-            <BaseIcon style="--tg-base-button-font-size:43px;" name="img-error" />
+            <BaseIcon style="font-size:36px;" name="img-casino-error" />
           </template>
           <template #description>
             <span style="font-size: var(--tg-font-size-xs);">
