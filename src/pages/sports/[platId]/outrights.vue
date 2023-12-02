@@ -3,6 +3,7 @@ usePageTitle({ prefix: 'champion_bet', isT: true })
 const route = useRoute()
 const si = route.query.si ? +route.query.si : 0
 const ci = route.query.ci ? route.query.ci.toString() : ''
+const ei = route.query.ei ? route.query.ei.toString() : ''
 // 冠军数据
 const params = computed(() => ({ si, page: 1, page_size: 100 }))
 const { data, run, runAsync } = useRequest(ApiSportOutrightList)
@@ -11,7 +12,7 @@ const { startTimer, stopTimer } = useSportsDataUpdate(() => run(params.value))
 
 const outrightsData = computed(() => {
   if (data.value && data.value.d) {
-    const marketInfo = data.value.d.find(a => a.ci === ci)
+    const marketInfo = data.value.d.find(a => a.ei === ei)
     if (marketInfo) {
       marketInfo.ml = marketInfo.ml.map((a) => {
         return {
@@ -84,13 +85,12 @@ await application.allSettled([runAsync(params.value)])
     <div class="wrapper">
       <template v-if="outrightsData">
         <BaseSecondaryAccordion
-          v-for="market, i in outrightsData.ml" :key="market.mlid"
-          :title="market.btn" level="2"
-          :init="i === 0"
+          :title="outrightsData.oen" level="2"
         >
           <div class="btn-box">
             <AppSportsBetButton
-              v-for="item in market.ms" :key="item.wid" :cart-info="item.cartInfo"
+              v-for="item in outrightsData.ml[0].ms" :key="item.wid"
+              :cart-info="item.cartInfo"
               :title="item.sn" :odds="item.ov" layout="horizontal"
             />
           </div>
