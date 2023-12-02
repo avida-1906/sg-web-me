@@ -379,7 +379,7 @@ await application.allSettled([
                 @click="runPaymentDepositBankConfirm(
                   { id: paymentDepositBankInfo?.id ?? '' })"
               >
-                我已存款
+                {{ t('already_deposit') }}
               </BaseButton>
             </div>
             <div class="second-tips2">

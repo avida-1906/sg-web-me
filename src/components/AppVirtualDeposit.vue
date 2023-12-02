@@ -9,6 +9,7 @@ interface Props {
 const props = defineProps<Props>()
 
 const emit = defineEmits(['show'])
+const closeDialog = inject('closeDialog', () => { })
 const amountRef = ref()
 const currentAisle = ref()
 const depositStep = ref('1')
@@ -75,7 +76,8 @@ const {
   loading: paymentDepositCoinConfirmLoading,
 } = useRequest(ApiPaymentDepositCoinConfirm, {
   onSuccess() {
-    cancelPayment()
+    // cancelPayment()
+    closeDialog()
   },
 })
 const {
