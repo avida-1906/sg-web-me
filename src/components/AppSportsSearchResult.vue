@@ -1,4 +1,6 @@
 <script setup lang='ts'>
+import type { ISportsBreadcrumbs } from '~/types'
+
 const props = defineProps<{
   data?: {
     list: {
@@ -45,9 +47,23 @@ const list = computed(() => {
 
     if (dataFindBySi) {
       return dataFindBySi.list.map((b) => {
-        const sport = { label: dataFindBySi.sn, value: `${dataFindBySi.si}` }
-        const area = { label: b.pgn, value: `${b.pgid}` }
-        const league = { label: b.cn, value: `${b.ci}` }
+        const sport = {
+          label: dataFindBySi.sn,
+          value: `${dataFindBySi.si}`,
+          path: `/sports/${SPORTS_PLAT_ID}/${dataFindBySi.si}`,
+        }
+        const area = {
+          label: b.pgn,
+          value: `${b.pgid}`,
+          // eslint-disable-next-line max-len
+          path: `/sports/${SPORTS_PLAT_ID}/${dataFindBySi.si}/${b.pgid}?${application.objectToUrlParams({ sn: dataFindBySi.sn, pgn: b.pgn })}`,
+        }
+        const league = {
+          label: b.cn,
+          value: `${b.ci}`,
+          // eslint-disable-next-line max-len
+          path: `/sports/${SPORTS_PLAT_ID}/${dataFindBySi.si}/${b.pgid}/${b.ci}?${application.objectToUrlParams({ sn: dataFindBySi.sn, pgn: b.pgn, cn: b.cn })}`,
+        }
         return {
           ...b,
           breadcrumb: [sport, area, league],
@@ -61,18 +77,16 @@ const list = computed(() => {
   return []
 })
 // 联赛跳转
-function onBreadcrumbsClick({ list, index }: { list: ISelectOption[]; index: number }) {
-  let path = ''
+function onBreadcrumbsClick({ list, index }: {
+  list: ISportsBreadcrumbs[]
+  index: number },
+) {
   if (isH5Layout.value) {
-    path = `/sports/${getSportsPlatId()}/${list.map(a => a.value).join('/')}`
-    router.push(path)
+    router.push(replaceSportsPlatId(list[2].path))
     closeSearchH5()
   }
-
   else {
-    // eslint-disable-next-line max-len
-    path = `/sports/${getSportsPlatId()}/${list.slice(0, index + 1).map(a => a.value).join('/')}`
-    router.push(path)
+    router.push(replaceSportsPlatId(list[index].path))
     closeSearch()
   }
 }

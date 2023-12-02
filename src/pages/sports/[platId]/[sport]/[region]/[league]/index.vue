@@ -6,6 +6,7 @@ const { t } = useI18n()
 usePageTitle({ prefix: t('btc_sport_title') })
 const { width } = storeToRefs(useWindowStore())
 const route = useRoute()
+const navObj = application.urlParamsToObject(route.fullPath.split('?')[1])
 const sport = route.params.sport ? +route.params.sport : 0
 const region = route.params.region ? route.params.region.toString() : ''
 const league = route.params.league ? route.params.league.toString() : ''
@@ -33,7 +34,7 @@ const params = computed(() => {
     page_size: pageSize.value,
   }
 })
-const { data, run, runAsync } = useRequest(ApiSportEventList, {
+const { run, runAsync } = useRequest(ApiSportEventList, {
   onSuccess(res) {
     if (res.d) {
       total.value = res.t
@@ -52,33 +53,19 @@ const tabs = computed(() => [
 const isOver814 = computed(() => width.value > 814)
 const isLiveAndUpcoming = computed(() => curTab.value === '1')
 const isOutrights = computed(() => curTab.value === '2')
-// 球种名称
-const sportName = computed(() => data.value && data.value.d
-  ? data.value.d[0].sn
-  : '-',
-)
-// 地区名称
-const regionName = computed(() => data.value && data.value.d
-  ? data.value.d[0].pgn
-  : '-',
-)
-// 联赛名称
-const leagueName = computed(() => data.value && data.value.d
-  ? data.value.d[0].cn
-  : '-',
-)
 const breadcrumb = computed(() => [
   {
     path: `/sports/${SPORTS_PLAT_ID}/${sport}`,
-    title: sportName.value,
+    title: navObj.sn,
   },
   {
-    path: `/sports/${SPORTS_PLAT_ID}/${sport}/${region}`,
-    title: regionName.value,
+    // eslint-disable-next-line max-len
+    path: `/sports/${SPORTS_PLAT_ID}/${sport}/${region}?${application.objectToUrlParams({ sn: navObj.sn, pgn: navObj.pgn })}`,
+    title: navObj.pgn,
   },
   {
     path: '',
-    title: leagueName.value,
+    title: navObj.cn,
   },
 ])
 
@@ -179,7 +166,7 @@ await application.allSettled([runAsync(params.value)])
       >
         <AppSportsMarket
           :is-standard="isStandard"
-          :league-name="leagueName" :event-count="total" :base-type="baseType"
+          :league-name="navObj.cn" :event-count="total" :base-type="baseType"
           :event-list="list" auto-show
         />
         <BaseButton v-show="curTotal < total" size="none" type="text" @click="loadMore">

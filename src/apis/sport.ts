@@ -71,6 +71,7 @@ export function ApiSportSidebar() {
           cn: string
           cpic: string
           pgid: string
+          pgn: string
         }[]
       }[]
     }[]

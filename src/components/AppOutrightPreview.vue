@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { ISportOutrightsInfo } from '~/apis/types'
+import type { ISportsBreadcrumbs } from '~/types'
 
 interface Props {
   autoShow: boolean
@@ -17,15 +18,13 @@ const { width } = storeToRefs(useWindowStore())
 const isH5Layout = computed(() => width.value < 575)
 
 // 联赛跳转
-function onBreadcrumbsClick({ list, index }: { list: ISelectOption[]; index: number }) {
-  let path = ''
+function onBreadcrumbsClick({ list, index }:
+{ list: ISportsBreadcrumbs[]; index: number },
+) {
   if (isH5Layout.value)
-    path = `/sports/${getSportsPlatId()}/${list.map(a => a.value).join('/')}`
-
+    router.push(replaceSportsPlatId(list[2].path))
   else
-    // eslint-disable-next-line max-len
-    path = `/sports/${getSportsPlatId()}/${list.slice(0, index + 1).map(a => a.value).join('/')}`
-  router.push(path)
+    router.push(replaceSportsPlatId(list[index].path))
 }
 // 冠军投注页面
 function goOutrightsPage(item: ISportOutrightsInfo) {

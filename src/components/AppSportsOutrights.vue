@@ -113,8 +113,8 @@ await application.allSettled([runAsync(params.value)])
   </div>
 
   <template v-else-if="isLeague">
-    <AppOutrightPreview auto-show :data="leagueList" />
-    <div v-show="leagueList.list.length === 0" class="empty">
+    <AppOutrightPreview v-if="leagueList.list.length > 0" auto-show :data="leagueList" />
+    <div v-else class="empty">
       <BaseEmpty icon="empty-2" :description="t('data_empty')" />
     </div>
   </template>

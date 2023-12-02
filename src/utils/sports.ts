@@ -258,23 +258,32 @@ export function sportsOutrightsGroupByRegion(origin: ISportOutrightsInfo[]):
   }[]
 }[] {
   // 组合地区
-  const arr = []
+  const arr1 = []
   for (let i = 0; i < origin.length; i++) {
     if (i === 0) {
-      arr.push({ pgid: origin[i].pgid, pgn: origin[i].pgn, list: [origin[i]] })
+      arr1.push({ pgid: origin[i].pgid, pgn: origin[i].pgn, list: [origin[i]] })
       continue
     }
 
-    const index = arr.findIndex(a => a.pgid === origin[i].pgid)
+    const index = arr1.findIndex(a => a.pgid === origin[i].pgid)
     if (index > -1)
-      arr[index].list.push(origin[i])
+      arr1[index].list.push(origin[i])
     else
-      arr.push({ pgid: origin[i].pgid, pgn: origin[i].pgn, list: [origin[i]] })
+      arr1.push({ pgid: origin[i].pgid, pgn: origin[i].pgn, list: [origin[i]] })
   }
 
   // 组合联赛
-  for (let i = 0; i < arr.length; i++) {
-    const list = cloneDeep(arr[i].list)
+  const arr2: {
+    pgid: string
+    pgn: string
+    list: {
+      ci: string
+      cn: string
+      list: ISportOutrightsInfo[]
+    }[]
+  }[] = []
+  for (let i = 0; i < arr1.length; i++) {
+    const list = cloneDeep(arr1[i].list)
     const leagueArr = []
     for (let ii = 0; ii < list.length; ii++) {
       if (ii === 0) {
@@ -287,9 +296,9 @@ export function sportsOutrightsGroupByRegion(origin: ISportOutrightsInfo[]):
       else
         leagueArr.push({ ci: list[ii].ci, cn: list[ii].cn, list: [list[ii]] })
     }
-    arr[i].list = leagueArr
+    arr2.push({ pgid: arr1[i].pgid, pgn: arr1[i].pgn, list: leagueArr })
   }
-  return arr
+  return arr2
 }
 
 /**
@@ -318,9 +327,23 @@ export function sportsDataGroupBySport(origin: ISportEventInfo[]) {
  * @param data 赛事详情 ｜ 冠军盘口数据
  */
 export function sportsDataBreadcrumbs(data: ISportEventInfo | ISportOutrightsInfo) {
-  const sport = { label: data.sn, value: `${data.si}` }
-  const area = { label: data.pgn, value: `${data.pgid}` }
-  const league = { label: data.cn, value: `${data.ci}` }
+  const sport = {
+    label: data.sn,
+    value: `${data.si}`,
+    path: `/sports/${SPORTS_PLAT_ID}/${data.si}`,
+  }
+  const area = {
+    label: data.pgn,
+    value: `${data.pgid}`,
+    // eslint-disable-next-line max-len
+    path: `/sports/${SPORTS_PLAT_ID}/${data.si}/${data.pgid}?${application.objectToUrlParams({ sn: data.sn, pgn: data.pgn })}`,
+  }
+  const league = {
+    label: data.cn,
+    value: `${data.ci}`,
+    // eslint-disable-next-line max-len
+    path: `/sports/${SPORTS_PLAT_ID}/${data.si}/${data.pgid}/${data.ci}?${application.objectToUrlParams({ sn: data.sn, pgn: data.pgn, cn: data.cn })}`,
+  }
   return [sport, area, league]
 }
 
