@@ -657,6 +657,17 @@ export class SportsCart {
       return item.wid
     })
 
+    if (wsi) {
+      this.ovIsChange = this.dataList.some((item) => {
+        const _wsi = wsi.find(a => a.wid === item.wid)
+        return Number(_wsi?.ov) !== Number(item.ov)
+      })
+      this.ovIsLower = this.dataList.some((item) => {
+        const _wsi = wsi.find(a => a.wid === item.wid)
+        return Number(_wsi?.ov) < Number(item.ov)
+      })
+    }
+
     this.dataList.forEach((item) => {
       if (wsi) {
         const _wsiObject = wsi.find(a => a.wid === item.wid)
@@ -678,20 +689,6 @@ export class SportsCart {
         item.pt = _biObject?.pt ?? pt
       }
     })
-
-    if (wsi) {
-      this.ovIsChange = this.dataList.some((item) => {
-        const _wsi = wsi.find(a => a.wid === item.wid)
-        return Number(_wsi?.ov) !== Number(item.ov)
-      })
-    }
-
-    if (wsi) {
-      this.ovIsLower = this.dataList.some((item) => {
-        const _wsi = wsi.find(a => a.wid === item.wid)
-        return Number(_wsi?.ov) < Number(item.ov)
-      })
-    }
 
     /**
      * os和ov有变化的数据
