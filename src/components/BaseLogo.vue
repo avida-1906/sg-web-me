@@ -30,10 +30,6 @@ withDefaults(defineProps<Props>(), {
   .aspect-ratio{
     max-width: 95px;
     min-width: 30px;
-    cursor: pointer;
-    &:active {
-      transform: scale(0.96);
-    }
   }
   .icon-app-logo {
     display: block;
