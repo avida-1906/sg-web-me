@@ -36,7 +36,7 @@ const { run: runGetAuthUrl } = useRequest(ApiMemberThirdAuthUrl, {
 function goAuth(type: AuthTypesKeys) {
   gWin.value = window.open('', '_blank', 'popup=yes,width=600,height=600')
   ty.value = AuthTypes[type]
-  runGetAuthUrl({ state: state.value, type })
+  runGetAuthUrl({ state: state.value, type, device_no: application.getDeviceNumber() })
 }
 
 onMounted(() => {
