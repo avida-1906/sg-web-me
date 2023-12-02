@@ -28,7 +28,7 @@ withDefaults(defineProps<Props>(), {
 <style lang="scss" scoped>
 .base-logo {
   .aspect-ratio{
-    max-width: 67px;
+    max-width: 95px;
     min-width: 30px;
     cursor: pointer;
     &:active {
