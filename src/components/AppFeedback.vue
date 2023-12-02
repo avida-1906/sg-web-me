@@ -1,6 +1,7 @@
 <script setup lang='ts'>
 const { t } = useI18n()
 const chatStore = useChatStore()
+const { userLanguage } = storeToRefs(useLanguageStore())
 
 const { openNotify } = useNotify()
 
@@ -238,7 +239,7 @@ onActivated(() => {
                 {{ t('feedback') }}ID: {{ item.id }}
               </div>
               <div class="text-overflow-hide color-grey">
-                {{ application.timestampToTime(item.created_at * 1000) }}
+                {{ application.timestampToTime(item.created_at * 1000, userLanguage) }}
               </div>
             </div>
             <div class="text-overflow-hide">
