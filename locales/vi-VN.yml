@@ -1,581 +1,1780 @@
-hello: 越南语
+login: Đăng nhập
+reg: Đăng ký
+register: Tạo tài khoản
+continue: tiếp tục
+gamer: Khách chơi
+currency_type: Loại ngoại tệ
+start_game: Bắt đầu trò chơi
+slot: Điện tử
+fishing: Bắn cá
+chess: Đánh bài
+live: Đánh bài với nhân viên trực tuyến
+email_or_username: Địa chỉ hòm thử hoặc tài khoản khách chơi
+pls_enter_email_or_username: Vui lòng nhập địa chỉ hòm thư và tài khoản khách chơi
+email_or_username_incorrect: Địa chỉ hòm thư vàtài khoản khách chơi không chính
+  xác
+two_step_verification: Xác nhận hai bước
+pls_enter_two_step_verification: Vui lòng nhập xác nhận hai bước
+tip_start_double_check: 'Bật chức năng xác nhận hai bước để đảm bảo tính an toàn
+  của tài khoản '
+email_address: Địa chỉ hòm thư
+pls_enter_email_address: 'Vui lòng nhập địa chỉ hòm thư '
+email_address_incorrect: Địa chỉ hòm thư không chính xác
+reset_pwd_email: Thư thiết lập lại mật khẩu đã được gửi vào địa chỉ hòm thư
+already_send_email_user: Tài khoản khôi phục đã được gửi vào địa chỉ hòm thư
+recover_pwd: Cài đặt lại mật khẩu
+username: Tên tài khoản
+pls_enter_username: Vui Lòng nhập tên tài khoản
+username_incorrect: Tên tài khoản bắt buộc phải trong khoảng 3-14 ký tự
+password: Mật khẩu
+old_pwd: Mật khẩu cũ
+new_pwd: Mật khẩu mới
+confirm_new_pwd: Xác nhận mậtkhẩu mới
+confirm_pwd: Xác nhận mật khẩu
+pls_enter_password: Vui lòng nhậpmật khẩu
+pls_enter_birthday: Vui lòng nhậpngày tháng năm sinh
+password_incorrect: Mật khẩu đăng nhập khôngchính xác
+password_uppercase_lowercase_letter: Mật khẩu yêu cầu phải có 1 ký tự in hoa và
+  1 ký tự viết thường
+password_least_8_characters: Mật khẩu phải bao gồm ít nhất 8 ký tự
+password_least_1_number: mật khẩu phải có ít nhất 1 con số
+uppercase_lowercase_letter: mật khẩu phải bao gồm ký tự in hoa và ký tự thường
+least_8_characters: Bao gồm ít nhất 8 ký tự
+reg_step: Điền thông tin chi tiết cá nhân của bạn
+reg_step1: 'Bước 1/2: Điền thông tin chi tiết cá nhân của bạn'
+reg_step2: 'Bước 2/2: Điền thông tin chi tiết cá nhân của bạn'
+step_label: Bước
+code_optional: Mã số
+read_and_agree: Tôi đã đọc và đồng ý
+terms_conditions: Các điều khoản vàđiều kiện
+read_terms_conditions: 'Tôi đã đọc và đồng ý các điều khoản vàđiều kiện '
+agree_terms_conditions: Vui lòng đọc toàn bộ các điều khoản và điều kiện, và chọn
+  tôi đồng ý
+read_and_accept: đọc toàn bộ các điều khoản và điều kiện và đồng ý
+or_use: hoặc sử dụng
+forgot_password: Quên mật khẩu
+no_account_yet: Vẫn chưa có tài khoản
+register_account: Đăng ký tài khoản
+have_account: Đã có tài khoản
+stake_hCaptcha: '{site} được bảo vệ bởi hCaptcha'
+privacy_policy: Điểu khoản bảo mật
+responsible_casino: Quyền phụ trách của game cờ bạc
+license: Giấy phép
+self_exclusion: Tự loại trừ
+anti_money_laundering_rule: Quy tắc chống rửa tiền
+copyright: Bản quyền
+and: và
+terms_of_service: Điều khoản dịch vụ
+applicable: Được áp dụng
+time: Thời gian
+balance: Số dư
+amount: Số tiền
+casino: Game đánh bài
+sports: Thể thảo
+game: 'Các trò chơi '
+wallet: Ví tiền
+safe: Sự bảo mật
+affiliate: Chương trình liên kết
+transaction_record: Lịch sử giao dịch
+statistical_data: Thống kê số liệu
+sports_betting: Đặt cược thể thao
+trophy: Chiến tích
+lucky_trophy: Chiến tích may mắnnhất
+big_win: Thắng lợi lớn nhất
+setting: Cài đặt
+stake_safety: Sự an toàn của {site}
+online_support: Hỗ trợ trực tuyến
+vip_club: Câu lạc bộ VIP
+club: Câu lạc bộ
+logout: Đăng xuất
+logout_dont_foget: 'Hãy xem các chương trình khuyến mãi hấp dẫn Casino và Sportsbook
+  của chúng tôi trước khi bạn rời khỏi '
+chat_room: Phòng trò chuyện
+bet_slip: Đơn cược
+my_bets: Đơn cược của tôi
+all_bets: Toàn bộ đơn cược
+casino_bets: Đơn cược đánh bài
+billboard: Biển quảng cáo
+competition_board: Bảng xếp hạng cuộc thi
+competition: Cuộc thi
+competition_name: Tên cuộc thi
+currency: Tiền tệ
+network: Mạng lưới
+deposit: 'Nạp tiền '
+withdraw: Rút tiền
+this_field_is_required: Phần này bắt buộc
+buy_cryptocurrency: Mua tiền điện tử
+your_currency_deposit_address: Địa chỉ nạp tiền của bạn
+sports_events: Các mục thể thao
+top_sports_events: Thể thao hàng đầu
+choose_your_balance: Chọn số dư hiển thị của bạn
+enter_your_content: Vui lòng nhập nội dung
+hello: Xin chào
 a_day: Một ngày
-a_few_hours: Một vài giờ
-a_few_minutes: Một vài phút
+a_few_hours: Vài giờ
+a_few_minutes: Vài phút
 a_week: Một tuần
-active_15m_ago: 'Hoạt động {minutes} phút trước'
-active_day_ago: 'Hoạt động {days} ngày trước'
-active_hour_ago: 'Hoạt động {hours} giờ trước'
-active_minute_ago: 'Hoạt động {minutes} phút trước'
-active_state: Đang hoạt động
-active_week_ago: Hoạt động hơn 1 tuần trước
-add_participant: Thêm người tham gia
-add_person: Thêm người
-ai_answer: Câu trả lời AI
-ai_answer_information: 'Câu trả lời AI, thông tin'
-ai_answers_english_only: Câu trả lời AI hiện chỉ có tiếng Anh.
-ai_bot: AI Bot
-alexandria_unauthorized: 'Bạn có thể thử gửi cho chúng tôi thông điệp hoặc đăng nhập tại {app_name}'
-almost_there: Gần xong...
-also_in_this_conversation: Cũng tham gia cuộc trò chuyện này
+active_15m_ago: Đã trực tuyến {phút} trước
+active_day_ago: Đã trực tuyến {ngày} trước
+active_hour_ago: Đã trực tuyến {giờ} trước
+active_minute_ago: Đã trực tuyến {phút} trước
+active_state: Trực tuyến
+active_week_ago: Đã trực tuyến 1 tuần trước
+offline: Không trực tuyến
+add_participant: Thêm hôi viên
+add_person: Thêm hội viên
+ai_answer: Đáp ántrí tuệ nhân tạo
+ai_answer_information: Thông tin, Đáp ántrí tuệ nhân tạo
+ai_answers_english_only: Đáp án AI hiện chỉ có bằng tiếng Anh.
+ai_bot: Rô bốt trí tuệnhân tạo
+alexandria_unauthorized: Bạn có thể thử gửi tin nhắn cho chúng tôi hoặc đăng nhập
+  vào {app_name}
+almost_there: Gần như đã tìm thấy câu trả lời...
+also_in_this_conversation: Cũng trong cuộc trò chuyện này
 amazing: Tuyệt vời
 answer: Trả lời
-answer_is_generated_with_ai: >-
-  Câu trả lời này chỉ dựa trên nội dung do {company_name} nêu rõ. Nội dung được
-  tạo ra bởi AI nên có thể không hoàn toàn chính xác.
-answer_is_generated_with_ai_may_be_incorrect: >-
-  Câu trả lời này được tạo tự động bằng AI. Có thể câu trả lời không hoàn toàn
+answer_is_generated_with_ai: Câu trả lời này chỉ dựa trên những gì {company_name}
+  chỉ định. Nó được tạo ra bởi trí tuệ nhân tạo và do đó có thể không hoàn toàn
   chính xác.
-answer_is_generated_with_ai_sources: >-
-  Câu trả lời AI được tạo dựa trên cả nguồn công khai và riêng tư do
-  {company_name} cung cấp.
-april_date: 'Ngày {date} tháng 4'
-article: bài viết
-article_double_author: 'Của {author_first_name1} và {author_first_name2}'
-article_multiple_authors: 'Của {author_first_name1} và {number_of_other_authors} người khác'
-article_question: Nội dung này có giải đáp được câu hỏi của bạn không?
-article_search_hint_text: Tìm kiếm các bài viết...
-article_search_no_results_for_query: 'Không có kết quả cho "{query}"'
-article_search_search_results: Kết quả tìm kiếm
-article_search_search_results_for_query: 'Tìm kiếm kết quả cho "{query}"'
-article_single_author: 'Của {author_first_name}'
-ask_a_question: Đặt câu hỏi
-ask_a_question_placeholder: Đặt câu hỏi...
-ask_a_question_with_ellipsis: Đặt câu hỏi...
-ask_another_question_with_ellipsis: Đặt một câu hỏi khác...
+answer_is_generated_with_ai_may_be_incorrect: Câu trả lời này được tạo tự động bằng
+  trí tuệ nhân tạo. Có thể nó không hoàn toàn chính xác.
+answer_is_generated_with_ai_sources: Phản hồi AI được tạo từ các nguồn dữ liệu công
+  khai và riêng tư do {company_name} cung cấp.
+april_date: Tháng 4 {ngày}
+article: Bài viết
+article_double_author: 'Tác giả: {author_first_name1} và {author_first_name2}'
+article_multiple_authors: 'Tác giả: {author_first_name1} và {number_of_other_authors}
+  người khác'
+article_question: Điều này có trả lời câu hỏi của bạn không?
+article_search_hint_text: Tìm kiếm bài viết…
+article_search_no_results_for_query: Không có kết quả cho {query}
+article_search_search_results: Tìm kiếm kết quả
+article_search_search_results_for_query: Kết quả tìm kiếm cho {query}
+article_single_author: 'Tác giả: {author_first_name}'
+ask_a_question: Đưa ra vấn đề
+ask_a_question_placeholder: Đưa ra vấn đề
+ask_a_question_with_ellipsis: Vui lòng đưa ra vấn đề
+ask_another_question_with_ellipsis: Vui lòng hỏi một vấn đề khác
 ask_our_bot_a_question: Đặt câu hỏi cho bot của chúng tôi
-asked_about: Đã hỏi về
-assigned_to_admin: 'Đã giao cho {admin}'
+asked_about: Hỏi về
+assigned_to_admin: Đã giao cho {admin}
 attribute_collector_negative: Không
 attribute_collector_positive: Có
-august_date: 'Ngày {date} tháng 8'
-avatar: Ảnh đại diện
-avatars: Ảnh đại diện
-away_state: Vắng mặt
-bad: Không tốt
-banner: quảng cáo trên web
-bot: Bot
-bot_answers_instantly: Bot trả lời ngay lập tức
-bot_expectation_text: Bot của chúng tôi có thể trả lời nhiều câu hỏi phổ biến
-bot_is_still_thinking: Bot vẫn đang suy nghĩ...
-bot_is_thinking: Bot đang suy nghĩ...
-browse_collections: Xem qua các bộ sưu tập
-by_email: Bằng email
-by_web_notification: Bằng thông báo web
-can_continue_whatsapp: Bạn có thể tiếp tục cuộc trò chuyện của mình trên WhatsApp
-cancel: Hủy
-cant_load_new_messages: Không thể tải thông điệp mới
-check_later_for_updates: Hãy kiểm tra lại sau để biết các bản cập nhật.
+august_date: Tháng 8 {ngày}
+avatar: Hình đại diện
+avatars: Hình đại diện
+away_state: Rời khỏi
+bad: Tệ
+banner: Ban-nơ
+bot: Người máy
+bot_answers_instantly: Người máy sẽ trả lời ngay lập tức
+bot_expectation_text: Người máy của chúng tôi có thể trả lời nhiều câu hỏi phổ biến
+bot_is_still_thinking: Người máy vẫn đang suy nghĩ…
+bot_is_thinking: Người máy đang suy nghĩ...
+normal_ques: Vấn đề thông thường
+browse_collections: Trình duyệt yêu thích
+by_email: Qua địa chỉ hòm thư
+by_web_notification: Thông báo qua trang web
+can_continue_whatsapp: Bạn có thể tiếp tục cuộc trò chuyện trên WhatsApp
+cancel: Hủy bỏ
+confirm: Xác nhận
+cant_load_new_messages: Không thể tải tin nhắn mới
+check_later_for_updates: Vui lòng kiểm tra lại sau để cập nhật.
 checklist_card_first_step: Bước đầu tiên
 checklist_card_next_step: Bước tiếp theo
-checklist_completed: Đã hoàn thành
-checklist_in_progress_time_remaining_plural: 'Còn khoảng {minutes} phút'
+checklist_completed: Đã hoàn tất
+checklist_in_progress_time_remaining_plural: Còn khoảng {phút}
 checklist_in_progress_time_remaining_singular: Còn khoảng 1 phút
 checklist_mark_step_as_complete: Đánh dấu là đã hoàn thành
-checklist_not_started_time_remaining_plural: 'Khoảng {minutes} phút'
+checklist_not_started_time_remaining_plural: Khoảng {phút}
 checklist_not_started_time_remaining_singular: Khoảng 1 phút
-checklist_number_of_steps_plural: '{number_of_steps} bước'
-checklist_number_of_steps_progress_plural: '{steps_completed} trong {total_steps} đã xong'
-checklist_number_of_steps_progress_singular: '1 trong số {total_steps} đã hoàn thành'
+checklist_number_of_steps_plural: "{số} bước"
+checklist_number_of_steps_progress_plural: Đã hoàn thành {số bước} bước trong tổng
+  số {bước}
+checklist_number_of_steps_progress_singular: Đã hoàn thành 1 bước trong số {total_steps}
 checklist_number_of_steps_singular: 1 bước
-checklist_sender_name: 'Được chia sẻ bởi {name}'
-checklist_step_action_button: Nút hành động bước
-checklist_step_completed: Đã hoàn thành
-choose_one: Chọn một…
-clear: Xóa
-clear_all: Xóa tất cả
-click_open_whatsapp: Nhấp vào đây để mở WhatsApp
-click_to_unmute: Nhấp để hủy tắt tiếng
-close: Đóng
-close_intercom_messenger: Đóng Intercom Messenger
-connecting: Đang kết nối...
+checklist_sender_name: 'Được chia sẻ bởi: {tên}'
+checklist_step_action_button: Nút thao tác các bước
+checklist_step_completed: Hoàn tất
+choose_one: Hãy chọn một mục
+clear: Xóa bỏ
+clear_all: Hoàn toànxóa bỏ
+click_open_whatsapp: Bấm vào đây để mở WhatsApp
+click_to_unmute: Nhấp để bật tiếng
+close: Đóng lại
+close_intercom_messenger: Đóng liên lạc Messenger
+connecting: Đang kết nối
 continue_on_whatsapp: Tiếp tục trên WhatsApp
-continue_the_conversation: Tiếp tục cuộc trò chuyện
-continue_whatsapp_instead: Bạn có thể tiếp tục cuộc trò chuyện trên WhatsApp.
-conversation_card_office_hours_header: Thời gian chúng tôi sẽ trực tuyến trở lại
-conversation_card_reply_time_header: Thời gian hồi âm thông thường của chúng tôi
-conversation_card_reply_time_header_m5: Thời gian trả lời thông thường
-conversation_card_unknown_response_time: Chúng tôi sẽ hồi âm sớm nhất có thể
+continue_the_conversation: Tiếp tục cuộc đối thoại
+continue_whatsapp_instead: Thay vào đó, bạn có thể tiếp tục cuộc trò chuyện trên
+  WhatsApp.
+conversation_card_office_hours_header: Khi chúng tôi trực tuyến trở lại
+conversation_card_reply_time_header: Thời gian phản hồi thông thường của chúng tôi
+conversation_card_reply_time_header_m5: Thời gian phản hồi thông thường
+conversation_card_unknown_response_time: Chúng tôi sẽ trả lời càng sớm càng tốt
 conversation_has_ended: Cuộc trò chuyện của bạn đã kết thúc
-conversation_moved_whatsapp: Cuộc trò chuyện của bạn đã chuyển sang WhatsApp
-conversations: Hội thoại
+conversation_moved_whatsapp: Cuộc trò chuyện của bạn đã được chuyển sang WhatsApp
 couldnt_load_app: Không thể tải ứng dụng.
-couldnt_load_apps: Không thể tải các ứng dụng.
+couldnt_load_apps: Không thể tải ứng dụng.
 couldnt_load_content: Không thể tải nội dung
 currently_no_help_articles: Hiện tại không có bài viết trợ giúp nào.
-custom_response_delay_0: Thường trả lời trong vài phút
-custom_response_delay_1: Thường trả lời trong vài giờ
-custom_response_delay_2: Thường trả lời trong một ngày
-custom_response_delay_3: Thường trả lời trong một tuần
+custom_response_delay_0: Thường trả lời trong vòng vài phút
+custom_response_delay_1: Thường trả lời trong vòng vài giờ
+custom_response_delay_2: Thường trả lời trong vòng một ngày
+custom_response_delay_3: Thường trả lời trong vòng một tuần
 custom_response_delay_unknown: Sẽ trả lời sớm nhất có thể.
-december_date: 'Ngày {date} tháng 12'
-discovery_launcher: trình khởi chạy khám phá
-discovery_mode_entry_text: Cần sự trợ giúp?
-dismiss: Bỏ
+december_date: tháng 12 {ngày}
+discovery_launcher: 'phát hiện trình khởi chạy '
+discovery_mode_entry_text: Cần sự hỗ trợ?
+dismiss: Đóng lại
 dont_show_suggestions: Không hiển thị đề xuất
-download_transcript: Tải xuống cuộc trò chuyện
-email: Email
+download_transcript: Tải cuộc đối thoại
+download: Tải về
+email: Địa chỉhòm thư
 emoji_picker: Bộ chọn biểu tượng cảm xúc
-empty_conversations: Thông báo từ nhóm sẽ được hiển thị ở đây
-empty_suggestion_prompt: Không có đề xuất liên quan
-enter_text_placeholder: Nhập văn bản…
+empty_conversations: Tin nhắn từ nhóm sẽ xuất hiện ở đây
+empty_suggestion_prompt: Chưa có đề xuất liên quan nào
+enter_text_placeholder: Nhập văn bản...
 expand_header: Mở rộng tiêu đề
-expected_response_delay_10800: chưa đầy 3 giờ
-expected_response_delay_120: chưa đầy 2 phút
-expected_response_delay_1200: chưa đầy 20 phút
-expected_response_delay_14400: chưa đầy 4 giờ
-expected_response_delay_172800: 2 ngày
-expected_response_delay_180: chưa đầy 3 phút
-expected_response_delay_1800: chưa đầy 30 phút
-expected_response_delay_18000: chưa đầy 5 giờ
-expected_response_delay_21600: chưa đầy 6 giờ
-expected_response_delay_240: chưa đầy 4 phút
+expected_response_delay_10800: Trong vòng 3 giờ
+expected_response_delay_120: Trong vòng 2 giờ
+expected_response_delay_1200: Trong vòng20 phút
+expected_response_delay_14400: Trong vòng 4 giờ
+expected_response_delay_172800: Trong vòng2 ngày
+expected_response_delay_180: Trong vòng3 phút
+expected_response_delay_1800: Trong vòng30 phút
+expected_response_delay_18000: Trong vòng 5 giờ
+expected_response_delay_21600: Trong vòng 6 giờ
+expected_response_delay_240: Trong vòng 4 phút
 expected_response_delay_259200: 3 ngày
-expected_response_delay_300: chưa đầy 5 phút
+expected_response_delay_300: 5 phút
 expected_response_delay_345600: 4 ngày
-expected_response_delay_3600: chưa đầy 1 giờ
-expected_response_delay_43200: chưa đầy 12 giờ
+expected_response_delay_3600: 1 giờ
+expected_response_delay_43200: 12 giờ
 expected_response_delay_432000: 5 ngày
 expected_response_delay_518400: 6 ngày
-expected_response_delay_60: chưa đầy 1 phút
-expected_response_delay_600: chưa đầy 10 phút
-expected_response_delay_604800: chưa đầy 1 tuần
-expected_response_delay_7200: chưa đầy 2 giờ
+expected_response_delay_60: 1 phút
+expected_response_delay_600: 10 phút
+expected_response_delay_604800: trong vòng 1 tuần
+expected_response_delay_7200: trong vòng2 giờ
 expected_response_delay_86400: 1 ngày
-expected_response_delay_900: chưa đầy 15 phút
-extra_labels_count: '+ {labels_count} nhãn'
-failed_message: Tin nhắn bị lỗi
-failed_to_send: Không thể gửi
-february_date: 'Ngày {date} tháng 2'
-field_is_required: 'Trường {field_name} là bắt buộc'
-file_max_limit: 'Tối đa {limit} tập tin'
-file_too_big: 'Không thể gửi tệp lớn quá {limit} MB'
-file_type_not_allowed: Loại tập tin không được phép
-frequently_used: Thường dùng
-from_app: 'từ {app_name}'
-from_name: 'từ {name}'
+expected_response_delay_900: 15 phút
+extra_labels_count: "#LỖI"
+failed_message: Thông báo lỗi
+failed_to_send: Không gửi được
+february_date: tháng 2 {ngày}
+field_is_required: Cần phải điền vào {field_name}
+file_max_limit: Tối đa {limit} tệp
+file_too_big: Không thể gửi tệp lớn hơn {limit}MB
+file_type_not_allowed: Loại tệp không được phép
+frequently_used: thường xuyên sử dụng
+from_app: Từ {app_name}
+from_name: từ {tên}
 generating_answer: Đang tạo câu trả lời...
 get_an_instant_answer: Nhận câu trả lời ngay lập tức
-get_help: Được trợ giúp
-get_notified: Được thông báo
-get_notified_by_email: Nhận thông báo qua email
-get_responses_by_email: Nhận tin trả lời qua email
-gif_attribution: 'qua {providername}'
-gif_picker: Bộ chọn ảnh gif
+get_help: yêu cầu hỗ trợ
+get_notified: chấp nhận thông báo
+get_notified_by_email: Nhận thông báo quađịa chỉ hòm thư
+get_responses_by_email: Nhận thư trả lời
+gif_attribution: thông qua {tên nhà cung cấp}
+gif_picker: bộ chọn ảnh GIF
 gifs_load_error: Không thể tải GIF
-go_to: 'Vào {app_name}'
+go_to: Đi tới {app_name}
 great: Tốt
-group_conversation_1_other_participant_count_short: +1 người khác
-group_conversation_multiple_other_participant_count_short: '+{other_participant_count} người khác'
-group_conversation_multiple_person_also_participating: '{other_participant_count} người khác cũng đang tham gia'
-group_conversation_name_also_participating: '{participant_name} cũng đang tham gia'
-group_conversation_name_and_1_other_also_particiapting: '{participant_name} và 1 người khác cũng đang tham gia'
-group_conversation_name_and_multiple_others_also_participating: '{participant_name} và {other_participant_count} người khác cũng đang tham gia'
+group_conversation_multiple_person_also_participating: "{other_participant_count}
+  người khác cũng đang tham gia"
+group_conversation_name_also_participating: "{participant_name} cũng đang tham gia"
+group_conversation_name_and_1_other_also_particiapting: "{participant_name} và 1
+  người khác cũng đang tham gia."
+group_conversation_name_and_multiple_others_also_participating: "{participant_name}
+  và {other_participant_count} người khác cũng đang tham gia"
 group_conversation_one_person_also_participating: 1 người khác cũng đang tham gia
-help_space_title: Trợ giúp
-hi_name: "Chào {first_name} \U0001F44B"
-hi_there: Chào bạn 👋
-home_space_title: Nhà
-how_can_we_help: Chúng tôi có thể giúp được gì cho bạn?
-how_would_you_rate_this: Bạn đánh giá thế nào về điều này?
-january_date: 'Ngày {date} tháng 1'
+help_space_title: hỗ trợ
+hi_name: Xin chào, {tên} 👋
+hi_there: Xin Chào 👋
+home_space_title: Trang chủ
+how_can_we_help: Làm thế nào chúng ta có thể giúp đỡ?
+how_would_you_rate_this: Bạn đánh giá nội dung này như thế nào?
+january_date: tháng 1 {ngày}
 join_conversation: Tham gia cuộc trò chuyện
-july_date: 'Ngày {date} tháng 7'
-june_date: 'Ngày {date} tháng 6'
-last_active_hours_ago: 'Hoạt động lần cuối {mins} giờ trước'
-last_active_mins_ago: 'Hoạt động lần cuối {mins} phút trước'
-last_active_over_a_week: Hoạt động lần cuối hơn 1 tuần trước
-learn_more: Tìm hiểu thêm
-leave_us_a_message: Để lại tin nhắn cho chúng tôi
-leave_your_email: Để lại email của bạn
-loading: Đang tải
-march_date: 'Ngày {date} tháng 3'
-may_date: 'Ngày {date} tháng 5'
-message: tin nhắn
-message_seen: Đã xem
-message_state_sending: Đang gửi…
-message_unseen: Chưa xem
-messages_browse_articles_btn: Duyệt tìm trợ giúp
-messages_empty_state_text: Thông báo từ nhóm sẽ được hiển thị ở đây
-messages_empty_state_title: Không có tin nhắn
-messages_space_title: Tin nhắn
-messenger: messenger
-messenger_bot_reply_time: Bot của chúng tôi sẽ trả lời ngay lập tức
-multiple_articles: '{total_articles} Bài viết'
-multiple_collections: '{total_collection} bộ sưu tập'
-mute_sound: Tắt âm thanh
-name_and_1_other: '{name} và 1 người khác'
-name_and_one_other: '{name} và 1 người khác'
-name_and_two_others: '{name} và 2 người khác'
-name_and_x_others: '{name} và {count} người khác'
-nature: Tự nhiên
-navigation_back: Quay lại
-new_conversation: Hội thoại mới
-new_message: Tin nhắn mới
+july_date: tháng 7 {ngày}
+june_date: tháng 6 {ngày}
+last_seconds: "{delta} giây trước"
+last_minutes: "{delta} phút trước"
+last_hours: "{delta} giờ trước"
+last_days: "{delta} ngày trước"
+last_active_hours_ago: Trực tuyến lần cuối {phút} giờ trước
+last_active_mins_ago: Trực tuyến lần cuối {phút} trước
+last_active_over_a_week: Lần cuối trực tuyến cách đây hơn 1 tuần
+learn_more: tìm hiểu thêm
+leave_us_a_message: xin gửi tin nhắncho chúng tôi
+leave_your_email: cung cấp địa chỉhòm thư của bạn
+loading: đang tải
+more: nhiều hơn
+seq: lần
+march_date: tháng 3 {ngày}
+may_date: tháng 5 {ngày}
+message: thông báo
+message_seen: đã xem
+message_state_sending: đang gửi
+message_unseen: chưa xem
+message_has_unseen: có thông báochưa xem
+messages_browse_articles_btn: trình duyệt đã được trợ giúp
+messages_empty_state_text: thông báo từ nhóm sẽ xuất hiện ở đây
+messages_empty_state_title: không có thông báo
+messages_space_title: thông báo
+messenger: Tin nhắn
+messenger_bot_reply_time: Người máy của chúng tôi sẽ trả lời ngay lập tức
+multiple_articles: "{tổng} bài viết"
+multiple_collections: "{tổng} bộ sưu tập"
+mute_sound: im lặng
+name_and_1_other: "{tên} và 1 người khác"
+name_and_one_other: "{tên} và 1 người khác"
+name_and_two_others: "{tên} và 2 người khác"
+name_and_x_others: "{tên} và {số} người khác"
+nature: tự nhiên
+navigation_back: quay lại
+new_conversation: cuộc trò chuyệnmới
+new_message: Thông báo mới
 news: Tin tức
-news_empty_title: Chưa có tin tức
-news_latest_subtitle: 'Từ nhóm {team_name}'
+news_empty_title: Chưa có tin gì mới
+news_latest_subtitle: Từ đội {tên đội}
 news_latest_title: Mới nhất
-news_older_title: Cũ hơn
-news_space_title: Tin tức
-newsfeed: Nguồn cấp tin tức
+news_older_title: khá cũ
+news_space_title: tin tức
+newsfeed: nguồn cấp tin tức
 no_articles_to_display: Chưa có bài viết nào
-no_conversations: Không có hội thoại
-no_emoji_found: Không tìm thấy emoji nào
-no_gifs_found: Không tìm thấy GIF nào
-no_help_articles_to_display: Không có bài viết trợ giúp
-no_messages_from_the_team: Không có tin nhắn từ nhóm
-no_results_for_searchterm: 'Không có kết quả cho {searchTerm}'
-no_tasks: Không có nhiệm vụ
-no_tasks_available_currently: Hiện tại không có nhiệm vụ nào khả dụng.
-nothing_to_see_here_yet: Không có tin mới
-notification: thông báo
-november_date: 'Ngày {date} tháng 11'
-number_is_incorrect: Số đó có vẻ không đúng
-objects: Đồ vật
-october_date: 'Ngày {date} tháng 10'
-office_hours_client_response_1h: Quay lại sau 1 giờ
-office_hours_client_response_2h: Quay lại sau 2 giờ
-office_hours_client_response_30m: Quay lại sau 30 phút
-office_hours_client_response_3h: Quay lại sau 3 giờ
-office_hours_client_response_day_0: Quay lại vào thứ Hai
-office_hours_client_response_day_1: Quay lại vào thứ Ba
-office_hours_client_response_day_2: Quay lại vào thứ Tư
-office_hours_client_response_day_3: Quay lại vào thứ Năm
-office_hours_client_response_day_4: Quay lại vào thứ Sáu
-office_hours_client_response_day_5: Quay lại vào thứ Bảy
-office_hours_client_response_day_6: Quay lại vào Chủ Nhật
-office_hours_client_response_later_today: Quay lại sau trong hôm nay
-office_hours_client_response_next_week: Quay lại vào tuần sau
-office_hours_client_response_tomorrow: Quay lại vào ngày mai
-ok_description: Ok
-open_article_in_help_center: Mở trong trung tâm trợ giúp
+no_content: Chưa có nội dung nào
+no_conversations: không có cuộctrò chuyện nào
+no_emoji_found: Không tìm thấy biểu tượng cảm xúc
+no_gifs_found: Không tìm thấy GIF
+no_help_articles_to_display: Bài viết không hữu ích
+no_messages_from_the_team: Không có tin tức từ đội
+no_results_for_searchterm: Không có kết quả cho {searchTerm}
+no_tasks_available_currently: Hiện tại không có nhiệm vụ nào.
+nothing_to_see_here_yet: Chưa có gì để xem ở đây
+notification: sự thông báo
+november_date: tháng 11 {ngày}
+number_is_incorrect: Con số có vẻ không chính xác
+objects: sự việc
+october_date: tháng 10 {ngày}
+office_hours_client_response_1h: Dịch vụ khách hàng có sẵn sau 1 giờ
+office_hours_client_response_2h: Dịch vụ khách hàng có sẵn sau 2 giờ
+office_hours_client_response_30m: Dịch vụ khách hàng có sẵn sau 30 phút
+office_hours_client_response_3h: Dịch vụ khách hàng có sẵn sau 3 giờ
+office_hours_client_response_day_0: Dịch vụ khách hàng bắt đầu từ Thứ Hai
+office_hours_client_response_day_1: Dịch vụ khách hàng bắt đầu từ Thứ ba
+office_hours_client_response_day_2: Dịch vụ khách hàng bắt đầu từ Thứ Tư
+office_hours_client_response_day_3: Dịch vụ khách hàng bắt đầu từ Thứ Năm
+office_hours_client_response_day_4: Dịch vụ khách hàng bắt đầu từ Thứ Sáu
+office_hours_client_response_day_5: Dịch vụ khách hàng bắt đầu từ Thứ Bảy
+office_hours_client_response_day_6: Dịch vụ khách hàng bắt đầu từ Chủ Nhật
+office_hours_client_response_later_today: Dịch vụ khách hàng có sẵn sau tối hôm
+  nay
+office_hours_client_response_next_week: Dịch vụ khách hàng sẽ bắt đầu vào tuần sau
+office_hours_client_response_tomorrow: Dịch vụ khách hàng sẽ bắt đầu vào ngày mai
+ok_description: Vẫn tốt
+open_article_in_help_center: Mở trong Trung tâm trợ giúp
 open_conversation_and_reply: Mở cuộc trò chuyện và trả lời
-open_intercom_messenger: Mở Intercom Messenger
-operator_asked_for_attribute: 'Đã yêu cầu {attribute}'
-or_click_open_whatsapp: Hoặc nhấp vào đây để mở WhatsApp
-or_continue_on_whatsapp_web: Hoặc tiếp tục trên trang web WhatsApp
-our_bot_answers_instantly: Bot của chúng tôi trả lời ngay lập tức
+open_intercom_messenger: Mở liên lạc nội bộ Messenger
+operator_asked_for_attribute: Hỏi về {thuộc tính}
+or_click_open_whatsapp: Hoặc bấm vào đây để mở WhatsApp
+or_continue_on_whatsapp_web: Hoặc tiếp tục trên trang WhatsApp
+our_bot_answers_instantly: Người máy của chúng tôi sẽ trả lời ngay lập tức
 pause: Tạm dừng
 people: Người
 phone_number: Số điện thoại
 places: Địa điểm
 play: Phát
-play_sound: Phát âm thanh
-play_video: Phát video
-plus_x_participants: '+ {count}'
-pointer: con trỏ
-post: bài đăng
-powered_by_intercom: Được cung cấp bởi Intercom
+play_sound: Âm Thanh phát
+play_video: Hình ảnh phát
+pointer: con trỏ chuột
+post: dán thông báo
+powered_by_intercom: Được hỗ trợ bởi liên lạc nội bộ
 proactive_expected_response_delay_10800: Thường trả lời trong vòng 3 giờ
 proactive_expected_response_delay_120: Thường trả lời trong vòng 2 phút
 proactive_expected_response_delay_1200: Thường trả lời trong vòng 20 phút
 proactive_expected_response_delay_14400: Thường trả lời trong vòng 4 giờ
-proactive_expected_response_delay_172800: Thường trả lời trong 2 ngày
+proactive_expected_response_delay_172800: Thường trả lời trong vòng 2 ngày
 proactive_expected_response_delay_180: Thường trả lời trong vòng 3 phút
 proactive_expected_response_delay_1800: Thường trả lời trong vòng 30 phút
 proactive_expected_response_delay_18000: Thường trả lời trong vòng 5 giờ
 proactive_expected_response_delay_21600: Thường trả lời trong vòng 6 giờ
 proactive_expected_response_delay_240: Thường trả lời trong vòng 4 phút
-proactive_expected_response_delay_259200: Thường trả lời trong 3 ngày
+proactive_expected_response_delay_259200: Thường trả lời trong vòng 3 ngày
 proactive_expected_response_delay_300: Thường trả lời trong vòng 5 phút
-proactive_expected_response_delay_345600: Thường trả lời trong 4 ngày
+proactive_expected_response_delay_345600: Thường trả lời trong vòng 4 ngày
 proactive_expected_response_delay_3600: Thường trả lời trong vòng 1 giờ
-proactive_expected_response_delay_43200: Thường trả lời trong 12 giờ
-proactive_expected_response_delay_432000: Thường trả lời trong 5 ngày
-proactive_expected_response_delay_518400: Thường trả lời trong 6 ngày
+proactive_expected_response_delay_43200: Thường trả lời trong vòng 12 giờ
+proactive_expected_response_delay_432000: Thường trả lời trong vòng 5 ngày
+proactive_expected_response_delay_518400: Thường trả lời trong vòng 6 ngày
 proactive_expected_response_delay_60: Thường trả lời trong vòng 1 phút
 proactive_expected_response_delay_600: Thường trả lời trong vòng 10 phút
 proactive_expected_response_delay_604800: Thường trả lời trong vòng 1 tuần
-proactive_expected_response_delay_7200: Thường trả lời trong vòng 2 giờ
-proactive_expected_response_delay_86400: Thường trả lời trong 1 ngày
-proactive_expected_response_delay_900: Thường trả lời trong chưa đầy 15 phút
-proactive_expected_response_delay_unknown: Sẽ trả lời sớm nhất có thể
-product_tours_author: 'Bởi {name} từ {company}'
-product_tours_done: Xong
-product_tours_error: >-
-  Chúng tôi rất tiếc vì đã phát sinh vấn đề không mong muốn với chuyến tham quan
-  tìm hiểu này
-product_tours_error_cta: Nói chuyện với nhóm
-product_tours_name: Tham quan tìm hiểu sản phẩm
-product_tours_next: Tiếp
+proactive_expected_response_delay_7200: Thường trả lời trong vòng 2 tiếng
+proactive_expected_response_delay_86400: Thường trả lời trong vòng 1 ngày
+proactive_expected_response_delay_900: Thường trả lời trong vòng 15 phút
+proactive_expected_response_delay_unknown: Sẽ nhanh chóng trả lời
+product_tours_author: 'Được tạo bởi: {name} của {company}'
+product_tours_done: đã hoàn tất
+product_tours_error: Xin lỗi, rất tiếc đã xảy ra lỗi không mong muốn khi trải nghiệm
+  sự xem xét này
+product_tours_error_cta: Liên hệ với nhóm
+product_tours_name: xem xét sản phẩm
+product_tours_next: tiếp theo
 product_tours_restart: Khởi động lại
-product_tours_snooze: Giấc ngủ ngắn
-product_tours_tour_step_number: '{start_number} trong {end_number}'
-product_tours_view: Xem chuyến tham quan tìm hiểu
-profile_location: '{time} ở {location}'
-rate_your_conversation: Xếp hạng cuộc trò chuyện
-receive_replies_there: 'Khi nhóm trả lời, bạn sẽ nhận được câu trả lời ở đó'
-recent_ticket: Vé gần đây
-recent_tickets: Vé gần đây
-reconnect: Kết nối lại
-recorded_days_ago: 'Đã ghi {days} ngày trước'
-recorded_over_week_ago: Đã ghi hơn một tuần trước
-recorded_today: Đã ghi hôm nay
-recorded_yesterday: Đã ghi ngày hôm qua
-remove_participant: Xóa người tham gia
-remove_person: Xóa người
-reply_from: Tin trả lời từ
-reply_to_conversation: Viết tin trả lời
-reply_to_name: 'Trả lời {name}…'
-scan_qr: Quét QR bằng điện thoại của bạn
-search: Tìm kiếm
-search_browse_empty_state_text: >-
-  Rất tiếc, chúng tôi không thể tìm thấy bất cứ kết quả nào cho điều đó. Thử
-  viết lại nội dung tìm kiếm của bạn.
-search_for_answers: Tìm kiếm câu trả lời…
+product_tours_snooze: ngủ đông
+product_tours_tour_step_number: "{start_number} / {end_number}"
+product_tours_view: kiểm tra sản phẩm
+profile_location: "{thời gian} tại {địa điểm}"
+rate_your_conversation: Đánh giá cuộc trò chuyện
+receive_replies_there: Khi nhóm phản hồi, bạn sẽ nhận đc câu trả lời trong nhóm
+recent_ticket: Lệnh làm việc gần đây
+recent_tickets: Lệnh làm việc gần đây
+reconnect: kết nối lại
+recorded_days_ago: Đã ghi chép lại {ngày} trước
+recorded_over_week_ago: Ghi chép lại một tuần trước
+recorded_today: hôm nay ghi chép lại
+recorded_yesterday: hôm qua ghi chép lại
+remove_participant: xóa hội viên
+remove_person: xóa hội viên
+reply_from: Trả lời từ
+reply_to_conversation: Nhập câu trả lời
+reply_to_name: trả lời {tên}
+scan_qr: Quét mã QR bằng điện thoại di động của bạn
+search: tìm kiếm
+search_browse_empty_state_text: Xin lỗi, chúng tôi không thể tìm thấy bất kỳ kết
+  quả tương ứng. Hãy thử viết lại cụm từ tìm kiếm của bạn.
+search_for_answers: tìm kiếm đáp án
 search_for_emoji: Tìm kiếm biểu tượng cảm xúc…
-search_for_help: Tìm kiếm sự trợ giúp
-search_gif: Tìm kiếm GIF…
-see_all: Xem tất cả
+search_for_help: tìm kiếm sự trợ giúp
+search_gif: Đang tìm kiếm ảnh GIF…
+see_all: Xem tất cả các cuộc trò chuyện
 see_all_conversations: Xem tất cả các cuộc trò chuyện của bạn
-see_past_conversations: Xem các cuộc trò chuyện cũ
+see_past_conversations: Xem các cuộc trò chuyện trước đây
 see_previous_conversations: Xem các cuộc trò chuyện trước đây của bạn
-seek_video: Tìm kiếm video
+seek_video: Tìm đoạn ghi hình
 send: Gửi
-send_a_message: Gửi tin nhắn…
-send_a_message_reply_time: Thời gian trả lời thông thường là
-send_a_message_reply_time_card: 'Thời gian trả lời thông thường là {replyTime}'
-send_prefilled_message: 'Khi WhatsApp mở, hãy gửi tin nhắn đã điền trước để tiếp tục cuộc trò chuyện'
+send_a_message: Gửi tin
+send_a_message_reply_time: Thời gian phản hồi thông thường là
+send_a_message_reply_time_card: Thời gian phản hồi thông thường là {thời gian phản
+  hồi}
+send_prefilled_message: Khi WhatsApp mở ra, hãy gửi tin nhắn điền sẵn để tiếp tục
+  cuộc trò chuyện
 send_us_a_message: Gửi tin nhắn cho chúng tôi
-send_us_a_message_bot: Gửi tin nhắn cho chúng tôi và bot của chúng tôi sẽ trả lời ngay lập tức
-sent_a_video: đã gửi một video
-sent_an_app: đã gửi ứng dụng
-sent_an_attachment: đã gửi một tệp đính kèm
-sent_an_image: đã gửi một hình ảnh
-sent_you_a_video: Đã gửi cho bạn một video
-sent_you_a_video_reply: Đã gửi cho bạn một video trả lời
-sent_you_an_app: Đã gửi cho bạn ứng dụng
-sent_you_an_attachment: Đã gửi cho bạn một tệp đính kèm
-sent_you_an_image: Đã gửi cho bạn một hình ảnh
-september_date: 'Ngày {date} tháng 9'
-shared_by: Được chia sẻ bởi
+send_us_a_message_bot: Gửi tin nhắn cho chúng tôi và người máy của chúng tôi sẽ
+  trả lời ngay lập tức
+sent_a_video: 'Đoạn ghi hình đã được gửi '
+sent_an_app: Ứng dụng đã được gửi
+sent_an_attachment: Đã gửi tệp đính kèm
+sent_an_image: Hình ảnh dã được gửi
+sent_you_a_video: Đoạn ghi hình đã gửi gửi cho bạn
+sent_you_a_video_reply: 'Đoạn ghi hình phản hồi đã được gửi '
+sent_you_an_app: Ứng dụng đã được gửi cho bạn
+sent_you_an_attachment: Tệp đính kèm đã được gửi cho bạn
+sent_you_an_image: Hình đã được gửi cho bạn
+september_date: Tháng 9 {ngày}
+shared_by: 'Chia sẻ bởi:'
 show_admin_name: Hiển thị tên quản trị viên
-show_less: Hiển thị ít hơn
-single_article: 1 Bài viết
+show_less: Hiện ít hơn
+single_article: 1 bài viết
 single_collection: 1 bộ sưu tập
-sms: SMS
-some_things_failed_to_load: Không tải được một số thứ. Thử lại.
-something_is_wrong: Đã xảy ra lỗi
+sms: tin nhắn
+some_things_failed_to_load: Một số nội dung không tải được. Vui lòng thử lại.
+something_is_wrong: Xảy ra sự cố
 source: Nguồn
 sources: Nguồn
 spaces_error_description: Không thể tải nội dung
-spaces_error_title: Đã xảy ra lỗi
-start_a_conversation: Bắt đầu trò chuyện...
+spaces_error_title: Xảy ra sự cố
+start_a_conversation: bắt đầu cuộc trò chuyện
 start_another_conversation: Bắt đầu cuộc trò chuyện khác
-start_typing: Bắt đầu nhập...
+start_typing: Bắt đầu nhập
 status: Tình trạng
-still_generating_answer: Vẫn đang tạo câu trả lời...
-still_thinking: Vẫn đang suy nghĩ...
-still_working_on_it: Vẫn đang tìm hiểu...
-string_is_incorrect: Có vẻ không đúng
-submit: Gửi
+status_pending: Đang xác nhận
+still_generating_answer: Vẫn đang tạo ra câu trả lời...
+still_thinking: Đang xem xét
+still_working_on_it: Vẫn đang nỗ lực để giải quyết...
+string_is_incorrect: có vẻ không đúng
+submit: Nộp
 successfully_reconnected: Đã kết nối lại thành công
-suggested_articles: Các bài viết đề xuất
-suggested_content_prompt: Bất kỳ nội dung nào trong số này có liên quan đến câu hỏi của bạn không?
-surveys_all_options_response_hint: Vui lòng chọn tất cả các tùy chọn phù hợp
-surveys_close_survey: Đóng khảo sát
-surveys_done_button: Xong
-surveys_dropdown_default_option: Vui lòng chọn một phản hồi...
+suggested_articles: bài viết được đề xuất
+suggested_content_prompt: Những điều này có liên quan đến vấn đề của bạn không?
+surveys_all_options_response_hint: Vui lòng chọn tất cả các áp dụng
+surveys_close_survey: Kết thúc sự tra soát
+surveys_done_button: Hoàn tất
+surveys_dropdown_default_option: Vui lòng chọn một đáp án
 surveys_email_error: Vui lòng nhập địa chỉ email hợp lệ
-surveys_fixed_response_count_response_hint: 'Vui lòng chọn {response_count} tùy chọn'
-surveys_from_company: 'Khảo sát từ {company}'
-surveys_from_teammate: 'Khảo sát của {sender_name} từ {company}'
-surveys_multi_select_too_few_responses: 'Câu hỏi này yêu cầu ít nhất {response_count} tùy chọn để chọn'
-surveys_multi_select_too_many_responses: 'Câu hỏi này yêu cầu {response_count} tùy chọn để chọn'
-surveys_multiselect_other_option: Khác (Vui lòng nêu rõ)
+surveys_fixed_response_count_response_hint: 'Vui lòng chọn {số phản hồi} tùy chọn '
+surveys_from_company: Khảo sát từ {công ty}
+surveys_from_teammate: Khảo sát từ {người gửi} tại {công ty}
+surveys_multi_select_too_few_responses: Câu hỏi này yêu cầu phải chọn ít nhất {số
+  phản hồi} tùy chọn
+surveys_multi_select_too_many_responses: Câu hỏi này yêu cầu chọn  {số phản hồi}
+  tùy chọn
+surveys_multiselect_other_option: Khác (vui lòng nêu rõ)
 surveys_multiselect_other_option_input_label: Vui lòng nêu rõ
 surveys_multiselect_other_option_input_placeholder: Nhập câu trả lời
 surveys_multiselect_other_option_value: Khác
-surveys_next_button: Tiếp
-surveys_nps_lower_label: Không có khả năng
-surveys_nps_upper_label: Rất có khả năng
-surveys_number_error: Vui lòng nhập số
-surveys_required_question: Đây là một câu hỏi bắt buộc
-surveys_required_response: Đây là phản hồi bắt buộc
-surveys_response_range_response_hint: >-
-  Vui lòng chọn tối thiểu {minimum_response_count} và tối đa
-  {maximum_response_count} tùy chọn
-surveys_response_too_long: 'Vui lòng giữ câu trả lời tối đa {character_count} ký tự'
-surveys_single_response_hint: Vui lòng chọn 1 tùy chọn
-surveys_submit_response: Gửi câu trả lời của bạn
-surveys_telephone_error: Vui lòng nhập số điện thoại hợp lệ
-surveys_text_input_question_placeholder: Vui lòng nhập phản hồi của bạn ở đây...
-symbols: Biểu tượng
+surveys_next_button: Bước tiếp theo
+surveys_nps_lower_label: Không khả thi lắm
+surveys_nps_upper_label: Hoàn toàn khả thi
+surveys_number_error: Vui lòng nhập một số
+surveys_required_question: Đây là câu hỏi phải trả lời
+surveys_required_response: Đây là câu trả lời bắt buộc
+surveys_response_range_response_hint: Vui lòng chọn ít nhất {số phản hồi ít nhất}
+  và tối đa {số phản hồi cao nhất} tùy chọn
+surveys_response_too_long: Vui lòng giữ câu trả lời của bạn dài tối đa {số ký tự}
+  ký tự
+surveys_single_response_hint: Hãy chọn 1 phương án
+surveys_submit_response: Gửi phản hồi của bạn
+surveys_telephone_error: Xin vui lòng nhập một số điện thoại hợp lệ
+surveys_birthday_error: Xin vui lòng nhập ngày sinh của bạn
+surveys_text_input_question_placeholder: Xin vui lòng nhập câu trả lời của bạn vào
+  đây…
+symbols: Biểu tưởng
 tasks_space_title: Nhiệm vụ
-team_name_custom_response_delay_2: '{app_name} thường trả lời trong một ngày'
-team_name_custom_response_delay_3: '{app_name} thường trả lời trong một tuần'
-team_name_proactive_expected_response_delay_one_business_day: '{app_name} thường trả lời trong một ngày làm việc'
-team_name_proactive_expected_response_delay_two_business_days: '{app_name} thường trả lời trong hai ngày làm việc'
-teammate_calendar_link: Lịch dành cho nhóm
-teammate_profile: 'Hồ sơ nhóm {provider}'
-tell_us_more: Cho chúng tôi biết thêm…
-tell_us_what_you_need: Hãy cho chúng tôi biết bạn cần giúp gì và bot của chúng tôi sẽ cố gắng đáp ứng
-terrible: Thật tệ
-thank_you: Xin cảm ơn
-thanks_custom_response_delay_one_business_day: Xin cảm ơn! Nhóm sẽ trả lời trong một ngày làm việc
-thanks_custom_response_delay_two_business_days: Xin cảm ơn! Nhóm sẽ trả lời trong vòng hai ngày làm việc
-thanks_for_letting_us_know: Cảm ơn bạn đã thông báo cho chúng tôi
-thanks_proactive_expected_response_delay_unknown: Cảm ơn bạn! Nhóm sẽ trả lời sớm nhất có thể
-that_country_code_doesnt_look_quite_right: Mã quốc gia đó có vẻ không đúng
-that_email_address_doesnt_look_quite_right: Địa chỉ email đó có vẻ không đúng
-that_number_doesnt_look_quite_right: Số đó có vẻ không đúng
-that_number_has_too_many_digits: Số đó có quá nhiều chữ số
-that_number_is_missing_a_few_digits: Số đó bị thiếu một vài chữ số
-that_number_needs_a_prefix: Số đó cần có đầu số (+ hoặc 00)
-the_team_can_help_if_needed: Nhóm có thể trợ giúp nếu cần
-the_team_typically_replies_in_10800: Nhóm thường trả lời trong vòng 3 giờ.
-the_team_typically_replies_in_120: Nhóm thường trả lời trong vòng 2 phút
-the_team_typically_replies_in_1200: Nhóm thường trả lời trong vòng 20 phút.
-the_team_typically_replies_in_14400: Nhóm thường trả lời trong vòng 4 giờ.
-the_team_typically_replies_in_172800: Nhóm thường trả lời trong 2 ngày.
-the_team_typically_replies_in_180: Nhóm thường trả lời trong vòng 3 phút
-the_team_typically_replies_in_1800: Nhóm thường trả lời trong vòng 30 phút.
-the_team_typically_replies_in_18000: Nhóm thường trả lời trong vòng 5 giờ.
-the_team_typically_replies_in_21600: Nhóm thường trả lời trong vòng 6 giờ.
-the_team_typically_replies_in_240: Nhóm thường trả lời trong vòng 4 phút
-the_team_typically_replies_in_259200: Nhóm thường trả lời trong 3 ngày
-the_team_typically_replies_in_300: Nhóm thường trả lời trong vòng 5 phút.
-the_team_typically_replies_in_345600: Nhóm thường trả lời trong 4 ngày
-the_team_typically_replies_in_3600: Nhóm thường trả lời trong vòng 1 giờ.
-the_team_typically_replies_in_43200: Nhóm thường trả lời trong vòng 12 giờ
-the_team_typically_replies_in_432000: Nhóm thường trả lời trong 5 ngày
-the_team_typically_replies_in_518400: Nhóm thường trả lời trong 6 ngày
-the_team_typically_replies_in_60: Nhóm thường trả lời trong vòng 1 phút
-the_team_typically_replies_in_600: Nhóm thường trả lời trong vòng 10 phút.
-the_team_typically_replies_in_604800: Nhóm thường trả lời trong vòng 1 tuần.
-the_team_typically_replies_in_7200: Nhóm thường trả lời trong vòng 2 giờ.
-the_team_typically_replies_in_86400: Nhóm thường trả lời trong 1 ngày.
-the_team_typically_replies_in_900: Nhóm thường trả lời trong chưa đầy 15 phút
-the_team_typically_replies_in_day: Nhóm thường trả lời trong một ngày.
-the_team_typically_replies_in_hours: Nhóm thường trả lời trong vài giờ.
-the_team_typically_replies_in_minutes: Nhóm thường trả lời trong vài phút.
-the_team_typically_replies_in_one_business_day: Nhóm thường trả lời trong một ngày làm việc.
-the_team_typically_replies_in_two_business_days: Nhóm thường trả lời trong vòng hai ngày làm việc
-the_team_typically_replies_in_under_n_hours: 'Nhóm thường trả lời trong dưới {hours} giờ.'
-the_team_typically_replies_in_under_n_min: 'Nhóm thường trả lời trong dưới {minutes} phút.'
-the_team_typically_replies_in_unknown: Nhóm sẽ trả lời sớm nhất có thể
-the_team_typically_replies_in_week: Nhóm thường trả lời trong một tuần.
-thinking: Đang suy nghĩ...
-this_chat_is_powered_by_intercom: Trò chuyện này được cung cấp bởi Intercom
-ticket_status_event_moved_automation_with_bullet_point: 'Đã chuyển vé vào {status} • {timestamp}'
-ticket_status_event_moved_with_bullet_point: '{teammate} đã chuyển vé vào {status} • {timestamp}'
-tickets_add_file: Thêm tập tin
-tickets_add_files: Thêm tập tin
-tickets_create_ticket: Tạo vé
-tickets_create_ticket_fallback: Vui lòng trả lời với thông tin sau và sẽ có người sớm liên hệ lại với bạn.
-tickets_cta_text: Bạn có câu hỏi về vé này?
-tickets_email_copy: Hồi âm và cập nhật vé sẽ được gửi đến email này
-tickets_email_subject: 'Vé {ticket_type_name} của bạn'
-tickets_email_subject_with_ticket_id: 'Vé {ticket_type_name} #{ticket_id} của bạn'
-tickets_estimated_resolution: 'Thời gian ước tính để giải quyết: {duration}'
-tickets_files_added: Đã thêm tập tin
-tickets_have_a_question: Bạn có câu hỏi về vấn đề này?
-tickets_in_progress_status_detail: Chúng tôi đang làm việc này 🙌
-tickets_in_progress_status_detail_with_assignee: '{first_name} đang làm việc này!'
-tickets_is_resolved: Vé này đã được giải quyết chưa?
-tickets_log_a_ticket: Ghi một vé
-tickets_resolved_status_detail: Chúng tôi đã hoàn thành vé của bạn
-tickets_resolved_status_detail_with_assignee: '{first_name} đã hoàn thành vé của bạn'
-tickets_sla: 'Ước tính sẽ được giải quyết {time}'
-tickets_space_title: Vé
-tickets_status_change_event: 'Vé hiện {status} • {timestamp}'
-tickets_status_description_completed: Chúng tôi đã hoàn thành vé của bạn
+team_name_custom_response_delay_2: "{tên ứng dụng} thường phản hồi trong vòng một
+  ngày"
+team_name_custom_response_delay_3: "{tên ứng dụng} thường phản hồi trong vòng một
+  tuần"
+team_name_proactive_expected_response_delay_one_business_day: "{tên ứng dụng} thường
+  phản hồi trong ngày làm việc đó"
+team_name_proactive_expected_response_delay_two_business_days: "{tên ứng dụng} thường
+  phản hồi trong hai ngày làm việc"
+teammate_calendar_link: Lịch đồng đội
+teammate_profile: "{người cung cấp} Hồ sơ đồng đội"
+tell_us_more: Hãy cho chúng tôi hiểu rõ thêm…
+tell_us_what_you_need: Hãy cho chúng tôi biết bạn cần trợ giúp gì và người máy của
+  chúng tôi sẽ cố gắng trả lời
+terrible: Rắc rối
+thank_you: Cảm ơn bạn
+thanks_custom_response_delay_one_business_day: Cảm ơn! Nhóm sẽ phản hồi trong vòng
+  một ngày làm việc
+thanks_custom_response_delay_two_business_days: Cảm ơn! Nhóm sẽ phản hồi trong vòng
+  hai ngày làm việc
+thanks_for_letting_us_know: Cảm ơn bạn đã phản ánh
+thanks_proactive_expected_response_delay_unknown: Cảm ơn bạn! Nhóm sẽ trả lời sớm
+  nhất có thể
+that_country_code_doesnt_look_quite_right: Mã quốc gia có vẻ không chính xác
+that_email_address_doesnt_look_quite_right: Địa chỉ email có vẻ không chính xác
+that_number_doesnt_look_quite_right: Con số có vẻ không chính xác
+that_number_has_too_many_digits: Số có quá nhiều chữ số
+that_number_is_missing_a_few_digits: Số bị thiếu một số chữ số
+that_number_needs_a_prefix: Số yêu cầu tiền tố (+ hoặc 00)
+the_team_can_help_if_needed: Nhóm sẵn sàng trợ giúp khi cần thiết
+the_team_typically_replies_in_10800: Nhóm thường phản hồi trong vòng 3 giờ
+the_team_typically_replies_in_120: Nhóm thường phản hồi trong vòng 2 phút
+the_team_typically_replies_in_1200: Nhóm thường phản hồi trong vòng 20 phút
+the_team_typically_replies_in_14400: Nhóm thường phản hồi trong vòng 4 giờ
+the_team_typically_replies_in_172800: Nhóm thường phản hồi trong vòng 2 ngày
+the_team_typically_replies_in_180: Nhóm thường phản hồi trong vòng 3 phút
+the_team_typically_replies_in_1800: Nhóm thường phản hồi trong vòng 30 phút
+the_team_typically_replies_in_18000: Nhóm thường phản hồi trong vòng 5 giờ
+the_team_typically_replies_in_21600: Nhóm thường phản hồi trong vòng 6 giờ
+the_team_typically_replies_in_240: Nhóm thường phản hồi trong vòng 4 phút
+the_team_typically_replies_in_259200: Nhóm thường phản hồi trong vòng 3 ngày
+the_team_typically_replies_in_300: Nhóm thường phản hồi trong vòng 5 phút
+the_team_typically_replies_in_345600: Nhóm thường phản hồi trong vòng 4 ngày
+the_team_typically_replies_in_3600: Nhóm thường phản hồi trong vòng 1 giờ
+the_team_typically_replies_in_43200: Nhóm thường phản hồi trong vòng 12 giờ
+the_team_typically_replies_in_432000: Nhóm thường phản hồi trong vòng 5 ngày
+the_team_typically_replies_in_518400: Nhóm thường phản hồi trong vòng 6 ngày
+the_team_typically_replies_in_60: Nhóm thường phản hồi trong vòng 1 phút
+the_team_typically_replies_in_600: Nhóm thường phản hồi trong vòng 10 phút
+the_team_typically_replies_in_604800: Nhóm thường phản hồi trong vòng 1 tuần
+the_team_typically_replies_in_7200: Nhóm thường phản hồi trong vòng 2 giờ
+the_team_typically_replies_in_86400: Nhóm thường phản hồi trong vòng 1 ngày
+the_team_typically_replies_in_900: Nhóm thường phản hồi trong vòng 15 phút
+the_team_typically_replies_in_day: Nhóm thường phản hồi trong 1 ngày
+the_team_typically_replies_in_hours: Nhóm thường phản hồi trong vòng vài giờ
+the_team_typically_replies_in_minutes: Nhóm thường phản hồi trong vòng vài phút
+the_team_typically_replies_in_one_business_day: Nhóm thường phản hồi trong một ngày
+  làm việc
+the_team_typically_replies_in_two_business_days: Nhóm thường phản hồi trong hai
+  ngày làm việc
+the_team_typically_replies_in_under_n_hours: Nhóm thường phản hồi trong vòng {giờ}
+the_team_typically_replies_in_under_n_min: Nhóm thường phản hồi trong vòng {phút}
+the_team_typically_replies_in_unknown: Nhóm thường phản hồi càng sớm càng tốt
+the_team_typically_replies_in_week: Nhóm thường phản hồi trong 1 tuần
+thinking: Đang xem xét
+this_chat_is_powered_by_intercom: Cuộc trò chuyện này được cung cấp bởi Intercom
+ticket_status_event_moved_automation_with_bullet_point: Vé đã được chuyển sang {tình
+  trạng} • {dấu thời gian}
+ticket_status_event_moved_with_bullet_point: "{thành viên trong nhóm} đã chuyển
+  vé vào {tình trạng} • {dấu thời gian}"
+tickets_add_file: 'Thêm các tệp tin '
+tickets_add_files: 'Thêm các tệp tin '
+tickets_create_ticket: Tạo một lệnh công việc
+tickets_create_ticket_fallback: Vui lòng trả lời kèm theo thông tin bên dưới và
+  sẽ có người liên hệ lại với bạn trong thời gian sớm nhất.
+tickets_cta_text: Bạn có thắc mắc về lệnh công việc này?
+tickets_email_copy: Thư trả lời và cập nhật lệnh công việc sẽ được gửi đến địa chỉ
+  email này
+tickets_email_subject: lệnh {tên} của bạn
+tickets_email_subject_with_ticket_id: 'Lệnh {ticket_type_name} của bạn #{ticket_id}'
+tickets_estimated_resolution: 'Thời gian giải quyết ước tính: {khoảng thời gian}'
+tickets_files_added: Đã thêm tệp tin
+tickets_have_a_question: Bạn có thắc mắc về vấn đề này?
+tickets_in_progress_status_detail: "Chúng tôi đang nỗ lực giải quyết vấn đề này 🙌"
+tickets_in_progress_status_detail_with_assignee: "{tên} đang giải quyết vấn đề này!"
+tickets_is_resolved: Lệnh này đã được giải quyết chưa?
+tickets_log_a_ticket: Đăng nhập lệnh làm việc
+tickets_resolved_status_detail: Chúng tôi đã hoàn thành lệnh của bạn
+tickets_resolved_status_detail_with_assignee: "{tên} đã hoàn thành lệnh của bạn"
+tickets_sla: 'Thời gian giải quyết dự kiến: {thời gian}'
+tickets_space_title: Lệnh làm việc
+tickets_status_change_event: Lệnh bây giờ {tình trạng} • {dấu thời gian}
+tickets_status_description_completed: Chúng tôi đã hoàn thành lệnh của bạn
 tickets_status_description_more_info: Chúng tôi cần thêm thông tin
-tickets_status_description_well_pick_up_soon: Chúng tôi sẽ sớm lấy vé của bạn
-tickets_status_description_working_on: Chúng tôi đang xử lý vé của bạn
-tickets_status_event_moved: '{teammate} đã chuyển vé vào {status} {timestamp}'
-tickets_status_event_moved_automation: 'Vé đã được chuyển vào {status} {timestamp}'
-tickets_status_event_submitted: 'Vé đã được {submitted_status} • {timestamp}'
-tickets_status_in_progress: Đang thực hiện
-tickets_status_resolved: Đã giải quyết
-tickets_status_submitted: Đã gửi
+tickets_status_description_well_pick_up_soon: Chúng tôi sẽ xử lý yêu cầu công việc
+  của bạn trong thời gian sớm nhất
+tickets_status_description_working_on: Chúng tôi đang xử lý lệnh của bạn
+tickets_status_event_moved: "{thành viên trong nhóm}} đã chuyển lệnh vào {tình trạng}
+  trên {dấu thời gian}"
+tickets_status_event_moved_automation: Lệnh đã được chuyển sang {tình trạng} vào
+  {dấu thời gian}
+tickets_status_event_submitted: Lệnh đã được {tình trạng nộp} • {dấu thời gian}
+tickets_status_in_progress: Đang tiến hành
+tickets_status_resolved: Đã xử lý
+tickets_status_submitted: Đã gửi đi
 tickets_status_waiting_on_you: Đang đợi bạn
-tickets_submitted_confirmation_header: Vé đã được gửi!
-tickets_submitted_confirmation_paragraph: Chúng tôi sẽ thông báo cho bạn khi vé của bạn có cập nhật
-tickets_submitted_status_detail: Chúng ta sẽ sớm lấy vé
-tickets_submitted_status_detail_with_assignee: '{first_name} sẽ sớm lấy vé'
-tickets_updates_prompt: Bạn sẽ nhận được thông tin cập nhật trong Messenger và qua email
-tickets_view_ticket: Xem chi tiết vé
+tickets_submitted_confirmation_header: Lệnh đã được gửi đi
+tickets_submitted_confirmation_paragraph: Chúng tôi sẽ thông báo cho bạn ngay khi
+  có thông tin cập nhật về lệnh của bạn
+tickets_submitted_status_detail: Chúng tôi sẽ sớm giải quyết vấn đề này
+tickets_submitted_status_detail_with_assignee: "{tên} sẽ sớm giải quyết vấn đề này"
+tickets_updates_prompt: Bạn sẽ nhận được thông tin cập nhật qua Messenger và email
+tickets_view_ticket: Xem chi tiết lệnh làm việc
 tickets_waiting_on_customer_status_detail: Chúng tôi cần thêm thông tin từ bạn
-tickets_waiting_on_customer_status_detail_with_assignee: '{first_name} cần thêm thông tin'
-time_day_ago: '{delta} ngày trước'
+tickets_waiting_on_customer_status_detail_with_assignee: "{tên} cần thêm thông tin"
+time_day_ago: "{delta} ngày trước"
 time_future_1h: 1 giờ
 time_future_2h: 2 giờ
 time_future_30m: 30 phút
 time_future_3h: 3 giờ
-time_future_day_0: Thứ Hai
-time_future_day_1: Thứ Ba
-time_future_day_2: Thứ Tư
-time_future_day_3: Thứ Năm
-time_future_day_4: Thứ Sáu
-time_future_day_5: Thứ Bảy
-time_future_day_6: Chủ Nhật
-time_future_later_today: Trong hôm nay
-time_future_next_week: Tuần tới
+time_future_day_0: Thứ hai
+time_future_day_1: Thứ ba
+time_future_day_2: 'Thứ tư '
+time_future_day_3: Thứ năm
+time_future_day_4: Thứ sáu
+time_future_day_5: 'Thứ bảy '
+time_future_day_6: Chủ nhật
+time_future_later_today: Tối hôm nay
+time_future_next_week: Tuần sau
 time_future_tomorrow: Ngày mai
-time_hour_ago: '{delta} giờ trước'
-time_just_now: Vừa xong
-time_minute_ago: '{delta} phút trước'
-time_week_ago: '{delta} tuần trước'
-time_yesterday: hôm qua
-tour: chuyến đi
+time_hour_ago: "{delta} giờ trước"
+time_hour_after: "{delta} giờ sau"
+time_just_now: Vừa mới
+time_minute_ago: "{delta} phút trước"
+time_week_ago: "{delta} tuần trước"
+time_yesterday: Hôm qua
+time_january: Tháng giếng
+time_february: Tháng hai
+time_march: Tháng ba
+time_april: Tháng tư
+time_may: Tháng năm
+time_june: Tháng sáu
+time_july: 'Tháng bảy '
+time_august: Tháng tám
+time_september: Tháng chín
+time_october: Tháng mười
+time_november: Tháng mười một
+time_december: Tháng mười hai
+time_birthday: Ngày sinh
+time_month: 'Tháng '
+date: Ngày
+tour: Sản phẩm
+community: Cộng đồng
+blog: Blog
+help_center: Trung tậm trợ giúp
 try_again: Thử lại
-try_help_center: Hãy thử Trung tâm trợ giúp của chúng tôi
-try_use_different_keywords: Hãy thử sử dụng các từ khóa khác nhau hoặc nhập câu hỏi đầy đủ của bạn
+try_help_center: Hãy thử vào trung tâm trợ giúp của chúng tôi
+try_use_different_keywords: Hãy thử sử dụng các từ khóa khác hoặc nhập câu hỏi hoàn
+  chỉnh của bạn
 two_business_days: Hai ngày làm việc
-type_a_number: Nhập một số…
-typically_replies_in_one_business_day: Thường trả lời trong một ngày làm việc
+type_a_number: Hãy nhập 1 con số
+typically_replies_in_one_business_day: Thường trả lời trong vòng một ngày làm việc
 typically_replies_in_two_business_days: Thường trả lời trong vòng hai ngày làm việc
 typing: Đang nhập
-unable_to_load_the_messenger: Chúng tôi không thể tải Messenger
-unread_messages: Tin nhắn chưa đọc
-updated_in_the_last_15m: Đã cập nhật trong 15 phút vừa qua
-updated_in_the_last_hour: Đã cập nhật trong 1 giờ vừa qua
-updated_over_a_week_ago: Đã cập nhật cách đây hơn 1 tuần
-updated_this_week: Đã cập nhật tuần này
-updated_today: Đã cập nhật hôm nay
-updated_yesterday: Đã cập nhật ngày hôm qua
-upfront_collection_form_close_out: Bạn có thể trở lại đây bất kỳ lúc nào để xem hồi âm và gửi nội dung cập nhật.
-upfront_collection_form_introduction: Chia sẻ một số ngữ cảnh để giúp nhóm phản hồi tốt hơn và nhanh hơn.
-upfront_collection_form_submission_confirmation: >-
-  Cám ơn bạn đã gửi ngữ cảnh đó. Để tiết kiệm thời gian sau này, bạn có thể bổ
-  sung thêm thông tin bây giờ.
-upfront_collection_form_subtitle: Gửi cho nhóm một số ngữ cảnh
-upfront_collection_form_subtitle_submitted: Họ sẽ luôn ghi nhớ ngữ cảnh này
-upfront_collection_form_title: Được trợ giúp nhanh hơn
-upfront_collection_form_title_submitted: Đã gửi đến nhóm!
-upload_attachment: Tải tệp đính kèm lên
-upload_failed: Tải lên không thành công
-upload_max_files_allowed: 'Được phép tối đa {limit} tập tin'
-upload_max_files_size: 'Kích thước tập tin tối đa là {limit}MB'
-user_says: '{firstName} nói…'
-usual_reply_time_header_label: Thời gian trả lời thông thường
-view_all: Xem tất cả
-view_conversation: Xem cuộc trò chuyện
-view_more: Hiển thị thêm
+unable_to_load_the_messenger: Messenger không thể tải được
+unread_messages: Thông báo chưa xem
+updated_in_the_last_15m: Cập nhật trong vòng 15 phút qua
+updated_in_the_last_hour: Đã cập nhật trong vòng một giờ qua
+updated_over_a_week_ago: Đã cập nhật một tuần trước
+updated_this_week: Cập nhật tuần này
+updated_today: Cập nhật hôm nay
+updated_yesterday: Cập nhật hôm qua
+upfront_collection_form_close_out: Bạn có thể quay lại đây bất kỳ lúc nào để xem
+  lại phản hồi và gửi thông tin cập nhật.
+upfront_collection_form_introduction: Chia sẻ một số bối cảnh để giúp nhóm phản
+  hồi tốt hơn và nhanh hơn.
+upfront_collection_form_submission_confirmation: Cảm ơn bạn đã gửi thông tin cơ
+  bản này. Để tiết kiệm thời gian sau này, bạn có thể bổ sung thêm thông tin chi
+  tiết ngay bây giờ.
+upfront_collection_form_subtitle: Gửi một số thông tin cơ bản cho nhóm
+upfront_collection_form_subtitle_submitted: Họ sẽ ghi nhớ thông tin cơ bản này
+upfront_collection_form_title: Nhận trợ giúp nhanh hơn
+upfront_collection_form_title_submitted: Đã gửi tới đội
+upload_attachment: Tải Tệp đính kèm
+upload_failed: Tải lên thất bại
+upload_max_files_allowed: Kích thước tệp tối đa là {giới hạn}MB
+upload_max_files_size: Kích thước tệp tối đa là {limit}MB
+user_says: "{tên} đã nói…"
+usual_reply_time_header_label: Thời gian phản hồi thông thường
+view_label: Kiểm tra
+view_all: Kiểm tra toàn bộ
+view_conversation: 'Kiểm tra cuộc trò chuyện '
+view_more: hiển thị nhiều hơn
 view_more_details: Xem thêm chi tiết
-view_post: Xem bài đăng
-we_run_on_intercom: Phát triển bởi Intercom
-with_teamname: 'với {teamname}'
-working_on_it: Đang tìm hiểu...
-write_your_message: Viết tin nhắn của bạn
-written_by: Được viết bởi
+view_more_2: Kiểm tra thêm
+view_less: Hiện ít hơn
+view_post: Kiểm tra bài viết
+we_run_on_intercom: Chúng tôi chạy trên Intercom
+with_teamname: Nói chuyện với {tên nhóm}
+working_on_it: Đang cố gắng đưa ra câu trả lời
+write_your_message: Để lại tin nhắn của bạn
+written_by: Tác giả
 you: Bạn
-you_are_all_up_to_date: Bản tin nóng!
-you_have_new_messages: Bạn có tin nhắn mới.
-you_rated_the_conversation: Bạn đã xếp hạng cuộc trò chuyện
-you_will_get_a_reply_here_and_at_email: 'Bạn sẽ nhận được tin trả lời tại đây và tại {email}'
-youll_be_notified_here_and_by_email: Bạn sẽ được thông báo tại đây và qua email
-youll_be_notified_here_and_by_sms: Bạn sẽ được thông báo tại đây và qua SMS
-your_checklists: Danh sách kiểm tra của bạn
+you_have_to_enough_18: Bạn phải trên 18 tuổi
+you_are_all_up_to_date: Bạn đã cập nhật
+you_have_new_messages: Bạn có thông báo mới
+you_rated_the_conversation: Bạn đã đánh giá cuộc trò chuyện
+you_will_get_a_reply_here_and_at_email: Bạn sẽ nhận được email trả lời tại đây ({email})
+youll_be_notified_here_and_by_email: Bạn sẽ nhận được thông báo tại đây và qua email
+youll_be_notified_here_and_by_sms: Bạn sẽ nhận được thông báo tại đây và qua SMS
+your_checklists: Danh sách của bạn
 your_conversations: Cuộc trò chuyện của bạn
-your_email: Email của bạn
-your_message: Tin nhắn của bạn
-your_recent_message: Tin nhắn gần đây
-your_recent_messages: Tin nhắn gần đây
-your_ticket: Vé của bạn
-casino_origin_game: Trò Chơi Gốc
-casino_provider: Nhà Cung Cấp Trò Chơi
-language_title: Ngôn ngữ
-language_current: Tiếng Việt
+your_email: Địa chỉ hòm thư của bạn
+your_message: Thông báo của bạn
+your_recent_message: Thông báo gần đây
+your_recent_messages: Thông báo gần đây
+your_ticket: Lênh làm việc của bạn
+casino_game_remove_favorite: Hủy bỏ yêu thích
+casino_game_add_favorite: Lưu trò chơi vào mục yêu thích
+casino_game_open_trend: Bật thống kê thời gian thực
+casino_game_close_trend: Tắt thống kê thời gian thực
+casino_game_open_theatre: Bật chế độ rạp hát
+casino_game_close_theatre: Tắt chế độ rạp hát
+casino_game_test_mode: Chế độ thử nghiệm
+casino_game_real_money_mode: chế độ chơi bằng tiền thật
+search_need_at_least_3_word: Yêu cầu ít nhất 3 ký tự để tìm kiếm.
+search_recent: Tìm kiếm gần đây
+search_no_result: Không có kết quả nào được tìm thấy.
+search_clear: Tìm kiếm rõ ràng
+search_game: Tìm kiếm trò chơi
+search_events: Tìm kiếm sự kiện
+casino_origin_game: trò chơi nguyên bản
+casino_games_recommend: Đề nghị phổ biến
+casino_provider: nhà cung cấp trò chơi
+casino_sort_popular: Phổ biến
+casino_sort_featured: Điểm nổi bật
+casino_filter_label: Được lọc bởi
+casino_filter_label_sort: Sắp xếp theo
+casino_filter_provider_all: Xem tất cả các nhà cung cấp trò chơi
+load_more: tải thêm
+game_type_all: sảnh
+game_type_live: sòng bạc trực tiếp
+game_type_slot: Máy đánh bạc con hổ
+game_type_slot_short_name: Máy con hổ
+game_type_rec: giới thiệu trò chơi
+finance_deposit_empty_text: Chưa có tiền đặt cọc
+finance_withdraw_empty_text: Chưa có khoản rút tiền nào
+finance_other_empty_text: Chưa có mục nào
+finance_deposit_download_text: Tải xuống tất cả các khoản tiền gửi
+finance_withdraw_download_text: Tải xuống tất cả các lần rút tiền
+finance_other_tab_all: Tất cả
+finance_other_tab_bonus: Tiền thưởng
+finance_other_tab_drop: Phần thưởng airdrop
+finance_other_tab_campaign_withdrawal: 'Rút tiền hoa hồng '
+finance_other_tab_reload_claim: Nhận tiền thưởng nạp tiền
+finance_other_tab_race_payout: Tiền thưởng cuộc thi
+finance_other_tab_rains_received: Nhận được phong bao đỏ
+finance_other_tab_rains_sent: Gửi tặng phong bao đỏ
+finance_other_tab_rakeback_received: Tiền vòng cược đã được thu hồi
+finance_other_tab_sportsbook_promotion_payout: Tiền thưởng khuyến mại cá cược thể
+  thao
+finance_other_tab_tips_received: Nhận được tiền bo
+finance_other_tab_tips_sent: Gửi tặng tiền bo
+finance_other_tab_vault_deposit: Tiền đặt cọc bảo hiểm
+finance_other_tab_vault_withdrawal: Rút tiền Vault
+finance_funds_transfer_sort_available: Số tiền có sẵn
+finance_funds_transfer_sort_commission: Hoa hồng
+finance_funds_transfer_sort_withdrawn: Đã rút tiền
+finance_funds_campaign_sort_created: Ngày xác lập
+finance_funds_campaign_sort_deposit_count: Số lần tiền nạp
+finance_funds_transfer_commission_txt: Chuyển hoa hồng liên kết sang số dư khả dụng
+finance_funds_transfer_commission_withdraw: Rút tiền hoa hồng có sẵn
+finance_funds_vault_draw: Rút tiền Vault
+success_deposit: Đã gửi thành công {amount} {icon} vào vault
+confirm_draw_vault: Đã xác nhận rút {amount} {icon} từ vault
+avai_commission: Hoa hồng có sẵn
+total_commission: Tổng hoa hồng
+page_label: Trang
+page_sizer_label: ĐiềuTrang
+page_prev: Trang trước
+page_next: Trang sau
+jump_to: Chuyển tới
+currency_byte_coin: tiền điện tử
+currency_law_coin: đấu thầu hợp pháp
+menu_title_promotion_tutorial: Hướng dẫn khuyến mãi
+menu_title_my_promotion: Sự quảng cáo của tôi
+menu_title_my_commission: Hoa hồng của tôi
+menu_title_my_performance: Thành tích của tôi
+menu_title_all_data: Tất cả dữ liệu
+menu_title_direct_finance: Tài chính trực tiếp
+menu_title_direct_bet: cá cược trực tiếp
+menu_title_direct_user: Người chơi trực tiếp
+menu_title_direct_receive: Nhận lãnh trực tiếp
+menu_title_commission_rate: Tỷ lệ hoa hồng
+menu_title_add_new_subagent: Thêm đại lý phụ mới
+menu_title_settings_general: Thông thường
+menu_title_settings_security: An toàn
+menu_title_settings_preferences: lựa chọn đầu tiên
+menu_title_settings_sessions: phiên họp
+menu_title_settings_ignoredusers: Danh sách đen
+menu_title_settings_api: API
+menu_title_settings_verify: Xác minh
+menu_title_settings_offers: Ưu đãi
+menu_title_settings_deposits: Nạp tiền
+menu_title_settings_withdrawals: Rút tiền
+menu_title_settings_bets: Đặt cược
+menu_title_settings_archive: Lưu trữ cá cược
+menu_title_settings_other: Khác
+menu_title_settings_contact: Thông tin liên lạc
+menu_title_settings_update_loginpwd: Đổi mật khẩu
+menu_title_settings_update_safepwd: Mật khẩu quỹ
+menu_title_settings_update_safecheck: Xác minh hai bước
+menu_title_settings_private: Tùy chọn quyền riêng tư
+menu_title_settings_loginsession: Nhật ký đăng nhập
+register_date: Ngày đăng kí
+total_deposits: Tổng số tiền nạp
+last_deposits: khoản tiền nạp cuối cùng
+independent_deposit: Tiền gửi riêng biệt
+commission_rate: Tỷ lệ hoa hồng
+times: Số lần
+wagered: tổng cược
+bet_amount: Số tiền đặt cược
+notify_title_error: Lỗi
+notify_title_success: Thành công
+tennis: Quần vợt
+soccer: Bóng đá
+american-football: bóng bầu dục Mỹ
+basketball: Bóng rổ
+table-tennis: Bóng bàn
+ice-hockey: Khúc côn cầu trên băng
+baseball: Bóng chày
+cricket: Bóng gậy
+ecricket: Bóng gậy điện tử
+league-of-legends: Liên Minh Huyền Thoại
+counter-strike: CS:GO/CS2
+mma: Võ tổng hợp
+rugby: bóng bầu dục Anh
+arena-of-valor: Cuộc thách đấu huyền thoại
+aussie-rules: bóng đá Úc
+badminton: Cầu lông
+boxing: Đấm bốc
+darts: Phi tiêu
+dota-2: Dota 2
+fifa: FIFA
+floorball: bóng sàn
+futsal: Futsal
+halo: hào quang
+handball: bóng ném
+kings-of-glory: vua của sự vinh quang
+mobile-legends: Cuộc thách đấu bất tận
+rainbow-six: Rainbow Six
+snooker: bi-a
+starcraft-2: Starcraft 2
+starcraft-1: Starcraft 1
+valorant: Valorant
+volleyball: Bóng chuyền
+waterpolo: Bóng nước
+alpine-skiing: Leo núi
+stock-car-racing: Cuộc đua xe sửa đổi
+gaelic-hurling: Gaelic Hurling
+gaelic-football: bóng đá Gaelic
+golf: Đánh gôn
+ski-jumping: Trượt tuyết
+biathlon: trượt tuyết và bắn súng
+motorcycle-racing: đua xe máy
+beach-volley: Bóng chày bãi biển
+politics-entertainment: Cuộc thi người đóng thế
+formula-1: Đua xe công thức một
+cross-country: xuyên quốc gia
+cycling: đua xe đạp
+sports_event: sự kiện thể thao
+sports_status_timeout: Trận đấu tạm dừng
+sports_status_live: Trận đấu đang diễn ra
+sports_status_close: Trận đấu hủy bỏ
+sports_status_interrupted: Trận đấu bị gián đoạn
+sports_status_settled: Trận đấu đã kết toán
+sports_status_finished: Trận đấu đã kết thúc
+sports_duplicate_bet: Đợn cược trùng lặp
+sports_status_tie: Hòa
+sports_status_win_half: Ăn nửa tiền
+sports_status_lose_half: Thua nửa tiền
+sports_status_lose_part: Thua một phần
+sports_estimated_payment_amount: 'Dự kiến số tiền chi trả '
+sports_payment_amount: Số tiền chi trả
+sports_single_bet: Đơn cược
+sports_multi_bet: Cược nhiều lần
+sports_active: Chưa kết toán
+sports_settled: Đã kết toán
+sports_accept_any_odds: chấp nhận mọi tỷ lệ cược
+sports_accept_higher_odds: Chỉ chấp nhận tỷ lệ cược cao hơn
+sports_accept_none_odds: Không có thay đổi tỷ lệ cược sẽ được chấp nhận
+sports_bet_slip_empty: Đơn cược trống
+sports_betting_now: Hãy bắt đầu đặt cược ngay bây giờ!
+sports_total_odds: tổng tỷ lệ cược
+sports_total_bet_amount: 总投注额
+sports_odds_has_changed: Tỷ lệ cược đã thay đổi.
+sports_bet: cá cược thể thao
+sports_hot_event: Trận đấu phổ biến
+sports_three_options: đặt cược 3 chiều
+sports_standard: Tiêu chuẩn
+sports_winner_market: Kèo thắng lợi
+sports_handicap_market: Kèo nhường điểm
+sports_total_market: Kèo tổng điểm
+sports_tab_live_events: Kèo trận đấu đang diễn ra
+sports_tab_starting_soon: Trận đấu sắp diễn ra
+sports_tab_lobby: Sảnh
+sports_tab_favourites: Mục yêu thích
+sports_no_active_bet: Chưa có cược nào đang hoạt động
+sports_live_tv: Phát trực tiếp
+sports_live_favourites: Vòng cược phổ biến của trận đấu đang diễn ra
+sports_upcoming_favourites: Sắp diễn ra trận đấu phổ biến
+sports_provider: Mục thể thao
+sports_odds_title: Tỷ lệ cược
+DECIMAL: biểu thức thập phân
+FRACTION: công thức phân số
+AMERICAN: Kiểu Mỹ
+INDONESIA: Kiểu Indo
+MALAYSIA: Kiêu Mã Lai
+HONGKONG: Kiểu Hong Kong
+sports_live_unlogin_tip: Vui lòng đăng nhập để xem truyền hình trực tiếp
+sports_starts_in: 'Thời gian bắt đầu: {phút} kể từ bây giờ'
+welcome_guest: Chào mừng
+language_title: Ngoại ngữ
+language_current: Tiếng Trung
+casino_index_description: Duyệt qua nhiều trò chơi sòng bạc đa dạng của chúng tôi
+  và để {site} mang đến cho bạn trải nghiệm cờ bạc trực tuyến vừa công bằng vừa thú
+  vị. Đặt cược vào các trò đánh bạc, sòng bạc trực tiếp, blackjack, baccarat, roulette
+  và hàng nghìn trò chơi sòng bạc cổ điển bao gồm cả trò chơi {site} gốc yêu thích
+  của bạn, ngay tại trình duyệt của bạn.
+sports_index_description: 'Đặt cược vào các đội thể thao, người chơi và giải đấu
+  từ khắp nơi trên thế giới với nền tảng cá cược thể thao của chúng tôi. Tận hưởng
+  trải nghiệm cá cược thể thao tuyệt vời bằng cách đặt cược vào nhiều tùy chọn cá
+  cược khác nhau trên sóng trực tiếp như MMA, bóng rổ, bóng đá và nhiều môn thể
+  thao khác '
+chat_been_hide: Phòng trò chuyện đã bị ẩn
+chat_show_room: hiển thị phòng trò chuyện
+chat_stop_by_scroll: cuộc trò chuyện đã dừng khi rê chuột
+chat_command_see_bet: Xem bđơn cược
+chat_command_see_user: Xem khách chơi
+chat_command_tip_user: Gửi tiền bo cho khách chơi
+chat_command_tip_rain: Gửi phong bao đỏ
+chat_command_ignore_user: Thêm vào danh sách đen
+chat_command_unignore_user: Loại khỏi danh sách đen
+chat_send_msg_placeholder: Nhập thông báo của bạn
+chat_new_window: Phòng trò chuyện được bật lên
+chat_close_side: Thu gọn thanh chat
+chat_send_tip_label: Gửi tặng tiền tip
+chat_rule_full_title: Các quy tắc hoàn chỉnh có thể được tìm thấy trong
+chat_forum: Diễn đàn
+chat_rule_find: Tìm thấy trên
+about_us: Về chúng tôi
+sponsor_activity: Hoạt động được tài trợ
+online_shopping: Mua sắm trực tuyến
+notify_error_forbid_operation: Hoạt động này không được phép
+user_account: Tài khoản
+user_superior: Cấp trên
+can_receive: Có thể nhận được
+receive_type: Cách thức nhận
+receive_commission: Nhận tiền hoa hồng
+commission_history: Lịch sử hoa hồng
+window_minimize: Giảm thiểu
+empty_game: Chưa có trò chơi nào
+copy_success: Sao chép thành công
+end_time: Thời gian kết thúc
+date_picker_error: Vui lòng chọn đúng thời gian bắt đầu và thời gian kết thúc
+sports_vs: VS
+receive_bonus: Nhận tiền thưởng
+choose_bonus_receive_label: Bạn có thể tự do lựa chọn loại tiền bạn muốn nhận
+current_exchange_rate: Tỷ giá hối đoái tài thời điểm hiện tại
+bonus_receive_expect: Dự kiến ​​nhận được
+confirm_receive: Xác nhận nhận được
+site_message: Thông báo nội bộ
+notice: Thông báo
+marquee: Đèn kéo quân
+reward_feedback: Phản hồi có khen thưởng
+message_center: Trung tâm thông báo
+deposit_detail: Chi tiết nạp tiền
+official_service: 'Dịch vụ chăm sóc khách hàng '
+receive_success: Thành công nhận lãnh
+wait_office_reply: Vui lòng đợi phản hồi chính thức từ bộ phận chăm sóc khách hàng
+agent_level_label: Cấp đại lý
+agent_level_up_condition: Điều kiện khuyến mãi (dòng tiền)
+receive_record_label: Lịch sử nhận lãnh
+receive_agent_commission_label: Hoa hồng nhận lãnh
+current_wait_receive_label: Số tiền hiện tại bạn cần nhận là
+current_wait_receive_desc: Bạn có thể tự do lựa chọn loại tiền bạn muốn nhận
+commission_wallet_money_label: Ví hoa hồng và số dư
+currency_exchange_rate: Quy đổi tổng tỷ giá nhận xu
+vip: VIP
+vip_promotion_bonus: Tiền thưởng khuyến mãi
+vip_water_back: Tiền vòng cược
+vip_day_salary: Thu nhập hàng ngày
+vip_week_salary: Thu nhập hàng tuần
+vip_month_salary: Thu nhập hàng tháng
+vip_day_salary_bonus: Thu nhập và thưởng theo ngày
+vip_week_salary_bonus: Thu nhập và thưởng theo tuần
+vip_month_salary_bonus: Thu nhập và thưởng theo tháng
+grade: Cấp bậc
+vip_promotion_exp: Trải nghiệm ưu đãi
+turnover_multiple: Dòng tiền gấp bội
+multiple: Gấp bội
+effective_bet: Đơn cược hợp lệ
+total_win_lose: Tổng thắng thua
+rebate_amount: Số tiền hoàn lại
+bet_order_num: Số lượng đơn cược
+rule_desc: Mô tả luật chơi
+vip_rule_1: 'Tiêu chí thăng cấp: Nếu bạn đáp ứng các yêu cầu để thăng cấp VIP (nghĩa
+  là đáp ứng tất cả các yêu cầu về mã hóa), bạn có thể được thăng cấp lên cấp VIP
+  tương ứng và nhận phần thưởng khuyến mãi tương ứng, nếu bạn thăng lên nhiều cấp
+  liên tiếp, bạn có thể nhận được tất cả tiền thưởng khuyến mãi cấp độ.'
+vip_rule_2: 'Thu nhập hàng ngày: Nếu bạn đáp ứng yêu cầu về thu nhập hàng ngày tương
+  ứng với cấp VIP, bạn có thể nhận được tiền thưởng hàng ngày tương ứng, được đặt
+  lại vào 00:00 hàng ngày.'
+vip_rule_3: 'Thu nhập hàng tuần: Nếu bạn đạt cấp VIP tương ứng với yêu cầu về thu
+  nhập hàng tuần, bạn có thể nhận được tiền thưởng hàng tuần tương ứng, được đặt
+  lại vào lúc 00:00 Thứ Hai hàng tuần'
+vip_rule_4: 'Thu nhập hàng tháng: Nếu bạn nạp tiền và code hàng tháng đạt yêu cầu
+  về thu nhập hàng tháng tương ứng với cấp VIP hiện tại thì có thể nhận thưởng hàng
+  tháng tương ứng, reset vào lúc 00:00 ngày mùng 1 hàng tháng'
+vip_rule_5: 'Hướng dẫn duy trì cấp độ: Sau khi thành viên đạt đến cấp VIP nhất định,
+  nếu việc nạp tiền và mã hóa trong tháng trước không đáp ứng yêu cầu duy trì, thành
+  viên sẽ tự động bị hạ một cấp.'
+vip_rule_6: 'Hướng dẫn kiểm tra: Phần thưởng do VIP đưa ra yêu cầu dòng tiền 1 lần
+  (tức là kiểm toán, mã hóa hoặc đặt cược hợp lệ) trước khi có thể rút. Mã hóa không
+  giới hạn ở nền tảng trò chơi'
+vip_rule_7: 'Nêu rõ hoạt động: Chức năng này được chủ tài khoản giới hạn cho cá
+  cược trò chơi thông thường. Cấm cho thuê tài khoản, cá cược không mang tính rủi
+  ro (đánh đối trang, đánh đối đơn cược, đơn cược tỷ lệ thấp), chênh lệch giá độc
+  hại, sử dụng plug-in, robot, khai thác giao thức, sơ hở , giao diện, Nếu có liên
+  quan đến việc kiểm soát nhóm hoặc các phương tiện kỹ thuật khác và sau khi được
+  xác minh là đúng, nền tảng có quyền chấm dứt hoạt động đăng nhập của thành viên,
+  đình chỉ việc sử dụng trang web của thành viên và tịch thu tiền thưởng và lợi
+  nhuận không chính đáng mà không cần thông báo đặc biệt.'
+vip_rule_8: 'Giải thích: Khi một thành viên nhận được phần thưởng VIP, trang bet
+  sẽ cho rằng thành viên đó đồng ý và tuân thủ các điều kiện tương ứng và các quy
+  định liên quan khác. Để tránh sự mơ hồ trong cách hiểu văn bản, trang bet có quyền
+  bảo lưu sự giải thích về hoạt động này'
+validate_msg_input_name: Vui lòng nhập đúng họ tên
+validate_msg_choose_bank: Vui lòng chọn ngân hàng
+validate_msg_choose_pix_account_type: Vui lòng chọn loại tài khoản PIX
+validate_msg_input_bank_number: Vui lòng nhập số thẻ ngân hàng
+validate_msg_input_third_account: Vui lòng nhập tài khoản của bên thứ ba
+validate_msg_regexp_bank_number: Vui lòng nhập đúng số thẻ ngân hàng gồm 4-30 chữ
+  số
+validate_msg_regexp_pix_account: Vui lòng nhập đúng tài khoản PIX gồm 4-30 chữ số
+validate_msg_input_branch_address: Vui lòng nhập đúng địa chỉ chi nhánh mở tài khoản
+validate_msg_withdraw_way: Vui lòng liên kết phương thức rút tiền trước khi rút
+validate_msg_input_pay_pwd: Vui lòng nhập mật khẩu quỹ
+validate_msg_input_paypwd_6: Vui lòng nhập mật khẩu quỹ gồm 6 chữ số
+validate_msg_input_code: vui lòng nhập mã xác nhận
+validate_msg_regexp_code: Mã xác minh địa chỉ hòm thư của bạn chứa 6 chữ số
+label_email_check: Thư xác thực
+label_bank_number: Số thẻ ngân hàng
+label_branch_address: Địa chỉ mở tài khoản ngân hàng
+label_account_holder_name: 'Tên Chủ tài khoản '
+label_all_type: Toàn bộ loại hình
+label_type: Loại hình
+label_currency_types: Loại tiền tệ
+label_draw_time: Thời gian nhận lãnh
+label_contribute_count: Số lượng người đóng góp
+label_bind: Liên kết
+title_input_paypwd: Nhập mật khẩu quỹ
+title_wallet_set: Cài đặt ví
+success_bind: Liên kết thành công
+success_delete: Xóa bỏ thành công
+tip_msg_bind_once: Không thể sửa đổi sau khi liên kết
+tip_msg_is_default_bank_number: Có nên cài đặt làm số thẻ mặc định hay không
+tip_msg_all_bind_account: Tất cả các tài khoản liên kết
+tip_msg_name_identical: Họ tên phải thống nhất với nhau
+tip_msg_name_edit: 'Hãy cẩn thận khi xác nhận họ tên của bạn một cách, sẽ rất khó
+  khăn trong việc thay đổi '
+promo_activity: Hoạt động khuyến mãi
+promo_lottery_activity: Rút thăm trúng thưởng
+weekly_share: Chia sẻ hàng tuần
+vip_banner_tip_1: Làm việc với đại diện Dịch vụ VIP chuyên dụng của bạn để điều
+  chỉnh lợi ích cho phù hợp với nhu cầu cá cược của bạn.
+vip_banner_tip_2: Bạn có thể mong đợi tiền thưởng hàng tuần và hàng tháng dựa trên
+  số lượng chơi của bạn. Càng chơi nhiều, bạn càng nhận được nhiều tiền thưởng.
+vip_banner_tip_3: Chưa may mắn? {site} cung cấp thêm tiền dựa trên số tiền thua của
+  bạn mỗi khi bạn lên cấp.
+vip_banner_tip_4: Được chỉ định một Đại diện Dịch vụ VIP tận tâm, người sẽ hỗ trợ
+  và đáp ứng nhu cầu cá cược của bạn.
+vip_banner_tip_5: Nhận tiền thưởng sau khi đạt đến từng cấp độ tiếp theo. Cấp độ
+  đạt được càng cao thì tiền thưởng nâng cấp càng lớn.
+booster_bonus: tiền thưởng tăng cường
+upgrade_bonus: Tiền thưởng tăng cấp
+monthly_bonus: Tiền thưởng hàng tháng
+weekly_bonus: Tiền thưởng hàng tuần
+day_deposit_bonus: Tiền thưởng hàng ngày/tiền thưởng nạp tiền
+recent_game_perform_bonus: Tiền thưởng hiệu suất trò chơi gần đây
+dedicated_vip_servicer: 'Đại diện chuyên dịch vụ chăm sóc hội viên VIP '
+multiple_count: Phép nhân
+ranking: Xếp hạng
+hidden_user: Tài khoản ẩn
+hidden_mode: Cách thức ẩn
+user_turn_on_hidden: Khách chơi đã bất chế độ riêng tư
+turn_on: Khởi động
+receive: Nhận lãnh
+received: Đã nhận lãnh
+wait_receive: Chờ nhận lãnh
+service_transfer: Chăm sóc khách đang chuyển tiền vào tài khoản
+bind_pix_account: Liên kết tài khoản PIX
+bind_bank_card: Liên kết tài khoản ngân hàng
+data_empty: Không có dữ liệu
+chat_rule_1: Đừng spam trong cuộc trò chuyện và tránh sử dụng quá nhiều chữ in hoa.
+chat_rule_2: Vui lòng không quấy rối hoặc xúc phạm người dùng khác và nhân viên
+  {site}.
+chat_rule_3: Vui lòng không chia sẻ bất kỳ thông tin cá nhân nào về bản thân bạn
+  hoặc người chơi khác (bao gồm cả tài khoản mạng xã hội).
+chat_rule_4: Vui lòng không xin tiền hoặc khoản vay từ người dùng khác, gửi tặng
+  phong bì đỏ hoặc tiền bo
+chat_rule_5: Trò chuyện bằng bất kỳ tài khoản nào khác ngoài tài khoản chính của
+  bạn đều bị nghiêm cấm.
+chat_rule_6: Không được phép có hành vi đáng ngờ có thể cấu thành sự gian lận.
+chat_rule_7: Không tham gia vào bất kỳ hình thức quảng cáo/mua bán/bán/mua/cung
+  cấp dịch vụ nào.
+chat_rule_8: Vui lòng không thảo luận về các bộ truyền phát, Twitch hoặc bất kỳ
+  nền tảng tương tự nào khác.
+chat_rule_9: Không sử dụng dịch vụ rút ngắn URL. Hãy đảm bảo khi gửi liên kết đầy
+  đủ.
+chat_rule_10: Vui lòng không chia sẻ mã hóa, tập lệnh hoặc dịch vụ của bất kỳ bot
+  nào.
+chat_rule_11: Vui lòng chỉ trò chuyện bằng ngôn ngữ được chỉ định cho phòng trò
+  chuyện, nếu có hành vi lạm dụng sẽ bị xử phạt.
+chat_rule_12: Thảo luận về các chủ đề chính trị và tôn giáo đều bị nghiêm cấm.
+user_confirm_delete_draw_way: Vui lòng xác nhận để xóa các phương thức rút tiền
+  sau?
+confirm_delete: xác nhận xóa
+big_winner: Khách chơi ăn tiền lớn
+lucky_winner: Khách chơi may mắn
+win_label: Ăn
+lose: Thua
+description: Miêu tả
+link: Liên kết
+buy_bonus_round: Mua vòng thưởng
+pirate: Cướp biển
+sea: Đại đương
+fairness: Tính công bằng
+switch_wave: Chuyển đổi biến động
+house_edge: Nhà cái chiếm lợi thế
+investor: Người đầu tư
+partner: Cộng sự
+media: phương tiện truyền thông tin tức
+win: Thắng lợi
+win_equal_lose: Thắng Hòa Thua
+transaction_way: phương thức giao dịch
+transaction_time: Thời gian giao dịch
+credit_card: Thẻ tín dụng
+need_online_service: Nếu bạn cần trợ giúp, vui lòng liên hệ hỗ trợ trực tuyến
+support: hỗ trợ
+success_send_code: Mã xác nhận đã được gửi thành công
+code: 'Mã xác nhận '
+after_seconds_send_code: Gửi lại thư sau vài giây
+resend_code: Gửi lại mã xác nhận
+feedback_placeholder: Mọi ý kiến ​​của bạn đều rất quan trọng đối với chúng tôi.
+  Tất cả các ý kiến ​​có giá trị sẽ được thông qua. Sau khi được thông qua, các
+  phần thưởng tiền mặt khác nhau sẽ được trao tùy theo mức độ quan trọng. Bạn có
+  thể thoải mái phát biểu!
+feedback: Đóng góp
+create_feedback: Tạo sự phản hồi
+user_feedback: Phản hồi của tôi
+input_feedback: Vui lòng nhập nội dung phản hồi
+success_submit_feedback: Đã gửi phản hồi thành công
+feedback_content: nội dung đóng góp
+image: Hình ảnh
+image_upload_only: 'Chỉ có thể tải lên: định dạng {ty}'
+image_upload_tip: 'Chỉ có thể tải lên: định dạng png/jpg, tối đa 5 ảnh, tối đa một
+  ảnh 1M'
+image_upload_size: Kích thước tối đa của một hình ảnh là {size}
+image_upload_failed: Tải hình ảnh lên không thành công
+bonus_rule: Quy tắc tiền thưởng
+bonus_label: Tiền thưởng
+feedback_bonus_tip: Chúng tôi đã thiết lập một khoản tiền thưởng khổng lồ để thu
+  thập phản hồi để có thể tối ưu hóa hệ thống và chức năng, đồng thời mang đến cho
+  bạn trải nghiệm tốt hơn! Sau khi được thông qua, tiềnt hưởng sẽ được trao dựa
+  trên tầm quan trọng (trừ khi không được thông qua)
+bonus_not_apply: Tiền thường chờ được nhận
+feedback_status: Tình trạng phản hồi
+feedback_status_done: Đã xử lý
+dealing: Đang xử lý
+content_text: Nội dung
+select_amount: Vui lòng chọn số tiền
+input_amount: Vui lòng nhập số tiền
+min_amount_is: Số tiền tối thiểu là
+max_amount_is: Số tiền tối đa là
+deposit_name: Tên người nạp tiền
+deposit_name_tip: Để đảm bảo thanh toán kịp thời, vui lòng đảm bảo nhập đúng tên
+  người nạp tiền
+deposit_amount: Số tiền nạp
+confirm_pay: Xác nhận thanh toán
+payee_info: Thông tin người nhận thanh toán
+transfer_amount_equal_order: Số tiền chuyển phải phù hợp với mã đơn cược
+cancel_deposit: Hủy lệnh nạp tiền
+already_deposit: Tôi đã nạp tiền
+confirm_transfer_ontime: Vui lòng xác nhận ngay sau khi chuyển khoản thành công!
+  Nếu không, nó có thể gây ra sự chậm trễ trong việc lên điểm!
+bank_choose: Lựa chọn ngân hàng
+channel_choose: Lựa chọn kênh
+choose_draw_bank: Vui lòng chọn ngân hàng thanh toán
+validate_require: Không được bỏ trống
+validate_amount: Số tiền không được là
+validate_deposit_amount_pos: Số tiền gửi không được là số âm
+validate_deposit_amount_max: Số tiền không thể vượt quá mức tối đa
+validate_deposit_amount_zero: Số tiền nạp không thể bằng 0
+withdraw_apply_success: Lệnh rút tiền thành công
+withdraw_bank: Thẻ ngân hàng rút tiền
+pix_account: Tài khoản PIX
+max: giá trị lớn nhất
+sports_rule: Luật cá cược thể thao
+scan: Duyệt qua
+change_byte_addr: Bạn có chắc chắn muốn thay đổi địa chỉ gửi tiền {delta} của mình
+  không?
+attention: Vui lòng chú ý
+change_byte_addr_1: Khi bạn thay đổi địa chỉ nạp tiền, địa chỉ cũ của bạn sẽ bị
+  vô hiệu hóa. Chỉ có địa chỉ mới có thể được sử dụng để nạp tiền. Vui lòng không
+  bao giờ nạp thêm tiền bằng địa chỉ cũ của bạn.
+change_byte_addr_2: Vui lòng đảm bảo rằng bạn không có giao dịch tiền nạp nào đang
+  chờ xử lý trước khi thay đổi địa chỉ tiền nạp của mình.
+action_no_cancel: Hành động này không thể được hoàn tác
+validate_msg_user_name: Vui lòng nhập địa chỉ email chính xác hoặc tên người dùng
+  bằng tiếng Anh và số có 3-14 chữ thường
+need_login_tip: Bạn cần đăng nhập để thực hiện thao tác này
+mark_all_read: đánh dấu tất cả như đã đọc
+empty_notify: Chưa có thông báo
+tip_show_action: Tương tác của bạn sẽ xuất hiện ở đây
+tip_for_set_safepwd: Để đảm bảo an toàn cho tiền của bạn, trước tiên vui lòng đặt
+  mật khẩu quỹ.
+tip_set_safe: Vui lòng đặt mật khẩu quỹ trước
+go_set: Đi tới cài đặt
+showing: Đang hiển thị
+in_all_game: Số tiền trong trò chơi
+now_show_game_num: Đang hiển thị {percentage} trong số {total} trò chơi
+validate_msg_user_name_tip: "    Tên người dùng của bạn phải có 3 – 14 chữ cái và
+  số viết thường"
+success_register: Đăng ký thành công
+user_name_exist: Tên người dùng đã tồn tại, vui lòng điền lại tên người dùng
+currency_disable: Không thể sử dụng tiền tệ
+save: Lưu lại
+verified: Đã xác minh
+raffle_ticket: Phiếu rút thăm
+in_date: Ngày tham gia
+fresh_competition: cuộc thi mới nhất
+deal_pend: Chờ xử lý
+adopted: Đã thông qua
+ignored: Đã bác bỏ
+next_vip_amount: Vẫn còn thiếu {amount} {vip}
+water: Dòng tiền
+empty_vip: Chưa có cấp độ
+class: Cấp độ
+copper: Đồng
+silver: Bạc
+gold: Vàng
+platinum: Bạch kim
+diamond: Kim cương
+yours: Của bạn
+progress: Tiến độ
+live_start_on_event: Hình ảnh trực tiếp sẽ bắt đầu trước trận đấu
+load_fail: Tải không thành công
+plat_maintain: Phòng chơi đang được bảo trì
+no_more: Không còn nhiều nữa
+loading_label: Đang tải...
+recent_game_record: Lịch sử trò chơi gần đây
+profile: thông tin cá nhân
+chat_rule_title: Nội quy phòng trò chuyện
+delete_confirm: Xóa bỏ xác nhận
+login_fail_tip: Đăng nhập không thành công, vui lòng đăng nhập lại
+sys_error: Lỗi hệ thống
+res_timeout: Hết thời gian phản hồi
+find_error: Đã xảy ra lỗi
+input_mem_account: Nhập tài khoản hội viên
+submit_reg: Gửi đăng ký
+join_time: thời gian tham gia
+player_id: ID của người chơi
+activity_clicks: Số lần nhận hoạt động
+recommend_users: Người dùng được đề xuất
+new_active: Tạo hoạt động mới
+activity: Hoạt động
+commission_cal_tip: Tất cả các trò chơi của chúng tôi đều có tỷ lệ lợi nhuận nhà
+  cái khác nhau. Bạn có thể sử dụng công thức sau để tính hoa hồng của mình
+sports_cal_tip: Tất cả cược thể thao đều được đặt với tỷ lệ lợi nhuận nhà cái lý
+  thuyết là {rate}. Bạn có thể sử dụng công thức sau để tính hoa hồng của mình
+commission_encourage: Nếu bạn có tầm ảnh hưởng lớn và có thể tiếp cận được nhiều
+  người hoặc đang trong những trường hợp đặc biệt khác, vui lòng liên hệ với nhóm
+  hỗ trợ xuất sắc của chúng tôi. Sau khi thảo luận với người quản lý liên kết, chúng
+  tôi có thể cố gắng tùy chỉnh chương trình liên kết cho bạn. Điều này có thể bao
+  gồm hoa hồng cao hơn.
+statistical_time: Thời gian thống kê
+withdraw_amount: Số tiền rút
+deposit_amount_label: Số tiền nạp
+deposit_draw_diff: Sự khác biệt giữa tiền nạp và tiền rút
+current_amount: số dư hiện tại
+receive_amount: Tổng số tiền nhận được
+agent_commission: Hoa hồng đại lý
+is_first_deposit: Có phải nạp tiền lần đầy hay không
+last_login: Lần đăng nhập gần đây
+online_status: Trạng thái trực tuyến
+settle_time: Thời gian kết toán
+performance: Hiệu suất
+detail: Chi tiết
+accu_commission: Hoa hồng tích lũy
+sub_count: Số lượng thành viên cấp dưới
+label_contribute_commission: Đóng góp hoa hồng
+received_commission: Hoa hồng nhận đã nhận được
+last_commission: Hoa hồng gần đây
+team_num: Tổng số đội nhóm
+direct_mem: Hội viên trực thuộc
+other_mem: Các hội viên khác
+total_performance: Tổng hiếu suất
+direct_performance: Hiếu suất trực thuộc
+other_performance: Các hiệu suất khác
+total_effect_bets: Tổng cược có hiệu lực
+total_bet_order: Tổng đơn cược
+slash_win_lose_total: Tổng thăng/thua
+promo_info: Thông tin ưu đãi
+click_save_qr: Nhấn để lưu mã QR
+my_link: Liên kết của tôi
+sub_bet: Cá cược của cấp dưới
+ten_thousand: Vạn
+total_agency_bonus: Tiền thưởng tổng đại lý
+contribute: Đóng góp
+contribute_to: Đóng góp cho
+direct: Trực thuộc
+sub_total_performance: Tổng hiệu suất của cấp dưới
+enjoy: Thưởng thức
+user_effect_bet: Bạn đã đặt cược hiệu quả {num} triệu
+sub_self_no_profit: Không có cấp dưới, không có lợi cho mình
+activity_name: Tên hoạt động
+label_no_collect: Chưa có mục yêu thích nào, vui lòng sử dụng
+put_collect: Thêm trò chơi vào mục yêu thích.
+success_edit: Sửa đổi thành công
+this_contains_invalid_email_characters: Điều này chứa các ký tự email không hợp
+  lệ
+tip_email_sent: Thư điện tử đã được gửi đi
+tip_email_to: Thư xác minh đã được gửi tới
+success_update_email: Thành công cập nhật địa chỉ thư điện tử
+email_update_to: Địa chỉ thư điện tử đã được cập nhật thành
+success_update_phone: Thành công cập nhật số điện thoại di động
+phone_update_to: Số điện thoại di động đã được cập nhật thành
+success_verify: Xác minh thành công
+congratulate_email_success: Chúc mừng bạn đã xác minh địa chỉ thư điện tử thành
+  công!
+resend_email: Gửi lại vào hòm thư điện tử
+phone: Số điện thoại
+tip_phone: Chúng tôi chỉ phục vụ các khu vực được liệt kê trong danh sách mã gọi
+  quốc tế.
+intl_phone_pre: Mã gọi quốc tế
+social_account: tài khoản mạng xã hội
+action: Hành động
+cancel_ignore: Xóa bỏ danh sách đen
+level_desc: Miêu tả cấp độ
+preferences_tip_1: Quyền riêng tư của người dùng là một trong những giá trị cốt
+  lõi của {site}. Những cài đặt này sẽ cho phép bạn ẩn danh hoàn toàn trước những
+  người chơi khác.
+preferences_tip_2: Đặt cược của bạn sẽ không xuất hiện trong nguồn cấp dữ liệu cá
+  cược công khai và bản xem trước đặt cược
+preferences_tip_3: Những người chơi khác sẽ không thể xem số liệu thống kê về số
+  lần thắng, thua và đặt cược của bạn
+preferences_tip_4: Những người dùng khác sẽ không thể xem lịch sử chơi của bạn
+preferences_tip_5: Vui lòng chờ tối đa 30 giây để bản cập nhật có hiệu lực.
+preferences_tip_6: Ngăn bạn nhận phong bao đỏ trong phòng chat
+preferences_tip_7: Chọn không nhận thư tiếp thị hoặc ưu đãi
+turn_on_hide_mode: Bật chế độ ẩn danh
+hide_all_statistic: Ẩn tất cả số liệu thống kê
+hide_all_competition_record: Ẩn tất cả hồ sơ trò chơi
+refuse_rain: Từ chối nhận phong bao đỏ
+marketing: 'Tiếp thị '
+receive_market_email: Nhận thư tiếp thị
+validate_msg_pwd_unequal: Mật khẩu nhập hai lần không chính xác
+validate_msg_safepwd_unequal: Mật khẩu quỹ được nhập hai lần không chính xác
+success_update_pwd: Sửa mật khẩu thành công
+pls_input_double_check_pwd: Vui lòng nhập mật khẩu xác minh hai bước của bạn
+success_set_double_check: Đặt mật khẩu xác minh hai bước thành công
+copy_to_google: Sao chép mã vào Ứng dụng Authenticator của bạn
+hide_from_others: Ngăn người khác xem trang này!
+success_set_safepwd: Đặt mật khẩu quỹ thành công
+tip_safepwd_six: Mật khẩu quỹ của bạn chứa 6 chữ số
+email_uncheck: Địa chỉ hòm thư điện tử chưa được xác minh
+tip_safepwd: Mật khẩu quỹ sẽ được sử dụng để bảo vệ việc rút tiền và rút tiền an
+  toàn từ kho tiền.
+login_time: Thời gian đăng nhập
+browser: Trình duyệt
+area: Khu vực
+wise_bet: Đặt cược thông minh hơn
+reg_now: Đăng ký ngay
+welcome_back: Chào mừng quay lại
+user_vip_pro: Tiến trình VIP của bạn
+most_advance_casino: Sòng bạc tiền điện tử trực tuyến hàng đầu
+go_casino: Đến khu vực sòng bạc
+best_sports: Cá cược thể thao trực tuyến bằng tiền điện tử tốt nhất
+go_sports: Đến trang cá cược thể thao
+pls_input_virtual_addr: Vui lòng nhập đúng địa chỉ rút tiền
+choose_protocol: Chọn giao thức
+your_virtual_addr: Địa chỉ {curNetworkName} của {currencyName} của bạn
+is_default_addr: Có nên đặt nó làm địa chỉ mặc định hay không
+transfer_in_addr: Địa chỉ chuyển vào
+confirm_pls_addr_tip: Vui lòng xác nhận gửi USDT đến địa chỉ này. Việc nạp tiền
+  cần có xác nhận từ toàn bộ mạng trước khi có thể được ghi có. Vui lòng kiên nhẫn
+  chờ đợi!
+transfer_in_amount: Số tiền chuyển khoản
+pls_confirm_deposit_addr: Vui lòng xác nhận rằng địa chỉ thanh toán đã được nạp
+  đầy đủ số tiền (không bao gồm phí xử lý), nếu không có thể dẫn đến việc không
+  thể lên điểm.
+use_in_game: Trò chơi đang được sử dụng
+search_currency: Tìm kiếm tiền tệ
+card_wallet: Ví thẻ
+improve_safe_level: Cải thiện bảo mật tài khoản của bạn với xác minh hai yếu tố
+turn_on_double_check: Bật xác minh hai bước
+hide_zero_wallet: Ẩn số dư bằng 0
+zero_wallet_hidden: Số dư bằng 0 của bạn sẽ không hiển thị trong ví của bạn
+address: Địa chỉ
+withdrawal_min_amount: Số tiền rút tối thiểu là
+withdrawal_fee_tip: Chúng tôi sẽ khấu trừ số tiền này khỏi số dư của bạn
+withdrawal_as_fee: Là phí giao dịch cho việc rút tiền của bạn
+present: Gửi
+order_label: Số
+bet_tip_amount_tip: Đã chặn thành công tổng giá trị {numStr}
+de: Của
+bet_more_than_balance: Số tiền đặt cược của bạn không thể lớn hơn số dư của bạn.
+order_by_alpha: theo thứ tự bảng chữ cái
+sport_in_coming: Cược trực tiếp và cá cược trận đấu sắp tới
+champion_bet: Quán quân đặt cược
+empty_cap: Tạm không có bảng kèo nào được sử dụng
+for_example: Ví dụ cụ thể như sau
+direct_team: Đội nhóm trực thuộc
+other_team: Đội nhóm khác
+summary: ghi chú tóm tắt
+no_bonus_now: 'Hiện tại không thể. nhận tiền quà tặng hoạt động nào '
+fail_bonus: Nhận lãnh thất bại
+bet_number: Số đơn đặt cược
+transaction_rebate: Hoàn trả cược của hội viên
+transaction_activity: Phần thưởng hoạt động
+transaction_admin_activity: Phẩn thưởng được gửi thủ công
+transaction_deposit_bonus: Ưu đãi nạp tiền
+transaction_vip_upgrade: tiền thưởng khuyến mãi vip
+transaction_vip_day: Hồng bao ngày Vip
+transaction_vip_week: Hồng bao tuần vip
+transaction_vip_monthly: Hồng bao tháng vip
+transaction_vip_birthday: quà sinh nhật vip
+promotion_tutorial_example_desc: Việc giảm giá trên trang này dựa trên các cược
+  hợp lệ, giả sử tỷ lệ hoàn tiền được hiển thị trong bảng ở góc trên bên trái. A
+  là người đầu tiên phát hiện ra cơ hội kinh doanh trên địa điểm này và ngay lập
+  tức phát triển B1, B2, B3, B1 sau đó phát triển C1 và C2, B2 không có cấp dưới,
+  còn B3 chỉ phát triển C3 tương đối mạnh. Vài ngày sau, mức đặt cược hiệu quả của
+  B1 là 80.000, mức đặt cược hiệu quả của B2 là 50.000, mức đặt cược hiệu quả của
+  B3 là 30.000, mức đặt cược hiệu quả của C1 là 100.000, mức đặt cược hiệu quả của
+  C2 là 40.000 và C3 của tôi đạt 710.000, sau đó tổng hiệu suất của B1 đến từ C1
+  và C2 là 140.000 và tỷ lệ chi trả hoa hồng tương ứng là 80/10.000; hiệu suất của
+  B2 không có cấp dưới là 0; cấp dưới C3 của B3 rất mạnh, tổng hiệu suất là 710.000
+  và tỷ lệ chi trả hoa hồng tương ứng là Tỷ lệ là 1 triệu/10.000, A có 160.000 từ
+  đội trực tiếp và 850.000 từ các đội khác, tổng hiệu suất là 1,01 triệu và tỷ lệ
+  chi trả hoa hồng tương ứng là 1 triệu/10.000. Khi đó thu nhập giữa họ được tính
+  như sau
+promotion_tutorial_direct_team_1: "(1) B1, B2, B3 đóng góp vào A: (80.000 + 50.000
+  + 30.000) x 100/10.000 = 1.600."
+promotion_tutorial_direct_team_2: "(2) C1 và C2 đóng góp vào B1: (100.000+40.000)x80/10.000=1120."
+promotion_tutorial_direct_team_3: "(3) C3 góp vào B3: 710.000 x 100/10.000 = 7100."
+promotion_tutorial_other_team_1: Nó dùng để chỉ các thành viên phát triển thành
+  cấp dưới, cấp dưới kế tiếp, cấp dưới tiếp theo, v.v. và được gọi chung là các
+  đội nhóm khác; vì hệ thống này có thể phát triển cấp dưới vô hạn nên để thuận
+  tiện cho việc giải thích, bài viết này chỉ lấy cấu trúc 2 cấp làm ví dụ .
+promotion_tutorial_other_team_2: "(1) Từ C1 và C2: Vì B1 có tổng hiệu suất là 140.000
+  và chỉ được hưởng tỷ lệ chi trả hoa hồng 80/10 nghìn, trong khi tổng hiệu suất
+  của A là 1,01 triệu và được hưởng tỷ lệ chi trả hoa hồng 1 triệu/10 nghìn nên
+  có khoản giảm giá giữa A và B1 Chênh lệch hoa hồng là: 100-80=20/10.000. Chênh
+  lệch này là phần đóng góp của C1 và C2 cho A, do đó C1 và C2 đóng góp cho A: (100.000+40.000)×20/10.000=
+  280."
+promotion_tutorial_other_team_3: "(2) Từ C3: Vì B3 có tổng hiệu suất là 710.000
+  và được hưởng tỷ lệ giảm giá là 1 triệu/10.000 và A có tổng hiệu suất là 1,01
+  triệu và được hưởng tỷ lệ chi trả hoa hồng là 1 triệu/10.000, nên chênh lệch chi
+  trả hoa hồng giữa A và B3 là: 100-100=0/10.000, C3 đóng góp vào A: 710.000x0/10.000=0."
+promotion_tutorial_summary_1: "(1) C3 mạnh đến mức nó gián tiếp cho phép A được
+  hưởng tỷ lệ hoa hồng cao hơn cho tất cả hiệu suất của nó."
+promotion_tutorial_summary_2: "(2) B2 có thể không chăm chỉ và sẽ không được lợi
+  gì nếu không phát triển cấp dưới của mình."
+promotion_tutorial_summary_3: "(3) Mặc dù B3 tham gia tương đối muộn và là cấp dưới
+  của A nhưng cấp dưới C3 của nó rất mạnh, cho phép B3 trực tiếp được hưởng tỷ lệ
+  hoa hồng cao hơn, vì vậy, bất kể B3 tham gia khi nào, cấp dưới của ai, bất kể
+  cấp bậc nào đã vào, Thu nhập sẽ không bao giờ bị ảnh hưởng, bạn sẽ không còn phải
+  gánh chịu sự thiệt thòi của cấp dưới người khác và sự phát triển của B3 sẽ không
+  bị hạn chế."
+promotion_tutorial_summary_4: "(4) Đây là một mô hình đại lý hoàn toàn công bằng
+  và chính đáng, không ai sẽ bị thiệt thòi mãi chỉ vì tham gia muộn."
+pls_input_min_max_amount: Vui lòng nhập số tiền trong khoảng từ {min} - {max}
+bet_no_close_tip: Đơn cược của bạn không được chứa các kèo đã đóng
+same_event_no_multi: Nhiều đơn cược từ cùng một trận đấu không thể cấu thành đơn
+  cược nhiều lần.
+multi_bet_max: Nhiều kết hợp đặt cược không thể vượt quá {max}.
+reuse_bet: Tái sử dụng đơn cược
+reg_bet: Đăng ký đặt cược
+accept_odd: Chấp nhận tỷ lệ cược mới
+company_intro_tip_1: '{host} là công ty hàng đầu thế giới về cá cược tiền điện
+  tử, với một trong những nền tảng cá cược thể thao và sòng bạc tốt nhất để đặt
+  cược bằng Bitcoin và các loại tiền điện tử khác. Được thành lập vào năm 2017,
+  {host} đã phát triển để trở thành một trong những tên tuổi đáng tin cậy nhất
+  trong ngành cờ bạc trực tuyến và cung cấp nhiều loại trò chơi sòng bạc ở nhiều
+  thị trường trên thế giới. Người chơi có thể tận hưởng trải nghiệm cờ bạc trực
+  tuyến an toàn, đáng tin cậy và thú vị trên một nền tảng duy nhất có tên là {site}!
+  Ngoài sòng bạc, {host} còn cung cấp nền tảng cá cược thể thao năng động để
+  đặt cược vào các môn thể thao, giải đấu và cuộc thi lớn nhất thế giới. Với tỷ
+  lệ cược được cập nhật mới nhất và nhiều tùy chọn cá cược khác nhau, thật dễ hiểu
+  tại sao {site} là cách thiết thực nhất để đặt cược vào các môn thể thao bằng cách
+  sử dụng tiền điện tử.'
+company_intro_tip_2: '{host} là một trong những nền tảng cá cược thể thao và sòng
+  bạc tiền điện tử uy tín nhất trong ngành. Là đối tác cá cược chính thức của UFC
+  ở Châu Mỹ Latinh và Châu Á và là nhà tài trợ chính của Câu lạc bộ bóng đá Watford,
+  {site} là đối tác của nhiều tên tuổi lớn nhất trong ngành, bao gồm Drake, Isley
+  Adesanya, Jose Aldo và nhiều người khác. đối tác cá cược được các siêu sao tin
+  cậy.'
+company_intro_tip_3: '{host} được cấp phép ở Curacao và cung cấp một nền tảng
+  an toàn, bảo mật và công bằng. {host} được điều hành bởi Medium Rare N.V. theo
+  giấy phép trò chơi 8048/JAZ cấp cho Antillephone, được Chính phủ Curacao cấp phép
+  và quản lý. Với danh tiếng vững chắc, nền tảng an toàn và bảo mật cũng như nhiều
+  lựa chọn cá cược tại sòng bạc và cá cược thể thao, {site} là một nền tảng cá cược
+  trực tuyến có cộng đồng năng động trên toàn thế giới.'
+company_intro_tip_title_1: Trải nghiệm sòng bạc tiền điện tử
+company_intro_tip_4: Sòng bạc tiền điện tử {site} có hàng trò chơi sòng bạc từ nhiều
+  nhà cung cấp trò chơi, mang đến cho người chơi trải nghiệm trải nghiệm tuyệt vời.
+  chơi cổ điển như slot, blackjack, roulette, baccarat và các trò chơi trên bàn
+  khác.
+company_intro_tip_5: Để mang đến cho người chơi trải nghiệm cờ bạc phong phú, các
+  trò chơi sòng bạc trực tiếp do {site} cung cấp có những người chia bài thực sự,
+  cho phép người chơi có trải nghiệm chơi trò chơi sòng bạc đích thực trong nhiều
+  trò chơi sòng bạc trực tiếp thông qua video trực tiếp.
+company_intro_tip_6: Ngoài {site} cung cấp các loại trò chơi sòng bạc khác nhau từ
+  nhiều nhà cung cấp trò chơi, chúng tôi còn có các trò chơi gốc {site} của riêng
+  mình, nằm trong số những trò chơi phổ biến nhất trên {host}, chẳng hạn như
+  Dice, Plinko, Mines, Crash, Limbo, Hilo và các trò chơi cổ điển khác Trò chơi.
+company_intro_tip_7: Được tạo ra bởi đội ngũ tài năng của chúng tôi để mang lại
+  trải nghiệm chơi trò chơi sòng bạc công bằng nhất, chất lượng cao nhất trong ngành,
+  các trò chơi {site} gốc được chứng minh là công bằng và có tỷ lệ lợi nhuận nhà
+  cái thấp nhất trong ngành, đảm bảo cho người chơi trải nghiệm chơi trò chơi đáng
+  tin cậy và Lợi nhuận cao cho người chơi (RTP)
+company_intro_tip_8: Ngoài nhiều trò chơi đa dạng, thiết kế đẹp mắt của trò chơi
+  gốc và nhiều lựa chọn cá cược, {site} còn cung cấp dịch vụ cho người chơi sử dụng
+  Bitcoin (BTC), Ethereum (ETH), Dogecoin (DOGE), Bitcoin Cash (BCH) , Người chơi
+  đặt cược vào Ripple (XRP), Tron (TRX) và EOS (EOS) mang đến một trong những trải
+  nghiệm sòng bạc trực tuyến hấp dẫn và thú vị nhất.
+company_intro_tip_title_2: "{host} Cá cược thể thao tiền điện tử"
+company_intro_tip_9: Thể thao trực tuyến của {host} giúp người chơi dễ dàng đặt
+  cược vào các sự kiện thể thao lớn nhất thế giới. Người đặt cược thể thao có thể
+  đặt cược trên nền tảng của chúng tôi vào các môn thể thao yêu thích của họ như
+  Bóng đá, Bóng rổ, MMA, Thể thao điện tử, Khúc côn cầu trên băng, Cricket, Bóng
+  đá Mỹ, Quần vợt, Bóng bàn, Bóng chày, Phi tiêu, Phương trình Division I và hơn
+  thế nữa, điều này thậm chí bao gồm cả chính trị và giải trí !
+company_intro_tip_10: '{host} cung cấp cho người chơi quyền truy cập vào nhiều
+  giải đấu và giải đấu lớn khác nhau như UFC, Premier League, NBA, NFL, CFL, MLB,
+  Serie A, La Liga và thậm chí cả các giải đấu thể thao điện tử như Liên minh huyền
+  thoại và Dota 2. đặt cược vào các giải đấu. Bất kể đó là giải đấu thể thao nào,
+  bạn sẽ tìm thấy thị trường của nó tại {site}!'
+company_intro_tip_11: '{site} cung cấp cá cược thể thao trực tiếp cho những người
+  chơi muốn đặt cược vào các sự kiện trực tiếp, phục vụ những người đặt cược thể
+  thao tích cực nhất với nhiều tùy chọn cá cược trực tiếp.'
+company_intro_tip_title_3: Các chương trình khuyến mãi, tiền thưởng và chương trình
+  VIP của {site}
+company_intro_tip_12: '{site} có giao diện người dùng đơn giản, dễ sử dụng và trải
+  nghiệm người dùng chất lượng cao, mang đến các chương trình khuyến mãi và tiền
+  thưởng khác nhau cho các thành viên tích cực của cộng đồng {site}.'
+company_intro_tip_13: Các chương trình khuyến mãi của {site} dành cho người chơi
+  bao gồm khuyến mãi cá cược thể thao thông thường và khuyến mãi sòng bạc.
+company_intro_tip_14: Ngoài việc tổ chức các giải thưởng hấp dẫn hàng tuần trị giá
+  50.000 USD và các cuộc thi {site} hàng ngày cho người chơi cá cược thể thao và
+  sòng bạc, {site} còn thường xuyên tiến hành các chương trình khuyến mãi và tiền
+  thưởng đặc biệt dựa trên các sự kiện lớn như UFC, NBA, Premier League, v.v. hoặc
+  các trò chơi mới ra mắt. .
+company_intro_tip_15: Sau khi đăng ký tài khoản {host}, bạn có thể trở thành
+  VIP và tăng cấp thành viên câu lạc bộ VIP dựa trên tổng số cổ phần của bạn trên
+  nền tảng {site}. Thành viên VIP sẽ có thể tận hưởng các lợi ích đặc biệt như nạp
+  lại tiền thưởng, giảm giá, tiền thưởng nâng cấp, tiền thưởng tăng hàng tuần và
+  tiền thưởng hàng tháng được gửi qua email.
+company_intro_tip_16: Các thành viên VIP Bạch Kim IV đủ điều kiện cũng sẽ được chỉ
+  định một Đại diện Dịch vụ VIP chuyên dụng. Ngoài ra, {site} còn cung cấp một chương
+  trình VIP toàn diện phục vụ cho nhiều loại người chơi khác nhau dựa trên mức sử
+  dụng tích lũy của họ. Để biết thêm thông tin về chương trình VIP, hãy xem tổng
+  quan về chương trình VIP của chúng tôi.
+company_intro_tip_title_4: '{site} tăng cường bảo mật Tiền điện tử nạp và rút trong
+  trò chơi Cờ bạc  '
+company_intro_tip_17: 'Thật dễ dàng để đặt cược và quản lý tiền của bạn bằng Bitcoin
+  hoặc các loại tiền điện tử có sẵn khác tại sòng bạc và cá cược thể thao trực tuyến
+  của {site}. Để gửi tiền vào tài khoản {host} của bạn để cá cược thể thao bằng
+  loại tiền điện tử mà bạn chọn, hãy làm theo các bước đơn giản sau:'
+company_intro_tip_step_1: 'Bước 1: Vào Ví > Nạp tiền.'
+company_intro_tip_step_2: 'Bước 2: Chọn loại tiền bạn muốn sử dụng. Chúng tôi hỗ
+  trợ Bitcoin (BTC), Ethereum (ETH), Dogecoin (DOGE), Litecoin (LTC) và các loại
+  tiền tệ khác. Sao chép địa chỉ gửi tiền cho loại tiền bạn chọn.'
+company_intro_tip_step_3: 'Bước ba: Nhập địa chỉ gửi tiền của bạn làm địa chỉ nhận
+  khi gửi tiền từ ví hoặc sàn giao dịch tiền điện tử của bạn.'
+company_intro_tip_step_4: 'Ghi chú bổ sung: Nếu bạn muốn gửi tiền bằng tiền pháp
+  định, bạn có thể truy cập Ví > Mua tiền điện tử để mua tiền điện tử cho tài khoản
+  {site} của mình với MoonPay bằng tiền pháp định.'
+company_intro_tip_18: Việc gửi và rút tiền từ {site} của bạn là ngay lập tức và có
+  sẵn bằng bất kỳ loại tiền điện tử có sẵn nào mà bạn chọn. Cho dù bạn muốn đặt
+  cược vào các trò chơi sòng bạc hay sự kiện thể thao của chúng tôi, {site} đều cung
+  cấp một quy trình đơn giản và dễ hiểu.
+company_intro_tip_19: MoonPay có nhiều phương thức thanh toán được hỗ trợ và bạn
+  có thể mua tiền điện tử để gửi tiền cá cược bằng Visa, MasterCard, Apple Pay,
+  Google Pay, v.v. Để biết danh sách đầy đủ các phương thức thanh toán được hỗ trợ
+  trong phạm vi quyền hạn của bạn, vui lòng xem tài liệu MoonPay.
+company_intro_tip_20: Với một cộng đồng phát triển mạnh mẽ, các phòng trò chuyện
+  tích cực và nhóm hỗ trợ chuyên hỗ trợ khách hàng với bất kỳ câu hỏi nào liên quan
+  đến trò chơi hoặc tài khoản của họ, {host} đã chứng minh thành công lý do tại
+  sao đây là nền tảng cá cược thể thao và sòng bạc tiền điện tử hàng đầu.
+vip_level_compare: So sánh đẳng cấp VIP
+bet_amount_label: Số tiền đặt cược
+bonus_up: tăng trưởng tiền thưởng
+promo: Phúc lợi
+look_vip_level: Xem bảng cấp độ VIP
+beginner_handbook: Hướng dẫn bắt đầu
+step_num: Bước {num}
+experience: Trải nghiệm
+click_more: Click vào đây để tìm hiểu thêm
+has_more_q: Có nhiều câu hỏi hơn không?
+online_24_sup: Hỗ trợ khách hàng trực tuyến 24 giờ
+vip_club_tip_1: Trải nghiệm VIP tuyệt vời
+vip_club_tip_2: Mở khóa các lợi ích độc quyền và nhận tiền thưởng mà bạn có thể
+  rút ngay lập tức mà không cần ràng buộc.
+vip_club_tip_3: Trở thành VIP là một quá trình dễ dàng và bổ ích
+vip_club_tip_4: Đăng ký ngay để bắt đầu cá cược tại sòng bạc hoặc chợ thể thao
+vip_club_tip_5: Mỗi lần đặt cược bạn thực hiện đều ảnh hưởng đến tiến trình đạt
+  cấp VIP của bạn. Đạt cấp độ tiếp theo để mở khóa nhiều lợi ích hơn.
+vip_club_tip_6: Yêu cầu tiền thắng cược của bạn ngay. Quá trình nhận tiền thưởng
+  hàng ngày, hàng tuần và hàng tháng rất đơn giản và dễ dàng.
+vip_club_tip_7: '{site} mang đến trải nghiệm độc đáo và tuyệt vời với các phần thưởng
+  không ngừng được trao'
+vip_club_tip_8: Nhận phần thưởng tốt hơn với mỗi lần tăng cấp độ
+vip_club_tip_9: Liên hệ với nhóm hỗ trợ dành cho người đoạt giải thưởng
+vip_club_tip_10: Tại sao chương trình VIP của {site} là hấp dẫn nhất?
+vip_club_tip_11: Chương trình VIP của {site} luôn được đánh giá là một trong những
+  trải nghiệm sòng bạc trực tuyến tốt nhất do quy mô tiền thưởng mà chúng tôi trao
+  cho người chơi.
+vip_club_tip_12: Ngoài ra, nhóm hỗ trợ hội viên từng đoạt giải thưởng của chúng
+  tôi trực tuyến 24/7 để trả lời bất kỳ câu hỏi nào bạn có thể có. Chúng tôi có
+  tỷ lệ hài lòng của khách hàng cao nhất so với bất kỳ sòng bạc trực tuyến nào,
+  đồng thời tạo ra một cộng đồng gồm những người đam mê cờ bạc đam mê nhất trên
+  thế giới.
+vip_club_tip_13: Tính đến nay, chúng tôi đã trao hơn 1 tỷ USD tiền thưởng. Đây là
+  lý do chính tại sao chúng tôi có chương trình VIP trực tuyến hấp dẫn nhất.
+vip_club_tip_14: Chúng tôi tin tưởng vào việc khen thưởng người chơi dựa trên khối
+  lượng cá cược và lòng trung thành của họ.
+vip_club_tip_15: Tổng cộng {site} đã đưa ra bao nhiêu phần thưởng?
+vip_club_tip_16: Làm cách nào để tôi tham gia Rút thăm tuần 75.000 USD?
+vip_club_tip_17: Mỗi 1.000 đô la bạn đặt cược vào {site} sẽ giúp bạn kiếm được một
+  vé xổ số và tất cả những gì bạn cần nhập là một vé xổ số. Càng đặt cược nhiều,
+  bạn càng nhận được nhiều vé xổ số và cơ hội chiến thắng càng tăng.
+vip_club_tip_18: Làm cách nào để tham gia kênh {site} Telegram?
+vip_club_tip_19: Số tài khoản của kênh {site} Telegram là {tg}.
+vip_club_tip_20: Nếu bạn đã tải xuống Telegram, hãy nhấp vào đây để tham gia.
+vip_club_tip_21: Làm cách nào để tham gia kênh Telegram VIP {site}?
+vip_club_tip_22: Khi bạn đạt đến cấp Đồng, bạn có thể yêu cầu bộ phận hỗ trợ trực
+  tuyến thêm bạn vào kênh Telegram VIP {site}.
+vip_club_tip_23: Bạn cũng có thể tìm thêm thông tin liên quan bằng cách tham gia
+  kênh {site} Telegram {tg}.
+vip_club_tip_24: Phần thưởng Hiệu suất Trò chơi Gần đây là gì?
+vip_club_tip_25: Đây là phần thưởng được trao theo quyết định của đại diện dịch
+  vụ VIP của bạn chủ yếu dựa trên tổng số tiền đặt cược và may mắn của bạn.
+vip_club_tip_26: Tiền hoàn trả cược là gì?
+vip_club_tip_27: Tiền hoàn trả cược là phần trăm hoa hồng (nhà cái chiếm lợi thế)
+  được trả lại cho hội viên của bạn
+vip_club_tip_28: Tiền thưởng nạp là gì? Làm cách nào để nhận được tiền thưởng nạp
+  tiền của tôi?
+vip_club_tip_29: Tiền thưởng nạp lại được tính dựa trên hiệu suất cá cược gần đây
+  của người chơi. Người chơi có thể chọn khoảng thời gian yêu cầu hàng ngày, hàng
+  giờ hoặc 10 phút một lần.
+vip_club_tip_30: Nhấp vào menu người dùng chính ở góc trên bên phải của tài khoản
+  và nhấp vào VIP trong menu thả xuống. Nhấp vào tab Tiền thưởng nạp tiền trên cửa
+  sổ phương thức xuất hiện, sau đó nhấp vào Nhận tiền thưởng nạp tiền. Việc bạn
+  có được chỉ định đại diện dịch vụ hay không sẽ tùy thuộc vào tổng số đơn cược
+  của bạn.
+vip_club_tip_31: Khi nào tiền thưởng hàng tháng sẽ được trả?
+vip_club_tip_32: Tiền thưởng hàng tháng sẽ được phân phối mỗi tháng một lần, thường
+  vào khoảng ngày 15. Nhưng trong một số trường hợp, ngày phát hành có thể muộn
+  hơn một chút hoặc thậm chí sớm hơn và đó là lý do tại sao đây là một trong những
+  phần thưởng được mong đợi nhất trong {site}. Khi tiền thưởng hàng tháng được trao,
+  bạn sẽ nhận được thông báo qua email. Để đảm bảo bạn không bỏ lỡ tiền thắng cược,
+  hãy nhớ kiểm tra cả thư mục thư rác trong email của bạn.
+vip_club_tip_33: Hội viên Đồng, Bạc và Vàng sẽ nhận được tiền thưởng của họ thông
+  qua tiền thưởng nạp tiền hàng ngày, trong khi người chơi Bạch kim và Kim cương
+  sẽ nhận được tiền thưởng của họ một lần.
+vip_club_tip_34: Làm thế nào để tính số tiền đặt cược cần thiết để đạt cấp độ tiếp
+  theo?
+vip_club_tip_35: Bắt đầu bằng cách nhấp vào menu người dùng chính ở góc trên bên
+  phải tài khoản của bạn, nhấp vào VIP trong menu thả xuống để xem tỷ lệ phần trăm
+  trên thanh tiến trình VIP của bạn, sau đó trừ số này khỏi 100% để có tỷ lệ phần
+  trăm còn lại. Chỉ cần nhân tỷ lệ phần trăm còn lại với tổng yêu cầu đặt cược mà
+  bạn còn lại để đạt cấp độ tiếp theo.
+vip_club_tip_36: Tôi sẽ nhận được phần thưởng gì sau mỗi lần nâng cấp?
+vip_club_tip_37: 'Phần thưởng nâng cấp: Đây là phần thưởng cố định tăng dần sau
+  mỗi lần nâng cấp. Chúng tôi sẽ thêm số tiền bổ sung dưới dạng tiền thưởng hiệu
+  suất trò chơi gần đây dựa trên lãi và lỗ của bạn trước khi nâng cấp.'
+vip_club_tip_38: 'Tiền thưởng hàng tuần và hàng tháng: Bạn sẽ nhận được số tiền
+  cơ bản dựa trên cấp độ VIP của mình và số tiền bổ sung cho mỗi 1.000 đô la bạn
+  đặt cược trong khoảng thời gian tương ứng.'
+vip_club_tip_39: 'Tiền thưởng hàng ngày: Phần thưởng nạp tiền sẽ được đại diện dịch
+  vụ VIP của bạn cập nhật khi hết hạn.'
+vip_club_tip_40: Số tiền thưởng được tính như thế nào?
+vip_club_tip_41: Số tiền thưởng bạn nhận được được tính dựa trên tổng số tiền đặt
+  cược và lợi nhuận của bạn. Chúng tôi tin rằng người chơi sẽ được khen thưởng dù
+  họ thắng hay thua. Thật không công bằng khi chỉ thưởng cho những người chơi thua
+  tiền, nhưng nếu bạn thực sự kém may mắn, chúng tôi sẽ tăng số tiền thắng của bạn!
+vip_club_tip_42: Đại diện dịch vụ VIP của tôi có thể làm gì cho tôi?
+vip_club_tip_43: Đại diện dịch vụ VIP của bạn sẽ đảm bảo rằng hiệu suất chơi trò
+  chơi của bạn sẽ được khen thưởng. Họ sẽ giúp bạn cập nhật phần thưởng nạp lại,
+  hướng dẫn bạn quy trình nâng cấp, xem xét các hạn chế về thể thao của bạn, đánh
+  giá xem bạn có đủ điều kiện nhận thêm tiền thưởng hay không và xử lý mọi vấn đề
+  bạn gặp phải trên trang web.
+vip_club_tip_44: Phần thưởng nạp thêm nhận được sau khi được chỉ định làm Đại diện
+  dịch vụ VIP là lợi ích liên tục hay có thể gia hạn?
+vip_club_tip_45: Khi bạn đạt cấp độ Bạch kim IV và được chỉ định làm Đại diện dịch
+  vụ VIP, bạn sẽ bắt đầu nhận được tiền thưởng nạp tiền hàng tuần có thể gia hạn.
+  Bất cứ khi nào phần thưởng nạp lại hàng tuần của bạn hết hạn, bạn có thể liên
+  hệ với Đại diện dịch vụ VIP của mình để cập nhật phần thưởng nạp lại có sẵn trong
+  7 ngày tiếp theo.
+vip_club_tip_46: Số tiền thưởng nạp lại tùy thuộc vào hiệu suất của bạn trong trò
+  chơi mỗi tuần và nếu bạn gặp xui xẻo với lợi nhuận trong tuần đó, bạn sẽ nhận
+  được thêm tiền thưởng.
+vip_club_tip_47: Trách nhiệm của Đại diện Dịch vụ VIP bao gồm những gì và chúng
+  khác với nhân viên hỗ trợ trực tuyến thông thường như thế nào?
+vip_club_tip_48: Đại diện dịch vụ VIP chỉ được chỉ định cho những người chơi trên
+  cấp độ Bạch kim IV. Họ có thể trả lời các câu hỏi của bạn về chương trình VIP
+  và đảm bảo bạn thu được tất cả số tiền thắng mà bạn xứng đáng. Đại diện dịch vụ
+  VIP cũng có thể gửi tiền thưởng lớn hơn thường xuyên hơn trong khi vẫn đảm bảo
+  tiền thưởng đáp ứng nhu cầu của bạn.
+vip_club_tip_49: Hỗ trợ trực tuyến có thể giúp bạn giải quyết mọi vấn đề kỹ thuật
+  bạn gặp phải trên nền tảng.
+vip_club_tip_50: Khi nào tôi có thể được chỉ định làm Đại diện Dịch vụ VIP?
+vip_club_tip_51: Người chơi sẽ được chỉ định Đại diện dịch vụ VIP khi họ đạt cấp
+  Bạch kim IV. Đại diện dịch vụ này sẽ là người hỗ trợ tận tình, giúp bạn giải đáp
+  mọi thắc mắc và cung cấp mọi hướng dẫn cần thiết trong quá trình trải nghiệm chơi
+  trò chơi của bạn. Xin lưu ý rằng tính đủ điều kiện của bạn cũng dựa trên hoạt
+  động gần đây của bạn.
+vip_club_tip_52: Điều gì sẽ xảy ra nếu đại diện dịch vụ VIP của tôi đi nghỉ?
+vip_club_tip_53: Hãy nhớ yêu cầu người đại diện VIP của bạn cung cấp liên kết mời
+  tới kênh VIP duy nhất của họ. Nếu bỏ lỡ bước này, bạn có thể liên hệ với bộ phận
+  hỗ trợ trực tuyến để nhận liên kết dự phòng VIP. Đây sẽ là đại diện dự phòng tạm
+  thời cho đến khi đại diện dịch vụ của bạn quay lại.
+vip_club_tip_54: Sử dụng hướng dẫn kiến ​​thức của chúng tôi hoặc đặt câu hỏi trong
+  diễn đàn cộng đồng của chúng tôi.
+vip_club_tip_55: Hỗ trợ hiệu quả từ người thật. Chúng tôi có thể giúp bạn thiết
+  lập và khắc phục sự cố thông qua trò chuyện trực tuyến và email.
+chat_us: Trò chuyện với chúng tôi
+pls_input_deposit_name: Tên người nạp tiền là bắt buộc
+min_amount_0: Số tiền tối thiểu không thể nhỏ hơn hoặc bằng 0
+min_len_6: Độ dài ký tự tối thiểu là 6
+safe_pwd_error: Định dạng mật khẩu thanh toán sai
+save_to_vault: Nạp tiền vào Vault
+draw_vault: Từ Vault rút ra
+vault_info: Tìm hiểu thêm về Vault
