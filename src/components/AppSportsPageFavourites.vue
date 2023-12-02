@@ -112,7 +112,7 @@ onBeforeUnmount(() => {
 }
 .empty{
   width: 100%;
-  height: 250px;
+  height: 240px;
   display: flex;
   align-items: center;
   justify-content: center;

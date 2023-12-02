@@ -54,7 +54,28 @@ await application.allSettled([runAsync({})])
 
 <template>
   <div class="casino-my-bets">
+    <div v-if="list.length === 0" class="empty">
+      <BaseEmpty>
+        <template #icon>
+          <BaseIcon style="font-size: var(--tg-empty-icon-size);" name="empty-1" />
+        </template>
+        <template #description>
+          <span>{{ t('empty_casino_bet') }}</span>
+        </template>
+        <template #default>
+          <BaseButton
+            type="text"
+            size="none"
+            style=" --tg-base-button-text-default-color:var(--tg-text-white)"
+            @click="$router.push('/casino')"
+          >
+            {{ t('sports_betting_now') }}
+          </BaseButton>
+        </template>
+      </BaseEmpty>
+    </div>
     <BaseTable
+      v-else
       :columns="columns"
       :data-source="list"
     >
@@ -99,5 +120,12 @@ await application.allSettled([runAsync({})])
   display: flex;
   justify-content: center;
 
+}
+.empty{
+  width: 100%;
+  height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>
