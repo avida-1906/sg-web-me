@@ -596,10 +596,10 @@ export class SportsCart {
     const index = this.dataList.findIndex(a => a.wid === wid)
 
     if (index !== -1) {
-      if (ov)
+      if (ov && this.ovIsChange === false)
         this.ovIsChange = Number(ov) !== Number(this.dataList[index].ov)
 
-      if (ov)
+      if (ov && this.ovIsLower === false)
         this.ovIsLower = Number(ov) < Number(this.dataList[index].ov)
     }
 
@@ -655,11 +655,14 @@ export class SportsCart {
       return item.wid
     })
 
-    if (wsi) {
+    if (wsi && this.ovIsChange === false) {
       this.ovIsChange = this.dataList.some((item) => {
         const _wsi = wsi.find(a => a.wid === item.wid)
         return Number(_wsi?.ov) !== Number(item.ov)
       })
+    }
+
+    if (wsi && this.ovIsLower === false) {
       this.ovIsLower = this.dataList.some((item) => {
         const _wsi = wsi.find(a => a.wid === item.wid)
         return Number(_wsi?.ov) < Number(item.ov)
@@ -730,12 +733,13 @@ export class SportsCart {
   }
 
   /**
-   * 设置ovIsChange 值
+   * 设置ovIsChange 和 ovIsLower 值
    * @param {boolean} bool
    * @returns {void}
    */
   setOvIsChangeBool(bool: boolean) {
     this.ovIsChange = bool
+    this.ovIsLower = bool
   }
 
   /**
