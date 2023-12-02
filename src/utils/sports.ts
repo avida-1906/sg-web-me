@@ -247,7 +247,17 @@ export function sportsEventInfoListUpdateByMqtt(
  * 冠军盘口根据地区组合方法
  * @param origin 冠军盘口数据
  */
-export function sportsOutrightsGroupByRegion(origin: ISportOutrightsInfo[]) {
+export function sportsOutrightsGroupByRegion(origin: ISportOutrightsInfo[]):
+{
+  pgid: string
+  pgn: string
+  list: {
+    ci: string
+    cn: string
+    list: ISportOutrightsInfo[]
+  }[]
+}[] {
+  // 组合地区
   const arr = []
   for (let i = 0; i < origin.length; i++) {
     if (i === 0) {
@@ -260,6 +270,24 @@ export function sportsOutrightsGroupByRegion(origin: ISportOutrightsInfo[]) {
       arr[index].list.push(origin[i])
     else
       arr.push({ pgid: origin[i].pgid, pgn: origin[i].pgn, list: [origin[i]] })
+  }
+
+  // 组合联赛
+  for (let i = 0; i < arr.length; i++) {
+    const list = cloneDeep(arr[i].list)
+    const leagueArr = []
+    for (let ii = 0; ii < list.length; ii++) {
+      if (ii === 0) {
+        leagueArr.push({ ci: list[ii].ci, cn: list[ii].cn, list: [list[ii]] })
+        continue
+      }
+      const index = leagueArr.findIndex(a => a.ci === list[ii].ci)
+      if (index > -1)
+        leagueArr[index].list.push(list[ii])
+      else
+        leagueArr.push({ ci: list[ii].ci, cn: list[ii].cn, list: [list[ii]] })
+    }
+    arr[i].list = leagueArr
   }
   return arr
 }

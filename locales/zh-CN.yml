@@ -1522,3 +1522,4 @@ view_my_bets: 查看我的投注
 closed: 已关闭
 empty_unsettle_bet: 暂无未结算的赌注
 empty_settle_bet: 暂无已结算的赌注
+empty_casino_bet: 暂无娱乐城投注
