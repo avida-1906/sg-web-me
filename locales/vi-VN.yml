@@ -583,8 +583,8 @@ the_team_typically_replies_in_unknown: Nhóm thường phản hồi càng sớm 
 the_team_typically_replies_in_week: Nhóm thường phản hồi trong 1 tuần
 thinking: Đang xem xét
 this_chat_is_powered_by_intercom: Cuộc trò chuyện này được cung cấp bởi Intercom
-ticket_status_event_moved_automation_with_bullet_point: Vé đã được chuyển sang {status} • {timestamp}
-ticket_status_event_moved_with_bullet_point: "{thành viên trong nhóm} đã chuyển vé vào {status} • {timestamp}"
+ticket_status_event_moved_automation_with_bullet_point: 'Vé đã được chuyển sang {status} • {timestamp}'
+ticket_status_event_moved_with_bullet_point: "{teammate} đã chuyển vé vào {status} • {timestamp}"
 tickets_add_file: 'Thêm các tệp tin'
 tickets_add_files: 'Thêm các tệp tin'
 tickets_create_ticket: Tạo một lệnh công việc
