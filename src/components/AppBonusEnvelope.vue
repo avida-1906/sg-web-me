@@ -89,6 +89,8 @@ function openDialog() {
   .bot {
     padding-left: var(--tg-spacing-12);
     line-height: var(--tg-spacing-30);
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 </style>
