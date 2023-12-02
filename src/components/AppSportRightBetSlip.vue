@@ -33,7 +33,8 @@ const {
   errorMessage: amountErrorMsg,
 } = useField<number>('amount', (value) => {
   if (value < sportStore.cart.multiMia || value > sportStore.cart.multiMaa)
-    return `请输入 ${sportStore.cart.multiMia} - ${sportStore.cart.multiMaa} 之间的金额`
+    return t('pls_input_min_max_amount', { min: sportStore.cart.multiMia, max: sportStore.cart.multiMaa })
+    // return `请输入 ${sportStore.cart.multiMia} - ${sportStore.cart.multiMaa} 之间的金额`
 
   return ''
 })
@@ -126,14 +127,14 @@ const errorInfo = computed<{
   if (sportStore.cart.isSupportCurrency === false) {
     return {
       bool: true,
-      errorMess: '该场馆暂不支持您所选择的币种',
+      errorMess: t('plat_not_sup_currency'),
     }
   }
 
   if (sportStore.cart.isExistCloseCaps) {
     return {
       bool: true,
-      errorMess: '您有暂停的投注项',
+      errorMess: t('has_stop_bet'),
     }
   }
 
@@ -142,7 +143,7 @@ const errorInfo = computed<{
     if (sportStore.cart.getExistSameEventIdList.length) {
       return {
         bool: true,
-        errorMess: '同一场赛事的多个投注项不能组合为复式投注',
+        errorMess: t('cant_form_multiple'),
       }
     }
 
@@ -152,7 +153,7 @@ const errorInfo = computed<{
     ) {
       return {
         bool: true,
-        errorMess: '您有不支持复式投注的投注项',
+        errorMess: t('no_sup_multiple'),
       }
     }
   }
@@ -160,7 +161,7 @@ const errorInfo = computed<{
   if (sportStore.cart.count > VITE_SPORT_MULTI_BET_MAX) {
     return {
       bool: true,
-      errorMess: `同时最多只能添加 ${VITE_SPORT_MULTI_BET_MAX} 个投注项。`,
+      errorMess: t('bet_one_max', { max: VITE_SPORT_MULTI_BET_MAX }),
     }
   }
 
@@ -170,7 +171,7 @@ const errorInfo = computed<{
     if (sportStore.cart.ovIsChange) {
       return {
         bool: true,
-        errorMess: '赔率已变更，您需先接受赔率更改方可进行投注',
+        errorMess: t('bet_odd_change'),
         isShowAcceptOddsBtn: true,
       }
     }
@@ -183,7 +184,7 @@ const errorInfo = computed<{
       if (sportStore.cart.ovIsLower) {
         return {
           bool: true,
-          errorMess: '赔率已变更，您需先接受赔率更改方可进行投注',
+          errorMess: t('bet_odd_change'),
           isShowAcceptOddsBtn: true,
         }
       }
@@ -194,7 +195,7 @@ const errorInfo = computed<{
   if (isBetAmountOverBalance.value) {
     return {
       bool: true,
-      errorMess: '您的投注额不能大于余额。',
+      errorMess: t('bet_more_than_balance'),
     }
   }
 
@@ -202,7 +203,7 @@ const errorInfo = computed<{
   if (sportStore.cart.isOnlyTwoDecimal && sportStore.cart.isExistMoreThanTwoDecimal) {
     return {
       bool: true,
-      errorMess: '不支持小数位超过2位的投注金额',
+      errorMess: t('bet_fixed_x', { fixed: 2 }),
     }
   }
 
@@ -210,7 +211,7 @@ const errorInfo = computed<{
   if (sportStore.cart.isTenMultiple && sportStore.cart.isTenMultipleBool) {
     return {
       bool: true,
-      errorMess: '只支持10的整数倍的投注金额',
+      errorMess: t('bet_sup_10x'),
     }
   }
 
@@ -218,7 +219,7 @@ const errorInfo = computed<{
   if (sportStore.cart.isFiveDecimal && sportStore.cart.isExistFiveDecimal) {
     return {
       bool: true,
-      errorMess: '不支持小数位超过5位的投注金额',
+      errorMess: t('bet_fixed_x', { fixed: 5 }),
     }
   }
 
@@ -226,7 +227,7 @@ const errorInfo = computed<{
   if (fetchBetInfoStatus.value === false) {
     return {
       bool: true,
-      errorMess: '获取投注信息失败',
+      errorMess: t('failed_get_betinfo'),
     }
   }
 
@@ -602,7 +603,7 @@ onUnmounted(() => {
           style="--tg-base-button-text-default-color: var(--tg-text-white);"
           @click="sportStore.cart.reuse()"
         >
-          重新使用投注单
+          {{ t('reuse_bet') }}
         </BaseButton>
         <BaseSelect
           v-else
@@ -683,7 +684,7 @@ onUnmounted(() => {
           bg-style="primary"
           @click="emit('changeHeadSelectValue', EnumsBetSlipHeadStatus.myBets)"
         >
-          查看我的投注
+          {{ t('view_my_bets') }}
         </BaseButton>
       </template>
       <template v-else>
@@ -748,7 +749,7 @@ onUnmounted(() => {
             bg-style="primary"
             @click="openRegisterDialog"
           >
-            注册进行投注
+            {{ t('reg_bet') }}
           </BaseButton>
         </template>
         <template v-else>
@@ -758,7 +759,7 @@ onUnmounted(() => {
             bg-style="primary"
             @click="sportStore.cart.setOvIsChangeBool(false)"
           >
-            接受新赔率
+            {{ t('accept_odd') }}
           </BaseButton>
           <BaseButton
             v-else
