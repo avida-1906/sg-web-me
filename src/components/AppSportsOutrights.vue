@@ -22,10 +22,30 @@ const sportlist = computed(() => {
   return data.value && data.value.d ? sportsOutrightsGroupByRegion(data.value.d) : []
 })
 const regionList = computed(() => {
-  return data.value && data.value.d ? data.value.d.filter(a => a.pgid === regionId) : []
+  if (data.value && data.value.d) {
+    const origin = data.value.d.filter(a => a.pgid === regionId)
+    const arr = []
+    for (let i = 0; i < origin.length; i++) {
+      if (i === 0) {
+        arr.push({ ci: origin[i].ci, cn: origin[i].cn, list: [origin[i]] })
+        continue
+      }
+      const index = arr.findIndex(a => a.ci === origin[i].ci)
+      if (index > -1)
+        arr[index].list.push(origin[i])
+      else
+        arr.push({ ci: origin[i].ci, cn: origin[i].cn, list: [origin[i]] })
+    }
+    return arr
+  }
+  return []
 })
 const leagueList = computed(() => {
-  return data.value && data.value.d ? data.value.d.filter(a => a.ci === leagueId) : []
+  if (data.value && data.value.d) {
+    const orgin = data.value.d.filter(a => a.ci === leagueId)
+    return { ci: orgin[0].ci, cn: orgin[0].cn, list: orgin }
+  }
+  return { ci: '', cn: '', list: [] }
 })
 
 watch(route, (r) => {
@@ -93,11 +113,8 @@ await application.allSettled([runAsync(params.value)])
   </div>
 
   <template v-else-if="isLeague">
-    <AppOutrightPreview
-      v-for="item, i in leagueList" :key="item.ci"
-      :auto-show="i === 0" :data="item"
-    />
-    <div v-show="leagueList.length === 0" class="empty">
+    <AppOutrightPreview auto-show :data="leagueList" />
+    <div v-show="leagueList.list.length === 0" class="empty">
       <BaseEmpty icon="empty-2" :description="t('data_empty')" />
     </div>
   </template>
