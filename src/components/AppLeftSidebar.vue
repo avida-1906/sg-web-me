@@ -53,7 +53,10 @@ function push(title: string) {
       </template>
     </Transition>
   </div>
-  <AppGlobalSearch v-else @game-type-change="onGameTypeChange" />
+  <AppGlobalSearch
+    v-else @game-type-change="onGameTypeChange"
+    @close="closeLeftSidebar"
+  />
 
   <div v-if="isMobile && !isCasino && !isSports" class="buttons">
     <BaseAspectRatio v-for="n in navButtons" :key="n.title" ratio="3.5/1">
