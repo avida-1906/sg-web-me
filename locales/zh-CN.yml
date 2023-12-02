@@ -277,7 +277,7 @@ group_conversation_name_and_1_other_also_particiapting: '{participant_name} 和�
 group_conversation_name_and_multiple_others_also_participating: '{participant_name} 和另外 {other_participant_count} 人也在参与'
 group_conversation_one_person_also_participating: 另外 1 人也在参与
 help_space_title: 帮助
-hi_name: "您好，{first_name} \U0001F44B"
+hi_name: "您好，{first_name} 👋"
 hi_there: 您好 👋
 home_space_title: 主页
 how_can_we_help: 我们能提供什么帮助？

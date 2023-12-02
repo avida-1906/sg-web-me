@@ -387,6 +387,7 @@ places: Place
 play: Broadcast
 play_sound: Play audio
 play_video: Play video
+plus_x_participants: '+ {count}'
 pointer: Pointer
 post: Post
 powered_by_intercom: Supported by Intercom
