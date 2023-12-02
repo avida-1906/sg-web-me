@@ -26,7 +26,8 @@ function onBreadcrumbsClick({ list, index }: { list: ISelectOption[]; index: num
 }
 // 冠军投注页面
 function goOutrightsPage() {
-  router.push(`/sports/${getSportsPlatId()}/outrights?si=${props.data.si}&ci=${props.data.ci}`)
+  const { si, ci, ei } = props.data
+  router.push(`/sports/${getSportsPlatId()}/outrights?si=${si}&ci=${ci}&ei=${ei}`)
 }
 </script>
 
