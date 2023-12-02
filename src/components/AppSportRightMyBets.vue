@@ -59,7 +59,7 @@ function toMyBets() {
                 />
               </template>
               <template #description>
-                <span>暂无数据</span>
+                <span>{{ t('data_empty') }}</span>
               </template>
             </BaseEmpty>
           </div>

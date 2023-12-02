@@ -31,12 +31,7 @@ function goToBet() {
         />
       </template>
       <template #description>
-        <span>
-          {{ t('none_bets_yet', {
-            settle: settle === 0
-              ? t('sports_active') : t('sports_settled'),
-          }) }}
-        </span>
+        <span>{{ settle === 0 ? t('empty_unsettle_bet') : t('empty_settle_bet') }}</span>
       </template>
       <template #default>
         <BaseButton

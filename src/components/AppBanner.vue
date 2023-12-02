@@ -65,7 +65,7 @@ function jumpToUrl(item: { type: number; url: string }) {
       router.push('/casino')
       break
     case 3:
-      router.push('/sports/401')
+      router.push(`/sports/${getSportsPlatId()}`)
       break
     case 4:
       router.push('/promotions')
@@ -205,15 +205,14 @@ runMemberBannerList({
           line-height: 1.5;
         }
         .come-play{
-          bottom: 20px;
           position: absolute;
+          bottom: 16px;
           width: 100%;
-          max-height: 2.5rem;
           text-align: center;
           border-radius: var(--tg-radius-default);
-          padding: 13px 16px;
+          padding: 11px 16px;
+          line-height: 1.2;
           border: var(--tg-border-width-default) solid var(--tg-text-white);
-          // background: var(--tg-secondary-grey);
           font-size: var(--tg-font-size-default);
           font-weight: 500;
         }

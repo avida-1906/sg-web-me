@@ -17,7 +17,7 @@ const { t } = useI18n()
 
 const numStr = computed(() => {
   if (props.num && props.num > 1)
-    return `${props.num}${t('order_label')}`
+    return `${props.num}${t('order')}`
 
   return ''
 })
@@ -25,6 +25,7 @@ const numStr = computed(() => {
 
 <template>
   <div class="app-sport-bet-success-notify">
+    {{ betSlipTabValue ? `${betSlipTabValue}：` : '' }}
     {{ t('bet_tip_amount_tip', { numStr }) }}
     <AppAmount
       class="amount"
@@ -32,7 +33,6 @@ const numStr = computed(() => {
       :amount="amount"
       :currency-type="currencyType"
     />
-    {{ betSlipTabValue ? `${t('de')}${betSlipTabValue}` : '' }}
   </div>
 </template>
 

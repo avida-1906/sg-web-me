@@ -181,7 +181,7 @@ watchEffect(() => {
       </div>
       <!-- 状态或赔率 -->
       <div v-if="isClosed" class="closed">
-        已关闭
+        {{ t('closed') }}
       </div>
       <AppSportsOdds v-else :odds="cartInfoData.ov" arrow="left" />
       <!-- 单式金额输入框 -->
