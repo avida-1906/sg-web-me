@@ -37,9 +37,10 @@ const changeType = function (type: string) {
       :class="item.value === props.modelValue ? 'active' : '' "
       @click="changeType(item.value)"
     >
-      <BaseIcon
-        :name="`/payment/deposit/${item.icon ?? 'dft'}.webp`"
-        use-cloud-img
+      <BaseImage
+        :url="`payment/deposit/${item.icon ?? 'dft'}.webp`"
+        width="14px"
+        is-network
       />
       <span class="label">{{ item.label }}</span>
       <span v-if="item.pname === '赠送'" class="tag">

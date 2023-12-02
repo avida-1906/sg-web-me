@@ -189,7 +189,8 @@ export const useSportsStore = defineStore('sports', () => {
                 title: league.cn,
                 icon: league.cpic,
                 useCloudImg: true,
-                path: `/sports/${SPORTS_PLAT_ID}/${sport.si}/${league.pgid}/${league.ci}`,
+                // eslint-disable-next-line max-len
+                path: `/sports/${SPORTS_PLAT_ID}/${sport.si}/${league.pgid}/${league.ci}?${application.objectToUrlParams({ sn: sport.sn, pgn: league.pgn, cn: league.cn })}`,
               }
             }),
           ],
@@ -205,7 +206,8 @@ export const useSportsStore = defineStore('sports', () => {
       const list = sidebarData.value.all.map((item) => {
         return {
           title: item.sn,
-          path: `/sports/${SPORTS_PLAT_ID}/${item.si}`,
+          // eslint-disable-next-line max-len
+          path: `/sports/${SPORTS_PLAT_ID}/${item.si}?nav=${JSON.stringify({ si: item.si, sn: item.sn })}`,
           icon: item.spic,
           useCloudImg: true,
         }

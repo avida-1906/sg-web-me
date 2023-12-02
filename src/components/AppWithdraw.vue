@@ -103,7 +103,7 @@ const getContractId = computed(() => {
 //     setAmount(Number.parseInt(amount.value).toString())
 // }
 function maxNumber() {
-  setAmount(Number.parseInt(props.activeCurrency.balance).toString())
+  setAmount(props.activeCurrency.balance)
 }
 
 async function handleWithdraw() {
