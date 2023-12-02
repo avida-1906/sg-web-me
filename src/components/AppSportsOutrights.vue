@@ -4,6 +4,7 @@ interface Props {
 }
 const props = defineProps<Props>()
 
+const { t } = useI18n()
 const route = useRoute()
 const sportId = route.params.sport ? +route.params.sport : 0
 const regionId = route.params.region ? route.params.region.toString() : ''
@@ -55,7 +56,6 @@ await application.allSettled([runAsync(params.value)])
         </div>
       </div>
     </div>
-    <AppSportsLoadingEmpty :list="sportlist" />
     <BaseSecondaryAccordion
       v-for="region, i in sportlist" :key="region.pgid"
       :title="region.pgn"
@@ -77,22 +77,29 @@ await application.allSettled([runAsync(params.value)])
         </div>
       </div>
     </BaseSecondaryAccordion>
+    <div v-show="sportlist.length === 0" class="empty">
+      <BaseEmpty icon="empty-2" :description="t('data_empty')" />
+    </div>
   </div>
 
   <div v-else-if="isRegion" class="acc-box">
-    <AppSportsLoadingEmpty :list="regionList" />
     <AppOutrightPreview
       v-for="league, i in regionList" :key="league.ci"
       :auto-show="i === 0" :data="league"
     />
+    <div v-show="regionList.length === 0" class="empty">
+      <BaseEmpty icon="empty-2" :description="t('data_empty')" />
+    </div>
   </div>
 
   <template v-else-if="isLeague">
-    <AppSportsLoadingEmpty :list="leagueList" />
     <AppOutrightPreview
       v-for="item, i in leagueList" :key="item.ci"
       :auto-show="i === 0" :data="item"
     />
+    <div v-show="leagueList.length === 0" class="empty">
+      <BaseEmpty icon="empty-2" :description="t('data_empty')" />
+    </div>
   </template>
 </template>
 
@@ -122,5 +129,12 @@ await application.allSettled([runAsync(params.value)])
   align-items: center;
   gap: var(--tg-spacing-12);
   padding: var(--tg-spacing-8);
+}
+.empty{
+  width: 100%;
+  min-height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>

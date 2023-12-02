@@ -31,7 +31,12 @@ function goToBet() {
         />
       </template>
       <template #description>
-        <span>暂无{{ settle === 0 ? '未结算' : '已结算' }}的赌注</span>
+        <span>
+          {{ t('none_bets_yet', {
+            settle: settle === 0
+              ? t('sports_active') : t('sports_settled'),
+          }) }}
+        </span>
       </template>
       <template #default>
         <BaseButton
