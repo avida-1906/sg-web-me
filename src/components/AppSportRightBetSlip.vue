@@ -50,7 +50,6 @@ const {
     // if (placeBetInfo.wsi && placeBetInfo.wsi.length > 0)
     //   placeBetInfo.wsi[0].ov = '0.01'
 
-    console.error('获取投注信息成功', placeBetInfo)
     sportStore.cart.updateAllData(
       cloneDeep(placeBetInfo),
       (_data) => {
