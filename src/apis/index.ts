@@ -335,6 +335,30 @@ export function ApiMemberPlatformList(params: {
 }
 
 /**
+ * 娱乐城投注记录
+ * /member/casino/record/list
+ */
+export function ApiMemberCasinoRecordList(params: {
+  page?: number
+  page_size?: number
+}) {
+  return httpClient.get<IResponseList<{
+    bill_no: string
+    bet_time: number
+    platform_id: string
+    platform_name: string
+    username: string
+    game_class: string
+    game_name: string
+    game_code: string
+    bet_amount: string
+    valid_bet_amount: string
+    net_amount: string
+    currency_id: string
+  }>>('/member/casino/record/list', { params })
+}
+
+/**
    * 虚拟钱包列表
    * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=b5a4e1b7-5297-4210-9d76-17a6a8efb4b4
    */

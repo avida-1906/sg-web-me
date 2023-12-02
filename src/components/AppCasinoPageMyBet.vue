@@ -5,70 +5,86 @@ const columns = [
   {
     title: t('game'),
     width: 90,
-    dataIndex: 'game',
-    slot: 'game',
+    dataIndex: 'game_name',
+    slot: 'game_name',
     align: 'left',
   },
   {
     title: t('bet_number'),
     width: 90,
-    dataIndex: 'id',
-    slot: 'id',
+    dataIndex: 'bill_no',
+    slot: 'bill_no',
     align: 'center',
   },
   {
     title: t('date'),
     width: 90,
-    dataIndex: 'time',
-    slot: 'time',
+    dataIndex: 'bet_time',
+    slot: 'bet_time',
     align: 'center',
   },
   {
     title: t('bet_amount'),
     width: 90,
-    dataIndex: 'amount',
-    slot: 'amount',
+    dataIndex: 'bet_amount',
+    slot: 'bet_amount',
     align: 'center',
   },
-  {
-    title: t('multiple_count'),
-    width: 90,
-    dataIndex: 'x',
-    slot: 'x',
-    align: 'center',
-  },
+  // {
+  //   title: t('multiple_count'),
+  //   width: 90,
+  //   dataIndex: 'x',
+  //   slot: 'x',
+  //   align: 'center',
+  // },
   {
     title: t('sports_payment_amount'),
     width: 90,
-    dataIndex: 'pay',
-    slot: 'pay',
+    dataIndex: 'net_amount',
+    slot: 'net_amount',
     align: 'center',
   },
 ]
-const tableData = [
-  { game: '百家乐', id: '123', time: '10:30 2023/11/10', amount: 20, x: '0.5', pay: 30 },
-  { game: '百家乐', id: '123', time: '10:30 2023/11/10', amount: 20, x: '0.5', pay: 30 },
-  { game: '百家乐', id: '123', time: '10:30 2023/11/10', amount: 20, x: '0.5', pay: 30 },
-  { game: '百家乐', id: '123', time: '10:30 2023/11/10', amount: 20, x: '0.5', pay: 30 },
-  { game: '百家乐', id: '123', time: '10:30 2023/11/10', amount: 20, x: '0.5', pay: 30 },
-  { game: '百家乐', id: '123', time: '10:30 2023/11/10', amount: 20, x: '0.5', pay: 30 },
-  { game: '百家乐', id: '123', time: '10:30 2023/11/10', amount: 20, x: '0.5', pay: 30 },
-  { game: '百家乐', id: '123', time: '10:30 2023/11/10', amount: 20, x: '0.5', pay: 30 },
-]
+
+const { list, runAsync, prev, next, hasMore, page } = useList(ApiMemberCasinoRecordList,
+  { }, { page_size: 10 })
+
+await application.allSettled([runAsync({})])
 </script>
 
 <template>
   <div class="casino-my-bets">
     <BaseTable
-      v-if="tableData && tableData.length"
       :columns="columns"
-      :data-source="tableData"
-    />
+      :data-source="list"
+    >
+      <template #bet_time="{ record: { bet_time } }">
+        <div>
+          {{ timeToFormat(bet_time) }}
+        </div>
+      </template>
+      <template #bet_amount="{ record: { bet_amount, currency_id } }">
+        <div>
+          <AppAmount
+            :amount="bet_amount"
+            :currency-type="getCurrencyConfigByCode(currency_id)?.name"
+          />
+        </div>
+      </template>
+      <template #net_amount="{ record: { net_amount, currency_id } }">
+        <div>
+          <AppAmount
+            :amount="net_amount"
+            :currency-type="getCurrencyConfigByCode(currency_id)?.name"
+          />
+        </div>
+      </template>
+    </BaseTable>
     <div class="btns">
-      <BaseButton type="text">
+      <BaseButton :disabled="page === 1" type="text" @click="prev">
         {{ t('page_prev') }}
       </BaseButton>
-      <BaseButton type="text">
+      <BaseButton type="text" :disabled="!hasMore" @click="next">
         {{ t('page_next') }}
       </BaseButton>
     </div>
