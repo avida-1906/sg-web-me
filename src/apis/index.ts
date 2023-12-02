@@ -1249,12 +1249,12 @@ export function ApiMemberVipBonusAmount() {
 export function ApiMemberThirdAuthUrl(params: {
   state: string
   type: string
-  device_no: string
+  device_number: string
 }) {
   return httpClient.get<string>(`/member/third/auth/${params.type}/url`, {
     headers: {
       state: params.state,
-      device_no: params.device_no,
+      device_number: params.device_number,
     },
   })
 }
@@ -1271,7 +1271,11 @@ export function ApiMemberThirdReg(data: {
   third_type: number
   third_id: string
 }) {
-  return httpClient.post<string>('/member/third/register', data)
+  return httpClient.post<string>('/member/third/register', data, {
+    headers: {
+      device_number: data.device_number,
+    },
+  })
 }
 
 /**
