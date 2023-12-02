@@ -2,6 +2,7 @@
 const feedChatMessageBus = useEventBus(FEEDBACK_CHAT_MESSAGE_BUS)
 const { userInfo } = storeToRefs(useAppStore())
 const chatStore = useChatStore()
+const { userLanguage } = storeToRefs(useLanguageStore())
 
 const { feedBackItem } = storeToRefs(chatStore)
 
@@ -77,7 +78,9 @@ onUnmounted(() => {
     <div class="messages">
       <div ref="scrollMsg" class="scroll-y message-content">
         <div v-if="messageHistory.length" class="time-wrap">
-          {{ application.timestampToTime(messageHistory[0].created_at * 1000) }}
+          {{
+            application.timestampToTime(messageHistory[0].created_at * 1000, userLanguage)
+          }}
         </div>
         <template v-for="msg in messageHistory" :key="msg.id">
           <AppFeedbackChatMsg :message="msg" />
