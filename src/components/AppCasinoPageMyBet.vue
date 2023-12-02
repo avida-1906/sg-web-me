@@ -79,6 +79,16 @@ await application.allSettled([runAsync({})])
       :columns="columns"
       :data-source="list"
     >
+      <template #game_name="{ record: { game_name, game_class } }">
+        <div class="game_name">
+          <BaseIcon
+            v-if="game_class === '1'" style="font-size: 16px;"
+            name="chess-live-casino"
+          />
+          <BaseIcon v-else style="font-size: 16px;" name="chess-slot-machine" />
+          {{ game_name }}
+        </div>
+      </template>
       <template #bill_no="{ record: { bill_no } }">
         <div class="bill_no">
           <BaseIcon style="font-size: 16px;" name="tabbar-bet" />
@@ -133,6 +143,11 @@ await application.allSettled([runAsync({})])
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.game_name{
+  display: flex;
+  align-items: center;
+  gap: var(--tg-spacing-4);
 }
 .bill_no{
   display: flex;
