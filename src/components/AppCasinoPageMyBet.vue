@@ -14,7 +14,7 @@ const columns = [
     width: 90,
     dataIndex: 'bill_no',
     slot: 'bill_no',
-    align: 'center',
+    align: 'left',
   },
   {
     title: t('date'),
@@ -28,7 +28,7 @@ const columns = [
     width: 90,
     dataIndex: 'bet_amount',
     slot: 'bet_amount',
-    align: 'center',
+    align: 'right',
   },
   // {
   //   title: t('multiple_count'),
@@ -42,7 +42,7 @@ const columns = [
     width: 90,
     dataIndex: 'net_amount',
     slot: 'net_amount',
-    align: 'center',
+    align: 'right',
   },
 ]
 
@@ -79,13 +79,19 @@ await application.allSettled([runAsync({})])
       :columns="columns"
       :data-source="list"
     >
+      <template #bill_no="{ record: { bill_no } }">
+        <div class="bill_no">
+          <BaseIcon style="font-size: 16px;" name="tabbar-bet" />
+          <span>{{ bill_no }}</span>
+        </div>
+      </template>
       <template #bet_time="{ record: { bet_time } }">
         <div>
           {{ timeToFormat(bet_time) }}
         </div>
       </template>
       <template #bet_amount="{ record: { bet_amount, currency_id } }">
-        <div>
+        <div class="amount">
           <AppAmount
             :amount="bet_amount"
             :currency-type="getCurrencyConfigByCode(currency_id)?.name"
@@ -93,7 +99,7 @@ await application.allSettled([runAsync({})])
         </div>
       </template>
       <template #net_amount="{ record: { net_amount, currency_id } }">
-        <div>
+        <div class="amount" :class="{ win: net_amount > 0 }">
           <AppAmount
             :amount="net_amount"
             :currency-type="getCurrencyConfigByCode(currency_id)?.name"
@@ -127,5 +133,26 @@ await application.allSettled([runAsync({})])
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.bill_no{
+  display: flex;
+  align-items: center;
+  gap: var(--tg-spacing-4);
+  span{
+    display: inline-block;
+    max-width: 9ch;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: var(--tg-text-white);
+    font-weight: var(--tg-font-weight-semibold);
+  }
+}
+.amount{
+  display: flex;
+  justify-content: flex-end;
+  &.win{
+    color: var(--tg-text-green);
+  }
 }
 </style>
