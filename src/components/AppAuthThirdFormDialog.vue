@@ -55,7 +55,7 @@ const { run: runThirdReg } = useRequest(ApiMemberThirdReg, {
     appStore.setToken(data)
     closeDialog()
     setTimeout(() => {
-      // location.replace('/')
+      location.replace('/')
     }, 100)
   },
 })
