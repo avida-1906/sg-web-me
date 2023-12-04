@@ -189,7 +189,12 @@ onMounted(() => {
         >
           <button class="tips">
             <span>{{ gameLabel }}</span>
-            <BaseIcon :name="`uni-arrow-${isPopperShow ? 'up' : 'down'}-big`" />
+            <BaseIcon
+              name="uni-arrow-up-big"
+              :class="{
+                'rotate-180': !isPopperShow,
+              }"
+            />
           </button>
           <template #popper="{ hide }">
             <a
@@ -272,12 +277,20 @@ onMounted(() => {
   display: flex;
   align-items: center;
 
+  svg {
+    font-size: var(--tg-font-size-default);
+  }
+
   span {
     margin-right: var(--tg-spacing-8);
   }
 
   &:active {
     transform: scale(0.96);
+  }
+
+  .rotate-180 {
+    transform: rotate(180deg);
   }
 }
 
