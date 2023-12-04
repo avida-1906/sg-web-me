@@ -8,7 +8,10 @@ const { vip, vipConfigArray } = useVipInfo()
 const { run: runGetPromoBonus, data: promoBonus } = useRequest(ApiMemberVipBonusAvailable)
 
 const { openReceiveBonusDialog } = useDialogReceiveBonus(() => {
-  runGetPromoBonus(params)
+  promoBonus.value = []
+  setTimeout(() => {
+    runGetPromoBonus(params)
+  }, 100)
 })
 
 const columns = computed<Column[]>(() => [
