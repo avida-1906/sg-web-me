@@ -42,7 +42,7 @@ async function openReceive() {
         <span>{{ $t('water') }}</span>
       </span>
       <span v-else class="water">
-        已到达最高等级
+        {{ $t('vip_top') }}
       </span>
       <div class="btns">
         <BaseButton
