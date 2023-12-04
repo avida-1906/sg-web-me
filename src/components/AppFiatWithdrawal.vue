@@ -12,7 +12,7 @@ const { t } = useI18n()
 const { isLessThanXs } = storeToRefs(useWindowStore())
 const { openNotify } = useNotify()
 
-const currentWithdrawMethod = ref('')
+// const currentWithdrawMethod = ref('')
 
 /** '1' 银行卡， '2' pix 除了巴西其他国家都是银行卡 */
 const currentType = computed<'1' | '2'>(() =>
@@ -58,10 +58,10 @@ const {
   return ''
 })
 
-// const {
-//   runAsync: runAsyncWithdrawMethodList,
-//   data: withdrawMethodList,
-// } = useRequest(ApiFinanceWithdrawMethodList)
+const {
+  runAsync: runAsyncWithdrawMethodList,
+  data: withdrawMethodList,
+} = useRequest(ApiFinanceWithdrawMethodList)
 const {
   runAsync: runAsyncWithdrawBankcardList,
   data: withdrawBankcardList,
@@ -143,7 +143,8 @@ async function withDrawSubmit() {
   if (!selectBankError.value && !amountError.value && !payPasswordError.value) {
     runWithdraw({
       currency_id: Number(props.activeCurrency.cur),
-      method_id: currentWithdrawMethod.value,
+      // method_id: currentWithdrawMethod.value,
+      method_id: withdrawMethodList.value ? withdrawMethodList.value[0].id : '',
       amount: amount.value,
       pay_password: payPassword.value,
       bankcard_id: bankcardId.value,
@@ -157,7 +158,7 @@ function formatAmount() {
 
 watch(() => props.activeCurrency, (newValue) => {
   runAsyncWithdrawBankcardList({ currency_id: newValue.cur })
-  // runAsyncWithdrawMethodList({ currency_id: newValue.cur })
+  runAsyncWithdrawMethodList({ currency_id: newValue.cur })
   selectBankReset()
   amountReset()
   payPasswordReset()
@@ -166,98 +167,106 @@ watch(() => props.activeCurrency, (newValue) => {
 await application.allSettled(
   [
     runAsyncWithdrawBankcardList({ currency_id: props.activeCurrency.cur }),
-    // runAsyncWithdrawMethodList({ currency_id: props.activeCurrency.cur }),
+    runAsyncWithdrawMethodList({ currency_id: props.activeCurrency.cur }),
   ],
 )
 </script>
 
 <template>
   <div class="app-fiat-withdrawal">
-    <!-- 绑定银行卡/三方账户 -->
-    <div v-if="!withdrawBankcardList?.d?.length" class="bank-bind">
-      <AppAddBankcards
-        :is-first="true"
-        :is-withdraw="true"
-        :container="false"
-        :active-currency="activeCurrency"
-        :current-type="currentType"
-        @added="updateBank"
-      />
-    </div>
-    <!-- 出款信息 -->
-    <div v-else class="withdrawal-wrap">
-      <!-- <AppWithdrawalDepositType
+    <template v-if="withdrawMethodList?.length">
+      <!-- 绑定银行卡/三方账户 -->
+      <div v-if="!withdrawBankcardList?.d?.length" class="bank-bind">
+        <AppAddBankcards
+          :is-first="true"
+          :is-withdraw="true"
+          :container="false"
+          :active-currency="activeCurrency"
+          :current-type="currentType"
+          @added="updateBank"
+        />
+      </div>
+      <!-- 出款信息 -->
+      <div v-else class="withdrawal-wrap">
+        <!-- <AppWithdrawalDepositType
         v-model="currentWithdrawMethod"
         :current-type="withdrawMethodData"
       /> -->
-      <div class="withdrawal-info">
-        <BaseLabel
-          :label="currentType === '1' ? t('withdraw_bank') : t('pix_account')"
-          must
-        >
-          <BaseSelect
-            v-model="selectBank"
-            :options="bindBanks"
-            :msg="selectBankError"
-            must theme popper border
-            :style="{ '--tg-base-select-popper-style-padding-y': 'var(--tg-spacing-12)' }"
-            @focus="selectBankError && selectBankReset()"
+        <div class="withdrawal-info">
+          <BaseLabel
+            :label="currentType === '1' ? t('withdraw_bank') : t('pix_account')"
+            must
           >
-            <template #label>
-              <span class="popper-label">
-                <BaseIcon
-                  v-if="defaultBank"
-                  :name="currentType === '1' ? 'fiat-bank' : 'fiat-pix-title'"
-                />
-                {{ defaultBank }}
-              </span>
-            </template>
-            <template #option="{ data: { item, parentWidth } }">
-              <div
-                class="scroll-x bank-options"
-                :style="{ width: `${parentWidth + 24}px` }"
-              >
-                <div class="option-row">
+            <BaseSelect
+              v-model="selectBank"
+              :options="bindBanks"
+              :msg="selectBankError"
+              must theme popper border
+              :style="{
+                '--tg-base-select-popper-style-padding-y':
+                  'var(--tg-spacing-12)',
+              }"
+              @focus="selectBankError && selectBankReset()"
+            >
+              <template #label>
+                <span class="popper-label">
                   <BaseIcon
-                    font-size="40px"
-                    :name="currentType === '1'
-                      ? 'fiat-bank' : 'fiat-pix-title'"
+                    v-if="defaultBank"
+                    :name="currentType === '1' ? 'fiat-bank' : 'fiat-pix-title'"
                   />
-                  <div class="bank-info" :class="{ 'is-mobile': isLessThanXs }">
-                    <p>{{ item.label }}</p>
-                    <p>{{ item.value }}</p>
+                  {{ defaultBank }}
+                </span>
+              </template>
+              <template #option="{ data: { item, parentWidth } }">
+                <div
+                  class="scroll-x bank-options"
+                  :style="{ width: `${parentWidth + 24}px` }"
+                >
+                  <div class="option-row">
+                    <BaseIcon
+                      font-size="40px"
+                      :name="currentType === '1'
+                        ? 'fiat-bank' : 'fiat-pix-title'"
+                    />
+                    <div class="bank-info" :class="{ 'is-mobile': isLessThanXs }">
+                      <p>{{ item.label }}</p>
+                      <p>{{ item.value }}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </template>
-          </BaseSelect>
-        </BaseLabel>
-        <BaseLabel :label="t('amount')" must>
-          <BaseInput
-            v-model="amount"
-            :msg="amountError"
-            type="number"
-            @on-right-button="maxNumber"
-            @blur="formatAmount"
-          >
-            <template #right-button>
-              <span>{{ t('max') }}</span>
-            </template>
-          </BaseInput>
-        </BaseLabel>
-        <BaseLabel :label="t('menu_title_settings_update_safepwd')" must>
-          <BaseInput
-            v-model="payPassword"
-            :msg="payPasswordError"
-            type="password"
-            max="6"
-          />
-        </BaseLabel>
-        <BaseButton bg-style="primary" size="md" @click="withDrawSubmit">
-          {{ t('menu_title_settings_withdrawals') }}
-        </BaseButton>
+              </template>
+            </BaseSelect>
+          </BaseLabel>
+          <BaseLabel :label="t('amount')" must>
+            <BaseInput
+              v-model="amount"
+              :msg="amountError"
+              type="number"
+              @on-right-button="maxNumber"
+              @blur="formatAmount"
+            >
+              <template #right-button>
+                <span>{{ t('max') }}</span>
+              </template>
+            </BaseInput>
+          </BaseLabel>
+          <BaseLabel :label="t('menu_title_settings_update_safepwd')" must>
+            <BaseInput
+              v-model="payPassword"
+              :msg="payPasswordError"
+              type="password"
+              max="6"
+            />
+          </BaseLabel>
+          <BaseButton bg-style="primary" size="md" @click="withDrawSubmit">
+            {{ t('menu_title_settings_withdrawals') }}
+          </BaseButton>
+        </div>
       </div>
-    </div>
+    </template>
+    <template v-else>
+      <BaseEmpty :description="t('data_empty')" icon="uni-empty-betslip" />
+    </template>
   </div>
 </template>
 
