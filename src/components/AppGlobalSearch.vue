@@ -157,7 +157,6 @@ function emitClose() {
   searchValue.value = ''
   showOverlayFalse()
   initOthers && hideTypeSelect()
-  emit('close')
 }
 provide('closeSearch', emitClose)
 provide('closeSearchH5', () => leftIsExpand.value = !leftIsExpand.value)
@@ -176,7 +175,7 @@ onMounted(() => {
       v-model.trim="searchValue"
       class="search-input"
       :place-holder="searchPlaceholder"
-      clearable
+      :clearable="isShowOverlay || searchValue.length > 0"
       @focus="showOverlayTrue();showTypeSelect()"
       @clear="setClearTrue"
       @close="emitClose"
