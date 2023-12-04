@@ -16,7 +16,6 @@ interface Props {
 }
 const props = defineProps<Props>()
 const emit = defineEmits(['show'])
-const closeDialog = inject('closeDialog', () => { })
 
 const { t } = useI18n()
 
@@ -118,8 +117,7 @@ const {
   loading: paymentDepositBankConfirmLoading,
 } = useRequest(ApiPaymentDepositBankConfirm, {
   onSuccess() {
-    // previous()
-    closeDialog()
+    previous()
   },
 })
 const {

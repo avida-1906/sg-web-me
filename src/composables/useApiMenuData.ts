@@ -64,7 +64,7 @@ export function useApiMenuData() {
       token: true,
     },
   ])
-  const casinoGameProvider = ref<Menu>([{ title: t('casino_provider'), path: '/casino/collection/provider', icon: 'chess-game-provider', list: [], domId: '' }])
+  const casinoGameProvider = computed<Menu>(() => [{ title: t('casino_provider'), path: '/casino/collection/provider', icon: 'chess-game-provider', list: [], domId: '' }])
 
   const getActiveShown = computed(() => {
     return (shown: string) => rightIsExpand.value

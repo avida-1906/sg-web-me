@@ -1274,6 +1274,7 @@ export function ApiMemberThirdAuthUrl(params: {
     headers: {
       state: params.state,
       device_number: params.device_number,
+      dnb: params.device_number,
     },
   })
 }
