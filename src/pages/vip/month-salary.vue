@@ -35,9 +35,13 @@ const columns = computed<Column[]>(() => [
   },
 ])
 
+const bonusArray = computed(() => promoBonus.value && promoBonus.value.length
+  ? promoBonus.value.filter(p => +p.state === 1)
+  : [])
+
 async function openReceive() {
-  if (promoBonus.value && promoBonus.value.length > 0)
-    openReceiveBonusDialog({ vipBonus: promoBonus.value[0].amount, vipBonusId: promoBonus.value[0].id })
+  if (bonusArray.value.length > 0)
+    openReceiveBonusDialog({ vipBonus: bonusArray.value[0].amount, vipBonusId: bonusArray.value[0].id })
   else
     openNotify({ type: 'error', message: t('no_bonus_now'), title: t('fail_bonus') })
 }
@@ -63,7 +67,7 @@ onMounted(() => {
         <span v-else-if="+record.level < +vip">{{ t('upgraded') }}</span>
         <span v-else>
           <span
-            v-if="promoBonus && promoBonus.length"
+            v-if="bonusArray.length"
             class="green-text"
             @click="openReceive"
           >
