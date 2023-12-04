@@ -156,7 +156,7 @@ function handleClickMenuItem(item: { name: string; path?: string }) {
     class="app-header"
     :style="{ 'grid-template-columns': `1fr ${isLogin ? 'auto' : ''} 1fr` }"
   >
-    <BaseLogo />
+    <BaseLogo :use-small="appContentWidth < 425" />
     <AppWallet v-if="isLogin" />
     <div v-if="isLogin" class="header-box">
       <div class="header-right">
@@ -228,7 +228,7 @@ function handleClickMenuItem(item: { name: string; path?: string }) {
 <style lang="scss" scoped>
 .app-header {
   display: grid;
-  gap: 1rem;
+  gap: 3%;
   align-items: center;
   position: relative;
 
