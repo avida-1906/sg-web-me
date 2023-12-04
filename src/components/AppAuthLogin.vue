@@ -38,7 +38,6 @@ function goAuth(type: AuthTypesKeys) {
   ty.value = AuthTypes[type]
   runGetAuthUrl({ state: state.value, type, device_number: application.getDeviceNumber() })
 }
-ApiDevDeleteThirdAuth({ email: 'wade2024vip@gmail.com' })
 onMounted(() => {
   socketClient.addSubscribe(topic.value)
   refreshAuthBus.on((data: any) => {
