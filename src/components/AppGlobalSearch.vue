@@ -157,6 +157,7 @@ function emitClose() {
   searchValue.value = ''
   showOverlayFalse()
   initOthers && hideTypeSelect()
+  emit('close')
 }
 provide('closeSearch', emitClose)
 provide('closeSearchH5', () => leftIsExpand.value = !leftIsExpand.value)
@@ -197,7 +198,9 @@ onMounted(() => {
           </button>
           <template #popper="{ hide }">
             <a
-              v-for="type, i in gameTypeList" :key="i" class="popper-option"
+              v-for="type, i in gameTypeList" :key="i"
+              class="popper-option"
+              :class="{ 'active-menu': gameType === type.value }"
               @click="hide();selectGameType(type.value)"
             >
               {{ type.label }}
@@ -301,6 +304,10 @@ onMounted(() => {
   font-size: var(--tg-font-size-default);
   display: block;
   font-weight: var(--tg-font-weight-semibold);
+
+  &.active-menu {
+    color: var(--tg-text-blue);
+  }
 
   &:hover {
     // background-color: var(--tg-text-lightgrey);
