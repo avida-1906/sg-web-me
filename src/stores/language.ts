@@ -11,6 +11,7 @@ export const useLanguageStore = defineStore('language', () => {
     value: EnumLanguage
   }>>([
     { title: '中文', path: '', icon: '', value: EnumLanguage['zh-CN'] },
+    { title: 'English', path: '', icon: '', value: EnumLanguage['en-US'] },
     { title: 'Tiếng Việt', path: '', icon: '', value: EnumLanguage['vi-VN'] },
     { title: 'Português', path: '', icon: '', value: EnumLanguage['pt-BR'] },
   ])
@@ -23,7 +24,9 @@ export const useLanguageStore = defineStore('language', () => {
     Local.set(STORAGE_LANGUAGE_KEY, langIndex)
     loadLanguageAsync(langIndex)
     userLanguage.value = langIndex
-    location.reload()
+    setTimeout(() => {
+      location.reload()
+    }, 100)
   }
 
   return {

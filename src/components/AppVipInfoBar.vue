@@ -1,32 +1,32 @@
 <script lang="ts" setup>
-const { t } = useI18n()
-const { openNotify } = useNotify()
-const { userInfo, isLogin } = storeToRefs(useAppStore())
+// const { t } = useI18n()
+// const { openNotify } = useNotify()
+const { userInfo } = storeToRefs(useAppStore())
 const { nextLevel, scoreToNext } = useVipInfo()
 
 const { openVipBonusRecordDialog } = useDialogVipBonusRecord()
-const { openReceiveBonusDialog } = useDialogReceiveBonus()
+// const { openReceiveBonusDialog } = useDialogReceiveBonus()
 
-const {
-  run: runGetVipBonusAmount,
-  data: vipBonusAmount,
-  loading: getBonusLoading,
-} = useRequest(ApiMemberVipBonusAmount, {
-  ready: isLogin,
-  manual: false,
-})
+// const {
+//   run: runGetVipBonusAmount,
+//   data: vipBonusAmount,
+//   loading: getBonusLoading,
+// } = useRequest(ApiMemberVipBonusAmount, {
+//   ready: isLogin,
+//   manual: false,
+// })
 
 function openRecord() {
   openVipBonusRecordDialog()
 }
 
-async function openReceive() {
-  await runGetVipBonusAmount()
-  if (vipBonusAmount.value && +vipBonusAmount.value > 0)
-    openReceiveBonusDialog({ vipBonus: vipBonusAmount.value })
-  else
-    openNotify({ type: 'error', message: t('no_bonus_now'), title: t('fail_bonus') })
-}
+// async function openReceive() {
+//   await runGetVipBonusAmount()
+//   if (vipBonusAmount.value && +vipBonusAmount.value > 0)
+//     openReceiveBonusDialog({ vipBonus: vipBonusAmount.value })
+//   else
+//     openNotify({ type: 'error', message: t('no_bonus_now'), title: t('fail_bonus') })
+// }
 </script>
 
 <template>
@@ -44,8 +44,9 @@ async function openReceive() {
       <span v-else class="water">
         {{ $t('vip_top') }}
       </span>
-      <div class="btns">
-        <BaseButton
+    </div>
+    <div class="btns">
+      <!-- <BaseButton
           bg-style="primary"
           size="none"
           round
@@ -53,11 +54,10 @@ async function openReceive() {
           @click="openReceive"
         >
           {{ $t('one_receive') }}
-        </BaseButton>
-        <BaseButton type="line" round size="none" @click="openRecord">
-          {{ $t('receive_record_label') }}
-        </BaseButton>
-      </div>
+        </BaseButton> -->
+      <BaseButton bg-style="primary" round size="none" @click="openRecord">
+        {{ $t('receive_record_label') }}
+      </BaseButton>
     </div>
   </div>
 </template>
@@ -65,7 +65,7 @@ async function openReceive() {
 <style lang="scss" scoped>
 .app-vip-info-bar {
   display: flex;
-  align-items: stretch;
+  align-items: center;
   justify-content: flex-start;
   gap: var(--tg-spacing-8);
   color: var(--tg-text-white);
@@ -94,11 +94,18 @@ async function openReceive() {
       align-items: center;
       gap: var(--tg-spacing-4);
     }
-    .btns {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      gap: var(--tg-spacing-4);
+  }
+  .btns {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: var(--tg-spacing-4);
+    button {
+      height: 24px;
+      min-width: 68px;
+      box-sizing: border-box;
+      font-size: var(--tg-font-size-xs);
+      padding: 0 var(--tg-spacing-6);
     }
   }
 }

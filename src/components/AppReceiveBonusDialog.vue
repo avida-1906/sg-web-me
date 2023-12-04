@@ -6,6 +6,7 @@ interface Props {
   feedBackItem?: FeedBackItem
   totalBonus?: string
   vipBonus?: string
+  vipBonusId?: string
 }
 
 const props = defineProps<Props>()
@@ -74,7 +75,7 @@ function receiveBonus() {
     runDrawBonus({ feed_id: '', cur: activeCurrency.value?.cur ?? '706' })
 
   else if (props.vipBonus)
-    runDrawVipBonus({ cur: activeCurrency.value?.cur ?? '706' })
+    runDrawVipBonus({ cur: activeCurrency.value?.cur ?? '706', id: props.vipBonusId ?? '' })
 }
 
 function changeCurrency(item: CurrencyData, network: string) {
