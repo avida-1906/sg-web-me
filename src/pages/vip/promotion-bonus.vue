@@ -1,6 +1,18 @@
 <script lang="ts" setup>
+const params = { ty: 1 }
+
 const { t } = useI18n()
+const { openNotify } = useNotify()
 const { vip, score, vipConfigArray } = useVipInfo()
+
+const { run: runGetPromoBonus, data: promoBonus } = useRequest(ApiMemberVipBonusAvailable)
+
+const { openReceiveBonusDialog } = useDialogReceiveBonus(() => {
+  promoBonus.value = []
+  setTimeout(() => {
+    runGetPromoBonus(params)
+  }, 100)
+})
 
 const columns = computed<Column[]>(() => [
   {
@@ -22,6 +34,17 @@ const columns = computed<Column[]>(() => [
     slot: 'up_gift',
   },
 ])
+
+async function openReceive() {
+  if (promoBonus.value && promoBonus.value.length > 0)
+    openReceiveBonusDialog({ vipBonus: promoBonus.value[0].amount, vipBonusId: promoBonus.value[0].id })
+  else
+    openNotify({ type: 'error', message: t('no_bonus_now'), title: t('fail_bonus') })
+}
+
+onMounted(() => {
+  runGetPromoBonus(params)
+})
 </script>
 
 <template>
@@ -36,6 +59,7 @@ const columns = computed<Column[]>(() => [
           :class="{
             'user-level-vip':
               +vip + 1 === +record.level,
+            'lower-vip': +record.level <= +vip,
           }"
         >
           <span
@@ -46,8 +70,26 @@ const columns = computed<Column[]>(() => [
               v-if="+vip + 1 === +record.level"
             >
               {{ score }}<BaseIcon name="coin-usdt" />/
+              {{ record.score }}<BaseIcon name="coin-usdt" />
             </span>
-            {{ record.score }}<BaseIcon name="coin-usdt" />
+            <span v-else-if="+vip === +record.level" class="dark-bar">
+              <span
+                v-if="promoBonus && promoBonus.length"
+                class="green-text"
+                @click="openReceive"
+              >
+                {{ t('can_receive') }}
+              </span>
+              <span v-else>
+                {{ t('received') }}
+              </span>
+            </span>
+            <span v-else-if="+record.level < +vip" class="dark-bar">
+              {{ t('received') }}
+            </span>
+            <span v-else>
+              {{ record.score }}<BaseIcon name="coin-usdt" />
+            </span>
           </span>
         </div>
       </template>
@@ -62,6 +104,19 @@ const columns = computed<Column[]>(() => [
 </template>
 
 <style lang="scss" scoped>
+.lower-vip {
+  max-width: 290px;
+  margin: 0 auto;
+  border-radius: 20px;
+  background: rgba(47, 69, 84, 0.70);
+  color: var(--tg-text-white);
+  display: block;
+  width: 100%;
+  .green-text {
+    color: var(--tg-text-green);
+    cursor: pointer;
+  }
+}
 .score-wrap {
   display: flex;
   align-items: center;

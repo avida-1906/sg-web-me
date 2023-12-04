@@ -26,6 +26,11 @@ export enum EnumLanguage {
    * 印度 India
    */
   'hi-IN',
+
+  /**
+   * 英语
+   */
+  'en-US',
 }
 
 /**

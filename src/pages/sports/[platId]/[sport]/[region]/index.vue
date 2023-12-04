@@ -7,6 +7,7 @@ const { t } = useI18n()
 usePageTitle({ prefix: t('btc_sport_title') })
 const { width } = storeToRefs(useWindowStore())
 const route = useRoute()
+const navObj = application.urlParamsToObject(route.fullPath.split('?')[1])
 const sport = route.params.sport ? +route.params.sport : 0
 const region = ref(route.params.region ? route.params.region.toString() : '')
 const { bool: isStandard } = useBoolean(true)
@@ -32,7 +33,7 @@ const params = computed(() => {
     page_size: pageSize.value,
   }
 })
-const { data, run, runAsync } = useRequest(ApiSportEventList, {
+const { run, runAsync } = useRequest(ApiSportEventList, {
   onSuccess(res) {
     if (res.d) {
       total.value = res.t
@@ -53,24 +54,14 @@ const tabs = computed(() => [
 const isOver814 = computed(() => width.value > 814)
 const isLiveAndUpcoming = computed(() => curTab.value === '1')
 const isOutrights = computed(() => curTab.value === '2')
-// 球种名称
-const sportName = computed(() => data.value && data.value.d
-  ? data.value.d[0].sn
-  : '-',
-)
-// 地区名称
-const regionName = computed(() => data.value && data.value.d
-  ? data.value.d[0].pgn
-  : '-',
-)
 const breadcrumb = computed(() => [
   {
     path: `/sports/${SPORTS_PLAT_ID}/${sport}`,
-    title: sportName.value,
+    title: navObj.sn,
   },
   {
     path: '',
-    title: regionName.value,
+    title: navObj.pgn,
   },
 ])
 

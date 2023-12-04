@@ -10,6 +10,7 @@ interface Props {
   isCloud?: boolean
   isNetwork?: boolean
   objectPosition?: string
+  loading?: 'eager' | 'lazy'
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -19,6 +20,7 @@ const props = withDefaults(defineProps<Props>(), {
   height: '100%',
   fit: 'contain',
   objectPosition: 'center center',
+  loading: 'lazy',
 })
 
 const emit = defineEmits(['clickImg', 'errorImg', 'loadImg'])
@@ -43,7 +45,7 @@ const imgUrl = computed(() => {
     <img
       :style="`width: ${width}; height: ${height};
       object-fit: ${fit};object-position:${objectPosition};`"
-      loading="lazy"
+      :loading="loading"
       :src="imgUrl"
       @load="emit('loadImg')"
       @click="emit('clickImg')"

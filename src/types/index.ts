@@ -236,3 +236,12 @@ export interface ISportListToCartData {
   /** 赛事ID */
   ei: string
 }
+
+/**
+ * 体育面包屑类型
+ */
+export interface ISportsBreadcrumbs {
+  label: string
+  value: string
+  path: string
+}

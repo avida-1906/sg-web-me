@@ -1,5 +1,6 @@
 <script setup lang='ts'>
 import type { ISportEventInfo } from '~/apis/types'
+import type { ISportsBreadcrumbs } from '~/types'
 
 interface Props {
   index: number
@@ -154,15 +155,13 @@ const isOnAir = computed(() => props.data.m === 3)
 //   useDragDialog({ type, url: '', dialogId })
 // }
 // 联赛跳转
-function onBreadcrumbsClick({ list, index }: { list: ISelectOption[]; index: number }) {
-  let path = ''
+function onBreadcrumbsClick({ list, index }:
+{ list: ISportsBreadcrumbs[]; index: number },
+) {
   if (isH5Layout.value)
-    path = `/sports/${getSportsPlatId()}/${list.map(a => a.value).join('/')}`
-
+    router.push(replaceSportsPlatId(list[2].path))
   else
-    // eslint-disable-next-line max-len
-    path = `/sports/${getSportsPlatId()}/${list.slice(0, index + 1).map(a => a.value).join('/')}`
-  router.push(path)
+    router.push(replaceSportsPlatId(list[index].path))
 }
 // 操作收藏
 function favHandler() {

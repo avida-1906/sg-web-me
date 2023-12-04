@@ -1073,6 +1073,8 @@ export function ApiMemberVipBonusRecord(params: {
 export function ApiMemberApplyVipBonus(params: {
   /** 选择币种领取 */
   cur: CurrencyCode
+  /** 可领取奖励 id */
+  id: string | number
 }) {
   return httpClient.get<{
     id: number
@@ -1095,6 +1097,23 @@ export function ApiMemberApplyVipBonus(params: {
     updated_at: number
   }[]>('/member/vip/bonus/apply', { params })
 }
+
+/**
+ * vip 可用奖励
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=eab43035-6f7d-408e-b9b9-122e4f745c16
+ */
+export function ApiMemberVipBonusAvailable(params: {
+  /** 奖励类型 */
+  ty: number
+}) {
+  return httpClient.get<{
+    id: string
+    cash_type: number
+    amount: string
+    state: number
+  }[]>('/member/vip/bonus/available', { params })
+}
+
 /**
  * 公司入款存款
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=7b826674-bdb4-4456-b82f-22b640f2b4b5
@@ -1249,10 +1268,12 @@ export function ApiMemberVipBonusAmount() {
 export function ApiMemberThirdAuthUrl(params: {
   state: string
   type: string
+  device_number: string
 }) {
   return httpClient.get<string>(`/member/third/auth/${params.type}/url`, {
     headers: {
       state: params.state,
+      device_number: params.device_number,
     },
   })
 }
@@ -1265,11 +1286,15 @@ export function ApiMemberThirdReg(data: {
   email: string
   username: string
   parent_id?: string
-  device_number?: string
+  device_number: string
   third_type: number
   third_id: string
 }) {
-  return httpClient.post<string>('/member/third/register', data)
+  return httpClient.post<string>('/member/third/register', data, {
+    headers: {
+      device_number: data.device_number,
+    },
+  })
 }
 
 /**

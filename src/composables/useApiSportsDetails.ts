@@ -75,11 +75,13 @@ export function useApiSportDetails() {
       },
       {
         title: list.pgn,
-        path: `/sports/${getSportsPlatId()}/${list.si}/${list.pgid}`,
+        // eslint-disable-next-line max-len
+        path: `/sports/${getSportsPlatId()}/${list.si}/${list.pgid}?${application.objectToUrlParams({ sn: list.sn, pgn: list.pgn })}`,
       },
       {
         title: list.cn,
-        path: `/sports/${getSportsPlatId()}/${list.si}/${list.pgid}/${list.ci}`,
+        // eslint-disable-next-line max-len
+        path: `/sports/${getSportsPlatId()}/${list.si}/${list.pgid}/${list.ci}?${application.objectToUrlParams({ sn: list.sn, pgn: list.pgn, cn: list.cn })}`,
       },
       {
         title: `${list.htn} - ${list.atn}`,

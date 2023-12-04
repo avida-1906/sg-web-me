@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-// 123
+usePageTitle({ prefix: 'my_bets', isT: true })
 </script>
 
 <template>

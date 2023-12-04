@@ -26,7 +26,6 @@ watch([isLogin, userInfo, mqttIsConnected], ([_isLogin, _userInfo, _mqttIsConnec
     socketClient.addSubscribe(`${VITE_SOCKET_PREFIX}/member/${_userInfo?.uid}`)
   }
 })
-
 onMounted(() => {
   if (!isLogin.value)
     socketClient.connect('没登录连接')
