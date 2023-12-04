@@ -20,9 +20,9 @@ export const useLanguageStore = defineStore('language', () => {
   const userLanguage = ref(getInitLangIndex())
 
   /** 更换语言 */
-  function changeLanguage(langIndex: EnumLanguage) {
+  async function changeLanguage(langIndex: EnumLanguage) {
     Local.set(STORAGE_LANGUAGE_KEY, langIndex)
-    loadLanguageAsync(langIndex)
+    await loadLanguageAsync(langIndex)
     userLanguage.value = langIndex
     setTimeout(() => {
       location.reload()

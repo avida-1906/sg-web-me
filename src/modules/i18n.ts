@@ -13,6 +13,7 @@ export const languageMap: Record<EnumLanguageKey, string> = {
   'pt-BR': 'pt_BR',
   'hi-IN': 'en_IN',
   'th-TH': 'th_TH',
+  'en-US': 'en_US',
 }
 
 export const i18n = createI18n({
