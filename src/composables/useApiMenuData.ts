@@ -186,7 +186,8 @@ export function useApiMenuData() {
       domId: '',
     },
     {
-      title: `${t('language_title')}： ${t('language_current')}`,
+      title: `${t('language_title')}： ${AllLanguages.value.filter(a =>
+        a.value === userLanguage.value)[0]?.title}`,
       path: '',
       icon: 'spt-odds',
       type: 'radio',
