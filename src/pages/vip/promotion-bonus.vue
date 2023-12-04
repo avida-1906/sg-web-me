@@ -14,6 +14,9 @@ const { openReceiveBonusDialog } = useDialogReceiveBonus(() => {
   }, 100)
 })
 
+const bonusArray = computed(() => promoBonus.value && promoBonus.value.length
+  ? promoBonus.value.filter(p => +p.state === 1)
+  : [])
 const columns = computed<Column[]>(() => [
   {
     title: t('grade'),
@@ -36,8 +39,8 @@ const columns = computed<Column[]>(() => [
 ])
 
 async function openReceive() {
-  if (promoBonus.value && promoBonus.value.length > 0)
-    openReceiveBonusDialog({ vipBonus: promoBonus.value[0].amount, vipBonusId: promoBonus.value[0].id })
+  if (bonusArray.value.length > 0)
+    openReceiveBonusDialog({ vipBonus: bonusArray.value[0].amount, vipBonusId: bonusArray.value[0].id })
   else
     openNotify({ type: 'error', message: t('no_bonus_now'), title: t('fail_bonus') })
 }
@@ -74,7 +77,7 @@ onMounted(() => {
             </span>
             <span v-else-if="+vip === +record.level" class="dark-bar">
               <span
-                v-if="promoBonus && promoBonus.length"
+                v-if="bonusArray.length"
                 class="green-text"
                 @click="openReceive"
               >
