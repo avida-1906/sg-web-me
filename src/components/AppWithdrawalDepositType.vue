@@ -39,6 +39,7 @@ const changeType = function (type: string) {
     >
       <BaseImage
         :url="`payment/deposit/${item.icon ?? 'dft'}.webp`"
+        loading="eager"
         width="14px"
         is-network
       />
