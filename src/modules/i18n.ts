@@ -1,6 +1,7 @@
 import type { Locale } from 'vue-i18n'
 import { createI18n } from 'vue-i18n'
 import type { App } from 'vue'
+import axios from 'axios'
 import { EnumLanguage } from '~/utils/enums'
 import type { EnumLanguageKey } from '~/types'
 
@@ -55,15 +56,14 @@ export async function loadLanguageAsync(langIndex: EnumLanguage): Promise<Locale
   return setI18nLanguage(lang)
 }
 
-export function install(app: App<Element>) {
+export async function install(app: App<Element>) {
   const index = getInitLangIndex()
-
   app.use(i18n)
 
   if (index in EnumLanguage)
-    loadLanguageAsync(index)
+    await loadLanguageAsync(index)
   else
-    loadLanguageAsync(EnumLanguage[VITE_I18N_DEFAULT_LANG])
+    await loadLanguageAsync(EnumLanguage[VITE_I18N_DEFAULT_LANG])
 }
 
 export function getInitLangIndex() {
@@ -77,6 +77,7 @@ export function getInitLangIndex() {
   else
     index = Number(EnumLanguage[VITE_I18N_DEFAULT_LANG])
 
+  axios.defaults.headers.common.lang = EnumLanguage[index]
   return index
 }
 
@@ -87,5 +88,7 @@ export function getCurrentLanguage(): EnumLanguageKey {
 
 /** 获取当前对应后端的多语言 */
 export function getCurrentLanguageForBackend() {
-  return languageMap[getCurrentLanguage() || VITE_I18N_DEFAULT_LANG]
+  // return languageMap[getCurrentLanguage() || VITE_I18N_DEFAULT_LANG]
+  const index = getInitLangIndex()
+  return languageMap[EnumLanguage[index] as EnumLanguageKey]
 }
