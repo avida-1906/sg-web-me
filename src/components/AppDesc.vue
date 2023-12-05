@@ -13,7 +13,7 @@ interface Column {
 
 const { VITE_SITE_NAME } = getEnv()
 const { t } = useI18n()
-const { bool: showContent, toggle: toggleShowContent } = useBoolean(true)
+const { bool: showContent, toggle: toggleShowContent } = useBoolean(false)
 const { bool: loading, setFalse: setLoadingFalse } = useBoolean(true)
 const {
   widthBoundaryXs,
