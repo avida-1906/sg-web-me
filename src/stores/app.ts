@@ -28,6 +28,10 @@ export const useAppStore = defineStore('app', () => {
   })
   /** 获取用户锁定余额 */
   const { data: lockerData, runAsync: getLockerData } = useRequest(ApiMemberBalanceLocker)
+  const { data: brandDetail } = useRequest(ApiMemberBrandDetail, {
+    manual: false,
+  })
+
   const visibility = useDocumentVisibility()
   const mqttConnectSuccessBus = useEventBus(MQTT_CONNECT_SUCCESS_BUS)
   const mqttDisconnectBus = useEventBus(MQTT_DISCONNECT_BUS)
@@ -150,6 +154,7 @@ export const useAppStore = defineStore('app', () => {
     vipConfigData,
     currentGlobalCurrencyBalance,
     currentGlobalCurrencyBalanceNumber,
+    brandDetail,
     setToken,
     setLoginTrue,
     setLoginFalse,

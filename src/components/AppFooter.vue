@@ -10,6 +10,7 @@ const languageStore = useLanguageStore()
 const { userLanguage, AllLanguages } = storeToRefs(languageStore)
 const sportStore = useSportsStore()
 const { sportsOddsType, AllOddsTypes } = storeToRefs(sportStore)
+const { brandDetail } = storeToRefs(useAppStore())
 
 const supportCurrency = [
   '/png/footer/ltc.png',
