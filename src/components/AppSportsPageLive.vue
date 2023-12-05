@@ -77,6 +77,10 @@ const listFiltered = computed(() => {
   }
   return arr
 })
+/** 判断当前展示的数据是否至少有一条可以展示 */
+const isHaveDataToShow = computed(() => {
+  return listFiltered.value.some(a => a.list.length > 0)
+})
 
 /** 👷 分页、定时器、监听更新数据 start 👷 */
 function startLive() {
@@ -168,7 +172,8 @@ if (currentLiveNav.value !== -1 && !props.onPage) {
     <AppSportsTab v-model="currentLiveNav" :list="sportLiveNavs" />
     <div class="market-wrapper">
       <AppSportsMarket
-        v-for="item in listFiltered" :key="item.ci + item.list.length"
+        v-for="item in listFiltered" v-show="item.list.length > 0"
+        :key="item.ci + item.list.length"
         :is-standard="isStandard"
         :league-name="item.cn"
         :event-count="item.list.length"
@@ -177,7 +182,7 @@ if (currentLiveNav.value !== -1 && !props.onPage) {
         :auto-show="item.list.length > 0"
       />
       <BaseButton
-        v-show="curTotal < total "
+        v-show="curTotal < total && isHaveDataToShow"
         size="none" type="text" @click="loadMore"
       >
         {{ t('load_more') }}

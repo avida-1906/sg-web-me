@@ -16,7 +16,10 @@ await application.allSettled([runMemberNoticeAllList()])
   <div v-if="!memberNoticeAllListLoading && noticeData?.marquee.length" class="mt-24">
     <BaseNoticeBar>
       <template #prefix>
-        <div style="padding: 0 20px;">
+        <div
+          class="center"
+          style="padding: 0 var(--tg-spacing-20);font-size: var(--tg-font-size-lg);"
+        >
           <BaseIcon name="uni-speaker" />
         </div>
       </template>
