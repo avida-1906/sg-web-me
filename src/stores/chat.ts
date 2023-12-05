@@ -60,11 +60,11 @@ export const useChatStore = defineStore('chat', () => {
   const feedBackItem = ref<FeedBackItem | undefined>()
 
   const chatRoomList = reactive<Array<Room>>([
-    { icon: 'cn', label: '中文', value: 'zh-CN' },
-    { icon: 'vn', label: 'Tiếng Việt', value: 'vi-VN' },
-    { icon: 'br', label: 'Português', value: 'pt-BR' },
-    { icon: 'in', label: 'India', value: 'hi-IN' },
-    { icon: 'thai', label: 'ประเทศไทย', value: 'th-TH' },
+    { icon: 'flag-cn', label: '中文', value: 'zh-CN' },
+    { icon: 'flag-vn', label: 'Tiếng Việt', value: 'vi-VN' },
+    { icon: 'flag-br', label: 'Português', value: 'pt-BR' },
+    { icon: 'flag-in', label: 'India', value: 'hi-IN' },
+    { icon: 'flag-thai', label: 'ประเทศไทย', value: 'th-TH' },
   ])
   const room = ref(chatRoomList[0])
 

@@ -9,6 +9,7 @@ const chatStore = useChatStore()
 const { chatRoomList, room, topic, hideChat } = storeToRefs(chatStore)
 const { closeRightSidebar } = useRightSidebar()
 const { isGreaterThanMd } = storeToRefs(useWindowStore())
+const { bool: isUp, toggle: toggleUp } = useBoolean(false)
 
 const mqttConnectSuccessEvent = useEventBus(MQTT_CONNECT_SUCCESS_BUS)
 
@@ -40,6 +41,12 @@ function onMqttConnectSuc() {
   setTimeout(() => {
     socketClient.addSubscribe(topic.value)
   }, 0)
+}
+
+function roomLabel(hide: () => void, item: any) {
+  toggleUp()
+  hide()
+  chooseRoom(item)
 }
 
 watch(hideChat, (val) => {
@@ -76,7 +83,7 @@ onUnmounted(() => {
         <div class="chat-room-choose">
           <BaseIcon :name="room.icon" />
           <span>{{ VITE_SITE_NAME }}: {{ room.label }} </span>
-          <BaseIcon class="arrow-down" name="uni-arrow-down" />
+          <BaseIcon class="arrow-down" :class="{ 'is-up': isUp }" name="uni-arrow-down" />
         </div>
         <template #popper="{ hide }">
           <div class="scroll-y chat-room-list dropdown-scroll-content">
@@ -85,7 +92,7 @@ onUnmounted(() => {
               :key="item.icon"
               class="item dropdown-option"
               :class="{ active: room.value === item.value }"
-              @click="hide();chooseRoom(item)"
+              @click="() => roomLabel(hide, item)"
             >
               <BaseIcon :name="item.icon" />
               <span>{{ item.label }}</span>
@@ -165,7 +172,7 @@ onUnmounted(() => {
     font-weight: var(--tg-font-weight-semibold);
     gap: var(--tg-spacing-8);
     .arrow-down {
-      transform: scale(0.8);
+      // transform: scale(0.8);
     }
   }
   .right-header {
