@@ -62,7 +62,7 @@ onMounted(() => {
           :class="{
             'user-level-vip':
               +vip + 1 === +record.level,
-            'lower-vip': +record.level <= +vip,
+            'lower-vip': +record.level <= +vip && bonusArray.length,
           }"
         >
           <span
