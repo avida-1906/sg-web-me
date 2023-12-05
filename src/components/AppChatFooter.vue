@@ -13,6 +13,7 @@ const { userInfo, isLogin } = storeToRefs(useAppStore())
 const { openChatRulesDialog } = useChatRulesDialog()
 const { openStatisticsDialog } = useStatisticsDialog()
 const chatMessageBus = useEventBus(CHAT_MESSAGE_BUS)
+const { bool: showEmoji, toggle: toggleEmoji } = useBoolean(false)
 
 const { openNotify } = useNotify()
 
@@ -92,7 +93,7 @@ const emojiName = computed(() => {
 
 const emojis = computed(() => {
   if (emojiName.value === void 0) {
-    return []
+    return showEmoji.value ? allEmojis : []
   }
   else {
     return allEmojis.filter((e) => {
@@ -172,7 +173,7 @@ function enterPress(event: KeyboardEvent) {
   <section class="tg-app-chat-footer">
     <Transition>
       <div
-        v-show="!sendLoading && emojis.length"
+        v-show="(!sendLoading && emojis.length) || showEmoji"
         class="scroll-y emoji-wrap layout-grid wrap"
       >
         <div v-for="emo in emojis" :key="emo" class="button-wrap">
@@ -235,7 +236,13 @@ function enterPress(event: KeyboardEvent) {
         textarea
         :max="maxMsgLen"
         @down-enter="enterPress"
-      />
+      >
+        <template #right-icon>
+          <BaseButton size="none" type="text" @click="toggleEmoji()">
+            <span class="smile">😀</span>
+          </BaseButton>
+        </template>
+      </BaseInput>
     </div>
     <div class="online">
       <div class="green-dot" />
@@ -246,10 +253,10 @@ function enterPress(event: KeyboardEvent) {
     </div>
     <div class="actions">
       <span>{{ maxMsgLen - message.length }}</span>
-      <BaseButton class="rule" size="none" type="text" @click="openChatRulesDialog">
+      <BaseButton class="rule" size="sm" @click="openChatRulesDialog">
         <BaseIcon name="chat-rule" />
       </BaseButton>
-      <BaseButton bg-style="secondary" class="send" size="md" shadow @click="sendMsg">
+      <BaseButton bg-style="secondary" class="send" size="sm" shadow @click="sendMsg">
         {{ t('send') }}
       </BaseButton>
     </div>
@@ -257,6 +264,9 @@ function enterPress(event: KeyboardEvent) {
 </template>
 
 <style lang="scss" scoped>
+.smile {
+  font-size: var(--tg-font-size-base);
+}
 .layout-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill,minmax(50px,1fr));
@@ -392,12 +402,12 @@ function enterPress(event: KeyboardEvent) {
     justify-content: flex-end;
     align-items: center;
     gap: var(--tg-spacing-12);
+    --tg-icon-color: var(--tg-text-white);
     // button.send {
     //   background: linear-gradient(180deg, var(--tg-sub-green-light) 0%, var(--tg-sub-green) 100%);
     //   color: var(--tg-sub-green-deep);
     // }
     button.rule {
-      width: 22px;
     }
   }
 }
