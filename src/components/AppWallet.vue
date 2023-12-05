@@ -32,12 +32,11 @@ function selectCurrency(item: EnumCurrencyKey, hide: () => void) {
     <VDropdown v-model:shown="isMenuShown" :distance="6" @apply-show="clearSearchValue">
       <div class="flex-box">
         <BaseButton class="wallet" type="text" size="sm">
-          <span v-if="isCasinoGame" class="in-play">
+          <!-- <span v-if="isCasinoGame" class="in-play">
             ({{ $t('use_in_game') }})
             <AppCurrencyIcon :show-name="true" :currency-type="currentGlobalCurrency" />
-          </span>
+          </span> -->
           <AppAmount
-            v-else
             style="color:var(--tg-text-white);"
             :amount="currentGlobalCurrencyBalance"
             :currency-type="currentGlobalCurrency"
