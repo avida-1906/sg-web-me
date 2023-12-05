@@ -11,7 +11,6 @@ const props = withDefaults(defineProps<Props>(), {
   type: 'casino',
 })
 
-// const { t } = useI18n()
 const router = useRouter()
 const { bool: showLeft, setBool: setShowLeftBool } = useBoolean(false)
 const { bool: showRight, setBool: setShowRightBool } = useBoolean(true)
@@ -19,7 +18,6 @@ const { appContentWidth } = storeToRefs(useWindowStore())
 const {
   runAsync: runMemberBannerList,
   data: bannerList,
-  // loading: MemberBannerListLoad,
 } = useRequest(ApiMemberBannerList, {
   onSuccess(data) {
     data.length <= 3 && setShowRightBool(false)
@@ -76,13 +74,13 @@ function jumpToUrl(item: { type: number; url: string }) {
   }
 }
 
-runMemberBannerList({
+await application.allSettled([runMemberBannerList({
   banner_type: props.type === 'casino' ? '1' : '2',
-})
+})])
 </script>
 
 <template>
-  <div class="app-banner">
+  <div v-if="bannerList?.length" class="app-banner mt-24">
     <div
       ref="scrollRef"
       class="banner-scroll scroll-x hide-scrollbar"
@@ -146,7 +144,8 @@ runMemberBannerList({
 <style lang="scss" scoped>
 .app-banner {
   position: relative;
-  margin: 0 -6px 0;
+  margin-left: -6px;
+  margin-right: -6px;
   .banner-scroll{
     width: 100%;
     display: grid;

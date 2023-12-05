@@ -277,6 +277,11 @@ export const useSportsStore = defineStore('sports', () => {
     },
   ])
 
+  /** 获取球种对应icon */
+  function getSportsIconBySi(si: number) {
+    return allSportsNameList.value.find(a => a.si === si)?.spic ?? ''
+  }
+
   /** 切换场馆 */
   function changeProvider(id: string) {
     if (currentProvider.value === id)
@@ -343,6 +348,7 @@ export const useSportsStore = defineStore('sports', () => {
     changeProvider,
     refreshSportsFavList,
     runSportsCount,
+    getSportsIconBySi,
   }
 })
 

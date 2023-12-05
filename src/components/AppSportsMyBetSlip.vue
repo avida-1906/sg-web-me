@@ -15,6 +15,7 @@ const props = defineProps<Props>()
 
 const { t } = useI18n()
 const { currentGlobalCurrency } = storeToRefs(useAppStore())
+const sportsStore = useSportsStore()
 const { openBetSlipDialog } = useDialogBetSlip()
 // const router = useRouter()
 
@@ -116,6 +117,12 @@ function showDetail() {
                   style="--tg-base-button-text-default-color:var(--tg-text-white)"
                   @click="goEventDetailPage(item)"
                 >
+                  <div v-if="isDialog" class="icon">
+                    <AppSportImage
+                      is-cloud
+                      :url="sportsStore.getSportsIconBySi(item.si)"
+                    />
+                  </div>
                   <span v-if="item.et === 1" class="team-name">
                     {{ item.htn }} - {{ item.atn }}
                   </span>
@@ -314,6 +321,11 @@ function showDetail() {
         .team-name{
           text-align: left;
           word-break: break-all;
+        }
+        .icon{
+          width: 14px;
+          height: 14px;
+          margin-right: var(--tg-spacing-8);
         }
       }
 
