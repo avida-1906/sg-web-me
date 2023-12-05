@@ -6,6 +6,7 @@ import { EnumSportMarketType } from '~/utils/enums'
 const props = defineProps<{ onPage?: boolean; onLobby?: boolean }>()
 
 const { t } = useI18n()
+const router = useRouter()
 const sportsStore = useSportsStore()
 const { sportLiveNavs, currentLiveNav } = storeToRefs(sportsStore)
 const { bool: isStandard } = useBoolean(true)
@@ -182,10 +183,16 @@ if (currentLiveNav.value !== -1 && !props.onPage) {
         :auto-show="item.list.length > 0"
       />
       <BaseButton
-        v-show="curTotal < total && isHaveDataToShow"
+        v-show="curTotal < total && isHaveDataToShow && !onPage"
         size="none" type="text" @click="loadMore"
       >
         {{ t('load_more') }}
+      </BaseButton>
+      <BaseButton
+        v-if="onPage" size="none" type="text"
+        @click="router.push(`/sports/${getSportsPlatId()}/live`)"
+      >
+        {{ t('view_all') }}
       </BaseButton>
     </div>
 
@@ -202,12 +209,6 @@ if (currentLiveNav.value !== -1 && !props.onPage) {
   &.on-page {
     margin-top: 0;
   }
-}
-.check-more{
-  display: block;
-  margin-top: -12px;
-  padding-left: var(--tg-spacing-16);
-  margin-bottom: var(--tg-spacing-24);
 }
 
 .market-wrapper {
