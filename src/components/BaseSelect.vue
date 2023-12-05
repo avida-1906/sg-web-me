@@ -58,10 +58,9 @@ function onClickPopperItem(item: any, hide: () => void) {
   emit('update:modelValue', v)
   emit('select', v)
 }
-function onClickPopper() {
-  if (props.disabled)
-    return
+function onPopperOpen() {
   setPopperOpen()
+  emit('focus')
 }
 </script>
 
@@ -72,7 +71,7 @@ function onClickPopper() {
       :distance="6"
       :popper-class="theme ? 'theme-black' : ''"
       @hide="setPopperClose"
-      @show="emit('focus')"
+      @show="onPopperOpen"
     >
       <div
         ref="parent"
@@ -83,7 +82,6 @@ function onClickPopper() {
           'plain': plainPopperLabel,
           'border-red': !!msg,
         }"
-        @click="onClickPopper"
       >
         <slot name="label" :data="selectedOption">
           <span>{{ popperLabel }}</span>

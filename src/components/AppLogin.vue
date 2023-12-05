@@ -13,10 +13,11 @@ const {
   validate: valiUsername,
 } = useField<string>('username', (value) => {
   if (!value)
-    return t('pls_enter_email_or_username')
+    return '最小字符长度为3'
+  else if (value.length > 14)
+    return '最大字符长度为14'
   else if (!emailReg.test(value) && !usernameReg.test(value))
     return t('validate_msg_user_name')
-
   return ''
 })
 const {
@@ -25,9 +26,9 @@ const {
   validate: valiPassword,
 } = useField<string>('password', (value) => {
   if (!value)
-    return t('pls_enter_password')
+    return '最小字符长度为8'
   else if (value.length < 8)
-    return t('password_least_8_characters')
+    return '最小字符长度为8'
   else if (!upperLowerReg.test(value))
     return t('password_uppercase_lowercase_letter')
   else if (!lastOneNumberReg.test(value))
