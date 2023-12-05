@@ -138,10 +138,10 @@ onUnmounted(() => {
           >
             <AppChatMsgItem :msg-info="msg" />
           </div>
-          <!-- <div class="time-wrap wrap">
-          <span>星期一</span>
-          <span>18:22</span>
-        </div> -->
+          <!-- <div class="wrap time-wrap">
+            <span>星期一</span>
+            <span>18:22</span>
+          </div> -->
           <div class="wrap msg-tail" />
         </div>
         <Transition name="fade">

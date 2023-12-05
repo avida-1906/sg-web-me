@@ -17,6 +17,14 @@ const { selected: headSelectValue, list: headSelectData } = useSelect([
   },
 ])
 
+const getIcon = computed(() => {
+  switch (headSelectValue.value) {
+    case 'casino-fy': return 'chess-vipclub'
+    case 'ranking-list': return 'spt-competition'
+    default: return 'tabbar-bet'
+  }
+})
+
 if (isLogin.value) {
   headSelectData.value.unshift({
     label: t('my_bets'),
@@ -42,7 +50,7 @@ watch(() => isMobile.value, (newValue) => {
       >
         <template #label="{ data }">
           <div class="center" style="gap: var(--tg-spacing-8);">
-            <BaseIcon name="tabbar-bet" />
+            <BaseIcon :name="getIcon" />
             <span>{{ data?.label }}</span>
           </div>
         </template>

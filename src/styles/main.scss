@@ -54,12 +54,12 @@
   --tg-border-color-deep-grey: var(--tg-text-grey);
   --tg-border-color-main: var(--tg-secondary-main);
   /* popper 背景 字体色 */
-  --tg-popper-bg: var(--tg-secondary-main);
+  --tg-popper-bg: var(--tg-text-white);
   --tg-popper-bg-deep: var(--tg-primary-main);
-  --tg-popper-color-default: var(--tg-text-grey-lighter);
+  --tg-popper-color-default: var(--tg-secondary-main);
   --tg-popper-hover-color-default: var(--tg-text-blue);
   --tg-popper-color-bright: var(--tg-text-white);
-  --tg-popper-color-icon-default: var(--tg-secondary-light);
+  --tg-popper-color-icon-default: var(--tg-secondary-main);
 }
 
 :root {
@@ -486,7 +486,7 @@ body {
 
 // 鼠标悬停气泡提示提示
 .tiny-menu-item-title {
-  color: var(--tg-popper-color-bright);
+  color: var(--tg-popper-color-default);
   font-size: var(--tg-font-size-default);
   font-weight: var(--tg-font-weight-semibold);
   padding: var(--tg-spacing-button-padding-vertical-xs) var(--tg-spacing-button-padding-horizontal-xs);
@@ -499,7 +499,7 @@ body {
   cursor: pointer;
   padding: var(--tg-spacing-button-padding-vertical-xs) var(--tg-spacing-button-padding-horizontal-xs);
   font-size: var(--tg-font-size-default);
-  color: var(--tg-popper-color-bright);
+  color: var(--tg-popper-color-default);
   .app-svg-icon {
     --tg-icon-color: var(--tg-popper-color-icon-default);
   }

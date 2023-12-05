@@ -190,17 +190,17 @@ onMounted(() => {
           <button class="tips">
             <span>{{ gameLabel }}</span>
             <BaseIcon
-              name="uni-arrow-up-big"
+              name="uni-arrow-up-small"
               :class="{
                 'rotate-180': !isPopperShow,
               }"
             />
           </button>
           <template #popper="{ hide }">
+            <!-- :class="{ 'active-menu': gameType === type.value }" -->
             <a
               v-for="type, i in gameTypeList" :key="i"
               class="popper-option"
-              :class="{ 'active-menu': gameType === type.value }"
               @click="hide();selectGameType(type.value)"
             >
               {{ type.label }}
@@ -278,6 +278,9 @@ onMounted(() => {
 .tips {
   display: flex;
   align-items: center;
+  color: var(--tg-text-white);
+  font-weight: var(--tg-font-weight-semibold);
+  // --tg-icon-color: var(--tg-text-white);
 
   svg {
     font-size: var(--tg-font-size-default);

@@ -271,8 +271,8 @@ function handleClickMenuItem(item: { name: string; path?: string }) {
 }
 
 .dropdown-popper {
-  --tg-icon-color: var(--tg-text-secondary-main);
-  color: var(--tg-text-secondary-main);
+  --tg-icon-color: var(--tg-popper-color-default);
+  color: var(--tg-popper-color-default);
   font-size: var(--tg-font-size-default);
   font-weight: var(--tg-font-weight-semibold);
 
@@ -294,8 +294,8 @@ function handleClickMenuItem(item: { name: string; path?: string }) {
     .menu-btn {
       display: flex;
       align-items: center;
-      color: var(--tg-text-white);
-      --tg-icon-color: #B1BAD3;
+      color: var(--tg-popper-color-default);
+      --tg-icon-color: var(--tg-popper-color-default);
       padding:
       var(--tg-spacing-button-padding-vertical-xs)
       var(--tg-spacing-button-padding-horizontal-xs);
