@@ -104,7 +104,7 @@ watch(route, (val) => {
                   <template
                     v-if="route.path === '/transactions' || route.path === '/settings'"
                   >
-                    <BaseMenu :data="menuData" />
+                    <BaseMenu class="settran" :data="menuData" />
                   </template>
                   <template v-else>
                     <AppUserAgentInfo
@@ -132,7 +132,7 @@ watch(route, (val) => {
                           </div>
                           <div
                             v-else
-                            class="stack x-flex-start y-center menu-btn gap-small"
+                            class="stack x-flex-start y-center gap-small menu-btn"
                             :class="[appContentWidth > 800
                               ? 'padding-none direction-horizontal'
                               : 'padding-none direction-horizontal']"
@@ -190,6 +190,9 @@ watch(route, (val) => {
 </template>
 
 <style lang="scss" scoped>
+.settran {
+  --tg-base-menu-item-active-bg: transparent;
+}
 .menu-tabs {
   display: flex;
   padding-bottom: var(--tg-spacing-8);
