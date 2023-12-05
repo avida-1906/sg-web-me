@@ -51,8 +51,8 @@ const userMenu = computed(() => ([
   {
 
     id: 7,
-    icon: 'spt-basketball',
-    title: t('sports_betting'),
+    icon: 'spt-user-bet',
+    title: t('my_bets'),
     name: 'sports-betting',
   },
   {

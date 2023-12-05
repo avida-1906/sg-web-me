@@ -118,7 +118,7 @@ onMounted(() => {
       />
       <AppProviderSlider />
     </section>
-    <AppBetData />
+    <AppBetData mode="casino" />
   </div>
 </template>
 

@@ -30,7 +30,7 @@ const langKey: { [t: string]: string } = {
   'hi-IN': 'hi',
 }
 
-function checkTs(ts: number) {
+export function checkTs(ts: number) {
   return `${ts}`.length !== 13 ? ts * 1000 : ts
 }
 

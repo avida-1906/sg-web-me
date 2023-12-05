@@ -154,6 +154,7 @@ declare global {
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
   const autoResetRef: typeof import('@vueuse/core')['autoResetRef']
   const axios: typeof import('axios')['default']
+  const checkTs: typeof import('./utils/time')['checkTs']
   const cloneDeep: typeof import('lodash-es')['cloneDeep']
   const computed: typeof import('vue')['computed']
   const computedAsync: typeof import('@vueuse/core')['computedAsync']
@@ -740,6 +741,7 @@ declare module 'vue' {
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
     readonly axios: UnwrapRef<typeof import('axios')['default']>
+    readonly checkTs: UnwrapRef<typeof import('./utils/time')['checkTs']>
     readonly cloneDeep: UnwrapRef<typeof import('lodash-es')['cloneDeep']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly computedAsync: UnwrapRef<typeof import('@vueuse/core')['computedAsync']>
@@ -1320,6 +1322,7 @@ declare module '@vue/runtime-core' {
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
     readonly axios: UnwrapRef<typeof import('axios')['default']>
+    readonly checkTs: UnwrapRef<typeof import('./utils/time')['checkTs']>
     readonly cloneDeep: UnwrapRef<typeof import('lodash-es')['cloneDeep']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly computedAsync: UnwrapRef<typeof import('@vueuse/core')['computedAsync']>

@@ -70,6 +70,12 @@ watch(route, (val) => {
   </section>
 </template>
 
+<style>
+:root {
+  --tg-base-menu-item-active-bg: var(--tg-secondary-deepdark);
+}
+</style>
+
 <style lang="scss" scoped>
 .tg-base-menu {
   position: sticky;
@@ -96,7 +102,7 @@ watch(route, (val) => {
         border: none;
         font-weight: var(--tg-font-weight-semibold);
         &:hover, &.active {
-          background: var(--tg-secondary-deepdark);
+          background: var(--tg-base-menu-item-active-bg);
         }
       }
       .dash {
