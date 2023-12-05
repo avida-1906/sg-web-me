@@ -28,7 +28,7 @@ const {
 } = useBoolean(false)
 
 // tab值
-const activeTab: Ref<string> = ref('ranking-list')
+const activeTab: Ref<string> = ref(props.mode === 'casino' ? 'casino-fy' : 'ranking-list')
 // 需要获取多少条数据
 const selectSize: Ref<number> = ref(10)
 const tableData: any = ref([])
