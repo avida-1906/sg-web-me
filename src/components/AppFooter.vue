@@ -32,7 +32,7 @@ const partner = [
 ]
 
 const menuData = computed(() => {
-  // brandDetail.value
+  // brandDetail.value?.bottom.quick_jump.map(item )
   return [
     {
       title: t('sports'),

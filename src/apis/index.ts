@@ -1450,30 +1450,19 @@ export function ApiMemberBrandDetail() {
         'data': string[]
       }
       /** 页尾快捷跳转 */
-      'quick_jump': [
-        {
-          'info': {
-            'name': string
-            'content': {
-              'cn_zh': string
-            }
-            'content_state': number
-            'id': string
-            'jump_url': string
-          }[]
-          'id': string
+      'quick_jump': {
+        'info': {
           'name': string
-        },
-        {
+          'content': {
+            'cn_zh': string
+          }
+          'content_state': number
           'id': string
-          'name': string
-          'info': {
-            'name': string
-            'content_state': number
-            'id': string
-          }[]
-        },
-      ]
+          'jump_url': string
+        }[]
+        'id': string
+        'name': string
+      }[]
       /** 页尾合作厂商 */
       'partner': {
         [k: string]: number
