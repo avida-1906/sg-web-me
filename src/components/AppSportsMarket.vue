@@ -44,6 +44,7 @@ function onMoreClick() {
           :is-standard="isStandard" :index="i"
           :data="item"
           :base-type="baseType"
+          :is-last="i === eventList.length - 1"
         />
       </div>
     </template>

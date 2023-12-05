@@ -6,7 +6,7 @@ const props = defineProps<{ onPage?: boolean }>()
 
 const { t } = useI18n()
 const sportsStore = useSportsStore()
-const { upcomingNavs, currentUpcomingNav } = storeToRefs(sportsStore)
+const { upcomingNavs, currentUpcomingNav, allSportsCount } = storeToRefs(sportsStore)
 const { bool: isStandard } = useBoolean(true)
 const {
   VITE_SPORT_EVENT_PAGE_SIZE, VITE_SPORT_EVENT_PAGE_SIZE_MAX,
@@ -38,7 +38,30 @@ const { run, runAsync } = useRequest(ApiSportEventList,
     refreshDeps: [currentUpcomingNav],
     onSuccess(res) {
       if (res.d) {
+        // 修改即将开赛导航的条数数据
+        if (allSportsCount.value) {
+          if (currentUpcomingNav.value === 0) {
+            allSportsCount.value = {
+              c: allSportsCount.value.c,
+              nc: res.t,
+              list: allSportsCount.value.list,
+            }
+          }
+          else {
+            const index = allSportsCount.value.list.findIndex(a => a.si === currentUpcomingNav.value)
+            if (index > -1) {
+              const arr = cloneDeep(allSportsCount.value.list)
+              arr.splice(index, 1, { ...allSportsCount.value.list[index], nc: res.t })
+              allSportsCount.value = {
+                nc: allSportsCount.value.nc,
+                c: allSportsCount.value.c,
+                list: arr,
+              }
+            }
+          }
+        }
         total.value = res.t
+
         if (page.value === 1)
           return list.value = res.d
 

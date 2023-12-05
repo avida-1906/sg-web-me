@@ -72,6 +72,7 @@ declare module 'vue' {
     AppLoginRegisterBtns: typeof import('./components/AppLoginRegisterBtns.vue')['default']
     AppLoginRegTipBox: typeof import('./components/AppLoginRegTipBox.vue')['default']
     AppLogoutDialog: typeof import('./components/AppLogoutDialog.vue')['default']
+    AppMarquee: typeof import('./components/AppMarquee.vue')['default']
     AppMatchStatistics: typeof import('./components/AppMatchStatistics.vue')['default']
     AppMenuItem: typeof import('./components/AppMenuItem.vue')['default']
     AppNavBreadCrumb: typeof import('./components/AppNavBreadCrumb.vue')['default']
