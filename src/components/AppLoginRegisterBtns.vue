@@ -2,17 +2,29 @@
 const { t } = useI18n()
 const { openLoginDialog } = useLoginDialog()
 const { openRegisterDialog } = useRegisterDialog()
+const { leftIsExpand, closeLeftSidebar } = useLeftSidebar()
+const { isMobile } = storeToRefs(useWindowStore())
+
+function handleLogin() {
+  isMobile.value && leftIsExpand.value && closeLeftSidebar()
+  openLoginDialog()
+}
+
+function handleRegister() {
+  isMobile.value && leftIsExpand.value && closeLeftSidebar()
+  openRegisterDialog()
+}
 </script>
 
 <template>
   <div class="btn-box">
-    <BaseButton type="text" custom-padding @click.stop="openLoginDialog()">
+    <BaseButton type="text" custom-padding @click.stop="handleLogin">
       {{ t('login') }}
     </BaseButton>
     <BaseButton
       custom-padding
       bg-style="primary"
-      @click.stop="openRegisterDialog()"
+      @click.stop="handleRegister"
     >
       {{ t('reg') }}
     </BaseButton>
