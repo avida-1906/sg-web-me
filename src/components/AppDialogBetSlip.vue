@@ -9,12 +9,13 @@ interface Props {
   }
 }
 const props = defineProps<Props>()
-const closeDialog = inject('closeDialog', () => {})
+const closeDialog = inject('closeDialog', () => { })
 
 const { t } = useI18n()
 const { openRightSidebar, rightIsExpand, currentRightSidebarContent } = useRightSidebar()
 const windowStore = useWindowStore()
 const { isMobile } = storeToRefs(windowStore)
+const router = useRouter()
 
 const isCasino = computed(() => props.type === 'casino')
 const isSports = computed(() => props.type === 'sports')
@@ -42,6 +43,10 @@ function clickHandler() {
   //     pcDomTransition()
   // }
 }
+
+function openCasinoGame(id: string, name: string) {
+  router.push(`/casino/games?id=${id}&name=${name}`)
+}
 </script>
 
 <template>
@@ -49,10 +54,42 @@ function clickHandler() {
     class="dialog-bet-slip"
     :style="{ paddingBottom: isCasino ? 'var(--tg-spacing-16)' : '' }"
   >
-    <div class="top">
-      <div class="game-type">
-        {{ t(type) }}
+    <template v-if="isSports">
+      <div class="top">
+        <div class="game-type">
+          {{ t(type) }}
+        </div>
+        <!-- <div class="order-id">
+        <span>ID 93,425,567</span>
+        <BaseButton type="text" size="none">
+          <BaseIcon name="uni-doc" />
+        </BaseButton>
+        <BaseButton type="text" size="none">
+          <BaseIcon name="uni-link" />
+        </BaseButton>
+      </div> -->
+        <div class="des">
+          <span>{{ t('investor') }}：***test</span><br>
+          <span class="time">{{ t('on') }} {{ timeToFormat(betTime) }}</span>
+        </div>
       </div>
+      <div class="sports-bottom">
+        <AppSportsMyBetSlip :data="sportsData" is-dialog />
+        <BaseButton v-if="!isSettled" size="md" @click="clickHandler">
+          {{ t('add_one_bet') }}
+        </BaseButton>
+      </div>
+    </template>
+
+    <div v-else-if="isCasino" class="top">
+      <BaseButton
+        type="text" size="none"
+        @click="openCasinoGame(casinoData.gc, casinoData.gn)"
+      >
+        <div class="game-type">
+          {{ casinoData.gn }}
+        </div>
+      </BaseButton>
       <!-- <div class="order-id">
         <span>ID 93,425,567</span>
         <BaseButton type="text" size="none">
@@ -67,31 +104,29 @@ function clickHandler() {
         <span class="time">{{ t('on') }} {{ timeToFormat(betTime) }}</span>
       </div>
     </div>
-    <div v-if="isCasino" class="casino-bottom">
+    <div class="casino-bottom">
       <div class="item">
         <label>{{ t('menu_title_settings_bets') }}:</label>
         <span>
-          4.00000000
-          <AppCurrencyIcon currency-type="BRL" />
+          {{ casinoData.ba }}
+          <AppCurrencyIcon
+            :currency-type="getCurrencyConfigByCode(casinoData.ci)?.name"
+          />
         </span>
       </div>
-      <div class="item">
+      <!-- <div class="item">
         <label>{{ t('multiple_count') }}:</label>
         <span>1.00x</span>
-      </div>
+      </div> -->
       <div class="item">
         <label>{{ t('menu_title_settings_bets') }}:</label>
-        <span>
-          4.00000000
-          <AppCurrencyIcon currency-type="BRL" />
+        <span :class="{ win: casinoData.na > 0 }">
+          {{ casinoData.na }}
+          <AppCurrencyIcon
+            :currency-type="getCurrencyConfigByCode(casinoData.ci)?.name"
+          />
         </span>
       </div>
-    </div>
-    <div v-else-if="isSports" class="sports-bottom">
-      <AppSportsMyBetSlip :data="sportsData" is-dialog />
-      <BaseButton v-if="!isSettled" size="md" @click="clickHandler">
-        {{ t('add_one_bet') }}
-      </BaseButton>
     </div>
   </div>
 </template>
@@ -158,6 +193,10 @@ function clickHandler() {
       align-items: center;
       justify-content: flex-end;
       gap: var(--tg-spacing-4);
+
+      &.win {
+        color: var(--tg-text-green);
+      }
     }
   }
 }
