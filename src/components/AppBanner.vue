@@ -40,7 +40,7 @@ const getGridAutoColumns = computed(() => {
       return { 'grid-auto-columns': '48.75%' }
 
     else
-      return { 'grid-auto-columns': '95.5%' }
+      return { 'grid-auto-columns': bannerList.value?.length === 1 ? '100%' : '95.5%' }
   }
 })
 
