@@ -103,7 +103,7 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse })
           class="input-box"
           :class="{
             'active': isFocus,
-            error,
+            'error': error && !isFocus,
             'check-dom-error': error,
             'radio-r-o': $slots['right-button'],
           }"

@@ -87,7 +87,7 @@ function gameStart(item: Props['gameInfo']) {
     </div>
   </BaseAspectRatio>
   <span class="count">
-    <span class="dot blinking-dash2" />&nbsp;
+    <span class="dot blinking-dash2" />&nbsp;&nbsp;
     <span class="num">{{ application.formatNumber('1000') }}</span>
     &nbsp;{{ t('in_play') }}</span>
 </template>
