@@ -93,7 +93,7 @@ function selectCurrency(item: EnumCurrencyKey, hide: () => void) {
               custom-padding
               @click=" hide();openWalletSetDialog({ setHideZeroBalance })"
             >
-              <BaseIcon class="icon-wallet-set" name="navbar-wallet" />
+              <BaseIcon class="icon-wallet-set" name="wallet-set" />
               <span>{{ $t('title_wallet_set') }}</span>
             </BaseButton>
           </div>

@@ -134,14 +134,18 @@ watchEffect(() => {
           type="round-line-left" size="none"
           :disabled="x <= 0" @click="prevPage"
         >
-          <BaseIcon name="uni-arrowleft-line" />
+          <div class="a-inner left">
+            <BaseIcon class="left" name="uni-arrowleft-line" />
+          </div>
         </BaseButton>
         <BaseButton
           size="none"
           type="round-line-right" :disabled="scrollLeftItemsCount + pageInfo.pageSize
             >= data.length + 1" @click="nextPage"
         >
-          <BaseIcon name="uni-arrowright-line" />
+          <div class="a-inner right">
+            <BaseIcon class="right" name="uni-arrowright-line" />
+          </div>
         </BaseButton>
       </div>
     </div>
@@ -220,19 +224,45 @@ watchEffect(() => {
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      gap: var(--tg-spacing-6);
+      gap: 0;
 
       button {
-        width: 51px;
+        width: 50px;
         height: 37px;
+        &:not(:disabled) {
+          .a-inner {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all .2s;
+            &:hover svg {
+              transform: scale(1.2);
+              opacity: 0.8;
+            }
+            &.left svg {
+              transform-origin: center center;
+            }
+            &.right svg {
+              transform-origin: center center;
+            }
+          }
+        }
+      }
+      button:last-child {
+        border-left: 0;
       }
 
       // button:disabled {
       //   cursor: default;
       // }
+      button {
+        border-color: var(--tg-secondary-main);
+      }
       .app-svg-icon {
         font-size: var(--tg-font-size-default);
-        --tg-icon-color: var(--tg-text-white);
+        --tg-icon-color: var(--tg-secondary-light);
       }
     }
   }
