@@ -247,7 +247,7 @@ export function ApiSportOutrightList(params: {
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=bf0538b1-2dae-474d-ad17-1670d56fb8f5
  */
 export function ApiSportGetFavoriteList(params: {
-  sis: Array<number>
+  si: number
   cur: string
 }) {
   return httpClient.get<{
