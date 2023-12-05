@@ -138,7 +138,7 @@ export function useApiMenuData() {
           path: '/promotions/promotion/weekly-giveaway',
           icon: 'navbar-user',
         },
-        { title: t('view_all'), path: '/promotions', icon: 'navbar-user' },
+        { title: t('view_all'), path: '/promotions', icon: 'chess-gameshow' },
       ],
       domId: 'static-menu-promotion',
     },

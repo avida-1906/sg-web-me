@@ -58,7 +58,7 @@ function push(title: string) {
     @close="closeLeftSidebar"
   />
 
-  <div v-if="isMobile && !isCasino && !isSports" class="buttons">
+  <!-- <div v-if="isMobile && !isCasino && !isSports" class="buttons">
     <BaseAspectRatio v-for="n in navButtons" :key="n.title" ratio="3.5/1">
       <div
         :class="[n.title, { active: route.name?.toString().includes(n.title) }]"
@@ -67,7 +67,7 @@ function push(title: string) {
         <span>{{ t(n.title) }}</span>
       </div>
     </BaseAspectRatio>
-  </div>
+  </div> -->
 
   <div class="content scrollY">
     <Transition name="slide-fade">

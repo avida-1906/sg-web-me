@@ -37,6 +37,7 @@ const tabList = computed(() => [
       <div class="hero-wrapper mt-24">
         <AppBanner type="sports" />
       </div>
+      <AppMarquee />
       <div v-if="!isMobile" class="mt-24">
         <AppGameSearch game-type="2" />
       </div>
