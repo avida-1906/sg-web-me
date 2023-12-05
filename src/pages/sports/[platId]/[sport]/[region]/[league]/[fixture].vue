@@ -20,7 +20,7 @@ const {
 
 useIntervalFn(() => {
   runGetSportInfo({ si: Number(route.params.sport), ei: `${route.params.fixture}` })
-}, 10 * 1000)
+}, 3 * 1000)
 
 const title = computed(() => {
   if (breadcrumbData.value.length)
