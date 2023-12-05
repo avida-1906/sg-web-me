@@ -116,7 +116,10 @@ function showDetail() {
                   style="--tg-base-button-text-default-color:var(--tg-text-white)"
                   @click="goEventDetailPage(item)"
                 >
-                  <span class="team-name">{{ item.htn }} - {{ item.atn }}</span>
+                  <span v-if="item.et === 1" class="team-name">
+                    {{ item.htn }} - {{ item.atn }}
+                  </span>
+                  <span v-else-if="item.et === 2" class="team-name">{{ item.sn }}</span>
                 </BaseButton>
                 <span>{{ item.btn }}</span>
               </div>

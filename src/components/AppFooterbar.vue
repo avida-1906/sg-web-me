@@ -11,6 +11,8 @@ const {
   closeRightSidebar,
 } = useRightSidebar()
 const sportStore = useSportsStore()
+const { isLogin } = storeToRefs(useAppStore())
+const { openRegisterDialog } = useRegisterDialog()
 
 const activeName = ref('')
 let timer: undefined | NodeJS.Timeout
@@ -92,6 +94,9 @@ function changeBar(item: { name: string; path?: string }) {
     case 'user-bet':// 投注单
       leftIsExpand.value && closeLeftSidebar()
       openRightSidebar(EnumRightSidebarContent.BETTING)
+      if (!isLogin.value)
+        openRegisterDialog()
+
       break
     case 'chat':
       leftIsExpand.value && closeLeftSidebar()
