@@ -84,18 +84,16 @@ export const useSportsStore = defineStore('sports', () => {
     refreshDeps: isLogin,
     refreshDepsAction: () => {
       if (sidebarData.value && sidebarData.value.all && isLogin.value) {
-        const allSportsSi = sidebarData.value.all.map(a => a.si)
         runGetFavoriteList({
-          sis: allSportsSi,
+          si: 0,
           cur: currencyConfig[currentGlobalCurrency.value].cur,
         })
       }
     },
-    onSuccess(res) {
+    onSuccess() {
       if (isLogin.value) {
-        const allSportsSi = res.all.map(a => a.si)
         runGetFavoriteList({
-          sis: allSportsSi,
+          si: 0,
           cur: currencyConfig[currentGlobalCurrency.value].cur,
         })
       }
@@ -312,7 +310,7 @@ export const useSportsStore = defineStore('sports', () => {
   /** 更新收藏赛事列表 */
   function refreshSportsFavList() {
     runGetFavoriteList({
-      sis: allSportsSi.value,
+      si: 0,
       cur: currencyConfig[currentGlobalCurrency.value].cur,
     })
   }

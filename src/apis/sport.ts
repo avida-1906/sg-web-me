@@ -15,7 +15,7 @@ import type { IBetInfo } from '~/types'
  * 获取所有体育计数
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=b9bcba6d-49cf-4de9-a304-cf80caf8f46c
  */
-export function ApiSportCount(data: {
+export function ApiSportCount(params: {
   /** 是否取得串关数量
    *
    * 0:全部
@@ -25,7 +25,7 @@ export function ApiSportCount(data: {
    * 2:不支援串关 */
   ic: number
 }) {
-  return httpClient.post<{
+  return httpClient.get<{
     /** count 总数 */
     c: number
     /** 即将开赛总数 */
@@ -50,7 +50,7 @@ export function ApiSportCount(data: {
       /** 球种图片 */
       spic: string
     }[]
-  }>(`/sport/${getSportsPlatId()}/count`, data)
+  }>(`/sport/${getSportsPlatId()}/count`, { params })
 }
 
 /**
@@ -58,7 +58,7 @@ export function ApiSportCount(data: {
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=c4f949f2-ecca-470e-b7f1-f980bd7fb70c
  */
 export function ApiSportSidebar() {
-  return httpClient.post<{
+  return httpClient.get<{
     menu: {
       menu_id: number
       name: string
@@ -87,7 +87,7 @@ export function ApiSportSidebar() {
  * 联赛列表
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=bb7c74b6-711c-4a6a-88bd-2e131eb95a95
  */
-export function ApiSportCompetitionList(data: {
+export function ApiSportCompetitionList(params: {
   /** 球种Id */
   si: number
   /** 种类
@@ -97,7 +97,7 @@ export function ApiSportCompetitionList(data: {
    * outright:冠军赛 */
   kind: string
 }) {
-  return httpClient.post<{
+  return httpClient.get<{
     /** 热门联赛列表 */
     hot: {
       /** 地区Id */
@@ -133,14 +133,14 @@ export function ApiSportCompetitionList(data: {
         c: number
       }[]
     }[]
-  }>(`/sport/${getSportsPlatId()}/competition/list`, data)
+  }>(`/sport/${getSportsPlatId()}/competition/list`, { params })
 }
 
 /**
  * 获取赛事列表
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=51d0dcf6-cfde-4672-884c-81ff05e0c07e
  */
-export function ApiSportEventList(data: {
+export function ApiSportEventList(params: {
   /** 球种Id */
   si: number
   /** market
@@ -165,20 +165,20 @@ export function ApiSportEventList(data: {
   /** 地区id */
   pgid?: string
 }) {
-  return httpClient.post<{
+  return httpClient.get<{
     /** 资料更新时间 */
     delta: number
     /** 联赛列表 */
     d: ISportEventInfo[]
     t: number
-  }>(`/sport/${getSportsPlatId()}/event/list`, data)
+  }>(`/sport/${getSportsPlatId()}/event/list`, { params })
 }
 
 /**
  * 获取赛事列表
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=4a7e9957-f7fe-4404-97ef-92840479a803
  */
-export function ApiSportEventDelta(data: {
+export function ApiSportEventDelta(params: {
   /** 球种Id */
   si: number
   /** market 1:早盤 */
@@ -186,24 +186,24 @@ export function ApiSportEventDelta(data: {
   /** 1198399587 最后更新时间 */
   delta: number
 }) {
-  return httpClient.post<{
+  return httpClient.get<{
     /** 资料更新时间 */
     delta: number
     list: ISportEventList[]
-  }>(`/sport/${getSportsPlatId()}/event/delta`, data)
+  }>(`/sport/${getSportsPlatId()}/event/delta`, { params })
 }
 
 /**
  * 单场赛事详情
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=6238fa9d-1a7e-4daf-a57c-0cc97163fdbb
  */
-export function ApiSportEventInfo(data: {
+export function ApiSportEventInfo(params: {
   /** 球种Id */
   si: number
   /** 赛事ID */
   ei: string
 }) {
-  return httpClient.post<{
+  return httpClient.get<{
     /** 资料更新时间 */
     delta: number
     list: ISportEventInfo[]
@@ -213,7 +213,7 @@ export function ApiSportEventInfo(data: {
      * 3:赛事已结束
      */
     status: 1 | 3
-  }>(`/sport/${getSportsPlatId()}/event/info`, data)
+  }>(`/sport/${getSportsPlatId()}/event/info`, { params })
 }
 
 /**
@@ -221,7 +221,7 @@ export function ApiSportEventInfo(data: {
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=ae1fee09-d03e-4f27-a7bb-6a2bbdc4d74f
  */
 export function ApiSportMenuMain() {
-  return httpClient.post<{
+  return httpClient.get<{
     list: {
       menu_id: number
       menu_name: string
@@ -233,29 +233,29 @@ export function ApiSportMenuMain() {
  * 冠军列表
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=30bb4469-a21f-4267-b30c-b6e8555a6b89
  */
-export function ApiSportOutrightList(data: {
+export function ApiSportOutrightList(params: {
   /** 球种id */
   si: number
   page: number
   page_size: number
 }) {
-  return httpClient.post<IResponseList<ISportOutrightsInfo>>(`/sport/${getSportsPlatId()}/outright/list`, data)
+  return httpClient.get<IResponseList<ISportOutrightsInfo>>(`/sport/${getSportsPlatId()}/outright/list`, { params })
 }
 
 /**
  * 获取收藏
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=bf0538b1-2dae-474d-ad17-1670d56fb8f5
  */
-export function ApiSportGetFavoriteList(data: {
-  sis: Array<number>
+export function ApiSportGetFavoriteList(params: {
+  si: number
   cur: string
 }) {
-  return httpClient.post<{
+  return httpClient.get<{
     /** 资料更新时间 */
     delta: number
     d: ISportEventInfo[]
     t: number
-  }>(`/sport/${getSportsPlatId()}/favorite/get`, data)
+  }>(`/sport/${getSportsPlatId()}/favorite/list`, { params })
 }
 
 /**
@@ -268,7 +268,7 @@ export function ApiSportAddFavorite(data: {
   eis: string[]
   cur: string
 }) {
-  return httpClient.post(`/sport/${getSportsPlatId()}/favorite/add`, data)
+  return httpClient.post(`/sport/${getSportsPlatId()}/favorite/insert`, data)
 }
 
 /**
@@ -281,7 +281,7 @@ export function ApiSportDelFavorite(data: {
   eis: string[]
   cur: string
 }) {
-  return httpClient.post(`/sport/${getSportsPlatId()}/favorite/del`, data)
+  return httpClient.post(`/sport/${getSportsPlatId()}/favorite/delete`, data)
 }
 
 /**
@@ -337,11 +337,11 @@ export function ApiSportPlaceBet(data: IBetArgs) {
  * 投注记录
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=ed6c7a9f-30aa-4cf6-89d7-130fa962a136
  */
-export function ApiSportBetList(data: ISportsBetListArgs) {
-  return httpClient.post<IResponseList<ISportsMyBetSlipItem>>(
+export function ApiSportBetList(params: ISportsBetListArgs) {
+  return httpClient.get<IResponseList<ISportsMyBetSlipItem>>(
     `/sport/${getSportsPlatId()}/betlist`,
-    data,
     {
+      params,
       timeout: 30 * 1000,
     },
   )
@@ -351,12 +351,12 @@ export function ApiSportBetList(data: ISportsBetListArgs) {
  * 热门赛事
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=b4f7b09e-0d3e-420b-8069-a47531f8885f
  */
-export function ApiSportsEventHot(data: {
+export function ApiSportsEventHot(params: {
   si: number
   page: 1
   page_size: 10
 }) {
-  return httpClient.post <IResponseList<{
+  return httpClient.get<IResponseList<{
     ci: string
     cn: string
     ei: string
@@ -367,5 +367,5 @@ export function ApiSportsEventHot(data: {
     cpic: string
     pgid: string
     ed: number
-  }>>(`/sport/${getSportsPlatId()}/event/hot`, data)
+  }>>(`/sport/${getSportsPlatId()}/event/hot`, { params })
 }
