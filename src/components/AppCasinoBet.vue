@@ -2,12 +2,10 @@
 const { t } = useI18n()
 const { closeRightSidebar } = useRightSidebar()
 const { isMobile } = storeToRefs(useWindowStore())
+const { isLogin } = storeToRefs(useAppStore())
 
 const { selected: headSelectValue, list: headSelectData } = useSelect([
   {
-    label: t('my_bets'),
-    value: 'casino-mine',
-  }, {
     label: t('all_bets'),
     value: 'casino-all',
   }, {
@@ -19,7 +17,13 @@ const { selected: headSelectValue, list: headSelectData } = useSelect([
   },
 ])
 
-headSelectValue.value = 'casino-mine'
+if (isLogin.value) {
+  headSelectData.value.unshift({
+    label: t('my_bets'),
+    value: 'casino-mine',
+  })
+}
+headSelectValue.value = headSelectData.value[0].value
 
 watch(() => isMobile.value, (newValue) => {
   if (!newValue)
