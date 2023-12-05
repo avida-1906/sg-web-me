@@ -231,7 +231,7 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
         <div class="icon">
           <BaseIcon name="uni-play" />
         </div>
-        <span>{{ t('casino_game_real_money_mode') }}</span>
+        <span>{{ t('start_game') }}</span>
       </BaseButton>
       <BaseButton
         v-else
