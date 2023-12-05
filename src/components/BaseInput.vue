@@ -195,7 +195,7 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse })
     width: 100%;
     color: var(--tg-text-white);
     background: var(--tg-secondary-dark);
-    box-shadow: var(--tg-box-shadow);
+    // box-shadow: var(--tg-box-shadow);
     // border: 2px solid var(--tg-secondary-main);
     // border-radius: var(--input-border-radius);
     letter-spacing: 0;

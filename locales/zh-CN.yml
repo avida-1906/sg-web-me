@@ -10,7 +10,6 @@ fishing: 捕鱼
 chess: 棋牌
 live: 真人
 email_or_username: 电邮地址或用户名
-pls_enter_email_or_username: 请输入电邮地址或用户名
 email_or_username_incorrect: 电邮地址或用户名格式不正确
 two_step_verification: 双重验证
 pls_enter_two_step_verification: 请输入双重验证
