@@ -148,10 +148,23 @@ function selectCurrency(item: EnumCurrencyKey, hide: () => void) {
   .popper-top {
     padding: 12px 0;
 
-    .top-search {
+    :deep(.base-search.top-search) {
       width: 85%;
       max-width: 180px;
       margin: auto;
+      background-color: var(--tg-text-white);
+      border-color: var(--tg-text-grey-light);
+      .search-icon {
+        color: var(--tg-text-grey-light);
+      }
+      input {
+        color: #2f4553;
+        &::placeholder {
+          color: #2f4553 !important;
+          opacity: 0.3;
+          font-weight: var(--tg-font-weight-semibold);
+        }
+      }
     }
   }
 
@@ -174,8 +187,10 @@ function selectCurrency(item: EnumCurrencyKey, hide: () => void) {
       --tg-app-amount-width:14ch;
       line-height: 20px;
       transition: color .2s ease;
-      &:hover,&.active {
-        background-color: var(--tg-text-blue);
+      font-weight: var(--tg-font-weight-semibold);
+      &:hover { // ,&.active
+        background-color: var(--tg-secondary-light);
+        color: var(--tg-text-black);
         // color: var(--tg-popper-hover-color-default);
       }
 
@@ -187,15 +202,16 @@ function selectCurrency(item: EnumCurrencyKey, hide: () => void) {
   }
 
   .popper-bottom {
-    background: var(--tg-primary-main);
+    // background: var(--tg-primary-main);
     --tg-base-button-padding-y: var(--tg-spacing-button-padding-vertical-xs);
     --tg-base-button-padding-x: var(--tg-spacing-button-padding-vertical-none);
-    --tg-base-button-font-weight: var(--tg-font-weight-normal);
-    --tg-base-button-text-default-color: var(--tg-text-white);
+    --tg-base-button-font-weight: var(--tg-font-weight-semibold);
+    --tg-base-button-text-default-color: var(--tg-popper-color-default);
+    border-top: 2px solid var(--tg-text-grey-light);
 
     .icon-wallet-set {
       font-size: var(--tg-font-size-base);
-      --tg-icon-color: var(--tg-text-white);
+      --tg-icon-color: var(--tg-popper-color-default);
       margin-right: var(--tg-spacing-8);
     }
   }
