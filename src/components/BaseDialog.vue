@@ -138,7 +138,7 @@ onUnmounted(() => {
     bottom: 0;
     right: 0;
     z-index: var(--tg-z-index-secondary);
-    padding: var(--tg-spacing-12);
+    padding: var(--tg-spacing-16);
     display: flex;
     align-items: center;
     justify-content: center;

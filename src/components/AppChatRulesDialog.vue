@@ -11,13 +11,19 @@ const { VITE_SITE_NAME } = getEnv()
     </ol>
     <div class="center">
       {{ $t('chat_rule_full_title') }}
-      <a><span>{{ $t('chat_forum') }}</span><BaseIcon name="uni-jump-page" /></a>
+      <a>
+        <span class="bold-text">{{ $t('chat_forum') }}</span>
+        <BaseIcon name="uni-jump-page" />
+      </a>
       {{ $t('chat_rule_find') }}。
     </div>
   </section>
 </template>
 
 <style lang="scss" scoped>
+.bold-text {
+  font-weight: var(--tg-font-weight-semibold);
+}
 .modal-content-normal {
   padding-right: var(--tg-spacing-16);
   padding-left: var(--tg-spacing-16);

@@ -168,7 +168,7 @@ onErrorCaptured((err, instance, info) => {
           </div>
         </slot>
 
-        <footer class="footer">
+        <footer v-if="route.path === '/casino/games' ? !isMobile : true" class="footer">
           <AppContent except>
             <AppFooter />
           </AppContent>
