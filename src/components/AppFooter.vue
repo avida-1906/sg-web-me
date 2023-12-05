@@ -31,58 +31,61 @@ const partner = [
   { url: '/png/footer/ufc.png', ratio: '151/60', with: '151px' },
 ]
 
-const menuData = computed(() => [
-  {
-    title: t('sports'),
-    children: [
-      { title: t('home_space_title'), path: `/sports/${SPORTS_PLAT_ID}` },
-      { title: t('sports_status_live'), path: `/sports/${SPORTS_PLAT_ID}/live` },
-      { title: t('sports_rule'), icon: false },
-    ],
-  },
-  {
-    title: t('casino'),
-    children: [
-      { title: t('game'), path: '/casino' },
-      { title: t('vip_club'), path: '/vip-club' },
-      { title: t('promo_activity'), path: '/promotions' },
-    ],
-  },
-  {
-    title: t('support'),
-    children: [
-      { title: t('fairness') },
-      { title: t('affiliate') },
-      { title: t('responsible_casino') },
-      { title: 'Gameble Aware', icon: true },
-      { title: t('online_support') },
-      { title: t('help_center'), icon: true },
-    ],
-  },
-  {
-    title: t('community'),
-    children: [
-      { title: t('blog') },
-      { title: t('chat_forum'), icon: true },
-      { title: 'Facebook', icon: true },
-      { title: 'Twitter', icon: true },
-      { title: 'Instagram', icon: true },
-      { title: 'Youtube', icon: true },
-      { title: t('online_shopping'), icon: true },
-    ],
-  },
-  {
-    title: t('about_us'),
-    children: [
-      { title: t('privacy_policy') },
-      { title: t('license') },
-      { title: t('anti_money_laundering_rule') },
-      { title: t('terms_of_service') },
-      { title: t('self_exclusion') },
-      { title: 'Primedice', icon: true },
-    ],
-  },
-])
+const menuData = computed(() => {
+  // brandDetail.value
+  return [
+    {
+      title: t('sports'),
+      children: [
+        { title: t('home_space_title'), path: `/sports/${SPORTS_PLAT_ID}` },
+        { title: t('sports_status_live'), path: `/sports/${SPORTS_PLAT_ID}/live` },
+        { title: t('sports_rule'), icon: false },
+      ],
+    },
+    {
+      title: t('casino'),
+      children: [
+        { title: t('game'), path: '/casino' },
+        { title: t('vip_club'), path: '/vip-club' },
+        { title: t('promo_activity'), path: '/promotions' },
+      ],
+    },
+    {
+      title: t('support'),
+      children: [
+        { title: t('fairness') },
+        { title: t('affiliate') },
+        { title: t('responsible_casino') },
+        { title: 'Gameble Aware', icon: true },
+        { title: t('online_support') },
+        { title: t('help_center'), icon: true },
+      ],
+    },
+    {
+      title: t('community'),
+      children: [
+        { title: t('blog') },
+        { title: t('chat_forum'), icon: true },
+        { title: 'Facebook', icon: true },
+        { title: 'Twitter', icon: true },
+        { title: 'Instagram', icon: true },
+        { title: 'Youtube', icon: true },
+        { title: t('online_shopping'), icon: true },
+      ],
+    },
+    {
+      title: t('about_us'),
+      children: [
+        { title: t('privacy_policy') },
+        { title: t('license') },
+        { title: t('anti_money_laundering_rule') },
+        { title: t('terms_of_service') },
+        { title: t('self_exclusion') },
+        { title: 'Primedice', icon: true },
+      ],
+    },
+  ]
+})
 
 function selectChange(v: EnumLanguage) {
   languageStore.changeLanguage(v)
