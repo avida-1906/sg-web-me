@@ -42,7 +42,7 @@ onBeforeRouteLeave(() => {
         />
         <AppProviderSlider />
       </div>
-      <div class="layout-spacing">
+      <div v-if="!isMobile" class="layout-spacing">
         <AppBetData mode="casino" />
       </div>
     </div>
