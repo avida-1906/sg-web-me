@@ -100,7 +100,7 @@ async function getMemberLogin() {
   &-input-box {
     display: flex;
     flex-direction: column;
-    gap: var(--tg-spacing-12);
+    gap: var(--tg-spacing-16);
   }
   &-btn {
     width: 100%;

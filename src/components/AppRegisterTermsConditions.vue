@@ -66,6 +66,10 @@ async function toLogin() {
   openLoginDialog()
 }
 
+function goPrev() {
+  closeDialog()
+}
+
 onMounted(() => {
   scrollRef.value.addEventListener('scroll', handleScroll)
 })
@@ -80,7 +84,12 @@ onBeforeUnmount(() => {
 <template>
   <div class="app-register-terms-conditions">
     <div class="title">
-      {{ t('step_label') }} 2/2： {{ t('read_and_accept') }}
+      <div class="arrow" @click.stop="goPrev">
+        <BaseIcon name="uni-arrowleft-line" />
+      </div>
+      <div class="text">
+        {{ t('step_label') }} 2/2： {{ t('read_and_accept') }}
+      </div>
     </div>
     <div ref="scrollRef" class="scroll-y terms-conditions">
       <div>
@@ -216,6 +225,7 @@ onBeforeUnmount(() => {
       <BaseButton
         :loading="isLoading"
         :disabled="!isRead"
+        size="xl"
         bg-style="secondary" @click.stop="getStartGame"
       >
         {{ t('start_game') }}
@@ -242,7 +252,7 @@ onBeforeUnmount(() => {
 .app-register-terms-conditions {
   display: flex;
   flex-direction: column;
-  gap: var(--tg-spacing-12);
+  gap: var(--tg-spacing-16);
   .title {
     color: var(--tg-text-lightgrey);
     text-align: center;
@@ -250,6 +260,15 @@ onBeforeUnmount(() => {
     font-style: normal;
     font-weight: var(--tg-font-weight-semibold);
     line-height: normal;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    .text {
+      flex: 1;
+    }
+    svg, .arrow {
+      cursor: pointer;
+    }
   }
   .terms-conditions {
     max-height: 50vh;
@@ -263,7 +282,7 @@ onBeforeUnmount(() => {
     }
     .terms-conditions-theme{
       color: var(--tg-text-white);
-      font-size: var(--tg-font-size-md);
+      font-size: var(--tg-font-size-base);
       font-weight: var(--tg-font-weight-semibold);
     }
     .terms-conditions-title{
@@ -290,7 +309,7 @@ onBeforeUnmount(() => {
   .app-bottom {
     display: flex;
     flex-direction: column;
-    gap: var(--tg-spacing-12);
+    gap: var(--tg-spacing-16);
     &-text {
       text-align: center;
       font-size: var(--tg-font-size-default);

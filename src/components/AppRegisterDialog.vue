@@ -17,10 +17,12 @@ const { t } = useI18n()
   .title {
     color: var(--tg-text-white);
     font-family: PingFang SC;
-    font-size: var(--tg-font-size-base);
+    font-size: var(--tg-font-size-md);
     font-style: normal;
-    font-weight: 500;
+    font-weight: 600;
     line-height: normal;
+    text-align: center;
+    line-height: 1.5;
   }
 }
 </style>

@@ -364,7 +364,7 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse })
 
     .eye {
       position: absolute;
-      right: var(--tg-spacing-6);
+      right: var(--tg-spacing-14);
       top: 50%;
       transform: translateY(-50%);
       font-size: var(--tg-font-size-md);
