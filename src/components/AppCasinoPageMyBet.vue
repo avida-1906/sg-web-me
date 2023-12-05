@@ -1,50 +1,78 @@
 <script setup lang='ts'>
 const { t } = useI18n()
+const { isMobile } = storeToRefs(useWindowStore())
 
-const columns = [
-  {
-    title: t('game'),
-    width: 90,
-    dataIndex: 'game_name',
-    slot: 'game_name',
-    align: 'left',
-  },
-  {
-    title: t('bet_number'),
-    width: 90,
-    dataIndex: 'bill_no',
-    slot: 'bill_no',
-    align: 'left',
-  },
-  {
-    title: t('date'),
-    width: 90,
-    dataIndex: 'bet_time',
-    slot: 'bet_time',
-    align: 'center',
-  },
-  {
-    title: t('bet_amount'),
-    width: 90,
-    dataIndex: 'bet_amount',
-    slot: 'bet_amount',
-    align: 'right',
-  },
-  // {
-  //   title: t('multiple_count'),
-  //   width: 90,
-  //   dataIndex: 'x',
-  //   slot: 'x',
-  //   align: 'center',
-  // },
-  {
-    title: t('sports_payment_amount'),
-    width: 90,
-    dataIndex: 'net_amount',
-    slot: 'net_amount',
-    align: 'right',
-  },
-]
+const columns = computed(() => {
+  if (isMobile.value) {
+    return [
+      {
+        title: t('game'),
+        width: 90,
+        dataIndex: 'game_name',
+        slot: 'game_name',
+        align: 'left',
+      },
+      {
+        title: t('bet_number'),
+        width: 90,
+        dataIndex: 'bill_no',
+        slot: 'bill_no',
+        align: 'left',
+      },
+      {
+        title: t('sports_payment_amount'),
+        width: 90,
+        dataIndex: 'net_amount',
+        slot: 'net_amount',
+        align: 'right',
+      },
+    ]
+  }
+  return [
+    {
+      title: t('game'),
+      width: 90,
+      dataIndex: 'game_name',
+      slot: 'game_name',
+      align: 'left',
+    },
+    {
+      title: t('bet_number'),
+      width: 90,
+      dataIndex: 'bill_no',
+      slot: 'bill_no',
+      align: 'left',
+    },
+    {
+      title: t('date'),
+      width: 90,
+      dataIndex: 'bet_time',
+      slot: 'bet_time',
+      align: 'center',
+    },
+    {
+      title: t('bet_amount'),
+      width: 90,
+      dataIndex: 'bet_amount',
+      slot: 'bet_amount',
+      align: 'right',
+    },
+    // {
+    //   title: t('multiple_count'),
+    //   width: 90,
+    //   dataIndex: 'x',
+    //   slot: 'x',
+    //   align: 'center',
+    // },
+    {
+      title: t('sports_payment_amount'),
+      width: 90,
+      dataIndex: 'net_amount',
+      slot: 'net_amount',
+      align: 'right',
+    },
+  ]
+})
 
 const { list, runAsync, prev, next, hasMore, page } = useList(ApiMemberCasinoRecordList,
   { }, { page_size: 10 })
