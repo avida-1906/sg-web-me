@@ -100,7 +100,7 @@ onUnmounted(() => {
   font-size: var(--tg-font-size-default);
   display: flex;
   flex-direction: column;
-  gap: var(--tg-spacing-12);
+  gap: var(--tg-spacing-16);
   margin-top: -4px;
   &-divider {
     width: 100%;

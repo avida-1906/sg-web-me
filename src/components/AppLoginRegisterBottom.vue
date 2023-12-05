@@ -53,10 +53,10 @@ async function toForgetPassword() {
 
       <div class="stake-text">
         {{ t('stake_hCaptcha', { site: VITE_SITE_NAME }) }}
-        <span class="semibold" style="color: var(--tg-text-white);">
+        <span class="semibold" style="color: var(--tg-secondary-light);">
           {{ t('privacy_policy') }}
         </span> {{ t('and') }}
-        <span class="semibold" style="color: var(--tg-text-white);">
+        <span class="semibold" style="color: var(--tg-secondary-light);">
           {{ t('terms_of_service') }}
         </span> {{ t('applicable') }}
       </div>

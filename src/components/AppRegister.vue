@@ -14,6 +14,11 @@ const {
   setTrue: setShowPasswordVerifyTrue,
   setFalse: setShowPasswordVerifyFalse,
 } = useBoolean(false)
+const {
+  bool: needSaveFormData,
+  setTrue: setNeedSaveFormDataTrue,
+} = useBoolean(false)
+const { openTermsConditionsDialog } = useTermsConditionsDialog()
 
 const emailRef = ref()
 const userNameRef = ref()
@@ -21,6 +26,8 @@ const passwordRef = ref()
 const curExists = ref<1 | 2>(2)
 const steps = ref(1)
 const code = ref('')
+const birthdayInputRef = ref()
+const birthday = ref('')
 
 const {
   value: email,
@@ -110,7 +117,12 @@ const { run: runExists } = useRequest(ApiMemberExists, {
           parent_id: '',
           device_number: application.getDeviceNumber(),
         }
-        runMemberReg(paramsReg)
+        // runMemberReg(paramsReg)
+        Session.set(STORAGE_REG_PARAMS_KEYWORDS, paramsReg)
+        setNeedSaveFormDataTrue()
+        closeDialog()
+        await nextTick()
+        openTermsConditionsDialog()
       }
     }
   },
@@ -149,8 +161,13 @@ async function getMemberReg() {
         parent_id: '',
         device_number: application.getDeviceNumber(),
       }
-      appStore.setMqttConnectedFalse()
-      runMemberReg(paramsReg)
+      // appStore.setMqttConnectedFalse()
+      // runMemberReg(paramsReg)
+      Session.set(STORAGE_REG_PARAMS_KEYWORDS, paramsReg)
+      setNeedSaveFormDataTrue()
+      closeDialog()
+      await nextTick()
+      openTermsConditionsDialog()
     }
   }
 }
@@ -180,13 +197,18 @@ async function toLogin() {
   await nextTick()
   openLoginDialog()
 }
+
+onUnmounted(() => {
+  if (!needSaveFormData.value)
+    Session.remove(STORAGE_REG_PARAMS_KEYWORDS)
+})
 </script>
 
 <template>
   <div class="app-register">
     <template v-if="steps === 1">
       <div class="app-register-title">
-        {{ t('reg_step') }}
+        {{ t('reg_step1') }}
       </div>
       <div class="app-register-input-box">
         <BaseLabel v-if="isEmailMust" :label="t('email_address')" must-small>
@@ -200,6 +222,9 @@ async function toLogin() {
             :msg="usernameErrorMsg"
             msg-after-touched @blur="onEmailUsernameBlur(1)"
           />
+          <div v-if="!usernameErrorMsg" class="hint">
+            {{ t('username_incorrect') }}
+          </div>
         </BaseLabel>
         <BaseLabel :label="t('password')" must-small>
           <BaseInput
@@ -216,6 +241,9 @@ async function toLogin() {
             @pass="passwordVerifyPass"
           />
         </BaseLabel>
+        <BaseLabel label="出生日期" must-small>
+          <BaseInputBirthday ref="birthdayInputRef" v-model="birthday" />
+        </BaseLabel>
         <div>
           <div class="code-label">
             <BaseCheckBox v-model="isCode">
@@ -227,12 +255,12 @@ async function toLogin() {
       </div>
       <div class="app-register-check-box">
         <BaseButton
-          :loading="isLoading" class="app-register-btn" bg-style="primary"
+          :loading="isLoading" class="app-register-btn" bg-style="secondary"
           size="xl" @click.stop="getMemberReg"
         >
-          {{ t('reg') }}
+          {{ t('continue') }}
         </BaseButton>
-        <div class="agree">
+        <!-- <div class="agree">
           <BaseCheckBox v-model="isAgree" :msg="agreeErrorMsg">
             {{ t('read_and_agree') }}
             <BaseButton
@@ -243,7 +271,7 @@ async function toLogin() {
               {{ t('terms_conditions') }}
             </BaseButton>
           </BaseCheckBox>
-        </div>
+        </div> -->
       </div>
       <AppAuthLogin />
     </template>
@@ -386,15 +414,15 @@ async function toLogin() {
       <div class="app-bottom-text">
         <div>
           {{ t('have_account') }}
-          <span class="text-white" @click.stop="toLogin">{{ t('login') }}</span>
+          <span class="text-bold text-white" @click.stop="toLogin">{{ t('login') }}</span>
         </div>
 
         <div class="stake-text">
           {{ t('stake_hCaptcha', { site: VITE_SITE_NAME }) }}
-          <span class="semibold" style="color: var(--tg-text-white);">
+          <span class="semibold" style="color: var(--tg-secondary-light);">
             {{ t('privacy_policy') }}
           </span> {{ t('and') }}
-          <span class="semibold" style="color: var(--tg-text-white);">
+          <span class="semibold" style="color: var(--tg-secondary-light);">
             {{ t('terms_of_service') }}
           </span> {{ t('applicable') }}
         </div>
@@ -404,6 +432,14 @@ async function toLogin() {
 </template>
 
 <style lang='scss' scoped>
+.hint {
+  padding: var(--tg-spacing-8) var(--tg-spacing-4) var(--tg-spacing-4) 0;
+  font-size: var(--tg-font-size-xs);
+  color: var(--tg-secondary-light);
+}
+.text-bold {
+  font-weight: var(--tg-font-weight-semibold);
+}
 .app-register {
   &-title {
     color: var(--tg-text-lightgrey);
@@ -414,6 +450,7 @@ async function toLogin() {
     font-weight: var(--tg-font-weight-semibold);
     line-height: normal;
     padding-bottom: var(--tg-spacing-16);
+    padding-top: var(--tg-spacing-16);
   }
 
   &-input-box {
@@ -524,8 +561,8 @@ async function toLogin() {
 .app-bottom {
   display: flex;
   flex-direction: column;
-  gap: var(--tg-spacing-12);
-  margin-top: var(--tg-spacing-12);
+  gap: var(--tg-spacing-16);
+  margin-top: var(--tg-spacing-16);
 
   &-text {
     text-align: center;
@@ -542,7 +579,6 @@ async function toLogin() {
 
     .stake-text {
       font-size: var(--tg-font-size-xs);
-      padding-bottom: var(--tg-spacing-20);
       cursor: pointer;
     }
   }
