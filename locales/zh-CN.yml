@@ -1527,3 +1527,10 @@ wait_upgrade: 待升级
 upgraded: 已升级
 game_water_experience: 经验
 in_play: 在玩
+week_0: 星期天
+week_1: 星期一
+week_2: 星期二
+week_3: 星期三
+week_4: 星期四
+week_5: 星期五
+week_6: 星期六

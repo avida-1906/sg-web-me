@@ -130,18 +130,32 @@ onUnmounted(() => {
               <AppChatMsgItem />
             </div>
           </template>
-          <div
+          <template
             v-for="msg, mdx in messageHistory"
-            v-show="!msgHistoryLoading"
             :key="mdx"
-            class="wrap"
           >
-            <AppChatMsgItem :msg-info="msg" />
-          </div>
-          <!-- <div class="wrap time-wrap">
-            <span>星期一</span>
-            <span>18:22</span>
-          </div> -->
+            <div
+              v-if="mdx > 0
+                && (checkTs(msg.t) - checkTs(messageHistory[mdx - 1].t)) > 60000"
+              class="wrap time-wrap"
+            >
+              <span>{{ $t(`week_${dayjs(checkTs(msg.t)).day()}`) }}</span>
+              <span>{{ timeToFormat(msg.t, 'HH:mm') }}</span>
+            </div>
+            <div
+              v-if="mdx === 0"
+              class="wrap time-wrap"
+            >
+              <span>{{ $t(`week_${dayjs(checkTs(msg.t)).day()}`) }}</span>
+              <span>{{ timeToFormat(msg.t, 'HH:mm') }}</span>
+            </div>
+            <div
+              v-show="!msgHistoryLoading"
+              class="wrap"
+            >
+              <AppChatMsgItem :msg-info="msg" />
+            </div>
+          </template>
           <div class="wrap msg-tail" />
         </div>
         <Transition name="fade">
