@@ -543,6 +543,12 @@ export interface ISportsMyBetSlipItem {
     pgid: string
     /** 联赛id */
     ci: string
+    /**
+     * 1：显示主客队名称
+     *
+     * 2：显示联赛名称
+     */
+    et: 1 | 2
   }[]
 }
 
