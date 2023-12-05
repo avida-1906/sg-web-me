@@ -17,6 +17,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 const { t } = useI18n()
 
+const { isLogin } = storeToRefs(useAppStore())
 const { isLessThanLg, isGreaterThanSm } = storeToRefs(useWindowStore())
 // loading加载
 const { bool: loading, setFalse: setLoadingFalse } = useBoolean(true)
@@ -28,7 +29,7 @@ const {
 } = useBoolean(false)
 
 // tab值
-const activeTab: Ref<string> = ref(props.mode === 'casino' ? 'casino-fy' : 'ranking-list')
+const activeTab: Ref<string> = ref(props.mode === 'casino' ? 'casino-fy' : 'sports-fy')
 // 需要获取多少条数据
 const selectSize: Ref<number> = ref(10)
 const tableData: any = ref([])
@@ -44,7 +45,7 @@ const selectOptions: ISelectOption[] = [
 const getTabOptions = computed(() => {
   switch (props.mode) {
     case 'casino': return [
-      { value: 'casino-mine', label: t('my_bets') },
+      { value: 'casino-mine', label: t('my_bets'), disabled: !isLogin.value },
       { value: 'casino-all', label: t('all_bets') },
       { value: 'casino-fy', label: t('billboard') },
       { value: 'ranking-list', label: t('competition_board'), bubble: true },
