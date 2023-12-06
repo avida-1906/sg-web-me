@@ -10,6 +10,7 @@ const { casinoNav, casinoGameList } = storeToRefs(casinoStore)
 const router = useRouter()
 const { t } = useI18n()
 const { VITE_CASINO_HOME_PAGE_SIZE } = getEnv()
+const { openSwiperNoticeDialog } = useDialogSwiperNotice(430)
 
 const tab = ref('all')
 const showAll = computed(() => tab.value === 'all')
@@ -37,6 +38,17 @@ const {
   run: runPlatData,
   loading: loadingPlat,
 } = useList(ApiMemberGameList)
+// 公告弹框和跑马灯
+const {
+  runAsync: runMemberNoticeAllList,
+} = useRequest(ApiMemberNoticeAllList, {
+  onSuccess(data) {
+    for (const item of data.notice)
+      item.value = item.id
+    data.notice.length > 0 && openSwiperNoticeDialog(data.notice)
+  },
+})
+
 const catGameList = computed(() => {
   if (isCat.value)
     return catGameData.value && catGameData.value.games ? catGameData.value.games : []
@@ -70,7 +82,7 @@ function viewMoreGames() {
     router.push(`/casino/group/provider?pid=${currentNav.value.platform_id}&name=${currentNav.value.label}`)
 }
 
-await application.allSettled([casinoStore.runAsyncGameLobby()])
+await application.allSettled([casinoStore.runAsyncGameLobby(), runMemberNoticeAllList()])
 </script>
 
 <template>
