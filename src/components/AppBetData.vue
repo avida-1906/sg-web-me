@@ -22,13 +22,19 @@ const { t } = useI18n()
 const { isLogin } = storeToRefs(useAppStore())
 const { isLessThanLg, isGreaterThanSm } = storeToRefs(useWindowStore())
 // loading加载
-const { bool: loading, setFalse: setLoadingFalse } = useBoolean(true)
+// const { bool: loading, setFalse: setLoadingFalse } = useBoolean(true)
 // 是否开启隐身模式
 const {
   bool: isHidden,
   setFalse: setIsHiddenFalse,
   setTrue: setIsHiddenTrue,
 } = useBoolean(false)
+const {
+  list,
+  run: runCasinoRecordList,
+  prev, next, hasMore, page,
+} = useList(ApiMemberCasinoRecordList,
+  {}, { page_size: 10 })
 
 // tab值
 const activeTab: Ref<string> = ref(props.mode === 'casino' ? 'casino-fy' : 'sports-fy')
@@ -75,7 +81,7 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
       {
         title: t('game'),
         // width: 100,
-        dataIndex: 'gameName',
+        dataIndex: 'game_name',
         slot: 'gameName',
         align: 'left',
         xl: true,
@@ -83,12 +89,13 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
       },
       {
         title: t('time'),
-        dataIndex: 'time',
+        dataIndex: 'bet_time',
         align: 'center',
+        slot: 'bet_time',
       },
       {
         title: t('bet_amount'),
-        dataIndex: 'betMoney',
+        dataIndex: 'bet_amount',
         slot: 'betMoney',
         align: 'right',
       },
@@ -100,7 +107,7 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
       },
       {
         title: t('sports_payment_amount'),
-        dataIndex: 'payMoney',
+        dataIndex: 'net_amount',
         slot: 'payMoney',
         align: 'right',
         xl: true,
@@ -252,46 +259,47 @@ watch(() => props.tabVal, (newValue) => {
 
 onMounted(() => {
   tableData.value = [
-    {
-      gameName: 'Cursed seas',
-      player: 'Herryhung',
-      time: '10:47',
-      betMoney: '1234.11',
-      multiplier: '2.97x',
-      payMoney: '113.34399768',
-      currencyType: EnumCurrency[3],
-      stealth: 1, // 隐身状态
-    },
-    {
-      gameName: 'Cursed seas',
-      player: 'Herryhung',
-      time: '10:47',
-      betMoney: '2.111111',
-      multiplier: '2.97x',
-      payMoney: '113.34399768',
-      currencyType: EnumCurrency[2],
-    },
-    {
-      gameName: 'Cursed seas',
-      player: 'Herryhung',
-      time: '10:47',
-      betMoney: '1.111111',
-      multiplier: '2.97x',
-      payMoney: '113.34399768',
-      currencyType: EnumCurrency[1],
-    },
-    {
-      gameName: 'Cursed seas',
-      player: 'Herryhung',
-      time: '10:47',
-      betMoney: '1.111111',
-      multiplier: '2.97x',
-      payMoney: '113.34399768',
-      currencyType: EnumCurrency[0],
-    },
+    // {
+    //   gameName: 'Cursed seas',
+    //   player: 'Herryhung',
+    //   time: '10:47',
+    //   betMoney: '1234.11',
+    //   multiplier: '2.97x',
+    //   payMoney: '113.34399768',
+    //   currencyType: EnumCurrency[3],
+    //   stealth: 1, // 隐身状态
+    // },
+    // {
+    //   gameName: 'Cursed seas',
+    //   player: 'Herryhung',
+    //   time: '10:47',
+    //   betMoney: '2.111111',
+    //   multiplier: '2.97x',
+    //   payMoney: '113.34399768',
+    //   currencyType: EnumCurrency[2],
+    // },
+    // {
+    //   gameName: 'Cursed seas',
+    //   player: 'Herryhung',
+    //   time: '10:47',
+    //   betMoney: '1.111111',
+    //   multiplier: '2.97x',
+    //   payMoney: '113.34399768',
+    //   currencyType: EnumCurrency[1],
+    // },
+    // {
+    //   gameName: 'Cursed seas',
+    //   player: 'Herryhung',
+    //   time: '10:47',
+    //   betMoney: '1.111111',
+    //   multiplier: '2.97x',
+    //   payMoney: '113.34399768',
+    //   currencyType: EnumCurrency[0],
+    // },
   ]
-  setLoadingFalse()
 })
+
+runCasinoRecordList()
 </script>
 
 <template>
@@ -328,13 +336,17 @@ onMounted(() => {
     </div>
     <BaseTable
       :columns="getScaleColumns"
-      :data-source="tableData"
-      :loading="loading"
+      :data-source="list"
     >
       <template #gameName="{ record }">
         <div class="game-box cursor-pointer">
           <BaseIcon name="chess-plinko" />
-          <span>{{ record.gameName }}</span>
+          <span>{{ record.game_name }}</span>
+        </div>
+      </template>
+      <template #bet_time="{ record: { bet_time } }">
+        <div>
+          {{ timeToFormat(bet_time) }}
         </div>
       </template>
       <template #player="{ record }">
@@ -359,14 +371,14 @@ onMounted(() => {
         <div style="display: inline-block;">
           <VTooltip placement="top">
             <AppAmount
-              :amount="record.betMoney"
-              :currency-type="record.currencyType"
+              :amount="record.bet_amount"
+              :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
             />
             <template #popper>
               <div class="tiny-menu-item-title">
                 <AppAmount
-                  :amount="record.betMoney"
-                  :currency-type="record.currencyType"
+                  :amount="record.bet_amount"
+                  :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
                 />
               </div>
             </template>
@@ -376,8 +388,8 @@ onMounted(() => {
       <template #payMoney="{ record }">
         <div style="display: inline-block;color: var(--tg-text-green);">
           <AppAmount
-            :amount="record.betMoney"
-            :currency-type="record.currencyType"
+            :amount="record.net_amount"
+            :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
           />
         </div>
       </template>
