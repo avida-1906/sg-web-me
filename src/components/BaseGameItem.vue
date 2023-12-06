@@ -39,6 +39,8 @@ function gameStart(item: Props['gameInfo']) {
   else
     closeSearch()
 }
+
+const onPlayCount = ref(Math.ceil(Math.random() * 1000).toFixed())
 </script>
 
 <template>
@@ -88,7 +90,7 @@ function gameStart(item: Props['gameInfo']) {
   </BaseAspectRatio>
   <span class="count">
     <span class="dot blinking-dash2" />&nbsp;&nbsp;
-    <span class="num">{{ application.formatNumber('1000') }}</span>
+    <span class="num">{{ application.formatNumber(onPlayCount) }}</span>
     &nbsp;{{ t('in_play') }}</span>
 </template>
 
