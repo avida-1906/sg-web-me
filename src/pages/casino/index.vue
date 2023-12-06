@@ -112,10 +112,11 @@ await application.allSettled([casinoStore.runAsyncGameLobby()])
       <template v-else>
         <div v-show="!showAll" class="list-wrap">
           <div class="title">
-            <BaseIcon
-              v-if="currentNav.icon"
-              :name="currentNav.icon"
-              use-cloud-img
+            <AppImage
+              v-if="currentNav.icon" width="16px"
+              height="16px"
+              :url="currentNav.icon"
+              is-cloud
             />
             <span>{{ currentNav.label }}</span>
           </div>
