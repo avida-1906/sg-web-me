@@ -171,16 +171,35 @@ function setEventTime() {
   const diff = dayjs().diff(ts * 1000, 'second')
   const diffMin = Math.floor(diff / 60)
   const diffSec = diff - (diffMin * 60)
+  let sec = 0
+  let min = 0
 
-  let sec = baseSec ? (+baseSec + diffSec) : 0
-  let min = +baseMin + diffMin
+  // 篮球倒计时
+  if (props.data.si === 2) {
+    sec = baseSec ? (+baseSec - diffSec) : 0
+    min = +baseMin - diffMin
 
-  if (sec > 59) {
-    sec = sec - 60
-    min = min + 1
+    if (sec < 0) {
+      sec = sec + 60
+      min = min - 1
+    }
+    if (min < 0) {
+      min = 0
+      sec = 0
+    }
   }
+  // 其它
+  else {
+    sec = baseSec ? (+baseSec + diffSec) : 0
+    min = +baseMin + diffMin
 
-  eventTime.value = `${min}${baseSec ? `:${sec < 10 ? `0${sec}` : sec}` : ''}`
+    if (sec > 59) {
+      sec = sec - 60
+      min = min + 1
+    }
+  }
+  // eslint-disable-next-line max-len
+  eventTime.value = `${min < 10 ? `0${min}` : min}${baseSec ? `:${sec < 10 ? `0${sec}` : sec}` : ''}`
 }
 
 // 联赛跳转
