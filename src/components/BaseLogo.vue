@@ -11,6 +11,8 @@ withDefaults(defineProps<Props>(), {
 
 const router = useLocalRouter()
 const { logoAndIcoAndLoading } = storeToRefs(useAppStore())
+const { isMobile } = storeToRefs(useWindowStore())
+const { leftIsExpand, closeLeftSidebar } = useLeftSidebar()
 
 function to() {
   const currentPath = router.currentRoute.value.path
@@ -18,6 +20,7 @@ function to() {
     router.push(`/sports/${getSportsPlatId()}`)
   else if (currentPath.includes('casino'))
     router.push('/casino')
+  isMobile.value && leftIsExpand.value && closeLeftSidebar()
 }
 </script>
 
