@@ -47,6 +47,7 @@ watch(() => isMobile.value, (newValue) => {
         style="--tg-base-select-hover-bg-color:var(--tg-secondary-dark);
           --tg-base-select-popper-style-padding-x:0;"
         :options="headSelectData" no-hover popper
+        popper-clazz="casino-bet-pop"
       >
         <template #label="{ data }">
           <div class="center" style="gap: var(--tg-spacing-8);">
@@ -73,6 +74,12 @@ watch(() => isMobile.value, (newValue) => {
     </div>
   </div>
 </template>
+
+<style>
+.casino-bet-pop {
+  --tg-base-select-popper-option-active-color: var(--tg-popper-color-default);
+}
+</style>
 
 <style lang="scss" scoped>
 .app-notice {

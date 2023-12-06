@@ -19,6 +19,7 @@ interface Props {
   border?: boolean
   msg?: string
   plainPopperLabel?: boolean
+  popperClazz?: string
 }
 const props = withDefaults(defineProps<Props>(), {
   layout: 'vertical',
@@ -69,7 +70,7 @@ function onPopperOpen() {
     <VDropdown
       :disabled="disabled"
       :distance="6"
-      :popper-class="theme ? 'theme-black' : ''"
+      :popper-class="[theme ? 'theme-black' : '', popperClazz]"
       @hide="setPopperClose"
       @show="onPopperOpen"
     >
@@ -168,6 +169,7 @@ function onPopperOpen() {
   --tg-base-select-popper-label-color: var(--tg-text-white);
   --tg-base-select-popper-label-hover-color: var(--tg-text-white);
   --tg-base-select-style-font-size: var(--tg-font-size-default);
+  --tg-base-select-popper-option-active-color: var(--tg-popper-hover-color-default);
 }
 </style>
 
@@ -264,8 +266,8 @@ function onPopperOpen() {
   }
 
   &.active {
-    --tg-icon-color: var(--tg-text-blue);
-    color: var(--tg-popper-hover-color-default);
+    --tg-icon-color: var(--tg-base-select-popper-option-active-color);
+    color: var(--tg-base-select-popper-option-active-color);
   }
   &.disabled:not(.active){
     opacity: 0.5;
