@@ -153,22 +153,27 @@ defineExpose({ valiBirthday })
           @input="onInput"
         >
         <!-- 月 -->
-        <select
-          required
-          :class="{
-            'error': msg,
-            'placeholder-select': monthList.filter(m => m.value === month).length === 0,
-          }"
-          :placeholder="t('time_month')"
-          @change="onInput"
-        >
-          <option class="select-placeholder" value="" disabled selected>
-            {{ t('time_month') }}
-          </option>
-          <option v-for="m, i in monthList" :key="i" :value="m.value">
-            {{ t(m.label) }}
-          </option>
-        </select>
+        <div class="select-wrap">
+          <select
+            required
+            :class="{
+              'error': msg,
+              'placeholder-select': monthList.filter(m => m.value === month).length === 0,
+            }"
+            :placeholder="t('time_month')"
+            @change="onInput"
+          >
+            <option class="select-placeholder" value="" disabled selected>
+              {{ t('time_month') }}
+            </option>
+            <option v-for="m, i in monthList" :key="i" :value="m.value">
+              {{ t(m.label) }}
+            </option>
+          </select>
+          <div class="dropdown-icon-wrap">
+            <BaseIcon name="uni-arrow-up-small" />
+          </div>
+        </div>
         <!-- 年 -->
         <input
           v-model="year"
@@ -265,6 +270,23 @@ defineExpose({ valiBirthday })
 
       &:focus:not(.error) {
         border-color: var(--tg-border-color-deep-grey);
+      }
+    }
+
+    .select-wrap {
+      position: relative;
+      flex-grow: 1;
+      width: 100%;
+      display: flex;
+      .dropdown-icon-wrap {
+        position: absolute;
+        top: 52%;
+        right: 7px;
+        color: var(--tg-secondary-light);
+        transform: translateY(-50%);
+        pointer-events: none;
+        cursor: pointer;
+        --tg-icon-color: var(--tg-secondary-light);
       }
     }
 
