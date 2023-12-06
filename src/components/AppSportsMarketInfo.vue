@@ -49,6 +49,9 @@ const { run: runDelFavorite } = useRequest(() =>
   },
 })
 
+// 赛事进行时间
+const eventTime = ref('')
+
 const isH5Layout = computed(() => width.value < 575)
 const baseGridAreaClass = computed(() => {
   if (props.showBreadcrumb) {
@@ -146,29 +149,7 @@ const isLastMin = computed(() => {
 const isStarted = computed(() => dayjs().isAfter((props.data.ed * 1000)))
 // 正在滚球
 const isOnAir = computed(() => props.data.m === 3)
-// 赛事进度时间
-// const eventTime = computed(() => {
-//   if (!props.data.rbtt)
-//     return ''
-//   const rbttArr = props.data.rbtt.split(':')
-//   const ts = props.data.ts
-//   const baseMin = rbttArr[0]
-//   const baseSec = rbttArr[1]
 
-//   const diff = dayjs().diff(ts * 1000, 'second')
-//   const diffMin = Math.floor(diff / 60)
-//   const diffSec = diff - (diffMin * 60)
-
-//   let sec = baseSec ? (+baseSec + diffSec) : 0
-//   let min = +baseMin + diffMin
-
-//   if (sec > 60) {
-//     sec = sec - 60
-//     min = min + 1
-//   }
-
-//   return `${min}${sec ? `:${sec < 10 ? `0${sec}` : sec}` : ''}`
-// })
 // 是否有直播
 // const isHasliveStream = computed(() => props.data.ls === 1)
 
@@ -177,6 +158,31 @@ const isOnAir = computed(() => props.data.m === 3)
 //   const dialogId = props.data.ei + type
 //   useDragDialog({ type, url: '', dialogId })
 // }
+
+// 设置赛事进行时间
+function setEventTime() {
+  if (!props.data.rbtt)
+    return ''
+  const rbttArr = props.data.rbtt.split(':')
+  const ts = props.data.ts
+  const baseMin = rbttArr[0]
+  const baseSec = rbttArr[1]
+
+  const diff = dayjs().diff(ts * 1000, 'second')
+  const diffMin = Math.floor(diff / 60)
+  const diffSec = diff - (diffMin * 60)
+
+  let sec = baseSec ? (+baseSec + diffSec) : 0
+  let min = +baseMin + diffMin
+
+  if (sec > 59) {
+    sec = sec - 60
+    min = min + 1
+  }
+
+  eventTime.value = `${min}${baseSec ? `:${sec < 10 ? `0${sec}` : sec}` : ''}`
+}
+
 // 联赛跳转
 function onBreadcrumbsClick({ list, index }:
 { list: ISportsBreadcrumbs[]; index: number },
@@ -198,7 +204,7 @@ function goEventDetailPage() {
   router.push(replaceSportsPlatId(eventDetailPath.value))
 }
 
-const stop = watch(sportsFavoriteData, (a) => {
+watch(sportsFavoriteData, (a) => {
   if (a && a.d)
     isFavorite.value = a.d.findIndex(a => a.ei === props.data.ei) > -1
 })
@@ -208,9 +214,11 @@ onMounted(() => {
     const fl = sportsFavoriteData.value.d
     isFavorite.value = fl.findIndex(a => a.ei === props.data.ei) > -1
   }
+
+  sportsListCountdownBus.on(setEventTime)
 })
 onBeforeUnmount(() => {
-  stop()
+  sportsListCountdownBus.off(setEventTime)
 })
 </script>
 
@@ -253,7 +261,7 @@ onBeforeUnmount(() => {
             >
               {{ t('sports_status_live') }}
             </div>
-            <span class="text">{{ data.rbt }}</span>
+            <span class="text">{{ eventTime }} {{ data.rbtd }}</span>
           </template>
 
           <!-- H5时比分显示在这里 -->
