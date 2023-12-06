@@ -157,7 +157,8 @@ function emitClose() {
   searchValue.value = ''
   showOverlayFalse()
   initOthers && hideTypeSelect()
-  emit('close')
+  if (!isMobile.value)
+    emit('close')
 }
 provide('closeSearch', emitClose)
 provide('closeSearchH5', () => leftIsExpand.value = !leftIsExpand.value)
@@ -190,9 +191,9 @@ onMounted(() => {
           <button class="tips">
             <span>{{ gameLabel }}</span>
             <BaseIcon
-              name="uni-arrow-up-small"
+              name="uni-arrow-down"
               :class="{
-                'rotate-180': !isPopperShow,
+                'rotate-180': isPopperShow,
               }"
             />
           </button>
