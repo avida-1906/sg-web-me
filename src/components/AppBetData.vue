@@ -29,6 +29,9 @@ const {
   setFalse: setIsHiddenFalse,
   setTrue: setIsHiddenTrue,
 } = useBoolean(false)
+const { openStatisticsDialog } = useStatisticsDialog()
+// 投注详情
+const { openBetSlipDialog } = useDialogBetSlip()
 const {
   list,
   run: runCasinoRecordList,
@@ -40,7 +43,6 @@ const {
 const activeTab: Ref<string> = ref(props.mode === 'casino' ? 'casino-fy' : 'sports-fy')
 // 需要获取多少条数据
 const selectSize: Ref<number> = ref(10)
-const tableData: any = ref([])
 const selectOptions: ISelectOption[] = [
   { label: '0', value: 0 },
   { label: '10', value: 10 },
@@ -139,7 +141,7 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
       },
       {
         title: t('bet_amount'),
-        dataIndex: 'betMoney',
+        dataIndex: 'bet_amount',
         slot: 'betMoney',
         align: 'right',
       },
@@ -151,7 +153,7 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
       },
       {
         title: t('sports_payment_amount'),
-        dataIndex: 'payMoney',
+        dataIndex: 'net_amount',
         slot: 'payMoney',
         align: 'right',
         xl: true,
@@ -187,7 +189,7 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
       },
       {
         title: t('finance_other_tab_bonus'),
-        dataIndex: 'payMoney',
+        dataIndex: 'bet_amount',
         slot: 'payMoney',
         align: 'right',
         xl: true,
@@ -226,7 +228,7 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
       },
       {
         title: t('bet_amount'),
-        dataIndex: 'betMoney',
+        dataIndex: 'bet_amount',
         slot: 'betMoney',
         align: 'right',
         xl: true,
@@ -244,6 +246,50 @@ const getScaleColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
   else
     return getTableColumns.value.filter(item => item.md)
 })
+const getList = computed(() => {
+  switch (activeTab.value) {
+    case 'casino-mine': return list.value
+    default:return [
+      {
+        game_name: 'Cursed seas',
+        player: 'Herryhung',
+        time: '10:47',
+        bet_amount: '1234.11',
+        multiplier: '2.97x',
+        net_amount: '113.34399768',
+        currency_id: '701',
+        stealth: 1, // 隐身状态
+      },
+      {
+        game_name: 'Cursed seas',
+        player: 'Herryhung',
+        time: '10:47',
+        bet_amount: '2.111111',
+        multiplier: '2.97x',
+        net_amount: '113.34399768',
+        currency_id: '701',
+      },
+      {
+        game_name: 'Cursed seas',
+        player: 'Herryhung',
+        time: '10:47',
+        bet_amount: '1.111111',
+        multiplier: '2.97x',
+        net_amount: '113.34399768',
+        currency_id: '701',
+      },
+      {
+        game_name: 'Cursed seas',
+        player: 'Herryhung',
+        time: '10:47',
+        bet_amount: '1.111111',
+        multiplier: '2.97x',
+        net_amount: '113.34399768',
+        currency_id: '701',
+      },
+    ]
+  }
+})
 
 function changeHidden() {
   if (isHidden.value)
@@ -257,49 +303,7 @@ watch(() => props.tabVal, (newValue) => {
     activeTab.value = newValue
 })
 
-onMounted(() => {
-  tableData.value = [
-    // {
-    //   gameName: 'Cursed seas',
-    //   player: 'Herryhung',
-    //   time: '10:47',
-    //   betMoney: '1234.11',
-    //   multiplier: '2.97x',
-    //   payMoney: '113.34399768',
-    //   currencyType: EnumCurrency[3],
-    //   stealth: 1, // 隐身状态
-    // },
-    // {
-    //   gameName: 'Cursed seas',
-    //   player: 'Herryhung',
-    //   time: '10:47',
-    //   betMoney: '2.111111',
-    //   multiplier: '2.97x',
-    //   payMoney: '113.34399768',
-    //   currencyType: EnumCurrency[2],
-    // },
-    // {
-    //   gameName: 'Cursed seas',
-    //   player: 'Herryhung',
-    //   time: '10:47',
-    //   betMoney: '1.111111',
-    //   multiplier: '2.97x',
-    //   payMoney: '113.34399768',
-    //   currencyType: EnumCurrency[1],
-    // },
-    // {
-    //   gameName: 'Cursed seas',
-    //   player: 'Herryhung',
-    //   time: '10:47',
-    //   betMoney: '1.111111',
-    //   multiplier: '2.97x',
-    //   payMoney: '113.34399768',
-    //   currencyType: EnumCurrency[0],
-    // },
-  ]
-})
-
-runCasinoRecordList()
+runCasinoRecordList({})
 </script>
 
 <template>
@@ -336,10 +340,13 @@ runCasinoRecordList()
     </div>
     <BaseTable
       :columns="getScaleColumns"
-      :data-source="list"
+      :data-source="getList"
     >
       <template #gameName="{ record }">
-        <div class="game-box cursor-pointer">
+        <div
+          class="game-box cursor-pointer"
+          @click="openBetSlipDialog({ type: 'casino', data: {} })"
+        >
           <BaseIcon name="chess-plinko" />
           <span>{{ record.game_name }}</span>
         </div>
@@ -363,7 +370,7 @@ runCasinoRecordList()
             </template>
           </VTooltip>
         </template>
-        <div v-else class="player-box cursor-pointer">
+        <div v-else class="player-box cursor-pointer" @click="openStatisticsDialog">
           {{ record.player }}
         </div>
       </template>
