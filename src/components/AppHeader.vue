@@ -54,6 +54,7 @@ const userMenu = computed(() => ([
     icon: 'spt-user-bet',
     title: t('my_bets'),
     name: 'sports-betting',
+    path: '/casino/my-bets?type=casino',
   },
   {
     id: 8,
@@ -111,7 +112,14 @@ const getActiveShown = computed(() => {
 function handleClickMenuItem(item: { name: string; path?: string }) {
   const { name, path } = item
   if (path) {
-    router.push(path)
+    if (isMobile.value && leftIsExpand.value) {
+      closeLeftSidebar(() => {
+        router.push(path)
+      })
+    }
+    else {
+      router.push(path)
+    }
     return
   }
   switch (name) {
