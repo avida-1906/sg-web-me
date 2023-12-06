@@ -38,13 +38,22 @@ export const useAppStore = defineStore('app', () => {
   /**
    * Logo，Ico，Loading 图片
    */
-  // const logoAndIcoAndLoading = computed(() => {
+  const logoAndIcoAndLoading = computed(() => {
+    const pcInfo = brandDetail.value?.pc
 
-  // })
+    return {
+      logo: pcInfo?.logo,
+      ico: pcInfo?.icon || '',
+      loadingImgUrl: pcInfo?.loading,
+    }
+  })
 
+  const icoUrl = computed(() => logoAndIcoAndLoading.value.ico)
   const visibility = useDocumentVisibility()
   const mqttConnectSuccessBus = useEventBus(MQTT_CONNECT_SUCCESS_BUS)
   const mqttDisconnectBus = useEventBus(MQTT_DISCONNECT_BUS)
+
+  useIco(icoUrl)
 
   /** MQTT是否已连接 */
   const { bool: mqttIsConnected, setTrue: setMqttConnectedTrue, setFalse: setMqttConnectedFalse } = useBoolean(false)
@@ -166,6 +175,7 @@ export const useAppStore = defineStore('app', () => {
     currentGlobalCurrencyBalanceNumber,
     brandDetail,
     companyData,
+    logoAndIcoAndLoading,
     setToken,
     setLoginTrue,
     setLoginFalse,
