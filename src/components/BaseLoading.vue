@@ -2,10 +2,11 @@
 const { logoAndIcoAndLoading } = storeToRefs(useAppStore())
 
 const isShowNetworkImage = ref<boolean>(false)
+const { VITE_CASINO_IMG_CLOUD_URL } = getEnv()
 
 function loadImg(src: string) {
   const image = new Image()
-  image.src = src
+  image.src = VITE_CASINO_IMG_CLOUD_URL + src
   image.onload = () => {
     isShowNetworkImage.value = true
   }

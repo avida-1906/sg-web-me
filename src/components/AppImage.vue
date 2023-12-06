@@ -18,6 +18,7 @@ const { bool: showError, setTrue: setTrueShowError } = useBoolean(false)
   />
   <BaseIcon
     v-else
+    :data-title="JSON.stringify($attrs)"
     class="err-icon"
     :name="errIcon"
   />

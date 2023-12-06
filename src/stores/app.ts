@@ -1,6 +1,8 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import type { EnumCurrencyKey } from '~/apis/types'
 
+const { VITE_CASINO_IMG_CLOUD_URL } = getEnv()
+
 export const useAppStore = defineStore('app', () => {
   /** 当前全局选择的货币 */
   const currentGlobalCurrency = ref<EnumCurrencyKey>(getLocalCurrentGlobalCurrency())
