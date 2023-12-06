@@ -8,7 +8,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 const closeDialog = inject('closeDialog', () => {})
 
-const { VITE_SITE_NAME } = getEnv()
+const { companyData } = storeToRefs(useAppStore())
 const { t } = useI18n()
 const { openLoginDialog } = useLoginDialog()
 const { openRegisterDialog } = useRegisterDialog()
@@ -52,7 +52,7 @@ async function toForgetPassword() {
       </div>
 
       <div class="stake-text">
-        {{ t('stake_hCaptcha', { site: VITE_SITE_NAME }) }}
+        {{ t('stake_hCaptcha', { site: companyData?.name }) }}
         <span class="semibold" style="color: var(--tg-text-white);">
           {{ t('privacy_policy') }}
         </span> {{ t('and') }}

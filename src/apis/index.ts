@@ -1456,7 +1456,12 @@ export function ApiMemberBrandDetail() {
           'content': {
             'cn_zh': string
           }
-          'content_state': number
+          /**
+           * 1 开启
+           *
+           * 2 关闭
+           */
+          'content_state': 1 | 2
           'id': string
           'jump_url': string
         }[]

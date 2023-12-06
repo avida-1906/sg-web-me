@@ -3,88 +3,64 @@ import type { EnumSportsOddsType } from '~/stores/sports'
 import type { EnumLanguage } from '~/utils/enums'
 
 const { t } = useI18n()
-const { VITE_SITE_NAME } = getEnv()
 
-const router = useRouter()
+const router = useLocalRouter()
 const languageStore = useLanguageStore()
 const { userLanguage, AllLanguages } = storeToRefs(languageStore)
 const sportStore = useSportsStore()
 const { sportsOddsType, AllOddsTypes } = storeToRefs(sportStore)
-const { brandDetail } = storeToRefs(useAppStore())
+const { brandDetail, companyData } = storeToRefs(useAppStore())
 
-const supportCurrency = [
-  '/png/footer/ltc.png',
-  '/png/footer/bitcoin.png',
-  '/png/footer/ethereum.png',
-  '/png/footer/tron.png',
-  '/png/footer/ripple.png',
-  '/png/footer/dogecoin.png',
-  '/png/footer/bitcoin_cash.png',
-  '/png/footer/tether.png',
-  '/png/footer/safe_gamble.png',
-  '/png/footer/18plus.png',
-]
-const partner = [
-  { url: '/png/footer/verified.png', ratio: '120/59.63', with: '120px' },
-  { url: '/png/footer/official.png', ratio: '146.44/60', with: '146.44px' },
-  { url: '/png/footer/main.png', ratio: '82.81/60', with: '82.81px' },
-  { url: '/png/footer/ufc.png', ratio: '151/60', with: '151px' },
-]
+/**
+ * 最后一栏语言和赔率显示状态
+ */
+const languageShowState = computed(() => {
+  const langInfo = brandDetail.value?.bottom.quick_jump.find(item => item.id === '1')
+
+  return {
+    language: langInfo?.info.find(item => item.id === '1')?.content_state === 1,
+    odds: langInfo?.info.find(item => item.id === '2')?.content_state === 1,
+  }
+})
 
 const menuData = computed(() => {
-  // brandDetail.value?.bottom.quick_jump.map(item )
-  return [
-    {
-      title: t('sports'),
-      children: [
-        { title: t('home_space_title'), path: `/sports/${SPORTS_PLAT_ID}` },
-        { title: t('sports_status_live'), path: `/sports/${SPORTS_PLAT_ID}/live` },
-        { title: t('sports_rule'), icon: false },
-      ],
-    },
-    {
-      title: t('casino'),
-      children: [
-        { title: t('game'), path: '/casino' },
-        { title: t('vip_club'), path: '/vip-club' },
-        { title: t('promo_activity'), path: '/promotions' },
-      ],
-    },
-    {
-      title: t('support'),
-      children: [
-        { title: t('fairness') },
-        { title: t('affiliate') },
-        { title: t('responsible_casino') },
-        { title: 'Gameble Aware', icon: true },
-        { title: t('online_support') },
-        { title: t('help_center'), icon: true },
-      ],
-    },
-    {
-      title: t('community'),
-      children: [
-        { title: t('blog') },
-        { title: t('chat_forum'), icon: true },
-        { title: 'Facebook', icon: true },
-        { title: 'Twitter', icon: true },
-        { title: 'Instagram', icon: true },
-        { title: 'Youtube', icon: true },
-        { title: t('online_shopping'), icon: true },
-      ],
-    },
-    {
-      title: t('about_us'),
-      children: [
-        { title: t('privacy_policy') },
-        { title: t('license') },
-        { title: t('anti_money_laundering_rule') },
-        { title: t('terms_of_service') },
-        { title: t('self_exclusion') },
-        { title: 'Primedice', icon: true },
-      ],
-    },
-  ]
+  return brandDetail.value?.bottom.quick_jump.filter(
+    item => item.id !== '1',
+  ).map((item) => {
+    return {
+      title: item.name,
+      children: item.info.map((tmp) => {
+        return {
+          title: tmp.name,
+          path: tmp.jump_url,
+          icon: router.isExternal(tmp.jump_url),
+        }
+      }),
+    }
+  })
+})
+
+/**
+ * 合作伙伴
+ */
+const partnerData = computed(() => {
+  const partner = brandDetail.value?.bottom.partner || {}
+  const keys = Object.keys(partner)
+  return keys
+})
+
+/**
+ * 赞助商
+ */
+const sponsorData = computed(() => {
+  const sponsor = brandDetail.value?.bottom.sponsor.data || []
+  return sponsor.map((item) => {
+    const [img, link] = item.split(',')
+    return {
+      img,
+      link,
+    }
+  })
 })
 
 function selectChange(v: EnumLanguage) {
@@ -95,7 +71,7 @@ function selectOddsChange(v: EnumSportsOddsType) {
 }
 function pathTo(tmp: { path?: string; title: string; icon?: boolean }) {
   if (tmp.path)
-    router.push(replaceSportsPlatId(tmp.path))
+    router.push(tmp.path)
 }
 </script>
 
@@ -106,39 +82,48 @@ function pathTo(tmp: { path?: string; title: string; icon?: boolean }) {
         <div class="nav-head">
           {{ item.title }}
         </div>
-        <div v-for="tmp of item.children" :key="tmp.title" @click="pathTo(tmp)">
+        <div
+          v-for="tmp of item.children"
+          :key="tmp.title"
+          :title="JSON.stringify(item)"
+          @click="pathTo(tmp)"
+        >
           {{ tmp.title }}<BaseIcon v-if="tmp.icon" name="uni-jump-page" />
         </div>
       </div>
       <div class="layout-spacing reset last-nav">
-        <div class="nav-head">
-          {{ t('language_title') }}
-        </div>
-        <div class="select-wrap">
-          <BaseSelect
-            :model-value="userLanguage"
-            popper
-            plain-popper-label
-            :options="AllLanguages.map(a => ({ ...a, label: a.title }))"
-            @select="selectChange"
-          />
-        </div>
-        <div>{{ t('sports_odds_title') }}</div>
-        <div class="select-wrap">
-          <BaseSelect
-            :model-value="sportsOddsType"
-            popper
-            plain-popper-label
-            :options="AllOddsTypes.map(a => ({ ...a, label: a.title }))"
-            @select="selectOddsChange"
-          />
-        </div>
+        <template v-if="languageShowState.language">
+          <div class="nav-head">
+            {{ t('language_title') }}
+          </div>
+          <div class="select-wrap">
+            <BaseSelect
+              :model-value="userLanguage"
+              popper
+              plain-popper-label
+              :options="AllLanguages.map(a => ({ ...a, label: a.title }))"
+              @select="selectChange"
+            />
+          </div>
+        </template>
+        <template v-if="languageShowState.odds">
+          <div>{{ t('sports_odds_title') }}</div>
+          <div class="select-wrap">
+            <BaseSelect
+              :model-value="sportsOddsType"
+              popper
+              plain-popper-label
+              :options="AllOddsTypes.map(a => ({ ...a, label: a.title }))"
+              @select="selectOddsChange"
+            />
+          </div>
+        </template>
       </div>
     </div>
     <BaseDivider />
     <div class="footer-support">
       <BaseAspectRatio
-        v-for="url, index of supportCurrency"
+        v-for="url, index of partnerData"
         :key="index"
         ratio="116/35"
         width="133.33px"
@@ -148,32 +133,31 @@ function pathTo(tmp: { path?: string; title: string; icon?: boolean }) {
     </div>
     <BaseDivider />
     <div class="footer-sponsor">
-      <BaseAspectRatio
-        v-for="item, index of partner"
+      <BaseImage
+        v-for="item, index of sponsorData"
         :key="index"
-        :ratio="item.ratio"
-        :width="item.with"
-      >
-        <BaseImage :url="item.url" />
-      </BaseAspectRatio>
+        :url="item.img"
+        is-cloud
+        @click="router.push(item.link)"
+      />
     </div>
     <BaseDivider />
     <div class="footer-copyright">
       <BaseLogo />
       <div class="copy-right">
-        © 2023 {{ VITE_SITE_NAME }}.com | {{ t('copyright') }}
+        © {{ companyData?.copyright }} | {{ t('copyright') }}
       </div>
       <div>1 USDT = US$1.00</div>
     </div>
     <div class="footer-description">
       {{ t('footer_desc',
-           { email: `support@${VITE_SITE_NAME}.com`, site: VITE_SITE_NAME }) }}
+           { email: `support@${companyData?.name}.com`, site: companyData?.name }) }}
     </div>
     <div class="footer-description">
       {{ t('support') }}
-      <span>support@{{ VITE_SITE_NAME }}.com</span> | {{ t('partner') }}
-      <span>partners@{{ VITE_SITE_NAME }}.com</span> | {{ t('media') }}
-      <span>press@{{ VITE_SITE_NAME }}.com</span>
+      <span>support@{{ companyData?.name }}.com</span> | {{ t('partner') }}
+      <span>partners@{{ companyData?.name }}.com</span> | {{ t('media') }}
+      <span>press@{{ companyData?.name }}.com</span>
     </div>
   </div>
 </template>

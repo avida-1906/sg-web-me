@@ -284,6 +284,7 @@ declare global {
   const resolveComponent: typeof import('vue')['resolveComponent']
   const resolveRef: typeof import('@vueuse/core')['resolveRef']
   const resolveUnref: typeof import('@vueuse/core')['resolveUnref']
+  const routerPush: typeof import('./utils/index')['routerPush']
   const scrollMainContentToTop: typeof import('./utils/index')['scrollMainContentToTop']
   const scrollToTop: typeof import('./utils/dom')['scrollToTop']
   const setActivePinia: typeof import('pinia')['setActivePinia']
@@ -452,6 +453,7 @@ declare global {
   const useLink: typeof import('vue-router')['useLink']
   const useList: typeof import('./composables/useList')['useList']
   const useLoadMore: typeof import('vue-request')['useLoadMore']
+  const useLocalRouter: typeof import('./composables/useLocalRouter')['useLocalRouter']
   const useLocalStorage: typeof import('@vueuse/core')['useLocalStorage']
   const useLockScroll: typeof import('./composables/useLockScroll')['useLockScroll']
   const useLoginDialog: typeof import('./composables/useDialogLogin')['useLoginDialog']
@@ -1039,6 +1041,7 @@ declare module 'vue' {
     readonly useLink: UnwrapRef<typeof import('vue-router')['useLink']>
     readonly useList: UnwrapRef<typeof import('./composables/useList')['useList']>
     readonly useLoadMore: UnwrapRef<typeof import('vue-request')['useLoadMore']>
+    readonly useLocalRouter: UnwrapRef<typeof import('./composables/useLocalRouter')['useLocalRouter']>
     readonly useLocalStorage: UnwrapRef<typeof import('@vueuse/core')['useLocalStorage']>
     readonly useLockScroll: UnwrapRef<typeof import('./composables/useLockScroll')['useLockScroll']>
     readonly useLoginDialog: UnwrapRef<typeof import('./composables/useDialogLogin')['useLoginDialog']>
@@ -1620,6 +1623,7 @@ declare module '@vue/runtime-core' {
     readonly useLink: UnwrapRef<typeof import('vue-router')['useLink']>
     readonly useList: UnwrapRef<typeof import('./composables/useList')['useList']>
     readonly useLoadMore: UnwrapRef<typeof import('vue-request')['useLoadMore']>
+    readonly useLocalRouter: UnwrapRef<typeof import('./composables/useLocalRouter')['useLocalRouter']>
     readonly useLocalStorage: UnwrapRef<typeof import('@vueuse/core')['useLocalStorage']>
     readonly useLockScroll: UnwrapRef<typeof import('./composables/useLockScroll')['useLockScroll']>
     readonly useLoginDialog: UnwrapRef<typeof import('./composables/useDialogLogin')['useLoginDialog']>

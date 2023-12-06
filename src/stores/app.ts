@@ -31,6 +31,10 @@ export const useAppStore = defineStore('app', () => {
   const { data: brandDetail } = useRequest(ApiMemberBrandDetail, {
     manual: false,
   })
+  /** 公司信息 */
+  const companyData = computed(() => {
+    return brandDetail.value?.bottom.company
+  })
 
   const visibility = useDocumentVisibility()
   const mqttConnectSuccessBus = useEventBus(MQTT_CONNECT_SUCCESS_BUS)
@@ -155,6 +159,7 @@ export const useAppStore = defineStore('app', () => {
     currentGlobalCurrencyBalance,
     currentGlobalCurrencyBalanceNumber,
     brandDetail,
+    companyData,
     setToken,
     setLoginTrue,
     setLoginFalse,
