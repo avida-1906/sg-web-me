@@ -118,7 +118,7 @@ function showDetail() {
                   @click="goEventDetailPage(item)"
                 >
                   <div v-if="isDialog" class="icon">
-                    <AppSportImage
+                    <AppImage
                       is-cloud
                       :url="sportsStore.getSportsIconBySi(item.si)"
                     />

@@ -63,7 +63,7 @@ function onClick(tab: TabItem, i: number) {
         >
           <div class="content">
             <slot name="tab" :item="t">
-              <AppSportImage
+              <AppImage
                 v-if="useCloudImg"
                 style="width: 14px;height: 14px;--app-sport-image-error-icon-size:14px;"
                 :url="t.icon" is-cloud
