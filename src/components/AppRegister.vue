@@ -1,4 +1,6 @@
 <script setup lang='ts'>
+import type { IMemberReg } from '~/apis/types'
+
 const closeDialog = inject('closeDialog', () => { })
 
 const { t } = useI18n()
@@ -75,6 +77,18 @@ const {
     return t('password_least_1_number')
   return ''
 })
+
+const regParams = computed(() => {
+  return Session.get<IMemberReg>(STORAGE_REG_PARAMS_KEYWORDS)?.value
+})
+console.log('regParams === ', regParams.value)
+if (regParams.value) {
+  email.value = regParams.value.email ?? ''
+  username.value = regParams.value.username ?? ''
+  password.value = regParams.value.password ?? ''
+  birthday.value = regParams.value.birthday ?? ''
+}
+
 const {
   value: isAgree,
   errorMessage: agreeErrorMsg,
@@ -116,6 +130,7 @@ const { run: runExists } = useRequest(ApiMemberExists, {
           password: password.value,
           parent_id: '',
           device_number: application.getDeviceNumber(),
+          birthday: birthday.value,
         }
         // runMemberReg(paramsReg)
         Session.set(STORAGE_REG_PARAMS_KEYWORDS, paramsReg)

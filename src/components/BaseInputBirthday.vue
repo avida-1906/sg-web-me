@@ -75,6 +75,13 @@ const {
   return ''
 })
 
+if (props.modelValue) {
+  const temp = props.modelValue.split('-')
+  setYear(+temp[0])
+  setMonth(+temp[1])
+  setDay(+temp[2])
+}
+
 // 是否满足18岁
 const isEnough = computed(() => {
   const yearStr = year.value ? year.value : ''
