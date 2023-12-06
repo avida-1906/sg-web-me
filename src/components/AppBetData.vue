@@ -345,7 +345,7 @@ runCasinoRecordList({})
       <template #gameName="{ record }">
         <div
           class="game-box cursor-pointer"
-          @click="openBetSlipDialog({ type: 'casino', data: {} })"
+          @click="openBetSlipDialog({ type: 'casino', data: record })"
         >
           <BaseIcon name="chess-plinko" />
           <span>{{ record.game_name }}</span>
