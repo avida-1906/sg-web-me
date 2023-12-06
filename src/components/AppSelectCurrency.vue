@@ -227,6 +227,7 @@ onMounted(() => {
               &::placeholder {
                 color: var(--tg-secondary-main) !important;
                 font-weight: var(--tg-font-weight-semibold);
+                opacity: 0.8;
               }
             }
         }
