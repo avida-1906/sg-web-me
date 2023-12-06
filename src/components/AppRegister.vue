@@ -441,6 +441,7 @@ onUnmounted(() => {
   font-weight: var(--tg-font-weight-semibold);
 }
 .app-register {
+  --tg-base-input-style-pad-x: 7px;
   &-title {
     color: var(--tg-text-lightgrey);
     text-align: center;

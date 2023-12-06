@@ -25,23 +25,26 @@ watch(() => props.password, () => {
   <div class="app-password">
     <div class="item">
       <BaseIcon v-if="upperLowerRegOk" name="password-hook-2" />
-      <BaseIcon v-else name="password-hook-1" />
+      <BaseIcon v-else class="hook-1" name="password-hook-1" />
       {{ t('uppercase_lowercase_letter') }}
     </div>
     <div class="item">
       <BaseIcon v-if="lastOneNumberRegOk" name="password-hook-2" />
-      <BaseIcon v-else name="password-hook-1" />
+      <BaseIcon v-else class="hook-1" name="password-hook-1" />
       {{ t('password_least_1_number') }}
     </div>
     <div class="item">
       <BaseIcon v-if="lengthOk" name="password-hook-2" />
-      <BaseIcon v-else name="password-hook-1" />
+      <BaseIcon v-else class="hook-1" name="password-hook-1" />
       {{ t('least_8_characters') }}
     </div>
   </div>
 </template>
 
 <style lang='scss' scoped>
+.hook-1 {
+  --tg-icon-color: var(--tg-secondary-light);
+}
 .app-password {
   display: flex;
   flex-direction: column;
@@ -53,7 +56,7 @@ watch(() => props.password, () => {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: var(--tg-spacing-5);
+    gap: var(--tg-spacing-8);
     padding-left: var(--tg-spacing-3);
   }
 }

@@ -247,7 +247,7 @@ defineExpose({ valiBirthday })
     margin-bottom: var(--tg-spacing-6);
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 0 var(--tg-spacing-11);
+    gap: 0 var(--tg-spacing-8);
 
     input,
     select {
@@ -260,7 +260,7 @@ defineExpose({ valiBirthday })
       border-color: var(--tg-border-color-main);
       color: var(--tg-text-white);
       outline: none;
-      padding: var(--tg-spacing-input-padding-vertical) var(--tg-spacing-input-padding-horizontal);
+      padding: var(--tg-spacing-input-padding-vertical) 7px;
       transition: all ease .25s;
       line-height: 1;
 
