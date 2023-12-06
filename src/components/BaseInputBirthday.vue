@@ -114,8 +114,8 @@ const msg = computed(() => {
   return errorYearMsg.value || errorMonthMsg.value || errorDayMsg.value
 })
 
-function onInput(e: any) {
-  if (e.target)
+function onInput(e: any, ty?: string) {
+  if (ty === 'month' && e.target)
     setMonth(+e.target.value)
   if (year.value && month.value && day.value && !msg.value)
     emit('update:modelValue', `${year.value}-${month.value > 9 ? month.value : `0${month.value}`}-${day.value > 9 ? day.value : `0${day.value}`}`)
@@ -161,7 +161,7 @@ defineExpose({ valiBirthday })
               'placeholder-select': monthList.filter(m => m.value === month).length === 0,
             }"
             :placeholder="t('time_month')"
-            @change="onInput"
+            @change="(e) => onInput(e, 'month')"
           >
             <option class="select-placeholder" value="" disabled selected>
               {{ t('time_month') }}
