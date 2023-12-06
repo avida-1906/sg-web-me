@@ -63,12 +63,14 @@ function onClick(tab: TabItem, i: number) {
         >
           <div class="content">
             <slot name="tab" :item="t">
-              <AppImage
-                v-if="useCloudImg"
-                style="width: 14px;height: 14px;--app-sport-image-error-icon-size:14px;"
-                :url="t.icon" is-cloud
-              />
-              <BaseIcon v-else-if="t.icon" :name="t.icon" />
+              <div class="icon">
+                <AppImage
+                  v-if="useCloudImg"
+                  style="width: 14px;height: 14px;--app-sport-image-error-icon-size:14px;"
+                  :url="t.icon" is-cloud
+                />
+                <BaseIcon v-else-if="t.icon" :name="t.icon" />
+              </div>
               {{ t.label }}
               <div v-if="t.bubble" class="bubble-wrap">
                 <div />
@@ -179,11 +181,18 @@ function onClick(tab: TabItem, i: number) {
     &:hover:not(.is-mobile) {
       background-color: var(--tg-secondary-main);
       --tg-icon-color: var(--tg-text-white);
+      .icon{
+        filter: brightness(2);
+      }
+
     }
 
     &.active {
       background-color: var(--tg-secondary-main);
       --tg-icon-color: var(--tg-text-white);
+      .icon{
+        filter: brightness(2);
+      }
     }
 
     &.disabled {
