@@ -144,7 +144,7 @@ await application.allSettled([runAsync({})])
           )"
         >
           <div class="bill_no">
-            <BaseIcon style="font-size: 16px;" name="tabbar-bet" />
+            <BaseIcon v-if="!isMobile" style="font-size: 16px;" name="tabbar-bet" />
             <span>{{ bill_no }}</span>
           </div>
         </BaseButton>
