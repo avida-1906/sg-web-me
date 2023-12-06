@@ -1,8 +1,8 @@
 import type { Menu } from '~/composables/useApiMenuData'
 
-// import { i18n } from '~/modules/i18n'
+import { i18n } from '~/modules/i18n'
 
-// const { t } = i18n.global
+const { t } = i18n.global
 
 export enum EnumSportsPanelType {
   /** 三项投注 */
@@ -33,7 +33,7 @@ interface IBetSlipData {
 }
 
 export const useSportsStore = defineStore('sports', () => {
-  const { t } = useI18n()
+  // const { t } = useI18n()
   const { isLogin, currentGlobalCurrency } = storeToRefs(useAppStore())
   /** 体育赔率展示方式 */
   const sportsOddsType = ref(getSportsOddsType())
