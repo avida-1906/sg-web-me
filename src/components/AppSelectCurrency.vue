@@ -116,7 +116,7 @@ onMounted(() => {
               class="top-search"
               :clearable="searchValue?.length > 0"
               :style="{ 'max-width': showBalance ? '180px' : '140px' }"
-              :place-holder="$t('search')"
+              :place-holder="$t('search_currency')"
               shape="square"
               white-style
             />
