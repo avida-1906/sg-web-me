@@ -38,6 +38,7 @@ const {
 
   return ''
 })
+const { closeRightSidebar } = useRightSidebar()
 const { openRegisterDialog } = useRegisterDialog()
 const { isMobile, windowHeight } = storeToRefs(useWindowStore())
 
@@ -538,6 +539,13 @@ function setBetOrderSelectValue(v: EnumOddsChange) {
   Local.set(STORAGE_SPORTS_BET_ORDER, v)
 }
 
+function noDataGoToBet() {
+  if (isMobile.value)
+    closeRightSidebar()
+
+  router.push(`/sports/${getSportsPlatId()}`)
+}
+
 watch(() => sportStore.cart.count, (val, oVal) => {
   if (val) {
     nextTick(() => {
@@ -678,7 +686,7 @@ onUnmounted(() => {
                 type="text"
                 size="none"
                 style=" --tg-base-button-text-default-color:var(--tg-text-white)"
-                @click="router.push(`/sports/${getSportsPlatId()}`)"
+                @click="noDataGoToBet"
               >
                 {{ t('sports_betting_now') }}
               </BaseButton>
