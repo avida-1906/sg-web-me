@@ -119,7 +119,7 @@ function openCasinoGame(id: string, name: string) {
         <span>1.00x</span>
       </div> -->
       <div class="item">
-        <label>{{ t('menu_title_settings_bets') }}:</label>
+        <label>{{ t('sports_payment_amount') }}:</label>
         <span :class="{ win: casinoData.na > 0 }">
           {{ casinoData.na }}
           <AppCurrencyIcon
