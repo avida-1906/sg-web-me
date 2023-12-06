@@ -176,6 +176,7 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
         align: 'right',
         xl: true,
         md: true,
+        isTips: true,
       },
       {
         title: t('finance_other_tab_bonus'),
@@ -356,10 +357,20 @@ onMounted(() => {
       </template>
       <template #betMoney="{ record }">
         <div style="display: inline-block;">
-          <AppAmount
-            :amount="record.betMoney"
-            :currency-type="record.currencyType"
-          />
+          <VTooltip placement="top">
+            <AppAmount
+              :amount="record.betMoney"
+              :currency-type="record.currencyType"
+            />
+            <template #popper>
+              <div class="tiny-menu-item-title">
+                <AppAmount
+                  :amount="record.betMoney"
+                  :currency-type="record.currencyType"
+                />
+              </div>
+            </template>
+          </VTooltip>
         </div>
       </template>
       <template #payMoney="{ record }">

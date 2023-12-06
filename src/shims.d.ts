@@ -148,4 +148,6 @@ interface Column {
   sort?: boolean
   /** ascend-升序 | descend-降序 */
   sortDirections?: 'ascend' | 'descend' // 升序 ｜ 降序
+  /** 气泡展示，总投注额专用 */
+  isTips?: boolean
 }
