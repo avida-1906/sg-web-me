@@ -59,7 +59,7 @@ defineExpose({ close })
       @click="handleClickHeader"
     >
       <div class="title flex-center">
-        <AppSportImage
+        <AppImage
           v-if="menuInfo.useCloudImg"
           style="width: 14px;height: 14px;--app-sport-image-error-icon-size:14px;"
           :url="menuInfo.icon" is-cloud

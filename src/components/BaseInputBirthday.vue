@@ -114,8 +114,8 @@ const msg = computed(() => {
   return errorYearMsg.value || errorMonthMsg.value || errorDayMsg.value
 })
 
-function onInput(e: any) {
-  if (e.target)
+function onInput(e: any, ty?: string) {
+  if (ty === 'month' && e.target)
     setMonth(+e.target.value)
   if (year.value && month.value && day.value && !msg.value)
     emit('update:modelValue', `${year.value}-${month.value > 9 ? month.value : `0${month.value}`}-${day.value > 9 ? day.value : `0${day.value}`}`)
@@ -161,7 +161,7 @@ defineExpose({ valiBirthday })
               'placeholder-select': monthList.filter(m => m.value === month).length === 0,
             }"
             :placeholder="t('time_month')"
-            @change="onInput"
+            @change="(e) => onInput(e, 'month')"
           >
             <option class="select-placeholder" value="" disabled selected>
               {{ t('time_month') }}
@@ -247,7 +247,7 @@ defineExpose({ valiBirthday })
     margin-bottom: var(--tg-spacing-6);
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 0 var(--tg-spacing-11);
+    gap: 0 var(--tg-spacing-8);
 
     input,
     select {
@@ -260,7 +260,7 @@ defineExpose({ valiBirthday })
       border-color: var(--tg-border-color-main);
       color: var(--tg-text-white);
       outline: none;
-      padding: var(--tg-spacing-input-padding-vertical) var(--tg-spacing-input-padding-horizontal);
+      padding: var(--tg-spacing-input-padding-vertical) 7px;
       transition: all ease .25s;
       line-height: 1;
 

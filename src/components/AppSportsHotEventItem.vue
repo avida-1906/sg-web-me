@@ -22,7 +22,7 @@ defineProps<{
   <div class="hot-event-info" @click="$router.push(replaceSportsPlatId(data.path))">
     <div class="header">
       <div class="icon">
-        <AppSportImage :url="data.cpic" is-cloud />
+        <AppImage :url="data.cpic" is-cloud />
       </div>
       <div class="team-name">
         {{ data.cn }}
@@ -31,7 +31,7 @@ defineProps<{
     <div class="content">
       <div class="team">
         <div class="icon">
-          <AppSportImage :url="data.htpic" is-cloud />
+          <AppImage :url="data.htpic" is-cloud />
         </div>
         <span class="text">{{ data.htn }}</span>
       </div>
@@ -46,7 +46,7 @@ defineProps<{
       <div class="team">
         <span>{{ data.atn }}</span>
         <div class="icon">
-          <AppSportImage :url="data.atpic" is-cloud />
+          <AppImage :url="data.atpic" is-cloud />
         </div>
       </div>
     </div>

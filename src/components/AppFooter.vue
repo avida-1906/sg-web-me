@@ -128,16 +128,29 @@ function pathTo(tmp: { path?: string; title: string; icon?: boolean }) {
         ratio="116/35"
         width="133.33px"
       >
-        <BaseImage :url="url" />
+        <div class="center">
+          <AppImage
+            :url="url"
+            :style="{
+              '--app-sport-image-error-icon-size': '40px',
+            }"
+            err-icon="img-casino-error"
+          />
+        </div>
       </BaseAspectRatio>
     </div>
     <BaseDivider />
     <div class="footer-sponsor">
-      <BaseImage
+      <AppImage
         v-for="item, index of sponsorData"
         :key="index"
         :url="item.img"
-        is-cloud
+        :style="{
+          '--app-sport-image-error-icon-size': '40px',
+        }"
+        err-icon="img-casino-error"
+        width="auto"
+        height="62px"
         @click="router.push(item.link)"
       />
     </div>
@@ -230,7 +243,7 @@ function pathTo(tmp: { path?: string; title: string; icon?: boolean }) {
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
-    gap:3.575rem;
+    gap: 3.575rem;
   }
   .footer-copyright{
     width: 100%;

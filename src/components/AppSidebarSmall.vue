@@ -77,7 +77,7 @@ function itemClick(item: MenuItem) {
       >
         <VTooltip placement="top">
           <div class="trigger" @click="itemClick(menuitem)">
-            <AppSportImage
+            <AppImage
               v-if="menuitem.useCloudImg"
               style="width: 14px;height: 14px;--app-sport-image-error-icon-size:14px;"
               :url="menuitem.icon" is-cloud
