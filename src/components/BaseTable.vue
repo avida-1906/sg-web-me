@@ -107,6 +107,7 @@ watch(() => props.columns, () => {
   --tg-table-font-size: var(--tg-font-size-default);
   --tg-table-even-background: inherit;
   --tg-table-odd-background: var(--tg-secondary-grey);
+  --tg-table-th-background: var(--tg-table-even-background);
   --tg-table-th-color: var(--tg-text-lightgrey);
   --tg-table-line-height:1.5;
   --tg-table-th-padding: var(--tg-spacing-16);
@@ -135,7 +136,7 @@ watch(() => props.columns, () => {
       border: none;
       line-height: var(--tg-table-line-height);
       white-space: nowrap;
-      background: var(--tg-table-even-background);
+      background: var(--tg-table-th-background);
       vertical-align: middle;
       .th-box{
         display: inline-flex;

@@ -59,6 +59,7 @@ const selectCurrencyOptions = computed<ISelectOption[]>(() => [
   --tg-base-select-style-color: var(--tg-text-lightgrey);
   --tg-base-select-style-padding-y: var(--tg-spacing-8);
   --tg-base-select-style-padding-right: var(--tg-spacing-28);
+  --tg-table-th-background: var(--tg-primary-main);
   gap: var(--tg-spacing-20);
 
   .table-filter {
