@@ -190,9 +190,9 @@ onMounted(() => {
           <button class="tips">
             <span>{{ gameLabel }}</span>
             <BaseIcon
-              name="uni-arrow-up-small"
+              name="uni-arrow-down"
               :class="{
-                'rotate-180': !isPopperShow,
+                'rotate-180': isPopperShow,
               }"
             />
           </button>
