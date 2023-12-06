@@ -8,6 +8,16 @@ withDefaults(defineProps<Props>(), {
   mode: 'light',
   useSmall: false,
 })
+
+const router = useLocalRouter()
+
+function to() {
+  const currentPath = router.currentRoute.value.path
+  if (currentPath.includes('sports'))
+    router.push(`/sports/${getSportsPlatId()}`)
+  else if (currentPath.includes('casino'))
+    router.push('/casino')
+}
 </script>
 
 <template>
@@ -15,6 +25,7 @@ withDefaults(defineProps<Props>(), {
     <BaseAspectRatio
       ratio="150/53"
       :style="{ 'max-width': useSmall ? '45px' : '95px', 'min-width': '20px' }"
+      @click="to"
     >
       <BaseImage
         :url="useSmall ? '/img/logo/logo_small.svg'

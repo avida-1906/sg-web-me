@@ -28,6 +28,7 @@ declare global {
   const ApiMemberBankcardInsert: typeof import('./apis/index')['ApiMemberBankcardInsert']
   const ApiMemberBankcardList: typeof import('./apis/index')['ApiMemberBankcardList']
   const ApiMemberBannerList: typeof import('./apis/index')['ApiMemberBannerList']
+  const ApiMemberBrandDetail: typeof import('./apis/index')['ApiMemberBrandDetail']
   const ApiMemberCasinoRecordList: typeof import('./apis/index')['ApiMemberCasinoRecordList']
   const ApiMemberDetail: typeof import('./apis/index')['ApiMemberDetail']
   const ApiMemberDualVerify: typeof import('./apis/index')['ApiMemberDualVerify']
@@ -284,6 +285,7 @@ declare global {
   const resolveComponent: typeof import('vue')['resolveComponent']
   const resolveRef: typeof import('@vueuse/core')['resolveRef']
   const resolveUnref: typeof import('@vueuse/core')['resolveUnref']
+  const routerPush: typeof import('./utils/index')['routerPush']
   const scrollMainContentToTop: typeof import('./utils/index')['scrollMainContentToTop']
   const scrollToTop: typeof import('./utils/dom')['scrollToTop']
   const setActivePinia: typeof import('pinia')['setActivePinia']
@@ -452,6 +454,7 @@ declare global {
   const useLink: typeof import('vue-router')['useLink']
   const useList: typeof import('./composables/useList')['useList']
   const useLoadMore: typeof import('vue-request')['useLoadMore']
+  const useLocalRouter: typeof import('./composables/useLocalRouter')['useLocalRouter']
   const useLocalStorage: typeof import('@vueuse/core')['useLocalStorage']
   const useLockScroll: typeof import('./composables/useLockScroll')['useLockScroll']
   const useLoginDialog: typeof import('./composables/useDialogLogin')['useLoginDialog']
@@ -615,6 +618,7 @@ declare module 'vue' {
     readonly ApiMemberBankcardInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardInsert']>
     readonly ApiMemberBankcardList: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardList']>
     readonly ApiMemberBannerList: UnwrapRef<typeof import('./apis/index')['ApiMemberBannerList']>
+    readonly ApiMemberBrandDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberBrandDetail']>
     readonly ApiMemberCasinoRecordList: UnwrapRef<typeof import('./apis/index')['ApiMemberCasinoRecordList']>
     readonly ApiMemberDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberDetail']>
     readonly ApiMemberDualVerify: UnwrapRef<typeof import('./apis/index')['ApiMemberDualVerify']>
@@ -1039,6 +1043,7 @@ declare module 'vue' {
     readonly useLink: UnwrapRef<typeof import('vue-router')['useLink']>
     readonly useList: UnwrapRef<typeof import('./composables/useList')['useList']>
     readonly useLoadMore: UnwrapRef<typeof import('vue-request')['useLoadMore']>
+    readonly useLocalRouter: UnwrapRef<typeof import('./composables/useLocalRouter')['useLocalRouter']>
     readonly useLocalStorage: UnwrapRef<typeof import('@vueuse/core')['useLocalStorage']>
     readonly useLockScroll: UnwrapRef<typeof import('./composables/useLockScroll')['useLockScroll']>
     readonly useLoginDialog: UnwrapRef<typeof import('./composables/useDialogLogin')['useLoginDialog']>
@@ -1196,6 +1201,7 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberBankcardInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardInsert']>
     readonly ApiMemberBankcardList: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardList']>
     readonly ApiMemberBannerList: UnwrapRef<typeof import('./apis/index')['ApiMemberBannerList']>
+    readonly ApiMemberBrandDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberBrandDetail']>
     readonly ApiMemberCasinoRecordList: UnwrapRef<typeof import('./apis/index')['ApiMemberCasinoRecordList']>
     readonly ApiMemberDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberDetail']>
     readonly ApiMemberDualVerify: UnwrapRef<typeof import('./apis/index')['ApiMemberDualVerify']>
@@ -1620,6 +1626,7 @@ declare module '@vue/runtime-core' {
     readonly useLink: UnwrapRef<typeof import('vue-router')['useLink']>
     readonly useList: UnwrapRef<typeof import('./composables/useList')['useList']>
     readonly useLoadMore: UnwrapRef<typeof import('vue-request')['useLoadMore']>
+    readonly useLocalRouter: UnwrapRef<typeof import('./composables/useLocalRouter')['useLocalRouter']>
     readonly useLocalStorage: UnwrapRef<typeof import('@vueuse/core')['useLocalStorage']>
     readonly useLockScroll: UnwrapRef<typeof import('./composables/useLockScroll')['useLockScroll']>
     readonly useLoginDialog: UnwrapRef<typeof import('./composables/useDialogLogin')['useLoginDialog']>
