@@ -10,7 +10,7 @@ const { run: runGetPromoBonus, data: promoBonus } = useRequest(ApiMemberVipBonus
 const { openReceiveBonusDialog } = useDialogReceiveBonus(() => {
   promoBonus.value = []
   setTimeout(() => {
-    // runGetPromoBonus(params)
+    runGetPromoBonus(params)
   }, 100)
 })
 
@@ -47,7 +47,7 @@ async function openReceive() {
 }
 
 onMounted(() => {
-  // runGetPromoBonus(params)
+  runGetPromoBonus(params)
 })
 </script>
 
