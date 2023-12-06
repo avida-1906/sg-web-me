@@ -116,7 +116,7 @@ onMounted(() => {
               class="top-search"
               :clearable="searchValue?.length > 0"
               :style="{ 'max-width': showBalance ? '180px' : '140px' }"
-              :place-holder="$t('search_currency')"
+              :place-holder="$t('search')"
               shape="square"
               white-style
             />
@@ -206,9 +206,11 @@ onMounted(() => {
     max-width: inherit;
     display: flex;
     flex-direction: column;
+    width: max-content;
 
     .popper-top {
         padding: 4px 12px;
+        padding-bottom: 8px;
 
         :deep(.base-search.top-search) {
             --tg-base-search-icon-size: var(--tg-font-size-base);
@@ -227,7 +229,7 @@ onMounted(() => {
               &::placeholder {
                 color: var(--tg-secondary-main) !important;
                 font-weight: var(--tg-font-weight-semibold);
-                opacity: 0.8;
+                opacity: 0.82;
               }
             }
         }
@@ -258,7 +260,8 @@ onMounted(() => {
 
             &:hover { // ,&.active
                 background-color: var(--tg-secondary-light);
-                color: var(--tg-popper-hover-color-default);
+                // color: var(--tg-popper-hover-color-default);
+                color: var(--tg-text-black);
             }
 
         }
@@ -271,8 +274,10 @@ onMounted(() => {
 
     .justify-content {
         .content-row {
-          padding-left: 30%;
-          padding-right: 30%;
+          display: flex;
+          align-items: center;
+          text-align: center;
+          justify-content: center;
         }
     }
 
