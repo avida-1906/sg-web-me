@@ -8,13 +8,13 @@ const { t } = useI18n()
       {{ t('login') }}
     </div>
     <AppLogin />
-    <AppLoginRegisterBottom type="login" />
+    <AppLoginRegisterBottom type="login" :show-desc="false" />
   </div>
 </template>
 
 <style lang='scss' scoped>
 .app-login-dialog {
-  padding: 0 var(--tg-spacing-button-padding-horizontal-sm);
+  padding: 0 var(--tg-spacing-button-padding-horizontal-sm) var(--tg-spacing-button-padding-horizontal-sm);
   .title {
     color: var(--tg-text-white);
     text-align: center;

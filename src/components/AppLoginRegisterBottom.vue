@@ -1,10 +1,12 @@
 <script setup lang='ts'>
 interface Props {
   type?: string
+  showDesc?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
   type: 'login',
+  showDesc: true,
 })
 const closeDialog = inject('closeDialog', () => {})
 
@@ -51,7 +53,7 @@ async function toForgetPassword() {
         {{ t('have_account') }}<span class="text-white">{{ t('login') }}</span>
       </div>
 
-      <div class="stake-text">
+      <div v-if="showDesc" class="stake-text">
         {{ t('stake_hCaptcha', { site: companyData?.name }) }}
         <span class="semibold" style="color: var(--tg-secondary-light);">
           {{ t('privacy_policy') }}
