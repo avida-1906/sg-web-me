@@ -11,7 +11,7 @@ interface Column {
   align?: 'left' | 'center' | 'right'
 }
 
-const { VITE_SITE_NAME } = getEnv()
+const { companyData } = storeToRefs(useAppStore())
 const { t } = useI18n()
 const { bool: showContent, toggle: toggleShowContent } = useBoolean(false)
 const { bool: loading, setFalse: setLoadingFalse } = useBoolean(true)
@@ -196,7 +196,7 @@ onMounted(() => {
             <p>
               With multiplier values and some quirky
               bonus features, slot fans will relish the opportunity to play the
-              Cursed Seas slot at {{ VITE_SITE_NAME }} Casino.
+              Cursed Seas slot at {{ companyData?.name }} Casino.
             </p>
             <p>
               The grid matrix in Cursed Seas is

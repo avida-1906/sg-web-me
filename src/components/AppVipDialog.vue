@@ -16,7 +16,7 @@ const props = withDefaults(defineProps<Props>(), {
   },
 })
 
-const { VITE_SITE_NAME } = getEnv()
+const { companyData } = storeToRefs(useAppStore())
 const { t } = useI18n()
 
 const tab = ref('1')
@@ -126,7 +126,7 @@ const showContent = function () {
     </div>
     <div class="vip-footer-more">
       <a href="#">
-        {{ t('learn_more_vip', { site: VITE_SITE_NAME }) }}
+        {{ t('learn_more_vip', { site: companyData?.name }) }}
       </a>
     </div>
   </div>
