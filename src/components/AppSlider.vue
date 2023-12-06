@@ -184,20 +184,6 @@ watchEffect(() => {
 </template>
 
 <style lang="scss" scoped>
-.a-inner {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all .2s;
-  &.left svg {
-    transform-origin: center center;
-  }
-  &.right svg {
-    transform-origin: center center;
-  }
-}
 .tg-app-slider {
   display: flex;
   flex-direction: column;
@@ -250,10 +236,6 @@ watchEffect(() => {
           align-items: center;
           justify-content: center;
           transition: all .2s;
-          &:hover svg {
-            transform: scale(1.2);
-            opacity: 0.8;
-          }
           &.left svg {
             transform-origin: center center;
           }
@@ -280,6 +262,9 @@ watchEffect(() => {
               transform-origin: center center;
             }
           }
+        }
+        &:disabled {
+          cursor: default;
         }
       }
       button:last-child {
