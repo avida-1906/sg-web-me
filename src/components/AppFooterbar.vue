@@ -1,7 +1,9 @@
 <script setup lang="ts">
 const { t } = useI18n()
 const router = useRouter()
+const route = useRoute()
 const { leftIsExpand, openLeftSidebar, closeLeftSidebar } = useLeftSidebar()
+const { isMobile } = storeToRefs(useWindowStore())
 const {
   rightIsExpand,
   rightContainerIs0,
@@ -92,6 +94,17 @@ watch(() => activeName.value, (newValue) => {
 watch(() => currentRightSidebarContent.value, (newValue) => {
   if (newValue === 'notification')
     activeName.value = ''
+})
+watch(() => route.path, () => {
+  if (isMobile.value) {
+    rightIsExpand.value && closeRightSidebar()
+    leftIsExpand.value && closeLeftSidebar()
+  }
+})
+
+onMounted(() => {
+  if (leftIsExpand.value)
+    activeName.value = 'menu'
 })
 </script>
 
