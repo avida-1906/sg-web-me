@@ -63,13 +63,13 @@ function onClick(tab: TabItem, i: number) {
         >
           <div class="content">
             <slot name="tab" :item="t">
-              <div class="icon">
+              <div v-if="t.icon" class="icon">
                 <AppImage
                   v-if="useCloudImg"
                   style="width: 14px;height: 14px;--app-sport-image-error-icon-size:14px;"
                   :url="t.icon" is-cloud
                 />
-                <BaseIcon v-else-if="t.icon" :name="t.icon" />
+                <BaseIcon v-else :name="t.icon" />
               </div>
               {{ t.label }}
               <div v-if="t.bubble" class="bubble-wrap">
@@ -86,11 +86,11 @@ function onClick(tab: TabItem, i: number) {
 <style>
 :root {
   --tg-tab-style-wrap-bg-color: var(--tg-secondary-dark);
-  --tg-tab-style-inner-padding-y: var(--tg-spacing-11);
+  --tg-tab-style-inner-padding-y: var(--tg-spacing-15);
   --tg-tab-style-inner-padding-x: var(--tg-spacing-20);
   --tg-tab-style-color: var(--tg-text-white);
   --tg-tab-style-line-active-text-color: var(--tg-text-blue);
-  --tg-tab-style-box-padding:var(--tg-spacing-5) var(--tg-spacing-6);
+  --tg-tab-style-box-padding:var(--tg-spacing-5);
 }
 </style>
 
