@@ -8,11 +8,13 @@ interface Props {
   mode?: 'casino' | 'sports' | 'home'
   showTab?: boolean
   tabVal?: string
+  isCasinoMine: boolean // 是否显示我的投注
 }
 
 const props = withDefaults(defineProps<Props>(), {
   mode: 'home',
   showTab: true,
+  isCasinoMine: true,
 })
 
 const { t } = useI18n()
@@ -44,12 +46,16 @@ const selectOptions: ISelectOption[] = [
 // 获取tab配置
 const getTabOptions = computed(() => {
   switch (props.mode) {
-    case 'casino': return [
-      { value: 'casino-mine', label: t('my_bets'), disabled: !isLogin.value },
-      { value: 'casino-all', label: t('all_bets') },
-      { value: 'casino-fy', label: t('billboard') },
-      { value: 'ranking-list', label: t('competition_board'), bubble: true },
-    ]
+    case 'casino': {
+      const arr = [
+        { value: 'casino-all', label: t('all_bets'), disabled: false },
+        { value: 'casino-fy', label: t('billboard') },
+        { value: 'ranking-list', label: t('competition_board'), bubble: true },
+      ]
+      if (props.isCasinoMine)
+        arr.unshift({ value: 'casino-mine', label: t('my_bets'), disabled: !isLogin.value })
+      return arr
+    }
     case 'sports':return [
       { value: 'sports-all', label: t('all_bets') },
       { value: 'sports-fy', label: t('billboard') },
@@ -411,6 +417,7 @@ onMounted(() => {
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    font-weight: var(--tg-font-weight-semibold);
     span{
       padding-left: 10px;
       color:var(--tg-text-white);
