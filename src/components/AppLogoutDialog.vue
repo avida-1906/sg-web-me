@@ -14,6 +14,7 @@ const { runMemberLogout, logoutLoading } = useLogout(() => {
       {{ t('logout_dont_foget') }}
     </div>
     <BaseButton
+      size="lg"
       class="dialog-btn"
       type="text"
       :loading="logoutLoading"
@@ -32,12 +33,14 @@ const { runMemberLogout, logoutLoading } = useLogout(() => {
   padding: var(--tg-spacing-16) var(--tg-spacing-16);
 
   &-text {
-    font-size: var(--tg-font-size-xs);
+    font-size: var(--tg-font-size-default);
+    line-height: 1.5;
     color: var(--tg-text-lightgrey);
   }
 
   &-btn {
     color: var(--tg-text-white);
+    font-size: var(--tg-font-size-base);
     background: var(--tg-button-secondary-main);
   }
 }
