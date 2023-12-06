@@ -66,6 +66,7 @@ function selectCurrency(item: EnumCurrencyKey, hide: () => void) {
               :clearable="searchValue?.length > 0"
               :place-holder="$t('search_currency')"
               shape="square"
+              white-style
             />
           </div>
           <div class="scroll-y popper-content">
@@ -161,9 +162,14 @@ function selectCurrency(item: EnumCurrencyKey, hide: () => void) {
       .search-icon {
         color: var(--tg-secondary-light);
       }
+      .clear-icon {
+        right: 7px;
+        top: 11px;
+      }
       input {
         color: var(--tg-secondary-main);
         padding-left: var(--tg-spacing-8);
+        font-weight: var(--tg-font-weight-semibold);
         &::placeholder {
           color: var(--tg-secondary-main) !important;
           font-weight: var(--tg-font-weight-semibold);
@@ -180,7 +186,7 @@ function selectCurrency(item: EnumCurrencyKey, hide: () => void) {
     font-size: var(--tg-font-size-default);
     font-weight: 500;
     flex: 1;
-    padding-bottom: var(--tg-spacing-15);
+    // padding-bottom: var(--tg-spacing-15);
     &::-webkit-scrollbar-thumb {
       background: var(--tg-secondary-light);
     }
@@ -203,6 +209,8 @@ function selectCurrency(item: EnumCurrencyKey, hide: () => void) {
     .balance-not{
       text-align: center;
       // padding: 3px 0 12px;
+      line-height: 36px;
+      font-weight: var(--tg-font-weight-semibold);
     }
   }
 

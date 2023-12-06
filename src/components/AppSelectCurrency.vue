@@ -223,9 +223,14 @@ onMounted(() => {
             .search-icon {
               color: var(--tg-secondary-light);
             }
+            .clear-icon {
+              right: 7px;
+              top: 11px;
+            }
             input {
               color: var(--tg-secondary-main);
               padding-left: var(--tg-spacing-8);
+              font-weight: var(--tg-font-weight-semibold);
               &::placeholder {
                 color: var(--tg-secondary-main) !important;
                 font-weight: var(--tg-font-weight-semibold);
