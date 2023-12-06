@@ -238,11 +238,11 @@ onBeforeUnmount(() => {
           <span class="text-white" @click.stop="toLogin">{{ t('login') }}</span>
         </div>
 
-        <div class="stake-text">
+        <!-- <div class="stake-text">
           {{ t('stake_hCaptcha', { site: companyData?.name }) }}
           <span>{{ t('privacy_policy') }}</span> {{ t('and') }}
           <span>{{ t('terms_of_service') }}</span> {{ t('applicable') }}
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -253,6 +253,7 @@ onBeforeUnmount(() => {
   display: flex;
   flex-direction: column;
   gap: var(--tg-spacing-16);
+  padding-bottom: var(--tg-spacing-button-padding-horizontal-sm);
   .title {
     color: var(--tg-text-lightgrey);
     text-align: center;

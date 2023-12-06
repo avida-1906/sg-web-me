@@ -417,7 +417,7 @@ onUnmounted(() => {
           <span class="text-bold text-white" @click.stop="toLogin">{{ t('login') }}</span>
         </div>
 
-        <div class="stake-text">
+        <!-- <div class="stake-text">
           {{ t('stake_hCaptcha', { site: companyData?.name }) }}
           <span class="semibold" style="color: var(--tg-secondary-light);">
             {{ t('privacy_policy') }}
@@ -425,7 +425,7 @@ onUnmounted(() => {
           <span class="semibold" style="color: var(--tg-secondary-light);">
             {{ t('terms_of_service') }}
           </span> {{ t('applicable') }}
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
