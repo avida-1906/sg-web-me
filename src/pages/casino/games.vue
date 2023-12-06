@@ -7,6 +7,8 @@ const { bool: isTheatre, setBool } = useBoolean(false) // 影院模式
 const id = ref(query.id?.toString() ?? '')
 const name = ref(query.name?.toString() ?? '')
 const pn = ref(query.pn?.toString() ?? '')
+const pid = ref(query.pid?.toString() ?? '')
+const game_id = ref(query.game_id?.toString() ?? '')
 const appIframeRef = ref()
 
 const { list: recGameList } = useList(ApiMemberGameRecList, { manual: false })
@@ -26,8 +28,8 @@ onBeforeRouteLeave(() => {
 <template>
   <div class="casino-games" :class="{ theatre: isTheatre && !isMobile }">
     <AppCasinoIframe
-      :id="id"
-      ref="appIframeRef"
+      :id="id" ref="appIframeRef" :pid="pid"
+      :game-id="game_id"
       :is-theatre="isTheatre"
       @change-theatre="setBool"
     />

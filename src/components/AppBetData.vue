@@ -8,7 +8,7 @@ interface Props {
   mode?: 'casino' | 'sports' | 'home'
   showTab?: boolean
   tabVal?: string
-  isCasinoMine: boolean // 是否显示我的投注
+  isCasinoMine?: boolean // 是否显示我的投注
 }
 
 const props = withDefaults(defineProps<Props>(), {

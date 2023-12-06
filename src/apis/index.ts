@@ -4,6 +4,7 @@ import type {
   DepositInfo,
   EnumCurrencyKey,
   ExchangeRateData,
+  ICasinoBetRecordItem,
   IMemberBalanceLockerUpdate,
   IMemberDetail,
   IMemberReg,
@@ -100,7 +101,7 @@ export function ApiMemberGameList(params?: {
  * 游戏详情
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=2aa03c22-4083-40c9-8a1f-0908901eabfe
  */
-export function ApiMemberGameDetail(id: string) {
+export function ApiMemberGameDetail(id: string, pid: string, game_id: string) {
   return httpClient.get<{
     id: string
     platform_id: string
@@ -119,7 +120,7 @@ export function ApiMemberGameDetail(id: string) {
     is_new: string
     is_fav: string
     currencys: EnumCurrencyKey[]
-  }>(`/member/game/detail?id=${id}`)
+  }>(`/member/game/detail?id=${id}&pid=${pid}&game_id=${game_id}`)
 }
 
 /**
@@ -342,20 +343,7 @@ export function ApiMemberCasinoRecordList(params: {
   page?: number
   page_size?: number
 }) {
-  return httpClient.get<IResponseList<{
-    bill_no: string
-    bet_time: number
-    platform_id: string
-    platform_name: string
-    username: string
-    game_class: string
-    game_name: string
-    game_code: string
-    bet_amount: string
-    valid_bet_amount: string
-    net_amount: string
-    currency_id: string
-  }>>('/member/casino/record/list', { params })
+  return httpClient.get<IResponseList<ICasinoBetRecordItem>>('/member/casino/record/list', { params })
 }
 
 /**

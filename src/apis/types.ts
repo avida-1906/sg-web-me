@@ -156,6 +156,21 @@ export interface CasinoLobbyGameItem {
   name: string
 }
 
+export interface ICasinoBetRecordItem {
+  bill_no: string
+  bet_time: number
+  platform_id: string
+  platform_name: string
+  username: string
+  game_class: string
+  game_name: string
+  game_code: string
+  bet_amount: string
+  valid_bet_amount: string
+  net_amount: string
+  currency_id: CurrencyCode
+}
+
 /** 场馆item */
 export interface ProviderItem {
   id: string

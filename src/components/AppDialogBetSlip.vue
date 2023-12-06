@@ -1,12 +1,10 @@
 <script setup lang='ts'>
-import type { ISportsMyBetSlipItem } from '~/apis/types'
+import type { ICasinoBetRecordItem, ISportsMyBetSlipItem } from '~/apis/types'
 
 interface Props {
   type: 'casino' | 'sports'
   sportsData: ISportsMyBetSlipItem
-  casinoData: {
-    [t: string]: any
-  }
+  casinoData: ICasinoBetRecordItem
 }
 const props = defineProps<Props>()
 const closeDialog = inject('closeDialog', () => { })
@@ -19,7 +17,9 @@ const router = useRouter()
 
 const isCasino = computed(() => props.type === 'casino')
 const isSports = computed(() => props.type === 'sports')
-const betTime = computed(() => isCasino.value ? props.casinoData.bt : props.sportsData.bt)
+const betTime = computed(() => isCasino.value
+  ? props.casinoData.bet_time
+  : props.sportsData.bt)
 const isSettled = computed(() => props.sportsData.os === 1)
 
 function clickHandler() {
@@ -44,8 +44,10 @@ function clickHandler() {
   // }
 }
 
-function openCasinoGame(id: string, name: string) {
-  router.push(`/casino/games?id=${id}&name=${name}`)
+function openCasinoGame() {
+  const { game_code, platform_id, platform_name, game_name } = props.casinoData
+  router.push(`/casino/games?name=${game_name}&pn=${platform_name}&pid=${platform_id}&game_id=${game_code}`)
+  closeDialog()
 }
 </script>
 
@@ -84,10 +86,10 @@ function openCasinoGame(id: string, name: string) {
     <div v-else-if="isCasino" class="top">
       <BaseButton
         type="text" size="none"
-        @click="openCasinoGame(casinoData.gc, casinoData.gn)"
+        @click="openCasinoGame"
       >
         <div class="game-type">
-          {{ casinoData.gn }}
+          {{ casinoData.game_name }}
         </div>
       </BaseButton>
       <!-- <div class="order-id">
@@ -108,9 +110,9 @@ function openCasinoGame(id: string, name: string) {
       <div class="item">
         <label>{{ t('menu_title_settings_bets') }}:</label>
         <span>
-          {{ casinoData.ba }}
+          {{ casinoData.bet_amount }}
           <AppCurrencyIcon
-            :currency-type="getCurrencyConfigByCode(casinoData.ci)?.name"
+            :currency-type="getCurrencyConfigByCode(casinoData.currency_id)?.name"
           />
         </span>
       </div>
@@ -120,10 +122,10 @@ function openCasinoGame(id: string, name: string) {
       </div> -->
       <div class="item">
         <label>{{ t('sports_payment_amount') }}:</label>
-        <span :class="{ win: casinoData.na > 0 }">
-          {{ casinoData.na }}
+        <span :class="{ win: +casinoData.net_amount > 0 }">
+          {{ casinoData.net_amount }}
           <AppCurrencyIcon
-            :currency-type="getCurrencyConfigByCode(casinoData.ci)?.name"
+            :currency-type="getCurrencyConfigByCode(casinoData.currency_id)?.name"
           />
         </span>
       </div>

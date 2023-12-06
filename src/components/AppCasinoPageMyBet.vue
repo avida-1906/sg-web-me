@@ -1,4 +1,6 @@
 <script setup lang='ts'>
+import type { ICasinoBetRecordItem } from '~/apis/types'
+
 const { t } = useI18n()
 const { isMobile } = storeToRefs(useWindowStore())
 const { openBetSlipDialog } = useDialogBetSlip()
@@ -78,7 +80,7 @@ const columns = computed(() => {
 const { list, runAsync, prev, next, hasMore, page } = useList(ApiMemberCasinoRecordList,
   { }, { page_size: 10 })
 
-function showDetail(data: any) {
+function showDetail(data: ICasinoBetRecordItem) {
   openBetSlipDialog({ type: 'casino', data })
 }
 
@@ -122,30 +124,14 @@ await application.allSettled([runAsync({})])
           {{ game_name }}
         </div>
       </template>
-      <template
-        #bill_no="{
-          record: {
-            bill_no, bet_time, bet_amount, net_amount, game_name, currency_id,
-            game_code,
-          },
-        }"
-      >
+      <template #bill_no="{ record }">
         <BaseButton
           size="none" type="text"
-          @click="showDetail(
-            {
-              bt: bet_time,
-              ba: bet_amount,
-              na: net_amount,
-              gn: game_name,
-              ci: currency_id,
-              gc: game_code,
-            },
-          )"
+          @click="showDetail(record)"
         >
           <div class="bill_no">
             <BaseIcon v-if="!isMobile" style="font-size: 16px;" name="tabbar-bet" />
-            <span>{{ bill_no }}</span>
+            <span>{{ record.bill_no }}</span>
           </div>
         </BaseButton>
       </template>

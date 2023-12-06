@@ -5,6 +5,8 @@ import { currencyConfig } from '~/composables/useCurrencyData'
 interface Props {
   isTheatre: boolean
   id: string
+  pid: string
+  gameId: string
 }
 
 const props = defineProps<Props>()
@@ -37,7 +39,7 @@ const { bool: isFavorite } = useBoolean(false)
 const {
   data: dataDetail,
   runAsync: runDetail,
-} = useRequest(() => ApiMemberGameDetail(props.id), {
+} = useRequest(() => ApiMemberGameDetail(props.id, props.pid, props.gameId), {
   onSuccess(res) {
     currencyList.value = res.currencys
     currentCurrency.value = currencyList.value[0]
