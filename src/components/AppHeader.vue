@@ -11,6 +11,7 @@ const {
   currentRightSidebarContent,
   closeRightSidebar,
 } = useRightSidebar()
+const { leftIsExpand, closeLeftSidebar } = useLeftSidebar()
 const { bool: showSearchBar, setTrue } = useBoolean(false)
 const { openWalletDialog } = useWalletDialog()
 const { openStatisticsDialog } = useStatisticsDialog()
@@ -140,6 +141,7 @@ function handleClickMenuItem(item: { name: string; path?: string }) {
       getActiveShown.value(EnumRightSidebarContent.NOTIFICATION)
         ? closeRightSidebar()
         : openRightSidebar(EnumRightSidebarContent.NOTIFICATION)
+      isMobile.value && leftIsExpand.value && closeLeftSidebar()
       break
     case 'sports-betting':
       router.push(`/sports/${getSportsPlatId()}/my-bets?type=sports`)

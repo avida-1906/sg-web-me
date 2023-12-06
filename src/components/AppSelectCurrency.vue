@@ -206,9 +206,11 @@ onMounted(() => {
     max-width: inherit;
     display: flex;
     flex-direction: column;
+    width: max-content;
 
     .popper-top {
         padding: 4px 12px;
+        padding-bottom: 8px;
 
         :deep(.base-search.top-search) {
             --tg-base-search-icon-size: var(--tg-font-size-base);
@@ -221,12 +223,18 @@ onMounted(() => {
             .search-icon {
               color: var(--tg-secondary-light);
             }
+            .clear-icon {
+              right: 7px;
+              top: 11px;
+            }
             input {
               color: var(--tg-secondary-main);
               padding-left: var(--tg-spacing-8);
+              font-weight: var(--tg-font-weight-semibold);
               &::placeholder {
                 color: var(--tg-secondary-main) !important;
                 font-weight: var(--tg-font-weight-semibold);
+                opacity: 0.82;
               }
             }
         }
@@ -257,7 +265,8 @@ onMounted(() => {
 
             &:hover { // ,&.active
                 background-color: var(--tg-secondary-light);
-                color: var(--tg-popper-hover-color-default);
+                // color: var(--tg-popper-hover-color-default);
+                color: var(--tg-text-black);
             }
 
         }
@@ -270,8 +279,10 @@ onMounted(() => {
 
     .justify-content {
         .content-row {
-          padding-left: 30%;
-          padding-right: 30%;
+          display: flex;
+          align-items: center;
+          text-align: center;
+          justify-content: center;
         }
     }
 

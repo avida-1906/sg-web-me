@@ -1,7 +1,6 @@
 <script setup lang="ts">
 const { t } = useI18n()
 const router = useRouter()
-const route = useRoute()
 const { leftIsExpand, openLeftSidebar, closeLeftSidebar } = useLeftSidebar()
 const {
   rightIsExpand,
@@ -15,8 +14,6 @@ const { isLogin } = storeToRefs(useAppStore())
 const { openRegisterDialog } = useRegisterDialog()
 
 const activeName = ref('')
-let timer: undefined | NodeJS.Timeout
-
 const tabbar = ref([
   { title: 'scan', icon: 'tabbar-menu', name: 'menu', show: true },
   {
@@ -31,7 +28,6 @@ const tabbar = ref([
     icon: 'tabbar-bet',
     name: 'bet',
     show: true,
-    path: '',
   },
   { title: 'bet_slip', icon: 'spt-user-bet', name: 'user-bet', show: false },
   {
@@ -44,63 +40,38 @@ const tabbar = ref([
   { title: 'chat_room', icon: 'tabbar-chat', name: 'chat', show: true },
 ])
 
-const getActiveBar = computed(() => {
-  let name = ''
-  if (leftIsExpand.value) {
-    name = 'menu'
-  }
-  else if (!rightContainerIs0.value) {
-    if (currentRightSidebarContent.value === EnumRightSidebarContent.CASINOBET)
-      name = 'bet'
-
-    else if (currentRightSidebarContent.value === EnumRightSidebarContent.BETTING)
-      name = 'user-bet'
-
-    else if (currentRightSidebarContent.value === EnumRightSidebarContent.CHATROOM)
-      name = 'chat'
-
-    else
-      name = ''
-  }
-  else {
-    if (route.path.includes('/casino'))
-      name = 'game'
-
-    else if (route.path.includes('/sports'))
-      name = 'sports'
-
-    else
-      name = ''
-  }
-  clearTimeout(timer)
-  timer = setTimeout(() => {
-    activeName.value = name
-  }, 100)
-  return activeName.value
+const getLinkBar = computed(() => {
+  return (rightIsExpand.value || leftIsExpand.value) ? '' : 'active-bar'
+})
+const getExpandBar = computed(() => {
+  return getLinkBar.value ? '' : activeName.value
 })
 
 function changeBar(item: { name: string; path?: string }) {
   const { name, path } = item
-  activeName.value = name
+  // activeName.value = name
   switch (name) {
     case 'menu':
       rightIsExpand.value && closeRightSidebar()
       openLeftSidebar()
+      activeName.value = name
       break
     case 'bet':// 投注
       leftIsExpand.value && closeLeftSidebar()
       openRightSidebar(EnumRightSidebarContent.CASINOBET)
+      activeName.value = name
       break
     case 'user-bet':// 投注单
       leftIsExpand.value && closeLeftSidebar()
       openRightSidebar(EnumRightSidebarContent.BETTING)
       if (!isLogin.value)
         openRegisterDialog()
-
+      activeName.value = name
       break
     case 'chat':
       leftIsExpand.value && closeLeftSidebar()
       openRightSidebar(EnumRightSidebarContent.CHATROOM)
+      activeName.value = name
       break
     case 'game':
     case 'sports':
@@ -122,66 +93,47 @@ watch(() => activeName.value, (newValue) => {
     tabbar.value[2].show = false
   }
 })
-// watch([leftIsExpand, rightIsExpand, currentRightSidebarContent], () => {
-//   if (leftIsExpand.value) {
-//     activeName.value = 'menu'
-//   }
-//   else if (rightIsExpand.value
-//     && currentRightSidebarContent.value === EnumRightSidebarContent.NOTIFICATION) {
-//     activeName.value = ''
-//   }
-//   else if (!leftIsExpand.value && !rightIsExpand.value) {
-//     setTimeout(() => {
-//       if (route.path.includes('/casino'))
-//         activeName.value = 'game'
-
-//       else if (route.path.includes('/sports'))
-//         activeName.value = 'sports'
-
-//       else
-//         activeName.value = ''
-//     }, 100)
-//   }
-// }, { immediate: true })
-
-// watch(() => route.path, (newValue) => {
-//   if (route.path.includes('/casino'))
-//     activeName.value = 'game'
-
-//   else if (route.path.includes('/sports'))
-//     activeName.value = 'sports'
-
-//   else
-//     activeName.value = leftIsExpand.value ? 'menu' : ''
-// })
+watch(() => currentRightSidebarContent.value, (newValue) => {
+  if (newValue === 'notification')
+    activeName.value = ''
+})
 </script>
 
 <template>
   <div class="app-footer-bar page-content">
-    <div
-      v-for="item of tabbar"
-      v-show="item.show"
-      :key="item.icon"
-      class="bar-item"
-      :class="{ 'active-bar': item.name === getActiveBar }"
-    >
-      <BaseButton type="text" @click.stop="changeBar(item)">
-        <div
-          class="bar-btn"
-        >
-          <BaseBadge
-            v-if="item.name === 'user-bet'"
-            mode="active"
-            :count="sportStore.cart.count"
-            :max="99999"
-          >
-            <BaseIcon class="bar-icon" :name="item.icon" />
-          </BaseBadge>
-          <BaseIcon v-else class="bar-icon" :name="item.icon" />
-          <span>{{ t(item.title) }}</span>
+    <template v-for="item of tabbar" :key="item.icon">
+      <router-link v-if="item.path" v-slot="{ isActive }" :to="item.path" custom>
+        <div class="bar-item" :class="isActive ? getLinkBar : ''">
+          <BaseButton type="text" @click.stop="changeBar(item)">
+            <div class="bar-btn">
+              <BaseIcon class="bar-icon" :name="item.icon" />
+              <span>{{ t(item.title) }}</span>
+            </div>
+          </BaseButton>
         </div>
-      </BaseButton>
-    </div>
+      </router-link>
+      <div
+        v-else
+        v-show="item.show"
+        class="bar-item"
+        :class="{ 'active-bar': item.name === getExpandBar }"
+      >
+        <BaseButton type="text" @click.stop="changeBar(item)">
+          <div class="bar-btn">
+            <BaseBadge
+              v-if="item.name === 'user-bet'"
+              mode="active"
+              :count="sportStore.cart.count"
+              :max="99999"
+            >
+              <BaseIcon class="bar-icon" :name="item.icon" />
+            </BaseBadge>
+            <BaseIcon v-else class="bar-icon" :name="item.icon" />
+            <span>{{ t(item.title) }}</span>
+          </div>
+        </BaseButton>
+      </div>
+    </template>
     <div :id="EnumSportEndDomID.H5_CART_END_DOM" class="h5-end-dom" />
   </div>
 </template>
