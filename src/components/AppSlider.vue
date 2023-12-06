@@ -140,8 +140,10 @@ watchEffect(() => {
         </BaseButton>
         <BaseButton
           size="none"
-          type="round-line-right" :disabled="scrollLeftItemsCount + pageInfo.pageSize
-            >= data.length + 1" @click="nextPage"
+          type="round-line-right"
+          :disabled="showViewAll ? scrollLeftItemsCount + pageInfo.pageSize
+            >= data.length + 1 : scrollLeftItemsCount + pageInfo.pageSize
+              >= data.length" @click="nextPage"
         >
           <div class="a-inner right">
             <BaseIcon class="right" name="uni-arrowright-line" />
