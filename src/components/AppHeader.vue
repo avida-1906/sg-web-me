@@ -144,7 +144,7 @@ function handleClickMenuItem(item: { name: string; path?: string }) {
       isMobile.value && leftIsExpand.value && closeLeftSidebar()
       break
     case 'sports-betting':
-      router.push(`/sports/${getSportsPlatId()}/my-bets?type=sports`)
+      router.push(`/sports/${getSportsPlatId()}/my-bets?type=${route.name?.toString().includes('sports') ? 'sports' : 'casino'}`)
       break
     default:
       break
