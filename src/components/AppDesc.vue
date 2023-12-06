@@ -275,6 +275,7 @@ onMounted(() => {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 32.5px;
 
     .title-left {
 
