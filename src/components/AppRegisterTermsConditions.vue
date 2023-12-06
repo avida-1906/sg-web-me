@@ -236,7 +236,7 @@ onBeforeUnmount(() => {
         size="xl"
         bg-style="secondary" @click.stop="getStartGame"
       >
-        {{ t('start_game') }}
+        <span class="size-base">{{ t('start_game') }}</span>
       </BaseButton>
     </div>
     <div class="app-bottom">
@@ -257,6 +257,9 @@ onBeforeUnmount(() => {
 </template>
 
 <style lang='scss' scoped>
+.size-base {
+  font-size: var(--tg-font-size-base);
+}
 .app-register-terms-conditions {
   display: flex;
   flex-direction: column;

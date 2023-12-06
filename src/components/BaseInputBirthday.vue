@@ -127,10 +127,10 @@ function onInput(e: any, ty?: string) {
   if (year.value && month.value && day.value && !msg.value)
     emit('update:modelValue', `${year.value}-${month.value > 9 ? month.value : `0${month.value}`}-${day.value > 9 ? day.value : `0${day.value}`}`)
 }
-function valiBirthday() {
-  valiMonth()
-  valiYear()
-  valiDay()
+async function valiBirthday() {
+  await valiMonth()
+  await valiYear()
+  await valiDay()
 }
 
 onMounted(() => {
@@ -141,7 +141,7 @@ onMounted(() => {
     setDay(+arr[2])
   }
 })
-defineExpose({ valiBirthday })
+defineExpose({ valiBirthday, msg })
 </script>
 
 <template>

@@ -81,7 +81,6 @@ const {
 const regParams = computed(() => {
   return Session.get<IMemberReg>(STORAGE_REG_PARAMS_KEYWORDS)?.value
 })
-console.log('regParams === ', regParams.value)
 if (regParams.value) {
   email.value = regParams.value.email ?? ''
   username.value = regParams.value.username ?? ''
@@ -121,6 +120,9 @@ const { run: runExists } = useRequest(ApiMemberExists, {
       await validateUsername()
       await validatePassword()
       await valiAgree()
+      await birthdayInputRef.value.valiBirthday()
+      if (birthdayInputRef.value.msg)
+        return
 
       if (!usernameErrorMsg.value && !pwdErrorMsg.value && !agreeErrorMsg.value
       ) {
@@ -160,6 +162,9 @@ async function getMemberReg() {
   await validateUsername()
   await validatePassword()
   await valiAgree()
+  await birthdayInputRef.value.valiBirthday()
+  if (birthdayInputRef.value.msg)
+    return
 
   if (isEmailMust.value) {
     emailRef.value.setTouchTrue()
