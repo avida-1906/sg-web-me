@@ -146,6 +146,29 @@ const isLastMin = computed(() => {
 const isStarted = computed(() => dayjs().isAfter((props.data.ed * 1000)))
 // 正在滚球
 const isOnAir = computed(() => props.data.m === 3)
+// 赛事进度时间
+// const eventTime = computed(() => {
+//   if (!props.data.rbtt)
+//     return ''
+//   const rbttArr = props.data.rbtt.split(':')
+//   const ts = props.data.ts
+//   const baseMin = rbttArr[0]
+//   const baseSec = rbttArr[1]
+
+//   const diff = dayjs().diff(ts * 1000, 'second')
+//   const diffMin = Math.floor(diff / 60)
+//   const diffSec = diff - (diffMin * 60)
+
+//   let sec = baseSec ? (+baseSec + diffSec) : 0
+//   let min = +baseMin + diffMin
+
+//   if (sec > 60) {
+//     sec = sec - 60
+//     min = min + 1
+//   }
+
+//   return `${min}${sec ? `:${sec < 10 ? `0${sec}` : sec}` : ''}`
+// })
 // 是否有直播
 // const isHasliveStream = computed(() => props.data.ls === 1)
 

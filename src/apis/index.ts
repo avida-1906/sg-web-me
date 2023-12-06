@@ -1484,3 +1484,14 @@ export function ApiMemberBrandDetail() {
     }
   }>('/member/brand/detail')
 }
+// /**
+//  * 交易记录-存款-虚拟币
+//  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=95af1c4c-4a20-487b-96fa-3e86cc18f3a1
+//  */
+// export function ApiFinanceRecordDepositCoin(params: {
+
+// }) {
+//   return httpClient.get<IResponseList<{
+//     order_number: string
+//   }>>('/finance/record/deposit/coin')
+// }

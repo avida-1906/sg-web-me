@@ -351,6 +351,10 @@ export interface ISportEventInfo {
   htpic: string
   /** 球种图标 */
   spic: string
+  /** 赛事进度 半场 上半场 下半场 休息 */
+  rbtd: string
+  /** 赛事进行时间 分:秒 */
+  rbtt: string
 }
 
 /** 冠军盘口数据 */
