@@ -4,6 +4,7 @@ interface Props {
   disabled?: boolean
   shape?: 'square' | 'circle'
   msg?: string
+  error?: boolean
 }
 const props = withDefaults(defineProps<Props>(), { shape: 'square' })
 const emit = defineEmits(['update:modelValue', 'check'])
@@ -30,18 +31,27 @@ function onClick() {
       <span
         ref="outerRef"
         class="outer"
-        :class="[shape, { active: modelValue, focus: bool }]"
+        :class="[shape, { active: modelValue, focus: bool, error }]"
       >
         <span v-show="modelValue" class="icon" />
       </span>
       <slot />
     </div>
     <div v-show="msg" class="msg">
-      <BaseIcon class="error-icon" name="uni-warning" />
+      <BaseIcon class="error-icon" name="uni-warning-color" />
       <span>{{ msg }}</span>
     </div>
   </div>
 </template>
+
+<style>
+:root {
+  --tg-base-checkbox-error-color: var(--tg-text-error);
+  --tg-base-checkbox-error-border-color: var(--tg-text-error);
+  --tg-base-checkbox-error-icon-size: var(--tg-font-size-md);
+  --tg-base-checkbox-msg-margin-top: var(--tg-spacing-6);
+}
+</style>
 
 <style lang='scss' scoped>
 .base-check-box {
@@ -52,11 +62,14 @@ function onClick() {
     font-size: var(--tg-font-size-md);
     display: flex;
     align-items: center;
-    margin-top: var(--tg-spacing-6);
-
+    margin-top: var(--tg-base-checkbox-msg-margin-top);
+    .error-icon {
+      font-size: var(--tg-base-checkbox-error-icon-size);
+      --tg-icon-color: var(--tg-base-checkbox-error-border-color);
+    }
     span {
       font-size: var(--tg-font-size-xs);
-      color: var(--tg-text-error);
+      color: var(--tg-base-checkbox-error-color);
       margin-left: var(--tg-spacing-4);
     }
   }
@@ -124,14 +137,18 @@ function onClick() {
   .focus {
      border-color: var(--tg-border-color-deep-grey);
   }
+
+  .error {
+    border-color: var(--tg-base-checkbox-error-border-color);
+  }
 }
 
 .disabled {
   cursor: not-allowed;
-  opacity: 0.75;
 
   .outer {
     cursor: not-allowed;
+    opacity: 0.5;
 
     &:hover {
       border-color: var(--tg-border-color-main);
