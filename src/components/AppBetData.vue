@@ -302,8 +302,10 @@ watch(() => props.tabVal, (newValue) => {
   if (newValue)
     activeTab.value = newValue
 })
-
-runCasinoRecordList({})
+watch(() => activeTab.value, (newValue) => {
+  if (newValue === 'casino-mine')
+    runCasinoRecordList({})
+})
 </script>
 
 <template>
