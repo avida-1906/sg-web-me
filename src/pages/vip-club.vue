@@ -14,9 +14,8 @@ interface IMenuData {
   value: string
 }
 
-const { VITE_SITE_NAME } = getEnv()
 const { t } = useI18n()
-const { vipConfigData } = storeToRefs(useAppStore())
+const { vipConfigData, companyData } = storeToRefs(useAppStore())
 const {
   appContentWidth,
   widthBoundarySm,
@@ -24,7 +23,7 @@ const {
 const router = useRouter()
 usePageTitle({ prefix: t('vip_club') })
 
-const site = computed(() => ({ site: VITE_SITE_NAME }))
+const site = computed(() => ({ site: companyData.value?.name }))
 const vipArray = computed(() =>
   vipConfigData.value ? Object.values(vipConfigData.value).sort((a, b) => +a.level - (+b.level)) : [])
 

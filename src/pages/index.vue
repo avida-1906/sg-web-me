@@ -5,16 +5,16 @@ defineOptions({
   name: 'KeepAliveIndexHome',
 })
 
-const { VITE_SITE_NAME } = getEnv()
 const location = useBrowserLocation()
 const width = 430
 const { t } = useI18n()
+const { isLogin, userInfo, companyData } = storeToRefs(useAppStore())
 const router = useRouter()
 const { openRegisterDialog } = useRegisterDialog()
 const { openSwiperNoticeDialog } = useDialogSwiperNotice(width)
 const { bool: showMore, toggle: toggleShowMore } = useBoolean(false)
 usePageTitle({
-  prefix: t('index_title_prefix', { site: VITE_SITE_NAME }),
+  prefix: t('index_title_prefix', { site: companyData.value?.name }),
   suffix: t('index_title_suffix'),
   isHost: false,
 })
@@ -23,10 +23,11 @@ const {
   appContentWidth,
   widthBoundarySm,
 } = storeToRefs(useWindowStore())
-const { isLogin, userInfo } = storeToRefs(useAppStore())
 // const { openNoticeDialog } = useDialogNotice()
 
-const hostSite = computed(() => ({ host: location.value.hostname, site: VITE_SITE_NAME }))
+const hostSite = computed(() => (
+  { host: location.value.hostname, site: companyData.value?.name }
+))
 
 // 公告弹框和跑马灯
 const {

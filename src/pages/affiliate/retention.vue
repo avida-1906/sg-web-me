@@ -1,12 +1,12 @@
 <script lang="ts" setup>
 usePageTitle({ prefix: 'affiliate_plan', isT: true })
-const { VITE_SITE_NAME } = getEnv()
+const { companyData } = storeToRefs(useAppStore())
 </script>
 
 <template>
   <div class="tg-affiliate-retention">
     <p>
-      在 {{ VITE_SITE_NAME }}.com 这里，玩家的满意度一直以来——也将一直都会——是第一要务。
+      在 {{ companyData?.name }}.com 这里，玩家的满意度一直以来——也将一直都会——是第一要务。
       这是我们为以玩家和联盟会员身份与平台互动的用户们制定长期战略的核心。
       我们力求通过独特的计划和活动来奖励我们的玩家，达到玩家的满意。
     </p>

@@ -6,7 +6,7 @@ interface IBannerData {
   value: number
 }
 
-const { VITE_SITE_NAME } = getEnv()
+const { companyData } = storeToRefs(useAppStore())
 const { t } = useI18n()
 const {
   appContentWidth,
@@ -14,38 +14,40 @@ const {
   widthBoundarySm,
 } = storeToRefs(useWindowStore())
 
-const bannerData = [
-  {
-    imgUrl: '/png/vip-club/bespoke.png',
-    title: 'Bespoke',
-    desc: t('vip_banner_tip_1'),
-    value: 1,
-  },
-  {
-    imgUrl: '/png/vip-club/boost.png',
-    title: t('booster_bonus'),
-    desc: t('vip_banner_tip_2'),
-    value: 2,
-  },
-  {
-    imgUrl: '/png/vip-club/cashback.png',
-    title: t('recent_game_perform_bonus'),
-    desc: t('vip_banner_tip_3', { site: VITE_SITE_NAME }),
-    value: 3,
-  },
-  {
-    imgUrl: '/png/vip-club/host.png',
-    title: t('dedicated_vip_servicer'),
-    desc: t('vip_banner_tip_4'),
-    value: 4,
-  },
-  {
-    imgUrl: '/png/vip-club/levelup.png',
-    title: t('upgrade_bonus'),
-    desc: t('vip_banner_tip_5'),
-    value: 5,
-  },
-]
+const bannerData = computed(() => {
+  return [
+    {
+      imgUrl: '/png/vip-club/bespoke.png',
+      title: 'Bespoke',
+      desc: t('vip_banner_tip_1'),
+      value: 1,
+    },
+    {
+      imgUrl: '/png/vip-club/boost.png',
+      title: t('booster_bonus'),
+      desc: t('vip_banner_tip_2'),
+      value: 2,
+    },
+    {
+      imgUrl: '/png/vip-club/cashback.png',
+      title: t('recent_game_perform_bonus'),
+      desc: t('vip_banner_tip_3', { site: companyData.value?.name }),
+      value: 3,
+    },
+    {
+      imgUrl: '/png/vip-club/host.png',
+      title: t('dedicated_vip_servicer'),
+      desc: t('vip_banner_tip_4'),
+      value: 4,
+    },
+    {
+      imgUrl: '/png/vip-club/levelup.png',
+      title: t('upgrade_bonus'),
+      desc: t('vip_banner_tip_5'),
+      value: 5,
+    },
+  ]
+})
 const offSet = ref(0)
 const activeValue = ref(2)
 const {
@@ -70,7 +72,7 @@ const isSm = computed(() => {
   && appContentWidth.value > widthBoundaryXs.value
 })
 const mergeBannerData = computed(() => {
-  return [...bannerData, ...bannerData, ...bannerData]
+  return [...bannerData.value, ...bannerData.value, ...bannerData.value]
 })
 const cardWidth = computed(() => {
   return Number((appContentWidth.value * baseNumber.value).toFixed(2))

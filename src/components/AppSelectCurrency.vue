@@ -116,8 +116,9 @@ onMounted(() => {
               class="top-search"
               :clearable="searchValue?.length > 0"
               :style="{ 'max-width': showBalance ? '180px' : '140px' }"
-              :place-holder="$t('search')"
+              :place-holder="$t('search_currency')"
               shape="square"
+              white-style
             />
           </div>
           <div
@@ -207,12 +208,27 @@ onMounted(() => {
     flex-direction: column;
 
     .popper-top {
-        padding: 12px 0;
+        padding: 4px 12px;
 
-        .top-search {
-            width: 85%;
+        :deep(.base-search.top-search) {
+            --tg-base-search-icon-size: var(--tg-font-size-base);
+            width: 100%;
             max-width: 140px;
             margin: auto;
+            padding: 0 var(--tg-spacing-10);
+            --tg-icon-color: var(--tg-secondary-light);
+            height: 39px;
+            .search-icon {
+              color: var(--tg-secondary-light);
+            }
+            input {
+              color: var(--tg-secondary-main);
+              padding-left: var(--tg-spacing-8);
+              &::placeholder {
+                color: var(--tg-secondary-main) !important;
+                font-weight: var(--tg-font-weight-semibold);
+              }
+            }
         }
     }
 
@@ -235,12 +251,13 @@ onMounted(() => {
             var(--tg-spacing-button-padding-vertical-s)
             var(--tg-spacing-button-padding-horizontal-xs);
             cursor: pointer;
-            --tg-app-amount-width: 14ch;
+            --tg-app-amount-width: 12ch;
             transition: color 0.2s ease;
+            font-weight: var(--tg-font-weight-semibold);
 
-            &:hover,&.active {
-                background-color: var(--tg-text-blue);
-                // color: var(--tg-popper-hover-color-default);
+            &:hover { // ,&.active
+                background-color: var(--tg-secondary-light);
+                color: var(--tg-popper-hover-color-default);
             }
 
         }

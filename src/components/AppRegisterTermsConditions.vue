@@ -2,11 +2,11 @@
 import type { IMemberReg } from '~/apis/types'
 
 const closeDialog = inject('closeDialog', () => {})
-const { VITE_SITE_NAME } = getEnv()
 
 const { openNotify } = useNotify()
 const { t } = useI18n()
 const appStore = useAppStore()
+const { companyData } = storeToRefs(appStore)
 const { bool: needBack, setFalse: setNeedBackFalse } = useBoolean(true)
 const { bool: isRead, setTrue: setReadTrue } = useBoolean(false)
 const { bool: checkboxValue } = useBoolean(false)
@@ -97,14 +97,14 @@ onBeforeUnmount(() => {
           Terms and Conditions
         </div>
         <div class="terms-conditions-title">
-          1.{{ VITE_SITE_NAME }}.COM
+          1.{{ companyData?.name }}.COM
         </div>
         <div class="terms-conditions-describe">
-          1.1 {{ VITE_SITE_NAME }}.com is owned and operated by Medium Rare,
-          N.V. (hereinafter "{{ VITE_SITE_NAME }}",
+          1.1 {{ companyData?.name }}.com is owned and operated by Medium Rare,
+          N.V. (hereinafter "{{ companyData?.name }}",
           "We" or "Us"), a company with head office at Korporaalweg
           10, Willemstad, Curaçao.
-          {{ VITE_SITE_NAME }} is licensed and regulated by
+          {{ companyData?.name }} is licensed and regulated by
           the Government of Curaçao under the gaming license 8048/JAZ
           issued to Antillephone. Some credit card payment processing
           are handled by its wholly owned subsidiary, Medium Rare Limited.
@@ -239,7 +239,7 @@ onBeforeUnmount(() => {
         </div>
 
         <div class="stake-text">
-          {{ t('stake_hCaptcha', { site: VITE_SITE_NAME }) }}
+          {{ t('stake_hCaptcha', { site: companyData?.name }) }}
           <span>{{ t('privacy_policy') }}</span> {{ t('and') }}
           <span>{{ t('terms_of_service') }}</span> {{ t('applicable') }}
         </div>
