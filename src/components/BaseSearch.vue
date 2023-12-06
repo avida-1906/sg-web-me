@@ -72,6 +72,12 @@ defineExpose({ manualFocus })
   </div>
 </template>
 
+<style>
+:root {
+  --tg-base-search-icon-size: var(--tg-font-size-lg);
+}
+</style>
+
 <style lang='scss' scoped>
 .search-icon.app-svg-icon {
   color: var(--tg-text-grey);
@@ -119,6 +125,9 @@ defineExpose({ manualFocus })
     display: flex;
     align-items: center;
     font-size: var(--tg-font-size-lg);
+    .search-icon {
+      font-size: var(--tg-base-search-icon-size);
+    }
   }
 
   input {
@@ -148,6 +157,9 @@ defineExpose({ manualFocus })
   background-color: var(--tg-text-white);
   color: var(--tg-text-secondary-main);
   border-color: var(--tg-border-color-grey);
+  .search-icon.app-svg-icon {
+    color: var(--tg-text-grey-light);
+  }
 
   input {
 

@@ -146,22 +146,26 @@ function selectCurrency(item: EnumCurrencyKey, hide: () => void) {
   display: flex;
   flex-direction: column;
   .popper-top {
-    padding: 12px 0;
+    padding: 8px 12px;
 
     :deep(.base-search.top-search) {
-      width: 85%;
+      --tg-base-search-icon-size: var(--tg-font-size-base);
+      width: 100%;
       max-width: 180px;
       margin: auto;
       background-color: var(--tg-text-white);
       border-color: var(--tg-text-grey-light);
+      padding: 0 var(--tg-spacing-10);
+      --tg-icon-color: var(--tg-secondary-light);
+      height: 39px;
       .search-icon {
-        color: var(--tg-text-grey-light);
+        color: var(--tg-secondary-light);
       }
       input {
-        color: #2f4553;
+        color: var(--tg-secondary-main);
+        padding-left: var(--tg-spacing-8);
         &::placeholder {
-          color: #2f4553 !important;
-          opacity: 0.3;
+          color: var(--tg-secondary-main) !important;
           font-weight: var(--tg-font-weight-semibold);
         }
       }
