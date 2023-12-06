@@ -35,6 +35,12 @@ export const useAppStore = defineStore('app', () => {
   const companyData = computed(() => {
     return brandDetail.value?.bottom.company
   })
+  /**
+   * Logo，Ico，Loading 图片
+   */
+  // const logoAndIcoAndLoading = computed(() => {
+
+  // })
 
   const visibility = useDocumentVisibility()
   const mqttConnectSuccessBus = useEventBus(MQTT_CONNECT_SUCCESS_BUS)
