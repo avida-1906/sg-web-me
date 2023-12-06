@@ -12,7 +12,7 @@ const {
   errorMessage: usernameErrorMsg,
   validate: valiUsername,
 } = useField<string>('username', (value) => {
-  if (!value)
+  if (!value || value.length < 3)
     return '最小字符长度为3'
   else if (value.length > 14)
     return '最大字符长度为14'
@@ -25,14 +25,12 @@ const {
   errorMessage: pwdErrorMsg,
   validate: valiPassword,
 } = useField<string>('password', (value) => {
-  if (!value)
+  if (!value || value.length < 8)
     return '最小字符长度为8'
-  else if (value.length < 8)
-    return '最小字符长度为8'
-  else if (!upperLowerReg.test(value))
-    return t('password_uppercase_lowercase_letter')
-  else if (!lastOneNumberReg.test(value))
-    return t('password_least_1_number')
+  // else if (!upperLowerReg.test(value))
+  //   return t('password_uppercase_lowercase_letter')
+  // else if (!lastOneNumberReg.test(value))
+  //   return t('password_least_1_number')
   return ''
 })
 const {
