@@ -1,11 +1,42 @@
 <script lang="ts" setup name="base-loading">
+const { logoAndIcoAndLoading } = storeToRefs(useAppStore())
+
+const isShowNetworkImage = ref<boolean>(false)
+const { VITE_CASINO_IMG_CLOUD_URL } = getEnv()
+
+function loadImg(src: string) {
+  const image = new Image()
+  image.src = VITE_CASINO_IMG_CLOUD_URL + src
+  image.onload = () => {
+    isShowNetworkImage.value = true
+  }
+  image.onerror = () => {
+    isShowNetworkImage.value = false
+  }
+}
+
+watch(
+  () => logoAndIcoAndLoading.value,
+  (val) => {
+    if (val.loadingImgUrl)
+      loadImg(val.loadingImgUrl)
+  },
+  { immediate: true },
+)
 </script>
 
 <template>
   <section class="tg-base-loading">
-    <div class="type1 animate-prop svg-box" />
-    <div class="svg-box animate-prop type2" />
-    <div class="svg-box animate-prop type3" />
+    <AppImage
+      v-if="isShowNetworkImage"
+      width="130px"
+      :url="logoAndIcoAndLoading.loadingImgUrl"
+    />
+    <template v-else>
+      <div class="type1 animate-prop svg-box" />
+      <div class="svg-box animate-prop type2" />
+      <div class="svg-box animate-prop type3" />
+    </template>
   </section>
 </template>
 

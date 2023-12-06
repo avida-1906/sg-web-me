@@ -10,6 +10,7 @@ withDefaults(defineProps<Props>(), {
 })
 
 const router = useLocalRouter()
+const { logoAndIcoAndLoading } = storeToRefs(useAppStore())
 
 function to() {
   const currentPath = router.currentRoute.value.path
@@ -27,9 +28,14 @@ function to() {
       :style="{ 'max-width': useSmall ? '45px' : '95px', 'min-width': '20px' }"
       @click="to"
     >
-      <BaseImage
-        :url="useSmall ? '/img/logo/logo_small.svg'
-          : `/img/logo/logo_${mode}.svg`"
+      <AppImage
+        :style="{
+          '--app-sport-image-error-icon-size': '40px',
+        }"
+        err-icon="img-casino-error"
+        is-cloud
+        :url="useSmall ? logoAndIcoAndLoading.logo
+          : logoAndIcoAndLoading.logo"
       />
     </BaseAspectRatio>
   </div>

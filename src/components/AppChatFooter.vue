@@ -13,7 +13,7 @@ const { userInfo, isLogin } = storeToRefs(useAppStore())
 const { openChatRulesDialog } = useChatRulesDialog()
 const { openStatisticsDialog } = useStatisticsDialog()
 const chatMessageBus = useEventBus(CHAT_MESSAGE_BUS)
-const { bool: showEmoji, toggle: toggleEmoji } = useBoolean(false)
+const { bool: showEmoji, toggle: toggleEmoji, setBool: setEBool } = useBoolean(false)
 
 const { openNotify } = useNotify()
 
@@ -107,7 +107,9 @@ const isCommand = computed(() => message.value[0] === '/')
 const { run: runSendMsg, loading: sendLoading } = useRequest(ApiChatSendMessage)
 function addEmoMsg(emo: string) {
   const i = message.value.lastIndexOf(':')
-  message.value = `${message.value.slice(0, i + 1)}${emo.split('.')[0]}` + ': '
+  console.log('i === ', i)
+  const temp = `${message.value.slice(0, i + 1)}${emo.split('.')[0]}` + ': '
+  message.value = i === message.value.length - 1 && i !== -1 ? temp : `:${temp}`
   msgInput.value?.getFocus()
 }
 function addAtUser(u: { name: string }) {
@@ -120,6 +122,7 @@ function addCommand(u: { command: string }) {
   msgInput.value?.getFocus()
 }
 function sendMsg() {
+  setEBool(false)
   if (trimMessage.value.length && !sendLoading.value) {
     if (!isLogin.value) {
       openNotify({ type: 'error', message: t('need_login_tip') })

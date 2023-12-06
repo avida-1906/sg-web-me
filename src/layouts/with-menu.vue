@@ -209,7 +209,7 @@ watch(route, (val) => {
   li {
     cursor: pointer;
     padding: var(--tg-spacing-button-padding-vertical-xs) var(--tg-spacing-button-padding-horizontal-xs);
-    color: var(--tg-text-white);
+    color: var(--tg-popper-color-default);
     &:hover {
       background-color: var(--tg-text-grey-light);
       color: var(--tg-primary-main);
