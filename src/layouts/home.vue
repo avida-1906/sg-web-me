@@ -67,10 +67,12 @@ watch(
   ([newPath, newMqttIsConnected]) => {
     if (newMqttIsConnected) {
       if (newPath.includes('sports')) {
+        sportsNotify.startCountdown()
         if (!sportsNotify.isSubscribed)
           sportsNotify.subscribe()
       }
       else {
+        sportsNotify.stopCountdown()
         if (sportsNotify.isSubscribed)
           sportsNotify.unsubscribe()
       }

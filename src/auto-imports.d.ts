@@ -128,6 +128,7 @@ declare global {
   const REFRESH_MEMBER_BUS: typeof import('./utils/event-bus')['REFRESH_MEMBER_BUS']
   const SPORTS_CART_TO_LIST_BUS: typeof import('./utils/event-bus')['SPORTS_CART_TO_LIST_BUS']
   const SPORTS_DATA_CHANGE_BUS: typeof import('./utils/event-bus')['SPORTS_DATA_CHANGE_BUS']
+  const SPORTS_LIST_COUNTDOWN_BUS: typeof import('./utils/event-bus')['SPORTS_LIST_COUNTDOWN_BUS']
   const SPORTS_LIST_TO_CART_BUS: typeof import('./utils/event-bus')['SPORTS_LIST_TO_CART_BUS']
   const SPORTS_PLAT_ID: typeof import('./utils/sports')['SPORTS_PLAT_ID']
   const STORAGE_CURRENT_GLOBAL_CURRENCY_KEY: typeof import('./utils/storage')['STORAGE_CURRENT_GLOBAL_CURRENCY_KEY']
@@ -305,6 +306,7 @@ declare global {
   const sportsDataGroupBySport: typeof import('./utils/sports')['sportsDataGroupBySport']
   const sportsDataGroupedByLeagueUpdateByMqtt: typeof import('./utils/sports')['sportsDataGroupedByLeagueUpdateByMqtt']
   const sportsEventInfoListUpdateByMqtt: typeof import('./utils/sports')['sportsEventInfoListUpdateByMqtt']
+  const sportsListCountdownBus: typeof import('./utils/event-bus')['sportsListCountdownBus']
   const sportsListToCartBus: typeof import('./utils/event-bus')['sportsListToCartBus']
   const sportsOutrightsGroupByRegion: typeof import('./utils/sports')['sportsOutrightsGroupByRegion']
   const storeToRefs: typeof import('pinia')['storeToRefs']
@@ -718,6 +720,7 @@ declare module 'vue' {
     readonly REFRESH_MEMBER_BUS: UnwrapRef<typeof import('./utils/event-bus')['REFRESH_MEMBER_BUS']>
     readonly SPORTS_CART_TO_LIST_BUS: UnwrapRef<typeof import('./utils/event-bus')['SPORTS_CART_TO_LIST_BUS']>
     readonly SPORTS_DATA_CHANGE_BUS: UnwrapRef<typeof import('./utils/event-bus')['SPORTS_DATA_CHANGE_BUS']>
+    readonly SPORTS_LIST_COUNTDOWN_BUS: UnwrapRef<typeof import('./utils/event-bus')['SPORTS_LIST_COUNTDOWN_BUS']>
     readonly SPORTS_LIST_TO_CART_BUS: UnwrapRef<typeof import('./utils/event-bus')['SPORTS_LIST_TO_CART_BUS']>
     readonly SPORTS_PLAT_ID: UnwrapRef<typeof import('./utils/sports')['SPORTS_PLAT_ID']>
     readonly STORAGE_CURRENT_GLOBAL_CURRENCY_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_CURRENT_GLOBAL_CURRENCY_KEY']>
@@ -894,6 +897,7 @@ declare module 'vue' {
     readonly sportsDataGroupBySport: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupBySport']>
     readonly sportsDataGroupedByLeagueUpdateByMqtt: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupedByLeagueUpdateByMqtt']>
     readonly sportsEventInfoListUpdateByMqtt: UnwrapRef<typeof import('./utils/sports')['sportsEventInfoListUpdateByMqtt']>
+    readonly sportsListCountdownBus: UnwrapRef<typeof import('./utils/event-bus')['sportsListCountdownBus']>
     readonly sportsListToCartBus: UnwrapRef<typeof import('./utils/event-bus')['sportsListToCartBus']>
     readonly sportsOutrightsGroupByRegion: UnwrapRef<typeof import('./utils/sports')['sportsOutrightsGroupByRegion']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
@@ -1301,6 +1305,7 @@ declare module '@vue/runtime-core' {
     readonly REFRESH_MEMBER_BUS: UnwrapRef<typeof import('./utils/event-bus')['REFRESH_MEMBER_BUS']>
     readonly SPORTS_CART_TO_LIST_BUS: UnwrapRef<typeof import('./utils/event-bus')['SPORTS_CART_TO_LIST_BUS']>
     readonly SPORTS_DATA_CHANGE_BUS: UnwrapRef<typeof import('./utils/event-bus')['SPORTS_DATA_CHANGE_BUS']>
+    readonly SPORTS_LIST_COUNTDOWN_BUS: UnwrapRef<typeof import('./utils/event-bus')['SPORTS_LIST_COUNTDOWN_BUS']>
     readonly SPORTS_LIST_TO_CART_BUS: UnwrapRef<typeof import('./utils/event-bus')['SPORTS_LIST_TO_CART_BUS']>
     readonly SPORTS_PLAT_ID: UnwrapRef<typeof import('./utils/sports')['SPORTS_PLAT_ID']>
     readonly STORAGE_CURRENT_GLOBAL_CURRENCY_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_CURRENT_GLOBAL_CURRENCY_KEY']>
@@ -1477,6 +1482,7 @@ declare module '@vue/runtime-core' {
     readonly sportsDataGroupBySport: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupBySport']>
     readonly sportsDataGroupedByLeagueUpdateByMqtt: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupedByLeagueUpdateByMqtt']>
     readonly sportsEventInfoListUpdateByMqtt: UnwrapRef<typeof import('./utils/sports')['sportsEventInfoListUpdateByMqtt']>
+    readonly sportsListCountdownBus: UnwrapRef<typeof import('./utils/event-bus')['sportsListCountdownBus']>
     readonly sportsListToCartBus: UnwrapRef<typeof import('./utils/event-bus')['sportsListToCartBus']>
     readonly sportsOutrightsGroupByRegion: UnwrapRef<typeof import('./utils/sports')['sportsOutrightsGroupByRegion']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>

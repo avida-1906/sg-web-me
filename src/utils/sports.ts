@@ -813,6 +813,8 @@ export class SportsCart {
 export class SportsNotify {
   mqtt: SocketClient
 
+  timer: any = null
+
   /** 是否订阅了体育数据变化 */
   isSubscribed = false
 
@@ -844,5 +846,24 @@ export class SportsNotify {
     this.mqtt.removeSubscribe(`sport/delta/${lang}`, () => {
       this.isSubscribed = false
     })
+  }
+
+  countdownHandler() {}
+
+  /**
+   * 开始倒计时
+   */
+  startCountdown() {
+    this.stopCountdown()
+    this.timer = setInterval(() => {
+      sportsListCountdownBus.emit(SPORTS_LIST_COUNTDOWN_BUS)
+    }, 500)
+  }
+
+  /**
+   * 停止倒计时
+   */
+  stopCountdown() {
+    clearInterval(this.timer)
   }
 }
