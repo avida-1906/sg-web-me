@@ -28,7 +28,7 @@ function handleClick(item: ListItem) {
               <div class="dot" />
               <div class="main">
                 <div class="icon">
-                  <AppSportImage
+                  <AppImage
                     v-if="tab.useCloudImg"
                     :class="{ 'icon-act': tab.si === modelValue }"
                     :url="tab.icon" is-cloud
