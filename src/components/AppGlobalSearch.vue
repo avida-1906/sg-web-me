@@ -157,7 +157,8 @@ function emitClose() {
   searchValue.value = ''
   showOverlayFalse()
   initOthers && hideTypeSelect()
-  emit('close')
+  if (!isMobile.value)
+    emit('close')
 }
 provide('closeSearch', emitClose)
 provide('closeSearchH5', () => leftIsExpand.value = !leftIsExpand.value)

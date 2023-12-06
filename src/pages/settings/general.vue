@@ -297,13 +297,7 @@ onMounted(() => {
             v-model="email"
             :disabled="emailVerified"
             :msg="emailErrormsg"
-            :class="{ 'general-base-input-background': emailVerified }"
-            :style="
-              {
-                '--tg-base-input-style-background-color': emailVerified
-                  ? 'var(--tg-secondary-main)' : '',
-              }
-            "
+            :class="{ 'general-input-background': emailVerified }"
             :msg-after-touched="msgAfterTouched"
             @blur="setMsgAfterTouchedFalse"
             @focus="setMsgAfterTouchedTrue"
@@ -316,6 +310,7 @@ onMounted(() => {
           type="text"
           :disabled="emailVerified"
           :loading="loadingEmailCheckRequest"
+          size="none"
           @click="emailCheck"
         >
           {{ t('resend_email') }}
@@ -376,7 +371,7 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .tg-settings-general {
-  .general-base-input-background{
+  .general-input-background{
     --tg-base-input-style-background-color: var(--tg-secondary-main);
   }
   .general-base-image{
