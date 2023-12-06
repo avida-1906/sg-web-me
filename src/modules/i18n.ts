@@ -56,14 +56,14 @@ export async function loadLanguageAsync(langIndex: EnumLanguage): Promise<Locale
   return setI18nLanguage(lang)
 }
 
-export async function install(app: App<Element>) {
+export function install(app: App<Element>) {
   const index = getInitLangIndex()
   app.use(i18n)
 
   if (index in EnumLanguage)
-    await loadLanguageAsync(index)
+    loadLanguageAsync(index)
   else
-    await loadLanguageAsync(EnumLanguage[VITE_I18N_DEFAULT_LANG])
+    loadLanguageAsync(EnumLanguage[VITE_I18N_DEFAULT_LANG])
 }
 
 export function getInitLangIndex() {
