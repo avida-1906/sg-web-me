@@ -5,6 +5,8 @@ const { query } = useRoute()
 const { bool: isTheatre, setBool } = useBoolean(false) // 影院模式
 
 const id = ref(query.id?.toString() ?? '')
+const name = ref(query.name?.toString() ?? '')
+const pn = ref(query.pn?.toString() ?? '')
 const appIframeRef = ref()
 
 const { list: recGameList } = useList(ApiMemberGameRecList, { manual: false })
@@ -31,7 +33,7 @@ onBeforeRouteLeave(() => {
     />
   </div>
   <section class="page-content">
-    <AppDesc />
+    <AppDesc :name="name" :plat-name="pn" />
     <div class="home-container margin-auto">
       <div class="content-wrapper">
         <AppSlider

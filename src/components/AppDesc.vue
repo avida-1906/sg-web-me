@@ -10,6 +10,11 @@ interface Column {
   slot?: string
   align?: 'left' | 'center' | 'right'
 }
+interface Props {
+  name: string
+  platName: string
+}
+defineProps<Props>()
 
 const { companyData } = storeToRefs(useAppStore())
 const { t } = useI18n()
@@ -125,7 +130,7 @@ onMounted(() => {
   <div class="app-desc home-container margin-auto">
     <div class="desc-title">
       <div class="title-left">
-        Goat Getter <span class="l-start-gm"><a href="#">Push Gaming</a></span>
+        {{ name }} <span class="l-start-gm"><a href="#">{{ platName }}</a></span>
       </div>
       <div class="title-right">
         <div v-if="!isXs" class="r-status">
@@ -280,7 +285,7 @@ onMounted(() => {
     .title-left {
 
       .l-start-gm {
-        color: var(--tg-text-grey);
+        color: var(--tg-text-lightgrey);
 
         &:hover {
           color: var(--tg-text-white);
