@@ -206,14 +206,19 @@ await application.allSettled([runMemberBannerList({
         .come-play{
           position: absolute;
           bottom: 16px;
-          width: 100%;
+          min-width: 120px;
+          min-height: 40px;
           text-align: center;
           border-radius: var(--tg-radius-default);
           padding: 11px 16px;
-          line-height: 1.2;
+          line-height: 1.15;
           border: var(--tg-border-width-default) solid var(--tg-text-white);
           font-size: var(--tg-font-size-default);
           font-weight: 500;
+          transition: var(--tg-transition);
+          &:hover{
+            background-color: #{rgba($color: var(--tg-color-white-rgb), $alpha: 0.1)};
+          }
         }
       }
     }

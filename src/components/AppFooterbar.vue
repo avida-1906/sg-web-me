@@ -49,29 +49,25 @@ const getExpandBar = computed(() => {
 
 function changeBar(item: { name: string; path?: string }) {
   const { name, path } = item
-  // activeName.value = name
+  activeName.value = name
   switch (name) {
     case 'menu':
       rightIsExpand.value && closeRightSidebar()
       openLeftSidebar()
-      activeName.value = name
       break
     case 'bet':// 投注
       leftIsExpand.value && closeLeftSidebar()
       openRightSidebar(EnumRightSidebarContent.CASINOBET)
-      activeName.value = name
       break
     case 'user-bet':// 投注单
       leftIsExpand.value && closeLeftSidebar()
       openRightSidebar(EnumRightSidebarContent.BETTING)
       if (!isLogin.value)
         openRegisterDialog()
-      activeName.value = name
       break
     case 'chat':
       leftIsExpand.value && closeLeftSidebar()
       openRightSidebar(EnumRightSidebarContent.CHATROOM)
-      activeName.value = name
       break
     case 'game':
     case 'sports':

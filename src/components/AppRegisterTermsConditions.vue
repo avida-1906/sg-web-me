@@ -23,6 +23,7 @@ const {
 
 const scrollRef = ref()
 const delayId = ref()
+const { bool: isCheckClicked, setTrue: setCCTrue } = useBoolean(false)
 
 const regParams = computed(() => {
   return Session.get<IMemberReg>(STORAGE_REG_PARAMS_KEYWORDS)?.value
@@ -55,6 +56,8 @@ function handleScroll() {
   }, 500)
 }
 async function getStartGame() {
+  if (!isRead.value)
+    return
   valiChecked()
   if (checkboxValue.value && !checkedErrorMsg.value && regParams.value)
     runMemberReg(regParams.value)
@@ -68,6 +71,11 @@ async function toLogin() {
 
 function goPrev() {
   closeDialog()
+}
+
+function checkClick() {
+  setCCTrue()
+  valiChecked()
 }
 
 onMounted(() => {
@@ -217,18 +225,18 @@ onBeforeUnmount(() => {
       <BaseCheckBox
         v-model="checkboxValue"
         :disabled="!isRead"
+        :error="isCheckClicked && !isRead"
         :msg="checkedErrorMsg"
-        @click.stop="valiChecked"
+        @click.stop="checkClick"
       >
         {{ t('read_terms_conditions') }}
       </BaseCheckBox>
       <BaseButton
         :loading="isLoading"
-        :disabled="!isRead"
         size="xl"
         bg-style="secondary" @click.stop="getStartGame"
       >
-        {{ t('start_game') }}
+        <span class="size-base">{{ t('start_game') }}</span>
       </BaseButton>
     </div>
     <div class="app-bottom">
@@ -249,6 +257,9 @@ onBeforeUnmount(() => {
 </template>
 
 <style lang='scss' scoped>
+.size-base {
+  font-size: var(--tg-font-size-base);
+}
 .app-register-terms-conditions {
   display: flex;
   flex-direction: column;
@@ -269,6 +280,9 @@ onBeforeUnmount(() => {
     }
     svg, .arrow {
       cursor: pointer;
+    }
+    .arrow {
+      display: flex;
     }
   }
   .terms-conditions {
@@ -303,6 +317,11 @@ onBeforeUnmount(() => {
     display: flex;
     flex-direction: column;
     gap: var(--tg-spacing-12);
+    --tg-base-checkbox-error-color: var(--tg-text-error-sub);
+    --tg-base-checkbox-error-border-color: var(--tg-text-error-sub);
+    --tg-base-checkbox-error-icon-size: var(--tg-font-size-default);
+    --tg-icon-color: var(--tg-text-error-sub);
+    --tg-base-checkbox-msg-margin-top: 10px;
   }
   &-btn {
     width: 100%;

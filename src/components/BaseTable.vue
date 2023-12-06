@@ -49,6 +49,16 @@ watch(() => props.columns, () => {
               :class="item.sort ? 'cursor-pointer' : ''"
               @click="handleSort(item, index)"
             >
+              <VTooltip v-if="item.isTips" placement="top">
+                <div class="center stealth-box">
+                  <BaseIcon name="uni-tips" />
+                </div>
+                <template #popper>
+                  <div class="tiny-menu-item-title">
+                    您下注使用的所有货币会标准化为竞赛货币
+                  </div>
+                </template>
+              </VTooltip>
               <span>{{ item.title }}</span>
               <div v-if="item.sort" class="th-sort">
                 <BaseIcon
@@ -107,6 +117,7 @@ watch(() => props.columns, () => {
   --tg-table-font-size: var(--tg-font-size-default);
   --tg-table-even-background: inherit;
   --tg-table-odd-background: var(--tg-secondary-grey);
+  --tg-table-th-background: var(--tg-table-even-background);
   --tg-table-th-color: var(--tg-text-lightgrey);
   --tg-table-line-height:1.5;
   --tg-table-th-padding: var(--tg-spacing-16);
@@ -135,8 +146,11 @@ watch(() => props.columns, () => {
       border: none;
       line-height: var(--tg-table-line-height);
       white-space: nowrap;
-      background: var(--tg-table-even-background);
+      background: var(--tg-table-th-background);
       vertical-align: middle;
+      .stealth-box{
+        cursor: help;
+      }
       .th-box{
         display: inline-flex;
         align-items: center;

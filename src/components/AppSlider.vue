@@ -140,8 +140,10 @@ watchEffect(() => {
         </BaseButton>
         <BaseButton
           size="none"
-          type="round-line-right" :disabled="scrollLeftItemsCount + pageInfo.pageSize
-            >= data.length + 1" @click="nextPage"
+          type="round-line-right"
+          :disabled="showViewAll ? scrollLeftItemsCount + pageInfo.pageSize
+            >= data.length + 1 : scrollLeftItemsCount + pageInfo.pageSize
+              >= data.length" @click="nextPage"
         >
           <div class="a-inner right">
             <BaseIcon class="right" name="uni-arrowright-line" />
@@ -229,6 +231,20 @@ watchEffect(() => {
       button {
         width: 50px;
         height: 37px;
+        .a-inner {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all .2s;
+          &.left svg {
+            transform-origin: center center;
+          }
+          &.right svg {
+            transform-origin: center center;
+          }
+        }
         &:not(:disabled) {
           .a-inner {
             width: 100%;
@@ -248,6 +264,9 @@ watchEffect(() => {
               transform-origin: center center;
             }
           }
+        }
+        &:disabled {
+          cursor: default;
         }
       }
       button:last-child {
