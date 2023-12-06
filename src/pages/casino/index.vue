@@ -76,7 +76,7 @@ await application.allSettled([casinoStore.runAsyncGameLobby()])
 <template>
   <div class="layout-spacing">
     <AppBanner type="casino" />
-    <AppMarquee />
+    <!-- <AppMarquee /> -->
     <div v-if="!isMobile" class="mt-24">
       <AppGameSearch game-type="1" />
     </div>
