@@ -25,6 +25,8 @@ export const SPORTS_DATA_CHANGE_BUS = 'SPORTS_DATA_CHANGE_BUS'
 export const SPORTS_LIST_TO_CART_BUS = 'LIST_TO_CART_BUS'
 /** 体育购物车向列表通知 */
 export const SPORTS_CART_TO_LIST_BUS = 'CART_TO_LIST_BUS'
+/** 体育列表倒计时，用来刷新页面上的时间 */
+export const SPORTS_LIST_COUNTDOWN_BUS = 'SPORTS_LIST_COUNTDOWN_BUS'
 
 /** 体育列表向购物车通知 */
 export const sportsListToCartBus = useEventBus<
@@ -35,3 +37,6 @@ export const sportsListToCartBus = useEventBus<
 export const sportsCartToListBus = useEventBus<
 ISportListToCartData
 >(SPORTS_CART_TO_LIST_BUS)
+
+/** 体育列表倒计时，用来刷新页面上的时间 */
+export const sportsListCountdownBus = useEventBus<string>(SPORTS_LIST_COUNTDOWN_BUS)
