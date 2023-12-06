@@ -134,6 +134,7 @@ function pathTo(tmp: { path?: string; title: string; icon?: boolean }) {
             :style="{
               '--app-sport-image-error-icon-size': '40px',
             }"
+            is-cloud
             err-icon="img-casino-error"
           />
         </div>
@@ -148,6 +149,7 @@ function pathTo(tmp: { path?: string; title: string; icon?: boolean }) {
         :style="{
           '--app-sport-image-error-icon-size': '40px',
         }"
+        is-cloud
         err-icon="img-casino-error"
         width="auto"
         height="62px"
