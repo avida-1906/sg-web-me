@@ -125,8 +125,8 @@ await application.allSettled([runAsync(params.value)])
 
     <div class="market-wrapper">
       <AppSportsMarket
-        v-for="item in listFiltered" :key="item.ci + item.list.length"
-        :league-name="item.cn"
+        v-for="item in listFiltered" v-show="item.list.length > 0"
+        :key="item.ci + item.list.length" :league-name="item.cn"
         :event-count="item.list.length"
         :event-list="item.list"
         :base-type="baseType"
