@@ -95,7 +95,8 @@ function selectCurrency(item: EnumCurrencyKey, hide: () => void) {
               @click=" hide();openWalletSetDialog({ setHideZeroBalance })"
             >
               <BaseIcon class="icon-wallet-set" name="wallet-set" />
-              <span>{{ $t('title_wallet_set') }}</span>
+              <span style="color: var(--tg-popper-color-default);">
+                {{ $t('title_wallet_set') }}</span>
             </BaseButton>
           </div>
         </div>
@@ -186,6 +187,7 @@ function selectCurrency(item: EnumCurrencyKey, hide: () => void) {
     font-size: var(--tg-font-size-default);
     font-weight: 500;
     flex: 1;
+    border-bottom: 2px solid var(--tg-text-grey-light);
     // padding-bottom: var(--tg-spacing-15);
     &::-webkit-scrollbar-thumb {
       background: var(--tg-secondary-light);
@@ -216,16 +218,18 @@ function selectCurrency(item: EnumCurrencyKey, hide: () => void) {
 
   .popper-bottom {
     // background: var(--tg-primary-main);
-    --tg-base-button-padding-y: var(--tg-spacing-button-padding-vertical-xs);
+    --tg-base-button-padding-y: var(--tg-spacing-button-padding-vertical-s);
     --tg-base-button-padding-x: var(--tg-spacing-button-padding-vertical-none);
     --tg-base-button-font-weight: var(--tg-font-weight-semibold);
     --tg-base-button-text-default-color: var(--tg-popper-color-default);
-    border-top: 2px solid var(--tg-text-grey-light);
-
+    margin: var(--tg-spacing-4) 0;
     .icon-wallet-set {
       font-size: var(--tg-font-size-base);
       --tg-icon-color: var(--tg-popper-color-default);
       margin-right: var(--tg-spacing-8);
+    }
+    &:hover{
+      background-color: #b1bad3;
     }
   }
 
