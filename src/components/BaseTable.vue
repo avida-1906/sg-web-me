@@ -49,7 +49,7 @@ watch(() => props.columns, () => {
               :class="item.sort ? 'cursor-pointer' : ''"
               @click="handleSort(item, index)"
             >
-              <VTooltip v-if="item.isTips" placement="top">
+              <VTooltip v-if="item.isTips" placement="top" :triggers="['click', 'hover']">
                 <div class="center stealth-box">
                   <BaseIcon name="uni-tips" />
                 </div>

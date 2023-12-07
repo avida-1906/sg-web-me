@@ -149,6 +149,8 @@ const isLastMin = computed(() => {
 const isStarted = computed(() => dayjs().isAfter((props.data.ed * 1000)))
 // 正在滚球
 const isOnAir = computed(() => props.data.m === 3)
+// 赛事暂停
+const isTimeout = computed(() => props.data.rbts === 3)
 
 // 是否有直播
 // const isHasliveStream = computed(() => props.data.ls === 1)
@@ -280,8 +282,11 @@ onBeforeUnmount(() => {
             >
               {{ t('sports_status_live') }}
             </div>
-            <span class="text">
-              <span class="count-time">{{ eventTime }} </span>
+            <span v-if="isTimeout" class="text">
+              {{ t('pause') }}
+            </span>
+            <span v-else class="text">
+              <span v-show="eventTime" class="count-time">{{ eventTime }} </span>
               {{ data.rbtd }}</span>
           </template>
 

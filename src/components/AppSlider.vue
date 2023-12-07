@@ -256,6 +256,7 @@ watchEffect(() => {
             &:hover svg {
               transform: scale(1.2);
               opacity: 0.8;
+              color: var(--tg-text-white);
             }
             &.left svg {
               transform-origin: center center;
