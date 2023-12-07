@@ -189,7 +189,7 @@ if (currentLiveNav.value !== -1 && !props.onPage) {
         {{ t('load_more') }}
       </BaseButton>
       <BaseButton
-        v-if="onPage" size="none" type="text"
+        v-if="onPage" size="none" type="text" style="padding-left: var(--tg-spacing-16);"
         @click="router.push(`/sports/${getSportsPlatId()}/live`)"
       >
         {{ t('view_all') }}
