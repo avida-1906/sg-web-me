@@ -29,6 +29,16 @@ const tabList = computed(() => [
   { label: t('sports_tab_live_events'), value: 'live', icon: 'spt-ball-plate' },
   { label: t('sports_tab_starting_soon'), value: 'soon', icon: 'spt-timing' },
 ])
+
+function setLobby() {
+  marketType.value = 'all'
+}
+
+sportsLobbyBus.on(setLobby)
+
+onBeforeUnmount(() => {
+  sportsLobbyBus.off(setLobby)
+})
 </script>
 
 <template>
@@ -62,7 +72,6 @@ const tabList = computed(() => [
     <!-- 我的投注 -->
     <AppSportsPageMyBet
       v-else-if="marketType === 'my-bet'" on-page
-      @go-lobby="marketType = 'all'"
     />
     <!-- 收藏夹 -->
     <AppSportsPageFavourites v-else-if="marketType === 'fav'" on-page />

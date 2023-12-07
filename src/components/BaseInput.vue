@@ -169,7 +169,8 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse })
       </div>
     </div>
     <div v-show="error" class="msg">
-      <BaseIcon class="error-icon" name="uni-warning" />
+      <!-- <BaseIcon class="error-icon" name="uni-warning" /> -->
+      <BaseIcon class="error-icon" name="uni-warning-color" />
       <span>{{ msg }}</span>
     </div>
   </div>
@@ -209,6 +210,7 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse })
     -moz-appearance: none;
     appearance: none;
     font-size: var(--tg-font-size-default);
+    font-weight: var(--tg-font-weight-semibold);
     padding: var(--tg-spacing-8);
     transition: none;
     &::placeholder {
@@ -229,6 +231,7 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse })
     top: 0;
     resize: none;
     overflow: auto;
+    font-weight: var(--tg-font-weight-semibold);
     &::placeholder {
       color: var(--tg-text-white);
       opacity: 0.3;
@@ -253,12 +256,17 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse })
     font-size: var(--tg-font-size-md);
     display: flex;
     align-items: center;
-    margin-top: var(--tg-spacing-6);
+    padding-top: 8px;
+    padding-bottom: 4px;
+    --tg-icon-color: var(--tg-text-error-sub);
+    .error-icon {
+      font-size: var(--tg-font-size-xs);
+    }
 
     span {
       font-size: var(--tg-font-size-xs);
-      color: var(--tg-text-error);
-      margin-left: var(--tg-spacing-4);
+      color: var(--tg-text-error-sub);
+      margin-left: var(--tg-spacing-8);
     }
   }
 
@@ -339,6 +347,7 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse })
       border: none;
       outline: none;
       padding: var(--tg-spacing-input-padding-vertical) var(--tg-base-input-style-pad-x);
+      font-weight: var(--tg-font-weight-semibold);
 
       &::placeholder {
         color: var(--tg-text-white);

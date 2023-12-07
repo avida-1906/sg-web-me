@@ -117,6 +117,7 @@ const {
 const { run: runExists } = useRequest(ApiMemberExists, {
   async onSuccess() {
     if (curExists.value === 2) {
+      await validateEmail()
       await validateUsername()
       await validatePassword()
       await valiAgree()
@@ -157,11 +158,15 @@ async function getMemberReg() {
     || agreeErrorMsg.value
   ) return
 
+  emailRef.value.setTouchTrue()
   userNameRef.value.setTouchTrue()
   passwordRef.value.setTouchTrue()
+  await validateEmail()
   await validateUsername()
   await validatePassword()
   await valiAgree()
+  if (pwdErrorMsg.value)
+    setShowPasswordVerifyTrue()
   await birthdayInputRef.value.valiBirthday()
   if (birthdayInputRef.value.msg)
     return
@@ -262,15 +267,19 @@ onUnmounted(() => {
           />
         </BaseLabel>
         <BaseLabel label="出生日期" must-small>
-          <BaseInputBirthday ref="birthdayInputRef" v-model="birthday" />
+          <BaseInputBirthday
+            ref="birthdayInputRef" v-model="birthday"
+          />
         </BaseLabel>
-        <div>
+        <div style="display: flex;">
           <div class="code-label">
             <BaseCheckBox v-model="isCode">
-              {{ t('code_optional') }}
+              <span class="option-label">{{ t('code_optional') }}</span>
             </BaseCheckBox>
           </div>
-          <BaseInput v-show="isCode" v-model="code" />
+          <div class="code-input">
+            <BaseInput v-show="isCode" v-model="code" />
+          </div>
         </div>
       </div>
       <div class="app-register-check-box">
@@ -452,6 +461,11 @@ onUnmounted(() => {
 </template>
 
 <style lang='scss' scoped>
+.option-label {
+  display: inline-block;
+  padding-top: 6px;
+  padding-bottom: 4px;
+}
 .hint {
   padding: var(--tg-spacing-8) var(--tg-spacing-4) var(--tg-spacing-4) 0;
   font-size: var(--tg-font-size-xs);
@@ -462,14 +476,13 @@ onUnmounted(() => {
 }
 .app-register {
   --tg-base-input-style-pad-x: 7px;
+  --tg-spacing-input-padding-vertical: 7.25px;
   &-title {
-    color: var(--tg-text-lightgrey);
+    color: var(--tg-secondary-light);
     text-align: center;
-    font-family: PingFang SC;
     font-size: var(--tg-font-size-base);
-    font-style: normal;
     font-weight: var(--tg-font-weight-semibold);
-    line-height: normal;
+    line-height: 24px;
     padding-bottom: var(--tg-spacing-16);
     padding-top: var(--tg-spacing-16);
   }
@@ -481,7 +494,9 @@ onUnmounted(() => {
     .code-label{
       display: flex;
       justify-content: flex-start;
-      margin-bottom: var(--tg-spacing-4);
+    }
+    .code-input {
+        margin-top: 4px;
     }
   }
 
@@ -489,7 +504,7 @@ onUnmounted(() => {
     display: flex;
     flex-direction: column;
     gap: var(--tg-spacing-16);
-    padding-top: var(--tg-spacing-button-padding-vertical-xs);
+    padding-top: 16px;
 
     .agree {
       display: flex;

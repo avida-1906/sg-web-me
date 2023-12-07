@@ -4,7 +4,6 @@ interface Props {
   settle?: number
 }
 const props = defineProps<Props>()
-const emit = defineEmits(['goLobby'])
 
 const { t } = useI18n()
 const { appContentWidth } = storeToRefs(useWindowStore())
@@ -71,7 +70,6 @@ function pageNext() {
     </div>
     <AppSportsLoadingEmpty
       :loading="loading" :list="sportBetList" :settle="settle"
-      @go-lobby="onPage && emit('goLobby')"
     />
     <div
       v-if="!loading && sportBetList.length > 0"

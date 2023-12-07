@@ -16,13 +16,11 @@ const { t } = useI18n()
   padding:  var(--tg-spacing-button-padding-horizontal-sm) var(--tg-spacing-button-padding-horizontal-sm);
   .title {
     color: var(--tg-text-white);
-    font-family: PingFang SC;
     font-size: var(--tg-font-size-md);
-    font-style: normal;
     font-weight: 600;
-    line-height: normal;
     text-align: center;
     line-height: 1.5;
+    margin-bottom: 4px;
   }
 }
 </style>

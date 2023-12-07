@@ -193,7 +193,8 @@ defineExpose({ valiBirthday, msg })
       </div>
     </div>
     <div v-show="msg" class="msg">
-      <BaseIcon class="error-icon" name="uni-warning" />
+      <!-- <BaseIcon class="error-icon" name="uni-warning" /> -->
+      <BaseIcon class="error-icon" name="uni-warning-color" />
       <span>{{ msg }}</span>
     </div>
   </div>
@@ -202,15 +203,16 @@ defineExpose({ valiBirthday, msg })
 <style lang='scss' scoped>
 .placeholder-select {
   color: var(--tg-text-placeholder) !important;
+  font-weight: var(--tg-font-weight-semibold);
 }
 .base-input-birthday {
   width: 100%;
   font-size: var(--tg-font-size-default);
 
   .vertical {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    // display: flex;
+    // flex-direction: column;
+    // align-items: flex-start;
 
     label {
       margin-bottom: var(--tg-spacing-4);
@@ -241,17 +243,22 @@ defineExpose({ valiBirthday, msg })
     font-size: var(--tg-font-size-md);
     display: flex;
     align-items: center;
+    padding-top: 8px;
+    padding-bottom: 4px;
+    --tg-icon-color: var(--tg-text-error-sub);
+    .error-icon {
+      font-size: var(--tg-font-size-xs);
+    }
 
     span {
       font-size: var(--tg-font-size-xs);
-      color: var(--tg-text-error);
-      margin-left: var(--tg-spacing-4);
+      color: var(--tg-text-error-sub);
+      margin-left: var(--tg-spacing-8);
     }
   }
 
   .input-wrap {
     width: 100%;
-    margin-bottom: var(--tg-spacing-6);
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 0 var(--tg-spacing-8);
@@ -270,6 +277,7 @@ defineExpose({ valiBirthday, msg })
       padding: var(--tg-spacing-input-padding-vertical) 7px;
       transition: all ease .25s;
       line-height: 1;
+      font-weight: var(--tg-font-weight-semibold);
 
       &:hover:not(.error) {
         border-color: var(--tg-border-color-deep-grey);
@@ -277,6 +285,10 @@ defineExpose({ valiBirthday, msg })
 
       &:focus:not(.error) {
         border-color: var(--tg-border-color-deep-grey);
+      }
+      &::placeholder {
+        color: var(--tg-text-placeholder) !important;
+        font-weight: var(--tg-font-weight-semibold);
       }
     }
 

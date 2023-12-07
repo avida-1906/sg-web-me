@@ -9,9 +9,13 @@ declare global {
   const ApiChatGetHistory: typeof import('./apis/index')['ApiChatGetHistory']
   const ApiChatSendMessage: typeof import('./apis/index')['ApiChatSendMessage']
   const ApiDevDeleteThirdAuth: typeof import('./apis/index')['ApiDevDeleteThirdAuth']
+  const ApiFinancRecordDepositBank: typeof import('./apis/index')['ApiFinancRecordDepositBank']
   const ApiFinanceMerchantCoinList: typeof import('./apis/index')['ApiFinanceMerchantCoinList']
   const ApiFinanceMerchantList: typeof import('./apis/index')['ApiFinanceMerchantList']
   const ApiFinanceMethodList: typeof import('./apis/index')['ApiFinanceMethodList']
+  const ApiFinanceRecordDepositCoin: typeof import('./apis/index')['ApiFinanceRecordDepositCoin']
+  const ApiFinanceRecordWithdrawBank: typeof import('./apis/index')['ApiFinanceRecordWithdrawBank']
+  const ApiFinanceRecordWithdrawCoin: typeof import('./apis/index')['ApiFinanceRecordWithdrawCoin']
   const ApiFinanceThirdCoinDeposit: typeof import('./apis/index')['ApiFinanceThirdCoinDeposit']
   const ApiFinanceThirdDeposit: typeof import('./apis/index')['ApiFinanceThirdDeposit']
   const ApiFinanceWithdraw: typeof import('./apis/index')['ApiFinanceWithdraw']
@@ -130,6 +134,7 @@ declare global {
   const SPORTS_DATA_CHANGE_BUS: typeof import('./utils/event-bus')['SPORTS_DATA_CHANGE_BUS']
   const SPORTS_LIST_COUNTDOWN_BUS: typeof import('./utils/event-bus')['SPORTS_LIST_COUNTDOWN_BUS']
   const SPORTS_LIST_TO_CART_BUS: typeof import('./utils/event-bus')['SPORTS_LIST_TO_CART_BUS']
+  const SPORTS_LOBBY_RESET: typeof import('./utils/event-bus')['SPORTS_LOBBY_RESET']
   const SPORTS_PLAT_ID: typeof import('./utils/sports')['SPORTS_PLAT_ID']
   const STORAGE_CURRENT_GLOBAL_CURRENCY_KEY: typeof import('./utils/storage')['STORAGE_CURRENT_GLOBAL_CURRENCY_KEY']
   const STORAGE_HIDE_ZERO_BALANCE_KEY: typeof import('./utils/storage')['STORAGE_HIDE_ZERO_BALANCE_KEY']
@@ -308,6 +313,7 @@ declare global {
   const sportsEventInfoListUpdateByMqtt: typeof import('./utils/sports')['sportsEventInfoListUpdateByMqtt']
   const sportsListCountdownBus: typeof import('./utils/event-bus')['sportsListCountdownBus']
   const sportsListToCartBus: typeof import('./utils/event-bus')['sportsListToCartBus']
+  const sportsLobbyBus: typeof import('./utils/event-bus')['sportsLobbyBus']
   const sportsOutrightsGroupByRegion: typeof import('./utils/sports')['sportsOutrightsGroupByRegion']
   const storeToRefs: typeof import('pinia')['storeToRefs']
   const sub: typeof import('./utils/number')['sub']
@@ -603,9 +609,13 @@ declare module 'vue' {
     readonly ApiChatGetHistory: UnwrapRef<typeof import('./apis/index')['ApiChatGetHistory']>
     readonly ApiChatSendMessage: UnwrapRef<typeof import('./apis/index')['ApiChatSendMessage']>
     readonly ApiDevDeleteThirdAuth: UnwrapRef<typeof import('./apis/index')['ApiDevDeleteThirdAuth']>
+    readonly ApiFinancRecordDepositBank: UnwrapRef<typeof import('./apis/index')['ApiFinancRecordDepositBank']>
     readonly ApiFinanceMerchantCoinList: UnwrapRef<typeof import('./apis/index')['ApiFinanceMerchantCoinList']>
     readonly ApiFinanceMerchantList: UnwrapRef<typeof import('./apis/index')['ApiFinanceMerchantList']>
     readonly ApiFinanceMethodList: UnwrapRef<typeof import('./apis/index')['ApiFinanceMethodList']>
+    readonly ApiFinanceRecordDepositCoin: UnwrapRef<typeof import('./apis/index')['ApiFinanceRecordDepositCoin']>
+    readonly ApiFinanceRecordWithdrawBank: UnwrapRef<typeof import('./apis/index')['ApiFinanceRecordWithdrawBank']>
+    readonly ApiFinanceRecordWithdrawCoin: UnwrapRef<typeof import('./apis/index')['ApiFinanceRecordWithdrawCoin']>
     readonly ApiFinanceThirdCoinDeposit: UnwrapRef<typeof import('./apis/index')['ApiFinanceThirdCoinDeposit']>
     readonly ApiFinanceThirdDeposit: UnwrapRef<typeof import('./apis/index')['ApiFinanceThirdDeposit']>
     readonly ApiFinanceWithdraw: UnwrapRef<typeof import('./apis/index')['ApiFinanceWithdraw']>
@@ -724,6 +734,7 @@ declare module 'vue' {
     readonly SPORTS_DATA_CHANGE_BUS: UnwrapRef<typeof import('./utils/event-bus')['SPORTS_DATA_CHANGE_BUS']>
     readonly SPORTS_LIST_COUNTDOWN_BUS: UnwrapRef<typeof import('./utils/event-bus')['SPORTS_LIST_COUNTDOWN_BUS']>
     readonly SPORTS_LIST_TO_CART_BUS: UnwrapRef<typeof import('./utils/event-bus')['SPORTS_LIST_TO_CART_BUS']>
+    readonly SPORTS_LOBBY_RESET: UnwrapRef<typeof import('./utils/event-bus')['SPORTS_LOBBY_RESET']>
     readonly SPORTS_PLAT_ID: UnwrapRef<typeof import('./utils/sports')['SPORTS_PLAT_ID']>
     readonly STORAGE_CURRENT_GLOBAL_CURRENCY_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_CURRENT_GLOBAL_CURRENCY_KEY']>
     readonly STORAGE_HIDE_ZERO_BALANCE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_HIDE_ZERO_BALANCE_KEY']>
@@ -901,6 +912,7 @@ declare module 'vue' {
     readonly sportsEventInfoListUpdateByMqtt: UnwrapRef<typeof import('./utils/sports')['sportsEventInfoListUpdateByMqtt']>
     readonly sportsListCountdownBus: UnwrapRef<typeof import('./utils/event-bus')['sportsListCountdownBus']>
     readonly sportsListToCartBus: UnwrapRef<typeof import('./utils/event-bus')['sportsListToCartBus']>
+    readonly sportsLobbyBus: UnwrapRef<typeof import('./utils/event-bus')['sportsLobbyBus']>
     readonly sportsOutrightsGroupByRegion: UnwrapRef<typeof import('./utils/sports')['sportsOutrightsGroupByRegion']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
     readonly sub: UnwrapRef<typeof import('./utils/number')['sub']>
@@ -1190,9 +1202,13 @@ declare module '@vue/runtime-core' {
     readonly ApiChatGetHistory: UnwrapRef<typeof import('./apis/index')['ApiChatGetHistory']>
     readonly ApiChatSendMessage: UnwrapRef<typeof import('./apis/index')['ApiChatSendMessage']>
     readonly ApiDevDeleteThirdAuth: UnwrapRef<typeof import('./apis/index')['ApiDevDeleteThirdAuth']>
+    readonly ApiFinancRecordDepositBank: UnwrapRef<typeof import('./apis/index')['ApiFinancRecordDepositBank']>
     readonly ApiFinanceMerchantCoinList: UnwrapRef<typeof import('./apis/index')['ApiFinanceMerchantCoinList']>
     readonly ApiFinanceMerchantList: UnwrapRef<typeof import('./apis/index')['ApiFinanceMerchantList']>
     readonly ApiFinanceMethodList: UnwrapRef<typeof import('./apis/index')['ApiFinanceMethodList']>
+    readonly ApiFinanceRecordDepositCoin: UnwrapRef<typeof import('./apis/index')['ApiFinanceRecordDepositCoin']>
+    readonly ApiFinanceRecordWithdrawBank: UnwrapRef<typeof import('./apis/index')['ApiFinanceRecordWithdrawBank']>
+    readonly ApiFinanceRecordWithdrawCoin: UnwrapRef<typeof import('./apis/index')['ApiFinanceRecordWithdrawCoin']>
     readonly ApiFinanceThirdCoinDeposit: UnwrapRef<typeof import('./apis/index')['ApiFinanceThirdCoinDeposit']>
     readonly ApiFinanceThirdDeposit: UnwrapRef<typeof import('./apis/index')['ApiFinanceThirdDeposit']>
     readonly ApiFinanceWithdraw: UnwrapRef<typeof import('./apis/index')['ApiFinanceWithdraw']>
@@ -1311,6 +1327,7 @@ declare module '@vue/runtime-core' {
     readonly SPORTS_DATA_CHANGE_BUS: UnwrapRef<typeof import('./utils/event-bus')['SPORTS_DATA_CHANGE_BUS']>
     readonly SPORTS_LIST_COUNTDOWN_BUS: UnwrapRef<typeof import('./utils/event-bus')['SPORTS_LIST_COUNTDOWN_BUS']>
     readonly SPORTS_LIST_TO_CART_BUS: UnwrapRef<typeof import('./utils/event-bus')['SPORTS_LIST_TO_CART_BUS']>
+    readonly SPORTS_LOBBY_RESET: UnwrapRef<typeof import('./utils/event-bus')['SPORTS_LOBBY_RESET']>
     readonly SPORTS_PLAT_ID: UnwrapRef<typeof import('./utils/sports')['SPORTS_PLAT_ID']>
     readonly STORAGE_CURRENT_GLOBAL_CURRENCY_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_CURRENT_GLOBAL_CURRENCY_KEY']>
     readonly STORAGE_HIDE_ZERO_BALANCE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_HIDE_ZERO_BALANCE_KEY']>
@@ -1488,6 +1505,7 @@ declare module '@vue/runtime-core' {
     readonly sportsEventInfoListUpdateByMqtt: UnwrapRef<typeof import('./utils/sports')['sportsEventInfoListUpdateByMqtt']>
     readonly sportsListCountdownBus: UnwrapRef<typeof import('./utils/event-bus')['sportsListCountdownBus']>
     readonly sportsListToCartBus: UnwrapRef<typeof import('./utils/event-bus')['sportsListToCartBus']>
+    readonly sportsLobbyBus: UnwrapRef<typeof import('./utils/event-bus')['sportsLobbyBus']>
     readonly sportsOutrightsGroupByRegion: UnwrapRef<typeof import('./utils/sports')['sportsOutrightsGroupByRegion']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
     readonly sub: UnwrapRef<typeof import('./utils/number')['sub']>

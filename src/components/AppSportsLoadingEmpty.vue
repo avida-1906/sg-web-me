@@ -4,14 +4,15 @@ defineProps<{
   list: any[]
   settle?: number
 }>()
-const emit = defineEmits(['goLobby'])
 
 const { t } = useI18n()
 const router = useRouter()
 
 function goToBet() {
   router.push(`/sports/${getSportsPlatId()}`)
-  emit('goLobby')
+  setTimeout(() => {
+    sportsLobbyBus.emit(true)
+  }, 50)
 }
 </script>
 

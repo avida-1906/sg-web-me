@@ -544,6 +544,9 @@ function noDataGoToBet() {
     closeRightSidebar()
 
   router.push(`/sports/${getSportsPlatId()}`)
+  setTimeout(() => {
+    sportsLobbyBus.emit(true)
+  }, 50)
 }
 
 watch(() => sportStore.cart.count, (val, oVal) => {
