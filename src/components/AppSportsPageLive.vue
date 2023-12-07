@@ -11,6 +11,10 @@ const sportsStore = useSportsStore()
 const { sportLiveNavs, currentLiveNav } = storeToRefs(sportsStore)
 const { bool: isStandard } = useBoolean(true)
 const {
+  bool: switchLoading, setTrue: setLoadingTrue,
+  setFalse: setLoadingFalse,
+} = useBoolean(true)
+const {
   VITE_SPORT_EVENT_PAGE_SIZE,
   VITE_SPORT_EVENT_PAGE_SIZE_MAX, VITE_SPORT_DEFAULT_MARKET_TYPE,
 } = getEnv()
@@ -21,6 +25,7 @@ const {
 } = useSportsDataUpdate(sportsStore.runSportsCount, 60, true)
 
 let timer: any = null
+const marketNum = ref(1)
 const baseType = ref(VITE_SPORT_DEFAULT_MARKET_TYPE)
 const page = ref(1)
 const pageSize = ref(+VITE_SPORT_EVENT_PAGE_SIZE)
@@ -43,6 +48,9 @@ const { run, runAsync } = useRequest(ApiSportEventList,
 
         list.value = sportsDataGroupByLeagueLoadMore(list.value, res.d)
       }
+    },
+    onAfter() {
+      setLoadingFalse()
     },
   },
 )
@@ -130,8 +138,13 @@ function onBaseTypeChange(v: EnumSportMarketType) {
   baseType.value = v
 }
 
+function onSportsSiChange(item: { count: number }) {
+  marketNum.value = item.count
+}
+
 /** 切换球种 */
 watch(currentLiveNav, () => {
+  setLoadingTrue()
   reset()
   getData()
   startLive()
@@ -162,7 +175,7 @@ if (currentLiveNav.value !== -1 && !props.onPage) {
   <div class="tg-sports-type" :class="{ 'on-page': onPage }">
     <div class="sports-page-title">
       <div class="left">
-        <BaseIcon name="spt-ball-plate" />
+        <BaseIcon v-if="onPage" name="spt-ball-plate" />
         <h6>{{ t('sports_tab_live_events') }}</h6>
       </div>
       <AppSportsMarketTypeSelect
@@ -170,31 +183,37 @@ if (currentLiveNav.value !== -1 && !props.onPage) {
         @base-type-change="onBaseTypeChange"
       />
     </div>
-    <AppSportsTab v-model="currentLiveNav" :list="sportLiveNavs" />
+    <AppSportsTab
+      v-model="currentLiveNav" :list="sportLiveNavs"
+      @change="onSportsSiChange"
+    />
     <div class="market-wrapper">
-      <AppSportsMarketSkeleton />
-      <AppSportsMarket
-        v-for="item in listFiltered" v-show="item.list.length > 0"
-        :key="item.ci + item.list.length"
-        :is-standard="isStandard"
-        :league-name="item.cn"
-        :event-count="item.list.length"
-        :event-list="item.list"
-        :base-type="baseType"
-        :auto-show="item.list.length > 0"
-      />
-      <BaseButton
-        v-show="curTotal < total && isHaveDataToShow && !onPage"
-        size="none" type="text" @click="loadMore"
-      >
-        {{ t('load_more') }}
-      </BaseButton>
-      <BaseButton
-        v-if="onPage" size="none" type="text" style="padding-left: var(--tg-spacing-16);"
-        @click="router.push(`/sports/${getSportsPlatId()}/live`)"
-      >
-        {{ t('view_all') }}
-      </BaseButton>
+      <AppSportsMarketSkeleton v-if="switchLoading" :num="marketNum" />
+      <template v-else>
+        <AppSportsMarket
+          v-for="item in listFiltered" v-show="item.list.length > 0"
+          :key="item.ci + item.list.length"
+          :is-standard="isStandard"
+          :league-name="item.cn"
+          :event-count="item.list.length"
+          :event-list="item.list"
+          :base-type="baseType"
+          :auto-show="item.list.length > 0"
+        />
+        <BaseButton
+          v-show="curTotal < total && isHaveDataToShow && !onPage"
+          size="none" type="text" @click="loadMore"
+        >
+          {{ t('load_more') }}
+        </BaseButton>
+        <BaseButton
+          v-if="onPage" size="none" type="text"
+          style="padding-left: var(--tg-spacing-16);"
+          @click="router.push(`/sports/${getSportsPlatId()}/live`)"
+        >
+          {{ t('view_all') }}
+        </BaseButton>
+      </template>
     </div>
 
     <div v-if="!onPage" class="layout-spacing">

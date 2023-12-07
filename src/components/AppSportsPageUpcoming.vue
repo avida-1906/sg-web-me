@@ -148,7 +148,7 @@ if (!props.onPage) {
   <div class="tg-sports-upcoming" :class="{ 'on-page': onPage }">
     <div class="sports-page-title">
       <div class="left">
-        <BaseIcon name="spt-timing" />
+        <BaseIcon v-if="onPage" name="spt-timing" />
         <h6>{{ t('sports_tab_starting_soon') }}</h6>
       </div>
       <AppSportsMarketTypeSelect

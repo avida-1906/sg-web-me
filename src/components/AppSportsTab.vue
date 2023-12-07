@@ -11,10 +11,11 @@ interface Props {
   modelValue: number
 }
 defineProps<Props>()
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(['update:modelValue', 'change'])
 
 function handleClick(item: ListItem) {
   emit('update:modelValue', item.si)
+  emit('change', item)
 }
 </script>
 
