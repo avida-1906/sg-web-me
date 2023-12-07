@@ -158,7 +158,7 @@ onErrorCaptured((err, instance, info) => {
                     <Suspense timeout="0" @resolve="suspenseResolved">
                       <component :is="Component" />
                       <template #fallback>
-                        <div class="loading loading-content-height">
+                        <div class="loading-content-height">
                           <BaseLoading />
                         </div>
                       </template>
@@ -230,22 +230,6 @@ onErrorCaptured((err, instance, info) => {
 </template>
 
 <style scoped lang="scss">
-.loading-content-height {
-  height: calc(100vh - var(--tg-header-height));
-}
-.loading{
-  padding-top: 200px;
-}
-
-@media screen and (max-width: 767px) {
-  .loading-content-height {
-    height: calc(100vh - var(--tg-header-height) - var(--tg-footerbar-height));
-  }
-  .loading{
-    padding-top: 150px;
-  }
-}
-
 .only-for-get-width {
   width: 100%;
   position: relative;
