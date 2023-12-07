@@ -62,7 +62,8 @@ function onClick() {
     font-size: var(--tg-font-size-md);
     display: flex;
     align-items: center;
-    margin-top: var(--tg-base-checkbox-msg-margin-top);
+    padding-top: 8px;
+    padding-bottom: 4px;
     .error-icon {
       font-size: var(--tg-base-checkbox-error-icon-size);
       --tg-icon-color: var(--tg-base-checkbox-error-border-color);
@@ -70,7 +71,7 @@ function onClick() {
     span {
       font-size: var(--tg-font-size-xs);
       color: var(--tg-base-checkbox-error-color);
-      margin-left: var(--tg-spacing-4);
+      margin-left: var(--tg-spacing-8);
     }
   }
 }
@@ -78,8 +79,9 @@ function onClick() {
 .check-box-wrap {
   display: flex;
   align-items: center;
-  color: var(--tg-text-lightgrey);
+  color: var(--tg-secondary-light);
   cursor: pointer;
+  font-weight: var(--tg-font-weight-semibold);
 
   .outer {
     transition: all ease .25s;

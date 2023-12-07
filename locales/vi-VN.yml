@@ -41,8 +41,8 @@ password_least_1_number: mật khẩu phải có ít nhất 1 con số
 uppercase_lowercase_letter: mật khẩu phải bao gồm ký tự in hoa và ký tự thường
 least_8_characters: Bao gồm ít nhất 8 ký tự
 reg_step: Điền thông tin chi tiết cá nhân của bạn
-reg_step1: 'Bước 1/2: Điền thông tin chi tiết cá nhân của bạn'
-reg_step2: 'Bước 2/2: Điền thông tin chi tiết cá nhân của bạn'
+reg_step1: 'Bước 1/2:  Điền thông tin chi tiết cá nhân của bạn'
+reg_step2: 'Bước 2/2:  Điền thông tin chi tiết cá nhân của bạn'
 step_label: Bước
 code_optional: Mã số
 read_and_agree: Tôi đã đọc và đồng ý

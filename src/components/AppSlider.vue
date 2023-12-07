@@ -254,7 +254,7 @@ watchEffect(() => {
             justify-content: center;
             transition: all .2s;
             &:hover svg {
-              transform: scale(1.2);
+              transform: scale(1.1426);
               opacity: 0.8;
               color: var(--tg-text-white);
             }

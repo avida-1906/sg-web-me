@@ -64,8 +64,9 @@ const props = withDefaults(defineProps<Props>(), {
       gap: 0.25rem;
       margin-bottom: var(--tg-spacing-4);
       .label-title{
-        color: var(--tg-text-lightgrey);
+        color: var(--tg-secondary-light);
         font-weight: var(--tg-font-weight-semibold);
+        font-size: var(--tg-font-size-default);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -74,12 +75,7 @@ const props = withDefaults(defineProps<Props>(), {
         }
         .label-must-small{
           color: var(--tg-text-error);
-          margin-left: var(--tg-spacing-3);
-          span{
-            margin-top: -4px;
-            display: block;
-            transform: scale(.7);
-          }
+          margin-left: var(--tg-spacing-4);
         }
       }
     }

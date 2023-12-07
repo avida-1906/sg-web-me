@@ -36,7 +36,7 @@ onBeforeRouteLeave(() => {
   </div>
   <section class="page-content">
     <AppDesc :name="name" :plat-name="pn" />
-    <div class="home-container margin-auto">
+    <div class="margin-auto home-container">
       <div class="content-wrapper">
         <AppSlider
           icon="chess-original-game"

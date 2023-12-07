@@ -9,9 +9,13 @@ declare global {
   const ApiChatGetHistory: typeof import('./apis/index')['ApiChatGetHistory']
   const ApiChatSendMessage: typeof import('./apis/index')['ApiChatSendMessage']
   const ApiDevDeleteThirdAuth: typeof import('./apis/index')['ApiDevDeleteThirdAuth']
+  const ApiFinancRecordDepositBank: typeof import('./apis/index')['ApiFinancRecordDepositBank']
   const ApiFinanceMerchantCoinList: typeof import('./apis/index')['ApiFinanceMerchantCoinList']
   const ApiFinanceMerchantList: typeof import('./apis/index')['ApiFinanceMerchantList']
   const ApiFinanceMethodList: typeof import('./apis/index')['ApiFinanceMethodList']
+  const ApiFinanceRecordDepositCoin: typeof import('./apis/index')['ApiFinanceRecordDepositCoin']
+  const ApiFinanceRecordWithdrawBank: typeof import('./apis/index')['ApiFinanceRecordWithdrawBank']
+  const ApiFinanceRecordWithdrawCoin: typeof import('./apis/index')['ApiFinanceRecordWithdrawCoin']
   const ApiFinanceThirdCoinDeposit: typeof import('./apis/index')['ApiFinanceThirdCoinDeposit']
   const ApiFinanceThirdDeposit: typeof import('./apis/index')['ApiFinanceThirdDeposit']
   const ApiFinanceWithdraw: typeof import('./apis/index')['ApiFinanceWithdraw']
@@ -435,6 +439,7 @@ declare global {
   const useField: typeof import('vee-validate')['useField']
   const useFileDialog: typeof import('@vueuse/core')['useFileDialog']
   const useFileSystemAccess: typeof import('@vueuse/core')['useFileSystemAccess']
+  const useFloatingVue: typeof import('./composables/useFloatingVue')['useFloatingVue']
   const useFocus: typeof import('@vueuse/core')['useFocus']
   const useFocusWithin: typeof import('@vueuse/core')['useFocusWithin']
   const useForgetPasswordDialog: typeof import('./composables/useDialogForgetPassword')['useForgetPasswordDialog']
@@ -604,9 +609,13 @@ declare module 'vue' {
     readonly ApiChatGetHistory: UnwrapRef<typeof import('./apis/index')['ApiChatGetHistory']>
     readonly ApiChatSendMessage: UnwrapRef<typeof import('./apis/index')['ApiChatSendMessage']>
     readonly ApiDevDeleteThirdAuth: UnwrapRef<typeof import('./apis/index')['ApiDevDeleteThirdAuth']>
+    readonly ApiFinancRecordDepositBank: UnwrapRef<typeof import('./apis/index')['ApiFinancRecordDepositBank']>
     readonly ApiFinanceMerchantCoinList: UnwrapRef<typeof import('./apis/index')['ApiFinanceMerchantCoinList']>
     readonly ApiFinanceMerchantList: UnwrapRef<typeof import('./apis/index')['ApiFinanceMerchantList']>
     readonly ApiFinanceMethodList: UnwrapRef<typeof import('./apis/index')['ApiFinanceMethodList']>
+    readonly ApiFinanceRecordDepositCoin: UnwrapRef<typeof import('./apis/index')['ApiFinanceRecordDepositCoin']>
+    readonly ApiFinanceRecordWithdrawBank: UnwrapRef<typeof import('./apis/index')['ApiFinanceRecordWithdrawBank']>
+    readonly ApiFinanceRecordWithdrawCoin: UnwrapRef<typeof import('./apis/index')['ApiFinanceRecordWithdrawCoin']>
     readonly ApiFinanceThirdCoinDeposit: UnwrapRef<typeof import('./apis/index')['ApiFinanceThirdCoinDeposit']>
     readonly ApiFinanceThirdDeposit: UnwrapRef<typeof import('./apis/index')['ApiFinanceThirdDeposit']>
     readonly ApiFinanceWithdraw: UnwrapRef<typeof import('./apis/index')['ApiFinanceWithdraw']>
@@ -1029,6 +1038,7 @@ declare module 'vue' {
     readonly useField: UnwrapRef<typeof import('vee-validate')['useField']>
     readonly useFileDialog: UnwrapRef<typeof import('@vueuse/core')['useFileDialog']>
     readonly useFileSystemAccess: UnwrapRef<typeof import('@vueuse/core')['useFileSystemAccess']>
+    readonly useFloatingVue: UnwrapRef<typeof import('./composables/useFloatingVue')['useFloatingVue']>
     readonly useFocus: UnwrapRef<typeof import('@vueuse/core')['useFocus']>
     readonly useFocusWithin: UnwrapRef<typeof import('@vueuse/core')['useFocusWithin']>
     readonly useForgetPasswordDialog: UnwrapRef<typeof import('./composables/useDialogForgetPassword')['useForgetPasswordDialog']>
@@ -1192,9 +1202,13 @@ declare module '@vue/runtime-core' {
     readonly ApiChatGetHistory: UnwrapRef<typeof import('./apis/index')['ApiChatGetHistory']>
     readonly ApiChatSendMessage: UnwrapRef<typeof import('./apis/index')['ApiChatSendMessage']>
     readonly ApiDevDeleteThirdAuth: UnwrapRef<typeof import('./apis/index')['ApiDevDeleteThirdAuth']>
+    readonly ApiFinancRecordDepositBank: UnwrapRef<typeof import('./apis/index')['ApiFinancRecordDepositBank']>
     readonly ApiFinanceMerchantCoinList: UnwrapRef<typeof import('./apis/index')['ApiFinanceMerchantCoinList']>
     readonly ApiFinanceMerchantList: UnwrapRef<typeof import('./apis/index')['ApiFinanceMerchantList']>
     readonly ApiFinanceMethodList: UnwrapRef<typeof import('./apis/index')['ApiFinanceMethodList']>
+    readonly ApiFinanceRecordDepositCoin: UnwrapRef<typeof import('./apis/index')['ApiFinanceRecordDepositCoin']>
+    readonly ApiFinanceRecordWithdrawBank: UnwrapRef<typeof import('./apis/index')['ApiFinanceRecordWithdrawBank']>
+    readonly ApiFinanceRecordWithdrawCoin: UnwrapRef<typeof import('./apis/index')['ApiFinanceRecordWithdrawCoin']>
     readonly ApiFinanceThirdCoinDeposit: UnwrapRef<typeof import('./apis/index')['ApiFinanceThirdCoinDeposit']>
     readonly ApiFinanceThirdDeposit: UnwrapRef<typeof import('./apis/index')['ApiFinanceThirdDeposit']>
     readonly ApiFinanceWithdraw: UnwrapRef<typeof import('./apis/index')['ApiFinanceWithdraw']>
@@ -1617,6 +1631,7 @@ declare module '@vue/runtime-core' {
     readonly useField: UnwrapRef<typeof import('vee-validate')['useField']>
     readonly useFileDialog: UnwrapRef<typeof import('@vueuse/core')['useFileDialog']>
     readonly useFileSystemAccess: UnwrapRef<typeof import('@vueuse/core')['useFileSystemAccess']>
+    readonly useFloatingVue: UnwrapRef<typeof import('./composables/useFloatingVue')['useFloatingVue']>
     readonly useFocus: UnwrapRef<typeof import('@vueuse/core')['useFocus']>
     readonly useFocusWithin: UnwrapRef<typeof import('@vueuse/core')['useFocusWithin']>
     readonly useForgetPasswordDialog: UnwrapRef<typeof import('./composables/useDialogForgetPassword')['useForgetPasswordDialog']>

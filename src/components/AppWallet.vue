@@ -153,7 +153,7 @@ function selectCurrency(item: EnumCurrencyKey, hide: () => void) {
     :deep(.base-search.top-search) {
       --tg-base-search-icon-size: var(--tg-font-size-base);
       width: 100%;
-      max-width: 180px;
+      max-width: 100%;
       margin: auto;
       background-color: var(--tg-text-white);
       border-color: var(--tg-text-grey-light);
@@ -197,14 +197,19 @@ function selectCurrency(item: EnumCurrencyKey, hide: () => void) {
       align-items: center;
       padding: var(--tg-spacing-6) var(--tg-spacing-button-padding-horizontal-xs);
       cursor: pointer;
-      --tg-app-amount-width:14ch;
+      --tg-app-amount-width:16ch;
+      --tg-app-amount-max-width: 16ch;
       line-height: 20px;
-      transition: color .2s ease;
+      transition: all .2s ease;
       font-weight: var(--tg-font-weight-semibold);
       &:hover { // ,&.active
-        background-color: var(--tg-secondary-light);
+        // background-color: var(--tg-secondary-light);
         color: var(--tg-text-black);
         // color: var(--tg-popper-hover-color-default);
+      }
+      &:active {
+        transform: scale(0.96);
+        color: var(--tg-text-blue);
       }
 
     }
@@ -223,6 +228,7 @@ function selectCurrency(item: EnumCurrencyKey, hide: () => void) {
     --tg-base-button-font-weight: var(--tg-font-weight-semibold);
     --tg-base-button-text-default-color: var(--tg-popper-color-default);
     margin: var(--tg-spacing-4) 0;
+    width: 232px;
     .icon-wallet-set {
       font-size: var(--tg-font-size-base);
       --tg-icon-color: var(--tg-popper-color-default);

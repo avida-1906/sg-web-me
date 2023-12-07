@@ -29,6 +29,7 @@ const {
   setTrue: showIframe,
   setFalse: hideIframe,
 } = useBoolean(false)
+const { floatingState, toggleFloating } = useFloatingVue()
 
 const currentCurrency = ref<EnumCurrencyKey>()
 const currencyList = ref<EnumCurrencyKey[]>([])
@@ -197,19 +198,28 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
     <!-- 选择货币 -->
     <div class="currency">
       <span>{{ t('balance') }}</span>
-      <VDropdown :distance="6">
-        <div v-if="currentCurrency" class="current-currency">
+      <VDropdown
+        :distance="6"
+        :triggers="[]"
+        :shown="floatingState"
+        :auto-hide="false"
+      >
+        <div
+          v-if="currentCurrency"
+          class="current-currency"
+          @click.stop="toggleFloating"
+        >
           <AppCurrencyIcon show-name :currency-type="currentCurrency" />
           <div class="arrow">
             <BaseIcon name="uni-arrow-down" />
           </div>
         </div>
-        <template #popper="{ hide }">
+        <template #popper>
           <div v-if="currencyList.length" class="scroll-y popper popper-mobile">
             <a
               v-for="c, i in currencyList" :key="i"
               class="currency-types popper-option"
-              @click="hide();onChooseCurrency(c)"
+              @click="toggleFloating();onChooseCurrency(c)"
             >
               <div>
                 <AppCurrencyIcon show-name :currency-type="c" />

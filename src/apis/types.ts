@@ -606,3 +606,23 @@ export interface ISportEventList {
   pgid: string
   v: ISportEventInfo[]
 }
+
+/**
+ * 交易记录，存取款数据
+ */
+export interface PayInfo {
+  /** 订单号 */
+  order_number: string
+  /** 状态：1：成功，2：失败，3，支付中，4：删除，5:待审核 6：取消 */
+  state: 1 | 2 | 3 | 4 | 5 | 6
+  /** 建立时间 */
+  created_at: number
+  /** 金额 */
+  finally_amount: string
+  /** 货币id */
+  currency_id: CurrencyCode
+  /** 货币名称 */
+  currency_name: EnumCurrencyKey
+  /** 交易编号 */
+  trans_no: string
+}

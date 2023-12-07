@@ -40,8 +40,8 @@ password_least_1_number: Deverá conter pelo menos 1 número
 uppercase_lowercase_letter: Deverá conter letras maiúscula(s) e minúscula(s)
 least_8_characters: Deverá conter pelo menos 8 caracteres
 reg_step: Preencha as suas informações detalhadas
-reg_step1: 'Passo 1/2: preencha as suas informações detalhadas'
-reg_step2: 'Passo 2/2: preencha as suas informações detalhadas'
+reg_step1: 'Passo 1/2:  preencha as suas informações detalhadas'
+reg_step2: 'Passo 2/2:  preencha as suas informações detalhadas'
 step_label: Passo
 code_optional: Código (opcional)
 read_and_agree: Li e concordo

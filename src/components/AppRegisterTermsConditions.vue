@@ -17,7 +17,7 @@ const {
   validate: valiChecked,
 } = useField<string>('checkbox', () => {
   if (!checkboxValue.value)
-    return t('agree_terms_conditions')
+    return '请完整阅读条款与条件，然后滚动至末尾将其接受。'
   return ''
 })
 
@@ -229,7 +229,7 @@ onBeforeUnmount(() => {
         :msg="checkedErrorMsg"
         @click.stop="checkClick"
       >
-        {{ t('read_terms_conditions') }}
+        <span class="haha">{{ t('read_terms_conditions') }}</span>
       </BaseCheckBox>
       <BaseButton
         :loading="isLoading"
@@ -257,6 +257,13 @@ onBeforeUnmount(() => {
 </template>
 
 <style lang='scss' scoped>
+.haha {
+  display: inline-block;
+  font-weight: 400;
+  padding-top: 10px;
+  padding-bottom: 7px;
+  box-sizing: content-box;
+}
 .size-base {
   font-size: var(--tg-font-size-base);
 }
@@ -287,7 +294,7 @@ onBeforeUnmount(() => {
   }
   .terms-conditions {
     max-height: 50vh;
-    padding: var(--tg-spacing-20) var(--tg-spacing-12);
+    padding: var(--tg-spacing-16);
     text-align: left;
     border-radius: var(--tg-radius-default);
     background: var(--tg-secondary-grey);
@@ -302,24 +309,25 @@ onBeforeUnmount(() => {
     }
     .terms-conditions-title{
       color: var(--tg-text-white);
-      font-size: var(--tg-font-size-md);
+      font-size: var(--tg-font-size-base);
       font-weight: var(--tg-font-weight-semibold);
       margin: var(--tg-spacing-32) 0 var(--tg-spacing-8);
+      line-height: 24px;
     }
     .terms-conditions-describe {
-      color: var(--tg-text-lightgrey);
-      font-size: var(--tg-font-size-xs);
-      font-weight: var(--tg-font-weight-default);
-      line-height: 22px;
+      color: var(--tg-secondary-light);
+      font-size: var(--tg-font-size-default);
+      font-weight: 400;
+      line-height: 21px;
     }
   }
   .check-box {
     display: flex;
     flex-direction: column;
-    gap: var(--tg-spacing-12);
+    gap: var(--tg-spacing-16);
     --tg-base-checkbox-error-color: var(--tg-text-error-sub);
     --tg-base-checkbox-error-border-color: var(--tg-text-error-sub);
-    --tg-base-checkbox-error-icon-size: var(--tg-font-size-default);
+    --tg-base-checkbox-error-icon-size: var(--tg-font-size-xs);
     --tg-icon-color: var(--tg-text-error-sub);
     --tg-base-checkbox-msg-margin-top: 10px;
   }
