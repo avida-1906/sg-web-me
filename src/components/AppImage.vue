@@ -16,12 +16,13 @@ const { bool: showError, setTrue: setTrueShowError } = useBoolean(false)
     v-bind="$attrs"
     @error-img="setTrueShowError"
   />
-  <BaseIcon
-    v-else
-    :data-title="JSON.stringify($attrs)"
-    class="err-icon"
-    :name="errIcon"
-  />
+  <slot v-else>
+    <BaseIcon
+      :data-title="JSON.stringify($attrs)"
+      class="err-icon"
+      :name="errIcon"
+    />
+  </slot>
 </template>
 
 <style>
