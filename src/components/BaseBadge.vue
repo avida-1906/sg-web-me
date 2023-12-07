@@ -84,10 +84,13 @@ onMounted(() => {
 
 <style lang="scss">
 :root{
-  --tg-badge-font-size: var(--tg-font-size-default);
-  --tg-badge-padding-x:var(--tg-spacing-8);
+  --tg-badge-font-size: var(--tg-font-size-xs);
+  --tg-badge-padding-x: var(--tg-spacing-6);
   --tg-badge-line-height: 1.5;
   --tg-badge-size:8px;
+  --tg-badge-min-width: 1.8em;
+  --tg-badge-height: auto;
+  --tg-badge-border-radius: var(--tg-radius-lg);
 }
 </style>
 
@@ -175,14 +178,15 @@ onMounted(() => {
     overflow: hidden;
     padding: 0 var(--tg-badge-padding-x);
     z-index: auto;
-    min-width: 1.8em;
+    min-width: var(--tg-badge-min-width);
+    height: var(--tg-badge-height);
     color: var(--tg-badge-color);//默认字体颜色
     font-size: var(--tg-badge-font-size);
     line-height: var(--tg-badge-line-height);
     white-space: nowrap;
     text-align: center;
     background: var(--tg-badge-background-color);//默认背景颜色
-    border-radius: var(--tg-radius-lg);
+    border-radius: var(--tg-badge-border-radius);
     box-shadow: 0 0 0 1px var(--tg-badge-background-color);
     .m-number {
       position: relative;
@@ -194,9 +198,9 @@ onMounted(() => {
       }
     }
   }
-  .small-num {
-    padding: 0;
-  }
+  // .small-num {
+  //   padding: 0;
+  // }
   .only-number {
     position: relative;
     top: auto;
