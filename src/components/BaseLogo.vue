@@ -54,15 +54,22 @@ function to() {
         <BaseImage v-else url="/img/logo/logo_dark.svg" />
       </AppImage>
     </BaseAspectRatio>
-    <BaseButton v-show="!showBack" type="text" @click="router.back()">
-      <BaseIcon name="uni-arrowleft-line" />
-      返回
+    <BaseButton
+      v-show="!showBack"
+      style="--tg-base-button-padding-x:var(--tg-spacing-button-padding-vertical-xs) 0;
+        --tg-base-button-padding-y: var(--tg-spacing-button-padding-vertical-xs)
+        var(--tg-spacing-button-padding-horizontal-lg)"
+      type="text"
+      custom-padding
+      @click="router.back()"
+    >
+      <BaseIcon
+        style="font-size: 21px;"
+        name="uni-back"
+      />
     </BaseButton>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.base-logo {
-
-}
 </style>
