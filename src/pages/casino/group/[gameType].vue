@@ -91,7 +91,10 @@ onMounted(() => {
               </h1>
             </div>
             <div class="right">
-              <BaseImage url="/png/casino/group-banner-default.png" />
+              <BaseImage
+                style="height: 100%;"
+                url="/png/casino/group-banner-default.png"
+              />
             </div>
           </div>
         </div>
