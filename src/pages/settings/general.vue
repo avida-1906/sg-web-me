@@ -320,6 +320,7 @@ onMounted(() => {
     <AppSettingsContentItem
       :title="t('phone')"
       :verified="phoneDisabledBtn"
+      :btn-text="t('submit')"
       @submit="numberSubmit"
     >
       <template #top-desc>
@@ -330,12 +331,14 @@ onMounted(() => {
           v-model="paramsData.area_code"
           :options="areaCodeOptions || []"
           style="--tg-base-select-style-padding-x: var(--tg-spacing-6);
-          --tg-base-select-style-padding-y: var(--tg-spacing-7);"
+          --tg-base-select-style-padding-y: var(--tg-spacing-7);
+          --tg-base-select-style-color: var(--tg-text-white)"
         />
       </BaseLabel>
       <BaseLabel :label="t('phone')" must-small>
         <BaseInput
           v-model="paramsData.phone"
+          style="--tg-base-input-style-pad-x: var(--tg-spacing-6);"
           type="number"
         />
       </BaseLabel>
