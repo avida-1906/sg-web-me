@@ -191,7 +191,14 @@ function handleClickMenuItem(item: { name: string; path?: string }) {
                 @click=" hide(); handleClickMenuItem(item)"
               >
                 <div class="menu-btn">
-                  <BaseIcon class="icon-size" :name="item.icon" />
+                  <BaseIcon
+                    class="icon-size"
+                    :style="{
+                      '--tg-icon-color':
+                        getActiveState(item.path) ? 'var(--tg-text-blue)' : '',
+                    }"
+                    :name="item.icon"
+                  />
                   <span>{{ item.title }}</span>
                 </div>
               </div>
@@ -288,39 +295,17 @@ function handleClickMenuItem(item: { name: string; path?: string }) {
 
   .icon-size {
     font-size: var(--tg-font-size-default);
-    margin-right: 5px;
+    margin-right: var(--tg-spacing-6);
   }
 
   .menu-item {
     cursor: pointer;
 
     &:hover {
-      // background-color: var(--tg-text-lightgrey);
-      .menu-btn {
-        color: var(--tg-text-blue);
-      }
-    }
-
-    .menu-btn {
-      display: flex;
-      align-items: center;
-      color: var(--tg-popper-color-default);
-      --tg-icon-color: var(--tg-popper-color-default);
-      padding:
-      var(--tg-spacing-button-padding-vertical-xs)
-      var(--tg-spacing-button-padding-horizontal-xs);
-      transition: color 0.2s ease;
-    }
-
-    &:active {
-      transform: scale(0.95);
-      .menu-btn {
-        color: var(--tg-text-blue);
-      }
-    }
-
-    &:active {
-      transform: scale(0.95);
+      background-color: var(--tg-text-lightgrey);
+      // .menu-btn {
+      //   color: var(--tg-text-blue);
+      // }
     }
     &.active-menu {
       --tg-icon-color: var(--tg-text-blue);
@@ -332,6 +317,17 @@ function handleClickMenuItem(item: { name: string; path?: string }) {
 
       &:hover {
         background: 0 0;
+      }
+    }
+    .menu-btn {
+      display: flex;
+      align-items: center;
+      color: var(--tg-popper-color-default);
+      --tg-icon-color: var(--tg-popper-color-default);
+      padding: 12px 12px;
+      transition: color 0.2s ease;
+      &:active {
+        transform: scale(0.95);
       }
     }
   }

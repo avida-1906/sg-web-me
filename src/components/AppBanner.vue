@@ -94,6 +94,7 @@ await application.allSettled([runMemberBannerList({
         v-for="item in bannerList"
         :key="item.id"
         class="banner-item"
+        :style="{ padding: isMobile ? '0 4px' : '0 8px' }"
         @click="jumpToUrl({ type: item.jump_type, url: item.jump_url })"
       >
         <BaseAspectRatio class="banner-ratio" ratio="320/188">
@@ -147,16 +148,17 @@ await application.allSettled([runMemberBannerList({
 <style lang="scss" scoped>
 .app-banner {
   position: relative;
-  margin-left: -6px;
-  margin-right: -6px;
+  margin-left: -4px;
+  margin-right: -4px;
   .banner-scroll{
     width: 100%;
     display: grid;
+    // gap: 10px;
     grid-auto-flow: column;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
-    --standard-lockup-shadow-offset: 8px;
+    --standard-lockup-shadow-offset: 6px;
     -webkit-mask:
     linear-gradient(
       90deg,transparent 0,
@@ -169,7 +171,6 @@ await application.allSettled([runMemberBannerList({
       position: relative;
       scroll-snap-align: start;
       cursor: pointer;
-      padding: 0 6px;
       .banner-ratio{
         border-radius: var(--tg-radius-md);
         overflow: hidden;
