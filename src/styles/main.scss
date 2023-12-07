@@ -590,16 +590,13 @@ img.error {
         }
       }
 
-      .right {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-
-        img {
-          width: auto;
-          height: 100%;
-          display: block;
-        }
+      .right{
+        width: auto;
+        height: 100%;
+        max-width: 100%;
+        position: absolute;
+        right: 0;
+        top: 0;
       }
     }
   }

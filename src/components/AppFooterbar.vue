@@ -45,6 +45,8 @@ function clearSidebar() {
   rightIsExpand.value && closeRightSidebar()
 }
 function toggleLeftSidebar() {
+  rightIsExpand.value && closeRightSidebar()
+
   if (leftIsExpand.value) {
     closeLeftSidebar()
     setTimeout(() => {
@@ -59,21 +61,24 @@ function toggleLeftSidebar() {
 function goGame(type: Game) {
   clearSidebar()
 
-  switch (type) {
-    case Game.CASINO:
-      router.push('/casino')
-      gameType.value = Game.CASINO
-      break
-    case Game.SPORTS:
-      router.push(`/sports/${getSportsPlatId()}`)
-      gameType.value = Game.SPORTS
-      break
-    default:
-      break
-  }
+  setTimeout(() => {
+    switch (type) {
+      case Game.CASINO:
+        router.push('/casino')
+        gameType.value = Game.CASINO
+        break
+      case Game.SPORTS:
+        router.push(`/sports/${getSportsPlatId()}`)
+        gameType.value = Game.SPORTS
+        break
+      default:
+        break
+    }
+  }, 200)
 }
 function openBar(type: 'bet' | 'bet-slip' | 'chat') {
   leftIsExpand.value && closeLeftSidebar()
+
   if (rightIsExpand.value) {
     closeRightSidebar()
     setTimeout(() => {

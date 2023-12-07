@@ -37,6 +37,7 @@ function to() {
     <BaseAspectRatio
       v-show="showBack"
       ratio="150/53"
+      class="cursor-pointer"
       :style="{
         'max-width': useSmall ? '60px' : '80px',
         'min-width': '20px',
