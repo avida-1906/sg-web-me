@@ -143,7 +143,7 @@ watch(
                   />
                 </div>
                 <div v-if="!dataList.length" class="no-markets">
-                  <BaseEmpty icon="uni-empty-handicap" :description="$t('empty_cap')" />
+                  <BaseEmpty icon="empty-1" :description="$t('empty_cap')" />
                 </div>
                 <template v-if="currentTab !== -1">
                   <template v-for="item in dataList" :key="item.mlid">

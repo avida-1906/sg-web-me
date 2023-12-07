@@ -332,7 +332,7 @@ function onPopperOpen() {
     border-color: var(--tg-border-color-main);
     background-color: var(--tg-secondary-dark);
     box-shadow: var(--tg-box-shadow);
-    color: --tg-base-select-style-color;
+    color: var(--tg-base-select-style-color);
     position: relative;
     border-radius: var(--tg-radius-default);
 

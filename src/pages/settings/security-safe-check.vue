@@ -82,6 +82,7 @@ function generateQRCodeUrl(params: {
       :btn-loading="dualVerifyLoading"
       :verified="doubleVerified"
       :badge="doubleVerified"
+      btn-text="submit"
       @submit="submitDoublePassword"
     >
       <template #top-desc>
@@ -93,7 +94,7 @@ function generateQRCodeUrl(params: {
           :label="t('copy_to_google')"
           :msg="userInfo.google_key"
         />
-        <p class="mt-16">
+        <p class="mt-16" style="line-height: 21px;">
           {{ t('hide_from_others') }}
         </p>
         <div v-if="getQRcodeUrl" class="qr-wrap">
@@ -109,7 +110,7 @@ function generateQRCodeUrl(params: {
             />
           </BaseLabel>
           <div class="mt-16">
-            <BaseLabel :label="t('menu_title_settings_update_safecheck')" must-small>
+            <BaseLabel :label="t('double_check_code')" must-small>
               <BaseInput
                 v-model="doublePassword"
                 :msg="doublePwdErrorMsg"

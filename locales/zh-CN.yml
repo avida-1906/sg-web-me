@@ -1465,7 +1465,7 @@ min_amount_0: 最小金额不可小于等于0
 min_len_6: 最小字符长度为6
 safe_pwd_error: 支付密码格式错误
 save_to_vault: 存入保险库
-draw_vault: 保险库取出
+draw_vault: 保险库取款
 vault_info: 了解更多有关保险库的信息
 progress_level: 进展程度
 send_currency_bonus: 支持人员将按照您所选的货币发送奖金
@@ -1534,3 +1534,4 @@ week_3: 星期三
 week_4: 星期四
 week_5: 星期五
 week_6: 星期六
+double_check_code: 双重验证码
