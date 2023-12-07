@@ -131,6 +131,11 @@ const onSubmit = function () {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      flex-wrap: wrap;
+      .btm-left {
+        line-height: 21px;
+        color: var(--tg-secondary-light);
+      }
       .btm-right{
         display: flex;
         align-items: center;
