@@ -19,10 +19,11 @@ const active = computed(() => route.path === props.menuItem.path)
     <div
       class="menu-item"
       :class="{ active, disabled: menuItem.token && !isLogin }"
+      style="--app-sport-image-error-icon-size:14px;"
     >
       <AppImage
         v-if="menuItem.useCloudImg"
-        style="width: 14px;height: 14px;--app-sport-image-error-icon-size:14px;"
+        style="width: 14px;height: 14px;"
         :url="menuItem.icon" is-cloud
       />
       <BaseIcon

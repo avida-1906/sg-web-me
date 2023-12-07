@@ -27,12 +27,11 @@ function handleClick(item: ListItem) {
             <div class="button" :class="{ active: tab.si === modelValue }">
               <div class="dot" />
               <div class="main">
-                <div class="icon">
+                <div class="icon" style="--app-sport-image-error-icon-size:28px;">
                   <AppImage
                     v-if="tab.useCloudImg"
                     :class="{ 'icon-act': tab.si === modelValue }"
                     :url="tab.icon" is-cloud
-                    style="--app-sport-image-error-icon-size:28px;"
                   />
                   <BaseIcon v-else :name="tab.icon" />
                   <BaseBadge

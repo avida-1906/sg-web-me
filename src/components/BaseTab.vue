@@ -63,10 +63,13 @@ function onClick(tab: TabItem, i: number) {
         >
           <div class="content">
             <slot name="tab" :item="t">
-              <div v-if="t.icon" class="icon">
+              <div
+                v-if="t.icon" class="icon"
+                style="--app-sport-image-error-icon-size:14px;"
+              >
                 <AppImage
                   v-if="useCloudImg"
-                  style="width: 14px;height: 14px;--app-sport-image-error-icon-size:14px;"
+                  style="width: 14px;height: 14px;"
                   :url="t.icon" is-cloud
                 />
                 <BaseIcon v-else :name="t.icon" style="display: block;" />

@@ -118,10 +118,10 @@ watchEffect(() => {
           style="--tg-base-button-text-default-color:var(--tg-text-white);"
           @click="onTitleClick"
         >
-          <div v-if="icon" class="icon">
+          <div v-if="icon" class="icon" style="--app-sport-image-error-icon-size:16px;">
             <AppImage
               v-if="useCloudImg"
-              style="width: 16px;height: 16px;--app-sport-image-error-icon-size:16px;"
+              style="width: 16px;height: 16px;"
               :url="icon" is-cloud
             />
             <BaseIcon v-else :name="icon" />
