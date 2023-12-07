@@ -1,4 +1,9 @@
 <script setup lang="ts">
+enum Game {
+  CASINO = 'casino',
+  SPORTS = 'sports',
+}
+
 const { t } = useI18n()
 const router = useRouter()
 const route = useRoute()
@@ -6,7 +11,6 @@ const { leftIsExpand, openLeftSidebar, closeLeftSidebar } = useLeftSidebar()
 const { isMobile } = storeToRefs(useWindowStore())
 const {
   rightIsExpand,
-  rightContainerIs0,
   currentRightSidebarContent,
   openRightSidebar,
   closeRightSidebar,
@@ -15,134 +19,171 @@ const sportStore = useSportsStore()
 const { isLogin } = storeToRefs(useAppStore())
 const { openRegisterDialog } = useRegisterDialog()
 
-const activeName = ref('')
-const tabbar = ref([
-  { title: 'scan', icon: 'tabbar-menu', name: 'menu', show: true },
-  {
-    title: 'casino',
-    icon: 'tabbar-game',
-    name: 'game',
-    show: true,
-    path: '/casino',
-  },
-  {
-    title: 'menu_title_settings_bets',
-    icon: 'tabbar-bet',
-    name: 'bet',
-    show: true,
-  },
-  { title: 'bet_slip', icon: 'spt-user-bet', name: 'user-bet', show: false },
-  {
-    title: 'sports',
-    icon: 'spt-basketball',
-    name: 'sports',
-    show: true,
-    path: `/sports/${SPORTS_PLAT_ID}`,
-  },
-  { title: 'chat_room', icon: 'tabbar-chat', name: 'chat', show: true },
-])
+const gameType = ref(checkGameType())
 
-const getLinkBar = computed(() => {
-  return (rightIsExpand.value || leftIsExpand.value) ? '' : 'active-bar'
-})
-const getExpandBar = computed(() => {
-  return getLinkBar.value ? '' : activeName.value
-})
+const isCasino = computed(() => gameType.value === Game.CASINO)
+const isSports = computed(() => gameType.value === Game.SPORTS)
+const isRouteCasino = computed(() => route.name?.toString().includes(Game.CASINO))
+const isRouteSports = computed(() => route.name?.toString().includes(Game.SPORTS))
+const isChat = computed(() => rightIsExpand.value
+&& currentRightSidebarContent.value === EnumRightSidebarContent.CHATROOM,
+)
 
-function changeBar(item: { name: string; path?: string }) {
-  const { name, path } = item
-  activeName.value = name
-  switch (name) {
-    case 'menu':
-      rightIsExpand.value && closeRightSidebar()
-      openLeftSidebar()
+function checkGameType() {
+  const isCasino = route.name?.toString().includes(Game.CASINO)
+  const isSports = route.name?.toString().includes(Game.SPORTS)
+  return isCasino ? Game.CASINO : isSports ? Game.SPORTS : ''
+}
+function clearGameType() {
+  gameType.value = ''
+}
+function resetGameType() {
+  gameType.value = checkGameType()
+}
+function clearSidebar() {
+  leftIsExpand.value && closeLeftSidebar()
+  rightIsExpand.value && closeRightSidebar()
+}
+function toggleLeftSidebar() {
+  if (leftIsExpand.value) {
+    closeLeftSidebar()
+    setTimeout(() => {
+      resetGameType()
+    }, 200)
+  }
+  else {
+    openLeftSidebar()
+    clearGameType()
+  }
+}
+function goGame(type: Game) {
+  clearSidebar()
+
+  switch (type) {
+    case Game.CASINO:
+      router.push('/casino')
+      gameType.value = Game.CASINO
       break
-    case 'bet':// 投注
-      leftIsExpand.value && closeLeftSidebar()
+    case Game.SPORTS:
+      router.push(`/sports/${getSportsPlatId()}`)
+      gameType.value = Game.SPORTS
+      break
+    default:
+      break
+  }
+}
+function openBar(type: 'bet' | 'bet-slip' | 'chat') {
+  leftIsExpand.value && closeLeftSidebar()
+  if (rightIsExpand.value) {
+    closeRightSidebar()
+    setTimeout(() => {
+      resetGameType()
+    }, 200)
+
+    return
+  }
+
+  switch (type) {
+    case 'bet':
       openRightSidebar(EnumRightSidebarContent.CASINOBET)
       break
-    case 'user-bet':// 投注单
-      leftIsExpand.value && closeLeftSidebar()
+    case 'bet-slip':
       openRightSidebar(EnumRightSidebarContent.BETTING)
       if (!isLogin.value)
         openRegisterDialog()
       break
     case 'chat':
-      leftIsExpand.value && closeLeftSidebar()
       openRightSidebar(EnumRightSidebarContent.CHATROOM)
       break
-    case 'game':
-    case 'sports':
-      leftIsExpand.value && closeLeftSidebar()
-      rightIsExpand.value && closeRightSidebar()
+    default:
       break
   }
-  if (path)
-    router.push(replaceSportsPlatId(path))
+  clearGameType()
 }
 
-watch(() => activeName.value, (newValue) => {
-  if (newValue === 'game') {
-    tabbar.value[2].show = true
-    tabbar.value[3].show = false
-  }
-  else if (newValue === 'sports') {
-    tabbar.value[3].show = true
-    tabbar.value[2].show = false
-  }
-})
-watch(() => currentRightSidebarContent.value, (newValue) => {
-  if (newValue === 'notification')
-    activeName.value = ''
-})
 watch(() => route.path, () => {
   if (isMobile.value) {
-    rightIsExpand.value && closeRightSidebar()
-    leftIsExpand.value && closeLeftSidebar()
+    clearSidebar()
+    resetGameType()
   }
-})
-
-onMounted(() => {
-  if (leftIsExpand.value)
-    activeName.value = 'menu'
 })
 </script>
 
 <template>
-  <div class="app-footer-bar page-content">
-    <template v-for="item of tabbar" :key="item.icon">
-      <router-link v-if="item.path" v-slot="{ isActive }" :to="item.path" custom>
-        <div class="bar-item" :class="isActive ? getLinkBar : ''">
-          <BaseButton type="text" @click.stop="changeBar(item)">
-            <div class="bar-btn">
-              <BaseIcon class="bar-icon" :name="item.icon" />
-              <span>{{ t(item.title) }}</span>
-            </div>
-          </BaseButton>
-        </div>
-      </router-link>
-      <div
-        v-else
-        v-show="item.show"
-        class="bar-item"
-        :class="{ 'active-bar': item.name === getExpandBar }"
-      >
-        <BaseButton type="text" @click.stop="changeBar(item)">
-          <div class="bar-btn">
-            <BaseBadge
-              v-if="item.name === 'user-bet'"
-              mode="active"
-              :count="sportStore.cart.count"
-              :max="99999"
-            >
-              <BaseIcon class="bar-icon" :name="item.icon" />
-            </BaseBadge>
-            <BaseIcon v-else class="bar-icon" :name="item.icon" />
-            <span>{{ t(item.title) }}</span>
+  <div class="app-footer-bar">
+    <div class="bar-item" :class="{ active: leftIsExpand }">
+      <BaseButton type="text" @click="toggleLeftSidebar">
+        <div class="bar-btn">
+          <div class="bar-icon">
+            <BaseIcon name="tabbar-menu" />
           </div>
-        </BaseButton>
-      </div>
-    </template>
+          <span>{{ t('scan') }}</span>
+        </div>
+      </BaseButton>
+    </div>
+    <div class="bar-item" :class="{ active: isCasino }">
+      <BaseButton type="text" @click="goGame(Game.CASINO)">
+        <div class="bar-btn">
+          <div class="bar-icon">
+            <BaseIcon name="tabbar-game" />
+          </div>
+          <span>{{ t('casino') }}</span>
+        </div>
+      </BaseButton>
+    </div>
+    <div
+      v-show="isRouteCasino || (!isRouteCasino && !isRouteSports)" class="bar-item"
+      :class="{ active: rightIsExpand && !isChat }"
+    >
+      <BaseButton type="text" @click="openBar('bet')">
+        <div class="bar-btn">
+          <div class="bar-icon">
+            <BaseIcon name="tabbar-bet" />
+          </div>
+          <span>{{ t('menu_title_settings_bets') }}</span>
+        </div>
+      </BaseButton>
+    </div>
+    <div
+      v-show="isRouteSports" class="bar-item"
+      :class="{ active: rightIsExpand && !isChat }"
+    >
+      <BaseButton type="text" @click="openBar('bet-slip')">
+        <div class="bar-btn">
+          <BaseBadge
+            mode="active"
+            :count="sportStore.cart.count"
+            :max="99999"
+          >
+            <div class="bar-icon">
+              <BaseIcon name="spt-user-bet" />
+            </div>
+          </BaseBadge>
+
+          <span>{{ t('bet_slip') }}</span>
+        </div>
+      </BaseButton>
+    </div>
+    <div class="bar-item" :class="{ active: isSports }">
+      <BaseButton type="text" @click="goGame(Game.SPORTS)">
+        <div class="bar-btn">
+          <div class="bar-icon">
+            <BaseIcon name="spt-basketball" />
+          </div>
+          <span>{{ t('sports') }}</span>
+        </div>
+      </BaseButton>
+    </div>
+    <div class="bar-item" :class="{ active: isChat }">
+      <BaseButton type="text" @click="openBar('chat')">
+        <div class="bar-btn">
+          <div class="bar-icon">
+            <BaseIcon name="tabbar-chat" />
+          </div>
+          <span>{{ t('chat_room') }}</span>
+        </div>
+      </BaseButton>
+    </div>
     <div :id="EnumSportEndDomID.H5_CART_END_DOM" class="h5-end-dom" />
   </div>
 </template>
@@ -150,16 +191,20 @@ onMounted(() => {
 <style lang="scss" scoped>
 .app-footer-bar {
   --tg-badge-font-size:var(--tg-font-size-xs);
+  background: var(--tg-secondary-dark);
+  width: 100%;
+  height: var(--tg-footerbar-height);
+  padding:0 var(--tg-spacing-16);
+  line-height: 1;
   position: fixed;
   bottom: 0;
   left: 0;
-  height: var(--tg-footerbar-height);
   display: grid;
-  z-index: var(--tg-z-index-30);
   grid-template-columns: repeat(5,1fr);
   justify-items: center;
-  background: var(--tg-secondary-dark);
   overflow: hidden;
+  z-index: var(--tg-z-index-30);
+
   .h5-end-dom {
     position: absolute;
     width: 20px;
@@ -178,6 +223,7 @@ onMounted(() => {
       flex-direction: column;
       flex-wrap: nowrap;
       align-items: center;
+      gap: var(--tg-spacing-4);
       span{
         font-size: var(--tg-font-size-xs);
         color: var(--tg-text-white);
@@ -186,12 +232,12 @@ onMounted(() => {
         line-height: 1;
       }
       .bar-icon{
-        font-size: var(--tg-font-size-md);
+        font-size: var(--tg-font-size-base);
       }
     }
 
   }
-  .active-bar{
+  .active{
     --tg-icon-color: #fff;
     position: relative;
     &:before{
