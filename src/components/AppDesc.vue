@@ -122,7 +122,7 @@ onMounted(() => {
       },
     ]
     setLoadingFalse()
-  }, 3000)
+  }, 0)
 })
 </script>
 
