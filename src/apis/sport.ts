@@ -161,7 +161,7 @@ export function ApiSportEventList(params: {
   /** 是否热门 */
   hot?: number
   /** 联赛id */
-  ci?: string[]
+  ci?: string
   /** 地区id */
   pgid?: string
 }) {

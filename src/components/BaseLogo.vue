@@ -37,18 +37,21 @@ function to() {
     <BaseAspectRatio
       v-show="showBack"
       ratio="150/53"
-      :style="{ 'max-width': useSmall ? '45px' : '95px', 'min-width': '20px' }"
+      :style="{
+        'max-width': useSmall ? '60px' : '80px',
+        'min-width': '20px',
+        '--app-sport-image-error-icon-size': '40px',
+      }"
       @click="to"
     >
       <AppImage
-        :style="{
-          '--app-sport-image-error-icon-size': '40px',
-        }"
         err-icon="img-casino-error"
         is-cloud
-        :url="useSmall ? logoAndIcoAndLoading.logo
-          : logoAndIcoAndLoading.logo"
-      />
+        :url="logoAndIcoAndLoading.logo"
+      >
+        <BaseImage v-if="mode === 'light'" url="/img/logo/logo_light.svg" />
+        <BaseImage v-else url="/img/logo/logo_dark.svg" />
+      </AppImage>
     </BaseAspectRatio>
     <BaseButton v-show="!showBack" type="text" @click="router.back()">
       <BaseIcon name="uni-arrowleft-line" />
