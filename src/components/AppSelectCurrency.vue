@@ -1,19 +1,23 @@
 <script lang="ts" setup>
 import type { CurrencyData } from '~/composables/useCurrencyData'
 
-interface Props {
-  showBalance?: boolean // 是否展示货币余额
-  network?: boolean // 是否显示协议类型
-  type?: number
-}
-
 const props = withDefaults(defineProps<Props>(), {
   showBalance: true,
   network: false,
   type: 3,
+  placeholder: 'search_currency',
+
 })
 
 const emit = defineEmits(['change'])
+
+interface Props {
+  showBalance?: boolean // 是否展示货币余额
+  network?: boolean // 是否显示协议类型
+  type?: number
+  popperClazz?: string
+  placeholder?: string
+}
 
 // 下拉搜索是否显示
 const { bool: isMenuShown } = useBoolean(false)
@@ -109,14 +113,13 @@ onMounted(() => {
         </BaseButton>
       </div>
       <template #popper="{ hide }">
-        <div class="dropdown-popper need-pad-y">
+        <div class="dropdown-popper need-pad-y" :class="[popperClazz]">
           <div class="popper-top">
             <BaseSearch
               v-model="searchValue"
               class="top-search"
               :clearable="searchValue?.length > 0"
-              :style="{ 'max-width': showBalance ? '180px' : '140px' }"
-              :place-holder="$t('search_currency')"
+              :place-holder="$t(placeholder)"
               shape="square"
               white-style
             />
@@ -155,6 +158,12 @@ onMounted(() => {
     />
   </div>
 </template>
+
+<style>
+:root {
+  --tg-app-select-currency-poptop-width: max-content;
+}
+</style>
 
 <style lang="scss" scoped>
 .app-wallet {
@@ -206,16 +215,15 @@ onMounted(() => {
     max-width: inherit;
     display: flex;
     flex-direction: column;
-    width: max-content;
 
     .popper-top {
         padding: 4px 12px;
         padding-bottom: 8px;
+        width: var(--tg-app-select-currency-poptop-width);
 
         :deep(.base-search.top-search) {
             --tg-base-search-icon-size: var(--tg-font-size-base);
             width: 100%;
-            max-width: 140px;
             margin: auto;
             padding: 0 var(--tg-spacing-10);
             --tg-icon-color: var(--tg-secondary-light);

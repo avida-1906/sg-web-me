@@ -177,6 +177,7 @@ function copyClick(msg: string) {
           button:last-child {
             border-bottom-left-radius: 0;
             border-top-left-radius: 0;
+            padding-right: 16px;
           }
           button {
             height: 100%;
@@ -198,6 +199,8 @@ function copyClick(msg: string) {
         .label-left-wrapper {
           display: inline-flex;
           width: 100%;
+          line-height: 14px;
+          padding-bottom: 4px;
         }
       }
     }
