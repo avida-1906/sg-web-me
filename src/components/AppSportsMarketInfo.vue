@@ -534,7 +534,7 @@ onBeforeUnmount(() => {
       gap: var(--tg-spacing-8);
       .count-time{
         display: inline-block;
-        width: 5ch;
+        width: 4.5ch;
         font-size: var(--tg-font-size-default);
         color: var(--tg-text-white);
       }
@@ -569,7 +569,6 @@ onBeforeUnmount(() => {
 
         .total {
           color: var(--tg-text-warn);
-          margin-left: var(--tg-spacing-8);
         }
       }
     }
@@ -762,10 +761,6 @@ onBeforeUnmount(() => {
   justify-content: center;
   align-items: center;
   justify-self: flex-end;
-
-  .text-btn {
-    margin-left: var(--tg-spacing-12);
-  }
 
   .options-wrapper {
     display: flex;
