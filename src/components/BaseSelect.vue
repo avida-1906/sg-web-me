@@ -267,7 +267,9 @@ function onPopperOpen() {
   font-size: var(--tg-font-size-default);
   color: var(--tg-popper-color-default);
   font-weight: var(--tg-font-weight-semibold);
-
+  &:visited {
+    color: var(--tg-popper-color-default);
+  }
   &:hover {
     // background-color: var(--tg-text-lightgrey);
     // color: var(--tg-popper-hover-color-default);
