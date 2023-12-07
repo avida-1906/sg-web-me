@@ -132,7 +132,8 @@ watchEffect(() => {
       <div v-if="showArrow" class="arrows">
         <BaseButton
           type="round-line-left" size="none"
-          :disabled="x <= 0" @click="prevPage"
+          :disabled="x <= 0" style="width: 51px;"
+          @click="prevPage"
         >
           <div class="a-inner left">
             <BaseIcon class="left" name="uni-arrowleft-line" />
