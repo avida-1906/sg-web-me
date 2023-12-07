@@ -280,10 +280,10 @@ function onPopperOpen() {
     color: #000;
   }
 
-  &.active {
-    --tg-icon-color: var(--tg-base-select-popper-option-active-color);
-    color: var(--tg-base-select-popper-option-active-color);
-  }
+  // &.active {
+  //   --tg-icon-color: var(--tg-base-select-popper-option-active-color);
+  //   color: var(--tg-base-select-popper-option-active-color);
+  // }
   &.disabled:not(.active){
     opacity: 0.5;
     cursor: not-allowed;
