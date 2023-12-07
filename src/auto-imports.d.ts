@@ -439,6 +439,7 @@ declare global {
   const useField: typeof import('vee-validate')['useField']
   const useFileDialog: typeof import('@vueuse/core')['useFileDialog']
   const useFileSystemAccess: typeof import('@vueuse/core')['useFileSystemAccess']
+  const useFloatingVue: typeof import('./composables/useFloatingVue')['useFloatingVue']
   const useFocus: typeof import('@vueuse/core')['useFocus']
   const useFocusWithin: typeof import('@vueuse/core')['useFocusWithin']
   const useForgetPasswordDialog: typeof import('./composables/useDialogForgetPassword')['useForgetPasswordDialog']
@@ -1037,6 +1038,7 @@ declare module 'vue' {
     readonly useField: UnwrapRef<typeof import('vee-validate')['useField']>
     readonly useFileDialog: UnwrapRef<typeof import('@vueuse/core')['useFileDialog']>
     readonly useFileSystemAccess: UnwrapRef<typeof import('@vueuse/core')['useFileSystemAccess']>
+    readonly useFloatingVue: UnwrapRef<typeof import('./composables/useFloatingVue')['useFloatingVue']>
     readonly useFocus: UnwrapRef<typeof import('@vueuse/core')['useFocus']>
     readonly useFocusWithin: UnwrapRef<typeof import('@vueuse/core')['useFocusWithin']>
     readonly useForgetPasswordDialog: UnwrapRef<typeof import('./composables/useDialogForgetPassword')['useForgetPasswordDialog']>
@@ -1629,6 +1631,7 @@ declare module '@vue/runtime-core' {
     readonly useField: UnwrapRef<typeof import('vee-validate')['useField']>
     readonly useFileDialog: UnwrapRef<typeof import('@vueuse/core')['useFileDialog']>
     readonly useFileSystemAccess: UnwrapRef<typeof import('@vueuse/core')['useFileSystemAccess']>
+    readonly useFloatingVue: UnwrapRef<typeof import('./composables/useFloatingVue')['useFloatingVue']>
     readonly useFocus: UnwrapRef<typeof import('@vueuse/core')['useFocus']>
     readonly useFocusWithin: UnwrapRef<typeof import('@vueuse/core')['useFocusWithin']>
     readonly useForgetPasswordDialog: UnwrapRef<typeof import('./composables/useDialogForgetPassword')['useForgetPasswordDialog']>
