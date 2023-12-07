@@ -280,7 +280,9 @@ onBeforeUnmount(() => {
             >
               {{ t('sports_status_live') }}
             </div>
-            <span class="text">{{ eventTime }} {{ data.rbtd }}</span>
+            <span class="text">
+              <span class="count-time">{{ eventTime }} </span>
+              {{ data.rbtd }}</span>
           </template>
 
           <!-- H5时比分显示在这里 -->
@@ -525,6 +527,12 @@ onBeforeUnmount(() => {
       display: flex;
       align-items: center;
       gap: var(--tg-spacing-8);
+      .count-time{
+        display: inline-block;
+        width: 5ch;
+        font-size: var(--tg-font-size-default);
+        color: var(--tg-text-white);
+      }
 
       .status {
         display: inline-flex;

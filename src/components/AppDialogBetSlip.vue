@@ -102,7 +102,7 @@ function openCasinoGame() {
         </BaseButton>
       </div> -->
       <div class="des">
-        <span>{{ t('investor') }}：***test</span><br>
+        <span>{{ t('investor') }}：{{ casinoData.username }}</span><br>
         <span class="time">{{ t('on') }} {{ timeToFormat(betTime) }}</span>
       </div>
     </div>

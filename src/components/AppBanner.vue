@@ -14,7 +14,7 @@ const props = withDefaults(defineProps<Props>(), {
 const router = useRouter()
 const { bool: showLeft, setBool: setShowLeftBool } = useBoolean(false)
 const { bool: showRight, setBool: setShowRightBool } = useBoolean(true)
-const { appContentWidth } = storeToRefs(useWindowStore())
+const { isMobile, appContentWidth } = storeToRefs(useWindowStore())
 const {
   runAsync: runMemberBannerList,
   data: bannerList,
@@ -80,7 +80,10 @@ await application.allSettled([runMemberBannerList({
 </script>
 
 <template>
-  <div v-if="bannerList?.length" class="app-banner mt-24">
+  <div
+    v-if="bannerList?.length" class="app-banner"
+    :class="[isMobile ? 'mt-12' : 'mt-24']"
+  >
     <div
       ref="scrollRef"
       class="banner-scroll scroll-x hide-scrollbar"
@@ -241,5 +244,8 @@ await application.allSettled([runMemberBannerList({
   .arrow-right{
     right: -30px;
   }
+}
+.mt-12{
+  margin-top: 12px;
 }
 </style>
