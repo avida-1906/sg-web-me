@@ -33,9 +33,7 @@ watch(
       :url="logoAndIcoAndLoading.loadingImgUrl"
     />
     <template v-else>
-      <div class="type1 animate-prop svg-box" />
-      <div class="svg-box animate-prop type2" />
-      <div class="svg-box animate-prop type3" />
+      <BaseImage class="default-loading" url="/webp/page-loading.webp" />
     </template>
   </section>
 </template>
@@ -53,6 +51,9 @@ watch(
 </style>
 
 <style lang="scss" scoped>
+.default-loading {
+  width: 120px;
+}
 .tg-base-loading {
   font-size: var(--tg-font-size-md);
   display: flex;
