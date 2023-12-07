@@ -274,6 +274,7 @@ function onPopperOpen() {
   }
   &:active {
     color: var(--tg-popper-hover-color-default);
+    transform: scale(0.96);
   }
   &.is-pop-not-mobile:hover {
     background-color: var(--tg-text-lightgrey);
