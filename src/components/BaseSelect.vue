@@ -33,6 +33,7 @@ const {
 } = useBoolean(false)
 const parent = ref<HTMLElement | null>(null)
 const { width } = useElementSize(parent)
+const { isMobile } = storeToRefs(useWindowStore())
 
 const error = computed(() => !!props.msg)
 const selectedOption = computed(() =>
@@ -97,7 +98,9 @@ function onPopperOpen() {
         <span>{{ msg }}</span>
       </div>
       <template #popper="{ hide }">
-        <div class="scroll-y need-pad-y popper-wrap">
+        <div
+          class="scroll-y need-pad-y popper-wrap"
+        >
           <a
             v-for="item, i in options" :key="i"
             :class="{
@@ -106,6 +109,8 @@ function onPopperOpen() {
               'active': item.value === modelValue,
               'bankcard-disable': item.state === 2,
               'disabled': item.disabled,
+              'is-pop-mobile': isMobile,
+              'is-pop-not-mobile': !isMobile,
             }"
             @click="onClickPopperItem(item, hide)"
           >
@@ -221,11 +226,14 @@ function onPopperOpen() {
   &:hover:not(.disabled) {
     color: var(--tg-base-select-popper-label-hover-color);
     background-color: var(--tg-base-select-hover-bg-color);
-    --tg-icon-color: var(--tg-text-white)
+    --tg-icon-color: var(--tg-text-white);
   }
 
-  &:active {
-    // transform: scale(0.96);
+  &:active:not(.disabled) {
+    transform: scale(0.96);
+    color: var(--tg-base-select-popper-label-hover-color);
+    background-color: var(--tg-base-select-hover-bg-color);
+    --tg-icon-color: var(--tg-text-white);
   }
   &.disabled{
     opacity: 0.5;
@@ -262,7 +270,14 @@ function onPopperOpen() {
 
   &:hover {
     // background-color: var(--tg-text-lightgrey);
+    // color: var(--tg-popper-hover-color-default);
+  }
+  &:active {
     color: var(--tg-popper-hover-color-default);
+  }
+  &.is-pop-not-mobile:hover {
+    background-color: var(--tg-text-lightgrey);
+    color: #000;
   }
 
   &.active {

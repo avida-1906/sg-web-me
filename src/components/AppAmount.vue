@@ -18,7 +18,8 @@ const props = defineProps<Props>()
 
 <style>
 :root{
-  --tg-app-amount-width: auto
+  --tg-app-amount-width: auto;
+  --tg-app-amount-max-width: 14ch;
 }
 </style>
 
@@ -38,7 +39,7 @@ const props = defineProps<Props>()
   text-overflow: ellipsis;
   font-variant-numeric: tabular-nums;
   margin-right: var(--tg-spacing-4);
-  max-width: 14ch;
+  max-width: var(--tg-app-amount-max-width);
   font-size: var(--tg-font-size-default);
   font-weight: var(--tg-font-weight-semibold);
 }

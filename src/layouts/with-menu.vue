@@ -192,6 +192,7 @@ watch(route, (val) => {
 <style lang="scss" scoped>
 .settran {
   --tg-base-menu-item-active-bg: transparent;
+  --tg-base-menu-item-hover-active-bg: transparent;
 }
 .menu-tabs {
   display: flex;
