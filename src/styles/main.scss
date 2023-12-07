@@ -231,6 +231,14 @@ img.error {
 
 .loading-content-height {
   height: calc(100vh - var(--tg-header-height));
+  padding-top: 203px
+}
+
+@media screen and (max-width: 767px) {
+  .loading-content-height {
+    height: calc(100vh - var(--tg-header-height) - var(--tg-footerbar-height));
+    padding-top: 90px;
+  }
 }
 
 .home-container {

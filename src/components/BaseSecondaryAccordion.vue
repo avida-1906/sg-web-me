@@ -193,7 +193,7 @@ function toggle() {
       align-items: flex-start;
       justify-content: center;
       gap: var(--tg-spacing-8);
-      color: var(--tg-text-white);
+      color: var(--title-color);
       > span {
         display: inline-flex;
         align-items: center;
