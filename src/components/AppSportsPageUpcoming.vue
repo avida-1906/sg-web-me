@@ -9,6 +9,10 @@ const sportsStore = useSportsStore()
 const { upcomingNavs, currentUpcomingNav, allSportsCount } = storeToRefs(sportsStore)
 const { bool: isStandard } = useBoolean(true)
 const {
+  bool: switchLoading, setTrue: setLoadingTrue,
+  setFalse: setLoadingFalse,
+} = useBoolean(true)
+const {
   VITE_SPORT_EVENT_PAGE_SIZE, VITE_SPORT_EVENT_PAGE_SIZE_MAX,
   VITE_SPORT_DEFAULT_MARKET_TYPE,
 } = getEnv()
@@ -68,6 +72,9 @@ const { run, runAsync } = useRequest(ApiSportEventList,
         list.value = [...cloneDeep(list.value), ...res.d]
       }
     },
+    onAfter() {
+      setLoadingFalse()
+    },
   })
 const curTotal = computed(() => list.value.length)
 const leagueName = computed(() => {
@@ -118,6 +125,7 @@ function onBaseTypeChange(v: EnumSportMarketType) {
 }
 
 watch(currentUpcomingNav, () => {
+  setLoadingTrue()
   reset()
   getData()
   startUpcoming()
@@ -159,11 +167,14 @@ if (!props.onPage) {
     <AppSportsTab v-model="currentUpcomingNav" :list="upcomingNavs" />
 
     <div class="market-wrapper">
-      <AppSportsMarket
-        :is-standard="isStandard" show-breadcrumb
-        :league-name="leagueName" :event-count="total" :base-type="baseType"
-        :event-list="list" auto-show :show-more="curTotal < total" @more="loadMore"
-      />
+      <AppSportsMarketSkeleton v-if="switchLoading" :num="5" />
+      <template v-else>
+        <AppSportsMarket
+          :is-standard="isStandard" show-breadcrumb
+          :league-name="leagueName" :event-count="total" :base-type="baseType"
+          :event-list="list" auto-show :show-more="curTotal < total" @more="loadMore"
+        />
+      </template>
     </div>
 
     <div v-if="!onPage" class="layout-spacing">
