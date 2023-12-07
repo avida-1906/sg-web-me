@@ -51,7 +51,11 @@ watch(() => props.columns, () => {
             >
               <VTooltip v-if="item.isTips" placement="top" :triggers="['click', 'hover']">
                 <div class="center stealth-box">
-                  <BaseIcon name="uni-tips" />
+                  <BaseIcon
+                    name="uni-tips"
+                    style="--tg-icon-color:var(--tg-text-grey);
+                    margin-right: var(--tg-spacing-3);"
+                  />
                 </div>
                 <template #popper>
                   <div class="tiny-menu-item-title">
