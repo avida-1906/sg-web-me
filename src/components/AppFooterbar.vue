@@ -21,8 +21,8 @@ const { openRegisterDialog } = useRegisterDialog()
 
 const gameType = ref(checkGameType())
 
-const isCasino = computed(() => gameType.value === Game.CASINO)
-const isSports = computed(() => gameType.value === Game.SPORTS)
+const isCasino = computed(() => gameType.value === Game.CASINO && !rightIsExpand.value)
+const isSports = computed(() => gameType.value === Game.SPORTS && !rightIsExpand.value)
 const isRouteCasino = computed(() => route.name?.toString().includes(Game.CASINO))
 const isRouteSports = computed(() => route.name?.toString().includes(Game.SPORTS))
 const isChat = computed(() => rightIsExpand.value

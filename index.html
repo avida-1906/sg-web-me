@@ -43,16 +43,6 @@
       ttq.page();
     }(window, document, 'ttq');
   </script>
-</head>
-
-<body class="font-sans">
-  <div id="app"></div>
-  <div id="full-loading">
-    <img src="/webp/loading.webp" onerror="this.src = ''" />
-  </div>
-  <div data-portal="true"></div>
-  <script type="module" src="/src/main.ts"></script>
-  <noscript>This website requires JavaScript to function properly. Please enable JavaScript to continue.</noscript>
   <script>
     // 阻止双指放大
     document.addEventListener('gesturestart', (event) => {
@@ -67,11 +57,22 @@
     })
     document.addEventListener('touchend', (event) => {
       const now = (new Date()).getTime()
-      if (now - lastTouchEnd <= 300)
+      if (now - lastTouchEnd <= 500)
         event.preventDefault()
       lastTouchEnd = now
     }, false)
   </script>
+</head>
+
+<body class="font-sans">
+  <div id="app"></div>
+  <div id="full-loading">
+    <img src="/webp/loading.webp" onerror="this.src = ''" />
+  </div>
+  <div data-portal="true"></div>
+  <script type="module" src="/src/main.ts"></script>
+  <noscript>This website requires JavaScript to function properly. Please enable JavaScript to continue.</noscript>
+
   <script>
       (function (document) {
         var checkCount = 0,
