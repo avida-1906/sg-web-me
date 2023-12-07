@@ -214,6 +214,139 @@ onBeforeUnmount(() => {
           <p>Suspension and Closure by Stake</p>
           <p>4.19 Stake shall be entitled to close or suspend Your Stake Account if:</p>
           <p>a) Stake considers that You are using or have used the Website in a fraudulent or collusive manner or for illegal and/or unlawful or improper purposes;</p>
+          <p>b) Stake considers that You are using or have used the Website in an unfair manner, have deliberately cheated or taken unfair advantage of Stake or any of its customers or if Your Stake Account is being used for the benefit of a third party;</p>
+          <p>c) Stake is requested to do so by the police, any regulatory authority or court or if Stake is unable to verify Your identity, profession or source of funds as is expressly required by the applicable regulations;</p>
+          <p>d) You are in breach of these Terms and Conditions, the applicable regulations or the fair use of our services, or Stake has concerns that You are a compulsive problem gambler without being self-excluded;</p>
+          <p>e) Stake considers that any of the events referred to in (a) to (e) above may have occurred or are likely to occur.</p>
+          <p>4.20 If Stake closes or suspends Your Stake Account for any of the reasons referred to in 4.19, You shall, to the extent permitted by applicable laws, be liable for any and all claims, direct losses, liabilities, damages, costs and expenses incurred or suffered by Stake (together, the “Claims”) arising therefrom and shall, to the extent permitted by applicable laws, indemnify and hold Stake harmless on demand for such Claims.</p>
+          <p>4.21 In the circumstances referred to in 4.19, Stake shall also be entitled to void any bets placed by You following such actions by You or to withhold and/or retain any and all amounts which would otherwise have been paid or payable to you (including any winnings) to the extent permitted by law.</p>
+          <p>4.22 We reserve the right to suspend or terminate your account at any time, with or without notice, if we suspect that you account has been compromised or is being used in breach of our Terms of Service.</p>
+          <p>4.23 If Stake closes Your Stake Account it will inform You of the available means to withdraw the remaining balance on Your Stake Account.</p>
+          <p>Our Liability</p>
+          <p>4.24 We take no responsibility for any loss or damage that you may suffer as a result of unauthorised access to your account.</p>
+          <p>4.25 We take no responsibility for any loss or damage that you may suffer as a result of your failure to keep your login secure and private.</p>
+        </div>
+
+        <div class="terms-conditions-title">
+          5. YOUR WARRANTIES
+        </div>
+        <div class="terms-conditions-describe">
+          <p>5.1 Prior to your use of the Service and on an ongoing basis you represent, warrant, covenant and agree that:</p>
+          <p>Capacity</p>
+          <p>a) You are over 18 or such other legal age of majority as determined by any laws which are applicable to you, whichever age is greater;</p>
+          <p>b) You have full capacity to enter into a legally binding agreement with us and you are not restricted by any form of limited legal capacity;</p>
+          <p>c) You are not diagnosed or classified as a compulsive or problem gambler;</p>
+          <p>d) You are not currently self-excluded from any gambling site or gambling premises. You will inform Stake immediately if you enter into a self-exclusion agreement with any gambling provider.</p>
+          <p>Jurisdiction</p>
+          <p>e) You are accessing stake.com from a jurisdiction in which it is legal to do so;</p>
+          <p>f) You will not use our services while located in any jurisdiction that prohibits the placing and/or accepting of bets online and/or playing casino and/or live games;</p>
+          <p>g) You accept and acknowledge that we reserve the right to detect and prevent the use of prohibited techniques, including but not limited to fraudulent transaction detection, automated registration and signup, gameplay and screen capture techniques. These steps may include, but are not limited to, examination of Players device properties, detection of geo-location and IP masking, transactions and blockchain analysis;</p>
+          <p>Funds & Tax</p>
+          <p>h) You are solely responsible for reporting and accounting for any taxes applicable to you under relevant laws for any winnings that you receive from us;</p>
+          <p>i) You are solely responsible for any applicable taxes which may be payable on cryptocurrency awarded to you through your using the Service;</p>
+          <p>j) There is a risk of losing cryptocurrency when using the Service and that Stake has no responsibility to you for any such loss;</p>
+          <p>k) You will not deposit funds which originate from criminal or other unauthorised activity;</p>
+          <p>l) You will not deposit funds using payment methods that do not belong to You;</p>
+          <p>m) All the funds deposited shall exclusively be used for Services available on the Website;</p>
+          <p>n) You will not withdraw or try to withdraw to a payment methods that do not belong to You;</p>
+          <p>o) You understand that by participating in the Services available on the Website, You take the risk of losing money deposited.</p>
+          <p>p) You accept and acknowledge that the value of cryptocurrency can change dramatically depending on the market value;</p>
+          <p>q) Stake shall not be treated as a financial institution;</p>
+          <p>Others</p>
+          <p>r) Your use of the Service is at your sole option, discretion and risk;</p>
+          <p>s) You will not conduct criminal activities through the Stake Account;</p>
+          <p>t) All information that you provide to us during the term of validity of this agreement is true, complete, correct, and that you shall immediately notify us of any change of such information;</p>
+          <p>u) You participate in the Games strictly in your personal and non-professional capacity and participate for recreational and entertainment purposes only;</p>
+          <p>v) You participate in the Games on your own behalf and not on the behalf of any other person;</p>
+          <p>w) You have only one account with us and agree to not to open any more accounts with us;</p>
+          <p>x) The telecommunications networks and Internet access services required for you to access and use the Service are entirely beyond the control of Stake and Stake shall have no liability whatsoever for any outages, slowness, capacity constraints or other deficiencies affecting the same;</p>
+          <p>y) You will not be involved in any fraudulent, collusive, fixing or other unlawful activity in relation to Your or any third parties’ participation in any of the games and/or services on the Website, and shall not use any software-assisted methods or techniques or hardware devices for Your participation in any of the games and/or services on the Website;</p>
+          <p>z) If you have access to non-public information related to an event or that can impact the outcome of an event or bet type, You will not bet on any event overseen by the relevant sport/event governing body;</p>
+          <p>aa) If You are an athlete, coach, manager, owner, referee, or anyone with sufficient authority to influence the outcome of an event You will not bet on any event overseen by the relevant sport or event of the governing body;</p>
+          <p>bb) If You are an owner (a person who is a direct or indirect legal or beneficial owner of 10 percent or greater) of a sport governing body or member team You will not bet on any event overseen by the sport governing body or any event in which a member team of that sport or event governing body participates;</p>
+          <p>cc) If You are involved in a sport or event You will not be involved in compiling betting odds for the competition in which You are involved.</p>
+          <p>5.2 In case of a breach of any of the representations, warrants or covenants mentioned in 5.1, Stake reserves the right to close or suspend Your Stake account at its own discretion and void any bets to the extent applicable by law.</p>
+        </div>
+
+        <div class="terms-conditions-title">
+          6. STAKE WARRANTIES
+        </div>
+        <div class="terms-conditions-describe">
+          <p>6.1 Stake warrants that they will:</p>
+          <p>a) manage funds belonging to the Player in a secure and appropriate manner; and</p>
+          <p>b) manage personal information pertaining to the Player in accordance with applicable law, and in accordance with its Privacy Policy.</p>
+          <p>6.2 The software is provided "as is" without any warranties, conditions, undertakings or representations, express or implied, statutory or otherwise. Stake hereby excludes all implied terms, representations, conditions and warranties (including any of merchantability, merchantable quality, satisfactory quality and fitness for any particular purpose). Stake does not warrant that: (i) the Website and Services will meet Your requirements; (ii) the Website and Services will not infringe any third party’s intellectual property rights; (iii) the operation of the Website and Services will be error-free or uninterrupted; (iv) any defects in the Website and Services will be corrected; or (v) the Website or the servers are virus-free.</p>
+          <p>
+            6.3 Stake can be contacted by email on
+            support@stake.com
+            or on its live chat 24/7. The live chat is available when logged into Your Stake Account. In the event that Stake, in its sole discretion, deems that Your behaviour, via live chat, email, or otherwise, has been abusive or derogatory towards any of Stake’s or its Affiliates or third-party service provider’s employees, Stake shall have the right to block or terminate Your Stake Account.
+          </p>
+        </div>
+
+        <div class="terms-conditions-title">
+          7. DEPOSITS
+        </div>
+        <div class="terms-conditions-describe">
+          <p>7.1 You may participate in any Game only if you have sufficient funds on your Stake Account for such participation. For that purpose you shall use the payment methods available on the Website to deposit your funds. Stake will not give you any credit whatsoever for participation in any Game.</p>
+          <p>
+            7.2 You must deposit funds to Your Stake Account using the payment methods available at
+            www.stake.com
+            .
+          </p>
+          <p>7.3 You shall ensure that funds that You deposit into your Stake Account are not tainted with any illegality and, in particular, do not originate from any illegal activity or source.</p>
+          <p>7.4 To deposit funds into your Stake Account, you can transfer funds from crypto-wallets under your control or through any other payment methods available on stake.com. Deposits can only be made with your own funds.</p>
+          <p>7.5 You should only deposit money into Your account for the purpose of You using such money to place bets/wager on the Website. Stake is entitled to suspend or close Your account if we reasonably believe that You are depositing funds without any intention to place sporting and/or gaming wagers. In such circumstances we may also report this activity to relevant authorities.</p>
+          <p>7.6 You acknowledge and understand that funding Your Stake Account can only be funded by payment methods owned by You.</p>
+          <p>7.7 You further understand, agree and acknowledge that if Stake discovers, detects and/or identifies that You:</p>
+          <p>a) Funded/are funding Your Stake Account using third party payment methods; and/or</p>
+          <p>b) Funded/are funding Your Stake Account with funds that are tainted with illegality, such activity will be deemed as constituting a violation of the Terms of Service amounting to fraud, and by extension:</p>
+          <p>i) Stake reserves the right, at its own discretion, to suspend or close Your Stake Account; and</p>
+          <p>ii) Stake reserves the right, at its own discretion, to cancel, reverse or adjust any transactions and to forfeit funds deposited and/or winnings generated from the deposited funds.</p>
+          <p>7.8 Stake can set at its own discretion a minimum deposit amount. The minimum deposit amount can be changed at all time at Stake’s discretion and will be identified on the website. Please be aware that depending on the payment method used by You, additional fees might be charged by the payment providers.</p>
+          <p>7.9 The payment methods made available to you and the minimum and maximum deposit limit can be found in the wallet section on the Site. Applicable service fees may be applied and changed. Some payment methods may not be available in all countries.</p>
+          <p>7.10 Deposits are immediately processed and the updated balance is shown in the Stake Account instantly whenever a payment service provider is used. Stake does not take responsibility for any delays caused due to its payment system or due to delays caused by any third party. Note that:</p>
+          <p>a) some payment methods may include additional fees. In this case, the fee will be clearly visible for you in the cashier.</p>
+          <p>b) your bank or payment service provider may charge you additional fees for deposits of currency conversion according to their terms and conditions and your user agreement.</p>
+          <p>7.11 We reserve the right to use additional procedures and means to verify your identity when processing deposits into your Stake Account.</p>
+          <p>7.12 Funds cannot be transferred from your Stake Account to the Stake Account of another Player.</p>
+          <p>
+            7.13 Stake can refuse any deposits at its own discretion. Users that have their accounts blocked, or suspended shall refrain from depositing at
+            www.stake.com
+            .
+          </p>
+          <p>7.14 In the event that a player tries to deposit when his account is blocked or suspended, Stake will have the right to retain the funds.</p>
+        </div>
+
+        <div class="terms-conditions-title">
+          8. WITHDRAWALS
+        </div>
+        <div class="terms-conditions-describe">
+          <p>8.1 Stake reserves the right to refuse any withdrawal by a Player from their Stake Account until:</p>
+          <p>a) the Player’s identity has been verified and Stake has confirmed the withdrawal is being made by a holder of the Stake Account;</p>
+          <p>b) the withdrawal is being transferred to an account of which the Player is a legal holder;</p>
+          <p>c) any additional information requested by Stake has been provided; and</p>
+          <p>d) the Player has complied with the minimum wager requirement for each deposit.</p>
+          <p>8.2 Stake reserves all rights to investigate Your account and gaming activity. If Stake reasonably suspects that Your account or gaming activity has violated these terms of service or applicable laws or regulations, it may, in its sole discretion, delay or decline further deposits, withdrawals and/or game play while it conducts its investigation. You acknowledge and accept that Stake may not be in a position to provide an explanation as to the nature of its investigation.</p>
+          <p>8.3 All withdrawals must be done through the same payment method chosen by you when placing a deposit, unless we decide otherwise or are unable to do so. If you deposit using a number of payment methods, we reserve the right to split your withdrawal across such payment methods and process each part through the respective payment method at our discretion and in accordance with anti-money laundering policies and regulation.</p>
+          <p>8.4 If we mistakenly credit your Stake Account with winnings that do not belong to you, whether due to a technical error in the pay-tables, or human error or otherwise, the amount will remain our property and will be deducted from your Stake Account. If you have withdrawn funds that do not belong to you prior to us becoming aware of the error, the mistakenly paid amount will (without prejudice to other remedies and actions that may be available at law) constitute a debt owed by you to us. In the event of an incorrect crediting, you are obliged to notify us immediately by email.</p>
+          <p>FIAT Withdrawals</p>
+          <p>8.5 You need to wager 100% of the value of your deposit in order to request a FIAT withdrawal.</p>
+          <p>8.6 Withdrawals from Stake Account are made through payments addressed to the Player or transferred to a bank account held in the name of the Player, as advised to Stake by the Player. Before processing any withdrawal, Stake reserves the right to perform enhanced due diligence where deemed necessary.</p>
+          <p>8.7 The minimum withdrawal amount will be identified on the website when performing a withdrawal.</p>
+          <p>8.8 If You have multiple withdrawals pending, Stake reserves the right to reject all withdrawals and request You to perform one withdrawal with the sum of all multiple withdrawals.</p>
+          <p>8.9 Stake will not charge You any fees on withdrawals. However, You are advised to check if the payment method You use imposes any additional charges. Stake will not be responsible for any commissions or processing fees charged to You by third parties such as Your bank as this is beyond our control.</p>
+          <p>Crypto Withdrawals</p>
+          <p>8.10 Crypto withdrawals will be made to your stated cryptocurrency wallet address when making a valid withdrawal request.</p>
+          <p>
+            8.11 Stake reserves the right to carry out additional KYC verification procedures for any withdrawal. Players who wish to recover funds held in a closed, locked or excluded account, are advised to contact
+            support@stake.com
+            .
+          </p>
+          <p>8.12 All transactions shall be checked in order to prevent money laundering. If a player becomes aware of any suspicious activity relating to any of the Games of the Website, s/he must report this to Stake immediately. Stake may suspend, block or close a Stake Account and withhold funds if requested to do so in accordance with the Prevention of Money Laundering Act or on any other legal basis requested by any state authority. You acknowledge that the funds in your account are consumed instantly when playing and we do not provide return of goods, refunds or retrospective cancellation of your account.</p>
+        </div>
+
+        <div class="terms-conditions-title" />
+        <div class="terms-conditions-describe">
           <p />
         </div>
 
