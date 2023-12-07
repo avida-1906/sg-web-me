@@ -113,8 +113,8 @@ watch(() => isMobile.value, (newValue) => {
     }
     .notice-content {
         --tg-table-th-background: var(--tg-primary-main);
-        --tg-table-even-background: var(--tg-secondary-grey);
-        --tg-table-odd-background: var(--tg-secondary-dark);
+        // --tg-table-even-background: var(--tg-secondary-grey);
+        // --tg-table-odd-background: var(--tg-secondary-dark);
         width: 100%;
         display: flex;
         flex: 1;
