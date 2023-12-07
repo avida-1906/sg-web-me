@@ -22,7 +22,7 @@ already_send_email_user: 我们已发送账户恢复电邮至
 recover_pwd: 恢复密码
 username: 用户名
 pls_enter_username: 请输入用户名
-username_incorrect: 您的用户名长度必须为 3 – 14 个字符。
+username_incorrect: 您的用户名长度必须为 3 – 30 个字符。
 password: 密码
 old_pwd: 旧密码
 new_pwd: 新密码
@@ -1149,7 +1149,7 @@ attention: 请注意
 change_byte_addr_1: 您一旦更换存款地址，旧地址便将被禁用。只有新地址才可用于存款。请切勿再使用旧地址进行任何存款。
 change_byte_addr_2: 请在您更换存款地址前先确保您已无任何待处理的存款交易。
 action_no_cancel: 此操作无法撤消
-validate_msg_user_name: 请输入正确的电邮地址或 3 - 14 个小写英文和数字组成的用户名
+validate_msg_user_name: 请输入正确的电邮地址或 3 - 30 个小写英文和数字组成的用户名
 need_login_tip: 您必须登录进行此操作
 mark_all_read: 标记全部为已读
 empty_notify: 暂无通知
@@ -1160,7 +1160,7 @@ go_set: 前往设置
 showing: 正显示
 in_all_game: 款游戏中的
 now_show_game_num: 正显示 {total} 款游戏中的 {percentage} 个
-validate_msg_user_name_tip: 您的用户名长度必须为 3 – 14 个小写英文字母和数字组成
+validate_msg_user_name_tip: 您的用户名长度必须为 3 – 30 个小写英文字母和数字组成
 success_register: 注册成功!
 user_name_exist: 用户名已存在,请重新填写用户名
 currency_disable: 无法使用货币
