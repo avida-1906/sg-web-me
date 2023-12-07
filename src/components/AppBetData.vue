@@ -318,12 +318,13 @@ watch(() => activeTab.value, (newValue) => {
   if (newValue === 'casino-mine')
     runCasinoRecordList({})
   if (['casino-all', 'casino-fy'].includes(activeTab.value)) {
-    timer.value = setInterval(() => {
+    (!timer.value) && (timer.value = setInterval(() => {
       setColor(!color.value)
-    }, 3000)
+    }, 3000))
   }
   else {
     timer.value && clearInterval(timer.value)
+    timer.value = null
     setColor(props.showTab)
   }
 }, { immediate: true })
@@ -421,7 +422,12 @@ onUnmounted(() => {
         </div>
       </template>
       <template #payMoney="{ record }">
-        <div style="display: inline-block;color: var(--tg-text-green);">
+        <div
+          :style="{
+            display: 'inline-block',
+            color: record.net_amount > 0 ? 'var(--tg-text-green)' : '',
+          }"
+        >
           <AppAmount
             :amount="record.net_amount"
             :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
