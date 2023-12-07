@@ -172,6 +172,7 @@ if (currentLiveNav.value !== -1 && !props.onPage) {
     </div>
     <AppSportsTab v-model="currentLiveNav" :list="sportLiveNavs" />
     <div class="market-wrapper">
+      <AppSportsMarketSkeleton />
       <AppSportsMarket
         v-for="item in listFiltered" v-show="item.list.length > 0"
         :key="item.ci + item.list.length"
