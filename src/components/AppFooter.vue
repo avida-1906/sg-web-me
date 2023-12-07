@@ -4,64 +4,83 @@ import type { EnumLanguage } from '~/utils/enums'
 
 const { t } = useI18n()
 
-const router = useLocalRouter()
+const router = useRouter()
 const languageStore = useLanguageStore()
 const { userLanguage, AllLanguages } = storeToRefs(languageStore)
 const sportStore = useSportsStore()
 const { sportsOddsType, AllOddsTypes } = storeToRefs(sportStore)
-const { brandDetail, companyData } = storeToRefs(useAppStore())
 
-/**
- * 最后一栏语言和赔率显示状态
- */
-const languageShowState = computed(() => {
-  const langInfo = brandDetail.value?.bottom.quick_jump.find(item => item.id === '1')
+const supportCurrency = [
+  '/png/footer/ltc.png',
+  '/png/footer/bitcoin.png',
+  '/png/footer/ethereum.png',
+  '/png/footer/tron.png',
+  '/png/footer/ripple.png',
+  '/png/footer/dogecoin.png',
+  '/png/footer/bitcoin_cash.png',
+  '/png/footer/tether.png',
+  '/png/footer/safe_gamble.png',
+  '/png/footer/18plus.png',
+]
+const partner = [
+  { url: '/png/footer/verified.png', ratio: '120/59.63', with: '120px' },
+  { url: '/png/footer/official.png', ratio: '146.44/60', with: '146.44px' },
+  { url: '/png/footer/main.png', ratio: '82.81/60', with: '82.81px' },
+  { url: '/png/footer/ufc.png', ratio: '151/60', with: '151px' },
+]
 
-  return {
-    language: langInfo?.info.find(item => item.id === '1')?.content_state === 1,
-    odds: langInfo?.info.find(item => item.id === '2')?.content_state === 1,
-  }
-})
-
-const menuData = computed(() => {
-  return brandDetail.value?.bottom.quick_jump.filter(
-    item => item.id !== '1',
-  ).map((item) => {
-    return {
-      title: item.name,
-      children: item.info.map((tmp) => {
-        return {
-          title: tmp.name,
-          path: tmp.jump_url,
-          icon: router.isExternal(tmp.jump_url),
-        }
-      }),
-    }
-  })
-})
-
-/**
- * 合作伙伴
- */
-const partnerData = computed(() => {
-  const partner = brandDetail.value?.bottom.partner || {}
-  const keys = Object.keys(partner)
-  return keys
-})
-
-/**
- * 赞助商
- */
-const sponsorData = computed(() => {
-  const sponsor = brandDetail.value?.bottom.sponsor.data || []
-  return sponsor.map((item) => {
-    const [img, link] = item.split(',')
-    return {
-      img,
-      link,
-    }
-  })
-})
+const menuData = computed(() => [
+  {
+    title: t('sports'),
+    children: [
+      { title: t('home_space_title'), path: `/sports/${SPORTS_PLAT_ID}` },
+      { title: t('sports_status_live'), path: `/sports/${SPORTS_PLAT_ID}/live` },
+      { title: t('sports_rule'), icon: false },
+    ],
+  },
+  {
+    title: t('casino'),
+    children: [
+      { title: t('game'), path: '/casino' },
+      { title: t('vip_club'), path: '/vip-club' },
+      { title: t('promo_activity'), path: '/promotions' },
+    ],
+  },
+  {
+    title: t('support'),
+    children: [
+      { title: t('fairness') },
+      { title: t('affiliate') },
+      { title: t('responsible_casino') },
+      { title: 'Gameble Aware', icon: true },
+      { title: t('online_support') },
+      { title: t('help_center'), icon: true },
+    ],
+  },
+  {
+    title: t('community'),
+    children: [
+      { title: t('blog') },
+      { title: t('chat_forum'), icon: true },
+      { title: 'Facebook', icon: true },
+      { title: 'Twitter', icon: true },
+      { title: 'Instagram', icon: true },
+      { title: 'Youtube', icon: true },
+      { title: t('online_shopping'), icon: true },
+    ],
+  },
+  {
+    title: t('about_us'),
+    children: [
+      { title: t('privacy_policy') },
+      { title: t('license') },
+      { title: t('anti_money_laundering_rule') },
+      { title: t('terms_of_service') },
+      { title: t('self_exclusion') },
+      { title: 'Primedice', icon: true },
+    ],
+  },
+])
 
 function selectChange(v: EnumLanguage) {
   languageStore.changeLanguage(v)
@@ -71,7 +90,7 @@ function selectOddsChange(v: EnumSportsOddsType) {
 }
 function pathTo(tmp: { path?: string; title: string; icon?: boolean }) {
   if (tmp.path)
-    router.push(tmp.path)
+    router.push(replaceSportsPlatId(tmp.path))
 }
 </script>
 
@@ -82,97 +101,77 @@ function pathTo(tmp: { path?: string; title: string; icon?: boolean }) {
         <div class="nav-head">
           {{ item.title }}
         </div>
-        <div
-          v-for="tmp of item.children"
-          :key="tmp.title"
-          :title="JSON.stringify(item)"
-          @click="pathTo(tmp)"
-        >
+        <div v-for="tmp of item.children" :key="tmp.title" @click="pathTo(tmp)">
           {{ tmp.title }}<BaseIcon v-if="tmp.icon" name="uni-jump-page" />
         </div>
       </div>
       <div class="layout-spacing reset last-nav">
-        <template v-if="languageShowState.language">
-          <div class="nav-head">
-            {{ t('language_title') }}
-          </div>
-          <div class="select-wrap">
-            <BaseSelect
-              :model-value="userLanguage"
-              popper
-              plain-popper-label
-              :options="AllLanguages.map(a => ({ ...a, label: a.title }))"
-              @select="selectChange"
-            />
-          </div>
-        </template>
-        <template v-if="languageShowState.odds">
-          <div>{{ t('sports_odds_title') }}</div>
-          <div class="select-wrap">
-            <BaseSelect
-              :model-value="sportsOddsType"
-              popper
-              plain-popper-label
-              :options="AllOddsTypes.map(a => ({ ...a, label: a.title }))"
-              @select="selectOddsChange"
-            />
-          </div>
-        </template>
+        <div class="nav-head">
+          {{ t('language_title') }}
+        </div>
+        <div class="select-wrap">
+          <BaseSelect
+            :model-value="userLanguage"
+            popper
+            plain-popper-label
+            :options="AllLanguages.map(a => ({ ...a, label: a.title }))"
+            @select="selectChange"
+          />
+        </div>
+        <div>{{ t('sports_odds_title') }}</div>
+        <div class="select-wrap">
+          <BaseSelect
+            :model-value="sportsOddsType"
+            popper
+            plain-popper-label
+            :options="AllOddsTypes.map(a => ({ ...a, label: a.title }))"
+            @select="selectOddsChange"
+          />
+        </div>
       </div>
     </div>
     <BaseDivider />
     <div class="footer-support">
       <BaseAspectRatio
-        v-for="url, index of partnerData"
+        v-for="url, index of supportCurrency"
         :key="index"
         ratio="116/35"
         width="133.33px"
       >
-        <div class="center">
-          <AppImage
-            :url="url"
-            :style="{
-              '--app-sport-image-error-icon-size': '40px',
-            }"
-            is-cloud
-            err-icon="img-casino-error"
-          />
-        </div>
+        <BaseImage :url="url" />
       </BaseAspectRatio>
     </div>
     <BaseDivider />
     <div class="footer-sponsor">
-      <AppImage
-        v-for="item, index of sponsorData"
+      <BaseAspectRatio
+        v-for="item, index of partner"
         :key="index"
-        :url="item.img"
-        :style="{
-          '--app-sport-image-error-icon-size': '40px',
-        }"
-        is-cloud
-        err-icon="img-casino-error"
-        width="auto"
-        height="62px"
-        @click="router.push(item.link)"
-      />
+        :ratio="item.ratio"
+        :width="item.with"
+      >
+        <BaseImage :url="item.url" />
+      </BaseAspectRatio>
     </div>
     <BaseDivider />
     <div class="footer-copyright">
       <BaseLogo />
       <div class="copy-right">
-        © {{ companyData?.copyright }} | {{ t('copyright') }}
+        © 2023 Stake.com | {{ t('copyright') }}
       </div>
       <div>1 USDT = US$1.00</div>
     </div>
     <div class="footer-description">
-      {{ t('footer_desc',
-           { email: `support@${companyData?.name}.com`, site: companyData?.name }) }}
+      Stake 由 Medium Rare N.V. 所属和经营，注册编号： 145353，注册地址：Korporaalweg 10,
+      Willemstad, Curaçao。请通过 support@stake.com 与我们联系。 支付代理公司是 Medium Rare Limited，
+      地址于 7-9 Riga Feraiou, LIZANTIA COURT, Office 310, Agioi Omologites,1087 Nicosia,
+      Cyprus 以及注册号：HE 410775 Stake 由库拉索政府授权和监管，并根据颁发给 Antillephone 的 8048/JAZ 号许可证运营。
+      Stake 已通过所有合规性审查，并获得合法授权，可进行所有机会与投注游戏的游戏操作。
     </div>
     <div class="footer-description">
       {{ t('support') }}
-      <span>support@{{ companyData?.name }}.com</span> | {{ t('partner') }}
-      <span>partners@{{ companyData?.name }}.com</span> | {{ t('media') }}
-      <span>press@{{ companyData?.name }}.com</span>
+      <span>support@stake.com</span> | {{ t('partner') }}
+      <span>partners@stake.com</span> | {{ t('media') }}
+      <span>press@stake.com</span>
     </div>
   </div>
 </template>
@@ -245,7 +244,7 @@ function pathTo(tmp: { path?: string; title: string; icon?: boolean }) {
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
-    gap: 3.575rem;
+    gap:3.575rem;
   }
   .footer-copyright{
     width: 100%;
