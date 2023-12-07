@@ -69,7 +69,7 @@ function onClick(tab: TabItem, i: number) {
                   style="width: 14px;height: 14px;--app-sport-image-error-icon-size:14px;"
                   :url="t.icon" is-cloud
                 />
-                <BaseIcon v-else :name="t.icon" />
+                <BaseIcon v-else :name="t.icon" style="display: block;" />
               </div>
               {{ t.label }}
               <div v-if="t.bubble" class="bubble-wrap">

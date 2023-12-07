@@ -57,7 +57,7 @@ function toggle() {
         </div>
       </slot>
       <div v-show="!disabled" class="arrow" :class="{ down: isOpen }">
-        <BaseIcon name="uni-arrow-left" />
+        <BaseIcon name="uni-stake-arrow-down" />
       </div>
     </div>
     <div v-if="isOpen" class="content" :class="{ 'is-open': isOpen }">
@@ -163,7 +163,7 @@ function toggle() {
     height: var(--tg-spacing-18);
     transition: all ease .25s;
     &.down{
-      transform: rotate(-90deg);
+      transform: rotate(90deg);
     }
   }
   .header {
