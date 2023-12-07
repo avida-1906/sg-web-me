@@ -18,6 +18,7 @@ const { openStatisticsDialog } = useStatisticsDialog()
 const { openSafeDialog } = useSafeDialog()
 const { openLogoutDialog } = useLogoutDialog()
 
+const isRouteSports = computed(() => route.name?.toString().includes('sports'))
 const userMenu = computed(() => ([
   { id: 1, icon: 'navbar-wallet', title: t('wallet'), name: 'wallet' },
   { id: 2, icon: 'navbar-cart', title: t('safe'), name: 'safe' },
@@ -54,7 +55,7 @@ const userMenu = computed(() => ([
     icon: 'spt-user-bet',
     title: t('my_bets'),
     name: 'sports-betting',
-    path: '/casino/my-bets?type=casino',
+    path: `/casino/my-bets?type=${isRouteSports.value ? 'sports' : 'casino'}`,
   },
   {
     id: 8,
@@ -152,7 +153,7 @@ function handleClickMenuItem(item: { name: string; path?: string }) {
       isMobile.value && leftIsExpand.value && closeLeftSidebar()
       break
     case 'sports-betting':
-      router.push(`/sports/${getSportsPlatId()}/my-bets?type=${route.name?.toString().includes('sports') ? 'sports' : 'casino'}`)
+      router.push(`/sports/${getSportsPlatId()}/my-bets?type=sports`)
       break
     default:
       break
