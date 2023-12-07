@@ -84,7 +84,6 @@ const regParams = computed(() => {
 if (regParams.value) {
   email.value = regParams.value.email ?? ''
   username.value = regParams.value.username ?? ''
-  password.value = regParams.value.password ?? ''
   birthday.value = regParams.value.birthday ?? ''
 }
 

@@ -21,6 +21,8 @@ const { t } = useI18n()
 
 const { isLogin } = storeToRefs(useAppStore())
 const { isLessThanLg, isGreaterThanSm } = storeToRefs(useWindowStore())
+const { bool: color, setBool: setColor } = useBoolean(false)
+const timer: Ref< NodeJS.Timeout | null> = ref(null)
 // loading加载
 // const { bool: loading, setFalse: setLoadingFalse } = useBoolean(true)
 // 是否开启隐身模式
@@ -290,6 +292,16 @@ const getList = computed(() => {
     ]
   }
 })
+const getBgColor = computed(() => {
+  return {
+    '--tg-table-even-background': color.value
+      ? 'initial'
+      : 'var(--tg-secondary-grey)',
+    '--tg-table-odd-background': color.value
+      ? 'var(--tg-secondary-grey)'
+      : 'initial',
+  }
+})
 
 function changeHidden() {
   if (isHidden.value)
@@ -305,6 +317,20 @@ watch(() => props.tabVal, (newValue) => {
 watch(() => activeTab.value, (newValue) => {
   if (newValue === 'casino-mine')
     runCasinoRecordList({})
+  if (['casino-all', 'casino-fy'].includes(activeTab.value)) {
+    (!timer.value) && (timer.value = setInterval(() => {
+      setColor(!color.value)
+    }, 3000))
+  }
+  else {
+    timer.value && clearInterval(timer.value)
+    timer.value = null
+    setColor(props.showTab)
+  }
+}, { immediate: true })
+
+onUnmounted(() => {
+  timer.value && clearInterval(timer.value)
 })
 </script>
 
@@ -343,6 +369,7 @@ watch(() => activeTab.value, (newValue) => {
     <BaseTable
       :columns="getScaleColumns"
       :data-source="getList"
+      :style="getBgColor"
     >
       <template #gameName="{ record }">
         <div
@@ -395,7 +422,12 @@ watch(() => activeTab.value, (newValue) => {
         </div>
       </template>
       <template #payMoney="{ record }">
-        <div style="display: inline-block;color: var(--tg-text-green);">
+        <div
+          :style="{
+            display: 'inline-block',
+            color: record.net_amount > 0 ? 'var(--tg-text-green)' : '',
+          }"
+        >
           <AppAmount
             :amount="record.net_amount"
             :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"

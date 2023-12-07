@@ -74,6 +74,7 @@ watch(route, (val) => {
 :root {
   --tg-base-menu-item-active-bg: var(--tg-secondary-deepdark);
   --tg-base-menu-item-hover-active-bg: var(--tg-secondary-deepdark);
+  --tg-base-menu-item-active-active-bg: var(--tg-secondary-deepdark);
 }
 </style>
 
@@ -104,6 +105,9 @@ watch(route, (val) => {
         font-weight: var(--tg-font-weight-semibold);
         &:hover {
           background: var(--tg-base-menu-item-hover-active-bg);
+        }
+        &:active {
+          background: var(--tg-base-menu-item-active-active-bg);
         }
        &.active {
           background: var(--tg-base-menu-item-active-bg);
