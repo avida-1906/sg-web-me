@@ -39,8 +39,8 @@ password_least_1_number: Must contain at least 1 number
 uppercase_lowercase_letter: Must contain uppercase and lowercase letter
 least_8_characters: Must contain at least 8 characters
 reg_step: Fill in your detailed information
-reg_step1: 'Step 1/2: fill in your detailed information'
-reg_step2: 'Step 2/2: fill in your detailed information'
+reg_step1: 'Step 1/2:  fill in your detailed information'
+reg_step2: 'Step 2/2:  fill in your detailed information'
 step_label: Step
 code_optional: Code (optional)
 read_and_agree: I have read and agree

@@ -24,18 +24,18 @@ watch(() => props.password, () => {
 <template>
   <div class="app-password">
     <div class="item">
-      <BaseIcon v-if="upperLowerRegOk" name="password-hook-2" />
-      <BaseIcon v-else class="hook-1" name="password-hook-1" />
+      <BaseIcon v-if="upperLowerRegOk" class="hook-2" name="uni-hook" />
+      <BaseIcon v-else class="hook-1" name="uni-hook" />
       {{ t('uppercase_lowercase_letter') }}
     </div>
     <div class="item">
-      <BaseIcon v-if="lastOneNumberRegOk" name="password-hook-2" />
-      <BaseIcon v-else class="hook-1" name="password-hook-1" />
+      <BaseIcon v-if="lastOneNumberRegOk" class="hook-2" name="uni-hook" />
+      <BaseIcon v-else class="hook-1" name="uni-hook" />
       {{ t('password_least_1_number') }}
     </div>
     <div class="item">
-      <BaseIcon v-if="lengthOk" name="password-hook-2" />
-      <BaseIcon v-else class="hook-1" name="password-hook-1" />
+      <BaseIcon v-if="lengthOk" class="hook-2" name="uni-hook" />
+      <BaseIcon v-else class="hook-1" name="uni-hook" />
       {{ t('least_8_characters') }}
     </div>
   </div>
@@ -44,6 +44,11 @@ watch(() => props.password, () => {
 <style lang='scss' scoped>
 .hook-1 {
   --tg-icon-color: var(--tg-secondary-light);
+  font-size: var(--tg-font-size-base);
+}
+.hook-2 {
+  --tg-icon-color: var(--tg-text-green-deep);
+  font-size: var(--tg-font-size-base);
 }
 .app-password {
   display: flex;
@@ -51,13 +56,14 @@ watch(() => props.password, () => {
   gap: var(--tg-spacing-8);
   color: var(--tg-text-lightgrey);
   font-size: var(--tg-font-size-xs);
-  padding-top: var(--tg-spacing-5);
+  margin-top: var(--tg-spacing-4);
+  margin-bottom: var(--tg-spacing-4);
   .item {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: var(--tg-spacing-8);
-    padding-left: var(--tg-spacing-3);
+    line-height: var(--tg-spacing-16);
   }
 }
 </style>

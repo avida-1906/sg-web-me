@@ -37,8 +37,8 @@ password_least_1_number: 含有至少 1 个数字
 uppercase_lowercase_letter: 含有大写和小写字母
 least_8_characters: 至少 8 个字符
 reg_step: 填写您的详细信息
-reg_step1: 步骤 1/2：填写您的详细信息
-reg_step2: 步骤 2/2：填写您的详细信息
+reg_step1: 步骤 1/2： 填写您的详细信息
+reg_step2: 步骤 2/2： 填写您的详细信息
 step_label: 步骤
 code_optional: 代码（可选的）
 read_and_agree: 我已阅读并同意
