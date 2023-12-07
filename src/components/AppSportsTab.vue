@@ -11,10 +11,11 @@ interface Props {
   modelValue: number
 }
 defineProps<Props>()
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(['update:modelValue', 'change'])
 
 function handleClick(item: ListItem) {
   emit('update:modelValue', item.si)
+  emit('change', item)
 }
 </script>
 
@@ -27,12 +28,11 @@ function handleClick(item: ListItem) {
             <div class="button" :class="{ active: tab.si === modelValue }">
               <div class="dot" />
               <div class="main">
-                <div class="icon">
+                <div class="icon" style="--app-sport-image-error-icon-size:28px;">
                   <AppImage
                     v-if="tab.useCloudImg"
                     :class="{ 'icon-act': tab.si === modelValue }"
                     :url="tab.icon" is-cloud
-                    style="--app-sport-image-error-icon-size:28px;"
                   />
                   <BaseIcon v-else :name="tab.icon" />
                   <BaseBadge

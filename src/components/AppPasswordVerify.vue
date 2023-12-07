@@ -22,7 +22,10 @@ watch(() => props.password, () => {
 </script>
 
 <template>
-  <div class="app-password">
+  <div
+    class="app-password"
+    :class="{ 'all-ok': upperLowerRegOk && lastOneNumberRegOk && lengthOk }"
+  >
     <div class="item">
       <BaseIcon v-if="upperLowerRegOk" class="hook-2" name="uni-hook" />
       <BaseIcon v-else class="hook-1" name="uni-hook" />
@@ -58,6 +61,9 @@ watch(() => props.password, () => {
   font-size: var(--tg-font-size-xs);
   margin-top: var(--tg-spacing-4);
   margin-bottom: var(--tg-spacing-4);
+  &.all-ok {
+    margin-top: var(--tg-spacing-8);
+  }
   .item {
     display: flex;
     flex-direction: row;

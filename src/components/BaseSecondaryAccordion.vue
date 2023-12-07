@@ -56,22 +56,22 @@ function toggle() {
           <slot name="side" :is-open="isOpen" />
         </div>
       </slot>
-      <div v-show="!disabled" class="arrow" :class="{ down: isOpen }">
+      <div v-show="!disabled" class="arrow" :class="{ down: !isOpen }">
         <BaseIcon name="uni-stake-arrow-down" />
       </div>
     </div>
     <div v-if="isOpen" class="content" :class="{ 'is-open': isOpen }">
       <slot :is-open="isOpen" />
-    </div>
-    <div v-if="showMore" class="show-more">
-      <hr>
-      <div class="load-more-box">
-        <BaseButton type="text" @click="loadMore">
-          <span v-if="!loading">{{ $t('load_more') }}</span>
-          <span v-else class="ani-scale">
-            <BaseIcon name="spt-soccer" />
-          </span>
-        </BaseButton>
+      <div v-if="showMore" class="show-more">
+        <hr>
+        <div class="load-more-box">
+          <BaseButton type="text" @click="loadMore">
+            <span v-if="!loading">{{ $t('load_more') }}</span>
+            <span v-else class="ani-scale">
+              <BaseIcon name="spt-soccer" />
+            </span>
+          </BaseButton>
+        </div>
       </div>
     </div>
   </div>

@@ -118,10 +118,10 @@ watchEffect(() => {
           style="--tg-base-button-text-default-color:var(--tg-text-white);"
           @click="onTitleClick"
         >
-          <div v-if="icon" class="icon">
+          <div v-if="icon" class="icon" style="--app-sport-image-error-icon-size:16px;">
             <AppImage
               v-if="useCloudImg"
-              style="width: 16px;height: 16px;--app-sport-image-error-icon-size:16px;"
+              style="width: 16px;height: 16px;"
               :url="icon" is-cloud
             />
             <BaseIcon v-else :name="icon" />
@@ -132,7 +132,8 @@ watchEffect(() => {
       <div v-if="showArrow" class="arrows">
         <BaseButton
           type="round-line-left" size="none"
-          :disabled="x <= 0" @click="prevPage"
+          :disabled="x <= 0" style="width: 51px;"
+          @click="prevPage"
         >
           <div class="a-inner left">
             <BaseIcon class="left" name="uni-arrowleft-line" />

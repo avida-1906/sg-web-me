@@ -109,6 +109,7 @@ declare module 'vue' {
     AppSportsMarketInfo: typeof import('./components/AppSportsMarketInfo.vue')['default']
     AppSportsMarketLeague: typeof import('./components/AppSportsMarketLeague.vue')['default']
     AppSportsMarketRegion: typeof import('./components/AppSportsMarketRegion.vue')['default']
+    AppSportsMarketSkeleton: typeof import('./components/AppSportsMarketSkeleton.vue')['default']
     AppSportsMarketTypeSelect: typeof import('./components/AppSportsMarketTypeSelect.vue')['default']
     AppSportsMyBetSlip: typeof import('./components/AppSportsMyBetSlip.vue')['default']
     AppSportsOdds: typeof import('./components/AppSportsOdds.vue')['default']

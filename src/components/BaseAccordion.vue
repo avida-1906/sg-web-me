@@ -58,10 +58,10 @@ defineExpose({ close })
       :style="isShow ? 'background-color: #213743;' : ''"
       @click="handleClickHeader"
     >
-      <div class="title flex-center">
+      <div class="title flex-center" style="--app-sport-image-error-icon-size:14px;">
         <AppImage
           v-if="menuInfo.useCloudImg"
-          style="width: 14px;height: 14px;--app-sport-image-error-icon-size:14px;"
+          style="width: 14px;height: 14px;"
           :url="menuInfo.icon" is-cloud
         />
         <BaseIcon v-else :name="menuInfo.icon" />

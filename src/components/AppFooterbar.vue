@@ -168,7 +168,6 @@ watch(() => route.path, () => {
               <BaseIcon name="spt-user-bet" />
             </div>
           </BaseBadge>
-
           <span>{{ t('bet_slip') }}</span>
         </div>
       </BaseButton>
@@ -200,6 +199,11 @@ watch(() => route.path, () => {
 <style lang="scss" scoped>
 .app-footer-bar {
   --tg-badge-font-size:var(--tg-font-size-xs);
+  --tg-badge-min-width: 16px;
+  --tg-badge-height: 16px;
+  --tg-badge-border-radius:50%;
+  --tg-badge-line-height:16px;
+  --tg-badge-padding-x:0;
   background: var(--tg-secondary-dark);
   width: 100%;
   height: var(--tg-footerbar-height);

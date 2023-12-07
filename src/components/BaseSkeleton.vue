@@ -8,7 +8,6 @@ interface Props {
 }
 
 withDefaults(defineProps<Props>(), {
-  bg: '#efefef',
   width: '100px',
   height: '100px',
 })
@@ -20,7 +19,7 @@ withDefaults(defineProps<Props>(), {
     :style="{ width, height }" :class="[animated]"
   >
     <!-- 1 盒子 -->
-    <div class="block" :style="{ backgroundColor: bg }" />
+    <div class="block" />
     <!-- 2 闪烁效果 skeleton 伪元素 --->
   </div>
 </template>
@@ -34,7 +33,8 @@ withDefaults(defineProps<Props>(), {
     .block {
       width: 100%;
       height: 100%;
-      border-radius: 2px;
+      border-radius: var(--tg-radius-default);
+      background-color: var(--tg-secondary-light);
     }
   }
   .ani-shan {
