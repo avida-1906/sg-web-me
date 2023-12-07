@@ -11,6 +11,7 @@ import type {
   INotNotice,
   IResponseList,
   IUserInfo,
+  PayInfo,
   ProviderItem,
   TCurrencyObject,
   VipConfig,
@@ -1472,14 +1473,47 @@ export function ApiMemberBrandDetail() {
     }
   }>('/member/brand/detail')
 }
-// /**
-//  * 交易记录-存款-虚拟币
-//  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=95af1c4c-4a20-487b-96fa-3e86cc18f3a1
-//  */
-// export function ApiFinanceRecordDepositCoin(params: {
 
-// }) {
-//   return httpClient.get<IResponseList<{
-//     order_number: string
-//   }>>('/finance/record/deposit/coin')
-// }
+/**
+ * 交易记录-存款-虚拟币
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=95af1c4c-4a20-487b-96fa-3e86cc18f3a1
+ */
+export function ApiFinanceRecordDepositCoin(params?: {
+  page?: number
+  page_size?: number
+}) {
+  return httpClient.get<IResponseList<PayInfo>>('/finance/record/deposit/coin', { params })
+}
+
+/**
+ * 交易记录-存款-法币
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=911de451-1aa8-4904-b787-5092d25d0ebc
+ */
+export function ApiFinancRecordDepositBank(params?: {
+  page?: number
+  page_size?: number
+}) {
+  return httpClient.get<IResponseList<PayInfo>>('/finance/record/deposit/bank', { params })
+}
+
+/**
+ * 交易记录-取款-虚拟币
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=50e762a0-8fb5-47a4-93bc-b6ec34be5a15
+ */
+export function ApiFinanceRecordWithdrawCoin(params?: {
+  page?: number
+  page_size?: number
+}) {
+  return httpClient.get<IResponseList<PayInfo>>('/finance/record/withdraw/coin', { params })
+}
+
+/**
+ * 交易记录-取款-法币
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=8170a1b8-c31e-4003-8ddf-ae198356a635
+ */
+export function ApiFinanceRecordWithdrawBank(params?: {
+  page?: number
+  page_size?: number
+}) {
+  return httpClient.get<IResponseList<PayInfo>>('/finance/record/withdraw/bank', { params })
+}
