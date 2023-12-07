@@ -2,17 +2,25 @@
 interface Props {
   mode?: 'light' | 'dark'
   useSmall?: boolean
+  isBack?: boolean
 }
 
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   mode: 'light',
   useSmall: false,
+  isBack: false,
 })
 
 const router = useLocalRouter()
 const { logoAndIcoAndLoading } = storeToRefs(useAppStore())
 const { isMobile } = storeToRefs(useWindowStore())
 const { leftIsExpand, closeLeftSidebar } = useLeftSidebar()
+
+const showBack = computed(() => {
+  return isMobile.value && props.isBack
+    ? [`/sports/${getSportsPlatId()}`, '/casino'].includes(router.currentRoute.value.path)
+    : true
+})
 
 function to() {
   const currentPath = router.currentRoute.value.path
@@ -27,6 +35,7 @@ function to() {
 <template>
   <div class="base-logo">
     <BaseAspectRatio
+      v-show="showBack"
       ratio="150/53"
       :style="{ 'max-width': useSmall ? '45px' : '95px', 'min-width': '20px' }"
       @click="to"
@@ -41,15 +50,15 @@ function to() {
           : logoAndIcoAndLoading.logo"
       />
     </BaseAspectRatio>
+    <BaseButton v-show="!showBack" type="text" @click="router.back()">
+      <BaseIcon name="uni-arrowleft-line" />
+      返回
+    </BaseButton>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .base-logo {
-  .icon-app-logo {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
+
 }
 </style>

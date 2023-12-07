@@ -35,7 +35,7 @@ const { openBetSlipDialog } = useDialogBetSlip()
 const {
   list,
   run: runCasinoRecordList,
-  prev, next, hasMore, page,
+  // prev, next, hasMore, page,
 } = useList(ApiMemberCasinoRecordList,
   {}, { page_size: 10 })
 
@@ -360,7 +360,7 @@ watch(() => activeTab.value, (newValue) => {
       </template>
       <template #player="{ record }">
         <template v-if="record.stealth">
-          <VTooltip placement="top">
+          <VTooltip placement="top" :triggers="['click', 'hover']">
             <div class="center stealth-box">
               <BaseIcon name="uni-hidden" />
               <span style="padding-left: 5px;">{{ t('hidden_user') }}</span>
@@ -378,7 +378,7 @@ watch(() => activeTab.value, (newValue) => {
       </template>
       <template #betMoney="{ record }">
         <div style="display: inline-block;">
-          <VTooltip placement="top">
+          <VTooltip placement="top" :triggers="['click', 'hover']">
             <AppAmount
               :amount="record.bet_amount"
               :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"

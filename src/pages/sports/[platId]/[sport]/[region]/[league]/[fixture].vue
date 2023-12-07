@@ -44,7 +44,7 @@ watch(
 </script>
 
 <template>
-  <div v-if="loading && requestCount === 0" class="sports-details-loading-content-height">
+  <div v-if="loading && requestCount === 0" class="loading-content-height">
     <BaseLoading class="loading" />
   </div>
   <div v-else class="tg-sports-tournament-fixture-betdetail">
@@ -281,23 +281,6 @@ watch(
 </template>
 
 <style lang="scss" scoped>
-.sports-details-loading-content-height {
-  overflow: hidden;
-  height: calc(100vh - var(--tg-header-height));
-  .loading {
-    margin-top: 200px;
-  }
-}
-
-@media screen and (max-width: 767px) {
-  .sports-details-loading-content-height {
-    overflow: hidden;
-    height: calc(100vh - var(--tg-header-height) - var(--tg-footerbar-height));
-    .loading {
-      margin-top: 150px;
-    }
-  }
-}
 .wrapper-grid-center {
   display: grid;
   grid-auto-flow: row;
