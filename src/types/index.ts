@@ -37,23 +37,23 @@ export interface IBasePanelType {
   spic: string
   /** 角球 */
   corner?: {
-    /** 主队角球 */
+    /** 主队角球数量 */
     homeTeam: number
-    /** 客队角球 */
+    /** 客队角球数量 */
     awayTeam: number
   }
   /** 红牌 */
   redCard?: {
-    /** 主队红牌 */
+    /** 主队红牌数量 */
     homeTeam: number
-    /** 客队红牌 */
+    /** 客队红牌数量 */
     awayTeam: number
   }
   /** 黄牌 */
   yellowCard?: {
-    /** 主队黄牌 */
+    /** 主队黄牌数量 */
     homeTeam: number
-    /** 客队黄牌 */
+    /** 客队黄牌数量 */
     awayTeam: number
   }
   period?: {
