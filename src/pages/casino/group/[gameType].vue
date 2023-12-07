@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const props = defineProps<{ gameType: string }>()
 
-const { appContentWidth } = storeToRefs(useWindowStore())
+const { appContentWidth, isMobile } = storeToRefs(useWindowStore())
 const { platformList } = storeToRefs(useCasinoStore())
 const route = useRoute()
 const title = computed(() => route.query.name)
@@ -96,7 +96,7 @@ onMounted(() => {
           </div>
         </div>
       </div>
-      <div class="mt-24">
+      <div v-if="!isMobile" class="mt-24">
         <AppGameSearch game-type="1" />
       </div>
       <div class="mt-24">
