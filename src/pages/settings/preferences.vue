@@ -1,4 +1,10 @@
 <script lang="ts" setup>
+const radioList = [
+  { label: '123,456.78', value: 1 },
+  { label: '١٢٣٤٥٦٫٧٨', value: 2 },
+  { label: '123.456,78', value: 3 },
+]
+
 usePageTitle({ prefix: 'menu_title_settings_preferences', isT: true })
 const { companyData } = storeToRefs(useAppStore())
 
@@ -7,6 +13,8 @@ const { bool: hideStatistics } = useBoolean(true)
 const { bool: hideContest } = useBoolean(false)
 const { bool: isRed } = useBoolean(false)
 const { bool: isMarketing } = useBoolean(true)
+
+const numFormat = ref('')
 </script>
 
 <template>
@@ -52,7 +60,7 @@ const { bool: isMarketing } = useBoolean(true)
         {{ $t('preferences_tip_5') }}
       </template>
     </AppSettingsContentItem>
-    <AppSettingsContentItem :title="$t('marketing')" last-one>
+    <AppSettingsContentItem :title="$t('marketing')">
       <div class="switch-item">
         <BaseSwitch v-model="isMarketing" class="switch" />
         <div class="right">
@@ -61,10 +69,39 @@ const { bool: isMarketing } = useBoolean(true)
         </div>
       </div>
     </AppSettingsContentItem>
+    <AppSettingsContentItem :title="$t('official_number')" last-one btn-text="submit">
+      <template #top-desc>
+        <div class="tip">
+          {{ $t('official_num_tip', { currencyName: 'INR' }) }}
+        </div>
+      </template>
+      <div>
+        <BaseRadioGroup v-model="numFormat">
+          <div class="official-num">
+            <BaseRadio v-for="item in radioList" :key="item.value" :value="item.value">
+              <span class="bold">{{ item.label }}</span>
+            </BaseRadio>
+          </div>
+        </BaseRadioGroup>
+      </div>
+    </AppSettingsContentItem>
   </div>
 </template>
 
 <style lang="scss" scoped>
+.bold {
+  font-weight: var(--tg-font-weight-semibold);
+}
+.tip {
+  color: var(--tg-text-warn-sub);
+}
+.official-num {
+  display: flex;
+  gap: var(--tg-spacing-16);
+  flex-direction: column;
+  --tg-base-radio-style-width: var(--tg-spacing-24);
+  --tg-base-radio-style-dot-bg: var(--tg-text-grey-secondary);
+}
 .tg-settings-preferences {
   font-size: var(--tg-font-size-default);
   .switch-item{
