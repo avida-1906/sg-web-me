@@ -48,7 +48,7 @@ export const useRightSidebar = createGlobalState(() => {
       // 关闭右侧侧边栏
       setRightIsExpandFalse()
       Local.set(STORAGE_RIGHT_SIDEBAR_CONTENT, null)
-    }, 200)
+    }, 50)
   }
 
   return {
