@@ -13,6 +13,8 @@ const { bool: isRead, setTrue: setReadTrue } = useBoolean(false)
 const { bool: checkboxValue } = useBoolean(false)
 const { openLoginDialog } = useLoginDialog()
 const { openRegisterDialog } = useRegisterDialog()
+const location = useBrowserLocation()
+
 const {
   errorMessage: checkedErrorMsg,
   validate: valiChecked,
@@ -155,14 +157,14 @@ onBeforeUnmount(() => {
         <div class="terms-conditions-describe">
           <p>
             3.1 When registering on
-            www.stake.com You (“You”, “Your”, Yourself” or the “Player” interchangeably)
-            enter into an agreement with Stake.
+            {{ location.hostname }} You (“You”, “Your”, Yourself” or the “Player” interchangeably)
+            enter into an agreement with {{ companyData?.name.toUpperCase() }}.
           </p>
           <p>
             3.2 This Agreement should be read by You in its entirety prior to your
-            use of Stake's service or products.
+            use of {{ companyData?.name.toUpperCase() }}'s service or products.
             Please note that the Agreement constitutes a legally binding
-            agreement between you and Stake.
+            agreement between you and {{ companyData?.name.toUpperCase() }}.
           </p>
           <p>
             3.3 These Terms and Conditions come into force as soon as you complete the
@@ -184,7 +186,7 @@ onBeforeUnmount(() => {
         </div>
         <div class="terms-conditions-describe">
           <p>Registration</p>
-          <p>4.1 In order for you to be able to place bets on stake.com, you must first personally register an account with us ("Stake Account").</p>
+          <p>4.1 In order for you to be able to place bets on {{ location.hostname }}, you must first personally register an account with us ("{{ companyData?.name.toUpperCase() }} Account").</p>
           <p>4.2 For a person to be registered as a player with {{ companyData?.name.toUpperCase() }} and use the Website, that person must submit an application for registration and opening of a {{ companyData?.name.toUpperCase() }} account. The application for the opening of the {{ companyData?.name.toUpperCase() }} Account must be submitted personally, and will require You to provide a set of personal information, namely e-mail, full name, date of birth, address, etc.</p>
           <p>4.3 Where the information stipulated in 4.2. is not provided and/or is not deemed to be complete, accurate or up-to-date at any point in time, {{ companyData?.name.toUpperCase() }} reserves the right to suspend the {{ companyData?.name.toUpperCase() }} Account registration and treat any subsequent potentially accepted deposits to the Player’s {{ companyData?.name.toUpperCase() }} Account as invalid (and any winnings arising from such deposit as void). Where a {{ companyData?.name.toUpperCase() }} Account is suspended, You should contact customer support at support@{{ companyData?.name }}.com.</p>
           <p>4.4 All applicants must be 18 or such other legal age of majority as determined by any laws which are applicable to you, whichever age is greater or older. {{ companyData?.name.toUpperCase() }} reserves the right to ask for proof of age from any Player and suspend their {{ companyData?.name.toUpperCase() }} Account until satisfactory documentation is provided. {{ companyData?.name.toUpperCase() }} takes its responsibilities in respect of under age and responsible gambling very seriously.</p>
@@ -196,7 +198,7 @@ onBeforeUnmount(() => {
           <p>Know Your Customer</p>
           <p>4.7 You represent and warrant that any information provided by You on Your application form is true, updated and correct.</p>
           <p>
-            4.8 {{ companyData?.name.toUpperCase() }} reserves the right, at any time, to ask for any KYC documentation it deems necessary to determine the identity and location of a Player. {{ companyData?.name.toUpperCase() }} reserves the right to restrict the Service, payment or withdrawal until identity is sufficiently determined, or for any other reason in Stake’s sole discretion. {{ companyData?.name.toUpperCase() }} also reserves the right to disclose a Player’s information as appropriate to comply with legal process or as otherwise permitted by the privacy policy of {{ companyData?.name.toUpperCase() }} (owner and operator of Stake), and by using the Service, you acknowledge and consent to the possibility of such disclosure.
+            4.8 {{ companyData?.name.toUpperCase() }} reserves the right, at any time, to ask for any KYC documentation it deems necessary to determine the identity and location of a Player. {{ companyData?.name.toUpperCase() }} reserves the right to restrict the Service, payment or withdrawal until identity is sufficiently determined, or for any other reason in {{ companyData?.name.toUpperCase() }}’s sole discretion. {{ companyData?.name.toUpperCase() }} also reserves the right to disclose a Player’s information as appropriate to comply with legal process or as otherwise permitted by the privacy policy of {{ companyData?.name.toUpperCase() }} (owner and operator of {{ companyData?.name.toUpperCase() }}), and by using the Service, you acknowledge and consent to the possibility of such disclosure.
           </p>
           <p>Multiple Accounts</p>
           <p>4.9 Only one {{ companyData?.name.toUpperCase() }} Account per Player is allowed. Should You attempt or successfully open more than one {{ companyData?.name.toUpperCase() }} Account, under Your own name or under any other name, or should You attempt or succeed in using the Website by means of any other person's {{ companyData?.name.toUpperCase() }} Account, {{ companyData?.name.toUpperCase() }} will be entitled to immediately close all Your {{ companyData?.name.toUpperCase() }} Account(s), retain all monies in such {{ companyData?.name.toUpperCase() }} Accounts and ban You from future use of the Website.</p>
@@ -211,7 +213,7 @@ onBeforeUnmount(() => {
           <p>Security Features</p>
           <p>4.17 We recommend that you enable two-factor authentication to enhance the security of your account.</p>
           <p>4.18 We may provide other security measures from time to time, and we encourage you to use them.</p>
-          <p>Suspension and Closure by Stake</p>
+          <p>Suspension and Closure by {{ companyData?.name.toUpperCase() }}</p>
           <p>4.19 {{ companyData?.name.toUpperCase() }} shall be entitled to close or suspend Your {{ companyData?.name.toUpperCase() }} Account if:</p>
           <p>a) {{ companyData?.name.toUpperCase() }} considers that You are using or have used the Website in a fraudulent or collusive manner or for illegal and/or unlawful or improper purposes;</p>
           <p>b) {{ companyData?.name.toUpperCase() }} considers that You are using or have used the Website in an unfair manner, have deliberately cheated or taken unfair advantage of {{ companyData?.name.toUpperCase() }} or any of its customers or if Your {{ companyData?.name.toUpperCase() }} Account is being used for the benefit of a third party;</p>
@@ -238,7 +240,7 @@ onBeforeUnmount(() => {
           <p>c) You are not diagnosed or classified as a compulsive or problem gambler;</p>
           <p>d) You are not currently self-excluded from any gambling site or gambling premises. You will inform {{ companyData?.name.toUpperCase() }} immediately if you enter into a self-exclusion agreement with any gambling provider.</p>
           <p>Jurisdiction</p>
-          <p>e) You are accessing stake.com from a jurisdiction in which it is legal to do so;</p>
+          <p>e) You are accessing {{ location.hostname }} from a jurisdiction in which it is legal to do so;</p>
           <p>f) You will not use our services while located in any jurisdiction that prohibits the placing and/or accepting of bets online and/or playing casino and/or live games;</p>
           <p>g) You accept and acknowledge that we reserve the right to detect and prevent the use of prohibited techniques, including but not limited to fraudulent transaction detection, automated registration and signup, gameplay and screen capture techniques. These steps may include, but are not limited to, examination of Players device properties, detection of geo-location and IP masking, transactions and blockchain analysis;</p>
           <p>Funds & Tax</p>
@@ -279,7 +281,7 @@ onBeforeUnmount(() => {
           <p>
             6.3 {{ companyData?.name.toUpperCase() }} can be contacted by email on
             support@{{ companyData?.name }}.com
-            or on its live chat 24/7. The live chat is available when logged into Your {{ companyData?.name.toUpperCase() }} Account. In the event that Stake, in its sole discretion, deems that Your behaviour, via live chat, email, or otherwise, has been abusive or derogatory towards any of Stake’s or its Affiliates or third-party service provider’s employees, {{ companyData?.name.toUpperCase() }} shall have the right to block or terminate Your {{ companyData?.name.toUpperCase() }} Account.
+            or on its live chat 24/7. The live chat is available when logged into Your {{ companyData?.name.toUpperCase() }} Account. In the event that {{ companyData?.name.toUpperCase() }}, in its sole discretion, deems that Your behaviour, via live chat, email, or otherwise, has been abusive or derogatory towards any of {{ companyData?.name.toUpperCase() }}’s or its Affiliates or third-party service provider’s employees, {{ companyData?.name.toUpperCase() }} shall have the right to block or terminate Your {{ companyData?.name.toUpperCase() }} Account.
           </p>
         </div>
 
@@ -290,11 +292,11 @@ onBeforeUnmount(() => {
           <p>7.1 You may participate in any Game only if you have sufficient funds on your {{ companyData?.name.toUpperCase() }} Account for such participation. For that purpose you shall use the payment methods available on the Website to deposit your funds. {{ companyData?.name.toUpperCase() }} will not give you any credit whatsoever for participation in any Game.</p>
           <p>
             7.2 You must deposit funds to Your {{ companyData?.name.toUpperCase() }} Account using the payment methods available at
-            www.stake.com
+            {{ location.hostname }}
             .
           </p>
           <p>7.3 You shall ensure that funds that You deposit into your {{ companyData?.name.toUpperCase() }} Account are not tainted with any illegality and, in particular, do not originate from any illegal activity or source.</p>
-          <p>7.4 To deposit funds into your {{ companyData?.name.toUpperCase() }} Account, you can transfer funds from crypto-wallets under your control or through any other payment methods available on stake.com. Deposits can only be made with your own funds.</p>
+          <p>7.4 To deposit funds into your {{ companyData?.name.toUpperCase() }} Account, you can transfer funds from crypto-wallets under your control or through any other payment methods available on {{ location.hostname }}. Deposits can only be made with your own funds.</p>
           <p>7.5 You should only deposit money into Your account for the purpose of You using such money to place bets/wager on the Website. {{ companyData?.name.toUpperCase() }} is entitled to suspend or close Your account if we reasonably believe that You are depositing funds without any intention to place sporting and/or gaming wagers. In such circumstances we may also report this activity to relevant authorities.</p>
           <p>7.6 You acknowledge and understand that funding Your {{ companyData?.name.toUpperCase() }} Account can only be funded by payment methods owned by You.</p>
           <p>7.7 You further understand, agree and acknowledge that if {{ companyData?.name.toUpperCase() }} discovers, detects and/or identifies that You:</p>
@@ -302,7 +304,7 @@ onBeforeUnmount(() => {
           <p>b) Funded/are funding Your {{ companyData?.name.toUpperCase() }} Account with funds that are tainted with illegality, such activity will be deemed as constituting a violation of the Terms of Service amounting to fraud, and by extension:</p>
           <p>i) {{ companyData?.name.toUpperCase() }} reserves the right, at its own discretion, to suspend or close Your {{ companyData?.name.toUpperCase() }} Account; and</p>
           <p>ii) {{ companyData?.name.toUpperCase() }} reserves the right, at its own discretion, to cancel, reverse or adjust any transactions and to forfeit funds deposited and/or winnings generated from the deposited funds.</p>
-          <p>7.8 {{ companyData?.name.toUpperCase() }} can set at its own discretion a minimum deposit amount. The minimum deposit amount can be changed at all time at Stake’s discretion and will be identified on the website. Please be aware that depending on the payment method used by You, additional fees might be charged by the payment providers.</p>
+          <p>7.8 {{ companyData?.name.toUpperCase() }} can set at its own discretion a minimum deposit amount. The minimum deposit amount can be changed at all time at {{ companyData?.name.toUpperCase() }}’s discretion and will be identified on the website. Please be aware that depending on the payment method used by You, additional fees might be charged by the payment providers.</p>
           <p>7.9 The payment methods made available to you and the minimum and maximum deposit limit can be found in the wallet section on the Site. Applicable service fees may be applied and changed. Some payment methods may not be available in all countries.</p>
           <p>7.10 Deposits are immediately processed and the updated balance is shown in the {{ companyData?.name.toUpperCase() }} Account instantly whenever a payment service provider is used. {{ companyData?.name.toUpperCase() }} does not take responsibility for any delays caused due to its payment system or due to delays caused by any third party. Note that:</p>
           <p>a) some payment methods may include additional fees. In this case, the fee will be clearly visible for you in the cashier.</p>
@@ -311,7 +313,7 @@ onBeforeUnmount(() => {
           <p>7.12 Funds cannot be transferred from your {{ companyData?.name.toUpperCase() }} Account to the {{ companyData?.name.toUpperCase() }} Account of another Player.</p>
           <p>
             7.13 {{ companyData?.name.toUpperCase() }} can refuse any deposits at its own discretion. Users that have their accounts blocked, or suspended shall refrain from depositing at
-            www.stake.com
+            {{ location.hostname }}
             .
           </p>
           <p>7.14 In the event that a player tries to deposit when his account is blocked or suspended, {{ companyData?.name.toUpperCase() }} will have the right to retain the funds.</p>
@@ -328,7 +330,7 @@ onBeforeUnmount(() => {
           <p>d) the Player has complied with the minimum wager requirement for each deposit.</p>
           <p>8.2 {{ companyData?.name.toUpperCase() }} reserves all rights to investigate Your account and gaming activity. If {{ companyData?.name.toUpperCase() }} reasonably suspects that Your account or gaming activity has violated these terms of service or applicable laws or regulations, it may, in its sole discretion, delay or decline further deposits, withdrawals and/or game play while it conducts its investigation. You acknowledge and accept that {{ companyData?.name.toUpperCase() }} may not be in a position to provide an explanation as to the nature of its investigation.</p>
           <p>8.3 All withdrawals must be done through the same payment method chosen by you when placing a deposit, unless we decide otherwise or are unable to do so. If you deposit using a number of payment methods, we reserve the right to split your withdrawal across such payment methods and process each part through the respective payment method at our discretion and in accordance with anti-money laundering policies and regulation.</p>
-          <p>8.4 If we mistakenly credit your {{ companyData?.name.toUpperCase() }} Account with winnings that do not belong to you, whether due to a technical error in the pay-tables, or human error or otherwise, the amount will remain our property and will be deducted from your {{ companyData?.name.toUpperCase() }} Account. If you have withdrawn funds that do not belong to you prior to us becoming aware of the error, the mistakenly paid amount will (without prejudice to other remedies and actions that may be available at law) constitute a debt owed by you to us. In the event of an incorrect crediting, you are obliged to notify us immediately by email.</p>
+          <p>8.4 If we mi{{ companyData?.name.toUpperCase() }}nly credit your {{ companyData?.name.toUpperCase() }} Account with winnings that do not belong to you, whether due to a technical error in the pay-tables, or human error or otherwise, the amount will remain our property and will be deducted from your {{ companyData?.name.toUpperCase() }} Account. If you have withdrawn funds that do not belong to you prior to us becoming aware of the error, the mi{{ companyData?.name.toUpperCase() }}nly paid amount will (without prejudice to other remedies and actions that may be available at law) constitute a debt owed by you to us. In the event of an incorrect crediting, you are obliged to notify us immediately by email.</p>
           <p>FIAT Withdrawals</p>
           <p>8.5 You need to wager 100% of the value of your deposit in order to request a FIAT withdrawal.</p>
           <p>8.6 Withdrawals from {{ companyData?.name.toUpperCase() }} Account are made through payments addressed to the Player or transferred to a bank account held in the name of the Player, as advised to {{ companyData?.name.toUpperCase() }} by the Player. Before processing any withdrawal, {{ companyData?.name.toUpperCase() }} reserves the right to perform enhanced due diligence where deemed necessary.</p>
@@ -351,14 +353,14 @@ onBeforeUnmount(() => {
         <div class="terms-conditions-describe">
           <p>9.1 Any funds You deposit with us in Your {{ companyData?.name.toUpperCase() }} Account, along with any winnings, are held for You in separate customer bank accounts / crypto wallet for the sole and specific purpose for You to place sports and gaming wagers and to settle any fees or charges that You might incur in connection with the use of our Services. This means Your funds are protected from being used for any other purpose.</p>
           <p>9.2 If we incur any charge-backs, reversals or denial of payments or any loss suffered by {{ companyData?.name.toUpperCase() }} as a consequence thereof due to causes attributable to You in respect of Your {{ companyData?.name.toUpperCase() }} Account, we reserve the right to charge You for the relevant amounts incurred.</p>
-          <p>9.3 We may, at any time, offset any positive balance on Your account against any amounts owed by You to Stake.</p>
+          <p>9.3 We may, at any time, offset any positive balance on Your account against any amounts owed by You to {{ companyData?.name.toUpperCase() }}.</p>
         </div>
 
         <div class="terms-conditions-title">
           10. PLACING BETS/WAGERS
         </div>
         <div class="terms-conditions-describe">
-          <p>10.1 You are allowed to place Your bets/wagers on the markets/products offered in the Website. {{ companyData?.name.toUpperCase() }} is not obliged to accept any bet/wager from You and bets/wagers will only be deemed as valid and finalised, and therefore as accepted by Stake, when You receive the confirmation from {{ companyData?.name.toUpperCase() }} of the acceptance of Your bet/wager.</p>
+          <p>10.1 You are allowed to place Your bets/wagers on the markets/products offered in the Website. {{ companyData?.name.toUpperCase() }} is not obliged to accept any bet/wager from You and bets/wagers will only be deemed as valid and finalised, and therefore as accepted by {{ companyData?.name.toUpperCase() }}, when You receive the confirmation from {{ companyData?.name.toUpperCase() }} of the acceptance of Your bet/wager.</p>
           <p>10.2 {{ companyData?.name.toUpperCase() }} only accepts bets/wagers made online (including via mobile device). Bets/wagers are not accepted in any other form (post, email, fax, etc.) and where received will be invalid and void - win or lose.</p>
           <p>10.3 It is Your responsibility to ensure details of the bets/wagers are correct. Once bets/wagers have been placed they may not be cancelled by You. Bets can only be changed by You using our Edit Bet feature, where this is available. {{ companyData?.name.toUpperCase() }} can only cancel or amend a bet/wager if the relevant event has been suspended or cancelled, if there was an obvious error on the relevant bet or its odds, if the bet is placed in breach of the Terms or if required to do so for legal or regulatory reasons.</p>
           <p>10.4 Your funds will be allocated to bets/wagers in the order they are placed and will not be available for any other use. {{ companyData?.name.toUpperCase() }} reserves the right to void and/or reverse any transactions made after a bet/wager has been placed involving allocated funds, either at the time or retrospectively.</p>
@@ -370,7 +372,7 @@ onBeforeUnmount(() => {
         <div class="terms-conditions-describe">
           <p>11.1 Bets/wagers will only be valid once You receive the confirmation of the acceptance of Your bet/wager. Bets/wagers placed with insufficient funds in Your account will be void.</p>
           <p>
-            11.2 A bet/wager that You request will only be valid once accepted by Stake. Each valid bet/wager will receive a unique transaction code. We shall not be liable for the settlement of any bets/wagers which are not issued with a unique transaction code. If You are unsure about the validity of a bet/wager, please check Your account history, or contact our Customer Support Team (
+            11.2 A bet/wager that You request will only be valid once accepted by {{ companyData?.name.toUpperCase() }}. Each valid bet/wager will receive a unique transaction code. We shall not be liable for the settlement of any bets/wagers which are not issued with a unique transaction code. If You are unsure about the validity of a bet/wager, please check Your account history, or contact our Customer Support Team (
             support@{{ companyData?.name }}.com
             ).
           </p>
@@ -381,9 +383,9 @@ onBeforeUnmount(() => {
           12. BONUS
         </div>
         <div class="terms-conditions-describe">
-          <p>12.1 Stake, at its sole discretion, might offer from time to time, a number of Bonuses and Promotions. For example, The Million Dollar Race, the 50 Billionth Bet Bonanza, Coupons, Reloads, and Rakeback.</p>
+          <p>12.1 {{ companyData?.name.toUpperCase() }}, at its sole discretion, might offer from time to time, a number of Bonuses and Promotions. For example, The Million Dollar Race, the 50 Billionth Bet Bonanza, Coupons, Reloads, and Rakeback.</p>
           <p>Eligibility</p>
-          <p>12.2 Upon successful registration for a {{ companyData?.name.toUpperCase() }} Account, You may be eligible to receive {{ companyData?.name.toUpperCase() }} Promotions and Bonuses. By accepting this agreement and registering for a {{ companyData?.name.toUpperCase() }} Account on the Website, You are also acknowledging and accepting to be bound by the rules and regulations associated with any Promotions and Bonuses offered to You by Stake.</p>
+          <p>12.2 Upon successful registration for a {{ companyData?.name.toUpperCase() }} Account, You may be eligible to receive {{ companyData?.name.toUpperCase() }} Promotions and Bonuses. By accepting this agreement and registering for a {{ companyData?.name.toUpperCase() }} Account on the Website, You are also acknowledging and accepting to be bound by the rules and regulations associated with any Promotions and Bonuses offered to You by {{ companyData?.name.toUpperCase() }}.</p>
           <p>Bonus T&C</p>
           <p>12.3 All promotions, bonuses, or special offers are subject to the express terms of any bonus offered on the Website(s) and promotion-specific terms and conditions, if applicable, and any bonus credited to Your account must be used in adherence with such terms and conditions. By accepting a promotion, bonus, or special offer available on the Website(s), You consent to the terms and conditions of such promotion, bonus, or special offer and acknowledge that wagers must always be placed with cash balances before bonus balances can be used to wager. We reserve the right to withdraw any promotion, bonus, or special offer at any time.</p>
           <p>Activation & Expiry</p>
@@ -391,9 +393,9 @@ onBeforeUnmount(() => {
           <p>12.5 No promotion, bonus, or special offer will be accepted or honoured by the {{ companyData?.name.toUpperCase() }} following the expiration date of the promotion, bonus, or special offer, unless {{ companyData?.name.toUpperCase() }} in its sole discretion chooses to do so for any particular customer, promotion, bonus, or special offer. Expiration dates will be set forth in the specific rules or terms and conditions of the particular promotion, bonus, or special offer. Furthermore, {{ companyData?.name.toUpperCase() }} reserves the right, in its sole discretion, to change or modify any policy with respect to the earning or expiration of bonuses.</p>
           <p>12.6 Once forfeited or de-activated, the Bonus will no longer be available to You (and cannot be re-activated at any time thereafter). The amount of any Bonus Funds that have already been credited to your {{ companyData?.name.toUpperCase() }} Account Balance will remain available to You.</p>
           <p>Bonus Abuse & Fraud</p>
-          <p>12.7 In the event that {{ companyData?.name.toUpperCase() }} believes a Player of the Service is abusing or attempting to abuse a bonus or other promotion or is likely to benefit through abuse or lack of good faith from a policy adopted by Stake, then {{ companyData?.name.toUpperCase() }} may, at its sole discretion, deny, withhold, or withdraw from any Player any bonus or promotion, or terminate that Player’s access to the Services, the Software, and/or lock that Player’s account, either temporarily or permanently.</p>
+          <p>12.7 In the event that {{ companyData?.name.toUpperCase() }} believes a Player of the Service is abusing or attempting to abuse a bonus or other promotion or is likely to benefit through abuse or lack of good faith from a policy adopted by {{ companyData?.name.toUpperCase() }}, then {{ companyData?.name.toUpperCase() }} may, at its sole discretion, deny, withhold, or withdraw from any Player any bonus or promotion, or terminate that Player’s access to the Services, the Software, and/or lock that Player’s account, either temporarily or permanently.</p>
           <p>12.8 You may only open one (1) account on the Website. The opening of multiple accounts on the Website for the purpose of accumulating bonuses, promotions, special offers, or otherwise, shall be considered abusive behaviour.</p>
-          <p>Stake Rights</p>
+          <p>{{ companyData?.name.toUpperCase() }} Rights</p>
           <p>12.9 {{ companyData?.name.toUpperCase() }} reserves the right to remove bonuses from all inactive accounts or accounts that are identified as “bonus abusers”.</p>
           <p>12.10 {{ companyData?.name.toUpperCase() }} reserves the right to cancel all bonuses that have not been claimed within the claiming period or 60 days, the shorter of the two.</p>
           <p>12.11 {{ companyData?.name.toUpperCase() }} reserves the right to cancel any bonus at its sole discretion.</p>
@@ -403,7 +405,7 @@ onBeforeUnmount(() => {
           13. AUTHORITY/TERMS OF SERVICE
         </div>
         <div class="terms-conditions-describe">
-          <p>13.1 You agree to the game rules described on the Stake.com website. {{ companyData?.name.toUpperCase() }} retains authority over the issuing, maintenance, and closing of the Service. The decision of Stake's management, concerning any use of the Service, or dispute resolution, is final and shall not be open to review or appeal.</p>
+          <p>13.1 You agree to the game rules described on the {{ location.hostname }} website. {{ companyData?.name.toUpperCase() }} retains authority over the issuing, maintenance, and closing of the Service. The decision of {{ companyData?.name.toUpperCase() }}'s management, concerning any use of the Service, or dispute resolution, is final and shall not be open to review or appeal.</p>
         </div>
 
         <div class="terms-conditions-title">
@@ -435,7 +437,7 @@ onBeforeUnmount(() => {
           <p>16.1 The Website and Services may only be used for recreational purposes by placing bets and wagers on events and/or gaming products.</p>
           <p>16.2 You must not use the Website for the benefit of a third party or for any purpose which is illegal, defamatory, abusive or obscene, or which {{ companyData?.name.toUpperCase() }} considers discriminatory, fraudulent, dishonest or inappropriate. {{ companyData?.name.toUpperCase() }} may report to the authorities any activity which it considers to be suspicious and/or in breach of this paragraph.</p>
           <p>16.3 If {{ companyData?.name.toUpperCase() }} has a reasonable suspicion that You are involved in fraudulent, dishonest or criminal acts, as set out under applicable laws, via or in connection with the Website or Services, {{ companyData?.name.toUpperCase() }} may seek criminal and contractual sanctions against You. {{ companyData?.name.toUpperCase() }} will withhold payment to any customer where any of these are suspected or where the payment is suspected to be for the benefit of a third party.</p>
-          <p>16.4 You shall indemnify and shall be liable to pay Stake, on demand, all costs, charges or losses sustained or incurred by us and our affiliates (including any direct, indirect or consequential losses, loss of profit and loss of reputation) in respect of all Claims arising directly or indirectly from Your fraudulent, dishonest or criminal acts while using the Website or Services</p>
+          <p>16.4 You shall indemnify and shall be liable to pay {{ companyData?.name.toUpperCase() }}, on demand, all costs, charges or losses sustained or incurred by us and our affiliates (including any direct, indirect or consequential losses, loss of profit and loss of reputation) in respect of all Claims arising directly or indirectly from Your fraudulent, dishonest or criminal acts while using the Website or Services</p>
           <p>16.5 Furthermore, we reserve the right not to accept, process and/or honour bets/wagers where it would be forbidden, unlawful or illegal under applicable law or regulation to do so.</p>
         </div>
 
@@ -449,14 +451,14 @@ onBeforeUnmount(() => {
           <p>17.4 You are not permitted to:</p>
           <p>a) install or load the software that forms part of the Website onto a server or other networked device or take other steps to make the software available via any form of "bulletin board", online service or remote dial-in or network to any other person;</p>
           <p>b) sub-license, assign, rent, lease, loan, transfer or copy (except as expressly provided elsewhere in these Terms and Conditions) Your right to use the Website, or the software that forms part of the Website, or make or distribute copies of same;</p>
-          <p>c) enter, access or attempt to enter or access or otherwise bypass Stake’s security system or interfere in any way (including but not limited to, robots or similar devices) with the products or the Website or attempt to make any modifications to the software and/or any features or components thereof;</p>
+          <p>c) enter, access or attempt to enter or access or otherwise bypass {{ companyData?.name.toUpperCase() }}’s security system or interfere in any way (including but not limited to, robots or similar devices) with the products or the Website or attempt to make any modifications to the software and/or any features or components thereof;</p>
           <p>d) copy or translate any user documentation provided 'online' or in electronic format.</p>
           <p>e) In addition, except to the minimum extent permitted by applicable law in relation to computer programs, You are not permitted to: (i) translate, reverse engineer, decompile, disassemble, modify, create derivative works based on, or otherwise modify the Website; or (ii) reverse engineer, decompile, disassemble, modify, adapt, translate, make any attempt to discover the source code of the software that forms part of the Website or to create derivative works based on the whole or on any part of the Website.</p>
           <p>17.5 You do not own the software that forms part of the Website. Such software is owned and is the exclusive property of {{ companyData?.name.toUpperCase() }} or a third party software provider company (any such third party provider, the "Software Provider"). Any software and accompanying documentation which have been licensed to {{ companyData?.name.toUpperCase() }} are proprietary products of the Software Provider and protected throughout the world by copyright law. Your use of the software does not give You ownership of any intellectual property rights in the software.</p>
           <p>17.6 The software is provided "as is" without any warranties, conditions, undertakings or representations, express or implied, statutory or otherwise. {{ companyData?.name.toUpperCase() }} hereby excludes all implied terms, conditions and warranties, including any of merchantability, merchantable quality, satisfactory quality and fitness for any particular purpose, completeness or accuracy of the services or the software or infringement of applicable laws and regulations. {{ companyData?.name.toUpperCase() }} does not warrant or condition that: (i) the software will meet Your requirements; (ii) the software will not infringe any third party’s intellectual property rights; (iii) the operation of the software will be error free or uninterrupted; (iv) any defects in the software will be corrected; or (v) the software or the servers are virus-free.</p>
           <p>17.7 In the event of communications or system errors occurring in connection with the settlement of accounts or other features or components of the software, neither {{ companyData?.name.toUpperCase() }} nor the Software Provider will have any liability to You or to any third party in respect of such errors. {{ companyData?.name.toUpperCase() }} reserves the right in the event of such errors to remove all relevant products from the Website and take any other action to correct such errors.</p>
-          <p>17.8 You hereby acknowledge that how You use the software is outside of Stake’s control. Accordingly, You install and/or use the software at Your own risk. {{ companyData?.name.toUpperCase() }} will not have any liability to You or to any third party in respect of Your receipt of and/or use of the software.</p>
-          <p>17.9 The software may include confidential information which is secret and valuable to the Software Provider and/or Stake. You are not entitled to use or disclose that confidential information other than strictly in accordance with these Terms and Conditions.</p>
+          <p>17.8 You hereby acknowledge that how You use the software is outside of {{ companyData?.name.toUpperCase() }}’s control. Accordingly, You install and/or use the software at Your own risk. {{ companyData?.name.toUpperCase() }} will not have any liability to You or to any third party in respect of Your receipt of and/or use of the software.</p>
+          <p>17.9 The software may include confidential information which is secret and valuable to the Software Provider and/or {{ companyData?.name.toUpperCase() }}. You are not entitled to use or disclose that confidential information other than strictly in accordance with these Terms and Conditions.</p>
           <p>17.10 {{ companyData?.name.toUpperCase() }} shall not be liable if for any reason the Website is unavailable at any time or for any period. We reserve the right to make changes or corrections to or to alter, suspend or discontinue any aspect of the Website and the content or services or products available through it, including Your access to it.</p>
           <p>17.11 You must not misuse the Website by introducing viruses, trojans, worms, logic bombs or other material which is malicious or technologically harmful. In particular, You must not access the Website without authority, interfere with, damage or disrupt the Website or any part of it, any equipment or network on which the Website is hosted, any software used in connection with the provision of the Website, or any equipment, software or website owned or used by a third party. You must not attack our Website via a denial-of-service attack. We will not be liable for any loss or damage caused by a distributed denial-of-service attack, viruses or other technologically harmful material that may infect Your computer equipment, computer programs, data or other proprietary material arising due to Your use of the Website, software or to Your downloading of any material posted on it, or on any website linked to it.</p>
         </div>
@@ -493,7 +495,7 @@ onBeforeUnmount(() => {
         </div>
         <div class="terms-conditions-describe">
           <p>21.1 Under no circumstances, including negligence, shall {{ companyData?.name.toUpperCase() }} be liable for any special, incidental, direct, indirect or consequential damages whatsoever (including, without limitation, damages for loss of business profits, business interruption, loss of business information, or any other pecuniary loss) arising out of the use (or misuse) of the Service even if {{ companyData?.name.toUpperCase() }} had prior knowledge of the possibility of such damages.</p>
-          <p>21.2 Nothing in this Agreement shall exclude or limit Stake's liability for death or personal injury resulting from its negligence.</p>
+          <p>21.2 Nothing in this Agreement shall exclude or limit {{ companyData?.name.toUpperCase() }}'s liability for death or personal injury resulting from its negligence.</p>
         </div>
 
         <div class="terms-conditions-title">
@@ -501,7 +503,7 @@ onBeforeUnmount(() => {
         </div>
         <div class="terms-conditions-describe">
           <p>22.1 {{ companyData?.name.toUpperCase() }} and its licensors are the sole holders of all rights in and to the Service and code, structure and organisation, including copyright, trade secrets, intellectual property and other rights. You may not, within the limits prescribed by applicable laws: (a) copy, distribute, publish, reverse engineer, decompile, disassemble, modify, or translate the website; or (b) use the Service in a manner prohibited by applicable laws or regulations (each of the above is an "Unauthorised Use"). {{ companyData?.name.toUpperCase() }} reserves any and all rights implied or otherwise, which are not expressly granted to the User hereunder and retain all rights, title and interest in and to the Service. You agree that you will be solely liable for any damage, costs or expenses arising out of or in connection with the commission by you of any Unauthorized Use. You shall notify {{ companyData?.name.toUpperCase() }} immediately upon becoming aware of the commission by any person of any Unauthorised Use and shall provide {{ companyData?.name.toUpperCase() }} with reasonable assistance with any investigations it conducts in light of the information provided by you in this respect.</p>
-          <p>22.2 The term "Stake", its domain names and any other trade marks, or service marks used by {{ companyData?.name.toUpperCase() }} as part of the Service (the "Trade Marks"), are solely owned by Stake. In addition, all content on the website, including, but not limited to, the images, pictures, graphics, photographs, animations, videos, music, audio and text (the "Site Content") belongs to {{ companyData?.name.toUpperCase() }} and is protected by copyright and/or other intellectual property or other rights. You hereby acknowledge that by using the Service, you obtain no rights in the Site Content and/or the Trade Marks, or any part thereof. Under no circumstances may you use the Site Content and/or the Trade Marks without Stake's prior written consent. Additionally, you agree not to do anything that will harm or potentially harm the rights, including the intellectual property rights of Stake.</p>
+          <p>22.2 The term "{{ companyData?.name.toUpperCase() }}", its domain names and any other trade marks, or service marks used by {{ companyData?.name.toUpperCase() }} as part of the Service (the "Trade Marks"), are solely owned by {{ companyData?.name.toUpperCase() }}. In addition, all content on the website, including, but not limited to, the images, pictures, graphics, photographs, animations, videos, music, audio and text (the "Site Content") belongs to {{ companyData?.name.toUpperCase() }} and is protected by copyright and/or other intellectual property or other rights. You hereby acknowledge that by using the Service, you obtain no rights in the Site Content and/or the Trade Marks, or any part thereof. Under no circumstances may you use the Site Content and/or the Trade Marks without {{ companyData?.name.toUpperCase() }}'s prior written consent. Additionally, you agree not to do anything that will harm or potentially harm the rights, including the intellectual property rights of {{ companyData?.name.toUpperCase() }}.</p>
         </div>
 
         <div class="terms-conditions-title">
@@ -509,7 +511,7 @@ onBeforeUnmount(() => {
         </div>
         <div class="terms-conditions-describe">
           <p>
-            23.1 If a User wishes to make a complaint, please contact Stake's customer service team at
+            23.1 If a User wishes to make a complaint, please contact {{ companyData?.name.toUpperCase() }}'s customer service team at
             support@{{ companyData?.name }}.com
             . Should any dispute not be resolved to your satisfaction you may pursue remedies in the governing law jurisdiction set forth below.
           </p>
@@ -549,9 +551,9 @@ onBeforeUnmount(() => {
         <div class="terms-conditions-describe">
           <p>28.1 No waiver by {{ companyData?.name.toUpperCase() }} of any breach of any provision of this Agreement (including the failure of {{ companyData?.name.toUpperCase() }} to require strict and literal performance of or compliance with any provision of this Agreement) shall in any way be construed as a waiver of any subsequent breach of such provision or of any breach of any other provision of this Agreement.</p>
           <p>28.2 Nothing in this Agreement shall create or confer any rights or other benefits in favour of any third parties not party to this Agreement.</p>
-          <p>28.3 Nothing in this Agreement shall create or be deemed to create a partnership, agency, trust arrangement, fiduciary relationship or joint venture between you and Stake.</p>
+          <p>28.3 Nothing in this Agreement shall create or be deemed to create a partnership, agency, trust arrangement, fiduciary relationship or joint venture between you and {{ companyData?.name.toUpperCase() }}.</p>
           <p>28.4 {{ companyData?.name.toUpperCase() }} may assign, transfer, charge, sub-license, or deal in any other manner with this Agreement, or sub-contract any of its rights and obligations under this Agreement, to any other party.</p>
-          <p>28.5 This Agreement constitutes the entire understanding and agreement between you and {{ companyData?.name.toUpperCase() }} regarding the Service and supersedes any prior agreement, understanding, or arrangement between you and Stake.</p>
+          <p>28.5 This Agreement constitutes the entire understanding and agreement between you and {{ companyData?.name.toUpperCase() }} regarding the Service and supersedes any prior agreement, understanding, or arrangement between you and {{ companyData?.name.toUpperCase() }}.</p>
         </div>
 
         <div class="terms-conditions-title">
@@ -591,8 +593,8 @@ onBeforeUnmount(() => {
           <span class="text-white" @click.stop="toLogin">{{ t('login') }}</span>
         </div>
 
-        <!-- <div class="stake-text">
-          {{ t('stake_hCaptcha', { site: companyData?.name }) }}
+        <!-- <div class="{{ companyData?.name.toUpperCase() }}-text">
+          {{ t('{{ companyData?.name.toUpperCase() }}_hCaptcha', { site: companyData?.name }) }}
           <span>{{ t('privacy_policy') }}</span> {{ t('and') }}
           <span>{{ t('terms_of_service') }}</span> {{ t('applicable') }}
         </div> -->
@@ -697,7 +699,7 @@ onBeforeUnmount(() => {
       .text-white {
         color: var(--tg-text-white) !important;
       }
-      .stake-text {
+      .{{ companyData?.name.toUpperCase() }}-text {
         font-weight: var(--tg-font-weight-semibold);
         font-size: var(--tg-font-size-xs);
         padding-bottom: var(--tg-spacing-20);
