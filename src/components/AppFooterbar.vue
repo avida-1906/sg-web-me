@@ -168,7 +168,6 @@ watch(() => route.path, () => {
               <BaseIcon name="spt-user-bet" />
             </div>
           </BaseBadge>
-
           <span>{{ t('bet_slip') }}</span>
         </div>
       </BaseButton>

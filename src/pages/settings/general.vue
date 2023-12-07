@@ -293,11 +293,14 @@ onMounted(() => {
     >
       <div style="margin-top: 16px;">
         <BaseLabel :label="t('email_address')" must-small>
+          <div v-if="emailVerified" class="email-erified-box cursor-pointer">
+            {{ email }}
+          </div>
           <BaseInput
+            v-else
             v-model="email"
             :disabled="emailVerified"
             :msg="emailErrormsg"
-            :class="{ 'general-input-background': emailVerified }"
             :msg-after-touched="msgAfterTouched"
             @blur="setMsgAfterTouchedFalse"
             @focus="setMsgAfterTouchedTrue"
@@ -374,9 +377,9 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .tg-settings-general {
-  .general-input-background{
-    --tg-base-input-style-background-color: var(--tg-secondary-main);
-  }
+  // .general-input-background{
+  //   --tg-base-input-style-background-color: var(--tg-secondary-main);
+  // }
   .general-base-image{
     width: 50px;
     height: 50px;
@@ -394,6 +397,23 @@ onMounted(() => {
     }
     &.is-less-than-xs{
       grid-template-columns: repeat(1, 1fr);
+    }
+  }
+  .email-erified-box{
+    width: 100%;
+    height: 40.5px;
+    background-color: var(--tg-secondary-main);
+    line-height: 20.5px;
+    color: var(--tg-text-white);
+    padding: var(--tg-spacing-input-padding-vertical) var(--tg-base-input-style-pad-x);
+    font-weight: var(--tg-font-weight-semibold);
+    border-radius: var(--tg-radius-default);
+    border-width: var(--tg-border-width-sm);
+    border-style: solid;
+    border-color: var(--tg-border-color-main);
+    transition: all ease 0.25s;
+    &:hover {
+      border-color: var(--tg-border-color-deep-grey);
     }
   }
 }
