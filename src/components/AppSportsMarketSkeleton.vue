@@ -21,7 +21,7 @@ const baseGridClass = computed(() => isH5Layout.value ? 'grid-setup-574' : 'grid
   >
     <div class="no-active-scale header">
       <BaseSkeleton animated="ani-opacity" width="120px" height="21px" />
-      <div class="arrow down">
+      <div class="arrow">
         <BaseIcon name="uni-stake-arrow-down" />
       </div>
     </div>
