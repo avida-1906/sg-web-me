@@ -198,6 +198,14 @@ watch(() => props.columns, () => {
         vertical-align: middle;
       }
     }
+    th:last-child,td:last-child{
+      border-top-right-radius: var(--tg-radius-default);
+      border-bottom-right-radius: var(--tg-radius-default);
+    }
+    th:first-child,td:first-child{
+      border-top-left-radius: var(--tg-radius-default);
+      border-bottom-left-radius: var(--tg-radius-default);
+    }
   }
 }
 </style>
