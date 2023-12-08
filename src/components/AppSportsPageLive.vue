@@ -190,29 +190,34 @@ if (currentLiveNav.value !== -1 && !props.onPage) {
     <div class="market-wrapper">
       <AppSportsMarketSkeleton v-if="switchLoading" :num="marketNum" />
       <template v-else>
-        <AppSportsMarket
-          v-for="item in listFiltered" v-show="item.list.length > 0"
-          :key="item.ci + item.list.length"
-          :is-standard="isStandard"
-          :league-name="item.cn"
-          :event-count="item.list.length"
-          :event-list="item.list"
-          :base-type="baseType"
-          :auto-show="item.list.length > 0"
-        />
-        <BaseButton
-          v-show="curTotal < total && isHaveDataToShow && !onPage"
-          size="none" type="text" @click="loadMore"
-        >
-          {{ t('load_more') }}
-        </BaseButton>
-        <BaseButton
-          v-if="onPage" size="none" type="text"
-          style="padding-left: var(--tg-spacing-16);"
-          @click="router.push(`/sports/${getSportsPlatId()}/live`)"
-        >
-          {{ t('view_all') }}
-        </BaseButton>
+        <template v-if="isHaveDataToShow">
+          <AppSportsMarket
+            v-for="item in listFiltered" v-show="item.list.length > 0"
+            :key="item.ci + item.list.length"
+            :is-standard="isStandard"
+            :league-name="item.cn"
+            :event-count="item.list.length"
+            :event-list="item.list"
+            :base-type="baseType"
+            :auto-show="item.list.length > 0"
+          />
+          <BaseButton
+            v-show="curTotal < total && isHaveDataToShow && !onPage"
+            size="none" type="text" @click="loadMore"
+          >
+            {{ t('load_more') }}
+          </BaseButton>
+          <BaseButton
+            v-if="onPage" size="none" type="text"
+            style="padding-left: var(--tg-spacing-16);"
+            @click="router.push(`/sports/${getSportsPlatId()}/live`)"
+          >
+            {{ t('view_all') }}
+          </BaseButton>
+        </template>
+        <div v-else class="empty">
+          <BaseEmpty icon="empty-2" :description="t('empty_cap')" />
+        </div>
       </template>
     </div>
 
@@ -237,6 +242,13 @@ if (currentLiveNav.value !== -1 && !props.onPage) {
   align-items: flex-start;
   gap: var(--tg-spacing-12);
   margin-bottom: var(--tg-spacing-24);
+}
+.empty{
+  width: 100%;
+  min-height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>
 
