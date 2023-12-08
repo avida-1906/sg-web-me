@@ -6,7 +6,7 @@ const radioList = [
 ]
 
 usePageTitle({ prefix: 'menu_title_settings_preferences', isT: true })
-const { companyData } = storeToRefs(useAppStore())
+const { companyData, currentGlobalCurrency } = storeToRefs(useAppStore())
 
 const { bool: isStealth } = useBoolean(false)
 const { bool: hideStatistics } = useBoolean(true)
@@ -14,7 +14,7 @@ const { bool: hideContest } = useBoolean(false)
 const { bool: isRed } = useBoolean(false)
 const { bool: isMarketing } = useBoolean(true)
 
-const numFormat = ref('')
+const numFormat = ref(radioList[0].value)
 </script>
 
 <template>
@@ -71,7 +71,7 @@ const numFormat = ref('')
     </AppSettingsContentItem>
     <AppSettingsContentItem :title="$t('official_number')" last-one btn-text="submit">
       <template #top-desc>
-        <div class="tip">
+        <div v-if="currentGlobalCurrency === 'INR'" class="tip">
           {{ $t('official_num_tip', { currencyName: 'INR' }) }}
         </div>
       </template>
