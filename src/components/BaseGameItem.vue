@@ -7,6 +7,7 @@ interface Props {
     game_id?: string
     [k: string]: any
     maintained: string
+    game_type: string
   }
 }
 
@@ -88,10 +89,11 @@ const onPlayCount = ref(Math.ceil(Math.random() * 1000).toFixed())
       </div>
     </div>
   </BaseAspectRatio>
-  <span class="count">
+  <span v-if="+gameInfo.game_type !== CasinoGameType.casino" class="count">
     <span class="dot blinking-dash2" />&nbsp;&nbsp;
     <span class="num">{{ application.formatNumber(onPlayCount) }}</span>
-    &nbsp;{{ t('in_play') }}</span>
+    &nbsp;{{ t('in_play') }}
+  </span>
 </template>
 
 <style scoped lang="scss">

@@ -85,7 +85,7 @@ export function ApiMemberGameList(params?: {
     th_name: string
     vn_name: string
     client_type: string
-    game_type: number
+    game_type: string
     game_id: string
     img: string
     online: number
