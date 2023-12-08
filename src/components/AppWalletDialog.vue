@@ -155,8 +155,9 @@ watch(() => currentTab.value, () => {
     flex-wrap: nowrap;
     align-items: center;
     background-color: #0f212e;
-    padding:1rem;
-    gap: 1rem;
+    padding: 20px 16px;
+    gap: var(--tg-spacing-14);
     color: var(--tg-text-lightgrey);
+    line-height: 1.5;
   }
 </style>

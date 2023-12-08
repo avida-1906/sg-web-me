@@ -19,7 +19,7 @@ const isSports = computed(() => currentTab.value === 'sports')
 
 <template>
   <div class="my-bets">
-    <div class="sports-page-title">
+    <div class="sports-page-title" style="min-height: auto">
       <div class="left">
         <BaseIcon name="spt-user-bet" />
         <h6>{{ t('my_bets') }}</h6>
