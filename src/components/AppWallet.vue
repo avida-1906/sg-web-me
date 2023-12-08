@@ -35,7 +35,7 @@ function selectCurrency(item: EnumCurrencyKey, hide: () => void) {
 
 <template>
   <div class="app-wallet flex-box">
-    <VDropdown v-model:shown="isMenuShown" :distance="6" @apply-show="clearSearchValue">
+    <VDropdown v-model:shown="isMenuShown" :distance="10" @apply-show="clearSearchValue">
       <div class="flex-box">
         <BaseButton class="wallet" type="text" size="sm">
           <!-- <span v-if="isCasinoGame" class="in-play">

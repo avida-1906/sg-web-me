@@ -119,7 +119,7 @@ const { run: runExists } = useRequest(ApiMemberExists, {
       await validateEmail()
       await validateUsername()
       await validatePassword()
-      await valiAgree()
+      // await valiAgree()
       await birthdayInputRef.value.valiBirthday()
       if (birthdayInputRef.value.msg)
         return
@@ -163,7 +163,7 @@ async function getMemberReg() {
   await validateEmail()
   await validateUsername()
   await validatePassword()
-  await valiAgree()
+  // await valiAgree()
   if (pwdErrorMsg.value)
     setShowPasswordVerifyTrue()
   await birthdayInputRef.value.valiBirthday()

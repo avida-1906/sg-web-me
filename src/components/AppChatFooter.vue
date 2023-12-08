@@ -105,9 +105,13 @@ const trimMessage = computed(() => message.value.trim())
 const isCommand = computed(() => message.value[0] === '/')
 
 const { run: runSendMsg, loading: sendLoading } = useRequest(ApiChatSendMessage)
-function addEmoMsg(emo: string) {
+function addEmoMsg(emo: string, isFace?: boolean) {
+  if (isFace) {
+    message.value += emo
+    msgInput.value?.getFocus()
+    return
+  }
   const i = message.value.lastIndexOf(':')
-  console.log('i === ', i)
   const temp = `${message.value.slice(0, i + 1)}${emo.split('.')[0]}` + ': '
   message.value = i === message.value.length - 1 && i !== -1 ? temp : `:${temp}`
   msgInput.value?.getFocus()
@@ -193,6 +197,15 @@ function enterPress(event: KeyboardEvent) {
               <BaseButton type="text" size="none">
                 <div class="emo">
                   <BaseImage :url="`/png/emoji/${emo}`" />
+                </div>
+              </BaseButton>
+            </span>
+          </div>
+          <div v-for="emo, idx in allSmileFace" :key="idx" class="button-wrap">
+            <span class="box" @click="addEmoMsg(emo, true)">
+              <BaseButton type="text" size="none">
+                <div class="emo face-emo">
+                  <span>{{ emo }}</span>
                 </div>
               </BaseButton>
             </span>
@@ -397,6 +410,12 @@ function enterPress(event: KeyboardEvent) {
     .emo {
       width: var(--tg-spacing-25);
       height: var(--tg-spacing-25);
+    }
+    .face-emo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--tg-font-size-xl);
     }
   }
   // .button-wrap:first-child {

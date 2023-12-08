@@ -113,6 +113,7 @@ watch(() => isMobile.value, (newValue) => {
     }
     .notice-content {
         --tg-table-th-background: var(--tg-primary-main);
+        --tg-table-margin-top-empty: 24.6vh;
         // --tg-table-even-background: var(--tg-secondary-grey);
         // --tg-table-odd-background: var(--tg-secondary-dark);
         width: 100%;
