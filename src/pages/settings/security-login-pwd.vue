@@ -96,6 +96,7 @@ async function submitLoginPwd() {
       :title="t('password')"
       last-one
       :btn-loading="passwordUpdateLoading && logoutLoading"
+      :show-hr="false"
       @submit="submitLoginPwd"
     >
       <BaseLabel :label="t('old_pwd')" must-small>
@@ -145,6 +146,7 @@ async function submitLoginPwd() {
   color: var(--tg-text-lightgrey);
   font-size: var(--tg-font-size-default);
   font-weight: var(--tg-font-weight-semibold);
+  --tg-base-input-style-pad-x: 7px;
   .two-step-verification{
     .text{
       padding-bottom: var(--tg-spacing-4);
