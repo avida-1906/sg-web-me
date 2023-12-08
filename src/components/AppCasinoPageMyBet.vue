@@ -77,94 +77,101 @@ const columns = computed(() => {
   ]
 })
 
-const { list, runAsync, prev, next, hasMore, page } = useList(ApiMemberCasinoRecordList,
-  { }, { page_size: 10 })
+const {
+  list, prev, next, hasMore, page,
+  loading,
+} = useList(ApiMemberCasinoRecordList,
+  { manual: false }, { page_size: 10 })
 
 function showDetail(data: ICasinoBetRecordItem) {
   openBetSlipDialog({ type: 'casino', data })
 }
-
-await application.allSettled([runAsync({})])
 </script>
 
 <template>
   <div class="casino-my-bets">
-    <div v-if="list.length === 0" class="empty">
-      <BaseEmpty>
-        <template #icon>
-          <BaseIcon style="font-size: var(--tg-empty-icon-size);" name="empty-1" />
+    <div v-if="loading" class="empty">
+      <BaseLoading />
+    </div>
+    <template v-else>
+      <div v-if="list.length === 0" class="empty">
+        <BaseEmpty>
+          <template #icon>
+            <BaseIcon style="font-size: var(--tg-empty-icon-size);" name="empty-1" />
+          </template>
+          <template #description>
+            <span>{{ t('empty_casino_bet') }}</span>
+          </template>
+          <template #default>
+            <BaseButton
+              type="text"
+              size="none"
+              style=" --tg-base-button-text-default-color:var(--tg-text-white)"
+              @click="$router.push('/casino')"
+            >
+              {{ t('sports_betting_now') }}
+            </BaseButton>
+          </template>
+        </BaseEmpty>
+      </div>
+
+      <BaseTable
+        v-else
+        :columns="columns"
+        :data-source="list"
+      >
+        <template #game_name="{ record: { game_name, game_class } }">
+          <div class="game_name">
+            <BaseIcon
+              v-if="game_class === '1'" style="font-size: 16px;"
+              name="chess-live-casino"
+            />
+            <BaseIcon v-else style="font-size: 16px;" name="chess-slot-machine" />
+            {{ game_name }}
+          </div>
         </template>
-        <template #description>
-          <span>{{ t('empty_casino_bet') }}</span>
-        </template>
-        <template #default>
+        <template #bill_no="{ record }">
           <BaseButton
-            type="text"
-            size="none"
-            style=" --tg-base-button-text-default-color:var(--tg-text-white)"
-            @click="$router.push('/casino')"
+            size="none" type="text"
+            @click="showDetail(record)"
           >
-            {{ t('sports_betting_now') }}
+            <div class="bill_no">
+              <BaseIcon v-if="!isMobile" style="font-size: 16px;" name="tabbar-bet" />
+              <span>{{ record.bill_no }}</span>
+            </div>
           </BaseButton>
         </template>
-      </BaseEmpty>
-    </div>
-    <BaseTable
-      v-else
-      :columns="columns"
-      :data-source="list"
-    >
-      <template #game_name="{ record: { game_name, game_class } }">
-        <div class="game_name">
-          <BaseIcon
-            v-if="game_class === '1'" style="font-size: 16px;"
-            name="chess-live-casino"
-          />
-          <BaseIcon v-else style="font-size: 16px;" name="chess-slot-machine" />
-          {{ game_name }}
-        </div>
-      </template>
-      <template #bill_no="{ record }">
-        <BaseButton
-          size="none" type="text"
-          @click="showDetail(record)"
-        >
-          <div class="bill_no">
-            <BaseIcon v-if="!isMobile" style="font-size: 16px;" name="tabbar-bet" />
-            <span>{{ record.bill_no }}</span>
+        <template #bet_time="{ record: { bet_time } }">
+          <div>
+            {{ timeToFormat(bet_time) }}
           </div>
+        </template>
+        <template #bet_amount="{ record: { bet_amount, currency_id } }">
+          <div class="amount">
+            <AppAmount
+              :amount="bet_amount"
+              :currency-type="getCurrencyConfigByCode(currency_id)?.name"
+            />
+          </div>
+        </template>
+        <template #net_amount="{ record: { net_amount, currency_id } }">
+          <div class="amount" :class="{ win: net_amount > 0 }">
+            <AppAmount
+              :amount="net_amount"
+              :currency-type="getCurrencyConfigByCode(currency_id)?.name"
+            />
+          </div>
+        </template>
+      </BaseTable>
+      <div class="btns">
+        <BaseButton :disabled="page === 1" type="text" @click="prev">
+          {{ t('page_prev') }}
         </BaseButton>
-      </template>
-      <template #bet_time="{ record: { bet_time } }">
-        <div>
-          {{ timeToFormat(bet_time) }}
-        </div>
-      </template>
-      <template #bet_amount="{ record: { bet_amount, currency_id } }">
-        <div class="amount">
-          <AppAmount
-            :amount="bet_amount"
-            :currency-type="getCurrencyConfigByCode(currency_id)?.name"
-          />
-        </div>
-      </template>
-      <template #net_amount="{ record: { net_amount, currency_id } }">
-        <div class="amount" :class="{ win: net_amount > 0 }">
-          <AppAmount
-            :amount="net_amount"
-            :currency-type="getCurrencyConfigByCode(currency_id)?.name"
-          />
-        </div>
-      </template>
-    </BaseTable>
-    <div class="btns">
-      <BaseButton :disabled="page === 1" type="text" @click="prev">
-        {{ t('page_prev') }}
-      </BaseButton>
-      <BaseButton type="text" :disabled="!hasMore" @click="next">
-        {{ t('page_next') }}
-      </BaseButton>
-    </div>
+        <BaseButton type="text" :disabled="!hasMore" @click="next">
+          {{ t('page_next') }}
+        </BaseButton>
+      </div>
+    </template>
   </div>
 </template>
 
@@ -179,7 +186,7 @@ await application.allSettled([runAsync({})])
 }
 .empty{
   width: 100%;
-  height: 240px;
+  min-height: 150px;
   display: flex;
   align-items: center;
   justify-content: center;

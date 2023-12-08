@@ -6,6 +6,7 @@ interface Props {
 const props = defineProps<Props>()
 
 const { t } = useI18n()
+const router = useRouter()
 const { appContentWidth } = storeToRefs(useWindowStore())
 
 const {
@@ -48,6 +49,13 @@ function pageNext() {
   scrollToTop()
   next()
 }
+
+function goToBet() {
+  router.push(`/sports/${getSportsPlatId()}`)
+  setTimeout(() => {
+    sportsLobbyBus.emit(true)
+  }, 50)
+}
 </script>
 
 <template>
@@ -68,24 +76,50 @@ function pageNext() {
         />
       </div>
     </div>
-    <AppSportsLoadingEmpty
-      :loading="loading" :list="sportBetList" :settle="settle"
-    />
-    <div
-      v-if="!loading && sportBetList.length > 0"
-      class="slip-wrapper" :style="`column-count:${columnCount}`"
-    >
-      <div v-for="item in sportBetList" :key="item.ono" class="child">
-        <AppSportsMyBetSlip :data="item" />
-      </div>
+    <div v-if="loading" class="empty">
+      <BaseLoading />
     </div>
-    <AppStack
-      v-if="!loading && sportBetList.length > 0"
-      class="stack-padding"
-      :pagination-data="paginationData"
-      scroll
-      @previous="pagePrev" @next="pageNext"
-    />
+    <template v-else>
+      <div v-if="sportBetList.length === 0" class="empty">
+        <BaseEmpty>
+          <template #icon>
+            <BaseIcon
+              style="
+                  font-size: var(--tg-empty-icon-size);
+                  margin-bottom: var(--tg-spacing-24);
+                "
+              name="uni-empty-betslip"
+            />
+          </template>
+          <template #description>
+            <span>{{ settle === 0
+              ? t('empty_unsettle_bet') : t('empty_settle_bet') }}
+            </span>
+          </template>
+          <template #default>
+            <BaseButton
+              type="text"
+              size="none"
+              style=" --tg-base-button-text-default-color:var(--tg-text-white)"
+              @click="goToBet"
+            >
+              {{ t('sports_betting_now') }}
+            </BaseButton>
+          </template>
+        </BaseEmpty>
+      </div>
+      <div v-else class="slip-wrapper" :style="`column-count:${columnCount}`">
+        <div v-for="item in sportBetList" :key="item.ono" class="child">
+          <AppSportsMyBetSlip :data="item" />
+        </div>
+      </div>
+      <AppStack
+        class="stack-padding"
+        :pagination-data="paginationData"
+        scroll
+        @previous="pagePrev" @next="pageNext"
+      />
+    </template>
   </div>
 </template>
 
@@ -106,6 +140,14 @@ function pageNext() {
   }
 }
 .stack-padding {
-  padding-bottom: 30px;
+  margin-top: var(--tg-spacing-24);
+  padding-bottom:var(--tg-spacing-30);
+}
+.empty{
+  width: 100%;
+  min-height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>
