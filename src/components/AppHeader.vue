@@ -167,7 +167,7 @@ function handleClickMenuItem(item: { name: string; path?: string }) {
     :style="{ 'grid-template-columns': `1fr ${isLogin ? 'auto' : ''} 1fr` }"
   >
     <BaseLogo :use-small="appContentWidth < 376 && isLogin" is-back />
-    <AppWallet v-if="isLogin" />
+    <AppWallet v-if="isLogin" popper-clazz="app-h-wallet" />
     <div v-if="isLogin" class="header-box">
       <div class="header-right">
         <BaseButton
@@ -242,6 +242,12 @@ function handleClickMenuItem(item: { name: string; path?: string }) {
   </div>
 </template>
 
+<style>
+.app-h-wallet {
+  --tg-app-select-currency-poptop-width: 207.5px;
+}
+</style>
+
 <style lang="scss" scoped>
 .app-header {
   display: grid;
@@ -295,7 +301,7 @@ function handleClickMenuItem(item: { name: string; path?: string }) {
 
   .icon-size {
     font-size: var(--tg-font-size-default);
-    margin-right: var(--tg-spacing-6);
+    margin-right: var(--tg-spacing-8);
   }
 
   .menu-item {
@@ -325,6 +331,7 @@ function handleClickMenuItem(item: { name: string; path?: string }) {
       color: var(--tg-popper-color-default);
       --tg-icon-color: var(--tg-popper-color-default);
       padding: 12px 12px;
+      padding-right: 22px;
       transition: color 0.2s ease;
       &:active {
         transform: scale(0.95);

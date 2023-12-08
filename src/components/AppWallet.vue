@@ -1,6 +1,12 @@
 <script lang="ts" setup>
 import type { EnumCurrencyKey } from '~/apis/types'
 
+interface Props {
+  popperClazz?: string
+}
+
+defineProps<Props>()
+
 const route = useRoute()
 const appStore = useAppStore()
 const isCasinoGame = computed(() => route.name === 'casino-games')
@@ -58,7 +64,7 @@ function selectCurrency(item: EnumCurrencyKey, hide: () => void) {
         </BaseButton>
       </div>
       <template #popper="{ hide }">
-        <div class="dropdown-popper">
+        <div class="dropdown-popper" :class="[popperClazz]">
           <div class="popper-top">
             <BaseSearch
               v-model="searchValue"
@@ -105,6 +111,12 @@ function selectCurrency(item: EnumCurrencyKey, hide: () => void) {
   </div>
 </template>
 
+<style>
+:root {
+  --tg-app-select-currency-poptop-width: max-content;
+}
+</style>
+
 <style lang="scss" scoped>
 .flex-box{
   display: flex;
@@ -148,7 +160,11 @@ function selectCurrency(item: EnumCurrencyKey, hide: () => void) {
   display: flex;
   flex-direction: column;
   .popper-top {
-    padding: 8px 12px;
+    // padding: 8px 12px;
+    margin: 0 auto;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    width: var(--tg-app-select-currency-poptop-width);
 
     :deep(.base-search.top-search) {
       --tg-base-search-icon-size: var(--tg-font-size-base);
@@ -228,7 +244,7 @@ function selectCurrency(item: EnumCurrencyKey, hide: () => void) {
     --tg-base-button-font-weight: var(--tg-font-weight-semibold);
     --tg-base-button-text-default-color: var(--tg-popper-color-default);
     margin: var(--tg-spacing-4) 0;
-    width: 232px;
+    width: 231.5px;
     .icon-wallet-set {
       font-size: var(--tg-font-size-base);
       --tg-icon-color: var(--tg-popper-color-default);
