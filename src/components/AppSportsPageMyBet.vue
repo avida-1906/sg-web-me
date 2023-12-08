@@ -60,7 +60,7 @@ function goToBet() {
 
 <template>
   <div class="sports-my-bets">
-    <div v-if="onPage" class="sports-page-title title">
+    <div v-if="onPage && !loading" class="sports-page-title title">
       <div class="left">
         <BaseIcon name="spt-user-bet" />
         <h6>{{ t('my_bets') }}</h6>
@@ -76,7 +76,7 @@ function goToBet() {
         />
       </div>
     </div>
-    <div v-if="loading" class="empty">
+    <div v-if="loading" class="empty loading">
       <BaseLoading />
     </div>
     <template v-else>
@@ -149,5 +149,8 @@ function goToBet() {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.loading{
+  min-height: 400px;
 }
 </style>
