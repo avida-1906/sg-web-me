@@ -21,7 +21,7 @@ const params = computed(() => {
     si: 0, m: 0, hot: 1, page: page.value, page_size: pageSize.value,
   }
 })
-const { runAsync, run } = useRequest(ApiSportEventList, {
+const { runAsync, run, loading } = useRequest(ApiSportEventList, {
   onSuccess(res) {
     if (res.d) {
       total.value = res.t
@@ -133,6 +133,7 @@ await application.allSettled([runAsync(params.value)])
         is-standard
         :auto-show="item.list.length > 0"
       />
+      <AppSportsMarketSkeleton v-if="loading" :num="10" />
       <BaseButton v-show="curTotal < total" size="none" type="text" @click="loadMore">
         {{ t('load_more') }}
       </BaseButton>
