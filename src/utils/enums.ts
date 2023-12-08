@@ -292,3 +292,13 @@ export enum PromoTransactionType {
   /** vip生日礼金 */
   'vip_birthday' = 822,
 }
+
+/**
+ * 娱乐城游戏枚举
+ */
+export enum CasinoGameType {
+  /** 真人 */
+  'casino' = 1,
+  /** 电子 */
+  'slot' = 3,
+}

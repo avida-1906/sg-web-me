@@ -11,7 +11,8 @@ const sportsStore = useSportsStore()
 const { currentProvider, providerList } = storeToRefs(sportsStore)
 sportsStore.changeProvider(props.platId)
 
-const marketType = ref('all')
+const marketType = ref(Session.get<string>(STORAGE_SPORTS_LIVE_NAV)?.value ?? 'all')
+console.log('123', Session.get<string>(STORAGE_SPORTS_LIVE_NAV))
 const tabList = computed(() => [
   { label: t('sports_tab_lobby'), value: 'all', icon: 'spt-basketball' },
   {
@@ -33,8 +34,12 @@ const tabList = computed(() => [
 function setLobby() {
   marketType.value = 'all'
 }
+function saveNavKey() {
+  Session.set(STORAGE_SPORTS_LIVE_NAV, unref(marketType))
+}
 
 sportsLobbyBus.on(setLobby)
+saveNavKey()
 
 onBeforeUnmount(() => {
   sportsLobbyBus.off(setLobby)
@@ -60,6 +65,7 @@ onBeforeUnmount(() => {
           size="large"
           :list="tabList"
           :center="false"
+          @change="saveNavKey"
         />
       </div>
     </div>
