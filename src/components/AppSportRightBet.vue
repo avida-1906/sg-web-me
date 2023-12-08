@@ -78,7 +78,7 @@ onMounted(() => {
       >
         <template #label="{ data }">
           <div class="type-select">
-            <!-- <BaseIcon :name="data?.icon" /> -->
+            <BaseIcon :name="data?.icon" />
             <span>{{ data?.label }}</span>
             <BaseBadge
               v-if="headRenderCount" :count="headRenderCount" :max="99999"
