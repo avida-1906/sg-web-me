@@ -34,10 +34,12 @@ export function useLockScroll(show?: boolean | Ref | ComputedRef) {
       if (val)
         setScrollTop()
       nextTick(() => {
-        if (val)
-          lockScroll()
-        else
-          unlockScroll()
+        setTimeout(() => {
+          if (val)
+            lockScroll()
+          else
+            unlockScroll()
+        }, 50)
       })
     }
   }, { immediate: true })
