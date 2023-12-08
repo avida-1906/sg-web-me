@@ -99,9 +99,7 @@ function onClick(tab: TabItem, i: number) {
 
 <style lang='scss' scoped>
 .bubble-wrap {
-  margin-left: var(--tg-spacing-8);
   margin-top: 1px;
-
   div {
     width: 8px;
     height: 8px;

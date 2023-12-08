@@ -31,7 +31,7 @@ if (isLogin.value) {
     value: 'casino-mine',
   })
 }
-headSelectValue.value = 'casino-fy'
+headSelectValue.value = 'casino-all'
 
 watch(() => isMobile.value, (newValue) => {
   if (!newValue)

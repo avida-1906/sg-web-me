@@ -131,8 +131,11 @@ else
 </template>
 
 <style lang='scss' scoped>
+.sports-my-bets{
+  margin-bottom: 24px;
+}
 .title{
-  margin-bottom: var(--tg-spacing-24);
+  margin-bottom: var(--tg-spacing-28);
 }
 .slip-wrapper {
   width: 100%;
@@ -153,6 +156,7 @@ else
 .empty{
   width: 100%;
   min-height: 150px;
+  --tg-empty-text-padding: var(--tg-spacing-12) 0 var(--tg-spacing-6);
   display: flex;
   align-items: center;
   justify-content: center;
