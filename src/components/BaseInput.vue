@@ -183,6 +183,7 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse })
 :root{
   --tg-base-input-style-background-color: transparent;
   --tg-base-input-style-pad-x: var(--tg-spacing-input-padding-horizontal);
+  --tg-base-input-style-right-icon-pad-v: --tg-spacing-8;
 }
 </style>
 
@@ -391,7 +392,7 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse })
       justify-content: center;
     }
     .right-icon {
-      padding: var(--tg-spacing-8);
+      padding: var(--tg-base-input-style-right-icon-pad-v) var(--tg-spacing-8);
       display: flex;
       align-items: center;
       justify-content: center;

@@ -386,6 +386,7 @@ function enterPress(event: KeyboardEvent) {
   touch-action: none;
   .chat-input {
     grid-area: input;
+    --tg-base-input-style-right-icon-pad-v: 0;
   }
   .online {
     grid-area: online;
