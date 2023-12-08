@@ -244,7 +244,7 @@ function handleClickMenuItem(item: { name: string; path?: string }) {
 
 <style>
 .app-h-wallet {
-  --tg-app-select-currency-poptop-width: fit-content;
+  --tg-app-select-currency-poptop-width: 207.5px;
 }
 </style>
 
