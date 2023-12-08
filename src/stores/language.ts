@@ -9,11 +9,41 @@ export const useLanguageStore = defineStore('language', () => {
     path: string
     icon: string
     value: EnumLanguage
+    phone: string
+    phoneId: string
   }>>([
-    { title: '中文', path: '', icon: '', value: EnumLanguage['zh-CN'] },
-    { title: 'English', path: '', icon: '', value: EnumLanguage['en-US'] },
-    { title: 'Tiếng Việt', path: '', icon: '', value: EnumLanguage['vi-VN'] },
-    { title: 'Português', path: '', icon: '', value: EnumLanguage['pt-BR'] },
+    {
+      title: '中文',
+      path: '',
+      icon: '',
+      value: EnumLanguage['zh-CN'],
+      phone: '+86',
+      phoneId: '1137',
+    },
+    {
+      title: 'English',
+      path: '',
+      icon: '',
+      value: EnumLanguage['en-US'],
+      phone: '+1',
+      phoneId: '1283',
+    },
+    {
+      title: 'Tiếng Việt',
+      path: '',
+      icon: '',
+      value: EnumLanguage['vi-VN'],
+      phone: '+84',
+      phoneId: '1287',
+    },
+    {
+      title: 'Português',
+      path: '',
+      icon: '',
+      value: EnumLanguage['pt-BR'],
+      phone: '+55',
+      phoneId: '1125',
+    },
   ])
 
   /** 当前选择的语言 */

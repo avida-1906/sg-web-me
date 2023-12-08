@@ -48,8 +48,8 @@ const isSports = computed(() => currentTab.value === 'sports')
     />
 
     <div class="layout-spacing">
-      <AppBetData v-if="isCasino" mode="casino" :is-casino-mine="false" />
-      <AppBetData v-else-if="isSports" mode="sports" />
+      <AppBetData v-if="initType === 'casino'" mode="casino" :is-casino-mine="false" />
+      <AppBetData v-else-if="initType === 'sports'" mode="sports" />
     </div>
   </div>
 </template>

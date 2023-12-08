@@ -35,7 +35,7 @@ export const useAppStore = defineStore('app', () => {
   })
   /** 公司信息 */
   const companyData = computed(() => {
-    return brandDetail.value?.bottom.company
+    return { name: 'Meibo', copyright: '2023 Meibo.com' } // brandDetail.value?.bottom.company
   })
   /**
    * Logo，Ico，Loading 图片

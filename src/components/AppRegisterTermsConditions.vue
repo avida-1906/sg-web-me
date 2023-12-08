@@ -572,7 +572,7 @@ onBeforeUnmount(() => {
       <BaseCheckBox
         v-model="checkboxValue"
         :disabled="!isRead"
-        :error="isCheckClicked"
+        :error="isCheckClicked && !checkboxValue"
         :msg="checkedErrorMsg"
         @click.stop="checkClick"
       >
