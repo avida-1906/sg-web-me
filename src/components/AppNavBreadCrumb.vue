@@ -8,7 +8,6 @@ interface Props {
 const props = defineProps<Props>()
 
 const router = useRouter()
-const { appContentWidth } = storeToRefs(useWindowStore())
 
 const _data = ref([...props.breadcrumb])
 
@@ -24,13 +23,6 @@ function goPath(
     router.push(replaceSportsPlatId(_d.path))
 }
 
-function goBack() {
-  if (_data.value.length > 1)
-    goPath()
-  else
-    router.push(`/sports/${getSportsPlatId()}`)
-}
-
 watch(() => props.breadcrumb, (val) => {
   _data.value = val
 })
@@ -38,28 +30,27 @@ watch(() => props.breadcrumb, (val) => {
 
 <template>
   <div class="scroll-x app-nav-bread-crumb">
-    <div class="back">
+    <!-- <div class="back">
       <BaseButton size="md" @click="goBack">
         <BaseIcon
           style="font-size: var(--tg-font-size-default);transform: scale(1.25);"
           name="uni-arrow-left" class="arrow-left"
         />
       </BaseButton>
-    </div>
+    </div> -->
     <div class="scroll-x breadcrumb-wrapper remove-end-border">
       <template v-for="d, idx in _data" :key="d.path">
         <a
-          v-if="appContentWidth > 700 ? true : idx === _data.length - 1"
           class="link"
           :class="{
-            disabled: appContentWidth > 700 ? idx === _data.length - 1 : false,
+            disabled: idx === _data.length - 1,
             active: idx === _data.length - 1,
           }"
           @click="goPath({ d, disabled: idx === _data.length - 1 })"
         >
           <span>{{ d.title }}</span>
         </a>
-        <span v-if="idx !== _data.length - 1 && appContentWidth > 700" class="slash" />
+        <span v-if="idx !== _data.length - 1" class="slash" />
       </template>
     </div>
   </div>
