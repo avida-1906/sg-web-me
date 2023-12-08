@@ -237,7 +237,7 @@ onMounted(() => {
       >
         {{ t('turn_on_double_check') }}
       </BaseButton>
-      <BaseButton size="none" type="text">
+      <BaseButton size="none" type="text" style="margin-top: var(--tg-spacing-4);">
         {{ t('vault_info') }}
       </BaseButton>
     </div>
@@ -273,13 +273,15 @@ onMounted(() => {
     flex-wrap: nowrap;
     align-items: center;
     background-color: #0f212e;
-    padding:1rem;
-    gap: 1rem;
+    padding: 20px 16px;
+    gap: var(--tg-spacing-14);
     color: var(--tg-text-lightgrey);
+    line-height: 1.5;
   }
   .amount {
     display: flex;
     flex-direction: column;
+    --tg-base-input-style-pad-x: var(--tg-spacing-7);
     .top {
       display: flex;
       justify-content: space-between;

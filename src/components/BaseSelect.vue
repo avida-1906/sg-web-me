@@ -338,6 +338,7 @@ function onPopperOpen() {
     color: var(--tg-base-select-style-color);
     position: relative;
     border-radius: var(--tg-radius-default);
+    font-weight: 600;
 
     &:hover {
       border-color: var(--tg-border-color-deep-grey);

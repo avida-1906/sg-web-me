@@ -14,6 +14,7 @@ interface Props {
   btnText?: string
   /** 依赖数据变化 disabled */
   dependsDisabled?: any[]
+  showHr?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -21,6 +22,7 @@ const props = withDefaults(defineProps<Props>(), {
   verified: false,
   badge: false,
   btnText: 'save',
+  showHr: true,
 })
 const emit = defineEmits(['submit'])
 
@@ -60,7 +62,7 @@ watch(dependsData, (val, old) => {
       </div>
     </div>
     <div class="content-mid">
-      <hr>
+      <hr v-if="showHr">
       <div class="mid-form">
         <slot />
       </div>

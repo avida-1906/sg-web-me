@@ -11,9 +11,13 @@ const sportsStore = useSportsStore()
 const { sportLiveNavs, currentLiveNav } = storeToRefs(sportsStore)
 const { bool: isStandard } = useBoolean(true)
 const {
-  bool: switchLoading, setTrue: setLoadingTrue,
-  setFalse: setLoadingFalse,
-} = useBoolean(true)
+  bool: switchLoading, setTrue: switchLoadingTrue,
+  setFalse: switchLoadingFalse,
+} = useBoolean(false)
+const {
+  bool: moreLoading, setTrue: moreLoadingTrue,
+  setFalse: moreLoadingFalse,
+} = useBoolean(false)
 const {
   VITE_SPORT_EVENT_PAGE_SIZE,
   VITE_SPORT_EVENT_PAGE_SIZE_MAX, VITE_SPORT_DEFAULT_MARKET_TYPE,
@@ -50,7 +54,8 @@ const { run, runAsync } = useRequest(ApiSportEventList,
       }
     },
     onAfter() {
-      setLoadingFalse()
+      switchLoadingFalse()
+      moreLoadingFalse()
     },
   },
 )
@@ -120,6 +125,7 @@ function loadMore() {
     page.value++
     pageSize.value = +VITE_SPORT_EVENT_PAGE_SIZE
   }
+  moreLoadingTrue()
   getData()
 }
 function reset() {
@@ -144,7 +150,7 @@ function onSportsSiChange(item: { count: number }) {
 
 /** 切换球种 */
 watch(currentLiveNav, () => {
-  setLoadingTrue()
+  switchLoadingTrue()
   reset()
   getData()
   startLive()
@@ -175,7 +181,7 @@ if (currentLiveNav.value !== -1 && !props.onPage) {
   <div class="tg-sports-type" :class="{ 'on-page': onPage }">
     <div class="sports-page-title">
       <div class="left">
-        <BaseIcon v-if="onPage" name="spt-ball-plate" />
+        <BaseIcon v-if="onLobby" name="spt-ball-plate" />
         <h6>{{ t('sports_tab_live_events') }}</h6>
       </div>
       <AppSportsMarketTypeSelect
@@ -201,6 +207,7 @@ if (currentLiveNav.value !== -1 && !props.onPage) {
             :base-type="baseType"
             :auto-show="item.list.length > 0"
           />
+          <AppSportsMarketSkeleton v-if="moreLoading" :num="10" />
           <BaseButton
             v-show="curTotal < total && isHaveDataToShow && !onPage"
             size="none" type="text" @click="loadMore"

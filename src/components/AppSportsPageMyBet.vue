@@ -2,6 +2,7 @@
 interface Props {
   onPage?: boolean
   settle?: number
+  isFirst?: boolean
 }
 const props = defineProps<Props>()
 
@@ -22,7 +23,8 @@ const {
   page_size,
   next,
   prev,
-} = useApiSportBetList(settle, true, scrollToTop)
+  fetch,
+} = useApiSportBetList(settle, false, scrollToTop)
 
 const columnCount = computed(() => {
   if (appContentWidth.value > 1000)
@@ -56,6 +58,11 @@ function goToBet() {
     sportsLobbyBus.emit(true)
   }, 50)
 }
+
+if (props.isFirst)
+  await application.allSettled([fetch()])
+else
+  fetch()
 </script>
 
 <template>
@@ -124,8 +131,11 @@ function goToBet() {
 </template>
 
 <style lang='scss' scoped>
+.sports-my-bets{
+  margin-bottom: 24px;
+}
 .title{
-  margin-bottom: var(--tg-spacing-24);
+  margin-bottom: var(--tg-spacing-28);
 }
 .slip-wrapper {
   width: 100%;
@@ -146,6 +156,7 @@ function goToBet() {
 .empty{
   width: 100%;
   min-height: 150px;
+  --tg-empty-text-padding: var(--tg-spacing-12) 0 var(--tg-spacing-6);
   display: flex;
   align-items: center;
   justify-content: center;

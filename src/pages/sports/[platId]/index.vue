@@ -3,13 +3,14 @@ defineOptions({
   name: 'KeepAliveSports',
 })
 const props = defineProps<{ platId: string }>()
+
 const { t } = useI18n()
 usePageTitle({ prefix: t('btc_sport_title'), suffix: t('sports_label') })
 const { isMobile } = storeToRefs(useWindowStore())
 const { isLogin } = storeToRefs(useAppStore())
 const sportsStore = useSportsStore()
 const { currentProvider, providerList } = storeToRefs(sportsStore)
-sportsStore.changeProvider(props.platId)
+const { bool: isFirst } = useBoolean(true)
 
 const marketType = ref(Session.get<string>(STORAGE_SPORTS_LIVE_NAV)?.value ?? 'all')
 console.log('123', Session.get<string>(STORAGE_SPORTS_LIVE_NAV))
@@ -35,9 +36,11 @@ function setLobby() {
   marketType.value = 'all'
 }
 function saveNavKey() {
+  isFirst.value = false
   Session.set(STORAGE_SPORTS_LIVE_NAV, unref(marketType))
 }
 
+sportsStore.changeProvider(props.platId)
 sportsLobbyBus.on(setLobby)
 saveNavKey()
 
@@ -70,21 +73,8 @@ onBeforeUnmount(() => {
       </div>
     </div>
 
-    <!-- 大厅 -->
-    <template v-if="marketType === 'all'">
-      <AppSportsPageLive on-page on-lobby />
-      <AppSportsHotEvent />
-    </template>
-    <!-- 我的投注 -->
-    <AppSportsPageMyBet
-      v-else-if="marketType === 'my-bet'" on-page
-    />
-    <!-- 收藏夹 -->
-    <AppSportsPageFavourites v-else-if="marketType === 'fav'" on-page />
-    <!-- 滚球 -->
-    <AppSportsPageLive v-else-if="marketType === 'live'" on-page />
-    <!-- 即将开赛 -->
-    <AppSportsPageUpcoming v-else-if="marketType === 'soon'" on-page />
+    <AppSportsLobby :market-type="marketType" />
+
     <div class="layout-spacing">
       <AppBetData mode="sports" />
     </div>

@@ -7,7 +7,7 @@ usePageTitle({ prefix: 'btc_casino_title', suffix: 'casino_game', isT: true })
 
 const location = useBrowserLocation()
 const { isLogin, companyData } = storeToRefs(useAppStore())
-const { isMobile, isSm } = storeToRefs(useWindowStore())
+const { isMobile } = storeToRefs(useWindowStore())
 const casinoStore = useCasinoStore()
 const { casinoNav, casinoGameList } = storeToRefs(casinoStore)
 const router = useRouter()
@@ -168,76 +168,18 @@ await application.allSettled([casinoStore.runAsyncGameLobby(), runMemberNoticeAl
   </div>
   <!-- 公司介绍 -->
   <div v-if="!isLogin" class="index-introduction" :class="{ 'max-height': showMore }">
-    <div class="introduction-content" :class="{ 'column-count': !isSm }">
+    <div class="introduction-content" :style="{ 'column-count': isMobile ? 1 : 2 }">
+      <h1>{{ t('casino_intro_1', hostSite) }}</h1>
       <p>
-        {{ t('company_intro_tip_1',
-             hostSite) }}
+        {{ t('casino_intro_2', hostSite) }}
       </p>
-      <p>
-        {{ t('company_intro_tip_2',
-             hostSite) }}
-      </p>
-      <p>
-        {{ t('company_intro_tip_3',
-             hostSite) }}
-      </p>
-      <h1>{{ t('company_intro_tip_title_1', hostSite) }}</h1>
-      <p>
-        {{ t('company_intro_tip_4', hostSite) }}
-      </p>
-      <p>
-        {{ t('company_intro_tip_5',
-             hostSite) }}
-      </p>
-      <p>
-        {{ t('company_intro_tip_6',
-             hostSite) }}
-      </p>
-      <p>
-        {{ t('company_intro_tip_7', hostSite) }}
-      </p>
-      <p>
-        {{ t('company_intro_tip_8', hostSite) }}
-      </p>
-
-      <h1>{{ t('company_intro_tip_title_2', hostSite) }}</h1>
-      <p>
-        {{ t('company_intro_tip_9', hostSite) }}
-      </p>
-      <p>
-        {{ t('company_intro_tip_10',
-             hostSite) }}
-      </p>
-      <p>
-        {{ t('company_intro_tip_11',
-             hostSite) }}
-      </p>
-      <h1>
-        {{ t('company_intro_tip_title_3',
-             hostSite) }}
-      </h1>
-      <p>
-        {{ t('company_intro_tip_12',
-             hostSite) }}
-      </p>
-      <p>
-        {{ t('company_intro_tip_13',
-             hostSite) }}
-      </p>
-      <p>
-        {{ t('company_intro_tip_14',
-             hostSite) }}
-      </p>
-      <p>
-        {{ t('company_intro_tip_15', hostSite) }}
-      </p>
-      <p>
-        {{ t('company_intro_tip_16', hostSite) }}
-      </p>
-      <h1>{{ t('company_intro_tip_title_4', hostSite) }}</h1>
-      <p>
-        {{ t('company_intro_tip_17', hostSite) }}
-      </p>
+      <p>{{ t('casino_intro_10', hostSite) }}</p>
+      <h1>{{ t('casino_intro_3') }}</h1>
+      <p>{{ t('casino_intro_4', hostSite) }}</p>
+      <p>{{ t('casino_intro_5', hostSite) }}</p>
+      <p>{{ t('casino_intro_6') }}</p>
+      <h1>{{ t('casino_intro_7', hostSite) }}</h1>
+      <p>{{ t('casino_intro_8', hostSite) }}</p>
       <ul>
         <li>{{ t('company_intro_tip_step_1') }}</li>
         <li>
@@ -248,15 +190,19 @@ await application.allSettled([casinoStore.runAsyncGameLobby(), runMemberNoticeAl
           {{ t('company_intro_tip_step_4', hostSite) }}
         </li>
       </ul>
-      <p>
-        {{ t('company_intro_tip_18', hostSite) }}
-      </p>
+      <p>{{ t('casino_intro_9', hostSite) }}</p>
       <p>
         {{ t('company_intro_tip_19') }}
       </p>
-      <p>
-        {{ t('company_intro_tip_20', hostSite) }}
-      </p>
+      <h1>{{ t('casino_intro_11', hostSite) }}</h1>
+      <p>{{ t('casino_intro_12', hostSite) }}</p>
+      <p>{{ t('casino_intro_13', hostSite) }}</p>
+      <p>{{ t('casino_intro_14') }}</p>
+      <p>{{ t('casino_intro_15', hostSite) }}</p>
+      <h1>{{ t('casino_intro_16', hostSite) }}</h1>
+      <p>{{ t('casino_intro_17', hostSite) }}</p>
+      <p>{{ t('casino_intro_18', hostSite) }}</p>
+      <p>{{ t('casino_intro_19', hostSite) }}</p>
     </div>
     <div class="introduction-more">
       <BaseButton @click="onShowMore">
@@ -326,9 +272,9 @@ await application.allSettled([casinoStore.runAsyncGameLobby(), runMemberNoticeAl
       }
     }
     .introduction-content{
+      column-gap: 1.5rem;
       &.column-count{
         column-count: 2;
-        column-gap: 1.5rem;
       }
       &::before{
         position: absolute;

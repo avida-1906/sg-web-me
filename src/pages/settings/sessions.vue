@@ -10,12 +10,12 @@ interface Column {
 const { t } = useI18n()
 usePageTitle({ prefix: t('account_session') })
 
-// const selectValue = ref('1')
-// const selectOptions = [
-//   { label: '全部', value: '1' },
-//   { label: '活跃', value: '2' },
-//   { label: '不活跃', value: '3' },
-// ]
+const selectValue = ref('1')
+const selectOptions = [
+  { label: '全部', value: '1' },
+  { label: '活跃', value: '2' },
+  { label: '不活跃', value: '3' },
+]
 const popperShow: Ref<boolean[]> = ref([])
 const columns: Column[] = [
   {
@@ -80,12 +80,12 @@ application.allSettled([loginLogRunAsync()])
 
 <template>
   <div class="tg-settings-sessions">
-    <!-- <div class="session-title">
+    <div class="session-title">
       会话筛选器
     </div>
     <div class="session-select">
       <BaseSelect v-model="selectValue" :options="selectOptions" small />
-    </div> -->
+    </div>
     <div class="scroll-x session-table">
       <BaseTable
         :columns="columns"
@@ -136,9 +136,12 @@ application.allSettled([loginLogRunAsync()])
 </template>
 
 <style lang="scss" scoped>
+.session-title {
+  color: var(--tg-secondary-light);
+}
 .tg-settings-sessions {
   font-size: var(--tg-font-size-default);
-  // font-weight: var(--tg-font-weight-semibold);
+  font-weight: var(--tg-font-weight-semibold);
   .session-select{
     width: 80px;
     margin-top: var(--tg-spacing-4);

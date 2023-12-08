@@ -19,6 +19,7 @@ const appStore = useAppStore()
 const { userInfo } = storeToRefs(appStore)
 const { updateUserInfo } = useAppStore()
 const { isLessThanXs } = storeToRefs(useWindowStore())
+const { AllLanguages, userLanguage } = storeToRefs(useLanguageStore())
 
 usePageTitle({ prefix: t('set_general') })
 
@@ -238,7 +239,14 @@ for (const k in paramsData.value) {
 watch(() => userInfo.value, (newValue) => {
   if (newValue) {
     email.value = newValue.email
-    paramsData.value = newValue.ext
+    paramsData.value = {
+      ...newValue.ext,
+      area_code: newValue.ext.area_code === ''
+      || newValue.ext.area_code === undefined
+      || newValue.ext.area_code === null
+        ? paramsData.value.area_code
+        : newValue.ext.area_code,
+    }
     setTimeout(() => {
       setSocialDisabledBtnTrue()
     }, 0)
@@ -272,9 +280,20 @@ watch(() => route.query, (newValue) => {
   }
 }, { immediate: true })
 
+watch(userLanguage, (val) => {
+  paramsData.value.area_code = AllLanguages.value.filter(a => a.value === val)[0].phoneId
+}, { immediate: true })
+
 onMounted(() => {
   if (userInfo.value?.ext) {
-    paramsData.value = userInfo.value.ext
+    paramsData.value = {
+      ...userInfo.value.ext,
+      area_code: userInfo.value.ext.area_code === ''
+      || userInfo.value.ext.area_code === undefined
+      || userInfo.value.ext.area_code === null
+        ? paramsData.value.area_code
+        : userInfo.value.ext.area_code,
+    }
     email.value = userInfo.value?.email
     setTimeout(() => {
       setSocialDisabledBtnTrue()
@@ -316,7 +335,9 @@ onMounted(() => {
           size="none"
           @click="emailCheck"
         >
-          {{ t('resend_email') }}
+          <span :class="{ 'not-verified-span': !emailVerified }">
+            {{ t('resend_email') }}
+          </span>
         </BaseButton>
       </template>
     </AppSettingsContentItem>
@@ -376,6 +397,9 @@ onMounted(() => {
 </template>
 
 <style lang="scss" scoped>
+.not-verified-span {
+  color: var(--tg-text-white);
+}
 .tg-settings-general {
   // .general-input-background{
   //   --tg-base-input-style-background-color: var(--tg-secondary-main);

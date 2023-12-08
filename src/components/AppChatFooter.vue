@@ -177,16 +177,26 @@ function enterPress(event: KeyboardEvent) {
     <Transition>
       <div
         v-show="(!sendLoading && emojis.length) || showEmoji"
-        class="scroll-y emoji-wrap layout-grid wrap"
+        class="emoji-wrap"
       >
-        <div v-for="emo in emojis" :key="emo" class="button-wrap">
-          <span class="box" @click="addEmoMsg(emo)">
-            <BaseButton type="text">
-              <div class="emo">
-                <BaseImage :url="`/png/emoji/${emo}`" />
-              </div>
-            </BaseButton>
-          </span>
+        <div class="emoji-header">
+          <span>表情符号</span>
+          <div class="close" @click="setEBool(false)">
+            <BaseIcon name="uni-close" />
+          </div>
+        </div>
+        <div
+          class="scroll-y layout-grid emojis-box wrap"
+        >
+          <div v-for="emo in emojis" :key="emo" class="button-wrap">
+            <span class="box" @click="addEmoMsg(emo)">
+              <BaseButton type="text" size="none">
+                <div class="emo">
+                  <BaseImage :url="`/png/emoji/${emo}`" />
+                </div>
+              </BaseButton>
+            </span>
+          </div>
         </div>
       </div>
     </Transition>
@@ -267,6 +277,30 @@ function enterPress(event: KeyboardEvent) {
 </template>
 
 <style lang="scss" scoped>
+.emoji-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 8px 8px 16px;
+  color: var(--tg-text-white);
+  font-weight: 600;
+  line-height: 30px;
+  font-size: var(--tg-font-size-default);
+  .close {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    --tg-icon-color: var(--tg-secondary-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    &:active {
+      background-color: var(--tg-secondary-deepdark);
+    }
+  }
+}
 .smile {
   font-size: var(--tg-font-size-base);
 }
@@ -336,21 +370,28 @@ function enterPress(event: KeyboardEvent) {
   }
 }
 .emoji-wrap {
-  background: var(--tg-secondary-main);
+  background: var(--tg-secondary-grey);
+  box-shadow: inset 0 -5px 4px -4px #0003, 0 -1px 4px #0003;
   position: absolute;
   bottom: 100%;
   left: 0;
   right: 0;
-  overflow-y: auto;
-  max-height: 50vh;
+  .emojis-box {
+    overflow-y: auto;
+    max-height: 13rem;
+  }
   .button-wrap {
     .box {
-      display: inline-block;
-      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
       background-color: transparent;
+      width: 40px;
+      height: 40px;
       transition: background-color 0.2s;
-      &:hover, &.active {
-        background-color: var(--tg-secondary-deepdark);
+      &:active { // &:hover, &.active,
+        background-color: var(--tg-text-grey);
       }
     }
     .emo {
@@ -358,11 +399,11 @@ function enterPress(event: KeyboardEvent) {
       height: var(--tg-spacing-25);
     }
   }
-  .button-wrap:first-child {
-    .box {
-      background-color: var(--tg-secondary-deepdark);
-    }
-  }
+  // .button-wrap:first-child {
+  //   .box {
+  //     background-color: var(--tg-secondary-deepdark);
+  //   }
+  // }
 }
 .green-dot {
   width: 8px;
