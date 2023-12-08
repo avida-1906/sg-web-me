@@ -16,7 +16,7 @@ const props = withDefaults(defineProps<Props>(), {
   showTab: true,
   isCasinoMine: true,
 })
-
+const emit = defineEmits(['delMine'])
 const { t } = useI18n()
 
 const { isLogin } = storeToRefs(useAppStore())
@@ -36,7 +36,7 @@ const { openStatisticsDialog } = useStatisticsDialog()
 const { openBetSlipDialog } = useDialogBetSlip()
 const {
   list,
-  run: runCasinoRecordList,
+  runAsync: runCasinoRecordList,
   loading,
   // prev, next, hasMore, page,
 } = useList(ApiMemberCasinoRecordList,
@@ -63,7 +63,7 @@ const getTabOptions = computed(() => {
         { value: 'casino-fy', label: t('billboard') },
         { value: 'ranking-list', label: t('competition_board'), bubble: true },
       ]
-      if (props.isCasinoMine)
+      if (props.isCasinoMine && list.value.length)
         arr.unshift({ value: 'casino-mine', label: t('my_bets'), disabled: !isLogin.value })
       return arr
     }
@@ -332,6 +332,14 @@ watch(() => activeTab.value, (newValue) => {
     timer.value && clearInterval(timer.value)
     timer.value = null
     setColor(props.showTab)
+  }
+}, { immediate: true })
+watch(() => isLogin.value, (newValue) => {
+  if (newValue) {
+    runCasinoRecordList({}).then(() => {
+      if (!list.value.length)
+        emit('delMine')
+    })
   }
 }, { immediate: true })
 
