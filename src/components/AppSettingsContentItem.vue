@@ -30,14 +30,17 @@ const dependsData = computed(() =>
 
 const onSubmit = function () {
   emit('submit')
+  setTimeout(() => {
+    initDisabled.value = true
+  }, 150)
 }
 
-const stop = watch(dependsData, (val, old) => {
+watch(dependsData, (val, old) => {
   if (val.length && old.length) {
     for (let i = 0; i < val.length; i++) {
       if (val[i] !== old[i]) {
-        initDisabled.value = false
-        stop()
+        if (initDisabled.value)
+          initDisabled.value = false
         break
       }
     }
