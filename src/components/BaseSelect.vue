@@ -294,6 +294,9 @@ function onPopperOpen() {
       color: var(--tg-popper-color-default);
     }
   }
+  &.active{
+    color: var(--tg-text-blue);
+  }
 }
 
 .popper-option-dark {
