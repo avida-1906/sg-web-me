@@ -572,7 +572,7 @@ onBeforeUnmount(() => {
       <BaseCheckBox
         v-model="checkboxValue"
         :disabled="!isRead"
-        :error="isCheckClicked && !isRead"
+        :error="isCheckClicked"
         :msg="checkedErrorMsg"
         @click.stop="checkClick"
       >
@@ -676,7 +676,6 @@ onBeforeUnmount(() => {
     flex-direction: column;
     gap: var(--tg-spacing-16);
     --tg-base-checkbox-error-color: var(--tg-text-error-sub);
-    --tg-base-checkbox-error-border-color: var(--tg-text-error-sub);
     --tg-base-checkbox-error-icon-size: var(--tg-font-size-xs);
     --tg-icon-color: var(--tg-text-error-sub);
     --tg-base-checkbox-msg-margin-top: 10px;
