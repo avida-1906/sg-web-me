@@ -2,7 +2,8 @@
 const props = defineProps<{ gameType: string }>()
 
 const { appContentWidth, isMobile } = storeToRefs(useWindowStore())
-const { platformList } = storeToRefs(useCasinoStore())
+const casinoStore = useCasinoStore()
+const { platformList } = storeToRefs(casinoStore)
 const route = useRoute()
 const title = computed(() => route.query.name)
 const { bool: loading } = useBoolean(false)
@@ -11,7 +12,7 @@ usePageTitle({ prefix: title })
 const currentType = ref(props.gameType)
 const sortType = ref(EnumCasinoSortType.hot)
 const pids = ref('')
-const cid = ref(route.query.cid ? route.query.cid?.toString() ?? '' : '')
+const cid = ref(route.query.cid ? route.query.cid?.toString() ?? '0' : '0')
 
 const isRec = computed(() => currentType.value === 'rec') // 推荐游戏
 const isCat = computed(() => currentType.value === 'category') // 类别
@@ -44,6 +45,13 @@ const platformOptions = computed(() => {
   }
   return []
 })
+const bannerBg = computed(() => {
+  if (isRec.value)
+    return '/png/casino/group-banner-default.png'
+
+  else
+    return casinoStore.getBg(cid.value)
+})
 
 function handleBeforeUnmounted() {
   loading.value = true
@@ -66,7 +74,7 @@ function onSortChange(v: any) {
 watch(route, (a) => {
   if (a.params.gameType) {
     currentType.value = a.params.gameType.toString()
-    cid.value = a.query.cid ? route.query.cid?.toString() ?? '' : ''
+    cid.value = a.query.cid ? route.query.cid?.toString() ?? '0' : '0'
     pids.value = ''
     sortType.value = EnumCasinoSortType.hot
   }
@@ -92,8 +100,9 @@ onMounted(() => {
             </div>
             <div class="right">
               <BaseImage
+                :is-cloud="!isRec"
                 style="height: 100%;"
-                url="/png/casino/group-banner-default.png"
+                :url="bannerBg"
               />
             </div>
           </div>
