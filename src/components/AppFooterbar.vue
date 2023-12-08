@@ -27,7 +27,7 @@ const isCasino = computed(() => gameType.value === Game.CASINO
 const isSports = computed(() => gameType.value === Game.SPORTS
  && !rightIsExpand.value && !leftIsExpand.value,
 )
-const isRouteCasino = computed(() => route.name?.toString().includes(Game.CASINO))
+// const isRouteCasino = computed(() => route.name?.toString().includes(Game.CASINO))
 const isRouteSports = computed(() => route.name?.toString().includes(Game.SPORTS))
 const isChat = computed(() => rightIsExpand.value
 && currentRightSidebarContent.value === EnumRightSidebarContent.CHATROOM,
@@ -141,7 +141,7 @@ watch(() => route.path, () => {
       </BaseButton>
     </div>
     <div
-      v-show="isRouteCasino || (!isRouteCasino && !isRouteSports)" class="bar-item"
+      v-show="!isRouteSports" class="bar-item"
       :class="{ active: rightIsExpand && !isChat }"
     >
       <BaseButton type="text" size="none" @click="openBar('bet')">
