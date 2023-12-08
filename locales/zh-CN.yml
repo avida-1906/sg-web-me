@@ -1537,3 +1537,4 @@ week_6: 星期六
 double_check_code: 双重验证码
 official_number: 法定数字格式
 official_num_tip: 警告：在 {currencyName} 法定货币视图中，法定数字格式将被禁用。
+privacy: 隐私

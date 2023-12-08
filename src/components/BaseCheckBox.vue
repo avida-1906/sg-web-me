@@ -50,10 +50,14 @@ function onClick() {
   --tg-base-checkbox-error-border-color: var(--tg-text-error);
   --tg-base-checkbox-error-icon-size: var(--tg-font-size-md);
   --tg-base-checkbox-msg-margin-top: var(--tg-spacing-6);
+  --tg-base-checkbox-error-icon-color: var(--tg-text-error-sub);
 }
 </style>
 
 <style lang='scss' scoped>
+.error-icon {
+  --tg-icon-color: var(--tg-base-checkbox-error-icon-color);
+}
 .base-check-box {
   display: flex;
   flex-direction: column;
@@ -66,7 +70,6 @@ function onClick() {
     padding-bottom: 4px;
     .error-icon {
       font-size: var(--tg-base-checkbox-error-icon-size);
-      --tg-icon-color: var(--tg-base-checkbox-error-border-color);
     }
     span {
       font-size: var(--tg-font-size-xs);
@@ -82,7 +85,11 @@ function onClick() {
   color: var(--tg-secondary-light);
   cursor: pointer;
   font-weight: var(--tg-font-weight-semibold);
-
+  &:hover {
+    .outer {
+      border-color: var(--tg-border-color-deep-grey);
+    }
+  }
   .outer {
     transition: all ease .25s;
     box-shadow: 0 1px 3px 0 #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.2)},
@@ -132,7 +139,7 @@ function onClick() {
   }
 
   .active.focus {
-     border-color: var(--tg-border-color-deep-grey);
+    border-color: var(--tg-border-color-deep-grey);
     background-color: var(--tg-secondary-main);
   }
 
@@ -147,7 +154,14 @@ function onClick() {
 
 .disabled {
   cursor: not-allowed;
-
+  &:hover {
+    .outer {
+      border-color: var(--tg-border-color-main);
+    }
+    .active {
+      border-color: var(--tg-border-color-deep-grey);
+    }
+  }
   .outer {
     cursor: not-allowed;
     opacity: 0.5;

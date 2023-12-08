@@ -12,6 +12,8 @@ interface Props {
   verified?: boolean
   /** 按钮文字 */
   btnText?: string
+  /** 依赖数据变化 disabled */
+  dependsDisabled?: any[]
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -22,9 +24,25 @@ const props = withDefaults(defineProps<Props>(), {
 })
 const emit = defineEmits(['submit'])
 
+const initDisabled = ref(!!(props.dependsDisabled && props.dependsDisabled.length))
+const dependsData = computed(() =>
+  props.dependsDisabled ? [...props.dependsDisabled] : [])
+
 const onSubmit = function () {
   emit('submit')
 }
+
+const stop = watch(dependsData, (val, old) => {
+  if (val.length && old.length) {
+    for (let i = 0; i < val.length; i++) {
+      if (val[i] !== old[i]) {
+        initDisabled.value = false
+        stop()
+        break
+      }
+    }
+  }
+})
 </script>
 
 <template>
@@ -55,7 +73,7 @@ const onSubmit = function () {
           size="md"
           class="btn-width"
           :loading="btnLoading"
-          :disabled="props.verified"
+          :disabled="props.verified || initDisabled"
           @click="onSubmit"
         >
           {{ $t(btnText) }}
