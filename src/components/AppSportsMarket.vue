@@ -10,6 +10,7 @@ interface Props {
   eventCount?: number
   eventList: ISportEventInfo[]
   baseType: string
+  loadingMore?: boolean
 }
 withDefaults(defineProps<Props>(), {
   isStandard: true,
@@ -46,6 +47,7 @@ function onMoreClick() {
           :base-type="baseType"
           :is-last="i === eventList.length - 1"
         />
+        <AppSportsMarketSkeleton v-if="loadingMore" :num="10" />
       </div>
     </template>
   </BaseSecondaryAccordion>

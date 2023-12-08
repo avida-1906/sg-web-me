@@ -35,7 +35,7 @@ const list = ref<ISportDataGroupedByLeague>([])
 const params = computed(() => {
   return { si: currentLiveNav.value, m: 3, page: page.value, page_size: pageSize.value }
 })
-const { run, runAsync } = useRequest(ApiSportEventList,
+const { run, runAsync, loading } = useRequest(ApiSportEventList,
   {
     refreshDeps: [currentLiveNav],
     onSuccess(res) {
@@ -201,6 +201,7 @@ if (currentLiveNav.value !== -1 && !props.onPage) {
             :base-type="baseType"
             :auto-show="item.list.length > 0"
           />
+          <AppSportsMarketSkeleton v-if="loading" :num="10" />
           <BaseButton
             v-show="curTotal < total && isHaveDataToShow && !onPage"
             size="none" type="text" @click="loadMore"

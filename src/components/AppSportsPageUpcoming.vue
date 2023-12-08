@@ -37,7 +37,7 @@ const params = computed(() => {
   }
 })
 const isAll = computed(() => currentUpcomingNav.value === 0)
-const { run, runAsync } = useRequest(ApiSportEventList,
+const { run, runAsync, loading } = useRequest(ApiSportEventList,
   {
     refreshDeps: [currentUpcomingNav],
     onSuccess(res) {
@@ -172,7 +172,9 @@ if (!props.onPage) {
         <AppSportsMarket
           :is-standard="isStandard" show-breadcrumb
           :league-name="leagueName" :event-count="total" :base-type="baseType"
-          :event-list="list" auto-show :show-more="curTotal < total" @more="loadMore"
+          :event-list="list" auto-show :show-more="curTotal < total"
+          :loading-more="loading"
+          @more="loadMore"
         />
       </template>
     </div>
