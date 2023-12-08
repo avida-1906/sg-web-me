@@ -81,7 +81,6 @@ const {
 })
 // pc自动启动游戏
 function autoLunchOnPc() {
-  console.log('autoLunchOnPc===>', pid.value, code.value, currentCurrency.value)
   !isMobile.value && isLogin.value && runLunchGame()
 }
 // 重新获取游戏地址是先清空

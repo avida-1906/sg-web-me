@@ -90,7 +90,7 @@ function showDetail(data: ICasinoBetRecordItem) {
 
 <template>
   <div class="casino-my-bets">
-    <div v-if="loading" class="empty">
+    <div v-if="loading" class="empty loading">
       <BaseLoading />
     </div>
     <template v-else>
@@ -190,6 +190,9 @@ function showDetail(data: ICasinoBetRecordItem) {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.loading{
+  min-height: 400px;
 }
 .game_name{
   display: flex;
