@@ -141,6 +141,8 @@ export type ICartInfo = {
    *
    * 2:不支援串关 */
   ic: 1 | 2
+  /** 开赛时间 */
+  ed: number
   /** 地区Id */
   pgid: string
   /** 联赛id */

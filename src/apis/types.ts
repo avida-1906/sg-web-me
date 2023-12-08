@@ -568,12 +568,23 @@ export interface ISportsMyBetSlipItem {
      * 2：显示联赛名称
      */
     et: 1 | 2
+    /**
+     * 0 不支持重新投注
+     *
+     * 1 支持重新投注
+     */
+    reb: 0 | 1
+    wid: string
+    mlid: string
+    mll: number
+    ic: 1 | 2
+    m: number
+    pid: number
+    sid: string
   }[]
 }
 
 export interface ISportsBetListArgs {
-  /** 体育种类，目前只有 normal  normal:一般赛事  esport:电竞 vr:虚拟 all:全部 */
-  kind: 'normal'
   /** 是否结算，0:未结算 1:已结算 */
   settle: number
   /** 进入货币 */

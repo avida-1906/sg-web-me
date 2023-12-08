@@ -54,7 +54,6 @@ export function useApiSportBetList(
 
   function fetch() {
     runGetSportBetList({
-      kind: 'normal',
       cur: currentGlobalCurCode.value,
       settle: settle.value,
     })
