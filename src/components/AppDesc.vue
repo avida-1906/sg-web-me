@@ -95,7 +95,7 @@ onMounted(() => {
       {
         rank: 'uni-rank1',
         player: 'zhangsan',
-        date: '2023-10-1',
+        date: '2023/10/01',
         bet: '0.00000000',
         multiple: '66,666x',
         payAmount: '257.00000000',
@@ -105,7 +105,7 @@ onMounted(() => {
       {
         rank: 'uni-rank2',
         player: 'lisi',
-        date: '2023-10-1',
+        date: '2023/10/01',
         bet: '0.00000000',
         multiple: '66,666x',
         payAmount: '257.00000000',
@@ -114,7 +114,7 @@ onMounted(() => {
       {
         rank: 'uni-rank3',
         player: 'wangwu',
-        date: '2023-10-1',
+        date: '2023/10/01',
         bet: '0.00000000',
         multiple: '66,666x',
         payAmount: '257.00000000',
