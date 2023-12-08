@@ -4,13 +4,17 @@ defineOptions({
 })
 
 usePageTitle({ prefix: 'btc_casino_title', suffix: 'casino_game', isT: true })
-const { isMobile } = storeToRefs(useWindowStore())
+
+const location = useBrowserLocation()
+const { isLogin, companyData } = storeToRefs(useAppStore())
+const { isMobile, isSm } = storeToRefs(useWindowStore())
 const casinoStore = useCasinoStore()
 const { casinoNav, casinoGameList } = storeToRefs(casinoStore)
 const router = useRouter()
 const { t } = useI18n()
 const { VITE_CASINO_HOME_PAGE_SIZE } = getEnv()
 const { openSwiperNoticeDialog } = useDialogSwiperNotice(430)
+const { bool: showMore, toggle: toggleShowMore } = useBoolean(false)
 
 const tab = ref('all')
 const showAll = computed(() => tab.value === 'all')
@@ -20,6 +24,9 @@ const currentNav = computed(() => {
 })
 const isCat = computed(() => currentNav.value.ty === 1) // 类别
 const isPlat = computed(() => currentNav.value.ty === 2) // 场馆
+const hostSite = computed(() => (
+  { host: location.value.hostname, site: companyData.value?.name }
+))
 // 类别数据
 const {
   data: catGameData,
@@ -80,6 +87,15 @@ function viewMoreGames() {
     router.push(`/casino/group/category?cid=${currentNav.value.cid}&name=${currentNav.value.label}`)
   else if (currentNav.value.ty === 2)
     router.push(`/casino/group/provider?pid=${currentNav.value.platform_id}&name=${currentNav.value.label}`)
+}
+
+const btnText = ref(t('view_more_2'))
+const onShowMore = function () {
+  toggleShowMore()
+  if (showMore.value)
+    btnText.value = t('view_less')
+  else
+    btnText.value = t('view_more_2')
 }
 
 await application.allSettled([casinoStore.runAsyncGameLobby(), runMemberNoticeAllList()])
@@ -150,6 +166,104 @@ await application.allSettled([casinoStore.runAsyncGameLobby(), runMemberNoticeAl
   <div class="layout-spacing">
     <AppBetData mode="casino" />
   </div>
+  <!-- 公司介绍 -->
+  <div v-if="!isLogin" class="index-introduction" :class="{ 'max-height': showMore }">
+    <div class="introduction-content" :class="{ 'column-count': !isSm }">
+      <p>
+        {{ t('company_intro_tip_1',
+             hostSite) }}
+      </p>
+      <p>
+        {{ t('company_intro_tip_2',
+             hostSite) }}
+      </p>
+      <p>
+        {{ t('company_intro_tip_3',
+             hostSite) }}
+      </p>
+      <h1>{{ t('company_intro_tip_title_1', hostSite) }}</h1>
+      <p>
+        {{ t('company_intro_tip_4', hostSite) }}
+      </p>
+      <p>
+        {{ t('company_intro_tip_5',
+             hostSite) }}
+      </p>
+      <p>
+        {{ t('company_intro_tip_6',
+             hostSite) }}
+      </p>
+      <p>
+        {{ t('company_intro_tip_7', hostSite) }}
+      </p>
+      <p>
+        {{ t('company_intro_tip_8', hostSite) }}
+      </p>
+
+      <h1>{{ t('company_intro_tip_title_2', hostSite) }}</h1>
+      <p>
+        {{ t('company_intro_tip_9', hostSite) }}
+      </p>
+      <p>
+        {{ t('company_intro_tip_10',
+             hostSite) }}
+      </p>
+      <p>
+        {{ t('company_intro_tip_11',
+             hostSite) }}
+      </p>
+      <h1>
+        {{ t('company_intro_tip_title_3',
+             hostSite) }}
+      </h1>
+      <p>
+        {{ t('company_intro_tip_12',
+             hostSite) }}
+      </p>
+      <p>
+        {{ t('company_intro_tip_13',
+             hostSite) }}
+      </p>
+      <p>
+        {{ t('company_intro_tip_14',
+             hostSite) }}
+      </p>
+      <p>
+        {{ t('company_intro_tip_15', hostSite) }}
+      </p>
+      <p>
+        {{ t('company_intro_tip_16', hostSite) }}
+      </p>
+      <h1>{{ t('company_intro_tip_title_4', hostSite) }}</h1>
+      <p>
+        {{ t('company_intro_tip_17', hostSite) }}
+      </p>
+      <ul>
+        <li>{{ t('company_intro_tip_step_1') }}</li>
+        <li>
+          {{ t('company_intro_tip_step_2') }}
+        </li>
+        <li>{{ t('company_intro_tip_step_3') }}</li>
+        <li>
+          {{ t('company_intro_tip_step_4', hostSite) }}
+        </li>
+      </ul>
+      <p>
+        {{ t('company_intro_tip_18', hostSite) }}
+      </p>
+      <p>
+        {{ t('company_intro_tip_19') }}
+      </p>
+      <p>
+        {{ t('company_intro_tip_20', hostSite) }}
+      </p>
+    </div>
+    <div class="introduction-more">
+      <BaseButton @click="onShowMore">
+        {{ btnText }}
+      </BaseButton>
+    </div>
+  </div>
 </template>
 
 <style lang='scss' scoped>
@@ -188,6 +302,85 @@ await application.allSettled([casinoStore.runAsyncGameLobby(), runMemberNoticeAl
     justify-content: center;
   }
 }
+
+.index-introduction{
+    margin-bottom: var(--tg-spacing-32);
+    background: var(--tg-secondary-dark);
+    padding: var(--tg-spacing-16);
+    width: 100%;
+    color: var(--tg-text-lightgrey);
+    position: relative;
+    max-height: 250px;
+    overflow: hidden;
+    border-radius: 8px;
+    &.max-height{
+      max-height: 100%;
+      .introduction-content::before{
+        visibility: hidden;
+      }
+      .introduction-more{
+        position: static;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+    }
+    .introduction-content{
+      &.column-count{
+        column-count: 2;
+        column-gap: 1.5rem;
+      }
+      &::before{
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        content: "";
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          0deg,
+          var(--tg-secondary-dark) 0%,rgba(15,33,46,0) 100%
+        );
+      }
+    }
+    .introduction-more{
+      position: absolute;
+      z-index: 2;
+      bottom: var(--tg-spacing-24);
+      left: 0;
+      right: 0;
+      margin: auto;
+      text-align: center;
+      margin-top: var(--tg-spacing-16);
+    }
+    h1{
+      color: var(--tg-text-white);
+      font-size: var(--tg-font-size-xl);
+      margin-bottom: var(--tg-spacing-8);
+      font-weight: var(--tg-font-weight-semibold);
+    }
+    p{
+      margin-bottom: var(--tg-spacing-20);
+      line-height: 24px;
+    }
+    a{
+      font-weight: var(--tg-font-weight-semibold);
+      &:hover{
+        color: var(--tg-text-white);
+      }
+    }
+    ul{
+      list-style-type:disc;
+      padding-left: var(--tg-spacing-32);
+      p {
+        margin: 0;
+      }
+      li{
+        margin: var(--tg-spacing-4) 0;
+      }
+    }
+  }
 </style>
 
 <route lang="yaml">
