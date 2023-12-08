@@ -261,7 +261,9 @@ onUnmounted(() => {
             @blur="onPasswordBlur"
           />
           <AppPasswordVerify
-            v-show="isShowPasswordVerify" :password="password"
+            v-show="isShowPasswordVerify"
+            :password="password"
+            :has-error-msg="!!pwdErrorMsg"
             @pass="passwordVerifyPass"
           />
         </BaseLabel>

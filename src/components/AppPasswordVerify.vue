@@ -1,10 +1,12 @@
 <script setup lang='ts'>
 interface Props {
   password: string
+  hasErrorMsg?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
   password: '',
+  hasErrorMsg: false,
 })
 const emit = defineEmits(['pass'])
 
@@ -24,7 +26,11 @@ watch(() => props.password, () => {
 <template>
   <div
     class="app-password"
-    :class="{ 'all-ok': upperLowerRegOk && lastOneNumberRegOk && lengthOk }"
+    :class="{
+      'all-ok': upperLowerRegOk && lastOneNumberRegOk && lengthOk,
+      'all-not-ok': !upperLowerRegOk && !lastOneNumberRegOk && !lengthOk,
+      'has-error-msg': hasErrorMsg,
+    }"
   >
     <div class="item">
       <BaseIcon v-if="upperLowerRegOk" class="hook-2" name="uni-hook" />
@@ -59,10 +65,13 @@ watch(() => props.password, () => {
   gap: var(--tg-spacing-8);
   color: var(--tg-text-lightgrey);
   font-size: var(--tg-font-size-xs);
-  margin-top: var(--tg-spacing-4);
+  margin-top: var(--tg-spacing-8);
   margin-bottom: var(--tg-spacing-4);
   &.all-ok {
     margin-top: var(--tg-spacing-8);
+  }
+  &.has-error-msg {
+    margin-top: var(--tg-spacing-4);
   }
   .item {
     display: flex;
