@@ -2,6 +2,7 @@
 interface Props {
   onPage?: boolean
   settle?: number
+  isFirst?: boolean
 }
 const props = defineProps<Props>()
 
@@ -22,7 +23,8 @@ const {
   page_size,
   next,
   prev,
-} = useApiSportBetList(settle, true, scrollToTop)
+  fetch,
+} = useApiSportBetList(settle, false, scrollToTop)
 
 const columnCount = computed(() => {
   if (appContentWidth.value > 1000)
@@ -56,6 +58,11 @@ function goToBet() {
     sportsLobbyBus.emit(true)
   }, 50)
 }
+
+if (props.isFirst)
+  await application.allSettled([fetch()])
+else
+  fetch()
 </script>
 
 <template>

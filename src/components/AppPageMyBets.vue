@@ -1,6 +1,7 @@
 <script setup lang='ts'>
 const { t } = useI18n()
 const route = useRoute()
+const { bool: isFirst } = useBoolean(true)
 const initType = route.query.type ? route.query.type.toString() : 'casino'
 
 const currentTab = ref(initType)
@@ -26,7 +27,10 @@ const isSports = computed(() => currentTab.value === 'sports')
       </div>
     </div>
     <div class="tab-bar">
-      <BaseTab v-model="currentTab" :list="tabList" :center="false" />
+      <BaseTab
+        v-model="currentTab" :list="tabList" :center="false"
+        @change="isFirst = false"
+      />
       <BaseSelect
         v-show="isSports"
         v-model="settle"
@@ -37,8 +41,11 @@ const isSports = computed(() => currentTab.value === 'sports')
       />
     </div>
 
-    <AppCasinoPageMyBet v-if="isCasino" />
-    <AppSportsPageMyBet v-else-if="isSports" :key="settle" :settle="settle" />
+    <AppCasinoPageMyBet v-if="isCasino" :is-first="isFirst" />
+    <AppSportsPageMyBet
+      v-else-if="isSports" :key="settle" :is-first="isFirst"
+      :settle="settle"
+    />
 
     <div class="layout-spacing">
       <AppBetData v-if="isCasino" mode="casino" :is-casino-mine="false" />

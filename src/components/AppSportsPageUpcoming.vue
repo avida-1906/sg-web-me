@@ -9,9 +9,13 @@ const sportsStore = useSportsStore()
 const { upcomingNavs, currentUpcomingNav, allSportsCount } = storeToRefs(sportsStore)
 const { bool: isStandard } = useBoolean(true)
 const {
-  bool: switchLoading, setTrue: setLoadingTrue,
-  setFalse: setLoadingFalse,
-} = useBoolean(true)
+  bool: switchLoading, setTrue: switchLoadingTrue,
+  setFalse: switchLoadingFalse,
+} = useBoolean(false)
+const {
+  bool: moreLoading, setTrue: moreLoadingTrue,
+  setFalse: moreLoadingFalse,
+} = useBoolean(false)
 const {
   VITE_SPORT_EVENT_PAGE_SIZE, VITE_SPORT_EVENT_PAGE_SIZE_MAX,
   VITE_SPORT_DEFAULT_MARKET_TYPE,
@@ -37,7 +41,7 @@ const params = computed(() => {
   }
 })
 const isAll = computed(() => currentUpcomingNav.value === 0)
-const { run, runAsync, loading } = useRequest(ApiSportEventList,
+const { run, runAsync } = useRequest(ApiSportEventList,
   {
     refreshDeps: [currentUpcomingNav],
     onSuccess(res) {
@@ -73,7 +77,8 @@ const { run, runAsync, loading } = useRequest(ApiSportEventList,
       }
     },
     onAfter() {
-      setLoadingFalse()
+      switchLoadingFalse()
+      moreLoadingFalse()
     },
   })
 const curTotal = computed(() => list.value.length)
@@ -107,6 +112,7 @@ function loadMore() {
     page.value++
     pageSize.value = +VITE_SPORT_EVENT_PAGE_SIZE
   }
+  moreLoadingTrue()
   getData()
 }
 function reset() {
@@ -125,7 +131,7 @@ function onBaseTypeChange(v: EnumSportMarketType) {
 }
 
 watch(currentUpcomingNav, () => {
-  setLoadingTrue()
+  switchLoadingTrue()
   reset()
   getData()
   startUpcoming()
@@ -173,7 +179,7 @@ if (!props.onPage) {
           :is-standard="isStandard" show-breadcrumb
           :league-name="leagueName" :event-count="total" :base-type="baseType"
           :event-list="list" auto-show :show-more="curTotal < total"
-          :loading-more="loading"
+          :loading-more="moreLoading"
           @more="loadMore"
         />
       </template>
