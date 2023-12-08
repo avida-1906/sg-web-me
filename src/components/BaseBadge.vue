@@ -97,7 +97,7 @@ onMounted(() => {
 <style lang="scss" scoped>
 .active-badge{
   --tg-badge-background-color: var(--tg-text-lightblue);
-  --tg-badge-color: var(--tg-text-dark);
+  --tg-badge-color: #04172d;
 }
 .black-badge{
   --tg-badge-background-color: var(--tg-secondary-deepdark);
