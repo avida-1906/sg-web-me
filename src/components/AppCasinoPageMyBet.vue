@@ -1,6 +1,11 @@
 <script setup lang='ts'>
 import type { ICasinoBetRecordItem } from '~/apis/types'
 
+interface Props {
+  isFirst: boolean
+}
+const props = defineProps<Props>()
+
 const { t } = useI18n()
 const { isMobile } = storeToRefs(useWindowStore())
 const { openBetSlipDialog } = useDialogBetSlip()
@@ -78,14 +83,18 @@ const columns = computed(() => {
 })
 
 const {
-  list, prev, next, hasMore, page,
+  list, prev, next, hasMore, page, runAsync, run,
   loading,
-} = useList(ApiMemberCasinoRecordList,
-  { manual: false }, { page_size: 10 })
+} = useList(ApiMemberCasinoRecordList, {}, { page_size: 10 })
 
 function showDetail(data: ICasinoBetRecordItem) {
   openBetSlipDialog({ type: 'casino', data })
 }
+
+if (props.isFirst)
+  await application.allSettled([runAsync({})])
+else
+  run({})
 </script>
 
 <template>

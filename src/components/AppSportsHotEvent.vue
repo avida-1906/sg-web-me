@@ -7,6 +7,10 @@ const {
   VITE_SPORT_DEFAULT_MARKET_TYPE,
 } = getEnv()
 const { t } = useI18n()
+const {
+  bool: moreLoading, setTrue: moreLoadingTrue,
+  setFalse: moreLoadingFalse,
+} = useBoolean(false)
 
 let timer: any = null
 const baseType = ref(VITE_SPORT_DEFAULT_MARKET_TYPE)
@@ -21,7 +25,7 @@ const params = computed(() => {
     si: 0, m: 0, hot: 1, page: page.value, page_size: pageSize.value,
   }
 })
-const { runAsync, run, loading } = useRequest(ApiSportEventList, {
+const { runAsync, run } = useRequest(ApiSportEventList, {
   onSuccess(res) {
     if (res.d) {
       total.value = res.t
@@ -32,6 +36,9 @@ const { runAsync, run, loading } = useRequest(ApiSportEventList, {
 
       list.value = sportsDataGroupByLeagueLoadMore(list.value, res.d)
     }
+  },
+  onAfter() {
+    moreLoadingFalse()
   },
 })
 /** 过滤无当前盘口的类型的赛事 */
@@ -95,6 +102,7 @@ function loadMore() {
     page.value++
     pageSize.value = +VITE_SPORT_EVENT_PAGE_SIZE
   }
+  moreLoadingTrue()
   getData()
 }
 function updateDataByMqtt(data: ISportEventList[]) {
@@ -133,7 +141,7 @@ await application.allSettled([runAsync(params.value)])
         is-standard
         :auto-show="item.list.length > 0"
       />
-      <AppSportsMarketSkeleton v-if="loading" :num="10" />
+      <AppSportsMarketSkeleton v-if="moreLoading" :num="10" />
       <BaseButton v-show="curTotal < total" size="none" type="text" @click="loadMore">
         {{ t('load_more') }}
       </BaseButton>
