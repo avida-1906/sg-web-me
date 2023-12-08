@@ -99,16 +99,19 @@ function mapHeadArea(
       }"
     >
       <!-- competitor -->
-      <div class="chromatic-ignore heading" style="grid-area: competitor_title;">
+      <div
+        class="chromatic-ignore sticky-left heading"
+        style="grid-area: competitor_title;"
+      >
         <span class="match-status-label">
           {{ data.startTime }}
         </span>
       </div>
-      <div class="competitor-item border" style="grid-area: competitor_home;">
+      <div class="sticky-left competitor-item border" style="grid-area: competitor_home;">
         <AppImage :url="data.htpic" is-cloud width="20px" height="20px" />
         <span>{{ data.homeTeamName }}</span>
       </div>
-      <div class="competitor-item" style="grid-area: competitor_away;">
+      <div class="competitor-item sticky-left" style="grid-area: competitor_away;">
         <AppImage :url="data.atpic" is-cloud width="20px" height="20px" />
         <span>{{ data.awayTeamName }}</span>
       </div>
@@ -175,16 +178,19 @@ function mapHeadArea(
       </span> -->
 
       <!-- matchScore -->
-      <div class="heading center" style="grid-area: matchScore_title;">
+      <div class="heading center sticky-right" style="grid-area: matchScore_title;">
         <AppImage :url="data.spic" is-cloud width="20px" height="20px" />
       </div>
       <div
-        class="fill-frame completed match-score border"
+        class="fill-frame sticky-right completed match-score border"
         style="grid-area: matchScore_home;"
       >
         <span>{{ data.homeTeamScore }}</span>
       </div>
-      <div class="match-score fill-frame" style="grid-area: matchScore_away;">
+      <div
+        class="match-score fill-frame sticky-right"
+        style="grid-area: matchScore_away;"
+      >
         <span>{{ data.awayTeamScore }}</span>
       </div>
     </div>
@@ -204,6 +210,9 @@ function mapHeadArea(
 }
 
 .wrapper {
+  max-width: 90%;
+  position: relative;
+  width: fit-content;
   .content {
     text-align: left;
     color: var(--tg-secondary-light);
@@ -278,5 +287,15 @@ function mapHeadArea(
       background: var(--tg-text-lightblue);
     }
   }
+}
+
+.sticky-left {
+  position: sticky;
+  left: 0;
+}
+
+.sticky-right {
+  position: sticky;
+  right: 0;
 }
 </style>
