@@ -113,8 +113,8 @@ export function useApiMenuData() {
                   : openRightSidebar(EnumRightSidebarContent.NOTIFICATION)
               },
             },
-            // eslint-disable-next-line max-len
-            { title: t('sports_betting'), path: `/sports/${SPORTS_PLAT_ID}/my-bets?type=sports`, icon: 'spt-basketball' },
+
+            // { title: t('sports_betting'), path: `/sports/${SPORTS_PLAT_ID}/my-bets?type=sports`, icon: 'spt-basketball' },
             { title: t('setting'), path: '/settings/general', icon: 'uni-set' },
             {
               title: t('logout'),
