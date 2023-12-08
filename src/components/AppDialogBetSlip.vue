@@ -8,19 +8,24 @@ interface Props {
 }
 const props = defineProps<Props>()
 const closeDialog = inject('closeDialog', () => { })
+const betList = ref<any>([])
 
 const { t } = useI18n()
 const { openRightSidebar, rightIsExpand, currentRightSidebarContent } = useRightSidebar()
 const windowStore = useWindowStore()
 const { isMobile } = storeToRefs(windowStore)
 const router = useRouter()
+const sportStore = useSportsStore()
+const { userInfo } = storeToRefs(useAppStore())
 
 const isCasino = computed(() => props.type === 'casino')
 const isSports = computed(() => props.type === 'sports')
 const betTime = computed(() => isCasino.value
   ? props.casinoData.bet_time
   : props.sportsData.bt)
-const isSettled = computed(() => props.sportsData.os === 1)
+const isSettled = computed(() => {
+  return props.sportsData.os === 1 || betList.value.length === 0
+})
 
 function clickHandler() {
   if (!rightIsExpand.value && !isMobile.value)
@@ -31,17 +36,51 @@ function clickHandler() {
 
   closeDialog()
 
-  // if (sportStore.cart.checkWid(props.cartInfo.wid)) {
-  //   sportStore.cart.remove(props.cartInfo.wid)
-  // }
-  // else {
-  //   sportStore.cart.add(props.cartInfo)
-  //   if (isMobile.value)
-  //     mobileDomTransition()
+  betList.value.forEach((item: any) => {
+    if (!sportStore.cart.checkWid(item.wid))
+      sportStore.cart.add(item)
+  })
+}
 
-  //   else
-  //     pcDomTransition()
-  // }
+/**
+ * 初始化投注列表，组合数据，过滤不可以投注的
+ */
+function initBetList() {
+  for (const item of props.sportsData.bi) {
+    const _o = item
+    const infoObject: any = {
+      ic: _o.ic,
+      pgid: _o.pgid,
+      ci: _o.ci,
+      ap: _o.ap,
+      hp: _o.hp,
+      ed: _o.ed,
+      m: _o.m,
+      ei: _o.ei,
+      si: _o.si,
+      htn: _o.htn,
+      atn: _o.atn,
+    }
+
+    const mlObject: any = {
+      bt: _o.bt,
+      mlid: _o.mlid,
+      mll: _o.mll,
+      pid: _o.pid,
+      btn: _o.btn,
+    }
+
+    const msObject: any = {
+      sn: _o.sn,
+      hdp: _o.hdp,
+      wid: _o.wid,
+      ov: _o.ov,
+      sid: _o.sid,
+    }
+
+    if (_o.reb === 1)
+      betList.value.push(getCartObject(mlObject, msObject, infoObject))
+  }
 }
 
 function openCasinoGame() {
@@ -49,6 +88,10 @@ function openCasinoGame() {
   router.push(`/casino/games?name=${game_name}&pn=${platform_name}&pid=${platform_id}&game_id=${game_code}`)
   closeDialog()
 }
+
+onMounted(() => {
+  initBetList()
+})
 </script>
 
 <template>
@@ -71,28 +114,28 @@ function openCasinoGame() {
         </BaseButton>
       </div> -->
         <div class="des">
-          <span>{{ t('investor') }}：***test</span><br>
+          <span>{{ t('investor') }}：{{ userInfo?.username }}</span><br>
           <span class="time">{{ t('on') }} {{ timeToFormat(betTime) }}</span>
         </div>
       </div>
       <div class="sports-bottom">
         <AppSportsMyBetSlip :data="sportsData" is-dialog />
         <BaseButton v-if="!isSettled" size="md" @click="clickHandler">
-          {{ t('add_one_bet') }}
+          {{ t('add_one_bet', { num: betList.length }) }}
         </BaseButton>
       </div>
     </template>
-
-    <div v-else-if="isCasino" class="top">
-      <BaseButton
-        type="text" size="none"
-        @click="openCasinoGame"
-      >
-        <div class="game-type">
-          {{ casinoData.game_name }}
-        </div>
-      </BaseButton>
-      <!-- <div class="order-id">
+    <template v-else-if="isCasino">
+      <div class="top">
+        <BaseButton
+          type="text" size="none"
+          @click="openCasinoGame"
+        >
+          <div class="game-type">
+            {{ casinoData.game_name }}
+          </div>
+        </BaseButton>
+        <!-- <div class="order-id">
         <span>ID 93,425,567</span>
         <BaseButton type="text" size="none">
           <BaseIcon name="uni-doc" />
@@ -101,35 +144,36 @@ function openCasinoGame() {
           <BaseIcon name="uni-link" />
         </BaseButton>
       </div> -->
-      <div class="des">
-        <span>{{ t('investor') }}：{{ casinoData.username }}</span><br>
-        <span class="time">{{ t('on') }} {{ timeToFormat(betTime) }}</span>
+        <div class="des">
+          <span>{{ t('investor') }}：{{ casinoData.username }}</span><br>
+          <span class="time">{{ t('on') }} {{ timeToFormat(betTime) }}</span>
+        </div>
       </div>
-    </div>
-    <div class="casino-bottom">
-      <div class="item">
-        <label>{{ t('menu_title_settings_bets') }}:</label>
-        <span>
-          {{ casinoData.bet_amount }}
-          <AppCurrencyIcon
-            :currency-type="getCurrencyConfigByCode(casinoData.currency_id)?.name"
-          />
-        </span>
-      </div>
-      <!-- <div class="item">
+      <div class="casino-bottom">
+        <div class="item">
+          <label>{{ t('menu_title_settings_bets') }}:</label>
+          <span>
+            {{ casinoData.bet_amount }}
+            <AppCurrencyIcon
+              :currency-type="getCurrencyConfigByCode(casinoData.currency_id)?.name"
+            />
+          </span>
+        </div>
+        <!-- <div class="item">
         <label>{{ t('multiple_count') }}:</label>
         <span>1.00x</span>
       </div> -->
-      <div class="item">
-        <label>{{ t('sports_payment_amount') }}:</label>
-        <span :class="{ win: +casinoData.net_amount > 0 }">
-          {{ casinoData.net_amount }}
-          <AppCurrencyIcon
-            :currency-type="getCurrencyConfigByCode(casinoData.currency_id)?.name"
-          />
-        </span>
+        <div class="item">
+          <label>{{ t('sports_payment_amount') }}:</label>
+          <span :class="{ win: +casinoData.net_amount > 0 }">
+            {{ casinoData.net_amount }}
+            <AppCurrencyIcon
+              :currency-type="getCurrencyConfigByCode(casinoData.currency_id)?.name"
+            />
+          </span>
+        </div>
       </div>
-    </div>
+    </template>
   </div>
 </template>
 

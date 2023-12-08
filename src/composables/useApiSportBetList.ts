@@ -55,7 +55,6 @@ export function useApiSportBetList(
   function fetch() {
     return new Promise((resolve) => {
       runGetSportBetList({
-        kind: 'normal',
         cur: currentGlobalCurCode.value,
         settle: settle.value,
       }).finally(() => {
