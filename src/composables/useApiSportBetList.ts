@@ -3,7 +3,11 @@ import type { ISportsMyBetSlipItem } from '~/apis/types'
 /**
  * 获取体育投注记录
  */
-export function useApiSportBetList(settle: Ref<number>, isFetch?: boolean) {
+export function useApiSportBetList(
+  settle: Ref<number>,
+  isFetch?: boolean,
+  afterCb?: () => void,
+) {
   if (isFetch === void 0)
     isFetch = true
 
@@ -21,6 +25,9 @@ export function useApiSportBetList(settle: Ref<number>, isFetch?: boolean) {
   } = useList(ApiSportBetList, {
     onBefore() {
       _list.value = []
+    },
+    onAfter() {
+      afterCb && afterCb()
     },
   }, {
     page_size: 20,

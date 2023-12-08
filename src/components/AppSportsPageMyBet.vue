@@ -22,7 +22,7 @@ const {
   page_size,
   next,
   prev,
-} = useApiSportBetList(settle)
+} = useApiSportBetList(settle, true, scrollToTop)
 
 const columnCount = computed(() => {
   if (appContentWidth.value > 1000)
