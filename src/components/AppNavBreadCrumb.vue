@@ -23,6 +23,13 @@ function goPath(
     router.push(replaceSportsPlatId(_d.path))
 }
 
+// function goBack() {
+//   if (_data.value.length > 1)
+//     goPath()
+//   else
+//     router.push(`/sports/${getSportsPlatId()}`)
+// }
+
 watch(() => props.breadcrumb, (val) => {
   _data.value = val
 })
