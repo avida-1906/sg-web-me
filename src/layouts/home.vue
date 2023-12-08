@@ -158,7 +158,11 @@ onErrorCaptured((err, instance, info) => {
                     <Suspense timeout="0" @resolve="suspenseResolved">
                       <component :is="Component" />
                       <template #fallback>
-                        <div class="loading-content-height">
+                        <div
+                          class="loading-content-height" :class="{
+                            center: !isMobile,
+                          }"
+                        >
                           <BaseLoading />
                         </div>
                       </template>
