@@ -335,7 +335,9 @@ onMounted(() => {
           size="none"
           @click="emailCheck"
         >
-          {{ t('resend_email') }}
+          <span :class="{ 'not-verified-span': !emailVerified }">
+            {{ t('resend_email') }}
+          </span>
         </BaseButton>
       </template>
     </AppSettingsContentItem>
@@ -395,6 +397,9 @@ onMounted(() => {
 </template>
 
 <style lang="scss" scoped>
+.not-verified-span {
+  color: var(--tg-text-white);
+}
 .tg-settings-general {
   // .general-input-background{
   //   --tg-base-input-style-background-color: var(--tg-secondary-main);
