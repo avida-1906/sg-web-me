@@ -121,7 +121,7 @@ watch(() => route.path, () => {
 <template>
   <div class="app-footer-bar">
     <div class="bar-item" :class="{ active: leftIsExpand }">
-      <BaseButton type="text" @click="toggleLeftSidebar">
+      <BaseButton type="text" size="none" @click="toggleLeftSidebar">
         <div class="bar-btn">
           <div class="bar-icon">
             <BaseIcon name="tabbar-menu" />
@@ -131,7 +131,7 @@ watch(() => route.path, () => {
       </BaseButton>
     </div>
     <div class="bar-item" :class="{ active: isCasino }">
-      <BaseButton type="text" @click="goGame(Game.CASINO)">
+      <BaseButton type="text" size="none" @click="goGame(Game.CASINO)">
         <div class="bar-btn">
           <div class="bar-icon">
             <BaseIcon name="tabbar-game" />
@@ -144,7 +144,7 @@ watch(() => route.path, () => {
       v-show="isRouteCasino || (!isRouteCasino && !isRouteSports)" class="bar-item"
       :class="{ active: rightIsExpand && !isChat }"
     >
-      <BaseButton type="text" @click="openBar('bet')">
+      <BaseButton type="text" size="none" @click="openBar('bet')">
         <div class="bar-btn">
           <div class="bar-icon">
             <BaseIcon name="tabbar-bet" />
@@ -157,7 +157,7 @@ watch(() => route.path, () => {
       v-show="isRouteSports" class="bar-item"
       :class="{ active: rightIsExpand && !isChat }"
     >
-      <BaseButton type="text" @click="openBar('bet-slip')">
+      <BaseButton type="text" size="none" @click="openBar('bet-slip')">
         <div class="bar-btn">
           <BaseBadge
             mode="active"
@@ -173,7 +173,7 @@ watch(() => route.path, () => {
       </BaseButton>
     </div>
     <div class="bar-item" :class="{ active: isSports }">
-      <BaseButton type="text" @click="goGame(Game.SPORTS)">
+      <BaseButton type="text" size="none" @click="goGame(Game.SPORTS)">
         <div class="bar-btn">
           <div class="bar-icon">
             <BaseIcon name="spt-basketball" />
@@ -183,7 +183,7 @@ watch(() => route.path, () => {
       </BaseButton>
     </div>
     <div class="bar-item" :class="{ active: isChat }">
-      <BaseButton type="text" @click="openBar('chat')">
+      <BaseButton type="text" size="none" @click="openBar('chat')">
         <div class="bar-btn">
           <div class="bar-icon">
             <BaseIcon name="tabbar-chat" />
@@ -241,11 +241,11 @@ watch(() => route.path, () => {
         font-size: var(--tg-font-size-xs);
         color: var(--tg-text-white);
         font-weight: var(--tg-font-weight-semibold);
-        padding-top: 3px;
         line-height: 1;
       }
       .bar-icon{
         font-size: var(--tg-font-size-base);
+        height: 18px;
       }
     }
 
