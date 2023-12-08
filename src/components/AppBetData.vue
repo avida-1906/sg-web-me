@@ -37,6 +37,7 @@ const { openBetSlipDialog } = useDialogBetSlip()
 const {
   list,
   run: runCasinoRecordList,
+  loading,
   // prev, next, hasMore, page,
 } = useList(ApiMemberCasinoRecordList,
   {}, { page_size: 10 })
@@ -251,45 +252,50 @@ const getScaleColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
 const getList = computed(() => {
   switch (activeTab.value) {
     case 'casino-mine': return list.value
-    default:return [
-      {
-        game_name: 'Cursed seas',
-        player: 'Herryhung',
-        time: '10:47',
-        bet_amount: '1234.11',
-        multiplier: '2.97x',
-        net_amount: '113.34399768',
-        currency_id: '701',
-        stealth: 1, // 隐身状态
-      },
-      {
-        game_name: 'Cursed seas',
-        player: 'Herryhung',
-        time: '10:47',
-        bet_amount: '2.111111',
-        multiplier: '2.97x',
-        net_amount: '113.34399768',
-        currency_id: '701',
-      },
-      {
-        game_name: 'Cursed seas',
-        player: 'Herryhung',
-        time: '10:47',
-        bet_amount: '1.111111',
-        multiplier: '2.97x',
-        net_amount: '113.34399768',
-        currency_id: '701',
-      },
-      {
-        game_name: 'Cursed seas',
-        player: 'Herryhung',
-        time: '10:47',
-        bet_amount: '1.111111',
-        multiplier: '2.97x',
-        net_amount: '113.34399768',
-        currency_id: '701',
-      },
-    ]
+    default:
+      loading.value = true
+      setTimeout(() => {
+        loading.value = false
+      }, 1000)
+      return [
+        {
+          game_name: 'Cursed seas',
+          player: 'Herryhung',
+          time: '10:47',
+          bet_amount: '1234.11',
+          multiplier: '2.97x',
+          net_amount: '113.34399768',
+          currency_id: '701',
+          stealth: 1, // 隐身状态
+        },
+        {
+          game_name: 'Cursed seas',
+          player: 'Herryhung',
+          time: '10:47',
+          bet_amount: '2.111111',
+          multiplier: '2.97x',
+          net_amount: '113.34399768',
+          currency_id: '701',
+        },
+        {
+          game_name: 'Cursed seas',
+          player: 'Herryhung',
+          time: '10:47',
+          bet_amount: '1.111111',
+          multiplier: '2.97x',
+          net_amount: '113.34399768',
+          currency_id: '701',
+        },
+        {
+          game_name: 'Cursed seas',
+          player: 'Herryhung',
+          time: '10:47',
+          bet_amount: '1.111111',
+          multiplier: '2.97x',
+          net_amount: '113.34399768',
+          currency_id: '701',
+        },
+      ]
   }
 })
 const getBgColor = computed(() => {
@@ -370,6 +376,7 @@ onUnmounted(() => {
       :columns="getScaleColumns"
       :data-source="getList"
       :style="getBgColor"
+      :loading="loading"
     >
       <template #gameName="{ record }">
         <div
