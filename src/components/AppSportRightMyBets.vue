@@ -27,6 +27,16 @@ function toMyBets() {
 
   router.push(`/sports/${getSportsPlatId()}/my-bets?type=sports`)
 }
+
+function noDataGoToBet() {
+  if (isMobile.value)
+    closeRightSidebar()
+
+  router.push(`/sports/${getSportsPlatId()}`)
+  setTimeout(() => {
+    sportsLobbyBus.emit(true)
+  }, 50)
+}
 </script>
 
 <template>
@@ -39,7 +49,7 @@ function toMyBets() {
         <div v-if="loading" class="center h-100">
           <BaseLoading />
         </div>
-        <div v-else>
+        <div v-else class="h-min-100">
           <div v-if="sportBetList.length">
             <AppSportsMyBetSlip
               v-for="item in sportBetList"
@@ -47,7 +57,7 @@ function toMyBets() {
               :data="item"
             />
           </div>
-          <div v-else>
+          <div v-else class="center h-min-100">
             <BaseEmpty>
               <template #icon>
                 <BaseIcon
@@ -59,7 +69,17 @@ function toMyBets() {
                 />
               </template>
               <template #description>
-                <span>{{ t('data_empty') }}</span>
+                <span>{{ t('sports_bet_slip_empty') }}</span>
+              </template>
+              <template #default>
+                <BaseButton
+                  type="text"
+                  size="none"
+                  style=" --tg-base-button-text-default-color:var(--tg-text-white)"
+                  @click="noDataGoToBet"
+                >
+                  {{ t('sports_betting_now') }}
+                </BaseButton>
               </template>
             </BaseEmpty>
           </div>
