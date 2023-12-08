@@ -64,12 +64,24 @@ function onBaseTypeChange(v: EnumSportMarketType) {
   baseType.value = v
 }
 
+// 虚拟加载数据
+function getData() {
+  return new Promise((resolve) => {
+    const t = setTimeout(() => {
+      resolve(t)
+      clearTimeout(t)
+    }, 1000)
+  })
+}
+
 onMounted(() => {
   startTimer()
 })
 onBeforeUnmount(() => {
   stopTimer()
 })
+
+await application.allSettled([getData()])
 </script>
 
 <template>

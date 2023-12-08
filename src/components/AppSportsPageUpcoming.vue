@@ -2,7 +2,7 @@
 import type { ISportEventInfo, ISportEventList } from '~/apis/types'
 import type { EnumSportMarketType } from '~/utils/enums'
 
-const props = defineProps<{ onPage?: boolean }>()
+defineProps<{ onPage?: boolean }>()
 
 const { t } = useI18n()
 const sportsStore = useSportsStore()
@@ -138,11 +138,6 @@ watch(currentUpcomingNav, () => {
 })
 
 onMounted(() => {
-  if (props.onPage) {
-    getData()
-    startUpcoming()
-  }
-
   startCount()
   sportDeltaBus.on(updateDataByMqtt)
 })
@@ -152,10 +147,7 @@ onBeforeUnmount(() => {
   sportDeltaBus.off(updateDataByMqtt)
 })
 
-if (!props.onPage) {
-  await application.allSettled([runAsync(params.value)])
-  startUpcoming()
-}
+await application.allSettled([runAsync(params.value).then(() => startUpcoming())])
 </script>
 
 <template>

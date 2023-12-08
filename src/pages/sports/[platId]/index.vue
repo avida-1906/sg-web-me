@@ -13,7 +13,6 @@ const { currentProvider, providerList } = storeToRefs(sportsStore)
 const { bool: isFirst } = useBoolean(true)
 
 const marketType = ref(Session.get<string>(STORAGE_SPORTS_LIVE_NAV)?.value ?? 'all')
-console.log('123', Session.get<string>(STORAGE_SPORTS_LIVE_NAV))
 const tabList = computed(() => [
   { label: t('sports_tab_lobby'), value: 'all', icon: 'spt-basketball' },
   {
@@ -35,17 +34,20 @@ const tabList = computed(() => [
 function setLobby() {
   marketType.value = 'all'
 }
-function saveNavKey() {
+function onTabChange() {
   isFirst.value = false
   Session.set(STORAGE_SPORTS_LIVE_NAV, unref(marketType))
 }
 
 sportsStore.changeProvider(props.platId)
 sportsLobbyBus.on(setLobby)
-saveNavKey()
 
+onMounted(() => {
+  Session.set(STORAGE_SPORTS_LIVE_NAV, unref(marketType))
+})
 onBeforeUnmount(() => {
   sportsLobbyBus.off(setLobby)
+  Session.remove(STORAGE_SPORTS_LIVE_NAV)
 })
 </script>
 
@@ -68,12 +70,22 @@ onBeforeUnmount(() => {
           size="large"
           :list="tabList"
           :center="false"
-          @change="saveNavKey"
+          @change="onTabChange"
         />
       </div>
     </div>
 
-    <AppSportsLobby :market-type="marketType" />
+    <AppSportsLobby v-if="isFirst" :market-type="marketType" />
+    <template v-else>
+      <Suspense timeout="0">
+        <AppSportsLobby :key="marketType" :market-type="marketType" />
+        <template #fallback>
+          <div class="loading">
+            <BaseLoading />
+          </div>
+        </template>
+      </Suspense>
+    </template>
 
     <div class="layout-spacing">
       <AppBetData mode="sports" />
@@ -82,7 +94,13 @@ onBeforeUnmount(() => {
 </template>
 
 <style lang='scss' scoped>
-
+.loading{
+  width: 100%;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 </style>
 
 <route lang="yaml">

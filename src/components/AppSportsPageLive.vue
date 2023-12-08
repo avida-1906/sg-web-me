@@ -3,7 +3,7 @@ import type { ISportEventList } from '~/apis/types'
 import type { ISportDataGroupedByLeague } from '~/types'
 import { EnumSportMarketType } from '~/utils/enums'
 
-const props = defineProps<{ onPage?: boolean; onLobby?: boolean }>()
+defineProps<{ onPage?: boolean; onLobby?: boolean }>()
 
 const { t } = useI18n()
 const router = useRouter()
@@ -148,6 +148,25 @@ function onSportsSiChange(item: { count: number }) {
   marketNum.value = item.count
 }
 
+// 初始化数据
+function initData() {
+  return new Promise((resolve) => {
+    let a = 0
+    const t = setInterval(() => {
+      a++
+      if (currentLiveNav.value !== -1) {
+        runAsync(params.value).finally(() => {
+          startLive()
+          resolve(true)
+        })
+        clearInterval(t)
+      }
+      if (a > 300)
+        clearInterval(t)
+    }, 50)
+  })
+}
+
 /** 切换球种 */
 watch(currentLiveNav, () => {
   switchLoadingTrue()
@@ -157,11 +176,6 @@ watch(currentLiveNav, () => {
 })
 
 onMounted(() => {
-  if (currentLiveNav.value !== -1 && props.onPage) {
-    getData()
-    startLive()
-  }
-
   startCount()
   sportDeltaBus.on(updateDataByMqtt)
 })
@@ -171,10 +185,7 @@ onBeforeUnmount(() => {
   sportDeltaBus.off(updateDataByMqtt)
 })
 
-if (currentLiveNav.value !== -1 && !props.onPage) {
-  await application.allSettled([runAsync(params.value)])
-  startLive()
-}
+await application.allSettled([initData()])
 </script>
 
 <template>
