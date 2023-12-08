@@ -98,7 +98,7 @@ await application.allSettled([runAsync(params.value)])
       </div>
     </BaseSecondaryAccordion>
     <div v-show="sportlist.length === 0" class="empty">
-      <BaseEmpty icon="empty-2" :description="t('data_empty')" />
+      <BaseEmpty icon="empty-1" :description="t('empty_cap')" />
     </div>
   </div>
 
@@ -108,14 +108,14 @@ await application.allSettled([runAsync(params.value)])
       :auto-show="i === 0" :data="league"
     />
     <div v-show="regionList.length === 0" class="empty">
-      <BaseEmpty icon="empty-2" :description="t('data_empty')" />
+      <BaseEmpty icon="empty-1" :description="t('empty_cap')" />
     </div>
   </div>
 
   <template v-else-if="isLeague">
     <AppOutrightPreview v-if="leagueList.list.length > 0" auto-show :data="leagueList" />
     <div v-else class="empty">
-      <BaseEmpty icon="empty-2" :description="t('data_empty')" />
+      <BaseEmpty icon="empty-1" :description="t('empty_cap')" />
     </div>
   </template>
 </template>

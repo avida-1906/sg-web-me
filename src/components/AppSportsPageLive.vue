@@ -234,7 +234,7 @@ await application.allSettled([initData()])
           </BaseButton>
         </template>
         <div v-else class="empty">
-          <BaseEmpty icon="empty-2" :description="t('empty_cap')" />
+          <BaseEmpty icon="empty-1" :description="t('empty_cap')" />
         </div>
       </template>
     </div>
