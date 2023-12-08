@@ -19,7 +19,10 @@ const numFormat = ref(radioList[0].value)
 
 <template>
   <div class="tg-settings-preferences">
-    <AppSettingsContentItem title="隐私">
+    <AppSettingsContentItem
+      :title="$t('privacy')"
+      :depends-disabled="[isStealth, hideStatistics, hideContest]"
+    >
       <template #top-desc>
         {{ $t('preferences_tip_1', { site: companyData?.name }) }}
       </template>
@@ -48,7 +51,7 @@ const numFormat = ref(radioList[0].value)
         {{ $t('preferences_tip_5') }}
       </template>
     </AppSettingsContentItem>
-    <AppSettingsContentItem title="社区">
+    <AppSettingsContentItem :title="$t('community')" :depends-disabled="[isRed]">
       <div class="switch-item">
         <BaseSwitch v-model="isRed" class="switch" />
         <div class="right">
@@ -60,7 +63,7 @@ const numFormat = ref(radioList[0].value)
         {{ $t('preferences_tip_5') }}
       </template>
     </AppSettingsContentItem>
-    <AppSettingsContentItem :title="$t('marketing')">
+    <AppSettingsContentItem :title="$t('marketing')" :depends-disabled="[isMarketing]">
       <div class="switch-item">
         <BaseSwitch v-model="isMarketing" class="switch" />
         <div class="right">

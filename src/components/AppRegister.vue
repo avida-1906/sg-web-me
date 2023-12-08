@@ -238,12 +238,15 @@ onUnmounted(() => {
         <BaseLabel v-if="isEmailMust" :label="t('email_address')" must-small>
           <BaseInput
             ref="emailRef" v-model="email" :msg="emailErrorMsg" msg-after-touched
+            type="email"
+            name="email"
           />
         </BaseLabel>
         <BaseLabel :label="t('username')" must-small>
           <BaseInput
             ref="userNameRef" v-model="username"
             :msg="usernameErrorMsg"
+            name="name"
             msg-after-touched @blur="onEmailUsernameBlur(1)"
           />
           <div v-if="!usernameErrorMsg" class="hint">
@@ -256,6 +259,7 @@ onUnmounted(() => {
             v-model="password"
             :msg="pwdErrorMsg"
             type="password"
+            name="password"
             autocomplete="current-password" msg-after-touched
             @focus="onPasswordFocus"
             @blur="onPasswordBlur"

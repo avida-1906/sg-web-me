@@ -3,7 +3,7 @@ interface Props {
   modelValue?: string | number
   label?: string
   layout?: 'horizontal' | 'vertical'
-  type?: 'text' | 'password' | 'number'
+  type?: 'text' | 'password' | 'number' | 'email'
   placeholder?: string
   msg?: string
   must?: boolean
@@ -13,12 +13,14 @@ interface Props {
   max?: number | string
   msgAfterTouched?: boolean
   textCenter?: boolean
+  name?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
   layout: 'vertical',
   type: 'text',
   textarea: false,
+  name: '',
 })
 
 const emit = defineEmits(
@@ -148,6 +150,7 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse })
             }"
             :autocomplete="`new-${_type}`"
             title=""
+            :name="name"
             @input="onInput"
             @focus="onFocus"
             @blur="onBlur"
