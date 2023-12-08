@@ -15,7 +15,7 @@ const active = computed(() => route.path === props.menuItem.path)
 </script>
 
 <template>
-  <div class="tg-app-menu-item">
+  <div class="tg-app-menu-item" :class="[menuItem.icon]">
     <div
       class="menu-item"
       :class="{ active, disabled: menuItem.token && !isLogin }"
@@ -42,6 +42,9 @@ const active = computed(() => route.path === props.menuItem.path)
 
 <style lang="scss" scoped>
 .tg-app-menu-item {
+  &.uni-logout {
+    border-top: 2px solid var(--tg-secondary-main);
+  }
   .menu-item {
     cursor: pointer;
     display: flex;
