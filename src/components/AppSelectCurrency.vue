@@ -272,9 +272,13 @@ onMounted(() => {
             font-weight: var(--tg-font-weight-semibold);
 
             &:hover { // ,&.active
-                background-color: var(--tg-secondary-light);
-                // color: var(--tg-popper-hover-color-default);
-                color: var(--tg-text-black);
+              // background-color: var(--tg-secondary-light);
+              color: var(--tg-text-black);
+              // color: var(--tg-popper-hover-color-default);
+            }
+            &:active {
+              transform: scale(0.96);
+              color: var(--tg-text-blue);
             }
 
         }
