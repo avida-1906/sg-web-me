@@ -167,7 +167,7 @@ function handleClickMenuItem(item: { name: string; path?: string }) {
     :style="{ 'grid-template-columns': `1fr ${isLogin ? 'auto' : ''} 1fr` }"
   >
     <BaseLogo :use-small="appContentWidth < 376 && isLogin" is-back />
-    <AppWallet v-if="isLogin" />
+    <AppWallet v-if="isLogin" popper-clazz="app-h-wallet" />
     <div v-if="isLogin" class="header-box">
       <div class="header-right">
         <BaseButton
@@ -241,6 +241,12 @@ function handleClickMenuItem(item: { name: string; path?: string }) {
     </div>
   </div>
 </template>
+
+<style>
+.app-h-wallet {
+  --tg-app-select-currency-poptop-width: fit-content;
+}
+</style>
 
 <style lang="scss" scoped>
 .app-header {
