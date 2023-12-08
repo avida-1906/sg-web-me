@@ -100,7 +100,7 @@ function mapHeadArea(
     >
       <!-- competitor -->
       <div
-        class="chromatic-ignore sticky-left heading"
+        class="chromatic-ignore sticky-left competitor-title heading"
         style="grid-area: competitor_title;"
       >
         <span class="match-status-label">
@@ -156,15 +156,15 @@ function mapHeadArea(
       </template>
 
       <!-- 1，2，3 场 -->
-      <!-- <template v-for="p, idx in eventData.eventStatus.periodScores" :key="idx">
+      <!-- <template v-for="p, idx in 9" :key="idx">
         <div class="heading center" :style="`grid-area: period_title_${idx}`">
           <span>{{ idx + 1 }}st</span>
         </div>
         <span class="fill-frame border" :style="`grid-area: period_home_${idx}`">
-          <span>{{ p.homeScore }}</span>
+          <span>{{ p }}</span>
         </span>
         <span class="fill-frame" :style="`grid-area: period_away_${idx}`">
-          <span>{{ p.awayScore }}</span>
+          <span>{{ p }}</span>
         </span>
       </template> -->
 
@@ -198,6 +198,9 @@ function mapHeadArea(
 </template>
 
 <style lang="scss" scoped>
+.competitor-title {
+  background: var(--tg-secondary-dark);
+}
 .wrapper.has-background {
   // min-width: 250px;
   // max-width: calc(100% - var(--tg-spacing-32));
@@ -256,6 +259,7 @@ function mapHeadArea(
       justify-self: stretch;
       color: var(--tg-text-white);
       gap: var(--tg-spacing-4);
+      background: var(--tg-primary-main);
 
       img {
         width: var(--tg-spacing-20);
