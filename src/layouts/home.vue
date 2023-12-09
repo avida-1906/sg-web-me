@@ -53,6 +53,8 @@ const rightWidth = computed(() => {
     return ''
 })
 
+useLockScroll(leftIsExpand)
+
 function suspenseResolved() {
   getSuspenseStatus('suspense-resolved')
 }
