@@ -110,7 +110,7 @@ await application.allSettled([getData()])
       </div>
     </template>
     <div v-else class="empty">
-      <BaseEmpty icon="empty-2" :description="t('data_empty')" />
+      <BaseEmpty icon="empty-1" :description="t('empty_cap')" />
     </div>
   </div>
 </template>

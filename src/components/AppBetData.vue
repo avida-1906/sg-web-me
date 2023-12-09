@@ -16,7 +16,7 @@ const props = withDefaults(defineProps<Props>(), {
   showTab: true,
   isCasinoMine: true,
 })
-
+const emit = defineEmits(['delMine'])
 const { t } = useI18n()
 
 const { isLogin } = storeToRefs(useAppStore())
@@ -36,7 +36,8 @@ const { openStatisticsDialog } = useStatisticsDialog()
 const { openBetSlipDialog } = useDialogBetSlip()
 const {
   list,
-  run: runCasinoRecordList,
+  runAsync: runCasinoRecordList,
+  loading,
   // prev, next, hasMore, page,
 } = useList(ApiMemberCasinoRecordList,
   {}, { page_size: 10 })
@@ -62,7 +63,7 @@ const getTabOptions = computed(() => {
         { value: 'casino-fy', label: t('billboard') },
         { value: 'ranking-list', label: t('competition_board'), bubble: true },
       ]
-      if (props.isCasinoMine)
+      if (props.isCasinoMine && list.value.length)
         arr.unshift({ value: 'casino-mine', label: t('my_bets'), disabled: !isLogin.value })
       return arr
     }
@@ -90,6 +91,7 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
         align: 'left',
         xl: true,
         md: true,
+        isRound: 'left',
       },
       {
         title: t('time'),
@@ -102,6 +104,7 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
         dataIndex: 'bet_amount',
         slot: 'betMoney',
         align: 'right',
+        isRound: 'right',
       },
       {
         title: t('multiple_count'),
@@ -116,6 +119,7 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
         align: 'right',
         xl: true,
         md: true,
+        isRound: 'right',
       },
     ]
     case 'casino-all':
@@ -128,6 +132,7 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
         align: 'left',
         xl: true,
         md: true,
+        isRound: 'left',
       },
       {
         title: t('gamer'),
@@ -146,6 +151,7 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
         dataIndex: 'bet_amount',
         slot: 'betMoney',
         align: 'right',
+        isRound: 'right',
       },
       {
         title: t('multiple_count'),
@@ -160,6 +166,7 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
         align: 'right',
         xl: true,
         md: true,
+        isRound: 'right',
       },
     ]
     case 'ranking-list': return [
@@ -188,6 +195,7 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
         xl: true,
         md: true,
         isTips: true,
+        isRound: 'right',
       },
       {
         title: t('finance_other_tab_bonus'),
@@ -196,6 +204,7 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
         align: 'right',
         xl: true,
         md: true,
+        isRound: 'right',
       },
     ]
     case 'sports-all':
@@ -208,6 +217,7 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
         align: 'left',
         xl: true,
         md: true,
+        isRound: 'left',
       },
       {
         title: t('gamer'),
@@ -235,6 +245,7 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
         align: 'right',
         xl: true,
         md: true,
+        isRound: 'right',
       },
     ]
     default: return []
@@ -251,45 +262,50 @@ const getScaleColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
 const getList = computed(() => {
   switch (activeTab.value) {
     case 'casino-mine': return list.value
-    default:return [
-      {
-        game_name: 'Cursed seas',
-        player: 'Herryhung',
-        time: '10:47',
-        bet_amount: '1234.11',
-        multiplier: '2.97x',
-        net_amount: '113.34399768',
-        currency_id: '701',
-        stealth: 1, // 隐身状态
-      },
-      {
-        game_name: 'Cursed seas',
-        player: 'Herryhung',
-        time: '10:47',
-        bet_amount: '2.111111',
-        multiplier: '2.97x',
-        net_amount: '113.34399768',
-        currency_id: '701',
-      },
-      {
-        game_name: 'Cursed seas',
-        player: 'Herryhung',
-        time: '10:47',
-        bet_amount: '1.111111',
-        multiplier: '2.97x',
-        net_amount: '113.34399768',
-        currency_id: '701',
-      },
-      {
-        game_name: 'Cursed seas',
-        player: 'Herryhung',
-        time: '10:47',
-        bet_amount: '1.111111',
-        multiplier: '2.97x',
-        net_amount: '113.34399768',
-        currency_id: '701',
-      },
-    ]
+    default:
+      loading.value = true
+      setTimeout(() => {
+        loading.value = false
+      }, 1000)
+      return [
+        {
+          game_name: 'Cursed seas',
+          player: 'Herryhung',
+          time: '10:47',
+          bet_amount: '1234.11',
+          multiplier: '2.97x',
+          net_amount: '113.34399768',
+          currency_id: '701',
+          stealth: 1, // 隐身状态
+        },
+        {
+          game_name: 'Cursed seas',
+          player: 'Herryhung',
+          time: '10:47',
+          bet_amount: '2.111111',
+          multiplier: '2.97x',
+          net_amount: '113.34399768',
+          currency_id: '701',
+        },
+        {
+          game_name: 'Cursed seas',
+          player: 'Herryhung',
+          time: '10:47',
+          bet_amount: '1.111111',
+          multiplier: '2.97x',
+          net_amount: '113.34399768',
+          currency_id: '701',
+        },
+        {
+          game_name: 'Cursed seas',
+          player: 'Herryhung',
+          time: '10:47',
+          bet_amount: '1.111111',
+          multiplier: '2.97x',
+          net_amount: '113.34399768',
+          currency_id: '701',
+        },
+      ]
   }
 })
 const getBgColor = computed(() => {
@@ -326,6 +342,14 @@ watch(() => activeTab.value, (newValue) => {
     timer.value && clearInterval(timer.value)
     timer.value = null
     setColor(props.showTab)
+  }
+}, { immediate: true })
+watch(() => isLogin.value, (newValue) => {
+  if (newValue) {
+    runCasinoRecordList({}).then(() => {
+      if (!list.value.length)
+        emit('delMine')
+    })
   }
 }, { immediate: true })
 
@@ -370,6 +394,7 @@ onUnmounted(() => {
       :columns="getScaleColumns"
       :data-source="getList"
       :style="getBgColor"
+      :loading="loading"
     >
       <template #gameName="{ record }">
         <div
@@ -453,7 +478,7 @@ onUnmounted(() => {
     align-items: center;
     justify-content: space-between;
     .select-ranking{
-      column-gap: 10px;
+      column-gap: var(--tg-spacing-10);
     }
   }
   .ranking-time{
@@ -467,7 +492,7 @@ onUnmounted(() => {
     padding: 16px 8px;
     border-bottom: var(--tg-spacing-2) solid rgba(255,255,255,.05);
     span{
-      padding-left: 8px;
+      padding-left: var(--tg-spacing-8);
       font-weight: var(--tg-font-weight-semibold);
     }
     >div:hover{

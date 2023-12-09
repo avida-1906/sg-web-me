@@ -14,6 +14,7 @@ export interface MenuItem {
   fixtureCount?: number
   callBack?: () => void
   useCloudImg?: boolean
+  clazz?: string
 }
 
 export type Menu = Array<MenuItem>
@@ -95,7 +96,7 @@ export function useApiMenuData() {
             {
               title: 'VIP',
               path: '/vip/promotion-bonus',
-              icon: 'chess-air-bonus',
+              icon: 'chess-vipclub',
             },
             {
               title: t('statistical_data'),
@@ -121,6 +122,7 @@ export function useApiMenuData() {
               path: '',
               icon: 'uni-logout',
               callBack: () => openLogoutDialog(),
+              clazz: 'has-line',
             },
           ],
           domId: 'static-menu-user',
@@ -138,7 +140,12 @@ export function useApiMenuData() {
           path: '/promotions/promotion/weekly-giveaway',
           icon: 'navbar-user',
         },
-        { title: t('view_all'), path: '/promotions', icon: 'chess-gameshow' },
+        {
+          title: t('view_all'),
+          path: '/promotions',
+          icon: 'chess-gameshow',
+          clazz: 'has-line',
+        },
       ],
       domId: 'static-menu-promotion',
     },

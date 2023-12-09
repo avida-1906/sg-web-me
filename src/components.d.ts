@@ -67,6 +67,7 @@ declare module 'vue' {
     AppImage: typeof import('./components/AppImage.vue')['default']
     AppLeftSidebar: typeof import('./components/AppLeftSidebar.vue')['default']
     AppLeftSidebarTiny: typeof import('./components/AppLeftSidebarTiny.vue')['default']
+    AppLoading: typeof import('./components/AppLoading.vue')['default']
     AppLogin: typeof import('./components/AppLogin.vue')['default']
     AppLoginDialog: typeof import('./components/AppLoginDialog.vue')['default']
     AppLoginRegisterBottom: typeof import('./components/AppLoginRegisterBottom.vue')['default']

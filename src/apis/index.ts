@@ -263,6 +263,7 @@ export function ApiMemberGameLobby() {
       platform_id: string
       name: string
       icon: string
+      background: string
     }[]
     items: {
       ty: number

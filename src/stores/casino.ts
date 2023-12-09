@@ -19,7 +19,14 @@ export const useCasinoStore = defineStore('casino', () => {
 
   const casinoNav = computed(() => {
     if (data.value) {
-      data.value.navs.unshift({ cid: 'all', name: data.value.name, ty: -1, platform_id: 'all', icon: data.value.icon })
+      data.value.navs.unshift({
+        cid: 'all',
+        name: data.value.name,
+        ty: -1,
+        platform_id: 'all',
+        icon: data.value.icon,
+        background: '',
+      })
       return data.value.navs.map((a) => {
         return {
           ...a,
@@ -42,13 +49,22 @@ export const useCasinoStore = defineStore('casino', () => {
           : `/casino/group/provider?pid=${a.platform_id}&name=${a.name}`,
         useCloudImg: true,
       }))
-      : [])
+      : [],
+  )
+
+  function getBg(cid: string) {
+    if (data.value && data.value.navs)
+      return data.value.navs.find(a => a.cid === cid)?.background ?? ''
+
+    return ''
+  }
 
   return {
     platformList,
     casinoNav,
     casinoGameList,
     runAsyncGameLobby,
+    getBg,
   }
 })
 

@@ -2,7 +2,7 @@
 interface Props {
   columns: Column[] // 表格列的配置项
   dataSource?: any[] // 表格数据数组
-  loading?: boolean // 是否加载中
+  loading?: boolean // 是否显示骨架屏
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -12,8 +12,13 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const emit = defineEmits(['sort'])
+const { t } = useI18n()
 const sortSource: Ref<(string | undefined)[]>
   = ref(props.columns.map(item => item.sortDirections))
+
+const getSource = computed(() => {
+  return props.loading ? Array.from({ length: 10 }).fill({}) : props.dataSource
+})
 
 // 排序变化
 function handleSort(item: Column, index: number) {
@@ -26,6 +31,9 @@ function handleSort(item: Column, index: number) {
       sortDirections: str,
     })
   }
+}
+function getWidth() {
+  return `${Math.floor(Math.random() * 50) + 30}px`
 }
 
 watch(() => props.columns, () => {
@@ -82,33 +90,61 @@ watch(() => props.columns, () => {
         </tr>
       </thead>
       <tbody class="m-body">
-        <tr v-show="loading" class="m-tr-loading">
+        <!-- <tr v-show="loading" class="m-tr-loading">
           <BaseLoading class="m-loading" />
-        </tr>
+        </tr> -->
         <tr v-show="(!loading) && (!dataSource?.length)" class="m-tr-empty">
           <td class="m-td-empty" :colspan="columns.length">
-            <BaseEmpty>
-              <template #description>
-                <span>{{ $t('data_empty') }}</span>
-              </template>
-            </BaseEmpty>
+            <div style="margin-top: var(--tg-table-margin-top-empty);">
+              <BaseEmpty :description="t('data_empty')" icon="uni-empty-betslip" />
+            </div>
           </td>
         </tr>
-        <tr v-for="(data, index) in dataSource" :key="index" class="m-tr">
+        <tr v-for="(data, index) in getSource" :key="index" class="m-tr">
           <td
             v-for="(col, n) in columns"
             :key="n" class="m-td"
             :title="data[col.dataIndex]"
             :style="`text-align:${col.align}`"
           >
-            <slot
-              v-if="col.slot" v-bind="{ record: data, index }"
-              :name="col.slot"
-              :index="index"
-            >
-              {{ data[col.dataIndex] || '--' }}
-            </slot>
-            <span v-else>{{ data[col.dataIndex] || '--' }}</span>
+            <template v-if="loading">
+              <div>
+                <BaseSkeleton
+                  v-if="col.isRound === 'left'"
+                  bg="var(--tg-secondary-light)"
+                  height="14px"
+                  width="14px"
+                  style="--tg-skeleton-border-radius:50%;
+                  margin-right: var(--tg-spacing-10);"
+                  animated="ani-opacity"
+                />
+                <BaseSkeleton
+                  bg="var(--tg-secondary-light)"
+                  height="14px"
+                  :width="getWidth()"
+                  animated="ani-opacity"
+                />
+                <BaseSkeleton
+                  v-if="col.isRound === 'right'"
+                  bg="var(--tg-secondary-light)"
+                  height="14px"
+                  width="14px"
+                  style="--tg-skeleton-border-radius:50%;
+                  margin-left: var(--tg-spacing-4);"
+                  animated="ani-opacity"
+                />
+              </div>
+            </template>
+            <template v-else>
+              <slot
+                v-if="col.slot" v-bind="{ record: data, index }"
+                :name="col.slot"
+                :index="index"
+              >
+                {{ data[col.dataIndex] || '--' }}
+              </slot>
+              <span v-else>{{ data[col.dataIndex] || '--' }}</span>
+            </template>
           </td>
         </tr>
       </tbody>
@@ -127,6 +163,7 @@ watch(() => props.columns, () => {
   --tg-table-th-padding: var(--tg-spacing-16);
   --tg-table-td-padding: var(--tg-spacing-16);
   --tg-table-th-font-weight: var(--tg-font-weight-semibold);
+  --tg-table-margin-top-empty: 24px;
 }
 </style>
 
@@ -170,13 +207,19 @@ watch(() => props.columns, () => {
     .m-body {
       position: relative;
 
-      .m-tr-loading {
-        height: 40px;
-        .m-loading {
-          position: absolute;
-          width: 100%;
-          height: 100%;
-        }
+      // .m-tr-loading {
+      //   height: 40px;
+      //   .m-loading {
+      //     position: absolute;
+      //     width: 100%;
+      //     height: 100%;
+      //   }
+      // }
+      // .m-td-empty{
+      //   margin-top: 24px;
+      // }
+      .mt-mobile{
+        margin-top: 24.6vh;
       }
       .m-tr:nth-child(odd){
         background: var(--tg-table-odd-background);

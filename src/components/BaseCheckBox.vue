@@ -51,6 +51,7 @@ function onClick() {
   --tg-base-checkbox-error-icon-size: var(--tg-font-size-md);
   --tg-base-checkbox-msg-margin-top: var(--tg-spacing-6);
   --tg-base-checkbox-error-icon-color: var(--tg-text-error-sub);
+  --tg-base-checkbox-wrap-width: auto;
 }
 </style>
 
@@ -85,6 +86,7 @@ function onClick() {
   color: var(--tg-secondary-light);
   cursor: pointer;
   font-weight: var(--tg-font-weight-semibold);
+  width: var(--tg-base-checkbox-wrap-width);
   &:hover {
     .outer {
       border-color: var(--tg-border-color-deep-grey);

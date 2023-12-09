@@ -568,7 +568,8 @@ onBeforeUnmount(() => {
         line-height: 1.5;
 
         .total {
-          color: var(--tg-text-warn);
+          font-size: var(--tg-font-size-default);
+          color: var(--tg-text-warn-sub);
         }
       }
     }
@@ -672,7 +673,7 @@ onBeforeUnmount(() => {
     }
 
     .total {
-      color: var(--tg-text-warn);
+      color: var(--tg-text-warn-sub);
       margin-left: var(--tg-spacing-8);
     }
   }

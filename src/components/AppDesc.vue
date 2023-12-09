@@ -18,7 +18,7 @@ defineProps<Props>()
 
 const { companyData } = storeToRefs(useAppStore())
 const { t } = useI18n()
-const { bool: showContent, toggle: toggleShowContent } = useBoolean(true)
+const { bool: showContent, toggle: toggleShowContent } = useBoolean(false)
 const { bool: loading, setFalse: setLoadingFalse } = useBoolean(true)
 const {
   widthBoundaryXs,
@@ -315,12 +315,15 @@ onMounted(() => {
       }
 
       .r-arrow {
-        font-size: var(--tg-font-size-xs);
-
+        width: 17.5px;
+        height: 17.5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 17.5px;
         cursor: pointer;
-
         >svg {
-          transition: all 200ms linear;
+          transition: var(--tg-transition);
         }
 
         &.left {

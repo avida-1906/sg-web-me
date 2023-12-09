@@ -80,9 +80,7 @@ onBeforeUnmount(() => {
       <Suspense timeout="0">
         <AppSportsLobby :key="marketType" :market-type="marketType" />
         <template #fallback>
-          <div class="loading">
-            <BaseLoading />
-          </div>
+          <AppLoading full-screen />
         </template>
       </Suspense>
     </template>
@@ -94,13 +92,6 @@ onBeforeUnmount(() => {
 </template>
 
 <style lang='scss' scoped>
-.loading{
-  width: 100%;
-  height: 500px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 </style>
 
 <route lang="yaml">

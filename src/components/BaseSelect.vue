@@ -175,6 +175,7 @@ function onPopperOpen() {
   --tg-base-select-popper-label-hover-color: var(--tg-text-white);
   --tg-base-select-style-font-size: var(--tg-font-size-default);
   --tg-base-select-popper-option-active-color: var(--tg-popper-hover-color-default);
+  --tg-base-select-popper-active-color: var(--tg-text-blue);
 }
 </style>
 
@@ -295,7 +296,7 @@ function onPopperOpen() {
     }
   }
   &.active{
-    color: var(--tg-text-blue);
+    color: var(--tg-base-select-popper-active-color);
   }
 }
 
