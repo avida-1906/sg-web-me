@@ -239,6 +239,13 @@ export function isTestEnv() {
 }
 
 /**
+ * 显示title数据便于调试
+ */
+export function formatTitleData(data: any) {
+  return isTestEnv() ? JSON.stringify(data).replaceAll(',', ',\n').replaceAll('{', '{\n').replaceAll('}', '\n}') : ''
+}
+
+/**
  * 滚动内容区域到顶部
  */
 export function scrollMainContentToTop() {
