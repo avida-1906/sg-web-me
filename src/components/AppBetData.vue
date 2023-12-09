@@ -91,6 +91,7 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
         align: 'left',
         xl: true,
         md: true,
+        isRound: 'left',
       },
       {
         title: t('time'),
@@ -103,6 +104,7 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
         dataIndex: 'bet_amount',
         slot: 'betMoney',
         align: 'right',
+        isRound: 'right',
       },
       {
         title: t('multiple_count'),
@@ -117,6 +119,7 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
         align: 'right',
         xl: true,
         md: true,
+        isRound: 'right',
       },
     ]
     case 'casino-all':
@@ -129,6 +132,7 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
         align: 'left',
         xl: true,
         md: true,
+        isRound: 'left',
       },
       {
         title: t('gamer'),
@@ -147,6 +151,7 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
         dataIndex: 'bet_amount',
         slot: 'betMoney',
         align: 'right',
+        isRound: 'right',
       },
       {
         title: t('multiple_count'),
@@ -161,6 +166,7 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
         align: 'right',
         xl: true,
         md: true,
+        isRound: 'right',
       },
     ]
     case 'ranking-list': return [
@@ -189,6 +195,7 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
         xl: true,
         md: true,
         isTips: true,
+        isRound: 'right',
       },
       {
         title: t('finance_other_tab_bonus'),
@@ -197,6 +204,7 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
         align: 'right',
         xl: true,
         md: true,
+        isRound: 'right',
       },
     ]
     case 'sports-all':
@@ -209,6 +217,7 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
         align: 'left',
         xl: true,
         md: true,
+        isRound: 'left',
       },
       {
         title: t('gamer'),
@@ -236,6 +245,7 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
         align: 'right',
         xl: true,
         md: true,
+        isRound: 'right',
       },
     ]
     default: return []

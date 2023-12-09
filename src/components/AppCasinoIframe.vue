@@ -575,7 +575,7 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
       }
 
       .arrow {
-        font-size: 10px;
+        font-size: var(--tg-font-size-default);
         display: flex;
         align-items: center;
       }
@@ -685,7 +685,7 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
             }
 
             .arrow {
-              font-size: 10px;
+              font-size: var(--tg-font-size-default);
               display: flex;
               align-items: center;
             }
@@ -752,7 +752,7 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
       }
 
       .arrow {
-        font-size: 10px;
+        font-size: var(--tg-font-size-default);
         display: flex;
         align-items: center;
       }

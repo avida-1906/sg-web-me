@@ -83,9 +83,7 @@ else
         />
       </div>
     </div>
-    <div v-if="loading" class="empty loading">
-      <BaseLoading />
-    </div>
+    <AppLoading v-if="loading" />
     <template v-else>
       <div v-if="sportBetList.length === 0" class="empty">
         <BaseEmpty>
@@ -160,8 +158,5 @@ else
   display: flex;
   align-items: center;
   justify-content: center;
-}
-.loading{
-  min-height: 400px;
 }
 </style>
