@@ -1,4 +1,13 @@
 <script setup lang='ts'>
+interface ComponentItem {
+  cid: string
+  platform_id: string
+  name: string
+  icon: string
+  component: any
+  value?: string
+}
+
 defineOptions({
   name: 'KeepAliveCasino',
 })
@@ -10,9 +19,7 @@ const { isLogin, companyData } = storeToRefs(useAppStore())
 const { isMobile } = storeToRefs(useWindowStore())
 const casinoStore = useCasinoStore()
 const { casinoNav, casinoGameList } = storeToRefs(casinoStore)
-const router = useRouter()
 const { t } = useI18n()
-const { VITE_CASINO_HOME_PAGE_SIZE } = getEnv()
 const { openSwiperNoticeDialog } = useDialogSwiperNotice(430)
 const { bool: showMore, toggle: toggleShowMore } = useBoolean(false)
 
@@ -20,31 +27,11 @@ const tab = ref('all')
 const showAll = computed(() => tab.value === 'all')
 const currentNav = computed(() => {
   return casinoNav.value.find(a => a.value === tab.value)
-  ?? { label: '', cid: '', icon: '', ty: -1, platform_id: '' }
+  ?? { label: '', cid: '', icon: '', ty: -1, platform_id: '', value: '' }
 })
-const isCat = computed(() => currentNav.value.ty === 1) // 类别
-const isPlat = computed(() => currentNav.value.ty === 2) // 场馆
 const hostSite = computed(() => (
   { host: location.value.hostname, site: companyData.value?.name }
 ))
-// 类别数据
-const {
-  data: catGameData,
-  run: runGameCate,
-  loading: loadingCate,
-} = useRequest(ApiMemberGameCate)
-// 场馆数据
-const platParams = computed(() => ({
-  page: 1,
-  page_size: 21,
-  platform_id: currentNav.value.platform_id,
-}))
-const {
-  list: platGameList,
-  total: platTotal,
-  run: runPlatData,
-  loading: loadingPlat,
-} = useList(ApiMemberGameList)
 // 公告弹框和跑马灯
 const {
   runAsync: runMemberNoticeAllList,
@@ -56,38 +43,45 @@ const {
   },
 })
 
-const catGameList = computed(() => {
-  if (isCat.value)
-    return catGameData.value && catGameData.value.games ? catGameData.value.games : []
+const componentList = computed(() => {
+  const _c: ComponentItem[] = []
+  const _list = casinoNav.value.filter(item => item.ty !== -1)
+  _list.forEach((item) => {
+    if (item.ty === 1) {
+      _c.push({
+        cid: item.cid,
+        platform_id: item.platform_id,
+        name: item.label,
+        icon: item.icon,
+        value: item.value,
+        component: defineAsyncComponent(
+          () => import('~/components/AppCasinoPlatList.vue'),
+        ),
+      })
+    }
 
-  if (isPlat.value)
-    return platGameList.value
+    else if (item.ty === 2) {
+      _c.push({
+        cid: item.cid,
+        platform_id: item.platform_id,
+        name: item.label,
+        icon: item.icon,
+        value: item.value,
+        component: defineAsyncComponent(
+          () => import('~/components/AppCasinoGameList.vue'),
+        ),
+      })
+    }
+  })
 
-  return []
+  return _c
 })
-const catGameTotal = computed(() => {
-  if (isCat.value)
-    return catGameData.value ? catGameData.value.total : 0
 
-  if (isPlat.value)
-    return platTotal.value
-
-  return 0
+const currentObject = computed(() => {
+  const currentValue = currentNav.value.value
+  const _0 = componentList.value.find((item: any) => item.value === currentValue)
+  return _0 ?? null
 })
-
-function onTabChange() {
-  if (isCat.value)
-    runGameCate({ cid: currentNav.value.cid })
-
-  else if (isPlat.value)
-    runPlatData(platParams.value)
-}
-function viewMoreGames() {
-  if (currentNav.value.ty === 1)
-    router.push(`/casino/group/category?cid=${currentNav.value.cid}&name=${currentNav.value.label}`)
-  else if (currentNav.value.ty === 2)
-    router.push(`/casino/group/provider?pid=${currentNav.value.platform_id}&name=${currentNav.value.label}`)
-}
 
 const btnText = ref(t('view_more_2'))
 const onShowMore = function () {
@@ -110,8 +104,9 @@ await application.allSettled([casinoStore.runAsyncGameLobby(), runMemberNoticeAl
     </div>
     <div class="mt-24">
       <BaseTab
-        v-model="tab" :list="casinoNav" :center="false" size="large" use-cloud-img
-        @change="onTabChange"
+        v-model="tab"
+        :list="casinoNav"
+        :center="false" size="large" use-cloud-img
       />
     </div>
     <div class="content-wrapper">
@@ -133,31 +128,22 @@ await application.allSettled([casinoStore.runAsyncGameLobby(), runMemberNoticeAl
           </template>
         </div>
       </Transition>
-      <!-- 其他 -->
-      <AppLoading v-if="loadingCate || loadingPlat " full-screen />
-      <template v-else>
-        <div v-show="!showAll" class="list-wrap">
-          <div class="title">
-            <AppImage
-              v-if="currentNav.icon" width="16px"
-              height="16px"
-              :url="currentNav.icon"
-              is-cloud
+      <template v-if="currentObject">
+        <KeepAlive>
+          <Suspense timeout="0">
+            <component
+              :is="currentObject.component"
+              :cid="currentObject.cid"
+              :name="currentObject.name"
+              :icon="currentObject.icon"
+              :platform-id="currentObject.platform_id"
             />
-            <span>{{ currentNav.label }}</span>
-          </div>
-          <AppCardList :list="catGameList" />
-          <div v-show="catGameTotal > VITE_CASINO_HOME_PAGE_SIZE" class="more">
-            <BaseButton
-              size="md"
-              @click="viewMoreGames"
-            >
-              {{ t('view_all') }} {{ catGameTotal }} {{ currentNav?.label }}
-            </BaseButton>
-          </div>
-        </div>
+            <template #fallback>
+              <AppLoading />
+            </template>
+          </Suspense>
+        </KeepAlive>
       </template>
-
       <AppProviderSlider />
     </div>
   </div>
