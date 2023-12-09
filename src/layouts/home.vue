@@ -296,7 +296,8 @@ onErrorCaptured((err, instance, info) => {
   will-change: margin-left;
 
   &.fixed {
-    position: fixed !important;
+    position: absolute !important;
+    // position: fixed !important;
     top: 0;
     bottom: 0;
     left: 0;
@@ -307,7 +308,7 @@ onErrorCaptured((err, instance, info) => {
     width: 100%;
     top: var(--tg-header-height);
     // padding-bottom: var(--tg-footerbar-height);
-    height: calc(100% - var(--tg-header-height) - var(--tg-footerbar-height));
+    height: calc(100vh - var(--tg-header-height) - var(--tg-footerbar-height));
   }
 
   &.fixed-small {
