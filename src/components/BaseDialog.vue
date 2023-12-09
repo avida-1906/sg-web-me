@@ -18,9 +18,10 @@ const props = withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits(['update:show', 'close', 'cancel', 'confirm'])
 
+const { leftIsExpand } = useLeftSidebar()
 const { bool: _show, setTrue: setBShowTrue, setFalse: setBShowFalse } = useBoolean(false)
 
-useLockScroll(_show)
+useLockScroll(_show, leftIsExpand)
 
 const background = computed(() =>
   props.transparent ? 'transparent' : '--tg-dialog_style-bg')
