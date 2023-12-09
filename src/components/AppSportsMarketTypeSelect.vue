@@ -52,7 +52,10 @@ function onBaseTypeChange(v: string) {
       v-model="baseType"
       :options="baseOptions"
       popper
-      :style="{ '--tg-base-select-popper-style-padding-y': 'var(--tg-spacing-13)' }"
+      style="
+        --tg-base-select-popper-style-padding-y: var(--tg-spacing-13);
+        --tg-base-select-hover-bg-color:var(--tg-secondary-grey);
+         "
       @select="onBaseTypeChange"
     />
     <BaseSelect
