@@ -53,7 +53,7 @@ const rightWidth = computed(() => {
     return ''
 })
 
-useLockScroll(leftIsExpand)
+// useLockScroll(leftIsExpand)
 
 function suspenseResolved() {
   getSuspenseStatus('suspense-resolved')
@@ -145,7 +145,7 @@ onErrorCaptured((err, instance, info) => {
       <!-- <Transition name="home-slide-fade"> :key="route.path" -->
       <div
         id="main-content-scrollable"
-        class="scrollable scroll-y" :class="[{ 'mobile-bottom': isMobile }]"
+        class="scroll-y scrollable" :class="[{ 'mobile-bottom': isMobile }]"
       >
         <!-- 用于获取内容区宽度 -->
         <AppContent except>
