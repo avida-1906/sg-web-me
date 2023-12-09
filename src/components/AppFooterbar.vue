@@ -47,6 +47,7 @@ function resetGameType() {
 function clearSidebar() {
   leftIsExpand.value && closeLeftSidebar()
   rightIsExpand.value && closeRightSidebar()
+  Local.set(STORAGE_MENU_LEFT_EXPAND, false)
 }
 function toggleLeftSidebar() {
   rightIsExpand.value && closeRightSidebar()
@@ -56,10 +57,12 @@ function toggleLeftSidebar() {
     setTimeout(() => {
       resetGameType()
     }, 200)
+    Local.set(STORAGE_MENU_LEFT_EXPAND, false)
   }
   else {
     openLeftSidebar()
     clearGameType()
+    Local.set(STORAGE_MENU_LEFT_EXPAND, true)
   }
 }
 function goGame(type: Game) {
@@ -87,6 +90,7 @@ function goGame(type: Game) {
   }, 200)
 }
 function openBar(type: 'bet' | 'bet-slip' | 'chat') {
+  Local.set(STORAGE_MENU_LEFT_EXPAND, false)
   leftIsExpand.value && closeLeftSidebar()
 
   if (rightIsExpand.value) {

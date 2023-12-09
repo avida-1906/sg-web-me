@@ -142,6 +142,7 @@ declare global {
   const STORAGE_HIDE_ZERO_BALANCE_KEY: typeof import('./utils/storage')['STORAGE_HIDE_ZERO_BALANCE_KEY']
   const STORAGE_LANGUAGE_KEY: typeof import('./utils/storage')['STORAGE_LANGUAGE_KEY']
   const STORAGE_MENU_EXPAND_DOMID: typeof import('./utils/storage')['STORAGE_MENU_EXPAND_DOMID']
+  const STORAGE_MENU_LEFT_EXPAND: typeof import('./utils/storage')['STORAGE_MENU_LEFT_EXPAND']
   const STORAGE_REG_PARAMS_KEYWORDS: typeof import('./utils/storage')['STORAGE_REG_PARAMS_KEYWORDS']
   const STORAGE_RIGHT_SIDEBAR_CONTENT: typeof import('./utils/storage')['STORAGE_RIGHT_SIDEBAR_CONTENT']
   const STORAGE_SEARCH_KEYWORDS_LIVE: typeof import('./utils/storage')['STORAGE_SEARCH_KEYWORDS_LIVE']
@@ -746,6 +747,7 @@ declare module 'vue' {
     readonly STORAGE_HIDE_ZERO_BALANCE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_HIDE_ZERO_BALANCE_KEY']>
     readonly STORAGE_LANGUAGE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_LANGUAGE_KEY']>
     readonly STORAGE_MENU_EXPAND_DOMID: UnwrapRef<typeof import('./utils/storage')['STORAGE_MENU_EXPAND_DOMID']>
+    readonly STORAGE_MENU_LEFT_EXPAND: UnwrapRef<typeof import('./utils/storage')['STORAGE_MENU_LEFT_EXPAND']>
     readonly STORAGE_REG_PARAMS_KEYWORDS: UnwrapRef<typeof import('./utils/storage')['STORAGE_REG_PARAMS_KEYWORDS']>
     readonly STORAGE_RIGHT_SIDEBAR_CONTENT: UnwrapRef<typeof import('./utils/storage')['STORAGE_RIGHT_SIDEBAR_CONTENT']>
     readonly STORAGE_SEARCH_KEYWORDS_LIVE: UnwrapRef<typeof import('./utils/storage')['STORAGE_SEARCH_KEYWORDS_LIVE']>
@@ -1343,6 +1345,7 @@ declare module '@vue/runtime-core' {
     readonly STORAGE_HIDE_ZERO_BALANCE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_HIDE_ZERO_BALANCE_KEY']>
     readonly STORAGE_LANGUAGE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_LANGUAGE_KEY']>
     readonly STORAGE_MENU_EXPAND_DOMID: UnwrapRef<typeof import('./utils/storage')['STORAGE_MENU_EXPAND_DOMID']>
+    readonly STORAGE_MENU_LEFT_EXPAND: UnwrapRef<typeof import('./utils/storage')['STORAGE_MENU_LEFT_EXPAND']>
     readonly STORAGE_REG_PARAMS_KEYWORDS: UnwrapRef<typeof import('./utils/storage')['STORAGE_REG_PARAMS_KEYWORDS']>
     readonly STORAGE_RIGHT_SIDEBAR_CONTENT: UnwrapRef<typeof import('./utils/storage')['STORAGE_RIGHT_SIDEBAR_CONTENT']>
     readonly STORAGE_SEARCH_KEYWORDS_LIVE: UnwrapRef<typeof import('./utils/storage')['STORAGE_SEARCH_KEYWORDS_LIVE']>
