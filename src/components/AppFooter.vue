@@ -15,6 +15,7 @@ const languageStore = useLanguageStore()
 const { userLanguage, AllLanguages } = storeToRefs(languageStore)
 const sportStore = useSportsStore()
 const { sportsOddsType, AllOddsTypes } = storeToRefs(sportStore)
+const { appContentWidth } = storeToRefs(useWindowStore())
 
 const supportCurrency = [
   '/png/footer/ltc.png',
@@ -39,7 +40,7 @@ const rate = computed(() => {
   const temp = exchangeRateData.value?.rates
   const code = currencyConfig[currentGlobalCurrency.value]
   if (temp && temp['706'] && code)
-    return temp['706'][code.cur] || '1.00'
+    return temp[code.cur]['706'] || '1.00'
   return '1.00'
 })
 const menuData = computed(() => [
@@ -155,7 +156,7 @@ function pathTo(tmp: { path?: string; title: string; icon?: boolean }) {
       </BaseAspectRatio>
     </div>
     <BaseDivider />
-    <div class="footer-sponsor">
+    <div class="footer-sponsor" :class="{ 'only-one': appContentWidth < 344 }">
       <BaseAspectRatio
         v-for="item, index of partner"
         :key="index"
@@ -184,7 +185,7 @@ function pathTo(tmp: { path?: string; title: string; icon?: boolean }) {
       由库拉索政府授权和监管，并根据颁发给 Antillephone 的 8048/JAZ 号许可证运营。
       {{ companyData.name }} 已通过所有合规性审查，并获得合法授权，可进行所有机会与投注游戏的游戏操作。
     </div>
-    <div class="footer-description">
+    <div class="footer-description limit-width">
       {{ t('support') }}
       <span>{{ companyData.email }}</span> | {{ t('partner') }}
       <span>{{ companyData.partnerEmail }}</span> | {{ t('media') }}
@@ -207,7 +208,7 @@ function pathTo(tmp: { path?: string; title: string; icon?: boolean }) {
   .footer-nav{
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(14ch,1fr));
+    grid-template-columns: repeat(auto-fit,minmax(16ch,1fr));
     grid-gap: var(--tg-spacing-16);
     color: var(--tg-text-lightgrey);
     font-size: var(--tg-font-size-default);
@@ -263,6 +264,10 @@ function pathTo(tmp: { path?: string; title: string; icon?: boolean }) {
     align-items: center;
     gap:3.575rem;
   }
+  .only-one{
+    flex-direction: column;
+    gap: 1.55rem;
+  }
   .footer-copyright{
     width: 100%;
     display: grid;
@@ -275,7 +280,6 @@ function pathTo(tmp: { path?: string; title: string; icon?: boolean }) {
     line-height: 1.5;
   }
   .footer-description{
-    width: 100%;
     line-height: 1.5;
     text-align: center;
     color: var(--tg-text-lightgrey);
@@ -283,6 +287,11 @@ function pathTo(tmp: { path?: string; title: string; icon?: boolean }) {
     span {
       color: var(--tg-text-white);
     }
+  }
+  .limit-width{
+    max-width: 470px;
+    margin: auto;
+    text-align: left;
   }
 }
 </style>
