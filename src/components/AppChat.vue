@@ -249,7 +249,8 @@ onUnmounted(() => {
         display: flex;
         color: var(--tg-secondary-light);
         justify-content: space-between;
-        font-size: var(--tg-font-size-xs);
+        font-size: 10px;
+        // transform: scale(0.83);
       }
     }
     .more-wrap {
