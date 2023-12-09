@@ -19,8 +19,8 @@ const { appContentWidth } = storeToRefs(useWindowStore())
 const groupFilterOuter = ref()
 const selectValue = ref(props.sortType)
 const selectOptions = [
-  { icon: 'spt-sort-az', label: 'A-Z', value: EnumCasinoSortType.nameA },
-  { icon: 'spt-sort-az', label: 'Z-A', value: EnumCasinoSortType.nameZ },
+  { icon: '', label: 'A-Z', value: EnumCasinoSortType.nameA },
+  { icon: '', label: 'Z-A', value: EnumCasinoSortType.nameZ },
   {
     icon: 'chess-bonus-rounds',
     label: t('casino_sort_popular'),
@@ -132,7 +132,7 @@ function resetPlatformChecked() {
       >
         <template #option="{ data: { item, active } }">
           <div class="flex-center-bet sort" :class="{ active }">
-            <BaseIcon :name="item.icon" />
+            <BaseIcon v-if="item.icon" :name="item.icon" />
             <div class="label">
               {{ item.label }}
             </div>
