@@ -20,7 +20,11 @@ const { allPlatformList } = storeToRefs(useCasinoStore())
 const closeSearch = inject('closeSearch', () => { })
 const closeSearchH5 = inject('closeSearchH5', () => { })
 const { bool: isError, setTrue: setErrorTrue } = useBoolean(false)
-const { bool: isLoadSuccess, setTrue: setLoadTrue } = useBoolean(false)
+const {
+  bool: isShowBackgropFilter,
+  setTrue: setLoadTrue,
+  setFalse: setLoadFalse,
+} = useBoolean(true)
 
 const gameProviderName = computed(() =>
   allPlatformList.value?.find(a => a.id === props.gameInfo.platform_id)?.name ?? '-',
@@ -41,6 +45,11 @@ function gameStart(item: Props['gameInfo']) {
     closeSearch()
 }
 
+function errorHanlder() {
+  setErrorTrue()
+  setLoadFalse()
+}
+
 const onPlayCount = ref(Math.ceil(Math.random() * 1000).toFixed())
 </script>
 
@@ -55,8 +64,8 @@ const onPlayCount = ref(Math.ceil(Math.random() * 1000).toFixed())
         :url="gameInfo.img"
         :name="gameInfo.name"
         is-cloud
-        @load-img="setLoadTrue"
-        @error-img="setErrorTrue"
+        @load-img="setLoadFalse"
+        @error-img="errorHanlder"
       />
       <div v-if="isError && !isMaintained" class="center img-load">
         <BaseEmpty>
@@ -91,7 +100,7 @@ const onPlayCount = ref(Math.ceil(Math.random() * 1000).toFixed())
           </template>
         </BaseEmpty>
       </div>
-      <div v-if="!isLoadSuccess" class="backgrop-filter" />
+      <div v-if="isShowBackgropFilter" class="backgrop-filter" />
     </div>
   </BaseAspectRatio>
   <span v-if="+gameInfo.game_type !== CasinoGameType.casino" class="count">
