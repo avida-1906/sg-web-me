@@ -27,6 +27,7 @@ const {
 } = useSportsDataUpdate(sportsStore.runSportsCount, 120, true)
 
 let timer: any = null
+const marketNum = ref(1)
 const baseType = ref(VITE_SPORT_DEFAULT_MARKET_TYPE)
 const page = ref(1)
 const pageSize = ref(+VITE_SPORT_EVENT_PAGE_SIZE)
@@ -130,6 +131,10 @@ function onBaseTypeChange(v: EnumSportMarketType) {
   baseType.value = v
 }
 
+function onSportsSiChange(item: { count: number }) {
+  marketNum.value = item.count > 10 ? 10 : item.count
+}
+
 watch(currentUpcomingNav, () => {
   switchLoadingTrue()
   reset()
@@ -162,10 +167,13 @@ await application.allSettled([runAsync(params.value).then(() => startUpcoming())
         @base-type-change="onBaseTypeChange"
       />
     </div>
-    <AppSportsTab v-model="currentUpcomingNav" :list="upcomingNavs" />
+    <AppSportsTab
+      v-model="currentUpcomingNav" :list="upcomingNavs"
+      @change="onSportsSiChange"
+    />
 
     <div class="market-wrapper">
-      <AppSportsMarketSkeleton v-if="switchLoading" :num="5" />
+      <AppSportsMarketSkeleton v-if="switchLoading" :num="marketNum" />
       <template v-else>
         <AppSportsMarket
           :is-standard="isStandard" show-breadcrumb
