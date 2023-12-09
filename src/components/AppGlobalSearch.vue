@@ -151,7 +151,14 @@ function clearKeyword() {
     Local.remove(STORAGE_SEARCH_KEYWORDS_SPORTS)
   }
 }
-
+function handleFocus() {
+  showOverlayTrue()
+  showTypeSelect()
+  window.scrollTo(0, 0)
+  setTimeout(() => {
+    window.scrollTo(0, 0)
+  })
+}
 // 关闭方法
 function emitClose() {
   searchValue.value = ''
@@ -178,7 +185,7 @@ onMounted(() => {
       class="search-input"
       :place-holder="searchPlaceholder"
       :clearable="isShowOverlay || searchValue.length > 0"
-      @focus="showOverlayTrue();showTypeSelect()"
+      @focus="handleFocus"
       @clear="setClearTrue"
       @close="emitClose"
       @input="onBaseSearchInput"
