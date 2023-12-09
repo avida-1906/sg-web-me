@@ -4,6 +4,7 @@ import type {
   DepositInfo,
   EnumCurrencyKey,
   ExchangeRateData,
+  IBrandDetailTag,
   ICasinoBetRecordItem,
   IMemberBalanceLockerUpdate,
   IMemberDetail,
@@ -1362,117 +1363,22 @@ export function ApiDevDeleteThirdAuth(data: {
 
 /**
  * 会员站点brand信息 member/brand/detail
+ *
+ * 参数：tag标识
+ * base 基础信息
+ * deposit:最低存款配置
+ * withdraw:最低取款配置
+ * reg:注册信息
+ * third:三方配置
+ * customer:客服配置
+ * pc:pc配置
+ * area:地区限制配置
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=93c37e67-0f92-4a55-9adb-4c696a387d5c
  */
-export function ApiMemberBrandDetail() {
-  return httpClient.get<{
-    /** 注册信息 */
-    'reg': {
-      'reg': {
-        'web': number[]
-        'app': number[]
-      }
-      'security': {
-        'web': number
-        'app': number
-      }
-    }
-    'id': string
-    /** 基础配置 */
-    'base': {
-      /** 取款最低额度 */
-      'withdraw_min': Record<CurrencyCode, number>
-      /** 佣金最低取款 */
-      'commission_min_amount': string
-      /** 是否需要打码
-       *
-       * 1是
-       *
-       * 2否
-       */
-      'is_bet': 1 | 2
-      /** 彩票最高额度 */
-      'lottery_max': Record<CurrencyCode, number>
-      /** 彩票最低额度 */
-      'lottery_min': Record<CurrencyCode, number>
-      /**
-       * 安全验证
-       *
-       * 1谷歌二维码
-       *
-       * 2资金密码
-       */
-      'security_type': 1 | 2
-      /** 存款最低额度 */
-      'deposit_min': Record<CurrencyCode, number>
-    }
-    'third': {
-      'line': {
-        'client_id': string
-        'client_secret': string
-      }
-      'twitch': {
-        'client_id': string
-        'client_secret': string
-      }
-      'facebook': {
-        'client_id': string
-        'client_secret': string
-      }
-    }
-    'customer': {
-      'url': string
-      'remark': string
-    }[]
-    'pc': {
-      'icon': string
-      'logo': string
-      'loading': string
-    }
-    'area': {
-      'pc': string
-      'mobile': string
-    }
-    /** 底部数据 */
-    'bottom': {
-      /** 页尾牌照资质 */
-      'license': {
-        'data': string[]
-      }
-      /** 页尾快捷跳转 */
-      'quick_jump': {
-        'info': {
-          'name': string
-          'content': {
-            'cn_zh': string
-          }
-          /**
-           * 1 开启
-           *
-           * 2 关闭
-           */
-          'content_state': 1 | 2
-          'id': string
-          'jump_url': string
-        }[]
-        'id': string
-        'name': string
-      }[]
-      /** 页尾合作厂商 */
-      'partner': {
-        [k: string]: number
-      }
-      /** 页尾赞助商 */
-      'sponsor': {
-        'data': string[]
-      }
-      /** 页尾公司信息 */
-      'company': {
-        'name': string
-        'copyright': string
-      }
-    }
-  }>('/member/brand/detail')
+export function ApiMemberBrandDetail(params: {
+  tag: IBrandDetailTag
+}) {
+  return httpClient.get<any>('/member/brand/detail', { params })
 }
 
 /**

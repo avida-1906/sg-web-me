@@ -46,8 +46,9 @@ function to() {
       @click="to"
     >
       <AppImage
+        v-if="logoAndIcoAndLoading.logo"
         err-icon="img-casino-error"
-        is-cloud
+        is-network
         :url="logoAndIcoAndLoading.logo"
       >
         <BaseImage v-if="mode === 'light'" url="/img/logo/logo_light.svg" />

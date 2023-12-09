@@ -8,7 +8,7 @@ export function useIco(link: Ref<string>) {
     if (val) {
       const link = document.createElement('link')
       link.rel = 'shortcut icon'
-      link.href = VITE_CASINO_IMG_CLOUD_URL + val
+      link.href = `${VITE_CASINO_IMG_CLOUD_URL}/${val}`
       document.head.appendChild(link)
     }
   })

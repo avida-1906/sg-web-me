@@ -1,8 +1,6 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import type { EnumCurrencyKey } from '~/apis/types'
 
-const { VITE_CASINO_IMG_CLOUD_URL } = getEnv()
-
 export const useAppStore = defineStore('app', () => {
   /** 当前全局选择的货币 */
   const currentGlobalCurrency = ref<EnumCurrencyKey>(getLocalCurrentGlobalCurrency())
@@ -30,9 +28,15 @@ export const useAppStore = defineStore('app', () => {
   })
   /** 获取用户锁定余额 */
   const { data: lockerData, runAsync: getLockerData } = useRequest(ApiMemberBalanceLocker)
-  const { data: brandDetail } = useRequest(ApiMemberBrandDetail, {
+  const { data: brandPcDetail } = useRequest(ApiMemberBrandDetail, {
     manual: false,
+    defaultParams: [
+      {
+        tag: 'pc',
+      },
+    ],
   })
+
   /** 公司信息 */
   const companyData = computed(() => {
     return { name: 'Meibo', copyright: '2023 Meibo.com' } // brandDetail.value?.bottom.company
@@ -41,12 +45,20 @@ export const useAppStore = defineStore('app', () => {
    * Logo，Ico，Loading 图片
    */
   const logoAndIcoAndLoading = computed(() => {
-    const pcInfo = brandDetail.value?.pc
+    if (!brandPcDetail.value) {
+      return {
+        logo: '',
+        ico: '',
+        loadingImgUrl: '',
+      }
+    }
+
+    const pcInfo = brandPcDetail.value
 
     return {
-      logo: pcInfo?.logo,
-      ico: pcInfo?.icon || '',
-      loadingImgUrl: pcInfo?.loading,
+      logo: pcInfo?.logo?.image,
+      ico: pcInfo?.icon?.image || '',
+      loadingImgUrl: pcInfo?.loading?.image,
     }
   })
 
@@ -175,7 +187,7 @@ export const useAppStore = defineStore('app', () => {
     vipConfigData,
     currentGlobalCurrencyBalance,
     currentGlobalCurrencyBalanceNumber,
-    brandDetail,
+    brandPcDetail,
     companyData,
     logoAndIcoAndLoading,
     setToken,
