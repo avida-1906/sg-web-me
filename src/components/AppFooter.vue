@@ -5,7 +5,11 @@ import type { EnumLanguage } from '~/utils/enums'
 const { t } = useI18n()
 
 const router = useRouter()
-const { currentGlobalCurrency, exchangeRateData } = storeToRefs(useAppStore())
+const {
+  currentGlobalCurrency,
+  exchangeRateData,
+  companyData,
+} = storeToRefs(useAppStore())
 const languageStore = useLanguageStore()
 const { userLanguage, AllLanguages } = storeToRefs(languageStore)
 const sportStore = useSportsStore()
@@ -164,22 +168,24 @@ function pathTo(tmp: { path?: string; title: string; icon?: boolean }) {
     <div class="footer-copyright">
       <BaseLogo />
       <div class="copy-right">
-        © 2023 Stake.com | {{ t('copyright') }}
+        © {{ companyData.copyright }} | {{ t('copyright') }}
       </div>
       <div>1 {{ currentGlobalCurrency }} = ${{ rate }}</div>
     </div>
     <div class="footer-description">
-      Stake 由 Medium Rare N.V. 所属和经营，注册编号： 145353，注册地址：Korporaalweg 10,
-      Willemstad, Curaçao。请通过 support@stake.com 与我们联系。 支付代理公司是 Medium Rare Limited，
+      {{ companyData.name }} 由 Medium Rare N.V. 所属和经营，注册编号： 145353，注册地址：Korporaalweg 10,
+      Willemstad, Curaçao。请通过 {{ companyData.email }} 与我们联系。
+      支付代理公司是 Medium Rare Limited，
       地址于 7-9 Riga Feraiou, LIZANTIA COURT, Office 310, Agioi Omologites,1087 Nicosia,
-      Cyprus 以及注册号：HE 410775 Stake 由库拉索政府授权和监管，并根据颁发给 Antillephone 的 8048/JAZ 号许可证运营。
-      Stake 已通过所有合规性审查，并获得合法授权，可进行所有机会与投注游戏的游戏操作。
+      Cyprus 以及注册号：HE 410775 {{ companyData.name }}
+      由库拉索政府授权和监管，并根据颁发给 Antillephone 的 8048/JAZ 号许可证运营。
+      {{ companyData.name }} 已通过所有合规性审查，并获得合法授权，可进行所有机会与投注游戏的游戏操作。
     </div>
     <div class="footer-description">
       {{ t('support') }}
-      <span>support@stake.com</span> | {{ t('partner') }}
-      <span>partners@stake.com</span> | {{ t('media') }}
-      <span>press@stake.com</span>
+      <span>{{ companyData.email }}</span> | {{ t('partner') }}
+      <span>{{ companyData.partnerEmail }}</span> | {{ t('media') }}
+      <span>{{ companyData.newsEmail }}</span>
     </div>
   </div>
 </template>
