@@ -637,3 +637,24 @@ export interface PayInfo {
   /** 交易编号 */
   trans_no: string
 }
+
+export type IBrandDetailTag =
+  'base' | 'deposit' | 'withdraw' | 'reg' | 'third' | 'customer' | 'pc' | 'area'
+export interface IBrandDetailBase {}
+export interface IBrandDetailDeposit {}
+export interface IBrandDetailWithdraw {}
+export interface IBrandDetailReg {}
+export interface IBrandDetailThird {}
+export interface IBrandDetailCustomer {}
+export interface IBrandDetailPc {
+  loading: {
+    image: string
+  }
+  icon: {
+    image: string
+  }
+  logo: {
+    image: string
+  }
+}
+export interface IBrandDetailArea {}

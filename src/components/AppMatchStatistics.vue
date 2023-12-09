@@ -108,11 +108,11 @@ function mapHeadArea(
         </span>
       </div>
       <div class="sticky-left competitor-item border" style="grid-area: competitor_home;">
-        <AppImage :url="data.htpic" is-cloud width="20px" height="20px" />
+        <AppImage :url="data.htpic" is-network width="20px" height="20px" />
         <span>{{ data.homeTeamName }}</span>
       </div>
       <div class="competitor-item sticky-left" style="grid-area: competitor_away;">
-        <AppImage :url="data.atpic" is-cloud width="20px" height="20px" />
+        <AppImage :url="data.atpic" is-network width="20px" height="20px" />
         <span>{{ data.awayTeamName }}</span>
       </div>
 
@@ -179,7 +179,7 @@ function mapHeadArea(
 
       <!-- matchScore -->
       <div class="heading center sticky-right" style="grid-area: matchScore_title;">
-        <AppImage :url="data.spic" is-cloud width="20px" height="20px" />
+        <AppImage :url="data.spic" is-network width="20px" height="20px" />
       </div>
       <div
         class="fill-frame sticky-right completed match-score border"

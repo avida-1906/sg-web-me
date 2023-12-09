@@ -67,6 +67,7 @@ declare global {
   const ApiMemberPlatformList: typeof import('./apis/index')['ApiMemberPlatformList']
   const ApiMemberReg: typeof import('./apis/index')['ApiMemberReg']
   const ApiMemberSendMailCode: typeof import('./apis/index')['ApiMemberSendMailCode']
+  const ApiMemberSiteBrandDetail: typeof import('./apis/index')['ApiMemberSiteBrandDetail']
   const ApiMemberStationInfoDetailUpdateState: typeof import('./apis/index')['ApiMemberStationInfoDetailUpdateState']
   const ApiMemberStationInfoList: typeof import('./apis/index')['ApiMemberStationInfoList']
   const ApiMemberThirdAuthUrl: typeof import('./apis/index')['ApiMemberThirdAuthUrl']

@@ -1,8 +1,6 @@
 <script lang="ts" setup>
 interface Props {
   errIcon?: string
-  isCloud?: boolean
-  url?: string
 }
 
 withDefaults(defineProps<Props>(), {
@@ -16,8 +14,6 @@ const { bool: showError, setTrue: setTrueShowError } = useBoolean(false)
   <BaseImage
     v-if="!showError"
     v-bind="$attrs"
-    :is-cloud="isCloud"
-    :url="url"
     @error-img="setTrueShowError"
   />
   <slot v-else>
