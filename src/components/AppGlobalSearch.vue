@@ -163,17 +163,9 @@ function emitClose() {
 provide('closeSearch', emitClose)
 provide('closeSearchH5', () => leftIsExpand.value = !leftIsExpand.value)
 
-watch(() => isShowOverlay.value, (newWidth) => {
-  isMobile.value && newWidth && useLockScroll(newWidth)
-})
-
 onMounted(() => {
   if (props.autoFocus)
     baseSearchRef.value.manualFocus()
-})
-
-onUnmounted(() => {
-  useLockScroll(false)
 })
 </script>
 
