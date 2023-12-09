@@ -187,7 +187,7 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
             </template>
           </VTooltip>
           <!-- 实时统计 -->
-          <VTooltip placement="top">
+          <!-- <VTooltip placement="top">
             <div
               class="icon-button"
               :class="{ 'trend-open': isTrendOpen }"
@@ -201,7 +201,7 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
                   : t('casino_game_open_trend') }}
               </div>
             </template>
-          </VTooltip>
+          </VTooltip> -->
         </div>
       </div>
     </div>
@@ -394,7 +394,7 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
               </VTooltip>
 
               <!-- 实时统计 -->
-              <VTooltip placement="top">
+              <!-- <VTooltip placement="top">
                 <div
                   class="icon-button"
                   :class="{ 'trend-open': isTrendOpen }"
@@ -408,7 +408,7 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
                       : t('casino_game_open_trend') }}
                   </div>
                 </template>
-              </VTooltip>
+              </VTooltip> -->
 
               <!-- 收藏游戏 -->
               <VTooltip v-if="isLogin" placement="top">
