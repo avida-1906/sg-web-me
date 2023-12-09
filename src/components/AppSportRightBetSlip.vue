@@ -632,8 +632,8 @@ onUnmounted(() => {
           v-model="betOrderFilterValue"
           class="bet-order-filter"
           :options="betOrderFilterData"
-          no-hover
-          popper
+
+          popper no-hover
           @select="setBetOrderSelectValue"
         />
         <BaseButton
@@ -656,11 +656,7 @@ onUnmounted(() => {
             v-model="item.amount"
             :bet-slip-type="betOrderSelectValue"
             :cart-info-data="item"
-            :title="
-              isTestEnv()
-                ? JSON.stringify(item).replaceAll(',', ',\n').replaceAll('{', '{\n').replaceAll('}', '\n}')
-                : ''
-            "
+            :title="formatTitleData(item)"
             :index="index"
           />
           <!-- 用来执行添加到购物车动画的 -->

@@ -67,6 +67,7 @@ declare global {
   const ApiMemberPlatformList: typeof import('./apis/index')['ApiMemberPlatformList']
   const ApiMemberReg: typeof import('./apis/index')['ApiMemberReg']
   const ApiMemberSendMailCode: typeof import('./apis/index')['ApiMemberSendMailCode']
+  const ApiMemberSiteBrandDetail: typeof import('./apis/index')['ApiMemberSiteBrandDetail']
   const ApiMemberStationInfoDetailUpdateState: typeof import('./apis/index')['ApiMemberStationInfoDetailUpdateState']
   const ApiMemberStationInfoList: typeof import('./apis/index')['ApiMemberStationInfoList']
   const ApiMemberThirdAuthUrl: typeof import('./apis/index')['ApiMemberThirdAuthUrl']
@@ -205,6 +206,7 @@ declare global {
   const findIndex: typeof import('lodash-es')['findIndex']
   const findKey: typeof import('lodash-es')['findKey']
   const floor: typeof import('lodash-es')['floor']
+  const formatTitleData: typeof import('./utils/index')['formatTitleData']
   const get: typeof import('lodash-es')['get']
   const getActivePinia: typeof import('pinia')['getActivePinia']
   const getCartObject: typeof import('./utils/sports')['getCartObject']
@@ -808,6 +810,7 @@ declare module 'vue' {
     readonly findIndex: UnwrapRef<typeof import('lodash-es')['findIndex']>
     readonly findKey: UnwrapRef<typeof import('lodash-es')['findKey']>
     readonly floor: UnwrapRef<typeof import('lodash-es')['floor']>
+    readonly formatTitleData: UnwrapRef<typeof import('./utils/index')['formatTitleData']>
     readonly get: UnwrapRef<typeof import('lodash-es')['get']>
     readonly getActivePinia: UnwrapRef<typeof import('pinia')['getActivePinia']>
     readonly getCartObject: UnwrapRef<typeof import('./utils/sports')['getCartObject']>
@@ -1404,6 +1407,7 @@ declare module '@vue/runtime-core' {
     readonly findIndex: UnwrapRef<typeof import('lodash-es')['findIndex']>
     readonly findKey: UnwrapRef<typeof import('lodash-es')['findKey']>
     readonly floor: UnwrapRef<typeof import('lodash-es')['floor']>
+    readonly formatTitleData: UnwrapRef<typeof import('./utils/index')['formatTitleData']>
     readonly get: UnwrapRef<typeof import('lodash-es')['get']>
     readonly getActivePinia: UnwrapRef<typeof import('pinia')['getActivePinia']>
     readonly getCartObject: UnwrapRef<typeof import('./utils/sports')['getCartObject']>

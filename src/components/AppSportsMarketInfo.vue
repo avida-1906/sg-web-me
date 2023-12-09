@@ -165,6 +165,7 @@ const isTimeout = computed(() => props.data.rbts === 3)
 function setEventTime() {
   if (!props.data.rbtt)
     return ''
+
   const rbttArr = props.data.rbtt.split(':')
   const ts = props.data.ts
   const baseMin = rbttArr[0]
@@ -178,6 +179,10 @@ function setEventTime() {
 
   // 篮球倒计时
   if (props.data.si === 2) {
+    // 暂停倒计时
+    if (props.data.rbts !== 2)
+      return eventTime.value
+
     sec = baseSec ? (+baseSec - diffSec) : 0
     min = +baseMin - diffMin
 
@@ -255,7 +260,7 @@ onBeforeUnmount(() => {
       <div class="wrapper">
         <div class="fixture-details">
           <!-- 状态 -->
-          <span v-if="isMoreThan1Hour" class="text">{{ timeText }}</span>
+          <span v-if="isMoreThan1Hour">{{ timeText }}</span>
           <template v-else-if="isCountdown">
             <div>
               <svg height="12" width="12" viewBox="0 0 20 20" class="svelte-l8nfzs">
@@ -268,26 +273,24 @@ onBeforeUnmount(() => {
                 />
               </svg>
             </div>
-            <span class="text">
+            <span>
               {{ t('sports_starts_in', { minutes: countdownMins }) }}
             </span>
           </template>
-          <span v-else-if="isLastMin || (isStarted && !isOnAir)" class="text">
+          <span v-else-if="isLastMin || (isStarted && !isOnAir)">
             {{ t('sports_tab_starting_soon') }}
           </span>
           <template v-else-if="isOnAir">
-            <div
-              class="status"
-              :class="{ live: isOnAir }"
-            >
+            <div class="status live">
               {{ t('sports_status_live') }}
             </div>
-            <span v-if="isTimeout" class="text">
+            <span v-if="isTimeout">
               {{ t('pause') }}
             </span>
-            <span v-else class="text">
-              <span v-show="eventTime" class="count-time">{{ eventTime }} </span>
-              {{ data.rbtd }}</span>
+            <span v-show="eventTime && !isTimeout" class="count-time">
+              {{ eventTime }}
+            </span>
+            {{ data.rbtd }}
           </template>
 
           <!-- H5时比分显示在这里 -->

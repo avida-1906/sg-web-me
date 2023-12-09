@@ -22,7 +22,7 @@ defineProps<{
   <div class="hot-event-info" @click="$router.push(replaceSportsPlatId(data.path))">
     <div class="header">
       <div class="icon">
-        <AppImage :url="data.cpic" is-cloud />
+        <AppImage :url="data.cpic" is-network />
       </div>
       <div class="team-name">
         {{ data.cn }}
