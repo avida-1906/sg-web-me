@@ -187,7 +187,7 @@ onMounted(() => {
     text-align: center;
     background: var(--tg-badge-background-color);//默认背景颜色
     border-radius: var(--tg-badge-border-radius);
-    box-shadow: 0 0 0 1px var(--tg-badge-background-color);
+    // box-shadow: 0 0 0 1px var(--tg-badge-background-color);
     .m-number {
       position: relative;
       display: inline-block;

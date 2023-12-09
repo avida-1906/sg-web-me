@@ -82,6 +82,8 @@ onMounted(() => {
             <span>{{ data?.label }}</span>
             <BaseBadge
               v-if="headRenderCount" :count="headRenderCount" :max="99999"
+              style="--tg-badge-padding-x: var(--tg-spacing-7);
+                --tg-badge-font-size:var(--tg-font-size-default)"
               mode="active"
             />
           </div>

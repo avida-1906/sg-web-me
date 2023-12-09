@@ -419,11 +419,11 @@ onMounted(() => {
 
     .winner-content {
       margin-top: var(--tg-spacing-12);
-
+      --tg-table-even-background: var(--tg-secondary-grey);
+      --tg-table-odd-background: initial;
       .rank-icon {
-        >svg {
-          font-size: var(--tg-font-size-xl);
-        }
+        display: flex;
+        font-size: var(--tg-font-size-lg);
       }
 
       .img-text-align {
