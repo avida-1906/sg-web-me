@@ -478,7 +478,7 @@ onUnmounted(() => {
     align-items: center;
     justify-content: space-between;
     .select-ranking{
-      column-gap: 10px;
+      column-gap: var(--tg-spacing-10);
     }
   }
   .ranking-time{
@@ -492,7 +492,7 @@ onUnmounted(() => {
     padding: 16px 8px;
     border-bottom: var(--tg-spacing-2) solid rgba(255,255,255,.05);
     span{
-      padding-left: 8px;
+      padding-left: var(--tg-spacing-8);
       font-weight: var(--tg-font-weight-semibold);
     }
     >div:hover{

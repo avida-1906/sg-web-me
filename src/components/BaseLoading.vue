@@ -1,40 +1,11 @@
 <script lang="ts" setup name="base-loading">
-const { logoAndIcoAndLoading } = storeToRefs(useAppStore())
-
-const isShowNetworkImage = ref<boolean>(false)
-const { VITE_CASINO_IMG_CLOUD_URL } = getEnv()
-
-function loadImg(src: string) {
-  const image = new Image()
-  image.src = VITE_CASINO_IMG_CLOUD_URL + src
-  image.onload = () => {
-    isShowNetworkImage.value = true
-  }
-  image.onerror = () => {
-    isShowNetworkImage.value = false
-  }
-}
-
-watch(
-  () => logoAndIcoAndLoading.value,
-  (val) => {
-    if (val.loadingImgUrl)
-      loadImg(val.loadingImgUrl)
-  },
-  { immediate: true },
-)
 </script>
 
 <template>
   <section class="tg-base-loading">
-    <AppImage
-      v-if="isShowNetworkImage"
-      width="130px"
-      :url="logoAndIcoAndLoading.loadingImgUrl"
-    />
-    <template v-else>
-      <BaseImage class="default-loading" url="/webp/page-loading.webp" />
-    </template>
+    <div class="type1 animate-prop svg-box" />
+    <div class="svg-box animate-prop type2" />
+    <div class="svg-box animate-prop type3" />
   </section>
 </template>
 
@@ -42,9 +13,9 @@ watch(
 :root {
   --type1-small: url('~/icons/chess-frame4.svg');
   --type1-big: url('~/icons/chess-frame.svg');
-  --type2-small: url('~/icons/spt-soccer.svg');
+  --type2-small: url('~/icons/spt-loading2.svg');
   --type2-big: url('~/icons/spt-basketball.svg');
-  --type3-small: url('~/icons/chess-21clock.svg');
+  --type3-small: url('~/icons/spt-loading1.svg');
   --type3-big: url('~/icons/chess-frame2.svg');
   --base-loading-rotate-angle: 15deg;
 }
@@ -60,123 +31,71 @@ watch(
   align-items: center;
   justify-content: center;
   gap: var(--tg-spacing-24);
-  .svg-box:first-child {
-    transform-origin: top right;
-    background-position: top right;
-  }
-  .svg-box:nth-child(2) {
-    animation-delay: 320ms;
-  }
-  .svg-box:last-child {
-    transform-origin: bottom left;
-    animation-delay: 640ms;
-    background-position: bottom left;
-  }
 }
 .animate-prop {
-  animation-duration: 960ms;
-  animation-timing-function: linear;
-  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(.5,1.8,.2,2.2);
   animation-iteration-count: infinite;
+  animation-duration: .8s;
   transform-origin: center center;
+  background-size: cover!important;
+  will-change: transform,opacity;
 }
 .svg-box {
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: 14px auto;
-  transform-origin: center;
   filter: invert(1);
   &.type1 {
-    background-image: var(--type1-small);
     animation-name: svgChange1;
+    animation-delay: -.2s;
+    transform-origin: right center;
   }
   &.type2 {
-    background-image: var(--type2-small);
     animation-name: svgChange2;
+    animation-delay: -.1s;
+    transform-origin: center center;
   }
   &.type3 {
-    background-image: var(--type3-small);
     animation-name: svgChange3;
+    animation-delay: 0s;
+    transform-origin: left center;
   }
 }
 @keyframes svgChange1 {
-  0% {
-    background-image: var(--type1-small);
-    transform: scale(1) rotateZ(0deg);
+  0%,30%,to {
+    opacity: .85;
+    transform: scale(.9);
+    background: var(--type1-small);
   }
-  10% {
-    background-image: var(--type1-small);
-    transform: scale(1) rotateZ(0deg);
-  }
-  40% {
-    background-image: var(--type1-big);
-    transform: scale(1.8) rotateZ(var(--base-loading-rotate-angle));
-  }
-  60% {
-    background-image: var(--type1-big);
-    transform: scale(1.8) rotateZ(var(--base-loading-rotate-angle));
-  }
-  90% {
-    background-image: var(--type1-small);
-    transform: scale(1) rotateZ(0deg);
-  }
-  100% {
-    background-image: var(--type1-small);
-    transform: scale(1) rotateZ(0deg);
+  75% {
+    opacity: .9;
+    transform: scale(1.35) rotate(10deg);
+    background: var(--type1-big);
   }
 }
 @keyframes svgChange2 {
-  0% {
-    background-image: var(--type2-small);
-    transform: scale(1) rotateZ(0deg);
+  0%,30%,to {
+    opacity: .85;
+    transform: scale(.9);
+    background: var(--type2-small);
   }
-  10% {
-    background-image: var(--type2-small);
-    transform: scale(1) rotateZ(0deg);
-  }
-  40% {
-    background-image: var(--type2-big);
-    transform: scale(1.8) rotateZ(var(--base-loading-rotate-angle));
-  }
-  60% {
-    background-image: var(--type2-big);
-    transform: scale(1.8) rotateZ(var(--base-loading-rotate-angle));
-  }
-  90% {
-    background-image: var(--type2-small);
-    transform: scale(1) rotateZ(0deg);
-  }
-  100% {
-    background-image: var(--type2-small);
-    transform: scale(1) rotateZ(0deg);
+  75% {
+    opacity: .9;
+    transform: scale(1.35) rotate(10deg);
+    background: var(--type2-big);
   }
 }
 @keyframes svgChange3 {
-  0% {
-    background-image: var(--type3-small);
-    transform: scale(1) rotateZ(0deg);
+  0%,30%,to {
+    opacity: .85;
+    transform: scale(.9);
+    background: var(--type3-small);
   }
-  10% {
-    background-image: var(--type3-small);
-    transform: scale(1) rotateZ(0deg);
-  }
-  40% {
-    background-image: var(--type3-big);
-    transform: scale(1.8) rotateZ(var(--base-loading-rotate-angle));
-  }
-  60% {
-    background-image: var(--type3-big);
-    transform: scale(1.8) rotateZ(var(--base-loading-rotate-angle));
-  }
-  90% {
-    background-image: var(--type3-small);
-    transform: scale(1) rotateZ(0deg);
-  }
-  100% {
-    background-image: var(--type3-small);
-    transform: scale(1) rotateZ(0deg);
+  75% {
+    opacity: .9;
+    transform: scale(1.35) rotate(10deg);
+    background: var(--type3-big);
   }
 }
 </style>
