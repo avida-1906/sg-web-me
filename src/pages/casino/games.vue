@@ -41,7 +41,7 @@ onBeforeRouteLeave(() => {
     <div class="margin-auto home-container">
       <div class="content-wrapper">
         <AppSlider
-          icon="chess-original-game"
+          icon="uni-rec-games"
           :title="$t('casino_games_recommend')"
           :data="recGameList"
           game-type="rec"
