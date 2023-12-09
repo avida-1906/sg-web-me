@@ -30,7 +30,7 @@ export const useAppStore = defineStore('app', () => {
   })
   /** 获取用户锁定余额 */
   const { data: lockerData, runAsync: getLockerData } = useRequest(ApiMemberBalanceLocker)
-  const { data: brandDetail } = useRequest(ApiMemberBrandDetail, {
+  const { data: brandDetail } = useRequest(() => ApiMemberBrandDetail({ tag: 'pc' }), {
     manual: false,
   })
   /** 公司信息 */
