@@ -145,7 +145,7 @@ function onBaseTypeChange(v: EnumSportMarketType) {
 }
 
 function onSportsSiChange(item: { count: number }) {
-  marketNum.value = item.count
+  marketNum.value = item.count > 10 ? 10 : item.count
 }
 
 // 初始化数据
