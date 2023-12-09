@@ -44,13 +44,7 @@ watch(
 </script>
 
 <template>
-  <div
-    v-if="loading && requestCount === 0" class="loading-content-height" :class="{
-      center: !isMobile,
-    }"
-  >
-    <BaseLoading class="loading" />
-  </div>
+  <AppLoading v-if="loading && requestCount === 0" full-screen />
   <div v-else class="tg-sports-tournament-fixture-betdetail">
     <div class="sports-detail-wrapper">
       <div class="layout-spacing no-bottom-spacing variant-normal">
