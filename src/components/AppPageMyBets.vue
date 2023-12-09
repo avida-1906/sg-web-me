@@ -1,7 +1,7 @@
 <script setup lang='ts'>
 const { t } = useI18n()
 const route = useRoute()
-const { bool: isFirst } = useBoolean(true)
+const { bool: isFirst, setFalse: isFirstFalse } = useBoolean(true)
 const initType = route.query.type ? route.query.type.toString() : 'casino'
 
 const currentTab = ref(initType)
@@ -29,7 +29,7 @@ const isSports = computed(() => currentTab.value === 'sports')
     <div class="tab-bar">
       <BaseTab
         v-model="currentTab" :list="tabList" :center="false"
-        @change="isFirst = false"
+        @change="isFirstFalse()"
       />
       <BaseSelect
         v-show="isSports"
@@ -38,6 +38,7 @@ const isSports = computed(() => currentTab.value === 'sports')
           --tg-base-select-popper-style-padding-y:var(--tg-spacing-13);
           --tg-base-select-popper-style-padding-x:var(--tg-spacing-16)"
         :options="settleList" popper
+        @select="isFirstFalse()"
       />
     </div>
 
