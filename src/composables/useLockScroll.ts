@@ -1,7 +1,9 @@
-export function useLockScroll(show?: boolean | Ref | ComputedRef) {
+export function useLockScroll(
+  ...depends: Array<Ref | ComputedRef>
+) {
   const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent)
   const scrollTop = ref(0)
-  const b = toRef(show)
+  const b = toRefs(depends)
 
   function setScrollTop() {
     scrollTop.value = document.scrollingElement?.scrollTop
@@ -30,12 +32,13 @@ export function useLockScroll(show?: boolean | Ref | ComputedRef) {
   }
 
   const stop = watch(b, (val) => {
-    if (show !== void 0) {
-      if (val)
+    if (depends !== void 0) {
+      const temp = val.filter(r => r === true).length > 0
+      if (temp)
         setScrollTop()
       nextTick(() => {
         setTimeout(() => {
-          if (val)
+          if (temp)
             lockScroll()
           else
             unlockScroll()
@@ -44,16 +47,17 @@ export function useLockScroll(show?: boolean | Ref | ComputedRef) {
     }
   })
 
-  if (show === void 0)
+  if (depends === void 0)
     stop()
 
   onMounted(() => {
-    if (show !== void 0) {
-      if (b.value)
+    if (depends !== void 0) {
+      const temp = b.filter(r => r.value === true).length > 0
+      if (temp)
         setScrollTop()
       nextTick(() => {
         setTimeout(() => {
-          if (b.value)
+          if (temp)
             lockScroll()
           else
             unlockScroll()

@@ -9,6 +9,7 @@ const {
   currentGlobalCurrency,
   exchangeRateData,
   companyData,
+  isLogin,
 } = storeToRefs(useAppStore())
 const languageStore = useLanguageStore()
 const { userLanguage, AllLanguages } = storeToRefs(languageStore)
@@ -170,7 +171,9 @@ function pathTo(tmp: { path?: string; title: string; icon?: boolean }) {
       <div class="copy-right">
         © {{ companyData.copyright }} | {{ t('copyright') }}
       </div>
-      <div>1 {{ currentGlobalCurrency }} = ${{ rate }}</div>
+      <div v-if="isLogin">
+        1 {{ currentGlobalCurrency }} = ${{ rate }}
+      </div>
     </div>
     <div class="footer-description">
       {{ companyData.name }} 由 Medium Rare N.V. 所属和经营，注册编号： 145353，注册地址：Korporaalweg 10,
