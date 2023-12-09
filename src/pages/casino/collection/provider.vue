@@ -29,9 +29,6 @@ function handleItemClick(item: any) {
       </div>
     </div>
     <div class="mt-24">
-      <AppGameSearch game-type="2" />
-    </div>
-    <div class="mt-24">
       <AppCardList :list="platformList" is-provider>
         <template #default="{ item }">
           <BaseProviderItem

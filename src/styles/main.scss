@@ -564,6 +564,7 @@ img.error {
       display: flex;
       overflow: hidden;
       justify-content: space-between;
+      position: relative;
 
       .left {
         display: flex;
@@ -585,6 +586,7 @@ img.error {
         position: absolute;
         right: 0;
         top: 0;
+        overflow: hidden;
       }
     }
   }
