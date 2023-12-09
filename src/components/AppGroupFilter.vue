@@ -163,9 +163,10 @@ function resetPlatformChecked() {
   font-weight: var(--tg-font-weight-semibold);
   text-align: center;
   font-size: var(--tg-font-size-default);
-  color: var(--tg-popper-color-bright);
+  color: var(--tg-text-secondary-main);
   cursor: pointer;
-  background-color: var(--tg-popper-bg-deep);
+  background-color: var(--tg-text-white);
+  border-top: 1px solid var(--tg-text-grey-light);
 }
 
 .base-check-pop-inner {
@@ -175,6 +176,7 @@ function resetPlatformChecked() {
 }
 
 .check-item-label {
+  height: 32.4px;
   display: inline-flex;
   align-items: center;
   font-weight: var(--tg-font-weight-semibold);
