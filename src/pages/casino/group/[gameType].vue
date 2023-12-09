@@ -101,7 +101,7 @@ onMounted(() => {
             <div class="right">
               <BaseImage
                 :is-cloud="!isRec"
-                style="height: 100%;"
+                style="height: 100%;width: auto;"
                 :url="bannerBg"
               />
             </div>

@@ -19,7 +19,10 @@ await application.allSettled([runAsync()])
             </h1>
           </div>
           <div class="right">
-            <BaseImage url="/png/casino/group-banner-default.png" style="height: 100%;" />
+            <BaseImage
+              url="/png/casino/group-banner-default.png"
+              style="height: 100%;width: auto;"
+            />
           </div>
         </div>
       </div>
