@@ -3,8 +3,8 @@ const { t } = useI18n()
 usePageTitle({ prefix: t('transaction_withdraw') })
 
 const tabList = reactive([
-  { label: t('currency_byte_coin'), value: 'byte_coin' },
-  { label: t('currency_law_coin'), value: 'real_coin' },
+  { label: t('currency_byte_coin'), value: 'byt_w_coin' },
+  { label: t('currency_law_coin'), value: 'real_w_coin' },
 ])
 </script>
 

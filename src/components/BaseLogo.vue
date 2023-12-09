@@ -46,10 +46,12 @@ function to() {
       @click="to"
     >
       <AppImage
-        v-if="logoAndIcoAndLoading.logo"
+        v-if="logoAndIcoAndLoading.logo_white"
         err-icon="img-casino-error"
         is-network
-        :url="logoAndIcoAndLoading.logo"
+        :url="mode === 'light'
+          ? logoAndIcoAndLoading.logo_white : logoAndIcoAndLoading.logo_gray
+        "
       >
         <BaseImage v-if="mode === 'light'" url="/img/logo/logo_light.svg" />
         <BaseImage v-else url="/img/logo/logo_dark.svg" />

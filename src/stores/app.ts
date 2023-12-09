@@ -38,8 +38,14 @@ export const useAppStore = defineStore('app', () => {
   })
 
   /** 公司信息 */
-  const companyData = computed(() => {
-    return { name: 'Meibo', copyright: '2023 Meibo.com' } // brandDetail.value?.bottom.company
+  const companyData = ref({
+    name: 'Meibo',
+    copyright: '2023 Meibo.com',
+    email: 'support@meibo.com',
+    // 合作伙伴邮箱
+    partnerEmail: 'partners@meibo.com',
+    // 新闻媒体邮箱
+    newsEmail: 'press@meibo.com',
   })
   /**
    * Logo，Ico，Loading 图片
@@ -47,7 +53,8 @@ export const useAppStore = defineStore('app', () => {
   const logoAndIcoAndLoading = computed(() => {
     if (!brandPcDetail.value) {
       return {
-        logo: '',
+        logo_white: '',
+        logo_gray: '',
         ico: '',
         loadingImgUrl: '',
       }
@@ -56,8 +63,9 @@ export const useAppStore = defineStore('app', () => {
     const pcInfo = brandPcDetail.value
 
     return {
-      logo: pcInfo?.logo?.image,
-      ico: pcInfo?.icon?.image || '',
+      logo_white: pcInfo?.logo_white,
+      logo_gray: pcInfo?.logo_gray,
+      ico: pcInfo?.icon || '',
       loadingImgUrl: pcInfo?.loading?.image,
     }
   })
