@@ -679,6 +679,7 @@ onBeforeUnmount(() => {
     --tg-base-checkbox-error-icon-size: var(--tg-font-size-xs);
     --tg-icon-color: var(--tg-text-error-sub);
     --tg-base-checkbox-msg-margin-top: 10px;
+    --tg-base-checkbox-wrap-width: fit-content;
   }
   &-btn {
     width: 100%;
