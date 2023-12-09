@@ -96,7 +96,7 @@ export function useApiMenuData() {
             {
               title: 'VIP',
               path: '/vip/promotion-bonus',
-              icon: 'chess-air-bonus',
+              icon: 'chess-vipclub',
             },
             {
               title: t('statistical_data'),
