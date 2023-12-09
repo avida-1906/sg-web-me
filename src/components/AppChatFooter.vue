@@ -263,7 +263,11 @@ function enterPress(event: KeyboardEvent) {
         @down-enter="enterPress"
       >
         <template #right-icon>
-          <BaseButton size="none" type="text" @click="toggleEmoji()">
+          <BaseButton
+            size="none" type="text"
+            style="overflow: visible;height: 32px;"
+            @click="toggleEmoji()"
+          >
             <span class="smile">😀</span>
           </BaseButton>
         </template>
