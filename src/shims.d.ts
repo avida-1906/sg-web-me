@@ -150,4 +150,6 @@ interface Column {
   sortDirections?: 'ascend' | 'descend' // 升序 ｜ 降序
   /** 气泡展示，总投注额专用 */
   isTips?: boolean
+  /** 骨架屏是否显示圆形 left-左边 right-右边 */
+  isRound?: 'left'| 'right'
 }

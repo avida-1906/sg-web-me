@@ -25,6 +25,10 @@ const getIcon = computed(() => {
   }
 })
 
+function handleMine() {
+  headSelectData.value.shift()
+}
+
 if (isLogin.value) {
   headSelectData.value.unshift({
     label: t('my_bets'),
@@ -70,7 +74,10 @@ watch(() => isMobile.value, (newValue) => {
       </VTooltip>
     </div>
     <div class="notice-content">
-      <AppBetData mode="casino" :tab-val="headSelectValue" :show-tab="false" />
+      <AppBetData
+        mode="casino" :tab-val="headSelectValue"
+        :show-tab="false" @del-mine="handleMine"
+      />
     </div>
   </div>
 </template>

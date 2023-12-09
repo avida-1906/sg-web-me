@@ -33,7 +33,7 @@ function handleSort(item: Column, index: number) {
   }
 }
 function getWidth() {
-  return `${Math.floor(Math.random() * 50) + 50}px`
+  return `${Math.floor(Math.random() * 50) + 30}px`
 }
 
 watch(() => props.columns, () => {
@@ -107,13 +107,32 @@ watch(() => props.columns, () => {
             :title="data[col.dataIndex]"
             :style="`text-align:${col.align}`"
           >
-            <BaseSkeleton
-              v-if="loading"
-              bg="#B1BAD3"
-              height="14px"
-              :width="getWidth()"
-              animated="ani-opacity"
-            />
+            <template v-if="loading">
+              <div>
+                <BaseSkeleton
+                  v-if="col.isRound === 'left'"
+                  bg="#B1BAD3"
+                  height="14px"
+                  width="14px"
+                  style="--tg-skeleton-border-radius:50%;margin-right: 10px;"
+                  animated="ani-opacity"
+                />
+                <BaseSkeleton
+                  bg="#B1BAD3"
+                  height="14px"
+                  :width="getWidth()"
+                  animated="ani-opacity"
+                />
+                <BaseSkeleton
+                  v-if="col.isRound === 'right'"
+                  bg="#B1BAD3"
+                  height="14px"
+                  width="14px"
+                  style="--tg-skeleton-border-radius:50%;margin-left: 10px;"
+                  animated="ani-opacity"
+                />
+              </div>
+            </template>
             <template v-else>
               <slot
                 v-if="col.slot" v-bind="{ record: data, index }"
