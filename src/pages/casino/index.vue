@@ -134,9 +134,7 @@ await application.allSettled([casinoStore.runAsyncGameLobby(), runMemberNoticeAl
         </div>
       </Transition>
       <!-- 其他 -->
-      <div v-if="loadingCate || loadingPlat " class="loading">
-        <BaseLoading />
-      </div>
+      <AppLoading v-if="loadingCate || loadingPlat " full-screen />
       <template v-else>
         <div v-show="!showAll" class="list-wrap">
           <div class="title">
@@ -213,13 +211,6 @@ await application.allSettled([casinoStore.runAsyncGameLobby(), runMemberNoticeAl
 </template>
 
 <style lang='scss' scoped>
-.loading{
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 300px;
-}
 .list-wrap {
   margin-top: var(--tg-spacing-24);
 

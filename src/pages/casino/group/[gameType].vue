@@ -120,9 +120,7 @@ onMounted(() => {
           @sort-type-change="onSortChange"
         />
       </div>
-      <div v-show="loading" class="loading">
-        <BaseLoading />
-      </div>
+      <AppLoading v-if="loading" full-screen />
       <AppCasinoGameTypeGameList
         :key="route.fullPath + pids + sortType" :game-type="gameType"
         :sort-type="sortType" :pids="pids"
@@ -135,13 +133,6 @@ onMounted(() => {
 </template>
 
 <style lang="scss" scoped>
-.loading{
-  width: 100%;
-  height: 500px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 </style>
 
 <route lang="yaml">
