@@ -63,9 +63,9 @@ export const useAppStore = defineStore('app', () => {
     const pcInfo = brandPcDetail.value
 
     return {
-      logo_white: pcInfo?.logo_white?.image,
-      logo_gray: pcInfo?.logo_gray?.image,
-      ico: pcInfo?.icon?.image || '',
+      logo_white: pcInfo?.logo_white,
+      logo_gray: pcInfo?.logo_gray,
+      ico: pcInfo?.icon || '',
       loadingImgUrl: pcInfo?.loading?.image,
     }
   })
