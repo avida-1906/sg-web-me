@@ -6,6 +6,7 @@ const props = defineProps<Props>()
 
 const { t } = useI18n()
 const route = useRoute()
+const { sidebarData } = storeToRefs(useSportsStore())
 const sportId = route.params.sport ? +route.params.sport : 0
 const regionId = route.params.region ? route.params.region.toString() : ''
 const leagueId = route.params.league ? route.params.league.toString() : ''
@@ -20,6 +21,12 @@ const isRegion = computed(() => props.level === 2)
 const isLeague = computed(() => props.level === 3)
 const sportlist = computed(() => {
   return data.value && data.value.d ? sportsOutrightsGroupByRegion(data.value.d) : []
+})
+// 球种名称
+const sportName = computed(() => {
+  if (sidebarData.value)
+    return sidebarData.value.all.find(a => a.si === sportId)?.sn ?? '-'
+  return '-'
 })
 const regionList = computed(() => {
   if (data.value && data.value.d) {
@@ -43,7 +50,9 @@ const regionList = computed(() => {
 const leagueList = computed(() => {
   if (data.value && data.value.d) {
     const orgin = data.value.d.filter(a => a.ci === leagueId)
-    return { ci: orgin[0].ci, cn: orgin[0].cn, list: orgin }
+    return orgin.length > 0
+      ? { ci: orgin[0].ci, cn: orgin[0].cn, list: orgin }
+      : { ci: '', cn: '', list: [] }
   }
   return { ci: '', cn: '', list: [] }
 })
@@ -72,7 +81,7 @@ await application.allSettled([runAsync(params.value)])
       <div class="sports-page-title">
         <div class="left">
           <BaseIcon name="spt-sort-az" />
-          <span>{{ $t('order_by_alpha') }}</span>
+          <span>{{ $t('all') }} {{ sportName }} {{ t('champion_bet') }}</span>
         </div>
       </div>
     </div>
