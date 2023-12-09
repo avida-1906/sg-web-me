@@ -63,7 +63,6 @@ const lineColor = computed(() => {
         :style="`background:${lineColor};
         width: ${percent >= 100 ? 100 : percent}%;
         height: ${strokeWidth}px;
-        ${percent >= 100 ? 'background: var(--tg-primary-success)' : ''};
         `"
       />
     </div>
