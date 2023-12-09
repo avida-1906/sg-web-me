@@ -50,8 +50,8 @@ function to() {
         is-network
         :url="logoAndIcoAndLoading.logo"
       >
-        <BaseImage v-if="mode === 'light'" url="/img/logo/logo_light.svg" />
-        <BaseImage v-else url="/img/logo/logo_dark.svg" />
+        <!-- <BaseImage v-if="mode === 'light'" url="/img/logo/logo_light.svg" />
+        <BaseImage v-else url="/img/logo/logo_dark.svg" /> -->
       </AppImage>
     </BaseAspectRatio>
     <BaseButton
