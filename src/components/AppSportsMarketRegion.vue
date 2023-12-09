@@ -26,8 +26,11 @@ const { bool: isOpen, toggle: toggleOpen } = useBoolean(props.init)
   >
     <div class="no-active-scale header" @click="toggleOpen">
       <div class="container">
-        <div class="container">
-          <BaseIcon v-if="icon" :name="icon" />
+        <div class="container" style="--app-sport-image-error-icon-size:16px;">
+          <AppImage
+            v-if="icon" width="16px" height="16px" is-cloud :url="icon"
+            style="border-radius: 50%;overflow: hidden;"
+          />
           <div class="container">
             <div class="center">
               <span>{{ title }}</span>
@@ -210,5 +213,14 @@ const { bool: isOpen, toggle: toggleOpen } = useBoolean(props.init)
       margin-top: var(--tg-spacing-8);
     }
   }
+}
+.icon{
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>

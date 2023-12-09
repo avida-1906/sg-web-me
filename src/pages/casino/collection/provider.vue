@@ -23,13 +23,10 @@ function handleItemClick(item: any) {
             </h1>
           </div>
           <div class="right">
-            <BaseImage url="/png/casino/group-banner-default.png" />
+            <BaseImage style="height: 100%;" url="/png/casino/group-banner-default.png" />
           </div>
         </div>
       </div>
-    </div>
-    <div class="mt-24">
-      <AppGameSearch game-type="2" />
     </div>
     <div class="mt-24">
       <AppCardList :list="platformList" is-provider>
