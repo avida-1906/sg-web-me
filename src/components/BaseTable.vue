@@ -42,7 +42,7 @@ watch(() => props.columns, () => {
 </script>
 
 <template>
-  <div class="scrollable scroll-x m-table-wrap">
+  <div class="scroll-x scrollable m-table-wrap">
     <table class="m-table">
       <thead>
         <tr class="m-tr">
@@ -155,7 +155,7 @@ watch(() => props.columns, () => {
 <style lang="scss">
 :root{
   --tg-table-font-size: var(--tg-font-size-default);
-  --tg-table-even-background: inherit;
+  --tg-table-even-background: initial;
   --tg-table-odd-background: var(--tg-secondary-grey);
   --tg-table-th-background: var(--tg-table-even-background);
   --tg-table-th-color: var(--tg-text-lightgrey);
