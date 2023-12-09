@@ -32,7 +32,7 @@ const params = computed(() => {
     page_size: pageSize.value,
   }
 })
-const { run, loading } = useRequest(ApiSportEventList, {
+const { run, runAsync, loading } = useRequest(ApiSportEventList, {
   onSuccess(res) {
     if (res.d) {
       total.value = res.t
@@ -102,14 +102,13 @@ watch(isRegionOpen, (a) => {
     getEventsData()
 })
 
-onMounted(() => {
-  if (props.autoShow && props.isRegionOpen)
-    getEventsData()
-})
 onBeforeUnmount(() => {
   stopTimer()
   sportDeltaBus.off(updateDataByMqtt)
 })
+
+if (props.autoShow && props.isRegionOpen)
+  await application.allSettled([runAsync(params.value)])
 </script>
 
 <template>

@@ -176,7 +176,7 @@ await application.allSettled([runAsync(params.value)])
       <!-- 冠军 -->
       <AppSportsOutrights v-else-if="isOutrights" :level="3" />
 
-      <AppBetData />
+      <AppBetData mode="sports" />
     </div>
   </div>
 </template>

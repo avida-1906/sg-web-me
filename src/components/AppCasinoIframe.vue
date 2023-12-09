@@ -24,6 +24,19 @@ const {
 } = useBoolean(false)
 const { bool: isRealMoneyMode, setBool: setRealModeBool } = useBoolean(false)
 const { bool: isTrendOpen, toggle: toggleTrendOpen } = useBoolean(false)
+// 余额箭头
+const {
+  bool: isCurrencyOpen1, setTrue: setCurrencyOpen1,
+  setFalse: setCurrencyClose1,
+} = useBoolean(false)
+const {
+  bool: isCurrencyOpen2, setTrue: setCurrencyOpen2,
+  setFalse: setCurrencyClose2,
+} = useBoolean(false)
+const {
+  bool: isCurrencyOpen3, setTrue: setCurrencyOpen3,
+  setFalse: setCurrencyClose3,
+} = useBoolean(false)
 const {
   bool: isShowIframe,
   setTrue: showIframe,
@@ -202,6 +215,8 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
         :triggers="[]"
         :shown="floatingState"
         :auto-hide="false"
+        @show="setCurrencyOpen1"
+        @hide="setCurrencyClose1"
       >
         <div
           v-if="currentCurrency"
@@ -209,7 +224,7 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
           @click.stop="toggleFloating"
         >
           <AppCurrencyIcon show-name :currency-type="currentCurrency" />
-          <div class="arrow">
+          <div class="arrow" :class="{ up: isCurrencyOpen1 }">
             <BaseIcon name="uni-arrow-down" />
           </div>
         </div>
@@ -287,13 +302,16 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
               <div class="content">
                 <div class="currency">
                   <span>{{ t('balance') }}</span>
-                  <VDropdown :distance="6">
+                  <VDropdown
+                    :distance="6" @show="setCurrencyOpen2"
+                    @hide="setCurrencyClose2"
+                  >
                     <div v-if="currentCurrency" class="current-currency">
                       <AppCurrencyIcon
                         show-name
                         :currency-type="currentCurrency"
                       />
-                      <div class="arrow">
+                      <div class="arrow" :class="{ up: isCurrencyOpen2 }">
                         <BaseIcon name="uni-arrow-down" />
                       </div>
                     </div>
@@ -414,13 +432,16 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
               <div class="line" />
 
               <!-- 切换货币 -->
-              <VDropdown v-if="isLogin" :distance="6">
+              <VDropdown
+                v-if="isLogin" :distance="6" @show="setCurrencyOpen3"
+                @hide="setCurrencyClose3"
+              >
                 <div v-if="currentCurrency" class="current-currency">
                   <AppCurrencyIcon
                     show-name
                     :currency-type="currentCurrency"
                   />
-                  <div class="arrow">
+                  <div class="arrow" :class="{ up: isCurrencyOpen3 }">
                     <BaseIcon name="uni-arrow-down" />
                   </div>
                 </div>
@@ -578,6 +599,10 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
         font-size: var(--tg-font-size-default);
         display: flex;
         align-items: center;
+        transition: var(--tg-transition);
+        &.up{
+                transform: rotate(180deg);
+              }
       }
     }
   }
@@ -688,6 +713,10 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
               font-size: var(--tg-font-size-default);
               display: flex;
               align-items: center;
+              transition: var(--tg-transition);
+              &.up{
+                transform: rotate(180deg);
+              }
             }
           }
         }
@@ -755,6 +784,10 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
         font-size: var(--tg-font-size-default);
         display: flex;
         align-items: center;
+        transition: var(--tg-transition);
+        &.up{
+                transform: rotate(180deg);
+              }
       }
     }
     }

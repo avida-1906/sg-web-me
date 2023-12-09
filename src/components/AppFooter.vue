@@ -5,6 +5,7 @@ import type { EnumLanguage } from '~/utils/enums'
 const { t } = useI18n()
 
 const router = useRouter()
+const { currentGlobalCurrency, exchangeRateData } = storeToRefs(useAppStore())
 const languageStore = useLanguageStore()
 const { userLanguage, AllLanguages } = storeToRefs(languageStore)
 const sportStore = useSportsStore()
@@ -29,6 +30,13 @@ const partner = [
   { url: '/png/footer/ufc.png', ratio: '151/60', with: '151px' },
 ]
 
+const rate = computed(() => {
+  const temp = exchangeRateData.value?.rates
+  const code = currencyConfig[currentGlobalCurrency.value]
+  if (temp && temp['706'] && code)
+    return temp['706'][code.cur] || '1.00'
+  return '1.00'
+})
 const menuData = computed(() => [
   {
     title: t('sports'),
@@ -158,7 +166,7 @@ function pathTo(tmp: { path?: string; title: string; icon?: boolean }) {
       <div class="copy-right">
         © 2023 Stake.com | {{ t('copyright') }}
       </div>
-      <div>1 USDT = US$1.00</div>
+      <div>1 {{ currentGlobalCurrency }} = ${{ rate }}</div>
     </div>
     <div class="footer-description">
       Stake 由 Medium Rare N.V. 所属和经营，注册编号： 145353，注册地址：Korporaalweg 10,
