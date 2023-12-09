@@ -111,24 +111,26 @@ watch(() => props.columns, () => {
               <div>
                 <BaseSkeleton
                   v-if="col.isRound === 'left'"
-                  bg="#B1BAD3"
+                  bg="var(--tg-secondary-light)"
                   height="14px"
                   width="14px"
-                  style="--tg-skeleton-border-radius:50%;margin-right: 10px;"
+                  style="--tg-skeleton-border-radius:50%;
+                  margin-right: var(--tg-spacing-10);"
                   animated="ani-opacity"
                 />
                 <BaseSkeleton
-                  bg="#B1BAD3"
+                  bg="var(--tg-secondary-light)"
                   height="14px"
                   :width="getWidth()"
                   animated="ani-opacity"
                 />
                 <BaseSkeleton
                   v-if="col.isRound === 'right'"
-                  bg="#B1BAD3"
+                  bg="var(--tg-secondary-light)"
                   height="14px"
                   width="14px"
-                  style="--tg-skeleton-border-radius:50%;margin-left: 10px;"
+                  style="--tg-skeleton-border-radius:50%;
+                  margin-left: var(--tg-spacing-4);"
                   animated="ani-opacity"
                 />
               </div>
