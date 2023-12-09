@@ -632,8 +632,8 @@ onUnmounted(() => {
           v-model="betOrderFilterValue"
           class="bet-order-filter"
           :options="betOrderFilterData"
-          no-hover
-          popper
+
+          popper no-hover
           @select="setBetOrderSelectValue"
         />
         <BaseButton

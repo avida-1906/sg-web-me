@@ -8,7 +8,6 @@ const appStore = useAppStore()
 const { companyData } = storeToRefs(appStore)
 const { openNotify } = useNotify()
 const { openLoginDialog } = useLoginDialog()
-const { bool: isEmailMust } = useBoolean(true)
 const { bool: pwdStatus, setBool: setPwdStatus } = useBoolean(true)
 const { bool: isCode } = useBoolean(false)
 const {
@@ -78,6 +77,42 @@ const {
   return ''
 })
 
+const mailCodeRef = ref()
+const timer = ref()
+const countdown = ref(60)
+const {
+  value: emailCode,
+  errorMessage: emailCodeErrorMsg,
+  validate: valiemailCode,
+  resetField: resetEmailCode,
+} = useField<string>('emailCode', (value) => {
+  if (!value)
+    return t('validate_msg_input_code')
+  else if (value.length !== 6)
+    return t('validate_msg_regexp_code')
+  return ''
+})
+const {
+  runAsync: runAsyncMemberSendMailCode,
+  loading: sendMailCodeLoading,
+} = useRequest(ApiMemberSendMailCode, {
+  onSuccess() {
+    timer.value = setInterval(() => {
+      if (countdown.value <= 1) {
+        clearInterval(timer.value)
+        timer.value = null
+        countdown.value = 60
+      }
+      else { countdown.value-- }
+    }, 1000)
+    openNotify({
+      type: 'success',
+      title: t('notify_title_success'),
+      message: t('success_send_code'),
+    })
+  },
+})
+
 const regParams = computed(() => {
   return Session.get<IMemberReg>(STORAGE_REG_PARAMS_KEYWORDS)?.value
 })
@@ -97,6 +132,9 @@ const {
   return ''
 }, { initialValue: true })
 
+const { data: regCfg } = useRequest(() => ApiMemberBrandDetail({ tag: 'reg' }), {
+  manual: false,
+})
 const {
   run: runMemberReg,
   loading: isLoading,
@@ -148,51 +186,66 @@ const { run: runExists } = useRequest(ApiMemberExists, {
       setUsernameErrors(t('user_name_exist'))
   },
 })
+
+const regWebCfg = computed(() => regCfg.value?.web)
+const needEmail = computed(() => true) // regWebCfg.value && regWebCfg.value.email !== false)
+const needName = computed(() => true) // regWebCfg.value && regWebCfg.value.username !== false)
+const needCheckEmail = computed(() =>
+  false) // regWebCfg.value && regWebCfg.value.email_check !== false)
+
 async function getMemberReg() {
   // 这个不要删：有错误时直接返回，否则重复的邮箱或用户名会因通过格式校验从而进行注册请求
   if (
-    (isEmailMust.value && emailErrorMsg.value)
+    (needEmail.value && emailErrorMsg.value)
     || usernameErrorMsg.value
     || pwdErrorMsg.value
     || agreeErrorMsg.value
   ) return
 
-  emailRef.value.setTouchTrue()
-  userNameRef.value.setTouchTrue()
+  if (needName.value) {
+    userNameRef.value?.setTouchTrue()
+    await validateUsername()
+  }
+
   passwordRef.value.setTouchTrue()
-  await validateEmail()
-  await validateUsername()
   await validatePassword()
-  // await valiAgree()
   if (pwdErrorMsg.value)
     setShowPasswordVerifyTrue()
+
+  if (needEmail.value) {
+    emailRef.value?.setTouchTrue()
+    await validateEmail()
+    !emailErrorMsg.value && onEmailUsernameBlur(2)
+  }
+
+  if (needCheckEmail.value) {
+    mailCodeRef.value.setTouchTrue()
+    await valiemailCode()
+  }
+
   await birthdayInputRef.value.valiBirthday()
   if (birthdayInputRef.value.msg)
     return
 
-  if (isEmailMust.value) {
-    emailRef.value.setTouchTrue()
-    await validateEmail()
-    !emailErrorMsg.value && onEmailUsernameBlur(2)
-  }
-  else {
-    if (!usernameErrorMsg.value && !pwdErrorMsg.value && !agreeErrorMsg.value
-    ) {
-      const paramsReg = {
-        email: email.value,
-        username: username.value,
-        password: password.value,
-        parent_id: '',
-        device_number: application.getDeviceNumber(),
-      }
-      // appStore.setMqttConnectedFalse()
-      // runMemberReg(paramsReg)
-      Session.set(STORAGE_REG_PARAMS_KEYWORDS, paramsReg)
-      setNeedSaveFormDataTrue()
-      closeDialog()
-      await nextTick()
-      openTermsConditionsDialog()
+  if (!usernameErrorMsg.value
+  && !pwdErrorMsg.value
+  && !agreeErrorMsg.value
+  && !emailCodeErrorMsg.value) {
+    console.log(emailCode.value)
+    const paramsReg = {
+      email: email.value,
+      username: username.value,
+      password: password.value,
+      parent_id: '',
+      device_number: application.getDeviceNumber(),
     }
+    // appStore.setMqttConnectedFalse()
+    // runMemberReg(paramsReg)
+    Session.set(STORAGE_REG_PARAMS_KEYWORDS, paramsReg)
+    setNeedSaveFormDataTrue()
+    closeDialog()
+    await nextTick()
+    openTermsConditionsDialog()
   }
 }
 function onPasswordFocus() {
@@ -235,14 +288,14 @@ onUnmounted(() => {
         {{ t('reg_step1') }}
       </div>
       <div class="app-register-input-box">
-        <BaseLabel v-if="isEmailMust" :label="t('email_address')" must-small>
+        <BaseLabel v-if="needEmail" :label="t('email_address')" must-small>
           <BaseInput
             ref="emailRef" v-model="email" :msg="emailErrorMsg" msg-after-touched
             type="email"
             name="email"
           />
         </BaseLabel>
-        <BaseLabel :label="t('username')" must-small>
+        <BaseLabel v-if="needName" :label="t('username')" must-small>
           <BaseInput
             ref="userNameRef" v-model="username"
             :msg="usernameErrorMsg"
@@ -271,6 +324,37 @@ onUnmounted(() => {
             @pass="passwordVerifyPass"
           />
         </BaseLabel>
+
+        <BaseLabel v-if="needCheckEmail" label="邮箱验证码">
+          <div class="row-mail-code">
+            <div style="flex:  1;">
+              <BaseInput
+                ref="mailCodeRef"
+                v-model="emailCode"
+                :msg="emailCodeErrorMsg"
+                type="text"
+                max="6"
+                msg-after-touched
+              />
+            </div>
+            <BaseButton
+              bg-style="primary"
+              :loading="sendMailCodeLoading"
+              :disabled="!!timer"
+              custom-padding
+              :style="{
+                '--tg-base-button-style-bg': timer ? 'var(--tg-text-grey)' : '',
+                'width': '105px',
+                '--tg-base-button-padding-y': '12.5px',
+              }"
+              @click.stop="runAsyncMemberSendMailCode"
+            >
+              <span v-if="timer">{{ `${t('re_get')}${countdown}s` }}</span>
+              <span v-else>{{ t('get_email_code') }}</span>
+            </BaseButton>
+          </div>
+        </BaseLabel>
+
         <BaseLabel label="出生日期" must-small>
           <BaseInputBirthday
             ref="birthdayInputRef" v-model="birthday"
@@ -466,6 +550,12 @@ onUnmounted(() => {
 </template>
 
 <style lang='scss' scoped>
+.row-mail-code{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: var(--tg-spacing-10);
+}
 .option-label {
   display: inline-block;
   padding-top: 6px;

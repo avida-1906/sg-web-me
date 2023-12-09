@@ -19,6 +19,7 @@ export const STORAGE_HIDE_ZERO_BALANCE_KEY = 'hide_zero_balance'
 export const STORAGE_SPORTS_CURRENT_PROVIDER = 'sports_current_provider'
 export const STORAGE_SPORTS_BET_ORDER = 'sports_bet_order'
 export const STORAGE_SPORTS_LIVE_NAV = 'storage_sports_live_nav'
+export const STORAGE_MENU_LEFT_EXPAND = 'storage_menu_left_expand'
 
 export class Local {
   static set<T>(key: string, value: any) {

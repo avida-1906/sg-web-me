@@ -53,6 +53,8 @@ const rightWidth = computed(() => {
     return ''
 })
 
+// useLockScroll(leftIsExpand)
+
 function suspenseResolved() {
   getSuspenseStatus('suspense-resolved')
 }
@@ -143,7 +145,7 @@ onErrorCaptured((err, instance, info) => {
       <!-- <Transition name="home-slide-fade"> :key="route.path" -->
       <div
         id="main-content-scrollable"
-        class="scrollable scroll-y" :class="[{ 'mobile-bottom': isMobile }]"
+        class="scroll-y scrollable" :class="[{ 'mobile-bottom': isMobile }]"
       >
         <!-- 用于获取内容区宽度 -->
         <AppContent except>
@@ -156,7 +158,7 @@ onErrorCaptured((err, instance, info) => {
                 <template v-if="Component">
                   <KeepAlive :include="keepAliveList" :max="10">
                     <Suspense timeout="0" @resolve="suspenseResolved">
-                      <component :is="Component" />
+                      <component :is="Component" :key="route.fullPath" />
                       <template #fallback>
                         <AppLoading full-screen />
                       </template>

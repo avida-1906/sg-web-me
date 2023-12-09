@@ -95,7 +95,7 @@ onMounted(() => {
       {
         rank: 'uni-rank1',
         player: 'zhangsan',
-        date: '2023/10/01',
+        date: '2023年10月01日',
         bet: '0.00000000',
         multiple: '66,666x',
         payAmount: '257.00000000',
@@ -105,7 +105,7 @@ onMounted(() => {
       {
         rank: 'uni-rank2',
         player: 'lisi',
-        date: '2023/10/01',
+        date: '2023年10月01日',
         bet: '0.00000000',
         multiple: '66,666x',
         payAmount: '257.00000000',
@@ -114,7 +114,7 @@ onMounted(() => {
       {
         rank: 'uni-rank3',
         player: 'wangwu',
-        date: '2023/10/01',
+        date: '2023年10月01日',
         bet: '0.00000000',
         multiple: '66,666x',
         payAmount: '257.00000000',
@@ -272,7 +272,7 @@ onMounted(() => {
   background-color: var(--tg-secondary-dark);
   color: var(--tg-text-white);
   padding: var(--tg-spacing-24);
-  border-radius: var(--tg-radius-default);
+  border-radius: var(--tg-radius-md);
   margin-top: var(--tg-spacing-32);
 
   .desc-title {
@@ -419,11 +419,11 @@ onMounted(() => {
 
     .winner-content {
       margin-top: var(--tg-spacing-12);
-
+      --tg-table-even-background: var(--tg-secondary-grey);
+      --tg-table-odd-background: initial;
       .rank-icon {
-        >svg {
-          font-size: var(--tg-font-size-xl);
-        }
+        display: flex;
+        font-size: var(--tg-font-size-lg);
       }
 
       .img-text-align {

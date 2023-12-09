@@ -100,6 +100,8 @@ export function ApiSportCompetitionList(params: {
   return httpClient.get<{
     /** 热门联赛列表 */
     hot: {
+      /** icon */
+      ppic: string
       /** 地区Id */
       pgid: string
       /** 地区名称 */
@@ -118,6 +120,8 @@ export function ApiSportCompetitionList(params: {
     }[]
     /** 联赛列表 */
     list: {
+      /** icon */
+      ppic: string
       /** 地区Id */
       pgid: string
       /** 地区名称 */

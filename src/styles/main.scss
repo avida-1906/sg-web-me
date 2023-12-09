@@ -470,9 +470,6 @@ img.error {
       border: 0;
       box-shadow: var(--tg-box-shadow-lg);
 
-      .app-svg-icon {
-        --tg-icon-color: var(--tg-popper-color-icon-default);
-      }
       .need-pad-y {
         padding: var(--tg-spacing-4) 0;
       }
@@ -491,9 +488,6 @@ img.error {
       color: var(--tg-popper-color-default);
       border: 0;
       box-shadow: var(--tg-box-shadow-lg);
-      .app-svg-icon {
-        --tg-icon-color: var(--tg-popper-color-icon-default);
-      }
     }
     .v-popper__arrow-inner, .v-popper__arrow-outer {
       border-color: var(--tg-popper-bg);
@@ -517,13 +511,6 @@ img.error {
   padding: var(--tg-spacing-button-padding-vertical-xs) var(--tg-spacing-button-padding-horizontal-xs);
   font-size: var(--tg-font-size-default);
   color: var(--tg-popper-color-default);
-  .app-svg-icon {
-    --tg-icon-color: var(--tg-popper-color-icon-default);
-  }
-
-  // &:hover {
-  //   color: var(--tg-popper-hover-color-default);
-  // }
 }
 
 .semibold {
@@ -577,6 +564,7 @@ img.error {
       display: flex;
       overflow: hidden;
       justify-content: space-between;
+      position: relative;
 
       .left {
         display: flex;
@@ -598,6 +586,7 @@ img.error {
         position: absolute;
         right: 0;
         top: 0;
+        overflow: hidden;
       }
     }
   }

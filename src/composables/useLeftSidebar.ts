@@ -1,5 +1,9 @@
 export const useLeftSidebar = createGlobalState(() => {
-  const leftIsExpand = useDebouncedRef({ value: window.innerWidth >= 1200, delay: 100, beforeTrigger, afterTrigger })
+  let initExpand = false
+  if (window.innerWidth <= 768)
+    initExpand = !!Local.get<boolean>(STORAGE_MENU_LEFT_EXPAND)?.value
+
+  const leftIsExpand = useDebouncedRef({ value: window.innerWidth >= 1200 ? true : initExpand, delay: 100, beforeTrigger, afterTrigger })
   const { bool: isSwitching, setTrue, setFalse } = useBoolean(false)
   const switchTo = ref<'big' | 'small' | ''>('')
   const after = ref()

@@ -112,7 +112,7 @@ await application.allSettled([runAsync(params.value)])
             v-for="region, index in hotSportList"
             :key="region.pgid"
             :title="region.pgn"
-            icon="spt-game-intl"
+            :icon="region.ppic"
             :init="index === 0"
             :count="region.c"
             :is-standard="isStandard"
@@ -126,13 +126,13 @@ await application.allSettled([runAsync(params.value)])
         <div class="sub-wrapper">
           <h3 class="sub-title">
             <BaseIcon name="spt-sort-az" />
-            <span>{{ t('order_by_alpha') }}</span>
+            <span>{{ t('all') }} {{ sportName }}</span>
           </h3>
           <AppSportsMarketRegion
             v-for="region in allRegionList"
             :key="region.pgid"
             :title="region.pgn"
-            icon="spt-game-intl"
+            :icon="region.ppic"
             :init="false"
             :count="region.c"
             :is-standard="isStandard"

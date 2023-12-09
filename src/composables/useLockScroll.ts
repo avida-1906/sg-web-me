@@ -42,10 +42,25 @@ export function useLockScroll(show?: boolean | Ref | ComputedRef) {
         }, 50)
       })
     }
-  }, { immediate: true })
+  })
 
   if (show === void 0)
     stop()
+
+  onMounted(() => {
+    if (show !== void 0) {
+      if (b.value)
+        setScrollTop()
+      nextTick(() => {
+        setTimeout(() => {
+          if (b.value)
+            lockScroll()
+          else
+            unlockScroll()
+        }, 50)
+      })
+    }
+  })
 
   return {
     setScrollTop,
