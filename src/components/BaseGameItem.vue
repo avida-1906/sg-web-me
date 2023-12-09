@@ -16,16 +16,15 @@ const props = defineProps<Props>()
 const { t } = useI18n()
 const router = useRouter()
 const { isMobile } = storeToRefs(useWindowStore())
-const { platformList } = storeToRefs(useCasinoStore())
+const { allPlatformList } = storeToRefs(useCasinoStore())
 const closeSearch = inject('closeSearch', () => { })
 const closeSearchH5 = inject('closeSearchH5', () => { })
 const { bool: isError, setTrue: setErrorTrue } = useBoolean(false)
 
 const gameProviderName = computed(() =>
-  platformList.value?.find(a => a.id === props.gameInfo.platform_id)?.name ?? '-',
+  allPlatformList.value?.find(a => a.id === props.gameInfo.platform_id)?.name ?? '-',
 )
 const isMaintained = computed(() => {
-  // return platformList.value?.find(a => a.id === props.gameInfo.platform_id)?.maintained === '2' ?? false
   return props.gameInfo.maintained === '2'
 })
 

@@ -60,6 +60,7 @@ export const useCasinoStore = defineStore('casino', () => {
   }
 
   return {
+    allPlatformList: list,
     platformList,
     casinoNav,
     casinoGameList,
