@@ -15,6 +15,11 @@ const emit = defineEmits(['sortTypeChange', 'platTypeChecked'])
 
 const { t } = useI18n()
 const { appContentWidth } = storeToRefs(useWindowStore())
+const {
+  bool: isPopperOpen,
+  setTrue: setPopperOpen,
+  setFalse: setPopperClose,
+} = useBoolean(false)
 
 const groupFilterOuter = ref()
 const selectValue = ref(props.sortType)
@@ -62,7 +67,10 @@ function resetPlatformChecked() {
           <span class="txt">{{ $t('casino_filter_label') }}</span>
         </div>
         <div>
-          <VDropdown placement="bottom">
+          <VDropdown
+            placement="bottom" @hide="setPopperClose"
+            @show="setPopperOpen"
+          >
             <BaseButton bg-style="dark" size="sm">
               <div class="btn-arrow-down">
                 <span>{{ $t('casino_provider') }}</span>
@@ -70,7 +78,9 @@ function resetPlatformChecked() {
                   :count="platformOptions.length"
                   mode="active" :max="99999"
                 /> -->
-                <BaseIcon name="uni-arrow-down" />
+                <div class="icon" :class="{ up: isPopperOpen }">
+                  <BaseIcon name="uni-arrow-down" />
+                </div>
               </div>
             </BaseButton>
             <template #popper>
@@ -217,8 +227,15 @@ function resetPlatformChecked() {
   gap: var(--tg-spacing-8);
   line-height: 1.3;
 
-  .app-svg-icon {
-    font-size: var(--tg-font-size-xs);
+  .icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--tg-transition);
+    font-size: var(--tg-font-size-default);
+    &.up{
+      transform: rotate(180deg);
+    }
   }
 }
 
