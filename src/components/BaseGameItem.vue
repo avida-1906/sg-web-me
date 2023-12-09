@@ -20,6 +20,7 @@ const { allPlatformList } = storeToRefs(useCasinoStore())
 const closeSearch = inject('closeSearch', () => { })
 const closeSearchH5 = inject('closeSearchH5', () => { })
 const { bool: isError, setTrue: setErrorTrue } = useBoolean(false)
+const { bool: isLoadSuccess, setTrue: setLoadTrue } = useBoolean(false)
 
 const gameProviderName = computed(() =>
   allPlatformList.value?.find(a => a.id === props.gameInfo.platform_id)?.name ?? '-',
@@ -50,8 +51,12 @@ const onPlayCount = ref(Math.ceil(Math.random() * 1000).toFixed())
       @click="gameStart(gameInfo)"
     >
       <BaseImage
-        v-if="!isError" :url="gameInfo.img" :name="gameInfo.name"
-        is-cloud @error-img="setErrorTrue"
+        v-if="!isError"
+        :url="gameInfo.img"
+        :name="gameInfo.name"
+        is-cloud
+        @load-img="setLoadTrue"
+        @error-img="setErrorTrue"
       />
       <div v-if="isError && !isMaintained" class="center img-load">
         <BaseEmpty>
@@ -86,6 +91,7 @@ const onPlayCount = ref(Math.ceil(Math.random() * 1000).toFixed())
           </template>
         </BaseEmpty>
       </div>
+      <div v-if="!isLoadSuccess" class="backgrop-filter" />
     </div>
   </BaseAspectRatio>
   <span v-if="+gameInfo.game_type !== CasinoGameType.casino" class="count">
@@ -154,6 +160,15 @@ const onPlayCount = ref(Math.ceil(Math.random() * 1000).toFixed())
     left: 0;
     top: 0;
     background: #{rgba($color: var(--tg-color-blue-rgb), $alpha: 0.8)};
+  }
+
+  .backgrop-filter {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    backdrop-filter: blur(10px); /* 标准语法 */
   }
 }
 
