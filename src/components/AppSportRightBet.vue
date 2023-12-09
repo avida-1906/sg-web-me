@@ -61,10 +61,10 @@ function changeHeadSelectValue(value: EnumsBetSlipHeadStatus) {
   headSelectValue.value = value
 }
 
-onMounted(() => {
+function getBetListDataHandle() {
   if (isLogin.value)
     getBetListData()
-})
+}
 </script>
 
 <template>
@@ -75,6 +75,7 @@ onMounted(() => {
         style="--tg-base-select-hover-bg-color:var(--tg-secondary-dark);
           --tg-base-select-popper-style-padding-x:0;"
         :options="headSelectData" no-hover popper
+        @click="getBetListDataHandle"
       >
         <template #label="{ data }">
           <div class="type-select">

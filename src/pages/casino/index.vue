@@ -102,7 +102,7 @@ await application.allSettled([casinoStore.runAsyncGameLobby(), runMemberNoticeAl
     <div v-if="!isMobile" class="mt-24">
       <AppGameSearch game-type="1" />
     </div>
-    <div class="mt-30">
+    <div class="mt-24">
       <BaseTab
         v-model="tab"
         :list="casinoNav"
@@ -197,8 +197,8 @@ await application.allSettled([casinoStore.runAsyncGameLobby(), runMemberNoticeAl
 </template>
 
 <style lang='scss' scoped>
-.mt-30 {
-  margin-top: 30px;
+.mt-24 {
+  margin-top: 24px;
 }
 .list-wrap {
   margin-top: var(--tg-spacing-24);

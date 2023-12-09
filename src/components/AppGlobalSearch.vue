@@ -154,10 +154,6 @@ function clearKeyword() {
 function handleFocus() {
   showOverlayTrue()
   showTypeSelect()
-  window.scrollTo(0, 0)
-  setTimeout(() => {
-    window.scrollTo(0, 0)
-  })
 }
 // 关闭方法
 function emitClose() {

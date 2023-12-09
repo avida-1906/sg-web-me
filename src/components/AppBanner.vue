@@ -99,7 +99,10 @@ await application.allSettled([runMemberBannerList({
       >
         <BaseAspectRatio class="banner-ratio" ratio="320/188">
           <!-- <BaseImage url="/png/home/banner_bg.png" /> -->
-          <BaseImage :url="item.image_url[getCurrentLanguageForBackend()]" is-network />
+          <BaseImage
+            style="height: 100%;"
+            :url="item.image_url[getCurrentLanguageForBackend()]" is-network
+          />
           <div class="item-msg">
             <!-- <div class="msg-type">
               {{ t('promo_activity') }}
