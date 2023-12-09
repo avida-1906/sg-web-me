@@ -142,7 +142,7 @@ function resetPlatformChecked() {
       >
         <template #option="{ data: { item, active } }">
           <div class="flex-center-bet sort" :class="{ active }">
-            <BaseIcon v-if="item.icon" :name="item.icon" />
+            <BaseIcon v-if="item.icon" :class="{ active }" :name="item.icon" />
             <div class="label">
               {{ item.label }}
             </div>
