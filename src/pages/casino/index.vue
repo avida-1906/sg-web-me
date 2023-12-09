@@ -198,7 +198,7 @@ await application.allSettled([casinoStore.runAsyncGameLobby(), runMemberNoticeAl
 
 <style lang='scss' scoped>
 .mt-24 {
-  margin-top: 18px;
+  margin-top: 24px;
 }
 .list-wrap {
   margin-top: var(--tg-spacing-24);
