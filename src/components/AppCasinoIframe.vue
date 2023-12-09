@@ -15,7 +15,7 @@ const emit = defineEmits(['changeTheatre'])
 const { t } = useI18n()
 const { isMobile, appContentWidth } = storeToRefs(useWindowStore())
 const { isLogin } = storeToRefs(useAppStore())
-const { platformList } = storeToRefs(useCasinoStore())
+const { allPlatformList } = storeToRefs(useCasinoStore())
 const { openRegisterDialog } = useRegisterDialog()
 const {
   bool: isShowFrameOverlay,
@@ -69,7 +69,7 @@ const currencyCode = computed(() => {
 })
 const bigGameWrapper = computed(() => appContentWidth.value > 930)
 const gameProviderName = computed(() => {
-  return platformList.value?.find(
+  return allPlatformList.value?.find(
     a => a.id === dataDetail.value?.platform_id,
   )?.name ?? '-'
 })
