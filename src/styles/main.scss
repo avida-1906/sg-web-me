@@ -580,9 +580,8 @@ img.error {
       }
 
       .right{
-        width: auto;
+        width: 214.59px;
         height: 100%;
-        max-width: 214.59px;
         position: absolute;
         right: 0;
         top: 0;
@@ -595,6 +594,9 @@ img.error {
     .banner-wrap {
       .banner {
         height: 80px;
+        .right{
+          width: 149.28px;
+        }
       }
     }
   }
