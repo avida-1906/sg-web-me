@@ -21,6 +21,7 @@ const sportsStore = useSportsStore()
 const { sportsFavoriteData } = storeToRefs(sportsStore)
 /** 是否收藏 */
 const { bool: isFavorite } = useBoolean(false)
+const { bool: isInit } = useBoolean(true)
 
 /** 添加收藏 */
 const { run: runAddFavorite } = useRequest(() =>
@@ -163,6 +164,7 @@ const isTimeout = computed(() => props.data.rbts === 3)
 
 // 设置赛事进行时间
 function setEventTime() {
+  isInit.value = false
   if (!props.data.rbtt)
     return ''
 
@@ -286,6 +288,9 @@ onBeforeUnmount(() => {
             </div>
             <span v-if="isTimeout">
               {{ t('pause') }}
+            </span>
+            <span v-if="isInit">
+              {{ setEventTime() }}
             </span>
             <span v-show="eventTime && !isTimeout" class="count-time">
               {{ eventTime }}
