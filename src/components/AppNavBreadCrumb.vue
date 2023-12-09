@@ -82,7 +82,7 @@ watch(() => props.breadcrumb, (val) => {
   .breadcrumb-wrapper {
     padding: var(--tg-spacing-16) var(--tg-spacing-20);
     display: flex;
-    justify-content: center;
+    // justify-content: center;
     align-items: center;
     max-height: 44px;
     background: var(--tg-secondary-dark);

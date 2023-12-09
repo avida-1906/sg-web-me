@@ -64,15 +64,21 @@ function toggleLeftSidebar() {
 }
 function goGame(type: Game) {
   clearSidebar()
+  let temp = ''
 
   setTimeout(() => {
     switch (type) {
       case Game.CASINO:
+        if (route.path === '/casino')
+          return
         router.push('/casino')
         gameType.value = Game.CASINO
         break
       case Game.SPORTS:
-        router.push(`/sports/${getSportsPlatId()}`)
+        temp = `/sports/${getSportsPlatId()}`
+        if (route.path === temp)
+          return
+        router.push(temp)
         gameType.value = Game.SPORTS
         break
       default:
