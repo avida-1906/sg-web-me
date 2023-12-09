@@ -156,7 +156,7 @@ onErrorCaptured((err, instance, info) => {
                 <template v-if="Component">
                   <KeepAlive :include="keepAliveList" :max="10">
                     <Suspense timeout="0" @resolve="suspenseResolved">
-                      <component :is="Component" />
+                      <component :is="Component" :key="route.fullPath" />
                       <template #fallback>
                         <AppLoading full-screen />
                       </template>

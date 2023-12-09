@@ -126,7 +126,7 @@ await application.allSettled([runAsync(params.value)])
         <div class="sub-wrapper">
           <h3 class="sub-title">
             <BaseIcon name="spt-sort-az" />
-            <span>{{ t('order_by_alpha') }}</span>
+            <span>{{ t('all') }} {{ sportName }}</span>
           </h3>
           <AppSportsMarketRegion
             v-for="region in allRegionList"
