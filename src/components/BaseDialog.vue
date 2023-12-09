@@ -78,9 +78,9 @@ onUnmounted(() => {
               <BaseIcon v-if="icon" :name="icon" />
               <span>{{ title }}</span>
             </h2>
-            <div class="close" @click="close">
+            <a class="close" @click.stop="close">
               <BaseIcon name="uni-close" />
-            </div>
+            </a>
           </div>
           <div class="scroll-y scroll-contain">
             <div class="modal-content">
@@ -104,9 +104,9 @@ onUnmounted(() => {
               </BaseButton>
             </div>
           </div>
-          <div v-if="!icon && !title" class="close-only" @click="close">
+          <a v-if="!icon && !title" class="close-only" @click.stop="close">
             <BaseIcon name="uni-close" />
-          </div>
+          </a>
         </div>
       </section>
     </Transition>
@@ -204,15 +204,19 @@ onUnmounted(() => {
     .close {
       cursor: pointer;
       font-size: var(--tg-font-size-base);
+      display: flex;
+      position: relative;
+      z-index: var(--tg-z-index-top);
       &:hover {
         --tg-icon-color: var(--tg-text-white);
       }
     }
     .close-only {
+      display: flex;
       position: absolute;
       right: 0;
       top: 0;
-      z-index: 10;
+      z-index: var(--tg-z-index-top);
       padding: var(--tg-spacing-button-padding-horizontal-sm) var(--tg-spacing-button-padding-vertical-lg);
       font-size: var(--tg-font-size-base);
       cursor: pointer;
