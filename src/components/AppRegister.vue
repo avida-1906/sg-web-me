@@ -191,7 +191,7 @@ const regWebCfg = computed(() => regCfg.value?.web)
 const needEmail = computed(() => true) // regWebCfg.value && regWebCfg.value.email !== false)
 const needName = computed(() => true) // regWebCfg.value && regWebCfg.value.username !== false)
 const needCheckEmail = computed(() =>
-  regWebCfg.value && regWebCfg.value.email_check !== false)
+  false) // regWebCfg.value && regWebCfg.value.email_check !== false)
 
 async function getMemberReg() {
   // 这个不要删：有错误时直接返回，否则重复的邮箱或用户名会因通过格式校验从而进行注册请求
