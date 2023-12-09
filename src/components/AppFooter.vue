@@ -39,7 +39,7 @@ const rate = computed(() => {
   const temp = exchangeRateData.value?.rates
   const code = currencyConfig[currentGlobalCurrency.value]
   if (temp && temp['706'] && code)
-    return temp['706'][code.cur] || '1.00'
+    return temp[code.cur]['706'] || '1.00'
   return '1.00'
 })
 const menuData = computed(() => [
