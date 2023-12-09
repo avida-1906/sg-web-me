@@ -191,6 +191,17 @@ function pathTo(tmp: { path?: string; title: string; icon?: boolean }) {
       <span>{{ companyData.partnerEmail }}</span> | {{ t('media') }}
       <span>{{ companyData.newsEmail }}</span>
     </div>
+    <div class="center" style="gap: 36px;">
+      <BaseImage
+        width="32px"
+        url="/png/footer/rz_red.png"
+      />
+      <BaseImage
+        width="32px"
+        height="32px"
+        url="/png/footer/rz_blue.png"
+      />
+    </div>
   </div>
 </template>
 
