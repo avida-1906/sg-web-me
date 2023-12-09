@@ -17,7 +17,7 @@ const { bool: showEmoji, toggle: toggleEmoji, setBool: setEBool } = useBoolean(f
 
 const { openNotify } = useNotify()
 
-const maxMsgLen = 512
+const maxMsgLen = 160
 const msgInput = ref()
 const message = ref('')
 const atUsers = reactive([
@@ -260,7 +260,6 @@ function enterPress(event: KeyboardEvent) {
         v-model="message"
         :placeholder="t('chat_send_msg_placeholder')"
         textarea
-        :max="maxMsgLen"
         @down-enter="enterPress"
       >
         <template #right-icon>
@@ -282,7 +281,10 @@ function enterPress(event: KeyboardEvent) {
       <BaseButton class="rule" size="sm" @click="openChatRulesDialog">
         <BaseIcon name="chat-rule" />
       </BaseButton>
-      <BaseButton bg-style="secondary" class="send" size="sm" shadow @click="sendMsg">
+      <BaseButton
+        :disabled="maxMsgLen - message.length < 0"
+        bg-style="secondary" class="send" size="sm" shadow @click="sendMsg"
+      >
         {{ t('send') }}
       </BaseButton>
     </div>
