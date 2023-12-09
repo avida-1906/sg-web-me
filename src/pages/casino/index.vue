@@ -25,7 +25,7 @@ const currentNav = computed(() => {
 const isCat = computed(() => currentNav.value.ty === 1) // 类别
 const isPlat = computed(() => currentNav.value.ty === 2) // 场馆
 const hostSite = computed(() => (
-  { host: location.value.hostname, site: companyData.value?.name }
+  { host: location.value.hostname?.replace('www', ''), site: companyData.value?.name }
 ))
 // 类别数据
 const {
