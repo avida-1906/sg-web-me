@@ -31,22 +31,27 @@ await application.allSettled([runAsync(params.value)])
 
 <template>
   <div class="list-wrap">
-    <div class="title">
-      <AppImage
-        v-if="icon" width="16px"
-        height="16px"
-        :url="icon"
-        is-cloud
-      />
-      <span>{{ name }}</span>
-    </div>
+    <BaseButton
+      type="text" size="none"
+      @click="
+        push(`/casino/group/provider?pid=${props.platformId}&name=${props.name}`)
+      "
+    >
+      <div class="title">
+        <AppImage
+          v-if="icon" width="16px"
+          height="16px"
+          :url="icon"
+          is-cloud
+        />
+        <span>{{ name }}</span>
+      </div>
+    </BaseButton>
+
     <AppCardList :list="list" />
     <div v-show="total > VITE_CASINO_HOME_PAGE_SIZE" class="more">
       <BaseButton
         size="md"
-        @click="
-          push(`/casino/group/provider?pid=${props.platformId}&name=${props.name}`)
-        "
       >
         {{ t('view_all') }} {{ total }} {{ name }}
       </BaseButton>
