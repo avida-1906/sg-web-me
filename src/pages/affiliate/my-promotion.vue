@@ -12,7 +12,9 @@ const {
 const location = useBrowserLocation()
 const { data: proData } = useRequest(ApiGetMyPro, { manual: false })
 
-const qrUrl = computed(() => `${location.value.origin}${proData.value?.link_url}`)
+const baseQrRef = ref()
+
+const qrUrl = computed(() => `${location.value.origin}${proData.value?.link_url ?? ''}`)
 
 // 921-975
 const less975 = computed(() => {
@@ -72,6 +74,10 @@ const bet = computed(() => [
   { label: t('total_bet_order'), value: proData.value?.subordinate?.bet_num },
   { label: t('slash_win_lose_total'), value: proData.value?.subordinate?.net_amount },
 ])
+
+function downloadQr() {
+  baseQrRef.value.downloadClick()
+}
 </script>
 
 <template>
@@ -96,8 +102,10 @@ const bet = computed(() => [
         }"
       >
         <div class="promotion-left">
-          <BaseQrcode :url="qrUrl" :size="92" class="qr-code" />
-          <p>{{ t('click_save_qr') }}</p>
+          <BaseQrcode ref="baseQrRef" :url="qrUrl" :size="92" class="qr-code" />
+          <p class="cursor-pointer" @click="downloadQr">
+            {{ t('click_save_qr') }}
+          </p>
         </div>
         <div class="promotion-right">
           <div class="link">
