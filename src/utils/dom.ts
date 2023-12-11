@@ -75,6 +75,9 @@ export function getStyle(dom: HTMLElement, styleName: any) {
  */
 export function scrollToTop() {
   setTimeout(() => {
+    const temp = document.getElementById('main-content-scrollable')
+    if (temp)
+      temp.scrollTop = 0
     document.querySelector('.only-for-get-width')?.scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'center' })
   }, 50)
 }
