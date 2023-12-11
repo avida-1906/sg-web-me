@@ -17,6 +17,10 @@ const route = useRoute()
 const sport = route.params.sport
 const { VITE_SPORT_EVENT_PAGE_SIZE, VITE_SPORT_EVENT_PAGE_SIZE_MAX } = getEnv()
 const { bool: isSelfOpen } = useBoolean(props.autoShow)
+const {
+  bool: moreLoading, setTrue: moreLoadingTrue,
+  setFalse: moreLoadingFalse,
+} = useBoolean(false)
 
 let timer: any = null
 const page = ref(1)
@@ -41,6 +45,9 @@ const { run, runAsync, loading } = useRequest(ApiSportEventList, {
 
       list.value = [...cloneDeep(list.value), ...res.d]
     }
+  },
+  onAfter() {
+    moreLoadingFalse()
   },
 })
 const isRegionOpen = computed(() => props.isRegionOpen)
@@ -73,6 +80,7 @@ function loadMore() {
     page.value++
     pageSize.value = +VITE_SPORT_EVENT_PAGE_SIZE
   }
+  moreLoadingTrue()
   getData()
 }
 function updateDataByMqtt(data: ISportEventList[]) {
@@ -114,7 +122,7 @@ if (props.autoShow && props.isRegionOpen)
 <template>
   <BaseSecondaryAccordion
     :title="leagueName"
-    :show-more="curTotal < total && isSelfOpen && !loading"
+    :show-more="curTotal < total && isSelfOpen && !moreLoading"
     level="2"
     :init="autoShow"
     @open="onAccordionOpen"
@@ -136,7 +144,7 @@ if (props.autoShow && props.isRegionOpen)
           :base-type="baseType"
           :is-last="i === list.length - 1"
         />
-        <AppSportsMarketInfoSkeleton v-if="loading" :num="total - curTotal" />
+        <AppSportsMarketInfoSkeleton v-if="moreLoading" :num="total - curTotal" />
       </div>
     </template>
   </BaseSecondaryAccordion>

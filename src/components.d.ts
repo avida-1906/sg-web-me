@@ -191,7 +191,6 @@ declare module 'vue' {
     BaseTable: typeof import('./components/BaseTable.vue')['default']
     BaseTag: typeof import('./components/BaseTag.vue')['default']
     BaseUpload: typeof import('./components/BaseUpload.vue')['default']
-    copy: typeof import('./components/AppSportsLevel1LiveUpcoming copy.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

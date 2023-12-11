@@ -16,6 +16,10 @@ const {
   VITE_SPORT_EVENT_PAGE_SIZE,
   VITE_SPORT_EVENT_PAGE_SIZE_MAX,
 } = getEnv()
+const {
+  bool: moreLoading, setTrue: moreLoadingTrue,
+  setFalse: moreLoadingFalse,
+} = useBoolean(false)
 
 let timer: any = null
 const page = ref(1)
@@ -32,7 +36,7 @@ const params = computed(() => {
     page_size: pageSize.value,
   }
 })
-const { run, runAsync, loading } = useRequest(ApiSportEventList, {
+const { run, runAsync } = useRequest(ApiSportEventList, {
   onSuccess(res) {
     if (res.d) {
       total.value = res.t
@@ -43,6 +47,9 @@ const { run, runAsync, loading } = useRequest(ApiSportEventList, {
 
       list.value = sportsDataGroupByLeagueLoadMore(list.value, res.d)
     }
+  },
+  onAfter() {
+    moreLoadingFalse()
   },
 })
 
@@ -75,6 +82,7 @@ function loadMore() {
     page.value++
     pageSize.value = +VITE_SPORT_EVENT_PAGE_SIZE
   }
+  moreLoadingTrue()
   getData()
 }
 function reset() {
@@ -119,11 +127,11 @@ await application.allSettled([runAsync(params.value)])
       :event-list="league.list" :auto-show="i === 0"
     />
     <AppSportsMarketSkeleton
-      v-if="loading"
+      v-if="moreLoading"
       :num="total - curTotal > 10 ? 10 : total - curTotal "
     />
     <BaseButton
-      v-show="curTotal < total && !loading"
+      v-show="curTotal < total && !moreLoading"
       size="none" type="text" @click="loadMore"
     >
       {{ t('load_more') }}

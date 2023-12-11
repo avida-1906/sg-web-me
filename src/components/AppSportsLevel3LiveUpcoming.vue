@@ -14,6 +14,10 @@ const sport = route.params.sport ? +route.params.sport : 0
 const league = route.params.league ? route.params.league.toString() : ''
 const { bool: isStandard } = useBoolean(true)
 const {
+  bool: moreLoading, setTrue: moreLoadingTrue,
+  setFalse: moreLoadingFalse,
+} = useBoolean(false)
+const {
   VITE_SPORT_EVENT_PAGE_SIZE,
   VITE_SPORT_EVENT_PAGE_SIZE_MAX,
 } = getEnv()
@@ -34,7 +38,7 @@ const params = computed(() => {
     page_size: pageSize.value,
   }
 })
-const { run, runAsync, loading } = useRequest(ApiSportEventList, {
+const { run, runAsync } = useRequest(ApiSportEventList, {
   onSuccess(res) {
     if (res.d) {
       total.value = res.t
@@ -43,6 +47,9 @@ const { run, runAsync, loading } = useRequest(ApiSportEventList, {
 
       list.value = [...cloneDeep(list.value), ...res.d]
     }
+  },
+  onAfter() {
+    moreLoadingFalse()
   },
 })
 const curTotal = computed(() => list.value.length)
@@ -74,6 +81,7 @@ function loadMore() {
     page.value++
     pageSize.value = +VITE_SPORT_EVENT_PAGE_SIZE
   }
+  moreLoadingTrue()
   getData()
 }
 function reset() {
@@ -114,10 +122,10 @@ await application.allSettled([runAsync(params.value)])
     <AppSportsMarket
       :is-standard="isStandard"
       :league-name="navObj.cn" :event-count="total" :base-type="baseType"
-      :event-list="list" auto-show :loading-more="loading"
+      :event-list="list" auto-show :loading-more="moreLoading"
     />
     <BaseButton
-      v-show="curTotal < total && !loading"
+      v-show="curTotal < total && !moreLoading"
       size="none" type="text" @click="loadMore"
     >
       {{ t('load_more') }}
