@@ -121,7 +121,7 @@ watch(() => props.columns, () => {
                 <BaseSkeleton
                   bg="var(--tg-secondary-light)"
                   height="14px"
-                  :width="getWidth()"
+                  :width="col.skeWidth ?? getWidth()"
                   animated="ani-opacity"
                 />
                 <BaseSkeleton

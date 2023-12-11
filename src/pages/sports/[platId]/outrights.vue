@@ -56,11 +56,13 @@ const breadcrumb = computed(() => [
     title: sportName.value,
   },
   {
-    path: `/sports/${SPORTS_PLAT_ID}/${si}/${regionId.value}`,
+    // eslint-disable-next-line max-len
+    path: `/sports/${SPORTS_PLAT_ID}/${si}/${regionId.value}?${application.objectToUrlParams({ sn: sportName.value, pgn: regionName.value })}`,
     title: regionName.value,
   },
   {
-    path: `/sports/${SPORTS_PLAT_ID}/${si}/${regionId.value}/${ci}`,
+    // eslint-disable-next-line max-len
+    path: `/sports/${SPORTS_PLAT_ID}/${si}/${regionId.value}/${ci}?${application.objectToUrlParams({ sn: sportName.value, pgn: regionName.value, cn: leagueName.value })}`,
     title: leagueName.value,
   },
   {

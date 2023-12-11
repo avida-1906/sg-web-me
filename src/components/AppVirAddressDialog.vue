@@ -129,11 +129,10 @@ onUnmounted(() => {
 <template>
   <div class="layout-spacing reset app-vir-address">
     <BaseSelect
-      v-if="curContractList?.length"
+      v-if="curContractList?.length && !isWithdraw"
       v-model="currentNetwork"
       :label="t('choose_protocol')"
       :options="curContractList"
-      :disabled="isWithdraw"
       small
     />
     <div>

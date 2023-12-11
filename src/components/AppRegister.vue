@@ -292,7 +292,7 @@ onUnmounted(() => {
         {{ t('reg_step1') }}
       </div>
       <div class="app-register-input-box">
-        <BaseLabel v-if="needEmail" :label="t('email_address')" must-small need-focus>
+        <BaseLabel v-if="needEmail" :label="t('email_address')" need-focus must-small>
           <BaseInput
             ref="emailRef" v-model="email" :msg="emailErrorMsg" msg-after-touched
             type="email"
@@ -364,7 +364,7 @@ onUnmounted(() => {
             ref="birthdayInputRef" v-model="birthday"
           />
         </BaseLabel>
-        <div style="display: flex;">
+        <div style="display: flex;flex-direction: column;">
           <div class="code-label">
             <BaseCheckBox v-model="isCode">
               <span class="option-label">{{ t('code_optional') }}</span>

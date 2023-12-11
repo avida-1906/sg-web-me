@@ -78,7 +78,7 @@ usePageTitle({ prefix: sportName })
           :base-type="baseType" :is-standard="isStandard"
         />
         <!-- 冠军 -->
-        <AppSportsOutrights v-else-if="isOutrights" :level="1" />
+        <AppSportsLevel1Outrights v-else-if="isOutrights" />
       </template>
       <!-- 后续切换tab时 -->
       <template v-else>
@@ -87,7 +87,7 @@ usePageTitle({ prefix: sportName })
             v-if="isLiveAndUpcoming"
             :base-type="baseType" :is-standard="isStandard"
           />
-          <AppSportsOutrights v-else-if="isOutrights" :level="1" />
+          <AppSportsLevel1Outrights v-else-if="isOutrights" />
           <template #fallback>
             <AppLoading full-screen />
           </template>
@@ -105,6 +105,7 @@ usePageTitle({ prefix: sportName })
   align-items: center;
   justify-content: space-between;
   margin-top: var(--tg-spacing-24);
+  margin-bottom: var(--tg-spacing-24);
 }
 .tg-sports-index {
   margin-top: var(--tg-spacing-32);

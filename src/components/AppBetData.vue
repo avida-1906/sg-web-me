@@ -98,6 +98,7 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
         dataIndex: 'bet_time',
         align: 'center',
         slot: 'bet_time',
+        skeWidth: '60px',
       },
       {
         title: t('bet_amount'),
@@ -105,12 +106,14 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
         slot: 'betMoney',
         align: 'right',
         isRound: 'right',
+        skeWidth: '80px',
       },
       {
         title: t('multiple_count'),
         dataIndex: 'multiplier',
         align: 'right',
         xl: true,
+        skeWidth: '36px',
       },
       {
         title: t('sports_payment_amount'),
@@ -120,6 +123,7 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
         xl: true,
         md: true,
         isRound: 'right',
+        skeWidth: '80px',
       },
     ]
     case 'casino-all':
@@ -145,6 +149,7 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
         title: t('time'),
         dataIndex: 'time',
         align: 'center',
+        skeWidth: '60px',
       },
       {
         title: t('bet_amount'),
@@ -152,12 +157,14 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
         slot: 'betMoney',
         align: 'right',
         isRound: 'right',
+        skeWidth: '80px',
       },
       {
         title: t('multiple_count'),
         dataIndex: 'multiplier',
         align: 'right',
         xl: true,
+        skeWidth: '36px',
       },
       {
         title: t('sports_payment_amount'),
@@ -167,6 +174,7 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
         xl: true,
         md: true,
         isRound: 'right',
+        skeWidth: '80px',
       },
     ]
     case 'ranking-list': return [
@@ -178,6 +186,7 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
         align: 'left',
         xl: true,
         md: true,
+        skeWidth: '20px',
       },
       {
         title: t('gamer'),
@@ -196,6 +205,7 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
         md: true,
         isTips: true,
         isRound: 'right',
+        skeWidth: '80px',
       },
       {
         title: t('finance_other_tab_bonus'),
@@ -205,6 +215,7 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
         xl: true,
         md: true,
         isRound: 'right',
+        skeWidth: '80px',
       },
     ]
     case 'sports-all':
@@ -231,12 +242,14 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
         dataIndex: 'time',
         align: 'center',
         xl: true,
+        skeWidth: '60px',
       },
       {
         title: t('sports_odds_title'),
         dataIndex: 'multiplier',
         align: 'right',
         xl: true,
+        skeWidth: '36px',
       },
       {
         title: t('bet_amount'),
@@ -246,6 +259,7 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
         xl: true,
         md: true,
         isRound: 'right',
+        skeWidth: '80px',
       },
     ]
     default: return []
@@ -341,7 +355,7 @@ watch(() => activeTab.value, (newValue) => {
   else {
     timer.value && clearInterval(timer.value)
     timer.value = null
-    setColor(props.showTab)
+    setColor(!props.showTab)
   }
 }, { immediate: true })
 watch(() => isLogin.value, (newValue) => {

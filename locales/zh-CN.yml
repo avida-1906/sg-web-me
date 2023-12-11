@@ -1324,7 +1324,7 @@ withdrawal_fee_tip: 我们将从您的余额扣除
 withdrawal_as_fee: 作为您提款的交易费用
 present: 送
 order_label: 笔
-bet_tip_amount_tip: 已成功压下总值 
+bet_tip_amount_tip: 已成功押下总值 
 de: 的
 bet_more_than_balance: 您的投注额不能大于余额。
 all: 所有

@@ -130,14 +130,19 @@ function updateContract() {
     page_size: 10,
   })
 }
+function reset() {
+  amountReset()
+  setAmount(application.sliceOrPad(0, application.isVirtualCurrency(props.activeCurrency.type) ? 8 : 2), false)
+}
 
 watch(() => props.currentNetwork, () => {
   if (props.currentNetwork) {
     runAsyncWithdrawMethodList({ currency_id: props.activeCurrency.cur })
     resetAddress()
-    amountReset()
+    // amountReset()
     payPasswordReset()
     updateContract()
+    reset()
   }
 }, { immediate: true })
 
@@ -162,7 +167,7 @@ await application.allSettled(
             v-model="address"
             :options="addrOptions"
             :msg="addressMsg"
-            theme small popper border
+            small popper theme border
             style="--tg-base-select-popper-style-padding-y: var(--tg-spacing-12)"
             @focus="addressMsg && resetAddress()"
           >

@@ -27,6 +27,7 @@ declare global {
   const ApiFinanceWithdrawWallet: typeof import('./apis/index')['ApiFinanceWithdrawWallet']
   const ApiGameLunch: typeof import('./apis/index')['ApiGameLunch']
   const ApiGetFeedbackChatList: typeof import('./apis/index')['ApiGetFeedbackChatList']
+  const ApiGetMyPro: typeof import('./apis/index')['ApiGetMyPro']
   const ApiMemberApplyVipBonus: typeof import('./apis/index')['ApiMemberApplyVipBonus']
   const ApiMemberBalance: typeof import('./apis/index')['ApiMemberBalance']
   const ApiMemberBalanceLocker: typeof import('./apis/index')['ApiMemberBalanceLocker']
@@ -447,6 +448,7 @@ declare global {
   const useField: typeof import('vee-validate')['useField']
   const useFileDialog: typeof import('@vueuse/core')['useFileDialog']
   const useFileSystemAccess: typeof import('@vueuse/core')['useFileSystemAccess']
+  const useFixedTop: typeof import('./composables/useFixedTop')['useFixedTop']
   const useFloatingVue: typeof import('./composables/useFloatingVue')['useFloatingVue']
   const useFocus: typeof import('@vueuse/core')['useFocus']
   const useFocusWithin: typeof import('@vueuse/core')['useFocusWithin']
@@ -635,6 +637,7 @@ declare module 'vue' {
     readonly ApiFinanceWithdrawWallet: UnwrapRef<typeof import('./apis/index')['ApiFinanceWithdrawWallet']>
     readonly ApiGameLunch: UnwrapRef<typeof import('./apis/index')['ApiGameLunch']>
     readonly ApiGetFeedbackChatList: UnwrapRef<typeof import('./apis/index')['ApiGetFeedbackChatList']>
+    readonly ApiGetMyPro: UnwrapRef<typeof import('./apis/index')['ApiGetMyPro']>
     readonly ApiMemberApplyVipBonus: UnwrapRef<typeof import('./apis/index')['ApiMemberApplyVipBonus']>
     readonly ApiMemberBalance: UnwrapRef<typeof import('./apis/index')['ApiMemberBalance']>
     readonly ApiMemberBalanceLocker: UnwrapRef<typeof import('./apis/index')['ApiMemberBalanceLocker']>
@@ -1055,6 +1058,7 @@ declare module 'vue' {
     readonly useField: UnwrapRef<typeof import('vee-validate')['useField']>
     readonly useFileDialog: UnwrapRef<typeof import('@vueuse/core')['useFileDialog']>
     readonly useFileSystemAccess: UnwrapRef<typeof import('@vueuse/core')['useFileSystemAccess']>
+    readonly useFixedTop: UnwrapRef<typeof import('./composables/useFixedTop')['useFixedTop']>
     readonly useFloatingVue: UnwrapRef<typeof import('./composables/useFloatingVue')['useFloatingVue']>
     readonly useFocus: UnwrapRef<typeof import('@vueuse/core')['useFocus']>
     readonly useFocusWithin: UnwrapRef<typeof import('@vueuse/core')['useFocusWithin']>
@@ -1237,6 +1241,7 @@ declare module '@vue/runtime-core' {
     readonly ApiFinanceWithdrawWallet: UnwrapRef<typeof import('./apis/index')['ApiFinanceWithdrawWallet']>
     readonly ApiGameLunch: UnwrapRef<typeof import('./apis/index')['ApiGameLunch']>
     readonly ApiGetFeedbackChatList: UnwrapRef<typeof import('./apis/index')['ApiGetFeedbackChatList']>
+    readonly ApiGetMyPro: UnwrapRef<typeof import('./apis/index')['ApiGetMyPro']>
     readonly ApiMemberApplyVipBonus: UnwrapRef<typeof import('./apis/index')['ApiMemberApplyVipBonus']>
     readonly ApiMemberBalance: UnwrapRef<typeof import('./apis/index')['ApiMemberBalance']>
     readonly ApiMemberBalanceLocker: UnwrapRef<typeof import('./apis/index')['ApiMemberBalanceLocker']>
@@ -1657,6 +1662,7 @@ declare module '@vue/runtime-core' {
     readonly useField: UnwrapRef<typeof import('vee-validate')['useField']>
     readonly useFileDialog: UnwrapRef<typeof import('@vueuse/core')['useFileDialog']>
     readonly useFileSystemAccess: UnwrapRef<typeof import('@vueuse/core')['useFileSystemAccess']>
+    readonly useFixedTop: UnwrapRef<typeof import('./composables/useFixedTop')['useFixedTop']>
     readonly useFloatingVue: UnwrapRef<typeof import('./composables/useFloatingVue')['useFloatingVue']>
     readonly useFocus: UnwrapRef<typeof import('@vueuse/core')['useFocus']>
     readonly useFocusWithin: UnwrapRef<typeof import('@vueuse/core')['useFocusWithin']>
