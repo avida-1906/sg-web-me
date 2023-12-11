@@ -1433,7 +1433,7 @@ withdrawal_min_amount: The minimum withdrawal amount is
 withdrawal_fee_tip: We will deduct this from your balance
 withdrawal_as_fee: As transaction fees for your withdrawals
 present: Send
-bet_tip_amount_tip: Successfully suppressed {numStr} total value
+bet_tip_amount_tip: Successfully suppressed total value
 bet_more_than_balance: Your bet cannot be greater than your balance.
 order_by_alpha: In alphabetical order
 sport_in_coming: Live Betting and Upcoming Match Betting

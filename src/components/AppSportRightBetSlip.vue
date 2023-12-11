@@ -358,6 +358,7 @@ function betSuccessTip(widSuccessList: string[]) {
     : 1
   openNotify({
     type: 'wallet',
+    title: isBetSingle.value ? '单项投注' : '体育复式投注',
     message: () => h(
       AppSportBetSuccessNotify,
       {
