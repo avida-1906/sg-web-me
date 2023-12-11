@@ -114,7 +114,7 @@ if (props.autoShow && props.isRegionOpen)
 <template>
   <BaseSecondaryAccordion
     :title="leagueName"
-    :show-more="curTotal < total && isSelfOpen"
+    :show-more="curTotal < total && isSelfOpen && !loading"
     level="2"
     :init="autoShow"
     @open="onAccordionOpen"
@@ -136,6 +136,7 @@ if (props.autoShow && props.isRegionOpen)
           :base-type="baseType"
           :is-last="i === list.length - 1"
         />
+        <AppSportsMarketInfoSkeleton v-if="loading" :num="total - curTotal" />
       </div>
     </template>
   </BaseSecondaryAccordion>

@@ -111,6 +111,7 @@ declare module 'vue' {
     AppSportsLobby: typeof import('./components/AppSportsLobby.vue')['default']
     AppSportsMarket: typeof import('./components/AppSportsMarket.vue')['default']
     AppSportsMarketInfo: typeof import('./components/AppSportsMarketInfo.vue')['default']
+    AppSportsMarketInfoSkeleton: typeof import('./components/AppSportsMarketInfoSkeleton.vue')['default']
     AppSportsMarketLeague: typeof import('./components/AppSportsMarketLeague.vue')['default']
     AppSportsMarketRegion: typeof import('./components/AppSportsMarketRegion.vue')['default']
     AppSportsMarketSkeleton: typeof import('./components/AppSportsMarketSkeleton.vue')['default']
