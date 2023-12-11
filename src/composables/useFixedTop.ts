@@ -2,15 +2,16 @@ export function useFixedTop(className: string) {
   const page = document.querySelector(className)
   let currentInput: EventTarget | null = null // 当前聚焦的输入框
   const fixedEle = document.body
-  let startMove = false // 记录是否发生了滑动手势
+  const { bool: startMove, setBool: setStartMove } = useBoolean(false)
+  // let startMove = false // 记录是否发生了滑动手势
 
   function handleTouchmove() {
-    startMove = true
+    setStartMove(true)
     page?.addEventListener('touchend', handleTouchend)
   }
 
   function handleTouchend() {
-    startMove = false
+    setStartMove(false)
     page?.removeEventListener('touchend', handleTouchend)
   }
 
@@ -25,7 +26,7 @@ export function useFixedTop(className: string) {
   function handleWdinowScroll() {
   // 当平移时H5的内容已经滚动到顶部或底部，且 是因为发生滑动手势引起的scroll事件，此时就输入框失焦收起软键盘
   // 聚焦到输入框也会引起scroll事件，所以要加startMove区分开是滑动手势引起的
-    if (page && (page.scrollTop === 0 || page.scrollTop + page.clientHeight >= page.scrollHeight) && startMove)
+    if (page && (page.scrollTop === 0 || page.scrollTop + page.clientHeight >= page.scrollHeight) && startMove.value)
       return triggerBlur()
 
     // 聚焦输入框引起的平移
@@ -46,7 +47,7 @@ export function useFixedTop(className: string) {
 
   // 主动失焦
   function triggerBlur() {
-    currentInput && currentInput.blur()
+    currentInput && (currentInput as HTMLElement).blur()
   }
 
   // 失焦时，重置一些数据
@@ -56,7 +57,7 @@ export function useFixedTop(className: string) {
     page?.removeEventListener('touchmove', handleTouchmove)
     page?.removeEventListener('scroll', handlePageScroll)
     fixedEle.style.top = '0'
-    startMove = false
+    setStartMove(false)
   }
 
   page?.addEventListener('focusin', handleFocusin)
