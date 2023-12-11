@@ -81,6 +81,9 @@ watch(route, (a) => {
     cid.value = a.query.cid ? route.query.cid?.toString() ?? '0' : '0'
     pids.value = ''
     sortType.value = EnumCasinoSortType.hot
+    setTimeout(() => {
+      scrollToTop()
+    }, 50)
   }
 })
 
