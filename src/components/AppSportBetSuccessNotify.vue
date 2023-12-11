@@ -33,7 +33,7 @@ const numStr = computed(() => {
       :amount="amount"
       :currency-type="currencyType"
     />
-    {{ betSlipTabValue }}
+    {{ betSlipTabValue }}!
   </div>
 </template>
 
