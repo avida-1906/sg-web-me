@@ -103,7 +103,7 @@ function downloadQr() {
       >
         <div class="promotion-left">
           <BaseQrcode ref="baseQrRef" :url="qrUrl" :size="92" class="qr-code" />
-          <p @click="downloadQr">
+          <p class="cursor-pointer" @click="downloadQr">
             {{ t('click_save_qr') }}
           </p>
         </div>

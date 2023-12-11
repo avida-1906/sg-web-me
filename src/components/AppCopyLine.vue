@@ -3,6 +3,7 @@ interface Props {
   msg: string
   title?: string
   label?: string
+  copyTip?: string
 }
 
 withDefaults(defineProps<Props>(), {})
@@ -60,7 +61,9 @@ function copyClick(msg: string) {
                   </BaseButton>
                 </a>
                 <template #popper>
-                  <div class="tiny-menu-item-title">{{ $t('copy_success') }}！</div>
+                  <div class="tiny-menu-item-title">
+                    {{ copyTip !== undefined ? copyTip : $t('copy_success') }}！
+                  </div>
                 </template>
               </VTooltip>
               <BaseButton v-else @click="copyClick(msg)">
