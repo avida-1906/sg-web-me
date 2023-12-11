@@ -353,7 +353,7 @@ export function ApiMemberCasinoRecordList(params: {
    * 虚拟钱包列表
    * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=b5a4e1b7-5297-4210-9d76-17a6a8efb4b4
    */
-export function ApiMemberWalletList(
+export function ApiFinanceWithdrawWallet(
   params: {
     /** 合约类型 */
     contract_type: string
@@ -363,7 +363,7 @@ export function ApiMemberWalletList(
     page_size?: number
   },
 ) {
-  return httpClient.get<IResponseList<VirtualCoin>>('/member/wallet/list', { params })
+  return httpClient.get<IResponseList<VirtualCoin>>('finance/withdraw/wallet', { params })
 }
 
 /**
