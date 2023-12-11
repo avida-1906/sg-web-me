@@ -242,6 +242,8 @@ export function ApiSportOutrightList(params: {
   si: number
   page: number
   page_size: number
+  /** 联赛id */
+  ci?: string
 }) {
   return httpClient.get<IResponseList<ISportOutrightsInfo>>(`/sport/${getSportsPlatId()}/outright/list`, { params })
 }

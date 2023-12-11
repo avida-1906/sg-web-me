@@ -1,12 +1,12 @@
 <script setup lang='ts'>
 interface Props {
-  level: 1 | 2 | 3
+  level: 2 | 3
 }
 const props = defineProps<Props>()
 
 const { t } = useI18n()
 const route = useRoute()
-const { sidebarData } = storeToRefs(useSportsStore())
+
 const sportId = route.params.sport ? +route.params.sport : 0
 const regionId = route.params.region ? route.params.region.toString() : ''
 const leagueId = route.params.league ? route.params.league.toString() : ''
@@ -16,18 +16,9 @@ const { data, run, runAsync } = useRequest(ApiSportOutrightList)
 /** 定时更新数据 */
 const { startTimer, stopTimer } = useSportsDataUpdate(() => run(params.value))
 
-const isSport = computed(() => props.level === 1)
 const isRegion = computed(() => props.level === 2)
 const isLeague = computed(() => props.level === 3)
-const sportlist = computed(() => {
-  return data.value && data.value.d ? sportsOutrightsGroupByRegion(data.value.d) : []
-})
-// 球种名称
-const sportName = computed(() => {
-  if (sidebarData.value)
-    return sidebarData.value.all.find(a => a.si === sportId)?.sn ?? '-'
-  return '-'
-})
+
 const regionList = computed(() => {
   if (data.value && data.value.d) {
     const origin = data.value.d.filter(a => a.pgid === regionId)
@@ -76,42 +67,7 @@ await application.allSettled([runAsync(params.value)])
 </script>
 
 <template>
-  <div v-if="isSport" class="sub-wrapper">
-    <div class="sports-page-title">
-      <div class="sports-page-title">
-        <div class="left">
-          <BaseIcon name="spt-sort-az" />
-          <span>{{ $t('all') }} {{ sportName }} {{ t('champion_bet') }}</span>
-        </div>
-      </div>
-    </div>
-    <BaseSecondaryAccordion
-      v-for="region, i in sportlist" :key="region.pgid"
-      :title="region.pgn"
-      level="1"
-      :init="i === 0"
-      icon="spt-game-intl"
-    >
-      <template #side="{ isOpen }">
-        <div v-show="!isOpen" class="accordion-badge-wrap">
-          <BaseBadge :count="region.list.length" :max="99999" />
-        </div>
-      </template>
-      <div class="content is-open">
-        <div class="acc-box">
-          <AppOutrightPreview
-            v-for="league, ii in region.list" :key="league.ci"
-            :auto-show="ii === 0" :data="league"
-          />
-        </div>
-      </div>
-    </BaseSecondaryAccordion>
-    <div v-show="sportlist.length === 0" class="empty">
-      <BaseEmpty icon="empty-1" :description="t('search_no_result')" />
-    </div>
-  </div>
-
-  <div v-else-if="isRegion" class="acc-box">
+  <div v-if="isRegion" class="acc-box">
     <AppOutrightPreview
       v-for="league, i in regionList" :key="league.ci"
       :auto-show="i === 0" :data="league"
@@ -130,24 +86,6 @@ await application.allSettled([runAsync(params.value)])
 </template>
 
 <style lang='scss' scoped>
-.sub-wrapper{
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  gap:  var(--tg-spacing-12);
-}
-.content {
-  background: var(--content-background);
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  border-radius: 0 0 var(--tg-radius-default) var(--tg-radius-default);
-
-  &.is-open {
-    border-top: 2px solid var(--content-border);
-  }
-}
-
 .acc-box {
   display: grid;
   grid-auto-flow: row;

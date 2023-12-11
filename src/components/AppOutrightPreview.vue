@@ -83,18 +83,7 @@ function goOutrightsPage(item: ISportOutrightsInfo) {
   font-weight: var(--tg-font-weight-semibold);
   line-height: 1.3;
 }
-.group-time {
-  display: flex;
-  align-items: center;
-  padding: calc(var(--tg-spacing-8) - 2px) var(--tg-spacing-16) var(--tg-spacing-8);
-  position: sticky;
-  top: -1px;
-  z-index: 3;
-  width: 100%;
-  background: var(--tg-secondary-main);
-  color: var(--tg-secondary-light);
-  font-size: var(--tg-font-size-xs);
-}
+
 .name {
   grid-area: name;
   color: #fff;

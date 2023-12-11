@@ -55,7 +55,7 @@ await application.allSettled([runAsync(params.value)])
 
 <template>
   <!-- 热门 -->
-  <div class="sub-wrapper">
+  <div class="sub-wrapper hot">
     <div class="sports-page-title">
       <div class="left">
         <BaseIcon name="uni-popular" />
@@ -105,6 +105,7 @@ await application.allSettled([runAsync(params.value)])
 }
 .sub-wrapper{
   gap:  var(--tg-spacing-12);
+  margin-bottom: var(--tg-spacing-24);
 }
 
 .sub-title {

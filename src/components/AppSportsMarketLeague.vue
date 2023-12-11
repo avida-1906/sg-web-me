@@ -116,7 +116,7 @@ onBeforeUnmount(() => {
 })
 
 if (props.autoShow && props.isRegionOpen)
-  await application.allSettled([runAsync(params.value)])
+  await application.allSettled([runAsync(params.value).then(() => { startTimer() })])
 </script>
 
 <template>

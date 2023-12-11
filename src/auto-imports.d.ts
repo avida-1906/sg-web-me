@@ -445,7 +445,7 @@ declare global {
   const useField: typeof import('vee-validate')['useField']
   const useFileDialog: typeof import('@vueuse/core')['useFileDialog']
   const useFileSystemAccess: typeof import('@vueuse/core')['useFileSystemAccess']
-  const useFixedTop: typeof import('./composables/useFixedTopp')['useFixedTop']
+  const useFixedTop: typeof import('./composables/useFixedTop')['useFixedTop']
   const useFloatingVue: typeof import('./composables/useFloatingVue')['useFloatingVue']
   const useFocus: typeof import('@vueuse/core')['useFocus']
   const useFocusWithin: typeof import('@vueuse/core')['useFocusWithin']
@@ -1052,7 +1052,7 @@ declare module 'vue' {
     readonly useField: UnwrapRef<typeof import('vee-validate')['useField']>
     readonly useFileDialog: UnwrapRef<typeof import('@vueuse/core')['useFileDialog']>
     readonly useFileSystemAccess: UnwrapRef<typeof import('@vueuse/core')['useFileSystemAccess']>
-    readonly useFixedTop: UnwrapRef<typeof import('./composables/useFixedTopp')['useFixedTop']>
+    readonly useFixedTop: UnwrapRef<typeof import('./composables/useFixedTop')['useFixedTop']>
     readonly useFloatingVue: UnwrapRef<typeof import('./composables/useFloatingVue')['useFloatingVue']>
     readonly useFocus: UnwrapRef<typeof import('@vueuse/core')['useFocus']>
     readonly useFocusWithin: UnwrapRef<typeof import('@vueuse/core')['useFocusWithin']>
@@ -1653,7 +1653,7 @@ declare module '@vue/runtime-core' {
     readonly useField: UnwrapRef<typeof import('vee-validate')['useField']>
     readonly useFileDialog: UnwrapRef<typeof import('@vueuse/core')['useFileDialog']>
     readonly useFileSystemAccess: UnwrapRef<typeof import('@vueuse/core')['useFileSystemAccess']>
-    readonly useFixedTop: UnwrapRef<typeof import('./composables/useFixedTopp')['useFixedTop']>
+    readonly useFixedTop: UnwrapRef<typeof import('./composables/useFixedTop')['useFixedTop']>
     readonly useFloatingVue: UnwrapRef<typeof import('./composables/useFloatingVue')['useFloatingVue']>
     readonly useFocus: UnwrapRef<typeof import('@vueuse/core')['useFocus']>
     readonly useFocusWithin: UnwrapRef<typeof import('@vueuse/core')['useFocusWithin']>
