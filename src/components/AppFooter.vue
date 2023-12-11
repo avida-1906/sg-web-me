@@ -40,7 +40,7 @@ const rate = computed(() => {
   const temp = exchangeRateData.value?.rates
   const code = currencyConfig[currentGlobalCurrency.value]
   if (temp && temp['706'] && code)
-    return temp[code.cur]['706'] || '1.00'
+    return formatWithSubstring(temp[code.cur]['706']) || '1.00'
   return '1.00'
 })
 const menuData = computed(() => [
@@ -193,14 +193,14 @@ function pathTo(tmp: { path?: string; title: string; icon?: boolean }) {
       <span>{{ t('media') }}</span>
       <span>{{ companyData.newsEmail }}</span>
     </div>
-    <div class="center" style="gap: var(--tg-spacing-32)">
+    <div class="center" style="gap: var(--tg-spacing-36)">
       <BaseImage
         width="32px"
         url="/png/footer/rz_red.png"
       />
       <BaseImage
-        width="32px"
-        height="32px"
+        width="28px"
+        height="28px"
         url="/png/footer/rz_blue.png"
       />
     </div>

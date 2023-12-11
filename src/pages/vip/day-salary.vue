@@ -36,12 +36,12 @@ const columns = computed<Column[]>(() => [
 ])
 
 const bonusArray = computed(() => promoBonus.value && promoBonus.value.length
-  ? promoBonus.value.filter(p => +p.state === 1)
+  ? promoBonus.value
   : [])
 
-async function openReceive() {
-  if (bonusArray.value.length > 0)
-    openReceiveBonusDialog({ vipBonus: bonusArray.value[0].amount, vipBonusId: bonusArray.value[0].id })
+async function openReceive(item: any) {
+  if (+item.amount > 0 && +item.state === 1)
+    openReceiveBonusDialog({ vipBonus: item.amount, vipBonusId: item.id })
   else
     openNotify({ type: 'error', message: t('no_bonus_now'), title: t('fail_bonus') })
 }
@@ -64,19 +64,25 @@ onMounted(() => {
       </template>
       <template #status="{ record }">
         <span v-if="+record.level > +vip">{{ t('wait_upgrade') }}</span>
-        <span v-else-if="+record.level < +vip">{{ t('upgraded') }}</span>
-        <span v-else>
+        <template v-else>
           <span
-            v-if="bonusArray.length"
+            v-if="bonusArray.length
+              && bonusArray.filter(b => +b.vip === +record.level
+                && +b.state === 1).length"
             class="green-text"
-            @click="openReceive"
+            @click="() => openReceive(bonusArray.filter(b =>
+              +b.vip === +record.level && +b.state === 1)[0])"
           >
             {{ t('can_receive') }}
           </span>
-          <span v-else>
-            {{ t('received') }}
-          </span>
-        </span>
+          <span
+            v-else-if="bonusArray.length
+              && bonusArray.filter(b => +b.vip === +record.level
+                && +b.state === 2).length"
+          >
+            {{ t('received') }}</span>
+          <span v-else>{{ t('upgraded') }}</span>
+        </template>
       </template>
     </BaseTable>
     <AppVipRuleDesc />

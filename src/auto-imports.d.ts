@@ -207,6 +207,7 @@ declare global {
   const findKey: typeof import('lodash-es')['findKey']
   const floor: typeof import('lodash-es')['floor']
   const formatTitleData: typeof import('./utils/index')['formatTitleData']
+  const formatWithSubstring: typeof import('./utils/number')['formatWithSubstring']
   const get: typeof import('lodash-es')['get']
   const getActivePinia: typeof import('pinia')['getActivePinia']
   const getCartObject: typeof import('./utils/sports')['getCartObject']
@@ -811,6 +812,7 @@ declare module 'vue' {
     readonly findKey: UnwrapRef<typeof import('lodash-es')['findKey']>
     readonly floor: UnwrapRef<typeof import('lodash-es')['floor']>
     readonly formatTitleData: UnwrapRef<typeof import('./utils/index')['formatTitleData']>
+    readonly formatWithSubstring: UnwrapRef<typeof import('./utils/number')['formatWithSubstring']>
     readonly get: UnwrapRef<typeof import('lodash-es')['get']>
     readonly getActivePinia: UnwrapRef<typeof import('pinia')['getActivePinia']>
     readonly getCartObject: UnwrapRef<typeof import('./utils/sports')['getCartObject']>
@@ -1409,6 +1411,7 @@ declare module '@vue/runtime-core' {
     readonly findKey: UnwrapRef<typeof import('lodash-es')['findKey']>
     readonly floor: UnwrapRef<typeof import('lodash-es')['floor']>
     readonly formatTitleData: UnwrapRef<typeof import('./utils/index')['formatTitleData']>
+    readonly formatWithSubstring: UnwrapRef<typeof import('./utils/number')['formatWithSubstring']>
     readonly get: UnwrapRef<typeof import('lodash-es')['get']>
     readonly getActivePinia: UnwrapRef<typeof import('pinia')['getActivePinia']>
     readonly getCartObject: UnwrapRef<typeof import('./utils/sports')['getCartObject']>

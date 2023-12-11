@@ -95,3 +95,29 @@ export function toFixed(num: number, decimal: number): string {
     return integer
   }
 }
+
+/**
+ * @description: 数字显示千分位
+ * @param {string ｜ number} num
+ * @return {string} 数字千分位
+ */
+export function formatWithSubstring(num: string | number) {
+  // 数字转为字符串，并按照 .分割
+  const arr = (`${num}`).split('.')
+  const int = `${arr[0]}`
+  const fraction = arr[1] || ''
+  // 多余的位数
+  const f = int.length % 3
+  // 获取多余的位数，f可能是0， 即r可能是空字符串
+  let r = int.substring(0, f)
+  // 每三位添加','金额对应的字符
+  for (let i = 0; i < Math.floor(int.length / 3); i++)
+    r += `,${int.substring(f + i * 3, f + (i + 1) * 3)}`
+
+  // 多余的位数，上面
+  if (f === 0)
+    r = r.substring(1)
+
+  // 调整部分和小数部分拼接
+  return r + (fraction ? `.${fraction}` : '')
+}
