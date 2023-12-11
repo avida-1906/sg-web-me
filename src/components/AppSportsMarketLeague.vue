@@ -134,6 +134,7 @@ if (props.autoShow && props.isRegionOpen)
           :is-standard="isStandard" :index="i"
           :data="item"
           :base-type="baseType"
+          :is-last="i === list.length - 1"
         />
       </div>
     </template>
