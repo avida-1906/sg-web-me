@@ -92,7 +92,7 @@ onMounted(() => {
                     && +b.state === 2).length"
               >
                 {{ t('received') }}</span>
-              <span v-else>{{ t('upgraded') }}</span>
+              <span v-else>{{ record.score }}<BaseIcon name="coin-usdt" /></span>
             </span>
             <span v-else>
               {{ record.score }}<BaseIcon name="coin-usdt" />
