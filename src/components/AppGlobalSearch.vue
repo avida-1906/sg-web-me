@@ -169,7 +169,7 @@ provide('closeSearchH5', () => leftIsExpand.value = !leftIsExpand.value)
 onMounted(() => {
   if (props.autoFocus)
     baseSearchRef.value.manualFocus()
-  useFixedTop()
+  useFixedTop('.app-global-search')
 })
 </script>
 
