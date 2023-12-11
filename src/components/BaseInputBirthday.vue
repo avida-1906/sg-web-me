@@ -34,7 +34,7 @@ const {
     return t('surveys_birthday_error')
 
   return ''
-})
+}, { initialValue: 0 })
 const {
   value: year,
   setValue: setYear,
@@ -121,9 +121,7 @@ const msg = computed(() => {
   return errorYearMsg.value || errorMonthMsg.value || errorDayMsg.value
 })
 
-function onInput(e: any, ty?: string) {
-  if (ty === 'month' && e.target)
-    setMonth(+e.target.value)
+function onInput() {
   if (year.value && month.value && day.value && !msg.value)
     emit('update:modelValue', `${year.value}-${month.value > 9 ? month.value : `0${month.value}`}-${day.value > 9 ? day.value : `0${day.value}`}`)
 }
@@ -162,15 +160,15 @@ defineExpose({ valiBirthday, msg })
         <!-- 月 -->
         <div class="select-wrap">
           <select
+            v-model="month"
             required
             :class="{
               'error': msg,
               'placeholder-select': monthList.filter(m => m.value === month).length === 0,
             }"
-            :placeholder="t('time_month')"
-            @change="(e) => onInput(e, 'month')"
+            @input="onInput"
           >
-            <option class="select-placeholder" value="" disabled selected>
+            <option class="select-placeholder" value="0" disabled selected>
               {{ t('time_month') }}
             </option>
             <option v-for="m, i in monthList" :key="i" :value="m.value">
