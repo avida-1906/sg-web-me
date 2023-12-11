@@ -15,6 +15,9 @@
   <meta name="application-name" content="" />
   <meta name="theme-color" content="#1a2c38">
   <style type="text/css">
+    body{
+      touch-action: manipulation;
+    }
     #full-loading {
       position: fixed;
       top: 0;
@@ -50,17 +53,17 @@
     }, false)
 
     // 阻止双击放大
-    let lastTouchEnd = 0
+    // let lastTouchEnd = 0
     document.addEventListener('touchstart', (event) => {
-      if (event.touches.length > 1)
+      // if (event.touches.length > 1)
         event.preventDefault()
     })
-    document.addEventListener('touchend', (event) => {
-      const now = (new Date()).getTime()
-      if (now - lastTouchEnd <= 500)
-        event.preventDefault()
-      lastTouchEnd = now
-    }, false)
+    // document.addEventListener('touchend', (event) => {
+    //   const now = (new Date()).getTime()
+    //   if (now - lastTouchEnd <= 500)
+    //     event.preventDefault()
+    //   lastTouchEnd = now
+    // }, false)
   </script>
 </head>
 
