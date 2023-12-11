@@ -80,5 +80,5 @@ export function scrollToTop() {
       temp.scrollTop = -20
     document.documentElement.scrollTop = document.body.scrollTop = -20
     document.querySelector('.only-for-get-width')?.scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'center' })
-  }, 50)
+  }, 0)
 }
