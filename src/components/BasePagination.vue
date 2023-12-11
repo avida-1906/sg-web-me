@@ -105,7 +105,7 @@ function onPagerClick(event: UIEvent) {
   }
   if (newPage !== props.currentPage) {
     emit('update:currentPage', newPage)
-    emit('change', newPage)
+    emit('change', newPage, pageSize.value)
   }
 }
 
@@ -113,14 +113,14 @@ function prevPage() {
   if (props.disabled || props.currentPage <= 1)
     return
   emit('update:currentPage', props.currentPage - 1)
-  emit('change', props.currentPage - 1)
+  emit('change', props.currentPage - 1, pageSize.value)
 }
 
 function nextPage() {
   if (props.disabled || props.currentPage >= pageCount.value)
     return
   emit('update:currentPage', props.currentPage + 1)
-  emit('change', props.currentPage + 1)
+  emit('change', props.currentPage + 1, pageSize.value)
 }
 
 function enterToPage() {
@@ -128,12 +128,12 @@ function enterToPage() {
   if (props.disabled || page < 1 || page > pageCount.value)
     return
   emit('update:currentPage', page)
-  emit('change', page)
+  emit('change', page, pageSize.value)
 }
 
 function pageSizeChange() {
   emit('update:currentPage', 1)
-  emit('change', 1)
+  emit('change', 1, pageSize.value)
   jumpPage.value = 1
 }
 

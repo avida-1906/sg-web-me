@@ -6,9 +6,10 @@ export interface IResponseList<T> {
   s: number
 }
 
-export interface IPagination {
+export interface IOther {
   page: number
   page_size: number
+  isWatchPageOrPageSize?: boolean
 }
 
 type GetProperty<T, K extends keyof T> = T[K]
@@ -16,12 +17,12 @@ type GetProperty<T, K extends keyof T> = T[K]
 export function useList<R extends IResponseList<unknown>, P extends unknown[]>(
   service: Service<R, P>,
   options?: Options<R, P>,
-  defaultPagination?: Partial<IPagination>,
+  defaultOther?: Partial<IOther>,
 ) {
   const { bool: isLoadMore, setTrue: setLoadMoreTrue, setFalse: setLoadMoreFalse } = useBoolean(false)
   const total = ref(0)
-  const page = ref(defaultPagination?.page || 1)
-  const page_size = ref(defaultPagination?.page_size || 21)
+  const page = ref(defaultOther?.page || 1)
+  const page_size = ref(defaultOther?.page_size || 21)
   const list = shallowRef<GetProperty<R, 'd'>>([])
 
   const {
@@ -57,6 +58,7 @@ export function useList<R extends IResponseList<unknown>, P extends unknown[]>(
       page: page.value,
       page_size: page_size.value,
     }] as P
+
     return _p
   }
 
@@ -88,6 +90,8 @@ export function useList<R extends IResponseList<unknown>, P extends unknown[]>(
     return page.value * page_size.value < total.value
   })
 
+  const resetPage = () => page.value = 1
+
   if (options?.refreshDeps) {
     watch(options.refreshDeps, () => {
       _refresh()
@@ -96,10 +100,15 @@ export function useList<R extends IResponseList<unknown>, P extends unknown[]>(
     })
   }
 
-  watch([page, page_size], () => {
-    if (params.value && Array.isArray(params.value))
-      _run(...getParams(...params.value))
-  })
+  if (
+    defaultOther?.isWatchPageOrPageSize === void 0
+    || defaultOther?.isWatchPageOrPageSize === true
+  ) {
+    watch([page, page_size], () => {
+      if (params.value && Array.isArray(params.value))
+        _run(...getParams(...params.value))
+    })
+  }
 
   return {
     ...rest,
@@ -114,5 +123,6 @@ export function useList<R extends IResponseList<unknown>, P extends unknown[]>(
     next,
     prev,
     loadMore,
+    resetPage,
   }
 }

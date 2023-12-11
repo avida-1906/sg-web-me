@@ -1425,3 +1425,94 @@ export function ApiFinanceRecordWithdrawBank(params?: {
 }) {
   return httpClient.get<IResponseList<PayInfo>>('/finance/record/withdraw/bank', { params })
 }
+
+/**
+ * 联盟计划-我的佣金 agency/commission
+ * @see null
+ */
+export function ApiAgencyCommission(params?: {
+  page?: number
+  page_size?: number
+  start_time?: number
+  end_time?: number
+}) {
+  return httpClient.get<IResponseList<{
+    'id': string
+    /** 会员id */
+    'uid': string
+    /** 会员名 */
+    'username': string
+    /** 上级uid */
+    'parent_uid': string
+    /** 上级代理 */
+    'parent_name': string
+    /** 开始时间 */
+    'start_time': 1701907200
+    /** 结束时间 */
+    'end_time': 1701993599
+    /** 佣金等级 */
+    'commission_level': 5
+    /** 总人数(贡献人数) */
+    'sub_user_count': 2
+    /** 直属人数 */
+    'direct_user_count': 2
+    /** 其它人数 */
+    'other_user_count': 0
+    /** 总佣金 */
+    'commission_amount_total': string
+    /** 直属佣金 */
+    'commission_amount_direct': string
+    /** 其它佣金 */
+    'commission_amount_other': string
+    /** 总业绩 */
+    'valid_bet_amount_total': string
+    /** 直属业绩 */
+    'valid_bet_amount_direct': string
+    /** 其它业绩 */
+    'valid_bet_amount_other': string
+    /** 币种 */
+    'currency_id': string
+    /** 模式id */
+    'model_id': string
+    /** 模式名称(类型名称) */
+    'model_name': string
+    /** 创建时间 */
+    'created_at': 1702025565
+    /** 结算时间 */
+    'send_time': 1702032863
+  }>>('/agency/commission', { params })
+}
+
+/**
+ * 联盟计划-所有数据 agency/report/all
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=a5eac8d6-e252-4242-86ac-21ef5c324381
+ */
+export function ApiAgencyReportAll(data?: {
+  page?: number
+  page_size?: number
+  username?: string
+  currency_id?: string
+  start_time?: string
+  end_time?: string
+}) {
+  return httpClient.post<IResponseList<{
+    /** 会员id */
+    uid: string
+    /** 会员账号 */
+    username: string
+    /** 货币ID */
+    currency_id: string
+    /** 货币名称 */
+    currency_name: string
+    /** 存款金额 */
+    deposit_amount: string
+    /** 有效投注 */
+    valid_bet_amount: string
+    /** 输赢 */
+    net_amount: string
+    /** vip等级 */
+    vip: string
+    /** 创建时间 */
+    created_at: number
+  }>>('/agency/report/all', data)
+}

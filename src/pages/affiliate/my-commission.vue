@@ -3,6 +3,9 @@ const { t } = useI18n()
 
 // loading加载
 const { bool: loading } = useBoolean(false)
+
+const { data, runAsync } = useList(ApiAgencyCommission)
+
 const columns: Column[] = [
   {
     title: t('settle_time'),

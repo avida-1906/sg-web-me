@@ -1,93 +1,150 @@
 <script lang="ts" setup>
 const { t } = useI18n()
 
-// loading加载
-const { bool: loading } = useBoolean(false)
+const {
+  selected: currency_id,
+  list: currencyList,
+} = useSelect([
+  {
+    label: '全部',
+    value: '',
+  },
+  ...getCurrencyOptions(),
+], false)
+
+const {
+  list,
+  page,
+  page_size,
+  loading,
+  total,
+  runAsync,
+  resetPage,
+} = useList(ApiAgencyReportAll, {}, { page_size: 10, isWatchPageOrPageSize: false })
+
+const date = ref([])
+const searchValue = ref('')
+
 const columns: Column[] = [
   {
     title: t('join_time'),
-    dataIndex: 'settleTime',
+    dataIndex: 'created_at',
     align: 'center',
   },
   {
     title: t('player_id'),
-    dataIndex: 'account',
+    dataIndex: 'username',
     align: 'center',
-    slot: 'account',
+    slot: 'username',
   },
   {
     title: t('deposit'),
-    dataIndex: 'isFirstLive',
+    dataIndex: 'deposit_amount',
     align: 'center',
+    slot: 'deposit_amount',
   },
   {
     title: t('effective_bet'),
-    dataIndex: 'lastLogin',
+    dataIndex: 'valid_bet_amount',
     align: 'center',
   },
   {
     title: t('total_win_lose'),
-    dataIndex: 'isOnline',
+    dataIndex: 'net_amount',
     align: 'center',
   },
 ]
-const tableData = ref([
-  {
-    settleTime: '10/11/2011',
-    account: 'jacky666',
-    isFirstLive: '87, 5654',
-    lastLogin: '87,5654',
-    isOnline: '87,5654',
-  },
-  {
-    settleTime: '10/11/2011',
-    account: 'jacky666',
-    isFirstLive: '87,5654',
-    lastLogin: '87,5654',
-    isOnline: '87,5654',
-  },
-  {
-    settleTime: '10/11/2011',
-    account: 'jacky666',
-    isFirstLive: '87,5654',
-    lastLogin: '87,5654',
-    isOnline: '87,5654',
-  },
-])
+
+const params = computed(() => {
+  return {
+    username: searchValue.value,
+    currency_id: currency_id.value,
+  }
+})
+
+function change(_page: number, _page_size: number) {
+  page.value = +_page
+  page_size.value = +_page_size
+  runAsync(params.value)
+}
+
+function search() {
+  resetPage()
+  runAsync(params.value)
+}
+
+// search()
 </script>
 
 <template>
-  <AppAffiliateContent mode="account">
-    <template #default>
-      <BaseTable
-        class="page-all-data"
-        :columns="columns"
-        :data-source="tableData"
-        :loading="loading"
-      >
-        <template #account="{ record }">
-          <div class="center" style="gap: var(--tg-spacing-4);">
-            <BaseIcon name="chat-star-gold" />
-            <span>{{ record.account }}</span>
-            <BaseIcon name="uni-doc" />
-          </div>
-        </template>
-      </BaseTable>
-    </template>
-  </AppAffiliateContent>
+  <div class="all-data-page">
+    <div class="table-filter">
+      <BaseDatePicker v-model="date" />
+      <BaseSelect
+        v-model="currency_id"
+        :options="currencyList"
+        @change="search"
+      />
+      <div style="max-width: 95px;">
+        <BaseInput v-model="searchValue" :placeholder="t('user_account')">
+          <template #right-icon>
+            <BaseIcon name="uni-search" />
+          </template>
+        </BaseInput>
+      </div>
+      <slot name="grand-total" />
+    </div>
+    <BaseTable
+      class="page-all-data"
+      :columns="columns"
+      :data-source="list"
+      :loading="loading"
+    >
+      <template #username="{ record }">
+        <div class="center" style="gap: var(--tg-spacing-4);">
+          <BaseIcon name="chat-star-gold" />
+          <span>{{ record.username }}</span>
+          <BaseIcon name="uni-doc" />
+        </div>
+      </template>
+      <template #deposit_amount="{ record }">
+        <span>{{ record.deposit_amount }}</span>
+      </template>
+    </BaseTable>
+    <BasePagination v-model:current-page="page" :total="total" @change="change" />
+  </div>
 </template>
 
 <style lang="scss" scoped>
-.page-all-data {
+.all-data-page {
   --tg-badge-size: 10px;
   --tg-table-th-padding: var(--tg-spacing-21);
   --tg-table-td-padding: var(--tg-spacing-21);
-
+  --tg-table-font-size: var(--tg-font-size-xs);
+  --tg-table-even-background: var(--tg-primary-main);
+  --tg-table-th-color: var(--tg-text-white);
+  --tg-table-line-height:1;
+  --tg-table-th-font-weight: var(--tg-font-weight-normal);
+  --tg-base-select-style-color: var(--tg-text-lightgrey);
+  --tg-base-select-style-padding-y: var(--tg-spacing-8);
+  --tg-base-select-style-padding-right: var(--tg-spacing-28);
+  --tg-table-th-background: var(--tg-primary-main);
+}
+.page-all-data {
+  margin: 20px 0;
   .flex-colum {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: var(--tg-spacing-4);
   }
+}
+
+.table-filter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--tg-spacing-16);
+  font-size: var(--tg-font-size-xs);
 }
 </style>

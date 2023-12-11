@@ -6,6 +6,8 @@
 export {}
 declare global {
   const ApiAddFeedbackChatMsg: typeof import('./apis/index')['ApiAddFeedbackChatMsg']
+  const ApiAgencyCommission: typeof import('./apis/index')['ApiAgencyCommission']
+  const ApiAgencyReportAll: typeof import('./apis/index')['ApiAgencyReportAll']
   const ApiChatGetHistory: typeof import('./apis/index')['ApiChatGetHistory']
   const ApiChatSendMessage: typeof import('./apis/index')['ApiChatSendMessage']
   const ApiDevDeleteThirdAuth: typeof import('./apis/index')['ApiDevDeleteThirdAuth']
@@ -213,6 +215,7 @@ declare global {
   const getCartObject: typeof import('./utils/sports')['getCartObject']
   const getCurrencyConfig: typeof import('./composables/useCurrencyData')['getCurrencyConfig']
   const getCurrencyConfigByCode: typeof import('./composables/useCurrencyData')['getCurrencyConfigByCode']
+  const getCurrencyOptions: typeof import('./composables/useCurrencyData')['getCurrencyOptions']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const getEnv: typeof import('./utils/index')['getEnv']
@@ -611,6 +614,8 @@ import { UnwrapRef } from 'vue'
 declare module 'vue' {
   interface ComponentCustomProperties {
     readonly ApiAddFeedbackChatMsg: UnwrapRef<typeof import('./apis/index')['ApiAddFeedbackChatMsg']>
+    readonly ApiAgencyCommission: UnwrapRef<typeof import('./apis/index')['ApiAgencyCommission']>
+    readonly ApiAgencyReportAll: UnwrapRef<typeof import('./apis/index')['ApiAgencyReportAll']>
     readonly ApiChatGetHistory: UnwrapRef<typeof import('./apis/index')['ApiChatGetHistory']>
     readonly ApiChatSendMessage: UnwrapRef<typeof import('./apis/index')['ApiChatSendMessage']>
     readonly ApiDevDeleteThirdAuth: UnwrapRef<typeof import('./apis/index')['ApiDevDeleteThirdAuth']>
@@ -818,6 +823,7 @@ declare module 'vue' {
     readonly getCartObject: UnwrapRef<typeof import('./utils/sports')['getCartObject']>
     readonly getCurrencyConfig: UnwrapRef<typeof import('./composables/useCurrencyData')['getCurrencyConfig']>
     readonly getCurrencyConfigByCode: UnwrapRef<typeof import('./composables/useCurrencyData')['getCurrencyConfigByCode']>
+    readonly getCurrencyOptions: UnwrapRef<typeof import('./composables/useCurrencyData')['getCurrencyOptions']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getEnv: UnwrapRef<typeof import('./utils/index')['getEnv']>
@@ -1210,6 +1216,8 @@ declare module 'vue' {
 declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
     readonly ApiAddFeedbackChatMsg: UnwrapRef<typeof import('./apis/index')['ApiAddFeedbackChatMsg']>
+    readonly ApiAgencyCommission: UnwrapRef<typeof import('./apis/index')['ApiAgencyCommission']>
+    readonly ApiAgencyReportAll: UnwrapRef<typeof import('./apis/index')['ApiAgencyReportAll']>
     readonly ApiChatGetHistory: UnwrapRef<typeof import('./apis/index')['ApiChatGetHistory']>
     readonly ApiChatSendMessage: UnwrapRef<typeof import('./apis/index')['ApiChatSendMessage']>
     readonly ApiDevDeleteThirdAuth: UnwrapRef<typeof import('./apis/index')['ApiDevDeleteThirdAuth']>
@@ -1417,6 +1425,7 @@ declare module '@vue/runtime-core' {
     readonly getCartObject: UnwrapRef<typeof import('./utils/sports')['getCartObject']>
     readonly getCurrencyConfig: UnwrapRef<typeof import('./composables/useCurrencyData')['getCurrencyConfig']>
     readonly getCurrencyConfigByCode: UnwrapRef<typeof import('./composables/useCurrencyData')['getCurrencyConfigByCode']>
+    readonly getCurrencyOptions: UnwrapRef<typeof import('./composables/useCurrencyData')['getCurrencyOptions']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getEnv: UnwrapRef<typeof import('./utils/index')['getEnv']>

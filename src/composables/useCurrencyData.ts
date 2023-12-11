@@ -83,6 +83,24 @@ export const currencyConfig: Record<EnumCurrencyKey, CurrencyValue> = {
 }
 
 /**
+ * 获取货币下拉列表
+ * @returns
+ */
+export function getCurrencyOptions() {
+  const options: {
+    value: CurrencyCode
+    label: EnumCurrencyKey
+  }[] = []
+  for (const key in currencyConfig) {
+    options.push({
+      value: currencyConfig[key as EnumCurrencyKey].cur,
+      label: key as EnumCurrencyKey,
+    })
+  }
+  return options
+}
+
+/**
  *  获取货币配置
  * @param currency 货币类型
  * @returns
