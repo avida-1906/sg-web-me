@@ -561,6 +561,7 @@ onBeforeUnmount(() => {
         &.live {
           background: var(--tg-button-secondary-main);
           color: var(--tg-text-white);
+          font-weight: var(--tg-font-weight-semibold);
         }
 
         &.end {
