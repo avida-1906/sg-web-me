@@ -47,7 +47,7 @@ function onMoreClick() {
           :base-type="baseType"
           :is-last="i === eventList.length - 1"
         />
-        <AppSportsMarketSkeleton v-if="loadingMore" :num="10" />
+        <AppSportsMarketInfoSkeleton v-if="loadingMore" :num="10" />
       </div>
     </template>
   </BaseSecondaryAccordion>
