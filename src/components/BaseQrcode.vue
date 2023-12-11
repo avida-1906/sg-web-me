@@ -8,10 +8,23 @@ interface Props {
 withDefaults(defineProps<Props>(), {
   size: 128,
 })
+
+const qrCodeOuter = ref()
+
+function downloadClick() {
+  const canvas = qrCodeOuter.value.querySelector('canvas')
+  const url = canvas.toDataURL('image/png')
+  const downloadLink = document.createElement('a')
+  downloadLink.setAttribute('href', url)
+  downloadLink.setAttribute('download', '二维码.png')
+  downloadLink.click()
+}
+
+defineExpose({ downloadClick })
 </script>
 
 <template>
-  <div class="base-qrcode">
+  <div ref="qrCodeOuter" class="base-qrcode">
     <div class="wrap">
       <QrcodeVue :value="url" :size="size" />
     </div>
