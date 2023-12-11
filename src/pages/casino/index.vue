@@ -30,7 +30,7 @@ const currentNav = computed(() => {
   ?? { label: '', cid: '', icon: '', ty: -1, platform_id: '', value: '' }
 })
 const hostSite = computed(() => (
-  { host: location.value.hostname?.replace('www', ''), site: companyData.value?.name }
+  { host: location.value.hostname?.replace('www.', ''), site: companyData.value?.name }
 ))
 // 公告弹框和跑马灯
 const {
@@ -45,7 +45,8 @@ const {
 
 const componentList = computed(() => {
   const _c: ComponentItem[] = []
-  const _list = casinoNav.value.filter(item => item.ty !== -1)
+  const _list = casinoNav.value
+  console.error(_list)
   _list.forEach((item) => {
     if (item.ty === 1) {
       _c.push({
@@ -72,15 +73,27 @@ const componentList = computed(() => {
         ),
       })
     }
+    else if (item.ty === -1) {
+      _c.push({
+        cid: item.cid,
+        platform_id: item.platform_id,
+        name: item.label,
+        icon: item.icon,
+        value: item.value,
+        component: defineAsyncComponent(
+          () => import('~/components/BaseLogo.vue'),
+        ),
+      })
+    }
   })
 
   return _c
 })
 
-const currentObject = computed(() => {
+const currentObject = computed<ComponentItem>(() => {
   const currentValue = currentNav.value.value
   const _0 = componentList.value.find((item: any) => item.value === currentValue)
-  return _0 ?? null
+  return _0 as ComponentItem
 })
 
 const btnText = ref(t('view_more_2'))
@@ -128,7 +141,7 @@ await application.allSettled([casinoStore.runAsyncGameLobby(), runMemberNoticeAl
           </template>
         </div>
       </Transition>
-      <template v-if="currentObject">
+      <div v-show="currentObject">
         <KeepAlive>
           <Suspense timeout="0">
             <component
@@ -143,7 +156,7 @@ await application.allSettled([casinoStore.runAsyncGameLobby(), runMemberNoticeAl
             </template>
           </Suspense>
         </KeepAlive>
-      </template>
+      </div>
       <AppProviderSlider />
     </div>
   </div>

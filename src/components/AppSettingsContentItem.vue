@@ -26,14 +26,16 @@ const props = withDefaults(defineProps<Props>(), {
 })
 const emit = defineEmits(['submit'])
 
-const initDisabled = ref(!!(props.dependsDisabled && props.dependsDisabled.length))
+const initDisabled = ref(Boolean(props.dependsDisabled !== undefined
+&& props.dependsDisabled && props.dependsDisabled.length))
 const dependsData = computed(() =>
   props.dependsDisabled ? [...props.dependsDisabled] : [])
 
 const onSubmit = function () {
   emit('submit')
   setTimeout(() => {
-    initDisabled.value = true
+    if (props.dependsDisabled && props.dependsDisabled.length)
+      initDisabled.value = true
   }, 150)
 }
 

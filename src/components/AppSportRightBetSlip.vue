@@ -357,7 +357,8 @@ function betSuccessTip(widSuccessList: string[]) {
     ? widSuccessList.length
     : 1
   openNotify({
-    type: 'success',
+    type: 'wallet',
+    title: isBetSingle.value ? '单项投注' : '体育复式投注',
     message: () => h(
       AppSportBetSuccessNotify,
       {
@@ -633,7 +634,7 @@ onUnmounted(() => {
           class="bet-order-filter"
           :options="betOrderFilterData"
 
-          popper no-hover
+          no-hover popper
           @select="setBetOrderSelectValue"
         />
         <BaseButton

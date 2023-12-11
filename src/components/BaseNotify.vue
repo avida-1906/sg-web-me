@@ -26,6 +26,7 @@ const iconObj = {
   insurance: 'navbar-cart',
   statistics: 'uni-trend',
   phone: 'settings-phone',
+  wallet: 'navbar-wallet-notify',
 }
 
 const { t } = useI18n()

@@ -1417,7 +1417,7 @@ withdrawal_fee_tip: Chúng tôi sẽ khấu trừ số tiền này khỏi số d
 withdrawal_as_fee: Là phí giao dịch cho việc rút tiền của bạn
 present: Gửi
 order_label: Số
-bet_tip_amount_tip: Đã chặn thành công tổng giá trị {numStr}
+bet_tip_amount_tip: Đã chặn thành công tổng giá trị 
 de: Của
 bet_more_than_balance: Số tiền đặt cược của bạn không thể lớn hơn số dư của bạn.
 order_by_alpha: theo thứ tự bảng chữ cái

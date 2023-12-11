@@ -1456,7 +1456,7 @@ withdrawal_min_amount: O valor mínimo de saque é
 withdrawal_fee_tip: Iremos deduzir isso do seu saldo
 withdrawal_as_fee: Como taxas de transação para seus saques
 present: Enviar
-bet_tip_amount_tip: Valor total de {numStr} suprimido com sucesso
+bet_tip_amount_tip: Valor total de suprimido com sucesso
 bet_more_than_balance: Sua aposta não pode ser maior que seu saldo.
 order_by_alpha: Em ordem alfabética
 sport_in_coming: Apostas ao vivo e apostas nos próximos jogos
