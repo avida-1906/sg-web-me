@@ -15,6 +15,12 @@ export interface IBreadCrumbItem {
   title: string
 }
 
+export interface PanelTypeItem {
+  title?: string
+  homeTeam: string
+  awayTeam: string
+}
+
 /** 面板数据类型 */
 export interface IBasePanelType {
   /** 开始时间 */
@@ -56,12 +62,16 @@ export interface IBasePanelType {
     /** 客队黄牌数量 */
     awayTeam: number
   }
-  period?: {
-    homeTeam: number
-    awayTeam: number
-  }[]
+  period?: PanelTypeItem[]
   gameScore?: {
     homeTeam: number
+    awayTeam: number
+  }
+  /** 加时数据 */
+  overtime?: {
+    /** 主队加时数据 */
+    homeTeam: number
+    /** 客队加时数据 */
     awayTeam: number
   }
 }

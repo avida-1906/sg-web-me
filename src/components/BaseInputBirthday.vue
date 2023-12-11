@@ -69,8 +69,10 @@ const {
   errorMessage: errorDayMsg,
   validate: valiDay,
 } = useField<number>('day', (value) => {
-  if (!value || value > dayMax.value)
+  if (!value)
     return t('surveys_birthday_error')
+  if (value > dayMax.value)
+    return '日期不能超过31号'
 
   return ''
 })
@@ -184,7 +186,6 @@ defineExpose({ valiBirthday, msg })
           v-model="year"
           :class="{ error: msg }"
           type="number"
-          min="1900"
           placeholder="YYYY"
           @input="onInput"
         >

@@ -11,6 +11,7 @@ interface Props {
   rightText?: string // 右侧文本
   icon?: string // icon
   currentCurrency?: EnumCurrencyKey
+  needFocus?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -18,10 +19,17 @@ const props = withDefaults(defineProps<Props>(), {
   contentSize: '12',
   must: false,
 })
+
+const baseLabelRef = ref()
+
+function catchIt() {
+  if (props.needFocus)
+    baseLabelRef.value?.querySelector('input').focus()
+}
 </script>
 
 <template>
-  <div class="base-label">
+  <div ref="baseLabelRef" class="base-label" @click="catchIt">
     <div class="label-wrap">
       <div class="label-left">
         <BaseIcon v-if="props.icon" :name="props.icon" />

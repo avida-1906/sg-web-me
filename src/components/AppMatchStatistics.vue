@@ -32,7 +32,7 @@ const head = computed(() => [
   },
   {
     key: 'period',
-    periodScores: [],
+    periodScores: props.data.period,
     show: !!props.data.period,
   },
   {
@@ -109,11 +109,11 @@ function mapHeadArea(
       </div>
       <div class="sticky-left competitor-item border" style="grid-area: competitor_home;">
         <AppImage :url="data.htpic" is-network width="20px" height="20px" />
-        <span>{{ data.homeTeamName }}</span>
+        <span class="sport-title">{{ data.homeTeamName }}</span>
       </div>
       <div class="competitor-item sticky-left" style="grid-area: competitor_away;">
         <AppImage :url="data.atpic" is-network width="20px" height="20px" />
-        <span>{{ data.awayTeamName }}</span>
+        <span class="sport-title">{{ data.awayTeamName }}</span>
       </div>
 
       <!-- 角球 -->
@@ -156,18 +156,17 @@ function mapHeadArea(
       </template>
 
       <!-- 1，2，3 场 -->
-      <!-- <template v-for="p, idx in 9" :key="idx">
+      <template v-for="p, idx in data.period" :key="idx">
         <div class="heading center" :style="`grid-area: period_title_${idx}`">
           <span>{{ idx + 1 }}st</span>
         </div>
         <span class="fill-frame border" :style="`grid-area: period_home_${idx}`">
-          <span>{{ p }}</span>
+          <span>{{ p.awayTeam }}</span>
         </span>
         <span class="fill-frame" :style="`grid-area: period_away_${idx}`">
-          <span>{{ p }}</span>
+          <span>{{ p.homeTeam }}</span>
         </span>
-      </template> -->
-
+      </template>
       <!-- gameScore -->
       <!-- <div class="heading center" style="grid-area: gameScore_title;" />
       <span class="fill-frame border" style="grid-area: gameScore_home;">
@@ -194,6 +193,9 @@ function mapHeadArea(
         <span>{{ data.awayTeamScore }}</span>
       </div>
     </div>
+    <div v-if="data.overtime" class="overtime">
+      加时 ({{ data.overtime.awayTeam }}-{{ data.overtime.homeTeam }})
+    </div>
   </div>
 </template>
 
@@ -210,6 +212,13 @@ function mapHeadArea(
     box-shadow: var(--tg-header-shadow);
     overflow: hidden;
   }
+}
+
+.overtime {
+  text-align: right;
+  font-size: var(--tg-font-size-default);
+  color: #{rgba($color: var(--tg-color-white-rgb), $alpha: 0.7)};
+  padding: 8px;
 }
 
 .wrapper {
@@ -296,6 +305,12 @@ function mapHeadArea(
 .sticky-left {
   position: sticky;
   left: 0;
+  .sport-title {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
 }
 
 .sticky-right {
