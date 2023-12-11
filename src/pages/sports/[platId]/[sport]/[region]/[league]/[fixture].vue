@@ -178,7 +178,7 @@ watch(
                               v-for="nameItem in item.ms"
                               :key="nameItem.wid"
                             >
-                              <div class="column heading">
+                              <div class="heading column">
                                 <span>{{ nameItem.sn }}</span>
                               </div>
                             </template>
@@ -559,11 +559,10 @@ video {
             position: relative;
             z-index: 2;
             grid-area: statistics;
-            max-height: 200px;
             color: var(--tg-text-white);
 
             &.background {
-              padding: var(--tg-spacing-32);
+              padding: var(--tg-spacing-32) 0;
             }
 
             &.background::after {
