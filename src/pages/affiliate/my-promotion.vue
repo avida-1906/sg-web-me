@@ -14,7 +14,7 @@ const { data: proData } = useRequest(ApiGetMyPro, { manual: false })
 
 const baseQrRef = ref()
 
-const qrUrl = computed(() => `${location.value.origin}${proData.value?.link_url}`)
+const qrUrl = computed(() => `${location.value.origin}${proData.value?.link_url ?? ''}`)
 
 // 921-975
 const less975 = computed(() => {
