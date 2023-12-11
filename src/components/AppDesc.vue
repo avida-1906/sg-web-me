@@ -18,7 +18,7 @@ defineProps<Props>()
 
 const { companyData } = storeToRefs(useAppStore())
 const { t } = useI18n()
-const { bool: showContent, toggle: toggleShowContent } = useBoolean(false)
+const { bool: showContent, toggle: toggleShowContent } = useBoolean(true)
 const { bool: loading, setFalse: setLoadingFalse } = useBoolean(true)
 const {
   widthBoundaryXs,

@@ -93,12 +93,16 @@ function onCompositionEnd() {
   console.log('composition end')
 }
 
+function catchIt() {
+  getFocus()
+}
+
 defineExpose({ getFocus, setTouchTrue, setTouchFalse })
 </script>
 
 <template>
   <div class="base-input">
-    <div :class="[layout]">
+    <div :class="[layout]" @click="catchIt">
       <label v-if="label">{{ label }} <span v-if="must">*</span></label>
       <div class="input-wrap" :class="{ mb0 }">
         <div

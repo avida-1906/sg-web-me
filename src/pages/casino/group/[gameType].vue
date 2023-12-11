@@ -21,7 +21,11 @@ const isCat = computed(() => currentType.value === 'category') // 类别
 const {
   data: catGameData,
   run: runGameCate,
-} = useRequest(ApiMemberGameCate)
+} = useRequest(ApiMemberGameCate, {
+  onSuccess: () => {
+    scrollToTop()
+  },
+})
 
 const platformOptions = computed(() => {
   if (isCat.value && catGameData.value) {
@@ -77,12 +81,18 @@ watch(route, (a) => {
     cid.value = a.query.cid ? route.query.cid?.toString() ?? '0' : '0'
     pids.value = ''
     sortType.value = EnumCasinoSortType.hot
+    setTimeout(() => {
+      scrollToTop()
+    }, 50)
   }
 })
 
 onMounted(() => {
   if (isCat.value)
     runGameCate({ cid: cid.value })
+  setTimeout(() => {
+    scrollToTop()
+  }, 50)
 })
 </script>
 

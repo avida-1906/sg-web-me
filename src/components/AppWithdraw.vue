@@ -54,7 +54,7 @@ const {
 const {
   data: walletList,
   runAsync: runAsyncWalletList,
-} = useRequest(ApiMemberWalletList, {
+} = useRequest(ApiFinanceWithdrawWallet, {
   onSuccess(data) {
     const temp = data?.d?.find(i => i.is_default === 1 && i.state !== 2)?.id
     if (temp)

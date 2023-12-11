@@ -59,18 +59,22 @@ async function getMemberLogin() {
     runMemberLogin()
   }
 }
+
+onMounted(() => {
+  userNameRef.value?.getFocus()
+})
 </script>
 
 <template>
   <div class="app-login">
     <div class="app-login-input-box">
-      <BaseLabel :label="t('email_or_username')" must-small>
+      <BaseLabel :label="t('email_or_username')" need-focus must-small>
         <BaseInput
           ref="userNameRef" v-model="username"
           :msg="usernameErrorMsg" msg-after-touched
         />
       </BaseLabel>
-      <BaseLabel :label="t('password')" must-small>
+      <BaseLabel :label="t('password')" must-small need-focus>
         <BaseInput
           ref="passwordRef" v-model="password"
           :msg="pwdErrorMsg"
