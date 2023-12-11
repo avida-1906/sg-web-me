@@ -30,6 +30,10 @@ const list = computed(() => {
   return data.value && data.value.games ? data.value.games : []
 })
 
+function _push() {
+  push(`/casino/group/category?cid=${props.cid}&name=${props.name}`)
+}
+
 await application.allSettled([runAsync(params.value)])
 </script>
 
@@ -37,7 +41,7 @@ await application.allSettled([runAsync(params.value)])
   <div class="list-wrap">
     <BaseButton
       type="text" size="none"
-      @click="push(`/casino/group/category?cid=${props.cid}&name=${props.name}`)"
+      @click="_push"
     >
       <div class="title">
         <AppImage
@@ -54,7 +58,7 @@ await application.allSettled([runAsync(params.value)])
     <div v-show="total > VITE_CASINO_HOME_PAGE_SIZE" class="more">
       <BaseButton
         size="md"
-        @click="push(`/casino/group/category?cid=${props.cid}&name=${props.name}`)"
+        @click="_push"
       >
         {{ t('view_all') }} {{ total }} {{ name }}
       </BaseButton>
