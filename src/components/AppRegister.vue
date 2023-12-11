@@ -275,6 +275,10 @@ async function toLogin() {
   openLoginDialog()
 }
 
+onMounted(() => {
+  emailRef.value?.getFocus()
+})
+
 onUnmounted(() => {
   if (!needSaveFormData.value)
     Session.remove(STORAGE_REG_PARAMS_KEYWORDS)
