@@ -80,7 +80,7 @@ const componentList = computed(() => {
         icon: item.icon,
         value: item.value,
         component: defineAsyncComponent(
-          () => import('~/components/BaseLogo.vue'),
+          () => import('~/components/AppEmptyDiv.vue'),
         ),
       })
     }
