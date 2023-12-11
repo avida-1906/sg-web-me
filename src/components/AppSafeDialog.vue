@@ -14,7 +14,7 @@ const activeCurrency = ref<any>()
 const activeTab = ref('deposit')
 const tabOptions = [
   { label: t('deposit'), value: 'deposit' },
-  { label: t('withdraw'), value: 'withdraw' },
+  { label: t('menu_title_settings_withdrawals'), value: 'withdraw' },
 ]
 const amountRef = ref()
 const passwordRef = ref()
@@ -131,7 +131,6 @@ async function handleUpdate() {
   }
 }
 function changeCurrency(item: CurrencyData) {
-  console.log(item)
   activeCurrency.value = item
   reset()
 }
@@ -150,10 +149,6 @@ function handleBlur() {
 watch(() => activeTab.value, () => {
   amountRef.value.setTouchFalse()
   resetPassword()
-})
-
-onMounted(() => {
-  console.log(exchangeRateData.value)
 })
 </script>
 

@@ -151,5 +151,7 @@ interface Column {
   /** 气泡展示，总投注额专用 */
   isTips?: boolean
   /** 骨架屏是否显示圆形 left-左边 right-右边 */
-  isRound?: 'left'| 'right'
+  isRound?: 'left' | 'right',
+  /** 骨架屏是否固定宽度 */
+  skeWidth?: string,
 }

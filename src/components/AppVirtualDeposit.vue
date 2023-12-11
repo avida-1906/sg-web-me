@@ -12,6 +12,7 @@ const emit = defineEmits(['show'])
 const amountRef = ref()
 const currentAisle = ref()
 const depositStep = ref('1')
+const { bool: toolShown, setFalse: setToolFalse } = useBoolean(false)
 const backDepositInfo: {
   address: string
   amount: string
@@ -20,7 +21,6 @@ const backDepositInfo: {
   address: '',
   amount: '',
 })
-
 const { t } = useI18n()
 const {
   getVirContractName,
@@ -87,6 +87,8 @@ const {
   },
 })
 
+let timer: NodeJS.Timeout | null = null
+
 const oftenAmount = computed(() => {
   const arr = currentAisle.value.often_amount.split(',')
   return arr.map((item: string) => {
@@ -144,6 +146,12 @@ function backDepositInit(data: { amount: string; id?: string }) {
   backDepositInfo.id = data.id
   depositStep.value = '2'
   emit('show', false)
+}
+function closeTool() {
+  timer && clearTimeout(timer)
+  timer = setTimeout(() => {
+    setToolFalse()
+  }, 2000)
 }
 
 watch(() => props.activeCurrency, (newValue) => {
@@ -244,10 +252,25 @@ await application.allSettled([
         </p>
         <p
           class="copy-row"
-          @click="toCopy(backDepositInfo.address)"
+          @click="application.copy(backDepositInfo.address)"
         >
-          {{ backDepositInfo.address }}
-          <BaseIcon name="uni-doc" />
+          <span>{{ backDepositInfo.address }}</span>
+          <VTooltip
+            v-model:shown="toolShown"
+            placement="top"
+            :triggers="['click']"
+            @show="closeTool"
+          >
+            <div class="center stealth-box">
+              <BaseIcon name="uni-doc" />
+            </div>
+            <template #popper>
+              <div class="tiny-menu-item-title" @click="closeTool">
+                已成功复制地址
+                <!-- {{ t('user_turn_on_hidden') }} -->
+              </div>
+            </template>
+          </VTooltip>
         </p>
         <div class="warn-msg">
           {{ t('confirm_pls_addr_tip', { type: activeCurrency.type }) }}

@@ -151,7 +151,7 @@ onMounted(() => {
       </template>
     </VDropdown>
     <BaseSelect
-      v-if="network && curContractList?.length"
+      v-if="network && curContractList?.length > 1"
       v-model="currentNetwork"
       :options="curContractList"
       popper
