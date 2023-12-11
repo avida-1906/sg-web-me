@@ -87,12 +87,14 @@ await application.allSettled([runAsync(params.value)])
         <BaseSecondaryAccordion
           :title="outrightsData.oen" level="2"
         >
-          <div class="btn-box">
-            <AppSportsBetButton
-              v-for="item in outrightsData.ml[0].ms" :key="item.wid"
-              :cart-info="item.cartInfo"
-              :title="item.sn" :odds="item.ov" layout="horizontal"
-            />
+          <div>
+            <div class="btn-box">
+              <AppSportsBetButton
+                v-for="item in outrightsData.ml[0].ms" :key="item.wid"
+                :cart-info="item.cartInfo"
+                :title="item.sn" :odds="item.ov" layout="horizontal"
+              />
+            </div>
           </div>
         </BaseSecondaryAccordion>
       </template>
