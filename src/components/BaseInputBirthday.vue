@@ -93,7 +93,7 @@ const isEnough = computed(() => {
   const monthStr = month.value ? `-${month.value}` : ''
   const dayStr = day.value ? `-${day.value}` : ''
 
-  if (year.value) {
+  if (year.value && +year.value >= 1900 && !errorDayMsg.value && !errorMonthMsg.value) {
     const birthDayjs = dayjs(month.value ? yearStr + monthStr + dayStr : yearStr)
     const currentDate = dayjs()
     const age = currentDate.diff(birthDayjs, 'year')
