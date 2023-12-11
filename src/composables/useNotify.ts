@@ -2,7 +2,7 @@ import BaseNotify from '~/components/BaseNotify.vue'
 import { install } from '~/modules'
 
 export type notifyType =
-'set' | 'user' | 'email' | 'error' | 'success' | 'insurance' | 'statistics' | 'phone'
+'set' | 'user' | 'email' | 'error' | 'success' | 'insurance' | 'statistics' | 'phone' | 'wallet'
 
 function getUuid() {
   const temp_url = URL.createObjectURL(new Blob())
