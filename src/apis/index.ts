@@ -1425,3 +1425,31 @@ export function ApiFinanceRecordWithdrawBank(params?: {
 }) {
   return httpClient.get<IResponseList<PayInfo>>('/finance/record/withdraw/bank', { params })
 }
+
+/**
+ * 联盟计划-我的推广
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=adf27c0e-0c24-4d01-a5f4-45b93b8244f4
+ */
+export function ApiGetMyPro() {
+  return httpClient.get<{
+    link_url?: string
+    commission?: {
+      accumulated: string
+      received: string
+      last_commission: string
+    }
+    performance?: {
+      team_num: number
+      direct_num: number
+      other_num: number
+      performance_amount: string
+      direct_amount: string
+      other_amount: string
+    }
+    subordinate?: {
+      valid_bet_amount: string
+      bet_num: number
+      net_amount: string
+    }
+  }>('/agency/mypromotion')
+}

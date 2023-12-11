@@ -25,6 +25,7 @@ declare global {
   const ApiFinanceWithdrawWallet: typeof import('./apis/index')['ApiFinanceWithdrawWallet']
   const ApiGameLunch: typeof import('./apis/index')['ApiGameLunch']
   const ApiGetFeedbackChatList: typeof import('./apis/index')['ApiGetFeedbackChatList']
+  const ApiGetMyPro: typeof import('./apis/index')['ApiGetMyPro']
   const ApiMemberApplyVipBonus: typeof import('./apis/index')['ApiMemberApplyVipBonus']
   const ApiMemberBalance: typeof import('./apis/index')['ApiMemberBalance']
   const ApiMemberBalanceLocker: typeof import('./apis/index')['ApiMemberBalanceLocker']
@@ -630,6 +631,7 @@ declare module 'vue' {
     readonly ApiFinanceWithdrawWallet: UnwrapRef<typeof import('./apis/index')['ApiFinanceWithdrawWallet']>
     readonly ApiGameLunch: UnwrapRef<typeof import('./apis/index')['ApiGameLunch']>
     readonly ApiGetFeedbackChatList: UnwrapRef<typeof import('./apis/index')['ApiGetFeedbackChatList']>
+    readonly ApiGetMyPro: UnwrapRef<typeof import('./apis/index')['ApiGetMyPro']>
     readonly ApiMemberApplyVipBonus: UnwrapRef<typeof import('./apis/index')['ApiMemberApplyVipBonus']>
     readonly ApiMemberBalance: UnwrapRef<typeof import('./apis/index')['ApiMemberBalance']>
     readonly ApiMemberBalanceLocker: UnwrapRef<typeof import('./apis/index')['ApiMemberBalanceLocker']>
@@ -1229,6 +1231,7 @@ declare module '@vue/runtime-core' {
     readonly ApiFinanceWithdrawWallet: UnwrapRef<typeof import('./apis/index')['ApiFinanceWithdrawWallet']>
     readonly ApiGameLunch: UnwrapRef<typeof import('./apis/index')['ApiGameLunch']>
     readonly ApiGetFeedbackChatList: UnwrapRef<typeof import('./apis/index')['ApiGetFeedbackChatList']>
+    readonly ApiGetMyPro: UnwrapRef<typeof import('./apis/index')['ApiGetMyPro']>
     readonly ApiMemberApplyVipBonus: UnwrapRef<typeof import('./apis/index')['ApiMemberApplyVipBonus']>
     readonly ApiMemberBalance: UnwrapRef<typeof import('./apis/index')['ApiMemberBalance']>
     readonly ApiMemberBalanceLocker: UnwrapRef<typeof import('./apis/index')['ApiMemberBalanceLocker']>

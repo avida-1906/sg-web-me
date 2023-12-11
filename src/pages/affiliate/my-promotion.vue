@@ -8,6 +8,12 @@ const {
   width,
   widthBoundarySm,
 } = storeToRefs(useWindowStore())
+
+const location = useBrowserLocation()
+const { data: proData } = useRequest(ApiGetMyPro, { manual: false })
+
+const qrUrl = computed(() => `${location.value.origin}${proData.value?.link_url}`)
+
 // 921-975
 const less975 = computed(() => {
   return width.value > 921 && width.value < widthBoundaryMd.value
@@ -37,26 +43,35 @@ const socialData = [
   { label: 'WeChat', img: '/png/settings/social-wechat.png' },
 ]
 
-const commission = [
-  { label: t('accu_commission'), value: '999,999' },
-  { label: t('received_commission'), value: '999,999' },
-  { label: t('last_commission'), value: '999,999' },
-]
+const commission = computed(() => [
+  { label: t('accu_commission'), value: proData.value?.commission?.accumulated },
+  { label: t('received_commission'), value: proData.value?.commission?.received },
+  { label: t('last_commission'), value: proData.value?.commission?.last_commission },
+])
 
-const performance = [
-  { label: t('team_num'), value: '99999人' },
-  { label: t('direct_mem'), value: '99999人' },
-  { label: t('other_mem'), value: '99999人' },
-  { label: t('total_performance'), value: '999,99.00$' },
-  { label: t('direct_performance'), value: '999,99.00$' },
-  { label: t('other_performance'), value: '999,99.00$' },
-]
+const performance = computed(() => [
+  { label: t('team_num'), value: `${proData.value?.performance?.team_num}人` },
+  { label: t('direct_mem'), value: `${proData.value?.performance?.direct_num}人` },
+  { label: t('other_mem'), value: `${proData.value?.performance?.other_num}人` },
+  {
+    label: t('total_performance'),
+    value: `${proData.value?.performance?.performance_amount}$`,
+  },
+  {
+    label: t('direct_performance'),
+    value: `${proData.value?.performance?.direct_amount}$`,
+  },
+  {
+    label: t('other_performance'),
+    value: `${proData.value?.performance?.other_amount}$`,
+  },
+])
 
-const bet = [
-  { label: t('total_effect_bets'), value: '999,99.00' },
-  { label: t('total_bet_order'), value: '999,99.00' },
-  { label: t('slash_win_lose_total'), value: '999,99.00' },
-]
+const bet = computed(() => [
+  { label: t('total_effect_bets'), value: proData.value?.subordinate?.valid_bet_amount },
+  { label: t('total_bet_order'), value: proData.value?.subordinate?.bet_num },
+  { label: t('slash_win_lose_total'), value: proData.value?.subordinate?.net_amount },
+])
 </script>
 
 <template>
@@ -81,13 +96,13 @@ const bet = [
         }"
       >
         <div class="promotion-left">
-          <BaseQrcode url="www.baidu.com" :size="92" class="qr-code" />
+          <BaseQrcode :url="qrUrl" :size="92" class="qr-code" />
           <p>{{ t('click_save_qr') }}</p>
         </div>
         <div class="promotion-right">
           <div class="link">
             <p>{{ t('my_link') }}</p>
-            <AppCopyLine msg="stake.com/?c=r123123132132123CiS8s" />
+            <AppCopyLine :msg="qrUrl" />
           </div>
           <div class="social-wrap" :class="{ 'is-less-than-sm': isLessThanSm }">
             <div v-for="(item, index) in socialData" :key="index" class="social">
