@@ -108,6 +108,8 @@ declare module 'vue' {
     AppSportsHotEventItem: typeof import('./components/AppSportsHotEventItem.vue')['default']
     AppSportsHotEventList: typeof import('./components/AppSportsHotEventList.vue')['default']
     AppSportsLevel1LiveUpcoming: typeof import('./components/AppSportsLevel1LiveUpcoming.vue')['default']
+    'AppSportsLevel1LiveUpcoming copy': typeof import('./components/AppSportsLevel1LiveUpcoming copy.vue')['default']
+    AppSportsLevel2LiveUpcoming: typeof import('./components/AppSportsLevel2LiveUpcoming.vue')['default']
     AppSportsLobby: typeof import('./components/AppSportsLobby.vue')['default']
     AppSportsMarket: typeof import('./components/AppSportsMarket.vue')['default']
     AppSportsMarketInfo: typeof import('./components/AppSportsMarketInfo.vue')['default']
@@ -189,6 +191,7 @@ declare module 'vue' {
     BaseTable: typeof import('./components/BaseTable.vue')['default']
     BaseTag: typeof import('./components/BaseTag.vue')['default']
     BaseUpload: typeof import('./components/BaseUpload.vue')['default']
+    copy: typeof import('./components/AppSportsLevel1LiveUpcoming copy.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
