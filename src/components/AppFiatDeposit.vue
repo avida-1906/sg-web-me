@@ -76,7 +76,11 @@ const {
 const {
   runAsync: runAsyncPaymentMethodList,
   data: paymentMethodList,
-} = useRequest(ApiFinanceMethodList)
+} = useRequest(ApiFinanceMethodList, {
+  onSuccess(data) {
+    currentType.value = data[0].id
+  },
+})
 const {
   run: runPaymentMerchantList,
   data: paymentMerchantList,
@@ -131,7 +135,7 @@ const {
 
 const paymentMethodData = computed(() => {
   if (paymentMethodList.value) {
-    currentType.value = paymentMethodList.value[0].id
+    // currentType.value = paymentMethodList.value[0].id
     return paymentMethodList.value.map((i) => {
       return {
         label: i.name,
@@ -411,7 +415,7 @@ await application.allSettled([
               v-show="havePaymentMerchant && !isPaymentDepositBank"
               :label="t('channel_choose')"
             >
-              <div class="other-aisles scroll-x">
+              <div class="scroll-x other-aisles">
                 <div
                   v-for="item in paymentMerchantData"
                   :id="`id${item.value}`"

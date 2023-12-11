@@ -164,7 +164,10 @@ await application.allSettled([casinoStore.runAsyncGameLobby(), runMemberNoticeAl
   </div>
   <!-- 公司介绍 -->
   <div v-if="!isLogin" class="index-introduction" :class="{ 'max-height': showMore }">
-    <div class="introduction-content" :style="{ 'column-count': isMobile ? 1 : 2 }">
+    <div
+      class="introduction-content"
+      :class="[isMobile ? 'h5-mobile' : '']"
+    >
       <h1>{{ t('casino_intro_1', hostSite) }}</h1>
       <p>
         {{ t('casino_intro_2', hostSite) }}
@@ -282,6 +285,12 @@ await application.allSettled([casinoStore.runAsyncGameLobby(), runMemberNoticeAl
         );
       }
     }
+    .h5-mobile{
+      column-count:1;
+      h1{
+        font-size: var(--tg-font-size-lg);
+      }
+    }
     .introduction-more{
       position: absolute;
       z-index: 2;
@@ -297,6 +306,7 @@ await application.allSettled([casinoStore.runAsyncGameLobby(), runMemberNoticeAl
       font-size: var(--tg-font-size-xl);
       margin-bottom: var(--tg-spacing-8);
       font-weight: var(--tg-font-weight-semibold);
+      line-height: 1.3;
     }
     p{
       margin-bottom: var(--tg-spacing-20);
