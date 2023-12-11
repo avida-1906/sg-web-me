@@ -41,8 +41,11 @@ const {
   errorMessage: errorYearMsg,
   validate: valiYear,
 } = useField<number>('year', (value) => {
-  if (!value || value < 1900)
+  if (!value)
     return t('surveys_birthday_error')
+  if (value < 1900)
+    return 'uu'
+
   return ''
 })
 
@@ -156,7 +159,7 @@ defineExpose({ valiBirthday, msg })
           min="1"
           :max="dayMax"
           placeholder="DD"
-          :class="{ error: msg }"
+          :class="{ error: msg && msg !== 'uu' }"
           @input="onInput"
         >
         <!-- 月 -->
@@ -165,7 +168,7 @@ defineExpose({ valiBirthday, msg })
             v-model="month"
             required
             :class="{
-              'error': msg,
+              'error': msg && msg !== 'uu',
               'placeholder-select': monthList.filter(m => m.value === month).length === 0,
             }"
             @input="onInput"
@@ -186,12 +189,13 @@ defineExpose({ valiBirthday, msg })
           v-model="year"
           :class="{ error: msg }"
           type="number"
+          :min="1900"
           placeholder="YYYY"
           @input="onInput"
         >
       </div>
     </div>
-    <div v-show="msg" class="msg">
+    <div v-show="msg && msg !== 'uu'" class="msg">
       <!-- <BaseIcon class="error-icon" name="uni-warning" /> -->
       <BaseIcon class="error-icon" name="uni-warning-color" />
       <span>{{ msg }}</span>
