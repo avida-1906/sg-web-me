@@ -14,6 +14,7 @@ interface Props {
 const props = defineProps<Props>()
 
 const { t } = useI18n()
+const { userLanguage } = storeToRefs(useLanguageStore())
 
 const numStr = computed(() => {
   if (props.num && props.num > 1)
@@ -33,6 +34,7 @@ const numStr = computed(() => {
       :amount="amount"
       :currency-type="currencyType"
     />
+    {{ userLanguage === 0 ? '的' : '' }}
     {{ betSlipTabValue }}!
   </div>
 </template>
