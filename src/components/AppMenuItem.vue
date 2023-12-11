@@ -11,11 +11,14 @@ const props = withDefaults(defineProps<Props>(), {})
 const route = useRoute()
 const { isLogin } = storeToRefs(useAppStore())
 
-const active = computed(() => route.path === props.menuItem.path)
+const active = computed(() => route.fullPath === props.menuItem.path)
 </script>
 
 <template>
-  <div class="tg-app-menu-item" :class="[menuItem.clazz]">
+  <div
+    class="tg-app-menu-item"
+    :class="[menuItem.clazz]"
+  >
     <div
       class="menu-item"
       :class="{ active, disabled: menuItem.token && !isLogin }"
