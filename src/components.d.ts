@@ -107,6 +107,7 @@ declare module 'vue' {
     AppSportsHotEvent: typeof import('./components/AppSportsHotEvent.vue')['default']
     AppSportsHotEventItem: typeof import('./components/AppSportsHotEventItem.vue')['default']
     AppSportsHotEventList: typeof import('./components/AppSportsHotEventList.vue')['default']
+    AppSportsLevel1LiveUpcoming: typeof import('./components/AppSportsLevel1LiveUpcoming.vue')['default']
     AppSportsLobby: typeof import('./components/AppSportsLobby.vue')['default']
     AppSportsMarket: typeof import('./components/AppSportsMarket.vue')['default']
     AppSportsMarketInfo: typeof import('./components/AppSportsMarketInfo.vue')['default']
