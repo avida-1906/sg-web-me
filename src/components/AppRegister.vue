@@ -292,14 +292,14 @@ onUnmounted(() => {
         {{ t('reg_step1') }}
       </div>
       <div class="app-register-input-box">
-        <BaseLabel v-if="needEmail" :label="t('email_address')" must-small>
+        <BaseLabel v-if="needEmail" :label="t('email_address')" must-small need-focus>
           <BaseInput
             ref="emailRef" v-model="email" :msg="emailErrorMsg" msg-after-touched
             type="email"
             name="email"
           />
         </BaseLabel>
-        <BaseLabel v-if="needName" :label="t('username')" must-small>
+        <BaseLabel v-if="needName" :label="t('username')" must-small need-focus>
           <BaseInput
             ref="userNameRef" v-model="username"
             :msg="usernameErrorMsg"
@@ -310,7 +310,7 @@ onUnmounted(() => {
             {{ t('username_incorrect') }}
           </div>
         </BaseLabel>
-        <BaseLabel :label="t('password')" must-small>
+        <BaseLabel :label="t('password')" must-small need-focus>
           <BaseInput
             ref="passwordRef"
             v-model="password"
@@ -329,7 +329,7 @@ onUnmounted(() => {
           />
         </BaseLabel>
 
-        <BaseLabel v-if="needCheckEmail" label="邮箱验证码">
+        <BaseLabel v-if="needCheckEmail" label="邮箱验证码" need-focus>
           <div class="row-mail-code">
             <div style="flex:  1;">
               <BaseInput
