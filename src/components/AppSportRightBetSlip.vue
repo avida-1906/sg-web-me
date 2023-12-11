@@ -462,7 +462,7 @@ async function bet() {
         bl: [
           {
             pt: sportStore.cart.dataList[0].pt,
-            a: Number(toFixed(Number(duplexInputValue.value), 2)),
+            a: Number(duplexInputValue.value),
             bi: sportStore.cart.dataList,
           },
         ],
@@ -487,12 +487,6 @@ async function bet() {
 
     fetchBet(betList)
   }
-}
-
-function inputBlur() {
-  duplexInputValue.value = application.sliceOrPad(
-    duplexInputValue.value, suffixLength.value,
-  ) as any
 }
 
 /** betinfo接口发送改变通知列表更新数据 */
@@ -716,7 +710,6 @@ onUnmounted(() => {
           :msg="amountErrorMsg"
           :msg-after-touched="true"
           :placeholder="`${sportStore.cart.multiMia} - ${sportStore.cart.multiMaa}`"
-          @blur="inputBlur"
         >
           <template #right-icon>
             <AppCurrencyIcon :currency-type="currentGlobalCurrency" />
