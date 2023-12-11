@@ -40,7 +40,7 @@ const rate = computed(() => {
   const temp = exchangeRateData.value?.rates
   const code = currencyConfig[currentGlobalCurrency.value]
   if (temp && temp['706'] && code)
-    return temp[code.cur]['706'] || '1.00'
+    return formatWithSubstring(temp[code.cur]['706']) || '1.00'
   return '1.00'
 })
 const menuData = computed(() => [
@@ -186,19 +186,21 @@ function pathTo(tmp: { path?: string; title: string; icon?: boolean }) {
       {{ companyData.name }} 已通过所有合规性审查，并获得合法授权，可进行所有机会与投注游戏的游戏操作。
     </div>
     <div class="footer-description limit-width">
-      {{ t('support') }}
-      <span>{{ companyData.email }}</span> | {{ t('partner') }}
-      <span>{{ companyData.partnerEmail }}</span> | {{ t('media') }}
+      <span>{{ t('support') }}</span>
+      <span class="">{{ companyData.email }}</span> |
+      <span>{{ t('partner') }}</span>
+      <span>{{ companyData.partnerEmail }}</span> |
+      <span>{{ t('media') }}</span>
       <span>{{ companyData.newsEmail }}</span>
     </div>
-    <div class="center" style="gap: 36px;">
+    <div class="center" style="gap: var(--tg-spacing-36)">
       <BaseImage
         width="32px"
         url="/png/footer/rz_red.png"
       />
       <BaseImage
-        width="32px"
-        height="32px"
+        width="28px"
+        height="28px"
         url="/png/footer/rz_blue.png"
       />
     </div>
@@ -295,12 +297,14 @@ function pathTo(tmp: { path?: string; title: string; icon?: boolean }) {
     text-align: center;
     color: var(--tg-text-lightgrey);
     font-size: var(--tg-font-size-xs);
-    span {
+    span:nth-child(even) {
       color: var(--tg-text-white);
     }
   }
   .limit-width{
-    max-width: 470px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--tg-spacing-4);
     margin: auto;
     text-align: left;
   }

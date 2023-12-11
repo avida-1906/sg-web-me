@@ -25,14 +25,15 @@ const numStr = computed(() => {
 
 <template>
   <div class="app-sport-bet-success-notify">
-    {{ betSlipTabValue ? `${betSlipTabValue}：` : '' }}
-    {{ t('bet_tip_amount_tip', { numStr }) }}
+    <!-- {{ betSlipTabValue ? `${betSlipTabValue}：` : '' }} -->
+    {{ t('bet_tip_amount_tip') }}
     <AppAmount
       class="amount"
       :show-name="showName"
       :amount="amount"
       :currency-type="currencyType"
     />
+    {{ betSlipTabValue }}!
   </div>
 </template>
 

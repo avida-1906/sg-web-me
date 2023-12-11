@@ -1102,6 +1102,7 @@ export function ApiMemberVipBonusAvailable(params: {
     cash_type: number
     amount: string
     state: number
+    vip: string
   }[]>('/member/vip/bonus/available', { params })
 }
 

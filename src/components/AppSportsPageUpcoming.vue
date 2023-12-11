@@ -176,9 +176,9 @@ await application.allSettled([runAsync(params.value).then(() => startUpcoming())
       <AppSportsMarketSkeleton v-if="switchLoading" :num="marketNum" />
       <template v-else>
         <AppSportsMarket
-          :is-standard="isStandard" show-breadcrumb
+          :is-standard="isStandard"
           :league-name="leagueName" :event-count="total" :base-type="baseType"
-          :event-list="list" auto-show :show-more="curTotal < total"
+          :event-list="list" auto-show show-breadcrumb :show-more="curTotal < total"
           :loading-more="moreLoading"
           @more="loadMore"
         />

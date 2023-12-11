@@ -26,7 +26,7 @@ const {
 // const { openNoticeDialog } = useDialogNotice()
 
 const hostSite = computed(() => (
-  { host: location.value.hostname?.replace('www', ''), site: companyData.value?.name }
+  { host: location.value.hostname?.replace('www.', ''), site: companyData.value?.name }
 ))
 
 // 公告弹框和跑马灯
