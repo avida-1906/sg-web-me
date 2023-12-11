@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import type { ISportEventList } from '~/apis/types'
-import type { ISportDataGroupedByLeague } from '~/types'
 import type { EnumSportMarketType } from '~/utils/enums'
 
 const { t } = useI18n()
@@ -9,43 +7,12 @@ const { width } = storeToRefs(useWindowStore())
 const route = useRoute()
 const navObj = application.urlParamsToObject(route.fullPath.split('?')[1])
 const sport = route.params.sport ? +route.params.sport : 0
-const region = ref(route.params.region ? route.params.region.toString() : '')
 const { bool: isStandard } = useBoolean(true)
-const {
-  VITE_SPORT_EVENT_PAGE_SIZE,
-  VITE_SPORT_EVENT_PAGE_SIZE_MAX, VITE_SPORT_DEFAULT_MARKET_TYPE,
-} = getEnv()
+const { bool: isFirst, setFalse: isFirstFalse } = useBoolean(true)
+const { VITE_SPORT_DEFAULT_MARKET_TYPE } = getEnv()
 
 const baseType = ref(VITE_SPORT_DEFAULT_MARKET_TYPE)
 const curTab = ref(route.query.outrights ? '2' : '1')
-let timer: any = null
-const page = ref(1)
-const pageSize = ref(+VITE_SPORT_EVENT_PAGE_SIZE)
-const total = ref(0)
-const curTotal = ref(0)
-const list = ref<ISportDataGroupedByLeague>([])
-const params = computed(() => {
-  return {
-    m: 5,
-    si: sport,
-    pgid: region.value,
-    page: page.value,
-    page_size: pageSize.value,
-  }
-})
-const { run, runAsync } = useRequest(ApiSportEventList, {
-  onSuccess(res) {
-    if (res.d) {
-      total.value = res.t
-      curTotal.value = curTotal.value + res.d.length
-
-      if (page.value === 1)
-        return list.value = sportsDataGroupByLeague(res.d)
-
-      list.value = sportsDataGroupByLeagueLoadMore(list.value, res.d)
-    }
-  },
-})
 
 const tabs = computed(() => [
   { value: '1', label: t('sport_in_coming') },
@@ -65,72 +32,9 @@ const breadcrumb = computed(() => [
   },
 ])
 
-/** 👷 分页、定时器、监听更新数据 start 👷 */
-function startTimer() {
-  if (timer)
-    stopTimer()
-
-  timer = setInterval(() => {
-    page.value = 1
-    run({ ...params.value, page_size: curTotal.value > 10 ? curTotal.value : 10 })
-    curTotal.value = 0
-  }, 120000)
-}
-function stopTimer() {
-  clearInterval(timer)
-  timer = null
-}
-function getData() {
-  run(params.value)
-}
-function loadMore() {
-  if (curTotal.value >= +VITE_SPORT_EVENT_PAGE_SIZE_MAX) {
-    curTotal.value = 0
-    page.value = 1
-    pageSize.value = +VITE_SPORT_EVENT_PAGE_SIZE_MAX
-    scrollMainContentToTop()
-  }
-  else {
-    page.value++
-    pageSize.value = +VITE_SPORT_EVENT_PAGE_SIZE
-  }
-  getData()
-}
-function reset() {
-  page.value = 1
-  pageSize.value = +VITE_SPORT_EVENT_PAGE_SIZE
-  total.value = 0
-  curTotal.value = 0
-  list.value = []
-}
-function updateDataByMqtt(data: ISportEventList[]) {
-  list.value = sportsDataGroupedByLeagueUpdateByMqtt(list.value, data)
-}
-/** 🚧 分页、定时器、监听更新数据 end 🚧 */
-
 function onBaseTypeChange(v: EnumSportMarketType) {
   baseType.value = v
 }
-
-watch(route, (r) => {
-  if (r.name === 'sports-platId-sport-region') {
-    region.value = r.params.region ? r.params.region.toString() : ''
-    reset()
-    getData()
-    startTimer()
-  }
-})
-
-onMounted(() => {
-  startTimer()
-  sportDeltaBus.on(updateDataByMqtt)
-})
-onBeforeUnmount(() => {
-  stopTimer()
-  sportDeltaBus.off(updateDataByMqtt)
-})
-
-await application.allSettled([runAsync(params.value)])
 </script>
 
 <template>
@@ -141,7 +45,7 @@ await application.allSettled([runAsync(params.value)])
         <div class="left">
           <BaseTab
             v-model="curTab" :list="tabs" size="large"
-            :center="false"
+            :center="false" @change="isFirstFalse"
           />
         </div>
         <AppSportsMarketTypeSelect
@@ -157,22 +61,29 @@ await application.allSettled([runAsync(params.value)])
         v-model="isStandard" :base-type="baseType"
         @base-type-change="onBaseTypeChange"
       />
-      <!-- 滚球及即将开赛 -->
-      <div
-        v-if="isLiveAndUpcoming"
-        class="sub-wrapper"
-      >
-        <AppSportsMarket
-          v-for="league, i in list" :key="league.ci" :is-standard="isStandard"
-          :league-name="league.cn" :event-count="league.list.length" :base-type="baseType"
-          :event-list="league.list" :auto-show="i === 0"
+      <!-- 首次加载 -->
+      <template v-if="isFirst">
+        <AppSportsLevel2LiveUpcoming
+          v-if="isLiveAndUpcoming" :base-type="baseType"
+          :is-standard="isStandard"
         />
-        <BaseButton v-show="curTotal < total" size="none" type="text" @click="loadMore">
-          {{ t('load_more') }}
-        </BaseButton>
-      </div>
-      <!-- 冠军 -->
-      <AppSportsOutrights v-else-if="isOutrights" :level="2" />
+        <!-- 冠军 -->
+        <AppSportsOutrights v-else-if="isOutrights" :level="2" />
+      </template>
+      <!-- 后续切换tab时 -->
+      <template v-else>
+        <Suspense timeout="0">
+          <AppSportsLevel2LiveUpcoming
+            v-if="isLiveAndUpcoming" :base-type="baseType"
+            :is-standard="isStandard"
+          />
+          <!-- 冠军 -->
+          <AppSportsOutrights v-else-if="isOutrights" :level="2" />
+          <template #fallback>
+            <AppLoading full-screen />
+          </template>
+        </Suspense>
+      </template>
 
       <AppBetData mode="sports" />
     </div>
@@ -185,15 +96,11 @@ await application.allSettled([runAsync(params.value)])
   align-items: center;
   justify-content: space-between;
 }
-.wrapper,.sub-wrapper{
+.wrapper{
   display: flex;
   flex-direction: column;
   width: 100%;
   gap:  var(--tg-spacing-24);
-}
-.sub-wrapper{
-  gap:  var(--tg-spacing-12);
-  align-items: flex-start;
 }
 .tg-sports-category-index {
   margin-top: var(--tg-spacing-32);
