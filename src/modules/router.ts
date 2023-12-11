@@ -28,6 +28,7 @@ export const router = createRouter({
   routes,
   scrollBehavior() {
     scrollToTop()
+    return { top: 0 }
   },
 })
 

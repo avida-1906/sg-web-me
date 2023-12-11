@@ -59,6 +59,10 @@ async function getMemberLogin() {
     runMemberLogin()
   }
 }
+
+onMounted(() => {
+  userNameRef.value?.getFocus()
+})
 </script>
 
 <template>

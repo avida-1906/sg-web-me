@@ -14,10 +14,11 @@ const props = withDefaults(defineProps<Props>(), {
 const router = useLocalRouter()
 const { logoAndIcoAndLoading } = storeToRefs(useAppStore())
 const { isMobile } = storeToRefs(useWindowStore())
+const { isLogin } = storeToRefs(useAppStore())
 const { leftIsExpand, closeLeftSidebar } = useLeftSidebar()
 
 const showBack = computed(() => {
-  return isMobile.value && props.isBack
+  return isMobile.value && props.isBack && isLogin.value
     ? [`/sports/${getSportsPlatId()}`, '/casino'].includes(router.currentRoute.value.path)
     : true
 })

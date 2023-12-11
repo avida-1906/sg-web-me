@@ -21,7 +21,11 @@ const isCat = computed(() => currentType.value === 'category') // 类别
 const {
   data: catGameData,
   run: runGameCate,
-} = useRequest(ApiMemberGameCate)
+} = useRequest(ApiMemberGameCate, {
+  onSuccess: () => {
+    scrollToTop()
+  },
+})
 
 const platformOptions = computed(() => {
   if (isCat.value && catGameData.value) {

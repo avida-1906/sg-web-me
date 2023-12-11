@@ -97,14 +97,10 @@ await application.allSettled([runMemberBannerList({
         :style="{ padding: isMobile ? '0 4px' : '0 8px' }"
         @click="jumpToUrl({ type: item.jump_type, url: item.jump_url })"
       >
-        <BaseAspectRatio class="banner-ratio" ratio="320/188">
-          <!-- <BaseImage url="/png/home/banner_bg.png" /> -->
-          <BaseImage
-            style="height: 100%;"
-            :url="item.image_url[getCurrentLanguageForBackend()]" is-network
-          />
-          <div class="item-msg">
-            <!-- <div class="msg-type">
+        <!-- <BaseAspectRatio class="banner-ratio" ratio="5/3"> -->
+        <BaseImage :url="item.image_url[getCurrentLanguageForBackend()]" is-network />
+        <div class="item-msg">
+          <!-- <div class="msg-type">
               {{ t('promo_activity') }}
             </div>
             <div class="msg-title">
@@ -113,18 +109,18 @@ await application.allSettled([runMemberBannerList({
             <div class="msg-tips">
               {{ t('weekly_share') }}$20,000美元奖金
             </div> -->
-            <div
-              v-if="item.image_info.button_state === 1"
-              class="come-play"
-              @click.stop="jumpToUrl({
-                type: item.image_info.button_jump_type,
-                url: item.image_info.button_jump_url,
-              })"
-            >
-              {{ item.image_info.button_text }}
-            </div>
+          <div
+            v-if="item.image_info.button_state === 1"
+            class="come-play"
+            @click.stop="jumpToUrl({
+              type: item.image_info.button_jump_type,
+              url: item.image_info.button_jump_url,
+            })"
+          >
+            {{ item.image_info.button_text }}
           </div>
-        </BaseAspectRatio>
+        </div>
+        <!-- </BaseAspectRatio> -->
       </div>
     </div>
     <template v-if="appContentWidth > 768">
