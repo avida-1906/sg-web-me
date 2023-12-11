@@ -2,7 +2,7 @@ import type {
   ISportEventInfoMl,
   TPat,
 } from '~/apis/types'
-import type { IBasePanelType, IBreadCrumbItem } from '~/types'
+import type { IBasePanelType, IBreadCrumbItem, PanelTypeItem } from '~/types'
 
 interface IBetObject {
 /** 名称 */
@@ -160,18 +160,18 @@ export function useApiSportDetails() {
      * 6 客队⻩牌
      * 7 主队⾓球
      * 8 客队⾓球
-     * 9 主队上半场⽐分
-     * 10 客队上半场⽐分
-     * 11 主队下半场⽐分
-     * 12 客队下半场⽐分
-     * 13 主队第⼀节⽐分
-     * 14 客队第⼀节⽐分
-     * 15 主队第⼆节⽐分
-     * 16 客队第⼆节⽐分
-     * 17 主队第三节⽐分
-     * 18 客队第三节⽐分
-     * 19 主队第四节⽐分
-     * 20 客队第四节⽐分
+     * 9 主队上半场⽐分——1H
+     * 10 客队上半场⽐分——1H
+     * 11 主队下半场⽐分——2H
+     * 12 客队下半场⽐分——2H
+     * 13 主队第⼀节⽐分——1st
+     * 14 客队第⼀节⽐分——1st
+     * 15 主队第⼆节⽐分——2nd
+     * 16 客队第⼆节⽐分——2nd
+     * 17 主队第三节⽐分——3rd
+     * 18 客队第三节⽐分——3rd
+     * 19 主队第四节⽐分——4th
+     * 20 客队第四节⽐分——4th
      * 21 主队加时赛⽐分
      * 22 客队加时赛⽐分
      */
@@ -194,6 +194,71 @@ export function useApiSportDetails() {
         _map.corner = {
           homeTeam: pol['7'] || 0,
           awayTeam: pol['8'] || 0,
+        }
+      }
+
+      // 半场数据
+      const _h: PanelTypeItem[] = []
+      if (pol['9'] !== void 0 || pol['10'] !== void 0) {
+        _h.push({
+          title: '1H',
+          homeTeam: `${pol['9'] || 0}`,
+          awayTeam: `${pol['10'] || 0}`,
+        })
+      }
+      if (pol['11'] !== void 0 || pol['12'] !== void 0) {
+        _h.push({
+          title: '2H',
+          homeTeam: `${pol['11'] || 0}`,
+          awayTeam: `${pol['12'] || 0}`,
+        })
+      }
+
+      // 第1-4节数据
+      const _p: PanelTypeItem[] = []
+
+      if (pol['13'] !== void 0 || pol['14'] !== void 0) {
+        _p.push({
+          title: '1st',
+          homeTeam: `${pol['13'] || 0}`,
+          awayTeam: `${pol['14'] || 0}`,
+        })
+      }
+
+      if (pol['15'] !== void 0 || pol['16'] !== void 0) {
+        _p.push({
+          title: '2nd',
+          homeTeam: `${pol['15'] || 0}`,
+          awayTeam: `${pol['16'] || 0}`,
+        })
+      }
+
+      if (pol['17'] !== void 0 || pol['18'] !== void 0) {
+        _p.push({
+          title: '3rd',
+          homeTeam: `${pol['17'] || 0}`,
+          awayTeam: `${pol['18'] || 0}`,
+        })
+      }
+
+      if (pol['19'] !== void 0 || pol['20'] !== void 0) {
+        _p.push({
+          title: '4th',
+          homeTeam: `${pol['19'] || 0}`,
+          awayTeam: `${pol['20'] || 0}`,
+        })
+      }
+
+      _map.period = [
+        ..._h,
+        ..._p,
+      ]
+
+      // 加时数据
+      if (pol['21'] !== void 0 || pol['22'] !== void 0) {
+        _map.overtime = {
+          homeTeam: pol['21'] || 0,
+          awayTeam: pol['22'] || 0,
         }
       }
     }

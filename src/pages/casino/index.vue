@@ -46,7 +46,6 @@ const {
 const componentList = computed(() => {
   const _c: ComponentItem[] = []
   const _list = casinoNav.value
-  console.error(_list)
   _list.forEach((item) => {
     if (item.ty === 1) {
       _c.push({
