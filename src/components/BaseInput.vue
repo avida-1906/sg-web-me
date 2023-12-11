@@ -382,12 +382,13 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse })
 
     .eye {
       position: absolute;
-      right: var(--tg-spacing-14);
+      right: 0;
       top: 50%;
       transform: translateY(-50%);
       font-size: var(--tg-font-size-md);
       cursor: pointer;
       display: flex;
+      padding: var(--tg-spacing-10) var(--tg-spacing-16);
     }
     .left-icon {
       padding: var(--tg-spacing-8);
