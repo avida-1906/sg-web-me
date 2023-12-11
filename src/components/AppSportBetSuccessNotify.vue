@@ -34,8 +34,7 @@ const numStr = computed(() => {
       :amount="amount"
       :currency-type="currencyType"
     />
-    {{ userLanguage === 0 ? '的' : '' }}
-    {{ betSlipTabValue }}!
+    {{ userLanguage === 0 ? '的' : '' }}{{ betSlipTabValue }}!
   </div>
 </template>
 
