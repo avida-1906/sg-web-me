@@ -90,6 +90,9 @@ watch(route, (a) => {
 onMounted(() => {
   if (isCat.value)
     runGameCate({ cid: cid.value })
+  setTimeout(() => {
+    scrollToTop()
+  }, 50)
 })
 </script>
 
