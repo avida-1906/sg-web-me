@@ -169,16 +169,26 @@ await application.allSettled([casinoStore.runAsyncGameLobby(), runMemberNoticeAl
       :class="[isMobile ? 'h5-mobile' : '']"
     >
       <h1>{{ t('casino_intro_1', hostSite) }}</h1>
-      <p>
+      <div class="p">
         {{ t('casino_intro_2', hostSite) }}
-      </p>
-      <p>{{ t('casino_intro_10', hostSite) }}</p>
+      </div>
+      <div class="p">
+        {{ t('casino_intro_10', hostSite) }}
+      </div>
       <h1>{{ t('casino_intro_3') }}</h1>
-      <p>{{ t('casino_intro_4', hostSite) }}</p>
-      <p>{{ t('casino_intro_5', hostSite) }}</p>
-      <p>{{ t('casino_intro_6') }}</p>
+      <div class="p">
+        {{ t('casino_intro_4', hostSite) }}
+      </div>
+      <div class="p">
+        {{ t('casino_intro_5', hostSite) }}
+      </div>
+      <div class="p">
+        {{ t('casino_intro_6') }}
+      </div>
       <h1>{{ t('casino_intro_7', hostSite) }}</h1>
-      <p>{{ t('casino_intro_8', hostSite) }}</p>
+      <div class="p">
+        {{ t('casino_intro_8', hostSite) }}
+      </div>
       <ul>
         <li>{{ t('company_intro_tip_step_1') }}</li>
         <li>
@@ -189,19 +199,35 @@ await application.allSettled([casinoStore.runAsyncGameLobby(), runMemberNoticeAl
           {{ t('company_intro_tip_step_4', hostSite) }}
         </li>
       </ul>
-      <p>{{ t('casino_intro_9', hostSite) }}</p>
-      <p>
+      <div class="p">
+        {{ t('casino_intro_9', hostSite) }}
+      </div>
+      <div class="p">
         {{ t('company_intro_tip_19') }}
-      </p>
+      </div>
       <h1>{{ t('casino_intro_11', hostSite) }}</h1>
-      <p>{{ t('casino_intro_12', hostSite) }}</p>
-      <p>{{ t('casino_intro_13', hostSite) }}</p>
-      <p>{{ t('casino_intro_14') }}</p>
-      <p>{{ t('casino_intro_15', hostSite) }}</p>
+      <div class="p">
+        {{ t('casino_intro_12', hostSite) }}
+      </div>
+      <div class="p">
+        {{ t('casino_intro_13', hostSite) }}
+      </div>
+      <div class="p">
+        {{ t('casino_intro_14') }}
+      </div>
+      <div class="p">
+        {{ t('casino_intro_15', hostSite) }}
+      </div>
       <h1>{{ t('casino_intro_16', hostSite) }}</h1>
-      <p>{{ t('casino_intro_17', hostSite) }}</p>
-      <p>{{ t('casino_intro_18', hostSite) }}</p>
-      <p>{{ t('casino_intro_19', hostSite) }}</p>
+      <div class="p">
+        {{ t('casino_intro_17', hostSite) }}
+      </div>
+      <div class="p">
+        {{ t('casino_intro_18', hostSite) }}
+      </div>
+      <div class="p">
+        {{ t('casino_intro_19', hostSite) }}
+      </div>
     </div>
     <div class="introduction-more">
       <BaseButton @click="onShowMore">
@@ -308,7 +334,7 @@ await application.allSettled([casinoStore.runAsyncGameLobby(), runMemberNoticeAl
       font-weight: var(--tg-font-weight-semibold);
       line-height: 1.3;
     }
-    p{
+    .p{
       margin-bottom: var(--tg-spacing-20);
       line-height: 24px;
     }
@@ -321,7 +347,7 @@ await application.allSettled([casinoStore.runAsyncGameLobby(), runMemberNoticeAl
     ul{
       list-style-type:disc;
       padding-left: var(--tg-spacing-32);
-      p {
+      .p {
         margin: 0;
       }
       li{

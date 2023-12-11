@@ -312,29 +312,37 @@ onBeforeUnmount(() => {
     </div>
 
     <div class="des">
-      <p>
-        <span class="title">{{ $t('for_example') }}:</span>
-        <span>{{ $t('promotion_tutorial_example_desc') }}:</span>
-      </p>
-      <p>
-        <span class="label">1、{{ $t('direct_team') }}: </span>
-        <span>{{ $t('promotion_tutorial_direct_team_1') }}</span>
-        <span>{{ $t('promotion_tutorial_direct_team_2') }}</span>
-        <span>{{ $t('promotion_tutorial_direct_team_3') }}</span>
-      </p>
-      <p>
-        <span class="label">2、{{ $t('other_team') }}: </span>
-        <span>{{ $t('promotion_tutorial_other_team_1') }}</span>
-        <span>{{ $t('promotion_tutorial_other_team_2') }}</span>
-        <span>{{ $t('promotion_tutorial_other_team_3') }}</span>
-      </p>
-      <p>
-        <span class="label">3、{{ $t('summary') }}:</span>
-        <span>{{ $t('promotion_tutorial_summary_1') }}</span>
-        <span>{{ $t('promotion_tutorial_summary_2') }}</span>
-        <span>{{ $t('promotion_tutorial_summary_3') }}</span>
-        <span>{{ $t('promotion_tutorial_summary_4') }}</span>
-      </p>
+      <div class="p">
+        <div class="title">
+          {{ $t('for_example') }}:
+        </div>
+        <div>{{ $t('promotion_tutorial_example_desc') }}:</div>
+      </div>
+      <div class="p">
+        <div class="label">
+          1、{{ $t('direct_team') }}:
+        </div>
+        <div>{{ $t('promotion_tutorial_direct_team_1') }}</div>
+        <div>{{ $t('promotion_tutorial_direct_team_2') }}</div>
+        <div>{{ $t('promotion_tutorial_direct_team_3') }}</div>
+      </div>
+      <div class="p">
+        <div class="label">
+          2、{{ $t('other_team') }}:
+        </div>
+        <div>{{ $t('promotion_tutorial_other_team_1') }}</div>
+        <div>{{ $t('promotion_tutorial_other_team_2') }}</div>
+        <div>{{ $t('promotion_tutorial_other_team_3') }}</div>
+      </div>
+      <div class="p">
+        <div class="label">
+          3、{{ $t('summary') }}:
+        </div>
+        <div>{{ $t('promotion_tutorial_summary_1') }}</div>
+        <div>{{ $t('promotion_tutorial_summary_2') }}</div>
+        <div>{{ $t('promotion_tutorial_summary_3') }}</div>
+        <div>{{ $t('promotion_tutorial_summary_4') }}</div>
+      </div>
     </div>
   </div>
 </template>
@@ -513,8 +521,8 @@ onBeforeUnmount(() => {
     color: var(--tg-text-white);
   }
 
-  p {
-    span {
+  .p {
+    div {
       display: block;
     }
   }
