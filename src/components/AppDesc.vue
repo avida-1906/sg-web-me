@@ -423,7 +423,7 @@ onMounted(() => {
       --tg-table-odd-background: initial;
       .rank-icon {
         display: flex;
-        font-size: var(--tg-font-size-lg);
+        font-size: 21px;
       }
 
       .img-text-align {
