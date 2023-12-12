@@ -13,11 +13,13 @@ interface Column {
 interface Props {
   name: string
   platName: string
+  pid: string
 }
 defineProps<Props>()
 
 const { companyData } = storeToRefs(useAppStore())
 const { t } = useI18n()
+const { push } = useLocalRouter()
 const { bool: showContent, toggle: toggleShowContent } = useBoolean(true)
 const { bool: loading, setFalse: setLoadingFalse } = useBoolean(true)
 const {
@@ -130,8 +132,13 @@ onMounted(() => {
   <div class="app-desc home-container margin-auto">
     <div class="desc-title">
       <div class="title-left">
-        <span class="game-name">{{ name }}{{ name }}{{ name }}</span>
-        <span class="plat-name"><a href="#">{{ platName }}{{ name }}</a></span>
+        <span class="game-name">{{ name }}</span>
+        <span
+          class="plat-name"
+          @click="push(`/casino/group/provider?pid=${pid}&name=${platName}`)"
+        >
+          {{ platName }}
+        </span>
       </div>
       <div class="title-right">
         <div v-if="!isXs" class="r-status">

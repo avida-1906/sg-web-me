@@ -13,6 +13,7 @@ const props = defineProps<Props>()
 const emit = defineEmits(['changeTheatre'])
 
 const { t } = useI18n()
+const { push } = useLocalRouter()
 const { isMobile, appContentWidth } = storeToRefs(useWindowStore())
 const { isLogin } = storeToRefs(useAppStore())
 const { allPlatformList } = storeToRefs(useCasinoStore())
@@ -165,7 +166,14 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
       <div class="info-wrap">
         <div class="main-info">
           <span class="game-name">{{ dataDetail?.name }}</span>
-          <span class="game-provider">{{ gameProviderName }}</span>
+          <BaseButton type="text" size="none">
+            <span
+              class="game-provider"
+              @click="push(`/casino/group/provider?pid=${pid}&name=${gameProviderName}`)"
+            >
+              {{ gameProviderName }}
+            </span>
+          </BaseButton>
         </div>
         <div v-if="isLogin" class="info-controls">
           <!-- 收藏游戏 -->
@@ -540,6 +548,7 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
       .main-info {
         display: flex;
         flex-direction: column;
+        align-items: flex-start;
         line-height: 1.5;
 
         .game-name {
