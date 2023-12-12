@@ -27,6 +27,7 @@ withDefaults(defineProps<Props>(), {
 <style lang="scss">
 :root{
   --tg-skeleton-border-radius: var(--tg-radius-default);
+  --tg-skeleton-background-color: var(--tg-skeleton-color1);
 }
 </style>
 
@@ -40,7 +41,7 @@ withDefaults(defineProps<Props>(), {
     width: 100%;
     height: 100%;
     border-radius: var(--tg-skeleton-border-radius);
-    background-color: var(--tg-secondary-light);
+    background-color: var(--tg-skeleton-background-color);
   }
 }
 .ani-shan {

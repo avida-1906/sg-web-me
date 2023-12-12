@@ -97,6 +97,7 @@ function mapHeadArea(
       class="content scroll-x" :style="{
         'grid-template-areas': gridAreas,
       }"
+      style="--app-sport-image-error-icon-size: 20px"
     >
       <!-- competitor -->
       <div
@@ -161,10 +162,10 @@ function mapHeadArea(
           <span>{{ idx + 1 }}st</span>
         </div>
         <span class="fill-frame border" :style="`grid-area: period_home_${idx}`">
-          <span>{{ p.awayTeam }}</span>
+          <span>{{ p.homeTeam }}</span>
         </span>
         <span class="fill-frame" :style="`grid-area: period_away_${idx}`">
-          <span>{{ p.homeTeam }}</span>
+          <span>{{ p.awayTeam }}</span>
         </span>
       </template>
       <!-- gameScore -->

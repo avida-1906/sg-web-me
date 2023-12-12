@@ -50,6 +50,17 @@ function errorHanlder() {
   setLoadFalse()
 }
 
+/**
+ * 获取缩略图地址（xxx.webp => xxx.s.webp）
+ * @param url
+ */
+function getThumbnailUrl(url: string) {
+  console.log(url)
+  const arr = url.split('.')
+  arr.splice(arr.length - 1, 0, 's')
+  return arr.join('.')
+}
+
 const onPlayCount = ref(Math.ceil(Math.random() * 1000).toFixed())
 </script>
 
@@ -59,6 +70,12 @@ const onPlayCount = ref(Math.ceil(Math.random() * 1000).toFixed())
       class="base-game-item" :class="{ 'maintain': isMaintained, 'pc-item': !isMobile }"
       @click="gameStart(gameInfo)"
     >
+      <div class="backgrop-filter">
+        <BaseImage
+          is-cloud
+          :url="getThumbnailUrl(gameInfo.img ?? '')"
+        />
+      </div>
       <BaseImage
         v-if="!isError"
         :url="gameInfo.img"
@@ -100,7 +117,6 @@ const onPlayCount = ref(Math.ceil(Math.random() * 1000).toFixed())
           </template>
         </BaseEmpty>
       </div>
-      <div v-if="isShowBackgropFilter" class="backgrop-filter" />
     </div>
   </BaseAspectRatio>
   <span v-if="+gameInfo.game_type !== CasinoGameType.casino" class="count">
