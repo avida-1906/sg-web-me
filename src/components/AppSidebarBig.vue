@@ -56,7 +56,8 @@ onMounted(() => {
   }
 })
 onBeforeUnmount(() => {
-  Local.remove(STORAGE_MENU_EXPAND_DOMID)
+  if (!isMobile.value)
+    Local.remove(STORAGE_MENU_EXPAND_DOMID)
 })
 </script>
 

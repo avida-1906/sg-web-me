@@ -212,6 +212,7 @@ export function useApiMenuData() {
   const { closeLeftSidebar, openLeftSidebar, leftIsExpand } = useLeftSidebar()
 
   const { isMobile, isLessThanLg } = storeToRefs(useWindowStore())
+  const menuStore = useMenuStore()
 
   function menuItemClick(item: MenuItem) {
     Local.set(STORAGE_MENU_EXPAND_DOMID, item.domId || '')
@@ -224,6 +225,7 @@ export function useApiMenuData() {
       else {
         router.push(replaceSportsPlatId(item.path))
       }
+      menuStore.setSideBigActiveMenu(item.path)
     }
     else if (item.list && item.list.length) {
       openLeftSidebar()

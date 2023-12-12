@@ -45,7 +45,6 @@ function gameStart(item: Props['gameInfo']) {
  * @param url
  */
 function getThumbnailUrl(url: string) {
-  console.log(url)
   const arr = url.split('.')
   arr.splice(arr.length - 1, 0, 's')
   return arr.join('.')
