@@ -429,7 +429,9 @@ onUnmounted(() => {
           <VTooltip placement="top" :triggers="['click', 'hover']">
             <div class="center stealth-box">
               <BaseIcon name="uni-hidden" />
-              <span style="padding-left: 5px;">{{ t('hidden_user') }}</span>
+              <span style="padding-left: 5px;" class="semibold">
+                {{ t('hidden_user') }}
+              </span>
             </div>
             <template #popper>
               <div class="tiny-menu-item-title">
