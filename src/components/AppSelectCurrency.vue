@@ -19,6 +19,7 @@ interface Props {
   placeholder?: string
 }
 
+const { t } = useI18n()
 // 下拉搜索是否显示
 const { bool: isMenuShown } = useBoolean(false)
 const {
@@ -92,7 +93,7 @@ onMounted(() => {
       @apply-show="clearSearchValue"
     >
       <div class="wallet-box">
-        <span>货币</span>
+        <span>{{ t('currency') }}</span>
         <BaseButton class="wallet wallet-only" type="text" size="md">
           <AppAmount
             v-if="showBalance"
