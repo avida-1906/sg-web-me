@@ -255,6 +255,7 @@ onMounted(() => {
               <AppAmount
                 :amount="record.bet"
                 :currency-type="record.currencyType"
+                style="--tg-app-amount-font-weight:var(--tg-font-weight-normal);"
               />
             </div>
           </template>
@@ -263,6 +264,7 @@ onMounted(() => {
               <AppAmount
                 :amount="record.payAmount"
                 :currency-type="record.currencyType"
+                style="--tg-app-amount-font-weight:var(--tg-font-weight-normal);"
               />
             </div>
           </template>

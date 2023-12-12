@@ -448,12 +448,14 @@ onUnmounted(() => {
             <AppAmount
               :amount="record.bet_amount"
               :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
+              style="--tg-app-amount-font-weight:var(--tg-font-weight-normal);"
             />
             <template #popper>
               <div class="tiny-menu-item-title">
                 <AppAmount
                   :amount="record.bet_amount"
                   :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
+                  style="--tg-app-amount-font-weight:var(--tg-font-weight-normal);"
                 />
               </div>
             </template>
@@ -470,6 +472,7 @@ onUnmounted(() => {
           <AppAmount
             :amount="record.net_amount"
             :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
+            style="--tg-app-amount-font-weight:var(--tg-font-weight-normal);"
           />
         </div>
       </template>
