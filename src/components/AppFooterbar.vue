@@ -32,6 +32,12 @@ const isRouteSports = computed(() => route.name?.toString().includes(Game.SPORTS
 const isChat = computed(() => rightIsExpand.value
 && currentRightSidebarContent.value === EnumRightSidebarContent.CHATROOM,
 )
+const isCasinoBet = computed(() => rightIsExpand.value
+&& currentRightSidebarContent.value === EnumRightSidebarContent.CASINOBET,
+)
+const isBetting = computed(() => rightIsExpand.value
+&& currentRightSidebarContent.value === EnumRightSidebarContent.BETTING,
+)
 
 function checkGameType() {
   const isCasino = route.name?.toString().includes(Game.CASINO)
@@ -67,21 +73,20 @@ function toggleLeftSidebar() {
 }
 function goGame(type: Game) {
   clearSidebar()
-  resetGameType()
   let temp = ''
 
   setTimeout(() => {
     switch (type) {
       case Game.CASINO:
         if (route.path === '/casino')
-          return
+          return resetGameType()
         router.push('/casino')
         gameType.value = Game.CASINO
         break
       case Game.SPORTS:
         temp = `/sports/${getSportsPlatId()}`
         if (route.path === temp)
-          return
+          return resetGameType()
         router.push(temp)
         gameType.value = Game.SPORTS
         break
@@ -90,29 +95,53 @@ function goGame(type: Game) {
     }
   }, 200)
 }
-function openBar(type: 'bet' | 'bet-slip' | 'chat') {
-  Local.set(STORAGE_MENU_LEFT_EXPAND, false)
-  leftIsExpand.value && closeLeftSidebar()
 
+function closeRightAndReset() {
   if (rightIsExpand.value) {
     closeRightSidebar()
     setTimeout(() => {
       resetGameType()
     }, 200)
-
-    return
   }
+}
+function resetRightSidebar() {
+  currentRightSidebarContent.value = null
+}
+function openBar(type: 'bet' | 'bet-slip' | 'chat') {
+  Local.set(STORAGE_MENU_LEFT_EXPAND, false)
+  leftIsExpand.value && closeLeftSidebar()
 
   switch (type) {
     case 'bet':
+      if (rightIsExpand.value) {
+        if (currentRightSidebarContent.value === EnumRightSidebarContent.CASINOBET)
+          return closeRightAndReset()
+        currentRightSidebarContent.value = EnumRightSidebarContent.CASINOBET
+        return
+      }
+      resetRightSidebar()
       openRightSidebar(EnumRightSidebarContent.CASINOBET)
       break
     case 'bet-slip':
+      if (rightIsExpand.value) {
+        if (currentRightSidebarContent.value === EnumRightSidebarContent.BETTING)
+          return closeRightAndReset()
+        currentRightSidebarContent.value = EnumRightSidebarContent.BETTING
+        return
+      }
+      resetRightSidebar()
       openRightSidebar(EnumRightSidebarContent.BETTING)
       if (!isLogin.value)
         openRegisterDialog()
       break
     case 'chat':
+      if (rightIsExpand.value) {
+        if (currentRightSidebarContent.value === EnumRightSidebarContent.CHATROOM)
+          return closeRightAndReset()
+        currentRightSidebarContent.value = EnumRightSidebarContent.CHATROOM
+        return
+      }
+      resetRightSidebar()
       openRightSidebar(EnumRightSidebarContent.CHATROOM)
       break
     default:
@@ -153,7 +182,7 @@ watch(() => route.path, () => {
     </div>
     <div
       v-show="!isRouteSports" class="bar-item"
-      :class="{ active: rightIsExpand && !isChat }"
+      :class="{ active: isCasinoBet }"
     >
       <BaseButton type="text" size="none" @click="openBar('bet')">
         <div class="bar-btn">
@@ -166,7 +195,7 @@ watch(() => route.path, () => {
     </div>
     <div
       v-show="isRouteSports" class="bar-item"
-      :class="{ active: rightIsExpand && !isChat }"
+      :class="{ active: isBetting }"
     >
       <BaseButton type="text" size="none" @click="openBar('bet-slip')">
         <div class="bar-btn">
