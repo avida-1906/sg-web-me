@@ -8,16 +8,19 @@ interface Props {
   size?: 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'
   shadow?: boolean
   customPadding?: boolean
+  originType?: 'button' | 'submit' | 'reset'
 }
 
 withDefaults(defineProps<Props>(), {
   type: 'default',
   size: 'xs',
+  originType: 'button',
 })
 </script>
 
 <template>
   <button
+    :type="originType"
     :disabled="loading || disabled" :class="[type, bgStyle, size, {
       round,
       shadow,

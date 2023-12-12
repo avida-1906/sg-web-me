@@ -11,6 +11,9 @@ const props = withDefaults(defineProps<Props>(), {
 const emit = defineEmits(['update:modelValue'])
 const { t } = useI18n()
 
+const dayInputRef = ref()
+const yearInputRef = ref()
+
 const monthList = [
   { label: 'time_january', value: 1 },
   { label: 'time_february', value: 2 },
@@ -73,7 +76,7 @@ const {
   validate: valiDay,
 } = useField<number>('day', (value) => {
   if (!value)
-    return t('surveys_birthday_error')
+    return 'uu' // t('surveys_birthday_error')
   if (value > dayMax.value)
     return '日期不能超过31号'
 
@@ -134,6 +137,17 @@ async function valiBirthday() {
   await valiMonth()
   await valiYear()
   await valiDay()
+  if (day.value <= 0) {
+    dayInputRef.value.checkValidity()
+    dayInputRef.value.setCustomValidity('值必须大于或等于1')
+    dayInputRef.value.reportValidity()
+    return
+  }
+  if (year.value < 1900) {
+    yearInputRef.value.checkValidity()
+    yearInputRef.value.setCustomValidity('值必须大于或等于1900')
+    yearInputRef.value.reportValidity()
+  }
 }
 
 onMounted(() => {
@@ -154,10 +168,12 @@ defineExpose({ valiBirthday, msg })
       <div class="input-wrap">
         <!-- 日 -->
         <input
+          ref="dayInputRef"
           v-model="day"
           type="number"
-          min="1"
+          :min="1"
           :max="dayMax"
+          autocomplete="on"
           placeholder="DD"
           :class="{ error: msg && msg !== 'uu' }"
           @input="onInput"
@@ -186,6 +202,7 @@ defineExpose({ valiBirthday, msg })
         </div>
         <!-- 年 -->
         <input
+          ref="yearInputRef"
           v-model="year"
           :class="{ error: msg }"
           type="number"

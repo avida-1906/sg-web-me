@@ -34,11 +34,20 @@ const {
   value: email,
   errorMessage: emailErrorMsg,
   validate: validateEmail,
+  setErrors: setEmailErrors,
 } = useField<string>('email', (value) => {
+  const lastAtIdx = value ? value.lastIndexOf('@') : -1
+  const lastDotIdx = value ? value.lastIndexOf('.') : -1
   if (!value)
-    return t('pls_enter_email_address')
+    return '电子邮件域不受支持'
+  else if (!value.includes('@'))
+    return '请在您的电邮地址中加入"@"符号'
+  else if (!value.includes('.'))
+    return '请在您的电邮地址中加入"."符号'
+  else if (lastDotIdx === value.length - 1)
+    return '电子邮件域不受支持'
   else if (!emailReg.test(value))
-    return t('email_address_incorrect')
+    return '请输入有效的电邮地址'
   // 请在您的电邮地址中加入 “@” 符号
   // 请在您的电邮地址中加入 “.” 符号
   // 电子邮件域不受支持
@@ -53,6 +62,12 @@ const {
 } = useField<string>('username', (value) => {
   if (!value)
     return t('pls_enter_username')
+  else if (value.length < 3)
+    return ' 您的username必须含有至少3个字符'
+  else if (value.match('[^a-z0-9]'))
+    return '用户名含有无效的字符'
+  else if (value.length > 14)
+    return '您的username不得超过14个字符'
   else if (!usernameReg.test(value))
     return t('validate_msg_user_name_tip')
   // 此用户名已被使用，请选择另一用户名。
@@ -183,7 +198,9 @@ const { run: runExists } = useRequest(ApiMemberExists, {
   },
   onError() {
     if (curExists.value === 1)
-      setUsernameErrors(t('user_name_exist'))
+      setUsernameErrors('此用户名已被使用，请选择另一用户名')
+    if (curExists.value === 2)
+      setEmailErrors('电邮地址已存在')
   },
 })
 
@@ -378,7 +395,8 @@ onUnmounted(() => {
       <div class="app-register-check-box">
         <BaseButton
           :loading="isLoading" class="app-register-btn" bg-style="secondary"
-          size="xl" @click.stop="getMemberReg"
+          size="xl" origin-type="submit"
+          @click.stop="getMemberReg"
         >
           {{ t('continue') }}
         </BaseButton>
