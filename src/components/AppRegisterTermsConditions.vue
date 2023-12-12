@@ -640,7 +640,7 @@ onBeforeUnmount(() => {
     }
   }
   .terms-conditions {
-    max-height: 50vh;
+    max-height: 45vh;
     padding: var(--tg-spacing-16);
     text-align: left;
     border-radius: var(--tg-radius-default);
