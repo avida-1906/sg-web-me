@@ -2,6 +2,7 @@
 interface Props {
   odds: string
   arrow?: 'left' | 'right'
+  keep?: boolean
 }
 const props = withDefaults(defineProps<Props>(), {
   arrow: 'right',
@@ -9,6 +10,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 const saveNum = ref(props.odds)
 const upDown = ref('')
+const icon = ref('')
 let timer: any
 
 const sportsStore = useSportsStore()
@@ -23,6 +25,7 @@ function resetUpDown() {
 watch(() => props.odds, (newOdds) => {
   if (+saveNum.value !== +newOdds) {
     upDown.value = +newOdds > +saveNum.value ? 'up' : 'down'
+    icon.value = +newOdds > +saveNum.value ? 'up' : 'down'
     resetUpDown()
     saveNum.value = newOdds
   }
@@ -32,8 +35,8 @@ watch(() => props.odds, (newOdds) => {
 <template>
   <div class="app-sports-odds" :class="[arrow]">
     <span class="odds" v-html="sportsStore.renderOdds(+odds).value" />
-    <div class="icon arrow-odds" :class="`odds-${upDown}`">
-      <BaseIcon :name="`uni-tri-${upDown}`" />
+    <div class="icon arrow-odds" :class="[`odds-${upDown}`, { keep }]">
+      <BaseIcon :name="`uni-tri-${icon}`" />
     </div>
   </div>
 </template>
@@ -64,6 +67,11 @@ watch(() => props.odds, (newOdds) => {
     display: flex;
     align-items: center;
     justify-content: center;
+    opacity: 0;
+
+    &.keep{
+      opacity: 1;
+    }
   }
 
   &.left {
