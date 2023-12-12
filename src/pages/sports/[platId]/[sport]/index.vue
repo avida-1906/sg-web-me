@@ -9,17 +9,14 @@ const { sidebarData } = storeToRefs(useSportsStore())
 const { bool: isStandard } = useBoolean(true)
 const { bool: isFirst, setFalse: isFirstFalse } = useBoolean(true)
 
-const curTab = ref(route.query.outrights ? '2' : '1')
+const curTab = ref(route.query.tab ? `${route.query.tab}` : '1')
 const baseType = ref(VITE_SPORT_DEFAULT_MARKET_TYPE)
 
 const sport = computed(() => route.params.sport ? +route.params.sport : 0)
 const isOver814 = computed(() => width.value > 814)
 const isLiveAndUpcoming = computed(() => curTab.value === '1')
 const isOutrights = computed(() => curTab.value === '2')
-const tabs = computed(() => [
-  { value: '1', label: t('sport_in_coming') },
-  { value: '2', label: t('champion_bet') },
-])
+const isViewAll = computed(() => curTab.value === '3')
 // 球种名称
 const sportName = computed(() => {
   if (sidebarData.value)
@@ -32,6 +29,11 @@ const breadcrumb = computed(() => [
     title: sportName.value,
   },
 ])
+const tabs = computed(() => [
+  { value: '1', label: t('sport_in_coming') },
+  { value: '2', label: t('champion_bet') },
+  { value: '3', label: `${t('finance_other_tab_all')} ${sportName.value}` },
+])
 
 function onBaseTypeChange(v: EnumSportMarketType) {
   baseType.value = v
@@ -39,7 +41,7 @@ function onBaseTypeChange(v: EnumSportMarketType) {
 
 watch(route, (r) => {
   if (r.name === 'sports-platId-sport')
-    curTab.value = r.query.outrights ? '2' : '1'
+    curTab.value = r.query.tab ? `${route.query.tab}` : '1'
 })
 
 usePageTitle({ prefix: sportName })
@@ -79,6 +81,7 @@ usePageTitle({ prefix: sportName })
         />
         <!-- 冠军 -->
         <AppSportsLevel1Outrights v-else-if="isOutrights" />
+        <AppSportsViewAll v-else-if="isViewAll" />
       </template>
       <!-- 后续切换tab时 -->
       <template v-else>
@@ -88,6 +91,7 @@ usePageTitle({ prefix: sportName })
             :base-type="baseType" :is-standard="isStandard"
           />
           <AppSportsLevel1Outrights v-else-if="isOutrights" />
+          <AppSportsViewAll v-else-if="isViewAll" />
           <template #fallback>
             <AppLoading full-screen />
           </template>

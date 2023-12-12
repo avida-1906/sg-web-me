@@ -49,7 +49,7 @@ const leagueList = computed(() => {
 })
 
 watch(route, (r) => {
-  if (r.fullPath.includes('outrights=2')) {
+  if (r.fullPath.includes('tab=2')) {
     params.value.si = r.params.sport ? +r.params.sport : 0
     run(params.value)
     startTimer()

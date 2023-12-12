@@ -20,11 +20,7 @@ const { allPlatformList } = storeToRefs(useCasinoStore())
 const closeSearch = inject('closeSearch', () => { })
 const closeSearchH5 = inject('closeSearchH5', () => { })
 const { bool: isError, setTrue: setErrorTrue } = useBoolean(false)
-const {
-  bool: isShowBackgropFilter,
-  setTrue: setLoadTrue,
-  setFalse: setLoadFalse,
-} = useBoolean(true)
+const { bool: thumbnailStatus, setFalse: thumbnailLoadError } = useBoolean(true)
 
 const gameProviderName = computed(() =>
   allPlatformList.value?.find(a => a.id === props.gameInfo.platform_id)?.name ?? '-',
@@ -44,12 +40,6 @@ function gameStart(item: Props['gameInfo']) {
   else
     closeSearch()
 }
-
-function errorHanlder() {
-  setErrorTrue()
-  setLoadFalse()
-}
-
 /**
  * 获取缩略图地址（xxx.webp => xxx.s.webp）
  * @param url
@@ -72,8 +62,10 @@ const onPlayCount = ref(Math.ceil(Math.random() * 1000).toFixed())
     >
       <div class="backgrop-filter">
         <BaseImage
+          v-if="thumbnailStatus"
           is-cloud
           :url="getThumbnailUrl(gameInfo.img ?? '')"
+          @error-img="thumbnailLoadError"
         />
       </div>
       <BaseImage
@@ -81,8 +73,7 @@ const onPlayCount = ref(Math.ceil(Math.random() * 1000).toFixed())
         :url="gameInfo.img"
         :name="gameInfo.name"
         is-cloud
-        @load-img="setLoadFalse"
-        @error-img="errorHanlder"
+        @error-img="setErrorTrue()"
       />
       <div v-if="isError && !isMaintained" class="center img-load">
         <BaseEmpty>

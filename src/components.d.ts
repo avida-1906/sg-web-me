@@ -134,6 +134,7 @@ declare module 'vue' {
     AppSportsProviderSlider: typeof import('./components/AppSportsProviderSlider.vue')['default']
     AppSportsSearchResult: typeof import('./components/AppSportsSearchResult.vue')['default']
     AppSportsTab: typeof import('./components/AppSportsTab.vue')['default']
+    AppSportsViewAll: typeof import('./components/AppSportsViewAll.vue')['default']
     AppStack: typeof import('./components/AppStack.vue')['default']
     AppStatisticsDialog: typeof import('./components/AppStatisticsDialog.vue')['default']
     AppTabRecord: typeof import('./components/AppTabRecord.vue')['default']

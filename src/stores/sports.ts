@@ -179,7 +179,7 @@ export const useSportsStore = defineStore('sports', () => {
             // eslint-disable-next-line max-len
             { title: 'Live & Upcoming', path: `/sports/${SPORTS_PLAT_ID}/${sport.si}`, icon: 'spt-ball-plate' },
             // eslint-disable-next-line max-len
-            { title: 'Outrights', path: `/sports/${SPORTS_PLAT_ID}/${sport.si}?outrights=2`, icon: 'spt-timing' },
+            { title: 'Outrights', path: `/sports/${SPORTS_PLAT_ID}/${sport.si}?tab=2`, icon: 'spt-timing' },
             ...sport.list.map((league) => {
               return {
                 title: league.cn,
@@ -189,6 +189,8 @@ export const useSportsStore = defineStore('sports', () => {
                 path: `/sports/${SPORTS_PLAT_ID}/${sport.si}/${league.pgid}/${league.ci}?${application.objectToUrlParams({ sn: sport.sn, pgn: league.pgn, cn: league.cn })}`,
               }
             }),
+            // eslint-disable-next-line max-len
+            { title: 'View All', path: `/sports/${SPORTS_PLAT_ID}/${sport.si}?tab=3`, icon: 'uni-view-all' },
           ],
         }
       })
