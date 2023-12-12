@@ -341,8 +341,6 @@ onMounted(() => {
       }
 
       .r-arrow {
-        // width: 17.5px;
-        // height: 17.5px;
         padding: 8px;
         display: flex;
         align-items: center;
@@ -351,6 +349,9 @@ onMounted(() => {
         cursor: pointer;
         >svg {
           transition: var(--tg-transition);
+        }
+        &:hover{
+          --tg-icon-color:var(--tg-text-white);
         }
 
         &.left {

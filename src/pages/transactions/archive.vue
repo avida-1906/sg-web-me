@@ -1,11 +1,13 @@
 <script lang="ts" setup>
 usePageTitle({ prefix: 'transaction_archive', isT: true })
+
+const data = reactive([])
 </script>
 
 <template>
   <section class="tg-archive-record-page">
     <div class="record-content">
-      <div class="scroll-x bet-record table-wrapper">
+      <div v-if="data && data.length" class="scroll-x bet-record table-wrapper">
         <table class="table">
           <thead />
           <tbody>
@@ -32,6 +34,9 @@ usePageTitle({ prefix: 'transaction_archive', isT: true })
           </tbody>
         </table>
       </div>
+      <div v-else>
+        <BaseEmpty description="暂无投注档案" icon="empty-1" />
+      </div>
     </div>
     <div class="page-stack-wrap mt-24">
       <AppStack />
@@ -40,6 +45,9 @@ usePageTitle({ prefix: 'transaction_archive', isT: true })
 </template>
 
 <style lang="scss" scoped>
+.record-content {
+  --tg-empty-text-padding: 16px 0 0 0;
+}
 .line-height-1-5 {
   line-height: 1.5;
 }

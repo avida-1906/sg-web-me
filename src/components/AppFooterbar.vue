@@ -67,6 +67,7 @@ function toggleLeftSidebar() {
 }
 function goGame(type: Game) {
   clearSidebar()
+  resetGameType()
   let temp = ''
 
   setTimeout(() => {

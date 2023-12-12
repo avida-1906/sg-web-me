@@ -254,6 +254,7 @@ watch(route, (val) => {
 
 .with-menu-container {
   .layout-spacing {
+    padding-bottom: var(--tg-spacing-32);
     .top {
       color: var(--tg-text-white);
       .title {
