@@ -1,5 +1,20 @@
 <script lang="ts" setup>
+interface Item {
+  imgUrl: string
+}
+
+interface Props {
+  items: Item[]
+}
+
+const props = defineProps<Props>()
+
+const emit = defineEmits(['clickItem'])
+
+const heroContentRef = ref<HTMLElement | null>(null)
 const { appContentWidth } = storeToRefs(useWindowStore())
+const { bool: isShowLeftArrow, setBool: setLeftArrowStatus } = useBoolean(false)
+const { bool: isShowRightArrow, setBool: setRightArrowStatus } = useBoolean(true)
 
 const gridAutoColumns = computed(() => {
   if (appContentWidth.value < 600)
@@ -10,45 +25,73 @@ const gridAutoColumns = computed(() => {
   else
     return 'calc(33.33% - 0.6875rem)'
 })
+
+function handleScroll() {
+  const target = heroContentRef.value as HTMLElement
+  target.scrollLeft <= 0 ? setLeftArrowStatus(false) : setLeftArrowStatus(true)
+  target.scrollLeft >= (target.scrollWidth - target.clientWidth - 1) ? setRightArrowStatus(false) : setRightArrowStatus(true)
+}
+
+function scrollLeft() {
+  const target = heroContentRef.value as HTMLElement
+  target.scrollLeft -= target.offsetWidth
+}
+
+function scrollRight() {
+  const target = heroContentRef.value as HTMLElement
+  target.scrollLeft += target.offsetWidth
+}
+
+function clickItem(item: Item) {
+  console.error('clickItem')
+  emit('clickItem', item)
+}
+
+onMounted(() => {
+  handleScroll()
+})
 </script>
 
 <template>
   <div class="hero-wrapper">
     <div class="grid-heroes">
       <div
+        ref="heroContentRef"
         class="scroll-x hero-content hide-scrollbar"
         :style="{
           'grid-auto-columns': gridAutoColumns,
         }"
+        @scroll="handleScroll"
       >
-        <div class="hero">
-          123
+        <div
+          v-for="item, i in props.items"
+          :key="i"
+          class="center hero"
+          @click="clickItem(item)"
+        >
+          <BaseImage :url="item.imgUrl" is-network />
+          <div class="other">
+            <slot />
+          </div>
         </div>
-        <div class="hero">
-          123
-        </div>
-        <div class="hero">
-          123
-        </div>
-        <div class="hero">
-          123
-        </div>
-        <div class="hero">
-          123
-        </div>
-        <div class="hero">
-          123
-        </div>
-        <div class="arrow arrow-left" style="">
-          <button class="grid-heroes-button" data-testid="heroes-scroll-left">
-            <BaseIcon name="uni-arrow-left" />
-          </button>
-        </div>
-        <div class="arrow arrow-right" style="">
-          <button class="grid-heroes-button" data-testid="heroes-scroll-right">
-            <BaseIcon name="uni-arrow-right" />
-          </button>
-        </div>
+      </div>
+      <div
+        v-if="isShowLeftArrow"
+        class="arrow arrow-left"
+        @click="scrollLeft"
+      >
+        <button class="grid-heroes-button" data-testid="heroes-scroll-left">
+          <BaseIcon name="uni-arrow-left" />
+        </button>
+      </div>
+      <div
+        v-if="isShowRightArrow"
+        class="arrow arrow-right"
+        @click="scrollRight"
+      >
+        <button class="grid-heroes-button" data-testid="heroes-scroll-right">
+          <BaseIcon name="uni-arrow-right" />
+        </button>
       </div>
     </div>
   </div>
@@ -65,6 +108,11 @@ const gridAutoColumns = computed(() => {
   width: 100%;
   display: flex;
   position: relative;
+  &:hover {
+    .arrow {
+      opacity: 1!important;
+    }
+  }
 }
 .hero-content {
   display: grid;
@@ -91,6 +139,12 @@ const gridAutoColumns = computed(() => {
   background: #213743;
   border-radius: 8px;
   height: 224px;
+
+  .other {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+  }
 }
 
 .arrow {
@@ -100,16 +154,26 @@ const gridAutoColumns = computed(() => {
   position: absolute;
   height: 100%;
   top: 0;
-  /* opacity: 0; */
+  opacity: 0;
   transition: opacity .2s;
+  font-size: 24px;
+  --tg-base-icon-color: #ffffff;
 }
 
 .arrow-right {
   left: calc(100% - 8px);
+  .grid-heroes-button {
+    padding: 12px 32px 0 16px;
+    height: 100%;
+  }
 }
 
 .arrow-left {
   right: calc(100% - 8px);
+  .grid-heroes-button {
+    padding: 12px 16px 0 32px;
+    height: 100%;
+  }
 }
 
 @container grid-size (width < 50rem) {
