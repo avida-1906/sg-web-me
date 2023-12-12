@@ -11,6 +11,7 @@ interface Props {
   pid?: string
   useCloudImg?: boolean
   path?: string
+  showManCount?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -162,7 +163,7 @@ watchEffect(() => {
         >
           <div class="item">
             <slot :item="item">
-              <BaseGameItem :game-info="item" />
+              <BaseGameItem :game-info="item" :show-man-count="showManCount" />
             </slot>
             <div class="link-next" @click="nextPage" />
           </div>

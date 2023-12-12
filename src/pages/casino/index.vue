@@ -157,6 +157,7 @@ await application.allSettled([casinoStore.runAsyncGameLobby(), runMemberNoticeAl
               :pid="item.platform_id"
               :path="item.path"
               use-cloud-img
+              show-man-count
             />
           </template>
         </div>

@@ -202,6 +202,7 @@ await application.allSettled(
               :options="bindBanks"
               :msg="selectBankError"
               must theme popper border
+              popper-clazz="app-with"
               :style="{
                 '--tg-base-select-popper-style-padding-y':
                   'var(--tg-spacing-12)',
@@ -269,6 +270,17 @@ await application.allSettled(
     </template>
   </div>
 </template>
+
+<style>
+.app-with.v-popper--theme-tg-popper-outer.v-popper--theme-dropdown .v-popper__arrow-inner,
+.app-with.v-popper--theme-tg-popper-outer.v-popper--theme-dropdown .v-popper__arrow-outer,
+.app-with.v-popper--theme-tg-popper-outer-deep.v-popper--theme-dropdown
+.v-popper__arrow-inner,
+.app-with.v-popper--theme-tg-popper-outer-deep.v-popper--theme-dropdown
+.v-popper__arrow-outer {
+  border-color: var(--tg-secondary-main);
+}
+</style>
 
 <style lang='scss' scoped>
 .app-fiat-withdrawal{

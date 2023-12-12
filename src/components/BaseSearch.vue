@@ -138,11 +138,11 @@ defineExpose({ manualFocus })
     padding: var(--tg-spacing-input-padding-vertical) ;
     font-size: var(--tg-font-size-default);
     line-height: 1;
-    // color: var(--tg-text-white);
+    color: var(--tg-text-white);
+    font-weight: var(--tg-font-weight-semibold);
 
     &::placeholder {
-      color: var(--tg-text-white);
-      opacity: 0.3;
+      color: var(--tg-text-placeholder);
       font-weight: var(--tg-font-weight-semibold);
     }
   }

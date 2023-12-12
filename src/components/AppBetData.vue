@@ -292,7 +292,7 @@ const getList = computed(() => {
           stealth: 1, // 隐身状态
         },
         {
-          game_name: 'Cursed seas',
+          game_name: 'Retro Tapes',
           player: 'Herryhung',
           time: '10:47',
           bet_amount: '2.111111',
@@ -301,7 +301,7 @@ const getList = computed(() => {
           currency_id: '701',
         },
         {
-          game_name: 'Cursed seas',
+          game_name: 'Jewel Bonanza Enhanced RTP',
           player: 'Herryhung',
           time: '10:47',
           bet_amount: '1.111111',
@@ -310,7 +310,7 @@ const getList = computed(() => {
           currency_id: '701',
         },
         {
-          game_name: 'Cursed seas',
+          game_name: 'Mines',
           player: 'Herryhung',
           time: '10:47',
           bet_amount: '1.111111',
