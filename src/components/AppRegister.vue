@@ -173,7 +173,7 @@ const { run: runExists } = useRequest(ApiMemberExists, {
       await validateUsername()
       await validatePassword()
       // await valiAgree()
-      await birthdayInputRef.value.valiBirthday()
+      // await birthdayInputRef.value.valiBirthday()
       if (birthdayInputRef.value.msg)
         return
 
@@ -395,7 +395,7 @@ onUnmounted(() => {
       <div class="app-register-check-box">
         <BaseButton
           :loading="isLoading" class="app-register-btn" bg-style="secondary"
-          size="xl" origin-type="submit"
+          size="xl"
           @click.stop="getMemberReg"
         >
           {{ t('continue') }}
