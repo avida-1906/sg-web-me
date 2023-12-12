@@ -638,6 +638,16 @@ video {
             >*+* {
               margin-top: var(--tg-spacing-16);
             }
+
+            .search-wrap {
+              --tg-base-search-icon-size: var(--tg-font-size-base);
+            }
+            :deep(.base-search) {
+              padding: 0 10px;
+              .search-icon.app-svg-icon {
+                color: var(--tg-secondary-light);
+              }
+            }
           }
         }
 
