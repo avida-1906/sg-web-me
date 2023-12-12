@@ -74,17 +74,13 @@ const onPlayCount = ref(Math.ceil(Math.random() * 1000).toFixed())
         is-cloud
         @error-img="setErrorTrue()"
       />
-      <div v-if="isError && !isMaintained" class="center img-load">
-        <BaseEmpty>
-          <template #icon>
-            <BaseIcon style="font-size:36px;" name="img-casino-error" />
-          </template>
-          <template #description>
-            <span style="font-size: var(--tg-font-size-xs);">
-              {{ $t('load_fail') }}x_x
-            </span>
-          </template>
-        </BaseEmpty>
+      <div v-if="isError && !isMaintained" class="img-load">
+        <div style="text-align: center;">
+          <BaseIcon
+            style="font-size:var(--tg-font-size-default);margin-top: 45%;"
+            name="uni-game-err"
+          />
+        </div>
       </div>
       <div class="active-game-item">
         <div class="game-title">
@@ -159,9 +155,11 @@ const onPlayCount = ref(Math.ceil(Math.random() * 1000).toFixed())
   }
 
   .img-load {
+    position: absolute;
     width: 100%;
     height: 100%;
-    background-color: var(--tg-secondary-grey);
+    left: 0;
+    top: 0;
   }
 
   &.maintain {
@@ -183,7 +181,7 @@ const onPlayCount = ref(Math.ceil(Math.random() * 1000).toFixed())
     height: 100%;
     left: 0;
     top: 0;
-    backdrop-filter: blur(10px); /* 标准语法 */
+    // backdrop-filter: blur(10px); /* 标准语法 */
   }
 }
 

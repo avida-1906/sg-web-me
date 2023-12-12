@@ -288,7 +288,7 @@ const getList = computed(() => {
           time: '10:47',
           bet_amount: '1234.11',
           multiplier: '2.97x',
-          net_amount: '113.34399768',
+          net_amount: '25.00%',
           currency_id: '701',
           stealth: 1, // 隐身状态
         },
@@ -298,7 +298,7 @@ const getList = computed(() => {
           time: '10:47',
           bet_amount: '2.111111',
           multiplier: '2.97x',
-          net_amount: '113.34399768',
+          net_amount: '12.00%',
           currency_id: '701',
         },
         {
@@ -307,7 +307,7 @@ const getList = computed(() => {
           time: '10:47',
           bet_amount: '1.111111',
           multiplier: '2.97x',
-          net_amount: '113.34399768',
+          net_amount: '8.00%',
           currency_id: '701',
         },
         {
@@ -316,7 +316,7 @@ const getList = computed(() => {
           time: '10:47',
           bet_amount: '1.111111',
           multiplier: '2.97x',
-          net_amount: '113.34399768',
+          net_amount: '6.00%',
           currency_id: '701',
         },
       ]
@@ -490,6 +490,7 @@ onUnmounted(() => {
 
 <style lang="scss" scoped>
 .app-bet-data{
+  --tg-app-amount-font-weight: 400;
   .bet-data-head{
     display: flex;
     align-items: center;
