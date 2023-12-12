@@ -66,10 +66,13 @@ onMounted(() => {
         <div
           v-for="item, i in props.items"
           :key="i"
-          class="center hero"
+          class="hero"
           @click="clickItem(item)"
         >
-          <BaseImage :url="item.imgUrl" is-network />
+          <!--  -->
+          <div class="center wrapper w-100">
+            <BaseImage :url="item.imgUrl" is-network />
+          </div>
           <div class="other">
             <slot />
           </div>
@@ -138,7 +141,6 @@ onMounted(() => {
   color: #ffffff;
   background: #213743;
   border-radius: 8px;
-  height: 224px;
 
   .other {
     position: absolute;
@@ -176,6 +178,10 @@ onMounted(() => {
   }
 }
 
+.wrapper {
+  height: 12rem;
+}
+
 @container grid-size (width < 50rem) {
     .grid-heroes:after {
       content: "";
@@ -195,6 +201,12 @@ onMounted(() => {
 
     .hero-content > .hero:last-of-type {
       margin-right: 4px
+    }
+}
+
+@container card-size (width > 21.5rem) {
+    .wrapper{
+        height: 14rem;
     }
 }
 </style>
