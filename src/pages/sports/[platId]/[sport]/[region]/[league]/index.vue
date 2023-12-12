@@ -13,14 +13,16 @@ const { bool: isFirst, setFalse: isFirstFalse } = useBoolean(true)
 const { VITE_SPORT_DEFAULT_MARKET_TYPE } = getEnv()
 
 const baseType = ref(VITE_SPORT_DEFAULT_MARKET_TYPE)
-const curTab = ref(route.query.outrights ? '2' : '1')
+const curTab = ref(route.query.tab ? `${route.query.tab}` : '1')
 const tabs = computed(() => [
   { value: '1', label: t('sport_in_coming') },
   { value: '2', label: t('champion_bet') },
+  { value: '3', label: `${t('finance_other_tab_all')} ${navObj.sn}` },
 ])
 const isOver814 = computed(() => width.value > 814)
 const isLiveAndUpcoming = computed(() => curTab.value === '1')
 const isOutrights = computed(() => curTab.value === '2')
+const isViewAll = computed(() => curTab.value === '3')
 const breadcrumb = computed(() => [
   {
     path: `/sports/${SPORTS_PLAT_ID}/${sport}`,
@@ -76,6 +78,7 @@ function onBaseTypeChange(v: EnumSportMarketType) {
         />
         <!-- 冠军 -->
         <AppSportsOutrights v-else-if="isOutrights" :level="3" />
+        <AppSportsViewAll v-else-if="isViewAll" />
       </template>
       <!-- 后续切换tab时 -->
       <template v-else>
@@ -85,6 +88,7 @@ function onBaseTypeChange(v: EnumSportMarketType) {
             :is-standard="isStandard"
           />
           <AppSportsOutrights v-else-if="isOutrights" :level="3" />
+          <AppSportsViewAll v-else-if="isViewAll" />
           <template #fallback>
             <AppLoading full-screen />
           </template>

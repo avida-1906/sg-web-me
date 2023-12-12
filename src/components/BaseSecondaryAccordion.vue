@@ -7,6 +7,7 @@ interface Props {
   level?: string | number
   init?: boolean
   disabled?: boolean
+  isCloudIcon?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -44,7 +45,14 @@ function toggle() {
       <slot name="header">
         <div class="container">
           <div class="container">
-            <BaseIcon v-if="icon" :name="icon" />
+            <template v-if="icon">
+              <AppImage
+                v-if="isCloudIcon" width="16px" height="16px" is-cloud :url="icon"
+                style="border-radius: 50%;overflow: hidden;"
+              />
+              <BaseIcon v-else :name="icon" />
+            </template>
+
             <div class="container">
               <div class="center">
                 <span>{{ title }}</span>
