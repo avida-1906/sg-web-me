@@ -438,7 +438,10 @@ onUnmounted(() => {
             </template>
           </VTooltip>
         </template>
-        <div v-else class="player-box cursor-pointer" @click="openStatisticsDialog">
+        <div
+          v-else class="semibold player-box cursor-pointer"
+          @click="openStatisticsDialog"
+        >
           {{ record.player }}
         </div>
       </template>
