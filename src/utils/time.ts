@@ -31,7 +31,7 @@ const langKey: { [t: string]: string } = {
 }
 
 export function checkTs(ts: number) {
-  return `${ts}`.length !== 13 ? ts * 1000 : ts
+  return `${ts}`.length < 13 ? ts * 1000 : ts
 }
 
 /** 检查是否闰年 */
