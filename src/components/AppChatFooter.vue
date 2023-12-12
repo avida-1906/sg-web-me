@@ -266,7 +266,7 @@ function enterPress(event: KeyboardEvent) {
           <BaseButton
             size="none" type="text"
             style="overflow: visible;height: 32px;"
-            @click="toggleEmoji()"
+            @click.stop="toggleEmoji()"
           >
             <span class="smile">😀</span>
           </BaseButton>
