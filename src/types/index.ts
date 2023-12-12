@@ -1,4 +1,4 @@
-import type { ISportEventInfo } from '~/apis/types'
+import type { ISportEventInfo, TOS } from '~/apis/types'
 
 export type EnumLanguageKey = keyof typeof EnumLanguage
 
@@ -169,14 +169,7 @@ export type ICartInfo = {
  */
 export type ICartInfoData = ICartInfo & {
   amount: number
-  /**
-   * 0:关盘
-   *
-   * 1:开盘
-   *
-   * 2:不支援串关
-   */
-  os: 0 | 1 | 2
+  os: TOS
   /** 最⼤投注额 */
   maa: number
   /** 最⼩投注额 */
@@ -237,14 +230,7 @@ export interface ISportListToCartData {
   wid: string
   /** 赔率 */
   ov: string
-  /**
-   * 0:关盘
-   *
-   * 1:开盘
-   *
-   * 2:不支援串关
-   */
-  os: 0 | 1 | 2
+  os: TOS
   /** 赛事ID */
   ei: string
 }

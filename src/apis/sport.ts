@@ -6,6 +6,7 @@ import type {
   ISportEventList,
   ISportOutrightsInfo,
   ISportsBetListArgs,
+  ISportsInfo,
   ISportsMyBetSlipItem,
 } from './types'
 import type { CurrencyCode } from '~/composables/useCurrencyData'
@@ -207,17 +208,7 @@ export function ApiSportEventInfo(params: {
   /** 赛事ID */
   ei: string
 }) {
-  return httpClient.get<{
-    /** 资料更新时间 */
-    delta: number
-    list: ISportEventInfo[]
-    /**
-     * 1:成功
-     *
-     * 3:赛事已结束
-     */
-    status: 1 | 3
-  }>(`/sport/${getSportsPlatId()}/event/info`, { params })
+  return httpClient.get<ISportsInfo>(`/sport/${getSportsPlatId()}/event/info`, { params })
 }
 
 /**
