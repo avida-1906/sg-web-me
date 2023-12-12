@@ -33,8 +33,11 @@ const imgUrl = computed(() => {
     return `${VITE_CASINO_IMG_CLOUD_URL}${props
       .url.replace('%lang%', getCurrentLanguageForBackend())}`
   }
-  if (props.isNetwork)
-    return `${VITE_CASINO_IMG_CLOUD_URL}/${props.url}`
+  if (props.isNetwork) {
+    return `
+      ${VITE_CASINO_IMG_CLOUD_URL}${props.url.startsWith('/') ? '' : '/'}${props.url}
+    `
+  }
 
   return suffix ? props.url.replace(/png/g, 'webp') : props.url
 })
