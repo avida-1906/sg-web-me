@@ -109,6 +109,7 @@ await application.allSettled([casinoStore.runAsyncGameLobby(), runMemberNoticeAl
 
 <template>
   <div class="layout-spacing">
+    <BaseSwipe />
     <AppBanner type="casino" />
     <!-- <AppMarquee /> -->
     <div v-if="!isMobile" class="mt-24">
