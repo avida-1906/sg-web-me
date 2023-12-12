@@ -177,14 +177,7 @@ function pathTo(tmp: { path?: string; title: string; icon?: boolean }) {
       </div>
     </div>
     <div class="footer-description">
-      {{ companyData.name }} 由 Medium Rare N.V. 所属和经营，注册编号： 145353，注册地址：Korporaalweg 10,
-      Willemstad, Curaçao。请通过 {{ companyData.email }} 与我们联系。
-      支付代理公司是 Medium Rare Limited，
-      地址于 7-9 Riga Feraiou, LIZANTIA COURT, Office 310, Agioi Omologites,1087 Nicosia,
-      Cyprus 以及注册号：HE 410775
-      <!-- {{ companyData.name }}
-      由库拉索政府授权和监管，并根据颁发给 Antillephone 的 8048/JAZ 号许可证运营。
-      {{ companyData.name }} 已通过所有合规性审查，并获得合法授权，可进行所有机会与投注游戏的游戏操作。 -->
+      {{ t('footer_description', { name: companyData.name, email: companyData.email }) }}
     </div>
     <div class="footer-description limit-width">
       <span>{{ t('support') }}</span>
@@ -197,6 +190,7 @@ function pathTo(tmp: { path?: string; title: string; icon?: boolean }) {
     <div class="center" style="gap: var(--tg-spacing-36)">
       <BaseImage
         width="32px"
+        height="32px"
         url="/png/footer/rz_red.png"
       />
       <BaseImage

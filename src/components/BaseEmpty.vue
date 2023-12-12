@@ -43,8 +43,14 @@ const emptyDescription = computed(
 <style lang="scss" scoped>
 .base-empty {
   text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: var(--tg-spacing-16);
 
   &-icon {
+    display: flex;
     &-name {
       font-size: var(--tg-empty-icon-size);
     }
@@ -53,7 +59,7 @@ const emptyDescription = computed(
   &-description {
     padding: var(--tg-empty-text-padding);
     font-size: var(--tg-font-size-default);
-    color: var(--tg-text-lightgrey);
+    color: var(--tg-secondary-light);
   }
 }
 </style>

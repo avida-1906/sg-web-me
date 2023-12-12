@@ -2,6 +2,7 @@
 interface Props {
   /** 当前页码 */
   currentPage?: number
+  pageSize?: number
   /** 总页数 */
   total: number
   /** 页码按钮个数 */
@@ -18,7 +19,7 @@ const props = withDefaults(defineProps<Props>(), {
   disabled: false,
 })
 
-const emit = defineEmits(['update:currentPage', 'change'])
+const emit = defineEmits(['update:currentPage', 'change', 'update:pageSize'])
 
 const { appContentWidth } = storeToRefs(useWindowStore())
 
@@ -34,11 +35,13 @@ const {
 } = useBoolean(false)
 
 /** 每页多少条数据 */
-const pageSize = ref(props.pageSizes[0])
+const page2Size = ref(props.pageSizes[0])
 const jumpPage = ref(props.currentPage)
 
+emit('update:pageSize', page2Size.value)
+
 /** 总共多少页 */
-const pageCount = computed(() => Math.ceil(props.total / pageSize.value))
+const pageCount = computed(() => Math.ceil(props.total / page2Size.value))
 const pagers = computed(() => {
   const halfPagerCount = (props.pagerCount - 1) / 2
   let showPrevMore = false
@@ -105,7 +108,7 @@ function onPagerClick(event: UIEvent) {
   }
   if (newPage !== props.currentPage) {
     emit('update:currentPage', newPage)
-    emit('change', newPage, pageSize.value)
+    emit('change', newPage, page2Size.value)
   }
 }
 
@@ -113,14 +116,14 @@ function prevPage() {
   if (props.disabled || props.currentPage <= 1)
     return
   emit('update:currentPage', props.currentPage - 1)
-  emit('change', props.currentPage - 1, pageSize.value)
+  emit('change', props.currentPage - 1, page2Size.value)
 }
 
 function nextPage() {
   if (props.disabled || props.currentPage >= pageCount.value)
     return
   emit('update:currentPage', props.currentPage + 1)
-  emit('change', props.currentPage + 1, pageSize.value)
+  emit('change', props.currentPage + 1, page2Size.value)
 }
 
 function enterToPage() {
@@ -128,14 +131,18 @@ function enterToPage() {
   if (props.disabled || page < 1 || page > pageCount.value)
     return
   emit('update:currentPage', page)
-  emit('change', page, pageSize.value)
+  emit('change', page, page2Size.value)
 }
 
 function pageSizeChange() {
   emit('update:currentPage', 1)
-  emit('change', 1, pageSize.value)
+  emit('change', 1, page2Size.value)
   jumpPage.value = 1
 }
+
+watch(page2Size, (val) => {
+  emit('update:pageSize', val)
+})
 
 watchEffect(() => {
   const halfPagerCount = (props.pagerCount - 1) / 2
@@ -210,7 +217,7 @@ watchEffect(() => {
     </div>
     <div v-if="appContentWidth > 800" class="pager-sizes">
       <BaseSelect
-        v-model="pageSize"
+        v-model="page2Size"
         :options="pageSizes.map(i =>
           ({ value: i, label: `${i}${$t('page_sizer_label')}` }))"
         @change="pageSizeChange"
