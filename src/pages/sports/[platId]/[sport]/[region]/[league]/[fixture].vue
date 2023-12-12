@@ -253,7 +253,7 @@ watch(
               <AppSportsHotEventList :si="+route.params.sport" />
 
               <div v-if="showRecent" class="is-open spotlight variant-dark">
-                <div class="header no-active-scale">
+                <div class="no-active-scale header">
                   <span>{{ $t('recent_game_record') }}</span>
                   <BaseButton type="text" @click="setSRFalse()">
                     <BaseIcon name="uni-close-white" />
@@ -389,6 +389,8 @@ watch(
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: var(--tg-font-size-default);
+    color: var(--tg-secondary-light);
   }
 
 }
