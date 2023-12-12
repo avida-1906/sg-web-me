@@ -6,7 +6,7 @@ interface Props {
 
 defineProps<Props>()
 
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(['update:modelValue', 'change'])
 
 const today = dayjs(new Date()).format('YYYY-MM-DD')
 
@@ -34,13 +34,12 @@ function dateChange(e: any, ty: DateLabel) {
     endDate.value = e.target.value
 
   setUpFalse()
-
-  emit('update:modelValue',
-    [
-      dayjs(startDate.value).startOf('day').format('YYYY-MM-DD HH:mm:ss'),
-      dayjs(endDate.value).endOf('day').format('YYYY-MM-DD HH:mm:ss'),
-    ],
-  )
+  const temp = [
+    dayjs(startDate.value).startOf('day').format('YYYY-MM-DD HH:mm:ss'),
+    dayjs(endDate.value).endOf('day').format('YYYY-MM-DD HH:mm:ss'),
+  ]
+  emit('update:modelValue', temp)
+  emit('change', temp)
 }
 
 function inputFocus() {
@@ -52,12 +51,12 @@ function inputBlur() {
 }
 
 onMounted(() => {
-  emit('update:modelValue',
-    [
-      dayjs(startDate.value).startOf('day').format('YYYY-MM-DD HH:mm:ss'),
-      dayjs(endDate.value).endOf('day').format('YYYY-MM-DD HH:mm:ss'),
-    ],
-  )
+  const temp = [
+    dayjs(startDate.value).startOf('day').format('YYYY-MM-DD HH:mm:ss'),
+    dayjs(endDate.value).endOf('day').format('YYYY-MM-DD HH:mm:ss'),
+  ]
+  emit('update:modelValue', temp)
+  emit('change', temp)
 })
 </script>
 
