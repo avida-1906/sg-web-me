@@ -174,8 +174,8 @@ function onPopperOpen() {
   --tg-base-select-style-padding-right: var(--tg-base-select-style-padding-x);
   --tg-base-select-style-color: var(--tg-text-white);
   --tg-base-select-hover-bg-color: var(--tg-secondary-deepdark);
-  --tg-base-select-popper-style-padding-x: var(--tg-spacing-button-padding-horizontal-md);
-  --tg-base-select-popper-style-padding-y: var(--tg-spacing-button-padding-vertical-md);
+  --tg-base-select-popper-style-padding-x: var(--tg-spacing-button-padding-horizontal-sm);
+  --tg-base-select-popper-style-padding-y: var(--tg-spacing-button-padding-vertical-sm);
   --tg-base-select-popper-label-color: var(--tg-text-white);
   --tg-base-select-popper-label-hover-color: var(--tg-text-white);
   --tg-base-select-style-font-size: var(--tg-font-size-default);
@@ -203,7 +203,7 @@ function onPopperOpen() {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    line-height: 1;
+    line-height: 1.28572;
   }
   &.pop-open {
     background-color: var(--tg-base-select-popopen-bg-color);
