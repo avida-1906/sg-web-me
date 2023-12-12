@@ -221,11 +221,6 @@ function onPopperOpen() {
   &.border-red{
     border-color: var(--tg-text-error);
   }
-  .content>span {
-    display: flex;
-    align-items: center;
-    gap: .5rem;
-  }
 
   .icon {
     font-size: 14px;
