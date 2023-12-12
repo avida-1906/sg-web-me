@@ -9,6 +9,7 @@ interface Props {
     maintained: string
     game_type: string
   }
+  showManCount?: boolean
 }
 
 const props = defineProps<Props>()
@@ -105,7 +106,10 @@ const onPlayCount = ref(Math.ceil(Math.random() * 1000).toFixed())
     </div>
   </div>
   <!-- </BaseAspectRatio> -->
-  <span v-if="+gameInfo.game_type !== CasinoGameType.casino" class="count">
+  <span
+    v-if="+gameInfo.game_type !== CasinoGameType.casino && showManCount"
+    class="count"
+  >
     <span class="dot blinking-dash2" />&nbsp;&nbsp;
     <span class="num">{{ application.formatNumber(onPlayCount) }}</span>
     &nbsp;{{ t('in_play') }}
