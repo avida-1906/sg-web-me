@@ -20,9 +20,11 @@ interface Props {
   msg?: string
   plainPopperLabel?: boolean
   popperClazz?: string
+  distance?: number
 }
 const props = withDefaults(defineProps<Props>(), {
   layout: 'vertical',
+  distance: 6,
 })
 const emit = defineEmits(['update:modelValue', 'select', 'focus'])
 
@@ -70,7 +72,7 @@ function onPopperOpen() {
   <template v-if="popper">
     <VDropdown
       :disabled="disabled"
-      :distance="6"
+      :distance="distance"
       :popper-class="[theme ? 'theme-black' : '', popperClazz]"
       @hide="setPopperClose"
       @show="onPopperOpen"
@@ -83,14 +85,17 @@ function onPopperOpen() {
           'show-border': border,
           'plain': plainPopperLabel,
           'border-red': !!msg,
+          'pop-open': isPopperOpen,
         }"
       >
-        <slot name="label" :data="selectedOption">
-          <span>{{ popperLabel }}</span>
-        </slot>
+        <div class="content">
+          <slot name="label" :data="selectedOption">
+            <span>{{ popperLabel }}</span>
+          </slot>
 
-        <div v-if="!disabled" class="icon" :class="{ up: isPopperOpen }">
-          <BaseIcon name="uni-arrow-down" />
+          <div v-if="!disabled" class="icon" :class="{ up: isPopperOpen }">
+            <BaseIcon name="uni-arrow-down" />
+          </div>
         </div>
       </div>
       <div v-show="msg" class="msg">
@@ -176,6 +181,7 @@ function onPopperOpen() {
   --tg-base-select-style-font-size: var(--tg-font-size-default);
   --tg-base-select-popper-option-active-color: var(--tg-popper-hover-color-default);
   --tg-base-select-popper-active-color: var(--tg-text-blue);
+  --tg-base-select-popopen-bg-color: transparent;
 }
 </style>
 
@@ -193,6 +199,15 @@ function onPopperOpen() {
   justify-content: space-between;
   align-items: center;
   line-height: 1;
+  .content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    line-height: 1;
+  }
+  &.pop-open {
+    background-color: var(--tg-base-select-popopen-bg-color);
+  }
   &.plain {
     background-color: transparent;
     &:hover {
@@ -206,7 +221,7 @@ function onPopperOpen() {
   &.border-red{
     border-color: var(--tg-text-error);
   }
-  >span {
+  .content>span {
     display: flex;
     align-items: center;
     gap: .5rem;
@@ -231,7 +246,9 @@ function onPopperOpen() {
   }
 
   &:active:not(.disabled) {
-    transform: scale(0.96);
+    .content {
+      transform: scale(0.96);
+    }
     color: var(--tg-base-select-popper-label-hover-color);
     background-color: var(--tg-base-select-hover-bg-color);
     --tg-icon-color: var(--tg-text-white);
