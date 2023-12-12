@@ -54,57 +54,57 @@ const onPlayCount = ref(Math.ceil(Math.random() * 1000).toFixed())
 </script>
 
 <template>
-  <BaseAspectRatio ratio="334/447">
-    <div
-      class="base-game-item" :class="{ 'maintain': isMaintained, 'pc-item': !isMobile }"
-      @click="gameStart(gameInfo)"
-    >
-      <div class="backgrop-filter">
-        <BaseImage
-          v-if="thumbnailStatus"
-          is-cloud
-          :url="getThumbnailUrl(gameInfo.img ?? '')"
-          @error-img="thumbnailLoadError"
+  <!-- <BaseAspectRatio ratio="334/447"> -->
+  <div
+    class="base-game-item" :class="{ 'maintain': isMaintained, 'pc-item': !isMobile }"
+    @click="gameStart(gameInfo)"
+  >
+    <div class="backgrop-filter">
+      <BaseImage
+        v-if="thumbnailStatus"
+        is-cloud
+        :url="getThumbnailUrl(gameInfo.img ?? '')"
+        @error-img="thumbnailLoadError"
+      />
+    </div>
+    <BaseImage
+      v-if="!isError"
+      :url="gameInfo.img"
+      :name="gameInfo.name"
+      is-cloud
+      @error-img="setErrorTrue()"
+    />
+    <div v-if="isError && !isMaintained" class="img-load">
+      <div style="text-align: center;">
+        <BaseIcon
+          style="font-size:var(--tg-font-size-default);margin-top: 45%;"
+          name="uni-game-err"
         />
       </div>
-      <BaseImage
-        v-if="!isError"
-        :url="gameInfo.img"
-        :name="gameInfo.name"
-        is-cloud
-        @error-img="setErrorTrue()"
-      />
-      <div v-if="isError && !isMaintained" class="img-load">
-        <div style="text-align: center;">
-          <BaseIcon
-            style="font-size:var(--tg-font-size-default);margin-top: 45%;"
-            name="uni-game-err"
-          />
-        </div>
+    </div>
+    <div class="active-game-item">
+      <div class="game-title">
+        {{ gameInfo.name }}
       </div>
-      <div class="active-game-item">
-        <div class="game-title">
-          {{ gameInfo.name }}
-        </div>
-        <BaseIcon class="game-uni-play" name="uni-play" />
-        <div class="game-tip">
-          {{ gameProviderName }}
-        </div>
-      </div>
-      <div v-if="isMaintained" class="center maintain-game-item">
-        <BaseEmpty>
-          <template #icon>
-            <BaseIcon style="--tg-base-button-font-size:40px" name="uni-maintain" />
-          </template>
-          <template #description>
-            <span style="font-size: var(--tg-font-size-xs);">
-              {{ $t('plat_maintain') }}
-            </span>
-          </template>
-        </BaseEmpty>
+      <BaseIcon class="game-uni-play" name="uni-play" />
+      <div class="game-tip">
+        {{ gameProviderName }}
       </div>
     </div>
-  </BaseAspectRatio>
+    <div v-if="isMaintained" class="center maintain-game-item">
+      <BaseEmpty>
+        <template #icon>
+          <BaseIcon style="--tg-base-button-font-size:40px" name="uni-maintain" />
+        </template>
+        <template #description>
+          <span style="font-size: var(--tg-font-size-xs);">
+            {{ $t('plat_maintain') }}
+          </span>
+        </template>
+      </BaseEmpty>
+    </div>
+  </div>
+  <!-- </BaseAspectRatio> -->
   <span v-if="+gameInfo.game_type !== CasinoGameType.casino" class="count">
     <span class="dot blinking-dash2" />&nbsp;&nbsp;
     <span class="num">{{ application.formatNumber(onPlayCount) }}</span>
