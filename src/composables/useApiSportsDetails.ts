@@ -1,5 +1,6 @@
 import type {
   ISportEventInfoMl,
+  ISportsInfo,
   TPat,
 } from '~/apis/types'
 import type { IBasePanelType, IBreadCrumbItem, PanelTypeItem } from '~/types'
@@ -35,10 +36,14 @@ export function useApiSportDetails() {
   const searchName = ref<string>('')
   /** 请求次数，用来渲染Loading */
   const requestCount = ref<number>(0)
+  const sportInfo = ref<ISportsInfo>()
 
-  const { data: sportInfo, runAsync: runGetSportInfo, loading } = useRequest(
+  const { runAsync: runGetSportInfo, loading } = useRequest(
     ApiSportEventInfo, {
-      onSuccess: () => {
+      onSuccess: (res) => {
+        if (res.list && res.list.length && res.status === 1)
+          sportInfo.value = res
+
         requestCount.value++
       },
       onError: () => {
@@ -348,6 +353,21 @@ export function useApiSportDetails() {
     return renderList
   })
 
+  /** 背景图片 */
+  const bgImage = computed<string>(() => {
+    if (
+      false
+      || !sportInfo.value
+      || !sportInfo.value.list
+      || !sportInfo.value.list.length
+    )
+      return ''
+
+    const list0 = sportInfo.value.list[0]
+
+    return list0.sbgpic
+  })
+
   function resetRequestCount() {
     requestCount.value = 0
   }
@@ -367,6 +387,7 @@ export function useApiSportDetails() {
     sportInfo,
     loading,
     requestCount,
+    bgImage,
     runGetSportInfo,
     resetRequestCount,
   }

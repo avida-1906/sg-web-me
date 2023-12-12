@@ -80,6 +80,12 @@ const isError = computed(() => {
     return true
 
   if (
+    sportStore.cart.getOddsLessThanOnePointOneWidList.includes(props.cartInfoData.wid)
+    && props.betSlipType === EnumsBetSlipBetSlipTabStatus.multi
+  )
+    return true
+
+  if (
     sportStore.cart.getExistIcList.includes(props.cartInfoData.ic)
     && props.betSlipType === EnumsBetSlipBetSlipTabStatus.multi
   )

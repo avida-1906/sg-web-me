@@ -148,6 +148,13 @@ const errorInfo = computed<{
       }
     }
 
+    if (sportStore.cart.getOddsLessThanOnePointOneWidList.length) {
+      return {
+        bool: true,
+        errorMess: '赔率小于1.10的投注项不能组合为复式投注',
+      }
+    }
+
     if (
       sportStore.cart.getNotSupportWidList.length
       || sportStore.cart.getExistIcList.length
@@ -628,7 +635,7 @@ onUnmounted(() => {
           class="bet-order-filter"
           :options="betOrderFilterData"
 
-          popper no-hover
+          no-hover popper
           @select="setBetOrderSelectValue"
         />
         <BaseButton

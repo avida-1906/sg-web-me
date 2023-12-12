@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+const { VITE_CASINO_IMG_CLOUD_URL } = getEnv()
 const route = useRoute()
 const { isMobile, appContentWidth } = storeToRefs(useWindowStore())
 const appStore = useAppStore()
@@ -14,6 +15,7 @@ const {
   searchName,
   loading,
   requestCount,
+  bgImage,
   runGetSportInfo,
   resetRequestCount,
 } = useApiSportDetails()
@@ -55,7 +57,7 @@ watch(
               <div
                 v-if="!openLiveSwitch"
                 class="background match-statistics" :style="{
-                  '--sport-image': `url(/img/match-statistics/${route.params.sport}.jpg)`,
+                  '--sport-image': `url(${VITE_CASINO_IMG_CLOUD_URL}${bgImage})`,
                 }"
               >
                 <AppMatchStatistics :data="basePanelData" />
@@ -66,7 +68,6 @@ watch(
                     <span class="tip">{{ $t('live_start_on_event') }}。</span>
                   </div>
                   <video
-
                     controls autoplay playsinline
                     disablepictureinpicture=""
                     controlslist="nodownload nofullscreen"
@@ -178,7 +179,7 @@ watch(
                               v-for="nameItem in item.ms"
                               :key="nameItem.wid"
                             >
-                              <div class="heading column">
+                              <div class="column heading">
                                 <span>{{ nameItem.sn }}</span>
                               </div>
                             </template>
@@ -252,7 +253,7 @@ watch(
               <AppSportsHotEventList :si="+route.params.sport" />
 
               <div v-if="showRecent" class="is-open spotlight variant-dark">
-                <div class="no-active-scale header">
+                <div class="header no-active-scale">
                   <span>{{ $t('recent_game_record') }}</span>
                   <BaseButton type="text" @click="setSRFalse()">
                     <BaseIcon name="uni-close-white" />
