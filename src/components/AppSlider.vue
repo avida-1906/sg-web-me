@@ -135,7 +135,7 @@ watchEffect(() => {
           :disabled="x <= 0" style="width: 51px;"
           @click="prevPage"
         >
-          <div class="a-inner left">
+          <div class="left a-inner">
             <BaseIcon class="left" name="uni-arrowleft-line" />
           </div>
         </BaseButton>
@@ -191,7 +191,7 @@ watchEffect(() => {
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-top: var(--tg-spacing-button-padding-vertical-xl);
+  margin-top: var(--tg-spacing-24);
 
   .header {
     display: flex;

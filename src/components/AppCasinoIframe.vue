@@ -23,7 +23,7 @@ const {
   setFalse: overlayFalse,
 } = useBoolean(false)
 const { bool: isRealMoneyMode, setBool: setRealModeBool } = useBoolean(false)
-const { bool: isTrendOpen, toggle: toggleTrendOpen } = useBoolean(false)
+// const { bool: isTrendOpen, toggle: toggleTrendOpen } = useBoolean(false)
 // 余额箭头
 const {
   bool: isCurrencyOpen1, setTrue: setCurrencyOpen1,
@@ -128,9 +128,9 @@ function onClickTheatre() {
   emit('changeTheatre', !props.isTheatre)
 }
 // 实时统计
-function onClickTrend() {
-  toggleTrendOpen()
-}
+// function onClickTrend() {
+//   toggleTrendOpen()
+// }
 // 添加收藏
 const { run: runFavInsert } = useRequest(() => ApiMemberFavInsert(id.value), {
   onSuccess() {
@@ -580,7 +580,7 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
       font-weight: var(--tg-font-weight-semibold);
       background-color: var(--tg-secondary-dark);
       border-radius: var(--tg-radius-default);
-      padding: var(--tg-spacing-4);
+      padding: 3.5px 4px;
       display: flex;
       align-items: center;
       gap: var(--tg-spacing-8);
@@ -765,7 +765,7 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
       font-weight: var(--tg-font-weight-semibold);
       background-color: var(--tg-secondary-dark);
       border-radius: var(--tg-radius-default);
-      padding: var(--tg-spacing-4);
+      padding:  var(--tg-spacing-4);
       display: flex;
       align-items: center;
       gap: var(--tg-spacing-8);
@@ -886,6 +886,8 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
 
   .icon {
     margin-right: var(--tg-spacing-10);
+    display: flex;
+    align-items: center;
   }
 
   .real {
