@@ -8,10 +8,12 @@ interface Props {
 
 const props = withDefaults(defineProps<Props>(), {})
 
-const route = useRoute()
 const { isLogin } = storeToRefs(useAppStore())
+const { sideBigActiveMenu } = storeToRefs(useMenuStore())
 
-const active = computed(() => route.fullPath === props.menuItem.path)
+const active = computed(() => sideBigActiveMenu.value
+&& props.menuItem.path && props.menuItem.path.length
+&& sideBigActiveMenu.value === props.menuItem.path)
 </script>
 
 <template>

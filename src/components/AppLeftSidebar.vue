@@ -7,6 +7,7 @@ defineProps<Props>()
 const { t } = useI18n()
 const { isMobile, isLessThanLg } = storeToRefs(useWindowStore())
 const { triggerLeftSidebar, closeLeftSidebar, navButtons } = useLeftSidebar()
+const menuStore = useMenuStore()
 const router = useRouter()
 const route = useRoute()
 
@@ -20,6 +21,7 @@ function onGameTypeChange(v: string) {
   gameType.value = v
 }
 function push(title: string) {
+  menuStore.setSideBigActiveMenu('')
   const path = title === 'casino' ? '/casino' : `/sports/${getSportsPlatId()}`
   router.push(path)
   isLessThanLg.value && closeLeftSidebar()
@@ -35,7 +37,7 @@ function push(title: string) {
           <div class="button center">
             <BaseButton
               style="--tg-base-button-font-size:16px;"
-              type="text" @click="triggerLeftSidebar"
+              type="text" @click.stop="triggerLeftSidebar"
             >
               <BaseIcon name="uni-menu" />
             </BaseButton>
@@ -44,7 +46,7 @@ function push(title: string) {
             <div
               v-for="n in navButtons" :key="n.title"
               :class="[n.title, { active: route.name?.toString().includes(n.title) }]"
-              @click="push(n.title)"
+              @click.stop="push(n.title)"
             >
               <span class="text-center">{{ t(n.title) }}</span>
             </div>

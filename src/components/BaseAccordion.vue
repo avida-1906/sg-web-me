@@ -93,7 +93,7 @@ defineExpose({ close })
       </template>
       <template v-else>
         <template v-for="item of menuInfo.list" :key="item.id">
-          <slot :menu-item="item">
+          <slot :menu-item="{ ...item, domId }">
             <div class="content-item" @click="handleClickItem(item)">
               <BaseIcon v-if="item.icon" :name="item.icon" />
               <span class="header-title">{{ item.title }}</span>
