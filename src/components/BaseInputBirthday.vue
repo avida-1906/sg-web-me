@@ -47,7 +47,7 @@ const {
   if (!value)
     return t('surveys_birthday_error')
   if (value < 1900)
-    return 'uu'
+    return t('surveys_birthday_error')
 
   return ''
 })
@@ -76,10 +76,11 @@ const {
   validate: valiDay,
 } = useField<number>('day', (value) => {
   if (!value)
-    return 'uu' // t('surveys_birthday_error')
+    return t('surveys_birthday_error')
   if (value > dayMax.value)
     return '日期不能超过31号'
-
+  dayInputRef.value.setCustomValidity('')
+  dayInputRef.value.reportValidity()
   return ''
 })
 
@@ -129,6 +130,13 @@ const msg = computed(() => {
   return errorYearMsg.value || errorMonthMsg.value || errorDayMsg.value
 })
 
+const isValid = computed(() => {
+  return isEnough.value && month.value && day.value
+  && day.value > 0 && day.value < dayMax.value
+  && year.value >= 1900 && !errorYearMsg.value && !errorMonthMsg.value
+  && !errorDayMsg.value
+})
+
 function onInput() {
   if (year.value && month.value && day.value && !msg.value)
     emit('update:modelValue', `${year.value}-${month.value > 9 ? month.value : `0${month.value}`}-${day.value > 9 ? day.value : `0${day.value}`}`)
@@ -137,13 +145,13 @@ async function valiBirthday() {
   await valiMonth()
   await valiYear()
   await valiDay()
-  if (day.value <= 0) {
+  if (+day.value <= 0) {
     dayInputRef.value.checkValidity()
     dayInputRef.value.setCustomValidity('值必须大于或等于1')
     dayInputRef.value.reportValidity()
     return
   }
-  if (year.value < 1900) {
+  if (+year.value < 1900) {
     yearInputRef.value.checkValidity()
     yearInputRef.value.setCustomValidity('值必须大于或等于1900')
     yearInputRef.value.reportValidity()
@@ -175,7 +183,7 @@ defineExpose({ valiBirthday, msg })
           :max="dayMax"
           autocomplete="on"
           placeholder="DD"
-          :class="{ error: msg && msg !== 'uu' }"
+          :class="{ error: msg }"
           @input="onInput"
         >
         <!-- 月 -->
@@ -184,7 +192,7 @@ defineExpose({ valiBirthday, msg })
             v-model="month"
             required
             :class="{
-              'error': msg && msg !== 'uu',
+              'error': msg,
               'placeholder-select': monthList.filter(m => m.value === month).length === 0,
             }"
             @input="onInput"
@@ -212,7 +220,7 @@ defineExpose({ valiBirthday, msg })
         >
       </div>
     </div>
-    <div v-show="msg && msg !== 'uu'" class="msg">
+    <div v-show="msg" class="msg">
       <!-- <BaseIcon class="error-icon" name="uni-warning" /> -->
       <BaseIcon class="error-icon" name="uni-warning-color" />
       <span>{{ msg }}</span>

@@ -173,7 +173,7 @@ onMounted(() => {
     position: absolute;
     top: 0;
     inset-inline-end: 0;
-    transform: translate(50%, -50%);
+    transform: translate(65%, -50%);
     transform-origin: 100% 0%;
     overflow: hidden;
     padding: 0 var(--tg-badge-padding-x);

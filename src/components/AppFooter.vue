@@ -30,10 +30,10 @@ const supportCurrency = [
   '/png/footer/18plus.png',
 ]
 const partner = [
-  { url: '/png/footer/verified.png', ratio: '120/59.63', with: '120px' },
-  { url: '/png/footer/official.png', ratio: '146.44/60', with: '146.44px' },
-  { url: '/png/footer/main.png', ratio: '82.81/60', with: '82.81px' },
-  { url: '/png/footer/ufc.png', ratio: '151/60', with: '151px' },
+  { url: '/png/footer/verified.png', with: '120px' },
+  { url: '/png/footer/official.png', with: '146.45px' },
+  { url: '/png/footer/main.png', with: '82.82px' },
+  { url: '/png/footer/ufc.png', with: '151.5px' },
 ]
 
 const rate = computed(() => {
@@ -146,25 +146,21 @@ function pathTo(tmp: { path?: string; title: string; icon?: boolean }) {
     </div>
     <BaseDivider />
     <div class="footer-support">
-      <BaseAspectRatio
+      <BaseImage
         v-for="url, index of supportCurrency"
         :key="index"
-        ratio="116/35"
         width="133.33px"
-      >
-        <BaseImage :url="url" />
-      </BaseAspectRatio>
+        :url="url"
+      />
     </div>
     <BaseDivider />
     <div class="footer-sponsor" :class="{ 'only-one': appContentWidth < 344 }">
-      <BaseAspectRatio
+      <BaseImage
         v-for="item, index of partner"
         :key="index"
-        :ratio="item.ratio"
         :width="item.with"
-      >
-        <BaseImage :url="item.url" />
-      </BaseAspectRatio>
+        :url="item.url"
+      />
     </div>
     <BaseDivider />
     <div class="footer-copyright">
@@ -266,11 +262,11 @@ function pathTo(tmp: { path?: string; title: string; icon?: boolean }) {
   }
   .footer-sponsor{
     width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
-    gap:3.575rem;
+    margin: 0 auto;
+    display: grid;
+    grid-gap: 26px 24px;
+    grid-template-columns: repeat(auto-fit,minmax(160px,1fr));
+    justify-items: center;
   }
   .only-one{
     flex-direction: column;

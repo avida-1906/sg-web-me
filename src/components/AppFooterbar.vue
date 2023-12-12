@@ -238,7 +238,7 @@ watch(() => route.path, () => {
 
 <style lang="scss" scoped>
 .app-footer-bar {
-  --tg-badge-font-size:var(--tg-font-size-xs);
+  --tg-badge-font-size: 10px;
   --tg-badge-min-width: 16px;
   --tg-badge-height: 16px;
   --tg-badge-border-radius:50%;

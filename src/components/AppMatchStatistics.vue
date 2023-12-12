@@ -179,7 +179,7 @@ function mapHeadArea(
 
       <!-- matchScore -->
       <div class="heading center sticky-right" style="grid-area: matchScore_title;">
-        <AppImage :url="data.spic" is-network width="20px" height="20px" />
+        <AppImage :url="data.spic" is-network width="16px" height="16px" />
       </div>
       <div
         class="fill-frame sticky-right completed match-score border"
@@ -235,7 +235,7 @@ function mapHeadArea(
     --tg-icon-color: var(--tg-text-white);
 
     .app-svg-icon {
-      font-size: var(--tg-font-size-lg);
+      font-size: var(--tg-font-size-base);
     }
 
     display: grid;
