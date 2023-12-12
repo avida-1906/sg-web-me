@@ -1,4 +1,15 @@
 <script lang="ts" setup>
+const { appContentWidth } = storeToRefs(useWindowStore())
+
+const gridAutoColumns = computed(() => {
+  if (appContentWidth.value < 600)
+    return 'calc(95.24% - 0.6875rem)'
+
+  else if (appContentWidth.value > 600 && appContentWidth.value < 1020)
+    return 'calc(48.78% - 0.6875rem)'
+  else
+    return 'calc(33.33% - 0.6875rem)'
+})
 </script>
 
 <template>
@@ -6,46 +17,38 @@
     <div class="grid-heroes">
       <div
         class="scroll-x hero-content hide-scrollbar"
-        style="grid-auto-columns: calc(95.24% - 0.6875rem);"
+        :style="{
+          'grid-auto-columns': gridAutoColumns,
+        }"
       >
-        <div class="svelte-4wrc96 hero">
+        <div class="hero">
           123
         </div>
-        <div class="hero svelte-4wrc96">
+        <div class="hero">
           123
         </div>
-        <div class="hero svelte-4wrc96">
+        <div class="hero">
           123
         </div>
-        <div class="hero svelte-4wrc96">
+        <div class="hero">
           123
         </div>
-        <div class="hero svelte-4wrc96">
+        <div class="hero">
           123
         </div>
-        <div class="hero svelte-4wrc96">
+        <div class="hero">
           123
         </div>
-        <!-- <div class="arrow arrow-left" style="">
+        <div class="arrow arrow-left" style="">
           <button class="grid-heroes-button" data-testid="heroes-scroll-left">
-            <svg fill="currentColor" viewBox="0 0 64 64" class="svg-icon" style="">
-              <title />
-              <path d="
-                M36.998 53.995
-                16 32.998 36.998 12l6.306 6.306L28.61
-                 33l14.694 14.694L36.998 54v-.005Z" />
-            </svg>
+            <BaseIcon name="uni-arrow-left" />
           </button>
         </div>
         <div class="arrow arrow-right" style="">
           <button class="grid-heroes-button" data-testid="heroes-scroll-right">
-            <svg fill="currentColor" viewBox="0 0 64 64" class="svg-icon" style="">
-              <title />
-              <path d="m26.307 53.995 20.998-20.997L26.307
-               12 20 18.306 34.694 33 20.001 47.694 26.307 54v-.005Z" />
-            </svg>
+            <BaseIcon name="uni-arrow-right" />
           </button>
-        </div> -->
+        </div>
       </div>
     </div>
   </div>
@@ -55,13 +58,13 @@
 .hero-wrapper {
   container-type: inline-size;
   container-name: grid-size;
+  --sick-fade-stamp-of-ed-approval: linear-gradient( 90deg, transparent 0, #1a2c38 4px, #1a2c38 calc(100% - 4px), transparent 100% );
+  --standard-lockup-shadow-offset: 6px;
 }
 .grid-heroes {
   width: 100%;
   display: flex;
   position: relative;
-  --sick-fade-stamp-of-ed-approval: linear-gradient( 90deg, transparent 0, var(--grey-600) 4px, var(--grey-600) calc(100% - 4px), transparent 100% );
-  --standard-lockup-shadow-offset: 6px;
 }
 .hero-content {
   display: grid;
@@ -87,5 +90,47 @@
   color: #ffffff;
   background: #213743;
   border-radius: 8px;
+  height: 224px;
+}
+
+.arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  height: 100%;
+  top: 0;
+  /* opacity: 0; */
+  transition: opacity .2s;
+}
+
+.arrow-right {
+  left: calc(100% - 8px);
+}
+
+.arrow-left {
+  right: calc(100% - 8px);
+}
+
+@container grid-size (width < 50rem) {
+    .grid-heroes:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: calc(16px*-1);
+      bottom: 0;
+      width: 28px;
+      background-image: var(--sick-fade-stamp-of-ed-approval);
+      z-index: 10
+    }
+
+    .hero-content {
+      -moz-column-gap: 8px;
+      column-gap: 8px
+    }
+
+    .hero-content > .hero:last-of-type {
+      margin-right: 4px
+    }
 }
 </style>
