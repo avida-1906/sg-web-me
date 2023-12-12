@@ -33,7 +33,7 @@ watch(route, (r) => {
     params.value.si = r.params.sport ? +r.params.sport : 0
     competitionListData.value = undefined
     run(params.value)
-    // startTimer()
+    startTimer()
   }
 })
 

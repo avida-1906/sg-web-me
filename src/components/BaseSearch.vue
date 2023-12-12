@@ -135,7 +135,7 @@ defineExpose({ manualFocus })
     border: none;
     outline: none;
     background-color: transparent;
-    padding: var(--tg-spacing-input-padding-vertical) var(--tg-spacing-input-padding-horizontal);
+    padding: var(--tg-spacing-input-padding-vertical) ;
     font-size: var(--tg-font-size-default);
     line-height: 1;
     // color: var(--tg-text-white);

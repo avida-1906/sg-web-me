@@ -370,6 +370,8 @@ export interface ISportEventInfo {
   rbtd: string
   /** 赛事进行时间 分:秒 */
   rbtt: string
+  /** 背景图 */
+  sbgpic: string
 }
 
 /** 冠军盘口数据 */
@@ -438,6 +440,17 @@ export type IBetInfoDl = 3 | 4 | 5 | 6
  * 3:不支援的币种
  */
 export type IBetInfoStatus = 1 | 2 | 3
+/** 盘口状态
+ *
+ * 0:关盘
+ *
+ * 1:开盘
+ *
+ * 2:不支援串关
+ *
+ * 3: 赔率<1.1，不支援串关
+*/
+export type TOS = 0 | 1 | 2 | 3
 /**
  * 投注信息详情
  */
@@ -448,8 +461,7 @@ export interface IBetInfoBack {
     wid: string
     /** 赔率 */
     ov: string
-    /** 盘口状态 0:关盘 1:开盘 2:不支援串关 */
-    os: 0 | 1 | 2
+    os: TOS
     /**
      * 1:早盘
      *
@@ -658,3 +670,15 @@ export interface IBrandDetailPc {
   }
 }
 export interface IBrandDetailArea {}
+
+export interface ISportsInfo {
+  /** 资料更新时间 */
+  delta: number
+  list: ISportEventInfo[]
+  /**
+   * 1:成功
+   *
+   * 3:赛事已结束
+   */
+  status: 1 | 3
+}

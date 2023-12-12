@@ -547,6 +547,14 @@ export class SportsCart {
   }
 
   /**
+   * os === 3 就代表赔率小于1.1了
+   * 赔率小于1.10的投注项不能组合为复式投注
+   */
+  get getOddsLessThanOnePointOneWidList() {
+    return this.dataList.filter(a => a.os === 3).map(a => a.wid)
+  }
+
+  /**
    * 获取 是否存在 ic != 1 的盘口
    * @return ic 列表
    */

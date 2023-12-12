@@ -63,14 +63,17 @@ watch(() => props.odds, (newOdds) => {
     font-size: var(--tg-spacing-9);
     display: flex;
     align-items: center;
+    justify-content: center;
   }
 
   &.left {
     grid-template-areas: 'arrow odds';
+    justify-content: flex-end;
   }
 
   &.right {
     grid-template-areas: 'odds arrow';
+    justify-content: flex-start;
   }
 }
 </style>

@@ -53,7 +53,6 @@ function onBaseTypeChange(v: string) {
       :options="baseOptions"
       popper
       style="
-        --tg-base-select-popper-style-padding-y: var(--tg-spacing-13);
         --tg-base-select-hover-bg-color:var(--tg-secondary-grey);
          "
       @select="onBaseTypeChange"
