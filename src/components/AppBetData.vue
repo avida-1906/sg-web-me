@@ -22,9 +22,8 @@ const { t } = useI18n()
 const { isLogin } = storeToRefs(useAppStore())
 const { isLessThanLg, isGreaterThanSm } = storeToRefs(useWindowStore())
 const { bool: color, setBool: setColor } = useBoolean(false)
-const timer: Ref< NodeJS.Timeout | null> = ref(null)
-// loading加载
-// const { bool: loading, setFalse: setLoadingFalse } = useBoolean(true)
+const timer: Ref<NodeJS.Timeout | null> = ref(null)
+const { isMobile } = storeToRefs(useWindowStore())
 // 是否开启隐身模式
 const {
   bool: isHidden,
@@ -373,7 +372,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="app-bet-data">
+  <div class="app-bet-data" :class="[isMobile ? 'h5-mobile' : '']">
     <div class="bet-data-head">
       <BaseTab v-show="showTab" v-model="activeTab" :list="getTabOptions" size="large" />
       <div v-if="isGreaterThanSm && mode !== 'home'" class="select-ranking center">
@@ -409,6 +408,7 @@ onUnmounted(() => {
       :data-source="getList"
       :style="getBgColor"
       :loading="loading"
+      last-first-padding
     >
       <template #gameName="{ record }">
         <div
@@ -429,7 +429,9 @@ onUnmounted(() => {
           <VTooltip placement="top" :triggers="['click', 'hover']">
             <div class="center stealth-box">
               <BaseIcon name="uni-hidden" />
-              <span style="padding-left: 5px;">{{ t('hidden_user') }}</span>
+              <span style="padding-left: 5px;" class="semibold">
+                {{ t('hidden_user') }}
+              </span>
             </div>
             <template #popper>
               <div class="tiny-menu-item-title">
@@ -549,5 +551,16 @@ onUnmounted(() => {
       transform: scale(0.98);
     }
   }
+}
+.h5-mobile{
+  --tg-table-th-padding: var(--tg-spacing-16) var(--tg-spacing-8);
+  --tg-table-td-padding: var(--tg-spacing-16) var(--tg-spacing-8);
+  --tg-table-tr-last-first-padding: var(--tg-spacing-16);
+  // th:last-child {
+  //   padding-right: var(--tg-spacing-16) !important;
+  // }
+  // th:first-child {
+  //   padding-left: var(--tg-spacing-16) !important;
+  // }
 }
 </style>

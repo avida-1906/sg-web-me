@@ -3,6 +3,7 @@ interface Props {
   columns: Column[] // 表格列的配置项
   dataSource?: any[] // 表格数据数组
   loading?: boolean // 是否显示骨架屏
+  lastFirstPadding?: boolean // 是否单独设置每行第一个和最后一个左右padding
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -42,8 +43,10 @@ watch(() => props.columns, () => {
 </script>
 
 <template>
-  <div class="scroll-x scrollable m-table-wrap">
-    <table class="m-table">
+  <div
+    class="scroll-x scrollable m-table-wrap"
+  >
+    <table class="m-table" :class="[lastFirstPadding ? 'last-first-padding' : '']">
       <thead>
         <tr class="m-tr">
           <th
@@ -165,6 +168,7 @@ watch(() => props.columns, () => {
   --tg-table-td-padding: var(--tg-spacing-16);
   --tg-table-th-font-weight: var(--tg-font-weight-semibold);
   --tg-table-margin-top-empty: 24px;
+  --tg-table-tr-last-first-padding: '';
 }
 </style>
 
@@ -181,7 +185,7 @@ watch(() => props.columns, () => {
     border-spacing: 0;
     margin: 0;
     .m-th {
-      padding: var(--tg-table-th-padding); // 12px 20px;
+      padding: var(--tg-table-th-padding);
       color: var(--tg-table-th-color);
       font-weight: var(--tg-table-th-font-weight);
       text-align: left;
@@ -241,6 +245,7 @@ watch(() => props.columns, () => {
         // text-overflow: ellipsis;
         vertical-align: middle;
       }
+
     }
     th:last-child,td:last-child{
       border-top-right-radius: var(--tg-radius-default);
@@ -249,6 +254,16 @@ watch(() => props.columns, () => {
     th:first-child,td:first-child{
       border-top-left-radius: var(--tg-radius-default);
       border-bottom-left-radius: var(--tg-radius-default);
+    }
+  }
+  .last-first-padding{
+    .m-tr {
+      th:last-child,td:last-child{
+        padding-right: var(--tg-table-tr-last-first-padding);
+      }
+      th:first-child,td:first-child{
+        padding-left: var(--tg-table-tr-last-first-padding);
+      }
     }
   }
 }

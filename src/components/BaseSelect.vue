@@ -192,7 +192,7 @@ function onPopperOpen() {
   font-size: var(--tg-base-select-style-font-size);
   color: var(--tg-base-select-popper-label-color);
   background-color: var(--tg-secondary-dark);
-  border-radius: var(--tg-radius-sm);
+  border-radius: var(--tg-radius-default);
   transition: all ease .25s;
   cursor: pointer;
   display: flex;
