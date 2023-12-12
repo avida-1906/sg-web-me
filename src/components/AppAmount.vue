@@ -20,6 +20,7 @@ const props = defineProps<Props>()
 :root{
   --tg-app-amount-width: auto;
   --tg-app-amount-max-width: 14ch;
+  --tg-app-amount-font-weight:var(--tg-font-weight-semibold);
 }
 </style>
 
@@ -41,6 +42,6 @@ const props = defineProps<Props>()
   margin-right: var(--tg-spacing-4);
   max-width: var(--tg-app-amount-max-width);
   font-size: var(--tg-font-size-default);
-  font-weight: var(--tg-font-weight-semibold);
+  font-weight: var(--tg-app-amount-font-weight);
 }
 </style>

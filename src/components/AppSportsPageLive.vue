@@ -161,8 +161,10 @@ function initData() {
         })
         clearInterval(t)
       }
-      if (a > 300)
+      if (a > 300) {
+        resolve(true)
         clearInterval(t)
+      }
     }, 50)
   })
 }

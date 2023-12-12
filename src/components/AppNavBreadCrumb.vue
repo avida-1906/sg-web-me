@@ -8,6 +8,7 @@ interface Props {
 const props = defineProps<Props>()
 
 const router = useRouter()
+const { isMobile } = storeToRefs(useWindowStore())
 
 const _data = ref([...props.breadcrumb])
 
@@ -16,7 +17,7 @@ function goPath(
 ) {
   if (disabled)
     return
-  _data.value.pop()
+  // _data.value.pop()
   const p = _data.value[_data.value.length - 1]
   const _d = d ?? p
   if (_d && _d.path)
@@ -50,10 +51,10 @@ watch(() => props.breadcrumb, (val) => {
         <a
           class="link"
           :class="{
-            disabled: idx === _data.length - 1,
+            disabled: idx === _data.length - 1 && !isMobile,
             active: idx === _data.length - 1,
           }"
-          @click="goPath({ d, disabled: idx === _data.length - 1 })"
+          @click="goPath({ d, disabled: idx === _data.length - 1 && !isMobile })"
         >
           <span>{{ d.title }}</span>
         </a>
@@ -113,6 +114,9 @@ watch(() => props.breadcrumb, (val) => {
       &.active {
         color: var(--tg-text-white);
         background: 0;
+      }
+      &:active{
+        transform: scale(0.96);
       }
     }
     .slash {

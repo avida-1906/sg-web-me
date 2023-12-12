@@ -13,11 +13,13 @@ interface Column {
 interface Props {
   name: string
   platName: string
+  pid: string
 }
 defineProps<Props>()
 
 const { companyData } = storeToRefs(useAppStore())
 const { t } = useI18n()
+const { push } = useLocalRouter()
 const { bool: showContent, toggle: toggleShowContent } = useBoolean(true)
 const { bool: loading, setFalse: setLoadingFalse } = useBoolean(true)
 const {
@@ -130,7 +132,13 @@ onMounted(() => {
   <div class="app-desc home-container margin-auto">
     <div class="desc-title">
       <div class="title-left">
-        {{ name }} <span class="l-start-gm"><a href="#">{{ platName }}</a></span>
+        <span class="game-name">{{ name }}</span>
+        <span
+          class="plat-name"
+          @click="push(`/casino/group/provider?pid=${pid}&name=${platName}`)"
+        >
+          {{ platName }}
+        </span>
       </div>
       <div class="title-right">
         <div v-if="!isXs" class="r-status">
@@ -247,6 +255,7 @@ onMounted(() => {
               <AppAmount
                 :amount="record.bet"
                 :currency-type="record.currencyType"
+                style="--tg-app-amount-font-weight:var(--tg-font-weight-normal);"
               />
             </div>
           </template>
@@ -255,6 +264,7 @@ onMounted(() => {
               <AppAmount
                 :amount="record.payAmount"
                 :currency-type="record.currencyType"
+                style="--tg-app-amount-font-weight:var(--tg-font-weight-normal);"
               />
             </div>
           </template>
@@ -283,8 +293,24 @@ onMounted(() => {
     height: 32.5px;
 
     .title-left {
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      gap: var(--tg-spacing-8);
+      .game-name{
+        max-width: 100%;
+    display: inline;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+      }
 
-      .l-start-gm {
+      .plat-name {
+        max-width: 100%;
+    display: inline;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
         color: var(--tg-text-lightgrey);
 
         &:hover {
@@ -315,8 +341,9 @@ onMounted(() => {
       }
 
       .r-arrow {
-        width: 17.5px;
-        height: 17.5px;
+        // width: 17.5px;
+        // height: 17.5px;
+        padding: 8px;
         display: flex;
         align-items: center;
         justify-content: center;

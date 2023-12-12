@@ -37,7 +37,7 @@ onBeforeRouteLeave(() => {
     />
   </div>
   <section class="page-content">
-    <AppDesc :name="name" :plat-name="pn" />
+    <AppDesc :name="name" :plat-name="pn" :pid="pid" />
     <div class="margin-auto home-container">
       <div class="content-wrapper">
         <AppSlider

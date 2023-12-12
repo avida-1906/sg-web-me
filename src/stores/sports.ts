@@ -60,6 +60,9 @@ export const useSportsStore = defineStore('sports', () => {
         else if (!liveArr.find(a => a.si === currentLiveNav.value))
           currentLiveNav.value = liveArr[0].si
       }
+      else {
+        currentLiveNav.value = 1
+      }
     },
   })
 

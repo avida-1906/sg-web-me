@@ -14,7 +14,7 @@ interface Props {
 const props = defineProps<Props>()
 
 const { t } = useI18n()
-const router = useRouter()
+const { push } = useLocalRouter()
 const { isMobile } = storeToRefs(useWindowStore())
 const { allPlatformList } = storeToRefs(useCasinoStore())
 const closeSearch = inject('closeSearch', () => { })
@@ -33,7 +33,7 @@ function gameStart(item: Props['gameInfo']) {
   if (isMaintained.value)
     return
 
-  router.push(`/casino/games?id=${item.id}&name=${item.name}&pn=${gameProviderName.value}`)
+  push(`/casino/games?id=${item.id}&name=${item.name}&pn=${gameProviderName.value}&pid=${item.platform_id}`)
   if (isMobile.value)
     closeSearchH5()
 
