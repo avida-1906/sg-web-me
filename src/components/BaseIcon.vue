@@ -16,10 +16,16 @@ const symbolId = computed(() => `#${props.prefix}-${props.name}`)
   </svg>
 </template>
 
+<style>
+:root {
+  --tg-base-icon-color:var(--tg-icon-color);
+}
+</style>
+
 <style scoped>
 .app-svg-icon {
   display: inline-block;
-  color: var(--tg-icon-color);
+  color: var(--tg-base-icon-color);
   width: 1em;
   height: 1em;
   pointer-events: none;
