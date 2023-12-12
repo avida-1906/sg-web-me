@@ -40,8 +40,10 @@ function onBaseTypeChange(v: EnumSportMarketType) {
 }
 
 watch(route, (r) => {
-  if (r.name === 'sports-platId-sport')
+  if (r.name === 'sports-platId-sport') {
+    isFirstFalse()
     curTab.value = r.query.tab ? `${route.query.tab}` : '1'
+  }
 })
 
 usePageTitle({ prefix: sportName })
