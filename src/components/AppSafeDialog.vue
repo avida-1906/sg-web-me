@@ -158,7 +158,6 @@ watch(() => activeTab.value, () => {
       <BaseTab v-model="activeTab" :list="tabOptions" />
       <div class="center">
         <div class="flex-col-start">
-          <span>{{ t('currency') }}</span>
           <AppSelectCurrency
             :type="isDeposit ? 1 : 2"
             popper-clazz="app-safe-cur"
