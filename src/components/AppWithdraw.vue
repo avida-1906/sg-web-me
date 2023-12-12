@@ -135,6 +135,11 @@ function reset() {
   amountReset()
   setAmount(application.sliceOrPad(0, application.isVirtualCurrency(props.activeCurrency.type) ? 8 : 2), false)
 }
+function handleBlur() {
+  const decimalPart = amount.value.match(/\.(\d+)/)
+  if (decimalPart && decimalPart[1].length > 8)
+    setAmount(`${Number.parseInt(amount.value)}.${decimalPart[1].slice(0, 8)}`)
+}
 
 watch(() => props.currentNetwork, () => {
   if (props.currentNetwork) {
@@ -168,7 +173,7 @@ await application.allSettled(
             v-model="address"
             :options="addrOptions"
             :msg="addressMsg"
-            small theme popper border
+            theme popper small border
             popper-clazz="app-with"
             style="--tg-base-select-popper-style-padding-y: var(--tg-spacing-12)"
             @focus="addressMsg && resetAddress()"
@@ -207,6 +212,7 @@ await application.allSettled(
             v-model="amount"
             type="number"
             :msg="amountMsg"
+            @blur="handleBlur"
             @on-right-button="maxNumber"
           >
             <!-- <template #right-icon>
