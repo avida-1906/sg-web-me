@@ -1,4 +1,5 @@
 <script setup lang='ts'>
+/* eslint-disable max-len */
 import type { CurrencyData } from '~/composables/useCurrencyData'
 
 interface Props {
@@ -134,6 +135,11 @@ function reset() {
   amountReset()
   setAmount(application.sliceOrPad(0, application.isVirtualCurrency(props.activeCurrency.type) ? 8 : 2), false)
 }
+function handleBlur() {
+  const decimalPart = amount.value.match(/\.(\d+)/)
+  if (decimalPart && decimalPart[1].length > 8)
+    setAmount(`${Number.parseInt(amount.value)}.${decimalPart[1].slice(0, 8)}`)
+}
 
 watch(() => props.currentNetwork, () => {
   if (props.currentNetwork) {
@@ -167,7 +173,8 @@ await application.allSettled(
             v-model="address"
             :options="addrOptions"
             :msg="addressMsg"
-            small popper theme border
+            theme popper small border
+            popper-clazz="app-with"
             style="--tg-base-select-popper-style-padding-y: var(--tg-spacing-12)"
             @focus="addressMsg && resetAddress()"
           >
@@ -205,6 +212,7 @@ await application.allSettled(
             v-model="amount"
             type="number"
             :msg="amountMsg"
+            @blur="handleBlur"
             @on-right-button="maxNumber"
           >
             <!-- <template #right-icon>
@@ -247,6 +255,15 @@ await application.allSettled(
     </template>
   </div>
 </template>
+
+<style>
+.app-with.v-popper--theme-tg-popper-outer.v-popper--theme-dropdown .v-popper__arrow-inner,
+.app-with.v-popper--theme-tg-popper-outer.v-popper--theme-dropdown .v-popper__arrow-outer,
+.app-with.v-popper--theme-tg-popper-outer-deep.v-popper--theme-dropdown .v-popper__arrow-inner,
+.app-with.v-popper--theme-tg-popper-outer-deep.v-popper--theme-dropdown .v-popper__arrow-outer {
+  border-color: var(--tg-secondary-main);
+}
+</style>
 
 <style lang='scss' scoped>
 .app-withdraw {

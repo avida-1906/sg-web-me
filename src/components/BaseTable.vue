@@ -168,7 +168,7 @@ watch(() => props.columns, () => {
   --tg-table-td-padding: var(--tg-spacing-16);
   --tg-table-th-font-weight: var(--tg-font-weight-semibold);
   --tg-table-margin-top-empty: 24px;
-  --tg-table-tr-last-first-padding: '';
+  --tg-table-tr-last-first-padding: var(--tg-spacing-16);
 }
 </style>
 

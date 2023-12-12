@@ -92,6 +92,7 @@ onMounted(() => {
       @apply-show="clearSearchValue"
     >
       <div class="wallet-box">
+        <span>货币</span>
         <BaseButton class="wallet wallet-only" type="text" size="md">
           <AppAmount
             v-if="showBalance"
@@ -150,20 +151,21 @@ onMounted(() => {
         </div>
       </template>
     </VDropdown>
-    <BaseSelect
-      v-if="network && curContractList?.length > 1"
-      v-model="currentNetwork"
-      :options="curContractList"
-      popper
-      popper-clazz="select-currency"
-    />
+    <div v-if="network && curContractList?.length > 1" class="wallet-box">
+      <span>网络</span>
+      <BaseSelect
+        v-model="currentNetwork"
+        :options="curContractList"
+        popper
+        popper-clazz="select-currency"
+      />
+    </div>
   </div>
 </template>
 
 <style>
 :root {
   --tg-app-select-currency-poptop-width: max-content;
-
 }
 .select-currency{
   --tg-base-select-popper-active-color: none;
@@ -174,7 +176,9 @@ onMounted(() => {
 .app-wallet {
     .wallet-box {
         display: flex;
+        gap: var(--tg-spacing-4);
         justify-content: center;
+        flex-direction: column;
     }
 
     .wallet {
