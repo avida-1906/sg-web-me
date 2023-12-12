@@ -486,6 +486,7 @@ onMounted(() => {
     span {
       font-size: var(--tg-font-size-default);
       margin-left: var(--tg-spacing-4);
+      font-weight: var(--tg-font-weight-semibold);
     }
   }
   .player{
