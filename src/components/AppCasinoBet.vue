@@ -48,8 +48,10 @@ watch(() => isMobile.value, (newValue) => {
     <div class="notice-head">
       <BaseSelect
         v-model="headSelectValue"
-        style="--tg-base-select-hover-bg-color:var(--tg-secondary-dark);
-          --tg-base-select-popper-style-padding-x:0;"
+        :distance="10"
+        style="--tg-base-select-hover-bg-color:var(--tg-secondary-grey);
+          --tg-base-select-popper-style-padding-x: var(--tg-spacing-16);
+          --tg-base-select-popper-style-padding-y: var(--tg-spacing-13);"
         :options="headSelectData" no-hover popper
         popper-clazz="casino-bet-pop"
       >
@@ -61,7 +63,7 @@ watch(() => isMobile.value, (newValue) => {
         </template>
       </BaseSelect>
       <VTooltip placement="bottom">
-        <div class="item hoverable">
+        <div class="item bet-close hoverable">
           <BaseButton type="text" @click="closeRightSidebar">
             <BaseIcon name="uni-close" />
           </BaseButton>
@@ -85,6 +87,7 @@ watch(() => isMobile.value, (newValue) => {
 <style>
 .casino-bet-pop {
   --tg-base-select-popper-option-active-color: var(--tg-popper-color-default);
+  --tg-base-select-popper-active-color: var(--tg-popper-color-default);
 }
 </style>
 
@@ -105,8 +108,8 @@ watch(() => isMobile.value, (newValue) => {
       box-shadow: var(--tg-header-shadow);
       flex-shrink: 0;
       touch-action: none;
-      padding-right: var(--tg-scrollbar-size);
-      padding-left: var(--tg-spacing-16);
+      padding-right: var(--tg-spacing-10);
+      // padding-left: var(--tg-spacing-16);
       .hoverable {
         padding: var(--tg-spacing-1) var(--tg-spacing-4);
         border-radius: 50%;
