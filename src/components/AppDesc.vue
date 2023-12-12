@@ -96,8 +96,8 @@ onMounted(() => {
     tableData.value = [
       {
         rank: 'uni-rank1',
-        player: 'zhangsan',
-        date: '2023年10月01日',
+        player: 'Guanyu',
+        date: '2022年7月1日',
         bet: '0.00000000',
         multiple: '66,666x',
         payAmount: '257.00000000',
@@ -106,8 +106,8 @@ onMounted(() => {
       },
       {
         rank: 'uni-rank2',
-        player: 'lisi',
-        date: '2023年10月01日',
+        player: 'KenjaRay10',
+        date: '2022年3月30日',
         bet: '0.00000000',
         multiple: '66,666x',
         payAmount: '257.00000000',
@@ -115,8 +115,8 @@ onMounted(() => {
       },
       {
         rank: 'uni-rank3',
-        player: 'wangwu',
-        date: '2023年10月01日',
+        player: 'Emiixes',
+        date: '2022年2月30日',
         bet: '0.00000000',
         multiple: '66,666x',
         payAmount: '257.00000000',
