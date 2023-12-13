@@ -18,6 +18,7 @@ import type {
   ISportListToCartData,
 } from '~/types'
 import { getCurrentLanguageForBackend } from '~/modules/i18n'
+import { EnumsBetSlipBetSlipTabStatus } from '~/utils/enums'
 
 /**
  * 体育ID
@@ -428,6 +429,12 @@ export class SportsCart {
   /** 输入金额是否支持小数点后五位 */
   isFiveDecimal = false
 
+  /**
+   * 默认选中的选项
+   * @type {EnumsBetSlipBetSlipTabStatus}
+  */
+  defaultBetSlipBetSlipTabStatus = EnumsBetSlipBetSlipTabStatus.single
+
   /** 金额是否存在超过两位小数的情况 */
   get isExistMoreThanTwoDecimal() {
     return this.dataList.some((item) => {
@@ -812,6 +819,14 @@ export class SportsCart {
     return this.dataList.filter(a => widList.includes(a.wid)).reduce((a, b) => {
       return Number(add(a, Number(b.amount)))
     }, 0)
+  }
+
+  /**
+   * 设置 defaultBetSlipBetSlipTabStatus
+   * @param {EnumsBetSlipBetSlipTabStatus} status
+   */
+  setDefaultBetSlipBetSlipTabStatus(status: EnumsBetSlipBetSlipTabStatus) {
+    this.defaultBetSlipBetSlipTabStatus = status
   }
 }
 
