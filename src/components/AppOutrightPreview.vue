@@ -17,6 +17,10 @@ const { width } = storeToRefs(useWindowStore())
 
 const isH5Layout = computed(() => width.value < 575)
 
+// props.data.list.forEach((a) => {
+//   console.log('123', timeToSportsDateFormat(a.ed))
+// })
+
 // 联赛跳转
 function onBreadcrumbsClick({ list, index }:
 { list: ISportsBreadcrumbs[]; index: number },
@@ -40,33 +44,38 @@ function goOutrightsPage(item: ISportOutrightsInfo) {
         <BaseBadge :count="data.list.length" :max="99999" />
       </div>
     </template>
-    <div v-for="item, i in data.list" :key="item.ei" class="fixture-wrapper">
-      <div v-if="i > 0" class="line" />
-      <div
-        class="outright-preview"
-      >
-        <span class="name">
-          <a class="link">
-            {{ item.oen }}
-          </a>
-        </span>
-        <div class="breadcrumb">
-          <BaseBreadcrumbs
-            :list="sportsDataBreadcrumbs(item)" :only-last="isH5Layout"
-            @item-click="onBreadcrumbsClick"
-          />
+    <div class="wrapper">
+      <div v-for="item, i in data.list" :key="item.ei" class="fixture-wrapper">
+        <div v-if="i > 0" class="line" />
+        <div
+          class="outright-preview"
+        >
+          <span class="name">
+            <a class="link">
+              {{ item.oen }}
+            </a>
+          </span>
+          <div class="breadcrumb">
+            <BaseBreadcrumbs
+              :list="sportsDataBreadcrumbs(item)" :only-last="isH5Layout"
+              @item-click="onBreadcrumbsClick"
+            />
+          </div>
+          <span class="market-count">
+            <BaseButton type="text" size="none" @click="goOutrightsPage(item)">
+              +{{ item.ml[0].ms.length }}
+            </BaseButton>
+          </span>
         </div>
-        <span class="market-count">
-          <BaseButton type="text" size="none" @click="goOutrightsPage(item)">
-            +{{ item.ml[0].ms.length }}
-          </BaseButton>
-        </span>
       </div>
     </div>
   </BaseSecondaryAccordion>
 </template>
 
 <style lang="scss" scoped>
+.wrapper{
+  padding-bottom: var(--tg-spacing-8);
+}
 .line{
   width: 100%;
   height: 1px;
@@ -75,7 +84,7 @@ function goOutrightsPage(item: ISportOutrightsInfo) {
 .outright-preview {
   display: grid;
   grid-column-gap: var(--tg-spacing-8);
-  padding: var(--tg-spacing-14) var(--tg-spacing-20);
+  padding: var(--tg-spacing-8) var(--tg-spacing-20);
   grid-template-areas:
       "name marketCount"
       "breadcrumb marketCount";
