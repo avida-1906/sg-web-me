@@ -294,11 +294,12 @@ function mapHeadArea(
     .match-score {
       font-weight: 700;
       background: var(--tg-secondary-main);
-      color: var(--tg-text-white);
+      // color: var(--tg-text-white);
+      color: var(--tg-text-warn-sub);
     }
 
     .match-score.completed {
-      background: var(--tg-text-lightblue);
+      // background: var(--tg-text-lightblue);
     }
   }
 }
