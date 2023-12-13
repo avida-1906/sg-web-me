@@ -26,7 +26,6 @@ const numStr = computed(() => {
 
 <template>
   <div class="app-sport-bet-success-notify">
-    <!-- {{ betSlipTabValue ? `${betSlipTabValue}：` : '' }} -->
     {{ t('bet_tip_amount_tip') }}
     <AppAmount
       class="amount"
@@ -46,6 +45,7 @@ const numStr = computed(() => {
   word-break: break-all;
   padding-top: var(--tg-spacing-4);
   line-height: 1.3;
+  color: var(--tg-text-lightgrey);
 }
 .amount {
   margin: 0 5px;

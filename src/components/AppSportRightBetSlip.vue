@@ -417,6 +417,15 @@ async function runGetSportPlaceBetInfoHandle() {
   })
 }
 
+function slipTabChange() {
+  sportStore.cart.setDefaultBetSlipBetSlipTabStatus(betOrderSelectValue.value)
+  if (sportStore.cart.isShowReuse) {
+    sportStore.cart.removeAll()
+    return
+  }
+  runGetSportPlaceBetInfoHandle()
+}
+
 function startSetInterval() {
   console.log('开始购物车轮训')
   timer = setInterval(() => {
@@ -562,7 +571,7 @@ function firstInputFocus() {
     chatScrollContent.value?.querySelector('input')?.focus()
 }
 
-function initBetOrderSelectValue() {
+function initBetOrderFilterValue() {
   const v = Local.get<EnumOddsChange>(STORAGE_SPORTS_BET_ORDER)?.value
   if (v)
     betOrderFilterValue.value = v
@@ -571,9 +580,13 @@ function initBetOrderSelectValue() {
     betOrderFilterValue.value = EnumOddsChange.notAcceptAnyOddsChange
 }
 
-function setBetOrderSelectValue(v: EnumOddsChange) {
+function setBetOrderFilterValue(v: EnumOddsChange) {
   betOrderFilterValue.value = v
   Local.set(STORAGE_SPORTS_BET_ORDER, v)
+}
+
+function initBetOrderTab() {
+  betOrderSelectValue.value = sportStore.cart.defaultBetSlipBetSlipTabStatus
 }
 
 function noDataGoToBet() {
@@ -635,7 +648,8 @@ watch(isLogin, (val) => {
 onMounted(() => {
   addListToCartEvent()
   firstInputFocus()
-  initBetOrderSelectValue()
+  initBetOrderFilterValue()
+  initBetOrderTab()
 })
 
 onUnmounted(() => {
@@ -651,7 +665,7 @@ onUnmounted(() => {
         <BaseTab
           v-model="betOrderSelectValue"
           :list="betOrderData"
-          @change="runGetSportPlaceBetInfoHandle"
+          @change="slipTabChange"
         />
       </div>
       <div class="actions">
@@ -671,7 +685,7 @@ onUnmounted(() => {
           :options="betOrderFilterData"
 
           no-hover popper
-          @select="setBetOrderSelectValue"
+          @select="setBetOrderFilterValue"
         />
         <BaseButton
           type="text"
