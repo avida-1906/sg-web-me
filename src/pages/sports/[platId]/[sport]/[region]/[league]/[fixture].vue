@@ -385,13 +385,15 @@ watch(
 
   .column.heading {
     margin-bottom: var(--tg-spacing-4);
-    text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: var(--tg-font-size-default);
     color: var(--tg-secondary-light);
     line-height: 1.5;
+    span{
+      text-align: left;
+    }
   }
 
 }
