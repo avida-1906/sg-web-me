@@ -105,7 +105,7 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
         slot: 'betMoney',
         align: 'right',
         isRound: 'right',
-        skeWidth: '877x',
+        skeWidth: '77px',
       },
       {
         title: t('multiple_count'),
