@@ -38,7 +38,8 @@ const {
   else if (Number(value) < 0)
     return t('validate_deposit_amount_pos')
   else if (value && Number(value) > Number(props.activeCurrency.balance))
-    return t('validate_deposit_amount_max')
+    maxNumber()
+    // return t('validate_deposit_amount_max')
   return ''
 })
 const {
@@ -79,7 +80,7 @@ const {
       message: t('withdraw_apply_success'),
     })
     defaultAddress.value?.is_default !== 1 && resetAddress()
-    amountReset()
+    reset()
     payPasswordReset()
   },
 })
@@ -104,7 +105,7 @@ const getUsRate = computed(() => {
   if (str === '706')
     return Number(amount.value).toFixed(2)
   return str
-    ? (Number(exchangeRateData.value?.rates[str]['706']) * Number(amount.value)).toFixed(2)
+    ? (Number(exchangeRateData.value?.rates[str]['706']) * Number(amount.value ?? 0)).toFixed(2)
     : 0.00
 })
 
