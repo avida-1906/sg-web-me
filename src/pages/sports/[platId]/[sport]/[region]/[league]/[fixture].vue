@@ -391,6 +391,7 @@ watch(
     justify-content: center;
     font-size: var(--tg-font-size-default);
     color: var(--tg-secondary-light);
+    line-height: 1.5;
   }
 
 }
@@ -644,6 +645,10 @@ video {
             }
             :deep(.base-search) {
               padding: 0 10px;
+              input {
+                padding: 7px 8px;
+                height: 35px;
+              }
               .search-icon.app-svg-icon {
                 color: var(--tg-secondary-light);
               }

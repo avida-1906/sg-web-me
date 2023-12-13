@@ -183,6 +183,7 @@ function onPopperOpen() {
   --tg-base-select-popper-option-active-color: var(--tg-popper-hover-color-default);
   --tg-base-select-popper-active-color: var(--tg-text-blue);
   --tg-base-select-popopen-bg-color: transparent;
+  --tg-base-select-popcontent-lineheight: 1.28572;
 }
 </style>
 
@@ -205,7 +206,7 @@ function onPopperOpen() {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    line-height: 1.28572;
+    line-height: var(--tg-base-select-popcontent-lineheight);
   }
   &.pop-open {
     background-color: var(--tg-base-select-popopen-bg-color);

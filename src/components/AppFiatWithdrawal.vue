@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import type { CurrencyData } from '~/composables/useCurrencyData'
+import type { CurrencyCode, CurrencyData } from '~/composables/useCurrencyData'
 
 interface Props {
   /** 货币对象 */
@@ -11,8 +11,7 @@ const { t } = useI18n()
 
 const { isLessThanXs } = storeToRefs(useWindowStore())
 const { openNotify } = useNotify()
-
-// const currentWithdrawMethod = ref('')
+const { exchangeRateData } = storeToRefs(useAppStore())
 
 /** '1' 银行卡， '2' pix 除了巴西其他国家都是银行卡 */
 const currentType = computed<'1' | '2'>(() =>
@@ -122,13 +121,20 @@ const bindBanks = computed(() => {
   }
   return []
 })
-
 const defaultBank = computed(() =>
   bindBanks.value.find(a => a.value === selectBank.value)?.fullName ?? '',
 )
 const bankcardId = computed(() =>
   bindBanks.value.find(a => a.value === selectBank.value)?.id ?? '',
 )
+const getUsRate = computed(() => {
+  const str: CurrencyCode = props.activeCurrency.cur
+  if (str === '706')
+    return Number(amount.value).toFixed(2)
+  return str
+    ? (Number(exchangeRateData.value?.rates[str]['706']) * Number(amount.value)).toFixed(2)
+    : 0.00
+})
 
 function maxNumber() {
   setAmount(Number.parseInt(props.activeCurrency.balance).toString())
@@ -238,7 +244,13 @@ await application.allSettled(
               </template>
             </BaseSelect>
           </BaseLabel>
-          <BaseLabel :label="t('amount')" must>
+          <!-- <BaseLabel :label="t('amount')" must> -->
+          <div class="amount">
+            <div class="top">
+              <span class="label">{{ t('amount') }}
+                <span style="color: var(--tg-text-error);">*</span></span>
+              <span class="us">US${{ getUsRate }}</span>
+            </div>
             <BaseInput
               v-model="amount"
               :msg="amountError"
@@ -250,7 +262,8 @@ await application.allSettled(
                 <span>{{ t('max') }}</span>
               </template>
             </BaseInput>
-          </BaseLabel>
+          </div>
+          <!-- </BaseLabel> -->
           <BaseLabel :label="t('menu_title_settings_update_safepwd')" must>
             <BaseInput
               v-model="payPassword"
@@ -307,6 +320,21 @@ await application.allSettled(
       > span {
         color: var(--tg-text-lightgrey);
         font-weight: var(--tg-font-weight-semibold);
+      }
+    }
+  }
+    .amount {
+    display: flex;
+    flex-direction: column;
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      font-weight: var(--tg-font-weight-semibold);
+      margin-bottom: var(--tg-spacing-4);
+
+      .us {
+        font-size: var(--tg-font-size-xs);
       }
     }
   }

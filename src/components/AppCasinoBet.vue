@@ -51,7 +51,8 @@ watch(() => isMobile.value, (newValue) => {
         :distance="10"
         style="--tg-base-select-hover-bg-color:var(--tg-secondary-grey);
           --tg-base-select-popper-style-padding-x: var(--tg-spacing-16);
-          --tg-base-select-popper-style-padding-y: var(--tg-spacing-13);"
+          --tg-base-select-popper-style-padding-y: var(--tg-spacing-13);
+          --tg-base-select-popcontent-lineheight: 1;"
         :options="headSelectData" no-hover popper
         popper-clazz="casino-bet-pop"
       >
