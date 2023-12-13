@@ -27,7 +27,7 @@ const supportCurrency = [
   '/png/footer/bitcoin_cash.png',
   '/png/footer/tether.png',
   '/png/footer/safe_gamble.png',
-  '/png/footer/18plus.png',
+  // '/png/footer/18plus.png',
 ]
 const partner = [
   { url: '/png/footer/verified.png', with: '120px' },
@@ -149,8 +149,14 @@ function pathTo(tmp: { path?: string; title: string; icon?: boolean }) {
       <BaseImage
         v-for="url, index of supportCurrency"
         :key="index"
+        style="margin: 0 auto;"
         width="133.33px"
         :url="url"
+      />
+      <BaseImage
+        style="margin: 0 auto;"
+        width="66.66px"
+        url="/png/footer/18plus.png"
       />
     </div>
     <BaseDivider />
@@ -258,7 +264,7 @@ function pathTo(tmp: { path?: string; title: string; icon?: boolean }) {
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
-    gap:2rem;
+    gap: 32px;
   }
   .footer-sponsor{
     width: 100%;
