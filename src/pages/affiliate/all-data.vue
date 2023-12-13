@@ -70,9 +70,9 @@ const params = computed(() => {
 </script>
 
 <template>
-  <pre style="color: #fff">
+  <!-- <pre style="color: #fff">
     {{ params }}
-  </pre>
+  </pre> -->
   <div class="all-data-page">
     <div class="table-filter">
       <BaseDatePicker v-model="date" />
