@@ -179,6 +179,56 @@ export function useApiSportDetails() {
      * 20 客队第四节⽐分——4th
      * 21 主队加时赛⽐分
      * 22 客队加时赛⽐分
+     * 25,  // 第一盘 主队 网球, 排球
+     * 26,  // 第一盘 客队 网球, 排球
+      27,  // 第二盘 主队 网球, 排球
+      28,  // 第二盘 客队 网球, 排球
+      29,  // 第三盘 主队 网球, 排球
+      30,  // 第三盘 客队 网球, 排球
+      31,  // 第四盘 主队 网球, 排球
+      32,  // 第四盘 客队 网球, 排球
+      33,  // 第五盘 主队 网球, 排球
+      34,  // 第五盘 客队 网球, 排球
+
+      37,  // 第1局 主队 乒乓球
+      38,  // 第1局 客队 乒乓球
+      39,  // 第2局 主队 乒乓球
+      40,  // 第2局 客队 乒乓球
+      41,  // 第3局 主队 乒乓球
+      42,  // 第3局 客队 乒乓球
+      43,  // 第4局 主队 乒乓球
+      44,  // 第4局 客队 乒乓球
+      45,  // 第5局 主队 乒乓球
+      46,  // 第5局 客队 乒乓球
+      47,  // 第6局 主队 乒乓球
+      48,  // 第6局 客队 乒乓球
+      49,  // 第7局 主队 乒乓球
+      50,  // 第7局 客队 乒乓球
+
+      51,  // 第1局 主队 板球, 棒球
+      52,  // 第1局 客队 板球, 棒球
+      53,  // 第2局 主队 板球, 棒球
+      54,  // 第2局 客队 板球, 棒球
+
+      55,  // 加时 主队 板球
+      56,  // 加时 客队 板球
+
+      57,  // 第3局 主队 棒球
+      58,  // 第3局 客队 棒球
+      59,  // 第4局 主队 棒球
+      60,  // 第4局 客队 棒球
+      61,  // 第5局 主队 棒球
+      62,  // 第5局 客队 棒球
+      63,  // 第6局 主队 棒球
+      64,  // 第6局 客队 棒球
+      65,  // 第7局 主队 棒球
+      66,  // 第7局 客队 棒球
+      67,  // 第8局 主队 棒球
+      68,  // 第8局 客队 棒球
+      69,  // 第9局 主队 棒球
+      70,  // 第9局 客队 棒球
+      71,  // 加时局 主队 棒球
+      72,  // 加时局 客队 棒球
      */
     if (pol) {
       if (pol['3'] !== void 0 || pol['4'] !== void 0) {
@@ -202,7 +252,7 @@ export function useApiSportDetails() {
         }
       }
 
-      // 半场数据
+      // 半场数据 篮球
       const _h: PanelTypeItem[] = []
       if (pol['9'] !== void 0 || pol['10'] !== void 0) {
         _h.push({
@@ -218,8 +268,7 @@ export function useApiSportDetails() {
           awayTeam: `${pol['12'] || 0}`,
         })
       }
-
-      // 第1-4节数据
+      // 第1-4节数据 篮球
       const _p: PanelTypeItem[] = []
 
       if (pol['13'] !== void 0 || pol['14'] !== void 0) {
@@ -254,6 +303,178 @@ export function useApiSportDetails() {
         })
       }
 
+      // 网球，排球
+      if (pol['25'] !== void 0 || pol['26'] !== void 0) {
+        _p.push({
+          title: '1st',
+          homeTeam: `${pol['25'] || 0}`,
+          awayTeam: `${pol['26'] || 0}`,
+        })
+      }
+
+      if (pol['27'] !== void 0 || pol['28'] !== void 0) {
+        _p.push({
+          title: '2nd',
+          homeTeam: `${pol['27'] || 0}`,
+          awayTeam: `${pol['28'] || 0}`,
+        })
+      }
+
+      if (pol['29'] !== void 0 || pol['30'] !== void 0) {
+        _p.push({
+          title: '3rd',
+          homeTeam: `${pol['29'] || 0}`,
+          awayTeam: `${pol['30'] || 0}`,
+        })
+      }
+
+      if (pol['31'] !== void 0 || pol['32'] !== void 0) {
+        _p.push({
+          title: '4th',
+          homeTeam: `${pol['31'] || 0}`,
+          awayTeam: `${pol['32'] || 0}`,
+        })
+      }
+
+      if (pol['33'] !== void 0 || pol['34'] !== void 0) {
+        _p.push({
+          title: '5th',
+          homeTeam: `${pol['33'] || 0}`,
+          awayTeam: `${pol['34'] || 0}`,
+        })
+      }
+
+      // 乒乓球
+      if (pol['37'] !== void 0 || pol['38'] !== void 0) {
+        _p.push({
+          title: '1st',
+          homeTeam: `${pol['37'] || 0}`,
+          awayTeam: `${pol['38'] || 0}`,
+        })
+      }
+
+      if (pol['39'] !== void 0 || pol['40'] !== void 0) {
+        _p.push({
+          title: '2nd',
+          homeTeam: `${pol['39'] || 0}`,
+          awayTeam: `${pol['40'] || 0}`,
+        })
+      }
+
+      if (pol['41'] !== void 0 || pol['42'] !== void 0) {
+        _p.push({
+          title: '3rd',
+          homeTeam: `${pol['41'] || 0}`,
+          awayTeam: `${pol['42'] || 0}`,
+        })
+      }
+
+      if (pol['43'] !== void 0 || pol['44'] !== void 0) {
+        _p.push({
+          title: '4th',
+          homeTeam: `${pol['43'] || 0}`,
+          awayTeam: `${pol['44'] || 0}`,
+        })
+      }
+
+      if (pol['45'] !== void 0 || pol['46'] !== void 0) {
+        _p.push({
+          title: '5th',
+          homeTeam: `${pol['45'] || 0}`,
+          awayTeam: `${pol['46'] || 0}`,
+        })
+      }
+
+      if (pol['47'] !== void 0 || pol['48'] !== void 0) {
+        _p.push({
+          title: '6th',
+          homeTeam: `${pol['47'] || 0}`,
+          awayTeam: `${pol['48'] || 0}`,
+        })
+      }
+
+      if (pol['49'] !== void 0 || pol['50'] !== void 0) {
+        _p.push({
+          title: '7th',
+          homeTeam: `${pol['49'] || 0}`,
+          awayTeam: `${pol['50'] || 0}`,
+        })
+      }
+
+      // 板球
+      if (pol['51'] !== void 0 || pol['52'] !== void 0) {
+        _p.push({
+          title: '1st',
+          homeTeam: `${pol['51'] || 0}`,
+          awayTeam: `${pol['52'] || 0}`,
+        })
+      }
+
+      if (pol['53'] !== void 0 || pol['54'] !== void 0) {
+        _p.push({
+          title: '2nd',
+          homeTeam: `${pol['53'] || 0}`,
+          awayTeam: `${pol['54'] || 0}`,
+        })
+      }
+
+      // 棒球
+      if (pol['57'] !== void 0 || pol['58'] !== void 0) {
+        _p.push({
+          title: '3rd',
+          homeTeam: `${pol['57'] || 0}`,
+          awayTeam: `${pol['58'] || 0}`,
+        })
+      }
+
+      if (pol['59'] !== void 0 || pol['60'] !== void 0) {
+        _p.push({
+          title: '4th',
+          homeTeam: `${pol['59'] || 0}`,
+          awayTeam: `${pol['60'] || 0}`,
+        })
+      }
+
+      if (pol['61'] !== void 0 || pol['62'] !== void 0) {
+        _p.push({
+          title: '5th',
+          homeTeam: `${pol['61'] || 0}`,
+          awayTeam: `${pol['62'] || 0}`,
+        })
+      }
+
+      if (pol['63'] !== void 0 || pol['64'] !== void 0) {
+        _p.push({
+          title: '6th',
+          homeTeam: `${pol['63'] || 0}`,
+          awayTeam: `${pol['64'] || 0}`,
+        })
+      }
+
+      if (pol['65'] !== void 0 || pol['66'] !== void 0) {
+        _p.push({
+          title: '7th',
+          homeTeam: `${pol['65'] || 0}`,
+          awayTeam: `${pol['66'] || 0}`,
+        })
+      }
+
+      if (pol['67'] !== void 0 || pol['68'] !== void 0) {
+        _p.push({
+          title: '8th',
+          homeTeam: `${pol['67'] || 0}`,
+          awayTeam: `${pol['68'] || 0}`,
+        })
+      }
+
+      if (pol['69'] !== void 0 || pol['70'] !== void 0) {
+        _p.push({
+          title: '9th',
+          homeTeam: `${pol['69'] || 0}`,
+          awayTeam: `${pol['70'] || 0}`,
+        })
+      }
+
       _map.period = [
         ..._h,
         ..._p,
@@ -261,9 +482,24 @@ export function useApiSportDetails() {
 
       // 加时数据
       if (pol['21'] !== void 0 || pol['22'] !== void 0) {
+        // 篮球
         _map.overtime = {
           homeTeam: pol['21'] || 0,
           awayTeam: pol['22'] || 0,
+        }
+      }
+      else if (pol['55'] !== void 0 || pol['56'] !== void 0) {
+        // 板球
+        _map.overtime = {
+          homeTeam: pol['55'] || 0,
+          awayTeam: pol['56'] || 0,
+        }
+      }
+      else if (pol['71'] !== void 0 || pol['72'] !== void 0) {
+        // 棒球
+        _map.overtime = {
+          homeTeam: pol['71'] || 0,
+          awayTeam: pol['72'] || 0,
         }
       }
     }
