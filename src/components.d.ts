@@ -139,6 +139,7 @@ declare module 'vue' {
     AppStatisticsDialog: typeof import('./components/AppStatisticsDialog.vue')['default']
     AppTabRecord: typeof import('./components/AppTabRecord.vue')['default']
     AppTermsConditionsDialog: typeof import('./components/AppTermsConditionsDialog.vue')['default']
+    AppTooltip: typeof import('./components/AppTooltip.vue')['default']
     AppUserAgentInfo: typeof import('./components/AppUserAgentInfo.vue')['default']
     AppVipBonusRecordDialog: typeof import('./components/AppVipBonusRecordDialog.vue')['default']
     AppVipDialog: typeof import('./components/AppVipDialog.vue')['default']
