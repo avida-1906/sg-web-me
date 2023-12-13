@@ -58,7 +58,9 @@ watch(() => props.breadcrumb, (val) => {
         >
           <span>{{ d.title }}</span>
         </a>
-        <span v-if="idx !== _data.length - 1" class="slash" />
+        <div v-if="idx !== _data.length - 1" class="slash-wrap">
+          <span class="slash" />
+        </div>
       </template>
     </div>
   </div>
@@ -119,11 +121,18 @@ watch(() => props.breadcrumb, (val) => {
         transform: scale(0.96);
       }
     }
+    .slash-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 100%;
+    }
     .slash {
-      display: inline-flex;
+      display: flex;
       width: 2px;
       height: 3.2em;
-      margin: -0.75rem 1rem;
+      margin: -12px 16px;
       background: var(--tg-primary-main);
       transform: skew(-20deg);
     }
