@@ -23,7 +23,7 @@ const {
 } = useList(ApiAgencyReportAll, {}, { page_size: 10, isWatchPageOrPageSize: false })
 
 const date = ref([])
-const searchValue = ref('')
+const searchValue = useDebouncedRef({ value: '', delay: 1000 })
 
 const columns: Column[] = [
   {
@@ -59,38 +59,28 @@ const params = computed(() => {
   return {
     username: searchValue.value,
     currency_id: currency_id.value,
+    start_time: date.value[0],
+    end_time: date.value[1],
+    page_size: page_size.value,
+    page: page.value,
   }
 })
 
-function change() {
-  console.error(page.value, page_size.value)
-  // runAsync(params.value)
-}
-
-function search() {
-  runAsync(params.value)
-}
-
-function pickerChange() {
-  console.error(date.value)
-}
-
-// search()
-onMounted(() => {
-  console.error('params', params.value)
-})
+// useListSearch(params, runAsync, resetPage)
 </script>
 
 <template>
+  <!-- <pre style="color: #fff">
+    {{ params }}
+  </pre> -->
   <div class="all-data-page">
     <div class="table-filter">
-      <BaseDatePicker v-model="date" @change="pickerChange" />
+      <BaseDatePicker v-model="date" />
       <BaseSelect
-        v-model="currency_id"
+        v-model.lazy="currency_id"
         :options="currencyList"
-        @change="search"
       />
-      <div style="max-width: 95px;">
+      <div style="max-width: 195px;">
         <BaseInput v-model="searchValue" :placeholder="t('user_account')">
           <template #right-icon>
             <BaseIcon name="uni-search" />
@@ -119,8 +109,7 @@ onMounted(() => {
     <BasePagination
       v-model:current-page="page"
       v-model:page-size="page_size"
-      :total="total"
-      @change="change"
+      :total="1000"
     />
   </div>
 </template>
