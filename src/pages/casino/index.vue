@@ -104,27 +104,6 @@ const onShowMore = function () {
     btnText.value = t('view_more_2')
 }
 
-const items = [
-  {
-    imgUrl: 'https://d2utx4nptvgikt.cloudfront.net/banner/zh-CN/1702127211470.webp',
-    linkUrl: 'https://www.baidu.com',
-    a: 1,
-  },
-  {
-    imgUrl: 'https://d2utx4nptvgikt.cloudfront.net/banner/zh-CN/1702127181737.webp',
-    linkUrl: 'https://www.baidu.com',
-    b: 2,
-  },
-  {
-    imgUrl: 'https://d2utx4nptvgikt.cloudfront.net/banner/zh-CN/1702127211470.webp',
-    linkUrl: 'https://www.baidu.com',
-  },
-  {
-    imgUrl: 'https://d2utx4nptvgikt.cloudfront.net/banner/zh-CN/1702127181737.webp',
-    linkUrl: 'https://www.baidu.com',
-  },
-]
-
 await application.allSettled([casinoStore.runAsyncGameLobby(), runMemberNoticeAllList()])
 </script>
 

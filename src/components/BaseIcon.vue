@@ -18,14 +18,14 @@ const symbolId = computed(() => `#${props.prefix}-${props.name}`)
 
 <style>
 :root {
-  --tg-base-icon-color:var(--tg-icon-color);
+  --tg-base-icon-color: var(--tg-icon-color);
 }
 </style>
 
-<style scoped>
+<style lang="scss" scoped>
 .app-svg-icon {
   display: inline-block;
-  color: var(--tg-base-icon-color);
+  color: var(--tg-icon-color);
   width: 1em;
   height: 1em;
   pointer-events: none;
