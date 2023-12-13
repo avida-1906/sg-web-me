@@ -16,6 +16,8 @@ const {
     return '最小字符长度为3'
   else if (value.length > 30)
     return '最大字符长度为30'
+  else if (value.match('[^@.a-z0-9]'))
+    return '用户名含有无效的字符'
   else if (!emailReg.test(value) && !usernameReg.test(value))
     return t('validate_msg_user_name')
   return ''

@@ -25,6 +25,7 @@ const gameSearchRef = ref()
 const searchOverlayStyle = ref({ left: 0, top: 0, width: 0 })
 let gameSearchRefClient: any = null
 
+const goodSearchValue = computed(() => searchValue.value.length >= 3)
 const isCasino = computed(() => props.gameType === GameType.casino)
 const isSports = computed(() => props.gameType === GameType.sports)
 const placeHolderText = computed(() => {
@@ -79,7 +80,7 @@ const { data: sportsData, run: runSearchSports } = useRequest(
 )
 // 搜索结果
 const resultData = computed(() => {
-  if (isClear.value)
+  if (isClear.value || !goodSearchValue.value)
     return null
   if (isCasino.value)
     return casinoGames.value.length > 0 ? casinoGames.value : null

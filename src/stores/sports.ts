@@ -180,7 +180,7 @@ export const useSportsStore = defineStore('sports', () => {
           domId: `sports-hot-game-${sport.si}`,
           list: [
             // eslint-disable-next-line max-len
-            { title: 'Live & Upcoming', path: `/sports/${SPORTS_PLAT_ID}/${sport.si}`, icon: 'spt-ball-plate' },
+            { title: 'Live & Upcoming', path: `/sports/${SPORTS_PLAT_ID}/${sport.si}?tab=1`, icon: 'spt-ball-plate' },
             // eslint-disable-next-line max-len
             { title: 'Outrights', path: `/sports/${SPORTS_PLAT_ID}/${sport.si}?tab=2`, icon: 'spt-timing' },
             ...sport.list.map((league) => {

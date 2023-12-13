@@ -6,6 +6,7 @@ const { VITE_SPORT_DEFAULT_MARKET_TYPE } = getEnv()
 const route = useRoute()
 const { width } = storeToRefs(useWindowStore())
 const { sidebarData } = storeToRefs(useSportsStore())
+const menuStore = useMenuStore()
 const { bool: isStandard } = useBoolean(true)
 const { bool: isFirst, setFalse: isFirstFalse } = useBoolean(true)
 
@@ -38,6 +39,10 @@ const tabs = computed(() => [
 function onBaseTypeChange(v: EnumSportMarketType) {
   baseType.value = v
 }
+function onTabChange(v: string) {
+  isFirstFalse()
+  menuStore.setSideBigActiveMenu(`/sports/${getSportsPlatId()}/${sport.value}?tab=${v}`)
+}
 
 watch(route, (r) => {
   if (r.name === 'sports-platId-sport') {
@@ -57,7 +62,7 @@ usePageTitle({ prefix: sportName })
         <div class="left">
           <BaseTab
             v-model="curTab" :list="tabs" size="large"
-            :center="false" @change="isFirstFalse"
+            :center="false" @change="onTabChange"
           />
         </div>
         <AppSportsMarketTypeSelect

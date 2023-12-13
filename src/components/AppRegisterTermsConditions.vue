@@ -108,7 +108,7 @@ onBeforeUnmount(() => {
           Terms and Conditions
         </div>
         <div class="terms-conditions-title">
-          1.{{ companyData?.name }}.COM
+          1. {{ companyData?.name }}.COM
         </div>
         <div class="terms-conditions-describe">
           <p>
@@ -128,7 +128,7 @@ onBeforeUnmount(() => {
         </div>
         <div class="terms-conditions-describe">
           <p>
-            2.1 BY REGISTERING ON WWW.XXX.COM
+            2.1 BY REGISTERING ON <a class="link-inline"><span>{{ location.hostname?.toUpperCase() }}</span><BaseIcon name="uni-jump-page" /></a>
             (THE “WEBSITE”), YOU ENTER INTO A CONTRACT WITH MEDIUM
             RARE N.V., AND AGREE TO BE BOUND BY (I) THESE TERMS AND
             CONDITIONS; (II) OUR PRIVACY POLICY; (III) OUR COOKIES
@@ -604,6 +604,14 @@ onBeforeUnmount(() => {
 </template>
 
 <style lang='scss' scoped>
+.link-inline {
+  font-size: var(--tg-font-size-default);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  line-height: 14px;
+  gap: var(--tg-spacing-8);
+}
 .haha {
   display: inline-block;
   font-weight: 400;

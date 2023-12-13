@@ -23,7 +23,7 @@ const {
   setTrue: overlayTrue,
   setFalse: overlayFalse,
 } = useBoolean(false)
-const { bool: isRealMoneyMode, setBool: setRealModeBool } = useBoolean(false)
+const { bool: isRealMoneyMode, setBool: setRealModeBool } = useBoolean(isLogin.value)
 // const { bool: isTrendOpen, toggle: toggleTrendOpen } = useBoolean(false)
 // 余额箭头
 const {
@@ -744,7 +744,7 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
   }
 
   .t-iframe-wrapper {
-    max-height: 696px;
+    max-height: 811px;
   }
 
   .footer {
