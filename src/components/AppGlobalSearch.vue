@@ -111,10 +111,12 @@ function onBaseSearchInput() {
   if (searchValue.value.length < 3)
     return setClearTrue()
   if (isCasino.value && searchValue.value.length >= 3) {
+    Local.set(STORAGE_CLEAR_LIVE, true)
     setInputingTrue()
     runSearchCasinoGames({ w: searchValue.value })
   }
   else if (isSports.value && searchValue.value.length >= 3) {
+    Local.set(STORAGE_CLEAR_SPORTS, true)
     setInputingTrue()
     runSearchSports()
   }
@@ -143,10 +145,12 @@ function selectGameType(v: string) {
 }
 function clearKeyword() {
   if (isCasino.value) {
+    Local.set(STORAGE_CLEAR_LIVE, true)
     keywordLive.value.length = 0
     Local.remove(STORAGE_SEARCH_KEYWORDS_LIVE)
   }
   else if (isSports.value) {
+    Local.set(STORAGE_CLEAR_SPORTS, true)
     keywordSports.value.length = 0
     Local.remove(STORAGE_SEARCH_KEYWORDS_SPORTS)
   }
@@ -163,6 +167,32 @@ function emitClose() {
   if (!isMobile.value)
     emit('close')
 }
+function intiKeyword() {
+  if (!Local.get(STORAGE_CLEAR_LIVE)?.value) {
+    const liveList = [
+      'Monopoly',
+      'Crazy Time',
+      'Sweet Bonanza',
+      'Money Train',
+      'Reactoonz',
+    ]
+    Local.set(STORAGE_SEARCH_KEYWORDS_LIVE, liveList)
+    keywordLive.value = liveList
+  }
+
+  if (!Local.get(STORAGE_CLEAR_SPORTS)?.value) {
+    const sportsList = [
+      'Liverpool FC',
+      'Kansas City Chiefs',
+      'Los Angeles Lakers',
+      'FC Barcelona',
+      'FC Bayern Munich',
+    ]
+    Local.set(STORAGE_SEARCH_KEYWORDS_SPORTS, sportsList)
+    keywordSports.value = sportsList
+  }
+}
+
 provide('closeSearch', emitClose)
 provide('closeSearchH5', () => leftIsExpand.value = !leftIsExpand.value)
 
@@ -171,6 +201,8 @@ onMounted(() => {
     baseSearchRef.value.manualFocus()
   useFixedTop('.app-global-search')
 })
+
+intiKeyword()
 </script>
 
 <template>

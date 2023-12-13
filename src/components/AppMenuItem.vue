@@ -13,7 +13,8 @@ const { sideBigActiveMenu } = storeToRefs(useMenuStore())
 
 const active = computed(() => sideBigActiveMenu.value
 && props.menuItem.path && props.menuItem.path.length
-&& sideBigActiveMenu.value === props.menuItem.path)
+&& replaceSportsPlatId(sideBigActiveMenu.value.toString())
+ === replaceSportsPlatId(props.menuItem.path))
 </script>
 
 <template>
