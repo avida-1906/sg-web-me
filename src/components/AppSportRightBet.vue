@@ -164,6 +164,7 @@ function getBetListDataHandle() {
       display: flex;
       align-items: center;
       gap:var(--tg-spacing-8);
+      line-height: 1;
     }
 
     .hoverable {
