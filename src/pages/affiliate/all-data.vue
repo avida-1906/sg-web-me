@@ -10,7 +10,7 @@ const {
     value: '',
   },
   ...getCurrencyOptions(),
-], false)
+])
 
 const {
   list,
