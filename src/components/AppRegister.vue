@@ -29,6 +29,7 @@ const steps = ref(1)
 const code = ref('')
 const birthdayInputRef = ref()
 const birthday = ref('')
+const errorTip = ref()
 
 const {
   value: email,
@@ -38,16 +39,33 @@ const {
 } = useField<string>('email', (value) => {
   const lastAtIdx = value ? value.lastIndexOf('@') : -1
   const lastDotIdx = value ? value.lastIndexOf('.') : -1
-  if (!value)
+  if (!value) {
+    errorTip.value = ''
     return '电子邮件域不受支持'
-  else if (!value.includes('@'))
-    return '请在您的电邮地址中加入"@"符号'
-  else if (!value.includes('.'))
-    return '请在您的电邮地址中加入"."符号'
-  else if (lastDotIdx === value.length - 1)
+  }
+
+  else if (!value.includes('@')) {
+    errorTip.value = `请在电子邮件地址中包括“@”。“${value}”中缺少“@”`
+    return ['请在您的电邮地址中加入 “@” 符号']
+  }
+
+  else if (!value.includes('.')) {
+    errorTip.value = '请在您的电邮地址中加入 “.” 符号'
+    return '请在您的电邮地址中加入 “.” 符号'
+  }
+
+  else if (lastDotIdx === value.length - 1) {
+    errorTip.value = '电子邮件域不受支持'
     return '电子邮件域不受支持'
-  else if (!emailReg.test(value))
+  }
+
+  else if (!emailReg.test(value)) {
+    errorTip.value = '请输入有效的电邮地址'
     return '请输入有效的电邮地址'
+  }
+
+  errorTip.value = ''
+
   // 请在您的电邮地址中加入 “@” 符号
   // 请在您的电邮地址中加入 “.” 符号
   // 电子邮件域不受支持
@@ -63,11 +81,11 @@ const {
   if (!value)
     return t('pls_enter_username')
   else if (value.length < 3)
-    return ' 您的username必须含有至少3个字符'
+    return ' 您的 username 必须含有至少3个字符'
   else if (value.match('[^a-z0-9]'))
     return '用户名含有无效的字符'
   else if (value.length > 14)
-    return '您的username不得超过14个字符'
+    return '您的 username 不得超过14个字符'
   else if (!usernameReg.test(value))
     return t('validate_msg_user_name_tip')
   // 此用户名已被使用，请选择另一用户名。
@@ -211,14 +229,6 @@ const needCheckEmail = computed(() =>
   false) // regWebCfg.value && regWebCfg.value.email_check !== false)
 
 async function getMemberReg() {
-  // 这个不要删：有错误时直接返回，否则重复的邮箱或用户名会因通过格式校验从而进行注册请求
-  if (
-    (needEmail.value && emailErrorMsg.value)
-    || usernameErrorMsg.value
-    || pwdErrorMsg.value
-    || agreeErrorMsg.value
-  ) return
-
   if (needName.value) {
     userNameRef.value?.setTouchTrue()
     await validateUsername()
@@ -233,6 +243,9 @@ async function getMemberReg() {
     emailRef.value?.setTouchTrue()
     await validateEmail()
     !emailErrorMsg.value && onEmailUsernameBlur(2)
+    // console.log('salkflsakfksfjk [[========]]', errorTip.value)
+    // if (errorTip.value)
+    //   setCheckTip(emailRef.value.iInput, errorTip.value)
   }
 
   if (needCheckEmail.value) {
@@ -243,6 +256,14 @@ async function getMemberReg() {
   await birthdayInputRef.value.valiBirthday()
   if (birthdayInputRef.value.msg)
     return
+
+  // 这个不要删：有错误时直接返回，否则重复的邮箱或用户名会因通过格式校验从而进行注册请求
+  if (
+    (needEmail.value && emailErrorMsg.value)
+    || usernameErrorMsg.value
+    || pwdErrorMsg.value
+    || agreeErrorMsg.value
+  ) return
 
   if (!usernameErrorMsg.value
   && !pwdErrorMsg.value
@@ -290,6 +311,12 @@ async function toLogin() {
   closeDialog()
   await nextTick()
   openLoginDialog()
+}
+
+function setCheckTip(el: HTMLObjectElement, tip: string) {
+  el.checkValidity()
+  el.setCustomValidity(tip)
+  el.reportValidity()
 }
 
 onMounted(() => {

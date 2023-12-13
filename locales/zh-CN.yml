@@ -22,7 +22,7 @@ already_send_email_user: 我们已发送账户恢复电邮至
 recover_pwd: 恢复密码
 username: 用户名
 pls_enter_username: 请输入用户名
-username_incorrect: 您的用户名长度必须为 3 – 30 个字符。
+username_incorrect: 您的用户名长度必须为 3 – 14 个字符。
 password: 密码
 old_pwd: 旧密码
 new_pwd: 新密码
