@@ -79,9 +79,9 @@ const {
   setErrors: setUsernameErrors,
 } = useField<string>('username', (value) => {
   if (!value)
-    return t('pls_enter_username')
+    return '您的 username 必须含有至少3个字符'
   else if (value.length < 3)
-    return ' 您的 username 必须含有至少3个字符'
+    return '您的 username 必须含有至少3个字符'
   else if (value.match('[^a-z0-9]'))
     return '用户名含有无效的字符'
   else if (value.length > 14)
@@ -100,7 +100,7 @@ const {
   meta: pwdMeta,
 } = useField<string>('password', (value) => {
   if (!value)
-    return t('pls_enter_password')
+    return t('password_least_8_characters')
   else if (value.length < 8)
     return t('password_least_8_characters')
   else if (!upperLowerReg.test(value))
