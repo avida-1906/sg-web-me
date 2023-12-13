@@ -43,7 +43,6 @@ const keywordList = computed(() => {
 const {
   list: casinoGames,
   run: runSearchCasinoGames,
-  loading: casinoLoading,
 } = useList(ApiMemberGameSearch, {
   debounceInterval: 1000,
   onAfter(params) {
@@ -61,7 +60,7 @@ const {
   },
 })
 // 体育搜索接口
-const { data: sportsData, run: runSearchSports, loading: sportsLoading } = useRequest(
+const { data: sportsData, run: runSearchSports } = useRequest(
   () => ApiSportEventSearch({ word: searchValue.value }),
   {
     onAfter() {
@@ -226,14 +225,14 @@ provide('closeSearch', closeOverlay)
         }"
       >
         <div class="scroll-y warp">
-          <div v-if="!resultData && !casinoLoading && !sportsLoading" class="no-result">
+          <div v-if="!resultData && !isInputing" class="no-result">
             <div class="text">
               <span
                 v-show="searchValue.length < 3"
               >
                 {{ t('search_need_at_least_3_word') }}</span>
               <span
-                v-show="searchValue.length >= 3 && !isInputing"
+                v-show="searchValue.length >= 3"
               >{{ t('search_no_result') }}</span>
             </div>
             <div v-if="keywordList.length" class="recent">
@@ -259,15 +258,15 @@ provide('closeSearch', closeOverlay)
           </div>
 
           <!-- casino -->
-          <AppCardListSkeleton v-if="casinoLoading" />
+          <AppCardListSkeleton v-if="isInputing && isCasino" />
           <AppCardList
-            v-if="isCasino && resultData && !casinoLoading" :list="resultData"
+            v-if="isCasino && resultData && !isInputing " :list="resultData"
           />
 
           <!-- sports -->
-          <AppSportsSearchResultSkeleton v-if="sportsLoading" />
+          <AppSportsSearchResultSkeleton v-if="isInputing && isSports" />
           <AppSportsSearchResult
-            v-if="isSports && resultData && !sportsLoading" :data="sportsData"
+            v-if="isSports && resultData && !isInputing " :data="sportsData"
           />
         </div>
       </div>

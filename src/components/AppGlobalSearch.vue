@@ -44,6 +44,7 @@ const keywordSports = ref(
 const gameLabel = computed(() => {
   return gameTypeList.find(a => a.value === gameType.value)?.label ?? '-'
 })
+const goodSearchValue = computed(() => searchValue.value.length >= 3)
 const isCasino = computed(() => gameType.value === '1')
 const isSports = computed(() => gameType.value === '2')
 const keywordList = computed(() => {
@@ -60,7 +61,6 @@ const searchPlaceholder = computed(() => isCasino.value
 const {
   list: casinoGames,
   run: runSearchCasinoGames,
-  loading: casinoLoading,
 } = useList(ApiMemberGameSearch, {
   debounceInterval: 500,
   onAfter(params) {
@@ -78,7 +78,7 @@ const {
   },
 })
 // 体育搜索接口
-const { data: sportsData, run: runSearchSports, loading: sportsLoading } = useRequest(
+const { data: sportsData, run: runSearchSports } = useRequest(
   () => ApiSportEventSearch({ word: searchValue.value }),
   {
     debounceInterval: 500,
@@ -99,7 +99,7 @@ const { data: sportsData, run: runSearchSports, loading: sportsLoading } = useRe
 )
 // 搜索结果
 const resultData = computed(() => {
-  if (isClear.value)
+  if (isClear.value || !goodSearchValue.value)
     return null
   if (isCasino.value)
     return casinoGames.value.length > 0 ? casinoGames.value : null
@@ -256,13 +256,13 @@ intiKeyword()
       @click.self="showOverlayFalse();initOthers && hideTypeSelect()"
     >
       <div class="scroll-y warp">
-        <div v-if="!resultData && !casinoLoading && !sportsLoading" class="no-result">
+        <div v-if="!resultData && !isInputing" class="no-result">
           <div class="text">
             <span
               v-show="searchValue.length < 3"
             >{{ t('search_need_at_least_3_word') }}</span>
             <span
-              v-show="searchValue.length >= 3 && !isInputing"
+              v-show="searchValue.length >= 3"
             >{{ t('search_no_result') }}</span>
           </div>
           <div v-if="keywordList.length" class="recent">
@@ -288,13 +288,15 @@ intiKeyword()
         </div>
 
         <!-- casino -->
-        <AppCardListSkeleton v-if="casinoLoading" />
-        <AppCardList v-if="isCasino && resultData && !casinoLoading" :list="resultData" />
+        <AppCardListSkeleton v-if="isInputing && isCasino" />
+        <AppCardList
+          v-if="isCasino && resultData && !isInputing" :list="resultData"
+        />
 
         <!-- sports -->
-        <AppSportsSearchResultSkeleton v-if="sportsLoading" />
+        <AppSportsSearchResultSkeleton v-if="isInputing && isSports" />
         <AppSportsSearchResult
-          v-if="isSports && resultData && !sportsLoading" :data="sportsData"
+          v-if="isSports && resultData && !isInputing" :data="sportsData"
         />
       </div>
     </div>
