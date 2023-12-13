@@ -480,6 +480,7 @@ declare global {
   const useLeftSidebar: typeof import('./composables/useLeftSidebar')['useLeftSidebar']
   const useLink: typeof import('vue-router')['useLink']
   const useList: typeof import('./composables/useList')['useList']
+  const useListSearch: typeof import('./composables/useListSearch')['useListSearch']
   const useLoadMore: typeof import('vue-request')['useLoadMore']
   const useLocalRouter: typeof import('./composables/useLocalRouter')['useLocalRouter']
   const useLocalStorage: typeof import('@vueuse/core')['useLocalStorage']
@@ -1096,6 +1097,7 @@ declare module 'vue' {
     readonly useLeftSidebar: UnwrapRef<typeof import('./composables/useLeftSidebar')['useLeftSidebar']>
     readonly useLink: UnwrapRef<typeof import('vue-router')['useLink']>
     readonly useList: UnwrapRef<typeof import('./composables/useList')['useList']>
+    readonly useListSearch: UnwrapRef<typeof import('./composables/useListSearch')['useListSearch']>
     readonly useLoadMore: UnwrapRef<typeof import('vue-request')['useLoadMore']>
     readonly useLocalRouter: UnwrapRef<typeof import('./composables/useLocalRouter')['useLocalRouter']>
     readonly useLocalStorage: UnwrapRef<typeof import('@vueuse/core')['useLocalStorage']>
@@ -1706,6 +1708,7 @@ declare module '@vue/runtime-core' {
     readonly useLeftSidebar: UnwrapRef<typeof import('./composables/useLeftSidebar')['useLeftSidebar']>
     readonly useLink: UnwrapRef<typeof import('vue-router')['useLink']>
     readonly useList: UnwrapRef<typeof import('./composables/useList')['useList']>
+    readonly useListSearch: UnwrapRef<typeof import('./composables/useListSearch')['useListSearch']>
     readonly useLoadMore: UnwrapRef<typeof import('vue-request')['useLoadMore']>
     readonly useLocalRouter: UnwrapRef<typeof import('./composables/useLocalRouter')['useLocalRouter']>
     readonly useLocalStorage: UnwrapRef<typeof import('@vueuse/core')['useLocalStorage']>

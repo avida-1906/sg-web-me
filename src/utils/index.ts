@@ -219,6 +219,21 @@ class Application {
       return `${valStr}.${paddedDecimalPart}`
     }
   }
+
+  /**
+   * 去除对象中的空值 null undefined '' NaN
+   * @param {Record<string, any>} obj
+   * @returns {Record<string, any>}
+   */
+  removeEmpty(obj: Record<string, any>) {
+    const newObj = { ...obj }
+    Object.keys(newObj).forEach((key) => {
+      const value = newObj[key]
+      if (value === null || value === undefined || value === '' || Number.isNaN(value))
+        delete newObj[key]
+    })
+    return newObj
+  }
 }
 
 export const application = new Application()
