@@ -13,6 +13,7 @@ const { t } = useI18n()
 
 const dayInputRef = ref()
 const yearInputRef = ref()
+const showAllRed = ref(false)
 
 const monthList = [
   { label: 'time_january', value: 1 },
@@ -33,6 +34,7 @@ const {
   errorMessage: errorMonthMsg,
   validate: valiMonth,
 } = useField<number>('month', (value) => {
+  showAllRed.value = false
   if (!value)
     return t('surveys_birthday_error')
 
@@ -44,6 +46,7 @@ const {
   errorMessage: errorYearMsg,
   validate: valiYear,
 } = useField<number>('year', (value) => {
+  showAllRed.value = false
   if (!value)
     return t('surveys_birthday_error')
   if (value < 1900)
@@ -75,6 +78,7 @@ const {
   errorMessage: errorDayMsg,
   validate: valiDay,
 } = useField<number>('day', (value) => {
+  showAllRed.value = false
   if (!value)
     return t('surveys_birthday_error')
   if (value > dayMax.value)
@@ -138,6 +142,7 @@ const isValid = computed(() => {
 })
 
 function onInput() {
+  resetValidTip()
   if (year.value && month.value && day.value && !msg.value)
     emit('update:modelValue', `${year.value}-${month.value > 9 ? month.value : `0${month.value}`}-${day.value > 9 ? day.value : `0${day.value}`}`)
 }
@@ -149,13 +154,23 @@ async function valiBirthday() {
     dayInputRef.value.checkValidity()
     dayInputRef.value.setCustomValidity('值必须大于或等于1')
     dayInputRef.value.reportValidity()
-    return
   }
-  if (+year.value < 1900) {
+  else if (+year.value < 1900) {
     yearInputRef.value.checkValidity()
     yearInputRef.value.setCustomValidity('值必须大于或等于1900')
     yearInputRef.value.reportValidity()
   }
+  if (!isValid.value)
+    showAllRed.value = true
+}
+
+function resetValidTip() {
+  dayInputRef.value.checkValidity()
+  dayInputRef.value.setCustomValidity('')
+  dayInputRef.value.reportValidity()
+  yearInputRef.value.checkValidity()
+  yearInputRef.value.setCustomValidity('')
+  yearInputRef.value.reportValidity()
 }
 
 onMounted(() => {
@@ -183,7 +198,7 @@ defineExpose({ valiBirthday, msg })
           :max="dayMax"
           autocomplete="on"
           placeholder="DD"
-          :class="{ error: msg }"
+          :class="{ error: errorDayMsg || showAllRed }"
           @input="onInput"
         >
         <!-- 月 -->
@@ -192,7 +207,7 @@ defineExpose({ valiBirthday, msg })
             v-model="month"
             required
             :class="{
-              'error': msg,
+              'error': errorMonthMsg || showAllRed,
               'placeholder-select': monthList.filter(m => m.value === month).length === 0,
             }"
             @input="onInput"
@@ -212,7 +227,7 @@ defineExpose({ valiBirthday, msg })
         <input
           ref="yearInputRef"
           v-model="year"
-          :class="{ error: msg }"
+          :class="{ error: errorYearMsg || showAllRed }"
           type="number"
           :min="1900"
           placeholder="YYYY"
@@ -220,7 +235,7 @@ defineExpose({ valiBirthday, msg })
         >
       </div>
     </div>
-    <div v-show="msg" class="msg">
+    <div v-show="showAllRed" class="msg">
       <!-- <BaseIcon class="error-icon" name="uni-warning" /> -->
       <BaseIcon class="error-icon" name="uni-warning-color" />
       <span>{{ msg }}</span>
