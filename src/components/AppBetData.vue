@@ -97,7 +97,7 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
         dataIndex: 'bet_time',
         align: 'center',
         slot: 'bet_time',
-        skeWidth: '60px',
+        skeWidth: '34px',
       },
       {
         title: t('bet_amount'),
@@ -105,14 +105,14 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
         slot: 'betMoney',
         align: 'right',
         isRound: 'right',
-        skeWidth: '80px',
+        skeWidth: '877x',
       },
       {
         title: t('multiple_count'),
         dataIndex: 'multiplier',
         align: 'right',
         xl: true,
-        skeWidth: '36px',
+        skeWidth: '42px',
       },
       {
         title: t('sports_payment_amount'),
@@ -122,7 +122,7 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
         xl: true,
         md: true,
         isRound: 'right',
-        skeWidth: '80px',
+        skeWidth: '77px',
       },
     ]
     case 'casino-all':
@@ -148,7 +148,7 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
         title: t('time'),
         dataIndex: 'time',
         align: 'center',
-        skeWidth: '60px',
+        skeWidth: '34px',
       },
       {
         title: t('bet_amount'),
@@ -156,14 +156,14 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
         slot: 'betMoney',
         align: 'right',
         isRound: 'right',
-        skeWidth: '80px',
+        skeWidth: '77px',
       },
       {
         title: t('multiple_count'),
         dataIndex: 'multiplier',
         align: 'right',
         xl: true,
-        skeWidth: '36px',
+        skeWidth: '42px',
       },
       {
         title: t('sports_payment_amount'),
@@ -173,7 +173,7 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
         xl: true,
         md: true,
         isRound: 'right',
-        skeWidth: '80px',
+        skeWidth: '77px',
       },
     ]
     case 'ranking-list': return [
@@ -185,7 +185,7 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
         align: 'left',
         xl: true,
         md: true,
-        skeWidth: '20px',
+        skeWidth: '21px',
       },
       {
         title: t('gamer'),
@@ -204,17 +204,17 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
         md: true,
         isTips: true,
         isRound: 'right',
-        skeWidth: '80px',
+        skeWidth: '77px',
       },
       {
         title: t('finance_other_tab_bonus'),
-        dataIndex: 'bet_amount',
-        slot: 'payMoney',
+        dataIndex: 'bonus_amount',
+        slot: 'bonusAmount',
         align: 'right',
         xl: true,
         md: true,
         isRound: 'right',
-        skeWidth: '80px',
+        skeWidth: '77px',
       },
     ]
     case 'sports-all':
@@ -241,14 +241,14 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
         dataIndex: 'time',
         align: 'center',
         xl: true,
-        skeWidth: '60px',
+        skeWidth: '34px',
       },
       {
         title: t('sports_odds_title'),
         dataIndex: 'multiplier',
         align: 'right',
         xl: true,
-        skeWidth: '36px',
+        skeWidth: '42px',
       },
       {
         title: t('bet_amount'),
@@ -258,7 +258,7 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
         xl: true,
         md: true,
         isRound: 'right',
-        skeWidth: '80px',
+        skeWidth: '77px',
       },
     ]
     default: return []
@@ -287,9 +287,10 @@ const getList = computed(() => {
           time: '10:47',
           bet_amount: '1234.11',
           multiplier: '2.97x',
-          net_amount: '25.00%',
+          net_amount: '1.2345678',
           currency_id: '701',
           stealth: 1, // 隐身状态
+          bonus_amount: '25%',
         },
         {
           game_name: 'Retro Tapes',
@@ -297,8 +298,9 @@ const getList = computed(() => {
           time: '10:47',
           bet_amount: '2.111111',
           multiplier: '2.97x',
-          net_amount: '12.00%',
+          net_amount: '1.2345678',
           currency_id: '701',
+          bonus_amount: '12%',
         },
         {
           game_name: 'Jewel Bonanza Enhanced RTP',
@@ -306,8 +308,9 @@ const getList = computed(() => {
           time: '10:47',
           bet_amount: '1.111111',
           multiplier: '2.97x',
-          net_amount: '8.00%',
+          net_amount: '1.2345678',
           currency_id: '701',
+          bonus_amount: '8%',
         },
         {
           game_name: 'Mines',
@@ -315,8 +318,9 @@ const getList = computed(() => {
           time: '10:47',
           bet_amount: '1.111111',
           multiplier: '2.97x',
-          net_amount: '6.00%',
+          net_amount: '1.2345678',
           currency_id: '701',
+          bonus_amount: '6%',
         },
       ]
   }
@@ -476,6 +480,19 @@ onUnmounted(() => {
           }"
         >
           <AppAmount
+            :amount="record.net_amount"
+            :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
+            style="--tg-app-amount-font-weight:var(--tg-font-weight-normal);"
+          />
+        </div>
+      </template>
+      <template #bonusAmount="{ record }">
+        <div style="display:inline-block">
+          <div v-if="isMobile">
+            {{ record.bonus_amount }}
+          </div>
+          <AppAmount
+            v-else
             :amount="record.net_amount"
             :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
             style="--tg-app-amount-font-weight:var(--tg-font-weight-normal);"
