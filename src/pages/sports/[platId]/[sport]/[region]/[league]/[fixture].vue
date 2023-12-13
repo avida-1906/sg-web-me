@@ -391,6 +391,7 @@ watch(
     justify-content: center;
     font-size: var(--tg-font-size-default);
     color: var(--tg-secondary-light);
+    line-height: 1.5;
   }
 
 }
