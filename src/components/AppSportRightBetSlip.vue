@@ -2,7 +2,11 @@
 import AppSportBetSuccessNotify from './AppSportBetSuccessNotify.vue'
 import type { IBetArgs } from '~/apis/types'
 import type { ISportListToCartData } from '~/types'
-import { EnumOddsChange, EnumsBetSlipHeadStatus } from '~/utils/enums'
+import {
+  EnumOddsChange,
+  EnumsBetSlipBetSlipTabStatus,
+  EnumsBetSlipHeadStatus,
+} from '~/utils/enums'
 
 const emit = defineEmits(['changeHeadSelectValue', 'getBetList'])
 
@@ -92,9 +96,12 @@ const isBetSingle = computed(
 const isBetMulti = computed(
   () => betOrderSelectValue.value === EnumsBetSlipBetSlipTabStatus.multi,
 )
-const betBtnText = computed(() =>
-  betOrderData.value.find(b => b.value === betOrderSelectValue.value)?.label ?? '-',
-)
+const betBtnText = computed(() => {
+  if (sportStore.cart.count === 1)
+    return betOrderData.value.find(b => b.value === EnumsBetSlipBetSlipTabStatus.single)?.label ?? '-'
+
+  return betOrderData.value.find(b => b.value === betOrderSelectValue.value)?.label ?? '-'
+})
 const cartDataList = computed(() => {
   if (isMobile.value)
     return sportStore.cart.dataList.slice().reverse()
@@ -397,8 +404,12 @@ async function runGetSportPlaceBetInfoHandle() {
   if (sportStore.cart.count > VITE_SPORT_MULTI_BET_MAX)
     return
 
+  const ic: EnumsBetSlipBetSlipTabStatus = sportStore.cart.count === 1
+    ? EnumsBetSlipBetSlipTabStatus.single
+    : betOrderSelectValue.value
+
   await runGetSportPlaceBetInfo({
-    ic: betOrderSelectValue.value,
+    ic,
     bi: sportStore.cart.dataList,
     cur: getCurrencyConfig(currentGlobalCurrency.value).cur,
   })
@@ -461,7 +472,10 @@ async function bet() {
   if (errorInfo.value.bool)
     return
 
-  if (betOrderSelectValue.value === 1) {
+  if (
+    betOrderSelectValue.value === EnumsBetSlipBetSlipTabStatus.multi
+    && sportStore.cart.count > 1
+  ) {
     // 复式投注
     const betList = [
       {
@@ -476,6 +490,25 @@ async function bet() {
         cur: getCurrencyConfig(currentGlobalCurrency.value).cur,
       },
     ]
+    fetchBet(betList)
+  }
+  else if (
+    betOrderSelectValue.value === EnumsBetSlipBetSlipTabStatus.multi
+    && sportStore.cart.count === 1
+  ) {
+    // 选中复试tab，但是只有一条数据，那么就是单式投注
+    const betList = sportStore.cart.dataList.map<IBetArgs>(item => ({
+      ao: betOrderFilterValue.value,
+      bl: [
+        {
+          pt: item.pt,
+          a: Number(duplexInputValue.value),
+          bi: [item],
+        },
+      ],
+      cur: getCurrencyConfig(currentGlobalCurrency.value).cur,
+    }))
+
     fetchBet(betList)
   }
   else {
