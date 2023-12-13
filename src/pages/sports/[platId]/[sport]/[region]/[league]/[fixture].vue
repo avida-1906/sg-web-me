@@ -645,6 +645,10 @@ video {
             }
             :deep(.base-search) {
               padding: 0 10px;
+              input {
+                padding: 7px 8px;
+                height: 35px;
+              }
               .search-icon.app-svg-icon {
                 color: var(--tg-secondary-light);
               }
