@@ -142,6 +142,7 @@ const isValid = computed(() => {
 })
 
 function onInput() {
+  resetValidTip()
   if (year.value && month.value && day.value && !msg.value)
     emit('update:modelValue', `${year.value}-${month.value > 9 ? month.value : `0${month.value}`}-${day.value > 9 ? day.value : `0${day.value}`}`)
 }
@@ -161,6 +162,15 @@ async function valiBirthday() {
   }
   if (!isValid.value)
     showAllRed.value = true
+}
+
+function resetValidTip() {
+  dayInputRef.value.checkValidity()
+  dayInputRef.value.setCustomValidity('')
+  dayInputRef.value.reportValidity()
+  yearInputRef.value.checkValidity()
+  yearInputRef.value.setCustomValidity('')
+  yearInputRef.value.reportValidity()
 }
 
 onMounted(() => {
