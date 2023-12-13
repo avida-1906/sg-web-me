@@ -35,6 +35,7 @@ const { run: runAddFavorite } = useRequest(() =>
     isFavorite.value = true
     sportsStore.refreshSportsFavList()
   },
+  loadingKeep: 0,
 })
 /** 删除收藏 */
 const { run: runDelFavorite } = useRequest(() =>
@@ -48,6 +49,7 @@ const { run: runDelFavorite } = useRequest(() =>
     isFavorite.value = false
     sportsStore.refreshSportsFavList()
   },
+  loadingKeep: 0,
 })
 
 // 赛事进行时间

@@ -68,15 +68,17 @@ function change() {
 }
 
 function search() {
-  resetPage()
   runAsync(params.value)
 }
 
 function pickerChange() {
-  console.error(date)
+  console.error(date.value)
 }
 
 // search()
+onMounted(() => {
+  console.error('params', params.value)
+})
 </script>
 
 <template>
