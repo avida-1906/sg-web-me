@@ -104,7 +104,7 @@ onMounted(() => {
 .hero-wrapper {
   container-type: inline-size;
   container-name: grid-size;
-  --sick-fade-stamp-of-ed-approval: linear-gradient( 90deg, transparent 0, #1a2c38 4px, #1a2c38 calc(100% - 4px), transparent 100% );
+  --sick-fade-stamp-of-ed-approval: linear-gradient( 90deg, transparent 0, var(--tg-primary-main) 4px, var(--tg-primary-main) calc(100% - 4px), transparent 100% );
   --standard-lockup-shadow-offset: 6px;
 }
 .grid-heroes {
@@ -138,9 +138,9 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   position: relative;
-  color: #ffffff;
-  background: #213743;
-  border-radius: 8px;
+  color: var(--tg-text-white);
+  background: var(--tg-secondary-grey);
+  border-radius: var(--tg-radius-md);
 
   .other {
     position: absolute;
@@ -158,8 +158,8 @@ onMounted(() => {
   top: 0;
   opacity: 0;
   transition: opacity .2s;
-  font-size: 24px;
-  --tg-base-icon-color: #ffffff;
+  font-size: var(--tg-font-size-xl);
+  --tg-icon-color: var(--tg-text-white);
 }
 
 .arrow-right {
