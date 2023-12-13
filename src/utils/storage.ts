@@ -21,6 +21,8 @@ export const STORAGE_SPORTS_BET_ORDER = 'sports_bet_order'
 export const STORAGE_SPORTS_LIVE_NAV = 'storage_sports_live_nav'
 export const STORAGE_MENU_LEFT_EXPAND = 'storage_menu_left_expand'
 export const STORAGE_MENU_ACTIVE_ITEM = 'storage_menu_active_item'
+export const STORAGE_CLEAR_LIVE = 'storage_clear_live'
+export const STORAGE_CLEAR_SPORTS = 'storage_clear_sports'
 
 export class Local {
   static set<T>(key: string, value: any) {
