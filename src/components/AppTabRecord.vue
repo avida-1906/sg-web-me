@@ -7,9 +7,11 @@ interface Props {
   }[]
   emptyText: string
   downloadText?: string
+  tabValue?: string | number
 }
 
 const props = withDefaults(defineProps<Props>(), {})
+const emit = defineEmits(['update:tabValue'])
 
 // 加密货币存款
 const recordDepositCoin = useList(ApiFinanceRecordDepositCoin,
@@ -25,6 +27,7 @@ const recordWithdrawBank = useList(ApiFinanceRecordWithdrawBank,
   { manual: true }, { page_size: 10 })
 
 const tab = ref(props.tabs[0].value)
+emit('update:tabValue', tab.value)
 const activeRecord = ref<any>(
   tab.value === 'byte_coin' ? recordDepositCoin : recordWithdrawCoin)
 
@@ -74,6 +77,10 @@ function formatState(state: number) {
 }
 
 activeRecord.value.run()
+
+watch(tab, (val) => {
+  emit('update:tabValue', val)
+})
 </script>
 
 <template>
@@ -128,6 +135,13 @@ activeRecord.value.run()
 </template>
 
 <style lang="scss" scoped>
+.empty {
+  margin-top: 24px;
+  :deep(.base-empty-description) {
+    padding-bottom: 0;
+    padding-top: 16px;
+  }
+}
 .tg-app-tab-record {
   position: relative;
   --tg-tab-style-wrap-bg-color: var(--tg-primary-main);
