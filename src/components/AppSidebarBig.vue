@@ -45,7 +45,7 @@ function closeMenu(t: any) {
 
 onMounted(() => {
   const tempId = Local.get(STORAGE_MENU_EXPAND_DOMID)?.value ?? ''
-  if (tempId) {
+  if (tempId && !isMobile.value) {
     const t = setTimeout(() => {
       innerRef.value.scrollTo({
         top: document.getElementById(tempId as string)!.offsetTop - 60,

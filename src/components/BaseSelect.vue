@@ -89,10 +89,11 @@ function onPopperOpen() {
         }"
       >
         <div class="content">
-          <slot name="label" :data="selectedOption">
-            <span>{{ popperLabel }}</span>
-          </slot>
-
+          <div class="content-label">
+            <slot name="label" :data="selectedOption">
+              <span>{{ popperLabel }}</span>
+            </slot>
+          </div>
           <div v-if="!disabled" class="icon" :class="{ up: isPopperOpen }">
             <BaseIcon name="uni-arrow-down" />
           </div>
@@ -201,6 +202,7 @@ function onPopperOpen() {
   align-items: center;
   line-height: 1;
   .content {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -242,7 +244,7 @@ function onPopperOpen() {
   }
 
   &:active:not(.disabled) {
-    .content {
+    .content-label {
       transform: scale(0.96);
     }
     color: var(--tg-base-select-popper-label-hover-color);
