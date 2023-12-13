@@ -62,7 +62,7 @@ const getTabOptions = computed(() => {
         { value: 'casino-fy', label: t('billboard') },
         { value: 'ranking-list', label: t('competition_board'), bubble: true },
       ]
-      if (props.isCasinoMine && list.value.length)
+      if (props.isCasinoMine)
         arr.unshift({ value: 'casino-mine', label: t('my_bets'), disabled: !isLogin.value })
       return arr
     }
@@ -408,7 +408,8 @@ onUnmounted(() => {
       :data-source="getList"
       :style="getBgColor"
       :loading="loading"
-      last-first-padding
+      :last-first-padding="isMobile"
+      :show-empty="false"
     >
       <template #gameName="{ record }">
         <div

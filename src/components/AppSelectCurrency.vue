@@ -43,12 +43,14 @@ const getCurrencyList = computed(() => {
     default: return []
   }
 })
-
 // 获取协议类型
 const curContractList = computed(() => {
   if (!activeCurrency.value)
     return []
   return getVirtualCurrencyContractType(activeCurrency.value.type)
+})
+const showNetwork = computed(() => {
+  return props.network && curContractList.value?.length > 1
 })
 
 // 设置协议默认值
@@ -93,7 +95,7 @@ onMounted(() => {
       @apply-show="clearSearchValue"
     >
       <div class="wallet-box">
-        <span>{{ t('currency') }}</span>
+        <span v-if="showNetwork">{{ t('currency') }}</span>
         <BaseButton class="wallet wallet-only" type="text" size="md">
           <AppAmount
             v-if="showBalance"
@@ -152,7 +154,7 @@ onMounted(() => {
         </div>
       </template>
     </VDropdown>
-    <div v-if="network && curContractList?.length > 1" class="wallet-box">
+    <div v-if="showNetwork" class="wallet-box">
       <span>网络</span>
       <BaseSelect
         v-model="currentNetwork"

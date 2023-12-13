@@ -17,13 +17,14 @@ function handleRegister() {
 </script>
 
 <template>
-  <div class="btn-box">
+  <div class="center btn-box">
     <BaseButton type="text" custom-padding @click.stop="handleLogin">
       {{ t('login') }}
     </BaseButton>
     <BaseButton
       custom-padding
       bg-style="primary"
+      style="--tg-base-button-font-size: 15px"
       @click.stop="handleRegister"
     >
       {{ t('reg') }}

@@ -36,14 +36,14 @@ const {
   resetField: amountReset,
 } = useField<string>('amount', (value) => {
   if (!value)
-    // return t('validate_require')
     return '请输入金额'
   else if (Number(value) === 0)
     return `${t('validate_amount')}0`
   else if (Number(value) < 0)
     return t('validate_deposit_amount_pos')
   else if (value && Number(value) > Number(props.activeCurrency.balance))
-    return t('validate_deposit_amount_max')
+    maxNumber()
+    // return t('validate_deposit_amount_max')
   return ''
 })
 const {
@@ -132,7 +132,7 @@ const getUsRate = computed(() => {
   if (str === '706')
     return Number(amount.value).toFixed(2)
   return str
-    ? (Number(exchangeRateData.value?.rates[str]['706']) * Number(amount.value)).toFixed(2)
+    ? (Number(exchangeRateData.value?.rates[str]['706']) * Number(amount.value ?? 0)).toFixed(2)
     : 0.00
 })
 
