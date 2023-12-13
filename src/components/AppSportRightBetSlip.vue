@@ -362,7 +362,9 @@ async function fetchBet(list: IBetArgs[]) {
 function betSuccessTip(widSuccessList: string[]) {
   const message = isBetSingle.value
     ? t('sports_single_bet')
-    : t('sports_multi_bet')
+    : (sportStore.cart.count === 1
+        ? t('sports_single_bet')
+        : t('sports_multi_bet'))
   const amount = isBetSingle.value
     ? sportStore.cart.getAmountByWidList(widSuccessList)
     : Number(duplexInputValue.value)
