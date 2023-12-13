@@ -10,16 +10,31 @@ interface Props {
     list: ISportOutrightsInfo[]
   }
 }
-defineProps<Props>()
+const props = defineProps<Props>()
 
 const router = useRouter()
 const { width } = storeToRefs(useWindowStore())
 
 const isH5Layout = computed(() => width.value < 575)
-
-// props.data.list.forEach((a) => {
-//   console.log('123', timeToSportsDateFormat(a.ed))
-// })
+const dateList = computed(() => {
+  const origin = props.data.list.map((a) => {
+    const date = timeToSportsDateFormat(a.ed)
+    return { ...a, date }
+  })
+  const arr: { date: string; list: ISportOutrightsInfo[] }[] = []
+  for (let i = 0; i < origin.length; i++) {
+    if (i === 0) {
+      arr.push({ date: origin[i].date, list: [origin[i]] })
+      continue
+    }
+    const index = arr.findIndex(a => a.date === origin[i].date)
+    if (index > -1)
+      arr[index].list.push(origin[i])
+    else
+      arr.push({ date: origin[i].date, list: [origin[i]] })
+  }
+  return { ci: props.data.ci, cn: props.data.cn, list: arr, c: props.data.list.length }
+})
 
 // 联赛跳转
 function onBreadcrumbsClick({ list, index }:
@@ -38,34 +53,39 @@ function goOutrightsPage(item: ISportOutrightsInfo) {
 </script>
 
 <template>
-  <BaseSecondaryAccordion :title="data.cn" level="2" :init="autoShow">
+  <BaseSecondaryAccordion :title="dateList.cn" level="2" :init="autoShow">
     <template #side="{ isOpen }">
       <div v-show="!isOpen" class="accordion-badge-wrap">
-        <BaseBadge :count="data.list.length" :max="99999" />
+        <BaseBadge :count="dateList.c" :max="99999" />
       </div>
     </template>
     <div class="wrapper">
-      <div v-for="item, i in data.list" :key="item.ei" class="fixture-wrapper">
-        <div v-if="i > 0" class="line" />
-        <div
-          class="outright-preview"
-        >
-          <span class="name">
-            <a class="link">
-              {{ item.oen }}
-            </a>
-          </span>
-          <div class="breadcrumb">
-            <BaseBreadcrumbs
-              :list="sportsDataBreadcrumbs(item)" :only-last="isH5Layout"
-              @item-click="onBreadcrumbsClick"
-            />
+      <div v-for="item in dateList.list" :key="item.date">
+        <div class="date-time">
+          {{ item.date }}
+        </div>
+        <div v-for="event, i in item.list" :key="event.ei" class="fixture-wrapper">
+          <div v-if="i > 0" class="line" />
+          <div
+            class="outright-preview"
+          >
+            <span class="name">
+              <a class="link">
+                {{ event.oen }}
+              </a>
+            </span>
+            <div class="breadcrumb">
+              <BaseBreadcrumbs
+                :list="sportsDataBreadcrumbs(event)" :only-last="isH5Layout"
+                @item-click="onBreadcrumbsClick"
+              />
+            </div>
+            <span class="market-count">
+              <BaseButton type="text" size="none" @click="goOutrightsPage(event)">
+                +{{ event.ml[0].ms.length }}
+              </BaseButton>
+            </span>
           </div>
-          <span class="market-count">
-            <BaseButton type="text" size="none" @click="goOutrightsPage(item)">
-              +{{ item.ml[0].ms.length }}
-            </BaseButton>
-          </span>
         </div>
       </div>
     </div>
@@ -75,6 +95,12 @@ function goOutrightsPage(item: ISportOutrightsInfo) {
 <style lang="scss" scoped>
 .wrapper{
   padding-bottom: var(--tg-spacing-8);
+}
+.date-time{
+  padding: var(--tg-spacing-6) var(--tg-spacing-16) var(--tg-spacing-8);
+  font-size: var(--tg-font-size-xs);
+  background-color: var(--tg-secondary-main);
+  color: var(--tg-text-lightgrey);
 }
 .line{
   width: 100%;

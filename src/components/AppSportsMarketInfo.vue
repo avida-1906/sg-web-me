@@ -325,7 +325,7 @@ onBeforeUnmount(() => {
             style="--tg-base-button-text-default-color:var(--tg-text-white);"
             @click="goEventDetailPage"
           >
-            <span>{{ data.htn }}</span>
+            <span class="text-left">{{ data.htn }}</span>
           </BaseButton>
         </div>
         <span> - </span>
@@ -336,7 +336,7 @@ onBeforeUnmount(() => {
             style="--tg-base-button-text-default-color:var(--tg-text-white);"
             @click="goEventDetailPage"
           >
-            <span>{{ data.atn }}</span>
+            <span class="text-left">{{ data.atn }}</span>
           </BaseButton>
         </div>
       </div>
