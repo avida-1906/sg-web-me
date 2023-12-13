@@ -179,6 +179,31 @@ export function sportsDataGroupByLeague(origin: ISportEventInfo[]) {
 }
 
 /**
+ * 盘口根据时间组合方法
+ * @param origin 赛事详情数据
+ */
+export function sportsDataGroupByDate(origin: ISportEventInfo[]) {
+  const _origin = origin.map((a) => {
+    const date = timeToSportsDateFormat(a.ed)
+    return { ...a, date }
+  })
+
+  const arr: { date: string; list: ISportEventInfo[] }[] = []
+  for (let i = 0; i < _origin.length; i++) {
+    if (i === 0) {
+      arr.push({ date: _origin[i].date, list: [_origin[i]] })
+      continue
+    }
+    const index = arr.findIndex(a => a.date === _origin[i].date)
+    if (index > -1)
+      arr[index].list.push(_origin[i])
+    else
+      arr.push({ date: _origin[i].date, list: [_origin[i]] })
+  }
+  return arr
+}
+
+/**
  * 加载更多的时候盘口根据联赛组合方法
  * @param origin 原已经根据联赛组合的数据
  * @param newData 新赛事数据

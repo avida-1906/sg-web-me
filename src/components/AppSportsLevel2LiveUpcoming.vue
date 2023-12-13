@@ -123,7 +123,7 @@ await application.allSettled([runAsync(params.value)])
     <AppSportsMarket
       v-for="league, i in list" :key="league.ci" :is-standard="isStandard"
       :league-name="league.cn" :event-count="league.list.length"
-      :base-type="baseType"
+      :base-type="baseType" group-by-date
       :event-list="league.list" :auto-show="i === 0"
     />
     <AppSportsMarketSkeleton
