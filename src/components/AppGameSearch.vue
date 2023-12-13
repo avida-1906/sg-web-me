@@ -43,6 +43,7 @@ const keywordList = computed(() => {
 const {
   list: casinoGames,
   run: runSearchCasinoGames,
+  loading: casinoLoading,
 } = useList(ApiMemberGameSearch, {
   debounceInterval: 1000,
   onAfter(params) {
@@ -60,7 +61,7 @@ const {
   },
 })
 // 体育搜索接口
-const { data: sportsData, run: runSearchSports } = useRequest(
+const { data: sportsData, run: runSearchSports, loading: sportsLoading } = useRequest(
   () => ApiSportEventSearch({ word: searchValue.value }),
   {
     onAfter() {
@@ -161,6 +162,31 @@ function windowResizeRemove() {
 function resizeCallBack() {
   getSearchOverlayStyle()
 }
+function intiKeyword() {
+  if (!Local.get(STORAGE_CLEAR_LIVE)?.value) {
+    const liveList = [
+      'Monopoly',
+      'Crazy Time',
+      'Sweet Bonanza',
+      'Money Train',
+      'Reactoonz',
+    ]
+    Local.set(STORAGE_SEARCH_KEYWORDS_LIVE, liveList)
+    keywordLive.value = liveList
+  }
+
+  if (!Local.get(STORAGE_CLEAR_SPORTS)?.value) {
+    const sportsList = [
+      'Liverpool FC',
+      'Kansas City Chiefs',
+      'Los Angeles Lakers',
+      'FC Barcelona',
+      'FC Bayern Munich',
+    ]
+    Local.set(STORAGE_SEARCH_KEYWORDS_SPORTS, sportsList)
+    keywordSports.value = sportsList
+  }
+}
 
 onMounted(() => {
   dom.value = document.getElementById('main-content-scrollable')
@@ -171,6 +197,7 @@ onBeforeUnmount(() => {
   closeOverlay()
 })
 
+intiKeyword()
 provide('closeSearch', closeOverlay)
 </script>
 
@@ -199,7 +226,7 @@ provide('closeSearch', closeOverlay)
         }"
       >
         <div class="scroll-y warp">
-          <div v-if="!resultData" class="no-result">
+          <div v-if="!resultData && !casinoLoading && !sportsLoading" class="no-result">
             <div class="text">
               <span
                 v-show="searchValue.length < 3"
@@ -232,10 +259,16 @@ provide('closeSearch', closeOverlay)
           </div>
 
           <!-- casino -->
-          <AppCardList v-if="isCasino && resultData" :list="resultData" />
+          <AppCardListSkeleton v-if="casinoLoading" />
+          <AppCardList
+            v-if="isCasino && resultData && !casinoLoading" :list="resultData"
+          />
 
           <!-- sports -->
-          <AppSportsSearchResult v-if="isSports && resultData" :data="sportsData" />
+          <AppSportsSearchResultSkeleton v-if="sportsLoading" />
+          <AppSportsSearchResult
+            v-if="isSports && resultData && !sportsLoading" :data="sportsData"
+          />
         </div>
       </div>
     </teleport>
@@ -310,12 +343,6 @@ provide('closeSearch', closeOverlay)
       }
     }
 
-  }
-
-  .result-casino {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px 5px;
   }
 }
 </style>

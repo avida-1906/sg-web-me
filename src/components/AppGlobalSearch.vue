@@ -60,8 +60,9 @@ const searchPlaceholder = computed(() => isCasino.value
 const {
   list: casinoGames,
   run: runSearchCasinoGames,
+  loading: casinoLoading,
 } = useList(ApiMemberGameSearch, {
-  debounceInterval: 1000,
+  debounceInterval: 500,
   onAfter(params) {
     const word = params[0].w
     isClear.value = false
@@ -77,9 +78,10 @@ const {
   },
 })
 // 体育搜索接口
-const { data: sportsData, run: runSearchSports } = useRequest(
+const { data: sportsData, run: runSearchSports, loading: sportsLoading } = useRequest(
   () => ApiSportEventSearch({ word: searchValue.value }),
   {
+    debounceInterval: 500,
     onAfter() {
       const word = searchValue.value
       isClear.value = false
@@ -254,7 +256,7 @@ intiKeyword()
       @click.self="showOverlayFalse();initOthers && hideTypeSelect()"
     >
       <div class="scroll-y warp">
-        <div v-if="!resultData" class="no-result">
+        <div v-if="!resultData && !casinoLoading && !sportsLoading" class="no-result">
           <div class="text">
             <span
               v-show="searchValue.length < 3"
@@ -286,10 +288,14 @@ intiKeyword()
         </div>
 
         <!-- casino -->
-        <AppCardList v-if="isCasino && resultData" :list="resultData" />
+        <AppCardListSkeleton v-if="casinoLoading" />
+        <AppCardList v-if="isCasino && resultData && !casinoLoading" :list="resultData" />
 
         <!-- sports -->
-        <AppSportsSearchResult v-if="isSports && resultData" :data="sportsData" />
+        <AppSportsSearchResultSkeleton v-if="sportsLoading" />
+        <AppSportsSearchResult
+          v-if="isSports && resultData && !sportsLoading" :data="sportsData"
+        />
       </div>
     </div>
   </div>
