@@ -33,6 +33,7 @@ const {
   value: month, setValue: setMonth,
   errorMessage: errorMonthMsg,
   validate: valiMonth,
+  resetField: resetMonthField,
 } = useField<number>('month', (value) => {
   showAllRed.value = false
   if (!value)
@@ -45,6 +46,7 @@ const {
   setValue: setYear,
   errorMessage: errorYearMsg,
   validate: valiYear,
+  resetField: resetYearField,
 } = useField<number>('year', (value) => {
   showAllRed.value = false
   if (!value)
@@ -85,6 +87,11 @@ const {
     return '日期不能超过31号'
   dayInputRef.value.setCustomValidity('')
   dayInputRef.value.reportValidity()
+  if (!(month.value >= 1 && month.value <= 12))
+    resetMonthField()
+  if (year.value === '' || year.value === undefined)
+    resetYearField()
+
   return ''
 })
 
@@ -238,7 +245,7 @@ defineExpose({ valiBirthday, msg })
     <div v-show="showAllRed" class="msg">
       <!-- <BaseIcon class="error-icon" name="uni-warning" /> -->
       <BaseIcon class="error-icon" name="uni-warning-color" />
-      <span>{{ msg }}</span>
+      <span>{{ msg || t('surveys_birthday_error') }}</span>
     </div>
   </div>
 </template>

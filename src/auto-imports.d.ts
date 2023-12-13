@@ -140,8 +140,11 @@ declare global {
   const SPORTS_LIST_TO_CART_BUS: typeof import('./utils/event-bus')['SPORTS_LIST_TO_CART_BUS']
   const SPORTS_LOBBY_RESET: typeof import('./utils/event-bus')['SPORTS_LOBBY_RESET']
   const SPORTS_PLAT_ID: typeof import('./utils/sports')['SPORTS_PLAT_ID']
+  const STORAGE_CLEAR_LIVE: typeof import('./utils/storage')['STORAGE_CLEAR_LIVE']
+  const STORAGE_CLEAR_SPORTS: typeof import('./utils/storage')['STORAGE_CLEAR_SPORTS']
   const STORAGE_CURRENT_GLOBAL_CURRENCY_KEY: typeof import('./utils/storage')['STORAGE_CURRENT_GLOBAL_CURRENCY_KEY']
   const STORAGE_HIDE_ZERO_BALANCE_KEY: typeof import('./utils/storage')['STORAGE_HIDE_ZERO_BALANCE_KEY']
+  const STORAGE_IS_CLEAR_SEARCH_STORAGE: typeof import('./utils/storage')['STORAGE_IS_CLEAR_SEARCH_STORAGE']
   const STORAGE_LANGUAGE_KEY: typeof import('./utils/storage')['STORAGE_LANGUAGE_KEY']
   const STORAGE_MENU_ACCORDION_LAST_OPEN: typeof import('./utils/storage')['STORAGE_MENU_ACCORDION_LAST_OPEN']
   const STORAGE_MENU_ACTIVE_ITEM: typeof import('./utils/storage')['STORAGE_MENU_ACTIVE_ITEM']
@@ -755,6 +758,8 @@ declare module 'vue' {
     readonly SPORTS_LIST_TO_CART_BUS: UnwrapRef<typeof import('./utils/event-bus')['SPORTS_LIST_TO_CART_BUS']>
     readonly SPORTS_LOBBY_RESET: UnwrapRef<typeof import('./utils/event-bus')['SPORTS_LOBBY_RESET']>
     readonly SPORTS_PLAT_ID: UnwrapRef<typeof import('./utils/sports')['SPORTS_PLAT_ID']>
+    readonly STORAGE_CLEAR_LIVE: UnwrapRef<typeof import('./utils/storage')['STORAGE_CLEAR_LIVE']>
+    readonly STORAGE_CLEAR_SPORTS: UnwrapRef<typeof import('./utils/storage')['STORAGE_CLEAR_SPORTS']>
     readonly STORAGE_CURRENT_GLOBAL_CURRENCY_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_CURRENT_GLOBAL_CURRENCY_KEY']>
     readonly STORAGE_HIDE_ZERO_BALANCE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_HIDE_ZERO_BALANCE_KEY']>
     readonly STORAGE_LANGUAGE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_LANGUAGE_KEY']>
@@ -1363,6 +1368,8 @@ declare module '@vue/runtime-core' {
     readonly SPORTS_LIST_TO_CART_BUS: UnwrapRef<typeof import('./utils/event-bus')['SPORTS_LIST_TO_CART_BUS']>
     readonly SPORTS_LOBBY_RESET: UnwrapRef<typeof import('./utils/event-bus')['SPORTS_LOBBY_RESET']>
     readonly SPORTS_PLAT_ID: UnwrapRef<typeof import('./utils/sports')['SPORTS_PLAT_ID']>
+    readonly STORAGE_CLEAR_LIVE: UnwrapRef<typeof import('./utils/storage')['STORAGE_CLEAR_LIVE']>
+    readonly STORAGE_CLEAR_SPORTS: UnwrapRef<typeof import('./utils/storage')['STORAGE_CLEAR_SPORTS']>
     readonly STORAGE_CURRENT_GLOBAL_CURRENCY_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_CURRENT_GLOBAL_CURRENCY_KEY']>
     readonly STORAGE_HIDE_ZERO_BALANCE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_HIDE_ZERO_BALANCE_KEY']>
     readonly STORAGE_LANGUAGE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_LANGUAGE_KEY']>
