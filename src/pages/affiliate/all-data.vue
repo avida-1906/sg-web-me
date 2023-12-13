@@ -10,7 +10,7 @@ const {
     value: '',
   },
   ...getCurrencyOptions(),
-], false)
+])
 
 const {
   list,
@@ -62,24 +62,29 @@ const params = computed(() => {
   }
 })
 
-function change(_page: number, _page_size: number) {
-  page.value = +_page
-  page_size.value = +_page_size
-  runAsync(params.value)
+function change() {
+  console.error(page.value, page_size.value)
+  // runAsync(params.value)
 }
 
 function search() {
-  resetPage()
   runAsync(params.value)
 }
 
+function pickerChange() {
+  console.error(date.value)
+}
+
 // search()
+onMounted(() => {
+  console.error('params', params.value)
+})
 </script>
 
 <template>
   <div class="all-data-page">
     <div class="table-filter">
-      <BaseDatePicker v-model="date" />
+      <BaseDatePicker v-model="date" @change="pickerChange" />
       <BaseSelect
         v-model="currency_id"
         :options="currencyList"
@@ -111,7 +116,12 @@ function search() {
         <span>{{ record.deposit_amount }}</span>
       </template>
     </BaseTable>
-    <BasePagination v-model:current-page="page" :total="total" @change="change" />
+    <BasePagination
+      v-model:current-page="page"
+      v-model:page-size="page_size"
+      :total="total"
+      @change="change"
+    />
   </div>
 </template>
 

@@ -31,8 +31,8 @@ const {
   else if (Number(value) <= 0)
     return t('min_amount_0')
   else if (activeCurrency.value && Number(value) > Number(activeCurrency.value?.balance))
-    return t('validate_deposit_amount_max')
-
+    maxNumber()
+    // return t('validate_deposit_amount_max')
   return ''
 })
 const {
@@ -135,8 +135,7 @@ function changeCurrency(item: CurrencyData) {
   reset()
 }
 function maxNumber() {
-  if (activeCurrency.value)
-    amount.value = activeCurrency.value.balance
+  setAmount(Number.parseInt(activeCurrency.value.balance).toString())
 }
 function reset() {
   resetAmount()
@@ -158,6 +157,7 @@ watch(() => activeTab.value, () => {
       <BaseTab v-model="activeTab" :list="tabOptions" />
       <div class="center">
         <div class="flex-col-start">
+          <span>{{ t('currency') }}</span>
           <AppSelectCurrency
             :type="isDeposit ? 1 : 2"
             popper-clazz="app-safe-cur"
