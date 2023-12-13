@@ -108,13 +108,23 @@ const { run: runSendMsg, loading: sendLoading } = useRequest(ApiChatSendMessage)
 function addEmoMsg(emo: string, isFace?: boolean) {
   if (isFace) {
     message.value += emo
+    showEmoji.value = false
     msgInput.value?.getFocus()
     return
   }
-  const i = message.value.lastIndexOf(':')
-  const temp = `${message.value.slice(0, i + 1)}${emo.split('.')[0]}` + ': '
-  message.value = i === message.value.length - 1 && i !== -1 ? temp : `:${temp}`
+  const i = message.value.lastIndexOf(':%')
+  const j = message.value.lastIndexOf(':')
+  if (j === message.value.length - 1)
+    message.value = message.value.slice(0, j)
+
+  if (i === -1)
+    message.value += `%:${emo.split('.')[0]}:% `
+
+  else
+    message.value += `%:${emo.split('.')[0]}:% `
+
   msgInput.value?.getFocus()
+  showEmoji.value = false
 }
 function addAtUser(u: { name: string }) {
   const i = message.value.lastIndexOf('@')

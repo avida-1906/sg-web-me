@@ -6,7 +6,7 @@ interface Props {
 const { msg } = defineProps<Props>()
 
 const atUserReg = /@[a-z0-9]{3,14}/g
-const emojiReg = /:[a-z]+:/g
+const emojiReg = /%:[a-z]+:%/g
 
 const splitByEmojiMsg = computed(() => msg.split(emojiReg))
 const matchedEmojis = computed(() => msg.match(emojiReg) ?? [])
@@ -31,7 +31,7 @@ const msgHtml = computed(() => {
       matchedEmojis.value
       && matchedEmojis.value.length
       && i <= matchedEmojis.value?.length - 1) {
-      const idx = allEmojis.map(m => `:${m.split('.')[0]}:`).findIndex(ele => ele === matchedEmojis.value[i])
+      const idx = allEmojis.map(m => `%:${m.split('.')[0]}:%`).findIndex(ele => ele === matchedEmojis.value[i])
       if (idx !== -1)
         temp.push({ type: 'BaseImage', content: { alt: matchedEmojis.value[i], url: `/png/emoji/${allEmojis[idx]}`, class: 'emoji' } as any })
       else
