@@ -21,6 +21,14 @@ const format: { [t: string]: string } = {
   'th-TH': 'DD/MM ddd HH:mm',
   'hi-IN': 'dddd, D MMMM h:mm A',
 }
+const dateFormat: { [t: string]: string } = {
+  'en': 'MMMM DD,YYYY',
+  'zh-CN': 'YYYY年MM月DD日',
+  'vi-VN': 'DD [tháng] MM,YYYY',
+  'pt-BR': 'DD [de] MMMM [de] YYYY',
+  'th-TH': 'DD/MM/YYYY',
+  'hi-IN': 'DD/MM/YYYY',
+}
 const langKey: { [t: string]: string } = {
   'en': 'en',
   'zh-CN': 'zh-cn',
@@ -35,12 +43,12 @@ export function checkTs(ts: number) {
 }
 
 /** 检查是否闰年 */
-export function timeCheckIsLeapYear(ts: number) {
+export function timeCheckIsLeapYear(ts: number): boolean {
   return dayjs(checkTs(ts)).isLeapYear()
 }
 
 /** 赛事开赛时间转换 */
-export function timeToSportsTimeFormat(ts: number) {
+export function timeToSportsTimeFormat(ts: number): string {
   const userLanguage = Local.get<number>(STORAGE_LANGUAGE_KEY)?.value ?? 0
 
   dayjs.locale(langKey[EnumLanguage[userLanguage]])
@@ -48,6 +56,17 @@ export function timeToSportsTimeFormat(ts: number) {
     return dayjs(checkTs(ts)).format(format[EnumLanguage[userLanguage]]).replace('T', 'Th ').replace('tháng', 'Thg')
 
   return dayjs(checkTs(ts)).format(format[EnumLanguage[userLanguage]])
+}
+
+/** 赛事开赛日期转换 */
+export function timeToSportsDateFormat(ts: number): string {
+  const userLanguage = Local.get<number>(STORAGE_LANGUAGE_KEY)?.value ?? 0
+  // 调试用
+  // dayjs.locale(langKey['th-TH'])
+  // return dayjs(checkTs(ts)).format(dateFormat['th-TH'])
+
+  dayjs.locale(langKey[EnumLanguage[userLanguage]])
+  return dayjs(checkTs(ts)).format(dateFormat[EnumLanguage[userLanguage]])
 }
 
 /** 过去时间转换 */
@@ -59,6 +78,6 @@ export function timeToFromNow(ts: number): string {
 }
 
 /** 时间转换 */
-export function timeToFormat(ts: number, format = 'HH:mm YYYY/MM/DD') {
+export function timeToFormat(ts: number, format = 'HH:mm YYYY/MM/DD'): string {
   return dayjs(checkTs(ts)).format(format)
 }

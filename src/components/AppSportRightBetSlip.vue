@@ -362,7 +362,9 @@ async function fetchBet(list: IBetArgs[]) {
 function betSuccessTip(widSuccessList: string[]) {
   const message = isBetSingle.value
     ? t('sports_single_bet')
-    : t('sports_multi_bet')
+    : (sportStore.cart.count === 1
+        ? t('sports_single_bet')
+        : t('sports_multi_bet'))
   const amount = isBetSingle.value
     ? sportStore.cart.getAmountByWidList(widSuccessList)
     : Number(duplexInputValue.value)
@@ -372,7 +374,7 @@ function betSuccessTip(widSuccessList: string[]) {
     : 1
   openNotify({
     type: 'wallet',
-    title: isBetSingle.value ? '单项投注' : '复式投注',
+    title: message,
     message: () => h(
       AppSportBetSuccessNotify,
       {

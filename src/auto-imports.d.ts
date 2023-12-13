@@ -317,6 +317,7 @@ declare global {
   const sportDeltaBus: typeof import('./utils/mqtt')['sportDeltaBus']
   const sportsCartToListBus: typeof import('./utils/event-bus')['sportsCartToListBus']
   const sportsDataBreadcrumbs: typeof import('./utils/sports')['sportsDataBreadcrumbs']
+  const sportsDataGroupByDate: typeof import('./utils/sports')['sportsDataGroupByDate']
   const sportsDataGroupByLeague: typeof import('./utils/sports')['sportsDataGroupByLeague']
   const sportsDataGroupByLeagueLoadMore: typeof import('./utils/sports')['sportsDataGroupByLeagueLoadMore']
   const sportsDataGroupBySport: typeof import('./utils/sports')['sportsDataGroupBySport']
@@ -337,6 +338,7 @@ declare global {
   const timeCheckIsLeapYear: typeof import('./utils/time')['timeCheckIsLeapYear']
   const timeToFormat: typeof import('./utils/time')['timeToFormat']
   const timeToFromNow: typeof import('./utils/time')['timeToFromNow']
+  const timeToSportsDateFormat: typeof import('./utils/time')['timeToSportsDateFormat']
   const timeToSportsTimeFormat: typeof import('./utils/time')['timeToSportsTimeFormat']
   const toFixed: typeof import('./utils/number')['toFixed']
   const toNumber: typeof import('lodash-es')['toNumber']
@@ -929,6 +931,7 @@ declare module 'vue' {
     readonly sportDeltaBus: UnwrapRef<typeof import('./utils/mqtt')['sportDeltaBus']>
     readonly sportsCartToListBus: UnwrapRef<typeof import('./utils/event-bus')['sportsCartToListBus']>
     readonly sportsDataBreadcrumbs: UnwrapRef<typeof import('./utils/sports')['sportsDataBreadcrumbs']>
+    readonly sportsDataGroupByDate: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupByDate']>
     readonly sportsDataGroupByLeague: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupByLeague']>
     readonly sportsDataGroupByLeagueLoadMore: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupByLeagueLoadMore']>
     readonly sportsDataGroupBySport: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupBySport']>
@@ -949,6 +952,7 @@ declare module 'vue' {
     readonly timeCheckIsLeapYear: UnwrapRef<typeof import('./utils/time')['timeCheckIsLeapYear']>
     readonly timeToFormat: UnwrapRef<typeof import('./utils/time')['timeToFormat']>
     readonly timeToFromNow: UnwrapRef<typeof import('./utils/time')['timeToFromNow']>
+    readonly timeToSportsDateFormat: UnwrapRef<typeof import('./utils/time')['timeToSportsDateFormat']>
     readonly timeToSportsTimeFormat: UnwrapRef<typeof import('./utils/time')['timeToSportsTimeFormat']>
     readonly toFixed: UnwrapRef<typeof import('./utils/number')['toFixed']>
     readonly toNumber: UnwrapRef<typeof import('lodash-es')['toNumber']>
@@ -1535,6 +1539,7 @@ declare module '@vue/runtime-core' {
     readonly sportDeltaBus: UnwrapRef<typeof import('./utils/mqtt')['sportDeltaBus']>
     readonly sportsCartToListBus: UnwrapRef<typeof import('./utils/event-bus')['sportsCartToListBus']>
     readonly sportsDataBreadcrumbs: UnwrapRef<typeof import('./utils/sports')['sportsDataBreadcrumbs']>
+    readonly sportsDataGroupByDate: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupByDate']>
     readonly sportsDataGroupByLeague: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupByLeague']>
     readonly sportsDataGroupByLeagueLoadMore: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupByLeagueLoadMore']>
     readonly sportsDataGroupBySport: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupBySport']>
@@ -1555,6 +1560,7 @@ declare module '@vue/runtime-core' {
     readonly timeCheckIsLeapYear: UnwrapRef<typeof import('./utils/time')['timeCheckIsLeapYear']>
     readonly timeToFormat: UnwrapRef<typeof import('./utils/time')['timeToFormat']>
     readonly timeToFromNow: UnwrapRef<typeof import('./utils/time')['timeToFromNow']>
+    readonly timeToSportsDateFormat: UnwrapRef<typeof import('./utils/time')['timeToSportsDateFormat']>
     readonly timeToSportsTimeFormat: UnwrapRef<typeof import('./utils/time')['timeToSportsTimeFormat']>
     readonly toFixed: UnwrapRef<typeof import('./utils/number')['toFixed']>
     readonly toNumber: UnwrapRef<typeof import('lodash-es')['toNumber']>

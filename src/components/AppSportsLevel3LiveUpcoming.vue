@@ -122,7 +122,7 @@ await application.allSettled([runAsync(params.value)])
     <AppSportsMarket
       :is-standard="isStandard"
       :league-name="navObj.cn" :event-count="total" :base-type="baseType"
-      :event-list="list" auto-show :loading-more="moreLoading"
+      :event-list="list" :loading-more="moreLoading" group-by-date auto-show
     />
     <BaseButton
       v-show="curTotal < total && !moreLoading"

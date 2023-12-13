@@ -3,13 +3,15 @@ interface Props {
   columns: Column[] // 表格列的配置项
   dataSource?: any[] // 表格数据数组
   loading?: boolean // 是否显示骨架屏
-  lastFirstPadding?: boolean // 是否单独设置每行第一个和最后一个左右padding
+  lastFirstPadding?: boolean // 是否设置每行第一个和最后一个左padding，右padding
+  showEmpty?: boolean // 数据为空是否显示空状态
 }
 
 const props = withDefaults(defineProps<Props>(), {
   columns: () => [],
   dataSource: () => [],
   loading: false,
+  showEmpty: true,
 })
 
 const emit = defineEmits(['sort'])
@@ -96,7 +98,11 @@ watch(() => props.columns, () => {
         <!-- <tr v-show="loading" class="m-tr-loading">
           <BaseLoading class="m-loading" />
         </tr> -->
-        <tr v-show="(!loading) && (!dataSource?.length)" class="m-tr-empty">
+        <tr
+          v-if="showEmpty"
+          v-show="(!loading) && (!dataSource?.length)"
+          class="m-tr-empty"
+        >
           <td class="m-td-empty" :colspan="columns.length">
             <div style="margin-top: var(--tg-table-margin-top-empty);">
               <BaseEmpty :description="t('data_empty')" icon="uni-empty-betslip" />
