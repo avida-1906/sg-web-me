@@ -137,7 +137,7 @@ onBeforeUnmount(() => {
     <template v-if="isNa">
       <span class="status">N/A</span>
     </template>
-    <AppSportsOutcomeLocked v-else-if="+listToCartData.ov === 0" />
+    <AppSportsOutcomeLocked v-else-if="+listToCartData.ov === 0" size="none" />
     <div v-else class="content" :class="[layout]">
       <div class="name">
         {{ title || '-' }}

@@ -224,7 +224,7 @@ function formatAmount() {
     setAmount(Number.parseInt(amount.value).toString())
 }
 const toCopy = function (item: string) {
-  application.copy(item, t)
+  application.copy(item)
 }
 const changeAisle = function (item: IPaymentMerchantData) {
   const ref: HTMLElement | null = document.querySelector(`#id${item.value}`)
@@ -328,16 +328,18 @@ await application.allSettled([
                 class="copy-row"
                 @click="toCopy(paymentDepositBankInfo?.bankcard.open_name ?? '')"
               >
-                {{ paymentDepositBankInfo?.bankcard.open_name }}
-                <BaseIcon name="uni-doc" />
+                <span>{{ paymentDepositBankInfo?.bankcard.open_name }}</span>
+                <AppTooltip text="已成功复制地址" icon-name="uni-doc" :triggers="['click']" />
               </p>
             </div>
             <p
               class="copy-row"
               @click="toCopy(paymentDepositBankInfo?.bankcard.bank_account ?? '')"
             >
-              {{ formatBankAccount(paymentDepositBankInfo?.bankcard.bank_account ?? '') }}
-              <BaseIcon name="uni-doc" />
+              <span>{{
+                formatBankAccount(paymentDepositBankInfo?.bankcard.bank_account ?? '')
+              }}</span>
+              <AppTooltip text="已成功复制地址" icon-name="uni-doc" :triggers="['click']" />
             </p>
             <p class="copy-row">
               <span class="center" style="gap: 8px;">
@@ -350,13 +352,14 @@ await application.allSettled([
               class="copy-row"
               @click="toCopy(paymentDepositBankInfo?.bankcard.bank_area_cpf ?? '')"
             >
-              开户网点：{{ paymentDepositBankInfo?.bankcard.bank_area_cpf }}
-              <BaseIcon name="uni-doc" />
+              <span>开户网点：{{ paymentDepositBankInfo?.bankcard.bank_area_cpf }}</span>
+              <AppTooltip text="已成功复制地址" icon-name="uni-doc" :triggers="['click']" />
             </p>
             <div>
               <p class="copy-row" @click="toCopy(paymentDepositBankInfo?.amount ?? '')">
-                转账金额：{{ `${paymentDepositBankInfo?.amount} ${activeCurrency.prefix}` }}
-                <BaseIcon name="uni-doc" />
+                <span>转账金额：{{
+                  `${paymentDepositBankInfo?.amount} ${activeCurrency.prefix}` }}</span>
+                <AppTooltip text="已成功复制地址" icon-name="uni-doc" :triggers="['click']" />
               </p>
               <p class="second-tips">
                 转账金额务必与订单金额一致
