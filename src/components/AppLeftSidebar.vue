@@ -21,6 +21,7 @@ function onGameTypeChange(v: string) {
   gameType.value = v
 }
 function push(title: string) {
+  Local.remove(STORAGE_MENU_EXPAND_DOMID)
   menuStore.setSideBigActiveMenu('')
   const path = title === 'casino' ? '/casino' : `/sports/${getSportsPlatId()}`
   router.push(path)
