@@ -63,7 +63,7 @@ watch(() => props.odds, (newOdds) => {
 
   .icon {
     grid-area: arrow;
-    font-size: var(--tg-spacing-9);
+    font-size: var(--tg-font-size-xs);
     display: flex;
     align-items: center;
     justify-content: center;
