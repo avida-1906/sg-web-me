@@ -187,7 +187,7 @@ function enterPress(event: KeyboardEvent) {
 }
 function inputMsg() {
   const j = message.value.lastIndexOf(':')
-  if (j === message.value.length - 1)
+  if (j !== -1 && j === message.value.length - 1)
     showEmoji.value = true
 }
 </script>
