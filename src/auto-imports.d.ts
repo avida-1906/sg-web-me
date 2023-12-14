@@ -69,6 +69,7 @@ declare global {
   const ApiMemberPasswordUpdate: typeof import('./apis/index')['ApiMemberPasswordUpdate']
   const ApiMemberPayPasswordUpdate: typeof import('./apis/index')['ApiMemberPayPasswordUpdate']
   const ApiMemberPlatformList: typeof import('./apis/index')['ApiMemberPlatformList']
+  const ApiMemberPlatformVenueList: typeof import('./apis/index')['ApiMemberPlatformVenueList']
   const ApiMemberReg: typeof import('./apis/index')['ApiMemberReg']
   const ApiMemberSendMailCode: typeof import('./apis/index')['ApiMemberSendMailCode']
   const ApiMemberStationInfoDetailUpdateState: typeof import('./apis/index')['ApiMemberStationInfoDetailUpdateState']
@@ -688,6 +689,7 @@ declare module 'vue' {
     readonly ApiMemberPasswordUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberPasswordUpdate']>
     readonly ApiMemberPayPasswordUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberPayPasswordUpdate']>
     readonly ApiMemberPlatformList: UnwrapRef<typeof import('./apis/index')['ApiMemberPlatformList']>
+    readonly ApiMemberPlatformVenueList: UnwrapRef<typeof import('./apis/index')['ApiMemberPlatformVenueList']>
     readonly ApiMemberReg: UnwrapRef<typeof import('./apis/index')['ApiMemberReg']>
     readonly ApiMemberSendMailCode: UnwrapRef<typeof import('./apis/index')['ApiMemberSendMailCode']>
     readonly ApiMemberStationInfoDetailUpdateState: UnwrapRef<typeof import('./apis/index')['ApiMemberStationInfoDetailUpdateState']>
@@ -1299,6 +1301,7 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberPasswordUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberPasswordUpdate']>
     readonly ApiMemberPayPasswordUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberPayPasswordUpdate']>
     readonly ApiMemberPlatformList: UnwrapRef<typeof import('./apis/index')['ApiMemberPlatformList']>
+    readonly ApiMemberPlatformVenueList: UnwrapRef<typeof import('./apis/index')['ApiMemberPlatformVenueList']>
     readonly ApiMemberReg: UnwrapRef<typeof import('./apis/index')['ApiMemberReg']>
     readonly ApiMemberSendMailCode: UnwrapRef<typeof import('./apis/index')['ApiMemberSendMailCode']>
     readonly ApiMemberStationInfoDetailUpdateState: UnwrapRef<typeof import('./apis/index')['ApiMemberStationInfoDetailUpdateState']>
