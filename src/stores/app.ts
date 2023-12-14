@@ -111,7 +111,7 @@ export const useAppStore = defineStore('app', () => {
     const symbol = application.isVirtualCurrency(currency)
       ? ''
       : currencyConfig[currency].prefix
-    return balance ? symbol + balance : 0
+    return balance ? (`${symbol} ${balance}`) : 0
   })
 
   /** 用户当前选择的货币余额, 数字 */
