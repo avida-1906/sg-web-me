@@ -358,7 +358,7 @@ watch(() => activeTab.value, (newValue) => {
   else {
     timer.value && clearInterval(timer.value)
     timer.value = null
-    setColor(!props.showTab)
+    setColor(true)
   }
 }, { immediate: true })
 watch(() => isLogin.value, (newValue) => {
