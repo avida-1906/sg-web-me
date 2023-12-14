@@ -2,6 +2,8 @@
 const { startTime, endTime } = getDaIntervalMap(new Date().getTime(), 30)
 
 const { t } = useI18n()
+const { copy } = useClipboard()
+const { openNotify } = useNotify()
 
 const {
   selected: currency_id,
@@ -70,6 +72,16 @@ const params = computed(() => {
   }
 })
 
+function copyClick(msg: string) {
+  console.error(123)
+  copy(msg)
+  openNotify({
+    type: 'success',
+    title: t('notify_title_success'),
+    message: t('copy_success') + msg,
+  })
+}
+
 useListSearch(params, runAsync, resetPage)
 </script>
 
@@ -101,7 +113,11 @@ useListSearch(params, runAsync, resetPage)
       :loading="loading"
     >
       <template #username="{ record }">
-        <div class="center" style="gap: var(--tg-spacing-4);">
+        <div
+          class="center cursor-pointer"
+          style="gap: var(--tg-spacing-4);"
+          @click="copyClick(record.username)"
+        >
           <BaseIcon name="chat-star-gold" />
           <span>{{ record.username }}</span>
           <BaseIcon name="uni-doc" />
