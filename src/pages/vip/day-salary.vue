@@ -97,7 +97,6 @@ onMounted(() => {
   font-size: 28px;
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 .green-text {
   color: var(--tg-text-green);
