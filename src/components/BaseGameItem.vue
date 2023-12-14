@@ -22,6 +22,7 @@ const closeSearch = inject('closeSearch', () => { })
 const closeSearchH5 = inject('closeSearchH5', () => { })
 const { bool: isError, setTrue: setErrorTrue } = useBoolean(false)
 const { bool: thumbnailStatus, setFalse: thumbnailLoadError } = useBoolean(true)
+const { bool: showBorder, setFalse: showBorderFalse } = useBoolean(true)
 
 const gameProviderName = computed(() =>
   allPlatformList.value?.find(a => a.id === props.gameInfo.platform_id)?.name ?? '-',
@@ -57,7 +58,11 @@ const onPlayCount = ref(Math.ceil(Math.random() * 1000).toFixed())
 <template>
   <BaseAspectRatio ratio="68/91">
     <div
-      class="base-game-item" :class="{ 'maintain': isMaintained, 'pc-item': !isMobile }"
+      class="base-game-item" :class="{
+        'maintain': isMaintained,
+        'pc-item': !isMobile,
+        'border': showBorder,
+      }"
       @click="gameStart(gameInfo)"
     >
       <div class="backgrop-filter">
@@ -75,6 +80,7 @@ const onPlayCount = ref(Math.ceil(Math.random() * 1000).toFixed())
         is-cloud
         style="height: inherit;"
         @error-img="setErrorTrue()"
+        @load-img="showBorderFalse"
       />
       <div v-if="isError && !isMaintained" class="img-load">
         <div style="text-align: center;">
@@ -128,6 +134,9 @@ const onPlayCount = ref(Math.ceil(Math.random() * 1000).toFixed())
   border-radius: var(--tg-radius-md);
   overflow: hidden;
   cursor: pointer;
+  &.border{
+    border: 0.5px solid var(--tg-text-white);
+  }
 
   .active-game-item {
     position: absolute;

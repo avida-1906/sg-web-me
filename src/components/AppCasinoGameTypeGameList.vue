@@ -25,6 +25,7 @@ const paramsGame = computed(() =>
     platform_id: pid.value,
     sort: props.sortType,
   }))
+// 场馆游戏
 const {
   list: gameList,
   total: gameTotal,
@@ -45,7 +46,7 @@ const {
 const paramsCate = computed(() => ({
   cid: cid.value,
   sort: props.sortType,
-  platform_id: props.pids,
+  venue_id: props.pids,
 }))
 const {
   list: cateList,

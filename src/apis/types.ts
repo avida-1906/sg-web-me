@@ -191,6 +191,35 @@ export interface ProviderItem {
   game_num: number
   name: string
   venue_id: string
+  [k: string]: any
+}
+
+export interface CasinoProviderItem {
+  id: string
+  venue_id: string
+  name: string
+  en_name: string
+  zh_name: string
+  pt_name: string
+  vn_name: string
+  th_name: string
+  game_type: string
+  zk_state: string
+  state: string
+  maintained: string
+  seq: number
+  logo: string
+  nav: string
+  background: string
+  currency: string
+  lang: string
+  created_at: number
+  updated_at: number
+  updated_uid: string
+  updated_name: string
+  maintained_st: number
+  maintained_et: number
+  game_num: number
 }
 
 /** 汇率数据对象 */

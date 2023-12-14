@@ -55,7 +55,10 @@ onMounted(() => {
   <div class="vip-week-salary">
     <BaseTable :columns="columns" :data-source="vipConfigArray">
       <template #level="{ record }">
-        <div>VIP{{ record.level }}</div>
+        <!-- <div>VIP{{ record.level }}</div> -->
+        <div class="vip-badge">
+          <BaseIcon :name="`vip${record.level}`" />
+        </div>
       </template>
       <template #weekly_gift="{ record }">
         <div class="gift color-orange">
@@ -90,6 +93,11 @@ onMounted(() => {
 </template>
 
 <style lang="scss" scoped>
+.vip-badge {
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+}
 .green-text {
   color: var(--tg-text-green);
   cursor: pointer;

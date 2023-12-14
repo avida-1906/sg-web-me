@@ -5,9 +5,12 @@ const appStore = useAppStore()
 const { vipConfigData } = storeToRefs(appStore)
 const { platformList } = storeToRefs(useCasinoStore())
 const { providerList } = storeToRefs(useSportsStore())
+const { AllLanguages, userLanguage } = storeToRefs(useLanguageStore())
 
 const tab = ref('')
 
+const prefix = computed(() =>
+  AllLanguages.value.filter(a => a.value === userLanguage.value)[0].prefix)
 const allPlatforms = computed(() => platformList.value.concat(providerList.value))
 const tabList = computed(() => [
   { label: t('slot'), value: '3' },
@@ -20,7 +23,7 @@ const tabList = computed(() => [
 const filteredPlatforms = computed(() =>
   allPlatforms.value.filter(p => p.game_type === tab.value))
 const filterPlatformColumn = computed<Column[]>(() => filteredPlatforms.value.map(p =>
-  ({ title: p.name, dataIndex: `${p.id}rate`, align: 'center', slot: `${p.id}rate` })))
+  ({ title: p[prefix.value ? `${prefix.value}_name` : 'name'], dataIndex: `${p.id}rate`, align: 'center', slot: `${p.id}rate` })))
 
 const data = computed(() =>
   vipConfigData.value
@@ -59,7 +62,10 @@ watch(tabList, (val) => {
     />
     <BaseTable :columns="columns" :data-source="data">
       <template #level="{ record }">
-        <div>VIP{{ record.level }}</div>
+        <!-- <div>VIP{{ record.level }}</div> -->
+        <div class="vip-badge">
+          <BaseIcon :name="`vip${record.level}`" />
+        </div>
       </template>
     </BaseTable>
     <AppVipRuleDesc />
@@ -67,6 +73,12 @@ watch(tabList, (val) => {
 </template>
 
 <style lang="scss" scoped>
+.vip-badge {
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .vip-rebate {
   display: flex;
   flex-direction: column;

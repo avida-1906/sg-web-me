@@ -1,6 +1,7 @@
 import type {
   BankCard,
   CasinoLobbyGameItem,
+  CasinoProviderItem,
   DepositInfo,
   EnumCurrencyKey,
   ExchangeRateData,
@@ -336,6 +337,19 @@ export function ApiMemberPlatformList(params: {
 } = { page: 1, page_size: 100, game_type: 0 },
 ) {
   return httpClient.get<IResponseList<ProviderItem>>('/member/platform/list', { params })
+}
+
+/**
+ * 娱乐城场馆列表
+ *  /member/platform/venue/list
+ */
+export function ApiMemberPlatformVenueList(params: {
+  page?: number
+  page_size?: number
+  game_type: number
+} = { page: 1, page_size: 100, game_type: 0 },
+) {
+  return httpClient.get<IResponseList<CasinoProviderItem>>('/member/platform/venue/list', { params })
 }
 
 /**
