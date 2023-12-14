@@ -135,7 +135,7 @@ function changeCurrency(item: CurrencyData) {
   reset()
 }
 function maxNumber() {
-  setAmount(Number.parseInt(activeCurrency.value.balance).toString())
+  setAmount(activeCurrency.value.balance)
 }
 function reset() {
   resetAmount()
