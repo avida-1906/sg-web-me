@@ -73,6 +73,7 @@ const onPlayCount = ref(Math.ceil(Math.random() * 1000).toFixed())
         :url="gameInfo.img"
         :name="gameInfo.name"
         is-cloud
+        style="height: inherit;"
         @error-img="setErrorTrue()"
       />
       <div v-if="isError && !isMaintained" class="img-load">
@@ -120,7 +121,7 @@ const onPlayCount = ref(Math.ceil(Math.random() * 1000).toFixed())
 .base-game-item {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: -webkit-fill-available;
   top: 0;
   will-change: transform;
   transition: 0.3s;

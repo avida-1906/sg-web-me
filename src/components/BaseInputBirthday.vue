@@ -149,7 +149,12 @@ const isValid = computed(() => {
 })
 
 function onInput() {
-  resetValidTip()
+  if (day.value > 0 && day.value <= dayMax.value)
+    checkValidTip(dayInputRef.value, '')
+
+  if (year.value >= 1900)
+    checkValidTip(yearInputRef.value, '')
+
   if (year.value && month.value && day.value && !msg.value)
     emit('update:modelValue', `${year.value}-${month.value > 9 ? month.value : `0${month.value}`}-${day.value > 9 ? day.value : `0${day.value}`}`)
 }
@@ -157,27 +162,20 @@ async function valiBirthday() {
   await valiMonth()
   await valiYear()
   await valiDay()
-  if (+day.value <= 0) {
-    dayInputRef.value.checkValidity()
-    dayInputRef.value.setCustomValidity('值必须大于或等于1')
-    dayInputRef.value.reportValidity()
-  }
-  else if (+year.value < 1900) {
-    yearInputRef.value.checkValidity()
-    yearInputRef.value.setCustomValidity('值必须大于或等于1900')
-    yearInputRef.value.reportValidity()
-  }
+  if (+day.value <= 0)
+    checkValidTip(dayInputRef.value, '值必须大于或等于1')
+
+  else if (+year.value < 1900)
+    checkValidTip(yearInputRef.value, '值必须大于或等于1900')
+
   if (!isValid.value)
     showAllRed.value = true
 }
 
-function resetValidTip() {
-  dayInputRef.value.checkValidity()
-  dayInputRef.value.setCustomValidity('')
-  dayInputRef.value.reportValidity()
-  yearInputRef.value.checkValidity()
-  yearInputRef.value.setCustomValidity('')
-  yearInputRef.value.reportValidity()
+function checkValidTip(el: HTMLObjectElement, msg: string) {
+  el.checkValidity()
+  el.setCustomValidity(msg) // 如果是 '', 会提示原生的校验提示
+  el.reportValidity()
 }
 
 onMounted(() => {

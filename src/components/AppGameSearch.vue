@@ -161,6 +161,31 @@ function windowResizeRemove() {
 function resizeCallBack() {
   getSearchOverlayStyle()
 }
+function intiKeyword() {
+  if (!Local.get(STORAGE_CLEAR_LIVE)?.value) {
+    const liveList = [
+      'Monopoly',
+      'Crazy Time',
+      'Sweet Bonanza',
+      'Money Train',
+      'Reactoonz',
+    ]
+    Local.set(STORAGE_SEARCH_KEYWORDS_LIVE, liveList)
+    keywordLive.value = liveList
+  }
+
+  if (!Local.get(STORAGE_CLEAR_SPORTS)?.value) {
+    const sportsList = [
+      'Liverpool FC',
+      'Kansas City Chiefs',
+      'Los Angeles Lakers',
+      'FC Barcelona',
+      'FC Bayern Munich',
+    ]
+    Local.set(STORAGE_SEARCH_KEYWORDS_SPORTS, sportsList)
+    keywordSports.value = sportsList
+  }
+}
 
 onMounted(() => {
   dom.value = document.getElementById('main-content-scrollable')
@@ -171,6 +196,7 @@ onBeforeUnmount(() => {
   closeOverlay()
 })
 
+intiKeyword()
 provide('closeSearch', closeOverlay)
 </script>
 
@@ -199,14 +225,14 @@ provide('closeSearch', closeOverlay)
         }"
       >
         <div class="scroll-y warp">
-          <div v-if="!resultData" class="no-result">
+          <div v-if="!resultData && !isInputing" class="no-result">
             <div class="text">
               <span
                 v-show="searchValue.length < 3"
               >
                 {{ t('search_need_at_least_3_word') }}</span>
               <span
-                v-show="searchValue.length >= 3 && !isInputing"
+                v-show="searchValue.length >= 3"
               >{{ t('search_no_result') }}</span>
             </div>
             <div v-if="keywordList.length" class="recent">
@@ -232,10 +258,16 @@ provide('closeSearch', closeOverlay)
           </div>
 
           <!-- casino -->
-          <AppCardList v-if="isCasino && resultData" :list="resultData" />
+          <AppCardListSkeleton v-if="isInputing && isCasino" />
+          <AppCardList
+            v-if="isCasino && resultData && !isInputing " :list="resultData"
+          />
 
           <!-- sports -->
-          <AppSportsSearchResult v-if="isSports && resultData" :data="sportsData" />
+          <AppSportsSearchResultSkeleton v-if="isInputing && isSports" />
+          <AppSportsSearchResult
+            v-if="isSports && resultData && !isInputing " :data="sportsData"
+          />
         </div>
       </div>
     </teleport>
@@ -310,12 +342,6 @@ provide('closeSearch', closeOverlay)
       }
     }
 
-  }
-
-  .result-casino {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px 5px;
   }
 }
 </style>
