@@ -36,6 +36,7 @@ defineEmits(['click', 'close'])
     cursor: pointer;
 
     span {
+      font-weight: var(--tg-font-weight-semibold);
       &:hover {
         color: var(--tg-text-white);
       }
