@@ -153,7 +153,7 @@ await application.allSettled([casinoStore.runAsyncGameLobby(), runMemberNoticeAl
               :platform-id="currentObject.platform_id"
             />
             <template #fallback>
-              <AppLoading />
+              <AppLoading full-screen />
             </template>
           </Suspense>
         </KeepAlive>
