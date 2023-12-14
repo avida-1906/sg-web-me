@@ -2,9 +2,11 @@
 type DateLabel = 'start' | 'end'
 interface Props {
   modelValue: Array<string>
+  initStartDate?: string | number | Date
+  initEndDate?: string | number | Date
 }
 
-defineProps<Props>()
+const props = defineProps<Props>()
 
 const emit = defineEmits(['update:modelValue', 'change'])
 
@@ -14,8 +16,12 @@ const { bool: arrowUp, setFalse: setUpFalse, setTrue: setUpTrue } = useBoolean(f
 
 const startDateEle = ref()
 const endDateEle = ref()
-const startDate = ref(today)
-const endDate = ref(today)
+const startDate = ref(props.initStartDate !== undefined
+  ? dayjs(props.initStartDate).format('YYYY-MM-DD')
+  : today)
+const endDate = ref(props.initEndDate !== undefined
+  ? dayjs(props.initEndDate).format('YYYY-MM-DD')
+  : today)
 
 const isValid = computed(() => startDate.value <= endDate.value)
 
