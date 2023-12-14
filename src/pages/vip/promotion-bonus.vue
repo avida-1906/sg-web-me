@@ -79,7 +79,7 @@ onMounted(() => {
               {{ record.score }}<BaseIcon name="coin-usdt" />
             </span>
             <span
-              v-else-if="+vip <= +record.level || +record.level < +vip"
+              v-else-if="+vip >= +record.level"
               class="dark-bar"
             >
               <span
