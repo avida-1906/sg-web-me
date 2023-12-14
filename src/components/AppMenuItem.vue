@@ -31,6 +31,7 @@ const active = computed(() => sideBigActiveMenu.value
         v-if="menuItem.useCloudImg"
         style="width: 14px;height: 14px;"
         :url="menuItem.icon" is-cloud
+        class="icon-img"
       />
       <BaseIcon
         v-else-if="menuItem.icon"
@@ -71,6 +72,9 @@ const active = computed(() => sideBigActiveMenu.value
     &:hover:not(.disabled), &.active:not(.disabled) {
       background-color: var(--tg-secondary-main);
       --tg-icon-color: var(--tg-text-white);
+      .icon-img{
+        filter: brightness(2);
+      }
     }
     &.disabled{
       cursor: not-allowed;
