@@ -564,11 +564,11 @@ export class SportsCart {
 
   /**
    * 获取是否有关盘的盘口
-   * @desc os 0:关盘 1:开盘 2:不支援串关
+   * @desc os 0:关盘 1:开盘 2:不支援串关, ov === 0 也是关盘
    * @returns {boolean}
    */
   get isExistCloseCaps() {
-    return this.dataList.some(a => a.os === 0)
+    return this.dataList.some(a => a.os === 0 || (+a.ov) === 0)
   }
 
   /**
