@@ -139,7 +139,7 @@ function sendMsg() {
   setEBool(false)
   if (trimMessage.value.length && !sendLoading.value) {
     if (!isLogin.value) {
-      openNotify({ type: 'error', message: t('need_login_tip') })
+      openNotify({ type: 'error', message: '不允许此操作' })
       return
     }
     const tt = new Date().getTime()
@@ -155,7 +155,7 @@ function enterPress(event: KeyboardEvent) {
   event.stopPropagation()
   if (trimMessage.value.length) {
     if (!isLogin.value) {
-      openNotify({ type: 'error', message: t('need_login_tip') })
+      openNotify({ type: 'error', message: '不允许此操作' })
       return
     }
     if (isCommand.value) {
