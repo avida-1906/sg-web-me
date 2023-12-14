@@ -31,7 +31,7 @@ const data = computed(() =>
       .map((p) => {
         const temp = p.rebate_config.filter(r => r.game_type === tab.value)[0]
         return temp
-          ? temp.data.map(d => ({ level: p.level, [`${d.id}rate`]: d.rate })).reduce((acc, cur) => ({ ...acc, ...cur }), {})
+          ? temp.data.map(d => ({ level: p.level, [`${d.id}rate`]: `${d.rate}%` })).reduce((acc, cur) => ({ ...acc, ...cur }), {})
           : { level: p.level }
       })
     : [])
