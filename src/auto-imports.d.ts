@@ -69,6 +69,7 @@ declare global {
   const ApiMemberPasswordUpdate: typeof import('./apis/index')['ApiMemberPasswordUpdate']
   const ApiMemberPayPasswordUpdate: typeof import('./apis/index')['ApiMemberPayPasswordUpdate']
   const ApiMemberPlatformList: typeof import('./apis/index')['ApiMemberPlatformList']
+  const ApiMemberPlatformVenueList: typeof import('./apis/index')['ApiMemberPlatformVenueList']
   const ApiMemberReg: typeof import('./apis/index')['ApiMemberReg']
   const ApiMemberSendMailCode: typeof import('./apis/index')['ApiMemberSendMailCode']
   const ApiMemberStationInfoDetailUpdateState: typeof import('./apis/index')['ApiMemberStationInfoDetailUpdateState']
@@ -224,6 +225,9 @@ declare global {
   const getCurrencyOptions: typeof import('./composables/useCurrencyData')['getCurrencyOptions']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
+  const getDaIntervalMap: typeof import('./utils/time')['getDaIntervalMap']
+  const getDayList: typeof import('./utils/time')['getDayList']
+  const getDayMap: typeof import('./utils/time')['getDayMap']
   const getEnv: typeof import('./utils/index')['getEnv']
   const getSportsPlatId: typeof import('./utils/sports')['getSportsPlatId']
   const getStyle: typeof import('./utils/dom')['getStyle']
@@ -688,6 +692,7 @@ declare module 'vue' {
     readonly ApiMemberPasswordUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberPasswordUpdate']>
     readonly ApiMemberPayPasswordUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberPayPasswordUpdate']>
     readonly ApiMemberPlatformList: UnwrapRef<typeof import('./apis/index')['ApiMemberPlatformList']>
+    readonly ApiMemberPlatformVenueList: UnwrapRef<typeof import('./apis/index')['ApiMemberPlatformVenueList']>
     readonly ApiMemberReg: UnwrapRef<typeof import('./apis/index')['ApiMemberReg']>
     readonly ApiMemberSendMailCode: UnwrapRef<typeof import('./apis/index')['ApiMemberSendMailCode']>
     readonly ApiMemberStationInfoDetailUpdateState: UnwrapRef<typeof import('./apis/index')['ApiMemberStationInfoDetailUpdateState']>
@@ -841,6 +846,7 @@ declare module 'vue' {
     readonly getCurrencyOptions: UnwrapRef<typeof import('./composables/useCurrencyData')['getCurrencyOptions']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
+    readonly getDaIntervalMap: UnwrapRef<typeof import('./utils/time')['getDaIntervalMap']>
     readonly getEnv: UnwrapRef<typeof import('./utils/index')['getEnv']>
     readonly getSportsPlatId: UnwrapRef<typeof import('./utils/sports')['getSportsPlatId']>
     readonly getStyle: UnwrapRef<typeof import('./utils/dom')['getStyle']>
@@ -1299,6 +1305,7 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberPasswordUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberPasswordUpdate']>
     readonly ApiMemberPayPasswordUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberPayPasswordUpdate']>
     readonly ApiMemberPlatformList: UnwrapRef<typeof import('./apis/index')['ApiMemberPlatformList']>
+    readonly ApiMemberPlatformVenueList: UnwrapRef<typeof import('./apis/index')['ApiMemberPlatformVenueList']>
     readonly ApiMemberReg: UnwrapRef<typeof import('./apis/index')['ApiMemberReg']>
     readonly ApiMemberSendMailCode: UnwrapRef<typeof import('./apis/index')['ApiMemberSendMailCode']>
     readonly ApiMemberStationInfoDetailUpdateState: UnwrapRef<typeof import('./apis/index')['ApiMemberStationInfoDetailUpdateState']>
@@ -1452,6 +1459,7 @@ declare module '@vue/runtime-core' {
     readonly getCurrencyOptions: UnwrapRef<typeof import('./composables/useCurrencyData')['getCurrencyOptions']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
+    readonly getDaIntervalMap: UnwrapRef<typeof import('./utils/time')['getDaIntervalMap']>
     readonly getEnv: UnwrapRef<typeof import('./utils/index')['getEnv']>
     readonly getSportsPlatId: UnwrapRef<typeof import('./utils/sports')['getSportsPlatId']>
     readonly getStyle: UnwrapRef<typeof import('./utils/dom')['getStyle']>

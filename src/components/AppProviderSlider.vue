@@ -1,11 +1,13 @@
 <script lang="ts" setup>
+import type { CasinoProviderItem } from '~/apis/types'
+
 const router = useRouter()
 const { platformList } = storeToRefs(useCasinoStore())
 
-function goPage(item: any) {
+function goPage(item: CasinoProviderItem) {
   if (item.maintained === '2')
     return
-  router.push(`/casino/group/provider?pid=${item.id}&name=${item.name}`)
+  router.push(`/casino/group/provider?pid=${item.venue_id}&name=${item.name}`)
 }
 </script>
 
