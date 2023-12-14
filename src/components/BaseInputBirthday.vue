@@ -102,6 +102,37 @@ if (props.modelValue) {
   setDay(+temp[2])
 }
 
+const curYear = dayjs().year()
+const curMonth = dayjs().month() + 1
+const curDay = dayjs().date()
+const isOver120 = computed(() => {
+  if (+year.value > 0 && +day.value > 0
+  && +day.value <= +dayMax.value && +month.value > 0) {
+    if (curYear - year.value >= 120) {
+      if (curYear - year.value > 120) {
+        return true
+      }
+      else {
+        if (curMonth >= month.value) {
+          if (curMonth > month.value) {
+            return true
+          }
+          else {
+            if (curDay > day.value)
+              return true
+            else return false
+          }
+        }
+        else {
+          return false
+        }
+      }
+    }
+    return false
+  }
+  return undefined
+})
+
 // 是否满足18岁
 const isEnough = computed(() => {
   const yearStr = year.value ? year.value : ''
@@ -129,10 +160,12 @@ const isEnough = computed(() => {
     }
     return month.value ? age > 18 : age >= 18
   }
-  return true
+  return false
 })
 
 const msg = computed(() => {
+  if (isOver120.value === true)
+    return '您的年龄不能超过 120 岁'
   if (!isEnough.value)
     return t('you_have_to_enough_18')
   if (month.value && day.value && day.value > dayMax.value)
@@ -142,10 +175,9 @@ const msg = computed(() => {
 })
 
 const isValid = computed(() => {
-  return isEnough.value && month.value && day.value
-  && day.value > 0 && day.value < dayMax.value
-  && year.value >= 1900 && !errorYearMsg.value && !errorMonthMsg.value
-  && !errorDayMsg.value
+  return !!(!isOver120.value && isEnough.value && +month.value >= 1
+  && +month.value <= 12
+  && +day.value > 0 && +day.value <= +dayMax.value && +year.value >= 1900)
 })
 
 function onInput() {
@@ -170,6 +202,8 @@ async function valiBirthday() {
 
   if (!isValid.value)
     showAllRed.value = true
+
+  return isValid.value
 }
 
 function checkValidTip(el: HTMLObjectElement, msg: string) {
@@ -186,7 +220,7 @@ onMounted(() => {
     setDay(+arr[2])
   }
 })
-defineExpose({ valiBirthday, msg })
+defineExpose({ valiBirthday, msg, isValid })
 </script>
 
 <template>

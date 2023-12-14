@@ -3,9 +3,20 @@ const { t } = useI18n()
 
 const appStore = useAppStore()
 const { vipConfigData } = storeToRefs(appStore)
-const { platformList } = storeToRefs(useCasinoStore())
 const { providerList } = storeToRefs(useSportsStore())
 const { AllLanguages, userLanguage } = storeToRefs(useLanguageStore())
+
+const { list: platformList } = useList(ApiMemberPlatformList, {
+  manual: false,
+})
+// const platformList = computed(() => {
+//   const arr: ProviderItem[] = []
+//   for (let i = 0; i < list.value.length; i++) {
+//     if (!arr.find(a => a.venue_id === list.value[i].venue_id))
+//       arr.push(list.value[i])
+//   }
+//   return arr
+// })
 
 const tab = ref('')
 
@@ -31,7 +42,7 @@ const data = computed(() =>
       .map((p) => {
         const temp = p.rebate_config.filter(r => r.game_type === tab.value)[0]
         return temp
-          ? temp.data.map(d => ({ level: p.level, [`${d.id}rate`]: d.rate })).reduce((acc, cur) => ({ ...acc, ...cur }), {})
+          ? temp.data.map(d => ({ level: p.level, [`${d.id}rate`]: `${d.rate}%` })).reduce((acc, cur) => ({ ...acc, ...cur }), {})
           : { level: p.level }
       })
     : [])

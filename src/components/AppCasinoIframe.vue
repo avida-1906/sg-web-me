@@ -284,6 +284,7 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
         :loading="lunchLoading"
         class="btn"
         size="sm"
+        disabled
         @click="onSwitchRealMoneyMode(false)"
       >
         <div class="icon">
@@ -364,7 +365,7 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
                     </div>
                     <span>{{ t('reg') }}</span>
                   </BaseButton>
-                  <BaseButton size="sm" @click="onSwitchRealMoneyMode(false)">
+                  <BaseButton size="sm" disabled @click="onSwitchRealMoneyMode(false)">
                     <div class="icon">
                       <BaseIcon name="uni-play" />
                     </div>

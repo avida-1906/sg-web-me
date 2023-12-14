@@ -302,6 +302,7 @@ function pathTo(tmp: { path?: string; title: string; icon?: boolean }) {
     display: flex;
     flex-wrap: wrap;
     gap: var(--tg-spacing-4);
+    line-height: 1.375;
     margin: auto;
     text-align: left;
   }

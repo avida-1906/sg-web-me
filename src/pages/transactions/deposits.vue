@@ -13,6 +13,7 @@ const tabList = reactive([
   <section class="tg-deposits-record-page">
     <AppTabRecord
       v-model:tab-value="tab"
+      content-type="deposit"
       :tabs="tabList"
       :empty-text="tab === 'byte_coin' ? $t('finance_deposit_empty_text') : '暂无法定货币存款'"
       :download-text="$t('finance_deposit_download_text')"

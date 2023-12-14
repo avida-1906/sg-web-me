@@ -1,14 +1,12 @@
 import AppDialogDepositDetail from '~/components/AppDialogDepositDetail.vue'
 
-export function useDialogDepositDetail() {
-  const { t } = useI18n()
-
+export function useDialogDepositDetail(title: string) {
   const {
     openDialog: openDepositDetailDialog,
     closeDialog: closeDepositDetailDialog,
   } = useDialog({
-    title: t('deposit_detail'),
-    icon: 'navbar-notice',
+    title,
+    icon: 'tabbar-bet',
     default: data => h(AppDialogDepositDetail, { data }),
   })
 

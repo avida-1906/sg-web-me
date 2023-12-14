@@ -377,7 +377,7 @@ export function ApiFinanceWithdrawWallet(
     page_size?: number
   },
 ) {
-  return httpClient.get<IResponseList<VirtualCoin>>('finance/withdraw/wallet', { params })
+  return httpClient.get<IResponseList<VirtualCoin>>('/finance/withdraw/wallet', { params })
 }
 
 /**

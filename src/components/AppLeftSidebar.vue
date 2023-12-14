@@ -168,6 +168,7 @@ function push(title: string) {
     color: var(--tg-text-white);
     font-size: var(--tg-font-size-default);
     font-weight: var(--tg-font-weight-semibold);
+    text-shadow: 0 1px 2px rgba(0,0,0,.12), 0 1px 3px rgba(0,0,0,.2);
 
     .casino,
     .sports {
