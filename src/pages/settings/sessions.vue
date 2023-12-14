@@ -36,6 +36,7 @@ const columns: Column[] = [
     dataIndex: 'near',
     width: 150,
     align: 'center',
+    slot: 'near',
   },
   {
     title: 'IP',
@@ -122,6 +123,13 @@ application.allSettled([loginLogRunAsync()])
               </div>
             </template>
           </VDropdown>
+        </template>
+        <template #near="{ record }">
+          <div>
+            {{ record.near.length > 20
+              ? (`${record.near.slice(0, 20)}...`)
+              : record.near }}
+          </div>
         </template>
       </BaseTable>
     </div>
