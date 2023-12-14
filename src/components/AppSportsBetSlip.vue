@@ -41,6 +41,7 @@ const sportStore = useSportsStore()
 // const { closeRightSidebar } = useRightSidebar()
 
 const notLoginAmount = ref('')
+const notLoginAmountPlaceholder = ref('')
 // const router = useRouter()
 
 const {
@@ -126,7 +127,7 @@ function goEventDetailPage() {
 
 onMounted(() => {
   if (!isLogin.value) {
-    notLoginAmount.value = application.sliceOrPad(
+    notLoginAmountPlaceholder.value = application.sliceOrPad(
       0,
       suffixLength.value,
     )
@@ -214,7 +215,7 @@ watchEffect(() => {
             v-model="notLoginAmount"
             type="number"
             mb0
-            placeholder=""
+            :placeholder="notLoginAmountPlaceholder"
           >
             <template #right-icon>
               <AppCurrencyIcon :currency-type="currentGlobalCurrency" />
