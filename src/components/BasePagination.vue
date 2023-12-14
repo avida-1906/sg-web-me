@@ -38,7 +38,7 @@ const {
 const page2Size = ref(props.pageSizes[0])
 const jumpPage = ref(props.currentPage)
 
-emit('update:pageSize', page2Size.value)
+emit('update:pageSize', +page2Size.value)
 
 /** 总共多少页 */
 const pageCount = computed(() => Math.ceil(props.total / page2Size.value))
@@ -141,7 +141,7 @@ function pageSizeChange() {
 }
 
 watch(page2Size, (val) => {
-  emit('update:pageSize', val)
+  emit('update:pageSize', +val)
 })
 
 watchEffect(() => {
