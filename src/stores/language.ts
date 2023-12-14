@@ -11,6 +11,7 @@ export const useLanguageStore = defineStore('language', () => {
     value: EnumLanguage
     phone: string
     phoneId: string
+    prefix: string
   }>>([
     {
       title: '中文',
@@ -19,6 +20,7 @@ export const useLanguageStore = defineStore('language', () => {
       value: EnumLanguage['zh-CN'],
       phone: '+86',
       phoneId: '1137',
+      prefix: 'zh',
     },
     {
       title: 'English',
@@ -27,6 +29,7 @@ export const useLanguageStore = defineStore('language', () => {
       value: EnumLanguage['en-US'],
       phone: '+1',
       phoneId: '1283',
+      prefix: 'en',
     },
     {
       title: 'Tiếng Việt',
@@ -35,6 +38,7 @@ export const useLanguageStore = defineStore('language', () => {
       value: EnumLanguage['vi-VN'],
       phone: '+84',
       phoneId: '1287',
+      prefix: 'vi',
     },
     {
       title: 'Português',
@@ -43,6 +47,7 @@ export const useLanguageStore = defineStore('language', () => {
       value: EnumLanguage['pt-BR'],
       phone: '+55',
       phoneId: '1125',
+      prefix: 'pt',
     },
   ])
 
