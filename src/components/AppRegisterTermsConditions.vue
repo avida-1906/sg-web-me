@@ -157,7 +157,7 @@ onBeforeUnmount(() => {
         <div class="terms-conditions-describe">
           <p>
             3.1 When registering on
-            {{ location.hostname }} You (“You”, “Your”, Yourself” or the “Player” interchangeably)
+            <a class="link-inline"><span>{{ location.hostname }}</span><BaseIcon name="uni-jump-page" /></a> You (“You”, “Your”, Yourself” or the “Player” interchangeably)
             enter into an agreement with {{ companyData?.name.toUpperCase() }}.
           </p>
           <p>
@@ -186,9 +186,9 @@ onBeforeUnmount(() => {
         </div>
         <div class="terms-conditions-describe">
           <p>Registration</p>
-          <p>4.1 In order for you to be able to place bets on {{ location.hostname }}, you must first personally register an account with us ("{{ companyData?.name.toUpperCase() }} Account").</p>
+          <p>4.1 In order for you to be able to place bets on <a class="link-inline"><span>{{ location.hostname }}</span><BaseIcon name="uni-jump-page" /></a>, you must first personally register an account with us ("{{ companyData?.name.toUpperCase() }} Account").</p>
           <p>4.2 For a person to be registered as a player with {{ companyData?.name.toUpperCase() }} and use the Website, that person must submit an application for registration and opening of a {{ companyData?.name.toUpperCase() }} account. The application for the opening of the {{ companyData?.name.toUpperCase() }} Account must be submitted personally, and will require You to provide a set of personal information, namely e-mail, full name, date of birth, address, etc.</p>
-          <p>4.3 Where the information stipulated in 4.2. is not provided and/or is not deemed to be complete, accurate or up-to-date at any point in time, {{ companyData?.name.toUpperCase() }} reserves the right to suspend the {{ companyData?.name.toUpperCase() }} Account registration and treat any subsequent potentially accepted deposits to the Player’s {{ companyData?.name.toUpperCase() }} Account as invalid (and any winnings arising from such deposit as void). Where a {{ companyData?.name.toUpperCase() }} Account is suspended, You should contact customer support at support@{{ companyData?.name }}.com.</p>
+          <p>4.3 Where the information stipulated in 4.2. is not provided and/or is not deemed to be complete, accurate or up-to-date at any point in time, {{ companyData?.name.toUpperCase() }} reserves the right to suspend the {{ companyData?.name.toUpperCase() }} Account registration and treat any subsequent potentially accepted deposits to the Player’s {{ companyData?.name.toUpperCase() }} Account as invalid (and any winnings arising from such deposit as void). Where a {{ companyData?.name.toUpperCase() }} Account is suspended, You should contact customer support at <a class="link-inline"><span>support@{{ companyData?.name.toLowerCase() }}.com</span><BaseIcon name="uni-jump-page" /></a>.</p>
           <p>4.4 All applicants must be 18 or such other legal age of majority as determined by any laws which are applicable to you, whichever age is greater or older. {{ companyData?.name.toUpperCase() }} reserves the right to ask for proof of age from any Player and suspend their {{ companyData?.name.toUpperCase() }} Account until satisfactory documentation is provided. {{ companyData?.name.toUpperCase() }} takes its responsibilities in respect of under age and responsible gambling very seriously.</p>
           <p>4.5 {{ companyData?.name.toUpperCase() }} will not accept registration from individuals:</p>
           <p>a) Under 18 years old or under the legal age of majority or gambling in their jurisdiction;</p>
@@ -240,7 +240,7 @@ onBeforeUnmount(() => {
           <p>c) You are not diagnosed or classified as a compulsive or problem gambler;</p>
           <p>d) You are not currently self-excluded from any gambling site or gambling premises. You will inform {{ companyData?.name.toUpperCase() }} immediately if you enter into a self-exclusion agreement with any gambling provider.</p>
           <p>Jurisdiction</p>
-          <p>e) You are accessing {{ location.hostname }} from a jurisdiction in which it is legal to do so;</p>
+          <p>e) You are accessing <a class="link-inline"><span>{{ location.hostname }}</span><BaseIcon name="uni-jump-page" /></a> from a jurisdiction in which it is legal to do so;</p>
           <p>f) You will not use our services while located in any jurisdiction that prohibits the placing and/or accepting of bets online and/or playing casino and/or live games;</p>
           <p>g) You accept and acknowledge that we reserve the right to detect and prevent the use of prohibited techniques, including but not limited to fraudulent transaction detection, automated registration and signup, gameplay and screen capture techniques. These steps may include, but are not limited to, examination of Players device properties, detection of geo-location and IP masking, transactions and blockchain analysis;</p>
           <p>Funds & Tax</p>
@@ -280,7 +280,7 @@ onBeforeUnmount(() => {
           <p>6.2 The software is provided "as is" without any warranties, conditions, undertakings or representations, express or implied, statutory or otherwise. {{ companyData?.name.toUpperCase() }} hereby excludes all implied terms, representations, conditions and warranties (including any of merchantability, merchantable quality, satisfactory quality and fitness for any particular purpose). {{ companyData?.name.toUpperCase() }} does not warrant that: (i) the Website and Services will meet Your requirements; (ii) the Website and Services will not infringe any third party’s intellectual property rights; (iii) the operation of the Website and Services will be error-free or uninterrupted; (iv) any defects in the Website and Services will be corrected; or (v) the Website or the servers are virus-free.</p>
           <p>
             6.3 {{ companyData?.name.toUpperCase() }} can be contacted by email on
-            support@{{ companyData?.name }}.com
+            <a class="link-inline"><span>support@{{ companyData?.name.toLowerCase() }}.com</span><BaseIcon name="uni-jump-page" /></a>
             or on its live chat 24/7. The live chat is available when logged into Your {{ companyData?.name.toUpperCase() }} Account. In the event that {{ companyData?.name.toUpperCase() }}, in its sole discretion, deems that Your behaviour, via live chat, email, or otherwise, has been abusive or derogatory towards any of {{ companyData?.name.toUpperCase() }}’s or its Affiliates or third-party service provider’s employees, {{ companyData?.name.toUpperCase() }} shall have the right to block or terminate Your {{ companyData?.name.toUpperCase() }} Account.
           </p>
         </div>
@@ -292,11 +292,11 @@ onBeforeUnmount(() => {
           <p>7.1 You may participate in any Game only if you have sufficient funds on your {{ companyData?.name.toUpperCase() }} Account for such participation. For that purpose you shall use the payment methods available on the Website to deposit your funds. {{ companyData?.name.toUpperCase() }} will not give you any credit whatsoever for participation in any Game.</p>
           <p>
             7.2 You must deposit funds to Your {{ companyData?.name.toUpperCase() }} Account using the payment methods available at
-            {{ location.hostname }}
+            <a class="link-inline"><span>{{ location.hostname }}</span><BaseIcon name="uni-jump-page" /></a>
             .
           </p>
           <p>7.3 You shall ensure that funds that You deposit into your {{ companyData?.name.toUpperCase() }} Account are not tainted with any illegality and, in particular, do not originate from any illegal activity or source.</p>
-          <p>7.4 To deposit funds into your {{ companyData?.name.toUpperCase() }} Account, you can transfer funds from crypto-wallets under your control or through any other payment methods available on {{ location.hostname }}. Deposits can only be made with your own funds.</p>
+          <p>7.4 To deposit funds into your {{ companyData?.name.toUpperCase() }} Account, you can transfer funds from crypto-wallets under your control or through any other payment methods available on <a class="link-inline"><span>{{ location.hostname }}</span><BaseIcon name="uni-jump-page" /></a>. Deposits can only be made with your own funds.</p>
           <p>7.5 You should only deposit money into Your account for the purpose of You using such money to place bets/wager on the Website. {{ companyData?.name.toUpperCase() }} is entitled to suspend or close Your account if we reasonably believe that You are depositing funds without any intention to place sporting and/or gaming wagers. In such circumstances we may also report this activity to relevant authorities.</p>
           <p>7.6 You acknowledge and understand that funding Your {{ companyData?.name.toUpperCase() }} Account can only be funded by payment methods owned by You.</p>
           <p>7.7 You further understand, agree and acknowledge that if {{ companyData?.name.toUpperCase() }} discovers, detects and/or identifies that You:</p>
@@ -313,7 +313,7 @@ onBeforeUnmount(() => {
           <p>7.12 Funds cannot be transferred from your {{ companyData?.name.toUpperCase() }} Account to the {{ companyData?.name.toUpperCase() }} Account of another Player.</p>
           <p>
             7.13 {{ companyData?.name.toUpperCase() }} can refuse any deposits at its own discretion. Users that have their accounts blocked, or suspended shall refrain from depositing at
-            {{ location.hostname }}
+            <a class="link-inline"><span>{{ location.hostname }}</span><BaseIcon name="uni-jump-page" /></a>
             .
           </p>
           <p>7.14 In the event that a player tries to deposit when his account is blocked or suspended, {{ companyData?.name.toUpperCase() }} will have the right to retain the funds.</p>
@@ -341,8 +341,7 @@ onBeforeUnmount(() => {
           <p>8.10 Crypto withdrawals will be made to your stated cryptocurrency wallet address when making a valid withdrawal request.</p>
           <p>
             8.11 {{ companyData?.name.toUpperCase() }} reserves the right to carry out additional KYC verification procedures for any withdrawal. Players who wish to recover funds held in a closed, locked or excluded account, are advised to contact
-            support@{{ companyData?.name }}.com
-            .
+            <a class="link-inline"><span>support@{{ companyData?.name.toLowerCase() }}.com</span><BaseIcon name="uni-jump-page" /></a>.
           </p>
           <p>8.12 All transactions shall be checked in order to prevent money laundering. If a player becomes aware of any suspicious activity relating to any of the Games of the Website, s/he must report this to {{ companyData?.name.toUpperCase() }} immediately. {{ companyData?.name.toUpperCase() }} may suspend, block or close a {{ companyData?.name.toUpperCase() }} Account and withhold funds if requested to do so in accordance with the Prevention of Money Laundering Act or on any other legal basis requested by any state authority. You acknowledge that the funds in your account are consumed instantly when playing and we do not provide return of goods, refunds or retrospective cancellation of your account.</p>
         </div>
@@ -372,9 +371,8 @@ onBeforeUnmount(() => {
         <div class="terms-conditions-describe">
           <p>11.1 Bets/wagers will only be valid once You receive the confirmation of the acceptance of Your bet/wager. Bets/wagers placed with insufficient funds in Your account will be void.</p>
           <p>
-            11.2 A bet/wager that You request will only be valid once accepted by {{ companyData?.name.toUpperCase() }}. Each valid bet/wager will receive a unique transaction code. We shall not be liable for the settlement of any bets/wagers which are not issued with a unique transaction code. If You are unsure about the validity of a bet/wager, please check Your account history, or contact our Customer Support Team (
-            support@{{ companyData?.name }}.com
-            ).
+            11.2 A bet/wager that You request will only be valid once accepted by {{ companyData?.name.toUpperCase() }}. Each valid bet/wager will receive a unique transaction code. We shall not be liable for the settlement of any bets/wagers which are not issued with a unique transaction code. If You are unsure about the validity of a bet/wager, please check Your account history, or contact our Customer Support Team
+            (<a class="link-inline"><span>support@{{ companyData?.name.toLowerCase() }}.com</span><BaseIcon name="uni-jump-page" /></a>).
           </p>
           <p>11.3 Should a dispute arise regarding the content of a bet, You and {{ companyData?.name.toUpperCase() }} agree that the {{ companyData?.name.toUpperCase() }} transaction log database of its internal control system will be the ultimate authority in such matters.</p>
         </div>
@@ -405,7 +403,7 @@ onBeforeUnmount(() => {
           13. AUTHORITY/TERMS OF SERVICE
         </div>
         <div class="terms-conditions-describe">
-          <p>13.1 You agree to the game rules described on the {{ location.hostname }} website. {{ companyData?.name.toUpperCase() }} retains authority over the issuing, maintenance, and closing of the Service. The decision of {{ companyData?.name.toUpperCase() }}'s management, concerning any use of the Service, or dispute resolution, is final and shall not be open to review or appeal.</p>
+          <p>13.1 You agree to the game rules described on the <a class="link-inline"><span>{{ location.hostname }}</span><BaseIcon name="uni-jump-page" /></a> website. {{ companyData?.name.toUpperCase() }} retains authority over the issuing, maintenance, and closing of the Service. The decision of {{ companyData?.name.toUpperCase() }}'s management, concerning any use of the Service, or dispute resolution, is final and shall not be open to review or appeal.</p>
         </div>
 
         <div class="terms-conditions-title">
@@ -512,7 +510,7 @@ onBeforeUnmount(() => {
         <div class="terms-conditions-describe">
           <p>
             23.1 If a User wishes to make a complaint, please contact {{ companyData?.name.toUpperCase() }}'s customer service team at
-            support@{{ companyData?.name }}.com
+            <a class="link-inline"><span>support@{{ companyData?.name.toLowerCase() }}.com</span><BaseIcon name="uni-jump-page" /></a>
             . Should any dispute not be resolved to your satisfaction you may pursue remedies in the governing law jurisdiction set forth below.
           </p>
         </div>
@@ -561,9 +559,8 @@ onBeforeUnmount(() => {
         </div>
         <div class="terms-conditions-describe">
           <p>
-            29.1 If you have a complaint to make regarding our services, you may contact our customer support via Live Chat or by email (
-            support@{{ companyData?.name }}.com
-            ). We will endeavour to resolve the matter promptly.
+            29.1 If you have a complaint to make regarding our services, you may contact our customer support via Live Chat or by email
+            (<a class="link-inline"><span>support@{{ companyData?.name.toLowerCase() }}.com</span><BaseIcon name="uni-jump-page" /></a>). We will endeavour to resolve the matter promptly.
           </p>
         </div>
       </div>
