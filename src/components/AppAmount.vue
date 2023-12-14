@@ -21,6 +21,7 @@ const props = defineProps<Props>()
   --tg-app-amount-width: auto;
   --tg-app-amount-max-width: 14ch;
   --tg-app-amount-font-weight: var(--tg-font-weight-semibold);
+  --tg-app-amount-font-size: var(--tg-font-size-default);
 }
 </style>
 
@@ -41,7 +42,7 @@ const props = defineProps<Props>()
   font-variant-numeric: tabular-nums;
   margin-right: var(--tg-spacing-4);
   max-width: var(--tg-app-amount-max-width);
-  font-size: var(--tg-font-size-default);
+  font-size: var(--tg-app-amount-font-size);
   font-weight: var(--tg-app-amount-font-weight);
 }
 </style>
