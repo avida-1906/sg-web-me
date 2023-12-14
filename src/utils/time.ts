@@ -81,3 +81,33 @@ export function timeToFromNow(ts: number): string {
 export function timeToFormat(ts: number, format = 'HH:mm YYYY/MM/DD'): string {
   return dayjs(checkTs(ts)).format(format)
 }
+
+/**
+ * 根据输入的日期参数，和往前推的天数，返回一个日期数组
+ * @param {number | string} date 日期参数
+ * @param {number} days 往前推的天数
+ * @returns {Object} 日期对象
+ *
+ * @example getDayList(2023-12-31, 10) => {start: 2023-12-31, end: 2023-12-22}
+ */
+export function getDaIntervalMap(date: number | string, days: number):
+{ startTime: string; endTime: string } {
+  const result = {
+    startTime: '',
+    endTime: '',
+  }
+
+  // 如果是string类型，转换成number类型
+  if (typeof date === 'string')
+    date = +new Date(date)
+
+  const timestamp = checkTs(date)
+
+  // 开始日期就是date，结束日期就是date减去days天
+  result.endTime = `${dayjs(timestamp).format('YYYY-MM-DD')} 00:00:00`
+  result.startTime = `
+    ${dayjs(timestamp).subtract(days, 'day').format('YYYY-MM-DD')} 23:59:59
+  `
+
+  return result
+}

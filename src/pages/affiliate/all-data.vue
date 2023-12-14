@@ -1,5 +1,9 @@
 <script lang="ts" setup>
+const { startTime, endTime } = getDaIntervalMap(new Date().getTime(), 30)
+
 const { t } = useI18n()
+const { copy } = useClipboard()
+const { openNotify } = useNotify()
 
 const {
   selected: currency_id,
@@ -47,11 +51,13 @@ const columns: Column[] = [
     title: t('effective_bet'),
     dataIndex: 'valid_bet_amount',
     align: 'center',
+    slot: 'valid_bet_amount',
   },
   {
     title: t('total_win_lose'),
     dataIndex: 'net_amount',
     align: 'center',
+    slot: 'net_amount',
   },
 ]
 
@@ -66,16 +72,27 @@ const params = computed(() => {
   }
 })
 
+function copyClick(msg: string) {
+  console.error(123)
+  copy(msg)
+  openNotify({
+    type: 'success',
+    title: t('notify_title_success'),
+    message: t('copy_success') + msg,
+  })
+}
+
 useListSearch(params, runAsync, resetPage)
 </script>
 
 <template>
-  <!-- <pre style="color: #fff">
-    {{ params }}
-  </pre> -->
   <div class="all-data-page">
     <div class="table-filter">
-      <BaseDatePicker v-model="date" />
+      <BaseDatePicker
+        v-model="date"
+        :init-start-date="startTime"
+        :init-end-date="endTime"
+      />
       <BaseSelect
         v-model.lazy="currency_id"
         :options="currencyList"
@@ -96,14 +113,39 @@ useListSearch(params, runAsync, resetPage)
       :loading="loading"
     >
       <template #username="{ record }">
-        <div class="center" style="gap: var(--tg-spacing-4);">
+        <div
+          class="center cursor-pointer"
+          style="gap: var(--tg-spacing-4);"
+          @click="copyClick(record.username)"
+        >
           <BaseIcon name="chat-star-gold" />
           <span>{{ record.username }}</span>
           <BaseIcon name="uni-doc" />
         </div>
       </template>
       <template #deposit_amount="{ record }">
-        <span>{{ record.deposit_amount }}</span>
+        <div class="center">
+          <AppAmount
+            :amount="record.deposit_amount"
+            :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
+          />
+        </div>
+      </template>
+      <template #valid_bet_amount="{ record }">
+        <div class="center">
+          <AppAmount
+            :amount="record.valid_bet_amount"
+            :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
+          />
+        </div>
+      </template>
+      <template #net_amount="{ record }">
+        <div class="center">
+          <AppAmount
+            :amount="record.net_amount"
+            :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
+          />
+        </div>
       </template>
     </BaseTable>
     <BasePagination
@@ -131,6 +173,8 @@ useListSearch(params, runAsync, resetPage)
 }
 .page-all-data {
   margin: 20px 0;
+  --tg-app-amount-font-size: var(--tg-font-size-xs);
+  --tg-app-amount-font-weight: var(--tg-font-weight-normal);
   .flex-colum {
     display: flex;
     flex-direction: column;
