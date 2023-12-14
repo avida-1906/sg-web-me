@@ -8,6 +8,7 @@ interface Props {
 }
 
 const props = defineProps<Props>()
+const amountRef = ref()
 
 const { t } = useI18n()
 const { openNotify } = useNotify()
@@ -118,6 +119,8 @@ function maxNumber() {
 }
 
 async function handleWithdraw() {
+  if (amountRef.value)
+    amountRef.value.setTouchTrue()
   await valiAddress()
   await valiAmount()
   await valiPaypwd()
@@ -217,9 +220,11 @@ await application.allSettled(
             <span class="us">US${{ getUsRate }}</span>
           </div>
           <BaseInput
+            ref="amountRef"
             v-model="amount"
             type="number"
             :msg="amountMsg"
+            msg-after-touched
             @blur="handleBlur"
             @on-right-button="maxNumber"
           >
@@ -234,7 +239,7 @@ await application.allSettled(
         <BaseLabel :label="t('menu_title_settings_update_safepwd')" must>
           <BaseInput v-model="paypwd" :msg="paypwdMsg" type="password" max="6" />
         </BaseLabel>
-        <BaseButton bg-style="primary" size="md" @click="handleWithdraw">
+        <BaseButton bg-style="secondary" size="md" @click="handleWithdraw">
           {{ t('menu_title_settings_withdrawals') }}
         </BaseButton>
         <!-- <div class="tips">

@@ -43,7 +43,7 @@ const {
   setValue: setAmount,
 } = useField<string>('amount', (value) => {
   const Value = Number(value)
-  if (!Value)
+  if (!value)
     return currentAisleItem.value?.type === 1 ? t('select_amount') : t('input_amount')
   else if (currentAisleItem.value?.amount_min && Value < Number(currentAisleItem.value?.amount_min))
     return `${t('min_amount_is')}${currentAisleItem.value?.amount_min}`
@@ -309,16 +309,6 @@ await application.allSettled([
       <template v-if="havePaymentMethod">
         <!-- 公司入款存款 -->
         <div v-if="isConfirmPayment" class="type-online-bank">
-          <!-- <div v-if="bankStep === '1'" class="bank-first">
-            <BaseLabel label="存款人姓名:" label-content="为及时到账，请务必输入正确的存款人姓名">
-              <BaseInput v-model="username" />
-            </BaseLabel>
-            <BaseInput v-model="amount" :label="t('deposit_amount')" />
-            <BaseMoneyKeyboard />
-            <BaseButton bg-style="primary" size="md" @click="nextStep">
-              {{ t('confirm_pay') }}
-            </BaseButton>
-          </div> -->
           <div class="bank-second">
             <div>
               <p class="second-title">
@@ -469,7 +459,7 @@ await application.allSettled([
               :options="oftenAmount"
             />
             <BaseButton
-              bg-style="primary"
+              bg-style="secondary"
               size="md"
               :loading="thirdDepositLoading || paymentDepositBankInfoLoading"
               @click="depositSubmit"
@@ -493,7 +483,7 @@ await application.allSettled([
       flex-direction: column;
       gap: var(--tg-spacing-16);
     .type-online-bank{
-      .bank-first,.bank-second{
+      .bank-second{
         display: flex;
         flex-direction: column;
         gap: var(--tg-spacing-16);

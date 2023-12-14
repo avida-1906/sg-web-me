@@ -6,9 +6,9 @@ interface Props {
   activeCurrency: CurrencyData
 }
 const props = withDefaults(defineProps<Props>(), {})
+const amountRef = ref()
 
 const { t } = useI18n()
-
 const { isLessThanXs } = storeToRefs(useWindowStore())
 const { openNotify } = useNotify()
 const { exchangeRateData } = storeToRefs(useAppStore())
@@ -143,6 +143,8 @@ function updateBank() {
   runAsyncWithdrawBankcardList({ currency_id: props.activeCurrency.cur })
 }
 async function withDrawSubmit() {
+  if (amountRef.value)
+    amountRef.value.setTouchTrue()
   await selectBankValidate()
   await amountValidate()
   await payPasswordValidate()
@@ -252,9 +254,11 @@ await application.allSettled(
               <span class="us">US${{ getUsRate }}</span>
             </div>
             <BaseInput
+              ref="amountRef"
               v-model="amount"
               :msg="amountError"
               type="number"
+              msg-after-touched
               @on-right-button="maxNumber"
               @blur="formatAmount"
             >
@@ -272,7 +276,7 @@ await application.allSettled(
               max="6"
             />
           </BaseLabel>
-          <BaseButton bg-style="primary" size="md" @click="withDrawSubmit">
+          <BaseButton bg-style="secondary" size="md" @click="withDrawSubmit">
             {{ t('menu_title_settings_withdrawals') }}
           </BaseButton>
         </div>
