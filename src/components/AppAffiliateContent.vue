@@ -32,6 +32,7 @@ const selectCurrencyOptions = computed<ISelectOption[]>(() => [
         v-model="date"
         init-start-date="1900-06-06"
         init-end-date="2000-06-08"
+        min="1900-06-05"
       />
       <BaseSelect v-model="selectSize" :options="selectTypeOptions" />
       <BaseSelect

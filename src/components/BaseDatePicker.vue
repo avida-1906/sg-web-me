@@ -4,6 +4,8 @@ interface Props {
   modelValue: Array<string>
   initStartDate?: string | number | Date
   initEndDate?: string | number | Date
+  min?: string | number | Date
+  max?: string | number | Date
 }
 
 const props = defineProps<Props>()
@@ -22,6 +24,11 @@ const startDate = ref(props.initStartDate !== undefined
 const endDate = ref(props.initEndDate !== undefined
   ? dayjs(props.initEndDate).format('YYYY-MM-DD')
   : today)
+
+const minDate = computed(() =>
+  props.min === undefined ? undefined : dayjs(props.min).format('YYYY-MM-DD'))
+const maxDate = computed(() =>
+  props.max === undefined ? today : dayjs(props.max).format('YYYY-MM-DD'))
 
 const isValid = computed(() => startDate.value <= endDate.value)
 
@@ -77,6 +84,7 @@ onMounted(() => {
             type="date"
             name="startDate"
             :value="startDate"
+            :min="minDate"
             :max="endDate"
             @change="e => dateChange(e, 'start')"
             @focus="inputFocus"
@@ -92,7 +100,7 @@ onMounted(() => {
             name="endDate"
             :value="endDate"
             :min="startDate"
-            :max="today"
+            :max="maxDate"
             @change="e => dateChange(e, 'end')"
             @focus="inputFocus"
             @blur="inputBlur"

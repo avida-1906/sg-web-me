@@ -701,3 +701,7 @@ img.error {
     padding-bottom: 0
   }
 }
+
+.scroll-light::-webkit-scrollbar-thumb {
+  background: var(--tg-secondary-light);
+}

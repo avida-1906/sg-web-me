@@ -170,7 +170,7 @@ watchEffect(() => {
       </div>
       <ul v-if="appContentWidth > 800" class="pager-wrap" @click="onPagerClick">
         <li
-          v-if="pageCount > 1"
+          v-if="pageCount >= 1"
           class="item number"
           :class="{ active: currentPage === 1 }"
         >
