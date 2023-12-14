@@ -69,13 +69,19 @@ onMounted(() => {
             class="text"
             :style="{ '--progress-width': floor(score / record.score, 1) }"
           >
+            <span v-if="+vip + 1 < +record.level">
+              {{ record.score }}<BaseIcon name="coin-usdt" />
+            </span>
             <span
-              v-if="+vip + 1 === +record.level"
+              v-else-if="+vip + 1 === +record.level"
             >
               {{ score }}<BaseIcon name="coin-usdt" />/
               {{ record.score }}<BaseIcon name="coin-usdt" />
             </span>
-            <span v-else-if="+vip <= +record.level" class="dark-bar">
+            <span
+              v-else-if="+vip <= +record.level || +record.level < +vip"
+              class="dark-bar"
+            >
               <span
                 v-if="bonusArray.length
                   && bonusArray.filter(b => +b.vip === +record.level
@@ -92,10 +98,8 @@ onMounted(() => {
                     && +b.state === 2).length"
               >
                 {{ t('received') }}</span>
-              <span v-else>{{ record.score }}<BaseIcon name="coin-usdt" /></span>
-            </span>
-            <span v-else>
-              {{ record.score }}<BaseIcon name="coin-usdt" />
+              <span v-else>{{ t('upgraded') }}</span>
+              <!-- <span v-else>{{ record.score }}<BaseIcon name="coin-usdt" /></span> -->
             </span>
           </span>
         </div>
