@@ -59,14 +59,14 @@ const params = computed(() => {
   return {
     username: searchValue.value,
     currency_id: currency_id.value,
-    start_time: date.value[0],
-    end_time: date.value[1],
+    // start_time: date.value[0],
+    // end_time: date.value[1],
     page_size: page_size.value,
     page: page.value,
   }
 })
 
-// useListSearch(params, runAsync, resetPage)
+useListSearch(params, runAsync, resetPage)
 </script>
 
 <template>
@@ -109,7 +109,7 @@ const params = computed(() => {
     <BasePagination
       v-model:current-page="page"
       v-model:page-size="page_size"
-      :total="1000"
+      :total="total"
     />
   </div>
 </template>
