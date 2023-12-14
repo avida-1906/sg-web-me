@@ -43,20 +43,12 @@ const toNext = function () {
   <div class="app-pagination">
     <span
       class="pagination-previous"
-      :class="{
-        'no-data': props.paginationData.total === 0
-          || props.paginationData.page === 1,
-      }"
       @click="toPrevious"
     >
       {{ $t('page_prev') }}
     </span>
     <span
       class="pagination-next"
-      :class="{
-        'no-data': props.paginationData.total === 0
-          || props.paginationData.page === maxPage,
-      }"
       @click="toNext"
     >
       {{ $t('page_next') }}
@@ -81,7 +73,8 @@ const toNext = function () {
     }
     &.no-data{
       cursor: not-allowed;
-      color: var(--tg-text-lightgrey);
+      color: var(--tg-text-white);
+      // color: var(--tg-text-lightgrey);
     }
   }
 }
