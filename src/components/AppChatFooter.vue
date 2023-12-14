@@ -185,13 +185,18 @@ function enterPress(event: KeyboardEvent) {
     sendMsg()
   }
 }
+function inputMsg() {
+  const j = message.value.lastIndexOf(':')
+  if (j === message.value.length - 1)
+    showEmoji.value = true
+}
 </script>
 
 <template>
   <section class="tg-app-chat-footer">
     <Transition>
       <div
-        v-show="(!sendLoading && emojis.length) || showEmoji"
+        v-show="!sendLoading && showEmoji"
         class="emoji-wrap"
       >
         <div class="emoji-header">
@@ -272,6 +277,7 @@ function enterPress(event: KeyboardEvent) {
         :placeholder="t('chat_send_msg_placeholder')"
         textarea
         @down-enter="enterPress"
+        @input="inputMsg"
       >
         <template #right-icon>
           <BaseButton
