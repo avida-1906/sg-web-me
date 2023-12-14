@@ -159,7 +159,7 @@ export function useCurrencyData() {
           balanceWithSymbol: `${
             application.isVirtualCurrency(type)
             ? ''
-            : getCurrencyConfig(type).prefix}${balanceNumber
+            : getCurrencyConfig(type).prefix} ${balanceNumber
           }`,
           cur: getCurrencyConfig(type).cur,
           bankTree: getCurrencyConfig(type).bankTree,

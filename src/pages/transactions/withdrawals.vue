@@ -13,6 +13,7 @@ const tabList = reactive([
   <section class="tg-withdrawals-record-page">
     <AppTabRecord
       v-model:tab-value="tab"
+      content-type="withdraw"
       :tabs="tabList"
       :empty-text="tab === 'byt_w_coin' ? $t('finance_withdraw_empty_text') : '暂无法定货币提款'"
       :download-text="$t('finance_withdraw_download_text')"

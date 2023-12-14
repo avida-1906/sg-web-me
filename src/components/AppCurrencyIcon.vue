@@ -37,6 +37,7 @@ const iconUrl = computed(() => {
   :root{
     --tg-app-currency-icon-style-color: inherit;
     --tg-app-currency-icon-style-margin:0;
+    --tg-app-currency-icon-size: 14px;
   }
 </style>
 
@@ -49,8 +50,8 @@ const iconUrl = computed(() => {
   margin: --tg-app-currency-icon-style-margin;
 
   .icon {
-    width: 14px;
-    height: 14px;
+    width: var(--tg-app-currency-icon-size);
+    height: var(--tg-app-currency-icon-size);
   }
 
   .name {
