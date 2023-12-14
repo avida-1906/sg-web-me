@@ -191,6 +191,7 @@ export interface ProviderItem {
   game_num: number
   name: string
   venue_id: string
+  [k: string]: any
 }
 
 /** 汇率数据对象 */
