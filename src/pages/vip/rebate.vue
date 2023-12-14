@@ -76,6 +76,8 @@ watch(tabList, (val) => {
 .vip-badge {
   font-size: 28px;
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .vip-rebate {
   display: flex;

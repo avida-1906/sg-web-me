@@ -121,6 +121,8 @@ onMounted(() => {
 .vip-badge {
   font-size: 28px;
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .lower-vip {
   max-width: 290px;
