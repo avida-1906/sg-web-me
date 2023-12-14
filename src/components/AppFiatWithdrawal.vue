@@ -262,6 +262,9 @@ await application.allSettled(
               @on-right-button="maxNumber"
               @blur="formatAmount"
             >
+              <template #right-icon>
+                <AppCurrencyIcon :currency-type="activeCurrency?.type" />
+              </template>
               <template #right-button>
                 <span>{{ t('max') }}</span>
               </template>
