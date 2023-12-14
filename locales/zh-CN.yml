@@ -1315,7 +1315,7 @@ use_in_game: 游戏使用中
 search_currency: 搜索货币
 card_wallet: 卡包
 improve_safe_level: 通过双重验证提高您的账户安全性
-turn_on_double_check: 开启双重验证
+turn_on_double_check: 启用双重验证
 hide_zero_wallet: 隐藏零数余额
 zero_wallet_hidden: 您为零数的余额不会显示在钱包中
 address: 地址
