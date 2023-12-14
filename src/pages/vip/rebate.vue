@@ -1,11 +1,24 @@
 <script lang="ts" setup>
+import type { ProviderItem } from '~/apis/types'
+
 const { t } = useI18n()
 
 const appStore = useAppStore()
 const { vipConfigData } = storeToRefs(appStore)
-const { platformList } = storeToRefs(useCasinoStore())
 const { providerList } = storeToRefs(useSportsStore())
 const { AllLanguages, userLanguage } = storeToRefs(useLanguageStore())
+
+const { list } = useList(ApiMemberPlatformList, {
+  manual: false,
+})
+const platformList = computed(() => {
+  const arr: ProviderItem[] = []
+  for (let i = 0; i < list.value.length; i++) {
+    if (!arr.find(a => a.venue_id === list.value[i].venue_id))
+      arr.push(list.value[i])
+  }
+  return arr
+})
 
 const tab = ref('')
 
