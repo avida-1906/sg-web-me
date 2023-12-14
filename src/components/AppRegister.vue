@@ -18,7 +18,7 @@ const {
 const {
   bool: needSaveFormData,
   setTrue: setNeedSaveFormDataTrue,
-} = useBoolean(false)
+} = useBoolean(true)
 const { openTermsConditionsDialog } = useTermsConditionsDialog()
 
 const emailRef = ref()
@@ -328,7 +328,7 @@ onMounted(() => {
   emailRef.value?.getFocus()
 })
 
-onBeforeUnmount(() => {
+onUnmounted(() => {
   const paramsReg = {
     email: email.value,
     username: username.value,
@@ -338,6 +338,7 @@ onBeforeUnmount(() => {
   }
   if (!needSaveFormData.value)
     Session.remove(STORAGE_REG_PARAMS_KEYWORDS)
+
   else
     Session.set(STORAGE_REG_PARAMS_KEYWORDS, paramsReg)
 })
