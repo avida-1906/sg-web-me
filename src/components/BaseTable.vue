@@ -120,7 +120,7 @@ watch(() => props.columns, () => {
               <div>
                 <BaseSkeleton
                   v-if="col.isRound === 'left'"
-                  bg="#B1BAD3"
+                  bg="#aeb8d6"
                   height="14px"
                   width="14px"
                   style="--tg-skeleton-border-radius:50%;
@@ -128,7 +128,7 @@ watch(() => props.columns, () => {
                   animated="ani-opacity"
                 />
                 <BaseSkeleton
-                  bg="#B1BAD3"
+                  bg="#aeb8d6"
                   height="14px"
                   style="--tg-skeleton-border-radius: 3px"
                   :width="col.skeWidth ?? getWidth()"
@@ -136,7 +136,7 @@ watch(() => props.columns, () => {
                 />
                 <BaseSkeleton
                   v-if="col.isRound === 'right'"
-                  bg="#B1BAD3"
+                  bg="#aeb8d6"
                   height="14px"
                   width="14px"
                   style="--tg-skeleton-border-radius:50%;
