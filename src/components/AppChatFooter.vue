@@ -79,27 +79,28 @@ const matched_at_users = computed(() => {
       return [{ name: temp, id: '00' }]
   }
 })
-const emojiName = computed(() => {
-  const i = message.value.lastIndexOf(':')
-  const j = message.value.lastIndexOf('@')
-  const k = message.value.lastIndexOf(' ')
-  if (k > i || j > i)
-    return undefined
+// const emojiName = computed(() => {
+//   const i = message.value.lastIndexOf(':')
+//   const j = message.value.lastIndexOf('@')
+//   const k = message.value.lastIndexOf(' ')
+//   if (k > i || j > i)
+//     return undefined
 
-  if (i !== -1)
-    return message.value.slice(i + 1)
-  return undefined
-})
+//   if (i !== -1)
+//     return message.value.slice(i + 1)
+//   return undefined
+// })
 
 const emojis = computed(() => {
-  if (emojiName.value === void 0) {
-    return showEmoji.value ? allEmojis : []
-  }
-  else {
-    return allEmojis.filter((e) => {
-      return e.split('.')[0].includes(emojiName.value ?? '')
-    })
-  }
+  return allEmojis
+  // if (emojiName.value === void 0) {
+  //   return showEmoji.value ? allEmojis : []
+  // }
+  // else {
+  //   return allEmojis.filter((e) => {
+  //     return e.split('.')[0].includes(emojiName.value ?? '')
+  //   })
+  // }
 })
 const trimMessage = computed(() => message.value.trim())
 const isCommand = computed(() => message.value[0] === '/')
