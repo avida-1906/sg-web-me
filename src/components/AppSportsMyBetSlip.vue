@@ -193,10 +193,13 @@ function showDetail() {
             />
           </div>
           <div class="item">
-            <label>{{ t('sports_estimated_payment_amount') }}</label>
+            <label>
+              {{ isSettled ? t('sports_payment_amount')
+                : t('sports_estimated_payment_amount') }}
+            </label>
             <AppAmount
               :amount="application.sliceOrPad(
-                isSettled ? slipData.pa : slipData.mwa,
+                isSettled ? slipData.pa > 0 ? slipData.pa : 0 : slipData.mwa,
                 application.getCurrencySuffixLength(currentGlobalCurrency),
               )"
               :currency-type="currentGlobalCurrency"
