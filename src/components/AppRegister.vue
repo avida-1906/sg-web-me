@@ -328,9 +328,18 @@ onMounted(() => {
   emailRef.value?.getFocus()
 })
 
-onUnmounted(() => {
+onBeforeUnmount(() => {
+  const paramsReg = {
+    email: email.value,
+    username: username.value,
+    password: password.value,
+    parent_id: '',
+    device_number: application.getDeviceNumber(),
+  }
   if (!needSaveFormData.value)
     Session.remove(STORAGE_REG_PARAMS_KEYWORDS)
+  else
+    Session.set(STORAGE_REG_PARAMS_KEYWORDS, paramsReg)
 })
 </script>
 
