@@ -81,6 +81,7 @@ const { selected: betOrderSelectValue, list: betOrderData } = useSelect([
     icon: 'navbar-bet-mult',
   },
 ])
+initBetOrderTab()
 
 const { selected: betOrderFilterValue, list: betOrderFilterData } = useSelect([
   { label: t('sports_accept_any_odds'), value: EnumOddsChange.acceptAnyOddsChange },
@@ -649,7 +650,6 @@ onMounted(() => {
   addListToCartEvent()
   firstInputFocus()
   initBetOrderFilterValue()
-  initBetOrderTab()
 })
 
 onUnmounted(() => {
