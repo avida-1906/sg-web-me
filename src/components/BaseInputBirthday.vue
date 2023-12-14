@@ -129,7 +129,7 @@ const isEnough = computed(() => {
     }
     return month.value ? age > 18 : age >= 18
   }
-  return true
+  return false
 })
 
 const msg = computed(() => {
@@ -142,10 +142,8 @@ const msg = computed(() => {
 })
 
 const isValid = computed(() => {
-  return isEnough.value && month.value && day.value
-  && day.value > 0 && day.value < dayMax.value
-  && year.value >= 1900 && !errorYearMsg.value && !errorMonthMsg.value
-  && !errorDayMsg.value
+  return !!(isEnough.value && +month.value >= 1 && +month.value <= 12
+  && +day.value > 0 && +day.value <= +dayMax.value && +year.value >= 1900)
 })
 
 function onInput() {
@@ -170,6 +168,8 @@ async function valiBirthday() {
 
   if (!isValid.value)
     showAllRed.value = true
+
+  return isValid.value
 }
 
 function checkValidTip(el: HTMLObjectElement, msg: string) {
@@ -186,7 +186,7 @@ onMounted(() => {
     setDay(+arr[2])
   }
 })
-defineExpose({ valiBirthday, msg })
+defineExpose({ valiBirthday, msg, isValid })
 </script>
 
 <template>

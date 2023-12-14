@@ -168,6 +168,13 @@ const {
 const { data: regCfg } = useRequest(() => ApiMemberBrandDetail({ tag: 'reg' }), {
   manual: false,
 })
+
+const regWebCfg = computed(() => regCfg.value?.web)
+const needEmail = computed(() => true) // regWebCfg.value && regWebCfg.value.email !== false)
+const needName = computed(() => true) // regWebCfg.value && regWebCfg.value.username !== false)
+const needCheckEmail = computed(() =>
+  false) // regWebCfg.value && regWebCfg.value.email_check !== false)
+
 const {
   run: runMemberReg,
   loading: isLoading,
@@ -187,12 +194,19 @@ const {
 const { run: runExists } = useRequest(ApiMemberExists, {
   async onSuccess() {
     if (curExists.value === 2) {
-      await validateEmail()
-      await validateUsername()
+      if (needEmail.value)
+        await validateEmail()
+
+      if (needName.value)
+        await validateUsername()
+
       await validatePassword()
-      // await valiAgree()
-      // await birthdayInputRef.value.valiBirthday()
-      if (birthdayInputRef.value.msg)
+
+      if (needCheckEmail.value)
+        await valiemailCode()
+
+      await birthdayInputRef.value.valiBirthday()
+      if (!birthdayInputRef.value.isValid)
         return
 
       if (!usernameErrorMsg.value && !pwdErrorMsg.value && !agreeErrorMsg.value
@@ -208,9 +222,9 @@ const { run: runExists } = useRequest(ApiMemberExists, {
         // runMemberReg(paramsReg)
         Session.set(STORAGE_REG_PARAMS_KEYWORDS, paramsReg)
         setNeedSaveFormDataTrue()
-        closeDialog()
+        // closeDialog()
         await nextTick()
-        openTermsConditionsDialog()
+        // openTermsConditionsDialog()
       }
     }
   },
@@ -221,12 +235,6 @@ const { run: runExists } = useRequest(ApiMemberExists, {
       setEmailErrors('电邮地址已存在')
   },
 })
-
-const regWebCfg = computed(() => regCfg.value?.web)
-const needEmail = computed(() => true) // regWebCfg.value && regWebCfg.value.email !== false)
-const needName = computed(() => true) // regWebCfg.value && regWebCfg.value.username !== false)
-const needCheckEmail = computed(() =>
-  false) // regWebCfg.value && regWebCfg.value.email_check !== false)
 
 async function getMemberReg() {
   if (needName.value) {
@@ -243,9 +251,6 @@ async function getMemberReg() {
     emailRef.value?.setTouchTrue()
     await validateEmail()
     !emailErrorMsg.value && onEmailUsernameBlur(2)
-    // console.log('salkflsakfksfjk [[========]]', errorTip.value)
-    // if (errorTip.value)
-    //   setCheckTip(emailRef.value.iInput, errorTip.value)
   }
 
   if (needCheckEmail.value) {
@@ -254,7 +259,7 @@ async function getMemberReg() {
   }
 
   await birthdayInputRef.value.valiBirthday()
-  if (birthdayInputRef.value.msg)
+  if (!birthdayInputRef.value.isValid)
     return
 
   // 这个不要删：有错误时直接返回，否则重复的邮箱或用户名会因通过格式校验从而进行注册请求
