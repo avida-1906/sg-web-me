@@ -102,6 +102,37 @@ if (props.modelValue) {
   setDay(+temp[2])
 }
 
+const curYear = dayjs().year()
+const curMonth = dayjs().month() + 1
+const curDay = dayjs().date()
+const isOver120 = computed(() => {
+  if (+year.value > 0 && +day.value > 0
+  && +day.value <= +dayMax.value && +month.value > 0) {
+    if (curYear - year.value >= 120) {
+      if (curYear - year.value > 120) {
+        return true
+      }
+      else {
+        if (curMonth >= month.value) {
+          if (curMonth > month.value) {
+            return true
+          }
+          else {
+            if (curDay > day.value)
+              return true
+            else return false
+          }
+        }
+        else {
+          return false
+        }
+      }
+    }
+    return false
+  }
+  return undefined
+})
+
 // 是否满足18岁
 const isEnough = computed(() => {
   const yearStr = year.value ? year.value : ''
@@ -133,6 +164,8 @@ const isEnough = computed(() => {
 })
 
 const msg = computed(() => {
+  if (isOver120.value === true)
+    return '您的年龄不能超过 120 岁'
   if (!isEnough.value)
     return t('you_have_to_enough_18')
   if (month.value && day.value && day.value > dayMax.value)
@@ -142,7 +175,8 @@ const msg = computed(() => {
 })
 
 const isValid = computed(() => {
-  return !!(isEnough.value && +month.value >= 1 && +month.value <= 12
+  return !!(!isOver120.value && isEnough.value && +month.value >= 1
+  && +month.value <= 12
   && +day.value > 0 && +day.value <= +dayMax.value && +year.value >= 1900)
 })
 
