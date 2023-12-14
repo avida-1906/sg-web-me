@@ -102,7 +102,7 @@ onBeforeUnmount(() => {
         {{ t('step_label') }} 2/2： {{ t('read_and_accept') }}
       </div>
     </div>
-    <div ref="scrollRef" class="scroll-y terms-conditions">
+    <div ref="scrollRef" class="scroll-y terms-conditions scroll-light">
       <div>
         <div class="terms-conditions-theme">
           Terms and Conditions
