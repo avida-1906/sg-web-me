@@ -105,7 +105,7 @@ onMounted(() => {
 }
 .default-badge{
   --tg-badge-background-color: var(--tg-secondary-main);
-  --tg-badge-color: var(--tg-text-lightgrey);
+  --tg-badge-color: var(--tg-text-grey-light);
 }
 .m-badge {
   line-height: 1;
