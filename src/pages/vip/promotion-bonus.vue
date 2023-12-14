@@ -54,7 +54,10 @@ onMounted(() => {
   <div class="vip-promotion-bonus">
     <BaseTable :columns="columns" :data-source="vipConfigArray">
       <template #level="{ record }">
-        <div>VIP{{ record.level }}</div>
+        <!-- <div>VIP{{ record.level }}</div> -->
+        <div class="vip-badge">
+          <BaseIcon :name="`vip${record.level}`" />
+        </div>
       </template>
       <template #score="{ record }">
         <div
@@ -115,6 +118,10 @@ onMounted(() => {
 </template>
 
 <style lang="scss" scoped>
+.vip-badge {
+  font-size: 28px;
+  display: flex;
+}
 .lower-vip {
   max-width: 290px;
   margin: 0 auto;

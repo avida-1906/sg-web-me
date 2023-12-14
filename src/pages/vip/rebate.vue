@@ -62,7 +62,10 @@ watch(tabList, (val) => {
     />
     <BaseTable :columns="columns" :data-source="data">
       <template #level="{ record }">
-        <div>VIP{{ record.level }}</div>
+        <!-- <div>VIP{{ record.level }}</div> -->
+        <div class="vip-badge">
+          <BaseIcon :name="`vip${record.level}`" />
+        </div>
       </template>
     </BaseTable>
     <AppVipRuleDesc />
@@ -70,6 +73,10 @@ watch(tabList, (val) => {
 </template>
 
 <style lang="scss" scoped>
+.vip-badge {
+  font-size: 28px;
+  display: flex;
+}
 .vip-rebate {
   display: flex;
   flex-direction: column;
