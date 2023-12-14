@@ -210,7 +210,7 @@ await application.allSettled([
           :options="oftenAmount"
         />
         <BaseButton
-          bg-style="primary"
+          bg-style="secondary"
           size="md"
           :loading="paymentDepositCoinInfoLoading || financeThirdCoinDepositLoading"
           @click="confirmPayment"

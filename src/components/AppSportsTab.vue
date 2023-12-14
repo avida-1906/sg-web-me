@@ -31,6 +31,7 @@ function handleClick(item: ListItem) {
                 <div class="icon" style="--app-sport-image-error-icon-size:28px;">
                   <AppImage
                     v-if="tab.useCloudImg"
+                    class="icon-img"
                     :class="{ 'icon-act': tab.si === modelValue }"
                     :url="tab.icon" is-cloud
                   />
@@ -139,6 +140,16 @@ function handleClick(item: ListItem) {
 
           .name {
             color: var(--tg-text-white);
+          }
+        }
+      }
+      &:hover{
+        .main{
+          .icon{
+            .icon-img{
+              filter: brightness(2);
+            }
+
           }
         }
       }

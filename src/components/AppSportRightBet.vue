@@ -73,7 +73,9 @@ function getBetListDataHandle() {
       <BaseSelect
         v-model="headSelectValue"
         style="--tg-base-select-hover-bg-color:var(--tg-secondary-dark);
-          --tg-base-select-popper-style-padding-x:0;"
+          --tg-base-select-popper-style-padding-x:0;
+          --tg-base-select-popper-style-padding-y:0;"
+        :distance="10"
         :options="headSelectData" no-hover popper
         @click="getBetListDataHandle"
       >

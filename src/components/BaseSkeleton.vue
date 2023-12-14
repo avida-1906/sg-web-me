@@ -1,15 +1,15 @@
 <script lang="ts" setup>
-type aniType = 'ani-shan' | 'ani-opacity'
 interface Props {
   bg?: string
   width?: string
   height?: string
-  animated?: aniType
+  animated?: 'ani-shan' | 'ani-opacity'
 }
 
 withDefaults(defineProps<Props>(), {
   width: '100px',
   height: '100px',
+  animated: 'ani-opacity',
 })
 </script>
 
@@ -66,14 +66,11 @@ withDefaults(defineProps<Props>(), {
 }
 
 @keyframes ani-opacity {
-  0% {
-    opacity: 0.8;
+  0%, 100% {
+      opacity: 0.5;
   }
-  60% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0.8;
+  50% {
+      opacity: 0.8;
   }
 }
 @keyframes ani-shan {

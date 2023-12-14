@@ -63,6 +63,7 @@ defineExpose({ close })
           v-if="menuInfo.useCloudImg"
           style="width: 14px;height: 14px;"
           :url="menuInfo.icon" is-cloud
+          class="icon-img"
         />
         <BaseIcon v-else :name="menuInfo.icon" />
         <span class="header-title">{{ menuInfo.title }}</span>
@@ -153,6 +154,9 @@ defineExpose({ close })
   .accordion-header:hover {
     background-color: #213743;
     --tg-icon-color: var(--tg-text-white);
+    .icon-img{
+      filter: brightness(2);
+    }
   }
 
   .flex-center {

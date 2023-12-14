@@ -84,6 +84,7 @@ function itemClick(item: MenuItem) {
               v-if="menuitem.useCloudImg"
               style="width: 14px;height: 14px;"
               :url="menuitem.icon" is-cloud
+              class="icon-img"
             />
             <BaseIcon v-else :name="menuitem.icon" />
             <div
@@ -132,6 +133,9 @@ function itemClick(item: MenuItem) {
         background: var(--tg-secondary-main);
         border-radius: var(--tg-radius-default);
         --tg-icon-color: var(--tg-text-white);
+        .icon-img{
+          filter: brightness(2);
+        }
       }
       &.disabled{
         cursor: not-allowed;

@@ -168,7 +168,7 @@ onUnmounted(() => {
       flex-direction: column;
       color: var(--tg-text-white);
       .header {
-        padding: var(--tg-spacing-20) var(--tg-spacing-12) var(--tg-spacing-12);
+        padding: var(--tg-spacing-16) var(--tg-spacing-16) var(--tg-spacing-16);
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -179,8 +179,9 @@ onUnmounted(() => {
           display: flex;
           align-items: center;
           justify-content: flex-start;
-          gap: var(--tg-spacing-6);
+          gap: var(--tg-spacing-8);
           font-size: var(--tg-font-size-base);
+          line-height: 24px;
           > span {
             font-weight: var(--tg-font-weight-semibold);
           }

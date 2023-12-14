@@ -70,6 +70,7 @@ const active = computed(() => sideBigActiveMenu.value
     overflow: hidden;
     &:hover:not(.disabled), &.active:not(.disabled) {
       background-color: var(--tg-secondary-main);
+      --tg-icon-color: var(--tg-text-white);
     }
     &.disabled{
       cursor: not-allowed;
