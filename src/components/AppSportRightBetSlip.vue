@@ -81,6 +81,7 @@ const { selected: betOrderSelectValue, list: betOrderData } = useSelect([
     icon: 'navbar-bet-mult',
   },
 ])
+initBetOrderTab()
 
 const { selected: betOrderFilterValue, list: betOrderFilterData } = useSelect([
   { label: t('sports_accept_any_odds'), value: EnumOddsChange.acceptAnyOddsChange },
@@ -155,13 +156,6 @@ const errorInfo = computed<{
       }
     }
 
-    if (sportStore.cart.getOddsLessThanOnePointOneWidList.length) {
-      return {
-        bool: true,
-        errorMess: '赔率小于1.10的投注项不能组合为复式投注',
-      }
-    }
-
     if (
       sportStore.cart.getNotSupportWidList.length
       || sportStore.cart.getExistIcList.length
@@ -169,6 +163,13 @@ const errorInfo = computed<{
       return {
         bool: true,
         errorMess: t('no_sup_multiple'),
+      }
+    }
+
+    if (sportStore.cart.getOddsLessThanOnePointOneWidList.length) {
+      return {
+        bool: true,
+        errorMess: '赔率小于1.10的投注项不能组合为复式投注',
       }
     }
   }
@@ -649,7 +650,6 @@ onMounted(() => {
   addListToCartEvent()
   firstInputFocus()
   initBetOrderFilterValue()
-  initBetOrderTab()
 })
 
 onUnmounted(() => {

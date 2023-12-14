@@ -108,7 +108,7 @@ onBeforeUnmount(() => {
           Terms and Conditions
         </div>
         <div class="terms-conditions-title">
-          1. {{ companyData?.name }}.COM
+          1. {{ companyData?.name.toUpperCase() }}.COM
         </div>
         <div class="terms-conditions-describe">
           <p>

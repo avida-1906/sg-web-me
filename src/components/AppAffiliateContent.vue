@@ -28,7 +28,11 @@ const selectCurrencyOptions = computed<ISelectOption[]>(() => [
   <div class="layout-spacing reset app-affiliate-content">
     <slot name="content-top" />
     <div class="table-filter">
-      <BaseDatePicker v-model="date" />
+      <BaseDatePicker
+        v-model="date"
+        init-start-date="1900-06-06"
+        init-end-date="2000-06-08"
+      />
       <BaseSelect v-model="selectSize" :options="selectTypeOptions" />
       <BaseSelect
         v-if="mode === 'currency'"
