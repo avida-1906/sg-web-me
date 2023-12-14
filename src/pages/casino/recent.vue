@@ -1,6 +1,6 @@
 <script setup lang="ts">
 usePageTitle({ prefix: 'recent_casino_game', isT: true })
-const { appContentWidth } = storeToRefs(useWindowStore())
+const { appContentWidth, isMobile } = storeToRefs(useWindowStore())
 </script>
 
 <template>
@@ -23,7 +23,7 @@ const { appContentWidth } = storeToRefs(useWindowStore())
         </div>
       </div>
     </div>
-    <div class="mt-24">
+    <div v-if="!isMobile" class="mt-24">
       <AppGameSearch game-type="1" />
     </div>
     <div class="mt-24">
