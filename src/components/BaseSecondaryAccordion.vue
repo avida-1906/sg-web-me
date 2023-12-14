@@ -44,7 +44,12 @@ function toggle() {
     <div class="no-active-scale header" :class="{ disabled }" @click="toggle">
       <slot name="header">
         <div class="container">
-          <div class="container">
+          <div
+            class="container"
+            :style="{
+              '--app-sport-image-error-icon-size': '16px',
+            }"
+          >
             <template v-if="icon">
               <AppImage
                 v-if="isCloudIcon" width="16px" height="16px" is-cloud :url="icon"
