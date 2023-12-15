@@ -4,6 +4,7 @@ const { startTime, endTime } = getDaIntervalMap(new Date().getTime(), 30)
 const { t } = useI18n()
 const { copy } = useClipboard()
 const { openNotify } = useNotify()
+const { userLanguage } = storeToRefs(useLanguageStore())
 
 const {
   selected: currency_id,
@@ -34,6 +35,7 @@ const columns: Column[] = [
     title: t('join_time'),
     dataIndex: 'created_at',
     align: 'center',
+    slot: 'created_at',
   },
   {
     title: t('player_id'),
@@ -73,7 +75,6 @@ const params = computed(() => {
 })
 
 function copyClick(msg: string) {
-  console.error(123)
   copy(msg)
   openNotify({
     type: 'success',
@@ -112,6 +113,11 @@ useListSearch(params, runAsync, resetPage)
       :data-source="list"
       :loading="loading"
     >
+      <template #created_at="{ record }">
+        <span>
+          {{ application.timestampToTime(record.created_at * 1000, userLanguage) }}
+        </span>
+      </template>
       <template #username="{ record }">
         <div
           class="center cursor-pointer"
@@ -149,6 +155,7 @@ useListSearch(params, runAsync, resetPage)
       </template>
     </BaseTable>
     <BasePagination
+      v-if="total > 0"
       v-model:current-page="page"
       v-model:page-size="page_size"
       :total="total"

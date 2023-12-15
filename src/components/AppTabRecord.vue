@@ -8,11 +8,17 @@ interface Props {
   emptyText: string
   downloadText?: string
   tabValue?: string | number
+  contentType?: 'deposit' | 'withdraw'
 }
 
 const props = withDefaults(defineProps<Props>(), {})
 const emit = defineEmits(['update:tabValue'])
 
+const { t } = useI18n()
+const { isMobile } = storeToRefs(useWindowStore())
+// 存款详情弹框
+const { openDepositDetailDialog }
+  = useDialogDepositDetail(props.contentType === 'deposit' ? t('deposit_detail') : '提款详情')
 // 加密货币存款
 const recordDepositCoin = useList(ApiFinanceRecordDepositCoin,
   { manual: true }, { page_size: 10 })
@@ -29,7 +35,7 @@ const recordWithdrawBank = useList(ApiFinanceRecordWithdrawBank,
 const tab = ref(props.tabs[0].value)
 emit('update:tabValue', tab.value)
 const activeRecord = ref<any>(
-  tab.value === 'byte_coin' ? recordDepositCoin : recordWithdrawCoin)
+  props.contentType === 'deposit' ? recordDepositCoin : recordWithdrawCoin)
 
 const getList = computed(() => {
   return activeRecord.value.list
@@ -47,7 +53,7 @@ function tabChange(val: string) {
     activeRecord.value = recordDepositCoin
   else if (val === 'real_coin')
     activeRecord.value = recordDepositBank
-  else if (val === 'byte_w_coin')
+  else if (val === 'byt_w_coin')
     activeRecord.value = recordWithdrawCoin
   else if (val === 'real_w_coin')
     activeRecord.value = recordWithdrawBank
@@ -63,15 +69,38 @@ function pageNext() {
   activeRecord.value.next()
   activeRecord.value.run()
 }
-function formatState(state: number) {
+function formatWithdrawState(state: number) {
   // <!--1：成功，2：拒绝，3，审核中，4：删除，5：三方异常，6：出款中-- >
   switch (state) {
-    case 1: return '成功'
-    case 2: return '拒绝'
-    case 3: return '审核中'
-    case 4: return '删除'
-    case 5: return '三方异常'
-    case 6: return '出款中'
+    case 1: return '已完成'
+    case 2: return '失败'
+    case 3: return '处理中'
+    case 4: return '失败'
+    case 5: return '失败'
+    case 6: return '处理中'
+    default: return '--'
+  }
+}
+function formatDepositState(state: number) {
+  // <!--1：成功，2：失败，3，支付中，4：删除，5:待审核 6：取消-- >
+  switch (state) {
+    case 1: return '已确认'
+    case 2: return '失败'
+    case 3: return '确认中'
+    case 4: return '失败'
+    case 5: return '确认中'
+    case 6: return '取消'
+    default: return '--'
+  }
+}
+function getStateIcon(state: number) {
+  switch (state) {
+    case 1: return 'uni-record-success'
+    case 2: return 'uni-record-err'
+    case 3: return 'uni-record-confirm'
+    case 4: return 'uni-record-err'
+    case 5: return 'uni-record-confirm'
+    case 6: return 'uni-record-cancel'
     default: return '--'
   }
 }
@@ -85,49 +114,60 @@ watch(tab, (val) => {
 
 <template>
   <section class="tg-app-tab-record">
-    <div class="top">
-      <BaseTab v-model="tab" :list="tabs" :center="false" @change="tabChange" />
-    </div>
-    <div class="middle">
-      <div v-if="getList.length" class="record-box">
-        <div
-          v-for="item of getList" :key="item.order_number"
-          class="center record-item"
-        >
-          <div class="item-left">
-            <BaseIcon name="sport-success" />
-          </div>
-          <div class="item-right">
-            <div class="flex-between">
-              <span style="color:var(--tg-text-white)">
-                {{ formatState(item.state) }}</span>
-              <AppAmount
-                :amount="item.finally_amount"
-                :currency-type="getCurrencyConfigByCode(item.currency_id)?.name"
-              />
+    <template v-if="!(isMobile && activeRecord.loading)">
+      <div class="top">
+        <BaseTab v-model="tab" :list="tabs" :center="false" @change="tabChange" />
+      </div>
+      <div class="middle">
+        <div v-if="getList.length" class="record-box">
+          <div
+            v-for="item of getList" :key="item.order_number"
+            class="center record-item cursor-pointer"
+            @click="openDepositDetailDialog(item)"
+          >
+            <div class="center item-left">
+              <BaseIcon :name="getStateIcon(item.state)" />
             </div>
-            <div class="flex-between">
-              <span>{{ timeToFormat(item.created_at) }}</span>
-              <BaseIcon style="font-size: 12px;" name="uni-jump-page" />
+            <div class="item-right">
+              <div class="flex-between">
+                <span style="color:var(--tg-text-white)">
+                  {{ props.contentType === 'deposit'
+                    ? formatDepositState(item.state)
+                    : formatWithdrawState(item.state) }}</span>
+                <AppAmount
+                  :amount="item.finally_amount"
+                  :currency-type="getCurrencyConfigByCode(item.currency_id)?.name"
+                />
+              </div>
+              <div class="flex-between">
+                <span>{{ timeToFormat(item.created_at) }}</span>
+                <div class="center" style="gap: var(--tg-spacing-4);">
+                  <span style="color:var(--tg-text-white);">{{ item.order_number }}</span>
+                  <BaseIcon
+                    style="font-size: var(--tg-font-size-xs);"
+                    name="tabbar-bet"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
+        <div v-else class="empty">
+          <BaseEmpty :description="emptyText" icon="empty-1" />
+        </div>
+        <div class="page-stack-wrap mt-24">
+          <AppStack
+            :pagination-data="getPage"
+            @previous="pagePrevious" @next="pageNext"
+          />
+        </div>
+        <div v-if="downloadText" class="download-btn mt-24">
+          <BaseButton size="md">
+            {{ downloadText }}
+          </BaseButton>
+        </div>
       </div>
-      <div v-else class="empty">
-        <BaseEmpty :description="emptyText" icon="empty-1" />
-      </div>
-      <div class="page-stack-wrap mt-24">
-        <AppStack
-          :pagination-data="getPage"
-          @previous="pagePrevious" @next="pageNext"
-        />
-      </div>
-      <div v-if="downloadText" class="download-btn mt-24">
-        <BaseButton size="md">
-          {{ downloadText }}
-        </BaseButton>
-      </div>
-    </div>
+    </template>
     <div v-if="activeRecord.loading" class="center record-loading">
       <BaseLoading />
     </div>
@@ -136,14 +176,15 @@ watch(tab, (val) => {
 
 <style lang="scss" scoped>
 .empty {
-  margin-top: 24px;
+  margin-top: var(--tg-spacing-24);
   :deep(.base-empty-description) {
     padding-bottom: 0;
-    padding-top: 16px;
+    padding-top: var(--tg-spacing-16);
   }
 }
 .tg-app-tab-record {
   position: relative;
+  min-height: 195px;
   --tg-tab-style-wrap-bg-color: var(--tg-primary-main);
 }
 .footer-buttons {
@@ -152,31 +193,34 @@ watch(tab, (val) => {
   opacity: 0.5;
 }
 .record-box{
-  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--tg-spacing-12);
+  margin-top: var(--tg-spacing-16);
   .record-item{
-    gap: 8px;
+    gap: var(--tg-spacing-8);
     border-radius: var(--tg-radius-default);
     padding: 8px 12px;
-    &:nth-child(odd){
-      background-color: #213743;
-    }
+    // &:nth-child(odd){
+      background-color: var(--tg-secondary-grey);
+    // }
   }
   .item-left{
-
+    font-size: var(--tg-font-size-lg);
   }
   .item-right{
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: var(--tg-spacing-4)
   }
   .flex-between{
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: var(--tg-font-size-default);
-    line-height: 1.2;
-    color: #B1BAD3;
+    line-height: 1.3215;
+    color: var(--tg-secondary-light);
   }
 }
 .record-loading{

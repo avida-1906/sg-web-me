@@ -17,6 +17,7 @@ const { bool: showEmoji, toggle: toggleEmoji, setBool: setEBool } = useBoolean(f
 
 const { openNotify } = useNotify()
 
+const emojiWrap = ref()
 const maxMsgLen = 160
 const msgInput = ref()
 const message = ref('')
@@ -185,11 +186,15 @@ function enterPress(event: KeyboardEvent) {
     sendMsg()
   }
 }
-function inputMsg() {
-  const j = message.value.lastIndexOf(':')
-  if (j !== -1 && j === message.value.length - 1)
+onClickOutside(emojiWrap, event => showEmoji.value = false)
+
+watch(message, (val) => {
+  const j = val.lastIndexOf(':')
+  if (j !== -1 && j === val.length - 1)
     showEmoji.value = true
-}
+  else
+    showEmoji.value = false
+})
 </script>
 
 <template>
@@ -197,6 +202,7 @@ function inputMsg() {
     <Transition>
       <div
         v-show="!sendLoading && showEmoji"
+        ref="emojiWrap"
         class="emoji-wrap"
       >
         <div class="emoji-header">
@@ -277,7 +283,6 @@ function inputMsg() {
         :placeholder="t('chat_send_msg_placeholder')"
         textarea
         @down-enter="enterPress"
-        @input="inputMsg"
       >
         <template #right-icon>
           <BaseButton

@@ -34,6 +34,7 @@ export const useLeftSidebar = createGlobalState(() => {
     setFalse()
     switchTo.value = ''
     after.value && after.value()
+    after.value = undefined
   }
   function openLeftSidebar() {
     leftIsExpand.value = true

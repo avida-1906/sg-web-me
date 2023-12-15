@@ -1442,59 +1442,60 @@ export function ApiFinanceRecordWithdrawBank(params?: {
 
 /**
  * 联盟计划-我的佣金 agency/commission
- * @see null
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=500ef9ab-2c8b-4324-89d1-f483fea118cd
  */
-export function ApiAgencyCommission(params?: {
+export function ApiAgencyCommission(data?: {
   page?: number
   page_size?: number
   start_time?: number
   end_time?: number
 }) {
-  return httpClient.get<IResponseList<{
-    'id': string
+  return httpClient.post<IResponseList<{
+    /** id */
+    id: string
     /** 会员id */
-    'uid': string
-    /** 会员名 */
-    'username': string
+    uid: string
+    /** 会员账号 */
+    username: string
     /** 上级uid */
-    'parent_uid': string
+    parent_uid: string
     /** 上级代理 */
-    'parent_name': string
+    parent_name: string
     /** 开始时间 */
-    'start_time': 1701907200
+    start_time: number
     /** 结束时间 */
-    'end_time': 1701993599
+    end_time: number
     /** 佣金等级 */
-    'commission_level': 5
+    commission_level: number
     /** 总人数(贡献人数) */
-    'sub_user_count': 2
+    sub_user_count: number
     /** 直属人数 */
-    'direct_user_count': 2
+    direct_user_count: number
     /** 其它人数 */
-    'other_user_count': 0
+    other_user_count: number
     /** 总佣金 */
-    'commission_amount_total': string
+    commission_amount_total: string
     /** 直属佣金 */
-    'commission_amount_direct': string
+    commission_amount_direct: string
     /** 其它佣金 */
-    'commission_amount_other': string
+    commission_amount_other: string
     /** 总业绩 */
-    'valid_bet_amount_total': string
+    valid_bet_amount_total: string
     /** 直属业绩 */
-    'valid_bet_amount_direct': string
+    valid_bet_amount_direct: string
     /** 其它业绩 */
-    'valid_bet_amount_other': string
+    valid_bet_amount_other: string
     /** 币种 */
-    'currency_id': string
+    currency_id: string
     /** 模式id */
-    'model_id': string
+    model_id: string
     /** 模式名称(类型名称) */
-    'model_name': string
+    model_name: string
     /** 创建时间 */
-    'created_at': 1702025565
+    created_at: number
     /** 结算时间 */
-    'send_time': 1702032863
-  }>>('/agency/commission', { params })
+    send_time: number
+  }>>('/agency/commission', data)
 }
 
 /**
@@ -1557,4 +1558,216 @@ export function ApiGetMyPro() {
       net_amount: string
     }
   }>('/agency/mypromotion')
+}
+
+/**
+ * 我的业绩
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=2150139e-5490-4f79-82fb-773e3674d569
+ */
+export function ApiAgencyPerformance(data?: {
+  page?: number
+  page_size?: number
+  username?: string
+  currency_id?: string
+  start_time?: string
+  end_time?: string
+}) {
+  return httpClient.post<IResponseList<{
+    /** id */
+    id: string
+    /** 会员id */
+    uid: string
+    /** 会员账号 */
+    username: string
+    /** 上级uid */
+    parent_uid: string
+    /** 上级代理 */
+    parent_name: string
+    /** 开始时间 */
+    start_time: number
+    /** 结束时间 */
+    end_time: number
+    /** 佣金等级 */
+    commission_level: number
+    /** 总人数(贡献人数) */
+    sub_user_count: number
+    /** 直属人数 */
+    direct_user_count: number
+    /** 其它人数 */
+    other_user_count: number
+    /** 总佣金 */
+    commission_amount_total: string
+    /** 直属佣金 */
+    commission_amount_direct: string
+    /** 其它佣金 */
+    commission_amount_other: string
+    /** 总业绩 */
+    valid_bet_amount_total: string
+    /** 直属业绩 */
+    valid_bet_amount_direct: string
+    /** 其它业绩 */
+    valid_bet_amount_other: string
+    /** 币种 */
+    currency_id: string
+    /** 模式id */
+    model_id: string
+    /** 模式名称(类型名称) */
+    model_name: string
+    /** 创建时间 */
+    created_at: number
+    /** 结算时间 */
+    send_time: number
+  }>>('/agency/performance', data)
+}
+
+/**
+ * 直属财务
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=c7e29704-cfd7-4e14-ace8-f65fc7562810
+ */
+export function ApiAgencyReportFinance(data?: {
+  page?: number
+  page_size?: number
+  username?: string
+  currency_id?: string
+  start_time?: string
+  end_time?: string
+}) {
+  return httpClient.post<IResponseList<{
+    /** 会员id */
+    uid: string
+    /** 会员账号 */
+    username: string
+    /** 货币ID */
+    currency_id: string
+    /** 货币名称 */
+    currency_name: string
+    /** 存款金额 */
+    deposit_amount: string
+    /** 存款次数 */
+    deposit_count: number
+    /** 取款金额 */
+    withdraw_amount: string
+    /** 取款次数 */
+    withdraw_count: number
+    /** 存取差额 */
+    deposit_withdraw_amount: string
+    /** 账户余额 */
+    balance: string
+    /** vip等级 */
+    vip: string
+    /** 统计日期 */
+    time: number
+    /** 创建时间 */
+    created_at: number
+  }>>('/agency/report/finance', data)
+}
+
+/**
+ * 直属投注
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=98114b7e-3b40-4706-9e58-92f50618dd59
+ */
+export function ApiAgencyReportBet(data?: {
+  page?: number
+  page_size?: number
+  username?: string
+  currency_id?: string
+  start_time?: string
+  end_time?: string
+}) {
+  return httpClient.post<IResponseList<{
+    /** 会员id */
+    uid: string
+    /** 会员账号 */
+    username: string
+    /** 货币ID */
+    currency_id: string
+    /** 货币名称 */
+    currency_name: string
+    /** 注单数量 */
+    bet_count: number
+    /** 总输赢 */
+    net_amount: string
+    /** 有效投注 */
+    valid_bet_amount: number
+    /** VIP等级 */
+    vip: number
+    /** 统计日期 */
+    time: number
+    /** 创建时间 */
+    created_at: number
+  }>>('/agency/report/bet', data)
+}
+
+/**
+ * 直属领取
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=4184dc53-cfd7-4eb6-91ac-5fbff97ea02e
+ */
+export function ApiAgencyReportReceive(data?: {
+  page?: number
+  page_size?: number
+  username?: string
+  currency_id?: string
+  start_time?: string
+  end_time?: string
+}) {
+  return httpClient.post<IResponseList<{
+    /** 会员id */
+    uid: string
+    /** 会员账号 */
+    username: string
+    /** 货币ID */
+    currency_id: string
+    /** 货币名称 */
+    currency_name: string
+    /** 优惠金额 */
+    gift_amount: string
+    /** 代理佣金 */
+    commission_amount: string
+    /** 总领取 */
+    total_receive: string
+    /** VIP等级 */
+    vip: number
+    /** 统计日期 */
+    time: number
+    /** 创建时间 */
+    created_at: number
+  }>>('/agency/report/receive', data)
+}
+
+/**
+ * 直属用户
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=396c93ca-08a3-478c-be95-8df150526caa
+ */
+export function ApiAgencyReportUser(data?: {
+  page?: number
+  page_size?: number
+  username?: string
+  currency_id?: string
+  start_time?: string
+  end_time?: string
+}) {
+  return httpClient.post<IResponseList<{
+    /** 会员id */
+    uid: string
+    /** 会员账号 */
+    username: string
+    /** 1:离线 2:在线 */
+    online: '1' | '2'
+    /** 存款次数当值大于0标识首存 */
+    deposit_count: number
+    /** 上次登录时间 */
+    last_login_at: number
+    /** VIP等级 */
+    vip: number
+    /** 注册时间 */
+    created_at: number
+  }>>('/agency/report/user', data)
+}
+
+/**
+ * 佣金比例 agency/commission/scale
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=6848df0c-36d0-4661-bb0d-af39bae989db
+ */
+export function ApiAgencyCommissionScale() {
+  return httpClient.get<any>('/agency/commission/scale')
 }

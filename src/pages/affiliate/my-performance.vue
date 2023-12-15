@@ -1,98 +1,179 @@
 <script lang="ts" setup>
-const { t } = useI18n()
+const { startTime, endTime } = getDaIntervalMap(new Date().getTime(), 30)
 
-// loading加载
-const { bool: loading } = useBoolean(false)
+const { t } = useI18n()
+const { copy } = useClipboard()
+const { openNotify } = useNotify()
+// const { userLanguage } = storeToRefs(useLanguageStore())
+
+const {
+  selected: currency_id,
+  list: currencyList,
+} = useSelect([
+  {
+    label: '全部',
+    value: '',
+  },
+  ...getCurrencyOptions(),
+])
+
+const {
+  list,
+  page,
+  page_size,
+  loading,
+  total,
+  runAsync,
+  resetPage,
+} = useList(ApiAgencyPerformance, {}, { page_size: 10, isWatchPageOrPageSize: false })
+
+const date = ref([])
+const searchValue = useDebouncedRef({ value: '', delay: 1000 })
+
 const columns: Column[] = [
   {
     title: t('join_time'),
-    dataIndex: 'settleTime',
+    dataIndex: 'created_at',
     align: 'center',
-    slot: 'settleTime',
+    slot: 'created_at',
   },
   {
     title: t('user_account'),
-    dataIndex: 'type',
+    dataIndex: 'username',
     align: 'center',
+    slot: 'username',
   },
   {
     title: t('sub_count'),
-    dataIndex: 'performanceNum',
+    dataIndex: 'direct_user_count',
     align: 'center',
     sort: true,
     sortDirections: 'descend',
   },
   {
     title: t('performance'),
-    dataIndex: 'contributeNum',
+    dataIndex: 'valid_bet_amount_direct',
     align: 'center',
     sort: true,
   },
   {
     title: t('label_contribute_commission'),
-    dataIndex: 'commission',
+    dataIndex: 'commission_amount_direct',
     align: 'center',
-    slot: 'commission',
+    slot: 'commission_amount_direct',
     sort: true,
   },
 ]
-const tableData = ref([
-  {
-    settleTime: '10/11/2011 23:56:56',
-    type: '体育',
-    performanceNum: '999,999',
-    contributeNum: '999,999',
-    commission: '999,999',
-  },
-  {
-    settleTime: '10/11/2011 23:56:56',
-    type: '体育',
-    performanceNum: '999,999',
-    contributeNum: '999,999',
-    commission: '999,999',
-  },
-  {
-    settleTime: '10/11/2011 23:56:56',
-    type: '体育',
-    performanceNum: '999,999',
-    contributeNum: '999,999',
-    commission: '999,999',
-  },
-])
+
+const params = computed(() => {
+  return {
+    username: searchValue.value,
+    currency_id: currency_id.value,
+    // start_time: date.value[0],
+    // end_time: date.value[1],
+    page_size: page_size.value,
+    page: page.value,
+  }
+})
+
+function copyClick(msg: string) {
+  copy(msg)
+  openNotify({
+    type: 'success',
+    title: t('notify_title_success'),
+    message: t('copy_success') + msg,
+  })
+}
+
+useListSearch(params, runAsync, resetPage)
 </script>
 
 <template>
-  <AppAffiliateContent>
-    <template #default>
-      <BaseTable
-        class="page-my-performance"
-        :columns="columns"
-        :data-source="tableData"
-        :loading="loading"
-      >
-        <template #settleTime>
-          <div class="flex-colum">
-            <div>10/11/2011 </div>
-            <div>23:56:56</div>
-          </div>
-        </template>
-        <template #commission="{ record }">
-          <span style="color:var(--tg-text-warn)">{{ record.contributeNum }}</span>
-        </template>
-      </BaseTable>
-    </template>
-  </AppAffiliateContent>
+  <div class="all-data-page">
+    <div class="table-filter">
+      <BaseDatePicker
+        v-model="date"
+        :init-start-date="startTime"
+        :init-end-date="endTime"
+      />
+      <BaseSelect
+        v-model.lazy="currency_id"
+        :options="currencyList"
+      />
+      <div style="max-width: 195px;">
+        <BaseInput v-model="searchValue" :placeholder="t('user_account')">
+          <template #right-icon>
+            <BaseIcon name="uni-search" />
+          </template>
+        </BaseInput>
+      </div>
+      <slot name="grand-total" />
+    </div>
+
+    <BaseTable
+      class="page-all-data page-direct-finance"
+      :columns="columns"
+      :data-source="list"
+      :loading="loading"
+    >
+      <template #username="{ record }">
+        <div
+          class="center cursor-pointer"
+          style="gap: var(--tg-spacing-4);"
+          @click="copyClick(record.username)"
+        >
+          <BaseIcon name="chat-star-gold" />
+          <span>{{ record.username }}</span>
+          <BaseIcon name="uni-doc" />
+        </div>
+      </template>
+    </BaseTable>
+    <BasePagination
+      v-if="total > 0"
+      v-model:current-page="page"
+      v-model:page-size="page_size"
+      :total="total"
+    />
+  </div>
 </template>
 
 <style lang="scss" scoped>
-.page-my-performance {
+.all-data-page {
+  --tg-badge-size: 10px;
   --tg-table-th-padding: var(--tg-spacing-21);
-  --tg-table-td-padding: var(--tg-spacing-13);
-  .flex-colum{
+  --tg-table-td-padding: var(--tg-spacing-21);
+  --tg-table-font-size: var(--tg-font-size-xs);
+  --tg-table-even-background: var(--tg-primary-main);
+  --tg-table-th-color: var(--tg-text-white);
+  --tg-table-line-height:1;
+  --tg-table-th-font-weight: var(--tg-font-weight-normal);
+  --tg-base-select-style-color: var(--tg-text-lightgrey);
+  --tg-base-select-style-padding-y: var(--tg-spacing-8);
+  --tg-base-select-style-padding-right: var(--tg-spacing-28);
+  --tg-table-th-background: var(--tg-primary-main);
+}
+
+.hint {
+  color: var(--tg-text-grey-lighter);
+  margin-top: 4px;
+}
+.page-all-data {
+  margin: 20px 0;
+  --tg-app-amount-font-size: var(--tg-font-size-xs);
+  --tg-app-amount-font-weight: var(--tg-font-weight-normal);
+  .flex-colum {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: var(--tg-spacing-4);
   }
+}
+
+.table-filter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--tg-spacing-16);
+  font-size: var(--tg-font-size-xs);
 }
 </style>

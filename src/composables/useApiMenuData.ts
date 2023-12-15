@@ -233,14 +233,14 @@ export function useApiMenuData() {
     else if (item.callBack) {
       item.callBack()
     }
-    else if (item.modalQuery) {
-      if (isMobile.value)
-        closeLeftSidebar()
-      router.push({
-        path: route.path,
-        query: { ...route.query, ...item.modalQuery },
-      })
-    }
+    // else if (item.modalQuery) {
+    // if (isMobile.value)
+    //   closeLeftSidebar()
+    // router.push({
+    //   path: route.path,
+    //   query: { ...route.query, ...item.modalQuery },
+    // })
+    // }
   }
 
   return {

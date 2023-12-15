@@ -3,9 +3,9 @@ const { t } = useI18n()
 
 const appStore = useAppStore()
 const { vipConfigData } = storeToRefs(appStore)
-const { platformList } = storeToRefs(useCasinoStore())
 const { providerList } = storeToRefs(useSportsStore())
 const { AllLanguages, userLanguage } = storeToRefs(useLanguageStore())
+const { bigPlats: platformList } = storeToRefs(useCasinoStore())
 
 const tab = ref('')
 

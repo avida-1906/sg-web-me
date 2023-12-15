@@ -2,6 +2,9 @@ import { acceptHMRUpdate, defineStore } from 'pinia'
 import type { CasinoProviderItem } from '~/apis/types'
 
 export const useCasinoStore = defineStore('casino', () => {
+  const { list: bigPlats } = useList(ApiMemberPlatformList, {
+    manual: false,
+  })
   /** 游戏提供商数据(PG,EVO,...) */
   const { list } = useList(ApiMemberPlatformVenueList, {
     manual: false,
@@ -60,6 +63,7 @@ export const useCasinoStore = defineStore('casino', () => {
   }
 
   return {
+    bigPlats,
     allPlatformList: list,
     platformList,
     casinoNav,
