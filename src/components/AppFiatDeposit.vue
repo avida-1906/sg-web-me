@@ -448,6 +448,7 @@ await application.allSettled([
               <BaseSelect
                 v-if="fixedAmount && fixedAmount.length"
                 v-model="amount"
+                placeholder="请下拉选择充值金额"
                 :options="fixedAmount"
                 :msg="amountError"
                 small
