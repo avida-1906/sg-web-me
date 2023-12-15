@@ -5,7 +5,7 @@ interface Props {
   }
 }
 const props = withDefaults(defineProps<Props>(), {})
-const closeDialog = inject('closeDialog', () => { })
+// const closeDialog = inject('closeDialog', () => { })
 
 const {
   renderCurrencyList,
@@ -18,9 +18,6 @@ const isCoin = computed(() => {
   return application.isVirtualCurrency(props.data.currency_name)
 })
 
-function service() {
-  closeDialog()
-}
 function getPrefix() {
   return renderCurrencyList.value
     .find(item => item.type === props.data.currency_name)?.prefix
@@ -136,7 +133,6 @@ function getStateIcon(state: number) {
     <BaseButton
       size="md"
       class="help-btn"
-      @click="service"
     >
       {{ $t('need_online_service') }}
     </BaseButton>
