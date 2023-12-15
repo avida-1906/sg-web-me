@@ -210,6 +210,7 @@ function pathTo(tmp: { path?: string; title: string; icon?: boolean }) {
   --tg-base-select-popper-style-padding-y: 0;
 }
 .app-footer {
+  --tg-base-divider-bg-color: var(--tg-secondary-grey);
   /* background-color: #0F212E; */
   width: 100%;
   display: grid;
