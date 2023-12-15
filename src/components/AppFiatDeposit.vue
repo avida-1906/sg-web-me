@@ -21,16 +21,8 @@ const { t } = useI18n()
 
 const amountRef = ref()
 const currentType = ref('')
-// const payeeInformation = ref({
-//   name: '张三',
-//   bankNumber: '6228480445839939573',
-//   bankName: '中国农业银行',
-//   accountOpeningBank: '开户网点：天津农商银行',
-//   amount: '200,000.00',
-// })
 const currentAisle = ref('')
 const currentAisleItem = ref<IPaymentMerchantData>()
-// const username = ref('')
 const oftenAmount = ref<TOftenAmount[]>()
 const fixedAmount = ref<TOftenAmount[]>()
 
