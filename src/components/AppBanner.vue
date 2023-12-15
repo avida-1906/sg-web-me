@@ -43,7 +43,9 @@ function loadImage(url: string) {
     const img = new Image()
     img.src = url
     img.onload = () => {
-      resolve(true)
+      setTimeout(() => {
+        resolve(true)
+      }, 300)
     }
     img.onerror = () => {
       reject(new Error(`load image error: ${url}`))
@@ -65,9 +67,8 @@ function fetchDataOrLoadImage() {
     runMemberBannerList({
       banner_type: props.type === 'casino' ? '1' : '2',
     }).then(async () => {
-      items.value.forEach(async (item) => {
-        await loadImage(`${VITE_CASINO_IMG_CLOUD_URL}/${item.imgUrl}`)
-      })
+      const r = await Promise.allSettled([...items.value.map(item => loadImage(`${VITE_CASINO_IMG_CLOUD_URL}/${item.imgUrl}`))])
+      console.error('rrrrr', r)
       resolve(true)
     }).catch(() => {
       reject(new Error('fetch data error'))
