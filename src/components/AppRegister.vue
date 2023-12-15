@@ -32,6 +32,22 @@ const birthday = ref('')
 const errorTip = ref()
 
 const {
+  value: password,
+  errorMessage: pwdErrorMsg,
+  validate: validatePassword,
+  meta: pwdMeta,
+} = useField<string>('password', (value) => {
+  if (!value)
+    return t('password_least_8_characters')
+  else if (value.length < 8)
+    return t('password_least_8_characters')
+  else if (!upperLowerReg.test(value))
+    return t('password_uppercase_lowercase_letter')
+  else if (!lastOneNumberReg.test(value))
+    return t('password_least_1_number')
+  return ''
+})
+const {
   value: email,
   errorMessage: emailErrorMsg,
   validate: validateEmail,
@@ -57,6 +73,10 @@ const {
   else if (lastDotIdx === value.length - 1) {
     errorTip.value = '电子邮件域不受支持'
     return '电子邮件域不受支持'
+  }
+
+  else if (value === password.value) {
+    return '您的电邮地址和密码不能相同'
   }
 
   else if (!emailReg.test(value)) {
@@ -86,27 +106,13 @@ const {
     return '用户名含有无效的字符'
   else if (value.length > 14)
     return '您的 username 不得超过 14 个字符'
+  else if (value === password.value)
+    return '您的用户名和密码不能相同'
   else if (!usernameReg.test(value))
     return t('validate_msg_user_name_tip')
   // 此用户名已被使用，请选择另一用户名。
   // 用户名含有无效的字符
   // 您的用户名长度必须为 3 – 14 个字符。
-  return ''
-})
-const {
-  value: password,
-  errorMessage: pwdErrorMsg,
-  validate: validatePassword,
-  meta: pwdMeta,
-} = useField<string>('password', (value) => {
-  if (!value)
-    return t('password_least_8_characters')
-  else if (value.length < 8)
-    return t('password_least_8_characters')
-  else if (!upperLowerReg.test(value))
-    return t('password_uppercase_lowercase_letter')
-  else if (!lastOneNumberReg.test(value))
-    return t('password_least_1_number')
   return ''
 })
 
@@ -192,42 +198,8 @@ const {
     closeDialog()
   },
 })
-const { run: runExists } = useRequest(ApiMemberExists, {
+const { runAsync: runExists, loading: existLoading } = useRequest(ApiMemberExists, {
   async onSuccess() {
-    if (curExists.value === 2) {
-      if (needEmail.value)
-        await validateEmail()
-
-      if (needName.value)
-        await validateUsername()
-
-      await validatePassword()
-
-      if (needCheckEmail.value)
-        await valiemailCode()
-
-      await birthdayInputRef.value.valiBirthday()
-      if (!birthdayInputRef.value.isValid)
-        return
-
-      if (!usernameErrorMsg.value && !pwdErrorMsg.value && !agreeErrorMsg.value
-      ) {
-        const paramsReg = {
-          email: email.value,
-          username: username.value,
-          password: password.value,
-          parent_id: '',
-          device_number: application.getDeviceNumber(),
-          birthday: birthday.value,
-        }
-        // runMemberReg(paramsReg)
-        Session.set(STORAGE_REG_PARAMS_KEYWORDS, paramsReg)
-        setNeedSaveFormDataTrue()
-        // closeDialog()
-        await nextTick()
-        // openTermsConditionsDialog()
-      }
-    }
   },
   onError() {
     if (curExists.value === 1)
@@ -241,6 +213,8 @@ async function getMemberReg() {
   if (needName.value) {
     userNameRef.value?.setTouchTrue()
     await validateUsername()
+    if (!usernameErrorMsg.value)
+      await onEmailUsernameBlur(1)
   }
 
   passwordRef.value.setTouchTrue()
@@ -251,7 +225,7 @@ async function getMemberReg() {
   if (needEmail.value) {
     emailRef.value?.setTouchTrue()
     await validateEmail()
-    !emailErrorMsg.value && onEmailUsernameBlur(2)
+    !emailErrorMsg.value && await onEmailUsernameBlur(2)
   }
 
   if (needCheckEmail.value) {
@@ -275,7 +249,6 @@ async function getMemberReg() {
   && !pwdErrorMsg.value
   && !agreeErrorMsg.value
   && !emailCodeErrorMsg.value) {
-    console.log(emailCode.value)
     const paramsReg = {
       email: email.value,
       username: username.value,
@@ -307,12 +280,12 @@ function onPasswordBlur() {
 function passwordVerifyPass(status: boolean) {
   setPwdStatus(status)
 }
-function onEmailUsernameBlur(type: 1 | 2) {
+async function onEmailUsernameBlur(type: 1 | 2) {
   curExists.value = type
   if (type === 1 && username.value && !usernameErrorMsg.value)
-    runExists({ ty: type, val: username.value, noNotify: true })
+    await runExists({ ty: type, val: username.value, noNotify: true })
   if (type === 2 && email.value && !emailErrorMsg.value)
-    runExists({ ty: type, val: email.value })
+    await runExists({ ty: type, val: email.value })
 }
 async function toLogin() {
   closeDialog()
@@ -440,7 +413,7 @@ onUnmounted(() => {
       </div>
       <div class="app-register-check-box">
         <BaseButton
-          :loading="isLoading" class="app-register-btn" bg-style="secondary"
+          :loading="existLoading" class="app-register-btn" bg-style="secondary"
           size="xl"
           @click.stop="getMemberReg"
         >
