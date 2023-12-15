@@ -89,7 +89,7 @@ function getStateIcon(state: number) {
         <!-- 法币 -->
         <template v-else>
           <div class="item">
-            <label>收款银行:</label>
+            <label> {{ data.currency_name === 'BRL' ? '账户类型' : '收款银行' }} :</label>
             <span class="data">{{ data.bank_name }}</span>
           </div>
           <div class="item">
@@ -121,12 +121,16 @@ function getStateIcon(state: number) {
         <span class="data">{{ timeToFormat(data.created_at) }}</span>
       </div>
       <div class="item">
-        <label>交易编号:</label>
+        <label>订单编号:</label>
         <div class="data color-white">
           <span>{{ data.order_number }}</span>
-          <BaseButton size="none" @click="application.copy(data.order_number)">
-            <BaseIcon name="uni-doc" />
-          </BaseButton>
+          <AppTooltip text="已成功复制地址" icon-name="uni-doc" :triggers="['click']">
+            <template #content>
+              <BaseButton size="none" @click="application.copy(data.order_number)">
+                <BaseIcon name="uni-doc" />
+              </BaseButton>
+            </template>
+          </AppTooltip>
         </div>
       </div>
     </div>
