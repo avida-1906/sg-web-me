@@ -65,6 +65,12 @@ const lineHeight = computed(() => {
   </div>
 </template>
 
+<style lang="scss">
+:root{
+  --tg-base-divider-bg-color: var(--tg-secondary-main);
+}
+</style>
+
 <style lang="scss" scoped>
 .base-divider.base-divider-title-position-left .base-divider-line.base-divider-line-left {
     width: var(--leftOffset);
@@ -81,7 +87,7 @@ const lineHeight = computed(() => {
         width: 100%;
         // height: var(--tg-border-width-sm);
         border: none;
-        background-color: var(--tg-secondary-main);
+        background-color: var(--tg-base-divider-bg-color);
     }
     &-title {
         color: var(--tg-text-white);

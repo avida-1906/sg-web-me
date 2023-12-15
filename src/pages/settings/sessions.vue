@@ -17,6 +17,7 @@ usePageTitle({ prefix: t('account_session') })
 //   { label: '不活跃', value: '3' },
 // ]
 const popperShow: Ref<boolean[]> = ref([])
+const popperShow2: Ref<boolean[]> = ref([])
 const columns: Column[] = [
   {
     title: t('login_time'),
@@ -59,6 +60,12 @@ const {
 function handleShow(index: number) {
   setTimeout(() => {
     popperShow.value[index] = false
+  }, 3000)
+}
+
+function handleShow2(index: number) {
+  setTimeout(() => {
+    popperShow2.value[index] = false
   }, 3000)
 }
 
@@ -124,12 +131,23 @@ application.allSettled([loginLogRunAsync()])
             </template>
           </VDropdown>
         </template>
-        <template #near="{ record }">
-          <div>
-            {{ record.near.length > 20
-              ? (`${record.near.slice(0, 20)}...`)
-              : record.near }}
-          </div>
+        <template #near="{ record, index }">
+          <VDropdown
+            v-model:shown="popperShow2[index]"
+            :distance="6"
+            @show="handleShow2(index)"
+          >
+            <div>
+              {{ record.near.length > 20
+                ? (`${record.near.slice(0, 20)}...`)
+                : record.near }}
+            </div>
+            <template #popper>
+              <div class="popper-text">
+                {{ record.near }}
+              </div>
+            </template>
+          </VDropdown>
         </template>
       </BaseTable>
     </div>

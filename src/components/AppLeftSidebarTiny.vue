@@ -12,9 +12,12 @@ defineProps<Props>()
 
 const { t } = useI18n()
 const { triggerLeftSidebar, navButtons } = useLeftSidebar()
+const menuStore = useMenuStore()
 const router = useRouter()
 const route = useRoute()
 function push(title: string) {
+  Local.remove(STORAGE_MENU_EXPAND_DOMID)
+  menuStore.setSideBigActiveMenu('')
   const path = title === 'casino' ? '/casino' : `/sports/${getSportsPlatId()}`
   router.push(path)
 }
@@ -24,7 +27,7 @@ function push(title: string) {
   <!-- 头部菜单或搜索栏 -->
   <div class="tg-app-left-sidebar-tiny">
     <div class="sidebar-tiny-top">
-      <div class="header is-small">
+      <div class="is-small header">
         <Transition name="menu-fade">
           <template v-if="!isSwitching">
             <div class="button center">

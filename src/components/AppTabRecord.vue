@@ -193,14 +193,17 @@ watch(tab, (val) => {
   opacity: 0.5;
 }
 .record-box{
+  display: flex;
+  flex-direction: column;
+  gap: var(--tg-spacing-12);
   margin-top: var(--tg-spacing-16);
   .record-item{
     gap: var(--tg-spacing-8);
     border-radius: var(--tg-radius-default);
     padding: 8px 12px;
-    &:nth-child(odd){
+    // &:nth-child(odd){
       background-color: #213743;
-    }
+    // }
   }
   .item-left{
     font-size: var(--tg-font-size-lg);
@@ -216,7 +219,7 @@ watch(tab, (val) => {
     justify-content: space-between;
     align-items: center;
     font-size: var(--tg-font-size-default);
-    line-height: 1.2;
+    line-height: 1.3215;
     color: #B1BAD3;
   }
 }

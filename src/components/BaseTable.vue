@@ -206,6 +206,7 @@ watch(() => props.columns, () => {
       .th-box{
         display: inline-flex;
         align-items: center;
+        vertical-align: bottom;
         gap: var(--tg-spacing-4);
         .th-sort{
           display: flex;
