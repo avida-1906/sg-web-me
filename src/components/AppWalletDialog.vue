@@ -138,6 +138,8 @@ watch(() => currentTab.value, () => {
 
 <style lang='scss' scoped>
 .app-wallet-dialog {
+  --tg-base-input-style-placeholder-color: var(--tg-text-lightgrey);
+  --tg-base-input-style-placeholder-opacity: 1;
   font-size: var(--tg-font-size-default);
   color: var(--tg-text-lightgrey);
   .content {
