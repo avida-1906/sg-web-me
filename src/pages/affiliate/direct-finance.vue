@@ -114,17 +114,6 @@ useListSearch(params, runAsync, resetPage)
       :data-source="list"
       :loading="loading"
     >
-      <template #username="{ record }">
-        <div
-          class="center cursor-pointer"
-          style="gap: var(--tg-spacing-4);"
-          @click="copyClick(record.username)"
-        >
-          <BaseIcon name="chat-star-gold" />
-          <span>{{ record.username }}</span>
-          <BaseIcon name="uni-doc" />
-        </div>
-      </template>
       <template #th-deposit_withdraw_amount>
         <div style="margin-top: var(--tg-spacing-4);">
           {{ t('current_amount') }}
@@ -140,10 +129,14 @@ useListSearch(params, runAsync, resetPage)
           {{ t('times') }}
         </div>
       </template>
-      <template #account="{ record }">
-        <div class="center" style="gap: var(--tg-spacing-4);">
+      <template #username="{ record }">
+        <div
+          class="center cursor-pointer"
+          style="gap: var(--tg-spacing-4);"
+          @click="copyClick(record.username)"
+        >
           <BaseIcon name="chat-star-gold" />
-          <span>{{ record.account }}</span>
+          <span>{{ record.username }}</span>
           <BaseIcon name="uni-doc" />
         </div>
       </template>

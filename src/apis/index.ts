@@ -1685,6 +1685,8 @@ export function ApiAgencyReportBet(data?: {
     currency_name: string
     /** 注单数量 */
     bet_count: number
+    /** 总输赢 */
+    net_amount: string
     /** 有效投注 */
     valid_bet_amount: number
     /** VIP等级 */
@@ -1761,3 +1763,8 @@ export function ApiAgencyReportUser(data?: {
     created_at: number
   }>>('/agency/report/user', data)
 }
+
+/**
+ * 佣金比例 agency/commission/scale
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=6848df0c-36d0-4661-bb0d-af39bae989db
+ */
