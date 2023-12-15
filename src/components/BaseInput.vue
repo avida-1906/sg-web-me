@@ -97,7 +97,7 @@ function catchIt() {
   getFocus()
 }
 
-defineExpose({ getFocus, setTouchTrue, setTouchFalse, iInput })
+defineExpose({ getFocus, setTouchTrue, setTouchFalse, iInput, isTouched })
 </script>
 
 <template>

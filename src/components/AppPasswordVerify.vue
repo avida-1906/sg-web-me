@@ -2,6 +2,7 @@
 interface Props {
   password: string
   hasErrorMsg?: boolean
+  pwdTouched?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -30,6 +31,7 @@ watch(() => props.password, () => {
       'all-ok': upperLowerRegOk && lastOneNumberRegOk && lengthOk,
       'all-not-ok': !upperLowerRegOk && !lastOneNumberRegOk && !lengthOk,
       'has-error-msg': hasErrorMsg,
+      'pwd-not-touched': !pwdTouched,
     }"
   >
     <div class="item">
@@ -72,6 +74,9 @@ watch(() => props.password, () => {
   }
   &.has-error-msg {
     margin-top: var(--tg-spacing-4);
+  }
+  &.pwd-not-touched {
+    margin-top: var(--tg-spacing-8);
   }
   .item {
     display: flex;
