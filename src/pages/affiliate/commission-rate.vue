@@ -1,160 +1,65 @@
 <script lang="ts" setup>
-const { startTime, endTime } = getDaIntervalMap(new Date().getTime(), 30)
-
 const { t } = useI18n()
-const { copy } = useClipboard()
-const { openNotify } = useNotify()
-const { userLanguage } = storeToRefs(useLanguageStore())
-
-const {
-  selected: currency_id,
-  list: currencyList,
-} = useSelect([
-  {
-    label: '全部',
-    value: '',
-  },
-  ...getCurrencyOptions(),
+const { selected: tab, list: tabList } = useSelect([
+  { label: t('slot'), value: 'dz' },
+  { label: t('fishing'), value: 'by' },
+  { label: t('chess'), value: 'qp' },
+  { label: t('live'), value: 'zr' },
+  { label: t('sports'), value: 'ty' },
 ])
 
 const {
-  list,
-  page,
-  page_size,
+  data,
   loading,
-  total,
-  runAsync,
-  resetPage,
-} = useList(ApiAgencyReportBet, {}, { page_size: 10, isWatchPageOrPageSize: false })
-
-const date = ref([])
-const searchValue = useDebouncedRef({ value: '', delay: 1000 })
+} = useRequest(ApiAgencyCommissionScale, { manual: false })
 
 const columns: Column[] = [
   {
-    title: t('player_id'),
-    dataIndex: 'username',
+    title: t('class'),
+    dataIndex: 'level',
     align: 'center',
-    slot: 'username',
+    slot: 'level',
   },
   {
-    title: t('statistical_time'),
-    dataIndex: 'time',
+    title: t('effective_bet'),
+    dataIndex: 'effective_amount',
     align: 'center',
-    slot: 'time',
   },
   {
-    title: '有效投注',
-    dataIndex: 'valid_bet_amount',
+    title: t('rebate_amount'),
+    dataIndex: 'rebate_ratio',
     align: 'center',
-    slot: 'valid_bet_amount',
-  },
-  {
-    title: t('total_win_lose'),
-    dataIndex: 'net_amount',
-    align: 'center',
-    slot: 'net_amount',
+    slot: 'rebate_ratio',
   },
 ]
 
-const params = computed(() => {
-  return {
-    username: searchValue.value,
-    currency_id: currency_id.value,
-    // start_time: date.value[0],
-    // end_time: date.value[1],
-    page_size: page_size.value,
-    page: page.value,
-  }
-})
-
-function copyClick(msg: string) {
-  copy(msg)
-  openNotify({
-    type: 'success',
-    title: t('notify_title_success'),
-    message: t('copy_success') + msg,
-  })
-}
-
-useListSearch(params, runAsync, resetPage)
+const list = computed(() => [])
 </script>
 
 <template>
   <div class="all-data-page">
+    <pre>
+      {{ data }}
+    </pre>
     <div class="table-filter">
-      <BaseDatePicker
-        v-model="date"
-        :init-start-date="startTime"
-        :init-end-date="endTime"
+      <BaseTab
+        v-model="tab"
+        style="--tg-tab-style-color: var(--tg-text-lightgrey);"
+        :list="tabList"
+        line-style
+        :center="false"
       />
-      <BaseSelect
-        v-model.lazy="currency_id"
-        :options="currencyList"
-      />
-      <div style="max-width: 195px;">
-        <BaseInput v-model="searchValue" :placeholder="t('user_account')">
-          <template #right-icon>
-            <BaseIcon name="uni-search" />
-          </template>
-        </BaseInput>
-      </div>
-      <slot name="grand-total" />
     </div>
-
     <BaseTable
-      class="page-all-data page-direct-finance"
+      class="page-commission-rate page-all-data"
       :columns="columns"
       :data-source="list"
       :loading="loading"
     >
-      <template #username="{ record }">
-        <div
-          class="center cursor-pointer"
-          style="gap: var(--tg-spacing-4);"
-          @click="copyClick(record.username)"
-        >
-          <BaseIcon name="chat-star-gold" />
-          <span>{{ record.username }}</span>
-          <BaseIcon name="uni-doc" />
-        </div>
-      </template>
-      <template #th-valid_bet_amount>
-        <div style="margin-top: var(--tg-spacing-4);">
-          投注单数量
-        </div>
-      </template>
-      <template #time="{ record }">
-        <span>
-          {{ application.timestampToTime(record.time * 1000, userLanguage) }}
-        </span>
-      </template>
-      <template #valid_bet_amount="{ record }">
-        <div class="center">
-          <AppAmount
-            :amount="record.valid_bet_amount"
-            :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
-          />
-        </div>
-        <div class="hint">
-          {{ record.bet_count }}
-        </div>
-      </template>
-      <template #net_amount="{ record }">
-        <div class="center">
-          <AppAmount
-            :amount="record.net_amount"
-            :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
-          />
-        </div>
+      <template #commission="{ record }">
+        <span style="color:var(--tg-text-warn)">{{ record.contributeNum }}</span>
       </template>
     </BaseTable>
-    <BasePagination
-      v-if="total > 0"
-      v-model:current-page="page"
-      v-model:page-size="page_size"
-      :total="total"
-    />
   </div>
 </template>
 

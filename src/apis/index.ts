@@ -1444,13 +1444,13 @@ export function ApiFinanceRecordWithdrawBank(params?: {
  * 联盟计划-我的佣金 agency/commission
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=500ef9ab-2c8b-4324-89d1-f483fea118cd
  */
-export function ApiAgencyCommission(params?: {
+export function ApiAgencyCommission(data?: {
   page?: number
   page_size?: number
   start_time?: number
   end_time?: number
 }) {
-  return httpClient.get<IResponseList<{
+  return httpClient.post<IResponseList<{
     /** id */
     id: string
     /** 会员id */
@@ -1495,7 +1495,7 @@ export function ApiAgencyCommission(params?: {
     created_at: number
     /** 结算时间 */
     send_time: number
-  }>>('/agency/commission', { params })
+  }>>('/agency/commission', data)
 }
 
 /**
@@ -1768,3 +1768,6 @@ export function ApiAgencyReportUser(data?: {
  * 佣金比例 agency/commission/scale
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=6848df0c-36d0-4661-bb0d-af39bae989db
  */
+export function ApiAgencyCommissionScale() {
+  return httpClient.get<any>('/agency/commission/scale')
+}
