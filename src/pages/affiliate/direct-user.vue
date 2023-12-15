@@ -5,17 +5,6 @@ const { t } = useI18n()
 const { userLanguage } = storeToRefs(useLanguageStore())
 
 const {
-  selected: currency_id,
-  list: currencyList,
-} = useSelect([
-  {
-    label: '全部',
-    value: '',
-  },
-  ...getCurrencyOptions(),
-])
-
-const {
   list,
   page,
   page_size,
@@ -67,7 +56,6 @@ const columns: Column[] = [
 const params = computed(() => {
   return {
     username: searchValue.value,
-    currency_id: currency_id.value,
     // start_time: date.value[0],
     // end_time: date.value[1],
     page_size: page_size.value,
@@ -85,10 +73,6 @@ useListSearch(params, runAsync, resetPage)
         v-model="date"
         :init-start-date="startTime"
         :init-end-date="endTime"
-      />
-      <BaseSelect
-        v-model.lazy="currency_id"
-        :options="currencyList"
       />
       <div style="max-width: 195px;">
         <BaseInput v-model="searchValue" :placeholder="t('user_account')">
