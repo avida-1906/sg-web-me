@@ -70,7 +70,7 @@ function addShowResult(origin: ISportsMyBetSlipItem) {
         awayTeamScore: a.ap,
         atpic: a.atpic,
         htpic: a.htpic,
-        spic: sportsStore.getSportsIconBySi(a.si),
+        spic: a.spic,
       },
       betMarketName: makeMarketInfo(a),
     }
@@ -120,7 +120,7 @@ function showDetail() {
             :class="{ 'is-multi': list.length > 1 }"
           >
             <div class="overview">
-              <div class="title-wrapper" :title="JSON.stringify(item)">
+              <div class="title-wrapper">
                 <BaseButton
                   type="text" size="none"
                   style="--tg-base-button-text-default-color:var(--tg-text-white)"
@@ -132,10 +132,12 @@ function showDetail() {
                       :url="sportsStore.getSportsIconBySi(item.si)"
                     />
                   </div>
-                  <span v-if="item.et === 1" class="team-name">
-                    {{ item.htn }} - {{ item.atn }}
-                  </span>
-                  <span v-else-if="item.et === 2" class="team-name">{{ item.sn }}</span>
+                  <div class="team-name-wrap">
+                    <span v-if="item.et === 1" class="team-name">
+                      {{ item.htn }} - {{ item.atn }}
+                    </span>
+                    <span v-else-if="item.et === 2" class="team-name">{{ item.cn }}</span>
+                  </div>
                 </BaseButton>
                 <span>{{ item.btn }}</span>
               </div>
@@ -330,9 +332,14 @@ function showDetail() {
         flex-direction: column;
         gap: var(--tg-spacing-4);
         max-width: 100%;
-        .team-name{
-          text-align: left;
-          word-break: break-all;
+        .team-name-wrap{
+          flex: 1;
+          display: flex;
+          justify-content: flex-start;
+          .team-name{
+            text-align: left;
+            word-break: break-all;
+          }
         }
         .icon{
           width: 14px;

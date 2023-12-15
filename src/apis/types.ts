@@ -603,6 +603,8 @@ export interface ISportsMyBetSlipItem {
     pgid: string
     /** 联赛id */
     ci: string
+    /** 联赛名 */
+    cn: string
     /**
      * 1：显示主客队名称
      *
@@ -622,6 +624,8 @@ export interface ISportsMyBetSlipItem {
     m: number
     pid: number
     sid: string
+    /** 球种icon */
+    spic: string
   }[]
 }
 
