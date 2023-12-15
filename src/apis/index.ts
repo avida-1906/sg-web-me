@@ -494,7 +494,13 @@ export function ApiMemberUpdate(data: {
   } & Partial<IUserInfo>
   uid?: string
 }) {
-  return httpClient.post<string>('/member/update', data)
+  const record = { ...data.record }
+  if (record.third_id)
+    delete record.third_id
+  if (record.third_type)
+    delete record.third_type
+
+  return httpClient.post<string>('/member/update', record)
 }
 
 /**

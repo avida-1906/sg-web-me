@@ -76,6 +76,8 @@ export interface IUserInfo {
   /** 性别 1=男，2=女 */
   sex: number | string
   cpf: string
+  third_id?: string
+  third_type?: string
 }
 
 /** 用户详情  */
