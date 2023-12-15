@@ -709,6 +709,10 @@ onUnmounted(() => {
             :cart-info-data="item"
             :title="formatTitleData(item)"
             :index="index"
+            :cart-data-list="cartDataList"
+            :duplex-ov="duplexOv"
+            :duplex-input-value="duplexInputValue"
+            :duplex-total-profit="+duplexTotalProfit"
           />
           <!-- 用来执行添加到购物车动画的 -->
           <div

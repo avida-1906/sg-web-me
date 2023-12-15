@@ -1,9 +1,13 @@
 <script setup lang='ts'>
 import type { ICasinoBetRecordItem, ISportsMyBetSlipItem } from '~/apis/types'
 
+interface ISportsDialogMyBetSlipItem extends ISportsMyBetSlipItem {
+  username: string
+}
+
 interface Props {
   type: 'casino' | 'sports'
-  sportsData: ISportsMyBetSlipItem
+  sportsData: ISportsDialogMyBetSlipItem
   casinoData: ICasinoBetRecordItem
 }
 const props = defineProps<Props>()
@@ -16,7 +20,6 @@ const windowStore = useWindowStore()
 const { isMobile } = storeToRefs(windowStore)
 const router = useRouter()
 const sportStore = useSportsStore()
-const { userInfo } = storeToRefs(useAppStore())
 
 const isCasino = computed(() => props.type === 'casino')
 const isSports = computed(() => props.type === 'sports')
@@ -114,7 +117,7 @@ onMounted(() => {
         </BaseButton>
       </div> -->
         <div class="des">
-          <span>{{ t('investor') }}：{{ userInfo?.username }}</span><br>
+          <span>{{ t('investor') }}：{{ sportsData.username }}</span><br>
           <span class="time">{{ t('on') }} {{ timeToFormat(betTime) }}</span>
         </div>
       </div>
