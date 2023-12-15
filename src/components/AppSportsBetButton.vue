@@ -27,7 +27,7 @@ const listToCartData = ref<ISportListToCartData>({
   os: props.disabled ? 0 : 1,
   ei: props.cartInfo.ei,
 })
-const _disabled = ref(props.disabled)
+const _disabled = ref(props.disabled || +listToCartData.value.ov === 0)
 
 function clickHandler() {
   if (!rightIsExpand.value && !isMobile.value)

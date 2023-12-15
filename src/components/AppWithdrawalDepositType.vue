@@ -25,6 +25,14 @@ const changeType = function (type: string) {
   }
   emit('update:modelValue', type)
 }
+
+watch(() => props.currentType, () => {
+  nextTick(() => {
+    const ref: HTMLElement | null = document.querySelector(`#id${props.modelValue}`)
+    const parentRef = ref?.parentElement
+    parentRef?.scrollTo({ left: 0, behavior: 'smooth' })
+  })
+})
 </script>
 
 <template>
