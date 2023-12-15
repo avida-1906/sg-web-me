@@ -46,18 +46,21 @@ const columns: Column[] = [
     dataIndex: 'deposit_amount',
     align: 'center',
     slot: 'deposit_amount',
+    sort: true,
   },
   {
     title: t('effective_bet'),
     dataIndex: 'valid_bet_amount',
     align: 'center',
     slot: 'valid_bet_amount',
+    sort: true,
   },
   {
     title: t('total_win_lose'),
     dataIndex: 'net_amount',
     align: 'center',
     slot: 'net_amount',
+    sort: true,
   },
 ]
 

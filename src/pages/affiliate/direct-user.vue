@@ -127,7 +127,7 @@ useListSearch(params, runAsync, resetPage)
           {{ record.online === '2' ? '在线' : '离线' }}
         </span>
         <div class="hint">
-          {{ record.online_count || 0 }}
+          {{ record.login_count || 0 }}
         </div>
       </template>
     </BaseTable>

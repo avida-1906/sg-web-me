@@ -152,7 +152,7 @@ onErrorCaptured((err, instance, info) => {
           <div ref="homeContainerRef" class="only-for-get-width" />
         </AppContent>
         <slot>
-          <div :class="{ 'home-slide-fade-enter-active': animatingSuspense }">
+          <div>
             <AppContent>
               <RouterView v-slot="{ Component }">
                 <template v-if="Component">
