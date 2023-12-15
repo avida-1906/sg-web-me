@@ -281,6 +281,7 @@ async function getMemberReg() {
       password: password.value,
       parent_id: '',
       device_number: application.getDeviceNumber(),
+      birthday: birthday.value,
     }
     // appStore.setMqttConnectedFalse()
     // runMemberReg(paramsReg)
@@ -335,6 +336,7 @@ onUnmounted(() => {
     password: password.value,
     parent_id: '',
     device_number: application.getDeviceNumber(),
+    birthday: birthday.value,
   }
   if (!needSaveFormData.value)
     Session.remove(STORAGE_REG_PARAMS_KEYWORDS)
