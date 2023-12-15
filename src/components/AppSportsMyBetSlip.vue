@@ -3,7 +3,11 @@ import type { IBasePanelType } from '~/types'
 import type { ISportsMyBetSlipItem } from '~/apis/types'
 
 type ISportsMyBetSlipItemWithShowRe = {
-  [K in keyof ISportsMyBetSlipItem]: K extends 'bi' ? Array<{ showResult: boolean; result: IBasePanelType } & ISportsMyBetSlipItem['bi'][number]> : ISportsMyBetSlipItem[K];
+  [K in keyof ISportsMyBetSlipItem]: K extends 'bi' ? Array<{
+    showResult: boolean
+    result: IBasePanelType
+    betMarketName: string
+  } & ISportsMyBetSlipItem['bi'][number]> : ISportsMyBetSlipItem[K];
 }
 type ISportsMyBetSlipItemBi = ISportsMyBetSlipItemWithShowRe['bi'][number]
 interface Props {
@@ -15,6 +19,7 @@ const props = defineProps<Props>()
 
 const { t } = useI18n()
 const { currentGlobalCurrency } = storeToRefs(useAppStore())
+const { userInfo } = storeToRefs(useAppStore())
 const sportsStore = useSportsStore()
 const { openBetSlipDialog } = useDialogBetSlip()
 // const router = useRouter()
@@ -65,21 +70,25 @@ function addShowResult(origin: ISportsMyBetSlipItem) {
         awayTeamScore: a.ap,
         atpic: a.atpic,
         htpic: a.htpic,
+        spic: sportsStore.getSportsIconBySi(a.si),
       },
+      betMarketName: makeMarketInfo(a),
     }
   })
   return copyData
 }
 function makeMarketInfo(item: ISportsMyBetSlipItemBi) {
   switch (item.bt) {
-    case 1:return `${item.sn} (${item.hdp})`
-    case 2:return `${item.sn} ${item.hdp}`
+    case 1:
+      return item.sn.includes(item.hdp) ? item.sn : `${item.sn} (${item.hdp})`
+    case 2:
+      return item.sn.includes(item.hdp) ? item.sn : `${item.sn} ${item.hdp}`
     default:
       return item.sn
   }
 }
 function showDetail() {
-  openBetSlipDialog({ type: 'sports', data: props.data })
+  openBetSlipDialog({ type: 'sports', data: { ...props.data, username: userInfo.value?.username } })
 }
 </script>
 
@@ -132,7 +141,7 @@ function showDetail() {
               </div>
               <div class="odds-wrapper">
                 <div class="outcome-name">
-                  {{ makeMarketInfo(item) }}
+                  {{ item.betMarketName }}
                 </div>
                 <div class="odds">
                   {{ item.ov }}

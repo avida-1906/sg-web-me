@@ -1,6 +1,6 @@
 <script setup lang="ts">
 usePageTitle({ prefix: 'hot_casino_game', isT: true })
-const { appContentWidth } = storeToRefs(useWindowStore())
+const { appContentWidth, isMobile } = storeToRefs(useWindowStore())
 
 const { list, page, runAsync, prev, next, hasMore } = useList(ApiMemberFavList)
 
@@ -27,7 +27,7 @@ await application.allSettled([runAsync()])
         </div>
       </div>
     </div>
-    <AppGameSearch game-type="1" />
+    <AppGameSearch v-if="!isMobile" game-type="1" />
     <template v-if="list.length > 0">
       <AppCardList :list="list" />
     </template>

@@ -23,6 +23,14 @@ interface Props {
   /** 渲染的List数据 */
   cartInfoData: ICartInfoData
   modelValue?: string | number
+  /** 购物车所有注单 */
+  cartDataList: ICartInfoData[]
+  /** 复式总赔率 */
+  duplexOv: string
+  /** 复式总投注额 */
+  duplexInputValue: number
+  /** 复式预计支付额 */
+  duplexTotalProfit: number
 }
 const props = withDefaults(defineProps<Props>(), {
   index: 0,
@@ -37,6 +45,8 @@ const { t } = useI18n()
 const appStore = useAppStore()
 const { currentGlobalCurrency, isLogin } = storeToRefs(appStore)
 const sportStore = useSportsStore()
+const { userInfo } = storeToRefs(useAppStore())
+const { openBetSlipDialog } = useDialogBetSlip()
 // const { isMobile } = storeToRefs(useWindowStore())
 // const { closeRightSidebar } = useRightSidebar()
 
@@ -125,6 +135,97 @@ function goEventDetailPage() {
   // router.push(replaceSportsPlatId(eventDetailPath.value))
 }
 
+/** 弹窗详情 */
+function showDetail() {
+  let data = {}
+  if (props.betSlipType === EnumsBetSlipBetSlipTabStatus.single) {
+    const d = props.cartInfoData
+    data = {
+      a: d.amount,
+      ov: d.ov,
+      mwa: +d.amount * +d.ov,
+      bt: new Date().getTime(),
+      ono: '',
+      os: 0,
+      oc: 0,
+      pa: 0,
+      st: 0,
+      bi: [{
+        bt: d.bt,
+        btn: d.btn,
+        si: d.si,
+        ei: d.ei,
+        ov: d.ov,
+        sn: d.sn,
+        re: '',
+        hdp: d.hdp,
+        htn: d.homeTeamName,
+        atn: d.awayTeamName,
+        atpic: '',
+        htpic: '',
+        ed: d.ed,
+        hp: d.hp,
+        ap: d.ap,
+        pgid: d.pgid,
+        ci: d.ci,
+        et: 1,
+        reb: 1,
+        wid: d.wid,
+        mlid: d.mlid,
+        mll: d.mll,
+        ic: d.ic,
+        m: d.m,
+        pid: d.pid,
+        sid: d.sid,
+      }],
+    }
+  }
+  else if (props.betSlipType === EnumsBetSlipBetSlipTabStatus.multi) {
+    data = {
+      a: props.duplexInputValue,
+      ov: props.duplexOv,
+      mwa: props.duplexTotalProfit,
+      bt: new Date().getTime(),
+      ono: '',
+      os: 0,
+      oc: 0,
+      pa: 0,
+      st: 0,
+      bi: props.cartDataList.map((d) => {
+        return {
+          bt: d.bt,
+          btn: d.btn,
+          si: d.si,
+          ei: d.ei,
+          ov: d.ov,
+          sn: d.sn,
+          re: '',
+          hdp: d.hdp,
+          htn: d.homeTeamName,
+          atn: d.awayTeamName,
+          atpic: '',
+          htpic: '',
+          ed: d.ed,
+          hp: d.hp,
+          ap: d.ap,
+          pgid: d.pgid,
+          ci: d.ci,
+          et: 1,
+          reb: 1,
+          wid: d.wid,
+          mlid: d.mlid,
+          mll: d.mll,
+          ic: d.ic,
+          m: d.m,
+          pid: d.pid,
+          sid: d.sid,
+        }
+      }),
+    }
+  }
+  openBetSlipDialog({ type: 'sports', data: { ...data, username: userInfo.value?.username } })
+}
+
 onMounted(() => {
   if (!isLogin.value) {
     notLoginAmountPlaceholder.value = application.sliceOrPad(
@@ -166,7 +267,11 @@ watchEffect(() => {
           {{ cartInfoData.homeTeamName }} - {{ cartInfoData.awayTeamName }}
         </div>
       </div>
+      <BaseButton v-if="cartInfoData.result" type="text" size="none" @click="showDetail">
+        <BaseIcon name="uni-share-slip" />
+      </BaseButton>
       <BaseButton
+        v-else
         type="text" size="none"
         @click="sportStore.cart.remove(cartInfoData.wid)"
       >

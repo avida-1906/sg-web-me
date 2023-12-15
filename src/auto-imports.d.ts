@@ -7,6 +7,7 @@ export {}
 declare global {
   const ApiAddFeedbackChatMsg: typeof import('./apis/index')['ApiAddFeedbackChatMsg']
   const ApiAgencyCommission: typeof import('./apis/index')['ApiAgencyCommission']
+  const ApiAgencyCommissionScale: typeof import('./apis/index')['ApiAgencyCommissionScale']
   const ApiAgencyPerformance: typeof import('./apis/index')['ApiAgencyPerformance']
   const ApiAgencyReportAll: typeof import('./apis/index')['ApiAgencyReportAll']
   const ApiAgencyReportBet: typeof import('./apis/index')['ApiAgencyReportBet']
@@ -635,6 +636,7 @@ declare module 'vue' {
   interface ComponentCustomProperties {
     readonly ApiAddFeedbackChatMsg: UnwrapRef<typeof import('./apis/index')['ApiAddFeedbackChatMsg']>
     readonly ApiAgencyCommission: UnwrapRef<typeof import('./apis/index')['ApiAgencyCommission']>
+    readonly ApiAgencyCommissionScale: UnwrapRef<typeof import('./apis/index')['ApiAgencyCommissionScale']>
     readonly ApiAgencyPerformance: UnwrapRef<typeof import('./apis/index')['ApiAgencyPerformance']>
     readonly ApiAgencyReportAll: UnwrapRef<typeof import('./apis/index')['ApiAgencyReportAll']>
     readonly ApiAgencyReportBet: UnwrapRef<typeof import('./apis/index')['ApiAgencyReportBet']>
@@ -1253,6 +1255,7 @@ declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
     readonly ApiAddFeedbackChatMsg: UnwrapRef<typeof import('./apis/index')['ApiAddFeedbackChatMsg']>
     readonly ApiAgencyCommission: UnwrapRef<typeof import('./apis/index')['ApiAgencyCommission']>
+    readonly ApiAgencyCommissionScale: UnwrapRef<typeof import('./apis/index')['ApiAgencyCommissionScale']>
     readonly ApiAgencyPerformance: UnwrapRef<typeof import('./apis/index')['ApiAgencyPerformance']>
     readonly ApiAgencyReportAll: UnwrapRef<typeof import('./apis/index')['ApiAgencyReportAll']>
     readonly ApiAgencyReportBet: UnwrapRef<typeof import('./apis/index')['ApiAgencyReportBet']>

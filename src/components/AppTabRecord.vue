@@ -202,7 +202,7 @@ watch(tab, (val) => {
     border-radius: var(--tg-radius-default);
     padding: 8px 12px;
     // &:nth-child(odd){
-      background-color: #213743;
+      background-color: var(--tg-secondary-grey);
     // }
   }
   .item-left{
@@ -220,7 +220,7 @@ watch(tab, (val) => {
     align-items: center;
     font-size: var(--tg-font-size-default);
     line-height: 1.3215;
-    color: #B1BAD3;
+    color: var(--tg-secondary-light);
   }
 }
 .record-loading{
