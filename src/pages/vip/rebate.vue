@@ -5,10 +5,7 @@ const appStore = useAppStore()
 const { vipConfigData } = storeToRefs(appStore)
 const { providerList } = storeToRefs(useSportsStore())
 const { AllLanguages, userLanguage } = storeToRefs(useLanguageStore())
-
-const { list: platformList } = useList(ApiMemberPlatformList, {
-  manual: false,
-})
+const { bigPlats: platformList } = storeToRefs(useCasinoStore())
 
 const tab = ref('')
 
