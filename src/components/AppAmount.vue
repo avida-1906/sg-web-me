@@ -3,16 +3,43 @@ import type { EnumCurrencyKey } from '~/apis/types'
 
 interface Props {
   amount: string | number
-  currencyType: EnumCurrencyKey
+  currencyType?: EnumCurrencyKey
   showName?: boolean
+  /**
+   * 是否显示颜色
+   *
+   * 大于等于0 显示红色
+   *
+   * 小于0 显示绿色
+   */
+  showColor?: boolean
 }
+
 const props = defineProps<Props>()
+
+const colorClass = computed(() => {
+  if (!props.showColor)
+    return ''
+
+  const amount = Number(props.amount)
+  return amount >= 0 ? 'red' : 'green'
+})
 </script>
 
 <template>
   <div class="app-amount">
-    <span class="amount" :title="String(props.amount)">{{ props.amount }}</span>
-    <AppCurrencyIcon :show-name="showName" :currency-type="currencyType" />
+    <span
+      class="amount"
+      :title="String(props.amount)"
+      :class="colorClass"
+    >
+      {{ props.amount }}
+    </span>
+    <AppCurrencyIcon
+      v-if="currencyType"
+      :show-name="showName"
+      :currency-type="currencyType"
+    />
   </div>
 </template>
 
@@ -44,5 +71,11 @@ const props = defineProps<Props>()
   max-width: var(--tg-app-amount-max-width);
   font-size: var(--tg-app-amount-font-size);
   font-weight: var(--tg-app-amount-font-weight);
+  &.red {
+    color: var(--tg-primary-fail);
+  }
+  &.green {
+    color: var(--tg-primary-success);
+  }
 }
 </style>

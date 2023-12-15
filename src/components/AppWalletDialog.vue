@@ -15,6 +15,8 @@ const { bool: showWallet, setBool: setShowWalletBool } = useBoolean(true)
 const router = useRouter()
 
 const currentNetwork = ref('')
+const contentRef = ref()
+const distance = ref(6)
 const activeCurrency = ref<CurrencyData | null>()
 const currentTab = ref(props.activeTab)
 const tabList = computed(() => [
@@ -44,11 +46,19 @@ function handleShow(val: boolean) {
 watch(() => currentTab.value, () => {
   setShowWalletBool(true)
 })
+
+onMounted(() => {
+  // 解决加载完毕dialog宽度变化，但是popper位置没有更新问题
+  const resizeObserver = new ResizeObserver(() => {
+    distance.value += 0.000001
+  })
+  resizeObserver.observe(contentRef.value)
+})
 </script>
 
 <template>
   <div class="app-wallet-dialog">
-    <div class="content">
+    <div ref="contentRef" class="content">
       <BaseTab v-model="currentTab" :list="tabList" />
       <AppSelectCurrency
         v-show="showWallet && !isCardHolder"
@@ -56,6 +66,7 @@ watch(() => currentTab.value, () => {
         :network="isVirCurrency"
         :popper-clazz="isDeposit ? 'app-wallet-cur' : 'app-wallet-cur-with'"
         :placeholder="isDeposit ? 'search' : 'search_currency'"
+        :distance="distance"
         @change="changeCurrency"
       />
       <!-- 存款 -->

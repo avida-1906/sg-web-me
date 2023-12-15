@@ -1,17 +1,12 @@
 <script lang="ts" setup>
 const { t } = useI18n()
-const { selected: tab, list: tabList } = useSelect([
-  { label: t('slot'), value: 'dz' },
-  { label: t('fishing'), value: 'by' },
-  { label: t('chess'), value: 'qp' },
-  { label: t('live'), value: 'zr' },
-  { label: t('sports'), value: 'ty' },
-])
+const { list: scaleList } = useScaleData()
+const { selected: tab, list: tabList } = useSelect(scaleList)
 
 const {
   data,
   loading,
-} = useRequest(ApiAgencyCommissionScale, { manual: true })
+} = useRequest(ApiAgencyCommissionScale, { manual: false })
 
 const columns: Column[] = [
   {
@@ -24,6 +19,7 @@ const columns: Column[] = [
     title: t('effective_bet'),
     dataIndex: 'effective_amount',
     align: 'center',
+    slot: 'effective_amount',
   },
   {
     title: t('rebate_amount'),
@@ -33,14 +29,28 @@ const columns: Column[] = [
   },
 ]
 
-const list = computed(() => [])
+const list = computed(() => {
+  const conf = data.value?.conf
+  const currentSelected = tab.value
+
+  if (!conf)
+    return []
+  const result = conf.reduce((acc, cur) => {
+    const { model_ids, levels } = cur
+    const modelIds = model_ids.split(',')
+
+    if (modelIds.includes(currentSelected))
+      acc.push(...levels)
+
+    return acc
+  }, [] as any[])
+
+  return result
+})
 </script>
 
 <template>
   <div class="all-data-page">
-    <!-- <pre>
-      {{ data }}
-    </pre> -->
     <div class="table-filter">
       <BaseTab
         v-model="tab"
@@ -51,13 +61,20 @@ const list = computed(() => [])
       />
     </div>
     <BaseTable
-      class="page-commission-rate page-all-data"
+      class="page-all-data page-commission-rate"
       :columns="columns"
       :data-source="list"
       :loading="loading"
     >
-      <template #commission="{ record }">
-        <span style="color:var(--tg-text-warn)">{{ record.contributeNum }}</span>
+      <template #rebate_ratio="{ record }">
+        <span style="color: var(--tg-text-warn)">
+          {{ toFixed(record.rebate_ratio * 100, 2) }}%
+        </span>
+      </template>
+      <template #effective_amount="{ record }">
+        <div class="center">
+          <AppAmount :amount="record.effective_amount" />
+        </div>
       </template>
     </BaseTable>
   </div>

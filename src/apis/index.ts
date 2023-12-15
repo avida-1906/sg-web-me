@@ -494,7 +494,13 @@ export function ApiMemberUpdate(data: {
   } & Partial<IUserInfo>
   uid?: string
 }) {
-  return httpClient.post<string>('/member/update', data)
+  const record = { ...data.record }
+  if (record.third_id)
+    delete record.third_id
+  if (record.third_type)
+    delete record.third_type
+
+  return httpClient.post<string>('/member/update', record)
 }
 
 /**
@@ -1769,5 +1775,33 @@ export function ApiAgencyReportUser(data?: {
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=6848df0c-36d0-4661-bb0d-af39bae989db
  */
 export function ApiAgencyCommissionScale() {
-  return httpClient.get<any>('/agency/commission/scale')
+  return httpClient.get<
+    {
+      conf_global: {
+        id: string
+        send_type: number
+        commission_max_limit: string
+        commission_settlement_type: number
+      }
+      conf: {
+        id: string
+        /** 1真人 2捕鱼 3电子 4体育 5棋牌 6电竞 */
+        model_ids: string
+        levels: {
+          id: string
+          /** 佣金配置ID */
+          commission_id: string
+          /** 等级 */
+          level: number
+          /** 有效投注≥(单位：万) */
+          effective_amount: string
+          /** 返佣比例% */
+          rebate_ratio: string
+          updated_by: string
+          updated_at: number
+          uid: string
+        }[]
+        performances: null
+      }[]
+    }>('/agency/commission/scale')
 }
