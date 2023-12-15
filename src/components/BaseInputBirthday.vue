@@ -69,7 +69,7 @@ const dayMax = computed(() => {
       return 30
 
     if (month.value === 2)
-      return year.value && timeCheckIsLeapYear(year.value) ? 29 : 28
+      return year.value && dayjs(`${year.value}-01-01`).isLeapYear() ? 29 : 28
   }
 
   return 31
@@ -85,8 +85,6 @@ const {
     return t('surveys_birthday_error')
   if (value > dayMax.value)
     return '日期不能超过31号'
-  dayInputRef.value.setCustomValidity('')
-  dayInputRef.value.reportValidity()
   if (!(month.value >= 1 && month.value <= 12))
     resetMonthField()
   if (year.value === '' || year.value === undefined)
@@ -164,12 +162,14 @@ const isEnough = computed(() => {
 })
 
 const msg = computed(() => {
+  if (!day.value || !month.value || !year.value)
+    return t('surveys_birthday_error')
   if (isOver120.value === true)
     return '您的年龄不能超过 120 岁'
-  if (!isEnough.value)
-    return t('you_have_to_enough_18')
   if (month.value && day.value && day.value > dayMax.value)
     return t('surveys_birthday_error')
+  if (!isEnough.value)
+    return t('you_have_to_enough_18')
 
   return errorYearMsg.value || errorMonthMsg.value || errorDayMsg.value
 })
@@ -207,9 +207,9 @@ async function valiBirthday() {
 }
 
 function checkValidTip(el: HTMLObjectElement, msg: string) {
-  el.checkValidity()
-  el.setCustomValidity(msg) // 如果是 '', 会提示原生的校验提示
-  el.reportValidity()
+  el?.checkValidity()
+  el?.setCustomValidity(msg) // 如果是 '', 会提示原生的校验提示
+  el?.reportValidity()
 }
 
 onMounted(() => {
