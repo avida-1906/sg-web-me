@@ -321,6 +321,7 @@ onMounted(() => {
             :disabled="emailVerified"
             :msg="emailErrormsg"
             :msg-after-touched="msgAfterTouched"
+            style="--tg-base-input-style-pad-left: 0.5em"
             @blur="setMsgAfterTouchedFalse"
             @focus="setMsgAfterTouchedTrue"
             @paste="emailPaste"
@@ -430,6 +431,7 @@ onMounted(() => {
     line-height: 20.5px;
     color: var(--tg-text-white);
     padding: var(--tg-spacing-input-padding-vertical) var(--tg-base-input-style-pad-x);
+    padding-left: 0.5em;
     font-weight: var(--tg-font-weight-semibold);
     border-radius: var(--tg-radius-default);
     border-width: var(--tg-border-width-sm);

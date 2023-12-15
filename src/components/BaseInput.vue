@@ -190,6 +190,7 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse, iInput, isTouched })
   --tg-base-input-style-right-icon-pad-v: var(--tg-spacing-8);
   --tg-base-input-style-placeholder-color: var(--tg-text-white);
   --tg-base-input-style-placeholder-opacity: 0.3;
+  --tg-base-input-style-pad-left: var(--tg-base-input-style-pad-x);
 }
 </style>
 
@@ -357,6 +358,7 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse, iInput, isTouched })
       border: none;
       outline: none;
       padding: var(--tg-spacing-input-padding-vertical) var(--tg-base-input-style-pad-x);
+      padding-left: var(--tg-base-input-style-pad-left);
       font-weight: var(--tg-font-weight-semibold);
 
       &::placeholder {
