@@ -1,23 +1,24 @@
 <script lang="ts" setup>
 import type { CurrencyData } from '~/composables/useCurrencyData'
 
-const props = withDefaults(defineProps<Props>(), {
-  showBalance: true,
-  network: false,
-  type: 3,
-  placeholder: 'search_currency',
-
-})
-
-const emit = defineEmits(['change'])
-
 interface Props {
   showBalance?: boolean // 是否展示货币余额
   network?: boolean // 是否显示协议类型
   type?: number
   popperClazz?: string
   placeholder?: string
+  distance: number
 }
+
+const props = withDefaults(defineProps<Props>(), {
+  showBalance: true,
+  network: false,
+  type: 3,
+  placeholder: 'search_currency',
+  distance: 6,
+})
+
+const emit = defineEmits(['change'])
 
 const { t } = useI18n()
 // 下拉搜索是否显示
@@ -91,7 +92,8 @@ onMounted(() => {
   <div class="app-wallet app-currency">
     <VDropdown
       v-model:shown="isMenuShown"
-      :distance="6"
+      :distance="distance"
+      handle-resize
       @apply-show="clearSearchValue"
     >
       <div class="wallet-box">

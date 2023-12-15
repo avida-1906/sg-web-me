@@ -174,6 +174,7 @@ const needEmail = computed(() => true) // regWebCfg.value && regWebCfg.value.ema
 const needName = computed(() => true) // regWebCfg.value && regWebCfg.value.username !== false)
 const needCheckEmail = computed(() =>
   false) // regWebCfg.value && regWebCfg.value.email_check !== false)
+const pwdTouched = computed(() => passwordRef.value?.isTouched)
 
 const {
   run: runMemberReg,
@@ -386,6 +387,7 @@ onUnmounted(() => {
             v-show="isShowPasswordVerify"
             :password="password"
             :has-error-msg="!!pwdErrorMsg"
+            :pwd-touched="pwdTouched"
             @pass="passwordVerifyPass"
           />
         </BaseLabel>

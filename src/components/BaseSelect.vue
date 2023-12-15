@@ -143,9 +143,10 @@ function onPopperOpen() {
         <select
           :value="modelValue"
           :class="{ disabled, small, error }"
-          :disabled="disabled" @change="onChange"
+          :disabled="disabled"
+          @change="onChange"
         >
-          <option style="display: none;" disabled value="" />
+          <option style="display: none;" disabled hidden value="" />
           <option
             v-for="o, i in options"
             :key="i"
@@ -371,7 +372,6 @@ function onPopperOpen() {
       cursor: not-allowed;
     }
   }
-
   .icon {
     font-size: var(--tg-font-size-default);
     position: absolute;

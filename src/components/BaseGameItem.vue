@@ -4,6 +4,7 @@ interface Props {
     img?: string
     name?: string
     platform_id?: string
+    platform_name: string
     game_id?: string
     [k: string]: any
     maintained: string
@@ -17,16 +18,12 @@ const props = defineProps<Props>()
 const { t } = useI18n()
 const { push } = useLocalRouter()
 const { isMobile } = storeToRefs(useWindowStore())
-const { allPlatformList } = storeToRefs(useCasinoStore())
 const closeSearch = inject('closeSearch', () => { })
 const closeSearchH5 = inject('closeSearchH5', () => { })
 const { bool: isError, setTrue: setErrorTrue } = useBoolean(false)
 const { bool: thumbnailStatus, setFalse: thumbnailLoadError } = useBoolean(true)
 const { bool: showBorder, setFalse: showBorderFalse } = useBoolean(true)
 
-const gameProviderName = computed(() =>
-  allPlatformList.value?.find(a => a.id === props.gameInfo.platform_id)?.name ?? '-',
-)
 const isMaintained = computed(() => {
   return props.gameInfo.maintained === '2'
 })
@@ -35,7 +32,7 @@ function gameStart(item: Props['gameInfo']) {
   if (isMaintained.value)
     return
 
-  push(`/casino/games?id=${item.id}&name=${item.name}&pn=${gameProviderName.value}&pid=${item.platform_id}`)
+  push(`/casino/games?id=${item.id}&name=${item.name}&pn=${item.platform_name}&pid=${item.platform_id}`)
   if (isMobile.value)
     closeSearchH5()
 
@@ -96,7 +93,7 @@ const onPlayCount = ref(Math.ceil(Math.random() * 1000).toFixed())
         </div>
         <BaseIcon class="game-uni-play" name="uni-play" />
         <div class="game-tip">
-          {{ gameProviderName }}
+          {{ gameInfo.platform_name }}
         </div>
       </div>
       <div v-if="isMaintained" class="center maintain-game-item">

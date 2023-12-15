@@ -70,6 +70,7 @@ function addShowResult(origin: ISportsMyBetSlipItem) {
         awayTeamScore: a.ap,
         atpic: a.atpic,
         htpic: a.htpic,
+        spic: sportsStore.getSportsIconBySi(a.si),
       },
       betMarketName: makeMarketInfo(a),
     }

@@ -161,11 +161,11 @@ watch(tab, (val) => {
             @previous="pagePrevious" @next="pageNext"
           />
         </div>
-        <div v-if="downloadText" class="download-btn mt-24">
+        <!-- <div v-if="downloadText" class="download-btn mt-24">
           <BaseButton size="md">
             {{ downloadText }}
           </BaseButton>
-        </div>
+        </div> -->
       </div>
     </template>
     <div v-if="activeRecord.loading" class="center record-loading">
@@ -187,11 +187,11 @@ watch(tab, (val) => {
   min-height: 195px;
   --tg-tab-style-wrap-bg-color: var(--tg-primary-main);
 }
-.footer-buttons {
-  font-size: var(--tg-font-size-default);
-  color: var(--tg-text-white);
-  opacity: 0.5;
-}
+// .footer-buttons {
+//   font-size: var(--tg-font-size-default);
+//   color: var(--tg-text-white);
+//   opacity: 0.5;
+// }
 .record-box{
   display: flex;
   flex-direction: column;

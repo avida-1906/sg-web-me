@@ -52,8 +52,16 @@ await application.allSettled([runMemberBannerList({
 </script>
 
 <template>
-  <BaseSwipe
-    :items="items"
-    @click-item="jumpToUrl"
-  />
+  <div class="app-banner">
+    <BaseSwipe
+      :items="items"
+      @click-item="jumpToUrl"
+    />
+  </div>
 </template>
+
+<style lang="scss" scoped>
+.app-banner{
+  margin-top: var(--tg-spacing-12);
+}
+</style>

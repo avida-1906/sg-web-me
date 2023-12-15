@@ -5,7 +5,7 @@ usePageTitle({ prefix: t('transaction_withdraw') })
 const tab = ref()
 const tabList = reactive([
   { label: t('currency_byte_coin'), value: 'byt_w_coin' },
-  { label: '电线', value: 'real_w_coin' },
+  { label: t('currency_law_coin'), value: 'real_w_coin' },
 ])
 </script>
 

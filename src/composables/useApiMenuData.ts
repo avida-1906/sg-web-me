@@ -163,8 +163,8 @@ export function useApiMenuData() {
       list: [],
       domId: '',
     },
-    { title: t('blog'), path: '/blog', icon: 'chess-blog', list: [], domId: '' },
-    { title: t('chat_forum'), path: '', icon: 'tabbar-chat', list: [], domId: '' },
+    // { title: t('blog'), path: '/blog', icon: 'chess-blog', list: [], domId: '' },
+    // { title: t('chat_forum'), path: '', icon: 'tabbar-chat', list: [], domId: '' },
   ].filter(i => i !== void 0))
   const staticMenu2 = computed(() => <Menu>[
     {
