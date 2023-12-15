@@ -19,11 +19,14 @@ const cid = computed(() => isCat.value ? route.query.cid?.toString() ?? '' : '')
 // 参数
 const pid = computed(() =>
   isProvider.value ? route.query.pid?.toString() : void 0)
+const vid = computed(() =>
+  isProvider.value ? route.query.vid?.toString() : void 0)
 
 const paramsGame = computed(() =>
   ({
     platform_id: pid.value,
     sort: props.sortType,
+    venue_id: vid.value,
   }))
 // 场馆游戏
 const {

@@ -7,7 +7,7 @@ const { platformList } = storeToRefs(useCasinoStore())
 function goPage(item: CasinoProviderItem) {
   if (item.maintained === '2')
     return
-  router.push(`/casino/group/provider?pid=${item.venue_id}&name=${item.name}`)
+  router.push(`/casino/group/provider?vid=${item.venue_id}&name=${item.name}`)
 }
 </script>
 
