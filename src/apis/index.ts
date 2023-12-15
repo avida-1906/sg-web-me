@@ -1804,3 +1804,16 @@ export function ApiAgencyCommissionScale() {
       }[]
     }>('/agency/commission/scale')
 }
+
+/**
+ * 注册子代理
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=505e7566-d623-4529-bab6-50205becd5da
+ */
+export function ApiAgencyInsert(data: {
+  /** 会员账号 */
+  username: string
+  /** 会员密码 */
+  password: string
+}) {
+  return httpClient.post<string>('/agency/insert', data)
+}
