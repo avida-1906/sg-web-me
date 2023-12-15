@@ -75,7 +75,7 @@ function getBetListDataHandle() {
         style="--tg-base-select-hover-bg-color:var(--tg-secondary-dark);
           --tg-base-select-popper-style-padding-x:0;
           --tg-base-select-popper-style-padding-y:0;"
-        :distance="10"
+        :distance="8"
         :options="headSelectData" no-hover popper
         @click="getBetListDataHandle"
       >
@@ -161,7 +161,10 @@ function getBetListDataHandle() {
     touch-action: none;
     padding-right: var(--tg-scrollbar-size);
     padding-left: var(--tg-spacing-16);
-
+    :deep(.popper-label) {
+      height: 16.5px;
+      align-items: flex-start;
+    }
     .type-select {
       display: flex;
       align-items: center;

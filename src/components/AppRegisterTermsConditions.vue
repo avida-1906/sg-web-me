@@ -182,11 +182,13 @@ onBeforeUnmount(() => {
         </div>
 
         <div class="terms-conditions-title">
-          4. {{ companyData?.name }} ACCOUNT
+          4. {{ companyData?.name.toUpperCase() }} ACCOUNT
         </div>
         <div class="terms-conditions-describe">
-          <p>Registration</p>
-          <p>4.1 In order for you to be able to place bets on <a class="link-inline"><span>{{ location.hostname }}</span><BaseIcon name="uni-jump-page" /></a>, you must first personally register an account with us ("{{ companyData?.name }} Account").</p>
+          <p class="bold-txt">
+            Registration
+          </p>
+          <p>4.1 In order for you to be able to place bets on {{ location.hostname?.replace('www.', '') }}, you must first personally register an account with us ("{{ companyData?.name }} Account").</p>
           <p>4.2 For a person to be registered as a player with {{ companyData?.name }} and use the Website, that person must submit an application for registration and opening of a {{ companyData?.name }} account. The application for the opening of the {{ companyData?.name }} Account must be submitted personally, and will require You to provide a set of personal information, namely e-mail, full name, date of birth, address, etc.</p>
           <p>4.3 Where the information stipulated in 4.2. is not provided and/or is not deemed to be complete, accurate or up-to-date at any point in time, {{ companyData?.name }} reserves the right to suspend the {{ companyData?.name }} Account registration and treat any subsequent potentially accepted deposits to the Player’s {{ companyData?.name }} Account as invalid (and any winnings arising from such deposit as void). Where a {{ companyData?.name }} Account is suspended, You should contact customer support at <a class="link-inline"><span>support@{{ companyData?.name.toLowerCase() }}.com</span><BaseIcon name="uni-jump-page" /></a>.</p>
           <p>4.4 All applicants must be 18 or such other legal age of majority as determined by any laws which are applicable to you, whichever age is greater or older. {{ companyData?.name }} reserves the right to ask for proof of age from any Player and suspend their {{ companyData?.name }} Account until satisfactory documentation is provided. {{ companyData?.name }} takes its responsibilities in respect of under age and responsible gambling very seriously.</p>
@@ -195,25 +197,35 @@ onBeforeUnmount(() => {
           <p>b) Residing in jurisdictions from where it is illegal or gambling is not permitted. {{ companyData?.name }} is not able to verify the legality of the Service in each jurisdiction and it is the User's responsibility to ensure that their use of the Service is lawful;</p>
           <p>c) Provide misleading information or try to pass by third parties.</p>
           <p>4.6 {{ companyData?.name }} reserves the right to refuse any application for a {{ companyData?.name }} Account, at its sole discretion.</p>
-          <p>Know Your Customer</p>
+          <p class="bold-txt">
+            Know Your Customer
+          </p>
           <p>4.7 You represent and warrant that any information provided by You on Your application form is true, updated and correct.</p>
           <p>
             4.8 {{ companyData?.name }} reserves the right, at any time, to ask for any KYC documentation it deems necessary to determine the identity and location of a Player. {{ companyData?.name }} reserves the right to restrict the Service, payment or withdrawal until identity is sufficiently determined, or for any other reason in {{ companyData?.name }}’s sole discretion. {{ companyData?.name }} also reserves the right to disclose a Player’s information as appropriate to comply with legal process or as otherwise permitted by the privacy policy of {{ companyData?.name }} (owner and operator of {{ companyData?.name }}), and by using the Service, you acknowledge and consent to the possibility of such disclosure.
           </p>
-          <p>Multiple Accounts</p>
+          <p class="bold-txt">
+            Multiple Accounts
+          </p>
           <p>4.9 Only one {{ companyData?.name }} Account per Player is allowed. Should You attempt or successfully open more than one {{ companyData?.name }} Account, under Your own name or under any other name, or should You attempt or succeed in using the Website by means of any other person's {{ companyData?.name }} Account, {{ companyData?.name }} will be entitled to immediately close all Your {{ companyData?.name }} Account(s), retain all monies in such {{ companyData?.name }} Accounts and ban You from future use of the Website.</p>
           <p>4.10 Should {{ companyData?.name }} have reason to believe that You have registered and/or used more than one {{ companyData?.name }} Account, or colluded with one or more other individuals using a number of different {{ companyData?.name }} Accounts, {{ companyData?.name }} shall be entitled to deem such accounts as constituting multiple {{ companyData?.name }} Accounts, and suspend or close all such {{ companyData?.name }} Accounts. {{ companyData?.name }} will also be entitled to retain the funds till the Player proves that he did not attempt to create multiple accounts.</p>
           <p>4.11 If you notice that you have more than one registered {{ companyData?.name }} Account you must notify us immediately. Failure to do so may lead to your {{ companyData?.name }} Account being blocked and the funds retained.</p>
-          <p>User Responsibility</p>
+          <p class="bold-txt">
+            User Responsibility
+          </p>
           <p>4.12 It is your sole and exclusive responsibility to ensure that your login details are kept securely. You must not disclose your login details to anyone.</p>
           <p>4.13 We are not liable or responsible for any abuse or misuse of your {{ companyData?.name }} Account by third parties due to your disclosure, whether intentional, accidental, active or passive, of your login details to any third party.</p>
           <p>4.14 You are prohibited from selling, transferring or acquiring {{ companyData?.name }} Accounts to or from other Players.</p>
           <p>4.15 You will inform us as soon as you become aware of any errors with respect to your account or any calculations with respect to any bet you have placed. We reserve the right to declare null and void any bets that are subject to such an error.</p>
           <p>4.16 You are responsible for all activities that occur under your account.</p>
-          <p>Security Features</p>
+          <p class="bold-txt">
+            Security Features
+          </p>
           <p>4.17 We recommend that you enable two-factor authentication to enhance the security of your account.</p>
           <p>4.18 We may provide other security measures from time to time, and we encourage you to use them.</p>
-          <p>Suspension and Closure by {{ companyData?.name }}</p>
+          <p class="bold-txt">
+            Suspension and Closure by {{ companyData?.name }}
+          </p>
           <p>4.19 {{ companyData?.name }} shall be entitled to close or suspend Your {{ companyData?.name }} Account if:</p>
           <p>a) {{ companyData?.name }} considers that You are using or have used the Website in a fraudulent or collusive manner or for illegal and/or unlawful or improper purposes;</p>
           <p>b) {{ companyData?.name }} considers that You are using or have used the Website in an unfair manner, have deliberately cheated or taken unfair advantage of {{ companyData?.name }} or any of its customers or if Your {{ companyData?.name }} Account is being used for the benefit of a third party;</p>
@@ -224,7 +236,9 @@ onBeforeUnmount(() => {
           <p>4.21 In the circumstances referred to in 4.19, {{ companyData?.name }} shall also be entitled to void any bets placed by You following such actions by You or to withhold and/or retain any and all amounts which would otherwise have been paid or payable to you (including any winnings) to the extent permitted by law.</p>
           <p>4.22 We reserve the right to suspend or terminate your account at any time, with or without notice, if we suspect that you account has been compromised or is being used in breach of our Terms of Service.</p>
           <p>4.23 If {{ companyData?.name }} closes Your {{ companyData?.name }} Account it will inform You of the available means to withdraw the remaining balance on Your {{ companyData?.name }} Account.</p>
-          <p>Our Liability</p>
+          <p class="bold-txt">
+            Our Liability
+          </p>
           <p>4.24 We take no responsibility for any loss or damage that you may suffer as a result of unauthorised access to your account.</p>
           <p>4.25 We take no responsibility for any loss or damage that you may suffer as a result of your failure to keep your login secure and private.</p>
         </div>
@@ -234,16 +248,22 @@ onBeforeUnmount(() => {
         </div>
         <div class="terms-conditions-describe">
           <p>5.1 Prior to your use of the Service and on an ongoing basis you represent, warrant, covenant and agree that:</p>
-          <p>Capacity</p>
+          <p class="bold-txt">
+            Capacity
+          </p>
           <p>a) You are over 18 or such other legal age of majority as determined by any laws which are applicable to you, whichever age is greater;</p>
           <p>b) You have full capacity to enter into a legally binding agreement with us and you are not restricted by any form of limited legal capacity;</p>
           <p>c) You are not diagnosed or classified as a compulsive or problem gambler;</p>
           <p>d) You are not currently self-excluded from any gambling site or gambling premises. You will inform {{ companyData?.name }} immediately if you enter into a self-exclusion agreement with any gambling provider.</p>
-          <p>Jurisdiction</p>
+          <p class="bold-txt">
+            Jurisdiction
+          </p>
           <p>e) You are accessing <a class="link-inline"><span>{{ location.hostname }}</span><BaseIcon name="uni-jump-page" /></a> from a jurisdiction in which it is legal to do so;</p>
           <p>f) You will not use our services while located in any jurisdiction that prohibits the placing and/or accepting of bets online and/or playing casino and/or live games;</p>
           <p>g) You accept and acknowledge that we reserve the right to detect and prevent the use of prohibited techniques, including but not limited to fraudulent transaction detection, automated registration and signup, gameplay and screen capture techniques. These steps may include, but are not limited to, examination of Players device properties, detection of geo-location and IP masking, transactions and blockchain analysis;</p>
-          <p>Funds & Tax</p>
+          <p class="bold-txt">
+            Funds & Tax
+          </p>
           <p>h) You are solely responsible for reporting and accounting for any taxes applicable to you under relevant laws for any winnings that you receive from us;</p>
           <p>i) You are solely responsible for any applicable taxes which may be payable on cryptocurrency awarded to you through your using the Service;</p>
           <p>j) There is a risk of losing cryptocurrency when using the Service and that {{ companyData?.name }} has no responsibility to you for any such loss;</p>
@@ -254,7 +274,9 @@ onBeforeUnmount(() => {
           <p>o) You understand that by participating in the Services available on the Website, You take the risk of losing money deposited.</p>
           <p>p) You accept and acknowledge that the value of cryptocurrency can change dramatically depending on the market value;</p>
           <p>q) {{ companyData?.name }} shall not be treated as a financial institution;</p>
-          <p>Others</p>
+          <p class="bold-txt">
+            Others
+          </p>
           <p>r) Your use of the Service is at your sole option, discretion and risk;</p>
           <p>s) You will not conduct criminal activities through the {{ companyData?.name }} Account;</p>
           <p>t) All information that you provide to us during the term of validity of this agreement is true, complete, correct, and that you shall immediately notify us of any change of such information;</p>
@@ -271,7 +293,7 @@ onBeforeUnmount(() => {
         </div>
 
         <div class="terms-conditions-title">
-          6. {{ companyData?.name }} WARRANTIES
+          6. {{ companyData?.name.toUpperCase() }} WARRANTIES
         </div>
         <div class="terms-conditions-describe">
           <p>6.1 {{ companyData?.name }} warrants that they will:</p>
@@ -331,13 +353,17 @@ onBeforeUnmount(() => {
           <p>8.2 {{ companyData?.name }} reserves all rights to investigate Your account and gaming activity. If {{ companyData?.name }} reasonably suspects that Your account or gaming activity has violated these terms of service or applicable laws or regulations, it may, in its sole discretion, delay or decline further deposits, withdrawals and/or game play while it conducts its investigation. You acknowledge and accept that {{ companyData?.name }} may not be in a position to provide an explanation as to the nature of its investigation.</p>
           <p>8.3 All withdrawals must be done through the same payment method chosen by you when placing a deposit, unless we decide otherwise or are unable to do so. If you deposit using a number of payment methods, we reserve the right to split your withdrawal across such payment methods and process each part through the respective payment method at our discretion and in accordance with anti-money laundering policies and regulation.</p>
           <p>8.4 If we mi{{ companyData?.name }}nly credit your {{ companyData?.name }} Account with winnings that do not belong to you, whether due to a technical error in the pay-tables, or human error or otherwise, the amount will remain our property and will be deducted from your {{ companyData?.name }} Account. If you have withdrawn funds that do not belong to you prior to us becoming aware of the error, the mi{{ companyData?.name }}nly paid amount will (without prejudice to other remedies and actions that may be available at law) constitute a debt owed by you to us. In the event of an incorrect crediting, you are obliged to notify us immediately by email.</p>
-          <p>FIAT Withdrawals</p>
+          <p class="bold-txt">
+            FIAT Withdrawals
+          </p>
           <p>8.5 You need to wager 100% of the value of your deposit in order to request a FIAT withdrawal.</p>
           <p>8.6 Withdrawals from {{ companyData?.name }} Account are made through payments addressed to the Player or transferred to a bank account held in the name of the Player, as advised to {{ companyData?.name }} by the Player. Before processing any withdrawal, {{ companyData?.name }} reserves the right to perform enhanced due diligence where deemed necessary.</p>
           <p>8.7 The minimum withdrawal amount will be identified on the website when performing a withdrawal.</p>
           <p>8.8 If You have multiple withdrawals pending, {{ companyData?.name }} reserves the right to reject all withdrawals and request You to perform one withdrawal with the sum of all multiple withdrawals.</p>
           <p>8.9 {{ companyData?.name }} will not charge You any fees on withdrawals. However, You are advised to check if the payment method You use imposes any additional charges. {{ companyData?.name }} will not be responsible for any commissions or processing fees charged to You by third parties such as Your bank as this is beyond our control.</p>
-          <p>Crypto Withdrawals</p>
+          <p class="bold-txt">
+            Crypto Withdrawals
+          </p>
           <p>8.10 Crypto withdrawals will be made to your stated cryptocurrency wallet address when making a valid withdrawal request.</p>
           <p>
             8.11 {{ companyData?.name }} reserves the right to carry out additional KYC verification procedures for any withdrawal. Players who wish to recover funds held in a closed, locked or excluded account, are advised to contact
@@ -382,18 +408,28 @@ onBeforeUnmount(() => {
         </div>
         <div class="terms-conditions-describe">
           <p>12.1 {{ companyData?.name }}, at its sole discretion, might offer from time to time, a number of Bonuses and Promotions. For example, The Million Dollar Race, the 50 Billionth Bet Bonanza, Coupons, Reloads, and Rakeback.</p>
-          <p>Eligibility</p>
+          <p class="bold-txt">
+            Eligibility
+          </p>
           <p>12.2 Upon successful registration for a {{ companyData?.name }} Account, You may be eligible to receive {{ companyData?.name }} Promotions and Bonuses. By accepting this agreement and registering for a {{ companyData?.name }} Account on the Website, You are also acknowledging and accepting to be bound by the rules and regulations associated with any Promotions and Bonuses offered to You by {{ companyData?.name }}.</p>
-          <p>Bonus T&C</p>
+          <p class="bold-txt">
+            Bonus T&C
+          </p>
           <p>12.3 All promotions, bonuses, or special offers are subject to the express terms of any bonus offered on the Website(s) and promotion-specific terms and conditions, if applicable, and any bonus credited to Your account must be used in adherence with such terms and conditions. By accepting a promotion, bonus, or special offer available on the Website(s), You consent to the terms and conditions of such promotion, bonus, or special offer and acknowledge that wagers must always be placed with cash balances before bonus balances can be used to wager. We reserve the right to withdraw any promotion, bonus, or special offer at any time.</p>
-          <p>Activation & Expiry</p>
+          <p class="bold-txt">
+            Activation & Expiry
+          </p>
           <p>12.4 By activating a Bonus or Promotion, You confirm that You also agree to the applicable terms and conditions.</p>
           <p>12.5 No promotion, bonus, or special offer will be accepted or honoured by the {{ companyData?.name }} following the expiration date of the promotion, bonus, or special offer, unless {{ companyData?.name }} in its sole discretion chooses to do so for any particular customer, promotion, bonus, or special offer. Expiration dates will be set forth in the specific rules or terms and conditions of the particular promotion, bonus, or special offer. Furthermore, {{ companyData?.name }} reserves the right, in its sole discretion, to change or modify any policy with respect to the earning or expiration of bonuses.</p>
           <p>12.6 Once forfeited or de-activated, the Bonus will no longer be available to You (and cannot be re-activated at any time thereafter). The amount of any Bonus Funds that have already been credited to your {{ companyData?.name }} Account Balance will remain available to You.</p>
-          <p>Bonus Abuse & Fraud</p>
+          <p class="bold-txt">
+            Bonus Abuse & Fraud
+          </p>
           <p>12.7 In the event that {{ companyData?.name }} believes a Player of the Service is abusing or attempting to abuse a bonus or other promotion or is likely to benefit through abuse or lack of good faith from a policy adopted by {{ companyData?.name }}, then {{ companyData?.name }} may, at its sole discretion, deny, withhold, or withdraw from any Player any bonus or promotion, or terminate that Player’s access to the Services, the Software, and/or lock that Player’s account, either temporarily or permanently.</p>
           <p>12.8 You may only open one (1) account on the Website. The opening of multiple accounts on the Website for the purpose of accumulating bonuses, promotions, special offers, or otherwise, shall be considered abusive behaviour.</p>
-          <p>{{ companyData?.name }} Rights</p>
+          <p class="bold-txt">
+            {{ companyData?.name }} Rights
+          </p>
           <p>12.9 {{ companyData?.name }} reserves the right to remove bonuses from all inactive accounts or accounts that are identified as “bonus abusers”.</p>
           <p>12.10 {{ companyData?.name }} reserves the right to cancel all bonuses that have not been claimed within the claiming period or 60 days, the shorter of the two.</p>
           <p>12.11 {{ companyData?.name }} reserves the right to cancel any bonus at its sole discretion.</p>
@@ -403,18 +439,24 @@ onBeforeUnmount(() => {
           13. AUTHORITY/TERMS OF SERVICE
         </div>
         <div class="terms-conditions-describe">
-          <p>13.1 You agree to the game rules described on the <a class="link-inline"><span>{{ location.hostname }}</span><BaseIcon name="uni-jump-page" /></a> website. {{ companyData?.name }} retains authority over the issuing, maintenance, and closing of the Service. The decision of {{ companyData?.name }}'s management, concerning any use of the Service, or dispute resolution, is final and shall not be open to review or appeal.</p>
+          <p>13.1 You agree to the game rules described on the {{ location.hostname?.replace('wwww.', '') }} website. {{ companyData?.name }} retains authority over the issuing, maintenance, and closing of the Service. The decision of {{ companyData?.name }}'s management, concerning any use of the Service, or dispute resolution, is final and shall not be open to review or appeal.</p>
         </div>
 
         <div class="terms-conditions-title">
           14. PROHIBITED USES
         </div>
         <div class="terms-conditions-describe">
-          <p>PERSONAL USE</p>
+          <p class="bold-txt">
+            PERSONAL USE
+          </p>
           <p>14.1 The Service is intended solely for the User's personal use. The User is only allowed to wager for his/her personal entertainment. Users may not create multiple accounts for the purpose of collusion, sports betting and/or abuse of service.</p>
-          <p>AML & SANCTIONS COMPLIANCE</p>
+          <p class="bold-txt">
+            AML & SANCTIONS COMPLIANCE
+          </p>
           <p>14.2 {{ companyData?.name }} expressly prohibits and rejects the use of the Service for any form of illicit activity, including money laundering, terrorist financing or trade sanctions violations, consistent with various jurisdictions' laws, regulations and norms. To that end, the Service is not offered to individuals or entities subject to United States, European Union, or other global sanctions or watch lists. By using the Service, you represent and warrant that you are not so subject.</p>
-          <p>JURISDICTIONS</p>
+          <p class="bold-txt">
+            JURISDICTIONS
+          </p>
           <p>14.3 Persons located in or reside in Afghanistan, Australia, Belarus, Belgium, Colombia, Côte d'Ivoire, Cuba, Curaçao, Czech Republic, Democratic Republic of the Congo, Denmark, France, Germany, Greece, Iran, Iraq, Italy, Liberia, Libya, Lithuania, Netherlands, North Korea, Ontario, Pakistan, Portugal, Serbia, Slovakia, South Sudan, Spain, Sudan, Syria, Sweden, Switzerland, United Kingdom, United States, Zimbabwe (the "Prohibited Jurisdictions") are not permitted make use of the Service. For the avoidance of doubt, the foregoing restrictions on engaging in real-money play from Prohibited Jurisdictions applies equally to residents and citizens of other nations while located in a Prohibited Jurisdiction. Any attempt to circumvent the restrictions on play by any persons located in a Prohibited Jurisdiction or Restricted Jurisdiction, is a breach of this Agreement. An attempt at circumvention includes, but is not limited to, manipulating the information used by {{ companyData?.name }} to identify your location and providing {{ companyData?.name }} with false or misleading information regarding your location or place of residence.</p>
           <p>14.4 The attempt to manipulate your real location through the use of VPN, proxy, or similar services or through the provision of incorrect or misleading information about your place of residence, with the intent to circumvent geo-blocking or jurisdiction restrictions, constitutes a breach of Clause 5 of this Terms of Service.</p>
         </div>
@@ -601,6 +643,9 @@ onBeforeUnmount(() => {
 </template>
 
 <style lang='scss' scoped>
+.bold-txt {
+  font-weight: var(--tg-font-weight-semibold);
+}
 .link-inline {
   font-size: var(--tg-font-size-default);
   font-weight: 600;
