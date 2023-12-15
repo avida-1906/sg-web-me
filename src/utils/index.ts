@@ -25,6 +25,9 @@ class Application {
     timestamp: number,
     language = EnumLanguage[VITE_I18N_DEFAULT_LANG],
   ): string {
+    if (timestamp <= 0)
+      return '-'
+
     const languageStr = EnumLanguage[language]
 
     if (timestamp.toString().length !== 13)

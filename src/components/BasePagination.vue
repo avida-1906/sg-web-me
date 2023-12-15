@@ -313,7 +313,7 @@ watchEffect(() => {
     .mid {
       --tg-spacing-input-padding-vertical: 1px;
       --tg-spacing-input-padding-horizontal: 2px;
-      width: 50px;
+      width: 55px;
     }
   }
   .pager-bar {

@@ -7,7 +7,12 @@ export {}
 declare global {
   const ApiAddFeedbackChatMsg: typeof import('./apis/index')['ApiAddFeedbackChatMsg']
   const ApiAgencyCommission: typeof import('./apis/index')['ApiAgencyCommission']
+  const ApiAgencyPerformance: typeof import('./apis/index')['ApiAgencyPerformance']
   const ApiAgencyReportAll: typeof import('./apis/index')['ApiAgencyReportAll']
+  const ApiAgencyReportBet: typeof import('./apis/index')['ApiAgencyReportBet']
+  const ApiAgencyReportFinance: typeof import('./apis/index')['ApiAgencyReportFinance']
+  const ApiAgencyReportReceive: typeof import('./apis/index')['ApiAgencyReportReceive']
+  const ApiAgencyReportUser: typeof import('./apis/index')['ApiAgencyReportUser']
   const ApiChatGetHistory: typeof import('./apis/index')['ApiChatGetHistory']
   const ApiChatSendMessage: typeof import('./apis/index')['ApiChatSendMessage']
   const ApiDevDeleteThirdAuth: typeof import('./apis/index')['ApiDevDeleteThirdAuth']
@@ -630,7 +635,12 @@ declare module 'vue' {
   interface ComponentCustomProperties {
     readonly ApiAddFeedbackChatMsg: UnwrapRef<typeof import('./apis/index')['ApiAddFeedbackChatMsg']>
     readonly ApiAgencyCommission: UnwrapRef<typeof import('./apis/index')['ApiAgencyCommission']>
+    readonly ApiAgencyPerformance: UnwrapRef<typeof import('./apis/index')['ApiAgencyPerformance']>
     readonly ApiAgencyReportAll: UnwrapRef<typeof import('./apis/index')['ApiAgencyReportAll']>
+    readonly ApiAgencyReportBet: UnwrapRef<typeof import('./apis/index')['ApiAgencyReportBet']>
+    readonly ApiAgencyReportFinance: UnwrapRef<typeof import('./apis/index')['ApiAgencyReportFinance']>
+    readonly ApiAgencyReportReceive: UnwrapRef<typeof import('./apis/index')['ApiAgencyReportReceive']>
+    readonly ApiAgencyReportUser: UnwrapRef<typeof import('./apis/index')['ApiAgencyReportUser']>
     readonly ApiChatGetHistory: UnwrapRef<typeof import('./apis/index')['ApiChatGetHistory']>
     readonly ApiChatSendMessage: UnwrapRef<typeof import('./apis/index')['ApiChatSendMessage']>
     readonly ApiDevDeleteThirdAuth: UnwrapRef<typeof import('./apis/index')['ApiDevDeleteThirdAuth']>
@@ -1243,7 +1253,12 @@ declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
     readonly ApiAddFeedbackChatMsg: UnwrapRef<typeof import('./apis/index')['ApiAddFeedbackChatMsg']>
     readonly ApiAgencyCommission: UnwrapRef<typeof import('./apis/index')['ApiAgencyCommission']>
+    readonly ApiAgencyPerformance: UnwrapRef<typeof import('./apis/index')['ApiAgencyPerformance']>
     readonly ApiAgencyReportAll: UnwrapRef<typeof import('./apis/index')['ApiAgencyReportAll']>
+    readonly ApiAgencyReportBet: UnwrapRef<typeof import('./apis/index')['ApiAgencyReportBet']>
+    readonly ApiAgencyReportFinance: UnwrapRef<typeof import('./apis/index')['ApiAgencyReportFinance']>
+    readonly ApiAgencyReportReceive: UnwrapRef<typeof import('./apis/index')['ApiAgencyReportReceive']>
+    readonly ApiAgencyReportUser: UnwrapRef<typeof import('./apis/index')['ApiAgencyReportUser']>
     readonly ApiChatGetHistory: UnwrapRef<typeof import('./apis/index')['ApiChatGetHistory']>
     readonly ApiChatSendMessage: UnwrapRef<typeof import('./apis/index')['ApiChatSendMessage']>
     readonly ApiDevDeleteThirdAuth: UnwrapRef<typeof import('./apis/index')['ApiDevDeleteThirdAuth']>

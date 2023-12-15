@@ -1,89 +1,200 @@
 <script lang="ts" setup>
-const { t } = useI18n()
+const { startTime, endTime } = getDaIntervalMap(new Date().getTime(), 30)
 
-// loading加载
-const { bool: loading } = useBoolean(false)
-const tab = ref('dz')
-const tabList = [
-  { label: t('slot'), value: 'dz' },
-  { label: t('fishing'), value: 'by' },
-  { label: t('chess'), value: 'qp' },
-  { label: t('live'), value: 'zr' },
-  { label: t('sports'), value: 'ty' },
-]
+const { t } = useI18n()
+const { copy } = useClipboard()
+const { openNotify } = useNotify()
+const { userLanguage } = storeToRefs(useLanguageStore())
+
+const {
+  selected: currency_id,
+  list: currencyList,
+} = useSelect([
+  {
+    label: '全部',
+    value: '',
+  },
+  ...getCurrencyOptions(),
+])
+
+const {
+  list,
+  page,
+  page_size,
+  loading,
+  total,
+  runAsync,
+  resetPage,
+} = useList(ApiAgencyReportBet, {}, { page_size: 10, isWatchPageOrPageSize: false })
+
+const date = ref([])
+const searchValue = useDebouncedRef({ value: '', delay: 1000 })
+
 const columns: Column[] = [
   {
-    title: t('class'),
-    dataIndex: 'settleTime',
+    title: t('player_id'),
+    dataIndex: 'username',
     align: 'center',
-    slot: 'settleTime',
+    slot: 'username',
   },
   {
-    title: t('effective_bet'),
-    dataIndex: 'contributeNum',
+    title: t('statistical_time'),
+    dataIndex: 'time',
     align: 'center',
+    slot: 'time',
   },
   {
-    title: t('rebate_amount'),
-    dataIndex: 'commission',
+    title: '有效投注',
+    dataIndex: 'valid_bet_amount',
     align: 'center',
-    slot: 'commission',
+    slot: 'valid_bet_amount',
+  },
+  {
+    title: t('total_win_lose'),
+    dataIndex: 'net_amount',
+    align: 'center',
+    slot: 'net_amount',
   },
 ]
-const tableData = ref([
-  {
-    settleTime: '1',
-    contributeNum: '1.00万+',
-    commission: '55元/万',
-  },
-  {
-    settleTime: '2',
-    contributeNum: '1.00万+',
-    commission: '55元/万',
-  },
-  {
-    settleTime: '3',
-    contributeNum: '1.00万+',
-    commission: '55元/万',
-  },
-])
+
+const params = computed(() => {
+  return {
+    username: searchValue.value,
+    currency_id: currency_id.value,
+    // start_time: date.value[0],
+    // end_time: date.value[1],
+    page_size: page_size.value,
+    page: page.value,
+  }
+})
+
+function copyClick(msg: string) {
+  copy(msg)
+  openNotify({
+    type: 'success',
+    title: t('notify_title_success'),
+    message: t('copy_success') + msg,
+  })
+}
+
+useListSearch(params, runAsync, resetPage)
 </script>
 
 <template>
-  <AppAffiliateContent>
-    <template #content-top>
-      <BaseTab
-        v-model="tab"
-        style="--tg-tab-style-color: var(--tg-text-lightgrey);"
-        :list="tabList"
-        line-style
-        :center="false"
+  <div class="all-data-page">
+    <div class="table-filter">
+      <BaseDatePicker
+        v-model="date"
+        :init-start-date="startTime"
+        :init-end-date="endTime"
       />
-    </template>
-    <template #default>
-      <BaseTable
-        class="page-commission-rate"
-        :columns="columns"
-        :data-source="tableData"
-        :loading="loading"
-      >
-        <template #commission="{ record }">
-          <span style="color:var(--tg-text-warn)">{{ record.contributeNum }}</span>
-        </template>
-      </BaseTable>
-    </template>
-  </AppAffiliateContent>
+      <BaseSelect
+        v-model.lazy="currency_id"
+        :options="currencyList"
+      />
+      <div style="max-width: 195px;">
+        <BaseInput v-model="searchValue" :placeholder="t('user_account')">
+          <template #right-icon>
+            <BaseIcon name="uni-search" />
+          </template>
+        </BaseInput>
+      </div>
+      <slot name="grand-total" />
+    </div>
+
+    <BaseTable
+      class="page-all-data page-direct-finance"
+      :columns="columns"
+      :data-source="list"
+      :loading="loading"
+    >
+      <template #username="{ record }">
+        <div
+          class="center cursor-pointer"
+          style="gap: var(--tg-spacing-4);"
+          @click="copyClick(record.username)"
+        >
+          <BaseIcon name="chat-star-gold" />
+          <span>{{ record.username }}</span>
+          <BaseIcon name="uni-doc" />
+        </div>
+      </template>
+      <template #th-valid_bet_amount>
+        <div style="margin-top: var(--tg-spacing-4);">
+          投注单数量
+        </div>
+      </template>
+      <template #time="{ record }">
+        <span>
+          {{ application.timestampToTime(record.time * 1000, userLanguage) }}
+        </span>
+      </template>
+      <template #valid_bet_amount="{ record }">
+        <div class="center">
+          <AppAmount
+            :amount="record.valid_bet_amount"
+            :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
+          />
+        </div>
+        <div class="hint">
+          {{ record.bet_count }}
+        </div>
+      </template>
+      <template #net_amount="{ record }">
+        <div class="center">
+          <AppAmount
+            :amount="record.net_amount"
+            :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
+          />
+        </div>
+      </template>
+    </BaseTable>
+    <BasePagination
+      v-if="total > 0"
+      v-model:current-page="page"
+      v-model:page-size="page_size"
+      :total="total"
+    />
+  </div>
 </template>
 
 <style lang="scss" scoped>
-.page-commission-rate {
+.all-data-page {
+  --tg-badge-size: 10px;
   --tg-table-th-padding: var(--tg-spacing-21);
   --tg-table-td-padding: var(--tg-spacing-21);
+  --tg-table-font-size: var(--tg-font-size-xs);
+  --tg-table-even-background: var(--tg-primary-main);
+  --tg-table-th-color: var(--tg-text-white);
+  --tg-table-line-height:1;
+  --tg-table-th-font-weight: var(--tg-font-weight-normal);
+  --tg-base-select-style-color: var(--tg-text-lightgrey);
+  --tg-base-select-style-padding-y: var(--tg-spacing-8);
+  --tg-base-select-style-padding-right: var(--tg-spacing-28);
+  --tg-table-th-background: var(--tg-primary-main);
+}
+
+.hint {
+  color: var(--tg-text-grey-lighter);
+  margin-top: 4px;
+}
+.page-all-data {
+  margin: 20px 0;
+  --tg-app-amount-font-size: var(--tg-font-size-xs);
+  --tg-app-amount-font-weight: var(--tg-font-weight-normal);
   .flex-colum {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: var(--tg-spacing-4);
   }
+}
+
+.table-filter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--tg-spacing-16);
+  font-size: var(--tg-font-size-xs);
 }
 </style>
