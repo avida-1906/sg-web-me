@@ -839,6 +839,8 @@ onUnmounted(() => {
             bg-style="primary"
             :disabled="isBetBtnDisabled"
             :loading="betLoading"
+            style="--tg-base-button-disabled-opacity:1;"
+            sports-loading
             @click="bet"
           >
             {{ t('sports_bet') }}{{ betBtnText }}

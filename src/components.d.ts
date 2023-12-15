@@ -40,7 +40,6 @@ declare module 'vue' {
     AppChatMsgRender: typeof import('./components/AppChatMsgRender.vue')['default']
     AppChatRulesDialog: typeof import('./components/AppChatRulesDialog.vue')['default']
     AppChatUserTags: typeof import('./components/AppChatUserTags.vue')['default']
-    AppColorAmount: typeof import('./components/AppColorAmount.vue')['default']
     AppContent: typeof import('./components/AppContent.vue')['default']
     AppCopyLine: typeof import('./components/AppCopyLine.vue')['default']
     AppCurrencyIcon: typeof import('./components/AppCurrencyIcon.vue')['default']
