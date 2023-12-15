@@ -58,9 +58,9 @@ const columns: Column[] = [
   },
   {
     title: t('label_contribute_commission'),
-    dataIndex: 'commission',
+    dataIndex: 'commission_amount_direct',
     align: 'center',
-    slot: 'commission',
+    slot: 'commission_amount_direct',
     sort: true,
   },
 ]
