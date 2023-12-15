@@ -1477,6 +1477,8 @@ function loadMore() {
 
 .demo-page {
   padding-bottom: 50px;
+  height:100%;
+  overflow:auto;
 }
 
 .box {
