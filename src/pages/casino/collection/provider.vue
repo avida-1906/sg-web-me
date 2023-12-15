@@ -7,7 +7,7 @@ const { appContentWidth } = storeToRefs(useWindowStore())
 function handleItemClick(item: any) {
   if (item.maintained === '2')
     return
-  router.push(`/casino/group/provider?pid=${item.venue_id}&name=${item.en_name}`)
+  router.push(`/casino/group/provider?pid=${item.venue_id}&name=${item.name}`)
 }
 </script>
 
