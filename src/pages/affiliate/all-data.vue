@@ -2,8 +2,6 @@
 const { startTime, endTime } = getDaIntervalMap(new Date().getTime(), 30)
 
 const { t } = useI18n()
-const { copy } = useClipboard()
-const { openNotify } = useNotify()
 const { userLanguage } = storeToRefs(useLanguageStore())
 
 const {
@@ -74,15 +72,6 @@ const params = computed(() => {
   }
 })
 
-function copyClick(msg: string) {
-  copy(msg)
-  openNotify({
-    type: 'success',
-    title: t('notify_title_success'),
-    message: t('copy_success') + msg,
-  })
-}
-
 useListSearch(params, runAsync, resetPage)
 </script>
 
@@ -119,15 +108,7 @@ useListSearch(params, runAsync, resetPage)
         </span>
       </template>
       <template #username="{ record }">
-        <div
-          class="center cursor-pointer"
-          style="gap: var(--tg-spacing-4);"
-          @click="copyClick(record.username)"
-        >
-          <BaseIcon name="chat-star-gold" />
-          <span>{{ record.username }}</span>
-          <BaseIcon name="uni-doc" />
-        </div>
+        <AppReportUserName :username="record.username" :level="`${record.vip}`" />
       </template>
       <template #deposit_amount="{ record }">
         <div class="center">
@@ -150,6 +131,7 @@ useListSearch(params, runAsync, resetPage)
           <AppAmount
             :amount="record.net_amount"
             :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
+            show-color
           />
         </div>
       </template>
