@@ -48,6 +48,7 @@ const imgUrl = computed(() => {
     <img
       :style="`width: ${width}; height: ${height};
       object-fit: ${fit};object-position:${objectPosition};`"
+      :loading="loading"
       :src="imgUrl"
       @load="emit('loadImg')"
       @click="emit('clickImg')"

@@ -67,6 +67,7 @@ const onPlayCount = ref(Math.ceil(Math.random() * 1000).toFixed())
           v-if="thumbnailStatus"
           is-cloud
           :url="getThumbnailUrl(gameInfo.img ?? '')"
+          loading="eager"
           @error-img="thumbnailLoadError"
         />
       </div>
