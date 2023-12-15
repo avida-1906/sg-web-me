@@ -56,7 +56,7 @@ const onPlayCount = ref(Math.ceil(Math.random() * 1000).toFixed())
 </script>
 
 <template>
-  <BaseAspectRatio ratio="68/91">
+  <BaseAspectRatio ratio="100/134.1463414634">
     <div
       class="base-game-item" :class="{
         'maintain': isMaintained,
@@ -135,7 +135,7 @@ const onPlayCount = ref(Math.ceil(Math.random() * 1000).toFixed())
   overflow: hidden;
   cursor: pointer;
   &.border{
-    border: 0.5px solid var(--tg-text-white);
+    // border: 0.5px solid var(--tg-text-white);
   }
 
   .active-game-item {
