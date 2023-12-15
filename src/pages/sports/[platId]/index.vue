@@ -88,6 +88,7 @@ onBeforeUnmount(() => {
     <div class="layout-spacing">
       <AppBetData mode="sports" />
     </div>
+    <AppSportsIntroduction />
   </div>
 </template>
 

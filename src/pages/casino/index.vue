@@ -170,20 +170,20 @@ await application.allSettled([casinoStore.runAsyncGameLobby(), runMemberNoticeAl
       class="introduction-content"
       :class="[isMobile ? 'h5-mobile' : 'column-count']"
     >
-      <h1>最佳在线赌场游戏 - 在 Meibo.com 玩最佳游戏</h1>
+      <h2>最佳在线赌场游戏 - 在 Meibo.com 玩最佳游戏</h2>
       <div class="p">
         面对如此丰富的赌场游戏，您会从哪里下手？从最出色的赌场游戏开始是一个不错的选择，此类游戏可以为您提供出色的图形设计和更加丰厚的赢利。现在就让我们为您带来
         Meibo
         赌场上最出色的赌场游戏吧。
       </div>
-      <h1>什么是在线赌场游戏？</h1>
+      <h2>什么是在线赌场游戏？</h2>
       <div class="p">
         在线赌场游戏包括经典的桌面游戏、老虎机游戏、骰子游戏和纸牌游戏。在 Meibo.com，您可以找到数百种游戏供您尝试，这些游戏画面精美，有多种不同的投注和赢钱方式。
       </div>
       <div class="p">
         无论您是二十一点游戏迷，还是喜欢累积头奖的老虎机，您都能找到适合自己喜欢的各种在线赌场游戏类型。继续阅读，探索 Meibo.com 上的最佳在线赌场游戏。
       </div>
-      <h1>什么是最出色的赌场游戏？</h1>
+      <h2>什么是最出色的赌场游戏？</h2>
       <div class="p">
         从桌面游戏到在线老虎机，您可以在这里找到最佳赌场游戏：桌面游戏
       </div>
@@ -268,7 +268,7 @@ await application.allSettled([casinoStore.runAsyncGameLobby(), runMemberNoticeAl
         如何在线玩老虎机
         ，方便您在 Meibo 赌场玩最受欢迎的游戏时制定策略。
       </div>
-      <h1>什么是最值得玩的赌场游戏？</h1>
+      <h2>什么是最值得玩的赌场游戏？</h2>
       <div class="p">
         Meibo Original
         游戏拥有出色的画面和超级简单的玩法，是所有在线赌场爱好者的理想选择。您现在可以在 Meibo.com 上玩到的最佳游戏如下：
@@ -331,7 +331,7 @@ await application.allSettled([casinoStore.runAsyncGameLobby(), runMemberNoticeAl
           s：在 Meibo 的专属游戏中放手一搏吧，这款游戏正在加密赌场行业掀起一场风暴！RTP 98.29%。
         </li>
       </ul>
-      <h1>如何玩在线赌场游戏并获胜 - 基本策略和技巧</h1>
+      <h2>如何玩在线赌场游戏并获胜 - 基本策略和技巧</h2>
       <div class="p">
         准备好尝试一些最出色的在线赌场游戏了吗？以下是一些有用的提示，供您在开始选择游戏时参考：
       </div>
@@ -347,7 +347,7 @@ await application.allSettled([casinoStore.runAsyncGameLobby(), runMemberNoticeAl
         </li>
         <li>请量力而行，注意博彩权责。</li>
       </ul>
-      <h1>赌场游戏赔率、边际优势和 RTP</h1>
+      <h2>赌场游戏赔率、边际优势和 RTP</h2>
       <div class="p">
         在选择赌场游戏之前，您应该仔细阅读游戏说明，了解有关游戏的关键信息，特别是与庄家优势和玩家回报率（RTP）相关的信息。正如您从我们的最佳游戏列表中看到的，您可以玩的许多 Meibo Original 游戏的庄家优势仅为 1%，这是非常超值的游戏选择。通过我们便捷的
         赌场
@@ -355,7 +355,7 @@ await application.allSettled([casinoStore.runAsyncGameLobby(), runMemberNoticeAl
         指南
         ，了解更多关于赌场优势以及为什么需要优势的信息。
       </div>
-      <h1>赌场奖金和 VIP 计划</h1>
+      <h2>赌场奖金和 VIP 计划</h2>
       <div class="p">
         如果您想要在 Meibo.com 获得最大赢利，您可以查看
         最新促销活动和优惠
@@ -365,7 +365,7 @@ await application.allSettled([casinoStore.runAsyncGameLobby(), runMemberNoticeAl
         福利
         ，包括每月独家优惠和丰厚奖金。
       </div>
-      <h1>其他热门在线赌场游戏</h1>
+      <h2>其他热门在线赌场游戏</h2>
       <div class="p">
         如果您想要在 Meibo.com 尝试更多精彩游戏，请查看赌场游戏行业中领先供应商提供的以下热门游戏：
       </div>
@@ -491,7 +491,7 @@ await application.allSettled([casinoStore.runAsyncGameLobby(), runMemberNoticeAl
     }
     .h5-mobile{
       column-count:1;
-      h1{
+      h2{
         font-size: var(--tg-font-size-lg);
       }
     }
@@ -510,7 +510,7 @@ await application.allSettled([casinoStore.runAsyncGameLobby(), runMemberNoticeAl
         --tg-base-button-padding-x: 16px;
         --tg-base-button-padding-y: 13px;
     }
-    h1{
+    h2{
       color: var(--tg-text-white);
       font-size: 20px;
       margin-bottom: var(--tg-spacing-8);
@@ -547,6 +547,13 @@ await application.allSettled([casinoStore.runAsyncGameLobby(), runMemberNoticeAl
       }
     }
   }
+  @media only screen and (min-width:1280px) {
+  .index-introduction{
+    h2{
+      font-size: var(--tg-font-size-xl);
+    }
+  }
+}
 </style>
 
 <route lang="yaml">

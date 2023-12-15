@@ -68,10 +68,6 @@ function onPopperOpen() {
   setPopperOpen()
   emit('focus')
 }
-
-onMounted(() => {
-  console.log(props.modelValue)
-})
 </script>
 
 <template>
