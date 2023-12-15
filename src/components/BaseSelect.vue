@@ -21,12 +21,10 @@ interface Props {
   plainPopperLabel?: boolean
   popperClazz?: string
   distance?: number
-  placeholder?: string
 }
 const props = withDefaults(defineProps<Props>(), {
   layout: 'vertical',
   distance: 6,
-  placeholder: '',
 })
 const emit = defineEmits(['update:modelValue', 'select', 'focus'])
 
@@ -144,18 +142,11 @@ function onPopperOpen() {
       <div class="select-warp">
         <select
           :value="modelValue"
-          :class="{
-            disabled,
-            small,
-            error,
-            'placeholder-text': modelValue === undefined,
-          }"
+          :class="{ disabled, small, error }"
           :disabled="disabled"
           @change="onChange"
         >
-          <option style="display: none;" disabled value="">
-            {{ placeholder }}
-          </option>
+          <option style="display: none;" disabled hidden value="" />
           <option
             v-for="o, i in options"
             :key="i"
@@ -380,10 +371,6 @@ function onPopperOpen() {
     &.disabled {
       cursor: not-allowed;
     }
-  }
-  .placeholder-text{
-    font-weight: var(--tg-font-weight-normal);
-    color: var(--tg-text-lightgrey);
   }
   .icon {
     font-size: var(--tg-font-size-default);
