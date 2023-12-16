@@ -80,7 +80,7 @@ function getStateIcon(state: number) {
         <!-- 虚拟币 -->
         <template v-if="isCoin">
           <div class="item">
-            <label>{{ t('saving_account') }}:</label>
+            <label>{{ t('saving_address') }}:</label>
             <span class="data">{{ data.wallet_address }}</span>
           </div>
           <div class="item">

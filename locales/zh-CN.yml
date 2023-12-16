@@ -1567,11 +1567,12 @@ emoji_title: 表情符号
 failure: 失败
 confirmed: 已确认
 saving_account: 收款账户
+saving_address: 收款地址
 deal_contract: 交易协议
 account_type: 账户类型
 saving_bank: 收款银行
 order_num: 订单编号
-copy_addr_suc: 已成功复制地址
+copy_addr_suc: 已成功复制！
 pls_enter_savor_name: 请输入存款人姓名
 savor_name: 收款人姓名
 open_addr: 开户网点
