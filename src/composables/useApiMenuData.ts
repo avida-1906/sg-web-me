@@ -37,6 +37,7 @@ export function useApiMenuData() {
   const { casinoGameList } = storeToRefs(useCasinoStore())
   const languageStore = useLanguageStore()
   const { userLanguage, AllLanguages } = storeToRefs(languageStore)
+  const { openService } = useService()
 
   // casino
   const casinoMenu = computed<Menu>(() => [
@@ -191,6 +192,7 @@ export function useApiMenuData() {
       icon: 'spt-online-support',
       list: [],
       domId: '',
+      callBack: () => openService(),
     },
     {
       title: `${t('language_title')}： ${AllLanguages.value.filter(a =>
