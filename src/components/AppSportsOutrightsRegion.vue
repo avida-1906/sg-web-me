@@ -26,7 +26,7 @@ const { bool: isOpen, toggle: toggleOpen } = useBoolean(props.init)
         <div class="container" style="--app-sport-image-error-icon-size:16px;">
           <AppImage
             v-if="icon" width="16px" height="16px" is-cloud :url="icon"
-            style="border-radius: 50%;overflow: hidden;"
+            style="border-radius: 50%;overflow: hidden;flex-shrink: 0;"
           />
           <div class="container">
             <div class="center">
