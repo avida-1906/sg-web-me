@@ -1,4 +1,6 @@
 <script setup lang='ts'>
+import type { EnumCurrencyKey } from '~/apis/types'
+
 interface Props {
   data: {
     [t: string]: any
@@ -10,9 +12,9 @@ const { openService } = useService()
 
 const { t } = useI18n()
 
-const {
-  renderCurrencyList,
-} = useCurrencyData()
+// const {
+//   EnumCurrencyKey,
+// } = useCurrencyData()
 
 const isDeposit = computed(() => {
   return !!props.data.pay_method_name
@@ -22,8 +24,7 @@ const isCoin = computed(() => {
 })
 
 function getPrefix() {
-  return renderCurrencyList.value
-    .find(item => item.type === props.data.currency_name)?.prefix
+  return currencyConfig[props.data.currency_name as EnumCurrencyKey].prefix
 }
 function formatWithdrawState(state: number) {
   // <!--1：成功，2：拒绝，3，审核中，4：删除，5：三方异常，6：出款中-- >
