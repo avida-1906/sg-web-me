@@ -7,6 +7,8 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {})
 // const closeDialog = inject('closeDialog', () => { })
 
+const { t } = useI18n()
+
 const {
   renderCurrencyList,
 } = useCurrencyData()
@@ -25,24 +27,24 @@ function getPrefix() {
 function formatWithdrawState(state: number) {
   // <!--1：成功，2：拒绝，3，审核中，4：删除，5：三方异常，6：出款中-- >
   switch (state) {
-    case 1: return '已完成'
-    case 2: return '失败'
-    case 3: return '处理中'
-    case 4: return '失败'
-    case 5: return '失败'
-    case 6: return '处理中'
+    case 1: return t('checklist_completed')
+    case 2: return t('failure')
+    case 3: return t('dealing')
+    case 4: return t('failure')
+    case 5: return t('failure')
+    case 6: return t('dealing')
     default: return '--'
   }
 }
 function formatDepositState(state: number) {
   // <!--1：成功，2：失败，3，支付中，4：删除，5:待审核 6：取消-- >
   switch (state) {
-    case 1: return '已确认'
-    case 2: return '失败'
-    case 3: return '确认中'
-    case 4: return '失败'
-    case 5: return '确认中'
-    case 6: return '取消'
+    case 1: return t('confirmed')
+    case 2: return t('failure')
+    case 3: return t('status_pending')
+    case 4: return t('failure')
+    case 5: return t('status_pending')
+    case 6: return t('cancel')
     default: return '--'
   }
 }
@@ -78,22 +80,23 @@ function getStateIcon(state: number) {
         <!-- 虚拟币 -->
         <template v-if="isCoin">
           <div class="item">
-            <label>收款账户:</label>
+            <label>{{ t('saving_account') }}:</label>
             <span class="data">{{ data.wallet_address }}</span>
           </div>
           <div class="item">
-            <label>交易协议:</label>
+            <label>{{ t('deal_contract') }}:</label>
             <span class="data">{{ data.contract_type }}</span>
           </div>
         </template>
         <!-- 法币 -->
         <template v-else>
           <div class="item">
-            <label> {{ data.currency_name === 'BRL' ? '账户类型' : '收款银行' }} :</label>
+            <label> {{ data.currency_name === 'BRL'
+              ? t('account_type') : t('saving_bank') }} :</label>
             <span class="data">{{ data.bank_name }}</span>
           </div>
           <div class="item">
-            <label>收款账户:</label>
+            <label>{{ t('saving_account') }}:</label>
             <span class="data">{{ data.bank_account }}</span>
           </div>
         </template>
@@ -121,10 +124,13 @@ function getStateIcon(state: number) {
         <span class="data">{{ timeToFormat(data.created_at) }}</span>
       </div>
       <div class="item">
-        <label>订单编号:</label>
+        <label>{{ t('order_num') }}:</label>
         <div class="data color-white">
           <span>{{ data.order_number }}</span>
-          <AppTooltip text="已成功复制地址" icon-name="uni-doc" :triggers="['click']">
+          <AppTooltip
+            :text="t('copy_addr_suc')"
+            icon-name="uni-doc" :triggers="['click']"
+          >
             <template #content>
               <BaseButton size="none" @click="application.copy(data.order_number)">
                 <BaseIcon name="uni-doc" />

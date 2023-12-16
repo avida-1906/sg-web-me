@@ -25,7 +25,7 @@ const {
   resetField: selectBankReset,
 } = useField<string>('selectBank', (value) => {
   if (!value)
-    return currentType.value === '1' ? t('choose_draw_bank') : '请选择PIX账号'
+    return currentType.value === '1' ? t('choose_draw_bank') : t('pls_select_pix')
   return ''
 })
 const {
@@ -36,7 +36,7 @@ const {
   resetField: amountReset,
 } = useField<string>('amount', (value) => {
   if (!value)
-    return '请输入金额'
+    return t('input_amount')
   else if (Number(value) === 0)
     return `${t('validate_amount')}0`
   else if (Number(value) < 0)
