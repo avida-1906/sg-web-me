@@ -153,7 +153,7 @@ else {
 
 <template>
   <section class="tg-app-tab-record">
-    <template v-if="!(isMobile && activeRecord.loading)">
+    <div v-show="!(isMobile && activeRecord.loading)">
       <div class="top">
         <BaseTab v-model="tab" :list="tabs" :center="false" @change="tabChange" />
       </div>
@@ -213,7 +213,7 @@ else {
           </BaseButton>
         </div> -->
       </div>
-    </template>
+    </div>
     <div v-if="activeRecord.loading" class="center record-loading">
       <BaseLoading />
     </div>
