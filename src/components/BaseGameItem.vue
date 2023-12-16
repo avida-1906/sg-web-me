@@ -53,7 +53,7 @@ function getThumbnailUrl(url: string) {
 onMounted(() => {
   setTimeout(() => {
     showImgTrue()
-  }, 300)
+  }, Math.ceil(Math.random() * 50 + 300))
 })
 
 const onPlayCount = ref(Math.ceil(Math.random() * 1000).toFixed())
