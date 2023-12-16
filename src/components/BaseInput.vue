@@ -73,6 +73,12 @@ function getFocus() {
   onFocus()
 }
 
+function setBlur() {
+  iTextarea.value?.blur()
+  iInput.value?.blur()
+  onBlur({ target: { value: 1 } })
+}
+
 function keyDownEnter(event: KeyboardEvent) {
   emit('downEnter', event)
 }
@@ -97,7 +103,7 @@ function catchIt() {
   getFocus()
 }
 
-defineExpose({ getFocus, setTouchTrue, setTouchFalse, iInput, isTouched })
+defineExpose({ getFocus, setTouchTrue, setTouchFalse, iInput, isTouched, setBlur })
 </script>
 
 <template>

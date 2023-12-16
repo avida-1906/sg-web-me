@@ -413,7 +413,7 @@ onUnmounted(() => {
       </div>
       <div class="app-register-check-box">
         <BaseButton
-          :loading="existLoading" class="app-register-btn" bg-style="secondary"
+          class="app-register-btn" bg-style="secondary"
           size="xl"
           @click.stop="getMemberReg"
         >
