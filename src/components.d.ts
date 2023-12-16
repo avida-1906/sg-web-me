@@ -97,6 +97,7 @@ declare module 'vue' {
     AppReportUserName: typeof import('./components/AppReportUserName.vue')['default']
     AppSafeDialog: typeof import('./components/AppSafeDialog.vue')['default']
     AppSelectCurrency: typeof import('./components/AppSelectCurrency.vue')['default']
+    AppService: typeof import('./components/AppService.vue')['default']
     AppSettingsContentItem: typeof import('./components/AppSettingsContentItem.vue')['default']
     AppSidebarBig: typeof import('./components/AppSidebarBig.vue')['default']
     AppSidebarSmall: typeof import('./components/AppSidebarSmall.vue')['default']
