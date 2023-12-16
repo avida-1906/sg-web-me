@@ -176,7 +176,10 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse, iInput, isTouched, setBlur
             <slot name="right-icon" />
           </div>
         </div>
-        <div v-show="$slots['right-button']" class="right-button" @click="onRightButton">
+        <div
+          v-show="$slots['right-button']" class="right-button"
+          @click.stop="onRightButton"
+        >
           <slot name="right-button" />
         </div>
       </div>

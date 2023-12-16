@@ -230,7 +230,6 @@ function onPopperOpen() {
     font-size: 14px;
     display: flex;
     align-items: center;
-    transition: all ease .25s;
     margin-left: var(--tg-spacing-8);
   }
 
