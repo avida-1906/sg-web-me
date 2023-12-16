@@ -67,7 +67,7 @@ function keyUpNum(event: any) {
     font-size: var(--tg-font-size-md);
     font-weight: var(--tg-font-weight-semibold);
     color: var(--tg-text-white);
-    div{
+    > div{
       height: 100%;
       width: 100%;
       display: flex;
@@ -76,6 +76,9 @@ function keyUpNum(event: any) {
       background-color: var( --tg-secondary-grey);
       text-align: center;
       cursor: pointer;
+      &:hover{
+        background-color: var(--tg-secondary-main);
+      }
     }
     .ok-3{
       grid-row-start: span 3;
