@@ -10,11 +10,19 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const router = useLocalRouter()
+const { appContentWidth } = storeToRefs(useWindowStore())
 
 const {
   runAsync: runMemberBannerList,
   data: bannerList,
 } = useRequest(ApiMemberBannerList)
+
+const mgt = computed(() => {
+  if (appContentWidth.value < 600)
+    return '0'
+  else
+    return 'var(--tg-spacing-12)'
+})
 
 function jumpToUrl(item: { type: number; url: string }) {
   /** 跳转类型 1-自定义 2-娱乐城 3-体育 4-优惠活动 5-联盟中心 */
@@ -63,7 +71,11 @@ await application.allSettled([fetchDataOrLoadImage()])
 </script>
 
 <template>
-  <div class="app-banner">
+  <div
+    class="app-banner" :style="{
+      marginTop: mgt,
+    }"
+  >
     <BaseSwipe
       :items="items"
       @click-item="jumpToUrl"
@@ -72,7 +84,4 @@ await application.allSettled([fetchDataOrLoadImage()])
 </template>
 
 <style lang="scss" scoped>
-.app-banner{
-  margin-top: var(--tg-spacing-12);
-}
 </style>

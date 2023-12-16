@@ -188,6 +188,16 @@ body {
   --tg-icon-color: var(--tg-text-lightgrey);
 }
 
+@for $i from 1 through 100 {
+  .mgt#{$i} {
+    margin-top: #{$i}px;
+  }
+  .mgb#{$i} {
+    margin-bottom: #{$i}px;
+  }
+}
+
+
 .tg-popup-parent--hidden {
   overflow: hidden;
 }
