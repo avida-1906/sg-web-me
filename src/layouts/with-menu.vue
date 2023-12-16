@@ -9,7 +9,6 @@ const { animatingMounted } = useLayoutAnimate({ aniMounted: true })
 const { appContentWidth } = storeToRefs(useWindowStore())
 const { isLogin } = storeToRefs(useAppStore())
 
-const { bool: layoutLoading, setFalse: setLFalse } = useBoolean(true)
 const { bool: isPopShow, setTrue: setPTrue, setFalse: setPFalse } = useBoolean(false)
 
 const menuData = computed<any>(() =>
@@ -41,12 +40,13 @@ function goPage(item: any, hide: any) {
   setPFalse()
 }
 
+function suspenseResolved() {
+}
+
 onMounted(() => {
-  setLFalse()
 })
 
 onUpdated(() => {
-  setLFalse()
 })
 
 watch(menuData, (val) => {
@@ -169,12 +169,14 @@ watch(route, (val) => {
                           </div>
                         </template>
                       </div>
-                      <div class="right" :class="{ loading: layoutLoading }">
-                        <div v-if="layoutLoading" class="layout-loading">
-                          <BaseLoading />
-                        </div>
+                      <div class="right">
                         <div class="content-container">
-                          <RouterView />
+                          <Suspense timeout="0" @resolve="suspenseResolved">
+                            <RouterView />
+                            <template #fallback>
+                              <AppLoading full-screen />
+                            </template>
+                          </Suspense>
                         </div>
                       </div>
                     </div>

@@ -141,7 +141,7 @@ function sendMsg() {
   setEBool(false)
   if (trimMessage.value.length && !sendLoading.value) {
     if (!isLogin.value) {
-      openNotify({ type: 'error', code: 'chat_not_login', message: '不允许此操作' })
+      openNotify({ type: 'error', code: 'chat_not_login', message: t('notify_error_forbid_operation') })
       return
     }
     const tt = new Date().getTime()
@@ -157,7 +157,7 @@ function enterPress(event: KeyboardEvent) {
   event.stopPropagation()
   if (trimMessage.value.length) {
     if (!isLogin.value) {
-      openNotify({ type: 'error', code: 'chat_not_login', message: '不允许此操作' })
+      openNotify({ type: 'error', code: 'chat_not_login', message: t('notify_error_forbid_operation') })
       return
     }
     if (isCommand.value) {
@@ -206,7 +206,7 @@ watch(message, (val) => {
         class="emoji-wrap"
       >
         <div class="emoji-header">
-          <span>表情符号</span>
+          <span>{{ t('emoji_title') }}</span>
           <div class="close" @click="setEBool(false)">
             <BaseIcon name="uni-close" />
           </div>
