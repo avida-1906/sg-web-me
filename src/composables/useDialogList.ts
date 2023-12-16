@@ -7,6 +7,6 @@ export const useDialogList = createGlobalState(() => {
 
   return {
     setDialogClose,
-    closeDialog,
+    closeDialog: closeDialog.value,
   }
 })
