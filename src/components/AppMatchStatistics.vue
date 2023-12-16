@@ -223,7 +223,6 @@ function mapHeadArea(
 }
 
 .wrapper {
-  max-width: 90%;
   position: relative;
   width: fit-content;
   .content {
