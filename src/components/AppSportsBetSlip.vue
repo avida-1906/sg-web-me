@@ -28,9 +28,9 @@ interface Props {
   /** 复式总赔率 */
   duplexOv: string
   /** 复式总投注额 */
-  duplexInputValue: number
+  duplexInputValue?: number | string
   /** 复式预计支付额 */
-  duplexTotalProfit: number
+  duplexTotalProfit?: number | string
 }
 const props = withDefaults(defineProps<Props>(), {
   index: 0,
@@ -256,7 +256,7 @@ watchEffect(() => {
   >
     <div class="header" :class="{ 'round-header': isFirst || isBetSingle }">
       <div class="fixture-name">
-        <div v-if="isLive" class="status live">
+        <div v-if="isLive && cartInfoData.result === void 0" class="status live">
           {{ t('sports_status_live') }}
         </div>
         <BaseIcon

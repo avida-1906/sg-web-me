@@ -1170,6 +1170,7 @@ raffle_ticket: 抽奖券
 in_date: 加入日期
 fresh_competition: 最新竞赛
 deal_pend: 待处理
+reject: 拒绝
 adopted: 已采纳
 ignored: 已忽略
 next_vip_amount: 距离 {vip} 还差 {amount}

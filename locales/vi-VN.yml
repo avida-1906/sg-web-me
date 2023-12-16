@@ -1417,7 +1417,7 @@ withdrawal_fee_tip: Chúng tôi sẽ khấu trừ số tiền này khỏi số d
 withdrawal_as_fee: Là phí giao dịch cho việc rút tiền của bạn
 present: Gửi
 order_label: Số
-bet_tip_amount_tip: Đã chặn thành công tổng giá trị 
+bet_tip_amount_tip: Đã chặn thành công tổng giá trị
 de: Của
 bet_more_than_balance: Số tiền đặt cược của bạn không thể lớn hơn số dư của bạn.
 order_by_alpha: theo thứ tự bảng chữ cái
@@ -1807,7 +1807,7 @@ bet_one_max: Chỉ có thể thêm cược {max} cùng lúc.
 bet_odd_change: Tỷ lệ cược đã thay đổi. Bạn phải chấp nhận thay đổi tỷ lệ cược trước
   khi đặt cược.
 bet_sup_10x: Chỉ hỗ trợ số tiền đặt cược là bội số của 10
-bet_fixed_x: Số tiền đặt cược có nhiều hơn {cố định} chữ số thập phân không được hỗ
+bet_fixed_x: Số tiền đặt cược có nhiều hơn {fixed} chữ số thập phân không được hỗ
   trợ
 failed_get_betinfo: Không thể lấy được thông tin cá cược
 view_my_bets: Xem qua đơn cược của tôi

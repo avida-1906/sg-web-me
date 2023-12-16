@@ -566,7 +566,7 @@ export interface ISportsMyBetSlipItem {
   bt: number
   /** 注单号 */
   ono: string
-  /** 注单状态 0未结算 1已结算 */
+  /** 注单状态 0未结算 1已结算 2待处理 3已拒绝(危险球取消) 4已取消 */
   os: number
   /** 0:未结算 1:赢 2:输 3:平 4:赢一半 5:输一半 6:输部分 */
   oc: number
