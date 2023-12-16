@@ -10,7 +10,6 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const router = useLocalRouter()
-const { VITE_CASINO_IMG_CLOUD_URL } = getEnv()
 
 const {
   runAsync: runMemberBannerList,
@@ -38,21 +37,6 @@ function jumpToUrl(item: { type: number; url: string }) {
   }
 }
 
-function loadImage(url: string) {
-  return new Promise((resolve, reject) => {
-    const img = new Image()
-    img.src = url
-    img.onload = () => {
-      setTimeout(() => {
-        resolve(true)
-      }, 300)
-    }
-    img.onerror = () => {
-      reject(new Error(`load image error: ${url}`))
-    }
-  })
-}
-
 const items = computed(() => {
   if (!bannerList.value)
     return []
@@ -67,8 +51,7 @@ function fetchDataOrLoadImage() {
     runMemberBannerList({
       banner_type: props.type === 'casino' ? '1' : '2',
     }).then(async () => {
-      const r = await Promise.allSettled([...items.value.map(item => loadImage(`${VITE_CASINO_IMG_CLOUD_URL}/${item.imgUrl}`))])
-      console.error('rrrrr', r)
+      await application.allSettled([...items.value.map(item => application.loadImage(item.imgUrl))])
       resolve(true)
     }).catch(() => {
       reject(new Error('fetch data error'))
