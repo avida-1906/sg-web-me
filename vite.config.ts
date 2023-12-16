@@ -123,9 +123,8 @@ export default defineConfig(({ mode }) => {
               'default', 'axios',
             ]],
             'vue-request': ['useRequest', 'usePagination', 'useLoadMore'],
-            'qs': [[
-              'default', 'qs',
-            ]],
+            'qs': [['default', 'qs']],
+            '@vueuse/integrations/useCookies': ['useCookies'],
           },
         ],
         dts: 'src/auto-imports.d.ts',

@@ -160,8 +160,8 @@
   0 4px 6px -2px #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.1)};
   --tg-text-shadow:0 1px 2px #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.12)},
   0 1px 3px #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.2)};
-  --tg-header-shadow: #0003 0 4px 6px -1px,
-  #0000001f 0 2px 4px -1px;
+  --tg-header-shadow:  0 4px 6px -1px #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.2)},
+   0 2px 4px -1px #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.122)};
   --tg-drop-shadow:0 0 5px rgba(25, 25, 25, .25);
   --tg-shadow-inset: inset 0 1px #{rgba($color: var(--tg-color-white-rgb), $alpha: 0.04)};
 

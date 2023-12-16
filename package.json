@@ -38,6 +38,7 @@
     "precompiled-mqtt": "4.3.14-beta",
     "qrcode.vue": "^3.4.1",
     "qs": "^6.11.2",
+    "universal-cookie": "^6",
     "vee-validate": "^4.11.3",
     "vue": "^3.3.4",
     "vue-demi": "^0.14.5",

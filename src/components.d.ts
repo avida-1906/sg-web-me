@@ -41,6 +41,7 @@ declare module 'vue' {
     AppChatRulesDialog: typeof import('./components/AppChatRulesDialog.vue')['default']
     AppChatUserTags: typeof import('./components/AppChatUserTags.vue')['default']
     AppContent: typeof import('./components/AppContent.vue')['default']
+    AppCookie: typeof import('./components/AppCookie.vue')['default']
     AppCopyLine: typeof import('./components/AppCopyLine.vue')['default']
     AppCurrencyIcon: typeof import('./components/AppCurrencyIcon.vue')['default']
     AppDeleteConfirmDialog: typeof import('./components/AppDeleteConfirmDialog.vue')['default']

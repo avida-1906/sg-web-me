@@ -1578,4 +1578,6 @@ open_addr: 开户网点
 transfer_amount: 转账金额
 select_deposit_amount: 请下拉选择充值金额
 pls_select_pix: 请选择PIX账号
-
+we_use_cookie: 我们使用 Cookie
+cookie_purposes: 进行功能与分析目的。
+accept: 接受
