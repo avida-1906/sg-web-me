@@ -1817,3 +1817,29 @@ export function ApiAgencyInsert(data: {
 }) {
   return httpClient.post<string>('/agency/insert', data)
 }
+
+/**
+ * 交易记录-其他-下拉选单
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=092cb9e6-c3b4-4bc0-b574-00b398629681
+ */
+export function ApiFinanceRecordOtherSelect() {
+  return httpClient.get<{
+    /** id */
+    id: string
+    /** 名称 */
+    name: string
+  }[]>('/finance/record/other/select')
+}
+
+/**
+ * 交易记录-其他-列表
+ * @see https://console-docs.apipost.cn/preview//c00b1160394a31fb?target_id=3a7be0ec-1921-462e-bc77-96a3de05502b
+ */
+export function ApiFinanceRecordOther(params?: {
+  page?: number
+  page_size?: number
+  /** 菜单id */
+  id: string
+}) {
+  return httpClient.get<IResponseList<PayInfo>>('/finance/record/other', { params })
+}

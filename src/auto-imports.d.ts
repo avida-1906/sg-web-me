@@ -23,6 +23,8 @@ declare global {
   const ApiFinanceMerchantList: typeof import('./apis/index')['ApiFinanceMerchantList']
   const ApiFinanceMethodList: typeof import('./apis/index')['ApiFinanceMethodList']
   const ApiFinanceRecordDepositCoin: typeof import('./apis/index')['ApiFinanceRecordDepositCoin']
+  const ApiFinanceRecordOther: typeof import('./apis/index')['ApiFinanceRecordOther']
+  const ApiFinanceRecordOtherSelect: typeof import('./apis/index')['ApiFinanceRecordOtherSelect']
   const ApiFinanceRecordWithdrawBank: typeof import('./apis/index')['ApiFinanceRecordWithdrawBank']
   const ApiFinanceRecordWithdrawCoin: typeof import('./apis/index')['ApiFinanceRecordWithdrawCoin']
   const ApiFinanceThirdCoinDeposit: typeof import('./apis/index')['ApiFinanceThirdCoinDeposit']
@@ -658,6 +660,8 @@ declare module 'vue' {
     readonly ApiFinanceMerchantList: UnwrapRef<typeof import('./apis/index')['ApiFinanceMerchantList']>
     readonly ApiFinanceMethodList: UnwrapRef<typeof import('./apis/index')['ApiFinanceMethodList']>
     readonly ApiFinanceRecordDepositCoin: UnwrapRef<typeof import('./apis/index')['ApiFinanceRecordDepositCoin']>
+    readonly ApiFinanceRecordOther: UnwrapRef<typeof import('./apis/index')['ApiFinanceRecordOther']>
+    readonly ApiFinanceRecordOtherSelect: UnwrapRef<typeof import('./apis/index')['ApiFinanceRecordOtherSelect']>
     readonly ApiFinanceRecordWithdrawBank: UnwrapRef<typeof import('./apis/index')['ApiFinanceRecordWithdrawBank']>
     readonly ApiFinanceRecordWithdrawCoin: UnwrapRef<typeof import('./apis/index')['ApiFinanceRecordWithdrawCoin']>
     readonly ApiFinanceThirdCoinDeposit: UnwrapRef<typeof import('./apis/index')['ApiFinanceThirdCoinDeposit']>
@@ -1283,6 +1287,8 @@ declare module '@vue/runtime-core' {
     readonly ApiFinanceMerchantList: UnwrapRef<typeof import('./apis/index')['ApiFinanceMerchantList']>
     readonly ApiFinanceMethodList: UnwrapRef<typeof import('./apis/index')['ApiFinanceMethodList']>
     readonly ApiFinanceRecordDepositCoin: UnwrapRef<typeof import('./apis/index')['ApiFinanceRecordDepositCoin']>
+    readonly ApiFinanceRecordOther: UnwrapRef<typeof import('./apis/index')['ApiFinanceRecordOther']>
+    readonly ApiFinanceRecordOtherSelect: UnwrapRef<typeof import('./apis/index')['ApiFinanceRecordOtherSelect']>
     readonly ApiFinanceRecordWithdrawBank: UnwrapRef<typeof import('./apis/index')['ApiFinanceRecordWithdrawBank']>
     readonly ApiFinanceRecordWithdrawCoin: UnwrapRef<typeof import('./apis/index')['ApiFinanceRecordWithdrawCoin']>
     readonly ApiFinanceThirdCoinDeposit: UnwrapRef<typeof import('./apis/index')['ApiFinanceThirdCoinDeposit']>
