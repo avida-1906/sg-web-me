@@ -38,8 +38,6 @@ const {
 } = useField<number>('amount', (value) => {
   if (value < sportStore.cart.multiMia || value > sportStore.cart.multiMaa)
     return t('pls_input_min_max_amount', { min: sportStore.cart.multiMia, max: sportStore.cart.multiMaa })
-    // return `请输入 ${sportStore.cart.multiMia} - ${sportStore.cart.multiMaa} 之间的金额`
-
   return ''
 })
 const { closeRightSidebar } = useRightSidebar()
@@ -600,6 +598,10 @@ function noDataGoToBet() {
   }, 50)
 }
 
+function handleKeyNum() {
+
+}
+
 watch(() => sportStore.cart.count, (val, oVal) => {
   if (val) {
     nextTick(() => {
@@ -849,9 +851,9 @@ onUnmounted(() => {
       </template>
     </div>
     <!-- 软键盘 -->
-    <div class="keyboard" style="height: 180px">
+    <!-- <div class="keyboard" style="height: 180px">
       <BaseNumericKeypad @key-num="handleKeyNum" @key-ok="handleKeyOk" />
-    </div>
+    </div> -->
   </div>
 </template>
 
