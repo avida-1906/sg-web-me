@@ -59,10 +59,23 @@ function goToBet() {
   }, 50)
 }
 
+function addRightSettleChange(v: any) {
+  if (v === settle.value)
+    fetch()
+}
+
 if (props.isFirst)
   await application.allSettled([fetch()])
 else
   fetch()
+
+onMounted(() => {
+  sportsBettingToBetslipBus.on(addRightSettleChange)
+})
+
+onUnmounted(() => {
+  sportsBettingToBetslipBus.off(addRightSettleChange)
+})
 </script>
 
 <template>

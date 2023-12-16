@@ -142,6 +142,7 @@ declare global {
   const REFRESH_AUTH_BUS: typeof import('./utils/event-bus')['REFRESH_AUTH_BUS']
   const REFRESH_BALANCE_BUS: typeof import('./utils/event-bus')['REFRESH_BALANCE_BUS']
   const REFRESH_MEMBER_BUS: typeof import('./utils/event-bus')['REFRESH_MEMBER_BUS']
+  const SPORTS_BETTING_TO_BETSLIP_BUS: typeof import('./utils/event-bus')['SPORTS_BETTING_TO_BETSLIP_BUS']
   const SPORTS_CART_TO_LIST_BUS: typeof import('./utils/event-bus')['SPORTS_CART_TO_LIST_BUS']
   const SPORTS_DATA_CHANGE_BUS: typeof import('./utils/event-bus')['SPORTS_DATA_CHANGE_BUS']
   const SPORTS_LIST_COUNTDOWN_BUS: typeof import('./utils/event-bus')['SPORTS_LIST_COUNTDOWN_BUS']
@@ -329,6 +330,7 @@ declare global {
   const split: typeof import('lodash-es')['split']
   const sportDataChange: typeof import('./utils/mqtt')['sportDataChange']
   const sportDeltaBus: typeof import('./utils/mqtt')['sportDeltaBus']
+  const sportsBettingToBetslipBus: typeof import('./utils/event-bus')['sportsBettingToBetslipBus']
   const sportsCartToListBus: typeof import('./utils/event-bus')['sportsCartToListBus']
   const sportsDataBreadcrumbs: typeof import('./utils/sports')['sportsDataBreadcrumbs']
   const sportsDataGroupByDate: typeof import('./utils/sports')['sportsDataGroupByDate']
@@ -773,6 +775,7 @@ declare module 'vue' {
     readonly REFRESH_AUTH_BUS: UnwrapRef<typeof import('./utils/event-bus')['REFRESH_AUTH_BUS']>
     readonly REFRESH_BALANCE_BUS: UnwrapRef<typeof import('./utils/event-bus')['REFRESH_BALANCE_BUS']>
     readonly REFRESH_MEMBER_BUS: UnwrapRef<typeof import('./utils/event-bus')['REFRESH_MEMBER_BUS']>
+    readonly SPORTS_BETTING_TO_BETSLIP_BUS: UnwrapRef<typeof import('./utils/event-bus')['SPORTS_BETTING_TO_BETSLIP_BUS']>
     readonly SPORTS_CART_TO_LIST_BUS: UnwrapRef<typeof import('./utils/event-bus')['SPORTS_CART_TO_LIST_BUS']>
     readonly SPORTS_DATA_CHANGE_BUS: UnwrapRef<typeof import('./utils/event-bus')['SPORTS_DATA_CHANGE_BUS']>
     readonly SPORTS_LIST_COUNTDOWN_BUS: UnwrapRef<typeof import('./utils/event-bus')['SPORTS_LIST_COUNTDOWN_BUS']>
@@ -956,6 +959,7 @@ declare module 'vue' {
     readonly split: UnwrapRef<typeof import('lodash-es')['split']>
     readonly sportDataChange: UnwrapRef<typeof import('./utils/mqtt')['sportDataChange']>
     readonly sportDeltaBus: UnwrapRef<typeof import('./utils/mqtt')['sportDeltaBus']>
+    readonly sportsBettingToBetslipBus: UnwrapRef<typeof import('./utils/event-bus')['sportsBettingToBetslipBus']>
     readonly sportsCartToListBus: UnwrapRef<typeof import('./utils/event-bus')['sportsCartToListBus']>
     readonly sportsDataBreadcrumbs: UnwrapRef<typeof import('./utils/sports')['sportsDataBreadcrumbs']>
     readonly sportsDataGroupByDate: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupByDate']>
@@ -1394,6 +1398,7 @@ declare module '@vue/runtime-core' {
     readonly REFRESH_AUTH_BUS: UnwrapRef<typeof import('./utils/event-bus')['REFRESH_AUTH_BUS']>
     readonly REFRESH_BALANCE_BUS: UnwrapRef<typeof import('./utils/event-bus')['REFRESH_BALANCE_BUS']>
     readonly REFRESH_MEMBER_BUS: UnwrapRef<typeof import('./utils/event-bus')['REFRESH_MEMBER_BUS']>
+    readonly SPORTS_BETTING_TO_BETSLIP_BUS: UnwrapRef<typeof import('./utils/event-bus')['SPORTS_BETTING_TO_BETSLIP_BUS']>
     readonly SPORTS_CART_TO_LIST_BUS: UnwrapRef<typeof import('./utils/event-bus')['SPORTS_CART_TO_LIST_BUS']>
     readonly SPORTS_DATA_CHANGE_BUS: UnwrapRef<typeof import('./utils/event-bus')['SPORTS_DATA_CHANGE_BUS']>
     readonly SPORTS_LIST_COUNTDOWN_BUS: UnwrapRef<typeof import('./utils/event-bus')['SPORTS_LIST_COUNTDOWN_BUS']>
@@ -1577,6 +1582,7 @@ declare module '@vue/runtime-core' {
     readonly split: UnwrapRef<typeof import('lodash-es')['split']>
     readonly sportDataChange: UnwrapRef<typeof import('./utils/mqtt')['sportDataChange']>
     readonly sportDeltaBus: UnwrapRef<typeof import('./utils/mqtt')['sportDeltaBus']>
+    readonly sportsBettingToBetslipBus: UnwrapRef<typeof import('./utils/event-bus')['sportsBettingToBetslipBus']>
     readonly sportsCartToListBus: UnwrapRef<typeof import('./utils/event-bus')['sportsCartToListBus']>
     readonly sportsDataBreadcrumbs: UnwrapRef<typeof import('./utils/sports')['sportsDataBreadcrumbs']>
     readonly sportsDataGroupByDate: UnwrapRef<typeof import('./utils/sports')['sportsDataGroupByDate']>

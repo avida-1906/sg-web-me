@@ -13,9 +13,15 @@ type ISportsMyBetSlipItemBi = ISportsMyBetSlipItemWithShowRe['bi'][number]
 interface Props {
   data: ISportsMyBetSlipItem
   isDialog?: boolean
+  /**
+   * @description 是否隐藏赛果
+   */
+  disableResult?: boolean
 }
 
-const props = defineProps<Props>()
+const props = withDefaults(defineProps<Props>(), {
+  disableResult: false,
+})
 
 const { t } = useI18n()
 const { currentGlobalCurrency } = storeToRefs(useAppStore())
@@ -178,7 +184,7 @@ function showDetail() {
                     <BaseIcon name="spt-live" />
                   </BaseButton> -->
                   <BaseButton
-                    v-if="!isDialog"
+                    v-if="!props.disableResult"
                     type="text"
                     size="none" @click="item.showResult = !item.showResult"
                   >
