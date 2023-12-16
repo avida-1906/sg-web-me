@@ -27,8 +27,9 @@ function to() {
   const currentPath = router.currentRoute.value.path
   if (currentPath.includes('sports'))
     router.push(`/sports/${getSportsPlatId()}`)
-  else if (currentPath.includes('casino'))
+  else
     router.push('/casino')
+
   isMobile.value && leftIsExpand.value && closeLeftSidebar()
 }
 </script>
