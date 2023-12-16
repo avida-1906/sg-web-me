@@ -683,6 +683,12 @@ export interface PayInfo {
   currency_name: EnumCurrencyKey
   /** 交易编号 */
   trans_no: string
+  /** 金额 */
+  amount: string
+  /** 种类id */
+  cash_type: string
+  /** 种类名称 */
+  cash_type_name: string
 }
 
 export type IBrandDetailTag =

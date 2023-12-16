@@ -40,14 +40,14 @@ function goPage(item: any, hide: any) {
   setPFalse()
 }
 
-function suspenseResolved() {
-}
+// function suspenseResolved() {
+// }
 
-onMounted(() => {
-})
+// onMounted(() => {
+// })
 
-onUpdated(() => {
-})
+// onUpdated(() => {
+// })
 
 watch(menuData, (val) => {
   activeMenu.value = val.filter((m: any) => m.path === route.path)[0]
@@ -171,12 +171,16 @@ watch(route, (val) => {
                       </div>
                       <div class="right">
                         <div class="content-container">
-                          <Suspense timeout="0" @resolve="suspenseResolved">
-                            <RouterView />
-                            <template #fallback>
-                              <AppLoading full-screen />
-                            </template>
-                          </Suspense>
+                          <RouterView v-slot="{ Component }">
+                            <Suspense timeout="0">
+                              <component :is="Component" :key="route.path" />
+                              <template #fallback>
+                                <div class="center dialog-loading-height">
+                                  <BaseLoading />
+                                </div>
+                              </template>
+                            </Suspense>
+                          </RouterView>
                         </div>
                       </div>
                     </div>
