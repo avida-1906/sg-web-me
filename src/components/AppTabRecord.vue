@@ -205,7 +205,9 @@ else {
         <div class="page-stack-wrap mt-24">
           <AppStack
             :pagination-data="getPage"
-            @previous="pagePrevious" @next="pageNext"
+            scroll
+            @previous="pagePrevious"
+            @next="pageNext"
           />
         </div>
         <!-- <div v-if="downloadText" class="download-btn mt-24">
