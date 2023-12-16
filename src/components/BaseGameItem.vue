@@ -23,6 +23,7 @@ const closeSearchH5 = inject('closeSearchH5', () => { })
 const { bool: isError, setTrue: setErrorTrue } = useBoolean(false)
 const { bool: thumbnailStatus, setFalse: thumbnailLoadError } = useBoolean(true)
 const { bool: showBorder, setFalse: showBorderFalse } = useBoolean(true)
+const { bool: showImg, setTrue: showImgTrue } = useBoolean(false)
 
 const isMaintained = computed(() => {
   return props.gameInfo.maintained === '2'
@@ -49,6 +50,12 @@ function getThumbnailUrl(url: string) {
   return arr.join('.')
 }
 
+onMounted(() => {
+  setTimeout(() => {
+    showImgTrue()
+  }, 300)
+})
+
 const onPlayCount = ref(Math.ceil(Math.random() * 1000).toFixed())
 </script>
 
@@ -72,7 +79,7 @@ const onPlayCount = ref(Math.ceil(Math.random() * 1000).toFixed())
         />
       </div>
       <BaseImage
-        v-if="!isError"
+        v-if="!isError && showImg"
         :url="gameInfo.img"
         :name="gameInfo.name"
         is-cloud
