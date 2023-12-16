@@ -8,7 +8,7 @@ const chatStore = useChatStore()
 const { chatRoomList, room, topic, hideChat } = storeToRefs(chatStore)
 const { closeRightSidebar } = useRightSidebar()
 const { isGreaterThanMd } = storeToRefs(useWindowStore())
-const { bool: isUp, toggle: toggleUp } = useBoolean(false)
+const { bool: isUp, setBool: setUBool } = useBoolean(false)
 
 const mqttConnectSuccessEvent = useEventBus(MQTT_CONNECT_SUCCESS_BUS)
 
@@ -43,9 +43,16 @@ function onMqttConnectSuc() {
 }
 
 function roomLabel(hide: () => void, item: any) {
-  toggleUp()
   hide()
   chooseRoom(item)
+}
+
+function popShow() {
+  setUBool(true)
+}
+
+function popHide() {
+  setUBool(false)
 }
 
 watch(hideChat, (val) => {
@@ -77,7 +84,9 @@ onUnmounted(() => {
   <section class="app-chat-header">
     <div>
       <VDropdown
-        :distance="14"
+        :distance="10"
+        @show="popShow"
+        @hide="popHide"
       >
         <div class="chat-room-choose">
           <BaseIcon :name="room.icon" />
@@ -171,7 +180,23 @@ onUnmounted(() => {
     font-weight: var(--tg-font-weight-semibold);
     gap: var(--tg-spacing-8);
     .arrow-down {
-      // transform: scale(0.8);
+      transition: none;
+      &.is-up {
+        color: white;
+        transform: rotate(180deg);
+      }
+      &::hover {
+        color: white;
+        --tg-icon-color: white;
+      }
+    }
+    &:active {
+      transform: scale(0.96);
+    }
+    &:hover {
+      .arrow-down {
+        color: white;
+      }
     }
   }
   .right-header {

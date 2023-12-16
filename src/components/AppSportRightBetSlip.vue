@@ -848,6 +848,10 @@ onUnmounted(() => {
         </template>
       </template>
     </div>
+    <!-- 软键盘 -->
+    <div class="keyboard" style="height: 180px">
+      <BaseNumericKeypad @key-num="handleKeyNum" @key-ok="handleKeyOk" />
+    </div>
   </div>
 </template>
 

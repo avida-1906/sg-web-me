@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { CurrencyCode } from '~/composables/useCurrencyData'
+
 type RewriteColumn = {
   xl?: boolean // 768-1200是否展示
   md?: boolean // <768是否展示
@@ -287,10 +289,10 @@ const getList = computed(() => {
           time: '10:47',
           bet_amount: '1234.11',
           multiplier: '2.97x',
-          net_amount: '1.2345678',
+          net_amount: '100',
           currency_id: '701',
           stealth: 1, // 隐身状态
-          bonus_amount: '25%',
+          bonus_amount: '25.00%',
         },
         {
           game_name: 'Retro Tapes',
@@ -298,9 +300,9 @@ const getList = computed(() => {
           time: '10:47',
           bet_amount: '2.111111',
           multiplier: '2.97x',
-          net_amount: '1.2345678',
-          currency_id: '701',
-          bonus_amount: '12%',
+          net_amount: '200',
+          currency_id: '702',
+          bonus_amount: '12.00%',
         },
         {
           game_name: 'Jewel Bonanza Enhanced RTP',
@@ -308,9 +310,9 @@ const getList = computed(() => {
           time: '10:47',
           bet_amount: '1.111111',
           multiplier: '2.97x',
-          net_amount: '1.2345678',
-          currency_id: '701',
-          bonus_amount: '8%',
+          net_amount: '10',
+          currency_id: '703',
+          bonus_amount: '8.00%',
         },
         {
           game_name: 'Mines',
@@ -318,9 +320,9 @@ const getList = computed(() => {
           time: '10:47',
           bet_amount: '1.111111',
           multiplier: '2.97x',
-          net_amount: '1.2345678',
-          currency_id: '701',
-          bonus_amount: '6%',
+          net_amount: '20',
+          currency_id: '706',
+          bonus_amount: '6.00%',
         },
       ]
   }
@@ -341,6 +343,11 @@ function changeHidden() {
     setIsHiddenFalse()
   else
     setIsHiddenTrue()
+}
+function getPrefixAmount(currency_id: CurrencyCode, amount: string) {
+  const name = getCurrencyConfigByCode(currency_id)?.name
+  application.isVirtualCurrency(name)
+  return (application.isVirtualCurrency(name) ? '' : currencyConfig[name].prefix) + amount
 }
 
 watch(() => props.tabVal, (newValue) => {
@@ -456,14 +463,14 @@ onUnmounted(() => {
         <div style="display: inline-block;">
           <VTooltip placement="top" :triggers="['click', 'hover']">
             <AppAmount
-              :amount="record.bet_amount"
+              :amount="getPrefixAmount(record.currency_id, record.net_amount)"
               :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
               style="--tg-app-amount-font-weight:var(--tg-font-weight-normal);"
             />
             <template #popper>
               <div class="tiny-menu-item-title">
                 <AppAmount
-                  :amount="record.bet_amount"
+                  :amount="getPrefixAmount(record.currency_id, record.net_amount)"
                   :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
                   style="--tg-app-amount-font-weight:var(--tg-font-weight-normal);"
                 />
@@ -480,7 +487,7 @@ onUnmounted(() => {
           }"
         >
           <AppAmount
-            :amount="record.net_amount"
+            :amount="getPrefixAmount(record.currency_id, record.net_amount)"
             :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
             style="--tg-app-amount-font-weight:var(--tg-font-weight-normal);"
           />
@@ -493,7 +500,7 @@ onUnmounted(() => {
           </div>
           <AppAmount
             v-else
-            :amount="record.net_amount"
+            :amount="getPrefixAmount(record.currency_id, record.net_amount)"
             :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
             style="--tg-app-amount-font-weight:var(--tg-font-weight-normal);"
           />
