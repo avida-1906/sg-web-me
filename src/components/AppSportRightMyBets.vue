@@ -59,6 +59,7 @@ function settleChange() {
               v-for="item in sportBetList"
               :key="item.ono"
               :data="item"
+              disable-result
             />
           </div>
           <div v-else class="center h-min-100">
