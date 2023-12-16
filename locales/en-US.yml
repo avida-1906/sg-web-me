@@ -1784,7 +1784,7 @@ transaction_withdraw: Withdraw transactions
 today: Today
 last_days_mid: Last {delta} days
 one_receive: Get it with one click
-'on': At
+on: At
 add_one_bet: Add one bet to my betting slip
 copied: Copied successfully
 footer_desc: "{site} is owned and operated by Medium Rare N.V., registration number:
