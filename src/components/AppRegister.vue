@@ -29,7 +29,6 @@ const steps = ref(1)
 const code = ref('')
 const birthdayInputRef = ref()
 const birthday = ref('')
-const errorTip = ref()
 
 const {
   value: password,
@@ -55,36 +54,23 @@ const {
 } = useField<string>('email', (value) => {
   const lastAtIdx = value ? value.lastIndexOf('@') : -1
   const lastDotIdx = value ? value.lastIndexOf('.') : -1
-  if (!value) {
-    errorTip.value = ''
+  if (!value)
     return '电子邮件域不受支持'
-  }
 
-  else if (!value.includes('@')) {
-    errorTip.value = `请在电子邮件地址中包括“@”。“${value}”中缺少“@”`
+  else if (!value.includes('@'))
     return ['请在您的电邮地址中加入 “@” 符号']
-  }
 
-  else if (!value.includes('.')) {
-    errorTip.value = '请在您的电邮地址中加入 “.” 符号'
+  else if (!value.includes('.'))
     return '请在您的电邮地址中加入 “.” 符号'
-  }
 
-  else if (lastDotIdx === value.length - 1) {
-    errorTip.value = '电子邮件域不受支持'
+  else if (lastDotIdx === value.length - 1)
     return '电子邮件域不受支持'
-  }
 
-  else if (value === password.value) {
+  else if (value === password.value)
     return '您的电邮地址和密码不能相同'
-  }
 
-  else if (!emailReg.test(value)) {
-    errorTip.value = '请输入有效的电邮地址'
+  else if (!emailReg.test(value))
     return '请输入有效的电邮地址'
-  }
-
-  errorTip.value = ''
 
   // 请在您的电邮地址中加入 “@” 符号
   // 请在您的电邮地址中加入 “.” 符号

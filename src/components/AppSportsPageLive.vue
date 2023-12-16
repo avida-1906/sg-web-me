@@ -155,15 +155,15 @@ function initData() {
     const t = setInterval(() => {
       a++
       if (currentLiveNav.value !== -1) {
+        clearInterval(t)
         runAsync(params.value).finally(() => {
           startLive()
           resolve(true)
         })
-        clearInterval(t)
       }
-      if (a > 300) {
-        resolve(true)
+      else if (a > 300) {
         clearInterval(t)
+        resolve(true)
       }
     }, 50)
   })

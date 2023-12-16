@@ -1784,57 +1784,75 @@ safe_pwd_error: O formato da senha de pagamento está errado
 save_to_vault: Deposite no cofre
 draw_vault: Retirada do cofre
 vault_info: Saiba mais sobre cofres
-progress_level: 进展程度
-send_currency_bonus: 支持人员将按照您所选的货币发送奖金
-turn_on_rebate: 启用返水功能
-vip_tg_right: VIP Telegram 频道访问权
-week_monthly_bonus_up: 周度和月度奖金增加
-vip_send_currency_bonus: VIP 服务代表将按照您所选的货币发送奖金
-day_week_bonus_up: 每日和周度奖金增加
-special_promo: 专属定制福利
-vip_up_tip: 您的进度是通过您在娱乐城和体育博彩中的总投注额累积起来的。只要您的级别上升，就表示能获得更大的奖励和独家 VIP 待遇。
-vip_up_tip_2: 所有已结算的体育投注将回报加快 3 倍的进展速度。结算为无效的赌注并不包括在内。
-learn_more_vip: 了解更多有关成为 {site} VIP 的消息
-index_title_prefix: '{site}：加密货币赌场和体育投注'
-index_title_suffix: 在线 BTC 赌场
-btc_sport_title: 加密货币与比特币在线体育博彩
-affiliate_activity: 联盟活动
-affiliate_bonus: 联盟佣金
-affiliate_overview: 联盟计划概述
-affiliate_refer_user: 联盟计划推荐用户
-affiliate_plan: 联盟保留计划
-hot_casino_game: 热门赌场游戏
-btc_casino_title: 在线加密货币与比特币赌场
-casino_game: 赌场游戏
-recent_casino_game: 近期赌场游戏记录
-token_set: API 令牌设置
-set_general: 设置常规
-login_pwd: 登录密码
-account_session: 账户会话
-check_account: 验证账户
-transaction_archive: 交易档案
-transaction_bet: 投注交易
-transaction_deposit: 存款交易
-transaction_other: 其他交易
-transaction_withdraw: 提款交易
-today: 今日
-last_days_mid: 近{delta}日
-one_receive: 一键领取
-on: 于
-add_one_bet: 把以上 1 项投注 加入我的投注单
-copied: 复制成功
-footer_desc: '{site} 由 Medium Rare N.V. 所属和经营，注册编号： 145353，注册地址：Korporaalweg 10,Willemstad, Curaçao。请通过 {email} 与我们联系。 支付代理公司是 Medium Rare Limited，地址于 7-9 Riga Feraiou, LIZANTIA COURT, Office 310, Agioi Omologites,1087 Nicosia,Cyprus 以及注册号：HE 410775 {site} 由库拉索政府授权和监管，并根据颁发给 Antillephone 的 8048/JAZ 号许可证运营。{site} 已通过所有合规性审查，并获得合法授权，可进行所有机会与投注游戏的游戏操作。'
-order: 订单
-plat_not_sup_currency: 该场馆暂不支持您所选择的币种
-has_stop_bet: 您有暂停的投注项
-cant_form_multiple: 同一场赛事的多个投注项不能组合为复式投注
-no_sup_multiple: 您有不支持复式投注的投注项
-bet_one_max: 同时最多只能添加 {max} 个投注项。
-bet_odd_change: 赔率已变更，您需先接受赔率更改方可进行投注
-bet_sup_10x: 只支持10的整数倍的投注金额
-bet_fixed_x: 不支持小数位超过{fixed}位的投注金额
-failed_get_betinfo: 获取投注信息失败
-view_my_bets: 查看我的投注
-closed: 已关闭
-empty_unsettle_bet: 暂无未结算的赌注
-empty_settle_bet: 暂无已结算的赌注
+progress_level: Progresso
+send_currency_bonus: Agentes de apoio enviarão bônus na moeda de sua escolha
+turn_on_rebate: Ativar desconto
+vip_tg_right: Acesso ao canal VIP no Telegram
+week_monthly_bonus_up: Aumentos de bônus semanais e mensais
+vip_send_currency_bonus: Os representantes de apoio VIP enviarão bônus na moeda de
+  sua escolha
+day_week_bonus_up: Aumentos de bônus diários e semanais
+special_promo: Benefícios exclusivos
+vip_up_tip: Seu progresso é acumulado através do total de apostas no Cassino e nas
+  Apostas Esportivas. À medida que sobe de nível, você ganha acesso a recompensas
+  maiores e tratamento VIP exclusivo.
+vip_up_tip_2: Todas as apostas desportivas liquidadas serão recompensadas com uma
+  progressão 3x mais rápida. As apostas que forem consideradas nulas não serão incluídas.
+learn_more_vip: Saiba mais sobre como tornar-se {site} VIP
+index_title_prefix: "{site}: Cassino em criptomoeda e apostas esportivas"
+index_title_suffix: Cassino online em BTC
+btc_sport_title: Apostas esportivas online em criptomoeda e Bitcoin
+affiliate_activity: Atividade de afiliados
+affiliate_bonus: Comissão de afiliados
+affiliate_overview: Visão geral de afiliados
+affiliate_refer_user: Programa de afiliados para recomendação de usuários
+affiliate_plan: Programa de retenção de afiliados
+hot_casino_game: Jogos de Cassino Populares
+btc_casino_title: Cassinos Online de Criptomoedas e Bitcoin
+casino_game: Jogos de Cassino
+recent_casino_game: Jogos de Cassino Recentes
+token_set: Configurações de token de API
+set_general: Configurações Gerais
+login_pwd: Senha de login
+account_session: Sessão da conta
+check_account: Verificar Conta
+transaction_archive: Arquivo de transações
+transaction_bet: Transações de apostas
+transaction_deposit: Transações de depósito
+transaction_other: Outras transações
+transaction_withdraw: Transações de saque
+today: Hoje
+last_days_mid: Últimos {delta} dias
+one_receive: Obtenha com um clique
+on: 'No'
+add_one_bet: Adicione uma aposta no meu boletim de apostas
+copied: Copiado com sucesso
+footer_desc: "{site} pertence e é operado pela Medium Rare N.V., número de registro:
+  145353, endereço registrado: Korporaalweg 10, Willemstad, Curaçao. Entre em contato
+  conosco em {email}. A empresa agente de pagamento é a Medium Rare Limited com endereço
+  em 7-9 Riga Feraiou, LIZANTIA COURT, Office 310, Agioi Omologites, 1087 Nicosia,
+  Chipre e número de registro: HE 410775 {site} é autorizada e regulamentada pelo
+  Governo de Curaçao e emitida para operar sob a licença número 8048/JAZ concedida
+  à Antillephone. {site} foi aprovado em todas as análises de conformidade e está
+  legalmente autorizado a conduzir todas as operações de jogos de azar e apostas."
+order: Pedido
+plat_not_sup_currency: Este local não suporta a moeda que você selecionou
+has_stop_bet: Você tem uma aposta suspensa
+cant_form_multiple: Apostas múltiplas no mesmo evento não podem ser combinadas em
+  apostas múltiplas
+no_sup_multiple: Você tem apostas que não suportam apostas múltiplas
+bet_one_max: Somente {max} apostas podem ser adicionadas ao mesmo tempo
+bet_odd_change: As probabilidades mudaram, você deve aceitar as mudanças antes de
+  fazer apostas
+bet_sup_10x: Os valores de apostas devem ser múltiplos de 10
+bet_fixed_x: Valores de apostas acima de {fixed} casas decimais não são suportados
+failed_get_betinfo: Falha ao obter informação de apostas
+view_my_bets: Visualizar minhas apostas
+closed: Fechado
+empty_unsettle_bet: Não há apostas não liquidadas ainda
+empty_settle_bet: Não há apostas liquidadas ainda
+empty_casino_bet: Não há apostas de casino ainda
+vip_top: Você atingiu o nível máximo VIP
+wait_upgrade: 'Aguardando atualização '
+upgraded: Atualizado
+game_water_experience: Experiência

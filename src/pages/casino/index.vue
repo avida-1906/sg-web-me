@@ -105,7 +105,30 @@ const onShowMore = function () {
     btnText.value = t('view_more_2')
 }
 
-await application.allSettled([casinoStore.runAsyncGameLobby(), runMemberNoticeAllList()])
+// 统一加载tab中的网络icon
+function loadIcon() {
+  return new Promise((resolve) => {
+    let a = 0
+    const t = setInterval(() => {
+      a++
+      if (casinoNav.value.length > 0) {
+        clearInterval(t)
+        const arr = casinoNav.value.map((a) => {
+          return application.loadImage(a.icon)
+        })
+        Promise.allSettled(arr).then((result) => {
+          resolve(result)
+        })
+      }
+      else if (a > 300) {
+        clearInterval(t)
+        resolve(true)
+      }
+    }, 50)
+  })
+}
+
+await application.allSettled([casinoStore.runAsyncGameLobby(), runMemberNoticeAllList(), loadIcon()])
 </script>
 
 <template>
