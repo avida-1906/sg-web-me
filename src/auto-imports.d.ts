@@ -186,6 +186,7 @@ declare global {
   const axios: typeof import('axios')['default']
   const checkTs: typeof import('./utils/time')['checkTs']
   const cloneDeep: typeof import('lodash-es')['cloneDeep']
+  const closeDialogCurrent: typeof import('./composables/useDialog')['closeDialogCurrent']
   const computed: typeof import('vue')['computed']
   const computedAsync: typeof import('@vueuse/core')['computedAsync']
   const computedEager: typeof import('@vueuse/core')['computedEager']
@@ -444,6 +445,7 @@ declare global {
   const useDialogAgentGrade: typeof import('./composables/useDialogAgentGrade')['useDialogAgentGrade']
   const useDialogBetSlip: typeof import('./composables/useDialogBetSlip')['useDialogBetSlip']
   const useDialogDepositDetail: typeof import('./composables/useDialogDepositDetail')['useDialogDepositDetail']
+  const useDialogList: typeof import('./composables/useDialogList')['useDialogList']
   const useDialogMessage: typeof import('./composables/useDialogMessage')['useDialogMessage']
   const useDialogNotice: typeof import('./composables/useDialogNotice')['useDialogNotice']
   const useDialogReceiveBonus: typeof import('./composables/useDialogReceiveBonus')['useDialogReceiveBonus']
@@ -1077,6 +1079,7 @@ declare module 'vue' {
     readonly useDialogAgentGrade: UnwrapRef<typeof import('./composables/useDialogAgentGrade')['useDialogAgentGrade']>
     readonly useDialogBetSlip: UnwrapRef<typeof import('./composables/useDialogBetSlip')['useDialogBetSlip']>
     readonly useDialogDepositDetail: UnwrapRef<typeof import('./composables/useDialogDepositDetail')['useDialogDepositDetail']>
+    readonly useDialogList: UnwrapRef<typeof import('./composables/useDialogList')['useDialogList']>
     readonly useDialogMessage: UnwrapRef<typeof import('./composables/useDialogMessage')['useDialogMessage']>
     readonly useDialogNotice: UnwrapRef<typeof import('./composables/useDialogNotice')['useDialogNotice']>
     readonly useDialogReceiveBonus: UnwrapRef<typeof import('./composables/useDialogReceiveBonus')['useDialogReceiveBonus']>
@@ -1704,6 +1707,7 @@ declare module '@vue/runtime-core' {
     readonly useDialogAgentGrade: UnwrapRef<typeof import('./composables/useDialogAgentGrade')['useDialogAgentGrade']>
     readonly useDialogBetSlip: UnwrapRef<typeof import('./composables/useDialogBetSlip')['useDialogBetSlip']>
     readonly useDialogDepositDetail: UnwrapRef<typeof import('./composables/useDialogDepositDetail')['useDialogDepositDetail']>
+    readonly useDialogList: UnwrapRef<typeof import('./composables/useDialogList')['useDialogList']>
     readonly useDialogMessage: UnwrapRef<typeof import('./composables/useDialogMessage')['useDialogMessage']>
     readonly useDialogNotice: UnwrapRef<typeof import('./composables/useDialogNotice')['useDialogNotice']>
     readonly useDialogReceiveBonus: UnwrapRef<typeof import('./composables/useDialogReceiveBonus')['useDialogReceiveBonus']>
