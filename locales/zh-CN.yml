@@ -1170,7 +1170,6 @@ raffle_ticket: 抽奖券
 in_date: 加入日期
 fresh_competition: 最新竞赛
 deal_pend: 待处理
-reject: 拒绝
 adopted: 已采纳
 ignored: 已忽略
 next_vip_amount: 距离 {vip} 还差 {amount}
@@ -1333,7 +1332,6 @@ order_by_alpha: 按字母顺序排列
 sport_in_coming: 滚球与即将开赛的盘口
 champion_bet: 冠军投注
 empty_cap: 暂无可用盘口
-empty_fav_event: 暂无收藏赛事
 for_example: 举例说明如下
 direct_team: 直属团队
 other_team: 其他团队
@@ -1563,7 +1561,8 @@ casino_intro_19: 随着成千上万的忠实玩家每小时进行的数百万笔
 get_email_code: 获取验证码
 re_get: 重新获取
 footer_description: '{name} 由 Medium Rare N.V. 所属和经营，注册编号： 145353，注册地址： Korporaalweg 10, Willemstad, Curaçao。请通过 {email} 与我们联系。支付代理公司是 Medium Rare Limited，地址于 7-9 Riga Feraiou, LIZANTIA COURT, Office 310, Agioi Omologites, 1087 Nicosia, Cyprus 以及注册号：HE 410775'
-
+empty_fav_event: 暂无收藏赛事
+reject: 拒绝
 
 
 
