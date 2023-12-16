@@ -25,10 +25,11 @@ const {
   width: windowWidth,
   widthBoundarySm,
 } = storeToRefs(windowStore)
-const { animatingSuspense, getSuspenseStatus } = useLayoutAnimate({ aniSuspense: true })
+const { getSuspenseStatus } = useLayoutAnimate({ aniSuspense: true })
 const route = useRoute()
 const sportsNotify = new SportsNotify(socketClient)
 const { mqttIsConnected } = storeToRefs(useAppStore())
+const { serviceState } = useService()
 
 // 内容区宽度
 const homeContainerRef = ref<HTMLElement | null>(null)
@@ -226,6 +227,10 @@ onErrorCaptured((err, instance, info) => {
       </div>
     </Transition>
     <AppFooterbar v-show="!isGreaterThanSm" />
+
+    <Teleport to="body">
+      <AppService v-model="serviceState" />
+    </Teleport>
   </main>
 </template>
 
