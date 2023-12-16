@@ -43,6 +43,9 @@ const customStyle = computed(() => {
 })
 
 const serviceUrl = computed(() => {
+  if (!brandPcDetail.value)
+    return ''
+
   const detail = brandPcDetail.value.find((item: any) => item.state === true)
   return detail.url || ''
 })
@@ -63,8 +66,13 @@ function closeService() {
       <BaseIcon name="uni-close-white" />
     </span>
     <iframe
+      v-if="serviceUrl"
       :src="serviceUrl"
-      frameborder="0"
+      allowfullscreen
+      name="intercom-messenger-frame"
+      title="Intercom live chat"
+      data-intercom-frame="true"
+      role="dialog"
       width="100%"
       height="100%"
     />
@@ -90,10 +98,10 @@ function closeService() {
   pointer-events: all;
   background-color: var(--tg-text-white);
   &.none {
-    width: 0;
-    height: 0;
-    opacity: 0;
-    transform: scale(0);
+    width: 0!important;
+    height: 0!important;
+    opacity: 0!important;
+    transform: scale(0)!important;
   }
 }
 
