@@ -232,10 +232,10 @@ watch(() => props.columns, () => {
         margin-top: 24.6vh;
       }
       .m-tr:nth-child(odd){
-        background: var(--tg-table-odd-background);
+        background: var(--tg-table-even-background);
       }
       .m-tr:nth-child(even){
-        background: var(--tg-table-even-background);
+        background: var(--tg-table-odd-background);
       }
     }
 
