@@ -5,7 +5,8 @@ interface Props {
   }
 }
 const props = withDefaults(defineProps<Props>(), {})
-// const closeDialog = inject('closeDialog', () => { })
+const closeDialog = inject('closeDialog', () => { })
+const { openService } = useService()
 
 const { t } = useI18n()
 
@@ -58,6 +59,10 @@ function getStateIcon(state: number) {
     case 6: return 'uni-record-cancel'
     default: return '--'
   }
+}
+function onlineHelp() {
+  closeDialog()
+  openService()
 }
 </script>
 
@@ -143,6 +148,7 @@ function getStateIcon(state: number) {
     <BaseButton
       size="md"
       class="help-btn"
+      @click="onlineHelp"
     >
       {{ $t('need_online_service') }}
     </BaseButton>
