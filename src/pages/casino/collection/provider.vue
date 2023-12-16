@@ -26,6 +26,7 @@ function handleItemClick(item: any) {
             <BaseImage
               style="height: 100%;width: auto;"
               url="/png/casino/group-banner-default.png"
+              loading="eager"
             />
           </div>
         </div>

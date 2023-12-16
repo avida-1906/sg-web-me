@@ -113,6 +113,7 @@ onMounted(() => {
                 :is-cloud="!isRec"
                 style="height: 100%;width: auto;"
                 :url="bannerBg"
+                loading="eager"
               />
             </div>
           </div>

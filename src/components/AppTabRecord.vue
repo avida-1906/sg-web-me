@@ -161,7 +161,8 @@ else {
         <div v-if="getList.length" class="record-box">
           <div
             v-for="item of getList" :key="item.order_number"
-            class="center record-item cursor-pointer"
+            class="center record-item"
+            :class="[isOther ? '' : 'cursor-pointer']"
             @click="(!isOther) && openDepositDetailDialog(item)"
           >
             <div v-if="!isOther" class="center item-left">

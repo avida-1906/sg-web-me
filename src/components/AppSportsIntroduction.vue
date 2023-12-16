@@ -304,7 +304,7 @@ const onShowMore = function () {
 
   h2 {
     color: var(--tg-text-white);
-    font-size: 20px;
+    font-size: var(--tg-font-size-lg);
     margin-bottom: var(--tg-spacing-8);
     font-weight: var(--tg-font-weight-semibold);
     line-height: 1.3;

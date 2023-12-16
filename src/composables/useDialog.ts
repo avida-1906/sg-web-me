@@ -19,6 +19,7 @@ export function useDialog({
   default:
   defaultSlot, maxWidth, showButtons, transparent, onCancel, onConfirm, onDialogClose,
 }: DialogOptions) {
+  const { setDialogClose } = useDialogList()
   const app = ref()
   const div = ref()
   const openDialog = (params?: any) => {
@@ -49,6 +50,7 @@ export function useDialog({
     }))
     install(app.value)
     app.value.mount(div.value)
+    setDialogClose(closeDialog)
   }
 
   function closeDialog() {
