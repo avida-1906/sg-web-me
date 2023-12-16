@@ -115,7 +115,7 @@ await application.allSettled([casinoStore.runAsyncGameLobby(), runMemberNoticeAl
     <div v-if="!isMobile" class="mt-24">
       <AppGameSearch game-type="1" />
     </div>
-    <div class="mt-24">
+    <div class="mgt12">
       <BaseTab
         v-model="tab"
         :list="casinoNav"
