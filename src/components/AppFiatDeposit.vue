@@ -51,7 +51,7 @@ const {
   resetField: depositNameReset,
 } = useField<string>('depositName', (value) => {
   if (!value)
-    return '请输入存款人姓名'
+    return t('pls_enter_savor_name')
   return ''
 })
 const {
@@ -312,14 +312,16 @@ await application.allSettled([awaitHandle()])
           <div class="bank-second">
             <div>
               <p class="second-title">
-                收款人姓名
+                {{ t('savor_name') }}
               </p>
               <p
                 class="copy-row"
                 @click="toCopy(paymentDepositBankInfo?.bankcard.open_name ?? '')"
               >
                 <span>{{ paymentDepositBankInfo?.bankcard.open_name }}</span>
-                <AppTooltip text="已成功复制地址" icon-name="uni-doc" :triggers="['click']" />
+                <AppTooltip
+                  :text="t('copy_addr_suc')" icon-name="uni-doc" :triggers="['click']"
+                />
               </p>
             </div>
             <p
@@ -329,7 +331,9 @@ await application.allSettled([awaitHandle()])
               <span>{{
                 formatBankAccount(paymentDepositBankInfo?.bankcard.bank_account ?? '')
               }}</span>
-              <AppTooltip text="已成功复制地址" icon-name="uni-doc" :triggers="['click']" />
+              <AppTooltip
+                :text="t('copy_addr_suc')" icon-name="uni-doc" :triggers="['click']"
+              />
             </p>
             <p class="copy-row">
               <span class="center" style="gap: 8px;">
@@ -342,17 +346,23 @@ await application.allSettled([awaitHandle()])
               class="copy-row"
               @click="toCopy(paymentDepositBankInfo?.bankcard.bank_area_cpf ?? '')"
             >
-              <span>开户网点：{{ paymentDepositBankInfo?.bankcard.bank_area_cpf }}</span>
-              <AppTooltip text="已成功复制地址" icon-name="uni-doc" :triggers="['click']" />
+              <span>
+                {{ t('open_addr') }}：{{ paymentDepositBankInfo?.bankcard.bank_area_cpf }}
+              </span>
+              <AppTooltip
+                :text="t('copy_addr_suc')" icon-name="uni-doc" :triggers="['click']"
+              />
             </p>
             <div>
               <p class="copy-row" @click="toCopy(paymentDepositBankInfo?.amount ?? '')">
-                <span>转账金额：{{
+                <span>{{ t('transfer_amount') }}：{{
                   `${paymentDepositBankInfo?.amount} ${activeCurrency.prefix}` }}</span>
-                <AppTooltip text="已成功复制地址" icon-name="uni-doc" :triggers="['click']" />
+                <AppTooltip
+                  :text="t('copy_addr_suc')" icon-name="uni-doc" :triggers="['click']"
+                />
               </p>
               <p class="second-tips">
-                转账金额务必与订单金额一致
+                {{ t('transfer_amount_equal_order') }}
               </p>
             </div>
             <div class="second-btns">
@@ -424,8 +434,8 @@ await application.allSettled([awaitHandle()])
             </BaseLabel>
             <BaseLabel
               v-if="isPaymentDepositBank"
-              label="存款人姓名:"
-              label-content="为及时到账，请务必输入正确的存款人姓名"
+              :label="`${t('deposit_name')}:`"
+              :label-content="t('deposit_name_tip')"
             >
               <BaseInput v-model="depositName" :msg="depositNameError" />
             </BaseLabel>
@@ -455,7 +465,7 @@ await application.allSettled([awaitHandle()])
                   small
                 />
                 <div v-if="!amount" class="placeholder-text">
-                  请下拉选择充值金额
+                  {{ t('select_deposit_amount') }}
                 </div>
               </div>
             </BaseLabel>

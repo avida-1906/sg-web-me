@@ -1563,6 +1563,19 @@ re_get: 重新获取
 footer_description: '{name} 由 Medium Rare N.V. 所属和经营，注册编号： 145353，注册地址： Korporaalweg 10, Willemstad, Curaçao。请通过 {email} 与我们联系。支付代理公司是 Medium Rare Limited，地址于 7-9 Riga Feraiou, LIZANTIA COURT, Office 310, Agioi Omologites, 1087 Nicosia, Cyprus 以及注册号：HE 410775'
 empty_fav_event: 暂无收藏赛事
 reject: 拒绝
-
-
+emoji_title: 表情符号
+failure: 失败
+confirmed: 已确认
+saving_account: 收款账户
+deal_contract: 交易协议
+account_type: 账户类型
+saving_bank: 收款银行
+order_num: 订单编号
+copy_addr_suc: 已成功复制地址
+pls_enter_savor_name: 请输入存款人姓名
+savor_name: 收款人姓名
+open_addr: 开户网点
+transfer_amount: 转账金额
+select_deposit_amount: 请下拉选择充值金额
+pls_select_pix: 请选择PIX账号
 
