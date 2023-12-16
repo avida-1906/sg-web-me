@@ -319,7 +319,7 @@ onBeforeUnmount(() => {
         <div>{{ $t('promotion_tutorial_example_desc') }}:</div>
       </div>
       <div class="p">
-        <div class="label">
+        <div class="title">
           1、{{ $t('direct_team') }}:
         </div>
         <div>{{ $t('promotion_tutorial_direct_team_1') }}</div>
@@ -327,7 +327,7 @@ onBeforeUnmount(() => {
         <div>{{ $t('promotion_tutorial_direct_team_3') }}</div>
       </div>
       <div class="p">
-        <div class="label">
+        <div class="title">
           2、{{ $t('other_team') }}:
         </div>
         <div>{{ $t('promotion_tutorial_other_team_1') }}</div>
@@ -335,7 +335,7 @@ onBeforeUnmount(() => {
         <div>{{ $t('promotion_tutorial_other_team_3') }}</div>
       </div>
       <div class="p">
-        <div class="label">
+        <div class="title">
           3、{{ $t('summary') }}:
         </div>
         <div>{{ $t('promotion_tutorial_summary_1') }}</div>
@@ -506,24 +506,29 @@ onBeforeUnmount(() => {
 .des {
   display: flex;
   flex-direction: column;
-  gap: var(--tg-spacing-18);
+  gap: var(--tg-spacing-20);
   font-weight: var(--tg-font-weight-normal);
-  color: var(--tg-text-grey-lighter);
+  color: var(--tg-text-lightgrey);
+  font-size: var(--tg-font-size-base);
   margin-top: -15px;
 
   .title {
     font-weight: var(--tg-font-weight-semibold);
     color: var(--tg-text-white);
-    font-size: var(--tg-font-size-default);
-  }
-
-  .label {
-    color: var(--tg-text-white);
+    font-size: var(--tg-font-size-lg);
+    margin-bottom: var(--tg-spacing-8);
   }
 
   .p {
     div {
       display: block;
+    }
+  }
+}
+@media only screen and (min-width:1280px) {
+  .des{
+    .title{
+      font-size: var(--tg-font-size-xl);
     }
   }
 }
