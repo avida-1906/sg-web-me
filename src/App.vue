@@ -41,7 +41,6 @@ onMounted(() => {
 
 <template>
   <RouterView @vue:updated="handleUpdated" />
-  <AppCookie />
 </template>
 
 <style scoped lang="scss">

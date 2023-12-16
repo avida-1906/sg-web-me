@@ -231,6 +231,7 @@ onErrorCaptured((err, instance, info) => {
     <Teleport to="body">
       <AppService v-model="serviceState" />
     </Teleport>
+    <AppCookie />
   </main>
 </template>
 
