@@ -302,6 +302,11 @@ export function formatTitleData(data: any) {
  * 滚动内容区域到顶部
  */
 export function scrollMainContentToTop() {
-  const dom = document.getElementById('main-content-scrollable')
-  dom && dom.scrollTo({ top: 0 })
+  if (window.innerWidth <= 768) {
+    window.scrollTo({ top: 0 })
+  }
+  else {
+    const dom = document.getElementById('main-content-scrollable')
+    dom && dom.scrollTo({ top: 0 })
+  }
 }
