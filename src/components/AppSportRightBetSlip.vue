@@ -42,7 +42,8 @@ const {
 })
 const { closeRightSidebar } = useRightSidebar()
 const { openRegisterDialog } = useRegisterDialog()
-const { isMobile, windowHeight } = storeToRefs(useWindowStore())
+const { isMobile } = storeToRefs(useWindowStore())
+const { bool: keyboardBool, setBool: setKeyBoardBool } = useBoolean(false)
 
 const {
   runAsync: runGetSportPlaceBetInfo,
@@ -86,6 +87,9 @@ const { selected: betOrderFilterValue, list: betOrderFilterData } = useSelect([
   { label: t('sports_accept_higher_odds'), value: EnumOddsChange.acceptHigherOdds },
   { label: t('sports_accept_none_odds'), value: EnumOddsChange.notAcceptAnyOddsChange },
 ])
+
+let setAmount = (_value: number) => {}
+let deleteAmount = () => {}
 
 /** 单式投注 */
 const isBetSingle = computed(
@@ -304,12 +308,11 @@ const duplexTotalProfit = computed(() => {
   return mul(_duplexOv, val)
 })
 
-/** 是否显示当前页面footer */
-const isShowFooter = computed(() => {
-  if (windowHeight.value < 500 && isMobile.value)
-    return false
+const isShowH5Keyboard = computed(() => {
+  if (isMobile.value && keyboardBool.value)
+    return true
 
-  return true
+  return false
 })
 
 /**
@@ -566,6 +569,9 @@ function removeListToCartEvent() {
 }
 
 function firstInputFocus() {
+  if (isMobile.value)
+    return
+
   if (chatScrollContent.value && chatScrollContent.value?.querySelector('input'))
     chatScrollContent.value?.querySelector('input')?.focus()
 }
@@ -598,8 +604,29 @@ function noDataGoToBet() {
   }, 50)
 }
 
-function handleKeyNum() {
+function handleKeyNum(v: number) {
+  setAmount(v)
+}
 
+function handleKeyOk() {
+  closeKeyboard()
+}
+
+function handleDelete() {
+  deleteAmount()
+}
+
+function openKeyboard(
+  _setAmount: (value: number) => void,
+  _deleteAmount: () => void,
+) {
+  setKeyBoardBool(true)
+  setAmount = _setAmount
+  deleteAmount = _deleteAmount
+}
+
+function closeKeyboard() {
+  setKeyBoardBool(false)
 }
 
 watch(() => sportStore.cart.count, (val, oVal) => {
@@ -657,6 +684,8 @@ onMounted(() => {
 onUnmounted(() => {
   closeSetInterval()
   removeListToCartEvent()
+  setAmount = null as any
+  deleteAmount = null as any
 })
 </script>
 
@@ -715,6 +744,9 @@ onUnmounted(() => {
             :duplex-ov="duplexOv"
             :duplex-input-value="duplexInputValue"
             :duplex-total-profit="+duplexTotalProfit"
+            :open-keyboard="openKeyboard"
+            :close-keyboard="closeKeyboard"
+            :keyboard-bool="keyboardBool"
           />
           <!-- 用来执行添加到购物车动画的 -->
           <div
@@ -752,7 +784,7 @@ onUnmounted(() => {
       </div>
     </div>
 
-    <div v-if="isShowFooter" class="footer">
+    <div v-if="!isShowH5Keyboard" class="footer">
       <template v-if="sportStore.cart.isShowReuse">
         <BaseButton
           size="md"
@@ -841,7 +873,7 @@ onUnmounted(() => {
             bg-style="primary"
             :disabled="isBetBtnDisabled"
             :loading="betLoading"
-            style="--tg-base-button-disabled-opacity:1;"
+            style="--tg-base-button-loading-opacity:1;"
             sports-loading
             @click="bet"
           >
@@ -850,10 +882,13 @@ onUnmounted(() => {
         </template>
       </template>
     </div>
-    <!-- 软键盘 -->
-    <!-- <div class="keyboard" style="height: 180px">
-      <BaseNumericKeypad @key-num="handleKeyNum" @key-ok="handleKeyOk" />
-    </div> -->
+    <div v-if="isShowH5Keyboard" class="keyboard" style="height: 180px">
+      <BaseNumericKeypad
+        @key-num="handleKeyNum"
+        @key-ok="handleKeyOk"
+        @key-delete="handleDelete"
+      />
+    </div>
   </div>
 </template>
 

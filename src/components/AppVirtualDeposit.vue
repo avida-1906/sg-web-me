@@ -258,7 +258,9 @@ await application.allSettled([
           @click="application.copy(backDepositInfo.address)"
         >
           <span>{{ backDepositInfo.address }}</span>
-          <AppTooltip text="已成功复制地址" icon-name="uni-doc" :triggers="['click']" />
+          <AppTooltip
+            :text="t('copy_addr_suc')" icon-name="uni-doc" :triggers="['click']"
+          />
         </p>
         <div class="warn-msg">
           {{ t('confirm_pls_addr_tip', { type: activeCurrency.type }) }}
@@ -273,7 +275,9 @@ await application.allSettled([
           @click="toCopy(backDepositInfo.amount)"
         >
           <span>{{ backDepositInfo.amount }}</span>
-          <AppTooltip text="已成功复制地址" icon-name="uni-doc" :triggers="['click']" />
+          <AppTooltip
+            :text="t('copy_addr_suc')" icon-name="uni-doc" :triggers="['click']"
+          />
         </p>
         <div class="warn-msg">
           {{ t('pls_confirm_deposit_addr') }}

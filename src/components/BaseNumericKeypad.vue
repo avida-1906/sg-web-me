@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const emit = defineEmits(['keyNum', 'keyOk'])
+const emit = defineEmits(['keyNum', 'keyOk', 'keyDelete'])
 
 function keyUpNum(event: any) {
   const num = event.target?.dataset.num
@@ -9,7 +9,7 @@ function keyUpNum(event: any) {
 </script>
 
 <template>
-  <div class="base-numeric-keypad" @click="keyUpNum">
+  <div class="base-numeric-keypad" @click.stop="keyUpNum">
     <div data-num="7">
       7
     </div>
@@ -19,8 +19,11 @@ function keyUpNum(event: any) {
     <div data-num="9">
       9
     </div>
-    <div data-num="9">
-      9
+    <div
+      style="--tg-icon-color: var(--tg-text-white)"
+      @click.stop="emit('keyDelete')"
+    >
+      <BaseIcon name="keyboard-delete" />
     </div>
     <div data-num="4">
       4

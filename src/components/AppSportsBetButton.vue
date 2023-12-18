@@ -132,7 +132,7 @@ onBeforeUnmount(() => {
         ? JSON.stringify(cartInfo).replaceAll(',', ',\n').replaceAll('{', '{\n').replaceAll('}', '\n}')
         : ''
     "
-    @click="clickHandler"
+    @click.stop="clickHandler"
   >
     <template v-if="isNa">
       <span class="status">N/A</span>

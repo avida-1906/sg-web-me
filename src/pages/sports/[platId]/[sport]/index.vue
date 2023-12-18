@@ -88,7 +88,10 @@ usePageTitle({ prefix: sportName })
         />
         <!-- 冠军 -->
         <AppSportsLevel1Outrights v-else-if="isOutrights" />
-        <AppSportsViewAll v-else-if="isViewAll" />
+        <AppSportsViewAll
+          v-else-if="isViewAll"
+          style="margin-bottom: var(--tg-spacing-24);"
+        />
       </template>
       <!-- 后续切换tab时 -->
       <template v-else>
@@ -98,7 +101,10 @@ usePageTitle({ prefix: sportName })
             :base-type="baseType" :is-standard="isStandard"
           />
           <AppSportsLevel1Outrights v-else-if="isOutrights" />
-          <AppSportsViewAll v-else-if="isViewAll" />
+          <AppSportsViewAll
+            v-else-if="isViewAll"
+            style="margin-bottom: var(--tg-spacing-24);"
+          />
           <template #fallback>
             <AppLoading full-screen />
           </template>

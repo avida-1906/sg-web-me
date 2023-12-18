@@ -14,8 +14,6 @@ const { push } = useLocalRouter()
 
 const params = computed(() => {
   return {
-    page: 1,
-    page_size: 21,
     platform_id: props.platformId,
   }
 })

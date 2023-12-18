@@ -22,13 +22,14 @@ withDefaults(defineProps<Props>(), {
 <template>
   <button
     :type="originType"
-    :disabled="loading || disabled" :class="[type, bgStyle, size, {
+    :disabled="disabled" :class="[type, bgStyle, size, {
       round,
       shadow,
+      loading,
       'custom-padding': customPadding,
     }]"
   >
-    <div v-if="loading" class="loading">
+    <div v-if="loading" class="loading-icon">
       <BaseIcon
         v-if="sportsLoading" style="--tg-icon-color:var(--tg-text-white);"
         name="spt-soccer" class="ani-scaleAndRotate"
@@ -51,6 +52,7 @@ withDefaults(defineProps<Props>(), {
   --tg-base-button-padding-y: var(--tg-spacing-button-padding-vertical-xs);
   --tg-base-button-padding-x: var(--tg-spacing-button-padding-horizontal-xs);
   --tg-base-button-disabled-opacity:0.5;
+  --tg-base-button-loading-opacity:0.5;
 }
 </style>
 
@@ -90,7 +92,7 @@ button {
     padding: var(--tg-base-button-padding-y) var(--tg-base-button-padding-x);
   }
 
-  .loading {
+  .loading-icon {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -103,6 +105,10 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+  &.loading{
+    opacity: var(--tg-base-button-loading-opacity);
+    pointer-events: none;
   }
 
   &:disabled {
