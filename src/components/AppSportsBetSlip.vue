@@ -260,6 +260,19 @@ function inputClickHandler() {
   }
 }
 
+function notLoginInputClickHandler() {
+  if (isMobile.value) {
+    props.openKeyboard(
+      (v: number) => {
+        notLoginAmount.value = `${notLoginAmount.value}${v}`
+      },
+      () => {
+        notLoginAmount.value = notLoginAmount.value?.toString().slice(0, -1)
+      },
+    )
+  }
+}
+
 onMounted(() => {
   if (!isLogin.value) {
     notLoginAmountPlaceholder.value = application.sliceOrPad(
@@ -356,8 +369,10 @@ watchEffect(() => {
             v-else
             v-model="notLoginAmount"
             type="number"
+            :readonly="inputReadonlyBool"
             mb0
             :placeholder="notLoginAmountPlaceholder"
+            @click.stop="notLoginInputClickHandler"
           >
             <template #right-icon>
               <AppCurrencyIcon :currency-type="currentGlobalCurrency" />
@@ -367,7 +382,12 @@ watchEffect(() => {
         <div class="estimated-label">
           <span>{{ t('sports_estimated_payment_amount') }}</span>
         </div>
-        <div class="estimated-amount">
+        <div
+          class="estimated-amount"
+          :style="{
+            '--tg-app-amount-font-weight': '400',
+          }"
+        >
           <AppAmount
             :amount="
               application.sliceOrPad(

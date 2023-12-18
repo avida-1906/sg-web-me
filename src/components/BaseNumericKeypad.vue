@@ -68,7 +68,7 @@ function keyUpNum(event: any) {
     grid-row-gap: var(--tg-border-width-default);
     grid-column-gap: var(--tg-border-width-default);
     font-size: var(--tg-font-size-md);
-    font-weight: var(--tg-font-weight-semibold);
+    font-weight: var(--tg-font-weight-normal);
     color: var(--tg-text-white);
     > div{
       height: 100%;
