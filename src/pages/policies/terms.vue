@@ -9,6 +9,9 @@
 
 <style lang="scss" scoped>
 .app-terms {
-  --app-policies-terms-pc-column: 1;
+  --app-terms-theme-size: var(--tg-font-size-xl);
+  --app-terms-title-size: var(--tg-font-size-base);
+  --app-terms-desc-size: var(--tg-font-size-base);
+  padding: 24px;
 }
 </style>

@@ -174,7 +174,7 @@ await application.allSettled([casinoStore.runAsyncGameLobby(), runMemberNoticeAl
   </div>
   <!-- 公司介绍 -->
   <div v-if="!isLogin">
-    <AppPoliciesTerms has-more />
+    <AppCasinoIntro has-more />
   </div>
 </template>
 

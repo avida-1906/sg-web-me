@@ -431,7 +431,7 @@ onUnmounted(() => {
           </BaseButton>
           <span>{{ t('terms_conditions') }}</span>
         </div>
-        <div class="scroll-y terms-conditions">
+        <div class="terms-conditions scroll-y">
           <div>
             <div class="terms-conditions-theme">
               Terms and Conditions
@@ -672,7 +672,6 @@ onUnmounted(() => {
   }
 
   .terms-conditions {
-    max-height: 50vh;
     padding: var(--tg-spacing-20) var(--tg-spacing-12);
     text-align: left;
     border-radius: var(--tg-radius-default);

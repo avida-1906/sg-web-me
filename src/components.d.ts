@@ -29,6 +29,7 @@ declare module 'vue' {
     AppCasinoGameList: typeof import('./components/AppCasinoGameList.vue')['default']
     AppCasinoGameTypeGameList: typeof import('./components/AppCasinoGameTypeGameList.vue')['default']
     AppCasinoIframe: typeof import('./components/AppCasinoIframe.vue')['default']
+    AppCasinoIntro: typeof import('./components/AppCasinoIntro.vue')['default']
     AppCasinoPageMyBet: typeof import('./components/AppCasinoPageMyBet.vue')['default']
     AppCasinoPlatList: typeof import('./components/AppCasinoPlatList.vue')['default']
     AppChat: typeof import('./components/AppChat.vue')['default']
