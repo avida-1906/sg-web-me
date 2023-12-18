@@ -37,6 +37,8 @@ export function useApiSportDetails() {
   /** 请求次数，用来渲染Loading */
   const requestCount = ref<number>(0)
   const sportInfo = ref<ISportsInfo>()
+  /** 页面倒计时 */
+  const eventTime = ref('')
 
   const { runAsync: runGetSportInfo, loading } = useRequest(
     ApiSportEventInfo, {
@@ -121,6 +123,58 @@ export function useApiSportDetails() {
     return data
   })
 
+  /** 是否是滚球 */
+  const isOnAir = computed<boolean>(() => {
+    if (
+      false
+      || !sportInfo.value
+      || !sportInfo.value.list
+      || !sportInfo.value.list.length
+    )
+      return false
+
+    const list0 = sportInfo.value.list[0]
+
+    return list0.m === 3
+  })
+
+  /** 赛事是否暂停 */
+  const isPause = computed<boolean>(() => {
+    if (
+      false
+      || !sportInfo.value
+      || !sportInfo.value.list
+      || !sportInfo.value.list.length
+    )
+      return false
+
+    const list0 = sportInfo.value.list[0]
+
+    return list0.rbts === 3
+  })
+
+  /**
+   * 比赛进度
+   */
+  const pageTitle = computed(() => {
+    if (
+      false
+    || !sportInfo.value
+    || !sportInfo.value.list
+    || !sportInfo.value.list.length
+    )
+      return ''
+
+    const rbtd = sportInfo.value.list[0].rbtd
+    const ed = sportInfo.value.list[0].ed
+    if (isOnAir.value)
+      return `${eventTime.value} ${rbtd}`
+    else if (isPause.value)
+      return `${rbtd}`
+    else
+      return timeToFormat(ed)
+  })
+
   /** 基础数据面板 */
   const basePanelData = computed<IBasePanelType>(() => {
     const data: IBasePanelType = {
@@ -145,7 +199,7 @@ export function useApiSportDetails() {
 
     const list0 = sportInfo.value.list[0]
     const _map: IBasePanelType = {
-      startTime: timeToFormat(list0.ed),
+      startTime: pageTitle.value,
       homeTeamName: list0.htn,
       awayTeamName: list0.atn,
       remark: '',
@@ -602,9 +656,39 @@ export function useApiSportDetails() {
     requestCount.value = 0
   }
 
+  function setEventTime() {
+    if (
+      false
+    || !sportInfo.value
+    || !sportInfo.value.list
+    || !sportInfo.value.list.length
+    )
+      return false
+
+    const rbtt = sportInfo.value.list[0].rbtt
+    const ts = sportInfo.value.list[0].ts
+    const si = sportInfo.value.list[0].si
+    const rbts = sportInfo.value.list[0].rbts
+
+    getSportsLiveTime(eventTime, {
+      rbtt,
+      ts,
+      si,
+      rbts,
+    })
+  }
+
   watch(handicapListData, (val, oVal) => {
     if (val.length !== oVal.length)
       currentTab.value = val[0].value
+  })
+
+  onMounted(() => {
+    sportsListCountdownBus.on(setEventTime)
+  })
+
+  onBeforeUnmount(() => {
+    sportsListCountdownBus.off(setEventTime)
   })
 
   return {
@@ -618,6 +702,8 @@ export function useApiSportDetails() {
     loading,
     requestCount,
     bgImage,
+    isOnAir,
+    isPause,
     runGetSportInfo,
     resetRequestCount,
   }
