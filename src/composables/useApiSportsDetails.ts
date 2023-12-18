@@ -145,7 +145,7 @@ export function useApiSportDetails() {
 
     const list0 = sportInfo.value.list[0]
     const _map: IBasePanelType = {
-      startTime: application.timestampToTime(list0.ed),
+      startTime: timeToFormat(list0.ed),
       homeTeamName: list0.htn,
       awayTeamName: list0.atn,
       remark: '',
