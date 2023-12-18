@@ -23,14 +23,28 @@ meta:
   withMenuTitle: setting
   withMenuIcon: uni-set
   withMenuMenu:
-    - {title: menu_title_settings_contact, path: /settings/general,}
-    - {title: menu_title_settings_update_loginpwd, path: /settings/security-login-pwd}
-    - {title: menu_title_settings_update_safecheck, path: /settings/security-safe-check}
-    - {title: menu_title_settings_update_safepwd, path: /settings/security-safe-pwd}
-    - {title: menu_title_settings_private, path: /settings/preferences}
+    - title: menu_title_settings_contact
+      path: /settings/general
+      isT: true
+    - title: menu_title_settings_update_loginpwd
+      path: /settings/security-login-pwd
+      isT: true
+    - title: menu_title_settings_update_safecheck
+      path: /settings/security-safe-check
+      isT: true
+    - title: menu_title_settings_update_safepwd
+      path: /settings/security-safe-pwd
+      isT: true
+    - title: menu_title_settings_private
+      path: /settings/preferences
+      isT: true
     # - {title: menu_title_settings_api, path: /settings/api}
-    - {title: menu_title_settings_loginsession, path: /settings/sessions}
-    - {title: menu_title_settings_ignoredusers, path: /settings/ignored-users}
+    - title: menu_title_settings_loginsession
+      path: /settings/sessions
+      isT: true
+    - title: menu_title_settings_ignoredusers
+      path: /settings/ignored-users
+      isT: true
     # - {title: menu_title_settings_verify, path: /settings/verify}
     # - {title: menu_title_settings_offers,path: /settings/offers}
 </route>
