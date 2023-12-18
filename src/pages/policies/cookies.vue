@@ -199,6 +199,9 @@ ul {
     margin: 4px 0;
   }
 }
+.table {
+  width: 100%;
+}
 .table td, .table th {
   padding: 16px;
   word-wrap: break-word;
