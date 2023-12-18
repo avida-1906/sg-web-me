@@ -57,7 +57,17 @@ const {
 } = useRequest(() => ApiMemberGameDetail(props.id, props.pid, props.gameId), {
   onSuccess(res) {
     currencyList.value = res.currencys
-    currentCurrency.value = currencyList.value[0]
+
+    // 如果用户选择过货币，使用之前保存的货币
+    const lastCurrency = Local.get<EnumCurrencyKey>(STORAGE_CASINO_GAME_CURRENCY)
+
+    if (lastCurrency && currencyList.value.findIndex(a => a === lastCurrency.value) > -1)
+      currentCurrency.value = lastCurrency.value
+
+    else
+      currentCurrency.value = currencyList.value[0]
+      // Local.set<EnumCurrencyKey>(STORAGE_CASINO_GAME_CURRENCY, currencyList.value[0])
+
     isFavorite.value = res.is_fav === '1'
     overlayTrue()
   },
@@ -108,9 +118,10 @@ function refreshDetail() {
   runDetail().then(() => autoLunchOnPc())
 }
 // 选择货币
-function onChooseCurrency(v: any) {
+function onChooseCurrency(v: EnumCurrencyKey) {
   clearUrl()
   currentCurrency.value = v
+  Local.set<EnumCurrencyKey>(STORAGE_CASINO_GAME_CURRENCY, v)
   overlayTrue()
   autoLunchOnPc()
 }
