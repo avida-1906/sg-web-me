@@ -354,10 +354,12 @@ onBeforeUnmount(() => {
   font-weight: var(--tg-font-weight-semibold);
   color: var(--tg-text-white);
   line-height: 1.5;
-  padding-top: var(--tg-spacing-20);
 }
 
 .relation-chart {
+  background: var(--tg-secondary-dark);
+  border-radius: var(--tg-radius-md);
+  padding: var(--tg-spacing-35) var(--tg-spacing-16) var(--tg-spacing-16) ;
   .grid-box {
     display: grid;
     grid-template-areas:
@@ -367,7 +369,7 @@ onBeforeUnmount(() => {
       'b10 b11 b12'
     ;
     grid-template-columns: auto 1fr auto;
-    grid-template-rows: repeat(5, auto);
+    grid-template-rows: repeat(3, auto) 1fr;
     gap: var(--tg-spacing-50) var(--tg-spacing-10);
   }
 
@@ -510,7 +512,10 @@ onBeforeUnmount(() => {
   font-weight: var(--tg-font-weight-normal);
   color: var(--tg-text-lightgrey);
   font-size: var(--tg-font-size-base);
-  margin-top: -15px;
+  background: var(--tg-secondary-dark);
+  border-radius: var(--tg-radius-md);
+  margin-top: var(--tg-spacing-10);
+  padding: var(--tg-spacing-16);
 
   .title {
     font-weight: var(--tg-font-weight-semibold);
