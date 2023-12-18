@@ -169,9 +169,12 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse, iInput, isTouched, setBlur
             @compositionstart="onCompositionStart"
             @compositionend="onCompositionEnd"
           >
-          <div v-if="isPassword" class="eye" @click="toggleType">
+          <BaseButton
+            v-if="isPassword" type="text" size="none"
+            class="eye" @click="toggleType"
+          >
             <BaseIcon :name="`uni-eye-${_type === 'password' ? 'open' : 'close'}`" />
-          </div>
+          </BaseButton>
           <div v-show="$slots['right-icon']" class="right-icon">
             <slot name="right-icon" />
           </div>

@@ -102,31 +102,23 @@ else
     <AppLoading v-if="loading" />
     <template v-else>
       <div v-if="list.length === 0" class="empty">
-        <BaseEmpty>
-          <template #icon>
-            <BaseIcon style="font-size: var(--tg-empty-icon-size);" name="empty-1" />
-          </template>
-          <template #description>
-            <span>{{ t('empty_casino_bet') }}</span>
-          </template>
-          <template #default>
-            <BaseButton
-              type="text"
-              size="none"
-              style=" --tg-base-button-text-default-color:var(--tg-text-white)"
-              @click="$router.push('/casino')"
-            >
-              {{ t('sports_betting_now') }}
-            </BaseButton>
-          </template>
-        </BaseEmpty>
+        <BaseIcon
+          style="font-size: var(--tg-empty-icon-size);margin-bottom: 16px;"
+          name="empty-1"
+        />
+        <div class="idiot">
+          <span>{{ t('empty_casino_bet') }}</span>
+          <BaseButton
+            type="text" size="none"
+            style="--tg-base-button-text-default-color:var(--tg-text-white)"
+            @click="$router.push('/casino')"
+          >
+            {{ t('start_game_now') }}！
+          </BaseButton>
+        </div>
       </div>
 
-      <BaseTable
-        v-else
-        :columns="columns"
-        :data-source="list"
-      >
+      <BaseTable v-else :columns="columns" :data-source="list">
         <template #game_name="{ record: { game_name, game_class } }">
           <div class="game_name">
             <BaseIcon
@@ -138,10 +130,7 @@ else
           </div>
         </template>
         <template #bill_no="{ record }">
-          <BaseButton
-            size="none" type="text"
-            @click="showDetail(record)"
-          >
+          <BaseButton size="none" type="text" @click="showDetail(record)">
             <div class="bill_no">
               <BaseIcon v-if="!isMobile" style="font-size: 16px;" name="tabbar-bet" />
               <span>{{ record.bill_no }}</span>
@@ -183,31 +172,48 @@ else
 </template>
 
 <style lang='scss' scoped>
-.casino-my-bets{
-  margin-bottom: var(--tg-spacing-24);
+.casino-my-bets {
+  margin-bottom: var(--tg-spacing-44);
 }
-.btns{
-  display: flex;
-  justify-content: center;
 
-}
-.empty{
-  width: 100%;
-  min-height: 150px;
+.btns {
   display: flex;
-  align-items: center;
   justify-content: center;
 }
-.game_name{
+
+.empty {
+  width: 100%;
+  height: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 32px;
+  margin-bottom: 20px;
+  padding: 16px;
+  .idiot{
+    display: flex;
+    flex-direction: column;
+    span {
+    font-size: var(--tg-font-size-default);
+    color: var(--tg-text-lightgrey);
+    margin-bottom: 4px;
+  }
+  }
+}
+
+.game_name {
   display: flex;
   align-items: center;
   gap: var(--tg-spacing-4);
 }
-.bill_no{
+
+.bill_no {
   display: flex;
   align-items: center;
   gap: var(--tg-spacing-4);
-  span{
+
+  span {
     display: inline-block;
     max-width: 9ch;
     overflow: hidden;
@@ -217,10 +223,12 @@ else
     font-weight: var(--tg-font-weight-semibold);
   }
 }
-.amount{
+
+.amount {
   display: flex;
   justify-content: flex-end;
-  &.win{
+
+  &.win {
     color: var(--tg-text-green);
   }
 }
