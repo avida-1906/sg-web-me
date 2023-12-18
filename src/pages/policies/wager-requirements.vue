@@ -4,7 +4,7 @@ usePageTitle({ prefix: 'Wager Requirements' })
 </script>
 
 <template>
-  <div class="content-block wager-requirements pd-24">
+  <div class="content-block pd-24 wager-requirements">
     <div class="p">
       A wager requirement defines the multiplier in which the sum of your deposit and bonus will need to be turned over. Since the majority of our games have between a 3.5% to 4.5% house edge, we’ve set our wager requirement at a 4% edge.
     </div>
@@ -1307,6 +1307,194 @@ usePageTitle({ prefix: 'Wager Requirements' })
       <li>
         <div class="p">
           Gold Nuggets
+        </div>
+      </li>
+    </ul>
+    <h1>Wazdan</h1>
+    <ul>
+      <li>
+        <div class="p">
+          9 Lions
+        </div>
+      </li>
+      <li>
+        <div class="p">
+          9 Bells
+        </div>
+      </li>
+      <li>
+        <div class="p">
+          American Poker V
+        </div>
+      </li>
+      <li>
+        <div class="p">
+          Arcade
+        </div>
+      </li>
+      <li>
+        <div class="p">
+          Black Horse
+        </div>
+      </li>
+      <li>
+        <div class="p">
+          Lucky Reels
+        </div>
+      </li>
+      <li>
+        <div class="p">
+          9 Lions Xmas Edition
+        </div>
+      </li>
+      <li>
+        <div class="p">
+          Larry the Leprechaun Easter
+        </div>
+      </li>
+      <li>
+        <div class="p">
+          9 Burning Stars
+        </div>
+      </li>
+      <li>
+        <div class="p">
+          Black Horse Deluxe
+        </div>
+      </li>
+      <li>
+        <div class="p">
+          Football Mania
+        </div>
+      </li>
+      <li>
+        <div class="p">
+          9 Coins Grand Diamond Edition
+        </div>
+      </li>
+      <li>
+        <div class="p">
+          12 Coins Grand Gold Edition
+        </div>
+      </li>
+      <li>
+        <div class="p">
+          Football Mania Deluxe
+        </div>
+      </li>
+      <li>
+        <div class="p">
+          Butterfly Lovers
+        </div>
+      </li>
+      <li>
+        <div class="p">
+          Fruit Mania
+        </div>
+      </li>
+      <li>
+        <div class="p">
+          Fruit Mania Deluxe
+        </div>
+      </li>
+      <li>
+        <div class="p">
+          Hot 777
+        </div>
+      </li>
+      <li>
+        <div class="p">
+          Hot 777 Deluxe
+        </div>
+      </li>
+      <li>
+        <div class="p">
+          KickOff
+        </div>
+      </li>
+      <li>
+        <div class="p">
+          Larry the Leprechaun
+        </div>
+      </li>
+      <li>
+        <div class="p">
+          Magic Poker
+        </div>
+      </li>
+      <li>
+        <div class="p">
+          Neon City
+        </div>
+      </li>
+      <li>
+        <div class="p">
+          Power of Gods: Egypt
+        </div>
+      </li>
+      <li>
+        <div class="p">
+          Power of Gods: Hades
+        </div>
+      </li>
+      <li>
+        <div class="p">
+          Power of Gods: Medusa
+        </div>
+      </li>
+      <li>
+        <div class="p">
+          Power of Gods: the Pantheon
+        </div>
+      </li>
+      <li>
+        <div class="p">
+          Reel Hero
+        </div>
+      </li>
+      <li>
+        <div class="p">
+          Relic Hunters and the Book of Faith
+        </div>
+      </li>
+      <li>
+        <div class="p">
+          Sizzling Bells
+        </div>
+      </li>
+      <li>
+        <div class="p">
+          Sonic Reels
+        </div>
+      </li>
+      <li>
+        <div class="p">
+          Sic Bo Dragons
+        </div>
+      </li>
+      <li>
+        <div class="p">
+          Telly Reels
+        </div>
+      </li>
+      <li>
+        <div class="p">
+          Mighty Symbols: Crowns
+        </div>
+      </li>
+      <li>
+        <div class="p">
+          Vegas Reels II
+        </div>
+      </li>
+      <li>
+        <div class="p">
+          Hot Slot Magic Bombs
+        </div>
+      </li>
+      <li>
+        <div class="p">
+          25 Coins
         </div>
       </li>
     </ul>
