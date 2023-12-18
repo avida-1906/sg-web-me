@@ -22,7 +22,7 @@ meta:
     - {title: Privacy, path: /policies/privacy, token: false}
     - {title: Coin Mixing, path: /policies/coin-mixing, token: false}
     - {title: Providers, path: /policies/providers, token: false}
-    - {title: Sportsbook, path: /policies/sportsbook, token: false}
+    - {title: Sportsbook, path: /policies/spt-book, token: false}
     - {title: Cookies Policy, path: /policies/cookies, token: false}
     - {title: Self-Exclusion, path: /policies/self-exclusion, token: false}
 </route>
