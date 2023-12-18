@@ -7,7 +7,7 @@ interface Props {
   type?: number
   popperClazz?: string
   placeholder?: string
-  distance: number
+  distance?: number
 }
 
 const props = withDefaults(defineProps<Props>(), {

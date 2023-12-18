@@ -124,7 +124,6 @@ function handleClickMenuItem(item: { name: string; path?: string }) {
     }
     return
   }
-  console.error('name', name)
   switch (name) {
     case 'wallet':
       openWalletDialog()
