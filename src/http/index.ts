@@ -118,7 +118,6 @@ class HttpClient {
       if (!status) {
         // 如果后端返回token，关闭所有请求，清除token
         if (data === 'token') {
-          this.cancelAllRequest()
           closeCurDialog && closeCurDialog()
           appStore.removeToken()
           appStore.removeUserInfo()
