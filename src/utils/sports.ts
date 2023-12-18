@@ -920,7 +920,7 @@ export class SportsNotify {
 /**
  * 设置赛事进行时间
  */
-export function getSportsLiveTime(eventTime: globalThis.Ref<string>, data: {
+export function getSportsLiveTime(eventTime: Ref<string>, data: {
   rbtt: string
   ts: number
   si: number
