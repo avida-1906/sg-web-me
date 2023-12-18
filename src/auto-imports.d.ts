@@ -526,6 +526,7 @@ declare global {
   const useOffsetPagination: typeof import('@vueuse/core')['useOffsetPagination']
   const useOnline: typeof import('@vueuse/core')['useOnline']
   const useOption: typeof import('./composables/useOption')['useOption']
+  const useOutsideClick: typeof import('./composables/useOutsideClick')['useOutsideClick']
   const usePageLeave: typeof import('@vueuse/core')['usePageLeave']
   const usePageTitle: typeof import('./composables/usePageTitle')['usePageTitle']
   const usePagination: typeof import('vue-request')['usePagination']
@@ -1160,6 +1161,7 @@ declare module 'vue' {
     readonly useOffsetPagination: UnwrapRef<typeof import('@vueuse/core')['useOffsetPagination']>
     readonly useOnline: UnwrapRef<typeof import('@vueuse/core')['useOnline']>
     readonly useOption: UnwrapRef<typeof import('./composables/useOption')['useOption']>
+    readonly useOutsideClick: UnwrapRef<typeof import('./composables/useOutsideClick')['useOutsideClick']>
     readonly usePageLeave: UnwrapRef<typeof import('@vueuse/core')['usePageLeave']>
     readonly usePageTitle: UnwrapRef<typeof import('./composables/usePageTitle')['usePageTitle']>
     readonly usePagination: UnwrapRef<typeof import('vue-request')['usePagination']>
@@ -1788,6 +1790,7 @@ declare module '@vue/runtime-core' {
     readonly useOffsetPagination: UnwrapRef<typeof import('@vueuse/core')['useOffsetPagination']>
     readonly useOnline: UnwrapRef<typeof import('@vueuse/core')['useOnline']>
     readonly useOption: UnwrapRef<typeof import('./composables/useOption')['useOption']>
+    readonly useOutsideClick: UnwrapRef<typeof import('./composables/useOutsideClick')['useOutsideClick']>
     readonly usePageLeave: UnwrapRef<typeof import('@vueuse/core')['usePageLeave']>
     readonly usePageTitle: UnwrapRef<typeof import('./composables/usePageTitle')['usePageTitle']>
     readonly usePagination: UnwrapRef<typeof import('vue-request')['usePagination']>

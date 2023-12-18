@@ -3,6 +3,7 @@ import type { ICartInfoData } from '~/types'
 import type {
   EnumsBetSlipBetSlipTabStatus as EnumsBetSlipBetSlipTabStatusType,
 } from '~/utils/enums'
+import BaseInput from '~/components/BaseInput.vue'
 
 interface Props {
   index: number
@@ -31,6 +32,11 @@ interface Props {
   duplexInputValue?: number | string
   /** 复式预计支付额 */
   duplexTotalProfit?: number | string
+  openKeyboard: (
+    fn: (value: number) => void,
+    deleteKey: () => void,
+  ) => void
+  closeKeyboard: () => void
 }
 const props = withDefaults(defineProps<Props>(), {
   index: 0,
@@ -47,12 +53,15 @@ const { currentGlobalCurrency, isLogin } = storeToRefs(appStore)
 const sportStore = useSportsStore()
 const { userInfo } = storeToRefs(useAppStore())
 const { openBetSlipDialog } = useDialogBetSlip()
-// const { isMobile } = storeToRefs(useWindowStore())
-// const { closeRightSidebar } = useRightSidebar()
+const { bool: inputReadonlyBool, setBool: setInputReadonlyBool } = useBoolean(true)
+const inputRef = ref(null)
+
+useOutsideClick(inputRef, () => {
+  props.closeKeyboard()
+})
 
 const notLoginAmount = ref('')
 const notLoginAmountPlaceholder = ref('')
-// const router = useRouter()
 
 const {
   value: amount,
@@ -301,6 +310,7 @@ watchEffect(() => {
         <div class="bet-amount">
           <BaseInput
             v-if="isLogin"
+            ref="inputRef"
             :key="currentGlobalCurrency"
             :model-value="modelValue"
             type="number"
@@ -308,7 +318,17 @@ watchEffect(() => {
             :placeholder="`${cartInfoData.mia} - ${cartInfoData.maa}`"
             :msg="amountErrorMsg"
             :disabled="isDisabled"
+            :readonly="inputReadonlyBool"
             :msg-after-touched="true"
+            @click.stop="
+              openKeyboard(
+                (v: number) => {
+                  console.error('v', amount, v, `${amount}${v}`)
+                  emit('update:modelValue', `${amount}${v}`)
+                },
+                () => emit('update:modelValue', amount?.toString().slice(0, -1)),
+              )
+            "
             @update:model-value="emit('update:modelValue', $event)"
           >
             <template #right-icon>

@@ -14,6 +14,7 @@ interface Props {
   msgAfterTouched?: boolean
   textCenter?: boolean
   name?: string
+  readonly?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -135,6 +136,7 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse, iInput, isTouched, setBlur
               :class="{ 'p-r-0': $slots['right-icon'] }"
               autocomplete="new-password"
               :disabled="disabled"
+              :readonly="readonly"
               @input="onInput"
               @focus="onFocus"
               @blur="onBlur"
@@ -153,6 +155,7 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse, iInput, isTouched, setBlur
             :placeholder="placeholder"
             :type="_type"
             :disabled="disabled"
+            :readonly="readonly"
             :class="{
               'p-r-0': $slots['right-icon'],
               'p-l-0': $slots['left-icon'],
