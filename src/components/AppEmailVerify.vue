@@ -137,7 +137,7 @@ onMounted(() => {
   </div>
 </template>
 
-<style>
+<style lang="scss" scoped>
 .app-email-verify{
   .verify-content{
     display: flex;
