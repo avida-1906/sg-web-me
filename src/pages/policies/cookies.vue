@@ -130,6 +130,17 @@ usePageTitle({ prefix: 'Cookies Policy' })
         </table>
       </div>
     </div>
+    <h2>Opt-out</h2>
+    <div class="p">
+      In order to provide website visitors with more choice on how data is collected by Google Analytics, Google has developed the Google Analytics Opt-out Browser Add-on. The add-on communicates with the Google Analytics JavaScript (ga.js) to stop data being sent to Google Analytics. The Google Analytics Opt-out Browser Add-on does not affect usage of the website in any other way. A link to further information on the Google Analytics Opt-out Browser Add-on is provided below for your convenience. http://tools.google.com/dlpage/gaoptout?hl=None
+    </div>
+    <div class="p">
+      For more information on the usage of cookies by Google Analytics please see the Google website. A link to the privacy advice for this product is provided below for your convenience. http://www.google.com/analytics/learn/privacy.html
+    </div>
+    <h2>Disabling Cookies</h2>
+    <div class="p">
+      If you would like to restrict the use of cookies you can control this in your Internet browser. Links to advice on how to do this for the most popular Internet browsers are provided below for convenience and will be available for the Internet browser of your choice either online or via the software help (normally available via key F1).
+    </div>
   </div>
 </template>
 
@@ -187,5 +198,39 @@ ul {
   li {
     margin: 4px 0;
   }
+}
+.table {
+  width: 100%;
+}
+.table td, .table th {
+  padding: 16px;
+  word-wrap: break-word;
+  white-space: nowrap;
+  text-align: center;
+  vertical-align: middle;
+  color: var(--tg-secondary-light);
+  font-size: 14px;
+  white-space: normal;
+  line-height: 1.5;
+}
+.table th {
+  font-weight: 600;
+  color: var(--tg-text-white);
+}
+.table td {
+  max-width: 300px;
+}
+.table td:last-child, .table th:last-child {
+  text-align: right;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+.table td:first-child, .table th:first-child {
+  text-align: left;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+.table.stripey.slideDownOdd>tbody tr:nth-child(odd) {
+    background: var(--tg-secondary-grey);
 }
 </style>
