@@ -675,7 +675,7 @@ export function useApiSportDetails() {
       ts,
       si,
       rbts,
-    })
+    }, dayjs)
   }
 
   watch(handicapListData, (val, oVal) => {

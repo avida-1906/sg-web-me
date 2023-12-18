@@ -175,7 +175,7 @@ function setEventTime() {
     ts: props.data.ts,
     si: props.data.si,
     rbts: props.data.rbts,
-  })
+  }, dayjs)
 }
 
 // 联赛跳转

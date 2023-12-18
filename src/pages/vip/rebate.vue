@@ -107,6 +107,9 @@ watch(tabList, (val) => {
     background: #0F212E;
     padding: 0px 12px 16px;
     border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
   }
 }
 </style>
