@@ -236,6 +236,7 @@ declare global {
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const getDaIntervalMap: typeof import('./utils/time')['getDaIntervalMap']
   const getEnv: typeof import('./utils/index')['getEnv']
+  const getSportsLiveTime: typeof import('./utils/sports')['getSportsLiveTime']
   const getSportsPlatId: typeof import('./utils/sports')['getSportsPlatId']
   const getStyle: typeof import('./utils/dom')['getStyle']
   const gt: typeof import('lodash-es')['gt']
@@ -320,6 +321,7 @@ declare global {
   const scrollMainContentToTop: typeof import('./utils/index')['scrollMainContentToTop']
   const scrollToTop: typeof import('./utils/dom')['scrollToTop']
   const setActivePinia: typeof import('pinia')['setActivePinia']
+  const setEventTime: typeof import('./utils/sports')['setEventTime']
   const setMapStoreSuffix: typeof import('pinia')['setMapStoreSuffix']
   const shallowReactive: typeof import('vue')['shallowReactive']
   const shallowReadonly: typeof import('vue')['shallowReadonly']
@@ -872,6 +874,7 @@ declare module 'vue' {
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getDaIntervalMap: UnwrapRef<typeof import('./utils/time')['getDaIntervalMap']>
     readonly getEnv: UnwrapRef<typeof import('./utils/index')['getEnv']>
+    readonly getSportsLiveTime: UnwrapRef<typeof import('./utils/sports')['getSportsLiveTime']>
     readonly getSportsPlatId: UnwrapRef<typeof import('./utils/sports')['getSportsPlatId']>
     readonly getStyle: UnwrapRef<typeof import('./utils/dom')['getStyle']>
     readonly gt: UnwrapRef<typeof import('lodash-es')['gt']>
@@ -1502,6 +1505,7 @@ declare module '@vue/runtime-core' {
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getDaIntervalMap: UnwrapRef<typeof import('./utils/time')['getDaIntervalMap']>
     readonly getEnv: UnwrapRef<typeof import('./utils/index')['getEnv']>
+    readonly getSportsLiveTime: UnwrapRef<typeof import('./utils/sports')['getSportsLiveTime']>
     readonly getSportsPlatId: UnwrapRef<typeof import('./utils/sports')['getSportsPlatId']>
     readonly getStyle: UnwrapRef<typeof import('./utils/dom')['getStyle']>
     readonly gt: UnwrapRef<typeof import('lodash-es')['gt']>
