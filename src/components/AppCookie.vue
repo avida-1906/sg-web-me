@@ -15,7 +15,7 @@ function accept() {
   >
     <div class="wrap">
       <p>
-        <BaseButton type="text" size="none">
+        <BaseButton type="text" size="none" @click="$router.push('/policies/cookies')">
           <span class="btn">🍪 {{ t('we_use_cookie') }}</span>
         </BaseButton>
         {{ t('cookie_purposes') }}
