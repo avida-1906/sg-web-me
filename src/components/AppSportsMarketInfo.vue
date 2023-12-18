@@ -22,7 +22,6 @@ const sportsStore = useSportsStore()
 const { sportsFavoriteData } = storeToRefs(sportsStore)
 /** 是否收藏 */
 const { bool: isFavorite } = useBoolean(false)
-const { bool: isInit } = useBoolean(true)
 
 /** 添加收藏 */
 const { run: runAddFavorite } = useRequest(() =>
@@ -170,53 +169,13 @@ const isTimeout = computed(() => props.data.rbts === 3)
 //   useDragDialog({ type, url: '', dialogId })
 // }
 
-// 设置赛事进行时间
 function setEventTime() {
-  isInit.value = false
-  if (!props.data.rbtt)
-    return ''
-
-  const rbttArr = props.data.rbtt.split(':')
-  const ts = props.data.ts
-  const baseMin = rbttArr[0]
-  const baseSec = rbttArr[1]
-
-  const diff = dayjs().diff(ts * 1000, 'second')
-  const diffMin = Math.floor(diff / 60)
-  const diffSec = diff - (diffMin * 60)
-  let sec = 0
-  let min = 0
-
-  // 篮球倒计时
-  if (props.data.si === 2) {
-    // 暂停倒计时
-    if (props.data.rbts !== 2)
-      return eventTime.value
-
-    sec = baseSec ? (+baseSec - diffSec) : 0
-    min = +baseMin - diffMin
-
-    if (sec < 0) {
-      sec = sec + 60
-      min = min - 1
-    }
-    if (min < 0) {
-      min = 0
-      sec = 0
-    }
-  }
-  // 其它
-  else {
-    sec = baseSec ? (+baseSec + diffSec) : 0
-    min = +baseMin + diffMin
-
-    if (sec > 59) {
-      sec = sec - 60
-      min = min + 1
-    }
-  }
-  // eslint-disable-next-line max-len
-  eventTime.value = `${min < 10 ? `0${min}` : min}${baseSec ? `:${sec < 10 ? `0${sec}` : sec}` : ''}`
+  getSportsLiveTime(eventTime, {
+    rbtt: props.data.rbtt,
+    ts: props.data.ts,
+    si: props.data.si,
+    rbts: props.data.rbts,
+  })
 }
 
 // 联赛跳转
@@ -256,6 +215,8 @@ onMounted(() => {
 onBeforeUnmount(() => {
   sportsListCountdownBus.off(setEventTime)
 })
+
+setEventTime()
 </script>
 
 <template>
@@ -296,9 +257,6 @@ onBeforeUnmount(() => {
             </div>
             <span v-if="isTimeout">
               {{ t('pause') }}
-            </span>
-            <span v-if="isInit">
-              {{ setEventTime() }}
             </span>
             <span v-show="eventTime && !isTimeout" class="count-time">
               {{ eventTime }}

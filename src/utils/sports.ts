@@ -916,3 +916,60 @@ export class SportsNotify {
     clearInterval(this.timer)
   }
 }
+
+/**
+ * 设置赛事进行时间
+ */
+export function getSportsLiveTime(eventTime: globalThis.Ref<string>, data: {
+  rbtt: string
+  ts: number
+  si: number
+  rbts: number
+}) {
+  if (!data.rbtt) {
+    eventTime.value = ''
+  }
+  else {
+    const rbttArr = data.rbtt.split(':')
+    const ts = data.ts
+    const baseMin = rbttArr[0]
+    const baseSec = rbttArr[1]
+
+    const diff = dayjs().diff(ts * 1000, 'second')
+    const diffMin = Math.floor(diff / 60)
+    const diffSec = diff - (diffMin * 60)
+    let sec = 0
+    let min = 0
+
+    // 篮球倒计时
+    if (data.si === 2) {
+      // 暂停倒计时
+      if (data.rbts !== 2)
+        return
+
+      sec = baseSec ? (+baseSec - diffSec) : 0
+      min = +baseMin - diffMin
+
+      if (sec < 0) {
+        sec = sec + 60
+        min = min - 1
+      }
+      if (min < 0) {
+        min = 0
+        sec = 0
+      }
+    }
+    // 其它
+    else {
+      sec = baseSec ? (+baseSec + diffSec) : 0
+      min = +baseMin + diffMin
+
+      if (sec > 59) {
+        sec = sec - 60
+        min = min + 1
+      }
+    }
+    // eslint-disable-next-line max-len
+    eventTime.value = `${min < 10 ? `0${min}` : min}${baseSec ? `:${sec < 10 ? `0${sec}` : sec}` : ''}`
+  }
+}
