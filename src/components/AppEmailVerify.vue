@@ -1,15 +1,26 @@
-<script setup lang='ts'>
+<script lang="ts" setup>
 interface Props {
+  /** 提示文字 && 有值表示钱包中使用，没有表示设置中使用 */
   tipText?: string
 }
 
-defineProps<Props>()
+const props = defineProps<Props>()
 
 const { t } = useI18n()
-// const closeDialog = inject('closeDialog', () => { })
+const { openNotify } = useNotify()
 const appStore = useAppStore()
 const { userInfo } = storeToRefs(appStore)
-const { openNotify } = useNotify()
+
+const {
+  bool: emailDisabledBtn,
+  setTrue: setEmailDisabledBtnTrue,
+  setFalse: setEmailDisabledBtnFalse,
+} = useBoolean(true)
+const {
+  bool: msgAfterTouched,
+  setFalse: setMsgAfterTouchedFalse,
+  setTrue: setMsgAfterTouchedTrue,
+} = useBoolean(true)
 const {
   value: email,
   errorMessage: emailErrormsg,
@@ -23,16 +34,21 @@ const {
     return t('this_contains_invalid_email_characters')
   return ''
 })
-const {
-  bool: emailDisabledBtn,
-  setTrue: setEmailDisabledBtnTrue,
-  setFalse: setEmailDisabledBtnFalse,
-} = useBoolean(true)
-const {
-  bool: msgAfterTouched,
-  setFalse: setMsgAfterTouchedFalse,
-  setTrue: setMsgAfterTouchedTrue,
-} = useBoolean(true)
+
+const { run: runMemberUpdate } = useRequest(ApiMemberUpdate, {
+  onSuccess(data, params) {
+    if (params[0].record.email) {
+      setEmailDisabledBtnTrue()
+      emailCheck()
+    }
+    openNotify({
+      type: 'email',
+      title: t('success_update_email'),
+      message: `${t('email_update_to')} ${email.value}`,
+    })
+    appStore.updateUserInfo()
+  },
+})
 const {
   run: runEmailCheckRequest,
   loading: loadingEmailCheckRequest,
@@ -45,38 +61,28 @@ const {
     })
   },
 })
-const {
-  run: runMemberUpdate,
-  loading: loadingMemberUpdate,
-} = useRequest(ApiMemberUpdate, {
-  onSuccess() {
-    openNotify({
-      type: 'email',
-      title: t('success_update_email'),
-      message: `${t('email_update_to')} ${email.value}`,
-    })
-    setEmailDisabledBtnTrue()
-    emailCheck()
-    appStore.updateUserInfo()
-  },
-})
 
 const emailVerified = computed(() => userInfo.value?.email_check_state === 1)
+const isDialog = computed(() => !!props.tipText)
 
-function emailPaste() {
-  setTimeout(() => {
-    setEmailDisabledBtnFalse()
-  }, 0)
+async function emailSubmit() {
+  await emailValidate()
+  if (!emailErrormsg.value)
+    runMemberUpdate({ record: { email: email.value }, uid: userInfo.value?.ext.uid })
 }
+
 async function emailCheck() {
   await emailValidate()
   if (!emailErrormsg.value)
     runEmailCheckRequest({ email: email.value })
 }
-async function emailSubmit() {
-  await emailValidate()
-  if (!emailErrormsg.value)
-    runMemberUpdate({ record: { email: email.value }, uid: userInfo.value?.ext.uid })
+function emailPaste() {
+  setTimeout(() => {
+    setEmailDisabledBtnFalse()
+  }, 0)
+}
+function goGmail() {
+  window.open(`https://mail.google.com/mail/u/#search/from:@${location.origin}`)
 }
 
 /** 监听邮箱改变 */
@@ -86,6 +92,9 @@ watch(() => email.value, (newValue, oldValue) => {
   else
     setEmailDisabledBtnTrue()
 })
+watch(() => userInfo.value?.email, (newValue) => {
+  setEmail(newValue ?? '')
+})
 
 onMounted(() => {
   setEmail(userInfo.value?.email ?? '')
@@ -93,52 +102,59 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="app-email-verify">
-    <div class="verify-content">
-      <div class="content-title">
-        电邮地址
+  <div class="tg-settings-general">
+    <AppSettingsContentItem
+      :dialog-box="isDialog"
+      :title="t('email_address')" :verified="emailVerified || emailDisabledBtn"
+      :badge="emailVerified" @submit="emailSubmit"
+    >
+      <div :class="{ 'verify-content': isDialog }">
+        <template v-if="isDialog">
+          <div class="content-title">
+            电邮地址
+          </div>
+          <div>您必须验证您的电邮地址才能进行{{ tipText }}。</div>
+        </template>
+        <BaseLabel :label="t('email_address')" must-small>
+          <div v-if="emailVerified" class="email-erified-box cursor-pointer">
+            {{ email }}
+          </div>
+          <BaseInput
+            v-else v-model="email" :disabled="emailVerified" :msg="emailErrormsg"
+            :msg-after-touched="msgAfterTouched"
+            style="--tg-base-input-style-pad-left: 0.5em"
+            @blur="setMsgAfterTouchedFalse"
+            @focus="setMsgAfterTouchedTrue" @paste="emailPaste"
+          />
+        </BaseLabel>
       </div>
-      <div>您必须验证您的电邮地址才能进行{{ tipText }}。</div>
-      <BaseLabel :label="t('email_address')" must-small>
-        <BaseInput
-          v-model="email"
-          :msg="emailErrormsg"
-          :msg-after-touched="msgAfterTouched"
-          style="--tg-base-input-style-pad-left: 0.5em"
-          @blur="setMsgAfterTouchedFalse"
-          @focus="setMsgAfterTouchedTrue"
-          @paste="emailPaste"
-        />
-      </BaseLabel>
-    </div>
-    <div class="verify-btns">
-      <BaseButton
-        type="text"
-        :disabled="emailVerified"
-        :loading="loadingEmailCheckRequest"
-        size="none"
-        @click="emailCheck"
-      >
-        <span :class="{ 'not-verified-span': !emailVerified }">
-          {{ t('resend_email') }}
-        </span>
-      </BaseButton>
-      <BaseButton
-        bg-style="secondary"
-        size="md"
-        class="btn-width"
-        :disabled="emailDisabledBtn"
-        :loading="loadingMemberUpdate"
-        @click="emailSubmit"
-      >
-        保存
-      </BaseButton>
-    </div>
+      <template #btm-left>
+        <div v-if="email?.includes('@gmail.com')">
+          <BaseButton bg-style="primary" @click="goGmail">
+            <div class="open-gmail">
+              打开 Gmail
+              <BaseIcon name="uni-jump-page" />
+            </div>
+          </BaseButton>
+        </div>
+      </template>
+      <template #btm-right>
+        <BaseButton
+          type="text" :disabled="emailVerified"
+          :loading="loadingEmailCheckRequest" size="none"
+          @click="emailCheck"
+        >
+          <span :class="{ 'not-verified-span': !emailVerified }">
+            {{ t('resend_email') }}
+          </span>
+        </BaseButton>
+      </template>
+    </AppSettingsContentItem>
   </div>
 </template>
 
-<style>
-.app-email-verify{
+<style lang="scss" scoped>
+.tg-settings-general {
   .verify-content{
     display: flex;
     flex-direction: column;
@@ -149,14 +165,35 @@ onMounted(() => {
       font-size: var(--tg-font-size-lg);
     }
   }
-  .verify-btns{
+  .email-erified-box {
+    width: 100%;
+    height: 40.5px;
+    background-color: var(--tg-secondary-main);
+    line-height: 20.5px;
+    color: var(--tg-text-white);
+    padding: var(--tg-spacing-input-padding-vertical) var(--tg-base-input-style-pad-x);
+    padding-left: 0.5em;
+    font-weight: var(--tg-font-weight-semibold);
+    border-radius: var(--tg-radius-default);
+    border-width: var(--tg-border-width-sm);
+    border-style: solid;
+    border-color: var(--tg-border-color-main);
+    transition: all ease 0.25s;
+    &:hover {
+      border-color: var(--tg-border-color-deep-grey);
+    }
+  }
+  .open-gmail {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    flex-wrap: wrap;
-    gap: var(--tg-spacing-12);
-    border-top: 1px solid var(--tg-secondary-main);
-    padding: var(--tg-spacing-16);
+    justify-content: center;
+    gap: 8px;
+    color: var(--tg-text-white);
+    font-size: var(--tg-font-size-default);
+    --tg-icon-color: var(--tg-text-white);
+  }
+  .not-verified-span {
+    color: var(--tg-text-white);
   }
 }
 </style>

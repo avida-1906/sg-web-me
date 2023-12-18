@@ -1,15 +1,10 @@
 <script lang="ts" setup>
-/* eslint-disable max-len */
-usePageTitle({ prefix: 'Providers' })
+usePageTitle({ prefix: 'Sportsbook' })
 </script>
 
 <template>
   <div class="content-block pd-24">
-    <h1>Provider Availability Policy</h1>
-    <h2>1. Absolute Restriction</h2>
-    <div class="p">
-      NetEnt will not permit NetEnt Casino Games to be supplied to any entity that operates in any of the below jurisdictions (irrespective of whether or not NetEnt Casino Games are being supplied by the entity in that jurisdiction) without the appropriate licenses. Belgium, Bulgaria, Colombia, Croatia, Czech Republic, Denmark, Estonia, France, Italy, Latvia, Lithuania, Mexico, Portugal, Romania, Spain, Sweden, Switzerland, United Kingdom, United States of America.
-    </div>
+    <h1>Sportsbook Rules and Policies</h1>
   </div>
 </template>
 
