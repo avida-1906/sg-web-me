@@ -6,7 +6,10 @@ const isCasinoGames = computed(() => route.name === 'casino-games' && !props.exc
 </script>
 
 <template>
-  <section class="page-content" :class="{ 'p-0': isCasinoGames }">
+  <section
+    class="page-content"
+    :class="{ 'p-0': isCasinoGames }"
+  >
     <div class="margin-auto" :class="[{ 'home-container': !isCasinoGames }]">
       <slot />
     </div>
