@@ -19,8 +19,11 @@ function keyUpNum(event: any) {
     <div data-num="9">
       9
     </div>
-    <div @click.stop="emit('keyDelete')">
-      删除
+    <div
+      style="--tg-icon-color: var(--tg-text-white)"
+      @click.stop="emit('keyDelete')"
+    >
+      <BaseIcon name="keyboard-delete" />
     </div>
     <div data-num="4">
       4

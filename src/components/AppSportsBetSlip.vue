@@ -37,6 +37,10 @@ interface Props {
     deleteKey: () => void,
   ) => void
   closeKeyboard: () => void
+  /**
+   * h5 键盘是否显示，input失去焦点去是否验证
+   */
+  keyboardBool?: boolean
 }
 const props = withDefaults(defineProps<Props>(), {
   index: 0,
@@ -53,12 +57,8 @@ const { currentGlobalCurrency, isLogin } = storeToRefs(appStore)
 const sportStore = useSportsStore()
 const { userInfo } = storeToRefs(useAppStore())
 const { openBetSlipDialog } = useDialogBetSlip()
-const { bool: inputReadonlyBool, setBool: setInputReadonlyBool } = useBoolean(true)
-const inputRef = ref(null)
-
-useOutsideClick(inputRef, () => {
-  props.closeKeyboard()
-})
+const { isMobile } = storeToRefs(useWindowStore())
+const inputRef = ref()
 
 const notLoginAmount = ref('')
 const notLoginAmountPlaceholder = ref('')
@@ -66,11 +66,19 @@ const notLoginAmountPlaceholder = ref('')
 const {
   value: amount,
   errorMessage: amountErrorMsg,
+  validate: validateAmount,
 } = useField<number>('amount', (value) => {
   if (value < props.cartInfoData.mia || value > props.cartInfoData.maa)
     return t('pls_input_min_max_amount', { min: props.cartInfoData.mia, max: props.cartInfoData.maa })
 
   return ''
+})
+
+useOutsideClick(inputRef, () => {
+  props.closeKeyboard()
+  if (props.keyboardBool)
+    inputRef.value?.setTouchTrue()
+  validateAmount()
 })
 
 const isBetSingle = computed(() =>
@@ -133,6 +141,9 @@ const isClosed = computed(() => {
 //   const data = props.cartInfoData
 //   return `/sports/${SPORTS_PLAT_ID}/${data.si}/${data.pgid}/${data.ci}/${data.ei}`
 // })
+const inputReadonlyBool = computed(() => {
+  return isMobile.value
+})
 
 /**
  * 跳转详情，先不要，等后端关盘的赛事查询详情再说
@@ -235,6 +246,20 @@ function showDetail() {
   openBetSlipDialog({ type: 'sports', data: { ...data, username: userInfo.value?.username } })
 }
 
+/**
+ * 键盘点击事件，只在h5上有效
+ */
+function inputClickHandler() {
+  if (isMobile.value) {
+    props.openKeyboard(
+      (v: number) => {
+        emit('update:modelValue', `${amount.value}${v}`)
+      },
+      () => emit('update:modelValue', amount.value?.toString().slice(0, -1)),
+    )
+  }
+}
+
 onMounted(() => {
   if (!isLogin.value) {
     notLoginAmountPlaceholder.value = application.sliceOrPad(
@@ -320,15 +345,7 @@ watchEffect(() => {
             :disabled="isDisabled"
             :readonly="inputReadonlyBool"
             :msg-after-touched="true"
-            @click.stop="
-              openKeyboard(
-                (v: number) => {
-                  console.error('v', amount, v, `${amount}${v}`)
-                  emit('update:modelValue', `${amount}${v}`)
-                },
-                () => emit('update:modelValue', amount?.toString().slice(0, -1)),
-              )
-            "
+            @click.stop="inputClickHandler"
             @update:model-value="emit('update:modelValue', $event)"
           >
             <template #right-icon>

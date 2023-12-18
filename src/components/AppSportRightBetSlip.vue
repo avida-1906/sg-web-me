@@ -308,6 +308,13 @@ const duplexTotalProfit = computed(() => {
   return mul(_duplexOv, val)
 })
 
+const isShowH5Keyboard = computed(() => {
+  if (isMobile.value && keyboardBool.value)
+    return true
+
+  return false
+})
+
 /**
  * 投注请求
  * @param list 投注列表
@@ -562,6 +569,9 @@ function removeListToCartEvent() {
 }
 
 function firstInputFocus() {
+  if (isMobile.value)
+    return
+
   if (chatScrollContent.value && chatScrollContent.value?.querySelector('input'))
     chatScrollContent.value?.querySelector('input')?.focus()
 }
@@ -736,6 +746,7 @@ onUnmounted(() => {
             :duplex-total-profit="+duplexTotalProfit"
             :open-keyboard="openKeyboard"
             :close-keyboard="closeKeyboard"
+            :keyboard-bool="keyboardBool"
           />
           <!-- 用来执行添加到购物车动画的 -->
           <div
@@ -773,7 +784,7 @@ onUnmounted(() => {
       </div>
     </div>
 
-    <div v-if="!keyboardBool" class="footer">
+    <div v-if="!isShowH5Keyboard" class="footer">
       <template v-if="sportStore.cart.isShowReuse">
         <BaseButton
           size="md"
@@ -871,7 +882,7 @@ onUnmounted(() => {
         </template>
       </template>
     </div>
-    <div v-if="keyboardBool" class="keyboard" style="height: 180px">
+    <div v-if="isShowH5Keyboard" class="keyboard" style="height: 180px">
       <BaseNumericKeypad
         @key-num="handleKeyNum"
         @key-ok="handleKeyOk"
