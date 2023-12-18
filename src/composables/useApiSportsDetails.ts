@@ -231,25 +231,19 @@ export function useApiSportDetails() {
       72,  // 加时局 客队 棒球
      */
     if (pol) {
-      if (pol['3'] !== void 0 || pol['4'] !== void 0) {
-        _map.redCard = {
-          homeTeam: pol['3'] || 0,
-          awayTeam: pol['4'] || 0,
-        }
+      _map.redCard = {
+        homeTeam: pol['3'] || '-',
+        awayTeam: pol['4'] || '-',
       }
 
-      if (pol['5'] !== void 0 || pol['6'] !== void 0) {
-        _map.yellowCard = {
-          homeTeam: pol['5'] || 0,
-          awayTeam: pol['6'] || 0,
-        }
+      _map.yellowCard = {
+        homeTeam: pol['5'] || '-',
+        awayTeam: pol['6'] || '-',
       }
 
-      if (pol['7'] !== void 0 || pol['8'] !== void 0) {
-        _map.corner = {
-          homeTeam: pol['7'] || 0,
-          awayTeam: pol['8'] || 0,
-        }
+      _map.corner = {
+        homeTeam: pol['7'] || '-',
+        awayTeam: pol['8'] || '-',
       }
 
       // 半场数据 篮球
