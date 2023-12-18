@@ -14,6 +14,7 @@ interface Props {
   msgAfterTouched?: boolean
   textCenter?: boolean
   name?: string
+  readonly?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -118,6 +119,7 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse, iInput, isTouched, setBlur
             'error': error && !isFocus,
             'check-dom-error': error,
             'radio-r-o': $slots['right-button'],
+            'readonly': readonly,
           }"
         >
           <div v-show="$slots['left-icon']" class="left-icon">
@@ -135,6 +137,7 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse, iInput, isTouched, setBlur
               :class="{ 'p-r-0': $slots['right-icon'] }"
               autocomplete="new-password"
               :disabled="disabled"
+              :readonly="readonly"
               @input="onInput"
               @focus="onFocus"
               @blur="onBlur"
@@ -153,10 +156,12 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse, iInput, isTouched, setBlur
             :placeholder="placeholder"
             :type="_type"
             :disabled="disabled"
+            :readonly="readonly"
             :class="{
               'p-r-0': $slots['right-icon'],
               'p-l-0': $slots['left-icon'],
               'text-center': textCenter,
+              'readonly': readonly,
             }"
             :autocomplete="`new-${_type}`"
             title=""
@@ -362,6 +367,10 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse, iInput, isTouched, setBlur
       border-color: var(--tg-border-color-deep-grey);
     }
 
+    &.readonly {
+      background-color: var(--tg-secondary-main);
+    }
+
     input {
       line-height: 1;
       width: 100%;
@@ -388,6 +397,7 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse, iInput, isTouched, setBlur
       //   appearance: none;
       //   margin: 0;
       // }
+
     }
     .p-l-0 {
       padding-left: 0;
