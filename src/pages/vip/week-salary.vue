@@ -53,41 +53,43 @@ onMounted(() => {
 
 <template>
   <div class="vip-week-salary">
-    <BaseTable :columns="columns" :data-source="vipConfigArray">
-      <template #level="{ record }">
-        <!-- <div>VIP{{ record.level }}</div> -->
-        <div class="vip-badge">
-          <BaseIcon :name="`vip${record.level}`" />
-        </div>
-      </template>
-      <template #weekly_gift="{ record }">
-        <div class="gift color-orange">
-          <AppAmount :amount="record.weekly_gift" currency-type="USDT" />
-        </div>
-      </template>
-      <template #status="{ record }">
-        <span v-if="+record.level > +vip">{{ t('wait_upgrade') }}</span>
-        <template v-else>
-          <span
-            v-if="bonusArray.length
-              && bonusArray.filter(b => +b.vip === +record.level
-                && +b.state === 1).length"
-            class="green-text"
-            @click="() => openReceive(bonusArray.filter(b =>
-              +b.vip === +record.level && +b.state === 1)[0])"
-          >
-            {{ t('can_receive') }}
-          </span>
-          <span
-            v-else-if="bonusArray.length
-              && bonusArray.filter(b => +b.vip === +record.level
-                && +b.state === 2).length"
-          >
-            {{ t('received') }}</span>
-          <span v-else>{{ t('upgraded') }}</span>
+    <div class="tabs">
+      <BaseTable :columns="columns" :data-source="vipConfigArray">
+        <template #level="{ record }">
+          <!-- <div>VIP{{ record.level }}</div> -->
+          <div class="vip-badge">
+            <BaseIcon :name="`vip${record.level}`" />
+          </div>
         </template>
-      </template>
-    </BaseTable>
+        <template #weekly_gift="{ record }">
+          <div class="gift color-orange">
+            <AppAmount :amount="record.weekly_gift" currency-type="USDT" />
+          </div>
+        </template>
+        <template #status="{ record }">
+          <span v-if="+record.level > +vip">{{ t('wait_upgrade') }}</span>
+          <template v-else>
+            <span
+              v-if="bonusArray.length
+                && bonusArray.filter(b => +b.vip === +record.level
+                  && +b.state === 1).length"
+              class="green-text"
+              @click="() => openReceive(bonusArray.filter(b =>
+                +b.vip === +record.level && +b.state === 1)[0])"
+            >
+              {{ t('can_receive') }}
+            </span>
+            <span
+              v-else-if="bonusArray.length
+                && bonusArray.filter(b => +b.vip === +record.level
+                  && +b.state === 2).length"
+            >
+              {{ t('received') }}</span>
+            <span v-else>{{ t('upgraded') }}</span>
+          </template>
+        </template>
+      </BaseTable>
+    </div>
     <AppVipRuleDesc />
   </div>
 </template>
@@ -119,6 +121,15 @@ onMounted(() => {
   --tg-table-th-background: var(--tg-secondary-grey);
   --tg-table-even-background: var(--tg-secondary-grey);
   --tg-table-odd-background: var(--tg-primary-main);
+  &.is-mobile {
+    .tabs {
+    }
+  }
+  .tabs {
+    background: #0F212E;
+    padding: 16px 12px;
+    border-radius: 4px;
+  }
 }
 </style>
 

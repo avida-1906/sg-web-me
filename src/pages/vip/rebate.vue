@@ -53,23 +53,25 @@ watch(tabList, (val) => {
 
 <template>
   <div class="vip-rebate">
-    <div class="tabs-outer">
-      <BaseTab
-        v-model="tab"
-        style="--tg-tab-style-color: var(--tg-text-lightgrey);"
-        :list="tabList"
-        line-style
-        :center="false"
-      />
+    <div class="tabs">
+      <div class="tabs-outer">
+        <BaseTab
+          v-model="tab"
+          style="--tg-tab-style-color: var(--tg-text-lightgrey);"
+          :list="tabList"
+          line-style
+          :center="false"
+        />
+      </div>
+      <BaseTable :columns="columns" :data-source="data">
+        <template #level="{ record }">
+          <!-- <div>VIP{{ record.level }}</div> -->
+          <div class="vip-badge">
+            <BaseIcon :name="`vip${record.level}`" />
+          </div>
+        </template>
+      </BaseTable>
     </div>
-    <BaseTable :columns="columns" :data-source="data">
-      <template #level="{ record }">
-        <!-- <div>VIP{{ record.level }}</div> -->
-        <div class="vip-badge">
-          <BaseIcon :name="`vip${record.level}`" />
-        </div>
-      </template>
-    </BaseTable>
     <AppVipRuleDesc />
   </div>
 </template>
@@ -90,6 +92,15 @@ watch(tabList, (val) => {
   --tg-table-odd-background: var(--tg-primary-main);
   .tabs-outer {
     background: var(--tg-secondary-dark);
+  }
+  &.is-mobile {
+    .tabs {
+    }
+  }
+  .tabs {
+    background: #0F212E;
+    padding: 0px 12px 16px;
+    border-radius: 4px;
   }
 }
 </style>
