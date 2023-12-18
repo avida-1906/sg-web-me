@@ -56,8 +56,8 @@ function getStateIcon(state: number) {
     case 2: return 'uni-record-err'
     case 3: return 'uni-record-confirm'
     case 4: return 'uni-record-err'
-    case 5: return 'uni-record-confirm'
-    case 6: return 'uni-record-cancel'
+    case 5: return isDeposit.value ? 'uni-record-confirm' : 'uni-record-err'
+    case 6: return isDeposit.value ? 'uni-record-cancel' : 'uni-record-confirm'
     default: return '--'
   }
 }

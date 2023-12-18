@@ -56,7 +56,7 @@ export class SportsOdds {
   static convert(odds: number, type = EnumSportsOddsType.DECIMAL) {
     switch (type) {
       case EnumSportsOddsType.DECIMAL:
-        return odds
+        return toFixed(odds, 2)
       case EnumSportsOddsType.FRACTION:
         return this.convertToFractionOdds(odds)
       case EnumSportsOddsType.AMERICAN:

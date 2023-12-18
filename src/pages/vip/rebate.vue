@@ -53,13 +53,15 @@ watch(tabList, (val) => {
 
 <template>
   <div class="vip-rebate">
-    <BaseTab
-      v-model="tab"
-      style="--tg-tab-style-color: var(--tg-text-lightgrey);"
-      :list="tabList"
-      line-style
-      :center="false"
-    />
+    <div class="tabs-outer">
+      <BaseTab
+        v-model="tab"
+        style="--tg-tab-style-color: var(--tg-text-lightgrey);"
+        :list="tabList"
+        line-style
+        :center="false"
+      />
+    </div>
     <BaseTable :columns="columns" :data-source="data">
       <template #level="{ record }">
         <!-- <div>VIP{{ record.level }}</div> -->
@@ -83,7 +85,12 @@ watch(tabList, (val) => {
   display: flex;
   flex-direction: column;
   gap: var(--tg-spacing-14);
-  --tg-table-even-background: var(--tg-primary-main);
+  --tg-table-th-background: var(--tg-secondary-grey);
+  --tg-table-even-background: var(--tg-secondary-grey);
+  --tg-table-odd-background: var(--tg-primary-main);
+  .tabs-outer {
+    background: var(--tg-secondary-dark);
+  }
 }
 </style>
 
