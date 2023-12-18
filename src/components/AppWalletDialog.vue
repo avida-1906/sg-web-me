@@ -34,6 +34,7 @@ const isVirCurrency = computed(() => {
 
   return false
 })
+const isEmailVerify = computed(() => userInfo.value?.email_check_state === 1)
 
 function changeCurrency(item: CurrencyData, network: string) {
   activeCurrency.value = item
@@ -49,10 +50,12 @@ watch(() => currentTab.value, () => {
 
 onMounted(() => {
   // 解决加载完毕dialog宽度变化，但是popper位置没有更新问题
-  const resizeObserver = new ResizeObserver(() => {
-    distance.value += 0.000001
-  })
-  resizeObserver.observe(contentRef.value)
+  if (contentRef.value) {
+    const resizeObserver = new ResizeObserver(() => {
+      distance.value += 0.000001
+    })
+    resizeObserver.observe(contentRef.value)
+  }
 })
 </script>
 
@@ -60,53 +63,59 @@ onMounted(() => {
   <div class="app-wallet-dialog">
     <div ref="contentRef" class="content">
       <BaseTab v-model="currentTab" :list="tabList" />
-      <AppSelectCurrency
-        v-show="showWallet && !isCardHolder"
-        :show-balance="isWithdraw"
-        :network="isVirCurrency"
-        :popper-clazz="isDeposit ? 'app-wallet-cur' : 'app-wallet-cur-with'"
-        :placeholder="isDeposit ? 'search' : 'search_currency'"
-        :distance="distance"
-        @change="changeCurrency"
-      />
-      <!-- 存款 -->
-      <template v-if="isDeposit && activeCurrency">
-        <Suspense timeout="0">
-          <AppVirtualDeposit
-            v-if="isVirCurrency"
-            :active-currency="activeCurrency"
-            :current-network="currentNetwork"
-            @show="handleShow"
-          />
-          <AppFiatDeposit
-            v-else
-            :active-currency="activeCurrency"
-            @show="handleShow"
-          />
-          <template #fallback>
-            <div class="center dialog-loading-height">
-              <BaseLoading />
-            </div>
-          </template>
-        </Suspense>
-      </template>
-      <!-- 取款 -->
-      <template v-else-if="isWithdraw && activeCurrency">
-        <Suspense timeout="0">
-          <AppWithdraw
-            v-if="isVirCurrency"
-            :active-currency="activeCurrency"
-            :current-network="currentNetwork"
-          />
-          <AppFiatWithdrawal v-else :active-currency="activeCurrency" />
-          <template #fallback>
-            <div class="center dialog-loading-height">
-              <BaseLoading />
-            </div>
-          </template>
-        </Suspense>
+      <template v-if="isEmailVerify">
+        <AppSelectCurrency
+          v-show="showWallet && !isCardHolder"
+          :show-balance="isWithdraw"
+          :network="isVirCurrency"
+          :popper-clazz="isDeposit ? 'app-wallet-cur' : 'app-wallet-cur-with'"
+          :placeholder="isDeposit ? 'search' : 'search_currency'"
+          :distance="distance"
+          @change="changeCurrency"
+        />
+        <!-- 存款 -->
+        <template v-if="isDeposit && activeCurrency">
+          <Suspense timeout="0">
+            <AppVirtualDeposit
+              v-if="isVirCurrency"
+              :active-currency="activeCurrency"
+              :current-network="currentNetwork"
+              @show="handleShow"
+            />
+            <AppFiatDeposit
+              v-else
+              :active-currency="activeCurrency"
+              @show="handleShow"
+            />
+            <template #fallback>
+              <div class="center dialog-loading-height">
+                <BaseLoading />
+              </div>
+            </template>
+          </Suspense>
+        </template>
+        <!-- 取款 -->
+        <template v-else-if="isWithdraw && activeCurrency">
+          <Suspense timeout="0">
+            <AppWithdraw
+              v-if="isVirCurrency"
+              :active-currency="activeCurrency"
+              :current-network="currentNetwork"
+            />
+            <AppFiatWithdrawal v-else :active-currency="activeCurrency" />
+            <template #fallback>
+              <div class="center dialog-loading-height">
+                <BaseLoading />
+              </div>
+            </template>
+          </Suspense>
+        </template>
       </template>
     </div>
+    <AppEmailVerify
+      v-if="!isEmailVerify && !isCardHolder"
+      :tip-text="tabList.find((item) => item.value === currentTab)?.label"
+    />
     <!-- 卡包 -->
     <!-- <KeepAlive> -->
     <template v-if="isCardHolder">
@@ -122,7 +131,8 @@ onMounted(() => {
     <!-- </KeepAlive> -->
   </div>
   <div
-    v-if="(isWithdraw || isDeposit) && userInfo && userInfo.google_verify !== 2"
+    v-if="(isWithdraw || isDeposit)
+      && userInfo && userInfo.google_verify !== 2 && isEmailVerify"
     class="safe-bottom"
   >
     <div>

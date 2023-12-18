@@ -117,7 +117,6 @@ const {
 const { data: areaCodeData } = useApiMemberTreeList('011')
 const { run: runMemberUpdate } = useRequest(ApiMemberUpdate, {
   onSuccess(data, params) {
-    openNotify(notifyData.value)
     if (params[0].record.email) {
       notifyData.value = {
         type: 'email',
@@ -127,6 +126,7 @@ const { run: runMemberUpdate } = useRequest(ApiMemberUpdate, {
       setEmailDisabledBtnTrue()
       emailCheck()
     }
+    openNotify(notifyData.value)
     appStore.updateUserInfo()
   },
 })
