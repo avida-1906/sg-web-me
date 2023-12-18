@@ -233,7 +233,7 @@ function resetPlatformChecked() {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: var(--tg-transition);
+    // transition: var(--tg-transition);
     font-size: var(--tg-font-size-default);
     &.up{
       transform: rotate(180deg);

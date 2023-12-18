@@ -136,6 +136,7 @@ function selectCurrency(item: EnumCurrencyKey, hide: () => void) {
     .arrow {
       font-size: var(--tg-font-size-default);
       margin-left: 8px;
+      transition: none;
     }
     .arrow-up{
       transform: rotate(180deg);

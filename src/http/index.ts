@@ -119,7 +119,7 @@ class HttpClient {
         // 如果后端返回token，关闭所有请求，清除token
         if (data === 'token') {
           this.cancelAllRequest()
-          closeCurDialog()
+          closeCurDialog && closeCurDialog()
           appStore.removeToken()
           appStore.removeUserInfo()
           appStore.setMqttConnectedFalse()

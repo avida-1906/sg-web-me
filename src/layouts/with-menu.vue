@@ -248,7 +248,7 @@ watch(route, (val) => {
   gap: var(--tg-spacing-8);
   font-size: var(--tg-font-size-default);
   .icon {
-    transition: all 200ms ease;
+    // transition: all 200ms ease;
     display: flex;
     align-items: center;
     justify-content: center;

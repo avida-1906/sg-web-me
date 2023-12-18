@@ -198,6 +198,7 @@ onMounted(() => {
         .arrow {
             font-size: var(--tg-font-size-default);
             margin-left: var(--tg-spacing-9);
+            transition: none;
         }
 
         .arrow-up {

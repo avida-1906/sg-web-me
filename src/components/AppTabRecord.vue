@@ -234,7 +234,6 @@ else {
 .tg-app-tab-record {
   position: relative;
   min-height: 195px;
-  --tg-tab-style-wrap-bg-color: var(--tg-primary-main);
 }
 // .footer-buttons {
 //   font-size: var(--tg-font-size-default);
@@ -281,7 +280,6 @@ else {
   height: calc(100% + 48px);
   left: -24px;
   top: -24px;
-  // margin: -24px;
   background-color: #{rgba($color: var(--tg-color-grey-rgb), $alpha: 0.45)};
 }
 </style>
