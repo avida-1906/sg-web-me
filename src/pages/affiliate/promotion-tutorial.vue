@@ -520,7 +520,7 @@ onBeforeUnmount(() => {
   .title {
     font-weight: var(--tg-font-weight-semibold);
     color: var(--tg-text-white);
-    font-size: var(--tg-font-size-base);
+    font-size: var(--tg-font-size-lg);
     margin-bottom: var(--tg-spacing-8);
   }
 

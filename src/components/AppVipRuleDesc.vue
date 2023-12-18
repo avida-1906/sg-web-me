@@ -60,7 +60,7 @@
     line-height: 26px;
   }
   h3 {
-    font-size: 16px;
+    font-size: 20px;
     line-height: 16px;
     margin-bottom: 8px;
     margin-top: 24px;
