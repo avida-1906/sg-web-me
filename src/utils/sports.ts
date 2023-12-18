@@ -1,4 +1,3 @@
-import dayjs from 'dayjs'
 import type { SocketClient } from './mqtt'
 import type {
   EnumCurrencyKey,
@@ -926,7 +925,7 @@ export function getSportsLiveTime(eventTime: Ref<string>, data: {
   ts: number
   si: number
   rbts: number
-}) {
+}, _dayjs: any) {
   if (!data.rbtt) {
     eventTime.value = ''
   }
@@ -936,7 +935,7 @@ export function getSportsLiveTime(eventTime: Ref<string>, data: {
     const baseMin = rbttArr[0]
     const baseSec = rbttArr[1]
 
-    const diff = dayjs().diff(ts * 1000, 'second')
+    const diff = _dayjs().diff(ts * 1000, 'second')
     const diffMin = Math.floor(diff / 60)
     const diffSec = diff - (diffMin * 60)
     let sec = 0
