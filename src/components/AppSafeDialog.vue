@@ -231,7 +231,11 @@ watch(() => activeTab.value, () => {
       >
         {{ t('turn_on_double_check') }}
       </BaseButton>
-      <BaseButton size="none" type="text" style="margin-top: var(--tg-spacing-4);">
+      <BaseButton
+        size="none" type="text"
+        style="margin-top: var(--tg-spacing-4);
+        --tg-base-button-text-default-color: var(--tg-text-white)"
+      >
         {{ t('vault_info') }}
       </BaseButton>
     </div>
