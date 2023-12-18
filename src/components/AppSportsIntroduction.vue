@@ -232,7 +232,7 @@ const onShowMore = function () {
   position: relative;
   max-height: 250px;
   overflow: hidden;
-  border-radius: 8px;
+  border-radius: var(--tg-radius-md);
 
   &.max-height {
     max-height: 100%;
