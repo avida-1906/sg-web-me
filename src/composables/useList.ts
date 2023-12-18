@@ -13,6 +13,7 @@ export interface IOther {
 }
 
 type GetProperty<T, K extends keyof T> = T[K]
+const { VITE_CASINO_HOME_PAGE_SIZE } = getEnv()
 
 export function useList<R extends IResponseList<unknown>, P extends unknown[]>(
   service: Service<R, P>,
@@ -22,7 +23,7 @@ export function useList<R extends IResponseList<unknown>, P extends unknown[]>(
   const { bool: isLoadMore, setTrue: setLoadMoreTrue, setFalse: setLoadMoreFalse } = useBoolean(false)
   const total = ref(0)
   const page = ref(defaultOther?.page || 1)
-  const page_size = ref(defaultOther?.page_size || 21)
+  const page_size = ref(defaultOther?.page_size || +VITE_CASINO_HOME_PAGE_SIZE)
   const list = shallowRef<GetProperty<R, 'd'>>([])
 
   const {
