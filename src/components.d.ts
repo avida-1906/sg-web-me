@@ -90,6 +90,7 @@ declare module 'vue' {
     AppPasswordVerify: typeof import('./components/AppPasswordVerify.vue')['default']
     AppPayPwdDialog: typeof import('./components/AppPayPwdDialog.vue')['default']
     AppPercentage: typeof import('./components/AppPercentage.vue')['default']
+    AppPoliciesTerms: typeof import('./components/AppPoliciesTerms.vue')['default']
     AppProviderSlider: typeof import('./components/AppProviderSlider.vue')['default']
     AppReceiveBonusDialog: typeof import('./components/AppReceiveBonusDialog.vue')['default']
     AppRegister: typeof import('./components/AppRegister.vue')['default']
