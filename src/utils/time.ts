@@ -105,9 +105,8 @@ export function getDaIntervalMap(date: number | string, days: number):
 
   // 开始日期就是date，结束日期就是date减去days天
   result.endTime = `${dayjs(timestamp).format('YYYY-MM-DD')} 00:00:00`
-  result.startTime = `
-    ${dayjs(timestamp).subtract(days, 'day').format('YYYY-MM-DD')} 23:59:59
-  `
+  result.startTime
+  = `${dayjs(timestamp).subtract(days, 'day').format('YYYY-MM-DD')} 23:59:59`
 
   return result
 }
