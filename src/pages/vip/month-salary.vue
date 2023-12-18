@@ -52,7 +52,11 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="vip-month-salary">
+  <div
+    class="vip-month-salary" :style="{
+      '--tg-table-td-padding': '12.5px',
+    }"
+  >
     <div class="tabs">
       <BaseTable :columns="columns" :data-source="vipConfigArray">
         <template #level="{ record }">

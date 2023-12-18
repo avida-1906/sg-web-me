@@ -52,7 +52,11 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="vip-promotion-bonus" :class="{ 'is-mobile': isMobile }">
+  <div
+    class="vip-promotion-bonus" :class="{ 'is-mobile': isMobile }" :style="{
+      '--tg-table-td-padding': '12.5px',
+    }"
+  >
     <div class="tabs">
       <BaseTable :columns="columns" :data-source="vipConfigArray">
         <template #level="{ record }">
