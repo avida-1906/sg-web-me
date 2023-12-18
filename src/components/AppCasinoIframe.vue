@@ -871,7 +871,7 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
 .popper {
   display: flex;
   flex-direction: column;
-  max-height: 482px;
+  // max-height: 482px;
 
   &::-webkit-scrollbar-thumb {
     background: var(--tg-secondary-light);
@@ -896,7 +896,7 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
 }
 
 .popper-mobile {
-  max-height: 295.578px;
+  // max-height: 295.578px;
 }
 
 .btns {
