@@ -12,7 +12,7 @@ const { isLogin } = storeToRefs(useAppStore())
 const { bool: isPopShow, setTrue: setPTrue, setFalse: setPFalse } = useBoolean(false)
 
 const menuData = computed<any>(() =>
-  route.meta.withMenuMenu?.map((m, idx) => ({ ...m, title: t(m.title), value: idx, label: t(m.title) }))
+  route.meta.withMenuMenu?.map((m, idx) => ({ ...m, title: m.isT ? t(m.title) : m.title, value: idx, label: m.isT ? t(m.title) : m.title }))
     .filter(f => f.token ? isLogin.value : true))
 const icon = computed<any>(() => route.meta.withMenuIcon)
 const withMenuMobileType = computed(() => route.meta.withMenuMobileType)

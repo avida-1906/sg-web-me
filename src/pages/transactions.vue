@@ -16,8 +16,14 @@ meta:
   withMenuTitle: transaction_record
   withMenuIcon: tabbar-bet
   withMenuMenu:
-    - {title: menu_title_settings_deposits, path: /transactions/deposits}
-    - {title: menu_title_settings_withdrawals, path: /transactions/withdrawals}
+    - title: menu_title_settings_deposits
+      path: /transactions/deposits
+      isT: true
+    - title: menu_title_settings_withdrawals
+      path: /transactions/withdrawals
+      isT: true
     # - {title: menu_title_settings_archive, path: /transactions/archive}
-    - {title: menu_title_settings_other, path: /transactions/other}
+    - title: menu_title_settings_other
+      path: /transactions/other
+      isT: true
 </route>

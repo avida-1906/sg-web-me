@@ -117,7 +117,6 @@ const {
 const { data: areaCodeData } = useApiMemberTreeList('011')
 const { run: runMemberUpdate } = useRequest(ApiMemberUpdate, {
   onSuccess(data, params) {
-    openNotify(notifyData.value)
     if (params[0].record.email) {
       notifyData.value = {
         type: 'email',
@@ -127,6 +126,7 @@ const { run: runMemberUpdate } = useRequest(ApiMemberUpdate, {
       setEmailDisabledBtnTrue()
       emailCheck()
     }
+    openNotify(notifyData.value)
     appStore.updateUserInfo()
   },
 })
@@ -187,6 +187,9 @@ function emailPaste() {
   setTimeout(() => {
     setEmailDisabledBtnFalse()
   }, 0)
+}
+function goGmail() {
+  window.open(`https://mail.google.com/mail/u/#search/from:@${location.origin}`)
 }
 
 /** 监听邮箱改变 */
@@ -328,6 +331,15 @@ onMounted(() => {
           />
         </BaseLabel>
       </div>
+      <template #btm-left>
+        <div v-if="email.includes('@gmail.com')">
+          <BaseButton bg-style="primary" @click="goGmail">
+            <div class="open-gmail">
+              打开 Gmail <BaseIcon name="uni-jump-page" />
+            </div>
+          </BaseButton>
+        </div>
+      </template>
       <template #btm-right>
         <BaseButton
           type="text"
@@ -398,6 +410,15 @@ onMounted(() => {
 </template>
 
 <style lang="scss" scoped>
+.open-gmail {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--tg-text-white);
+  font-size: 14px;
+  --tg-icon-color: var(--tg-text-white);
+}
 .not-verified-span {
   color: var(--tg-text-white);
 }
