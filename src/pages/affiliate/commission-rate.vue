@@ -6,7 +6,7 @@ const { selected: tab, list: tabList } = useSelect(scaleList)
 const {
   data,
   loading,
-} = useRequest(ApiAgencyCommissionScale, { manual: true })
+} = useRequest(ApiAgencyCommissionScale, { manual: false })
 
 const columns: Column[] = [
   {
