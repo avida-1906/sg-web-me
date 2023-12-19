@@ -6,6 +6,7 @@ const { vipConfigData } = storeToRefs(appStore)
 const { providerList } = storeToRefs(useSportsStore())
 const { AllLanguages, userLanguage } = storeToRefs(useLanguageStore())
 const { bigPlats: platformList } = storeToRefs(useCasinoStore())
+const { isMobile } = storeToRefs(useWindowStore())
 
 const tab = ref('')
 
@@ -53,7 +54,8 @@ watch(tabList, (val) => {
 
 <template>
   <div
-    class="vip-rebate" :style="{
+    class="vip-rebate"
+    :class="{ 'is-mobile': isMobile }" :style="{
       '--tg-table-td-padding': '12.5px',
     }"
   >
@@ -102,6 +104,8 @@ watch(tabList, (val) => {
   }
   &.is-mobile {
     .tabs {
+      padding: 0 12px;
+      position: relative;
     }
   }
   .tabs {
