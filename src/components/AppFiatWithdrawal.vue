@@ -165,6 +165,7 @@ function formatAmount() {
 }
 
 watch(() => props.activeCurrency, (newValue) => {
+  console.log(1111)
   runAsyncWithdrawBankcardList({ currency_id: newValue.cur })
   runAsyncWithdrawMethodList({ currency_id: newValue.cur })
   selectBankReset()
