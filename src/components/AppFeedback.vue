@@ -131,12 +131,8 @@ onActivated(() => {
           <p class="label">
             {{ t('feedback_content') }}<span class="error-text">*</span>
           </p>
-          <textarea
-            v-model="feedbackText"
-            maxlength="200"
-            cols="30"
-            rows="8"
-            :placeholder="placeholder"
+          <BaseTextarea
+            v-model="feedbackText" :placeholder="placeholder"
             @blur="handleBlur"
           />
           <p class="length">
