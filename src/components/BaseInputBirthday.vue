@@ -84,7 +84,7 @@ const {
   if (!value)
     return t('surveys_birthday_error')
   if (value > dayMax.value)
-    return '日期不能超过31号'
+    return `日期不能超过${dayMax.value}号`
   if (!(month.value >= 1 && month.value <= 12))
     resetMonthField()
   if (year.value === '' || year.value === undefined)
@@ -167,11 +167,11 @@ const msg = computed(() => {
   if (isOver120.value === true)
     return '您的年龄不能超过 120 岁'
   if (month.value && day.value && day.value > dayMax.value)
-    return t('surveys_birthday_error')
+    return `日期不能超过${dayMax.value}号`
   if (!isEnough.value)
     return t('you_have_to_enough_18')
 
-  return errorYearMsg.value || errorMonthMsg.value || errorDayMsg.value
+  return errorDayMsg.value || errorMonthMsg.value || errorYearMsg.value
 })
 
 const isValid = computed(() => {

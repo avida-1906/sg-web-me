@@ -314,13 +314,13 @@ onBeforeUnmount(() => {
     <div class="des">
       <div class="p">
         <div class="title">
-          {{ $t('for_example') }}:
+          {{ $t('for_example') }}
         </div>
         <div>{{ $t('promotion_tutorial_example_desc') }}:</div>
       </div>
       <div class="p">
         <div class="title">
-          1、{{ $t('direct_team') }}:
+          {{ $t('direct_team') }}
         </div>
         <div>{{ $t('promotion_tutorial_direct_team_1') }}</div>
         <div>{{ $t('promotion_tutorial_direct_team_2') }}</div>
@@ -328,7 +328,7 @@ onBeforeUnmount(() => {
       </div>
       <div class="p">
         <div class="title">
-          2、{{ $t('other_team') }}:
+          {{ $t('other_team') }}
         </div>
         <div>{{ $t('promotion_tutorial_other_team_1') }}</div>
         <div>{{ $t('promotion_tutorial_other_team_2') }}</div>
@@ -336,7 +336,7 @@ onBeforeUnmount(() => {
       </div>
       <div class="p">
         <div class="title">
-          3、{{ $t('summary') }}:
+          {{ $t('summary') }}
         </div>
         <div>{{ $t('promotion_tutorial_summary_1') }}</div>
         <div>{{ $t('promotion_tutorial_summary_2') }}</div>

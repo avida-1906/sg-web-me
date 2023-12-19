@@ -5,35 +5,35 @@
   <div class="app-vip-rule-desc">
     <h2>VIP{{ $t('rule_desc') }}</h2>
     <div class="ul">
-      <h3>1.晋级标准</h3>
+      <h3>晋级标准</h3>
       <div class="li">
         {{ $t(`vip_rule_1`) }}
       </div>
-      <h3>2.日俸禄</h3>
+      <h3>日俸禄</h3>
       <div class="li">
         {{ $t(`vip_rule_2`) }}
       </div>
-      <h3>3.周俸禄</h3>
+      <h3>周俸禄</h3>
       <div class="li">
         {{ $t(`vip_rule_3`) }}
       </div>
-      <h3>4.月俸禄</h3>
+      <h3>月俸禄</h3>
       <div class="li">
         {{ $t(`vip_rule_4`) }}
       </div>
-      <h3>5.保级说明</h3>
+      <h3>保级说明</h3>
       <div class="li">
         {{ $t(`vip_rule_5`) }}
       </div>
-      <h3>6.稽核说明</h3>
+      <h3>稽核说明</h3>
       <div class="li">
         {{ $t(`vip_rule_6`) }}
       </div>
-      <h3>7.活动声明</h3>
+      <h3>活动声明</h3>
       <div class="li">
         {{ $t(`vip_rule_7`) }}
       </div>
-      <h3>8.解释说明</h3>
+      <h3>解释说明</h3>
       <div class="li">
         {{ $t(`vip_rule_8`) }}
       </div>
@@ -48,7 +48,7 @@
   font-weight: var(--tg-font-weight-semibold);
   line-height: 1.5;
   background: var(--tg-secondary-dark);
-  padding: var(--tg-spacing-24);
+  padding: var(--tg-spacing-16);
   width: 100%;
   position: relative;
   overflow: hidden;
@@ -57,13 +57,16 @@
     font-size: 20px;
     font-weight: 600;
     color: white;
-    line-height: 28px;
+    line-height: 26px;
   }
   h3 {
     font-size: 20px;
-    line-height: 28px;
-    margin-bottom: 16px;
+    line-height: 16px;
+    margin-bottom: 8px;
     margin-top: 24px;
+    &:first-child {
+      margin-top: 16px;
+    }
   }
   ul, .ul {
     display: flex;
@@ -75,7 +78,7 @@
       line-height: 22px;
       color: var(--tg-secondary-light);
       font-size: 16px;
-      font-weight: 500;
+      font-weight: 400;
     }
   }
 }

@@ -37,4 +37,5 @@ meta:
       path: /vip/month-salary
       token: false
       isT: true
+  withMenuLayoutConf: {padding: 0 0, borderRadius: '0'}
 </route>

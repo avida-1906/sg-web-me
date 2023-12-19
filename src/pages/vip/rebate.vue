@@ -52,9 +52,15 @@ watch(tabList, (val) => {
 </script>
 
 <template>
-  <div class="vip-rebate">
+  <div
+    class="vip-rebate" :style="{
+      '--tg-table-td-padding': '12.5px',
+    }"
+  >
     <div class="tabs">
-      <div class="tabs-outer">
+      <div
+        class="tabs-outer"
+      >
         <BaseTab
           v-model="tab"
           style="--tg-tab-style-color: var(--tg-text-lightgrey);"
@@ -100,7 +106,7 @@ watch(tabList, (val) => {
   .tabs {
     background: #0F212E;
     padding: 0px 12px 16px;
-    border-radius: 4px;
+    border-radius: 0px;
     display: flex;
     flex-direction: column;
     gap: 12px;
