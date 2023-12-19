@@ -7,35 +7,35 @@
     <div class="ul">
       <h3>晋级标准</h3>
       <div class="li">
-        {{ $t(`vip_rule_1`) }}
+        <div>{{ $t(`vip_rule_1`) }}</div>
       </div>
       <h3>日俸禄</h3>
       <div class="li">
-        {{ $t(`vip_rule_2`) }}
+        <div>{{ $t(`vip_rule_2`) }}</div>
       </div>
       <h3>周俸禄</h3>
       <div class="li">
-        {{ $t(`vip_rule_3`) }}
+        <div>{{ $t(`vip_rule_3`) }}</div>
       </div>
       <h3>月俸禄</h3>
       <div class="li">
-        {{ $t(`vip_rule_4`) }}
+        <div>{{ $t(`vip_rule_4`) }}</div>
       </div>
       <h3>保级说明</h3>
       <div class="li">
-        {{ $t(`vip_rule_5`) }}
+        <div>{{ $t(`vip_rule_5`) }}</div>
       </div>
       <h3>稽核说明</h3>
       <div class="li">
-        {{ $t(`vip_rule_6`) }}
+        <div>{{ $t(`vip_rule_6`) }}</div>
       </div>
       <h3>活动声明</h3>
       <div class="li">
-        {{ $t(`vip_rule_7`) }}
+        <div>{{ $t(`vip_rule_7`) }}</div>
       </div>
       <h3>解释说明</h3>
       <div class="li">
-        {{ $t(`vip_rule_8`) }}
+        <div>{{ $t(`vip_rule_8`) }}</div>
       </div>
     </div>
   </div>
