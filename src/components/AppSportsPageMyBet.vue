@@ -98,13 +98,13 @@ onUnmounted(() => {
     </div>
     <AppLoading v-if="loading" />
     <template v-else>
-      <div v-if="sportBetList.length === 0" class="empty">
+      <div class="empty">
         <BaseEmpty>
           <template #icon>
             <BaseIcon
               style="
                   font-size: var(--tg-empty-icon-size);
-                  margin-bottom: var(--tg-spacing-24);
+                  margin-bottom: var(--tg-spacing-25);
                 "
               name="uni-empty-betslip"
             />
@@ -126,11 +126,11 @@ onUnmounted(() => {
           </template>
         </BaseEmpty>
       </div>
-      <div v-else class="slip-wrapper" :style="`column-count:${columnCount}`">
+      <!-- <div v-else class="slip-wrapper" :style="`column-count:${columnCount}`">
         <div v-for="item in sportBetList" :key="item.ono" class="child">
           <AppSportsMyBetSlip :data="item" />
         </div>
-      </div>
+      </div> -->
       <AppStack
         class="stack-padding"
         :pagination-data="paginationData"
@@ -161,15 +161,15 @@ onUnmounted(() => {
   }
 }
 .stack-padding {
-  margin-top: var(--tg-spacing-24);
-  padding-bottom:var(--tg-spacing-30);
+  margin-top: var(--tg-spacing-16);
+  padding-bottom:var(--tg-spacing-32);
 }
 .empty{
   width: 100%;
-  min-height: 150px;
   --tg-empty-text-padding: var(--tg-spacing-12) 0 var(--tg-spacing-6);
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 16px;
 }
 </style>
