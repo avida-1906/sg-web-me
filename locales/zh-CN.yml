@@ -1252,10 +1252,10 @@ label_no_collect: 暂无任何收藏，请使用
 put_collect: 把游戏添加到收藏夹中。
 success_edit: 修改成功
 this_contains_invalid_email_characters: 这含有无效的电子邮件字符
-tip_email_sent: 邮电已发送
-tip_email_to: 验证邮电已发送至
+tip_email_to: 确认电邮已发送至
 success_update_email: 成功更新电邮地址
-email_update_to: 电邮地址已更新为
+tip_email_sent: 已重新发送电邮
+email_update_to: 验证电邮已重新发送至
 success_update_phone: 成功更新手机号码
 phone_update_to: 手机号码已更新为
 success_verify: 验证成功
