@@ -14,6 +14,7 @@ const closeDialog = inject('closeDialog', () => { })
 
 const { t } = useI18n()
 const appStore = useAppStore()
+const { openTermsDialog } = useDialogAuthTerms()
 
 const { bool: isEmailEmptyAndMust, setBool: setEmailShow } = useBoolean(false)
 const emailRef = ref()
@@ -72,13 +73,23 @@ async function submit() {
     await validateEmail()
 
   await validateUsername()
-  runThirdReg({
+  // closeDialog()
+  openTermsDialog()
+  const thirdReg = {
     email: props.data.email ?? email.value,
     username: username.value,
     third_id: props.data.id,
     third_type: props.ty,
     device_number: application.getDeviceNumber(),
-  })
+  }
+  Session.set(STORAGE_THIRDREG_PARAMS_KEYWORDS, thirdReg)
+  // runThirdReg({
+  //   email: props.data.email ?? email.value,
+  //   username: username.value,
+  //   third_id: props.data.id,
+  //   third_type: props.ty,
+  //   device_number: application.getDeviceNumber(),
+  // })
 }
 
 onMounted(() => {
@@ -89,6 +100,9 @@ onMounted(() => {
 
 <template>
   <div class="app-auth-third-form">
+    <div class="app-register-title">
+      {{ t('reg_step1') }}
+    </div>
     <div class="app-register-input-box">
       <BaseLabel v-if="isEmailEmptyAndMust" :label="t('email_address')" must-small>
         <BaseInput
@@ -97,7 +111,7 @@ onMounted(() => {
         />
       </BaseLabel>
       <!-- msg-after-touched  -->
-      <BaseLabel :label="t('username')" must-small>
+      <BaseLabel label="请选择显示名称" must-small>
         <BaseInput
           ref="userNameRef" v-model="username"
           :msg="usernameErrorMsg"
@@ -114,10 +128,19 @@ onMounted(() => {
 <style lang="scss" scoped>
 .app-auth-third-form {
   padding: var(--tg-spacing-button-padding-horizontal-sm) var(--tg-spacing-button-padding-horizontal-sm);
+  padding-top: 0;
   .app-register-input-box {
     display: flex;
     flex-direction: column;
     gap: var(--tg-spacing-16);
   }
+}
+.app-register-title {
+  color: var(--tg-secondary-light);
+  text-align: center;
+  font-size: var(--tg-font-size-base);
+  font-weight: var(--tg-font-weight-semibold);
+  line-height: 24px;
+  padding-bottom: var(--tg-spacing-16);
 }
 </style>

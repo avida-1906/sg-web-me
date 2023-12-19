@@ -169,8 +169,14 @@ watch(route, (val) => {
                           </div>
                         </template>
                       </div>
-                      <div class="right">
-                        <div class="content-container">
+                      <div
+                        class="right"
+                        :class="{ 'is-vip': $route.path.includes('/vip/') }"
+                      >
+                        <div
+                          class="content-container"
+                          :class="{ 'is-vip': $route.path.includes('/vip/') }"
+                        >
                           <RouterView v-slot="{ Component }">
                             <Suspense timeout="0">
                               <component :is="Component" :key="route.path" />
@@ -300,6 +306,9 @@ watch(route, (val) => {
         position: relative;
         border-radius: var(--tg-radius-md);
         overflow: hidden;
+        &.is-vip {
+          border-radius: 0;
+        }
         &.loading {
           .content-container {
             opacity: 0.3;
@@ -313,6 +322,9 @@ watch(route, (val) => {
           position: relative;
           border-radius: var(--tg-radius-md);
           min-height: 100%;
+          &.is-vip {
+            border-radius: 0;
+          }
         }
       }
     }

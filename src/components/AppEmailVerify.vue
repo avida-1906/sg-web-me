@@ -129,7 +129,7 @@ onMounted(() => {
         </BaseLabel>
       </div>
       <template #btm-left>
-        <div v-if="email?.includes('@gmail.com')">
+        <div v-if="email?.includes('@gmail.com') && (emailVerified || emailDisabledBtn)">
           <BaseButton bg-style="primary" @click="goGmail">
             <div class="open-gmail">
               打开 Gmail

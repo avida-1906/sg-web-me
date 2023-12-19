@@ -195,6 +195,7 @@ onMounted(() => {
   --tg-table-th-background: var(--tg-secondary-grey);
   --tg-table-even-background: var(--tg-secondary-grey);
   --tg-table-odd-background: var(--tg-primary-main);
+  --tg-table-thtd-radius: 0;
   overflow: visible;
   &.is-mobile {
     .tabs {
@@ -203,7 +204,7 @@ onMounted(() => {
   .tabs {
     background: #0F212E;
     padding: 16px 12px;
-    border-radius: 4px;
+    border-radius: 0px;
   }
 }
 </style>

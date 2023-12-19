@@ -169,6 +169,7 @@ declare global {
   const STORAGE_SPORTS_LIVE_NAV: typeof import('./utils/storage')['STORAGE_SPORTS_LIVE_NAV']
   const STORAGE_SPORTS_ODDS_TYPE_KEY: typeof import('./utils/storage')['STORAGE_SPORTS_ODDS_TYPE_KEY']
   const STORAGE_SPORTS_PANEL_TYPE_KEY: typeof import('./utils/storage')['STORAGE_SPORTS_PANEL_TYPE_KEY']
+  const STORAGE_THIRDREG_PARAMS_KEYWORDS: typeof import('./utils/storage')['STORAGE_THIRDREG_PARAMS_KEYWORDS']
   const STORAGE_TOKEN_KEY: typeof import('./utils/storage')['STORAGE_TOKEN_KEY']
   const Session: typeof import('./utils/storage')['Session']
   const SocketClient: typeof import('./utils/mqtt')['SocketClient']
@@ -441,6 +442,7 @@ declare global {
   const useDialogAgentCommissionDraw: typeof import('./composables/useDialogAgentCommissionDraw')['useDialogAgentCommissionDraw']
   const useDialogAgentCommissionRecord: typeof import('./composables/useDialogAgentCommissionRecord')['useDialogAgentCommissionRecord']
   const useDialogAgentGrade: typeof import('./composables/useDialogAgentGrade')['useDialogAgentGrade']
+  const useDialogAuthTerms: typeof import('./composables/useDialogAuthTerms')['useDialogAuthTerms']
   const useDialogBetSlip: typeof import('./composables/useDialogBetSlip')['useDialogBetSlip']
   const useDialogDepositDetail: typeof import('./composables/useDialogDepositDetail')['useDialogDepositDetail']
   const useDialogList: typeof import('./composables/useDialogList')['useDialogList']
@@ -808,6 +810,7 @@ declare module 'vue' {
     readonly STORAGE_SPORTS_LIVE_NAV: UnwrapRef<typeof import('./utils/storage')['STORAGE_SPORTS_LIVE_NAV']>
     readonly STORAGE_SPORTS_ODDS_TYPE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_SPORTS_ODDS_TYPE_KEY']>
     readonly STORAGE_SPORTS_PANEL_TYPE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_SPORTS_PANEL_TYPE_KEY']>
+    readonly STORAGE_THIRDREG_PARAMS_KEYWORDS: UnwrapRef<typeof import('./utils/storage')['STORAGE_THIRDREG_PARAMS_KEYWORDS']>
     readonly STORAGE_TOKEN_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_TOKEN_KEY']>
     readonly Session: UnwrapRef<typeof import('./utils/storage')['Session']>
     readonly SocketClient: UnwrapRef<typeof import('./utils/mqtt')['SocketClient']>
@@ -1079,6 +1082,7 @@ declare module 'vue' {
     readonly useDialogAgentCommissionDraw: UnwrapRef<typeof import('./composables/useDialogAgentCommissionDraw')['useDialogAgentCommissionDraw']>
     readonly useDialogAgentCommissionRecord: UnwrapRef<typeof import('./composables/useDialogAgentCommissionRecord')['useDialogAgentCommissionRecord']>
     readonly useDialogAgentGrade: UnwrapRef<typeof import('./composables/useDialogAgentGrade')['useDialogAgentGrade']>
+    readonly useDialogAuthTerms: UnwrapRef<typeof import('./composables/useDialogAuthTerms')['useDialogAuthTerms']>
     readonly useDialogBetSlip: UnwrapRef<typeof import('./composables/useDialogBetSlip')['useDialogBetSlip']>
     readonly useDialogDepositDetail: UnwrapRef<typeof import('./composables/useDialogDepositDetail')['useDialogDepositDetail']>
     readonly useDialogList: UnwrapRef<typeof import('./composables/useDialogList')['useDialogList']>
@@ -1440,6 +1444,7 @@ declare module '@vue/runtime-core' {
     readonly STORAGE_SPORTS_LIVE_NAV: UnwrapRef<typeof import('./utils/storage')['STORAGE_SPORTS_LIVE_NAV']>
     readonly STORAGE_SPORTS_ODDS_TYPE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_SPORTS_ODDS_TYPE_KEY']>
     readonly STORAGE_SPORTS_PANEL_TYPE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_SPORTS_PANEL_TYPE_KEY']>
+    readonly STORAGE_THIRDREG_PARAMS_KEYWORDS: UnwrapRef<typeof import('./utils/storage')['STORAGE_THIRDREG_PARAMS_KEYWORDS']>
     readonly STORAGE_TOKEN_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_TOKEN_KEY']>
     readonly Session: UnwrapRef<typeof import('./utils/storage')['Session']>
     readonly SocketClient: UnwrapRef<typeof import('./utils/mqtt')['SocketClient']>
@@ -1711,6 +1716,7 @@ declare module '@vue/runtime-core' {
     readonly useDialogAgentCommissionDraw: UnwrapRef<typeof import('./composables/useDialogAgentCommissionDraw')['useDialogAgentCommissionDraw']>
     readonly useDialogAgentCommissionRecord: UnwrapRef<typeof import('./composables/useDialogAgentCommissionRecord')['useDialogAgentCommissionRecord']>
     readonly useDialogAgentGrade: UnwrapRef<typeof import('./composables/useDialogAgentGrade')['useDialogAgentGrade']>
+    readonly useDialogAuthTerms: UnwrapRef<typeof import('./composables/useDialogAuthTerms')['useDialogAuthTerms']>
     readonly useDialogBetSlip: UnwrapRef<typeof import('./composables/useDialogBetSlip')['useDialogBetSlip']>
     readonly useDialogDepositDetail: UnwrapRef<typeof import('./composables/useDialogDepositDetail')['useDialogDepositDetail']>
     readonly useDialogList: UnwrapRef<typeof import('./composables/useDialogList')['useDialogList']>

@@ -1,5 +1,11 @@
 <script setup lang='ts'>
-import type { IMemberReg } from '~/apis/types'
+import type { IMemberReg, IMemberThirdReg } from '~/apis/types'
+
+interface Props {
+  isAuth?: boolean
+}
+
+const props = defineProps<Props>()
 
 const closeDialog = inject('closeDialog', () => {})
 
@@ -11,6 +17,7 @@ const { bool: isRead, setTrue: setReadTrue } = useBoolean(false)
 const { bool: checkboxValue } = useBoolean(false)
 const { openLoginDialog } = useLoginDialog()
 const { openRegisterDialog } = useRegisterDialog()
+const { openThirdAuthFormDialog } = useDialogThirdAuthForm()
 
 const {
   errorMessage: checkedErrorMsg,
@@ -25,6 +32,9 @@ const scrollRef = ref()
 const delayId = ref()
 const { bool: isCheckClicked, setTrue: setCCTrue } = useBoolean(false)
 
+const regThirdParams = computed(() => {
+  return Session.get<IMemberThirdReg>(STORAGE_THIRDREG_PARAMS_KEYWORDS)?.value
+})
 const regParams = computed(() => {
   return Session.get<IMemberReg>(STORAGE_REG_PARAMS_KEYWORDS)?.value
 })
@@ -46,6 +56,23 @@ const {
   },
 })
 
+const { run: runThirdReg } = useRequest(ApiMemberThirdReg, {
+  onSuccess: async (data) => {
+    appStore.setToken(data)
+    Session.remove(STORAGE_THIRDREG_PARAMS_KEYWORDS)
+    setNeedBackFalse()
+    openNotify({
+      type: 'success',
+      message: t('success_register'),
+    })
+    await nextTick()
+    closeDialog()
+    setTimeout(() => {
+      location.replace('/')
+    }, 100)
+  },
+})
+
 function handleScroll() {
   clearTimeout(delayId.value)
   delayId.value = setTimeout(() => {
@@ -59,6 +86,9 @@ async function getStartGame() {
   if (!isRead.value)
     return
   valiChecked()
+  if (checkboxValue.value && !checkedErrorMsg.value && regThirdParams.value && props.isAuth)
+    runThirdReg(regThirdParams.value)
+
   if (checkboxValue.value && !checkedErrorMsg.value && regParams.value)
     runMemberReg(regParams.value)
 }
@@ -84,13 +114,18 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   scrollRef.value.removeEventListener('scroll', handleScroll)
-  if (needBack.value)
-    openRegisterDialog()
+  if (needBack.value) {
+    if (props.isAuth)
+      openThirdAuthFormDialog()
+
+    else
+      openRegisterDialog()
+  }
 })
 </script>
 
 <template>
-  <div class="app-register-terms-conditions">
+  <div class="app-register-terms-conditions" :class="{ 'is-auth': isAuth }">
     <div class="title">
       <div class="arrow" @click.stop="goPrev">
         <BaseIcon name="uni-arrowleft-line" />
@@ -164,6 +199,10 @@ onBeforeUnmount(() => {
   flex-direction: column;
   gap: var(--tg-spacing-16);
   padding-bottom: var(--tg-spacing-button-padding-horizontal-sm);
+  &.is-auth {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
   .title {
     color: var(--tg-text-lightgrey);
     text-align: center;
