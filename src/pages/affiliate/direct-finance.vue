@@ -205,7 +205,7 @@ useListSearch(params, runAsync, resetPage)
 .table-filter {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: flex-start;
   gap: var(--tg-spacing-16);
   font-size: var(--tg-font-size-xs);
 }
