@@ -686,6 +686,9 @@ export class SportsCart {
    * 通过wid，更新ov，os
    */
   updateOvOs(_data: ISportListToCartData) {
+    if (this.isShowReuse)
+      return
+
     const { wid, ov, os } = _data
     const index = this.dataList.findIndex(a => a.wid === wid)
 
@@ -720,6 +723,9 @@ export class SportsCart {
    * @param {IBetInfoChangeCallback} fn 回调函数
    */
   updateAllData(data: IBetInfoBack, fn?: IBetInfoChangeCallback) {
+    if (this.isShowReuse)
+      return
+
     const { wsi, bi, dl, status } = data
 
     this.dlStatesToRenderData(dl, status)
