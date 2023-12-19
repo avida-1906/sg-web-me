@@ -2,16 +2,21 @@
 interface Props {
   prefix?: string
   name: string
+  hasTransition?: boolean
 }
 const props = withDefaults(defineProps<Props>(), {
   prefix: 'icon',
+  hasTransition: true,
 })
 
 const symbolId = computed(() => `#${props.prefix}-${props.name}`)
 </script>
 
 <template>
-  <svg class="app-svg-icon" aria-hidden="true">
+  <svg
+    class="app-svg-icon"
+    :class="{ 'has-transition': hasTransition }" aria-hidden="true"
+  >
     <use :xlink:href="symbolId" />
   </svg>
 </template>
@@ -19,6 +24,7 @@ const symbolId = computed(() => `#${props.prefix}-${props.name}`)
 <style>
 :root {
   --tg-base-icon-color: var(--tg-icon-color);
+  --tg-icon-transition: var(--tg-transition);
 }
 </style>
 
@@ -33,6 +39,8 @@ const symbolId = computed(() => `#${props.prefix}-${props.name}`)
   flex-shrink: 0;
   fill: currentColor;
   stroke: currentColor;
-  transition: var(--tg-transition);
+  &.has-transition {
+    transition: var(--tg-icon-transition);
+  }
 }
 </style>

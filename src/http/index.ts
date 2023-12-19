@@ -113,12 +113,12 @@ class HttpClient {
       const responseStatus = response.status
       const appStore = useAppStore()
       const { closeRightSidebar, rightIsExpand } = useRightSidebar()
-      const { closeDialog: closeCurDialog } = useDialogList()
+      const { setCloseAllDialog } = useDialogList()
 
       if (!status) {
         // 如果后端返回token，关闭所有请求，清除token
         if (data === 'token') {
-          closeCurDialog && closeCurDialog()
+          setCloseAllDialog(true)
           appStore.removeToken()
           appStore.removeUserInfo()
           appStore.setMqttConnectedFalse()

@@ -133,6 +133,7 @@ await application.allSettled([runAsyncWalletBankcardList()])
         :key="item.type"
         :close="item.shown"
         :title="item.addressNum?.toString() || '0'"
+        style="--tg-icon-transition: 0;"
         @click-show="handleShow(index)"
         @click-close="lastShown === index ? lastShown = -1 : ''"
       >

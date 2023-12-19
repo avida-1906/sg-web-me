@@ -1,12 +1,8 @@
 export const useDialogList = createGlobalState(() => {
-  const closeDialog = ref()
-
-  const setDialogClose = (fn: () => void) => {
-    closeDialog.value = fn
-  }
+  const { bool: closeAllDialog, setBool: setCloseAllDialog } = useBoolean(false)
 
   return {
-    setDialogClose,
-    closeDialog: closeDialog.value,
+    closeAllDialog,
+    setCloseAllDialog,
   }
 })

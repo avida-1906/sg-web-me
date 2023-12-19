@@ -20,6 +20,7 @@ const emit = defineEmits(['update:show', 'close', 'cancel', 'confirm'])
 
 const { leftIsExpand } = useLeftSidebar()
 const { bool: _show, setTrue: setBShowTrue, setFalse: setBShowFalse } = useBoolean(false)
+const { closeAllDialog } = useDialogList()
 
 useLockScroll(_show, leftIsExpand)
 
@@ -62,6 +63,11 @@ onMounted(() => {
 
 onUnmounted(() => {
   setBShowFalse()
+})
+
+watch(closeAllDialog, (val) => {
+  if (val === true)
+    close()
 })
 </script>
 

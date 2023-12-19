@@ -10,6 +10,7 @@ import type {
   IMemberBalanceLockerUpdate,
   IMemberDetail,
   IMemberReg,
+  IMemberThirdReg,
   INotNotice,
   IResponseList,
   IUserInfo,
@@ -1294,14 +1295,7 @@ export function ApiMemberThirdAuthUrl(params: {
  * 三方登录注册
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=81413d60-d816-45c0-8df0-47436a1bd837
  */
-export function ApiMemberThirdReg(data: {
-  email: string
-  username: string
-  parent_id?: string
-  device_number: string
-  third_type: number
-  third_id: string
-}) {
+export function ApiMemberThirdReg(data: IMemberThirdReg) {
   return httpClient.post<string>('/member/third/register', data, {
     headers: {
       device_number: data.device_number,
