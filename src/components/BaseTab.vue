@@ -70,7 +70,7 @@ function onClick(tab: TabItem, i: number) {
                 <AppImage
                   v-if="useCloudImg"
                   style="width: 14px;height: 14px;"
-                  :url="t.icon" is-cloud
+                  :url="t.icon" is-cloud loading="eager"
                 />
                 <BaseIcon v-else :name="t.icon" style="display: block;" />
               </div>
