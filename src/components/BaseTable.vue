@@ -26,7 +26,7 @@ const getSource = computed(() => {
 // 排序变化
 function handleSort(item: Column, index: number) {
   if (item.sort) {
-    const str = sortSource.value[index] === 'descend' ? 'ascend' : 'descend'
+    const str = sortSource.value[index] === 'desc' ? 'asc' : 'desc'
     sortSource.value = []
     sortSource.value[index] = str
     emit('sort', {
@@ -81,12 +81,12 @@ watch(() => props.columns, () => {
                 <BaseIcon
                   name="uni-table-sort"
                   :style="`${sortSource[index]
-                    === 'ascend' ? '--tg-icon-color: #fff' : ''}`"
+                    === 'asc' ? '--tg-icon-color: #fff' : ''}`"
                 />
                 <BaseIcon
                   name="uni-table-sort"
                   :style="`transform: rotate(180deg);
-                  ${sortSource[index] === 'descend' ? '--tg-icon-color: #fff' : ''}`"
+                  ${sortSource[index] === 'desc' ? '--tg-icon-color: #fff' : ''}`"
                 />
               </div>
             </div>
