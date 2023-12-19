@@ -208,6 +208,7 @@ declare module 'vue' {
     BaseTab: typeof import('./components/BaseTab.vue')['default']
     BaseTable: typeof import('./components/BaseTable.vue')['default']
     BaseTag: typeof import('./components/BaseTag.vue')['default']
+    BaseTextarea: typeof import('./components/BaseTextarea.vue')['default']
     BaseUpload: typeof import('./components/BaseUpload.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
