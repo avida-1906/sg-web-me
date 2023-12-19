@@ -3,37 +3,55 @@
 
 <template>
   <div class="app-vip-rule-desc">
-    <h2>VIP{{ $t('rule_desc') }}</h2>
+    <div class="h2">
+      VIP{{ $t('rule_desc') }}
+    </div>
     <div class="ul">
-      <h3>晋级标准</h3>
+      <div class="h3">
+        晋级标准
+      </div>
       <div class="li">
         <div>{{ $t(`vip_rule_1`) }}</div>
       </div>
-      <h3>日俸禄</h3>
+      <div class="h3">
+        日俸禄
+      </div>
       <div class="li">
         <div>{{ $t(`vip_rule_2`) }}</div>
       </div>
-      <h3>周俸禄</h3>
+      <div class="h3">
+        周俸禄
+      </div>
       <div class="li">
         <div>{{ $t(`vip_rule_3`) }}</div>
       </div>
-      <h3>月俸禄</h3>
+      <div class="h3">
+        月俸禄
+      </div>
       <div class="li">
         <div>{{ $t(`vip_rule_4`) }}</div>
       </div>
-      <h3>保级说明</h3>
+      <div class="h3">
+        保级说明
+      </div>
       <div class="li">
         <div>{{ $t(`vip_rule_5`) }}</div>
       </div>
-      <h3>稽核说明</h3>
+      <div class="h3">
+        稽核说明
+      </div>
       <div class="li">
         <div>{{ $t(`vip_rule_6`) }}</div>
       </div>
-      <h3>活动声明</h3>
+      <div class="h3">
+        活动声明
+      </div>
       <div class="li">
         <div>{{ $t(`vip_rule_7`) }}</div>
       </div>
-      <h3>解释说明</h3>
+      <div class="h3">
+        解释说明
+      </div>
       <div class="li">
         <div>{{ $t(`vip_rule_8`) }}</div>
       </div>
@@ -53,13 +71,13 @@
   position: relative;
   overflow: hidden;
   border-radius: 8px;
-  h2 {
+  h2, .h2 {
     font-size: 20px;
     font-weight: 600;
     color: white;
     line-height: 26px;
   }
-  h3 {
+  h3, .h3 {
     font-size: 20px;
     line-height: 16px;
     margin-bottom: 8px;
