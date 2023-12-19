@@ -27,6 +27,7 @@ const {
 
 const date = ref([])
 const searchValue = useDebouncedRef({ value: '', delay: 1000 })
+const { sortMap, setSortMap } = useTableSort()
 
 const columns: Column[] = [
   {
@@ -71,6 +72,7 @@ const params = computed(() => {
     // end_time: date.value[1],
     page_size: page_size.value,
     page: page.value,
+    ...sortMap.value,
   }
 })
 
@@ -104,6 +106,7 @@ useListSearch(params, runAsync, resetPage)
       :columns="columns"
       :data-source="list"
       :loading="loading"
+      @sort="setSortMap"
     >
       <template #username="{ record }">
         <AppReportUserName :username="record.username" :level="`${record.vip}`" />
