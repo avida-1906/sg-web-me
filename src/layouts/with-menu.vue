@@ -6,7 +6,7 @@ const router = useRouter()
 const route = useRoute()
 const { animatingMounted } = useLayoutAnimate({ aniMounted: true })
 
-const { appContentWidth } = storeToRefs(useWindowStore())
+const { appContentWidth, isMobile } = storeToRefs(useWindowStore())
 const { isLogin } = storeToRefs(useAppStore())
 
 const { bool: isPopShow, setTrue: setPTrue, setFalse: setPFalse } = useBoolean(false)
@@ -123,7 +123,11 @@ watch(route, (val) => {
                           <BaseMenu :data="menuData" />
                         </template>
                         <template v-else>
-                          <div v-if="withMenuMobileType === 'tabs'" class="menu-tabs">
+                          <div
+                            v-if="withMenuMobileType === 'tabs'"
+                            class="menu-tabs"
+                            :class="{ 'is-vip': $route.path.includes('/vip/') }"
+                          >
                             <BaseTab
                               v-model="curMenuTab"
                               :center="false"
@@ -170,6 +174,10 @@ watch(route, (val) => {
                         </template>
                       </div>
                       <div
+                        v-if="isMobile && $route.path.includes('/vip/')"
+                        class="line"
+                      />
+                      <div
                         class="right"
                         :class="{ 'is-vip': $route.path.includes('/vip/') }"
                       >
@@ -202,6 +210,10 @@ watch(route, (val) => {
 </template>
 
 <style lang="scss" scoped>
+.line {
+  width: 100%;
+  border-bottom: var(--tg-spacing-2) solid rgba(255, 255, 255, 0.05);
+}
 .settran {
   --tg-base-menu-item-active-bg: transparent;
   --tg-base-menu-item-hover-active-bg: transparent;
@@ -209,6 +221,9 @@ watch(route, (val) => {
 .menu-tabs {
   display: flex;
   padding-bottom: var(--tg-spacing-8);
+  &.is-vip {
+    padding-bottom: 0;
+  }
   > div {
     flex: 1;
     width: 0;
