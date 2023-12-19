@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import type { notifyType } from '~/composables/useNotify'
+
 interface Props {
   /** 提示文字 && 有值表示钱包中使用，没有表示设置中使用 */
   tipText?: string
@@ -34,18 +36,22 @@ const {
     return t('this_contains_invalid_email_characters')
   return ''
 })
-
+const notifyData = ref({
+  type: '' as notifyType,
+  title: '',
+  message: '',
+})
 const { run: runMemberUpdate } = useRequest(ApiMemberUpdate, {
   onSuccess(data, params) {
     if (params[0].record.email) {
       setEmailDisabledBtnTrue()
-      emailCheck()
+      emailCheck(true)
     }
-    openNotify({
+    notifyData.value = {
       type: 'email',
       title: t('success_update_email'),
-      message: `${t('email_update_to')} ${email.value}`,
-    })
+      message: `${t('tip_email_to')} +${email.value}`,
+    }
     appStore.updateUserInfo()
   },
 })
@@ -54,11 +60,7 @@ const {
   loading: loadingEmailCheckRequest,
 } = useRequest(ApiMemberEmailCheckRequest, {
   onSuccess() {
-    openNotify({
-      type: 'email',
-      title: t('tip_email_sent'),
-      message: `${t('tip_email_to')} +${email.value}`,
-    })
+    openNotify(notifyData.value)
   },
 })
 
@@ -70,11 +72,16 @@ async function emailSubmit() {
   if (!emailErrormsg.value)
     runMemberUpdate({ record: { email: email.value }, uid: userInfo.value?.ext.uid })
 }
-
-async function emailCheck() {
+async function emailCheck(manual: boolean) {
   await emailValidate()
-  if (!emailErrormsg.value)
+  if (!emailErrormsg.value) {
+    (!manual) && (notifyData.value = {
+      type: 'email',
+      title: t('tip_email_sent'),
+      message: `${t('email_update_to')} ${email.value}`,
+    })
     runEmailCheckRequest({ email: email.value })
+  }
 }
 function emailPaste() {
   setTimeout(() => {
@@ -142,7 +149,7 @@ onMounted(() => {
         <BaseButton
           type="text" :disabled="emailVerified"
           :loading="loadingEmailCheckRequest" size="none"
-          @click="emailCheck"
+          @click="emailCheck(false)"
         >
           <span :class="{ 'not-verified-span': !emailVerified }">
             {{ t('resend_email') }}

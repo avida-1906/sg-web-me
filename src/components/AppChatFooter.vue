@@ -347,9 +347,12 @@ watch(message, (val) => {
 }
 .layout-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill,minmax(50px,1fr));
-  gap: var(--tg-spacing-4);
-  padding: var(--tg-spacing-8) var(--tg-spacing-16);
+  grid-template-columns: repeat(auto-fill,minmax(40px,1fr));
+  gap: var(--tg-spacing-16);
+  // padding: var(--tg-spacing-8) var(--tg-spacing-16);
+  max-height: 13rem;
+  margin: 16px;
+  margin-top: 0;
 }
 .at-users-wrap, .command-wrap {
   background: var(--tg-secondary-main);
@@ -464,7 +467,7 @@ watch(message, (val) => {
   position: relative;
   display: grid;
   align-items: center;
-  padding: var(--tg-spacing-16);
+  padding: var(--tg-spacing-16) var(--tg-spacing-16) var(--tg-spacing-16);
   row-gap: var(--tg-spacing-8);
   grid-template-rows: auto;
   grid-template-columns: auto 1fr;
@@ -472,6 +475,9 @@ watch(message, (val) => {
       "input input"
       "online actions";
   touch-action: none;
+  --tg-base-input-textarea-minheight: 37px;
+  :deep(textarea) {
+  }
   .chat-input {
     grid-area: input;
     --tg-base-input-style-right-icon-pad-v: 0;

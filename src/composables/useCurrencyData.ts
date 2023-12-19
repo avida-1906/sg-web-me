@@ -1,4 +1,4 @@
-import type { EnumCurrencyKey, TCurrencyObject } from '~/apis/types'
+import type { EnumCurrencyKey, TCurrencyObject, availableCurrency } from '~/apis/types'
 import type { TTreeListType } from '~/composables/useApiMemberTreeList'
 
 type TBankTreeType<T extends TTreeListType | string>
@@ -173,6 +173,28 @@ export function useCurrencyData() {
       return list
   }
 
+  /** 货币列表;含筛选 */
+  const financeCurrencyData = (currency: availableCurrency[]) => {
+    const list: CurrencyData[] = []
+    for (const item of currency) {
+      const type = item.currency_name
+      list.push({
+        type,
+        balance: item.balance ?? '',
+        balanceWithSymbol: `${application.isVirtualCurrency(type)
+          ? ''
+          : getCurrencyConfig(type).prefix} ${item.balance ?? ''}`,
+        cur: item.currency_id,
+        bankTree: getCurrencyConfig(type).bankTree,
+        prefix: getCurrencyConfig(type).prefix,
+      })
+    }
+    if (searchValue.value)
+      return list.filter(({ type }) => type.includes(searchValue.value.toLocaleUpperCase()))
+    else
+      return list
+  }
+
   /** 钱包余额 */
   const renderBalanceList = computed(() => {
     return allCurrencyData(userInfo.value?.balance).filter(
@@ -188,6 +210,11 @@ export function useCurrencyData() {
   /** 钱包弹框，下拉选择 */
   const renderCurrencyList = computed(() => {
     return allCurrencyData(userInfo.value?.balance)
+  })
+
+  /** 钱包弹框，下拉选择 */
+  const renderFinanceCurrencyList = computed(() => (financeList: availableCurrency[]) => {
+    return financeCurrencyData(financeList)
   })
 
   /** 清空搜索内容 */
@@ -234,6 +261,7 @@ export function useCurrencyData() {
     hideZeroBalance,
     renderCurrencyList,
     allContractListData,
+    renderFinanceCurrencyList,
     clearSearchValue,
     setHideZeroBalance,
     getVirtualCurrencyContractType,

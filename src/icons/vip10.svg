@@ -10,7 +10,7 @@
 <path opacity="0.196" d="M4.28833 7.66345V19.4871C4.28833 19.925 4.46851 20.2754 4.91896 20.4505L15.4595 26.4061C15.8199 26.5813 16.2703 26.5813 16.6307 26.4061L25.1892 21.5891L4.28833 7.66345Z" fill="#99DBFB"/>
 <path opacity="0.12" d="M7.71175 4.59808L4.91896 6.17457C4.5586 6.43732 4.28833 6.78765 4.28833 7.22556L16 15.0204L20.0541 12.3054L7.71175 4.59808Z" fill="white"/>
 <path opacity="0.196" d="M27.7117 7.66345V19.4871C27.7117 19.925 27.5315 20.2754 27.0811 20.4505L16.5405 26.4061C16.1802 26.5813 15.7297 26.5813 15.3693 26.4061L6.81079 21.5891L27.7117 7.66345Z" fill="#99DBFB"/>
-<g filter="url(#filter0_i_8344_15131)">
+<g filter="url(#filter0_i_8460_22941)">
 <path d="M7.05078 11.1132H7.74814V16.3127H11.3038V16.8868H7.05078V11.1132Z" fill="#039CE8"/>
 <path d="M11.5353 11.1132H12.3102L14.2301 16.1671H14.2559L16.1758 11.1132H16.9506L14.6778 16.8868H13.8082L11.5353 11.1132Z" fill="#039CE8"/>
 <path d="M18.971 11.1132H19.522V16.8868H18.816V11.9218C18.4286 12.2938 17.9465 12.5526 17.3697 12.7143V12.0512C17.6452 11.9784 17.9379 11.8652 18.2306 11.7035C18.5233 11.5256 18.7644 11.3315 18.971 11.1132Z" fill="#039CE8"/>
@@ -22,7 +22,7 @@
 <path opacity="0.3" d="M0.00013876 6.40222L4.32446 7.66343V12.7082C1.76761 11.9625 0.00013876 9.53509 0.00013876 6.76951V6.40222Z" fill="#0BADFD"/>
 <path opacity="0.8" d="M0.00013876 12.7083L4.32446 13.9695V19.0142C1.76761 18.2685 0.00013876 15.8411 0.00013876 13.0755V12.7083Z" fill="#0BADFD"/>
 <defs>
-<filter id="filter0_i_8344_15131" x="6.95068" y="10.9" width="18.3308" height="7.19995" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<filter id="filter0_i_8460_22941" x="6.95068" y="10.9" width="18.3308" height="7.19995" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
 <feFlood flood-opacity="0" result="BackgroundImageFix"/>
 <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
@@ -30,7 +30,7 @@
 <feGaussianBlur stdDeviation="0.5"/>
 <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
 <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
-<feBlend mode="normal" in2="shape" result="effect1_innerShadow_8344_15131"/>
+<feBlend mode="normal" in2="shape" result="effect1_innerShadow_8460_22941"/>
 </filter>
 </defs>
 </svg>
