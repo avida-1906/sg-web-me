@@ -307,7 +307,7 @@ watch(route, (val) => {
         border-radius: var(--tg-radius-md);
         overflow: hidden;
         &.is-vip {
-          border-radius: 0;
+          // border-radius: 0;
         }
         &.loading {
           .content-container {
@@ -323,7 +323,7 @@ watch(route, (val) => {
           border-radius: var(--tg-radius-md);
           min-height: 100%;
           &.is-vip {
-            border-radius: 0;
+            // border-radius: 0;
           }
         }
       }

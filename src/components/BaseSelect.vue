@@ -91,7 +91,7 @@ function onPopperOpen() {
         <div class="content">
           <div class="content-label">
             <slot name="label" :data="selectedOption">
-              <span>{{ popperLabel }}</span>
+              <span class="inner-label">{{ popperLabel }}</span>
             </slot>
           </div>
           <div v-if="!disabled" class="icon" :class="{ up: isPopperOpen }">
@@ -208,6 +208,9 @@ function onPopperOpen() {
     justify-content: space-between;
     align-items: center;
     line-height: var(--tg-base-select-popcontent-lineheight);
+    .inner-label {
+      display: block;
+    }
   }
   &.pop-open {
     background-color: var(--tg-base-select-popopen-bg-color);

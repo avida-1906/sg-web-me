@@ -181,7 +181,10 @@ function mapHeadArea(
 
       <!-- matchScore -->
       <div class="heading center sticky-right" style="grid-area: matchScore_title;">
-        <AppImage :url="data.spic" is-network width="16px" height="16px" />
+        <AppImage
+          style="filter: brightness(2);"
+          :url="data.spic" is-network width="16px" height="16px"
+        />
       </div>
       <div
         class="fill-frame sticky-right completed match-score border"

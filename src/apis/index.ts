@@ -19,6 +19,7 @@ import type {
   TCurrencyObject,
   VipConfig,
   VirtualCoin,
+  availableCurrency,
 } from './types'
 import type { CurrencyCode } from '~/composables/useCurrencyData'
 import { httpClient } from '~/http'
@@ -1836,4 +1837,24 @@ export function ApiFinanceRecordOther(params?: {
   id: string
 }) {
   return httpClient.get<IResponseList<PayInfo>>('/finance/record/other', { params })
+}
+
+/**
+ * 支付可用货币列表-钱包存款
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=0f52cba2-b41f-4d06-ae97-291b2fbe848d
+ */
+export function ApiFinanceDepositCurrency(params?: {
+  contract_id: '1802'
+}) {
+  return httpClient.get<availableCurrency[]>('/finance/deposit/currency', { params })
+}
+
+/**
+ * 支付可用货币列表-钱包提款
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=54fde819-78a2-43b8-b24a-09bd9888fe6c
+ */
+export function ApiFinanceWithdrawCurrency(params?: {
+  contract_id: '1802'
+}) {
+  return httpClient.get<availableCurrency[]>('/finance/withdraw/currency', { params })
 }

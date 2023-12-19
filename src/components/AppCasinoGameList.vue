@@ -42,7 +42,7 @@ await application.allSettled([runAsync(params.value)])
           v-if="icon" width="16px"
           height="16px"
           :url="icon"
-          is-cloud
+          is-cloud loading="eager"
         />
         <span>{{ name }}</span>
       </div>
