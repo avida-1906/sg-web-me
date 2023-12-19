@@ -1,5 +1,4 @@
 <script setup lang='ts'>
-/* eslint-disable max-len */
 interface ComponentItem {
   cid: string
   platform_id: string
@@ -122,7 +121,7 @@ onBeforeUnmount(() => {
   casinoLobbyBus.off(setLobby)
 })
 
-await application.allSettled([casinoStore.runAsyncGameLobby(), runMemberNoticeAllList(), loadIcon()])
+await application.allSettled([runMemberNoticeAllList(), loadIcon()])
 </script>
 
 <template>
