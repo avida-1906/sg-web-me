@@ -620,7 +620,7 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
         font-size: var(--tg-font-size-default);
         display: flex;
         align-items: center;
-        transition: var(--tg-transition);
+        // transition: var(--tg-transition);
         &.up{
                 transform: rotate(180deg);
               }
@@ -734,7 +734,7 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
               font-size: var(--tg-font-size-default);
               display: flex;
               align-items: center;
-              transition: var(--tg-transition);
+              // transition: var(--tg-transition);
               &.up{
                 transform: rotate(180deg);
               }
