@@ -133,7 +133,7 @@ onMounted(() => {
   .tabs {
     background: #0F212E;
     padding: 16px 12px;
-    border-radius: 0px;
+    border-radius: 4px;
   }
 }
 </style>
