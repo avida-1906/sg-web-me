@@ -83,7 +83,6 @@ async function submit() {
 
   await validateUsername()
   // closeDialog()
-  openTermsDialog()
   const thirdReg = {
     email: props.data.email ?? email.value,
     username: username.value,
@@ -92,6 +91,7 @@ async function submit() {
     device_number: application.getDeviceNumber(),
   }
   Session.set(STORAGE_THIRDREG_PARAMS_KEYWORDS, thirdReg)
+  openTermsDialog()
   // runThirdReg({
   //   email: props.data.email ?? email.value,
   //   username: username.value,
