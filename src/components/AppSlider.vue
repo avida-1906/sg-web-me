@@ -123,7 +123,7 @@ watchEffect(() => {
             <AppImage
               v-if="useCloudImg"
               style="width: 16px;height: 16px;"
-              :url="icon" is-cloud
+              :url="icon" is-cloud loading="eager"
             />
             <BaseIcon v-else :name="icon" />
           </div>
