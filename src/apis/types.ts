@@ -150,6 +150,16 @@ export interface IMemberReg {
   parent_id?: string
   device_number: string
 }
+
+export interface IMemberThirdReg {
+  email: string
+  username: string
+  parent_id?: string
+  device_number: string
+  third_type: number
+  third_id: string
+}
+
 export interface CasinoLobbyGameItem {
   platform_id: string
   id: string

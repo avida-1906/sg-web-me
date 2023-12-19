@@ -96,6 +96,7 @@ watch(tabList, (val) => {
   --tg-table-th-background: var(--tg-secondary-grey);
   --tg-table-even-background: var(--tg-secondary-grey);
   --tg-table-odd-background: var(--tg-primary-main);
+  --tg-table-thtd-radius: 0;
   .tabs-outer {
     background: var(--tg-secondary-dark);
   }

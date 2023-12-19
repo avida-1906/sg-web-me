@@ -172,6 +172,7 @@ watch(() => props.columns, () => {
   --tg-table-th-font-weight: var(--tg-font-weight-semibold);
   --tg-table-margin-top-empty: 24px;
   --tg-table-tr-last-first-padding: var(--tg-spacing-16);
+  --tg-table-thtd-radius: var(--tg-radius-default);
 }
 </style>
 
@@ -253,12 +254,12 @@ watch(() => props.columns, () => {
 
     }
     th:last-child,td:last-child{
-      border-top-right-radius: var(--tg-radius-default);
-      border-bottom-right-radius: var(--tg-radius-default);
+      border-top-right-radius: var(--tg-table-thtd-radius);
+      border-bottom-right-radius: var(--tg-table-thtd-radius);
     }
     th:first-child,td:first-child{
-      border-top-left-radius: var(--tg-radius-default);
-      border-bottom-left-radius: var(--tg-radius-default);
+      border-top-left-radius: var(--tg-table-thtd-radius);
+      border-bottom-left-radius: var(--tg-table-thtd-radius);
     }
   }
   .last-first-padding{

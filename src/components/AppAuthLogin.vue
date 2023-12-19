@@ -101,7 +101,7 @@ onUnmounted(() => {
   display: flex;
   flex-direction: column;
   gap: var(--tg-spacing-16);
-  margin-top: -4px;
+  // margin-top: -4px;
   &-divider {
     width: 100%;
     max-width: 200px;
