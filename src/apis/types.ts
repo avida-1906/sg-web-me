@@ -733,3 +733,15 @@ export interface ISportsInfo {
    */
   status: 1 | 3
 }
+
+/**
+ * 钱包存款取款可用货币列表
+ */
+export interface availableCurrency {
+  /** 货币id */
+  currency_id: CurrencyCode
+  /** 货币名称 */
+  currency_name: EnumCurrencyKey
+  /** 余额 */
+  balance?: string
+}

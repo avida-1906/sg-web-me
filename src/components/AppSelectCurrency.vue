@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { CurrencyData } from '~/composables/useCurrencyData'
+import type { availableCurrency } from '~/apis/types'
 
 interface Props {
   showBalance?: boolean // 是否展示货币余额
@@ -8,6 +9,7 @@ interface Props {
   popperClazz?: string
   placeholder?: string
   distance?: number
+  activeCurrencyList?: availableCurrency[]
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -30,6 +32,7 @@ const {
   renderBalanceList,
   renderBalanceLockerList,
   renderCurrencyList,
+  renderFinanceCurrencyList,
   getVirtualCurrencyContractType,
 } = useCurrencyData()
 
@@ -41,6 +44,7 @@ const getCurrencyList = computed(() => {
     case 1: return renderBalanceList.value
     case 2: return renderBalanceLockerList.value
     case 3: return renderCurrencyList.value
+    case 4: return renderFinanceCurrencyList.value(props.activeCurrencyList ?? [])
     default: return []
   }
 })
@@ -78,7 +82,7 @@ watch(() => props.type, () => {
 watch(() => currentNetwork.value, () => {
   emit('change', activeCurrency.value, currentNetwork.value)
 })
-watch(() => renderCurrencyList.value, () => {
+watch(() => getCurrencyList.value, () => {
   getActiveValue()
 })
 
