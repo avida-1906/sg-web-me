@@ -38,9 +38,18 @@ const {
   // setErrors: setUsernameErrors,
 } = useField<string>('username', (value) => {
   if (!value)
-    return t('pls_enter_username')
+    return '最小字符长度为 3'
+  else if (value.length < 3)
+    return '最小字符长度为 3'
+  else if (value.match('[^a-z0-9]'))
+    return '用户名含有无效的字符'
+  else if (value.length > 14)
+    return '最大字符长度为 14'
   else if (!usernameReg.test(value))
     return t('validate_msg_user_name_tip')
+  // 此用户名已被使用，请选择另一用户名。
+  // 用户名含有无效的字符
+  // 您的用户名长度必须为 3 – 14 个字符。
   return ''
 })
 
@@ -74,7 +83,6 @@ async function submit() {
 
   await validateUsername()
   // closeDialog()
-  openTermsDialog()
   const thirdReg = {
     email: props.data.email ?? email.value,
     username: username.value,
@@ -83,6 +91,7 @@ async function submit() {
     device_number: application.getDeviceNumber(),
   }
   Session.set(STORAGE_THIRDREG_PARAMS_KEYWORDS, thirdReg)
+  openTermsDialog()
   // runThirdReg({
   //   email: props.data.email ?? email.value,
   //   username: username.value,

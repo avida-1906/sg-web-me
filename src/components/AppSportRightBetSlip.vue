@@ -756,28 +756,30 @@ onUnmounted(() => {
         </TransitionGroup>
         <!-- 无数据缺省 -->
         <div v-if="cartDataList.length === 0" class="empty">
-          <BaseEmpty>
+          <BaseEmpty style="--tg-empty-text-padding: 0">
             <template #icon>
               <BaseIcon
                 style="
                   font-size: var(--tg-empty-icon-size);
-                  margin-bottom: var(--tg-spacing-24);
+                  margin-bottom: var(--tg-spacing-30);
                 "
                 name="uni-empty-betslip"
               />
             </template>
             <template #description>
-              <span>{{ t('sports_bet_slip_empty') }}</span>
+              <span class="mid-text">{{ t('sports_bet_slip_empty') }}</span>
             </template>
             <template #default>
-              <BaseButton
-                type="text"
-                size="none"
-                style=" --tg-base-button-text-default-color:var(--tg-text-white)"
-                @click="noDataGoToBet"
-              >
-                {{ t('sports_betting_now') }}
-              </BaseButton>
+              <div style="margin-top: 4px">
+                <BaseButton
+                  type="text"
+                  size="none"
+                  style=" --tg-base-button-text-default-color:var(--tg-text-white)"
+                  @click="noDataGoToBet"
+                >
+                  {{ t('sports_betting_now') }}
+                </BaseButton>
+              </div>
             </template>
           </BaseEmpty>
         </div>
@@ -893,6 +895,11 @@ onUnmounted(() => {
 </template>
 
 <style lang='scss' scoped>
+.mid-text {
+  display:  block;
+  line-height: 21px;
+  margin-top: 4px;
+}
 .app-sports-bet-slip-container {
   color: var(--tg-text-white);
   font-size: var(--tg-font-size-default);
@@ -923,6 +930,9 @@ onUnmounted(() => {
     justify-content: space-between;
     align-items: center;
     padding: var(--tg-spacing-8) var(--tg-spacing-16);
+    line-height: 14px;
+    height: 32px;
+    --tg-base-select-popcontent-lineheight: 14px;
   }
 }
 
