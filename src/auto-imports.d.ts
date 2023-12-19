@@ -120,6 +120,7 @@ declare global {
   const ApiSportsEventHot: typeof import('./apis/sport')['ApiSportsEventHot']
   const ApiWalletBankcardList: typeof import('./apis/index')['ApiWalletBankcardList']
   const Big: typeof import('big.js')['Big']
+  const CASINO_LOBBY_RESET: typeof import('./utils/event-bus')['CASINO_LOBBY_RESET']
   const CHAT_MESSAGE_BUS: typeof import('./utils/event-bus')['CHAT_MESSAGE_BUS']
   const CasinoGameType: typeof import('./utils/enums')['CasinoGameType']
   const EffectScope: typeof import('vue')['EffectScope']
@@ -184,6 +185,7 @@ declare global {
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
   const autoResetRef: typeof import('@vueuse/core')['autoResetRef']
   const axios: typeof import('axios')['default']
+  const casinoLobbyBus: typeof import('./utils/event-bus')['casinoLobbyBus']
   const checkTs: typeof import('./utils/time')['checkTs']
   const cloneDeep: typeof import('lodash-es')['cloneDeep']
   const computed: typeof import('vue')['computed']
@@ -761,6 +763,7 @@ declare module 'vue' {
     readonly ApiSportsEventHot: UnwrapRef<typeof import('./apis/sport')['ApiSportsEventHot']>
     readonly ApiWalletBankcardList: UnwrapRef<typeof import('./apis/index')['ApiWalletBankcardList']>
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
+    readonly CASINO_LOBBY_RESET: UnwrapRef<typeof import('./utils/event-bus')['CASINO_LOBBY_RESET']>
     readonly CHAT_MESSAGE_BUS: UnwrapRef<typeof import('./utils/event-bus')['CHAT_MESSAGE_BUS']>
     readonly CasinoGameType: UnwrapRef<typeof import('./utils/enums')['CasinoGameType']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
@@ -825,6 +828,7 @@ declare module 'vue' {
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
     readonly axios: UnwrapRef<typeof import('axios')['default']>
+    readonly casinoLobbyBus: UnwrapRef<typeof import('./utils/event-bus')['casinoLobbyBus']>
     readonly checkTs: UnwrapRef<typeof import('./utils/time')['checkTs']>
     readonly cloneDeep: UnwrapRef<typeof import('lodash-es')['cloneDeep']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
@@ -1395,6 +1399,7 @@ declare module '@vue/runtime-core' {
     readonly ApiSportsEventHot: UnwrapRef<typeof import('./apis/sport')['ApiSportsEventHot']>
     readonly ApiWalletBankcardList: UnwrapRef<typeof import('./apis/index')['ApiWalletBankcardList']>
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
+    readonly CASINO_LOBBY_RESET: UnwrapRef<typeof import('./utils/event-bus')['CASINO_LOBBY_RESET']>
     readonly CHAT_MESSAGE_BUS: UnwrapRef<typeof import('./utils/event-bus')['CHAT_MESSAGE_BUS']>
     readonly CasinoGameType: UnwrapRef<typeof import('./utils/enums')['CasinoGameType']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
@@ -1459,6 +1464,7 @@ declare module '@vue/runtime-core' {
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
     readonly axios: UnwrapRef<typeof import('axios')['default']>
+    readonly casinoLobbyBus: UnwrapRef<typeof import('./utils/event-bus')['casinoLobbyBus']>
     readonly checkTs: UnwrapRef<typeof import('./utils/time')['checkTs']>
     readonly cloneDeep: UnwrapRef<typeof import('lodash-es')['cloneDeep']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>

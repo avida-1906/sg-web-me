@@ -113,6 +113,15 @@ function loadIcon() {
   })
 }
 
+function setLobby() {
+  tab.value = 'all'
+}
+
+casinoLobbyBus.on(setLobby)
+onBeforeUnmount(() => {
+  casinoLobbyBus.off(setLobby)
+})
+
 await application.allSettled([casinoStore.runAsyncGameLobby(), runMemberNoticeAllList(), loadIcon()])
 </script>
 

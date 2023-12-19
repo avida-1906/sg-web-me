@@ -25,10 +25,15 @@ const showBack = computed(() => {
 
 function to() {
   const currentPath = router.currentRoute.value.path
-  if (currentPath.includes('sports'))
+  if (currentPath.includes('sports')) {
+    sportsLobbyBus.emit(true)
     router.push(`/sports/${getSportsPlatId()}`)
-  else
+  }
+
+  else {
+    casinoLobbyBus.emit(true)
     router.push('/casino')
+  }
 
   isMobile.value && leftIsExpand.value && closeLeftSidebar()
 }
@@ -47,17 +52,19 @@ function to() {
       }"
       @click="to"
     >
-      <AppImage
-        v-if="logoAndIcoAndLoading.logo_white"
-        err-icon="img-casino-error"
-        is-network
-        :url="mode === 'light'
-          ? logoAndIcoAndLoading.logo_white : logoAndIcoAndLoading.logo_gray
-        "
-      >
-        <BaseImage v-if="mode === 'light'" url="/img/logo/logo_light.svg" />
-        <BaseImage v-else url="/img/logo/logo_dark.svg" />
-      </AppImage>
+      <BaseButton type="text" size="none">
+        <AppImage
+          v-if="logoAndIcoAndLoading.logo_white"
+          err-icon="img-casino-error"
+          is-network
+          :url="mode === 'light'
+            ? logoAndIcoAndLoading.logo_white : logoAndIcoAndLoading.logo_gray
+          "
+        >
+          <BaseImage v-if="mode === 'light'" url="/img/logo/logo_light.svg" />
+          <BaseImage v-else url="/img/logo/logo_dark.svg" />
+        </AppImage>
+      </BaseButton>
     </BaseAspectRatio>
     <BaseButton
       v-show="!showBack"
