@@ -82,6 +82,9 @@ async function submit() {
     await validateEmail()
 
   await validateUsername()
+  if (usernameErrorMsg.value)
+    return
+
   // closeDialog()
   const thirdReg = {
     email: props.data.email ?? email.value,

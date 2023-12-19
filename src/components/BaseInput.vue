@@ -208,6 +208,8 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse, iInput, isTouched, setBlur
   --tg-base-input-style-placeholder-color: var(--tg-text-white);
   --tg-base-input-style-placeholder-opacity: 0.3;
   --tg-base-input-style-pad-left: var(--tg-base-input-style-pad-x);
+  --tg-base-input-textarea-pad: var(--tg-spacing-8);
+  --tg-base-input-textarea-minheight: 2.8em;
 }
 </style>
 
@@ -239,7 +241,7 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse, iInput, isTouched, setBlur
     appearance: none;
     font-size: var(--tg-font-size-default);
     font-weight: var(--tg-font-weight-semibold);
-    padding: var(--tg-spacing-8);
+    padding: var(--tg-base-input-textarea-pad);
     transition: none;
     &::placeholder {
       color: var(--tg-text-white);
@@ -248,7 +250,7 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse, iInput, isTouched, setBlur
   }
 
   pre {
-    min-height: 2.8em;
+    min-height: var(--tg-base-input-textarea-minheight);
     max-height: 6.4em;
   }
 
