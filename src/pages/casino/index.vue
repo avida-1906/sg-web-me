@@ -141,24 +141,22 @@ await application.allSettled([casinoStore.runAsyncGameLobby(), runMemberNoticeAl
     </div>
     <div class="content-wrapper">
       <!-- 大厅 -->
-      <Transition name="tab-fade">
-        <div v-show="showAll">
-          <template v-for="item in casinoGameList" :key="item.name">
-            <AppSlider
-              v-if="item.games"
-              :icon="item.icon"
-              :title="item.name"
-              :data="item.games"
-              :cid="item.cid"
-              :ty="item.ty"
-              :pid="item.platform_id"
-              :path="item.path"
-              use-cloud-img
-              show-man-count
-            />
-          </template>
-        </div>
-      </Transition>
+      <div v-show="showAll">
+        <template v-for="item in casinoGameList" :key="item.name">
+          <AppSlider
+            v-if="item.games"
+            :icon="item.icon"
+            :title="item.name"
+            :data="item.games"
+            :cid="item.cid"
+            :ty="item.ty"
+            :pid="item.platform_id"
+            :path="item.path"
+            use-cloud-img
+            show-man-count
+          />
+        </template>
+      </div>
       <div v-show="currentObject">
         <KeepAlive>
           <Suspense timeout="0">
