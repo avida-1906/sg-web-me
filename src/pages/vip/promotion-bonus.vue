@@ -199,6 +199,8 @@ onMounted(() => {
   overflow: visible;
   &.is-mobile {
     .tabs {
+      padding: 0 12px;
+      position: relative;
     }
   }
   .tabs {

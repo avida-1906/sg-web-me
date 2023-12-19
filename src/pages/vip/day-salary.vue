@@ -132,15 +132,6 @@ onMounted(() => {
     .tabs {
       padding: 0 12px;
       position: relative;
-      // overflow: visible;
-      // &::before {
-      //   content: '';
-      //   position: absolute;
-      //   top: 7px;
-      //   left: 0;
-      //   width: 100%;
-      //   border-bottom: var(--tg-spacing-2) solid rgba(255, 255, 255, 0.05);
-      // }
     }
   }
   .tabs {

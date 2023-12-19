@@ -3,6 +3,7 @@ const params = { ty: 4 }
 
 const { t } = useI18n()
 const { openNotify } = useNotify()
+const { isMobile } = storeToRefs(useWindowStore())
 const { vip, vipConfigArray } = useVipInfo()
 
 const { run: runGetPromoBonus, data: promoBonus } = useRequest(ApiMemberVipBonusAvailable)
@@ -53,7 +54,8 @@ onMounted(() => {
 
 <template>
   <div
-    class="vip-month-salary" :style="{
+    class="vip-month-salary"
+    :class="{ 'is-mobile': isMobile }" :style="{
       '--tg-table-td-padding': '12.5px',
     }"
   >
@@ -128,6 +130,8 @@ onMounted(() => {
   --tg-table-thtd-radius: 0;
   &.is-mobile {
     .tabs {
+      padding: 0 12px;
+      position: relative;
     }
   }
   .tabs {
