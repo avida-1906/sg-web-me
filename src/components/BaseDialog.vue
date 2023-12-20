@@ -82,7 +82,7 @@ watch(closeAllDialog, (val) => {
 <template>
   <Teleport to="body" :disabled="!teleport">
     <Transition>
-      <section v-if="show || _show" class="tg-base-dialog" @touchmove.stop.prevent>
+      <section v-if="show || _show" class="tg-base-dialog" @touchmove.stop>
         <div class="overlay tg-dialog-overlay" @click="closeOnClickOverlay && close()" />
         <div
           class="card tg-dialog-card"
