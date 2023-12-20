@@ -85,6 +85,9 @@ watch(tabList, (val) => {
 </template>
 
 <style lang="scss" scoped>
+.small-text {
+  font-size: 12px;
+}
 .vip-badge {
   font-size: 32px;
   display: flex;

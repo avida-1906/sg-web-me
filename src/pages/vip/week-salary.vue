@@ -73,13 +73,16 @@ onMounted(() => {
           </div>
         </template>
         <template #status="{ record }">
-          <span v-if="+record.level > +vip">{{ t('wait_upgrade') }}</span>
+          <span
+            v-if="+record.level > +vip"
+            class="small-text"
+          >{{ t('wait_upgrade') }}</span>
           <template v-else>
             <span
               v-if="bonusArray.length
                 && bonusArray.filter(b => +b.vip === +record.level
                   && +b.state === 1).length"
-              class="green-text"
+              class="green-text small-text"
               @click="() => openReceive(bonusArray.filter(b =>
                 +b.vip === +record.level && +b.state === 1)[0])"
             >
@@ -89,9 +92,10 @@ onMounted(() => {
               v-else-if="bonusArray.length
                 && bonusArray.filter(b => +b.vip === +record.level
                   && +b.state === 2).length"
+              class="small-text"
             >
               {{ t('received') }}</span>
-            <span v-else>{{ t('upgraded') }}</span>
+            <span v-else class="small-text">{{ t('upgraded') }}</span>
           </template>
         </template>
       </BaseTable>
@@ -101,6 +105,9 @@ onMounted(() => {
 </template>
 
 <style lang="scss" scoped>
+.small-text {
+  font-size: 12px;
+}
 .vip-badge {
   font-size: 32px;
   display: flex;
