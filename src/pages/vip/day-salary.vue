@@ -135,6 +135,7 @@ onMounted(() => {
   --tg-table-even-background: var(--tg-secondary-grey);
   --tg-table-odd-background: var(--tg-primary-main);
   --tg-table-thtd-radius: 0;
+  --tg-table-font-size: 12px;
   &.is-mobile {
     .tabs {
       padding: 0 12px;
