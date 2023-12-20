@@ -73,6 +73,7 @@ function selectCurrency(item: CurrencyData, hide: () => void) {
 }
 function getActiveValue() {
   activeCurrency.value = getCurrencyList.value.find(item => item.type === (activeCurrency.value?.type ?? currentCurrency.value))
+    ?? getCurrencyList.value[0]
   emit('change', activeCurrency.value, currentNetwork.value)
 }
 
