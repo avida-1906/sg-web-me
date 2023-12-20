@@ -258,18 +258,18 @@ watch(
                               :key="nameItem"
                             >
                               <div class="column heading">
-                                <span>{{ nameItem }}</span>
+                                <span>{{ nameItem }}{{ nameItem }}</span>
                               </div>
                             </template>
                             <template
                               v-for="
-                                valueItem in item.pat6.list
+                                (valueItem, index) in item.pat6.list
                               "
-                              :key="valueItem.wid"
+                              :key="index"
                             >
                               <div class="column">
                                 <AppSportsBetButton
-                                  v-if="valueItem.cartInfo"
+                                  v-if="valueItem"
                                   layout="horizontal"
                                   :title="valueItem.sn"
                                   :cart-info="valueItem.cartInfo"

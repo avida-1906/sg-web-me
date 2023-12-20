@@ -660,34 +660,6 @@ export function useApiSportDetails() {
           }
         }
 
-        const maxLen = Math.max(zList.length, pList.length, kList.length)
-        if (zList.length < maxLen) {
-          const len = maxLen - zList.length
-          for (let j = 0; j < len; j++) {
-            zList.push({
-              wid: `${Math.floor(Math.random() * (9999 - 1000 + 1) + 1000) + j}`,
-            })
-          }
-        }
-
-        if (pList.length < maxLen) {
-          const len = maxLen - pList.length
-          for (let j = 0; j < len; j++) {
-            pList.push({
-              wid: `${Math.floor(Math.random() * (9999 - 1000 + 1) + 1000) + j}`,
-            })
-          }
-        }
-
-        if (kList.length < maxLen) {
-          const len = maxLen - kList.length
-          for (let j = 0; j < len; j++) {
-            kList.push({
-              wid: `${Math.floor(Math.random() * (9999 - 1000 + 1) + 1000) + j}`,
-            })
-          }
-        }
-
         mlItem.pat6 = {
           titleList,
           list: flatten(zip(zList, pList, kList)),
