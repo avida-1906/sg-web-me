@@ -167,7 +167,7 @@ onBeforeUnmount(() => {
   font-size: var(--tg-font-size-default);
   color: var(--tg-text-white);
   min-width: 0;
-  padding: 0.5em 0.75em;
+  padding: 0.6em 0.75em;
   line-height: 1.5;
   cursor: pointer;
 
