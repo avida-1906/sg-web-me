@@ -230,6 +230,7 @@ watch(route, (val) => {
   }
 }
 .pop-menu {
+  min-width: 80px;
   padding: var(--tg-spacing-4) 0;
   font-size: var(--tg-font-size-default);
   color: var(--tg-secondary-main);
