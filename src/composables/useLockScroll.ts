@@ -16,31 +16,29 @@ export function useLockScroll(
   }
 
   function lockScroll() {
-    if (isSafari) {
-      // document.body.classList.add('tg-popup-parent--hidden--safari')
+    if (isSafari)
+      document.body.classList.add('tg-popup-parent--hidden--safari')
       // document.body.style.top = `${-scrollTop.value}px`
-      document.addEventListener('touchmove', preventTMove, { passive: false })
+      // document.addEventListener('touchmove', preventTMove, { passive: false })
       // const app = document.getElementById('app')
       // if (app)
       //   app.addEventListener('touchmove', preventTMove, { passive: false })
-    }
-    else {
+
+    else
       document.body.classList.add('tg-popup-parent--hidden')
-    }
   }
 
   function unlockScroll() {
-    if (isSafari) {
-      // document.body.classList.remove('tg-popup-parent--hidden--safari')
+    if (isSafari)
+      document.body.classList.remove('tg-popup-parent--hidden--safari')
       // document.documentElement.scrollTop = document.body.scrollTop = scrollTop.value
-      document.removeEventListener('touchmove', preventTMove)
+      // document.removeEventListener('touchmove', preventTMove)
       // const app = document.getElementById('app')
       // if (app)
       //   app.removeEventListener('touchmove', preventTMove)
-    }
-    else {
+
+    else
       document.body.classList.remove('tg-popup-parent--hidden')
-    }
   }
 
   const stop = watch(b, (val) => {
