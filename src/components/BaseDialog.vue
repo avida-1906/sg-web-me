@@ -59,6 +59,14 @@ onMounted(() => {
       updateShow(true)
     }, 0)
   }
+  setTimeout(() => {
+    const overlay = document.querySelector('.tg-dialog-overlay')
+    if (overlay) {
+      overlay.addEventListener('touchmove', (e) => {
+        e.preventDefault()
+      }, { passive: false })
+    }
+  }, 0)
 })
 
 onUnmounted(() => {
@@ -75,7 +83,7 @@ watch(closeAllDialog, (val) => {
   <Teleport to="body" :disabled="!teleport">
     <Transition>
       <section v-if="show || _show" class="tg-base-dialog" @touchmove.stop>
-        <div class="overlay" @click="closeOnClickOverlay && close()" />
+        <div class="overlay tg-dialog-overlay" @click="closeOnClickOverlay && close()" />
         <div
           class="card"
           :style="`--tg-dialog-style-maxwidth:${maxWidth}px;background: ${background}`"
