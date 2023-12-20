@@ -68,7 +68,7 @@ onMounted(() => {
           </div>
         </template>
         <template #daily_gift="{ record }">
-          <div class="gift color-orange">
+          <div class="gift small-text color-orange">
             <AppAmount :amount="record.daily_gift" currency-type="USDT" />
           </div>
         </template>
@@ -136,6 +136,7 @@ onMounted(() => {
   --tg-table-odd-background: var(--tg-primary-main);
   --tg-table-thtd-radius: 0;
   --tg-table-font-size: 12px;
+  --tg-app-amount-font-size: 12px;
   &.is-mobile {
     .tabs {
       padding: 0 12px;

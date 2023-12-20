@@ -103,6 +103,7 @@ watch(tabList, (val) => {
   --tg-table-odd-background: var(--tg-primary-main);
   --tg-table-thtd-radius: 0;
   --tg-table-font-size: 12px;
+  --tg-app-amount-font-size: 12px;
   .tabs-outer {
     background: var(--tg-secondary-dark);
   }
