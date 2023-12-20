@@ -3,8 +3,6 @@ export function useFixedTop(className: string) {
   let currentInput: EventTarget | null = null // 当前聚焦的输入框
   const fixedEle = document.body
   const { bool: startMove, setBool: setStartMove } = useBoolean(false) // 记录是否发生了滑动手势
-  let keyboardHeight = 0 // 软键盘高度
-  const height = window.innerHeight
 
   function handleTouchmove() {
     setStartMove(true)
@@ -38,13 +36,14 @@ export function useFixedTop(className: string) {
   function handleFocusin(e: Event) {
     const el = e || window.event
     currentInput = el.target
-    if (window.visualViewport) {
-      setTimeout(() => {
-        // 计算过就不用再计算了，一般软键盘的高度是固定的，这样做还有一个顾虑：有些情况下，滚动的时候window.innerHeight和visualViewport.height还会变化，不能如实反馈，因此减少多次计算。
-        keyboardHeight || (keyboardHeight = height - window.visualViewport.height)
-        window.scrollTo({ top: keyboardHeight - window.pageYOffset })
-      }, 400)
-    }
+    // if (window.visualViewport) {
+    const top = window.scrollTop || document.documentElement.scrollTop
+    setTimeout(() => {
+      // 计算过就不用再计算了，一般软键盘的高度是固定的，这样做还有一个顾虑：有些情况下，滚动的时候window.innerHeight和visualViewport.height还会变化，不能如实反馈，因此减少多次计算。
+      // keyboardHeight || (keyboardHeight = height - window.visualViewport.height)
+      window.scrollTo({ top })
+    }, 400)
+    // }
     // 因为上一个聚焦的输入框因为失焦导致top置为0了，如果新聚焦的输入框不会触发webview平移，则沿用当时的位移就好了
     fixedEle.style.top = `${window.pageYOffset}px`
     // 添加滚动监听，为了软键盘出现 以及 从一个聚焦输入框聚焦到另外一个输入框时， 重新定位fixed元素（其实这里不用滚动事件监听变化也可以用setTimeout来更新定位）

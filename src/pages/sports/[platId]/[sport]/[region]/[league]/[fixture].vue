@@ -179,7 +179,7 @@ watch(
                               v-for="nameItem in item.ms"
                               :key="nameItem.wid"
                             >
-                              <div class="heading column">
+                              <div class="column heading">
                                 <span>{{ nameItem.sn }}</span>
                               </div>
                             </template>
@@ -253,7 +253,7 @@ watch(
               <AppSportsHotEventList :si="+route.params.sport" />
 
               <div v-if="showRecent" class="is-open spotlight variant-dark">
-                <div class="header no-active-scale">
+                <div class="no-active-scale header">
                   <span>{{ $t('recent_game_record') }}</span>
                   <BaseButton type="text" @click="setSRFalse()">
                     <BaseIcon name="uni-close-white" />
@@ -649,7 +649,7 @@ video {
               padding: 0 10px;
               input {
                 padding: 7px 8px;
-                height: 35px;
+                height: 37px;
               }
               .search-icon.app-svg-icon {
                 color: var(--tg-secondary-light);
