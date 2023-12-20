@@ -50,7 +50,7 @@ const { run: runMemberUpdate } = useRequest(ApiMemberUpdate, {
     notifyData.value = {
       type: 'email',
       title: t('success_update_email'),
-      message: `${t('tip_email_to')} +${email.value}`,
+      message: `${t('tip_email_to')} ${email.value}`,
     }
     appStore.updateUserInfo()
   },
