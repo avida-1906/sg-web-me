@@ -102,7 +102,7 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .vip-badge {
-  font-size: 28px;
+  font-size: 32px;
   display: flex;
   align-items: center;
 }
