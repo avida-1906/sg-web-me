@@ -31,11 +31,16 @@ function selectCurrency(item: EnumCurrencyKey, hide: () => void) {
   appStore.changeGlobalCurrency(item)
   hide()
 }
+
+function popperApplyShow() {
+  clearSearchValue()
+  useFixedTop('.app-h-wallet')
+}
 </script>
 
 <template>
   <div class="app-wallet flex-box">
-    <VDropdown v-model:shown="isMenuShown" :distance="10" @apply-show="clearSearchValue">
+    <VDropdown v-model:shown="isMenuShown" :distance="10" @apply-show="popperApplyShow">
       <div class="flex-box">
         <BaseButton class="wallet" type="text" size="sm">
           <!-- <span v-if="isCasinoGame" class="in-play">
