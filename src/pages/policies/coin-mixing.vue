@@ -10,7 +10,7 @@ const { openRegisterDialog } = useRegisterDialog()
   <div class="content-block pd-24">
     <h1>Coin Mixing Policy</h1>
     <div class="p">
-      Stake has a strict anti coin mixing policy. This is in accordance with our AML procedures outlined in our terms of service.
+      Meibo has a strict anti coin mixing policy. This is in accordance with our AML procedures outlined in our terms of service.
     </div>
     <div class="p">
       If deposits & withdrawals are suspected of being attempts to mix coins we reserve the right to hold withdrawals until completion of one of the following procedures
@@ -33,7 +33,7 @@ const { openRegisterDialog } = useRegisterDialog()
       </li>
     </ul>
     <div class="p">
-      Stake will always try to ensure every matter is resolved & the above can be modified to suit specific situations.
+      Meibo will always try to ensure every matter is resolved & the above can be modified to suit specific situations.
     </div>
     <div v-if="!isLogin" class="p buttons">
       <BaseButton type="text" size="none" @click="openLoginDialog()">
