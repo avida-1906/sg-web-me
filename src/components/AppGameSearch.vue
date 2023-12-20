@@ -49,7 +49,6 @@ const {
     if (res.d && res.d.length > 0) {
       const word = params[0].w
       isClear.value = false
-      isInputing.value = false
 
       // 去重
       if (keywordLive.value.includes(word))
@@ -59,6 +58,7 @@ const {
       keywordLive.value = keywordLive.value.slice(0, 5)
       Local.set(STORAGE_SEARCH_KEYWORDS_LIVE, keywordLive.value)
     }
+    isInputing.value = false
   },
 })
 // 体育搜索接口
@@ -70,7 +70,6 @@ const { data: sportsData, run: runSearchSports } = useRequest(
       if (res.list && res.list.length > 0) {
         const word = searchValue.value
         isClear.value = false
-        isInputing.value = false
 
         // 去重
         if (keywordSports.value.includes(word))
@@ -80,6 +79,7 @@ const { data: sportsData, run: runSearchSports } = useRequest(
         keywordSports.value = keywordSports.value.slice(0, 5)
         Local.set(STORAGE_SEARCH_KEYWORDS_SPORTS, keywordSports.value)
       }
+      isInputing.value = false
     },
   },
 )
