@@ -3,8 +3,6 @@ export function useFixedTop(className: string) {
   let currentInput: EventTarget | null = null // 当前聚焦的输入框
   const fixedEle = document.body
   const { bool: startMove, setBool: setStartMove } = useBoolean(false) // 记录是否发生了滑动手势
-  const keyboardHeight = 0 // 软键盘高度
-  const height = window.innerHeight
 
   function handleTouchmove() {
     setStartMove(true)
@@ -42,7 +40,7 @@ export function useFixedTop(className: string) {
       setTimeout(() => {
         // 计算过就不用再计算了，一般软键盘的高度是固定的，这样做还有一个顾虑：有些情况下，滚动的时候window.innerHeight和visualViewport.height还会变化，不能如实反馈，因此减少多次计算。
         // keyboardHeight || (keyboardHeight = height - window.visualViewport.height)
-        window.scrollTo({ top: 0 })
+        window.scrollTo({ top: window.scrollTop || document.documentElement.scrollTo })
       }, 400)
     }
     // 因为上一个聚焦的输入框因为失焦导致top置为0了，如果新聚焦的输入框不会触发webview平移，则沿用当时的位移就好了
