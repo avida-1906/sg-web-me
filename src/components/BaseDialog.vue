@@ -82,11 +82,12 @@ watch(closeAllDialog, (val) => {
 <template>
   <Teleport to="body" :disabled="!teleport">
     <Transition>
-      <section v-if="show || _show" class="tg-base-dialog" @touchmove.stop>
+      <section v-if="show || _show" class="tg-base-dialog" @touchmove.stop.prevent>
         <div class="overlay tg-dialog-overlay" @click="closeOnClickOverlay && close()" />
         <div
-          class="card"
+          class="card tg-dialog-card"
           :style="`--tg-dialog-style-maxwidth:${maxWidth}px;background: ${background}`"
+          @touchmove.stop
         >
           <div v-if="icon || title" class="header">
             <h2>

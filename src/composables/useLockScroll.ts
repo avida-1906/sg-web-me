@@ -17,9 +17,13 @@ export function useLockScroll(
 
   function lockScroll() {
     if (isSafari) {
-      // document.body.classList.add('tg-popup-parent--hidden--safari')
+      document.body.classList.add('tg-popup-parent--hidden--safari')
       // document.body.style.top = `${-scrollTop.value}px`
       document.addEventListener('touchmove', preventTMove, { passive: false })
+      document.body.setAttribute('ontouchmove', 'event.preventDefault()')
+      const app = document.getElementById('app')
+      if (app)
+        app.addEventListener('touchmove', preventTMove, { passive: false })
     }
     else {
       document.body.classList.add('tg-popup-parent--hidden')
@@ -28,9 +32,13 @@ export function useLockScroll(
 
   function unlockScroll() {
     if (isSafari) {
-      // document.body.classList.remove('tg-popup-parent--hidden--safari')
+      document.body.classList.remove('tg-popup-parent--hidden--safari')
       // document.documentElement.scrollTop = document.body.scrollTop = scrollTop.value
       document.removeEventListener('touchmove', preventTMove)
+      document.body.setAttribute('ontouchmove', '')
+      const app = document.getElementById('app')
+      if (app)
+        app.removeEventListener('touchmove', preventTMove)
     }
     else {
       document.body.classList.remove('tg-popup-parent--hidden')
