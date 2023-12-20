@@ -5,6 +5,10 @@ export function useLockScroll(
   const scrollTop = ref(0)
   const b = toRefs(depends)
 
+  function preventTMove(e: TouchEvent) {
+    e.preventDefault()
+  }
+
   function setScrollTop() {
     scrollTop.value = document.scrollingElement?.scrollTop
                         || document.documentElement.scrollTop
@@ -13,8 +17,9 @@ export function useLockScroll(
 
   function lockScroll() {
     if (isSafari) {
-      document.body.classList.add('tg-popup-parent--hidden--safari')
-      document.body.style.top = `${-scrollTop.value}px`
+      // document.body.classList.add('tg-popup-parent--hidden--safari')
+      // document.body.style.top = `${-scrollTop.value}px`
+      document.addEventListener('touchmove', preventTMove, { passive: false })
     }
     else {
       document.body.classList.add('tg-popup-parent--hidden')
@@ -23,8 +28,9 @@ export function useLockScroll(
 
   function unlockScroll() {
     if (isSafari) {
-      document.body.classList.remove('tg-popup-parent--hidden--safari')
-      document.documentElement.scrollTop = document.body.scrollTop = scrollTop.value
+      // document.body.classList.remove('tg-popup-parent--hidden--safari')
+      // document.documentElement.scrollTop = document.body.scrollTop = scrollTop.value
+      document.removeEventListener('touchmove', preventTMove)
     }
     else {
       document.body.classList.remove('tg-popup-parent--hidden')
