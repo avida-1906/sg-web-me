@@ -98,7 +98,7 @@ onUnmounted(() => {
     </div>
     <AppLoading v-if="loading" />
     <template v-else>
-      <div class="empty">
+      <div v-if="!sportBetList.length" class="empty">
         <BaseEmpty>
           <template #icon>
             <BaseIcon
@@ -126,11 +126,11 @@ onUnmounted(() => {
           </template>
         </BaseEmpty>
       </div>
-      <!-- <div v-else class="slip-wrapper" :style="`column-count:${columnCount}`">
+      <div v-else class="slip-wrapper" :style="`column-count:${columnCount}`">
         <div v-for="item in sportBetList" :key="item.ono" class="child">
           <AppSportsMyBetSlip :data="item" />
         </div>
-      </div> -->
+      </div>
       <AppStack
         class="stack-padding"
         :pagination-data="paginationData"
