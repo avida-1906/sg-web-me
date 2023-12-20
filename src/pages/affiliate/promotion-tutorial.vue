@@ -12,10 +12,9 @@ const getUrl = computed(() => {
 
 <template>
   <div class="promotion_tutorial">
-    <div class="relation-chart" :class="{ 'is-mobile': isMobile }">
+    <div class="relation-chart">
       <BaseImage :url="getUrl" />
     </div>
-
     <div class="des">
       <div class="p">
         <div class="title">
@@ -64,30 +63,7 @@ const getUrl = computed(() => {
 .relation-chart {
   background: var(--tg-secondary-dark);
   border-radius: var(--tg-radius-md);
-  padding: var(--tg-spacing-35) var(--tg-spacing-16) var(--tg-spacing-16) ;
-}
-
-.is-mobile {
-  .box {
-    padding: var(--tg-spacing-6) var(--tg-spacing-10);
-    min-width: 100px;
-
-    .level {
-      transform: translate(-50%, -85%);
-    }
-
-    span {
-      white-space: normal;
-    }
-  }
-
-  .boss {
-    min-width: 189px;
-
-    span {
-      white-space: nowrap;
-    }
-  }
+  padding: var(--tg-spacing-16) ;
 }
 
 .des {
