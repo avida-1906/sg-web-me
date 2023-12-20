@@ -206,7 +206,7 @@ provide('closeSearchH5', () => leftIsExpand.value = !leftIsExpand.value)
 onMounted(() => {
   if (props.autoFocus)
     baseSearchRef.value.manualFocus()
-  useFixedTop('.app-global-search')
+  // useFixedTop('.app-global-search')
 })
 
 intiKeyword()

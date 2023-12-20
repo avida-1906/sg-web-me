@@ -34,7 +34,7 @@ function selectCurrency(item: EnumCurrencyKey, hide: () => void) {
 
 function popperApplyShow() {
   clearSearchValue()
-  useFixedTop('.app-h-wallet')
+  // useFixedTop('.app-h-wallet')
 }
 </script>
 
