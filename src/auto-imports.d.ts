@@ -228,6 +228,7 @@ declare global {
   const find: typeof import('lodash-es')['find']
   const findIndex: typeof import('lodash-es')['findIndex']
   const findKey: typeof import('lodash-es')['findKey']
+  const flatten: typeof import('lodash-es')['flatten']
   const floor: typeof import('lodash-es')['floor']
   const formatTitleData: typeof import('./utils/index')['formatTitleData']
   const formatWithSubstring: typeof import('./utils/number')['formatWithSubstring']
@@ -640,6 +641,7 @@ declare global {
   const watchTriggerable: typeof import('@vueuse/core')['watchTriggerable']
   const watchWithFilter: typeof import('@vueuse/core')['watchWithFilter']
   const whenever: typeof import('@vueuse/core')['whenever']
+  const zip: typeof import('lodash-es')['zip']
 }
 // for type re-export
 declare global {
@@ -873,6 +875,7 @@ declare module 'vue' {
     readonly find: UnwrapRef<typeof import('lodash-es')['find']>
     readonly findIndex: UnwrapRef<typeof import('lodash-es')['findIndex']>
     readonly findKey: UnwrapRef<typeof import('lodash-es')['findKey']>
+    readonly flatten: UnwrapRef<typeof import('lodash-es')['flatten']>
     readonly floor: UnwrapRef<typeof import('lodash-es')['floor']>
     readonly formatTitleData: UnwrapRef<typeof import('./utils/index')['formatTitleData']>
     readonly formatWithSubstring: UnwrapRef<typeof import('./utils/number')['formatWithSubstring']>
@@ -1284,6 +1287,7 @@ declare module 'vue' {
     readonly watchTriggerable: UnwrapRef<typeof import('@vueuse/core')['watchTriggerable']>
     readonly watchWithFilter: UnwrapRef<typeof import('@vueuse/core')['watchWithFilter']>
     readonly whenever: UnwrapRef<typeof import('@vueuse/core')['whenever']>
+    readonly zip: UnwrapRef<typeof import('lodash-es')['zip']>
   }
 }
 declare module '@vue/runtime-core' {
@@ -1511,6 +1515,7 @@ declare module '@vue/runtime-core' {
     readonly find: UnwrapRef<typeof import('lodash-es')['find']>
     readonly findIndex: UnwrapRef<typeof import('lodash-es')['findIndex']>
     readonly findKey: UnwrapRef<typeof import('lodash-es')['findKey']>
+    readonly flatten: UnwrapRef<typeof import('lodash-es')['flatten']>
     readonly floor: UnwrapRef<typeof import('lodash-es')['floor']>
     readonly formatTitleData: UnwrapRef<typeof import('./utils/index')['formatTitleData']>
     readonly formatWithSubstring: UnwrapRef<typeof import('./utils/number')['formatWithSubstring']>
@@ -1922,5 +1927,6 @@ declare module '@vue/runtime-core' {
     readonly watchTriggerable: UnwrapRef<typeof import('@vueuse/core')['watchTriggerable']>
     readonly watchWithFilter: UnwrapRef<typeof import('@vueuse/core')['watchWithFilter']>
     readonly whenever: UnwrapRef<typeof import('@vueuse/core')['whenever']>
+    readonly zip: UnwrapRef<typeof import('lodash-es')['zip']>
   }
 }

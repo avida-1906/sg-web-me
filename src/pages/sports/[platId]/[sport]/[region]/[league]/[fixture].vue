@@ -244,6 +244,44 @@ watch(
                         </div>
                       </template>
                     </BaseSecondaryAccordion>
+                    <!-- 样式6 -->
+                    <BaseSecondaryAccordion
+                      v-if="item.pat === 6"
+                      :title="item.btn"
+                      data-style="6"
+                    >
+                      <template #default>
+                        <div class="market" :class="{ 'in-mobile': isMobile }">
+                          <div class="table-row-3" :style="{ '--itemCount': 1 }">
+                            <template
+                              v-for="nameItem in item.pat6.titleList"
+                              :key="nameItem"
+                            >
+                              <div class="column heading">
+                                <span>{{ nameItem }}</span>
+                              </div>
+                            </template>
+                            <template
+                              v-for="
+                                valueItem in item.pat6.list
+                              "
+                              :key="valueItem.wid"
+                            >
+                              <div class="column">
+                                <AppSportsBetButton
+                                  v-if="valueItem.cartInfo"
+                                  layout="horizontal"
+                                  :title="valueItem.sn"
+                                  :cart-info="valueItem.cartInfo"
+                                  :odds="valueItem.ov"
+                                  :disabled="item.mls === 2"
+                                />
+                              </div>
+                            </template>
+                          </div>
+                        </div>
+                      </template>
+                    </BaseSecondaryAccordion>
                   </template>
                 </template>
               </div>
