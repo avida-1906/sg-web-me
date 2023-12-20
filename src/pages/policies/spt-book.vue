@@ -1,14 +1,35 @@
 <script lang="ts" setup>
 usePageTitle({ prefix: 'Sportsbook' })
+const { isLogin } = storeToRefs(useAppStore())
+const { openLoginDialog } = useLoginDialog()
+const { openRegisterDialog } = useRegisterDialog()
 </script>
 
 <template>
   <div class="content-block pd-24">
     <h1>Sportsbook Rules and Policies</h1>
+    <div v-if="!isLogin" class="p buttons">
+      <BaseButton type="text" size="none" @click="openLoginDialog()">
+        登录
+      </BaseButton>
+      <span>或</span>
+      <BaseButton type="text" size="none" @click="openRegisterDialog()">
+        注册
+      </BaseButton>
+    </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
+.buttons {
+  text-align: center;
+  --tg-base-button-text-default-color: var(--tg-text-white);
+  --tg-base-button-font-size: 16px;
+  margin-top: 20px !important;
+  :deep(button) {
+    padding: 0 8px;
+  }
+}
 .bold-txt {
   font-weight: 600;
 }
@@ -49,6 +70,14 @@ h2 {
 }
 h3 {
   font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+  margin-top: 24px;
+  margin-bottom: 8px;
+  color: var(--tg-text-white);
+}
+h4 {
+  font-size: 14px;
   font-weight: 600;
   line-height: 22px;
   margin-top: 24px;

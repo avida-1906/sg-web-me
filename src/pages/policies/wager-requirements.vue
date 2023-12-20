@@ -1,6 +1,9 @@
 <script lang="ts" setup>
 /* eslint-disable max-len */
 usePageTitle({ prefix: 'Wager Requirements' })
+const { isLogin } = storeToRefs(useAppStore())
+const { openLoginDialog } = useLoginDialog()
+const { openRegisterDialog } = useRegisterDialog()
 </script>
 
 <template>
@@ -1498,10 +1501,28 @@ usePageTitle({ prefix: 'Wager Requirements' })
         </div>
       </li>
     </ul>
+    <div v-if="!isLogin" class="p buttons">
+      <BaseButton type="text" size="none" @click="openLoginDialog()">
+        登录
+      </BaseButton>
+      <span>或</span>
+      <BaseButton type="text" size="none" @click="openRegisterDialog()">
+        注册
+      </BaseButton>
+    </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
+.buttons {
+  text-align: center;
+  --tg-base-button-text-default-color: var(--tg-text-white);
+  --tg-base-button-font-size: 16px;
+  margin-top: 20px !important;
+  :deep(button) {
+    padding: 0 8px;
+  }
+}
 .pd-24 {
   padding: 24px;
 }
