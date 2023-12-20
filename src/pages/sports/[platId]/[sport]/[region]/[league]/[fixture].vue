@@ -258,7 +258,7 @@ watch(
                               :key="nameItem"
                             >
                               <div class="column heading">
-                                <span>{{ nameItem }}{{ nameItem }}</span>
+                                <span>{{ nameItem }}</span>
                               </div>
                             </template>
                             <template
