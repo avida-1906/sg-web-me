@@ -112,7 +112,7 @@ watch(tabList, (val) => {
   }
   &.is-mobile {
     .tabs {
-      padding: 0 12px;
+      // padding: 0 12px;
       position: relative;
     }
   }
