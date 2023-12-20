@@ -632,6 +632,69 @@ export function useApiSportDetails() {
           renderList.push(mlItem)
         }
       }
+      else if (mlItem.pat === 6) {
+        const list0 = sportInfo.value.list[0]
+        const homeTeamName = list0.htn
+        const awayTeamName = list0.atn
+        const titleList = [homeTeamName, '平局', awayTeamName]
+        const msList = mlItem.ms
+        const zList = []
+        const pList = []
+        const kList = []
+        for (let j = 0; j < msList.length; j++) {
+          msList[j].cartInfo = getCartObject(mlItem, msList[j], list0)
+
+          if (msList[j].sn.includes('-')) {
+            const snList = msList[j].sn.split('-')
+            if (snList[0] > snList[1])
+              zList.push(msList[j])
+
+            else if (snList[0] < snList[1])
+              kList.push(msList[j])
+
+            else
+              pList.push(msList[j])
+          }
+          else {
+            pList.push(msList[j])
+          }
+        }
+
+        const maxLen = Math.max(zList.length, pList.length, kList.length)
+        if (zList.length < maxLen) {
+          const len = maxLen - zList.length
+          for (let j = 0; j < len; j++) {
+            zList.push({
+              wid: `${Math.floor(Math.random() * (9999 - 1000 + 1) + 1000) + j}`,
+            })
+          }
+        }
+
+        if (pList.length < maxLen) {
+          const len = maxLen - pList.length
+          for (let j = 0; j < len; j++) {
+            pList.push({
+              wid: `${Math.floor(Math.random() * (9999 - 1000 + 1) + 1000) + j}`,
+            })
+          }
+        }
+
+        if (kList.length < maxLen) {
+          const len = maxLen - kList.length
+          for (let j = 0; j < len; j++) {
+            kList.push({
+              wid: `${Math.floor(Math.random() * (9999 - 1000 + 1) + 1000) + j}`,
+            })
+          }
+        }
+
+        mlItem.pat6 = {
+          titleList,
+          list: flatten(zip(zList, pList, kList)),
+        }
+
+        renderList.push(mlItem)
+      }
     }
 
     return renderList

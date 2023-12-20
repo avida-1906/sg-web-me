@@ -5,7 +5,7 @@ import type { ICartInfo, ICartInfoData } from '~/types'
 export type EnumCurrencyKey = keyof typeof EnumCurrency
 
 /** 版型ID */
-export type TPat = 1 | 2 | 3 | 4
+export type TPat = 1 | 2 | 3 | 4 | 5 | 6
 
 /** 后端金额接口数据 */
 export type TCurrencyObject = Prettify<{
@@ -322,6 +322,11 @@ export interface ISportEventInfoMl {
   ms: ISportEventInfoMlMs[]
   /** 用来组装接口返回的数据，比如后端返回的list中，其中两条在某些条件上是表现一样的，前端页面上是用一个元素显示 */
   other: ISportEventInfoMlMs[]
+  /** 版型6的字段 */
+  pat6: {
+    titleList: string[]
+    list: ISportEventInfoMlMs[]
+  }
 }
 
 /** 赛事详情 */

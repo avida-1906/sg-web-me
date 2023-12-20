@@ -36,11 +36,11 @@ export function useFixedTop(className: string) {
   function handleFocusin(e: Event) {
     const el = e || window.event
     currentInput = el.target
+    const top = document.documentElement.scrollTop
     if (window.visualViewport) {
-      setTimeout(() => {
-        document.documentElement.scrollTop
-          += document.querySelector('.navigation')?.getBoundingClientRect().top ?? 0
-      }, 200)
+      document.documentElement.scrollTop = top
+        ? (top + (document.querySelector('.navigation')?.getBoundingClientRect().top ?? 0))
+        : 0
     }
     // 因为上一个聚焦的输入框因为失焦导致top置为0了，如果新聚焦的输入框不会触发webview平移，则沿用当时的位移就好了
     fixedEle.style.top = `${window.pageYOffset}px`
