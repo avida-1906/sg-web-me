@@ -15,6 +15,8 @@ interface Props {
   /** 依赖数据变化 disabled */
   dependsDisabled?: any[]
   showHr?: boolean
+  /** 是否在dialog弹框中使用 */
+  dialogBox?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -53,8 +55,11 @@ watch(dependsData, (val, old) => {
 </script>
 
 <template>
-  <div class="settings-content-item" :class="{ 'not-last-one': !lastOne }">
-    <div class="content-top">
+  <div
+    class="settings-content-box"
+    :class="{ 'not-last-one': !lastOne, 'settings-content-item': !dialogBox }"
+  >
+    <div v-if="!dialogBox" class="content-top">
       <div class="top-title">
         <span>{{ props.title }}</span>
         <span v-if="props.badge" class="badge">{{ $t('verified') }}</span>
@@ -97,6 +102,30 @@ watch(dependsData, (val, old) => {
 </style>
 
 <style lang='scss' scoped>
+.settings-content-box{
+  .content-btm{
+    padding: var(--tg-spacing-16);
+    border-top: 1px solid var(--tg-secondary-main);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    .btm-left {
+      line-height: 21px;
+      color: var(--tg-secondary-light);
+    }
+    .btm-right{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      .btn-width{
+        max-width: 100%;
+        min-width: 12ch;
+      }
+    }
+  }
+}
   .settings-content-item{
     width: 100%;
     height: auto;
@@ -148,28 +177,6 @@ watch(dependsData, (val, old) => {
         display: flex;
         flex-direction: column;
         gap: 1rem;
-      }
-    }
-    .content-btm{
-      padding: var(--tg-spacing-16);
-      border-top: 1px solid var(--tg-secondary-main);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      .btm-left {
-        line-height: 21px;
-        color: var(--tg-secondary-light);
-      }
-      .btm-right{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 1rem;
-        .btn-width{
-          max-width: 100%;
-          min-width: 12ch;
-        }
       }
     }
   }

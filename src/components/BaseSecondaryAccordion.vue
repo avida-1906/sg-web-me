@@ -53,7 +53,7 @@ function toggle() {
             <template v-if="icon">
               <AppImage
                 v-if="isCloudIcon" width="16px" height="16px" is-cloud :url="icon"
-                style="border-radius: 50%;overflow: hidden;"
+                style="border-radius: 50%;overflow: hidden;flex-shrink: 0;"
               />
               <BaseIcon v-else :name="icon" />
             </template>

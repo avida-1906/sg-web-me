@@ -132,6 +132,41 @@ class Application {
   }
 
   /**
+   * 获取图片完整服务器地址
+   * @param url  图片地址
+   * @returns {string}
+   */
+  getImgUrl(url: string) {
+    if (url.startsWith('http'))
+      return url
+
+    const { VITE_CASINO_IMG_CLOUD_URL } = getEnv()
+    const _url = `${url.startsWith('/') ? '' : '/'}${url}`
+    return `${VITE_CASINO_IMG_CLOUD_URL}${_url}`
+  }
+
+  /**
+   * 加载图片
+   * @param url 图片地址
+   * @returns {Promise<boolean>}
+   */
+  async loadImage(url: string) {
+    const _url = this.getImgUrl(url)
+    return new Promise((resolve, reject) => {
+      const img = new Image()
+      img.src = _url
+      img.onload = () => {
+        setTimeout(() => {
+          resolve(true)
+        }, 220)
+      }
+      img.onerror = () => {
+        reject(new Error(`load image error: ${_url}`))
+      }
+    })
+  }
+
+  /**
    * 通过指定的分隔符分割字符串
    * @param {string} numberStr 数字
    * @param {IFormatNumberOptions} options 选项
@@ -267,6 +302,11 @@ export function formatTitleData(data: any) {
  * 滚动内容区域到顶部
  */
 export function scrollMainContentToTop() {
-  const dom = document.getElementById('main-content-scrollable')
-  dom && dom.scrollTo({ top: 0 })
+  if (window.innerWidth <= 768) {
+    window.scrollTo({ top: 0 })
+  }
+  else {
+    const dom = document.getElementById('main-content-scrollable')
+    dom && dom.scrollTo({ top: 0 })
+  }
 }

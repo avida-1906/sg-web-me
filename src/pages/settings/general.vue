@@ -82,11 +82,6 @@ const notifyData = ref<INotifyData>({
 })
 
 const {
-  bool: emailDisabledBtn,
-  setTrue: setEmailDisabledBtnTrue,
-  setFalse: setEmailDisabledBtnFalse,
-} = useBoolean(true)
-const {
   bool: phoneDisabledBtn,
   setTrue: setPhoneDisabledBtnTrue,
   setFalse: setPhoneDisabledBtnFalse,
@@ -96,50 +91,12 @@ const {
   setTrue: setSocialDisabledBtnTrue,
   setFalse: setSocialDisabledBtnFalse,
 } = useBoolean(true)
-const {
-  bool: msgAfterTouched,
-  setFalse: setMsgAfterTouchedFalse,
-  setTrue: setMsgAfterTouchedTrue,
-} = useBoolean(true)
-const {
-  value: email,
-  errorMessage: emailErrormsg,
-  validate: emailValidate,
-} = useField<string>('email', (value) => {
-  if (!value)
-    return t('this_field_is_required')
-
-  if (!emailReg.test(value))
-    return t('this_contains_invalid_email_characters')
-  return ''
-})
 
 const { data: areaCodeData } = useApiMemberTreeList('011')
 const { run: runMemberUpdate } = useRequest(ApiMemberUpdate, {
-  onSuccess(data, params) {
-    openNotify(notifyData.value)
-    if (params[0].record.email) {
-      notifyData.value = {
-        type: 'email',
-        title: t('success_update_email'),
-        message: `${t('email_update_to')} ${email.value}`,
-      }
-      setEmailDisabledBtnTrue()
-      emailCheck()
-    }
-    appStore.updateUserInfo()
-  },
-})
-const {
-  run: runEmailCheckRequest,
-  loading: loadingEmailCheckRequest,
-} = useRequest(ApiMemberEmailCheckRequest, {
   onSuccess() {
-    openNotify({
-      type: 'email',
-      title: t('tip_email_sent'),
-      message: `${t('tip_email_to')} +${email.value}`,
-    })
+    openNotify(notifyData.value)
+    appStore.updateUserInfo()
   },
 })
 
@@ -149,13 +106,7 @@ const areaCodeOptions = computed(() => {
     return temp
   })
 })
-const emailVerified = computed(() => userInfo.value?.email_check_state === 1)
 
-async function emailSubmit() {
-  await emailValidate()
-  if (!emailErrormsg.value)
-    runMemberUpdate({ record: { email: email.value }, uid: paramsData.value.uid })
-}
 function numberSubmit() {
   runMemberUpdate({
     record: {
@@ -178,24 +129,6 @@ function socialSubmit() {
   setSocialDisabledBtnTrue()
 }
 
-async function emailCheck() {
-  await emailValidate()
-  if (!emailErrormsg.value)
-    runEmailCheckRequest({ email: email.value })
-}
-function emailPaste() {
-  setTimeout(() => {
-    setEmailDisabledBtnFalse()
-  }, 0)
-}
-
-/** 监听邮箱改变 */
-watch(() => email.value, (newValue, oldValue) => {
-  if (oldValue && newValue && newValue !== oldValue)
-    setEmailDisabledBtnFalse()
-  else
-    setEmailDisabledBtnTrue()
-})
 /** 监听手机号码 */
 watch(() => [
   paramsData.value.area_code,
@@ -238,7 +171,7 @@ for (const k in paramsData.value) {
 }
 watch(() => userInfo.value, (newValue) => {
   if (newValue) {
-    email.value = newValue.email
+    // email.value = newValue.email
     paramsData.value = {
       ...newValue.ext,
       area_code: newValue.ext.area_code === ''
@@ -294,7 +227,6 @@ onMounted(() => {
         ? paramsData.value.area_code
         : userInfo.value.ext.area_code,
     }
-    email.value = userInfo.value?.email
     setTimeout(() => {
       setSocialDisabledBtnTrue()
     }, 0)
@@ -304,7 +236,8 @@ onMounted(() => {
 
 <template>
   <div v-if="paramsData" class="tg-settings-general">
-    <AppSettingsContentItem
+    <AppEmailVerify />
+    <!-- <AppSettingsContentItem
       :title="t('email_address')"
       :verified="emailVerified || emailDisabledBtn"
       :badge="emailVerified"
@@ -321,12 +254,22 @@ onMounted(() => {
             :disabled="emailVerified"
             :msg="emailErrormsg"
             :msg-after-touched="msgAfterTouched"
+            style="--tg-base-input-style-pad-left: 0.5em"
             @blur="setMsgAfterTouchedFalse"
             @focus="setMsgAfterTouchedTrue"
             @paste="emailPaste"
           />
         </BaseLabel>
       </div>
+      <template #btm-left>
+        <div v-if="email?.includes('@gmail.com')">
+          <BaseButton bg-style="primary" @click="goGmail">
+            <div class="open-gmail">
+              打开 Gmail <BaseIcon name="uni-jump-page" />
+            </div>
+          </BaseButton>
+        </div>
+      </template>
       <template #btm-right>
         <BaseButton
           type="text"
@@ -340,7 +283,7 @@ onMounted(() => {
           </span>
         </BaseButton>
       </template>
-    </AppSettingsContentItem>
+    </AppSettingsContentItem> -->
     <AppSettingsContentItem
       :title="t('phone')"
       :verified="phoneDisabledBtn"
@@ -397,13 +340,7 @@ onMounted(() => {
 </template>
 
 <style lang="scss" scoped>
-.not-verified-span {
-  color: var(--tg-text-white);
-}
 .tg-settings-general {
-  // .general-input-background{
-  //   --tg-base-input-style-background-color: var(--tg-secondary-main);
-  // }
   .general-base-image{
     width: 50px;
     height: 50px;
@@ -421,23 +358,6 @@ onMounted(() => {
     }
     &.is-less-than-xs{
       grid-template-columns: repeat(1, 1fr);
-    }
-  }
-  .email-erified-box{
-    width: 100%;
-    height: 40.5px;
-    background-color: var(--tg-secondary-main);
-    line-height: 20.5px;
-    color: var(--tg-text-white);
-    padding: var(--tg-spacing-input-padding-vertical) var(--tg-base-input-style-pad-x);
-    font-weight: var(--tg-font-weight-semibold);
-    border-radius: var(--tg-radius-default);
-    border-width: var(--tg-border-width-sm);
-    border-style: solid;
-    border-color: var(--tg-border-color-main);
-    transition: all ease 0.25s;
-    &:hover {
-      border-color: var(--tg-border-color-deep-grey);
     }
   }
 }

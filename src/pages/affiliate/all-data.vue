@@ -2,8 +2,6 @@
 const { startTime, endTime } = getDaIntervalMap(new Date().getTime(), 30)
 
 const { t } = useI18n()
-const { copy } = useClipboard()
-const { openNotify } = useNotify()
 const { userLanguage } = storeToRefs(useLanguageStore())
 
 const {
@@ -29,6 +27,7 @@ const {
 
 const date = ref([])
 const searchValue = useDebouncedRef({ value: '', delay: 1000 })
+const { sortMap, setSortMap } = useTableSort()
 
 const columns: Column[] = [
   {
@@ -48,18 +47,21 @@ const columns: Column[] = [
     dataIndex: 'deposit_amount',
     align: 'center',
     slot: 'deposit_amount',
+    sort: true,
   },
   {
     title: t('effective_bet'),
     dataIndex: 'valid_bet_amount',
     align: 'center',
     slot: 'valid_bet_amount',
+    sort: true,
   },
   {
     title: t('total_win_lose'),
     dataIndex: 'net_amount',
     align: 'center',
     slot: 'net_amount',
+    sort: true,
   },
 ]
 
@@ -71,17 +73,9 @@ const params = computed(() => {
     // end_time: date.value[1],
     page_size: page_size.value,
     page: page.value,
+    ...sortMap.value,
   }
 })
-
-function copyClick(msg: string) {
-  copy(msg)
-  openNotify({
-    type: 'success',
-    title: t('notify_title_success'),
-    message: t('copy_success') + msg,
-  })
-}
 
 useListSearch(params, runAsync, resetPage)
 </script>
@@ -112,6 +106,7 @@ useListSearch(params, runAsync, resetPage)
       :columns="columns"
       :data-source="list"
       :loading="loading"
+      @sort="setSortMap"
     >
       <template #created_at="{ record }">
         <span>
@@ -119,15 +114,7 @@ useListSearch(params, runAsync, resetPage)
         </span>
       </template>
       <template #username="{ record }">
-        <div
-          class="center cursor-pointer"
-          style="gap: var(--tg-spacing-4);"
-          @click="copyClick(record.username)"
-        >
-          <BaseIcon name="chat-star-gold" />
-          <span>{{ record.username }}</span>
-          <BaseIcon name="uni-doc" />
-        </div>
+        <AppReportUserName :username="record.username" :level="`${record.vip}`" />
       </template>
       <template #deposit_amount="{ record }">
         <div class="center">
@@ -150,6 +137,7 @@ useListSearch(params, runAsync, resetPage)
           <AppAmount
             :amount="record.net_amount"
             :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
+            show-color
           />
         </div>
       </template>
@@ -193,7 +181,7 @@ useListSearch(params, runAsync, resetPage)
 .table-filter {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: flex-start;
   gap: var(--tg-spacing-16);
   font-size: var(--tg-font-size-xs);
 }

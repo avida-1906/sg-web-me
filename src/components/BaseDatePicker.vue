@@ -92,7 +92,7 @@ onMounted(() => {
           >
         </label>
         <span class="separator">-</span>
-        <label @click="togglePicker('end')">
+        <label class="end" @click="togglePicker('end')">
           <span>{{ endDate }}</span>
           <input
             ref="endDateEle"
@@ -119,11 +119,11 @@ onMounted(() => {
 .date-picker-outer {
   position: relative;
   .error {
-    position: absolute;
+    // position: absolute;
     display: flex;
     align-items: center;
-    left: 0;
-    bottom: -24px;
+    // left: 0;
+    // bottom: -24px;
     font-size: var(--tg-font-size-md);
     color: var(--tg-text-error);
     line-height: var(--tg-spacing-24);
@@ -163,13 +163,22 @@ onMounted(() => {
       display: block;
       position: relative;
       cursor: pointer;
+      flex: 1;
+      height: 100%;
+      line-height: 21px;
+      min-height: 21px;
+      text-align: left;
       input {
         position: absolute;
         left: 0;
         top: 0;
         width: 100%;
         z-index: -10;
+        opacity: 0;
       }
+    }
+    label.end {
+      text-align: right;
     }
   }
   > .app-svg-icon {

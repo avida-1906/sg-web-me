@@ -44,23 +44,23 @@ export interface IBasePanelType {
   /** 角球 */
   corner?: {
     /** 主队角球数量 */
-    homeTeam: number
+    homeTeam: number | string
     /** 客队角球数量 */
-    awayTeam: number
+    awayTeam: number | string
   }
   /** 红牌 */
   redCard?: {
     /** 主队红牌数量 */
-    homeTeam: number
+    homeTeam: number | string
     /** 客队红牌数量 */
-    awayTeam: number
+    awayTeam: number | string
   }
   /** 黄牌 */
   yellowCard?: {
     /** 主队黄牌数量 */
-    homeTeam: number
+    homeTeam: number | string
     /** 客队黄牌数量 */
-    awayTeam: number
+    awayTeam: number | string
   }
   period?: PanelTypeItem[]
   gameScore?: {

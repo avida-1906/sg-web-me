@@ -2,20 +2,7 @@
 const { startTime, endTime } = getDaIntervalMap(new Date().getTime(), 30)
 
 const { t } = useI18n()
-const { copy } = useClipboard()
-const { openNotify } = useNotify()
 const { userLanguage } = storeToRefs(useLanguageStore())
-
-const {
-  selected: currency_id,
-  list: currencyList,
-} = useSelect([
-  {
-    label: '全部',
-    value: '',
-  },
-  ...getCurrencyOptions(),
-])
 
 const {
   list,
@@ -60,7 +47,7 @@ const columns: Column[] = [
   {
     title: t('online_status'),
     dataIndex: 'online',
-    align: 'center',
+    align: 'right',
     sort: true,
     slot: 'online',
   },
@@ -69,22 +56,12 @@ const columns: Column[] = [
 const params = computed(() => {
   return {
     username: searchValue.value,
-    currency_id: currency_id.value,
     // start_time: date.value[0],
     // end_time: date.value[1],
     page_size: page_size.value,
     page: page.value,
   }
 })
-
-function copyClick(msg: string) {
-  copy(msg)
-  openNotify({
-    type: 'success',
-    title: t('notify_title_success'),
-    message: t('copy_success') + msg,
-  })
-}
 
 useListSearch(params, runAsync, resetPage)
 </script>
@@ -96,10 +73,6 @@ useListSearch(params, runAsync, resetPage)
         v-model="date"
         :init-start-date="startTime"
         :init-end-date="endTime"
-      />
-      <BaseSelect
-        v-model.lazy="currency_id"
-        :options="currencyList"
       />
       <div style="max-width: 195px;">
         <BaseInput v-model="searchValue" :placeholder="t('user_account')">
@@ -118,20 +91,21 @@ useListSearch(params, runAsync, resetPage)
       :loading="loading"
     >
       <template #username="{ record }">
-        <div
-          class="center cursor-pointer"
-          style="gap: var(--tg-spacing-4);"
-          @click="copyClick(record.username)"
-        >
-          <BaseIcon name="chat-star-gold" />
-          <span>{{ record.username }}</span>
-          <BaseIcon name="uni-doc" />
-        </div>
+        <AppReportUserName :username="record.username" :level="`${record.vip}`" />
       </template>
       <template #th-online>
         <div style="margin-top: var(--tg-spacing-4);">
           {{ t('times') }}
         </div>
+      </template>
+      <template #deposit_count="{ record }">
+        <span
+          :style="{
+            color: record.deposit_count <= 0 ? 'var(--tg-text-error)' : '',
+          }"
+        >
+          {{ record.deposit_count ? '是' : '否' }}
+        </span>
       </template>
       <template #created_at="{ record }">
         <span>
@@ -142,6 +116,19 @@ useListSearch(params, runAsync, resetPage)
         <span>
           {{ application.timestampToTime(record.last_login_at, userLanguage) }}
         </span>
+      </template>
+      <template #online="{ record }">
+        <span
+          :class="{
+            online: record.online === '2',
+            offline: record.online === '1',
+          }"
+        >
+          {{ record.online === '2' ? '在线' : '离线' }}
+        </span>
+        <div class="hint">
+          {{ record.login_count || 0 }}
+        </div>
       </template>
     </BaseTable>
     <BasePagination
@@ -173,6 +160,29 @@ useListSearch(params, runAsync, resetPage)
   color: var(--tg-text-grey-lighter);
   margin-top: 4px;
 }
+
+.online {
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--tg-text-green);
+    margin-right: var(--tg-spacing-2);
+  }
+}
+.offline {
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: var(--tg-spacing-2);
+    background-color: var(--tg-text-grey-lighter);
+  }
+}
 .page-all-data {
   margin: 20px 0;
   --tg-app-amount-font-size: var(--tg-font-size-xs);
@@ -188,7 +198,7 @@ useListSearch(params, runAsync, resetPage)
 .table-filter {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: flex-start;
   gap: var(--tg-spacing-16);
   font-size: var(--tg-font-size-xs);
 }

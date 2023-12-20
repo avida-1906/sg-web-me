@@ -1417,7 +1417,7 @@ withdrawal_fee_tip: Chúng tôi sẽ khấu trừ số tiền này khỏi số d
 withdrawal_as_fee: Là phí giao dịch cho việc rút tiền của bạn
 present: Gửi
 order_label: Số
-bet_tip_amount_tip: Đã chặn thành công tổng giá trị 
+bet_tip_amount_tip: Đã chặn thành công tổng giá trị
 de: Của
 bet_more_than_balance: Số tiền đặt cược của bạn không thể lớn hơn số dư của bạn.
 order_by_alpha: theo thứ tự bảng chữ cái
@@ -1748,57 +1748,112 @@ safe_pwd_error: Định dạng mật khẩu thanh toán sai
 save_to_vault: Nạp tiền vào Vault
 draw_vault: Từ Vault rút ra
 vault_info: Tìm hiểu thêm về Vault
-progress_level: 进展程度
-send_currency_bonus: 支持人员将按照您所选的货币发送奖金
-turn_on_rebate: 启用返水功能
-vip_tg_right: VIP Telegram 频道访问权
-week_monthly_bonus_up: 周度和月度奖金增加
-vip_send_currency_bonus: VIP 服务代表将按照您所选的货币发送奖金
-day_week_bonus_up: 每日和周度奖金增加
-special_promo: 专属定制福利
-vip_up_tip: 您的进度是通过您在娱乐城和体育博彩中的总投注额累积起来的。只要您的级别上升，就表示能获得更大的奖励和独家 VIP 待遇。
-vip_up_tip_2: 所有已结算的体育投注将回报加快 3 倍的进展速度。结算为无效的赌注并不包括在内。
-learn_more_vip: 了解更多有关成为 {site} VIP 的消息
-index_title_prefix: '{site}：加密货币赌场和体育投注'
-index_title_suffix: 在线 BTC 赌场
-btc_sport_title: 加密货币与比特币在线体育博彩
-affiliate_activity: 联盟活动
-affiliate_bonus: 联盟佣金
-affiliate_overview: 联盟计划概述
-affiliate_refer_user: 联盟计划推荐用户
-affiliate_plan: 联盟保留计划
-hot_casino_game: 热门赌场游戏
-btc_casino_title: 在线加密货币与比特币赌场
-casino_game: 赌场游戏
-recent_casino_game: 近期赌场游戏记录
-token_set: API 令牌设置
-set_general: 设置常规
-login_pwd: 登录密码
-account_session: 账户会话
-check_account: 验证账户
-transaction_archive: 交易档案
-transaction_bet: 投注交易
-transaction_deposit: 存款交易
-transaction_other: 其他交易
-transaction_withdraw: 提款交易
-today: 今日
-last_days_mid: 近{delta}日
-one_receive: 一键领取
-on: 于
-add_one_bet: 把以上 1 项投注 加入我的投注单
-copied: 复制成功
-footer_desc: '{site} 由 Medium Rare N.V. 所属和经营，注册编号： 145353，注册地址：Korporaalweg 10,Willemstad, Curaçao。请通过 {email} 与我们联系。 支付代理公司是 Medium Rare Limited，地址于 7-9 Riga Feraiou, LIZANTIA COURT, Office 310, Agioi Omologites,1087 Nicosia,Cyprus 以及注册号：HE 410775 {site} 由库拉索政府授权和监管，并根据颁发给 Antillephone 的 8048/JAZ 号许可证运营。{site} 已通过所有合规性审查，并获得合法授权，可进行所有机会与投注游戏的游戏操作。'
-order: 订单
-plat_not_sup_currency: 该场馆暂不支持您所选择的币种
-has_stop_bet: 您有暂停的投注项
-cant_form_multiple: 同一场赛事的多个投注项不能组合为复式投注
-no_sup_multiple: 您有不支持复式投注的投注项
-bet_one_max: 同时最多只能添加 {max} 个投注项。
-bet_odd_change: 赔率已变更，您需先接受赔率更改方可进行投注
-bet_sup_10x: 只支持10的整数倍的投注金额
-bet_fixed_x: 不支持小数位超过{fixed}位的投注金额
-failed_get_betinfo: 获取投注信息失败
-view_my_bets: 查看我的投注
-closed: 已关闭
-empty_unsettle_bet: 暂无未结算的赌注
-empty_settle_bet: 暂无已结算的赌注
+progress_level: Quá trình tiến độ
+send_currency_bonus: Bộ phận hỗ trợ sẽ gửi tiền thưởng bằng loại tiền bạn chọn
+turn_on_rebate: Bật chức nặng hoàn trả cược
+vip_tg_right: Truy cập kênh Telegram VIP
+week_monthly_bonus_up: Tăng tiền thưởng hàng tuần và hàng tháng
+vip_send_currency_bonus: Đại diện chăm sóc khách hàng VIP sẽ gửi tiền thưởng bằng
+  loại tiền bạn chọn
+special_promo: Lợi ích tùy chỉnh độc quyền
+vip_up_tip: Tiến trình của bạn được tích lũy thông qua tổng số tiền đặt cược của bạn
+  trong sòng bạc và thể thao. Khi bạn thăng cấp, bạn sẽ có quyền truy cập vào các
+  phần thưởng lớn hơn và ưu đãi VIP độc quyền.
+vip_up_tip_2: Tất cả các đơn cược thể thao đã thanh toán sẽ được thưởng nhanh hơn
+  gấp 3 lần. Các đơn cược vô hiệu sẽ không được tính.
+learn_more_vip: Tìm hiểu thêm về cách trở thành VIP của {site}
+index_title_prefix: "{site}: Sòng bạc tiền điện tử và cá cược thể thao"
+index_title_suffix: Sòng bạc BTC trực tuyến
+btc_sport_title: Cá cược thể thao trực tuyến bằng tiền điện tử và Bitcoin
+affiliate_activity: 'Hoạt động liên minh '
+affiliate_bonus: Hoa hồng liên kết
+affiliate_overview: Tổng quan về chương trình liên kết
+affiliate_plan: Chương trình bảo lưu liên kết
+hot_casino_game: Trò chơi sòng bạc phổ biến
+btc_casino_title: Sòng bạc tiền điện tử và Bitcoin trực tuyến
+casino_game: trò chơi sòng bạc
+recent_casino_game: Lịch sử trò chơi sòng bạc gần đây
+token_set: Cài đặt mã thông báo API
+set_general: Cài đặt chung
+login_pwd: Đăng nhập mật khẩu
+account_session: Cuộc trò chuyện của tài khoản
+check_account: Xác nhận tài khoản
+transaction_archive: Tập tin giao dịch
+transaction_bet: Giao dịch đặt cược
+transaction_deposit: Giao dịch nạp tiền
+transaction_other: Giao dịch khác
+transaction_withdraw: Giao dịch rút tiền
+today: Hôm nay
+last_days_mid: "{delta} ngày gần đây"
+one_receive: Nhận lãnh bằng một cú nhấp chuột
+on: Tại
+add_one_bet: Thêm 1 cược ở trên vào phiếu cược của tôi
+copied: Đã sao chép thành công
+footer_desc: "{site} được sở hữu và điều hành bởi Medium Rare N.V., số đăng ký: 145353,
+  địa chỉ đăng ký: Korporaalweg 10, Willemstad, Curaçao. Vui lòng liên hệ với chúng
+  tôi theo địa chỉ {email}. Công ty đại lý thanh toán là Medium Rare Limited có địa
+  chỉ tại 7-9 Riga Feraiou, LIZANTIA COURT, Office 310, Agioi Omologites, 1087 Nicosia,
+  Cyprus và số đăng ký: HE 410775 {site} được Chính phủ Curacao ủy quyền và quản lý
+  và ban hành theo Hoạt động theo giấy phép số 8048/JAZ cấp cho Antillephone. {site}
+  đã vượt qua tất cả các đánh giá tuân thủ và được ủy quyền hợp pháp để tiến hành
+  tất cả các hoạt động chơi trò chơi may rủi và cá cược."
+order: Mã đơn dược
+plat_not_sup_currency: phòng trò chơi này hiện không hỗ trợ loại tiền bạn đã chọn
+has_stop_bet: Bạn có một khoản cược bị đình chỉ
+cant_form_multiple: Nhiều đơn cược từ cùng một trận đấu không thể cấu thành đơn cược
+  nhiều lần.
+no_sup_multiple: Bạn có một đơn cược không hỗ trợ cược nhiều lần
+bet_one_max: Chỉ có thể thêm cược {max} cùng lúc.
+bet_odd_change: Tỷ lệ cược đã thay đổi. Bạn phải chấp nhận thay đổi tỷ lệ cược trước
+  khi đặt cược.
+bet_sup_10x: Chỉ hỗ trợ số tiền đặt cược là bội số của 10
+bet_fixed_x: Số tiền đặt cược có nhiều hơn {fixed} chữ số thập phân không được hỗ
+  trợ
+failed_get_betinfo: Không thể lấy được thông tin cá cược
+view_my_bets: Xem qua đơn cược của tôi
+closed: Đã đóng
+empty_unsettle_bet: Tạm chưa có đơn cược nào được thanh toán
+empty_settle_bet: Tạm chưa có đơn cược nào được thanh toán
+vip_top: Cấp VIP của bạn đã đạt đến mức tối đa
+wait_upgrade: Đang chờ thăng cấp
+upgraded: Đã thăng cấp
+game_water_experience: Kinh nghiệm
+in_play: 在玩
+week_0: 星期天
+week_1: 星期一
+week_2: 星期二
+week_3: 星期三
+week_4: 星期四
+week_5: 星期五
+week_6: 星期六
+double_check_code: 双重验证码
+official_number: 法定数字格式
+official_num_tip: 警告：在 {currencyName} 法定货币视图中，法定数字格式将被禁用。
+privacy: 隐私
+casino_intro_1: 在 {site} 享受最出色的在线赌场体验
+casino_intro_2: 自 2017 年以来，{host} 在网络上提供了最出色的在线加密货币与比特币赌场的博彩体验。易于使用、功能丰富且平台简约，玩家们都一而再再而三地重返 {site} 投注于他们最喜爱的赌场游戏。
+casino_intro_3: 在种类繁多的赌场游戏中投注于老虎机、纸牌游戏等
+casino_intro_4: 浏览我们种类繁多的赌场游戏，在 {site} 享受公平有趣的博彩体验。直接通过您的浏览器在老虎机、真人娱乐场、21点、百家乐、轮盘、弹珠以及数以千计的经典游戏上进行投注。
+casino_intro_5: 此外，我们还具有著名的 {site} 原创游戏——最初让 {site} 声名鹊起的赌场游戏。这包括了像 Dice、Plinko、Mines、Crash、Limbo、Hilo、Keno、Wheel 等热门游戏，另加我们最近刚推出的另一款 {site} 原创 Dragon Tower！
+casino_intro_6: 无论您是热衷于像 Video Poker 这类的桌面与纸牌游戏、 Spin a Win 这类的游戏节目游戏或是新推出的赌场游戏——最终的选择权都在您的手里！
+casino_intro_7: 如何通过您的加密货币钱包在 {site} 存款
+casino_intro_8: 在我们的在线赌场上使用比特币或其他可用的加密货币进行投注其实十分容易。要把资金存入您的 {host} 账户，请遵循下列步骤：
+casino_intro_9: '{site} 的支持人员将随时为您提供在线的支持与帮助，无论您是在存款时或是访问喜爱的游戏时遇到任何问题，他们都会给予您必要的帮助。'
+casino_intro_10: '{site} 团队一直都在努力改进我们无可匹敌的服务，确保来自世界各地的用户都能享有最佳的在线赌场博彩体验。随着我们定期增加到平台上的大量新游戏以及杰出的客户支持，玩家必能轻松在闻名的 {site} 赌场上雷厉风行。'
+casino_intro_11: 最广泛的游戏提供商——在 {site} 投注于您最喜爱的游戏
+casino_intro_12: 除了我们著名的 {site} 原创游戏外，{site} 也具有在线博彩业内最受信赖的游戏提供商所提供的各种游戏。
+casino_intro_13: "{site} 的精选游戏提供商包括了 Pragmatic Play、 Evolution Gaming、 Quickspin、 Relax Gaming、 Playtech、 Big Time Gaming、 Play'n Go、 Gamomat、 Hacksaw Gaming、 Push Gaming、 Netent、 No Limit City、 iSoftBet、 Spinomenal 以及更多其他以优质游戏而闻名的热门提供商。"
+casino_intro_14: 这其中包括了一些最受欢迎的老虎机和其他赌场游戏，如粉丝们最喜爱的 Sweet Bonanza, Crazy Time, Wanted Dead or a Wild, The Dog House, Gates of Olympus, Book of Shadows, Money Train 2, Fruit Party 2, Mystery Museum, Jammin Jars, The Dog House Megaways, Double Ball Roulette, Monopoly Live, Buffalo King, Floating Dragon, Lightning Dice, Super Sic Bo, Gonzos Treasure Hunt, Side Bet City 等等。
+casino_intro_15: 无论是投注功能、支付乘数、游戏主题还是整体游戏体验，{site} 所提供的各种赌场游戏都是属于世界级的，并保证能为所有玩家带来生动多样的体验——不管他们对游戏的偏好如何！
+casino_intro_16: '{site} 赌场为什么会既安全又公平？'
+casino_intro_17: 您在 {site} 原创游戏中的所有投注都是可证明公平的，这些赌注会在网站上得到验证，也可以通过第三方网站进行外部验证，例如我们社区成员在 ProvablyFair.Me 上创建的 {site} 检验器。
+casino_intro_18: 除了提供公平结果的技术之外，{host} 自 2017 年以来一直都是业内最负盛名的赌场之一，最近更成为了 UFC 的官方投注合作伙伴，并在英超联赛中赞助沃特福德足球俱乐部。
+casino_intro_19: 随着成千上万的忠实玩家每小时进行的数百万笔投注，{site} 即是网络上最受信任与合法的在线赌场之一。
+get_email_code: 获取验证码
+re_get: 重新获取
+footer_description: '{name} 由 Medium Rare N.V. 所属和经营，注册编号： 145353，注册地址： Korporaalweg 10, Willemstad, Curaçao。请通过 {email} 与我们联系。支付代理公司是 Medium Rare Limited，地址于 7-9 Riga Feraiou, LIZANTIA COURT, Office 310, Agioi Omologites, 1087 Nicosia, Cyprus 以及注册号：HE 410775'
+
+
+
+
+

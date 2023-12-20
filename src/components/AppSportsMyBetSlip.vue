@@ -13,9 +13,15 @@ type ISportsMyBetSlipItemBi = ISportsMyBetSlipItemWithShowRe['bi'][number]
 interface Props {
   data: ISportsMyBetSlipItem
   isDialog?: boolean
+  /**
+   * @description 是否隐藏赛果
+   */
+  disableResult?: boolean
 }
 
-const props = defineProps<Props>()
+const props = withDefaults(defineProps<Props>(), {
+  disableResult: false,
+})
 
 const { t } = useI18n()
 const { currentGlobalCurrency } = storeToRefs(useAppStore())
@@ -24,7 +30,12 @@ const sportsStore = useSportsStore()
 const { openBetSlipDialog } = useDialogBetSlip()
 // const router = useRouter()
 
-const statusObj: { [t: number]: string } = {
+const betSlipStatusText: { [t: number]: string } = {
+  2: t('dealing'),
+  3: t('reject'),
+  4: t('cancel'),
+}
+const settledStatus: { [t: number]: string } = {
   0: t('sports_active'),
   1: t('win_label'),
   2: t('lose'),
@@ -37,11 +48,18 @@ const statusObj: { [t: number]: string } = {
 const slipData = ref<ISportsMyBetSlipItemWithShowRe>(addShowResult(props.data))
 
 const list = computed(() => slipData.value.bi)
-const isSettled = computed(() => slipData.value.os === 1) // 是否已结算
-const statusText = computed(() => statusObj[slipData.value.oc])
-const status = computed(() =>
-  slipData.value.oc === 1 || slipData.value.oc === 3 ? 'win' : 'lose',
-)
+const isNotSettled = computed(() => slipData.value.os === 0) // 未结算
+const isSettled = computed(() => slipData.value.os === 1) // 已结算
+const statusText = computed(() => {
+  if (isSettled.value)
+    return settledStatus[slipData.value.oc]
+  return betSlipStatusText[slipData.value.os]
+})
+const statusClass = computed(() => {
+  if (isSettled.value)
+    return slipData.value.oc === 1 || slipData.value.oc === 3 ? 'green' : 'grey'
+  return 'grey'
+})
 
 /**
  * 跳转详情，先不要，等后端关盘的赛事查询详情再说
@@ -70,6 +88,7 @@ function addShowResult(origin: ISportsMyBetSlipItem) {
         awayTeamScore: a.ap,
         atpic: a.atpic,
         htpic: a.htpic,
+        spic: a.spic,
       },
       betMarketName: makeMarketInfo(a),
     }
@@ -96,7 +115,7 @@ function showDetail() {
     <div class="record">
       <div class="header">
         <div class="left">
-          <div v-if="isSettled" class="status" :class="[status]">
+          <div v-if="!isNotSettled" class="status" :class="[statusClass]">
             {{ statusText }}
           </div>
           <span>{{ timeToFormat(slipData.bt) }}</span>
@@ -119,7 +138,7 @@ function showDetail() {
             :class="{ 'is-multi': list.length > 1 }"
           >
             <div class="overview">
-              <div class="title-wrapper" :title="JSON.stringify(item)">
+              <div class="title-wrapper">
                 <BaseButton
                   type="text" size="none"
                   style="--tg-base-button-text-default-color:var(--tg-text-white)"
@@ -131,10 +150,12 @@ function showDetail() {
                       :url="sportsStore.getSportsIconBySi(item.si)"
                     />
                   </div>
-                  <span v-if="item.et === 1" class="team-name">
-                    {{ item.htn }} - {{ item.atn }}
-                  </span>
-                  <span v-else-if="item.et === 2" class="team-name">{{ item.sn }}</span>
+                  <div class="team-name-wrap">
+                    <span v-if="item.et === 1" class="team-name">
+                      {{ item.htn }} - {{ item.atn }}
+                    </span>
+                    <span v-else-if="item.et === 2" class="team-name">{{ item.cn }}</span>
+                  </div>
                 </BaseButton>
                 <span>{{ item.btn }}</span>
               </div>
@@ -163,7 +184,7 @@ function showDetail() {
                     <BaseIcon name="spt-live" />
                   </BaseButton> -->
                   <BaseButton
-                    v-if="!isDialog"
+                    v-if="!props.disableResult"
                     type="text"
                     size="none" @click="item.showResult = !item.showResult"
                   >
@@ -275,10 +296,10 @@ function showDetail() {
       line-height: 1.5;
       margin-right: var(--tg-spacing-8);
       color: var(--tg-text-grey-deep);
-      &.win{
+      &.green{
         background-color: var(--tg-text-green);
       }
-      &.lose{
+      &.grey{
         background-color: var(--tg-secondary-light);
       }
     }
@@ -329,9 +350,14 @@ function showDetail() {
         flex-direction: column;
         gap: var(--tg-spacing-4);
         max-width: 100%;
-        .team-name{
-          text-align: left;
-          word-break: break-all;
+        .team-name-wrap{
+          flex: 1;
+          display: flex;
+          justify-content: flex-start;
+          .team-name{
+            text-align: left;
+            word-break: break-all;
+          }
         }
         .icon{
           width: 14px;

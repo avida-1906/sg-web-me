@@ -8,7 +8,7 @@ interface Props {
   emptyText: string
   downloadText?: string
   tabValue?: string | number
-  contentType?: 'deposit' | 'withdraw'
+  contentType: 'deposit' | 'withdraw' | 'other'
 }
 
 const props = withDefaults(defineProps<Props>(), {})
@@ -31,11 +31,13 @@ const recordWithdrawCoin = useList(ApiFinanceRecordWithdrawCoin,
 // 法定货币取款
 const recordWithdrawBank = useList(ApiFinanceRecordWithdrawBank,
   { manual: true }, { page_size: 10 })
+// 其他
+const financeRecordOther = useList(ApiFinanceRecordOther,
+  { manual: true }, { page_size: 10 })
 
-const tab = ref(props.tabs[0].value)
+const tab = ref(props.tabs[0]?.value ?? '')
 emit('update:tabValue', tab.value)
-const activeRecord = ref<any>(
-  props.contentType === 'deposit' ? recordDepositCoin : recordWithdrawCoin)
+const activeRecord = ref<any>(getInit())
 
 const getList = computed(() => {
   return activeRecord.value.list
@@ -47,6 +49,9 @@ const getPage = computed(() => {
     total: activeRecord.value.total,
   }
 })
+const isOther = computed(() => {
+  return props.contentType === 'other'
+})
 
 function tabChange(val: string) {
   if (val === 'byte_coin')
@@ -57,17 +62,19 @@ function tabChange(val: string) {
     activeRecord.value = recordWithdrawCoin
   else if (val === 'real_w_coin')
     activeRecord.value = recordWithdrawBank
+  else
+    activeRecord.value = financeRecordOther
   activeRecord.value.page = 1
   activeRecord.value.list.length = 0
-  activeRecord.value.run()
+  runInit()
 }
 function pagePrevious() {
   activeRecord.value.prev()
-  activeRecord.value.run()
+  runInit()
 }
 function pageNext() {
   activeRecord.value.next()
-  activeRecord.value.run()
+  runInit()
 }
 function formatWithdrawState(state: number) {
   // <!--1：成功，2：拒绝，3，审核中，4：删除，5：三方异常，6：出款中-- >
@@ -99,22 +106,54 @@ function getStateIcon(state: number) {
     case 2: return 'uni-record-err'
     case 3: return 'uni-record-confirm'
     case 4: return 'uni-record-err'
-    case 5: return 'uni-record-confirm'
-    case 6: return 'uni-record-cancel'
+    case 5: return props.contentType === 'deposit' ? 'uni-record-confirm' : 'uni-record-err'
+    case 6: return props.contentType === 'deposit' ? 'uni-record-cancel' : 'uni-record-confirm'
     default: return '--'
   }
 }
-
-activeRecord.value.run()
+function getInit() {
+  switch (props.contentType) {
+    case 'deposit': return recordDepositCoin
+    case 'withdraw': return recordWithdrawCoin
+    case 'other': return financeRecordOther
+  }
+}
+function runInit() {
+  if (isOther.value) {
+    activeRecord.value.run({
+      page: activeRecord.value.page,
+      page_size: activeRecord.value.page_size,
+      id: tab.value.toString(),
+    })
+  }
+  else {
+    activeRecord.value.run()
+  }
+}
 
 watch(tab, (val) => {
   emit('update:tabValue', val)
 })
+
+if (isOther.value) {
+  await application.allSettled(
+    [
+      activeRecord.value.runAsync({
+        page: activeRecord.value.page,
+        page_size: activeRecord.value.page_size,
+        id: tab.value.toString(),
+      }),
+    ],
+  )
+}
+else {
+  activeRecord.value.run()
+}
 </script>
 
 <template>
   <section class="tg-app-tab-record">
-    <template v-if="!(isMobile && activeRecord.loading)">
+    <div v-show="!(isMobile && activeRecord.loading)">
       <div class="top">
         <BaseTab v-model="tab" :list="tabs" :center="false" @change="tabChange" />
       </div>
@@ -122,26 +161,34 @@ watch(tab, (val) => {
         <div v-if="getList.length" class="record-box">
           <div
             v-for="item of getList" :key="item.order_number"
-            class="center record-item cursor-pointer"
-            @click="openDepositDetailDialog(item)"
+            class="center record-item"
+            :class="[isOther ? '' : 'cursor-pointer']"
+            @click="(!isOther) && openDepositDetailDialog(item)"
           >
-            <div class="center item-left">
+            <div v-if="!isOther" class="center item-left">
               <BaseIcon :name="getStateIcon(item.state)" />
             </div>
             <div class="item-right">
               <div class="flex-between">
-                <span style="color:var(--tg-text-white)">
+                <span
+                  v-if="isOther"
+                  class="white"
+                >{{ item.cash_type_name }}</span>
+                <span v-else class="white">
                   {{ props.contentType === 'deposit'
                     ? formatDepositState(item.state)
                     : formatWithdrawState(item.state) }}</span>
                 <AppAmount
-                  :amount="item.finally_amount"
+                  :amount="item.finally_amount ?? item.amount"
                   :currency-type="getCurrencyConfigByCode(item.currency_id)?.name"
                 />
               </div>
               <div class="flex-between">
                 <span>{{ timeToFormat(item.created_at) }}</span>
-                <div class="center" style="gap: var(--tg-spacing-4);">
+                <div
+                  v-if="!isOther"
+                  class="center" style="gap: var(--tg-spacing-4);"
+                >
                   <span style="color:var(--tg-text-white);">{{ item.order_number }}</span>
                   <BaseIcon
                     style="font-size: var(--tg-font-size-xs);"
@@ -158,16 +205,18 @@ watch(tab, (val) => {
         <div class="page-stack-wrap mt-24">
           <AppStack
             :pagination-data="getPage"
-            @previous="pagePrevious" @next="pageNext"
+            scroll
+            @previous="pagePrevious"
+            @next="pageNext"
           />
         </div>
-        <div v-if="downloadText" class="download-btn mt-24">
+        <!-- <div v-if="downloadText" class="download-btn mt-24">
           <BaseButton size="md">
             {{ downloadText }}
           </BaseButton>
-        </div>
+        </div> -->
       </div>
-    </template>
+    </div>
     <div v-if="activeRecord.loading" class="center record-loading">
       <BaseLoading />
     </div>
@@ -185,13 +234,12 @@ watch(tab, (val) => {
 .tg-app-tab-record {
   position: relative;
   min-height: 195px;
-  --tg-tab-style-wrap-bg-color: var(--tg-primary-main);
 }
-.footer-buttons {
-  font-size: var(--tg-font-size-default);
-  color: var(--tg-text-white);
-  opacity: 0.5;
-}
+// .footer-buttons {
+//   font-size: var(--tg-font-size-default);
+//   color: var(--tg-text-white);
+//   opacity: 0.5;
+// }
 .record-box{
   display: flex;
   flex-direction: column;
@@ -222,6 +270,9 @@ watch(tab, (val) => {
     line-height: 1.3215;
     color: var(--tg-secondary-light);
   }
+  .white{
+    color: var(--tg-text-white);
+  }
 }
 .record-loading{
   position: absolute;
@@ -229,7 +280,6 @@ watch(tab, (val) => {
   height: calc(100% + 48px);
   left: -24px;
   top: -24px;
-  // margin: -24px;
   background-color: #{rgba($color: var(--tg-color-grey-rgb), $alpha: 0.45)};
 }
 </style>

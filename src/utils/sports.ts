@@ -56,7 +56,7 @@ export class SportsOdds {
   static convert(odds: number, type = EnumSportsOddsType.DECIMAL) {
     switch (type) {
       case EnumSportsOddsType.DECIMAL:
-        return odds
+        return toFixed(odds, 2)
       case EnumSportsOddsType.FRACTION:
         return this.convertToFractionOdds(odds)
       case EnumSportsOddsType.AMERICAN:
@@ -686,6 +686,9 @@ export class SportsCart {
    * 通过wid，更新ov，os
    */
   updateOvOs(_data: ISportListToCartData) {
+    if (this.isShowReuse)
+      return
+
     const { wid, ov, os } = _data
     const index = this.dataList.findIndex(a => a.wid === wid)
 
@@ -720,6 +723,9 @@ export class SportsCart {
    * @param {IBetInfoChangeCallback} fn 回调函数
    */
   updateAllData(data: IBetInfoBack, fn?: IBetInfoChangeCallback) {
+    if (this.isShowReuse)
+      return
+
     const { wsi, bi, dl, status } = data
 
     this.dlStatesToRenderData(dl, status)
@@ -914,5 +920,62 @@ export class SportsNotify {
    */
   stopCountdown() {
     clearInterval(this.timer)
+  }
+}
+
+/**
+ * 设置赛事进行时间
+ */
+export function getSportsLiveTime(eventTime: Ref<string>, data: {
+  rbtt: string
+  ts: number
+  si: number
+  rbts: number
+}, _dayjs: any) {
+  if (!data.rbtt) {
+    eventTime.value = ''
+  }
+  else {
+    const rbttArr = data.rbtt.split(':')
+    const ts = data.ts
+    const baseMin = rbttArr[0]
+    const baseSec = rbttArr[1]
+
+    const diff = _dayjs().diff(ts * 1000, 'second')
+    const diffMin = Math.floor(diff / 60)
+    const diffSec = diff - (diffMin * 60)
+    let sec = 0
+    let min = 0
+
+    // 篮球倒计时
+    if (data.si === 2) {
+      // 暂停倒计时
+      if (data.rbts !== 2)
+        return
+
+      sec = baseSec ? (+baseSec - diffSec) : 0
+      min = +baseMin - diffMin
+
+      if (sec < 0) {
+        sec = sec + 60
+        min = min - 1
+      }
+      if (min < 0) {
+        min = 0
+        sec = 0
+      }
+    }
+    // 其它
+    else {
+      sec = baseSec ? (+baseSec + diffSec) : 0
+      min = +baseMin + diffMin
+
+      if (sec > 59) {
+        sec = sec - 60
+        min = min + 1
+      }
+    }
+    // eslint-disable-next-line max-len
+    eventTime.value = `${min < 10 ? `0${min}` : min}${baseSec ? `:${sec < 10 ? `0${sec}` : sec}` : ''}`
   }
 }

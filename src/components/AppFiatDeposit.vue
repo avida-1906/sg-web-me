@@ -21,16 +21,8 @@ const { t } = useI18n()
 
 const amountRef = ref()
 const currentType = ref('')
-// const payeeInformation = ref({
-//   name: '张三',
-//   bankNumber: '6228480445839939573',
-//   bankName: '中国农业银行',
-//   accountOpeningBank: '开户网点：天津农商银行',
-//   amount: '200,000.00',
-// })
 const currentAisle = ref('')
 const currentAisleItem = ref<IPaymentMerchantData>()
-// const username = ref('')
 const oftenAmount = ref<TOftenAmount[]>()
 const fixedAmount = ref<TOftenAmount[]>()
 
@@ -59,7 +51,7 @@ const {
   resetField: depositNameReset,
 } = useField<string>('depositName', (value) => {
   if (!value)
-    return '请输入存款人姓名'
+    return t('pls_enter_savor_name')
   return ''
 })
 const {
@@ -82,7 +74,7 @@ const {
   },
 })
 const {
-  run: runPaymentMerchantList,
+  runAsync: runPaymentMerchantList,
   data: paymentMerchantList,
 } = useRequest(ApiFinanceMerchantList)
 const {
@@ -198,7 +190,7 @@ const havePaymentMethod = computed(() => {
   return paymentMethodList.value && paymentMethodList.value.length
 })
 const havePaymentMerchant = computed(() => {
-  return paymentMerchantList.value && paymentMerchantList.value.length
+  return paymentMerchantList.value && paymentMerchantList.value.length > 1
 })
 const currentTypeItem = computed(() => {
   if (paymentMethodList.value)
@@ -217,6 +209,9 @@ const paymentDepositBankData = computed(() => {
 })
 const isPaymentDepositBank = computed(() => {
   return currentTypeItem.value?.payment_type === 2
+})
+const getAmountLimit = computed(() => {
+  return `${currentAisleItem.value?.amount_min}—${currentAisleItem.value?.amount_max}`
 })
 
 function formatAmount() {
@@ -282,25 +277,30 @@ function formatBankAccount(s: string) {
   else
     return s.replace(/(\d{4})(?=\d)/, '$1 ').replace(/(.{8})(?=.)/, '$1 ')
 }
+function awaitHandle() {
+  return new Promise((resolve) => {
+    runAsyncPaymentMethodList({ currency_id: props.activeCurrency.cur }).then(() => {
+      runPaymentMerchantList({ id: currentType.value }).then(() => {
+        resolve(true)
+      })
+    })
+  })
+}
 
 watch(() => props.activeCurrency, (newValue) => {
   if (newValue)
     runAsyncPaymentMethodList({ currency_id: newValue.cur })
 })
-watch(() => currentType.value, (newValue) => {
-  if (newValue) {
-    runPaymentMerchantList({ id: currentType.value })
-    amountReset()
-    depositNameReset()
-    selectValueReset()
-    if (currentTypeItem.value?.bank)
-      runPaymentDepositBankList({ id: currentTypeItem.value.zkId })
-  }
+watch(() => currentType.value, (newValue, oldValue) => {
+  oldValue && runPaymentMerchantList({ id: currentType.value })
+  amountReset()
+  depositNameReset()
+  selectValueReset()
+  if (currentTypeItem.value?.bank)
+    runPaymentDepositBankList({ id: currentTypeItem.value.zkId })
 })
 
-await application.allSettled([
-  runAsyncPaymentMethodList({ currency_id: props.activeCurrency.cur }),
-])
+await application.allSettled([awaitHandle()])
 </script>
 
 <template>
@@ -312,14 +312,16 @@ await application.allSettled([
           <div class="bank-second">
             <div>
               <p class="second-title">
-                收款人姓名
+                {{ t('savor_name') }}
               </p>
               <p
                 class="copy-row"
                 @click="toCopy(paymentDepositBankInfo?.bankcard.open_name ?? '')"
               >
                 <span>{{ paymentDepositBankInfo?.bankcard.open_name }}</span>
-                <AppTooltip text="已成功复制地址" icon-name="uni-doc" :triggers="['click']" />
+                <AppTooltip
+                  :text="t('copy_addr_suc')" icon-name="uni-doc" :triggers="['click']"
+                />
               </p>
             </div>
             <p
@@ -329,7 +331,9 @@ await application.allSettled([
               <span>{{
                 formatBankAccount(paymentDepositBankInfo?.bankcard.bank_account ?? '')
               }}</span>
-              <AppTooltip text="已成功复制地址" icon-name="uni-doc" :triggers="['click']" />
+              <AppTooltip
+                :text="t('copy_addr_suc')" icon-name="uni-doc" :triggers="['click']"
+              />
             </p>
             <p class="copy-row">
               <span class="center" style="gap: 8px;">
@@ -342,17 +346,23 @@ await application.allSettled([
               class="copy-row"
               @click="toCopy(paymentDepositBankInfo?.bankcard.bank_area_cpf ?? '')"
             >
-              <span>开户网点：{{ paymentDepositBankInfo?.bankcard.bank_area_cpf }}</span>
-              <AppTooltip text="已成功复制地址" icon-name="uni-doc" :triggers="['click']" />
+              <span>
+                {{ t('open_addr') }}：{{ paymentDepositBankInfo?.bankcard.bank_area_cpf }}
+              </span>
+              <AppTooltip
+                :text="t('copy_addr_suc')" icon-name="uni-doc" :triggers="['click']"
+              />
             </p>
             <div>
               <p class="copy-row" @click="toCopy(paymentDepositBankInfo?.amount ?? '')">
-                <span>转账金额：{{
+                <span>{{ t('transfer_amount') }}：{{
                   `${paymentDepositBankInfo?.amount} ${activeCurrency.prefix}` }}</span>
-                <AppTooltip text="已成功复制地址" icon-name="uni-doc" :triggers="['click']" />
+                <AppTooltip
+                  :text="t('copy_addr_suc')" icon-name="uni-doc" :triggers="['click']"
+                />
               </p>
               <p class="second-tips">
-                转账金额务必与订单金额一致
+                {{ t('transfer_amount_equal_order') }}
               </p>
             </div>
             <div class="second-btns">
@@ -424,8 +434,8 @@ await application.allSettled([
             </BaseLabel>
             <BaseLabel
               v-if="isPaymentDepositBank"
-              label="存款人姓名:"
-              label-content="为及时到账，请务必输入正确的存款人姓名"
+              :label="`${t('deposit_name')}:`"
+              :label-content="t('deposit_name_tip')"
             >
               <BaseInput v-model="depositName" :msg="depositNameError" />
             </BaseLabel>
@@ -436,6 +446,7 @@ await application.allSettled([
               <BaseInput
                 ref="amountRef"
                 v-model="amount"
+                :placeholder="getAmountLimit"
                 :msg="amountError"
                 msg-after-touched
                 @blur="formatAmount"
@@ -445,13 +456,18 @@ await application.allSettled([
               v-else
               :label="`${t('deposit_amount')}: ${activeCurrency.prefix}`"
             >
-              <BaseSelect
-                v-if="fixedAmount && fixedAmount.length"
-                v-model="amount"
-                :options="fixedAmount"
-                :msg="amountError"
-                small
-              />
+              <div style="position: relative;">
+                <BaseSelect
+                  v-if="fixedAmount && fixedAmount.length"
+                  v-model="amount"
+                  :options="fixedAmount"
+                  :msg="amountError"
+                  small
+                />
+                <div v-if="!amount" class="placeholder-text">
+                  {{ t('select_deposit_amount') }}
+                </div>
+              </div>
             </BaseLabel>
             <BaseMoneyKeyboard
               v-if="oftenAmount && oftenAmount.length"
@@ -568,6 +584,11 @@ await application.allSettled([
                 }
             }
           }
+        }
+        .placeholder-text{
+          position: absolute;
+          top: var(--tg-spacing-13);
+          left: var(--tg-spacing-9);
         }
       }
     }

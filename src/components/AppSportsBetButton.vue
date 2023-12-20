@@ -27,7 +27,7 @@ const listToCartData = ref<ISportListToCartData>({
   os: props.disabled ? 0 : 1,
   ei: props.cartInfo.ei,
 })
-const _disabled = ref(props.disabled)
+const _disabled = ref(props.disabled || +listToCartData.value.ov === 0)
 
 function clickHandler() {
   if (!rightIsExpand.value && !isMobile.value)
@@ -132,7 +132,7 @@ onBeforeUnmount(() => {
         ? JSON.stringify(cartInfo).replaceAll(',', ',\n').replaceAll('{', '{\n').replaceAll('}', '\n}')
         : ''
     "
-    @click="clickHandler"
+    @click.stop="clickHandler"
   >
     <template v-if="isNa">
       <span class="status">N/A</span>
@@ -167,7 +167,7 @@ onBeforeUnmount(() => {
   font-size: var(--tg-font-size-default);
   color: var(--tg-text-white);
   min-width: 0;
-  padding: 0.5em 0.75em;
+  padding: 0.6em 0.75em;
   line-height: 1.5;
   cursor: pointer;
 

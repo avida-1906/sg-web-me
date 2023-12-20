@@ -3,6 +3,7 @@ import type { ICartInfoData } from '~/types'
 import type {
   EnumsBetSlipBetSlipTabStatus as EnumsBetSlipBetSlipTabStatusType,
 } from '~/utils/enums'
+import BaseInput from '~/components/BaseInput.vue'
 
 interface Props {
   index: number
@@ -28,9 +29,18 @@ interface Props {
   /** 复式总赔率 */
   duplexOv: string
   /** 复式总投注额 */
-  duplexInputValue: number
+  duplexInputValue?: number | string
   /** 复式预计支付额 */
-  duplexTotalProfit: number
+  duplexTotalProfit?: number | string
+  openKeyboard: (
+    fn: (value: number) => void,
+    deleteKey: () => void,
+  ) => void
+  closeKeyboard: () => void
+  /**
+   * h5 键盘是否显示，input失去焦点去是否验证
+   */
+  keyboardBool?: boolean
 }
 const props = withDefaults(defineProps<Props>(), {
   index: 0,
@@ -47,21 +57,28 @@ const { currentGlobalCurrency, isLogin } = storeToRefs(appStore)
 const sportStore = useSportsStore()
 const { userInfo } = storeToRefs(useAppStore())
 const { openBetSlipDialog } = useDialogBetSlip()
-// const { isMobile } = storeToRefs(useWindowStore())
-// const { closeRightSidebar } = useRightSidebar()
+const { isMobile } = storeToRefs(useWindowStore())
+const inputRef = ref()
 
 const notLoginAmount = ref('')
 const notLoginAmountPlaceholder = ref('')
-// const router = useRouter()
 
 const {
   value: amount,
   errorMessage: amountErrorMsg,
+  validate: validateAmount,
 } = useField<number>('amount', (value) => {
   if (value < props.cartInfoData.mia || value > props.cartInfoData.maa)
     return t('pls_input_min_max_amount', { min: props.cartInfoData.mia, max: props.cartInfoData.maa })
 
   return ''
+})
+
+useOutsideClick(inputRef, () => {
+  props.closeKeyboard()
+  if (props.keyboardBool)
+    inputRef.value?.setTouchTrue()
+  validateAmount()
 })
 
 const isBetSingle = computed(() =>
@@ -124,6 +141,9 @@ const isClosed = computed(() => {
 //   const data = props.cartInfoData
 //   return `/sports/${SPORTS_PLAT_ID}/${data.si}/${data.pgid}/${data.ci}/${data.ei}`
 // })
+const inputReadonlyBool = computed(() => {
+  return isMobile.value
+})
 
 /**
  * 跳转详情，先不要，等后端关盘的赛事查询详情再说
@@ -226,6 +246,33 @@ function showDetail() {
   openBetSlipDialog({ type: 'sports', data: { ...data, username: userInfo.value?.username } })
 }
 
+/**
+ * 键盘点击事件，只在h5上有效
+ */
+function inputClickHandler() {
+  if (isMobile.value) {
+    props.openKeyboard(
+      (v: number) => {
+        emit('update:modelValue', `${amount.value}${v}`)
+      },
+      () => emit('update:modelValue', amount.value?.toString().slice(0, -1)),
+    )
+  }
+}
+
+function notLoginInputClickHandler() {
+  if (isMobile.value) {
+    props.openKeyboard(
+      (v: number) => {
+        notLoginAmount.value = `${notLoginAmount.value}${v}`
+      },
+      () => {
+        notLoginAmount.value = notLoginAmount.value?.toString().slice(0, -1)
+      },
+    )
+  }
+}
+
 onMounted(() => {
   if (!isLogin.value) {
     notLoginAmountPlaceholder.value = application.sliceOrPad(
@@ -256,7 +303,7 @@ watchEffect(() => {
   >
     <div class="header" :class="{ 'round-header': isFirst || isBetSingle }">
       <div class="fixture-name">
-        <div v-if="isLive" class="status live">
+        <div v-if="isLive && cartInfoData.result === void 0" class="status live">
           {{ t('sports_status_live') }}
         </div>
         <BaseIcon
@@ -295,12 +342,19 @@ watchEffect(() => {
       <div v-if="isClosed" class="closed">
         {{ t('closed') }}
       </div>
-      <AppSportsOdds v-else :odds="cartInfoData.ov" arrow="left" keep />
+      <AppSportsOdds
+        v-else
+        :odds="cartInfoData.ov"
+        arrow="left"
+        keep
+        :show-arrow="cartInfoData.result === void 0"
+      />
       <!-- 单式金额输入框 -->
       <div v-show="isBetSingle && cartInfoData.result === void 0" class="footer">
         <div class="bet-amount">
           <BaseInput
             v-if="isLogin"
+            ref="inputRef"
             :key="currentGlobalCurrency"
             :model-value="modelValue"
             type="number"
@@ -308,7 +362,9 @@ watchEffect(() => {
             :placeholder="`${cartInfoData.mia} - ${cartInfoData.maa}`"
             :msg="amountErrorMsg"
             :disabled="isDisabled"
+            :readonly="inputReadonlyBool"
             :msg-after-touched="true"
+            @click.stop="inputClickHandler"
             @update:model-value="emit('update:modelValue', $event)"
           >
             <template #right-icon>
@@ -319,8 +375,10 @@ watchEffect(() => {
             v-else
             v-model="notLoginAmount"
             type="number"
+            :readonly="inputReadonlyBool"
             mb0
             :placeholder="notLoginAmountPlaceholder"
+            @click.stop="notLoginInputClickHandler"
           >
             <template #right-icon>
               <AppCurrencyIcon :currency-type="currentGlobalCurrency" />
@@ -330,7 +388,12 @@ watchEffect(() => {
         <div class="estimated-label">
           <span>{{ t('sports_estimated_payment_amount') }}</span>
         </div>
-        <div class="estimated-amount">
+        <div
+          class="estimated-amount"
+          :style="{
+            '--tg-app-amount-font-weight': '400',
+          }"
+        >
           <AppAmount
             :amount="
               application.sliceOrPad(

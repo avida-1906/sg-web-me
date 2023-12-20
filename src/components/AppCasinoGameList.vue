@@ -14,8 +14,6 @@ const { push } = useLocalRouter()
 
 const params = computed(() => {
   return {
-    page: 1,
-    page_size: 21,
     platform_id: props.platformId,
   }
 })
@@ -44,7 +42,7 @@ await application.allSettled([runAsync(params.value)])
           v-if="icon" width="16px"
           height="16px"
           :url="icon"
-          is-cloud
+          is-cloud loading="eager"
         />
         <span>{{ name }}</span>
       </div>

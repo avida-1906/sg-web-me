@@ -8,21 +8,31 @@ const props = withDefaults(defineProps<Props>(), {
   activeTab: 'deposit',
 })
 
+const { t } = useI18n()
+const router = useRouter()
 const closeDialog = inject('closeDialog', () => { })
 const { userInfo } = storeToRefs(useAppStore())
-const { t } = useI18n()
 const { bool: showWallet, setBool: setShowWalletBool } = useBoolean(true)
-const router = useRouter()
+const {
+  data: depositCurrency,
+  runAsync: runAsyncDepositCurrency,
+} = useRequest(ApiFinanceDepositCurrency)
+const {
+  data: withdrawCurrency,
+  runAsync: runAsyncWithdrawCurrency,
+} = useRequest(ApiFinanceWithdrawCurrency)
 
 const currentNetwork = ref('')
+const contentRef = ref()
+const distance = ref(6)
 const activeCurrency = ref<CurrencyData | null>()
 const currentTab = ref(props.activeTab)
+
 const tabList = computed(() => [
   { label: t('deposit'), value: 'deposit' },
   { label: t('menu_title_settings_withdrawals'), value: 'withdraw' },
   { label: t('card_wallet'), value: 'cardHolder' },
 ])
-
 const isDeposit = computed(() => currentTab.value === 'deposit')
 const isWithdraw = computed(() => currentTab.value === 'withdraw')
 const isCardHolder = computed(() => currentTab.value === 'cardHolder')
@@ -31,6 +41,15 @@ const isVirCurrency = computed(() => {
     return application.isVirtualCurrency(activeCurrency.value.type)
 
   return false
+})
+const isEmailVerify = computed(() => userInfo.value?.email_check_state === 1)
+const getActiveCurrency = computed(() => {
+  if (isDeposit.value)
+    return depositCurrency.value
+  else if (isWithdraw.value)
+    return withdrawCurrency.value
+  else
+    return []
 })
 
 function changeCurrency(item: CurrencyData, network: string) {
@@ -42,60 +61,87 @@ function handleShow(val: boolean) {
 }
 
 watch(() => currentTab.value, () => {
+  activeCurrency.value = null
   setShowWalletBool(true)
 })
+
+onMounted(() => {
+  // 解决加载完毕dialog宽度变化，但是popper位置没有更新问题
+  if (contentRef.value) {
+    const resizeObserver = new ResizeObserver(() => {
+      distance.value += 0.000001
+    })
+    resizeObserver.observe(contentRef.value)
+  }
+})
+
+await application.allSettled(
+  [
+    runAsyncDepositCurrency(),
+    runAsyncWithdrawCurrency(),
+  ],
+)
 </script>
 
 <template>
   <div class="app-wallet-dialog">
-    <div class="content">
+    <div ref="contentRef" class="content">
       <BaseTab v-model="currentTab" :list="tabList" />
-      <AppSelectCurrency
-        v-show="showWallet && !isCardHolder"
-        :show-balance="isWithdraw"
-        :network="isVirCurrency"
-        :popper-clazz="isDeposit ? 'app-wallet-cur' : 'app-wallet-cur-with'"
-        :placeholder="isDeposit ? 'search' : 'search_currency'"
-        @change="changeCurrency"
-      />
-      <!-- 存款 -->
-      <template v-if="isDeposit && activeCurrency">
-        <Suspense timeout="0">
-          <AppVirtualDeposit
-            v-if="isVirCurrency"
-            :active-currency="activeCurrency"
-            :current-network="currentNetwork"
-            @show="handleShow"
-          />
-          <AppFiatDeposit
-            v-else
-            :active-currency="activeCurrency"
-            @show="handleShow"
-          />
-          <template #fallback>
-            <div class="center dialog-loading-height">
-              <BaseLoading />
-            </div>
-          </template>
-        </Suspense>
-      </template>
-      <!-- 取款 -->
-      <template v-else-if="isWithdraw && activeCurrency">
-        <Suspense timeout="0">
-          <AppWithdraw
-            v-if="isVirCurrency"
-            :active-currency="activeCurrency"
-            :current-network="currentNetwork"
-          />
-          <AppFiatWithdrawal v-else :active-currency="activeCurrency" />
-          <template #fallback>
-            <div class="center dialog-loading-height">
-              <BaseLoading />
-            </div>
-          </template>
-        </Suspense>
+      <template v-if="isEmailVerify">
+        <AppSelectCurrency
+          v-show="showWallet && !isCardHolder"
+          :type="4"
+          :active-currency-list="getActiveCurrency"
+          :show-balance="isWithdraw"
+          :network="isVirCurrency"
+          :popper-clazz="isDeposit ? 'app-wallet-cur' : 'app-wallet-cur-with'"
+          :placeholder="isDeposit ? 'search' : 'search_currency'"
+          :distance="distance"
+          @change="changeCurrency"
+        />
+        <!-- 存款 -->
+        <template v-if="isDeposit && activeCurrency">
+          <Suspense timeout="0">
+            <AppVirtualDeposit
+              v-if="isVirCurrency"
+              :active-currency="activeCurrency"
+              :current-network="currentNetwork"
+              @show="handleShow"
+            />
+            <AppFiatDeposit
+              v-else
+              :active-currency="activeCurrency"
+              @show="handleShow"
+            />
+            <template #fallback>
+              <div class="center dialog-loading-height">
+                <BaseLoading />
+              </div>
+            </template>
+          </Suspense>
+        </template>
+        <!-- 取款 -->
+        <template v-else-if="isWithdraw && activeCurrency">
+          <Suspense timeout="0">
+            <AppWithdraw
+              v-if="isVirCurrency"
+              :active-currency="activeCurrency"
+              :current-network="currentNetwork"
+            />
+            <AppFiatWithdrawal v-else :active-currency="activeCurrency" />
+            <template #fallback>
+              <div class="center dialog-loading-height">
+                <BaseLoading />
+              </div>
+            </template>
+          </Suspense>
+        </template>
       </template>
     </div>
+    <AppEmailVerify
+      v-if="!isEmailVerify && !isCardHolder"
+      :tip-text="tabList.find((item) => item.value === currentTab)?.label"
+    />
     <!-- 卡包 -->
     <!-- <KeepAlive> -->
     <template v-if="isCardHolder">
@@ -111,7 +157,8 @@ watch(() => currentTab.value, () => {
     <!-- </KeepAlive> -->
   </div>
   <div
-    v-if="(isWithdraw || isDeposit) && userInfo && userInfo.google_verify !== 2"
+    v-if="(isWithdraw || isDeposit)
+      && userInfo && userInfo.google_verify !== 2 && isEmailVerify"
     class="safe-bottom"
   >
     <div>
@@ -138,6 +185,8 @@ watch(() => currentTab.value, () => {
 
 <style lang='scss' scoped>
 .app-wallet-dialog {
+  --tg-base-input-style-placeholder-color: var(--tg-text-lightgrey);
+  --tg-base-input-style-placeholder-opacity: 1;
   font-size: var(--tg-font-size-default);
   color: var(--tg-text-lightgrey);
   .content {

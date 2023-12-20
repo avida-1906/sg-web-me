@@ -23,6 +23,8 @@ export const STORAGE_MENU_LEFT_EXPAND = 'storage_menu_left_expand'
 export const STORAGE_MENU_ACTIVE_ITEM = 'storage_menu_active_item'
 export const STORAGE_CLEAR_LIVE = 'storage_clear_live'
 export const STORAGE_CLEAR_SPORTS = 'storage_clear_sports'
+export const STORAGE_CASINO_GAME_CURRENCY = 'storage_casino_game_currency'
+export const STORAGE_THIRDREG_PARAMS_KEYWORDS = 'storage_thirdreg_params_keywords'
 
 export class Local {
   static set<T>(key: string, value: any) {

@@ -9,6 +9,7 @@ interface Props {
   shadow?: boolean
   customPadding?: boolean
   originType?: 'button' | 'submit' | 'reset'
+  sportsLoading?: boolean
 }
 
 withDefaults(defineProps<Props>(), {
@@ -21,14 +22,19 @@ withDefaults(defineProps<Props>(), {
 <template>
   <button
     :type="originType"
-    :disabled="loading || disabled" :class="[type, bgStyle, size, {
+    :disabled="disabled" :class="[type, bgStyle, size, {
       round,
       shadow,
+      loading,
       'custom-padding': customPadding,
     }]"
   >
-    <div v-if="loading" class="loading">
-      <BaseIcon name="chess-frame2" class="ani-roll" />
+    <div v-if="loading" class="loading-icon">
+      <BaseIcon
+        v-if="sportsLoading" style="--tg-icon-color:var(--tg-text-white);"
+        name="spt-soccer" class="ani-scaleAndRotate"
+      />
+      <BaseIcon v-else name="chess-frame2" class="ani-roll" />
     </div>
     <div v-else class="content">
       <slot />
@@ -45,6 +51,8 @@ withDefaults(defineProps<Props>(), {
   --tg-base-button-font-weight: var(--tg-font-weight-semibold);
   --tg-base-button-padding-y: var(--tg-spacing-button-padding-vertical-xs);
   --tg-base-button-padding-x: var(--tg-spacing-button-padding-horizontal-xs);
+  --tg-base-button-disabled-opacity:0.5;
+  --tg-base-button-loading-opacity:0.5;
 }
 </style>
 
@@ -84,7 +92,7 @@ button {
     padding: var(--tg-base-button-padding-y) var(--tg-base-button-padding-x);
   }
 
-  .loading {
+  .loading-icon {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -98,9 +106,13 @@ button {
     align-items: center;
     justify-content: center;
   }
+  &.loading{
+    opacity: var(--tg-base-button-loading-opacity);
+    pointer-events: none;
+  }
 
   &:disabled {
-    opacity: 0.5;
+    opacity: var(--tg-base-button-disabled-opacity);
     cursor: not-allowed;
   }
 }

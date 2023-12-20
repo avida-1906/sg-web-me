@@ -63,13 +63,12 @@ export function useApiSportBetList(
     })
   }
 
-  if (isFetch) {
+  if (isFetch)
     fetch()
 
-    watch([currentGlobalCurrency, settle], () => {
-      fetch()
-    })
-  }
+  watch([currentGlobalCurrency, settle], () => {
+    fetch()
+  })
 
   return {
     sportBetList,

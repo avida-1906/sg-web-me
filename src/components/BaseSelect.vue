@@ -91,7 +91,7 @@ function onPopperOpen() {
         <div class="content">
           <div class="content-label">
             <slot name="label" :data="selectedOption">
-              <span>{{ popperLabel }}</span>
+              <span class="inner-label">{{ popperLabel }}</span>
             </slot>
           </div>
           <div v-if="!disabled" class="icon" :class="{ up: isPopperOpen }">
@@ -143,9 +143,10 @@ function onPopperOpen() {
         <select
           :value="modelValue"
           :class="{ disabled, small, error }"
-          :disabled="disabled" @change="onChange"
+          :disabled="disabled"
+          @change="onChange"
         >
-          <option style="display: none;" disabled value="" />
+          <option style="display: none;" disabled hidden value="" />
           <option
             v-for="o, i in options"
             :key="i"
@@ -207,6 +208,9 @@ function onPopperOpen() {
     justify-content: space-between;
     align-items: center;
     line-height: var(--tg-base-select-popcontent-lineheight);
+    .inner-label {
+      display: block;
+    }
   }
   &.pop-open {
     background-color: var(--tg-base-select-popopen-bg-color);
@@ -229,7 +233,6 @@ function onPopperOpen() {
     font-size: 14px;
     display: flex;
     align-items: center;
-    transition: all ease .25s;
     margin-left: var(--tg-spacing-8);
   }
 
@@ -371,7 +374,6 @@ function onPopperOpen() {
       cursor: not-allowed;
     }
   }
-
   .icon {
     font-size: var(--tg-font-size-default);
     position: absolute;

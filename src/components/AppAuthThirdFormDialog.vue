@@ -14,6 +14,7 @@ const closeDialog = inject('closeDialog', () => { })
 
 const { t } = useI18n()
 const appStore = useAppStore()
+const { openTermsDialog } = useDialogAuthTerms()
 
 const { bool: isEmailEmptyAndMust, setBool: setEmailShow } = useBoolean(false)
 const emailRef = ref()
@@ -37,9 +38,18 @@ const {
   // setErrors: setUsernameErrors,
 } = useField<string>('username', (value) => {
   if (!value)
-    return t('pls_enter_username')
+    return '最小字符长度为 3'
+  else if (value.length < 3)
+    return '最小字符长度为 3'
+  else if (value.match('[^a-z0-9]'))
+    return '用户名含有无效的字符'
+  else if (value.length > 14)
+    return '最大字符长度为 14'
   else if (!usernameReg.test(value))
     return t('validate_msg_user_name_tip')
+  // 此用户名已被使用，请选择另一用户名。
+  // 用户名含有无效的字符
+  // 您的用户名长度必须为 3 – 14 个字符。
   return ''
 })
 
@@ -72,13 +82,26 @@ async function submit() {
     await validateEmail()
 
   await validateUsername()
-  runThirdReg({
+  if (usernameErrorMsg.value)
+    return
+
+  // closeDialog()
+  const thirdReg = {
     email: props.data.email ?? email.value,
     username: username.value,
     third_id: props.data.id,
     third_type: props.ty,
     device_number: application.getDeviceNumber(),
-  })
+  }
+  Session.set(STORAGE_THIRDREG_PARAMS_KEYWORDS, thirdReg)
+  openTermsDialog()
+  // runThirdReg({
+  //   email: props.data.email ?? email.value,
+  //   username: username.value,
+  //   third_id: props.data.id,
+  //   third_type: props.ty,
+  //   device_number: application.getDeviceNumber(),
+  // })
 }
 
 onMounted(() => {
@@ -89,6 +112,9 @@ onMounted(() => {
 
 <template>
   <div class="app-auth-third-form">
+    <div class="app-register-title">
+      {{ t('reg_step1') }}
+    </div>
     <div class="app-register-input-box">
       <BaseLabel v-if="isEmailEmptyAndMust" :label="t('email_address')" must-small>
         <BaseInput
@@ -97,7 +123,7 @@ onMounted(() => {
         />
       </BaseLabel>
       <!-- msg-after-touched  -->
-      <BaseLabel :label="t('username')" must-small>
+      <BaseLabel label="请选择显示名称" must-small>
         <BaseInput
           ref="userNameRef" v-model="username"
           :msg="usernameErrorMsg"
@@ -114,10 +140,19 @@ onMounted(() => {
 <style lang="scss" scoped>
 .app-auth-third-form {
   padding: var(--tg-spacing-button-padding-horizontal-sm) var(--tg-spacing-button-padding-horizontal-sm);
+  padding-top: 0;
   .app-register-input-box {
     display: flex;
     flex-direction: column;
     gap: var(--tg-spacing-16);
   }
+}
+.app-register-title {
+  color: var(--tg-secondary-light);
+  text-align: center;
+  font-size: var(--tg-font-size-base);
+  font-weight: var(--tg-font-weight-semibold);
+  line-height: 24px;
+  padding-bottom: var(--tg-spacing-16);
 }
 </style>

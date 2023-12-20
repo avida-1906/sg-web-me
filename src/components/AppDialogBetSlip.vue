@@ -122,7 +122,7 @@ onMounted(() => {
         </div>
       </div>
       <div class="sports-bottom">
-        <AppSportsMyBetSlip :data="sportsData" is-dialog />
+        <AppSportsMyBetSlip :data="sportsData" is-dialog disable-result />
         <BaseButton v-if="!isSettled" size="md" @click="clickHandler">
           {{ t('add_one_bet', { num: betList.length }) }}
         </BaseButton>

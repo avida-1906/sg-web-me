@@ -16,10 +16,10 @@ export enum EnumSportsOddsType {
   AMERICAN = 'AMERICAN',
   /** 印尼格式 */
   INDONESIA = 'INDONESIA',
-  /** 马来格式 */
-  MALAYSIA = 'MALAYSIA',
   /** 香港格式 */
   HONGKONG = 'HONGKONG',
+  /** 马来格式 */
+  MALAYSIA = 'MALAYSIA',
 }
 
 /** 投注单数据格式 */

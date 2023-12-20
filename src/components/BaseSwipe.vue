@@ -71,7 +71,7 @@ onMounted(() => {
         >
           <!--  -->
           <div class="center wrapper w-100">
-            <BaseImage :url="item.imgUrl" is-network />
+            <BaseImage :url="item.imgUrl" is-network loading="eager" />
           </div>
           <div class="other">
             <slot />

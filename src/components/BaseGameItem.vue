@@ -4,6 +4,7 @@ interface Props {
     img?: string
     name?: string
     platform_id?: string
+    platform_name: string
     game_id?: string
     [k: string]: any
     maintained: string
@@ -15,27 +16,22 @@ interface Props {
 const props = defineProps<Props>()
 
 const { t } = useI18n()
-const { push } = useLocalRouter()
 const { isMobile } = storeToRefs(useWindowStore())
-const { allPlatformList } = storeToRefs(useCasinoStore())
 const closeSearch = inject('closeSearch', () => { })
 const closeSearchH5 = inject('closeSearchH5', () => { })
 const { bool: isError, setTrue: setErrorTrue } = useBoolean(false)
 const { bool: thumbnailStatus, setFalse: thumbnailLoadError } = useBoolean(true)
 const { bool: showBorder, setFalse: showBorderFalse } = useBoolean(true)
+const { bool: showImg, setTrue: showImgTrue } = useBoolean(false)
 
-const gameProviderName = computed(() =>
-  allPlatformList.value?.find(a => a.id === props.gameInfo.platform_id)?.name ?? '-',
-)
 const isMaintained = computed(() => {
   return props.gameInfo.maintained === '2'
 })
 
-function gameStart(item: Props['gameInfo']) {
-  if (isMaintained.value)
-    return
-
-  push(`/casino/games?id=${item.id}&name=${item.name}&pn=${gameProviderName.value}&pid=${item.platform_id}`)
+function gameStart() {
+  // if (isMaintained.value)
+  //   return
+  // push(`/casino/games?id=${item.id}&name=${item.name}&pn=${item.platform_name}&pid=${item.platform_id}`)
   if (isMobile.value)
     closeSearchH5()
 
@@ -52,29 +48,36 @@ function getThumbnailUrl(url: string) {
   return arr.join('.')
 }
 
+onMounted(() => {
+  setTimeout(() => {
+    showImgTrue()
+  }, Math.ceil(Math.random() * 50 + 300))
+})
+
 const onPlayCount = ref(Math.ceil(Math.random() * 1000).toFixed())
 </script>
 
 <template>
-  <BaseAspectRatio ratio="68/91">
+  <BaseAspectRatio ratio="100/134.1463414634">
     <div
       class="base-game-item" :class="{
-        'maintain': isMaintained,
-        'pc-item': !isMobile,
-        'border': showBorder,
+        maintain: isMaintained,
+        border: showBorder,
       }"
-      @click="gameStart(gameInfo)"
+      @click="gameStart"
     >
+      <!-- @click="gameStart(gameInfo)" -->
       <div class="backgrop-filter">
         <BaseImage
           v-if="thumbnailStatus"
           is-cloud
           :url="getThumbnailUrl(gameInfo.img ?? '')"
+          loading="eager"
           @error-img="thumbnailLoadError"
         />
       </div>
       <BaseImage
-        v-if="!isError"
+        v-if="!isError && showImg"
         :url="gameInfo.img"
         :name="gameInfo.name"
         is-cloud
@@ -82,6 +85,7 @@ const onPlayCount = ref(Math.ceil(Math.random() * 1000).toFixed())
         @error-img="setErrorTrue()"
         @load-img="showBorderFalse"
       />
+
       <div v-if="isError && !isMaintained" class="img-load">
         <div style="text-align: center;">
           <BaseIcon
@@ -90,15 +94,28 @@ const onPlayCount = ref(Math.ceil(Math.random() * 1000).toFixed())
           />
         </div>
       </div>
-      <div class="active-game-item">
+      <router-link
+        v-if="!isMaintained"
+        v-slot="{ href, navigate }"
+        custom
+        :to="`/casino/games?id=${gameInfo.id}&name=${gameInfo
+          .name}&pn=${gameInfo.platform_name}&pid=${gameInfo.platform_id}`"
+      >
+        <a
+          :href="href"
+          class="game-href"
+          @click="navigate"
+        />
+      </router-link>
+      <!-- <div class="active-game-item">
         <div class="game-title">
           {{ gameInfo.name }}
         </div>
         <BaseIcon class="game-uni-play" name="uni-play" />
         <div class="game-tip">
-          {{ gameProviderName }}
+          {{ gameInfo.platform_name }}
         </div>
-      </div>
+      </div> -->
       <div v-if="isMaintained" class="center maintain-game-item">
         <BaseEmpty>
           <template #icon>
@@ -135,39 +152,45 @@ const onPlayCount = ref(Math.ceil(Math.random() * 1000).toFixed())
   overflow: hidden;
   cursor: pointer;
   &.border{
-    border: 0.5px solid var(--tg-text-white);
+    // border: 0.5px solid var(--tg-text-white);
   }
 
-  .active-game-item {
+  // .active-game-item {
+  //   position: absolute;
+  //   display: flex;
+  //   width: 100%;
+  //   height: 100%;
+  //   left: 0;
+  //   top: 0;
+  //   flex-direction: column;
+  //   flex-wrap: nowrap;
+  //   justify-content: space-between;
+  //   padding: 1rem;
+  //   font-size: var(--tg-font-size-base);
+  //   opacity: 0;
+  //   color: var(--tg-text-white);
+  //   background-color: var(--tg-sub-blue);
+  //   will-change: transform;
+  //   transition: all 0.3s ease 0.3s;
+
+  //   .game-title {
+  //     font-size: var(--tg-font-size-md);
+  //     line-height: 1.2;
+  //   }
+
+  //   .game-uni-play {
+  //     margin: 0 auto;
+  //     font-size: var(--tg-font-size-3xl);
+  //     --tg-icon-color: var(--tg-text-white);
+  //   }
+  // }
+  .game-href{
     position: absolute;
-    display: flex;
     width: 100%;
     height: 100%;
     left: 0;
     top: 0;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    padding: 1rem;
-    font-size: var(--tg-font-size-base);
-    opacity: 0;
-    color: var(--tg-text-white);
-    background-color: var(--tg-sub-blue);
-    will-change: transform;
-    transition: all 0.3s ease 0.3s;
-
-    .game-title {
-      font-size: var(--tg-font-size-md);
-      line-height: 1.2;
-    }
-
-    .game-uni-play {
-      margin: 0 auto;
-      font-size: var(--tg-font-size-3xl);
-      --tg-icon-color: var(--tg-text-white);
-    }
   }
-
   .img-load {
     position: absolute;
     width: 100%;
@@ -197,14 +220,13 @@ const onPlayCount = ref(Math.ceil(Math.random() * 1000).toFixed())
     top: 0;
     // backdrop-filter: blur(10px); /* 标准语法 */
   }
-}
+  &:hover {
+    top: -7px;
+  }
 
-.pc-item:hover {
-  top: -7px;
-}
-
-.pc-item:hover .active-game-item {
-  opacity: 0.88;
+  // &:hover .active-game-item {
+  //   opacity: 0.88;
+  // }
 }
 
 .count {

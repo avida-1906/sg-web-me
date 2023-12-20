@@ -2,8 +2,7 @@ export function useFixedTop(className: string) {
   const page = document.querySelector(className)
   let currentInput: EventTarget | null = null // 当前聚焦的输入框
   const fixedEle = document.body
-  const { bool: startMove, setBool: setStartMove } = useBoolean(false)
-  // let startMove = false // 记录是否发生了滑动手势
+  const { bool: startMove, setBool: setStartMove } = useBoolean(false) // 记录是否发生了滑动手势
 
   function handleTouchmove() {
     setStartMove(true)
@@ -37,6 +36,12 @@ export function useFixedTop(className: string) {
   function handleFocusin(e: Event) {
     const el = e || window.event
     currentInput = el.target
+    const top = document.documentElement.scrollTop
+    if (window.visualViewport) {
+      document.documentElement.scrollTop = top
+        ? (top + (document.querySelector('.navigation')?.getBoundingClientRect().top ?? 0))
+        : 0
+    }
     // 因为上一个聚焦的输入框因为失焦导致top置为0了，如果新聚焦的输入框不会触发webview平移，则沿用当时的位移就好了
     fixedEle.style.top = `${window.pageYOffset}px`
     // 添加滚动监听，为了软键盘出现 以及 从一个聚焦输入框聚焦到另外一个输入框时， 重新定位fixed元素（其实这里不用滚动事件监听变化也可以用setTimeout来更新定位）

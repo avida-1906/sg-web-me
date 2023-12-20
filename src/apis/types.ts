@@ -5,7 +5,7 @@ import type { ICartInfo, ICartInfoData } from '~/types'
 export type EnumCurrencyKey = keyof typeof EnumCurrency
 
 /** 版型ID */
-export type TPat = 1 | 2 | 3 | 4
+export type TPat = 1 | 2 | 3 | 4 | 5 | 6
 
 /** 后端金额接口数据 */
 export type TCurrencyObject = Prettify<{
@@ -76,6 +76,8 @@ export interface IUserInfo {
   /** 性别 1=男，2=女 */
   sex: number | string
   cpf: string
+  third_id?: string
+  third_type?: string
 }
 
 /** 用户详情  */
@@ -148,6 +150,16 @@ export interface IMemberReg {
   parent_id?: string
   device_number: string
 }
+
+export interface IMemberThirdReg {
+  email: string
+  username: string
+  parent_id?: string
+  device_number: string
+  third_type: number
+  third_id: string
+}
+
 export interface CasinoLobbyGameItem {
   platform_id: string
   id: string
@@ -310,6 +322,11 @@ export interface ISportEventInfoMl {
   ms: ISportEventInfoMlMs[]
   /** 用来组装接口返回的数据，比如后端返回的list中，其中两条在某些条件上是表现一样的，前端页面上是用一个元素显示 */
   other: ISportEventInfoMlMs[]
+  /** 版型6的字段 */
+  pat6: {
+    titleList: string[]
+    list: ISportEventInfoMlMs[]
+  }
 }
 
 /** 赛事详情 */
@@ -564,7 +581,7 @@ export interface ISportsMyBetSlipItem {
   bt: number
   /** 注单号 */
   ono: string
-  /** 注单状态 0未结算 1已结算 */
+  /** 注单状态 0未结算 1已结算 2待处理 3已拒绝(危险球取消) 4已取消 */
   os: number
   /** 0:未结算 1:赢 2:输 3:平 4:赢一半 5:输一半 6:输部分 */
   oc: number
@@ -603,6 +620,8 @@ export interface ISportsMyBetSlipItem {
     pgid: string
     /** 联赛id */
     ci: string
+    /** 联赛名 */
+    cn: string
     /**
      * 1：显示主客队名称
      *
@@ -622,6 +641,8 @@ export interface ISportsMyBetSlipItem {
     m: number
     pid: number
     sid: string
+    /** 球种icon */
+    spic: string
   }[]
 }
 
@@ -677,6 +698,12 @@ export interface PayInfo {
   currency_name: EnumCurrencyKey
   /** 交易编号 */
   trans_no: string
+  /** 金额 */
+  amount: string
+  /** 种类id */
+  cash_type: string
+  /** 种类名称 */
+  cash_type_name: string
 }
 
 export type IBrandDetailTag =
@@ -710,4 +737,16 @@ export interface ISportsInfo {
    * 3:赛事已结束
    */
   status: 1 | 3
+}
+
+/**
+ * 钱包存款取款可用货币列表
+ */
+export interface availableCurrency {
+  /** 货币id */
+  currency_id: CurrencyCode
+  /** 货币名称 */
+  currency_name: EnumCurrencyKey
+  /** 余额 */
+  balance?: string
 }

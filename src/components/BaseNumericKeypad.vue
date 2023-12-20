@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const emit = defineEmits(['keyNum', 'keyOk'])
+const emit = defineEmits(['keyNum', 'keyOk', 'keyDelete'])
 
 function keyUpNum(event: any) {
   const num = event.target?.dataset.num
@@ -9,7 +9,7 @@ function keyUpNum(event: any) {
 </script>
 
 <template>
-  <div class="base-numeric-keypad" @click="keyUpNum">
+  <div class="base-numeric-keypad" @click.stop="keyUpNum">
     <div data-num="7">
       7
     </div>
@@ -19,8 +19,11 @@ function keyUpNum(event: any) {
     <div data-num="9">
       9
     </div>
-    <div data-num="9">
-      9
+    <div
+      style="--tg-icon-color: var(--tg-text-white)"
+      @click.stop="emit('keyDelete')"
+    >
+      <BaseIcon name="keyboard-delete" />
     </div>
     <div data-num="4">
       4
@@ -65,9 +68,9 @@ function keyUpNum(event: any) {
     grid-row-gap: var(--tg-border-width-default);
     grid-column-gap: var(--tg-border-width-default);
     font-size: var(--tg-font-size-md);
-    font-weight: var(--tg-font-weight-semibold);
+    font-weight: var(--tg-font-weight-normal);
     color: var(--tg-text-white);
-    div{
+    > div{
       height: 100%;
       width: 100%;
       display: flex;
@@ -76,6 +79,9 @@ function keyUpNum(event: any) {
       background-color: var( --tg-secondary-grey);
       text-align: center;
       cursor: pointer;
+      &:hover{
+        background-color: var(--tg-secondary-main);
+      }
     }
     .ok-3{
       grid-row-start: span 3;

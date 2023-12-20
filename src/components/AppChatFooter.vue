@@ -141,7 +141,7 @@ function sendMsg() {
   setEBool(false)
   if (trimMessage.value.length && !sendLoading.value) {
     if (!isLogin.value) {
-      openNotify({ type: 'error', message: '不允许此操作' })
+      openNotify({ type: 'error', code: 'chat_not_login', message: t('notify_error_forbid_operation') })
       return
     }
     const tt = new Date().getTime()
@@ -157,7 +157,7 @@ function enterPress(event: KeyboardEvent) {
   event.stopPropagation()
   if (trimMessage.value.length) {
     if (!isLogin.value) {
-      openNotify({ type: 'error', message: '不允许此操作' })
+      openNotify({ type: 'error', code: 'chat_not_login', message: t('notify_error_forbid_operation') })
       return
     }
     if (isCommand.value) {
@@ -206,7 +206,7 @@ watch(message, (val) => {
         class="emoji-wrap"
       >
         <div class="emoji-header">
-          <span>表情符号</span>
+          <span>{{ t('emoji_title') }}</span>
           <div class="close" @click="setEBool(false)">
             <BaseIcon name="uni-close" />
           </div>
@@ -347,9 +347,12 @@ watch(message, (val) => {
 }
 .layout-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill,minmax(50px,1fr));
-  gap: var(--tg-spacing-4);
-  padding: var(--tg-spacing-8) var(--tg-spacing-16);
+  grid-template-columns: repeat(auto-fill,minmax(40px,1fr));
+  gap: var(--tg-spacing-16);
+  // padding: var(--tg-spacing-8) var(--tg-spacing-16);
+  max-height: 13rem;
+  margin: 16px;
+  margin-top: 0;
 }
 .at-users-wrap, .command-wrap {
   background: var(--tg-secondary-main);
@@ -464,7 +467,7 @@ watch(message, (val) => {
   position: relative;
   display: grid;
   align-items: center;
-  padding: var(--tg-spacing-16);
+  padding: var(--tg-spacing-16) var(--tg-spacing-16) var(--tg-spacing-16);
   row-gap: var(--tg-spacing-8);
   grid-template-rows: auto;
   grid-template-columns: auto 1fr;
@@ -472,6 +475,9 @@ watch(message, (val) => {
       "input input"
       "online actions";
   touch-action: none;
+  --tg-base-input-textarea-minheight: 37px;
+  :deep(textarea) {
+  }
   .chat-input {
     grid-area: input;
     --tg-base-input-style-right-icon-pad-v: 0;

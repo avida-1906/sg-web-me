@@ -988,14 +988,14 @@ total_win_lose: 总输赢
 rebate_amount: 返佣金额
 bet_order_num: 投注单数量
 rule_desc: 规则说明
-vip_rule_1: 晋级标准：满足VIP晋级要求（即打码都满足条件），即可晋级相应VIP等级，获得相应晋级奖金，如连续晋级多级，可领取全部等级晋级奖金
-vip_rule_2: 日俸禄：达到VIP等级对应日俸禄要求，即可领取对应日奖金，每日00:00重置
-vip_rule_3: 周俸禄：达到VIP等级对应周俸禄要求，即可领取对应周奖金，每周一00:00重置
-vip_rule_4: 月俸禄：每月充值及打码达到当前VIP等级对应月俸禄要求，即可领取对应月奖金，每月1日00:00重置
-vip_rule_5: 保级说明：会员在达到某VIP等级后，若上个月充值及打码未达到保级要求，则自动降一个等级
-vip_rule_6: 稽核说明：VIP所赠送的奖金需1倍流水（即稽核、打码或有效投注）才能提现，打码不限游戏平台
-vip_rule_7: 活动声明：本功能仅限账号本人进行正常游戏投注，禁止租借账号、无风险投注(对赌、对刷、低赔刷水)、恶意套利、使用外挂程式、机器人、利用协议、漏洞、接口、群控或其他技术手段参与，一经查核属实，本平台有权终止会员登录、暂停会员使用网站、及没收奖金和不当盈利的权利，无需特别通知
-vip_rule_8: 解释说明：会员领取VIP奖励时，本平台将默认会员同意且遵守对应条件等相关规定，为避免文字理解歧义，本平台保有本活动最终解释权
+vip_rule_1: 满足VIP晋级要求（即打码都满足条件），即可晋级相应VIP等级，获得相应晋级奖金，如连续晋级多级，可领取全部等级晋级奖金
+vip_rule_2: 达到VIP等级对应日俸禄要求，即可领取对应日奖金，每日00:00重置
+vip_rule_3: 达到VIP等级对应周俸禄要求，即可领取对应周奖金，每周一00:00重置
+vip_rule_4: 每月充值及打码达到当前VIP等级对应月俸禄要求，即可领取对应月奖金，每月1日00:00重置
+vip_rule_5: 会员在达到某VIP等级后，若上个月充值及打码未达到保级要求，则自动降一个等级
+vip_rule_6: VIP所赠送的奖金需1倍流水（即稽核、打码或有效投注）才能提现，打码不限游戏平台
+vip_rule_7: 本功能仅限账号本人进行正常游戏投注，禁止租借账号、无风险投注(对赌、对刷、低赔刷水)、恶意套利、使用外挂程式、机器人、利用协议、漏洞、接口、群控或其他技术手段参与，一经查核属实，本平台有权终止会员登录、暂停会员使用网站、及没收奖金和不当盈利的权利，无需特别通知
+vip_rule_8: 会员领取VIP奖励时，本平台将默认会员同意且遵守对应条件等相关规定，为避免文字理解歧义，本平台保有本活动最终解释权
 validate_msg_input_name: 请输入正确姓名
 validate_msg_choose_bank: 请选择银行
 validate_msg_choose_pix_account_type: 请选择PIX账户类型
@@ -1252,10 +1252,10 @@ label_no_collect: 暂无任何收藏，请使用
 put_collect: 把游戏添加到收藏夹中。
 success_edit: 修改成功
 this_contains_invalid_email_characters: 这含有无效的电子邮件字符
-tip_email_sent: 邮电已发送
-tip_email_to: 验证邮电已发送至
+tip_email_to: 确认电邮已发送至
 success_update_email: 成功更新电邮地址
-email_update_to: 电邮地址已更新为
+tip_email_sent: 已重新发送电邮
+email_update_to: 验证电邮已重新发送至
 success_update_phone: 成功更新手机号码
 phone_update_to: 手机号码已更新为
 success_verify: 验证成功
@@ -1324,7 +1324,7 @@ withdrawal_fee_tip: 我们将从您的余额扣除
 withdrawal_as_fee: 作为您提款的交易费用
 present: 送
 order_label: 笔
-bet_tip_amount_tip: 已成功押下总值 
+bet_tip_amount_tip: 已成功押下总值
 de: 的
 bet_more_than_balance: 您的投注额不能大于余额。
 all: 所有
@@ -1561,7 +1561,26 @@ casino_intro_19: 随着成千上万的忠实玩家每小时进行的数百万笔
 get_email_code: 获取验证码
 re_get: 重新获取
 footer_description: '{name} 由 Medium Rare N.V. 所属和经营，注册编号： 145353，注册地址： Korporaalweg 10, Willemstad, Curaçao。请通过 {email} 与我们联系。支付代理公司是 Medium Rare Limited，地址于 7-9 Riga Feraiou, LIZANTIA COURT, Office 310, Agioi Omologites, 1087 Nicosia, Cyprus 以及注册号：HE 410775'
-
-
-
-
+empty_fav_event: 暂无收藏赛事
+reject: 拒绝
+emoji_title: 表情符号
+failure: 失败
+confirmed: 已确认
+saving_account: 收款账户
+saving_address: 收款地址
+deal_contract: 交易协议
+account_type: 账户类型
+saving_bank: 收款银行
+order_num: 订单编号
+copy_addr_suc: 已成功复制！
+pls_enter_savor_name: 请输入存款人姓名
+savor_name: 收款人姓名
+open_addr: 开户网点
+transfer_amount: 转账金额
+select_deposit_amount: 请下拉选择充值金额
+pls_select_pix: 请选择PIX账号
+we_use_cookie: 我们使用 Cookie
+cookie_purposes: 进行功能与分析目的。
+accept: 接受
+start_game_now: 立即开始游戏
+policies: 政策

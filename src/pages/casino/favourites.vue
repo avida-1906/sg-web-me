@@ -1,8 +1,13 @@
 <script setup lang="ts">
 usePageTitle({ prefix: 'hot_casino_game', isT: true })
 const { appContentWidth, isMobile } = storeToRefs(useWindowStore())
+const { VITE_CASINO_GAME_PAGE_SIZE } = getEnv()
 
-const { list, page, runAsync, prev, next, hasMore } = useList(ApiMemberFavList)
+const { list, page, runAsync, prev, next, hasMore } = useList(
+  ApiMemberFavList,
+  {},
+  { page_size: +VITE_CASINO_GAME_PAGE_SIZE },
+)
 
 await application.allSettled([runAsync()])
 </script>
@@ -22,6 +27,7 @@ await application.allSettled([runAsync()])
             <BaseImage
               url="/png/casino/group-banner-default.png"
               style="height: 100%;width: auto;"
+              loading="eager"
             />
           </div>
         </div>

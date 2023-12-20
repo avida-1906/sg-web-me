@@ -27,7 +27,7 @@ const isCasino = computed(() => gameType.value === Game.CASINO
 const isSports = computed(() => gameType.value === Game.SPORTS
  && !rightIsExpand.value && !leftIsExpand.value,
 )
-// const isRouteCasino = computed(() => route.name?.toString().includes(Game.CASINO))
+const isRouteCasino = computed(() => route.name?.toString().includes(Game.CASINO))
 const isRouteSports = computed(() => route.name?.toString().includes(Game.SPORTS))
 const isChat = computed(() => rightIsExpand.value
 && currentRightSidebarContent.value === EnumRightSidebarContent.CHATROOM,
@@ -78,14 +78,14 @@ function goGame(type: Game) {
   setTimeout(() => {
     switch (type) {
       case Game.CASINO:
-        if (route.path === '/casino')
+        if (isRouteCasino.value)
           return resetGameType()
         router.push('/casino')
         gameType.value = Game.CASINO
         break
       case Game.SPORTS:
         temp = `/sports/${getSportsPlatId()}`
-        if (route.path === temp)
+        if (isRouteSports.value)
           return resetGameType()
         router.push(temp)
         gameType.value = Game.SPORTS

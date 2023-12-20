@@ -10,6 +10,7 @@ import type {
   IMemberBalanceLockerUpdate,
   IMemberDetail,
   IMemberReg,
+  IMemberThirdReg,
   INotNotice,
   IResponseList,
   IUserInfo,
@@ -18,6 +19,7 @@ import type {
   TCurrencyObject,
   VipConfig,
   VirtualCoin,
+  availableCurrency,
 } from './types'
 import type { CurrencyCode } from '~/composables/useCurrencyData'
 import { httpClient } from '~/http'
@@ -494,7 +496,12 @@ export function ApiMemberUpdate(data: {
   } & Partial<IUserInfo>
   uid?: string
 }) {
-  return httpClient.post<string>('/member/update', data)
+  const _data = { ...data }
+  delete _data.record.third_id
+  delete _data.record.third_type
+  delete _data.record.sex
+
+  return httpClient.post<string>('/member/update', application.removeEmpty(_data))
 }
 
 /**
@@ -1289,14 +1296,7 @@ export function ApiMemberThirdAuthUrl(params: {
  * 三方登录注册
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=81413d60-d816-45c0-8df0-47436a1bd837
  */
-export function ApiMemberThirdReg(data: {
-  email: string
-  username: string
-  parent_id?: string
-  device_number: string
-  third_type: number
-  third_id: string
-}) {
+export function ApiMemberThirdReg(data: IMemberThirdReg) {
   return httpClient.post<string>('/member/third/register', data, {
     headers: {
       device_number: data.device_number,
@@ -1769,5 +1769,92 @@ export function ApiAgencyReportUser(data?: {
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=6848df0c-36d0-4661-bb0d-af39bae989db
  */
 export function ApiAgencyCommissionScale() {
-  return httpClient.get<any>('/agency/commission/scale')
+  return httpClient.get<
+    {
+      conf_global: {
+        id: string
+        send_type: number
+        commission_max_limit: string
+        commission_settlement_type: number
+      }
+      conf: {
+        id: string
+        /** 1真人 2捕鱼 3电子 4体育 5棋牌 6电竞 */
+        model_ids: string
+        levels: {
+          id: string
+          /** 佣金配置ID */
+          commission_id: string
+          /** 等级 */
+          level: number
+          /** 有效投注≥(单位：万) */
+          effective_amount: string
+          /** 返佣比例% */
+          rebate_ratio: string
+          updated_by: string
+          updated_at: number
+          uid: string
+        }[]
+        performances: null
+      }[]
+    }>('/agency/commission/scale')
+}
+
+/**
+ * 注册子代理
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=505e7566-d623-4529-bab6-50205becd5da
+ */
+export function ApiAgencyInsert(data: {
+  /** 会员账号 */
+  username: string
+  /** 会员密码 */
+  password: string
+}) {
+  return httpClient.post<string>('/agency/insert', data)
+}
+
+/**
+ * 交易记录-其他-下拉选单
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=092cb9e6-c3b4-4bc0-b574-00b398629681
+ */
+export function ApiFinanceRecordOtherSelect() {
+  return httpClient.get<{
+    /** id */
+    id: string
+    /** 名称 */
+    name: string
+  }[]>('/finance/record/other/select')
+}
+
+/**
+ * 交易记录-其他-列表
+ * @see https://console-docs.apipost.cn/preview//c00b1160394a31fb?target_id=3a7be0ec-1921-462e-bc77-96a3de05502b
+ */
+export function ApiFinanceRecordOther(params?: {
+  page?: number
+  page_size?: number
+  /** 菜单id */
+  id: string
+}) {
+  return httpClient.get<IResponseList<PayInfo>>('/finance/record/other', { params })
+}
+
+/**
+ * 支付可用货币列表-钱包存款
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=0f52cba2-b41f-4d06-ae97-291b2fbe848d
+ */
+export function ApiFinanceDepositCurrency(params?: {
+  contract_id: '1802'
+}) {
+  return httpClient.get<availableCurrency[]>('/finance/deposit/currency', { params })
+}
+
+/**
+ * 支付可用货币列表-钱包提款
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=54fde819-78a2-43b8-b24a-09bd9888fe6c
+ */
+export function ApiFinanceWithdrawCurrency(params?: {
+  contract_id: '1802'
+}) {
+  return httpClient.get<availableCurrency[]>('/finance/withdraw/currency', { params })
 }

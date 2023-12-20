@@ -5,6 +5,10 @@ export function useLockScroll(
   const scrollTop = ref(0)
   const b = toRefs(depends)
 
+  function preventTMove(e: TouchEvent) {
+    e.preventDefault()
+  }
+
   function setScrollTop() {
     scrollTop.value = document.scrollingElement?.scrollTop
                         || document.documentElement.scrollTop
@@ -12,23 +16,29 @@ export function useLockScroll(
   }
 
   function lockScroll() {
-    if (isSafari) {
+    if (isSafari)
       document.body.classList.add('tg-popup-parent--hidden--safari')
-      document.body.style.top = `${-scrollTop.value}px`
-    }
-    else {
+      // document.body.style.top = `${-scrollTop.value}px`
+      // document.addEventListener('touchmove', preventTMove, { passive: false })
+      // const app = document.getElementById('app')
+      // if (app)
+      //   app.addEventListener('touchmove', preventTMove, { passive: false })
+
+    else
       document.body.classList.add('tg-popup-parent--hidden')
-    }
   }
 
   function unlockScroll() {
-    if (isSafari) {
+    if (isSafari)
       document.body.classList.remove('tg-popup-parent--hidden--safari')
-      document.documentElement.scrollTop = document.body.scrollTop = scrollTop.value
-    }
-    else {
+      // document.documentElement.scrollTop = document.body.scrollTop = scrollTop.value
+      // document.removeEventListener('touchmove', preventTMove)
+      // const app = document.getElementById('app')
+      // if (app)
+      //   app.removeEventListener('touchmove', preventTMove)
+
+    else
       document.body.classList.remove('tg-popup-parent--hidden')
-    }
   }
 
   const stop = watch(b, (val) => {

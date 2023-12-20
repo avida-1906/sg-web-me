@@ -18,6 +18,7 @@ const { appContentWidth, isMobile } = storeToRefs(useWindowStore())
             <BaseImage
               url="/png/casino/group-banner-default.png"
               style="height: 100%;width: auto;"
+              loading="eager"
             />
           </div>
         </div>

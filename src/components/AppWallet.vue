@@ -31,11 +31,15 @@ function selectCurrency(item: EnumCurrencyKey, hide: () => void) {
   appStore.changeGlobalCurrency(item)
   hide()
 }
+
+function popperApplyShow() {
+  clearSearchValue()
+}
 </script>
 
 <template>
   <div class="app-wallet flex-box">
-    <VDropdown v-model:shown="isMenuShown" :distance="10" @apply-show="clearSearchValue">
+    <VDropdown v-model:shown="isMenuShown" :distance="10" @apply-show="popperApplyShow">
       <div class="flex-box">
         <BaseButton class="wallet" type="text" size="sm">
           <!-- <span v-if="isCasinoGame" class="in-play">
@@ -136,6 +140,7 @@ function selectCurrency(item: EnumCurrencyKey, hide: () => void) {
     .arrow {
       font-size: var(--tg-font-size-default);
       margin-left: 8px;
+      transition: none;
     }
     .arrow-up{
       transform: rotate(180deg);

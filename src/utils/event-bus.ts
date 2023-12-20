@@ -29,6 +29,10 @@ export const SPORTS_CART_TO_LIST_BUS = 'CART_TO_LIST_BUS'
 export const SPORTS_LIST_COUNTDOWN_BUS = 'SPORTS_LIST_COUNTDOWN_BUS'
 /** 路由回到体育首页时通知tab返回到大厅 */
 export const SPORTS_LOBBY_RESET = 'SPORTS_LOBBY_RESET'
+/** 路由回到娱乐城首页时通知tab返回到大厅 */
+export const CASINO_LOBBY_RESET = 'CASINO_LOBBY_RESET'
+/** 右侧体育投注单向投注页面通知 */
+export const SPORTS_BETTING_TO_BETSLIP_BUS = 'SPORTS_BETTING_TO_BETSLIP_BUS'
 
 /** 体育列表向购物车通知 */
 export const sportsListToCartBus = useEventBus<
@@ -45,3 +49,11 @@ export const sportsListCountdownBus = useEventBus<string>(SPORTS_LIST_COUNTDOWN_
 
 /** 体育首页tab返回到大厅 */
 export const sportsLobbyBus = useEventBus<boolean>(SPORTS_LOBBY_RESET)
+
+/** 娱乐城首页tab返回到大厅 */
+export const casinoLobbyBus = useEventBus<boolean>(CASINO_LOBBY_RESET)
+
+/** 右侧体育投注单向投注页面通知 */
+export const sportsBettingToBetslipBus = useEventBus<number | undefined>(
+  SPORTS_BETTING_TO_BETSLIP_BUS,
+)

@@ -37,6 +37,7 @@ export function useApiMenuData() {
   const { casinoGameList } = storeToRefs(useCasinoStore())
   const languageStore = useLanguageStore()
   const { userLanguage, AllLanguages } = storeToRefs(languageStore)
+  const { openService } = useService()
 
   // casino
   const casinoMenu = computed<Menu>(() => [
@@ -163,8 +164,8 @@ export function useApiMenuData() {
       list: [],
       domId: '',
     },
-    { title: t('blog'), path: '/blog', icon: 'chess-blog', list: [], domId: '' },
-    { title: t('chat_forum'), path: '', icon: 'tabbar-chat', list: [], domId: '' },
+    // { title: t('blog'), path: '/blog', icon: 'chess-blog', list: [], domId: '' },
+    // { title: t('chat_forum'), path: '', icon: 'tabbar-chat', list: [], domId: '' },
   ].filter(i => i !== void 0))
   const staticMenu2 = computed(() => <Menu>[
     {
@@ -191,6 +192,7 @@ export function useApiMenuData() {
       icon: 'spt-online-support',
       list: [],
       domId: '',
+      callBack: () => openService(),
     },
     {
       title: `${t('language_title')}： ${AllLanguages.value.filter(a =>

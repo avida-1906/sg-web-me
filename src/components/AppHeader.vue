@@ -17,6 +17,7 @@ const { openWalletDialog } = useWalletDialog()
 const { openStatisticsDialog } = useStatisticsDialog()
 const { openSafeDialog } = useSafeDialog()
 const { openLogoutDialog } = useLogoutDialog()
+const { openService } = useService()
 
 const isRouteSports = computed(() => route.name?.toString().includes('sports'))
 const userMenu = computed(() => ([
@@ -154,6 +155,9 @@ function handleClickMenuItem(item: { name: string; path?: string }) {
       break
     case 'sports-betting':
       router.push(`/sports/${getSportsPlatId()}/my-bets?type=sports`)
+      break
+    case 'online-support':
+      openService()
       break
     default:
       break

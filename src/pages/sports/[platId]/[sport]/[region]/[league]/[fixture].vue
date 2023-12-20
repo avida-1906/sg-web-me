@@ -244,6 +244,44 @@ watch(
                         </div>
                       </template>
                     </BaseSecondaryAccordion>
+                    <!-- 样式6 -->
+                    <BaseSecondaryAccordion
+                      v-if="item.pat === 6"
+                      :title="item.btn"
+                      data-style="6"
+                    >
+                      <template #default>
+                        <div class="market" :class="{ 'in-mobile': isMobile }">
+                          <div class="table-row-3" :style="{ '--itemCount': 1 }">
+                            <template
+                              v-for="nameItem in item.pat6.titleList"
+                              :key="nameItem"
+                            >
+                              <div class="column heading">
+                                <span>{{ nameItem }}{{ nameItem }}</span>
+                              </div>
+                            </template>
+                            <template
+                              v-for="
+                                (valueItem, index) in item.pat6.list
+                              "
+                              :key="index"
+                            >
+                              <div class="column">
+                                <AppSportsBetButton
+                                  v-if="valueItem"
+                                  layout="horizontal"
+                                  :title="valueItem.sn"
+                                  :cart-info="valueItem.cartInfo"
+                                  :odds="valueItem.ov"
+                                  :disabled="item.mls === 2"
+                                />
+                              </div>
+                            </template>
+                          </div>
+                        </div>
+                      </template>
+                    </BaseSecondaryAccordion>
                   </template>
                 </template>
               </div>
@@ -568,7 +606,7 @@ video {
             color: var(--tg-text-white);
 
             &.background {
-              padding: var(--tg-spacing-32) 0;
+              padding: var(--tg-spacing-32) 16px;
             }
 
             &.background::after {
@@ -649,7 +687,7 @@ video {
               padding: 0 10px;
               input {
                 padding: 7px 8px;
-                height: 35px;
+                height: 37px;
               }
               .search-icon.app-svg-icon {
                 color: var(--tg-secondary-light);

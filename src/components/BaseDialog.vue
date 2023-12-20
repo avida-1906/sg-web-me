@@ -20,6 +20,7 @@ const emit = defineEmits(['update:show', 'close', 'cancel', 'confirm'])
 
 const { leftIsExpand } = useLeftSidebar()
 const { bool: _show, setTrue: setBShowTrue, setFalse: setBShowFalse } = useBoolean(false)
+const { closeAllDialog } = useDialogList()
 
 useLockScroll(_show, leftIsExpand)
 
@@ -58,10 +59,23 @@ onMounted(() => {
       updateShow(true)
     }, 0)
   }
+  setTimeout(() => {
+    const overlay = document.querySelector('.tg-dialog-overlay')
+    if (overlay) {
+      overlay.addEventListener('touchmove', (e) => {
+        e.preventDefault()
+      }, { passive: false })
+    }
+  }, 0)
 })
 
 onUnmounted(() => {
   setBShowFalse()
+})
+
+watch(closeAllDialog, (val) => {
+  if (val === true)
+    close()
 })
 </script>
 
@@ -69,10 +83,11 @@ onUnmounted(() => {
   <Teleport to="body" :disabled="!teleport">
     <Transition>
       <section v-if="show || _show" class="tg-base-dialog" @touchmove.stop>
-        <div class="overlay" @click="closeOnClickOverlay && close()" />
+        <div class="overlay tg-dialog-overlay" @click="closeOnClickOverlay && close()" />
         <div
-          class="card"
+          class="card tg-dialog-card"
           :style="`--tg-dialog-style-maxwidth:${maxWidth}px;background: ${background}`"
+          @touchmove.stop
         >
           <div v-if="icon || title" class="header">
             <h2>

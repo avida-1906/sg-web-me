@@ -6,14 +6,13 @@ const router = useRouter()
 const route = useRoute()
 const { animatingMounted } = useLayoutAnimate({ aniMounted: true })
 
-const { appContentWidth } = storeToRefs(useWindowStore())
+const { appContentWidth, isMobile } = storeToRefs(useWindowStore())
 const { isLogin } = storeToRefs(useAppStore())
 
-const { bool: layoutLoading, setFalse: setLFalse } = useBoolean(true)
 const { bool: isPopShow, setTrue: setPTrue, setFalse: setPFalse } = useBoolean(false)
 
 const menuData = computed<any>(() =>
-  route.meta.withMenuMenu?.map((m, idx) => ({ ...m, title: t(m.title), value: idx, label: t(m.title) }))
+  route.meta.withMenuMenu?.map((m, idx) => ({ ...m, title: m.isT ? t(m.title) : m.title, value: idx, label: m.isT ? t(m.title) : m.title }))
     .filter(f => f.token ? isLogin.value : true))
 const icon = computed<any>(() => route.meta.withMenuIcon)
 const withMenuMobileType = computed(() => route.meta.withMenuMobileType)
@@ -41,13 +40,14 @@ function goPage(item: any, hide: any) {
   setPFalse()
 }
 
-onMounted(() => {
-  setLFalse()
-})
+// function suspenseResolved() {
+// }
 
-onUpdated(() => {
-  setLFalse()
-})
+// onMounted(() => {
+// })
+
+// onUpdated(() => {
+// })
 
 watch(menuData, (val) => {
   activeMenu.value = val.filter((m: any) => m.path === route.path)[0]
@@ -123,7 +123,11 @@ watch(route, (val) => {
                           <BaseMenu :data="menuData" />
                         </template>
                         <template v-else>
-                          <div v-if="withMenuMobileType === 'tabs'" class="menu-tabs">
+                          <div
+                            v-if="withMenuMobileType === 'tabs'"
+                            class="menu-tabs"
+                            :class="{ 'is-vip': $route.path.includes('/vip/') }"
+                          >
                             <BaseTab
                               v-model="curMenuTab"
                               :center="false"
@@ -169,12 +173,28 @@ watch(route, (val) => {
                           </div>
                         </template>
                       </div>
-                      <div class="right" :class="{ loading: layoutLoading }">
-                        <div v-if="layoutLoading" class="layout-loading">
-                          <BaseLoading />
-                        </div>
-                        <div class="content-container">
-                          <RouterView />
+                      <div
+                        v-if="isMobile && $route.path.includes('/vip/')"
+                        class="line"
+                      />
+                      <div
+                        class="right"
+                        :class="{ 'is-vip': $route.path.includes('/vip/') }"
+                      >
+                        <div
+                          class="content-container"
+                          :class="{ 'is-vip': $route.path.includes('/vip/') }"
+                        >
+                          <RouterView v-slot="{ Component }">
+                            <Suspense timeout="0">
+                              <component :is="Component" :key="route.path" />
+                              <template #fallback>
+                                <div class="center dialog-loading-height">
+                                  <BaseLoading />
+                                </div>
+                              </template>
+                            </Suspense>
+                          </RouterView>
                         </div>
                       </div>
                     </div>
@@ -190,6 +210,10 @@ watch(route, (val) => {
 </template>
 
 <style lang="scss" scoped>
+.line {
+  width: 100%;
+  border-bottom: var(--tg-spacing-2) solid rgba(255, 255, 255, 0.05);
+}
 .settran {
   --tg-base-menu-item-active-bg: transparent;
   --tg-base-menu-item-hover-active-bg: transparent;
@@ -197,12 +221,16 @@ watch(route, (val) => {
 .menu-tabs {
   display: flex;
   padding-bottom: var(--tg-spacing-8);
+  &.is-vip {
+    padding-bottom: 0;
+  }
   > div {
     flex: 1;
     width: 0;
   }
 }
 .pop-menu {
+  min-width: 80px;
   padding: var(--tg-spacing-4) 0;
   font-size: var(--tg-font-size-default);
   color: var(--tg-secondary-main);
@@ -242,7 +270,7 @@ watch(route, (val) => {
   gap: var(--tg-spacing-8);
   font-size: var(--tg-font-size-default);
   .icon {
-    transition: all 200ms ease;
+    // transition: all 200ms ease;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -294,6 +322,9 @@ watch(route, (val) => {
         position: relative;
         border-radius: var(--tg-radius-md);
         overflow: hidden;
+        &.is-vip {
+          // border-radius: 0;
+        }
         &.loading {
           .content-container {
             opacity: 0.3;
@@ -301,12 +332,15 @@ watch(route, (val) => {
         }
         .content-container {
           color: var(--tg-border-color-grey);
-          background: var(--tg-secondary-dark);
-          padding: var(--tg-spacing-24);
+          // background: var(--tg-secondary-dark);
+          // padding: var(--tg-spacing-24);
           overflow: hidden;
           position: relative;
           border-radius: var(--tg-radius-md);
           min-height: 100%;
+          &.is-vip {
+            // border-radius: 0;
+          }
         }
       }
     }

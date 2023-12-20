@@ -37,12 +37,16 @@ function noDataGoToBet() {
     sportsLobbyBus.emit(true)
   }, 50)
 }
+
+function settleChange() {
+  sportsBettingToBetslipBus.emit(settle.value)
+}
 </script>
 
 <template>
   <div class="app-sport-right-my-bets">
     <div class="tabs">
-      <BaseTab v-model="settle" :list="settleList" />
+      <BaseTab v-model="settle" :list="settleList" @change="settleChange" />
     </div>
     <div class="my-bet-center">
       <div class="scroll-y scrollable center-content">
@@ -55,6 +59,7 @@ function noDataGoToBet() {
               v-for="item in sportBetList"
               :key="item.ono"
               :data="item"
+              disable-result
             />
           </div>
           <div v-else class="center h-min-100">

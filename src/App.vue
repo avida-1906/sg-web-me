@@ -11,7 +11,7 @@ function handleUpdated() {
   if (loading) {
     setTimeout(() => {
       loading.remove()
-    }, 1000)
+    }, 2000)
   }
 }
 

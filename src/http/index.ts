@@ -20,6 +20,32 @@ const { t } = i18n.global
 const { openNotify } = useNotify()
 const { openLoginDialog } = useLoginDialog()
 
+const dataIsTokenHandler = debounce((responseStatus: any, response: any) => {
+  const appStore = useAppStore()
+  const { closeRightSidebar, rightIsExpand } = useRightSidebar()
+  const { setCloseAllDialog } = useDialogList()
+  setCloseAllDialog(true)
+  appStore.removeToken()
+  appStore.removeUserInfo()
+  appStore.setMqttConnectedFalse()
+  socketClient.connect('token失效 重新连接')
+  if (rightIsExpand.value)
+    closeRightSidebar()
+
+  openNotify({
+    type: 'error',
+    code: `${responseStatus}`,
+    message: `
+              ${isTestEnv() ? `Url: ${response.config.url}<br />` : ''}
+              ${t('login_fail_tip')}
+            `,
+  })
+  if (router.currentRoute.value.path !== '/') {
+    router.push('/')
+    openLoginDialog()
+  }
+}, 300)
+
 class HttpClient {
   cancelTokenList: AbortController[] = []
 
@@ -111,32 +137,11 @@ class HttpClient {
     (response) => {
       const { status, data } = response.data as IResponse<any>
       const responseStatus = response.status
-      const appStore = useAppStore()
-      const { closeRightSidebar, rightIsExpand } = useRightSidebar()
 
       if (!status) {
         // 如果后端返回token，关闭所有请求，清除token
         if (data === 'token') {
-          this.cancelAllRequest()
-          appStore.removeToken()
-          appStore.removeUserInfo()
-          appStore.setMqttConnectedFalse()
-          socketClient.connect('token失效 重新连接')
-          if (rightIsExpand.value)
-            closeRightSidebar()
-
-          openNotify({
-            type: 'error',
-            code: `${responseStatus}`,
-            message: `
-              ${isTestEnv() ? `Url: ${response.config.url}<br />` : ''}
-              ${t('login_fail_tip')}
-            `,
-          })
-          if (router.currentRoute.value.path !== '/') {
-            router.push('/')
-            openLoginDialog()
-          }
+          dataIsTokenHandler(responseStatus, response)
         }
         else {
           if (!response.config.params?.noNotify) {

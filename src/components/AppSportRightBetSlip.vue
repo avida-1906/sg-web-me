@@ -38,13 +38,12 @@ const {
 } = useField<number>('amount', (value) => {
   if (value < sportStore.cart.multiMia || value > sportStore.cart.multiMaa)
     return t('pls_input_min_max_amount', { min: sportStore.cart.multiMia, max: sportStore.cart.multiMaa })
-    // return `请输入 ${sportStore.cart.multiMia} - ${sportStore.cart.multiMaa} 之间的金额`
-
   return ''
 })
 const { closeRightSidebar } = useRightSidebar()
 const { openRegisterDialog } = useRegisterDialog()
-const { isMobile, windowHeight } = storeToRefs(useWindowStore())
+const { isMobile } = storeToRefs(useWindowStore())
+const { bool: keyboardBool, setBool: setKeyBoardBool } = useBoolean(false)
 
 const {
   runAsync: runGetSportPlaceBetInfo,
@@ -88,6 +87,9 @@ const { selected: betOrderFilterValue, list: betOrderFilterData } = useSelect([
   { label: t('sports_accept_higher_odds'), value: EnumOddsChange.acceptHigherOdds },
   { label: t('sports_accept_none_odds'), value: EnumOddsChange.notAcceptAnyOddsChange },
 ])
+
+let setAmount = (_value: number) => {}
+let deleteAmount = () => {}
 
 /** 单式投注 */
 const isBetSingle = computed(
@@ -306,12 +308,11 @@ const duplexTotalProfit = computed(() => {
   return mul(_duplexOv, val)
 })
 
-/** 是否显示当前页面footer */
-const isShowFooter = computed(() => {
-  if (windowHeight.value < 500 && isMobile.value)
-    return false
+const isShowH5Keyboard = computed(() => {
+  if (isMobile.value && keyboardBool.value)
+    return true
 
-  return true
+  return false
 })
 
 /**
@@ -568,6 +569,9 @@ function removeListToCartEvent() {
 }
 
 function firstInputFocus() {
+  if (isMobile.value)
+    return
+
   if (chatScrollContent.value && chatScrollContent.value?.querySelector('input'))
     chatScrollContent.value?.querySelector('input')?.focus()
 }
@@ -598,6 +602,31 @@ function noDataGoToBet() {
   setTimeout(() => {
     sportsLobbyBus.emit(true)
   }, 50)
+}
+
+function handleKeyNum(v: number) {
+  setAmount(v)
+}
+
+function handleKeyOk() {
+  closeKeyboard()
+}
+
+function handleDelete() {
+  deleteAmount()
+}
+
+function openKeyboard(
+  _setAmount: (value: number) => void,
+  _deleteAmount: () => void,
+) {
+  setKeyBoardBool(true)
+  setAmount = _setAmount
+  deleteAmount = _deleteAmount
+}
+
+function closeKeyboard() {
+  setKeyBoardBool(false)
 }
 
 watch(() => sportStore.cart.count, (val, oVal) => {
@@ -655,6 +684,8 @@ onMounted(() => {
 onUnmounted(() => {
   closeSetInterval()
   removeListToCartEvent()
+  setAmount = null as any
+  deleteAmount = null as any
 })
 </script>
 
@@ -713,6 +744,9 @@ onUnmounted(() => {
             :duplex-ov="duplexOv"
             :duplex-input-value="duplexInputValue"
             :duplex-total-profit="+duplexTotalProfit"
+            :open-keyboard="openKeyboard"
+            :close-keyboard="closeKeyboard"
+            :keyboard-bool="keyboardBool"
           />
           <!-- 用来执行添加到购物车动画的 -->
           <div
@@ -722,35 +756,37 @@ onUnmounted(() => {
         </TransitionGroup>
         <!-- 无数据缺省 -->
         <div v-if="cartDataList.length === 0" class="empty">
-          <BaseEmpty>
+          <BaseEmpty style="--tg-empty-text-padding: 0">
             <template #icon>
               <BaseIcon
                 style="
                   font-size: var(--tg-empty-icon-size);
-                  margin-bottom: var(--tg-spacing-24);
+                  margin-bottom: var(--tg-spacing-30);
                 "
                 name="uni-empty-betslip"
               />
             </template>
             <template #description>
-              <span>{{ t('sports_bet_slip_empty') }}</span>
+              <span class="mid-text">{{ t('sports_bet_slip_empty') }}</span>
             </template>
             <template #default>
-              <BaseButton
-                type="text"
-                size="none"
-                style=" --tg-base-button-text-default-color:var(--tg-text-white)"
-                @click="noDataGoToBet"
-              >
-                {{ t('sports_betting_now') }}
-              </BaseButton>
+              <div style="margin-top: 4px">
+                <BaseButton
+                  type="text"
+                  size="none"
+                  style=" --tg-base-button-text-default-color:var(--tg-text-white)"
+                  @click="noDataGoToBet"
+                >
+                  {{ t('sports_betting_now') }}
+                </BaseButton>
+              </div>
             </template>
           </BaseEmpty>
         </div>
       </div>
     </div>
 
-    <div v-if="isShowFooter" class="footer">
+    <div v-if="!isShowH5Keyboard" class="footer">
       <template v-if="sportStore.cart.isShowReuse">
         <BaseButton
           size="md"
@@ -839,6 +875,8 @@ onUnmounted(() => {
             bg-style="primary"
             :disabled="isBetBtnDisabled"
             :loading="betLoading"
+            style="--tg-base-button-loading-opacity:1;"
+            sports-loading
             @click="bet"
           >
             {{ t('sports_bet') }}{{ betBtnText }}
@@ -846,10 +884,22 @@ onUnmounted(() => {
         </template>
       </template>
     </div>
+    <div v-if="isShowH5Keyboard" class="keyboard" style="height: 180px">
+      <BaseNumericKeypad
+        @key-num="handleKeyNum"
+        @key-ok="handleKeyOk"
+        @key-delete="handleDelete"
+      />
+    </div>
   </div>
 </template>
 
 <style lang='scss' scoped>
+.mid-text {
+  display:  block;
+  line-height: 21px;
+  margin-top: 4px;
+}
 .app-sports-bet-slip-container {
   color: var(--tg-text-white);
   font-size: var(--tg-font-size-default);
@@ -880,6 +930,9 @@ onUnmounted(() => {
     justify-content: space-between;
     align-items: center;
     padding: var(--tg-spacing-8) var(--tg-spacing-16);
+    line-height: 14px;
+    height: 32px;
+    --tg-base-select-popcontent-lineheight: 14px;
   }
 }
 

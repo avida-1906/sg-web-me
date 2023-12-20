@@ -8,6 +8,8 @@ const props = withDefaults(defineProps<{
   round: true,
 })
 
+const route = useRoute()
+
 type HeadType = Array<{
   key: string
   show?: boolean
@@ -118,41 +120,41 @@ function mapHeadArea(
       </div>
 
       <!-- 角球 -->
-      <template v-if="data.corner">
+      <template v-if="route.params.sport === '1'">
         <div class="heading center" style="grid-area: corners_title;">
           <BaseIcon name="uni-ruler" />
         </div>
         <span class="fill-frame border" style="grid-area: corners_home;">
-          <span>{{ data.corner.homeTeam }}</span>
+          <span>{{ data.corner?.homeTeam }}</span>
         </span>
         <span class="fill-frame" style="grid-area: corners_away;">
-          <span>{{ data.corner.awayTeam }}</span>
+          <span>{{ data.corner?.awayTeam }}</span>
         </span>
       </template>
 
       <!-- 黄牌 -->
-      <template v-if="data.yellowCard">
+      <template v-if="route.params.sport === '1'">
         <div class="heading center" style="grid-area: yellowCards_title;">
           <BaseIcon name="uni-warn-rect" />
         </div>
         <span class="fill-frame border" style="grid-area: yellowCards_home;">
-          <span>{{ data.yellowCard.homeTeam }}</span>
+          <span>{{ data.yellowCard?.homeTeam }}</span>
         </span>
         <span class="fill-frame" style="grid-area: yellowCards_away;">
-          <span>{{ data.yellowCard.awayTeam }}</span>
+          <span>{{ data.yellowCard?.awayTeam }}</span>
         </span>
       </template>
 
       <!-- 红牌 -->
-      <template v-if="data.redCard">
+      <template v-if="route.params.sport === '1'">
         <div class="heading center" style="grid-area: redCards_title;">
           <BaseIcon name="uni-error-rect" />
         </div>
         <span class="fill-frame border" style="grid-area: redCards_home;">
-          <span>{{ data.redCard.homeTeam }}</span>
+          <span>{{ data.redCard?.homeTeam }}</span>
         </span>
         <span class="fill-frame" style="grid-area: redCards_away;">
-          <span>{{ data.redCard.awayTeam }}</span>
+          <span>{{ data.redCard?.awayTeam }}</span>
         </span>
       </template>
 
@@ -179,7 +181,10 @@ function mapHeadArea(
 
       <!-- matchScore -->
       <div class="heading center sticky-right" style="grid-area: matchScore_title;">
-        <AppImage :url="data.spic" is-network width="16px" height="16px" />
+        <AppImage
+          style="filter: brightness(2);"
+          :url="data.spic" is-network width="16px" height="16px"
+        />
       </div>
       <div
         class="fill-frame sticky-right completed match-score border"
@@ -223,7 +228,6 @@ function mapHeadArea(
 }
 
 .wrapper {
-  max-width: 90%;
   position: relative;
   width: fit-content;
   .content {

@@ -6,6 +6,7 @@ const { vipConfigData } = storeToRefs(appStore)
 const { providerList } = storeToRefs(useSportsStore())
 const { AllLanguages, userLanguage } = storeToRefs(useLanguageStore())
 const { bigPlats: platformList } = storeToRefs(useCasinoStore())
+const { isMobile } = storeToRefs(useWindowStore())
 
 const tab = ref('')
 
@@ -52,29 +53,43 @@ watch(tabList, (val) => {
 </script>
 
 <template>
-  <div class="vip-rebate">
-    <BaseTab
-      v-model="tab"
-      style="--tg-tab-style-color: var(--tg-text-lightgrey);"
-      :list="tabList"
-      line-style
-      :center="false"
-    />
-    <BaseTable :columns="columns" :data-source="data">
-      <template #level="{ record }">
-        <!-- <div>VIP{{ record.level }}</div> -->
-        <div class="vip-badge">
-          <BaseIcon :name="`vip${record.level}`" />
-        </div>
-      </template>
-    </BaseTable>
+  <div
+    class="vip-rebate"
+    :class="{ 'is-mobile': isMobile }" :style="{
+      '--tg-table-td-padding': '12.5px',
+    }"
+  >
+    <div class="tabs">
+      <div
+        class="tabs-outer"
+      >
+        <BaseTab
+          v-model="tab"
+          style="--tg-tab-style-color: var(--tg-text-lightgrey);"
+          :list="tabList"
+          line-style
+          :center="false"
+        />
+      </div>
+      <BaseTable :columns="columns" :data-source="data">
+        <template #level="{ record }">
+          <!-- <div>VIP{{ record.level }}</div> -->
+          <div class="vip-badge">
+            <BaseIcon :name="`vip${record.level}`" />
+          </div>
+        </template>
+      </BaseTable>
+    </div>
     <AppVipRuleDesc />
   </div>
 </template>
 
 <style lang="scss" scoped>
+.small-text {
+  font-size: 12px;
+}
 .vip-badge {
-  font-size: 28px;
+  font-size: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -83,7 +98,32 @@ watch(tabList, (val) => {
   display: flex;
   flex-direction: column;
   gap: var(--tg-spacing-14);
-  --tg-table-even-background: var(--tg-primary-main);
+  --tg-table-th-background: var(--tg-secondary-grey);
+  --tg-table-even-background: var(--tg-secondary-grey);
+  --tg-table-odd-background: var(--tg-primary-main);
+  --tg-table-thtd-radius: 0;
+  --tg-table-font-size: 12px;
+  --tg-app-amount-font-size: 12px;
+  :deep(th) {
+    font-size: 14px;
+  }
+  .tabs-outer {
+    background: var(--tg-secondary-dark);
+  }
+  &.is-mobile {
+    .tabs {
+      // padding: 0 12px;
+      position: relative;
+    }
+  }
+  .tabs {
+    background: #0F212E;
+    padding: 0px 12px 12px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
 }
 </style>
 

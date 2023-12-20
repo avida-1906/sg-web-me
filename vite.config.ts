@@ -115,6 +115,8 @@ export default defineConfig(({ mode }) => {
               'isArray',
               'concat',
               'floor',
+              'flatten',
+              'zip',
             ],
             'big.js': ['Big'],
             'vee-validate': ['useField'], // https://vee-validate.logaretm.com/v4/api/use-field/
@@ -123,9 +125,8 @@ export default defineConfig(({ mode }) => {
               'default', 'axios',
             ]],
             'vue-request': ['useRequest', 'usePagination', 'useLoadMore'],
-            'qs': [[
-              'default', 'qs',
-            ]],
+            'qs': [['default', 'qs']],
+            '@vueuse/integrations/useCookies': ['useCookies'],
           },
         ],
         dts: 'src/auto-imports.d.ts',

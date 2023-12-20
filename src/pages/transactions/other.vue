@@ -2,37 +2,60 @@
 const { t } = useI18n()
 usePageTitle({ prefix: t('transaction_other') })
 
-const tabList = reactive([
-  { label: t('finance_other_tab_all'), value: '' },
-  { label: t('finance_other_tab_bonus'), value: 'bonus' },
-  { label: t('finance_other_tab_drop'), value: 'drop' },
-  {
-    label: t('finance_other_tab_campaign_withdrawal'),
-    value: 'campaign_withdrawal',
+const tabList: Ref<{
+  label: string
+  value: string }[]> = ref([])
+const {
+  runAsync: runRecordOtherSelect,
+  // data: recordOtherSelect,
+} = useRequest(ApiFinanceRecordOtherSelect, {
+  onSuccess(data) {
+    tabList.value = data.map((item) => {
+      return { label: item.name, value: item.id }
+    })
   },
-  { label: t('finance_other_tab_reload_claim'), value: 'reload_claim' },
-  { label: t('finance_other_tab_race_payout'), value: 'race_payout' },
-  { label: t('finance_other_tab_rains_received'), value: 'rains_received' },
-  { label: t('finance_other_tab_rains_sent'), value: 'rains_sent' },
-  {
-    label: t('finance_other_tab_rakeback_received'),
-    value: 'rakeback_received',
-  },
-  {
-    label: t('finance_other_tab_sportsbook_promotion_payout'),
-    value: 'sportsbook_promotion_payout',
-  },
-  { label: t('finance_other_tab_tips_received'), value: 'tips_received' },
-  { label: t('finance_other_tab_tips_sent'), value: 'tips_sent' },
-  { label: t('finance_other_tab_vault_deposit'), value: 'vault_deposit' },
-  { label: t('finance_other_tab_vault_withdrawal'), value: 'vault_withdrawal' },
-])
+})
+
+await application.allSettled(
+  [
+    runRecordOtherSelect(),
+  ],
+)
+// runRecordOtherSelect()
+// const tabList = ref(
+//   [
+// { label: t('finance_other_tab_all'), value: '' },
+// { label: t('finance_other_tab_bonus'), value: 'bonus' },
+// { label: t('finance_other_tab_drop'), value: 'drop' },
+// {
+//   label: t('finance_other_tab_campaign_withdrawal'),
+//   value: 'campaign_withdrawal',
+// },
+// { label: t('finance_other_tab_reload_claim'), value: 'reload_claim' },
+// { label: t('finance_other_tab_race_payout'), value: 'race_payout' },
+// { label: t('finance_other_tab_rains_received'), value: 'rains_received' },
+// { label: t('finance_other_tab_rains_sent'), value: 'rains_sent' },
+// {
+//   label: t('finance_other_tab_rakeback_received'),
+//   value: 'rakeback_received',
+// },
+// {
+//   label: t('finance_other_tab_sportsbook_promotion_payout'),
+//   value: 'sportsbook_promotion_payout',
+// },
+// { label: t('finance_other_tab_tips_received'), value: 'tips_received' },
+// { label: t('finance_other_tab_tips_sent'), value: 'tips_sent' },
+// { label: t('finance_other_tab_vault_deposit'), value: 'vault_deposit' },
+// { label: t('finance_other_tab_vault_withdrawal'), value: 'vault_withdrawal' },
+//   ],
+// )
 </script>
 
 <template>
   <section class="tg-transactions-other-record-page">
     <AppTabRecord
       :tabs="tabList"
+      content-type="other"
       :empty-text="$t('finance_other_empty_text')"
     />
   </section>

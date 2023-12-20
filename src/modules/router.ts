@@ -15,9 +15,11 @@ declare module 'vue-router' {
     /** layout with-menu 图标 */
     withMenuIcon?: string
     /** layout with-menu 菜单数据 */
-    withMenuMenu?: Array<{ title: string; path: string; token?: boolean }>
+    withMenuMenu?: Array<{ title: string; path: string; token?: boolean; isT?: boolean }>
     /** layout with-menu 移动端菜单展示方式 */
     withMenuMobileType?: 'tabs' | 'select'
+    /** 布局配置 */
+    withMenuLayoutConf?: { padding?: string; borderRadius?: string }
   }
 }
 

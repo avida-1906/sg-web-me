@@ -101,6 +101,9 @@ const getFinanceMerchantCoinParam = computed(() => {
     contract_id: props.currentNetwork,
   }
 })
+const getAmountLimit = computed(() => {
+  return `${currentAisle.value?.amount_min}—${currentAisle.value?.amount_max}`
+})
 
 async function confirmPayment() {
   if (amountRef.value)
@@ -166,7 +169,9 @@ await application.allSettled([
   <div class="app-virtual-deposit">
     <template v-if="depositStep === '1'">
       <template v-if="paymentMethodCoinList?.length">
-        <BaseLabel :label="t('channel_choose')">
+        <BaseLabel
+          v-show="paymentMethodCoinList?.length > 1" :label="t('channel_choose')"
+        >
           <div class="other-aisles scroll-x">
             <div
               v-for="item in paymentMethodCoinList"
@@ -189,6 +194,7 @@ await application.allSettled([
             ref="amountRef"
             v-model="amount"
             :msg="amountError"
+            :placeholder="getAmountLimit"
             msg-after-touched
           />
         </BaseLabel>
@@ -196,13 +202,19 @@ await application.allSettled([
           v-else
           :label="`${t('deposit_amount')}: ${activeCurrency.prefix}`"
         >
-          <BaseSelect
-            v-if="oftenAmount && oftenAmount.length"
-            v-model="amount"
-            :options="oftenAmount"
-            :msg="amountError"
-            small
-          />
+          <div style="position: relative;">
+            <BaseSelect
+              v-if="oftenAmount && oftenAmount.length"
+              v-model="amount"
+              placeholder="请下拉选择充值金额"
+              :options="oftenAmount"
+              :msg="amountError"
+              small
+            />
+            <div v-if="!amount" class="placeholder-text">
+              请下拉选择充值金额
+            </div>
+          </div>
         </BaseLabel>
         <BaseMoneyKeyboard
           v-if="oftenAmount && oftenAmount.length"
@@ -246,7 +258,9 @@ await application.allSettled([
           @click="application.copy(backDepositInfo.address)"
         >
           <span>{{ backDepositInfo.address }}</span>
-          <AppTooltip text="已成功复制地址" icon-name="uni-doc" :triggers="['click']" />
+          <AppTooltip
+            :text="t('copy_addr_suc')" icon-name="uni-doc" :triggers="['click']"
+          />
         </p>
         <div class="warn-msg">
           {{ t('confirm_pls_addr_tip', { type: activeCurrency.type }) }}
@@ -261,7 +275,9 @@ await application.allSettled([
           @click="toCopy(backDepositInfo.amount)"
         >
           <span>{{ backDepositInfo.amount }}</span>
-          <AppTooltip text="已成功复制地址" icon-name="uni-doc" :triggers="['click']" />
+          <AppTooltip
+            :text="t('copy_addr_suc')" icon-name="uni-doc" :triggers="['click']"
+          />
         </p>
         <div class="warn-msg">
           {{ t('pls_confirm_deposit_addr') }}
@@ -359,6 +375,11 @@ await application.allSettled([
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-gap:  var(--tg-spacing-12);
+    }
+    .placeholder-text{
+      position: absolute;
+      top: var(--tg-spacing-13);
+      left: var(--tg-spacing-9);
     }
 }
 </style>

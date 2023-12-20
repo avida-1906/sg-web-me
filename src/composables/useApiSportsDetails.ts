@@ -37,6 +37,8 @@ export function useApiSportDetails() {
   /** 请求次数，用来渲染Loading */
   const requestCount = ref<number>(0)
   const sportInfo = ref<ISportsInfo>()
+  /** 页面倒计时 */
+  const eventTime = ref('')
 
   const { runAsync: runGetSportInfo, loading } = useRequest(
     ApiSportEventInfo, {
@@ -121,6 +123,58 @@ export function useApiSportDetails() {
     return data
   })
 
+  /** 是否是滚球 */
+  const isOnAir = computed<boolean>(() => {
+    if (
+      false
+      || !sportInfo.value
+      || !sportInfo.value.list
+      || !sportInfo.value.list.length
+    )
+      return false
+
+    const list0 = sportInfo.value.list[0]
+
+    return list0.m === 3
+  })
+
+  /** 赛事是否暂停 */
+  const isPause = computed<boolean>(() => {
+    if (
+      false
+      || !sportInfo.value
+      || !sportInfo.value.list
+      || !sportInfo.value.list.length
+    )
+      return false
+
+    const list0 = sportInfo.value.list[0]
+
+    return list0.rbts === 3
+  })
+
+  /**
+   * 比赛进度
+   */
+  const pageTitle = computed(() => {
+    if (
+      false
+    || !sportInfo.value
+    || !sportInfo.value.list
+    || !sportInfo.value.list.length
+    )
+      return ''
+
+    const rbtd = sportInfo.value.list[0].rbtd
+    const ed = sportInfo.value.list[0].ed
+    if (isOnAir.value)
+      return `${eventTime.value} ${rbtd}`
+    else if (isPause.value)
+      return `${rbtd}`
+    else
+      return timeToFormat(ed)
+  })
+
   /** 基础数据面板 */
   const basePanelData = computed<IBasePanelType>(() => {
     const data: IBasePanelType = {
@@ -145,7 +199,7 @@ export function useApiSportDetails() {
 
     const list0 = sportInfo.value.list[0]
     const _map: IBasePanelType = {
-      startTime: application.timestampToTime(list0.ed),
+      startTime: pageTitle.value,
       homeTeamName: list0.htn,
       awayTeamName: list0.atn,
       remark: '',
@@ -231,25 +285,19 @@ export function useApiSportDetails() {
       72,  // 加时局 客队 棒球
      */
     if (pol) {
-      if (pol['3'] !== void 0 || pol['4'] !== void 0) {
-        _map.redCard = {
-          homeTeam: pol['3'] || 0,
-          awayTeam: pol['4'] || 0,
-        }
+      _map.redCard = {
+        homeTeam: pol['3'] || '-',
+        awayTeam: pol['4'] || '-',
       }
 
-      if (pol['5'] !== void 0 || pol['6'] !== void 0) {
-        _map.yellowCard = {
-          homeTeam: pol['5'] || 0,
-          awayTeam: pol['6'] || 0,
-        }
+      _map.yellowCard = {
+        homeTeam: pol['5'] || '-',
+        awayTeam: pol['6'] || '-',
       }
 
-      if (pol['7'] !== void 0 || pol['8'] !== void 0) {
-        _map.corner = {
-          homeTeam: pol['7'] || 0,
-          awayTeam: pol['8'] || 0,
-        }
+      _map.corner = {
+        homeTeam: pol['7'] || '-',
+        awayTeam: pol['8'] || '-',
       }
 
       // 半场数据 篮球
@@ -584,6 +632,41 @@ export function useApiSportDetails() {
           renderList.push(mlItem)
         }
       }
+      else if (mlItem.pat === 6) {
+        const list0 = sportInfo.value.list[0]
+        const homeTeamName = list0.htn
+        const awayTeamName = list0.atn
+        const titleList = [homeTeamName, '平局', awayTeamName]
+        const msList = mlItem.ms
+        const zList = []
+        const pList = []
+        const kList = []
+        for (let j = 0; j < msList.length; j++) {
+          msList[j].cartInfo = getCartObject(mlItem, msList[j], list0)
+
+          if (msList[j].sn.includes('-')) {
+            const snList = msList[j].sn.split('-')
+            if (snList[0] > snList[1])
+              zList.push(msList[j])
+
+            else if (snList[0] < snList[1])
+              kList.push(msList[j])
+
+            else
+              pList.push(msList[j])
+          }
+          else {
+            pList.push(msList[j])
+          }
+        }
+
+        mlItem.pat6 = {
+          titleList,
+          list: flatten(zip(zList, pList, kList)),
+        }
+
+        renderList.push(mlItem)
+      }
     }
 
     return renderList
@@ -608,9 +691,39 @@ export function useApiSportDetails() {
     requestCount.value = 0
   }
 
+  function setEventTime() {
+    if (
+      false
+    || !sportInfo.value
+    || !sportInfo.value.list
+    || !sportInfo.value.list.length
+    )
+      return false
+
+    const rbtt = sportInfo.value.list[0].rbtt
+    const ts = sportInfo.value.list[0].ts
+    const si = sportInfo.value.list[0].si
+    const rbts = sportInfo.value.list[0].rbts
+
+    getSportsLiveTime(eventTime, {
+      rbtt,
+      ts,
+      si,
+      rbts,
+    }, dayjs)
+  }
+
   watch(handicapListData, (val, oVal) => {
     if (val.length !== oVal.length)
       currentTab.value = val[0].value
+  })
+
+  onMounted(() => {
+    sportsListCountdownBus.on(setEventTime)
+  })
+
+  onBeforeUnmount(() => {
+    sportsListCountdownBus.off(setEventTime)
   })
 
   return {
@@ -624,6 +737,8 @@ export function useApiSportDetails() {
     loading,
     requestCount,
     bgImage,
+    isOnAir,
+    isPause,
     runGetSportInfo,
     resetRequestCount,
   }

@@ -82,6 +82,7 @@ const toNext = function () {
     &.no-data{
       cursor: not-allowed;
       color: var(--tg-text-white);
+      opacity: 0.5;
       // color: var(--tg-text-lightgrey);
     }
   }

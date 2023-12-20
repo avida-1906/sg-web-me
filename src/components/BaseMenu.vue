@@ -106,11 +106,11 @@ watch(route, (val) => {
         &:hover {
           background: var(--tg-base-menu-item-hover-active-bg);
         }
-        &:active {
-          background: var(--tg-base-menu-item-active-active-bg);
-        }
        &.active {
           background: var(--tg-base-menu-item-active-bg);
+        }
+        &:active {
+          background: var(--tg-base-menu-item-active-active-bg);
         }
       }
       .dash {

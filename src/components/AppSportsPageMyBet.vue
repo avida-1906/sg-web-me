@@ -59,10 +59,23 @@ function goToBet() {
   }, 50)
 }
 
+function addRightSettleChange(v: any) {
+  if (v === settle.value)
+    fetch()
+}
+
 if (props.isFirst)
   await application.allSettled([fetch()])
 else
   fetch()
+
+onMounted(() => {
+  sportsBettingToBetslipBus.on(addRightSettleChange)
+})
+
+onUnmounted(() => {
+  sportsBettingToBetslipBus.off(addRightSettleChange)
+})
 </script>
 
 <template>
@@ -85,13 +98,13 @@ else
     </div>
     <AppLoading v-if="loading" />
     <template v-else>
-      <div v-if="sportBetList.length === 0" class="empty">
+      <div v-if="!sportBetList.length" class="empty">
         <BaseEmpty>
           <template #icon>
             <BaseIcon
               style="
                   font-size: var(--tg-empty-icon-size);
-                  margin-bottom: var(--tg-spacing-24);
+                  margin-bottom: var(--tg-spacing-25);
                 "
               name="uni-empty-betslip"
             />
@@ -148,15 +161,15 @@ else
   }
 }
 .stack-padding {
-  margin-top: var(--tg-spacing-24);
-  padding-bottom:var(--tg-spacing-30);
+  margin-top: var(--tg-spacing-16);
+  padding-bottom:var(--tg-spacing-32);
 }
 .empty{
   width: 100%;
-  min-height: 150px;
   --tg-empty-text-padding: var(--tg-spacing-12) 0 var(--tg-spacing-6);
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 16px;
 }
 </style>

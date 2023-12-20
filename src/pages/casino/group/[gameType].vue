@@ -108,11 +108,17 @@ onMounted(() => {
                 <span>{{ title }}</span>
               </h1>
             </div>
-            <div class="right">
-              <BaseImage
+            <div
+              class="right center" :style="{
+                '--app-sport-image-error-icon-size': '20px',
+              }"
+            >
+              <AppImage
                 :is-cloud="!isRec"
                 style="height: 100%;width: auto;"
                 :url="bannerBg"
+                loading="eager"
+                err-icon="uni-game-err"
               />
             </div>
           </div>

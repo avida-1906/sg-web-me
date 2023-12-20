@@ -14,6 +14,7 @@ interface Props {
   msgAfterTouched?: boolean
   textCenter?: boolean
   name?: string
+  readonly?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -73,6 +74,12 @@ function getFocus() {
   onFocus()
 }
 
+function setBlur() {
+  iTextarea.value?.blur()
+  iInput.value?.blur()
+  onBlur({ target: { value: 1 } })
+}
+
 function keyDownEnter(event: KeyboardEvent) {
   emit('downEnter', event)
 }
@@ -97,7 +104,7 @@ function catchIt() {
   getFocus()
 }
 
-defineExpose({ getFocus, setTouchTrue, setTouchFalse, iInput })
+defineExpose({ getFocus, setTouchTrue, setTouchFalse, iInput, isTouched, setBlur })
 </script>
 
 <template>
@@ -112,6 +119,7 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse, iInput })
             'error': error && !isFocus,
             'check-dom-error': error,
             'radio-r-o': $slots['right-button'],
+            'readonly': readonly,
           }"
         >
           <div v-show="$slots['left-icon']" class="left-icon">
@@ -129,6 +137,7 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse, iInput })
               :class="{ 'p-r-0': $slots['right-icon'] }"
               autocomplete="new-password"
               :disabled="disabled"
+              :readonly="readonly"
               @input="onInput"
               @focus="onFocus"
               @blur="onBlur"
@@ -147,10 +156,12 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse, iInput })
             :placeholder="placeholder"
             :type="_type"
             :disabled="disabled"
+            :readonly="readonly"
             :class="{
               'p-r-0': $slots['right-icon'],
               'p-l-0': $slots['left-icon'],
               'text-center': textCenter,
+              'readonly': readonly,
             }"
             :autocomplete="`new-${_type}`"
             title=""
@@ -163,14 +174,20 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse, iInput })
             @compositionstart="onCompositionStart"
             @compositionend="onCompositionEnd"
           >
-          <div v-if="isPassword" class="eye" @click="toggleType">
+          <BaseButton
+            v-if="isPassword" type="text" size="none"
+            class="eye" @click="toggleType"
+          >
             <BaseIcon :name="`uni-eye-${_type === 'password' ? 'open' : 'close'}`" />
-          </div>
+          </BaseButton>
           <div v-show="$slots['right-icon']" class="right-icon">
             <slot name="right-icon" />
           </div>
         </div>
-        <div v-show="$slots['right-button']" class="right-button" @click="onRightButton">
+        <div
+          v-show="$slots['right-button']" class="right-button"
+          @click.stop="onRightButton"
+        >
           <slot name="right-button" />
         </div>
       </div>
@@ -188,6 +205,11 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse, iInput })
   --tg-base-input-style-background-color: transparent;
   --tg-base-input-style-pad-x: var(--tg-spacing-input-padding-horizontal);
   --tg-base-input-style-right-icon-pad-v: var(--tg-spacing-8);
+  --tg-base-input-style-placeholder-color: var(--tg-text-white);
+  --tg-base-input-style-placeholder-opacity: 0.3;
+  --tg-base-input-style-pad-left: var(--tg-base-input-style-pad-x);
+  --tg-base-input-textarea-pad: var(--tg-spacing-8);
+  --tg-base-input-textarea-minheight: 2.8em;
 }
 </style>
 
@@ -219,7 +241,7 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse, iInput })
     appearance: none;
     font-size: var(--tg-font-size-default);
     font-weight: var(--tg-font-weight-semibold);
-    padding: var(--tg-spacing-8);
+    padding: var(--tg-base-input-textarea-pad);
     transition: none;
     &::placeholder {
       color: var(--tg-text-white);
@@ -228,7 +250,7 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse, iInput })
   }
 
   pre {
-    min-height: 2.8em;
+    min-height: var(--tg-base-input-textarea-minheight);
     max-height: 6.4em;
   }
 
@@ -347,6 +369,10 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse, iInput })
       border-color: var(--tg-border-color-deep-grey);
     }
 
+    &.readonly {
+      background-color: var(--tg-secondary-main);
+    }
+
     input {
       line-height: 1;
       width: 100%;
@@ -355,11 +381,12 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse, iInput })
       border: none;
       outline: none;
       padding: var(--tg-spacing-input-padding-vertical) var(--tg-base-input-style-pad-x);
+      padding-left: var(--tg-base-input-style-pad-left);
       font-weight: var(--tg-font-weight-semibold);
 
       &::placeholder {
-        color: var(--tg-text-white);
-        opacity: 0.3;
+        color: var(--tg-base-input-style-placeholder-color);
+        opacity: var(--tg-base-input-style-placeholder-opacity);
       }
 
       &.text-center {
@@ -372,6 +399,7 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse, iInput })
       //   appearance: none;
       //   margin: 0;
       // }
+
     }
     .p-l-0 {
       padding-left: 0;

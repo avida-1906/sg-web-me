@@ -40,7 +40,6 @@ function reset() {
 }
 
 function onReceiveChatMsg(m: any) {
-  console.log('m === ', m)
   if (params.value.feed_id.length)
     runGetHistory(params.value)
 }

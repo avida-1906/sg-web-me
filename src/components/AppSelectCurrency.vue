@@ -1,15 +1,6 @@
 <script lang="ts" setup>
 import type { CurrencyData } from '~/composables/useCurrencyData'
-
-const props = withDefaults(defineProps<Props>(), {
-  showBalance: true,
-  network: false,
-  type: 3,
-  placeholder: 'search_currency',
-
-})
-
-const emit = defineEmits(['change'])
+import type { availableCurrency } from '~/apis/types'
 
 interface Props {
   showBalance?: boolean // 是否展示货币余额
@@ -17,7 +8,19 @@ interface Props {
   type?: number
   popperClazz?: string
   placeholder?: string
+  distance?: number
+  activeCurrencyList?: availableCurrency[]
 }
+
+const props = withDefaults(defineProps<Props>(), {
+  showBalance: true,
+  network: false,
+  type: 3,
+  placeholder: 'search_currency',
+  distance: 6,
+})
+
+const emit = defineEmits(['change'])
 
 const { t } = useI18n()
 // 下拉搜索是否显示
@@ -29,6 +32,7 @@ const {
   renderBalanceList,
   renderBalanceLockerList,
   renderCurrencyList,
+  renderFinanceCurrencyList,
   getVirtualCurrencyContractType,
 } = useCurrencyData()
 
@@ -40,6 +44,7 @@ const getCurrencyList = computed(() => {
     case 1: return renderBalanceList.value
     case 2: return renderBalanceLockerList.value
     case 3: return renderCurrencyList.value
+    case 4: return renderFinanceCurrencyList.value(props.activeCurrencyList ?? [])
     default: return []
   }
 })
@@ -68,6 +73,7 @@ function selectCurrency(item: CurrencyData, hide: () => void) {
 }
 function getActiveValue() {
   activeCurrency.value = getCurrencyList.value.find(item => item.type === (activeCurrency.value?.type ?? currentCurrency.value))
+    ?? getCurrencyList.value[0]
   emit('change', activeCurrency.value, currentNetwork.value)
 }
 
@@ -77,7 +83,7 @@ watch(() => props.type, () => {
 watch(() => currentNetwork.value, () => {
   emit('change', activeCurrency.value, currentNetwork.value)
 })
-watch(() => renderCurrencyList.value, () => {
+watch(() => getCurrencyList.value, () => {
   getActiveValue()
 })
 
@@ -91,7 +97,8 @@ onMounted(() => {
   <div class="app-wallet app-currency">
     <VDropdown
       v-model:shown="isMenuShown"
-      :distance="6"
+      :distance="distance"
+      handle-resize
       @apply-show="clearSearchValue"
     >
       <div class="wallet-box">
@@ -196,6 +203,7 @@ onMounted(() => {
         .arrow {
             font-size: var(--tg-font-size-default);
             margin-left: var(--tg-spacing-9);
+            transition: none;
         }
 
         .arrow-up {

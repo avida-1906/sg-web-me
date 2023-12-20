@@ -50,6 +50,9 @@ dependencies:
   qs:
     specifier: ^6.11.2
     version: 6.11.2
+  universal-cookie:
+    specifier: ^6
+    version: 6.1.1
   vee-validate:
     specifier: ^4.11.3
     version: 4.11.3(vue@3.3.4)
@@ -192,7 +195,7 @@ devDependencies:
     version: 1.1.6(rollup@2.79.1)(vite@4.4.9)(vue@3.3.4)
   vite-plugin-vue-devtools:
     specifier: ^0.5.1
-    version: 0.5.1(@types/node@18.16.19)(axios@1.5.0)(nprogress@0.2.0)(pug@3.0.2)(rollup@2.79.1)(vite@4.4.9)(vue@3.3.4)
+    version: 0.5.1(@types/node@18.16.19)(axios@1.5.0)(nprogress@0.2.0)(pug@3.0.2)(rollup@2.79.1)(universal-cookie@6.1.1)(vite@4.4.9)(vue@3.3.4)
   vite-plugin-vue-layouts:
     specifier: ^0.8.0
     version: 0.8.0(vite@4.4.9)(vue-router@4.2.4)(vue@3.3.4)
@@ -2659,6 +2662,9 @@ packages:
     resolution: {integrity: sha512-mEo1sAde+UCE6b2hxn332f1g1E8WfYRu6p5SvTKr2ZKC1f7gFJXk4h5PyGP9Dt6gCaG8y8XhwnXWC6Iy2cmBng==}
     dev: true
 
+  /@types/cookie@0.5.4:
+    resolution: {integrity: sha512-7z/eR6O859gyWIAjuvBWFzNURmf2oPBmJlfVWkwehU5nzIyjwBsTh7WMmEEV4JFnHuQ3ex4oyTvfKzcyJVDBNA==}
+
   /@types/debug@4.1.8:
     resolution: {integrity: sha512-/vPO1EPOs306Cvhwv7KfVfYvOJqA/S/AXjaHQiJboCZzcNDb+TIJFN9/2C9DZ//ijSKWioNyUxD792QmDJ+HKQ==}
     dependencies:
@@ -3781,7 +3787,7 @@ packages:
       vue: 3.3.4
     dev: false
 
-  /@vueuse/integrations@10.2.1(axios@1.5.0)(nprogress@0.2.0)(vue@3.3.4):
+  /@vueuse/integrations@10.2.1(axios@1.5.0)(nprogress@0.2.0)(universal-cookie@6.1.1)(vue@3.3.4):
     resolution: {integrity: sha512-FDP5lni+z9FjHE9H3xuvwSjoRV9U8jmDvJpmHPCBjUgPGYRynwb60eHWXCFJXLUtb4gSIHy0e+iaEbrKdalCkQ==}
     peerDependencies:
       async-validator: '*'
@@ -3826,6 +3832,7 @@ packages:
       '@vueuse/shared': 10.2.1(vue@3.3.4)
       axios: 1.5.0
       nprogress: 0.2.0
+      universal-cookie: 6.1.1
       vue-demi: 0.14.6(vue@3.3.4)
     transitivePeerDependencies:
       - '@vue/composition-api'
@@ -5046,7 +5053,6 @@ packages:
   /cookie@0.5.0:
     resolution: {integrity: sha512-YZ3GUyn/o8gfKJlnlX7g7xq4gyO6OSuhGPKaaGssGB2qgDUS0gPgtTvoyZLTt9Ab6dC4hfc9dV5arkvc/OCmrw==}
     engines: {node: '>= 0.6'}
-    dev: true
 
   /copy-descriptor@0.1.1:
     resolution: {integrity: sha512-XgZ0pFcakEUlbwQEVNg3+QAis1FyTL3Qel9FYy8pSkQqoG3PNoT0bOCQtOXcOkur21r2Eq2kI+IE+gsmAEVlYw==}
@@ -7762,7 +7768,7 @@ packages:
       vanilla-jsoneditor: 0.17.8
       vue: 3.3.4
       vue-demi: 0.14.6(vue@3.3.4)
-      vue-global-config: 0.4.2(vue@3.3.4)
+      vue-global-config: 0.5.0(vue@3.3.4)
     dev: true
 
   /json-parse-even-better-errors@2.3.1:
@@ -11002,6 +11008,12 @@ packages:
       '@types/unist': 2.0.6
     dev: true
 
+  /universal-cookie@6.1.1:
+    resolution: {integrity: sha512-33S9x3CpdUnnjwTNs2Fgc41WGve2tdLtvaK2kPSbZRc5pGpz2vQFbRWMxlATsxNNe/Cy8SzmnmbuBM85jpZPtA==}
+    dependencies:
+      '@types/cookie': 0.5.4
+      cookie: 0.5.0
+
   /universalify@2.0.0:
     resolution: {integrity: sha512-hAZsKq7Yy11Zu1DE0OzWjw7nnLZmJZYTDZZyEFHZdUhV8FkH5MCfoU1XMaxXovpyW5nq5scPqq0ZDP9Zyl04oQ==}
     engines: {node: '>= 10.0.0'}
@@ -11426,14 +11438,14 @@ packages:
       - vite
     dev: true
 
-  /vite-plugin-vue-devtools@0.5.1(@types/node@18.16.19)(axios@1.5.0)(nprogress@0.2.0)(pug@3.0.2)(rollup@2.79.1)(vite@4.4.9)(vue@3.3.4):
+  /vite-plugin-vue-devtools@0.5.1(@types/node@18.16.19)(axios@1.5.0)(nprogress@0.2.0)(pug@3.0.2)(rollup@2.79.1)(universal-cookie@6.1.1)(vite@4.4.9)(vue@3.3.4):
     resolution: {integrity: sha512-z6wzaRxvmQVF1A8iNPIrCrpgJWbFC8bQpCG18yTSHFzRYTkFrqTZ37JjrKysPP0EvLitI1PYru0Odqt2ICfCbQ==}
     engines: {node: '>=v14'}
     peerDependencies:
       vite: ^3.1.0 || ^4.0.0-0
     dependencies:
       '@vueuse/core': 10.2.1(vue@3.3.4)
-      '@vueuse/integrations': 10.2.1(axios@1.5.0)(nprogress@0.2.0)(vue@3.3.4)
+      '@vueuse/integrations': 10.2.1(axios@1.5.0)(nprogress@0.2.0)(universal-cookie@6.1.1)(vue@3.3.4)
       '@webfansplz/vuedoc-parser': 0.0.3(@types/node@18.16.19)(pug@3.0.2)
       algoliasearch: 4.18.0
       birpc: 0.2.12
@@ -11759,8 +11771,8 @@ packages:
       - supports-color
     dev: true
 
-  /vue-global-config@0.4.2(vue@3.3.4):
-    resolution: {integrity: sha512-wqnawE5VIS9yhjSUmnb9O7Rb0cgSM+he96hOyZCs8HmtiERFRK+SrpMcS+bDOwSx6WoFF77+dNdibrQFDqiqEw==}
+  /vue-global-config@0.5.0(vue@3.3.4):
+    resolution: {integrity: sha512-SYALXGtzUF/2kaHAVKX7WfiGxpaTE3/PUo2oBu07fTKX447ppQ2xulPZtntmfLJpFHcbGBY8cZ/rq8ytydahcw==}
     requiresBuild: true
     peerDependencies:
       '@vue/composition-api': '>=1'

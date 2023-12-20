@@ -26,7 +26,7 @@ const getSource = computed(() => {
 // 排序变化
 function handleSort(item: Column, index: number) {
   if (item.sort) {
-    const str = sortSource.value[index] === 'descend' ? 'ascend' : 'descend'
+    const str = sortSource.value[index] === 'desc' ? 'asc' : 'desc'
     sortSource.value = []
     sortSource.value[index] = str
     emit('sort', {
@@ -81,12 +81,12 @@ watch(() => props.columns, () => {
                 <BaseIcon
                   name="uni-table-sort"
                   :style="`${sortSource[index]
-                    === 'ascend' ? '--tg-icon-color: #fff' : ''}`"
+                    === 'asc' ? '--tg-icon-color: #fff' : ''}`"
                 />
                 <BaseIcon
                   name="uni-table-sort"
                   :style="`transform: rotate(180deg);
-                  ${sortSource[index] === 'descend' ? '--tg-icon-color: #fff' : ''}`"
+                  ${sortSource[index] === 'desc' ? '--tg-icon-color: #fff' : ''}`"
                 />
               </div>
             </div>
@@ -172,6 +172,7 @@ watch(() => props.columns, () => {
   --tg-table-th-font-weight: var(--tg-font-weight-semibold);
   --tg-table-margin-top-empty: 24px;
   --tg-table-tr-last-first-padding: var(--tg-spacing-16);
+  --tg-table-thtd-radius: var(--tg-radius-default);
 }
 </style>
 
@@ -232,10 +233,10 @@ watch(() => props.columns, () => {
         margin-top: 24.6vh;
       }
       .m-tr:nth-child(odd){
-        background: var(--tg-table-odd-background);
+        background: var(--tg-table-even-background);
       }
       .m-tr:nth-child(even){
-        background: var(--tg-table-even-background);
+        background: var(--tg-table-odd-background);
       }
     }
 
@@ -253,12 +254,12 @@ watch(() => props.columns, () => {
 
     }
     th:last-child,td:last-child{
-      border-top-right-radius: var(--tg-radius-default);
-      border-bottom-right-radius: var(--tg-radius-default);
+      border-top-right-radius: var(--tg-table-thtd-radius);
+      border-bottom-right-radius: var(--tg-table-thtd-radius);
     }
     th:first-child,td:first-child{
-      border-top-left-radius: var(--tg-radius-default);
-      border-bottom-left-radius: var(--tg-radius-default);
+      border-top-left-radius: var(--tg-table-thtd-radius);
+      border-bottom-left-radius: var(--tg-table-thtd-radius);
     }
   }
   .last-first-padding{
