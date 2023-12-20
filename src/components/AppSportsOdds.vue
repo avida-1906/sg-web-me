@@ -3,9 +3,12 @@ interface Props {
   odds: string
   arrow?: 'left' | 'right'
   keep?: boolean
+  /** 是否显示浮动箭头 */
+  showArrow?: boolean
 }
 const props = withDefaults(defineProps<Props>(), {
   arrow: 'right',
+  showArrow: true,
 })
 
 const saveNum = ref(props.odds)
@@ -35,7 +38,7 @@ watch(() => props.odds, (newOdds) => {
 <template>
   <div class="app-sports-odds" :class="[arrow]">
     <span class="odds" v-html="sportsStore.renderOdds(+odds).value" />
-    <div class="icon arrow-odds" :class="[`odds-${upDown}`, { keep }]">
+    <div v-if="showArrow" class="icon arrow-odds" :class="[`odds-${upDown}`, { keep }]">
       <BaseIcon :name="`uni-tri-${icon}`" />
     </div>
   </div>

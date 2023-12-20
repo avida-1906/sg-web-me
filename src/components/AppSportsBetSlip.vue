@@ -342,7 +342,13 @@ watchEffect(() => {
       <div v-if="isClosed" class="closed">
         {{ t('closed') }}
       </div>
-      <AppSportsOdds v-else :odds="cartInfoData.ov" arrow="left" keep />
+      <AppSportsOdds
+        v-else
+        :odds="cartInfoData.ov"
+        arrow="left"
+        keep
+        :show-arrow="cartInfoData.result === void 0"
+      />
       <!-- 单式金额输入框 -->
       <div v-show="isBetSingle && cartInfoData.result === void 0" class="footer">
         <div class="bet-amount">
