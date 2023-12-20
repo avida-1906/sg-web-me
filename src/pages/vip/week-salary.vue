@@ -137,6 +137,9 @@ onMounted(() => {
   --tg-table-thtd-radius: 0;
   --tg-table-font-size: 12px;
   --tg-app-amount-font-size: 12px;
+  :deep(th) {
+    font-size: 14px;
+  }
   &.is-mobile {
     .tabs {
       padding: 0 12px;

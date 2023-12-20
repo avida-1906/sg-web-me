@@ -70,7 +70,7 @@ function openRecord() {
   gap: var(--tg-spacing-8);
   color: var(--tg-text-white);
   .vip-badge {
-    font-size: 58px;
+    font-size: 59px;
   }
   .info {
     flex: 1;
