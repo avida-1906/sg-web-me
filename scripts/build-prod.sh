@@ -17,7 +17,7 @@ pnpm build:$env
 cd $localRepoDir
 
 echo "开始拉取最新代码..."
-git pull origin master --no-rebase
+git pull origin main --no-rebase
 
 cd -
 
@@ -32,5 +32,5 @@ git add .
 
 git commit -m "build: $(date '+%Y-%m-%d %H:%M:%S')"
 
-git push origin master
+git push origin main
 echo "提交完成"
