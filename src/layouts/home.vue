@@ -136,7 +136,7 @@ onErrorCaptured((err, instance, info) => {
       </Transition>
     </div>
 
-    <div class="main-content" :class="{ 'not-mobile': !isMobile }">
+    <div id="TgMainContent" class="main-content" :class="{ 'not-mobile': !isMobile }">
       <header class="navigation">
         <AppContent except>
           <AppHeader />
