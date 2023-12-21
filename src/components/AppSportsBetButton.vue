@@ -25,7 +25,7 @@ const listToCartData = ref<ISportListToCartData>({
   wid: props.cartInfo.wid,
   ov: props.odds,
   os: props.disabled ? 0 : 1,
-  ei: props.cartInfo.ei,
+  mlid: props.cartInfo.mlid,
 })
 const _disabled = ref(props.disabled || +listToCartData.value.ov === 0)
 
@@ -84,7 +84,7 @@ function listToCartEventEmit() {
 }
 /** 处理列表通知发送的数据 */
 function eventHandler(_data: ISportListToCartData) {
-  if (_data.ei === props.cartInfo.ei) {
+  if (_data.mlid === props.cartInfo.mlid) {
     listToCartData.value.os = _data.os
     _disabled.value = _data.os === 0
     if (_data.wid === listToCartData.value.wid)

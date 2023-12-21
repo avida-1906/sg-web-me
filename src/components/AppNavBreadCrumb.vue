@@ -71,7 +71,7 @@ watch(() => props.breadcrumb, (val) => {
   display: inline-flex;
   align-items: center;
   justify-content: flex-start;
-  width: 100%;
+  // width: 100%;
   height: 100%;
   .back {
     --tg-base-button-style-bg: var(--tg-secondary-dark);

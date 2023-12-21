@@ -231,8 +231,8 @@ export interface ISportListToCartData {
   /** 赔率 */
   ov: string
   os: TOS
-  /** 赛事ID */
-  ei: string
+  /** 盘口id， 让球、大小 那层的id */
+  mlid: string
 }
 
 /**
