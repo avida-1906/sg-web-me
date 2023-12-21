@@ -1843,18 +1843,32 @@ export function ApiFinanceRecordOther(params?: {
  * 支付可用货币列表-钱包存款
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=0f52cba2-b41f-4d06-ae97-291b2fbe848d
  */
-export function ApiFinanceDepositCurrency(params?: {
-  contract_id: '1802'
-}) {
-  return httpClient.get<availableCurrency[]>('/finance/deposit/currency', { params })
+export function ApiFinanceDepositCurrency() {
+  return httpClient.get<availableCurrency[]>('/finance/deposit/currency')
 }
 
 /**
  * 支付可用货币列表-钱包提款
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=54fde819-78a2-43b8-b24a-09bd9888fe6c
  */
-export function ApiFinanceWithdrawCurrency(params?: {
-  contract_id: '1802'
+export function ApiFinanceWithdrawCurrency() {
+  return httpClient.get<availableCurrency[]>('/finance/withdraw/currency')
+}
+
+/**
+ * 查询可取款余额-钱包提款
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=2d52d42a-26f6-4b0e-9ee8-00e965a28687
+ */
+export function ApiFinanceWithdrawBalance(params?: {
+  /** 货币id */
+  currency_id: string
 }) {
-  return httpClient.get<availableCurrency[]>('/finance/withdraw/currency', { params })
+  return httpClient.get<{
+    /** 可提款金额 */
+    withdraw_balance: string
+    /** 所需打码 */
+    remaining_balance: string
+    /** 会员余额 */
+    total_balance: string
+  }>('/finance/withdraw/balance', { params })
 }
