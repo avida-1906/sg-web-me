@@ -224,15 +224,14 @@ function popperApplyShow() {
       transition: all .2s ease;
       font-weight: var(--tg-font-weight-semibold);
       &:hover { // ,&.active
-        // background-color: var(--tg-secondary-light);
-        color: var(--tg-text-black);
+        background-color: var(--tg-secondary-light);
+        // color: var(--tg-text-black);
         // color: var(--tg-popper-hover-color-default);
       }
-      &:active {
+      &:active div{
         transform: scale(0.96);
-        color: var(--tg-text-blue);
+        // color: var(--tg-text-blue);
       }
-
     }
     .balance-not{
       text-align: center;

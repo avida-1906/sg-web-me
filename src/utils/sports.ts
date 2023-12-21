@@ -1,3 +1,4 @@
+import { uniqBy } from 'lodash'
 import type { SocketClient } from './mqtt'
 import type {
   EnumCurrencyKey,
@@ -220,7 +221,15 @@ export function sportsDataGroupByLeagueLoadMore(
     else
       arr.push({ ci: newData[i].ci, cn: newData[i].cn, list: [newData[i]] })
   }
-  return arr
+
+  // 去重
+  return arr.map((a) => {
+    return {
+      ci: a.ci,
+      cn: a.cn,
+      list: uniqBy(a.list, 'ei'),
+    }
+  })
 }
 
 /**
