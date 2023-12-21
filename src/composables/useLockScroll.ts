@@ -42,8 +42,8 @@ export function useLockScroll(
   const stop = watch(b, (val) => {
     if (depends !== void 0) {
       const temp = val.filter(r => r === true).length > 0
-      if (temp)
-        setScrollTop()
+      // if (temp)
+      //   setScrollTop()
       nextTick(() => {
         setTimeout(() => {
           if (temp)
@@ -61,8 +61,8 @@ export function useLockScroll(
   onMounted(() => {
     if (depends !== void 0) {
       const temp = b.filter(r => r.value === true).length > 0
-      if (temp)
-        setScrollTop()
+      // if (temp)
+      //   setScrollTop()
       nextTick(() => {
         setTimeout(() => {
           if (temp)
