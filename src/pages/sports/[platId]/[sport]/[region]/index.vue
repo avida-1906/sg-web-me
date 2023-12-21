@@ -111,6 +111,7 @@ function onBaseTypeChange(v: EnumSportMarketType) {
 }
 .tg-sports-category-index {
   margin-top: var(--tg-spacing-32);
+  touch-action: manipulation;
 }
 </style>
 

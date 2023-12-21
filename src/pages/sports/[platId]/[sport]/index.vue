@@ -129,6 +129,7 @@ usePageTitle({ prefix: sportName })
 }
 .tg-sports-index {
   margin-top: var(--tg-spacing-32);
+  touch-action: manipulation;
 }
 </style>
 
