@@ -84,7 +84,7 @@ function listToCartEventEmit() {
 }
 /** 处理列表通知发送的数据 */
 function eventHandler(_data: ISportListToCartData) {
-  if (_data.ei === props.cartInfo.mlid) {
+  if (_data.mlid === props.cartInfo.mlid) {
     listToCartData.value.os = _data.os
     _disabled.value = _data.os === 0
     if (_data.wid === listToCartData.value.wid)
