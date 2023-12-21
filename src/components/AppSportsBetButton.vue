@@ -86,17 +86,17 @@ function listToCartEventEmit() {
 function eventHandler(_data: ISportListToCartData) {
   if (_data.ei === props.cartInfo.ei) {
     listToCartData.value.os = _data.os
-    _disabled.value = _data.os !== 1
+    _disabled.value = _data.os === 0
     if (_data.wid === listToCartData.value.wid)
       listToCartData.value.ov = _data.ov
   }
 }
 /** 监听列表发送的事件 */
-function addListToCartEvent() {
+function addCartToListEvent() {
   sportsCartToListBus.on(eventHandler)
 }
 /** 移除列表发送的事件 */
-function removeListToCartEvent() {
+function removeCartToListEvent() {
   sportsCartToListBus.off(eventHandler)
 }
 
@@ -111,10 +111,10 @@ watch(() => props.odds, (val) => {
 })
 
 onMounted(() => {
-  addListToCartEvent()
+  addCartToListEvent()
 })
 onBeforeUnmount(() => {
-  removeListToCartEvent()
+  removeCartToListEvent()
 })
 </script>
 
