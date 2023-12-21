@@ -25,7 +25,7 @@ const listToCartData = ref<ISportListToCartData>({
   wid: props.cartInfo.wid,
   ov: props.odds,
   os: props.disabled ? 0 : 1,
-  ei: props.cartInfo.ei,
+  mlid: props.cartInfo.mlid,
 })
 const _disabled = ref(props.disabled || +listToCartData.value.ov === 0)
 
