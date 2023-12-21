@@ -123,6 +123,9 @@ usePageTitle({ prefix: sportName })
   justify-content: space-between;
   margin-top: var(--tg-spacing-24);
   margin-bottom: var(--tg-spacing-24);
+  .left{
+    width: 100%;
+  }
 }
 .tg-sports-index {
   margin-top: var(--tg-spacing-32);
