@@ -99,6 +99,9 @@ function onBaseTypeChange(v: EnumSportMarketType) {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  .left{
+    width: 100%;
+  }
 }
 .wrapper{
   display: flex;
@@ -108,6 +111,7 @@ function onBaseTypeChange(v: EnumSportMarketType) {
 }
 .tg-sports-category-index {
   margin-top: var(--tg-spacing-32);
+  touch-action: manipulation;
 }
 </style>
 
