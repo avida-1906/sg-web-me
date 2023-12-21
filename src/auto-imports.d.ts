@@ -457,6 +457,7 @@ declare global {
   const useDialogSwiperNotice: typeof import('./composables/useDialogSwiperNotice')['useDialogSwiperNotice']
   const useDialogThirdAuthForm: typeof import('./composables/useDialogThirdAuthForm')['useDialogThirdAuthForm']
   const useDialogVipBonusRecord: typeof import('./composables/useDialogVipBonusRecord')['useDialogVipBonusRecord']
+  const useDialogVipExpRule: typeof import('./composables/useDialogVipExpRule')['useDialogVipExpRule']
   const useDisplayMedia: typeof import('@vueuse/core')['useDisplayMedia']
   const useDocumentVisibility: typeof import('@vueuse/core')['useDocumentVisibility']
   const useDragDialog: typeof import('./composables/useDragDialog')['useDragDialog']
@@ -1103,6 +1104,7 @@ declare module 'vue' {
     readonly useDialogSwiperNotice: UnwrapRef<typeof import('./composables/useDialogSwiperNotice')['useDialogSwiperNotice']>
     readonly useDialogThirdAuthForm: UnwrapRef<typeof import('./composables/useDialogThirdAuthForm')['useDialogThirdAuthForm']>
     readonly useDialogVipBonusRecord: UnwrapRef<typeof import('./composables/useDialogVipBonusRecord')['useDialogVipBonusRecord']>
+    readonly useDialogVipExpRule: UnwrapRef<typeof import('./composables/useDialogVipExpRule')['useDialogVipExpRule']>
     readonly useDisplayMedia: UnwrapRef<typeof import('@vueuse/core')['useDisplayMedia']>
     readonly useDocumentVisibility: UnwrapRef<typeof import('@vueuse/core')['useDocumentVisibility']>
     readonly useDragDialog: UnwrapRef<typeof import('./composables/useDragDialog')['useDragDialog']>
@@ -1743,6 +1745,7 @@ declare module '@vue/runtime-core' {
     readonly useDialogSwiperNotice: UnwrapRef<typeof import('./composables/useDialogSwiperNotice')['useDialogSwiperNotice']>
     readonly useDialogThirdAuthForm: UnwrapRef<typeof import('./composables/useDialogThirdAuthForm')['useDialogThirdAuthForm']>
     readonly useDialogVipBonusRecord: UnwrapRef<typeof import('./composables/useDialogVipBonusRecord')['useDialogVipBonusRecord']>
+    readonly useDialogVipExpRule: UnwrapRef<typeof import('./composables/useDialogVipExpRule')['useDialogVipExpRule']>
     readonly useDisplayMedia: UnwrapRef<typeof import('@vueuse/core')['useDisplayMedia']>
     readonly useDocumentVisibility: UnwrapRef<typeof import('@vueuse/core')['useDocumentVisibility']>
     readonly useDragDialog: UnwrapRef<typeof import('./composables/useDragDialog')['useDragDialog']>

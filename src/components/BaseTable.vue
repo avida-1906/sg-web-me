@@ -54,6 +54,7 @@ watch(() => props.columns, () => {
           <th
             v-for="(item, index) in columns" :key="index"
             class="m-th"
+            :class="item.clazz"
             :style="`width: ${typeof item.width === 'number'
               ? `${item.width}px` : item.width};text-align:${item.align}`"
           >
