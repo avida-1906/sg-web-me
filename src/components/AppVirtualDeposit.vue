@@ -102,7 +102,7 @@ const getFinanceMerchantCoinParam = computed(() => {
   }
 })
 const getAmountLimit = computed(() => {
-  return `${currentAisle.value?.amount_min}—${currentAisle.value?.amount_max}`
+  return `${currentAisle.value?.amount_min}-${currentAisle.value?.amount_max}`
 })
 
 async function confirmPayment() {
