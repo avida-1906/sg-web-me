@@ -31,6 +31,7 @@ declare global {
   const ApiFinanceThirdCoinDeposit: typeof import('./apis/index')['ApiFinanceThirdCoinDeposit']
   const ApiFinanceThirdDeposit: typeof import('./apis/index')['ApiFinanceThirdDeposit']
   const ApiFinanceWithdraw: typeof import('./apis/index')['ApiFinanceWithdraw']
+  const ApiFinanceWithdrawBalance: typeof import('./apis/index')['ApiFinanceWithdrawBalance']
   const ApiFinanceWithdrawBankcard: typeof import('./apis/index')['ApiFinanceWithdrawBankcard']
   const ApiFinanceWithdrawCoin: typeof import('./apis/index')['ApiFinanceWithdrawCoin']
   const ApiFinanceWithdrawCurrency: typeof import('./apis/index')['ApiFinanceWithdrawCurrency']
@@ -679,6 +680,7 @@ declare module 'vue' {
     readonly ApiFinanceThirdCoinDeposit: UnwrapRef<typeof import('./apis/index')['ApiFinanceThirdCoinDeposit']>
     readonly ApiFinanceThirdDeposit: UnwrapRef<typeof import('./apis/index')['ApiFinanceThirdDeposit']>
     readonly ApiFinanceWithdraw: UnwrapRef<typeof import('./apis/index')['ApiFinanceWithdraw']>
+    readonly ApiFinanceWithdrawBalance: UnwrapRef<typeof import('./apis/index')['ApiFinanceWithdrawBalance']>
     readonly ApiFinanceWithdrawBankcard: UnwrapRef<typeof import('./apis/index')['ApiFinanceWithdrawBankcard']>
     readonly ApiFinanceWithdrawCoin: UnwrapRef<typeof import('./apis/index')['ApiFinanceWithdrawCoin']>
     readonly ApiFinanceWithdrawCurrency: UnwrapRef<typeof import('./apis/index')['ApiFinanceWithdrawCurrency']>
@@ -1320,6 +1322,7 @@ declare module '@vue/runtime-core' {
     readonly ApiFinanceThirdCoinDeposit: UnwrapRef<typeof import('./apis/index')['ApiFinanceThirdCoinDeposit']>
     readonly ApiFinanceThirdDeposit: UnwrapRef<typeof import('./apis/index')['ApiFinanceThirdDeposit']>
     readonly ApiFinanceWithdraw: UnwrapRef<typeof import('./apis/index')['ApiFinanceWithdraw']>
+    readonly ApiFinanceWithdrawBalance: UnwrapRef<typeof import('./apis/index')['ApiFinanceWithdrawBalance']>
     readonly ApiFinanceWithdrawBankcard: UnwrapRef<typeof import('./apis/index')['ApiFinanceWithdrawBankcard']>
     readonly ApiFinanceWithdrawCoin: UnwrapRef<typeof import('./apis/index')['ApiFinanceWithdrawCoin']>
     readonly ApiFinanceWithdrawCurrency: UnwrapRef<typeof import('./apis/index')['ApiFinanceWithdrawCurrency']>

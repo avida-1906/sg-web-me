@@ -211,7 +211,9 @@ const isPaymentDepositBank = computed(() => {
   return currentTypeItem.value?.payment_type === 2
 })
 const getAmountLimit = computed(() => {
-  return `${currentAisleItem.value?.amount_min}—${currentAisleItem.value?.amount_max}`
+  return (paymentMerchantList.value?.length ?? 0) > 1
+    ? ''
+    : `${currentAisleItem.value?.amount_min}-${currentAisleItem.value?.amount_max}`
 })
 
 function formatAmount() {
