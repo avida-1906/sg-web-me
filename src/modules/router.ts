@@ -28,7 +28,9 @@ const routes = setupLayouts(generatedRoutes)
 export const router = createRouter({
   history: createWebHistory(),
   routes,
-  scrollBehavior() {
+  scrollBehavior(to) {
+    if (to.hash.length)
+      return
     scrollToTop()
     return { top: 0 }
   },

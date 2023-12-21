@@ -148,9 +148,9 @@ watch(() => props.columns, () => {
                 :name="col.slot"
                 :index="index"
               >
-                {{ data[col.dataIndex] || '--' }}
+                {{ data[col.dataIndex] || '-' }}
               </slot>
-              <span v-else>{{ data[col.dataIndex] || '--' }}</span>
+              <span v-else>{{ data[col.dataIndex] || '-' }}</span>
             </template>
           </td>
         </tr>
