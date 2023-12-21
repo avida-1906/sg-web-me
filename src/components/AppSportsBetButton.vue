@@ -137,14 +137,18 @@ onBeforeUnmount(() => {
     <template v-if="isNa">
       <span class="status">N/A</span>
     </template>
+    <div v-else-if="_disabled" class="content" :class="[layout]">
+      <div class="name">
+        {{ title || '-' }}
+      </div>
+      <span class="status">{{ t('sports_status_timeout') }}</span>
+    </div>
     <AppSportsOutcomeLocked v-else-if="+listToCartData.ov === 0" size="none" />
     <div v-else class="content" :class="[layout]">
       <div class="name">
         {{ title || '-' }}
       </div>
-      <span v-if="_disabled" class="status">{{ t('sports_status_timeout') }}</span>
       <AppSportsOdds
-        v-else
         :style="
           `--tg-sports-odds-color: ${sportStore.cart.checkWid(props.cartInfo.wid)
             ? 'var(--tg-text-white)' : ''}`
