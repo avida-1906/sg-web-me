@@ -800,9 +800,9 @@ export class SportsCart {
     }).map<ISportListToCartData>((item) => {
       return {
         wid: item.wid,
+        mlid: item.mlid,
         ov: item.ov,
         os: item.os,
-        ei: item.ei,
       }
     })
 
