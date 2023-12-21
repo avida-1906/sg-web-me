@@ -4,6 +4,9 @@ usePageTitle({ prefix: 'Sportsbook' })
 const { isLogin } = storeToRefs(useAppStore())
 const { openLoginDialog } = useLoginDialog()
 const { openRegisterDialog } = useRegisterDialog()
+BeforeUnmount(() => {
+  scrollToTop()
+})
 </script>
 
 <template>
