@@ -21,6 +21,11 @@ const {
   data: withdrawCurrency,
   runAsync: runAsyncWithdrawCurrency,
 } = useRequest(ApiFinanceWithdrawCurrency)
+const {
+  data: withdrawBalance,
+  run: runWithdrawBalance,
+  loading: loadingWithdrawBalance,
+} = useRequest(ApiFinanceWithdrawBalance)
 
 const currentNetwork = ref('')
 const contentRef = ref()
@@ -55,6 +60,9 @@ const getActiveCurrency = computed(() => {
 function changeCurrency(item: CurrencyData, network: string) {
   activeCurrency.value = item
   currentNetwork.value = network
+  isWithdraw.value && !loadingWithdrawBalance.value && runWithdrawBalance({
+    currency_id: item.cur,
+  })
 }
 function handleShow(val: boolean) {
   setShowWalletBool(val)
@@ -120,15 +128,20 @@ await application.allSettled(
             </template>
           </Suspense>
         </template>
-        <!-- 取款 -->
+        <!-- 提款款 -->
         <template v-else-if="isWithdraw && activeCurrency">
           <Suspense timeout="0">
             <AppWithdraw
               v-if="isVirCurrency"
+              :max-withdraw-balance="withdrawBalance?.withdraw_balance"
               :active-currency="activeCurrency"
               :current-network="currentNetwork"
             />
-            <AppFiatWithdrawal v-else :active-currency="activeCurrency" />
+            <AppFiatWithdrawal
+              v-else
+              :max-withdraw-balance="withdrawBalance?.withdraw_balance"
+              :active-currency="activeCurrency"
+            />
             <template #fallback>
               <div class="center dialog-loading-height">
                 <BaseLoading />

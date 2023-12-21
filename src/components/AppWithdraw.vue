@@ -5,6 +5,7 @@ import type { CurrencyCode, CurrencyData } from '~/composables/useCurrencyData'
 interface Props {
   activeCurrency: CurrencyData
   currentNetwork: string
+  maxWithdrawBalance?: string
 }
 
 const props = defineProps<Props>()
@@ -115,7 +116,7 @@ const getUsRate = computed(() => {
 //     setAmount(Number.parseInt(amount.value).toString())
 // }
 function maxNumber() {
-  setAmount(props.activeCurrency.balance)
+  setAmount(props.maxWithdrawBalance ?? '0.00000000')
 }
 
 async function handleWithdraw() {

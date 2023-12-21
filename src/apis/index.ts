@@ -1859,7 +1859,7 @@ export function ApiFinanceWithdrawCurrency() {
  * 查询可取款余额-钱包提款
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=2d52d42a-26f6-4b0e-9ee8-00e965a28687
  */
-export function ApiFinanceWithdrawBalance(params?: {
+export function ApiFinanceWithdrawBalance(params: {
   /** 货币id */
   currency_id: string
 }) {
