@@ -66,6 +66,9 @@ const onPlayCount = ref(Math.ceil(Math.random() * 1000).toFixed())
       }"
       @click="gameStart"
     >
+      <div v-if="showBorder" class="game-title">
+        {{ gameInfo.name }}
+      </div>
       <!-- @click="gameStart(gameInfo)" -->
       <div class="backgrop-filter">
         <BaseImage
@@ -152,7 +155,17 @@ const onPlayCount = ref(Math.ceil(Math.random() * 1000).toFixed())
   overflow: hidden;
   cursor: pointer;
   &.border{
-    // border: 0.5px solid var(--tg-text-white);
+    background-image: url('/img/border/border.svg');
+    width: 100%;
+    height: 100%;
+    background-size: 100% 100%;
+  }
+  .game-title{
+    color: var(--tg-text-lightgrey);
+    font-size: var(--tg-font-size-md);
+    position: absolute;
+    top: 6px;
+    left: 6px;
   }
 
   // .active-game-item {
