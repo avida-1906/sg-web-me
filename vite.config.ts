@@ -117,6 +117,7 @@ export default defineConfig(({ mode }) => {
               'floor',
               'flatten',
               'zip',
+              'uniqBy',
             ],
             'big.js': ['Big'],
             'vee-validate': ['useField'], // https://vee-validate.logaretm.com/v4/api/use-field/
