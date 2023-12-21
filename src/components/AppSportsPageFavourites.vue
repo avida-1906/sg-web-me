@@ -60,10 +60,6 @@ const list = computed(() => {
   return arr
 })
 
-function onBaseTypeChange(v: EnumSportMarketType) {
-  baseType.value = v
-}
-
 // 虚拟加载数据
 function getData() {
   return new Promise((resolve) => {
@@ -72,6 +68,10 @@ function getData() {
       clearTimeout(t)
     }, 1000)
   })
+}
+
+function onSportsSiChange() {
+  baseType.value = VITE_SPORT_DEFAULT_MARKET_TYPE
 }
 
 onMounted(() => {
@@ -91,13 +91,13 @@ await application.allSettled([getData()])
         <BaseIcon name="uni-favorites" />
         <h6>{{ t('sports_title_favourites') }}</h6>
       </div>
-      <AppSportsMarketTypeSelect
-        v-model="isStandard" :base-type="baseType"
-        @base-type-change="onBaseTypeChange"
-      />
+      <AppSportsMarketTypeSelect v-model="baseType" :is-standard="isStandard" />
     </div>
     <template v-if="navs.length > 0">
-      <AppSportsTab v-show="navs.length > 0" v-model="currentFavNav" :list="navs" />
+      <AppSportsTab
+        v-show="navs.length > 0" v-model="currentFavNav" :list="navs"
+        @change="onSportsSiChange"
+      />
       <div class="market-wrapper">
         <AppSportsMarket
           v-for="item in list" :key="item.ci"

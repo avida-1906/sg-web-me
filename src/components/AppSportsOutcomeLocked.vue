@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-withDefaults(defineProps<{ size: 'none' | 'normal' }>(), {
+withDefaults(defineProps<{ size?: 'none' | 'normal' }>(), {
   size: 'normal',
 })
 </script>

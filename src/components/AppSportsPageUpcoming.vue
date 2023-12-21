@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import type { ISportEventInfo, ISportEventList } from '~/apis/types'
-import type { EnumSportMarketType } from '~/utils/enums'
 
 defineProps<{ onPage?: boolean }>()
 
@@ -127,15 +126,12 @@ function updateDataByMqtt(data: ISportEventList[]) {
 }
 /** 🚧 分页、定时器、监听更新数据 end 🚧 */
 
-function onBaseTypeChange(v: EnumSportMarketType) {
-  baseType.value = v
-}
-
 function onSportsSiChange(item: { count: number }) {
   marketNum.value = item.count > 10 ? 10 : item.count
 }
 
 watch(currentUpcomingNav, () => {
+  baseType.value = VITE_SPORT_DEFAULT_MARKET_TYPE
   switchLoadingTrue()
   reset()
   getData()
@@ -163,8 +159,8 @@ await application.allSettled([runAsync(params.value).then(() => startUpcoming())
         <h6>{{ t('sports_tab_starting_soon') }}</h6>
       </div>
       <AppSportsMarketTypeSelect
-        v-model="isStandard" :disabled="isAll" :base-type="baseType"
-        @base-type-change="onBaseTypeChange"
+        v-model="baseType" :disabled="isAll"
+        :is-standard="isStandard"
       />
     </div>
     <AppSportsTab
