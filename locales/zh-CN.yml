@@ -1601,5 +1601,7 @@ name_no_equal_pwd: 您的用户名和密码不能相同
 choose_another_name: 此用户名已被使用，请选择另一用户名
 email_exists: 电邮地址已存在
 email_code: 邮箱验证码
+bet_num: 注单量
+win_lose: 输赢
 
 

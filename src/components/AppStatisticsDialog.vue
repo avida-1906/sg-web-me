@@ -50,23 +50,23 @@ const tabList = [
 
 const betColumns = ref<IColumns[]>([
   {
-    title: '币种',
+    title: t('currency_type'),
     dataIndex: 'currency',
     slot: 'currency',
     align: 'center',
   },
   {
-    title: '注单量',
+    title: t('bet_num'),
     dataIndex: 'betCount',
     align: 'center',
   },
   {
-    title: '有效投注',
+    title: t('effective_bet'),
     dataIndex: 'effectBet',
     align: 'center',
   },
   {
-    title: '输赢',
+    title: t('win_lose'),
     dataIndex: 'winLose',
     slot: 'winLose',
     align: 'center',
