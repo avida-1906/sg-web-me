@@ -3,7 +3,7 @@ const { t } = useI18n()
 const router = useRouter()
 const route = useRoute()
 const appStore = useAppStore()
-const { isLogin, companyData } = storeToRefs(appStore)
+const { isLogin, companyData, userInfo } = storeToRefs(appStore)
 const { isMobile, appContentWidth } = storeToRefs(useWindowStore())
 const {
   rightIsExpand,
@@ -135,7 +135,7 @@ function handleClickMenuItem(item: { name: string; path?: string }) {
       openLogoutDialog()
       break
     case 'statistical-data':
-      openStatisticsDialog()
+      openStatisticsDialog(userInfo.value?.username)
       break
     case 'chat-room':
       getActiveShown.value(EnumRightSidebarContent.CHATROOM)
