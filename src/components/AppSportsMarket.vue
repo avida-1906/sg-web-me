@@ -9,7 +9,7 @@ interface Props {
   leagueName?: string
   eventCount?: number
   eventList: ISportEventInfo[]
-  baseType: string
+  baseType: number
   loadingMore?: boolean
   groupByDate?: boolean
 }

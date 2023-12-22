@@ -5,7 +5,9 @@ defineProps<{ onPage?: boolean }>()
 
 const { t } = useI18n()
 const sportsStore = useSportsStore()
-const { upcomingNavs, currentUpcomingNav, allSportsCount } = storeToRefs(sportsStore)
+const {
+  upcomingNavs, currentUpcomingNav, allSportsCount,
+} = storeToRefs(sportsStore)
 const { bool: isStandard } = useBoolean(true)
 const {
   bool: switchLoading, setTrue: switchLoadingTrue,
@@ -17,7 +19,6 @@ const {
 } = useBoolean(false)
 const {
   VITE_SPORT_EVENT_PAGE_SIZE, VITE_SPORT_EVENT_PAGE_SIZE_MAX,
-  VITE_SPORT_DEFAULT_MARKET_TYPE,
 } = getEnv()
 /** 定时更新count */
 const {
@@ -27,11 +28,17 @@ const {
 
 let timer: any = null
 const marketNum = ref(1)
-const baseType = ref(VITE_SPORT_DEFAULT_MARKET_TYPE)
+const baseType = ref(
+  sportsStore.getSportsBetTypeListBySi(currentUpcomingNav.value)[0]?.value,
+)
 const page = ref(1)
 const pageSize = ref(+VITE_SPORT_EVENT_PAGE_SIZE)
 const total = ref(0)
 const list = ref<ISportEventInfo[]>([])
+const baseTypeOptions = computed(() =>
+  sportsStore.getSportsBetTypeListBySi(currentUpcomingNav.value),
+)
+
 const params = computed(() => {
   return {
     si: currentUpcomingNav.value,
@@ -131,7 +138,8 @@ function onSportsSiChange(item: { count: number }) {
 }
 
 watch(currentUpcomingNav, () => {
-  baseType.value = VITE_SPORT_DEFAULT_MARKET_TYPE
+  baseType.value
+  = sportsStore.getSportsBetTypeListBySi(currentUpcomingNav.value)[0]?.value
   switchLoadingTrue()
   reset()
   getData()
@@ -159,7 +167,7 @@ await application.allSettled([runAsync(params.value).then(() => startUpcoming())
         <h6>{{ t('sports_tab_starting_soon') }}</h6>
       </div>
       <AppSportsMarketTypeSelect
-        v-model="baseType" :disabled="isAll"
+        v-model="baseType" :disabled="isAll" :base-type-options="baseTypeOptions"
         :is-standard="isStandard"
       />
     </div>

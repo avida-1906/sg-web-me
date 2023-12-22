@@ -8,7 +8,7 @@ interface Props {
   isLast?: boolean // 是否列表最后一个
   showBreadcrumb?: boolean // 始终展示联赛数据
   data: ISportEventInfo
-  baseType: string
+  baseType: number
   onlyTime?: boolean
 }
 const props = defineProps<Props>()
@@ -70,8 +70,8 @@ const baseGridAreaClass = computed(() => {
 })
 const baseGridClass = computed(() => isH5Layout.value ? 'grid-setup-574' : 'grid-setup')
 // 当前的盘口类型
-const isHandicap = computed(() => props.baseType === EnumSportMarketType.HANDICAP)
-const isTotal = computed(() => props.baseType === EnumSportMarketType.TOTAL)
+const isHandicap = computed(() => props.baseType === 1)
+const isTotal = computed(() => props.baseType === 2)
 // 需要展示的盘口分类
 const standardMarketFiltered = computed(() => {
   if (isHandicap.value)
@@ -378,7 +378,7 @@ setEventTime()
       <div class="outcomes" style="--area: outcomes0;">
         <template v-if="standardMarketBtns">
           <AppSportsBetButton
-            v-for="market in standardMarketBtns" :key="market.wid"
+            v-for="market in standardMarketBtns" :key="market.wid + market.sn"
             :title="market.title" :odds="market.ov" :disabled="market.disabled"
             :cart-info="market.cartInfo"
           />

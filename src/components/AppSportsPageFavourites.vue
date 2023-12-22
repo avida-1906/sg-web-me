@@ -1,17 +1,21 @@
 <script lang="ts" setup>
 import type { ISportDataGroupedByLeague } from '~/types'
-import { EnumSportMarketType } from '~/utils/enums'
 
 const { t } = useI18n()
-const { VITE_SPORT_DEFAULT_MARKET_TYPE } = getEnv()
 const { bool: isStandard } = useBoolean(true)
 const sportsStore = useSportsStore()
-const { sportsFavoriteData, allSportsCount, currentFavNav } = storeToRefs(sportsStore)
+const {
+  sportsFavoriteData, allSportsCount, currentFavNav,
+  currentFavBetType,
+} = storeToRefs(sportsStore)
 /** 定时更新数据 */
 const { startTimer, stopTimer }
 = useSportsDataUpdate(sportsStore.refreshSportsFavList)
 
-const baseType = ref(VITE_SPORT_DEFAULT_MARKET_TYPE)
+// const baseType = ref(sportsStore.getSportsBetTypeListBySi(currentFavNav.value)[0]?.value)
+const baseTypeOptions = computed(() =>
+  sportsStore.getSportsBetTypeListBySi(currentFavNav.value),
+)
 /** 收藏数据根据球种组合 */
 const sportsFavoriteList = computed(() => {
   if (sportsFavoriteData.value && sportsFavoriteData.value.d)
@@ -35,27 +39,11 @@ const list = computed(() => {
   if (sportsFavoriteData.value && sportsFavoriteData.value.d) {
     // eslint-disable-next-line max-len
     const list = sportsFavoriteList.value.find(a => a.si === currentFavNav.value)?.list ?? []
-    if (baseType.value === EnumSportMarketType.HANDICAP) {
-      arr = sportsDataGroupByLeague(
-        list.filter((event) => {
-          return event.ml.findIndex(market => market.bt === 1) > -1
-        }),
-      )
-    }
-    else if (baseType.value === EnumSportMarketType.TOTAL) {
-      arr = sportsDataGroupByLeague(
-        list.filter((event) => {
-          return event.ml.findIndex(market => market.bt === 2) > -1
-        }),
-      )
-    }
-    else if (baseType.value === EnumSportMarketType.WINNER) {
-      arr = sportsDataGroupByLeague(
-        list.filter((event) => {
-          return event.ml.findIndex(market => market.bt === 3 || market.bt === 4) > -1
-        }),
-      )
-    }
+    arr = sportsDataGroupByLeague(
+      list.filter((event) => {
+        return event.ml.findIndex(market => market.bt === currentFavBetType.value) > -1
+      }),
+    )
   }
   return arr
 })
@@ -71,7 +59,8 @@ function getData() {
 }
 
 function onSportsSiChange() {
-  baseType.value = VITE_SPORT_DEFAULT_MARKET_TYPE
+  currentFavBetType.value
+  = sportsStore.getSportsBetTypeListBySi(currentFavNav.value)[0]?.value
 }
 
 onMounted(() => {
@@ -91,7 +80,10 @@ await application.allSettled([getData()])
         <BaseIcon name="uni-favorites" />
         <h6>{{ t('sports_title_favourites') }}</h6>
       </div>
-      <AppSportsMarketTypeSelect v-model="baseType" :is-standard="isStandard" />
+      <AppSportsMarketTypeSelect
+        v-model="currentFavBetType" :base-type-options="baseTypeOptions"
+        :is-standard="isStandard"
+      />
     </div>
     <template v-if="navs.length > 0">
       <AppSportsTab
@@ -105,7 +97,7 @@ await application.allSettled([getData()])
           :league-name="item.cn"
           :event-count="item.list.length"
           :event-list="item.list"
-          :base-type="baseType"
+          :base-type="currentFavBetType"
         />
       </div>
     </template>

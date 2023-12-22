@@ -137,7 +137,7 @@ await application.allSettled([runAsync(params.value)])
         :key="item.ci + item.list.length" :league-name="item.cn"
         :event-count="item.list.length"
         :event-list="item.list"
-        :base-type="baseType"
+        :base-type="3"
         is-standard
         :auto-show="item.list.length > 0"
       />
