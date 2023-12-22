@@ -13,11 +13,11 @@ const {
   validate: valiUsername,
 } = useField<string>('username', (value) => {
   if (!value || value.length < 3)
-    return '最小字符长度为 3'
+    return t('min_len_char', { delta: 3 })
   else if (value.length > 30)
-    return '最大字符长度为 30'
+    return t('max_len_char', { delta: 30 })
   else if (value.match('[^@.a-z0-9]'))
-    return '用户名含有无效的字符'
+    return t('name_has_invalid_char')
   else if (!emailReg.test(value) && !usernameReg.test(value))
     return t('validate_msg_user_name')
   return ''
@@ -28,7 +28,7 @@ const {
   validate: valiPassword,
 } = useField<string>('password', (value) => {
   if (!value || value.length < 8)
-    return '最小字符长度为 8'
+    return t('min_len_char', { delta: 8 })
   // else if (!upperLowerReg.test(value))
   //   return t('password_uppercase_lowercase_letter')
   // else if (!lastOneNumberReg.test(value))
@@ -70,7 +70,7 @@ onMounted(() => {
 <template>
   <div class="app-login">
     <div class="app-login-input-box">
-      <BaseLabel :label="t('email_or_username')" need-focus must-small>
+      <BaseLabel :label="t('email_or_username')" must-small need-focus>
         <BaseInput
           ref="userNameRef" v-model="username"
           :msg="usernameErrorMsg" msg-after-touched

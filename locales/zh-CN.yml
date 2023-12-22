@@ -1584,3 +1584,9 @@ cookie_purposes: 进行功能与分析目的。
 accept: 接受
 start_game_now: 立即开始游戏
 policies: 政策
+min_len_char: 最小字符长度为 {delta}
+max_len_char: 最大字符长度为 {delta}
+name_has_invalid_char: 用户名含有无效的字符
+pls_select_name: 请选择显示名称
+must_verify_email_then: 您必须验证您的电邮地址才能进行{delta}
+open: 打开
