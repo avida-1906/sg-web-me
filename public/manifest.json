@@ -2,9 +2,9 @@
   "name": "Meibo",
   "icons": [
     {
-      "src": "https://d2utx4nptvgikt.cloudfront.net/banner/zh-CN/1702110424498.webp",
+      "src": "logo.png",
       "sizes": "192x192",
-      "type": "image/webp"
+      "type": "image/png"
     }
   ]
 }
