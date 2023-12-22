@@ -1,4 +1,5 @@
 import type { Menu } from '~/composables/useApiMenuData'
+import { EnumSportsOddsType } from '~/utils/enums'
 
 export enum EnumSportsPanelType {
   /** 三项投注 */
