@@ -13,7 +13,7 @@ const tab = ref('')
 const prefix = computed(() =>
   AllLanguages.value.filter(a => a.value === userLanguage.value)[0].prefix)
 const allPlatforms = computed(() =>
-  platformList.value.sort((a, b) => a.seq - b.seq).concat(providerList.value.sort((a, b) => a.seq - b.seq)))
+  platformList.value.sort((a, b) => b.seq - a.seq).concat(providerList.value.sort((a, b) => b.seq - a.seq)))
 const tabList = computed(() => [
   { label: t('slot'), value: '3' },
   { label: t('fishing'), value: 'by' },

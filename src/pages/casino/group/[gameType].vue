@@ -7,12 +7,15 @@ const { platformList } = storeToRefs(casinoStore)
 const route = useRoute()
 const title = computed(() => route.query.name)
 const { bool: loading } = useBoolean(false)
-usePageTitle({ prefix: title })
+const titles = reactive<any>({
+  3: '在线玩真人赌场游戏 - 真人荷官',
+})
 
 const currentType = ref(props.gameType)
 const sortType = ref(EnumCasinoSortType.hot)
 const pids = ref('')
 const cid = ref(route.query.cid ? route.query.cid?.toString() ?? '0' : '0')
+usePageTitle({ prefix: cid.value && titles[cid.value] ? titles[cid.value] : title })
 
 const isRec = computed(() => currentType.value === 'rec') // 推荐游戏
 const isCat = computed(() => currentType.value === 'category') // 类别

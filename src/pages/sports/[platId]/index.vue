@@ -5,7 +5,7 @@ defineOptions({
 const props = defineProps<{ platId: string }>()
 
 const { t } = useI18n()
-usePageTitle({ prefix: t('btc_sport_title'), suffix: t('sports_label') })
+usePageTitle({ prefix: '体育博彩 - 在线体育博彩', suffix: '在线博彩' })
 const { isMobile } = storeToRefs(useWindowStore())
 const { isLogin } = storeToRefs(useAppStore())
 const sportsStore = useSportsStore()

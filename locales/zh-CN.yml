@@ -940,8 +940,7 @@ user_account: 账号
 user_superior: 上级
 can_receive: 可领取
 receive_type: 领取类型
-receive_commission: 领取佣金
-commission_history: 佣金历史
+record: 记录
 window_minimize: 最小化
 empty_game: 暂无游戏
 copy_success: 成功复制
@@ -1601,5 +1600,7 @@ name_no_equal_pwd: 您的用户名和密码不能相同
 choose_another_name: 此用户名已被使用，请选择另一用户名
 email_exists: 电邮地址已存在
 email_code: 邮箱验证码
+bet_num: 注单量
+win_lose: 输赢
 
 
