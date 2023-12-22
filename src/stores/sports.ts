@@ -7,21 +7,6 @@ export enum EnumSportsPanelType {
   STANDARD = 'STANDARD',
 }
 
-export enum EnumSportsOddsType {
-  /** 小数式 */
-  DECIMAL = 'DECIMAL',
-  /** 分数式 */
-  FRACTION = 'FRACTION',
-  /** 美式 */
-  AMERICAN = 'AMERICAN',
-  /** 印尼格式 */
-  INDONESIA = 'INDONESIA',
-  /** 香港格式 */
-  HONGKONG = 'HONGKONG',
-  /** 马来格式 */
-  MALAYSIA = 'MALAYSIA',
-}
-
 /** 投注单数据格式 */
 interface IBetSlipData {
   // 测试
