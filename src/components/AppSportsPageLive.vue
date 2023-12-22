@@ -61,23 +61,9 @@ const { run, runAsync } = useRequest(ApiSportEventList,
     },
   },
 )
-/** 过滤无当前盘口的类型的赛事 */
-const listFiltered = computed(() => {
-  const origin: ISportDataGroupedByLeague = cloneDeep(list.value)
-  let arr: ISportDataGroupedByLeague = []
-
-  arr = origin.map((league) => {
-    const list = league.list.filter((event) => {
-      return event.ml.findIndex(market => market.bt === currentLiveBetType.value) > -1
-    })
-
-    return { cn: league.cn, ci: league.ci, list }
-  })
-  return arr
-})
 /** 判断当前展示的数据是否至少有一条可以展示 */
 const isHaveDataToShow = computed(() => {
-  return listFiltered.value.some(a => a.list.length > 0)
+  return list.value.some(a => a.list.length > 0)
 })
 
 /** 👷 分页、定时器、监听更新数据 start 👷 */
@@ -192,14 +178,13 @@ await application.allSettled([initData()])
       <template v-else>
         <template v-if="isHaveDataToShow">
           <AppSportsMarket
-            v-for="item in listFiltered" v-show="item.list.length > 0"
+            v-for="item in list"
             :key="item.ci + item.list.length"
             :is-standard="isStandard"
             :league-name="item.cn"
             :event-count="item.list.length"
             :event-list="item.list"
             :base-type="currentLiveBetType"
-            :auto-show="item.list.length > 0"
           />
           <AppSportsMarketSkeleton v-if="moreLoading" :num="10" />
           <BaseButton

@@ -12,7 +12,6 @@ const {
 const { startTimer, stopTimer }
 = useSportsDataUpdate(sportsStore.refreshSportsFavList)
 
-// const baseType = ref(sportsStore.getSportsBetTypeListBySi(currentFavNav.value)[0]?.value)
 const baseTypeOptions = computed(() =>
   sportsStore.getSportsBetTypeListBySi(currentFavNav.value),
 )

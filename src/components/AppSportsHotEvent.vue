@@ -4,7 +4,6 @@ import type { ISportDataGroupedByLeague } from '~/types'
 
 const {
   VITE_SPORT_EVENT_PAGE_SIZE, VITE_SPORT_EVENT_PAGE_SIZE_MAX,
-  VITE_SPORT_DEFAULT_MARKET_TYPE,
 } = getEnv()
 const { t } = useI18n()
 const {
@@ -13,7 +12,6 @@ const {
 } = useBoolean(false)
 
 let timer: any = null
-const baseType = ref(VITE_SPORT_DEFAULT_MARKET_TYPE)
 const scrollDom = ref()
 const page = ref(1)
 const pageSize = ref(+VITE_SPORT_EVENT_PAGE_SIZE)
@@ -40,38 +38,6 @@ const { runAsync, run } = useRequest(ApiSportEventList, {
   onAfter() {
     moreLoadingFalse()
   },
-})
-/** 过滤无当前盘口的类型的赛事 */
-const listFiltered = computed(() => {
-  const origin: ISportDataGroupedByLeague = cloneDeep(list.value)
-  let arr: ISportDataGroupedByLeague = []
-
-  if (baseType.value === EnumSportMarketType.HANDICAP) {
-    arr = origin.map((league) => {
-      const list = league.list.filter((event) => {
-        return event.ml.findIndex(market => market.bt === 1) > -1
-      })
-
-      return { cn: league.cn, ci: league.ci, list }
-    })
-  }
-  else if (baseType.value === EnumSportMarketType.TOTAL) {
-    arr = origin.map((league) => {
-      const list = league.list.filter((event) => {
-        return event.ml.findIndex(market => market.bt === 2) > -1
-      })
-      return { cn: league.cn, ci: league.ci, list }
-    })
-  }
-  if (baseType.value === EnumSportMarketType.WINNER) {
-    arr = origin.map((league) => {
-      const list = league.list.filter((event) => {
-        return event.ml.findIndex(market => market.bt === 3 || market.bt === 4) > -1
-      })
-      return { cn: league.cn, ci: league.ci, list }
-    })
-  }
-  return arr
 })
 /** 👷 分页、定时器、监听更新数据 start 👷 */
 function startTimer() {
@@ -133,13 +99,12 @@ await application.allSettled([runAsync(params.value)])
 
     <div class="market-wrapper">
       <AppSportsMarket
-        v-for="item in listFiltered" v-show="item.list.length > 0"
+        v-for="item in list"
         :key="item.ci + item.list.length" :league-name="item.cn"
         :event-count="item.list.length"
         :event-list="item.list"
         :base-type="3"
         is-standard
-        :auto-show="item.list.length > 0"
       />
       <AppSportsMarketSkeleton v-if="moreLoading" :num="10" />
       <BaseButton v-show="curTotal < total" size="none" type="text" @click="loadMore">

@@ -1,7 +1,7 @@
 <script setup lang='ts'>
 interface Props {
   isStandard: boolean
-  baseType: 'winner' | 'handicap' | 'total'
+  baseType: number
 }
 defineProps<Props>()
 
