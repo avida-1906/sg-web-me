@@ -515,8 +515,8 @@ onMounted(() => {
 }
 .bet-data-table {
   --tg-table-th-background: var(--tg-secondary-grey);
-  --tg-table-odd-background: var(--tg-primary-main);
-  --tg-table-even-background: var(--tg-secondary-grey);
+  --tg-table-odd-background: var(--tg-secondary-grey);
+  --tg-table-even-background: var(--tg-primary-main);
 }
 .vip-wrapper {
   padding: 0 16px;

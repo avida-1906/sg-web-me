@@ -162,7 +162,7 @@ onMounted(() => {
       </template>
     </VDropdown>
     <div v-if="showNetwork" class="wallet-box">
-      <span>网络</span>
+      <span>{{ t('network') }}</span>
       <BaseSelect
         v-model="currentNetwork"
         :options="curContractList"
