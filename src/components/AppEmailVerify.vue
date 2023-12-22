@@ -118,9 +118,9 @@ onMounted(() => {
       <div :class="{ 'verify-content': isDialog }">
         <template v-if="isDialog">
           <div class="content-title">
-            电邮地址
+            {{ t('email_address') }}
           </div>
-          <div>您必须验证您的电邮地址才能进行{{ tipText }}。</div>
+          <div>{{ t('must_verify_email_then', { delta: tipText }) }}。</div>
         </template>
         <BaseLabel :label="t('email_address')" must-small>
           <div v-if="emailVerified" class="email-erified-box cursor-pointer">
@@ -139,7 +139,7 @@ onMounted(() => {
         <div v-if="email?.includes('@gmail.com') && (emailVerified || emailDisabledBtn)">
           <BaseButton bg-style="primary" @click="goGmail">
             <div class="open-gmail">
-              打开 Gmail
+              {{ t('open') }} Gmail
               <BaseIcon name="uni-jump-page" />
             </div>
           </BaseButton>

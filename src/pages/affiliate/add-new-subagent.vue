@@ -8,11 +8,11 @@ const {
   resetField: resetName,
 } = useField<string>('username', (value) => {
   if (!value)
-    return '您的 username 必须含有至少 3 个字符'
+    return t('name_3_char')
   else if (value.length < 3)
-    return '您的 username 必须含有至少 3 个字符'
+    return t('name_3_char')
   else if (value.match('[^a-z0-9]'))
-    return '用户名含有无效的字符'
+    return t('name_has_invalid_char')
   else if (value.length > 14)
     return '您的 username 不得超过 14 个字符'
   else if (!usernameReg.test(value))

@@ -44,7 +44,7 @@ code_optional: 代码（可选的）
 read_and_agree: 我已阅读并同意
 terms_conditions: 条款与条件
 read_terms_conditions: 我已阅读并同意条款与条件
-agree_terms_conditions: 请完整阅读条款与条件，并勾选接受。
+agree_terms_conditions: 请完整阅读条款与条件，然后滚动至末尾将其接受。
 read_and_accept: 阅读并接受条款与条件
 or_use: 或者使用
 forgot_password: 忘记密码
@@ -1584,3 +1584,22 @@ cookie_purposes: 进行功能与分析目的。
 accept: 接受
 start_game_now: 立即开始游戏
 policies: 政策
+min_len_char: 最小字符长度为 {delta}
+max_len_char: 最大字符长度为 {delta}
+name_has_invalid_char: 用户名含有无效的字符
+pls_select_name: 请选择显示名称
+must_verify_email_then: 您必须验证您的电邮地址才能进行{delta}
+open: 打开
+additional_time: 加时
+no_support_email: 电子邮件域不受支持
+email_add_char: 请在您的电邮地址中加入 “{delta}” 符号
+email_no_equal_password: 您的电邮地址和密码不能相同
+pls_input_email: 请输入有效的电邮地址
+name_3_char: 您的 username 必须含有至少 3 个字符
+name_14_char: 您的 username 不得超过 14 个字符
+name_no_equal_pwd: 您的用户名和密码不能相同
+choose_another_name: 此用户名已被使用，请选择另一用户名
+email_exists: 电邮地址已存在
+email_code: 邮箱验证码
+
+

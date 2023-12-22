@@ -173,10 +173,10 @@ watch(route, (val) => {
                           </div>
                         </template>
                       </div>
-                      <!-- <div
+                      <div
                         v-if="isMobile && $route.path.includes('/vip/')"
                         class="line"
-                      /> -->
+                      />
                       <div
                         class="right"
                         :class="{ 'is-vip': $route.path.includes('/vip/') }"
@@ -222,7 +222,7 @@ watch(route, (val) => {
   display: flex;
   padding-bottom: var(--tg-spacing-8);
   &.is-vip {
-    // padding-bottom: 0;
+    padding-bottom: 0;
   }
   > div {
     flex: 1;

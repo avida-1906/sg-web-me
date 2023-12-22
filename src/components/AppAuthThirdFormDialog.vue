@@ -38,13 +38,13 @@ const {
   // setErrors: setUsernameErrors,
 } = useField<string>('username', (value) => {
   if (!value)
-    return '最小字符长度为 3'
+    return t('min_len_char', { delta: 3 })
   else if (value.length < 3)
-    return '最小字符长度为 3'
+    return t('min_len_char', { delta: 3 })
   else if (value.match('[^a-z0-9]'))
-    return '用户名含有无效的字符'
+    return t('name_has_invalid_char')
   else if (value.length > 14)
-    return '最大字符长度为 14'
+    return t('max_len_char', { delta: 14 })
   else if (!usernameReg.test(value))
     return t('validate_msg_user_name_tip')
   // 此用户名已被使用，请选择另一用户名。
@@ -123,7 +123,7 @@ onMounted(() => {
         />
       </BaseLabel>
       <!-- msg-after-touched  -->
-      <BaseLabel label="请选择显示名称" must-small>
+      <BaseLabel :label="t('pls_select_name')" must-small>
         <BaseInput
           ref="userNameRef" v-model="username"
           :msg="usernameErrorMsg"

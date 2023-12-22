@@ -13,7 +13,7 @@ const { t } = useI18n()
 function copyClick(username: string) {
   copy(username)
   openNotify({
-    title: '复制成功',
+    title: t('copied'),
     type: 'success',
     message: t('copy_success') + username,
   })
@@ -22,7 +22,7 @@ function copyClick(username: string) {
 
 <template>
   <div
-    class="app-report-user-name center cursor-pointer"
+    class="center app-report-user-name cursor-pointer"
     @click="copyClick(username)"
   >
     <AppVipIcon v-if="level" :level="level" />
