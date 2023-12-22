@@ -1,16 +1,10 @@
 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="16" height="16" fill="#C8C8C8"/>
-<g id="&#229;&#155;&#190;&#230;&#160;&#135;icon">
-<rect width="1958" height="1837" transform="translate(-1366 -1401)" fill="#EEEEEE"/>
-<g id="Frame" clip-path="url(#clip0_4_79333)">
-<path id="Vector" d="M8 16C12.4183 16 16 12.4183 16 8C16 3.58167 12.4183 0 8 0C3.58167 0 0 3.58167 0 8C0 12.4183 3.58167 16 8 16Z" fill="#F0F0F0"/>
-<path id="Vector_2" d="M7.99989 0C4.56023 0 1.62789 2.171 0.497559 5.21733H15.5024C14.3719 2.171 11.4396 0 7.99989 0Z" fill="#A2001D"/>
-<path id="Vector_3" d="M7.99989 16C11.4396 16 14.3719 13.829 15.5022 10.7827H0.497559C1.62789 13.829 4.56023 16 7.99989 16Z" fill="#0052B4"/>
+<mask id="mask0_8774_25910" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="16" height="16">
+<circle cx="8" cy="8" r="8" fill="#D9D9D9"/>
+</mask>
+<g mask="url(#mask0_8774_25910)">
+<path d="M22 0H-2V16H22V0Z" fill="#A51931"/>
+<path d="M22 2.66669H-2V13.3334H22V2.66669Z" fill="#F4F5F8"/>
+<path d="M22 5.33337H-2V10.6667H22V5.33337Z" fill="#2D2A4A"/>
 </g>
-</g>
-<defs>
-<clipPath id="clip0_4_79333">
-<rect width="16" height="16" fill="white"/>
-</clipPath>
-</defs>
 </svg>
