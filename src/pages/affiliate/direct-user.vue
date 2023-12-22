@@ -35,20 +35,17 @@ const columns: Column[] = [
     dataIndex: 'deposit_count',
     align: 'center',
     slot: 'deposit_count',
-    sort: true,
   },
   {
     title: t('last_login'),
     dataIndex: 'last_login_at',
     align: 'center',
-    sort: true,
     slot: 'last_login_at',
   },
   {
     title: t('online_status'),
     dataIndex: 'online',
     align: 'right',
-    sort: true,
     slot: 'online',
   },
 ]
@@ -71,8 +68,8 @@ useListSearch(params, runAsync, resetPage)
     <div class="table-filter">
       <BaseDatePicker
         v-model="date"
-        :init-start-date="startTime"
-        :init-end-date="endTime"
+        :min="startTime"
+        :max="endTime"
       />
       <div style="max-width: 195px;">
         <BaseInput v-model="searchValue" :placeholder="t('user_account')">

@@ -74,8 +74,8 @@ useListSearch(params, runAsync, resetPage)
     <div class="table-filter">
       <BaseDatePicker
         v-model="date"
-        :init-start-date="startTime"
-        :init-end-date="endTime"
+        :min="startTime"
+        :max="endTime"
       />
       <BaseSelect
         v-model.lazy="currency_id"
