@@ -53,6 +53,7 @@ withDefaults(defineProps<Props>(), {
   --tg-base-button-padding-x: var(--tg-spacing-button-padding-horizontal-xs);
   --tg-base-button-disabled-opacity:0.5;
   --tg-base-button-loading-opacity:0.5;
+  --tg-base-button-line-border-color: var(--tg-text-white);
 }
 </style>
 
@@ -149,7 +150,7 @@ button {
 }
 
 .line {
-  border: 1px solid var(--tg-text-white);
+  border: 1px solid var(--tg-base-button-line-border-color);
 
   &:active:not(:disabled) {
     background-color: var(--tg-secondary-main);

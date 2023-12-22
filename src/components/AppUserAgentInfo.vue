@@ -33,21 +33,21 @@ function drawDialog() {
             :class="{ 'is-mobile': isMobile }"
           >{{ userInfo?.username }}</span>
         </div>
-        <div><span>{{ $t('user_superior') }}ID：</span><span>直属会员</span></div>
+        <div class="up">
+          {{ $t('can_receive') }}：
+          <span class="money"><AppAmount amount="999999" currency-type="USDT" /></span>
+        </div>
       </div>
     </div>
     <div class="right">
       <!-- <span class="money">999,999.00</span> -->
-      <div class="up">
-        {{ $t('can_receive') }}：
-        <span class="money"><AppAmount amount="999999" currency-type="USDT" /></span>
-      </div>
+      <div><span>{{ $t('user_superior') }}ID：</span><span>直属会员</span></div>
       <div class="btns">
         <BaseButton bg-style="primary" size="none" round @click="drawDialog">
-          {{ $t('receive_commission') }}
+          {{ $t('wallet') }}
         </BaseButton>
         <BaseButton type="line" round size="none" @click="commissionRecord">
-          {{ $t('commission_history') }}
+          {{ $t('record') }}
         </BaseButton>
       </div>
     </div>
@@ -64,19 +64,20 @@ function drawDialog() {
   color: var(--tg-secondary-light);
   .left {
     display: flex;
-    align-items: stretch;
+    align-items: center;
     justify-content: flex-start;
-    gap: var(--tg-spacing-8);
+    gap: var(--tg-spacing-10);
     max-width: 50%;
     overflow: hidden;
     .agent-badge {
-      font-size: var(--tg-font-size-5xl);
+      font-size: 42px;
     }
     .info {
       flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      gap: 12px;
       line-height: var(--tg-spacing-20);
       overflow: hidden;
       white-space: nowrap;
@@ -102,15 +103,16 @@ function drawDialog() {
   .right {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
+    align-items: flex-end;
+    justify-content: space-around;
     color: var(--tg-text-white);
+    gap: 12px;
     button {
-      height: 24px;
-      min-width: 68px;
+      height: 23px;
+      min-width: 48px;
       box-sizing: border-box;
       font-size: var(--tg-font-size-xs);
-      padding: 0 var(--tg-spacing-6);
+      // padding: 0 var(--tg-spacing-6);
     }
     .up {
       display: flex;
@@ -123,7 +125,8 @@ function drawDialog() {
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      gap: var(--tg-spacing-4);
+      gap: var(--tg-spacing-8);
+      --tg-base-button-line-border-color: var(--tg-text-blue);
     }
   }
 }
