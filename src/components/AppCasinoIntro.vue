@@ -32,7 +32,7 @@ const onShowMore = function () {
       <h2>最佳在线赌场游戏 - 在 Meibo.com 玩最佳游戏</h2>
       <div class="p">
         面对如此丰富的赌场游戏，您会从哪里下手？从最出色的赌场游戏开始是一个不错的选择，此类游戏可以为您提供出色的图形设计和更加丰厚的赢利。现在就让我们为您带来
-        Meibo
+        <span class="white-txt">Meibo</span>
         赌场上最出色的赌场游戏吧。
       </div>
       <h2>什么是在线赌场游戏？</h2>
@@ -44,10 +44,10 @@ const onShowMore = function () {
       </div>
       <h2>什么是最出色的赌场游戏？</h2>
       <div class="p">
-        从桌面游戏到在线老虎机，您可以在这里找到最佳赌场游戏：桌面游戏
+        从桌面游戏到在线老虎机，您可以在这里找到最佳赌场游戏：<h3>桌面游戏</h3>
       </div>
       <div class="p">
-        桌面游戏
+        <span class="bold-txt">桌面游戏</span>
         是经典的赌场游戏，在 Meibo.com 上非常热门。坐上虚拟座位，玩转传奇赌场游戏，如
         二十一点
         、
@@ -73,7 +73,7 @@ const onShowMore = function () {
       </div>
       <h3>纸牌游戏</h3>
       <div class="p">
-        纸牌游戏
+        <span class="bold-txt">纸牌游戏</span>
         是在 Meibo 赌场的另一款最佳游戏。我们有多种可供选择的
         视频扑克游戏
         和真人
@@ -99,7 +99,7 @@ const onShowMore = function () {
       </div>
       <h3>骰子游戏</h3>
       <div class="p">
-        掷骰子
+        <span class="bold-txt">掷骰子</span>
         游戏允许您对掷骰子的结果进行投注，这款游戏在 Meibo.com 非常流行。您可以享受
         骰宝
         和
@@ -114,7 +114,7 @@ const onShowMore = function () {
       </div>
       <h3>老虎机游戏</h3>
       <div class="p">
-        老虎机
+        <span class="bold-txt">老虎机</span>
         是 Meibo 赌场中最常见的游戏，由许多主题、卷轴、赔付线、奖金回合和博彩玩法组成。您可以在 Meibo.com 上玩的最佳老虎机游戏之一是
         Scarab Spin
         ，这是一款埃及主题的 Meibo Original 游戏，提供诱人的 97.84% 玩家回报率。
@@ -129,64 +129,64 @@ const onShowMore = function () {
       </div>
       <h2>什么是最值得玩的赌场游戏？</h2>
       <div class="p">
-        Meibo Original
+        <span class="bold-txt">Meibo Original</span>
         游戏拥有出色的画面和超级简单的玩法，是所有在线赌场爱好者的理想选择。您现在可以在 Meibo.com 上玩到的最佳游戏如下：
       </div>
       <ul>
         <li>
-          Plinko
+          <span class="bold-txt">Plinko</span>
           ：Plinko 的灵感来自日本的机械游戏 Pachinko，是一款金字塔型的游戏，您可以将球投到游戏网格上，获得胜利和倍数。RTP 99%。
         </li>
         <li>
-          骰子
+          <span class="bold-txt">骰子</span>
           ：掷骰子是一款非常简单的游戏，您可以对有 100 面的骰子掷出的结果进行投注。RTP 99%。了解 Meibo 赌场的其他
           骰子游戏
           。
         </li>
         <li>
-          Limbo
+          <span class="bold-txt">Limbo</span>
           ：另一款 Meibo Originals 游戏 Limbo 是一款以掷骰子为基础的游戏，最高奖金可达投注额的 1,000,000 倍！RTP 99%。
         </li>
         <li>
-          Mine
+          <span class="bold-txt">Mine</span>
           s：受到经典扫雷游戏的启发，Mines 是一款加密博彩游戏，您必须在游戏中寻找宝石并避开炸弹！RTP 99%。了解 Meibo 赌场的其他
           Mines 游戏
           。
         </li>
         <li>
-          Crash
+          <span class="bold-txt">Crash</span>
           ：作为 Meibo.com 上最简单的游戏之一，Crash 需要您预测在崩溃（Crash）之前倍数会上升到多高！RTP 99%。如果想体验与众不同的游戏，请访问Evolution Gaming 的
           Cash or Crash Live
           。
         </li>
         <li>
-          二十一点
+          <span class="bold-txt">二十一点</span>
           ：Meibo Original 二十一点是一款只需简单介绍的游戏，它能让您以超低的庄家优势战胜庄家。RTP 99.53%。Meibo 赌场还会带来许多
           二十一点变体
           游戏。
         </li>
         <li>
-          Hilo
+          <span class="bold-txt">Hilo</span>
           ：Hilo 是一款比特币赌场游戏。游戏中您需要预测下一张牌与当前显示的牌值相比的大小。RTP 99%。
         </li>
         <li>
-          基诺
+          <span class="bold-txt">基诺</span>
           ：基诺是一种宾果式游戏，基于中式彩票游戏打造，您可以在等待开奖之前选择一系列数字，看看自己是否中奖。RTP 99%。
         </li>
         <li>
-          转盘
+          <span class="bold-txt">转盘</span>
           ：在这款独特的转盘游戏中，您可以从 15 种可定制的游戏模式中进行选择，调整投注金额、承担的风险和显示的倍数。RTP 99%。查看
           Money Wheel
           （来自 Play'n GO 的转盘游戏），体验转盘游戏的乐趣！
         </li>
         <li>
-          轮盘赌
+          <span class="bold-txt">轮盘赌</span>
           ：Meibo Original 轮盘赌是 Meibo.com 最受欢迎的游戏之一，游戏包含大量的内围和外围投注供您下注。RTP 97.30%。查看
           轮盘大厅
           ，了解 Meibo.com 提供的其他轮盘游戏。
         </li>
         <li>
-          Diamond
+          <span class="bold-txt">Diamond</span>
           s：在 Meibo 的专属游戏中放手一搏吧，这款游戏正在加密赌场行业掀起一场风暴！RTP 98.29%。
         </li>
       </ul>
@@ -277,6 +277,13 @@ const onShowMore = function () {
 </style>
 
 <style lang="scss" scoped>
+.white-txt {
+  font-weight: 600;
+  color: var(--tg-text-white);
+}
+.bold-txt {
+  font-weight: 600;
+}
 .app-introduction {
   margin-bottom: var(--tg-spacing-32);
   background: var(--tg-secondary-dark);
@@ -374,6 +381,9 @@ const onShowMore = function () {
   .p {
     margin-bottom: var(--tg-spacing-20);
     line-height: 24px;
+    h3 {
+      display: inline-block;
+    }
   }
 
   a {
