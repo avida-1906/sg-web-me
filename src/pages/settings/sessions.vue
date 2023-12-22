@@ -20,12 +20,6 @@ const popperShow: Ref<boolean[]> = ref([])
 const popperShow2: Ref<boolean[]> = ref([])
 const columns: Column[] = [
   {
-    title: t('login_time'),
-    dataIndex: 'lastUsed',
-    width: 150,
-    align: 'center',
-  },
-  {
     title: t('browser'),
     dataIndex: 'browser',
     width: 150,
@@ -42,6 +36,12 @@ const columns: Column[] = [
   {
     title: 'IP',
     dataIndex: 'addr',
+    width: 150,
+    align: 'center',
+  },
+  {
+    title: t('login_time'),
+    dataIndex: 'lastUsed',
     width: 150,
     align: 'center',
   },
