@@ -1,7 +1,8 @@
 export function useFixedTop(className: string) {
   const page = document.querySelector(className)
   let currentInput: EventTarget | null = null // 当前聚焦的输入框
-  const fixedEle = document.body
+  // const fixedEle = document.body
+  let scrollTop = 0 // 记录scrollTop
   const { bool: startMove, setBool: setStartMove } = useBoolean(false) // 记录是否发生了滑动手势
 
   function handleTouchmove() {
@@ -29,21 +30,24 @@ export function useFixedTop(className: string) {
       return triggerBlur()
 
     // 聚焦输入框引起的平移
-    fixedEle.style.top = `${window.pageYOffset}px`
+    if (scrollTop < 101)
+      document.documentElement.scrollTop = 1
+    // fixedEle.style.top = `${window.pageYOffset}px`
   }
 
   // 当页面里的输入框聚焦时（随后会出现软键盘）
   function handleFocusin(e: Event) {
     const el = e || window.event
     currentInput = el.target
-    const top = document.documentElement.scrollTop
-    if (window.visualViewport) {
-      document.documentElement.scrollTop = top
-        ? (top + (document.querySelector('.navigation')?.getBoundingClientRect().top ?? 0))
-        : 0
-    }
+    scrollTop = document.documentElement.scrollTop
+    setTimeout(() => {
+      if (!scrollTop)
+        document.documentElement.scrollTop = 1
+    }, 10)
+    // (document.querySelector('.navigation')?.getBoundingClientRect().top ?? 0)
+
     // 因为上一个聚焦的输入框因为失焦导致top置为0了，如果新聚焦的输入框不会触发webview平移，则沿用当时的位移就好了
-    fixedEle.style.top = `${window.pageYOffset}px`
+    // fixedEle.style.top = `${window.pageYOffset}px`
     // 添加滚动监听，为了软键盘出现 以及 从一个聚焦输入框聚焦到另外一个输入框时， 重新定位fixed元素（其实这里不用滚动事件监听变化也可以用setTimeout来更新定位）
     window.addEventListener('scroll', handleWdinowScroll)
     page?.addEventListener('touchmove', handleTouchmove)
@@ -61,7 +65,7 @@ export function useFixedTop(className: string) {
     window.removeEventListener('scroll', handleWdinowScroll)
     page?.removeEventListener('touchmove', handleTouchmove)
     page?.removeEventListener('scroll', handlePageScroll)
-    fixedEle.style.top = '0'
+    // fixedEle.style.top = '0'
     setStartMove(false)
   }
 
