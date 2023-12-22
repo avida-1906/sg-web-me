@@ -229,6 +229,7 @@ onBeforeUnmount(() => {
 
     .status {
       opacity: 0.4;
+      white-space: nowrap;
     }
   }
 
@@ -240,6 +241,7 @@ onBeforeUnmount(() => {
 
     .status {
       opacity: 0.2;
+      white-space: nowrap;
     }
   }
 }
