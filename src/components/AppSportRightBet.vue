@@ -31,7 +31,7 @@ const {
 const {
   totalUnsettled,
   fetch: getBetListData,
-} = useApiSportBetList(settle, false)
+} = useApiSportBetList(settle, false, true)
 
 const betCount = computed(() => {
   return sportStore.cart.count
