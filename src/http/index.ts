@@ -79,12 +79,14 @@ class HttpClient {
    * 例如：设置token
    */
   private requestInterceptorsList: IRequestInterceptors[] = [
-    // 设置token
+    // 设置token和dn
     (config) => {
       const appStore = useAppStore()
       const token = appStore.getToken()
       if (token)
         config.headers.t = token
+
+      config.headers.dn = application.getDeviceNumber()
 
       return config
     },
