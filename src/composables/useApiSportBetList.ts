@@ -6,10 +6,14 @@ import type { ISportsMyBetSlipItem } from '~/apis/types'
 export function useApiSportBetList(
   settle: Ref<number>,
   isFetch?: boolean,
+  noWatch?: boolean,
   afterCb?: () => void,
 ) {
   if (isFetch === void 0)
     isFetch = true
+
+  if (noWatch === void 0)
+    noWatch = false
 
   const { currentGlobalCurrency } = storeToRefs(useAppStore())
 
@@ -66,9 +70,11 @@ export function useApiSportBetList(
   if (isFetch)
     fetch()
 
-  watch([currentGlobalCurrency, settle], () => {
-    fetch()
-  })
+  if (!noWatch) {
+    watch([currentGlobalCurrency, settle], () => {
+      fetch()
+    })
+  }
 
   return {
     sportBetList,

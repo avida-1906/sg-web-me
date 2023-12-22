@@ -675,6 +675,7 @@ video {
             width: 100%;
             position: relative;
             --tg-base-select-style-padding-y: var(--tg-spacing-5);
+            --tg-secondaryAccordion-header-title-color: var(--tg-text-white);
 
             >*+* {
               margin-top: var(--tg-spacing-16);
