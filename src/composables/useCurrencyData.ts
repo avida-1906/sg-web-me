@@ -8,7 +8,7 @@ type TBankTreeType<T extends TTreeListType | string>
  * 币种 code
  */
 export type CurrencyCode =
-  '701' | '702' | '703' | '704' | '705' | '706' | '707' | '708' | '709'
+  '701' | '702' | '703' | '704' | '705' | '706' | '707' | '708' | '709' | '710' | '711' | '712' | '713' | '714' | '715' | '716' | '717' | '718' | '719' | '720' | '721' | '722' | '723' | '724' | '725' | '726' | '727' | '728' | '729' | '730' | '731' | '732'
 
 /**
  * 页面渲染的货币列表
@@ -78,6 +78,122 @@ export const currencyConfig: Record<EnumCurrencyKey, CurrencyValue> = {
   BNB: {
     prefix: 'BNB',
     cur: '709',
+    bankTree: '',
+  },
+  // 新增货币
+  EUR: {
+    prefix: '€',
+    cur: '710',
+    bankTree: '019006',
+  },
+  JPY: {
+    prefix: '¥',
+    cur: '711',
+    bankTree: '019007',
+  },
+  CAD: {
+    prefix: 'C$',
+    cur: '712',
+    bankTree: '019008',
+  },
+  ARS: {
+    prefix: '$',
+    cur: '713',
+    bankTree: '019009',
+  },
+  CLP: {
+    prefix: '$',
+    cur: '714',
+    bankTree: '019010',
+  },
+  PEN: {
+    prefix: 'S/',
+    cur: '715',
+    bankTree: '019011',
+  },
+  MXN: {
+    prefix: '$',
+    cur: '716',
+    bankTree: '019012',
+  },
+  LTC: {
+    prefix: 'Ł',
+    cur: '717',
+    bankTree: '',
+  },
+  DOGE: {
+    prefix: 'Ð',
+    cur: '718',
+    bankTree: '',
+  },
+  BCH: {
+    prefix: '₿',
+    cur: '719',
+    bankTree: '',
+  },
+  XRP: {
+    prefix: 'XRP',
+    cur: '720',
+    bankTree: '',
+  },
+  EOS: {
+    prefix: 'EOS',
+    cur: '721',
+    bankTree: '',
+  },
+  TRX: {
+    prefix: 'TRX',
+    cur: '722',
+    bankTree: '',
+  },
+  USDC: {
+    prefix: 'USDC',
+    cur: '723',
+    bankTree: '',
+  },
+  APE: {
+    prefix: 'APE',
+    cur: '724',
+    bankTree: '',
+  },
+  BUSD: {
+    prefix: 'BUSD',
+    cur: '725',
+    bankTree: '',
+  },
+  CRO: {
+    prefix: 'CRO',
+    cur: '726',
+    bankTree: '',
+  },
+  DAI: {
+    prefix: 'DAI',
+    cur: '727',
+    bankTree: '',
+  },
+  LINK: {
+    prefix: 'LINK',
+    cur: '728',
+    bankTree: '',
+  },
+  SAND: {
+    prefix: 'SAND',
+    cur: '729',
+    bankTree: '',
+  },
+  SHIB: {
+    prefix: 'SHIB',
+    cur: '730',
+    bankTree: '',
+  },
+  UNI: {
+    prefix: 'UNI',
+    cur: '731',
+    bankTree: '',
+  },
+  MATIC: {
+    prefix: 'MATIC',
+    cur: '732',
     bankTree: '',
   },
 }

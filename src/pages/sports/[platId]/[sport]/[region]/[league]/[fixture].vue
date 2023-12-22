@@ -126,7 +126,7 @@ watch(
                 <a class="link">条款与条件适用。</a>
               </div> -->
               <div class="groups">
-                <div>
+                <div v-if="handicapListData.length">
                   <BaseTab
                     v-model="currentTab"
                     :list="handicapListData"
@@ -263,11 +263,11 @@ watch(
                             </template>
                             <template
                               v-for="
-                                (valueItem, index) in item.pat6.list
+                                valueItem, index in item.pat6.list
                               "
                               :key="index"
                             >
-                              <div class="column">
+                              <div class="column" :data-index="index">
                                 <AppSportsBetButton
                                   v-if="valueItem"
                                   layout="horizontal"
