@@ -76,7 +76,8 @@ function to() {
       @click="router.back()"
     >
       <BaseIcon
-        style="font-size: 21px;"
+        style="font-size: var(--tg-font-size-base);
+        --tg-icon-color:var(--tg-text-white)"
         name="uni-back"
       />
     </BaseButton>
