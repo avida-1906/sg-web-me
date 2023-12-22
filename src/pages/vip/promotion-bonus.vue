@@ -67,7 +67,7 @@ onMounted(() => {
       <BaseTable :columns="columns" :data-source="vipConfigArray">
         <template #th-score>
           <span class="play-rules" @click="seeExpDialog">
-            <BaseIcon name="uni-ques-green" />
+            <BaseIcon name="uni-ques-blue" />
           </span>
         </template>
         <template #level="{ record }">
