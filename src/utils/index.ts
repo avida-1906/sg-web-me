@@ -208,6 +208,22 @@ class Application {
       'BTC',
       'ETH',
       'BNB',
+      'LTC',
+      'DOGE',
+      'BCH',
+      'XRP',
+      'EOS',
+      'TRX',
+      'USDC',
+      'APE',
+      'BUSD',
+      'CRO',
+      'DAI',
+      'LINK',
+      'SAND',
+      'SHIB',
+      'UNI',
+      'MATIC',
     ]
     return virtualList.includes(currency)
   }

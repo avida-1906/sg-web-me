@@ -38,59 +38,164 @@ export enum EnumLanguage {
  */
 export enum EnumCurrency {
   /**
- * BRL
- * @description 巴西雷亚尔
- * @see https://www.rbi.org.in/
- */
+   * @description BRL 巴西雷亚尔
+   */
   BRL,
+
   /**
- * CNY
- * @description 人名币
- * @see https://www.rbi.org.in/
- */
+   * @description CNY 人民币
+   */
   CNY,
+
   /**
- * INR
- * @description 印度卢比
- * @see https://www.rbi.org.in/
- */
+   * @description INR 印度卢比
+   */
   INR,
+
   /**
- * VND
- * @description 越南盾
- * @see https://www.rbi.org.in/
- */
+   * @description VND 越南盾
+   */
   VND,
+
   /**
-   * THB
-   * @description 泰铢
-   * @see https://www.rbi.org.in/
+   * @description THB 泰铢
    */
   THB,
+
   /**
- * USDT
- * @description 泰达币是一种基于稳定币的加密货币，其价值与美元等价。
- * @see https://tether.to/
- */
+   * @description USDT 泰达币
+   */
   USDT,
+
   /**
-   * BTC
-   * @description 比特币是一种点对点的数字货币，基于开源软件协议，不受中央机构管控。
-   * @see https://bitcoin.org/zh_CN/
+   * @description BTC 比特币
    */
   BTC,
+
   /**
-   * ETH
-   * @description 以太币
-   * @see https://www.rbi.org.in/
+   * @description ETH 以太坊
    */
   ETH,
+
   /**
-   * BNB
-   * @description 币安币
-   * @see https://www.rbi.org.in/
+   * @description BNB 币安币
    */
   BNB,
+
+  /**
+   * @description EUR 欧元
+   */
+  EUR,
+
+  /**
+   * @description JPY 日元
+   */
+  JPY,
+
+  /**
+   * @description CAD 加拿大元
+   */
+  CAD,
+
+  /**
+   * @description ARS 阿根廷比索
+   */
+  ARS,
+
+  /**
+   * @description CLP 智利比索
+   */
+  CLP,
+
+  /**
+   * @description PEN 秘鲁索尔
+   */
+  PEN,
+
+  /**
+   * @description MXN 墨西哥比索
+   */
+  MXN,
+
+  /**
+   * @description LTC 莱特币
+   */
+  LTC,
+
+  /**
+   * @description DOGE 狗狗币
+   */
+  DOGE,
+
+  /**
+   * @description BCH 比特币现金
+   */
+  BCH,
+
+  /**
+   * @description XRP 瑞波币
+   */
+  XRP,
+
+  /**
+   * @description EOS 柚子币
+   */
+  EOS,
+
+  /**
+   * @description TRX 波场币
+   */
+  TRX,
+
+  /**
+   * @description USDC 美元稳定币
+   */
+  USDC,
+
+  /**
+   * @description APE 猿猴币
+   */
+  APE,
+
+  /**
+   * @description BUSD 币安美元
+   */
+  BUSD,
+
+  /**
+   * @description CRO 加密.com币
+   */
+  CRO,
+
+  /**
+   * @description DAI 戴稳定币
+   */
+  DAI,
+
+  /**
+   * @description LINK 链接币
+   */
+  LINK,
+
+  /**
+   * @description SAND 沙子币
+   */
+  SAND,
+
+  /**
+   * @description SHIB 柴犬币
+   */
+  SHIB,
+
+  /**
+   * @description UNI 联合币
+   */
+  UNI,
+
+  /**
+   * @description MATIC 多边形币
+   */
+  MATIC,
 }
 
 /**
@@ -301,4 +406,29 @@ export enum CasinoGameType {
   'casino' = 1,
   /** 电子 */
   'slot' = 3,
+}
+
+/**
+ * 体育赔率展示方式
+ */
+export enum EnumSportsOddsType {
+  /** 小数式 */
+  DECIMAL = 'DECIMAL',
+  /** 分数式 */
+  FRACTION = 'FRACTION',
+  /** 美式 */
+  AMERICAN = 'AMERICAN',
+  /** 印尼格式 */
+  INDONESIA = 'INDONESIA',
+  /** 香港格式 */
+  HONGKONG = 'HONGKONG',
+  /** 马来格式 */
+  MALAYSIA = 'MALAYSIA',
+}
+
+/**
+ * 体育场馆
+ */
+export enum EnumSportVenue {
+  IM = 401,
 }
