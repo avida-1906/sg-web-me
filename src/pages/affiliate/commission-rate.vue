@@ -39,7 +39,7 @@ const list = computed(() => {
     const { model_ids, levels } = cur
     const modelIds = model_ids.split(',')
 
-    if (modelIds.includes(currentSelected))
+    if (modelIds.includes(currentSelected) && Array.isArray(levels))
       acc.push(...levels)
 
     return acc
