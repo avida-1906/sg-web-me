@@ -1,14 +1,13 @@
 <script lang="ts" setup>
 import type { ISportEventList } from '~/apis/types'
 import type { ISportDataGroupedByLeague } from '~/types'
-import { EnumSportMarketType } from '~/utils/enums'
 
 defineProps<{ onPage?: boolean; onLobby?: boolean }>()
 
 const { t } = useI18n()
 const router = useRouter()
 const sportsStore = useSportsStore()
-const { sportLiveNavs, currentLiveNav } = storeToRefs(sportsStore)
+const { sportLiveNavs, currentLiveNav, currentLiveBetType } = storeToRefs(sportsStore)
 const { bool: isStandard } = useBoolean(true)
 const {
   bool: switchLoading, setTrue: switchLoadingTrue,
@@ -20,7 +19,7 @@ const {
 } = useBoolean(false)
 const {
   VITE_SPORT_EVENT_PAGE_SIZE,
-  VITE_SPORT_EVENT_PAGE_SIZE_MAX, VITE_SPORT_DEFAULT_MARKET_TYPE,
+  VITE_SPORT_EVENT_PAGE_SIZE_MAX,
 } = getEnv()
 /** 定时更新count */
 const {
@@ -30,12 +29,15 @@ const {
 
 let timer: any = null
 const marketNum = ref(1)
-const baseType = ref(VITE_SPORT_DEFAULT_MARKET_TYPE)
 const page = ref(1)
 const pageSize = ref(+VITE_SPORT_EVENT_PAGE_SIZE)
 const total = ref(0)
 const curTotal = ref(0)
 const list = ref<ISportDataGroupedByLeague>([])
+
+const baseTypeOptions = computed(() =>
+  sportsStore.getSportsBetTypeListBySi(currentLiveNav.value),
+)
 const params = computed(() => {
   return { si: currentLiveNav.value, m: 3, page: page.value, page_size: pageSize.value }
 })
@@ -64,31 +66,13 @@ const listFiltered = computed(() => {
   const origin: ISportDataGroupedByLeague = cloneDeep(list.value)
   let arr: ISportDataGroupedByLeague = []
 
-  if (baseType.value === EnumSportMarketType.HANDICAP) {
-    arr = origin.map((league) => {
-      const list = league.list.filter((event) => {
-        return event.ml.findIndex(market => market.bt === 1) > -1
-      })
+  arr = origin.map((league) => {
+    const list = league.list.filter((event) => {
+      return event.ml.findIndex(market => market.bt === currentLiveBetType.value) > -1
+    })
 
-      return { cn: league.cn, ci: league.ci, list }
-    })
-  }
-  else if (baseType.value === EnumSportMarketType.TOTAL) {
-    arr = origin.map((league) => {
-      const list = league.list.filter((event) => {
-        return event.ml.findIndex(market => market.bt === 2) > -1
-      })
-      return { cn: league.cn, ci: league.ci, list }
-    })
-  }
-  if (baseType.value === EnumSportMarketType.WINNER) {
-    arr = origin.map((league) => {
-      const list = league.list.filter((event) => {
-        return event.ml.findIndex(market => market.bt === 3 || market.bt === 4) > -1
-      })
-      return { cn: league.cn, ci: league.ci, list }
-    })
-  }
+    return { cn: league.cn, ci: league.ci, list }
+  })
   return arr
 })
 /** 判断当前展示的数据是否至少有一条可以展示 */
@@ -167,7 +151,8 @@ function initData() {
 
 /** 切换球种 */
 watch(currentLiveNav, () => {
-  baseType.value = VITE_SPORT_DEFAULT_MARKET_TYPE
+  // eslint-disable-next-line max-len
+  currentLiveBetType.value = sportsStore.getSportsBetTypeListBySi(currentLiveNav.value)[0].value
   switchLoadingTrue()
   reset()
   getData()
@@ -195,7 +180,8 @@ await application.allSettled([initData()])
         <h6>{{ t('sports_tab_live_events') }}</h6>
       </div>
       <AppSportsMarketTypeSelect
-        v-model="baseType" :is-standard="isStandard"
+        v-model="currentLiveBetType" :is-standard="isStandard"
+        :base-type-options="baseTypeOptions"
       />
     </div>
     <AppSportsTab
@@ -212,7 +198,7 @@ await application.allSettled([initData()])
             :league-name="item.cn"
             :event-count="item.list.length"
             :event-list="item.list"
-            :base-type="baseType"
+            :base-type="currentLiveBetType"
             :auto-show="item.list.length > 0"
           />
           <AppSportsMarketSkeleton v-if="moreLoading" :num="10" />

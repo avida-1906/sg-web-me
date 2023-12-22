@@ -2,7 +2,7 @@
   "name": "Meibo",
   "icons": [
     {
-      "src": "ic_launcher.png",
+      "src": "logo.png",
       "sizes": "192x192",
       "type": "image/png"
     }

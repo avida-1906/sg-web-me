@@ -1,9 +1,9 @@
 <script setup lang='ts'>
-type BaseType = ImportMetaEnv['VITE_SPORT_DEFAULT_MARKET_TYPE']
 interface Props {
-  modelValue: BaseType // 是否标准盘
+  modelValue: number // 是否标准盘
   disabled?: boolean
   isStandard: boolean
+  baseTypeOptions: ISelectOptionNumber[]
 }
 const props = defineProps<Props>()
 const emit = defineEmits(['update:modelValue', 'marketTypeChange'])
@@ -16,11 +16,6 @@ const { t } = useI18n()
 // )
 // 标准盘选项
 const baseType = ref(props.modelValue)
-const baseTypeOptions = [
-  { label: t('sports_winner_market'), value: EnumSportMarketType.WINNER },
-  { label: t('sports_total_market'), value: EnumSportMarketType.TOTAL },
-  { label: t('sports_handicap_market'), value: EnumSportMarketType.HANDICAP },
-]
 // 三项投注选项
 const threeType = ref('home')
 const threeOptions = [
@@ -30,7 +25,7 @@ const threeOptions = [
 // function toggleMarket() {
 //   emit('marketTypeChange', !props.isStandard)
 // }
-function onBaseTypeChange(v: BaseType) {
+function onBaseTypeChange(v: number) {
   emit('update:modelValue', v)
 }
 
@@ -55,6 +50,7 @@ watch(() => props.modelValue, (a) => {
     <BaseSelect
       v-if="isStandard"
       v-model="baseType"
+      :disabled="disabled"
       :options="baseTypeOptions"
       popper
       style="
