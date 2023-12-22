@@ -120,12 +120,15 @@ declare global {
   const ApiSportPlaceBet: typeof import('./apis/sport')['ApiSportPlaceBet']
   const ApiSportPlaceBetInfo: typeof import('./apis/sport')['ApiSportPlaceBetInfo']
   const ApiSportSidebar: typeof import('./apis/sport')['ApiSportSidebar']
+  const ApiSportsBetType: typeof import('./apis/sport')['ApiSportsBetType']
+  const ApiSportsEventBetType: typeof import('./apis/sport')['ApiSportsEventBetType']
   const ApiSportsEventHot: typeof import('./apis/sport')['ApiSportsEventHot']
   const ApiWalletBankcardList: typeof import('./apis/index')['ApiWalletBankcardList']
   const Big: typeof import('big.js')['Big']
   const CASINO_LOBBY_RESET: typeof import('./utils/event-bus')['CASINO_LOBBY_RESET']
   const CHAT_MESSAGE_BUS: typeof import('./utils/event-bus')['CHAT_MESSAGE_BUS']
   const CasinoGameType: typeof import('./utils/enums')['CasinoGameType']
+  const ConstSportMarketType: typeof import('./utils/sports')['ConstSportMarketType']
   const EffectScope: typeof import('vue')['EffectScope']
   const EnumCasinoSortType: typeof import('./utils/enums')['EnumCasinoSortType']
   const EnumCurrency: typeof import('./utils/enums')['EnumCurrency']
@@ -177,6 +180,7 @@ declare global {
   const STORAGE_TOKEN_KEY: typeof import('./utils/storage')['STORAGE_TOKEN_KEY']
   const Session: typeof import('./utils/storage')['Session']
   const SocketClient: typeof import('./utils/mqtt')['SocketClient']
+  const SportMarketType: typeof import('./utils/sports')['SportMarketType']
   const SportsCart: typeof import('./utils/sports')['SportsCart']
   const SportsNotify: typeof import('./utils/sports')['SportsNotify']
   const SportsOdds: typeof import('./utils/sports')['SportsOdds']
@@ -769,6 +773,7 @@ declare module 'vue' {
     readonly ApiSportPlaceBet: UnwrapRef<typeof import('./apis/sport')['ApiSportPlaceBet']>
     readonly ApiSportPlaceBetInfo: UnwrapRef<typeof import('./apis/sport')['ApiSportPlaceBetInfo']>
     readonly ApiSportSidebar: UnwrapRef<typeof import('./apis/sport')['ApiSportSidebar']>
+    readonly ApiSportsBetType: UnwrapRef<typeof import('./apis/sport')['ApiSportsBetType']>
     readonly ApiSportsEventHot: UnwrapRef<typeof import('./apis/sport')['ApiSportsEventHot']>
     readonly ApiWalletBankcardList: UnwrapRef<typeof import('./apis/index')['ApiWalletBankcardList']>
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
@@ -1411,6 +1416,7 @@ declare module '@vue/runtime-core' {
     readonly ApiSportPlaceBet: UnwrapRef<typeof import('./apis/sport')['ApiSportPlaceBet']>
     readonly ApiSportPlaceBetInfo: UnwrapRef<typeof import('./apis/sport')['ApiSportPlaceBetInfo']>
     readonly ApiSportSidebar: UnwrapRef<typeof import('./apis/sport')['ApiSportSidebar']>
+    readonly ApiSportsBetType: UnwrapRef<typeof import('./apis/sport')['ApiSportsBetType']>
     readonly ApiSportsEventHot: UnwrapRef<typeof import('./apis/sport')['ApiSportsEventHot']>
     readonly ApiWalletBankcardList: UnwrapRef<typeof import('./apis/index')['ApiWalletBankcardList']>
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>

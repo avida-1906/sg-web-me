@@ -366,3 +366,19 @@ export function ApiSportsEventHot(params: {
     ed: number
   }>>(`/sport/${getSportsPlatId()}/event/hot`, { params })
 }
+
+/**
+ * 列表盘口下拉选单
+ *
+ */
+export function ApiSportsBetType() {
+  return httpClient.get<{
+    d: {
+      si: number
+      btl: {
+        bt: number
+        btn: string
+      }[]
+    }[]
+  }>(`/sport/${getSportsPlatId()}/bettype/filter`)
+}
