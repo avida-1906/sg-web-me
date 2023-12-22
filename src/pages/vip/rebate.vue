@@ -12,7 +12,8 @@ const tab = ref('')
 
 const prefix = computed(() =>
   AllLanguages.value.filter(a => a.value === userLanguage.value)[0].prefix)
-const allPlatforms = computed(() => platformList.value.concat(providerList.value))
+const allPlatforms = computed(() =>
+  platformList.value.sort((a, b) => b.seq - a.seq).concat(providerList.value.sort((a, b) => b.seq - a.seq)))
 const tabList = computed(() => [
   { label: t('slot'), value: '3' },
   { label: t('fishing'), value: 'by' },
@@ -99,8 +100,8 @@ watch(tabList, (val) => {
   flex-direction: column;
   gap: var(--tg-spacing-14);
   --tg-table-th-background: var(--tg-secondary-grey);
-  --tg-table-even-background: var(--tg-secondary-grey);
-  --tg-table-odd-background: var(--tg-primary-main);
+  --tg-table-even-background: var(--tg-primary-main);
+  --tg-table-odd-background: var(--tg-secondary-grey);
   --tg-table-thtd-radius: 0;
   --tg-table-font-size: 12px;
   --tg-app-amount-font-size: 12px;

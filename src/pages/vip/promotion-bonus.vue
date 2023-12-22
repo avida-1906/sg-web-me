@@ -67,7 +67,7 @@ onMounted(() => {
       <BaseTable :columns="columns" :data-source="vipConfigArray">
         <template #th-score>
           <span class="play-rules" @click="seeExpDialog">
-            <BaseIcon name="uni-ques-green" />
+            <BaseIcon name="uni-ques-blue" />
           </span>
         </template>
         <template #level="{ record }">
@@ -228,8 +228,8 @@ onMounted(() => {
   flex-direction: column;
   gap: var(--tg-spacing-14);
   --tg-table-th-background: var(--tg-secondary-grey);
-  --tg-table-even-background: var(--tg-secondary-grey);
-  --tg-table-odd-background: var(--tg-primary-main);
+  --tg-table-even-background: var(--tg-primary-main);
+  --tg-table-odd-background: var(--tg-secondary-grey);
   --tg-table-thtd-radius: 0;
   --tg-table-font-size: 12px;
   --tg-app-amount-font-size: 12px;

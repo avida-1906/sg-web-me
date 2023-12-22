@@ -35,20 +35,17 @@ const columns: Column[] = [
     dataIndex: 'deposit_count',
     align: 'center',
     slot: 'deposit_count',
-    sort: true,
   },
   {
     title: t('last_login'),
     dataIndex: 'last_login_at',
     align: 'center',
-    sort: true,
     slot: 'last_login_at',
   },
   {
     title: t('online_status'),
     dataIndex: 'online',
     align: 'right',
-    sort: true,
     slot: 'online',
   },
 ]
@@ -71,8 +68,8 @@ useListSearch(params, runAsync, resetPage)
     <div class="table-filter">
       <BaseDatePicker
         v-model="date"
-        :init-start-date="startTime"
-        :init-end-date="endTime"
+        :min="startTime"
+        :max="endTime"
       />
       <div style="max-width: 195px;">
         <BaseInput v-model="searchValue" :placeholder="t('user_account')">
@@ -146,14 +143,12 @@ useListSearch(params, runAsync, resetPage)
   --tg-table-th-padding: var(--tg-spacing-21);
   --tg-table-td-padding: var(--tg-spacing-21);
   --tg-table-font-size: var(--tg-font-size-xs);
-  --tg-table-even-background: var(--tg-primary-main);
   --tg-table-th-color: var(--tg-text-white);
   --tg-table-line-height:1;
   --tg-table-th-font-weight: var(--tg-font-weight-normal);
   --tg-base-select-style-color: var(--tg-text-lightgrey);
   --tg-base-select-style-padding-y: var(--tg-spacing-8);
   --tg-base-select-style-padding-right: var(--tg-spacing-28);
-  --tg-table-th-background: var(--tg-primary-main);
 }
 
 .hint {

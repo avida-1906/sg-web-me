@@ -24,7 +24,7 @@ const {
   validate: valiChecked,
 } = useField<string>('checkbox', () => {
   if (!checkboxValue.value)
-    return '请完整阅读条款与条件，然后滚动至末尾将其接受。'
+    return t('agree_terms_conditions')
   return ''
 })
 

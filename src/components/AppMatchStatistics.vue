@@ -200,7 +200,7 @@ function mapHeadArea(
       </div>
     </div>
     <div v-if="data.overtime" class="overtime">
-      加时 ({{ data.overtime.awayTeam }}-{{ data.overtime.homeTeam }})
+      {{ $t('additional_time') }} ({{ data.overtime.awayTeam }}-{{ data.overtime.homeTeam }})
     </div>
   </div>
 </template>

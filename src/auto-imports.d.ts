@@ -138,7 +138,8 @@ declare global {
   const EnumSportEndDomID: typeof import('./utils/enums')['EnumSportEndDomID']
   const EnumSportMarketType: typeof import('./utils/enums')['EnumSportMarketType']
   const EnumSportType: typeof import('./utils/enums')['EnumSportType']
-  const EnumSportsOddsType: typeof import('./stores/sports')['EnumSportsOddsType']
+  const EnumSportVenue: typeof import('./utils/enums')['EnumSportVenue']
+  const EnumSportsOddsType: typeof import('./utils/enums')['EnumSportsOddsType']
   const EnumSportsPanelType: typeof import('./stores/sports')['EnumSportsPanelType']
   const EnumsBetSlipBetSlipTabStatus: typeof import('./utils/enums')['EnumsBetSlipBetSlipTabStatus']
   const EnumsBetSlipHeadStatus: typeof import('./utils/enums')['EnumsBetSlipHeadStatus']
@@ -383,6 +384,7 @@ declare global {
   const tryOnMounted: typeof import('@vueuse/core')['tryOnMounted']
   const tryOnScopeDispose: typeof import('@vueuse/core')['tryOnScopeDispose']
   const tryOnUnmounted: typeof import('@vueuse/core')['tryOnUnmounted']
+  const uniqBy: typeof import('lodash-es')['uniqBy']
   const uniqWith: typeof import('lodash-es')['uniqWith']
   const unref: typeof import('vue')['unref']
   const unrefElement: typeof import('@vueuse/core')['unrefElement']
@@ -397,6 +399,7 @@ declare global {
   const useApiSendMsg: typeof import('./composables/useApiSendMsg')['useApiSendMsg']
   const useApiSportBetList: typeof import('./composables/useApiSportBetList')['useApiSportBetList']
   const useApiSportDetails: typeof import('./composables/useApiSportsDetails')['useApiSportDetails']
+  const useApiSportsVenueList: typeof import('./composables/useApiSportsVenueList')['useApiSportsVenueList']
   const useAppStore: typeof import('./stores/app')['useAppStore']
   const useArrayDifference: typeof import('@vueuse/core')['useArrayDifference']
   const useArrayEvery: typeof import('@vueuse/core')['useArrayEvery']
@@ -789,7 +792,8 @@ declare module 'vue' {
     readonly EnumSportEndDomID: UnwrapRef<typeof import('./utils/enums')['EnumSportEndDomID']>
     readonly EnumSportMarketType: UnwrapRef<typeof import('./utils/enums')['EnumSportMarketType']>
     readonly EnumSportType: UnwrapRef<typeof import('./utils/enums')['EnumSportType']>
-    readonly EnumSportsOddsType: UnwrapRef<typeof import('./stores/sports')['EnumSportsOddsType']>
+    readonly EnumSportVenue: UnwrapRef<typeof import('./utils/enums')['EnumSportVenue']>
+    readonly EnumSportsOddsType: UnwrapRef<typeof import('./utils/enums')['EnumSportsOddsType']>
     readonly EnumSportsPanelType: UnwrapRef<typeof import('./stores/sports')['EnumSportsPanelType']>
     readonly EnumsBetSlipBetSlipTabStatus: UnwrapRef<typeof import('./utils/enums')['EnumsBetSlipBetSlipTabStatus']>
     readonly EnumsBetSlipHeadStatus: UnwrapRef<typeof import('./utils/enums')['EnumsBetSlipHeadStatus']>
@@ -1032,6 +1036,7 @@ declare module 'vue' {
     readonly tryOnMounted: UnwrapRef<typeof import('@vueuse/core')['tryOnMounted']>
     readonly tryOnScopeDispose: UnwrapRef<typeof import('@vueuse/core')['tryOnScopeDispose']>
     readonly tryOnUnmounted: UnwrapRef<typeof import('@vueuse/core')['tryOnUnmounted']>
+    readonly uniqBy: UnwrapRef<typeof import('lodash-es')['uniqBy']>
     readonly uniqWith: UnwrapRef<typeof import('lodash-es')['uniqWith']>
     readonly unref: UnwrapRef<typeof import('vue')['unref']>
     readonly unrefElement: UnwrapRef<typeof import('@vueuse/core')['unrefElement']>
@@ -1432,7 +1437,8 @@ declare module '@vue/runtime-core' {
     readonly EnumSportEndDomID: UnwrapRef<typeof import('./utils/enums')['EnumSportEndDomID']>
     readonly EnumSportMarketType: UnwrapRef<typeof import('./utils/enums')['EnumSportMarketType']>
     readonly EnumSportType: UnwrapRef<typeof import('./utils/enums')['EnumSportType']>
-    readonly EnumSportsOddsType: UnwrapRef<typeof import('./stores/sports')['EnumSportsOddsType']>
+    readonly EnumSportVenue: UnwrapRef<typeof import('./utils/enums')['EnumSportVenue']>
+    readonly EnumSportsOddsType: UnwrapRef<typeof import('./utils/enums')['EnumSportsOddsType']>
     readonly EnumSportsPanelType: UnwrapRef<typeof import('./stores/sports')['EnumSportsPanelType']>
     readonly EnumsBetSlipBetSlipTabStatus: UnwrapRef<typeof import('./utils/enums')['EnumsBetSlipBetSlipTabStatus']>
     readonly EnumsBetSlipHeadStatus: UnwrapRef<typeof import('./utils/enums')['EnumsBetSlipHeadStatus']>
@@ -1675,6 +1681,7 @@ declare module '@vue/runtime-core' {
     readonly tryOnMounted: UnwrapRef<typeof import('@vueuse/core')['tryOnMounted']>
     readonly tryOnScopeDispose: UnwrapRef<typeof import('@vueuse/core')['tryOnScopeDispose']>
     readonly tryOnUnmounted: UnwrapRef<typeof import('@vueuse/core')['tryOnUnmounted']>
+    readonly uniqBy: UnwrapRef<typeof import('lodash-es')['uniqBy']>
     readonly uniqWith: UnwrapRef<typeof import('lodash-es')['uniqWith']>
     readonly unref: UnwrapRef<typeof import('vue')['unref']>
     readonly unrefElement: UnwrapRef<typeof import('@vueuse/core')['unrefElement']>

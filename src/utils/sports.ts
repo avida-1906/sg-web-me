@@ -1,4 +1,3 @@
-import { uniqBy } from 'lodash'
 import type { SocketClient } from './mqtt'
 import type {
   EnumCurrencyKey,

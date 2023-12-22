@@ -23,14 +23,15 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   vipProgressData: () => {
     return {
-      percent: 40,
-      currentLevel: 1,
+      percent: 0,
+      currentLevel: 0,
     }
   },
 })
 // const emit = defineEmits(['update:modelValue'])
 
 const { t } = useI18n()
+const router = useRouter()
 
 const {
   isLessThanSm,
@@ -46,6 +47,32 @@ const tabList = [
   { label: t('competition'), value: '3' },
   { label: t('promo_lottery_activity'), value: '4' },
 ]
+
+const betColumns = ref<IColumns[]>([
+  {
+    title: t('currency_type'),
+    dataIndex: 'currency',
+    slot: 'currency',
+    align: 'center',
+  },
+  {
+    title: t('bet_num'),
+    dataIndex: 'betCount',
+    align: 'center',
+  },
+  {
+    title: t('effective_bet'),
+    dataIndex: 'effectBet',
+    align: 'center',
+  },
+  {
+    title: t('win_lose'),
+    dataIndex: 'winLose',
+    slot: 'winLose',
+    align: 'center',
+  },
+])
+
 // 数据统计表 head
 const statisticsColumns = ref<IColumns[]>([
   {
@@ -77,6 +104,7 @@ const statisticsColumns = ref<IColumns[]>([
     align: 'right',
   },
 ])
+const betData: any = ref([])
 const statisticsTableData: any = ref([])
 const trophyTableData: any = ref([])
 const sweepstakesTableData: any = ref([])
@@ -182,6 +210,10 @@ const onNext = function () {
   paginationData.value.page++
 }
 
+function goVip() {
+  router.push('/vip/promotion-bonus')
+}
+
 onMounted(() => {
   setTimeout(() => {
     statisticsTableData.value = [
@@ -269,6 +301,38 @@ onMounted(() => {
       },
     ]
   }, 3000)
+  setTimeout(() => {
+    betData.value = [
+      {
+        currency: 'BTC',
+        date: '2023/7/14',
+        betCount: 722,
+        effectBet: 102,
+        winLose: '18999.89',
+      },
+      {
+        currency: 'BRL',
+        date: '2023/7/14',
+        betCount: 222,
+        effectBet: 112,
+        winLose: '28999.89',
+      },
+      {
+        currency: 'CNY',
+        date: '2023/7/14',
+        betCount: 252,
+        effectBet: 121,
+        winLose: '38999.89',
+      },
+      {
+        currency: 'USDT',
+        date: '2023/7/14',
+        betCount: 122,
+        effectBet: 172,
+        winLose: '58999.89',
+      },
+    ]
+  }, 3000)
 })
 </script>
 
@@ -276,21 +340,48 @@ onMounted(() => {
   <div class="app-statistics-dialog">
     <div class="statistics-content">
       <template v-if="isLogin">
-        <AppVipProgress :vip-progress-data="props.vipProgressData">
-          <template #title>
-            <p class="s-user-name">
-              {{ userName }}
-            </p>
-            <div class="s-join-date">
-              <span>{{ t('in_date') }}：</span>
-              <span>2023年9月19日</span>
+        <div class="vip-wrapper">
+          <AppVipProgress :vip-progress-data="props.vipProgressData">
+            <template #title>
+              <p class="s-user-name">
+                {{ userName }}
+              </p>
+              <div class="s-join-date">
+                <span>{{ t('in_date') }}：</span>
+                <span>2023年9月19日</span>
+              </div>
+            </template>
+            <div class="go-vip" @click="goVip">
+              <span>{{ t('user_vip_pro') }}</span><BaseIcon name="uni-arrowright-line" />
             </div>
-          </template>
-        </AppVipProgress>
+          </AppVipProgress>
+        </div>
         <div class="s-tab">
-          <BaseTab v-model="tab" :list="tabList" :full="true" />
+          <div class="scroll-x bet-data-table">
+            <BaseTable
+              :columns="betColumns"
+              :data-source="betData"
+              :loading="loading"
+            >
+              <template #currency="{ record }">
+                <div class="t-bonus">
+                  <BaseIcon :name="`coin-${record.currency.toLowerCase()}`" />
+                </div>
+              </template>
+              <template #winLose="{ record }">
+                <div class="flex-center">
+                  <AppAmount :amount="record.winLose" :currency-type="record.currency" />
+                </div>
+              </template>
+            </BaseTable>
+          </div>
+          <AppStack
+            :pagination-data="paginationData"
+            @previous="onPrevious" @next="onNext"
+          />
+          <!-- <BaseTab v-model="tab" :list="tabList" :full="true" /> -->
           <!-- 数据统计 -->
-          <div v-if="tab === '1'" class="statistics-wrap">
+          <!-- <div v-if="tab === '1'" class="statistics-wrap">
             <BaseTable
               :columns="statisticsColumns"
               :data-source="statisticsTableData"
@@ -307,9 +398,9 @@ onMounted(() => {
                 </div>
               </template>
             </BaseTable>
-          </div>
+          </div> -->
           <!-- 奖杯 -->
-          <div
+          <!-- <div
             v-else-if="tab === '2'"
             class="trophies-wrap"
             :class="{ 'is-mobile': isLessThanSm }"
@@ -349,9 +440,9 @@ onMounted(() => {
                 </template>
               </BaseTable>
             </div>
-          </div>
+          </div> -->
           <!-- 竞赛 -->
-          <div v-else-if="tab === '3'" class="competition-wrap">
+          <!-- <div v-else-if="tab === '3'" class="competition-wrap">
             <div class="c-title">
               <BaseIcon name="spt-competition" />
               {{ t('fresh_competition') }}
@@ -388,9 +479,9 @@ onMounted(() => {
               :pagination-data="paginationData"
               @previous="onPrevious" @next="onNext"
             />
-          </div>
+          </div> -->
           <!-- 抽奖 -->
-          <div v-else-if="tab === '4'" class="sweepstakes-wrap">
+          <!-- <div v-else-if="tab === '4'" class="sweepstakes-wrap">
             <div class="sweepstakes-table">
               <BaseTable
                 :columns="SweepstakesColumns"
@@ -402,7 +493,7 @@ onMounted(() => {
               :pagination-data="paginationData"
               @previous="onPrevious" @next="onNext"
             />
-          </div>
+          </div> -->
         </div>
       </template>
       <AppLoginRegTipBox v-else />
@@ -411,26 +502,50 @@ onMounted(() => {
 </template>
 
 <style lang='scss' scoped>
+.go-vip {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  transition: all .25s;
+  cursor: pointer;
+  &:hover{
+    transform: translateX(8px);
+  }
+}
+.bet-data-table {
+  --tg-table-th-background: var(--tg-secondary-grey);
+  --tg-table-odd-background: var(--tg-secondary-grey);
+  --tg-table-even-background: var(--tg-primary-main);
+}
+.vip-wrapper {
+  padding: 0 16px;
+}
+.flex-center {
+  display: flex;
+  justify-content: center;
+}
 .app-statistics-dialog{
   .statistics-content{
-    padding: var(--tg-spacing-2) var(--tg-spacing-16) var(--tg-spacing-16);
+    padding: var(--tg-spacing-2) 0 var(--tg-spacing-16);
     .s-user-name {
-      color: var(--tg-text-lightgrey);
-      font-size: var(--tg-font-size-md);
-      line-height: 27px;
-      padding-bottom: var(--tg-spacing-2);
-      font-weight: var(--tg-font-weight-semibold);
+      color: var(--tg-secondary-light);
+      font-size: 14px;
+      line-height: 20px;
+      padding-bottom: 4px;
+      font-weight: 400;
+      text-align: center;
     }
     .s-join-date{
-      color: var(--tg-text-lightgrey);
-      font-size: var(--tg-font-size-xs);
-      margin-bottom: var(--tg-spacing-20);
-      span:nth-child(2){
-        font-weight: var(--tg-font-weight-semibold);
-      }
+      color: var(--tg-secondary-light);
+      font-size: 14px;
+      line-height: 20px;
+      padding-bottom: 12px;
+      font-weight: 400;
+      text-align: center;
     }
     .s-tab{
-      margin-top: var(--tg-spacing-32);
+      margin-top: var(--tg-spacing-12);
       display: flex;
       flex-direction: column;
       gap: 1rem;

@@ -6,7 +6,7 @@ export function useDialogVipExpRule() {
     closeDialog: closeVipExpRuleDialog,
   } = useDialog({
     title: '经验计算规则',
-    icon: 'uni-counter',
+    icon: 'uni-conter-line',
     default: () => h(AppVipExpRule),
   })
 

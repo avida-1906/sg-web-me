@@ -55,22 +55,22 @@ const {
   const lastAtIdx = value ? value.lastIndexOf('@') : -1
   const lastDotIdx = value ? value.lastIndexOf('.') : -1
   if (!value)
-    return '电子邮件域不受支持'
+    return t('no_support_email')
 
   else if (!value.includes('@'))
-    return ['请在您的电邮地址中加入 “@” 符号']
+    return [t('email_add_char', { delta: '@' })]
 
   else if (!value.includes('.'))
-    return '请在您的电邮地址中加入 “.” 符号'
+    return t('email_add_char', { delta: '.' })
 
   else if (lastDotIdx === value.length - 1)
-    return '电子邮件域不受支持'
+    return t('no_support_email')
 
   else if (value === password.value)
-    return '您的电邮地址和密码不能相同'
+    return t('email_no_equal_password')
 
   else if (!emailReg.test(value))
-    return '请输入有效的电邮地址'
+    return t('pls_input_email')
 
   // 请在您的电邮地址中加入 “@” 符号
   // 请在您的电邮地址中加入 “.” 符号
@@ -85,15 +85,15 @@ const {
   setErrors: setUsernameErrors,
 } = useField<string>('username', (value) => {
   if (!value)
-    return '您的 username 必须含有至少 3 个字符'
+    return t('name_3_char')
   else if (value.length < 3)
-    return '您的 username 必须含有至少 3 个字符'
+    return t('name_3_char')
   else if (value.match('[^a-z0-9]'))
-    return '用户名含有无效的字符'
+    return t('name_has_invalid_char')
   else if (value.length > 14)
-    return '您的 username 不得超过 14 个字符'
+    return t('name_14_char')
   else if (value === password.value)
-    return '您的用户名和密码不能相同'
+    return t('name_no_equal_pwd')
   else if (!usernameReg.test(value))
     return t('validate_msg_user_name_tip')
   // 此用户名已被使用，请选择另一用户名。
@@ -189,9 +189,9 @@ const { runAsync: runExists, loading: existLoading } = useRequest(ApiMemberExist
   },
   onError() {
     if (curExists.value === 1)
-      setUsernameErrors('此用户名已被使用，请选择另一用户名')
+      setUsernameErrors(t('choose_another_name'))
     if (curExists.value === 2)
-      setEmailErrors('电邮地址已存在')
+      setEmailErrors(t('email_exists'))
   },
 })
 
@@ -351,7 +351,7 @@ onUnmounted(() => {
           />
         </BaseLabel>
 
-        <BaseLabel v-if="needCheckEmail" label="邮箱验证码" need-focus>
+        <BaseLabel v-if="needCheckEmail" :label="t('email_code')" need-focus>
           <div class="row-mail-code">
             <div style="flex:  1;">
               <BaseInput
@@ -381,7 +381,7 @@ onUnmounted(() => {
           </div>
         </BaseLabel>
 
-        <BaseLabel label="出生日期" must-small>
+        <BaseLabel :label="t('time_birthday')" must-small>
           <BaseInputBirthday
             ref="birthdayInputRef" v-model="birthday"
           />
