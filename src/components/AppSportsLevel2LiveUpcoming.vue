@@ -4,7 +4,7 @@ import type { ISportDataGroupedByLeague } from '~/types'
 
 interface Props {
   isStandard: boolean
-  baseType: 'winner' | 'handicap' | 'total'
+  baseType: number
 }
 defineProps<Props>()
 

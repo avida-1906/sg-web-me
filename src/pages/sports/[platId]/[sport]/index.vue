@@ -1,23 +1,23 @@
 <script lang="ts" setup>
-import type { EnumSportMarketType } from '~/utils/enums'
-
 const { t } = useI18n()
-const { VITE_SPORT_DEFAULT_MARKET_TYPE } = getEnv()
 const route = useRoute()
 const { width } = storeToRefs(useWindowStore())
-const { sidebarData } = storeToRefs(useSportsStore())
+const sportsStore = useSportsStore()
+const { sidebarData } = storeToRefs(sportsStore)
 const menuStore = useMenuStore()
 const { bool: isStandard } = useBoolean(true)
 const { bool: isFirst, setFalse: isFirstFalse } = useBoolean(true)
 
 const curTab = ref(route.query.tab ? `${route.query.tab}` : '1')
-const baseType = ref(VITE_SPORT_DEFAULT_MARKET_TYPE)
-
 const sport = computed(() => route.params.sport ? +route.params.sport : 0)
+const baseType = ref(sportsStore.getSportsBetTypeListBySi(sport.value)[0].value)
 const isOver814 = computed(() => width.value > 814)
 const isLiveAndUpcoming = computed(() => curTab.value === '1')
 const isOutrights = computed(() => curTab.value === '2')
 const isViewAll = computed(() => curTab.value === '3')
+const baseTypeOptions = computed(() =>
+  sportsStore.getSportsBetTypeListBySi(sport.value),
+)
 // 球种名称
 const sportName = computed(() => {
   if (sidebarData.value)
@@ -36,9 +36,6 @@ const tabs = computed(() => [
   { value: '3', label: `${t('finance_other_tab_all')} ${sportName.value}` },
 ])
 
-function onBaseTypeChange(v: EnumSportMarketType) {
-  baseType.value = v
-}
 function onTabChange(v: string) {
   isFirstFalse()
   menuStore.setSideBigActiveMenu(`/sports/${getSportsPlatId()}/${sport.value}?tab=${v}`)
@@ -67,16 +64,14 @@ usePageTitle({ prefix: sportName })
         </div>
         <AppSportsMarketTypeSelect
           v-if="isOver814"
-          v-show="isLiveAndUpcoming"
-          v-model="isStandard" :base-type="baseType"
-          @base-type-change="onBaseTypeChange"
+          v-show="isLiveAndUpcoming" v-model="baseType"
+          :base-type-options="baseTypeOptions" :is-standard="isStandard"
         />
       </div>
       <AppSportsMarketTypeSelect
         v-if="!isOver814"
-        v-show="isLiveAndUpcoming"
-        v-model="isStandard" :base-type="baseType"
-        @base-type-change="onBaseTypeChange"
+        v-show="isLiveAndUpcoming" v-model="baseType"
+        :base-type-options="baseTypeOptions" :is-standard="isStandard"
       />
 
       <!-- 首次加载 -->
@@ -124,7 +119,7 @@ usePageTitle({ prefix: sportName })
   margin-top: var(--tg-spacing-24);
   margin-bottom: var(--tg-spacing-24);
   .left{
-    width: 100%;
+    max-width: 100%;
   }
 }
 .tg-sports-index {
