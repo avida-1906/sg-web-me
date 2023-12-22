@@ -139,7 +139,7 @@ declare global {
   const EnumSportMarketType: typeof import('./utils/enums')['EnumSportMarketType']
   const EnumSportType: typeof import('./utils/enums')['EnumSportType']
   const EnumSportVenue: typeof import('./utils/enums')['EnumSportVenue']
-  const EnumSportsOddsType: typeof import('./utils/enums')['EnumSportsOddsType']
+  const EnumSportsOddsType: typeof import('./stores/sports')['EnumSportsOddsType']
   const EnumSportsPanelType: typeof import('./stores/sports')['EnumSportsPanelType']
   const EnumsBetSlipBetSlipTabStatus: typeof import('./utils/enums')['EnumsBetSlipBetSlipTabStatus']
   const EnumsBetSlipHeadStatus: typeof import('./utils/enums')['EnumsBetSlipHeadStatus']
@@ -793,7 +793,7 @@ declare module 'vue' {
     readonly EnumSportMarketType: UnwrapRef<typeof import('./utils/enums')['EnumSportMarketType']>
     readonly EnumSportType: UnwrapRef<typeof import('./utils/enums')['EnumSportType']>
     readonly EnumSportVenue: UnwrapRef<typeof import('./utils/enums')['EnumSportVenue']>
-    readonly EnumSportsOddsType: UnwrapRef<typeof import('./utils/enums')['EnumSportsOddsType']>
+    readonly EnumSportsOddsType: UnwrapRef<typeof import('./stores/sports')['EnumSportsOddsType']>
     readonly EnumSportsPanelType: UnwrapRef<typeof import('./stores/sports')['EnumSportsPanelType']>
     readonly EnumsBetSlipBetSlipTabStatus: UnwrapRef<typeof import('./utils/enums')['EnumsBetSlipBetSlipTabStatus']>
     readonly EnumsBetSlipHeadStatus: UnwrapRef<typeof import('./utils/enums')['EnumsBetSlipHeadStatus']>
@@ -1438,7 +1438,7 @@ declare module '@vue/runtime-core' {
     readonly EnumSportMarketType: UnwrapRef<typeof import('./utils/enums')['EnumSportMarketType']>
     readonly EnumSportType: UnwrapRef<typeof import('./utils/enums')['EnumSportType']>
     readonly EnumSportVenue: UnwrapRef<typeof import('./utils/enums')['EnumSportVenue']>
-    readonly EnumSportsOddsType: UnwrapRef<typeof import('./utils/enums')['EnumSportsOddsType']>
+    readonly EnumSportsOddsType: UnwrapRef<typeof import('./stores/sports')['EnumSportsOddsType']>
     readonly EnumSportsPanelType: UnwrapRef<typeof import('./stores/sports')['EnumSportsPanelType']>
     readonly EnumsBetSlipBetSlipTabStatus: UnwrapRef<typeof import('./utils/enums')['EnumsBetSlipBetSlipTabStatus']>
     readonly EnumsBetSlipHeadStatus: UnwrapRef<typeof import('./utils/enums')['EnumsBetSlipHeadStatus']>
