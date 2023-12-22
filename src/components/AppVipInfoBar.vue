@@ -36,7 +36,7 @@ function openRecord() {
       <span v-if="nextLevel" class="water">
         <span>
           {{ $t('next_vip_amount',
-                { vip: `VIP${nextLevel.level}`, amount: scoreToNext }) }}
+                { vip: `VIP${nextLevel.level}`, amount: toFixed(scoreToNext, 2) }) }}
         </span>
         <!-- <BaseIcon name="coin-usdt" /> -->
         <span>{{ $t('game_water_experience') }}</span>

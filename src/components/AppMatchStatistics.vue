@@ -22,20 +22,20 @@ const head = computed(() => [
   },
   {
     key: 'corners',
-    show: !!props.data.corner,
+    show: !!(route.params.sport === '1'),
   },
   {
     key: 'yellowCards',
-    show: !!props.data.yellowCard,
+    show: !!(route.params.sport === '1'),
   },
   {
     key: 'redCards',
-    show: !!props.data.redCard,
+    show: !!(route.params.sport === '1'),
   },
   {
     key: 'period',
     periodScores: props.data.period,
-    show: !!props.data.period,
+    show: !!(props.data.period && props.data.period.length),
   },
   {
     key: 'gameScore',
@@ -206,6 +206,11 @@ function mapHeadArea(
 </template>
 
 <style lang="scss" scoped>
+.app-match-statistics {
+  min-width: 250px;
+  max-width: calc(100% - 32px);
+  width: auto;
+}
 .competitor-title {
   background: var(--tg-secondary-dark);
 }

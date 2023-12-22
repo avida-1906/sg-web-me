@@ -154,4 +154,5 @@ interface Column {
   isRound?: 'left' | 'right',
   /** 骨架屏是否固定宽度 */
   skeWidth?: string,
+  clazz?: string
 }

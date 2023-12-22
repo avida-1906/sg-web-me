@@ -140,10 +140,6 @@ function updateDataByMqtt(data: ISportEventList[]) {
 }
 /** 🚧 分页、定时器、监听更新数据 end 🚧 */
 
-function onBaseTypeChange(v: EnumSportMarketType) {
-  baseType.value = v
-}
-
 function onSportsSiChange(item: { count: number }) {
   marketNum.value = item.count > 10 ? 10 : item.count
 }
@@ -171,6 +167,7 @@ function initData() {
 
 /** 切换球种 */
 watch(currentLiveNav, () => {
+  baseType.value = VITE_SPORT_DEFAULT_MARKET_TYPE
   switchLoadingTrue()
   reset()
   getData()
@@ -198,13 +195,11 @@ await application.allSettled([initData()])
         <h6>{{ t('sports_tab_live_events') }}</h6>
       </div>
       <AppSportsMarketTypeSelect
-        v-model="isStandard" :base-type="baseType"
-        @base-type-change="onBaseTypeChange"
+        v-model="baseType" :is-standard="isStandard"
       />
     </div>
     <AppSportsTab
-      v-model="currentLiveNav" :list="sportLiveNavs"
-      @change="onSportsSiChange"
+      v-model="currentLiveNav" :list="sportLiveNavs" @change="onSportsSiChange"
     />
     <div class="market-wrapper">
       <AppSportsMarketSkeleton v-if="switchLoading" :num="marketNum" />

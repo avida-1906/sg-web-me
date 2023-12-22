@@ -14,6 +14,7 @@ const { openReceiveBonusDialog } = useDialogReceiveBonus(() => {
     runGetPromoBonus(params)
   }, 100)
 })
+const { openVipExpRuleDialog } = useDialogVipExpRule()
 
 const bonusArray = computed(() => promoBonus.value && promoBonus.value.length
   ? promoBonus.value
@@ -30,6 +31,7 @@ const columns = computed<Column[]>(() => [
     dataIndex: 'score',
     align: 'center',
     slot: 'score',
+    clazz: 'flex-column-title',
   },
   {
     title: t('vip_promotion_bonus'),
@@ -46,6 +48,10 @@ async function openReceive(item: any) {
     openNotify({ type: 'error', message: t('no_bonus_now'), title: t('fail_bonus') })
 }
 
+function seeExpDialog() {
+  openVipExpRuleDialog()
+}
+
 onMounted(() => {
   runGetPromoBonus(params)
 })
@@ -59,6 +65,11 @@ onMounted(() => {
   >
     <div class="tabs">
       <BaseTable :columns="columns" :data-source="vipConfigArray">
+        <template #th-score>
+          <span class="play-rules" @click="seeExpDialog">
+            <BaseIcon name="uni-ques-green" />
+          </span>
+        </template>
         <template #level="{ record }">
           <!-- <div>VIP{{ record.level }}</div> -->
           <div class="vip-badge">
@@ -125,7 +136,27 @@ onMounted(() => {
   </div>
 </template>
 
+<style>
+.flex-column-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+</style>
+
 <style lang="scss" scoped>
+.play-rules {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  vertical-align: middle;
+  > svg {
+    vertical-align: middle;
+  }
+}
 .small-text {
   font-size: 12px;
 }

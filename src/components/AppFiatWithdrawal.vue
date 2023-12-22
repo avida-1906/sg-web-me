@@ -4,6 +4,7 @@ import type { CurrencyCode, CurrencyData } from '~/composables/useCurrencyData'
 interface Props {
   /** 货币对象 */
   activeCurrency: CurrencyData
+  maxWithdrawBalance?: string
 }
 const props = withDefaults(defineProps<Props>(), {})
 const amountRef = ref()
@@ -137,7 +138,7 @@ const getUsRate = computed(() => {
 })
 
 function maxNumber() {
-  setAmount(Number.parseInt(props.activeCurrency.balance).toString())
+  setAmount(props.maxWithdrawBalance ?? '0.00')
 }
 function updateBank() {
   runAsyncWithdrawBankcardList({ currency_id: props.activeCurrency.cur })
@@ -165,7 +166,6 @@ function formatAmount() {
 }
 
 watch(() => props.activeCurrency, (newValue) => {
-  console.log(1111)
   runAsyncWithdrawBankcardList({ currency_id: newValue.cur })
   runAsyncWithdrawMethodList({ currency_id: newValue.cur })
   selectBankReset()

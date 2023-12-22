@@ -31,6 +31,7 @@ declare global {
   const ApiFinanceThirdCoinDeposit: typeof import('./apis/index')['ApiFinanceThirdCoinDeposit']
   const ApiFinanceThirdDeposit: typeof import('./apis/index')['ApiFinanceThirdDeposit']
   const ApiFinanceWithdraw: typeof import('./apis/index')['ApiFinanceWithdraw']
+  const ApiFinanceWithdrawBalance: typeof import('./apis/index')['ApiFinanceWithdrawBalance']
   const ApiFinanceWithdrawBankcard: typeof import('./apis/index')['ApiFinanceWithdrawBankcard']
   const ApiFinanceWithdrawCoin: typeof import('./apis/index')['ApiFinanceWithdrawCoin']
   const ApiFinanceWithdrawCurrency: typeof import('./apis/index')['ApiFinanceWithdrawCurrency']
@@ -460,6 +461,7 @@ declare global {
   const useDialogSwiperNotice: typeof import('./composables/useDialogSwiperNotice')['useDialogSwiperNotice']
   const useDialogThirdAuthForm: typeof import('./composables/useDialogThirdAuthForm')['useDialogThirdAuthForm']
   const useDialogVipBonusRecord: typeof import('./composables/useDialogVipBonusRecord')['useDialogVipBonusRecord']
+  const useDialogVipExpRule: typeof import('./composables/useDialogVipExpRule')['useDialogVipExpRule']
   const useDisplayMedia: typeof import('@vueuse/core')['useDisplayMedia']
   const useDocumentVisibility: typeof import('@vueuse/core')['useDocumentVisibility']
   const useDragDialog: typeof import('./composables/useDragDialog')['useDragDialog']
@@ -681,6 +683,7 @@ declare module 'vue' {
     readonly ApiFinanceThirdCoinDeposit: UnwrapRef<typeof import('./apis/index')['ApiFinanceThirdCoinDeposit']>
     readonly ApiFinanceThirdDeposit: UnwrapRef<typeof import('./apis/index')['ApiFinanceThirdDeposit']>
     readonly ApiFinanceWithdraw: UnwrapRef<typeof import('./apis/index')['ApiFinanceWithdraw']>
+    readonly ApiFinanceWithdrawBalance: UnwrapRef<typeof import('./apis/index')['ApiFinanceWithdrawBalance']>
     readonly ApiFinanceWithdrawBankcard: UnwrapRef<typeof import('./apis/index')['ApiFinanceWithdrawBankcard']>
     readonly ApiFinanceWithdrawCoin: UnwrapRef<typeof import('./apis/index')['ApiFinanceWithdrawCoin']>
     readonly ApiFinanceWithdrawCurrency: UnwrapRef<typeof import('./apis/index')['ApiFinanceWithdrawCurrency']>
@@ -1108,6 +1111,7 @@ declare module 'vue' {
     readonly useDialogSwiperNotice: UnwrapRef<typeof import('./composables/useDialogSwiperNotice')['useDialogSwiperNotice']>
     readonly useDialogThirdAuthForm: UnwrapRef<typeof import('./composables/useDialogThirdAuthForm')['useDialogThirdAuthForm']>
     readonly useDialogVipBonusRecord: UnwrapRef<typeof import('./composables/useDialogVipBonusRecord')['useDialogVipBonusRecord']>
+    readonly useDialogVipExpRule: UnwrapRef<typeof import('./composables/useDialogVipExpRule')['useDialogVipExpRule']>
     readonly useDisplayMedia: UnwrapRef<typeof import('@vueuse/core')['useDisplayMedia']>
     readonly useDocumentVisibility: UnwrapRef<typeof import('@vueuse/core')['useDocumentVisibility']>
     readonly useDragDialog: UnwrapRef<typeof import('./composables/useDragDialog')['useDragDialog']>
@@ -1323,6 +1327,7 @@ declare module '@vue/runtime-core' {
     readonly ApiFinanceThirdCoinDeposit: UnwrapRef<typeof import('./apis/index')['ApiFinanceThirdCoinDeposit']>
     readonly ApiFinanceThirdDeposit: UnwrapRef<typeof import('./apis/index')['ApiFinanceThirdDeposit']>
     readonly ApiFinanceWithdraw: UnwrapRef<typeof import('./apis/index')['ApiFinanceWithdraw']>
+    readonly ApiFinanceWithdrawBalance: UnwrapRef<typeof import('./apis/index')['ApiFinanceWithdrawBalance']>
     readonly ApiFinanceWithdrawBankcard: UnwrapRef<typeof import('./apis/index')['ApiFinanceWithdrawBankcard']>
     readonly ApiFinanceWithdrawCoin: UnwrapRef<typeof import('./apis/index')['ApiFinanceWithdrawCoin']>
     readonly ApiFinanceWithdrawCurrency: UnwrapRef<typeof import('./apis/index')['ApiFinanceWithdrawCurrency']>
@@ -1750,6 +1755,7 @@ declare module '@vue/runtime-core' {
     readonly useDialogSwiperNotice: UnwrapRef<typeof import('./composables/useDialogSwiperNotice')['useDialogSwiperNotice']>
     readonly useDialogThirdAuthForm: UnwrapRef<typeof import('./composables/useDialogThirdAuthForm')['useDialogThirdAuthForm']>
     readonly useDialogVipBonusRecord: UnwrapRef<typeof import('./composables/useDialogVipBonusRecord')['useDialogVipBonusRecord']>
+    readonly useDialogVipExpRule: UnwrapRef<typeof import('./composables/useDialogVipExpRule')['useDialogVipExpRule']>
     readonly useDisplayMedia: UnwrapRef<typeof import('@vueuse/core')['useDisplayMedia']>
     readonly useDocumentVisibility: UnwrapRef<typeof import('@vueuse/core')['useDocumentVisibility']>
     readonly useDragDialog: UnwrapRef<typeof import('./composables/useDragDialog')['useDragDialog']>
