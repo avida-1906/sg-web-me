@@ -15,6 +15,7 @@ const { openWalletSetDialog } = useWalletSetDialog()
 // 下拉搜索是否显示
 const { bool: isMenuShown } = useBoolean(false)
 const { width } = storeToRefs(useWindowStore())
+const searchRef = ref()
 const {
   currentGlobalCurrency,
   currentGlobalCurrencyBalance,
@@ -36,11 +37,19 @@ function popperApplyShow() {
   clearSearchValue()
   useFixedTop('.app-h-wallet')
 }
+function handleHide() {
+  searchRef.value.manualBlur()
+}
 </script>
 
 <template>
   <div class="app-wallet flex-box">
-    <VDropdown v-model:shown="isMenuShown" :distance="10" @apply-show="popperApplyShow">
+    <VDropdown
+      v-model:shown="isMenuShown"
+      :distance="10"
+      @apply-show="popperApplyShow"
+      @hide="handleHide"
+    >
       <div class="flex-box">
         <BaseButton class="wallet" type="text" size="sm">
           <!-- <span v-if="isCasinoGame" class="in-play">
@@ -72,6 +81,7 @@ function popperApplyShow() {
         <div class="dropdown-popper" :class="[popperClazz]">
           <div class="popper-top">
             <BaseSearch
+              ref="searchRef"
               v-model="searchValue"
               class="top-search"
               :clearable="searchValue?.length > 0"
