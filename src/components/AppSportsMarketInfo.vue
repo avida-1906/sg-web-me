@@ -81,7 +81,7 @@ const standardMarketFiltered = computed(() => {
     return props.data.ml.filter(a => a.bt === 2)
 
   else
-    return props.data.ml.filter(a => a.bt !== 1 && a.bt !== 2)
+    return props.data.ml.filter(a => a.bt === 3 || a.bt === 4)
 })
 const standardMarketName = computed(() => standardMarketFiltered.value[0]?.btn)
 const standardMarketBtns = computed(() => {

@@ -137,8 +137,7 @@ function initData() {
 
 /** 切换球种 */
 watch(currentLiveNav, () => {
-  // eslint-disable-next-line max-len
-  currentLiveBetType.value = sportsStore.getSportsBetTypeListBySi(currentLiveNav.value)[0].value
+  currentLiveBetType.value = baseTypeOptions.value[0].value
   switchLoadingTrue()
   reset()
   getData()

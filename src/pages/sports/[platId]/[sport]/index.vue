@@ -3,7 +3,7 @@ const { t } = useI18n()
 const route = useRoute()
 const { width } = storeToRefs(useWindowStore())
 const sportsStore = useSportsStore()
-const { sidebarData } = storeToRefs(sportsStore)
+const { sidebarData, sportsBetTypeList } = storeToRefs(sportsStore)
 const menuStore = useMenuStore()
 const { bool: isStandard } = useBoolean(true)
 const { bool: isFirst, setFalse: isFirstFalse } = useBoolean(true)
@@ -41,6 +41,9 @@ function onTabChange(v: string) {
   menuStore.setSideBigActiveMenu(`/sports/${getSportsPlatId()}/${sport.value}?tab=${v}`)
 }
 
+watch(sportsBetTypeList, () => {
+  baseType.value = sportsStore.getSportsBetTypeListBySi(sport.value)[0].value
+})
 watch(route, (r) => {
   if (r.name === 'sports-platId-sport') {
     isFirstFalse()
