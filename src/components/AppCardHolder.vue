@@ -7,7 +7,7 @@ type WalletCurrencyList = {
   bankcard?: BankCard[] // 绑定的银行卡
   addressNum: number // 虚拟币已绑定地址的数量
   showAdd: boolean // 是否可添加
-  shown: number // 控制展开关闭
+  shown: boolean // 控制展开关闭
 } & CurrencyData
 
 const { t } = useI18n()
@@ -36,7 +36,7 @@ const {
           coin: currentCoin,
           addressNum: currentCoin.length,
           showAdd: currentCoin.length < 3,
-          shown: 0,
+          shown: false,
         })
       }
       else { // 银行卡
@@ -47,7 +47,7 @@ const {
           showAdd: item.cur === '702'
             ? currentBankcard.length < 1
             : currentBankcard.length < 3,
-          shown: 0,
+          shown: false,
         })
       }
     }
@@ -114,10 +114,12 @@ function toDeleteBankcard(item: BankCard) {
     updateWalletList: runAsyncWalletBankcardList,
   })
 }
-function handleShow(index: number) {
-  if (lastShown > -1 && cardList.value)
-    cardList.value[lastShown].shown = new Date().getTime()
-
+function handleShow(item: WalletCurrencyList, index: number) {
+  const obj = cardList.value?.find(item => item.shown)
+  obj && (obj.shown = false)
+  item.shown = true
+  // if (lastShown > -1 && cardList.value)
+  // cardList.value[lastShown].shown = new Date().getTime()
   lastShown = index
 }
 
@@ -131,10 +133,10 @@ await application.allSettled([runAsyncWalletBankcardList()])
       <BaseCollapse
         v-for="item, index in cardList"
         :key="item.type"
-        :close="item.shown"
+        :shown="item.shown"
         :title="item.addressNum?.toString() || '0'"
         style="--tg-icon-transition: 0;"
-        @click-show="handleShow(index)"
+        @click-show="handleShow(item, index)"
         @click-close="lastShown === index ? lastShown = -1 : ''"
       >
         <template #top-right>
