@@ -66,7 +66,7 @@ const onPlayCount = ref(Math.ceil(Math.random() * 1000).toFixed())
       @click="gameStart"
     >
       <template v-if="showBorder">
-        <img src="/img/border/border.svg" alt="">
+        <img class="border" src="/img/border/border.svg" alt="">
         <div class="game-title">
           {{ gameInfo.name }}
         </div>
@@ -155,6 +155,13 @@ const onPlayCount = ref(Math.ceil(Math.random() * 1000).toFixed())
   border-radius: var(--tg-radius-md);
   overflow: hidden;
   cursor: pointer;
+  .border{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
   .game-title{
     color: var(--tg-text-lightgrey);
     font-size: var(--tg-font-size-md);
