@@ -171,7 +171,7 @@ const errorInfo = computed<{
     if (sportStore.cart.getOddsLessThanOnePointOneWidList.length) {
       return {
         bool: true,
-        errorMess: '赔率小于1.10的投注项不能组合为复式投注',
+        errorMess: t('min_odd_bet'),
       }
     }
   }

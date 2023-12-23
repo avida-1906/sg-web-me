@@ -22,7 +22,7 @@ const {
 } = useField<string>('address', (value) => {
   if (!value)
     // return t('this_field_is_required')
-    return '请选择地址'
+    return t('select_addr')
   return ''
 })
 const {
@@ -34,7 +34,7 @@ const {
 } = useField<string>('amount', (value) => {
   if (!value)
     // return t('validate_require')
-    return '请输入金额'
+    return t('input_amount')
   else if (Number(value) === 0)
     return t('validate_deposit_amount_zero')
   else if (Number(value) < 0)
@@ -52,7 +52,7 @@ const {
 } = useField<string>('paypwd', (value) => {
   if (!value)
     // return t('this_field_is_required')
-    return '请输入资金密码'
+    return t('validate_msg_input_pay_pwd')
   return ''
 })
 const {
@@ -185,7 +185,7 @@ await application.allSettled(
             v-model="address"
             :options="addrOptions"
             :msg="addressMsg"
-            theme popper small border
+            popper small theme border
             popper-clazz="app-with"
             style="--tg-base-select-popper-style-padding-y: var(--tg-spacing-12)"
             @focus="addressMsg && resetAddress()"
