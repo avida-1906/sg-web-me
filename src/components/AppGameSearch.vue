@@ -9,7 +9,10 @@ interface Props {
 }
 const { t } = useI18n()
 const { bool: isClear, setTrue: setClearTrue } = useBoolean(true)
-const { bool: isInputing, setTrue: setInputingTrue } = useBoolean(false)
+const {
+  bool: isInputing, setTrue: setInputingTrue,
+  setFalse: setInputingFalse,
+} = useBoolean(false)
 // 搜索功能面板
 const { bool: isShowOverlay } = useBoolean(false)
 
@@ -44,7 +47,6 @@ const {
   list: casinoGames,
   run: runSearchCasinoGames,
 } = useList(ApiMemberGameSearch, {
-  debounceInterval: 500,
   onSuccess(res, params) {
     if (res.d && res.d.length > 0) {
       const word = params[0].w
@@ -58,14 +60,13 @@ const {
       keywordLive.value = keywordLive.value.slice(0, 5)
       Local.set(STORAGE_SEARCH_KEYWORDS_LIVE, keywordLive.value)
     }
-    isInputing.value = false
+    setInputingFalse()
   },
 })
 // 体育搜索接口
 const { data: sportsData, run: runSearchSports } = useRequest(
   () => ApiSportEventSearch({ word: searchValue.value }),
   {
-    debounceInterval: 500,
     onSuccess(res) {
       if (res.list && res.list.length > 0) {
         const word = searchValue.value
@@ -79,7 +80,7 @@ const { data: sportsData, run: runSearchSports } = useRequest(
         keywordSports.value = keywordSports.value.slice(0, 5)
         Local.set(STORAGE_SEARCH_KEYWORDS_SPORTS, keywordSports.value)
       }
-      isInputing.value = false
+      setInputingFalse()
     },
   },
 )
@@ -95,17 +96,26 @@ const resultData = computed(() => {
   return null
 })
 
+let inputTimer: any = null
 function onBaseSearchInput() {
-  if (searchValue.value.length < 3)
-    return setClearTrue()
-  if (isCasino.value && searchValue.value.length >= 3) {
-    setInputingTrue()
-    runSearchCasinoGames({ w: searchValue.value })
+  setInputingTrue()
+  clearTimeout(inputTimer)
+  if (searchValue.value.length < 3) {
+    setInputingFalse()
+    setClearTrue()
+    return
   }
-  else if (isSports.value && searchValue.value.length >= 3) {
-    setInputingTrue()
-    runSearchSports()
-  }
+  inputTimer = setTimeout(() => {
+    if (isCasino.value && searchValue.value.length >= 3) {
+      Local.set(STORAGE_CLEAR_LIVE, true)
+      runSearchCasinoGames({ w: searchValue.value })
+    }
+    else if (isSports.value && searchValue.value.length >= 3) {
+      Local.set(STORAGE_CLEAR_SPORTS, true)
+      runSearchSports()
+    }
+    clearTimeout(inputTimer)
+  }, 500)
 }
 function onClickKeyword(k: string) {
   setInputingTrue()
