@@ -591,6 +591,9 @@ export interface ISportsMyBetSlipItem {
   /** 结算时间 */
   st: number
   bi: {
+    pol: {
+      [text: string]: number
+    }
     /** 盘口类型 */
     bt: number
     /** 下注类型名称 */

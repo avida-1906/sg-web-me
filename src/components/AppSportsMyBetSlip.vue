@@ -89,6 +89,8 @@ function addShowResult(origin: ISportsMyBetSlipItem) {
         atpic: a.atpic,
         htpic: a.htpic,
         spic: a.spic,
+        si: a.si,
+        pol: a.pol,
       },
       betMarketName: makeMarketInfo(a),
     }
@@ -197,6 +199,7 @@ function showDetail() {
               <AppMatchStatistics
                 v-show="item.showResult" :round="false"
                 :data="item.result"
+                style="--tg-app-match-statistics-max-width:100%;"
               />
             </div>
           </div>
