@@ -9,6 +9,7 @@ withDefaults(defineProps<Props>(), {
   size: 128,
 })
 
+const { t } = useI18n()
 const qrCodeOuter = ref()
 
 function downloadClick() {
@@ -16,7 +17,7 @@ function downloadClick() {
   const url = canvas.toDataURL('image/png')
   const downloadLink = document.createElement('a')
   downloadLink.setAttribute('href', url)
-  downloadLink.setAttribute('download', '二维码.png')
+  downloadLink.setAttribute('download', `${t('qr_code')}.png`)
   downloadLink.click()
 }
 

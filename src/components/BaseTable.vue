@@ -73,7 +73,7 @@ watch(() => props.columns, () => {
                 </div>
                 <template #popper>
                   <div class="tiny-menu-item-title">
-                    您下注使用的所有货币会标准化为竞赛货币
+                    {{ t('bet_comp_coin') }}
                   </div>
                 </template>
               </VTooltip>
