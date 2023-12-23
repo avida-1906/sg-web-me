@@ -651,6 +651,8 @@ export function ApiFinanceMethodList(params: {
     id: string
     /** 优惠标签名称 */
     pname: string
+    /** 1001活动 1002赠送 1003热门 1004推荐 */
+    ptype: number
     /** 标签值 */
     promo: string
     /** 方式别名 */
