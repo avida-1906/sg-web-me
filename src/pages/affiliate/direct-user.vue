@@ -101,7 +101,8 @@ useListSearch(params, runAsync, resetPage)
             color: record.deposit_count <= 0 ? 'var(--tg-text-error)' : '',
           }"
         >
-          {{ record.deposit_count ? '是' : '否' }}
+          {{ record.deposit_count
+            ? t('attribute_collector_positive') : t('attribute_collector_negative') }}
         </span>
       </template>
       <template #created_at="{ record }">
@@ -121,7 +122,7 @@ useListSearch(params, runAsync, resetPage)
             offline: record.online === '1',
           }"
         >
-          {{ record.online === '2' ? '在线' : '离线' }}
+          {{ record.online === '2' ? t('active_state') : t('offline') }}
         </span>
         <div class="hint">
           {{ record.login_count || 0 }}
