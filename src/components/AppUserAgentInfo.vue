@@ -4,7 +4,8 @@ const { userInfo } = storeToRefs(appStore)
 const { isMobile } = storeToRefs(useWindowStore())
 const { openAgentGradeDialog } = useDialogAgentGrade()
 const { openAgentCommissionRecordDialog } = useDialogAgentCommissionRecord()
-const { openAgentCommissionDrawDialog } = useDialogAgentCommissionDraw()
+// const { openAgentCommissionDrawDialog } = useDialogAgentCommissionDraw()
+const { openCommissionWalletDialog } = useDialogCommissionWallet()
 
 function openDialog() {
   openAgentGradeDialog()
@@ -15,43 +16,44 @@ function commissionRecord() {
 }
 
 function drawDialog() {
-  openAgentCommissionDrawDialog()
+  // openAgentCommissionDrawDialog()
+  openCommissionWalletDialog()
 }
 </script>
 
 <template>
   <div class="app-user-agent-info">
-    <div class="left">
-      <div class="cursor-pointer" @click="openDialog">
-        <BaseIcon class="agent-badge" name="agent-badge" />
-      </div>
-      <div class="info">
-        <div>
+    <div class="cursor-pointer" @click="openDialog">
+      <BaseIcon class="agent-badge" name="agent-badge" />
+    </div>
+    <div class="right-box">
+      <div class="row">
+        <div class="center">
           <span>{{ $t('user_account') }}：</span>
           <span
-            class="user-name"
             :class="{ 'is-mobile': isMobile }"
           >{{ userInfo?.username }}</span>
         </div>
-        <div class="up">
-          {{ $t('can_receive') }}：
-          <span class="money"><AppAmount amount="999999" currency-type="USDT" /></span>
+        <div>
+          <span>{{ $t('user_superior') }}ID：</span>
+          <span>{{ $t('direct_vip') }}</span>
         </div>
       </div>
-    </div>
-    <div class="right">
-      <!-- <span class="money">999,999.00</span> -->
-      <div>
-        <span>{{ $t('user_superior') }}ID：</span>
-        <span>{{ $t('direct_vip') }}</span>
-      </div>
-      <div class="btns">
-        <BaseButton bg-style="primary" size="none" round @click="drawDialog">
-          {{ $t('wallet') }}
-        </BaseButton>
-        <BaseButton type="line" round size="none" @click="commissionRecord">
-          {{ $t('record') }}
-        </BaseButton>
+      <div class="row">
+        <div class="center">
+          <span>{{ $t('can_receive') }}：</span>
+          <AppAmount
+            style="color: var(--tg-text-warn);" amount="999999" currency-type="USDT"
+          />
+        </div>
+        <div class="center btns">
+          <BaseButton bg-style="primary" size="none" round @click="drawDialog">
+            {{ $t('wallet') }}
+          </BaseButton>
+          <BaseButton type="line" round size="none" @click="commissionRecord">
+            {{ $t('record') }}
+          </BaseButton>
+        </div>
       </div>
     </div>
   </div>
@@ -60,76 +62,37 @@ function drawDialog() {
 <style lang="scss" scoped>
 .app-user-agent-info {
   display: flex;
-  align-items: stretch;
-  justify-content: space-between;
-  font-size: var(--tg-font-size-default);
-  font-weight: var(--tg-font-weight-semibold);
-  color: var(--tg-secondary-light);
-  .left {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: var(--tg-spacing-10);
-    max-width: 75%;
-    overflow: hidden;
-    .agent-badge {
-      font-size: 42px;
-    }
-    .info {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 12px;
-      line-height: var(--tg-spacing-20);
-      overflow: hidden;
-      white-space: nowrap;
-      > div {
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-      }
-      .user-name {
-        display: inline-block;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        &.is-mobile {
-          max-width: 80px;
-        }
-      }
-      span:last-child {
-        color: var(--tg-text-white);
-      }
-    }
+  align-items: center;
+  gap: var(--tg-spacing-8);
+  .agent-badge {
+    font-size: 42px;
   }
-  .right {
+  .right-box{
     display: flex;
+    flex: 1;
     flex-direction: column;
-    align-items: flex-end;
-    justify-content: space-around;
+    justify-content: space-between;
+    gap: var(--tg-spacing-12);
     color: var(--tg-text-white);
-    gap: 12px;
-    button {
-      height: 23px;
-      min-width: 48px;
-      box-sizing: border-box;
-      font-size: var(--tg-font-size-xs);
-      // padding: 0 var(--tg-spacing-6);
-    }
-    .up {
+    font-size: var(--tg-font-size-default);
+    .row{
       display: flex;
+      justify-content: space-between;
       align-items: center;
-    }
-    .money {
-      color: var(--tg-text-warn);
+      line-height: 1.4;
     }
     .btns {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
       gap: var(--tg-spacing-8);
       --tg-base-button-line-border-color: var(--tg-text-blue);
+      button {
+        height: 23px;
+        min-width: 48px;
+        box-sizing: border-box;
+        font-size: var(--tg-font-size-xs);
+      }
+    }
+    &.is-mobile {
+      max-width: 80px;
     }
   }
 }

@@ -41,6 +41,8 @@ declare module 'vue' {
     AppChatMsgRender: typeof import('./components/AppChatMsgRender.vue')['default']
     AppChatRulesDialog: typeof import('./components/AppChatRulesDialog.vue')['default']
     AppChatUserTags: typeof import('./components/AppChatUserTags.vue')['default']
+    AppCommissionHolder: typeof import('./components/AppCommissionHolder.vue')['default']
+    AppCommissionWalletDialog: typeof import('./components/AppCommissionWalletDialog.vue')['default']
     AppContent: typeof import('./components/AppContent.vue')['default']
     AppCookie: typeof import('./components/AppCookie.vue')['default']
     AppCopyLine: typeof import('./components/AppCopyLine.vue')['default']
