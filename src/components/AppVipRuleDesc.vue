@@ -8,49 +8,49 @@
     </div>
     <div class="ul">
       <div class="h3">
-        晋级标准
+        {{ $t('up_rule') }}
       </div>
       <div class="li">
         <div>{{ $t(`vip_rule_1`) }}</div>
       </div>
       <div class="h3">
-        日俸禄
+        {{ $t('vip_day_salary') }}
       </div>
       <div class="li">
         <div>{{ $t(`vip_rule_2`) }}</div>
       </div>
       <div class="h3">
-        周俸禄
+        {{ $t('vip_week_salary') }}
       </div>
       <div class="li">
         <div>{{ $t(`vip_rule_3`) }}</div>
       </div>
       <div class="h3">
-        月俸禄
+        {{ $t('vip_month_salary') }}
       </div>
       <div class="li">
         <div>{{ $t(`vip_rule_4`) }}</div>
       </div>
       <div class="h3">
-        保级说明
+        {{ $t('keep_level_desc') }}
       </div>
       <div class="li">
         <div>{{ $t(`vip_rule_5`) }}</div>
       </div>
       <div class="h3">
-        稽核说明
+        {{ $t('check_desc') }}
       </div>
       <div class="li">
         <div>{{ $t(`vip_rule_6`) }}</div>
       </div>
       <div class="h3">
-        活动声明
+        {{ $t('activity_desc') }}
       </div>
       <div class="li">
         <div>{{ $t(`vip_rule_7`) }}</div>
       </div>
       <div class="h3">
-        解释说明
+        {{ $t('explain_desc') }}
       </div>
       <div class="li">
         <div>{{ $t(`vip_rule_8`) }}</div>

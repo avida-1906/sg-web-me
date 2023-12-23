@@ -208,13 +208,13 @@ await application.allSettled([
             <BaseSelect
               v-if="oftenAmount && oftenAmount.length"
               v-model="amount"
-              placeholder="请下拉选择充值金额"
+              :placeholder="t('select_deposit_amount')"
               :options="oftenAmount"
               :msg="amountError"
               small
             />
             <div v-if="!amount" class="placeholder-text">
-              请下拉选择充值金额
+              {{ t('select_deposit_amount') }}
             </div>
           </div>
         </BaseLabel>

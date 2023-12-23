@@ -41,7 +41,10 @@ function drawDialog() {
     </div>
     <div class="right">
       <!-- <span class="money">999,999.00</span> -->
-      <div><span>{{ $t('user_superior') }}ID：</span><span>直属会员</span></div>
+      <div>
+        <span>{{ $t('user_superior') }}ID：</span>
+        <span>{{ $t('direct_vip') }}</span>
+      </div>
       <div class="btns">
         <BaseButton bg-style="primary" size="none" round @click="drawDialog">
           {{ $t('wallet') }}
