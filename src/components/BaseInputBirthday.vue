@@ -84,7 +84,7 @@ const {
   if (!value)
     return t('surveys_birthday_error')
   if (value > dayMax.value)
-    return `日期不能超过${dayMax.value}号`
+    return t('day_no_max', { delta: dayMax.value })
   if (!(month.value >= 1 && month.value <= 12))
     resetMonthField()
   if (year.value === '' || year.value === undefined)
@@ -165,9 +165,9 @@ const msg = computed(() => {
   if (!day.value || !month.value || !year.value)
     return t('surveys_birthday_error')
   if (isOver120.value === true)
-    return '您的年龄不能超过 120 岁'
+    return t('max_age', { delta: 120 })
   if (month.value && day.value && day.value > dayMax.value)
-    return `日期不能超过${dayMax.value}号`
+    return t('day_no_max', { delta: dayMax.value })
   if (!isEnough.value)
     return t('you_have_to_enough_18')
 
@@ -195,10 +195,10 @@ async function valiBirthday() {
   await valiYear()
   await valiDay()
   if (+day.value <= 0)
-    checkValidTip(dayInputRef.value, '值必须大于或等于1')
+    checkValidTip(dayInputRef.value, t('max_value', { delta: 1 }))
 
   else if (+year.value < 1900)
-    checkValidTip(yearInputRef.value, '值必须大于或等于1900')
+    checkValidTip(yearInputRef.value, t('max_value', { delta: 1900 }))
 
   if (!isValid.value)
     showAllRed.value = true

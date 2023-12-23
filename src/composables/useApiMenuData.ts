@@ -209,8 +209,6 @@ export function useApiMenuData() {
 
   const router = useRouter()
 
-  const route = useRoute()
-
   const { closeLeftSidebar, openLeftSidebar, leftIsExpand } = useLeftSidebar()
 
   const { isMobile, isLessThanLg } = storeToRefs(useWindowStore())

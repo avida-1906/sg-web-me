@@ -1612,5 +1612,11 @@ keep_level_desc: 保级说明
 check_desc: 稽核说明
 activity_desc: 活动声明
 explain_desc: 解释说明
-
+day_no_max: 日期不能超过{delta}号
+max_age: 您的年龄不能超过 {delta} 岁
+max_value: 值必须大于或等于{delta}
+qr_code: 二维码
+bet_comp_coin: 您下注使用的所有货币会标准化为竞赛货币
+exp_rule: 经验计算规则
+electric_game: 电竞
 
