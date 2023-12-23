@@ -7,12 +7,12 @@ interface Props {
     icon?: string
     promo?: string
     pname?: string
+    ptype: number
   }[]
 }
 const props = withDefaults(defineProps<Props>(), {
 })
 const emit = defineEmits(['update:modelValue'])
-
 const changeType = function (type: string) {
   const ref: HTMLElement | null = document.querySelector(`#id${type}`)
   const parentRef = ref?.parentElement
@@ -52,15 +52,15 @@ watch(() => props.currentType, () => {
         is-network
       />
       <span class="label">{{ item.label }}</span>
-      <span v-if="item.pname === '赠送'" class="tag">
+      <span v-if="item.ptype === 1002" class="tag">
         <span>{{ $t('present') }}{{ Number(item.promo) }}%</span>
       </span>
       <span
-        v-else-if="item.pname === '推荐'
-          || item.pname === '活动'
-          || item.pname === '热门'"
+        v-else-if="item.ptype === 1004
+          || item.ptype === 1001
+          || item.ptype === 1003"
         class="tag"
-        :class="{ green: item.pname === '推荐', red: item.pname === '热门' }"
+        :class="{ green: item.ptype === 1004, red: item.ptype === 1003 }"
       >
         <span>{{ item.pname }}</span>
       </span>

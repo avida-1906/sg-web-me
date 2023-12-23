@@ -23,6 +23,8 @@ export interface PanelTypeItem {
 
 /** 面板数据类型 */
 export interface IBasePanelType {
+  /** 球种id */
+  si: number
   /** 开始时间 */
   startTime: string
   /** 主队名称 */
@@ -73,6 +75,9 @@ export interface IBasePanelType {
     homeTeam: number
     /** 客队加时数据 */
     awayTeam: number
+  }
+  pol: {
+    [key: string]: number
   }
 }
 
