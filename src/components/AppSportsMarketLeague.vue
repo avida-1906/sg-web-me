@@ -92,6 +92,7 @@ function updateDataByMqtt(data: ISportEventList[]) {
 function getEventsData() {
   if (curTotal.value > 0 || loading.value)
     return
+  moreLoadingTrue()
   run(params.value)
   startTimer()
   sportDeltaBus.on(updateDataByMqtt)

@@ -69,7 +69,7 @@ const toNext = function () {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: var(--tg-spacing-25);
+  gap: var(--tg-spacing-24);
   font-size: var(--tg-font-size-default);
   > span {
     font-weight: var(--tg-font-weight-semibold);

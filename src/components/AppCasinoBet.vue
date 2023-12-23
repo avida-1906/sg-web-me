@@ -133,7 +133,7 @@ watch(() => isMobile.value, (newValue) => {
         flex-direction: column;
         overflow: hidden;
         background: var(--tg-secondary-dark);
-        padding: var(--tg-spacing-4) var(--tg-spacing-12);
+        padding: 0 var(--tg-spacing-4) var(--tg-spacing-12);
     }
 }
 </style>

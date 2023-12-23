@@ -61,6 +61,9 @@ await application.allSettled([runAsync(params.value)])
       :title="region.pgn" :icon="region.ppic" :init="i === 0" :count="region.cl.length"
       :league-list="region.cl" is-hot-game
     />
+    <div v-if="hotSportList.length === 0" class="empty">
+      <BaseEmpty icon="empty-1" :description="t('search_no_result')" />
+    </div>
   </div>
 
   <div class="sub-wrapper">
@@ -77,6 +80,9 @@ await application.allSettled([runAsync(params.value)])
       :title="region.pgn" :icon="region.ppic" :init="false" :count="region.cl.length"
       :league-list="region.cl"
     />
+    <div v-if="allRegionList.length === 0" class="empty">
+      <BaseEmpty icon="empty-1" :description="t('search_no_result')" />
+    </div>
   </div>
 </template>
 
@@ -88,24 +94,11 @@ await application.allSettled([runAsync(params.value)])
   gap:  var(--tg-spacing-12);
   margin-bottom: var(--tg-spacing-24);
 }
-.content {
-  background: var(--content-background);
-  display: flex;
-  flex-direction: column;
+.empty{
   width: 100%;
-  border-radius: 0 0 var(--tg-radius-default) var(--tg-radius-default);
-
-  &.is-open {
-    border-top: 2px solid var(--content-border);
-  }
-}
-
-.acc-box {
-  display: grid;
-  grid-auto-flow: row;
-  justify-content: stretch;
+  height: 240px;
+  display: flex;
   align-items: center;
-  gap: var(--tg-spacing-12);
-  padding: var(--tg-spacing-8);
+  justify-content: center;
 }
 </style>

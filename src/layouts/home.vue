@@ -105,7 +105,7 @@ onErrorCaptured((err, instance, info) => {
     <div v-if="homeOverlayIsShow" class="home-overlay" @click="triggerLeftSidebar" />
     <div class="side-bar-outer">
       <div v-if="isLessThanLg && isGreaterThanSm" class="small-size-padding" />
-      <Transition :name="isMobile ? 'bigslide-fade-top' : 'bigslide-fade-left'">
+      <Transition :name="isMobile ? 'casino-sport-fade-top' : 'bigslide-fade-left'">
         <div
           v-if="leftIsExpand || isSwitching" class="big-side left-sidebar" :style="{
             '--width': 'var(--tg-sidebar-width-lg)',
@@ -179,7 +179,7 @@ onErrorCaptured((err, instance, info) => {
       </div>
       <!-- </Transition> -->
     </div>
-    <Transition :name="isMobile ? 'bigslide-fade-top' : ''">
+    <Transition :name="isMobile ? 'casino-sport-fade-top' : ''">
       <div
         v-if="rightIsExpand"
         class="right-sidebar"

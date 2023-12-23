@@ -143,7 +143,7 @@ onUnmounted(() => {
 
 <style lang='scss' scoped>
 .sports-my-bets{
-  margin-bottom: 24px;
+  margin-bottom: 32px;
 }
 .title{
   margin-bottom: var(--tg-spacing-28);

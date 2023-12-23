@@ -1602,5 +1602,15 @@ email_exists: 电邮地址已存在
 email_code: 邮箱验证码
 bet_num: 注单量
 win_lose: 输赢
+min_odd_bet: 赔率小于1.10的投注项不能组合为复式投注
+select_addr: 请选择地址
+input_draw_coin_addr: 请输入提币地址
+withdraw_detail: 提款详情
+direct_vip: 直属会员
+up_rule: 晋级标准
+keep_level_desc: 保级说明
+check_desc: 稽核说明
+activity_desc: 活动声明
+explain_desc: 解释说明
 
 

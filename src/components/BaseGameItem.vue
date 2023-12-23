@@ -62,14 +62,15 @@ const onPlayCount = ref(Math.ceil(Math.random() * 1000).toFixed())
     <div
       class="base-game-item" :class="{
         maintain: isMaintained,
-        border: showBorder,
       }"
       @click="gameStart"
     >
-      <div v-if="showBorder" class="game-title">
-        {{ gameInfo.name }}
-      </div>
-      <!-- @click="gameStart(gameInfo)" -->
+      <template v-if="showBorder">
+        <img class="border" src="/img/border/border.svg" alt="">
+        <div class="game-title">
+          {{ gameInfo.name }}
+        </div>
+      </template>
       <div class="backgrop-filter">
         <BaseImage
           v-if="thumbnailStatus"
@@ -154,11 +155,12 @@ const onPlayCount = ref(Math.ceil(Math.random() * 1000).toFixed())
   border-radius: var(--tg-radius-md);
   overflow: hidden;
   cursor: pointer;
-  &.border{
-    background-image: url('/img/border/border.svg');
+  .border{
     width: 100%;
     height: 100%;
-    background-size: 100% 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
   }
   .game-title{
     color: var(--tg-text-lightgrey);

@@ -313,6 +313,47 @@
     opacity: 1;
   }
 }
+.casino-sport-fade-top-enter-active {
+  animation: 250ms linear 0ms 1 normal both running casino-sport-fade-top-in;
+  animation-fill-mode: forwards;
+}
+
+.casino-sport-fade-top-leave-active {
+  animation: 250ms linear 0ms 1 normal both running casino-sport-fade-top-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes casino-sport-fade-top-out {
+  0% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+
+  10% {
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes casino-sport-fade-top-in {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
 
 /*** end ***/
 

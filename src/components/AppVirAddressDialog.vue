@@ -38,7 +38,7 @@ const {
 } = useField<string>('address', (value) => {
   if (!value)
     // return t('this_field_is_required')
-    return '请输入提币地址'
+    return t('input_draw_coin_addr')
   else if (!virtualCoinAddressReg.test(value))
     return t('pls_input_virtual_addr')
   return ''

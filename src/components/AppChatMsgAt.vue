@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 interface Props {
   user: {
-    name: string
+    name: string // 包含 @
     id?: string
     [k: string]: any
   }
@@ -9,12 +9,17 @@ interface Props {
 
 defineProps<Props>()
 
+const { userInfo } = storeToRefs(useAppStore())
 const { openStatisticsDialog } = useStatisticsDialog()
 </script>
 
 <template>
   <!-- :href="`?name=${user.name}&id=${user.id}&modal=user`" -->
-  <span class="chat-msg-at" @click="openStatisticsDialog(user.name.slice(1))">
+  <span
+    class="chat-msg-at"
+    :class="{ 'your-self': userInfo && userInfo.username === user.name.slice(1) }"
+    @click="openStatisticsDialog(user.name.slice(1))"
+  >
     <a>
       <span>{{ user.name }}</span>
     </a>
@@ -40,6 +45,9 @@ const { openStatisticsDialog } = useStatisticsDialog()
   }
   a:hover {
     color: var(--tg-text-white);
+  }
+  &.your-self {
+    background: var(--tg-text-purple);
   }
 }
 </style>

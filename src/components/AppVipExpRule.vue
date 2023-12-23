@@ -16,10 +16,10 @@ const expData = reactive([
     <ul>
       <li class="title">
         <div class="left">
-          有效投注
+          {{ $t('effective_bet') }}
         </div>
         <div class="right">
-          VIP经验
+          VIP{{ $t('game_water_experience') }}
         </div>
       </li>
       <li v-for="item in expData" :key="item.coin">
@@ -30,7 +30,7 @@ const expData = reactive([
           =
         </div>
         <div class="right">
-          {{ item.exp }}VIP经验
+          {{ item.exp }}VIP{{ $t('game_water_experience') }}
         </div>
       </li>
     </ul>

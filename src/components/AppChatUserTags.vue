@@ -6,6 +6,7 @@ interface Props {
 defineProps<Props>()
 
 const levelRoleTxt = {
+  0: '',
   1: 'Platinum I',
   2: 'Platinum II',
   3: 'Platinum III',
@@ -17,6 +18,7 @@ const levelRoleTxt = {
   moderator: 'Moderator',
 }
 
+const { userInfo: originUser } = storeToRefs(useAppStore())
 const { openStatisticsDialog } = useStatisticsDialog()
 </script>
 
@@ -47,6 +49,11 @@ const { openStatisticsDialog } = useStatisticsDialog()
           </div>
         </template>
       </VTooltip>
+    </template>
+    <template v-if="originUser && userInfo.name === originUser.username">
+      <div>
+        ME
+      </div>
     </template>
     <BaseButton type="text" size="none" @click="openStatisticsDialog(userInfo.name)">
       <span class="user-name">{{ userInfo.name }}</span>

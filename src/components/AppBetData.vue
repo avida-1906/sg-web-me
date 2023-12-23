@@ -525,6 +525,7 @@ onUnmounted(() => {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: var(--tg-spacing-4);
     .select-ranking{
       column-gap: var(--tg-spacing-10);
     }
