@@ -1612,5 +1612,6 @@ keep_level_desc: 保级说明
 check_desc: 稽核说明
 activity_desc: 活动声明
 explain_desc: 解释说明
+max_odd: 复式投注赔率超过上限
 
 

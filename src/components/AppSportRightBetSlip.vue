@@ -249,6 +249,15 @@ const errorInfo = computed<{
     }
   }
 
+  if (isBetMulti.value) {
+    if (+sportStore.cart.multiMia === 0 && +sportStore.cart.multiMaa === 0) {
+      return {
+        bool: true,
+        errorMess: t('max_odd'),
+      }
+    }
+  }
+
   return {
     bool: false,
     errorMess: '',
