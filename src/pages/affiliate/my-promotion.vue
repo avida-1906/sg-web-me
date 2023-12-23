@@ -10,28 +10,28 @@ const {
 } = storeToRefs(useWindowStore())
 
 const location = useBrowserLocation()
-const { data: proData } = useRequest(ApiGetMyPro, { manual: false })
-// const proData = ref({
-//   link_url: '/?uid=dsfoxuf223k3h42',
-//   commission: {
-//     accumulated: '999',
-//     received: '999',
-//     last_commission: '999',
-//   },
-//   performance: {
-//     team_num: 2,
-//     direct_num: 2,
-//     other_num: 2,
-//     performance_amount: '999',
-//     direct_amount: '999',
-//     other_amount: '999',
-//   },
-//   subordinate: {
-//     valid_bet_amount: '999',
-//     bet_num: 999,
-//     net_amount: '999',
-//   },
-// })
+// const { data: proData } = useRequest(ApiGetMyPro, { manual: false })
+const proData = ref({
+  link_url: '/?uid=dsfoxuf223k3h42',
+  commission: {
+    accumulated: '999',
+    received: '999',
+    last_commission: '999',
+  },
+  performance: {
+    team_num: 2,
+    direct_num: 2,
+    other_num: 2,
+    performance_amount: '999',
+    direct_amount: '999',
+    other_amount: '999',
+  },
+  subordinate: {
+    valid_bet_amount: '999',
+    bet_num: 999,
+    net_amount: '999',
+  },
+})
 
 const baseQrRef = ref()
 
