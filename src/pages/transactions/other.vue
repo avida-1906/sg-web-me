@@ -6,7 +6,7 @@ const tabList: Ref<{
   label: string
   value: string
 }[]> = ref([{
-  label: '全部',
+  label: t('finance_other_tab_all'),
   value: '',
 }])
 const {

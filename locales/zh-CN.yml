@@ -1631,3 +1631,34 @@ achievable_cumulatively: 累计可获得
 converted_currency: 转换后货币
 choose_convert_your_desired_currency: 您可以选择转换成您想要的货币
 commission_wallet_amount_exchange_total: 您当前佣金钱包金额按照{type}汇率换算合计约为
+affiliate_overview_desc_1: 加入 {name}.com 的联盟计划，以推荐我们的品牌赚钱! 每当一位用户通过您的推荐链接注册并使用 {name}.com，您便会收到联盟佣金。
+affiliate_overview_desc_2: 身为 {name}.com 的联盟会员，所赚的佣金将以推荐用户在娱乐城和体育博彩中的总投注为依据。这跟传统联盟计划的不同之处在于无论推荐用户是赢或输，您都能获得同样的佣金！
+reco_link: 推荐链接
+download_ad: 下载横幅
+page_title_live: 在线玩真人赌场游戏 - 真人荷官
+or: 或
+only_6_num: 仅支持6位纯数字
+pwd_2_not_equal: 两次密码输入不一致
+edit_safe_pwd: 修改资金密码
+set_safe_pwd: 设置资金密码
+not_bind_email: 您还未绑定邮箱
+must_bind_email: 请先绑定邮箱后在设置资金密码
+go_bind: 前往绑定
+old_safe_pwd: 原资金密码
+new_safe_pwd: 新资金密码
+confirm_safe_pwd: 确认资金密码
+forget_safe_pwd: 忘记资金密码？前往
+connect_service: 联系客服
+page_title_sport: 体育博彩 - 在线体育博彩
+online_casino: 在线博彩
+empty_archive: 暂无投注档案
+empty_official_deposit: 暂无法定货币存款
+empty_official_withdraw: 暂无法定货币提款
+vip_level_comp: VIP级别对照
+day_bonus: 每日奖金
+deposit_bonus: 充值奖金
+two: 二
+three: 三
+
+
+

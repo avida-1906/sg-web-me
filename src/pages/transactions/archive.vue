@@ -7,7 +7,7 @@ const data = reactive([])
 <template>
   <section class="tg-archive-record-page">
     <div class="record-content">
-      <div v-if="data && data.length" class="scroll-x bet-record table-wrapper">
+      <div v-if="data && data.length" class="scroll-x table-wrapper bet-record">
         <table class="table">
           <thead />
           <tbody>
@@ -35,7 +35,7 @@ const data = reactive([])
         </table>
       </div>
       <div v-else>
-        <BaseEmpty description="暂无投注档案" icon="empty-1" />
+        <BaseEmpty :description="$t('empty_archive')" icon="empty-1" />
       </div>
     </div>
     <div class="page-stack-wrap mt-24">

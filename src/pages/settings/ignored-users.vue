@@ -28,12 +28,12 @@ const columns: IColumns[] = [
 ]
 const tableData: any = [
   {
-    action: '解除拉黑',
+    action: t('cancel_ignore'),
     player: 'littlemissmay',
     vipIcon: 'chat-star-gold',
   },
   {
-    action: '解除拉黑',
+    action: t('cancel_ignore'),
     player: 'littlemissmay',
     vipIcon: 'chat-star-gold',
   },
