@@ -198,7 +198,7 @@ function showDetail() {
             <div class="score">
               <AppMatchStatistics
                 v-show="item.showResult" :round="false"
-                :data="item.result"
+                :data="item.result" :show-skeleton="item.m === 100"
                 style="--tg-app-match-statistics-max-width:100%;"
               />
             </div>
