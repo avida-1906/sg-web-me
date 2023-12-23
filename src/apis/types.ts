@@ -292,7 +292,7 @@ export interface ISportEventInfoMlMs {
   /** Handicap */
   hdp: string
   /** Specifiers */
-  sp: null
+  sp: string
   /** OddsList 内的欧洲盘 OV */
   ov: string
   /** 需要传递给组件的props，用于加入到购物车的 */
