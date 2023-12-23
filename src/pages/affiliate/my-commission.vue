@@ -4,6 +4,14 @@ const { startTime, endTime } = getDaIntervalMap(new Date().getTime(), 30)
 const { t } = useI18n()
 // const { userLanguage } = storeToRefs(useLanguageStore())
 
+const { list: scaleList } = useScaleData()
+const { selected: platformId, list: platformIdList } = useSelect([
+  {
+    label: '全部',
+    value: '',
+  },
+  ...scaleList,
+])
 const {
   selected: currency_id,
   list: currencyList,
@@ -67,6 +75,7 @@ const params = computed(() => {
   return {
     username: searchValue.value,
     currency_id: currency_id.value,
+    platform_id: platformId.value,
     // start_time: date.value[0],
     // end_time: date.value[1],
     page_size: page_size.value,
@@ -89,13 +98,11 @@ useListSearch(params, runAsync, resetPage)
         v-model.lazy="currency_id"
         :options="currencyList"
       />
-      <div style="max-width: 195px;">
-        <BaseInput v-model="searchValue" :placeholder="t('user_account')">
-          <template #right-icon>
-            <BaseIcon name="uni-search" />
-          </template>
-        </BaseInput>
-      </div>
+      <BaseSelect
+        v-model.lazy="platformId"
+        :options="platformIdList"
+      />
+
       <slot name="grand-total" />
     </div>
 

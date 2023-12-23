@@ -301,6 +301,7 @@ export interface ISportEventInfoMlMs {
 
 /** 赛事详情 ml */
 export interface ISportEventInfoMl {
+  rei: string
   /** MarketlineId */
   mlid: string
   /** BetType */
