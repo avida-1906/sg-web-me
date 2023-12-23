@@ -6,6 +6,7 @@ interface Props {
 defineProps<Props>()
 
 const levelRoleTxt = {
+  0: '',
   1: 'Platinum I',
   2: 'Platinum II',
   3: 'Platinum III',

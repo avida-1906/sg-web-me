@@ -703,8 +703,9 @@ export function ApiChatSendMessage(data: {
   lang: string
   /** 唯一id标志 */
   s: string
+  v?: string
 }) {
-  return httpClient.post<string>(`/member/chat/send?lang=${data.lang}`, { c: data.c, s: data.s })
+  return httpClient.post<string>(`/member/chat/send?lang=${data.lang}`, { c: data.c, s: data.s, v: data.v })
 }
 
 /**
