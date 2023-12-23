@@ -4,6 +4,7 @@ import type { IBasePanelType, PanelTypeItem } from '~/types'
 const props = withDefaults(defineProps<{
   data: IBasePanelType
   round?: boolean // 是否圆角
+  showSkeleton?: boolean // 展示骨架屏
 }>(), {
   round: true,
 })
@@ -388,6 +389,8 @@ const head = computed(() => [
     key: 'matchScore',
   },
 ])
+// 足球
+const isFootBall = computed(() => _data.value.si === 1)
 
 const scoreBoard = computed(() => {
   const headTitle = mapHeadArea(head.value, 'title')
@@ -402,6 +405,13 @@ const scoreBoard = computed(() => {
 })
 
 const gridAreas = computed(() => {
+  if (props.showSkeleton) {
+    return `
+      "competitor_title"
+      "competitor_home"
+      "competitor_away"
+    `
+  }
   return `
     "${scoreBoard.value.headTitle.map((i: any) => i.name).join(' ')}"
     "${scoreBoard.value.headHome.map((i: any) => i.name).join(' ')}"
@@ -454,67 +464,88 @@ function mapHeadArea(
         </span>
       </div>
       <div class="sticky-left competitor-item border" style="grid-area: competitor_home;">
-        <AppImage :url="_data.htpic" is-network width="20px" height="20px" />
-        <span class="sport-title">{{ _data.homeTeamName }}</span>
+        <template v-if="showSkeleton">
+          <BaseSkeleton
+            width="20px" height="20px"
+            style="--tg-skeleton-border-radius:3px"
+          />
+          <BaseSkeleton
+            style="margin-left: 8px;--tg-skeleton-border-radius:3px"
+            width="100px" height="16px"
+          />
+        </template>
+        <template v-else>
+          <AppImage :url="_data.htpic" is-network width="20px" height="20px" />
+          <span class="sport-title">{{ _data.homeTeamName }}</span>
+        </template>
       </div>
       <div class="competitor-item sticky-left" style="grid-area: competitor_away;">
-        <AppImage :url="_data.atpic" is-network width="20px" height="20px" />
-        <span class="sport-title">{{ _data.awayTeamName }}</span>
+        <template v-if="showSkeleton">
+          <BaseSkeleton
+            width="20px" height="20px"
+            style="--tg-skeleton-border-radius:3px"
+          />
+          <BaseSkeleton
+            style="margin-left: 8px;--tg-skeleton-border-radius:3px"
+            width="100px" height="16px"
+          />
+        </template>
+        <template v-else>
+          <AppImage :url="_data.atpic" is-network width="20px" height="20px" />
+          <span class="sport-title">{{ _data.awayTeamName }}</span>
+        </template>
       </div>
 
-      <!-- 角球 -->
-      <template v-if="_data.si === 1">
-        <div class="heading center" style="grid-area: corners_title;">
-          <BaseIcon name="uni-ruler" />
-        </div>
-        <span class="fill-frame border" style="grid-area: corners_home;">
-          <span>{{ _data.corner?.homeTeam }}</span>
-        </span>
-        <span class="fill-frame" style="grid-area: corners_away;">
-          <span>{{ _data.corner?.awayTeam }}</span>
-        </span>
-      </template>
+      <template v-if="!showSkeleton">
+        <template v-if="isFootBall">
+          <!-- 角球 -->
+          <div class="heading center" style="grid-area: corners_title;">
+            <BaseIcon name="uni-ruler" />
+          </div>
+          <span class="fill-frame border" style="grid-area: corners_home;">
+            <span>{{ _data.corner?.homeTeam }}</span>
+          </span>
+          <span class="fill-frame" style="grid-area: corners_away;">
+            <span>{{ _data.corner?.awayTeam }}</span>
+          </span>
 
-      <!-- 黄牌 -->
-      <template v-if="_data.si === 1">
-        <div class="heading center" style="grid-area: yellowCards_title;">
-          <BaseIcon name="uni-warn-rect" />
-        </div>
-        <span class="fill-frame border" style="grid-area: yellowCards_home;">
-          <span>{{ _data.yellowCard?.homeTeam }}</span>
-        </span>
-        <span class="fill-frame" style="grid-area: yellowCards_away;">
-          <span>{{ _data.yellowCard?.awayTeam }}</span>
-        </span>
-      </template>
+          <!-- 黄牌 -->
+          <div class="heading center" style="grid-area: yellowCards_title;">
+            <BaseIcon name="uni-warn-rect" />
+          </div>
+          <span class="fill-frame border" style="grid-area: yellowCards_home;">
+            <span>{{ _data.yellowCard?.homeTeam }}</span>
+          </span>
+          <span class="fill-frame" style="grid-area: yellowCards_away;">
+            <span>{{ _data.yellowCard?.awayTeam }}</span>
+          </span>
 
-      <!-- 红牌 -->
-      <template v-if="_data.si === 1">
-        <div class="heading center" style="grid-area: redCards_title;">
-          <BaseIcon name="uni-error-rect" />
-        </div>
-        <span class="fill-frame border" style="grid-area: redCards_home;">
-          <span>{{ _data.redCard?.homeTeam }}</span>
-        </span>
-        <span class="fill-frame" style="grid-area: redCards_away;">
-          <span>{{ _data.redCard?.awayTeam }}</span>
-        </span>
-      </template>
+          <!-- 红牌 -->
+          <div class="heading center" style="grid-area: redCards_title;">
+            <BaseIcon name="uni-error-rect" />
+          </div>
+          <span class="fill-frame border" style="grid-area: redCards_home;">
+            <span>{{ _data.redCard?.homeTeam }}</span>
+          </span>
+          <span class="fill-frame" style="grid-area: redCards_away;">
+            <span>{{ _data.redCard?.awayTeam }}</span>
+          </span>
+        </template>
 
-      <!-- 1，2，3 场 -->
-      <template v-for="p, idx in _data.period" :key="idx">
-        <div class="heading center" :style="`grid-area: period_title_${idx}`">
-          <span>{{ idx + 1 }}st</span>
-        </div>
-        <span class="fill-frame border" :style="`grid-area: period_home_${idx}`">
-          <span>{{ p.homeTeam }}</span>
-        </span>
-        <span class="fill-frame" :style="`grid-area: period_away_${idx}`">
-          <span>{{ p.awayTeam }}</span>
-        </span>
-      </template>
-      <!-- gameScore -->
-      <!-- <div class="heading center" style="grid-area: gameScore_title;" />
+        <!-- 1，2，3 场 -->
+        <template v-for="p, idx in _data.period" :key="idx">
+          <div class="heading center" :style="`grid-area: period_title_${idx}`">
+            <span>{{ idx + 1 }}st</span>
+          </div>
+          <span class="fill-frame border" :style="`grid-area: period_home_${idx}`">
+            <span>{{ p.homeTeam }}</span>
+          </span>
+          <span class="fill-frame" :style="`grid-area: period_away_${idx}`">
+            <span>{{ p.awayTeam }}</span>
+          </span>
+        </template>
+        <!-- gameScore -->
+        <!-- <div class="heading center" style="grid-area: gameScore_title;" />
       <span class="fill-frame border" style="grid-area: gameScore_home;">
         <span>0</span>
       </span>
@@ -522,25 +553,27 @@ function mapHeadArea(
         <span>16</span>
       </span> -->
 
-      <!-- matchScore -->
-      <div class="heading center sticky-right" style="grid-area: matchScore_title;">
-        <AppImage
-          style="filter: brightness(2);"
-          :url="_data.spic" is-network width="16px" height="16px"
-        />
-      </div>
-      <div
-        class="fill-frame sticky-right completed match-score border"
-        style="grid-area: matchScore_home;"
-      >
-        <span>{{ _data.homeTeamScore }}</span>
-      </div>
-      <div
-        class="match-score fill-frame sticky-right"
-        style="grid-area: matchScore_away;"
-      >
-        <span>{{ _data.awayTeamScore }}</span>
-      </div>
+        <div class="heading center sticky-right" style="grid-area: matchScore_title;">
+          <AppImage
+            style="filter: brightness(2);"
+            :url="_data.spic" is-network width="16px" height="16px"
+          />
+        </div>
+
+        <!-- matchScore -->
+        <div
+          class="fill-frame sticky-right completed match-score border"
+          style="grid-area: matchScore_home;"
+        >
+          <span>{{ _data.homeTeamScore }}</span>
+        </div>
+        <div
+          class="match-score fill-frame sticky-right"
+          style="grid-area: matchScore_away;"
+        >
+          <span>{{ _data.awayTeamScore }}</span>
+        </div>
+      </template>
     </div>
     <div v-if="_data.overtime" class="overtime">
       {{ $t('additional_time') }} ({{ _data.overtime.awayTeam }}-{{ _data.overtime.homeTeam }})

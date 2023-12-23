@@ -210,6 +210,7 @@ function onPopperOpen() {
     line-height: var(--tg-base-select-popcontent-lineheight);
     .inner-label {
       display: block;
+      white-space: nowrap;
     }
   }
   &.pop-open {
