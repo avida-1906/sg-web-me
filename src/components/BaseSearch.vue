@@ -43,8 +43,11 @@ function onClear() {
 function manualFocus() {
   inputRef.value.focus()
 }
+function manualBlur() {
+  inputRef.value.blur()
+}
 
-defineExpose({ manualFocus })
+defineExpose({ manualFocus, manualBlur })
 </script>
 
 <template>
