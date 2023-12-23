@@ -67,7 +67,7 @@ function drawDialog() {
     align-items: center;
     justify-content: flex-start;
     gap: var(--tg-spacing-10);
-    max-width: 50%;
+    max-width: 75%;
     overflow: hidden;
     .agent-badge {
       font-size: 42px;
