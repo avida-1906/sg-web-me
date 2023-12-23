@@ -1,21 +1,26 @@
 <script setup lang="ts">
 const props = defineProps<{ gameType: string }>()
 
+const { t } = useI18n()
 const { appContentWidth, isMobile } = storeToRefs(useWindowStore())
 const casinoStore = useCasinoStore()
 const { platformList } = storeToRefs(casinoStore)
 const route = useRoute()
 const title = computed(() => route.query.name)
 const { bool: loading } = useBoolean(false)
-const titles = reactive<any>({
-  3: '在线玩真人赌场游戏 - 真人荷官',
-})
+const titles = computed<any>(() => ({
+  3: t('page_title_live'),
+}))
 
 const currentType = ref(props.gameType)
 const sortType = ref(EnumCasinoSortType.hot)
 const pids = ref('')
 const cid = ref(route.query.cid ? route.query.cid?.toString() ?? '0' : '0')
-usePageTitle({ prefix: cid.value && titles[cid.value] ? titles[cid.value] : title })
+usePageTitle({
+  prefix: cid.value && titles.value[cid.value]
+    ? titles.value[cid.value]
+    : title,
+})
 
 const isRec = computed(() => currentType.value === 'rec') // 推荐游戏
 const isCat = computed(() => currentType.value === 'category') // 类别

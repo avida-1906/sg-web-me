@@ -5,7 +5,7 @@ defineOptions({
 const props = defineProps<{ platId: string }>()
 
 const { t } = useI18n()
-usePageTitle({ prefix: '体育博彩 - 在线体育博彩', suffix: '在线博彩' })
+usePageTitle({ prefix: t('page_title_sport'), suffix: t('online_casino') })
 const { isMobile } = storeToRefs(useWindowStore())
 const { isLogin } = storeToRefs(useAppStore())
 const sportsStore = useSportsStore()

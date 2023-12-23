@@ -12,7 +12,7 @@ const {
   resetField: resetOldPayPwd,
 } = useField<string>('payPassword', (value) => {
   if (!payPasswordReg.test(value))
-    return '仅支持6位纯数字'
+    return t('only_6_num')
   return ''
 })
 const {
@@ -28,11 +28,11 @@ const {
   resetField: resetAginPayPassword,
 } = useField<string>('aginPayPassword', (value) => {
   if (!value)
-    return '仅支持6位纯数字'
+    return t('only_6_num')
     // return t('pls_enter_password')
   else if (value !== payPassword.value)
     // return t('validate_msg_safepwd_unequal')
-    return '两次密码输入不一致'
+    return t('pwd_2_not_equal')
   return ''
 })
 const {
@@ -103,7 +103,7 @@ const getMailState = computed(() => {
 
 function fieldVerifyPayPwd(value: string) {
   if (!payPasswordReg.test(value))
-    return '仅支持6位纯数字'
+    return t('only_6_num')
   // return t('pls_enter_password')
   // else if (!payPasswordReg.test(value))
   //   return t('tip_safepwd_six')
@@ -162,7 +162,7 @@ onUnmounted(() => {
   <div class="tg-settings-security">
     <!-- t('menu_title_settings_update_safepwd') -->
     <AppSettingsContentItem
-      :title="getPayPwdState ? '修改资金密码' : '设置资金密码'"
+      :title="getPayPwdState ? t('edit_safe_pwd') : t('set_safe_pwd')"
       last-one
       :btn-loading="payPasswordUpdateLoading"
       :verified="getMailState"
@@ -173,16 +173,16 @@ onUnmounted(() => {
       @submit="submitPayPwd"
     >
       <div v-if="getMailState" class="mail-not-bind">
-        <div>您还未绑定邮箱</div>
+        <div>{{ t('not_bind_email') }}</div>
         <div style="margin-bottom:var(--tg-spacing-15);">
-          请先绑定邮箱后在设置资金密码
+          {{ t('must_bind_email') }}
         </div>
         <BaseButton size="none" type="text" @click="router.push('/settings/general')">
-          前往绑定
+          {{ t('go_bind') }}
         </BaseButton>
       </div>
       <template v-else>
-        <BaseLabel v-if="getPayPwdState" label="原资金密码">
+        <BaseLabel v-if="getPayPwdState" :label="t('old_safe_pwd')">
           <BaseInput
             ref="oldPwdRef"
             v-model="oldPayPassword"
@@ -193,7 +193,10 @@ onUnmounted(() => {
           />
         </BaseLabel>
         <!-- t('menu_title_settings_update_safepwd') -->
-        <BaseLabel :label="getPayPwdState ? '新资金密码' : '资金密码'">
+        <BaseLabel
+          :label="getPayPwdState
+            ? t('new_safe_pwd') : t('menu_title_settings_update_safepwd')"
+        >
           <BaseInput
             ref="pwdRef"
             v-model="payPassword"
@@ -203,7 +206,7 @@ onUnmounted(() => {
             msg-after-touched
           />
         </BaseLabel>
-        <BaseLabel label="确认资金密码">
+        <BaseLabel :label="t('confirm_safe_pwd')">
           <BaseInput
             ref="aginPwdRef"
             v-model="aginPayPassword"
@@ -213,7 +216,7 @@ onUnmounted(() => {
             msg-after-touched
           />
         </BaseLabel>
-        <BaseLabel label="邮箱验证码">
+        <BaseLabel :label="t('email_code')">
           <div class="row-mail-code">
             <div style="flex:  1;">
               <BaseInput
@@ -238,15 +241,15 @@ onUnmounted(() => {
               @click="runAsyncMemberSendMailCode"
             >
               <!-- t('after_seconds_send_code') -->
-              <span v-if="timer">{{ `重新获取${countdown}s` }}</span>
-              <span v-else>获取验证码</span>
+              <span v-if="timer">{{ `${t('re_get')}${countdown}s` }}</span>
+              <span v-else>{{ t('get_email_code') }}</span>
             </BaseButton>
           </div>
         </BaseLabel>
         <div v-if="getPayPwdState" class="forget-pwd">
-          忘记资金密码？前往
+          {{ t('forget_safe_pwd') }}
           <BaseButton size="none" type="text">
-            联系客服
+            {{ t('connect_service') }}
           </BaseButton>
         </div>
       </template>

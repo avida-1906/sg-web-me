@@ -30,7 +30,7 @@ const {
   if (!value)
     return t('pls_enter_password')
   else if (value !== newPassword.value)
-    return '两次输入的密码不一致'
+    return t('validate_msg_pwd_unequal')
   return ''
 })
 const {
@@ -40,8 +40,8 @@ const {
   onSuccess() {
     openNotify({
       type: 'success',
-      title: '成功',
-      message: '修改密码成功',
+      title: t('notify_title_success'),
+      message: t('success_update_pwd'),
     })
     // 修改密码成功之后退出登陆
     runMemberLogout()
@@ -61,7 +61,7 @@ const {
   if (!value)
     return t('pls_enter_password')
   else if (value !== payPassword.value)
-    return '两次输入的资金密码不一致'
+    return t('validate_msg_safepwd_unequal')
   return ''
 })
 /** 双重验证 */
@@ -76,7 +76,7 @@ const {
   validate: validateDoublePwd,
 } = useField<string>('doublePassword', (value) => {
   if (!value)
-    return '请输入双重验证密码'
+    return t('pls_input_double_check_pwd')
   return ''
 })
 const {

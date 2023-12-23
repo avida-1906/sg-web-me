@@ -224,11 +224,11 @@ const { openRegisterDialog } = useRegisterDialog()
     </div>
     <div v-if="!isLogin" class="p buttons">
       <BaseButton type="text" size="none" @click="openLoginDialog()">
-        登录
+        {{ $t('login') }}
       </BaseButton>
-      <span>或</span>
+      <span>{{ $t('or') }}</span>
       <BaseButton type="text" size="none" @click="openRegisterDialog()">
-        注册
+        {{ $t('reg') }}
       </BaseButton>
     </div>
   </div>

@@ -15,7 +15,8 @@ const tabList = reactive([
       v-model:tab-value="tab"
       content-type="withdraw"
       :tabs="tabList"
-      :empty-text="tab === 'byt_w_coin' ? $t('finance_withdraw_empty_text') : '暂无法定货币提款'"
+      :empty-text="tab === 'byt_w_coin'
+        ? $t('finance_withdraw_empty_text') : $t('empty_official_withdraw')"
       :download-text="$t('finance_withdraw_download_text')"
     />
   </section>
