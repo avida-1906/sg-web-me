@@ -80,6 +80,7 @@ export interface IBasePanelType {
  * 体育投注数据类型
  */
 export interface IBetInfo {
+  rei: string
   /** 投注项id，最内层id 大小玩法选择大的投注选项id */
   wid: string
   /** 盘口id， 让球、大小 那层的id */

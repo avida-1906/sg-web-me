@@ -425,6 +425,7 @@ export function getCartObject(
     si: infoList1.si,
     homeTeamName: infoList1.htn,
     awayTeamName: infoList1.atn,
+    rei: mlObject.rei ?? '',
   }
 }
 
