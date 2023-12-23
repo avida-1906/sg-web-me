@@ -1619,4 +1619,15 @@ qr_code: 二维码
 bet_comp_coin: 您下注使用的所有货币会标准化为竞赛货币
 exp_rule: 经验计算规则
 electric_game: 电竞
-
+max_odd: 复式投注赔率超过上限
+commission_transfer: 转账
+currency_list: 币种列表
+commission_currency_conversion: 佣金币种转换
+total_approx: 合计约为
+confirm_conversion: 确认转换
+exchange_rate_for_currency_received: 兑领取币种汇率
+commission_wallet_balance: 佣金钱包余额
+achievable_cumulatively: 累计可获得
+converted_currency: 转换后货币
+choose_convert_your_desired_currency: 您可以选择转换成您想要的货币
+commission_wallet_amount_exchange_total: 您当前佣金钱包金额按照{type}汇率换算合计约为
