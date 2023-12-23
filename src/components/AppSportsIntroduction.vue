@@ -1,10 +1,18 @@
 <script setup lang='ts'>
 const { t } = useI18n()
-const { isLogin } = storeToRefs(useAppStore())
+const { isLogin, companyData } = storeToRefs(useAppStore())
 const { isMobile } = storeToRefs(useWindowStore())
+const location = useBrowserLocation()
 const { bool: showMore, toggle: toggleShowMore } = useBoolean(false)
 
 const btnText = ref(t('view_more_2'))
+
+const hostSite = computed(() => (
+  {
+    host: location.value.hostname?.replace('www.', '').toUpperCase(),
+    site: companyData.value?.name.toUpperCase(),
+  }
+))
 
 const onShowMore = function () {
   toggleShowMore()
@@ -19,40 +27,22 @@ const onShowMore = function () {
   <!-- 公司介绍 -->
   <div v-if="!isLogin" class="index-introduction" :class="{ 'max-height': showMore }">
     <div class="introduction-content" :class="[isMobile ? 'h5-mobile' : 'column-count']">
-      <h2>Meibo 体育投注 - 人人喜爱的在线体育博彩公司</h2>
+      <h2>{{ t('sport_new_intro_1', hostSite) }}</h2>
       <div class="p">
-        Meibo.com 为现代投注者提供丰富的体育投注选择——我们的在线体育博彩公司提供各种实时体育投注，包括
-        综合格斗
-        、
-        篮球
-        、
-        足球
-        、
-        曲棍球
-        和
-        棒球
-        等。
+        {{ t('sport_new_intro_2', hostSite) }}
       </div>
       <div class="p">
-        我们的在线体育投注平台操作简单，用户可以在平台上投注自己喜欢的球队、球员和世界各地的联赛，还可以观看最大型的体育赛事直播。了解有关
-        如何在 Meibo 免费在线观看
-        您喜爱的体育节目直播的更多信息。
+        {{ t('sport_new_intro_3', hostSite) }}
       </div>
       <div class="p">
-        根据体育项目和直播体育赛事的不同，最雄心勃勃的体育投注者可以获得丰富多彩的体育选项和策略。
-        Meibo 每天的体育投注量超过 100,000 次，是国内外体育投注的首选网站。获取所有
-        最新体育趋势和 2023 年 8 月的数据！
+        {{ t('sport_new_intro_4', hostSite) }}
       </div>
       <div class="p">
-        通过我们的
-        终极体育博彩指南
-        ，了解更多您喜爱的体育项目、比赛和球员的博彩信息！
+        {{ t('sport_new_intro_5', hostSite) }}
       </div>
-      <h2>在线体育博彩赔率与投注类型</h2>
+      <h2>{{ t('sport_new_intro_6') }}</h2>
       <div class="p">
-        Meibo 很自豪能为我们忠实的体育投注者提供顶级
-        在线体育博彩
-        体验。
+        {{ t('sport_new_intro_7', hostSite) }}
       </div>
       <div class="p">
         只需前往感兴趣的体育运动、类别或体育联盟，即可查看可供投注的实时赛事和即将进行的赛事。
