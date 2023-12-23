@@ -315,7 +315,7 @@ export const useSportsStore = defineStore('sports', () => {
   /** 获取球种对应的盘口类型下拉选单 */
   function getSportsBetTypeListBySi(si: number) {
     return sportsBetTypeList.value.find(a => a.si === si)?.btl
-    ?? [{ value: 1, label: t('sports_handicap_market') }]
+    ?? [{ value: 3, label: t('sports_winner_market') }]
   }
 
   /** 获取球种对应icon */
