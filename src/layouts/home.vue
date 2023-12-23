@@ -179,7 +179,7 @@ onErrorCaptured((err, instance, info) => {
       </div>
       <!-- </Transition> -->
     </div>
-    <Transition :name="isMobile ? 'bigslide-fade-top' : ''">
+    <Transition :name="isMobile ? 'casino-sport-fade-top' : ''">
       <div
         v-if="rightIsExpand"
         class="right-sidebar"
