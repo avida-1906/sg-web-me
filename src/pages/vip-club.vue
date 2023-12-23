@@ -389,35 +389,35 @@ const vipCols = reactive<Array<{
   key: string
 }>>([
   {
-    title: 'VIP级别对照',
+    title: t('vip_level_comp'),
     key: 'level',
   },
   {
-    title: '投注金额',
+    title: t('bet_amount_label'),
     key: 'score',
   },
   {
-    title: '月度奖金',
+    title: t('monthly_bonus'),
     key: 'monthly_gift',
   },
   {
-    title: '升级奖金',
+    title: t('upgrade_bonus'),
     key: 'up_gift',
   },
   {
-    title: '周度奖金',
+    title: t('weekly_bonus'),
     key: 'weekly_gift',
   },
   {
-    title: '每日奖金<br/>充值奖金',
+    title: `${t('day_bonus')}<br/>${t('deposit_bonus')}`,
     key: 'daily_gift',
   },
   {
-    title: '奖金增长',
+    title: t('bonus_up'),
     key: 'member_count',
   },
   {
-    title: '专属VIP客服代表',
+    title: t('dedicated_vip_servicer'),
     key: 'member_count',
   },
   {
@@ -514,7 +514,7 @@ const toVip = function () {
               <BaseImage url="/png/vip-club/step2.png" />
             </div>
             <p>
-              {{ t('step_num', { num: '二' }) }}
+              {{ t('step_num', { num: t('two') }) }}
             </p>
             <p>
               {{ t('vip_club_tip_5') }}
@@ -525,7 +525,7 @@ const toVip = function () {
               <BaseImage url="/png/vip-club/step3.png" />
             </div>
             <p>
-              {{ t('step_num', { num: '三' }) }}
+              {{ t('step_num', { num: t('three') }) }}
             </p>
             <p>
               {{ t('vip_club_tip_6') }}

@@ -66,7 +66,9 @@ export const useSportsStore = defineStore('sports', () => {
       else {
         currentLiveNav.value = 1
       }
-      currentLiveBetType.value = getSportsBetTypeListBySi(currentLiveNav.value)[0]?.value
+
+      if (currentLiveBetType.value === 0)
+        currentLiveBetType.value = getSportsBetTypeListBySi(currentLiveNav.value)[0].value
     },
   })
 
@@ -82,8 +84,9 @@ export const useSportsStore = defineStore('sports', () => {
           || !res.d.find(a => a.si === currentFavNav.value)
         ) {
           currentFavNav.value = res.d[0].si
-          currentFavBetType.value
-          = getSportsBetTypeListBySi(currentFavNav.value)[0]?.value
+          if (currentFavBetType.value === 0)
+            // eslint-disable-next-line max-len
+            currentFavBetType.value = getSportsBetTypeListBySi(currentFavNav.value)[0].value
         }
       }
     },

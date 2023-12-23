@@ -7,7 +7,7 @@ const { t } = useI18n()
 const { list: scaleList } = useScaleData()
 const { selected: platformId, list: platformIdList } = useSelect([
   {
-    label: '全部',
+    label: t('finance_other_tab_all'),
     value: '',
   },
   ...scaleList,
@@ -17,7 +17,7 @@ const {
   list: currencyList,
 } = useSelect([
   {
-    label: '全部',
+    label: t('finance_other_tab_all'),
     value: '',
   },
   ...getCurrencyOptions(),
