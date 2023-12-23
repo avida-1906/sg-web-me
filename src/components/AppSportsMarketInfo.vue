@@ -88,7 +88,7 @@ const standardMarketBtns = computed(() => {
   if (isHandicap.value) {
     return standardMarketFiltered.value[0]?.ms.map((a) => {
       return {
-        title: `${a.sn} (${a.hdp})`,
+        title: a.sn,
         ...a,
         disabled: standardMarketFiltered.value[0].mls !== 1,
         cartInfo: getCartObject(standardMarketFiltered.value[0], a, props.data),
@@ -380,7 +380,7 @@ setEventTime()
           <AppSportsBetButton
             v-for="market in standardMarketBtns" :key="market.wid + market.sn"
             :title="market.title" :odds="market.ov" :disabled="market.disabled"
-            :cart-info="market.cartInfo"
+            :cart-info="market.cartInfo" :is-handicap="isHandicap" :hdp="market.hdp"
           />
         </template>
         <AppSportsOutcomeLocked v-else />
