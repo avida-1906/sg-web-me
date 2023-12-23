@@ -14,7 +14,7 @@ const {
   else if (value.match('[^a-z0-9]'))
     return t('name_has_invalid_char')
   else if (value.length > 14)
-    return '您的 username 不得超过 14 个字符'
+    return t('name_14_char')
   else if (!usernameReg.test(value))
     return t('validate_msg_user_name_tip')
   return ''
