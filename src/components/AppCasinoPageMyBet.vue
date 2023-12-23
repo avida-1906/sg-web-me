@@ -173,12 +173,13 @@ else
 
 <style lang='scss' scoped>
 .casino-my-bets {
-  margin-bottom: var(--tg-spacing-44);
+  margin-bottom: var(--tg-spacing-52);
 }
 
 .btns {
   display: flex;
   justify-content: center;
+  --tg-base-button-text-default-color: var(--tg-text-white);
 }
 
 .empty {
