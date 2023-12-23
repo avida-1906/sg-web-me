@@ -138,8 +138,7 @@ function onSportsSiChange(item: { count: number }) {
 }
 
 watch(currentUpcomingNav, () => {
-  baseType.value
-  = sportsStore.getSportsBetTypeListBySi(currentUpcomingNav.value)[0]?.value
+  baseType.value = baseTypeOptions.value[0].value
   switchLoadingTrue()
   reset()
   getData()

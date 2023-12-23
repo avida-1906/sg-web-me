@@ -3,6 +3,7 @@ const { t } = useI18n()
 usePageTitle({ prefix: t('btc_sport_title') })
 const { width } = storeToRefs(useWindowStore())
 const sportsStore = useSportsStore()
+const { sportsBetTypeList } = storeToRefs(sportsStore)
 const route = useRoute()
 const navObj = application.urlParamsToObject(route.fullPath.split('?')[1])
 const sport = computed(() => route.params.sport ? +route.params.sport : 0)
@@ -40,6 +41,10 @@ const breadcrumb = computed(() => [
     title: navObj.cn,
   },
 ])
+
+watch(sportsBetTypeList, () => {
+  baseType.value = sportsStore.getSportsBetTypeListBySi(sport.value)[0].value
+})
 </script>
 
 <template>
