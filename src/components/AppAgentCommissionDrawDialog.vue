@@ -35,30 +35,28 @@ function changeCurrency(item: CurrencyData, network: string) {
 
 <template>
   <div class="app-agent-commission-draw-bonus">
-    <div class="money">
-      {{ '1000' }}<BaseIcon name="coin-usdt" />
-    </div>
     <div class="choose-label">
-      <span>{{ $t('current_wait_receive_label') }}：</span>
+      <div>{{ $t('commission_wallet_amount_exchange_total', { type: 'USDT' }) }}：</div>
       <span class="orange-text">{{ '1000' }}<BaseIcon name="coin-usdt" /></span>
-      <span>{{ $t('current_wait_receive_desc') }}</span>
+      <span>{{ $t('choose_convert_your_desired_currency') }}</span>
     </div>
     <div class="currency-wrap">
+      <span>{{ $t('converted_currency') }}</span>
       <AppSelectCurrency
         :show-balance="false"
         :network="isVirCurrency"
         @change="changeCurrency"
       />
       <div class="orange-text about-receive">
-        <span class="label">{{ $t('bonus_receive_expect') }}：</span>
+        <span class="label">{{ $t('achievable_cumulatively') }}：</span>
         <AppAmount amount="99999900" currency-type="BNB" />
       </div>
     </div>
     <div class="records">
       <ul class="wrap">
         <li class="item title">
-          <div>{{ $t('commission_wallet_money_label') }}</div>
-          <div>{{ $t('currency_exchange_rate') }}</div>
+          <div>{{ $t('commission_wallet_balance') }}</div>
+          <div>{{ $t('exchange_rate_for_currency_received') }}</div>
         </li>
         <li v-for="item in commissionWallet" :key="item.currency" class="item">
           <div class="level">
@@ -72,7 +70,7 @@ function changeCurrency(item: CurrencyData, network: string) {
     </div>
     <div class="buttons">
       <BaseButton bg-style="primary" size="md" @click="receiveBonus">
-        {{ $t('confirm_receive') }}
+        {{ $t('confirm_conversion') }}
       </BaseButton>
     </div>
   </div>
@@ -93,17 +91,9 @@ function changeCurrency(item: CurrencyData, network: string) {
   justify-content: flex-start;
   gap: var(--tg-spacing-16);
   text-align: center;
-  padding: var(--tg-spacing-4) var(--tg-spacing-16) var(--tg-spacing-16);
+  padding: 0 var(--tg-spacing-16) var(--tg-spacing-16);
   font-size: var(--tg-font-size-default);
   color: var(--tg-text-white);
-  .money {
-    color: var(--tg-text-white);
-    font-size: var(--tg-font-size-lg);
-    font-weight: var(--tg-font-weight-semibold);
-    display: flex;
-    align-items: center;
-    gap: var(--tg-spacing-4);
-  }
   .choose-label {
     color: var(--tg-secondary-light);
     line-height: var(--tg-spacing-20);
@@ -144,7 +134,7 @@ function changeCurrency(item: CurrencyData, network: string) {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 0 var(--tg-spacing-12);
+        padding: 0 var(--tg-spacing-16);
         font-size: var(--tg-font-size-default);
         color: var(--tg-text-white);
         line-height: var(--tg-spacing-54);

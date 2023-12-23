@@ -11,7 +11,7 @@ export function useScaleData() {
     { label: t('slot'), value: '3' },
     { label: t('sports'), value: '4' },
     { label: t('chess'), value: '5' },
-    { label: '电竞', value: '6' },
+    { label: t('electric_game'), value: '6' },
   ]
 
   return {

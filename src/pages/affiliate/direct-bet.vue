@@ -9,7 +9,7 @@ const {
   list: currencyList,
 } = useSelect([
   {
-    label: '全部',
+    label: t('finance_other_tab_all'),
     value: '',
   },
   ...getCurrencyOptions(),
@@ -102,7 +102,7 @@ useListSearch(params, runAsync, resetPage)
       </template>
       <template #th-valid_bet_amount>
         <div style="margin-top: var(--tg-spacing-4);">
-          投注单数量
+          {{ t('bet_order_num') }}
         </div>
       </template>
       <template #time="{ record }">

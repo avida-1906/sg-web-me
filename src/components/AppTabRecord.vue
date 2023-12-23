@@ -18,7 +18,7 @@ const { t } = useI18n()
 const { isMobile } = storeToRefs(useWindowStore())
 // 存款详情弹框
 const { openDepositDetailDialog }
-  = useDialogDepositDetail(props.contentType === 'deposit' ? t('deposit_detail') : '提款详情')
+  = useDialogDepositDetail(props.contentType === 'deposit' ? t('deposit_detail') : t('withdraw_detail'))
 // 加密货币存款
 const recordDepositCoin = useList(ApiFinanceRecordDepositCoin,
   { manual: true }, { page_size: 10 })
@@ -79,24 +79,24 @@ function pageNext() {
 function formatWithdrawState(state: number) {
   // <!--1：成功，2：拒绝，3，审核中，4：删除，5：三方异常，6：出款中-- >
   switch (state) {
-    case 1: return '已完成'
-    case 2: return '失败'
-    case 3: return '处理中'
-    case 4: return '失败'
-    case 5: return '失败'
-    case 6: return '处理中'
+    case 1: return t('checklist_completed')
+    case 2: return t('failure')
+    case 3: return t('dealing')
+    case 4: return t('failure')
+    case 5: return t('failure')
+    case 6: return t('dealing')
     default: return '--'
   }
 }
 function formatDepositState(state: number) {
   // <!--1：成功，2：失败，3，支付中，4：删除，5:待审核 6：取消-- >
   switch (state) {
-    case 1: return '已确认'
-    case 2: return '失败'
-    case 3: return '确认中'
-    case 4: return '失败'
-    case 5: return '确认中'
-    case 6: return '取消'
+    case 1: return t('confirmed')
+    case 2: return t('failure')
+    case 3: return t('status_pending')
+    case 4: return t('failure')
+    case 5: return t('status_pending')
+    case 6: return t('cancel')
     default: return '--'
   }
 }

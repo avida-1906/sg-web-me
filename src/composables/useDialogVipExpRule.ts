@@ -1,11 +1,12 @@
 import AppVipExpRule from '~/components/AppVipExpRule.vue'
 
 export function useDialogVipExpRule() {
+  const { t } = useI18n()
   const {
     openDialog: openVipExpRuleDialog,
     closeDialog: closeVipExpRuleDialog,
   } = useDialog({
-    title: '经验计算规则',
+    title: t('exp_rule'),
     icon: 'uni-conter-line',
     default: () => h(AppVipExpRule),
   })

@@ -1,8 +1,6 @@
 <script setup lang='ts'>
 const { t } = useI18n()
 const { vip, progress, currentLevel, nextLevel, isMaxLevel } = useVipInfo()
-
-console.log(useVipInfo(), 2111111)
 </script>
 
 <template>

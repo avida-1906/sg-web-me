@@ -132,6 +132,7 @@ export interface IBetInfo {
    * 下注种类id，ex: 大小裡面的大=1 小=2
    */
   sid: string
+  sp: string
 }
 
 /**
@@ -192,6 +193,7 @@ export type ICartInfoData = ICartInfo & {
   hp: number
   /** 新的盘口Id */
   new_wid: string
+  sp: string
 }
 
 // /**
