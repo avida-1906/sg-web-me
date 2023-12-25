@@ -118,9 +118,8 @@ onBeforeUnmount(() => {
   if (needBack.value) {
     if (props.isAuth)
       openThirdAuthFormDialog()
-
     else
-      openRegisterDialog({ showClose: !!(parentId.value && parentId.value.length), closeOnClickOverlay: !!(parentId.value && parentId.value.length) })
+      openRegisterDialog() // { showClose: !(parentId.value && parentId.value.length), closeOnClickOverlay: !(parentId.value && parentId.value.length) }
   }
 })
 </script>

@@ -251,6 +251,10 @@ async function getMemberReg() {
     closeDialog()
     await nextTick()
     openTermsConditionsDialog()
+    // {
+    //   showClose: !(parentId.value && parentId.value.length),
+    //   closeOnClickOverlay: !(parentId.value && parentId.value.length),
+    // }
   }
 }
 function onPasswordFocus() {
