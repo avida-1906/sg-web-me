@@ -29,7 +29,7 @@ const vipArray = computed(() =>
 
 const tableData: ITableData[] = [
   {
-    text: t('vip_level_compare'),
+    text: t('vip_level_comp'),
     sticky: true,
   },
   {
