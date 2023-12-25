@@ -124,7 +124,7 @@ onBeforeUnmount(() => {
 
 onMounted(() => {
   const parentId = Session.get<string>(STORAGE_REG_PARENT_ID)?.value
-  if (parentId && parentId.length)
+  if (parentId && parentId.length && !isLogin.value)
     openRegisterDialog()
 })
 

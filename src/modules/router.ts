@@ -44,8 +44,13 @@ router.beforeEach((to, from, next) => {
   if (to.query.uid && !isLogin.value)
     Session.set(STORAGE_REG_PARENT_ID, to.query.uid)
 
+  const parentId = Session.get<string>(STORAGE_REG_PARENT_ID)?.value
+  const isParent = parentId && parentId.length
+  if (isParent)
+    to.query.uid = parentId
+
   if (to.path === '/') {
-    next('/casino')
+    next(`/casino${isParent ? `?uid=${parentId}` : ''}`)
     return
   }
 
@@ -54,6 +59,16 @@ router.beforeEach((to, from, next) => {
       openRegisterDialog()
       next('/')
       return
+    }
+  }
+
+  if (isParent) {
+    if (to.fullPath.includes('?')) {
+      if (!to.fullPath.includes('uid='))
+        to.fullPath += `&uid=${parentId}`
+    }
+    else {
+      to.fullPath += `?uid=${parentId}`
     }
   }
 
