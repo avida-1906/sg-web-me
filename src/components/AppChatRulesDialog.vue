@@ -54,5 +54,9 @@ const { companyData } = storeToRefs(useAppStore())
       margin: 0 var(--tg-spacing-8);
     }
   }
+  .center {
+    display: inline-flex;
+    flex-wrap: wrap;
+  }
 }
 </style>
