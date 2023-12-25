@@ -198,8 +198,8 @@ const SweepstakesColumns = ref<IColumns[]>([
 const paginationData = ref<IPaginationData>(
   {
     pageSize: 10,
-    page: 2,
-    total: 21,
+    page: 1,
+    total: 4,
   },
 )
 
