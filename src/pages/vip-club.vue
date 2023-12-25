@@ -988,6 +988,9 @@ const toVip = function () {
         justify-content: stretch;
         align-items: center;
         gap: .5rem;
+        .q-menu {
+          overflow-x: scroll;
+        }
       }
       .q-content {
         padding: var(--tg-spacing-24);
