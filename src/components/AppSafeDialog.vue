@@ -106,16 +106,16 @@ const {
 })
 
 async function handleUpdate() {
-  if (userInfo.value?.pay_password !== '1') {
-    openNotify({
-      title: t('notify_title_error'),
-      icon: 'error',
-      message: t('tip_set_safe'),
-    })
-    closeDialog()
-    router.push('/settings/security-safe-pwd')
-    return
-  }
+  // if (userInfo.value?.pay_password !== '1') {
+  //   openNotify({
+  //     title: t('notify_title_error'),
+  //     icon: 'error',
+  //     message: t('tip_set_safe'),
+  //   })
+  //   closeDialog()
+  //   router.push('/settings/security-safe-pwd')
+  //   return
+  // }
   amountRef.value.setTouchTrue()
   if (passwordRef.value)
     passwordRef.value.setTouchTrue()
