@@ -496,12 +496,17 @@ onMounted(() => {
           </div> -->
         </div>
       </template>
-      <AppLoginRegTipBox v-else />
+      <div v-else class="pad-box">
+        <AppLoginRegTipBox />
+      </div>
     </div>
   </div>
 </template>
 
 <style lang='scss' scoped>
+.pad-box {
+  padding: 0 16px;
+}
 .go-vip {
   display: flex;
   align-items: center;
