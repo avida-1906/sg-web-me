@@ -15,7 +15,7 @@ const { companyData } = storeToRefs(useAppStore())
         <span class="bold-text">{{ $t('chat_forum') }}</span>
         <BaseIcon name="uni-jump-page" />
       </a>
-      {{ $t('chat_rule_find') }}。
+      {{ $t('chat_rule_find') }}
     </div>
   </section>
 </template>
