@@ -15,7 +15,7 @@ const props = defineProps<Props>()
 
 const emit = defineEmits(['update:modelValue'])
 
-const router = useRouter()
+const router = useLocalRouter()
 const route = useRoute()
 
 const activeMenu = ref(

@@ -31,7 +31,7 @@ const props = withDefaults(defineProps<Props>(), {
 // const emit = defineEmits(['update:modelValue'])
 
 const { t } = useI18n()
-const router = useRouter()
+const router = useLocalRouter()
 
 const {
   isLessThanSm,

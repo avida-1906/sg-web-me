@@ -7,7 +7,7 @@ interface Props {
 
 const props = defineProps<Props>()
 
-const router = useRouter()
+const router = useLocalRouter()
 
 const _data = ref([...props.breadcrumb])
 

@@ -9,7 +9,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const { t } = useI18n()
-const router = useRouter()
+const router = useLocalRouter()
 const closeDialog = inject('closeDialog', () => { })
 const { userInfo } = storeToRefs(useAppStore())
 const { bool: showWallet, setBool: setShowWalletBool } = useBoolean(true)

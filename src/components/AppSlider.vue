@@ -22,7 +22,7 @@ const props = withDefaults(defineProps<Props>(), {
 // await 10s
 // await new Promise(resolve => setTimeout(resolve, 3000))
 
-const router = useRouter()
+const router = useLocalRouter()
 const { appContentWidth } = storeToRefs(useWindowStore())
 
 const pageInfo = reactive({

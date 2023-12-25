@@ -1,6 +1,6 @@
 <script setup lang="ts">
 usePageTitle({ prefix: 'Casino Game Providers - Best Creators of Gambling Games' })
-const router = useRouter()
+const router = useLocalRouter()
 const { platformList } = storeToRefs(useCasinoStore())
 const { appContentWidth } = storeToRefs(useWindowStore())
 

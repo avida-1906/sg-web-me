@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 const { t } = useI18n()
 usePageTitle({ prefix: t('menu_title_settings_update_safepwd') })
-const router = useRouter()
+const router = useLocalRouter()
 const { openNotify } = useNotify()
 const { userInfo } = storeToRefs(useAppStore())
 const { updateUserInfo } = useAppStore()

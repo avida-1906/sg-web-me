@@ -20,7 +20,7 @@ const {
   appContentWidth,
   widthBoundarySm,
 } = storeToRefs(useWindowStore())
-const router = useRouter()
+const router = useLocalRouter()
 usePageTitle({ prefix: t('vip_club') })
 
 const site = computed(() => ({ site: companyData.value?.name }))

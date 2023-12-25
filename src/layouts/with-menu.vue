@@ -2,7 +2,7 @@
 import Home from './home.vue'
 
 const { t } = useI18n()
-const router = useRouter()
+const router = useLocalRouter()
 const route = useRoute()
 const { animatingMounted } = useLayoutAnimate({ aniMounted: true })
 
@@ -136,7 +136,7 @@ watch(route, (val) => {
                           </div>
                           <div
                             v-else
-                            class="stack x-flex-start y-center gap-small menu-btn"
+                            class="stack x-flex-start y-center menu-btn gap-small"
                             :class="[appContentWidth > 800
                               ? 'padding-none direction-horizontal'
                               : 'padding-none direction-horizontal']"

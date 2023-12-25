@@ -8,7 +8,7 @@ const { t } = useI18n()
 const appStore = useAppStore()
 const { openNotify } = useNotify()
 const { userInfo, exchangeRateData } = storeToRefs(appStore)
-const router = useRouter()
+const router = useLocalRouter()
 
 const activeCurrency = ref<any>()
 const activeTab = ref('deposit')

@@ -28,7 +28,7 @@ const { currentGlobalCurrency } = storeToRefs(useAppStore())
 const { userInfo } = storeToRefs(useAppStore())
 const sportsStore = useSportsStore()
 const { openBetSlipDialog } = useDialogBetSlip()
-// const router = useRouter()
+// const router = useLocalRouter()
 
 const betSlipStatusText: { [t: number]: string } = {
   2: t('dealing'),
