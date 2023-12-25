@@ -122,6 +122,7 @@ export const useAppStore = defineStore('app', () => {
   })
 
   function setToken(token: string) {
+    Session.remove(STORAGE_REG_PARENT_ID)
     // 将token加密后存储到本地
     const _token = window.btoa(token)
     Local.set(STORAGE_TOKEN_KEY, _token)

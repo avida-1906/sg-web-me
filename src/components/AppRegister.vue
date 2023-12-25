@@ -8,6 +8,7 @@ const appStore = useAppStore()
 const { companyData } = storeToRefs(appStore)
 const { openNotify } = useNotify()
 const { openLoginDialog } = useLoginDialog()
+const { openTermsConditionsDialog } = useTermsConditionsDialog()
 const { bool: pwdStatus, setBool: setPwdStatus } = useBoolean(true)
 const { bool: isCode } = useBoolean(false)
 const {
@@ -19,7 +20,6 @@ const {
   bool: needSaveFormData,
   setTrue: setNeedSaveFormDataTrue,
 } = useBoolean(true)
-const { openTermsConditionsDialog } = useTermsConditionsDialog()
 
 const emailRef = ref()
 const userNameRef = ref()
@@ -29,6 +29,7 @@ const steps = ref(1)
 const code = ref('')
 const birthdayInputRef = ref()
 const birthday = ref('')
+const parentId = ref(Session.get<string>(STORAGE_REG_PARENT_ID)?.value ?? '')
 
 const {
   value: password,
@@ -239,7 +240,7 @@ async function getMemberReg() {
       email: email.value,
       username: username.value,
       password: password.value,
-      parent_id: '',
+      parent_id: parentId.value,
       device_number: application.getDeviceNumber(),
       birthday: birthday.value,
     }
@@ -294,7 +295,7 @@ onUnmounted(() => {
     email: email.value,
     username: username.value,
     password: password.value,
-    parent_id: '',
+    parent_id: parentId.value,
     device_number: application.getDeviceNumber(),
     birthday: birthday.value,
   }

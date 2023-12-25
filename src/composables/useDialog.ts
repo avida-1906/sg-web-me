@@ -7,6 +7,8 @@ interface DialogOptions {
   maxWidth?: number
   showButtons?: boolean
   transparent?: boolean
+  showClose?: boolean
+  closeOnClickOverlay?: boolean
   onCancel?: () => void
   onConfirm?: () => void
   onDialogClose?: () => void
@@ -18,6 +20,7 @@ export function useDialog({
   icon,
   default:
   defaultSlot, maxWidth, showButtons, transparent, onCancel, onConfirm, onDialogClose,
+  showClose, closeOnClickOverlay,
 }: DialogOptions) {
   const app = ref()
   const div = ref()
@@ -32,6 +35,10 @@ export function useDialog({
       show: false,
       funcCall: true,
       transparent,
+      showClose: params && params.showClose !== undefined ? params.showClose : showClose,
+      closeOnClickOverlay: params && params.closeOnClickOverlay !== undefined
+        ? params.closeOnClickOverlay
+        : closeOnClickOverlay,
       onClose: () => {
         closeDialog()
         onDialogClose && onDialogClose()
