@@ -42,7 +42,7 @@ const columns: Column[] = [
     slot: 'time',
   },
   {
-    title: '有效投注',
+    title: t('effective_bet'),
     dataIndex: 'valid_bet_amount',
     align: 'center',
     slot: 'valid_bet_amount',
