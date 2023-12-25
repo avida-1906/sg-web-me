@@ -1,10 +1,19 @@
 <script setup lang="ts">
 interface Props {
-  columns: Column[] // 表格列的配置项
-  dataSource?: any[] // 表格数据数组
-  loading?: boolean // 是否显示骨架屏
-  lastFirstPadding?: boolean // 是否设置每行第一个和最后一个左padding，右padding
-  showEmpty?: boolean // 数据为空是否显示空状态
+  /** 表格列的配置项 */
+  columns: Column[]
+  /** 表格数据数组 */
+  dataSource?: any[]
+  /** 是否显示骨架屏 */
+  loading?: boolean
+  /** 是否设置每行第一个和最后一个左padding，右padding */
+  lastFirstPadding?: boolean
+  /** 数据为空是否显示空状态 */
+  showEmpty?: boolean
+  /** 骨架屏行数 */
+  skeletonRow?: number
+  /** 骨架屏随机宽度最小值 */
+  skeletonWidth?: number
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -12,6 +21,8 @@ const props = withDefaults(defineProps<Props>(), {
   dataSource: () => [],
   loading: false,
   showEmpty: true,
+  skeletonRow: 10,
+  skeletonWidth: 30,
 })
 
 const emit = defineEmits(['sort'])
@@ -20,7 +31,9 @@ const sortSource: Ref<(string | undefined)[]>
   = ref(props.columns.map(item => item.sortDirections))
 
 const getSource = computed(() => {
-  return props.loading ? Array.from({ length: 10 }).fill({}) : props.dataSource
+  return props.loading
+    ? Array.from({ length: props.skeletonRow }).fill({})
+    : props.dataSource
 })
 
 // 排序变化
@@ -36,7 +49,7 @@ function handleSort(item: Column, index: number) {
   }
 }
 function getWidth() {
-  return `${Math.floor(Math.random() * 50) + 30}px`
+  return `${Math.floor(Math.random() * 50) + props.skeletonWidth}px`
 }
 
 watch(() => props.columns, () => {
@@ -252,7 +265,6 @@ watch(() => props.columns, () => {
         // text-overflow: ellipsis;
         vertical-align: middle;
       }
-
     }
     th:last-child,td:last-child{
       border-top-right-radius: var(--tg-table-thtd-radius);

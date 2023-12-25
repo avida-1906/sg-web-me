@@ -3,13 +3,13 @@ interface IVipProgressData {
   percent: number // vip进度百分比
   currentLevel: number // 当前vip等级
 }
-interface IColumns {
-  title?: string
-  width?: number | string
-  dataIndex: string
-  slot?: string
-  align?: 'left' | 'center' | 'right'
-}
+// interface Column {
+//   title?: string
+//   width?: number | string
+//   dataIndex: string
+//   slot?: string
+//   align?: 'left' | 'center' | 'right'
+// }
 interface IPaginationData {
   pageSize: number
   page: number
@@ -48,12 +48,13 @@ const tabList = [
   { label: t('promo_lottery_activity'), value: '4' },
 ]
 
-const betColumns = ref<IColumns[]>([
+const betColumns = ref<Column[]>([
   {
     title: t('currency_type'),
     dataIndex: 'currency',
     slot: 'currency',
     align: 'center',
+    skeWidth: '21px',
   },
   {
     title: t('bet_num'),
@@ -74,7 +75,7 @@ const betColumns = ref<IColumns[]>([
 ])
 
 // 数据统计表 head
-const statisticsColumns = ref<IColumns[]>([
+const statisticsColumns = ref<Column[]>([
   {
     title: t('menu_title_settings_bets'),
     width: 60,
@@ -120,7 +121,7 @@ const trophyCards = ref([
   { rankIcon: 'uni-cup1', gameName: 'Spellbinding Mystery', provider: 'Pragmatic' },
   { rankIcon: 'uni-cup1', gameName: 'Spellbinding Mystery', provider: 'Pragmatic' },
 ])
-const trophyColumns = ref<IColumns[]>([
+const trophyColumns = ref<Column[]>([
   {
     title: t('game'),
     width: 200,
@@ -145,7 +146,7 @@ const trophyColumns = ref<IColumns[]>([
 
 ])
 // 竞赛
-const competitionColumns = ref<IColumns[]>([
+const competitionColumns = ref<Column[]>([
   {
     title: t('competition_name'),
     dataIndex: 'name',
@@ -172,7 +173,7 @@ const competitionColumns = ref<IColumns[]>([
   },
 ])
 // 抽奖活动 head
-const SweepstakesColumns = ref<IColumns[]>([
+const SweepstakesColumns = ref<Column[]>([
   {
     title: t('menu_title_settings_bets'),
     width: 200,
@@ -362,6 +363,8 @@ onMounted(() => {
               :columns="betColumns"
               :data-source="betData"
               :loading="loading"
+              :skeleton-row="5"
+              :skeleton-width="18"
             >
               <template #currency="{ record }">
                 <div class="t-bonus">
