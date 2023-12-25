@@ -23,7 +23,7 @@ const props = withDefaults(defineProps<Props>(), {
   size: 'small',
 })
 const emit = defineEmits(['update:modelValue', 'change'])
-const router = useRouter()
+const router = useLocalRouter()
 const { isMobile } = storeToRefs(useWindowStore())
 
 const curTabRef = ref<Array<Element | null>>([])

@@ -8,7 +8,7 @@ const { t } = useI18n()
 const { isMobile, isLessThanLg } = storeToRefs(useWindowStore())
 const { triggerLeftSidebar, closeLeftSidebar, navButtons } = useLeftSidebar()
 const menuStore = useMenuStore()
-const router = useRouter()
+const router = useLocalRouter()
 const route = useRoute()
 
 const isCasino = computed(() => route.name?.toString().includes('casino'))
@@ -35,7 +35,7 @@ function push(title: string) {
     <Transition name="menu-fade">
       <template v-if="!isSwitching">
         <div class="header">
-          <div class="button center">
+          <div class="center button">
             <BaseButton
               style="--tg-base-button-font-size:16px;"
               type="text" @click.stop="triggerLeftSidebar"

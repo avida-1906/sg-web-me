@@ -21,7 +21,7 @@ const {
 } = useBoolean(false)
 
 const { t } = useI18n()
-const router = useRouter()
+const router = useLocalRouter()
 const appStore = useAppStore()
 const { openNotify } = useNotify()
 // 获取betInfo接口是否成功
@@ -724,7 +724,7 @@ onUnmounted(() => {
           class="bet-order-filter"
           :options="betOrderFilterData"
 
-          no-hover popper
+          popper no-hover
           @select="setBetOrderFilterValue"
         />
         <BaseButton

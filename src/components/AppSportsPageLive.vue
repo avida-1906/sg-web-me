@@ -5,7 +5,7 @@ import type { ISportDataGroupedByLeague } from '~/types'
 defineProps<{ onPage?: boolean; onLobby?: boolean }>()
 
 const { t } = useI18n()
-const router = useRouter()
+const router = useLocalRouter()
 const sportsStore = useSportsStore()
 const { sportLiveNavs, currentLiveNav, currentLiveBetType } = storeToRefs(sportsStore)
 const { bool: isStandard } = useBoolean(true)

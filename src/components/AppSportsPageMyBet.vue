@@ -7,7 +7,7 @@ interface Props {
 const props = defineProps<Props>()
 
 const { t } = useI18n()
-const router = useRouter()
+const router = useLocalRouter()
 const { appContentWidth } = storeToRefs(useWindowStore())
 
 const {

@@ -14,7 +14,7 @@ interface Props {
 const props = defineProps<Props>()
 
 const { t } = useI18n()
-const router = useRouter()
+const router = useLocalRouter()
 const { width } = storeToRefs(useWindowStore())
 const { isLogin, currentGlobalCurrency } = storeToRefs(useAppStore())
 // const { checkDragDialog } = useDragDialogList()

@@ -4,7 +4,7 @@ import type { EnumLanguage } from '~/utils/enums'
 
 const { t } = useI18n()
 
-const router = useRouter()
+const router = useLocalRouter()
 const {
   currentGlobalCurrency,
   exchangeRateData,

@@ -12,7 +12,7 @@ interface Props {
 }
 const props = defineProps<Props>()
 
-const router = useRouter()
+const router = useLocalRouter()
 const { width } = storeToRefs(useWindowStore())
 
 const isH5Layout = computed(() => width.value < 575)

@@ -13,7 +13,7 @@ interface ISocialData {
 
 const { t } = useI18n()
 const route = useRoute()
-const router = useRouter()
+const router = useLocalRouter()
 const { openNotify } = useNotify()
 const appStore = useAppStore()
 const { userInfo } = storeToRefs(appStore)

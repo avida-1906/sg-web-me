@@ -207,7 +207,7 @@ export function useApiMenuData() {
     },
   ])
 
-  const router = useRouter()
+  const router = useLocalRouter()
 
   const { closeLeftSidebar, openLeftSidebar, leftIsExpand } = useLeftSidebar()
 

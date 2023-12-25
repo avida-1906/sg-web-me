@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { CasinoProviderItem } from '~/apis/types'
 
-const router = useRouter()
+const router = useLocalRouter()
 const { platformList } = storeToRefs(useCasinoStore())
 
 function goPage(item: CasinoProviderItem) {
