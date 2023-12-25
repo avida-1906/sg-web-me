@@ -1818,42 +1818,6 @@ vip_top: Cấp VIP của bạn đã đạt đến mức tối đa
 wait_upgrade: Đang chờ thăng cấp
 upgraded: Đã thăng cấp
 game_water_experience: Kinh nghiệm
-in_play: 在玩
-week_0: 星期天
-week_1: 星期一
-week_2: 星期二
-week_3: 星期三
-week_4: 星期四
-week_5: 星期五
-week_6: 星期六
-double_check_code: 双重验证码
-official_number: 法定数字格式
-official_num_tip: 警告：在 {currencyName} 法定货币视图中，法定数字格式将被禁用。
-privacy: 隐私
-casino_intro_1: 在 {site} 享受最出色的在线赌场体验
-casino_intro_2: 自 2017 年以来，{host} 在网络上提供了最出色的在线加密货币与比特币赌场的博彩体验。易于使用、功能丰富且平台简约，玩家们都一而再再而三地重返 {site} 投注于他们最喜爱的赌场游戏。
-casino_intro_3: 在种类繁多的赌场游戏中投注于老虎机、纸牌游戏等
-casino_intro_4: 浏览我们种类繁多的赌场游戏，在 {site} 享受公平有趣的博彩体验。直接通过您的浏览器在老虎机、真人娱乐场、21点、百家乐、轮盘、弹珠以及数以千计的经典游戏上进行投注。
-casino_intro_5: 此外，我们还具有著名的 {site} 原创游戏——最初让 {site} 声名鹊起的赌场游戏。这包括了像 Dice、Plinko、Mines、Crash、Limbo、Hilo、Keno、Wheel 等热门游戏，另加我们最近刚推出的另一款 {site} 原创 Dragon Tower！
-casino_intro_6: 无论您是热衷于像 Video Poker 这类的桌面与纸牌游戏、 Spin a Win 这类的游戏节目游戏或是新推出的赌场游戏——最终的选择权都在您的手里！
-casino_intro_7: 如何通过您的加密货币钱包在 {site} 存款
-casino_intro_8: 在我们的在线赌场上使用比特币或其他可用的加密货币进行投注其实十分容易。要把资金存入您的 {host} 账户，请遵循下列步骤：
-casino_intro_9: '{site} 的支持人员将随时为您提供在线的支持与帮助，无论您是在存款时或是访问喜爱的游戏时遇到任何问题，他们都会给予您必要的帮助。'
-casino_intro_10: '{site} 团队一直都在努力改进我们无可匹敌的服务，确保来自世界各地的用户都能享有最佳的在线赌场博彩体验。随着我们定期增加到平台上的大量新游戏以及杰出的客户支持，玩家必能轻松在闻名的 {site} 赌场上雷厉风行。'
-casino_intro_11: 最广泛的游戏提供商——在 {site} 投注于您最喜爱的游戏
-casino_intro_12: 除了我们著名的 {site} 原创游戏外，{site} 也具有在线博彩业内最受信赖的游戏提供商所提供的各种游戏。
-casino_intro_13: "{site} 的精选游戏提供商包括了 Pragmatic Play、 Evolution Gaming、 Quickspin、 Relax Gaming、 Playtech、 Big Time Gaming、 Play'n Go、 Gamomat、 Hacksaw Gaming、 Push Gaming、 Netent、 No Limit City、 iSoftBet、 Spinomenal 以及更多其他以优质游戏而闻名的热门提供商。"
-casino_intro_14: 这其中包括了一些最受欢迎的老虎机和其他赌场游戏，如粉丝们最喜爱的 Sweet Bonanza, Crazy Time, Wanted Dead or a Wild, The Dog House, Gates of Olympus, Book of Shadows, Money Train 2, Fruit Party 2, Mystery Museum, Jammin Jars, The Dog House Megaways, Double Ball Roulette, Monopoly Live, Buffalo King, Floating Dragon, Lightning Dice, Super Sic Bo, Gonzos Treasure Hunt, Side Bet City 等等。
-casino_intro_15: 无论是投注功能、支付乘数、游戏主题还是整体游戏体验，{site} 所提供的各种赌场游戏都是属于世界级的，并保证能为所有玩家带来生动多样的体验——不管他们对游戏的偏好如何！
-casino_intro_16: '{site} 赌场为什么会既安全又公平？'
-casino_intro_17: 您在 {site} 原创游戏中的所有投注都是可证明公平的，这些赌注会在网站上得到验证，也可以通过第三方网站进行外部验证，例如我们社区成员在 ProvablyFair.Me 上创建的 {site} 检验器。
-casino_intro_18: 除了提供公平结果的技术之外，{host} 自 2017 年以来一直都是业内最负盛名的赌场之一，最近更成为了 UFC 的官方投注合作伙伴，并在英超联赛中赞助沃特福德足球俱乐部。
-casino_intro_19: 随着成千上万的忠实玩家每小时进行的数百万笔投注，{site} 即是网络上最受信任与合法的在线赌场之一。
-get_email_code: 获取验证码
-re_get: 重新获取
-footer_description: '{name} 由 Medium Rare N.V. 所属和经营，注册编号： 145353，注册地址： Korporaalweg 10, Willemstad, Curaçao。请通过 {email} 与我们联系。支付代理公司是 Medium Rare Limited，地址于 7-9 Riga Feraiou, LIZANTIA COURT, Office 310, Agioi Omologites, 1087 Nicosia, Cyprus 以及注册号：HE 410775'
-
-
 
 
 
