@@ -38,7 +38,7 @@ function popperApplyShow() {
   useFixedTop('.app-h-wallet')
 }
 function handleHide() {
-  searchRef.value.manualBlur()
+  searchRef.value?.manualBlur()
 }
 </script>
 
