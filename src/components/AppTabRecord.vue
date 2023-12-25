@@ -153,7 +153,7 @@ else {
 
 <template>
   <section class="tg-app-tab-record">
-    <div v-show="!(isMobile && activeRecord.loading)">
+    <div v-if="!(isMobile && activeRecord.loading)">
       <div class="top">
         <BaseTab
           v-model="tab" :list="tabs" :center="false" need-scroll-into-view
