@@ -1,6 +1,5 @@
 export function useFixedTop(className: string) {
   const page = document.querySelector(className)
-  // document.querySelector(className)
   let currentInput: EventTarget | null = null // 当前聚焦的输入框
   // const fixedEle = document.body
   let scrollTop = 0 // 记录scrollTop
@@ -31,10 +30,9 @@ export function useFixedTop(className: string) {
       return triggerBlur()
 
     // 聚焦输入框引起的平移
-    if (scrollTop < 101) {
+    if (document.documentElement.scrollTop <= 0)
       document.documentElement.scrollTop = 1
-      window.removeEventListener('scroll', handleWdinowScroll)
-    }
+    //   window.removeEventListener('scroll', handleWdinowScroll)
     // fixedEle.style.top = `${window.pageYOffset}px`
   }
 
@@ -43,10 +41,10 @@ export function useFixedTop(className: string) {
     const el = e || window.event
     currentInput = el.target
     scrollTop = document.documentElement.scrollTop
-    // setTimeout(() => {
-    if (!scrollTop)
-      document.documentElement.scrollTop = 1
-    // }, 10)
+    setTimeout(() => {
+      if (scrollTop <= 0)
+        document.documentElement.scrollTop = 1
+    }, 100)
     // (document.querySelector('.navigation')?.getBoundingClientRect().top ?? 0)
     // 因为上一个聚焦的输入框因为失焦导致top置为0了，如果新聚焦的输入框不会触发webview平移，则沿用当时的位移就好了
     // fixedEle.style.top = `${window.pageYOffset}px`
