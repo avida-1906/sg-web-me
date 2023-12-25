@@ -40,6 +40,16 @@ function onClick(tab: TabItem, i: number) {
     behavior: 'smooth', block: 'end', inline: 'nearest',
   })
 }
+onMounted(() => {
+  nextTick(() => {
+    if (props.needScrollIntoView) {
+      const index = props.list.findIndex(a => a.value === props.modelValue)
+      curTabRef.value[index]?.scrollIntoView({
+        behavior: 'instant', block: 'end', inline: 'center',
+      })
+    }
+  })
+})
 </script>
 
 <template>
