@@ -65,12 +65,6 @@ const onPlayCount = ref(Math.ceil(Math.random() * 1000).toFixed())
       }"
       @click="gameStart"
     >
-      <template v-if="showBorder">
-        <img class="border" src="/img/border/border.svg" alt="">
-        <div class="game-title">
-          {{ gameInfo.name }}
-        </div>
-      </template>
       <div class="backgrop-filter">
         <BaseImage
           v-if="thumbnailStatus"
@@ -80,6 +74,12 @@ const onPlayCount = ref(Math.ceil(Math.random() * 1000).toFixed())
           @error-img="thumbnailLoadError"
         />
       </div>
+      <template v-if="showBorder">
+        <img class="border" src="/img/border/border.svg" alt="">
+        <div class="game-title">
+          {{ gameInfo.name }}
+        </div>
+      </template>
       <BaseImage
         v-if="!isError && showImg"
         :url="gameInfo.img"
