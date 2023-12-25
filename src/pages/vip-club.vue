@@ -999,6 +999,7 @@ const toVip = function () {
         display: flex;
         flex-direction: column;
         gap: .5rem;
+        --tg-base-collapse-header-height: fit-content;
         .content-wrap{
           color: var(--tg-text-lightgrey);
           display: flex;

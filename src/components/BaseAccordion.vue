@@ -106,6 +106,12 @@ defineExpose({ close })
   </div>
 </template>
 
+<style>
+:root {
+  --tg-base-accordion-header-height: 45px;
+}
+</style>
+
 <style scoped lang="scss">
 .base-accordion {
   color: var(--tg-text-white);
@@ -120,7 +126,8 @@ defineExpose({ close })
   // background-color: #213743;
   .accordion-header {
     display: flex;
-    height: 45px;
+    height: var(--tg-base-accordion-header-height);
+    min-height: 45px;
     padding: 0 16px;
     border-radius: var(--tg-radius-default) var(--tg-radius-default) 0 0;
     flex-direction: row;
