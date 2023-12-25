@@ -1316,7 +1316,7 @@ deposit_draw_diff: Difference between deposits and withdrawals
 current_amount: Current amount
 receive_amount: Receive amount
 agent_commission: Agent commission
-is_first_deposit: Is this your first deposit?
+is_first_deposit: Is this your first deposit
 last_login: Last login
 online_status: Online status
 settle_time: Settlement time

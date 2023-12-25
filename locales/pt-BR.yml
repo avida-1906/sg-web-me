@@ -1337,7 +1337,7 @@ deposit_draw_diff: Diferença entre depósitos e saques
 current_amount: Valor atual
 receive_amount: Valor de recebimento
 agent_commission: Comissão de agente
-is_first_deposit: Este é o seu primeiro depósito?
+is_first_deposit: Este é o seu primeiro depósito
 last_login: Último login
 online_status: Status online
 settle_time: Horário de liquidação
