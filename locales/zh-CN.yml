@@ -931,7 +931,7 @@ chat_close_side: 折叠侧边栏
 chat_send_tip_label: 发送小费
 chat_rule_full_title: 完整的规则可以在我们的
 chat_forum: 论坛
-chat_rule_find: 上找到
+chat_rule_find: 上找到。
 about_us: 关于我们
 sponsor_activity: 赞助活动
 online_shopping: 网购
@@ -1393,7 +1393,6 @@ company_intro_tip_step_4: 附加说明：如果您想使用法定货币存款，
 company_intro_tip_18: 您在 {site} 的存款与提款都是即时的，并且可任您选择任何可用的加密货币。无论您是想在我们的赌场游戏或体育赛事上进行投注，{site} 都提供了简单明了的过程。
 company_intro_tip_19:  MoonPay 具有许多受支持的支付方式，您可以使用 Visa、MasterCard、Apple Pay、Google Pay 等购买加密货币来存款以进行投注。有关您所在辖区支持的支付方式完整列表，请参阅 MoonPay 文档。
 company_intro_tip_20: 具有蓬勃发展的社区、活跃的聊天室以及一个专门为客户解决游戏或账户方面任何问题的支持团队，{host} 因此成功展示了它能成为最领先的加密货币赌场及体育博彩平台的原因。
-vip_level_compare: VIP 级别对
 bet_amount_label: 投注金额
 bonus_up: 奖金增长
 promo: 福利
@@ -1742,3 +1741,6 @@ sport_new_intro_25: 无论您是想投注单场比赛，还是整个赛季，我
 sport_new_intro_26: '{site} 是一个在线投注网站，提供直观易用的实时体育投注平台，可以对即将进行的体育赛事投注。没有什么比滚球体育投注更令人兴奋的了——投注已经开始的体育赛事，根据当前的比赛状态调整赔率，与时间赛跑。'
 sport_new_intro_27: 滚球体育博彩对于那些对比赛非常敏锐的人来说绝对是心头好，他们很有信心比赛会在最后发生翻转。热门滚球体育投注包括滚球足球、滚球网球、滚球篮球、滚球板球和滚球电竞体育投注——根据时间和活动会随时提供不同类型的滚球体育项目。进一步了解滚球投注与赛前投注之间的区别，以及如何制定最佳投注策略可以在 {site} 获胜。
 sport_new_intro_28: 因此，无论您是想投注美国体育联赛，还是热衷于尝试足球博彩，或者只是想了解更多有关体育博彩活动的信息，您都可以在 {site} 体育博彩上找到，同时还有对即将进行的比赛给出的每周博彩提示和预测！您还可以成为 {site} VIP 会员，让一切更上一层楼！如需了解该计划的更多信息，请阅读我们的 {site} VIP 指南。
+equal_round: 平局
+commission_wallet: 佣金钱包
+commission_transfer_title: 佣金转换

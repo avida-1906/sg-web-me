@@ -6,7 +6,7 @@ export function useDialogCommissionWallet() {
     openDialog: openCommissionWalletDialog,
     closeDialog: closeCommissionWalletDialog,
   } = useDialog({
-    title: '佣金钱包',
+    title: t('commission_wallet'),
     icon: 'chess-affiliate',
     default: () => h(AppCommissionWalletDialog),
   })
