@@ -9,11 +9,13 @@ interface Props {
   maxWidth?: number
   showButtons?: boolean
   transparent?: boolean
+  showClose?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
   closeOnClickOverlay: true,
   maxWidth: 500,
+  showClose: true,
 })
 
 const emit = defineEmits(['update:show', 'close', 'cancel', 'confirm'])
@@ -94,7 +96,7 @@ watch(closeAllDialog, (val) => {
               <BaseIcon v-if="icon" :name="icon" />
               <span>{{ title }}</span>
             </h2>
-            <a class="close" @click.stop="close">
+            <a v-if="showClose" class="close" @click.stop="close">
               <BaseIcon name="uni-close" />
             </a>
           </div>
@@ -120,7 +122,7 @@ watch(closeAllDialog, (val) => {
               </BaseButton>
             </div>
           </div>
-          <a v-if="!icon && !title" class="close-only" @click.stop="close">
+          <a v-if="showClose && !icon && !title" class="close-only" @click.stop="close">
             <BaseIcon name="uni-close" />
           </a>
         </div>

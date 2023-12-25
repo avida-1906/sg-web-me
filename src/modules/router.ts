@@ -37,7 +37,12 @@ export const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  const appStore = useAppStore()
+  const { isLogin } = storeToRefs(appStore)
+  const { openRegisterDialog } = useRegisterDialog()
   const auth = to.meta.auth || false
+  if (to.query.uid && !isLogin.value)
+    Session.set(STORAGE_REG_PARENT_ID, to.query.uid)
 
   if (to.path === '/') {
     next('/casino')
@@ -45,10 +50,7 @@ router.beforeEach((to, from, next) => {
   }
 
   if (auth) {
-    const appStore = useAppStore()
-    const { isLogin } = storeToRefs(appStore)
     if (!isLogin.value) {
-      const { openRegisterDialog } = useRegisterDialog()
       openRegisterDialog()
       next('/')
       return
