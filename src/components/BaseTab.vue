@@ -21,6 +21,7 @@ const props = withDefaults(defineProps<Props>(), {
   shape: 'round',
   center: true,
   size: 'small',
+  needScrollIntoView: true,
 })
 const emit = defineEmits(['update:modelValue', 'change'])
 const router = useLocalRouter()

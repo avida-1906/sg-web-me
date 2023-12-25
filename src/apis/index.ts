@@ -415,7 +415,10 @@ export function ApiMemberTreeList(params: {
   level: string
 }) {
   return httpClient.get<{
+    /** 电话号码区号 */
+    attr: string
     id: string
+    /** 国家地区名称 */
     name: string
     pid: string
     sortlevel: string
