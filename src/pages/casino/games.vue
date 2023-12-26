@@ -45,6 +45,7 @@ onBeforeRouteLeave(() => {
           :title="$t('casino_games_recommend')"
           :data="recGameList"
           game-type="rec"
+          :path="`/casino/group/rec?name=${$t('casino_games_recommend')}`"
         />
         <AppProviderSlider />
       </div>
