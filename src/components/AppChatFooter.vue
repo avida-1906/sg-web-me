@@ -515,12 +515,12 @@ watch(message, (val) => {
     --tg-icon-color: var(--tg-text-white);
     :deep(button.send) {
       // background: linear-gradient(180deg, var(--tg-sub-green-light) 0%, var(--tg-sub-green) 100%);
-      color: #05080a; // var(--tg-sub-green-deep);
+      color: var(--tg-text-dark);
       background: var(--tg-text-green);
       box-shadow: var(--tg-box-shadow);
       transition: all 0.15s linear;
       .content {
-        transition: all 0.2s linear;
+        transition: all 0.15s linear;
         width: 100%;
         height: 100%;
       }
