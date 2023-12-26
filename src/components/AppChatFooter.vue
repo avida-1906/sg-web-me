@@ -518,6 +518,7 @@ watch(message, (val) => {
       color: #05080a; // var(--tg-sub-green-deep);
       background: var(--tg-text-green);
       box-shadow: var(--tg-box-shadow);
+      transition: all 0.15s linear;
       .content {
         transition: all 0.2s linear;
         width: 100%;
