@@ -205,7 +205,7 @@ else {
         <div v-else class="empty">
           <BaseEmpty :description="emptyText" icon="empty-1" />
         </div>
-        <div class="page-stack-wrap mt-24">
+        <div v-show="activeRecord.total > 10" class="page-stack-wrap mt-24">
           <AppStack
             :pagination-data="getPage"
             scroll
