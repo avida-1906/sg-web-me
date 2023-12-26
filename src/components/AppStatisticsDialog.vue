@@ -363,7 +363,7 @@ onMounted(() => {
               :columns="betColumns"
               :data-source="betData"
               :loading="loading"
-              :skeleton-row="5"
+              :skeleton-row="4"
               :skeleton-width="18"
             >
               <template #currency="{ record }">
