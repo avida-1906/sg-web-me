@@ -991,6 +991,7 @@ user_account: Account
 user_superior: Upper level
 can_receive: Available
 receive_type: Type of receipt
+record: Record
 receive_commission: Get commission
 commission_history: Commission history
 window_minimize: Minimize

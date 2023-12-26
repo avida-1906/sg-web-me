@@ -1002,6 +1002,7 @@ user_account: Conta
 user_superior: Nível acima
 can_receive: Disponível
 receive_type: Tipo de obtenção
+record: Registro
 receive_commission: Obter comissão
 commission_history: Histórico de comissões
 window_minimize: Minimizar
