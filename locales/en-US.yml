@@ -1815,3 +1815,398 @@ vip_top: You have reached the maximum VIP level
 wait_upgrade: Awaiting upgrade
 upgraded: Upgraded
 game_water_experience: Experience
+in_play: In play
+week_0: Sunday
+week_1: Monday
+week_2: Tuesday
+week_3: Wednesday
+week_4: Thursday
+week_5: Friday
+week_6: Saturday
+double_check_code: Two-step verification code
+official_number: Legal digital format
+official_num_tip: 'Warning: In the {currencyName} fiat currency view, fiat number
+  formatting will be disabled.'
+privacy: Privacy
+casino_intro_1: Enjoy the best online casino experience at {site}
+casino_intro_2: Since 2017, {host} has provided the best online cryptocurrency and
+  Bitcoin casino gambling experience on the web. Easy-to-use, feature-rich and simple
+  platform, players are returning to {site} again and again to bet on their favorite
+  casino games.
+casino_intro_3: Bet on slots, card games and more on a wide range of casino games
+casino_intro_4: Browse our wide range of casino games and enjoy a fair and fun gambling
+  experience at {site}. Bet on slots, live casino, blackjack, baccarat, roulette,
+  pinball and thousands of classic games right from your browser.
+casino_intro_5: Additionally, we feature the famous {site} original games - the casino
+  games that originally made {site} famous. This includes popular games like Dice,
+  Plinko, Mines, Crash, Limbo, Hilo, Keno, Wheel and more, plus our recently launched
+  yet another {site} original, Dragon Tower!
+casino_intro_6: Whether you're into table and card games like Video Poker, game show
+  games like Spin a Win or new casino games - the choice is yours!
+casino_intro_7: How to deposit at {site} via your cryptocurrency wallet
+casino_intro_8: 'It''s easy to place bets with Bitcoin or other available cryptocurrencies
+  at our online casino. To deposit funds into your {host} account, please follow these
+  steps:'
+casino_intro_9: "{site}'s support staff is always available to provide you with online
+  support and assistance, whether you encounter any problems when making a deposit
+  or accessing your favorite games, they will give you the necessary help."
+casino_intro_10: The {site} team is always working hard to improve our unrivaled service
+  and ensure that users from all over the world have the best online casino gaming
+  experience possible. With a host of new games that we regularly add to the platform
+  and outstanding customer support, it's easy for players to thrive at the famous
+  {site} casino.
+casino_intro_11: The widest range of games providers – bet on your favorite games
+  at {site}
+casino_intro_12: In addition to our famous {site} original games, {site} also features
+  a wide range of games from the most trusted game providers in the online gambling
+  industry.
+casino_intro_13: "{site}'s featured game providers include Pragmatic Play, Evolution
+  Gaming, Quickspin, Relax Gaming, Playtech, Big Time Gaming, Play'n Go, Gamomat,
+  Hacksaw Gaming, Push Gaming, Netent, No Limit City, iSoftBet, Spinomenal and many
+  more other popular providers known for quality games."
+casino_intro_14: This includes some of the most popular slots and other casino games
+  such as fan favorites Sweet Bonanza, Crazy Time, Wanted Dead or a Wild, The Dog
+  House, Gates of Olympus, Book of Shadows, Money Train 2, Fruit Party 2, Mystery
+  Museum, Jammin Jars, The Dog House Megaways, Double Ball Roulette, Monopoly Live,
+  Buffalo King, Floating Dragon, Lightning Dice, Super Sic Bo, Gonzos Treasure Hunt,
+  Side Bet City and more.
+casino_intro_15: Whether it's betting features, payout multipliers, game themes or
+  the overall gaming experience, the range of casino games on offer at {site} is world-class
+  and guaranteed to provide a lively and varied experience for all players - regardless
+  of their preference How about gaming preferences!
+casino_intro_16: Why are casinos {site} safe and fair?
+casino_intro_17: All your bets on {site} original games are provably fair and are
+  verified on the site or externally through third-party sites such as {site} created
+  by our community members on ProvablyFair.Me } validator.
+casino_intro_18: In addition to its technology that delivers fair results, {host}
+  has been one of the most reputable casinos in the industry since 2017, most recently
+  becoming the official betting partner of the UFC and sponsoring Watford Football
+  in the Premier League club.
+casino_intro_19: With thousands of loyal players placing millions of bets every hour,
+  {site} is one of the most trusted and legitimate online casinos on the web.
+get_email_code: Get verification code
+re_get: Get again
+footer_description: "{name} is owned and operated by Medium Rare N.V., registration
+  number: 145353, registered address: Korporaalweg 10, Willemstad, Curaçao. Please
+  contact us at {email}. The paying agency is Medium Rare Limited, 7-9 Riga Feraiou,
+  LIZANTIA COURT, Office 310, Agioi Omologites, 1087 Nicosia, Cyprus and registration
+  number: HE 410775"
+empty_fav_event: There are no favorite events yet
+reject: Reject
+emoji_title: Emoji
+failure: Failure
+confirmed: Confirmed
+saving_account: Receipt account
+saving_address: Receipt address
+deal_contract: Transaction agreement
+account_type: Account type
+saving_bank: Beneficiary Bank
+order_num: Order number
+copy_addr_suc: Copied successfully!
+pls_enter_savor_name: Please enter the depositor's name
+savor_name: Payee Name
+open_addr: Opening address
+transfer_amount: Transfer amount
+select_deposit_amount: Please scroll down to select the recharge amount
+pls_select_pix: Please select a PIX account
+we_use_cookie: We use cookies
+cookie_purposes: Perform functional and analytical purposes.
+accept: Accept
+start_game_now: Start game now
+policies: Policies
+min_len_char: Min.  {delta} characters
+max_len_char: Max.  {delta} characters
+name_has_invalid_char: The username contains invalid characters
+pls_select_name: Please select a display name
+must_verify_email_then: You must verify your email address to {delta}
+open: Open
+additional_time: Additional time
+no_support_email: E-mail domain not supported
+email_add_char: Please include the "{delta}" symbol in your e-mail address
+email_no_equal_password: Your e-mail address and password cannot be the same
+pls_input_email: Please enter a valid e-mail address
+name_3_char: Your username must contain at least 3 characters
+name_14_char: Your username cannot exceed 14 characters
+name_no_equal_pwd: Your username and password cannot be the same
+choose_another_name: This username is already taken, please choose another username
+email_exists: E-mail address already exists
+email_code: E-mail verification code
+bet_num: Amount of bet
+win_lose: Wins and losses
+min_odd_bet: Bets with odds less than 1.10 cannot be combined into multiple bets
+select_addr: Please select the address
+input_draw_coin_addr: Please enter the withdrawal address
+withdraw_detail: Withdrawal details
+direct_vip: Direct member
+up_rule: Promotion criteria
+keep_level_desc: Keep level instructions
+check_desc: Audit instructions
+activity_desc: Activity Statement
+explain_desc: Explanation instructions
+day_no_max: The date cannot exceed the number {delta}
+max_age: Your age cannot exceed {delta} years old
+max_value: Value must be greater than or equal to {delta}
+qr_code: QR code
+bet_comp_coin: All currencies you place bets in will be standardized to the competition
+  currency
+exp_rule: Empirical calculation rules
+electric_game: Esports
+max_odd: Multiple betting odds exceed upper limit
+commission_transfer: Transfer
+currency_list: Currency list
+commission_currency_conversion: Currency conversion commission
+total_approx: Approx. total
+confirm_conversion: Confirm conversion
+exchange_rate_for_currency_received: Exchange rate for currency received
+commission_wallet_balance: Commission wallet balance
+achievable_cumulatively: Achievable accumulated
+converted_currency: Converted currency
+choose_convert_your_desired_currency: You can choose to convert to your desired currency
+commission_wallet_amount_exchange_total: Your current commission wallet amount is
+  converted based on {type} exchange rate and the total amount is approximately
+affiliate_overview_desc_1: Join {name}.com's affiliate program and earn money by recommending
+  our brands! Every time a user signs up through your referral link and uses {name}.com,
+  you'll receive an affiliate commission.
+affiliate_overview_desc_2: As a {name}.com affiliate, commissions earned will be based
+  on the total bets placed by the referred user in casinos and sportsbooks. What makes
+  this different from traditional affiliate programs is that you get the same commission
+  regardless of whether the referral wins or loses!
+reco_link: Recommended link
+download_ad: Download banner
+page_title_live: Play Live Casino Games Online - Live Dealers
+or: or
+only_6_num: Only supports 6-digit pure numbers
+pwd_2_not_equal: The two password inputs are inconsistent
+edit_safe_pwd: Change fund password
+set_safe_pwd: Set fund password
+not_bind_email: You have not bound your e-mail address yet
+must_bind_email: Please bind your e-mail first and then set the fund password
+go_bind: Go to Binding
+old_safe_pwd: Previous fund password
+new_safe_pwd: New fund password
+confirm_safe_pwd: Confirm fund password
+forget_safe_pwd: Forgot your fund password? Go to
+connect_service: Contact Customer Service
+page_title_sport: Sports Betting - Online Sports Betting
+online_casino: Online Casino
+empty_archive: No betting files yet
+empty_official_deposit: No fiat currency deposits available at the moment
+empty_official_withdraw: Fiat currency withdrawals are temporarily unavailable
+day_bonus: Daily bonus
+deposit_bonus: Deposit bonus
+two: Two
+three: Three
+casino_new_intro_1: Best Online Casino Games - Play the Best Games at {host}
+casino_new_intro_2: With such a wealth of casino games, where do you start? A good
+  place to start is with the best casino games, which offer you great graphics and
+  bigger winnings. Let us bring you now
+casino_new_intro_3: The best casino games ever.
+casino_new_intro_4: What are online casino games?
+casino_new_intro_5: Online casino games include classic table games, slot machine
+  games, dice games, and card games. At {host} you'll find hundreds of games for you
+  to try, with great graphics and lots of different ways to bet and win.
+casino_new_intro_6: Whether you're a fan of blackjack or prefer slot machines with
+  progressive jackpots, you'll find a variety of online casino game types to suit
+  your preference. Read on to discover the best online casino games on {host}.
+casino_new_intro_7: What are the best casino games?
+casino_new_intro_8: From table games to online slots, you can find the best casino
+  games here
+casino_new_intro_9: Table games
+casino_new_intro_10: is a classic casino game that is very popular on {host}. Take
+  a virtual seat and play legendary casino games like blackjack, baccarat and roulette.
+  If you're new to online gambling, learn how to play table games at {site} casino
+  before betting.
+casino_new_intro_11: Live casino games
+casino_new_intro_12: Live casino games or live dealer games are one of the most popular
+  games on online casino sites. These games offer an immersive online casino experience
+  with live dealers and live chat. Our wide range of live casino games are set within
+  real casino studios and streamed live to our platform.
+casino_new_intro_13: First, casino players simply enter the live casino lobby and
+  choose from a range of games! From online poker to European roulette, we offer a
+  wide range of live-dealt casino games. Visit our live casino guide for more information.
+casino_new_intro_14: Card games
+casino_new_intro_15: is another best game at {site} casino. We have a wide selection
+  of video poker games and live online poker games to keep you spoiled for choice!
+  If you are a poker fan, you cannot miss Caribbean Stud Poker Live and Casino Hold'em
+  Live. If you're looking for fun video poker games, you'll love {site} Original's
+  Video Poker and BGaming's Jacks or Better! Check out our poker and video poker guides
+  for more helpful poker tips.
+casino_new_intro_16: You can also enjoy countless other classic card games and special
+  games online at {site} Casino. Learn how to play poker at {host} and make the most
+  of the cards you have in hand.
+casino_new_intro_17: Dice games
+casino_new_intro_18: Dice
+casino_new_intro_19: The game allows you to bet on the outcome of a roll of the dice
+  and is very popular on {host}. You can enjoy great casino games like Sic Bo and
+  Zuckerberg as well as other new dice games like Football Studio Dice Live from Evolution
+  Gaming. Learn how to play casino craps at {host} to increase your chances of winning.
+casino_new_intro_20: Slot machine games
+casino_new_intro_21: Slots
+casino_new_intro_22: is the most common game found in {site} casinos and consists
+  of many themes, reels, paylines, bonus rounds and betting gameplay. One of the best
+  slot games you can play on {host} is Scarab Spin, an Egyptian-themed {site} Original
+  game that offers an attractive 97.84% RTP.
+casino_new_intro_23: From classic slots to modern online slot games, the variety of
+  slots on {host} offers a unique gaming experience that will keep everyone entertained.
+  The most popular slot machine themes include Fruit, Animals, Gemstones, Ancient,
+  Vegas, Retro, Space, Ocean, etc.
+casino_new_intro_24: We offer a trial mode so you can play our slot games before placing
+  your bets! Learn how to play slots online so you can strategize when playing the
+  most popular games at {site} casino.
+casino_new_intro_25: What are the best casino games to play?
+casino_new_intro_26: 'The game has great graphics and super easy gameplay, making
+  it an ideal choice for all online casino enthusiasts. Here are the best games you
+  can play on {host} right now:'
+casino_new_intro_27: Inspired by the Japanese mechanical game Pachinko, Plinko is
+  a pyramid-shaped game where you throw balls onto the game grid to score wins and
+  multipliers. RTP 99%.
+casino_new_intro_28: Dice
+casino_new_intro_29: Craps is a very simple game where you bet on the outcome of a
+  roll of a 100-sided dice. RTP 99%. Learn about other dice games at {site} casino.
+casino_new_intro_30: Another {site} Originals game, Limbo is a dice-based game with
+  top prizes of up to 1,000,000x your stake! RTP 99%.
+casino_new_intro_31: Inspired by the classic Minesweeper game, Mines is a crypto casino
+  game where you have to find gems and avoid bombs! RTP 99%. Check out other Mines
+  games at {site} Casino.
+casino_new_intro_32: One of the simplest games on {host}, Crash requires you to predict
+  how high the multiplier will go before crashing! RTP 99%. If you want to experience
+  something different, visit Evolution Gaming's Cash or Crash Live.
+casino_new_intro_33: Blackjack
+casino_new_intro_34: "{site} Original Blackjack is a game that requires a simple introduction
+  and allows you to beat the house with a super low house edge. RTP 99.53%. The {site}
+  casino also offers many blackjack variations."
+casino_new_intro_35: Hilo is a Bitcoin casino game. In the game you need to predict
+  the value of the next card compared to the value of the currently displayed card.
+  RTP 99%.
+casino_new_intro_36: Keno
+casino_new_intro_37: Keno is a bingo-style game based on the Chinese lottery game
+  where you choose a series of numbers to see if you win before waiting for the draw
+  to be drawn. RTP 99%.
+casino_new_intro_38: Roulette
+casino_new_intro_39: In this unique roulette game, you can choose from 15 customizable
+  game modes, adjusting your stake, risk taken and multiplier displayed. RTP 99%.
+  Check out Money Wheel, the roulette from Play'n GO, and experience the fun of roulette
+  games!
+casino_new_intro_40: Roulette bets
+casino_new_intro_41: "{site} Original Roulette is one of {host}'s most popular games,
+  and the game features a huge range of inside and outside bets for you to place your
+  bets on. RTP 97.30%. Check out the roulette lobby to see what other roulette games
+  {host} has to offer."
+casino_new_intro_42: Give it a try in {site}’s exclusive game that’s taking the crypto
+  casino industry by storm! RTP 98.29%.
+casino_new_intro_43: How to Play and Win Online Casino Games - Basic Strategies and
+  Tips
+casino_new_intro_44: Are you ready to try some of the best online casino games? Here
+  are some helpful tips to consider when starting to choose a game
+casino_new_intro_45: Most online casino games use a random number generator (RNG),
+  which means you can win or lose on every betting round. Keep this in mind when choosing
+  which games to play.
+casino_new_intro_46: You should always check the house edge, or RTP, of a game before
+  playing it so you know the typical odds for that game over time. Also, be sure to
+  check the minimum deposit and maximum winning potential.
+casino_new_intro_47: Don't limit yourself to one game. For example, find the latest
+  games released on {host}, play progressive jackpot slot games while enjoying live
+  casino games, and you have the chance to win huge bonuses and better odds.
+casino_new_intro_48: Please act within your ability and pay attention to your gambling
+  rights and responsibilities.
+casino_new_intro_49: Casino Game Odds, Margins and RTP
+casino_new_intro_50: Before choosing a casino game, you should read the game description
+  carefully to learn key information about the game, especially related to the house
+  edge and return to player (RTP). As you can see from our list of the best games,
+  many of the {site} Original games you can play have a house edge of just 1%, making
+  them great value for money. Learn more about casino edges and why you need them
+  with our handy casino edge guide.
+casino_new_intro_51: Casino bonuses and VIP programs
+casino_new_intro_52: If you want to maximize your profits on {host}, you can check
+  out the latest promotions and offers. You can also learn more about the {site} VIP
+  Club and discover the various benefits associated with joining the club, including
+  exclusive monthly offers and generous bonuses.
+casino_new_intro_53: Other Popular Online Casino Games
+casino_new_intro_54: 'If you want to try more great games at {host}, check out these
+  popular games from leading providers in the casino gaming industry:'
+casino_new_intro_55: "{site} Original of Baccarat"
+sport_new_intro_1: "{site} Sports Betting – Everyone’s favorite online sportsbook"
+sport_new_intro_2: "{host} offers a wide range of sports betting options for the modern
+  bettor – our online sportsbook offers live sports betting on a variety of sports,
+  including MMA, Basketball, Football, Hockey, Baseball and more."
+sport_new_intro_3: Our easy-to-use online sports betting platform allows users to
+  bet on their favorite teams, players and leagues from around the world, as well
+  as watch the biggest live sports events. Learn more about how to watch your favorite
+  sports live online for free at {site}.
+sport_new_intro_4: Depending on the sport and the live sports event, a wide variety
+  of sports options and strategies are available to the most ambitious sports bettors.
+  With over 100,000 sports bets placed daily, {site} is the premier site for domestic
+  and international sports betting. Get all the latest sports trends and data for
+  August 2023!
+sport_new_intro_5: Learn more about betting on your favorite sports, games and players
+  with our ultimate sports betting guide!
+sport_new_intro_6: Online Sports Betting Odds and Bet Types
+sport_new_intro_7: "{site} is proud to provide our loyal sports bettors with a top-notch
+  online sports betting experience."
+sport_new_intro_8: Simply go to the sport, category or sports league of interest to
+  see live and upcoming events available for betting. In addition to betting on the
+  outcome of sporting events, there are many ways to bet! You can also use our Bet
+  Builder feature to increase your chances of winning with cross bets and multi-bets
+  on the same match.
+sport_new_intro_9: 'The most popular types of bets include:'
+sport_new_intro_10: 'Data and championships: The winning percentage of big and small
+  goals in a season and the championship are long-term bets, and bettors can gain
+  value through long-term bets.'
+sport_new_intro_11: 'Odds: A simple form of betting in which you bet on one of three
+  outcomes: win, lose, or draw.'
+sport_new_intro_12: 'Handicap: A popular type of bet that involves adding or subtracting
+  a numerical value to the final score of a team or event. Similar to a total point
+  bet, predicting whether the total number of goals or total points scored will be
+  above or below a certain number. Bettors can also use spread betting strategies
+  to increase their odds.'
+sport_new_intro_13: 'Goal Odds: Goal odds for a match or team total.'
+sport_new_intro_14: 'First Point/First Goal: Betting on the first team or player to
+  score (score, goal, touchdown, etc.).'
+sport_new_intro_15: 'Halftime/Intermission Adjusted Odds for Live Sports: Adjusted
+  odds based on live scores.'
+sport_new_intro_16: 'Player Specials and More: Individual Stats Over/Under, Man of
+  the Game/MVP and other specific bets celebrating athlete achievements.'
+sport_new_intro_17: 'Correct Score: Accurately predict the final score of the game
+  to win'
+sport_new_intro_18: Registered users can also watch live broadcasts of some events
+  and sports - please check to see if live streaming is available. Learn how to watch
+  your favorite sports live for free!
+sport_new_intro_19: Sportsbook Promotions and {site} Sportsbook Bonuses
+sport_new_intro_20: In addition to the fantastic sports betting experience on {site},
+  we also offer regular sports betting promotions for the savvy bettor.
+sport_new_intro_21: In addition to our generous $50,000 weekly giveaways and {site}
+  daily competitions at our sportsbook and casino, we also run regular sportsbook
+  promotions and bonuses around UFC, NBA, Premier League and more.
+sport_new_intro_22: We're honored to provide the tools and information to help you
+  use {site} safely. Learn more about online gambling tips with our guide to gambling
+  responsibilities.
+sport_new_intro_23: Sports and leagues available for betting at {site} online sportsbook
+sport_new_intro_24: Browse our extensive range of popular sports to suit your sports
+  betting and betting needs - including football, basketball, MMA, eSports, ice hockey,
+  cricket, American football, tennis, table tennis, baseball, darts, Formula 1 and
+  more , as well as politics and entertainment!
+sport_new_intro_25: Whether you want to bet on a single game or an entire season,
+  we have a wide range of sports from around the world, including the best professional
+  sports leagues in the world including UFC, Premier League, NBA, NFL, CFL, MLB (Professional
+  Baseball) Major League Soccer), NCAA, Serie A, La Liga and esports leagues such
+  as League of Legends and Dota 2. We even offer a variety of betting options in simulated
+  real-life leagues, including SRL Football and SRL Cricket. Find out more about how
+  to bet on the Simulated Reality League (SRL) with our Simulated Reality League betting
+  guide.
+sport_new_intro_26: "{site} is an online betting site that provides an intuitive and
+  easy-to-use real-time sports betting platform for betting on upcoming sporting events.
+  There is nothing more exciting than live sports betting – betting on a sporting
+  event that has already started, adjusting the odds based on the current game status,
+  and racing against the clock."
+sport_new_intro_27: Live sports betting is a favorite for those who have a keen eye
+  for the game and are confident that the game will flip at the end. Popular live
+  sports betting include live football, live tennis, live basketball, live cricket
+  and live esports betting - different types of live sports are available at any time
+  depending on the time and event. Learn more about the differences between live betting
+  and pre-match betting, and how to develop the best betting strategy to win at {site}.
+sport_new_intro_28: So whether you're looking to bet on a US sports league, are keen
+  to give football betting a try, or simply want to find out more about sports betting
+  action, you'll find it all at {site} Sportsbook, along with tips for upcoming events
+  Weekly betting tips and predictions from the competition! You can also take things
+  to the next level by becoming a {site} VIP member! To learn more about the program,
+  read our {site} VIP Guide.
