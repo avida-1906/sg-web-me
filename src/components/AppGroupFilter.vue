@@ -83,7 +83,7 @@ function resetPlatformChecked() {
                 </div>
               </div>
             </BaseButton>
-            <template #popper>
+            <template #popper="{ hide }">
               <div>
                 <section class="base-check-pop-inner">
                   <BaseCheckboxGroup
@@ -110,7 +110,7 @@ function resetPlatformChecked() {
                     </template>
                   </BaseCheckboxGroup>
                 </section>
-                <div class="clear-all" @click="resetPlatformChecked">
+                <div class="clear-all" @click="resetPlatformChecked();hide()">
                   {{ $t('clear_all') }}
                 </div>
               </div>

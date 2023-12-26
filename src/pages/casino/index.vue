@@ -19,6 +19,7 @@ const { isMobile } = storeToRefs(useWindowStore())
 const casinoStore = useCasinoStore()
 const { casinoNav, casinoGameList } = storeToRefs(casinoStore)
 const { openSwiperNoticeDialog } = useDialogSwiperNotice(430)
+const { openRegisterDialog } = useRegisterDialog()
 
 const tab = ref('all')
 const showAll = computed(() => tab.value === 'all')
@@ -119,6 +120,12 @@ function setLobby() {
 casinoLobbyBus.on(setLobby)
 onBeforeUnmount(() => {
   casinoLobbyBus.off(setLobby)
+})
+
+onMounted(() => {
+  const parentUid = Session.get<string>(STORAGE_REG_PARENT_UID)?.value
+  if (parentUid && parentUid.length && !isLogin.value)
+    openRegisterDialog()
 })
 
 await application.allSettled([runMemberNoticeAllList(), loadIcon()])

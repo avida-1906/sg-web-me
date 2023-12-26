@@ -33,7 +33,7 @@ pls_enter_birthday: 请输入生日
 password_incorrect: 密码格式不正确
 password_uppercase_lowercase_letter: 密码必须含有至少 1 个大写字母和 1 个小写字母
 password_least_8_characters: 您的密码必须含有至少 8 个字符
-password_least_1_number: 含有至少 1 个数字
+password_least_1_number: 密码必须含有至少一个数字
 uppercase_lowercase_letter: 含有大写和小写字母
 least_8_characters: 至少 8 个字符
 reg_step: 填写您的详细信息
@@ -931,7 +931,7 @@ chat_close_side: 折叠侧边栏
 chat_send_tip_label: 发送小费
 chat_rule_full_title: 完整的规则可以在我们的
 chat_forum: 论坛
-chat_rule_find: 上找到
+chat_rule_find: 上找到。
 about_us: 关于我们
 sponsor_activity: 赞助活动
 online_shopping: 网购
@@ -1393,7 +1393,6 @@ company_intro_tip_step_4: 附加说明：如果您想使用法定货币存款，
 company_intro_tip_18: 您在 {site} 的存款与提款都是即时的，并且可任您选择任何可用的加密货币。无论您是想在我们的赌场游戏或体育赛事上进行投注，{site} 都提供了简单明了的过程。
 company_intro_tip_19:  MoonPay 具有许多受支持的支付方式，您可以使用 Visa、MasterCard、Apple Pay、Google Pay 等购买加密货币来存款以进行投注。有关您所在辖区支持的支付方式完整列表，请参阅 MoonPay 文档。
 company_intro_tip_20: 具有蓬勃发展的社区、活跃的聊天室以及一个专门为客户解决游戏或账户方面任何问题的支持团队，{host} 因此成功展示了它能成为最领先的加密货币赌场及体育博彩平台的原因。
-vip_level_compare: VIP 级别对
 bet_amount_label: 投注金额
 bonus_up: 奖金增长
 promo: 福利
@@ -1659,6 +1658,90 @@ day_bonus: 每日奖金
 deposit_bonus: 充值奖金
 two: 二
 three: 三
-
-
-
+casino_new_intro_1: 最佳在线赌场游戏 - 在 {host} 玩最佳游戏
+casino_new_intro_2: 面对如此丰富的赌场游戏，您会从哪里下手？从最出色的赌场游戏开始是一个不错的选择，此类游戏可以为您提供出色的图形设计和更加丰厚的赢利。现在就让我们为您带来
+casino_new_intro_3: 赌场上最出色的赌场游戏。
+casino_new_intro_4: 什么是在线赌场游戏？
+casino_new_intro_5: 在线赌场游戏包括经典的桌面游戏、老虎机游戏、骰子游戏和纸牌游戏。在 {host}，您可以找到数百种游戏供您尝试，这些游戏画面精美，有多种不同的投注和赢钱方式。
+casino_new_intro_6: 无论您是二十一点游戏迷，还是喜欢累积头奖的老虎机，您都能找到适合自己喜欢的各种在线赌场游戏类型。继续阅读，探索 {host} 上的最佳在线赌场游戏。
+casino_new_intro_7: 什么是最出色的赌场游戏？
+casino_new_intro_8: 从桌面游戏到在线老虎机，您可以在这里找到最佳赌场游戏
+casino_new_intro_9: 桌面游戏
+casino_new_intro_10: 是经典的赌场游戏，在 {host} 上非常热门。坐上虚拟座位，玩转传奇赌场游戏，如二十一点、百家乐和轮盘赌。如果您是第一次接触在线博彩游戏，请在投注前了解如何在 {site} 赌场玩桌面游戏。
+casino_new_intro_11: 真人赌场游戏
+casino_new_intro_12: 真人赌场游戏或真人荷官游戏是在线赌场网站上最受欢迎的游戏之一。这些游戏通过真人荷官和即时聊天功能提供沉浸式的在线赌场体验。我们的真人赌场游戏种类繁多，均设置在真实的赌场演播内，并现场直播到我们的平台上。
+casino_new_intro_13: 首先，赌场玩家只需进入真人赌场大厅，从一系列游戏中进行选择即可！从在线扑克到欧洲轮盘赌，我们提供各类真人发牌的赌场游戏。请访问我们的真人赌场指南了解更多信息。
+casino_new_intro_14: 纸牌游戏
+casino_new_intro_15: 是在 {site} 赌场的另一款最佳游戏。我们有多种可供选择的视频扑克游戏和真人在线扑克游戏，让您应接不暇！如果您是扑克迷，那您绝对不能错过Caribbean Stud Poker Live和Casino Hold'em Live。如果您正在寻找有趣的视频扑克游戏，您一定会喜欢 {site} Original 的视频扑克和 BGaming 的Jacks or Better！查看我们的扑克和视频扑克指南获得更有帮助的扑克技巧。
+casino_new_intro_16: 您还可以在 {site} 赌场在线享受无数其他经典纸牌游戏和特别游戏。在 {host} 学习如何玩纸牌游戏，充分利用手中的牌获利。
+casino_new_intro_17: 骰子游戏
+casino_new_intro_18: 掷骰子
+casino_new_intro_19: 游戏允许您对掷骰子的结果进行投注，这款游戏在 {host} 非常流行。您可以享受 骰宝和扎金花等绝佳赌场游戏还有其他新款骰子游戏，例如来自Evolution Gaming的Football Studio Dice Live。在 {host} 了解如何玩赌场掷骰子游戏可增加您的赢利机会。
+casino_new_intro_20: 老虎机游戏
+casino_new_intro_21: 老虎机
+casino_new_intro_22: 是 {site} 赌场中最常见的游戏，由许多主题、卷轴、赔付线、奖金回合和博彩玩法组成。您可以在 {host} 上玩的最佳老虎机游戏之一是Scarab Spin，这是一款埃及主题的 {site} Original 游戏，提供诱人的 97.84% 玩家回报率。
+casino_new_intro_23: 从经典老虎机到现代在线老虎机游戏，{host} 上的各种老虎机都能提供独特的游戏体验，让每个人都乐在其中。最受欢迎的老虎机主题包括水果、动物、宝石、古代、拉斯维加斯、复古、太空、海洋等。
+casino_new_intro_24: 我们提供试玩模式，您可以在下注前玩玩我们的老虎机游戏！了解如何在线玩老虎机，方便您在 {site} 赌场玩最受欢迎的游戏时制定策略。
+casino_new_intro_25: 什么是最值得玩的赌场游戏？
+casino_new_intro_26: 游戏拥有出色的画面和超级简单的玩法，是所有在线赌场爱好者的理想选择。您现在可以在 {host} 上玩到的最佳游戏如下：
+casino_new_intro_27: Plinko 的灵感来自日本的机械游戏 Pachinko，是一款金字塔型的游戏，您可以将球投到游戏网格上，获得胜利和倍数。RTP 99%。
+casino_new_intro_28: 骰子
+casino_new_intro_29: 掷骰子是一款非常简单的游戏，您可以对有 100 面的骰子掷出的结果进行投注。RTP 99%。了解 {site} 赌场的其他骰子游戏。
+casino_new_intro_30: 另一款 {site} Originals 游戏 Limbo 是一款以掷骰子为基础的游戏，最高奖金可达投注额的 1,000,000 倍！RTP 99%。
+casino_new_intro_31: 受到经典扫雷游戏的启发，Mines 是一款加密博彩游戏，您必须在游戏中寻找宝石并避开炸弹！RTP 99%。了解 {site} 赌场的其他Mines 游戏。
+casino_new_intro_32: 作为 {host} 上最简单的游戏之一，Crash 需要您预测在崩溃（Crash）之前倍数会上升到多高！RTP 99%。如果想体验与众不同的游戏，请访问Evolution Gaming 的 Cash or Crash Live。
+casino_new_intro_33: 二十一点
+casino_new_intro_34: '{site} Original 二十一点是一款只需简单介绍的游戏，它能让您以超低的庄家优势战胜庄家。RTP 99.53%。{site} 赌场还会带来许多二十一点变体游戏。'
+casino_new_intro_35: Hilo 是一款比特币赌场游戏。游戏中您需要预测下一张牌与当前显示的牌值相比的大小。RTP 99%。
+casino_new_intro_36: 基诺
+casino_new_intro_37: 基诺是一种宾果式游戏，基于中式彩票游戏打造，您可以在等待开奖之前选择一系列数字，看看自己是否中奖。RTP 99%。
+casino_new_intro_38: 转盘
+casino_new_intro_39: 在这款独特的转盘游戏中，您可以从 15 种可定制的游戏模式中进行选择，调整投注金额、承担的风险和显示的倍数。RTP 99%。查看Money Wheel（来自 Play'n GO 的转盘游戏），体验转盘游戏的乐趣！
+casino_new_intro_40: 轮盘赌
+casino_new_intro_41: '{site} Original 轮盘赌是 {host} 最受欢迎的游戏之一，游戏包含大量的内围和外围投注供您下注。RTP 97.30%。查看轮盘大厅，了解 {host} 提供的其他轮盘游戏。'
+casino_new_intro_42: 在 {site} 的专属游戏中放手一搏吧，这款游戏正在加密赌场行业掀起一场风暴！RTP 98.29%。
+casino_new_intro_43: 如何玩在线赌场游戏并获胜 - 基本策略和技巧
+casino_new_intro_44: 准备好尝试一些最出色的在线赌场游戏了吗？以下是一些有用的提示，供您在开始选择游戏时参考
+casino_new_intro_45: 大多数在线赌场游戏都采用随机数字生成器（RNG），这意味着您可以在每一轮投注中获胜或失败。在选择玩哪些游戏时，请牢记这一点。
+casino_new_intro_46: 在玩游戏之前，您应该始终查看游戏的庄家优势或 RTP，这样您就能知道该游戏在一段时间内的典型赔率。此外，请务必查看最低存款额和最大赢钱潜力。
+casino_new_intro_47: 不要局限于一种游戏。例如，在 {host} 上查找最新发布的游戏，玩转累积奖金的老虎机游戏的同时享受真人娱乐场游戏，您有机会获得巨额奖金和更高的赔率。
+casino_new_intro_48: 请量力而行，注意博彩权责。
+casino_new_intro_49: 赌场游戏赔率、边际优势和 RTP
+casino_new_intro_50: 在选择赌场游戏之前，您应该仔细阅读游戏说明，了解有关游戏的关键信息，特别是与庄家优势和玩家回报率（RTP）相关的信息。正如您从我们的最佳游戏列表中看到的，您可以玩的许多 {site} Original 游戏的庄家优势仅为1%，这是非常超值的游戏选择。通过我们便捷的赌场优势 指南，了解更多关于赌场优势以及为什么需要优势的信息。
+casino_new_intro_51: 赌场奖金和 VIP 计划
+casino_new_intro_52: 如果您想要在 {host} 获得最大赢利，您可以查看最新促销活动和优惠。您还可以了解有关{site} VIP 俱乐部的更多信息，发现与加入俱乐部相关的各种福利，包括每月独家优惠和丰厚奖金。
+casino_new_intro_53: 其他热门在线赌场游戏
+casino_new_intro_54: 如果您想要在 {host} 尝试更多精彩游戏，请查看赌场游戏行业中领先供应商提供的以下热门游戏：
+casino_new_intro_55: '{site} Original 的 百家乐'
+sport_new_intro_1: '{site} 体育投注 - 人人喜爱的在线体育博彩公司'
+sport_new_intro_2: '{host} 为现代投注者提供丰富的体育投注选择——我们的在线体育博彩公司提供各种实时体育投注，包括综合格斗、篮球、足球、曲棍球和棒球等。'
+sport_new_intro_3: 我们的在线体育投注平台操作简单，用户可以在平台上投注自己喜欢的球队、球员和世界各地的联赛，还可以观看最大型的体育赛事直播。了解有关如何在 {site} 免费在线观看您喜爱的体育节目直播的更多信息。
+sport_new_intro_4: 根据体育项目和直播体育赛事的不同，最雄心勃勃的体育投注者可以获得丰富多彩的体育选项和策略。{site} 每天的体育投注量超过 100,000 次，是国内外体育投注的首选网站。获取所有最新体育趋势和 2023 年 8 月的数据！
+sport_new_intro_5: 通过我们的终极体育博彩指南，了解更多您喜爱的体育项目、比赛和球员的博彩信息！
+sport_new_intro_6: 在线体育博彩赔率与投注类型
+sport_new_intro_7: '{site} 很自豪能为我们忠实的体育投注者提供顶级在线体育博彩体验。'
+sport_new_intro_8: 只需前往感兴趣的体育运动、类别或体育联盟，即可查看可供投注的实时赛事和即将进行的赛事。除了对体育赛事的结果进行投注外，还有许多投注方式可供选择！您还可以使用我们的“投注生成器”功能，通过串关投注和同场比赛多重投注增加中奖机会。
+sport_new_intro_9: 最受欢迎的投注类型包括：
+sport_new_intro_10: 数据和冠军：一个赛季的大小球胜率以及冠军都属于长期投注，投注者可以通过长期投注获得价值。
+sport_new_intro_11: 赔率：一种简单的投注方式，您投注三种结果之一：赢、输或平。
+sport_new_intro_12: 让球：一种热门的投注类型，包括在球队或赛事的最终得分中增加或减少一个数值。类似于总分投注，即预测总进球数或总得分是否会高于或低于某个特定数字。投注者还可以利用差额投注策略增加胜算。
+sport_new_intro_13: 大小球赔率：比赛或球队总分的大小球。
+sport_new_intro_14: 第一分/第一球：投注最先得分（得分、进球、达阵等）的球队或球员。
+sport_new_intro_15: 体育直播的半场/中场休息调整赔率：根据实时比分调整赔率。
+sport_new_intro_16: 球员特殊投注及更多：个人数据大/小球、全场最佳/MVP 以及其他庆祝运动员成就的特定投注。
+sport_new_intro_17: 正确得分：准确预测比赛最终比分获得胜利
+sport_new_intro_18: 注册用户还可观看部分赛事和运动项目的现场直播——请查看赛事是否提供现场直播。了解如何免费观看您喜爱的体育赛事直播！
+sport_new_intro_19: 体育博彩促销活动和 {site} 体育博彩奖金
+sport_new_intro_20: 除了 {site} 上精彩绝伦的体育博彩体验外，我们还为机智的投注者定期提供体育博彩促销活动。
+sport_new_intro_21: 除了每周 5 万美元的丰厚赠品和我们体育博彩和赌场的 {site} 每日竞赛之外，我们还定期围绕 UFC、NBA、英超联赛等赛事开展体育博彩促销活动和奖金活动。
+sport_new_intro_22: 很荣幸我们提供的工具和信息可以帮助您安全地使用 {site}。通过我们的博彩权责指南了解更多在线博彩技巧。
+sport_new_intro_23: 可在 {site} 在线体育博彩投注的体育项目和联赛
+sport_new_intro_24: 浏览我们丰富的热门体育项目，满足您的体育投注和博彩需求——包括足球、篮球、综合格斗、电子竞技、冰球、板球、美式足球、网球、乒乓球、棒球、飞镖、一级方程式等，还有政治和娱乐！
+sport_new_intro_25: 无论您是想投注单场比赛，还是整个赛季，我们都有全球范围内的各种体育赛事，包括全球最好的职业体育联赛，包括UFC、英超联赛、NBA、NFL、CFL、MLB（职业棒球大联盟）、NCAA、意甲、西甲和电竞联赛，例如英雄联盟和Dota 2。我们甚至提供模拟现实联赛中的各种投注选项，包括SRL 足球和SRL 板球。通过我们的模拟现实联赛投注指南了解更多有关如何投注模拟现实联赛（SRL）的信息。
+sport_new_intro_26: '{site} 是一个在线投注网站，提供直观易用的实时体育投注平台，可以对即将进行的体育赛事投注。没有什么比滚球体育投注更令人兴奋的了——投注已经开始的体育赛事，根据当前的比赛状态调整赔率，与时间赛跑。'
+sport_new_intro_27: 滚球体育博彩对于那些对比赛非常敏锐的人来说绝对是心头好，他们很有信心比赛会在最后发生翻转。热门滚球体育投注包括滚球足球、滚球网球、滚球篮球、滚球板球和滚球电竞体育投注——根据时间和活动会随时提供不同类型的滚球体育项目。进一步了解滚球投注与赛前投注之间的区别，以及如何制定最佳投注策略可以在 {site} 获胜。
+sport_new_intro_28: 因此，无论您是想投注美国体育联赛，还是热衷于尝试足球博彩，或者只是想了解更多有关体育博彩活动的信息，您都可以在 {site} 体育博彩上找到，同时还有对即将进行的比赛给出的每周博彩提示和预测！您还可以成为 {site} VIP 会员，让一切更上一层楼！如需了解该计划的更多信息，请阅读我们的 {site} VIP 指南。
+equal_round: 平局
+commission_wallet: 佣金钱包
+commission_transfer_title: 佣金转换
+old_pwd_tip8: 最小字符长度为 8

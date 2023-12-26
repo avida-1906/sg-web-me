@@ -14,7 +14,7 @@ dayjs.extend(weekday)
 dayjs.extend(relativeTime)
 
 const format: { [t: string]: string } = {
-  'en': 'ddd, MMM D h:mm A',
+  'en-US': 'ddd, MMM D h:mm A',
   'zh-CN': 'MM月DD日 ddd HH:mm',
   'vi-VN': 'ddd, D MMMM h:mm',
   'pt-BR': 'dddd, D [De] MMM HH:mm',
@@ -22,7 +22,7 @@ const format: { [t: string]: string } = {
   'hi-IN': 'dddd, D MMMM h:mm A',
 }
 const dateFormat: { [t: string]: string } = {
-  'en': 'MMMM DD,YYYY',
+  'en-US': 'MMMM DD,YYYY',
   'zh-CN': 'YYYY年MM月DD日',
   'vi-VN': 'DD [tháng] MM,YYYY',
   'pt-BR': 'DD [de] MMMM [de] YYYY',
@@ -30,7 +30,7 @@ const dateFormat: { [t: string]: string } = {
   'hi-IN': 'DD/MM/YYYY',
 }
 const langKey: { [t: string]: string } = {
-  'en': 'en',
+  'en-US': 'en',
   'zh-CN': 'zh-cn',
   'vi-VN': 'vi',
   'pt-BR': 'pt-br',

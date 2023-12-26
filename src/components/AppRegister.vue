@@ -8,6 +8,7 @@ const appStore = useAppStore()
 const { companyData } = storeToRefs(appStore)
 const { openNotify } = useNotify()
 const { openLoginDialog } = useLoginDialog()
+const { openTermsConditionsDialog } = useTermsConditionsDialog()
 const { bool: pwdStatus, setBool: setPwdStatus } = useBoolean(true)
 const { bool: isCode } = useBoolean(false)
 const {
@@ -19,7 +20,6 @@ const {
   bool: needSaveFormData,
   setTrue: setNeedSaveFormDataTrue,
 } = useBoolean(true)
-const { openTermsConditionsDialog } = useTermsConditionsDialog()
 
 const emailRef = ref()
 const userNameRef = ref()
@@ -29,6 +29,7 @@ const steps = ref(1)
 const code = ref('')
 const birthdayInputRef = ref()
 const birthday = ref('')
+const parentUid = ref(Session.get<string>(STORAGE_REG_PARENT_UID)?.value ?? '')
 
 const {
   value: password,
@@ -239,7 +240,7 @@ async function getMemberReg() {
       email: email.value,
       username: username.value,
       password: password.value,
-      parent_id: '',
+      parent_uid: parentUid.value,
       device_number: application.getDeviceNumber(),
       birthday: birthday.value,
     }
@@ -250,6 +251,10 @@ async function getMemberReg() {
     closeDialog()
     await nextTick()
     openTermsConditionsDialog()
+    // {
+    //   showClose: !(parentUid.value && parentUid.value.length),
+    //   closeOnClickOverlay: !(parentUid.value && parentUid.value.length),
+    // }
   }
 }
 function onPasswordFocus() {
@@ -294,7 +299,7 @@ onUnmounted(() => {
     email: email.value,
     username: username.value,
     password: password.value,
-    parent_id: '',
+    parent_uid: parentUid.value,
     device_number: application.getDeviceNumber(),
     birthday: birthday.value,
   }
@@ -370,7 +375,7 @@ onUnmounted(() => {
               custom-padding
               :style="{
                 '--tg-base-button-style-bg': timer ? 'var(--tg-text-grey)' : '',
-                'width': '105px',
+                'min-width': '105px',
                 '--tg-base-button-padding-y': '12.5px',
               }"
               @click.stop="runAsyncMemberSendMailCode"

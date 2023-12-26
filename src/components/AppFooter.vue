@@ -4,12 +4,11 @@ import type { EnumLanguage } from '~/utils/enums'
 
 const { t } = useI18n()
 
-const router = useRouter()
+const router = useLocalRouter()
 const {
   currentGlobalCurrency,
   exchangeRateData,
   companyData,
-  isLogin,
 } = storeToRefs(useAppStore())
 const languageStore = useLanguageStore()
 const { userLanguage, AllLanguages } = storeToRefs(languageStore)
@@ -174,7 +173,7 @@ function pathTo(tmp: { path?: string; title: string; icon?: boolean }) {
       <div class="copy-right">
         © {{ companyData.copyright }} | {{ t('copyright') }}
       </div>
-      <div v-if="isLogin">
+      <div>
         1 {{ currentGlobalCurrency }} = ${{ rate }}
       </div>
     </div>

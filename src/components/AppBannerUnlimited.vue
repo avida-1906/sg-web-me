@@ -307,6 +307,7 @@ onUnmounted(() => {
             font-size: var(--tg-font-size-lg);
             color: var(--tg-text-white);
             font-weight: var(--tg-font-weight-semibold);
+            text-align: center;
           }
           .item-desc{
             padding: 0 var(--tg-spacing-40);

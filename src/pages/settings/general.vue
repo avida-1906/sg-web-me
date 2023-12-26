@@ -13,7 +13,7 @@ interface ISocialData {
 
 const { t } = useI18n()
 const route = useRoute()
-const router = useRouter()
+const router = useLocalRouter()
 const { openNotify } = useNotify()
 const appStore = useAppStore()
 const { userInfo } = storeToRefs(appStore)
@@ -102,8 +102,7 @@ const { run: runMemberUpdate } = useRequest(ApiMemberUpdate, {
 
 const areaCodeOptions = computed(() => {
   return areaCodeData.value?.map((item) => {
-    const temp = { label: item.name, value: item.id }
-    return temp
+    return { label: `${item.attr} ${item.name}`, value: item.id }
   })
 })
 

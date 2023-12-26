@@ -7,7 +7,7 @@ interface Props {
 const props = defineProps<Props>()
 
 const { t } = useI18n()
-const router = useRouter()
+const router = useLocalRouter()
 const { appContentWidth } = storeToRefs(useWindowStore())
 
 const {
@@ -24,7 +24,7 @@ const {
   next,
   prev,
   fetch,
-} = useApiSportBetList(settle, props.onPage, false, scrollToTop)
+} = useApiSportBetList(settle, false, false, scrollToTop)
 
 const columnCount = computed(() => {
   if (appContentWidth.value > 1000)

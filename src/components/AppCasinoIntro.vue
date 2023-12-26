@@ -12,7 +12,7 @@ const { companyData } = storeToRefs(useAppStore())
 const { isMobile } = storeToRefs(useWindowStore())
 const { bool: showMore, toggle: toggleShowMore } = useBoolean(props.hasMore !== true)
 const hostSite = computed(() => (
-  { host: location.value.hostname?.replace('www.', ''), site: companyData.value?.name }
+  { host: location.value.hostname?.replace('www.', '').toUpperCase(), site: companyData.value?.name.toUpperCase() }
 ))
 
 const btnText = ref(t('view_more_2'))
@@ -29,235 +29,163 @@ const onShowMore = function () {
 <template>
   <div class="app-introduction" :class="{ 'max-height': showMore }">
     <div class="introduction-content" :class="[isMobile ? 'h5-mobile' : 'column-count']">
-      <h2>最佳在线赌场游戏 - 在 Meibo.com 玩最佳游戏</h2>
+      <h2>{{ t('casino_new_intro_1', { hostSite }) }}</h2>
       <div class="p">
-        面对如此丰富的赌场游戏，您会从哪里下手？从最出色的赌场游戏开始是一个不错的选择，此类游戏可以为您提供出色的图形设计和更加丰厚的赢利。现在就让我们为您带来
-        <span class="white-txt">Meibo</span>
-        赌场上最出色的赌场游戏吧。
+        {{ t('casino_new_intro_2') }}
+        <span class="white-txt">{{ hostSite.site }}</span>
+        {{ t('casino_new_intro_3') }}
       </div>
-      <h2>什么是在线赌场游戏？</h2>
+      <h2>{{ t('casino_new_intro_4') }}</h2>
       <div class="p">
-        在线赌场游戏包括经典的桌面游戏、老虎机游戏、骰子游戏和纸牌游戏。在 Meibo.com，您可以找到数百种游戏供您尝试，这些游戏画面精美，有多种不同的投注和赢钱方式。
-      </div>
-      <div class="p">
-        无论您是二十一点游戏迷，还是喜欢累积头奖的老虎机，您都能找到适合自己喜欢的各种在线赌场游戏类型。继续阅读，探索 Meibo.com 上的最佳在线赌场游戏。
-      </div>
-      <h2>什么是最出色的赌场游戏？</h2>
-      <div class="p">
-        从桌面游戏到在线老虎机，您可以在这里找到最佳赌场游戏：<h3>桌面游戏</h3>
+        {{ t('casino_new_intro_5', hostSite) }}
       </div>
       <div class="p">
-        <span class="bold-txt">桌面游戏</span>
-        是经典的赌场游戏，在 Meibo.com 上非常热门。坐上虚拟座位，玩转传奇赌场游戏，如
-        二十一点
-        、
-        百家乐
-        和
-        轮盘赌
-        。如果您是第一次接触在线博彩游戏，请在投注前了解
-        如何
-        在 Meibo 赌场玩
-        桌面游戏
-        。
+        {{ t('casino_new_intro_6', hostSite) }}
+      </div>
+      <h2>{{ t('casino_new_intro_7') }}</h2>
+      <div class="p">
+        {{ t('casino_new_intro_8') }}：<h3>{{ t('casino_new_intro_9') }}</h3>
+      </div>
+      <div class="p">
+        <span class="bold-txt">{{ t('casino_new_intro_9') }}</span>
+        {{ t('casino_new_intro_10', hostSite) }}
       </div>
       <h3>
-        真人赌场游戏
+        {{ t('casino_new_intro_11') }}
       </h3>
       <div class="p">
-        真人赌场游戏或真人荷官游戏是在线赌场网站上最受欢迎的游戏之一。这些游戏通过真人荷官和即时聊天功能提供沉浸式的在线赌场体验。我们的真人赌场游戏种类繁多，均设置在真实的赌场演播内，并现场直播到我们的平台上。
+        {{ t('casino_new_intro_12') }}
       </div>
       <div class="p">
-        首先，赌场玩家只需进入真人赌场大厅，从一系列游戏中进行选择即可！从在线扑克到欧洲轮盘赌，我们提供各类真人发牌的赌场游戏。请访问我们的
-        真人赌场指南
-        了解更多信息。
+        {{ t('casino_new_intro_13') }}
       </div>
-      <h3>纸牌游戏</h3>
+      <h3>{{ t('casino_new_intro_14') }}</h3>
       <div class="p">
-        <span class="bold-txt">纸牌游戏</span>
-        是在 Meibo 赌场的另一款最佳游戏。我们有多种可供选择的
-        视频扑克游戏
-        和真人
-        在线扑克游戏
-        ，让您应接不暇！如果您是扑克迷，那您绝对不能错过
-        Caribbean Stud Poker Live
-        和
-        Casino Hold'em Live
-        。如果您正在寻找有趣的视频扑克游戏，您一定会喜欢 Meibo Original 的
-        视频扑克
-        和 BGaming 的
-        Jacks or Better
-        ！查看我们的
-        扑克
-        和
-        视频扑克指南
-        获得更有帮助的扑克技巧。
+        <span class="bold-txt">{{ t('casino_new_intro_14') }}</span>
+        {{ t('casino_new_intro_15', hostSite) }}
       </div>
       <div class="p">
-        您还可以在 Meibo 赌场在线享受无数其他经典纸牌游戏和特别游戏。在 Meibo.com 学习
-        如何玩纸牌游戏
-        ，充分利用手中的牌获利。
+        {{ t('casino_new_intro_16', hostSite) }}
       </div>
-      <h3>骰子游戏</h3>
+      <h3>{{ t('casino_new_intro_17') }}</h3>
       <div class="p">
-        <span class="bold-txt">掷骰子</span>
-        游戏允许您对掷骰子的结果进行投注，这款游戏在 Meibo.com 非常流行。您可以享受
-        骰宝
-        和
-        扎金花
-        等绝佳赌场游戏还有其他新款骰子游戏，例如来自
-        Evolution Gaming
-        的
-        Football Studio Dice Live
-        。在 Meibo.com 了解
-        如何玩赌场掷骰子游戏
-        可增加您的赢利机会。
+        <span class="bold-txt">{{ t('casino_new_intro_18') }}</span>
+        {{ t('casino_new_intro_19', hostSite) }}
       </div>
-      <h3>老虎机游戏</h3>
+      <h3>{{ t('casino_new_intro_20') }}</h3>
       <div class="p">
-        <span class="bold-txt">老虎机</span>
-        是 Meibo 赌场中最常见的游戏，由许多主题、卷轴、赔付线、奖金回合和博彩玩法组成。您可以在 Meibo.com 上玩的最佳老虎机游戏之一是
-        Scarab Spin
-        ，这是一款埃及主题的 Meibo Original 游戏，提供诱人的 97.84% 玩家回报率。
+        <span class="bold-txt">{{ t('casino_new_intro_21') }}</span>
+        {{ t('casino_new_intro_22', hostSite) }}
       </div>
       <div class="p">
-        从经典老虎机到现代在线老虎机游戏，Meibo.com 上的各种老虎机都能提供独特的游戏体验，让每个人都乐在其中。最受欢迎的老虎机主题包括水果、动物、宝石、古代、拉斯维加斯、复古、太空、海洋等。
+        {{ t('casino_new_intro_23', hostSite) }}
       </div>
       <div class="p">
-        我们提供试玩模式，您可以在下注前玩玩我们的老虎机游戏！了解
-        如何在线玩老虎机
-        ，方便您在 Meibo 赌场玩最受欢迎的游戏时制定策略。
+        {{ t('casino_new_intro_24', hostSite) }}
       </div>
-      <h2>什么是最值得玩的赌场游戏？</h2>
+      <h2>{{ t('casino_new_intro_25') }}</h2>
       <div class="p">
-        <span class="bold-txt">Meibo Original</span>
-        游戏拥有出色的画面和超级简单的玩法，是所有在线赌场爱好者的理想选择。您现在可以在 Meibo.com 上玩到的最佳游戏如下：
+        <span class="bold-txt">{{ hostSite.site }} Original</span>
+        {{ t('casino_new_intro_26', hostSite) }}
       </div>
       <ul>
         <li>
           <span class="bold-txt">Plinko</span>
-          ：Plinko 的灵感来自日本的机械游戏 Pachinko，是一款金字塔型的游戏，您可以将球投到游戏网格上，获得胜利和倍数。RTP 99%。
+          ：{{ t('casino_new_intro_27') }}
         </li>
         <li>
-          <span class="bold-txt">骰子</span>
-          ：掷骰子是一款非常简单的游戏，您可以对有 100 面的骰子掷出的结果进行投注。RTP 99%。了解 Meibo 赌场的其他
-          骰子游戏
-          。
+          <span class="bold-txt">{{ t('casino_new_intro_28') }}</span>
+          ：{{ t('casino_new_intro_29', hostSite) }}
         </li>
         <li>
           <span class="bold-txt">Limbo</span>
-          ：另一款 Meibo Originals 游戏 Limbo 是一款以掷骰子为基础的游戏，最高奖金可达投注额的 1,000,000 倍！RTP 99%。
+          ：{{ t('casino_new_intro_30', hostSite) }}
         </li>
         <li>
-          <span class="bold-txt">Mine</span>
-          s：受到经典扫雷游戏的启发，Mines 是一款加密博彩游戏，您必须在游戏中寻找宝石并避开炸弹！RTP 99%。了解 Meibo 赌场的其他
-          Mines 游戏
-          。
+          <span class="bold-txt">Mines</span>
+          ：{{ t('casino_new_intro_31', hostSite) }}
         </li>
         <li>
           <span class="bold-txt">Crash</span>
-          ：作为 Meibo.com 上最简单的游戏之一，Crash 需要您预测在崩溃（Crash）之前倍数会上升到多高！RTP 99%。如果想体验与众不同的游戏，请访问Evolution Gaming 的
-          Cash or Crash Live
-          。
+          ：{{ t('casino_new_intro_32', hostSite) }}
         </li>
         <li>
-          <span class="bold-txt">二十一点</span>
-          ：Meibo Original 二十一点是一款只需简单介绍的游戏，它能让您以超低的庄家优势战胜庄家。RTP 99.53%。Meibo 赌场还会带来许多
-          二十一点变体
-          游戏。
+          <span class="bold-txt">{{ t('casino_new_intro_33') }}</span>
+          ：{{ t('casino_new_intro_34', hostSite) }}
         </li>
         <li>
           <span class="bold-txt">Hilo</span>
-          ：Hilo 是一款比特币赌场游戏。游戏中您需要预测下一张牌与当前显示的牌值相比的大小。RTP 99%。
+          ：{{ t('casino_new_intro_35') }}
         </li>
         <li>
-          <span class="bold-txt">基诺</span>
-          ：基诺是一种宾果式游戏，基于中式彩票游戏打造，您可以在等待开奖之前选择一系列数字，看看自己是否中奖。RTP 99%。
+          <span class="bold-txt">{{ t('casino_new_intro_36') }}</span>
+          ：{{ t('casino_new_intro_37') }}
         </li>
         <li>
-          <span class="bold-txt">转盘</span>
-          ：在这款独特的转盘游戏中，您可以从 15 种可定制的游戏模式中进行选择，调整投注金额、承担的风险和显示的倍数。RTP 99%。查看
-          Money Wheel
-          （来自 Play'n GO 的转盘游戏），体验转盘游戏的乐趣！
+          <span class="bold-txt">{{ t('casino_new_intro_38') }}</span>
+          ：{{ t('casino_new_intro_39') }}
         </li>
         <li>
-          <span class="bold-txt">轮盘赌</span>
-          ：Meibo Original 轮盘赌是 Meibo.com 最受欢迎的游戏之一，游戏包含大量的内围和外围投注供您下注。RTP 97.30%。查看
-          轮盘大厅
-          ，了解 Meibo.com 提供的其他轮盘游戏。
+          <span class="bold-txt">{{ t('casino_new_intro_40') }}</span>
+          ：{{ t('casino_new_intro_41', hostSite) }}
         </li>
         <li>
-          <span class="bold-txt">Diamond</span>
-          s：在 Meibo 的专属游戏中放手一搏吧，这款游戏正在加密赌场行业掀起一场风暴！RTP 98.29%。
+          <span class="bold-txt">Diamonds</span>
+          ：{{ t('casino_new_intro_42', hostSite) }}
         </li>
       </ul>
-      <h2>如何玩在线赌场游戏并获胜 - 基本策略和技巧</h2>
+      <h2>{{ t('casino_new_intro_43') }}</h2>
       <div class="p">
-        准备好尝试一些最出色的在线赌场游戏了吗？以下是一些有用的提示，供您在开始选择游戏时参考：
+        {{ t('casino_new_intro_44') }}：
       </div>
       <ul>
-        <li>大多数在线赌场游戏都采用随机数字生成器（RNG），这意味着您可以在每一轮投注中获胜或失败。在选择玩哪些游戏时，请牢记这一点。</li>
-        <li>在玩游戏之前，您应该始终查看游戏的庄家优势或 RTP，这样您就能知道该游戏在一段时间内的典型赔率。此外，请务必查看最低存款额和最大赢钱潜力。</li>
+        <li>{{ t('casino_new_intro_45') }}</li>
+        <li>{{ t('casino_new_intro_46') }}</li>
         <li>
-          不要局限于一种游戏。例如，在 Meibo.com 上查找
-          最新发布的
-          游戏，玩转
-          累积奖金的老虎机
-          游戏的同时享受真人娱乐场游戏，您有机会获得巨额奖金和更高的赔率。
+          {{ t('casino_new_intro_47', hostSite) }}
         </li>
-        <li>请量力而行，注意博彩权责。</li>
+        <li>{{ t('casino_new_intro_48') }}</li>
       </ul>
-      <h2>赌场游戏赔率、边际优势和 RTP</h2>
+      <h2>{{ t('casino_new_intro_49') }}</h2>
       <div class="p">
-        在选择赌场游戏之前，您应该仔细阅读游戏说明，了解有关游戏的关键信息，特别是与庄家优势和玩家回报率（RTP）相关的信息。正如您从我们的最佳游戏列表中看到的，您可以玩的许多 Meibo Original 游戏的庄家优势仅为
-        1%，这是非常超值的游戏选择。通过我们便捷的
-        赌场
-        优势
-        指南
-        ，了解更多关于赌场优势以及为什么需要优势的信息。
+        {{ t('casino_new_intro_50', hostSite) }}
       </div>
-      <h2>赌场奖金和 VIP 计划</h2>
+      <h2>{{ t('casino_new_intro_51') }}</h2>
       <div class="p">
-        如果您想要在 Meibo.com 获得最大赢利，您可以查看
-        最新促销活动和优惠
-        。您还可以了解有关
-        Meibo VIP 俱乐部
-        的更多信息，发现与加入俱乐部相关的各种
-        福利
-        ，包括每月独家优惠和丰厚奖金。
+        {{ t('casino_new_intro_52', hostSite) }}
       </div>
-      <h2>其他热门在线赌场游戏</h2>
+      <h2>{{ t('casino_new_intro_53') }}</h2>
       <div class="p">
-        如果您想要在 Meibo.com 尝试更多精彩游戏，请查看赌场游戏行业中领先供应商提供的以下热门游戏：
+        {{ t('casino_new_intro_54', hostSite) }}：
       </div>
       <ul>
         <li>
-          Meibo Original 的
-          百家乐
+          {{ t('casino_new_intro_55', hostSite) }}
         </li>
         <li>
-          Play’n GO 的
+          Play’n GO {{ t('de') }}
           Contact
         </li>
         <li>
-          Play’n GO 的
+          Play’n GO {{ t('de') }}
           Cash Pump
         </li>
         <li>
           Play’n GO
-          的
+          {{ t('de') }}
           Agent Destiny
         </li>
         <li>
           Pragmatic Play
-          的
+          {{ t('de') }}
           Sugar Twist
         </li>
         <li>
-          Pragmatic Play 的
+          Pragmatic Play {{ t('de') }}
           Zeus vs Hades Gods of War
         </li>
         <li>
-          Hacksaw Gaming 的
+          Hacksaw Gaming {{ t('de') }}
           Mayan Stackways
         </li>
       </ul>

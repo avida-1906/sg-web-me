@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 const { t } = useI18n()
 usePageTitle({ prefix: t('menu_title_settings_update_safepwd') })
-const router = useRouter()
+const router = useLocalRouter()
 const { openNotify } = useNotify()
 const { userInfo } = storeToRefs(useAppStore())
 const { updateUserInfo } = useAppStore()
@@ -235,7 +235,7 @@ onUnmounted(() => {
               custom-padding
               :style="{
                 '--tg-base-button-style-bg': timer ? 'var(--tg-text-grey)' : '',
-                'width': '105px',
+                'min-width': '105px',
                 '--tg-base-button-padding-y': 'var(--tg-spacing-13)',
               }"
               @click="runAsyncMemberSendMailCode"

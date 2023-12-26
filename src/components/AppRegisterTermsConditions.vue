@@ -32,6 +32,7 @@ const scrollRef = ref()
 const delayId = ref()
 const { bool: isCheckClicked, setTrue: setCCTrue } = useBoolean(false)
 
+const parentUid = ref(Session.get<string>(STORAGE_REG_PARENT_UID)?.value ?? '')
 const regThirdParams = computed(() => {
   return Session.get<IMemberThirdReg>(STORAGE_THIRDREG_PARAMS_KEYWORDS)?.value
 })
@@ -117,9 +118,8 @@ onBeforeUnmount(() => {
   if (needBack.value) {
     if (props.isAuth)
       openThirdAuthFormDialog()
-
     else
-      openRegisterDialog()
+      openRegisterDialog() // { showClose: !(parentUid.value && parentUid.value.length), closeOnClickOverlay: !(parentUid.value && parentUid.value.length) }
   }
 })
 </script>

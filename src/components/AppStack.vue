@@ -41,8 +41,12 @@ const toNext = function () {
 
 <template>
   <div class="app-pagination">
-    <span
+    <BaseButton
+      type="text"
+      size="none"
       class="pagination-previous"
+      :disabled="props.paginationData.total === 0
+        || props.paginationData.page === 1"
       :class="{
         'no-data': props.paginationData.total === 0
           || props.paginationData.page === 1,
@@ -50,9 +54,13 @@ const toNext = function () {
       @click="toPrevious"
     >
       {{ $t('page_prev') }}
-    </span>
-    <span
+    </BaseButton>
+    <BaseButton
+      type="text"
+      size="none"
       class="pagination-next"
+      :disabled="props.paginationData.total === 0
+        || props.paginationData.page === maxPage"
       :class="{
         'no-data': props.paginationData.total === 0
           || props.paginationData.page === maxPage,
@@ -60,7 +68,7 @@ const toNext = function () {
       @click="toNext"
     >
       {{ $t('page_next') }}
-    </span>
+    </BaseButton>
   </div>
 </template>
 
@@ -83,6 +91,9 @@ const toNext = function () {
       cursor: not-allowed;
       color: var(--tg-text-white);
       opacity: 0.5;
+      &:active{
+        transform: scale(1);
+      }
       // color: var(--tg-text-lightgrey);
     }
   }

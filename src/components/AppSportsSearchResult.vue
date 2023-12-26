@@ -21,7 +21,7 @@ const props = defineProps<{
   }
 }>()
 
-const router = useRouter()
+const router = useLocalRouter()
 const { width } = storeToRefs(useWindowStore())
 const closeSearch = inject('closeSearch', () => {})
 const closeSearchH5 = inject('closeSearch', () => {})

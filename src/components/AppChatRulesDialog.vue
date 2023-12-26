@@ -15,7 +15,7 @@ const { companyData } = storeToRefs(useAppStore())
         <span class="bold-text">{{ $t('chat_forum') }}</span>
         <BaseIcon name="uni-jump-page" />
       </a>
-      {{ $t('chat_rule_find') }}。
+      {{ $t('chat_rule_find') }}
     </div>
   </section>
 </template>
@@ -53,6 +53,10 @@ const { companyData } = storeToRefs(useAppStore())
     .app-svg-icon {
       margin: 0 var(--tg-spacing-8);
     }
+  }
+  .center {
+    display: inline-flex;
+    flex-wrap: wrap;
   }
 }
 </style>

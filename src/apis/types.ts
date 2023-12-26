@@ -147,14 +147,14 @@ export interface IMemberReg {
   password: string
   birthday?: string
   /** 上级id，没有留空 */
-  parent_id?: string
+  parent_uid?: string
   device_number: string
 }
 
 export interface IMemberThirdReg {
   email: string
   username: string
-  parent_id?: string
+  parent_uid?: string
   device_number: string
   third_type: number
   third_id: string

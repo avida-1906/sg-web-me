@@ -20,7 +20,7 @@ const {
   appContentWidth,
   widthBoundarySm,
 } = storeToRefs(useWindowStore())
-const router = useRouter()
+const router = useLocalRouter()
 usePageTitle({ prefix: t('vip_club') })
 
 const site = computed(() => ({ site: companyData.value?.name }))
@@ -29,7 +29,7 @@ const vipArray = computed(() =>
 
 const tableData: ITableData[] = [
   {
-    text: t('vip_level_compare'),
+    text: t('vip_level_comp'),
     sticky: true,
   },
   {
@@ -988,6 +988,9 @@ const toVip = function () {
         justify-content: stretch;
         align-items: center;
         gap: .5rem;
+        .q-menu {
+          overflow-x: scroll;
+        }
       }
       .q-content {
         padding: var(--tg-spacing-24);
@@ -996,6 +999,7 @@ const toVip = function () {
         display: flex;
         flex-direction: column;
         gap: .5rem;
+        --tg-base-collapse-header-height: fit-content;
         .content-wrap{
           color: var(--tg-text-lightgrey);
           display: flex;

@@ -3,7 +3,7 @@ interface Props {
   icon?: string // 标题图标
   title?: string // 标题
   autoShow?: boolean // 是否自动展开
-  close?: number
+  shown?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -25,8 +25,9 @@ function handleClickHeader() {
     emit('clickClose')
 }
 
-watch(() => props.close, () => {
-  setAutoShowBool(false)
+watch(() => props.shown, (newVel) => {
+  if (!newVel)
+    setAutoShowBool(false)
 })
 
 onMounted(() => {
@@ -66,6 +67,12 @@ onMounted(() => {
   </div>
 </template>
 
+<style>
+:root {
+  --tg-base-collapse-header-height: 45px;
+}
+</style>
+
 <style scoped lang="scss">
 .base-accordion {
     background-color: var(--tg-secondary-grey);
@@ -73,7 +80,8 @@ onMounted(() => {
     overflow: hidden;
     .accordion-header {
         display: flex;
-        height: 45px;
+        height: var(--tg-base-collapse-header-height);
+        min-height: 45px;
         padding: 0 16px;
         flex-direction: row;
         flex-wrap: nowrap;

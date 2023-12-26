@@ -993,7 +993,7 @@ chat_close_side: Ocultar barra lateral
 chat_send_tip_label: Enviar gorjeta
 chat_rule_full_title: As regras completas podem ser encontradas em nosso
 chat_forum: Fórum
-chat_rule_find: Encontrado em
+chat_rule_find: Encontrado em.
 about_us: Sobre nós
 sponsor_activity: Eventos patrocinados
 online_shopping: Compras online
@@ -1002,6 +1002,7 @@ user_account: Conta
 user_superior: Nível acima
 can_receive: Disponível
 receive_type: Tipo de obtenção
+record: Registro
 receive_commission: Obter comissão
 commission_history: Histórico de comissões
 window_minimize: Minimizar
@@ -1128,8 +1129,7 @@ vip_banner_tip_3: Má sorte? A aposta fornece fundos adicionais com base nas sua
   perdas sempre que você sobe de nível.
 vip_banner_tip_4: Seja designado um representante de serviço VIP dedicado que irá
   apoiar e atender às suas necessidades de apostas.
-vip_banner_tip_5: Get bonuses after reaching each next level. The higher the level
-  reached, the greater the upgrade bonus.
+vip_banner_tip_5: Ganhe bônus depois de atingir cada nível seguinte. Quanto maior o nível alcançado, maior será o bônus de atualização.
 booster_bonus: Bônus de reforço
 upgrade_bonus: Bônus de atualização
 monthly_bonus: Bônus mensal
@@ -1338,7 +1338,7 @@ deposit_draw_diff: Diferença entre depósitos e saques
 current_amount: Valor atual
 receive_amount: Valor de recebimento
 agent_commission: Comissão de agente
-is_first_deposit: Este é o seu primeiro depósito?
+is_first_deposit: Este é o seu primeiro depósito
 last_login: Último login
 online_status: Status online
 settle_time: Horário de liquidação
@@ -1639,7 +1639,7 @@ company_intro_tip_20: Com uma comunidade próspera, salas de bate-papo ativas e 
   equipe de suporte dedicada a ajudar os clientes com quaisquer dúvidas sobre seus
   jogos ou contas, a {host} demonstrou com sucesso porque é a principal plataforma
   de cassino e apostas esportivas com criptomoedas.
-vip_level_compare: Comparação de nível VIP
+vip_level_comp: Comparação de nível VIP
 bet_amount_label: Valor da aposta
 bonus_up: Crescimento do bônus
 promo: Benefício
@@ -1856,3 +1856,426 @@ vip_top: Você atingiu o nível máximo VIP
 wait_upgrade: 'Aguardando atualização '
 upgraded: Atualizado
 game_water_experience: Experiência
+in_play: Jogando
+week_0: Domingo
+week_1: Segunda-feira
+week_2: Terça-feira
+week_3: Quarta-feira
+week_4: Quinta-feira
+week_5: Sexta-feira
+week_6: Sábado
+double_check_code: Código de verificação em duas etapas
+official_number: Formato digital legal
+official_num_tip: 'Aviso: na visualização da moeda fiduciária {currencyName}, a formatação
+  do número fiduciário será desativada.'
+privacy: Privacidade
+casino_intro_1: Tenha a melhor experiência de cassino online em {site}
+casino_intro_2: Desde 2017, {host} oferece a melhor experiência de jogo online em
+  criptomoedas e cassinos Bitcoin na web. Plataforma fácil de usar, rica em recursos
+  e simples, os jogadores estão retornando ao {site} continuamente para apostar em
+  seus jogos de cassino favoritos.
+casino_intro_3: Aposte em caça-níqueis, jogos de cartas e muito mais em uma ampla
+  variedade de jogos de cassino
+casino_intro_4: Navegue pela nossa ampla variedade de jogos de cassino e desfrute
+  de uma experiência de jogo justa e divertida em {site}. Aposte em caça-níqueis,
+  cassino ao vivo, blackjack, bacará, roleta, pinball e milhares de jogos clássicos
+  direto do seu navegador.
+casino_intro_5: Além disso, apresentamos os famosos jogos originais do {site} - os
+  jogos de cassino que originalmente tornaram o {site} famoso. Isso inclui jogos populares
+  como Dice, Plinko, Mines, Crash, Limbo, Hilo, Keno, Wheel e muito mais, além de
+  outro original do {site} lançado recentemente, Dragon Tower!
+casino_intro_6: Quer você goste de jogos de mesa e de cartas como Video Poker, jogos
+  de game show como Spin a Win ou novos jogos de cassino - a escolha é sua!
+casino_intro_7: Como depositar em {site} através da sua carteira de criptomoedas
+casino_intro_8: 'É fácil fazer apostas com Bitcoin ou outras criptomoedas disponíveis
+  no nosso casino online. Para depositar fundos em sua conta {host}, siga estas etapas:'
+casino_intro_9: A equipe de apoio do {site} está sempre disponível para lhe fornecer
+  suporte e assistência online. Caso você encontre algum problema ao fazer um depósito
+  ou acessar seus jogos favoritos, eles lhe darão a ajuda necessária.
+casino_intro_10: A equipe do {site} está sempre trabalhando duro para melhorar nosso
+  serviço incomparável e garantir que usuários de todo o mundo tenham a melhor experiência
+  possível em jogos de cassino online. Com uma série de novos jogos que adicionamos
+  regularmente à plataforma e um excelente suporte ao cliente, é fácil para os jogadores
+  prosperarem no famoso cassino {site}.
+casino_intro_11: A maior variedade de fornecedores de jogos – aposte nos seus jogos
+  favoritos em {site}
+casino_intro_12: Além dos nossos famosos jogos originais do {site}, o {site} também
+  apresenta uma ampla variedade de jogos dos fornecedores de jogos mais confiáveis
+  ​​da indústria de jogos de azar online.
+casino_intro_13: Os provedores de jogos em destaque do {site} incluem Pragmatic Play,
+  Evolution Gaming, Quickspin, Relax Gaming, Playtech, Big Time Gaming, Play'n Go,
+  Gamomat, Hacksaw Gaming, Push Gaming, Netent, No Limit City, iSoftBet, Spinomenal
+  e muitos mais outros fornecedores populares conhecidos por jogos de qualidade.
+casino_intro_14: Isso inclui alguns dos caça-níqueis mais populares e outros jogos
+  de cassino, como os favoritos dos fãs, Sweet Bonanza, Crazy Time, Wanted Dead or
+  a Wild, The Dog House, Gates of Olympus, Book of Shadows, Money Train 2, Fruit Party
+  2, Mystery Museum , Jammin Jars, The Dog House Megaways, Double Ball Roulette, Monopoly
+  Live, Buffalo King, Floating Dragon, Lightning Dice, Super Sic Bo, Gonzos Treasure
+  Hunt, Side Bet City e muito mais.
+casino_intro_15: Quer se trate de recursos de apostas, multiplicadores de pagamentos,
+  temas de jogos ou a experiência geral de jogo, a variedade de jogos de cassino oferecidos
+  no {site} é de classe mundial e garante uma experiência animada e variada para todos
+  os jogadores - independentemente de sua preferência. preferências de jogo!
+casino_intro_16: Por que os cassinos {site} são seguros e justos?
+casino_intro_17: Todas as suas apostas em jogos originais do {site} são comprovadamente
+  justas e verificadas no site ou externamente por meio de sites de terceiros, como
+  o {site} criado por membros da nossa comunidade no validador ProvablyFair.Me.
+casino_intro_18: Além de sua tecnologia que oferece resultados justos, o {host} é
+  um dos cassinos mais conceituados do setor desde 2017, tornando-se recentemente
+  o parceiro oficial de apostas do UFC e patrocinando o Watford Football no clube
+  da Premier League.
+casino_intro_19: Com milhares de jogadores leais fazendo milhões de apostas a cada
+  hora, o {site} é um dos cassinos online mais confiáveis ​​e legítimos da web.
+get_email_code: Obter código de verificação
+re_get: Obter novamente
+footer_description: "{nome} pertence e é operado pela Medium Rare N.V., número de
+  registro: 145353, endereço registrado: Korporaalweg 10, Willemstad, Curaçao. Entre
+  em contato conosco em {email}. O organismo pagador é Medium Rare Limited, 7-9 Riga
+  Feraiou, LIZANTIA COURT, Office 310, Agioi Omologites, 1087 Nicosia, Chipre e número
+  de registo: HE 410775"
+empty_fav_event: Ainda não há eventos favoritos
+reject: Recusar
+emoji_title: Emoji
+failure: Falha
+confirmed: Confirmado
+saving_account: Conta de recebimento
+saving_address: Endereço de recebimento
+deal_contract: Acordo de transação
+account_type: Tipo de conta
+saving_bank: Banco beneficiário
+order_num: Número do pedido
+copy_addr_suc: Copiado com sucesso!
+pls_enter_savor_name: Por favor insira o nome do depositante
+savor_name: Nome do beneficiário
+open_addr: Endereço de abertura
+transfer_amount: Valor da transferência
+select_deposit_amount: Role para baixo para selecionar o valor da recarga
+pls_select_pix: Selecione uma conta PIX
+we_use_cookie: Nós usamos cookies
+cookie_purposes: Executar finalidades funcionais e analíticas.
+accept: Aceitar
+start_game_now: Iniciar o jogo agora
+policies: Políticas
+min_len_char: Mín.  {delta} caracteres
+max_len_char: Máx.  {delta} caracteres
+name_has_invalid_char: O nome de usuário contém caracteres inválidos
+pls_select_name: Selecione um nome de exibição
+must_verify_email_then: Você deve verificar seu endereço de e-mail para {delta}
+open: Abrir
+additional_time: Tempo adicional
+no_support_email: O domínio de e-mail não é compatível
+email_add_char: Inclua o símbolo "{delta}" no seu endereço de e-mail
+email_no_equal_password: Seu endereço de e-mail e senha não podem ser iguais
+pls_input_email: Por favor insira um endereço de e-mail válido
+name_3_char: Seu nome de usuário deve conter pelo menos 3 caracteres
+name_14_char: Seu nome de usuário não pode exceder 14 caracteres
+name_no_equal_pwd: Seu nome de usuário e senha não podem ser iguais
+choose_another_name: Este nome de usuário já está em uso. Escolha outro nome de usuário
+email_exists: O endereço de e-mail já existe
+email_code: Código de verificação de e-mail
+bet_num: Valor da aposta
+win_lose: Ganhos e perdas
+min_odd_bet: Apostas com probabilidades inferiores a 1,10 não podem ser combinadas
+  em apostas múltiplas
+select_addr: Selecione o endereço
+input_draw_coin_addr: Insira o endereço de saque
+withdraw_detail: Detalhes do saque
+direct_vip: Membro direto
+up_rule: Critérios de promoção
+keep_level_desc: Instruções de manutenção de nível
+check_desc: Instruções de auditoria
+activity_desc: Declaração de atividade
+explain_desc: Instruções da explicação
+day_no_max: A data não pode exceder o número {delta}
+max_age: Sua idade não pode ultrapassar {delta} anos
+max_value: O valor precisa ser maior ou igual a {delta}
+qr_code: QR code
+bet_comp_coin: Todas as moedas nas quais você faz apostas serão padronizadas para
+  a moeda da competição
+exp_rule: Regras de cálculo empírico
+electric_game: E-sports
+max_odd: As probabilidades de apostas múltiplas excedem o limite superior
+commission_transfer: Transferir
+currency_list: Lista de moedas
+commission_currency_conversion: Comissão de conversão de moedas
+total_approx: Total aproximado
+confirm_conversion: Confirmar conversão
+exchange_rate_for_currency_received: Taxa de câmbio da moeda recebida
+commission_wallet_balance: Saldo da carteira de comissão
+achievable_cumulatively: Obtível acumulado
+converted_currency: Moeda convertida
+choose_convert_your_desired_currency: Você pode optar por converter para a moeda desejada
+commission_wallet_amount_exchange_total: O valor atual da sua carteira de comissões
+  é convertido com base na taxa de câmbio de {type} e o valor total é aproximadamente
+affiliate_overview_desc_1: Junte-se ao programa de afiliados de {name}.com e ganhe
+  dinheiro recomendando nossas marcas! Cada vez que um usuário se inscrever através
+  do seu link de indicação e usar {name}.com, você receberá uma comissão de afiliado.
+affiliate_overview_desc_2: Como afiliado de {name}.com, as comissões ganhas serão
+  baseadas no total de apostas feitas pelo usuário indicado em cassinos e apostas
+  esportivas. O que torna isso diferente dos programas de afiliados tradicionais é
+  que você recebe a mesma comissão, independentemente de a indicação ganhar ou perder!
+reco_link: Link recomendado
+download_ad: Baixar banner
+page_title_live: Jogue jogos de cassino ao vivo online - dealers ao vivo
+or: ou
+only_6_num: Suporta apenas números puros de 6 dígitos
+pwd_2_not_equal: As duas entradas de senha são inconsistentes
+edit_safe_pwd: Alterar senha do fundo
+set_safe_pwd: Definir senha do fundo
+not_bind_email: Você ainda não vinculou seu endereço de e-mail
+must_bind_email: Por favor, vincule seu e-mail primeiro e depois defina a senha do
+  fundo
+go_bind: Vá para vinculação
+old_safe_pwd: Senha do fundo antiga
+new_safe_pwd: Nova senha do fundo
+confirm_safe_pwd: Confirmar a senha do fundo
+forget_safe_pwd: Esqueceu a senha do seu fundo? Vá para
+connect_service: Entre em contato com o atendimento ao cliente
+page_title_sport: Apostas Esportivas - Apostas Esportivas Online
+online_casino: Casa de apostas online
+empty_archive: Ainda não há arquivos de apostas
+empty_official_deposit: Nenhum depósito em moeda fiduciária disponível no momento
+empty_official_withdraw: As retiradas de moeda fiduciária estão temporariamente indisponíveis
+day_bonus: Bônus diário
+deposit_bonus: Bônus de depósito
+two: Dois
+three: Três
+casino_new_intro_1: Melhores Jogos de Cassino Online - Jogue os Melhores Jogos em
+  {host}
+casino_new_intro_2: Com tantos jogos de cassino, por onde começar? Um bom lugar para
+  começar é com os melhores jogos de cassino, que oferecem ótimos gráficos e ganhos
+  maiores. Deixe-nos trazer você agora
+casino_new_intro_3: Os melhores jogos de cassino de todos os tempos.
+casino_new_intro_4: O que são jogos de cassino online?
+casino_new_intro_5: Os jogos de cassino online incluem jogos de mesa clássicos, jogos
+  de caça-níqueis, jogos de dados e jogos de cartas. Em {host} você encontrará centenas
+  de jogos para experimentar, com ótimos gráficos e muitas maneiras diferentes de
+  apostar e ganhar.
+casino_new_intro_6: Quer você seja um fã de blackjack ou prefira caça-níqueis com
+  jackpots progressivos, você encontrará uma variedade de jogos de cassino online
+  que atendem às suas preferências. Continue lendo para descobrir os melhores jogos
+  de cassino online em {host}.
+casino_new_intro_7: Quais são os melhores jogos de cassino?
+casino_new_intro_8: De jogos de mesa a slots online, você pode encontrar os melhores
+  jogos de cassino aqui
+casino_new_intro_9: Jogos de mesa
+casino_new_intro_10: é um jogo de cassino clássico muito popular em {host}. Sente-se
+  virtualmente e jogue jogos de cassino lendários como blackjack, bacará e roleta.
+  Se você é novo no jogo online, aprenda como jogar jogos de mesa no cassino {site}
+  antes de apostar.
+casino_new_intro_11: Jogos de cassino ao vivo
+casino_new_intro_12: Os jogos de casino ao vivo ou com jogadores ao vivo são um dos
+  jogos mais populares nos sites de casino online. Esses jogos oferecem uma experiência
+  envolvente de cassino online com jogadores ao vivo e chat ao vivo. Nossa ampla variedade
+  de jogos de cassino ao vivo são ambientados em estúdios de cassino reais e transmitidos
+  ao vivo em nossa plataforma.
+casino_new_intro_13: Primeiro, os jogadores de cassino simplesmente entram no lobby
+  do cassino ao vivo e escolhem entre uma variedade de jogos! Do pôquer online à roleta
+  europeia, oferecemos uma ampla variedade de jogos de cassino com cartas ao vivo.
+  Visite nosso guia de cassino ao vivo para obter mais informações.
+casino_new_intro_14: Jogos de cartas
+casino_new_intro_15: é outro melhor jogo no cassino {site}. Temos uma ampla seleção
+  de jogos de vídeo pôquer e jogos de pôquer online ao vivo para que você tenha muitas
+  opções! Se você é um fã de pôquer, não pode perder o Caribbean Stud Poker Live e
+  o Casino Hold'em Live. Se você está procurando jogos divertidos de vídeo pôquer,
+  você vai adorar o {site} Original's Video Poker e o BGaming's Jacks or Better! Confira
+  nossos guias de pôquer e vídeo pôquer para obter mais dicas úteis de pôquer.
+casino_new_intro_16: Você também pode desfrutar de inúmeros outros jogos de cartas
+  clássicos e jogos especiais online no {site} Casino. Aprenda a jogar pôquer em {host}
+  e aproveite ao máximo as cartas que você tem em mãos.
+casino_new_intro_17: Jogos de dados
+casino_new_intro_18: Dados
+casino_new_intro_19: O jogo permite que você aposte no resultado de um lançamento
+  de dados e é muito popular em {host}. Você pode desfrutar de ótimos jogos de cassino
+  como Sic Bo e Zuckerberg, bem como outros novos jogos de dados como Football Studio
+  Dice Live da Evolution Gaming. Aprenda a jogar dados de cassino em {host} para aumentar
+  suas chances de ganhar.
+casino_new_intro_20: Jogos de caça-níqueis
+casino_new_intro_21: Caça-níqueis
+casino_new_intro_22: é o jogo mais comum encontrado em cassinos {site} e consiste
+  em muitos temas, rolos, linhas de pagamento, rodadas de bônus e jogabilidade de
+  apostas. Um dos melhores jogos de slot que você pode jogar no {host} é o Scarab
+  Spin, um jogo original do {site} com temática egípcia que oferece um atraente RTP
+  de 97,84%.
+casino_new_intro_23: Desde caça-níqueis clássicos até jogos de caça-níqueis online
+  modernos, a variedade de caça-níqueis em {host} oferece uma experiência de jogo
+  única que manterá todos entretidos. Os temas de caça-níqueis mais populares incluem
+  Frutas, Animais, Pedras Preciosas, Antigo, Vegas, Retro, Espaço, Oceano, etc.
+casino_new_intro_24: Oferecemos um modo de teste para que você possa jogar nos nossos
+  caça-níqueis antes de fazer suas apostas! Aprenda como jogar caça-níqueis online
+  para que você possa traçar estratégias ao jogar os jogos mais populares no cassino
+  {site}.
+casino_new_intro_25: Quais são os melhores jogos de cassino para jogar?
+casino_new_intro_26: 'O jogo tem ótimos gráficos e jogabilidade super fácil, tornando-o
+  a escolha ideal para todos os entusiastas de cassino online. Aqui estão os melhores
+  jogos que você pode jogar no {host} agora:'
+casino_new_intro_27: Inspirado no jogo mecânico japonês Pachinko, Plinko é um jogo
+  em forma de pirâmide onde você joga bolas na grade do jogo para marcar vitórias
+  e multiplicadores. RTP 99%.
+casino_new_intro_28: Dados
+casino_new_intro_29: Craps é um jogo muito simples onde você aposta no resultado do
+  lançamento de um dado de 100 faces. RTP 99%. Aprenda sobre outros jogos de dados
+  no cassino {site}.
+casino_new_intro_30: Outro jogo original do {site}, Limbo é um jogo baseado em dados
+  com prêmios de até 1.000.000 vezes a sua aposta! RTP 99%.
+casino_new_intro_31: Inspirado no clássico jogo Campo Minado, Mines é um jogo criptográfico
+  de cassino onde você deve encontrar joias e evitar bombas! RTP 99%. Confira outros
+  jogos do Mines no {site} Casino.
+casino_new_intro_32: Um dos jogos mais simples em {host}, Crash exige que você preveja
+  até que ponto o multiplicador irá antes de travar! RTP 99%. Se você quiser experimentar
+  algo diferente, visite Cash ou Crash Live da Evolution Gaming.
+casino_new_intro_33: Blackjack
+casino_new_intro_34: "{site} Original Blackjack é um jogo que requer uma introdução
+  simples e permite que você vença a casa com uma vantagem super baixa. RTP 99,53%.
+  O cassino {site} também oferece muitas variações de blackjack."
+casino_new_intro_35: Hilo é um jogo de cassino Bitcoin. No jogo você precisa prever
+  o valor da próxima carta em comparação com o valor da carta exibida atualmente.
+  RTP 99%.
+casino_new_intro_36: Keno
+casino_new_intro_37: Keno é um jogo estilo bingo baseado na loteria chinesa onde você
+  escolhe uma série de números para ver se ganha antes de esperar o sorteio ser sorteado.
+  RTP 99%.
+casino_new_intro_38: Roleta
+casino_new_intro_39: Neste exclusivo jogo de roleta, você pode escolher entre 15 modos
+  de jogo personalizáveis, ajustando sua aposta, o risco assumido e o multiplicador
+  exibido. RTP 99%. Confira Money Wheel, o jogo de roleta da Play'n GO, e experimente
+  a diversão das roletas!
+casino_new_intro_40: Apostas em roleta
+casino_new_intro_41: "{site} Roleta Original é um dos jogos mais populares de {host},
+  e o jogo apresenta uma grande variedade de apostas internas e externas para você
+  fazer suas apostas. RTP 97,30%. Confira o lobby da roleta para ver o que outros
+  jogos de roleta {host} tem a oferecer."
+casino_new_intro_42: Experimente o jogo exclusivo de {site} que está revolucionando
+  a indústria de cripto-cassinos! RTP 98,29%.
+casino_new_intro_43: Como jogar e ganhar jogos de cassino online – estratégias e dicas
+  básicas
+casino_new_intro_44: Você está pronto para experimentar alguns dos melhores jogos
+  de cassino online? Aqui estão algumas dicas úteis a serem consideradas ao começar
+  a escolher um jogo
+casino_new_intro_45: A maioria dos jogos de casino online utiliza um gerador de números
+  aleatórios (RNG), o que significa que você pode ganhar ou perder em cada rodada
+  de apostas. Tenha isso em mente ao escolher quais jogos jogar.
+casino_new_intro_46: Você deve sempre verificar a vantagem da casa, ou RTP, de um
+  jogo antes de jogá-lo, para saber as probabilidades típicas desse jogo ao longo
+  do tempo. Além disso, certifique-se de verificar o depósito mínimo e o potencial
+  máximo de ganho.
+casino_new_intro_47: Não se limite a um jogo. Por exemplo, encontre os jogos mais
+  recentes lançados em {host}, jogue jogos de slots com jackpot progressivo enquanto
+  desfruta de jogos de casino ao vivo e terá a oportunidade de ganhar enormes bónus
+  e melhores probabilidades.
+casino_new_intro_48: Aja dentro de sua capacidade e preste atenção aos seus direitos
+  e responsabilidades de jogo.
+casino_new_intro_49: Probabilidades, margens e RTP de jogos de cassino
+casino_new_intro_50: Antes de escolher um jogo de cassino, você deve ler atentamente
+  a descrição do jogo para aprender informações importantes sobre o jogo, especialmente
+  relacionadas à vantagem da casa e ao retorno ao jogador (RTP). Como você pode ver
+  em nossa lista dos melhores jogos, muitos dos {site} jogos originais que você pode
+  jogar têm uma vantagem da casa de apenas 1%, o que os torna uma ótima relação custo-benefício.
+  Saiba mais sobre as vantagens do cassino e por que você precisa delas com nosso
+  prático guia de vantagens do cassino.
+casino_new_intro_51: Bônus de cassino e programas VIP
+casino_new_intro_52: Se quiser maximizar seus lucros em {host}, você pode conferir
+  as últimas promoções e ofertas. Você também pode saber mais sobre o {site} Clube
+  VIP e descobrir os diversos benefícios associados à adesão ao clube, incluindo ofertas
+  mensais exclusivas e bônus generosos.
+casino_new_intro_53: Outros jogos populares de cassino online
+casino_new_intro_54: 'Se você quiser experimentar mais jogos excelentes em {host},
+  confira estes jogos populares dos principais fornecedores da indústria de jogos
+  de cassino:'
+casino_new_intro_55: "{site} Original do Bacará"
+sport_new_intro_1: "{site} Apostas Esportivas – As apostas esportivas online favoritas
+  de todos"
+sport_new_intro_2: "{host} oferece uma ampla gama de opções de apostas esportivas
+  para o apostador moderno – nossas apostas esportivas online oferecem apostas esportivas
+  ao vivo em uma variedade de esportes, incluindo MMA, Basquete, Futebol, Hóquei,
+  Beisebol e muito mais."
+sport_new_intro_3: Nossa plataforma de apostas esportivas online fácil de usar permite
+  aos usuários apostar em seus times, jogadores e ligas favoritas de todo o mundo,
+  bem como assistir aos maiores eventos esportivos ao vivo. Saiba mais sobre como
+  assistir seus esportes favoritos ao vivo online gratuitamente em {site}.
+sport_new_intro_4: Dependendo do esporte e do jogo ao vivo, uma grande variedade de
+  opções e estratégias estão disponíveis para os apostadores mais ambiciosos. Com
+  mais de 100.000 apostas esportivas feitas diariamente, o {site} é o principal site
+  de apostas esportivas nacionais e internacionais. Obtenha todas as últimas tendências
+  e dados esportivos para agosto de 2023!
+sport_new_intro_5: Saiba mais sobre como apostar em seus esportes, jogos e jogadores
+  favoritos com nosso guia definitivo de apostas esportivas!
+sport_new_intro_6: Probabilidades e tipos de apostas esportivas online
+sport_new_intro_7: "{site} tem orgulho de oferecer aos nossos fiéis apostadores esportivos
+  uma experiência de apostas online de alto nível."
+sport_new_intro_8: Basta acessar o esporte, categoria ou liga esportiva de seu interesse
+  para ver os eventos ao vivo e os próximos eventos disponíveis para apostas. Além
+  de apostar no resultado de eventos esportivos, existem muitas formas de apostar!
+  Você também pode usar nosso recurso Bet Builder para aumentar suas chances de ganhar
+  com apostas cruzadas e apostas múltiplas na mesma partida.
+sport_new_intro_9: 'Os tipos de apostas mais populares incluem:'
+sport_new_intro_10: 'Dados e campeonatos: A porcentagem de vitórias em gols grandes
+  e pequenos em uma temporada e no campeonato são apostas de longo prazo, e os apostadores
+  podem ganhar valor por meio de apostas de longo prazo.'
+sport_new_intro_11: 'Probabilidades: Uma forma simples de aposta em que você aposta
+  em um dos três resultados: vitória, derrota ou empate.'
+sport_new_intro_12: 'Handicap: Um tipo popular de aposta que envolve adicionar ou
+  subtrair um valor numérico à pontuação final de uma equipe ou evento. Semelhante
+  a uma aposta no total de pontos, prever se o número total de gols ou o total de
+  pontos marcados estará acima ou abaixo de um determinado número. Os apostadores
+  também podem usar estratégias de spread bet para aumentar suas probabilidades.'
+sport_new_intro_13: 'Probabilidades de gol: Probabilidades de gol para uma partida
+  ou total da equipe.'
+sport_new_intro_14: 'Primeiro Ponto/Primeiro Gol: Apostar no primeiro time ou jogador
+  a marcar (pontuação, gol, touchdown, etc.).'
+sport_new_intro_15: 'Probabilidades ajustadas de intervalo/intervalo para esportes
+  ao vivo: probabilidades ajustadas com base em resultados ao vivo.'
+sport_new_intro_16: 'Especiais do Jogador e Mais: Estatísticas Individuais Over/Under,
+  Homem do Jogo/MVP e outras apostas específicas para comemorar as conquistas dos
+  atletas.'
+sport_new_intro_17: 'Pontuação Correta: Preveja com precisão a pontuação final do
+  jogo para vencer'
+sport_new_intro_18: Os usuários registrados também podem assistir a transmissões ao
+  vivo de alguns eventos e esportes - verifique se a transmissão ao vivo está disponível.
+  Aprenda a assistir seus esportes favoritos ao vivo gratuitamente!
+sport_new_intro_19: Promoções de apostas esportivas e bônus de apostas esportivas
+  do {site}
+sport_new_intro_20: Além da fantástica experiência de apostas desportivas no {site},
+  também oferecemos promoções regulares de apostas desportivas para o apostador experiente.
+sport_new_intro_21: Além de nossos generosos prêmios semanais de US$ 50.000 e competições
+  diárias {site} em nossas apostas esportivas e cassino, também realizamos promoções
+  regulares de apostas esportivas e bônus no UFC, NBA, Premier League e muito mais.
+sport_new_intro_22: Temos a honra de fornecer as ferramentas e informações para ajudar
+  você a usar o {site} com segurança. Saiba mais sobre dicas de jogos de azar online
+  com nosso guia sobre responsabilidades de jogo.
+sport_new_intro_23: Esportes e ligas disponíveis para apostas em {site} apostas esportivas
+  online
+sport_new_intro_24: Navegue por nossa ampla variedade de esportes populares para atender
+  às suas necessidades de apostas esportivas - incluindo futebol, basquete, MMA, eSports,
+  hóquei no gelo, críquete, futebol americano, tênis, tênis de mesa, beisebol, dardos,
+  Fórmula 1 e muito mais, bem como política e entretenimento!
+sport_new_intro_25: Não importa se você quer apostar num único jogo ou numa temporada
+  inteira, temos uma vasta gama de esportes de todo o mundo, incluindo as melhores
+  ligas esportivas profissionais do mundo, incluindo UFC, Premier League, NBA, NFL,
+  CFL, MLB (Professional Beisebol) Major League Soccer), NCAA, Serie A, La Liga e
+  ligas de esportes eletrônicos como League of Legends e Dota 2. Oferecemos até uma
+  variedade de opções de apostas em ligas simuladas da vida real, incluindo SRL Football
+  e SRL Cricket. Saiba mais sobre como apostar na Liga de Realidade Simulada (SRL)
+  com nosso guia de apostas na Liga de Realidade Simulada.
+sport_new_intro_26: "{site} é um site de apostas online que oferece uma plataforma
+  de apostas esportivas em tempo real, intuitiva e fácil de usar, para apostar nos
+  próximos eventos esportivos. Não há nada mais emocionante do que apostas esportivas
+  ao vivo – apostar num evento esportivo que já começou, ajustar as probabilidades
+  com base no estado atual do jogo e correr contra o relógio."
+sport_new_intro_27: As apostas esportivas ao vivo são as favoritas de quem tem um
+  olhar atento para o jogo e está confiante de que o jogo vai virar no final. As apostas
+  esportivas ao vivo populares incluem futebol ao vivo, tênis ao vivo, basquete ao
+  vivo, críquete ao vivo e apostas esportivas ao vivo - diferentes tipos de esportes
+  ao vivo estão disponíveis a qualquer momento, dependendo do horário e do evento.
+  Saiba mais sobre as diferenças entre apostas ao vivo e apostas pré-jogo e como desenvolver
+  a melhor estratégia de apostas para ganhar em {site}.
+sport_new_intro_28: Portanto, se você deseja apostar em uma liga esportiva dos EUA,
+  deseja experimentar as apostas em futebol ou simplesmente deseja saber mais sobre
+  apostas esportivas, você encontrará tudo em {site} Sportsbook, junto com dicas para
+  os próximos eventos Dicas de apostas semanais e previsões da competição! Você também
+  pode levar as coisas para o próximo nível tornando-se um membro VIP do {site}! Para
+  saber mais sobre o programa, leia nosso Guia VIP do {site}.
+equal_round: Empate
+commission_wallet: Carteira de comissão
+commission_transfer_title: Conversão de comissão
+old_pwd_tip8: Mín. 8 caracteres

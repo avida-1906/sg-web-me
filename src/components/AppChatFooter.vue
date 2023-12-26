@@ -10,6 +10,7 @@ const { t } = useI18n()
 const chatStore = useChatStore()
 const { roomLang } = storeToRefs(chatStore)
 const { userInfo, isLogin } = storeToRefs(useAppStore())
+const { isMobile } = storeToRefs(useWindowStore())
 const { openChatRulesDialog } = useChatRulesDialog()
 const { openStatisticsDialog } = useStatisticsDialog()
 const chatMessageBus = useEventBus(CHAT_MESSAGE_BUS)
@@ -304,7 +305,10 @@ watch(message, (val) => {
     </div>
     <div class="actions">
       <span>{{ maxMsgLen - message.length }}</span>
-      <BaseButton class="rule" size="sm" @click="openChatRulesDialog">
+      <BaseButton
+        class="rule"
+        :class="{ 'is-mobile': isMobile }" size="sm" @click="openChatRulesDialog"
+      >
         <BaseIcon name="chat-rule" />
       </BaseButton>
       <BaseButton
@@ -476,11 +480,19 @@ watch(message, (val) => {
       "online actions";
   touch-action: none;
   --tg-base-input-textarea-minheight: 37px;
-  :deep(textarea) {
-  }
   .chat-input {
     grid-area: input;
     --tg-base-input-style-right-icon-pad-v: 0;
+    :deep(.base-input .input-box .right-icon) {
+      padding: 0;
+      button {
+        width: 32px;
+        margin-right: 3px;
+        &:hover {
+          background: var(--tg-secondary-main);
+        }
+      }
+    }
   }
   .online {
     grid-area: online;
@@ -501,11 +513,33 @@ watch(message, (val) => {
     align-items: center;
     gap: var(--tg-spacing-12);
     --tg-icon-color: var(--tg-text-white);
-    // button.send {
-    //   background: linear-gradient(180deg, var(--tg-sub-green-light) 0%, var(--tg-sub-green) 100%);
-    //   color: var(--tg-sub-green-deep);
-    // }
-    button.rule {
+    :deep(button.send) {
+      // background: linear-gradient(180deg, var(--tg-sub-green-light) 0%, var(--tg-sub-green) 100%);
+      color: var(--tg-text-dark);
+      background: var(--tg-text-green);
+      box-shadow: var(--tg-box-shadow);
+      transition: all 0.15s linear;
+      .content {
+        transition: all 0.15s linear;
+        width: 100%;
+        height: 100%;
+      }
+      &:active {
+        color: var(--tg-sub-info);
+        background: var(--tg-primary-success);
+        .content {
+          transform: scale(0.88);
+          opacity: 0.75;
+        }
+      }
+    }
+    :deep(button.rule) {
+      box-shadow: var(--tg-box-shadow);
+      &.is-mobile {
+        &:hover {
+          background: inherit;
+        }
+      }
     }
   }
 }

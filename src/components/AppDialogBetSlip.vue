@@ -18,7 +18,7 @@ const { t } = useI18n()
 const { openRightSidebar, rightIsExpand, currentRightSidebarContent } = useRightSidebar()
 const windowStore = useWindowStore()
 const { isMobile } = storeToRefs(windowStore)
-const router = useRouter()
+const router = useLocalRouter()
 const sportStore = useSportsStore()
 
 const isCasino = computed(() => props.type === 'casino')

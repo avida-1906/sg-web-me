@@ -94,7 +94,7 @@ function onPopperOpen() {
               <span class="inner-label">{{ popperLabel }}</span>
             </slot>
           </div>
-          <div v-if="!disabled" class="icon" :class="{ up: isPopperOpen }">
+          <div class="icon" :class="{ up: isPopperOpen }">
             <BaseIcon name="uni-arrow-down" />
           </div>
         </div>

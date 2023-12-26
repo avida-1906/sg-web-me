@@ -12,7 +12,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const { t } = useI18n()
-const router = useRouter()
+const router = useLocalRouter()
 const { userInfo } = useAppStore()
 const closeDialog = inject('closeDialog', () => { })
 const {

@@ -8,6 +8,8 @@ interface Props {
   title: string
   odds: string
   cartInfo: ICartInfo
+  isHandicap?: boolean
+  hdp?: string
 }
 const props = withDefaults(defineProps<Props>(), {
   layout: 'vertical',
@@ -148,14 +150,19 @@ onBeforeUnmount(() => {
       <div class="name">
         {{ title || '-' }}
       </div>
-      <AppSportsOdds
-        :style="
-          `--tg-sports-odds-color: ${sportStore.cart.checkWid(props.cartInfo.wid)
-            ? 'var(--tg-text-white)' : ''}`
-        "
-        :arrow="layout === 'horizontal' ? 'left' : 'right'"
-        :odds="listToCartData.ov || '0.00'"
-      />
+      <div class="odds-box">
+        <AppSportsOdds
+          :style="
+            `--tg-sports-odds-color: ${sportStore.cart.checkWid(props.cartInfo.wid)
+              ? 'var(--tg-text-white)' : ''}`
+          "
+          :arrow="layout === 'horizontal' ? 'left' : 'right'"
+          :odds="listToCartData.ov || '0.00'"
+        />
+        <div v-if="isHandicap" class="name">
+          {{ hdp }}
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -197,6 +204,12 @@ onBeforeUnmount(() => {
       flex-direction: column;
       justify-content: center;
       align-items: flex-start;
+      .odds-box{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
     }
   }
 

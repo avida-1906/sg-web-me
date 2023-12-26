@@ -5,7 +5,7 @@ enum Game {
 }
 
 const { t } = useI18n()
-const router = useRouter()
+const router = useLocalRouter()
 const route = useRoute()
 const { leftIsExpand, openLeftSidebar, closeLeftSidebar } = useLeftSidebar()
 const { isMobile } = storeToRefs(useWindowStore())

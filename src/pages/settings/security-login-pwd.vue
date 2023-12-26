@@ -17,7 +17,13 @@ const {
   value: password,
   errorMessage: pwdErrorMsg,
   validate: valiPassword,
-} = useField<string>('password', fieldVerifyLoginPwd)
+} = useField<string>('password', (value) => {
+  if (!value)
+    return t('pls_enter_password')
+  else if (value.length < 8)
+    return t('old_pwd_tip8')
+  return ''
+})
 const {
   value: newPassword,
   errorMessage: newPwdErrorMsg,
@@ -31,6 +37,12 @@ const {
 } = useField<string>('repeatPassword', (value) => {
   if (!value)
     return t('pls_enter_password')
+  else if (value.length < 8)
+    return t('password_least_8_characters')
+  else if (!upperLowerReg.test(value))
+    return t('password_uppercase_lowercase_letter')
+  else if (!lastOneNumberReg.test(value))
+    return t('password_least_1_number')
   else if (value !== newPassword.value)
     return t('validate_msg_pwd_unequal')
   return ''

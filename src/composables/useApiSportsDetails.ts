@@ -30,6 +30,7 @@ export interface IDataListItem {
  * @description 体育赛事详情接口
  */
 export function useApiSportDetails() {
+  const { t } = useI18n()
   /** 当前选中的Tab */
   const currentTab = ref<number>(-1)
   /** 搜索名称 */
@@ -296,7 +297,7 @@ export function useApiSportDetails() {
         const list0 = sportInfo.value.list[0]
         const homeTeamName = list0.htn
         const awayTeamName = list0.atn
-        const titleList = [homeTeamName, '平局', awayTeamName]
+        const titleList = [homeTeamName, t('equal_round'), awayTeamName]
         const msList = mlItem.ms
         const zList = []
         const pList = []
