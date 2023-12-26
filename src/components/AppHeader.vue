@@ -47,7 +47,7 @@ const userMenu = computed(() => ([
     id: 6,
     icon: 'tabbar-bet',
     title: t('transaction_record'),
-    name: 'transaction-record',
+    name: 'transactions',
     path: appContentWidth.value <= 800 ? '/transactions' : '/transactions/deposits',
   },
   {
@@ -55,14 +55,14 @@ const userMenu = computed(() => ([
     id: 7,
     icon: 'spt-user-bet',
     title: t('my_bets'),
-    name: 'sports-betting',
+    name: 'my-bets',
     path: `/casino/my-bets?type=${isRouteSports.value ? 'sports' : 'casino'}`,
   },
   {
     id: 8,
     icon: 'uni-set',
     title: t('setting'),
-    name: 'setting',
+    name: 'settings',
     path: appContentWidth.value <= 800 ? '/settings' : '/settings/general',
   },
   {
@@ -104,8 +104,8 @@ const newsMenu = computed(() => ([
 
 // 选中状态
 const getActiveState = computed(() => {
-  return (path: string | undefined) => path
-    ? route.path.includes(path?.split('/')[1])
+  return (path: string | undefined, name: string) => path
+    ? route.path.includes(name)
     : false
 })
 const getActiveShown = computed(() => {
@@ -193,7 +193,7 @@ function handleClickMenuItem(item: { name: string; path?: string }) {
             <div class="dropdown-popper need-pad-y">
               <div
                 v-for="item of userMenu" :key="item.id" class="menu-item"
-                :class="{ 'active-menu': getActiveState(item.path) }"
+                :class="{ 'active-menu': getActiveState(item.path, item.name) }"
                 @click=" hide(); handleClickMenuItem(item)"
               >
                 <div class="menu-btn">
@@ -201,7 +201,7 @@ function handleClickMenuItem(item: { name: string; path?: string }) {
                     class="icon-size"
                     :style="{
                       '--tg-icon-color':
-                        getActiveState(item.path) ? 'var(--tg-text-blue)' : '',
+                        getActiveState(item.path, item.name) ? 'var(--tg-text-blue)' : '',
                     }"
                     :name="item.icon"
                   />

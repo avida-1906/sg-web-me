@@ -204,6 +204,7 @@ watch(() => props.columns, () => {
     border-spacing: 0;
     margin: 0;
     .m-th {
+      max-height: 53px;
       padding: var(--tg-table-th-padding);
       color: var(--tg-table-th-color);
       font-weight: var(--tg-table-th-font-weight);
