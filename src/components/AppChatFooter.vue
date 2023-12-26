@@ -514,15 +514,21 @@ watch(message, (val) => {
     gap: var(--tg-spacing-12);
     --tg-icon-color: var(--tg-text-white);
     :deep(button.send) {
-      background: linear-gradient(180deg, var(--tg-sub-green-light) 0%, var(--tg-sub-green) 100%);
+      // background: linear-gradient(180deg, var(--tg-sub-green-light) 0%, var(--tg-sub-green) 100%);
       color: #05080a; // var(--tg-sub-green-deep);
+      background: var(--tg-text-green);
+      box-shadow: var(--tg-box-shadow);
       .content {
         transition: all 0.2s linear;
+        width: 100%;
+        height: 100%;
       }
       &:active {
+        color: var(--tg-sub-info);
+        background: var(--tg-primary-success);
         .content {
-          transform: scale(0.92);
-          opacity: 0.4;
+          transform: scale(0.88);
+          opacity: 0.75;
         }
       }
     }
