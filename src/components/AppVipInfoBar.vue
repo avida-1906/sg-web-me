@@ -93,6 +93,7 @@ function openRecord() {
       display: flex;
       align-items: center;
       gap: var(--tg-spacing-4);
+      flex-wrap: wrap;
     }
   }
   .btns {
