@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" translate="no">
+<html lang="en" translate="no" style="touch-action: none;">
 
 <head>
   <meta charset="UTF-8">
@@ -16,9 +16,10 @@
   <meta name="theme-color" content="#1a2c38">
   <link rel="manifest" href="/manifest.json">
   <style type="text/css">
-    *{
-      touch-action: pan-x pan-y;
+    * {
+      touch-action: manipulation;
     }
+
     #full-loading {
       position: fixed;
       top: 0;
@@ -54,17 +55,44 @@
     }, false)
 
     // 阻止双击放大
-    // let lastTouchEnd = 0
     document.addEventListener('touchstart', (event) => {
-      // if (event.touches.length > 1)
-        event.preventDefault()
+      event.preventDefault()
     })
-    // document.addEventListener('touchend', (event) => {
-    //   const now = (new Date()).getTime()
-    //   if (now - lastTouchEnd <= 500)
-    //     event.preventDefault()
-    //   lastTouchEnd = now
-    // }, false)
+    let lastTouchEnd = 0;
+    document.addEventListener('touchend', function (event) {
+      let now = (new Date()).getTime();
+      if (now - lastTouchEnd <= 300) {
+        event.preventDefault();
+      }
+      lastTouchEnd = now;
+    }, false);
+
+    let drags = new Set() //set of all active drags
+    document.addEventListener("touchmove", function (event) {
+      if (!event.isTrusted) return //don't react to fake touches
+      Array.from(event.changedTouches).forEach(function (touch) {
+        drags.add(touch.identifier) //mark this touch as a drag
+      })
+    })
+    document.addEventListener("touchend", function (event) {
+      if (!event.isTrusted) return
+      let isDrag = false
+      Array.from(event.changedTouches).forEach(function (touch) {
+        if (drags.has(touch.identifier)) {
+          isDrag = true
+        }
+        drags.delete(touch.identifier) //touch ended, so delete it
+      })
+      if (!isDrag && document.activeElement == document.body) {
+        //note that double-tap only happens when the body is active
+        event.preventDefault() //don't zoom
+        event.stopPropagation() //don't relay event
+        event.target.focus() //in case it's an input element
+        event.target.click() //in case it has a click handler
+        event.target.dispatchEvent(new TouchEvent("touchend", event))
+        //dispatch a copy of this event (for other touch handlers)
+      }
+    })
   </script>
 </head>
 
