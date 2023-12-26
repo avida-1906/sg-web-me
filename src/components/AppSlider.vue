@@ -22,6 +22,7 @@ const props = withDefaults(defineProps<Props>(), {
 // await 10s
 // await new Promise(resolve => setTimeout(resolve, 3000))
 
+const { t } = useI18n()
 const router = useLocalRouter()
 const { appContentWidth } = storeToRefs(useWindowStore())
 
@@ -69,7 +70,7 @@ function goAllPage() {
   else if (props.ty === 2)
     router.push(`/casino/group/provider?pid=${props.pid}&name=${props.title}`)
   else if (props.gameType === 'rec')
-    router.push(`/casino/group/rec?name=${props.title}`)
+    router.push(`/casino/group/rec?name=${t('game_type_rec')}`)
 }
 function onTitleClick() {
   if (props.path)
