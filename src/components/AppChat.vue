@@ -266,9 +266,11 @@ onUnmounted(() => {
         white-space: nowrap;
         gap: var(--tg-spacing-8);
         padding: var(--tg-spacing-2) var(--tg-spacing-8);
+        align-items: center;
         &.stop {
           visibility: visible;
           opacity: 1;
+          white-space: wrap;
         }
         &.go-down {
           visibility: hidden;
