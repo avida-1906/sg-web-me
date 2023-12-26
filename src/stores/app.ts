@@ -85,7 +85,6 @@ export const useAppStore = defineStore('app', () => {
     run: runGetExchangeRate,
     data: exchangeRateData,
   } = useRequest(ApiMemberExchangeRate, {
-    ready: isLogin,
     manual: false,
   })
 
