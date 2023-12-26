@@ -45,7 +45,7 @@ export const useSportsStore = defineStore('sports', () => {
   /** 当前收藏选中的体育项目 */
   const currentFavNav = ref(-1)
   /** 当前收藏展示的盘口类型 */
-  const currentFavBetType = ref(0)
+  const currentFavBetType = ref(3)
   /** 购物车 */
   const cart = reactive(new SportsCart(currentGlobalCurrency.value))
 
@@ -84,7 +84,7 @@ export const useSportsStore = defineStore('sports', () => {
           || !res.d.find(a => a.si === currentFavNav.value)
         ) {
           currentFavNav.value = res.d[0].si
-          if (currentFavBetType.value === 0)
+          if (currentFavBetType.value === 3)
             // eslint-disable-next-line max-len
             currentFavBetType.value = getSportsBetTypeListBySi(currentFavNav.value)[0].value
         }
