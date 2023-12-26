@@ -55,6 +55,9 @@ const { openAgentCommissionDrawDialog } = useDialogAgentCommissionDraw()
     align-items: center;
     --tg-base-button-padding-y: 8px;
     --tg-base-button-padding-x: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px;
   }
   .holder-title{
     padding: 19px 16px;
