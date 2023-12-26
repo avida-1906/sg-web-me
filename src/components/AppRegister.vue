@@ -375,7 +375,7 @@ onUnmounted(() => {
               custom-padding
               :style="{
                 '--tg-base-button-style-bg': timer ? 'var(--tg-text-grey)' : '',
-                'width': '105px',
+                'min-width': '105px',
                 '--tg-base-button-padding-y': '12.5px',
               }"
               @click.stop="runAsyncMemberSendMailCode"
