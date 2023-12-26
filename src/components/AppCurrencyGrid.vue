@@ -79,6 +79,7 @@ const {
     align-items: center;
     gap: var(--tg-spacing-4);
     color: var(--tg-text-white);
+    line-height: 1.4;
     cursor: pointer;
     &:active{
       transform: scale(0.96);

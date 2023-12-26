@@ -94,7 +94,6 @@ await application.allSettled(
 <template>
   <div class="app-wallet-dialog">
     <div ref="contentRef" class="content">
-      <AppCurrencyGrid />
       <BaseTab v-model="currentTab" :list="tabList" />
       <template v-if="isEmailVerify">
         <AppSelectCurrency
