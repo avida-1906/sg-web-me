@@ -42,15 +42,15 @@ router.beforeEach((to, from, next) => {
   const { openRegisterDialog } = useRegisterDialog()
   const auth = to.meta.auth || false
   if (to.query.uid && !isLogin.value)
-    Session.set(STORAGE_REG_PARENT_ID, to.query.uid)
+    Session.set(STORAGE_REG_PARENT_UID, to.query.uid)
 
-  const parentId = Session.get<string>(STORAGE_REG_PARENT_ID)?.value
-  const isParent = parentId && parentId.length
+  const parentUid = Session.get<string>(STORAGE_REG_PARENT_UID)?.value
+  const isParent = parentUid && parentUid.length
   if (isParent)
-    to.query.uid = parentId
+    to.query.uid = parentUid
 
   if (to.path === '/') {
-    next(`/casino${isParent ? `?uid=${parentId}` : ''}`)
+    next(`/casino${isParent ? `?uid=${parentUid}` : ''}`)
     return
   }
 
@@ -65,10 +65,10 @@ router.beforeEach((to, from, next) => {
   if (isParent) {
     if (to.fullPath.includes('?')) {
       if (!to.fullPath.includes('uid='))
-        to.fullPath += `&uid=${parentId}`
+        to.fullPath += `&uid=${parentUid}`
     }
     else {
-      to.fullPath += `?uid=${parentId}`
+      to.fullPath += `?uid=${parentUid}`
     }
   }
 

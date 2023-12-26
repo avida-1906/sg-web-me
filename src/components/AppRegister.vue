@@ -29,7 +29,7 @@ const steps = ref(1)
 const code = ref('')
 const birthdayInputRef = ref()
 const birthday = ref('')
-const parentId = ref(Session.get<string>(STORAGE_REG_PARENT_ID)?.value ?? '')
+const parentUid = ref(Session.get<string>(STORAGE_REG_PARENT_UID)?.value ?? '')
 
 const {
   value: password,
@@ -240,7 +240,7 @@ async function getMemberReg() {
       email: email.value,
       username: username.value,
       password: password.value,
-      parent_id: parentId.value,
+      parent_uid: parentUid.value,
       device_number: application.getDeviceNumber(),
       birthday: birthday.value,
     }
@@ -252,8 +252,8 @@ async function getMemberReg() {
     await nextTick()
     openTermsConditionsDialog()
     // {
-    //   showClose: !(parentId.value && parentId.value.length),
-    //   closeOnClickOverlay: !(parentId.value && parentId.value.length),
+    //   showClose: !(parentUid.value && parentUid.value.length),
+    //   closeOnClickOverlay: !(parentUid.value && parentUid.value.length),
     // }
   }
 }
@@ -299,7 +299,7 @@ onUnmounted(() => {
     email: email.value,
     username: username.value,
     password: password.value,
-    parent_id: parentId.value,
+    parent_uid: parentUid.value,
     device_number: application.getDeviceNumber(),
     birthday: birthday.value,
   }
