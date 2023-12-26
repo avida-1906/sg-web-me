@@ -46,6 +46,7 @@ declare module 'vue' {
     AppContent: typeof import('./components/AppContent.vue')['default']
     AppCookie: typeof import('./components/AppCookie.vue')['default']
     AppCopyLine: typeof import('./components/AppCopyLine.vue')['default']
+    AppCurrencyGrid: typeof import('./components/AppCurrencyGrid.vue')['default']
     AppCurrencyIcon: typeof import('./components/AppCurrencyIcon.vue')['default']
     AppDeleteConfirmDialog: typeof import('./components/AppDeleteConfirmDialog.vue')['default']
     AppDemoCard: typeof import('./components/AppDemoCard.vue')['default']

@@ -37,7 +37,7 @@ const iconUrl = computed(() => {
   :root{
     --tg-app-currency-icon-style-color: inherit;
     --tg-app-currency-icon-style-margin:0;
-    --tg-app-currency-icon-size: 14px;
+    --tg-app-currency-icon-size: var(--tg-font-size-default);
   }
 </style>
 
