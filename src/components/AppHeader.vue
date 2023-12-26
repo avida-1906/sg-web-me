@@ -104,7 +104,9 @@ const newsMenu = computed(() => ([
 
 // 选中状态
 const getActiveState = computed(() => {
-  return (path: string | undefined) => path === route.path
+  return (path: string | undefined) => path
+    ? route.path.includes(path?.split('/')[1])
+    : false
 })
 const getActiveShown = computed(() => {
   return (shown: string) => rightIsExpand.value

@@ -33,7 +33,7 @@ pls_enter_birthday: 请输入生日
 password_incorrect: 密码格式不正确
 password_uppercase_lowercase_letter: 密码必须含有至少 1 个大写字母和 1 个小写字母
 password_least_8_characters: 您的密码必须含有至少 8 个字符
-password_least_1_number: 含有至少 1 个数字
+password_least_1_number: 密码必须含有至少一个数字
 uppercase_lowercase_letter: 含有大写和小写字母
 least_8_characters: 至少 8 个字符
 reg_step: 填写您的详细信息
@@ -1744,3 +1744,4 @@ sport_new_intro_28: 因此，无论您是想投注美国体育联赛，还是热
 equal_round: 平局
 commission_wallet: 佣金钱包
 commission_transfer_title: 佣金转换
+old_pwd_tip8: 最小字符长度为 8
