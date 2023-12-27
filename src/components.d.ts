@@ -95,6 +95,7 @@ declare module 'vue' {
     AppOutrightPreview: typeof import('./components/AppOutrightPreview.vue')['default']
     AppPageMyBets: typeof import('./components/AppPageMyBets.vue')['default']
     AppPasswordVerify: typeof import('./components/AppPasswordVerify.vue')['default']
+    AppPayPwdAndGoogleCode: typeof import('./components/AppPayPwdAndGoogleCode.vue')['default']
     AppPayPwdDialog: typeof import('./components/AppPayPwdDialog.vue')['default']
     AppPercentage: typeof import('./components/AppPercentage.vue')['default']
     AppPoliciesTerms: typeof import('./components/AppPoliciesTerms.vue')['default']
