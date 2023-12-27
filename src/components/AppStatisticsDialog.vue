@@ -378,10 +378,10 @@ onMounted(() => {
               </template>
             </BaseTable>
           </div>
-          <AppStack
+          <!-- <AppStack
             :pagination-data="paginationData"
             @previous="onPrevious" @next="onNext"
-          />
+          /> -->
           <!-- <BaseTab v-model="tab" :list="tabList" :full="true" /> -->
           <!-- 数据统计 -->
           <!-- <div v-if="tab === '1'" class="statistics-wrap">
