@@ -1991,8 +1991,7 @@ day_no_max: A data não pode exceder o número {delta}
 max_age: Sua idade não pode ultrapassar {delta} anos
 max_value: O valor precisa ser maior ou igual a {delta}
 qr_code: QR code
-bet_comp_coin: Todas as moedas nas quais você faz apostas serão padronizadas para
-  a moeda da competição
+bet_comp_coin: Todas as moedas nas quais você faz apostas serão padronizadas para a moeda da competição
 exp_rule: Regras de cálculo empírico
 electric_game: E-sports
 max_odd: As probabilidades de apostas múltiplas excedem o limite superior

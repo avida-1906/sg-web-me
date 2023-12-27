@@ -9,7 +9,7 @@ const { companyData } = storeToRefs(useAppStore())
         <span>{{ $t(`chat_rule_${r}`, { site: companyData?.name }) }}</span>
       </li>
     </ol>
-    <div class="center">
+    <div class="">
       {{ $t('chat_rule_full_title') }}
       <a>
         <span class="bold-text">{{ $t('chat_forum') }}</span>

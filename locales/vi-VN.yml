@@ -1961,8 +1961,7 @@ day_no_max: Ngày không thể vượt quá số {delta}
 max_age: Bạn không thể lớn hơn {delta} tuổi
 max_value: Giá trị phải lớn hơn hoặc bằng {delta}
 qr_code: Mã QR
-bet_comp_coin: Tất cả các loại tiền tệ bạn đặt cược sẽ được chuẩn hóa thành loại tiền
-  tệ của cuộc thi
+bet_comp_coin: Tất cả các loại tiền tệ bạn đặt cược sẽ được chuẩn hóa thành loại tiền tệ của cuộc thi
 exp_rule: quy tắc tính toán thử nghiệm
 electric_game: Trò chơi điện tử
 max_odd: Tỷ lệ cá cược nhiều lần vượt quá giới hạn trên
