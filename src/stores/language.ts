@@ -1,5 +1,5 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
-import { getInitLangIndex, loadLanguageAsync } from '~/modules/i18n'
+import { getInitLangIndex } from '~/modules/i18n'
 import { EnumLanguage } from '~/utils/enums'
 
 export const useLanguageStore = defineStore('language', () => {
@@ -58,7 +58,7 @@ export const useLanguageStore = defineStore('language', () => {
   async function changeLanguage(langIndex: EnumLanguage) {
     Local.set(STORAGE_LANGUAGE_KEY, langIndex)
     userLanguage.value = langIndex
-    await loadLanguageAsync(langIndex)
+    // await loadLanguageAsync(langIndex)
     location.reload()
   }
 
