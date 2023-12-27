@@ -35,6 +35,7 @@ password_incorrect: Incorrect password format
 password_uppercase_lowercase_letter: The password must contain at least 1 uppercase
   letter and 1 lowercase letter
 password_least_8_characters: The password must contain at least 8 characters
+password_least_8_characters_2: The password must contain at least 8 characters
 password_least_1_number: The password Must contain at least 1 number
 uppercase_lowercase_letter: Must contain uppercase and lowercase letter
 least_8_characters: Must contain at least 8 characters

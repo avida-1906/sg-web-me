@@ -36,6 +36,7 @@ password_incorrect: Formato de senha incorreto
 password_uppercase_lowercase_letter: A senha deverá conter pelo menos 1 letra maiúscula
   e 1 letra minúscula
 password_least_8_characters: A senha deverá conter pelo menos 8 caracteres
+password_least_8_characters_2: A senha deverá conter pelo menos 8 caracteres
 password_least_1_number: Deverá conter pelo menos 1 número
 uppercase_lowercase_letter: Deverá conter letras maiúscula(s) e minúscula(s)
 least_8_characters: Deverá conter pelo menos 8 caracteres

@@ -37,6 +37,7 @@ password_incorrect: Mật khẩu đăng nhập khôngchính xác
 password_uppercase_lowercase_letter: Mật khẩu yêu cầu phải có 1 ký tự in hoa và
   1 ký tự viết thường
 password_least_8_characters: Mật khẩu phải bao gồm ít nhất 8 ký tự
+password_least_8_characters_2: Mật khẩu phải bao gồm ít nhất 8 ký tự
 password_least_1_number: mật khẩu phải có ít nhất 1 con số
 uppercase_lowercase_letter: mật khẩu phải bao gồm ký tự in hoa và ký tự thường
 least_8_characters: Bao gồm ít nhất 8 ký tự
