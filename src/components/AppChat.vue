@@ -265,6 +265,7 @@ onUnmounted(() => {
       line-height: 1.5;
       font-size: var(--tg-font-size-default);
       color: var(--tg-secondary-light);
+      min-width: 220px;
       .icon-text {
         display: flex;
         white-space: nowrap;
