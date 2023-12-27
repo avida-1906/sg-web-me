@@ -153,7 +153,7 @@ export const useAppStore = defineStore('app', () => {
     if (currency)
       return currency
     else
-      return EnumCurrency[0] as EnumCurrencyKey
+      return EnumCurrency[6] as EnumCurrencyKey
   }
 
   /** 设置本地存储的当前全局选择的货币 */
