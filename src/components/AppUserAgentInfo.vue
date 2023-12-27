@@ -28,7 +28,7 @@ function drawDialog() {
     </div>
     <div class="right-box">
       <div class="row flex-wrap">
-        <div class="center">
+        <div class="center account-info">
           <span>{{ $t('user_account') }}：</span>
           <span
             :class="{ 'is-mobile': isMobile }"
@@ -60,6 +60,9 @@ function drawDialog() {
 </template>
 
 <style lang="scss" scoped>
+.account-info {
+  margin-right: 6px;
+}
 .flex-wrap {
   flex-wrap: wrap;
 }
