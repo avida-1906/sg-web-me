@@ -68,7 +68,7 @@ const {
       currentCurrency.value = currencyList.value[0]
       // Local.set<EnumCurrencyKey>(STORAGE_CASINO_GAME_CURRENCY, currencyList.value[0])
 
-    isFavorite.value = res.is_fav === '1'
+    isFavorite.value = +res.is_fav === 1
     overlayTrue()
   },
 })

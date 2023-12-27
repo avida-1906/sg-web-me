@@ -156,7 +156,7 @@ else {
     <div v-if="!(isMobile && activeRecord.loading)">
       <div class="top">
         <BaseTab
-          v-model="tab" :list="tabs" :center="false" need-scroll-into-view
+          v-model="tab" :list="tabs" :center="false" need-scroll-at-init
           @change="tabChange"
         />
       </div>
