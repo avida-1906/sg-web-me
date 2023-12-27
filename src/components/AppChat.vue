@@ -50,17 +50,21 @@ function roomChange(room: EnumLanguageKey) {
 function messageWrapScroll() {
   if (msgHistoryLoading.value)
     return
-  const { height } = scrollMsg.value.getBoundingClientRect()
-  if (scrollMsg.value.scrollHeight - scrollMsg.value.scrollTop - height > 200)
-    setMTrue()
-  else
-    setMFalse()
+  if (scrollMsg.value) {
+    const { height } = scrollMsg.value.getBoundingClientRect()
+    if (scrollMsg.value.scrollHeight - scrollMsg.value.scrollTop - height > 200)
+      setMTrue()
+    else
+      setMFalse()
+  }
 }
 function goBottom2() {
   nextTick(() => {
     setTimeout(() => {
-      const { height } = scrollMsg.value.getBoundingClientRect()
-      scrollMsg.value.scrollTop = scrollMsg.value.scrollHeight - height
+      if (scrollMsg.value) {
+        const { height } = scrollMsg.value.getBoundingClientRect()
+        scrollMsg.value.scrollTop = scrollMsg.value.scrollHeight - height
+      }
     }, 0)
   })
 }

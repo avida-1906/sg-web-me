@@ -16,6 +16,8 @@ const menuData = computed<any>(() =>
     .filter(f => f.token ? isLogin.value : true))
 const icon = computed<any>(() => route.meta.withMenuIcon)
 const withMenuMobileType = computed(() => route.meta.withMenuMobileType)
+const noBg = computed(() =>
+  route.path.includes('/vip/') || route.path.includes('/affiliate/promotion-tutorial'))
 
 const activeMenu = ref(menuData.value.filter((m: any) => m.path === route.path)[0])
 const curMenuTab = ref(activeMenu.value?.value)
@@ -136,7 +138,7 @@ watch(route, (val) => {
                           </div>
                           <div
                             v-else
-                            class="stack x-flex-start y-center menu-btn gap-small"
+                            class="stack x-flex-start y-center gap-small menu-btn"
                             :class="[appContentWidth > 800
                               ? 'padding-none direction-horizontal'
                               : 'padding-none direction-horizontal']"
@@ -183,7 +185,10 @@ watch(route, (val) => {
                       >
                         <div
                           class="content-container"
-                          :class="{ 'is-vip': $route.path.includes('/vip/') }"
+                          :class="{
+                            'is-vip': $route.path.includes('/vip/'),
+                            'no-bg': noBg,
+                          }"
                         >
                           <RouterView v-slot="{ Component }">
                             <Suspense timeout="0">
@@ -332,14 +337,18 @@ watch(route, (val) => {
         }
         .content-container {
           color: var(--tg-border-color-grey);
-          // background: var(--tg-secondary-dark);
-          // padding: var(--tg-spacing-24);
+          background: var(--tg-secondary-dark);
+          padding: var(--tg-spacing-12);
           overflow: hidden;
           position: relative;
           border-radius: var(--tg-radius-md);
           min-height: 100%;
           &.is-vip {
             // border-radius: 0;
+          }
+          &.no-bg {
+            background: initial;
+            padding: 0;
           }
         }
       }

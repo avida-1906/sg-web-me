@@ -235,10 +235,7 @@ else {
   }
 }
 .tg-app-tab-record {
-  position: relative;
-  padding: 24px;
   min-height: 195px;
-  background: var(--tg-secondary-dark);
   --tg-tab-style-wrap-bg-color: var(--tg-primary-main);
 }
 // .footer-buttons {
@@ -255,9 +252,7 @@ else {
     gap: var(--tg-spacing-8);
     border-radius: var(--tg-radius-default);
     padding: 8px 12px;
-    // &:nth-child(odd){
-      background-color: var(--tg-secondary-grey);
-    // }
+    background-color: var(--tg-secondary-grey);
   }
   .item-left{
     font-size: var(--tg-font-size-lg);
@@ -282,10 +277,10 @@ else {
 }
 .record-loading{
   position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
+  left: 0;
+  top: 0;
   background-color: #{rgba($color: var(--tg-color-grey-rgb), $alpha: 0.45)};
 }
 </style>

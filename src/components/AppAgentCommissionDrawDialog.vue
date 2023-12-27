@@ -36,42 +36,45 @@ function changeCurrency(item: CurrencyData, network: string) {
 <template>
   <div class="app-agent-commission-draw-bonus">
     <div class="choose-label">
-      <div>{{ $t('commission_wallet_amount_exchange_total', { type: 'USDT' }) }}：</div>
+      <div>{{ $t('commission_wallet_amount_exchange_total', { type: 'USDT' }) }}:</div>
       <span class="orange-text">{{ '1000' }}<BaseIcon name="coin-usdt" /></span>
       <span>{{ $t('choose_convert_your_desired_currency') }}</span>
     </div>
+    <BaseDivider />
     <div class="currency-wrap">
-      <span>{{ $t('converted_currency') }}</span>
-      <AppSelectCurrency
-        :show-balance="false"
-        :network="isVirCurrency"
-        @change="changeCurrency"
-      />
+      <div class="center" style="gap: var(--tg-spacing-8);">
+        <span>{{ $t('converted_currency') }}</span>
+        <AppSelectCurrency
+          :show-balance="false"
+          @change="changeCurrency"
+        />
+      </div>
       <div class="orange-text about-receive">
         <span class="label">{{ $t('achievable_cumulatively') }}：</span>
         <AppAmount amount="99999900" currency-type="BNB" />
       </div>
-    </div>
-    <div class="records">
-      <ul class="wrap">
-        <li class="item title">
-          <div>{{ $t('commission_wallet_balance') }}</div>
-          <div>{{ $t('exchange_rate_for_currency_received') }}</div>
-        </li>
-        <li v-for="item in commissionWallet" :key="item.currency" class="item">
-          <div class="level">
-            <BaseIcon :name="`coin-${item.currency.toLowerCase()}`" />
-            <span>{{ item.currency }}</span>
-            <span>{{ item.amount }}</span>
-          </div>
-          <div>{{ item.rate }}</div>
-        </li>
-      </ul>
-    </div>
-    <div class="buttons">
-      <BaseButton bg-style="primary" size="md" @click="receiveBonus">
-        {{ $t('confirm_conversion') }}
-      </BaseButton>
+
+      <div class="records">
+        <ul class="wrap">
+          <li class="item title">
+            <div>{{ $t('commission_wallet_balance') }}</div>
+            <div>{{ $t('exchange_rate_for_currency_received') }}</div>
+          </li>
+          <li v-for="item in commissionWallet" :key="item.currency" class="item">
+            <div class="level">
+              <BaseIcon :name="`coin-${item.currency.toLowerCase()}`" />
+              <span>{{ item.currency }}</span>
+              <span>{{ item.amount }}</span>
+            </div>
+            <div>{{ item.rate }}</div>
+          </li>
+        </ul>
+      </div>
+      <div class="buttons">
+        <BaseButton bg-style="primary" size="md" @click="receiveBonus">
+          {{ $t('confirm_conversion') }}
+        </BaseButton>
+      </div>
     </div>
   </div>
 </template>
@@ -85,34 +88,34 @@ function changeCurrency(item: CurrencyData, network: string) {
   margin-right: var(--tg-spacing-4);
 }
 .app-agent-commission-draw-bonus {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  gap: var(--tg-spacing-16);
-  text-align: center;
-  padding: 0 var(--tg-spacing-16) var(--tg-spacing-16);
+  // display: flex;
+  // flex-direction: column;
+  // align-items: flex-start;
+  // justify-content: flex-start;
+  // gap: var(--tg-spacing-16);
+  // text-align: center;
+
   font-size: var(--tg-font-size-default);
   color: var(--tg-text-white);
   .choose-label {
-    color: var(--tg-secondary-light);
+    padding: 0 var(--tg-spacing-12) var(--tg-spacing-12);
+    color: var(--tg-text-white);
     line-height: var(--tg-spacing-20);
-    font-weight: var(--tg-font-weight-semibold);
+    font-weight: var(--tg-font-weight-normal);
+    text-align: left;
   }
   .currency-wrap {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--tg-spacing-8);
-    .rate {
-      font-weight: var(--tg-font-weight-semibold);
-    }
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--tg-spacing-12);
+    padding: var(--tg-spacing-12) var(--tg-spacing-12) var(--tg-spacing-16);
   }
   .about-receive {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: var(--tg-font-weight-semibold);
+    font-weight: 500;
     .label {
       color: var(--tg-text-white);
     }

@@ -51,9 +51,11 @@ function resetGameType() {
   gameType.value = checkGameType()
 }
 function clearSidebar() {
-  leftIsExpand.value && closeLeftSidebar()
-  rightIsExpand.value && closeRightSidebar()
-  Local.set(STORAGE_MENU_LEFT_EXPAND, false)
+  setTimeout(() => {
+    leftIsExpand.value && closeLeftSidebar()
+    rightIsExpand.value && closeRightSidebar()
+    Local.set(STORAGE_MENU_LEFT_EXPAND, false)
+  }, 100)
 }
 function toggleLeftSidebar() {
   rightIsExpand.value && closeRightSidebar()
@@ -72,28 +74,38 @@ function toggleLeftSidebar() {
   }
 }
 function goGame(type: Game) {
-  clearSidebar()
   let temp = ''
 
   setTimeout(() => {
     switch (type) {
       case Game.CASINO:
-        if (isRouteCasino.value)
+        if (isRouteCasino.value) {
+          setTimeout(() => {
+            clearSidebar()
+          }, 100)
           return resetGameType()
+        }
         router.push('/casino')
         gameType.value = Game.CASINO
         break
       case Game.SPORTS:
         temp = `/sports/${getSportsPlatId()}`
-        if (isRouteSports.value)
+        if (isRouteSports.value) {
+          setTimeout(() => {
+            clearSidebar()
+          }, 100)
           return resetGameType()
+        }
         router.push(temp)
         gameType.value = Game.SPORTS
         break
       default:
         break
     }
-  }, 200)
+    setTimeout(() => {
+      clearSidebar()
+    }, 100)
+  }, 0)
 }
 
 function closeRightAndReset() {
