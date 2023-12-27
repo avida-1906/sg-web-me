@@ -38,7 +38,7 @@ function onClick(tab: TabItem, i: number) {
   if (tab.path)
     router.push(tab.path)
   props.needScrollIntoView && curTabRef.value[i]?.scrollIntoView({
-    behavior: 'smooth', block: 'end', inline: 'nearest',
+    behavior: 'smooth', block: 'nearest', inline: 'nearest',
   })
 }
 onMounted(() => {
@@ -46,7 +46,7 @@ onMounted(() => {
     if (props.needScrollIntoView) {
       const index = props.list.findIndex(a => a.value === props.modelValue)
       curTabRef.value[index]?.scrollIntoView({
-        behavior: 'instant', block: 'end', inline: 'center',
+        behavior: 'instant', block: 'nearest', inline: 'center',
       })
     }
   })
