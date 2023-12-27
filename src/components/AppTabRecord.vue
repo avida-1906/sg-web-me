@@ -236,7 +236,7 @@ else {
 }
 .tg-app-tab-record {
   position: relative;
-  padding: 24px;
+  // padding: 24px;
   min-height: 195px;
   background: var(--tg-secondary-dark);
   --tg-tab-style-wrap-bg-color: var(--tg-primary-main);
