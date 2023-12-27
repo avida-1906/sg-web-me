@@ -59,9 +59,7 @@ export const useLanguageStore = defineStore('language', () => {
     Local.set(STORAGE_LANGUAGE_KEY, langIndex)
     userLanguage.value = langIndex
     await loadLanguageAsync(langIndex)
-    setTimeout(() => {
-      location.reload()
-    }, 100)
+    location.reload()
   }
 
   return {
