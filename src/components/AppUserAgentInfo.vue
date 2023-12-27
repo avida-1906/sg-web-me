@@ -27,7 +27,7 @@ function drawDialog() {
       <BaseIcon class="agent-badge" name="agent-badge" />
     </div>
     <div class="right-box">
-      <div class="row">
+      <div class="row flex-wrap">
         <div class="center">
           <span>{{ $t('user_account') }}：</span>
           <span
@@ -60,6 +60,9 @@ function drawDialog() {
 </template>
 
 <style lang="scss" scoped>
+.flex-wrap {
+  flex-wrap: wrap;
+}
 .app-user-agent-info {
   display: flex;
   align-items: center;
