@@ -16,6 +16,7 @@ interface Props {
   useCloudImg?: boolean
   lineStyle?: boolean
   needScrollIntoView?: boolean
+  needScrollAtInit?: boolean
 }
 const props = withDefaults(defineProps<Props>(), {
   shape: 'round',
@@ -43,7 +44,7 @@ function onClick(tab: TabItem, i: number) {
 }
 onMounted(() => {
   nextTick(() => {
-    if (props.needScrollIntoView) {
+    if (props.needScrollIntoView && isMobile.value && props.needScrollAtInit) {
       const index = props.list.findIndex(a => a.value === props.modelValue)
       curTabRef.value[index]?.scrollIntoView({
         behavior: 'instant', block: 'nearest', inline: 'center',
