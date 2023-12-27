@@ -15,6 +15,7 @@ declare module 'vue' {
     AppAgentGradeDialog: typeof import('./components/AppAgentGradeDialog.vue')['default']
     AppAgentLevel: typeof import('./components/AppAgentLevel.vue')['default']
     AppAmount: typeof import('./components/AppAmount.vue')['default']
+    AppAmountInput: typeof import('./components/AppAmountInput.vue')['default']
     AppAuthLogin: typeof import('./components/AppAuthLogin.vue')['default']
     AppAuthThirdFormDialog: typeof import('./components/AppAuthThirdFormDialog.vue')['default']
     AppBallRange: typeof import('./components/AppBallRange.vue')['default']
