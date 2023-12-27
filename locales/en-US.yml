@@ -1949,8 +1949,7 @@ day_no_max: The date cannot exceed the number {delta}
 max_age: Your age cannot exceed {delta} years old
 max_value: Value must be greater than or equal to {delta}
 qr_code: QR code
-bet_comp_coin: All currencies you place bets in will be standardized to the competition
-  currency
+bet_comp_coin: All currencies you place bets in will be standardized to the competition currency
 exp_rule: Empirical calculation rules
 electric_game: Esports
 max_odd: Multiple betting odds exceed upper limit
