@@ -93,6 +93,8 @@ function drawDialog() {
       button {
         height: 23px;
         min-width: 48px;
+        padding-left: 4px;
+        padding-right: 4px;
         box-sizing: border-box;
         font-size: var(--tg-font-size-xs);
       }
