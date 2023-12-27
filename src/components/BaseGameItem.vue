@@ -135,7 +135,7 @@ const onPlayCount = ref(Math.ceil(Math.random() * 1000).toFixed())
     </div>
   </BaseAspectRatio>
   <span
-    v-if="+gameInfo.game_type !== CasinoGameType.casino && showManCount"
+    v-if="+gameInfo.game_type !== CasinoGameType.casino"
     class="count"
   >
     <span class="dot blinking-dash2" />&nbsp;&nbsp;
