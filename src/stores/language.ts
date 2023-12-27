@@ -38,7 +38,7 @@ export const useLanguageStore = defineStore('language', () => {
       value: EnumLanguage['vi-VN'],
       phone: '+84',
       phoneId: '1287',
-      prefix: 'vi',
+      prefix: 'vn',
     },
     {
       title: 'Português',

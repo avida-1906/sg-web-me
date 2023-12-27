@@ -67,6 +67,14 @@ export function install(app: App<Element>) {
 }
 
 export function getInitLangIndex() {
+  const search = location.search
+  if (search && search.includes('lang=')) {
+    const params = new URLSearchParams(search)
+    const lang: string | undefined = params.get('lang')?.replace('_', '-')
+    if (lang && lang in EnumLanguage)
+      Local.set(STORAGE_LANGUAGE_KEY, EnumLanguage[lang as EnumLanguageKey])
+  }
+
   const localStorageLanguageIndex = Local.get<
     EnumLanguage | null
   >(STORAGE_LANGUAGE_KEY)?.value
