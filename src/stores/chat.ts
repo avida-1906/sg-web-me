@@ -1,5 +1,5 @@
 import type { Room } from '~/types'
-import { languageMap } from '~/modules/i18n'
+import { getInitLangIndex, languageMap } from '~/modules/i18n'
 
 export interface FeedBackItem {
   feed_id: string
@@ -85,12 +85,14 @@ export const useChatStore = defineStore('chat', () => {
 
   const chatRoomList = reactive<Array<Room>>([
     { icon: 'flag-cn', label: '中文', value: 'zh-CN' },
+    { icon: 'flag-en', label: 'English', value: 'en-US' },
     { icon: 'flag-vn', label: 'Tiếng Việt', value: 'vi-VN' },
     { icon: 'flag-br', label: 'Português', value: 'pt-BR' },
     { icon: 'flag-in', label: 'India', value: 'hi-IN' },
     { icon: 'flag-thai', label: 'ประเทศไทย', value: 'th-TH' },
   ])
-  const room = ref(chatRoomList[0])
+  const langIndex = getInitLangIndex()
+  const room = ref(chatRoomList.filter(c => EnumLanguage[c.value] === langIndex)[0] ?? 0)
 
   const currentLanguage = computed(() => room.value.value)
   const roomLang = computed(() => languageMap[currentLanguage.value])
