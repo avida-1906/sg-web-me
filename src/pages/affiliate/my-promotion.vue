@@ -108,11 +108,11 @@ function downloadQr() {
         <div class="title-left">
           {{ t('promo_info') }}
         </div>
-        <div class="title-btn">
+        <!-- <div class="title-btn">
           <BaseButton type="text">
             {{ t('more') }}
           </BaseButton>
-        </div>
+        </div> -->
       </div>
       <div
         class="item-content content-padding promotion-msg"
@@ -153,7 +153,7 @@ function downloadQr() {
           {{ t('finance_funds_transfer_sort_commission') }}
         </div>
         <div class="title-btn">
-          <BaseButton type="text">
+          <BaseButton type="text" @click="$router.push('/affiliate/my-commission')">
             {{ t('more') }}
           </BaseButton>
         </div>
@@ -171,7 +171,7 @@ function downloadQr() {
           {{ t('performance') }}
         </div>
         <div class="title-btn">
-          <BaseButton type="text">
+          <BaseButton type="text" @click="$router.push('/affiliate/my-performance')">
             {{ t('more') }}
           </BaseButton>
         </div>
@@ -189,7 +189,7 @@ function downloadQr() {
           {{ t('sub_bet') }}
         </div>
         <div class="title-btn">
-          <BaseButton type="text">
+          <BaseButton type="text" @click="$router.push('/affiliate/direct-bet')">
             {{ t('more') }}
           </BaseButton>
         </div>
@@ -217,6 +217,7 @@ function downloadQr() {
       background-color: var(--tg-secondary-main);
       padding: 0 var(--tg-spacing-4) 0 var(--tg-spacing-16);
       border-radius: var(--tg-radius-default)  var(--tg-radius-default) 0 0;
+      height: 36px;
       .title-left{
         font-weight: var(--tg-font-weight-semibold);
       }
