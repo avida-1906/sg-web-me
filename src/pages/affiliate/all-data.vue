@@ -156,9 +156,9 @@ useListSearch(params, runAsync, resetPage)
   --tg-badge-size: 10px;
   --tg-table-th-padding: var(--tg-spacing-21);
   --tg-table-td-padding: var(--tg-spacing-21);
-  --tg-table-font-size: var(--tg-font-size-xs);
+  // --tg-table-font-size: var(--tg-font-size-xs);
   --tg-table-th-color: var(--tg-text-white);
-  --tg-table-line-height:1;
+  // --tg-table-line-height:1;
   --tg-table-th-font-weight: var(--tg-font-weight-normal);
   --tg-base-select-style-color: var(--tg-text-lightgrey);
   --tg-base-select-style-padding-y: var(--tg-spacing-8);
