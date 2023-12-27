@@ -58,7 +58,9 @@ function changeCurrency(item: CurrencyData, network: string) {
         <ul class="wrap">
           <li class="item title">
             <div>{{ $t('commission_wallet_balance') }}</div>
-            <div>{{ $t('exchange_rate_for_currency_received') }}</div>
+            <div class="text-right">
+              {{ $t('exchange_rate_for_currency_received') }}
+            </div>
           </li>
           <li v-for="item in commissionWallet" :key="item.currency" class="item">
             <div class="level">
@@ -80,6 +82,9 @@ function changeCurrency(item: CurrencyData, network: string) {
 </template>
 
 <style lang="scss" scoped>
+.text-right {
+  text-align: right;
+}
 .orange-text {
   color: var(--tg-text-warn);
   display: inline-flex;
@@ -141,6 +146,11 @@ function changeCurrency(item: CurrencyData, network: string) {
         font-size: var(--tg-font-size-default);
         color: var(--tg-text-white);
         line-height: var(--tg-spacing-54);
+        &.title {
+
+          line-height: var(--tg-spacing-18);
+          height: 54px;
+        }
         .level {
           display: flex;
           align-items: center;
