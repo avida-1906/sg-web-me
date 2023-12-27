@@ -51,9 +51,11 @@ function resetGameType() {
   gameType.value = checkGameType()
 }
 function clearSidebar() {
-  leftIsExpand.value && closeLeftSidebar()
-  rightIsExpand.value && closeRightSidebar()
-  Local.set(STORAGE_MENU_LEFT_EXPAND, false)
+  setTimeout(() => {
+    leftIsExpand.value && closeLeftSidebar()
+    rightIsExpand.value && closeRightSidebar()
+    Local.set(STORAGE_MENU_LEFT_EXPAND, false)
+  }, 100)
 }
 function toggleLeftSidebar() {
   rightIsExpand.value && closeRightSidebar()
@@ -72,7 +74,6 @@ function toggleLeftSidebar() {
   }
 }
 function goGame(type: Game) {
-  clearSidebar()
   let temp = ''
 
   setTimeout(() => {
@@ -93,7 +94,10 @@ function goGame(type: Game) {
       default:
         break
     }
-  }, 200)
+    setTimeout(() => {
+      clearSidebar()
+    }, 100)
+  }, 0)
 }
 
 function closeRightAndReset() {
