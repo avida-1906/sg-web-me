@@ -25,10 +25,13 @@ const {
   <div class="app-currency-grid">
     <div class="grid-label">
       <span class="title">存款币种</span>
-      <div class="center">
-        <span>更多</span>
+      <BaseButton
+        style="--tg-base-button-font-weight: var(--tg-font-weight-normal);"
+        type="text" size="none"
+      >
+        <span style="padding-right: var(--tg-spacing-4);">更多</span>
         <BaseIcon name="uni-d-arrow-right" />
-      </div>
+      </BaseButton>
     </div>
     <div class="grid-box">
       <template
@@ -57,9 +60,6 @@ const {
   margin-bottom: var(--tg-spacing-8);
   .title{
     color: var(--tg-text-white);
-  }
-  .center{
-    gap: var(--tg-spacing-4);
   }
 }
 .grid-box {
