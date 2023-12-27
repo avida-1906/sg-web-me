@@ -17,6 +17,7 @@ interface Props {
 }
 defineProps<Props>()
 
+const { isMobile } = storeToRefs(useWindowStore())
 const { companyData } = storeToRefs(useAppStore())
 const { t } = useI18n()
 const { push } = useLocalRouter()
@@ -129,7 +130,10 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="app-desc home-container margin-auto">
+  <div
+    class="app-desc home-container margin-auto"
+    :style="{ padding: isMobile ? 'var(--tg-spacing-24) 3vw' : 'var(--tg-spacing-24)' }"
+  >
     <div class="desc-title">
       <div class="title-left">
         <span class="game-name">{{ name }}</span>
@@ -281,7 +285,6 @@ onMounted(() => {
 .app-desc {
   background-color: var(--tg-secondary-dark);
   color: var(--tg-text-white);
-  padding: var(--tg-spacing-24);
   border-radius: var(--tg-radius-md);
   margin-top: var(--tg-spacing-32);
 
