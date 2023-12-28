@@ -579,8 +579,8 @@ onUnmounted(() => {
   }
 }
 .h5-mobile{
-  --tg-table-th-padding: var(--tg-spacing-16) var(--tg-spacing-8);
-  --tg-table-td-padding: var(--tg-spacing-16) var(--tg-spacing-8);
+  --tg-table-th-padding-x: var(--tg-spacing-8);
+  --tg-table-td-padding-x: var(--tg-spacing-8);
   --tg-table-tr-last-first-padding: var(--tg-spacing-16);
   // th:last-child {
   //   padding-right: var(--tg-spacing-16) !important;

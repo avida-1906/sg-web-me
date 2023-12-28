@@ -767,7 +767,7 @@ casino_game_open_theatre: Ativar modo teatro
 casino_game_close_theatre: Desativar modo teatro
 casino_game_test_mode: Modo teste
 casino_game_real_money_mode: Modo real
-search_need_at_least_3_word: Mínimo 3 caracteres necessários para realizar a pesquisa
+search_need_at_least_3_word: Mínimo 3 caracteres necessários para realizar a pesquisa.
 search_recent: Pesquisas recentes
 search_no_result: Sem resultados
 search_clear: Limpar pesquisas
@@ -2281,3 +2281,4 @@ equal_round: Empate
 commission_wallet: Carteira de comissão
 commission_transfer_title: Conversão de comissão
 old_pwd_tip8: Mín. 8 caracteres
+pwd_unequal: As senhas são inconsistentes

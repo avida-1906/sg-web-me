@@ -230,7 +230,7 @@ watch(
                       data-style="4"
                     >
                       <template #default>
-                        <div class="market" :class="{ 'in-mobile': isMobile }">
+                        <div class="market has-3-c" :class="{ 'in-mobile': isMobile }">
                           <div class="table-row-3" :style="{ '--itemCount': 1 }">
                             <template
                               v-for="nameItem in item.other"
@@ -251,7 +251,7 @@ watch(
                       data-style="6"
                     >
                       <template #default>
-                        <div class="market" :class="{ 'in-mobile': isMobile }">
+                        <div class="market has-3-c" :class="{ 'in-mobile': isMobile }">
                           <div class="table-row-3" :style="{ '--itemCount': 1 }">
                             <template
                               v-for="nameItem in item.pat6.titleList"
@@ -388,8 +388,11 @@ watch(
   padding: var(--tg-spacing-12) var(--tg-spacing-16);
   grid-template-columns:
     repeat(auto-fit, minmax(calc(33% - var(--tg-spacing-8)/2), 1fr));
-  &.in-mobile {
+  &.in-mobile:not(.has-3-c) {
     grid-template-columns: 1fr;
+  }
+  &.has-3-c {
+
   }
   .table {
     display: grid;
@@ -400,7 +403,7 @@ watch(
 
   .table-row-3 {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(calc(33% - var(--tg-spacing-8)/2), 1fr));
     grid-template-rows: repeat(var(--itemCount), auto);
     gap: var(--tg-spacing-4);
   }

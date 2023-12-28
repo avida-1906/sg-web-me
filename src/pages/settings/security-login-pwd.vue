@@ -44,7 +44,7 @@ const {
   else if (!lastOneNumberReg.test(value))
     return t('password_least_1_number')
   else if (value !== newPassword.value)
-    return t('validate_msg_pwd_unequal')
+    return t('pwd_unequal')
   return ''
 })
 const {

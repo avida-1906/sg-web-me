@@ -238,11 +238,17 @@ onBeforeUnmount(() => {
 
     .name {
       opacity: 0.2;
+      flex: 1;
     }
 
     .status {
       opacity: 0.4;
+      max-width: 100%;
       white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      flex: 1;
+      text-align: right;
     }
   }
 

@@ -757,7 +757,7 @@ casino_game_open_theatre: Enable theater mode
 casino_game_close_theatre: Disable theater mode
 casino_game_test_mode: Test mode
 casino_game_real_money_mode: Real mode
-search_need_at_least_3_word: Minimum 3 characters necessary for search
+search_need_at_least_3_word: Minimum 3 characters necessary for search.
 search_recent: Recent searches
 search_no_result: No results
 search_clear: Clear searches
@@ -2217,3 +2217,4 @@ equal_round: Draw
 commission_wallet: Commission wallet
 commission_transfer_title: Commission conversion
 old_pwd_tip8: Min. 8 characters
+pwd_unequal: Passwords are inconsistent
