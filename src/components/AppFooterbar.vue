@@ -9,6 +9,7 @@ const router = useLocalRouter()
 const route = useRoute()
 const { leftIsExpand, openLeftSidebar, closeLeftSidebar } = useLeftSidebar()
 const { isMobile } = storeToRefs(useWindowStore())
+const { sideBigActiveMenu } = storeToRefs(useMenuStore())
 const {
   rightIsExpand,
   currentRightSidebarContent,
@@ -87,6 +88,7 @@ function goGame(type: Game) {
         }
         router.push('/casino')
         gameType.value = Game.CASINO
+        sideBigActiveMenu.value = ''
         break
       case Game.SPORTS:
         temp = `/sports/${getSportsPlatId()}`
@@ -98,6 +100,7 @@ function goGame(type: Game) {
         }
         router.push(temp)
         gameType.value = Game.SPORTS
+        sideBigActiveMenu.value = ''
         break
       default:
         break
