@@ -78,15 +78,15 @@ const performance = computed(() => [
   { label: t('other_mem'), value: `${proData.value?.performance?.other_num}人` },
   {
     label: t('total_performance'),
-    value: `${proData.value?.performance?.performance_amount}$`,
+    value: `${proData.value?.performance?.performance_amount}`,
   },
   {
     label: t('direct_performance'),
-    value: `${proData.value?.performance?.direct_amount}$`,
+    value: `${proData.value?.performance?.direct_amount}`,
   },
   {
     label: t('other_performance'),
-    value: `${proData.value?.performance?.other_amount}$`,
+    value: `${proData.value?.performance?.other_amount}`,
   },
 ])
 
@@ -103,7 +103,7 @@ function downloadQr() {
 
 <template>
   <div class="tg-affiliate-retention">
-    <div class="retention-item">
+    <div class="retention-item infos">
       <div class="item-title">
         <div class="title-left">
           {{ t('promo_info') }}
@@ -152,16 +152,18 @@ function downloadQr() {
         <div class="title-left">
           {{ t('finance_funds_transfer_sort_commission') }}
         </div>
-        <div class="title-btn">
+        <!-- <div class="title-btn">
           <BaseButton type="text" @click="$router.push('/affiliate/my-commission')">
             {{ t('more') }}
           </BaseButton>
-        </div>
+        </div> -->
       </div>
       <div class="item-content grid-wrap" :class="{ 'is-less-than-sm': isLessThanSm }">
         <div v-for="(item, index) in commission" :key="index">
           <span>{{ item.label }} </span>
-          <span class="yellow">{{ item.value }}</span>
+          <span class="yellow money-usdt">
+            {{ item.value }}<BaseIcon name="coin-usdt" />
+          </span>
         </div>
       </div>
     </div>
@@ -170,16 +172,18 @@ function downloadQr() {
         <div class="title-left">
           {{ t('performance') }}
         </div>
-        <div class="title-btn">
+        <!-- <div class="title-btn">
           <BaseButton type="text" @click="$router.push('/affiliate/my-performance')">
             {{ t('more') }}
           </BaseButton>
-        </div>
+        </div> -->
       </div>
       <div class="item-content grid-wrap" :class="{ 'is-less-than-sm': isLessThanSm }">
         <div v-for="(item, index) in performance" :key="index">
           <span>{{ item.label }} </span>
-          <span>{{ item.value }}</span>
+          <span class="money-usdt">
+            {{ item.value }}<BaseIcon v-if="index > 2" name="coin-usdt" />
+          </span>
         </div>
       </div>
     </div>
@@ -188,16 +192,18 @@ function downloadQr() {
         <div class="title-left">
           {{ t('sub_bet') }}
         </div>
-        <div class="title-btn">
+        <!-- <div class="title-btn">
           <BaseButton type="text" @click="$router.push('/affiliate/direct-bet')">
             {{ t('more') }}
           </BaseButton>
-        </div>
+        </div> -->
       </div>
       <div class="item-content grid-wrap" :class="{ 'is-less-than-sm': isLessThanSm }">
         <div v-for="(item, index) in bet" :key="index">
           <span>{{ item.label }} </span>
-          <span :class="{ green: index === 2 }">{{ item.value }}</span>
+          <span class="money-usdt" :class="{ green: index === 2 }">
+            {{ item.value }}<BaseIcon name="coin-usdt" />
+          </span>
         </div>
       </div>
     </div>
@@ -205,16 +211,29 @@ function downloadQr() {
 </template>
 
 <style lang="scss" scoped>
+.money-usdt {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
 .tg-affiliate-retention {
   font-size: var(--tg-font-size-default);
   color: var(--tg-text-white);
+  > .retention-item+.retention-item {
+    background-color: var(--tg-secondary-grey);
+    padding: 0 24px 24px;
+    border-radius: 4px;
+    .item-title {
+      padding-left: 0;
+    }
+  }
   .retention-item{
-    margin-bottom: var(--tg-spacing-20);
-    .item-title{
+    margin-bottom: var(--tg-spacing-12);
+    .item-title {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background-color: var(--tg-secondary-main);
+      // background-color: var(--tg-secondary-main);
       padding: 0 var(--tg-spacing-4) 0 var(--tg-spacing-16);
       border-radius: var(--tg-radius-default)  var(--tg-radius-default) 0 0;
       height: 36px;
@@ -231,6 +250,11 @@ function downloadQr() {
     .item-content{
       &.content-padding{
         padding: var(--tg-spacing-16);
+      }
+    }
+    &.infos {
+      .item-title, .promotion-msg {
+        background: transparent;
       }
     }
   }
@@ -289,20 +313,23 @@ function downloadQr() {
     }
   }
   .grid-wrap{
-    background-color: var(--tg-secondary-main) !important;
+    // background-color: var(--tg-secondary-main) !important;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 1px;
+    grid-gap: 15px;
     &.is-less-than-sm{
       grid-template-columns: repeat(1, 1fr);
     }
     > div{
-      background-color: var(--tg-primary-main);
-      padding: var(--tg-spacing-12) var(--tg-spacing-16);
+      background-color: var(--tg-secondary-dark);
+      padding: var(--tg-spacing-16) var(--tg-spacing-16);
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      line-height: 21px;
+      align-items: flex-start;
+      line-height: 20px;
+      flex-direction: column;
+      border-radius: 8px;
+      gap: 8px;
     }
   }
   .yellow{
