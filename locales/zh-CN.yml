@@ -1747,3 +1747,4 @@ commission_wallet: 佣金钱包
 commission_transfer_title: 佣金转换
 old_pwd_tip8: 最小字符长度为 8
 password_least_8_characters_2: 您的密码长度必须至少为 8 个字符
+pwd_unequal: 密码不一致

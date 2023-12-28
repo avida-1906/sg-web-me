@@ -2217,3 +2217,4 @@ equal_round: Draw
 commission_wallet: Commission wallet
 commission_transfer_title: Commission conversion
 old_pwd_tip8: Min. 8 characters
+pwd_unequal: Passwords are inconsistent
