@@ -20,7 +20,10 @@ const getUrl = computed(() => {
         <div class="title">
           {{ $t('for_example') }}
         </div>
-        <div>{{ $t('promotion_tutorial_example_desc') }}:</div>
+        <div>{{ $t('promotion_tutorial_example_desc') }}</div>
+      </div>
+      <div class="p">
+        <div>{{ $t('promotion_tutorial_example_desc1') }}:</div>
       </div>
       <div class="p">
         <div class="title">
