@@ -47,7 +47,7 @@ const {
   onSuccess: (res: string) => {
     closeDialog()
     appStore.setToken(res)
-    openNotify({ type: 'user', message: `${t('welcome_guest')}${username.value}！` })
+    openNotify({ type: 'user', message: `${t('welcome_guest')} ${username.value}！` })
   },
 })
 
@@ -70,7 +70,7 @@ onMounted(() => {
 <template>
   <div class="app-login">
     <div class="app-login-input-box">
-      <BaseLabel :label="t('email_or_username')" must-small need-focus>
+      <BaseLabel :label="t('email_or_username')" need-focus must-small>
         <BaseInput
           ref="userNameRef" v-model="username"
           :msg="usernameErrorMsg" msg-after-touched
