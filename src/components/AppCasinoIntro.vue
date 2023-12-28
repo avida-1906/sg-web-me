@@ -15,14 +15,10 @@ const hostSite = computed(() => (
   { host: location.value.hostname?.replace('www.', '').toUpperCase(), site: companyData.value?.name.toUpperCase() }
 ))
 
-const btnText = ref(t('view_more_2'))
+const btnText = computed(() => showMore.value ? t('view_less') : t('view_more_2'))
 
 const onShowMore = function () {
   toggleShowMore()
-  if (showMore.value)
-    btnText.value = t('view_less')
-  else
-    btnText.value = t('view_more_2')
 }
 </script>
 

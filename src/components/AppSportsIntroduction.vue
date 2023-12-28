@@ -5,7 +5,7 @@ const { isMobile } = storeToRefs(useWindowStore())
 const location = useBrowserLocation()
 const { bool: showMore, toggle: toggleShowMore } = useBoolean(false)
 
-const btnText = ref(t('view_more_2'))
+const btnText = computed(() => showMore.value ? t('view_less') : t('view_more_2'))
 
 const hostSite = computed(() => (
   {
@@ -16,10 +16,6 @@ const hostSite = computed(() => (
 
 const onShowMore = function () {
   toggleShowMore()
-  if (showMore.value)
-    btnText.value = t('view_less')
-  else
-    btnText.value = t('view_more_2')
 }
 </script>
 

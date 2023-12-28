@@ -42,16 +42,12 @@ const {
   },
 })
 
-const btnText = ref(t('view_more_2'))
+const btnText = computed(() => showMore.value ? t('view_less') : t('view_more_2'))
 
 const isSm = computed(() => appContentWidth.value <= widthBoundarySm.value)
 
 const onShowMore = function () {
   toggleShowMore()
-  if (showMore.value)
-    btnText.value = t('view_less')
-  else
-    btnText.value = t('view_more_2')
 }
 
 function goVip() {
