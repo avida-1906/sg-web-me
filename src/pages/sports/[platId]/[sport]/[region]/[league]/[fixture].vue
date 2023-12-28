@@ -400,7 +400,7 @@ watch(
 
   .table-row-3 {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(calc(33% - var(--tg-spacing-8)/2), 1fr));
     grid-template-rows: repeat(var(--itemCount), auto);
     gap: var(--tg-spacing-4);
   }
