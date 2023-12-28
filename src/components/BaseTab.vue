@@ -62,35 +62,38 @@ onMounted(() => {
         :class="[shape, { 'line-style': lineStyle }]"
       >
         <div
-          v-for="t, i in list" :key="i"
-          :ref="el => curTabRef[i] = (el as Element)"
-          class="tab"
-          :class="[`tab-${size}`,
-                   {
-                     'active': t.value === modelValue,
-                     'disabled': t.disabled,
-                     'is-mobile': isMobile,
-                   }]"
-          @click="onClick(t, i)"
+          v-for="t, i in list" :key="i" :ref="el => curTabRef[i] = (el as Element)"
+          class="tab-padding-box"
         >
-          <div class="content">
-            <slot name="tab" :item="t">
-              <div
-                v-if="t.icon" class="icon"
-                style="--app-sport-image-error-icon-size:14px;"
-              >
-                <AppImage
-                  v-if="useCloudImg"
-                  style="width: 14px;height: 14px;"
-                  :url="t.icon" is-cloud loading="eager"
-                />
-                <BaseIcon v-else :name="t.icon" style="display: block;" />
-              </div>
-              {{ t.label }}
-              <div v-if="t.bubble" class="bubble-wrap">
-                <div />
-              </div>
-            </slot>
+          <div
+            class="tab"
+            :class="[`tab-${size}`,
+                     {
+                       'active': t.value === modelValue,
+                       'disabled': t.disabled,
+                       'is-mobile': isMobile,
+                     }]"
+            @click="onClick(t, i)"
+          >
+            <div class="content">
+              <slot name="tab" :item="t">
+                <div
+                  v-if="t.icon" class="icon"
+                  style="--app-sport-image-error-icon-size:14px;"
+                >
+                  <AppImage
+                    v-if="useCloudImg"
+                    style="width: 14px;height: 14px;"
+                    :url="t.icon" is-cloud loading="eager"
+                  />
+                  <BaseIcon v-else :name="t.icon" style="display: block;" />
+                </div>
+                {{ t.label }}
+                <div v-if="t.bubble" class="bubble-wrap">
+                  <div />
+                </div>
+              </slot>
+            </div>
           </div>
         </div>
       </div>
@@ -134,27 +137,44 @@ onMounted(() => {
   max-width: 100%;
 
   .tab-wrap {
-    padding: var(--tg-tab-style-box-padding);
+    padding: var(--tg-tab-style-box-padding) 0;
     background-color: var(--tg-tab-style-wrap-bg-color);
     flex: 1;
     display: flex;
-    gap: var(--tg-spacing-5);
+    // gap: var(--tg-spacing-5);
     scroll-snap-type: x mandatory;
+    .tab-padding-box{
+      flex: 1;
+      display: flex;
+      padding: 0 2.5px;
+      &:first-of-type{
+        padding-left: var(--tg-spacing-5);
+      }
+      &:last-of-type{
+        padding-right:var(--tg-spacing-5) ;
+      }
+    }
   }
 
   .square {
     border-radius: var(--tg-radius-default);
 
-    .tab {
+    .tab-padding-box {
       border-radius: var(--tg-radius-default);
+      .tab{
+        border-radius: var(--tg-radius-default);
+      }
     }
   }
 
   .round {
     border-radius: 100px;
 
-    .tab {
+    .tab-padding-box {
       border-radius: 100px;
+      .tab{
+        border-radius: 100px;
+      }
     }
   }
 
