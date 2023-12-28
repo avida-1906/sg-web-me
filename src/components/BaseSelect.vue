@@ -185,13 +185,14 @@ function onPopperOpen() {
   --tg-base-select-popper-active-color: var(--tg-text-blue);
   --tg-base-select-popopen-bg-color: transparent;
   --tg-base-select-popcontent-lineheight: 1.28572;
+  --tg-base-select-popper-font-weight: var(--tg-font-weight-semibold);
 }
 </style>
 
 <style lang='scss' scoped>
 .popper-label {
   padding: var(--tg-base-select-popper-style-padding-y) var(--tg-base-select-popper-style-padding-x);
-  font-weight: var(--tg-font-weight-semibold);
+  font-weight: var(--tg-base-select-popper-font-weight);
   font-size: var(--tg-base-select-style-font-size);
   color: var(--tg-base-select-popper-label-color);
   background-color: var(--tg-secondary-dark);
