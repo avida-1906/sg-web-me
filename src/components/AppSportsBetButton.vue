@@ -242,7 +242,10 @@ onBeforeUnmount(() => {
 
     .status {
       opacity: 0.4;
+      max-width: 100%;
       white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 
