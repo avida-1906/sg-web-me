@@ -203,15 +203,22 @@ function onPopperOpen() {
   justify-content: space-between;
   align-items: center;
   line-height: 1;
+  max-width: 100%;
   .content {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     line-height: var(--tg-base-select-popcontent-lineheight);
+    .content-label{
+      overflow: hidden;
+
+    }
     .inner-label {
       display: block;
       white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow:hidden ;
     }
   }
   &.pop-open {
@@ -236,6 +243,7 @@ function onPopperOpen() {
     display: flex;
     align-items: center;
     margin-left: var(--tg-spacing-8);
+    flex-shrink: 0;
   }
 
   .up {
