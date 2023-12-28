@@ -1494,7 +1494,8 @@ promotion_tutorial_example_desc1: Alguns dias depois, a aposta efetiva de B1 é 
   desempenho total é 710.000, e o desconto correspondente é O índice é 1 milhão/10.000;
   A tem 160.000 da equipe direta e 850.000 de outras equipes. O desempenho total
   é de 1,01 milhão e a proporção de desconto correspondente é de 1 milhão/10.000.
-  Então a renda entre eles é calculada da seguinte forma
+promotion_tutorial_example_desc2: Então a renda entre eles é calculada da seguinte forma
+promotion_tutorial_example_desc3: Refere-se aos membros que se desenvolvem verticalmente e são chamados coletivamente de equipes diretas.
 promotion_tutorial_direct_team_1: "(1) B1, B2 e B3 contribuem para A: (80.000 +
   50.000 + 30.000) x 100/10.000 = 1.600."
 promotion_tutorial_direct_team_2: "(2) C1 e C2 contribuem para B1: (100.000+40.000)x80/10.000=1120."
