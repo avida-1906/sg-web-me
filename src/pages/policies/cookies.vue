@@ -4,6 +4,11 @@ usePageTitle({ prefix: 'Cookies Policy' })
 const { isLogin } = storeToRefs(useAppStore())
 const { openLoginDialog } = useLoginDialog()
 const { openRegisterDialog } = useRegisterDialog()
+const location = useBrowserLocation()
+const { companyData } = storeToRefs(useAppStore())
+const hostSite = computed(() => (
+  { host: location.value.hostname?.replace('www.', '').toUpperCase(), site: companyData.value?.name.toUpperCase() }
+))
 </script>
 
 <template>
@@ -196,7 +201,7 @@ const { openRegisterDialog } = useRegisterDialog()
       In some instances, we may be compelled by law to disclose your Personal Data to a third party and may have limited control over how it is protected by that party.
     </div>
     <div class="p">
-      By creating an account with Stake.com you accept and understand that you are providing your consent to Stake.com transferring Personal Information for the purposes described in this policy.
+      By creating an account with {{ hostSite.host }} you accept and understand that you are providing your consent to {{ hostSite.host }} transferring Personal Information for the purposes described in this policy.
     </div>
     <h2>External Links</h2>
     <div class="p">

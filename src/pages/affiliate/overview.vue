@@ -19,7 +19,7 @@ const { companyData } = storeToRefs(useAppStore())
     </p>
 
     <div class="tg-affiliate-overview-bottom">
-      <AppCopyLine :label="$t('reco_link')" msg="stake.com/?c=2b1494b2ca" />
+      <AppCopyLine :label="$t('reco_link')" msg="xxx.com/?c=2b1494b2ca" />
       <BaseButton>
         <span>{{ $t('download_ad') }}</span>
         <BaseIcon name="uni-jump-page" />

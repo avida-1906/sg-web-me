@@ -4,6 +4,11 @@ usePageTitle({ prefix: 'Wager Requirements' })
 const { isLogin } = storeToRefs(useAppStore())
 const { openLoginDialog } = useLoginDialog()
 const { openRegisterDialog } = useRegisterDialog()
+const location = useBrowserLocation()
+const { companyData } = storeToRefs(useAppStore())
+const hostSite = computed(() => (
+  { host: location.value.hostname?.replace('www.', '').toUpperCase(), site: companyData.value?.name.toUpperCase() }
+))
 </script>
 
 <template>
@@ -23,7 +28,7 @@ const { openRegisterDialog } = useRegisterDialog()
     <div class="p">
       While having an active wager requirement, users are not allowed to wager on certain games. The list of games are as follows:
     </div>
-    <h1>Stake Originals</h1>
+    <h1>{{ hostSite.site }} Originals</h1>
     <ul>
       <li>
         <div class="p">
@@ -404,7 +409,7 @@ const { openRegisterDialog } = useRegisterDialog()
       </li>
       <li>
         <div class="p">
-          Scudamore's Super Stakes
+          Scudamore's Super {{ hostSite.site }}
         </div>
       </li>
       <li>
