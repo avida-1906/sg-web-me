@@ -193,6 +193,7 @@ onErrorCaptured((err, instance, info) => {
           :style="{
             width: 'var(--width)',
             height: '100%',
+            overflowX: 'hidden',
           }"
         >
           <template

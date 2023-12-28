@@ -718,17 +718,19 @@ onUnmounted(() => {
         >
           {{ t('reuse_bet') }}
         </BaseButton>
-        <BaseSelect
-          v-else
-          v-model="betOrderFilterValue"
-          class="bet-order-filter"
-          :options="betOrderFilterData"
+        <div v-else class="bet-order-filter">
+          <BaseSelect
+            v-model="betOrderFilterValue"
+            class="bet-order-filter"
+            :options="betOrderFilterData"
+            no-hover popper
+            @select="setBetOrderFilterValue"
+          />
+        </div>
 
-          popper no-hover
-          @select="setBetOrderFilterValue"
-        />
         <BaseButton
           type="text"
+          class="clear-all"
           size="none"
           style="--tg-base-button-text-default-color: var(--tg-text-white);"
           @click="sportStore.cart.removeAll()"
@@ -1036,9 +1038,17 @@ onUnmounted(() => {
 }
 
 .bet-order-filter {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  width: 0;
   --tg-base-select-hover-bg-color: var(--tg-secondary-dark);
   --tg-base-select-popper-style-padding-x: 0;
   --tg-base-select-popper-style-padding-y: 0;
   --tg-base-select-popper-label-color: var(--tg-text-lightgrey);
+}
+
+.clear-all {
+  margin-left: var(--tg-spacing-16);
 }
 </style>
