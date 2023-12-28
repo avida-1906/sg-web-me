@@ -1484,8 +1484,9 @@ promotion_tutorial_example_desc: Os descontos neste site são baseados em aposta
   válidas, assumindo que a proporção do desconto é mostrada na tabela no canto superior
   esquerdo. A foi o primeiro a descobrir oportunidades de negócios neste site e
   imediatamente desenvolveu B1, B2 e B3. B1 desenvolveu então C1 e C2. B2 não tinha
-  subordinados e B3 desenvolveu apenas o relativamente poderoso C3. Alguns dias
-  depois, a aposta efetiva de B1 é 80.000, a aposta efetiva de B2 é 50.000, a aposta
+  subordinados e B3 desenvolveu apenas o relativamente poderoso C3.
+promotion_tutorial_example_desc1: Alguns dias depois, a aposta efetiva de B1 é 80.000,
+  a aposta efetiva de B2 é 50.000, a aposta
   efetiva de B3 é 30.000, a aposta efetiva de C1 é 100.000, a aposta efetiva de
   C2 é 40.000 e C3 Minha aposta efetiva chega a 710.000, então o desempenho total
   de B1 vem de C1 e C2, que é 140.000, e o índice de desconto correspondente é 80/10.000;
