@@ -55,8 +55,8 @@ await application.allSettled([runAsync(params.value)])
                 style="--tg-base-button-text-default-color:var(--tg-text-white);"
                 @click="goLeagueDetail(region.pgid, region.pgn, league.ci, league.cn)"
               >
-                <div class="text">
-                  {{ league.cn }} ({{ league.c }})
+                <div class="league">
+                  <span>{{ league.cn }} ({{ league.c }})</span>
                 </div>
               </BaseButton>
             </div>
@@ -88,6 +88,13 @@ await application.allSettled([runAsync(params.value)])
 
   &:hover:not(:disabled) {
     background-color: var(--tg-text-grey);
+  }
+  .league{
+    overflow: hidden;
+    // text-overflow: ellipsis;
+    span{
+      white-space: nowrap;
+    }
   }
 }
 </style>

@@ -65,6 +65,7 @@ button {
   font-weight: var(--tg-base-button-font-weight);
   transition: var(--tg-transition);
   line-height: 1;
+  max-width: 100%;
 
   &.none{
     padding: 0;
