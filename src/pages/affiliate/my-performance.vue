@@ -98,9 +98,7 @@ useListSearch(params, runAsync, resetPage)
           </template>
         </BaseInput>
       </div>
-      <slot name="grand-total" />
     </div>
-
     <BaseTable
       class="page-all-data page-direct-finance"
       :columns="columns"

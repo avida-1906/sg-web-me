@@ -95,15 +95,13 @@ useListSearch(params, runAsync, resetPage)
         :max="endTime"
       />
       <BaseSelect
-        v-model.lazy="currency_id"
-        :options="currencyList"
-      />
-      <BaseSelect
         v-model.lazy="platformId"
         :options="platformIdList"
       />
-
-      <slot name="grand-total" />
+      <BaseSelect
+        v-model.lazy="currency_id"
+        :options="currencyList"
+      />
     </div>
 
     <BaseTable

@@ -72,13 +72,12 @@ useListSearch(params, runAsync, resetPage)
         :max="endTime"
       />
       <div style="max-width: 195px;">
-        <BaseInput v-model="searchValue" :placeholder="t('user_account')">
+        <BaseInput v-model="searchValue" :placeholder="t('player_id')">
           <template #right-icon>
             <BaseIcon name="uni-search" />
           </template>
         </BaseInput>
       </div>
-      <slot name="grand-total" />
     </div>
 
     <BaseTable
