@@ -56,6 +56,7 @@ export const useLanguageStore = defineStore('language', () => {
 
   /** 更换语言 */
   async function changeLanguage(langIndex: EnumLanguage) {
+    Local.remove(STORAGE_MENU_EXPAND_DOMID)
     Local.set(STORAGE_LANGUAGE_KEY, langIndex)
     userLanguage.value = langIndex
     // await loadLanguageAsync(langIndex)
