@@ -19,16 +19,16 @@ const searchValue = useDebouncedRef({ value: '', delay: 1000 })
 
 const columns: Column[] = [
   {
-    title: t('statistical_time'),
-    dataIndex: 'created_at',
-    align: 'center',
-    slot: 'created_at',
-  },
-  {
     title: t('player_id'),
     dataIndex: 'username',
     align: 'center',
     slot: 'username',
+  },
+  {
+    title: t('register_time'),
+    dataIndex: 'created_at',
+    align: 'center',
+    slot: 'created_at',
   },
   {
     title: t('is_first_deposit'),
@@ -90,11 +90,6 @@ useListSearch(params, runAsync, resetPage)
       <template #username="{ record }">
         <AppReportUserName :username="record.username" :level="`${record.vip}`" />
       </template>
-      <template #th-online>
-        <div style="margin-top: var(--tg-spacing-4);">
-          {{ t('times') }}
-        </div>
-      </template>
       <template #deposit_count="{ record }">
         <span
           :style="{
@@ -124,9 +119,6 @@ useListSearch(params, runAsync, resetPage)
         >
           {{ record.online === '2' ? t('active_state') : t('offline') }}
         </span>
-        <div class="hint">
-          {{ record.login_count || 0 }}
-        </div>
       </template>
     </BaseTable>
     <BasePagination
@@ -141,20 +133,9 @@ useListSearch(params, runAsync, resetPage)
 <style lang="scss" scoped>
 .all-data-page {
   --tg-badge-size: 10px;
-  --tg-table-th-padding: var(--tg-spacing-21);
-  --tg-table-td-padding: var(--tg-spacing-21);
-  --tg-table-font-size: var(--tg-font-size-xs);
-  --tg-table-th-color: var(--tg-text-white);
-  --tg-table-line-height:1;
-  --tg-table-th-font-weight: var(--tg-font-weight-normal);
   --tg-base-select-style-color: var(--tg-text-lightgrey);
   --tg-base-select-style-padding-y: var(--tg-spacing-8);
   --tg-base-select-style-padding-right: var(--tg-spacing-28);
-}
-
-.hint {
-  color: var(--tg-text-grey-lighter);
-  margin-top: 4px;
 }
 
 .online {

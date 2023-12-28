@@ -30,16 +30,16 @@ const searchValue = useDebouncedRef({ value: '', delay: 1000 })
 
 const columns: Column[] = [
   {
-    title: t('statistical_time'),
-    dataIndex: 'time',
-    align: 'center',
-    slot: 'time',
-  },
-  {
-    title: t('user_account'),
+    title: t('player_id'),
     dataIndex: 'username',
     align: 'center',
     slot: 'username',
+  },
+  {
+    title: t('statistical_date'),
+    dataIndex: 'time',
+    align: 'center',
+    slot: 'time',
   },
   {
     title: t('receive_amount'),
@@ -162,12 +162,6 @@ useListSearch(params, runAsync, resetPage)
 <style lang="scss" scoped>
 .all-data-page {
   --tg-badge-size: 10px;
-  --tg-table-th-padding: var(--tg-spacing-21);
-  --tg-table-td-padding: var(--tg-spacing-21);
-  --tg-table-font-size: var(--tg-font-size-xs);
-  --tg-table-th-color: var(--tg-text-white);
-  --tg-table-line-height:1;
-  --tg-table-th-font-weight: var(--tg-font-weight-normal);
   --tg-base-select-style-color: var(--tg-text-lightgrey);
   --tg-base-select-style-padding-y: var(--tg-spacing-8);
   --tg-base-select-style-padding-right: var(--tg-spacing-28);

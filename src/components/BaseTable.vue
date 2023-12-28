@@ -181,10 +181,10 @@ watch(() => props.columns, () => {
   --tg-table-th-background: initial;
   --tg-table-th-color: var(--tg-text-lightgrey);
   --tg-table-line-height:1.5;
-  --tg-table-th-padding: var(--tg-spacing-16);
-  --tg-table-td-padding: var(--tg-spacing-16);
+  --tg-table-th-padding-x: var(--tg-spacing-16);
+  --tg-table-td-padding-x: var(--tg-spacing-16);
   --tg-table-th-font-weight: var(--tg-font-weight-semibold);
-  --tg-table-margin-top-empty: 24px;
+  --tg-table-margin-top-empty: var(--tg-spacing-24);
   --tg-table-tr-last-first-padding: var(--tg-spacing-16);
   --tg-table-thtd-radius: var(--tg-radius-default);
 }
@@ -204,8 +204,8 @@ watch(() => props.columns, () => {
     border-spacing: 0;
     margin: 0;
     .m-th {
-      max-height: 53px;
-      padding: var(--tg-table-th-padding);
+      height: 53px;
+      padding: 0 var(--tg-table-th-padding-x);
       color: var(--tg-table-th-color);
       font-weight: var(--tg-table-th-font-weight);
       text-align: left;
@@ -258,7 +258,8 @@ watch(() => props.columns, () => {
     .m-tr {
       border: none;
       .m-td {
-        padding: var(--tg-table-td-padding); // 12px 20px;
+        height: 53px;
+        padding: 0 var(--tg-table-td-padding-x);
         line-height: var(--tg-table-line-height);
         border: none;
         overflow: hidden;

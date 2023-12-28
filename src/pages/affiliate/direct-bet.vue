@@ -36,7 +36,7 @@ const columns: Column[] = [
     slot: 'username',
   },
   {
-    title: t('statistical_time'),
+    title: t('time'),
     dataIndex: 'time',
     align: 'center',
     slot: 'time',
@@ -48,7 +48,7 @@ const columns: Column[] = [
     slot: 'valid_bet_amount',
   },
   {
-    title: t('total_win_lose'),
+    title: t('vip_win_lose'),
     dataIndex: 'net_amount',
     align: 'center',
     slot: 'net_amount',
@@ -100,11 +100,6 @@ useListSearch(params, runAsync, resetPage)
       <template #username="{ record }">
         <AppReportUserName :username="record.username" :level="`${record.vip}`" />
       </template>
-      <template #th-valid_bet_amount>
-        <div style="margin-top: var(--tg-spacing-4);">
-          {{ t('bet_order_num') }}
-        </div>
-      </template>
       <template #time="{ record }">
         <span>
           {{ application.timestampToTime(record.time * 1000, userLanguage) }}
@@ -116,9 +111,6 @@ useListSearch(params, runAsync, resetPage)
             :amount="record.valid_bet_amount"
             :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
           />
-        </div>
-        <div class="hint">
-          {{ record.bet_count }}
         </div>
       </template>
       <template #net_amount="{ record }">
@@ -143,20 +135,9 @@ useListSearch(params, runAsync, resetPage)
 <style lang="scss" scoped>
 .all-data-page {
   --tg-badge-size: 10px;
-  --tg-table-th-padding: var(--tg-spacing-21);
-  --tg-table-td-padding: var(--tg-spacing-21);
-  --tg-table-font-size: var(--tg-font-size-xs);
-  --tg-table-th-color: var(--tg-text-white);
-  --tg-table-line-height:1;
-  --tg-table-th-font-weight: var(--tg-font-weight-normal);
   --tg-base-select-style-color: var(--tg-text-lightgrey);
   --tg-base-select-style-padding-y: var(--tg-spacing-8);
   --tg-base-select-style-padding-right: var(--tg-spacing-28);
-}
-
-.hint {
-  color: var(--tg-text-grey-lighter);
-  margin-top: 4px;
 }
 .page-all-data {
   margin: 20px 0;

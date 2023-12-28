@@ -779,7 +779,7 @@ menu_title_direct_finance: 直属财务
 menu_title_direct_bet: 直属投注
 menu_title_direct_user: 直属用户
 menu_title_direct_receive: 直属领取
-menu_title_commission_rate: 佣金比例
+menu_title_commission_rate: 反佣比例
 menu_title_add_new_subagent: 新增子代理
 menu_title_settings_general: 常规
 menu_title_settings_security: 安全
@@ -805,7 +805,6 @@ total_deposits: 总存款次数
 last_deposits: 最后一次存款
 independent_deposit: 独立存款
 commission_rate: 佣金率
-times: 次数
 wagered: 总投注额
 bet_amount: 投注额
 notify_title_error: 错误
@@ -983,7 +982,7 @@ vip_promotion_exp: 晋级经验
 turnover_multiple: 流水倍数
 multiple: 倍
 effective_bet: 有效投注
-total_win_lose: 总输赢
+total_win_lose: 总赢/输
 rebate_amount: 返佣金额
 bet_order_num: 投注单数量
 rule_desc: 规则说明
@@ -1207,9 +1206,8 @@ commission_cal_tip: 我们所有的游戏都带有不同的庄家优势百分比
 sports_cal_tip: 所有体育投注均以 {rate} 的理论庄家优势进行。您可以使用以下公式来计算您的佣金
 commission_encourage: 您若是个影响力极佳并能触及广大群众，或是处在其他特殊情况下的联盟会员，可请联系我们杰出的支持团队。经与联盟经理人讨论后，我们可争取为您定制一套联盟计划。这可能包括更高的佣金。
 statistical_time: 统计时间
-withdraw_amount: 提款金额
+withdraw_amount: 取款金额
 deposit_amount_label: 存款金额
-deposit_draw_diff: 存款和提款差额
 current_amount: 当前余额
 receive_amount: 领取总额
 agent_commission: 代理佣金
@@ -1748,3 +1746,7 @@ commission_transfer_title: 佣金转换
 old_pwd_tip8: 最小字符长度为 8
 password_least_8_characters_2: 您的密码长度必须至少为 8 个字符
 pwd_unequal: 密码不一致
+cash_profit: 现金利润
+vip_win_lose: 会员输赢
+register_time: 注册时间
+statistical_date: 统计日期
