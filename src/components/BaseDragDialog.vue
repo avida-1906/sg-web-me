@@ -110,7 +110,7 @@ onMounted(() => {
           <!-- <video
           autoplay controls playsinline disablepictureinpicture
           controlslist="nodownload nofullscreen" class="svelte-sbxwoq"
-          src="blob:https://stake.com/d846ec7a-4197-46bf-85a8-5b0179c8d38e"
+          src="blob:https://xxx.com/d846ec7a-4197-46bf-85a8-5b0179c8d38e"
         >
           <track kind="captions">
         </video> -->
