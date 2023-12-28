@@ -38,8 +38,11 @@ function onClick(tab: TabItem, i: number) {
   emit('change', tab.value)
   if (tab.path)
     router.push(tab.path)
-  props.needScrollIntoView && curTabRef.value[i]?.scrollIntoView({
-    behavior: 'smooth', block: 'nearest', inline: 'nearest',
+
+  nextTick(() => {
+    props.needScrollIntoView && curTabRef.value[i]?.scrollIntoView({
+      behavior: 'smooth', block: 'nearest', inline: 'nearest',
+    })
   })
 }
 onMounted(() => {
