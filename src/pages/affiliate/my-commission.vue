@@ -95,15 +95,13 @@ useListSearch(params, runAsync, resetPage)
         :max="endTime"
       />
       <BaseSelect
-        v-model.lazy="currency_id"
-        :options="currencyList"
-      />
-      <BaseSelect
         v-model.lazy="platformId"
         :options="platformIdList"
       />
-
-      <slot name="grand-total" />
+      <BaseSelect
+        v-model.lazy="currency_id"
+        :options="currencyList"
+      />
     </div>
 
     <BaseTable
@@ -128,12 +126,6 @@ useListSearch(params, runAsync, resetPage)
 <style lang="scss" scoped>
 .all-data-page {
   --tg-badge-size: 10px;
-  --tg-table-th-padding: var(--tg-spacing-21);
-  --tg-table-td-padding: var(--tg-spacing-21);
-  --tg-table-font-size: var(--tg-font-size-xs);
-  --tg-table-th-color: var(--tg-text-white);
-  --tg-table-line-height:1;
-  --tg-table-th-font-weight: var(--tg-font-weight-normal);
   --tg-base-select-style-color: var(--tg-text-lightgrey);
   --tg-base-select-style-padding-y: var(--tg-spacing-8);
   --tg-base-select-style-padding-right: var(--tg-spacing-28);
