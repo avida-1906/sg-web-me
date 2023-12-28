@@ -47,10 +47,10 @@ function drawDialog() {
           />
         </div>
         <div class="center btns">
-          <BaseButton bg-style="primary" size="none" round @click="drawDialog">
+          <BaseButton bg-style="primary" size="none" @click="drawDialog">
             {{ $t('wallet') }}
           </BaseButton>
-          <BaseButton type="line" round size="none" @click="commissionRecord">
+          <BaseButton type="line" size="none" @click="commissionRecord">
             {{ $t('record') }}
           </BaseButton>
         </div>

@@ -23,6 +23,7 @@ const {
 const { t } = useI18n()
 const router = useLocalRouter()
 const appStore = useAppStore()
+const { userLanguage } = storeToRefs(useLanguageStore())
 const { openNotify } = useNotify()
 // 获取betInfo接口是否成功
 const { bool: fetchBetInfoStatus, setBool: setFetchBetInfoStatus } = useBoolean(true)
@@ -890,7 +891,7 @@ onUnmounted(() => {
             sports-loading
             @click="bet"
           >
-            {{ t('sports_bet') }}{{ betBtnText }}
+            {{ t('sports_bet') }}{{ userLanguage === 0 ? betBtnText : ` ${betBtnText}` }}
           </BaseButton>
         </template>
       </template>
