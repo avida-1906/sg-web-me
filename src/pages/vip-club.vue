@@ -384,10 +384,10 @@ const tableData: ITableData[] = [
   },
 ]
 
-const vipCols = reactive<Array<{
+const vipCols = computed<Array<{
   title: string
   key: string
-}>>([
+}>>(() => [
   {
     title: t('vip_level_comp'),
     key: 'level',
