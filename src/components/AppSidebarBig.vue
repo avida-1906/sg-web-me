@@ -197,13 +197,13 @@ onBeforeUnmount(() => {
       align-items: center;
       height: 45px;
       padding: 0 16px;
-      cursor: pointer;
+      // cursor: pointer;
       font-weight: var(--tg-font-weight-semibold);
 
-      &:hover, &.active {
-        background-color: var(--tg-secondary-main);
-        --tg-icon-color: var(--tg-text-white);
-      }
+      // &:hover, &.active {
+      //   background-color: var(--tg-secondary-main);
+      //   --tg-icon-color: var(--tg-text-white);
+      // }
 
       span {
         padding-left: 6px;
