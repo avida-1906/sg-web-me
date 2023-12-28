@@ -317,10 +317,16 @@ function downloadQr() {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 15px;
+    width: fit-content;
     &.is-less-than-sm{
       grid-template-columns: repeat(1, 1fr);
+      width: 100%;
+      > div {
+        width: auto;
+      }
     }
     > div{
+      width: 210px;
       background-color: var(--tg-secondary-dark);
       padding: var(--tg-spacing-16) var(--tg-spacing-16);
       display: flex;
