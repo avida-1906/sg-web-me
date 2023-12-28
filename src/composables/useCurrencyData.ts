@@ -92,22 +92,22 @@ export const currencyConfig: Record<EnumCurrencyKey, CurrencyValue> = {
     bankTree: '019007',
   },
   CAD: {
-    prefix: 'C$',
+    prefix: 'CA$',
     cur: '712',
     bankTree: '019008',
   },
   ARS: {
-    prefix: '$',
+    prefix: 'ARS',
     cur: '713',
     bankTree: '019009',
   },
   CLP: {
-    prefix: '$',
+    prefix: 'CLP',
     cur: '714',
     bankTree: '019010',
   },
   PEN: {
-    prefix: 'S/',
+    prefix: 'PEN',
     cur: '715',
     bankTree: '019011',
   },
