@@ -163,11 +163,14 @@ const onPlayCount = ref(Math.ceil(Math.random() * 1000).toFixed())
     left: 0;
   }
   .game-title{
+    width: 100%;
+    height: 100%;
     color: var(--tg-text-lightgrey);
-    font-size: var(--tg-font-size-md);
+    font-size: var(--tg-font-size-base);
     position: absolute;
-    top: 6px;
-    left: 6px;
+    top: 0;
+    left: 0;
+    padding: 10px;
   }
 
   // .active-game-item {
