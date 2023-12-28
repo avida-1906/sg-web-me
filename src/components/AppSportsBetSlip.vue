@@ -533,6 +533,7 @@ watchEffect(() => {
     .closed {
       justify-self: flex-end;
       color: var(--tg-text-error);
+      white-space: nowrap;
     }
 
     .footer {
