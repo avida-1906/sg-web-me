@@ -6,12 +6,12 @@ export function useScaleData() {
 
   /** 1真人 2捕鱼 3电子 4体育 5棋牌 6电竞 */
   const list = [
-    { label: t('live'), value: '1' },
-    { label: t('fishing'), value: '2' },
-    { label: t('slot'), value: '3' },
-    { label: t('sports'), value: '4' },
-    { label: t('chess'), value: '5' },
-    { label: t('electric_game'), value: '6' },
+    { label: t('slot'), value: '3', icon: 'chess-slot-machine' },
+    { label: t('fishing'), value: '2', icon: 'spt-user-bet' },
+    { label: t('chess'), value: '5', icon: 'tabbar-game' },
+    { label: t('live'), value: '1', icon: 'chess-live-casino' },
+    { label: t('sports'), value: '4', icon: 'spt-soccer' },
+    // { label: t('electric_game'), value: '6' },
   ]
 
   return {

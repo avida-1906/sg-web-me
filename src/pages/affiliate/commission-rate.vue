@@ -56,7 +56,6 @@ const list = computed(() => {
         v-model="tab"
         style="--tg-tab-style-color: var(--tg-text-lightgrey);"
         :list="tabList"
-        line-style
         :center="false"
       />
     </div>
@@ -86,6 +85,7 @@ const list = computed(() => {
   --tg-base-select-style-color: var(--tg-text-lightgrey);
   --tg-base-select-style-padding-y: var(--tg-spacing-8);
   --tg-base-select-style-padding-right: var(--tg-spacing-28);
+  --tg-tab-style-wrap-bg-color: var(--tg-primary-main);
 }
 
 .hint {
