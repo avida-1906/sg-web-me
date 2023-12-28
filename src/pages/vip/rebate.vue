@@ -15,11 +15,11 @@ const prefix = computed(() =>
 const allPlatforms = computed(() =>
   platformList.value.sort((a, b) => b.seq - a.seq).concat(providerList.value.sort((a, b) => b.seq - a.seq)))
 const tabList = computed(() => [
-  { label: t('slot'), value: '3' },
-  { label: t('fishing'), value: 'by' },
-  { label: t('chess'), value: 'qp' },
-  { label: t('live'), value: '1' },
-  { label: t('sports'), value: '4' },
+  { label: t('slot'), value: '3', icon: 'chess-slot-machine' },
+  { label: t('fishing'), value: 'by', icon: 'spt-user-bet' },
+  { label: t('chess'), value: 'qp', icon: 'tabbar-game' },
+  { label: t('live'), value: '1', icon: 'chess-live-casino' },
+  { label: t('sports'), value: '4', icon: 'spt-soccer' },
 ].filter(item =>
   allPlatforms.value.filter(p => p.game_type === item.value).length))
 const filteredPlatforms = computed(() =>
@@ -68,7 +68,6 @@ watch(tabList, (val) => {
           v-model="tab"
           style="--tg-tab-style-color: var(--tg-text-lightgrey);"
           :list="tabList"
-          line-style
           :center="false"
         />
       </div>
@@ -87,10 +86,10 @@ watch(tabList, (val) => {
 
 <style lang="scss" scoped>
 .small-text {
-  font-size: 12px;
+  font-size: var(--tg-font-size-xs);
 }
 .vip-badge {
-  font-size: 32px;
+  font-size: var(--tg-font-size-3xl);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -99,15 +98,8 @@ watch(tabList, (val) => {
   display: flex;
   flex-direction: column;
   gap: var(--tg-spacing-14);
-  // --tg-table-th-background: var(--tg-secondary-grey);
-  // --tg-table-even-background: var(--tg-primary-main);
-  // --tg-table-odd-background: var(--tg-secondary-grey);
-  // --tg-table-thtd-radius: 0;
-  --tg-table-font-size: 12px;
-  --tg-app-amount-font-size: 12px;
-  :deep(th) {
-    font-size: 14px;
-  }
+  --tg-tab-style-wrap-bg-color: var(--tg-primary-main);
+  --tg-app-amount-font-size: var(--tg-font-size-xs);
   .tabs-outer {
     background: var(--tg-secondary-dark);
   }
@@ -118,12 +110,12 @@ watch(tabList, (val) => {
     }
   }
   .tabs {
-    background: #0F212E;
-    padding: 0px 12px 12px;
-    border-radius: 4px;
+    background: var(--tg-secondary-dark);
+    padding: var(--tg-spacing-12);
+    border-radius: var(--tg-radius-default);
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: var(--tg-spacing-12);
   }
 }
 </style>

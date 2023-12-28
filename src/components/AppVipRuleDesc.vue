@@ -66,7 +66,7 @@
   font-weight: var(--tg-font-weight-semibold);
   line-height: 1.5;
   background: var(--tg-secondary-dark);
-  padding: var(--tg-spacing-16);
+  padding: var(--tg-spacing-12);
   width: 100%;
   position: relative;
   overflow: hidden;

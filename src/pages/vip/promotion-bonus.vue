@@ -84,45 +84,43 @@ onMounted(() => {
                 +vip + 1 === +record.level,
               'lower-vip': +record.level <= +vip && bonusArray.length,
             }"
+            :style="{ '--progress-width': floor(score / record.score, 1) }"
           >
-            <span
-              class="text"
-              :style="{ '--progress-width': floor(score / record.score, 1) }"
-            >
-              <span v-if="+vip + 1 < +record.level">
-                {{ record.score }}
-              </span>
-              <span
-                v-else-if="+vip + 1 === +record.level"
-              >
-                {{ score }}/
-                {{ record.score }}
-              </span>
-              <span
-                v-else-if="+vip >= +record.level"
-                class="dark-bar"
-              >
-                <span
-                  v-if="bonusArray.length
-                    && bonusArray.filter(b => +b.vip === +record.level
-                      && +b.state === 1).length"
-                  class="green-text small-text"
-                  @click="() => openReceive(bonusArray.filter(b =>
-                    +b.vip === +record.level && +b.state === 1)[0])"
-                >
-                  {{ t('can_receive') }}
-                </span>
-                <span
-                  v-else-if="bonusArray.length
-                    && bonusArray.filter(b => +b.vip === +record.level
-                      && +b.state === 2).length"
-                  class="small-text"
-                >
-                  {{ t('received') }}</span>
-                <span v-else class="small-text">{{ t('upgraded') }}</span>
-              <!-- <span v-else>{{ record.score }}</span> -->
-              </span>
+            <!-- <span class="text"> -->
+            <span v-if="+vip + 1 < +record.level">
+              {{ record.score }}
             </span>
+            <span
+              v-else-if="+vip + 1 === +record.level"
+            >
+              {{ score }}/
+              {{ record.score }}
+            </span>
+            <template v-else-if="+vip >= +record.level">
+              <BaseButton
+                v-if="bonusArray.length
+                  && bonusArray.filter(b => +b.vip === +record.level
+                    && +b.state === 1).length"
+                bg-style="primary"
+                custom-padding
+                @click="() => openReceive(bonusArray.filter(b =>
+                  +b.vip === +record.level && +b.state === 1)[0])"
+              >
+                {{ t('can_receive') }}
+              </BaseButton>
+              <BaseButton
+                v-else-if="bonusArray.length
+                  && bonusArray.filter(b => +b.vip === +record.level
+                    && +b.state === 2).length"
+
+                custom-padding disabled
+              >
+                {{ t('received') }}
+              </BaseButton>
+              <span v-else class="small-text">{{ t('upgraded') }}</span>
+              <!-- <span v-else>{{ record.score }}</span> -->
+            </template>
+            <!-- </span> -->
           </div>
         </template>
         <template #up_gift="{ record }">
@@ -169,37 +167,36 @@ onMounted(() => {
   max-width: 290px;
   margin: 0 auto;
   border-radius: 20px;
-  background: rgba(47, 69, 84, 0.70);
+  // background: rgba(47, 69, 84, 0.70);
   color: var(--tg-text-white);
   display: block;
   width: 100%;
-  .green-text {
-    color: var(--tg-text-green);
-    cursor: pointer;
-  }
 }
 .score-wrap {
   display: flex;
   align-items: center;
   justify-content: center;
-  > span {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  svg {
-    margin-left: var(--tg-spacing-8);
-  }
+  --tg-base-button-padding-y: 10px;
+  --tg-base-button-padding-x: 37px;
+  --tg-base-button-font-weight: 500;
+  --tg-base-button-font-size: 12px;
+  // > span {
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: center;
+  // }
+  // svg {
+  //   margin-left: var(--tg-spacing-8);
+  // }
 }
 .user-level-vip {
-  background: rgba($color: var(--tg-color-green-rgb), $alpha: 0.3);
-  color: var(--tg-text-black);
+  background: #344452;
   max-width: 290px;
   margin: 0 auto;
   border-radius: 20px;
-  font-weight: var(--tg-font-weight-semibold);
   position: relative;
   overflow: hidden;
+  color: var(--tg-text-white);
   span {
     position: relative;
     display: flex;
@@ -212,7 +209,7 @@ onMounted(() => {
     left: 0;
     width: var(--progress-width);
     height: 100%;
-    background-color: var(--tg-text-green);
+    background-color: #44883E;
     border-radius: 20px;
   }
 }
@@ -227,16 +224,9 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   gap: var(--tg-spacing-14);
-  // --tg-table-th-background: var(--tg-secondary-grey);
-  // --tg-table-even-background: var(--tg-primary-main);
-  // --tg-table-odd-background: var(--tg-secondary-grey);
-  // --tg-table-thtd-radius: 0;
-  --tg-table-font-size: 12px;
+  // --tg-table-font-size: 12px;
   --tg-app-amount-font-size: 12px;
   overflow: visible;
-  :deep(th) {
-    font-size: 14px;
-  }
   &.is-mobile {
     .tabs {
       // padding: 0 12px;
@@ -244,9 +234,9 @@ onMounted(() => {
     }
   }
   .tabs {
-    background: #0F212E;
+    background: var(--tg-secondary-dark);
     padding: 12px 12px;
-    border-radius: 4px;
+    border-radius: var(--tg-radius-default);
   }
 }
 </style>
