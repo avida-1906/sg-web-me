@@ -69,7 +69,7 @@ const {
   },
 })
 
-const { selected: betOrderSelectValue, list: betOrderData } = useSelect([
+const selectTabsOne = computed(() => [
   {
     label: t('sports_single_bet'),
     value: EnumsBetSlipBetSlipTabStatus.single,
@@ -81,13 +81,23 @@ const { selected: betOrderSelectValue, list: betOrderData } = useSelect([
     icon: 'navbar-bet-mult',
   },
 ])
-initBetOrderTab()
 
-const { selected: betOrderFilterValue, list: betOrderFilterData } = useSelect([
+const selectTabsTwo = computed(() => [
   { label: t('sports_accept_any_odds'), value: EnumOddsChange.acceptAnyOddsChange },
   { label: t('sports_accept_higher_odds'), value: EnumOddsChange.acceptHigherOdds },
   { label: t('sports_accept_none_odds'), value: EnumOddsChange.notAcceptAnyOddsChange },
 ])
+
+const {
+  selected: betOrderSelectValue,
+  list: betOrderData,
+} = useSelect(selectTabsOne.value)
+initBetOrderTab()
+
+const {
+  selected: betOrderFilterValue,
+  list: betOrderFilterData,
+} = useSelect(selectTabsTwo.value)
 
 let setAmount = (_value: number) => {}
 let deleteAmount = () => {}
