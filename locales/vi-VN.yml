@@ -943,6 +943,7 @@ sports_index_description: 'Đặt cược vào các đội thể thao, người 
 chat_been_hide: Phòng trò chuyện đã bị ẩn
 chat_show_room: hiển thị phòng trò chuyện
 chat_stop_by_scroll: cuộc trò chuyện đã dừng khi rê chuột
+chat_new_msgs_count: tin nhắn mới
 chat_command_see_bet: Xem bđơn cược
 chat_command_see_user: Xem khách chơi
 chat_command_tip_user: Gửi tiền bo cho khách chơi
