@@ -10,7 +10,7 @@ const {
 } = storeToRefs(useWindowStore())
 
 const location = useBrowserLocation()
-const { data: proData } = useRequest(ApiGetMyPro, { manual: false })
+const { data: proData, loading: loadMyData } = useRequest(ApiGetMyPro, { manual: false })
 // const proData = ref({
 //   link_url: '/?uid=dsfoxuf223k3h42',
 //   commission: {
@@ -67,9 +67,12 @@ const socialData = [
 ]
 
 const commission = computed(() => [
-  { label: t('accu_commission'), value: proData.value?.commission?.accumulated },
-  { label: t('received_commission'), value: proData.value?.commission?.received },
-  { label: t('last_commission'), value: proData.value?.commission?.last_commission },
+  { label: t('accu_commission'), value: proData.value?.commission?.accumulated ?? '' },
+  { label: t('received_commission'), value: proData.value?.commission?.received ?? '' },
+  {
+    label: t('last_commission'),
+    value: proData.value?.commission?.last_commission ?? '',
+  },
 ])
 
 const performance = computed(() => [
@@ -91,9 +94,15 @@ const performance = computed(() => [
 ])
 
 const bet = computed(() => [
-  { label: t('total_effect_bets'), value: proData.value?.subordinate?.valid_bet_amount },
-  { label: t('total_bet_order'), value: proData.value?.subordinate?.bet_num },
-  { label: t('slash_win_lose_total'), value: proData.value?.subordinate?.net_amount },
+  {
+    label: t('total_effect_bets'),
+    value: proData.value?.subordinate?.valid_bet_amount ?? '',
+  },
+  { label: t('total_bet_order'), value: proData.value?.subordinate?.bet_num ?? '' },
+  {
+    label: t('slash_win_lose_total'),
+    value: proData.value?.subordinate?.net_amount ?? '',
+  },
 ])
 
 function downloadQr() {
@@ -161,9 +170,10 @@ function downloadQr() {
       <div class="item-content grid-wrap" :class="{ 'is-less-than-sm': isLessThanSm }">
         <div v-for="(item, index) in commission" :key="index">
           <span>{{ item.label }} </span>
-          <span class="yellow money-usdt">
-            {{ item.value }}<BaseIcon name="coin-usdt" />
-          </span>
+          <div class="yellow">
+            <BaseSkeleton v-if="loadMyData" height="14px" animated="ani-opacity" />
+            <AppAmount v-else :amount="item.value" currency-type="USDT" />
+          </div>
         </div>
       </div>
     </div>
@@ -181,9 +191,13 @@ function downloadQr() {
       <div class="item-content grid-wrap" :class="{ 'is-less-than-sm': isLessThanSm }">
         <div v-for="(item, index) in performance" :key="index">
           <span>{{ item.label }} </span>
-          <span class="money-usdt">
-            {{ item.value }}<BaseIcon v-if="index > 2" name="coin-usdt" />
-          </span>
+          <div>
+            <BaseSkeleton v-if="loadMyData" height="14px" animated="ani-opacity" />
+            <template v-else>
+              <AppAmount v-if="index > 2" :amount="item.value" currency-type="USDT" />
+              <span v-else> {{ item.value }}</span>
+            </template>
+          </div>
         </div>
       </div>
     </div>
@@ -201,9 +215,10 @@ function downloadQr() {
       <div class="item-content grid-wrap" :class="{ 'is-less-than-sm': isLessThanSm }">
         <div v-for="(item, index) in bet" :key="index">
           <span>{{ item.label }} </span>
-          <span class="money-usdt" :class="{ green: index === 2 }">
-            {{ item.value }}<BaseIcon name="coin-usdt" />
-          </span>
+          <div :class="{ green: index === 2 }">
+            <BaseSkeleton v-if="loadMyData" height="14px" animated="ani-opacity" />
+            <AppAmount v-else :amount="item.value" currency-type="USDT" />
+          </div>
         </div>
       </div>
     </div>
@@ -211,18 +226,13 @@ function downloadQr() {
 </template>
 
 <style lang="scss" scoped>
-.money-usdt {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
 .tg-affiliate-retention {
   font-size: var(--tg-font-size-default);
   color: var(--tg-text-white);
   > .retention-item+.retention-item {
     background-color: var(--tg-secondary-grey);
     padding: 0 24px 24px;
-    border-radius: 4px;
+    border-radius: var(--tg-radius-default);
     .item-title {
       padding-left: 0;
     }
