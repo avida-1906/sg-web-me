@@ -79,7 +79,7 @@ function openRecord() {
     justify-content: space-between;
     line-height: var(--tg-spacing-20);
     overflow: hidden;
-    white-space: nowrap;
+    white-space: normal;
     font-size: var(--tg-font-size-default);
     font-weight: var(--tg-font-weight-semibold);
     button {
