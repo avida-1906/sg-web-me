@@ -1456,8 +1456,9 @@ promotion_tutorial_example_desc1: Vài ngày sau, mức đặt cược hiệu qu
   B2 không có cấp dưới là 0; cấp dưới C3 của B3 rất mạnh, tổng hiệu suất là 710.000
   và tỷ lệ chi trả hoa hồng tương ứng là Tỷ lệ là 1 triệu/10.000, A có 160.000 từ
   đội trực tiếp và 850.000 từ các đội khác, tổng hiệu suất là 1,01 triệu và tỷ lệ
-  chi trả hoa hồng tương ứng là 1 triệu/10.000. Khi đó thu nhập giữa họ được tính
-  như sau
+  chi trả hoa hồng tương ứng là 1 triệu/10.000.
+promotion_tutorial_example_desc2: Khi đó thu nhập giữa họ được tính như sau
+promotion_tutorial_example_desc3: Nó dùng để chỉ những thành viên phát triển theo chiều dọc và được gọi chung là đội trực tiếp.
 promotion_tutorial_direct_team_1: "(1) B1, B2, B3 đóng góp vào A: (80.000 + 50.000
   + 30.000) x 100/10.000 = 1.600."
 promotion_tutorial_direct_team_2: "(2) C1 và C2 đóng góp vào B1: (100.000+40.000)x80/10.000=1120."

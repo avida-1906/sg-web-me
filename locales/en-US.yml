@@ -1470,8 +1470,9 @@ promotion_tutorial_example_desc1: A few days later, B1’s effective bet is
   subordinates is 0; the subordinate C3 of B3 is powerful, the total performance
   is 710,000, and the corresponding rebate is The ratio is 1 million/10,000; A has
   160,000 from the direct team and 850,000 from other teams. The total performance
-  is 1.01 million, and the corresponding rebate ratio is 1 million/10,000. Then
-  the income between them is calculated as follows
+  is 1.01 million, and the corresponding rebate ratio is 1 million/10,000.
+promotion_tutorial_example_desc2: Then the income between them is calculated as follows
+promotion_tutorial_example_desc3: It refers to members who develop vertically and are collectively called direct teams.
 promotion_tutorial_direct_team_1: "(1) B1, B2, and B3 contribute to A: (80,000 +
   50,000 + 30,000) x 100/10,000 = 1,600."
 promotion_tutorial_direct_team_2: "(2) C1 and C2 contribute to B1: (100,000+40,000)x80/10,000=1120."

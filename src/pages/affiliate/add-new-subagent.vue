@@ -38,9 +38,44 @@ const {
     resetPwd()
   },
 })
+const {
+  value: email,
+  errorMessage: emailErrorMsg,
+  validate: validateEmail,
+  setErrors: setEmailErrors,
+} = useField<string>('email', (value) => {
+  const lastAtIdx = value ? value.lastIndexOf('@') : -1
+  const lastDotIdx = value ? value.lastIndexOf('.') : -1
+  if (!value)
+    return t('no_support_email')
+
+  else if (!value.includes('@'))
+    return [t('email_add_char', { delta: '@' })]
+
+  else if (!value.includes('.'))
+    return t('email_add_char', { delta: '.' })
+
+  else if (lastDotIdx === value.length - 1)
+    return t('no_support_email')
+
+  else if (value === password.value)
+    return t('email_no_equal_password')
+
+  else if (!emailReg.test(value))
+    return t('pls_input_email')
+
+  // 请在您的电邮地址中加入 “@” 符号
+  // 请在您的电邮地址中加入 “.” 符号
+  // 电子邮件域不受支持
+  // 请输入有效的电邮地址
+  return ''
+})
 
 const nameRef = ref()
 const pwdRef = ref()
+const birthdayInputRef = ref()
+const birthday = ref('')
+const emailRef = ref()
 
 function fieldVerifyLoginPwd(value: string) {
   if (!value)
@@ -56,8 +91,13 @@ function fieldVerifyLoginPwd(value: string) {
 async function submitRegister() {
   nameRef.value.setTouchTrue()
   pwdRef.value.setTouchTrue()
+  emailRef.value.setTouchTrue()
+  await validateEmail()
   await valiUsername()
   await valiPassword()
+  await birthdayInputRef.value.valiBirthday()
+  if (!birthdayInputRef.value.isValid)
+    return
   if (!usernameErrorMsg.value && !pwdErrorMsg.value) {
     runAgencyInsert({
       username: username.value,
@@ -69,31 +109,43 @@ async function submitRegister() {
 
 <template>
   <div class="layout-spacing reset page-new-subagent">
-    <BaseInput
-      ref="nameRef"
-      v-model="username"
-      :msg="usernameErrorMsg"
-      :placeholder="t('input_mem_account')"
-      msg-after-touched
-    >
-      <template #left-icon>
-        <BaseIcon name="navbar-user" />
-      </template>
-    </BaseInput>
-    <BaseInput
-      ref="pwdRef"
-      v-model="password"
-      type="password"
-      :msg="pwdErrorMsg"
-      :placeholder="t('pls_enter_password')"
-      msg-after-touched
-    >
-      <template #left-icon>
-        <BaseIcon name="uni-lock" />
-      </template>
-    </BaseInput>
+    <div class="title">
+      注册子代理
+    </div>
+    <BaseLabel :label="t('email_address')" need-focus must-small>
+      <BaseInput
+        ref="emailRef"
+        v-model="email"
+        :msg="emailErrorMsg"
+        msg-after-touched
+      />
+    </BaseLabel>
+    <BaseLabel :label="t('username')" must-small need-focus>
+      <BaseInput
+        ref="nameRef"
+        v-model="username"
+        :msg="usernameErrorMsg"
+        name="name"
+        msg-after-touched
+      />
+      <div v-if="!usernameErrorMsg" class="hint">
+        {{ t('username_incorrect') }}
+      </div>
+    </BaseLabel>
+    <BaseLabel :label="t('password')" must-small need-focus>
+      <BaseInput
+        ref="pwdRef"
+        v-model="password"
+        type="password"
+        :msg="pwdErrorMsg"
+        msg-after-touched
+      />
+    </BaseLabel>
+    <BaseLabel :label="t('time_birthday')" must-small>
+      <BaseInputBirthday ref="birthdayInputRef" v-model="birthday" />
+    </BaseLabel>
     <BaseButton
-      bg-style="primary" size="md"
+      bg-style="secondary" size="md"
       :loading="loadingAgencyInsert" @click="submitRegister"
     >
       {{ t('submit_reg') }}
@@ -106,5 +158,16 @@ async function submitRegister() {
   gap: var(--tg-spacing-20);
   max-width: 420px;
   margin: 0 auto;
+  .title{
+    text-align: center;
+    color:var(--tg-text-white);
+    font-size: var(--tg-font-size-md);
+    font-weight: var(--tg-font-weight-semibold);
+  }
+  .hint {
+    padding: var(--tg-spacing-8) var(--tg-spacing-4) var(--tg-spacing-4) 0;
+    font-size: var(--tg-font-size-xs);
+    color: var(--tg-secondary-light);
+  }
 }
 </style>
