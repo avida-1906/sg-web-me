@@ -1,6 +1,9 @@
 <script lang="ts" setup>
 const { t } = useI18n()
 const { openNotify } = useNotify()
+
+const registerFormRef = ref()
+
 const {
   run: runAgencyInsert,
   loading: loadingAgencyInsert,
@@ -10,36 +13,26 @@ const {
       type: 'success',
       message: t('success_register'),
     })
-    // resetName()
-    // resetPwd()
+    registerFormRef.value?.resetForm()
   },
 })
 
-const registerFormRef = ref()
-
 async function submitRegister() {
-  const paramsReg = registerFormRef.value.getMemberReg()
-  if (paramsReg) {
-    runAgencyInsert({
-      username: paramsReg.username,
-      password: paramsReg.password,
-    })
-  }
-  // nameRef.value.setTouchTrue()
-  // pwdRef.value.setTouchTrue()
-  // emailRef.value.setTouchTrue()
-  // await validateEmail()
-  // await valiUsername()
-  // await valiPassword()
-  // await birthdayInputRef.value.valiBirthday()
-  // if (!birthdayInputRef.value.isValid)
-  //   return
-  // if (!usernameErrorMsg.value && !pwdErrorMsg.value) {
-  //   runAgencyInsert({
-  //     username: username.value,
-  //     password: password.value,
-  //   })
-  // }
+  registerFormRef.value?.getMemberReg((paramsReg: {
+    username: string
+    password: string
+    email: string
+    birthday: string
+  }) => {
+    if (paramsReg) {
+      runAgencyInsert({
+        username: paramsReg.username,
+        password: paramsReg.password,
+        email: paramsReg.email,
+        birthday: paramsReg.birthday,
+      })
+    }
+  })
 }
 </script>
 

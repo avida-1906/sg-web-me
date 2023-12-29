@@ -1815,6 +1815,10 @@ export function ApiAgencyInsert(data: {
   username: string
   /** 会员密码 */
   password: string
+  /** 邮箱 */
+  email: string
+  /** 出生日期 */
+  birthday: string
 }) {
   return httpClient.post<string>('/agency/insert', data)
 }
