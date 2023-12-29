@@ -3,7 +3,7 @@ import type { IMemberReg } from '~/apis/types'
 
 interface Props {
   /** 是否在注册弹框中 */
-  isRegister: boolean
+  isRegister?: boolean
 }
 const props = withDefaults(defineProps<Props>(), {
   isRegister: false,
@@ -37,6 +37,7 @@ const {
   errorMessage: pwdErrorMsg,
   validate: validatePassword,
   meta: pwdMeta,
+  resetField: restPwd,
 } = useField<string>('password', (value) => {
   if (!value)
     return t('password_least_8_characters')
@@ -53,6 +54,7 @@ const {
   errorMessage: emailErrorMsg,
   validate: validateEmail,
   setErrors: setEmailErrors,
+  resetField: restEmail,
 } = useField<string>('email', (value) => {
   const lastAtIdx = value ? value.lastIndexOf('@') : -1
   const lastDotIdx = value ? value.lastIndexOf('.') : -1
@@ -85,6 +87,7 @@ const {
   errorMessage: usernameErrorMsg,
   validate: validateUsername,
   setErrors: setUsernameErrors,
+  resetField: restName,
 } = useField<string>('username', (value) => {
   if (!value)
     return t('name_3_char')
@@ -194,7 +197,7 @@ const { runAsync: runExists } = useRequest(ApiMemberExists, {
   },
 })
 
-async function getMemberReg(callBack: () => void) {
+async function getMemberReg(callBack: (data: any) => void) {
   if (needName.value) {
     userNameRef.value?.setTouchTrue()
     await validateUsername()
@@ -246,8 +249,7 @@ async function getMemberReg(callBack: () => void) {
       Session.set(STORAGE_REG_PARAMS_KEYWORDS, paramsReg)
       setNeedSaveFormDataTrue()
     }
-    callBack && callBack()
-    return paramsReg
+    callBack && callBack(paramsReg)
     // closeDialog()
     // await nextTick()
     // openTermsConditionsDialog()
@@ -278,6 +280,13 @@ async function onEmailUsernameBlur(type: 1 | 2) {
   if (type === 2 && email.value && !emailErrorMsg.value)
     await runExists({ ty: type, val: email.value })
 }
+function resetForm() {
+  restPwd()
+  restEmail()
+  restName()
+  resetEmailCode()
+  birthdayInputRef.value.resetBirthday()
+}
 
 onMounted(() => {
   emailRef.value?.getFocus()
@@ -301,7 +310,7 @@ onUnmounted(() => {
   }
 })
 
-defineExpose({ getMemberReg })
+defineExpose({ getMemberReg, resetForm })
 </script>
 
 <template>
