@@ -30,8 +30,12 @@ const listToCartData = ref<ISportListToCartData>({
   mlid: props.cartInfo.mlid,
 })
 const _disabled = ref(props.disabled || +listToCartData.value.ov === 0)
+const isZeroOdd = computed(() => +listToCartData.value.ov === 0)
 
 function clickHandler() {
+  if (isZeroOdd.value)
+    return
+
   if (!rightIsExpand.value && !isMobile.value)
     openRightSidebar(EnumRightSidebarContent.BETTING)
 
@@ -145,7 +149,7 @@ onBeforeUnmount(() => {
       </div>
       <span class="status">{{ t('sports_status_timeout') }}</span>
     </div>
-    <AppSportsOutcomeLocked v-else-if="+listToCartData.ov === 0" size="none" />
+    <AppSportsOutcomeLocked v-else-if="isZeroOdd" size="none" />
     <div v-else class="content" :class="[layout]">
       <div class="name">
         {{ title || '-' }}
