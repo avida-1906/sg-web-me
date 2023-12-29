@@ -1919,7 +1919,7 @@ deal_contract: Thỏa thuận giao dịch
 account_type: Loại tài khoản
 saving_bank: Ngân hàng nhận tiền
 order_num: Mã đơn cược
-copy_addr_suc: Đã sao chép thành công
+copy_addr_suc: Đã sao chép thành công!
 pls_enter_savor_name: Vui lòng điền họ tên người nạp tiền
 savor_name: Họ tên người nhận tiền
 open_addr: Trang mở tài khoản
