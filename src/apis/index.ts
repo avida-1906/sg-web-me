@@ -278,6 +278,14 @@ export function ApiMemberGameLobby() {
       total: number
       games: CasinoLobbyGameItem[]
     }[]
+    sidebars: {
+      ty: number
+      cid: string
+      platform_id: string
+      name: string
+      icon: string
+      background: string
+    }[]
   }>('/member/game/lobby')
 }
 
