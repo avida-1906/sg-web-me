@@ -2,11 +2,12 @@ import AppReceiveBonusDialog from '~/components/AppReceiveBonusDialog.vue'
 
 export function useDialogReceiveBonus(cb?: () => void) {
   const { t } = useI18n()
+  const title = computed(() => t('receive_bonus'))
   const {
     openDialog: openReceiveBonusDialog,
     closeDialog: closeReceiveBonusDialog,
   } = useDialog({
-    title: t('receive_bonus'),
+    title: title.value,
     icon: 'chat-tip',
     default: ({ feedBackItem, totalBonus, vipBonus, vipBonusId }) =>
       h(AppReceiveBonusDialog, {

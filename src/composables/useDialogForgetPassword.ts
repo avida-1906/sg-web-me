@@ -2,12 +2,12 @@ import AppForgetPasswordDialog from '~/components/AppForgetPasswordDialog.vue'
 
 export function useForgetPasswordDialog() {
   const { t } = useI18n()
-
+  const title = computed(() => t('forgot_password'))
   const {
     openDialog: openForgetPasswordDialog,
     closeDialog: closeForgetPasswordDialog,
   } = useDialog({
-    title: t('forgot_password'),
+    title: title.value,
     icon: 'uni-set',
     default: () => h(AppForgetPasswordDialog),
   })

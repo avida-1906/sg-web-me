@@ -2,12 +2,12 @@ import AppAgentCommissionDrawDialog from '~/components/AppAgentCommissionDrawDia
 
 export function useDialogAgentCommissionDraw() {
   const { t } = useI18n()
+  const title = computed(() => t('commission_transfer_title'))
   const {
     openDialog: openAgentCommissionDrawDialog,
     closeDialog: closeAgentCommissionDrawDialog,
   } = useDialog({
-    // title: t('receive_agent_commission_label'),
-    title: t('commission_transfer_title'),
+    title: title.value,
     icon: 'chat-tip',
     default: () => h(AppAgentCommissionDrawDialog),
   })

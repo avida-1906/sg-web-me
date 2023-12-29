@@ -2,11 +2,12 @@ import AppRegisterTermsConditions from '~/components/AppRegisterTermsConditions.
 
 export function useDialogAuthTerms() {
   const { t } = useI18n()
+  const title = computed(() => `${t('reg')} OAuth`)
   const {
     openDialog: openTermsDialog,
     closeDialog: closeTermsDialog,
   } = useDialog({
-    title: `${t('reg')} OAuth`,
+    title: title.value,
     icon: '',
     default: () => h(AppRegisterTermsConditions, { isAuth: true }),
   })

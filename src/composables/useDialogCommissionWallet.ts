@@ -2,11 +2,12 @@ import AppCommissionWalletDialog from '~/components/AppCommissionWalletDialog.vu
 
 export function useDialogCommissionWallet() {
   const { t } = useI18n()
+  const title = computed(() => t('commission_wallet'))
   const {
     openDialog: openCommissionWalletDialog,
     closeDialog: closeCommissionWalletDialog,
   } = useDialog({
-    title: t('commission_wallet'),
+    title: title.value,
     icon: 'chess-affiliate',
     default: () => h(AppCommissionWalletDialog),
   })
