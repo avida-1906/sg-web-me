@@ -79,6 +79,7 @@ const {
   setValue: setDay,
   errorMessage: errorDayMsg,
   validate: valiDay,
+  resetField: resetDay,
 } = useField<number>('day', (value) => {
   showAllRed.value = false
   if (!value)
@@ -211,6 +212,11 @@ function checkValidTip(el: HTMLObjectElement, msg: string) {
   el?.setCustomValidity(msg) // 如果是 '', 会提示原生的校验提示
   el?.reportValidity()
 }
+function resetBirthday() {
+  resetMonthField()
+  resetYearField()
+  resetDay()
+}
 
 onMounted(() => {
   if (props.modelValue) {
@@ -220,7 +226,7 @@ onMounted(() => {
     setDay(+arr[2])
   }
 })
-defineExpose({ valiBirthday, msg, isValid })
+defineExpose({ valiBirthday, msg, isValid, resetBirthday })
 </script>
 
 <template>
