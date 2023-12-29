@@ -116,7 +116,6 @@ button {
   &:disabled {
     opacity: var(--tg-base-button-disabled-opacity);
     cursor: not-allowed;
-    pointer-events: none;
   }
 }
 
