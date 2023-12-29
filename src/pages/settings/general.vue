@@ -106,6 +106,12 @@ const areaCodeOptions = computed(() => {
   })
 })
 
+const phoneErrorMsg = computed(() => {
+  if (!paramsData.value.phone)
+    return ''
+  return numberReg.test(paramsData.value.phone) ? '' : t('phone_invalid')
+})
+
 function numberSubmit() {
   runMemberUpdate({
     record: {
@@ -133,10 +139,14 @@ watch(() => [
   paramsData.value.area_code,
   paramsData.value.phone,
 ], (newValue, oldValue) => {
-  if (oldValue[0] && oldValue[1] && newValue[0] && newValue[1] && (newValue[0] !== oldValue[0] || newValue[1] !== oldValue[1]))
-    setPhoneDisabledBtnFalse()
-  else
-    setPhoneDisabledBtnTrue()
+  if (oldValue[0] && oldValue[1] && newValue[0] && newValue[1]
+  && (newValue[0] !== oldValue[0] || newValue[1] !== oldValue[1])) {
+    if (!phoneErrorMsg.value)
+      setPhoneDisabledBtnFalse()
+    else
+      setPhoneDisabledBtnTrue()
+  }
+  else { setPhoneDisabledBtnTrue() }
 })
 /** 监听社交账号改变 */
 for (const k in paramsData.value) {
@@ -305,7 +315,7 @@ onMounted(() => {
         <BaseInput
           v-model="paramsData.phone"
           style="--tg-base-input-style-pad-x: var(--tg-spacing-6);"
-          type="number"
+          type="text" :msg="phoneErrorMsg"
         />
       </BaseLabel>
     </AppSettingsContentItem>

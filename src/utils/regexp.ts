@@ -10,3 +10,5 @@ export const emailReg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 export const payPasswordReg = /^\d{6}$/
 /** 虚拟币地址 */
 export const virtualCoinAddressReg = /^[a-zA-Z0-9]{5,100}$/
+/** 仅数字 */
+export const numberReg = /^[0-9]+$/

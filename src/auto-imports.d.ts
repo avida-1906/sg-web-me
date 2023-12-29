@@ -287,6 +287,7 @@ declare global {
   const merge: typeof import('lodash-es')['merge']
   const mul: typeof import('./utils/number')['mul']
   const nextTick: typeof import('vue')['nextTick']
+  const numberReg: typeof import('./utils/regexp')['numberReg']
   const omit: typeof import('lodash-es')['omit']
   const omitBy: typeof import('lodash-es')['omitBy']
   const onActivated: typeof import('vue')['onActivated']
@@ -942,6 +943,7 @@ declare module 'vue' {
     readonly merge: UnwrapRef<typeof import('lodash-es')['merge']>
     readonly mul: UnwrapRef<typeof import('./utils/number')['mul']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
+    readonly numberReg: UnwrapRef<typeof import('./utils/regexp')['numberReg']>
     readonly omit: UnwrapRef<typeof import('lodash-es')['omit']>
     readonly omitBy: UnwrapRef<typeof import('lodash-es')['omitBy']>
     readonly onActivated: UnwrapRef<typeof import('vue')['onActivated']>
@@ -1589,6 +1591,7 @@ declare module '@vue/runtime-core' {
     readonly merge: UnwrapRef<typeof import('lodash-es')['merge']>
     readonly mul: UnwrapRef<typeof import('./utils/number')['mul']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
+    readonly numberReg: UnwrapRef<typeof import('./utils/regexp')['numberReg']>
     readonly omit: UnwrapRef<typeof import('lodash-es')['omit']>
     readonly omitBy: UnwrapRef<typeof import('lodash-es')['omitBy']>
     readonly onActivated: UnwrapRef<typeof import('vue')['onActivated']>
