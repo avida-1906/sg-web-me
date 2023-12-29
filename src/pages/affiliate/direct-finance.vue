@@ -30,17 +30,18 @@ const searchValue = useDebouncedRef({ value: '', delay: 1000 })
 
 const columns: Column[] = [
   {
-    title: t('player_id'),
-    dataIndex: 'username',
-    align: 'center',
-    slot: 'username',
-  },
-  {
     title: t('time'),
     dataIndex: 'time',
     align: 'center',
     slot: 'time',
   },
+  {
+    title: t('player_id'),
+    dataIndex: 'username',
+    align: 'center',
+    slot: 'username',
+  },
+
   {
     title: t('deposit_amount_label'),
     dataIndex: 'deposit_amount',
@@ -59,20 +60,28 @@ const columns: Column[] = [
     align: 'center',
     slot: 'deposit_withdraw_amount',
   },
+  {
+    title: t('balance'),
+    dataIndex: 'balance',
+    align: 'center',
+    slot: 'balance',
+  },
 ]
 
 const params = computed(() => {
   return {
     username: searchValue.value,
     currency_id: currency_id.value,
-    // start_time: date.value[0],
-    // end_time: date.value[1],
+    start_time: date.value[0],
+    end_time: date.value[1],
     page_size: page_size.value,
     page: page.value,
   }
 })
 
-useListSearch(params, runAsync, resetPage)
+onMounted(() => {
+  useListSearch(params, runAsync, resetPage)
+})
 </script>
 
 <template>
@@ -135,9 +144,18 @@ useListSearch(params, runAsync, resetPage)
           />
         </div>
       </template>
+      <template #balance="{ record }">
+        <div class="center">
+          <AppAmount
+            :amount="record.balance"
+            :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
+            show-color
+          />
+        </div>
+      </template>
     </BaseTable>
     <BasePagination
-      v-if="total > 0"
+      v-if="total > 10"
       v-model:current-page="page"
       v-model:page-size="page_size"
       :total="total"

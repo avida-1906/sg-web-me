@@ -121,7 +121,7 @@ useListSearch(params, runAsync, resetPage)
       </template>
     </BaseTable>
     <BasePagination
-      v-if="total > 0"
+      v-if="total > 10"
       v-model:current-page="page"
       v-model:page-size="page_size"
       :total="total"
