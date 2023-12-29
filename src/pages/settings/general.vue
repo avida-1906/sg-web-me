@@ -105,11 +105,14 @@ const areaCodeOptions = computed(() => {
     return { label: `${item.attr} ${item.name}`, value: item.id }
   })
 })
-
 const phoneErrorMsg = computed(() => {
   if (!paramsData.value.phone)
     return ''
   return numberReg.test(paramsData.value.phone) ? '' : t('phone_invalid')
+})
+const areaCodeValueLabel = computed(() => {
+  const str = areaCodeOptions.value?.find(a => a.value === paramsData.value.area_code)?.label ?? ''
+  return str.split(' ')[0]
 })
 
 function numberSubmit() {
@@ -123,7 +126,8 @@ function numberSubmit() {
   notifyData.value = {
     type: 'phone',
     title: t('success_update_phone'),
-    message: `${t('phone_update_to')} +${paramsData.value.phone}`,
+    // eslint-disable-next-line max-len
+    message: `${t('phone_update_to')} ${areaCodeValueLabel.value} ${paramsData.value.phone}`,
   }
   setPhoneDisabledBtnTrue()
 }
