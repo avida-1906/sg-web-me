@@ -47,6 +47,8 @@ const {
     return t('validate_msg_regexp_code')
   return ''
 })
+const isEmptyInput = computed(() =>
+  !oldPayPassword.value && !payPassword.value && !aginPayPassword.value)
 const {
   run: runMemberPayPasswordUpdate,
   loading: payPasswordUpdateLoading,
@@ -170,6 +172,7 @@ onUnmounted(() => {
         '--tg-app-settings-content-item-style-max-width':
           getMailState ? '100%' : '420px',
       }"
+      :depends-disabled="[isEmptyInput]"
       @submit="submitPayPwd"
     >
       <div v-if="getMailState" class="mail-not-bind">
@@ -231,7 +234,7 @@ onUnmounted(() => {
             <BaseButton
               bg-style="primary"
               :loading="sendMailCodeLoading"
-              :disabled="!!timer"
+              :disabled="!!timer || isEmptyInput"
               custom-padding
               :style="{
                 '--tg-base-button-style-bg': timer ? 'var(--tg-text-grey)' : '',
