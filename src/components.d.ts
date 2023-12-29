@@ -103,6 +103,7 @@ declare module 'vue' {
     AppReceiveBonusDialog: typeof import('./components/AppReceiveBonusDialog.vue')['default']
     AppRegister: typeof import('./components/AppRegister.vue')['default']
     AppRegisterDialog: typeof import('./components/AppRegisterDialog.vue')['default']
+    AppRegisterForm: typeof import('./components/AppRegisterForm.vue')['default']
     AppRegisterTermsConditions: typeof import('./components/AppRegisterTermsConditions.vue')['default']
     AppReportUserName: typeof import('./components/AppReportUserName.vue')['default']
     AppSafeDialog: typeof import('./components/AppSafeDialog.vue')['default']
