@@ -195,7 +195,8 @@ export function useApiMenuData() {
       callBack: () => openService(),
     },
     {
-      title: `${t('language_title')}： ${AllLanguages.value.filter(a =>
+      title: `${t('language_title')}${userLanguage.value === 0 ? '：' : ': '}${
+        AllLanguages.value.filter(a =>
         a.value === userLanguage.value)[0]?.title}`,
       path: '',
       icon: 'spt-odds',

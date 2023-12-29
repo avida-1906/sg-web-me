@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import type { Menu } from '~/composables/useApiMenuData'
 
 export enum EnumSportsPanelType {
@@ -30,6 +31,7 @@ interface IBetSlipData {
 export const useSportsStore = defineStore('sports', () => {
   const { t } = useI18n()
   const { isLogin, currentGlobalCurrency } = storeToRefs(useAppStore())
+  const { userLanguage } = storeToRefs(useLanguageStore())
   /** 体育赔率展示方式 */
   const sportsOddsType = ref(getSportsOddsType())
   /** 投注单数据 */
@@ -85,7 +87,7 @@ export const useSportsStore = defineStore('sports', () => {
         ) {
           currentFavNav.value = res.d[0].si
           if (currentFavBetType.value === 3)
-            // eslint-disable-next-line max-len
+
             currentFavBetType.value = getSportsBetTypeListBySi(currentFavNav.value)[0].value
         }
       }
@@ -167,7 +169,7 @@ export const useSportsStore = defineStore('sports', () => {
         domId: '',
         fixtureCount: liveCount.value,
       },
-      // eslint-disable-next-line max-len
+
       { title: t('sports_tab_starting_soon'), path: `/sports/${SPORTS_PLAT_ID}/upcoming`, icon: 'spt-timing', list: [], domId: '' },
       {
         title: t('my_bets'),
@@ -183,7 +185,6 @@ export const useSportsStore = defineStore('sports', () => {
   /** 顶级体育项目 */
   const sportHotGames = computed<Menu>(() => {
     if (sidebarData.value && sidebarData.value.menu) {
-      // eslint-disable-next-line max-len
       const topGamesObj = sidebarData.value.menu.find(a => a.menu_id === 3) ?? { list: [] }
 
       return topGamesObj?.list?.map((sport) => {
@@ -194,20 +195,20 @@ export const useSportsStore = defineStore('sports', () => {
           useCloudImg: true,
           domId: `sports-hot-game-${sport.si}`,
           list: [
-            // eslint-disable-next-line max-len
+
             { title: 'Live & Upcoming', path: `/sports/${SPORTS_PLAT_ID}/${sport.si}?tab=1`, icon: 'spt-ball-plate' },
-            // eslint-disable-next-line max-len
+
             { title: 'Outrights', path: `/sports/${SPORTS_PLAT_ID}/${sport.si}?tab=2`, icon: 'spt-timing' },
             ...sport.list.map((league) => {
               return {
                 title: league.cn,
                 icon: league.cpic,
                 useCloudImg: true,
-                // eslint-disable-next-line max-len
+
                 path: `/sports/${SPORTS_PLAT_ID}/${sport.si}/${league.pgid}/${league.ci}?${application.objectToUrlParams({ sn: sport.sn, pgn: league.pgn, cn: league.cn })}`,
               }
             }),
-            // eslint-disable-next-line max-len
+
             { title: 'View All', path: `/sports/${SPORTS_PLAT_ID}/${sport.si}?tab=3`, icon: 'uni-view-all' },
           ],
         }
@@ -222,7 +223,7 @@ export const useSportsStore = defineStore('sports', () => {
       const list = sidebarData.value.all.map((item) => {
         return {
           title: item.sn,
-          // eslint-disable-next-line max-len
+
           path: `/sports/${SPORTS_PLAT_ID}/${item.si}?nav=${JSON.stringify({ si: item.si, sn: item.sn })}`,
           icon: item.spic,
           useCloudImg: true,
@@ -257,7 +258,7 @@ export const useSportsStore = defineStore('sports', () => {
   const upcomingNavs = computed(() => {
     if (allSportsCount.value) {
       return [
-        // eslint-disable-next-line max-len
+
         { si: 0, sn: t('finance_other_tab_all'), icon: 'uni-all', count: allSportsCount.value.nc },
         ...allSportsCount.value.list.filter(a => a.nc > 0).map((b) => {
           return {
@@ -284,7 +285,7 @@ export const useSportsStore = defineStore('sports', () => {
 
   const sportOddType = computed(() => <Menu>[
     {
-      title: `${t('sports_odds_title')}： ${t(sportsOddsType.value)}`,
+      title: `${t('sports_odds_title')}${userLanguage.value === 0 ? '：' : ': '}${t(sportsOddsType.value)}`,
       path: '',
       icon: 'spt-odds',
       type: 'radio',
