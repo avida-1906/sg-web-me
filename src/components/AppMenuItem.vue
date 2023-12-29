@@ -10,11 +10,14 @@ const props = withDefaults(defineProps<Props>(), {})
 
 const { isLogin } = storeToRefs(useAppStore())
 const { sideBigActiveMenu } = storeToRefs(useMenuStore())
+const route = useRoute()
 
-const active = computed(() => sideBigActiveMenu.value
+const active = computed(() => route.path.includes('/sports/')
+  ? sideBigActiveMenu.value
 && props.menuItem.path && props.menuItem.path.length
 && replaceSportsPlatId(sideBigActiveMenu.value.toString())
- === replaceSportsPlatId(props.menuItem.path))
+ === replaceSportsPlatId(props.menuItem.path)
+  : props.menuItem.path && props.menuItem.path.length && route.fullPath === props.menuItem.path)
 </script>
 
 <template>
