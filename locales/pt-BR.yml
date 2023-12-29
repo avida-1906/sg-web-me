@@ -68,7 +68,7 @@ applicable: Aplicável
 time: Horário
 balance: Saldo
 amount: Valor
-casino: Casa de apostas
+casino: Cassino
 sports: Esportes
 game: Jogo
 wallet: Carteira
@@ -88,7 +88,7 @@ club: Clube
 logout: Logout
 logout_dont_foget: Não se esqueça de conferir as nossas promoções de Cassino e Apostas
   Esportivas antes de sair!
-chat_room: Sala de bate-papo
+chat_room: Chat
 bet_slip: Boletim de apostas
 my_bets: Minhas apostas
 all_bets: Todas as apostas
@@ -1257,7 +1257,7 @@ withdraw_bank: Cartão bancário de saque
 pix_account: Conta PIX
 max: Valor máximo
 sports_rule: Regras de apostas esportivas
-scan: Navegar
+scan: Procurar
 change_byte_addr: Tem certeza de que deseja alterar seu endereço de depósito {delta}?
 attention: Atenção
 change_byte_addr_1: Depois de alterar seu endereço de depósito, seu endereço antigo
