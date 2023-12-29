@@ -12,11 +12,16 @@ interface Props {
   sportsLoading?: boolean
 }
 
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   type: 'default',
   size: 'xs',
   originType: 'button',
 })
+
+function onClick(e: any) {
+  if (props.disabled)
+    e.stopPropagation()
+}
 </script>
 
 <template>
@@ -36,7 +41,7 @@ withDefaults(defineProps<Props>(), {
       />
       <BaseIcon v-else name="chess-frame2" class="ani-roll" />
     </div>
-    <div v-else class="content">
+    <div v-else class="content" @click="onClick">
       <slot />
     </div>
   </button>
@@ -122,7 +127,7 @@ button {
 .default {
   background-color: var(--tg-base-button-style-bg);
 
-  &:active:not(:disabled) {
+  &:active {
     .content {
       transform: scale(0.96);
     }
@@ -136,7 +141,7 @@ button {
 .text {
   color: var(--tg-base-button-text-default-color);
 
-  &:active:not(:disabled) {
+  &:active {
     color: var(--tg-text-white);
 
     .content {
@@ -153,7 +158,7 @@ button {
 .line {
   border: 1px solid var(--tg-base-button-line-border-color);
 
-  &:active:not(:disabled) {
+  &:active {
     background-color: var(--tg-secondary-main);
 
     .content {
@@ -170,7 +175,7 @@ button {
   border: 1px solid var(--tg-secondary-light);
   border-radius: 100px 0 0 100px;
 
-  &:active:not(:disabled) {
+  &:active {
     .content {
       transform: scale(0.96);
     }
@@ -187,7 +192,7 @@ button {
   border: 1px solid var(--tg-secondary-light);
   border-radius: 0 100px 100px 0;
 
-  &:active:not(:disabled) {
+  &:active {
     .content {
       transform: scale(0.96);
     }
