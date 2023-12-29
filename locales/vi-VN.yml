@@ -90,7 +90,7 @@ club: Câu lạc bộ
 logout: Đăng xuất
 logout_dont_foget: 'Hãy xem các chương trình khuyến mãi hấp dẫn Casino và Sportsbook
   của chúng tôi trước khi bạn rời khỏi '
-chat_room: Phòng trò chuyện
+chat_room: Chat
 bet_slip: Đơn cược
 my_bets: Đơn cược của tôi
 all_bets: Toàn bộ đơn cược
@@ -1216,7 +1216,7 @@ withdraw_bank: Thẻ ngân hàng rút tiền
 pix_account: Tài khoản PIX
 max: giá trị lớn nhất
 sports_rule: Luật cá cược thể thao
-scan: Duyệt qua
+scan: Duyệt
 change_byte_addr: Bạn có chắc chắn muốn thay đổi địa chỉ gửi tiền {delta} của mình không?
 attention: Vui lòng chú ý
 change_byte_addr_1: Khi bạn thay đổi địa chỉ nạp tiền, địa chỉ cũ của bạn sẽ bị
