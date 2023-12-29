@@ -17,7 +17,7 @@ const active = computed(() => route.path.includes('/sports/')
 && props.menuItem.path && props.menuItem.path.length
 && replaceSportsPlatId(sideBigActiveMenu.value.toString())
  === replaceSportsPlatId(props.menuItem.path)
-  : props.menuItem.path && props.menuItem.path.length && route.fullPath === props.menuItem.path)
+  : props.menuItem.path && props.menuItem.path.length && (route.fullPath === props.menuItem.path || route.path === props.menuItem.path))
 </script>
 
 <template>
