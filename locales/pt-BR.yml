@@ -2288,3 +2288,4 @@ vip_win_lose: Os membros ganham ou perdem
 register_time: Hora do registro
 statistical_date: Data das estatísticas
 phone_invalid: 手机号码无效
+colon: ':'
