@@ -18,7 +18,7 @@ const getUrl = computed(() => {
     <div class="des">
       <div class="p">
         <div class="title">
-          {{ $t('for_example') }}:
+          {{ $t('for_example') }}
         </div>
       </div>
       <div class="p">
@@ -38,7 +38,7 @@ const getUrl = computed(() => {
       </div>
       <div class="p">
         <div class="title">
-          {{ $t('direct_team') }}:
+          {{ $t('direct_team') }}
         </div>
       </div>
       <div class="p">
@@ -61,7 +61,7 @@ const getUrl = computed(() => {
       </div>
       <div class="p">
         <div class="title">
-          {{ $t('other_team') }}:
+          {{ $t('other_team') }}
         </div>
       </div>
       <div class="p">
@@ -81,7 +81,7 @@ const getUrl = computed(() => {
       </div>
       <div class="p">
         <div class="title">
-          {{ $t('summary') }}:
+          {{ $t('summary') }}
         </div>
       </div>
       <div class="p">
@@ -121,7 +121,7 @@ const getUrl = computed(() => {
   min-height: 400px;
   background: var(--tg-secondary-dark);
   border-radius: var(--tg-radius-md);
-  padding: var(--tg-spacing-16) ;
+  padding: var(--tg-spacing-12);
 }
 
 .des {
@@ -131,7 +131,7 @@ const getUrl = computed(() => {
   background: var(--tg-secondary-dark);
   border-radius: var(--tg-radius-md);
   margin-top: var(--tg-spacing-10);
-  padding: var(--tg-spacing-16);
+  padding: var(--tg-spacing-12);
   .p{
     .title {
       font-weight: var(--tg-font-weight-semibold);
