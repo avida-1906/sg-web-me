@@ -1,314 +1,260 @@
 <script setup lang='ts'>
-import type { IMemberReg } from '~/apis/types'
+// import type { IMemberReg } from '~/apis/types'
 
 const closeDialog = inject('closeDialog', () => { })
 
 const { t } = useI18n()
 const appStore = useAppStore()
 const { companyData } = storeToRefs(appStore)
-const { openNotify } = useNotify()
+// const { openNotify } = useNotify()
 const { openLoginDialog } = useLoginDialog()
 const { openTermsConditionsDialog } = useTermsConditionsDialog()
-const { bool: pwdStatus, setBool: setPwdStatus } = useBoolean(true)
-const { bool: isCode } = useBoolean(false)
-const {
-  bool: isShowPasswordVerify,
-  setTrue: setShowPasswordVerifyTrue,
-  setFalse: setShowPasswordVerifyFalse,
-} = useBoolean(false)
-const {
-  bool: needSaveFormData,
-  setTrue: setNeedSaveFormDataTrue,
-} = useBoolean(true)
+// const { bool: pwdStatus, setBool: setPwdStatus } = useBoolean(true)
+// const {
+//   bool: isShowPasswordVerify,
+//   setTrue: setShowPasswordVerifyTrue,
+//   setFalse: setShowPasswordVerifyFalse,
+// } = useBoolean(false)
+// const {
+//   bool: needSaveFormData,
+//   setTrue: setNeedSaveFormDataTrue,
+// } = useBoolean(true)
 
-const emailRef = ref()
-const userNameRef = ref()
-const passwordRef = ref()
-const curExists = ref<1 | 2>(2)
+// const emailRef = ref()
+// const userNameRef = ref()
+// const passwordRef = ref()
+// const curExists = ref<1 | 2>(2)
 const steps = ref(1)
-const code = ref('')
-const birthdayInputRef = ref()
-const birthday = ref('')
-const parentUid = ref(Session.get<string>(STORAGE_REG_PARENT_UID)?.value ?? '')
+// const birthdayInputRef = ref()
+// const birthday = ref('')
+// const parentUid = ref(Session.get<string>(STORAGE_REG_PARENT_UID)?.value ?? '')
+const registerFormRef = ref()
 
-const {
-  value: password,
-  errorMessage: pwdErrorMsg,
-  validate: validatePassword,
-  meta: pwdMeta,
-} = useField<string>('password', (value) => {
-  if (!value)
-    return t('password_least_8_characters')
-  else if (value.length < 8)
-    return t('password_least_8_characters')
-  else if (!upperLowerReg.test(value))
-    return t('password_uppercase_lowercase_letter')
-  else if (!lastOneNumberReg.test(value))
-    return t('password_least_1_number')
-  return ''
-})
-const {
-  value: email,
-  errorMessage: emailErrorMsg,
-  validate: validateEmail,
-  setErrors: setEmailErrors,
-} = useField<string>('email', (value) => {
-  const lastAtIdx = value ? value.lastIndexOf('@') : -1
-  const lastDotIdx = value ? value.lastIndexOf('.') : -1
-  if (!value)
-    return t('no_support_email')
+// const {
+//   value: password,
+//   errorMessage: pwdErrorMsg,
+//   validate: validatePassword,
+//   meta: pwdMeta,
+// } = useField<string>('password', (value) => {
+//   if (!value)
+//     return t('password_least_8_characters')
+//   else if (value.length < 8)
+//     return t('password_least_8_characters')
+//   else if (!upperLowerReg.test(value))
+//     return t('password_uppercase_lowercase_letter')
+//   else if (!lastOneNumberReg.test(value))
+//     return t('password_least_1_number')
+//   return ''
+// })
+// const {
+//   value: email,
+//   errorMessage: emailErrorMsg,
+//   validate: validateEmail,
+//   setErrors: setEmailErrors,
+// } = useField<string>('email', (value) => {
+//   const lastAtIdx = value ? value.lastIndexOf('@') : -1
+//   const lastDotIdx = value ? value.lastIndexOf('.') : -1
+//   if (!value)
+//     return t('no_support_email')
 
-  else if (!value.includes('@'))
-    return [t('email_add_char', { delta: '@' })]
+//   else if (!value.includes('@'))
+//     return [t('email_add_char', { delta: '@' })]
 
-  else if (!value.includes('.'))
-    return t('email_add_char', { delta: '.' })
+//   else if (!value.includes('.'))
+//     return t('email_add_char', { delta: '.' })
 
-  else if (lastDotIdx === value.length - 1)
-    return t('no_support_email')
+//   else if (lastDotIdx === value.length - 1)
+//     return t('no_support_email')
 
-  else if (value === password.value)
-    return t('email_no_equal_password')
+//   else if (value === password.value)
+//     return t('email_no_equal_password')
 
-  else if (!emailReg.test(value))
-    return t('pls_input_email')
+//   else if (!emailReg.test(value))
+//     return t('pls_input_email')
 
-  // 请在您的电邮地址中加入 “@” 符号
-  // 请在您的电邮地址中加入 “.” 符号
-  // 电子邮件域不受支持
-  // 请输入有效的电邮地址
-  return ''
-})
-const {
-  value: username,
-  errorMessage: usernameErrorMsg,
-  validate: validateUsername,
-  setErrors: setUsernameErrors,
-} = useField<string>('username', (value) => {
-  if (!value)
-    return t('name_3_char')
-  else if (value.length < 3)
-    return t('name_3_char')
-  else if (value.match('[^a-z0-9]'))
-    return t('name_has_invalid_char')
-  else if (value.length > 14)
-    return t('name_14_char')
-  else if (value === password.value)
-    return t('name_no_equal_pwd')
-  else if (!usernameReg.test(value))
-    return t('validate_msg_user_name_tip')
-  // 此用户名已被使用，请选择另一用户名。
-  // 用户名含有无效的字符
-  // 您的用户名长度必须为 3 – 14 个字符。
-  return ''
-})
+//   // 请在您的电邮地址中加入 “@” 符号
+//   // 请在您的电邮地址中加入 “.” 符号
+//   // 电子邮件域不受支持
+//   // 请输入有效的电邮地址
+//   return ''
+// })
+// const {
+//   value: username,
+//   errorMessage: usernameErrorMsg,
+//   validate: validateUsername,
+//   setErrors: setUsernameErrors,
+// } = useField<string>('username', (value) => {
+//   if (!value)
+//     return t('name_3_char')
+//   else if (value.length < 3)
+//     return t('name_3_char')
+//   else if (value.match('[^a-z0-9]'))
+//     return t('name_has_invalid_char')
+//   else if (value.length > 14)
+//     return t('name_14_char')
+//   else if (value === password.value)
+//     return t('name_no_equal_pwd')
+//   else if (!usernameReg.test(value))
+//     return t('validate_msg_user_name_tip')
+//   // 此用户名已被使用，请选择另一用户名。
+//   // 用户名含有无效的字符
+//   // 您的用户名长度必须为 3 – 14 个字符。
+//   return ''
+// })
 
-const mailCodeRef = ref()
-const timer = ref()
-const countdown = ref(60)
-const {
-  value: emailCode,
-  errorMessage: emailCodeErrorMsg,
-  validate: valiemailCode,
-  resetField: resetEmailCode,
-} = useField<string>('emailCode', (value) => {
-  if (!value)
-    return t('validate_msg_input_code')
-  else if (value.length !== 6)
-    return t('validate_msg_regexp_code')
-  return ''
-})
-const {
-  runAsync: runAsyncMemberSendMailCode,
-  loading: sendMailCodeLoading,
-} = useRequest(ApiMemberSendMailCode, {
-  onSuccess() {
-    timer.value = setInterval(() => {
-      if (countdown.value <= 1) {
-        clearInterval(timer.value)
-        timer.value = null
-        countdown.value = 60
-      }
-      else { countdown.value-- }
-    }, 1000)
-    openNotify({
-      type: 'success',
-      title: t('notify_title_success'),
-      message: t('success_send_code'),
-    })
-  },
-})
+// const mailCodeRef = ref()
+// const timer = ref()
+// const countdown = ref(60)
+// const {
+//   value: emailCode,
+//   errorMessage: emailCodeErrorMsg,
+//   validate: valiemailCode,
+//   resetField: resetEmailCode,
+// } = useField<string>('emailCode', (value) => {
+//   if (!value)
+//     return t('validate_msg_input_code')
+//   else if (value.length !== 6)
+//     return t('validate_msg_regexp_code')
+//   return ''
+// })
+// const {
+//   runAsync: runAsyncMemberSendMailCode,
+//   loading: sendMailCodeLoading,
+// } = useRequest(ApiMemberSendMailCode, {
+//   onSuccess() {
+//     timer.value = setInterval(() => {
+//       if (countdown.value <= 1) {
+//         clearInterval(timer.value)
+//         timer.value = null
+//         countdown.value = 60
+//       }
+//       else { countdown.value-- }
+//     }, 1000)
+//     openNotify({
+//       type: 'success',
+//       title: t('notify_title_success'),
+//       message: t('success_send_code'),
+//     })
+//   },
+// })
 
-const regParams = computed(() => {
-  return Session.get<IMemberReg>(STORAGE_REG_PARAMS_KEYWORDS)?.value
-})
-if (regParams.value) {
-  email.value = regParams.value.email ?? ''
-  username.value = regParams.value.username ?? ''
-  birthday.value = regParams.value.birthday ?? ''
-}
+// const regParams = computed(() => {
+//   return Session.get<IMemberReg>(STORAGE_REG_PARAMS_KEYWORDS)?.value
+// })
+// if (regParams.value) {
+//   email.value = regParams.value.email ?? ''
+//   username.value = regParams.value.username ?? ''
+//   birthday.value = regParams.value.birthday ?? ''
+// }
 
-const {
-  value: isAgree,
-  errorMessage: agreeErrorMsg,
-  validate: valiAgree,
-} = useField<boolean>('checkbox', (value) => {
-  if (!value)
-    return t('agree_terms_conditions')
-  return ''
-}, { initialValue: true })
+// const {
+//   value: isAgree,
+//   errorMessage: agreeErrorMsg,
+//   validate: valiAgree,
+// } = useField<boolean>('checkbox', (value) => {
+//   if (!value)
+//     return t('agree_terms_conditions')
+//   return ''
+// }, { initialValue: true })
 
-const { data: regCfg } = useRequest(() => ApiMemberBrandDetail({ tag: 'reg' }), {
-  manual: false,
-})
+// const { data: regCfg } = useRequest(() => ApiMemberBrandDetail({ tag: 'reg' }), {
+//   manual: false,
+// })
 
-const regWebCfg = computed(() => regCfg.value?.web)
-const needEmail = computed(() => true) // regWebCfg.value && regWebCfg.value.email !== false)
-const needName = computed(() => true) // regWebCfg.value && regWebCfg.value.username !== false)
-const needCheckEmail = computed(() =>
-  false) // regWebCfg.value && regWebCfg.value.email_check !== false)
-const pwdTouched = computed(() => passwordRef.value?.isTouched)
+// const regWebCfg = computed(() => regCfg.value?.web)
+// const needEmail = computed(() => true) // regWebCfg.value && regWebCfg.value.email !== false)
+// const needName = computed(() => true) // regWebCfg.value && regWebCfg.value.username !== false)
+// const needCheckEmail = computed(() =>
+//   false) // regWebCfg.value && regWebCfg.value.email_check !== false)
+// const pwdTouched = computed(() => passwordRef.value?.isTouched)
 
-const {
-  run: runMemberReg,
-  loading: isLoading,
-} = useRequest(ApiMemberReg, {
-  manual: true,
-  onSuccess: async (res) => {
-    appStore.setToken(res)
-    Session.remove(STORAGE_REG_PARAMS_KEYWORDS)
-    openNotify({
-      type: 'success',
-      message: t('success_register'),
-    })
-    await nextTick()
-    closeDialog()
-  },
-})
-const { runAsync: runExists, loading: existLoading } = useRequest(ApiMemberExists, {
-  async onSuccess() {
-  },
-  onError() {
-    if (curExists.value === 1)
-      setUsernameErrors(t('choose_another_name'))
-    if (curExists.value === 2)
-      setEmailErrors(t('email_exists'))
-  },
-})
+// const {
+//   run: runMemberReg,
+//   loading: isLoading,
+// } = useRequest(ApiMemberReg, {
+//   manual: true,
+//   onSuccess: async (res) => {
+//     appStore.setToken(res)
+//     Session.remove(STORAGE_REG_PARAMS_KEYWORDS)
+//     openNotify({
+//       type: 'success',
+//       message: t('success_register'),
+//     })
+//     await nextTick()
+//     closeDialog()
+//   },
+// })
+// const { runAsync: runExists, loading: existLoading } = useRequest(ApiMemberExists, {
+//   async onSuccess() {
+//   },
+//   onError() {
+//     if (curExists.value === 1)
+//       setUsernameErrors(t('choose_another_name'))
+//     if (curExists.value === 2)
+//       setEmailErrors(t('email_exists'))
+//   },
+// })
 
 async function getMemberReg() {
-  if (needName.value) {
-    userNameRef.value?.setTouchTrue()
-    await validateUsername()
-    if (!usernameErrorMsg.value)
-      await onEmailUsernameBlur(1)
-  }
-
-  passwordRef.value.setTouchTrue()
-  await validatePassword()
-  if (pwdErrorMsg.value)
-    setShowPasswordVerifyTrue()
-
-  if (needEmail.value) {
-    emailRef.value?.setTouchTrue()
-    await validateEmail()
-    !emailErrorMsg.value && await onEmailUsernameBlur(2)
-  }
-
-  if (needCheckEmail.value) {
-    mailCodeRef.value.setTouchTrue()
-    await valiemailCode()
-  }
-
-  await birthdayInputRef.value.valiBirthday()
-  if (!birthdayInputRef.value.isValid)
-    return
-
-  // 这个不要删：有错误时直接返回，否则重复的邮箱或用户名会因通过格式校验从而进行注册请求
-  if (
-    (needEmail.value && emailErrorMsg.value)
-    || usernameErrorMsg.value
-    || pwdErrorMsg.value
-    || agreeErrorMsg.value
-  ) return
-
-  if (!usernameErrorMsg.value
-  && !pwdErrorMsg.value
-  && !agreeErrorMsg.value
-  && !emailCodeErrorMsg.value) {
-    const paramsReg = {
-      email: email.value,
-      username: username.value,
-      password: password.value,
-      parent_uid: parentUid.value,
-      device_number: application.getDeviceNumber(),
-      birthday: birthday.value,
-    }
-    // appStore.setMqttConnectedFalse()
-    // runMemberReg(paramsReg)
-    Session.set(STORAGE_REG_PARAMS_KEYWORDS, paramsReg)
-    setNeedSaveFormDataTrue()
+  registerFormRef.value.getMemberReg(() => {
     closeDialog()
-    await nextTick()
-    openTermsConditionsDialog()
-    // {
-    //   showClose: !(parentUid.value && parentUid.value.length),
-    //   closeOnClickOverlay: !(parentUid.value && parentUid.value.length),
-    // }
-  }
+    nextTick(() => {
+      openTermsConditionsDialog()
+    })
+  })
 }
-function onPasswordFocus() {
-  setShowPasswordVerifyTrue()
-}
-function onPasswordBlur() {
-  if (pwdMeta.dirty) {
-    passwordRef.value.setTouchTrue()
-    validatePassword()
-  }
-  if (pwdStatus.value)
-    setShowPasswordVerifyFalse()
-}
-function passwordVerifyPass(status: boolean) {
-  setPwdStatus(status)
-}
-async function onEmailUsernameBlur(type: 1 | 2) {
-  curExists.value = type
-  if (type === 1 && username.value && !usernameErrorMsg.value)
-    await runExists({ ty: type, val: username.value, noNotify: true })
-  if (type === 2 && email.value && !emailErrorMsg.value)
-    await runExists({ ty: type, val: email.value })
-}
+// function onPasswordFocus() {
+//   setShowPasswordVerifyTrue()
+// }
+// function onPasswordBlur() {
+//   if (pwdMeta.dirty) {
+//     passwordRef.value.setTouchTrue()
+//     validatePassword()
+//   }
+//   if (pwdStatus.value)
+//     setShowPasswordVerifyFalse()
+// }
+// function passwordVerifyPass(status: boolean) {
+//   setPwdStatus(status)
+// }
+// async function onEmailUsernameBlur(type: 1 | 2) {
+//   curExists.value = type
+//   if (type === 1 && username.value && !usernameErrorMsg.value)
+//     await runExists({ ty: type, val: username.value, noNotify: true })
+//   if (type === 2 && email.value && !emailErrorMsg.value)
+//     await runExists({ ty: type, val: email.value })
+// }
 async function toLogin() {
   closeDialog()
   await nextTick()
   openLoginDialog()
 }
 
-function setCheckTip(el: HTMLObjectElement, tip: string) {
-  el.checkValidity()
-  el.setCustomValidity(tip)
-  el.reportValidity()
-}
+// function setCheckTip(el: HTMLObjectElement, tip: string) {
+//   el.checkValidity()
+//   el.setCustomValidity(tip)
+//   el.reportValidity()
+// }
 
-onMounted(() => {
-  emailRef.value?.getFocus()
-})
+// onMounted(() => {
+//   emailRef.value?.getFocus()
+// })
 
-onUnmounted(() => {
-  const paramsReg = {
-    email: email.value,
-    username: username.value,
-    password: password.value,
-    parent_uid: parentUid.value,
-    device_number: application.getDeviceNumber(),
-    birthday: birthday.value,
-  }
-  if (!needSaveFormData.value)
-    Session.remove(STORAGE_REG_PARAMS_KEYWORDS)
+// onUnmounted(() => {
+//   const paramsReg = {
+//     email: email.value,
+//     username: username.value,
+//     password: password.value,
+//     parent_uid: parentUid.value,
+//     device_number: application.getDeviceNumber(),
+//     birthday: birthday.value,
+//   }
+//   if (!needSaveFormData.value)
+//     Session.remove(STORAGE_REG_PARAMS_KEYWORDS)
 
-  else
-    Session.set(STORAGE_REG_PARAMS_KEYWORDS, paramsReg)
-})
+//   else
+//     Session.set(STORAGE_REG_PARAMS_KEYWORDS, paramsReg)
+// })
 </script>
 
 <template>
@@ -317,91 +263,7 @@ onUnmounted(() => {
       <div class="app-register-title">
         {{ t('reg_step1') }}
       </div>
-      <div class="app-register-input-box">
-        <BaseLabel v-if="needEmail" :label="t('email_address')" need-focus must-small>
-          <BaseInput
-            ref="emailRef" v-model="email" :msg="emailErrorMsg" msg-after-touched
-            type="email"
-            name="email"
-          />
-        </BaseLabel>
-        <BaseLabel v-if="needName" :label="t('username')" must-small need-focus>
-          <BaseInput
-            ref="userNameRef" v-model="username"
-            :msg="usernameErrorMsg"
-            name="name"
-            msg-after-touched @blur="onEmailUsernameBlur(1)"
-          />
-          <div v-if="!usernameErrorMsg" class="hint">
-            {{ t('username_incorrect') }}
-          </div>
-        </BaseLabel>
-        <BaseLabel :label="t('password')" must-small need-focus>
-          <BaseInput
-            ref="passwordRef"
-            v-model="password"
-            :msg="pwdErrorMsg"
-            type="password"
-            name="password"
-            autocomplete="current-password" msg-after-touched
-            @focus="onPasswordFocus"
-            @blur="onPasswordBlur"
-          />
-          <AppPasswordVerify
-            v-show="isShowPasswordVerify"
-            :password="password"
-            :has-error-msg="!!pwdErrorMsg"
-            :pwd-touched="pwdTouched"
-            @pass="passwordVerifyPass"
-          />
-        </BaseLabel>
-
-        <BaseLabel v-if="needCheckEmail" :label="t('email_code')" need-focus>
-          <div class="row-mail-code">
-            <div style="flex:  1;">
-              <BaseInput
-                ref="mailCodeRef"
-                v-model="emailCode"
-                :msg="emailCodeErrorMsg"
-                type="text"
-                max="6"
-                msg-after-touched
-              />
-            </div>
-            <BaseButton
-              bg-style="primary"
-              :loading="sendMailCodeLoading"
-              :disabled="!!timer"
-              custom-padding
-              :style="{
-                '--tg-base-button-style-bg': timer ? 'var(--tg-text-grey)' : '',
-                'min-width': '105px',
-                '--tg-base-button-padding-y': '12.5px',
-              }"
-              @click.stop="runAsyncMemberSendMailCode"
-            >
-              <span v-if="timer">{{ `${t('re_get')}${countdown}s` }}</span>
-              <span v-else>{{ t('get_email_code') }}</span>
-            </BaseButton>
-          </div>
-        </BaseLabel>
-
-        <BaseLabel :label="t('time_birthday')" must-small>
-          <BaseInputBirthday
-            ref="birthdayInputRef" v-model="birthday"
-          />
-        </BaseLabel>
-        <div style="display: flex;flex-direction: column;">
-          <div class="code-label">
-            <BaseCheckBox v-model="isCode">
-              <span class="option-label">{{ t('code_optional') }}</span>
-            </BaseCheckBox>
-          </div>
-          <div class="code-input">
-            <BaseInput v-show="isCode" v-model="code" />
-          </div>
-        </div>
-      </div>
+      <AppRegisterForm ref="registerFormRef" is-register />
       <div class="app-register-check-box">
         <BaseButton
           class="app-register-btn" bg-style="secondary"
@@ -582,22 +444,6 @@ onUnmounted(() => {
 </template>
 
 <style lang='scss' scoped>
-.row-mail-code{
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: var(--tg-spacing-10);
-}
-.option-label {
-  display: inline-block;
-  padding-top: 6px;
-  padding-bottom: 4px;
-}
-.hint {
-  padding: var(--tg-spacing-8) var(--tg-spacing-4) var(--tg-spacing-4) 0;
-  font-size: var(--tg-font-size-xs);
-  color: var(--tg-secondary-light);
-}
 .text-bold {
   font-weight: var(--tg-font-weight-semibold);
 }
