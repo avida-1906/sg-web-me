@@ -40,7 +40,7 @@ const onShowMore = function () {
       </div>
       <h2>{{ t('casino_new_intro_7') }}</h2>
       <div class="p">
-        {{ t('casino_new_intro_8') }}：<h3>{{ t('casino_new_intro_9') }}</h3>
+        {{ t('casino_new_intro_8') }}{{ t('colon') }}<h3>{{ t('casino_new_intro_9') }}</h3>
       </div>
       <div class="p">
         <span class="bold-txt">{{ t('casino_new_intro_9') }}</span>
@@ -86,53 +86,53 @@ const onShowMore = function () {
       </div>
       <ul>
         <li>
-          <span class="bold-txt">Plinko</span>
-          ：{{ t('casino_new_intro_27') }}
+          <span class="bold-txt">Plinko</span>{{ t('colon') }}
+          {{ t('casino_new_intro_27') }}
         </li>
         <li>
-          <span class="bold-txt">{{ t('casino_new_intro_28') }}</span>
-          ：{{ t('casino_new_intro_29', hostSite) }}
+          <span class="bold-txt">{{ t('casino_new_intro_28') }}</span>{{ t('colon') }}
+          {{ t('casino_new_intro_29', hostSite) }}
         </li>
         <li>
-          <span class="bold-txt">Limbo</span>
-          ：{{ t('casino_new_intro_30', hostSite) }}
+          <span class="bold-txt">Limbo</span>{{ t('colon') }}
+          {{ t('casino_new_intro_30', hostSite) }}
         </li>
         <li>
-          <span class="bold-txt">Mines</span>
-          ：{{ t('casino_new_intro_31', hostSite) }}
+          <span class="bold-txt">Mines</span>{{ t('colon') }}
+          {{ t('casino_new_intro_31', hostSite) }}
         </li>
         <li>
-          <span class="bold-txt">Crash</span>
-          ：{{ t('casino_new_intro_32', hostSite) }}
+          <span class="bold-txt">Crash</span>{{ t('colon') }}
+          {{ t('casino_new_intro_32', hostSite) }}
         </li>
         <li>
-          <span class="bold-txt">{{ t('casino_new_intro_33') }}</span>
-          ：{{ t('casino_new_intro_34', hostSite) }}
+          <span class="bold-txt">{{ t('casino_new_intro_33') }}</span>{{ t('colon') }}
+          {{ t('casino_new_intro_34', hostSite) }}
         </li>
         <li>
-          <span class="bold-txt">Hilo</span>
-          ：{{ t('casino_new_intro_35') }}
+          <span class="bold-txt">Hilo</span>{{ t('colon') }}
+          {{ t('casino_new_intro_35') }}
         </li>
         <li>
-          <span class="bold-txt">{{ t('casino_new_intro_36') }}</span>
-          ：{{ t('casino_new_intro_37') }}
+          <span class="bold-txt">{{ t('casino_new_intro_36') }}</span>{{ t('colon') }}
+          {{ t('casino_new_intro_37') }}
         </li>
         <li>
-          <span class="bold-txt">{{ t('casino_new_intro_38') }}</span>
-          ：{{ t('casino_new_intro_39') }}
+          <span class="bold-txt">{{ t('casino_new_intro_38') }}</span>{{ t('colon') }}
+          {{ t('casino_new_intro_39') }}
         </li>
         <li>
-          <span class="bold-txt">{{ t('casino_new_intro_40') }}</span>
-          ：{{ t('casino_new_intro_41', hostSite) }}
+          <span class="bold-txt">{{ t('casino_new_intro_40') }}</span>{{ t('colon') }}
+          {{ t('casino_new_intro_41', hostSite) }}
         </li>
         <li>
-          <span class="bold-txt">Diamonds</span>
-          ：{{ t('casino_new_intro_42', hostSite) }}
+          <span class="bold-txt">Diamonds</span>{{ t('colon') }}
+          {{ t('casino_new_intro_42', hostSite) }}
         </li>
       </ul>
       <h2>{{ t('casino_new_intro_43') }}</h2>
       <div class="p">
-        {{ t('casino_new_intro_44') }}：
+        {{ t('casino_new_intro_44') }}{{ t('colon') }}
       </div>
       <ul>
         <li>{{ t('casino_new_intro_45') }}</li>
@@ -152,7 +152,7 @@ const onShowMore = function () {
       </div>
       <h2>{{ t('casino_new_intro_53') }}</h2>
       <div class="p">
-        {{ t('casino_new_intro_54', hostSite) }}：
+        {{ t('casino_new_intro_54', hostSite) }}
       </div>
       <ul>
         <li>
