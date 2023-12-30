@@ -19,7 +19,7 @@ function handleItemClick(item: any) {
         <div class="banner">
           <div class="left">
             <h1>
-              <span>{{ $t('casino_provider') }}</span>
+              <span>{{ cateProviderData?.name }}</span>
             </h1>
           </div>
           <div class="right">
