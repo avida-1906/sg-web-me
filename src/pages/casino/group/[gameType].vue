@@ -4,7 +4,7 @@ const props = defineProps<{ gameType: string }>()
 const { t } = useI18n()
 const { appContentWidth, isMobile } = storeToRefs(useWindowStore())
 const casinoStore = useCasinoStore()
-const { platformList } = storeToRefs(casinoStore)
+const { cateProviderData, platformList } = storeToRefs(casinoStore)
 const route = useRoute()
 const title = computed(() => route.query.name)
 const { bool: loading } = useBoolean(false)
@@ -150,7 +150,11 @@ onMounted(() => {
         :sort-type="sortType" :pids="pids"
         @vue:mounted="handleMounted" @vue:before-unmount="handleBeforeUnmounted"
       />
-      <AppProviderSlider :list="platformList" :title="t('casino_provider')" />
+      <AppProviderSlider
+        :icon="cateProviderData?.icon ?? ''"
+        :list="cateProviderData?.games ?? []"
+        :title="cateProviderData?.name ?? ''"
+      />
     </section>
     <AppBetData mode="casino" />
   </div>

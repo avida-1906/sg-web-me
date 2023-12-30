@@ -32,7 +32,7 @@ const menuData = computed(() => {
     return [
       casinoMenu,
       casinoGameList,
-      casinoGameProvider,
+      // casinoGameProvider,
       staticMenu1,
       staticMenu2,
     ]

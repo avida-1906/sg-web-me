@@ -151,7 +151,7 @@ await application.allSettled([runMemberNoticeAllList(), loadIcon()])
         <template v-for="item in casinoGameList" :key="item.name">
           <AppProviderSlider
             v-if="item.cid === '5'" :list="item.games"
-            :title="item.name"
+            :title="item.name" :icon="item.icon"
           />
           <AppSlider
             v-else-if="item.games"

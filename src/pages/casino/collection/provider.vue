@@ -1,13 +1,13 @@
 <script setup lang="ts">
 usePageTitle({ prefix: 'Casino Game Providers - Best Creators of Gambling Games' })
 const router = useLocalRouter()
-const { platformList } = storeToRefs(useCasinoStore())
+const { cateProviderData } = storeToRefs(useCasinoStore())
 const { appContentWidth } = storeToRefs(useWindowStore())
 
 function handleItemClick(item: any) {
   if (item.maintained === '2')
     return
-  router.push(`/casino/group/provider?vid=${item.venue_id}&name=${item.name}`)
+  router.push(`/casino/group/provider?vid=${item.venue_id ?? item.id}&name=${item.name}`)
 }
 </script>
 
@@ -33,10 +33,10 @@ function handleItemClick(item: any) {
       </div>
     </div>
     <div class="mt-24">
-      <AppCardList :list="platformList" is-provider>
+      <AppCardList :list="cateProviderData?.games ?? []" is-provider>
         <template #default="{ item }">
           <BaseProviderItem
-            :url="item.logo"
+            :url="item.img || item.logo || item.icon"
             :maintained="item.maintained"
             @click="handleItemClick(item)"
           />

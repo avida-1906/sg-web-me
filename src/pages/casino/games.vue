@@ -1,7 +1,6 @@
 <script setup lang='ts'>
-const { t } = useI18n()
 const { isMobile } = storeToRefs(useWindowStore())
-const { platformList } = storeToRefs(useCasinoStore())
+const { cateProviderData } = storeToRefs(useCasinoStore())
 const route = useRoute()
 const { query } = useRoute()
 const { bool: isTheatre, setBool } = useBoolean(false) // 影院模式
@@ -49,7 +48,11 @@ onBeforeRouteLeave(() => {
           game-type="rec"
           :path="`/casino/group/rec?name=${$t('game_type_rec')}`"
         />
-        <AppProviderSlider :list="platformList" :title="t('casino_provider')" />
+        <AppProviderSlider
+          :icon="cateProviderData?.icon ?? ''"
+          :list="cateProviderData?.games ?? []"
+          :title="cateProviderData?.name ?? ''"
+        />
       </div>
       <div v-if="!isMobile" class="layout-spacing">
         <AppBetData mode="casino" />

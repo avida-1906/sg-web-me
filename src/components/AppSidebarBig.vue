@@ -92,7 +92,7 @@ onBeforeUnmount(() => {
             <AppMenuItem :menu-item="item" />
           </div>
         </div>
-        <div class="menu-box">
+        <!-- <div class="menu-box">
           <div
             v-for="item, i in casinoGameProvider"
             :key="i"
@@ -100,7 +100,7 @@ onBeforeUnmount(() => {
           >
             <AppMenuItem :menu-item="item" />
           </div>
-        </div>
+        </div> -->
       </template>
 
       <!-- Sports -->

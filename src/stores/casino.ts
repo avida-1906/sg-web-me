@@ -17,6 +17,8 @@ export const useCasinoStore = defineStore('casino', () => {
     }
     return arr
   })
+  // 厂商列表读取/member/game/cate?cid=5
+  const { data: cateProviderData } = useRequest(() => ApiMemberGameCate({ cid: '5' }), { manual: false })
 
   const { data, runAsync: runAsyncGameLobby } = useRequest(ApiMemberGameLobby, { manual: false })
 
@@ -60,9 +62,11 @@ export const useCasinoStore = defineStore('casino', () => {
         ...a,
         title: a.name,
         list: [],
-        path: a.ty === 1
-          ? `/casino/group/category?cid=${a.cid}&name=${a.name}`
-          : `/casino/group/provider?pid=${a.platform_id}&name=${a.name}`,
+        path: a.cid === '5'
+          ? '/casino/collection/provider'
+          : a.ty === 1
+            ? `/casino/group/category?cid=${a.cid}&name=${a.name}`
+            : `/casino/group/provider?pid=${a.platform_id}&name=${a.name}`,
         useCloudImg: true,
       }))
       : [],
@@ -82,6 +86,7 @@ export const useCasinoStore = defineStore('casino', () => {
     casinoNav,
     casinoGameList,
     casinoSidebar,
+    cateProviderData,
     runAsyncGameLobby,
     getBg,
   }
