@@ -1,20 +1,22 @@
 <script setup lang='ts'>
 interface ListItem {
-  si: number
-  sn: string
-  count: number
+  value: string | number
+  label: string
+  count?: number
   icon: string
   useCloudImg?: boolean
 }
 interface Props {
   list: ListItem[]
-  modelValue: number
+  modelValue: string | number
 }
 const props = defineProps<Props>()
 const emit = defineEmits(['update:modelValue', 'change'])
 
+const { isMobile } = storeToRefs(useWindowStore())
+
 function handleClick(item: ListItem) {
-  emit('update:modelValue', item.si)
+  emit('update:modelValue', item.value)
   emit('change', item)
 }
 
@@ -46,33 +48,34 @@ await application.allSettled([loadIcon()])
 <template>
   <div class="app-sports-tab">
     <div class="scroll-x">
-      <div class="tab-wrap">
-        <div v-for="tab in list" :key="tab.si" class="tab">
-          <BaseButton type="text" size="none" @click="handleClick(tab)">
-            <div class="button" :class="{ active: tab.si === modelValue }">
-              <div class="dot" />
-              <div class="main">
-                <div class="icon" style="--app-sport-image-error-icon-size:28px;">
-                  <AppImage
-                    v-if="tab.useCloudImg"
-                    class="icon-img"
-                    :class="{ 'icon-act': tab.si === modelValue }"
-                    :url="tab.icon" is-cloud
-                  />
-                  <BaseIcon v-else :name="tab.icon" />
-                  <BaseBadge
-                    :mode="tab.si === modelValue ? 'active' : 'black'"
-                    style="--tg-badge-font-size:var(--tg-font-size-xs);
+      <div class="tab-wrap" :class="{ 'is-mobile': isMobile }">
+        <div v-for="tab in list" :key="tab.value" class="tab">
+          <div
+            class="button" :class="{ active: tab.value === modelValue }"
+            @click="handleClick(tab)"
+          >
+            <div class="dot" />
+            <div class="main">
+              <div class="icon" style="--app-sport-image-error-icon-size:28px;">
+                <AppImage
+                  v-if="tab.useCloudImg"
+                  class="icon-img"
+                  :class="{ 'icon-act': tab.value === modelValue }"
+                  :url="tab.icon" is-cloud
+                />
+                <BaseIcon v-else :name="tab.icon" />
+                <BaseBadge
+                  :mode="tab.value === modelValue ? 'active' : 'black'"
+                  style="--tg-badge-font-size:var(--tg-font-size-xs);
                     --tg-badge-padding-x:var(--tg-spacing-6);"
-                    class="badge" :count="tab.count" :max="99999"
-                  />
-                </div>
-                <div class="name">
-                  {{ tab.sn }}
-                </div>
+                  class="badge" :count="tab.count" :max="99999"
+                />
+              </div>
+              <div class="name">
+                {{ tab.label }}
               </div>
             </div>
-          </BaseButton>
+          </div>
         </div>
       </div>
     </div>
@@ -89,17 +92,27 @@ await application.allSettled([loadIcon()])
   background-color: var(--tg-secondary-dark);
   border-radius: var(--tg-radius-md);
   overflow: hidden;
+
 }
 
 .tab-wrap {
-  padding: var(--tg-spacing-32) var(--tg-spacing-8) var(--tg-spacing-18);
   display: inline-flex;
+  height: 65px;
+  gap:55px;
+  padding-left: 33px;
 
   .tab {
     flex-shrink: 0;
     position: relative;
 
     .button {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100%;
+      cursor: pointer;
+      padding-top: 14px;
+
       .dot {
         display: none;
         content: "";
@@ -107,7 +120,7 @@ await application.allSettled([loadIcon()])
         width: 12px;
         height: 6px;
         position: absolute;
-        top: calc(-1 * var(--tg-spacing-32));
+        top: 0;
         left: 50%;
         z-index: 1;
         transform: translate(-50%);
@@ -117,17 +130,15 @@ await application.allSettled([loadIcon()])
       .main {
         display: grid;
         grid-auto-flow: row;
-        gap: var(--tg-spacing-8);
+        gap: var(--tg-spacing-7);
         place-items: center;
         position: relative;
-        width: 9ch;
-        max-width: 9ch;
         font-size: var(--tg-font-size-xs);
 
         .icon {
-          font-size: 28px;
-          width: 28px;
-          height: 28px;
+          font-size: 26px;
+          width: 26px;
+          height: 26px;
           position: relative;
           display: flex;
           align-items: center;
@@ -144,11 +155,32 @@ await application.allSettled([loadIcon()])
         }
 
         .name {
-          font-size: var(--tg-font-size-xs);
+          font-size: var(--tg-font-size-default);
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
           max-width: 6ch;
+          color: var(--tg-text-lightgrey);
+          font-weight: var(--tg-font-weight-semibold);
+        }
+      }
+      &:active{
+        .main{
+          transform: scale(0.96);
+        }
+      }
+      &:hover{
+        .main{
+          .name {
+            color: var(--tg-text-white);
+          }
+          .icon{
+           --tg-icon-color: var(--tg-text-white);
+            .icon-img{
+              filter: brightness(2);
+            }
+
+          }
         }
       }
 
@@ -167,14 +199,24 @@ await application.allSettled([loadIcon()])
           }
         }
       }
-      &:hover{
-        .main{
-          .icon{
-            .icon-img{
-              filter: brightness(2);
-            }
 
-          }
+    }
+  }
+  &.is-mobile{
+    height: 50px;
+    gap:40px;
+    padding-left: 20px;
+    .button{
+      padding-top: 11px;
+      .main{
+        gap: var(--tg-spacing-5);
+        .name{
+          font-size: var(--tg-font-size-xs);
+        }
+        .icon {
+          font-size: 16px;
+          width: 16px;
+          height: 16px;
         }
       }
     }

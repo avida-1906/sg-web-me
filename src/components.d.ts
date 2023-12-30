@@ -210,6 +210,7 @@ declare module 'vue' {
     BaseSecondaryAccordion: typeof import('./components/BaseSecondaryAccordion.vue')['default']
     BaseSelect: typeof import('./components/BaseSelect.vue')['default']
     BaseSkeleton: typeof import('./components/BaseSkeleton.vue')['default']
+    BaseSquareTab: typeof import('./components/BaseSquareTab.vue')['default']
     BaseSwipe: typeof import('./components/BaseSwipe.vue')['default']
     BaseSwiper: typeof import('./components/BaseSwiper.vue')['default']
     BaseSwitch: typeof import('./components/BaseSwitch.vue')['default']
