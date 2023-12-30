@@ -50,7 +50,7 @@ const componentList = computed(() => {
         icon: item.icon,
         value: item.value,
         component: defineAsyncComponent(
-          () => import('~/components/AppCasinoPlatList.vue'),
+          () => import('~/components/AppCasinoCateList.vue'),
         ),
       })
     }
@@ -149,7 +149,10 @@ await application.allSettled([runMemberNoticeAllList(), loadIcon()])
       <!-- 大厅 -->
       <div v-show="showAll">
         <template v-for="item in casinoGameList" :key="item.name">
-          <AppProviderSlider v-if="item.cid === '5'" />
+          <AppProviderSlider
+            v-if="item.cid === '5'" :list="item.games"
+            :title="item.name"
+          />
           <AppSlider
             v-else-if="item.games"
             :icon="item.icon"

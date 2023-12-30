@@ -1,8 +1,13 @@
 <script lang="ts" setup>
 import type { CasinoProviderItem } from '~/apis/types'
 
+interface Props {
+  list: any[]
+  title: string
+}
+defineProps<Props>()
+
 const router = useLocalRouter()
-const { platformList } = storeToRefs(useCasinoStore())
 
 function goPage(item: CasinoProviderItem) {
   if (item.maintained === '2')
@@ -15,15 +20,15 @@ function goPage(item: CasinoProviderItem) {
   <div class="tg-app-provider-slider">
     <AppSlider
       icon="chess-game-provider"
-      :title="$t('casino_provider')"
-      :data="platformList"
+      :title="title"
+      :data="list"
       :show-view-all="false"
       game-type="provider"
       path="/casino/collection/provider"
     >
       <template #default="{ item }">
         <BaseProviderItem
-          :url="item.logo"
+          :url="item.img || item.logo"
           :maintained="item.maintained"
           @click="goPage(item)"
         />

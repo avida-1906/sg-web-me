@@ -150,7 +150,7 @@ onMounted(() => {
         :sort-type="sortType" :pids="pids"
         @vue:mounted="handleMounted" @vue:before-unmount="handleBeforeUnmounted"
       />
-      <AppProviderSlider />
+      <AppProviderSlider :list="platformList" :title="t('casino_provider')" />
     </section>
     <AppBetData mode="casino" />
   </div>
