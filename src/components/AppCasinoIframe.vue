@@ -49,6 +49,8 @@ const currentCurrency = ref<EnumCurrencyKey>()
 const currencyList = ref<EnumCurrencyKey[]>([])
 const gameFrameRef = ref()
 const { bool: isFavorite } = useBoolean(false)
+const { bool: realModeLoading } = useBoolean(false)
+const { bool: testModeLoading } = useBoolean(false)
 
 // 游戏数据接口
 const {
@@ -88,7 +90,6 @@ const gameProviderName = computed(() => {
 const {
   run: runLunchGame,
   data: gameUrl,
-  loading: lunchLoading,
   mutate: mutateGameUrl,
 } = useRequest(() => ApiGameLunch(
   pid.value,
@@ -96,11 +97,22 @@ const {
   currencyCode.value,
 ), {
   manual: true,
+  onBefore() {
+    if (isRealMoneyMode.value)
+      realModeLoading.value = true
+
+    else
+      testModeLoading.value = true
+  },
   onSuccess(res) {
     showIframe()
     // H5模式直接打开游戏
     if (isMobile.value)
       return location.href = res
+  },
+  onAfter() {
+    realModeLoading.value = false
+    testModeLoading.value = false
   },
 })
 // pc自动启动游戏
@@ -267,7 +279,7 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
     <div class="btns btns-mobile">
       <BaseButton
         v-if="isLogin"
-        :loading="lunchLoading"
+        :loading="realModeLoading"
         class="real btn"
         size="sm"
         bg-style="secondary"
@@ -280,7 +292,6 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
       </BaseButton>
       <BaseButton
         v-else
-        :loading="lunchLoading"
         class="real btn"
         size="sm"
         bg-style="secondary"
@@ -292,7 +303,7 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
         <span>{{ t('reg') }}</span>
       </BaseButton>
       <BaseButton
-        :loading="lunchLoading"
+        :loading="testModeLoading"
         class="btn"
         size="sm"
         disabled
