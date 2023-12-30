@@ -144,7 +144,7 @@ await application.allSettled([loadIcon()])
           align-items: center;
           justify-content: center;
           .icon-act{
-            filter: brightness(2);
+            // filter: brightness(2);
           }
 
           .badge {
@@ -177,7 +177,7 @@ await application.allSettled([loadIcon()])
           .icon{
            --tg-icon-color: var(--tg-text-white);
             .icon-img{
-              filter: brightness(2);
+              // filter: brightness(2);
             }
 
           }
