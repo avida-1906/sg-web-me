@@ -149,8 +149,9 @@ await application.allSettled([runMemberNoticeAllList(), loadIcon()])
       <!-- 大厅 -->
       <div v-show="showAll">
         <template v-for="item in casinoGameList" :key="item.name">
+          <AppProviderSlider v-if="item.cid === '5'" />
           <AppSlider
-            v-if="item.games"
+            v-else-if="item.games"
             :icon="item.icon"
             :title="item.name"
             :data="item.games"
@@ -179,7 +180,6 @@ await application.allSettled([runMemberNoticeAllList(), loadIcon()])
           </Suspense>
         </KeepAlive>
       </div>
-      <AppProviderSlider />
     </div>
   </div>
   <div class="layout-spacing">
