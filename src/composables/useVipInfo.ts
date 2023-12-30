@@ -32,7 +32,7 @@ export function useVipInfo() {
   })
   const scoreToNext = computed(() => {
     if (nextLevel.value)
-      return +nextLevel.value.score - score.value
+      return +(currentLevel.value?.score ?? 0) - score.value
     else
       return 0
   })

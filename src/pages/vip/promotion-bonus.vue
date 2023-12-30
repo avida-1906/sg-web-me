@@ -27,7 +27,8 @@ const columns = computed<Column[]>(() => [
     slot: 'level',
   },
   {
-    title: t('vip_promotion_exp'),
+    // title: t('vip_promotion_exp'),
+    title: '状态',
     dataIndex: 'score',
     align: 'center',
     slot: 'score',
@@ -59,9 +60,7 @@ onMounted(() => {
 
 <template>
   <div
-    class="vip-promotion-bonus" :class="{ 'is-mobile': isMobile }" :style="{
-      '--tg-table-td-padding': '12.5px',
-    }"
+    class="vip-promotion-bonus" :class="{ 'is-mobile': isMobile }"
   >
     <div class="tabs">
       <BaseTable :columns="columns" :data-source="vipConfigArray">
@@ -81,46 +80,36 @@ onMounted(() => {
             class="score-wrap"
             :class="{
               'user-level-vip':
-                +vip + 1 === +record.level,
+                +vip === +record.level,
               'lower-vip': +record.level <= +vip && bonusArray.length,
             }"
             :style="{ '--progress-width': floor(score / record.score, 1) }"
           >
-            <!-- <span class="text"> -->
-            <span v-if="+vip + 1 < +record.level">
-              {{ record.score }}
+            <span v-if="+vip < +record.level">
+              {{ t('wait_upgrade') }}
             </span>
-            <span
-              v-else-if="+vip + 1 === +record.level"
-            >
-              {{ score }}/
-              {{ record.score }}
+            <span v-else-if="+vip === +record.level">
+              {{ score }}/{{ record.score }}
             </span>
             <template v-else-if="+vip >= +record.level">
               <BaseButton
                 v-if="bonusArray.length
-                  && bonusArray.filter(b => +b.vip === +record.level
-                    && +b.state === 1).length"
-                bg-style="primary"
-                custom-padding
-                @click="() => openReceive(bonusArray.filter(b =>
-                  +b.vip === +record.level && +b.state === 1)[0])"
+                  && bonusArray.find(b => +b.vip === +record.level && +b.state === 1)"
+                bg-style="primary" custom-padding
+                @click="() => openReceive(bonusArray
+                  .filter(b => +b.vip === +record.level && +b.state === 1)[0])"
               >
                 {{ t('can_receive') }}
               </BaseButton>
               <BaseButton
                 v-else-if="bonusArray.length
-                  && bonusArray.filter(b => +b.vip === +record.level
-                    && +b.state === 2).length"
-
+                  && bonusArray.find(b => +b.vip === +record.level && +b.state === 2)"
                 custom-padding disabled
               >
                 {{ t('received') }}
               </BaseButton>
               <span v-else class="small-text">{{ t('upgraded') }}</span>
-              <!-- <span v-else>{{ record.score }}</span> -->
             </template>
-            <!-- </span> -->
           </div>
         </template>
         <template #up_gift="{ record }">
@@ -190,7 +179,7 @@ onMounted(() => {
   // }
 }
 .user-level-vip {
-  background: #344452;
+  background: rgba(177, 186, 211, 0.4);
   max-width: 290px;
   margin: 0 auto;
   border-radius: 20px;
@@ -209,7 +198,7 @@ onMounted(() => {
     left: 0;
     width: var(--progress-width);
     height: 100%;
-    background-color: #44883E;
+    background: #00E701;
     border-radius: 20px;
   }
 }

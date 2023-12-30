@@ -55,9 +55,7 @@ onMounted(() => {
 <template>
   <div
     class="vip-week-salary"
-    :class="{ 'is-mobile': isMobile }" :style="{
-      '--tg-table-td-padding': '12.5px',
-    }"
+    :class="{ 'is-mobile': isMobile }"
   >
     <div class="tabs">
       <BaseTable :columns="columns" :data-source="vipConfigArray">
@@ -131,11 +129,6 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   gap: var(--tg-spacing-14);
-  // --tg-table-th-background: var(--tg-secondary-grey);
-  // --tg-table-even-background: var(--tg-primary-main);
-  // --tg-table-odd-background: var(--tg-secondary-grey);
-  // --tg-table-thtd-radius: 0;
-  --tg-table-font-size: 12px;
   --tg-app-amount-font-size: 12px;
   :deep(th) {
     font-size: 14px;

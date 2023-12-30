@@ -1,19 +1,19 @@
 <script lang="ts" setup>
-const params = { ty: 2 }
+// const params = { ty: 2 }
 
 const { t } = useI18n()
-const { openNotify } = useNotify()
+// const { openNotify } = useNotify()
 const { vip, vipConfigArray } = useVipInfo()
 const { isMobile } = storeToRefs(useWindowStore())
 
-const { run: runGetPromoBonus, data: promoBonus } = useRequest(ApiMemberVipBonusAvailable)
+// const { run: runGetPromoBonus, data: promoBonus } = useRequest(ApiMemberVipBonusAvailable)
 
-const { openReceiveBonusDialog } = useDialogReceiveBonus(() => {
-  promoBonus.value = []
-  setTimeout(() => {
-    runGetPromoBonus(params)
-  }, 100)
-})
+// const { openReceiveBonusDialog } = useDialogReceiveBonus(() => {
+//   promoBonus.value = []
+//   setTimeout(() => {
+//     runGetPromoBonus(params)
+//   }, 100)
+// })
 
 const columns = computed<Column[]>(() => [
   {
@@ -22,42 +22,52 @@ const columns = computed<Column[]>(() => [
     align: 'left',
     slot: 'level',
   },
-  {
-    title: t('status'),
-    dataIndex: 'status',
-    align: 'center',
-    slot: 'status',
-  },
+  // {
+  //   title: t('status'),
+  //   dataIndex: 'status',
+  //   align: 'center',
+  //   slot: 'status',
+  // },
   {
     title: t('vip_day_salary_bonus'),
     dataIndex: 'daily_gift',
     align: 'right',
     slot: 'daily_gift',
   },
+  {
+    title: t('vip_week_salary_bonus'),
+    dataIndex: 'weekly_gift',
+    align: 'right',
+    slot: 'weekly_gift',
+  },
+  {
+    title: t('vip_month_salary_bonus'),
+    dataIndex: 'monthly_gift',
+    align: 'right',
+    slot: 'monthly_gift',
+  },
 ])
 
-const bonusArray = computed(() => promoBonus.value && promoBonus.value.length
-  ? promoBonus.value
-  : [])
+// const bonusArray = computed(() => promoBonus.value && promoBonus.value.length
+//   ? promoBonus.value
+//   : [])
 
-async function openReceive(item: any) {
-  if (+item.amount > 0 && +item.state === 1)
-    openReceiveBonusDialog({ vipBonus: item.amount, vipBonusId: item.id })
-  else
-    openNotify({ type: 'error', message: t('no_bonus_now'), title: t('fail_bonus') })
-}
+// async function openReceive(item: any) {
+//   if (+item.amount > 0 && +item.state === 1)
+//     openReceiveBonusDialog({ vipBonus: item.amount, vipBonusId: item.id })
+//   else
+//     openNotify({ type: 'error', message: t('no_bonus_now'), title: t('fail_bonus') })
+// }
 
-onMounted(() => {
-  runGetPromoBonus(params)
-})
+// onMounted(() => {
+//   runGetPromoBonus(params)
+// })
 </script>
 
 <template>
   <div
     class="vip-day-salary"
-    :class="{ 'is-mobile': isMobile }" :style="{
-      '--tg-table-td-padding': '12.5px',
-    }"
+    :class="{ 'is-mobile': isMobile }"
   >
     <div class="tabs">
       <BaseTable :columns="columns" :data-source="vipConfigArray">
@@ -68,11 +78,21 @@ onMounted(() => {
           </div>
         </template>
         <template #daily_gift="{ record }">
-          <div class="gift small-text color-orange">
+          <div class="gift small-text">
             <AppAmount :amount="record.daily_gift" currency-type="USDT" />
           </div>
         </template>
-        <template #status="{ record }">
+        <template #weekly_gift="{ record }">
+          <div class="gift">
+            <AppAmount :amount="record.weekly_gift" currency-type="USDT" />
+          </div>
+        </template>
+        <template #monthly_gift="{ record }">
+          <div class="gift">
+            <AppAmount :amount="record.monthly_gift" currency-type="USDT" />
+          </div>
+        </template>
+        <!-- <template #status="{ record }">
           <span
             v-if="+record.level > +vip"
             class="small-text"
@@ -97,8 +117,13 @@ onMounted(() => {
               {{ t('received') }}</span>
             <span v-else class="small-text">{{ t('upgraded') }}</span>
           </template>
-        </template>
+        </template> -->
       </BaseTable>
+      <div class="btn-box center">
+        <BaseButton bg-style="secondary" custom-padding>
+          {{ t('receive_bonus') }}
+        </BaseButton>
+      </div>
     </div>
     <AppVipRuleDesc />
   </div>
@@ -120,9 +145,9 @@ onMounted(() => {
 .gift {
   display: inline-block;
 }
-.color-orange {
-  color: var(--tg-text-warn);
-}
+// .color-orange {
+//   color: var(--tg-text-warn);
+// }
 .flex-center {
   display: flex;
   justify-content: center;
@@ -131,11 +156,6 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   gap: var(--tg-spacing-14);
-  // --tg-table-th-background: var(--tg-secondary-grey);
-  // --tg-table-even-background: var(--tg-primary-main);
-  // --tg-table-odd-background: var(--tg-secondary-grey);
-  // --tg-table-thtd-radius: 0;
-  --tg-table-font-size: 12px;
   --tg-app-amount-font-size: 12px;
   :deep(th) {
     font-size: 14px;
@@ -150,6 +170,11 @@ onMounted(() => {
     background: #0F212E;
     padding: 12px 12px;
     border-radius: 4px;
+    .btn-box{
+      --tg-base-button-padding-y: 8px;
+      --tg-base-button-padding-x: 148px;
+      margin-top: 20px;
+    }
   }
 }
 </style>

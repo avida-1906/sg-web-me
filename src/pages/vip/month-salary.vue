@@ -55,9 +55,7 @@ onMounted(() => {
 <template>
   <div
     class="vip-month-salary"
-    :class="{ 'is-mobile': isMobile }" :style="{
-      '--tg-table-td-padding': '12.5px',
-    }"
+    :class="{ 'is-mobile': isMobile }"
   >
     <div class="tabs">
       <BaseTable :columns="columns" :data-source="vipConfigArray">
@@ -82,7 +80,7 @@ onMounted(() => {
               v-if="bonusArray.length
                 && bonusArray.filter(b => +b.vip === +record.level
                   && +b.state === 1).length"
-              class="green-text small-text"
+              class="small-text green-text"
               @click="() => openReceive(bonusArray.filter(b =>
                 +b.vip === +record.level && +b.state === 1)[0])"
             >
@@ -131,11 +129,6 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   gap: var(--tg-spacing-14);
-  // --tg-table-th-background: var(--tg-secondary-grey);
-  // --tg-table-even-background: var(--tg-primary-main);
-  // --tg-table-odd-background: var(--tg-secondary-grey);
-  // --tg-table-thtd-radius: 0;
-  --tg-table-font-size: 12px;
   --tg-app-amount-font-size: 12px;
   :deep(th) {
     font-size: 14px;
