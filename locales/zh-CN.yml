@@ -974,9 +974,9 @@ vip_water_back: 返水
 vip_day_salary: 日俸禄
 vip_week_salary: 周俸禄
 vip_month_salary: 月俸禄
-vip_day_salary_bonus: 日俸禄奖金
-vip_week_salary_bonus: 周俸禄奖金
-vip_month_salary_bonus: 月俸禄奖金
+vip_day_salary_bonus: 日奖金
+vip_week_salary_bonus: 周奖金
+vip_month_salary_bonus: 月奖金
 grade: 等级
 vip_promotion_exp: 晋级经验
 turnover_multiple: 流水倍数
@@ -1755,3 +1755,4 @@ statistical_date: 统计日期
 phone_invalid: 手机号码无效
 colon: ：
 period: 。
+vip_total_bonus: 累积奖金

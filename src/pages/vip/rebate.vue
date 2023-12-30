@@ -7,8 +7,20 @@ const { providerList } = storeToRefs(useSportsStore())
 const { AllLanguages, userLanguage } = storeToRefs(useLanguageStore())
 const { bigPlats: platformList } = storeToRefs(useCasinoStore())
 const { isMobile } = storeToRefs(useWindowStore())
+// const {
+//   renderCurrencyList,
+// } = useCurrencyData()
 
 const tab = ref('')
+// const squareTabList = renderCurrencyList.value.map((item) => {
+//   return {
+//     value: item.cur,
+//     label: item.type,
+//     icon: `/currency/${item.cur}.webp`,
+//     useCloudImg: true,
+//   }
+// })
+// const squareVal = ref(squareTabList[0].value)
 
 const prefix = computed(() =>
   AllLanguages.value.filter(a => a.value === userLanguage.value)[0].prefix)
@@ -16,17 +28,15 @@ const allPlatforms = computed(() =>
   platformList.value.sort((a, b) => b.seq - a.seq).concat(providerList.value.sort((a, b) => b.seq - a.seq)))
 const tabList = computed(() => [
   { label: t('slot'), value: '3', icon: 'chess-slot-machine' },
-  { label: t('fishing'), value: 'by', icon: 'spt-user-bet' },
+  { label: t('fishing'), value: 'by', icon: 'uni-fishing' },
   { label: t('chess'), value: 'qp', icon: 'tabbar-game' },
   { label: t('live'), value: '1', icon: 'chess-live-casino' },
   { label: t('sports'), value: '4', icon: 'spt-soccer' },
-].filter(item =>
-  allPlatforms.value.filter(p => p.game_type === item.value).length))
+].filter(item => allPlatforms.value.filter(p => p.game_type === item.value).length))
 const filteredPlatforms = computed(() =>
   allPlatforms.value.filter(p => p.game_type === tab.value))
 const filterPlatformColumn = computed<Column[]>(() => filteredPlatforms.value.map(p =>
   ({ title: p[prefix.value ? `${prefix.value}_name` : 'name'], dataIndex: `${p.id}rate`, align: 'center', slot: `${p.id}rate` })))
-
 const data = computed(() =>
   vipConfigData.value
     ? Object.values(vipConfigData.value).sort((a, b) => +a.level - +b.level)
@@ -37,7 +47,6 @@ const data = computed(() =>
           : { level: p.level }
       })
     : [])
-//
 const columns = computed<Column[]>(() => filterPlatformColumn.value.toReversed().concat({
   title: `VIP${t('grade')}`,
   dataIndex: 'level',
@@ -54,16 +63,9 @@ watch(tabList, (val) => {
 </script>
 
 <template>
-  <div
-    class="vip-rebate"
-    :class="{ 'is-mobile': isMobile }" :style="{
-      '--tg-table-td-padding': '12.5px',
-    }"
-  >
+  <div class="vip-rebate" :class="{ 'is-mobile': isMobile }">
     <div class="tabs">
-      <div
-        class="tabs-outer"
-      >
+      <div class="tabs-outer">
         <BaseTab
           v-model="tab"
           style="--tg-tab-style-color: var(--tg-text-lightgrey);"
@@ -71,6 +73,7 @@ watch(tabList, (val) => {
           :center="false"
         />
       </div>
+      <!-- <BaseSquareTab v-model="squareVal" :list="squareTabList" /> -->
       <BaseTable :columns="columns" :data-source="data">
         <template #level="{ record }">
           <!-- <div>VIP{{ record.level }}</div> -->
