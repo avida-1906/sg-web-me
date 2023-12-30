@@ -169,7 +169,7 @@ function pathTo(tmp: { path?: string; title: string; icon?: boolean }) {
     </div>
     <BaseDivider />
     <div class="footer-copyright">
-      <BaseLogo />
+      <BaseLogo :static="false" />
       <div class="copy-right">
         © {{ companyData.copyright }} | {{ t('copyright') }}
       </div>
