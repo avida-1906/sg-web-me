@@ -166,7 +166,7 @@ const onPlayCount = ref(Math.ceil(Math.random() * 1000).toFixed())
     width: 100%;
     height: 100%;
     color: var(--tg-text-lightgrey);
-    font-size: var(--tg-font-size-base);
+    font-size: var(--tg-font-size-xs);
     position: absolute;
     top: 0;
     left: 0;
