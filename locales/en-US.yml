@@ -2225,3 +2225,4 @@ register_time: Registration time
 statistical_date: Statistics date
 phone_invalid: 手机号码无效
 colon: ':'
+period: '.'

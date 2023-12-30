@@ -120,7 +120,9 @@ onMounted(() => {
           <div class="content-title">
             {{ t('email_address') }}
           </div>
-          <div>{{ t('must_verify_email_then', { delta: tipText }) }}。</div>
+          <div>
+            {{ t('must_verify_email_then', { delta: tipText }) }}{{ t('period') }}
+          </div>
         </template>
         <BaseLabel :label="t('email_address')" must-small>
           <div v-if="emailVerified" class="email-erified-box cursor-pointer">
