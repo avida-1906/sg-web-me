@@ -130,7 +130,7 @@ onBeforeUnmount(() => {
     class="app-sports-bet-button"
     :class="{
       'active': sportStore.cart.checkWid(props.cartInfo.wid),
-      'disabled': _disabled,
+      'disabled': _disabled || isZeroOdd,
       'is-na': isNa,
     }"
     :title="

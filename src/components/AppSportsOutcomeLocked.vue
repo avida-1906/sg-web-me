@@ -22,6 +22,7 @@ withDefaults(defineProps<{ size?: 'none' | 'normal' }>(), {
   background: var(--tg-secondary-deepdark);
   pointer-events: none;
   border-radius: var(--tg-radius-default);
+  user-select: none;
 
   .icon {
     font-size: var(--tg-font-size-default);
