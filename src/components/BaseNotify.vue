@@ -215,6 +215,7 @@ onMounted(() => {
     .message{
       display: flex;
       align-items: center;
+      flex-wrap: wrap;
     }
   }
   .close {

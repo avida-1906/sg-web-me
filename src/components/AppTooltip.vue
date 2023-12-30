@@ -1,9 +1,15 @@
 <script setup lang="ts">
 interface Props {
-  text?: string // 提示文本
-  iconName?: string // 图标icon
-  autoHide?: boolean // 是否自动隐藏
-  hideTimeout?: number // 自动隐藏毫秒数
+  /** 提示文本 */
+  text?: string
+  /** 触发图标icon */
+  iconName?: string
+  /** 是否自动隐藏 */
+  autoHide?: boolean
+  /** 自动隐藏毫秒数 */
+  hideTimeout?: number
+  /** 触发文本 */
+  content?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -39,9 +45,10 @@ function clearHide() {
     @show="closeTool"
     @hide="clearHide"
   >
-    <div class="center stealth-box">
+    <div class="center">
       <slot name="content">
-        <BaseIcon :name="iconName ?? ''" />
+        <BaseIcon v-if="iconName" :name="iconName ?? ''" />
+        <span v-if="content">{{ content }}</span>
       </slot>
     </div>
     <template #popper>
