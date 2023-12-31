@@ -24,7 +24,7 @@ const { openRegisterDialog } = useRegisterDialog()
 const tab = ref('all')
 const showAll = computed(() => tab.value === 'all')
 const currentNav = computed(() => {
-  return casinoNav.value.find(a => a.value === tab.value)
+  return casinoNav.value?.find(a => a.value === tab.value)
   ?? { label: '', cid: '', icon: '', ty: -1, platform_id: '', value: '' }
 })
 // 公告弹框和跑马灯
@@ -41,6 +41,16 @@ const {
 const componentList = computed(() => {
   const _c: ComponentItem[] = []
   const _list = casinoNav.value
+    ? casinoNav.value
+    : [{
+        ty: -1,
+        cid: '',
+        name: '',
+        icon: '',
+        value: '',
+        platform_id: '',
+        label: '',
+      }]
   _list.forEach((item) => {
     if (item.ty === 1) {
       _c.push({
@@ -96,7 +106,7 @@ function loadIcon() {
     let a = 0
     const t = setInterval(() => {
       a++
-      if (casinoNav.value.length > 0) {
+      if (casinoNav.value && casinoNav.value.length > 0) {
         clearInterval(t)
         const arr = casinoNav.value.map((a) => {
           return application.loadImage(a.icon)
@@ -105,7 +115,7 @@ function loadIcon() {
           resolve(result)
         })
       }
-      else if (a > 300) {
+      else if (a > 300 || !casinoNav.value) {
         clearInterval(t)
         resolve(true)
       }
@@ -138,10 +148,10 @@ await application.allSettled([runMemberNoticeAllList(), loadIcon()])
     <div v-if="!isMobile" class="mt-24">
       <AppGameSearch game-type="1" />
     </div>
-    <div class="mgt12">
+    <div v-show="casinoNav && casinoNav.length > 0" class="mgt12">
       <BaseTab
         v-model="tab"
-        :list="casinoNav"
+        :list="casinoNav ?? []"
         :center="false" size="large" use-cloud-img
       />
     </div>

@@ -24,22 +24,25 @@ export const useCasinoStore = defineStore('casino', () => {
 
   const casinoNav = computed(() => {
     if (data.value) {
-      data.value.navs.unshift({
-        cid: 'all',
-        name: data.value.name,
-        ty: -1,
-        platform_id: 'all',
-        icon: data.value.icon,
-        background: '',
-      })
-      return data.value.navs.map((a) => {
-        return {
-          ...a,
-          label:
-           a.name,
-          value: a.ty === 1 ? a.cid : a.platform_id,
-        }
-      })
+      if (data.value.navs) {
+        data.value.navs.unshift({
+          cid: 'all',
+          name: data.value.name,
+          ty: -1,
+          platform_id: 'all',
+          icon: data.value.icon,
+          background: '',
+        })
+        return data.value.navs.map((a) => {
+          return {
+            ...a,
+            label:
+             a.name,
+            value: a.ty === 1 ? a.cid : a.platform_id,
+          }
+        })
+      }
+      return null
     }
     return []
   })
