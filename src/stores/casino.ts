@@ -78,9 +78,13 @@ export const useCasinoStore = defineStore('casino', () => {
   })
 
   function getBg(cid: string) {
-    if (data.value && data.value.navs)
-      return data.value.navs.find(a => a.cid === cid)?.background ?? ''
-
+    if (data.value) {
+      const navs = data.value.navs ?? []
+      const sidebars = data.value?.sidebars ?? []
+      const arr = [...navs, ...sidebars]
+      const str = arr.find(a => a.cid === cid)?.background ?? ''
+      return str
+    }
     return ''
   }
 
@@ -92,6 +96,7 @@ export const useCasinoStore = defineStore('casino', () => {
     casinoGameList,
     casinoSidebar,
     cateProviderData,
+    lobbyBdata: data,
     runAsyncGameLobby,
     getBg,
   }

@@ -4,7 +4,7 @@ const props = defineProps<{ gameType: string }>()
 const { t } = useI18n()
 const { appContentWidth, isMobile } = storeToRefs(useWindowStore())
 const casinoStore = useCasinoStore()
-const { cateProviderData, platformList } = storeToRefs(casinoStore)
+const { cateProviderData, platformList, lobbyBdata } = storeToRefs(casinoStore)
 const route = useRoute()
 const title = computed(() => route.query.name)
 const { bool: loading } = useBoolean(false)
@@ -58,11 +58,14 @@ const platformOptions = computed(() => {
   return []
 })
 const bannerBg = computed(() => {
-  if (isRec.value)
+  if (isRec.value) {
     return '/png/casino/group-banner-default.png'
-
-  else
-    return casinoStore.getBg(cid.value)
+  }
+  else {
+    if (lobbyBdata.value)
+      return casinoStore.getBg(cid.value)
+    return ''
+  }
 })
 
 function handleBeforeUnmounted() {
@@ -122,6 +125,7 @@ onMounted(() => {
               }"
             >
               <AppImage
+                :key="bannerBg"
                 :is-cloud="!isRec"
                 style="height: 100%;width: auto;"
                 :url="bannerBg"
