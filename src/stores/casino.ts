@@ -46,9 +46,9 @@ export const useCasinoStore = defineStore('casino', () => {
     }
     return []
   })
-  const casinoGameList = computed(() =>
-    data.value
-      ? data.value.items.map(a => ({
+  const casinoGameList = computed(() => {
+    if (data.value && data.value.items) {
+      return data.value.items.map(a => ({
         ...a,
         title: a.name,
         list: [],
@@ -57,11 +57,12 @@ export const useCasinoStore = defineStore('casino', () => {
           : `/casino/group/provider?pid=${a.platform_id}&name=${a.name}`,
         useCloudImg: true,
       }))
-      : [],
-  )
-  const casinoSidebar = computed(() =>
-    data.value
-      ? data.value.sidebars.map(a => ({
+    }
+    return []
+  })
+  const casinoSidebar = computed(() => {
+    if (data.value && data.value.sidebars) {
+      return data.value.sidebars.map(a => ({
         ...a,
         title: a.name,
         list: [],
@@ -72,8 +73,9 @@ export const useCasinoStore = defineStore('casino', () => {
             : `/casino/group/provider?pid=${a.platform_id}&name=${a.name}`,
         useCloudImg: true,
       }))
-      : [],
-  )
+    }
+    return []
+  })
 
   function getBg(cid: string) {
     if (data.value && data.value.navs)
