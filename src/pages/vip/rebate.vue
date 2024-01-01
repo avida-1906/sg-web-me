@@ -72,11 +72,11 @@ watch(tabList, (val) => {
       <template v-if="isMobile">
         <div class="grid-box">
           <div class="flex-column">
-            <span>类型选择</span>
+            <span>{{ $t('type_select') }}</span>
             <BaseSquareTab v-model="tab" :list="tabList" />
           </div>
           <div class="flex-column">
-            <span>货币</span>
+            <span>{{ $t('currency') }}</span>
             <div class="currency-box">
               <AppSelectCurrency
                 :type="3"
