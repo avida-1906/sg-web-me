@@ -10,6 +10,7 @@ interface Props {
   placeholder?: string
   distance?: number
   activeCurrencyList?: availableCurrency[]
+  between?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -99,6 +100,7 @@ onMounted(() => {
       v-model:shown="isMenuShown"
       :distance="distance"
       handle-resize
+      style="width: var(--tg-app-dropdown-width)"
       @apply-show="clearSearchValue"
     >
       <div class="wallet-box">
@@ -178,6 +180,7 @@ onMounted(() => {
   --tg-app-select-currency-poptop-width: max-content;
   --tg-app-select-currency-padding-x: 20px;
   --tg-app-select-currency-padding-y: 15px;
+  --tg-app-dropdown-width: auto;
 }
 .select-currency{
   --tg-base-select-popper-active-color: none;
