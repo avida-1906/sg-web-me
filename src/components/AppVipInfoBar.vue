@@ -55,7 +55,7 @@ function openRecord() {
         >
           {{ $t('one_receive') }}
         </BaseButton> -->
-      <BaseButton bg-style="primary" size="none" @click="openRecord">
+      <BaseButton bg-style="primary" round size="none" @click="openRecord">
         {{ $t('receive_record_label') }}
       </BaseButton>
     </div>

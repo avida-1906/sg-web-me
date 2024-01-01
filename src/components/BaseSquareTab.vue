@@ -82,15 +82,21 @@ await application.allSettled([loadIcon()])
   </div>
 </template>
 
+<style>
+:root {
+  --tg-base-square-tab-margin: var(--tg-spacing-12) 0;
+  --tg-base-square-tab-bg: var(--tg-secondary-dark);
+}
+</style>
+
 <style lang='scss' scoped>
 .app-sports-tab {
   width: 100%;
   display: flex;
   align-items: center;
-  margin-top: var(--tg-spacing-12);
-  margin-bottom: var(--tg-spacing-12);
-  background-color: var(--tg-secondary-dark);
-  border-radius: var(--tg-radius-md);
+  margin: var(--tg-base-square-tab-margin);
+  background-color: var(--tg-base-square-tab-bg);
+  border-radius: var(--tg-radius-default);
   overflow: hidden;
 
 }

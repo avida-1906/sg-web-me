@@ -43,7 +43,7 @@ function scrollRight() {
 }
 
 function clickItem(item: Item) {
-  console.error('clickItem')
+  // console.error('clickItem')
   emit('clickItem', item)
 }
 

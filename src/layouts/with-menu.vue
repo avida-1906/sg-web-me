@@ -134,6 +134,7 @@ watch(route, (val) => {
                               v-model="curMenuTab"
                               :center="false"
                               :list="menuData"
+                              :full="$route.path.includes('/vip/')"
                             />
                           </div>
                           <div

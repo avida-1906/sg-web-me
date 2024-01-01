@@ -59,6 +59,7 @@ function onClick(e: any) {
   --tg-base-button-disabled-opacity:0.5;
   --tg-base-button-loading-opacity:0.5;
   --tg-base-button-line-border-color: var(--tg-text-white);
+  --tg-base-button-justify-content: center;
 }
 </style>
 
@@ -111,7 +112,7 @@ button {
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: var(--tg-base-button-justify-content);
   }
   &.loading{
     opacity: var(--tg-base-button-loading-opacity);

@@ -169,7 +169,7 @@ export function useApiSportDetails() {
     const rbtd = sportInfo.value.list[0].rbtd
     const ed = sportInfo.value.list[0].ed
     if (isOnAir.value)
-      return `${eventTime.value} ${rbtd}`
+      return `${eventTime.value}@@${rbtd}`
     else if (isPause.value)
       return `${rbtd}`
     else

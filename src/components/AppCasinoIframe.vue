@@ -43,6 +43,7 @@ const {
   setTrue: showIframe,
   setFalse: hideIframe,
 } = useBoolean(false)
+const { bool: showTestMode } = useBoolean(false)
 const { floatingState, toggleFloating } = useFloatingVue()
 
 const currentCurrency = ref<EnumCurrencyKey>()
@@ -58,6 +59,9 @@ const {
   runAsync: runDetail,
 } = useRequest(() => ApiMemberGameDetail(props.id, props.pid, props.gameId), {
   onSuccess(res) {
+    if (+res.game_type === CasinoGameType.slot)
+      showTestMode.value = true
+
     currencyList.value = res.currencys
 
     // 如果用户选择过货币，使用之前保存的货币
@@ -387,7 +391,10 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
                     </div>
                     <span>{{ t('reg') }}</span>
                   </BaseButton>
-                  <BaseButton size="sm" disabled @click="onSwitchRealMoneyMode(false)">
+                  <BaseButton
+                    v-show="showTestMode" size="sm" disabled
+                    @click="onSwitchRealMoneyMode(false)"
+                  >
                     <div class="icon">
                       <BaseIcon name="uni-play" />
                     </div>
@@ -413,8 +420,11 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
               </div>
               <!-- 影院模式 -->
               <VTooltip placement="top">
-                <div class="icon-button" @click="onClickTheatre">
-                  <BaseIcon :name="`uni-theatre${isTheatre ? '-open' : ''}`" />
+                <div
+                  :style="isTheatre ? '--tg-icon-color:var(--tg-text-white)' : ''"
+                  class="icon-button" @click="onClickTheatre"
+                >
+                  <BaseIcon name="uni-theatre-open" />
                 </div>
                 <template #popper>
                   <div class="tiny-menu-item-title">
@@ -496,18 +506,22 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
               <BaseLogo />
             </div>
             <div class="right">
-              <span
-                :class="{ active: !isRealMoneyMode }"
-              >{{ t('casino_game_test_mode') }}</span>
-              <BaseSwitch
-                v-model="isRealMoneyMode"
-                class="switch"
-                :disabled="!isLogin"
-                @change="onSwitchRealMoneyMode"
-              />
-              <span
-                :class="{ active: isRealMoneyMode }"
-              >{{ t('casino_game_real_money_mode') }}</span>
+              <template v-if="showTestMode">
+                <span
+                  :class="{ active: !isRealMoneyMode }"
+                >{{ t('casino_game_test_mode') }}
+                </span>
+                <BaseSwitch
+                  v-model="isRealMoneyMode"
+                  class="switch"
+                  :disabled="!isLogin"
+                  @change="onSwitchRealMoneyMode"
+                />
+                <span
+                  :class="{ active: isRealMoneyMode }"
+                >{{ t('casino_game_real_money_mode') }}
+                </span>
+              </template>
             </div>
           </div>
         </div>
@@ -767,7 +781,7 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
   }
 
   .t-iframe-wrapper {
-    max-height: 811px;
+    max-height: calc(100vh - var(--header-height) - 63px);
   }
 
   .footer {
