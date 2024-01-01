@@ -77,7 +77,7 @@ watch(tabList, (val) => {
           </div>
           <div class="flex-column">
             <span>货币</span>
-            <div class="currency-box" style="">
+            <div class="currency-box">
               <AppSelectCurrency
                 :type="3"
                 :show-balance="false"
@@ -131,6 +131,8 @@ watch(tabList, (val) => {
   --tg-app-amount-font-size: var(--tg-font-size-xs);
   --tg-base-square-tab-bg: var(--tg-secondary-deepdark);
   --tg-base-square-tab-margin: 0;
+  --tg-base-button-justify-content: space-around;
+  --tg-app-dropdown-width: 100%;
   .tabs-outer {
     background: var(--tg-secondary-dark);
   }
@@ -146,7 +148,7 @@ watch(tabList, (val) => {
       grid-template-columns: 9fr 5fr;
       gap:  var(--tg-spacing-12);
       align-items: center;
-      --tg-app-select-currency-padding-x: 20px;
+      --tg-app-select-currency-padding-x: 0;
       --tg-app-select-currency-padding-y: 18px;
     }
     .flex-column{

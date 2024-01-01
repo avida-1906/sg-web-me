@@ -96,7 +96,7 @@ onMounted(() => {
                 v-if="bonusArray.length
                   && bonusArray.find(b => +b.vip === +record.level && +b.state === 1)"
                 class="btn-limit"
-                bg-style="primary" round custom-padding
+                bg-style="primary" custom-padding round
                 @click="() => openReceive(bonusArray
                   .filter(b => +b.vip === +record.level && +b.state === 1)[0])"
               >
@@ -106,7 +106,7 @@ onMounted(() => {
                 v-else-if="bonusArray.length
                   && bonusArray.find(b => +b.vip === +record.level && +b.state === 2)"
                 class="btn-limit"
-                round custom-padding
+                round custom-padding disabled
               >
                 {{ t('received') }}
               </BaseButton>
@@ -171,24 +171,15 @@ onMounted(() => {
   // --tg-base-button-padding-x: 45px;
   --tg-base-button-font-weight: 500;
   --tg-base-button-font-size: var(--tg-font-size-xs);
-  // > span {
-  //   display: flex;
-  //   align-items: center;
-  //   justify-content: center;
-  // }
-  // svg {
-  //   margin-left: var(--tg-spacing-8);
-  // }
 }
 .btn-limit{
   display: block;
-  max-width: 297px;
+  max-width: 290px;
   width: 100%;
   margin: 0 auto;
 }
 .user-level-vip {
-  max-width: 297px;
-  // background: rgba(177, 186, 211, 0.4);
+  max-width: 290px;
   background: #{rgba($color: var(--tg-color-green-rgb), $alpha: 0.3)};
   margin: 0 auto;
   border-radius: 20px;
