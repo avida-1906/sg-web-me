@@ -767,7 +767,7 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
   }
 
   .t-iframe-wrapper {
-    max-height: 811px;
+    max-height: calc(100vh - var(--header-height) - 63px);
   }
 
   .footer {
