@@ -14,7 +14,7 @@ const expData = reactive([
 <template>
   <div class="app-vip-exp-rule">
     <div class="rule-title">
-      VIP按照您的USDT有效投注来计算
+      {{ $t('rule_text_title') }}
     </div>
     <div class="rule-text">
       1.{{ $t('rule_text_one') }}{{ $t('period') }}
