@@ -459,8 +459,14 @@ function mapHeadArea(
         class="chromatic-ignore sticky-left competitor-title heading"
         style="grid-area: competitor_title;"
       >
+        <span
+          class="match-status-label"
+          style="display:inline-block;width: 5ch;text-align: left;"
+        >
+          {{ _data.startTime.split('@@')[0] }}
+        </span>&nbsp;
         <span class="match-status-label">
-          {{ _data.startTime }}
+          {{ _data.startTime.split('@@')[1] }}
         </span>
       </div>
       <div class="sticky-left competitor-item border" style="grid-area: competitor_home;">
