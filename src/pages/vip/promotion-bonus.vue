@@ -86,7 +86,7 @@ onMounted(() => {
             :style="{ '--progress-width': floor(score / record.score, 1) }"
           >
             <span v-if="+vip < +record.level">
-              {{ t('wait_upgrade') }}
+              {{ record.score }}
             </span>
             <span v-else-if="+vip === +record.level">
               {{ score }}/{{ record.score }}
@@ -95,7 +95,8 @@ onMounted(() => {
               <BaseButton
                 v-if="bonusArray.length
                   && bonusArray.find(b => +b.vip === +record.level && +b.state === 1)"
-                bg-style="primary" custom-padding
+                class="btn-limit"
+                bg-style="primary" round custom-padding
                 @click="() => openReceive(bonusArray
                   .filter(b => +b.vip === +record.level && +b.state === 1)[0])"
               >
@@ -104,7 +105,8 @@ onMounted(() => {
               <BaseButton
                 v-else-if="bonusArray.length
                   && bonusArray.find(b => +b.vip === +record.level && +b.state === 2)"
-                custom-padding disabled
+                class="btn-limit"
+                round custom-padding
               >
                 {{ t('received') }}
               </BaseButton>
@@ -165,10 +167,10 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  --tg-base-button-padding-y: 10px;
-  --tg-base-button-padding-x: 37px;
+  --tg-base-button-padding-y: 4.5px;
+  // --tg-base-button-padding-x: 45px;
   --tg-base-button-font-weight: 500;
-  --tg-base-button-font-size: 12px;
+  --tg-base-button-font-size: var(--tg-font-size-xs);
   // > span {
   //   display: flex;
   //   align-items: center;
@@ -178,9 +180,16 @@ onMounted(() => {
   //   margin-left: var(--tg-spacing-8);
   // }
 }
+.btn-limit{
+  display: block;
+  max-width: 297px;
+  width: 100%;
+  margin: 0 auto;
+}
 .user-level-vip {
-  background: rgba(177, 186, 211, 0.4);
-  max-width: 290px;
+  max-width: 297px;
+  // background: rgba(177, 186, 211, 0.4);
+  background: #{rgba($color: var(--tg-color-green-rgb), $alpha: 0.3)};
   margin: 0 auto;
   border-radius: 20px;
   position: relative;
@@ -198,7 +207,7 @@ onMounted(() => {
     left: 0;
     width: var(--progress-width);
     height: 100%;
-    background: #00E701;
+    background: var(--tg-text-green);
     border-radius: 20px;
   }
 }
@@ -213,8 +222,7 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   gap: var(--tg-spacing-14);
-  // --tg-table-font-size: 12px;
-  --tg-app-amount-font-size: 12px;
+  --tg-app-amount-font-size: var(--tg-font-size-xs);
   overflow: visible;
   &.is-mobile {
     .tabs {

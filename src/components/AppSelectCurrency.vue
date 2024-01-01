@@ -103,7 +103,7 @@ onMounted(() => {
     >
       <div class="wallet-box">
         <span v-if="showNetwork">{{ t('currency') }}</span>
-        <BaseButton class="wallet wallet-only" type="text" size="md">
+        <BaseButton class="wallet wallet-only" custom-padding type="text" size="md">
           <AppAmount
             v-if="showBalance"
             style="color:var(--tg-text-white);"
@@ -176,6 +176,8 @@ onMounted(() => {
 <style>
 :root {
   --tg-app-select-currency-poptop-width: max-content;
+  --tg-app-select-currency-padding-x: 20px;
+  --tg-app-select-currency-padding-y: 15px;
 }
 .select-currency{
   --tg-base-select-popper-active-color: none;
@@ -189,6 +191,8 @@ onMounted(() => {
         gap: var(--tg-spacing-4);
         justify-content: center;
         flex-direction: column;
+        --tg-base-button-padding-x: var(--tg-app-select-currency-padding-x);
+        --tg-base-button-padding-y: var(--tg-app-select-currency-padding-y);
     }
 
     .wallet {

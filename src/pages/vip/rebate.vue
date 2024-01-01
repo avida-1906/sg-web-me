@@ -7,20 +7,20 @@ const { providerList } = storeToRefs(useSportsStore())
 const { AllLanguages, userLanguage } = storeToRefs(useLanguageStore())
 const { bigPlats: platformList } = storeToRefs(useCasinoStore())
 const { isMobile } = storeToRefs(useWindowStore())
-// const {
-//   renderCurrencyList,
-// } = useCurrencyData()
+const {
+  renderCurrencyList,
+} = useCurrencyData()
 
 const tab = ref('')
-// const squareTabList = renderCurrencyList.value.map((item) => {
-//   return {
-//     value: item.cur,
-//     label: item.type,
-//     icon: `/currency/${item.cur}.webp`,
-//     useCloudImg: true,
-//   }
-// })
-// const squareVal = ref(squareTabList[0].value)
+const squareTabList = renderCurrencyList.value.map((item) => {
+  return {
+    value: item.cur,
+    label: item.type,
+    icon: `/currency/${item.cur}.webp`,
+    useCloudImg: true,
+  }
+})
+const squareVal = ref(squareTabList[0].value)
 
 const prefix = computed(() =>
   AllLanguages.value.filter(a => a.value === userLanguage.value)[0].prefix)
@@ -54,6 +54,10 @@ const columns = computed<Column[]>(() => filterPlatformColumn.value.toReversed()
   slot: 'level',
 }).toReversed())
 
+function changeCurrency(item: any) {
+  console.log(item)
+}
+
 watch(tabList, (val) => {
   if (val && val.length)
     tab.value = val[0].value
@@ -65,15 +69,37 @@ watch(tabList, (val) => {
 <template>
   <div class="vip-rebate" :class="{ 'is-mobile': isMobile }">
     <div class="tabs">
-      <div class="tabs-outer">
-        <BaseTab
-          v-model="tab"
-          style="--tg-tab-style-color: var(--tg-text-lightgrey);"
-          :list="tabList"
-          :center="false"
-        />
-      </div>
-      <!-- <BaseSquareTab v-model="squareVal" :list="squareTabList" /> -->
+      <template v-if="isMobile">
+        <div class="grid-box">
+          <div class="flex-column">
+            <span>类型选择</span>
+            <BaseSquareTab v-model="tab" :list="tabList" />
+          </div>
+          <div class="flex-column">
+            <span>货币</span>
+            <div class="currency-box" style="">
+              <AppSelectCurrency
+                :type="3"
+                :show-balance="false"
+                popper-clazz="app-wallet-cur"
+                placeholder="search"
+                @change="changeCurrency"
+              />
+            </div>
+          </div>
+        </div>
+      </template>
+      <template v-else>
+        <div class="tabs-outer">
+          <BaseTab
+            v-model="tab"
+            style="--tg-tab-style-color: var(--tg-text-lightgrey);"
+            :list="tabList"
+            :center="false"
+          />
+        </div>
+        <BaseSquareTab v-model="squareVal" :list="squareTabList" />
+      </template>
       <BaseTable :columns="columns" :data-source="data">
         <template #level="{ record }">
           <!-- <div>VIP{{ record.level }}</div> -->
@@ -101,24 +127,50 @@ watch(tabList, (val) => {
   display: flex;
   flex-direction: column;
   gap: var(--tg-spacing-14);
-  --tg-tab-style-wrap-bg-color: var(--tg-primary-main);
+  --tg-tab-style-wrap-bg-color: var(--tg-secondary-deepdark);
   --tg-app-amount-font-size: var(--tg-font-size-xs);
+  --tg-base-square-tab-bg: var(--tg-secondary-deepdark);
+  --tg-base-square-tab-margin: 0;
   .tabs-outer {
     background: var(--tg-secondary-dark);
   }
-  &.is-mobile {
-    .tabs {
-      // padding: 0 12px;
-      position: relative;
-    }
-  }
   .tabs {
-    background: var(--tg-secondary-dark);
+    background-color: var(--tg-secondary-dark);
     padding: var(--tg-spacing-12);
     border-radius: var(--tg-radius-default);
     display: flex;
     flex-direction: column;
     gap: var(--tg-spacing-12);
+    .grid-box{
+      display: grid;
+      grid-template-columns: 9fr 5fr;
+      gap:  var(--tg-spacing-12);
+      align-items: center;
+      --tg-app-select-currency-padding-x: 20px;
+      --tg-app-select-currency-padding-y: 18px;
+    }
+    .flex-column{
+      display: flex;
+      flex-direction: column;
+      // align-items: flex-start;
+      gap: var(--tg-spacing-4);
+      >span{
+        font-size: var(--tg-font-size-default);
+        line-height: 1.4;
+      }
+    }
+    .currency-box{
+      border-radius: var(--tg-radius-default);
+      background-color: var(--tg-secondary-dark);
+    }
+  }
+}
+.is-mobile {
+  --tg-base-square-tab-bg: inherit;
+  .tabs {
+    position: relative;
+    background-color: inherit;
+    padding: 0;
   }
 }
 </style>

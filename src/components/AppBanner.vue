@@ -28,7 +28,8 @@ function jumpToUrl(item: { type: number; url: string }) {
   /** 跳转类型 1-自定义 2-娱乐城 3-体育 4-优惠活动 5-联盟中心 */
   switch (item.type) {
     case 1:
-      window.location.href = item.url
+      console.log(item.url)
+      router.push(item.url)
       break
     case 2:
       router.push('/casino')

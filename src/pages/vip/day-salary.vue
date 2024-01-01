@@ -119,8 +119,8 @@ const columns = computed<Column[]>(() => [
           </template>
         </template> -->
       </BaseTable>
-      <div class="btn-box center">
-        <BaseButton bg-style="secondary" custom-padding>
+      <div class="btn-box">
+        <BaseButton class="btn-receive" bg-style="secondary" custom-padding>
           {{ t('receive_bonus') }}
         </BaseButton>
       </div>
@@ -156,10 +156,7 @@ const columns = computed<Column[]>(() => [
   display: flex;
   flex-direction: column;
   gap: var(--tg-spacing-14);
-  --tg-app-amount-font-size: 12px;
-  :deep(th) {
-    font-size: 14px;
-  }
+  --tg-app-amount-font-size: var(--tg-font-size-xs);
   &.is-mobile {
     .tabs {
       // padding: 0 12px;
@@ -167,13 +164,19 @@ const columns = computed<Column[]>(() => [
     }
   }
   .tabs {
-    background: #0F212E;
+    background: var(--tg-secondary-dark);
     padding: 12px 12px;
-    border-radius: 4px;
+    border-radius: var(--tg-radius-default);
     .btn-box{
-      --tg-base-button-padding-y: 8px;
-      --tg-base-button-padding-x: 148px;
+      // --tg-base-button-padding-y: 8px;
+      // --tg-base-button-padding-x: 148px;
       margin-top: 20px;
+    }
+    .btn-receive{
+      max-width: 400px;
+      width: 100%;
+      display: block;
+      margin: 0 auto;
     }
   }
 }
