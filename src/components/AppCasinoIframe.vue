@@ -109,10 +109,19 @@ const {
       testModeLoading.value = true
   },
   onSuccess(res) {
-    showIframe()
-    // H5模式直接打开游戏
-    if (isMobile.value)
-      return location.href = res
+    // 判断data开头是不是http
+    if (res.toString().startsWith('http')) {
+      showIframe()
+      // H5模式直接打开游戏
+      if (isMobile.value)
+        return location.href = res
+    }
+    else {
+      const newPage = window.open('', '_blank') as any
+      newPage.document.open()
+      newPage.document.write(res) // 运行 HTML 代码
+      newPage.document.close()
+    }
   },
   onAfter() {
     realModeLoading.value = false
