@@ -149,6 +149,7 @@ defineExpose({ manualFocus, manualBlur })
     line-height: 1;
     color: var(--tg-text-white);
     font-weight: var(--tg-font-weight-semibold);
+    cursor: text;
 
     &::placeholder {
       color: var(--tg-text-placeholder);
