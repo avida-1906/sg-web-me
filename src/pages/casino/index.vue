@@ -148,7 +148,7 @@ await application.allSettled([runMemberNoticeAllList(), loadIcon()])
     <div v-if="!isMobile" class="mt-24">
       <AppGameSearch game-type="1" />
     </div>
-    <div v-show="casinoNav && casinoNav.length > 0" class="mgt12">
+    <div v-show="casinoNav && casinoNav.length > 0" class="mt-24">
       <BaseTab
         v-model="tab"
         :list="casinoNav ?? []"
