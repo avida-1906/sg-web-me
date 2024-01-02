@@ -26,14 +26,14 @@ const expData = reactive([
       3.{{ $t('rule_text_three') }}{{ $t('period') }}
     </div>
     <ul>
-      <li class="title">
+      <!-- <li class="title">
         <div class="left">
           {{ $t('effective_bet') }}
         </div>
         <div class="right">
           VIP{{ $t('game_water_experience') }}
         </div>
-      </li>
+      </li> -->
       <li v-for="item in expData" :key="item.coin">
         <div class="left">
           {{ item.num + item.coin }}
@@ -80,9 +80,9 @@ const expData = reactive([
       .equal {
         width: 10%;
       }
-      .right {
-        // text-align: right;
-      }
+      // .right {
+      //   // text-align: right;
+      // }
     }
     li:nth-child(odd) {
       background-color: var(--tg-secondary-grey);
