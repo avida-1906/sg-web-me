@@ -112,7 +112,7 @@ export const currencyConfig: Record<EnumCurrencyKey, CurrencyValue> = {
     bankTree: '019011',
   },
   MXN: {
-    prefix: '$',
+    prefix: 'MXN',
     cur: '716',
     bankTree: '019012',
   },

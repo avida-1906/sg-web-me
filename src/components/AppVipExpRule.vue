@@ -13,6 +13,18 @@ const expData = reactive([
 
 <template>
   <div class="app-vip-exp-rule">
+    <div class="rule-title">
+      {{ $t('rule_text_title') }}
+    </div>
+    <div class="rule-text">
+      1.{{ $t('rule_text_one') }}{{ $t('period') }}
+    </div>
+    <div class="rule-text">
+      2.{{ $t('rule_text_two') }}{{ $t('period') }}
+    </div>
+    <div class="rule-text">
+      3.{{ $t('rule_text_three') }}{{ $t('period') }}
+    </div>
     <ul>
       <li class="title">
         <div class="left">
@@ -39,10 +51,24 @@ const expData = reactive([
 
 <style lang="scss" scoped>
 .app-vip-exp-rule {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
   padding: 0 16px 16px;
-  font-size: 14px;
+  font-size: var(--tg-font-size-default);
   font-weight: 500;
+  .rule-title{
+    font-size: var(--tg-font-size-md);
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+  .rule-text{
+    font-size: var(--tg-font-size-default);
+    line-height: 1.4;
+    color: var(--tg-secondary-light);
+  }
   ul {
+    margin-top: 12px;
     li {
       display: flex;
       align-items: center;

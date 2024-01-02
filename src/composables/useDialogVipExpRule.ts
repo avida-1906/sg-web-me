@@ -8,7 +8,7 @@ export function useDialogVipExpRule() {
     closeDialog: closeVipExpRuleDialog,
   } = useDialog({
     title: title.value,
-    icon: 'uni-conter-line',
+    icon: 'uni-currency-rate',
     default: () => h(AppVipExpRule),
   })
 

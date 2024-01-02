@@ -1617,7 +1617,7 @@ max_age: 您的年龄不能超过 {delta} 岁
 max_value: 值必须大于或等于{delta}
 qr_code: 二维码
 bet_comp_coin: 您下注使用的所有货币会标准化为竞赛货币
-exp_rule: 经验计算规则
+exp_rule: 货币汇率
 electric_game: 电竞
 max_odd: 复式投注赔率超过上限
 commission_transfer: 转账
@@ -1756,3 +1756,8 @@ phone_invalid: 手机号码无效
 colon: ：
 period: 。
 vip_total_bonus: 累积奖金
+type_select: 类型选择
+rule_text_one: 汇率会根据市场波动实时同步
+rule_text_two: 会在您注单结算时的汇率为准
+rule_text_three: 已经统计的有效投注不会受后续的汇率影响
+rule_text_title: VIP按照您的USDT有效投注来计算
