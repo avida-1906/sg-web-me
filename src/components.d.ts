@@ -220,6 +220,9 @@ declare module 'vue' {
     BaseTag: typeof import('./components/BaseTag.vue')['default']
     BaseTextarea: typeof import('./components/BaseTextarea.vue')['default']
     BaseUpload: typeof import('./components/BaseUpload.vue')['default']
+    LimboAutoBetTip: typeof import('./components/LimboAutoBetTip.vue')['default']
+    LimboGameLimbo: typeof import('./components/LimboGameLimbo.vue')['default']
+    LimboIndex: typeof import('./components/LimboIndex.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

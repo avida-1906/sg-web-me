@@ -35,6 +35,7 @@
     "lodash": "^4.17.21",
     "nprogress": "^0.2.0",
     "pinia": "^2.1.4",
+    "pixi.js": "^7.3.2",
     "precompiled-mqtt": "4.3.14-beta",
     "qrcode.vue": "^3.4.1",
     "qs": "^6.11.2",

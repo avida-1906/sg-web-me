@@ -4,12 +4,14 @@ const name = ref(query.name?.toString() ?? '')
 const pn = ref(query.pn?.toString() ?? '')
 const pid = ref(query.pid?.toString() ?? '')
 
-const { isMobile } = storeToRefs(useWindowStore())
+const { isMobile, appContentWidth } = storeToRefs(useWindowStore())
 </script>
 
 <template>
   <div class="casino-games">
-    <AppOriginalGame />
+    <div class="game-wrapper" :class="{ max: appContentWidth > 930 }">
+      <LimboIndex />
+    </div>
   </div>
   <section class="page-content">
     <AppDesc :name="name" :plat-name="pn" :pid="pid" />
@@ -28,8 +30,19 @@ const { isMobile } = storeToRefs(useWindowStore())
   flex-direction: column;
   align-items: center;
   padding: 0 3vw;
+
+  .game-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin-top: 3vw;
+
+    &.max {
+      margin-top: var(--tg-spacing-40);
+    }
+  }
 }
-.mt-32{
+
+.mt-32 {
   margin-top: var(--tg-spacing-32);
 }
 </style>
