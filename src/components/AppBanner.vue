@@ -24,12 +24,11 @@ const mgt = computed(() => {
     return 'var(--tg-spacing-12)'
 })
 
-function jumpToUrl(item: { type: number; url: string }) {
+function jumpToUrl(item: { type: number; jumpUrl: string }) {
   /** 跳转类型 1-自定义 2-娱乐城 3-体育 4-优惠活动 5-联盟中心 */
   switch (item.type) {
     case 1:
-      console.log(item.url)
-      router.push(item.url)
+      router.push(item.jumpUrl)
       break
     case 2:
       router.push('/casino')
@@ -52,6 +51,7 @@ const items = computed(() => {
   return bannerList.value.map(item => ({
     imgUrl: item.image_url[getCurrentLanguageForBackend()],
     type: item.jump_type,
+    jumpUrl: item.jump_url,
   }))
 })
 

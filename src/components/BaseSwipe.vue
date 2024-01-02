@@ -43,7 +43,6 @@ function scrollRight() {
 }
 
 function clickItem(item: Item) {
-  // console.error('clickItem')
   emit('clickItem', item)
 }
 
@@ -141,7 +140,7 @@ onMounted(() => {
   color: var(--tg-text-white);
   background: var(--tg-secondary-grey);
   border-radius: var(--tg-radius-md);
-
+  cursor: pointer;
   .other {
     position: absolute;
     left: 0;
@@ -178,9 +177,9 @@ onMounted(() => {
   }
 }
 
-.wrapper {
-  height: 12rem;
-}
+// .wrapper {
+//   height: 12rem;
+// }
 
 @container grid-size (width < 50rem) {
     .grid-heroes:after {
@@ -204,9 +203,9 @@ onMounted(() => {
     }
 }
 
-@container card-size (width > 21.5rem) {
-    .wrapper{
-        height: 14rem;
-    }
-}
+// @container card-size (width > 21.5rem) {
+//     .wrapper{
+//         height: 14rem;
+//     }
+// }
 </style>
