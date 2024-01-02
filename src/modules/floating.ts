@@ -47,7 +47,7 @@ export const config: FloatingVueConfig = {
       hideTriggers: (events: any) => [...events, 'click'],
       // Delay (ms)
       delay: {
-        show: 200,
+        show: 0,
         hide: 0,
       },
       // Update popper on content resize
