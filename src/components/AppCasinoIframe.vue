@@ -43,6 +43,11 @@ const {
   setTrue: showIframe,
   setFalse: hideIframe,
 } = useBoolean(false)
+const {
+  bool: isShowIframeDoc,
+  setTrue: showIframeDoc,
+  setFalse: hideIframeDOc,
+} = useBoolean(false)
 const { bool: showTestMode } = useBoolean(false)
 const { floatingState, toggleFloating } = useFloatingVue()
 
@@ -117,10 +122,14 @@ const {
         return location.href = res
     }
     else {
-      const newPage = window.open('', '_blank') as any
-      newPage.document.open()
-      newPage.document.write(res) // 运行 HTML 代码
-      newPage.document.close()
+      if (isMobile.value) {
+        const newPage = window.open('', '_blank') as any
+        newPage.document.open()
+        newPage.document.write(res) // 运行 HTML 代码
+        newPage.document.close()
+        return
+      }
+      showIframeDoc()
     }
   },
   onAfter() {
@@ -135,6 +144,7 @@ function autoLunchOnPc() {
 // 重新获取游戏地址是先清空
 function clearUrl() {
   hideIframe()
+  hideIframeDOc()
   mutateGameUrl('')
 }
 // 切换路由时重新获取detail
@@ -416,6 +426,13 @@ await application.allSettled([runDetail().then(() => autoLunchOnPc())])
               v-if="isShowIframe"
               ref="gameFrameRef"
               :src="gameUrl"
+              frameborder="0"
+              allowfullscreen
+            />
+            <iframe
+              v-if="isShowIframeDoc"
+              ref="gameFrameRef"
+              :srcdoc="gameUrl"
               frameborder="0"
               allowfullscreen
             />
