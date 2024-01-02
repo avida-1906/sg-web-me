@@ -1763,3 +1763,7 @@ rule_text_three: 已经统计的有效投注不会受后续的汇率影响
 rule_text_title: VIP按照您的USDT有效投注来计算
 note: 注
 after_transfer_withdraw_money: 转入后需1倍流水才可提现
+commission_record: 佣金记录
+commission_grant: 佣金发放
+commission_draw: 佣金提取
+order_id: 订单号

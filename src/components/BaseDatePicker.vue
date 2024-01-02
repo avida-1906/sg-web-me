@@ -115,6 +115,17 @@ onMounted(() => {
   </div>
 </template>
 
+<style lang="scss">
+:root{
+--tg-base-date-picker-width: 220px;
+--tg-base-date-picker-bother: 2px solid var(--tg-secondary-main);
+--tg-base-date-picker-font-size: var(--tg-font-size-default);
+--tg-base-date-picker-padding: var(--tg-spacing-8) var(--tg-spacing-12);
+--tg-base-date-picker-font-weight: var(--tg-font-weight-semibold);
+--tg-base-date-picker-color: var(--tg-secondary-light);
+}
+</style>
+
 <style lang="scss" scoped>
 .date-picker-outer {
   position: relative;
@@ -136,16 +147,16 @@ onMounted(() => {
 .base-date-picker {
   display: flex;
   gap: var(--tg-spacing-8);
-  width: 220px;
+  width: var(--tg-base-date-picker-width);
   border-radius: var(--tg-radius-default);
-  border: 2px solid var(--tg-secondary-main);
+  border: var(--tg-base-date-picker-bother);
   background: var(--tg-secondary-dark);
-  padding: var(--tg-spacing-8) var(--tg-spacing-12);
+  padding: var(--tg-base-date-picker-padding);
   align-items: center;
   justify-content: space-between;
-  font-size: var(--tg-font-size-default);
-  font-weight: var(--tg-font-weight-semibold);
-  color: var(--tg-secondary-light);
+  font-size: var(--tg-base-date-picker-font-size);
+  font-weight: var(--tg-base-date-picker-font-weight);
+  color: var(--tg-base-date-picker-color);
   line-height: 1.5;
   transition: border-color 200ms ease;
   &:hover {

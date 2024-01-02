@@ -4,7 +4,7 @@ AppAgentCommissionRecordDialog
 
 export function useDialogAgentCommissionRecord() {
   const { t } = useI18n()
-  const title = computed(() => t('receive_record_label'))
+  const title = computed(() => t('commission_record'))
   const {
     openDialog: openAgentCommissionRecordDialog,
     closeDialog: closeAgentCommissionRecordDialog,
