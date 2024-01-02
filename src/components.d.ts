@@ -92,6 +92,7 @@ declare module 'vue' {
     AppNavBreadCrumb: typeof import('./components/AppNavBreadCrumb.vue')['default']
     AppNotice: typeof import('./components/AppNotice.vue')['default']
     AppNoticeNotify: typeof import('./components/AppNoticeNotify.vue')['default']
+    AppOriginalGame: typeof import('./components/AppOriginalGame.vue')['default']
     AppOutrightPreview: typeof import('./components/AppOutrightPreview.vue')['default']
     AppPageMyBets: typeof import('./components/AppPageMyBets.vue')['default']
     AppPasswordVerify: typeof import('./components/AppPasswordVerify.vue')['default']
