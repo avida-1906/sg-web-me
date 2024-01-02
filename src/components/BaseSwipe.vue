@@ -177,9 +177,9 @@ onMounted(() => {
   }
 }
 
-.wrapper {
-  height: 12rem;
-}
+// .wrapper {
+//   height: 12rem;
+// }
 
 @container grid-size (width < 50rem) {
     .grid-heroes:after {
@@ -203,9 +203,9 @@ onMounted(() => {
     }
 }
 
-@container card-size (width > 21.5rem) {
-    .wrapper{
-        height: 14rem;
-    }
-}
+// @container card-size (width > 21.5rem) {
+//     .wrapper{
+//         height: 14rem;
+//     }
+// }
 </style>
