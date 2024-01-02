@@ -64,7 +64,7 @@ onBeforeUnmount(() => {
         v-model="currentProvider" :list="providerList"
         @change="sportsStore.changeProvider"
       />
-      <div class="mgt12">
+      <div class="mt-24">
         <BaseTab
           v-model="marketType"
           size="large"
