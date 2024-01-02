@@ -271,7 +271,7 @@ intiKeyword()
     >
       <div class="scroll-y warp">
         <div v-if="!resultData && !isInputing" class="no-result">
-          <div class="text">
+          <div class="no-result-label">
             <span
               v-show="searchValue.length < 3"
             >{{ t('search_need_at_least_3_word') }}</span>
@@ -284,7 +284,7 @@ intiKeyword()
               <label>{{ t('search_recent') }}</label>
               <BaseButton
                 type="text" style="--tg-base-button-font-size:14px"
-                @click="clearKeyword"
+                size="none" @click="clearKeyword"
               >
                 {{ t('search_clear') }} ({{ keywordList.length }})
               </BaseButton>
@@ -397,7 +397,7 @@ intiKeyword()
     gap: var(--tg-spacing-32);
     font-size: var(--tg-font-size-default);
 
-    .text {
+    .no-result-label {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -405,6 +405,7 @@ intiKeyword()
       padding: var(--tg-spacing-8);
       gap: var(--tg-spacing-8);
       font-weight: var(--tg-font-weight-semibold);
+      line-height: 1.5;
     }
 
     .recent {
@@ -417,6 +418,7 @@ intiKeyword()
         justify-content: space-between;
         align-items: center;
         font-weight: var(--tg-font-weight-semibold);
+        line-height: 1.5;
       }
 
       .list {
@@ -443,7 +445,7 @@ intiKeyword()
   width: 100%;
   margin: 0 ;
   max-width: 1200px;
-  margin-top: 57px;
+  margin-top: 58px;
 
   .search-input {
     position: relative;
@@ -454,7 +456,7 @@ intiKeyword()
     height: auto;
     position: relative;
     border-radius: var(--tg-radius-default);
-    top: 8px;
+    top: 10px;
     z-index: 1450;
 
     .warp {
