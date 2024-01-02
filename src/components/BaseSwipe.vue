@@ -43,7 +43,6 @@ function scrollRight() {
 }
 
 function clickItem(item: Item) {
-  // console.error('clickItem')
   emit('clickItem', item)
 }
 
@@ -141,7 +140,7 @@ onMounted(() => {
   color: var(--tg-text-white);
   background: var(--tg-secondary-grey);
   border-radius: var(--tg-radius-md);
-
+  cursor: pointer;
   .other {
     position: absolute;
     left: 0;
