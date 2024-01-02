@@ -199,15 +199,17 @@ export const useSportsStore = defineStore('sports', () => {
             { title: 'Live & Upcoming', path: `/sports/${SPORTS_PLAT_ID}/${sport.si}?tab=1`, icon: 'spt-ball-plate' },
 
             { title: 'Outrights', path: `/sports/${SPORTS_PLAT_ID}/${sport.si}?tab=2`, icon: 'spt-timing' },
-            ...sport.list.map((league) => {
-              return {
-                title: league.cn,
-                icon: league.cpic,
-                useCloudImg: true,
+            ...(sport.list
+              ? sport.list.map((league) => {
+                return {
+                  title: league.cn,
+                  icon: league.cpic,
+                  useCloudImg: true,
 
-                path: `/sports/${SPORTS_PLAT_ID}/${sport.si}/${league.pgid}/${league.ci}?${application.objectToUrlParams({ sn: sport.sn, pgn: league.pgn, cn: league.cn })}`,
-              }
-            }),
+                  path: `/sports/${SPORTS_PLAT_ID}/${sport.si}/${league.pgid}/${league.ci}?${application.objectToUrlParams({ sn: sport.sn, pgn: league.pgn, cn: league.cn })}`,
+                }
+              })
+              : []),
 
             { title: 'View All', path: `/sports/${SPORTS_PLAT_ID}/${sport.si}?tab=3`, icon: 'uni-view-all' },
           ],
