@@ -234,14 +234,14 @@ provide('closeSearch', closeOverlay)
     <teleport to="body">
       <div
         v-show="isShowOverlay" class="search-overlay" :style="{
-          top: `${searchOverlayStyle.top + 48}px`,
+          top: `${searchOverlayStyle.top + 51}px`,
           left: `${searchOverlayStyle.left}px`,
           width: `${searchOverlayStyle.width}px`,
         }"
       >
         <div class="scroll-y warp">
           <div v-if="!resultData && !isInputing" class="no-result">
-            <div class="text">
+            <div class="no-result-label">
               <span
                 v-show="searchValue.length < 3"
               >
@@ -254,7 +254,7 @@ provide('closeSearch', closeOverlay)
               <div class="title">
                 <label>{{ t('search_recent') }}</label>
                 <BaseButton
-                  type="text"
+                  type="text" size="none"
                   style="--tg-base-button-font-size:14px;" @click="clearKeyword"
                 >
                   {{ t('search_clear') }} ({{ keywordList.length }})
@@ -329,7 +329,7 @@ provide('closeSearch', closeOverlay)
     gap: var(--tg-spacing-32);
     font-size: var(--tg-font-size-default);
 
-    .text {
+    .no-result-label {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -337,6 +337,7 @@ provide('closeSearch', closeOverlay)
       padding: var(--tg-spacing-8);
       gap: var(--tg-spacing-8);
       font-weight: var(--tg-font-weight-semibold);
+      line-height: 1.5;
     }
 
     .recent {
@@ -349,6 +350,7 @@ provide('closeSearch', closeOverlay)
         justify-content: space-between;
         align-items: center;
         font-weight: var(--tg-font-weight-semibold);
+        line-height: 1.5;
       }
 
       .list {

@@ -116,9 +116,10 @@ defineExpose({ manualFocus, manualBlur })
   // }
 
   .clear-icon {
+    padding-top: 2px;
     font-size: var(--tg-font-size-default);
     position: absolute;
-    right: var(--tg-spacing-18);
+    right: var(--tg-spacing-17);
     cursor: pointer;
     &:hover{
       --tg-icon-color: var(--tg-text-white);

@@ -34,9 +34,11 @@ defineEmits(['click', 'close'])
     gap: var(--tg-spacing-8);
     padding: var(--tg-spacing-4);
     cursor: pointer;
+    line-height: 1.5;
 
     span {
       font-weight: var(--tg-font-weight-semibold);
+
       &:hover {
         color: var(--tg-text-white);
       }
@@ -47,6 +49,9 @@ defineEmits(['click', 'close'])
     }
 
     .icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       cursor: pointer;
       font-size: var(--tg-font-size-xs);
 
