@@ -63,7 +63,7 @@ function closeService() {
     :style="customStyle"
   >
     <span class="close center" @click="closeService()">
-      <BaseIcon name="uni-close-white" />
+      <BaseIcon name="uni-close" />
     </span>
     <iframe
       v-if="serviceUrl"
@@ -116,6 +116,7 @@ function closeService() {
   height: 48px;
   border-radius: var(--tg-radius-lg);
   transition: background-color 100ms ease 0s;
+  --tg-icon-color: var(--tg-text-white);
   &:hover {
     background-color: var(--tg-secondary-deepdark);
   }

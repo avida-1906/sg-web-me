@@ -294,7 +294,10 @@ watch(
                 <div class="no-active-scale header">
                   <span>{{ $t('recent_game_record') }}</span>
                   <BaseButton type="text" @click="setSRFalse()">
-                    <BaseIcon name="uni-close-white" />
+                    <BaseIcon
+                      style="--tg-icon-color:var(--tg-text-white);"
+                      name="uni-close"
+                    />
                   </BaseButton>
                 </div>
                 <div class="content is-open">

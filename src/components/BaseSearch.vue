@@ -67,9 +67,8 @@ defineExpose({ manualFocus, manualBlur })
         @blur="onBlur" @focus="onFocus"
       >
 
-      <div v-if="clearable" class="clear-icon" @click="onClear">
-        <BaseIcon v-if="whiteStyle" name="uni-close" />
-        <BaseIcon v-else name="uni-close-white" />
+      <div v-if="clearable" class="clear-icon" :class="{ whiteStyle }" @click="onClear">
+        <BaseIcon name="uni-close" />
       </div>
     </div>
   </div>
@@ -121,6 +120,13 @@ defineExpose({ manualFocus, manualBlur })
     position: absolute;
     right: var(--tg-spacing-18);
     cursor: pointer;
+    &:hover{
+      --tg-icon-color: var(--tg-text-white);
+    }
+    &.whiteStyle{
+      --tg-icon-color: var(--tg-secondary-main);
+      cursor:default;
+    }
   }
 
   .content-box {
