@@ -96,6 +96,7 @@ defineExpose({ manualFocus, manualBlur })
   position: relative;
   color: var(--tg-text-white);
   transition: all ease .25s;
+  cursor: text;
 
   &:hover:not(.whiteStyle) {
      border-color: var(--tg-border-color-deep-grey);
@@ -147,10 +148,9 @@ defineExpose({ manualFocus, manualBlur })
     background-color: transparent;
     padding: var(--tg-spacing-input-padding-vertical) ;
     font-size: var(--tg-font-size-default);
-    line-height: 1;
+    line-height: 1.5;
     color: var(--tg-text-white);
     font-weight: var(--tg-font-weight-semibold);
-    cursor: text;
 
     &::placeholder {
       color: var(--tg-text-placeholder);
