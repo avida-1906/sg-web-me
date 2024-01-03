@@ -6,7 +6,6 @@ export interface IStorageValue<T = any> {
  * @description: 本地存储的key
  */
 export const STORAGE_TOKEN_KEY = 'token'
-export const STORAGE_LANGUAGE_KEY = 'language'
 export const STORAGE_REG_PARAMS_KEYWORDS = 'reg_params'
 export const STORAGE_SEARCH_KEYWORDS_LIVE = 'search_keywords_live'
 export const STORAGE_SEARCH_KEYWORDS_SPORTS = 'search_keywords_sports'
