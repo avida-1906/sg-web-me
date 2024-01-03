@@ -1,42 +1,41 @@
 <script lang="ts" setup>
-// const appStore = useAppStore()
-// const { userInfo } = storeToRefs(appStore)
-// const { isMobile } = storeToRefs(useWindowStore())
 // const { openAgentGradeDialog } = useDialogAgentGrade()
 // const { openAgentCommissionDrawDialog } = useDialogAgentCommissionDraw()
+const {
+  renderCurrencyList,
+} = useCurrencyData()
+const {
+  data: balanceAgency,
+  runAsync: getBalancAgency,
+} = useRequest(ApiMemberBalanceAgency, {
+  onSuccess(data) {
+    console.log(data)
+  },
+})
+
+await application.allSettled(
+  [
+    getBalancAgency(),
+  ],
+)
 </script>
 
 <template>
   <div class="app-commission-holder">
-    <!-- <div class="holder-top">
-      <div class="center">
-        <span>{{ $t('total_approx') }}：</span>
-        <AppAmount amount="99999900" currency-type="BNB" />
-      </div>
-      <BaseButton
-        bg-style="primary"
-        custom-padding @click="openAgentCommissionDrawDialog"
-      >
-        {{ $t('commission_currency_conversion') }}
-      </BaseButton>
-    </div>
-    <div class="holder-title">
-      {{ $t('currency_list') }}
-    </div> -->
     <div class="holder-currency">
       <div class="currency-item">
         <div>{{ $t('finance_funds_transfer_sort_available') }}</div>
         <div>{{ $t('finance_funds_transfer_sort_commission') }}</div>
       </div>
-      <div v-for="i in 6" :key="i" class="currency-item">
+      <div v-for="item of renderCurrencyList" :key="item.cur" class="currency-item">
         <AppAmount
-          amount="0.00"
-          currency-type="BTC"
+          :amount="item.balanceWithSymbol"
+          :currency-type="item.type"
           style="--tg-app-amount-font-weight:var(--tg-font-weight-normal);"
         />
         <AppAmount
-          amount="0.00"
-          currency-type="BTC"
+          :amount="balanceAgency ? balanceAgency[item.type] : '0'"
+          :currency-type="item.type"
           style="--tg-app-amount-font-weight:var(--tg-font-weight-normal);"
         />
       </div>
@@ -68,7 +67,7 @@
       border-radius: var(--tg-radius-default);
       line-height: 1.3575;
       &:first-child{
-        font-weight: 600;
+        font-weight: var(--tg-font-weight-semibold);
       }
       &:nth-child(even){
         background: var(--tg-secondary-grey);

@@ -757,7 +757,7 @@ finance_funds_transfer_sort_withdrawn: 已提取
 finance_funds_campaign_sort_created: 创建日
 finance_funds_campaign_sort_deposit_count: 存款次数
 finance_funds_transfer_commission_txt: 把联盟佣金转入可用余额
-finance_funds_transfer_commission_withdraw: 提取可用佣金
+finance_funds_transfer_commission_withdraw: 提取佣金
 finance_funds_vault_draw: 保险库提款
 success_deposit: 成功存放 {amount} {icon} 进保险库
 confirm_draw_vault: 已确认从保险库提取 {amount} {icon}
