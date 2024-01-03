@@ -32,7 +32,6 @@ const scrollRef = ref()
 const delayId = ref()
 const { bool: isCheckClicked, setTrue: setCCTrue } = useBoolean(false)
 
-const parentUid = ref(Session.get<string>(STORAGE_REG_PARENT_UID)?.value ?? '')
 const regThirdParams = computed(() => {
   return Session.get<IMemberThirdReg>(STORAGE_THIRDREG_PARAMS_KEYWORDS)?.value
 })

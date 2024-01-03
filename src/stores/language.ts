@@ -1,14 +1,19 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
-import { getInitLangIndex } from '~/modules/i18n'
-import { EnumLanguage } from '~/utils/enums'
+import type { EnumLanguageKeys } from '~/modules/i18n'
+import {
+  getCurrentLanguageForFrontend,
+  getCurrentUrlLanguage,
+  getLocalUrlToUrlLang,
+} from '~/modules/i18n'
 
 export const useLanguageStore = defineStore('language', () => {
+  const router = useRouter()
   /** 所有语言列表 */
   const AllLanguages = ref<Array<{
     title: string
     path: string
     icon: string
-    value: EnumLanguage
+    value: EnumLanguageKeys
     phone: string
     phoneId: string
     prefix: string
@@ -17,7 +22,7 @@ export const useLanguageStore = defineStore('language', () => {
       title: '中文',
       path: '',
       icon: '',
-      value: EnumLanguage['zh-CN'],
+      value: 'zh-CN',
       phone: '+86',
       phoneId: '1137',
       prefix: 'zh',
@@ -26,7 +31,7 @@ export const useLanguageStore = defineStore('language', () => {
       title: 'English',
       path: '',
       icon: '',
-      value: EnumLanguage['en-US'],
+      value: 'en-US',
       phone: '+1',
       phoneId: '1283',
       prefix: 'en',
@@ -35,7 +40,7 @@ export const useLanguageStore = defineStore('language', () => {
       title: 'Tiếng Việt',
       path: '',
       icon: '',
-      value: EnumLanguage['vi-VN'],
+      value: 'vi-VN',
       phone: '+84',
       phoneId: '1287',
       prefix: 'vn',
@@ -44,7 +49,7 @@ export const useLanguageStore = defineStore('language', () => {
       title: 'Português',
       path: '',
       icon: '',
-      value: EnumLanguage['pt-BR'],
+      value: 'pt-BR',
       phone: '+55',
       phoneId: '1125',
       prefix: 'pt',
@@ -52,15 +57,15 @@ export const useLanguageStore = defineStore('language', () => {
   ])
 
   /** 当前选择的语言 */
-  const userLanguage = ref(getInitLangIndex())
+  const userLanguage = ref(getCurrentLanguageForFrontend())
 
   /** 更换语言 */
-  async function changeLanguage(langIndex: EnumLanguage) {
-    Local.remove(STORAGE_MENU_EXPAND_DOMID)
-    Local.set(STORAGE_LANGUAGE_KEY, langIndex)
-    userLanguage.value = langIndex
-    // await loadLanguageAsync(langIndex)
-    location.reload()
+  async function changeLanguage(enumLangKeys: EnumLanguageKeys) {
+    const _fullPath = router.currentRoute.value.path.replace(`/${getCurrentUrlLanguage()}`, getLocalUrlToUrlLang(enumLangKeys))
+    router.push(`/${_fullPath}`)
+    setTimeout(() => {
+      location.reload()
+    }, 30)
   }
 
   return {

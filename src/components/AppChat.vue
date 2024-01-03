@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { languageMap } from '~/modules/i18n'
 import type { EnumLanguageKey } from '~/types'
 
 // topic =  站点前缀/chat/zh_CN
@@ -44,7 +43,7 @@ function roomChange(room: EnumLanguageKey) {
   nextTick(() => {
     scrollMsg.value.scrollTop = 0
   })
-  runGetHistory({ lang: languageMap[room] })
+  runGetHistory({ lang: EnumLanguage[room] })
   setMFalse()
 }
 function messageWrapScroll() {

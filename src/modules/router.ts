@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { setupLayouts } from 'virtual:generated-layouts'
 import type { App } from 'vue'
+import { getLocalUrlToUrlLang, isExistRouterLanguage } from './i18n'
 import generatedRoutes from '~pages'
 
 declare module 'vue-router' {
@@ -37,38 +38,53 @@ export const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  const appStore = useAppStore()
-  const { isLogin } = storeToRefs(appStore)
-  const { openRegisterDialog } = useRegisterDialog()
-  const auth = to.meta.auth || false
-  if (to.query.uid && !isLogin.value)
-    Session.set(STORAGE_REG_PARENT_UID, to.query.uid)
+  const defaultLang = getLocalUrlToUrlLang()
+  const baseUrl = `/${defaultLang}`
 
-  const parentUid = Session.get<string>(STORAGE_REG_PARENT_UID)?.value
-  const isParent = parentUid && parentUid.length
-  if (isParent)
-    to.query.uid = parentUid
-
-  if (to.path === '/') {
-    next(`/casino${isParent ? `?uid=${parentUid}` : ''}`)
+  // 如果没有语言参数，跳转到默认语言
+  if (to.params.lang === void 0) {
+    next(baseUrl)
     return
   }
 
-  if (auth) {
-    if (!isLogin.value) {
-      openRegisterDialog()
-      next('/')
+  // 如果语言参数不是项目中的语言，跳转到默认语言
+  if (
+    to.params.lang
+    && (typeof to.params.lang === 'string')
+    && !isExistRouterLanguage(to.params.lang)
+  ) {
+    next(baseUrl)
+    return
+  }
+  else {
+    const path = to.path.replace(/\/$/, '')
+    if (path === `/${to.params.lang}`) {
+      next(`${path}/casino`)
       return
     }
   }
 
-  if (isParent) {
-    if (to.fullPath.includes('?')) {
-      if (!to.fullPath.includes('uid='))
-        to.fullPath += `&uid=${parentUid}`
+  if (
+    isExistRouterLanguage(to.params.lang as string)
+    && isExistRouterLanguage(from.params.lang as string)
+  ) {
+    if (to.params.lang !== from.params.lang) {
+      setTimeout(() => {
+        location.reload()
+      }, 30)
     }
-    else {
-      to.fullPath += `?uid=${parentUid}`
+  }
+
+  const appStore = useAppStore()
+  const { isLogin } = storeToRefs(appStore)
+  const { openRegisterDialog } = useRegisterDialog()
+  const auth = to.meta.auth || false
+
+  if (auth) {
+    if (!isLogin.value) {
+      openRegisterDialog()
+      next(baseUrl)
+      return
     }
   }
 

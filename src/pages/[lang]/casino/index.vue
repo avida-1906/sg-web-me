@@ -20,6 +20,7 @@ const casinoStore = useCasinoStore()
 const { casinoNav, casinoGameList } = storeToRefs(casinoStore)
 const { openSwiperNoticeDialog } = useDialogSwiperNotice(430)
 const { openRegisterDialog } = useRegisterDialog()
+const router = useLocalRouter()
 
 const tab = ref('all')
 const showAll = computed(() => tab.value === 'all')
@@ -133,7 +134,7 @@ onBeforeUnmount(() => {
 })
 
 onMounted(() => {
-  const parentUid = Session.get<string>(STORAGE_REG_PARENT_UID)?.value
+  const parentUid = router.currentRoute.value.query.uid
   if (parentUid && parentUid.length && !isLogin.value)
     openRegisterDialog()
 })
