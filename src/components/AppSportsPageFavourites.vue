@@ -12,6 +12,10 @@ const {
 const { startTimer, stopTimer }
 = useSportsDataUpdate(sportsStore.refreshSportsFavList)
 
+// 取出baseType中的bt
+const baseTypeBt = computed(() => +currentFavBetType.value.split('@@')[0])
+// 取出baseType中的egi
+const baseTypeEgi = computed(() => +currentFavBetType.value.split('@@')[1])
 const baseTypeOptions = computed(() =>
   sportsStore.getSportsBetTypeListBySi(currentFavNav.value),
 )
@@ -40,7 +44,8 @@ const list = computed(() => {
     const list = sportsFavoriteList.value.find(a => a.si === currentFavNav.value)?.list ?? []
     arr = sportsDataGroupByLeague(
       list.filter((event) => {
-        return event.ml.findIndex(market => market.bt === currentFavBetType.value) > -1
+        // eslint-disable-next-line max-len
+        return event.ml.findIndex(market => market.bt === baseTypeBt.value && market.egi === baseTypeEgi.value) > -1
       }),
     )
   }
