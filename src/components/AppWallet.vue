@@ -56,7 +56,16 @@ function handleHide() {
             ({{ $t('use_in_game') }})
             <AppCurrencyIcon :show-name="true" :currency-type="currentGlobalCurrency" />
           </span> -->
-          <AppTooltip :auto-hide="false" :triggers="['hover']" :distance="12">
+          <AppAmount
+            v-if="application.isVirtualCurrency(currentGlobalCurrency)"
+            style="color:var(--tg-text-white);"
+            :amount="currentGlobalCurrencyBalance"
+            :currency-type="currentGlobalCurrency"
+          />
+          <AppTooltip
+            v-else :auto-hide="false"
+            :triggers="['hover']" :distance="12"
+          >
             <template #content>
               <AppAmount
                 style="color:var(--tg-text-white);"
