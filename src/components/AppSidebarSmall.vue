@@ -130,7 +130,7 @@ function itemClick(item: MenuItem) {
       width: 44px;
       height: 44px;
       &:hover, &.active {
-        background: var(--tg-secondary-main);
+        background: var(--tg-secondary-grey);
         border-radius: var(--tg-radius-default);
         --tg-icon-color: var(--tg-text-white);
         .icon-img{

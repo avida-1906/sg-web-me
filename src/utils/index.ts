@@ -1,4 +1,5 @@
 import type { EnumCurrencyKey } from '~/apis/types'
+import type { EnumLanguageKeys } from '~/modules/i18n'
 
 const { VITE_I18N_DEFAULT_LANG } = getEnv()
 
@@ -297,7 +298,10 @@ export const application = new Application()
  * @returns {ImportMetaEnv}
  */
 export function getEnv() {
-  return import.meta.env
+  const _env = import.meta.env
+  _env.VITE_I18N_DEFAULT_LANG = navigator.language as EnumLanguageKeys
+
+  return _env
 }
 
 /**

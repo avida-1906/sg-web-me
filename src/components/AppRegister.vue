@@ -27,7 +27,6 @@ const { openTermsConditionsDialog } = useTermsConditionsDialog()
 const steps = ref(1)
 // const birthdayInputRef = ref()
 // const birthday = ref('')
-// const parentUid = ref(Session.get<string>(STORAGE_REG_PARENT_UID)?.value ?? '')
 const registerFormRef = ref()
 
 // const {
@@ -298,7 +297,7 @@ async function toLogin() {
           </BaseButton>
           <span>{{ t('terms_conditions') }}</span>
         </div>
-        <div class="terms-conditions scroll-y">
+        <div class="scroll-y terms-conditions">
           <div>
             <div class="terms-conditions-theme">
               Terms and Conditions

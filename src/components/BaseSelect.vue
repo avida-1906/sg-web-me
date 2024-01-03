@@ -186,6 +186,8 @@ function onPopperOpen() {
   --tg-base-select-popopen-bg-color: transparent;
   --tg-base-select-popcontent-lineheight: 1.28572;
   --tg-base-select-popper-font-weight: var(--tg-font-weight-semibold);
+  --tg-base-select-border: var(--tg-border-width-sm) solid var(--tg-border-color-main);
+  --tg-base-select-box-shadow: var(--tg-box-shadow);
 }
 </style>
 
@@ -359,15 +361,13 @@ function onPopperOpen() {
     width: 100%;
     padding: var(--tg-base-select-style-padding-y) var(--tg-base-select-style-padding-x);
     padding-right: var(--tg-base-select-style-padding-right);
-    border-width: var(--tg-border-width-sm);
-    border-style: solid;
-    border-color: var(--tg-border-color-main);
+    border: var(--tg-base-select-border);
     background-color: var(--tg-secondary-dark);
-    box-shadow: var(--tg-box-shadow);
+    box-shadow: var(--tg-base-select-box-shadow);
     color: var(--tg-base-select-style-color);
     position: relative;
     border-radius: var(--tg-radius-default);
-    font-weight: 600;
+    font-weight: var(--tg-base-select-popper-font-weight);
 
     &:hover {
       border-color: var(--tg-border-color-deep-grey);

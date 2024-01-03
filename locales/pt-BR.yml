@@ -2324,3 +2324,7 @@ mini_collect_game: '收藏游戏'
 mini_fairness: '公平性'
 mini_start_auto_bet_tip: '自动投注开始'
 mini_stop_auto_bet_tip: '自动投注完成'
+commission_record: 佣金记录
+commission_grant: 佣金发放
+commission_draw: 佣金提取
+order_id: 订单号

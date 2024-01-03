@@ -922,7 +922,7 @@ function loadMore() {
         <BaseButton round @click="copyCode('search')">
           copy
         </BaseButton>
-        <BaseSearch v-model="searchValue" clearable white-style shape="square">
+        <BaseSearch v-model="searchValue" white-style clearable shape="square">
           <template #left>
             123
           </template>

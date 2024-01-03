@@ -10,7 +10,7 @@ const props = defineProps<Props>()
 const {
   casinoMenu,
   casinoGameList,
-  casinoGameProvider,
+  // casinoGameProvider,
   staticMenu1,
   staticMenu2,
   menuItemClick,

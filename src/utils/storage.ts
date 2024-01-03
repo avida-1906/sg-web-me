@@ -6,7 +6,6 @@ export interface IStorageValue<T = any> {
  * @description: 本地存储的key
  */
 export const STORAGE_TOKEN_KEY = 'token'
-export const STORAGE_LANGUAGE_KEY = 'language'
 export const STORAGE_REG_PARAMS_KEYWORDS = 'reg_params'
 export const STORAGE_SEARCH_KEYWORDS_LIVE = 'search_keywords_live'
 export const STORAGE_SEARCH_KEYWORDS_SPORTS = 'search_keywords_sports'
@@ -25,7 +24,6 @@ export const STORAGE_CLEAR_LIVE = 'storage_clear_live'
 export const STORAGE_CLEAR_SPORTS = 'storage_clear_sports'
 export const STORAGE_CASINO_GAME_CURRENCY = 'storage_casino_game_currency'
 export const STORAGE_THIRDREG_PARAMS_KEYWORDS = 'storage_thirdreg_params_keywords'
-export const STORAGE_REG_PARENT_UID = 'storage_reg_parent_uid'
 
 export class Local {
   static set<T>(key: string, value: any) {

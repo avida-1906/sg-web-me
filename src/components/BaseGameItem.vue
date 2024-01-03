@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { getCurrentUrlLanguage } from '~/modules/i18n'
+
 interface Props {
   gameInfo: {
     img?: string
@@ -29,12 +31,8 @@ const isMaintained = computed(() => {
 })
 
 function gameStart() {
-  // if (isMaintained.value)
-  //   return
-  // push(`/casino/games?id=${item.id}&name=${item.name}&pn=${item.platform_name}&pid=${item.platform_id}`)
   if (isMobile.value)
     closeSearchH5()
-
   else
     closeSearch()
 }
@@ -102,7 +100,7 @@ const onPlayCount = ref(Math.ceil(Math.random() * 1000).toFixed())
         v-if="!isMaintained"
         v-slot="{ href, navigate }"
         custom
-        :to="`/casino/games?id=${gameInfo.id}&name=${gameInfo
+        :to="`/${getCurrentUrlLanguage()}/casino/games?id=${gameInfo.id}&name=${gameInfo
           .name}&pn=${gameInfo.platform_name}&pid=${gameInfo.platform_id}`"
       >
         <a
@@ -166,7 +164,7 @@ const onPlayCount = ref(Math.ceil(Math.random() * 1000).toFixed())
     width: 100%;
     height: 100%;
     color: var(--tg-text-lightgrey);
-    font-size: var(--tg-font-size-xs);
+    font-size: var(--tg-font-size-default);
     position: absolute;
     top: 0;
     left: 0;

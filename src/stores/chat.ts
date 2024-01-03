@@ -1,5 +1,5 @@
 import type { Room } from '~/types'
-import { getInitLangIndex, languageMap } from '~/modules/i18n'
+import { getCurrentLanguageForFrontend } from '~/modules/i18n'
 
 export interface FeedBackItem {
   feed_id: string
@@ -91,14 +91,14 @@ export const useChatStore = defineStore('chat', () => {
     { icon: 'flag-in', label: 'India', value: 'hi-IN' },
     { icon: 'flag-thai', label: 'ประเทศไทย', value: 'th-TH' },
   ])
-  const langIndex = getInitLangIndex()
-  const room = ref(chatRoomList.filter(c => EnumLanguage[c.value] === langIndex)[0] ?? 0)
+
+  const room = ref(chatRoomList.find(c => c.value === getCurrentLanguageForFrontend()) || chatRoomList[0])
 
   const currentLanguage = computed(() => room.value.value)
-  const roomLang = computed(() => languageMap[currentLanguage.value])
+  const roomLang = computed(() => EnumLanguage[currentLanguage.value])
   const topic = computed(() => {
     const prefix = VITE_SOCKET_PREFIX
-    const lang = languageMap[currentLanguage.value]
+    const lang = EnumLanguage[currentLanguage.value]
     const _topic = `${prefix}/chat/${lang}`
     return _topic
   })

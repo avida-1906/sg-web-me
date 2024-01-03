@@ -81,6 +81,7 @@ declare global {
   const ApiMemberPasswordUpdate: typeof import('./apis/index')['ApiMemberPasswordUpdate']
   const ApiMemberPayPasswordUpdate: typeof import('./apis/index')['ApiMemberPayPasswordUpdate']
   const ApiMemberPlatformList: typeof import('./apis/index')['ApiMemberPlatformList']
+  const ApiMemberPlatformState: typeof import('./apis/index')['ApiMemberPlatformState']
   const ApiMemberPlatformVenueList: typeof import('./apis/index')['ApiMemberPlatformVenueList']
   const ApiMemberReg: typeof import('./apis/index')['ApiMemberReg']
   const ApiMemberSendMailCode: typeof import('./apis/index')['ApiMemberSendMailCode']
@@ -468,6 +469,7 @@ declare global {
   const useDialogReceiveBonus: typeof import('./composables/useDialogReceiveBonus')['useDialogReceiveBonus']
   const useDialogSwiperNotice: typeof import('./composables/useDialogSwiperNotice')['useDialogSwiperNotice']
   const useDialogThirdAuthForm: typeof import('./composables/useDialogThirdAuthForm')['useDialogThirdAuthForm']
+  const useDialogVipBonus: typeof import('./composables/useDialogVipBonus')['useDialogVipBonus']
   const useDialogVipBonusRecord: typeof import('./composables/useDialogVipBonusRecord')['useDialogVipBonusRecord']
   const useDialogVipExpRule: typeof import('./composables/useDialogVipExpRule')['useDialogVipExpRule']
   const useDisplayMedia: typeof import('@vueuse/core')['useDisplayMedia']
@@ -741,6 +743,7 @@ declare module 'vue' {
     readonly ApiMemberPasswordUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberPasswordUpdate']>
     readonly ApiMemberPayPasswordUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberPayPasswordUpdate']>
     readonly ApiMemberPlatformList: UnwrapRef<typeof import('./apis/index')['ApiMemberPlatformList']>
+    readonly ApiMemberPlatformState: UnwrapRef<typeof import('./apis/index')['ApiMemberPlatformState']>
     readonly ApiMemberPlatformVenueList: UnwrapRef<typeof import('./apis/index')['ApiMemberPlatformVenueList']>
     readonly ApiMemberReg: UnwrapRef<typeof import('./apis/index')['ApiMemberReg']>
     readonly ApiMemberSendMailCode: UnwrapRef<typeof import('./apis/index')['ApiMemberSendMailCode']>
@@ -822,12 +825,10 @@ declare module 'vue' {
     readonly STORAGE_CLEAR_SPORTS: UnwrapRef<typeof import('./utils/storage')['STORAGE_CLEAR_SPORTS']>
     readonly STORAGE_CURRENT_GLOBAL_CURRENCY_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_CURRENT_GLOBAL_CURRENCY_KEY']>
     readonly STORAGE_HIDE_ZERO_BALANCE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_HIDE_ZERO_BALANCE_KEY']>
-    readonly STORAGE_LANGUAGE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_LANGUAGE_KEY']>
     readonly STORAGE_MENU_ACTIVE_ITEM: UnwrapRef<typeof import('./utils/storage')['STORAGE_MENU_ACTIVE_ITEM']>
     readonly STORAGE_MENU_EXPAND_DOMID: UnwrapRef<typeof import('./utils/storage')['STORAGE_MENU_EXPAND_DOMID']>
     readonly STORAGE_MENU_LEFT_EXPAND: UnwrapRef<typeof import('./utils/storage')['STORAGE_MENU_LEFT_EXPAND']>
     readonly STORAGE_REG_PARAMS_KEYWORDS: UnwrapRef<typeof import('./utils/storage')['STORAGE_REG_PARAMS_KEYWORDS']>
-    readonly STORAGE_REG_PARENT_UID: UnwrapRef<typeof import('./utils/storage')['STORAGE_REG_PARENT_UID']>
     readonly STORAGE_RIGHT_SIDEBAR_CONTENT: UnwrapRef<typeof import('./utils/storage')['STORAGE_RIGHT_SIDEBAR_CONTENT']>
     readonly STORAGE_SEARCH_KEYWORDS_LIVE: UnwrapRef<typeof import('./utils/storage')['STORAGE_SEARCH_KEYWORDS_LIVE']>
     readonly STORAGE_SEARCH_KEYWORDS_SPORTS: UnwrapRef<typeof import('./utils/storage')['STORAGE_SEARCH_KEYWORDS_SPORTS']>
@@ -1122,6 +1123,7 @@ declare module 'vue' {
     readonly useDialogReceiveBonus: UnwrapRef<typeof import('./composables/useDialogReceiveBonus')['useDialogReceiveBonus']>
     readonly useDialogSwiperNotice: UnwrapRef<typeof import('./composables/useDialogSwiperNotice')['useDialogSwiperNotice']>
     readonly useDialogThirdAuthForm: UnwrapRef<typeof import('./composables/useDialogThirdAuthForm')['useDialogThirdAuthForm']>
+    readonly useDialogVipBonus: UnwrapRef<typeof import('./composables/useDialogVipBonus')['useDialogVipBonus']>
     readonly useDialogVipBonusRecord: UnwrapRef<typeof import('./composables/useDialogVipBonusRecord')['useDialogVipBonusRecord']>
     readonly useDialogVipExpRule: UnwrapRef<typeof import('./composables/useDialogVipExpRule')['useDialogVipExpRule']>
     readonly useDisplayMedia: UnwrapRef<typeof import('@vueuse/core')['useDisplayMedia']>
@@ -1389,6 +1391,7 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberPasswordUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberPasswordUpdate']>
     readonly ApiMemberPayPasswordUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberPayPasswordUpdate']>
     readonly ApiMemberPlatformList: UnwrapRef<typeof import('./apis/index')['ApiMemberPlatformList']>
+    readonly ApiMemberPlatformState: UnwrapRef<typeof import('./apis/index')['ApiMemberPlatformState']>
     readonly ApiMemberPlatformVenueList: UnwrapRef<typeof import('./apis/index')['ApiMemberPlatformVenueList']>
     readonly ApiMemberReg: UnwrapRef<typeof import('./apis/index')['ApiMemberReg']>
     readonly ApiMemberSendMailCode: UnwrapRef<typeof import('./apis/index')['ApiMemberSendMailCode']>
@@ -1470,12 +1473,10 @@ declare module '@vue/runtime-core' {
     readonly STORAGE_CLEAR_SPORTS: UnwrapRef<typeof import('./utils/storage')['STORAGE_CLEAR_SPORTS']>
     readonly STORAGE_CURRENT_GLOBAL_CURRENCY_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_CURRENT_GLOBAL_CURRENCY_KEY']>
     readonly STORAGE_HIDE_ZERO_BALANCE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_HIDE_ZERO_BALANCE_KEY']>
-    readonly STORAGE_LANGUAGE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_LANGUAGE_KEY']>
     readonly STORAGE_MENU_ACTIVE_ITEM: UnwrapRef<typeof import('./utils/storage')['STORAGE_MENU_ACTIVE_ITEM']>
     readonly STORAGE_MENU_EXPAND_DOMID: UnwrapRef<typeof import('./utils/storage')['STORAGE_MENU_EXPAND_DOMID']>
     readonly STORAGE_MENU_LEFT_EXPAND: UnwrapRef<typeof import('./utils/storage')['STORAGE_MENU_LEFT_EXPAND']>
     readonly STORAGE_REG_PARAMS_KEYWORDS: UnwrapRef<typeof import('./utils/storage')['STORAGE_REG_PARAMS_KEYWORDS']>
-    readonly STORAGE_REG_PARENT_UID: UnwrapRef<typeof import('./utils/storage')['STORAGE_REG_PARENT_UID']>
     readonly STORAGE_RIGHT_SIDEBAR_CONTENT: UnwrapRef<typeof import('./utils/storage')['STORAGE_RIGHT_SIDEBAR_CONTENT']>
     readonly STORAGE_SEARCH_KEYWORDS_LIVE: UnwrapRef<typeof import('./utils/storage')['STORAGE_SEARCH_KEYWORDS_LIVE']>
     readonly STORAGE_SEARCH_KEYWORDS_SPORTS: UnwrapRef<typeof import('./utils/storage')['STORAGE_SEARCH_KEYWORDS_SPORTS']>
@@ -1770,6 +1771,7 @@ declare module '@vue/runtime-core' {
     readonly useDialogReceiveBonus: UnwrapRef<typeof import('./composables/useDialogReceiveBonus')['useDialogReceiveBonus']>
     readonly useDialogSwiperNotice: UnwrapRef<typeof import('./composables/useDialogSwiperNotice')['useDialogSwiperNotice']>
     readonly useDialogThirdAuthForm: UnwrapRef<typeof import('./composables/useDialogThirdAuthForm')['useDialogThirdAuthForm']>
+    readonly useDialogVipBonus: UnwrapRef<typeof import('./composables/useDialogVipBonus')['useDialogVipBonus']>
     readonly useDialogVipBonusRecord: UnwrapRef<typeof import('./composables/useDialogVipBonusRecord')['useDialogVipBonusRecord']>
     readonly useDialogVipExpRule: UnwrapRef<typeof import('./composables/useDialogVipExpRule')['useDialogVipExpRule']>
     readonly useDisplayMedia: UnwrapRef<typeof import('@vueuse/core')['useDisplayMedia']>

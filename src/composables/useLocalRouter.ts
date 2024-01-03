@@ -1,3 +1,5 @@
+import { getCurrentUrlLanguage } from '~/modules/i18n'
+
 export function useLocalRouter() {
   const router = useRouter()
 
@@ -25,7 +27,15 @@ export function useLocalRouter() {
       return
     }
 
-    router.push(replaceSportsPlatId(path))
+    const uid = router.currentRoute.value.query.uid
+
+    const _path = `/${getCurrentUrlLanguage()}${path}`
+    const isExistQuery = _path.includes('?')
+
+    if (isExistQuery)
+      router.push(`${_path}${uid ? `&uid=${uid}` : ''}`)
+    else
+      router.push(`${_path}${uid ? `?uid=${uid}` : ''}`)
   }
 
   return {
