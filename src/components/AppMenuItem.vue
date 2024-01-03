@@ -73,7 +73,7 @@ const active = computed(() => route.path.includes('/sports/')
     background-color: transparent;
     overflow: hidden;
     &:hover:not(.disabled), &.active:not(.disabled) {
-      background-color: var(--tg-secondary-main);
+      background-color: var(--tg-secondary-grey);
       --tg-icon-color: var(--tg-text-white);
       .icon-img{
         filter: brightness(2);
