@@ -1,16 +1,16 @@
 <script setup lang='ts'>
+const { isMobile, appContentWidth } = storeToRefs(useWindowStore())
 const { query } = useRoute()
 const name = ref(query.name?.toString() ?? '')
 const pn = ref(query.pn?.toString() ?? '')
 const pid = ref(query.pid?.toString() ?? '')
-
-const { isMobile, appContentWidth } = storeToRefs(useWindowStore())
+const id = ref(query.id?.toString() ?? '')
 </script>
 
 <template>
   <div class="casino-games">
     <div class="game-wrapper" :class="{ max: appContentWidth > 930 }">
-      <LimboIndex />
+      <LimboIndex v-if="id === 'limbo'" />
     </div>
   </div>
   <section class="page-content">

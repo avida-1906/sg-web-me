@@ -78,6 +78,18 @@ const componentList = computed(() => {
         ),
       })
     }
+    else if (item.ty === 99) {
+      _c.push({
+        cid: item.cid,
+        platform_id: item.platform_id,
+        name: item.label,
+        icon: item.icon,
+        value: item.value,
+        component: defineAsyncComponent(
+          () => import('~/components/AppCasinoOriginalGameList.vue'),
+        ),
+      })
+    }
     else if (item.ty === -1) {
       _c.push({
         cid: item.cid,
