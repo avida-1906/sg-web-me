@@ -469,6 +469,7 @@ declare global {
   const useDialogReceiveBonus: typeof import('./composables/useDialogReceiveBonus')['useDialogReceiveBonus']
   const useDialogSwiperNotice: typeof import('./composables/useDialogSwiperNotice')['useDialogSwiperNotice']
   const useDialogThirdAuthForm: typeof import('./composables/useDialogThirdAuthForm')['useDialogThirdAuthForm']
+  const useDialogVipBonus: typeof import('./composables/useDialogVipBonus')['useDialogVipBonus']
   const useDialogVipBonusRecord: typeof import('./composables/useDialogVipBonusRecord')['useDialogVipBonusRecord']
   const useDialogVipExpRule: typeof import('./composables/useDialogVipExpRule')['useDialogVipExpRule']
   const useDisplayMedia: typeof import('@vueuse/core')['useDisplayMedia']
@@ -1122,6 +1123,7 @@ declare module 'vue' {
     readonly useDialogReceiveBonus: UnwrapRef<typeof import('./composables/useDialogReceiveBonus')['useDialogReceiveBonus']>
     readonly useDialogSwiperNotice: UnwrapRef<typeof import('./composables/useDialogSwiperNotice')['useDialogSwiperNotice']>
     readonly useDialogThirdAuthForm: UnwrapRef<typeof import('./composables/useDialogThirdAuthForm')['useDialogThirdAuthForm']>
+    readonly useDialogVipBonus: UnwrapRef<typeof import('./composables/useDialogVipBonus')['useDialogVipBonus']>
     readonly useDialogVipBonusRecord: UnwrapRef<typeof import('./composables/useDialogVipBonusRecord')['useDialogVipBonusRecord']>
     readonly useDialogVipExpRule: UnwrapRef<typeof import('./composables/useDialogVipExpRule')['useDialogVipExpRule']>
     readonly useDisplayMedia: UnwrapRef<typeof import('@vueuse/core')['useDisplayMedia']>
@@ -1769,6 +1771,7 @@ declare module '@vue/runtime-core' {
     readonly useDialogReceiveBonus: UnwrapRef<typeof import('./composables/useDialogReceiveBonus')['useDialogReceiveBonus']>
     readonly useDialogSwiperNotice: UnwrapRef<typeof import('./composables/useDialogSwiperNotice')['useDialogSwiperNotice']>
     readonly useDialogThirdAuthForm: UnwrapRef<typeof import('./composables/useDialogThirdAuthForm')['useDialogThirdAuthForm']>
+    readonly useDialogVipBonus: UnwrapRef<typeof import('./composables/useDialogVipBonus')['useDialogVipBonus']>
     readonly useDialogVipBonusRecord: UnwrapRef<typeof import('./composables/useDialogVipBonusRecord')['useDialogVipBonusRecord']>
     readonly useDialogVipExpRule: UnwrapRef<typeof import('./composables/useDialogVipExpRule')['useDialogVipExpRule']>
     readonly useDisplayMedia: UnwrapRef<typeof import('@vueuse/core')['useDisplayMedia']>

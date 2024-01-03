@@ -210,6 +210,7 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse, iInput, isTouched, setBlur
   --tg-base-input-style-pad-left: var(--tg-base-input-style-pad-x);
   --tg-base-input-textarea-pad: var(--tg-spacing-8);
   --tg-base-input-textarea-minheight: 2.8em;
+  --tg-base-input-right-button-padding: var(--tg-spacing-button-padding-vertical-sm) var(--tg-spacing-button-padding-horizontal-sm);
 }
 </style>
 
@@ -331,7 +332,7 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse, iInput, isTouched, setBlur
     overflow: hidden;
 
     .right-button {
-      padding: var(--tg-spacing-button-padding-vertical-sm) var(--tg-spacing-button-padding-horizontal-sm);
+      padding: var(--tg-base-input-right-button-padding);
       cursor: pointer;
       display: flex;
       border-left: none;
