@@ -56,11 +56,21 @@ function handleHide() {
             ({{ $t('use_in_game') }})
             <AppCurrencyIcon :show-name="true" :currency-type="currentGlobalCurrency" />
           </span> -->
-          <AppAmount
-            style="color:var(--tg-text-white);"
-            :amount="currentGlobalCurrencyBalance"
-            :currency-type="currentGlobalCurrency"
-          />
+          <AppTooltip :auto-hide="false" :triggers="['hover']" :distance="12">
+            <template #content>
+              <AppAmount
+                style="color:var(--tg-text-white);"
+                :amount="currentGlobalCurrencyBalance"
+                :currency-type="currentGlobalCurrency"
+              />
+            </template>
+            <template #popper>
+              <AppAmount
+                :amount="currentGlobalCurrencyBalance"
+                :currency-type="currentGlobalCurrency"
+              />
+            </template>
+          </AppTooltip>
           <BaseIcon
             class="arrow"
             :class="{ 'arrow-up': isMenuShown }"

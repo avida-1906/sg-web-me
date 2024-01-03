@@ -38,10 +38,10 @@ function clearHide() {
 
 <template>
   <VTooltip
-    v-bind="$attrs"
     v-model:shown="toolShown"
     placement="top"
     :triggers="['click']"
+    v-bind="$attrs"
     @show="closeTool"
     @hide="clearHide"
   >
@@ -52,11 +52,11 @@ function clearHide() {
       </slot>
     </div>
     <template #popper>
-      <slot name="popper">
-        <div class="tiny-menu-item-title">
+      <div class="tiny-menu-item-title">
+        <slot name="popper">
           {{ text }}
-        </div>
-      </slot>
+        </slot>
+      </div>
     </template>
   </VTooltip>
 </template>
