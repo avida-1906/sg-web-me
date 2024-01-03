@@ -217,6 +217,14 @@ export function ApiMemberFavDelete(id: string) {
 }
 
 /**
+ * 查询场馆是否开启
+ *  1在线，2下线
+ */
+export function ApiMemberPlatformState(pid: string) {
+  return httpClient.get<1 | 2>('/member/platform/state', { params: { pid } })
+}
+
+/**
  * 推荐游戏列表
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=1a5800ea-da6f-466d-bd42-27e3c39c5bf1
  */
