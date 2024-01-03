@@ -162,10 +162,20 @@ export interface IMemberThirdReg {
 
 export interface CasinoLobbyGameItem {
   platform_id: string
+  venue_id: string
+  platform_name: string
   id: string
+  game_type: string
   game_id: string
   img: string
   name: string
+  sorting: number
+  created_at: number
+  is_hot: number
+  is_new: number
+  is_fav: number
+  currencys?: any
+  maintained: string
 }
 
 export interface ICasinoBetRecordItem {
