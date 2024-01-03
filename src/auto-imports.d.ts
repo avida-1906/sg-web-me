@@ -822,7 +822,6 @@ declare module 'vue' {
     readonly STORAGE_CLEAR_SPORTS: UnwrapRef<typeof import('./utils/storage')['STORAGE_CLEAR_SPORTS']>
     readonly STORAGE_CURRENT_GLOBAL_CURRENCY_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_CURRENT_GLOBAL_CURRENCY_KEY']>
     readonly STORAGE_HIDE_ZERO_BALANCE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_HIDE_ZERO_BALANCE_KEY']>
-    readonly STORAGE_LANGUAGE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_LANGUAGE_KEY']>
     readonly STORAGE_MENU_ACTIVE_ITEM: UnwrapRef<typeof import('./utils/storage')['STORAGE_MENU_ACTIVE_ITEM']>
     readonly STORAGE_MENU_EXPAND_DOMID: UnwrapRef<typeof import('./utils/storage')['STORAGE_MENU_EXPAND_DOMID']>
     readonly STORAGE_MENU_LEFT_EXPAND: UnwrapRef<typeof import('./utils/storage')['STORAGE_MENU_LEFT_EXPAND']>
@@ -1469,7 +1468,6 @@ declare module '@vue/runtime-core' {
     readonly STORAGE_CLEAR_SPORTS: UnwrapRef<typeof import('./utils/storage')['STORAGE_CLEAR_SPORTS']>
     readonly STORAGE_CURRENT_GLOBAL_CURRENCY_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_CURRENT_GLOBAL_CURRENCY_KEY']>
     readonly STORAGE_HIDE_ZERO_BALANCE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_HIDE_ZERO_BALANCE_KEY']>
-    readonly STORAGE_LANGUAGE_KEY: UnwrapRef<typeof import('./utils/storage')['STORAGE_LANGUAGE_KEY']>
     readonly STORAGE_MENU_ACTIVE_ITEM: UnwrapRef<typeof import('./utils/storage')['STORAGE_MENU_ACTIVE_ITEM']>
     readonly STORAGE_MENU_EXPAND_DOMID: UnwrapRef<typeof import('./utils/storage')['STORAGE_MENU_EXPAND_DOMID']>
     readonly STORAGE_MENU_LEFT_EXPAND: UnwrapRef<typeof import('./utils/storage')['STORAGE_MENU_LEFT_EXPAND']>
