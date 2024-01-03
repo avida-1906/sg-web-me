@@ -22,6 +22,7 @@ const {
   bool: needSaveFormData,
   setTrue: setNeedSaveFormDataTrue,
 } = useBoolean(true)
+const router = useRouter()
 
 const emailRef = ref()
 const userNameRef = ref()
@@ -30,7 +31,7 @@ const curExists = ref<1 | 2>(2)
 const code = ref('')
 const birthdayInputRef = ref()
 const birthday = ref('')
-const parentUid = ref(Session.get<string>(STORAGE_REG_PARENT_UID)?.value ?? '')
+const parentUid = ref(router.currentRoute.value.query.uid)
 
 const {
   value: password,

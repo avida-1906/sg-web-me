@@ -1,27 +1,21 @@
+import type { App } from 'vue'
 import type { Locale } from 'vue-i18n'
 import { createI18n } from 'vue-i18n'
-import type { App } from 'vue'
-import axios from 'axios'
-import { EnumLanguage } from '~/utils/enums'
-import type { EnumLanguageKey } from '~/types'
 
-const { VITE_I18N_DEFAULT_LANG } = getEnv()
-
-/** 映射后端的多语言值 */
-export const languageMap: Record<EnumLanguageKey, string> = {
-  'zh-CN': 'zh_CN',
-  'vi-VN': 'vi_VN',
-  'pt-BR': 'pt_BR',
-  'hi-IN': 'en_IN',
-  'th-TH': 'th_TH',
-  'en-US': 'en_US',
-}
-
+// Import i18n resources
+// https://vitejs.dev/guide/features.html#glob-import
+//
+// Don't need this? Try vitesse-lite: https://github.com/antfu/vitesse-lite
 export const i18n = createI18n({
   legacy: false,
   locale: '',
   messages: {},
 })
+
+const { VITE_I18N_DEFAULT_LANG } = getEnv()
+
+export type EnumLanguageKeys = keyof typeof EnumLanguage
+export type EnumLanguageValues = typeof EnumLanguage[EnumLanguageKeys]
 
 const localesMap = Object.fromEntries(
   Object.entries(import.meta.glob('../../locales/*.yml'))
@@ -39,8 +33,7 @@ function setI18nLanguage(lang: Locale) {
   return lang
 }
 
-export async function loadLanguageAsync(langIndex: EnumLanguage): Promise<Locale> {
-  const lang = EnumLanguage[langIndex]
+export async function loadLanguageAsync(lang: string): Promise<Locale> {
   // If the same language
   if (i18n.global.locale.value === lang)
     return setI18nLanguage(lang)
@@ -57,46 +50,82 @@ export async function loadLanguageAsync(langIndex: EnumLanguage): Promise<Locale
 }
 
 export function install(app: App<Element>) {
-  const index = getInitLangIndex()
   app.use(i18n)
-
-  if (index in EnumLanguage)
-    loadLanguageAsync(index)
-  else
-    loadLanguageAsync(EnumLanguage[VITE_I18N_DEFAULT_LANG])
+  loadLanguageAsync(getCurrentLanguageForFrontend())
 }
 
-export function getInitLangIndex() {
-  const search = location.search
-  if (search && search.includes('lang=')) {
-    const params = new URLSearchParams(search)
-    const lang: string | undefined = params.get('lang')?.replace('_', '-')
-    if (lang && lang in EnumLanguage)
-      Local.set(STORAGE_LANGUAGE_KEY, EnumLanguage[lang as EnumLanguageKey])
+/**
+ * 获取当前路由对应的前端语言
+ * @returns EnumLanguageKeys
+ */
+export function getCurrentLanguageForFrontend(): EnumLanguageKeys {
+  const pathname = window.location.pathname
+  const lang = pathname.split('/')[1]
+  const langKeys = Object.keys(EnumLanguage)
+  if (isExistRouterLanguage(lang)) {
+    const langKey = langKeys.find((key) => {
+      return key.startsWith(lang)
+    })
+    if (langKey)
+      return langKey as EnumLanguageKeys
   }
-
-  const localStorageLanguageIndex = Local.get<
-    EnumLanguage | null
-  >(STORAGE_LANGUAGE_KEY)?.value
-  let index: number
-  if (localStorageLanguageIndex !== null && localStorageLanguageIndex !== void 0 && localStorageLanguageIndex >= 0)
-    index = Number(localStorageLanguageIndex)
-
-  else
-    index = Number(EnumLanguage[VITE_I18N_DEFAULT_LANG])
-
-  axios.defaults.headers.common.lang = EnumLanguage[index]
-  return index
+  return VITE_I18N_DEFAULT_LANG
 }
 
-/** 获取前端本地多语言 */
-export function getCurrentLanguage(): EnumLanguageKey {
-  return i18n.global.locale.value as EnumLanguageKey
+/**
+ * 获取当前路由对应的后端语言
+ * @returns EnumLanguageValues
+ */
+export function getCurrentLanguageForBackend(): EnumLanguageValues {
+  const pathname = window.location.pathname
+  const lang = pathname.split('/')[1]
+  const langKeys = Object.keys(EnumLanguage)
+  if (isExistRouterLanguage(lang)) {
+    const langKey = langKeys.find((key) => {
+      return key.startsWith(lang)
+    })
+    if (langKey)
+      return EnumLanguage[langKey as EnumLanguageKeys]
+  }
+  return EnumLanguage[VITE_I18N_DEFAULT_LANG]
 }
 
-/** 获取当前对应后端的多语言 */
-export function getCurrentLanguageForBackend() {
-  // return languageMap[getCurrentLanguage() || VITE_I18N_DEFAULT_LANG]
-  const index = getInitLangIndex()
-  return languageMap[EnumLanguage[index] as EnumLanguageKey]
+/**
+ * 根据传入的语言获取路由应该显示的语言
+ * 例如：zh-CN => zh
+ */
+export function getLocalUrlToUrlLang(lang?: EnumLanguageKeys): string {
+  const _lang = lang || VITE_I18N_DEFAULT_LANG
+  return _lang.split('-')[0]
+}
+
+/**
+ * 获取当前url的显示语言
+ * @returns EnumLanguageKeys
+ */
+export function getCurrentUrlLanguage(): string {
+  const pathname = window.location.pathname
+  const lang = pathname.split('/')[1]
+  const langKeys = Object.keys(EnumLanguage)
+  if (isExistRouterLanguage(lang)) {
+    const langKey = langKeys.find((key) => {
+      return key.startsWith(lang)
+    })
+    if (langKey)
+      return getLocalUrlToUrlLang(langKey as EnumLanguageKeys)
+  }
+  return getLocalUrlToUrlLang(VITE_I18N_DEFAULT_LANG)
+}
+
+/**
+ * 判断路由语言是否存是项目中的语言
+ * @param lang
+ */
+export function isExistRouterLanguage(lang: string): boolean {
+  type EnumLanguageKeys = keyof typeof EnumLanguage
+  const langs = Object.keys(EnumLanguage).map((key) => {
+    return getLocalUrlToUrlLang(key as EnumLanguageKeys)
+  })
+
+  return langs.includes(lang)
 }

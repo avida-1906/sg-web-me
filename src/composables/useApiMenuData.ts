@@ -1,4 +1,4 @@
-import type { EnumLanguage } from '~/utils/enums'
+import type { EnumLanguageKeys } from '~/modules/i18n'
 
 export interface MenuItem {
   title: string
@@ -195,14 +195,15 @@ export function useApiMenuData() {
       callBack: () => openService(),
     },
     {
-      title: `${t('language_title')}${userLanguage.value === 0 ? '：' : ': '}${
-        AllLanguages.value.filter(a =>
-        a.value === userLanguage.value)[0]?.title}`,
+      title: `
+        ${t('language_title')}${userLanguage.value === 'en-US' ? '：' : ': '}
+        ${AllLanguages.value.filter(a => a.value === userLanguage.value)[0]?.title}
+      `,
       path: '',
       icon: 'spt-odds',
       type: 'radio',
       value: userLanguage.value,
-      radioChange: (val: EnumLanguage) => languageStore.changeLanguage(val),
+      radioChange: (val: EnumLanguageKeys) => languageStore.changeLanguage(val),
       list: AllLanguages.value,
       domId: 'static-menu-language',
     },

@@ -264,7 +264,12 @@ onMounted(() => {
         <div class="flex-row">
           <div class="flex-column">
             <BaseAspectRatio ratio="149/97" width="149px">
-              <BaseUpload img-type="frontId" :image-url="imageUrl" @select-file="getFile" @delete-file="handleDelFile" />
+              <BaseUpload
+                img-type="frontId"
+                :image-url="imageUrl"
+                @select-file="getFile"
+                @delete-file="handleDelFile"
+              />
             </BaseAspectRatio>
             <BaseButton @click="copyUploadCode(1)">
               copy
@@ -272,7 +277,12 @@ onMounted(() => {
           </div>
           <div class="flex-column">
             <BaseAspectRatio ratio="149/97" width="149px">
-              <BaseUpload img-type="backId" :image-url="imageUrl" @select-file="getFile" @delete-file="handleDelFile" />
+              <BaseUpload
+                img-type="backId"
+                :image-url="imageUrl"
+                @select-file="getFile"
+                @delete-file="handleDelFile"
+              />
             </BaseAspectRatio>
             <BaseButton @click="copyUploadCode(2)">
               copy
@@ -280,7 +290,12 @@ onMounted(() => {
           </div>
           <div class="flex-column">
             <BaseAspectRatio ratio="149/97" width="149px">
-              <BaseUpload img-type="address" disabled @select-file="getFile" @delete-file="handleDelFile" />
+              <BaseUpload
+                img-type="address"
+                disabled
+                @select-file="getFile"
+                @delete-file="handleDelFile"
+              />
             </BaseAspectRatio>
             <BaseButton @click="copyUploadCode(3)">
               copy
@@ -288,7 +303,13 @@ onMounted(() => {
           </div>
           <div class="flex-column">
             <BaseAspectRatio ratio="149/97" width="149px">
-              <BaseUpload img-type="fund" :image-url="imageUrl2" disabled @select-file="getFile" @delete-file="handleDelFile" />
+              <BaseUpload
+                img-type="fund"
+                :image-url="imageUrl2"
+                disabled
+                @select-file="getFile"
+                @delete-file="handleDelFile"
+              />
             </BaseAspectRatio>
             <BaseButton @click="copyUploadCode(4)">
               copy
@@ -426,9 +447,7 @@ onMounted(() => {
             <h2>
               渐变进度条 (width: 400)
             </h2>
-            <h3>
-              strokeColor: { '0%': '#108ee9', '100%': '#87d068', direction: 'right' } 或 { from: '#108ee9', to: '#87d068', direction: 'right' }
-            </h3>
+            <h3 />
             <BaseProgress
               :width="400"
               :percent="percent"

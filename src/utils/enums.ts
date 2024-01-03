@@ -1,41 +1,20 @@
-/**
- * 语言枚举
- */
+/** * 语言枚举 */
 export enum EnumLanguage {
-  /**
-   * 中文
-   */
-  'zh-CN',
-
-  /**
-   * 葡萄牙语 Portuguese
-   */
-  'pt-BR',
-
-  /**
-   * 越南语 Vietnamese
-   */
-  'vi-VN',
-
-  /**
-   * 泰语 Thai
-   */
-  'th-TH',
-
-  /**
-   * 印度 India
-   */
-  'hi-IN',
-
-  /**
-   * 英语
-   */
-  'en-US',
+  /** * 中文 */
+  'zh-CN' = 'zh_CN',
+  /** * 葡萄牙语 Portuguese */
+  'pt-BR' = 'pt_BR',
+  /** * 越南语 Vietnamese */
+  'vi-VN' = 'vi_VN',
+  /** * 泰语 Thai */
+  'th-TH' = 'th_TH',
+  /** * 印度 India */
+  'hi-IN' = 'en_IN',
+  /** * 英语 */
+  'en-US' = 'en_US',
 }
 
-/**
- * 货币枚举
- */
+/** * 货币枚举 */
 export enum EnumCurrency {
   /**
    * @description BRL 巴西雷亚尔
@@ -198,9 +177,7 @@ export enum EnumCurrency {
   MATIC,
 }
 
-/**
- * casino游戏排序枚举
- */
+/** * casino游戏排序枚举 */
 export enum EnumCasinoSortType {
   /** 名称a-z */
   nameA = 'en_name:asc',

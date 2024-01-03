@@ -827,7 +827,6 @@ declare module 'vue' {
     readonly STORAGE_MENU_EXPAND_DOMID: UnwrapRef<typeof import('./utils/storage')['STORAGE_MENU_EXPAND_DOMID']>
     readonly STORAGE_MENU_LEFT_EXPAND: UnwrapRef<typeof import('./utils/storage')['STORAGE_MENU_LEFT_EXPAND']>
     readonly STORAGE_REG_PARAMS_KEYWORDS: UnwrapRef<typeof import('./utils/storage')['STORAGE_REG_PARAMS_KEYWORDS']>
-    readonly STORAGE_REG_PARENT_UID: UnwrapRef<typeof import('./utils/storage')['STORAGE_REG_PARENT_UID']>
     readonly STORAGE_RIGHT_SIDEBAR_CONTENT: UnwrapRef<typeof import('./utils/storage')['STORAGE_RIGHT_SIDEBAR_CONTENT']>
     readonly STORAGE_SEARCH_KEYWORDS_LIVE: UnwrapRef<typeof import('./utils/storage')['STORAGE_SEARCH_KEYWORDS_LIVE']>
     readonly STORAGE_SEARCH_KEYWORDS_SPORTS: UnwrapRef<typeof import('./utils/storage')['STORAGE_SEARCH_KEYWORDS_SPORTS']>
@@ -1475,7 +1474,6 @@ declare module '@vue/runtime-core' {
     readonly STORAGE_MENU_EXPAND_DOMID: UnwrapRef<typeof import('./utils/storage')['STORAGE_MENU_EXPAND_DOMID']>
     readonly STORAGE_MENU_LEFT_EXPAND: UnwrapRef<typeof import('./utils/storage')['STORAGE_MENU_LEFT_EXPAND']>
     readonly STORAGE_REG_PARAMS_KEYWORDS: UnwrapRef<typeof import('./utils/storage')['STORAGE_REG_PARAMS_KEYWORDS']>
-    readonly STORAGE_REG_PARENT_UID: UnwrapRef<typeof import('./utils/storage')['STORAGE_REG_PARENT_UID']>
     readonly STORAGE_RIGHT_SIDEBAR_CONTENT: UnwrapRef<typeof import('./utils/storage')['STORAGE_RIGHT_SIDEBAR_CONTENT']>
     readonly STORAGE_SEARCH_KEYWORDS_LIVE: UnwrapRef<typeof import('./utils/storage')['STORAGE_SEARCH_KEYWORDS_LIVE']>
     readonly STORAGE_SEARCH_KEYWORDS_SPORTS: UnwrapRef<typeof import('./utils/storage')['STORAGE_SEARCH_KEYWORDS_SPORTS']>

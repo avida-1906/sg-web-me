@@ -1,6 +1,6 @@
 <script lang="ts" setup>
+import type { EnumLanguageKeys } from '~/modules/i18n'
 import type { EnumSportsOddsType } from '~/stores/sports'
-import type { EnumLanguage } from '~/utils/enums'
 
 const { t } = useI18n()
 
@@ -95,7 +95,7 @@ const menuData = computed(() => [
   },
 ])
 
-function selectChange(v: EnumLanguage) {
+function selectChange(v: EnumLanguageKeys) {
   languageStore.changeLanguage(v)
 }
 function selectOddsChange(v: EnumSportsOddsType) {
