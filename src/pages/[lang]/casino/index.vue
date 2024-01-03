@@ -78,6 +78,7 @@ const componentList = computed(() => {
         ),
       })
     }
+    // TODO:临时写死小游戏入口
     else if (item.ty === 99) {
       _c.push({
         cid: item.cid,
