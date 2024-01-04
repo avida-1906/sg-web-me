@@ -95,10 +95,12 @@ onMounted(() => {
         v-model.lazy="currency_id"
         :options="currencyList"
       />
-      <div style="max-width: 195px;">
+      <div>
         <BaseInput v-model="searchValue" :placeholder="t('player_id')">
           <template #right-icon>
-            <BaseIcon name="uni-search" />
+            <div class="center" style="padding-right: var(--tg-spacing-4);">
+              <BaseIcon name="uni-search" />
+            </div>
           </template>
         </BaseInput>
       </div>
@@ -163,8 +165,6 @@ onMounted(() => {
 <style lang="scss" scoped>
 .all-data-page {
   --tg-badge-size: 10px;
-  --tg-base-select-style-color: var(--tg-text-lightgrey);
-  --tg-base-select-style-padding-y: var(--tg-spacing-8);
   --tg-base-select-style-padding-right: var(--tg-spacing-28);
 }
 
@@ -173,22 +173,7 @@ onMounted(() => {
   margin-top: 4px;
 }
 .page-all-data {
-  margin: 20px 0;
   --tg-app-amount-font-size: var(--tg-font-size-xs);
   --tg-app-amount-font-weight: var(--tg-font-weight-normal);
-  .flex-colum {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--tg-spacing-4);
-  }
-}
-
-.table-filter {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  gap: var(--tg-spacing-16);
-  font-size: var(--tg-font-size-xs);
 }
 </style>
