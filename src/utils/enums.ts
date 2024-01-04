@@ -180,9 +180,9 @@ export enum EnumCurrency {
 /** * casino游戏排序枚举 */
 export enum EnumCasinoSortType {
   /** 名称a-z */
-  nameA = 'en_name:asc',
+  nameA = 'name:asc',
   /** 名称z-a */
-  nameZ = 'en_name:desc',
+  nameZ = 'name:desc',
   /** 热门 */
   hot = 'sorting:asc',
   /** 推荐 */
