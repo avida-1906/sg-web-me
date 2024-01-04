@@ -5,21 +5,23 @@ const { t } = useI18n()
 const router = useLocalRouter()
 const route = useRoute()
 const { animatingMounted } = useLayoutAnimate({ aniMounted: true })
-
 const { appContentWidth, isMobile } = storeToRefs(useWindowStore())
 const { isLogin } = storeToRefs(useAppStore())
-
 const { bool: isPopShow, setTrue: setPTrue, setFalse: setPFalse } = useBoolean(false)
 
+const path = computed(() => {
+  return `/${route.path.split('/').slice(2).join('/')}`
+})
 const menuData = computed<any>(() =>
   route.meta.withMenuMenu?.map((m, idx) => ({ ...m, title: m.isT ? t(m.title) : m.title, value: idx, label: m.isT ? t(m.title) : m.title }))
     .filter(f => f.token ? isLogin.value : true))
 const icon = computed<any>(() => route.meta.withMenuIcon)
 const withMenuMobileType = computed(() => route.meta.withMenuMobileType)
 const noBg = computed(() =>
-  route.path.includes('/vip/') || route.path.includes('/affiliate/promotion-tutorial'))
+  path.value.includes('/vip/')
+  || (isMobile.value ? path.value.includes('/affiliate') : false))
 
-const activeMenu = ref(menuData.value.filter((m: any) => m.path === route.path)[0])
+const activeMenu = ref(menuData.value.filter((m: any) => m.path === path.value)[0])
 const curMenuTab = ref(activeMenu.value?.value)
 
 function togglePop() {
@@ -28,11 +30,9 @@ function togglePop() {
   else
     setPTrue()
 }
-
 function goBack() {
   router.push('/casino')
 }
-
 function goPage(item: any, hide: any) {
   if (item.path) {
     activeMenu.value = item
@@ -42,22 +42,12 @@ function goPage(item: any, hide: any) {
   setPFalse()
 }
 
-// function suspenseResolved() {
-// }
-
-// onMounted(() => {
-// })
-
-// onUpdated(() => {
-// })
-
 watch(menuData, (val) => {
-  activeMenu.value = val.filter((m: any) => m.path === route.path)[0]
+  activeMenu.value = val.filter((m: any) => m.path === path.value)[0]
   curMenuTab.value = activeMenu.value?.value
 })
-
-watch(route, (val) => {
-  activeMenu.value = menuData.value.filter((m: any) => m.path === val.path)[0]
+watch(route, () => {
+  activeMenu.value = menuData.value.filter((m: any) => m.path === path.value)[0]
 })
 </script>
 
@@ -104,15 +94,15 @@ watch(route, (val) => {
                     </div>
                   </div>
                   <template
-                    v-if="route.path === '/transactions' || route.path === '/settings'"
+                    v-if="path === '/transactions' || path === '/settings'"
                   >
                     <BaseMenu class="settran" :data="menuData" />
                   </template>
                   <template v-else>
                     <AppUserAgentInfo
-                      v-if="isLogin && route.path.includes('/affiliate/')"
+                      v-if="isLogin && path.includes('/affiliate/')"
                     />
-                    <AppVipInfoBar v-if="isLogin && route.path.includes('/vip/')" />
+                    <AppVipInfoBar v-if="isLogin && path.includes('/vip/')" />
                     <div
                       class="stack direction-horizontal padding-none content-outer"
                       :class="[
@@ -128,13 +118,13 @@ watch(route, (val) => {
                           <div
                             v-if="withMenuMobileType === 'tabs'"
                             class="menu-tabs"
-                            :class="{ 'is-vip': $route.path.includes('/vip/') }"
+                            :class="{ 'is-vip': path.includes('/vip/') }"
                           >
                             <BaseTab
                               v-model="curMenuTab"
                               :center="false"
                               :list="menuData"
-                              :full="$route.path.includes('/vip/')"
+                              :full="path.includes('/vip/')"
                             />
                           </div>
                           <div
@@ -177,23 +167,23 @@ watch(route, (val) => {
                         </template>
                       </div>
                       <!-- <div
-                        v-if="isMobile && $route.path.includes('/vip/')"
+                        v-if="isMobile && $path.includes('/vip/')"
                         class="line"
                       /> -->
                       <div
                         class="right"
-                        :class="{ 'is-vip': $route.path.includes('/vip/') }"
+                        :class="{ 'is-vip': path.includes('/vip/') }"
                       >
                         <div
                           class="content-container"
                           :class="{
-                            'is-vip': $route.path.includes('/vip/'),
+                            'is-vip': path.includes('/vip/'),
                             'no-bg': noBg,
                           }"
                         >
                           <RouterView v-slot="{ Component }">
                             <Suspense timeout="0">
-                              <component :is="Component" :key="route.path" />
+                              <component :is="Component" :key="path" />
                               <template #fallback>
                                 <div class="center dialog-loading-height">
                                   <BaseLoading />

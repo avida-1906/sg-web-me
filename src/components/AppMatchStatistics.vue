@@ -461,7 +461,7 @@ function mapHeadArea(
       >
         <span
           class="match-status-label"
-          style="display:inline-block;width: 5ch;text-align: left;"
+          style="display:inline-block;width: 5ch;text-align: left;white-space: nowrap;"
         >
           {{ _data.startTime.split('@@')[0] }}
         </span>&nbsp;

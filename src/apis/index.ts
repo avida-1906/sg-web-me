@@ -1900,9 +1900,57 @@ export function ApiFinanceWithdrawBalance(params: {
 }
 
 /**
- * 查询代理余额 /member/balance
+ * 查询代理余额
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=05a39f6b-613a-44e6-a753-f76f547e6df1
  */
 export function ApiMemberBalanceAgency() {
   return httpClient.get<TCurrencyObject>('/member/balance/agency')
+}
+
+/**
+ * 佣金历史
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=89c29e8e-c6ff-45d3-bcda-94c6f5d728a2
+ */
+export function ApiAgencyCommissionRecords() {
+  return httpClient.post<{
+    'id': '52991425232034912'
+    /** 订单号 */
+    'bill_no': '52991425218017473'
+    /** uid */
+    'uid': '7745422158131254'
+    /** 会员名 */
+    'username': 'link999'
+    /** 全部为空，帐变id，取帐变类型中的关于代理钱包的cash_type */
+    'cash_type': 847
+    /**  */
+    'business_type': 823
+    /** 金额 */
+    'amount': '100.00'
+    /**  */
+    'before_amount': '10382.59'
+    /**  */
+    'after_amount': '10282.59'
+    /**  */
+    'multiple': 1
+    /**  */
+    'created_at': 1701504494865
+    /**  */
+    'tester': 0
+    /**  */
+    'remark': 'dfsa'
+    /** 币种 */
+    'currency_id': '701'
+    /**  */
+    'operator_uid': '127646934193462684'
+    /**  */
+    'operator_name': 'Link001'
+    /**  */
+    'device': 24
+    /** 时间（毫秒） */
+    'apply_at': 1701504494865
+    /** 类型 */
+    'cash_type_name': '人工佣金减款'
+    /**  */
+    'business_type_name': '佣金'
+  }[]>('/agency/commission/records')
 }

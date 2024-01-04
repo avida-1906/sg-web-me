@@ -123,6 +123,7 @@ onMounted(() => {
 --tg-base-date-picker-padding: var(--tg-spacing-8) var(--tg-spacing-12);
 --tg-base-date-picker-font-weight: var(--tg-font-weight-semibold);
 --tg-base-date-picker-color: var(--tg-secondary-light);
+--tg-base-date-picker-wrap-flex: 1;
 }
 </style>
 
@@ -166,7 +167,8 @@ onMounted(() => {
     color: var(--tg-text-white);
   }
   .wrap {
-    flex: 1;
+    flex: var(--tg-base-date-picker-wrap-flex);
+    gap: 4px;
     display: flex;
     align-items: center;
     justify-content: space-between;

@@ -29,6 +29,12 @@ const { bool: showImg, setTrue: showImgTrue } = useBoolean(false)
 const isMaintained = computed(() => {
   return props.gameInfo.maintained === '2'
 })
+const toPath = computed(() => {
+  const { id, name, platform_name, platform_id } = props.gameInfo
+  return `/${getCurrentUrlLanguage()}/casino/games?${application.objectToUrlParams({
+    id, name, pn: platform_name, pid: platform_id,
+  })}`
+})
 
 function gameStart() {
   if (isMobile.value)
@@ -100,8 +106,7 @@ const onPlayCount = ref(Math.ceil(Math.random() * 1000).toFixed())
         v-if="!isMaintained"
         v-slot="{ href, navigate }"
         custom
-        :to="`/${getCurrentUrlLanguage()}/casino/games?id=${gameInfo.id}&name=${gameInfo
-          .name}&pn=${gameInfo.platform_name}&pid=${gameInfo.platform_id}`"
+        :to="toPath"
       >
         <a
           :href="href"

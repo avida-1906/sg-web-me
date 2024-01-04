@@ -9,22 +9,38 @@ const props = defineProps<Props>()
 const { t } = useI18n()
 const router = useLocalRouter()
 const { appContentWidth } = storeToRefs(useWindowStore())
-
+const {
+  bool: loading,
+  setTrue: showLoading,
+  setFalse: hideLoading,
+} = useBoolean(false)
+const {
+  bool: isShowSkeleton,
+  setTrue: showSkeleton,
+  setFalse: hideSkeleton,
+} = useBoolean(false)
 const {
   settle,
   settleList,
 } = useSportSelectSettle(props.settle)
 
+const listLength = ref(0)
+
 const {
   sportBetList,
-  loading,
   total,
   page,
   page_size,
   next,
   prev,
   fetch,
-} = useApiSportBetList(settle, false, false, scrollToTop)
+} = useApiSportBetList(settle, false, false, () => {
+  // 请求完成之后
+  scrollToTop()
+  hideLoading()
+  hideSkeleton()
+  listLength.value = total.value
+})
 
 const columnCount = computed(() => {
   if (appContentWidth.value > 1000)
@@ -44,11 +60,13 @@ const paginationData = computed(() => {
 
 function pagePrev() {
   scrollToTop()
+  showSkeleton()
   prev()
 }
 
 function pageNext() {
   scrollToTop()
+  showSkeleton()
   next()
 }
 
@@ -64,10 +82,15 @@ function addRightSettleChange(v: any) {
     fetch()
 }
 
-if (props.isFirst)
+if (props.isFirst) {
+  showLoading()
   await application.allSettled([fetch()])
-else
+}
+else {
+  console.log('123')
+  showLoading()
   fetch()
+}
 
 onMounted(() => {
   sportsBettingToBetslipBus.on(addRightSettleChange)
@@ -98,7 +121,7 @@ onUnmounted(() => {
     </div>
     <AppLoading v-if="loading" />
     <template v-else>
-      <div v-if="!sportBetList.length" class="empty">
+      <div v-if="listLength === 0" class="empty">
         <BaseEmpty>
           <template #icon>
             <BaseIcon
@@ -127,9 +150,16 @@ onUnmounted(() => {
         </BaseEmpty>
       </div>
       <div v-else class="slip-wrapper" :style="`column-count:${columnCount}`">
-        <div v-for="item in sportBetList" :key="item.ono" class="child">
-          <AppSportsMyBetSlip :data="item" />
-        </div>
+        <template v-if="isShowSkeleton">
+          <div v-for="item in listLength" :key="item" class="child">
+            <AppSportsMyBetSlipSkeleton :settle="settle" />
+          </div>
+        </template>
+        <template v-else>
+          <div v-for="item in sportBetList" :key="item.ono" class="child">
+            <AppSportsMyBetSlip :data="item" />
+          </div>
+        </template>
       </div>
       <AppStack
         class="stack-padding"
