@@ -5,12 +5,23 @@ const name = ref(query.name?.toString() ?? '')
 const pn = ref(query.pn?.toString() ?? '')
 const pid = ref(query.pid?.toString() ?? '')
 const id = ref(query.id?.toString() ?? '')
+
+const gameObj = computed<{ [t: string]: Component }>(() => ({
+  limbo: defineAsyncComponent(
+    () => import('~/components/LimboIndex.vue'),
+  ),
+  dice: defineAsyncComponent(
+    () => import('~/components/DiceIndex.vue'),
+  ),
+}))
+
+const game = computed(() => gameObj.value[id.value])
 </script>
 
 <template>
   <div class="casino-games">
     <div class="game-wrapper" :class="{ max: appContentWidth > 930 }">
-      <LimboIndex v-if="id === 'limbo'" />
+      <component :is="game" />
     </div>
   </div>
   <section class="page-content">

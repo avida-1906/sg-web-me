@@ -8,6 +8,11 @@ const list = [
     name: 'Limbo',
     game_id: 'limbo',
   },
+  {
+    img: '/png/mini/dice.png',
+    name: 'Dice',
+    game_id: 'dice',
+  },
 ]
 
 function startGame(id: string) {
