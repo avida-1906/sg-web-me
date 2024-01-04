@@ -1,7 +1,7 @@
-login: Đăng nhập
+login: Đăng Nhập
 reg: Đăng ký
-register: Tạo tài khoản
-continue: tiếp tục
+register: Tạo Tài khoản
+continue: Tiếp tục
 gamer: Khách chơi
 currency_type: Loại ngoại tệ
 start_game: Bắt đầu trò chơi
@@ -9,7 +9,7 @@ slot: Điện tử
 fishing: Bắn cá
 chess: Đánh bài
 live: Đánh bài với nhân viên trực tuyến
-email_or_username: Địa chỉ hòm thử hoặc tài khoản khách chơi
+email_or_username: Email hoặc Tên đăng nhập
 pls_enter_email_or_username: Vui lòng nhập địa chỉ hòm thư và tài khoản khách chơi
 email_or_username_incorrect: Địa chỉ hòm thư vàtài khoản khách chơi không chính
   xác
@@ -17,15 +17,15 @@ two_step_verification: Xác nhận hai bước
 pls_enter_two_step_verification: Vui lòng nhập xác nhận hai bước
 tip_start_double_check: 'Bật chức năng xác nhận hai bước để đảm bảo tính an toàn
   của tài khoản '
-email_address: Địa chỉ hòm thư
-pls_enter_email_address: 'Vui lòng nhập địa chỉ hòm thư '
+email_address: Email
+pls_enter_email_address: 'Trường này là bắt buộc'
 email_address_incorrect: Địa chỉ hòm thư không chính xác
 reset_pwd_email: Thư thiết lập lại mật khẩu đã được gửi vào địa chỉ hòm thư
 already_send_email_user: Tài khoản khôi phục đã được gửi vào địa chỉ hòm thư
-recover_pwd: Cài đặt lại mật khẩu
-username: Tên tài khoản
+recover_pwd: Lấy Lại Mật Khẩu
+username: Tên đăng nhập
 pls_enter_username: Vui Lòng nhập tên tài khoản
-username_incorrect: Tên tài khoản bắt buộc phải trong khoảng 3-14 ký tự
+username_incorrect: Tên người dùng của bạn phải dài từ 3-14 ký tự.
 password: Mật khẩu
 old_pwd: Mật khẩu cũ
 new_pwd: Mật khẩu mới
@@ -42,24 +42,24 @@ password_least_1_number: mật khẩu phải có ít nhất 1 con số
 uppercase_lowercase_letter: mật khẩu phải bao gồm ký tự in hoa và ký tự thường
 least_8_characters: Bao gồm ít nhất 8 ký tự
 reg_step: Điền thông tin chi tiết cá nhân của bạn
-reg_step1: 'Bước 1/2:  Điền thông tin chi tiết cá nhân của bạn'
+reg_step1: 'Bước 1/2: Điền thông tin chi tiết của bạn'
 reg_step2: 'Bước 2/2:  Điền thông tin chi tiết cá nhân của bạn'
 step_label: Bước
-code_optional: Mã số
+code_optional: Mã (Không bắt buộc)
 read_and_agree: Tôi đã đọc và đồng ý
 terms_conditions: Các điều khoản vàđiều kiện
 read_terms_conditions: 'Tôi đã đọc và đồng ý các điều khoản vàđiều kiện '
 agree_terms_conditions: Vui lòng đọc toàn bộ các điều khoản và điều kiện, và chọn
   tôi đồng ý
 read_and_accept: đọc toàn bộ các điều khoản và điều kiện và đồng ý
-or_use: hoặc sử dụng
-forgot_password: Quên mật khẩu
-no_account_yet: Vẫn chưa có tài khoản
-register_account: Đăng ký tài khoản
-have_account: Đã có tài khoản
+or_use: HOẶC
+forgot_password: Quên Mật Khẩu
+no_account_yet: Không có tài khoản?
+register_account: Đăng ký Tài khoản
+have_account: Đã có tài khoản?
 stake_hCaptcha: '{site} được bảo vệ bởi hCaptcha'
 privacy_policy: Điểu khoản bảo mật
-responsible_casino: Quyền phụ trách của game cờ bạc
+responsible_casino: Đặt Cược Có Trách Nhiệm
 license: Giấy phép
 self_exclusion: Tự loại trừ
 anti_money_laundering_rule: Quy tắc chống rửa tiền
@@ -72,10 +72,10 @@ balance: Số dư
 amount: Số tiền
 casino: Casino
 sports: Thể Thao
-game: 'Các trò chơi '
+game: 'trò chơi'
 wallet: Ví tiền
 safe: Sự bảo mật
-affiliate: Chương trình liên kết
+affiliate: Liên kết
 transaction_record: Lịch sử giao dịch
 statistical_data: Thống kê số liệu
 sports_betting: Đặt cược thể thao
@@ -84,19 +84,19 @@ lucky_trophy: Chiến tích may mắnnhất
 big_win: Thắng lợi lớn nhất
 setting: Cài đặt
 stake_safety: Sự an toàn của {site}
-online_support: Hỗ trợ trực tuyến
-vip_club: Câu lạc bộ VIP
+online_support: Hỗ Trợ Trực Tuyến
+vip_club: VIP Clup
 club: Câu lạc bộ
 logout: Đăng xuất
 logout_dont_foget: 'Hãy xem các chương trình khuyến mãi hấp dẫn Casino và Sportsbook
   của chúng tôi trước khi bạn rời khỏi '
 chat_room: Chat
 bet_slip: Đơn cược
-my_bets: Đơn cược của tôi
-all_bets: Toàn bộ đơn cược
+my_bets: Cược Của Côi
+all_bets: Tất Tả Cược
 casino_bets: Đơn cược đánh bài
-billboard: Biển quảng cáo
-competition_board: Bảng xếp hạng cuộc thi
+billboard: Người Chơi Lớn
+competition_board: Bảng xếp hạng cuộc đua
 competition: Cuộc thi
 competition_name: Tên cuộc thi
 currency: Tiền tệ
@@ -290,7 +290,7 @@ group_conversation_name_and_1_other_also_particiapting: "{participant_name} và 
 group_conversation_name_and_multiple_others_also_participating: "{participant_name}
   và {other_participant_count} người khác cũng đang tham gia"
 group_conversation_one_person_also_participating: 1 người khác cũng đang tham gia
-help_space_title: hỗ trợ
+help_space_title: Hỗ trợ
 hi_name: Xin chào, {first_name} 👋
 hi_there: Xin Chào 👋
 home_space_title: Trang chủ
@@ -659,7 +659,7 @@ time_september: Tháng chín
 time_october: Tháng mười
 time_november: Tháng mười một
 time_december: Tháng mười hai
-time_birthday: Ngày sinh
+time_birthday: Ngày Sinh
 time_month: 'Tháng '
 date: Ngày
 tour: Sản phẩm
@@ -741,10 +741,10 @@ casino_origin_game: trò chơi nguyên bản
 casino_games_recommend: Đề nghị phổ biến
 casino_provider: nhà cung cấp trò chơi
 casino_sort_popular: Phổ biến
-casino_sort_featured: Điểm nổi bật
+casino_sort_featured: Tính năng
 casino_filter_label: Được lọc bởi
 casino_filter_label_sort: Sắp xếp theo
-casino_filter_provider_all: Xem tất cả các nhà cung cấp trò chơi
+casino_filter_provider_all: Xem Tất cả các Nhà cung cấp
 load_more: tải thêm
 game_type_all: sảnh
 game_type_live: sòng bạc trực tiếp
@@ -888,7 +888,7 @@ sports_status_win_half: Ăn nửa tiền
 sports_status_lose_half: Thua nửa tiền
 sports_status_lose_part: Thua một phần
 sports_estimated_payment_amount: 'Dự kiến số tiền chi trả '
-sports_payment_amount: Số tiền chi trả
+sports_payment_amount: Thanh toán
 sports_single_bet: Đơn cược
 sports_multi_bet: Cược nhiều lần
 sports_active: Chưa kết toán
@@ -1079,7 +1079,7 @@ tip_msg_all_bind_account: Tất cả các tài khoản liên kết
 tip_msg_name_identical: Họ tên phải thống nhất với nhau
 tip_msg_name_edit: 'Hãy cẩn thận khi xác nhận họ tên của bạn một cách, sẽ rất khó
   khăn trong việc thay đổi '
-promo_activity: Hoạt động khuyến mãi
+promo_activity: Khuyến mãi
 promo_lottery_activity: Rút thăm trúng thưởng
 weekly_share: Chia sẻ hàng tuần
 vip_banner_tip_1: Làm việc với đại diện Dịch vụ VIP chuyên dụng của bạn để điều
@@ -1144,7 +1144,7 @@ link: Liên kết
 buy_bonus_round: Mua vòng thưởng
 pirate: Cướp biển
 sea: Đại đương
-fairness: Tính công bằng
+fairness: Công bằng
 switch_wave: Chuyển đổi biến động
 house_edge: Nhà cái chiếm lợi thế
 investor: Người đầu tư
@@ -1215,7 +1215,7 @@ withdraw_apply_success: Lệnh rút tiền thành công
 withdraw_bank: Thẻ ngân hàng rút tiền
 pix_account: Tài khoản PIX
 max: giá trị lớn nhất
-sports_rule: Luật cá cược thể thao
+sports_rule: Cách Đặt Cược Thể Thao
 scan: Duyệt
 change_byte_addr: Bạn có chắc chắn muốn thay đổi địa chỉ gửi tiền {delta} của mình không?
 attention: Vui lòng chú ý
@@ -1237,7 +1237,7 @@ tip_set_safe: Vui lòng đặt mật khẩu quỹ trước
 go_set: Đi tới cài đặt
 showing: Đang hiển thị
 in_all_game: Số tiền trong trò chơi
-now_show_game_num: Đang hiển thị {percentage} trong số {total} trò chơi
+now_show_game_num: Đang hiển thị {percentage} {total} các trò chơi
 validate_msg_user_name_tip: "    Tên người dùng của bạn phải có 3 – 14 chữ cái và
   số viết thường"
 success_register: Đăng ký thành công
@@ -1824,7 +1824,7 @@ vip_top: Cấp VIP của bạn đã đạt đến mức tối đa
 wait_upgrade: Đang chờ thăng cấp
 upgraded: Đã thăng cấp
 game_water_experience: Kinh nghiệm
-in_play: Đang chơi
+in_play: chơi
 week_0: Chủ nhật
 week_1: Thứ hai
 week_2: Thứ ba
