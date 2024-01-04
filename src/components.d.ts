@@ -136,6 +136,7 @@ declare module 'vue' {
     AppSportsMarketSkeleton: typeof import('./components/AppSportsMarketSkeleton.vue')['default']
     AppSportsMarketTypeSelect: typeof import('./components/AppSportsMarketTypeSelect.vue')['default']
     AppSportsMyBetSlip: typeof import('./components/AppSportsMyBetSlip.vue')['default']
+    AppSportsMyBetSlipSkeleton: typeof import('./components/AppSportsMyBetSlipSkeleton.vue')['default']
     AppSportsOdds: typeof import('./components/AppSportsOdds.vue')['default']
     AppSportsOutcomeLocked: typeof import('./components/AppSportsOutcomeLocked.vue')['default']
     AppSportsOutrights: typeof import('./components/AppSportsOutrights.vue')['default']
@@ -220,6 +221,7 @@ declare module 'vue' {
     BaseTag: typeof import('./components/BaseTag.vue')['default']
     BaseTextarea: typeof import('./components/BaseTextarea.vue')['default']
     BaseUpload: typeof import('./components/BaseUpload.vue')['default']
+    copy: typeof import('./components/AppSportsMyBetSlip copy.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
