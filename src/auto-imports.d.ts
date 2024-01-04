@@ -131,6 +131,7 @@ declare global {
   const CHAT_MESSAGE_BUS: typeof import('./utils/event-bus')['CHAT_MESSAGE_BUS']
   const CasinoGameType: typeof import('./utils/enums')['CasinoGameType']
   const ConstSportMarketType: typeof import('./utils/sports')['ConstSportMarketType']
+  const Dice: typeof import('./utils/dice.js')['Dice']
   const EffectScope: typeof import('vue')['EffectScope']
   const EnumCasinoSortType: typeof import('./utils/enums')['EnumCasinoSortType']
   const EnumCurrency: typeof import('./utils/enums')['EnumCurrency']
@@ -792,6 +793,7 @@ declare module 'vue' {
     readonly CASINO_LOBBY_RESET: UnwrapRef<typeof import('./utils/event-bus')['CASINO_LOBBY_RESET']>
     readonly CHAT_MESSAGE_BUS: UnwrapRef<typeof import('./utils/event-bus')['CHAT_MESSAGE_BUS']>
     readonly CasinoGameType: UnwrapRef<typeof import('./utils/enums')['CasinoGameType']>
+    readonly Dice: UnwrapRef<typeof import('./utils/dice.js')['Dice']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly EnumCasinoSortType: UnwrapRef<typeof import('./utils/enums')['EnumCasinoSortType']>
     readonly EnumCurrency: UnwrapRef<typeof import('./utils/enums')['EnumCurrency']>
@@ -1441,6 +1443,7 @@ declare module '@vue/runtime-core' {
     readonly CASINO_LOBBY_RESET: UnwrapRef<typeof import('./utils/event-bus')['CASINO_LOBBY_RESET']>
     readonly CHAT_MESSAGE_BUS: UnwrapRef<typeof import('./utils/event-bus')['CHAT_MESSAGE_BUS']>
     readonly CasinoGameType: UnwrapRef<typeof import('./utils/enums')['CasinoGameType']>
+    readonly Dice: UnwrapRef<typeof import('./utils/dice.js')['Dice']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly EnumCasinoSortType: UnwrapRef<typeof import('./utils/enums')['EnumCasinoSortType']>
     readonly EnumCurrency: UnwrapRef<typeof import('./utils/enums')['EnumCurrency']>

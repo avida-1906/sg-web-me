@@ -2,6 +2,8 @@ import { acceptHMRUpdate, defineStore } from 'pinia'
 import type { CasinoProviderItem } from '~/apis/types'
 
 export const useCasinoStore = defineStore('casino', () => {
+  const { t } = useI18n()
+
   const { list: bigPlats } = useList(ApiMemberPlatformList, {
     manual: false,
   })
@@ -30,6 +32,15 @@ export const useCasinoStore = defineStore('casino', () => {
           name: data.value.name,
           ty: -1,
           platform_id: 'all',
+          icon: data.value.icon,
+          background: '',
+        })
+        // TODO:临时写死小游戏入口
+        data.value.navs.push({
+          cid: 'mini',
+          name: t('casino_origin_game'),
+          ty: 99,
+          platform_id: 'mini',
           icon: data.value.icon,
           background: '',
         })
