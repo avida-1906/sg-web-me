@@ -8,7 +8,7 @@ interface Props {
   autoShow: boolean
   leagueName: string
   leagueId: string
-  baseType: number
+  baseType: string
   isRegionOpen: boolean // 父级是否展开
   count: number
 }

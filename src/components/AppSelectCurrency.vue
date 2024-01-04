@@ -181,6 +181,7 @@ onMounted(() => {
   --tg-app-select-currency-padding-x: 20px;
   --tg-app-select-currency-padding-y: 15px;
   --tg-app-dropdown-width: auto;
+  --tg-app-select-currency-bg: var(--tg-secondary-dark);
 }
 .select-currency{
   --tg-base-select-popper-active-color: none;
@@ -197,15 +198,14 @@ onMounted(() => {
         --tg-base-button-padding-x: var(--tg-app-select-currency-padding-x);
         --tg-base-button-padding-y: var(--tg-app-select-currency-padding-y);
     }
-
     .wallet {
-        background-color: var(--tg-secondary-dark);
+        background-color: var(--tg-app-select-currency-bg);
         border-radius: var(--tg-radius-sm) 0px 0px var(--tg-radius-sm);
-        box-shadow:
-        0px 1px 2px 0px
-        #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.1)} inset,
-        0px -1px 2px 0px
-        #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.1)} inset;
+        // box-shadow:
+        // 0px 1px 2px 0px
+        // #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.1)} inset,
+        // 0px -1px 2px 0px
+        // #{rgba($color: var(--tg-color-black-rgb), $alpha: 0.1)} inset;
 
         .arrow {
             font-size: var(--tg-font-size-default);

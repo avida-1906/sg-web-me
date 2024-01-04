@@ -18,7 +18,7 @@ const iconUrl = computed(() => {
 
 <template>
   <div class="app-currency-icon">
-    <div v-if="!getIsRight" class="icon">
+    <div v-if="!getIsRight" class="icon" :title="currencyType">
       <BaseImage :url="iconUrl" is-cloud />
     </div>
     <span
@@ -27,7 +27,7 @@ const iconUrl = computed(() => {
       :style="`margin-${getIsRight ? 'right' : 'left'}: var(--tg-spacing-4);`"
     >{{ currencyType }}</span>
     <slot name="network" />
-    <div v-if="getIsRight" class="icon">
+    <div v-if="getIsRight" class="icon" :title="currencyType">
       <BaseImage :url="iconUrl" is-cloud />
     </div>
   </div>

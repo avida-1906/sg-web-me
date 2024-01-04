@@ -8,7 +8,7 @@ const { vip, score, vipConfigArray } = useVipInfo()
 
 const { run: runGetPromoBonus, data: promoBonus } = useRequest(ApiMemberVipBonusAvailable)
 
-const { openReceiveBonusDialog } = useDialogReceiveBonus(() => {
+const { openVipBonusDialog } = useDialogVipBonus(() => {
   promoBonus.value = []
   setTimeout(() => {
     runGetPromoBonus(params)
@@ -44,7 +44,8 @@ const columns = computed<Column[]>(() => [
 
 async function openReceive(item: any) {
   if (+item.amount > 0 && +item.state === 1)
-    openReceiveBonusDialog({ vipBonus: item.amount, vipBonusId: item.id })
+    openVipBonusDialog({ vipBonus: '1', vipBonusId: '1' })
+    // openReceiveBonusDialog({ vipBonus: item.amount, vipBonusId: item.id })
   else
     openNotify({ type: 'error', message: t('no_bonus_now'), title: t('fail_bonus') })
 }
@@ -91,12 +92,14 @@ onMounted(() => {
             <span v-else-if="+vip === +record.level">
               {{ score }}/{{ record.score }}
             </span>
+
             <template v-else-if="+vip >= +record.level">
               <BaseButton
                 v-if="bonusArray.length
                   && bonusArray.find(b => +b.vip === +record.level && +b.state === 1)"
                 class="btn-limit"
-                bg-style="primary" custom-padding round
+                style="color: var(--tg-text-green)"
+                custom-padding round
                 @click="() => openReceive(bonusArray
                   .filter(b => +b.vip === +record.level && +b.state === 1)[0])"
               >

@@ -8,6 +8,7 @@ const props = defineProps<Props>()
 const route = useRoute()
 
 const { VITE_CASINO_GAME_PAGE_SIZE } = getEnv()
+const { push } = useLocalRouter()
 
 const currentType = ref(props.gameType)
 const isRec = computed(() => currentType.value === 'rec') // 推荐游戏
@@ -87,7 +88,7 @@ const loading = computed(() => {
     return loadingCate.value
   return false
 })
-const push = computed(() => {
+const pushData = computed(() => {
   if (isProvider.value)
     return loadMoreGame
   else if (isRec.value)
@@ -97,21 +98,28 @@ const push = computed(() => {
   return () => { }
 })
 
-// 获取数据
-// function getData() {
-//   if (isProvider.value)
-//     runGameList(paramsGame.value)
-
-//   else if (isRec.value)
-//     runRecList(paramsRec.value)
-
-//   else if (isCat.value)
-//     runCateGames(paramsCate.value)
-// }
+// 检查场馆是否开启
+function checkPlat() {
+  return new Promise((resolve, reject) => {
+    ApiMemberPlatformState(pid.value || vid.value || '').then((res) => {
+      if (res === 1) {
+        resolve(res)
+      }
+      else {
+        push('/')
+        reject(res)
+      }
+    })
+      .catch((err) => {
+        push('/')
+        reject(err)
+      })
+  })
+}
 
 // 初始化
 if (isProvider.value)
-  await application.allSettled([runGameList(paramsGame.value)])
+  await application.allSettled([checkPlat().then(() => runGameList(paramsGame.value))])
 else if (isRec.value)
   await application.allSettled([runRecList(paramsRec.value)])
 else if (isCat.value)
@@ -126,7 +134,7 @@ else if (isCat.value)
     <AppPercentage :total="total" :percentage="list?.length" />
     <BaseButton
       v-show="list && list?.length < total" size="md" :loading="loading"
-      @click="push"
+      @click="pushData"
     >
       <div>
         {{ $t('load_more') }}

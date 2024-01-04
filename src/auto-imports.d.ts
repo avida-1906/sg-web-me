@@ -42,6 +42,7 @@ declare global {
   const ApiGetMyPro: typeof import('./apis/index')['ApiGetMyPro']
   const ApiMemberApplyVipBonus: typeof import('./apis/index')['ApiMemberApplyVipBonus']
   const ApiMemberBalance: typeof import('./apis/index')['ApiMemberBalance']
+  const ApiMemberBalanceAgency: typeof import('./apis/index')['ApiMemberBalanceAgency']
   const ApiMemberBalanceLocker: typeof import('./apis/index')['ApiMemberBalanceLocker']
   const ApiMemberBalanceLockerUpdate: typeof import('./apis/index')['ApiMemberBalanceLockerUpdate']
   const ApiMemberBankcardDelete: typeof import('./apis/index')['ApiMemberBankcardDelete']
@@ -81,6 +82,7 @@ declare global {
   const ApiMemberPasswordUpdate: typeof import('./apis/index')['ApiMemberPasswordUpdate']
   const ApiMemberPayPasswordUpdate: typeof import('./apis/index')['ApiMemberPayPasswordUpdate']
   const ApiMemberPlatformList: typeof import('./apis/index')['ApiMemberPlatformList']
+  const ApiMemberPlatformState: typeof import('./apis/index')['ApiMemberPlatformState']
   const ApiMemberPlatformVenueList: typeof import('./apis/index')['ApiMemberPlatformVenueList']
   const ApiMemberReg: typeof import('./apis/index')['ApiMemberReg']
   const ApiMemberSendMailCode: typeof import('./apis/index')['ApiMemberSendMailCode']
@@ -468,6 +470,7 @@ declare global {
   const useDialogReceiveBonus: typeof import('./composables/useDialogReceiveBonus')['useDialogReceiveBonus']
   const useDialogSwiperNotice: typeof import('./composables/useDialogSwiperNotice')['useDialogSwiperNotice']
   const useDialogThirdAuthForm: typeof import('./composables/useDialogThirdAuthForm')['useDialogThirdAuthForm']
+  const useDialogVipBonus: typeof import('./composables/useDialogVipBonus')['useDialogVipBonus']
   const useDialogVipBonusRecord: typeof import('./composables/useDialogVipBonusRecord')['useDialogVipBonusRecord']
   const useDialogVipExpRule: typeof import('./composables/useDialogVipExpRule')['useDialogVipExpRule']
   const useDisplayMedia: typeof import('@vueuse/core')['useDisplayMedia']
@@ -702,6 +705,7 @@ declare module 'vue' {
     readonly ApiGetMyPro: UnwrapRef<typeof import('./apis/index')['ApiGetMyPro']>
     readonly ApiMemberApplyVipBonus: UnwrapRef<typeof import('./apis/index')['ApiMemberApplyVipBonus']>
     readonly ApiMemberBalance: UnwrapRef<typeof import('./apis/index')['ApiMemberBalance']>
+    readonly ApiMemberBalanceAgency: UnwrapRef<typeof import('./apis/index')['ApiMemberBalanceAgency']>
     readonly ApiMemberBalanceLocker: UnwrapRef<typeof import('./apis/index')['ApiMemberBalanceLocker']>
     readonly ApiMemberBalanceLockerUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberBalanceLockerUpdate']>
     readonly ApiMemberBankcardDelete: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardDelete']>
@@ -741,6 +745,7 @@ declare module 'vue' {
     readonly ApiMemberPasswordUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberPasswordUpdate']>
     readonly ApiMemberPayPasswordUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberPayPasswordUpdate']>
     readonly ApiMemberPlatformList: UnwrapRef<typeof import('./apis/index')['ApiMemberPlatformList']>
+    readonly ApiMemberPlatformState: UnwrapRef<typeof import('./apis/index')['ApiMemberPlatformState']>
     readonly ApiMemberPlatformVenueList: UnwrapRef<typeof import('./apis/index')['ApiMemberPlatformVenueList']>
     readonly ApiMemberReg: UnwrapRef<typeof import('./apis/index')['ApiMemberReg']>
     readonly ApiMemberSendMailCode: UnwrapRef<typeof import('./apis/index')['ApiMemberSendMailCode']>
@@ -1120,6 +1125,7 @@ declare module 'vue' {
     readonly useDialogReceiveBonus: UnwrapRef<typeof import('./composables/useDialogReceiveBonus')['useDialogReceiveBonus']>
     readonly useDialogSwiperNotice: UnwrapRef<typeof import('./composables/useDialogSwiperNotice')['useDialogSwiperNotice']>
     readonly useDialogThirdAuthForm: UnwrapRef<typeof import('./composables/useDialogThirdAuthForm')['useDialogThirdAuthForm']>
+    readonly useDialogVipBonus: UnwrapRef<typeof import('./composables/useDialogVipBonus')['useDialogVipBonus']>
     readonly useDialogVipBonusRecord: UnwrapRef<typeof import('./composables/useDialogVipBonusRecord')['useDialogVipBonusRecord']>
     readonly useDialogVipExpRule: UnwrapRef<typeof import('./composables/useDialogVipExpRule')['useDialogVipExpRule']>
     readonly useDisplayMedia: UnwrapRef<typeof import('@vueuse/core')['useDisplayMedia']>
@@ -1348,6 +1354,7 @@ declare module '@vue/runtime-core' {
     readonly ApiGetMyPro: UnwrapRef<typeof import('./apis/index')['ApiGetMyPro']>
     readonly ApiMemberApplyVipBonus: UnwrapRef<typeof import('./apis/index')['ApiMemberApplyVipBonus']>
     readonly ApiMemberBalance: UnwrapRef<typeof import('./apis/index')['ApiMemberBalance']>
+    readonly ApiMemberBalanceAgency: UnwrapRef<typeof import('./apis/index')['ApiMemberBalanceAgency']>
     readonly ApiMemberBalanceLocker: UnwrapRef<typeof import('./apis/index')['ApiMemberBalanceLocker']>
     readonly ApiMemberBalanceLockerUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberBalanceLockerUpdate']>
     readonly ApiMemberBankcardDelete: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardDelete']>
@@ -1387,6 +1394,7 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberPasswordUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberPasswordUpdate']>
     readonly ApiMemberPayPasswordUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberPayPasswordUpdate']>
     readonly ApiMemberPlatformList: UnwrapRef<typeof import('./apis/index')['ApiMemberPlatformList']>
+    readonly ApiMemberPlatformState: UnwrapRef<typeof import('./apis/index')['ApiMemberPlatformState']>
     readonly ApiMemberPlatformVenueList: UnwrapRef<typeof import('./apis/index')['ApiMemberPlatformVenueList']>
     readonly ApiMemberReg: UnwrapRef<typeof import('./apis/index')['ApiMemberReg']>
     readonly ApiMemberSendMailCode: UnwrapRef<typeof import('./apis/index')['ApiMemberSendMailCode']>
@@ -1766,6 +1774,7 @@ declare module '@vue/runtime-core' {
     readonly useDialogReceiveBonus: UnwrapRef<typeof import('./composables/useDialogReceiveBonus')['useDialogReceiveBonus']>
     readonly useDialogSwiperNotice: UnwrapRef<typeof import('./composables/useDialogSwiperNotice')['useDialogSwiperNotice']>
     readonly useDialogThirdAuthForm: UnwrapRef<typeof import('./composables/useDialogThirdAuthForm')['useDialogThirdAuthForm']>
+    readonly useDialogVipBonus: UnwrapRef<typeof import('./composables/useDialogVipBonus')['useDialogVipBonus']>
     readonly useDialogVipBonusRecord: UnwrapRef<typeof import('./composables/useDialogVipBonusRecord')['useDialogVipBonusRecord']>
     readonly useDialogVipExpRule: UnwrapRef<typeof import('./composables/useDialogVipExpRule')['useDialogVipExpRule']>
     readonly useDisplayMedia: UnwrapRef<typeof import('@vueuse/core')['useDisplayMedia']>

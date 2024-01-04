@@ -217,6 +217,14 @@ export function ApiMemberFavDelete(id: string) {
 }
 
 /**
+ * 查询场馆是否开启
+ *  1在线，2下线
+ */
+export function ApiMemberPlatformState(pid: string) {
+  return httpClient.get<1 | 2>('/member/platform/state', { params: { pid } })
+}
+
+/**
  * 推荐游戏列表
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=1a5800ea-da6f-466d-bd42-27e3c39c5bf1
  */
@@ -1889,4 +1897,12 @@ export function ApiFinanceWithdrawBalance(params: {
     /** 会员余额 */
     total_balance: string
   }>('/finance/withdraw/balance', { params })
+}
+
+/**
+ * 查询代理余额 /member/balance
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=05a39f6b-613a-44e6-a753-f76f547e6df1
+ */
+export function ApiMemberBalanceAgency() {
+  return httpClient.get<TCurrencyObject>('/member/balance/agency')
 }

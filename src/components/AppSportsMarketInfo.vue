@@ -8,7 +8,7 @@ interface Props {
   isLast?: boolean // 是否列表最后一个
   showBreadcrumb?: boolean // 始终展示联赛数据
   data: ISportEventInfo
-  baseType: number
+  baseType: string
   onlyTime?: boolean
 }
 const props = defineProps<Props>()
@@ -69,9 +69,14 @@ const baseGridAreaClass = computed(() => {
   return isH5Layout.value ? 'grid-three-option-574' : 'grid-three-option-normal'
 })
 const baseGridClass = computed(() => isH5Layout.value ? 'grid-setup-574' : 'grid-setup')
+// 取出baseType中的bt
+const baseTypeBt = computed(() => +props.baseType.split('@@')[0])
+// 取出baseType中的egi
+const baseTypeEgi = computed(() => +props.baseType.split('@@')[1])
 // 当前的盘口类型
-const isHandicap = computed(() => props.baseType === 1)
-const isTotal = computed(() => props.baseType === 2)
+const isHandicap = computed(() => baseTypeBt.value === 1 && baseTypeEgi.value === 1)
+const isTotal = computed(() => baseTypeBt.value === 2 && baseTypeEgi.value === 1)
+const isCorner = computed(() => baseTypeBt.value === 3 && baseTypeEgi.value === 2)
 // 需要展示的盘口分类
 const standardMarketFiltered = computed(() => {
   if (isHandicap.value)
@@ -79,6 +84,9 @@ const standardMarketFiltered = computed(() => {
 
   else if (isTotal.value)
     return props.data.ml.filter(a => a.bt === 2)
+
+  else if (isCorner.value)
+    return props.data.ml.filter(a => a.bt === 3 && a.egi === 2)
 
   else
     return props.data.ml.filter(a => a.bt === 3 || a.bt === 4)

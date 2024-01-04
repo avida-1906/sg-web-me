@@ -3,7 +3,7 @@ import type { ISportEventInfo, ISportEventList } from '~/apis/types'
 
 interface Props {
   isStandard: boolean
-  baseType: number
+  baseType: string
 }
 defineProps<Props>()
 

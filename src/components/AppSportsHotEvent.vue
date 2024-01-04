@@ -103,7 +103,7 @@ await application.allSettled([runAsync(params.value)])
         :key="item.ci + item.list.length" :league-name="item.cn"
         :event-count="item.list.length"
         :event-list="item.list"
-        :base-type="3"
+        base-type="3@@1"
         is-standard
       />
       <AppSportsMarketSkeleton v-if="moreLoading" :num="10" />

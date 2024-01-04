@@ -1,9 +1,9 @@
 <script setup lang='ts'>
 interface Props {
-  modelValue: number // 是否标准盘
+  modelValue: string // 是否标准盘
   disabled?: boolean
   isStandard: boolean
-  baseTypeOptions: ISelectOptionNumber[]
+  baseTypeOptions: ISelectOptionString[]
 }
 const props = defineProps<Props>()
 const emit = defineEmits(['update:modelValue', 'marketTypeChange'])

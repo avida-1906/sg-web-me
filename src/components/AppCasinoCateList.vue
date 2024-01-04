@@ -91,6 +91,7 @@ await application.allSettled([runAsync(params.value)])
     margin-bottom: var(--tg-spacing-12);
     display: flex;
     align-items: center;
+    height: var(--tg-spacing-37);
 
     &:hover {
       --tg-icon-color: var(--tg-text-white);
