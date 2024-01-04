@@ -316,6 +316,8 @@ export interface ISportEventInfoMl {
   mlid: string
   /** BetType */
   bt: number
+  /** 是否角球 1不是 2是 */
+  egi: number
   /** BetTypeName */
   btn: string
   pid: number

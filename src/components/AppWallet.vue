@@ -57,10 +57,29 @@ function handleHide() {
             <AppCurrencyIcon :show-name="true" :currency-type="currentGlobalCurrency" />
           </span> -->
           <AppAmount
+            v-if="application.isVirtualCurrency(currentGlobalCurrency)"
             style="color:var(--tg-text-white);"
             :amount="currentGlobalCurrencyBalance"
             :currency-type="currentGlobalCurrency"
           />
+          <AppTooltip
+            v-else :auto-hide="false"
+            :triggers="['hover']" :distance="12"
+          >
+            <template #content>
+              <AppAmount
+                style="color:var(--tg-text-white);"
+                :amount="currentGlobalCurrencyBalance"
+                :currency-type="currentGlobalCurrency"
+              />
+            </template>
+            <template #popper>
+              <AppAmount
+                :amount="currentGlobalCurrencyBalance"
+                :currency-type="currentGlobalCurrency"
+              />
+            </template>
+          </AppTooltip>
           <BaseIcon
             class="arrow"
             :class="{ 'arrow-up': isMenuShown }"

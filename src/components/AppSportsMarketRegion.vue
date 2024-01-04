@@ -6,7 +6,7 @@ interface Props {
   init?: boolean
   count: number
   isStandard: boolean
-  baseType: number
+  baseType: string
   leagueList: {
     ci: string
     cn: string

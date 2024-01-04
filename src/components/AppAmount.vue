@@ -30,7 +30,6 @@ const colorClass = computed(() => {
   <div class="app-amount">
     <span
       class="amount"
-      :title="String(props.amount)"
       :class="colorClass"
     >
       {{ props.amount }}

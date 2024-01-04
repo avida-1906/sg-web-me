@@ -28,14 +28,10 @@ class Application {
   ): string {
     if (timestamp <= 0)
       return '-'
-
-    const languageStr = EnumLanguage[language]
-
     if (timestamp.toString().length !== 13)
       timestamp = timestamp * 1000
-
     return new Intl.DateTimeFormat(
-      languageStr,
+      language,
       { dateStyle: 'short', timeStyle: 'medium' },
     ).format(timestamp)
   }

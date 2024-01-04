@@ -1898,3 +1898,11 @@ export function ApiFinanceWithdrawBalance(params: {
     total_balance: string
   }>('/finance/withdraw/balance', { params })
 }
+
+/**
+ * 查询代理余额 /member/balance
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=05a39f6b-613a-44e6-a753-f76f547e6df1
+ */
+export function ApiMemberBalanceAgency() {
+  return httpClient.get<TCurrencyObject>('/member/balance/agency')
+}

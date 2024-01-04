@@ -377,6 +377,7 @@ export function ApiSportsBetType() {
       si: number
       btl: {
         bt: number
+        egi: number
         btn: string
       }[]
     }[]

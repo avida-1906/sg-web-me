@@ -41,13 +41,13 @@ export const useSportsStore = defineStore('sports', () => {
   /** 当前滚球选中的体育项目 */
   const currentLiveNav = ref(-1)
   /** 当前滚球展示的盘口类型 */
-  const currentLiveBetType = ref(0)
+  const currentLiveBetType = ref('')
   /** 当前即将开赛选中的体育项目 */
   const currentUpcomingNav = ref(0)
   /** 当前收藏选中的体育项目 */
   const currentFavNav = ref(-1)
   /** 当前收藏展示的盘口类型 */
-  const currentFavBetType = ref(3)
+  const currentFavBetType = ref('3@@1')
   /** 购物车 */
   const cart = reactive(new SportsCart(currentGlobalCurrency.value))
 
@@ -69,7 +69,7 @@ export const useSportsStore = defineStore('sports', () => {
         currentLiveNav.value = 1
       }
 
-      if (currentLiveBetType.value === 0)
+      if (currentLiveBetType.value === '')
         currentLiveBetType.value = getSportsBetTypeListBySi(currentLiveNav.value)[0].value
     },
   })
@@ -86,8 +86,7 @@ export const useSportsStore = defineStore('sports', () => {
           || !res.d.find(a => a.si === currentFavNav.value)
         ) {
           currentFavNav.value = res.d[0].si
-          if (currentFavBetType.value === 3)
-
+          if (currentFavBetType.value === '3@@1')
             currentFavBetType.value = getSportsBetTypeListBySi(currentFavNav.value)[0].value
         }
       }
@@ -306,7 +305,7 @@ export const useSportsStore = defineStore('sports', () => {
           si: a.si,
           btl: a.btl.map((b) => {
             return {
-              ...b, value: b.bt, label: b.btn,
+              ...b, value: `${b.bt}@@${b.egi}`, label: b.btn,
             }
           }),
         }
@@ -318,7 +317,7 @@ export const useSportsStore = defineStore('sports', () => {
   /** 获取球种对应的盘口类型下拉选单 */
   function getSportsBetTypeListBySi(si: number) {
     return sportsBetTypeList.value.find(a => a.si === si)?.btl
-    ?? [{ value: 3, label: t('sports_winner_market') }]
+    ?? [{ value: '3@@1', label: t('sports_winner_market') }]
   }
 
   /** 获取球种对应icon */
