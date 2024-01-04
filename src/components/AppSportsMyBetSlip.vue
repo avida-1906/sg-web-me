@@ -185,16 +185,24 @@ function showDetail() {
                   <BaseButton type="text" size="none">
                     <BaseIcon name="spt-live" />
                   </BaseButton> -->
-                  <BaseButton
-                    v-if="!props.disableResult"
-                    type="text"
-                    size="none" @click="item.showResult = !item.showResult"
-                  >
-                    <BaseIcon name="uni-score-board" />
-                  </BaseButton>
+                  <VTooltip placement="top" :triggers="['hover']">
+                    <BaseButton
+                      v-if="!props.disableResult"
+                      type="text"
+                      size="none" @click="item.showResult = !item.showResult"
+                    >
+                      <BaseIcon name="uni-score-board" />
+                    </BaseButton>
+                    <template #popper>
+                      <div class="tiny-menu-item-title">
+                        {{ t('score') }}
+                      </div>
+                    </template>
+                  </VTooltip>
                 </div>
               </div>
             </div>
+
             <div class="score">
               <AppMatchStatistics
                 v-show="item.showResult" :round="false"
