@@ -67,8 +67,8 @@ export function ApiSmsSend(
 export function ApiMemberGameList(params?: {
   page?: number
   page_size?: number
-  /** 游戏类型:1=真人,3=电子 */
-  game_type?: 1 | 3
+  /** 游戏类型:1=真人,2=捕鱼,3=电子 */
+  game_type?: 1 | 2 | 3
   /** 是否热门 1是 2否 */
   is_hot?: 1 | 2
   /** 是否新游戏 1是 2否 */

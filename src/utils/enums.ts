@@ -381,6 +381,8 @@ export enum PromoTransactionType {
 export enum CasinoGameType {
   /** 真人 */
   'casino' = 1,
+  /** 捕鱼 */
+  'fish' = 2,
   /** 电子 */
   'slot' = 3,
 }
