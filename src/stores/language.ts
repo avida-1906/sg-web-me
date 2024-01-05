@@ -54,6 +54,15 @@ export const useLanguageStore = defineStore('language', () => {
       phoneId: '1125',
       prefix: 'pt',
     },
+    {
+      title: 'ไทย',
+      path: '',
+      icon: '',
+      value: 'th-TH',
+      phone: '+66',
+      phoneId: '66',
+      prefix: 'th',
+    },
   ])
 
   /** 当前选择的语言 */
