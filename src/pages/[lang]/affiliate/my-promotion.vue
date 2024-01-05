@@ -2,34 +2,9 @@
 const { t } = useI18n()
 usePageTitle({ prefix: t('menu_title_my_promotion') })
 
-const {
-  isLessThanSm,
-  isMobile,
-} = storeToRefs(useWindowStore())
-
+const { isMobile } = storeToRefs(useWindowStore())
 const location = useBrowserLocation()
 const { data: proData, loading: loadMyData } = useRequest(ApiGetMyPro, { manual: false })
-// const proData = ref({
-//   link_url: '/?uid=dsfoxuf223k3h42',
-//   commission: {
-//     accumulated: '999',
-//     received: '999',
-//     last_commission: '999',
-//   },
-//   performance: {
-//     team_num: 2,
-//     direct_num: 2,
-//     other_num: 2,
-//     performance_amount: '999',
-//     direct_amount: '999',
-//     other_amount: '999',
-//   },
-//   subordinate: {
-//     valid_bet_amount: '999',
-//     bet_num: 999,
-//     net_amount: '999',
-//   },
-// })
 
 const baseQrRef = ref()
 const socialData = [
@@ -223,7 +198,7 @@ function downloadQr() {
           </BaseButton>
         </div> -->
       </div>
-      <div class="item-content grid-wrap" :class="{ 'is-less-than-sm': isLessThanSm }">
+      <div class="item-content grid-wrap" :class="{ 'is-less-than-sm': isMobile }">
         <div v-for="(item, index) in bet" :key="index">
           <span>{{ item.label }} </span>
           <div :class="{ green: index === 2 }">
@@ -240,6 +215,9 @@ function downloadQr() {
 .tg-affiliate-retention {
   font-size: var(--tg-font-size-default);
   color: var(--tg-text-white);
+  --tg-base-square-tab-font-weight: 400;
+  --tg-base-square-tab-padding-top: 18px;
+  --tg-base-square-tab-padding-y: 18px;
   >.retention-item~.retention-item {
     background-color: var(--tg-secondary-grey);
     padding: 0 24px 24px;
