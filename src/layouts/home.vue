@@ -32,7 +32,7 @@ const { mqttIsConnected } = storeToRefs(useAppStore())
 const { serviceState } = useService()
 
 // 内容区宽度
-const homeContainerRef = ref<HTMLElement | null>(null)
+const homeContainerRef = ref<HTMLElement>()
 const { width } = useElementSize(homeContainerRef)
 const { leftIsExpand, isSwitching, switchTo, triggerLeftSidebar } = useLeftSidebar()
 const { rightIsExpand, rightContainerIs0, currentRightSidebarContent } = useRightSidebar()

@@ -9,6 +9,7 @@ import { createI18n } from 'vue-i18n'
 export const i18n = createI18n({
   legacy: false,
   locale: '',
+  fallbackFormat: 'zh-CN',
   messages: {},
 })
 
@@ -50,6 +51,7 @@ export async function loadLanguageAsync(lang: string): Promise<Locale> {
 }
 
 export function install(app: App<Element>) {
+  console.error('getCurrentLanguageForFrontend', getCurrentLanguageForFrontend())
   app.use(i18n)
   loadLanguageAsync(getCurrentLanguageForFrontend())
 }
