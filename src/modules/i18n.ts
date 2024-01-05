@@ -51,6 +51,7 @@ export async function loadLanguageAsync(lang: string): Promise<Locale> {
 }
 
 export function install(app: App<Element>) {
+  console.error('getCurrentLanguageForFrontend', getCurrentLanguageForFrontend())
   app.use(i18n)
   loadLanguageAsync(getCurrentLanguageForFrontend())
 }
