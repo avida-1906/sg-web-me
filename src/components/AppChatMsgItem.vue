@@ -57,6 +57,7 @@ for (let i = 1; i <= getRandomInt(3) + 1; i++)
   vertical-align: middle;
   height: auto;
   user-select: none;
+  -webkit-user-select: none;
 }
 </style>
 
@@ -90,6 +91,7 @@ for (let i = 1; i <= getRandomInt(3) + 1; i++)
         vertical-align: middle;
         height: auto;
         user-select: none;
+        -webkit-user-select: none;
       }
     }
   }

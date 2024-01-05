@@ -49,6 +49,9 @@ onBeforeUnmount(() => {
   sportsLobbyBus.off(setLobby)
   Session.remove(STORAGE_SPORTS_LIVE_NAV)
 })
+ApiSportsHomePageConfig().then((res) => {
+  console.log('ApiSportsHomePageConfig', res)
+})
 </script>
 
 <template>

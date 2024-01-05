@@ -464,6 +464,7 @@ runMemberNoticeAllList()
           width: 100%;
           height: auto;
           user-select: none;
+          -webkit-user-select: none;
           transition: all .25s;
           // border-radius: var(--tg-radius-default);
           --tg-base-img-style-radius: var(--tg-radius-default);

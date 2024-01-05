@@ -212,19 +212,6 @@ export function ApiSportEventInfo(params: {
 }
 
 /**
- * 首页大类
- * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=ae1fee09-d03e-4f27-a7bb-6a2bbdc4d74f
- */
-export function ApiSportMenuMain() {
-  return httpClient.get<{
-    list: {
-      menu_id: number
-      menu_name: string
-    }[]
-  }>(`/sport/${getSportsPlatId()}/menu/main`)
-}
-
-/**
  * 冠军列表
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=30bb4469-a21f-4267-b30c-b6e8555a6b89
  */
@@ -368,12 +355,11 @@ export function ApiSportsEventHot(params: {
 }
 
 /**
- * 列表盘口下拉选单
- *
+ * 体育首页相关设定
  */
-export function ApiSportsBetType() {
+export function ApiSportsHomePageConfig() {
   return httpClient.get<{
-    d: {
+    bettype_filter: {
       si: number
       btl: {
         bt: number
@@ -381,5 +367,14 @@ export function ApiSportsBetType() {
         btn: string
       }[]
     }[]
-  }>(`/sport/${getSportsPlatId()}/bettype/filter`)
+    list_filter: {
+      name: string
+      icon: string
+      type: number
+      m: number
+      ic: number
+      hot: number
+      hvs: number
+    }[]
+  }>(`/sport/${getSportsPlatId()}/homepage/config`)
 }

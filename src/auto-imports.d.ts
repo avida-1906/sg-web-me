@@ -126,6 +126,7 @@ declare global {
   const ApiSportsBetType: typeof import('./apis/sport')['ApiSportsBetType']
   const ApiSportsEventBetType: typeof import('./apis/sport')['ApiSportsEventBetType']
   const ApiSportsEventHot: typeof import('./apis/sport')['ApiSportsEventHot']
+  const ApiSportsHomePageConfig: typeof import('./apis/sport')['ApiSportsHomePageConfig']
   const ApiWalletBankcardList: typeof import('./apis/index')['ApiWalletBankcardList']
   const Big: typeof import('big.js')['Big']
   const CASINO_LOBBY_RESET: typeof import('./utils/event-bus')['CASINO_LOBBY_RESET']
@@ -783,13 +784,12 @@ declare module 'vue' {
     readonly ApiSportEventList: UnwrapRef<typeof import('./apis/sport')['ApiSportEventList']>
     readonly ApiSportEventSearch: UnwrapRef<typeof import('./apis/sport')['ApiSportEventSearch']>
     readonly ApiSportGetFavoriteList: UnwrapRef<typeof import('./apis/sport')['ApiSportGetFavoriteList']>
-    readonly ApiSportMenuMain: UnwrapRef<typeof import('./apis/sport')['ApiSportMenuMain']>
     readonly ApiSportOutrightList: UnwrapRef<typeof import('./apis/sport')['ApiSportOutrightList']>
     readonly ApiSportPlaceBet: UnwrapRef<typeof import('./apis/sport')['ApiSportPlaceBet']>
     readonly ApiSportPlaceBetInfo: UnwrapRef<typeof import('./apis/sport')['ApiSportPlaceBetInfo']>
     readonly ApiSportSidebar: UnwrapRef<typeof import('./apis/sport')['ApiSportSidebar']>
-    readonly ApiSportsBetType: UnwrapRef<typeof import('./apis/sport')['ApiSportsBetType']>
     readonly ApiSportsEventHot: UnwrapRef<typeof import('./apis/sport')['ApiSportsEventHot']>
+    readonly ApiSportsHomePageConfig: UnwrapRef<typeof import('./apis/sport')['ApiSportsHomePageConfig']>
     readonly ApiWalletBankcardList: UnwrapRef<typeof import('./apis/index')['ApiWalletBankcardList']>
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
     readonly CASINO_LOBBY_RESET: UnwrapRef<typeof import('./utils/event-bus')['CASINO_LOBBY_RESET']>
@@ -1434,13 +1434,12 @@ declare module '@vue/runtime-core' {
     readonly ApiSportEventList: UnwrapRef<typeof import('./apis/sport')['ApiSportEventList']>
     readonly ApiSportEventSearch: UnwrapRef<typeof import('./apis/sport')['ApiSportEventSearch']>
     readonly ApiSportGetFavoriteList: UnwrapRef<typeof import('./apis/sport')['ApiSportGetFavoriteList']>
-    readonly ApiSportMenuMain: UnwrapRef<typeof import('./apis/sport')['ApiSportMenuMain']>
     readonly ApiSportOutrightList: UnwrapRef<typeof import('./apis/sport')['ApiSportOutrightList']>
     readonly ApiSportPlaceBet: UnwrapRef<typeof import('./apis/sport')['ApiSportPlaceBet']>
     readonly ApiSportPlaceBetInfo: UnwrapRef<typeof import('./apis/sport')['ApiSportPlaceBetInfo']>
     readonly ApiSportSidebar: UnwrapRef<typeof import('./apis/sport')['ApiSportSidebar']>
-    readonly ApiSportsBetType: UnwrapRef<typeof import('./apis/sport')['ApiSportsBetType']>
     readonly ApiSportsEventHot: UnwrapRef<typeof import('./apis/sport')['ApiSportsEventHot']>
+    readonly ApiSportsHomePageConfig: UnwrapRef<typeof import('./apis/sport')['ApiSportsHomePageConfig']>
     readonly ApiWalletBankcardList: UnwrapRef<typeof import('./apis/index')['ApiWalletBankcardList']>
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
     readonly CASINO_LOBBY_RESET: UnwrapRef<typeof import('./utils/event-bus')['CASINO_LOBBY_RESET']>

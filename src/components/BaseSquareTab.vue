@@ -3,7 +3,7 @@ interface ListItem {
   value: string | number
   label: string
   count?: number
-  icon: string
+  icon?: string
   useCloudImg?: boolean
 }
 interface Props {
@@ -29,7 +29,7 @@ function loadIcon() {
       if (props.list.length > 0) {
         clearInterval(t)
         const arr = props.list.map((a) => {
-          return a.useCloudImg ? application.loadImage(a.icon) : ''
+          return a.useCloudImg ? application.loadImage(a.icon ?? '') : ''
         })
         Promise.allSettled(arr).then((result) => {
           resolve(result)
@@ -56,7 +56,10 @@ await application.allSettled([loadIcon()])
           >
             <div class="dot" />
             <div class="main">
-              <div class="icon" style="--app-sport-image-error-icon-size:28px;">
+              <div
+                v-if="tab.icon"
+                class="icon" style="--app-sport-image-error-icon-size:28px;"
+              >
                 <AppImage
                   v-if="tab.useCloudImg"
                   class="icon-img"
@@ -92,9 +95,10 @@ await application.allSettled([loadIcon()])
 <style lang='scss' scoped>
 .app-sports-tab {
   width: 100%;
-  display: flex;
-  align-items: center;
-  margin: var(--tg-base-square-tab-margin);
+  // display: flex;
+  // align-items: center;
+  // margin: var(--tg-base-square-tab-margin);
+  padding: 0 16px 16px;
   background-color: var(--tg-base-square-tab-bg);
   border-radius: var(--tg-radius-default);
   overflow: hidden;
@@ -103,9 +107,8 @@ await application.allSettled([loadIcon()])
 
 .tab-wrap {
   display: inline-flex;
-  height: 65px;
   gap:55px;
-  padding-left: 33px;
+  // padding-left: 33px;
 
   .tab {
     flex-shrink: 0;
@@ -123,8 +126,8 @@ await application.allSettled([loadIcon()])
         display: none;
         content: "";
         background: var(--tg-text-blue);
-        width: 12px;
-        height: 6px;
+        width: 28px;
+        height: 7px;
         position: absolute;
         top: 0;
         left: 50%;
@@ -149,23 +152,18 @@ await application.allSettled([loadIcon()])
           display: flex;
           align-items: center;
           justify-content: center;
-          .icon-act{
-            // filter: brightness(2);
-          }
-
           .badge {
             position: absolute;
             top: -8px;
             left: 55%;
           }
         }
-
         .name {
           font-size: var(--tg-font-size-default);
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
-          max-width: 6ch;
+          // max-width: 6ch;
           color: var(--tg-text-lightgrey);
           font-weight: var(--tg-font-weight-semibold);
         }
@@ -185,7 +183,6 @@ await application.allSettled([loadIcon()])
             .icon-img{
               // filter: brightness(2);
             }
-
           }
         }
       }
@@ -209,15 +206,15 @@ await application.allSettled([loadIcon()])
     }
   }
   &.is-mobile{
-    height: 50px;
+    width: 100%;
     gap:40px;
-    padding-left: 20px;
+    justify-content: space-around;
     .button{
-      padding-top: 11px;
+      padding-top: 15px;
       .main{
         gap: var(--tg-spacing-5);
         .name{
-          font-size: var(--tg-font-size-xs);
+          line-height: 1.4;
         }
         .icon {
           font-size: 16px;

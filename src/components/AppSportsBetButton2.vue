@@ -2,18 +2,14 @@
 import type { ICartInfo, ISportListToCartData } from '~/types'
 
 interface Props {
-  layout?: 'horizontal' | 'vertical'
   disabled?: boolean
-  isNa?: boolean
   title: string
   odds: string
   cartInfo: ICartInfo
   isHandicap?: boolean
   hdp?: string
 }
-const props = withDefaults(defineProps<Props>(), {
-  layout: 'vertical',
-})
+const props = defineProps<Props>()
 
 const betButton = ref<HTMLElement | null>(null)
 
@@ -129,44 +125,30 @@ onBeforeUnmount(() => {
     ref="betButton"
     class="app-sports-bet-button"
     :class="{
-      'active': sportStore.cart.checkWid(props.cartInfo.wid),
-      'disabled': _disabled || isZeroOdd,
-      'is-na': isNa,
+      active: sportStore.cart.checkWid(props.cartInfo.wid),
+      disabled: _disabled || isZeroOdd,
     }"
-    :title="
-      isTestEnv()
-        ? JSON.stringify(cartInfo).replaceAll(',', ',\n').replaceAll('{', '{\n').replaceAll('}', '\n}')
-        : ''
-    "
     @click.stop="clickHandler"
   >
-    <template v-if="isNa">
-      <span class="status">N/A</span>
-    </template>
-    <div v-else-if="_disabled" class="content" :class="[layout]">
+    <div v-if="_disabled" class="content vertical">
       <div class="name">
         {{ title || '-' }}
       </div>
       <span class="status">{{ t('sports_status_timeout') }}</span>
     </div>
     <AppSportsOutcomeLocked v-else-if="isZeroOdd" size="none" />
-    <div v-else class="content" :class="[layout]">
+    <div v-else class="content vertical">
       <div class="name">
         {{ title || '-' }}
       </div>
-      <div class="odds-box">
-        <AppSportsOdds
-          :style="
-            `--tg-sports-odds-color: ${sportStore.cart.checkWid(props.cartInfo.wid)
-              ? 'var(--tg-text-white)' : ''}`
-          "
-          :arrow="layout === 'horizontal' ? 'left' : 'right'"
-          :odds="listToCartData.ov || '0.00'"
-        />
-        <div v-if="isHandicap" class="name">
-          {{ hdp }}
-        </div>
-      </div>
+      <AppSportsOdds
+        :style="
+          `--tg-sports-odds-color: ${sportStore.cart.checkWid(props.cartInfo.wid)
+            ? 'var(--tg-text-white)' : ''}`
+        "
+        arrow="right" arrow-position="absolute"
+        :odds="listToCartData.ov || '0.00'"
+      />
     </div>
   </div>
 </template>
@@ -200,22 +182,10 @@ onBeforeUnmount(() => {
       text-overflow: ellipsis;
     }
 
-    &.horizontal {
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-    }
-
     &.vertical {
       flex-direction: column;
       justify-content: center;
-      align-items: flex-start;
-      .odds-box{
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
+      align-items: center;
     }
   }
 
@@ -255,18 +225,6 @@ onBeforeUnmount(() => {
       text-overflow: ellipsis;
       flex: 1;
       text-align: right;
-    }
-  }
-
-  &.is-na {
-    pointer-events: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    .status {
-      opacity: 0.2;
-      white-space: nowrap;
     }
   }
 }

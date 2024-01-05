@@ -184,6 +184,7 @@ function onPopperOpen() {
   --tg-base-select-popper-option-active-color: var(--tg-popper-hover-color-default);
   --tg-base-select-popper-active-color: var(--tg-text-blue);
   --tg-base-select-popopen-bg-color: transparent;
+  --tg-base-select-popper-bg-color:var(--tg-secondary-dark);
   --tg-base-select-popcontent-lineheight: 1.28572;
   --tg-base-select-popper-font-weight: var(--tg-font-weight-semibold);
   --tg-base-select-border: var(--tg-border-width-sm) solid var(--tg-border-color-main);
@@ -198,7 +199,7 @@ function onPopperOpen() {
   font-weight: var(--tg-base-select-popper-font-weight);
   font-size: var(--tg-base-select-style-font-size);
   color: var(--tg-base-select-popper-label-color);
-  background-color: var(--tg-secondary-dark);
+  background-color: var(--tg-base-select-popper-bg-color);
   border-radius: var(--tg-radius-default);
   transition: all ease .25s;
   cursor: pointer;

@@ -5,10 +5,12 @@ interface Props {
   keep?: boolean
   /** 是否显示浮动箭头 */
   showArrow?: boolean
+  arrowPosition?: 'relative' | 'absolute'
 }
 const props = withDefaults(defineProps<Props>(), {
   arrow: 'right',
   showArrow: true,
+  arrowPosition: 'relative',
 })
 
 const saveNum = ref(props.odds)
@@ -38,7 +40,10 @@ watch(() => props.odds, (newOdds) => {
 <template>
   <div class="app-sports-odds" :class="[arrow]">
     <span class="odds" v-html="sportsStore.renderOdds(+odds).value" />
-    <div v-if="showArrow" class="icon arrow-odds" :class="[`odds-${upDown}`, { keep }]">
+    <div
+      v-if="showArrow" class="icon arrow-odds"
+      :class="[`odds-${upDown}`, { keep }, arrowPosition]"
+    >
       <BaseIcon :name="`uni-tri-${icon}`" />
     </div>
   </div>
@@ -55,6 +60,7 @@ watch(() => props.odds, (newOdds) => {
 .app-sports-odds {
   display: inline-grid;
   gap: var(--tg-spacing-4);
+  position: relative;
 
   .odds {
     grid-area: odds;
@@ -71,6 +77,14 @@ watch(() => props.odds, (newOdds) => {
     align-items: center;
     justify-content: center;
     opacity: 0;
+    &.relative{
+      position: relative;
+    }
+    &.absolute{
+      position: absolute;
+      right: -10px;
+      top: 5px;
+    }
 
     &.keep{
       opacity: 1;

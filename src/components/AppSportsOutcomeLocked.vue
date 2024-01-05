@@ -23,6 +23,7 @@ withDefaults(defineProps<{ size?: 'none' | 'normal' }>(), {
   pointer-events: none;
   border-radius: var(--tg-radius-default);
   user-select: none;
+  -webkit-user-select: none;
 
   .icon {
     font-size: var(--tg-font-size-default);
