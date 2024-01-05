@@ -36,7 +36,7 @@ const columns: Column[] = [
     slot: 'time',
   },
   {
-    title: t('player_id'),
+    title: t('gamer'),
     dataIndex: 'username',
     align: 'center',
     slot: 'username',
