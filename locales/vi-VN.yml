@@ -72,9 +72,9 @@ balance: Số dư
 amount: Số tiền
 casino: Casino
 sports: Thể Thao
-game: 'trò chơi'
-wallet: Ví tiền
-safe: Sự bảo mật
+game: 'Trò chơi'
+wallet: Ví
+safe: Kho
 affiliate: Liên kết
 transaction_record: Lịch sử giao dịch
 statistical_data: Thống kê số liệu
@@ -665,7 +665,7 @@ date: Ngày
 tour: Sản phẩm
 community: Cộng đồng
 blog: Blog
-help_center: Trung tậm trợ giúp
+help_center: Trung Tâm Hỗ Trợ
 try_again: Thử lại
 try_help_center: Hãy thử vào trung tâm trợ giúp của chúng tôi
 try_use_different_keywords: Hãy thử sử dụng các từ khóa khác hoặc nhập câu hỏi hoàn chỉnh của bạn
@@ -908,7 +908,7 @@ sports_standard: Tiêu chuẩn
 sports_winner_market: Kèo thắng lợi
 sports_handicap_market: Kèo nhường điểm
 sports_total_market: Kèo tổng điểm
-sports_tab_live_events: Kèo trận đấu đang diễn ra
+sports_tab_live_events: SỰ KIỆN TRỰC TUYẾN
 sports_tab_starting_soon: Trận đấu sắp diễn ra
 sports_tab_lobby: Sảnh
 sports_tab_favourites: Mục yêu thích
@@ -959,7 +959,7 @@ chat_forum: Diễn đàn
 chat_rule_find: Tìm thấy trên.
 about_us: Về chúng tôi
 sponsor_activity: Hoạt động được tài trợ
-online_shopping: Mua sắm trực tuyến
+online_shopping: Cửa hàng
 notify_error_forbid_operation: Hoạt động này không được phép
 user_account: Tài khoản
 user_superior: Cấp trên
@@ -1268,7 +1268,7 @@ plat_maintain: Phòng chơi đang được bảo trì
 no_more: Không còn nhiều nữa
 loading_label: Đang tải...
 recent_game_record: Lịch sử trò chơi gần đây
-profile: thông tin cá nhân
+profile: Hồ sơ
 chat_rule_title: Nội quy phòng trò chuyện
 delete_confirm: Xóa bỏ xác nhận
 login_fail_tip: Đăng nhập không thành công, vui lòng đăng nhập lại
