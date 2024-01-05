@@ -2,6 +2,7 @@
 const { t } = useI18n()
 const { list: scaleList } = useScaleData()
 const { selected: tab, list: tabList } = useSelect(scaleList)
+const { isMobile } = storeToRefs(useWindowStore())
 
 const {
   data,
@@ -52,7 +53,9 @@ const list = computed(() => {
 <template>
   <div class="all-data-page">
     <div class="table-filter">
+      <BaseSquareTab v-if="isMobile" v-model="tab" :list="tabList" />
       <BaseTab
+        v-else
         v-model="tab"
         style="--tg-tab-style-color: var(--tg-text-lightgrey);"
         :list="tabList"
@@ -86,6 +89,10 @@ const list = computed(() => {
   --tg-base-select-style-padding-y: var(--tg-spacing-8);
   --tg-base-select-style-padding-right: var(--tg-spacing-28);
   --tg-tab-style-wrap-bg-color: var(--tg-primary-main);
+  --tg-base-square-tab-padding-y: 7px;
+  --tg-base-square-tab-font-weight: var(--tg-font-weight-normal);
+  --tg-base-square-tab-padding-top: 9px;
+  --tg-base-square-tab-dot-width: 14px;
 }
 
 .hint {
@@ -93,7 +100,6 @@ const list = computed(() => {
   margin-top: 4px;
 }
 .page-all-data {
-  margin: 20px 0;
   --tg-app-amount-font-size: var(--tg-font-size-xs);
   --tg-app-amount-font-weight: var(--tg-font-weight-normal);
   .flex-colum {

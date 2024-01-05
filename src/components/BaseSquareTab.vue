@@ -87,8 +87,11 @@ await application.allSettled([loadIcon()])
 
 <style>
 :root {
-  --tg-base-square-tab-margin: var(--tg-spacing-12) 0;
+  --tg-base-square-tab-padding-y: var(--tg-spacing-16);
   --tg-base-square-tab-bg: var(--tg-secondary-dark);
+  --tg-base-square-tab-font-weight: var(--tg-font-weight-semibold);
+  --tg-base-square-tab-padding-top: 14px;
+  --tg-base-square-tab-dot-width: 28px;
 }
 </style>
 
@@ -98,7 +101,7 @@ await application.allSettled([loadIcon()])
   // display: flex;
   // align-items: center;
   // margin: var(--tg-base-square-tab-margin);
-  padding: 0 16px 16px;
+  padding: 0 16px var(--tg-base-square-tab-padding-y);
   background-color: var(--tg-base-square-tab-bg);
   border-radius: var(--tg-radius-default);
   overflow: hidden;
@@ -126,14 +129,14 @@ await application.allSettled([loadIcon()])
         display: none;
         content: "";
         background: var(--tg-text-blue);
-        width: 28px;
+        width: var(--tg-base-square-tab-dot-width);
         height: 7px;
         position: absolute;
         top: 0;
         left: 50%;
         z-index: 1;
         transform: translate(-50%);
-        border-radius: 0 0 100% 100%;
+        border-radius: 0 0 3px 3px;
       }
 
       .main {
@@ -165,7 +168,7 @@ await application.allSettled([loadIcon()])
           text-overflow: ellipsis;
           // max-width: 6ch;
           color: var(--tg-text-lightgrey);
-          font-weight: var(--tg-font-weight-semibold);
+          font-weight: var(--tg-base-square-tab-font-weight);
         }
       }
       &:active{
@@ -210,12 +213,9 @@ await application.allSettled([loadIcon()])
     gap:40px;
     justify-content: space-around;
     .button{
-      padding-top: 15px;
+      padding-top: var(--tg-base-square-tab-padding-top);
       .main{
-        gap: var(--tg-spacing-5);
-        .name{
-          line-height: 1.4;
-        }
+        gap: var(--tg-spacing-4);
         .icon {
           font-size: 16px;
           width: 16px;

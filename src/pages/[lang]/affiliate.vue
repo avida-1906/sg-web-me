@@ -7,7 +7,7 @@ usePageTitle({ prefix: 'affiliate', isT: true })
 </template>
 
 <style lang="scss" scoped>
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 638px) {
   :deep(.table-filter){
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -32,7 +32,7 @@ usePageTitle({ prefix: 'affiliate', isT: true })
     --tg-base-input-style-font-weight: 500;
   }
 }
-@media screen and (min-width: 426px) {
+@media screen and (min-width: 638px) {
   :deep(.table-filter){
     display: flex;
     flex-wrap: wrap;

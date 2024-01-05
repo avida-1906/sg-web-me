@@ -30,16 +30,16 @@ const searchValue = useDebouncedRef({ value: '', delay: 1000 })
 
 const columns: Column[] = [
   {
-    title: t('player_id'),
-    dataIndex: 'username',
-    align: 'center',
-    slot: 'username',
-  },
-  {
     title: t('time'),
     dataIndex: 'time',
     align: 'center',
     slot: 'time',
+  },
+  {
+    title: t('gamer'),
+    dataIndex: 'username',
+    align: 'center',
+    slot: 'username',
   },
   {
     title: t('effective_bet'),
