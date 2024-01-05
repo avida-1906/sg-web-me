@@ -1,7 +1,7 @@
 <script setup lang='ts'>
 const currentTab = defineModel({ type: String, required: true })
 
-type TabItem = typeof tabList[number]
+const { isMobile } = storeToRefs(useWindowStore())
 
 const tabList = [
   { label: '今日赛事', value: '1', icon: 'spt-event-jin' },
@@ -11,17 +11,29 @@ const tabList = [
   { label: '冠军', value: '5', icon: 'spt-event-win' },
 ]
 
+type TabItem = typeof tabList[number]
 function onClick(item: TabItem) {
   currentTab.value = item.value
 }
 </script>
 
 <template>
-  <div class="event-type-tab">
+  <BaseSelect
+    v-if="isMobile" v-model="currentTab" popper :options="tabList"
+    style="--tg-base-select-popper-bg-color:transparent;
+    --tg-base-select-hover-bg-color:transparent;"
+  >
+    <template #label="{ data }">
+      <div class="select-label">
+        <BaseIcon :name="data?.icon" :has-transition="false" />
+        <span>{{ data?.label }}</span>
+      </div>
+    </template>
+  </BaseSelect>
+  <div v-else class="event-type-tab">
     <div
       v-for="t in tabList" :key="t.value" class="tab"
-      :class="{ active: t.value === currentTab }"
-      @click="onClick(t)"
+      :class="{ active: t.value === currentTab }" @click="onClick(t)"
     >
       <BaseIcon :name="t.icon" :has-transition="false" />
       <span>{{ t.label }}</span>
@@ -30,6 +42,17 @@ function onClick(item: TabItem) {
 </template>
 
 <style lang='scss' scoped>
+.select-label {
+  font-size: var(--tg-font-size-md);
+  font-weight: var(--tg-font-weight-semibold);
+  color: var(--tg-text-white);
+  --tg-icon-color: var(--tg-text-white);
+  display: flex;
+  gap: var(--tg-spacing-8);
+  align-items: center;
+  line-height: 25px;
+}
+
 .event-type-tab {
   font-size: var(--tg-font-size-md);
   font-weight: var(--tg-font-weight-semibold);
@@ -48,7 +71,8 @@ function onClick(item: TabItem) {
       transform: scale(0.96);
     }
 
-    &:hover,&.active {
+    &:hover,
+    &.active {
       color: var(--tg-text-white);
       --tg-icon-color: var(--tg-text-white);
     }
