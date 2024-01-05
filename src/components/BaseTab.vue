@@ -206,6 +206,7 @@ onMounted(() => {
       flex: 1 0;
       white-space: nowrap;
       gap: var(--tg-spacing-8);
+      user-select: none;
     }
 
     &:active {
