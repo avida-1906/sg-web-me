@@ -901,7 +901,7 @@ onUnmounted(() => {
             sports-loading
             @click="bet"
           >
-            {{ t('sports_bet') }}{{ userLanguage === 0
+            {{ t('sports_bet') }}{{ userLanguage === 'zh-CN'
               ? betBtnText.toLowerCase() : ` ${betBtnText.toLowerCase()}` }}
           </BaseButton>
         </template>

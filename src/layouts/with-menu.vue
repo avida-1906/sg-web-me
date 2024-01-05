@@ -18,7 +18,8 @@ const menuData = computed<any>(() =>
 const icon = computed<any>(() => route.meta.withMenuIcon)
 const withMenuMobileType = computed(() => route.meta.withMenuMobileType)
 const noBg = computed(() =>
-  path.value.includes('/vip/') || path.value.includes('/affiliate/promotion-tutorial'))
+  path.value.includes('/vip/')
+  || (isMobile.value ? path.value.includes('/affiliate') : false))
 
 const activeMenu = ref(menuData.value.filter((m: any) => m.path === path.value)[0])
 const curMenuTab = ref(activeMenu.value?.value)

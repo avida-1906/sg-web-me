@@ -7,7 +7,46 @@ usePageTitle({ prefix: 'affiliate', isT: true })
 </template>
 
 <style lang="scss" scoped>
-
+@media screen and (max-width: 425px) {
+  :deep(.table-filter){
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    &>:first-child{
+      grid-column-start: span 2;
+    }
+    gap: var(--tg-spacing-16) var(--tg-spacing-21);
+    --tg-base-date-picker-width:100%;
+    --tg-base-date-picker-wrap-flex: none;
+    --tg-base-date-picker-bother: none;
+    --tg-base-select-border: none;
+    // --tg-base-select-box-shadow: none;
+    --tg-base-input-style-border: none;
+    --tg-base-select-style-padding-y: 10px;
+    --tg-base-date-picker-padding: var(--tg-spacing-10) var(--tg-spacing-12);
+    --tg-base-input-style-pad-y: 10px;
+    --tg-base-date-picker-color: var(--tg-text-white);
+    --tg-base-date-picker-font-weight: 500;
+    --tg-base-select-style-padding-x: 12px;
+    --tg-base-select-popper-font-weight: 500;
+    --tg-base-select-icon-right: 12px;
+    --tg-base-input-style-font-weight: 500;
+  }
+}
+@media screen and (min-width: 426px) {
+  :deep(.table-filter){
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: var(--tg-spacing-16);
+    font-size: var(--tg-font-size-xs);
+    margin-bottom: 20px;
+    --tg-base-date-picker-color: var(--tg-text-white);
+    --tg-base-date-picker-font-weight: 500;
+    --tg-base-select-style-padding-y: var(--tg-spacing-8);
+    --tg-base-select-popper-font-weight: 500;
+    --tg-base-input-style-font-weight: 500;
+  }
+}
 </style>
 
 <route lang="yaml">

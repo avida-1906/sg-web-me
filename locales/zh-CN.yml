@@ -1197,7 +1197,7 @@ find_error: 发生错误
 input_mem_account: 输入会员账号
 submit_reg: 提交注册
 join_time: 加入时间
-player_id: 玩家ID
+player_id: 搜索账号
 activity_clicks: 活动点击量
 recommend_users: 推荐用户
 new_active: 创建新活动

@@ -65,6 +65,11 @@ function getBetListDataHandle() {
   if (isLogin.value)
     getBetListData()
 }
+
+onMounted(() => {
+  if (isLogin.value)
+    getBetListData()
+})
 </script>
 
 <template>

@@ -170,7 +170,7 @@ function handleClickMenuItem(item: { name: string; path?: string }) {
 <template>
   <div
     class="app-header"
-    :style="{ 'grid-template-columns': `1fr ${isLogin ? 'auto' : ''} 1fr` }"
+    :style="{ 'grid-template-columns': isLogin ? '1fr auto 1fr' : 'auto auto' }"
   >
     <BaseLogo :use-small="appContentWidth < 376 && isLogin" is-back :static="false" />
     <AppWallet v-if="isLogin" popper-clazz="app-h-wallet" />

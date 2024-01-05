@@ -188,6 +188,7 @@ function onPopperOpen() {
   --tg-base-select-popper-font-weight: var(--tg-font-weight-semibold);
   --tg-base-select-border: var(--tg-border-width-sm) solid var(--tg-border-color-main);
   --tg-base-select-box-shadow: var(--tg-box-shadow);
+  --tg-base-select-icon-right: var(--tg-spacing-8);
 }
 </style>
 
@@ -389,7 +390,7 @@ function onPopperOpen() {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    right: var(--tg-spacing-8);
+    right: var(--tg-base-select-icon-right);
     pointer-events: none;
     cursor: pointer;
     display: flex;

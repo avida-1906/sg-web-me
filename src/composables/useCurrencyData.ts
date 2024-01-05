@@ -36,27 +36,27 @@ interface CurrencyValue {
 
 export const currencyConfig: Record<EnumCurrencyKey, CurrencyValue> = {
   CNY: {
-    prefix: '¥',
+    prefix: '',
     cur: '701',
     bankTree: '019001',
   },
   BRL: {
-    prefix: 'R$',
+    prefix: '',
     cur: '702',
     bankTree: '019002',
   },
   INR: {
-    prefix: '₹',
+    prefix: '',
     cur: '703',
     bankTree: '019003',
   },
   VND: {
-    prefix: '₫',
+    prefix: '',
     cur: '704',
     bankTree: '019004',
   },
   THB: {
-    prefix: '฿',
+    prefix: '',
     cur: '705',
     bankTree: '019005',
   },
@@ -82,37 +82,37 @@ export const currencyConfig: Record<EnumCurrencyKey, CurrencyValue> = {
   },
   // 新增货币
   EUR: {
-    prefix: '€',
+    prefix: '',
     cur: '710',
     bankTree: '019006',
   },
   JPY: {
-    prefix: '¥',
+    prefix: '',
     cur: '711',
     bankTree: '019007',
   },
   CAD: {
-    prefix: 'CA$',
+    prefix: '',
     cur: '712',
     bankTree: '019008',
   },
   ARS: {
-    prefix: 'ARS',
+    prefix: '',
     cur: '713',
     bankTree: '019009',
   },
   CLP: {
-    prefix: 'CLP',
+    prefix: '',
     cur: '714',
     bankTree: '019010',
   },
   PEN: {
-    prefix: 'PEN',
+    prefix: '',
     cur: '715',
     bankTree: '019011',
   },
   MXN: {
-    prefix: 'MXN',
+    prefix: '',
     cur: '716',
     bankTree: '019012',
   },

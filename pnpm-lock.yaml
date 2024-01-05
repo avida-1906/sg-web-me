@@ -41,6 +41,9 @@ dependencies:
   pinia:
     specifier: ^2.1.4
     version: 2.1.4(typescript@5.1.6)(vue@3.4.4)
+  pixi.js:
+    specifier: ^7.3.2
+    version: 7.3.3
   precompiled-mqtt:
     specifier: 4.3.14-beta
     version: 4.3.14-beta
@@ -3434,7 +3437,7 @@ packages:
   /@types/resolve@1.17.1:
     resolution: {integrity: sha512-yy7HuzQhj0dhGpD8RLXSZWEkLsV9ibvxvi6EiJ3bkqLAO1RGo0WbkWQiwpRlSFymTJRz0d3k5LM3kkx8ArDbLw==}
     dependencies:
-      '@types/node': 18.19.4
+      '@types/node': 20.2.3
     dev: true
 
   /@types/semver@7.5.0:
@@ -8612,7 +8615,7 @@ packages:
     resolution: {integrity: sha512-KWYVV1c4i+jbMpaBC+U++4Va0cp8OisU185o73T1vo99hqi7w8tSJfUXYswwqqrjzwxa6KpRK54WhPvwf5w6PQ==}
     engines: {node: '>= 10.13.0'}
     dependencies:
-      '@types/node': 18.19.4
+      '@types/node': 20.2.3
       merge-stream: 2.0.0
       supports-color: 7.2.0
     dev: true

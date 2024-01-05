@@ -78,7 +78,7 @@ const menuData = computed(() => [
       { title: 'Facebook', icon: true },
       { title: 'Twitter', icon: true },
       { title: 'Instagram', icon: true },
-      { title: 'Youtube', icon: true },
+      { title: 'YouTobe', icon: true },
       { title: t('online_shopping'), icon: true },
     ],
   },

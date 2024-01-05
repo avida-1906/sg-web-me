@@ -204,6 +204,7 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse, iInput, isTouched, setBlur
 :root{
   --tg-base-input-style-background-color: transparent;
   --tg-base-input-style-pad-x: var(--tg-spacing-input-padding-horizontal);
+  --tg-base-input-style-pad-y: var(--tg-spacing-input-padding-vertical);
   --tg-base-input-style-right-icon-pad-v: var(--tg-spacing-8);
   --tg-base-input-style-placeholder-color: var(--tg-text-white);
   --tg-base-input-style-placeholder-opacity: 0.3;
@@ -211,6 +212,8 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse, iInput, isTouched, setBlur
   --tg-base-input-textarea-pad: var(--tg-spacing-8);
   --tg-base-input-textarea-minheight: 2.8em;
   --tg-base-input-right-button-padding: var(--tg-spacing-button-padding-vertical-sm) var(--tg-spacing-button-padding-horizontal-sm);
+  --tg-base-input-style-border: var(--tg-border-width-sm) solid var(--tg-border-color-main);
+  --tg-base-input-style-font-weight: var(--tg-font-weight-semibold);
 }
 </style>
 
@@ -358,9 +361,7 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse, iInput, isTouched, setBlur
     width: 100%;
     border-radius: var(--tg-radius-default);
     background: var(--tg-secondary-dark);
-    border-width: var(--tg-border-width-sm);
-    border-style: solid;
-    border-color: var(--tg-border-color-main);
+    border: var(--tg-base-input-style-border);
     position: relative;
     transition: all ease .25s;
     display: flex;
@@ -381,10 +382,9 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse, iInput, isTouched, setBlur
       color: var(--tg-text-white);
       border: none;
       outline: none;
-      padding: var(--tg-spacing-input-padding-vertical) var(--tg-base-input-style-pad-x);
+      padding: var(--tg-base-input-style-pad-y) var(--tg-base-input-style-pad-x);
       padding-left: var(--tg-base-input-style-pad-left);
-      font-weight: var(--tg-font-weight-semibold);
-
+      font-weight: var(--tg-base-input-style-font-weight);
       &::placeholder {
         color: var(--tg-base-input-style-placeholder-color);
         opacity: var(--tg-base-input-style-placeholder-opacity);
