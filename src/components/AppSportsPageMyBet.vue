@@ -151,7 +151,7 @@ onUnmounted(() => {
       </div>
       <div v-else class="slip-wrapper" :style="`column-count:${columnCount}`">
         <template v-if="isShowSkeleton">
-          <div v-for="item in listLength" :key="item" class="child">
+          <div v-for="item in 9" :key="item" class="child">
             <AppSportsMyBetSlipSkeleton :settle="settle" />
           </div>
         </template>
