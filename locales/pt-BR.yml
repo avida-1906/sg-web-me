@@ -1,5 +1,5 @@
-login: Login
-reg: Registro
+login: Entrar
+reg: Registrar-se
 register: Criar conta
 continue: Continuar
 gamer: Jogador
@@ -57,13 +57,13 @@ register_account: Registrar uma conta
 have_account: Já possui uma conta?
 stake_hCaptcha: A {site} é protegida por hCaptcha
 privacy_policy: Política de privacidade
-responsible_casino: Casa de apostas responsável
-license: Licença
+responsible_casino: Jogo Responsável
+license: Licenças
 self_exclusion: Autoexclusão
-anti_money_laundering_rule: Prevenção à lavagem de dinheiro
+anti_money_laundering_rule: Política AML
 copyright: Direitos autorais
 and: e
-terms_of_service: Termos de serviço
+terms_of_service: Termos de Serviço
 applicable: Aplicável
 time: Horário
 balance: Saldo
@@ -73,7 +73,7 @@ sports: Esportes
 game: Jogo
 wallet: Carteira
 safe: Cofre
-affiliate: Programa de afiliados
+affiliate: Afiliados
 transaction_record: Extrato de transação
 statistical_data: Dados estatísticos
 sports_betting: Apostas esportivas
@@ -82,7 +82,7 @@ lucky_trophy: Troféu de Sorte
 big_win: Grande Vencedor
 setting: Configurações
 stake_safety: Segurança {site}
-online_support: Apoio online
+online_support: Suporte Ao Vivo
 vip_club: Clube VIP
 club: Clube
 logout: Logout
@@ -90,10 +90,10 @@ logout_dont_foget: Não se esqueça de conferir as nossas promoções de Cassino
   Esportivas antes de sair!
 chat_room: Chat
 bet_slip: Boletim de apostas
-my_bets: Minhas apostas
-all_bets: Todas as apostas
+my_bets: Minhas Apostas
+all_bets: Todas as Apostas
 casino_bets: Apostas de cassino
-billboard: Painel Publicitário
+billboard: Grandes Apostadores
 competition_board: Tabela de classificação da competição
 competition: Competição
 competition_name: Nome da competição
@@ -294,7 +294,7 @@ group_conversation_one_person_also_participating: 1 pessoa também está partici
 help_space_title: Ajuda
 hi_name: "Olá, {first_name} 👋"
 hi_there: "Olá 👋"
-home_space_title: Início
+home_space_title: Página Inicial
 how_can_we_help: Como podemos ajudar?
 how_would_you_rate_this: Como você avalia este conteúdo?
 january_date: "{date} de janeiro"
@@ -695,7 +695,7 @@ date: Data
 tour: Tour
 community: Comunidade
 blog: Blog
-help_center: Centro de apoio
+help_center: Central de Ajuda
 try_again: Tente novamente
 try_help_center: Tente através do nosso centro de apoio
 try_use_different_keywords: Tente usar palavras-chave diferentes ou digite a pergunta
@@ -735,7 +735,7 @@ view_all: Visualizar tudo
 view_conversation: Visualizar conversas
 view_more: Exibir mais
 view_more_details: Visualizar mais detalhes
-view_more_2: Visualizar mais
+view_more_2: Ver Mais
 view_less: Exibir menos
 view_post: Visualizar post
 we_run_on_intercom: Operamos através da Intercom
@@ -771,8 +771,8 @@ search_need_at_least_3_word: Mínimo 3 caracteres necessários para realizar a p
 search_recent: Pesquisas recentes
 search_no_result: Sem resultados
 search_clear: Limpar pesquisas
-search_game: Pesquisar jogos
-search_events: Pesquisar jogos
+search_game: Procurar seu jogo
+search_events: Procurar seu jogo
 casino_origin_game: Jogos originais
 casino_games_recommend: Recomendações populares
 casino_provider: Fornecedor de jogos
@@ -916,7 +916,7 @@ cross-country: Cross Country
 cycling: Ciclismo
 sports_event: Jogos
 sports_status_timeout: Pausa
-sports_status_live: Boules
+sports_status_live: Esportes Ativos
 sports_status_close: Fechar
 sports_status_interrupted: Interrompido
 sports_status_settled: Liquidado
@@ -996,9 +996,9 @@ chat_send_tip_label: Enviar gorjeta
 chat_rule_full_title: As regras completas podem ser encontradas em nosso
 chat_forum: Fórum
 chat_rule_find: Encontrado em.
-about_us: Sobre nós
+about_us: Sobre Nós
 sponsor_activity: Eventos patrocinados
-online_shopping: Compras online
+online_shopping: Loja
 notify_error_forbid_operation: Operação não permitida
 user_account: Conta
 user_superior: Nível acima
@@ -1197,7 +1197,7 @@ transaction_way: Métodos de transação
 transaction_time: Horário da transação
 credit_card: Cartão de crédito
 need_online_service: Caso necessite, fale conosco para receber assistência
-support: Apoio
+support: Suporte
 success_send_code: Código de verificação enviado com sucesso
 code: Código de verificação
 after_seconds_send_code: Reenviar e-mail após alguns segundos
@@ -1256,7 +1256,7 @@ withdraw_apply_success: Solicitação de saque com sucesso
 withdraw_bank: Cartão bancário de saque
 pix_account: Conta PIX
 max: Valor máximo
-sports_rule: Regras de apostas esportivas
+sports_rule: Regras Esportivas
 scan: Procurar
 change_byte_addr: Tem certeza de que deseja alterar seu endereço de depósito {delta}?
 attention: Atenção
@@ -1860,7 +1860,7 @@ vip_top: Você atingiu o nível máximo VIP
 wait_upgrade: 'Aguardando atualização '
 upgraded: Atualizado
 game_water_experience: Experiência
-in_play: Jogando
+in_play: jogando
 week_0: Domingo
 week_1: Segunda-feira
 week_2: Terça-feira
@@ -1956,7 +1956,7 @@ transfer_amount: Valor da transferência
 select_deposit_amount: Role para baixo para selecionar o valor da recarga
 pls_select_pix: Selecione uma conta PIX
 we_use_cookie: Nós usamos cookies
-cookie_purposes: Executar finalidades funcionais e analíticas.
+cookie_purposes: para fins funcionais e analíticos
 accept: Aceitar
 start_game_now: Iniciar o jogo agora
 policies: Políticas
