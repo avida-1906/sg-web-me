@@ -114,8 +114,8 @@ export const useSportsStore = defineStore('sports', () => {
     },
   })
 
-  /** 列表盘口下拉选单 */
-  const { data: sportsBetTypeData, runAsync: runAsyncEventBetType } = useRequest(ApiSportsBetType)
+  /** 首页相关设定 */
+  const { data: homePageConfig, runAsync: runAsyncHomeConfig } = useRequest(ApiSportsHomePageConfig)
 
   /** 获取场馆列表 */
   const {
@@ -127,7 +127,7 @@ export const useSportsStore = defineStore('sports', () => {
         currentProvider.value = res.d[0].id
         Local.set(STORAGE_SPORTS_CURRENT_PROVIDER, res.d[0].id)
       }
-      runAsyncEventBetType().then(() => runSportsCount())
+      runAsyncHomeConfig().then(() => runSportsCount())
       runSportsSidebar()
     },
   })
@@ -286,7 +286,7 @@ export const useSportsStore = defineStore('sports', () => {
 
   const sportOddType = computed(() => <Menu>[
     {
-      title: `${t('sports_odds_title')}${userLanguage.value === 0 ? '：' : ': '}${t(sportsOddsType.value)}`,
+      title: `${t('sports_odds_title')}${userLanguage.value === 'zh-CN' ? '：' : ': '}${t(sportsOddsType.value)}`,
       path: '',
       icon: 'spt-odds',
       type: 'radio',
@@ -297,10 +297,18 @@ export const useSportsStore = defineStore('sports', () => {
     },
   ])
 
+  /** 赛事类型下拉选单 */
+  const sportsEventTypeList = computed(() => {
+    if (homePageConfig.value && homePageConfig.value.list_filter)
+      return homePageConfig.value.list_filter
+
+    return []
+  })
+
   /** 所有球种盘口类型下拉选单 */
   const sportsBetTypeList = computed(() => {
-    if (sportsBetTypeData.value && sportsBetTypeData.value.d) {
-      return sportsBetTypeData.value.d.map((a) => {
+    if (homePageConfig.value && homePageConfig.value.bettype_filter) {
+      return homePageConfig.value.bettype_filter.map((a) => {
         return {
           si: a.si,
           btl: a.btl.map((b) => {
@@ -388,6 +396,7 @@ export const useSportsStore = defineStore('sports', () => {
     currentFavNav,
     currentFavBetType,
     sportsBetTypeList,
+    sportsEventTypeList,
     renderOdds,
     setSportsOddsType,
     getSportsOddsType,
