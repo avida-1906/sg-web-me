@@ -4,9 +4,7 @@ usePageTitle({ prefix: t('menu_title_my_promotion') })
 
 const {
   isLessThanSm,
-  widthBoundaryMd,
-  width,
-  widthBoundarySm,
+  isMobile,
 } = storeToRefs(useWindowStore())
 
 const location = useBrowserLocation()
@@ -34,18 +32,6 @@ const { data: proData, loading: loadMyData } = useRequest(ApiGetMyPro, { manual:
 // })
 
 const baseQrRef = ref()
-
-const qrUrl = computed(() => `${location.value.origin}${proData.value?.link_url ?? ''}`)
-
-// 921-975
-const less975 = computed(() => {
-  return width.value > 921 && width.value < widthBoundaryMd.value
-})
-// 921-768
-const less921 = computed(() => {
-  return width.value < 921 && width.value > widthBoundarySm.value
-})
-
 const socialData = [
   {
     label: 'Facebook',
@@ -65,7 +51,26 @@ const socialData = [
   { label: 'Viber', img: '/png/settings/social-viber.png' },
   { label: 'WeChat', img: '/png/settings/social-wechat.png' },
 ]
+const squareTabList = [
+  {
+    value: '1',
+    label: t('finance_funds_transfer_sort_commission'),
+  },
+  {
+    value: '2',
+    label: t('performance'),
+  },
+  {
+    value: '3',
+    label: t('sub_bet'),
+  },
+]
+const squareVal = ref('1')
 
+const qrUrl = computed(() => `${location.value.origin}${proData.value?.link_url ?? ''}`)
+const getSquareVal = computed(() => {
+  return isMobile.value ? squareVal.value : '123'
+})
 const commission = computed(() => [
   { label: t('accu_commission'), value: proData.value?.commission?.accumulated ?? '' },
   { label: t('received_commission'), value: proData.value?.commission?.received ?? '' },
@@ -76,9 +81,18 @@ const commission = computed(() => [
 ])
 
 const performance = computed(() => [
-  { label: t('team_num'), value: `${proData.value?.performance?.team_num}人` },
-  { label: t('direct_mem'), value: `${proData.value?.performance?.direct_num}人` },
-  { label: t('other_mem'), value: `${proData.value?.performance?.other_num}人` },
+  {
+    label: t('team_num'),
+    value: `${proData.value?.performance?.team_num}${t('people')}`,
+  },
+  {
+    label: t('direct_mem'),
+    value: `${proData.value?.performance?.direct_num}${t('people')}`,
+  },
+  {
+    label: t('other_mem'),
+    value: `${proData.value?.performance?.other_num}${t('people')}`,
+  },
   {
     label: t('total_performance'),
     value: `${proData.value?.performance?.performance_amount}`,
@@ -111,25 +125,16 @@ function downloadQr() {
 </script>
 
 <template>
-  <div class="tg-affiliate-retention">
-    <div class="retention-item infos">
+  <div class="tg-affiliate-retention" :class="{ 'is-mobile': isMobile }">
+    <div class="retention-item">
       <div class="item-title">
         <div class="title-left">
           {{ t('promo_info') }}
         </div>
-        <!-- <div class="title-btn">
-          <BaseButton type="text">
-            {{ t('more') }}
-          </BaseButton>
-        </div> -->
       </div>
       <div
-        class="item-content content-padding promotion-msg"
-        :class="{
-          'is-less-than-sm': isLessThanSm,
-          'is-less-975': less975,
-          'is-less-921': less921,
-        }"
+        class="item-content promotion-msg"
+        :class="{ 'is-less-than-sm': isMobile }"
       >
         <div class="promotion-left">
           <BaseQrcode ref="baseQrRef" :url="qrUrl" :size="92" class="qr-code" />
@@ -137,26 +142,32 @@ function downloadQr() {
             {{ t('click_save_qr') }}
           </p>
         </div>
-        <div class="promotion-right">
-          <div class="link">
-            <p>{{ t('my_link') }}</p>
-            <AppCopyLine :msg="qrUrl" />
+        <div class="link">
+          <p>{{ t('my_link') }}</p>
+          <!-- <AppCopyLine :msg="qrUrl" /> -->
+          <div class="url-wrap">
+            <span style="word-break: break-all;">{{ qrUrl }}</span>
+            <AppTooltip
+              style="display: inline-block;vertical-align: -6%;margin-left: 4px;"
+              :text="t('copy_addr_suc')" icon-name="uni-doc" :triggers="['click']"
+            />
           </div>
-          <div class="social-wrap" :class="{ 'is-less-than-sm': isLessThanSm }">
-            <div v-for="(item, index) in socialData" :key="index" class="social">
-              <BaseImage
-                :url="item.img"
-                width="28px"
-                height="28px"
-                class="promotion-base-image"
-              />
-              {{ item.label }}
-            </div>
+        </div>
+        <div class="social-wrap" :class="{ 'is-less-than-sm': isMobile }">
+          <div v-for="(item, index) in socialData" :key="index" class="social">
+            <BaseImage
+              :url="item.img"
+              width="28px"
+              height="28px"
+              class="promotion-base-image"
+            />
+            {{ item.label }}
           </div>
         </div>
       </div>
     </div>
-    <div class="retention-item">
+    <BaseSquareTab v-if="isMobile" v-model="squareVal" :list="squareTabList" />
+    <div v-show="getSquareVal.includes('1')" class="retention-item">
       <div class="item-title">
         <div class="title-left">
           {{ t('finance_funds_transfer_sort_commission') }}
@@ -167,7 +178,7 @@ function downloadQr() {
           </BaseButton>
         </div> -->
       </div>
-      <div class="item-content grid-wrap" :class="{ 'is-less-than-sm': isLessThanSm }">
+      <div class="item-content grid-wrap" :class="{ 'is-less-than-sm': isMobile }">
         <div v-for="(item, index) in commission" :key="index">
           <span>{{ item.label }} </span>
           <div class="yellow">
@@ -177,7 +188,7 @@ function downloadQr() {
         </div>
       </div>
     </div>
-    <div class="retention-item">
+    <div v-show="getSquareVal.includes('2')" class="retention-item">
       <div class="item-title">
         <div class="title-left">
           {{ t('performance') }}
@@ -188,7 +199,7 @@ function downloadQr() {
           </BaseButton>
         </div> -->
       </div>
-      <div class="item-content grid-wrap" :class="{ 'is-less-than-sm': isLessThanSm }">
+      <div class="item-content grid-wrap" :class="{ 'is-less-than-sm': isMobile }">
         <div v-for="(item, index) in performance" :key="index">
           <span>{{ item.label }} </span>
           <div>
@@ -201,7 +212,7 @@ function downloadQr() {
         </div>
       </div>
     </div>
-    <div class="retention-item">
+    <div v-show="getSquareVal.includes('3')" class="retention-item">
       <div class="item-title">
         <div class="title-left">
           {{ t('sub_bet') }}
@@ -229,7 +240,7 @@ function downloadQr() {
 .tg-affiliate-retention {
   font-size: var(--tg-font-size-default);
   color: var(--tg-text-white);
-  > .retention-item+.retention-item {
+  >.retention-item~.retention-item {
     background-color: var(--tg-secondary-grey);
     padding: 0 24px 24px;
     border-radius: var(--tg-radius-default);
@@ -237,106 +248,115 @@ function downloadQr() {
       padding-left: 0;
     }
   }
-  .retention-item{
-    margin-bottom: var(--tg-spacing-12);
-    .item-title {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      // background-color: var(--tg-secondary-main);
-      padding: 0 var(--tg-spacing-4) 0 var(--tg-spacing-16);
-      border-radius: var(--tg-radius-default)  var(--tg-radius-default) 0 0;
-      height: 36px;
-      .title-left{
-        font-weight: var(--tg-font-weight-semibold);
-      }
-      .title-btn{
-        button{
-          font-size: var(--tg-font-size-xs);
-          font-weight: var(--tg-font-weight-normal);
-        }
-      }
+  >div~div{
+    margin-top: var(--tg-spacing-16);
+  }
+  .item-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 var(--tg-spacing-4) 0 var(--tg-spacing-16);
+    border-radius: var(--tg-radius-default)  var(--tg-radius-default) 0 0;
+    height: 36px;
+    .title-left{
+      font-weight: var(--tg-font-weight-semibold);
     }
-    .item-content{
-      &.content-padding{
-        padding: var(--tg-spacing-16);
-      }
-    }
-    &.infos {
-      .item-title, .promotion-msg {
-        background: transparent;
+    .title-btn{
+      button{
+        font-size: var(--tg-font-size-xs);
+        font-weight: var(--tg-font-weight-normal);
       }
     }
   }
   .promotion-msg{
-    display: flex;
-    gap: var(--tg-spacing-50);
-    background-color: var(--tg-primary-main);
+    width: 100%;
+    max-width: 768px;
+    display: grid;
+    grid-template-columns: 108px auto;
+    gap: 16px 10%;
+    background-color: var(--tg-secondary-dark);
+    border-radius: var(--tg-radius-default);
+    padding: var(--tg-spacing-16);
+    .promotion-left{
+      grid-row-start: span 2;
+    }
     &.is-less-than-sm{
-      flex-direction: column;
-      gap: var(--tg-spacing-12);
-    }
-    &.is-less-975{
-      gap: var(--tg-spacing-20);
-    }
-    &.is-less-921{
-      .promotion-right{
+      width: 100%;
+      gap: 16px 16px;
+      justify-items: stretch;
+      .promotion-left{
+        grid-row-start: auto;
+      }
+      .social-wrap{
+        grid-column-start: span 2;
+      }
+      .url-wrap{
         flex: 1;
+      }
+    }
+    .link{
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .url-wrap{
+      flex: none;
+      color: var(--tg-text-white);
+      background: var(--tg-secondary-main);
+      border: 2px solid var(--tg-secondary-main);
+      border-radius: var(--tg-radius-default);
+      font-weight: var(--tg-font-weight-semibold);
+      transition: all .25s;
+      cursor: text;
+      font-size: var(--tg-font-size-default);
+      padding: var(--tg-spacing-7);
+      line-height: 1.4;
+      &:hover {
+        border-color: var(--tg-text-grey);
       }
     }
     .promotion-left{
       text-align: center;
       .qr-code{
-      margin-bottom: var(--tg-spacing-8);
-    }
-    }
-    .promotion-right{
-      flex: .8;
-      padding-top: var(--tg-spacing-4);
-      .link{
-        p:nth-child(1){
-          margin-bottom: var(--tg-spacing-6);
-        }
+        margin-bottom: var(--tg-spacing-8);
       }
-      .social-wrap{
+    }
+    .social-wrap{
+      display: flex;
+      gap: var(--tg-spacing-12);
+      justify-content: space-between;
+      &.is-less-than-sm{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, 54px);
+      }
+      .social{
         display: flex;
-        gap: var(--tg-spacing-12);
-        justify-content: space-between;
-        margin-top: 14px;
-        &.is-less-than-sm{
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-        }
-        .social{
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: var(--tg-spacing-8);
-          font-size: var(--tg-font-size-xs);
-          .promotion-base-image{
-            width: 28px;
-            height: 28px;
-            --tg-base-img-style-radius: var(--tg-radius-default);
-          }
+        flex-direction: column;
+        align-items: center;
+        gap: var(--tg-spacing-8);
+        font-size: var(--tg-font-size-xs);
+        .promotion-base-image{
+          width: 28px;
+          height: 28px;
+          --tg-base-img-style-radius: var(--tg-radius-default);
         }
       }
     }
   }
   .grid-wrap{
-    // background-color: var(--tg-secondary-main) !important;
+    width: 100%;
+    max-width: 660px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 15px;
-    width: fit-content;
     &.is-less-than-sm{
-      grid-template-columns: repeat(1, 1fr);
-      width: 100%;
-      > div {
-        width: auto;
-      }
+      max-width: 100%;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 10px;
     }
     > div{
-      width: 210px;
+      width: 100%;
       background-color: var(--tg-secondary-dark);
       padding: var(--tg-spacing-16) var(--tg-spacing-16);
       display: flex;
@@ -353,6 +373,15 @@ function downloadQr() {
   }
   .green{
     color: var(--tg-primary-success);
+  }
+}
+.is-mobile{
+  .item-title{
+    display: none;
+  }
+  >.retention-item~.retention-item {
+    background: none;
+    padding: 0;
   }
 }
 </style>
