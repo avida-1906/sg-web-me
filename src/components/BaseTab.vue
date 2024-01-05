@@ -214,7 +214,7 @@ onMounted(() => {
       }
     }
 
-    &:hover:not(.is-mobile) {
+    &:hover {
       background-color: var(--tg-secondary-main);
       --tg-icon-color: var(--tg-text-white);
       .icon{
