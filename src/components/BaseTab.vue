@@ -207,15 +207,18 @@ onMounted(() => {
       white-space: nowrap;
       gap: var(--tg-spacing-8);
       user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
     }
 
     &:active {
+      background-color: var(--tg-secondary-main);
       .content {
         transform: scale(0.96);
       }
     }
 
-    &:hover {
+    &:hover:not(.disabled) {
       background-color: var(--tg-secondary-main);
       --tg-icon-color: var(--tg-text-white);
       .icon{

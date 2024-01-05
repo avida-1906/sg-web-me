@@ -226,7 +226,6 @@ declare module 'vue' {
     BaseTag: typeof import('./components/BaseTag.vue')['default']
     BaseTextarea: typeof import('./components/BaseTextarea.vue')['default']
     BaseUpload: typeof import('./components/BaseUpload.vue')['default']
-    copy: typeof import('./components/AppSportsBetButton copy.vue')['default']
     DiceIndex: typeof import('./components/DiceIndex.vue')['default']
     LimboAutoBetTip: typeof import('./components/LimboAutoBetTip.vue')['default']
     LimboGameLimbo: typeof import('./components/LimboGameLimbo.vue')['default']

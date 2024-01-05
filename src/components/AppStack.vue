@@ -84,6 +84,7 @@ const toNext = function () {
     cursor: pointer;
     color: var(--tg-text-white);
     user-select: none;
+    -webkit-user-select: none;
     &:active{
       transform: scale(.96);
     }

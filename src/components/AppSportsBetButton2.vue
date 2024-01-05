@@ -168,6 +168,7 @@ onBeforeUnmount(() => {
   line-height: 1.5;
   cursor: pointer;
   user-select: none;
+  -webkit-user-select: none;
 
   .content {
     display: flex;

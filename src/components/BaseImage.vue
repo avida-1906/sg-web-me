@@ -71,6 +71,7 @@ const imgUrl = computed(() => {
     border-radius: var(--tg-base-img-style-radius);
     object-position: var(--tg-img-object-position);
     user-select: none;
+    -webkit-user-select: none;
     -webkit-user-drag: none;
   }
 }
