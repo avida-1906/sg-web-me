@@ -1,33 +1,26 @@
 <script lang="ts" setup>
-// interface IPaginationData {
-//   pageSize: number
-//   page: number
-//   total: number
-// }
-
-// const paginationData = ref<IPaginationData>(
-//   {
-//     pageSize: 10,
-//     page: 2,
-//     total: 21,
-//   },
-// )
 const { t } = useI18n()
-const { selected: platformId, list: platformIdList } = useSelect([
-  {
-    label: t('finance_other_tab_all'),
-    value: '',
+const {
+  list,
+  page,
+  page_size,
+  loading,
+  total,
+  runAsync,
+  prev,
+  next,
+} = useList(ApiAgencyCommissionRecords,
+  {}, { page_size: 10, isWatchPageOrPageSize: false })
+const {
+  data: recordsClass,
+  runAsync: getRecordsClass,
+} = useRequest(ApiAgencyCommissionRecordsClass, {
+  onSuccess() {
+    runAsync()
   },
-  {
-    label: t('commission_grant'),
-    value: '1',
-  },
-  {
-    label: t('commission_draw'),
-    value: '2',
-  },
-])
+})
 
+const platformId = ref('')
 const date = ref([])
 const { startTime, endTime } = getDaIntervalMap(new Date().getTime(), 30)
 const columns = reactive<Column[]>([
@@ -56,44 +49,70 @@ const columns = reactive<Column[]>([
     align: 'center',
   },
 ])
-const tableData = reactive([
-  {
-    time: 1699517005157,
-    type: '佣金发放',
-    amount: '9999.88',
-    currencyType: 'CNY',
-    orderId: '1234567789',
-  },
-  {
-    time: 1699517005188,
-    type: '佣金发放',
-    amount: '9999.88',
-    currencyType: 'CNY',
-    orderId: '1234567789',
-  },
-  {
-    time: 1699517005122,
-    type: '佣金发放',
-    amount: '9999.88',
-    currencyType: 'CNY',
-    orderId: '1234567789',
-  },
-  {
-    time: 1699517005000,
-    type: '佣金发放',
-    amount: '9999.88',
-    currencyType: 'CNY',
-    orderId: '1234567789',
-  },
-])
+// const tableData = reactive([
+//   {
+//     time: 1699517005157,
+//     type: '佣金发放',
+//     amount: '9999.88',
+//     currencyType: 'CNY',
+//     orderId: '1234567789',
+//   },
+//   {
+//     time: 1699517005188,
+//     type: '佣金发放',
+//     amount: '9999.88',
+//     currencyType: 'CNY',
+//     orderId: '1234567789',
+//   },
+//   {
+//     time: 1699517005122,
+//     type: '佣金发放',
+//     amount: '9999.88',
+//     currencyType: 'CNY',
+//     orderId: '1234567789',
+//   },
+//   {
+//     time: 1699517005000,
+//     type: '佣金发放',
+//     amount: '9999.88',
+//     currencyType: 'CNY',
+//     orderId: '1234567789',
+//   },
+// ])
 
-// function onPrevious() {
-//   paginationData.value.page--
-// }
+const getOptions = computed(() => {
+  return [{
+    label: t('finance_other_tab_all'),
+    value: '',
+  }].concat(recordsClass.value?.map((item) => {
+    return {
+      label: item.CashTypeName,
+      value: item.CashType,
+    }
+  }) ?? [])
+})
+const getPaginationData = computed(() => {
+  return {
+    pageSize: page_size.value,
+    page: page.value,
+    total: total.value,
+  }
+})
 
-// function onNext() {
-//   paginationData.value.page++
-// }
+function onPrevious() {
+  prev()
+  runAsync()
+}
+function onNext() {
+  next()
+  runAsync()
+}
+
+await application.allSettled(
+  [
+    getRecordsClass(),
+  ],
+)
 </script>
 
 <template>
@@ -111,16 +130,16 @@ const tableData = reactive([
         <span>{{ $t('label_type') }}</span>
         <BaseSelect
           v-model.lazy="platformId"
-          :options="platformIdList"
+          :options="getOptions"
         />
       </div>
     </div>
     <BaseTable
-      v-if="tableData && tableData.length"
       :columns="columns"
-      :data-source="tableData"
+      :data-source="list"
+      :loading="loading"
+      :skeleton-row="4"
     >
-      <!-- :loading="loading" -->
       <template #time="{ record }">
         <div>{{ timeToFormat(record.time) }}</div>
       </template>
@@ -133,12 +152,12 @@ const tableData = reactive([
         </div>
       </template>
     </BaseTable>
-    <!-- <AppStack
-      :pagination-data="paginationData"
+    <AppStack
+      v-if="total > 10"
+      :pagination-data="getPaginationData"
       @previous="onPrevious"
       @next="onNext"
-    /> -->
-    <BaseEmpty v-else :description="t('data_empty')" />
+    />
   </div>
 </template>
 
@@ -158,10 +177,11 @@ const tableData = reactive([
   --tg-base-select-border: none;
   --tg-base-select-box-shadow: none;
   --tg-base-select-style-padding-y: var(--tg-spacing-10);
-  --tg-base-date-picker-color:var(--tg-text-white);
+  --tg-base-date-picker-color: var(--tg-text-white);
   --tg-base-select-popper-font-weight: var(--tg-font-weight-normal);
+  --tg-table-margin-top-empty: 0;
   .grid-box{
-    max-width: 315px;
+    max-width: 375px;
     display: grid;
     grid-template-columns: 3fr 2fr;
     gap: var(--tg-spacing-10);
@@ -169,6 +189,7 @@ const tableData = reactive([
       display: flex;
       flex-direction: column;
       gap: var(--tg-spacing-4);
+      color: var(--tg-secondary-light);
     }
   }
 }

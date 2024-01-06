@@ -1,21 +1,31 @@
 <script lang="ts" setup>
 // const { openAgentGradeDialog } = useDialogAgentGrade()
 // const { openAgentCommissionDrawDialog } = useDialogAgentCommissionDraw()
+const { t } = useI18n()
+const { openNotify } = useNotify()
 const {
   renderCurrencyList,
 } = useCurrencyData()
 const {
   data: balanceAgency,
-  runAsync: getBalancAgency,
-} = useRequest(ApiMemberBalanceAgency, {
-  onSuccess(data) {
-    console.log(data)
+  runAsync: getBalanceAgency,
+} = useRequest(ApiMemberBalanceAgency)
+const {
+  run: runTransferToMember,
+  loading: loadTransferToMember,
+} = useRequest(ApiAgencyTransferToMember, {
+  onSuccess() {
+    openNotify({
+      title: t('finance_funds_transfer_commission_withdraw'),
+      icon: 'navbar-wallet-notify',
+      message: t('commission_draw_success'),
+    })
   },
 })
 
 await application.allSettled(
   [
-    getBalancAgency(),
+    getBalanceAgency(),
   ],
 )
 </script>
@@ -40,7 +50,11 @@ await application.allSettled(
         />
       </div>
     </div>
-    <BaseButton class="btn-receive" bg-style="secondary" custom-padding>
+    <BaseButton
+      class="btn-receive"
+      :loading="loadTransferToMember"
+      bg-style="secondary" custom-padding @click="runTransferToMember"
+    >
       {{ $t('finance_funds_transfer_commission_withdraw') }}
     </BaseButton>
     <div class="holder-tip">
@@ -72,6 +86,9 @@ await application.allSettled(
       &:nth-child(even){
         background: var(--tg-secondary-grey);
       }
+    }
+    &>:first-child{
+      padding-top: 0;
     }
   }
   .btn-receive{

@@ -1908,49 +1908,75 @@ export function ApiMemberBalanceAgency() {
 }
 
 /**
- * 佣金历史
+ * 佣金历史记录
  * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=89c29e8e-c6ff-45d3-bcda-94c6f5d728a2
  */
-export function ApiAgencyCommissionRecords() {
-  return httpClient.post<{
-    'id': '52991425232034912'
+export function ApiAgencyCommissionRecords(data?: {
+  page: number
+  page_siz: number
+  start_time: string
+  end_time: string
+}) {
+  return httpClient.post<IResponseList<{
+    'id': string
     /** 订单号 */
-    'bill_no': '52991425218017473'
+    'bill_no': string
     /** uid */
-    'uid': '7745422158131254'
+    'uid': string
     /** 会员名 */
-    'username': 'link999'
+    'username': string
     /** 全部为空，帐变id，取帐变类型中的关于代理钱包的cash_type */
-    'cash_type': 847
+    'cash_type': number
     /**  */
-    'business_type': 823
+    'business_type': number
     /** 金额 */
-    'amount': '100.00'
+    'amount': string
     /**  */
-    'before_amount': '10382.59'
+    'before_amount': string
     /**  */
-    'after_amount': '10282.59'
+    'after_amount': string
     /**  */
-    'multiple': 1
+    'multiple': number
     /**  */
-    'created_at': 1701504494865
+    'created_at': number
     /**  */
-    'tester': 0
+    'tester': number
     /**  */
-    'remark': 'dfsa'
+    'remark': string
     /** 币种 */
-    'currency_id': '701'
+    'currency_id': CurrencyCode
     /**  */
-    'operator_uid': '127646934193462684'
+    'operator_uid': string
     /**  */
-    'operator_name': 'Link001'
+    'operator_name': string
     /**  */
-    'device': 24
+    'device': number
     /** 时间（毫秒） */
-    'apply_at': 1701504494865
+    'apply_at': number
     /** 类型 */
-    'cash_type_name': '人工佣金减款'
+    'cash_type_name': string
     /**  */
-    'business_type_name': '佣金'
-  }[]>('/agency/commission/records')
+    'business_type_name': string
+  }[]>>('/agency/commission/records', data)
+}
+
+/**
+ * 佣金分类列表
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=246198f7-f090-4956-ab33-a5917e08f265
+ */
+export function ApiAgencyCommissionRecordsClass() {
+  return httpClient.get<{
+    /** 类型 */
+    CashType: string
+    /** 名称 */
+    CashTypeName: string
+  }[]>('/agency/commission/records/class')
+}
+
+/**
+ * 佣金钱包提取
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=da617b1e-8b29-4ef3-9824-c9ee5c9f193e
+ */
+export function ApiAgencyTransferToMember() {
+  return httpClient.post<string>('/agency/transfer/to/member')
 }
