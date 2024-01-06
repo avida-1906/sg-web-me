@@ -58,26 +58,26 @@ no_account_yet: Không có tài khoản?
 register_account: Đăng ký Tài khoản
 have_account: Đã có tài khoản?
 stake_hCaptcha: '{site} được bảo vệ bởi hCaptcha'
-privacy_policy: Điểu khoản bảo mật
+privacy_policy: Chính Sách Bảo Mật
 responsible_casino: Đặt Cược Có Trách Nhiệm
 license: Giấy phép
-self_exclusion: Tự loại trừ
-anti_money_laundering_rule: Quy tắc chống rửa tiền
-copyright: Bản quyền
+self_exclusion: Tự Loại Trừ
+anti_money_laundering_rule: Chính sách AML
+copyright: Đã Đăng Ký Bản Quyền.
 and: và
-terms_of_service: Điều khoản dịch vụ
+terms_of_service: Điều Khoản Dịch Vụ
 applicable: Được áp dụng
 time: Thời gian
 balance: Số dư
 amount: Số tiền
 casino: Casino
-sports: Thể Thao
+sports: Thể thao
 game: 'Trò chơi'
 wallet: Ví
 safe: Kho
 affiliate: Liên kết
 transaction_record: Lịch sử giao dịch
-statistical_data: Thống kê số liệu
+statistical_data: Thống kê
 sports_betting: Đặt cược thể thao
 trophy: Chiến tích
 lucky_trophy: Chiến tích may mắnnhất
@@ -85,15 +85,15 @@ big_win: Thắng lợi lớn nhất
 setting: Cài đặt
 stake_safety: Sự an toàn của {site}
 online_support: Hỗ Trợ Trực Tuyến
-vip_club: VIP Clup
+vip_club: VIP Club
 club: Câu lạc bộ
 logout: Đăng xuất
 logout_dont_foget: 'Hãy xem các chương trình khuyến mãi hấp dẫn Casino và Sportsbook
   của chúng tôi trước khi bạn rời khỏi '
 chat_room: Chat
 bet_slip: Đơn cược
-my_bets: Cược Của Côi
-all_bets: Tất Tả Cược
+my_bets: Cược Của Tôi
+all_bets: Tất Cả Cược
 casino_bets: Đơn cược đánh bài
 billboard: Người Chơi Lớn
 competition_board: Bảng xếp hạng cuộc đua
@@ -107,8 +107,8 @@ this_field_is_required: Phần này bắt buộc
 buy_cryptocurrency: Mua tiền điện tử
 your_currency_deposit_address: Địa chỉ nạp tiền {currency} của bạn
 sports_events: Các mục thể thao
-top_sports_events: Thể thao hàng đầu
-choose_your_balance: Chọn số dư hiển thị của bạn
+top_sports_events: Môn Thể Thao Hàng Đầu
+choose_your_balance: Lựa chọn hiển thị số dư
 enter_your_content: Vui lòng nhập nội dung
 hello: Xin chào
 a_day: Một ngày
@@ -354,7 +354,7 @@ no_messages_from_the_team: Không có tin tức từ đội
 no_results_for_searchterm: Không có kết quả cho {searchTerm}
 no_tasks_available_currently: Hiện tại không có nhiệm vụ nào.
 nothing_to_see_here_yet: Chưa có gì để xem ở đây
-notification: sự thông báo
+notification: Thông báo
 november_date: tháng 11 ngày {date}
 number_is_incorrect: Con số có vẻ không chính xác
 objects: sự việc
@@ -729,7 +729,7 @@ casino_game_open_trend: Bật thống kê thời gian thực
 casino_game_close_trend: Tắt thống kê thời gian thực
 casino_game_open_theatre: Bật chế độ rạp hát
 casino_game_close_theatre: Tắt chế độ rạp hát
-casino_game_test_mode: Chế độ thử nghiệm
+casino_game_test_mode: Chơi vui
 casino_game_real_money_mode: chế độ chơi bằng tiền thật
 search_need_at_least_3_word: Yêu cầu ít nhất 3 ký tự để tìm kiếm.
 search_recent: Tìm kiếm gần đây
@@ -738,7 +738,7 @@ search_clear: Tìm kiếm rõ ràng
 search_game: Tìm kiếm trò chơi
 search_events: Tìm kiếm sự kiện
 casino_origin_game: trò chơi nguyên bản
-casino_games_recommend: Đề nghị phổ biến
+casino_games_recommend: Đề xuất
 casino_provider: nhà cung cấp trò chơi
 casino_sort_popular: Phổ biến
 casino_sort_featured: Tính năng
@@ -908,27 +908,27 @@ sports_standard: Tiêu chuẩn
 sports_winner_market: Kèo thắng lợi
 sports_handicap_market: Kèo nhường điểm
 sports_total_market: Kèo tổng điểm
-sports_tab_live_events: SỰ KIỆN TRỰC TUYẾN
-sports_tab_starting_soon: Trận đấu sắp diễn ra
+sports_tab_live_events: Sự Kiện Trực Tuyến
+sports_tab_starting_soon: Sắp Bắt Đầu
 sports_tab_lobby: Sảnh
-sports_tab_favourites: Mục yêu thích
+sports_tab_favourites: Yêu Thích
 sports_title_favourites: Sưu tầm
 sports_no_active_bet: Chưa có cược nào đang hoạt động
 sports_live_tv: Phát trực tiếp
 sports_live_favourites: Vòng cược phổ biến của trận đấu đang diễn ra
 sports_upcoming_favourites: Sắp diễn ra trận đấu phổ biến
 sports_provider: Mục thể thao
-sports_odds_title: Tỷ lệ cược
-DECIMAL: biểu thức thập phân
-FRACTION: công thức phân số
-AMERICAN: Kiểu Mỹ
-INDONESIA: Kiểu Indo
-MALAYSIA: Kiêu Mã Lai
-HONGKONG: Kiểu Hong Kong
+sports_odds_title: Tỉ lệ
+DECIMAL: Số thập phân
+FRACTION: Phân số
+AMERICAN: American
+INDONESIA: Indonesian
+MALAYSIA: Malaysian
+HONGKONG: Hong Kong
 sports_live_unlogin_tip: Vui lòng đăng nhập để xem truyền hình trực tiếp
 sports_starts_in: 'Thời gian bắt đầu: {minutes} kể từ bây giờ'
 welcome_guest: Chào mừng
-language_title: Ngoại ngữ
+language_title: Ngôn ngữ
 language_current: Tiếng Trung
 casino_index_description: Duyệt qua nhiều trò chơi sòng bạc đa dạng của chúng tôi
   và để {site} mang đến cho bạn trải nghiệm cờ bạc trực tuyến vừa công bằng vừa thú
@@ -957,7 +957,7 @@ chat_send_tip_label: Gửi tặng tiền tip
 chat_rule_full_title: Các quy tắc hoàn chỉnh có thể được tìm thấy trong
 chat_forum: Diễn đàn
 chat_rule_find: Tìm thấy trên.
-about_us: Về chúng tôi
+about_us: Về Chúng Tôi
 sponsor_activity: Hoạt động được tài trợ
 online_shopping: Cửa hàng
 notify_error_forbid_operation: Hoạt động này không được phép
@@ -1135,8 +1135,8 @@ chat_rule_12: Thảo luận về các chủ đề chính trị và tôn giáo đ
 user_confirm_delete_draw_way: Vui lòng xác nhận để xóa các phương thức rút tiền
   sau?
 confirm_delete: xác nhận xóa
-big_winner: Khách chơi ăn tiền lớn
-lucky_winner: Khách chơi may mắn
+big_winner: Thắng Lớn
+lucky_winner: Chiến Thắng May Mắn
 win_label: Ăn
 lose: Thua
 description: Miêu tả
@@ -1148,8 +1148,8 @@ fairness: Công bằng
 switch_wave: Chuyển đổi biến động
 house_edge: Nhà cái chiếm lợi thế
 investor: Người đầu tư
-partner: Cộng sự
-media: phương tiện truyền thông tin tức
+partner: Đồng đội
+media: Ấn
 win: Thắng lợi
 win_equal_lose: Thắng Hòa Thua
 transaction_way: phương thức giao dịch
@@ -1796,8 +1796,8 @@ on: Tại
 add_one_bet: Thêm 1 cược ở trên vào phiếu cược của tôi
 copied: Đã sao chép thành công
 footer_desc: "{site} được sở hữu và điều hành bởi Medium Rare N.V., số đăng ký: 145353,
-  địa chỉ đăng ký: Korporaalweg 10, Willemstad, Curaçao. Vui lòng liên hệ với chúng
-  tôi theo địa chỉ {email}. Công ty đại lý thanh toán là Medium Rare Limited có địa
+  địa chỉ đăng ký: Korporaalweg 10, Willemstad, Curaçao. Liên hệ với chúng tôi tại
+  {email}. Công ty đại lý thanh toán là Medium Rare Limited có địa
   chỉ tại 7-9 Riga Feraiou, LIZANTIA COURT, Office 310, Agioi Omologites, 1087 Nicosia,
   Cyprus và số đăng ký: HE 410775 {site} được Chính phủ Curacao ủy quyền và quản lý
   và ban hành theo Hoạt động theo giấy phép số 8048/JAZ cấp cho Antillephone. {site}
@@ -1905,9 +1905,9 @@ get_email_code: Lấy mã xác minh
 re_get: Yêu cầu lấy lại
 footer_description: "{name} được sở hữu và điều hành bởi Medium Rare N.V., số đăng
   ký: 145353, địa chỉ đăng ký: Korporaalweg 10, Willemstad, Curaçao. Vui lòng liên
-  hệ với chúng tôi theo địa chỉ {email}. Cơ quan thanh toán là Medium Rare Limited,
+  hệ với chúng tôi theo địa chỉ {email}. Công ty đại lý thanh toán là Medium Rare Limited với địa chỉ
   7-9 Riga Feraiou, LIZANTIA COURT, Office 310, Agioi Omologites, 1087 Nicosia, Cyprus
-  và số đăng ký: HE 410775"
+  và Số đăng ký: HE 410775"
 empty_fav_event: Chưa có sự kiện yêu thích nào
 reject: Từ chối
 emoji_title: Biểu tượng cảm xúc
@@ -2179,7 +2179,7 @@ sport_new_intro_4: Tùy thuộc vào môn thể thao và sự kiện thể thao 
   nhiều lựa chọn và chiến lược thể thao dành cho những người đặt cược thể thao đầy
   tham vọng nhất. Với hơn 100.000 cược thể thao được đặt hàng ngày, {site} là trang
   web hàng đầu về cá cược thể thao trong nước và quốc tế. Nhận tất cả dữ liệu và xu
-  hướng thể thao mới nhất cho tháng 8 năm 2023!
+  hướng thể thao mới nhất cho tháng 8 năm 2024!
 sport_new_intro_5: Tìm hiểu thêm về cách đặt cược vào các môn thể thao, trò chơi và
   cầu thủ yêu thích của bạn với hướng dẫn cá cược thể thao đỉnh cao của chúng tôi!
 sport_new_intro_6: Tỷ lệ cá cược thể thao trực tuyến và các loại cá cược

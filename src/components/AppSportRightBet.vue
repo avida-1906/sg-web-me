@@ -82,7 +82,6 @@ onMounted(() => {
           --tg-base-select-popper-style-padding-y:0;"
         :distance="8"
         :options="headSelectData" no-hover popper
-        @click="getBetListDataHandle"
       >
         <template #label="{ data }">
           <div class="type-select">

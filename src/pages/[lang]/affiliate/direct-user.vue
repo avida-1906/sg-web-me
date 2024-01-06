@@ -19,16 +19,16 @@ const searchValue = useDebouncedRef({ value: '', delay: 1000 })
 
 const columns: Column[] = [
   {
-    title: t('player_id'),
-    dataIndex: 'username',
-    align: 'center',
-    slot: 'username',
-  },
-  {
     title: t('register_time'),
     dataIndex: 'created_at',
     align: 'center',
     slot: 'created_at',
+  },
+  {
+    title: t('user_account'),
+    dataIndex: 'username',
+    align: 'center',
+    slot: 'username',
   },
   {
     title: t('is_first_deposit'),

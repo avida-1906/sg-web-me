@@ -37,7 +37,7 @@ const columns: Column[] = [
     slot: 'created_at',
   },
   {
-    title: t('player_id'),
+    title: t('user_account'),
     dataIndex: 'username',
     align: 'center',
     slot: 'username',
