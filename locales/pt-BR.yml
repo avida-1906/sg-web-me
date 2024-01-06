@@ -2,7 +2,7 @@ login: Entrar
 reg: Registrar-se
 register: Criar conta
 continue: Continuar
-gamer: Jogador
+gamer: Usuário
 currency_type: Moeda
 start_game: Iniciar jogo
 slot: Slot
@@ -61,7 +61,7 @@ responsible_casino: Jogo Responsável
 license: Licenças
 self_exclusion: Autoexclusão
 anti_money_laundering_rule: Política AML
-copyright: Direitos autorais
+copyright: Todos os Direitos Reservados
 and: e
 terms_of_service: Termos de Serviço
 applicable: Aplicável
@@ -94,7 +94,7 @@ my_bets: Minhas Apostas
 all_bets: Todas as Apostas
 casino_bets: Apostas de cassino
 billboard: Grandes Apostadores
-competition_board: Tabela de classificação da competição
+competition_board: Classificação da Corrida
 competition: Competição
 competition_name: Nome da competição
 currency: Moeda
@@ -776,10 +776,10 @@ search_events: Procurar seu jogo
 casino_origin_game: Jogos originais
 casino_games_recommend: Recomendações populares
 casino_provider: Fornecedor de jogos
-casino_sort_popular: Popular
+casino_sort_popular: Destaques
 casino_sort_featured: Destaques
 casino_filter_label: Filtrar por
-casino_filter_label_sort: Ordenar por
+casino_filter_label_sort: Ordenar Por
 casino_filter_provider_all: Visualizar todos os fornecedores de jogos
 load_more: Carregar mais
 game_type_all: Lobby
@@ -927,7 +927,7 @@ sports_status_win_half: Ganhar metade
 sports_status_lose_half: Perder metade
 sports_status_lose_part: Perder parcialmente
 sports_estimated_payment_amount: Pagamento estimado
-sports_payment_amount: Valor do pagamento
+sports_payment_amount: Pagamento
 sports_single_bet: Aposta simples
 sports_multi_bet: Aposta múltipla
 sports_active: Não liquidado
@@ -1189,8 +1189,8 @@ fairness: Justiça
 switch_wave: Alterar volatilidade
 house_edge: Pontos fortes
 investor: Investidor
-partner: Parceiro
-media: Mídia
+partner: Parceiros
+media: Imprensa
 win: Vitória
 win_equal_lose: Vitórias igual derrotas
 transaction_way: Métodos de transação
@@ -1308,7 +1308,7 @@ load_fail: Falha ao carregar
 plat_maintain: Local em manutenção
 no_more: Sem mais
 loading_label: Carregando
-recent_game_record: Registro de jogos recentes
+recent_game_record: Recente
 profile: Perfil
 chat_rule_title: Regras da sala de bate-papo
 delete_confirm: Confirmar exclusão
@@ -2200,7 +2200,7 @@ sport_new_intro_4: Dependendo do esporte e do jogo ao vivo, uma grande variedade
   opções e estratégias estão disponíveis para os apostadores mais ambiciosos. Com
   mais de 100.000 apostas esportivas feitas diariamente, o {site} é o principal site
   de apostas esportivas nacionais e internacionais. Obtenha todas as últimas tendências
-  e dados esportivos para agosto de 2023!
+  e dados esportivos para agosto de 2024!
 sport_new_intro_5: Saiba mais sobre como apostar em seus esportes, jogos e jogadores
   favoritos com nosso guia definitivo de apostas esportivas!
 sport_new_intro_6: Probabilidades e tipos de apostas esportivas online
