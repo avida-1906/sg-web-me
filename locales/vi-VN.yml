@@ -106,7 +106,7 @@ withdraw: Rút tiền
 this_field_is_required: Phần này bắt buộc
 buy_cryptocurrency: Mua tiền điện tử
 your_currency_deposit_address: Địa chỉ nạp tiền {currency} của bạn
-sports_events: Các mục thể thao
+sports_events: Tất cả
 top_sports_events: Môn Thể Thao Hàng Đầu
 choose_your_balance: Lựa chọn hiển thị số dư
 enter_your_content: Vui lòng nhập nội dung
@@ -496,7 +496,7 @@ still_generating_answer: Vẫn đang tạo ra câu trả lời...
 still_thinking: Đang xem xét
 still_working_on_it: Vẫn đang nỗ lực để giải quyết...
 string_is_incorrect: có vẻ không đúng
-submit: Nộp
+submit: Gửi
 successfully_reconnected: Đã kết nối lại thành công
 suggested_articles: bài viết được đề xuất
 suggested_content_prompt: Những điều này có liên quan đến vấn đề của bạn không?
@@ -735,17 +735,17 @@ search_need_at_least_3_word: Yêu cầu ít nhất 3 ký tự để tìm kiếm.
 search_recent: Tìm kiếm gần đây
 search_no_result: Không có kết quả nào được tìm thấy.
 search_clear: Tìm kiếm rõ ràng
-search_game: Tìm kiếm trò chơi
+search_game: Tìm kiếm trò chơi của bạn
 search_events: Tìm kiếm sự kiện
 casino_origin_game: trò chơi nguyên bản
 casino_games_recommend: Đề xuất
-casino_provider: nhà cung cấp trò chơi
+casino_provider: Nhà cung cấp
 casino_sort_popular: Phổ biến
 casino_sort_featured: Tính năng
 casino_filter_label: Được lọc bởi
 casino_filter_label_sort: Sắp xếp theo
 casino_filter_provider_all: Xem Tất cả các Nhà cung cấp
-load_more: tải thêm
+load_more: Tải Thêm
 game_type_all: sảnh
 game_type_live: sòng bạc trực tiếp
 game_type_slot: Máy đánh bạc con hổ
@@ -813,12 +813,12 @@ menu_title_settings_withdrawals: Rút tiền
 menu_title_settings_bets: Cược
 menu_title_settings_archive: Lưu trữ cá cược
 menu_title_settings_other: Khác
-menu_title_settings_contact: Thông tin liên lạc
+menu_title_settings_contact: Chung
 menu_title_settings_update_loginpwd: Đổi mật khẩu
 menu_title_settings_update_safepwd: Mật khẩu quỹ
 menu_title_settings_update_safecheck: Xác minh hai bước
 menu_title_settings_private: Tùy chọn quyền riêng tư
-menu_title_settings_loginsession: Nhật ký đăng nhập
+menu_title_settings_loginsession: Phiên
 register_date: Ngày đăng kí
 total_deposits: Tổng số tiền nạp
 last_deposits: khoản tiền nạp cuối cùng
@@ -876,7 +876,7 @@ formula-1: Đua xe công thức một
 cross-country: xuyên quốc gia
 cycling: đua xe đạp
 sports_event: sự kiện thể thao
-sports_status_timeout: Trận đấu tạm dừng
+sports_status_timeout: Bị gián đoạn
 sports_status_live: Trực tiếp
 sports_status_close: Trận đấu hủy bỏ
 sports_status_interrupted: Trận đấu bị gián đoạn
@@ -891,8 +891,8 @@ sports_estimated_payment_amount: 'Dự kiến số tiền chi trả '
 sports_payment_amount: Thanh toán
 sports_single_bet: Đơn cược
 sports_multi_bet: Cược nhiều lần
-sports_active: Chưa kết toán
-sports_settled: Đã kết toán
+sports_active: Hoạt động
+sports_settled: Đã đặt
 sports_accept_any_odds: chấp nhận mọi tỷ lệ cược
 sports_accept_higher_odds: Chỉ chấp nhận tỷ lệ cược cao hơn
 sports_accept_none_odds: Không có thay đổi tỷ lệ cược sẽ được chấp nhận
@@ -918,7 +918,7 @@ sports_live_tv: Phát trực tiếp
 sports_live_favourites: Vòng cược phổ biến của trận đấu đang diễn ra
 sports_upcoming_favourites: Sắp diễn ra trận đấu phổ biến
 sports_provider: Mục thể thao
-sports_odds_title: Tỉ lệ
+sports_odds_title: Tỷ lệ cược
 DECIMAL: Số thập phân
 FRACTION: Phân số
 AMERICAN: American
@@ -950,7 +950,7 @@ chat_command_tip_user: Gửi tiền bo cho khách chơi
 chat_command_tip_rain: Gửi phong bao đỏ
 chat_command_ignore_user: Thêm vào danh sách đen
 chat_command_unignore_user: Loại khỏi danh sách đen
-chat_send_msg_placeholder: Nhập thông báo của bạn
+chat_send_msg_placeholder: Nhập tin nhắn của bạn
 chat_new_window: Phòng trò chuyện được bật lên
 chat_close_side: Thu gọn thanh chat
 chat_send_tip_label: Gửi tặng tiền tip
@@ -958,7 +958,7 @@ chat_rule_full_title: Các quy tắc hoàn chỉnh có thể được tìm thấ
 chat_forum: Diễn đàn
 chat_rule_find: Tìm thấy trên.
 about_us: Về Chúng Tôi
-sponsor_activity: Hoạt động được tài trợ
+sponsor_activity: Tài trợ
 online_shopping: Cửa hàng
 notify_error_forbid_operation: Hoạt động này không được phép
 user_account: Tài khoản
@@ -1068,7 +1068,7 @@ label_type: Loại hình
 label_currency_types: Loại tiền tệ
 label_draw_time: Thời gian nhận lãnh
 label_contribute_count: Số lượng người đóng góp
-label_bind: Liên kết
+label_bind: Chương trình liên kết
 title_input_paypwd: Nhập mật khẩu quỹ
 title_wallet_set: Cài đặt ví
 success_bind: Liên kết thành công
@@ -1243,7 +1243,7 @@ validate_msg_user_name_tip: "    Tên người dùng của bạn phải có 3 �
 success_register: Đăng ký thành công
 user_name_exist: Tên người dùng đã tồn tại, vui lòng điền lại tên người dùng
 currency_disable: Không thể sử dụng tiền tệ
-save: Lưu lại
+save: Lưu
 verified: Đã xác minh
 raffle_ticket: Phiếu rút thăm
 in_date: Tham gia vào ngày
@@ -1267,9 +1267,9 @@ load_fail: Tải không thành công
 plat_maintain: Phòng chơi đang được bảo trì
 no_more: Không còn nhiều nữa
 loading_label: Đang tải...
-recent_game_record: Lịch sử trò chơi gần đây
+recent_game_record: Gần đây
 profile: Hồ sơ
-chat_rule_title: Nội quy phòng trò chuyện
+chat_rule_title: Quy Tắc Chat
 delete_confirm: Xóa bỏ xác nhận
 login_fail_tip: Đăng nhập không thành công, vui lòng đăng nhập lại
 sys_error: Lỗi hệ thống
@@ -1348,10 +1348,10 @@ success_verify: Xác minh thành công
 congratulate_email_success: Chúc mừng bạn đã xác minh địa chỉ thư điện tử thành
   công!
 resend_email: Gửi lại vào hòm thư điện tử
-phone: Số điện thoại
+phone: Số Điện Thoại
 tip_phone: Chúng tôi chỉ phục vụ các khu vực được liệt kê trong danh sách mã gọi
   quốc tế.
-intl_phone_pre: Mã gọi quốc tế
+intl_phone_pre: Mã Nước
 social_account: tài khoản mạng xã hội
 action: Hành động
 cancel_ignore: Xóa bỏ danh sách đen
@@ -1387,7 +1387,7 @@ tip_safepwd: Mật khẩu quỹ sẽ được sử dụng để bảo vệ việ
   toàn từ kho tiền.
 login_time: Thời gian đăng nhập
 browser: Trình duyệt
-area: Khu vực
+area: Gần
 wise_bet: Đặt cược thông minh hơn
 reg_now: Đăng ký ngay
 welcome_back: Chào mừng quay lại
@@ -1751,7 +1751,7 @@ pls_input_deposit_name: Tên người nạp tiền là bắt buộc
 min_amount_0: Số tiền tối thiểu không thể nhỏ hơn hoặc bằng 0
 min_len_6: Độ dài ký tự tối thiểu là 6
 safe_pwd_error: Định dạng mật khẩu thanh toán sai
-save_to_vault: Nạp tiền vào Vault
+save_to_vault: Nạp vào kho
 draw_vault: Rút từ kho
 vault_info: Tìm hiểu thêm về Kho
 progress_level: Quá trình tiến độ
