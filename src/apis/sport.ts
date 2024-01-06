@@ -380,3 +380,20 @@ export function ApiSportsHomePageConfig() {
     }[]
   }>(`/sport/${getSportsPlatId()}/homepage/config`)
 }
+
+/**
+ * 列表盘口下拉选单
+ *
+ */
+export function ApiSportsBetType() {
+  return httpClient.get<{
+    d: {
+      si: number
+      btl: {
+        bt: number
+        egi: number
+        btn: string
+      }[]
+    }[]
+  }>(`/sport/${getSportsPlatId()}/bettype/filter`)
+}

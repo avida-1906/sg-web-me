@@ -792,6 +792,7 @@ declare module 'vue' {
     readonly ApiSportPlaceBet: UnwrapRef<typeof import('./apis/sport')['ApiSportPlaceBet']>
     readonly ApiSportPlaceBetInfo: UnwrapRef<typeof import('./apis/sport')['ApiSportPlaceBetInfo']>
     readonly ApiSportSidebar: UnwrapRef<typeof import('./apis/sport')['ApiSportSidebar']>
+    readonly ApiSportsBetType: UnwrapRef<typeof import('./apis/sport')['ApiSportsBetType']>
     readonly ApiSportsEventHot: UnwrapRef<typeof import('./apis/sport')['ApiSportsEventHot']>
     readonly ApiSportsHomePageConfig: UnwrapRef<typeof import('./apis/sport')['ApiSportsHomePageConfig']>
     readonly ApiWalletBankcardList: UnwrapRef<typeof import('./apis/index')['ApiWalletBankcardList']>
@@ -1443,6 +1444,7 @@ declare module '@vue/runtime-core' {
     readonly ApiSportPlaceBet: UnwrapRef<typeof import('./apis/sport')['ApiSportPlaceBet']>
     readonly ApiSportPlaceBetInfo: UnwrapRef<typeof import('./apis/sport')['ApiSportPlaceBetInfo']>
     readonly ApiSportSidebar: UnwrapRef<typeof import('./apis/sport')['ApiSportSidebar']>
+    readonly ApiSportsBetType: UnwrapRef<typeof import('./apis/sport')['ApiSportsBetType']>
     readonly ApiSportsEventHot: UnwrapRef<typeof import('./apis/sport')['ApiSportsEventHot']>
     readonly ApiSportsHomePageConfig: UnwrapRef<typeof import('./apis/sport')['ApiSportsHomePageConfig']>
     readonly ApiWalletBankcardList: UnwrapRef<typeof import('./apis/index')['ApiWalletBankcardList']>

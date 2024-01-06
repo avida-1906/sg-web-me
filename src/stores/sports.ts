@@ -116,6 +116,9 @@ export const useSportsStore = defineStore('sports', () => {
     },
   })
 
+  /** 列表盘口下拉选单 */
+  const { data: sportsBetTypeData, runAsync: runAsyncEventBetType } = useRequest(ApiSportsBetType)
+
   /** 首页相关设定 */
   const { data: homePageConfig, runAsync: runAsyncHomeConfig } = useRequest(ApiSportsHomePageConfig, {
     onSuccess(res) {
@@ -134,7 +137,7 @@ export const useSportsStore = defineStore('sports', () => {
         currentProvider.value = res.d[0].id
         Local.set(STORAGE_SPORTS_CURRENT_PROVIDER, res.d[0].id)
       }
-      runAsyncHomeConfig().then(() => runSportsCount())
+      runAsyncEventBetType().then(() => runSportsCount())
       runSportsSidebar()
     },
   })
@@ -318,10 +321,26 @@ export const useSportsStore = defineStore('sports', () => {
     return null
   })
 
+  // /** 所有球种盘口类型下拉选单 */
+  // const sportsBetTypeList = computed(() => {
+  //   if (homePageConfig.value && homePageConfig.value.bettype_filter) {
+  //     return homePageConfig.value.bettype_filter.map((a) => {
+  //       return {
+  //         si: a.si,
+  //         btl: a.btl.map((b) => {
+  //           return {
+  //             ...b, value: `${b.bt}@@${b.egi}`, label: b.btn,
+  //           }
+  //         }),
+  //       }
+  //     })
+  //   }
+  //   return []
+  // })
   /** 所有球种盘口类型下拉选单 */
   const sportsBetTypeList = computed(() => {
-    if (homePageConfig.value && homePageConfig.value.bettype_filter) {
-      return homePageConfig.value.bettype_filter.map((a) => {
+    if (sportsBetTypeData.value && sportsBetTypeData.value.d) {
+      return sportsBetTypeData.value.d.map((a) => {
         return {
           si: a.si,
           btl: a.btl.map((b) => {
