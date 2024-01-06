@@ -2,9 +2,9 @@ login: Đăng Nhập
 reg: Đăng ký
 register: Tạo Tài khoản
 continue: Tiếp tục
-gamer: Khách chơi
+gamer: Người chơi
 currency_type: Loại ngoại tệ
-start_game: Bắt đầu trò chơi
+start_game: Chơi
 slot: Điện tử
 fishing: Bắn cá
 chess: Đánh bài
@@ -99,7 +99,7 @@ billboard: Người Chơi Lớn
 competition_board: Bảng xếp hạng cuộc đua
 competition: Cuộc thi
 competition_name: Tên cuộc thi
-currency: Tiền tệ
+currency: Tiền
 network: Mạng lưới
 deposit: 'Nạp tiền '
 withdraw: Rút tiền
@@ -784,8 +784,8 @@ avai_commission: Hoa hồng có sẵn
 total_commission: Tổng hoa hồng
 page_label: Trang
 page_sizer_label: ĐiềuTrang
-page_prev: Trang trước
-page_next: Trang sau
+page_prev: Trước
+page_next: Tiếp
 jump_to: Chuyển tới
 currency_byte_coin: tiền điện tử
 currency_law_coin: đấu thầu hợp pháp
@@ -810,7 +810,7 @@ menu_title_settings_verify: Xác minh
 menu_title_settings_offers: Ưu đãi
 menu_title_settings_deposits: Nạp tiền
 menu_title_settings_withdrawals: Rút tiền
-menu_title_settings_bets: Đặt cược
+menu_title_settings_bets: Cược
 menu_title_settings_archive: Lưu trữ cá cược
 menu_title_settings_other: Khác
 menu_title_settings_contact: Thông tin liên lạc
@@ -1099,8 +1099,8 @@ weekly_bonus: Tiền thưởng hàng tuần
 day_deposit_bonus: Tiền thưởng hàng ngày/tiền thưởng nạp tiền
 recent_game_perform_bonus: Tiền thưởng hiệu suất trò chơi gần đây
 dedicated_vip_servicer: 'Đại diện chuyên dịch vụ chăm sóc hội viên VIP '
-multiple_count: Phép nhân
-ranking: Xếp hạng
+multiple_count: Hệ số
+ranking: Hạng
 hidden_user: Tài khoản ẩn
 hidden_mode: Cách thức ẩn
 user_turn_on_hidden: Khách chơi đã bất chế độ riêng tư
@@ -1214,7 +1214,7 @@ validate_deposit_amount_zero: Số tiền nạp không thể bằng 0
 withdraw_apply_success: Lệnh rút tiền thành công
 withdraw_bank: Thẻ ngân hàng rút tiền
 pix_account: Tài khoản PIX
-max: giá trị lớn nhất
+max: Tối đa
 sports_rule: Cách Đặt Cược Thể Thao
 scan: Duyệt
 change_byte_addr: Bạn có chắc chắn muốn thay đổi địa chỉ gửi tiền {delta} của mình không?
@@ -1229,8 +1229,8 @@ validate_msg_user_name: Vui lòng nhập địa chỉ email chính xác hoặc t
   bằng tiếng Anh và số có 3-14 chữ thường
 need_login_tip: Bạn cần đăng nhập để thực hiện thao tác này
 mark_all_read: đánh dấu tất cả như đã đọc
-empty_notify: Chưa có thông báo
-tip_show_action: Tương tác của bạn sẽ xuất hiện ở đây
+empty_notify: Không có thông báo nào
+tip_show_action: Các tương tác của bạn sẽ hiện thị ở đây
 tip_for_set_safepwd: Để đảm bảo an toàn cho tiền của bạn, trước tiên vui lòng đặt
   mật khẩu quỹ.
 tip_set_safe: Vui lòng đặt mật khẩu quỹ trước
@@ -1246,7 +1246,7 @@ currency_disable: Không thể sử dụng tiền tệ
 save: Lưu lại
 verified: Đã xác minh
 raffle_ticket: Phiếu rút thăm
-in_date: Ngày tham gia
+in_date: Tham gia vào ngày
 fresh_competition: cuộc thi mới nhất
 deal_pend: Chờ xử lý
 adopted: Đã thông qua
@@ -1333,8 +1333,8 @@ enjoy: Thưởng thức
 user_effect_bet: Bạn đã đặt cược hiệu quả {num} triệu
 sub_self_no_profit: Không có cấp dưới, không có lợi cho mình
 activity_name: Tên hoạt động
-label_no_collect: Chưa có mục yêu thích nào, vui lòng sử dụng
-put_collect: Thêm trò chơi vào mục yêu thích.
+label_no_collect: Chưa có mục yêu thích
+put_collect: để thêm trò chơi yêu thích.
 success_edit: Sửa đổi thành công
 this_contains_invalid_email_characters: Điều này chứa các ký tự email không hợp
   lệ
@@ -1391,7 +1391,7 @@ area: Khu vực
 wise_bet: Đặt cược thông minh hơn
 reg_now: Đăng ký ngay
 welcome_back: Chào mừng quay lại
-user_vip_pro: Tiến trình VIP của bạn
+user_vip_pro: Tiến Độ VIP Của Bạn
 most_advance_casino: Sòng bạc tiền điện tử trực tuyến hàng đầu
 go_casino: Đến khu vực sòng bạc
 best_sports: Cá cược thể thao trực tuyến bằng tiền điện tử tốt nhất
@@ -1411,8 +1411,8 @@ pls_confirm_deposit_addr: Vui lòng xác nhận rằng địa chỉ thanh toán 
 use_in_game: Trò chơi đang được sử dụng
 search_currency: Tìm kiếm tiền tệ
 card_wallet: Ví thẻ
-improve_safe_level: Cải thiện bảo mật tài khoản của bạn với xác minh hai yếu tố
-turn_on_double_check: Bật xác minh hai bước
+improve_safe_level: Cải thiện bảo mật tài khoản của bạn với Xác thực hai yếu tố
+turn_on_double_check: Kích Hoạt 2FA
 hide_zero_wallet: Ẩn số dư bằng 0
 zero_wallet_hidden: Số dư bằng 0 của bạn sẽ không hiển thị trong ví của bạn
 address: Địa chỉ
@@ -1434,7 +1434,7 @@ other_team: Đội nhóm khác
 summary: ghi chú tóm tắt
 no_bonus_now: 'Hiện tại không thể. nhận tiền quà tặng hoạt động nào '
 fail_bonus: Nhận lãnh thất bại
-bet_number: Số đơn đặt cược
+bet_number: ID Cược
 transaction_rebate: Hoàn trả cược của hội viên
 transaction_activity: Phần thưởng hoạt động
 transaction_admin_activity: Phẩn thưởng được gửi thủ công
@@ -1752,8 +1752,8 @@ min_amount_0: Số tiền tối thiểu không thể nhỏ hơn hoặc bằng 0
 min_len_6: Độ dài ký tự tối thiểu là 6
 safe_pwd_error: Định dạng mật khẩu thanh toán sai
 save_to_vault: Nạp tiền vào Vault
-draw_vault: Từ Vault rút ra
-vault_info: Tìm hiểu thêm về Vault
+draw_vault: Rút từ kho
+vault_info: Tìm hiểu thêm về Kho
 progress_level: Quá trình tiến độ
 send_currency_bonus: Bộ phận hỗ trợ sẽ gửi tiền thưởng bằng loại tiền bạn chọn
 turn_on_rebate: Bật chức nặng hoàn trả cược
