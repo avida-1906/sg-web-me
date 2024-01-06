@@ -39,16 +39,16 @@ await application.allSettled([loadIcon()])
   <!-- 大厅 -->
   <template v-if="marketType === 'all'">
     <div class="lobby">
-      <div class="types">
+      <!-- <div class="types">
         <AppSportsEventTypeTab
           v-model="lobbyCurrentEventType"
           :list="sportsEventTypeList ?? []"
         />
-        <!-- <AppSportsMarketTypeSelect
+        <AppSportsMarketTypeSelect
           v-model="currentLiveBetType" :is-standard="isStandard"
           :base-type-options="baseTypeOptions"
-        /> -->
-      </div>
+        />
+      </div> -->
     </div>
     <AppSportsPageLive on-page on-lobby />
     <AppSportsHotEvent />
