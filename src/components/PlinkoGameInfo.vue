@@ -62,7 +62,6 @@ export default {
   background: #223d49;
   border: 5px solid #0a1e29;
   color: #fff;
-  font-family: PingFang SC;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -84,7 +83,6 @@ export default {
   gap: 10px;
   align-items: center;
   color: #fff;
-  font-family: PingFang SC;
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
@@ -98,7 +96,6 @@ export default {
   gap: 10px;
   margin-top: 30px;
   color: #b1bad3;
-  font-family: PingFang SC;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;

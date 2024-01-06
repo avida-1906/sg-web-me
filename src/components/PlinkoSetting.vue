@@ -210,7 +210,6 @@ export default {
 
 .footer-span {
   color: #b1bad3;
-  font-family: PingFang SC;
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
@@ -261,7 +260,6 @@ export default {
 
 .dropdown-content .contents span {
   color: #2f4553;
-  font-family: PingFang SC;
   font-size: 14px;
   font-style: normal;
   font-weight: 600;

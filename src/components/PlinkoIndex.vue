@@ -531,7 +531,6 @@ onMounted(() => {
   z-index: 1;
   bottom: 150%;
   left: 10%;
-  font-family: sans-serif;
 }
 
 .tooltip .tooltiptext::after {
@@ -567,7 +566,6 @@ select {
 
 .spanstyle {
   color: #b1bad3;
-  font-family: PingFang SC;
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
@@ -679,7 +677,6 @@ button {
 .autobet-alert span {
   color: #fff;
   text-align: center;
-  font-family: PingFang SC;
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
