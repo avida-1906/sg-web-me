@@ -784,8 +784,8 @@ avai_commission: Hoa hồng có sẵn
 total_commission: Tổng hoa hồng
 page_label: Trang
 page_sizer_label: ĐiềuTrang
-page_prev: Trang trước
-page_next: Trang sau
+page_prev: Trước
+page_next: Tiếp
 jump_to: Chuyển tới
 currency_byte_coin: tiền điện tử
 currency_law_coin: đấu thầu hợp pháp
@@ -1246,7 +1246,7 @@ currency_disable: Không thể sử dụng tiền tệ
 save: Lưu lại
 verified: Đã xác minh
 raffle_ticket: Phiếu rút thăm
-in_date: Ngày tham gia
+in_date: Tham gia vào ngày
 fresh_competition: cuộc thi mới nhất
 deal_pend: Chờ xử lý
 adopted: Đã thông qua
@@ -1333,8 +1333,8 @@ enjoy: Thưởng thức
 user_effect_bet: Bạn đã đặt cược hiệu quả {num} triệu
 sub_self_no_profit: Không có cấp dưới, không có lợi cho mình
 activity_name: Tên hoạt động
-label_no_collect: Chưa có mục yêu thích nào, vui lòng sử dụng
-put_collect: Thêm trò chơi vào mục yêu thích.
+label_no_collect: Chưa có mục yêu thích
+put_collect: để thêm trò chơi yêu thích.
 success_edit: Sửa đổi thành công
 this_contains_invalid_email_characters: Điều này chứa các ký tự email không hợp
   lệ
@@ -1434,7 +1434,7 @@ other_team: Đội nhóm khác
 summary: ghi chú tóm tắt
 no_bonus_now: 'Hiện tại không thể. nhận tiền quà tặng hoạt động nào '
 fail_bonus: Nhận lãnh thất bại
-bet_number: Số đơn đặt cược
+bet_number: ID Cược
 transaction_rebate: Hoàn trả cược của hội viên
 transaction_activity: Phần thưởng hoạt động
 transaction_admin_activity: Phẩn thưởng được gửi thủ công
