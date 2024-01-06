@@ -134,7 +134,7 @@ watch(tabList, (val) => {
   --tg-base-button-justify-content: space-around;
   --tg-app-dropdown-width: 100%;
   .tabs {
-    padding: var(--tg-spacing-12);
+    // padding: var(--tg-spacing-12);
     border-radius: var(--tg-radius-default);
     display: flex;
     flex-direction: column;
