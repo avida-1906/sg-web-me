@@ -226,7 +226,7 @@ onMounted(() => {
   }
   .tabs {
     // background: var(--tg-secondary-dark);
-    padding: 12px 12px;
+    // padding: 12px 12px;
     border-radius: var(--tg-radius-default);
   }
 }

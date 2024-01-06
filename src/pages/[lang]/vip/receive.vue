@@ -1,14 +1,6 @@
 <script lang="ts" setup>
 import type { EnumCurrencyKey } from '~/apis/types'
 
-interface IColumns {
-  title?: string
-  width?: number | string
-  dataIndex: string
-  slot?: string
-  align?: 'left' | 'center' | 'right'
-}
-
 const today = dayjs()
 
 const { t } = useI18n()
@@ -17,35 +9,46 @@ const dayOptions = [
   { label: t('today'), value: '0' },
   { label: t('last_days_mid', { delta: 7 }), value: '6' },
   { label: t('last_days_mid', { delta: 30 }), value: '29' },
-  { label: t('last_days_mid', { delta: 60 }), value: '59' },
+  { label: t('last_days_mid', { delta: 90 }), value: '89' },
+]
+const typeOptions = [
+  {
+    label: t('finance_other_tab_all'),
+    value: '',
+  },
+  { label: t('vip_promotion_bonus'), value: '1' },
+  { label: t('vip_day_salary_bonus'), value: '2' },
+  { label: t('vip_week_salary_bonus'), value: '3' },
+  { label: t('vip_month_salary_bonus'), value: '4' },
 ]
 
 const { renderBalanceList } = useCurrencyData()
 
-const columns = reactive<IColumns[]>([
+const columns = reactive<Column[]>([
   {
     title: t('label_draw_time'),
-    width: 90,
     dataIndex: 'updated_at',
     slot: 'updated_at',
-    align: 'left',
+    align: 'center',
+    width: '33%',
   },
   {
     title: t('receive_type'),
-    width: 100,
     dataIndex: 'cash_type',
     slot: 'cash_type',
     align: 'center',
+    width: '33%',
   },
   {
-    title: t('amount'),
-    width: 130,
+    title: t('receive_bonus_amount'),
     dataIndex: 'receive_amount',
     slot: 'receive_amount',
-    align: 'right',
+    align: 'center',
+    width: '33%',
   },
 ])
-const dayType = ref(dayOptions[0].value)
+const dayType = ref('89')
+const bonusType = ref('')
 
 const {
   list: records,
@@ -56,6 +59,7 @@ const {
   prev,
   next,
   data: backData,
+  loading,
 } = useList(ApiMemberVipBonusRecord, {}, { page_size: 10 })
 
 const params = computed(() => ({
@@ -87,87 +91,60 @@ function onNext() {
 runGetRecordAsync(params.value)
 
 watch(() => params.value.start_time, () => {
-  setTimeout(() => {
+  nextTick(() => {
     runGetRecordAsync(params.value)
-  }, 0)
+  })
 })
 </script>
 
 <template>
   <div class="app-vip-bonus-record">
     <div class="filters">
-      <BaseSelect v-model="dayType" :options="dayOptions" class="select-box" />
-      <div v-if="backData" class="total">
-        <span class="label">{{ t('receive_amount') }}：</span>
-        <AppAmount
-          currency-type="USDT"
-          :amount="+backData.total_amount > 0 ? backData.total_amount : '0.00'"
-        />
-      </div>
+      <BaseSelect v-model="dayType" :options="dayOptions" />
+      <BaseSelect v-model="bonusType" :options="typeOptions" />
     </div>
-    <template v-if="records && records.length">
-      <BaseTable :columns="columns" :data-source="records">
-        <!-- :loading="loading" -->
-        <template #updated_at="{ record }">
-          <div>{{ timeToFormat(record.updated_at) }}</div>
-        </template>
-        <template #cash_type="{ record }">
-          {{ getCashType(record.cash_type) }}
-        </template>
-        <template #receive_amount="{ record }">
-          <div class="to-right">
-            <AppAmount
-              :amount="record.receive_amount"
-              :currency-type="getCurrencyName(record.receive_currency_id)"
-            />
-          </div>
-        </template>
-      </BaseTable>
-      <div class="pages">
-        <AppStack
-          :pagination-data="{ page, pageSize: page_size, total }"
-          @previous="onPrevious" @next="onNext"
-        />
-      </div>
-    </template>
-    <BaseEmpty v-else :description="t('data_empty')" />
+    <BaseTable
+      :loading="loading"
+      :columns="columns"
+      :data-source="records"
+    >
+      <template #updated_at="{ record }">
+        <div>{{ timeToFormat(record.updated_at) }}</div>
+      </template>
+      <template #cash_type="{ record }">
+        {{ getCashType(record.cash_type) }}
+      </template>
+      <template #receive_amount="{ record }">
+        <div class="center">
+          <AppAmount
+            :amount="record.receive_amount"
+            :currency-type="getCurrencyName(record.receive_currency_id)"
+          />
+        </div>
+      </template>
+    </BaseTable>
+    <div v-if="total > 10" class="pages">
+      <AppStack
+        :pagination-data="{ page, pageSize: page_size, total }"
+        @previous="onPrevious" @next="onNext"
+      />
+    </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .filters {
-  display: flex;
+  max-width: 425px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
-  justify-content: space-between;
+  gap: 20px;
   font-size: var(--tg-font-size-default);
   font-weight: var(--tg-font-weight-semibold);
   --tg-base-select-style-padding-y: var(--tg-spacing-6);
-
-  .select-box {
-    width: 80px;
-  }
-
-  .total {
-    display: flex;
-    color: var(--tg-text-warn);
-
-    >.label {
-      color: var(--tg-text-white);
-    }
-  }
 }
 
 .pages {
   margin-top: var(--tg-spacing-16);
-}
-
-.to-right {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-}
-
-.app-vip-bonus-record {
-  padding: 0 var(--tg-spacing-16) var(--tg-spacing-16);
 }
 </style>

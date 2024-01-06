@@ -4,7 +4,7 @@
 const { userInfo } = storeToRefs(useAppStore())
 const { nextLevel, scoreToNext } = useVipInfo()
 
-const { openVipBonusRecordDialog } = useDialogVipBonusRecord()
+// const { openVipBonusRecordDialog } = useDialogVipBonusRecord()
 // const { openReceiveBonusDialog } = useDialogReceiveBonus()
 
 // const {
