@@ -48,6 +48,8 @@ export const useSportsStore = defineStore('sports', () => {
   const currentFavNav = ref(-1)
   /** 当前收藏展示的盘口类型 */
   const currentFavBetType = ref('3@@1')
+  /** 大厅当前的赛事类型 */
+  const lobbyCurrentEventType = ref('')
   /** 购物车 */
   const cart = reactive(new SportsCart(currentGlobalCurrency.value))
 
@@ -115,7 +117,12 @@ export const useSportsStore = defineStore('sports', () => {
   })
 
   /** 首页相关设定 */
-  const { data: homePageConfig, runAsync: runAsyncHomeConfig } = useRequest(ApiSportsHomePageConfig)
+  const { data: homePageConfig, runAsync: runAsyncHomeConfig } = useRequest(ApiSportsHomePageConfig, {
+    onSuccess(res) {
+      if (res.list_filter)
+        lobbyCurrentEventType.value = res.list_filter[0].name
+    },
+  })
 
   /** 获取场馆列表 */
   const {
@@ -299,10 +306,16 @@ export const useSportsStore = defineStore('sports', () => {
 
   /** 赛事类型下拉选单 */
   const sportsEventTypeList = computed(() => {
-    if (homePageConfig.value && homePageConfig.value.list_filter)
-      return homePageConfig.value.list_filter
-
-    return []
+    if (homePageConfig.value && homePageConfig.value.list_filter) {
+      return homePageConfig.value.list_filter.map((a) => {
+        return {
+          label: a.name,
+          value: a.name,
+          ...a,
+        }
+      })
+    }
+    return null
   })
 
   /** 所有球种盘口类型下拉选单 */
@@ -397,6 +410,7 @@ export const useSportsStore = defineStore('sports', () => {
     currentFavBetType,
     sportsBetTypeList,
     sportsEventTypeList,
+    lobbyCurrentEventType,
     renderOdds,
     setSportsOddsType,
     getSportsOddsType,

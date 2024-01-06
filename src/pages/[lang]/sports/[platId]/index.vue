@@ -16,6 +16,11 @@ const marketType = ref(Session.get<string>(STORAGE_SPORTS_LIVE_NAV)?.value ?? 'a
 const tabList = computed(() => [
   { label: t('sports_tab_lobby'), value: 'all', icon: 'spt-basketball' },
   {
+    label: t('v_sports'),
+    value: 'v-sports',
+    icon: 'spt-v-sports',
+  },
+  {
     label: t('my_bets'),
     value: 'my-bet',
     icon: 'spt-user-bet',
@@ -27,8 +32,8 @@ const tabList = computed(() => [
     icon: 'uni-favorites',
     disabled: !isLogin.value,
   },
-  { label: t('sports_tab_live_events'), value: 'live', icon: 'spt-ball-plate' },
-  { label: t('sports_tab_starting_soon'), value: 'soon', icon: 'spt-timing' },
+  // { label: t('sports_tab_live_events'), value: 'live', icon: 'spt-ball-plate' },
+  // { label: t('sports_tab_starting_soon'), value: 'soon', icon: 'spt-timing' },
 ])
 
 function setLobby() {

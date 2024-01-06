@@ -6,8 +6,6 @@ interface Props {
   title: string
   odds: string
   cartInfo: ICartInfo
-  isHandicap?: boolean
-  hdp?: string
 }
 const props = defineProps<Props>()
 

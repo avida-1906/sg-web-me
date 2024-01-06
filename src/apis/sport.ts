@@ -370,6 +370,7 @@ export function ApiSportsHomePageConfig() {
     list_filter: {
       name: string
       icon: string
+      icon_hl: string
       type: number
       m: number
       ic: number

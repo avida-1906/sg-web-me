@@ -1,41 +1,56 @@
 <script setup lang='ts'>
+interface Props {
+  list: any[]
+}
+defineProps<Props>()
 const currentTab = defineModel({ type: String, required: true })
 
 const { isMobile } = storeToRefs(useWindowStore())
 
-const tabList = [
-  { label: '今日赛事', value: '1', icon: 'spt-event-jin' },
-  { label: '滚球盘', value: '2', icon: 'spt-ball-plate' },
-  { label: '早盘', value: '3', icon: 'spt-event-zao' },
-  { label: '串关', value: '4', icon: 'spt-event-chuan' },
-  { label: '冠军', value: '5', icon: 'spt-event-win' },
-]
+const hoverTab = ref('')
 
-type TabItem = typeof tabList[number]
-function onClick(item: TabItem) {
+function onClick(item: ISelectOptionString) {
   currentTab.value = item.value
+}
+
+function onMouseenter(name: string) {
+  hoverTab.value = name
+}
+function onMouseLeave() {
+  hoverTab.value = ''
 }
 </script>
 
 <template>
   <BaseSelect
-    v-if="isMobile" v-model="currentTab" popper :options="tabList"
+    v-if="isMobile" v-model="currentTab" popper :options="list"
     style="--tg-base-select-popper-bg-color:transparent;
-    --tg-base-select-hover-bg-color:transparent;"
+    --tg-base-select-hover-bg-color:transparent;
+    --tg-base-select-popper-style-padding-x:0;
+    --tg-base-select-popper-style-padding-y:0;"
   >
     <template #label="{ data }">
       <div class="select-label">
-        <BaseIcon :name="data?.icon" :has-transition="false" />
+        <AppImage
+          width="18px" height="18px"
+          :url="data?.icon_hl" is-cloud
+        />
         <span>{{ data?.label }}</span>
       </div>
     </template>
   </BaseSelect>
   <div v-else class="event-type-tab">
     <div
-      v-for="t in tabList" :key="t.value" class="tab"
-      :class="{ active: t.value === currentTab }" @click="onClick(t)"
+      v-for="t in list" :key="t.value" class="tab"
+      :class="{ active: t.value === currentTab }"
+      @mouseenter="onMouseenter(t.value)" @mouseleave="onMouseLeave"
+      @click="onClick(t)"
     >
-      <BaseIcon :name="t.icon" :has-transition="false" />
+      <AppImage
+        width="18px" height="18px"
+        :url="hoverTab === t.value || t.value === currentTab ? t.icon_hl : t.icon"
+        is-cloud
+      />
       <span>{{ t.label }}</span>
     </div>
   </div>
