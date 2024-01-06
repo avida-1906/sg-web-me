@@ -2321,3 +2321,4 @@ plinko_max: "最大值"
 plinko_autobetalert1: "自动投注开始"
 plinko_autobetalert2: "自动投注完成"
 plinko_betamountalert: "您的投注额不能大于余额！"
+commission_draw_success: 佣金提取成功

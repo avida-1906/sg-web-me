@@ -8,6 +8,7 @@ declare global {
   const ApiAddFeedbackChatMsg: typeof import('./apis/index')['ApiAddFeedbackChatMsg']
   const ApiAgencyCommission: typeof import('./apis/index')['ApiAgencyCommission']
   const ApiAgencyCommissionRecords: typeof import('./apis/index')['ApiAgencyCommissionRecords']
+  const ApiAgencyCommissionRecordsClass: typeof import('./apis/index')['ApiAgencyCommissionRecordsClass']
   const ApiAgencyCommissionScale: typeof import('./apis/index')['ApiAgencyCommissionScale']
   const ApiAgencyInsert: typeof import('./apis/index')['ApiAgencyInsert']
   const ApiAgencyPerformance: typeof import('./apis/index')['ApiAgencyPerformance']
@@ -16,6 +17,7 @@ declare global {
   const ApiAgencyReportFinance: typeof import('./apis/index')['ApiAgencyReportFinance']
   const ApiAgencyReportReceive: typeof import('./apis/index')['ApiAgencyReportReceive']
   const ApiAgencyReportUser: typeof import('./apis/index')['ApiAgencyReportUser']
+  const ApiAgencyTransferToMember: typeof import('./apis/index')['ApiAgencyTransferToMember']
   const ApiChatGetHistory: typeof import('./apis/index')['ApiChatGetHistory']
   const ApiChatSendMessage: typeof import('./apis/index')['ApiChatSendMessage']
   const ApiDevDeleteThirdAuth: typeof import('./apis/index')['ApiDevDeleteThirdAuth']
@@ -674,6 +676,7 @@ declare module 'vue' {
     readonly ApiAddFeedbackChatMsg: UnwrapRef<typeof import('./apis/index')['ApiAddFeedbackChatMsg']>
     readonly ApiAgencyCommission: UnwrapRef<typeof import('./apis/index')['ApiAgencyCommission']>
     readonly ApiAgencyCommissionRecords: UnwrapRef<typeof import('./apis/index')['ApiAgencyCommissionRecords']>
+    readonly ApiAgencyCommissionRecordsClass: UnwrapRef<typeof import('./apis/index')['ApiAgencyCommissionRecordsClass']>
     readonly ApiAgencyCommissionScale: UnwrapRef<typeof import('./apis/index')['ApiAgencyCommissionScale']>
     readonly ApiAgencyInsert: UnwrapRef<typeof import('./apis/index')['ApiAgencyInsert']>
     readonly ApiAgencyPerformance: UnwrapRef<typeof import('./apis/index')['ApiAgencyPerformance']>
@@ -682,6 +685,7 @@ declare module 'vue' {
     readonly ApiAgencyReportFinance: UnwrapRef<typeof import('./apis/index')['ApiAgencyReportFinance']>
     readonly ApiAgencyReportReceive: UnwrapRef<typeof import('./apis/index')['ApiAgencyReportReceive']>
     readonly ApiAgencyReportUser: UnwrapRef<typeof import('./apis/index')['ApiAgencyReportUser']>
+    readonly ApiAgencyTransferToMember: UnwrapRef<typeof import('./apis/index')['ApiAgencyTransferToMember']>
     readonly ApiChatGetHistory: UnwrapRef<typeof import('./apis/index')['ApiChatGetHistory']>
     readonly ApiChatSendMessage: UnwrapRef<typeof import('./apis/index')['ApiChatSendMessage']>
     readonly ApiDevDeleteThirdAuth: UnwrapRef<typeof import('./apis/index')['ApiDevDeleteThirdAuth']>
@@ -1323,6 +1327,7 @@ declare module '@vue/runtime-core' {
     readonly ApiAddFeedbackChatMsg: UnwrapRef<typeof import('./apis/index')['ApiAddFeedbackChatMsg']>
     readonly ApiAgencyCommission: UnwrapRef<typeof import('./apis/index')['ApiAgencyCommission']>
     readonly ApiAgencyCommissionRecords: UnwrapRef<typeof import('./apis/index')['ApiAgencyCommissionRecords']>
+    readonly ApiAgencyCommissionRecordsClass: UnwrapRef<typeof import('./apis/index')['ApiAgencyCommissionRecordsClass']>
     readonly ApiAgencyCommissionScale: UnwrapRef<typeof import('./apis/index')['ApiAgencyCommissionScale']>
     readonly ApiAgencyInsert: UnwrapRef<typeof import('./apis/index')['ApiAgencyInsert']>
     readonly ApiAgencyPerformance: UnwrapRef<typeof import('./apis/index')['ApiAgencyPerformance']>
@@ -1331,6 +1336,7 @@ declare module '@vue/runtime-core' {
     readonly ApiAgencyReportFinance: UnwrapRef<typeof import('./apis/index')['ApiAgencyReportFinance']>
     readonly ApiAgencyReportReceive: UnwrapRef<typeof import('./apis/index')['ApiAgencyReportReceive']>
     readonly ApiAgencyReportUser: UnwrapRef<typeof import('./apis/index')['ApiAgencyReportUser']>
+    readonly ApiAgencyTransferToMember: UnwrapRef<typeof import('./apis/index')['ApiAgencyTransferToMember']>
     readonly ApiChatGetHistory: UnwrapRef<typeof import('./apis/index')['ApiChatGetHistory']>
     readonly ApiChatSendMessage: UnwrapRef<typeof import('./apis/index')['ApiChatSendMessage']>
     readonly ApiDevDeleteThirdAuth: UnwrapRef<typeof import('./apis/index')['ApiDevDeleteThirdAuth']>

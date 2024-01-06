@@ -64,7 +64,7 @@ watch(route, () => {
               <div>
                 <div
                   class="stack x-stretch y-center direction-vertical padding-none"
-                  :class="[appContentWidth > 800 ? 'gap-larger' : 'gap-larger']"
+                  :class="[appContentWidth > 800 ? 'gap-larger' : 'gap-big']"
                 >
                   <div class="wrap-flex">
                     <div

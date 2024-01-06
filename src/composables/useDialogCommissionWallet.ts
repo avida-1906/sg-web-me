@@ -1,4 +1,4 @@
-import AppCommissionWalletDialog from '~/components/AppCommissionWalletDialog.vue'
+import AppCommissionHolder from '~/components/AppCommissionHolder.vue'
 
 export function useDialogCommissionWallet() {
   const { t } = useI18n()
@@ -8,8 +8,8 @@ export function useDialogCommissionWallet() {
     closeDialog: closeCommissionWalletDialog,
   } = useDialog({
     title: title.value,
-    icon: 'chess-affiliate',
-    default: () => h(AppCommissionWalletDialog),
+    icon: 'chat-tip',
+    default: () => h(AppCommissionHolder),
   })
 
   return {

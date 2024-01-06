@@ -397,6 +397,10 @@ img.error {
     gap: var(--tg-spacing-24);
   }
 
+  &.gap-big {
+    gap: var(--tg-spacing-16);
+  }
+
   &.gap-medium {
     gap: var(--tg-spacing-12);
   }

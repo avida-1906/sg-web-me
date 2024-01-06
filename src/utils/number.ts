@@ -76,7 +76,8 @@ export function div(arg1: number, arg2: number): string {
  * @example console.log(toFixed(0.128456789, 2)) // 0.12
  * @return {string} 保留小数位数后的结果
  */
-export function toFixed(num: number, decimal: number): string {
+export function toFixed(num: number, _decimal?: number): string {
+  const decimal = _decimal || 2
   const [integer, decimalPart] = `${num}`.split('.')
 
   if (decimal) {
