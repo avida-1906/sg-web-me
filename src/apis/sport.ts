@@ -376,6 +376,7 @@ export function ApiSportsHomePageConfig() {
       ic: number
       hot: number
       hvs: number
+      lfid: number
     }[]
   }>(`/sport/${getSportsPlatId()}/homepage/config`)
 }

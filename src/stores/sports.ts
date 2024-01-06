@@ -49,7 +49,7 @@ export const useSportsStore = defineStore('sports', () => {
   /** 当前收藏展示的盘口类型 */
   const currentFavBetType = ref('3@@1')
   /** 大厅当前的赛事类型 */
-  const lobbyCurrentEventType = ref('')
+  const lobbyCurrentEventType = ref(0)
   /** 购物车 */
   const cart = reactive(new SportsCart(currentGlobalCurrency.value))
 
@@ -120,7 +120,7 @@ export const useSportsStore = defineStore('sports', () => {
   const { data: homePageConfig, runAsync: runAsyncHomeConfig } = useRequest(ApiSportsHomePageConfig, {
     onSuccess(res) {
       if (res.list_filter)
-        lobbyCurrentEventType.value = res.list_filter[0].name
+        lobbyCurrentEventType.value = res.list_filter[0].lfid
     },
   })
 
@@ -310,7 +310,7 @@ export const useSportsStore = defineStore('sports', () => {
       return homePageConfig.value.list_filter.map((a) => {
         return {
           label: a.name,
-          value: a.name,
+          value: a.lfid,
           ...a,
         }
       })

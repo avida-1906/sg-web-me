@@ -3,13 +3,13 @@ interface Props {
   list: any[]
 }
 defineProps<Props>()
-const currentTab = defineModel({ type: String, required: true })
+const currentTab = defineModel({ type: Number, required: true })
 
 const { isMobile } = storeToRefs(useWindowStore())
 
 const hoverTab = ref('')
 
-function onClick(item: ISelectOptionString) {
+function onClick(item: ISelectOptionNumber) {
   currentTab.value = item.value
 }
 
