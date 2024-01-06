@@ -13,6 +13,9 @@ const gameObj = computed<{ [t: string]: Component }>(() => ({
   dice: defineAsyncComponent(
     () => import('~/components/DiceIndex.vue'),
   ),
+  plinko: defineAsyncComponent(
+    () => import('~/components/PlinkoIndex.vue'),
+  ),
 }))
 
 const game = computed(() => gameObj.value[id.value])

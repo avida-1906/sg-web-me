@@ -230,6 +230,10 @@ declare module 'vue' {
     LimboAutoBetTip: typeof import('./components/LimboAutoBetTip.vue')['default']
     LimboGameLimbo: typeof import('./components/LimboGameLimbo.vue')['default']
     LimboIndex: typeof import('./components/LimboIndex.vue')['default']
+    PlinkoGameInfo: typeof import('./components/PlinkoGameInfo.vue')['default']
+    PlinkoIndex: typeof import('./components/PlinkoIndex.vue')['default']
+    PlinkoMaxValue: typeof import('./components/PlinkoMaxValue.vue')['default']
+    PlinkoSetting: typeof import('./components/PlinkoSetting.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

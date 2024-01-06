@@ -1,5 +1,5 @@
 <script setup>
-import { Dice } from '~/utils/dice'
+import { Dice } from '~/mini-games/dice/dice'
 
 const amount = ref('0.00000000')
 let times = 0

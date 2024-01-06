@@ -13,6 +13,11 @@ const list = [
     name: 'Dice',
     game_id: 'dice',
   },
+  {
+    img: '/png/mini/plinko/plinko.png',
+    name: 'Plinko',
+    game_id: 'plinko',
+  },
 ]
 
 function startGame(id: string) {
