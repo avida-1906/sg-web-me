@@ -16,9 +16,9 @@ const { openVipBonusRecordDialog } = useDialogVipBonusRecord()
 //   manual: false,
 // })
 
-function openRecord() {
-  openVipBonusRecordDialog()
-}
+// function openRecord() {
+//   openVipBonusRecordDialog()
+// }
 
 // async function openReceive() {
 //   await runGetVipBonusAmount()
@@ -45,8 +45,8 @@ function openRecord() {
         {{ $t('vip_top') }}
       </span>
     </div>
-    <div class="btns">
-      <!-- <BaseButton
+    <!-- <div class="btns"> -->
+    <!-- <BaseButton
           bg-style="primary"
           size="none"
           round
@@ -55,10 +55,10 @@ function openRecord() {
         >
           {{ $t('one_receive') }}
         </BaseButton> -->
-      <BaseButton bg-style="primary" round size="none" @click="openRecord">
+    <!-- <BaseButton bg-style="primary" round size="none" @click="openRecord">
         {{ $t('receive_record_label') }}
       </BaseButton>
-    </div>
+    </div> -->
   </div>
 </template>
 

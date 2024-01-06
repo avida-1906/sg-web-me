@@ -29,6 +29,10 @@ meta:
       path: /vip/rebate
       token: false
       isT: true
+    - title: receive
+      path: /vip/receive
+      token: false
+      isT: true
     # - title: vip_day_salary
     #   path: /vip/day-salary
     #   token: false
