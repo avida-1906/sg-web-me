@@ -723,7 +723,7 @@ export interface PayInfo {
 }
 
 export type IBrandDetailTag =
-  'base' | 'deposit' | 'withdraw' | 'reg' | 'third' | 'customer' | 'pc' | 'area'
+  'base' | 'deposit' | 'withdraw' | 'reg' | 'third' | 'customer' | 'pc' | 'area' | 'bottom'
 export interface IBrandDetailBase {}
 export interface IBrandDetailDeposit {}
 export interface IBrandDetailWithdraw {}

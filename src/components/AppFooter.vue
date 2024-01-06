@@ -16,6 +16,15 @@ const sportStore = useSportsStore()
 const { sportsOddsType, AllOddsTypes } = storeToRefs(sportStore)
 const { appContentWidth } = storeToRefs(useWindowStore())
 
+const { data: footerThirdData } = useRequest(ApiMemberBrandDetail, {
+  manual: false,
+  defaultParams: [
+    {
+      tag: 'bottom',
+    },
+  ],
+})
+
 const supportCurrency = [
   '/png/footer/ltc.png',
   '/png/footer/bitcoin.png',
@@ -42,6 +51,39 @@ const rate = computed(() => {
     return temp[code.cur]['706'] ? formatWithSubstring(floor(+temp[code.cur]['706'], 2).toFixed(2)) : '1.00'
   return '1.00'
 })
+
+const connectData = computed(() => {
+  if (!footerThirdData.value)
+    return []
+
+  const keys = Object.keys(footerThirdData.value)
+  if (!keys.length)
+    return []
+
+  const _data: any[] = [
+    { title: 'Facebook', icon: true },
+    { title: 'Twitter', icon: true },
+    { title: 'Instagram', icon: true },
+    { title: 'YouTube', icon: true },
+    { title: 'TikTok', icon: true },
+    { title: 'Telegram', icon: true },
+  ]
+
+  keys.forEach((key) => {
+    if (footerThirdData.value[key].state === false) {
+      const index = _data.findIndex(item => item.title.toLowerCase() === key)
+      if (index !== -1)
+        _data.splice(index, 1)
+    }
+  })
+
+  _data.forEach((item) => {
+    item.path = footerThirdData.value[item.title.toLowerCase()].url
+  })
+
+  return _data
+})
+
 const menuData = computed(() => [
   {
     title: t('sports'),
@@ -75,10 +117,7 @@ const menuData = computed(() => [
     children: [
       { title: t('blog') },
       { title: t('chat_forum'), icon: true },
-      { title: 'Facebook', icon: true },
-      { title: 'Twitter', icon: true },
-      { title: 'Instagram', icon: true },
-      { title: 'YouTube', icon: true },
+      ...connectData.value,
       { title: t('online_shopping'), icon: true },
     ],
   },

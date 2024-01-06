@@ -23,7 +23,7 @@ export function useLocalRouter() {
       return
 
     if (isExternal(path)) {
-      location.href = path
+      window.open(path, '_blank')
       return
     }
 
