@@ -164,7 +164,7 @@ const columns = computed<Column[]>(() => [
     }
   }
   .tabs {
-    background: var(--tg-secondary-dark);
+    // background: var(--tg-secondary-dark);
     padding: 12px 12px;
     border-radius: var(--tg-radius-default);
     .btn-box{

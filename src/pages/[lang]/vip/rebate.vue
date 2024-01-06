@@ -133,11 +133,7 @@ watch(tabList, (val) => {
   --tg-base-square-tab-margin: 0;
   --tg-base-button-justify-content: space-around;
   --tg-app-dropdown-width: 100%;
-  .tabs-outer {
-    background: var(--tg-secondary-dark);
-  }
   .tabs {
-    background-color: var(--tg-secondary-dark);
     padding: var(--tg-spacing-12);
     border-radius: var(--tg-radius-default);
     display: flex;
@@ -163,15 +159,14 @@ watch(tabList, (val) => {
     }
     .currency-box{
       border-radius: var(--tg-radius-default);
-      background-color: var(--tg-secondary-dark);
     }
   }
 }
 .is-mobile {
-  --tg-base-square-tab-bg: inherit;
+  --tg-tab-style-wrap-bg-color: var(--tg-secondary-dark);
+  --tg-base-square-tab-bg: var(--tg-secondary-dark);
   .tabs {
     position: relative;
-    background-color: inherit;
     padding: 0;
   }
 }

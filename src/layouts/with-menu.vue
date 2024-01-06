@@ -17,9 +17,11 @@ const menuData = computed<any>(() =>
     .filter(f => f.token ? isLogin.value : true))
 const icon = computed<any>(() => route.meta.withMenuIcon)
 const withMenuMobileType = computed(() => route.meta.withMenuMobileType)
-const noBg = computed(() =>
-  path.value.includes('/vip/')
-  || (isMobile.value ? path.value.includes('/affiliate') : false))
+const noBg = computed(() => isMobile.value
+  ? (path.value.includes('/affiliate') || path.value.includes('/vip/'))
+  : false)
+// path.value.includes('/vip/')
+// || (isMobile.value ? path.value.includes('/affiliate') : false)
 
 const activeMenu = ref(menuData.value.filter((m: any) => m.path === path.value)[0])
 const curMenuTab = ref(activeMenu.value?.value)
