@@ -159,13 +159,14 @@ const columns = computed<Column[]>(() => [
   --tg-app-amount-font-size: var(--tg-font-size-xs);
   &.is-mobile {
     .tabs {
-      // padding: 0 12px;
+      background: none;
+      padding: 0 0;
       position: relative;
     }
   }
   .tabs {
-    // background: var(--tg-secondary-dark);
-    // padding: 12px 12px;
+    background: var(--tg-secondary-dark);
+    padding: 12px 12px;
     border-radius: var(--tg-radius-default);
     .btn-box{
       // --tg-base-button-padding-y: 8px;
