@@ -107,10 +107,10 @@ export const useAppStore = defineStore('app', () => {
   const currentGlobalCurrencyBalance = computed(() => {
     const currency = currentGlobalCurrency.value
     const balance = userInfo.value?.balance[currency]
-    const symbol = application.isVirtualCurrency(currency)
-      ? ''
-      : currencyConfig[currency].prefix
-    return balance ? (`${symbol} ${balance}`) : 0
+    // const symbol = application.isVirtualCurrency(currency)
+    //   ? ''
+    //   : currencyConfig[currency].prefix
+    return balance || 0
   })
 
   /** 用户当前选择的货币余额, 数字 */

@@ -271,11 +271,12 @@ export function useCurrencyData() {
         list.push({
           type,
           balance: balanceNumber,
-          balanceWithSymbol: `${
-            application.isVirtualCurrency(type)
-            ? ''
-            : getCurrencyConfig(type).prefix} ${balanceNumber
-          }`,
+          balanceWithSymbol: balanceNumber,
+          //   `${
+          //   application.isVirtualCurrency(type)
+          //   ? ''
+          //   : getCurrencyConfig(type).prefix} ${balanceNumber
+          // }`,
           cur: getCurrencyConfig(type).cur,
           bankTree: getCurrencyConfig(type).bankTree,
           prefix: getCurrencyConfig(type).prefix,
@@ -296,9 +297,7 @@ export function useCurrencyData() {
       list.push({
         type,
         balance: item.balance ?? '',
-        balanceWithSymbol: `${application.isVirtualCurrency(type)
-          ? ''
-          : getCurrencyConfig(type).prefix} ${item.balance ?? ''}`,
+        balanceWithSymbol: item.balance ?? '',
         cur: item.currency_id,
         bankTree: getCurrencyConfig(type).bankTree,
         prefix: getCurrencyConfig(type).prefix,
