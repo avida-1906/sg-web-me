@@ -21,6 +21,18 @@ export enum EnumSportsOddsType {
   /** 马来格式 */
   MALAYSIA = 'MALAYSIA',
 }
+export enum EnumSportsEventType {
+  /** 今日赛事 */
+  TODAY = 1,
+  /** 滚球 */
+  LIVE = 2,
+  /** 早盘 */
+  EARLY = 3,
+  /** 串关 */
+  CHUAN = 4,
+  /** 冠军 */
+  OUTRIGHT = 5,
+}
 
 /** 投注单数据格式 */
 interface IBetSlipData {
@@ -50,6 +62,10 @@ export const useSportsStore = defineStore('sports', () => {
   const currentFavBetType = ref('3@@1')
   /** 大厅当前的赛事类型 */
   const lobbyCurrentEventType = ref(0)
+  /** 大厅当前的球种si */
+  const currentLobbySiNav = ref(-1)
+  /** 大厅当前展示的盘口类型 */
+  const currentLobbyBetType = ref('')
   /** 购物车 */
   const cart = reactive(new SportsCart(currentGlobalCurrency.value))
 
@@ -58,6 +74,83 @@ export const useSportsStore = defineStore('sports', () => {
     ApiSportCount({ ic: 0 }),
   {
     onSuccess(res) {
+      // 统一加载icon
+      res.list.forEach((a) => {
+        application.loadImage(a.spic)
+      })
+
+      /** 大厅 */
+      if (lobbyCurrentEventType.value === EnumSportsEventType.TODAY) {
+        // 今日
+        const arr = res.list.filter(a => a.tc > 0)
+        if (arr.length > 0) {
+          if (currentLobbySiNav.value === -1)
+            currentLobbySiNav.value = arr[0].si
+          else if (!arr.find(a => a.si === currentLobbySiNav.value))
+            currentLobbySiNav.value = arr[0].si
+        }
+        else {
+          currentLobbySiNav.value = 0
+        }
+      }
+      if (lobbyCurrentEventType.value === EnumSportsEventType.LIVE) {
+        // 滚球
+        const arr = res.list.filter(a => a.lc > 0)
+        if (arr.length > 0) {
+          if (currentLobbySiNav.value === -1)
+            currentLobbySiNav.value = arr[0].si
+          else if (!arr.find(a => a.si === currentLobbySiNav.value))
+            currentLobbySiNav.value = arr[0].si
+        }
+        else {
+          currentLobbySiNav.value = 0
+        }
+      }
+      if (lobbyCurrentEventType.value === EnumSportsEventType.EARLY) {
+        // 早盘
+        const arr = res.list.filter(a => a.ec > 0)
+        if (arr.length > 0) {
+          if (currentLobbySiNav.value === -1)
+            currentLobbySiNav.value = arr[0].si
+          else if (!arr.find(a => a.si === currentLobbySiNav.value))
+            currentLobbySiNav.value = arr[0].si
+        }
+        else {
+          currentLobbySiNav.value = 0
+        }
+      }
+      if (lobbyCurrentEventType.value === EnumSportsEventType.CHUAN) {
+        // 串关
+        const arr = res.list.filter(a => a.cc > 0)
+        if (arr.length > 0) {
+          if (currentLobbySiNav.value === -1)
+            currentLobbySiNav.value = arr[0].si
+          else if (!arr.find(a => a.si === currentLobbySiNav.value))
+            currentLobbySiNav.value = arr[0].si
+        }
+        else {
+          currentLobbySiNav.value = 0
+        }
+      }
+      if (lobbyCurrentEventType.value === EnumSportsEventType.OUTRIGHT) {
+        // 冠军
+        const arr = res.list.filter(a => a.oc > 0)
+        if (arr.length > 0) {
+          if (currentLobbySiNav.value === -1)
+            currentLobbySiNav.value = arr[0].si
+          else if (!arr.find(a => a.si === currentLobbySiNav.value))
+            currentLobbySiNav.value = arr[0].si
+        }
+        else {
+          currentLobbySiNav.value = 0
+        }
+      }
+
+      if (currentLobbyBetType.value === '')
+        currentLobbyBetType.value = getSportsBetTypeListBySi(currentLobbySiNav.value)[0].value
+
+      /** 🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧 一条完美的分割线 🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧 */
+
       // 滚球
       const liveArr = res.list.filter(a => a.lc > 0)
       if (liveArr.length > 0) {
@@ -116,14 +209,17 @@ export const useSportsStore = defineStore('sports', () => {
     },
   })
 
-  /** 列表盘口下拉选单 */
-  const { data: sportsBetTypeData, runAsync: runAsyncEventBetType } = useRequest(ApiSportsBetType)
-
   /** 首页相关设定 */
   const { data: homePageConfig, runAsync: runAsyncHomeConfig } = useRequest(ApiSportsHomePageConfig, {
     onSuccess(res) {
-      if (res.list_filter)
+      if (res.list_filter) {
         lobbyCurrentEventType.value = res.list_filter[0].lfid
+        // 统一加载icon
+        res.list_filter.forEach((a) => {
+          application.loadImage(a.icon)
+          application.loadImage(a.icon_hl)
+        })
+      }
     },
   })
 
@@ -137,7 +233,7 @@ export const useSportsStore = defineStore('sports', () => {
         currentProvider.value = res.d[0].id
         Local.set(STORAGE_SPORTS_CURRENT_PROVIDER, res.d[0].id)
       }
-      runAsyncEventBetType().then(() => runSportsCount())
+      runAsyncHomeConfig().then(() => runSportsCount())
       runSportsSidebar()
     },
   })
@@ -253,12 +349,72 @@ export const useSportsStore = defineStore('sports', () => {
     return []
   })
 
+  /** 今日导航 */
+  const todayEventNavs = computed(() => {
+    if (allSportsCount.value) {
+      return allSportsCount.value.list.filter(a => a.tc > 0).map((b) => {
+        return {
+          ...b, icon: b.spic, count: b.tc, useCloudImg: true,
+        }
+      })
+    }
+    return []
+  })
+
   /** 滚球导航 */
   const sportLiveNavs = computed(() => {
     if (allSportsCount.value) {
       return allSportsCount.value.list.filter(a => a.lc > 0).map((b) => {
         return {
           ...b, icon: b.spic, count: b.lc, useCloudImg: true,
+        }
+      })
+    }
+    return []
+  })
+
+  /** 早盘导航 */
+  const earlyEventNavs = computed(() => {
+    if (allSportsCount.value) {
+      return allSportsCount.value.list.filter(a => a.ec > 0).map((b) => {
+        return {
+          ...b, icon: b.spic, count: b.ec, useCloudImg: true,
+        }
+      })
+    }
+    return []
+  })
+
+  /** 串关导航 */
+  const chuanEventNavs = computed(() => {
+    if (allSportsCount.value) {
+      return allSportsCount.value.list.filter(a => a.cc > 0).map((b) => {
+        return {
+          ...b, icon: b.spic, count: b.cc, useCloudImg: true,
+        }
+      })
+    }
+    return []
+  })
+
+  /** 冠军导航 */
+  const outrightNavs = computed(() => {
+    if (allSportsCount.value) {
+      return allSportsCount.value.list.filter(a => a.oc > 0).map((b) => {
+        return {
+          ...b, icon: b.spic, count: b.oc, useCloudImg: true,
+        }
+      })
+    }
+    return []
+  })
+
+  /** 虚拟体育导航 */
+  const vSportsNavs = computed(() => {
+    if (allSportsCount.value) {
+      return allSportsCount.value.list.filter(a => a.vsc > 0).map((b) => {
+        return {
+          ...b, icon: b.spic, count: b.vsc, useCloudImg: true,
         }
       })
     }
@@ -318,29 +474,16 @@ export const useSportsStore = defineStore('sports', () => {
         }
       })
     }
-    return null
+    else if (homePageConfig.value && !homePageConfig.value.list_filter) {
+      return null
+    }
+    return []
   })
 
   // /** 所有球种盘口类型下拉选单 */
-  // const sportsBetTypeList = computed(() => {
-  //   if (homePageConfig.value && homePageConfig.value.bettype_filter) {
-  //     return homePageConfig.value.bettype_filter.map((a) => {
-  //       return {
-  //         si: a.si,
-  //         btl: a.btl.map((b) => {
-  //           return {
-  //             ...b, value: `${b.bt}@@${b.egi}`, label: b.btn,
-  //           }
-  //         }),
-  //       }
-  //     })
-  //   }
-  //   return []
-  // })
-  /** 所有球种盘口类型下拉选单 */
   const sportsBetTypeList = computed(() => {
-    if (sportsBetTypeData.value && sportsBetTypeData.value.d) {
-      return sportsBetTypeData.value.d.map((a) => {
+    if (homePageConfig.value && homePageConfig.value.bettype_filter) {
+      return homePageConfig.value.bettype_filter.map((a) => {
         return {
           si: a.si,
           btl: a.btl.map((b) => {
@@ -416,9 +559,14 @@ export const useSportsStore = defineStore('sports', () => {
     sportsMenu,
     sportHotGames,
     sportGameList,
-    sportLiveNavs,
     currentLiveNav,
     currentLiveBetType,
+    todayEventNavs,
+    sportLiveNavs,
+    earlyEventNavs,
+    chuanEventNavs,
+    outrightNavs,
+    vSportsNavs,
     upcomingNavs,
     currentUpcomingNav,
     sportsFavoriteData,
@@ -430,6 +578,8 @@ export const useSportsStore = defineStore('sports', () => {
     sportsBetTypeList,
     sportsEventTypeList,
     lobbyCurrentEventType,
+    currentLobbySiNav,
+    currentLobbyBetType,
     renderOdds,
     setSportsOddsType,
     getSportsOddsType,

@@ -43,6 +43,8 @@ const params = computed(() => {
   return {
     si: currentUpcomingNav.value,
     m: 4,
+    ic: 0,
+    ivs: 0,
     page: page.value,
     page_size: pageSize.value,
   }
@@ -50,7 +52,6 @@ const params = computed(() => {
 const isAll = computed(() => currentUpcomingNav.value === 0)
 const { run, runAsync } = useRequest(ApiSportEventList,
   {
-    refreshDeps: [currentUpcomingNav],
     onSuccess(res) {
       if (res.d) {
         // 修改即将开赛导航的条数数据

@@ -146,6 +146,7 @@ declare global {
   const EnumSportMarketType: typeof import('./utils/enums')['EnumSportMarketType']
   const EnumSportType: typeof import('./utils/enums')['EnumSportType']
   const EnumSportVenue: typeof import('./utils/enums')['EnumSportVenue']
+  const EnumSportsEventType: typeof import('./stores/sports')['EnumSportsEventType']
   const EnumSportsOddsType: typeof import('./stores/sports')['EnumSportsOddsType']
   const EnumSportsPanelType: typeof import('./stores/sports')['EnumSportsPanelType']
   const EnumsBetSlipBetSlipTabStatus: typeof import('./utils/enums')['EnumsBetSlipBetSlipTabStatus']
@@ -316,6 +317,8 @@ declare global {
   const onStartTyping: typeof import('@vueuse/core')['onStartTyping']
   const onUnmounted: typeof import('vue')['onUnmounted']
   const onUpdated: typeof import('vue')['onUpdated']
+  const outrightDataGroupByLeague: typeof import('./utils/sports')['outrightDataGroupByLeague']
+  const outrightDataGroupByLeagueLoadMore: typeof import('./utils/sports')['outrightDataGroupByLeagueLoadMore']
   const padStart: typeof import('lodash-es')['padStart']
   const pausableWatch: typeof import('@vueuse/core')['pausableWatch']
   const payPasswordReg: typeof import('./utils/regexp')['payPasswordReg']
@@ -810,6 +813,7 @@ declare module 'vue' {
     readonly EnumSportMarketType: UnwrapRef<typeof import('./utils/enums')['EnumSportMarketType']>
     readonly EnumSportType: UnwrapRef<typeof import('./utils/enums')['EnumSportType']>
     readonly EnumSportVenue: UnwrapRef<typeof import('./utils/enums')['EnumSportVenue']>
+    readonly EnumSportsEventType: UnwrapRef<typeof import('./stores/sports')['EnumSportsEventType']>
     readonly EnumSportsOddsType: UnwrapRef<typeof import('./stores/sports')['EnumSportsOddsType']>
     readonly EnumSportsPanelType: UnwrapRef<typeof import('./stores/sports')['EnumSportsPanelType']>
     readonly EnumsBetSlipBetSlipTabStatus: UnwrapRef<typeof import('./utils/enums')['EnumsBetSlipBetSlipTabStatus']>
@@ -976,6 +980,8 @@ declare module 'vue' {
     readonly onStartTyping: UnwrapRef<typeof import('@vueuse/core')['onStartTyping']>
     readonly onUnmounted: UnwrapRef<typeof import('vue')['onUnmounted']>
     readonly onUpdated: UnwrapRef<typeof import('vue')['onUpdated']>
+    readonly outrightDataGroupByLeague: UnwrapRef<typeof import('./utils/sports')['outrightDataGroupByLeague']>
+    readonly outrightDataGroupByLeagueLoadMore: UnwrapRef<typeof import('./utils/sports')['outrightDataGroupByLeagueLoadMore']>
     readonly padStart: UnwrapRef<typeof import('lodash-es')['padStart']>
     readonly pausableWatch: UnwrapRef<typeof import('@vueuse/core')['pausableWatch']>
     readonly payPasswordReg: UnwrapRef<typeof import('./utils/regexp')['payPasswordReg']>
@@ -1462,6 +1468,7 @@ declare module '@vue/runtime-core' {
     readonly EnumSportMarketType: UnwrapRef<typeof import('./utils/enums')['EnumSportMarketType']>
     readonly EnumSportType: UnwrapRef<typeof import('./utils/enums')['EnumSportType']>
     readonly EnumSportVenue: UnwrapRef<typeof import('./utils/enums')['EnumSportVenue']>
+    readonly EnumSportsEventType: UnwrapRef<typeof import('./stores/sports')['EnumSportsEventType']>
     readonly EnumSportsOddsType: UnwrapRef<typeof import('./stores/sports')['EnumSportsOddsType']>
     readonly EnumSportsPanelType: UnwrapRef<typeof import('./stores/sports')['EnumSportsPanelType']>
     readonly EnumsBetSlipBetSlipTabStatus: UnwrapRef<typeof import('./utils/enums')['EnumsBetSlipBetSlipTabStatus']>
@@ -1628,6 +1635,8 @@ declare module '@vue/runtime-core' {
     readonly onStartTyping: UnwrapRef<typeof import('@vueuse/core')['onStartTyping']>
     readonly onUnmounted: UnwrapRef<typeof import('vue')['onUnmounted']>
     readonly onUpdated: UnwrapRef<typeof import('vue')['onUpdated']>
+    readonly outrightDataGroupByLeague: UnwrapRef<typeof import('./utils/sports')['outrightDataGroupByLeague']>
+    readonly outrightDataGroupByLeagueLoadMore: UnwrapRef<typeof import('./utils/sports')['outrightDataGroupByLeagueLoadMore']>
     readonly padStart: UnwrapRef<typeof import('lodash-es')['padStart']>
     readonly pausableWatch: UnwrapRef<typeof import('@vueuse/core')['pausableWatch']>
     readonly payPasswordReg: UnwrapRef<typeof import('./utils/regexp')['payPasswordReg']>

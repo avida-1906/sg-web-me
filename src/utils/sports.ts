@@ -14,6 +14,7 @@ import type {
   IBetInfoChangeCallback,
   ICartInfo,
   ICartInfoData,
+  IOutrightDataGroupedByLeague,
   ISportDataGroupedByLeague,
   ISportListToCartData,
 } from '~/types'
@@ -275,6 +276,55 @@ export function sportsEventInfoListUpdateByMqtt(
     }
   }
   return arr
+}
+
+/**
+ * 冠军盘口根据联赛组合方法
+ * @param origin 赛事详情数据
+ */
+export function outrightDataGroupByLeague(origin: ISportOutrightsInfo[]) {
+  const arr: IOutrightDataGroupedByLeague = []
+  for (let i = 0; i < origin.length; i++) {
+    if (i === 0) {
+      arr.push({ ci: origin[i].ci, cn: origin[i].cn, list: [origin[i]] })
+      continue
+    }
+
+    const index = arr.findIndex(a => a.ci === origin[i].ci)
+    if (index > -1)
+      arr[index].list.push(origin[i])
+    else
+      arr.push({ ci: origin[i].ci, cn: origin[i].cn, list: [origin[i]] })
+  }
+  return arr
+}
+
+/**
+ * 加载更多的时候盘口根据联赛组合方法
+ * @param origin 原已经根据联赛组合的数据
+ * @param newData 新赛事数据
+ */
+export function outrightDataGroupByLeagueLoadMore(
+  origin: IOutrightDataGroupedByLeague,
+  newData: ISportOutrightsInfo[],
+) {
+  const arr: IOutrightDataGroupedByLeague = cloneDeep(origin)
+  for (let i = 0; i < newData.length; i++) {
+    const index = arr.findIndex(a => a.ci === newData[i].ci)
+    if (index > -1)
+      arr[index].list.push(newData[i])
+    else
+      arr.push({ ci: newData[i].ci, cn: newData[i].cn, list: [newData[i]] })
+  }
+
+  // 去重
+  return arr.map((a) => {
+    return {
+      ci: a.ci,
+      cn: a.cn,
+      list: uniqBy(a.list, 'ei'),
+    }
+  })
 }
 
 /**

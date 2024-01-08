@@ -32,6 +32,8 @@ const list = ref<ISportEventInfo[]>([])
 const params = computed(() => {
   return {
     m: 5,
+    ic: 0,
+    ivs: 0,
     si: si.value,
     ci: ci.value,
     page: page.value,
@@ -119,7 +121,11 @@ await application.allSettled([runAsync(params.value)])
 
 <template>
   <div class="sub-wrapper">
+    <div v-if="list.length === 0" class="empty">
+      <BaseEmpty icon="empty-1" :description="t('empty_cap')" />
+    </div>
     <AppSportsMarket
+      v-else
       :is-standard="isStandard"
       :league-name="navObj.cn" :event-count="total" :base-type="baseType"
       :event-list="list" :loading-more="moreLoading" group-by-date auto-show
@@ -138,10 +144,14 @@ await application.allSettled([runAsync(params.value)])
   display: flex;
   flex-direction: column;
   width: 100%;
-  gap:  var(--tg-spacing-24);
-}
-.sub-wrapper{
   gap:  var(--tg-spacing-12);
   align-items: flex-start;
 }
+.empty {
+    width: 100%;
+    min-height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 </style>

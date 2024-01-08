@@ -3,18 +3,19 @@ interface Props {
   list: any[]
 }
 defineProps<Props>()
+const emit = defineEmits(['change'])
 const currentTab = defineModel({ type: Number, required: true })
-
 const { isMobile } = storeToRefs(useWindowStore())
 
 const hoverTab = ref('')
 
 function onClick(item: ISelectOptionNumber) {
   currentTab.value = item.value
+  emit('change', item.value)
 }
 
-function onMouseenter(name: string) {
-  hoverTab.value = name
+function onMouseenter(v: string) {
+  hoverTab.value = v
 }
 function onMouseLeave() {
   hoverTab.value = ''

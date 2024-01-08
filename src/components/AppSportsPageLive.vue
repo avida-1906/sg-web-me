@@ -39,11 +39,17 @@ const baseTypeOptions = computed(() =>
   sportsStore.getSportsBetTypeListBySi(currentLiveNav.value),
 )
 const params = computed(() => {
-  return { si: currentLiveNav.value, m: 3, page: page.value, page_size: pageSize.value }
+  return {
+    si: currentLiveNav.value,
+    m: 3,
+    ic: 0,
+    ivs: 0,
+    page: page.value,
+    page_size: pageSize.value,
+  }
 })
 const { run, runAsync } = useRequest(ApiSportEventList,
   {
-    refreshDeps: [currentLiveNav],
     onSuccess(res) {
       if (res.d) {
         total.value = res.t
@@ -136,12 +142,14 @@ function initData() {
 }
 
 /** 切换球种 */
-watch(currentLiveNav, () => {
-  currentLiveBetType.value = baseTypeOptions.value[0].value
-  switchLoadingTrue()
-  reset()
-  getData()
-  startLive()
+watch(currentLiveNav, (a, b) => {
+  if (b !== -1) {
+    currentLiveBetType.value = baseTypeOptions.value[0].value
+    switchLoadingTrue()
+    reset()
+    getData()
+    startLive()
+  }
 })
 
 onMounted(() => {

@@ -10,37 +10,13 @@ interface Props {
   list: ListItem[]
   modelValue: number
 }
-const props = defineProps<Props>()
+defineProps<Props>()
 const emit = defineEmits(['update:modelValue', 'change'])
 
 function handleClick(item: ListItem) {
   emit('update:modelValue', item.si)
   emit('change', item)
 }
-
-// 统一加载tab中的网络icon
-function loadIcon() {
-  return new Promise((resolve) => {
-    let a = 0
-    const t = setInterval(() => {
-      a++
-      if (props.list.length > 0) {
-        clearInterval(t)
-        const arr = props.list.map((a) => {
-          return a.useCloudImg ? application.loadImage(a.icon) : ''
-        })
-        Promise.allSettled(arr).then((result) => {
-          resolve(result)
-        })
-      }
-      else if (a > 300) {
-        clearInterval(t)
-        resolve(true)
-      }
-    }, 50)
-  })
-}
-await application.allSettled([loadIcon()])
 </script>
 
 <template>
