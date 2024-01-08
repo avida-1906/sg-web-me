@@ -2,7 +2,9 @@
 const props = defineProps<{ except?: boolean }>()
 const route = useRoute()
 // 是否游戏页面
-const isCasinoGames = computed(() => route.name === 'casino-games' && !props.except)
+const isCasinoGames = computed(() => {
+  return route.name?.toString().includes('casino-games') && !props.except
+})
 </script>
 
 <template>
