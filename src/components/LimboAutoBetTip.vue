@@ -64,7 +64,7 @@ onMounted(() => {
   height: 55px;
   flex-shrink: 0;
   border-radius: 4px 0px 0px 4px;
-  background: #213743 url('../assets/autoBetTip.svg') center center no-repeat;
+  background: #213743 url('/png/mini/autoBetTip.svg') center center no-repeat;
 }
 
 .tip-top-box button {
