@@ -43,7 +43,7 @@ router.beforeEach((to, from, next) => {
 
   // 如果没有语言参数，跳转到默认语言
   if (to.params.lang === void 0) {
-    next(baseUrl)
+    next(addUrlSearch(baseUrl, location.search))
     return
   }
 
@@ -53,17 +53,18 @@ router.beforeEach((to, from, next) => {
     && (typeof to.params.lang === 'string')
     && !isExistRouterLanguage(to.params.lang)
   ) {
-    next(baseUrl)
+    next(addUrlSearch(baseUrl, location.search))
     return
   }
   else {
     const path = to.path.replace(/\/$/, '')
     if (path === `/${to.params.lang}`) {
-      next(`${path}/casino`)
+      next(addUrlSearch(`${path}/casino`, location.search))
       return
     }
   }
 
+  // 如果语言参数和上一个路由语言参数不一致，刷新页面
   if (
     isExistRouterLanguage(to.params.lang as string)
     && isExistRouterLanguage(from.params.lang as string)

@@ -25,15 +25,24 @@ const { bool: isError, setTrue: setErrorTrue } = useBoolean(false)
 const { bool: thumbnailStatus, setFalse: thumbnailLoadError } = useBoolean(true)
 const { bool: showBorder, setFalse: showBorderFalse } = useBoolean(true)
 const { bool: showImg, setTrue: showImgTrue } = useBoolean(false)
+const router = useLocalRouter()
 
 const isMaintained = computed(() => {
   return props.gameInfo.maintained === '2'
 })
 const toPath = computed(() => {
   const { id, name, platform_name, platform_id } = props.gameInfo
-  return `/${getCurrentUrlLanguage()}/casino/games?${application.objectToUrlParams({
+  const uid = router.currentRoute.value.query.uid
+
+  const query: any = {
     id, name, pn: platform_name, pid: platform_id,
-  })}`
+  }
+  if (uid)
+    query.uid = uid
+
+  return addUrlSearch(
+    `/${getCurrentUrlLanguage()}/casino/games`, application.objectToUrlParams(query),
+  )
 })
 
 function gameStart() {
