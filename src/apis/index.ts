@@ -1990,8 +1990,8 @@ export function ApiMemberBetList(params: {
   game_code?: string
   /** 游戏类型 1=真人,2=捕鱼,3=电子,4=体育 */
   game_class?: string
-  page: number
-  page_size: number
+  page?: number
+  page_size?: number
   type: string
 }) {
   return httpClient.get<IResponseList<{
