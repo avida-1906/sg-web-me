@@ -70,7 +70,7 @@ export const useLanguageStore = defineStore('language', () => {
 
   /** 更换语言 */
   async function changeLanguage(enumLangKeys: EnumLanguageKeys) {
-    const _fullPath = router.currentRoute.value.path.replace(`/${getCurrentUrlLanguage()}`, getLocalUrlToUrlLang(enumLangKeys))
+    const _fullPath = router.currentRoute.value.fullPath.replace(`/${getCurrentUrlLanguage()}`, getLocalUrlToUrlLang(enumLangKeys))
     router.push(`/${_fullPath}`)
     setTimeout(() => {
       location.reload()

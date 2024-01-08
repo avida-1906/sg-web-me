@@ -36,27 +36,27 @@ interface CurrencyValue {
 
 export const currencyConfig: Record<EnumCurrencyKey, CurrencyValue> = {
   CNY: {
-    prefix: '',
+    prefix: '¥',
     cur: '701',
     bankTree: '019001',
   },
   BRL: {
-    prefix: '',
+    prefix: 'R$',
     cur: '702',
     bankTree: '019002',
   },
   INR: {
-    prefix: '',
+    prefix: '₹',
     cur: '703',
     bankTree: '019003',
   },
   VND: {
-    prefix: '',
+    prefix: '₫',
     cur: '704',
     bankTree: '019004',
   },
   THB: {
-    prefix: '',
+    prefix: '฿',
     cur: '705',
     bankTree: '019005',
   },
@@ -82,37 +82,37 @@ export const currencyConfig: Record<EnumCurrencyKey, CurrencyValue> = {
   },
   // 新增货币
   EUR: {
-    prefix: '',
+    prefix: '€',
     cur: '710',
     bankTree: '019006',
   },
   JPY: {
-    prefix: '',
+    prefix: '¥',
     cur: '711',
     bankTree: '019007',
   },
   CAD: {
-    prefix: '',
+    prefix: 'CA$',
     cur: '712',
     bankTree: '019008',
   },
   ARS: {
-    prefix: '',
+    prefix: 'ARS',
     cur: '713',
     bankTree: '019009',
   },
   CLP: {
-    prefix: '',
+    prefix: 'CLP',
     cur: '714',
     bankTree: '019010',
   },
   PEN: {
-    prefix: '',
+    prefix: 'PEN',
     cur: '715',
     bankTree: '019011',
   },
   MXN: {
-    prefix: '',
+    prefix: '$',
     cur: '716',
     bankTree: '019012',
   },
@@ -197,7 +197,6 @@ export const currencyConfig: Record<EnumCurrencyKey, CurrencyValue> = {
     bankTree: '',
   },
 }
-
 /**
  * 获取货币下拉列表
  * @returns
@@ -272,11 +271,12 @@ export function useCurrencyData() {
         list.push({
           type,
           balance: balanceNumber,
-          balanceWithSymbol: `${
-            application.isVirtualCurrency(type)
-            ? ''
-            : getCurrencyConfig(type).prefix} ${balanceNumber
-          }`,
+          balanceWithSymbol: balanceNumber,
+          //   `${
+          //   application.isVirtualCurrency(type)
+          //   ? ''
+          //   : getCurrencyConfig(type).prefix} ${balanceNumber
+          // }`,
           cur: getCurrencyConfig(type).cur,
           bankTree: getCurrencyConfig(type).bankTree,
           prefix: getCurrencyConfig(type).prefix,
@@ -297,9 +297,7 @@ export function useCurrencyData() {
       list.push({
         type,
         balance: item.balance ?? '',
-        balanceWithSymbol: `${application.isVirtualCurrency(type)
-          ? ''
-          : getCurrencyConfig(type).prefix} ${item.balance ?? ''}`,
+        balanceWithSymbol: item.balance ?? '',
         cur: item.currency_id,
         bankTree: getCurrencyConfig(type).bankTree,
         prefix: getCurrencyConfig(type).prefix,

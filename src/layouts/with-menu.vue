@@ -17,11 +17,11 @@ const menuData = computed<any>(() =>
     .filter(f => f.token ? isLogin.value : true))
 const icon = computed<any>(() => route.meta.withMenuIcon)
 const withMenuMobileType = computed(() => route.meta.withMenuMobileType)
-const noBg = computed(() => isMobile.value
-  ? (path.value.includes('/affiliate') || path.value.includes('/vip/'))
-  : false)
-// path.value.includes('/vip/')
-// || (isMobile.value ? path.value.includes('/affiliate') : false)
+const noBg = computed(() => path.value.includes('/vip/')
+  || (isMobile.value ? path.value.includes('/affiliate') : false))
+const getGapBig = computed(() => {
+  return ['/vip/promotion-bonus', '/vip/day-salary'].includes(path.value) && isMobile.value ? '' : 'gap-big'
+})
 
 const activeMenu = ref(menuData.value.filter((m: any) => m.path === path.value)[0])
 const curMenuTab = ref(activeMenu.value?.value)
@@ -110,7 +110,7 @@ watch(route, () => {
                       :class="[
                         appContentWidth > 800
                           ? 'direction-horizontal x-flex-start y-flex-start gap-larger'
-                          : 'direction-vertical x-stretch y-center gap-small']"
+                          : 'direction-vertical x-stretch y-center', getGapBig]"
                     >
                       <div class="left">
                         <template v-if="appContentWidth > 800">
@@ -218,7 +218,7 @@ watch(route, () => {
 }
 .menu-tabs {
   display: flex;
-  padding-bottom: var(--tg-spacing-8);
+  // padding-bottom: var(--tg-spacing-8);
   &.is-vip {
     // padding-bottom: 0;
   }

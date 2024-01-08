@@ -4,6 +4,7 @@ import type { EnumCurrencyKey } from '~/apis/types'
 const today = dayjs()
 
 const { t } = useI18n()
+const { isMobile } = storeToRefs(useWindowStore())
 
 const dayOptions = [
   { label: t('today'), value: '0' },
@@ -47,7 +48,7 @@ const columns = reactive<Column[]>([
     width: '33%',
   },
 ])
-const dayType = ref('89')
+const dayType = ref('0')
 const bonusType = ref('')
 
 const {
@@ -58,7 +59,6 @@ const {
   total,
   prev,
   next,
-  data: backData,
   loading,
 } = useList(ApiMemberVipBonusRecord, {}, { page_size: 10 })
 
@@ -98,7 +98,7 @@ watch(() => params.value.start_time, () => {
 </script>
 
 <template>
-  <div class="app-vip-bonus-record">
+  <div class="app-vip-bonus-record" :class="{ 'is-mobile': isMobile }">
     <div class="filters">
       <BaseSelect v-model="dayType" :options="dayOptions" />
       <BaseSelect v-model="bonusType" :options="typeOptions" />
@@ -133,6 +133,20 @@ watch(() => params.value.start_time, () => {
 </template>
 
 <style lang="scss" scoped>
+.app-vip-bonus-record{
+  background: var(--tg-secondary-dark);
+  padding: 12px 12px;
+  --tg-base-select-style-padding-y: 8px;
+  &.is-mobile {
+    background: none;
+    padding: 0 0;
+    --tg-base-select-border: none;
+    --tg-base-select-style-padding-y: 10px;
+    .filters{
+      margin-bottom: 0;
+    }
+  }
+}
 .filters {
   max-width: 425px;
   display: grid;
@@ -141,7 +155,7 @@ watch(() => params.value.start_time, () => {
   gap: 20px;
   font-size: var(--tg-font-size-default);
   font-weight: var(--tg-font-weight-semibold);
-  --tg-base-select-style-padding-y: var(--tg-spacing-6);
+  margin-bottom: 16px;
 }
 
 .pages {

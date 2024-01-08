@@ -48,8 +48,9 @@ const {
     Session.remove(STORAGE_REG_PARAMS_KEYWORDS)
     setNeedBackFalse()
     openNotify({
+      title: t('reg_success_title'),
       type: 'success',
-      message: t('success_register'),
+      message: t('success_register', { username: regParams.value?.username }),
     })
     await nextTick()
     closeDialog()
@@ -62,8 +63,9 @@ const { run: runThirdReg } = useRequest(ApiMemberThirdReg, {
     Session.remove(STORAGE_THIRDREG_PARAMS_KEYWORDS)
     setNeedBackFalse()
     openNotify({
+      title: t('reg_success_title'),
       type: 'success',
-      message: t('success_register'),
+      message: t('success_register', { username: regThirdParams.value?.username }),
     })
     await nextTick()
     closeDialog()
@@ -130,7 +132,7 @@ onBeforeUnmount(() => {
         <BaseIcon name="uni-arrowleft-line" />
       </div>
       <div class="text">
-        {{ t('step_label') }} 2/2： {{ t('read_and_accept') }}
+        {{ t('step_label') }} 2/2{{ t('colon') }} {{ t('read_and_accept') }}
       </div>
     </div>
     <div ref="scrollRef" class="scroll-y scroll-light terms-conditions-outer">

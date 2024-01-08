@@ -242,7 +242,7 @@ defineExpose({ valiBirthday, msg, isValid, resetBirthday })
           :min="1"
           :max="dayMax"
           autocomplete="on"
-          placeholder="DD"
+          :placeholder="t('reg_day')"
           :class="{ error: errorDayMsg || showAllRed }"
           @input="onInput"
         >

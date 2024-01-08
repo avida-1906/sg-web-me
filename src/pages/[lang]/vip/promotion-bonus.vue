@@ -27,8 +27,7 @@ const columns = computed<Column[]>(() => [
     slot: 'level',
   },
   {
-    // title: t('vip_promotion_exp'),
-    title: '状态',
+    title: t('integral'),
     dataIndex: 'score',
     align: 'center',
     slot: 'score',
@@ -220,13 +219,14 @@ onMounted(() => {
   overflow: visible;
   &.is-mobile {
     .tabs {
-      // padding: 0 12px;
+      background: none;
+      padding: 0 0;
       position: relative;
     }
   }
   .tabs {
-    // background: var(--tg-secondary-dark);
-    // padding: 12px 12px;
+    background: var(--tg-secondary-dark);
+    padding: 12px 12px;
     border-radius: var(--tg-radius-default);
   }
 }

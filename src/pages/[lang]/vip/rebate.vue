@@ -133,12 +133,17 @@ watch(tabList, (val) => {
   --tg-base-square-tab-margin: 0;
   --tg-base-button-justify-content: space-around;
   --tg-app-dropdown-width: 100%;
+  --tg-base-square-tab-dot-width: 14px;
+  --tg-base-square-tab-padding-top: 10px;
+  --tg-base-square-tab-padding-y: 6px;
+  --tg-base-square-tab-font-weight: 500;
   .tabs {
-    // padding: var(--tg-spacing-12);
+    padding: var(--tg-spacing-12);
+    background: var(--tg-secondary-dark);
     border-radius: var(--tg-radius-default);
     display: flex;
     flex-direction: column;
-    gap: var(--tg-spacing-12);
+    gap: var(--tg-spacing-16);
     .grid-box{
       display: grid;
       grid-template-columns: 9fr 5fr;
@@ -168,6 +173,8 @@ watch(tabList, (val) => {
   .tabs {
     position: relative;
     padding: 0;
+    background: none;
+    gap: 0;
   }
 }
 </style>

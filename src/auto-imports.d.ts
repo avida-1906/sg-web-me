@@ -52,6 +52,7 @@ declare global {
   const ApiMemberBankcardInsert: typeof import('./apis/index')['ApiMemberBankcardInsert']
   const ApiMemberBankcardList: typeof import('./apis/index')['ApiMemberBankcardList']
   const ApiMemberBannerList: typeof import('./apis/index')['ApiMemberBannerList']
+  const ApiMemberBetList: typeof import('./apis/index')['ApiMemberBetList']
   const ApiMemberBrandDetail: typeof import('./apis/index')['ApiMemberBrandDetail']
   const ApiMemberCasinoRecordList: typeof import('./apis/index')['ApiMemberCasinoRecordList']
   const ApiMemberDetail: typeof import('./apis/index')['ApiMemberDetail']
@@ -197,6 +198,7 @@ declare global {
   const SportsOdds: typeof import('./utils/sports')['SportsOdds']
   const acceptHMRUpdate: typeof import('pinia')['acceptHMRUpdate']
   const add: typeof import('./utils/number')['add']
+  const addUrlSearch: typeof import('./utils/index')['addUrlSearch']
   const allEmojis: typeof import('./stores/chat')['allEmojis']
   const allSmileFace: typeof import('./stores/chat')['allSmileFace']
   const application: typeof import('./utils/index')['application']
@@ -723,6 +725,7 @@ declare module 'vue' {
     readonly ApiMemberBankcardInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardInsert']>
     readonly ApiMemberBankcardList: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardList']>
     readonly ApiMemberBannerList: UnwrapRef<typeof import('./apis/index')['ApiMemberBannerList']>
+    readonly ApiMemberBetList: UnwrapRef<typeof import('./apis/index')['ApiMemberBetList']>
     readonly ApiMemberBrandDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberBrandDetail']>
     readonly ApiMemberCasinoRecordList: UnwrapRef<typeof import('./apis/index')['ApiMemberCasinoRecordList']>
     readonly ApiMemberDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberDetail']>
@@ -860,6 +863,7 @@ declare module 'vue' {
     readonly SportsOdds: UnwrapRef<typeof import('./utils/sports')['SportsOdds']>
     readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>
     readonly add: UnwrapRef<typeof import('./utils/number')['add']>
+    readonly addUrlSearch: UnwrapRef<typeof import('./utils/index')['addUrlSearch']>
     readonly allEmojis: UnwrapRef<typeof import('./stores/chat')['allEmojis']>
     readonly allSmileFace: UnwrapRef<typeof import('./stores/chat')['allSmileFace']>
     readonly application: UnwrapRef<typeof import('./utils/index')['application']>
@@ -1378,6 +1382,7 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberBankcardInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardInsert']>
     readonly ApiMemberBankcardList: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardList']>
     readonly ApiMemberBannerList: UnwrapRef<typeof import('./apis/index')['ApiMemberBannerList']>
+    readonly ApiMemberBetList: UnwrapRef<typeof import('./apis/index')['ApiMemberBetList']>
     readonly ApiMemberBrandDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberBrandDetail']>
     readonly ApiMemberCasinoRecordList: UnwrapRef<typeof import('./apis/index')['ApiMemberCasinoRecordList']>
     readonly ApiMemberDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberDetail']>
@@ -1515,6 +1520,7 @@ declare module '@vue/runtime-core' {
     readonly SportsOdds: UnwrapRef<typeof import('./utils/sports')['SportsOdds']>
     readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>
     readonly add: UnwrapRef<typeof import('./utils/number')['add']>
+    readonly addUrlSearch: UnwrapRef<typeof import('./utils/index')['addUrlSearch']>
     readonly allEmojis: UnwrapRef<typeof import('./stores/chat')['allEmojis']>
     readonly allSmileFace: UnwrapRef<typeof import('./stores/chat')['allSmileFace']>
     readonly application: UnwrapRef<typeof import('./utils/index')['application']>

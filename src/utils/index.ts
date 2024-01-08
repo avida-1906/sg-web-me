@@ -326,3 +326,29 @@ export function scrollMainContentToTop() {
     dom && dom.scrollTo({ top: 0 })
   }
 }
+
+/**
+ * 添加url search参数
+ * @param {string} url
+ * @param {string} search
+ * @returns {string}
+ */
+export function addUrlSearch(url: string, search: string) {
+  if (url.includes('?')) {
+    if (search.includes('?'))
+      return `${url}${search.replace('?', '&')}`
+
+    else if (search.includes('&'))
+      return `${url}${search}`
+
+    else
+      return `${url}&${search}`
+  }
+  else {
+    if (search.includes('?'))
+      return `${url}${search}`
+
+    else
+      return `${url}?${search}`
+  }
+}

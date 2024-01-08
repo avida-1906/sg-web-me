@@ -1852,3 +1852,8 @@ plinko_autobetalert2: "自动投注完成"
 plinko_betamountalert: "您的投注额不能大于余额！"
 commission_draw_success: 佣金提取成功
 receive_bonus_amount: 领取金额
+integral: 积分
+reg_success_title: 成功
+reg_day: DD
+login_ip_title: IP
+gameble_aware: Gameble aware
