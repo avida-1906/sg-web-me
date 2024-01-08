@@ -34,7 +34,7 @@ const columns: Column[] = [
     slot: 'near',
   },
   {
-    title: 'IP',
+    title: t('login_ip_title'),
     dataIndex: 'addr',
     width: 150,
     align: 'center',

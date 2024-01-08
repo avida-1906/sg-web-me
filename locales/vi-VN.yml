@@ -2260,7 +2260,7 @@ statistical_date: ngày thống kê
 phone_invalid: 手机号码无效
 colon: ':'
 period: '.'
-vip_total_bonus: 累积奖金
+vip_total_bonus: Tích luỹ tiền thưởng
 type_select: 类型选择
 rule_text_one: Tỷ giá sẽ được đồng bộ theo thời gian biến động của thị trường
 rule_text_two: Tỷ giá sẽ được áp dụng khi đơn cược của bạn được giải quyết.
@@ -2357,3 +2357,8 @@ plinko_autobetalert2: "自动投注完成"
 plinko_betamountalert: "您的投注额不能大于余额！"
 commission_draw_success: 佣金提取成功
 receive_bonus_amount: 领取金额
+integral: 积分
+reg_success_title: 成功
+reg_day: DD
+login_ip_title: IP
+gameble_aware: Điều Cần Biết

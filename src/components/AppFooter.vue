@@ -107,7 +107,7 @@ const menuData = computed(() => [
       { title: t('fairness') },
       { title: t('affiliate') },
       { title: t('responsible_casino') },
-      { title: 'Gameble Aware', icon: true },
+      { title: t('gameble_aware'), icon: true },
       { title: t('online_support') },
       { title: t('help_center'), icon: true },
     ],

@@ -27,8 +27,7 @@ const columns = computed<Column[]>(() => [
     slot: 'level',
   },
   {
-    // title: t('vip_promotion_exp'),
-    title: '状态',
+    title: t('integral'),
     dataIndex: 'score',
     align: 'center',
     slot: 'score',

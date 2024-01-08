@@ -42,14 +42,14 @@ uppercase_lowercase_letter: Inclui maiúsculas e minúsculas
 least_8_characters: Mínimo de 8 caracteres
 reg_step: Preencha as suas informações detalhadas
 reg_step1: 'Etapa 1/2: Preencha seus dados'
-reg_step2: 'Passo 2/2:  preencha as suas informações detalhadas'
-step_label: Passo
+reg_step2: 'Etapa 2/2:  preencha as suas informações detalhadas'
+step_label: Etapa
 code_optional: Código (Opcional)
 read_and_agree: Li e concordo
 terms_conditions: Termos e condições
 read_terms_conditions: Eu li e concordo com os termos e condições
 agree_terms_conditions: Por favor, leia os termos e condições na íntegra e role até o final para aceitar
-read_and_accept: Ler e concordar com os termos e condições
+read_and_accept: Leia e aceite os termos e condições
 or_use: OU
 forgot_password: Esqueci a senha
 no_account_yet: Não possui uma conta?
@@ -1281,7 +1281,7 @@ in_all_game: No jogo
 now_show_game_num: Mostrando {percentage} de {total} jogos
 validate_msg_user_name_tip: Seu nome de usuário deve ter de 3 a 14 letras minúsculas
   e números
-success_register: Registrado com sucesso!
+success_register: Bem Vindo(a) {username}!
 user_name_exist: O nome de usuário já existe, preencha-o novamente
 currency_disable: Não é possível usar esta moeda
 save: Salvar
@@ -2387,3 +2387,8 @@ plinko_autobetalert2: "自动投注完成"
 plinko_betamountalert: "您的投注额不能大于余额！"
 commission_draw_success: 佣金提取成功
 receive_bonus_amount: 领取金额
+integral: 积分
+reg_success_title: Bem Vindo(a)
+reg_day: Dia
+login_ip_title: Địa chỉ IP
+gameble_aware: Gameble aware
