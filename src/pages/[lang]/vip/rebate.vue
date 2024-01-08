@@ -174,6 +174,7 @@ watch(tabList, (val) => {
     position: relative;
     padding: 0;
     background: none;
+    gap: 0;
   }
 }
 </style>

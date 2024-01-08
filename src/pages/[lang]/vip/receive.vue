@@ -142,6 +142,9 @@ watch(() => params.value.start_time, () => {
     padding: 0 0;
     --tg-base-select-border: none;
     --tg-base-select-style-padding-y: 10px;
+    .filters{
+      margin-bottom: 0;
+    }
   }
 }
 .filters {
@@ -152,6 +155,7 @@ watch(() => params.value.start_time, () => {
   gap: 20px;
   font-size: var(--tg-font-size-default);
   font-weight: var(--tg-font-weight-semibold);
+  margin-bottom: 16px;
 }
 
 .pages {
