@@ -38,7 +38,7 @@ onMounted(() => {
         </svg>
       </button>
     </div>
-    <div class="tip-bottom-process" />=
+    <div class="tip-bottom-process" />
   </div>
 </template>
 
