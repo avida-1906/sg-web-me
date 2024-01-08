@@ -76,22 +76,21 @@ game: 'Trò chơi'
 wallet: Ví
 safe: Kho
 affiliate: Liên kết
-transaction_record: Lịch sử giao dịch
+transaction_record: Giao dịch
 statistical_data: Thống kê
 sports_betting: Đặt cược thể thao
 trophy: Chiến tích
 lucky_trophy: Chiến tích may mắnnhất
 big_win: Thắng lợi lớn nhất
 setting: Cài đặt
-stake_safety: Sự an toàn của {site}
-online_support: Hỗ Trợ Trực Tuyến
+stake_safety: '{site} an toàn'
+online_support: Casino Trực Tuyến
 vip_club: VIP Club
-club: Câu lạc bộ
+club: Clup
 logout: Đăng xuất
-logout_dont_foget: 'Hãy xem các chương trình khuyến mãi hấp dẫn Casino và Sportsbook
-  của chúng tôi trước khi bạn rời khỏi '
+logout_dont_foget: 'Đừng quên kiểm tra các khuyến mãi thể thao và trên casino khổng lồ của chúng tôi trước khi bạn rời đi!'
 chat_room: Chat
-bet_slip: Đơn cược
+bet_slip: Phiếu Cược
 my_bets: Cược Của Tôi
 all_bets: Tất Cả Cược
 casino_bets: Đơn cược đánh bài
@@ -199,7 +198,7 @@ checklist_step_action_button: Nút thao tác các bước
 checklist_step_completed: Hoàn tất
 choose_one: Hãy chọn một mục
 clear: Xóa bỏ
-clear_all: Hoàn toànxóa bỏ
+clear_all: Xoá Hết
 click_open_whatsapp: Bấm vào đây để mở WhatsApp
 click_to_unmute: Nhấp để bật tiếng
 close: Đóng lại
@@ -731,7 +730,7 @@ casino_game_open_theatre: Bật chế độ rạp hát
 casino_game_close_theatre: Tắt chế độ rạp hát
 casino_game_test_mode: Chơi vui
 casino_game_real_money_mode: chế độ chơi bằng tiền thật
-search_need_at_least_3_word: Yêu cầu ít nhất 3 ký tự để tìm kiếm.
+search_need_at_least_3_word: Tìm yêu cầu ít nhất 3 ký tự
 search_recent: Tìm kiếm gần đây
 search_no_result: Không có kết quả nào được tìm thấy.
 search_clear: Tìm kiếm rõ ràng
@@ -804,7 +803,7 @@ menu_title_settings_general: Thông thường
 menu_title_settings_security: An toàn
 menu_title_settings_preferences: lựa chọn đầu tiên
 menu_title_settings_sessions: phiên họp
-menu_title_settings_ignoredusers: Danh sách đen
+menu_title_settings_ignoredusers: Chặn Người Chơi
 menu_title_settings_api: API
 menu_title_settings_verify: Xác minh
 menu_title_settings_offers: Ưu đãi
@@ -817,7 +816,7 @@ menu_title_settings_contact: Chung
 menu_title_settings_update_loginpwd: Đổi mật khẩu
 menu_title_settings_update_safepwd: Mật khẩu quỹ
 menu_title_settings_update_safecheck: Xác minh hai bước
-menu_title_settings_private: Tùy chọn quyền riêng tư
+menu_title_settings_private: Tuỳ chọn
 menu_title_settings_loginsession: Phiên
 register_date: Ngày đăng kí
 total_deposits: Tổng số tiền nạp
@@ -826,7 +825,7 @@ independent_deposit: Tiền gửi riêng biệt
 commission_rate: Tỷ lệ hoa hồng
 times: Số lần
 wagered: tổng cược
-bet_amount: Số tiền đặt cược
+bet_amount: Số Tiền Cược
 notify_title_error: Lỗi
 notify_title_success: Thành công
 tennis: Quần vợt
@@ -834,7 +833,7 @@ soccer: Bóng đá
 american-football: bóng bầu dục Mỹ
 basketball: Bóng rổ
 table-tennis: Bóng bàn
-ice-hockey: Khúc côn cầu trên băng
+ice-hockey: Khúc Côn Cầu Trên Băng
 baseball: Bóng chày
 cricket: Bóng gậy
 ecricket: Bóng gậy điện tử
@@ -875,7 +874,7 @@ politics-entertainment: Cuộc thi người đóng thế
 formula-1: Đua xe công thức một
 cross-country: xuyên quốc gia
 cycling: đua xe đạp
-sports_event: sự kiện thể thao
+sports_event: Sự kiện
 sports_status_timeout: Bị gián đoạn
 sports_status_live: Trực tiếp
 sports_status_close: Trận đấu hủy bỏ
@@ -889,15 +888,15 @@ sports_status_lose_half: Thua nửa tiền
 sports_status_lose_part: Thua một phần
 sports_estimated_payment_amount: 'Dự kiến số tiền chi trả '
 sports_payment_amount: Thanh toán
-sports_single_bet: Đơn cược
-sports_multi_bet: Cược nhiều lần
+sports_single_bet: Đơn
+sports_multi_bet: Nhiều
 sports_active: Hoạt động
 sports_settled: Đã đặt
-sports_accept_any_odds: chấp nhận mọi tỷ lệ cược
-sports_accept_higher_odds: Chỉ chấp nhận tỷ lệ cược cao hơn
-sports_accept_none_odds: Không có thay đổi tỷ lệ cược sẽ được chấp nhận
+sports_accept_any_odds: Chấp Nhận Tất Cả Tỉ Lệ
+sports_accept_higher_odds: Chỉ Chấp Nhận Tỉ Lệ Cao hơn
+sports_accept_none_odds: Không Chấp Nhận Tỉ Lệ Thay Đổi
 sports_bet_slip_empty: Đơn cược trống
-sports_betting_now: Hãy bắt đầu đặt cược ngay bây giờ!
+sports_betting_now: Bắt đầu đặt cược ngay bây giờ!
 sports_total_odds: tổng tỷ lệ cược
 sports_total_bet_amount: tổng cược
 sports_odds_has_changed: Tỷ lệ cược đã thay đổi.
@@ -954,9 +953,9 @@ chat_send_msg_placeholder: Nhập tin nhắn của bạn
 chat_new_window: Phòng trò chuyện được bật lên
 chat_close_side: Thu gọn thanh chat
 chat_send_tip_label: Gửi tặng tiền tip
-chat_rule_full_title: Các quy tắc hoàn chỉnh có thể được tìm thấy trong
-chat_forum: Diễn đàn
-chat_rule_find: Tìm thấy trên.
+chat_rule_full_title: Tất cả quy tắc có thể tìm thấy tại diễn đàn
+chat_forum: diễn đàn
+chat_rule_find: ''
 about_us: Về Chúng Tôi
 sponsor_activity: Tài trợ
 online_shopping: Cửa hàng
@@ -1101,7 +1100,7 @@ recent_game_perform_bonus: Tiền thưởng hiệu suất trò chơi gần đây
 dedicated_vip_servicer: 'Đại diện chuyên dịch vụ chăm sóc hội viên VIP '
 multiple_count: Hệ số
 ranking: Hạng
-hidden_user: Tài khoản ẩn
+hidden_user: Ẩn
 hidden_mode: Cách thức ẩn
 user_turn_on_hidden: Khách chơi đã bất chế độ riêng tư
 turn_on: Khởi động
@@ -1112,26 +1111,18 @@ service_transfer: Chăm sóc khách đang chuyển tiền vào tài khoản
 bind_pix_account: Liên kết tài khoản PIX
 bind_bank_card: Liên kết tài khoản ngân hàng
 data_empty: Không có dữ liệu
-chat_rule_1: Đừng spam trong cuộc trò chuyện và tránh sử dụng quá nhiều chữ in hoa.
-chat_rule_2: Vui lòng không quấy rối hoặc xúc phạm người dùng khác và nhân viên {site}.
-chat_rule_3: Vui lòng không chia sẻ bất kỳ thông tin cá nhân nào về bản thân bạn
-  hoặc người chơi khác (bao gồm cả tài khoản mạng xã hội).
-chat_rule_4: Vui lòng không xin tiền hoặc khoản vay từ người dùng khác, gửi tặng
-  phong bì đỏ hoặc tiền bo
-chat_rule_5: Trò chuyện bằng bất kỳ tài khoản nào khác ngoài tài khoản chính của
-  bạn đều bị nghiêm cấm.
-chat_rule_6: Không được phép có hành vi đáng ngờ có thể cấu thành sự gian lận.
-chat_rule_7: Không tham gia vào bất kỳ hình thức quảng cáo/mua bán/bán/mua/cung
-  cấp dịch vụ nào.
-chat_rule_8: Vui lòng không thảo luận về các bộ truyền phát, Twitch hoặc bất kỳ
-  nền tảng tương tự nào khác.
-chat_rule_9: Không sử dụng dịch vụ rút ngắn URL. Hãy đảm bảo khi gửi liên kết đầy
-  đủ.
-chat_rule_10: Vui lòng không chia sẻ mã hóa, tập lệnh hoặc dịch vụ của bất kỳ bot
-  nào.
-chat_rule_11: Vui lòng chỉ trò chuyện bằng ngôn ngữ được chỉ định cho phòng trò
-  chuyện, nếu có hành vi lạm dụng sẽ bị xử phạt.
-chat_rule_12: Thảo luận về các chủ đề chính trị và tôn giáo đều bị nghiêm cấm.
+chat_rule_1: Không spam và không sử dụng quá nhiều chữ in hoa khi trò chuyện.
+chat_rule_2: Không quấy rối hoặc gây khó chịu cho người dùng khác hoặc nhân viên {site}.
+chat_rule_3: Không chia sẻ bất kỳ thông tin cá nhân nào (bao gồm cả mạng xã hội ) của bạn hoặc những người chơi khác.
+chat_rule_4: Đừng năn nỉ hay hỏi vay tiền,mưa hay tiền boa
+chat_rule_5: không sử dụng tài khoản thay thế (alts) trên trò chuyện, điều đó bị nghiêm cấm.
+chat_rule_6: Các hành vi đáng ngờ đều có thể được coi là lừa đảo tiềm năng.
+chat_rule_7: Không tham gia vào bất kỳ hình thức quảng cáo/ giao dịch/ bán/mua/ hoặc cung cấp dịch vụ nào.
+chat_rule_8: Không có thảo luận về cách trình phát trực tuyến hoặc Twitch hoặc bất kỳ nền tảng tương tự nào khác.
+chat_rule_9: Không sử dụng dịch vụ rút ngắn URL .Luôn gửi liên kết đầy đủ.
+chat_rule_10: Không chia sẻ mã , tập lệnh hoặc bất kỳ dịch vụ bot nào khác.
+chat_rule_11: Chỉ sử dụng ngôn ngữ được chỉ định trong kênh trò chuyện , hành vi lạm dụng tiềm ẩn sẽ bị xử phạt.
+chat_rule_12: không bàn về chính trị & tôn giáo trong trò chuyện , điều này bị nghiêm cấm.
 user_confirm_delete_draw_way: Vui lòng xác nhận để xóa các phương thức rút tiền
   sau?
 confirm_delete: xác nhận xóa
@@ -1196,7 +1187,7 @@ deposit_name: Tên người nạp tiền
 deposit_name_tip: Để đảm bảo thanh toán kịp thời, vui lòng đảm bảo nhập đúng tên
   người nạp tiền
 deposit_amount: Số tiền nạp
-confirm_pay: Xác nhận thanh toán
+confirm_pay: Nạp tiền
 payee_info: Thông tin người nhận thanh toán
 transfer_amount_equal_order: Số tiền chuyển phải phù hợp với mã đơn cược
 cancel_deposit: Hủy lệnh nạp tiền
@@ -1347,32 +1338,27 @@ phone_update_to: Số điện thoại di động đã được cập nhật thà
 success_verify: Xác minh thành công
 congratulate_email_success: Chúc mừng bạn đã xác minh địa chỉ thư điện tử thành
   công!
-resend_email: Gửi lại vào hòm thư điện tử
+resend_email: Gửi lại Email
 phone: Số Điện Thoại
-tip_phone: Chúng tôi chỉ phục vụ các khu vực được liệt kê trong danh sách mã gọi
-  quốc tế.
+tip_phone: Chúng tôi chỉ phục vụ các khu vực được liệt kê trong danh sách mã quốc gia có sẳn.
 intl_phone_pre: Mã Nước
 social_account: tài khoản mạng xã hội
 action: Hành động
 cancel_ignore: Xóa bỏ danh sách đen
 level_desc: Miêu tả cấp độ
-preferences_tip_1: Quyền riêng tư của người dùng là một trong những giá trị cốt
-  lõi của {site}. Những cài đặt này sẽ cho phép bạn ẩn danh hoàn toàn trước những
-  người chơi khác.
-preferences_tip_2: Đặt cược của bạn sẽ không xuất hiện trong nguồn cấp dữ liệu cá
-  cược công khai và bản xem trước đặt cược
-preferences_tip_3: Những người chơi khác sẽ không thể xem số liệu thống kê về số
-  lần thắng, thua và đặt cược của bạn
-preferences_tip_4: Những người dùng khác sẽ không thể xem lịch sử chơi của bạn
-preferences_tip_5: Vui lòng chờ tối đa 30 giây để bản cập nhật có hiệu lực.
-preferences_tip_6: Ngăn bạn nhận phong bao đỏ trong phòng chat
-preferences_tip_7: Chọn không nhận thư tiếp thị hoặc ưu đãi
-turn_on_hide_mode: Bật chế độ ẩn danh
-hide_all_statistic: Ẩn tất cả số liệu thống kê
-hide_all_competition_record: Ẩn tất cả hồ sơ trò chơi
-refuse_rain: Từ chối nhận phong bao đỏ
+preferences_tip_1: Quyền riêng tư của người dùng là một trong những giá trị cốt lõi của {site}. Các cài đặt này cho phép bạn ẩn danh hoàn toàn với những người chơi còn lại.
+preferences_tip_2: Cược của bạn sẽ không xuất hiện trên phần đặt cược công khai và bản xem trước đặt cược
+preferences_tip_3: Những người dùng khác sẽ không thể xem số liệu thống kê thắng, thua và đặt cược của bạn
+preferences_tip_4: Những người chơi khác sẽ không thể xem thống kê cuộc đua của bạn
+preferences_tip_5: Vui lòng cho phép tối đa 30 giây để cập nhật có hiệu lực.
+preferences_tip_6: Không nhận mưa trên kênh chát
+preferences_tip_7: Trạng thái đăng ký nhận email tiếp thị hoặc ưu đãi
+turn_on_hide_mode: Bật Ẩn Danh
+hide_all_statistic: Ẩn tất cả thống kê của bạn
+hide_all_competition_record: Ẩn tất cả thống kê cuộc đua của bạn
+refuse_rain: Không nhận mưa
 marketing: 'Tiếp thị '
-receive_market_email: Nhận thư tiếp thị
+receive_market_email: Nhận tiếp thị qua email
 validate_msg_pwd_unequal: Mật khẩu nhập hai lần không chính xác
 validate_msg_safepwd_unequal: Mật khẩu quỹ được nhập hai lần không chính xác
 success_update_pwd: Sửa mật khẩu thành công
@@ -1385,7 +1371,7 @@ tip_safepwd_six: Mật khẩu quỹ của bạn chứa 6 chữ số
 email_uncheck: Địa chỉ hòm thư điện tử chưa được xác minh
 tip_safepwd: Mật khẩu quỹ sẽ được sử dụng để bảo vệ việc rút tiền và rút tiền an
   toàn từ kho tiền.
-login_time: Thời gian đăng nhập
+login_time: Sử dụng lần cuối
 browser: Trình duyệt
 area: Gần
 wise_bet: Đặt cược thông minh hơn
@@ -1818,8 +1804,8 @@ bet_fixed_x: Số tiền đặt cược có nhiều hơn {fixed} chữ số th�
 failed_get_betinfo: Không thể lấy được thông tin cá cược
 view_my_bets: Xem qua đơn cược của tôi
 closed: Đã đóng
-empty_unsettle_bet: Tạm chưa có đơn cược nào được thanh toán
-empty_settle_bet: Tạm chưa có đơn cược nào được thanh toán
+empty_unsettle_bet: Không Có Cược Hoạt Động
+empty_settle_bet: Không Có Cược Hoạt Động
 vip_top: Cấp VIP của bạn đã đạt đến mức tối đa
 wait_upgrade: Đang chờ thăng cấp
 upgraded: Đã thăng cấp
@@ -1833,7 +1819,7 @@ week_4: Thứ năm
 week_5: Thứ sáu
 week_6: Thứ bảy
 double_check_code: Mã xác nhận hai bước
-official_number: Định dạng kỹ thuật số hợp pháp
+official_number: Định dạng số Tiền Pháp Định
 official_num_tip: 'Cảnh báo: Trong chế độ xem tiền tệ fiat {currencyName}, định dạng
   số fiat sẽ bị tắt.'
 privacy: Riêng tư
@@ -2276,10 +2262,10 @@ colon: ':'
 period: '.'
 vip_total_bonus: 累积奖金
 type_select: 类型选择
-rule_text_one: 汇率会根据市场波动实时同步
-rule_text_two: 会在您注单结算时的汇率为准
-rule_text_three: 已经统计的有效投注不会受后续的汇率影响
-rule_text_title: VIP按照您的USDT有效投注来计算
+rule_text_one: Tỷ giá sẽ được đồng bộ theo thời gian biến động của thị trường
+rule_text_two: Tỷ giá sẽ được áp dụng khi đơn cược của bạn được giải quyết.
+rule_text_three: Các cược hợp lệ đã được tính sẽ không bị ảnh hưởng bởi tỷ giá tiếp theo
+rule_text_title: VIP được tính dựa trên số lần đặt cược USDT hợp lệ của bạn
 note: 注
 after_transfer_withdraw_money: 转入后需1倍流水才可提现
 mini_manual_bet: '手动投注'

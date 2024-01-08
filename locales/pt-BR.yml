@@ -1,28 +1,28 @@
 login: Entrar
 reg: Registrar-se
-register: Criar conta
+register: Criar uma Conta
 continue: Continuar
 gamer: Usuário
 currency_type: Moeda
-start_game: Iniciar jogo
+start_game: Jogar Agora
 slot: Slot
 fishing: Pescaria
 chess: Xadrez
 live: Pessoas reais
-email_or_username: E-mail ou nome de usuário
+email_or_username: E-mail ou Nome de Usuário
 pls_enter_email_or_username: Digite o e-mail ou o nome de usuário
 email_or_username_incorrect: E-mail ou nome de usuário incorreto
 two_step_verification: Verificação em duas etapas
 pls_enter_two_step_verification: Digite o código de verificação em duas etapas
 tip_start_double_check: 'Para uma segurança adicional, ative a verificação em duas
   etapas '
-email_address: Endereço de e-mail
+email_address: E-mail
 pls_enter_email_address: Digite o e-mail
 email_address_incorrect: Endereço de e-mail incorreto
 reset_pwd_email: Foi enviado um e-mail para redefinir a senha
 already_send_email_user: Foi enviado um e-mail para recuperação da conta
 recover_pwd: Recuperação de senha
-username: Nome de usuário
+username: Nome de Usuário
 pls_enter_username: Digite o nome de usuário
 username_incorrect: Seu nome de usuário deve possuir 3 - 14 caracteres
 password: Senha
@@ -35,26 +35,26 @@ pls_enter_birthday: Digite a data de nascimento
 password_incorrect: Formato de senha incorreto
 password_uppercase_lowercase_letter: A senha deverá conter pelo menos 1 letra maiúscula
   e 1 letra minúscula
-password_least_8_characters: A senha deverá conter pelo menos 8 caracteres
-password_least_8_characters_2: A senha deverá conter pelo menos 8 caracteres
-password_least_1_number: Deverá conter pelo menos 1 número
-uppercase_lowercase_letter: Deverá conter letras maiúscula(s) e minúscula(s)
-least_8_characters: Deverá conter pelo menos 8 caracteres
+password_least_8_characters: Sua senha deve ter no mínimo 8 caracteres
+password_least_8_characters_2: Sua senha deve ter no mínimo 8 caracteres
+password_least_1_number: Pelo menos 1 número
+uppercase_lowercase_letter: Inclui maiúsculas e minúsculas
+least_8_characters: Mínimo de 8 caracteres
 reg_step: Preencha as suas informações detalhadas
-reg_step1: 'Passo 1/2:  preencha as suas informações detalhadas'
+reg_step1: 'Etapa 1/2: Preencha seus dados'
 reg_step2: 'Passo 2/2:  preencha as suas informações detalhadas'
 step_label: Passo
-code_optional: Código (opcional)
+code_optional: Código (Opcional)
 read_and_agree: Li e concordo
 terms_conditions: Termos e condições
-read_terms_conditions: Li e concordo com os termos e condições
-agree_terms_conditions: Leia os termos e condições, em seguida marque "li e concordo"
+read_terms_conditions: Eu li e concordo com os termos e condições
+agree_terms_conditions: Por favor, leia os termos e condições na íntegra e role até o final para aceitar
 read_and_accept: Ler e concordar com os termos e condições
-or_use: ou use
+or_use: OU
 forgot_password: Esqueci a senha
-no_account_yet: Ainda não possui uma conta?
-register_account: Registrar uma conta
-have_account: Já possui uma conta?
+no_account_yet: Não possui uma conta?
+register_account: Registre uma conta
+have_account: Já tem uma conta?
 stake_hCaptcha: A {site} é protegida por hCaptcha
 privacy_policy: Política de privacidade
 responsible_casino: Jogo Responsável
@@ -100,7 +100,7 @@ competition_name: Nome da competição
 currency: Moeda
 network: Rede
 deposit: Depósito
-withdraw: Saque
+withdraw: Retirada
 this_field_is_required: Campo obrigatório
 buy_cryptocurrency: Comprar criptomoedas
 your_currency_deposit_address: Endereço de depósito da sua {currency}
@@ -446,7 +446,7 @@ reply_from: Resposta de ……
 reply_to_conversation: Digite a resposta
 reply_to_name: Responder {name}…
 scan_qr: Ler QR code
-search: Pesquisar
+search: Procurar
 search_browse_empty_state_text: Não foram encontrados resultados. Tente pesquisar
   novamente usando outras palavras.
 search_for_answers: Pesquisar respostas
@@ -689,8 +689,8 @@ time_september: Setembro
 time_october: Outubro
 time_november: Novembro
 time_december: Dezembro
-time_birthday: Data de nascimento
-time_month: Mensal
+time_birthday: Data de Nascimento
+time_month: Mês
 date: Data
 tour: Tour
 community: Comunidade
@@ -767,15 +767,15 @@ casino_game_open_theatre: Ativar modo teatro
 casino_game_close_theatre: Desativar modo teatro
 casino_game_test_mode: Modo teste
 casino_game_real_money_mode: Modo real
-search_need_at_least_3_word: Mínimo 3 caracteres necessários para realizar a pesquisa.
-search_recent: Pesquisas recentes
+search_need_at_least_3_word: A pesquisa requer pelo menos 3 caracteres.
+search_recent: Pesquisas Recentes
 search_no_result: Sem resultados
-search_clear: Limpar pesquisas
+search_clear: Limpar Pesquisa
 search_game: Procurar seu jogo
 search_events: Procurar seu jogo
 casino_origin_game: Jogos originais
 casino_games_recommend: Recomendações populares
-casino_provider: Provedores
+casino_provider: Roleta
 casino_sort_popular: Destaques
 casino_sort_featured: Destaques
 casino_filter_label: Filtrar por
@@ -1111,7 +1111,7 @@ label_draw_time: Horário de recebimento
 label_contribute_count: Número de contribuintes
 label_bind: Vincular
 title_input_paypwd: Digite a senha do fundo
-title_wallet_set: Configuração da carteira
+title_wallet_set: Configurações da Carteira
 success_bind: Vinculado com sucesso
 success_delete: Apagado com sucesso
 tip_msg_bind_once: Após a vinculação, não será permitida alterações
@@ -1386,7 +1386,7 @@ success_update_phone: Número de celular atualizado com sucesso
 phone_update_to: Número de celular atualizado para
 success_verify: Verificado com sucesso
 congratulate_email_success: Parabéns! Seu e-mail foi verificado com sucesso
-resend_email: Reenviar e-mail
+resend_email: Reenviar E-mail
 phone: Número de celular
 tip_phone: Atendemos apenas áreas listadas na lista de códigos de chamadas internacionais.
 intl_phone_pre: Códigos de chamadas internacionais
@@ -1447,12 +1447,12 @@ pls_confirm_deposit_addr: Por favor, confirme se o endereço de pagamento é dep
   com o valor total (excluindo taxas de manuseio), caso contrário, poderá resultar
   na impossibilidade de aumentar os pontos.
 use_in_game: Jogo em uso
-search_currency: Pesquisar moeda
+search_currency: Buscar Moedas
 card_wallet: Carteira de cartões
 improve_safe_level: Melhore a segurança da sua conta com verificação de dois fatores
 turn_on_double_check: Ative a verificação em duas etapas
-hide_zero_wallet: Ocultar saldo zero
-zero_wallet_hidden: Seu saldo zero não aparecerá na sua carteira
+hide_zero_wallet: Esconder saldos zerados
+zero_wallet_hidden: Seus saldos zerados não aparecerão em sua carteira
 address: Endereço
 withdrawal_min_amount: O valor mínimo de saque é
 withdrawal_fee_tip: Iremos deduzir isso do seu saldo
@@ -1964,15 +1964,15 @@ min_len_char: Mín.  {delta} caracteres
 max_len_char: Máx.  {delta} caracteres
 name_has_invalid_char: O nome de usuário contém caracteres inválidos
 pls_select_name: Selecione um nome de exibição
-must_verify_email_then: Você deve verificar seu endereço de e-mail para {delta}
+must_verify_email_then: Para fazer {delta}, você precisa verificar seu e-mail
 open: Abrir
 additional_time: Tempo adicional
-no_support_email: O domínio de e-mail não é compatível
-email_add_char: Inclua o símbolo "{delta}" no seu endereço de e-mail
+no_support_email: Domínio de e-mail não suportado
+email_add_char: Por favor, inclua um "{delta}" em seu endereço de e-mail
 email_no_equal_password: Seu endereço de e-mail e senha não podem ser iguais
 pls_input_email: Por favor insira um endereço de e-mail válido
-name_3_char: Seu nome de usuário deve conter pelo menos 3 caracteres
-name_14_char: Seu nome de usuário não pode exceder 14 caracteres
+name_3_char: Seu username deve conter pelo menos 3 caracteres
+name_14_char: Seu username deve conter menos de 14 caracteres
 name_no_equal_pwd: Seu nome de usuário e senha não podem ser iguais
 choose_another_name: Este nome de usuário já está em uso. Escolha outro nome de usuário
 email_exists: O endereço de e-mail já existe
