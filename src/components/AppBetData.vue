@@ -35,13 +35,20 @@ const {
 const { openStatisticsDialog } = useStatisticsDialog()
 // 投注详情
 const { openBetSlipDialog } = useDialogBetSlip()
+// 我的投注
 const {
   list,
   runAsync: runCasinoRecordList,
   loading,
   // prev, next, hasMore, page,
-} = useList(ApiMemberCasinoRecordList,
-  {}, { page_size: 10 })
+} = useList(ApiMemberCasinoRecordList, {}, { page_size: 10 })
+// 所有投注、风云榜
+const {
+  list: betList,
+  runAsync: runMemberBetList,
+  loading: loadBet,
+  // prev, next, hasMore, page,
+} = useList(ApiMemberBetList, {}, { page_size: 10 })
 
 // tab值
 const activeTab: Ref<string> = ref(props.mode === 'casino' ? 'casino-fy' : 'sports-fy')
@@ -141,15 +148,16 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
       },
       {
         title: t('gamer'),
-        dataIndex: 'player',
+        dataIndex: 'username',
         slot: 'player',
         align: 'center',
         xl: true,
       },
       {
         title: t('time'),
-        dataIndex: 'time',
+        dataIndex: 'created_at',
         align: 'center',
+        slot: 'bet_time',
         skeWidth: '34px',
       },
       {
@@ -233,15 +241,16 @@ const getTableColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
       },
       {
         title: t('gamer'),
-        dataIndex: 'player',
+        dataIndex: 'username',
         slot: 'player',
         align: 'center',
         xl: true,
       },
       {
         title: t('time'),
-        dataIndex: 'time',
+        dataIndex: 'created_at',
         align: 'center',
+        slot: 'bet_time',
         xl: true,
         skeWidth: '34px',
       },
@@ -277,6 +286,11 @@ const getScaleColumns: ComputedRef<RewriteColumn[]> = computed((): RewriteColumn
 const getList = computed(() => {
   switch (activeTab.value) {
     case 'casino-mine': return list.value
+    case 'casino-all':
+    case 'sports-all':
+    case 'casino-fy':
+    case 'sports-fy':
+      return betList.value
     default:
       loading.value = true
       setTimeout(() => {
@@ -355,8 +369,23 @@ watch(() => props.tabVal, (newValue) => {
     activeTab.value = newValue
 })
 watch(() => activeTab.value, (newValue) => {
-  if (newValue === 'casino-mine')
+  if (newValue === 'casino-mine') {
     runCasinoRecordList({})
+  }
+  else if (['casino-all', 'sports-all'].includes(activeTab.value)) {
+    runMemberBetList({
+      page: 1,
+      page_size: 10,
+      type: '0',
+    })
+  }
+  else if (['casino-fy', 'sports-fy'].includes(activeTab.value)) {
+    runMemberBetList({
+      page: 1,
+      page_size: 10,
+      type: '1',
+    })
+  }
   if (['casino-all', 'casino-fy'].includes(activeTab.value)) {
     (!timer.value) && (timer.value = setInterval(() => {
       setColor(!color.value)
@@ -420,7 +449,7 @@ onUnmounted(() => {
       :columns="getScaleColumns"
       :data-source="getList"
       :style="getBgColor"
-      :loading="loading"
+      :loading="loading || loadBet"
       :last-first-padding="isMobile"
       :show-empty="false"
     >
@@ -433,13 +462,13 @@ onUnmounted(() => {
           <span>{{ record.game_name }}</span>
         </div>
       </template>
-      <template #bet_time="{ record: { bet_time } }">
+      <template #bet_time="{ record }">
         <div>
-          {{ timeToFormat(bet_time) }}
+          {{ timeToFormat(record.bet_time ?? record.created_at) }}
         </div>
       </template>
       <template #player="{ record }">
-        <template v-if="record.stealth">
+        <template v-if="!record.username">
           <VTooltip placement="top" :triggers="['click', 'hover']">
             <div class="center stealth-box">
               <BaseIcon name="uni-hidden" />
@@ -458,21 +487,21 @@ onUnmounted(() => {
           v-else class="semibold player-box cursor-pointer"
           @click="openStatisticsDialog"
         >
-          {{ record.player }}
+          {{ record.username }}
         </div>
       </template>
       <template #betMoney="{ record }">
         <div style="display: inline-block;">
           <VTooltip placement="top" :triggers="['click', 'hover']">
             <AppAmount
-              :amount="getPrefixAmount(record.currency_id, record.net_amount)"
+              :amount="getPrefixAmount(record.currency_id, record.bet_amount)"
               :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
               style="--tg-app-amount-font-weight:var(--tg-font-weight-normal);"
             />
             <template #popper>
               <div class="tiny-menu-item-title">
                 <AppAmount
-                  :amount="getPrefixAmount(record.currency_id, record.net_amount)"
+                  :amount="getPrefixAmount(record.currency_id, record.bet_amount)"
                   :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
                   style="--tg-app-amount-font-weight:var(--tg-font-weight-normal);"
                 />
@@ -489,7 +518,8 @@ onUnmounted(() => {
           }"
         >
           <AppAmount
-            :amount="getPrefixAmount(record.currency_id, record.net_amount)"
+            :amount="getPrefixAmount(record.currency_id, record.net_amount
+              ?? record.pay_amount)"
             :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
             style="--tg-app-amount-font-weight:var(--tg-font-weight-normal);"
           />

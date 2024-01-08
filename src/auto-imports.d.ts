@@ -52,6 +52,7 @@ declare global {
   const ApiMemberBankcardInsert: typeof import('./apis/index')['ApiMemberBankcardInsert']
   const ApiMemberBankcardList: typeof import('./apis/index')['ApiMemberBankcardList']
   const ApiMemberBannerList: typeof import('./apis/index')['ApiMemberBannerList']
+  const ApiMemberBetList: typeof import('./apis/index')['ApiMemberBetList']
   const ApiMemberBrandDetail: typeof import('./apis/index')['ApiMemberBrandDetail']
   const ApiMemberCasinoRecordList: typeof import('./apis/index')['ApiMemberCasinoRecordList']
   const ApiMemberDetail: typeof import('./apis/index')['ApiMemberDetail']
@@ -721,6 +722,7 @@ declare module 'vue' {
     readonly ApiMemberBankcardInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardInsert']>
     readonly ApiMemberBankcardList: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardList']>
     readonly ApiMemberBannerList: UnwrapRef<typeof import('./apis/index')['ApiMemberBannerList']>
+    readonly ApiMemberBetList: UnwrapRef<typeof import('./apis/index')['ApiMemberBetList']>
     readonly ApiMemberBrandDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberBrandDetail']>
     readonly ApiMemberCasinoRecordList: UnwrapRef<typeof import('./apis/index')['ApiMemberCasinoRecordList']>
     readonly ApiMemberDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberDetail']>
@@ -1374,6 +1376,7 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberBankcardInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardInsert']>
     readonly ApiMemberBankcardList: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardList']>
     readonly ApiMemberBannerList: UnwrapRef<typeof import('./apis/index')['ApiMemberBannerList']>
+    readonly ApiMemberBetList: UnwrapRef<typeof import('./apis/index')['ApiMemberBetList']>
     readonly ApiMemberBrandDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberBrandDetail']>
     readonly ApiMemberCasinoRecordList: UnwrapRef<typeof import('./apis/index')['ApiMemberCasinoRecordList']>
     readonly ApiMemberDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberDetail']>

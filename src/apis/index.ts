@@ -1980,3 +1980,44 @@ export function ApiAgencyCommissionRecordsClass() {
 export function ApiAgencyTransferToMember() {
   return httpClient.post<string>('/agency/transfer/to/member')
 }
+
+/**
+ * 所有投注、风云榜
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=b0b306f1-c31f-4871-9a24-c4fa1487b817
+ */
+export function ApiMemberBetList(params: {
+  /** 游戏code */
+  game_code?: string
+  /** 游戏类型 1=真人,2=捕鱼,3=电子,4=体育 */
+  game_class?: string
+  page: number
+  page_size: number
+  type: string
+}) {
+  return httpClient.get<IResponseList<{
+    /** 注单流水号 */
+    'bill_no': string
+    /** 投注时间 */
+    'bet_time': number
+    /** 平台ID */
+    'platform_id': string
+    /** 平台名称 */
+    'platform_name': string
+    /** 投注人 */
+    'username': string
+    /** 游戏类型 */
+    'game_class': string
+    /** 游戏名称 */
+    'game_name': string
+    /** 游戏编码 */
+    'game_code': string
+    /** 投注金额 */
+    'bet_amount': string
+    /** 有效投注金额 */
+    'valid_bet_amount': string
+    /** 玩家输赢金额 */
+    'net_amount': string
+    /** 币种ID */
+    'currency_id': CurrencyCode
+  }[]>>('/member/bet/list', { params })
+}
