@@ -484,8 +484,8 @@ onUnmounted(() => {
             class="game-box cursor-pointer"
             @click="openBetSlipDialog({ type: 'casino', data: record })"
           >
-            <BaseIcon name="chess-slot-machine" />
-            <!-- <BaseIcon name="spt-basketball" /> -->
+            <BaseIcon v-if="mode === 'casino'" name="chess-slot-machine" />
+            <BaseIcon v-if="mode === 'sports'" name="spt-basketball" />
             <span>{{ record.game_name }}</span>
           </div>
         </template>
