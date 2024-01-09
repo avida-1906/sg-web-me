@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { getCurrentUrlLanguage } from '~/modules/i18n'
+
 interface Props {
   mode?: 'light' | 'dark'
   useSmall?: boolean
@@ -20,8 +22,9 @@ const { isLogin } = storeToRefs(useAppStore())
 const { leftIsExpand, closeLeftSidebar } = useLeftSidebar()
 
 const showBack = computed(() => {
+  console.log(router.currentRoute.value.path)
   return isMobile.value && props.isBack && isLogin.value
-    ? [`/sports/${getSportsPlatId()}`, '/casino'].includes(router.currentRoute.value.path)
+    ? [`/${getCurrentUrlLanguage()}/sports/${getSportsPlatId()}`, `/${getCurrentUrlLanguage()}/casino`].includes(router.currentRoute.value.path)
     : true
 })
 
