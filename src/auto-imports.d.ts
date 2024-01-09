@@ -53,6 +53,7 @@ declare global {
   const ApiMemberBankcardList: typeof import('./apis/index')['ApiMemberBankcardList']
   const ApiMemberBannerList: typeof import('./apis/index')['ApiMemberBannerList']
   const ApiMemberBetList: typeof import('./apis/index')['ApiMemberBetList']
+  const ApiMemberBetReport: typeof import('./apis/index')['ApiMemberBetReport']
   const ApiMemberBrandDetail: typeof import('./apis/index')['ApiMemberBrandDetail']
   const ApiMemberCasinoRecordList: typeof import('./apis/index')['ApiMemberCasinoRecordList']
   const ApiMemberCateState: typeof import('./apis/index')['ApiMemberCateState']
@@ -727,6 +728,7 @@ declare module 'vue' {
     readonly ApiMemberBankcardList: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardList']>
     readonly ApiMemberBannerList: UnwrapRef<typeof import('./apis/index')['ApiMemberBannerList']>
     readonly ApiMemberBetList: UnwrapRef<typeof import('./apis/index')['ApiMemberBetList']>
+    readonly ApiMemberBetReport: UnwrapRef<typeof import('./apis/index')['ApiMemberBetReport']>
     readonly ApiMemberBrandDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberBrandDetail']>
     readonly ApiMemberCasinoRecordList: UnwrapRef<typeof import('./apis/index')['ApiMemberCasinoRecordList']>
     readonly ApiMemberCateState: UnwrapRef<typeof import('./apis/index')['ApiMemberCateState']>
@@ -1385,6 +1387,7 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberBankcardList: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardList']>
     readonly ApiMemberBannerList: UnwrapRef<typeof import('./apis/index')['ApiMemberBannerList']>
     readonly ApiMemberBetList: UnwrapRef<typeof import('./apis/index')['ApiMemberBetList']>
+    readonly ApiMemberBetReport: UnwrapRef<typeof import('./apis/index')['ApiMemberBetReport']>
     readonly ApiMemberBrandDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberBrandDetail']>
     readonly ApiMemberCasinoRecordList: UnwrapRef<typeof import('./apis/index')['ApiMemberCasinoRecordList']>
     readonly ApiMemberCateState: UnwrapRef<typeof import('./apis/index')['ApiMemberCateState']>

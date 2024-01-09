@@ -2029,3 +2029,40 @@ export function ApiMemberBetList(params: {
     'currency_id': CurrencyCode
   }[]>>('/member/bet/list', { params })
 }
+
+/**
+ * 统计数据
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=7878bfa1-8e3c-4da6-8266-c0a22c07315f
+ */
+export function ApiMemberBetReport(data: {
+  /** 聊天室可查其它人的统计数据，传会员名 */
+  'username': string
+  /** 游戏类型,空=全部 1=娱乐城 2=体育 */
+  'game_class': '' | '1' | '2'
+}) {
+  return httpClient.post<{
+    /** 货币id */
+    'currency_id': CurrencyCode
+    /** 有效投注 */
+    'valid_bet_amount': string
+    /** 输赢 */
+    'net_amount': string
+    /** 注单量 */
+    'bet_count': number
+    /**  */
+    'time': number
+    /** 列表详情  */
+    detail: {
+      /** 货币id */
+      'currency_id': CurrencyCode
+      /** 有效投注 */
+      'valid_bet_amount': string
+      /** 输赢 */
+      'net_amount': string
+      /** 注单量 */
+      'bet_count': number
+      /** 天数，1=今天 */
+      'bet_time': string
+    }[]
+  }[]>('/member/bet/report', data)
+}
