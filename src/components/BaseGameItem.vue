@@ -31,11 +31,11 @@ const isMaintained = computed(() => {
   return props.gameInfo.maintained === '2'
 })
 const toPath = computed(() => {
-  const { id, name, platform_name, platform_id } = props.gameInfo
+  const { id, name, platform_name, platform_id, game_type, game_id } = props.gameInfo
   const uid = router.currentRoute.value.query.uid
 
   const query: any = {
-    id, name, pn: platform_name, pid: platform_id,
+    id, name, pn: platform_name, pid: platform_id, type: game_type, code: game_id,
   }
   if (uid)
     query.uid = uid
