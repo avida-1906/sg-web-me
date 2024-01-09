@@ -55,6 +55,7 @@ declare global {
   const ApiMemberBetList: typeof import('./apis/index')['ApiMemberBetList']
   const ApiMemberBrandDetail: typeof import('./apis/index')['ApiMemberBrandDetail']
   const ApiMemberCasinoRecordList: typeof import('./apis/index')['ApiMemberCasinoRecordList']
+  const ApiMemberCateState: typeof import('./apis/index')['ApiMemberCateState']
   const ApiMemberDetail: typeof import('./apis/index')['ApiMemberDetail']
   const ApiMemberDualVerify: typeof import('./apis/index')['ApiMemberDualVerify']
   const ApiMemberEmailCheck: typeof import('./apis/index')['ApiMemberEmailCheck']
@@ -728,6 +729,7 @@ declare module 'vue' {
     readonly ApiMemberBetList: UnwrapRef<typeof import('./apis/index')['ApiMemberBetList']>
     readonly ApiMemberBrandDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberBrandDetail']>
     readonly ApiMemberCasinoRecordList: UnwrapRef<typeof import('./apis/index')['ApiMemberCasinoRecordList']>
+    readonly ApiMemberCateState: UnwrapRef<typeof import('./apis/index')['ApiMemberCateState']>
     readonly ApiMemberDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberDetail']>
     readonly ApiMemberDualVerify: UnwrapRef<typeof import('./apis/index')['ApiMemberDualVerify']>
     readonly ApiMemberEmailCheck: UnwrapRef<typeof import('./apis/index')['ApiMemberEmailCheck']>
@@ -1385,6 +1387,7 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberBetList: UnwrapRef<typeof import('./apis/index')['ApiMemberBetList']>
     readonly ApiMemberBrandDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberBrandDetail']>
     readonly ApiMemberCasinoRecordList: UnwrapRef<typeof import('./apis/index')['ApiMemberCasinoRecordList']>
+    readonly ApiMemberCateState: UnwrapRef<typeof import('./apis/index')['ApiMemberCateState']>
     readonly ApiMemberDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberDetail']>
     readonly ApiMemberDualVerify: UnwrapRef<typeof import('./apis/index')['ApiMemberDualVerify']>
     readonly ApiMemberEmailCheck: UnwrapRef<typeof import('./apis/index')['ApiMemberEmailCheck']>
