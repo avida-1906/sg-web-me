@@ -41,7 +41,7 @@ const notifyData = ref({
   title: '',
   message: '',
 })
-const { run: runMemberUpdate } = useRequest(ApiMemberUpdate, {
+const { runAsync: runMemberUpdate } = useRequest(ApiMemberUpdate, {
   onSuccess(data, params) {
     if (params[0].record.email) {
       setEmailDisabledBtnTrue()
@@ -52,6 +52,7 @@ const { run: runMemberUpdate } = useRequest(ApiMemberUpdate, {
       title: t('success_update_email'),
       message: `${t('tip_email_to')} ${email.value}`,
     }
+    // emailCheck(false)
     appStore.updateUserInfo()
   },
 })
@@ -66,6 +67,30 @@ const {
 
 const emailVerified = computed(() => userInfo.value?.email_check_state === 1)
 const isDialog = computed(() => !!props.tipText)
+
+/**
+ * 邮箱提交按钮是否禁用
+ */
+const emailSubmitBtnDisabled = computed(() => {
+  if (!email.value)
+    return true
+
+  const initEmailText = userInfo.value?.email
+  if (email.value !== initEmailText)
+    return false
+
+  return !emailVerified.value
+})
+
+/**
+ * 重新发送邮件按钮是否禁用
+ */
+const emailCheckBtnDisabled = computed(() => {
+  if (!email.value)
+    return true
+
+  return emailVerified.value
+})
 
 async function emailSubmit() {
   await emailValidate()
@@ -92,6 +117,17 @@ function goGmail() {
   window.open(`https://mail.google.com/mail/u/#search/from:@${location.origin}`)
 }
 
+/**
+ * 重新发送
+ */
+function emailCheckAgain() {
+  const initEmailText = userInfo.value?.email
+  if (email.value !== initEmailText)
+    emailSubmit()
+  else
+    emailCheck(true)
+}
+
 /** 监听邮箱改变 */
 watch(() => email.value, (newValue, oldValue) => {
   if (oldValue && newValue && newValue !== oldValue)
@@ -112,7 +148,7 @@ onMounted(() => {
   <div class="tg-settings-general">
     <AppSettingsContentItem
       :dialog-box="isDialog"
-      :title="t('email_address')" :verified="emailVerified || emailDisabledBtn"
+      :title="t('email_address')" :verified="emailSubmitBtnDisabled"
       :badge="emailVerified" @submit="emailSubmit"
     >
       <div :class="{ 'verify-content': isDialog }">
@@ -149,9 +185,9 @@ onMounted(() => {
       </template>
       <template #btm-right>
         <BaseButton
-          type="text" :disabled="emailVerified"
+          type="text" :disabled="emailCheckBtnDisabled"
           :loading="loadingEmailCheckRequest" size="none"
-          @click="emailCheck(false)"
+          @click="emailCheckAgain()"
         >
           <span :class="{ 'not-verified-span': !emailVerified }">
             {{ t('resend_email') }}
