@@ -95,7 +95,7 @@ all_bets: All bets
 casino_bets: Casino bets
 billboard: Billboard
 competition_board: Competition leaderboard
-competition: Competition
+competition: 'Competition {money}'
 competition_name: Competition name
 currency: Currency
 network: Network

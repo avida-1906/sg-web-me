@@ -103,6 +103,8 @@ export class SocketClient {
       })
     }
 
+    console.error('result', result)
+
     this.#MQTT_SERVER = result
   }
 

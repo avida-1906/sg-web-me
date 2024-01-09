@@ -74,18 +74,18 @@ game: Jogos
 wallet: Carteira
 safe: Cofre
 affiliate: Afiliados
-transaction_record: Extrato de transação
-statistical_data: Dados estatísticos
+transaction_record: Transações
+statistical_data: Estatísticas
 sports_betting: Apostas esportivas
 trophy: Troféu
 lucky_trophy: Troféu de Sorte
 big_win: Grande Vencedor
 setting: Configurações
-stake_safety: Segurança {site}
+stake_safety: Aposta Segura
 online_support: Suporte Ao Vivo
 vip_club: Clube VIP
 club: Clube
-logout: Logout
+logout: Sair
 logout_dont_foget: Não se esqueça de conferir as nossas promoções de Cassino e Apostas
   Esportivas antes de sair!
 chat_room: Chat
@@ -95,7 +95,7 @@ all_bets: Todas as Apostas
 casino_bets: Apostas de cassino
 billboard: Grandes Apostadores
 competition_board: Classificação da Corrida
-competition: Competição
+competition: 'Competição {money}'
 competition_name: Nome da competição
 currency: Moeda
 network: Rede
@@ -775,9 +775,9 @@ search_game: Procurar seu jogo
 search_events: Procurar seu jogo
 casino_origin_game: Jogos originais
 casino_games_recommend: Recomendações populares
-casino_provider: Roleta
-casino_sort_popular: Destaques
-casino_sort_featured: Destaques
+casino_provider: Provedores
+casino_sort_popular: Popular
+casino_sort_featured: Popular
 casino_filter_label: Filtrar por
 casino_filter_label_sort: Ordenar Por
 casino_filter_provider_all: Visualizar todos os fornecedores de jogos
@@ -847,7 +847,7 @@ menu_title_settings_api: API
 menu_title_settings_verify: Verificação
 menu_title_settings_offers: Desconto
 menu_title_settings_deposits: Depósito
-menu_title_settings_withdrawals: Saque
+menu_title_settings_withdrawals: Retirada
 menu_title_settings_bets: Aposta
 menu_title_settings_archive: Arquivos de apostas
 menu_title_settings_other: Outro
@@ -989,13 +989,13 @@ chat_command_tip_user: Enviar gorjeta aos usuários
 chat_command_tip_rain: Chuva de envelopes vermelhos
 chat_command_ignore_user: Incluir na lista negra
 chat_command_unignore_user: Remover da lista negra
-chat_send_msg_placeholder: Digite a sua mensagem
+chat_send_msg_placeholder: Escreva a sua mensagem
 chat_new_window: Sala de bate-papo popup
 chat_close_side: Ocultar barra lateral
 chat_send_tip_label: Enviar gorjeta
-chat_rule_full_title: As regras completas podem ser encontradas em nosso
+chat_rule_full_title: Todas as regras podem ser encontradas em nosso
 chat_forum: Fórum
-chat_rule_find: Encontrado em.
+chat_rule_find: '.'
 about_us: Sobre Nós
 sponsor_activity: Eventos patrocinados
 online_shopping: Loja
@@ -1142,7 +1142,7 @@ dedicated_vip_servicer: Representante de serviço VIP dedicado
 multiple_count: Multiplicador
 ranking: Classificação
 hidden_user: Furtividade
-hidden_mode: Modo furtivo
+hidden_mode: Modo anônimo
 user_turn_on_hidden: Este jogador ativou o modo privado
 turn_on: Ativar
 receive: Receber
@@ -1152,28 +1152,25 @@ service_transfer: Atendimento ao cliente - transferências
 bind_pix_account: Vincular PIX
 bind_bank_card: 'Vincular cartão '
 data_empty: Sem dados
-chat_rule_1: Não envie spam no chat e evite usar muitas letras maiúsculas.
-chat_rule_2: Por favor, não assedie ou ofenda outros usuários e funcionários da
-  {site}.
-chat_rule_3: Por favor, não compartilhe nenhuma informação pessoal sobre você ou
-  outros jogadores (incluindo contas de mídia social).
-chat_rule_4: Por favor, não peça dinheiro ou empréstimos, envelopes vermelhos ou
-  gorjetas a outros usuários.
-chat_rule_5: É estritamente proibido conversar usando qualquer outra conta que não
-  seja a sua conta principal.
-chat_rule_6: Não é permitido comportamento questionável que possa ser considerado
-  fraude.
-chat_rule_7: Não se envolva em nenhuma forma de publicidade/negociação/venda/compra/prestação
-  de serviços.
-chat_rule_8: Por favor, não discuta streamers, Twitch ou qualquer outra plataforma
-  semelhante.
-chat_rule_9: Não use serviços de encurtamento de URL. Certifique-se de enviar o
-  link completo.
-chat_rule_10: Por favor, não compartilhe códigos, scripts ou serviços de quaisquer
-  bots.
-chat_rule_11: Por favor, converse apenas no idioma designado para a sala de chat,
-  possíveis abusos serão sancionados.
-chat_rule_12: A discussão de temas políticos e religiosos é estritamente proibida.
+chat_rule_1: Não faça nenhum tipo de spam e não use letras maiúsculas em excesso ao conversar.
+chat_rule_2: Não assedie ou seja ofensivo com outros usuários ou funcionários da {site}.
+  Usar palavras ofensivas, tal como "lixo", "scam", "ladrão", "roubo" ou 
+  quaisquer variáveis das mesmas para se referir ao site ou qualquer um de seus 
+  jogos também é estritamente proibido.
+chat_rule_3: Não compartilhe nenhuma informação pessoal (incluindo redes sociais) suas ou 
+  de outros jogadores.
+chat_rule_4: Não peça nenhum tipo de ajuda financeira, tal como empréstimos, chuvas, 
+  gorjetas, "rachadinha", "metadinha", "pingos", "miora" ou afins.
+chat_rule_5: Não use contas alternativas (alts) para falar no chat, isso é estritamente proibido.
+chat_rule_6: Nenhum comportamento suspeito que possa ser visto como potencial fraude.
+chat_rule_7: Não se envolva em nenhuma forma de publicidade / troca / venda / compra ou oferta de serviços.
+chat_rule_8: Nenhuma discussão sobre a Twitch, Youtube, Facebook, Booyah, Trovo ou qualquer outra plataforma semelhante..
+chat_rule_9: Não use serviços de encurtamento de URL. Sempre envie o link completo.
+chat_rule_10: Não compartilhe nenhum tipo de código, scripts ou qualquer outro serviço de bot. Códigos de Ofertas ou Bônus de 
+  qualquer forma também são estritamente proibidos.
+chat_rule_11: Use apenas o idioma específico do chat em que você está ou 
+  penalidades poderão ser aplicadas.
+chat_rule_12: Sem conversas sobre política e religião no chat, estes assuntos são estritamente proibidos.
 user_confirm_delete_draw_way: Confirme a exclusão dos seguintes métodos de retirada?
 confirm_delete: Confirmar exclusão
 big_winner: O grande vencedor
@@ -1270,8 +1267,8 @@ validate_msg_user_name: Insira um endereço de e-mail correto ou um nome de usu�
   contendo numeros e letras minúsculas de 3 a 14 caracteres
 need_login_tip: Você deve estar conectado para executar esta ação
 mark_all_read: Marcar tudo como lido
-empty_notify: Sem notificações
-tip_show_action: Suas interações aparecerão aqui
+empty_notify: Nenhuma Notificação
+tip_show_action: Suas interações estarão visíveis aqui
 tip_for_set_safepwd: Para a segurança dos seus fundos, defina primeiro uma senha
   de fundo.
 tip_set_safe: Por favor, defina a senha do fundo primeiro
@@ -1310,7 +1307,7 @@ no_more: Sem mais
 loading_label: Carregando
 recent_game_record: Recente
 profile: Perfil
-chat_rule_title: Regras da sala de bate-papo
+chat_rule_title: Regras do Chat
 delete_confirm: Confirmar exclusão
 login_fail_tip: Falha no login, tente novamente
 sys_error: Erro do sistema
@@ -1932,7 +1929,7 @@ casino_intro_19: Com milhares de jogadores leais fazendo milhões de apostas a c
   hora, o {site} é um dos cassinos online mais confiáveis ​​e legítimos da web.
 get_email_code: Obter código de verificação
 re_get: Obter novamente
-footer_description: "{nome} pertence e é operado pela Medium Rare N.V., número de
+footer_description: "{name} pertence e é operado pela Medium Rare N.V., número de
   registro: 145353, endereço registrado: Korporaalweg 10, Willemstad, Curaçao. Entre
   em contato conosco em {email}. O organismo pagador é Medium Rare Limited, 7-9 Riga
   Feraiou, LIZANTIA COURT, Office 310, Agioi Omologites, 1087 Nicosia, Chipre e número

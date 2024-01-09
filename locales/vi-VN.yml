@@ -13,10 +13,9 @@ email_or_username: Email hoặc Tên đăng nhập
 pls_enter_email_or_username: Vui lòng nhập địa chỉ hòm thư và tài khoản khách chơi
 email_or_username_incorrect: Địa chỉ hòm thư vàtài khoản khách chơi không chính
   xác
-two_step_verification: Xác nhận hai bước
+two_step_verification: Hai yếu tố
 pls_enter_two_step_verification: Vui lòng nhập xác nhận hai bước
-tip_start_double_check: 'Bật chức năng xác nhận hai bước để đảm bảo tính an toàn
-  của tài khoản '
+tip_start_double_check: 'Để giữ cho tài khoản của bạn thêm an toàn, hãy bật xác thực hai yếu tố.'
 email_address: Email
 pls_enter_email_address: 'Trường này là bắt buộc'
 email_address_incorrect: Địa chỉ hòm thư không chính xác
@@ -27,9 +26,9 @@ username: Tên đăng nhập
 pls_enter_username: Vui Lòng nhập tên tài khoản
 username_incorrect: Tên người dùng của bạn phải dài từ 3-14 ký tự.
 password: Mật khẩu
-old_pwd: Mật khẩu cũ
-new_pwd: Mật khẩu mới
-confirm_new_pwd: Xác nhận mậtkhẩu mới
+old_pwd: Mật Khẩu Cũ
+new_pwd: Mật Khẩu Mới
+confirm_new_pwd: Xác Nhận Mật Khẩu Mới
 confirm_pwd: Xác nhận mật khẩu
 pls_enter_password: Vui lòng nhậpmật khẩu
 pls_enter_birthday: Vui lòng nhậpngày tháng năm sinh
@@ -84,7 +83,7 @@ lucky_trophy: Chiến tích may mắnnhất
 big_win: Thắng lợi lớn nhất
 setting: Cài đặt
 stake_safety: '{site} an toàn'
-online_support: Casino Trực Tuyến
+online_support: Hỗ Trợ Trực Tuyến
 vip_club: VIP Club
 club: Clup
 logout: Đăng xuất
@@ -96,7 +95,7 @@ all_bets: Tất Cả Cược
 casino_bets: Đơn cược đánh bài
 billboard: Người Chơi Lớn
 competition_board: Bảng xếp hạng cuộc đua
-competition: Cuộc thi
+competition: 'Cuộc đua {money}'
 competition_name: Tên cuộc thi
 currency: Tiền
 network: Mạng lưới
@@ -640,7 +639,7 @@ time_future_later_today: Tối hôm nay
 time_future_next_week: Tuần sau
 time_future_tomorrow: Ngày mai
 time_hour_ago: "{delta} giờ trước"
-time_hour_after: "{delta} giờ sau"
+time_hour_after: "{delta} giờ nữa"
 time_hour: '{delta} giờ'
 time_just_now: Vừa mới
 time_minute_ago: "{delta} phút trước"
@@ -695,7 +694,7 @@ upload_max_files_size: Kích thước tệp tối đa là {limit}MB
 user_says: "{firstName} đã nói…"
 usual_reply_time_header_label: Thời gian phản hồi thông thường
 view_label: Kiểm tra
-view_all: Kiểm tra toàn bộ
+view_all: Xem Tất Cả
 view_conversation: 'Kiểm tra cuộc trò chuyện '
 view_more: hiển thị nhiều hơn
 view_more_details: Xem thêm chi tiết
@@ -732,7 +731,7 @@ casino_game_test_mode: Chơi vui
 casino_game_real_money_mode: chế độ chơi bằng tiền thật
 search_need_at_least_3_word: Tìm yêu cầu ít nhất 3 ký tự
 search_recent: Tìm kiếm gần đây
-search_no_result: Không có kết quả nào được tìm thấy.
+search_no_result: Không tìm thấy kết quả nào.
 search_clear: Tìm kiếm rõ ràng
 search_game: Tìm kiếm trò chơi của bạn
 search_events: Tìm kiếm sự kiện
@@ -750,13 +749,13 @@ game_type_live: sòng bạc trực tiếp
 game_type_slot: Máy đánh bạc con hổ
 game_type_slot_short_name: Máy con hổ
 game_type_rec: giới thiệu trò chơi
-finance_deposit_empty_text: Chưa có tiền đặt cọc
-finance_withdraw_empty_text: Chưa có khoản rút tiền nào
+finance_deposit_empty_text: Không có lần nạp tiền nào
+finance_withdraw_empty_text: Không có lệnh Rút tiền
 finance_other_empty_text: Chưa có mục nào
 finance_deposit_download_text: Tải xuống tất cả các khoản tiền gửi
 finance_withdraw_download_text: Tải xuống tất cả các lần rút tiền
 finance_other_tab_all: Tất cả
-finance_other_tab_bonus: Tiền thưởng
+finance_other_tab_bonus: Giải thưởng
 finance_other_tab_drop: Phần thưởng airdrop
 finance_other_tab_campaign_withdrawal: 'Rút tiền hoa hồng '
 finance_other_tab_reload_claim: Nhận tiền thưởng nạp tiền
@@ -786,8 +785,8 @@ page_sizer_label: ĐiềuTrang
 page_prev: Trước
 page_next: Tiếp
 jump_to: Chuyển tới
-currency_byte_coin: tiền điện tử
-currency_law_coin: đấu thầu hợp pháp
+currency_byte_coin: Tiền điện tử
+currency_law_coin: Local Currency
 menu_title_promotion_tutorial: Hướng dẫn khuyến mãi
 menu_title_my_promotion: Sự quảng cáo của tôi
 menu_title_my_commission: Hoa hồng của tôi
@@ -824,7 +823,7 @@ last_deposits: khoản tiền nạp cuối cùng
 independent_deposit: Tiền gửi riêng biệt
 commission_rate: Tỷ lệ hoa hồng
 times: Số lần
-wagered: tổng cược
+wagered: Tổng Cược
 bet_amount: Số Tiền Cược
 notify_title_error: Lỗi
 notify_title_success: Thành công
@@ -886,21 +885,21 @@ sports_status_tie: Hòa
 sports_status_win_half: Ăn nửa tiền
 sports_status_lose_half: Thua nửa tiền
 sports_status_lose_part: Thua một phần
-sports_estimated_payment_amount: 'Dự kiến số tiền chi trả '
+sports_estimated_payment_amount: 'Est. Thanh toán'
 sports_payment_amount: Thanh toán
-sports_single_bet: Đơn
-sports_multi_bet: Nhiều
+sports_single_bet: Đặt Cược Đơn
+sports_multi_bet: Đặt Cược Nhiều Trận
 sports_active: Hoạt động
 sports_settled: Đã đặt
 sports_accept_any_odds: Chấp Nhận Tất Cả Tỉ Lệ
 sports_accept_higher_odds: Chỉ Chấp Nhận Tỉ Lệ Cao hơn
 sports_accept_none_odds: Không Chấp Nhận Tỉ Lệ Thay Đổi
 sports_bet_slip_empty: Đơn cược trống
-sports_betting_now: Bắt đầu đặt cược ngay bây giờ!
+sports_betting_now: Phiếu Cược Trống Bắt đầu đặt cược ngay bây giờ !
 sports_total_odds: tổng tỷ lệ cược
-sports_total_bet_amount: tổng cược
+sports_total_bet_amount: Tổng Cược
 sports_odds_has_changed: Tỷ lệ cược đã thay đổi.
-sports_bet: cá cược thể thao
+sports_bet: ''
 sports_hot_event: Trận đấu phổ biến
 sports_three_options: đặt cược 3 chiều
 sports_standard: Tiêu chuẩn
@@ -955,7 +954,7 @@ chat_close_side: Thu gọn thanh chat
 chat_send_tip_label: Gửi tặng tiền tip
 chat_rule_full_title: Tất cả quy tắc có thể tìm thấy tại
 chat_forum: diễn đàn
-chat_rule_find: ''
+chat_rule_find: '.'
 about_us: Về Chúng Tôi
 sponsor_activity: Tài trợ
 online_shopping: Cửa hàng
@@ -970,7 +969,7 @@ commission_history: Lịch sử hoa hồng
 window_minimize: Giảm thiểu
 empty_game: Chưa có trò chơi nào
 copy_success: Sao chép thành công
-end_time: Thời gian kết thúc
+end_time: Kết thúc sau
 date_picker_error: Vui lòng chọn đúng thời gian bắt đầu và thời gian kết thúc
 sports_vs: VS
 receive_bonus: Nhận tiền thưởng
@@ -1069,7 +1068,7 @@ label_draw_time: Thời gian nhận lãnh
 label_contribute_count: Số lượng người đóng góp
 label_bind: Chương trình liên kết
 title_input_paypwd: Nhập mật khẩu quỹ
-title_wallet_set: Cài đặt ví
+title_wallet_set: Cài đặt Ví
 success_bind: Liên kết thành công
 success_delete: Xóa bỏ thành công
 tip_msg_bind_once: Không thể sửa đổi sau khi liên kết
@@ -1364,8 +1363,8 @@ validate_msg_safepwd_unequal: Mật khẩu quỹ được nhập hai lần khôn
 success_update_pwd: Sửa mật khẩu thành công
 pls_input_double_check_pwd: Vui lòng nhập mật khẩu xác minh hai bước của bạn
 success_set_double_check: Đặt mật khẩu xác minh hai bước thành công
-copy_to_google: Sao chép mã vào Ứng dụng Authenticator của bạn
-hide_from_others: Ngăn người khác xem trang này!
+copy_to_google: Sao chép mã này vào ứng dụng xác thực của bạn
+hide_from_others: Không để ai xem cái này!
 success_set_safepwd: Đặt mật khẩu quỹ thành công
 tip_safepwd_six: Mật khẩu quỹ của bạn chứa 6 chữ số
 email_uncheck: Địa chỉ hòm thư điện tử chưa được xác minh
@@ -1483,7 +1482,7 @@ same_event_no_multi: Nhiều đơn cược từ cùng một trận đấu không
 multi_bet_max: Nhiều kết hợp đặt cược không thể vượt quá {max}.
 reuse_bet: Tái sử dụng đơn cược
 reg_bet: Đăng ký đặt cược
-accept_odd: Chấp nhận tỷ lệ cược mới
+accept_odd: Chấp Nhận Tỉ Lệ Mới
 company_intro_tip_1: '{host} là công ty hàng đầu thế giới về cá cược tiền điện
   tử, với một trong những nền tảng cá cược thể thao và sòng bạc tốt nhất để đặt
   cược bằng Bitcoin và các loại tiền điện tử khác. Được thành lập vào năm 2017,
@@ -1796,8 +1795,7 @@ cant_form_multiple: Nhiều đơn cược từ cùng một trận đấu không 
   nhiều lần.
 no_sup_multiple: Bạn có một đơn cược không hỗ trợ cược nhiều lần
 bet_one_max: Chỉ có thể thêm cược {max} cùng lúc.
-bet_odd_change: Tỷ lệ cược đã thay đổi. Bạn phải chấp nhận thay đổi tỷ lệ cược trước
-  khi đặt cược.
+bet_odd_change: Tỷ lệ đã thay đổi . Để đặt cược , trước tiên bạn cần xem lại và phê duyệt các thay đổi.
 bet_sup_10x: Chỉ hỗ trợ số tiền đặt cược là bội số của 10
 bet_fixed_x: Số tiền đặt cược có nhiều hơn {fixed} chữ số thập phân không được hỗ
   trợ
@@ -1818,7 +1816,7 @@ week_3: Thứ tư
 week_4: Thứ năm
 week_5: Thứ sáu
 week_6: Thứ bảy
-double_check_code: Mã xác nhận hai bước
+double_check_code: Mã Hai Yếu Tố
 official_number: Định dạng số Tiền Pháp Định
 official_num_tip: 'Cảnh báo: Trong chế độ xem tiền tệ fiat {currencyName}, định dạng
   số fiat sẽ bị tắt.'
@@ -1997,8 +1995,8 @@ connect_service: Liên hệ chăm sóc khách hàng
 page_title_sport: Cá Cược Thể Thao - Cá Cược Thể Thao Trực Tuyến
 online_casino: Cá cược trực tuyến
 empty_archive: Chưa có tập tin cá cược
-empty_official_deposit: Hiện tại không có tiền gửi tiền tệ fiat nào có sẵn
-empty_official_withdraw: Rút tiền pháp định tạm thời không khả dụng
+empty_official_deposit: Không Nạp Loại Tiền Này
+empty_official_withdraw: Không Rút Loại Tiền Này
 day_bonus: Tiền thưởng mỗi ngày
 deposit_bonus: Tiền thưởng nạp tiền
 two: Hai
