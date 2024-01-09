@@ -839,6 +839,9 @@ export class SportsCart {
         item.hp = _wsiObject?.hp ?? 0
         item.ap = _wsiObject?.ap ?? 0
         item.new_wid = _wsiObject?.new_wid ?? '0'
+
+        if (item.new_wid !== item.wid)
+          item.wid = item.new_wid
       }
 
       if (bi) {
