@@ -7,18 +7,25 @@ const list = [
     img: '/png/mini/limbo.png',
     name: 'Limbo',
     game_id: 'limbo',
+    count: getCount(),
   },
   {
     img: '/png/mini/dice.png',
     name: 'Dice',
     game_id: 'dice',
+    count: getCount(),
   },
   {
     img: '/png/mini/plinko/plinko.png',
     name: 'Plinko',
     game_id: 'plinko',
+    count: getCount(),
   },
 ]
+
+function getCount() {
+  return Math.ceil(Math.random() * 1000).toFixed()
+}
 
 function startGame(id: string) {
   push(`/casino/original-game/?id=${id}`)
@@ -27,9 +34,7 @@ function startGame(id: string) {
 
 <template>
   <div class="list-wrap">
-    <BaseButton
-      type="text" size="none"
-    >
+    <BaseButton type="text" size="none">
       <div class="title">
         <BaseIcon name="chess-original-game" />
         <span>{{ t('casino_origin_game') }}</span>
@@ -43,6 +48,11 @@ function startGame(id: string) {
             <BaseImage :url="item.img" />
           </div>
         </BaseAspectRatio>
+        <span class="count">
+          <span class="dot blinking-dash2" />&nbsp;&nbsp;
+          <span class="num">{{ application.formatNumber(item.count) }}</span>
+          &nbsp;{{ t('in_play') }}
+        </span>
       </template>
     </AppCardList>
   </div>
@@ -71,14 +81,38 @@ function startGame(id: string) {
     }
   }
 
-  .item{
+  .item {
     background-color: #fff;
     cursor: pointer;
     border-radius: var(--tg-radius-md);
     overflow: hidden;
     transition: var(--tg-transition);
-    &:hover{
+
+    &:hover {
       transform: translateY(-7px);
+    }
+  }
+
+  .count {
+    display: flex;
+    align-items: center;
+    margin-top: var(--tg-spacing-4);
+    font-size: var(--tg-font-size-xs);
+    color: var(--tg-text-lightgrey);
+    font-weight: var(--tg-font-weight-semibold);
+    line-height: 1.5;
+
+    .dot {
+      width: 6.5px;
+      height: 6.5px;
+      border-radius: 50%;
+      background-color: var(--tg-primary-success);
+      margin-left: 2px;
+    }
+
+    .num {
+      color: var(--tg-text-white);
+      font-variant-numeric: tabular-nums;
     }
   }
 }
