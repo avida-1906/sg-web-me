@@ -50,22 +50,26 @@ export const useSportsStore = defineStore('sports', () => {
   const betSlipData = ref<IBetSlipData[]>([])
   /** 当前场馆ID */
   const currentProvider = ref(Local.get<string>(STORAGE_SPORTS_CURRENT_PROVIDER)?.value ?? '')
-  /** 当前滚球选中的体育项目 */
+  /** 滚球当前球种 */
   const currentLiveNav = ref(-1)
-  /** 当前滚球展示的盘口类型 */
+  /** 滚球当前盘口类型 */
   const currentLiveBetType = ref('')
-  /** 当前即将开赛选中的体育项目 */
+  /** 即将开赛当前球种 */
   const currentUpcomingNav = ref(0)
-  /** 当前收藏选中的体育项目 */
+  /** 收藏当前球种 */
   const currentFavNav = ref(-1)
-  /** 当前收藏展示的盘口类型 */
+  /** 收藏当前盘口类型 */
   const currentFavBetType = ref('3@@1')
   /** 大厅当前的赛事类型 */
   const lobbyCurrentEventType = ref(0)
-  /** 大厅当前的球种si */
+  /** 大厅当前球种 */
   const currentLobbySiNav = ref(-1)
-  /** 大厅当前展示的盘口类型 */
+  /** 大厅当前盘口类型 */
   const currentLobbyBetType = ref('')
+  /** 虚拟体育当前球种 */
+  const currentVSportsNav = ref(-1)
+  /** 虚拟体育当前盘口类型 */
+  const currentVSportsBetType = ref('')
   /** 购物车 */
   const cart = reactive(new SportsCart(currentGlobalCurrency.value))
 
@@ -150,6 +154,22 @@ export const useSportsStore = defineStore('sports', () => {
         currentLobbyBetType.value = getSportsBetTypeListBySi(currentLobbySiNav.value)[0].value
 
       /** 🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧 一条完美的分割线 🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧 */
+
+      // 虚拟体育
+      const vsArr = res.list.filter(a => a.vsc > 0)
+      if (vsArr.length > 0) {
+        if (currentVSportsNav.value === -1)
+          currentVSportsNav.value = vsArr[0].si
+
+        else if (!vsArr.find(a => a.si === currentVSportsNav.value))
+          currentVSportsNav.value = vsArr[0].si
+      }
+      else {
+        currentVSportsNav.value = 1
+      }
+
+      if (currentVSportsBetType.value === '')
+        currentVSportsBetType.value = getSportsBetTypeListBySi(currentVSportsNav.value)[0].value
 
       // 滚球
       const liveArr = res.list.filter(a => a.lc > 0)
@@ -561,6 +581,8 @@ export const useSportsStore = defineStore('sports', () => {
     sportGameList,
     currentLiveNav,
     currentLiveBetType,
+    currentVSportsNav,
+    currentVSportsBetType,
     todayEventNavs,
     sportLiveNavs,
     earlyEventNavs,

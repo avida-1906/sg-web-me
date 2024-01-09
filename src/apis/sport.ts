@@ -164,7 +164,7 @@ export function ApiSportEventList(params: {
    * 4:即将开赛
    *
    * 5:即将开赛及滚球 */
-  m: number
+  m?: number
   page: number
   page_size: number
   /** 是否热门 */
@@ -174,9 +174,9 @@ export function ApiSportEventList(params: {
   /** 地区id */
   pgid?: string
   /** 是否串关 0全部 1仅串关 */
-  ic: number
+  ic?: number
   /** 是否虚拟赛事 0全部 1是 2否 */
-  ivs: number
+  ivs?: number
 }) {
   return httpClient.get<{
     /** 资料更新时间 */
