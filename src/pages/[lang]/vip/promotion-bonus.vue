@@ -31,7 +31,6 @@ const columns = computed<Column[]>(() => [
     dataIndex: 'score',
     align: 'center',
     slot: 'score',
-    clazz: 'flex-column-title',
   },
   {
     title: t('vip_promotion_bonus'),
@@ -65,9 +64,13 @@ onMounted(() => {
     <div class="tabs">
       <BaseTable :columns="columns" :data-source="vipConfigArray">
         <template #th-score>
-          <span class="play-rules" @click="seeExpDialog">
+          <BaseButton
+            type="text"
+            size="none"
+            @click="seeExpDialog"
+          >
             <BaseIcon name="uni-ques-blue" />
-          </span>
+          </BaseButton>
         </template>
         <template #level="{ record }">
           <!-- <div>VIP{{ record.level }}</div> -->
@@ -127,32 +130,12 @@ onMounted(() => {
   </div>
 </template>
 
-<style>
-.flex-column-title {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-</style>
-
 <style lang="scss" scoped>
-.play-rules {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: 4px;
-  cursor: pointer;
-  font-size: 14px;
-  vertical-align: middle;
-  > svg {
-    vertical-align: middle;
-  }
-}
 .small-text {
-  font-size: 12px;
+  font-size: var(--tg-font-size-xs);
 }
 .vip-badge {
-  font-size: 32px;
+  font-size: var(--tg-font-size-3xl);
   display: flex;
   align-items: center;
 }

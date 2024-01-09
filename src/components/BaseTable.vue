@@ -67,7 +67,6 @@ watch(() => props.columns, () => {
           <th
             v-for="(item, index) in columns" :key="index"
             class="m-th"
-            :class="item.clazz"
             :style="`width: ${typeof item.width === 'number'
               ? `${item.width}px` : item.width};text-align:${item.align}`"
           >
@@ -91,6 +90,7 @@ watch(() => props.columns, () => {
                 </template>
               </VTooltip>
               <span>{{ item.title }}</span>
+              <slot :name="`th-${item.slot}`" />
               <div v-if="item.sort" class="th-sort">
                 <BaseIcon
                   name="uni-table-sort"
@@ -104,7 +104,6 @@ watch(() => props.columns, () => {
                 />
               </div>
             </div>
-            <slot :name="`th-${item.slot}`" />
           </th>
         </tr>
       </thead>
