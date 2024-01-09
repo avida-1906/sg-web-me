@@ -26,6 +26,8 @@ const { isLessThanLg, isGreaterThanSm } = storeToRefs(useWindowStore())
 const { bool: color, setBool: setColor } = useBoolean(false)
 const timer: Ref<NodeJS.Timeout | null> = ref(null)
 const { isMobile } = storeToRefs(useWindowStore())
+// 需要获取多少条数据
+const selectSize: Ref<string> = ref('10')
 // 是否开启隐身模式
 const {
   bool: isHidden,
@@ -40,6 +42,7 @@ const {
   list,
   runAsync: runCasinoRecordList,
   loading,
+  page_size: casinoRecordPageSize,
   // prev, next, hasMore, page,
 } = useList(ApiMemberCasinoRecordList, {}, { page_size: 10 })
 // 所有投注、风云榜
@@ -47,19 +50,18 @@ const {
   list: betList,
   runAsync: runMemberBetList,
   loading: loadBet,
+  page_size: betPageSize,
   // prev, next, hasMore, page,
 } = useList(ApiMemberBetList, {}, { page_size: 10 })
 
 // tab值
 const activeTab: Ref<string> = ref(props.mode === 'casino' ? 'casino-fy' : 'sports-fy')
-// 需要获取多少条数据
-const selectSize: Ref<number> = ref(10)
 const selectOptions: ISelectOption[] = [
-  { label: '0', value: 0 },
-  { label: '10', value: 10 },
-  { label: '20', value: 20 },
-  { label: '30', value: 30 },
-  { label: '40', value: 40 },
+  { label: '0', value: '0' },
+  { label: '10', value: '10' },
+  { label: '20', value: '20' },
+  { label: '30', value: '30' },
+  { label: '40', value: '40' },
 ]
 
 // 获取tab配置
@@ -363,33 +365,50 @@ function getPrefixAmount(currency_id: CurrencyCode, amount: string) {
   application.isVirtualCurrency(name)
   return (application.isVirtualCurrency(name) ? '' : currencyConfig[name].prefix) + amount
 }
+function getMemberBetList() {
+  const type = ['casino-all', 'sports-all'].includes(activeTab.value) ? '0' : (['casino-fy', 'sports-fy'].includes(activeTab.value) ? '1' : '')
+  !loadBet.value && runMemberBetList({ type })
+}
 
 watch(() => props.tabVal, (newValue) => {
   if (newValue)
     activeTab.value = newValue
 })
 watch(() => activeTab.value, (newValue) => {
-  if (newValue === 'casino-mine') {
-    runCasinoRecordList({})
-  }
-  else if (['casino-all', 'sports-all'].includes(activeTab.value)) {
-    runMemberBetList({
-      page: 1,
-      page_size: 10,
-      type: '0',
-    })
-  }
-  else if (['casino-fy', 'sports-fy'].includes(activeTab.value)) {
-    runMemberBetList({
-      page: 1,
-      page_size: 10,
-      type: '1',
-    })
+  if (selectSize.value !== '0') {
+    const size = Number(selectSize.value)
+    if (newValue === 'casino-mine') {
+      /** 判断分页大小书是否变化 */
+      const isChange = casinoRecordPageSize.value !== size
+      if (isChange)
+        casinoRecordPageSize.value = size
+      else
+        runCasinoRecordList({})
+    }
+    else if (['casino-all', 'sports-all'].includes(activeTab.value)) {
+      const isChange = betPageSize.value !== size
+      if (isChange)
+        betPageSize.value = size
+      else
+        runMemberBetList({ type: '0', game_class: props.mode === 'sports' ? '4' : '' })
+    }
+    else if (['casino-fy', 'sports-fy'].includes(activeTab.value)) {
+      const isChange = betPageSize.value !== size
+      if (isChange)
+        betPageSize.value = size
+      else
+        runMemberBetList({ type: '1', game_class: props.mode === 'sports' ? '4' : '' })
+    }
   }
   if (['casino-all', 'casino-fy'].includes(activeTab.value)) {
-    (!timer.value) && (timer.value = setInterval(() => {
+    if (timer.value) {
+      clearInterval(timer.value)
+      timer.value = null
+    }
+    timer.value = setInterval(() => {
+      // getMemberBetList()
       setColor(!color.value)
-    }, 3000))
+    }, 2000)
   }
   else {
     timer.value && clearInterval(timer.value)
@@ -405,6 +424,11 @@ watch(() => isLogin.value, (newValue) => {
     })
   }
 }, { immediate: true })
+watch(() => selectSize.value, (newValue) => {
+  activeTab.value === 'casino-mine'
+    ? casinoRecordPageSize.value = Number(newValue)
+    : betPageSize.value = Number(newValue)
+})
 
 onUnmounted(() => {
   timer.value && clearInterval(timer.value)
@@ -433,123 +457,125 @@ onUnmounted(() => {
         <BaseSelect v-model="selectSize" :options="selectOptions" small />
       </div>
     </div>
-    <div v-show="activeTab === 'ranking-list'" class="ranking-time">
-      <div class="center cursor-pointer">
-        <BaseIcon name="spt-competition" />
-        <span>
-          {{ t('competition', { money: '$100,000' }) }} –
-          {{ t('time_hour', { delta: 24 }) }}
-        </span>
-      </div>
-      <div class="center cursor-pointer">
-        <BaseIcon name="uni-trend" />
-        <span>
-          {{ t('end_time') }}{{ t('colon') }} {{ t('time_hour_after', { delta: 8 }) }}
-        </span>
-      </div>
-    </div>
-    <BaseTable
-      :columns="getScaleColumns"
-      :data-source="getList"
-      :style="getBgColor"
-      :loading="loading || loadBet"
-      :last-first-padding="isMobile"
-      :show-empty="false"
-    >
-      <template #gameName="{ record }">
-        <div
-          class="game-box cursor-pointer"
-          @click="openBetSlipDialog({ type: 'casino', data: record })"
-        >
-          <BaseIcon name="chess-plinko" />
-          <span>{{ record.game_name }}</span>
+    <template v-if="selectSize !== '0'">
+      <div v-show="activeTab === 'ranking-list'" class="ranking-time">
+        <div class="center cursor-pointer">
+          <BaseIcon name="spt-competition" />
+          <span>$100,000 {{ t('competition') }} – {{
+            t('time_hour', { delta: 24 }) }}</span>
         </div>
-      </template>
-      <template #bet_time="{ record }">
-        <div>
-          {{ timeToFormat(record.bet_time ?? record.created_at) }}
+        <div class="center cursor-pointer">
+          <BaseIcon name="uni-trend" />
+          <span>
+            {{ t('end_time') }}{{ t('colon') }} {{ t('time_hour_after', { delta: 8 }) }}
+          </span>
         </div>
-      </template>
-      <template #player="{ record }">
-        <template v-if="!record.username">
-          <VTooltip placement="top" :triggers="['click', 'hover']">
-            <div class="center stealth-box">
-              <BaseIcon name="uni-hidden" />
-              <span style="padding-left: 5px;" class="semibold">
-                {{ t('hidden_user') }}
-              </span>
-            </div>
-            <template #popper>
-              <div class="tiny-menu-item-title">
-                {{ t('user_turn_on_hidden') }}
-              </div>
-            </template>
-          </VTooltip>
+      </div>
+      <BaseTable
+        :columns="getScaleColumns"
+        :data-source="getList"
+        :style="getBgColor"
+        :loading="loading || loadBet"
+        :last-first-padding="isMobile"
+        :show-empty="false"
+      >
+        <template #gameName="{ record }">
+          <div
+            class="game-box cursor-pointer"
+            @click="openBetSlipDialog({ type: 'casino', data: record })"
+          >
+            <BaseIcon name="chess-slot-machine" />
+            <!-- <BaseIcon name="spt-basketball" /> -->
+            <span>{{ record.game_name }}</span>
+          </div>
         </template>
-        <div
-          v-else class="semibold player-box cursor-pointer"
-          @click="openStatisticsDialog"
-        >
-          {{ record.username }}
-        </div>
-      </template>
-      <template #betMoney="{ record }">
-        <div style="display: inline-block;">
-          <VTooltip placement="top" :triggers="['click', 'hover']">
+        <template #bet_time="{ record }">
+          <div>
+            {{ timeToFormat(record.bet_time ?? record.created_at) }}
+          </div>
+        </template>
+        <template #player="{ record }">
+          <template v-if="!record.username">
+            <VTooltip placement="top" :triggers="['click', 'hover']">
+              <div class="center stealth-box">
+                <BaseIcon name="uni-hidden" />
+                <span style="padding-left: 5px;" class="semibold">
+                  {{ t('hidden_user') }}
+                </span>
+              </div>
+              <template #popper>
+                <div class="tiny-menu-item-title">
+                  {{ t('user_turn_on_hidden') }}
+                </div>
+              </template>
+            </VTooltip>
+          </template>
+          <div
+            v-else class="semibold player-box cursor-pointer"
+            @click="openStatisticsDialog"
+          >
+            {{ record.username }}
+          </div>
+        </template>
+        <template #betMoney="{ record }">
+          <div style="display: inline-block;">
+            <VTooltip placement="top" :triggers="['click', 'hover']">
+              <AppAmount
+                :amount="getPrefixAmount(record.currency_id, record.bet_amount)"
+                :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
+                style="--tg-app-amount-font-weight:var(--tg-font-weight-normal);"
+              />
+              <template #popper>
+                <div class="tiny-menu-item-title">
+                  <AppAmount
+                    :amount="getPrefixAmount(record.currency_id, record.bet_amount)"
+                    :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
+                    style="--tg-app-amount-font-weight:var(--tg-font-weight-normal);"
+                  />
+                </div>
+              </template>
+            </VTooltip>
+          </div>
+        </template>
+        <template #payMoney="{ record }">
+          <div
+            :style="{
+              display: 'inline-block',
+              color: (record.net_amount ?? record.pay_amount) > 0
+                ? 'var(--tg-text-green)' : '',
+            }"
+          >
             <AppAmount
-              :amount="getPrefixAmount(record.currency_id, record.bet_amount)"
+              :amount="getPrefixAmount(record.currency_id, record.net_amount
+                ?? record.pay_amount)"
               :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
               style="--tg-app-amount-font-weight:var(--tg-font-weight-normal);"
             />
-            <template #popper>
-              <div class="tiny-menu-item-title">
-                <AppAmount
-                  :amount="getPrefixAmount(record.currency_id, record.bet_amount)"
-                  :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
-                  style="--tg-app-amount-font-weight:var(--tg-font-weight-normal);"
-                />
-              </div>
-            </template>
-          </VTooltip>
-        </div>
-      </template>
-      <template #payMoney="{ record }">
-        <div
-          :style="{
-            display: 'inline-block',
-            color: record.net_amount > 0 ? 'var(--tg-text-green)' : '',
-          }"
-        >
-          <AppAmount
-            :amount="getPrefixAmount(record.currency_id, record.net_amount
-              ?? record.pay_amount)"
-            :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
-            style="--tg-app-amount-font-weight:var(--tg-font-weight-normal);"
-          />
-        </div>
-      </template>
-      <template #bonusAmount="{ record }">
-        <div style="display:inline-block">
-          <div v-if="isMobile">
-            {{ record.bonus_amount }}
           </div>
-          <AppAmount
-            v-else
-            :amount="getPrefixAmount(record.currency_id, record.net_amount)"
-            :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
-            style="--tg-app-amount-font-weight:var(--tg-font-weight-normal);"
-          />
-        </div>
-      </template>
-      <template #ranking="{ index }">
-        <div v-if="index < 3" class="ranking-box">
-          <BaseIcon v-if="index === 0" name="uni-rank1" />
-          <BaseIcon v-else-if="index === 1" name="uni-rank2" />
-          <BaseIcon v-else-if="index === 2" name="uni-rank3" />
-        </div>
-        <span v-else>{{ `${index + 1}th` }}</span>
-      </template>
-    </BaseTable>
+        </template>
+        <template #bonusAmount="{ record }">
+          <div style="display:inline-block">
+            <div v-if="isMobile">
+              {{ record.bonus_amount }}
+            </div>
+            <AppAmount
+              v-else
+              :amount="getPrefixAmount(record.currency_id, record.net_amount)"
+              :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
+              style="--tg-app-amount-font-weight:var(--tg-font-weight-normal);"
+            />
+          </div>
+        </template>
+        <template #ranking="{ index }">
+          <div v-if="index < 3" class="ranking-box">
+            <BaseIcon v-if="index === 0" name="uni-rank1" />
+            <BaseIcon v-else-if="index === 1" name="uni-rank2" />
+            <BaseIcon v-else-if="index === 2" name="uni-rank3" />
+          </div>
+          <span v-else>{{ `${index + 1}th` }}</span>
+        </template>
+      </BaseTable>
+    </template>
   </div>
 </template>
 
