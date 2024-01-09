@@ -712,6 +712,24 @@ img.error {
 #app {
   position: relative;
 }
+@media screen and (min-width: 1280px) {
+// 游戏列表页顶部样式
+.group-banner-wrap {
+
+  .banner-wrap {
+
+    .banner {
+
+      .left {
+
+        h1 {
+          font-size: var(--tg-font-size-xl);
+        }
+      }
+    }
+  }
+}
+}
 
 @media screen and (min-width: 768px) {
   #app {

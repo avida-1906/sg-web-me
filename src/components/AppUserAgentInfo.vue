@@ -30,7 +30,7 @@ function drawDialog() {
       <div class="row flex-wrap">
         <div>
           <span>{{ $t('user_superior') }}ID：</span>
-          <span>{{ $t('direct_vip') }}</span>
+          <span>{{ userInfo?.parent_name ?? '-' }}</span>
         </div>
         <BaseButton bg-style="primary" custom-padding @click="drawDialog">
           {{ $t('commission_wallet') }}

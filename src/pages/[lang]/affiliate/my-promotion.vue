@@ -125,7 +125,13 @@ function downloadQr() {
             <AppTooltip
               style="display: inline-block;vertical-align: -6%;margin-left: 4px;"
               :text="t('copy_addr_suc')" icon-name="uni-doc" :triggers="['click']"
-            />
+            >
+              <template #content>
+                <BaseButton size="none" @click="application.copy(qrUrl)">
+                  <BaseIcon name="uni-doc" />
+                </BaseButton>
+              </template>
+            </AppTooltip>
           </div>
         </div>
         <div class="social-wrap" :class="{ 'is-less-than-sm': isMobile }">
@@ -270,6 +276,7 @@ function downloadQr() {
       }
       .url-wrap{
         flex: 1;
+        display: block;
       }
     }
     .link{
@@ -279,6 +286,9 @@ function downloadQr() {
       gap: 4px;
     }
     .url-wrap{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       flex: none;
       color: var(--tg-text-white);
       background: var(--tg-secondary-main);

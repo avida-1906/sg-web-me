@@ -3,13 +3,6 @@ interface ITabItem {
   label: string
   link: string
 }
-interface Column {
-  title?: string
-  width?: number | string
-  dataIndex: string
-  slot?: string
-  align?: 'left' | 'center' | 'right'
-}
 interface Props {
   name: string
   platName: string
@@ -21,17 +14,23 @@ const { isMobile } = storeToRefs(useWindowStore())
 const { companyData } = storeToRefs(useAppStore())
 const { t } = useI18n()
 const { push } = useLocalRouter()
+const { query } = useRoute()
 const { bool: showContent, toggle: toggleShowContent } = useBoolean(true)
-const { bool: loading, setFalse: setLoadingFalse } = useBoolean(true)
 const {
   widthBoundaryXs,
   appContentWidth,
 } = storeToRefs(useWindowStore())
+const {
+  list: betList,
+  runAsync: runMemberBetList,
+  loading: loadBet,
+  // prev, next, hasMore, page,
+} = useList(ApiMemberBetList, {}, { page_size: 3 })
 
 const tab = ref('1')
 const tabList = [
   { value: '1', label: t('big_winner') },
-  { value: '2', label: t('lucky_winner') },
+  { value: '0', label: t('lucky_winner') },
   // { value: '4', label: t('description') },
 ]
 const tagList = ref<ITabItem[]>([
@@ -54,22 +53,22 @@ const columns = ref<Column[]>([
   {
     title: t('gamer'),
     width: 100,
-    dataIndex: 'player',
+    dataIndex: 'username',
     slot: 'player',
     align: 'center',
   },
   {
     title: t('date'),
     width: 150,
-    dataIndex: 'date',
-    slot: 'date',
+    dataIndex: 'created_at',
+    slot: 'bet_time',
     align: 'center',
   },
   {
     title: t('menu_title_settings_bets'),
     width: 100,
-    dataIndex: 'bet',
-    slot: 'bet',
+    dataIndex: 'bet_amount',
+    slot: 'betMoney',
     align: 'center',
   },
   {
@@ -87,46 +86,17 @@ const columns = ref<Column[]>([
     align: 'right',
   },
 ])
-const tableData: any = ref([])
 
 const isXxs = computed(() => appContentWidth.value <= 478)
 const isXs = computed(() => appContentWidth.value <= widthBoundaryXs.value)
 
-onMounted(() => {
-  setTimeout(() => {
-    tableData.value = [
-      {
-        rank: 'uni-rank1',
-        player: 'Guanyu',
-        date: '2022年7月1日',
-        bet: '0.00000000',
-        multiple: '66,666x',
-        payAmount: '257.00000000',
-        currencyType: 'BTC',
-        isStealth: true,
-      },
-      {
-        rank: 'uni-rank2',
-        player: 'KenjaRay10',
-        date: '2022年3月30日',
-        bet: '0.00000000',
-        multiple: '66,666x',
-        payAmount: '257.00000000',
-        currencyType: 'BTC',
-      },
-      {
-        rank: 'uni-rank3',
-        player: 'Emiixes',
-        date: '2022年2月30日',
-        bet: '0.00000000',
-        multiple: '66,666x',
-        payAmount: '257.00000000',
-        currencyType: 'BTC',
-      },
-    ]
-    setLoadingFalse()
-  }, 0)
-})
+watch(() => tab.value, (newValue) => {
+  runMemberBetList({
+    game_code: query.game_id?.toString(),
+    game_class: query.type?.toString(),
+    type: newValue,
+  })
+}, { immediate: true })
 </script>
 
 <template>
@@ -226,21 +196,25 @@ onMounted(() => {
       </div>
       <!-- 赢家 -->
       <div
-        v-else-if="tab === '1' || tab === '2'"
+        v-else-if="tab === '1' || tab === '0'"
         class="scroll-x winner-content"
       >
         <BaseTable
           :columns="columns"
-          :data-source="tableData"
-          :loading="loading"
+          :data-source="betList"
+          :loading="loadBet"
+          :skeleton-row="3"
         >
-          <template #rank="{ record }">
-            <div class="rank-icon">
-              <BaseIcon :name="record.rank" />
+          <template #rank="{ index }">
+            <div v-if="index < 3" class="rank-icon">
+              <BaseIcon :name="`uni-rank${index + 1}`" />
+            </div>
+            <div v-else>
+              {{ index + 1 }}th
             </div>
           </template>
           <template #player="{ record }">
-            <VTooltip v-if="record.isStealth" placement="top">
+            <VTooltip v-if="!record.username" placement="top">
               <div class="cursor-help">
                 <BaseIcon name="uni-hidden" /> <span>{{ t('hidden_user') }}</span>
               </div>
@@ -251,14 +225,19 @@ onMounted(() => {
               </template>
             </VTooltip>
             <div v-else class="player">
-              {{ record.player }}
+              {{ record.username }}
             </div>
           </template>
-          <template #bet="{ record }">
+          <template #bet_time="{ record }">
+            <div>
+              {{ timeToFormat(record.created_at) }}
+            </div>
+          </template>
+          <template #betMoney="{ record }">
             <div class="img-text-align img-text-align-center">
               <AppAmount
-                :amount="record.bet"
-                :currency-type="record.currencyType"
+                :amount="record.bet_amount"
+                :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
                 style="--tg-app-amount-font-weight:var(--tg-font-weight-normal);"
               />
             </div>
@@ -266,8 +245,8 @@ onMounted(() => {
           <template #payAmount="{ record }">
             <div class="img-text-align img-text-align-right">
               <AppAmount
-                :amount="record.payAmount"
-                :currency-type="record.currencyType"
+                :amount="record.pay_amount"
+                :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
                 style="--tg-app-amount-font-weight:var(--tg-font-weight-normal);"
               />
             </div>

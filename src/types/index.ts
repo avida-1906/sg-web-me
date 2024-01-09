@@ -1,4 +1,4 @@
-import type { ISportEventInfo, TOS } from '~/apis/types'
+import type { ISportEventInfo, ISportOutrightsInfo, TOS } from '~/apis/types'
 
 export type EnumLanguageKey = keyof typeof EnumLanguage
 
@@ -228,6 +228,15 @@ export type ISportDataGroupedByLeague = {
   ci: string
   cn: string
   list: ISportEventInfo[]
+}[]
+
+/**
+ * 赛事根据联赛组合
+ */
+export type IOutrightDataGroupedByLeague = {
+  ci: string
+  cn: string
+  list: ISportOutrightsInfo[]
 }[]
 
 /**

@@ -31,6 +31,8 @@ const params = computed(() => {
   return {
     si: +sport,
     m: 5,
+    ic: 0,
+    ivs: 0,
     ci: props.leagueId,
     page: page.value,
     page_size: pageSize.value,

@@ -20,7 +20,13 @@ const curTotal = ref(0)
 const list = ref<ISportDataGroupedByLeague>([])
 const params = computed(() => {
   return {
-    si: 0, m: 0, hot: 1, page: page.value, page_size: pageSize.value,
+    si: 0,
+    m: 0,
+    ic: 0,
+    ivs: 0,
+    hot: 1,
+    page: page.value,
+    page_size: pageSize.value,
   }
 })
 const { runAsync, run } = useRequest(ApiSportEventList, {

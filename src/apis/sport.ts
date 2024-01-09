@@ -36,16 +36,20 @@ export function ApiSportCount(params: {
       si: number
       /** 球种名称 */
       sn: string
-      /** earlyCount 早盘数量 */
-      ec: number
       /** todayCount 今日数量 */
       tc: number
       /** liveCount 滚球数量 */
       lc: number
-      /** 即将开赛数量 */
-      nc: number
+      /** earlyCount 早盘数量 */
+      ec: number
+      /** 串关数量 */
+      cc: number
       /** outrightCount 冠军赛数量 */
       oc: number
+      /** 虚拟赛事数量 */
+      vsc: number
+      /** 即将开赛数量 */
+      nc: number
       /** count 总数 */
       c: number
       /** 球种图片 */
@@ -160,7 +164,7 @@ export function ApiSportEventList(params: {
    * 4:即将开赛
    *
    * 5:即将开赛及滚球 */
-  m: number
+  m?: number
   page: number
   page_size: number
   /** 是否热门 */
@@ -169,6 +173,10 @@ export function ApiSportEventList(params: {
   ci?: string
   /** 地区id */
   pgid?: string
+  /** 是否串关 0全部 1仅串关 */
+  ic?: number
+  /** 是否虚拟赛事 0全部 1是 2否 */
+  ivs?: number
 }) {
   return httpClient.get<{
     /** 资料更新时间 */
@@ -375,7 +383,7 @@ export function ApiSportsHomePageConfig() {
       m: number
       ic: number
       hot: number
-      hvs: number
+      ivs: number
       lfid: number
     }[]
   }>(`/sport/${getSportsPlatId()}/homepage/config`)

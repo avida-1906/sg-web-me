@@ -1,13 +1,9 @@
-<script lang="ts" setup>
+<script setup lang='ts'>
 import type { ISportEventList } from '~/apis/types'
 import type { ISportDataGroupedByLeague } from '~/types'
 
-defineProps<{ onPage?: boolean; onLobby?: boolean }>()
-
 const { t } = useI18n()
-const router = useLocalRouter()
 const sportsStore = useSportsStore()
-const { sportLiveNavs, currentLiveNav, currentLiveBetType } = storeToRefs(sportsStore)
 const { bool: isStandard } = useBoolean(true)
 const {
   bool: switchLoading, setTrue: switchLoadingTrue,
@@ -26,6 +22,11 @@ const {
   startTimer: startCount,
   stopTimer: stopCount,
 } = useSportsDataUpdate(sportsStore.runSportsCount, 60, true)
+const {
+  vSportsNavs,
+  currentVSportsNav,
+  currentVSportsBetType,
+} = storeToRefs(useSportsStore())
 
 let timer: any = null
 const marketNum = ref(1)
@@ -36,14 +37,12 @@ const curTotal = ref(0)
 const list = ref<ISportDataGroupedByLeague>([])
 
 const baseTypeOptions = computed(() =>
-  sportsStore.getSportsBetTypeListBySi(currentLiveNav.value),
+  sportsStore.getSportsBetTypeListBySi(currentVSportsNav.value),
 )
 const params = computed(() => {
   return {
-    si: currentLiveNav.value,
-    m: 3,
-    ic: 0,
-    ivs: 0,
+    si: currentVSportsNav.value,
+    ivs: 1,
     page: page.value,
     page_size: pageSize.value,
   }
@@ -126,7 +125,7 @@ function initData() {
     let a = 0
     const t = setInterval(() => {
       a++
-      if (currentLiveNav.value !== -1) {
+      if (currentVSportsNav.value !== -1) {
         clearInterval(t)
         runAsync(params.value).finally(() => {
           startLive()
@@ -142,9 +141,9 @@ function initData() {
 }
 
 /** 切换球种 */
-watch(currentLiveNav, (a, b) => {
+watch(currentVSportsNav, (a, b) => {
   if (b !== -1) {
-    currentLiveBetType.value = baseTypeOptions.value[0].value
+    currentVSportsBetType.value = baseTypeOptions.value[0].value
     switchLoadingTrue()
     reset()
     getData()
@@ -166,20 +165,21 @@ await application.allSettled([initData()])
 </script>
 
 <template>
-  <div class="tg-sports-type" :class="{ 'on-page': onPage }">
+  <div class="virtual-sports">
     <div class="sports-page-title">
       <div class="left">
-        <BaseIcon v-if="onLobby" name="spt-ball-plate" />
-        <h6>{{ t('sports_tab_live_events') }}</h6>
+        <BaseIcon name="spt-v-sports" />
+        <h6>{{ t('v_sports') }}</h6>
       </div>
       <AppSportsMarketTypeSelect
-        v-model="currentLiveBetType" :is-standard="isStandard"
+        v-model="currentVSportsBetType" :is-standard="isStandard"
         :base-type-options="baseTypeOptions"
       />
     </div>
     <AppSportsTab
-      v-model="currentLiveNav" :list="sportLiveNavs" @change="onSportsSiChange"
+      v-model="currentVSportsNav" :list="vSportsNavs" @change="onSportsSiChange"
     />
+
     <div class="market-wrapper">
       <AppSportsMarketSkeleton v-if="switchLoading" :num="marketNum" />
       <template v-else>
@@ -191,21 +191,14 @@ await application.allSettled([initData()])
             :league-name="item.cn"
             :event-count="item.list.length"
             :event-list="item.list"
-            :base-type="currentLiveBetType"
+            :base-type="currentVSportsBetType"
           />
           <AppSportsMarketSkeleton v-if="moreLoading" :num="10" />
           <BaseButton
-            v-show="curTotal < total && isHaveDataToShow && !onPage"
+            v-show="curTotal < total && isHaveDataToShow"
             size="none" type="text" @click="loadMore"
           >
             {{ t('load_more') }}
-          </BaseButton>
-          <BaseButton
-            v-if="onPage" size="none" type="text"
-            style="padding-left: var(--tg-spacing-16);"
-            @click="router.push(`/sports/${getSportsPlatId()}/live`)"
-          >
-            {{ t('view_all') }}
           </BaseButton>
         </template>
         <div v-else class="empty">
@@ -213,22 +206,10 @@ await application.allSettled([initData()])
         </div>
       </template>
     </div>
-
-    <div v-if="!onPage" class="layout-spacing">
-      <AppBetData mode="sports" />
-    </div>
   </div>
 </template>
 
-<style lang="scss" scoped>
-.tg-sports-type {
-  margin-top: var(--tg-spacing-24);
-
-  &.on-page {
-    margin-top: 0;
-  }
-}
-
+<style lang='scss' scoped>
 .market-wrapper {
   display: flex;
   flex-direction: column;
@@ -244,8 +225,3 @@ await application.allSettled([initData()])
   justify-content: center;
 }
 </style>
-
-<route lang="yaml">
-meta:
-  layout: home
-</route>
