@@ -117,13 +117,32 @@ function checkPlat() {
   })
 }
 
+// 检查类别是否开启
+function checkCate() {
+  return new Promise((resolve, reject) => {
+    ApiMemberCateState(cid.value || '').then((res) => {
+      if (res === 1) {
+        resolve(res)
+      }
+      else {
+        push('/')
+        reject(res)
+      }
+    })
+      .catch((err) => {
+        push('/')
+        reject(err)
+      })
+  })
+}
+
 // 初始化
 if (isProvider.value)
   await application.allSettled([checkPlat().then(() => runGameList(paramsGame.value))])
 else if (isRec.value)
   await application.allSettled([runRecList(paramsRec.value)])
 else if (isCat.value)
-  await application.allSettled([runCateGames(paramsCate.value)])
+  await application.allSettled([checkCate().then(() => runCateGames(paramsCate.value))])
 </script>
 
 <template>
