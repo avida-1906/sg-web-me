@@ -90,7 +90,7 @@ all_bets: 所有投注
 casino_bets: 娱乐城投注
 billboard: 风云榜
 competition_board: 竞赛排行榜
-competition: 竞赛
+competition: '{money} 竞赛'
 competition_name: 竞赛名称
 currency: 货币
 network: 网络

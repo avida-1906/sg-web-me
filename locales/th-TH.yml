@@ -91,7 +91,7 @@ all_bets: รายการเดิมพันทั้งหมด
 casino_bets: เดิมพันคาสิโน
 billboard: บอร์ดยอดนิยม
 competition_board: บอร์ดการแข่งขัน
-competition: การแข่งขัน
+competition: 'การแข่งขัน {money}'
 competition_name: ชื่อการแข่งขัน
 currency: สกุลเงิน
 network: ระบบเครือข่าย

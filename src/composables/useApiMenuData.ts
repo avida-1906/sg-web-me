@@ -173,9 +173,9 @@ export function useApiMenuData() {
       path: '',
       icon: 'spt-sponsorship',
       list: [
-        { title: '赞助活动一', path: '/drake', icon: '' },
-        { title: '赞助活动二', path: '/sponsorships/ufc', icon: '' },
-        { title: '赞助活动三', path: '', icon: '' },
+        // { title: '赞助活动一', path: '/drake', icon: '' },
+        // { title: '赞助活动二', path: '/sponsorships/ufc', icon: '' },
+        // { title: '赞助活动三', path: '', icon: '' },
       ],
       domId: 'static-menu-sponsor',
     },
