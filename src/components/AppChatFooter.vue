@@ -536,8 +536,8 @@ watch(message, (val) => {
     :deep(button.rule) {
       box-shadow: var(--tg-box-shadow);
       &.is-mobile {
-        &:hover {
-          background: inherit;
+        &:active {
+          background: var(--tg-secondary-dark);
         }
       }
     }
