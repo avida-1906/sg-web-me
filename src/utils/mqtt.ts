@@ -209,7 +209,9 @@ export class SocketClient {
         mqttConnectSuccessBus.emit(MQTT_CONNECT_SUCCESS_BUS)
       })
 
-      this.client.on('message', (topic, message, packet) => {
+      this.client.on('message', (topic, _message, packet) => {
+        const message = JSON.parse(_message.toString()).payload
+
         if (!topic.includes('sport/delta'))
           this.#log(`收到消息：${message.toString()}`, topic, packet)
 

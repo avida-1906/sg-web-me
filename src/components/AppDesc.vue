@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { CurrencyCode } from '~/composables/useCurrencyData'
+
 interface ITabItem {
   label: string
   link: string
@@ -20,14 +22,16 @@ const {
   widthBoundaryXs,
   appContentWidth,
 } = storeToRefs(useWindowStore())
+const betList = ref<any>([])
+const tab = ref('1')
 const {
-  list: betList,
-  runAsync: runMemberBetList,
+  list,
+  runAsync: runAsyncMemberBetList,
   loading: loadBet,
   // prev, next, hasMore, page,
-} = useList(ApiMemberBetList, {}, { page_size: 3 })
+} = useList(ApiMemberBetList, { }, { page_size: 3 })
 
-const tab = ref('1')
+const luckyWinner = ref('')
 const tabList = [
   { value: '1', label: t('big_winner') },
   { value: '0', label: t('lucky_winner') },
@@ -90,13 +94,36 @@ const columns = ref<Column[]>([
 const isXxs = computed(() => appContentWidth.value <= 478)
 const isXs = computed(() => appContentWidth.value <= widthBoundaryXs.value)
 
+function getPrefixAmount(currency_id: CurrencyCode, amount: string) {
+  const name = getCurrencyConfigByCode(currency_id)?.name
+  application.isVirtualCurrency(name)
+  return (application.isVirtualCurrency(name) ? '' : currencyConfig[name].prefix) + amount
+}
+
 watch(() => tab.value, (newValue) => {
-  runMemberBetList({
-    game_code: query.game_id?.toString(),
+  runAsyncMemberBetList({
+    game_code: query.code?.toString(),
+    // game_code: '',
     game_class: query.type?.toString(),
     type: newValue,
+  }).then(() => {
+    if (newValue === '1')
+      betList.value = list.value.reverse()
+    else
+      betList.value = list.value
   })
 }, { immediate: true })
+
+setTimeout(() => {
+  runAsyncMemberBetList({
+    game_code: query.code?.toString(),
+    // game_code: '',
+    game_class: query.type?.toString(),
+    type: '0',
+  }).then(() => {
+    luckyWinner.value = list.value[0]?.username
+  })
+}, 500)
 </script>
 
 <template>
@@ -117,8 +144,11 @@ watch(() => tab.value, (newValue) => {
       <div class="title-right">
         <div v-if="!isXs" class="r-status">
           <BaseIcon name="uni-cup1" />
-          <span>66,666.00x</span>
-          <VTooltip placement="top">
+          <!-- <span>66,666.00x</span> -->
+          <div v-if="luckyWinner" class="player">
+            {{ luckyWinner }}
+          </div>
+          <VTooltip v-else placement="top">
             <div class="cursor-help">
               <BaseIcon name="uni-hidden" />
               <span>{{ t('hidden_user') }}</span>
@@ -236,7 +266,7 @@ watch(() => tab.value, (newValue) => {
           <template #betMoney="{ record }">
             <div class="img-text-align img-text-align-center">
               <AppAmount
-                :amount="record.bet_amount"
+                :amount="getPrefixAmount(record.currency_id, record.bet_amount)"
                 :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
                 style="--tg-app-amount-font-weight:var(--tg-font-weight-normal);"
               />
@@ -245,7 +275,7 @@ watch(() => tab.value, (newValue) => {
           <template #payAmount="{ record }">
             <div class="img-text-align img-text-align-right">
               <AppAmount
-                :amount="record.pay_amount"
+                :amount="getPrefixAmount(record.currency_id, record.pay_amount)"
                 :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
                 style="--tg-app-amount-font-weight:var(--tg-font-weight-normal);"
               />
@@ -312,6 +342,7 @@ watch(() => tab.value, (newValue) => {
         display: flex;
         align-items: center;
         justify-content: space-around;
+        gap: 4px;
         height: 32px;
         font-size: var(--tg-font-size-xs);
         border-radius: var(--tg-radius-3xl);
@@ -341,6 +372,9 @@ watch(() => tab.value, (newValue) => {
             transform: rotate(90deg);
           }
         }
+      }
+      .player{
+        font-size: var(--tg-font-size-default);
       }
     }
   }

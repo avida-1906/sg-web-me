@@ -106,7 +106,7 @@ export function useList<R extends IResponseList<unknown>, P extends unknown[]>(
     || defaultOther?.isWatchPageOrPageSize === true
   ) {
     watch([page, page_size], () => {
-      if (params.value && Array.isArray(params.value))
+      if (params.value && Array.isArray(params.value) && page_size.value)
         _run(...getParams(...params.value))
     })
   }

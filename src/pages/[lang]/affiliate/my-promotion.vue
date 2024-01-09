@@ -209,6 +209,7 @@ function downloadQr() {
           <span>{{ item.label }} </span>
           <div :class="{ green: index === 2 }">
             <BaseSkeleton v-if="loadMyData" height="14px" animated="ani-opacity" />
+            <span v-else-if="index === 1">{{ item.value }}</span>
             <AppAmount v-else :amount="item.value" currency-type="USDT" />
           </div>
         </div>

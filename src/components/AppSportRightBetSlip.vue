@@ -653,10 +653,13 @@ watch(() => sportStore.cart.count, (val, oVal) => {
   if (val) {
     nextTick(() => {
       if (chatScrollContent.value) {
-        if (isMobile.value)
-          chatScrollContent.value.scrollTop = 0
-        else
-          chatScrollContent.value.scrollTop = chatScrollContent.value?.scrollHeight ?? 0
+        // 如果是删除，不需要滚动到底部
+        if (oVal && val > oVal) {
+          if (isMobile.value)
+            chatScrollContent.value.scrollTop = 0
+          else
+            chatScrollContent.value.scrollTop = chatScrollContent.value?.scrollHeight ?? 0
+        }
       }
     })
 

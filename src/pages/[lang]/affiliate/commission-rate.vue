@@ -20,7 +20,7 @@ const columns: Column[] = [
     title: t('effective_bet'),
     dataIndex: 'effective_amount',
     align: 'center',
-    slot: 'effective_amount',
+    slot: 'effective_bat',
   },
   {
     title: t('rebate_amount'),
@@ -68,15 +68,18 @@ const list = computed(() => {
       :data-source="list"
       :loading="loading"
     >
+      <template #th-effective_bat>
+        <div class="center">
+          <AppCurrencyIcon currency-type="USDT" />
+        </div>
+      </template>
       <template #rebate_ratio="{ record }">
         <span style="color: var(--tg-text-warn)">
           {{ toFixed(record.rebate_ratio * 100, 2) }}%
         </span>
       </template>
-      <template #effective_amount="{ record }">
-        <div class="center">
-          <AppAmount :amount="record.effective_amount" />
-        </div>
+      <template #effective_bat="{ record }">
+        {{ `${record.effective_amount + $t('ten_thousand')}+` }}
       </template>
     </BaseTable>
   </div>

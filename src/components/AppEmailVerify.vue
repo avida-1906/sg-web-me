@@ -12,6 +12,7 @@ const { t } = useI18n()
 const { openNotify } = useNotify()
 const appStore = useAppStore()
 const { userInfo } = storeToRefs(appStore)
+const visibility = useDocumentVisibility()
 
 const {
   bool: emailDisabledBtn,
@@ -137,6 +138,11 @@ watch(() => email.value, (newValue, oldValue) => {
 })
 watch(() => userInfo.value?.email, (newValue) => {
   setEmail(newValue ?? '')
+})
+
+watch(visibility, (newValue) => {
+  if (newValue === 'visible')
+    appStore.updateUserInfo()
 })
 
 onMounted(() => {
