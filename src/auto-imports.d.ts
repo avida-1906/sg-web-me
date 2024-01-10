@@ -53,6 +53,7 @@ declare global {
   const ApiMemberBankcardList: typeof import('./apis/index')['ApiMemberBankcardList']
   const ApiMemberBannerList: typeof import('./apis/index')['ApiMemberBannerList']
   const ApiMemberBetList: typeof import('./apis/index')['ApiMemberBetList']
+  const ApiMemberBetReport: typeof import('./apis/index')['ApiMemberBetReport']
   const ApiMemberBrandDetail: typeof import('./apis/index')['ApiMemberBrandDetail']
   const ApiMemberCasinoRecordList: typeof import('./apis/index')['ApiMemberCasinoRecordList']
   const ApiMemberCateState: typeof import('./apis/index')['ApiMemberCateState']
@@ -381,10 +382,10 @@ declare global {
   const throttledRef: typeof import('@vueuse/core')['throttledRef']
   const throttledWatch: typeof import('@vueuse/core')['throttledWatch']
   const timeCheckIsLeapYear: typeof import('./utils/time')['timeCheckIsLeapYear']
-  const timeToFormat: typeof import('./utils/time')['timeToFormat']
+  const timeToCustomizeFormat: typeof import('./utils/time')['timeToCustomizeFormat']
+  const timeToDateFormat: typeof import('./utils/time')['timeToDateFormat']
+  const timeToDateWithDayFormat: typeof import('./utils/time')['timeToDateWithDayFormat']
   const timeToFromNow: typeof import('./utils/time')['timeToFromNow']
-  const timeToSportsDateFormat: typeof import('./utils/time')['timeToSportsDateFormat']
-  const timeToSportsTimeFormat: typeof import('./utils/time')['timeToSportsTimeFormat']
   const toFixed: typeof import('./utils/number')['toFixed']
   const toNumber: typeof import('lodash-es')['toNumber']
   const toRaw: typeof import('vue')['toRaw']
@@ -727,6 +728,7 @@ declare module 'vue' {
     readonly ApiMemberBankcardList: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardList']>
     readonly ApiMemberBannerList: UnwrapRef<typeof import('./apis/index')['ApiMemberBannerList']>
     readonly ApiMemberBetList: UnwrapRef<typeof import('./apis/index')['ApiMemberBetList']>
+    readonly ApiMemberBetReport: UnwrapRef<typeof import('./apis/index')['ApiMemberBetReport']>
     readonly ApiMemberBrandDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberBrandDetail']>
     readonly ApiMemberCasinoRecordList: UnwrapRef<typeof import('./apis/index')['ApiMemberCasinoRecordList']>
     readonly ApiMemberCateState: UnwrapRef<typeof import('./apis/index')['ApiMemberCateState']>
@@ -1046,10 +1048,10 @@ declare module 'vue' {
     readonly throttledRef: UnwrapRef<typeof import('@vueuse/core')['throttledRef']>
     readonly throttledWatch: UnwrapRef<typeof import('@vueuse/core')['throttledWatch']>
     readonly timeCheckIsLeapYear: UnwrapRef<typeof import('./utils/time')['timeCheckIsLeapYear']>
-    readonly timeToFormat: UnwrapRef<typeof import('./utils/time')['timeToFormat']>
+    readonly timeToCustomizeFormat: UnwrapRef<typeof import('./utils/time')['timeToCustomizeFormat']>
+    readonly timeToDateFormat: UnwrapRef<typeof import('./utils/time')['timeToDateFormat']>
+    readonly timeToDateWithDayFormat: UnwrapRef<typeof import('./utils/time')['timeToDateWithDayFormat']>
     readonly timeToFromNow: UnwrapRef<typeof import('./utils/time')['timeToFromNow']>
-    readonly timeToSportsDateFormat: UnwrapRef<typeof import('./utils/time')['timeToSportsDateFormat']>
-    readonly timeToSportsTimeFormat: UnwrapRef<typeof import('./utils/time')['timeToSportsTimeFormat']>
     readonly toFixed: UnwrapRef<typeof import('./utils/number')['toFixed']>
     readonly toNumber: UnwrapRef<typeof import('lodash-es')['toNumber']>
     readonly toRaw: UnwrapRef<typeof import('vue')['toRaw']>
@@ -1385,6 +1387,7 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberBankcardList: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardList']>
     readonly ApiMemberBannerList: UnwrapRef<typeof import('./apis/index')['ApiMemberBannerList']>
     readonly ApiMemberBetList: UnwrapRef<typeof import('./apis/index')['ApiMemberBetList']>
+    readonly ApiMemberBetReport: UnwrapRef<typeof import('./apis/index')['ApiMemberBetReport']>
     readonly ApiMemberBrandDetail: UnwrapRef<typeof import('./apis/index')['ApiMemberBrandDetail']>
     readonly ApiMemberCasinoRecordList: UnwrapRef<typeof import('./apis/index')['ApiMemberCasinoRecordList']>
     readonly ApiMemberCateState: UnwrapRef<typeof import('./apis/index')['ApiMemberCateState']>
@@ -1704,10 +1707,10 @@ declare module '@vue/runtime-core' {
     readonly throttledRef: UnwrapRef<typeof import('@vueuse/core')['throttledRef']>
     readonly throttledWatch: UnwrapRef<typeof import('@vueuse/core')['throttledWatch']>
     readonly timeCheckIsLeapYear: UnwrapRef<typeof import('./utils/time')['timeCheckIsLeapYear']>
-    readonly timeToFormat: UnwrapRef<typeof import('./utils/time')['timeToFormat']>
+    readonly timeToCustomizeFormat: UnwrapRef<typeof import('./utils/time')['timeToCustomizeFormat']>
+    readonly timeToDateFormat: UnwrapRef<typeof import('./utils/time')['timeToDateFormat']>
+    readonly timeToDateWithDayFormat: UnwrapRef<typeof import('./utils/time')['timeToDateWithDayFormat']>
     readonly timeToFromNow: UnwrapRef<typeof import('./utils/time')['timeToFromNow']>
-    readonly timeToSportsDateFormat: UnwrapRef<typeof import('./utils/time')['timeToSportsDateFormat']>
-    readonly timeToSportsTimeFormat: UnwrapRef<typeof import('./utils/time')['timeToSportsTimeFormat']>
     readonly toFixed: UnwrapRef<typeof import('./utils/number')['toFixed']>
     readonly toNumber: UnwrapRef<typeof import('lodash-es')['toNumber']>
     readonly toRaw: UnwrapRef<typeof import('vue')['toRaw']>

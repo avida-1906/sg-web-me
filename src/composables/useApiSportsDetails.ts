@@ -173,7 +173,7 @@ export function useApiSportDetails() {
     else if (isPause.value)
       return `${rbtd}`
     else
-      return timeToFormat(ed)
+      return timeToCustomizeFormat(ed)
   })
 
   /** 基础数据面板 */

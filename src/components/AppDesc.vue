@@ -260,7 +260,7 @@ setTimeout(() => {
           </template>
           <template #bet_time="{ record }">
             <div>
-              {{ timeToFormat(record.created_at) }}
+              {{ timeToDateFormat(record.created_at) }}
             </div>
           </template>
           <template #betMoney="{ record }">

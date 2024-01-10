@@ -14,7 +14,8 @@ dayjs.extend(isLeapYear)
 dayjs.extend(weekday)
 dayjs.extend(relativeTime)
 
-const format: { [t: string]: string } = {
+// 月日 星期 时分
+const dateWithDayFormat: { [t: string]: string } = {
   'en-US': 'ddd, MMM D h:mm A',
   'zh-CN': 'MM月DD日 ddd HH:mm',
   'vi-VN': 'ddd, D MMMM h:mm',
@@ -22,10 +23,11 @@ const format: { [t: string]: string } = {
   'th-TH': 'DD/MM ddd HH:mm',
   'hi-IN': 'dddd, D MMMM h:mm A',
 }
+// 年月日
 const dateFormat: { [t: string]: string } = {
   'en-US': 'MMMM DD,YYYY',
   'zh-CN': 'YYYY年MM月DD日',
-  'vi-VN': 'DD [tháng] MM,YYYY',
+  'vi-VN': '[ngày] DD [tháng] MM,YYYY',
   'pt-BR': 'DD [de] MMMM [de] YYYY',
   'th-TH': 'DD/MM/YYYY',
   'hi-IN': 'DD/MM/YYYY',
@@ -48,18 +50,18 @@ export function timeCheckIsLeapYear(ts: number): boolean {
   return dayjs(checkTs(ts)).isLeapYear()
 }
 
-/** 赛事开赛时间转换 */
-export function timeToSportsTimeFormat(ts: number): string {
+/** 月日 星期 时分 */
+export function timeToDateWithDayFormat(ts: number): string {
   dayjs.locale(langKey[getCurrentLanguageForFrontend()])
   if (getCurrentLanguageForFrontend() === 'vi-VN')
-    return dayjs(checkTs(ts)).format(format[getCurrentLanguageForFrontend()]).replace('T', 'Th ').replace('tháng', 'Thg')
+    return dayjs(checkTs(ts)).format(dateWithDayFormat[getCurrentLanguageForFrontend()]).replace('T', 'Th ').replace('tháng', 'Thg')
 
-  return dayjs(checkTs(ts)).format(format[getCurrentLanguageForFrontend()])
+  return dayjs(checkTs(ts)).format(dateWithDayFormat[getCurrentLanguageForFrontend()])
 }
 
-/** 赛事开赛日期转换 */
-export function timeToSportsDateFormat(ts: number): string {
-  // 调试用
+/** 年月日 */
+export function timeToDateFormat(ts: number): string {
+  // 🧪调试用
   // dayjs.locale(langKey['th-TH'])
   // return dayjs(checkTs(ts)).format(dateFormat['th-TH'])
 
@@ -73,8 +75,8 @@ export function timeToFromNow(ts: number): string {
   return dayjs(checkTs(ts)).fromNow()
 }
 
-/** 时间转换 */
-export function timeToFormat(ts: number, format = 'HH:mm YYYY/MM/DD'): string {
+/** 可自定义格式 */
+export function timeToCustomizeFormat(ts: number, format = 'HH:mm YYYY/MM/DD'): string {
   return dayjs(checkTs(ts)).format(format)
 }
 

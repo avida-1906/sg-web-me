@@ -141,7 +141,7 @@ await application.allSettled(
       :skeleton-row="4"
     >
       <template #time="{ record }">
-        <div>{{ timeToFormat(record.time) }}</div>
+        <div>{{ timeToCustomizeFormat(record.time) }}</div>
       </template>
       <template #amount="{ record }">
         <div class="to-right">

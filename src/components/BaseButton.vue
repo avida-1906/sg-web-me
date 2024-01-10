@@ -18,6 +18,8 @@ const props = withDefaults(defineProps<Props>(), {
   originType: 'button',
 })
 
+const { isMobile } = storeToRefs(useWindowStore())
+
 function onClick(e: any) {
   if (props.disabled)
     e.stopPropagation()
@@ -31,6 +33,7 @@ function onClick(e: any) {
       round,
       shadow,
       loading,
+      isMobile,
       'custom-padding': customPadding,
     }]"
   >
@@ -134,7 +137,7 @@ button {
     }
   }
 
-  &:hover:not(:disabled) {
+  &:hover:not(:disabled):not(.isMobile) {
     background-color: var(--tg-base-button-style-bg-hover);
   }
 }

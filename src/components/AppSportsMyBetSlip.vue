@@ -80,7 +80,7 @@ function addShowResult(origin: ISportsMyBetSlipItem) {
       ...a,
       showResult: false,
       result: {
-        startTime: timeToSportsTimeFormat(a.ed),
+        startTime: timeToDateWithDayFormat(a.ed),
         homeTeamName: a.htn,
         awayTeamName: a.atn,
         remark: '',
@@ -120,7 +120,7 @@ function showDetail() {
           <div v-if="!isNotSettled" class="status" :class="[statusClass]">
             {{ statusText }}
           </div>
-          <span>{{ timeToFormat(slipData.bt) }}</span>
+          <span>{{ timeToCustomizeFormat(slipData.bt) }}</span>
         </div>
         <BaseButton v-if="!isDialog" type="text" size="none" @click="showDetail">
           <BaseIcon name="uni-share-slip" />
@@ -175,7 +175,7 @@ function showDetail() {
                     {{ item.hp }} - {{ item.ap }}
                   </span>
                   <span v-else-if="!checkIsStarted(item.ed)">
-                    {{ timeToSportsTimeFormat(item.ed) }}
+                    {{ timeToDateWithDayFormat(item.ed) }}
                   </span>
                 </div>
                 <div class="icons">
