@@ -21,9 +21,9 @@ const {
 
 const tab = ref<'' | '1' | '2'>('')
 const tabList = [
-  { label: '全部', value: '' },
-  { label: '娱乐城', value: '1' },
-  { label: '体育', value: '2' },
+  { label: t('plinko_type1'), value: '' },
+  { label: t('casino'), value: '1' },
+  { label: t('sports'), value: '2' },
   // { label: t('statistical_data'), value: '1' },
   // { label: t('trophy'), value: '2' },
   // { label: t('competition'), value: '3' },
@@ -215,7 +215,7 @@ watch(() => tab.value, (newValue) => {
             </p>
             <div class="s-join-date">
               <span>{{ t('in_date') }}：</span>
-              <span>2023年9月19日</span>
+              <span>{{ timeToDateFormat(userInfo?.created_at ?? 0) }}</span>
             </div>
           </template>
           <div class="go-vip" @click="goVip">
