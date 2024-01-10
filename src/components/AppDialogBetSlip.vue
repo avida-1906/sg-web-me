@@ -118,7 +118,7 @@ onMounted(() => {
       </div> -->
         <div class="des">
           <span>{{ t('investor') }}：{{ sportsData.username }}</span><br>
-          <span class="time">{{ t('on') }} {{ timeToFormat(betTime) }}</span>
+          <span class="time">{{ t('on') }} {{ timeToCustomizeFormat(betTime) }}</span>
         </div>
       </div>
       <div class="sports-bottom">
@@ -149,7 +149,7 @@ onMounted(() => {
       </div> -->
         <div class="des">
           <span>{{ t('investor') }}：{{ casinoData.username }}</span><br>
-          <span class="time">{{ t('on') }} {{ timeToFormat(betTime) }}</span>
+          <span class="time">{{ t('on') }} {{ timeToCustomizeFormat(betTime) }}</span>
         </div>
       </div>
       <div class="casino-bottom">

@@ -187,7 +187,7 @@ else {
                 />
               </div>
               <div class="flex-between">
-                <span>{{ timeToFormat(item.created_at) }}</span>
+                <span>{{ timeToCustomizeFormat(item.created_at) }}</span>
                 <div
                   v-if="!isOther"
                   class="center" style="gap: var(--tg-spacing-4);"

@@ -143,14 +143,14 @@ onUnmounted(() => {
               class="wrap time-wrap"
             >
               <span>{{ $t(`week_${dayjs(checkTs(msg.t)).day()}`) }}</span>
-              <span>{{ timeToFormat(msg.t, 'HH:mm') }}</span>
+              <span>{{ timeToCustomizeFormat(msg.t, 'HH:mm') }}</span>
             </div>
             <div
               v-if="mdx === 0"
               class="wrap time-wrap"
             >
               <span>{{ $t(`week_${dayjs(checkTs(msg.t)).day()}`) }}</span>
-              <span>{{ timeToFormat(msg.t, 'HH:mm') }}</span>
+              <span>{{ timeToCustomizeFormat(msg.t, 'HH:mm') }}</span>
             </div>
             <div
               v-show="!msgHistoryLoading"

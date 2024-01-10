@@ -127,7 +127,7 @@ function onlineHelp() {
       </div>
       <div class="item">
         <label>{{ $t('transaction_time') }}:</label>
-        <span class="data">{{ timeToFormat(data.created_at) }}</span>
+        <span class="data">{{ timeToCustomizeFormat(data.created_at) }}</span>
       </div>
       <div class="item">
         <label>{{ t('order_num') }}:</label>

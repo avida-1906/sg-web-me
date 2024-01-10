@@ -185,7 +185,7 @@ export function sportsDataGroupByLeague(origin: ISportEventInfo[]) {
  */
 export function sportsDataGroupByDate(origin: ISportEventInfo[]) {
   const _origin = origin.map((a) => {
-    const date = timeToSportsDateFormat(a.ed)
+    const date = timeToDateFormat(a.ed)
     return { ...a, date }
   })
 

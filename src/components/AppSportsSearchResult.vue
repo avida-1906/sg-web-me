@@ -67,7 +67,7 @@ const list = computed(() => {
         return {
           ...b,
           breadcrumb: [sport, area, league],
-          time: timeToSportsTimeFormat(b.ed),
+          time: timeToDateWithDayFormat(b.ed),
           path: `/sports/${SPORTS_PLAT_ID}/${dataFindBySi.si}/${b.pgid}/${b.ci}/${b.ei}`,
         }
       })

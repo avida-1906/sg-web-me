@@ -109,7 +109,7 @@ watch(() => params.value.start_time, () => {
       :data-source="records"
     >
       <template #updated_at="{ record }">
-        <div>{{ timeToFormat(record.updated_at) }}</div>
+        <div>{{ timeToCustomizeFormat(record.updated_at) }}</div>
       </template>
       <template #cash_type="{ record }">
         {{ getCashType(record.cash_type) }}

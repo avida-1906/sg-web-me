@@ -491,7 +491,7 @@ onUnmounted(() => {
         </template>
         <template #bet_time="{ record }">
           <div>
-            {{ timeToFormat(record.bet_time ?? record.created_at) }}
+            {{ timeToCustomizeFormat(record.bet_time ?? record.created_at) }}
           </div>
         </template>
         <template #player="{ record }">

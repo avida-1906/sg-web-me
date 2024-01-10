@@ -139,9 +139,9 @@ const isMoreThan1Hour = computed(() => {
 })
 const timeText = computed(() => {
   if (props.onlyTime)
-    return timeToFormat(props.data.ed, 'HH:mm')
+    return timeToCustomizeFormat(props.data.ed, 'HH:mm')
 
-  return timeToSportsTimeFormat(props.data.ed)
+  return timeToDateWithDayFormat(props.data.ed)
 })
 // 一小时倒计时
 const isCountdown = computed(() => {

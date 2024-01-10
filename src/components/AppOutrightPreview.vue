@@ -18,7 +18,7 @@ const { width } = storeToRefs(useWindowStore())
 const isH5Layout = computed(() => width.value < 575)
 const dateList = computed(() => {
   const origin = props.data.list.map((a) => {
-    const date = timeToSportsDateFormat(a.ed)
+    const date = timeToDateFormat(a.ed)
     return { ...a, date }
   })
   const arr: { date: string; list: ISportOutrightsInfo[] }[] = []

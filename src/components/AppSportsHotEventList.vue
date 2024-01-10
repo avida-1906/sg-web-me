@@ -15,8 +15,8 @@ const list = computed(() => {
       return {
         ...a,
         path: `/sports/${SPORTS_PLAT_ID}/${props.si}/${a.pgid}/${a.ci}/${a.ei}`,
-        date: timeToFormat(a.ed, 'YYYY - MM - DD'),
-        time: timeToFormat(a.ed, 'HH : mm'),
+        date: timeToCustomizeFormat(a.ed, 'YYYY - MM - DD'),
+        time: timeToCustomizeFormat(a.ed, 'HH : mm'),
       }
     })
   }

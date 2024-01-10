@@ -139,7 +139,7 @@ else
         </template>
         <template #bet_time="{ record: { bet_time } }">
           <div>
-            {{ timeToFormat(bet_time) }}
+            {{ timeToCustomizeFormat(bet_time) }}
           </div>
         </template>
         <template #bet_amount="{ record: { bet_amount, currency_id } }">
