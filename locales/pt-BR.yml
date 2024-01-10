@@ -812,8 +812,6 @@ finance_funds_transfer_sort_commission: Comissão
 finance_funds_transfer_sort_withdrawn: Sacado
 finance_funds_campaign_sort_created: Data de criação
 finance_funds_campaign_sort_deposit_count: Número de depósitos
-finance_funds_transfer_commission_txt: Transferir comissões de afiliados para o
-  saldo disponível
 finance_funds_transfer_commission_withdraw: Sacar comissão disponível
 finance_funds_vault_draw: Sacar do cofreq
 success_deposit: "{amount} {icon} depositado com sucesso no cofre"
@@ -2293,8 +2291,7 @@ rule_text_one: A taxa de câmbio será calculada em tempo real de acordo com o v
 rule_text_two: O cálculo da taxa de câmbio ocorrerá quando a sua aposta for liquidada.
 rule_text_three: As apostas válidas que foram calculadas não serão afetadas pelas taxas de câmbio subsequentes.
 rule_text_title: A pontuação VIP é calculada com base em suas apostas válidas em USDT
-note: 注
-after_transfer_withdraw_money: 转入后需1倍流水才可提现
+after_transfer_withdraw_money: 转到钱包后需要1倍有效投注才可提款
 mini_manual_bet: '手动投注'
 mini_auto_bet: '自动投注'
 mini_bet_amount: '投注额'
@@ -2389,3 +2386,4 @@ reg_success_title: Bem Vindo(a)
 reg_day: Dia
 login_ip_title: Địa chỉ IP
 gameble_aware: Gameble aware
+transfer_to_wallet: 转移到钱包

@@ -757,7 +757,6 @@ finance_funds_transfer_sort_commission: คอมมิชชัน
 finance_funds_transfer_sort_withdrawn: ที่ถอนแล้ว
 finance_funds_campaign_sort_created: วันที่สร้าง
 finance_funds_campaign_sort_deposit_count: จำนวนครั้งฝากเงิน
-finance_funds_transfer_commission_txt: โอนค่าคอมมิชชั่นพันธมิตรไปยังยอดคงเหลือที่มีอยู่
 finance_funds_transfer_commission_withdraw: ถอนค่าคอมมิชชั่นที่มีอยู่
 finance_funds_vault_draw: ถอนเงินห้องนิรภัย
 success_deposit: 'ฝาก {amount} {icon} เข้าไปในห้องนิรภัยสำเร็จแล้ว'
@@ -1760,8 +1759,7 @@ rule_text_one: 汇率会根据市场波动实时同步
 rule_text_two: 会在您注单结算时的汇率为准
 rule_text_three: 已经统计的有效投注不会受后续的汇率影响
 rule_text_title: VIP按照您的USDT有效投注来计算
-note: 注
-after_transfer_withdraw_money: 转入后需1倍流水才可提现
+after_transfer_withdraw_money: 转到钱包后需要1倍有效投注才可提款
 mini_manual_bet: '手动投注'
 mini_auto_bet: '自动投注'
 mini_bet_amount: '投注额'
@@ -1856,3 +1854,4 @@ reg_success_title: 成功
 reg_day: DD
 login_ip_title: IP
 gameble_aware: Gameble aware
+transfer_to_wallet: 转移到钱包

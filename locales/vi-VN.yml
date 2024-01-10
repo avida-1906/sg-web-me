@@ -773,7 +773,6 @@ finance_funds_transfer_sort_commission: Hoa hồng
 finance_funds_transfer_sort_withdrawn: Đã rút tiền
 finance_funds_campaign_sort_created: Ngày xác lập
 finance_funds_campaign_sort_deposit_count: Số lần tiền nạp
-finance_funds_transfer_commission_txt: Chuyển hoa hồng liên kết sang số dư khả dụng
 finance_funds_transfer_commission_withdraw: Rút tiền hoa hồng có sẵn
 finance_funds_vault_draw: Rút tiền Vault
 success_deposit: Đã gửi thành công {amount} {icon} vào vault
@@ -2264,8 +2263,7 @@ rule_text_one: Tỷ giá sẽ được đồng bộ theo thời gian biến đ�
 rule_text_two: Tỷ giá sẽ được áp dụng khi đơn cược của bạn được giải quyết.
 rule_text_three: Các cược hợp lệ đã được tính sẽ không bị ảnh hưởng bởi tỷ giá tiếp theo
 rule_text_title: VIP được tính dựa trên số lần đặt cược USDT hợp lệ của bạn
-note: 注
-after_transfer_withdraw_money: 转入后需1倍流水才可提现
+after_transfer_withdraw_money: 转到钱包后需要1倍有效投注才可提款
 mini_manual_bet: '手动投注'
 mini_auto_bet: '自动投注'
 mini_bet_amount: '投注额'
@@ -2360,3 +2358,4 @@ reg_success_title: 成功
 reg_day: DD
 login_ip_title: IP
 gameble_aware: Điều Cần Biết
+transfer_to_wallet: 转移到钱包

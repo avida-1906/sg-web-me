@@ -58,12 +58,7 @@ await application.allSettled(
       {{ $t('finance_funds_transfer_commission_withdraw') }}
     </BaseButton>
     <div class="holder-tip">
-      <div>
-        {{ $t('finance_funds_transfer_commission_txt') }}
-      </div>
-      <div>
-        {{ $t('note') }}{{ $t('colon') }}{{ $t('after_transfer_withdraw_money') }}
-      </div>
+      转到钱包后需要1倍有效投注才可提款
     </div>
   </div>
 </template>
@@ -102,9 +97,7 @@ await application.allSettled(
     line-height: 1.4;
     text-align: center;
     margin-top: 16px;
-    &>:last-child{
-      transform: scale(0.67);
-    }
+    font-weight: var(--tg-font-weight-semibold);
   }
 }
 </style>
