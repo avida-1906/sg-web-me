@@ -2,8 +2,9 @@
 /**
  * @param {string} sport-list 体育列表
  * @param {string} cart 购物车
+ * @param {string} hot 热门
  */
-type EventName = 'sport-list' | 'cart'
+type EventName = 'sport-list' | 'cart' | 'hot'
 interface Props {
   /** 发送事件名称 */
   sendName: EventName

@@ -27,6 +27,7 @@ const {
 } = useSportsDataUpdate(sportsStore.runSportsCount, 120, true)
 
 let timer: any = null
+const sportListEventRef = ref()
 const marketNum = ref(1)
 const baseType = ref(
   sportsStore.getSportsBetTypeListBySi(currentUpcomingNav.value)[0]?.value,
@@ -94,13 +95,20 @@ const leagueName = computed(() => {
   return upcomingNavs.value.find(a => a.si === currentUpcomingNav.value)?.sn ?? '-'
 })
 /** 👷 分页、定时器、监听更新数据 start 👷 */
-function startUpcoming() {
+function startUpcoming(immediate?: boolean) {
   if (timer)
     stopUpcoming()
 
-  timer = setInterval(() => {
+  function update() {
     page.value = 1
     run({ ...params.value, page_size: curTotal.value > 10 ? curTotal.value : 10 })
+  }
+  if (immediate)
+    update()
+
+  timer = setInterval(() => {
+    update()
+    sportListEventRef.value.send()
   }, 120000)
 }
 function stopUpcoming() {
@@ -161,6 +169,12 @@ await application.allSettled([runAsync(params.value).then(() => startUpcoming())
 
 <template>
   <div class="tg-sports-upcoming" :class="{ 'on-page': onPage }">
+    <BaseEvent
+      ref="sportListEventRef"
+      send-name="sport-list"
+      receive-name="cart"
+      @receive="startUpcoming(true)"
+    />
     <div class="sports-page-title">
       <div class="left">
         <!-- <BaseIcon  name="spt-timing" /> -->

@@ -29,6 +29,7 @@ const {
 } = storeToRefs(useSportsStore())
 
 let timer: any = null
+const sportListEventRef = ref()
 const marketNum = ref(1)
 const page = ref(1)
 const pageSize = ref(+VITE_SPORT_EVENT_PAGE_SIZE)
@@ -72,14 +73,22 @@ const isHaveDataToShow = computed(() => {
 })
 
 /** 👷 分页、定时器、监听更新数据 start 👷 */
-function startLive() {
+function startLive(immediate?: boolean) {
   if (timer)
     stopLive()
 
-  timer = setInterval(() => {
+  function update() {
     page.value = 1
     run({ ...params.value, page_size: curTotal.value > 10 ? curTotal.value : 10 })
     curTotal.value = 0
+  }
+
+  if (immediate)
+    update()
+
+  timer = setInterval(() => {
+    update()
+    sportListEventRef.value.send()
   }, 60000)
 }
 function stopLive() {
@@ -166,6 +175,12 @@ await application.allSettled([initData()])
 
 <template>
   <div class="virtual-sports">
+    <BaseEvent
+      ref="sportListEventRef"
+      send-name="sport-list"
+      receive-name="cart"
+      @receive="startLive(true)"
+    />
     <div class="sports-page-title">
       <div class="left">
         <BaseIcon name="spt-v-sports" />

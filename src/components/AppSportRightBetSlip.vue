@@ -26,6 +26,7 @@ const appStore = useAppStore()
 const { userLanguage } = storeToRefs(useLanguageStore())
 const { openNotify } = useNotify()
 const cartBaseEventRef = ref()
+const cartBaseEventHotRef = ref()
 // 获取betInfo接口是否成功
 const { bool: fetchBetInfoStatus, setBool: setFetchBetInfoStatus } = useBoolean(true)
 const {
@@ -454,6 +455,7 @@ function startSetInterval() {
   timer = setInterval(() => {
     runGetSportPlaceBetInfoHandle()
     cartBaseEventRef.value?.send()
+    cartBaseEventHotRef.value?.send()
   }, 1000 * 10)
 }
 
@@ -720,6 +722,12 @@ onUnmounted(() => {
       ref="cartBaseEventRef"
       send-name="cart"
       receive-name="sport-list"
+      @receive="runGetSportPlaceBetInfoHandle"
+    />
+    <BaseEvent
+      ref="cartBaseEventHotRef"
+      send-name="cart"
+      receive-name="hot"
       @receive="runGetSportPlaceBetInfoHandle"
     />
     <div class="header">
