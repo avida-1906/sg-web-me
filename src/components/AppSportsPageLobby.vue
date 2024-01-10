@@ -35,7 +35,6 @@ const {
 } = useBoolean(false)
 
 let timer: any = null
-const sportListEventRef = ref()
 const marketNum = ref(1)
 const page = ref(1)
 const pageSize = ref(+VITE_SPORT_EVENT_PAGE_SIZE)
@@ -134,12 +133,11 @@ const isHaveDataToShow = computed(() => {
 })
 
 /** 👷 分页、定时器、监听更新数据 start 👷 */
-function startLive(immediate?: boolean) {
+function startLive() {
   if (timer)
     stopLive()
 
-  // 更新数据
-  function update() {
+  timer = setInterval(() => {
     page.value = 1
     if (isOutright.value)
       runOutrightList({ ...paramsOutright.value, page_size: curTotal.value > 10 ? curTotal.value : 10 })
@@ -148,14 +146,6 @@ function startLive(immediate?: boolean) {
       run({ ...params.value, page_size: curTotal.value > 10 ? curTotal.value : 10 })
 
     curTotal.value = 0
-  }
-
-  if (immediate)
-    update()
-
-  timer = setInterval(() => {
-    update()
-    sportListEventRef.value.send()
   }, 60000)
 }
 function stopLive() {
@@ -269,12 +259,6 @@ await application.allSettled([initData()])
 
 <template>
   <div class="lobby">
-    <BaseEvent
-      ref="sportListEventRef"
-      send-name="sport-list"
-      receive-name="cart"
-      @receive="startLive(true)"
-    />
     <div class="types">
       <!-- 赛事类型 -->
       <AppSportsEventTypeTab

@@ -9,29 +9,8 @@ const {
   currentFavBetType,
 } = storeToRefs(sportsStore)
 /** 定时更新数据 */
-let timer: any = null
-const sportListEventRef = ref()
-function startTimer(immediate?: boolean) {
-  if (timer)
-    stopTimer()
-
-  // 更新数据
-  function update() {
-    sportsStore.refreshSportsFavList()
-  }
-
-  if (immediate)
-    update()
-
-  timer = setInterval(() => {
-    update()
-    sportListEventRef.value.send()
-  }, 120000)
-}
-function stopTimer() {
-  clearInterval(timer)
-  timer = null
-}
+const { startTimer, stopTimer }
+= useSportsDataUpdate(sportsStore.refreshSportsFavList)
 
 // 取出baseType中的bt
 const baseTypeBt = computed(() => +currentFavBetType.value.split('@@')[0])
@@ -100,12 +79,6 @@ await application.allSettled([getData()])
 
 <template>
   <div class="tg-sports-favourites">
-    <BaseEvent
-      ref="sportListEventRef"
-      send-name="sport-list"
-      receive-name="cart"
-      @receive="startTimer(true)"
-    />
     <div class="sports-page-title">
       <div class="left">
         <BaseIcon name="uni-favorites" />

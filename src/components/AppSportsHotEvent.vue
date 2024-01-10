@@ -12,7 +12,6 @@ const {
 } = useBoolean(false)
 
 let timer: any = null
-const hotEventRef = ref()
 const scrollDom = ref()
 const page = ref(1)
 const pageSize = ref(+VITE_SPORT_EVENT_PAGE_SIZE)
@@ -47,22 +46,14 @@ const { runAsync, run } = useRequest(ApiSportEventList, {
   },
 })
 /** 👷 分页、定时器、监听更新数据 start 👷 */
-function startTimer(immediate?: boolean) {
+function startTimer() {
   if (timer)
     stopTimer()
 
-  function update() {
+  timer = setInterval(() => {
     page.value = 1
     run({ ...params.value, page_size: curTotal.value > 10 ? curTotal.value : 10 })
     curTotal.value = 0
-  }
-
-  if (immediate)
-    update()
-
-  timer = setInterval(() => {
-    update()
-    hotEventRef.value.send()
   }, 60000)
 }
 function stopTimer() {
@@ -105,12 +96,6 @@ await application.allSettled([runAsync(params.value)])
 
 <template>
   <div class="sports-hot-event">
-    <BaseEvent
-      ref="hotEventRef"
-      send-name="hot"
-      receive-name="cart"
-      @receive="startTimer(true)"
-    />
     <div class="sports-page-title">
       <div class="left">
         <BaseIcon name="uni-popular" />
