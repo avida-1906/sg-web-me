@@ -1228,7 +1228,7 @@ content_text: Conteúdo
 select_amount: Selecione o valor
 input_amount: Insira o valor
 min_amount_is: Valor mínimo
-max_amount_is: Valor máximo
+max_amount_is: Max
 deposit_name: Nome do depositante
 deposit_name_tip: Para evitar atrasos no depósito, certifique-se de inserir o nome
   correto do depositante e o valor do depósito.
@@ -1252,7 +1252,7 @@ validate_deposit_amount_zero: O valor de depósito não pode ser zero
 withdraw_apply_success: Solicitação de saque com sucesso
 withdraw_bank: Cartão bancário de saque
 pix_account: Conta PIX
-max: Valor máximo
+max: Max
 sports_rule: Regras Esportivas
 scan: Procurar
 change_byte_addr: Tem certeza de que deseja alterar seu endereço de depósito {delta}?
@@ -1446,8 +1446,8 @@ pls_confirm_deposit_addr: Por favor, confirme se o endereço de pagamento é dep
 use_in_game: Jogo em uso
 search_currency: Buscar Moedas
 card_wallet: Carteira de cartões
-improve_safe_level: Melhore a segurança da sua conta com verificação de dois fatores
-turn_on_double_check: Ative a verificação em duas etapas
+improve_safe_level: Melhore a segurança da sua conta com a Autenticação de Dois Fatores (2FA)
+turn_on_double_check: Habilitar 2FA
 hide_zero_wallet: Esconder saldos zerados
 zero_wallet_hidden: Seus saldos zerados não aparecerão em sua carteira
 address: Endereço
@@ -1782,9 +1782,9 @@ pls_input_deposit_name: O nome do depositante é obrigatório
 min_amount_0: O valor mínimo não pode ser menor ou igual a 0
 min_len_6: O comprimento mínimo de caracteres é 6
 safe_pwd_error: O formato da senha de pagamento está errado
-save_to_vault: Deposite no cofre
-draw_vault: Retirada do cofre
-vault_info: Saiba mais sobre cofres
+save_to_vault: Depositar no Cofre
+draw_vault: Retirar do Cofre
+vault_info: Saiba mais sobre o Cofre
 progress_level: Progresso
 send_currency_bonus: Agentes de apoio enviarão bônus na moeda de sua escolha
 turn_on_rebate: Ativar desconto
@@ -2289,10 +2289,10 @@ colon: ':'
 period: '.'
 vip_total_bonus: 累积奖金
 type_select: 类型选择
-rule_text_one: 汇率会根据市场波动实时同步
-rule_text_two: 会在您注单结算时的汇率为准
-rule_text_three: 已经统计的有效投注不会受后续的汇率影响
-rule_text_title: VIP按照您的USDT有效投注来计算
+rule_text_one: A taxa de câmbio será calculada em tempo real de acordo com o valor de mercado do momento.
+rule_text_two: O cálculo da taxa de câmbio ocorrerá quando a sua aposta for liquidada.
+rule_text_three: As apostas válidas que foram calculadas não serão afetadas pelas taxas de câmbio subsequentes.
+rule_text_title: A pontuação VIP é calculada com base em suas apostas válidas em USDT
 note: 注
 after_transfer_withdraw_money: 转入后需1倍流水才可提现
 mini_manual_bet: '手动投注'
@@ -2384,7 +2384,7 @@ plinko_autobetalert2: "自动投注完成"
 plinko_betamountalert: "您的投注额不能大于余额！"
 commission_draw_success: 佣金提取成功
 receive_bonus_amount: 领取金额
-integral: 积分
+integral: Pontuação
 reg_success_title: Bem Vindo(a)
 reg_day: Dia
 login_ip_title: Địa chỉ IP

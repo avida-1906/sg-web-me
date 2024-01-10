@@ -737,7 +737,7 @@ search_game: Tìm kiếm trò chơi của bạn
 search_events: Tìm kiếm sự kiện
 casino_origin_game: trò chơi nguyên bản
 casino_games_recommend: Đề xuất
-casino_provider: Nhà cung cấp
+casino_provider: Nhà Cung Cấp
 casino_sort_popular: Phổ biến
 casino_sort_featured: Tính năng
 casino_filter_label: Được lọc bởi
@@ -895,8 +895,8 @@ sports_accept_any_odds: Chấp Nhận Tất Cả Tỉ Lệ
 sports_accept_higher_odds: Chỉ Chấp Nhận Tỉ Lệ Cao hơn
 sports_accept_none_odds: Không Chấp Nhận Tỉ Lệ Thay Đổi
 sports_bet_slip_empty: Đơn cược trống
-sports_betting_now: Phiếu Cược Trống Bắt đầu đặt cược ngay bây giờ !
-sports_total_odds: tổng tỷ lệ cược
+sports_betting_now: Bắt đầu đặt cược ngay bây giờ !
+sports_total_odds: Tổng Tỉ Lệ
 sports_total_bet_amount: Tổng Cược
 sports_odds_has_changed: Tỷ lệ cược đã thay đổi.
 sports_bet: ''
@@ -909,7 +909,7 @@ sports_total_market: Kèo tổng điểm
 sports_tab_live_events: Sự Kiện Trực Tuyến
 sports_tab_starting_soon: Sắp Bắt Đầu
 sports_tab_lobby: Sảnh
-sports_tab_favourites: Yêu Thích
+sports_tab_favourites: Yêu thích
 sports_title_favourites: Sưu tầm
 sports_no_active_bet: Chưa có cược nào đang hoạt động
 sports_live_tv: Phát trực tiếp
@@ -981,7 +981,7 @@ site_message: Thông báo nội bộ
 notice: Thông báo
 marquee: Đèn kéo quân
 reward_feedback: Phản hồi có khen thưởng
-message_center: Trung tâm thông báo
+message_center: Thông báo
 deposit_detail: Chi tiết nạp tiền
 official_service: 'Dịch vụ chăm sóc khách hàng '
 receive_success: Thành công nhận lãnh
@@ -2355,7 +2355,7 @@ plinko_autobetalert2: "自动投注完成"
 plinko_betamountalert: "您的投注额不能大于余额！"
 commission_draw_success: 佣金提取成功
 receive_bonus_amount: 领取金额
-integral: 积分
+integral: Tích điểm
 reg_success_title: 成功
 reg_day: DD
 login_ip_title: IP
