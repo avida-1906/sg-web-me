@@ -25,6 +25,7 @@ const router = useLocalRouter()
 const appStore = useAppStore()
 const { userLanguage } = storeToRefs(useLanguageStore())
 const { openNotify } = useNotify()
+const cartBaseEventRef = ref()
 // 获取betInfo接口是否成功
 const { bool: fetchBetInfoStatus, setBool: setFetchBetInfoStatus } = useBoolean(true)
 const {
@@ -452,6 +453,7 @@ function startSetInterval() {
   console.log('开始购物车轮训')
   timer = setInterval(() => {
     runGetSportPlaceBetInfoHandle()
+    cartBaseEventRef.value?.send()
   }, 1000 * 10)
 }
 
@@ -714,6 +716,12 @@ onUnmounted(() => {
 
 <template>
   <div class="app-sports-bet-slip-container">
+    <BaseEvent
+      ref="cartBaseEventRef"
+      send-name="cart"
+      receive-name="sport-list"
+      @receive="runGetSportPlaceBetInfoHandle"
+    />
     <div class="header">
       <div class="tabs">
         <BaseTab
