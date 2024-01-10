@@ -2036,7 +2036,7 @@ export function ApiMemberBetList(params: {
  */
 export function ApiMemberBetReport(data: {
   /** 聊天室可查其它人的统计数据，传会员名 */
-  'username': string
+  'username'?: string
   /** 游戏类型,空=全部 1=娱乐城 2=体育 */
   'game_class': '' | '1' | '2'
 }) {
