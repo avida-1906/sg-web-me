@@ -74,7 +74,7 @@ sports: Thể thao
 game: 'Trò chơi'
 wallet: Ví
 safe: Kho
-affiliate: Liên kết
+affiliate: Chương Trình Liên Kết
 transaction_record: Giao dịch
 statistical_data: Thống kê
 sports_betting: Đặt cược thể thao
@@ -1145,7 +1145,7 @@ transaction_way: phương thức giao dịch
 transaction_time: Thời gian giao dịch
 credit_card: Thẻ tín dụng
 need_online_service: Nếu bạn cần trợ giúp, vui lòng liên hệ hỗ trợ trực tuyến
-support: hỗ trợ
+support: Hỗ trợ
 success_send_code: Mã xác nhận đã được gửi thành công
 code: 'Mã xác nhận '
 after_seconds_send_code: Gửi lại thư sau vài giây
@@ -2290,7 +2290,7 @@ mini_collect_game: '收藏游戏'
 mini_fairness: '公平性'
 mini_start_auto_bet_tip: '自动投注开始'
 mini_stop_auto_bet_tip: '自动投注完成'
-commission_record: 佣金记录
+commission_record: Lịch sử hoa hồng
 commission_grant: 佣金发放
 commission_draw: 佣金提取
 order_id: 订单号
