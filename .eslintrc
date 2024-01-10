@@ -10,7 +10,8 @@
     "**/*.sh",
     "**/*.svg",
     "**/*.yml",
-    "**/*.html"
+    "**/*.html",
+    "**/*.json"
   ],
   "rules": {
     "no-console": "off",

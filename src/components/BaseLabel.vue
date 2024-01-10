@@ -67,7 +67,7 @@ function catchIt() {
     justify-content: space-between;
     .label-left{
       display: flex;
-      justify-content: start;
+      justify-content: flex-start;
       align-items: center;
       gap: 0.25rem;
       margin-bottom: var(--tg-spacing-4);

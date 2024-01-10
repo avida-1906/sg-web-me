@@ -40,7 +40,7 @@ export const useAppStore = defineStore('app', () => {
   /** 公司信息 */
   const companyData = ref({
     name: 'Meibo',
-    copyright: '2023 Meibo.com',
+    copyright: '2024 Meibo.com',
     email: 'support@meibo.com',
     // 合作伙伴邮箱
     partnerEmail: 'partners@meibo.com',

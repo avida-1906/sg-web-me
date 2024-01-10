@@ -11,5 +11,10 @@
   "files.associations": {
     "*.css": "postcss"
   },
-  "editor.formatOnSave": false
+  "editor.formatOnSave": false,
+  "tailwindCSS.includeLanguages": {
+    "plaintext": "html",
+    "vue-html": "html",
+    "razor": "html",
+  },
 }

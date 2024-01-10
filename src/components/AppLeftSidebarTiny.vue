@@ -105,7 +105,7 @@ function push(title: string) {
     min-height: var(--tg-spacing-48);
     min-width: var(--tg-spacing-80);
     max-height: var(--tg-spacing-80);
-    justify-content: end;
+    justify-content: flex-end;
     background-position: 0 -15px;
     padding-right: var(--tg-spacing-12);
     @include getBackgroundImage('/left-side-bar/casino_bg');

@@ -385,7 +385,7 @@ runMemberNoticeAllList()
         p{
           font-size: var(--tg-font-size-default);
           display: flex;
-          justify-content: start;
+          justify-content: flex-start;
           align-items: center;
           transition: all .25s;
           cursor: pointer;
@@ -516,7 +516,7 @@ runMemberNoticeAllList()
     padding: 0 var(--tg-spacing-24);
     div:nth-child(1){
       display: flex;
-      justify-content: start;
+      justify-content: flex-start;
     }
     div:nth-child(2){
       display: flex;
@@ -528,7 +528,7 @@ runMemberNoticeAllList()
     }
     div:nth-child(3){
       display: flex;
-      justify-content: end;
+      justify-content: flex-end;
       img{
         height: 80px;
         width: auto;
@@ -579,7 +579,7 @@ runMemberNoticeAllList()
     div:nth-child(3){
       display: flex;
       align-items: center;
-      justify-content: end;
+      justify-content: flex-end;
     }
   }
   .index-bet{
@@ -691,7 +691,7 @@ runMemberNoticeAllList()
     justify-content: space-between;
     flex-direction: row-reverse;
     div:nth-child(2){
-      justify-content: start;
+      justify-content: flex-start;
       width: 50%;
       > svg{
         width: 60%;
