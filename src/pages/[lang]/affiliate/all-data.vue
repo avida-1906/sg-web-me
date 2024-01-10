@@ -2,8 +2,6 @@
 const { startTime, endTime } = getDaIntervalMap(new Date().getTime(), 30)
 
 const { t } = useI18n()
-const { userLanguage } = storeToRefs(useLanguageStore())
-
 const {
   selected: currency_id,
   list: currencyList,
@@ -112,9 +110,7 @@ onMounted(() => {
       @sort="setSortMap"
     >
       <template #created_at="{ record }">
-        <span>
-          {{ application.timestampToTime(record.created_at * 1000, userLanguage) }}
-        </span>
+        {{ timeToDateFormat(record.created_at) }}
       </template>
       <template #username="{ record }">
         <AppReportUserName :username="record.username" :level="`${record.vip}`" />

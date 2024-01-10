@@ -2,8 +2,6 @@
 const { startTime, endTime } = getDaIntervalMap(new Date().getTime(), 30)
 
 const { t } = useI18n()
-const { userLanguage } = storeToRefs(useLanguageStore())
-
 const {
   selected: currency_id,
   list: currencyList,
@@ -105,7 +103,7 @@ onMounted(() => {
       </template>
       <template #time="{ record }">
         <span>
-          {{ application.timestampToTime(record.time * 1000, userLanguage) }}
+          {{ timeToDateFormat(record.time) }}
         </span>
       </template>
       <template #valid_bet_amount="{ record }">

@@ -490,9 +490,7 @@ onUnmounted(() => {
           </div>
         </template>
         <template #bet_time="{ record }">
-          <div>
-            {{ timeToCustomizeFormat(record.bet_time ?? record.created_at) }}
-          </div>
+          {{ timeToCustomizeFormat(record.bet_time ?? record.created_at, 'HH:mm') }}
         </template>
         <template #player="{ record }">
           <template v-if="!record.username">

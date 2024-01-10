@@ -2,8 +2,6 @@
 const { startTime, endTime } = getDaIntervalMap(new Date().getTime(), 30)
 
 const { t } = useI18n()
-const { userLanguage } = storeToRefs(useLanguageStore())
-
 const {
   list,
   page,
@@ -61,7 +59,6 @@ const params = computed(() => {
 })
 
 onMounted(() => {
-  console.log(userLanguage.value)
   useListSearch(params, runAsync, resetPage)
 })
 </script>
@@ -105,14 +102,10 @@ onMounted(() => {
         </span>
       </template>
       <template #created_at="{ record }">
-        <span>
-          {{ application.timestampToTime(record.created_at, userLanguage) }}
-        </span>
+        {{ timeToDateFormat(record.created_at) }}
       </template>
       <template #last_login_at="{ record }">
-        <span>
-          {{ application.timestampToTime(record.last_login_at, userLanguage) }}
-        </span>
+        {{ timeToDateFormat(record.last_login_at) }}
       </template>
       <template #online="{ record }">
         <span
