@@ -4,6 +4,7 @@ export default {
     './index.html',
     './src/**/*.{vue,js,ts,jsx,tsx}',
   ],
+  corePlugins: false,
   theme: {
     extend: {},
   },
