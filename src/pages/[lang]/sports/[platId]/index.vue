@@ -61,7 +61,7 @@ onBeforeUnmount(() => {
     <div class="layout-spacing">
       <AppBanner type="sports" />
       <!-- <AppMarquee /> -->
-      <div v-if="!isMobile" class="mt-24">
+      <div v-if="!isMobile" class="tg-mt-24">
         <AppGameSearch game-type="2" />
       </div>
       <AppSportsProviderSlider
@@ -69,7 +69,7 @@ onBeforeUnmount(() => {
         v-model="currentProvider" :list="providerList"
         @change="sportsStore.changeProvider"
       />
-      <div class="mt-24">
+      <div class="tg-mt-24">
         <BaseTab
           v-model="marketType"
           size="large"

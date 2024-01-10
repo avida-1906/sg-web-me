@@ -98,7 +98,7 @@ const showContent = function () {}
         </template>
       </BaseCollapse>
     </div>
-    <div class="page-stack-wrap mt-24">
+    <div class="page-stack-wrap tg-mt-24">
       <AppStack />
     </div>
     <BaseButton>

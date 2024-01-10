@@ -32,7 +32,7 @@ function handleItemClick(item: any) {
         </div>
       </div>
     </div>
-    <div class="mt-24">
+    <div class="tg-mt-24">
       <AppCardList :list="cateProviderData?.games ?? []" is-provider>
         <template #default="{ item }">
           <BaseProviderItem

@@ -44,7 +44,7 @@ usePageTitle({ prefix: 'transaction_bet', isT: true })
         </table>
       </div>
     </div>
-    <div class="page-stack-wrap mt-24">
+    <div class="page-stack-wrap tg-mt-24">
       <AppStack />
     </div>
   </section>

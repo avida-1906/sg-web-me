@@ -164,7 +164,7 @@ async function submitLoginPwd() {
     .text{
       padding-bottom: var(--tg-spacing-4);
     }
-    .mt-16{
+    .tg-mt-16{
       margin-top: var(--tg-spacing-16);
     }
     .qr-wrap{

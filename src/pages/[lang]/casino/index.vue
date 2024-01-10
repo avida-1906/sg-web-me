@@ -159,10 +159,10 @@ await application.allSettled([runMemberNoticeAllList(), loadIcon()])
   <div class="layout-spacing">
     <AppBanner type="casino" />
     <!-- <AppMarquee /> -->
-    <div v-if="!isMobile" class="mt-24">
+    <div v-if="!isMobile" class="tg-mt-24">
       <AppGameSearch game-type="1" />
     </div>
-    <div v-show="casinoNav && casinoNav.length > 0" class="mt-24">
+    <div v-show="casinoNav && casinoNav.length > 0" class="tg-mt-24">
       <BaseTab
         v-model="tab"
         :list="casinoNav ?? []"
@@ -219,7 +219,7 @@ await application.allSettled([runMemberNoticeAllList(), loadIcon()])
 </template>
 
 <style lang='scss' scoped>
-.mt-24 {
+.tg-mt-24 {
   margin-top: 24px;
 }
 .list-wrap {

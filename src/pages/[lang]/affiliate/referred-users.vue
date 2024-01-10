@@ -89,7 +89,7 @@ const data = reactive([
         </template>
       </BaseTable>
     </div>
-    <div class="page-stack-wrap mt-24">
+    <div class="page-stack-wrap tg-mt-24">
       <AppStack />
     </div>
   </div>

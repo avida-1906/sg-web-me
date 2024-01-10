@@ -243,7 +243,7 @@ watch(() => props.columns, () => {
       // .m-td-empty{
       //   margin-top: 24px;
       // }
-      .mt-mobile{
+      .tg-mt-mobile{
         margin-top: 24.6vh;
       }
       .m-tr:nth-child(odd){

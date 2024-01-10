@@ -29,7 +29,7 @@ const game = computed(() => gameObj.value[id.value])
   </div>
   <section class="page-content">
     <AppDesc :name="name" :plat-name="pn" :pid="pid" />
-    <div class="margin-auto home-container mt-32">
+    <div class="tg-mt-32 margin-auto home-container">
       <div v-if="!isMobile" class="layout-spacing">
         <AppBetData mode="casino" />
       </div>
@@ -56,7 +56,7 @@ const game = computed(() => gameObj.value[id.value])
   }
 }
 
-.mt-32 {
+.tg-mt-32 {
   margin-top: var(--tg-spacing-32);
 }
 </style>

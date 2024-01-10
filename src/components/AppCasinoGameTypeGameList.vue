@@ -146,10 +146,10 @@ else if (isCat.value)
 </script>
 
 <template>
-  <div class="mt-24">
+  <div class="tg-mt-24">
     <AppCardList :list="list ?? []" />
   </div>
-  <div class="load-more mt-24">
+  <div class="tg-mt-24 load-more">
     <AppPercentage :total="total" :percentage="list?.length" />
     <BaseButton
       v-show="list && list?.length < total" size="md" :loading="loading"

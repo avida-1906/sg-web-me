@@ -278,13 +278,13 @@ function generateQRCodeUrl(params: {
           label="将代码复制到您的身份验证器应用程序（Authenticator App）"
           :msg="userInfo.google_key"
         />
-        <p class="mt-16">
+        <p class="tg-mt-16">
           防止他人看到此页！
         </p>
         <div v-if="getQRcodeUrl" class="qr-wrap">
-          <BaseQrcode :url="getQRcodeUrl" class="mt-16" />
+          <BaseQrcode :url="getQRcodeUrl" class="tg-mt-16" />
         </div>
-        <div class="mt-16">
+        <div class="tg-mt-16">
           <BaseLabel label="密码" must-small>
             <BaseInput
               v-model="loginPassword"
@@ -293,7 +293,7 @@ function generateQRCodeUrl(params: {
               type="password"
             />
           </BaseLabel>
-          <div class="mt-16">
+          <div class="tg-mt-16">
             <BaseLabel label="双重验证" must-small>
               <BaseInput
                 v-model="doublePassword"
@@ -318,7 +318,7 @@ function generateQRCodeUrl(params: {
     .text{
       padding-bottom: var(--tg-spacing-4);
     }
-    .mt-16{
+    .tg-mt-16{
       margin-top: var(--tg-spacing-16);
     }
     .qr-wrap{

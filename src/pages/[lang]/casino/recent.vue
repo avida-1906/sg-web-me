@@ -24,10 +24,10 @@ const { appContentWidth, isMobile } = storeToRefs(useWindowStore())
         </div>
       </div>
     </div>
-    <div v-if="!isMobile" class="mt-24">
+    <div v-if="!isMobile" class="tg-mt-24">
       <AppGameSearch game-type="1" />
     </div>
-    <div class="mt-24">
+    <div class="tg-mt-24">
       <AppCardList />
     </div>
   </section>

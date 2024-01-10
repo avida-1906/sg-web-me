@@ -94,13 +94,13 @@ function generateQRCodeUrl(params: {
           :label="t('copy_to_google')"
           :msg="userInfo.google_key"
         />
-        <p class="mt-16" style="line-height: 21px;">
+        <p class="tg-mt-16" style="line-height: 21px;">
           {{ t('hide_from_others') }}
         </p>
         <div v-if="getQRcodeUrl" class="qr-wrap">
-          <BaseQrcode :url="getQRcodeUrl" class="mt-16" />
+          <BaseQrcode :url="getQRcodeUrl" class="tg-mt-16" />
         </div>
-        <div class="mt-16">
+        <div class="tg-mt-16">
           <BaseLabel :label="t('password')" must-small>
             <BaseInput
               v-model="loginPassword"
@@ -109,7 +109,7 @@ function generateQRCodeUrl(params: {
               type="password"
             />
           </BaseLabel>
-          <div class="mt-16">
+          <div class="tg-mt-16">
             <BaseLabel :label="t('double_check_code')" must-small>
               <BaseInput
                 v-model="doublePassword"
@@ -134,7 +134,7 @@ function generateQRCodeUrl(params: {
     .text{
       padding-bottom: var(--tg-spacing-4);
     }
-    .mt-16{
+    .tg-mt-16{
       margin-top: var(--tg-spacing-16);
     }
     .qr-wrap{

@@ -205,7 +205,7 @@ else {
         <div v-else class="empty">
           <BaseEmpty :description="emptyText" icon="empty-1" />
         </div>
-        <div v-show="activeRecord.total > 10" class="page-stack-wrap mt-24">
+        <div v-show="activeRecord.total > 10" class="tg-mt-24 page-stack-wrap">
           <AppStack
             :pagination-data="getPage"
             scroll
@@ -213,7 +213,7 @@ else {
             @next="pageNext"
           />
         </div>
-        <!-- <div v-if="downloadText" class="download-btn mt-24">
+        <!-- <div v-if="downloadText" class="download-btn tg-mt-24">
           <BaseButton size="md">
             {{ downloadText }}
           </BaseButton>

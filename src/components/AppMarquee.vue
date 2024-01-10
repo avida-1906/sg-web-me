@@ -13,7 +13,7 @@ await application.allSettled([runMemberNoticeAllList()])
 
 <template>
   <!-- 滚动（跑马灯）消息 -->
-  <div v-if="!memberNoticeAllListLoading && noticeData?.marquee.length" class="mt-24">
+  <div v-if="!memberNoticeAllListLoading && noticeData?.marquee.length" class="tg-mt-24">
     <BaseNoticeBar>
       <template #prefix>
         <div

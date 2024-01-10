@@ -106,7 +106,7 @@ runMemberNoticeAllList()
     <!-- 滚动（跑马灯）消息 -->
     <div
       v-if="!memberNoticeAllListLoading && noticeData?.marquee.length"
-      class="mt-24"
+      class="tg-mt-24"
     >
       <BaseNoticeBar>
         <template #prefix>
