@@ -29,6 +29,7 @@ function onMouseLeave() {
     --tg-base-select-hover-bg-color:transparent;
     --tg-base-select-popper-style-padding-x:0;
     --tg-base-select-popper-style-padding-y:0;"
+    @select="$emit('change')"
   >
     <template #label="{ data }">
       <div class="select-label">
