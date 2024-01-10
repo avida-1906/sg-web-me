@@ -191,6 +191,7 @@ declare module 'vue' {
     BaseDivider: typeof import('./components/BaseDivider.vue')['default']
     BaseDragDialog: typeof import('./components/BaseDragDialog.vue')['default']
     BaseEmpty: typeof import('./components/BaseEmpty.vue')['default']
+    BaseEvent: typeof import('./components/BaseEvent.vue')['default']
     BaseGameItem: typeof import('./components/BaseGameItem.vue')['default']
     BaseIcon: typeof import('./components/BaseIcon.vue')['default']
     BaseImage: typeof import('./components/BaseImage.vue')['default']
@@ -235,6 +236,5 @@ declare module 'vue' {
     PlinkoSetting: typeof import('./components/PlinkoSetting.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    Test: typeof import('./components/Test.vue')['default']
   }
 }
