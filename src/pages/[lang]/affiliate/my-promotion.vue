@@ -5,24 +5,36 @@ usePageTitle({ prefix: t('menu_title_my_promotion') })
 const { isMobile } = storeToRefs(useWindowStore())
 const location = useBrowserLocation()
 const { data: proData, loading: loadMyData } = useRequest(ApiGetMyPro, { manual: false })
+const router = useLocalRouter()
 
 const baseQrRef = ref()
 const socialData = [
   {
     label: 'Facebook',
     img: '/png/settings/social-facebook.png',
+    link: '',
   },
   {
     label: 'WhatsApp',
     img: '/png/settings/social-whatsapp.png',
+    link: 'https://api.whatsapp.com/send?text=',
   },
   {
     label: 'Telegram',
     img: '/png/settings/social-telegram.png',
+    link: 'https://t.me/share/url?url=',
   },
   // { label: 'Line', img: '/png/settings/social-line.png' },
-  { label: 'X', img: '/png/settings/social-x.png' },
-  { label: 'Gmail', img: '/png/settings/social-gmail.png' },
+  {
+    label: 'X',
+    img: '/png/settings/social-x.png',
+    link: 'https://twitter.com/intent/tweet?text%20&url=',
+  },
+  {
+    label: 'Gmail',
+    img: '/png/settings/social-gmail.png',
+    link: '',
+  },
   // { label: 'Zalo', img: '/png/settings/social-zalo.png' },
   // { label: 'Viber', img: '/png/settings/social-viber.png' },
   // { label: 'WeChat', img: '/png/settings/social-wechat.png' },
@@ -98,6 +110,9 @@ const bet = computed(() => [
 function downloadQr() {
   baseQrRef.value.downloadClick()
 }
+function openLink(link: string) {
+  link && router.push(link + qrUrl.value)
+}
 </script>
 
 <template>
@@ -136,7 +151,10 @@ function downloadQr() {
           </div>
         </div>
         <div class="social-wrap" :class="{ 'is-less-than-sm': isMobile }">
-          <div v-for="(item, index) in socialData" :key="index" class="social">
+          <div
+            v-for="(item, index) in socialData" :key="index"
+            class="social" @click="openLink(item.link)"
+          >
             <BaseImage
               :url="item.img"
               width="28px"
@@ -326,6 +344,7 @@ function downloadQr() {
         align-items: center;
         gap: var(--tg-spacing-8);
         font-size: var(--tg-font-size-xs);
+        cursor: pointer;
         .promotion-base-image{
           width: 28px;
           height: 28px;
