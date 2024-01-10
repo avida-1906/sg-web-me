@@ -20,11 +20,12 @@ const socialData = [
     label: 'Telegram',
     img: '/png/settings/social-telegram.png',
   },
-  { label: 'Line', img: '/png/settings/social-line.png' },
+  // { label: 'Line', img: '/png/settings/social-line.png' },
   { label: 'X', img: '/png/settings/social-x.png' },
-  { label: 'Zalo', img: '/png/settings/social-zalo.png' },
-  { label: 'Viber', img: '/png/settings/social-viber.png' },
-  { label: 'WeChat', img: '/png/settings/social-wechat.png' },
+  { label: 'Gmail', img: '/png/settings/social-gmail.png' },
+  // { label: 'Zalo', img: '/png/settings/social-zalo.png' },
+  // { label: 'Viber', img: '/png/settings/social-viber.png' },
+  // { label: 'WeChat', img: '/png/settings/social-wechat.png' },
 ]
 const squareTabList = [
   {
