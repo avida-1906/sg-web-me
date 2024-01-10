@@ -22,7 +22,6 @@ const { isLogin } = storeToRefs(useAppStore())
 const { leftIsExpand, closeLeftSidebar } = useLeftSidebar()
 
 const showBack = computed(() => {
-  console.log(router.currentRoute.value.path)
   return isMobile.value && props.isBack && isLogin.value
     ? [`/${getCurrentUrlLanguage()}/sports/${getSportsPlatId()}`, `/${getCurrentUrlLanguage()}/casino`].includes(router.currentRoute.value.path)
     : true

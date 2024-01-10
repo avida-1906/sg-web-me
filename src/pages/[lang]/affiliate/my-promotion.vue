@@ -127,7 +127,7 @@ function downloadQr() {
               :text="t('copy_addr_suc')" icon-name="uni-doc" :triggers="['click']"
             >
               <template #content>
-                <BaseButton size="none" @click="application.copy(qrUrl)">
+                <BaseButton size="none" type="text" @click="application.copy(qrUrl)">
                   <BaseIcon name="uni-doc" />
                 </BaseButton>
               </template>
