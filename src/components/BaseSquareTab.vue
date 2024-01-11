@@ -26,7 +26,7 @@ function loadIcon() {
     let a = 0
     const t = setInterval(() => {
       a++
-      if (props.list.length > 0) {
+      if (props.list && props.list.length > 0) {
         clearInterval(t)
         const arr = props.list.map((a) => {
           return a.useCloudImg ? application.loadImage(a.icon ?? '') : ''
