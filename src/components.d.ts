@@ -116,6 +116,7 @@ declare module 'vue' {
     AppSportAllToCartEvent: typeof import('./components/AppSportAllToCartEvent.vue')['default']
     AppSportBetSuccessNotify: typeof import('./components/AppSportBetSuccessNotify.vue')['default']
     AppSportCartsToEvent: typeof import('./components/AppSportCartsToEvent.vue')['default']
+    AppSportCartToAllEvent: typeof import('./components/AppSportCartToAllEvent.vue')['default']
     AppSportRightBet: typeof import('./components/AppSportRightBet.vue')['default']
     AppSportRightBetSlip: typeof import('./components/AppSportRightBetSlip.vue')['default']
     AppSportRightMyBets: typeof import('./components/AppSportRightMyBets.vue')['default']
