@@ -12,6 +12,7 @@ const titles = computed<any>(() => ({
   3: t('page_title_live'),
 }))
 
+const gameListRef = ref()
 const currentType = ref(props.gameType)
 const sortType = ref(EnumCasinoSortType.hot)
 const pids = ref('')
@@ -68,10 +69,10 @@ const bannerBg = computed(() => {
   }
 })
 
-function handleBeforeUnmounted() {
+function startLoading() {
   loading.value = true
 }
-function handleMounted() {
+function stopLoading() {
   const t = setTimeout(() => {
     loading.value = false
     clearTimeout(t)
@@ -80,10 +81,12 @@ function handleMounted() {
 // 游戏提供商选择变化
 function onPlatTypeChecked(v: string) {
   pids.value = v
+  gameListRef.value.init()
 }
 // 排序变化
 function onSortChange(v: any) {
   sortType.value = v
+  gameListRef.value.init()
 }
 
 watch(route, (a) => {
@@ -92,6 +95,12 @@ watch(route, (a) => {
     cid.value = a.query.cid ? route.query.cid?.toString() ?? '0' : '0'
     pids.value = ''
     sortType.value = EnumCasinoSortType.hot
+
+    if (isCat.value)
+      runGameCate({ cid: cid.value })
+
+    gameListRef.value.init()
+
     setTimeout(() => {
       scrollToTop()
     }, 50)
@@ -144,15 +153,16 @@ onMounted(() => {
           :game-type="currentType"
           :sort-type="sortType"
           :platform-options="platformOptions"
+          :disabled="false"
           @plat-type-checked="onPlatTypeChecked"
           @sort-type-change="onSortChange"
         />
       </div>
       <AppLoading v-if="loading" full-screen />
       <AppCasinoGameTypeGameList
-        :key="route.fullPath + pids + sortType" :game-type="gameType"
+        ref="gameListRef" :game-type="gameType"
         :sort-type="sortType" :pids="pids"
-        @vue:mounted="handleMounted" @vue:before-unmount="handleBeforeUnmounted"
+        @request-finish="stopLoading" @loading="startLoading"
       />
       <AppProviderSlider
         :icon="cateProviderData?.icon ?? ''"
