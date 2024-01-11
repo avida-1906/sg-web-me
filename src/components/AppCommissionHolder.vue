@@ -50,22 +50,24 @@ await application.allSettled(
         />
       </div>
     </div>
-    <BaseButton
-      class="btn-receive"
-      :loading="loadTransferToMember"
-      bg-style="secondary" custom-padding @click="runTransferToMember"
-    >
-      {{ $t('finance_funds_transfer_commission_withdraw') }}
-    </BaseButton>
-    <div class="holder-tip">
-      转到钱包后需要1倍有效投注才可提款
+    <div class="sticky-box">
+      <BaseButton
+        class="btn-receive"
+        :loading="loadTransferToMember"
+        bg-style="secondary" custom-padding @click="runTransferToMember"
+      >
+        {{ $t('finance_funds_transfer_commission_withdraw') }}
+      </BaseButton>
+      <div class="holder-tip">
+        {{ t('after_transfer_withdraw_money') }}
+      </div>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .app-commission-holder {
-  padding: 0 16px 16px;
+  padding: 0 16px;
   color: var(--tg-secondary-light);
   .holder-currency{
     .currency-item{
@@ -86,16 +88,19 @@ await application.allSettled(
       padding-top: 0;
     }
   }
+  .sticky-box{
+    position: sticky;
+    bottom: 0;
+    text-align: center;
+    padding: 16px 0 16px;
+    background-color: #1a2c37;
+  }
   .btn-receive{
     max-width: 400px;
     width: 100%;
-    display: block;
-    margin: 16px auto 0;
   }
   .holder-tip{
     font-size: var(--tg-font-size-xs);
-    line-height: 1.4;
-    text-align: center;
     margin-top: 16px;
     font-weight: var(--tg-font-weight-semibold);
   }
