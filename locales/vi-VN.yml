@@ -629,7 +629,7 @@ time_future_2h: 2 giờ
 time_future_30m: 30 phút
 time_future_3h: 3 giờ
 time_future_day_0: Thứ hai
-time_future_day_1: Thứ ba
+time_future_day_1: Thứ Ba
 time_future_day_2: 'Thứ tư '
 time_future_day_3: Thứ năm
 time_future_day_4: Thứ sáu
@@ -737,7 +737,7 @@ search_game: Tìm kiếm trò chơi của bạn
 search_events: Tìm kiếm sự kiện
 casino_origin_game: trò chơi nguyên bản
 casino_games_recommend: Đề xuất
-casino_provider: Nhà Cung Cấp
+casino_provider: Nhà cung cấp
 casino_sort_popular: Phổ biến
 casino_sort_featured: Tính năng
 casino_filter_label: Được lọc bởi
@@ -880,7 +880,7 @@ sports_status_interrupted: Trận đấu bị gián đoạn
 sports_status_settled: Trận đấu đã kết toán
 sports_status_finished: Trận đấu đã kết thúc
 sports_duplicate_bet: Đợn cược trùng lặp
-sports_status_tie: Hòa
+sports_status_tie: hòa
 sports_status_win_half: Ăn nửa tiền
 sports_status_lose_half: Thua nửa tiền
 sports_status_lose_part: Thua một phần
@@ -893,16 +893,16 @@ sports_settled: Đã đặt
 sports_accept_any_odds: Chấp Nhận Tất Cả Tỉ Lệ
 sports_accept_higher_odds: Chỉ Chấp Nhận Tỉ Lệ Cao hơn
 sports_accept_none_odds: Không Chấp Nhận Tỉ Lệ Thay Đổi
-sports_bet_slip_empty: Đơn cược trống
+sports_bet_slip_empty: Phiếu Cược Trống
 sports_betting_now: Bắt đầu đặt cược ngay bây giờ!
 sports_total_odds: Tổng Tỉ Lệ
 sports_total_bet_amount: Tổng Cược
 sports_odds_has_changed: Tỷ lệ cược đã thay đổi.
 sports_bet: ''
-sports_hot_event: Trận đấu phổ biến
+sports_hot_event: Sự Kiện Phổ Biến
 sports_three_options: đặt cược 3 chiều
 sports_standard: Tiêu chuẩn
-sports_winner_market: Kèo thắng lợi
+sports_winner_market: Người chiến thắng
 sports_handicap_market: Kèo nhường điểm
 sports_total_market: Kèo tổng điểm
 sports_tab_live_events: Sự Kiện Trực Tuyến
@@ -915,7 +915,7 @@ sports_live_tv: Phát trực tiếp
 sports_live_favourites: Vòng cược phổ biến của trận đấu đang diễn ra
 sports_upcoming_favourites: Sắp diễn ra trận đấu phổ biến
 sports_provider: Mục thể thao
-sports_odds_title: Tỉ lệ
+sports_odds_title: Tỷ lệ cược
 DECIMAL: Số thập phân
 FRACTION: Phân số
 AMERICAN: American
@@ -923,7 +923,7 @@ INDONESIA: Indonesian
 MALAYSIA: Malaysian
 HONGKONG: Hong Kong
 sports_live_unlogin_tip: Vui lòng đăng nhập để xem truyền hình trực tiếp
-sports_starts_in: 'Thời gian bắt đầu: {minutes} kể từ bây giờ'
+sports_starts_in: 'Bắt Đầu Sau {minutes} Phút Nữa'
 welcome_guest: Chào mừng
 language_title: Ngôn ngữ
 language_current: Tiếng Trung
@@ -939,7 +939,7 @@ sports_index_description: 'Đặt cược vào các đội thể thao, người 
   thao khác '
 chat_been_hide: Phòng trò chuyện đã bị ẩn
 chat_show_room: hiển thị phòng trò chuyện
-chat_stop_by_scroll: cuộc trò chuyện đã dừng khi rê chuột
+chat_stop_by_scroll: Chát bị tạm dừng do cuộn
 chat_new_msgs_count: tin nhắn mới
 chat_command_see_bet: Xem bđơn cược
 chat_command_see_user: Xem khách chơi
@@ -949,10 +949,10 @@ chat_command_ignore_user: Thêm vào danh sách đen
 chat_command_unignore_user: Loại khỏi danh sách đen
 chat_send_msg_placeholder: Nhập tin nhắn của bạn
 chat_new_window: Phòng trò chuyện được bật lên
-chat_close_side: Thu gọn thanh chat
+chat_close_side: Minimizar Barra Lateral
 chat_send_tip_label: Gửi tặng tiền tip
 chat_rule_full_title: Tất cả quy tắc có thể tìm thấy tại
-chat_forum: diễn đàn
+chat_forum: Diễn đàn
 chat_rule_find: '.'
 about_us: Về Chúng Tôi
 sponsor_activity: Tài trợ
@@ -1010,7 +1010,7 @@ effective_bet: Đơn cược hợp lệ
 total_win_lose: Tổng thắng thua
 rebate_amount: Số tiền hoàn lại
 bet_order_num: Số lượng đơn cược
-rule_desc: Mô tả luật chơi
+rule_desc: '{vip} Mô tả luật chơi'
 vip_rule_1: 'Tiêu chí thăng cấp: Nếu bạn đáp ứng các yêu cầu để thăng cấp VIP (nghĩa
   là đáp ứng tất cả các yêu cầu về mã hóa), bạn có thể được thăng cấp lên cấp VIP
   tương ứng và nhận phần thưởng khuyến mãi tương ứng, nếu bạn thăng lên nhiều cấp
@@ -1397,8 +1397,8 @@ search_currency: Tìm kiếm tiền tệ
 card_wallet: Ví thẻ
 improve_safe_level: Cải thiện bảo mật tài khoản của bạn với Xác thực hai yếu tố
 turn_on_double_check: Kích Hoạt 2FA
-hide_zero_wallet: Ẩn số dư bằng 0
-zero_wallet_hidden: Số dư bằng 0 của bạn sẽ không hiển thị trong ví của bạn
+hide_zero_wallet: Ẩn số dư bằng không
+zero_wallet_hidden: Số dư bằng 0 của bạn sẽ không xuất hiện trong ví của bạn
 address: Địa chỉ
 withdrawal_min_amount: Số tiền rút tối thiểu là
 withdrawal_fee_tip: Chúng tôi sẽ khấu trừ số tiền này khỏi số dư của bạn
@@ -1810,7 +1810,7 @@ game_water_experience: Kinh nghiệm
 in_play: chơi
 week_0: Chủ nhật
 week_1: Thứ hai
-week_2: Thứ ba
+week_2: Thứ Ba
 week_3: Thứ tư
 week_4: Thứ năm
 week_5: Thứ sáu
@@ -2257,8 +2257,8 @@ statistical_date: ngày thống kê
 phone_invalid: 手机号码无效
 colon: ':'
 period: '.'
-vip_total_bonus: Tích luỹ tiền thưởng
-type_select: 类型选择
+vip_total_bonus: Bônus acumulado
+type_select: Loại hình lựa chọn
 rule_text_one: Tỷ giá sẽ được đồng bộ theo thời gian biến động của thị trường
 rule_text_two: Tỷ giá sẽ được áp dụng khi đơn cược của bạn được giải quyết
 rule_text_three: Các cược hợp lệ đã được tính sẽ không bị ảnh hưởng bởi tỷ giá tiếp theo
@@ -2352,10 +2352,12 @@ plinko_autobetalert1: "自动投注开始"
 plinko_autobetalert2: "自动投注完成"
 plinko_betamountalert: "您的投注额不能大于余额！"
 commission_draw_success: 佣金提取成功
-receive_bonus_amount: 领取金额
+receive_bonus_amount: Số tiền nhận được
 integral: Tích điểm
 reg_success_title: 成功
 reg_day: DD
 login_ip_title: Địa chỉ IP
 gameble_aware: Điều Cần Biết
 transfer_to_wallet: 转移到钱包
+statistical_data_dialog_title: Thống kê
+end_time_table: 'kết thúc sau {time} giờ nữa'

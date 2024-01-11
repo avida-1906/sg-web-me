@@ -1039,7 +1039,7 @@ effective_bet: Valid bets
 total_win_lose: Total win and loss
 rebate_amount: Rebate amount
 bet_order_num: Number of bet slips
-rule_desc: Rules description
+rule_desc: '{vip} Rules description'
 vip_rule_1: 'Promotion criteria: If you meet the requirements for VIP promotion
   (that is, all requirements are met), you can be promoted to the corresponding
   VIP level and receive the corresponding promotion bonus. If you advance to multiple
@@ -2326,3 +2326,5 @@ reg_day: DD
 login_ip_title: IP
 gameble_aware: Gameble aware
 transfer_to_wallet: 转移到钱包
+statistical_data_dialog_title: 统计数据
+end_time_table: '结束时间：{time}小时后'

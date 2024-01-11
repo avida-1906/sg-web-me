@@ -984,7 +984,7 @@ effective_bet: 有效投注
 total_win_lose: 总赢/输
 rebate_amount: 返佣金额
 bet_order_num: 投注单数量
-rule_desc: 规则说明
+rule_desc: '{vip} 规则说明'
 vip_rule_1: 满足VIP晋级要求（即打码都满足条件），即可晋级相应VIP等级，获得相应晋级奖金，如连续晋级多级，可领取全部等级晋级奖金
 vip_rule_2: 达到VIP等级对应日俸禄要求，即可领取对应日奖金，每日00:00重置
 vip_rule_3: 达到VIP等级对应周俸禄要求，即可领取对应周奖金，每周一00:00重置
@@ -1856,3 +1856,5 @@ reg_day: DD
 login_ip_title: IP
 gameble_aware: Gameble aware
 transfer_to_wallet: 转移到钱包
+statistical_data_dialog_title: 统计数据
+end_time_table: '结束时间：{time}小时后'
