@@ -5,8 +5,9 @@ interface Props {
   pids: string
 }
 const props = defineProps<Props>()
-const route = useRoute()
+const emit = defineEmits(['loading', 'requestFinish'])
 
+const route = useRoute()
 const { VITE_CASINO_GAME_PAGE_SIZE } = getEnv()
 const { push } = useLocalRouter()
 
@@ -136,13 +137,38 @@ function checkCate() {
   })
 }
 
-// 初始化
-if (isProvider.value)
-  await application.allSettled([checkPlat().then(() => runGameList(paramsGame.value))])
-else if (isRec.value)
-  await application.allSettled([runRecList(paramsRec.value)])
-else if (isCat.value)
-  await application.allSettled([checkCate().then(() => runCateGames(paramsCate.value))])
+function init() {
+  return new Promise((resolve) => {
+    emit('loading')
+    // 初始化
+    if (isProvider.value) {
+      checkPlat().then(() => {
+        runGameList(paramsGame.value).finally(() => {
+          emit('requestFinish')
+          resolve(1)
+        })
+      })
+    }
+    else if (isRec.value) {
+      runRecList(paramsRec.value).finally(() => {
+        emit('requestFinish')
+        resolve(1)
+      })
+    }
+    else if (isCat.value) {
+      checkCate().then(() => {
+        runCateGames(paramsCate.value).finally(() => {
+          emit('requestFinish')
+          resolve(1)
+        })
+      })
+    }
+  })
+}
+
+defineExpose({ init })
+
+await application.allSettled([init()])
 </script>
 
 <template>

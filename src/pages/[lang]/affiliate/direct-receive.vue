@@ -52,12 +52,6 @@ const columns: Column[] = [
     slot: 'gift_amount',
   },
   {
-    title: t('vip_water_back'),
-    dataIndex: 'aaaa',
-    align: 'center',
-    slot: 'aaaa',
-  },
-  {
     title: t('agent_commission'),
     dataIndex: 'commission_amount',
     align: 'center',
@@ -114,9 +108,7 @@ onMounted(() => {
         <AppReportUserName :username="record.username" :level="`${record.vip}`" />
       </template>
       <template #time="{ record }">
-        <span>
-          {{ timeToDateFormat(record.time) }}
-        </span>
+        {{ timeToDateFormat(record.time) }}
       </template>
       <template #total_receive="{ record }">
         <div class="center">
@@ -130,14 +122,6 @@ onMounted(() => {
         <div class="center">
           <AppAmount
             :amount="record.gift_amount"
-            :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
-          />
-        </div>
-      </template>
-      <template #aaaa="{ record }">
-        <div class="center">
-          <AppAmount
-            amount="-"
             :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
           />
         </div>

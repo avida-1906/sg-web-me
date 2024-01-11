@@ -23,7 +23,7 @@ const columns: Column[] = [
     slot: 'effective_bat',
   },
   {
-    title: t('rebate_amount'),
+    title: t('menu_title_commission_rate'),
     dataIndex: 'rebate_ratio',
     align: 'center',
     slot: 'rebate_ratio',
@@ -75,7 +75,7 @@ const list = computed(() => {
       </template>
       <template #rebate_ratio="{ record }">
         <span style="color: var(--tg-text-warn)">
-          {{ toFixed(record.rebate_ratio * 100, 2) }}%
+          {{ record.rebate_ratio }}%
         </span>
       </template>
       <template #effective_bat="{ record }">

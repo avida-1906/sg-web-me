@@ -244,6 +244,7 @@ watchEffect(() => {
 :root {
   --tg-base-pagination-color-default: var(--tg-secondary-light);
   --tg-base-pagination-color-active: var(--tg-text-blue);
+  --tg-base-pagination-margin: 16px 0 0;
 }
 </style>
 
@@ -257,6 +258,7 @@ watchEffect(() => {
   gap: 20px;
   color: var(--tg-base-pagination-color-default);
   font-size: var(--tg-font-size-default);
+  margin: var(--tg-base-pagination-margin);
   .pager-outer {
     display: flex;
     align-items: center;
@@ -311,8 +313,8 @@ watchEffect(() => {
     justify-content: center;
     gap: 8px;
     .mid {
-      --tg-spacing-input-padding-vertical: 1px;
-      --tg-spacing-input-padding-horizontal: 2px;
+      --tg-base-input-style-pad-y: 1px;
+      --tg-base-input-style-pad-x: 2px;
       width: 55px;
     }
   }
