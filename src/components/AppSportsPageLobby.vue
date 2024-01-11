@@ -83,6 +83,11 @@ const { run, runAsync } = useRequest(ApiSportEventList,
   {
     onSuccess(res) {
       if (res.d) {
+        // 赛事数量与nav不符时刷新count接口
+        const siObj = siNavs.value.find(a => a.si === currentLobbySiNav.value)
+        if (siObj && siObj.count !== res.t)
+          startCount()
+
         total.value = res.t
         curTotal.value = curTotal.value + res.d.length
 
