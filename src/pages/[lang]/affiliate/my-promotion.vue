@@ -12,7 +12,7 @@ const socialData = [
   {
     label: 'Facebook',
     img: '/png/settings/social-facebook.png',
-    link: '',
+    link: 'https://www.facebook.com/sharer/sharer.php?u=',
   },
   {
     label: 'WhatsApp',
@@ -33,7 +33,7 @@ const socialData = [
   {
     label: 'Gmail',
     img: '/png/settings/social-gmail.png',
-    link: '',
+    link: 'Gmail',
   },
   // { label: 'Zalo', img: '/png/settings/social-zalo.png' },
   // { label: 'Viber', img: '/png/settings/social-viber.png' },
@@ -111,7 +111,10 @@ function downloadQr() {
   baseQrRef.value.downloadClick()
 }
 function openLink(link: string) {
-  link && router.push(link + qrUrl.value)
+  if (link === 'Gmail')
+    window.location.href = `mailto:?subject=${link}`
+  else
+    link && router.push(link + qrUrl.value)
 }
 </script>
 
@@ -127,11 +130,9 @@ function openLink(link: string) {
         class="item-content promotion-msg"
         :class="{ 'is-less-than-sm': isMobile }"
       >
-        <div class="promotion-left">
+        <div class="promotion-left cursor-pointer" @click="downloadQr">
           <BaseQrcode ref="baseQrRef" :url="qrUrl" :size="92" class="qr-code" />
-          <p class="cursor-pointer" @click="downloadQr">
-            {{ t('click_save_qr') }}
-          </p>
+          <p>{{ t('click_save_qr') }}</p>
         </div>
         <div class="link">
           <p>{{ t('my_link') }}</p>
@@ -172,11 +173,6 @@ function openLink(link: string) {
         <div class="title-left">
           {{ t('finance_funds_transfer_sort_commission') }}
         </div>
-        <!-- <div class="title-btn">
-          <BaseButton type="text" @click="$router.push('/affiliate/my-commission')">
-            {{ t('more') }}
-          </BaseButton>
-        </div> -->
       </div>
       <div class="item-content grid-wrap" :class="{ 'is-less-than-sm': isMobile }">
         <div v-for="(item, index) in commission" :key="index">
@@ -193,11 +189,6 @@ function openLink(link: string) {
         <div class="title-left">
           {{ t('performance') }}
         </div>
-        <!-- <div class="title-btn">
-          <BaseButton type="text" @click="$router.push('/affiliate/my-performance')">
-            {{ t('more') }}
-          </BaseButton>
-        </div> -->
       </div>
       <div class="item-content grid-wrap" :class="{ 'is-less-than-sm': isMobile }">
         <div v-for="(item, index) in performance" :key="index">
@@ -217,11 +208,6 @@ function openLink(link: string) {
         <div class="title-left">
           {{ t('sub_bet') }}
         </div>
-        <!-- <div class="title-btn">
-          <BaseButton type="text" @click="$router.push('/affiliate/direct-bet')">
-            {{ t('more') }}
-          </BaseButton>
-        </div> -->
       </div>
       <div class="item-content grid-wrap" :class="{ 'is-less-than-sm': isMobile }">
         <div v-for="(item, index) in bet" :key="index">
@@ -264,12 +250,6 @@ function openLink(link: string) {
     height: 36px;
     .title-left{
       font-weight: var(--tg-font-weight-semibold);
-    }
-    .title-btn{
-      button{
-        font-size: var(--tg-font-size-xs);
-        font-weight: var(--tg-font-weight-normal);
-      }
     }
   }
   .promotion-msg{

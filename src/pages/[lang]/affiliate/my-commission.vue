@@ -41,17 +41,19 @@ const columns: Column[] = [
     title: t('settle_time'),
     dataIndex: 'send_time',
     align: 'center',
-    slot: 'send_time',
+    slot: 'time',
   },
   {
     title: t('label_type'),
     dataIndex: 'model_name',
     align: 'center',
+    slot: 'model_name',
   },
   {
     title: t('performance'),
     dataIndex: 'valid_bet_amount_direct',
     align: 'center',
+    slot: 'bet_amount',
   },
   {
     title: t('label_contribute_count'),
@@ -62,6 +64,7 @@ const columns: Column[] = [
     title: t('finance_funds_transfer_sort_commission'),
     dataIndex: 'commission_amount_direct',
     align: 'center',
+    slot: 'commission_amount',
   },
   {
     title: t('detail'),
@@ -111,12 +114,34 @@ onMounted(() => {
       :data-source="list"
       :loading="loading"
     >
-      <template #username="{ record }">
-        <AppReportUserName :username="record.username" :level="`${record.vip}`" />
+      <template #time="{ record }">
+        {{ timeToDateFormat(record.send_time) }}
+      </template>
+      <template #model_name />
+      <template #bet_amount="{ record }">
+        <div class="center">
+          <AppAmount
+            :amount="record.valid_bet_amount_direct"
+            :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
+          />
+        </div>
+      </template>
+      <template #commission_amount="{ record }">
+        <div class="center">
+          <AppAmount
+            :amount="record.commission_amount_direct"
+            :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
+          />
+        </div>
+      </template>
+      <template #operate>
+        <BaseButton size="none" type="text">
+          查看
+        </BaseButton>
       </template>
     </BaseTable>
     <BasePagination
-      v-if="total > 0"
+      v-if="total > 10"
       v-model:current-page="page"
       v-model:page-size="page_size"
       :total="total"
@@ -135,7 +160,6 @@ onMounted(() => {
   margin-top: 4px;
 }
 .page-all-data {
-  --tg-app-amount-font-size: var(--tg-font-size-xs);
   --tg-app-amount-font-weight: var(--tg-font-weight-normal);
 }
 </style>
