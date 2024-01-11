@@ -173,7 +173,7 @@ await application.allSettled([init()])
 
 <template>
   <div class="tg-mt-24">
-    <AppCardList :list="list ?? []" />
+    <AppCardList :list="list ?? []" :show-man-count="cid === '4'" />
   </div>
   <div class="tg-mt-24 load-more">
     <AppPercentage :total="total" :percentage="list?.length" />

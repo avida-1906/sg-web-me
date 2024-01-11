@@ -1,5 +1,9 @@
 <script lang="ts" setup>
-const props = defineProps<{ list?: any[]; isProvider?: boolean }>()
+const props = defineProps<{
+  list?: any[]
+  isProvider?: boolean
+  showManCount?: boolean
+}>()
 
 const { appContentWidth } = storeToRefs(useWindowStore())
 
@@ -45,7 +49,7 @@ watchEffect(() => {
     <template v-if="list && list.length > 0">
       <div v-for="item in list" :key="item.id" class="wrap">
         <slot :item="item">
-          <BaseGameItem :game-info="item" />
+          <BaseGameItem :game-info="item" :show-man-count="showManCount" />
         </slot>
       </div>
     </template>

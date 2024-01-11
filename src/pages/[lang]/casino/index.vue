@@ -187,7 +187,7 @@ await application.allSettled([runMemberNoticeAllList(), loadIcon()])
             :pid="item.platform_id"
             :path="item.path"
             use-cloud-img
-            show-man-count
+            :show-man-count="item.cid === '4'"
           />
         </template>
       </div>
