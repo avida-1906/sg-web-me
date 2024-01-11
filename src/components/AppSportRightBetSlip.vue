@@ -25,7 +25,7 @@ const router = useLocalRouter()
 const appStore = useAppStore()
 const { userLanguage } = storeToRefs(useLanguageStore())
 const { openNotify } = useNotify()
-const cartBaseEventRef = ref()
+const sportCartToAllEventRef = ref()
 // 获取betInfo接口是否成功
 const { bool: fetchBetInfoStatus, setBool: setFetchBetInfoStatus } = useBoolean(true)
 const {
@@ -452,8 +452,9 @@ function slipTabChange() {
 function startSetInterval() {
   console.log('开始购物车轮训')
   timer = setInterval(() => {
+    console.error('购物车倒计时结束')
+    sportCartToAllEventRef.value?.send()
     runGetSportPlaceBetInfoHandle()
-    cartBaseEventRef.value?.send()
   }, 1000 * 10)
 }
 
@@ -651,6 +652,10 @@ function closeKeyboard() {
   setKeyBoardBool(false)
 }
 
+function eventReceive() {
+  runGetSportPlaceBetInfoHandle()
+}
+
 watch(() => sportStore.cart.count, (val, oVal) => {
   if (val) {
     nextTick(() => {
@@ -716,11 +721,9 @@ onUnmounted(() => {
 
 <template>
   <div class="app-sports-bet-slip-container">
-    <BaseEvent
-      ref="cartBaseEventRef"
-      send-name="cart"
-      receive-name="sport-list"
-      @receive="runGetSportPlaceBetInfoHandle"
+    <AppSportCartToAllEvent
+      ref="sportCartToAllEventRef"
+      @receive="eventReceive"
     />
     <div class="header">
       <div class="tabs">

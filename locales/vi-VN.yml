@@ -1736,7 +1736,7 @@ min_amount_0: Số tiền tối thiểu không thể nhỏ hơn hoặc bằng 0
 min_len_6: Độ dài ký tự tối thiểu là 6
 safe_pwd_error: Định dạng mật khẩu thanh toán sai
 save_to_vault: Nạp vào kho
-draw_vault: Rút từ kho
+draw_vault: Rút từ Kho
 vault_info: Tìm hiểu thêm về Kho
 progress_level: Quá trình tiến độ
 send_currency_bonus: Bộ phận hỗ trợ sẽ gửi tiền thưởng bằng loại tiền bạn chọn

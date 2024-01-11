@@ -6,6 +6,7 @@ const appStore = useAppStore()
 const { isLogin } = storeToRefs(appStore)
 const { bool: showRecent, setFalse: setSRFalse } = useBoolean(true)
 const { bool: openLiveSwitch } = useBoolean(false)
+const sportAllToCartEventRef = ref()
 const {
   breadcrumbData,
   handicapListData,
@@ -21,6 +22,8 @@ const {
 } = useApiSportDetails()
 
 useIntervalFn(() => {
+  console.error('详情倒计时结束')
+  sportAllToCartEventRef.value?.send()
   runGetSportInfo({ si: Number(route.params.sport), ei: `${route.params.fixture}` })
 }, 3 * 1000)
 
@@ -32,6 +35,10 @@ const title = computed(() => {
 })
 
 usePageTitle({ prefix: title })
+
+function eventReceive() {
+  runGetSportInfo({ si: Number(route.params.sport), ei: `${route.params.fixture}` })
+}
 
 watch(
   () => route.params,
@@ -46,6 +53,7 @@ watch(
 </script>
 
 <template>
+  <AppSportAllToCartEvent ref="sportAllToCartEventRef" @receive="eventReceive" />
   <AppLoading v-if="loading && requestCount === 0" full-screen />
   <div v-else class="tg-sports-tournament-fixture-betdetail">
     <div class="sports-detail-wrapper">
