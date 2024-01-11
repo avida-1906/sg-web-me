@@ -13,7 +13,7 @@ email_or_username: Email hoặc Tên đăng nhập
 pls_enter_email_or_username: Vui lòng nhập địa chỉ hòm thư và tài khoản khách chơi
 email_or_username_incorrect: Địa chỉ hòm thư vàtài khoản khách chơi không chính
   xác
-two_step_verification: Hai yếu tố
+two_step_verification: Hai Yếu Tố
 pls_enter_two_step_verification: Vui lòng nhập xác nhận hai bước
 tip_start_double_check: 'Để giữ cho tài khoản của bạn thêm an toàn, hãy bật xác thực hai yếu tố.'
 email_address: Email
@@ -74,16 +74,16 @@ sports: Thể thao
 game: 'Trò chơi'
 wallet: Ví
 safe: Kho
-affiliate: Chương Trình Liên Kết
+affiliate: Liên kết
 transaction_record: Giao dịch
-statistical_data: Thống kê
+statistical_data: Statistics
 sports_betting: Đặt cược thể thao
 trophy: Chiến tích
 lucky_trophy: Chiến tích may mắnnhất
 big_win: Thắng lợi lớn nhất
 setting: Cài đặt
 stake_safety: '{site} an toàn'
-online_support: Hỗ Trợ Trực Tuyến
+online_support: Hỗ trợ trực tuyến
 vip_club: VIP Club
 club: Clup
 logout: Đăng xuất
@@ -886,15 +886,15 @@ sports_status_lose_half: Thua nửa tiền
 sports_status_lose_part: Thua một phần
 sports_estimated_payment_amount: 'Est. Thanh toán'
 sports_payment_amount: Thanh toán
-sports_single_bet: Đặt Cược Đơn
-sports_multi_bet: Đặt Cược Nhiều Trận
+sports_single_bet: Đơn
+sports_multi_bet: Nhiều
 sports_active: Hoạt động
 sports_settled: Đã đặt
 sports_accept_any_odds: Chấp Nhận Tất Cả Tỉ Lệ
 sports_accept_higher_odds: Chỉ Chấp Nhận Tỉ Lệ Cao hơn
 sports_accept_none_odds: Không Chấp Nhận Tỉ Lệ Thay Đổi
 sports_bet_slip_empty: Đơn cược trống
-sports_betting_now: Bắt đầu đặt cược ngay bây giờ !
+sports_betting_now: Bắt đầu đặt cược ngay bây giờ!
 sports_total_odds: Tổng Tỉ Lệ
 sports_total_bet_amount: Tổng Cược
 sports_odds_has_changed: Tỷ lệ cược đã thay đổi.
@@ -915,7 +915,7 @@ sports_live_tv: Phát trực tiếp
 sports_live_favourites: Vòng cược phổ biến của trận đấu đang diễn ra
 sports_upcoming_favourites: Sắp diễn ra trận đấu phổ biến
 sports_provider: Mục thể thao
-sports_odds_title: Tỷ lệ cược
+sports_odds_title: Tỉ lệ
 DECIMAL: Số thập phân
 FRACTION: Phân số
 AMERICAN: American
@@ -1322,7 +1322,7 @@ enjoy: Thưởng thức
 user_effect_bet: Bạn đã đặt cược hiệu quả {num} triệu
 sub_self_no_profit: Không có cấp dưới, không có lợi cho mình
 activity_name: Tên hoạt động
-label_no_collect: Chưa có mục yêu thích
+label_no_collect: Chưa có mục yêu thích, sử dụng
 put_collect: để thêm trò chơi yêu thích.
 success_edit: Sửa đổi thành công
 this_contains_invalid_email_characters: Điều này chứa các ký tự email không hợp
@@ -1369,7 +1369,7 @@ tip_safepwd_six: Mật khẩu quỹ của bạn chứa 6 chữ số
 email_uncheck: Địa chỉ hòm thư điện tử chưa được xác minh
 tip_safepwd: Mật khẩu quỹ sẽ được sử dụng để bảo vệ việc rút tiền và rút tiền an
   toàn từ kho tiền.
-login_time: Sử dụng lần cuối
+login_time: Sử Dụng Lần Cuối
 browser: Trình duyệt
 area: Gần
 wise_bet: Đặt cược thông minh hơn
@@ -1887,8 +1887,8 @@ casino_intro_19: Với hàng nghìn người chơi trung thành đặt hàng tri
 get_email_code: Lấy mã xác minh
 re_get: Yêu cầu lấy lại
 footer_description: "{name} được sở hữu và điều hành bởi Medium Rare N.V., số đăng
-  ký: 145353, địa chỉ đăng ký: Korporaalweg 10, Willemstad, Curaçao. Vui lòng liên
-  hệ với chúng tôi theo địa chỉ {email}. Công ty đại lý thanh toán là Medium Rare Limited với địa chỉ
+  ký: 145353, địa chỉ đăng ký: Korporaalweg 10, Willemstad, Curaçao. Liên hệ với chúng tôi tại
+  {email}. Công ty đại lý thanh toán là Medium Rare Limited với địa chỉ
   7-9 Riga Feraiou, LIZANTIA COURT, Office 310, Agioi Omologites, 1087 Nicosia, Cyprus
   và Số đăng ký: HE 410775"
 empty_fav_event: Chưa có sự kiện yêu thích nào
@@ -2260,7 +2260,7 @@ period: '.'
 vip_total_bonus: Tích luỹ tiền thưởng
 type_select: 类型选择
 rule_text_one: Tỷ giá sẽ được đồng bộ theo thời gian biến động của thị trường
-rule_text_two: Tỷ giá sẽ được áp dụng khi đơn cược của bạn được giải quyết.
+rule_text_two: Tỷ giá sẽ được áp dụng khi đơn cược của bạn được giải quyết
 rule_text_three: Các cược hợp lệ đã được tính sẽ không bị ảnh hưởng bởi tỷ giá tiếp theo
 rule_text_title: VIP được tính dựa trên số lần đặt cược USDT hợp lệ của bạn
 after_transfer_withdraw_money: 转到钱包后需要1倍有效投注才可提款
@@ -2339,7 +2339,7 @@ plinko_hotkey4: "零数投注额"
 plinko_hotkeyInfo: "快捷键一旦启用后将会影响所有游戏至禁用为止。虽然部分游戏的绑定键相同，还是建议您确认不同游戏的锁定按键交互之后再使用。"
 plinko_hotkeyUse: "启用快捷键"
 plinko_statistics: "实时统计"
-plinko_type1: "全部"
+plinko_type1: "Tất cả"
 plinko_type2: "投注"
 plinko_type3: "竞赛"
 plinko_type4: "隐藏"
@@ -2356,6 +2356,6 @@ receive_bonus_amount: 领取金额
 integral: Tích điểm
 reg_success_title: 成功
 reg_day: DD
-login_ip_title: IP
+login_ip_title: Địa chỉ IP
 gameble_aware: Điều Cần Biết
 transfer_to_wallet: 转移到钱包

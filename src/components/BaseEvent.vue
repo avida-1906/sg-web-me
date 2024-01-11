@@ -30,11 +30,19 @@ defineExpose({ send })
 
 <template>
   <div class="h-0 overflow-hidden text-white">
-    <label ref="labelDomRef" :for="`labelId-${sendName}`">
+    <!-- <label ref="labelDomRef" :for="`labelId-${sendName}`">
       发送 {{ sendName }}
     </label>
     <button :id="`labelId-${receiveName}`" @click="receive">
       接收 {{ receiveName }}
-    </button>
+    </button> -->
   </div>
 </template>
+
+<style>
+.a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>

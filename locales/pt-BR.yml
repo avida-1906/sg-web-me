@@ -386,7 +386,7 @@ or_click_open_whatsapp: Ou clique aqui para abrir WhatsApp
 or_continue_on_whatsapp_web: Ou continue na página WhatsApp
 our_bot_answers_instantly: Nosso robô responde imediatamente
 pause: Pausar
-people: Pessoas
+people: ' pessoa(s)'
 phone_number: Número do telefone
 places: Local
 play: Transmitir
@@ -1335,7 +1335,7 @@ deposit_draw_diff: Diferença entre depósitos e saques
 current_amount: Valor atual
 receive_amount: Valor de recebimento
 agent_commission: Comissão de agente
-is_first_deposit: Este é o seu primeiro depósito
+is_first_deposit: Primeiro depósito?
 last_login: Último login
 online_status: Status online
 settle_time: Horário de liquidação
@@ -1459,7 +1459,7 @@ order_by_alpha: Em ordem alfabética
 sport_in_coming: Apostas ao vivo e apostas nos próximos jogos
 champion_bet: Aposta vencedora
 empty_cap: Sem mercados disponíveis
-for_example: Por exemplo
+for_example: 'Observe o exemplo a seguir:'
 direct_team: Equipe direta
 other_team: Outras equipes
 summary: Resumo
@@ -2279,7 +2279,7 @@ commission_transfer_title: Conversão de comissão
 old_pwd_tip8: Mín. 8 caracteres
 pwd_unequal: As senhas são inconsistentes
 cash_profit: lucro em dinheiro
-vip_win_lose: Os membros ganham ou perdem
+vip_win_lose: Vitórias e derrotas dos membros
 register_time: Hora do registro
 statistical_date: Data das estatísticas
 phone_invalid: 手机号码无效
@@ -2318,7 +2318,7 @@ mini_collect_game: '收藏游戏'
 mini_fairness: '公平性'
 mini_start_auto_bet_tip: '自动投注开始'
 mini_stop_auto_bet_tip: '自动投注完成'
-commission_record: 佣金记录
+commission_record: Histórico de comissões
 commission_grant: 佣金发放
 commission_draw: 佣金提取
 order_id: 订单号

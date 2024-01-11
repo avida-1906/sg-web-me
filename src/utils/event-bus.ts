@@ -33,6 +33,10 @@ export const SPORTS_LOBBY_RESET = 'SPORTS_LOBBY_RESET'
 export const CASINO_LOBBY_RESET = 'CASINO_LOBBY_RESET'
 /** 右侧体育投注单向投注页面通知 */
 export const SPORTS_BETTING_TO_BETSLIP_BUS = 'SPORTS_BETTING_TO_BETSLIP_BUS'
+/** 体育列表，详情等 向 购物车发送通知 */
+export const SPORTS_TO_CART_BUS = 'SPORTS_TO_CART_BUS'
+/** 体育购物车向列表，详情等发送通知 */
+export const CART_TO_SPORTS_BUS = 'CART_TO_SPORTS_BUS'
 
 /** 体育列表向购物车通知 */
 export const sportsListToCartBus = useEventBus<
@@ -56,4 +60,14 @@ export const casinoLobbyBus = useEventBus<boolean>(CASINO_LOBBY_RESET)
 /** 右侧体育投注单向投注页面通知 */
 export const sportsBettingToBetslipBus = useEventBus<number | undefined>(
   SPORTS_BETTING_TO_BETSLIP_BUS,
+)
+
+/** 体育列表，详情等 向 购物车发送通知 */
+export const sportsToCartBus = useEventBus<ISportListToCartData>(
+  SPORTS_TO_CART_BUS,
+)
+
+/** 体育购物车向列表，详情等发送通知 */
+export const cartToSportsBus = useEventBus<ISportListToCartData>(
+  CART_TO_SPORTS_BUS,
 )

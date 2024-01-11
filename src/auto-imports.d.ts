@@ -134,6 +134,7 @@ declare global {
   const ApiSportsHomePageConfig: typeof import('./apis/sport')['ApiSportsHomePageConfig']
   const ApiWalletBankcardList: typeof import('./apis/index')['ApiWalletBankcardList']
   const Big: typeof import('big.js')['Big']
+  const CART_TO_SPORTS_BUS: typeof import('./utils/event-bus')['CART_TO_SPORTS_BUS']
   const CASINO_LOBBY_RESET: typeof import('./utils/event-bus')['CASINO_LOBBY_RESET']
   const CHAT_MESSAGE_BUS: typeof import('./utils/event-bus')['CHAT_MESSAGE_BUS']
   const CasinoGameType: typeof import('./utils/enums')['CasinoGameType']
@@ -170,6 +171,7 @@ declare global {
   const SPORTS_LIST_TO_CART_BUS: typeof import('./utils/event-bus')['SPORTS_LIST_TO_CART_BUS']
   const SPORTS_LOBBY_RESET: typeof import('./utils/event-bus')['SPORTS_LOBBY_RESET']
   const SPORTS_PLAT_ID: typeof import('./utils/sports')['SPORTS_PLAT_ID']
+  const SPORTS_TO_CART_BUS: typeof import('./utils/event-bus')['SPORTS_TO_CART_BUS']
   const STORAGE_CASINO_GAME_CURRENCY: typeof import('./utils/storage')['STORAGE_CASINO_GAME_CURRENCY']
   const STORAGE_CLEAR_LIVE: typeof import('./utils/storage')['STORAGE_CLEAR_LIVE']
   const STORAGE_CLEAR_SPORTS: typeof import('./utils/storage')['STORAGE_CLEAR_SPORTS']
@@ -207,6 +209,7 @@ declare global {
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
   const autoResetRef: typeof import('@vueuse/core')['autoResetRef']
   const axios: typeof import('axios')['default']
+  const cartToSportsBus: typeof import('./utils/event-bus')['cartToSportsBus']
   const casinoLobbyBus: typeof import('./utils/event-bus')['casinoLobbyBus']
   const checkTs: typeof import('./utils/time')['checkTs']
   const cloneDeep: typeof import('lodash-es')['cloneDeep']
@@ -373,6 +376,7 @@ declare global {
   const sportsListToCartBus: typeof import('./utils/event-bus')['sportsListToCartBus']
   const sportsLobbyBus: typeof import('./utils/event-bus')['sportsLobbyBus']
   const sportsOutrightsGroupByRegion: typeof import('./utils/sports')['sportsOutrightsGroupByRegion']
+  const sportsToCartBus: typeof import('./utils/event-bus')['sportsToCartBus']
   const storeToRefs: typeof import('pinia')['storeToRefs']
   const sub: typeof import('./utils/number')['sub']
   const syncRef: typeof import('@vueuse/core')['syncRef']
@@ -807,6 +811,7 @@ declare module 'vue' {
     readonly ApiSportsHomePageConfig: UnwrapRef<typeof import('./apis/sport')['ApiSportsHomePageConfig']>
     readonly ApiWalletBankcardList: UnwrapRef<typeof import('./apis/index')['ApiWalletBankcardList']>
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
+    readonly CART_TO_SPORTS_BUS: UnwrapRef<typeof import('./utils/event-bus')['CART_TO_SPORTS_BUS']>
     readonly CASINO_LOBBY_RESET: UnwrapRef<typeof import('./utils/event-bus')['CASINO_LOBBY_RESET']>
     readonly CHAT_MESSAGE_BUS: UnwrapRef<typeof import('./utils/event-bus')['CHAT_MESSAGE_BUS']>
     readonly CasinoGameType: UnwrapRef<typeof import('./utils/enums')['CasinoGameType']>
@@ -841,6 +846,7 @@ declare module 'vue' {
     readonly SPORTS_LIST_TO_CART_BUS: UnwrapRef<typeof import('./utils/event-bus')['SPORTS_LIST_TO_CART_BUS']>
     readonly SPORTS_LOBBY_RESET: UnwrapRef<typeof import('./utils/event-bus')['SPORTS_LOBBY_RESET']>
     readonly SPORTS_PLAT_ID: UnwrapRef<typeof import('./utils/sports')['SPORTS_PLAT_ID']>
+    readonly SPORTS_TO_CART_BUS: UnwrapRef<typeof import('./utils/event-bus')['SPORTS_TO_CART_BUS']>
     readonly STORAGE_CASINO_GAME_CURRENCY: UnwrapRef<typeof import('./utils/storage')['STORAGE_CASINO_GAME_CURRENCY']>
     readonly STORAGE_CLEAR_LIVE: UnwrapRef<typeof import('./utils/storage')['STORAGE_CLEAR_LIVE']>
     readonly STORAGE_CLEAR_SPORTS: UnwrapRef<typeof import('./utils/storage')['STORAGE_CLEAR_SPORTS']>
@@ -874,6 +880,7 @@ declare module 'vue' {
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
     readonly axios: UnwrapRef<typeof import('axios')['default']>
+    readonly cartToSportsBus: UnwrapRef<typeof import('./utils/event-bus')['cartToSportsBus']>
     readonly casinoLobbyBus: UnwrapRef<typeof import('./utils/event-bus')['casinoLobbyBus']>
     readonly checkTs: UnwrapRef<typeof import('./utils/time')['checkTs']>
     readonly cloneDeep: UnwrapRef<typeof import('lodash-es')['cloneDeep']>
@@ -1039,6 +1046,7 @@ declare module 'vue' {
     readonly sportsListToCartBus: UnwrapRef<typeof import('./utils/event-bus')['sportsListToCartBus']>
     readonly sportsLobbyBus: UnwrapRef<typeof import('./utils/event-bus')['sportsLobbyBus']>
     readonly sportsOutrightsGroupByRegion: UnwrapRef<typeof import('./utils/sports')['sportsOutrightsGroupByRegion']>
+    readonly sportsToCartBus: UnwrapRef<typeof import('./utils/event-bus')['sportsToCartBus']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
     readonly sub: UnwrapRef<typeof import('./utils/number')['sub']>
     readonly syncRef: UnwrapRef<typeof import('@vueuse/core')['syncRef']>
@@ -1466,6 +1474,7 @@ declare module '@vue/runtime-core' {
     readonly ApiSportsHomePageConfig: UnwrapRef<typeof import('./apis/sport')['ApiSportsHomePageConfig']>
     readonly ApiWalletBankcardList: UnwrapRef<typeof import('./apis/index')['ApiWalletBankcardList']>
     readonly Big: UnwrapRef<typeof import('big.js')['Big']>
+    readonly CART_TO_SPORTS_BUS: UnwrapRef<typeof import('./utils/event-bus')['CART_TO_SPORTS_BUS']>
     readonly CASINO_LOBBY_RESET: UnwrapRef<typeof import('./utils/event-bus')['CASINO_LOBBY_RESET']>
     readonly CHAT_MESSAGE_BUS: UnwrapRef<typeof import('./utils/event-bus')['CHAT_MESSAGE_BUS']>
     readonly CasinoGameType: UnwrapRef<typeof import('./utils/enums')['CasinoGameType']>
@@ -1500,6 +1509,7 @@ declare module '@vue/runtime-core' {
     readonly SPORTS_LIST_TO_CART_BUS: UnwrapRef<typeof import('./utils/event-bus')['SPORTS_LIST_TO_CART_BUS']>
     readonly SPORTS_LOBBY_RESET: UnwrapRef<typeof import('./utils/event-bus')['SPORTS_LOBBY_RESET']>
     readonly SPORTS_PLAT_ID: UnwrapRef<typeof import('./utils/sports')['SPORTS_PLAT_ID']>
+    readonly SPORTS_TO_CART_BUS: UnwrapRef<typeof import('./utils/event-bus')['SPORTS_TO_CART_BUS']>
     readonly STORAGE_CASINO_GAME_CURRENCY: UnwrapRef<typeof import('./utils/storage')['STORAGE_CASINO_GAME_CURRENCY']>
     readonly STORAGE_CLEAR_LIVE: UnwrapRef<typeof import('./utils/storage')['STORAGE_CLEAR_LIVE']>
     readonly STORAGE_CLEAR_SPORTS: UnwrapRef<typeof import('./utils/storage')['STORAGE_CLEAR_SPORTS']>
@@ -1533,6 +1543,7 @@ declare module '@vue/runtime-core' {
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
     readonly axios: UnwrapRef<typeof import('axios')['default']>
+    readonly cartToSportsBus: UnwrapRef<typeof import('./utils/event-bus')['cartToSportsBus']>
     readonly casinoLobbyBus: UnwrapRef<typeof import('./utils/event-bus')['casinoLobbyBus']>
     readonly checkTs: UnwrapRef<typeof import('./utils/time')['checkTs']>
     readonly cloneDeep: UnwrapRef<typeof import('lodash-es')['cloneDeep']>
@@ -1698,6 +1709,7 @@ declare module '@vue/runtime-core' {
     readonly sportsListToCartBus: UnwrapRef<typeof import('./utils/event-bus')['sportsListToCartBus']>
     readonly sportsLobbyBus: UnwrapRef<typeof import('./utils/event-bus')['sportsLobbyBus']>
     readonly sportsOutrightsGroupByRegion: UnwrapRef<typeof import('./utils/sports')['sportsOutrightsGroupByRegion']>
+    readonly sportsToCartBus: UnwrapRef<typeof import('./utils/event-bus')['sportsToCartBus']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
     readonly sub: UnwrapRef<typeof import('./utils/number')['sub']>
     readonly syncRef: UnwrapRef<typeof import('@vueuse/core')['syncRef']>
