@@ -156,20 +156,20 @@ onBeforeUnmount(() => {
         <span class="size-base">{{ t('start_game') }}</span>
       </BaseButton>
     </div>
-    <div class="app-bottom">
+    <!-- <div class="app-bottom">
       <div class="app-bottom-text">
         <div>
           {{ t('have_account') }}
           <span class="text-white" @click.stop="toLogin">{{ t('login') }}</span>
         </div>
 
-        <!-- <div class="{{ companyData?.name }}-text">
+        <div class="{{ companyData?.name }}-text">
           {{ t('{{ companyData?.name }}_hCaptcha', { site: companyData?.name }) }}
           <span>{{ t('privacy_policy') }}</span> {{ t('and') }}
           <span>{{ t('terms_of_service') }}</span> {{ t('applicable') }}
-        </div> -->
+        </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
