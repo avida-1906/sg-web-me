@@ -2361,3 +2361,7 @@ gameble_aware: Điều Cần Biết
 transfer_to_wallet: 转移到钱包
 statistical_data_dialog_title: Thống kê
 end_time_table: 'Kết thúc sau {time} giờ nữa'
+user_no_statistics_display: 此用户未有可显示的统计数据
+this_week: 本周
+this_month: 本月
+this_quarter: 本季度
