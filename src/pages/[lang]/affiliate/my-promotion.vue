@@ -127,11 +127,9 @@ function openLink(link: string) {
         class="item-content promotion-msg"
         :class="{ 'is-less-than-sm': isMobile }"
       >
-        <div class="promotion-left">
+        <div class="promotion-left cursor-pointer" @click="downloadQr">
           <BaseQrcode ref="baseQrRef" :url="qrUrl" :size="92" class="qr-code" />
-          <p class="cursor-pointer" @click="downloadQr">
-            {{ t('click_save_qr') }}
-          </p>
+          <p>{{ t('click_save_qr') }}</p>
         </div>
         <div class="link">
           <p>{{ t('my_link') }}</p>
