@@ -26,7 +26,7 @@ const {
   validate: validateEmail,
 } = useField<string>('email', (value) => {
   if (!value)
-    return t('pls_enter_email_address')
+    return t('this_field_is_required')
   else if (!emailReg.test(value))
     return t('email_address_incorrect')
   return ''
@@ -116,18 +116,17 @@ onMounted(() => {
       {{ t('reg_step1') }}
     </div>
     <div class="app-register-input-box">
-      <BaseLabel v-if="isEmailEmptyAndMust" :label="t('email_address')" must-small>
-        <BaseInput
-          ref="emailRef" v-model="email" :msg="emailErrorMsg"
-          @blur="onEmailUsernameBlur(2)"
-        />
-      </BaseLabel>
-      <!-- msg-after-touched  -->
       <BaseLabel :label="t('pls_select_name')" must-small>
         <BaseInput
           ref="userNameRef" v-model="username"
           :msg="usernameErrorMsg"
           @blur="onEmailUsernameBlur(1)"
+        />
+      </BaseLabel>
+      <BaseLabel v-if="isEmailEmptyAndMust" :label="t('email_address')" must-small>
+        <BaseInput
+          ref="emailRef" v-model="email" :msg="emailErrorMsg"
+          @blur="onEmailUsernameBlur(2)"
         />
       </BaseLabel>
       <BaseButton bg-style="secondary" size="md" @click="submit">
