@@ -758,6 +758,7 @@ onUnmounted(() => {
           class="clear-all"
           size="none"
           style="--tg-base-button-text-default-color: var(--tg-text-white);"
+          :disabled="betLoading"
           @click="sportStore.cart.removeAll()"
         >
           {{ t('clear_all') }}
@@ -772,6 +773,7 @@ onUnmounted(() => {
             v-for="item, index in cartDataList"
             :key="item.wid"
             v-model="item.amount"
+            :prohibited-operation="betLoading"
             :bet-slip-type="betOrderSelectValue"
             :cart-info-data="item"
             :title="formatTitleData(item)"

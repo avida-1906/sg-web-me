@@ -99,8 +99,8 @@ competition: 'Competição {money}'
 competition_name: Nome da competição
 currency: Moeda
 network: Rede
-deposit: Depósito
-withdraw: Retirada
+deposit: Depósitos
+withdraw: Retiradas
 this_field_is_required: Campo obrigatório
 buy_cryptocurrency: Comprar criptomoedas
 your_currency_deposit_address: Endereço de depósito da sua {currency}
@@ -787,12 +787,12 @@ game_type_live: Cassino ao vivo
 game_type_slot: Caça-níqueis em destaque
 game_type_slot_short_name: Caça-níqueis
 game_type_rec: Jogos recomendados
-finance_deposit_empty_text: Não há depositos ainda
-finance_withdraw_empty_text: Não há saques ainda
+finance_deposit_empty_text: Sem Depósitos
+finance_withdraw_empty_text: Sem Retiradas
 finance_other_empty_text: Não há entradas ainda
 finance_deposit_download_text: Baixar todos os depositos
 finance_withdraw_download_text: Baixar todos os saques
-finance_other_tab_all: Tudo
+finance_other_tab_all: Todos
 finance_other_tab_bonus: Bônus
 finance_other_tab_drop: Bônus de lançamento
 finance_other_tab_campaign_withdrawal: Saques de comissões das promoções
@@ -823,8 +823,8 @@ page_sizer_label: "/pág."
 page_prev: Página anterior
 page_next: Próxima página
 jump_to: Pular para
-currency_byte_coin: Criptomoeda
-currency_law_coin: Moeda fiduciária
+currency_byte_coin: Cripto
+currency_law_coin: Moeda Local
 menu_title_promotion_tutorial: Tutorial de promoção
 menu_title_my_promotion: Minhas promoções
 menu_title_my_commission: Minha comissão
@@ -844,8 +844,8 @@ menu_title_settings_ignoredusers: Lista negra
 menu_title_settings_api: API
 menu_title_settings_verify: Verificação
 menu_title_settings_offers: Desconto
-menu_title_settings_deposits: Depósito
-menu_title_settings_withdrawals: Retirada
+menu_title_settings_deposits: Depósitos
+menu_title_settings_withdrawals: Retiradas
 menu_title_settings_bets: Aposta
 menu_title_settings_archive: Arquivos de apostas
 menu_title_settings_other: Outro
@@ -1052,13 +1052,13 @@ effective_bet: Apostas válidas
 total_win_lose: Vitórias e derrotas totais
 rebate_amount: Valor do desconto
 bet_order_num: Número de boletins de apostas
-rule_desc: Descrição das regras
+rule_desc: 'Regulamento {vip}'
 vip_rule_1: 'Critérios de promoção: Se você atender aos requisitos da promoção VIP
   (ou seja, todos os requisitos forem atendidos), você poderá ser promovido ao nível
   VIP correspondente e receber o bônus de promoção correspondente. Se você avançar
   para vários níveis consecutivos, poderá receba bônus de promoção de todos os níveis.'
 vip_rule_2: 'Salário diário: Se cumprir os requisitos salariais diários correspondentes
-  ao nível VIP, poderá receber o bónus diário correspondente, que é reposto às 00:00
+  ao nível VIP, poderá receber o bônus diário correspondente, que é reposto às 00:00
   todos os dias.'
 vip_rule_3: 'Salário semanal: Se você atingir o nível VIP correspondente aos requisitos
   salariais semanais, poderá receber o bônus semanal correspondente, que é zerado
@@ -1515,12 +1515,12 @@ promotion_tutorial_summary_1: "(1) C3 é tão poderoso que indiretamente permite
   A desfrute de uma taxa de comissão mais elevada por todo o seu desempenho."
 promotion_tutorial_summary_2: "(2) B2 pode ser preguiçoso e não se beneficiará se
   não desenvolver seus subordinados."
-promotion_tutorial_summary_3: "(3) Embora B3 tenha aderido relativamente tarde e
-  seja subordinado de A, o seu subordinado C3 é muito poderoso, permitindo que B3
-  desfrute directamente de um rácio de comissão mais elevado.Portanto, não importa
-  quando B3 se junta, de quem é subordinado, independentemente do nível que ele
-  está em vigor, a renda nunca será afetada, você não sofrerá mais com as perdas
-  dos subordinados de outras pessoas e seu desenvolvimento não será restringido."
+promotion_tutorial_summary_3: "(3) Embora B3 tenha aderido relativamente tarde e seja subordinado de A, 
+  o seu subordinado C3 é muito poderoso, permitindo que B3 desfrute diretamente de um rácio de
+  comissão mais elevado. Portanto, não importa quando B3 se junta, de quem é subordinado, 
+  independentemente do nível que ele está em vigor, a renda nunca será afetada, você não sofrerá mais com as perdas dos 
+  subordinados de outras pessoas e seu desenvolvimento não será restringido.
+ (4) Este é um modelo de representação extremamente justo e não deixará ninguém em desvantagem devido à participação tardia."
 promotion_tutorial_summary_4: "(4) Este é um modelo de agência absolutamente justo
   e justo, e ninguém será pisoteado para sempre só porque ingressou tarde."
 pls_input_min_max_amount: Insira um valor entre {min} - {max}
@@ -1973,7 +1973,7 @@ choose_another_name: Este nome de usuário já está em uso. Escolha outro nome 
 email_exists: O endereço de e-mail já existe
 email_code: Código de verificação de e-mail
 bet_num: Valor da aposta
-win_lose: Ganhos e perdas
+win_lose: Vitórias e derrotas
 min_odd_bet: Apostas com probabilidades inferiores a 1,10 não podem ser combinadas
   em apostas múltiplas
 select_addr: Selecione o endereço
@@ -2032,8 +2032,8 @@ connect_service: Entre em contato com o atendimento ao cliente
 page_title_sport: Apostas Esportivas - Apostas Esportivas Online
 online_casino: Casa de apostas online
 empty_archive: Ainda não há arquivos de apostas
-empty_official_deposit: Nenhum depósito em moeda fiduciária disponível no momento
-empty_official_withdraw: As retiradas de moeda fiduciária estão temporariamente indisponíveis
+empty_official_deposit: Sem Depósitos em Dinheiro
+empty_official_withdraw: Sem Retiradas em Dinheiro
 day_bonus: Bônus diário
 deposit_bonus: Bônus de depósito
 two: Dois
@@ -2367,7 +2367,7 @@ plinko_hotkey4: "零数投注额"
 plinko_hotkeyInfo: "快捷键一旦启用后将会影响所有游戏至禁用为止。虽然部分游戏的绑定键相同，还是建议您确认不同游戏的锁定按键交互之后再使用。"
 plinko_hotkeyUse: "启用快捷键"
 plinko_statistics: "实时统计"
-plinko_type1: "全部"
+plinko_type1: "Todas"
 plinko_type2: "投注"
 plinko_type3: "竞赛"
 plinko_type4: "隐藏"
@@ -2387,3 +2387,5 @@ reg_day: Dia
 login_ip_title: Địa chỉ IP
 gameble_aware: Gameble aware
 transfer_to_wallet: 转移到钱包
+statistical_data_dialog_title: 统计数据
+end_time_table: '结束时间：{time}小时后'

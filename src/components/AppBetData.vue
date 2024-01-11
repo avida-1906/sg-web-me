@@ -467,7 +467,7 @@ onUnmounted(() => {
         <div class="center cursor-pointer">
           <BaseIcon name="uni-trend" />
           <span>
-            {{ t('end_time') }}{{ t('colon') }} {{ t('time_hour_after', { delta: 8 }) }}
+            {{ t('end_time_table', { time: 8 }) }}
           </span>
         </div>
       </div>

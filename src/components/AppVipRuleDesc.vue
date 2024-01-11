@@ -4,7 +4,7 @@
 <template>
   <div class="app-vip-rule-desc">
     <div class="h2">
-      VIP{{ $t('rule_desc') }}
+      {{ $t('rule_desc', { vip: 'VIP' }) }}
     </div>
     <div class="ul">
       <div class="h3">

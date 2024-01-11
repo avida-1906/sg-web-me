@@ -32,6 +32,8 @@ interface Props {
   duplexInputValue?: number | string
   /** 复式预计支付额 */
   duplexTotalProfit?: number | string
+  /** 禁止操作 */
+  prohibitedOperation: boolean
   openKeyboard: (
     fn: (value: number) => void,
     deleteKey: () => void,
@@ -45,6 +47,7 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   index: 0,
   betSlipType: EnumsBetSlipBetSlipTabStatus.single,
+  prohibitedOperation: false,
 })
 
 const emit = defineEmits(
@@ -298,7 +301,7 @@ watchEffect(() => {
       mt8: !isFirst && isBetMulti,
       before: !isFirst && isBetMulti,
       error: isError,
-      disabled: isDisabled,
+      disabled: isDisabled || prohibitedOperation,
     }"
   >
     <div class="header" :class="{ 'round-header': isFirst || isBetSingle }">
@@ -320,6 +323,7 @@ watchEffect(() => {
       <BaseButton
         v-else
         type="text" size="none"
+        :disabled="prohibitedOperation"
         @click="sportStore.cart.remove(cartInfoData.wid)"
       >
         <BaseIcon
@@ -361,7 +365,7 @@ watchEffect(() => {
             mb0
             :placeholder="`${cartInfoData.mia} - ${cartInfoData.maa}`"
             :msg="amountErrorMsg"
-            :disabled="isDisabled"
+            :disabled="isDisabled || prohibitedOperation"
             :readonly="inputReadonlyBool"
             :msg-after-touched="true"
             @click.stop="inputClickHandler"
