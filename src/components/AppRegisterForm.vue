@@ -56,6 +56,7 @@ const {
   validate: validateEmail,
   setErrors: setEmailErrors,
   resetField: restEmail,
+  setValue: setEmail,
 } = useField<string>('email', (value) => {
   const lastAtIdx = value ? value.lastIndexOf('@') : -1
   const lastDotIdx = value ? value.lastIndexOf('.') : -1
@@ -89,6 +90,7 @@ const {
   validate: validateUsername,
   setErrors: setUsernameErrors,
   resetField: restName,
+  setValue: setUsername,
 } = useField<string>('username', (value) => {
   if (!value)
     return t('name_3_char')
@@ -150,8 +152,8 @@ const regParams = computed(() => {
     : undefined
 })
 if (regParams.value) {
-  email.value = regParams.value.email ?? ''
-  username.value = regParams.value.username ?? ''
+  setEmail(regParams.value.email ?? '', false)
+  setUsername(regParams.value.username ?? '', false)
   birthday.value = regParams.value.birthday ?? ''
 }
 
