@@ -24,7 +24,10 @@ const agentLevels = reactive([
       </li>
       <li v-for="item in agentLevels" :key="item.level" class="item">
         <div class="level">
-          <BaseIcon name="chat-star-1" />{{ item.level }}
+          <BaseIcon
+            style="font-size: var(--tg-font-size-base);" :name="`agent-${item.level}`"
+          />
+          <span>LV{{ item.level }} </span>
         </div>
         <div>{{ item.amount }}</div>
       </li>
@@ -48,6 +51,7 @@ const agentLevels = reactive([
         display: flex;
         align-items: center;
         justify-content: flex-start;
+        // font-size: 32px;
         gap: var(--tg-spacing-4);
       }
     }
