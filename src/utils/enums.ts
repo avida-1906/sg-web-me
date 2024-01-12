@@ -185,7 +185,7 @@ export enum EnumCasinoSortType {
   nameZ = 'name:desc',
   /** 热门 */
   hot = 'sorting:asc',
-  /** 推荐 */
+  /** 重点介绍 */
   recommend = 'created_at:desc',
 }
 
