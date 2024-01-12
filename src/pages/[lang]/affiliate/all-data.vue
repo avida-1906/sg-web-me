@@ -2,6 +2,7 @@
 const { startTime, endTime } = getDaIntervalMap(new Date().getTime(), 30)
 
 const { t } = useI18n()
+const { isLogin } = storeToRefs(useAppStore())
 const {
   selected: currency_id,
   list: currencyList,
@@ -75,8 +76,8 @@ const params = computed(() => {
   }
 })
 
-onMounted(() => {
-  useListSearch(params, runAsync, resetPage)
+watch(() => isLogin.value, (newValue) => {
+  newValue && useListSearch(params, runAsync, resetPage)
 })
 </script>
 

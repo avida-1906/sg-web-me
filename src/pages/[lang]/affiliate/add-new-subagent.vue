@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 const { t } = useI18n()
 const { openNotify } = useNotify()
-
+const { isLogin } = storeToRefs(useAppStore())
+const { openLoginDialog } = useLoginDialog()
 const registerFormRef = ref()
-
 const {
   run: runAgencyInsert,
   loading: loadingAgencyInsert,
@@ -18,6 +18,8 @@ const {
 })
 
 async function submitRegister() {
+  if (!isLogin.value)
+    return openLoginDialog()
   registerFormRef.value?.getMemberReg((paramsReg: {
     username: string
     password: string

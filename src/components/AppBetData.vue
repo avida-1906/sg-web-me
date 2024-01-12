@@ -443,7 +443,7 @@ onUnmounted(() => {
         <VTooltip placement="top">
           <div
             class="switch-hidden"
-            :style="{ '--tg-icon-color': isHidden ? '#fff' : '' }"
+            :style="{ '--tg-icon-color': isHidden ? 'var(--tg-text-white)' : '' }"
             @click.stop="changeHidden"
           >
             <BaseIcon name="uni-hidden" />

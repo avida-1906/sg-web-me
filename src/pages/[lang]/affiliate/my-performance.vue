@@ -2,8 +2,7 @@
 const { startTime, endTime } = getDaIntervalMap(new Date().getTime(), 30)
 
 const { t } = useI18n()
-// const { userLanguage } = storeToRefs(useLanguageStore())
-
+const { isLogin } = storeToRefs(useAppStore())
 const {
   selected: currency_id,
   list: currencyList,
@@ -76,8 +75,8 @@ const params = computed(() => {
   }
 })
 
-onMounted(() => {
-  useListSearch(params, runAsync, resetPage)
+watch(() => isLogin.value, (newValue) => {
+  newValue && useListSearch(params, runAsync, resetPage)
 })
 </script>
 
@@ -115,7 +114,7 @@ onMounted(() => {
       </template>
     </BaseTable>
     <BasePagination
-      v-if="total > 0"
+      v-if="total > 10"
       v-model:current-page="page"
       v-model:page-size="page_size"
       :total="total"
@@ -126,13 +125,7 @@ onMounted(() => {
 <style lang="scss" scoped>
 .all-data-page {
   --tg-badge-size: 10px;
-
   --tg-base-select-style-padding-right: var(--tg-spacing-28);
-}
-
-.hint {
-  color: var(--tg-text-grey-lighter);
-  margin-top: 4px;
 }
 .page-all-data {
   --tg-app-amount-font-size: var(--tg-font-size-xs);

@@ -62,42 +62,42 @@ meta:
       isT: true
     - title: menu_title_my_promotion
       path: /affiliate/my-promotion
-      token: true
+      token: false
       isT: true
     - title: menu_title_my_commission
       path: /affiliate/my-commission
-      token: true
+      token: false
       isT: true
     - title: menu_title_my_performance
       path: /affiliate/my-performance
-      token: true
+      token: false
       isT: true
     - title: menu_title_all_data
       path: /affiliate/all-data
-      token: true
+      token: false
       isT: true
     - title: menu_title_direct_finance
       path: /affiliate/direct-finance
-      token: true
+      token: false
       isT: true
     - title: menu_title_direct_bet
       path: /affiliate/direct-bet
-      token: true
+      token: false
       isT: true
     - title: menu_title_direct_user
       path: /affiliate/direct-user
-      token: true
+      token: false
       isT: true
     - title: menu_title_direct_receive
       path: /affiliate/direct-receive
-      token: true
+      token: false
       isT: true
     - title: menu_title_commission_rate
       path: /affiliate/commission-rate
-      token: true
+      token: false
       isT: true
     - title: menu_title_add_new_subagent
       path: /affiliate/add-new-subagent
-      token: true
+      token: false
       isT: true
 </route>
