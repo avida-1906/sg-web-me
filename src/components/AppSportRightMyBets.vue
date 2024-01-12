@@ -51,7 +51,7 @@ function settleChange() {
     <div class="my-bet-center">
       <div class="scroll-y scrollable center-content">
         <template v-if="loading">
-          <div v-for="i in 5" :key="i" class="center h-100">
+          <div v-for="i in 5" :key="i" class="center" style="height: 100%">
             <AppSportsMyBetSlipSkeleton :settle="settle" />
           </div>
         </template>

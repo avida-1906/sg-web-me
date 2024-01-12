@@ -49,7 +49,7 @@ function push(title: string) {
               :class="[n.title, { active: route.name?.toString().includes(n.title) }]"
               @click.stop="push(n.title)"
             >
-              <span class="text-center">{{ t(n.title) }}</span>
+              <span style="text-align: center;">{{ t(n.title) }}</span>
             </div>
           </div>
         </div>

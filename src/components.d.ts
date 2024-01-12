@@ -166,6 +166,7 @@ declare module 'vue' {
     AppUserAgentInfo: typeof import('./components/AppUserAgentInfo.vue')['default']
     AppVipBonusDialog: typeof import('./components/AppVipBonusDialog.vue')['default']
     AppVipBonusRecordDialog: typeof import('./components/AppVipBonusRecordDialog.vue')['default']
+    AppVipContent: typeof import('./components/AppVipContent.vue')['default']
     AppVipDialog: typeof import('./components/AppVipDialog.vue')['default']
     AppVipExpRule: typeof import('./components/AppVipExpRule.vue')['default']
     AppVipIcon: typeof import('./components/AppVipIcon.vue')['default']

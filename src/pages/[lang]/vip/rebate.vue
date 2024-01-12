@@ -1,26 +1,43 @@
 <script lang="ts" setup>
-const { t } = useI18n()
+import type { EnumCurrencyKey } from '~/apis/types'
 
+const { t } = useI18n()
 const appStore = useAppStore()
 const { vipConfigData } = storeToRefs(appStore)
 const { providerList } = storeToRefs(useSportsStore())
 const { AllLanguages, userLanguage } = storeToRefs(useLanguageStore())
 const { bigPlats: platformList } = storeToRefs(useCasinoStore())
 const { isMobile } = storeToRefs(useWindowStore())
-const {
-  renderCurrencyList,
-} = useCurrencyData()
+// const {
+//   renderCurrencyList,
+// } = useCurrencyData()
 
 const tab = ref('')
-const squareTabList = renderCurrencyList.value.map((item) => {
-  return {
+const squareTabList = ref<{
+  value: string
+  label: string
+  icon: string
+  useCloudImg: boolean
+}[]>([])
+
+for (const key in currencyConfig) {
+  const item = currencyConfig[key as EnumCurrencyKey]
+  squareTabList.value.push({
     value: item.cur,
-    label: item.type,
+    label: key,
     icon: `/currency/${item.cur}.webp`,
     useCloudImg: true,
-  }
-})
-const squareVal = ref(squareTabList[0].value)
+  })
+}
+//   renderCurrencyList.value.map((item) => {
+//   return {
+//     value: item.cur,
+//     label: item.type,
+//     icon: `/currency/${item.cur}.webp`,
+//     useCloudImg: true,
+//   }
+// })
+const squareVal = ref(squareTabList.value[0].value)
 
 const prefix = computed(() =>
   AllLanguages.value.filter(a => a.value === userLanguage.value)[0].prefix)
@@ -55,7 +72,7 @@ const columns = computed<Column[]>(() => filterPlatformColumn.value.toReversed()
 }).toReversed())
 
 function changeCurrency(item: any) {
-  console.log(item)
+  // console.log(item)
 }
 
 watch(tabList, (val) => {
@@ -124,6 +141,8 @@ watch(tabList, (val) => {
   justify-content: center;
 }
 .vip-rebate {
+  width: 100%;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   gap: var(--tg-spacing-14);
@@ -155,8 +174,8 @@ watch(tabList, (val) => {
     .flex-column{
       display: flex;
       flex-direction: column;
-      // align-items: flex-start;
       gap: var(--tg-spacing-4);
+      color: var(--tg-secondary-light);
       >span{
         font-size: var(--tg-font-size-default);
         line-height: 1.4;
