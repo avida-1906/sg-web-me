@@ -160,7 +160,7 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse, iInput, isTouched, setBlur
             :class="{
               'p-r-0': $slots['right-icon'],
               'p-l-0': $slots['left-icon'],
-              'text-center': textCenter,
+              'textCenter': textCenter,
               'readonly': readonly,
             }"
             :autocomplete="`new-${_type}`"
@@ -390,7 +390,7 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse, iInput, isTouched, setBlur
         opacity: var(--tg-base-input-style-placeholder-opacity);
       }
 
-      &.text-center {
+      &.textCenter {
         text-align: center;
       }
 
@@ -407,6 +407,10 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse, iInput, isTouched, setBlur
     }
     .p-r-0 {
       padding-right: 0;
+    }
+
+    .textCenter {
+      text-align: center;
     }
 
     .eye {

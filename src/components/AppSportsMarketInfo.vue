@@ -291,7 +291,7 @@ setEventTime()
             style="--tg-base-button-text-default-color:var(--tg-text-white);"
             @click="goEventDetailPage"
           >
-            <span class="text-left">{{ data.htn }}</span>
+            <span style="text-align: left;">{{ data.htn }}</span>
           </BaseButton>
         </div>
         <span> - </span>
@@ -302,7 +302,7 @@ setEventTime()
             style="--tg-base-button-text-default-color:var(--tg-text-white);"
             @click="goEventDetailPage"
           >
-            <span class="text-left">{{ data.atn }}</span>
+            <span style="text-align: left;">{{ data.atn }}</span>
           </BaseButton>
         </div>
       </div>
