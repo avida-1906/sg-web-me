@@ -2,6 +2,7 @@
 // const params = { ty: 2 }
 
 const { t } = useI18n()
+const route = useRoute()
 // const { openNotify } = useNotify()
 const { vip, vipConfigArray } = useVipInfo()
 const { isMobile } = storeToRefs(useWindowStore())
@@ -119,7 +120,7 @@ const columns = computed<Column[]>(() => [
           </template>
         </template> -->
       </BaseTable>
-      <div class="btn-box">
+      <div v-if="route.path.includes('/vip/')" class="btn-box">
         <BaseButton class="btn-receive" bg-style="secondary" custom-padding>
           {{ t('receive_bonus') }}
         </BaseButton>

@@ -5,6 +5,7 @@ const today = dayjs()
 
 const { t } = useI18n()
 const { isMobile } = storeToRefs(useWindowStore())
+const { isLogin } = storeToRefs(useAppStore())
 
 const dayOptions = [
   { label: t('today'), value: '0' },
@@ -60,7 +61,9 @@ const {
   prev,
   next,
   loading,
-} = useList(ApiMemberVipBonusRecord, {}, { page_size: 10 })
+} = useList(ApiMemberVipBonusRecord, {
+  ready: isLogin,
+}, { page_size: 10 })
 
 const params = computed(() => ({
   page: page.value,
@@ -136,6 +139,7 @@ watch(() => params.value.start_time, () => {
 .app-vip-bonus-record{
   background: var(--tg-secondary-dark);
   padding: 12px 12px;
+  border-radius: var(--tg-radius-default);
   --tg-base-select-style-padding-y: 8px;
   &.is-mobile {
     background: none;

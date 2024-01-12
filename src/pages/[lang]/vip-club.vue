@@ -15,14 +15,13 @@ interface IMenuData {
 }
 
 const { t } = useI18n()
-const { vipConfigData, companyData } = storeToRefs(useAppStore())
+const { isLogin, vipConfigData, companyData } = storeToRefs(useAppStore())
 const {
   appContentWidth,
   widthBoundarySm,
 } = storeToRefs(useWindowStore())
 const router = useLocalRouter()
 usePageTitle({ prefix: t('vip_club') })
-
 const site = computed(() => ({ site: companyData.value?.name }))
 const vipArray = computed(() =>
   vipConfigData.value ? Object.values(vipConfigData.value).sort((a, b) => +a.level - (+b.level)) : [])
@@ -551,29 +550,12 @@ const toVip = function () {
         <p class="desc">
           {{ t('vip_club_tip_8') }}
         </p>
-        <div class="scroll-x">
+        <!-- <div class="scroll-x">
           <div
             ref="award"
             class="a-table"
             :style="{ 'grid-template-columns': `repeat(${vipArray.length + 1}, 1fr)` }"
           >
-            <!-- <div
-              v-for="item, index in tableData"
-              :key="index"
-              class="table-item"
-              :class="{ sticky: item.sticky }"
-            >
-              <template v-if="item.empty">
-                <div class="empty" />
-              </template>
-              <template v-else>
-                {{ item.text }}
-                <div v-for="second, i in item.child" :key="i">
-                  <BaseIcon v-if="second.icon" :name="second.icon" />
-                  <span v-if="second.text">{{ second.text }}</span>
-                </div>
-              </template>
-            </div> -->
             <template
               v-for="item, idx in vipCols"
               :key="idx"
@@ -593,10 +575,11 @@ const toVip = function () {
               </div>
             </template>
           </div>
-        </div>
+        </div> -->
       </div>
+      <AppVipContent />
       <!-- 问题 -->
-      <div class="vip-question">
+      <!-- <div class="vip-question">
         <p class="title">
           {{ t('normal_ques') }}
         </p>
@@ -785,9 +768,9 @@ const toVip = function () {
             </BaseCollapse>
           </div>
         </div>
-      </div>
+      </div> -->
       <!-- 更多 -->
-      <div class="vip-more">
+      <!-- <div class="vip-more">
         <div class="more-left">
           <p>{{ t('has_more_q') }}</p>
           <p>{{ t('vip_club_tip_54') }}</p>
@@ -807,7 +790,7 @@ const toVip = function () {
             <BaseButton>{{ t('chat_us') }}</BaseButton>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -879,7 +862,7 @@ const toVip = function () {
     padding: var(--tg-spacing-32) 0;
     display: flex;
     flex-direction: column;
-    gap: 4rem;
+    gap: var(--tg-spacing-32);
     width: 100%;
     .vip-tutorial, .vip-award, .vip-question, .vip-slider{
       .title{
@@ -888,7 +871,7 @@ const toVip = function () {
         font-size: var(--tg-font-size-lg);
         font-weight: var(--tg-font-weight-bold);
         line-height: 24px;
-        margin-top: var(--tg-spacing-16);
+        // margin-top: var(--tg-spacing-16);
       }
       .desc{
         text-align: center;

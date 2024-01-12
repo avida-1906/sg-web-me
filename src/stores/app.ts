@@ -89,7 +89,7 @@ export const useAppStore = defineStore('app', () => {
   })
 
   const { run: runGetVipConfig, data: vipConfigData } = useRequest(ApiMemberVipConfig, {
-    ready: isLogin,
+    // ready: isLogin,
     manual: false,
   })
 
