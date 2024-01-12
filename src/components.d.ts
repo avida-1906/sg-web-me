@@ -238,5 +238,6 @@ declare module 'vue' {
     PlinkoSetting: typeof import('./components/PlinkoSetting.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    TestAqa: typeof import('./components/TestAqa.vue')['default']
   }
 }

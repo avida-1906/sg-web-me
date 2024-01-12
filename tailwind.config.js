@@ -4,9 +4,21 @@ export default {
     './index.html',
     './src/**/*.{vue,js,ts,jsx,tsx}',
   ],
-  corePlugins: false,
-  theme: {
-    extend: {},
+  corePlugins: {
+    preflight: false,
   },
-  plugins: [],
+  theme: {
+    extend: {
+      colors: {
+        'tg-primary': 'var(--tg-primary-main)',
+      },
+      spacing: Array.from({ length: 2000 }, (_, i) => `${i}px`),
+      containers: {
+        lg: '1000px',
+      },
+    },
+  },
+  plugins: [
+    require('@tailwindcss/container-queries'),
+  ],
 }
