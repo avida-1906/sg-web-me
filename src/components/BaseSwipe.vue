@@ -69,7 +69,7 @@ onMounted(() => {
           @click="clickItem(item)"
         >
           <!--  -->
-          <div class="center wrapper w-100">
+          <div class="center wrapper">
             <BaseImage :url="item.imgUrl" is-network loading="eager" />
           </div>
           <div class="other">
@@ -146,6 +146,10 @@ onMounted(() => {
     left: 0;
     bottom: 0;
   }
+
+  // .wrapper {
+  //   width: 100%;
+  // }
 }
 
 .arrow {

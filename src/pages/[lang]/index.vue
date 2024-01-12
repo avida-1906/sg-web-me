@@ -141,7 +141,7 @@ runMemberNoticeAllList()
           </p>
         </div>
         <div class="features-button">
-          <BaseButton bg-style="primary" class="w-100" size="md">
+          <BaseButton bg-style="primary" class="btn" size="md">
             {{ t('go_casino') }}
           </BaseButton>
         </div>
@@ -164,7 +164,7 @@ runMemberNoticeAllList()
           </p>
         </div>
         <div class="features-button">
-          <BaseButton bg-style="primary" class="w-100" size="md">
+          <BaseButton bg-style="primary" class="btn" size="md">
             {{ t('go_sports') }}
           </BaseButton>
         </div>
@@ -488,7 +488,7 @@ runMemberNoticeAllList()
         }
       }
       .features-button {
-        .w-100{
+        .btn{
           width: 100%;
         }
       }

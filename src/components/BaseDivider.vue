@@ -40,7 +40,7 @@ const lineHeight = computed(() => {
 
 <template>
   <div
-    class="base-divider w-100" :class="[
+    class="base-divider" :class="[
       {
         [`base-divider-title-position-${titlePlacement}`]:
           $slots.default && titlePlacement,
@@ -83,6 +83,7 @@ const lineHeight = computed(() => {
     display: flex;
     align-items: center;
     white-space: nowrap;
+    width: 100%;
     &-line {
         width: 100%;
         // height: var(--tg-border-width-sm);

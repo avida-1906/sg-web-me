@@ -4,7 +4,9 @@ export default {
     './index.html',
     './src/**/*.{vue,js,ts,jsx,tsx}',
   ],
-  corePlugins: false,
+  corePlugins: {
+    preflight: false,
+  },
   theme: {
     extend: {
       colors: {
