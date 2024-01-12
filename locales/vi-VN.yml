@@ -2254,113 +2254,113 @@ cash_profit: lợi nhuận tiền mặt
 vip_win_lose: Thành viên thắng hay thua
 register_time: Thời gian đăng ký
 statistical_date: ngày thống kê
-phone_invalid: 手机号码无效
+phone_invalid: 'Số điện thoại không hợp lệ'
 colon: ':'
-period: '.'
-vip_total_bonus: Bônus acumulado
-type_select: Loại hình lựa chọn
-rule_text_one: Tỷ giá sẽ được đồng bộ theo thời gian biến động của thị trường
-rule_text_two: Tỷ giá sẽ được áp dụng khi đơn cược của bạn được giải quyết
-rule_text_three: Các cược hợp lệ đã được tính sẽ không bị ảnh hưởng bởi tỷ giá tiếp theo
-rule_text_title: VIP được tính dựa trên số lần đặt cược USDT hợp lệ của bạn
-after_transfer_withdraw_money: 转到钱包后需要1倍有效投注才可提款
-mini_manual_bet: '手动投注'
-mini_auto_bet: '自动投注'
-mini_bet_amount: '投注额'
-mini_profit: '获取利润'
-mini_bet_frequency: '投注次数'
-mini_if_win: '若赢'
-mini_reset: '重置'
-mini_add: '增加：'
-mini_if_lose: '若输'
-mini_take_profit: '止赢'
-mini_stop_lose: '止损'
-mini_start_auto_bet: '开始自动投注'
-mini_stop_auto_bet: '停止自动投注'
-mini_auto_bet_finish: '正在完成投注'
-mini_target_multi: '目标乘数'
-mini_win_odd: '获胜几率'
-mini_touzhu: '投注'
-mini_more_than_balance: '您的投注额不能大于余额！'
-mini_must_than_zero: '必须大于或等于0'
-mini_game_set: '游戏设置'
-mini_ju_mode: '剧院模式'
-mini_sstj: '实时统计'
-mini_collect_game: '收藏游戏'
-mini_fairness: '公平性'
-mini_start_auto_bet_tip: '自动投注开始'
-mini_stop_auto_bet_tip: '自动投注完成'
-commission_record: Lịch sử hoa hồng
-commission_grant: 佣金发放
-commission_draw: 佣金提取
-order_id: 订单号
-score: 比分
-v_sports: 虚拟体育
-plinko_manual: "手动投注"
-plinko_auto: "自动投注"
-plinko_amount: "投注额"
-plinko_risk: "风险"
-plinko_rows: "排数"
-plinko_bet: "投注"
-plinko_betNumbers: "投注次数"
-plinko_autobetstart: "开始自动投注"
-plinko_autobetstop: "停止自动投注"
-plinko_fairness: "公平性"
-plinko_original: "原创游戏"
-plinko_bigwins: "大赢家"
-plinko_luckwins: "幸运赢家"
-plinko_challenges: "挑战"
-plinko_description: "描述"
-plinko_rank: "排名"
-plinko_user: "玩家"
-plinko_date: "日期"
-plinko_multiplier: "乘数"
-plinko_payout: "支付额"
-plinko_level1: "下等"
-plinko_level2: "中等"
-plinko_level3: "上等"
-plinko_stealth: "隐身"
-plinko_live: "即时下注"
-plinko_animation: "动画"
-plinko_maxvalue: "最大投注额"
-plinko_info: "游戏信息"
-plinko_keyboard: "快捷键"
-plinko_maxquestion1: "您确定要启用最大投注额按钮吗？"
-plinko_maxquestion2: "您确定要启用最大投注额按钮吗？"
-plinko_turnOn: "开启"
-plinko_turnOff: "开启"
-plinko_info1: "1.配置模式将通过风险和乘数来决定不同的潜在支付额。"
-plinko_info2: "2.请勿在游戏进行时转动您的设备或显示屏来逆重力。"
-plinko_rules: "游戏规则"
-plinko_hotkey1: "下注"
-plinko_hotkey2: "加倍投注额"
-plinko_hotkey3: "减半投注额"
-plinko_hotkey4: "零数投注额"
-plinko_hotkeyInfo: "快捷键一旦启用后将会影响所有游戏至禁用为止。虽然部分游戏的绑定键相同，还是建议您确认不同游戏的锁定按键交互之后再使用。"
-plinko_hotkeyUse: "启用快捷键"
-plinko_statistics: "实时统计"
-plinko_type1: "Tất cả"
-plinko_type2: "投注"
-plinko_type3: "竞赛"
-plinko_type4: "隐藏"
-plinko_left1: "利润"
-plinko_left2: "总投注额"
-plinko_right1: "赢"
-plinko_right2: "输"
-plinko_max: "最大值"
-plinko_autobetalert1: "自动投注开始"
-plinko_autobetalert2: "自动投注完成"
-plinko_betamountalert: "您的投注额不能大于余额！"
-commission_draw_success: 佣金提取成功
-receive_bonus_amount: Số tiền nhận được
-integral: Tích điểm
-reg_success_title: 成功
+period: .
+vip_total_bonus: 'Tiền thưởng tích lũy'
+type_select: 'Loại hình lựa chọn'
+rule_text_one: 'Tỷ giá sẽ được đồng bộ theo thời gian biến động của thị trường'
+rule_text_two: 'Tỷ giá sẽ được áp dụng khi đơn cược của bạn được giải quyết'
+rule_text_three: 'Các cược hợp lệ đã được tính sẽ không bị ảnh hưởng bởi tỷ giá tiếp theo'
+rule_text_title: 'VIP được tính dựa trên số lần đặt cược USDT hợp lệ của bạn'
+after_transfer_withdraw_money: 'Sau khi chuyển vào ví, bạn cần gấp đôi số tiền đặt cược hợp lệ trước khi có thể rút tiền'
+mini_manual_bet: 'Cược thủ công'
+mini_auto_bet: 'Cược tự động'
+mini_bet_amount: 'Tiền cược '
+mini_profit: 'Nhận được lợi nhuận'
+mini_bet_frequency: 'Số lần đặt cược '
+mini_if_win: 'Nếu thắng'
+mini_reset: 'Đặt lại'
+mini_add: 'Tăng lên:'
+mini_if_lose: 'Nếu thua'
+mini_take_profit: 'Dừng lợi nhuận'
+mini_stop_lose: 'Dừng thất thoát '
+mini_start_auto_bet: 'Bắt đầu đặt cược tự động'
+mini_stop_auto_bet: 'Dừng đặt cược tự động'
+mini_auto_bet_finish: 'Đặt cược đang được hoàn tất'
+mini_target_multi: 'Hệ số mục tiêu'
+mini_win_odd: 'Tỷ lệ thắng'
+mini_touzhu: 'Đặt cược '
+mini_more_than_balance: 'Đặt cược của bạn không thể lớn hơn số dư của bạn!'
+mini_must_than_zero: 'Phải lớn hơn hoặc bằng 0'
+mini_game_set: 'Cài đặt trò chơi'
+mini_ju_mode: 'Chế độ rạp hát'
+mini_sstj: 'Thống kê thời gian thực tế'
+mini_collect_game: 'Trò chơi yêu thích'
+mini_fairness: 'Tính công bằng'
+mini_start_auto_bet_tip: 'Bắt đầu đặt cược tự động'
+mini_stop_auto_bet_tip: 'Cược tự động đã hoàn tất'
+commission_record: 'Lịch sử hoa hồng'
+commission_grant: 'Phát tiền hoa hồng'
+commission_draw: 'Rút tiền hoa hồng'
+order_id: 'Đơn đặt cược '
+score: 'Tỉ số'
+v_sports: 'Thể thao 3D'
+plinko_manual: 'Đặt cược thủ công'
+plinko_auto: 'Đặt cược tự động'
+plinko_amount: 'Tiền đặt cược '
+plinko_risk: 'Rủi ro'
+plinko_rows: 'Số hàng'
+plinko_bet: 'Đặt cược '
+plinko_betNumbers: 'Số lần đặt cược '
+plinko_autobetstart: 'Bắt đầu đặt cược tự động'
+plinko_autobetstop: 'Dừng đặt cược tự động'
+plinko_fairness: 'Tính công bằng'
+plinko_original: 'Trò chơi nguyên bản'
+plinko_bigwins: 'Người chơi lớn'
+plinko_luckwins: 'Người chơi may mắn'
+plinko_challenges: 'Thách đấu'
+plinko_description: 'Mô tả'
+plinko_rank: 'Xếp hạng'
+plinko_user: 'Người chơi'
+plinko_date: Ngày
+plinko_multiplier: 'Số nhân'
+plinko_payout: 'Số tiền thanh toán'
+plinko_level1: 'Kém hơn'
+plinko_level2: 'Trung bình'
+plinko_level3: 'Tốt hơn'
+plinko_stealth: 'Ẩn danh'
+plinko_live: 'Cược trực tiếp'
+plinko_animation: 'Hoạt hình'
+plinko_maxvalue: 'Số tiền đặt cược tối đa'
+plinko_info: 'Thông tin trò chơi'
+plinko_keyboard: 'Phím tắt'
+plinko_maxquestion1: 'Bạn có chắc chắn muốn bật nút đặt cược tối đa không?'
+plinko_maxquestion2: 'Bạn có chắc chắn muốn bật nút đặt cược tối đa không?'
+plinko_turnOn: Bật
+plinko_turnOff: Bật
+plinko_info1: '1. Mô hình phân bổ sẽ xác định các khoản thanh toán tiềm năng khác nhau thông qua rủi ro và số nhân.'
+plinko_info2: '2. Không xoay thiết bị hoặc màn hình của bạn để chống lại trọng lực trong khi trò chơi đang diễn ra.'
+plinko_rules: 'Quy tắc trò chơi'
+plinko_hotkey1: 'Đặt cược '
+plinko_hotkey2: 'Nhân đôi số tiền đặt cược'
+plinko_hotkey3: 'Giảm một nửa số tiền đặt cược '
+plinko_hotkey4: 'Số tiền đặt cược lẻ'
+plinko_hotkeyInfo: 'Khi phím tắt được bật, nó sẽ ảnh hưởng đến tất cả các trò chơi cho đến khi bị tắt. Mặc dù một số trò chơi có cùng tổ hợp phím nhưng bạn nên xác nhận tương tác phím bị khóa của các trò chơi khác nhau trước khi sử dụng.'
+plinko_hotkeyUse: 'Bật phím tắt'
+plinko_statistics: 'Thống kê thời gian thực tế'
+plinko_type1: 'Tất cả'
+plinko_type2: 'Đặt cược '
+plinko_type3: 'Cuộc đua'
+plinko_type4: Ẩn
+plinko_left1: 'Lợi nhuận'
+plinko_left2: 'Tổng số tiền cược '
+plinko_right1: Thắng
+plinko_right2: Thua
+plinko_max: 'Giá trị lớn nhất'
+plinko_autobetalert1: 'Bắt đầu đặt cược tự động'
+plinko_autobetalert2: 'Đặt cược tự động hoàn tất'
+plinko_betamountalert: 'Đặt cược của bạn không thể lớn hơn số dư của bạn!'
+commission_draw_success: 'Rút tiền hoa hồng thành công'
+receive_bonus_amount: 'Số tiền nhận được'
+integral: 'Tích điểm'
+reg_success_title: 'Thành công'
 reg_day: DD
-login_ip_title: Địa chỉ IP
-gameble_aware: Điều Cần Biết
-transfer_to_wallet: 转移到钱包
-statistical_data_dialog_title: Thống kê
-end_time_table: 'Kết thúc sau {time} giờ nữa'
+login_ip_title: 'Địa chỉ IP'
+gameble_aware: 'Điều Cần Biết'
+transfer_to_wallet: 'Chuyển vào ví'
+statistical_data_dialog_title: 'Thống kê'
+end_time_table: 'kết thúc sau {time} giờ nữa'
 user_no_statistics_display: 此用户未有可显示的统计数据
 this_week: 本周
 this_month: 本月
