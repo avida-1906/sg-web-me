@@ -2282,113 +2282,113 @@ cash_profit: lucro em dinheiro
 vip_win_lose: Vitórias e derrotas dos membros
 register_time: Hora do registro
 statistical_date: Data das estatísticas
-phone_invalid: 手机号码无效
+phone_invalid: 'Número de telefone inválido'
 colon: ':'
-period: '.'
-vip_total_bonus: 累积奖金
-type_select: 类型选择
-rule_text_one: A taxa de câmbio será calculada em tempo real de acordo com o valor de mercado do momento.
-rule_text_two: O cálculo da taxa de câmbio ocorrerá quando a sua aposta for liquidada.
-rule_text_three: As apostas válidas que foram calculadas não serão afetadas pelas taxas de câmbio subsequentes.
-rule_text_title: A pontuação VIP é calculada com base em suas apostas válidas em USDT
-after_transfer_withdraw_money: 转到钱包后需要1倍有效投注才可提款
-mini_manual_bet: '手动投注'
-mini_auto_bet: '自动投注'
-mini_bet_amount: '投注额'
-mini_profit: '获取利润'
-mini_bet_frequency: '投注次数'
-mini_if_win: '若赢'
-mini_reset: '重置'
-mini_add: '增加：'
-mini_if_lose: '若输'
-mini_take_profit: '止赢'
-mini_stop_lose: '止损'
-mini_start_auto_bet: '开始自动投注'
-mini_stop_auto_bet: '停止自动投注'
-mini_auto_bet_finish: '正在完成投注'
-mini_target_multi: '目标乘数'
-mini_win_odd: '获胜几率'
-mini_touzhu: '投注'
-mini_more_than_balance: '您的投注额不能大于余额！'
-mini_must_than_zero: '必须大于或等于0'
-mini_game_set: '游戏设置'
-mini_ju_mode: '剧院模式'
-mini_sstj: '实时统计'
-mini_collect_game: '收藏游戏'
-mini_fairness: '公平性'
-mini_start_auto_bet_tip: '自动投注开始'
-mini_stop_auto_bet_tip: '自动投注完成'
-commission_record: Histórico de comissões
-commission_grant: 佣金发放
-commission_draw: 佣金提取
-order_id: 订单号
-score: 比分
-v_sports: 虚拟体育
-plinko_manual: "手动投注"
-plinko_auto: "自动投注"
-plinko_amount: "投注额"
-plinko_risk: "风险"
-plinko_rows: "排数"
-plinko_bet: "投注"
-plinko_betNumbers: "投注次数"
-plinko_autobetstart: "开始自动投注"
-plinko_autobetstop: "停止自动投注"
-plinko_fairness: "公平性"
-plinko_original: "原创游戏"
-plinko_bigwins: "大赢家"
-plinko_luckwins: "幸运赢家"
-plinko_challenges: "挑战"
-plinko_description: "描述"
-plinko_rank: "排名"
-plinko_user: "玩家"
-plinko_date: "日期"
-plinko_multiplier: "乘数"
-plinko_payout: "支付额"
-plinko_level1: "下等"
-plinko_level2: "中等"
-plinko_level3: "上等"
-plinko_stealth: "隐身"
-plinko_live: "即时下注"
-plinko_animation: "动画"
-plinko_maxvalue: "最大投注额"
-plinko_info: "游戏信息"
-plinko_keyboard: "快捷键"
-plinko_maxquestion1: "您确定要启用最大投注额按钮吗？"
-plinko_maxquestion2: "您确定要启用最大投注额按钮吗？"
-plinko_turnOn: "开启"
-plinko_turnOff: "开启"
-plinko_info1: "1.配置模式将通过风险和乘数来决定不同的潜在支付额。"
-plinko_info2: "2.请勿在游戏进行时转动您的设备或显示屏来逆重力。"
-plinko_rules: "游戏规则"
-plinko_hotkey1: "下注"
-plinko_hotkey2: "加倍投注额"
-plinko_hotkey3: "减半投注额"
-plinko_hotkey4: "零数投注额"
-plinko_hotkeyInfo: "快捷键一旦启用后将会影响所有游戏至禁用为止。虽然部分游戏的绑定键相同，还是建议您确认不同游戏的锁定按键交互之后再使用。"
-plinko_hotkeyUse: "启用快捷键"
-plinko_statistics: "实时统计"
-plinko_type1: "Todas"
-plinko_type2: "投注"
-plinko_type3: "竞赛"
-plinko_type4: "隐藏"
-plinko_left1: "利润"
-plinko_left2: "总投注额"
-plinko_right1: "赢"
-plinko_right2: "输"
-plinko_max: "最大值"
-plinko_autobetalert1: "自动投注开始"
-plinko_autobetalert2: "自动投注完成"
-plinko_betamountalert: "您的投注额不能大于余额！"
-commission_draw_success: 佣金提取成功
-receive_bonus_amount: 领取金额
-integral: Pontuação
-reg_success_title: Bem Vindo(a)
-reg_day: Dia
-login_ip_title: Địa chỉ IP
-gameble_aware: Gameble aware
-transfer_to_wallet: 转移到钱包
-statistical_data_dialog_title: 统计数据
-end_time_table: '结束时间：{time}小时后'
+period: .
+vip_total_bonus: 'Bônus acumulado'
+type_select: 'Seleção de tipo'
+rule_text_one: 'A taxa de câmbio será sincronizada em tempo real de acordo com as flutuações do mercado'
+rule_text_two: 'A taxa de câmbio prevalecerá quando a sua aposta for liquidada.'
+rule_text_three: 'As apostas válidas que foram contadas não serão afetadas pelas taxas de câmbio subsequentes'
+rule_text_title: 'O VIP é calculado com base em suas apostas válidas em USDT'
+after_transfer_withdraw_money: 'Depois de transferir para a carteira,  você precisa de 1 vez rollover em aposta válida antes de poder retirá-la.'
+mini_manual_bet: 'Apostas manuais'
+mini_auto_bet: 'Apostas automáticas'
+mini_bet_amount: 'Valor da aposta'
+mini_profit: 'Obtenha lucro'
+mini_bet_frequency: 'Número de apostas'
+mini_if_win: 'Em caso de vitória'
+mini_reset: Reiniciar
+mini_add: 'Adicionar:'
+mini_if_lose: 'Em caso de derrota'
+mini_take_profit: 'Obter lucros'
+mini_stop_lose: 'Parar perda'
+mini_start_auto_bet: 'Iniciar apostas automáticas'
+mini_stop_auto_bet: 'Parar apostas automáticas'
+mini_auto_bet_finish: 'As apostas estão sendo concluídas'
+mini_target_multi: 'Multiplicador alvo'
+mini_win_odd: 'Probabilidades de ganhar'
+mini_touzhu: Aposta
+mini_more_than_balance: 'Sua aposta não pode ser maior que seu saldo!'
+mini_must_than_zero: 'Deve ser maior ou igual a 0'
+mini_game_set: 'Configurações do jogo'
+mini_ju_mode: 'Modo teatro'
+mini_sstj: 'Estatísticas em tempo real'
+mini_collect_game: 'Jogos favoritos'
+mini_fairness: Justiça
+mini_start_auto_bet_tip: 'Início de apostas automáticas'
+mini_stop_auto_bet_tip: 'Término de apostas automáticas'
+commission_record: 'Registro de comissões'
+commission_grant: 'Emissão de comissão'
+commission_draw: 'Retirada da Comissão'
+order_id: 'Número do pedido'
+score: Placar
+v_sports: 'Esportes virtuais'
+plinko_manual: 'Apostas manuais'
+plinko_auto: 'Apostas automáticas'
+plinko_amount: 'Valor da aposta'
+plinko_risk: Risco
+plinko_rows: 'Numero de linhas'
+plinko_bet: Aposta
+plinko_betNumbers: 'Número de apostas'
+plinko_autobetstart: 'Iniciar apostas automáticas'
+plinko_autobetstop: 'Parar apostas automáticas'
+plinko_fairness: Justiça
+plinko_original: 'Jogo original'
+plinko_bigwins: 'Grande vencedor'
+plinko_luckwins: 'Vencedor sortudo'
+plinko_challenges: Desafio
+plinko_description: Descrever
+plinko_rank: Classificação
+plinko_user: Jogador
+plinko_date: Data
+plinko_multiplier: Multiplicador
+plinko_payout: 'Valor do pagamento'
+plinko_level1: Inferior
+plinko_level2: Médio
+plinko_level3: Superior
+plinko_stealth: Oculto
+plinko_live: 'Apostas ao vivo'
+plinko_animation: Animação
+plinko_maxvalue: 'Valor máximo da aposta'
+plinko_info: 'Informações do jogo'
+plinko_keyboard: 'Tecla de atalho'
+plinko_maxquestion1: 'Tem certeza de que deseja ativar o botão Aposta Máxima?'
+plinko_maxquestion2: 'Tem certeza de que deseja ativar o botão Aposta Máxima?'
+plinko_turnOn: Ativar
+plinko_turnOff: Ativar
+plinko_info1: '1. O modelo de alocação determinará diferentes pagamentos potenciais através de riscos e multiplicadores.'
+plinko_info2: '2. Não vire o dispositivo ou a tela para desafiar a gravidade enquanto o jogo estiver em andamento.'
+plinko_rules: 'Regras do jogo'
+plinko_hotkey1: 'Fazer uma aposta'
+plinko_hotkey2: 'Dobre sua aposta'
+plinko_hotkey3: 'Metade das apostas'
+plinko_hotkey4: 'Valor da aposta ímpar'
+plinko_hotkeyInfo: 'Assim que a tecla de atalho estiver ativada, ela afetará todos os jogos até que seja desativada. Embora alguns jogos tenham as mesmas combinações de teclas, é recomendável confirmar as interações de teclas bloqueadas de diferentes jogos antes de usá-los.'
+plinko_hotkeyUse: 'Habilitar teclas de atalho'
+plinko_statistics: 'Estatísticas em tempo real'
+plinko_type1: ""
+plinko_type2: Aposta
+plinko_type3: Competição
+plinko_type4: Ocultar
+plinko_left1: Lucro
+plinko_left2: 'Aposta total'
+plinko_right1: Vitória
+plinko_right2: Derrota
+plinko_max: 'Valor máximo'
+plinko_autobetalert1: 'Início de apostas automáticas'
+plinko_autobetalert2: 'Término de apostas automáticas'
+plinko_betamountalert: 'Sua aposta não pode ser maior que seu saldo!'
+commission_draw_success: 'Retirada de comissão bem-sucedida'
+receive_bonus_amount: 'Valor a receber'
+integral: 'Nível de classificação'
+reg_success_title: Sucesso
+reg_day: DD
+login_ip_title: IP
+gameble_aware: 'Aposta com responsabilidade'
+transfer_to_wallet: 'Transferir para carteira'
+statistical_data_dialog_title: 'Dados estatísticos'
+end_time_table: 'Término: após {time} horas'
 user_no_statistics_display: 此用户未有可显示的统计数据
 this_week: 本周
 this_month: 本月
