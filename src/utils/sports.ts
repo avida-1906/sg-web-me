@@ -736,10 +736,17 @@ export class SportsCart {
    */
   checkWid(wid: string) {
     const index = this.dataList.findIndex(a => a.wid === wid)
-    if (index > -1 && this.dataList[index].result === void 0)
+    const newWidIndex = this.dataList.findIndex(a => a.new_wid === wid)
+    if (index > -1 && this.dataList[index].result === void 0) {
       return true
-    else
-      return false
+    }
+    else {
+      if (newWidIndex > -1 && this.dataList[newWidIndex].result === void 0)
+        return true
+
+      else
+        return false
+    }
   }
 
   /**
