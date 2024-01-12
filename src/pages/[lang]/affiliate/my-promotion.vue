@@ -2,9 +2,10 @@
 const { t } = useI18n()
 usePageTitle({ prefix: t('menu_title_my_promotion') })
 
+const { isLogin } = storeToRefs(useAppStore())
 const { isMobile } = storeToRefs(useWindowStore())
 const location = useBrowserLocation()
-const { data: proData, loading: loadMyData } = useRequest(ApiGetMyPro, { manual: false })
+const { data: proData, loading: loadMyData, run: runGetMyPro } = useRequest(ApiGetMyPro)
 const router = useLocalRouter()
 
 const baseQrRef = ref()
@@ -60,50 +61,56 @@ const getSquareVal = computed(() => {
   return isMobile.value ? squareVal.value : '123'
 })
 const commission = computed(() => [
-  { label: t('accu_commission'), value: proData.value?.commission?.accumulated ?? '' },
-  { label: t('received_commission'), value: proData.value?.commission?.received ?? '' },
+  {
+    label: t('accu_commission'),
+    value: proData.value?.commission?.accumulated ?? '0',
+  },
+  {
+    label: t('received_commission'),
+    value: proData.value?.commission?.received ?? '0',
+  },
   {
     label: t('last_commission'),
-    value: proData.value?.commission?.last_commission ?? '',
+    value: proData.value?.commission?.last_commission ?? '0',
   },
 ])
 
 const performance = computed(() => [
   {
     label: t('team_num'),
-    value: `${proData.value?.performance?.team_num}${t('people')}`,
+    value: `${proData.value?.performance?.team_num ?? 0}${t('people')}`,
   },
   {
     label: t('direct_mem'),
-    value: `${proData.value?.performance?.direct_num}${t('people')}`,
+    value: `${proData.value?.performance?.direct_num ?? 0}${t('people')}`,
   },
   {
     label: t('other_mem'),
-    value: `${proData.value?.performance?.other_num}${t('people')}`,
+    value: `${proData.value?.performance?.other_num ?? 0}${t('people')}`,
   },
   {
     label: t('total_performance'),
-    value: `${proData.value?.performance?.performance_amount}`,
+    value: `${proData.value?.performance?.performance_amount ?? '0'}`,
   },
   {
     label: t('direct_performance'),
-    value: `${proData.value?.performance?.direct_amount}`,
+    value: `${proData.value?.performance?.direct_amount ?? '0'}`,
   },
   {
     label: t('other_performance'),
-    value: `${proData.value?.performance?.other_amount}`,
+    value: `${proData.value?.performance?.other_amount ?? '0'}`,
   },
 ])
 
 const bet = computed(() => [
   {
     label: t('total_effect_bets'),
-    value: proData.value?.subordinate?.valid_bet_amount ?? '',
+    value: proData.value?.subordinate?.valid_bet_amount ?? '0',
   },
-  { label: t('total_bet_order'), value: proData.value?.subordinate?.bet_num ?? '' },
+  { label: t('total_bet_order'), value: proData.value?.subordinate?.bet_num ?? '0' },
   {
     label: t('slash_win_lose_total'),
-    value: proData.value?.subordinate?.net_amount ?? '',
+    value: proData.value?.subordinate?.net_amount ?? '0',
   },
 ])
 
@@ -112,10 +119,14 @@ function downloadQr() {
 }
 function openLink(link: string) {
   if (link === 'Gmail')
-    window.location.href = `mailto:?subject=${link}`
+    window.location.href = `mailto:?subject=&body=${qrUrl.value}`
   else
     link && router.push(link + qrUrl.value)
 }
+
+watch(() => isLogin.value, (newValue) => {
+  newValue && runGetMyPro()
+})
 </script>
 
 <template>
@@ -227,7 +238,7 @@ function openLink(link: string) {
 .tg-affiliate-retention {
   font-size: var(--tg-font-size-default);
   color: var(--tg-text-white);
-  --tg-base-square-tab-font-weight: 400;
+  --tg-base-square-tab-font-weight: var(--tg-font-weight-normal);
   --tg-base-square-tab-padding-top: 18px;
   --tg-base-square-tab-padding-y: 18px;
   >.retention-item~.retention-item {

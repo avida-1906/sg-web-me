@@ -2,8 +2,7 @@
 const { startTime, endTime } = getDaIntervalMap(new Date().getTime(), 30)
 
 const { t } = useI18n()
-// const { userLanguage } = storeToRefs(useLanguageStore())
-
+const { isLogin } = storeToRefs(useAppStore())
 const { list: scaleList } = useScaleData()
 const { selected: platformId, list: platformIdList } = useSelect([
   {
@@ -86,8 +85,8 @@ const params = computed(() => {
   }
 })
 
-onMounted(() => {
-  useListSearch(params, runAsync, resetPage)
+watch(() => isLogin.value, (newValue) => {
+  newValue && useListSearch(params, runAsync, resetPage)
 })
 </script>
 
