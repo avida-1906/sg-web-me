@@ -730,6 +730,7 @@ onUnmounted(() => {
         <BaseTab
           v-model="betOrderSelectValue"
           :list="betOrderData"
+          :disable-click="betLoading"
           @change="slipTabChange"
         />
       </div>

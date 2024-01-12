@@ -17,12 +17,14 @@ interface Props {
   lineStyle?: boolean
   needScrollIntoView?: boolean
   needScrollAtInit?: boolean
+  disableClick?: boolean
 }
 const props = withDefaults(defineProps<Props>(), {
   shape: 'round',
   center: true,
   size: 'small',
   needScrollIntoView: true,
+  disableClick: false,
 })
 const emit = defineEmits(['update:modelValue', 'change'])
 const router = useLocalRouter()
@@ -31,7 +33,7 @@ const { isMobile } = storeToRefs(useWindowStore())
 const curTabRef = ref<Array<Element | null>>([])
 
 function onClick(tab: TabItem, i: number) {
-  if (tab.value === props.modelValue || tab.disabled)
+  if (tab.value === props.modelValue || tab.disabled || props.disableClick)
     return
 
   emit('update:modelValue', tab.value)
