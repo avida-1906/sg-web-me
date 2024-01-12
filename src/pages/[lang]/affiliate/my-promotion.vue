@@ -126,7 +126,7 @@ function openLink(link: string) {
 
 watch(() => isLogin.value, (newValue) => {
   newValue && runGetMyPro()
-})
+}, { immediate: true })
 </script>
 
 <template>

@@ -76,8 +76,10 @@ const params = computed(() => {
   }
 })
 
-watch(() => isLogin.value, (newValue) => {
-  newValue && useListSearch(params, runAsync, resetPage)
+onMounted(() => {
+  watch(() => isLogin.value, (newValue) => {
+    newValue && useListSearch(params, runAsync, resetPage)
+  }, { immediate: true })
 })
 </script>
 
