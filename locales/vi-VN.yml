@@ -104,7 +104,7 @@ withdraw: Rút tiền
 this_field_is_required: Phần này bắt buộc
 buy_cryptocurrency: Mua tiền điện tử
 your_currency_deposit_address: Địa chỉ nạp tiền {currency} của bạn
-sports_events: Tất cả
+sports_events: Tất Cả
 top_sports_events: Môn Thể Thao Hàng Đầu
 choose_your_balance: Lựa chọn hiển thị số dư
 enter_your_content: Vui lòng nhập nội dung
@@ -754,7 +754,7 @@ finance_withdraw_empty_text: Không có lệnh Rút tiền
 finance_other_empty_text: Chưa có mục nào
 finance_deposit_download_text: Tải xuống tất cả các khoản tiền gửi
 finance_withdraw_download_text: Tải xuống tất cả các lần rút tiền
-finance_other_tab_all: Tất cả
+finance_other_tab_all: Tất Cả
 finance_other_tab_bonus: Giải thưởng
 finance_other_tab_drop: Phần thưởng airdrop
 finance_other_tab_campaign_withdrawal: 'Rút tiền hoa hồng '
