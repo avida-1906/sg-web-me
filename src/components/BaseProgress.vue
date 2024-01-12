@@ -112,6 +112,13 @@ const lineColor = computed(() => {
   </div>
 </template>
 
+<style lang="scss">
+:root{
+ --tg-base-progress-inner-bg: var(--tg-secondary-light);
+ --tg-base-progress-active-bg: var(--tg-sub-blue);
+}
+</style>
+
 <style lang="scss" scoped>
 .v-enter-active,
 .v-leave-active {
@@ -131,12 +138,12 @@ const lineColor = computed(() => {
 
   .m-progress-inner {
     width: 100%;
-    background: var(--tg-secondary-light);
+    background: var( --tg-base-progress-inner-bg);
     border-radius: 100px;
 
     .u-progress-bg {
       position: relative;
-      background-color: var(--tg-sub-blue);//默认颜色
+      background-color: var(--tg-base-progress-active-bg);
       border-radius: 100px;
       transition: all .3s cubic-bezier(0.78, 0.14, 0.15, 0.86);
     }

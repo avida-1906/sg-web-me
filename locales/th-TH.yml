@@ -1857,3 +1857,7 @@ gameble_aware: Gameble aware
 transfer_to_wallet: 转移到钱包
 statistical_data_dialog_title: 统计数据
 end_time_table: '结束时间：{time}小时后'
+user_no_statistics_display: 此用户未有可显示的统计数据
+this_week: 本周
+this_month: 本月
+this_quarter: 本季度

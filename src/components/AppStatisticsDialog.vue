@@ -13,11 +13,17 @@ const props = defineProps<Props>()
 const { t } = useI18n()
 const router = useLocalRouter()
 const { isLogin, userInfo } = storeToRefs(useAppStore())
+const betData = ref<any>([])
 const {
   data: betReport,
   run: runMemberBetReport,
   loading: loadMemberBetReport,
-} = useRequest(ApiMemberBetReport)
+} = useRequest(ApiMemberBetReport, {
+  onSuccess(data) {
+    betData.value = data
+  },
+})
+const { bool: isDetail, setBool: setIsDetail } = useBoolean(false)
 
 const tab = ref<'' | '1' | '2'>('')
 const tabList = [
@@ -31,13 +37,13 @@ const tabList = [
 ]
 
 const betColumns = ref<Column[]>([
-  {
-    title: t('currency_type'),
-    dataIndex: 'currency',
-    slot: 'currency',
-    align: 'center',
-    skeWidth: '21px',
-  },
+  // {
+  //   title: t('currency_type'),
+  //   dataIndex: 'currency',
+  //   slot: 'currency',
+  //   align: 'center',
+  //   skeWidth: '21px',
+  // },
   {
     title: t('bet_num'),
     dataIndex: 'bet_count',
@@ -51,7 +57,7 @@ const betColumns = ref<Column[]>([
   {
     title: t('win_lose'),
     dataIndex: 'net_amount',
-    // slot: 'winLose',
+    slot: 'winLose',
     align: 'center',
   },
 ])
@@ -191,12 +197,50 @@ const SweepstakesColumns = ref<Column[]>([
 // const onNext = function () {
 //   paginationData.value.page++
 // }
+const getBetColumns = computed(() => {
+  if (isDetail.value) {
+    return [{
+      title: t('plinko_date'),
+      dataIndex: 'bet_time',
+      slot: 'bet_time',
+      align: 'center',
+      skeWidth: '21px',
+    } as Column].concat(betColumns.value)
+  }
+  else {
+    return [{
+      title: t('currency_type'),
+      dataIndex: 'currency',
+      slot: 'currency',
+      align: 'center',
+      skeWidth: '21px',
+    } as Column].concat(betColumns.value)
+  }
+})
 
 function goVip() {
   router.push('/vip/promotion-bonus')
 }
+function showDetail(detail: []) {
+  betData.value = detail
+  setIsDetail(true)
+}
+function closeDetail() {
+  betData.value = betReport.value
+  setIsDetail(false)
+}
+function formatBetTime(betTime: string) {
+  switch (betTime) {
+    case '1': return t('today')
+    case '7': return t('this_week')
+    case '30': return t('this_month')
+    case '90': return t('this_quarter')
+    default: return '-'
+  }
+}
 
 watch(() => tab.value, (newValue) => {
+  setIsDetail(false)
   runMemberBetReport({
     username: props.userName ?? '',
     game_class: newValue,
@@ -207,48 +251,63 @@ watch(() => tab.value, (newValue) => {
 <template>
   <div class="app-statistics-dialog">
     <div class="statistics-content">
-      <div v-if="isLogin" class="layout-spacing statistics-wrapper">
-        <AppVipProgress v-if="userInfo?.username === userName">
-          <template #title>
-            <p class="s-user-name">
-              {{ userName }}
-            </p>
-            <div class="s-join-date">
-              <span>{{ t('in_date') }}：</span>
-              <span>{{ timeToDateFormat(userInfo?.created_at ?? 0) }}</span>
-            </div>
-          </template>
-          <div class="go-vip" @click="goVip">
-            <span>{{ t('user_vip_pro') }}</span><BaseIcon name="uni-arrowright-line" />
-          </div>
-        </AppVipProgress>
-        <BaseTab v-model="tab" :list="tabList" full />
-        <div class="scroll-x bet-data-table">
-          <BaseTable
-            :columns="betColumns"
-            :data-source="betReport"
-            :loading="loadMemberBetReport"
-            :skeleton-row="4"
-            :skeleton-width="18"
-          >
-            <template #currency="{ record }">
-              <div class="center">
-                <AppCurrencyIcon
-                  :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
-                />
+      <template v-if="isLogin">
+        <div class="layout-spacing reset statistics-wrapper">
+          <AppVipProgress v-if="userInfo?.username === userName">
+            <template #title>
+              <p class="s-user-name">
+                {{ userName }}
+              </p>
+              <div class="s-join-date">
+                <span>{{ t('in_date') }}：</span>
+                <span>{{ timeToDateFormat(userInfo?.created_at ?? 0) }}</span>
               </div>
             </template>
-            <!-- <template #winLose="{ record }">
-              <div class="flex-center">
-                <AppAmount
-                  :amount="record.net_amount"
-                  :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
-                />
-              </div>
-            </template> -->
-          </BaseTable>
+            <div class="go-vip" @click="goVip">
+              <span>{{ t('user_vip_pro') }}</span><BaseIcon name="uni-arrowright-line" />
+            </div>
+          </AppVipProgress>
+          <BaseTab v-model="tab" :list="tabList" full />
         </div>
-      </div>
+        <BaseTable
+          v-if="betReport?.length || loadMemberBetReport"
+          :columns="getBetColumns"
+          :data-source="betData"
+          :loading="loadMemberBetReport"
+          :skeleton-row="4"
+          :skeleton-width="18"
+        >
+          <template #bet_time="{ record }">
+            {{ formatBetTime(record.bet_time) }}
+          </template>
+          <template #currency="{ record }">
+            <div class="center" @click="showDetail(record.detail)">
+              <AppCurrencyIcon
+                :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
+              />
+            </div>
+          </template>
+          <template #winLose="{ record: { net_amount } }">
+            <div
+              :style="{
+                color: Number(net_amount) > 0
+                  ? 'var(--tg-text-green)' : '#ff0101',
+              }"
+            >
+              {{ net_amount }}
+            </div>
+          </template>
+        </BaseTable>
+        <div v-else class="empty-box">
+          <BaseEmpty icon="empty-1" :description="t('user_no_statistics_display')" />
+        </div>
+        <BaseButton
+          v-show="isDetail" class="btn-receive"
+          bg-style="secondary" size="md" @click="closeDetail"
+        >
+          {{ t('navigation_back') }}
+        </BaseButton>
+      </template>
       <!-- <AppStack
             :pagination-data="paginationData"
             @previous="onPrevious" @next="onNext"
@@ -390,13 +449,7 @@ watch(() => tab.value, (newValue) => {
     transform: translateX(8px);
   }
 }
-.bet-data-table {
-  --tg-table-th-background: var(--tg-secondary-grey);
-  --tg-table-odd-background: var(--tg-secondary-grey);
-  --tg-table-even-background: var(--tg-primary-main);
-}
 .statistics-wrapper {
-  padding: 0 16px 16px;
   gap: 16px;
 }
 .flex-center {
@@ -405,18 +458,29 @@ watch(() => tab.value, (newValue) => {
 }
 .app-statistics-dialog{
   .statistics-content{
+    padding: 0 16px 16px;
+    text-align: center;
     // padding: var(--tg-spacing-2) 0 var(--tg-spacing-16);
     .s-user-name {
       color: var(--tg-secondary-light);
       font-size: var(--tg-font-size-default);
       font-weight: var(--tg-font-weight-normal);
-      text-align: center;
+      text-align: left;
     }
     .s-join-date{
       color: var(--tg-secondary-light);
       font-size: var(--tg-font-size-default);
       font-weight: var(--tg-font-weight-normal);
-      text-align: center;
+      text-align: left;
+    }
+    .btn-receive{
+      max-width: 400px;
+      width: 100%;
+    }
+    .empty-box{
+      margin: 26px auto 0;
+      --tg-empty-icon-size: 140px;
+      --tg-empty-text-padding: var(--tg-spacing-24) 0 var(--tg-spacing-10);
     }
     .s-tab{
       margin-top: var(--tg-spacing-12);

@@ -54,7 +54,8 @@ await application.allSettled(
       <BaseButton
         class="btn-receive"
         :loading="loadTransferToMember"
-        bg-style="secondary" custom-padding @click="runTransferToMember"
+        bg-style="secondary" size="md"
+        @click="runTransferToMember"
       >
         {{ $t('finance_funds_transfer_commission_withdraw') }}
       </BaseButton>

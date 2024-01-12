@@ -18,6 +18,7 @@ const { vip, progress, currentLevel, nextLevel, isMaxLevel } = useVipInfo()
         :percent="progress"
         :show-info="false"
         :stroke-width="14"
+        stroke-color="var(--tg-primary-success)"
       />
     </div>
     <div class="percent-btm">
@@ -76,6 +77,7 @@ const { vip, progress, currentLevel, nextLevel, isMaxLevel } = useVipInfo()
 <style lang='scss' scoped>
 .app-vip-progress{
   .percent-mid{
+    --tg-base-progress-inner-bg: var(--tg-secondary-main);
     .m-progress-inner{
       background-color: var(--tg-secondary-main);
     }
