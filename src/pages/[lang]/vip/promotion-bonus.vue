@@ -8,7 +8,7 @@ const { vip, score, vipConfigArray } = useVipInfo()
 const { isLogin } = storeToRefs(useAppStore())
 
 const { run: runGetPromoBonus, data: promoBonus, loading: loadPromoBonus }
-  = useRequest(ApiMemberVipBonusAvailable)
+  = useRequest(ApiMemberVipBonusAvailable, { ready: isLogin })
 
 const { openVipBonusDialog } = useDialogVipBonus(() => {
   promoBonus.value = []
@@ -56,7 +56,7 @@ function seeExpDialog() {
 }
 
 onMounted(() => {
-  isLogin.value && runGetPromoBonus(params)
+  runGetPromoBonus(params)
 })
 </script>
 
