@@ -42,7 +42,7 @@ const expData = reactive([
           =
         </div>
         <div class="right">
-          {{ item.exp }}VIP{{ $t('game_water_experience') }}
+          {{ item.exp }}VIP{{ $t('integral') }}
         </div>
       </li>
     </ul>

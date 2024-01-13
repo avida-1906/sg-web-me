@@ -39,7 +39,7 @@ const { nextLevel, scoreToNext } = useVipInfo()
                 { vip: `VIP${nextLevel.level}`, amount: toFixed(scoreToNext, 2) }) }}
         </span>
         <!-- <BaseIcon name="coin-usdt" /> -->
-        <span>{{ $t('game_water_experience') }}</span>
+        <span>{{ $t('integral') }}</span>
       </span>
       <span v-else class="water">
         {{ $t('vip_top') }}

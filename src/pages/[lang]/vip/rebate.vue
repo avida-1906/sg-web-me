@@ -107,7 +107,7 @@ watch(tabList, (val) => {
         </div>
       </template>
       <template v-else>
-        <div class="tabs-outer">
+        <div>
           <BaseTab
             v-model="tab"
             style="--tg-tab-style-color: var(--tg-text-lightgrey);"
@@ -115,7 +115,10 @@ watch(tabList, (val) => {
             :center="false"
           />
         </div>
-        <BaseSquareTab v-model="squareVal" :list="squareTabList" />
+        <BaseSquareTab
+          v-model="squareVal" :list="squareTabList"
+          style="--tg-base-square-tab--padding-outer-y: var(--tg-spacing-6);"
+        />
       </template>
       <BaseTable :columns="columns" :data-source="data">
         <template #level="{ record }">
@@ -153,8 +156,8 @@ watch(tabList, (val) => {
   --tg-base-button-justify-content: space-around;
   --tg-app-dropdown-width: 100%;
   --tg-base-square-tab-dot-width: 14px;
-  --tg-base-square-tab-padding-top: 10px;
-  --tg-base-square-tab-padding-y: 6px;
+  --tg-base-square-tab-padding-top: var(--tg-spacing-10);
+  --tg-base-square-tab-padding-y: var(--tg-spacing-6);
   --tg-base-square-tab-font-weight: 500;
   .tabs {
     padding: var(--tg-spacing-12);

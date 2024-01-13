@@ -88,6 +88,7 @@ await application.allSettled([loadIcon()])
 <style>
 :root {
   --tg-base-square-tab-padding-y: var(--tg-spacing-16);
+  --tg-base-square-tab--padding-outer-y: 0;
   --tg-base-square-tab-bg: var(--tg-secondary-dark);
   --tg-base-square-tab-font-weight: var(--tg-font-weight-semibold);
   --tg-base-square-tab-padding-top: 14px;
@@ -101,11 +102,14 @@ await application.allSettled([loadIcon()])
   // display: flex;
   // align-items: center;
   // margin: var(--tg-base-square-tab-margin);
-  padding: 0 16px var(--tg-base-square-tab-padding-y);
+  padding: 0 16px;
   background-color: var(--tg-base-square-tab-bg);
   border-radius: var(--tg-radius-default);
   overflow: hidden;
-
+  padding-bottom: var(--tg-base-square-tab--padding-outer-y);
+  .scroll-x{
+    padding-bottom: var(--tg-base-square-tab-padding-y);
+  }
 }
 
 .tab-wrap {
@@ -142,7 +146,7 @@ await application.allSettled([loadIcon()])
       .main {
         display: grid;
         grid-auto-flow: row;
-        gap: var(--tg-spacing-7);
+        gap: var(--tg-spacing-4);
         place-items: center;
         position: relative;
         font-size: var(--tg-font-size-xs);
@@ -166,6 +170,7 @@ await application.allSettled([loadIcon()])
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
+          line-height: 1.5;
           // max-width: 6ch;
           color: var(--tg-text-lightgrey);
           font-weight: var(--tg-base-square-tab-font-weight);
@@ -220,6 +225,9 @@ await application.allSettled([loadIcon()])
           font-size: 16px;
           width: 16px;
           height: 16px;
+        }
+        .name{
+          line-height: 1;
         }
       }
     }
