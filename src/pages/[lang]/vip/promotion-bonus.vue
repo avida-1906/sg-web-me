@@ -43,7 +43,7 @@ const columns = computed<Column[]>(() => [
   },
   {
     title: t('keep_integral'),
-    dataIndex: 'score',
+    dataIndex: 'retain_score',
     align: 'center',
   },
 ])
