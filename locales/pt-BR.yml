@@ -95,7 +95,7 @@ all_bets: Todas as Apostas
 casino_bets: Apostas de cassino
 billboard: Grandes Apostadores
 competition_board: Classificação da Corrida
-competition: 'Competição {money}'
+competition: 'Corrida de {money}'
 competition_name: Nome da competição
 currency: Moeda
 network: Rede
@@ -793,7 +793,7 @@ finance_other_empty_text: Sem entradas.
 finance_deposit_download_text: Baixar todos os depositos
 finance_withdraw_download_text: Baixar todos os saques
 finance_other_tab_all: Todos
-finance_other_tab_bonus: Bônus
+finance_other_tab_bonus: Prêmio
 finance_other_tab_drop: Bônus de lançamento
 finance_other_tab_campaign_withdrawal: Saques de comissões das promoções
 finance_other_tab_reload_claim: Receber bônus de recarga
@@ -861,7 +861,7 @@ last_deposits: Último depósito
 independent_deposit: Depósitos separados
 commission_rate: Taxa de comissão
 times: Vezes
-wagered: Aposta total
+wagered: Apostado
 bet_amount: Valor da aposta
 notify_title_error: Erro
 notify_title_success: Sucesso
@@ -1138,7 +1138,7 @@ day_deposit_bonus: Bônus diário/bônus de recarga
 recent_game_perform_bonus: Bônus de desempenho de jogo recente
 dedicated_vip_servicer: Representante de serviço VIP dedicado
 multiple_count: Multiplicador
-ranking: Classificação
+ranking: Rank
 hidden_user: Privado
 hidden_mode: Modo anônimo
 user_turn_on_hidden: Este jogador ativou o modo privado
@@ -1989,7 +1989,7 @@ day_no_max: A data não pode exceder o número {delta}
 max_age: Sua idade não pode ultrapassar {delta} anos
 max_value: O valor precisa ser maior ou igual a {delta}
 qr_code: QR code
-bet_comp_coin: Todas as moedas nas quais você faz apostas serão padronizadas para a moeda da competição
+bet_comp_coin: Seu valor apostado em qualquer moeda é convertido para a moeda usada na corrida
 exp_rule: Regras de cálculo empírico
 electric_game: E-sports
 max_odd: As probabilidades de apostas múltiplas excedem o limite superior
