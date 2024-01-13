@@ -875,8 +875,8 @@ sports_single_bet: เดิมพันรายการเดี่ยว
 sports_multi_bet: การเดิมพันแบบผสม
 sports_active: ยังไม่คำนวณ
 sports_settled: คำนวณ
-sports_accept_any_odds: 'ยอมรับทุกๆ อัตราต่อรอง'
-sports_accept_higher_odds: ยอมรับเฉพาะอัตราต่อรองที่สูงกว่าเท่านั้น
+sports_accept_any_odds: 'ยอมรับการเปลี่ยนแปลงอัตราต่อรองทั้งหมด'
+sports_accept_higher_odds: ยอมรับเฉพาะอัตราต่อรองที่ได้เปรียบ
 sports_accept_none_odds: จะไม่ยอมรับการเปลี่ยนแปลงอัตราต่อรอง
 sports_bet_slip_empty: ไม่มีรายการเดิมพัน
 sports_betting_now: เริ่มวางเดิมพันทันที!
