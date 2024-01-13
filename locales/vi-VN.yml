@@ -1235,7 +1235,7 @@ currency_disable: Không thể sử dụng tiền tệ
 save: Lưu
 verified: Đã xác minh
 raffle_ticket: Phiếu rút thăm
-in_date: Tham gia vào ngày
+in_date: Tham gia vào
 fresh_competition: cuộc thi mới nhất
 deal_pend: Chờ xử lý
 adopted: Đã thông qua
@@ -1640,9 +1640,9 @@ vip_club_tip_29: 'Reload là tiền thưởng được tính dựa trên hoạt 
 vip_club_tip_30: Đi tới bảng điều khiển người dùng ở phía bên phải của màn hình và nhấp vào VIP .
   Một phương thức sẽ xuất hiện . Nhấp vào thẻ reload và nhấp vào reload để nhận phần thưởng reload của bạn .
 vip_club_tip_31: Tiền thưởng hàng tháng được lên lịch vào lúc nào ?
-vip_club_tip_32: Tiền thưởng hàng tháng sẽ được phân phối mỗi tháng một lần . 
-  Ngày thường là vào khoảng ngày 15. Trong một số trường hợp , nó có thể muộn hơn một chút hoặc thậm chí sớm hơn. 
-  Đây là lí do tại sao nó là một trong những phần thưởng được mong đợi nhất trên Meibo. Khi nó được phát hành , 
+vip_club_tip_32: Tiền thưởng hàng tháng sẽ được phân phối mỗi tháng một lần .
+  Ngày thường là vào khoảng ngày 15. Trong một số trường hợp , nó có thể muộn hơn một chút hoặc thậm chí sớm hơn.
+  Đây là lí do tại sao nó là một trong những phần thưởng được mong đợi nhất trên Meibo. Khi nó được phát hành ,
   bạn sẽ được thông báo qua email.Để đảm bảo bạn không bỏ lỡ phần thưởng , vui lòng kiểm tra lại thư mục thư rác trong email của bạn .
 vip_club_tip_33: Hội viên Đồng, Bạc và Vàng sẽ nhận được tiền thưởng của họ thông
   qua tiền thưởng nạp tiền hàng ngày, trong khi người chơi Bạch kim và Kim cương
