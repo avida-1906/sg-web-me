@@ -158,7 +158,6 @@ onMounted(() => {
   margin-top: 4px;
 }
 .page-all-data {
-  --tg-app-amount-font-size: var(--tg-font-size-xs);
   --tg-app-amount-font-weight: var(--tg-font-weight-normal);
 }
 </style>

@@ -159,7 +159,6 @@ onMounted(() => {
   --tg-base-select-style-padding-right: var(--tg-spacing-28);
 }
 .page-all-data {
-  --tg-app-amount-font-size: var(--tg-font-size-xs);
   --tg-app-amount-font-weight: var(--tg-font-weight-normal);
 }
 </style>

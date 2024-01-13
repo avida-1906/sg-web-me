@@ -3,13 +3,21 @@ const { startTime, endTime } = getDaIntervalMap(new Date().getTime(), 30)
 
 const { t } = useI18n()
 const { isLogin } = storeToRefs(useAppStore())
-const { list: scaleList } = useScaleData()
-const { selected: platformId, list: platformIdList } = useSelect([
+const router = useLocalRouter()
+// const { list: scaleList } = useScaleData()
+// const { selected: platformId, list: platformIdList } = useSelect([
+//   {
+//     label: t('finance_other_tab_all'),
+//     value: '',
+//   },
+//   ...scaleList,
+// ])
+const platformId = ref('')
+const platformIdList = ref([
   {
     label: t('finance_other_tab_all'),
     value: '',
   },
-  ...scaleList,
 ])
 const {
   selected: currency_id,
@@ -31,6 +39,18 @@ const {
   runAsync,
   resetPage,
 } = useList(ApiAgencyCommission, {}, { page_size: 10, isWatchPageOrPageSize: false })
+useRequest(ApiAgencyCommissionModelsList, {
+  manual: false,
+  ready: isLogin,
+  onSuccess(data) {
+    platformIdList.value = platformIdList.value.concat(data.map((item) => {
+      return {
+        label: item.name,
+        value: item.id,
+      }
+    }))
+  },
+})
 
 const date = ref([])
 const searchValue = useDebouncedRef({ value: '', delay: 1000 })
@@ -116,9 +136,13 @@ onMounted(() => {
       :loading="loading"
     >
       <template #time="{ record }">
-        {{ timeToDateFormat(record.send_time) }}
+        {{ `${timeToDateFormat(record.send_time)} ${timeToCustomizeFormat(
+          record.send_time, 'HH:mm:ss')}` }}
       </template>
-      <template #model_name />
+      <template #model_name="{ record }">
+        <span>{{ platformIdList.find(
+          item => item.value === record.model_id)?.label ?? '-' }}</span>
+      </template>
       <template #bet_amount="{ record }">
         <div class="center">
           <AppAmount
@@ -136,8 +160,11 @@ onMounted(() => {
         </div>
       </template>
       <template #operate>
-        <BaseButton size="none" type="text">
-          查看
+        <BaseButton
+          size="none" type="text"
+          @click="router.push('/affiliate/my-performance')"
+        >
+          {{ $t('view_label') }}
         </BaseButton>
       </template>
     </BaseTable>
