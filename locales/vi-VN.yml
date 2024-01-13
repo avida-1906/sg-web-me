@@ -104,7 +104,7 @@ withdraw: Rút tiền
 this_field_is_required: Phần này bắt buộc
 buy_cryptocurrency: Mua tiền điện tử
 your_currency_deposit_address: Địa chỉ nạp tiền {currency} của bạn
-sports_events: Tất Cả
+sports_events: Tất cả
 top_sports_events: Môn Thể Thao Hàng Đầu
 choose_your_balance: Lựa chọn hiển thị số dư
 enter_your_content: Vui lòng nhập nội dung
@@ -915,7 +915,7 @@ sports_live_tv: Phát trực tiếp
 sports_live_favourites: Vòng cược phổ biến của trận đấu đang diễn ra
 sports_upcoming_favourites: Sắp diễn ra trận đấu phổ biến
 sports_provider: Mục thể thao
-sports_odds_title: Tỷ lệ cược
+sports_odds_title: Tỉ lệ
 DECIMAL: Số thập phân
 FRACTION: Phân số
 AMERICAN: American
@@ -1129,7 +1129,7 @@ lucky_winner: Chiến Thắng May Mắn
 win_label: Ăn
 lose: Thua
 description: Miêu tả
-link: Liên kết
+link: Chương trình liên kết
 buy_bonus_round: Mua vòng thưởng
 pirate: Cướp biển
 sea: Đại đương
@@ -1601,7 +1601,7 @@ look_vip_level: Xem bảng cấp độ VIP
 beginner_handbook: Hướng dẫn bắt đầu
 step_num: Bước {num}
 experience: Trải nghiệm
-click_more: Click vào đây để tìm hiểu thêm
+click_more: bấm vào đây để tìm hiểu thêm
 has_more_q: Có nhiều câu hỏi hơn không?
 online_24_sup: Hỗ trợ khách hàng trực tiếp , 24 giờ
 vip_club_tip_1: Trải nghiệm VIP tuyệt vời
@@ -1644,46 +1644,20 @@ vip_club_tip_32: Tiền thưởng hàng tháng sẽ được phân phối mỗi 
   Ngày thường là vào khoảng ngày 15. Trong một số trường hợp , nó có thể muộn hơn một chút hoặc thậm chí sớm hơn. 
   Đây là lí do tại sao nó là một trong những phần thưởng được mong đợi nhất trên Meibo. Khi nó được phát hành , 
   bạn sẽ được thông báo qua email.Để đảm bảo bạn không bỏ lỡ phần thưởng , vui lòng kiểm tra lại thư mục thư rác trong email của bạn .
-vip_club_tip_33: Hội viên Đồng, Bạc và Vàng sẽ nhận được tiền thưởng của họ thông
-  qua tiền thưởng nạp tiền hàng ngày, trong khi người chơi Bạch kim và Kim cương
-  sẽ nhận được tiền thưởng của họ một lần.
-vip_club_tip_34: Làm thế nào để tính số tiền đặt cược cần thiết để đạt cấp độ tiếp
-  theo?
-vip_club_tip_35: Bắt đầu bằng cách nhấp vào menu người dùng chính ở góc trên bên
-  phải tài khoản của bạn, nhấp vào VIP trong menu thả xuống để xem tỷ lệ phần trăm
-  trên thanh tiến trình VIP của bạn, sau đó trừ số này khỏi 100% để có tỷ lệ phần
-  trăm còn lại. Chỉ cần nhân tỷ lệ phần trăm còn lại với tổng yêu cầu đặt cược mà
-  bạn còn lại để đạt cấp độ tiếp theo.
-vip_club_tip_36: Tôi sẽ nhận được phần thưởng gì sau mỗi lần nâng cấp?
-vip_club_tip_37: 'Phần thưởng nâng cấp: Đây là phần thưởng cố định tăng dần sau
-  mỗi lần nâng cấp. Chúng tôi sẽ thêm số tiền bổ sung dưới dạng tiền thưởng hiệu
-  suất trò chơi gần đây dựa trên lãi và lỗ của bạn trước khi nâng cấp.'
-vip_club_tip_38: 'Tiền thưởng hàng tuần và hàng tháng: Bạn sẽ nhận được số tiền
-  cơ bản dựa trên cấp độ VIP của mình và số tiền bổ sung cho mỗi 1.000 đô la bạn
-  đặt cược trong khoảng thời gian tương ứng.'
-vip_club_tip_39: 'Tiền thưởng hàng ngày: Phần thưởng nạp tiền sẽ được đại diện dịch
-  vụ VIP của bạn cập nhật khi hết hạn.'
-vip_club_tip_40: Số tiền thưởng được tính như thế nào?
-vip_club_tip_41: Số tiền thưởng bạn nhận được được tính dựa trên tổng số tiền đặt
-  cược và lợi nhuận của bạn. Chúng tôi tin rằng người chơi sẽ được khen thưởng dù
-  họ thắng hay thua. Thật không công bằng khi chỉ thưởng cho những người chơi thua
-  tiền, nhưng nếu bạn thực sự kém may mắn, chúng tôi sẽ tăng số tiền thắng của bạn!
-vip_club_tip_42: Đại diện dịch vụ VIP của tôi có thể làm gì cho tôi?
-vip_club_tip_43: Đại diện dịch vụ VIP của bạn sẽ đảm bảo rằng hiệu suất chơi trò
-  chơi của bạn sẽ được khen thưởng. Họ sẽ giúp bạn cập nhật phần thưởng nạp lại,
-  hướng dẫn bạn quy trình nâng cấp, xem xét các hạn chế về thể thao của bạn, đánh
-  giá xem bạn có đủ điều kiện nhận thêm tiền thưởng hay không và xử lý mọi vấn đề
-  bạn gặp phải trên trang web.
-vip_club_tip_44: Phần thưởng nạp thêm nhận được sau khi được chỉ định làm Đại diện
-  dịch vụ VIP là lợi ích liên tục hay có thể gia hạn?
-vip_club_tip_45: Khi bạn đạt cấp độ Bạch kim IV và được chỉ định làm Đại diện dịch
-  vụ VIP, bạn sẽ bắt đầu nhận được tiền thưởng nạp tiền hàng tuần có thể gia hạn.
-  Bất cứ khi nào phần thưởng nạp lại hàng tuần của bạn hết hạn, bạn có thể liên
-  hệ với Đại diện dịch vụ VIP của mình để cập nhật phần thưởng nạp lại có sẵn trong
-  7 ngày tiếp theo.
-vip_club_tip_46: Số tiền thưởng nạp lại tùy thuộc vào hiệu suất của bạn trong trò
-  chơi mỗi tuần và nếu bạn gặp xui xẻo với lợi nhuận trong tuần đó, bạn sẽ nhận
-  được thêm tiền thưởng.
+vip_club_tip_33: 'Hội viên Đồng, Bạc và Vàng sẽ được nhận tiền thưởng dưới hình thức reload hàng ngày , trong khi người chơi Bạch kim và Kim cương sẽ nhận được tiền thưởng của họ dưới dạng yêu cầu nhận thưởng một lần .'
+vip_club_tip_34: 'Làm cách nào để tính số tiền tôi cần đặt cược để chuyển sang cấp độ tiếp theo ?'
+vip_club_tip_35: 'Đầu tiên, hãy xem phần trăm còn lại trên thanh tiến trình VIP trong trang tài khoản của bạn ở góc trên cùng bên phải . Nhân số phần trăm còn lại với thanh 100% đầy đủ với yêu cầu đặt cược bạn cần đáp ứng để mở khoá cấp độ mới .'
+vip_club_tip_36: Tôi sẽ nhận được những phần thưởng nào sau khi lên cấp?
+vip_club_tip_37: 'Tiền thưởng thăng cấp : Đây là những phần thưởng cố định sẽ lớn hơn mỗi khi bạn lên cấp .Tuy nhiên, chúng tôi bổ sung thêm ở trên dưới dạng tiền thưởng khi chơi trò chơi gần đây tuỳ thuộc vào lãi/lỗ của bạn giữa các cấp độ.'
+vip_club_tip_38: 'Tiền thưởng hàng tuần/hàng tháng : Đây được tính với số tiền cơ bản dựa trên cấp độ VIP của bạn.Sau đó , bạn sẽ nhận được thêm cho mỗi 1.000 đô la bạn đặt cược trong khoảng thời gian tương ứng .'
+vip_club_tip_39: 'Tiền thưởng hàng ngày : Reload được gia hạn bởi người chăm sóc VIP của bạn khi chúng hết hạn .'
+vip_club_tip_40: Làm thế nào để bạn tính toán tiền thưởng ?
+vip_club_tip_41: 'Tiền thưởng được tính là sự kết hợp giữa cả số tiền đã đặt cược và lợi nhuận của bạn. Chúng tôi tin rằng người chơi phải luôn được thưởng bất kể bạn đang thắng hay thua .Sẽ là không công bằng nếu chỉ thưởng cho những người thua cuộc .Tuy nhiên, nếu bạn không may mắn, chúng tôi sẽ bổ sung thêm đầu trang !'
+vip_club_tip_42: Người chăm sóc VIP của tôi có thể làm gì cho tôi ?
+vip_club_tip_43: 'Người chăm sóc VIP của bạn ở đó để đảm bảo bạn đang được thưởng cho trải nghiệm chơi game của mình . Họ hỗ trợ gia hạn tải lại , hướng dẫn bạn tiến trình tăng cấp , xem xét giới hạn thể thao , đánh giá tiền thưởng bổ sung khi có sẵn và giải quyết bất kỳ vấn đề nào mà người dùng trên trang web gặp phải .'
+vip_club_tip_44: 'Khi tôi được chỉ định một người chăm sóc VIP , việc Reload của tôi có trở thành lợi ích liên tục hay có thể làm mới không？'
+vip_club_tip_45: 'Khi bạn đạt đến Bạch kim IV và được chỉ định một người chăm sóc , bạn sẽ bắt đầu nhận được các lần reload hàng tuần có thể gia hạn. Sau khi quá trình reload hàng tuần của bạn hết hạn , bạn có thể liên hệ với người chăm sóc của mình , người có thể gia hạn reload cho bạn trong khoảng thời gian 7 ngày tiếp theo .'
+vip_club_tip_46: 'Số tiền reload của bạn dựa trên hoạt động chơi trò chơi hàng tuần của bạn , nhằm mục đích kiếm tiền nếu bạn có một tuần kém may mắn về mặt lợi nhuận .'
 vip_club_tip_47: Trách nhiệm của Đại diện Dịch vụ VIP bao gồm những gì và chúng
   khác với nhân viên hỗ trợ trực tuyến thông thường như thế nào?
 vip_club_tip_48: Đại diện dịch vụ VIP chỉ được chỉ định cho những người chơi trên
@@ -2342,3 +2316,5 @@ user_no_statistics_display: Người dùng này thống kê bị ẩn.
 this_week: 本周
 this_month: 本月
 this_quarter: 本季度
+sports_tab_starting_soon2: Bắt Đầu
+recent_game_record2: Gần đây

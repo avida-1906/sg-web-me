@@ -257,7 +257,7 @@ setEventTime()
             </span>
           </template>
           <span v-else-if="isLastMin || (isStarted && !isOnAir)">
-            {{ t('sports_tab_starting_soon') }}
+            {{ t('sports_tab_starting_soon2') }}
           </span>
           <template v-else-if="isOnAir">
             <div class="status live">

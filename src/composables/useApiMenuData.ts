@@ -50,7 +50,7 @@ export function useApiMenuData() {
       token: true,
     },
     {
-      title: t('recent_game_record'),
+      title: t('recent_game_record2'),
       path: '/casino/recent',
       icon: 'chess-game-record',
       list: [],

@@ -789,7 +789,7 @@ game_type_slot_short_name: Caça-níqueis
 game_type_rec: Jogos recomendados
 finance_deposit_empty_text: Sem Depósitos
 finance_withdraw_empty_text: Sem Retiradas
-finance_other_empty_text: Não há entradas ainda
+finance_other_empty_text: Sem entradas.
 finance_deposit_download_text: Baixar todos os depositos
 finance_withdraw_download_text: Baixar todos os saques
 finance_other_tab_all: Todos
@@ -917,7 +917,7 @@ sports_status_timeout: Pausa
 sports_status_live: Esportes Ativos
 sports_status_close: Fechar
 sports_status_interrupted: Interrompido
-sports_status_settled: Liquidado
+sports_status_settled: Definido
 sports_status_finished: Finalizado
 sports_duplicate_bet: Repetir aposta
 sports_status_tie: Empate
@@ -928,13 +928,13 @@ sports_estimated_payment_amount: Pagamento estimado
 sports_payment_amount: Pagamento
 sports_single_bet: Aposta simples
 sports_multi_bet: Aposta múltipla
-sports_active: Não liquidado
-sports_settled: Liquidado
+sports_active: Ativo
+sports_settled: Definido
 sports_accept_any_odds: Aceitar quaisquer probabilidades
 sports_accept_higher_odds: Aceitar somente probabilidades altas
 sports_accept_none_odds: Não aceitar probabilidades
 sports_bet_slip_empty: Boletim de apostas vazio
-sports_betting_now: Comece a apostar já!
+sports_betting_now: Comece a Apostar Agora!
 sports_total_odds: Probabilidades totais
 sports_total_bet_amount: Apostas totais
 sports_odds_has_changed: As probabilidades sofreram alteração
@@ -1139,7 +1139,7 @@ recent_game_perform_bonus: Bônus de desempenho de jogo recente
 dedicated_vip_servicer: Representante de serviço VIP dedicado
 multiple_count: Multiplicador
 ranking: Classificação
-hidden_user: Furtividade
+hidden_user: Privado
 hidden_mode: Modo anônimo
 user_turn_on_hidden: Este jogador ativou o modo privado
 turn_on: Ativar
@@ -1848,9 +1848,9 @@ bet_fixed_x: Valores de apostas acima de {fixed} casas decimais não são suport
 failed_get_betinfo: Falha ao obter informação de apostas
 view_my_bets: Visualizar minhas apostas
 closed: Fechado
-empty_unsettle_bet: Não há apostas não liquidadas ainda
-empty_settle_bet: Não há apostas liquidadas ainda
-empty_casino_bet: Não há apostas de casino ainda
+empty_unsettle_bet: Sem Apostas Ativas
+empty_settle_bet: Sem Apostas Definidas
+empty_casino_bet: Sem Apostas de Cassino
 vip_top: Você atingiu o nível máximo VIP
 wait_upgrade: 'Aguardando atualização '
 upgraded: Atualizado
@@ -1953,7 +1953,7 @@ pls_select_pix: Selecione uma conta PIX
 we_use_cookie: Nós usamos cookies
 cookie_purposes: para fins funcionais e analíticos
 accept: Aceitar
-start_game_now: Iniciar o jogo agora
+start_game_now: Comece a Jogar Agora!
 policies: Políticas
 min_len_char: Mín.  {delta} caracteres
 max_len_char: Máx.  {delta} caracteres
@@ -2393,3 +2393,5 @@ user_no_statistics_display: 此用户未有可显示的统计数据
 this_week: 本周
 this_month: 本月
 this_quarter: 本季度
+sports_tab_starting_soon2: Prestes a começar
+recent_game_record2: Recente
