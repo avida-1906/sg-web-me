@@ -259,7 +259,7 @@ watch(() => tab.value, (newValue) => {
                 {{ userName }}
               </p>
               <div class="s-join-date">
-                <span>{{ t('in_date') }}：</span>
+                <span>{{ t('in_date') }}</span>
                 <span>{{ timeToDateFormat(userInfo?.created_at ?? 0) }}</span>
               </div>
             </template>

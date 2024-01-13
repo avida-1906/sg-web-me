@@ -23,7 +23,7 @@ const dateWithDayFormat: { [t: string]: string } = {
   'th-TH': 'DD/MM ddd HH:mm',
   'hi-IN': 'dddd, D MMMM h:mm A',
 }
-// 年月日
+// 年月日（文字）
 const dateFormat: { [t: string]: string } = {
   'en-US': 'MMMM DD,YYYY',
   'zh-CN': 'YYYY年MM月DD日',
@@ -31,6 +31,15 @@ const dateFormat: { [t: string]: string } = {
   'pt-BR': 'DD [de] MMMM [de] YYYY',
   'th-TH': 'DD/MM/YYYY',
   'hi-IN': 'DD/MM/YYYY',
+}
+// 年月日（符号）
+const dateFormat2: { [t: string]: string } = {
+  'en-US': 'MM-DD-YYYY',
+  'zh-CN': 'YYYY-MM-DD',
+  'vi-VN': 'DD-MM-YYYY',
+  'pt-BR': 'DD-MM-YYYY',
+  'th-TH': 'DD-MM-YYYY',
+  'hi-IN': 'DD-MM-YYYY',
 }
 const langKey: { [t: string]: string } = {
   'en-US': 'en',
@@ -59,7 +68,7 @@ export function timeToDateWithDayFormat(ts: number): string {
   return dayjs(checkTs(ts)).format(dateWithDayFormat[getCurrentLanguageForFrontend()])
 }
 
-/** 年月日 */
+/** 年月日（文字） */
 export function timeToDateFormat(ts: number): string {
   // 🧪调试用
   // dayjs.locale(langKey['th-TH'])
@@ -67,6 +76,12 @@ export function timeToDateFormat(ts: number): string {
 
   dayjs.locale(langKey[getCurrentLanguageForFrontend()])
   return dayjs(checkTs(ts)).format(dateFormat[getCurrentLanguageForFrontend()])
+}
+
+/** 年月日（符号） */
+export function timeToDateFormat2(ts: number): string {
+  dayjs.locale(langKey[getCurrentLanguageForFrontend()])
+  return dayjs(checkTs(ts)).format(dateFormat2[getCurrentLanguageForFrontend()])
 }
 
 /** 过去时间转换 */

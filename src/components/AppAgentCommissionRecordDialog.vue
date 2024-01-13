@@ -26,8 +26,8 @@ const { startTime, endTime } = getDaIntervalMap(new Date().getTime(), 30)
 const columns = reactive<Column[]>([
   {
     title: t('label_type'),
-    dataIndex: 'type',
-    // slot: 'time',
+    dataIndex: 'cash_type_name',
+    slot: 'cash_type_name',
     align: 'center',
   },
   {
@@ -38,47 +38,17 @@ const columns = reactive<Column[]>([
   },
   {
     title: t('label_draw_time'),
-    dataIndex: 'time',
-    slot: 'time',
+    dataIndex: 'apply_at',
+    slot: 'apply_at',
     align: 'center',
   },
   {
     title: t('order_id'),
-    dataIndex: 'orderId',
-    slot: 'order_id',
+    dataIndex: 'bill_no',
+    slot: 'bill_no',
     align: 'center',
   },
 ])
-// const tableData = reactive([
-//   {
-//     time: 1699517005157,
-//     type: '佣金发放',
-//     amount: '9999.88',
-//     currencyType: 'CNY',
-//     orderId: '1234567789',
-//   },
-//   {
-//     time: 1699517005188,
-//     type: '佣金发放',
-//     amount: '9999.88',
-//     currencyType: 'CNY',
-//     orderId: '1234567789',
-//   },
-//   {
-//     time: 1699517005122,
-//     type: '佣金发放',
-//     amount: '9999.88',
-//     currencyType: 'CNY',
-//     orderId: '1234567789',
-//   },
-//   {
-//     time: 1699517005000,
-//     type: '佣金发放',
-//     amount: '9999.88',
-//     currencyType: 'CNY',
-//     orderId: '1234567789',
-//   },
-// ])
 
 const getOptions = computed(() => {
   return [{
@@ -140,14 +110,15 @@ await application.allSettled(
       :loading="loading"
       :skeleton-row="4"
     >
-      <template #time="{ record }">
-        <div>{{ timeToCustomizeFormat(record.time) }}</div>
+      <template #apply_at="{ record }">
+        <div>{{ timeToDateFormat2(record.apply_at) }}</div>
+        <div>{{ timeToCustomizeFormat(record.apply_at, 'HH:mm:ss') }}</div>
       </template>
       <template #amount="{ record }">
         <div class="to-right">
           <AppAmount
             :amount="record.amount"
-            :currency-type="record.currencyType"
+            :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
           />
         </div>
       </template>
