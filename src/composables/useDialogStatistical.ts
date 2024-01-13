@@ -2,7 +2,7 @@ import AppStatisticsDialogVue from '~/components/AppStatisticsDialog.vue'
 
 export function useStatisticsDialog() {
   const { t } = useI18n()
-  const title = computed(() => t('statistical_data_dialog_title'))
+  const title = computed(() => t('statistical_data'))
   const {
     openDialog: openStatisticsDialog,
     closeDialog: closeStatisticsDialog,

@@ -170,7 +170,7 @@ bot_answers_instantly: Người máy sẽ trả lời ngay lập tức
 bot_expectation_text: Người máy của chúng tôi có thể trả lời nhiều câu hỏi phổ biến
 bot_is_still_thinking: Người máy vẫn đang suy nghĩ…
 bot_is_thinking: Người máy đang suy nghĩ...
-normal_ques: Vấn đề thông thường
+normal_ques: Các câu hỏi thường gặp
 browse_collections: Trình duyệt yêu thích
 by_email: Qua địa chỉ hòm thư
 by_web_notification: Thông báo qua trang web
@@ -751,7 +751,7 @@ game_type_slot_short_name: Máy con hổ
 game_type_rec: giới thiệu trò chơi
 finance_deposit_empty_text: Không có lần nạp tiền nào
 finance_withdraw_empty_text: Không có lệnh Rút tiền
-finance_other_empty_text: Chưa có mục nào
+finance_other_empty_text: Chưa có dữ liệu
 finance_deposit_download_text: Tải xuống tất cả các khoản tiền gửi
 finance_withdraw_download_text: Tải xuống tất cả các lần rút tiền
 finance_other_tab_all: Tất Cả
@@ -797,7 +797,7 @@ menu_title_direct_user: Người chơi trực tiếp
 menu_title_direct_receive: Nhận lãnh trực tiếp
 menu_title_commission_rate: Tỷ lệ hoa hồng
 menu_title_add_new_subagent: Thêm đại lý phụ mới
-menu_title_settings_general: Thông thường
+menu_title_settings_general: Chung
 menu_title_settings_security: An toàn
 menu_title_settings_preferences: lựa chọn đầu tiên
 menu_title_settings_sessions: phiên họp
@@ -1095,7 +1095,7 @@ monthly_bonus: Tiền thưởng hàng tháng
 weekly_bonus: Tiền thưởng hàng tuần
 day_deposit_bonus: Tiền thưởng hàng ngày/tiền thưởng nạp tiền
 recent_game_perform_bonus: Tiền thưởng hiệu suất trò chơi gần đây
-dedicated_vip_servicer: 'Đại diện chuyên dịch vụ chăm sóc hội viên VIP '
+dedicated_vip_servicer: 'Người chăm sóc VIP'
 multiple_count: Hệ số
 ranking: Hạng
 hidden_user: Ẩn
@@ -1256,7 +1256,7 @@ load_fail: Tải không thành công
 plat_maintain: Phòng chơi đang được bảo trì
 no_more: Không còn nhiều nữa
 loading_label: Đang tải...
-recent_game_record: Gần đây
+recent_game_record: Gần đÂy
 profile: Hồ sơ
 chat_rule_title: Quy Tắc Chat
 delete_confirm: Xóa bỏ xác nhận
@@ -1596,14 +1596,14 @@ company_intro_tip_20: Với một cộng đồng phát triển mạnh mẽ, các
 vip_level_comp: So sánh đẳng cấp VIP
 bet_amount_label: Số tiền đặt cược
 bonus_up: tăng trưởng tiền thưởng
-promo: Phúc lợi
+promo: Lợi ích
 look_vip_level: Xem bảng cấp độ VIP
 beginner_handbook: Hướng dẫn bắt đầu
 step_num: Bước {num}
 experience: Trải nghiệm
 click_more: Click vào đây để tìm hiểu thêm
 has_more_q: Có nhiều câu hỏi hơn không?
-online_24_sup: Hỗ trợ khách hàng trực tuyến 24 giờ
+online_24_sup: Hỗ trợ khách hàng trực tiếp , 24 giờ
 vip_club_tip_1: Trải nghiệm VIP tuyệt vời
 vip_club_tip_2: Mở khóa các lợi ích độc quyền và nhận tiền thưởng mà bạn có thể
   rút ngay lập tức mà không cần ràng buộc.
@@ -1616,56 +1616,34 @@ vip_club_tip_6: Yêu cầu tiền thắng cược của bạn ngay. Quá trình 
 vip_club_tip_7: '{site} mang đến trải nghiệm độc đáo và tuyệt vời với các phần thưởng
   không ngừng được trao'
 vip_club_tip_8: Nhận phần thưởng tốt hơn với mỗi lần tăng cấp độ
-vip_club_tip_9: Liên hệ với nhóm hỗ trợ dành cho người đoạt giải thưởng
-vip_club_tip_10: Tại sao chương trình VIP của {site} là hấp dẫn nhất?
-vip_club_tip_11: Chương trình VIP của {site} luôn được đánh giá là một trong những
-  trải nghiệm sòng bạc trực tuyến tốt nhất do quy mô tiền thưởng mà chúng tôi trao
-  cho người chơi.
-vip_club_tip_12: Ngoài ra, nhóm hỗ trợ hội viên từng đoạt giải thưởng của chúng
-  tôi trực tuyến 24/7 để trả lời bất kỳ câu hỏi nào bạn có thể có. Chúng tôi có
-  tỷ lệ hài lòng của khách hàng cao nhất so với bất kỳ sòng bạc trực tuyến nào,
-  đồng thời tạo ra một cộng đồng gồm những người đam mê cờ bạc đam mê nhất trên
-  thế giới.
-vip_club_tip_13: Tính đến nay, chúng tôi đã trao hơn 1 tỷ USD tiền thưởng. Đây là
-  lý do chính tại sao chúng tôi có chương trình VIP trực tuyến hấp dẫn nhất.
-vip_club_tip_14: Chúng tôi tin tưởng vào việc khen thưởng người chơi dựa trên khối
-  lượng cá cược và lòng trung thành của họ.
-vip_club_tip_15: Tổng cộng {site} đã đưa ra bao nhiêu phần thưởng?
-vip_club_tip_16: Làm cách nào để tôi tham gia Rút thăm tuần 75.000 USD?
-vip_club_tip_17: Mỗi 1.000 đô la bạn đặt cược vào {site} sẽ giúp bạn kiếm được một
-  vé xổ số và tất cả những gì bạn cần nhập là một vé xổ số. Càng đặt cược nhiều,
-  bạn càng nhận được nhiều vé xổ số và cơ hội chiến thắng càng tăng.
-vip_club_tip_18: Làm cách nào để tham gia kênh {site} Telegram?
-vip_club_tip_19: Số tài khoản của kênh {site} Telegram là {tg}.
-vip_club_tip_20: Nếu bạn đã tải xuống Telegram, hãy nhấp vào đây để tham gia.
-vip_club_tip_21: Làm cách nào để tham gia kênh Telegram VIP {site}?
-vip_club_tip_22: Khi bạn đạt đến cấp Đồng, bạn có thể yêu cầu bộ phận hỗ trợ trực
-  tuyến thêm bạn vào kênh Telegram VIP {site}.
-vip_club_tip_23: Bạn cũng có thể tìm thêm thông tin liên quan bằng cách tham gia
-  kênh {site} Telegram {tg}.
-vip_club_tip_24: Phần thưởng Hiệu suất Trò chơi Gần đây là gì?
-vip_club_tip_25: Đây là phần thưởng được trao theo quyết định của đại diện dịch
-  vụ VIP của bạn chủ yếu dựa trên tổng số tiền đặt cược và may mắn của bạn.
-vip_club_tip_26: Tiền hoàn trả cược là gì?
-vip_club_tip_27: Tiền hoàn trả cược là phần trăm hoa hồng (nhà cái chiếm lợi thế)
-  được trả lại cho hội viên của bạn
-vip_club_tip_28: Tiền thưởng nạp là gì? Làm cách nào để nhận được tiền thưởng nạp
-  tiền của tôi?
-vip_club_tip_29: Tiền thưởng nạp lại được tính dựa trên hiệu suất cá cược gần đây
-  của người chơi. Người chơi có thể chọn khoảng thời gian yêu cầu hàng ngày, hàng
-  giờ hoặc 10 phút một lần.
-vip_club_tip_30: Nhấp vào menu người dùng chính ở góc trên bên phải của tài khoản
-  và nhấp vào VIP trong menu thả xuống. Nhấp vào tab Tiền thưởng nạp tiền trên cửa
-  sổ phương thức xuất hiện, sau đó nhấp vào Nhận tiền thưởng nạp tiền. Việc bạn
-  có được chỉ định đại diện dịch vụ hay không sẽ tùy thuộc vào tổng số đơn cược
-  của bạn.
-vip_club_tip_31: Khi nào tiền thưởng hàng tháng sẽ được trả?
-vip_club_tip_32: Tiền thưởng hàng tháng sẽ được phân phối mỗi tháng một lần, thường
-  vào khoảng ngày 15. Nhưng trong một số trường hợp, ngày phát hành có thể muộn
-  hơn một chút hoặc thậm chí sớm hơn và đó là lý do tại sao đây là một trong những
-  phần thưởng được mong đợi nhất trong {site}. Khi tiền thưởng hàng tháng được trao,
-  bạn sẽ nhận được thông báo qua email. Để đảm bảo bạn không bỏ lỡ tiền thắng cược,
-  hãy nhớ kiểm tra cả thư mục thư rác trong email của bạn.
+vip_club_tip_9: Liên hệ với nhóm hỗ trợ từng đoạt giải thưởng của chúng tôi
+vip_club_tip_10: Tại sao chương trình VIP của {site} là tốt nhất ?
+vip_club_tip_11: 'Chương trình VIP của {site} thường được đánh giá là một trong những trải nghiệm sòng bạc trực tuyến tốt nhất do số tiền thưởng mà chúng tôi phát cho người chơi.'
+vip_club_tip_12: 'Ngoài ra, nhóm hỗ trợ giành giải thưởng của chúng tôi trực tuyến 24/7 để trả lời bất kỳ câu hỏi nào của bạn. Chúng tôi có tỷ lệ hài lòng của khách hàng cao nhất trong số nhiều sòng bạc trực tuyến, nơi chúng tôi đã tích luỹ được một cộng đồng gồm một số người đam mê cờ bạc nhất trên toàn cầu .'
+vip_club_tip_13: 'Chúng tôi đã trao hơn 1 tỷ đô la tiền thưởng .Đây chủ yếu là lí do chúng tôi có chương trình VIP trực tuyến tốt nhất .'
+vip_club_tip_14: 'Chúng tôi thực sự tin tưởng vào việc thưởng cho người chơi của mình vì lối chơi và lòng trung thành của họ.'
+vip_club_tip_15: Tiền thưởng mà {site} đã cho đi là bao nhiêu ?
+vip_club_tip_16: Làm cách nào để tham gia xổ số hàng tuần trị giá $75.000 ?
+vip_club_tip_17: 'Để có một vé tham gia xổ số , bạn phải đặt cược $1000 vào {site}.com. Đặt cược càng nhiều, bạn càng nhận được nhiều vé, tăng cơ hội trúng thưởng .'
+vip_club_tip_18: Tôi có thể tìm thấy Kênh Telegram {site} ở đâu ?
+vip_club_tip_19: 'Kênh Telegram của {site} là ({tg} )'
+vip_club_tip_20: Nhấp vào đây để tham gia nếu bạn đã tải xuống Telegram.
+vip_club_tip_21: 'Tôi có thể tìm kênh Telegram VIP của {site} ở đâu )?'
+vip_club_tip_22: 'Sau khi đạt cấp Đồng , bạn có thể yêu cầu hỗ trợ trực tiếp để được thêm vào Kênh Telegram VIP của {site} .'
+vip_club_tip_23: 'Ngoài ra, bạn có thể tìm thêm thông tin về vấn đề này bằng cách tham gia kênh {site} Telegram ( {tg} ).'
+vip_club_tip_24: Phần thưởng chơi trò chơi gần đây là gì ?
+vip_club_tip_25: 'Đây là phần thưởng được trao cho bạn theo quyết định của người chăm sóc hoặc người quản lý VIP của bạn và dựa trên sự đặt cược quan trọng của người chơi và sự may mắn .'
+vip_club_tip_26: Rakeback là gì ?
+vip_club_tip_27: 'Rekeback là phần trăm số tiền phí của một người chơi ( lợi thế nhà cái) được hoàn lại cho bạn .'
+vip_club_tip_28: 'Reload là gì ? Làm cách nào để nhận Reload của tôi ?'
+vip_club_tip_29: 'Reload là tiền thưởng được tính dựa trên hoạt động gần đây của người chơi .Người chơi đủ điều kiện để chọn giữa các khoảng thời gian Reload Hàng ngày , Hàng giờ hoặc 10 Phút.'
+vip_club_tip_30: Đi tới bảng điều khiển người dùng ở phía bên phải của màn hình và nhấp vào VIP .
+  Một phương thức sẽ xuất hiện . Nhấp vào thẻ reload và nhấp vào reload để nhận phần thưởng reload của bạn .
+vip_club_tip_31: Tiền thưởng hàng tháng được lên lịch vào lúc nào ?
+vip_club_tip_32: Tiền thưởng hàng tháng sẽ được phân phối mỗi tháng một lần . 
+  Ngày thường là vào khoảng ngày 15. Trong một số trường hợp , nó có thể muộn hơn một chút hoặc thậm chí sớm hơn. 
+  Đây là lí do tại sao nó là một trong những phần thưởng được mong đợi nhất trên Meibo. Khi nó được phát hành , 
+  bạn sẽ được thông báo qua email.Để đảm bảo bạn không bỏ lỡ phần thưởng , vui lòng kiểm tra lại thư mục thư rác trong email của bạn .
 vip_club_tip_33: Hội viên Đồng, Bạc và Vàng sẽ nhận được tiền thưởng của họ thông
   qua tiền thưởng nạp tiền hàng ngày, trong khi người chơi Bạch kim và Kim cương
   sẽ nhận được tiền thưởng của họ một lần.
@@ -1728,14 +1706,13 @@ vip_club_tip_53: Hãy nhớ yêu cầu người đại diện VIP của bạn cu
   thời cho đến khi đại diện dịch vụ của bạn quay lại.
 vip_club_tip_54: Sử dụng hướng dẫn kiến ​​thức của chúng tôi hoặc đặt câu hỏi trong
   diễn đàn cộng đồng của chúng tôi.
-vip_club_tip_55: Hỗ trợ hiệu quả từ người thật. Chúng tôi có thể giúp bạn thiết
-  lập và khắc phục sự cố thông qua trò chuyện trực tuyến và email.
+vip_club_tip_55: 'Hỗ trợ thực sự từ những người thực sự .Chúng tôi sẵn sàng hỗ trợ bạn thông qua trò chuyện trực tiếp và email ngay lập tức .'
 chat_us: Trò chuyện với chúng tôi
 pls_input_deposit_name: Tên người nạp tiền là bắt buộc
 min_amount_0: Số tiền tối thiểu không thể nhỏ hơn hoặc bằng 0
 min_len_6: Độ dài ký tự tối thiểu là 6
 safe_pwd_error: Định dạng mật khẩu thanh toán sai
-save_to_vault: Nạp vào kho
+save_to_vault: Nạp vào Kho
 draw_vault: Rút từ Kho
 vault_info: Tìm hiểu thêm về Kho
 progress_level: Quá trình tiến độ
@@ -1801,8 +1778,8 @@ bet_fixed_x: Số tiền đặt cược có nhiều hơn {fixed} chữ số th�
 failed_get_betinfo: Không thể lấy được thông tin cá cược
 view_my_bets: Xem qua đơn cược của tôi
 closed: Đã đóng
-empty_unsettle_bet: Không Có Cược Hoạt Động
-empty_settle_bet: Không Có Cược Hoạt Động
+empty_unsettle_bet: Không Có Cược Đã Kết Thúc
+empty_settle_bet: Không Có Cược Đã Kết Thúc
 vip_top: Cấp VIP của bạn đã đạt đến mức tối đa
 wait_upgrade: Đang chờ thăng cấp
 upgraded: Đã thăng cấp
@@ -2360,8 +2337,8 @@ login_ip_title: 'Địa chỉ IP'
 gameble_aware: 'Điều Cần Biết'
 transfer_to_wallet: 'Chuyển vào ví'
 statistical_data_dialog_title: 'Thống kê'
-end_time_table: 'kết thúc sau {time} giờ nữa'
-user_no_statistics_display: 此用户未有可显示的统计数据
+end_time_table: 'Kết thúc sau {time} giờ nữa'
+user_no_statistics_display: Người dùng này thống kê bị ẩn.
 this_week: 本周
 this_month: 本月
 this_quarter: 本季度
