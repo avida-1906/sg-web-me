@@ -1,8 +1,9 @@
 <script lang="ts" setup>
+const route = useRoute()
 </script>
 
 <template>
-  <div class="app-vip-rule-desc">
+  <div v-if="route.path.includes('/vip/')" class="app-vip-rule-desc">
     <div class="h2">
       {{ $t('rule_desc', { vip: 'VIP' }) }}
     </div>

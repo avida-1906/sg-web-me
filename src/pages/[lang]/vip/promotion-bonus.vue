@@ -5,8 +5,10 @@ const { t } = useI18n()
 const { openNotify } = useNotify()
 const { isMobile } = storeToRefs(useWindowStore())
 const { vip, score, vipConfigArray } = useVipInfo()
+const { isLogin } = storeToRefs(useAppStore())
 
-const { run: runGetPromoBonus, data: promoBonus } = useRequest(ApiMemberVipBonusAvailable)
+const { run: runGetPromoBonus, data: promoBonus, loading: loadPromoBonus }
+  = useRequest(ApiMemberVipBonusAvailable, { ready: isLogin })
 
 const { openVipBonusDialog } = useDialogVipBonus(() => {
   promoBonus.value = []
@@ -25,6 +27,7 @@ const columns = computed<Column[]>(() => [
     dataIndex: 'level',
     align: 'left',
     slot: 'level',
+    skeWidth: '32px',
   },
   {
     title: t('integral'),
@@ -62,7 +65,11 @@ onMounted(() => {
     class="vip-promotion-bonus" :class="{ 'is-mobile': isMobile }"
   >
     <div class="tabs">
-      <BaseTable :columns="columns" :data-source="vipConfigArray">
+      <BaseTable
+        :columns="columns"
+        :data-source="vipConfigArray" :loading="loadPromoBonus"
+        :skeleton-width="50"
+      >
         <template #th-score>
           <BaseButton
             type="text"

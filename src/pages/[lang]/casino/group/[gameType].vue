@@ -14,7 +14,7 @@ const titles = computed<any>(() => ({
 
 const gameListRef = ref()
 const currentType = ref(props.gameType)
-const sortType = ref(EnumCasinoSortType.hot)
+const sortType = ref(EnumCasinoSortType.recommend)
 const pids = ref('')
 const cid = ref(route.query.cid ? route.query.cid?.toString() ?? '0' : '0')
 usePageTitle({

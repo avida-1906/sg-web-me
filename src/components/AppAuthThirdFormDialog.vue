@@ -87,7 +87,7 @@ async function submit() {
 
   // closeDialog()
   const thirdReg = {
-    email: props.data.email ?? email.value,
+    email: email.value,
     username: username.value,
     third_id: props.data.id,
     third_type: props.ty,

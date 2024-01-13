@@ -5,7 +5,10 @@ usePageTitle({ prefix: t('menu_title_my_promotion') })
 const { isLogin } = storeToRefs(useAppStore())
 const { isMobile } = storeToRefs(useWindowStore())
 const location = useBrowserLocation()
-const { data: proData, loading: loadMyData, run: runGetMyPro } = useRequest(ApiGetMyPro)
+const { data: proData, loading: loadMyData } = useRequest(ApiGetMyPro, {
+  manual: false,
+  ready: isLogin,
+})
 const router = useLocalRouter()
 
 const baseQrRef = ref()
@@ -123,10 +126,6 @@ function openLink(link: string) {
   else
     link && router.push(link + qrUrl.value)
 }
-
-watch(() => isLogin.value, (newValue) => {
-  newValue && runGetMyPro()
-}, { immediate: true })
 </script>
 
 <template>
