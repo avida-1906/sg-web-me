@@ -83,7 +83,7 @@ lucky_trophy: Chiến tích may mắnnhất
 big_win: Thắng lợi lớn nhất
 setting: Cài đặt
 stake_safety: '{site} an toàn'
-online_support: Hỗ trợ trực tuyến
+online_support: Hỗ Trợ Trực Tuyến
 vip_club: VIP Club
 club: Clup
 logout: Đăng xuất
@@ -915,7 +915,7 @@ sports_live_tv: Phát trực tiếp
 sports_live_favourites: Vòng cược phổ biến của trận đấu đang diễn ra
 sports_upcoming_favourites: Sắp diễn ra trận đấu phổ biến
 sports_provider: Mục thể thao
-sports_odds_title: Tỉ lệ
+sports_odds_title: 'Tỉ lệ {other}'
 DECIMAL: Số thập phân
 FRACTION: Phân số
 AMERICAN: American
@@ -1235,7 +1235,7 @@ currency_disable: Không thể sử dụng tiền tệ
 save: Lưu
 verified: Đã xác minh
 raffle_ticket: Phiếu rút thăm
-in_date: 'Tham gia vào '
+in_date: 'Tham gia vào'
 fresh_competition: cuộc thi mới nhất
 deal_pend: Chờ xử lý
 adopted: Đã thông qua

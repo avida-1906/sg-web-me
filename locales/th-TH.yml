@@ -900,9 +900,9 @@ sports_live_tv: ไลฟ์สด
 sports_live_favourites: การเดิมพันระหว่างการแข่งขันยอดนิยม
 sports_upcoming_favourites: การแข่งขันยอดนิยมที่กำลังจะแข่งขัน
 sports_provider: โรงยิมกีฬา
-sports_odds_title: อัตราจ่าย
+sports_odds_title: อัตราต่อรอง
 DECIMAL: แบบทศนิยม
-FRACTION: แบบคะแนน
+FRACTION: แบบเศษส่วน
 AMERICAN: แบบอเมริกัน
 INDONESIA: แบบอินโดนีเซีย
 MALAYSIA: แบบมาเลเซีย

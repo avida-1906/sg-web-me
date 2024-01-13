@@ -472,7 +472,7 @@ export const useSportsStore = defineStore('sports', () => {
 
   const sportOddType = computed(() => <Menu>[
     {
-      title: `${t('sports_odds_title')}${userLanguage.value === 'zh-CN' ? '：' : ': '}${t(sportsOddsType.value)}`,
+      title: `${t('sports_odds_title', { other: 'cược' })}${userLanguage.value === 'zh-CN' ? '：' : ': '}${t(sportsOddsType.value)}`,
       path: '',
       icon: 'spt-odds',
       type: 'radio',
