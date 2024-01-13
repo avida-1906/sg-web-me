@@ -1924,6 +1924,7 @@ export function ApiAgencyCommissionRecords(data?: {
   page_siz: number
   start_time: string
   end_time: string
+  cash_type: string
 }) {
   return httpClient.post<IResponseList<{
     'id': string

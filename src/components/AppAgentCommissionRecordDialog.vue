@@ -9,19 +9,28 @@ const {
   runAsync,
   prev,
   next,
+  resetPage,
 } = useList(ApiAgencyCommissionRecords,
   {}, { page_size: 10, isWatchPageOrPageSize: false })
+const date = ref([])
+const platformId = ref('')
 const {
   data: recordsClass,
   runAsync: getRecordsClass,
 } = useRequest(ApiAgencyCommissionRecordsClass, {
   onSuccess() {
-    runAsync()
+    const params = computed(() => {
+      return {
+        start_time: date.value[0],
+        end_time: date.value[1],
+        page_size: page_size.value,
+        page: page.value,
+        cash_type: platformId.value,
+      }
+    })
+    useListSearch(params, runAsync, resetPage)
   },
 })
-
-const platformId = ref('')
-const date = ref([])
 const { startTime, endTime } = getDaIntervalMap(new Date().getTime(), 30)
 const columns = reactive<Column[]>([
   {
@@ -68,15 +77,6 @@ const getPaginationData = computed(() => {
     total: total.value,
   }
 })
-
-function onPrevious() {
-  prev()
-  runAsync()
-}
-function onNext() {
-  next()
-  runAsync()
-}
 
 await application.allSettled(
   [
@@ -126,8 +126,8 @@ await application.allSettled(
     <AppStack
       v-if="total > 10"
       :pagination-data="getPaginationData"
-      @previous="onPrevious"
-      @next="onNext"
+      @previous="prev"
+      @next="next"
     />
   </div>
 </template>
