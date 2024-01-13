@@ -15,6 +15,7 @@ const columns: Column[] = [
     dataIndex: 'level',
     align: 'center',
     slot: 'level',
+    skeWidth: '50px',
   },
   {
     title: t('effective_bet'),
@@ -27,6 +28,7 @@ const columns: Column[] = [
     dataIndex: 'rebate_ratio',
     align: 'center',
     slot: 'rebate_ratio',
+    skeWidth: '100px',
   },
 ]
 

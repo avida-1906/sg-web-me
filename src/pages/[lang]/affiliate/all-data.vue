@@ -34,6 +34,7 @@ const columns: Column[] = [
     dataIndex: 'created_at',
     align: 'center',
     slot: 'created_at',
+    skeWidth: '100px',
   },
   {
     title: t('user_account'),

@@ -33,6 +33,7 @@ const columns: Column[] = [
     dataIndex: 'time',
     align: 'center',
     slot: 'time',
+    skeWidth: '100px',
   },
   {
     title: t('gamer'),

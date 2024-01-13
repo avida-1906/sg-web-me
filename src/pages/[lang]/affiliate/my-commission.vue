@@ -61,6 +61,7 @@ const columns: Column[] = [
     dataIndex: 'send_time',
     align: 'center',
     slot: 'time',
+    skeWidth: '100px',
   },
   {
     title: t('label_type'),

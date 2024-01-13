@@ -22,6 +22,7 @@ const columns: Column[] = [
     dataIndex: 'created_at',
     align: 'center',
     slot: 'created_at',
+    skeWidth: '100px',
   },
   {
     title: t('user_account'),
@@ -34,18 +35,21 @@ const columns: Column[] = [
     dataIndex: 'deposit_count',
     align: 'center',
     slot: 'deposit_count',
+    skeWidth: '50px',
   },
   {
     title: t('last_login'),
     dataIndex: 'last_login_at',
     align: 'center',
     slot: 'last_login_at',
+    skeWidth: '100px',
   },
   {
     title: t('online_status'),
     dataIndex: 'online',
     align: 'right',
     slot: 'online',
+    skeWidth: '50px',
   },
 ]
 
