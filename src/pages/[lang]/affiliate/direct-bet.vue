@@ -22,7 +22,7 @@ const {
   total,
   runAsync,
   resetPage,
-} = useList(ApiAgencyReportBet, {}, { page_size: 10, isWatchPageOrPageSize: false })
+} = useList(ApiAgencyReportBet, {}, { page_size: 5, isWatchPageOrPageSize: false })
 
 const date = ref([])
 const searchValue = useDebouncedRef({ value: '', delay: 1000 })
@@ -100,6 +100,7 @@ onMounted(() => {
       :columns="columns"
       :data-source="list"
       :loading="loading"
+      :skeleton-row="5"
     >
       <template #username="{ record }">
         <AppReportUserName :username="record.username" :level="`${record.vip}`" />

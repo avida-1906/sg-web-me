@@ -38,7 +38,7 @@ const {
   total,
   runAsync,
   resetPage,
-} = useList(ApiAgencyCommission, {}, { page_size: 10, isWatchPageOrPageSize: false })
+} = useList(ApiAgencyCommission, {}, { page_size: 5, isWatchPageOrPageSize: false })
 useRequest(ApiAgencyCommissionModelsList, {
   manual: false,
   ready: isLogin,
@@ -134,6 +134,7 @@ onMounted(() => {
       :columns="columns"
       :data-source="list"
       :loading="loading"
+      :skeleton-row="5"
     >
       <template #time="{ record }">
         {{ `${timeToDateFormat(record.send_time)} ${timeToCustomizeFormat(

@@ -67,6 +67,7 @@ const list = computed(() => {
       :columns="columns"
       :data-source="list"
       :loading="loading"
+      :skeleton-row="5"
     >
       <template #th-effective_bat>
         <div class="center">

@@ -81,6 +81,7 @@ const data = reactive([
       <BaseTable
         :columns="columns"
         :data-source="data"
+        :skeleton-row="5"
       >
         <template #name="{ record }">
           <div class="line-height-2">
@@ -89,7 +90,7 @@ const data = reactive([
         </template>
       </BaseTable>
     </div>
-    <div class="page-stack-wrap tg-mt-24">
+    <div class="tg-mt-24 page-stack-wrap">
       <AppStack />
     </div>
   </div>

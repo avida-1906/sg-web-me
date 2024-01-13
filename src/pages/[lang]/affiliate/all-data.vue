@@ -22,7 +22,7 @@ const {
   total,
   runAsync,
   resetPage,
-} = useList(ApiAgencyReportAll, {}, { page_size: 10, isWatchPageOrPageSize: false })
+} = useList(ApiAgencyReportAll, {}, { page_size: 5, isWatchPageOrPageSize: false })
 
 const date = ref([])
 const searchValue = useDebouncedRef({ value: '', delay: 1000 })
@@ -110,6 +110,7 @@ onMounted(() => {
       :columns="columns"
       :data-source="list"
       :loading="loading"
+      :skeleton-row="5"
       @sort="setSortMap"
     >
       <template #created_at="{ record }">
