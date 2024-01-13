@@ -40,7 +40,7 @@ const userMenu = computed(() => ([
   {
     id: 5,
     icon: 'uni-trend',
-    title: t('statistical_data'),
+    title: t('statistical_data_dialog_title'),
     name: 'statistical-data',
   },
   {
