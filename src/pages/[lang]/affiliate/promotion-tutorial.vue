@@ -121,7 +121,7 @@ const getUrl = computed(() => {
   min-height: 400px;
   background: var(--tg-secondary-dark);
   border-radius: var(--tg-radius-md);
-  padding: var(--tg-spacing-12);
+  // padding: var(--tg-spacing-12);
 }
 
 .des {

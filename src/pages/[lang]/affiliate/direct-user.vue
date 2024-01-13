@@ -105,7 +105,8 @@ onMounted(() => {
         </span>
       </template>
       <template #created_at="{ record }">
-        {{ timeToDateFormat(record.created_at) }}
+        {{ `${timeToDateFormat(record.created_at)} ${timeToCustomizeFormat(
+          record.created_at, 'HH:mm:ss')}` }}
       </template>
       <template #last_login_at="{ record }">
         {{ timeToDateFormat(record.last_login_at) }}
@@ -159,7 +160,6 @@ onMounted(() => {
   }
 }
 .page-all-data {
-  --tg-app-amount-font-size: var(--tg-font-size-xs);
   --tg-app-amount-font-weight: var(--tg-font-weight-normal);
 }
 

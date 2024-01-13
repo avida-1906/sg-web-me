@@ -2066,3 +2066,16 @@ export function ApiMemberBetReport(data: {
     }[]
   }[]>('/member/bet/report', data)
 }
+
+/**
+ * 佣金模式列表(下拉)
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=33325f51-5c7e-4213-9ae8-79115bfa5313
+ */
+export function ApiAgencyCommissionModelsList() {
+  return httpClient.get<{
+    /** id */
+    id: string
+    /** 名称 */
+    name: string
+  }[]>('/agency/commission/models/list')
+}

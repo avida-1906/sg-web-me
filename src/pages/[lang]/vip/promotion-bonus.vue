@@ -41,6 +41,11 @@ const columns = computed<Column[]>(() => [
     align: 'right',
     slot: 'up_gift',
   },
+  {
+    title: t('keep_integral'),
+    dataIndex: 'score',
+    align: 'center',
+  },
 ])
 
 async function openReceive(item: any) {

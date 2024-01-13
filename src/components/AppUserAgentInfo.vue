@@ -2,14 +2,14 @@
 const appStore = useAppStore()
 const { userInfo } = storeToRefs(appStore)
 const { isMobile } = storeToRefs(useWindowStore())
-const { openAgentGradeDialog } = useDialogAgentGrade()
+// const { openAgentGradeDialog } = useDialogAgentGrade()
 const { openAgentCommissionRecordDialog } = useDialogAgentCommissionRecord()
 // const { openAgentCommissionDrawDialog } = useDialogAgentCommissionDraw()
 const { openCommissionWalletDialog } = useDialogCommissionWallet()
 
-function openDialog() {
-  openAgentGradeDialog()
-}
+// function openDialog() {
+//   openAgentGradeDialog()
+// }
 
 function commissionRecord() {
   openAgentCommissionRecordDialog()
@@ -23,9 +23,9 @@ function drawDialog() {
 
 <template>
   <div class="app-user-agent-info">
-    <div class="cursor-pointer" @click="openDialog">
-      <BaseIcon style="font-size: 42px;" name="agent-20" />
-      <!-- <BaseImage width="42px" url="/png/affiliate/medal.png" /> -->
+    <div>
+      <!-- <BaseIcon style="font-size: 42px;" name="agent-20" /> -->
+      <BaseImage width="42px" url="/png/affiliate/medal.png" />
     </div>
     <div class="right-box">
       <div class="row flex-wrap">

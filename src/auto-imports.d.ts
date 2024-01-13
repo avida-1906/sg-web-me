@@ -7,6 +7,7 @@ export {}
 declare global {
   const ApiAddFeedbackChatMsg: typeof import('./apis/index')['ApiAddFeedbackChatMsg']
   const ApiAgencyCommission: typeof import('./apis/index')['ApiAgencyCommission']
+  const ApiAgencyCommissionModelsList: typeof import('./apis/index')['ApiAgencyCommissionModelsList']
   const ApiAgencyCommissionRecords: typeof import('./apis/index')['ApiAgencyCommissionRecords']
   const ApiAgencyCommissionRecordsClass: typeof import('./apis/index')['ApiAgencyCommissionRecordsClass']
   const ApiAgencyCommissionScale: typeof import('./apis/index')['ApiAgencyCommissionScale']
@@ -687,6 +688,7 @@ declare module 'vue' {
   interface ComponentCustomProperties {
     readonly ApiAddFeedbackChatMsg: UnwrapRef<typeof import('./apis/index')['ApiAddFeedbackChatMsg']>
     readonly ApiAgencyCommission: UnwrapRef<typeof import('./apis/index')['ApiAgencyCommission']>
+    readonly ApiAgencyCommissionModelsList: UnwrapRef<typeof import('./apis/index')['ApiAgencyCommissionModelsList']>
     readonly ApiAgencyCommissionRecords: UnwrapRef<typeof import('./apis/index')['ApiAgencyCommissionRecords']>
     readonly ApiAgencyCommissionRecordsClass: UnwrapRef<typeof import('./apis/index')['ApiAgencyCommissionRecordsClass']>
     readonly ApiAgencyCommissionScale: UnwrapRef<typeof import('./apis/index')['ApiAgencyCommissionScale']>
@@ -1351,6 +1353,7 @@ declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
     readonly ApiAddFeedbackChatMsg: UnwrapRef<typeof import('./apis/index')['ApiAddFeedbackChatMsg']>
     readonly ApiAgencyCommission: UnwrapRef<typeof import('./apis/index')['ApiAgencyCommission']>
+    readonly ApiAgencyCommissionModelsList: UnwrapRef<typeof import('./apis/index')['ApiAgencyCommissionModelsList']>
     readonly ApiAgencyCommissionRecords: UnwrapRef<typeof import('./apis/index')['ApiAgencyCommissionRecords']>
     readonly ApiAgencyCommissionRecordsClass: UnwrapRef<typeof import('./apis/index')['ApiAgencyCommissionRecordsClass']>
     readonly ApiAgencyCommissionScale: UnwrapRef<typeof import('./apis/index')['ApiAgencyCommissionScale']>
