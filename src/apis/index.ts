@@ -1862,7 +1862,7 @@ export function ApiFinanceRecordOtherSelect() {
 
 /**
  * 交易记录-其他-列表
- * @see https://console-docs.apipost.cn/preview//c00b1160394a31fb?target_id=3a7be0ec-1921-462e-bc77-96a3de05502b
+ * @see https://console-docs.apipost.cn/preview/c00b1160394a31fb?target_id=3a7be0ec-1921-462e-bc77-96a3de05502b
  */
 export function ApiFinanceRecordOther(params?: {
   page?: number
