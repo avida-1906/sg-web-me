@@ -126,7 +126,6 @@ onMounted(() => {
 --tg-base-date-picker-padding: var(--tg-spacing-8) var(--tg-spacing-12);
 --tg-base-date-picker-font-weight: var(--tg-font-weight-semibold);
 --tg-base-date-picker-color: var(--tg-secondary-light);
---tg-base-date-picker-wrap-flex: 1;
 }
 </style>
 
@@ -170,7 +169,7 @@ onMounted(() => {
     color: var(--tg-text-white);
   }
   .wrap {
-    flex: var(--tg-base-date-picker-wrap-flex);
+    flex: 1;
     gap: 4px;
     display: flex;
     align-items: center;
@@ -179,11 +178,11 @@ onMounted(() => {
       display: block;
       position: relative;
       cursor: pointer;
-      flex: 1;
       height: 100%;
       line-height: 21px;
       min-height: 21px;
       text-align: left;
+      white-space: nowrap;
       input {
         position: absolute;
         left: 0;
@@ -194,7 +193,8 @@ onMounted(() => {
       }
     }
     label.end {
-      text-align: right;
+      flex: 1;
+      text-align: left;
     }
   }
   > .app-svg-icon {

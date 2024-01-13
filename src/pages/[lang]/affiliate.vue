@@ -16,7 +16,7 @@ usePageTitle({ prefix: 'affiliate', isT: true })
     }
     gap: var(--tg-spacing-16) var(--tg-spacing-21);
     --tg-base-date-picker-width:100%;
-    --tg-base-date-picker-wrap-flex: none;
+    // --tg-base-date-picker-wrap-flex: none;
     --tg-base-date-picker-bother: none;
     --tg-base-select-border: none;
     // --tg-base-select-box-shadow: none;

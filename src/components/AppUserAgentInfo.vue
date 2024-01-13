@@ -23,10 +23,10 @@ function drawDialog() {
 
 <template>
   <div class="app-user-agent-info">
-    <div>
-      <!-- <BaseIcon style="font-size: 42px;" name="agent-20" /> -->
-      <BaseImage width="42px" url="/png/affiliate/medal.png" />
-    </div>
+    <!-- <div> -->
+    <!-- <BaseIcon style="font-size: 42px;" name="agent-20" /> -->
+    <BaseImage width="42px" url="/png/affiliate/medal.png" />
+    <!-- </div> -->
     <div class="right-box">
       <div class="row flex-wrap">
         <div>
