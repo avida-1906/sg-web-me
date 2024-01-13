@@ -388,6 +388,7 @@ declare global {
   const timeCheckIsLeapYear: typeof import('./utils/time')['timeCheckIsLeapYear']
   const timeToCustomizeFormat: typeof import('./utils/time')['timeToCustomizeFormat']
   const timeToDateFormat: typeof import('./utils/time')['timeToDateFormat']
+  const timeToDateFormat2: typeof import('./utils/time')['timeToDateFormat2']
   const timeToDateWithDayFormat: typeof import('./utils/time')['timeToDateWithDayFormat']
   const timeToFromNow: typeof import('./utils/time')['timeToFromNow']
   const toFixed: typeof import('./utils/number')['toFixed']
@@ -1057,6 +1058,7 @@ declare module 'vue' {
     readonly throttledWatch: UnwrapRef<typeof import('@vueuse/core')['throttledWatch']>
     readonly timeCheckIsLeapYear: UnwrapRef<typeof import('./utils/time')['timeCheckIsLeapYear']>
     readonly timeToCustomizeFormat: UnwrapRef<typeof import('./utils/time')['timeToCustomizeFormat']>
+    readonly timeToDateFormat2: UnwrapRef<typeof import('./utils/time')['timeToDateFormat2']>
     readonly timeToDateFormat: UnwrapRef<typeof import('./utils/time')['timeToDateFormat']>
     readonly timeToDateWithDayFormat: UnwrapRef<typeof import('./utils/time')['timeToDateWithDayFormat']>
     readonly timeToFromNow: UnwrapRef<typeof import('./utils/time')['timeToFromNow']>
@@ -1720,6 +1722,7 @@ declare module '@vue/runtime-core' {
     readonly throttledWatch: UnwrapRef<typeof import('@vueuse/core')['throttledWatch']>
     readonly timeCheckIsLeapYear: UnwrapRef<typeof import('./utils/time')['timeCheckIsLeapYear']>
     readonly timeToCustomizeFormat: UnwrapRef<typeof import('./utils/time')['timeToCustomizeFormat']>
+    readonly timeToDateFormat2: UnwrapRef<typeof import('./utils/time')['timeToDateFormat2']>
     readonly timeToDateFormat: UnwrapRef<typeof import('./utils/time')['timeToDateFormat']>
     readonly timeToDateWithDayFormat: UnwrapRef<typeof import('./utils/time')['timeToDateWithDayFormat']>
     readonly timeToFromNow: UnwrapRef<typeof import('./utils/time')['timeToFromNow']>

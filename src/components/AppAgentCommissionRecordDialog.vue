@@ -111,7 +111,7 @@ await application.allSettled(
       :skeleton-row="4"
     >
       <template #apply_at="{ record }">
-        <div>{{ timeToCustomizeFormat(record.apply_at, 'MM/DD/YYYY') }}</div>
+        <div>{{ timeToDateFormat2(record.apply_at) }}</div>
         <div>{{ timeToCustomizeFormat(record.apply_at, 'HH:mm:ss') }}</div>
       </template>
       <template #amount="{ record }">

@@ -25,6 +25,9 @@ const endDate = ref(props.initEndDate !== undefined
   ? dayjs(props.initEndDate).format('YYYY-MM-DD')
   : today)
 
+const startDateLabel = computed(() => timeToDateFormat2(dayjs(startDate.value)))
+const endDateLabel = computed(() => timeToDateFormat2(dayjs(endDate.value)))
+
 const minDate = computed(() =>
   props.min === undefined ? undefined : dayjs(props.min).format('YYYY-MM-DD'))
 const maxDate = computed(() =>
@@ -78,7 +81,7 @@ onMounted(() => {
     <div class="base-date-picker">
       <div class="wrap">
         <label @click="togglePicker('start')">
-          <span>{{ startDate }}</span>
+          <span>{{ startDateLabel }}</span>
           <input
             ref="startDateEle"
             type="date"
@@ -93,7 +96,7 @@ onMounted(() => {
         </label>
         <span class="separator">-</span>
         <label class="end" @click="togglePicker('end')">
-          <span>{{ endDate }}</span>
+          <span>{{ endDateLabel }}</span>
           <input
             ref="endDateEle"
             type="date"
