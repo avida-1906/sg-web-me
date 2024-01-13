@@ -132,7 +132,7 @@ onMounted(() => {
           </div>
         </template>
         <template #up_gift="{ record }">
-          <div class="flex-end color-orange">
+          <div class="flex-end">
             <AppAmount :amount="record.up_gift" currency-type="USDT" />
           </div>
         </template>
@@ -198,9 +198,6 @@ onMounted(() => {
     background: var(--tg-text-green);
     border-radius: 20px;
   }
-}
-.color-orange {
-  color: var(--tg-text-warn);
 }
 .flex-end {
   display: flex;
