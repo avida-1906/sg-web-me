@@ -4,7 +4,7 @@ const params = { ty: 1 }
 const { t } = useI18n()
 const { openNotify } = useNotify()
 const { isMobile } = storeToRefs(useWindowStore())
-const { vip, score, vipConfigArray } = useVipInfo()
+const { vip, score, nextLevel, isMaxLevel, vipConfigArray, max } = useVipInfo()
 const { isLogin } = storeToRefs(useAppStore())
 
 const { run: runGetPromoBonus, data: promoBonus, loading: loadPromoBonus }
@@ -38,7 +38,7 @@ const columns = computed<Column[]>(() => [
   {
     title: t('vip_promotion_bonus'),
     dataIndex: 'up_gift',
-    align: 'right',
+    align: 'center',
     slot: 'up_gift',
   },
   {
@@ -91,8 +91,11 @@ onMounted(() => {
             <BaseIcon :name="`vip${record.level}`" />
           </div>
         </template>
-        <template #retain_score="{ record: { retain_score, level } }">
-          <span v-if="!Number(retain_score ?? 0)">-</span>
+        <template #retain_score="{ record: { retain_score, level }, index }">
+          <div v-if="!index">
+            -
+          </div>
+          <span v-else-if="!Number(retain_score ?? 0)">-</span>
           <div
             v-else-if="+vip === +level" class="score-wrap user-level-vip"
             :style="{
@@ -105,11 +108,15 @@ onMounted(() => {
           </div>
           <span v-else>{{ retain_score }}</span>
         </template>
-        <template #score="{ record }">
+        <template #score="{ record, index }">
+          <div v-if="!index">
+            -
+          </div>
           <div
+            v-else-if="(nextLevel && +nextLevel?.level === +record.level)"
             class="score-wrap"
             :class="{
-              'user-level-vip': +vip === +record.level,
+              'user-level-vip': +nextLevel?.level === +record.level,
               'lower-vip': +record.level <= +vip && bonusArray.length,
             }"
             :style="{
@@ -118,12 +125,27 @@ onMounted(() => {
                   : (score / Number(record.score)) * 100}%`,
             }"
           >
-            <span v-if="+vip < +record.level">
-              {{ record.score }}
-            </span>
-            <span v-else-if="+vip === +record.level">
+            <span>
               {{ score }}/{{ record.score }}
             </span>
+          </div>
+          <div v-else-if="isMaxLevel && record.level === max" class="score-wrap user-level-vip" style="--progress-width:100%">
+            <span>
+              {{ score }}/--
+            </span>
+          </div>
+          <div v-else>
+            {{ record.score }}
+          </div>
+        </template>
+        <template #up_gift="{ record, index }">
+          <div class="score-wrap">
+            <div v-if="!index">
+              -
+            </div>
+            <div v-else-if="+vip < +record.level">
+              <AppAmount :amount="record.up_gift" currency-type="USDT" />
+            </div>
             <template v-else-if="+vip >= +record.level">
               <BaseButton
                 v-if="bonusArray.length
@@ -146,11 +168,6 @@ onMounted(() => {
               </BaseButton>
               <span v-else class="small-text">{{ t('upgraded') }}</span>
             </template>
-          </div>
-        </template>
-        <template #up_gift="{ record }">
-          <div class="flex-end">
-            <AppAmount :amount="record.up_gift" currency-type="USDT" />
           </div>
         </template>
       </BaseTable>
