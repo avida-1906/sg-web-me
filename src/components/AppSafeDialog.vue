@@ -9,6 +9,7 @@ const appStore = useAppStore()
 const { openNotify } = useNotify()
 const { userInfo, exchangeRateData } = storeToRefs(appStore)
 const router = useLocalRouter()
+const { push } = useLocalRouter()
 
 const activeCurrency = ref<any>()
 const activeTab = ref('deposit')
@@ -235,6 +236,7 @@ watch(() => activeTab.value, () => {
         size="none" type="text"
         style="margin-top: var(--tg-spacing-4);
         --tg-base-button-text-default-color: var(--tg-text-white)"
+        @click="push('/blog/vault-description');closeDialog()"
       >
         {{ t('vault_info') }}
       </BaseButton>

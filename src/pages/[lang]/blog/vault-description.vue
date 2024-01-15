@@ -22,8 +22,7 @@ const currencyOptions = computed(() => {
   })
 })
 
-const { data } = useRequest(() => ApiMemberInterestGetConfig(curCode.value), {
-  manual: false,
+const { data, runAsync } = useRequest(() => ApiMemberInterestGetConfig(curCode.value), {
   refreshDeps: [curCode],
 })
 const minDepositAmount = computed(() => {
@@ -44,6 +43,8 @@ const interestRate = computed(() => {
 watch(currentGlobalCurrency, (a) => {
   curType.value = a
 })
+
+await application.allSettled([runAsync()])
 </script>
 
 <template>
