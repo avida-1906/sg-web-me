@@ -134,19 +134,19 @@ export function useApiMenuData() {
       path: '',
       icon: 'chess-gameshow',
       list: [
-        { title: '推荐活动一', path: '', icon: 'navbar-user' },
-        { title: '推荐活动二', path: '', icon: 'navbar-user' },
-        {
-          title: '推荐活动三',
-          path: '/promotions/promotion/weekly-giveaway',
-          icon: 'navbar-user',
-        },
-        {
-          title: t('view_all'),
-          path: '/promotions',
-          icon: 'chess-gameshow',
-          clazz: 'has-line',
-        },
+        // { title: '推荐活动一', path: '', icon: 'navbar-user' },
+        // { title: '推荐活动二', path: '', icon: 'navbar-user' },
+        // {
+        //   title: '推荐活动三',
+        //   path: '/promotions/promotion/weekly-giveaway',
+        //   icon: 'navbar-user',
+        // },
+        // {
+        //   title: t('view_all'),
+        //   path: '/promotions',
+        //   icon: 'chess-gameshow',
+        //   clazz: 'has-line',
+        // },
       ],
       domId: 'static-menu-promotion',
     },
