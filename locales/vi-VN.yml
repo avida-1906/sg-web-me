@@ -1752,8 +1752,9 @@ bet_fixed_x: Số tiền đặt cược có nhiều hơn {fixed} chữ số th�
 failed_get_betinfo: Không thể lấy được thông tin cá cược
 view_my_bets: Xem qua đơn cược của tôi
 closed: Đã đóng
-empty_unsettle_bet: Không Có Cược Đã Kết Thúc
+empty_unsettle_bet: Không Có Cược Hoạt Động
 empty_settle_bet: Không Có Cược Đã Kết Thúc
+empty_casino_bet: Không có cược sòng bạc
 vip_top: Cấp VIP của bạn đã đạt đến mức tối đa
 wait_upgrade: Đang chờ thăng cấp
 upgraded: Đã thăng cấp
@@ -1863,7 +1864,7 @@ pls_select_pix: Vui lòng chọn một tài khoản PIX
 we_use_cookie: Chúng tôi sử dụng cookie
 cookie_purposes: Thực hiện các mục đích chức năng và phân tích.
 accept: Chấp nhận
-start_game_now: Bắt đầu chơi ngay bây giờ
+start_game_now: Bắt đầu chơi ngay
 policies: Chính sách
 min_len_char: Độ dài ký tự tối thiểu là {delta}
 max_len_char: Độ dài ký tự tối đa là {delta}
