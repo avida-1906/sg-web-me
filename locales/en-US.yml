@@ -2332,6 +2332,8 @@ user_no_statistics_display: 此用户未有可显示的统计数据
 this_week: 本周
 this_month: 本月
 this_quarter: 本季度
-sports_tab_starting_soon2: About to 
+sports_tab_starting_soon2: About to
 recent_game_record2: Record of recent games
 keep_integral: 保级积分
+min_deposit_amount: 最低存入金额
+annual_interest_rate: 年利率

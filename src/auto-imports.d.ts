@@ -82,6 +82,7 @@ declare global {
   const ApiMemberGameLobby: typeof import('./apis/index')['ApiMemberGameLobby']
   const ApiMemberGameRecList: typeof import('./apis/index')['ApiMemberGameRecList']
   const ApiMemberGameSearch: typeof import('./apis/index')['ApiMemberGameSearch']
+  const ApiMemberInterestGetConfig: typeof import('./apis/index')['ApiMemberInterestGetConfig']
   const ApiMemberLogin: typeof import('./apis/index')['ApiMemberLogin']
   const ApiMemberLogout: typeof import('./apis/index')['ApiMemberLogout']
   const ApiMemberNoticeAllList: typeof import('./apis/index')['ApiMemberNoticeAllList']
@@ -753,6 +754,7 @@ declare module 'vue' {
     readonly ApiMemberGameLobby: UnwrapRef<typeof import('./apis/index')['ApiMemberGameLobby']>
     readonly ApiMemberGameRecList: UnwrapRef<typeof import('./apis/index')['ApiMemberGameRecList']>
     readonly ApiMemberGameSearch: UnwrapRef<typeof import('./apis/index')['ApiMemberGameSearch']>
+    readonly ApiMemberInterestGetConfig: UnwrapRef<typeof import('./apis/index')['ApiMemberInterestGetConfig']>
     readonly ApiMemberLogin: UnwrapRef<typeof import('./apis/index')['ApiMemberLogin']>
     readonly ApiMemberLogout: UnwrapRef<typeof import('./apis/index')['ApiMemberLogout']>
     readonly ApiMemberNoticeAllList: UnwrapRef<typeof import('./apis/index')['ApiMemberNoticeAllList']>
@@ -1418,6 +1420,7 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberGameLobby: UnwrapRef<typeof import('./apis/index')['ApiMemberGameLobby']>
     readonly ApiMemberGameRecList: UnwrapRef<typeof import('./apis/index')['ApiMemberGameRecList']>
     readonly ApiMemberGameSearch: UnwrapRef<typeof import('./apis/index')['ApiMemberGameSearch']>
+    readonly ApiMemberInterestGetConfig: UnwrapRef<typeof import('./apis/index')['ApiMemberInterestGetConfig']>
     readonly ApiMemberLogin: UnwrapRef<typeof import('./apis/index')['ApiMemberLogin']>
     readonly ApiMemberLogout: UnwrapRef<typeof import('./apis/index')['ApiMemberLogout']>
     readonly ApiMemberNoticeAllList: UnwrapRef<typeof import('./apis/index')['ApiMemberNoticeAllList']>
