@@ -6,11 +6,10 @@ const {
 const {
   renderBalanceList,
 } = useCurrencyData()
-console.log('🚀 ~ renderBalanceList:', renderBalanceList.value)
 
 const curType = ref(currentGlobalCurrency.value)
 const curCode = computed(() => {
-  return renderBalanceList.value.find(a => a.type === currentGlobalCurrency.value)?.cur ?? '701'
+  return renderBalanceList.value.find(a => a.type === curType.value)?.cur ?? '701'
 })
 
 const currencyOptions = computed(() => {
@@ -23,18 +22,21 @@ const currencyOptions = computed(() => {
   })
 })
 
-const { data } = useRequest(() => ApiMemberInterestGetConfig(curCode.value), { manual: false })
+const { data } = useRequest(() => ApiMemberInterestGetConfig(curCode.value), {
+  manual: false,
+  refreshDeps: [curCode],
+})
 const minDepositAmount = computed(() => {
   if (data.value) {
     const arr = JSON.parse(data.value.config)
-    return arr.find((a: any) => a.currency_id === +curCode.value)?.min_deposit
+    return arr.find((a: any) => a.currency_id === +curCode.value)?.min_deposit ?? 0
   }
   return ''
 })
 const interestRate = computed(() => {
   if (data.value) {
     const arr = JSON.parse(data.value.config)
-    return arr.find((a: any) => a.currency_id === +curCode.value)?.interest_rate
+    return arr.find((a: any) => a.currency_id === +curCode.value)?.interest_rate ?? 0
   }
   return ''
 })
@@ -72,10 +74,10 @@ watch(currentGlobalCurrency, (a) => {
         </BaseSelect>
       </div>
       <div class="text-tg-secondary-light max-w-160 w-full text-center text-[14px] font-semibold leading-[20px]">
-        {{ numberToLocaleString(minDepositAmount) }}
+        {{ application.numberToLocaleString(minDepositAmount) }}
       </div>
       <div class="text-tg-secondary-light max-w-160 w-full text-center text-[14px] font-semibold leading-[20px]">
-        {{ numberToLocaleString(interestRate * 100) }}%
+        {{ application.numberToLocaleString(interestRate * 100) }}%
       </div>
     </div>
 
@@ -89,11 +91,11 @@ watch(currentGlobalCurrency, (a) => {
       <div>
         <div class="text-tg-secondary-light mb-12 text-[14px] font-semibold leading-[1.42]">
           {{ t('vault_des_2_1') }}
-          <span class="underline">
+          <span class="">
             {{ t('vault_des_casino') }}
           </span>
           {{ t('vault_des_2_2') }}
-          <span class="underline">
+          <span class="">
             {{ t('vault_des_sports') }}
           </span>
         </div>
@@ -102,7 +104,7 @@ watch(currentGlobalCurrency, (a) => {
         <div class="text-tg-secondary-light mb-12 text-[14px] font-semibold leading-[1.42]">
           {{ t('vault_des_3') }}
 
-          <span class="underline">
+          <span class="">
             Meibo.com
           </span>
           {{ t('period') }}
@@ -131,14 +133,16 @@ watch(currentGlobalCurrency, (a) => {
         </div>
       </div>
       <ul class="text-tg-secondary-light mb-12 ml-[3vw] list-disc text-[14px] font-semibold leading-[1.42] md:ml-[20px]">
-        <li>{{ t('vault_des_li1') }}</li>
-        <li>{{ t('vault_des_li2') }}</li>
+        <li><div>{{ t('vault_des_li1') }}</div></li>
+        <li><div>{{ t('vault_des_li2') }}</div></li>
         <li>
-          {{ t('vault_des_li3_1') }}
-          <span class="underline">{{ t('vault_des_li3_2') }}</span>
+          <div>
+            {{ t('vault_des_li3_1') }}
+            <span class="">{{ t('vault_des_li3_2') }}</span>
+          </div>
         </li>
-        <li>{{ t('vault_des_li4') }}</li>
-        <li>{{ t('vault_des_li5') }}</li>
+        <li><div>{{ t('vault_des_li4') }}</div></li>
+        <li><div>{{ t('vault_des_li5') }}</div></li>
       </ul>
       <div>
         <div class="text-tg-secondary-light mb-12 text-[14px] font-semibold leading-[1.42]">
@@ -157,8 +161,162 @@ watch(currentGlobalCurrency, (a) => {
         </div>
       </div>
       <div>
-        <div class="text-tg-secondary-light text-[14px] font-semibold leading-[1.42]">
+        <div class="text-tg-secondary-light mb-12 text-[14px] font-semibold leading-[1.42]">
           {{ t('vault_des_11') }}
+          <span class="">{{ t('vault_des_card') }}</span>
+          <span class="">{{ t('vault_des_dice') }}</span>
+          <span class="">{{ t('vault_des_slots') }}</span>
+          {{ t('vault_des_12') }}
+          <span class="">{{ t('vault_des_live') }}</span>
+          {{ t('and') }}
+          <span class="">{{ t('vault_des_upcoming') }}</span>
+          {{ t('vault_des_13') }}
+        </div>
+      </div>
+      <!-- 🔖🔖🔖 -->
+      <div>
+        <div class="text-tg-text-white mb-8 text-[18px] font-semibold leading-[1.42]">
+          {{ t('vault_des_14') }}
+        </div>
+      </div>
+      <div>
+        <div class="text-tg-secondary-light mb-12 text-[14px] font-semibold leading-[1.42]">
+          {{ t('vault_des_15') }}
+        </div>
+      </div>
+      <div>
+        <div class="text-tg-secondary-light mb-12 text-[14px] font-semibold leading-[1.42]">
+          {{ t('vault_des_16') }}
+        </div>
+      </div>
+      <div>
+        <div class="text-tg-secondary-light mb-12 text-[14px] font-semibold leading-[1.42]">
+          {{ t('vault_des_17') }}
+        </div>
+      </div>
+      <!-- 🔖🔖🔖 -->
+      <div>
+        <div class="text-tg-text-white mb-8 text-[18px] font-semibold leading-[1.42]">
+          {{ t('vault_des_18') }}
+        </div>
+      </div>
+      <div>
+        <div class="text-tg-secondary-light text-[14px] font-semibold leading-[1.42]">
+          {{ t('vault_des_19') }}
+        </div>
+      </div>
+      <ul class="text-tg-secondary-light mb-12 ml-[3vw] list-disc text-[14px] font-semibold leading-[1.42] md:ml-[20px]">
+        <li><div>{{ t('vault_des_li6') }}</div></li>
+        <li><div>{{ t('vault_des_li7') }}</div></li>
+        <li><div>{{ t('vault_des_li8') }}</div></li>
+        <li><div>{{ t('vault_des_li9') }}</div></li>
+        <li><div>{{ t('vault_des_li10') }}</div></li>
+        <li><div>{{ t('vault_des_li11') }}</div></li>
+      </ul>
+      <!-- 🔖🔖🔖 -->
+      <div>
+        <div class="text-tg-text-white mb-8 text-[18px] font-semibold leading-[1.42]">
+          {{ t('vault_des_20') }}
+        </div>
+      </div>
+      <div>
+        <div class="text-tg-secondary-light mb-12 text-[14px] font-semibold leading-[1.42]">
+          {{ t('vault_des_21') }}
+        </div>
+      </div>
+      <div>
+        <div class="text-tg-secondary-light mb-12 text-[14px] font-semibold leading-[1.42]">
+          {{ t('vault_des_22') }}
+        </div>
+      </div>
+      <!-- 🔖🔖🔖 -->
+      <div>
+        <div class="text-tg-text-white mb-8 text-[18px] font-semibold leading-[1.42]">
+          {{ t('vault_des_23') }}
+        </div>
+      </div>
+      <div>
+        <div class="text-tg-secondary-light mb-12 text-[14px] font-semibold leading-[1.42]">
+          {{ t('vault_des_24') }}
+        </div>
+      </div>
+      <div>
+        <div class="text-tg-secondary-light mb-12 text-[14px] font-semibold leading-[1.42]">
+          {{ t('vault_des_25') }}
+        </div>
+      </div>
+      <!-- 🔖🔖🔖 -->
+      <div>
+        <div class="text-tg-text-white mb-8 text-[18px] font-semibold leading-[1.42]">
+          {{ t('vault_des_26') }}
+        </div>
+      </div>
+      <div>
+        <div class="text-tg-secondary-light mb-12 text-[14px] font-semibold leading-[1.42]">
+          {{ t('vault_des_27') }}
+        </div>
+      </div>
+      <!-- 🔖🔖🔖 -->
+      <div>
+        <div class="text-tg-text-white mb-8 text-[18px] font-semibold leading-[1.42]">
+          {{ t('vault_des_28') }}
+        </div>
+      </div>
+      <div>
+        <div class="text-tg-secondary-light text-[14px] font-semibold leading-[1.42]">
+          {{ t('vault_des_29') }}
+        </div>
+      </div>
+      <ul class="text-tg-secondary-light mb-12 ml-[3vw] list-disc text-[14px] font-semibold leading-[1.42] md:ml-[20px]">
+        <li><div>{{ t('vault_des_li12') }}</div></li>
+        <li><div>{{ t('vault_des_li13') }}</div></li>
+        <li><div>{{ t('vault_des_li14') }}</div></li>
+        <li><div>{{ t('vault_des_li15') }}</div></li>
+        <li><div>{{ t('vault_des_li16') }}</div></li>
+        <li><div>{{ t('vault_des_li17') }}</div></li>
+        <li><div>{{ t('vault_des_li18') }}</div></li>
+        <li><div>{{ t('vault_des_li19') }}</div></li>
+        <li><div>{{ t('vault_des_li20') }}</div></li>
+        <li><div>{{ t('vault_des_li21') }}</div></li>
+        <li><div>{{ t('vault_des_li22') }}</div></li>
+        <li><div>{{ t('vault_des_li23') }}</div></li>
+        <li><div>{{ t('vault_des_li24') }}</div></li>
+        <li><div>{{ t('vault_des_li25') }}</div></li>
+        <li><div>{{ t('vault_des_li26') }}</div></li>
+        <li><div>{{ t('vault_des_li27') }}</div></li>
+        <li><div>{{ t('vault_des_li28') }}</div></li>
+        <li><div>{{ t('vault_des_li29') }}</div></li>
+        <li><div>{{ t('vault_des_li30') }}</div></li>
+      </ul>
+      <div>
+        <div class="text-tg-secondary-light mb-12 text-[14px] font-semibold leading-[1.42]">
+          {{ t('vault_des_30') }}
+        </div>
+      </div>
+      <!-- 🔖🔖🔖 -->
+      <div>
+        <div class="text-tg-text-white mb-8 text-[18px] font-semibold leading-[1.42]">
+          {{ t('vault_des_31') }}
+        </div>
+      </div>
+      <div>
+        <div class="text-tg-secondary-light mb-12 text-[14px] font-semibold leading-[1.42]">
+          {{ t('vault_des_32') }}
+        </div>
+      </div>
+      <div>
+        <div class="text-tg-secondary-light mb-12 text-[14px] font-semibold leading-[1.42]">
+          {{ t('vault_des_33') }}
+        </div>
+      </div>
+      <div>
+        <div class="text-tg-secondary-light mb-12 text-[14px] font-semibold leading-[1.42]">
+          {{ t('vault_des_34') }}
+        </div>
+      </div>
+      <div>
+        <div class="text-tg-secondary-light mb-12 text-[14px] font-semibold leading-[1.42]">
+          {{ t('vault_des_35') }}
         </div>
       </div>
     </div>
