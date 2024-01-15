@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { getCurrentLanguageForBackend } from '~/modules/i18n'
-
 interface Props {
   url: string // 图像地址
   name?: string // 图像名称

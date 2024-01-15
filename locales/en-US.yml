@@ -2337,3 +2337,5 @@ recent_game_record2: Record of recent games
 keep_integral: 保级积分
 min_deposit_amount: 最低存入金额
 annual_interest_rate: 年利率
+success_close_double_check: 关闭双重验证密码成功
+close_verification: 关闭双重验证

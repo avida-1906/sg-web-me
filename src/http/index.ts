@@ -1,5 +1,5 @@
 import type { AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios'
-import { getCurrentLanguageForBackend, i18n } from '~/modules/i18n'
+import { i18n } from '~/modules/i18n'
 import { router } from '~/modules/router'
 
 const { VITE_HTTP_TIMEOUT, VITE_HTTP_BASEURL, PROD } = getEnv()

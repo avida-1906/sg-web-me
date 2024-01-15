@@ -1,5 +1,3 @@
-import { getCurrentUrlLanguage } from '~/modules/i18n'
-
 export function useLocalRouter() {
   const router = useRouter()
 

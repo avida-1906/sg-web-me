@@ -1887,3 +1887,5 @@ vault_des_8: 'When you access the Vault for the first time, you will need to ver
 vault_des_9: 'How Do You Use the Vault?'
 vault_des_10: 'The primary use of the Vault is to keep your funds safe. When you complete a crypto deposit at Meibo.com, you can add your cryptocurrency to the Vault for an added layer of protection to keep your funds safe.'
 vault_des_11: 'The Vault ensures secure transmission of digital payments, and the easy-to-use interface means that you can easily access your crypto when you want to use it at Meibo.'
+success_close_double_check: 关闭双重验证密码成功
+close_verification: 关闭双重验证

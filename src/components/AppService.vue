@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { getCurrentUrlLanguage } from '~/modules/i18n'
-
 interface Props {
   modelValue: boolean
 }

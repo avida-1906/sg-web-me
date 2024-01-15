@@ -3,41 +3,91 @@ const { t } = useI18n()
 usePageTitle({ prefix: t('two_step_verification') })
 const { openNotify } = useNotify()
 const { userInfo } = storeToRefs(useAppStore())
-const { updateUserInfo } = useAppStore()
+// const { updateUserInfo } = useAppStore()
 /** 双重验证 */
 const {
   value: loginPassword,
   errorMessage: loginPwdErrorMsg,
   validate: validateLoginPwd,
+  resetField: resetLoginPassword,
 } = useField<string>('loginPassword', fieldVerifyLoginPwd)
 const {
   value: doublePassword,
   errorMessage: doublePwdErrorMsg,
   validate: validateDoublePwd,
+  resetField: resetDoublePassword,
 } = useField<string>('doublePassword', (value) => {
   if (!value)
     return t('pls_input_double_check_pwd')
   return ''
 })
+// const {
+//   run: runMemberDualVerify,
+//   loading: dualVerifyLoading,
+// } = useRequest(ApiMemberDualVerify, {
+//   onSuccess() {
+//     openNotify({
+//       type: 'success',
+//       message: t('success_set_double_check'),
+//     })
+//     updateUserInfo()
+//   },
+// })
+// 获取二阶段验证密钥
 const {
-  run: runMemberDualVerify,
-  loading: dualVerifyLoading,
-} = useRequest(ApiMemberDualVerify, {
+  data: authSecret,
+  run: runMemberAuthSecret,
+} = useRequest(ApiMemberAuthSecret, {
   onSuccess() {
+  },
+})
+// 获取安全验证配置
+const {
+  data: authConfig,
+  runAsync: runAsyncMemberAuthConfig,
+} = useRequest(ApiMemberAuthConfig, {
+  onSuccess(data) {
+    if (data.is_secret !== '1')
+      runMemberAuthSecret()
+    resetLoginPassword()
+    resetDoublePassword()
+  },
+})
+// 设定二阶段验证
+const {
+  run: runMemberAuthSet,
+  loading: loadMemberAuthSet,
+} = useRequest(ApiMemberAuthSet, {
+  onSuccess() {
+    runAsyncMemberAuthConfig()
     openNotify({
       type: 'success',
       message: t('success_set_double_check'),
     })
-    updateUserInfo()
+    // updateUserInfo()
+  },
+})
+// 关闭二阶段验证
+const {
+  run: runMemberAuthClose,
+  loading: loadMemberAuthClose,
+} = useRequest(ApiMemberAuthClose, {
+  onSuccess() {
+    runAsyncMemberAuthConfig()
+    openNotify({
+      type: 'success',
+      message: t('success_close_double_check'),
+    })
   },
 })
 
 const doubleVerified = computed(() => {
-  return userInfo.value?.google_verify === 2
+  return authConfig.value?.is_secret === '1'
+  // userInfo.value?.google_verify === 2
 })
 const getQRcodeUrl = computed(() => {
   if (userInfo.value)
-    return generateQRCodeUrl({ label: 'sg', email: userInfo.value.email, secret: userInfo.value.google_key })
+    return generateQRCodeUrl({ label: 'sg', email: userInfo.value.email, secret: authSecret.value ?? '' })
 })
 
 function fieldVerifyLoginPwd(value: string) {
@@ -54,58 +104,56 @@ function fieldVerifyLoginPwd(value: string) {
 async function submitDoublePassword() {
   await validateLoginPwd()
   await validateDoublePwd()
-  if (!loginPwdErrorMsg.value && !doublePwdErrorMsg.value)
-    runMemberDualVerify({ password: loginPassword.value, code: doublePassword.value })
+  if (!loginPwdErrorMsg.value && !doublePwdErrorMsg.value) {
+    const data = { password: loginPassword.value, auth_code: doublePassword.value }
+    doubleVerified.value ? runMemberAuthClose(data) : runMemberAuthSet(data)
+  }
 }
-
-/**
- *
- * @param params
- * label: appName
- * email: userEmail
- * secret: 密钥
- */
 function generateQRCodeUrl(params: {
+  /** appName */
   label: string
+  /** email */
   email: string
+  /** 密钥 */
   secret: string
 }) {
   return `otpauth://totp/${encodeURIComponent(params.label)}:${encodeURIComponent(params.email)}?secret=${params.secret}&issuer=${encodeURIComponent(params.label)}`
 }
+
+await application.allSettled([runAsyncMemberAuthConfig()])
 </script>
 
 <template>
   <div class="tg-settings-security">
     <AppSettingsContentItem
-      :title="t('two_step_verification')"
+      :title="doubleVerified ? t('close_verification') : t('two_step_verification') "
       last-one
-      :btn-loading="dualVerifyLoading"
-      :verified="doubleVerified"
-      :badge="doubleVerified"
-      btn-text="submit"
+      :btn-loading="loadMemberAuthSet || loadMemberAuthClose"
+      :btn-text="doubleVerified ? 'close' : 'submit'"
       @submit="submitDoublePassword"
     >
       <template #top-desc>
         {{ t('tip_start_double_check') }}
       </template>
       <div class="two-step-verification">
-        <AppCopyLine
-          v-if="userInfo"
-          :label="t('copy_to_google')"
-          :msg="userInfo.google_key"
-        />
-        <p class="tg-mt-16" style="line-height: 21px;">
-          {{ t('hide_from_others') }}
-        </p>
-        <div v-if="getQRcodeUrl" class="qr-wrap">
-          <BaseQrcode :url="getQRcodeUrl" class="tg-mt-16" />
-        </div>
-        <div class="tg-mt-16">
-          <BaseLabel :label="t('password')" must-small>
+        <template v-if="!doubleVerified">
+          <AppCopyLine
+            v-if="userInfo"
+            :label="t('copy_to_google')"
+            :msg="authSecret ?? ''"
+          />
+          <p class="tg-mt-16" style="line-height: 1.5;">
+            {{ t('hide_from_others') }}
+          </p>
+          <div v-if="getQRcodeUrl" class="qr-wrap">
+            <BaseQrcode :url="getQRcodeUrl" class="tg-mt-16" />
+          </div>
+        </template>
+        <div>
+          <BaseLabel :label="t('login_pwd')" must-small>
             <BaseInput
               v-model="loginPassword"
               :msg="loginPwdErrorMsg"
-              :disabled="doubleVerified"
               type="password"
             />
           </BaseLabel>
@@ -114,8 +162,7 @@ function generateQRCodeUrl(params: {
               <BaseInput
                 v-model="doublePassword"
                 :msg="doublePwdErrorMsg"
-                :disabled="doubleVerified"
-                type="password"
+                type="text"
               />
             </BaseLabel>
           </div>
@@ -140,6 +187,7 @@ function generateQRCodeUrl(params: {
     .qr-wrap{
       width: 144px;
       height: 144px;
+      margin-bottom: 16px;
     }
 
   }

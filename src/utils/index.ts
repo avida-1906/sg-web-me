@@ -1,5 +1,5 @@
 import type { EnumCurrencyKey } from '~/apis/types'
-import type { EnumLanguageKeys } from '~/modules/i18n'
+import { type EnumLanguageKeys } from '~/modules/i18n'
 
 const { VITE_I18N_DEFAULT_LANG } = getEnv()
 
@@ -161,6 +161,41 @@ class Application {
         reject(new Error(`load image error: ${_url}`))
       }
     })
+  }
+
+  /**
+ * 将数字根据地区格式化
+ * @param {number} number 数字
+ * @returns {string} 格式化后的数字
+ */
+  numberToLocaleString(
+    number: number,
+    curLang?: EnumLanguageKeys,
+    _decimal = 2,
+  ) {
+    const _num = Number(toFixed(number, _decimal))
+    return _num.toLocaleString(curLang)
+    // // 需要处理的国家
+    // const countryList: EnumLanguageKeys[] = ['vi-VN']
+
+    // const _number = toFixed(number, _decimal) // 123234.4958
+
+    // let amount = ''
+
+    // // 判断有没有小数点
+    // if (_number.includes('.')) {
+    //   const [_integerPart, _decimalPart] = _number.split('.')
+    //   const integerPart = this.formatNumber(_integerPart, { groupSize: 3, separator: ',' })
+    //   amount = `${integerPart}.${_decimalPart}`
+    // }
+    // else {
+    //   amount = this.formatNumber(_number, { groupSize: 3, separator: ',' })
+    // }
+
+    // if (countryList.includes(curLang))
+    //   return amount.replace('.', ',').replace(',', '.')
+    // else
+    //   return amount
   }
 
   /**

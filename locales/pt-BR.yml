@@ -12,10 +12,9 @@ live: Pessoas reais
 email_or_username: E-mail ou Nome de Usuário
 pls_enter_email_or_username: Digite o e-mail ou o nome de usuário
 email_or_username_incorrect: E-mail ou nome de usuário incorreto
-two_step_verification: Verificação em duas etapas
+two_step_verification: 2FA
 pls_enter_two_step_verification: Digite o código de verificação em duas etapas
-tip_start_double_check: 'Para uma segurança adicional, ative a verificação em duas
-  etapas '
+tip_start_double_check: 'Para manter sua conta ainda mais segura, deixe o 2FA ativado'
 email_address: E-mail
 pls_enter_email_address: Digite o e-mail
 email_address_incorrect: Endereço de e-mail incorreto
@@ -26,9 +25,9 @@ username: Nome de Usuário
 pls_enter_username: Digite o nome de usuário
 username_incorrect: Seu nome de usuário deve possuir 3 - 14 caracteres
 password: Senha
-old_pwd: Senha anterior
+old_pwd: Senha Antiga
 new_pwd: Nova senha
-confirm_new_pwd: Confirme a nova senha
+confirm_new_pwd: Confirmar Nova Senha
 confirm_pwd: Confirme a senha
 pls_enter_password: Digite a senha
 pls_enter_birthday: Digite a data de nascimento
@@ -201,7 +200,7 @@ clear: Limpar
 clear_all: Limpar tudo
 click_open_whatsapp: Clique aqui para abrir o WhatsApp
 click_to_unmute: Clique aqui para desativar o modo silencioso
-close: Fechar
+close: desativado
 close_intercom_messenger: Fechar o Intercom Messenger
 connecting: Conectando
 continue_on_whatsapp: Continuar no WhatsApp
@@ -731,7 +730,7 @@ upload_max_files_size: Tamanho máx. de arquivos {limit}MB
 user_says: "{firstName} disse"
 usual_reply_time_header_label: Tempo médio de resposta
 view_label: Visualizar
-view_all: Visualizar tudo
+view_all: Ver Todos
 view_conversation: Visualizar conversas
 view_more: Exibir mais
 view_more_details: Visualizar mais detalhes
@@ -1125,8 +1124,7 @@ vip_banner_tip_1: Trabalhe com seu representante de serviço VIP dedicado para a
   os benefícios às suas necessidades de apostas.
 vip_banner_tip_2: Você pode esperar bônus semanais e mensais com base no seu volume
   de jogo. Quanto mais você joga, mais bônus você ganha.
-vip_banner_tip_3: Má sorte? A aposta fornece fundos adicionais com base nas suas
-  perdas sempre que você sobe de nível.
+vip_banner_tip_3: 'Em má fase de sorte? A Meibo está aqui para mudar o jogo! A cada upgrade, receba fundos extras com base nas suas perdas. Deixe-nos transformar sua sorte e faça parte de uma experiência única no mundo dos cassinos!'
 vip_banner_tip_4: Seja designado um representante de serviço VIP dedicado que irá
   apoiar e atender às suas necessidades de apostas.
 vip_banner_tip_5: Ganhe bônus depois de atingir cada nível seguinte. Quanto maior o nível alcançado, maior será o bônus de atualização.
@@ -1140,9 +1138,9 @@ dedicated_vip_servicer: Representante de serviço VIP dedicado
 multiple_count: Multiplicador
 ranking: Rank
 hidden_user: Privado
-hidden_mode: Modo anônimo
+hidden_mode: 'Modo anônimo '
 user_turn_on_hidden: Este jogador ativou o modo privado
-turn_on: Ativar
+turn_on: ativado
 receive: Receber
 received: Recebido
 wait_receive: A receber
@@ -1213,7 +1211,7 @@ image_upload_tip: 'Só é possível fazer upload de: formato png/jpg, até 5 fot
 image_upload_size: O tamanho máximo de uma única imagem é {size}
 image_upload_failed: Falha no upload da imagem
 bonus_rule: Regras de bônus
-bonus_label: prêmio
+bonus_label: Recompensas
 feedback_bonus_tip: Criamos um grande bônus para coletar feedback para que possamos
   otimizar o sistema e as funções e proporcionar uma experiência melhor! Uma vez
   adotado, as recompensas serão dadas com base na importância (exceto se não for
@@ -1382,43 +1380,39 @@ phone_update_to: Número de celular atualizado para
 success_verify: Verificado com sucesso
 congratulate_email_success: Parabéns! Seu e-mail foi verificado com sucesso
 resend_email: Reenviar E-mail
-phone: Número de celular
-tip_phone: Atendemos apenas áreas listadas na lista de códigos de chamadas internacionais.
-intl_phone_pre: Códigos de chamadas internacionais
+phone: Número do Telefone
+tip_phone: Nós atendemos apenas as áreas que estão listadas na lista de códigos de países disponíveis.
+intl_phone_pre: Código do País
 social_account: Conta da rede social
 action: Ação
 cancel_ignore: Remover da lista negra
 level_desc: Descrição do nível
-preferences_tip_1: A privacidade do usuário é um dos valores fundamentais da {site}.
-  Essas configurações permitirão que você fique completamente anônimo na frente
-  de outros jogadores.
-preferences_tip_2: A sua aposta não aparecerá em feeds de apostas públicos e em
-  pré-visualizações de apostas
-preferences_tip_3: Outros usuários não poderão visualizar estatísticas sobre suas
-  vitórias, derrotas e apostas
-preferences_tip_4: Outros usuários não poderão ver o histórico do seu concurso
-preferences_tip_5: Aguarde até 30 segundos para que a atualização entre em vigor.
-preferences_tip_6: Impedir que você receba envelopes vermelhos em salas de chat
-preferences_tip_7: Desativar o recebimento de e-mails de marketing ou ofertas
-turn_on_hide_mode: Ativar modo de navegação anônima
-hide_all_statistic: Ocultar todas as estatísticas
-hide_all_competition_record: Ocultar todos os registros do concurso
-refuse_rain: Recuse-se a receber chuva de envelope vermelho
+preferences_tip_1: 'A privacidade do usuário é um dos valores mais importantes da {site}. Essas configurações permitem que você fique completamente anônimo do resto dos jogadores.'
+preferences_tip_2: 'Suas apostas não aparecerão no feed de apostas público e na visualização da aposta'
+preferences_tip_3: 'Outros usuários não poderão visualizar suas vitórias, derrotas e estatísticas de apostas'
+preferences_tip_4: Outros usuários não conseguirão ver suas estatísticas de corrida
+preferences_tip_5: Por favor, aguarde até 30 segundos para que a atualização entre em vigor
+preferences_tip_6: Impedir que você receba chuvas no chat
+preferences_tip_7: Status da assinatura de e-mails ou ofertas de marketing
+turn_on_hide_mode: Ativar Modo Anônimo
+hide_all_statistic: Esconder todas as suas estatísticas
+hide_all_competition_record: Esconder todas as suas estatísticas de corrida
+refuse_rain: Excluir das chuvas
 marketing: Marketing
-receive_market_email: Receba e-mails de marketing
+receive_market_email: Receber E-mails de Marketing
 validate_msg_pwd_unequal: As senhas inseridas duas vezes são inconsistentes
 validate_msg_safepwd_unequal: As senhas dos fundos inseridas duas vezes são inconsistentes
 success_update_pwd: A senha foi atualizada
 pls_input_double_check_pwd: Por favor insira sua senha de verificação em duas etapas
 success_set_double_check: Defina a senha de verificação em duas etapas com sucesso
-copy_to_google: Copie o código para seu aplicativo autenticador
-hide_from_others: Evite que outras pessoas vejam esta página!
+copy_to_google: Copie esse código no seu aplicativo autenticador
+hide_from_others: Não deixe ninguém ver isso!
 success_set_safepwd: Defina a senha do fundo com sucesso
 tip_safepwd_six: A senha do seu fundo contém 6 dígitos
 email_uncheck: Email não está verificado
 tip_safepwd: A senha do fundo será usada para proteger saques e saques seguros do
   cofre.
-login_time: Horário de login
+login_time: Último Acesso
 browser: Navegador
 area: Área
 wise_bet: Aposte de forma mais inteligente
@@ -1643,8 +1637,8 @@ bet_amount_label: Valor da aposta
 bonus_up: Crescimento do bônus
 promo: Benefício
 look_vip_level: Visualizar tabela de nível VIP
-beginner_handbook: Manual para iniciantes
-step_num: Passo {num}
+beginner_handbook: Instruções para iniciantes
+step_num: '{num} passo'
 experience: Experiência
 click_more: Clique aqui para saber mais
 has_more_q: Ainda possui dúvidas?
@@ -1652,15 +1646,14 @@ online_24_sup: Atendimento ao cliente 24h
 vip_club_tip_1: Experiência VIP incomparável
 vip_club_tip_2: Desbloqueie benefícios exclusivos e receba bônus que você pode sacar
   instantaneamente, sem compromisso.
-vip_club_tip_3: Tornar-se VIP é um processo fácil e gratificante
+vip_club_tip_3: Tornar-se VIP é mais fácil do que você imagina
 vip_club_tip_4: Cadastre-se agora para começar a apostar no cassino ou nos mercados
   esportivos
 vip_club_tip_5: Cada aposta que você faz afeta o seu progresso em direção ao nível
   VIP. Alcance o próximo nível para desbloquear mais benefícios.
 vip_club_tip_6: Reivindique seus ganhos imediatamente. O processo de reivindicação
   de bônus diários, semanais e mensais é simples e fácil.
-vip_club_tip_7: A aposta oferece uma experiência única e incomparável, com bônus
-  ininterruptos sendo distribuídos
+vip_club_tip_7: 'Descubra a inigualável e envolvente experiência proporcionada pela Meibo, onde os bônus fluem de forma contínua, tornando cada momento uma oportunidade única. '
 vip_club_tip_8: Obtenha melhores recompensas a cada atualização
 vip_club_tip_9: Entre em contato com nossa premiada equipe de suporte
 vip_club_tip_10: Por que o programa VIP da {site} é o melhor?
@@ -1863,8 +1856,8 @@ week_3: Quarta-feira
 week_4: Quinta-feira
 week_5: Sexta-feira
 week_6: Sábado
-double_check_code: Código de verificação em duas etapas
-official_number: Formato digital legal
+double_check_code: Código 2FA
+official_number: Formatação de Número Fiduciário
 official_num_tip: 'Aviso: na visualização da moeda fiduciária {currencyName}, a formatação
   do número fiduciário será desativada.'
 privacy: Privacidade
@@ -2036,8 +2029,8 @@ empty_official_deposit: Sem Depósitos em Dinheiro
 empty_official_withdraw: Sem Retiradas em Dinheiro
 day_bonus: Bônus diário
 deposit_bonus: Bônus de depósito
-two: Dois
-three: Três
+two: Segundo
+three: Terceiro
 casino_new_intro_1: Melhores Jogos de Cassino Online - Jogue os Melhores Jogos em
   {host}
 casino_new_intro_2: Com tantos jogos de cassino, por onde começar? Um bom lugar para
@@ -2398,3 +2391,5 @@ recent_game_record2: Recente
 keep_integral: 保级积分
 min_deposit_amount: 最低存入金额
 annual_interest_rate: 年利率
+success_close_double_check: 关闭双重验证密码成功
+close_verification: 关闭双重验证

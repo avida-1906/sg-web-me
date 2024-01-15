@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { getCurrentLanguageForBackend } from '~/modules/i18n'
-
 // 公告弹框和跑马灯
 const {
   data: noticeData,

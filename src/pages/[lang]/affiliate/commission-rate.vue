@@ -1,13 +1,24 @@
 <script lang="ts" setup>
 const { t } = useI18n()
-const { list: scaleList } = useScaleData()
-const { selected: tab, list: tabList } = useSelect(scaleList)
+// const { list: scaleList } = useScaleData()
+// const { selected: tab, list: tabList } = useSelect(scaleList)
+const tab = ref('')
 const { isMobile } = storeToRefs(useWindowStore())
 
 const {
   data,
   loading,
-} = useRequest(ApiAgencyCommissionScale, { manual: false })
+  run: runAgencyCommissionScale,
+} = useRequest(ApiAgencyCommissionScale)
+const {
+  data: modelsList,
+  runAsync: runAsyncModelsList,
+} = useRequest(ApiAgencyCommissionModelsList, {
+  onSuccess(data) {
+    tab.value = data[0].id
+    runAgencyCommissionScale()
+  },
+})
 
 const columns: Column[] = [
   {
@@ -32,24 +43,32 @@ const columns: Column[] = [
   },
 ]
 
+const tabList = computed(() => {
+  return modelsList.value?.map((item) => {
+    return {
+      label: item.name,
+      value: item.id,
+    }
+  })
+})
 const list = computed(() => {
   const conf = data.value?.conf
   const currentSelected = tab.value
-
+  console.log(currentSelected)
   if (!conf)
     return []
   const result = conf.reduce((acc, cur) => {
-    const { model_ids, levels } = cur
-    const modelIds = model_ids.split(',')
-
-    if (modelIds.includes(currentSelected) && Array.isArray(levels))
+    const { levels, id } = cur
+    // const modelIds = model_ids.split(',')
+    if (id === currentSelected && Array.isArray(levels))
       acc.push(...levels)
-
     return acc
   }, [] as any[])
 
   return result
 })
+
+await application.allSettled([runAsyncModelsList()])
 </script>
 
 <template>
@@ -71,6 +90,9 @@ const list = computed(() => {
       :loading="loading"
       :skeleton-row="5"
     >
+      <template #level="{ index }">
+        {{ index + 1 }}
+      </template>
       <template #th-effective_bat>
         <div class="center">
           <AppCurrencyIcon currency-type="USDT" />

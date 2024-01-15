@@ -1,5 +1,4 @@
 import type { Room } from '~/types'
-import { getCurrentLanguageForFrontend } from '~/modules/i18n'
 
 export interface FeedBackItem {
   feed_id: string

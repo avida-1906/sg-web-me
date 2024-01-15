@@ -113,8 +113,8 @@ onMounted(() => {
         {{ `${timeToDateFormat(record.created_at)} ${timeToCustomizeFormat(
           record.created_at, 'HH:mm:ss')}` }}
       </template>
-      <template #last_login_at="{ record }">
-        {{ timeToDateFormat(record.last_login_at) }}
+      <template #last_login_at="{ record: { last_login_at } }">
+        {{ last_login_at ? timeToDateFormat(last_login_at) : '-' }}
       </template>
       <template #online="{ record }">
         <span
@@ -128,7 +128,7 @@ onMounted(() => {
       </template>
     </BaseTable>
     <BasePagination
-      v-if="total > 10"
+      v-if="total > page_size"
       v-model:current-page="page"
       v-model:page-size="page_size"
       :total="total"

@@ -1,6 +1,4 @@
 <script setup lang='ts'>
-import { getCurrentLanguageForBackend } from '~/modules/i18n'
-
 const { isMobile } = storeToRefs(useWindowStore())
 
 const getUrl = computed(() => {

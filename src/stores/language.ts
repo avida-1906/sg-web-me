@@ -1,10 +1,5 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import type { EnumLanguageKeys } from '~/modules/i18n'
-import {
-  getCurrentLanguageForFrontend,
-  getCurrentUrlLanguage,
-  getLocalUrlToUrlLang,
-} from '~/modules/i18n'
 
 export const useLanguageStore = defineStore('language', () => {
   const router = useRouter()

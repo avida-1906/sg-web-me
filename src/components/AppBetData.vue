@@ -461,7 +461,8 @@ onUnmounted(() => {
       <div v-show="activeTab === 'ranking-list'" class="ranking-time">
         <div class="center cursor-pointer">
           <BaseIcon name="spt-competition" />
-          <span>{{ t('competition', { money: '$100,000' }) }} – {{
+          <span>{{ t('competition', { money: `$${application.numberToLocaleString(99999, getCurrentLanguageForFrontend())}` })
+          }} – {{
             t('time_hour', { delta: 24 }) }}</span>
         </div>
         <div class="center cursor-pointer">

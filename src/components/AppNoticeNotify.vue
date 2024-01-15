@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { getCurrentLanguageForBackend } from '~/modules/i18n'
-
 interface Props {
   mode: string
 }
