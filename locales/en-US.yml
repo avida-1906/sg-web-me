@@ -2337,5 +2337,79 @@ recent_game_record2: Record of recent games
 keep_integral: 保级积分
 min_deposit_amount: 最低存入金额
 annual_interest_rate: 年利率
+vault_des_1: 'The Meibo Vault Explained: How to Use Our Online Vault to Store Crypto'
+vault_des_2_1: 'Although betting at Meibo.com is highly secure, the Vault is an additional layer of protection for your funds. Every user at Meibo.com can access the Vault, whether you play'
+vault_des_casino: 'casino games'
+vault_des_2_2: 'or place bets on your favourite'
+vault_des_sports: 'sports.'
+vault_des_3: 'Here, we explain everything you need to know about the Meibo Vault, including how to access it and why it’s worth utilising as you place your bets at'
+vault_des_4: 'What is the Vault on Meibo.com?'
+vault_des_5: 'The Meibo Vault is a safe place to store funds without worrying about transaction fees or blockchain delays. The Vault acts like your own digital wallet or even like a savings account you would have with a bank. It is extremely secure – thanks to 2FA – and you can implement enhanced safety measures to take care of the crypto within. The Vault is also where you can access several Meibo.com promotions, so it’s well worth taking advantage of your Vault when placing your bets at Meibo.'
+vault_des_6: 'How Do You Access the Vault?'
+vault_des_7: 'Accessing the Vault is straightforward and can be done via any desktop or mobile device. Here are the steps to access your Meibo Vault:'
+vault_des_li1: 'Step 1: Log in to your Meibo.com account.'
+vault_des_li2: 'Step 2: Navigate to the main user menu.'
+vault_des_li3_1: 'Step 3: Go to'
+vault_des_li3_2: 'Account > Vault.'
+vault_des_li4: 'Step 4: Access your Vault and set up your security features.'
+vault_des_li5: 'Step 5: Deposit crypto into your Vault.'
+vault_des_8: 'When you access the Vault for the first time, you will need to verify which security features to activate, including 2FA (two-factor authentication). You will also need to enter your password to access the crypto that you store within.'
+vault_des_9: 'How Do You Use the Vault?'
+vault_des_10: 'The primary use of the Vault is to keep your funds safe. When you complete a crypto deposit at Meibo.com, you can add your cryptocurrency to the Vault for an added layer of protection to keep your funds safe.'
+vault_des_11: 'The Vault ensures secure transmission of digital payments, and the easy-to-use interface means that you can easily access your crypto when you want to use it at Meibo, whether you’re playing '
+vault_des_card: 'cards,'
+vault_des_dice: 'dice,'
+vault_des_slots: 'slots,'
+vault_des_12: 'or placing bets on the biggest'
+vault_des_live: 'live'
+vault_des_upcoming: 'upcoming'
+vault_des_13: 'sporting events.'
+vault_des_14: 'What is the Vault Used for?'
+vault_des_15: 'The Vault is used to store cryptocurrency; in this regard, it’s similar to a cryptocurrency wallet. However, we also use the Vault to deposit some of our casino offers, giveaway prizes and weekly promotions.'
+vault_des_16: 'Learn more about how our monthly bonuses work and find out how to become a Meibo VIP and what exclusive rewards members of the Meibo VIP Club can access.'
+vault_des_17: 'The easiest way to think of the Vault is to compare it to a bank vault. You can keep your funds in an account at the bank, but storing them within the Vault is an extra layer of security so that only you can access them.'
+vault_des_18: 'What Are the Benefits of Using the Vault?'
+vault_des_19: 'There are lots of benefits to using the Vault at Meibo.com:'
+vault_des_li6: 'Additional security for your funds via 2FA.'
+vault_des_li7: 'Store multiple cryptocurrencies simultaneously.'
+vault_des_li8: 'Save crypto in your Vault alongside your Meibo.com balance.'
+vault_des_li9: 'Receive prizes and giveaways securely to your Vault.'
+vault_des_li10: 'Access your crypto immediately without transaction fees and avoid blockchain delays.'
+vault_des_li11: 'Instant access to your crypto as and when you need it to fund your gameplay at the Meibo Casino or sports bets.'
+vault_des_20: 'Is Storing Funds in the Vault Safe?'
+vault_des_21: 'Yes, storing funds in the Meibo.com Vault is 100% safe. In addition to the site-wide security measures we implement to protect the funds in your balance, the Vault is bolstered by 2FA, offering additional protection and security.'
+vault_des_22: 'That being said, it’s easy to access your funds as and when you want them – simply log in and pass through the 2FA to get to your crypto.'
+vault_des_23: 'How Do You Withdraw Funds from the Vault?'
+vault_des_24: 'To withdraw funds from your Vault, first, decide how much of which currency you would like to withdraw. Then, enter your password and complete the 2FA. You can then transfer the funds to your Meibo.com balance to play your favourite casino games or to bet on sports. Alternatively, you can withdraw the funds to your crypto wallet with the help of Moonpay.'
+vault_des_25: "If you're after more information about our deposit and withdrawal methods on Meibo.com, check out our guide to online payment methods."
+vault_des_26: 'How Long Can You Store Funds in the Vault?'
+vault_des_27: 'You can store cryptocurrency in your Vault for as long as you maintain a Meibo.com account. We haven’t put any time constraints on the Vault, and you can feel free to use it for as long as you wish to keep your cryptocurrency safe.'
+vault_des_28: 'What Crypto Can You Store in the Vault?'
+vault_des_29: 'You can place bets at Meibo.com with a wide selection of cryptocurrencies. As such, the following currencies can all be stored in the Vault:'
+vault_des_li12: Bitcoin (BTC)
+vault_des_li13: Ethereum (ETH)
+vault_des_li14: Litecoin (LTC)
+vault_des_li15: Dogecoin (Doge)
+vault_des_li16: Bitcoin Cash (BCH)
+vault_des_li17: Ripple (XRP)
+vault_des_li18: Tron (TRX)
+vault_des_li19: EOS (EOS)
+vault_des_li20: Tether (USDT)
+vault_des_li21: Binance Coin (BNB)
+vault_des_li22: USD Coin (USDC)
+vault_des_li23: ApeCoin (APE)
+vault_des_li24: Binance USD (BUSD)
+vault_des_li25: Dai (DAI)
+vault_des_li26: Chainlink (LINK)
+vault_des_li27: The Sandbox (SAND)
+vault_des_li28: Shiba Inu (SHIB)
+vault_des_li29: Uniswap (UNI)
+vault_des_li30: Polygon (MATIC)
+vault_des_30: "Learn more about how to buy crypto if you're just getting started."
+vault_des_31: 'Conclusion: Why You Should Utilise the Vault Feature on Meibo.com'
+vault_des_32: "The Meibo.com Vault is the ideal place to store your cryptocurrency to fund your bets at Meibo Casino or Sportsbook. Whether you’re playing our best games (such as live casino games and table games) or looking to place bets on the upcoming basketball or American football season, you can quickly move crypto from your Vault to your balance to fund your bets - it's that simple."
+vault_des_33: 'Remember, we also send funds securely to the Vault as part of certain casino promotions and sports offers, so make sure you set up your Vault to avoid missing out on all our special deals, weekly giveaways, and exclusive prizes!'
+vault_des_34: "New to Meibo.com and want to learn more before placing your bets? Browse through our online casino guide and our guide to sports betting and you'll be an expert in no time."
+vault_des_35: 'Please remember to always gamble responsibly. Learn more tips when betting online with our responsible gambling guide . You can use our budget calculator to stay on top of your spending habits and read up on our guide to knowing how much to gamble with.'
 success_close_double_check: 关闭双重验证密码成功
 close_verification: 关闭双重验证
