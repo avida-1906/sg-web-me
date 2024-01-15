@@ -427,13 +427,13 @@ export function sportsDataBreadcrumbs(data: ISportEventInfo | ISportOutrightsInf
   const area = {
     label: data.pgn,
     value: `${data.pgid}`,
-    // eslint-disable-next-line max-len
+
     path: `/sports/${SPORTS_PLAT_ID}/${data.si}/${data.pgid}?${application.objectToUrlParams({ sn: data.sn, pgn: data.pgn })}`,
   }
   const league = {
     label: data.cn,
     value: `${data.ci}`,
-    // eslint-disable-next-line max-len
+
     path: `/sports/${SPORTS_PLAT_ID}/${data.si}/${data.pgid}/${data.ci}?${application.objectToUrlParams({ sn: data.sn, pgn: data.pgn, cn: data.cn })}`,
   }
   return [sport, area, league]
@@ -1053,7 +1053,7 @@ export function getSportsLiveTime(eventTime: Ref<string>, data: {
         min = min + 1
       }
     }
-    // eslint-disable-next-line max-len
+
     eventTime.value = `${min < 10 ? `0${min}` : min}${baseSec ? `:${sec < 10 ? `0${sec}` : sec}` : ''}`
   }
 }

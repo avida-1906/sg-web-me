@@ -86,6 +86,7 @@ declare global {
   const ApiMemberGameLobby: typeof import('./apis/index')['ApiMemberGameLobby']
   const ApiMemberGameRecList: typeof import('./apis/index')['ApiMemberGameRecList']
   const ApiMemberGameSearch: typeof import('./apis/index')['ApiMemberGameSearch']
+  const ApiMemberInterestGetConfig: typeof import('./apis/index')['ApiMemberInterestGetConfig']
   const ApiMemberLogin: typeof import('./apis/index')['ApiMemberLogin']
   const ApiMemberLogout: typeof import('./apis/index')['ApiMemberLogout']
   const ApiMemberNoticeAllList: typeof import('./apis/index')['ApiMemberNoticeAllList']
@@ -206,7 +207,6 @@ declare global {
   const application: typeof import('./utils/index')['application']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
   const autoResetRef: typeof import('@vueuse/core')['autoResetRef']
-  const availableLocales: typeof import('./modules/i18n')['availableLocales']
   const axios: typeof import('axios')['default']
   const cartToSportsBus: typeof import('./utils/event-bus')['cartToSportsBus']
   const casinoLobbyBus: typeof import('./utils/event-bus')['casinoLobbyBus']
@@ -218,7 +218,6 @@ declare global {
   const computedInject: typeof import('@vueuse/core')['computedInject']
   const computedWithControl: typeof import('@vueuse/core')['computedWithControl']
   const concat: typeof import('lodash-es')['concat']
-  const config: typeof import('./modules/floating')['config']
   const controlledComputed: typeof import('@vueuse/core')['controlledComputed']
   const controlledRef: typeof import('@vueuse/core')['controlledRef']
   const createApp: typeof import('vue')['createApp']
@@ -276,10 +275,8 @@ declare global {
   const h: typeof import('vue')['h']
   const head: typeof import('lodash-es')['head']
   const httpClient: typeof import('./http/index')['httpClient']
-  const i18n: typeof import('./modules/i18n')['i18n']
   const ignorableWatch: typeof import('@vueuse/core')['ignorableWatch']
   const inject: typeof import('vue')['inject']
-  const install: typeof import('./modules/router')['install']
   const isArray: typeof import('lodash-es')['isArray']
   const isDark: typeof import('./composables/dark')['isDark']
   const isDefined: typeof import('@vueuse/core')['isDefined']
@@ -298,7 +295,6 @@ declare global {
   const isValueContainInBloom: typeof import('./composables/useChatEvent')['isValueContainInBloom']
   const last: typeof import('lodash-es')['last']
   const lastOneNumberReg: typeof import('./utils/regexp')['lastOneNumberReg']
-  const loadLanguageAsync: typeof import('./modules/i18n')['loadLanguageAsync']
   const makeDestructurable: typeof import('@vueuse/core')['makeDestructurable']
   const map: typeof import('lodash-es')['map']
   const mapActions: typeof import('pinia')['mapActions']
@@ -311,7 +307,6 @@ declare global {
   const mul: typeof import('./utils/number')['mul']
   const nextTick: typeof import('vue')['nextTick']
   const numberReg: typeof import('./utils/regexp')['numberReg']
-  const numberToLocaleString: typeof import('./utils/index')['numberToLocaleString']
   const omit: typeof import('lodash-es')['omit']
   const omitBy: typeof import('lodash-es')['omitBy']
   const onActivated: typeof import('vue')['onActivated']
@@ -359,7 +354,6 @@ declare global {
   const resolveComponent: typeof import('vue')['resolveComponent']
   const resolveRef: typeof import('@vueuse/core')['resolveRef']
   const resolveUnref: typeof import('@vueuse/core')['resolveUnref']
-  const router: typeof import('./modules/router')['router']
   const scrollMainContentToTop: typeof import('./utils/index')['scrollMainContentToTop']
   const scrollToTop: typeof import('./utils/dom')['scrollToTop']
   const setActivePinia: typeof import('pinia')['setActivePinia']
@@ -775,6 +769,7 @@ declare module 'vue' {
     readonly ApiMemberGameLobby: UnwrapRef<typeof import('./apis/index')['ApiMemberGameLobby']>
     readonly ApiMemberGameRecList: UnwrapRef<typeof import('./apis/index')['ApiMemberGameRecList']>
     readonly ApiMemberGameSearch: UnwrapRef<typeof import('./apis/index')['ApiMemberGameSearch']>
+    readonly ApiMemberInterestGetConfig: UnwrapRef<typeof import('./apis/index')['ApiMemberInterestGetConfig']>
     readonly ApiMemberLogin: UnwrapRef<typeof import('./apis/index')['ApiMemberLogin']>
     readonly ApiMemberLogout: UnwrapRef<typeof import('./apis/index')['ApiMemberLogout']>
     readonly ApiMemberNoticeAllList: UnwrapRef<typeof import('./apis/index')['ApiMemberNoticeAllList']>
@@ -1451,6 +1446,7 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberGameLobby: UnwrapRef<typeof import('./apis/index')['ApiMemberGameLobby']>
     readonly ApiMemberGameRecList: UnwrapRef<typeof import('./apis/index')['ApiMemberGameRecList']>
     readonly ApiMemberGameSearch: UnwrapRef<typeof import('./apis/index')['ApiMemberGameSearch']>
+    readonly ApiMemberInterestGetConfig: UnwrapRef<typeof import('./apis/index')['ApiMemberInterestGetConfig']>
     readonly ApiMemberLogin: UnwrapRef<typeof import('./apis/index')['ApiMemberLogin']>
     readonly ApiMemberLogout: UnwrapRef<typeof import('./apis/index')['ApiMemberLogout']>
     readonly ApiMemberNoticeAllList: UnwrapRef<typeof import('./apis/index')['ApiMemberNoticeAllList']>
