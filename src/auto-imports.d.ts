@@ -205,6 +205,7 @@ declare global {
   const application: typeof import('./utils/index')['application']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
   const autoResetRef: typeof import('@vueuse/core')['autoResetRef']
+  const availableLocales: typeof import('./modules/i18n')['availableLocales']
   const axios: typeof import('axios')['default']
   const cartToSportsBus: typeof import('./utils/event-bus')['cartToSportsBus']
   const casinoLobbyBus: typeof import('./utils/event-bus')['casinoLobbyBus']
@@ -216,6 +217,7 @@ declare global {
   const computedInject: typeof import('@vueuse/core')['computedInject']
   const computedWithControl: typeof import('@vueuse/core')['computedWithControl']
   const concat: typeof import('lodash-es')['concat']
+  const config: typeof import('./modules/floating')['config']
   const controlledComputed: typeof import('@vueuse/core')['controlledComputed']
   const controlledRef: typeof import('@vueuse/core')['controlledRef']
   const createApp: typeof import('vue')['createApp']
@@ -259,9 +261,13 @@ declare global {
   const getCurrencyConfigByCode: typeof import('./composables/useCurrencyData')['getCurrencyConfigByCode']
   const getCurrencyOptions: typeof import('./composables/useCurrencyData')['getCurrencyOptions']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
+  const getCurrentLanguageForBackend: typeof import('./utils/i18n')['getCurrentLanguageForBackend']
+  const getCurrentLanguageForFrontend: typeof import('./utils/i18n')['getCurrentLanguageForFrontend']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
+  const getCurrentUrlLanguage: typeof import('./utils/i18n')['getCurrentUrlLanguage']
   const getDaIntervalMap: typeof import('./utils/time')['getDaIntervalMap']
   const getEnv: typeof import('./utils/index')['getEnv']
+  const getLocalUrlToUrlLang: typeof import('./utils/i18n')['getLocalUrlToUrlLang']
   const getSportsLiveTime: typeof import('./utils/sports')['getSportsLiveTime']
   const getSportsPlatId: typeof import('./utils/sports')['getSportsPlatId']
   const getStyle: typeof import('./utils/dom')['getStyle']
@@ -269,11 +275,14 @@ declare global {
   const h: typeof import('vue')['h']
   const head: typeof import('lodash-es')['head']
   const httpClient: typeof import('./http/index')['httpClient']
+  const i18n: typeof import('./modules/i18n')['i18n']
   const ignorableWatch: typeof import('@vueuse/core')['ignorableWatch']
   const inject: typeof import('vue')['inject']
+  const install: typeof import('./modules/router')['install']
   const isArray: typeof import('lodash-es')['isArray']
   const isDark: typeof import('./composables/dark')['isDark']
   const isDefined: typeof import('@vueuse/core')['isDefined']
+  const isExistRouterLanguage: typeof import('./utils/i18n')['isExistRouterLanguage']
   const isInteger: typeof import('lodash-es')['isInteger']
   const isNaN: typeof import('lodash-es')['isNaN']
   const isNil: typeof import('lodash-es')['isNil']
@@ -288,6 +297,7 @@ declare global {
   const isValueContainInBloom: typeof import('./composables/useChatEvent')['isValueContainInBloom']
   const last: typeof import('lodash-es')['last']
   const lastOneNumberReg: typeof import('./utils/regexp')['lastOneNumberReg']
+  const loadLanguageAsync: typeof import('./modules/i18n')['loadLanguageAsync']
   const makeDestructurable: typeof import('@vueuse/core')['makeDestructurable']
   const map: typeof import('lodash-es')['map']
   const mapActions: typeof import('pinia')['mapActions']
@@ -348,6 +358,7 @@ declare global {
   const resolveComponent: typeof import('vue')['resolveComponent']
   const resolveRef: typeof import('@vueuse/core')['resolveRef']
   const resolveUnref: typeof import('@vueuse/core')['resolveUnref']
+  const router: typeof import('./modules/router')['router']
   const scrollMainContentToTop: typeof import('./utils/index')['scrollMainContentToTop']
   const scrollToTop: typeof import('./utils/dom')['scrollToTop']
   const setActivePinia: typeof import('pinia')['setActivePinia']
@@ -935,9 +946,13 @@ declare module 'vue' {
     readonly getCurrencyConfigByCode: UnwrapRef<typeof import('./composables/useCurrencyData')['getCurrencyConfigByCode']>
     readonly getCurrencyOptions: UnwrapRef<typeof import('./composables/useCurrencyData')['getCurrencyOptions']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
+    readonly getCurrentLanguageForBackend: UnwrapRef<typeof import('./utils/i18n')['getCurrentLanguageForBackend']>
+    readonly getCurrentLanguageForFrontend: UnwrapRef<typeof import('./utils/i18n')['getCurrentLanguageForFrontend']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
+    readonly getCurrentUrlLanguage: UnwrapRef<typeof import('./utils/i18n')['getCurrentUrlLanguage']>
     readonly getDaIntervalMap: UnwrapRef<typeof import('./utils/time')['getDaIntervalMap']>
     readonly getEnv: UnwrapRef<typeof import('./utils/index')['getEnv']>
+    readonly getLocalUrlToUrlLang: UnwrapRef<typeof import('./utils/i18n')['getLocalUrlToUrlLang']>
     readonly getSportsLiveTime: UnwrapRef<typeof import('./utils/sports')['getSportsLiveTime']>
     readonly getSportsPlatId: UnwrapRef<typeof import('./utils/sports')['getSportsPlatId']>
     readonly getStyle: UnwrapRef<typeof import('./utils/dom')['getStyle']>
@@ -950,6 +965,7 @@ declare module 'vue' {
     readonly isArray: UnwrapRef<typeof import('lodash-es')['isArray']>
     readonly isDark: UnwrapRef<typeof import('./composables/dark')['isDark']>
     readonly isDefined: UnwrapRef<typeof import('@vueuse/core')['isDefined']>
+    readonly isExistRouterLanguage: UnwrapRef<typeof import('./utils/i18n')['isExistRouterLanguage']>
     readonly isInteger: UnwrapRef<typeof import('lodash-es')['isInteger']>
     readonly isNaN: UnwrapRef<typeof import('lodash-es')['isNaN']>
     readonly isNil: UnwrapRef<typeof import('lodash-es')['isNil']>
@@ -1604,9 +1620,13 @@ declare module '@vue/runtime-core' {
     readonly getCurrencyConfigByCode: UnwrapRef<typeof import('./composables/useCurrencyData')['getCurrencyConfigByCode']>
     readonly getCurrencyOptions: UnwrapRef<typeof import('./composables/useCurrencyData')['getCurrencyOptions']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
+    readonly getCurrentLanguageForBackend: UnwrapRef<typeof import('./utils/i18n')['getCurrentLanguageForBackend']>
+    readonly getCurrentLanguageForFrontend: UnwrapRef<typeof import('./utils/i18n')['getCurrentLanguageForFrontend']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
+    readonly getCurrentUrlLanguage: UnwrapRef<typeof import('./utils/i18n')['getCurrentUrlLanguage']>
     readonly getDaIntervalMap: UnwrapRef<typeof import('./utils/time')['getDaIntervalMap']>
     readonly getEnv: UnwrapRef<typeof import('./utils/index')['getEnv']>
+    readonly getLocalUrlToUrlLang: UnwrapRef<typeof import('./utils/i18n')['getLocalUrlToUrlLang']>
     readonly getSportsLiveTime: UnwrapRef<typeof import('./utils/sports')['getSportsLiveTime']>
     readonly getSportsPlatId: UnwrapRef<typeof import('./utils/sports')['getSportsPlatId']>
     readonly getStyle: UnwrapRef<typeof import('./utils/dom')['getStyle']>
@@ -1619,6 +1639,7 @@ declare module '@vue/runtime-core' {
     readonly isArray: UnwrapRef<typeof import('lodash-es')['isArray']>
     readonly isDark: UnwrapRef<typeof import('./composables/dark')['isDark']>
     readonly isDefined: UnwrapRef<typeof import('@vueuse/core')['isDefined']>
+    readonly isExistRouterLanguage: UnwrapRef<typeof import('./utils/i18n')['isExistRouterLanguage']>
     readonly isInteger: UnwrapRef<typeof import('lodash-es')['isInteger']>
     readonly isNaN: UnwrapRef<typeof import('lodash-es')['isNaN']>
     readonly isNil: UnwrapRef<typeof import('lodash-es')['isNil']>

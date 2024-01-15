@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { setupLayouts } from 'virtual:generated-layouts'
 import type { App } from 'vue'
-import { getLocalUrlToUrlLang, isExistRouterLanguage } from './i18n'
 import generatedRoutes from '~pages'
 
 declare module 'vue-router' {

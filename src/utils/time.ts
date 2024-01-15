@@ -1,7 +1,6 @@
 import isLeapYear from 'dayjs/plugin/isLeapYear'
 import weekday from 'dayjs/plugin/weekday'
 import relativeTime from 'dayjs/plugin/relativeTime'
-import { getCurrentLanguageForFrontend } from '~/modules/i18n'
 
 import 'dayjs/locale/en'
 import 'dayjs/locale/zh-cn'

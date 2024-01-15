@@ -18,10 +18,6 @@ import type {
   ISportDataGroupedByLeague,
   ISportListToCartData,
 } from '~/types'
-import {
-  getCurrentLanguageForBackend,
-  getCurrentLanguageForFrontend,
-} from '~/modules/i18n'
 import { EnumsBetSlipBetSlipTabStatus } from '~/utils/enums'
 
 /**

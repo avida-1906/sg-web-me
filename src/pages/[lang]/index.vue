@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { getCurrentLanguageForBackend } from '~/modules/i18n'
-
 defineOptions({
   name: 'KeepAliveIndexHome',
 })

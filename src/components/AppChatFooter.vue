@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { getCurrentLanguageForFrontend } from '~/modules/i18n'
-
 //  @ 用户
 //  : 表情
 //  / 指令
