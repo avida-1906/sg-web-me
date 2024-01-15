@@ -22,7 +22,7 @@ const colorClass = computed(() => {
     return ''
 
   const amount = Number(props.amount)
-  return amount >= 0 ? 'red' : 'green'
+  return amount > 0 ? 'green' : 'red'
 })
 </script>
 
