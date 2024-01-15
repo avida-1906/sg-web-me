@@ -22,9 +22,7 @@ const currencyOptions = computed(() => {
   })
 })
 
-const { data, runAsync } = useRequest(() => ApiMemberInterestGetConfig(curCode.value), {
-  refreshDeps: [curCode],
-})
+const { data, runAsync, loading } = useRequest(() => ApiMemberInterestGetConfig(curCode.value))
 const minDepositAmount = computed(() => {
   if (data.value) {
     const arr = JSON.parse(data.value.config)
@@ -42,6 +40,9 @@ const interestRate = computed(() => {
 
 watch(currentGlobalCurrency, (a) => {
   curType.value = a
+})
+watch(curCode, () => {
+  runAsync()
 })
 
 await application.allSettled([runAsync()])
@@ -75,10 +76,10 @@ await application.allSettled([runAsync()])
         </BaseSelect>
       </div>
       <div class="text-tg-secondary-light max-w-160 w-full text-center text-[14px] font-semibold leading-[20px]">
-        {{ application.numberToLocaleString(minDepositAmount) }}
+        {{ loading ? '-' : application.numberToLocaleString(minDepositAmount) }}
       </div>
       <div class="text-tg-secondary-light max-w-160 w-full text-center text-[14px] font-semibold leading-[20px]">
-        {{ application.numberToLocaleString(interestRate * 100) }}%
+        {{ loading ? '-' : `${application.numberToLocaleString(interestRate * 100)}%` }}
       </div>
     </div>
 
