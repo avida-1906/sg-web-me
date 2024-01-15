@@ -26,7 +26,7 @@ const dateWithDayFormat: { [t: string]: string } = {
 const dateFormat: { [t: string]: string } = {
   'en-US': 'MMMM DD,YYYY',
   'zh-CN': 'YYYY年MM月DD日',
-  'vi-VN': '[ngày] DD [tháng] MM,YYYY',
+  'vi-VN': '[ngày] DD [tháng] M,YYYY',
   'pt-BR': 'DD [de] MMMM [de] YYYY',
   'th-TH': 'DD/MM/YYYY',
   'hi-IN': 'DD/MM/YYYY',
