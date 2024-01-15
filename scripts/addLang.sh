@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# 读取 ../lang.yml 文件，将其中的语言添加locales目录下所有的语言文件中，添加到最后
+
+# 路径变量
+LANG_FILE="../lang.yml"
+LOCALES_DIR="locales"
+
+# 检查 lang.yml 文件是否存在
+if [ ! -f "$LANG_FILE" ]; then
+    echo "Error: ${LANG_FILE} not found."
+    exit 1
+fi
+
+# 遍历 locales 目录下的所有文件
+for file in ${LOCALES_DIR}/*; do
+    if [ -f "$file" ]; then
+        # 将 lang.yml 的内容追加到每个文件
+        cat "${LANG_FILE}" >> "${file}"
+        echo "Added content to ${file}"
+    fi
+done
+
+echo "Done."
