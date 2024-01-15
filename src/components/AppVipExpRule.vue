@@ -1,14 +1,25 @@
 <script lang="ts" setup>
-const expData = reactive([
-  { coin: 'CNY', num: '1', exp: '1' },
-  { coin: 'BRL', num: '1', exp: '0.5' },
-  { coin: 'VND', num: '1', exp: '0.5' },
-  { coin: 'THB', num: '1', exp: '0.5' },
-  { coin: 'BTC', num: '0.001', exp: '1' },
-  { coin: 'USDT', num: '1', exp: '1' },
-  { coin: 'ETH', num: '1', exp: '1' },
-  { coin: 'BNB', num: '1', exp: '1' },
-])
+const { getRate } = useExchangeRate()
+const { data } = useRequest(ApiMemberVipMultiple, {
+  manual: false,
+})
+
+const sportMultipleRate = computed(() => {
+  if (!data.value)
+    return 0
+
+  return (+(data.value.find(item => item.game_type === 4)?.rate || 0)).toFixed(0)
+})
+
+const expData = computed(() => {
+  return getCurrencyOptions().map((item) => {
+    return {
+      coin: item.label,
+      num: '1',
+      exp: getRate(item.label, 'USDT')?.targetNum || 0,
+    }
+  })
+})
 </script>
 
 <template>
@@ -24,6 +35,10 @@ const expData = reactive([
     </div>
     <div class="rule-text">
       3.{{ $t('rule_text_three') }}{{ $t('period') }}
+    </div>
+    <div class="rule-text">
+      4.体育场馆的积分是下列列表的{{ sportMultipleRate }}倍<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;(例：1USDT=1会员积分，您在体育投注1USDT将获得{{ sportMultipleRate }}会员积分）
     </div>
     <ul>
       <!-- <li class="title">

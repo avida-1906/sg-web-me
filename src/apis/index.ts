@@ -2135,3 +2135,18 @@ export function ApiMemberAuthClose(data: {
     token: string
   }>('/member/auth/close', data)
 }
+
+/**
+ * VIP积分倍率 member/vip/multiple
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=6e6f1ec1-7f3f-43b2-b0cd-56a3322fd70e
+ */
+export function ApiMemberVipMultiple() {
+  return httpClient.get<{
+    /** 4: 体育 */
+    'game_type': number
+    'rate': string
+    'updated_at': number
+    'updated_uid': string
+    'updated_name': string
+  }[]>('/member/vip/multiple')
+}

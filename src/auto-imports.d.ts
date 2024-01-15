@@ -108,6 +108,7 @@ declare global {
   const ApiMemberVipBonusAvailable: typeof import('./apis/index')['ApiMemberVipBonusAvailable']
   const ApiMemberVipBonusRecord: typeof import('./apis/index')['ApiMemberVipBonusRecord']
   const ApiMemberVipConfig: typeof import('./apis/index')['ApiMemberVipConfig']
+  const ApiMemberVipMultiple: typeof import('./apis/index')['ApiMemberVipMultiple']
   const ApiMemberWalletDelete: typeof import('./apis/index')['ApiMemberWalletDelete']
   const ApiMemberWalletInsert: typeof import('./apis/index')['ApiMemberWalletInsert']
   const ApiPaymentDepositBankApplication: typeof import('./apis/index')['ApiPaymentDepositBankApplication']
@@ -512,6 +513,7 @@ declare global {
   const useEventBus: typeof import('@vueuse/core')['useEventBus']
   const useEventListener: typeof import('@vueuse/core')['useEventListener']
   const useEventSource: typeof import('@vueuse/core')['useEventSource']
+  const useExchangeRate: typeof import('./composables/useExchangeRate')['useExchangeRate']
   const useEyeDropper: typeof import('@vueuse/core')['useEyeDropper']
   const useFavicon: typeof import('@vueuse/core')['useFavicon']
   const useFetch: typeof import('@vueuse/core')['useFetch']
@@ -795,6 +797,7 @@ declare module 'vue' {
     readonly ApiMemberVipBonusAvailable: UnwrapRef<typeof import('./apis/index')['ApiMemberVipBonusAvailable']>
     readonly ApiMemberVipBonusRecord: UnwrapRef<typeof import('./apis/index')['ApiMemberVipBonusRecord']>
     readonly ApiMemberVipConfig: UnwrapRef<typeof import('./apis/index')['ApiMemberVipConfig']>
+    readonly ApiMemberVipMultiple: UnwrapRef<typeof import('./apis/index')['ApiMemberVipMultiple']>
     readonly ApiMemberWalletDelete: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletDelete']>
     readonly ApiMemberWalletInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletInsert']>
     readonly ApiPaymentDepositBankApplication: UnwrapRef<typeof import('./apis/index')['ApiPaymentDepositBankApplication']>
@@ -1192,6 +1195,7 @@ declare module 'vue' {
     readonly useEventBus: UnwrapRef<typeof import('@vueuse/core')['useEventBus']>
     readonly useEventListener: UnwrapRef<typeof import('@vueuse/core')['useEventListener']>
     readonly useEventSource: UnwrapRef<typeof import('@vueuse/core')['useEventSource']>
+    readonly useExchangeRate: UnwrapRef<typeof import('./composables/useExchangeRate')['useExchangeRate']>
     readonly useEyeDropper: UnwrapRef<typeof import('@vueuse/core')['useEyeDropper']>
     readonly useFavicon: UnwrapRef<typeof import('@vueuse/core')['useFavicon']>
     readonly useFetch: UnwrapRef<typeof import('@vueuse/core')['useFetch']>
@@ -1469,6 +1473,7 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberVipBonusAvailable: UnwrapRef<typeof import('./apis/index')['ApiMemberVipBonusAvailable']>
     readonly ApiMemberVipBonusRecord: UnwrapRef<typeof import('./apis/index')['ApiMemberVipBonusRecord']>
     readonly ApiMemberVipConfig: UnwrapRef<typeof import('./apis/index')['ApiMemberVipConfig']>
+    readonly ApiMemberVipMultiple: UnwrapRef<typeof import('./apis/index')['ApiMemberVipMultiple']>
     readonly ApiMemberWalletDelete: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletDelete']>
     readonly ApiMemberWalletInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletInsert']>
     readonly ApiPaymentDepositBankApplication: UnwrapRef<typeof import('./apis/index')['ApiPaymentDepositBankApplication']>
@@ -1866,6 +1871,7 @@ declare module '@vue/runtime-core' {
     readonly useEventBus: UnwrapRef<typeof import('@vueuse/core')['useEventBus']>
     readonly useEventListener: UnwrapRef<typeof import('@vueuse/core')['useEventListener']>
     readonly useEventSource: UnwrapRef<typeof import('@vueuse/core')['useEventSource']>
+    readonly useExchangeRate: UnwrapRef<typeof import('./composables/useExchangeRate')['useExchangeRate']>
     readonly useEyeDropper: UnwrapRef<typeof import('@vueuse/core')['useEyeDropper']>
     readonly useFavicon: UnwrapRef<typeof import('@vueuse/core')['useFavicon']>
     readonly useFetch: UnwrapRef<typeof import('@vueuse/core')['useFetch']>
