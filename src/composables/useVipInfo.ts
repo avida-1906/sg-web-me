@@ -6,7 +6,8 @@ export function useVipInfo() {
   const { userInfo, vipConfigData } = storeToRefs(appStore)
 
   const vip = computed(() => userInfo.value?.vip ?? '0')
-  const score = computed(() => userInfo.value && +userInfo.value >= 0 ? +userInfo.value : 0)
+  // userInfo.value && +userInfo.value >= 0 ? +userInfo.value : 0
+  const score = computed(() => userInfo.value?.score ? Number(userInfo.value.score) : 0)
 
   const vipConfigArray = computed(() => vipConfigData.value ? Object.values(vipConfigData.value).sort((a, b) => +a.level - +b.level) : [])
   const min = computed(() => vipConfigArray.value[0]?.level ?? '0')

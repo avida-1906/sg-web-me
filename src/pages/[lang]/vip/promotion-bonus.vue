@@ -45,6 +45,7 @@ const columns = computed<Column[]>(() => [
     title: t('keep_integral'),
     dataIndex: 'retain_score',
     align: 'center',
+    slot: 'retain_score',
   },
 ])
 
@@ -90,15 +91,32 @@ onMounted(() => {
             <BaseIcon :name="`vip${record.level}`" />
           </div>
         </template>
+        <template #retain_score="{ record: { retain_score, level } }">
+          <span v-if="!Number(retain_score ?? 0)">-</span>
+          <div
+            v-else-if="+vip === +level" class="score-wrap user-level-vip"
+            :style="{
+              '--progress-width':
+                `${(score / Number(retain_score)) > 1 ? 100
+                  : (score / Number(retain_score)) * 100}%`,
+            }"
+          >
+            <span>{{ score }}/{{ retain_score }}</span>
+          </div>
+          <span v-else>{{ retain_score }}</span>
+        </template>
         <template #score="{ record }">
           <div
             class="score-wrap"
             :class="{
-              'user-level-vip':
-                +vip === +record.level,
+              'user-level-vip': +vip === +record.level,
               'lower-vip': +record.level <= +vip && bonusArray.length,
             }"
-            :style="{ '--progress-width': floor(score / record.score, 1) }"
+            :style="{
+              '--progress-width':
+                `${(score / Number(record.score)) > 1 ? 100
+                  : (score / Number(record.score)) * 100}%`,
+            }"
           >
             <span v-if="+vip < +record.level">
               {{ record.score }}
@@ -106,7 +124,6 @@ onMounted(() => {
             <span v-else-if="+vip === +record.level">
               {{ score }}/{{ record.score }}
             </span>
-
             <template v-else-if="+vip >= +record.level">
               <BaseButton
                 v-if="bonusArray.length
