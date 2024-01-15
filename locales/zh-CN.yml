@@ -1943,3 +1943,5 @@ vault_des_34: "New to Meibo.com and want to learn more before placing your bets?
 vault_des_35: 'Please remember to always gamble responsibly. Learn more tips when betting online with our responsible gambling guide . You can use our budget calculator to stay on top of your spending habits and read up on our guide to knowing how much to gamble with.'
 success_close_double_check: 关闭双重验证密码成功
 close_verification: 关闭双重验证
+vip_sports_tip_title: 体育场馆的积分是下列列表的{rate}倍
+vip_sports_tip_content: (例：1USDT=1会员积分，您在体育投注1USDT将获得{rate}会员积分）

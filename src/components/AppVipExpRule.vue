@@ -37,8 +37,8 @@ const expData = computed(() => {
       3.{{ $t('rule_text_three') }}{{ $t('period') }}
     </div>
     <div class="rule-text">
-      4.体育场馆的积分是下列列表的{{ sportMultipleRate }}倍<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;(例：1USDT=1会员积分，您在体育投注1USDT将获得{{ sportMultipleRate }}会员积分）
+      4.{{ $t('vip_sports_tip_title', { rate: sportMultipleRate }) }}<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;{{ $t('vip_sports_tip_content', { rate: sportMultipleRate }) }}
     </div>
     <ul>
       <!-- <li class="title">
