@@ -72,10 +72,10 @@ watch(currentGlobalCurrency, (a) => {
         </BaseSelect>
       </div>
       <div class="text-tg-secondary-light max-w-160 w-full text-center text-[14px] font-semibold leading-[20px]">
-        {{ minDepositAmount }}
+        {{ numberToLocaleString(minDepositAmount) }}
       </div>
       <div class="text-tg-secondary-light max-w-160 w-full text-center text-[14px] font-semibold leading-[20px]">
-        {{ interestRate }}%
+        {{ numberToLocaleString(interestRate * 100) }}%
       </div>
     </div>
 
