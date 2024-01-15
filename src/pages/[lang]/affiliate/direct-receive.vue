@@ -141,7 +141,7 @@ onMounted(() => {
       </template>
     </BaseTable>
     <BasePagination
-      v-if="total > 10"
+      v-if="total > page_size"
       v-model:current-page="page"
       v-model:page-size="page_size"
       :total="total"
