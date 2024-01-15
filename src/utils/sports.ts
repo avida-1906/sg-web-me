@@ -18,7 +18,10 @@ import type {
   ISportDataGroupedByLeague,
   ISportListToCartData,
 } from '~/types'
-import { getCurrentLanguageForBackend } from '~/modules/i18n'
+import {
+  getCurrentLanguageForBackend,
+  getCurrentLanguageForFrontend,
+} from '~/modules/i18n'
 import { EnumsBetSlipBetSlipTabStatus } from '~/utils/enums'
 
 /**
@@ -57,7 +60,7 @@ export class SportsOdds {
   static convert(odds: number, type = EnumSportsOddsType.DECIMAL) {
     switch (type) {
       case EnumSportsOddsType.DECIMAL:
-        return toFixed(odds, 2)
+        return this.convertToDecimalOdds(odds)
       case EnumSportsOddsType.FRACTION:
         return this.convertToFractionOdds(odds)
       case EnumSportsOddsType.AMERICAN:
@@ -69,6 +72,15 @@ export class SportsOdds {
       case EnumSportsOddsType.HONGKONG:
         return this.convertToHongKongOdds(odds)
     }
+  }
+
+  /**
+   * 小数式
+   * @param {number} odds
+   * @returns {string}
+   */
+  static convertToDecimalOdds(odds: number) {
+    return application.numberToLocaleString(odds, getCurrentLanguageForFrontend())
   }
 
   /**

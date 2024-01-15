@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { getCurrentLanguageForFrontend } from '~/modules/i18n'
+
 //  @ 用户
 //  : 表情
 //  / 指令
@@ -300,7 +302,11 @@ watch(message, (val) => {
       <div class="green-dot" />
       <div>
         <span>{{ t('active_state') }}： </span>
-        <span>10,950</span>
+        <span>{{ application.numberToLocaleString(
+          Math.floor(Math.random() * 100) + 1800,
+          getCurrentLanguageForFrontend(),
+        )
+        }}</span>
       </div>
     </div>
     <div class="actions">

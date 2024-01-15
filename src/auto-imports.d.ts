@@ -300,6 +300,7 @@ declare global {
   const mul: typeof import('./utils/number')['mul']
   const nextTick: typeof import('vue')['nextTick']
   const numberReg: typeof import('./utils/regexp')['numberReg']
+  const numberToLocaleString: typeof import('./utils/index')['numberToLocaleString']
   const omit: typeof import('lodash-es')['omit']
   const omitBy: typeof import('lodash-es')['omitBy']
   const onActivated: typeof import('vue')['onActivated']
