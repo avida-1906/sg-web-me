@@ -38,7 +38,7 @@ for (const key in currencyConfig) {
 //   }
 // })
 const squareVal = ref(squareTabList.value[0].value)
-
+console.log(platformList.value, providerList.value)
 const prefix = computed(() =>
   AllLanguages.value.filter(a => a.value === userLanguage.value)[0].prefix)
 const allPlatforms = computed(() =>
@@ -54,16 +54,17 @@ const filteredPlatforms = computed(() =>
   allPlatforms.value.filter(p => p.game_type === tab.value))
 const filterPlatformColumn = computed<Column[]>(() => filteredPlatforms.value.map(p =>
   ({ title: p[prefix.value ? `${prefix.value}_name` : 'name'], dataIndex: `${p.id}rate`, align: 'center', slot: `${p.id}rate` })))
-const data = computed(() =>
-  vipConfigData.value
+const data = computed(() => {
+  return vipConfigData.value
     ? Object.values(vipConfigData.value).sort((a, b) => +a.level - +b.level)
       .map((p) => {
-        const temp = p.rebate_config.filter(r => r.game_type === tab.value)[0]
-        return temp
-          ? temp.data.map(d => ({ level: p.level, [`${d.id}rate`]: d.rate === '' || d.rate === undefined || d.rate === null ? '' : `${d.rate}%` })).reduce((acc, cur) => ({ ...acc, ...cur }), {})
+        const temp = p.rebate_config.filter(r => r.game_type === tab.value)[0]?.data.filter(t => t.currency_id === squareVal.value)
+        return temp && temp.length
+          ? temp.map(d => ({ level: p.level, [`${d.id}rate`]: d.rate === '' || d.rate === undefined || d.rate === null ? '' : `${d.rate}%` })).reduce((acc, cur) => ({ ...acc, ...cur }), {})
           : { level: p.level }
       })
-    : [])
+    : []
+})
 const columns = computed<Column[]>(() => filterPlatformColumn.value.toReversed().concat({
   title: `VIP${t('grade')}`,
   dataIndex: 'level',
@@ -72,7 +73,7 @@ const columns = computed<Column[]>(() => filterPlatformColumn.value.toReversed()
 }).toReversed())
 
 function changeCurrency(item: any) {
-  // console.log(item)
+  squareVal.value = item.cur
 }
 
 watch(tabList, (val) => {
