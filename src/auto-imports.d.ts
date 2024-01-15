@@ -45,6 +45,10 @@ declare global {
   const ApiGetFeedbackChatList: typeof import('./apis/index')['ApiGetFeedbackChatList']
   const ApiGetMyPro: typeof import('./apis/index')['ApiGetMyPro']
   const ApiMemberApplyVipBonus: typeof import('./apis/index')['ApiMemberApplyVipBonus']
+  const ApiMemberAuthClose: typeof import('./apis/index')['ApiMemberAuthClose']
+  const ApiMemberAuthConfig: typeof import('./apis/index')['ApiMemberAuthConfig']
+  const ApiMemberAuthSecret: typeof import('./apis/index')['ApiMemberAuthSecret']
+  const ApiMemberAuthSet: typeof import('./apis/index')['ApiMemberAuthSet']
   const ApiMemberBalance: typeof import('./apis/index')['ApiMemberBalance']
   const ApiMemberBalanceAgency: typeof import('./apis/index')['ApiMemberBalanceAgency']
   const ApiMemberBalanceLocker: typeof import('./apis/index')['ApiMemberBalanceLocker']
@@ -716,6 +720,10 @@ declare module 'vue' {
     readonly ApiGetFeedbackChatList: UnwrapRef<typeof import('./apis/index')['ApiGetFeedbackChatList']>
     readonly ApiGetMyPro: UnwrapRef<typeof import('./apis/index')['ApiGetMyPro']>
     readonly ApiMemberApplyVipBonus: UnwrapRef<typeof import('./apis/index')['ApiMemberApplyVipBonus']>
+    readonly ApiMemberAuthClose: UnwrapRef<typeof import('./apis/index')['ApiMemberAuthClose']>
+    readonly ApiMemberAuthConfig: UnwrapRef<typeof import('./apis/index')['ApiMemberAuthConfig']>
+    readonly ApiMemberAuthSecret: UnwrapRef<typeof import('./apis/index')['ApiMemberAuthSecret']>
+    readonly ApiMemberAuthSet: UnwrapRef<typeof import('./apis/index')['ApiMemberAuthSet']>
     readonly ApiMemberBalance: UnwrapRef<typeof import('./apis/index')['ApiMemberBalance']>
     readonly ApiMemberBalanceAgency: UnwrapRef<typeof import('./apis/index')['ApiMemberBalanceAgency']>
     readonly ApiMemberBalanceLocker: UnwrapRef<typeof import('./apis/index')['ApiMemberBalanceLocker']>
@@ -1381,6 +1389,10 @@ declare module '@vue/runtime-core' {
     readonly ApiGetFeedbackChatList: UnwrapRef<typeof import('./apis/index')['ApiGetFeedbackChatList']>
     readonly ApiGetMyPro: UnwrapRef<typeof import('./apis/index')['ApiGetMyPro']>
     readonly ApiMemberApplyVipBonus: UnwrapRef<typeof import('./apis/index')['ApiMemberApplyVipBonus']>
+    readonly ApiMemberAuthClose: UnwrapRef<typeof import('./apis/index')['ApiMemberAuthClose']>
+    readonly ApiMemberAuthConfig: UnwrapRef<typeof import('./apis/index')['ApiMemberAuthConfig']>
+    readonly ApiMemberAuthSecret: UnwrapRef<typeof import('./apis/index')['ApiMemberAuthSecret']>
+    readonly ApiMemberAuthSet: UnwrapRef<typeof import('./apis/index')['ApiMemberAuthSet']>
     readonly ApiMemberBalance: UnwrapRef<typeof import('./apis/index')['ApiMemberBalance']>
     readonly ApiMemberBalanceAgency: UnwrapRef<typeof import('./apis/index')['ApiMemberBalanceAgency']>
     readonly ApiMemberBalanceLocker: UnwrapRef<typeof import('./apis/index')['ApiMemberBalanceLocker']>

@@ -2080,3 +2080,58 @@ export function ApiAgencyCommissionModelsList() {
     name: string
   }[]>('/agency/commission/models/list')
 }
+
+/**
+   * 获取二阶段验证密钥
+   * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=2532eddb-96cd-44b5-be7c-4ac43bf92656
+   */
+export function ApiMemberAuthSecret() {
+  return httpClient.get<string>('/member/auth/secret')
+}
+
+/**
+   * 设定二阶段验证
+   * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=3e0a839f-fda1-475f-89ff-665013e728ee
+   */
+export function ApiMemberAuthSet(data: {
+  /** 二阶段验证码 */
+  'auth_code': string
+  /** 登录密码 */
+  'password': string
+}) {
+  return httpClient.post<{
+    /** 登录令牌 */
+    token: string
+  }>('/member/auth/set', data)
+}
+
+/**
+   * 获取安全验证配置
+   * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=2f83ff71-7f04-4fa2-97d2-c0a00170a0a8
+   */
+export function ApiMemberAuthConfig() {
+  return httpClient.get<{
+    /** 二阶段密钥 */
+    'auth_secret': string
+    /** 是否已配置密钥 1:已配置 0:未配置 */
+    'is_secret': string
+    /** 是否已配置资金密码 1:已配置 0:未配置 */
+    'is_pay_password': string
+  }>('/member/auth/config')
+}
+
+/**
+   * 关闭二阶段验证
+   * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=38c20319-c66e-4228-a7b7-b82eeac21713
+   */
+export function ApiMemberAuthClose(data: {
+  /** 密码 8-30 */
+  'password': string
+  /** 二阶段验证码 */
+  'auth_code': string
+}) {
+  return httpClient.post<{
+    /** 登录令牌 */
+    token: string
+  }>('/member/auth/close', data)
+}
