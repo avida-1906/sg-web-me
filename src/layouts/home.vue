@@ -154,7 +154,7 @@ onErrorCaptured((err, instance, info) => {
         </AppContent>
         <slot>
           <div>
-            <AppContent>
+            <AppContent class="@container">
               <RouterView v-slot="{ Component }">
                 <template v-if="Component">
                   <KeepAlive :include="keepAliveList" :max="10">
