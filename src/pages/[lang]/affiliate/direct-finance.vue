@@ -145,7 +145,6 @@ onMounted(() => {
           <AppAmount
             :amount="record.deposit_withdraw_amount"
             :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
-            show-color
           />
         </div>
       </template>
@@ -154,7 +153,6 @@ onMounted(() => {
           <AppAmount
             :amount="record.balance"
             :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
-            show-color
           />
         </div>
       </template>
