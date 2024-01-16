@@ -113,9 +113,10 @@ async function submitBonus() {
       const label = options.value.find(item => item.value === typeVal.value)?.label ?? t('vip_promotion_bonus')
       openNotify({
         type: 'success',
-        title: `${label}领取`,
+        title: `${label}${t('receive')}`,
         icon: 'navbar-wallet-notify',
-        message: `成功领取${label} ${targetAmount.value} ${renderSvg()}`,
+        // message: `成功领取${label} ${targetAmount.value} ${renderSvg()}`,
+        message: t('success_received', { label, amount: targetAmount.value, renderSvg: renderSvg() }),
       })
       closeDialog()
     })
@@ -142,7 +143,7 @@ onMounted(() => {
 
 <template>
   <div class="app-receive-bonus">
-    <BaseLabel label="活动奖金">
+    <BaseLabel :label="$t('activity_bonus')">
       <BaseInput ref="amountRef" v-model="amount" :msg="amountMsg" type="number" msg-after-touched @blur="amountBlur">
         <template v-if="!vipBonusId" #right-button>
           <BaseSelect
@@ -170,8 +171,8 @@ onMounted(() => {
     </BaseLabel>
     <div>
       <div class="top-label">
-        <span>兑换{{ activeCurrency?.type }}</span>
-        <span>汇率{{ rate }}</span>
+        <span>{{ $t('exchange') }}{{ activeCurrency?.type }}</span>
+        <span>{{ $t('rate') }}{{ rate }}</span>
       </div>
       <BaseInput
         v-model="targetAmount" :msg="targetAmountMsg"
@@ -191,10 +192,10 @@ onMounted(() => {
       :loading="loadVipBonusApply || loadPromoBonus"
       @click="submitBonus"
     >
-      领取
+      {{ $t('receive') }}
     </BaseButton>
     <div class="tips">
-      领取说明：本活动奖金均是以USDT发放；您可以自行选择领取的货币，货币间汇率采用市场实时汇率。
+      {{ $t('collection_instructions') }}
     </div>
   </div>
 </template>
