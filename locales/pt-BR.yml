@@ -2478,3 +2478,8 @@ birthday_bonus: 生日奖金
 collection_instructions: 领取说明：本活动奖金均是以USDT发放；您可以自行选择领取的货币，货币间汇率采用市场实时汇率。
 activity_bonus: 活动奖金
 success_received: 成功领取{label} {amount} {renderSvg}
+add_withdraw_info: 请绑定提款信息
+three_withdraw_info_only: 每种货币只能绑定3个收款信息
+want_more_del_first: 如需绑定更多，请先删除不常用
+withdraw_account: 收款账号
+withdraw_address: 收款地址
