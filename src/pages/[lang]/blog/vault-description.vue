@@ -1,16 +1,16 @@
 <script setup lang='ts'>
 const { t } = useI18n()
 const { currentGlobalCurrency } = storeToRefs(useAppStore())
-const { renderBalanceList } = useCurrencyData()
+const { renderCurrencyList } = useCurrencyData()
 const { isMobile } = storeToRefs(useWindowStore())
 
 const curType = ref(currentGlobalCurrency.value)
 const curCode = computed(() => {
-  return renderBalanceList.value.find(a => a.type === curType.value)?.cur ?? '701'
+  return renderCurrencyList.value.find(a => a.type === curType.value)?.cur ?? '701'
 })
 
 const currencyOptions = computed(() => {
-  return renderBalanceList.value.map((a) => {
+  return renderCurrencyList.value.map((a) => {
     return {
       label: a.type,
       value: a.type,
