@@ -23,5 +23,8 @@ for file in ${LOCALES_DIR}/*.yml; do
     fi
 done
 
+# 清空 lang.yml 文件
+> "${LANG_FILE}"
+
 echo "Done."
 

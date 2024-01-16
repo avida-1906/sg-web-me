@@ -66,3 +66,10 @@ defineOptions({
 ```
 
 ### 不要出现any类型
+
+### 多语言
+新增多语言添加到根目录的 lang.yml 文件中，如：
+```yml
+test: 测试
+```
+然后终端执行 `pnpm add:lang` 会自动添加到 `src/locales` 下的所有语言文件中。
