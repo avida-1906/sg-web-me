@@ -66,7 +66,7 @@ const filterPlatformColumn = computed<Column[]>(() => filteredPlatforms.value.ma
 // })
 const columns = computed<Column[]>(() => filterPlatformColumn.value.toReversed().concat({
   title: `VIP${t('grade')}`,
-  dataIndex: 'level',
+  dataIndex: 'vip',
   align: 'center',
   slot: 'level',
 }).toReversed())
@@ -132,7 +132,7 @@ watch([() => tab.value, () => squareVal.value], () => {
         <template #level="{ record }">
           <!-- <div>VIP{{ record.level }}</div> -->
           <div class="vip-badge">
-            <BaseIcon :name="`vip${record.level}`" />
+            <BaseIcon :name="`vip${record.vip}`" />
           </div>
         </template>
       </BaseTable>
