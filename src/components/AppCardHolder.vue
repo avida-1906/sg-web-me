@@ -133,7 +133,7 @@ await application.allSettled([runAsyncWalletBankcardList()])
         <div class="bg-tg-secondary-grey max-w-60 flex items-center justify-center p-23">
           <BaseIcon name="coin-usdt" />
         </div>
-        <div class="bg-tg-secondary relative flex items-center px-14">
+        <div class="bg-tg-secondary relative flex grow items-center px-14">
           <div class="text-tg-text-white flex flex-col gap-6">
             <span class="font-semibold">开户行</span>
             <span class="font-bold">000000000000</span>
