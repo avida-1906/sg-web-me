@@ -4,8 +4,8 @@ set -e
 # 读取 ../lang.yml 文件，将其中的语言添加locales目录下所有的语言文件中，添加到最后
 
 # 路径变量
-LANG_FILE="../lang.yml"
-LOCALES_DIR="../locales"
+LANG_FILE="./lang.yml"
+LOCALES_DIR="./locales"
 
 # 检查 lang.yml 文件是否存在
 if [ ! -f "$LANG_FILE" ]; then
