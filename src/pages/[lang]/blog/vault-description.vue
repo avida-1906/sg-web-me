@@ -79,7 +79,7 @@ await application.allSettled([runAsync()])
         {{ loading ? '-' : application.numberToLocaleString(minDepositAmount) }}
       </div>
       <div class="text-tg-secondary-light max-w-160 w-full text-center text-[14px] font-semibold leading-[20px]">
-        {{ loading ? '-' : `${application.numberToLocaleString(interestRate * 100)}%` }}
+        {{ loading ? '-' : `${application.numberToLocaleString(interestRate)}%` }}
       </div>
     </div>
 
