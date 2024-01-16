@@ -1,13 +1,13 @@
 <script setup lang='ts'>
 import type { IMemberBalanceLockerUpdate } from '~/apis/types'
-import type { CurrencyCode, CurrencyData } from '~/composables/useCurrencyData'
+import type { CurrencyData } from '~/composables/useCurrencyData'
 
 const closeDialog = inject('closeDialog', () => {})
 
 const { t } = useI18n()
 const appStore = useAppStore()
 const { openNotify } = useNotify()
-const { exchangeRateData } = storeToRefs(appStore)
+// const { exchangeRateData } = storeToRefs(appStore)
 const router = useLocalRouter()
 const { push } = useLocalRouter()
 
@@ -80,14 +80,14 @@ const updateParams = computed<IMemberBalanceLockerUpdate | null>(() => {
   }
   return null
 })
-const getUsRate = computed(() => {
-  const str: CurrencyCode = activeCurrency.value?.cur
-  if (str === '706')
-    return Number(amount.value).toFixed(2)
-  return str
-    ? (Number(exchangeRateData.value?.rates[str]['706']) * Number(amount.value)).toFixed(2)
-    : 0.00
-})
+// const getUsRate = computed(() => {
+//   const str: CurrencyCode = activeCurrency.value?.cur
+//   if (str === '706')
+//     return Number(amount.value).toFixed(2)
+//   return str
+//     ? (Number(exchangeRateData.value?.rates[str]['706']) * Number(amount.value)).toFixed(2)
+//     : 0.00
+// })
 
 function renderSvg(text: string) {
   return `<svg aria-hidden="true" style="width:14px;height:14px;margin: 0 5px;">
@@ -192,7 +192,7 @@ await application.allSettled([runAsyncMemberAuthConfig()])
       <div class="amount">
         <div class="top">
           <span class="label">{{ t('amount') }}</span>
-          <span class="us">US${{ getUsRate }}</span>
+          <!-- <span class="us">US${{ getUsRate }}</span> -->
         </div>
         <BaseInput
           ref="amountRef" v-model="amount"
