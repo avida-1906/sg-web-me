@@ -30,7 +30,7 @@ const { sortMap, setSortMap } = useTableSort()
 
 const columns: Column[] = [
   {
-    title: t('join_time'),
+    title: t('statistical_time'),
     dataIndex: 'created_at',
     align: 'center',
     slot: 'created_at',
