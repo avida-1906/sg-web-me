@@ -139,6 +139,8 @@ export interface IMemberBalanceLockerUpdate {
   currency_id: number
   amount: string
   password?: string
+  /** 验证方式 1:双重验证码 2:资金密码 */
+  auth_type?: string
 }
 
 export interface IMemberReg {

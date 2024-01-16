@@ -7,7 +7,7 @@ const closeDialog = inject('closeDialog', () => {})
 const { t } = useI18n()
 const appStore = useAppStore()
 const { openNotify } = useNotify()
-const { userInfo, exchangeRateData } = storeToRefs(appStore)
+const { exchangeRateData } = storeToRefs(appStore)
 const router = useLocalRouter()
 const { push } = useLocalRouter()
 
@@ -20,6 +20,23 @@ const tabOptions = [
 const amountRef = ref()
 const passwordRef = ref()
 
+const { selected: pwdType, list: pwdOptions } = useSelect([
+  { label: t('menu_title_settings_update_safepwd'), value: '2' },
+
+])
+// 获取安全验证配置
+const {
+  data: authConfig,
+  runAsync: runAsyncMemberAuthConfig,
+} = useRequest(ApiMemberAuthConfig, {
+  onSuccess(data) {
+    if (data.is_secret === '1')
+      pwdOptions.value.push({ label: t('double_check_code'), value: '1' })
+  },
+})
+const pwdLabel = computed(() => {
+  return pwdOptions.value.find(t => t.value === pwdType.value)?.label
+})
 const {
   value: amount,
   errorMessage: errAmount,
@@ -45,7 +62,7 @@ const {
   if (!value)
     return t('min_len_6')
   else if (!payPasswordReg.test(value))
-    return t('safe_pwd_error')
+    return `${pwdLabel.value}${t('wrong_format')}` // t('safe_pwd_error')
 
   return ''
 })
@@ -128,7 +145,7 @@ async function handleUpdate() {
   else {
     await validatePassword()
     if (!errAmount.value && !errPassword.value && updateParams.value)
-      runLockerUpdate({ ...updateParams.value, password: password.value })
+      runLockerUpdate({ ...updateParams.value, password: password.value, auth_type: pwdType.value })
   }
 }
 function changeCurrency(item: CurrencyData) {
@@ -145,11 +162,17 @@ function reset() {
 function handleBlur() {
   setAmount(Number(amount.value).toFixed(application.isVirtualCurrency(activeCurrency.value.type) ? 8 : 2).toString(), true)
 }
+// 密码类型切换
+function selectTypeChange(item: string) {
+  pwdType.value = item
+}
 
 watch(() => activeTab.value, () => {
   amountRef.value.setTouchFalse()
   resetPassword()
 })
+
+await application.allSettled([runAsyncMemberAuthConfig()])
 </script>
 
 <template>
@@ -198,16 +221,35 @@ watch(() => activeTab.value, () => {
         {{ t('save_to_vault') }}
       </BaseButton>
       <template v-else>
-        <div>
+        <div class="password-box">
           <BaseInput
             ref="passwordRef" v-model="password"
-            :label="t('password')"
+            :label="pwdLabel"
             :msg="errPassword"
             placeholder=""
             type="password"
             max="6"
             msg-after-touched must
-          />
+          >
+            <template v-if="authConfig?.is_secret === '1'" #right-button>
+              <BaseSelect
+                :model-value="pwdType" popper plain-popper-label :options="pwdOptions"
+                @select="selectTypeChange"
+              >
+                <!-- <template #label="{ data }">
+                <div class="center" style="gap: 4px;">
+                  <AppCurrencyIcon currency-type="USDT" />
+                  <span>{{ data.label }}</span>
+                </div>
+              </template> -->
+                <template #option="{ data: { item } }">
+                  <div class="center">
+                    {{ item.label }}
+                  </div>
+                </template>
+              </BaseSelect>
+            </template>
+          </BaseInput>
         </div>
         <BaseButton
           style="font-size: var(--tg-font-size-base);"
@@ -221,17 +263,19 @@ watch(() => activeTab.value, () => {
       </template>
     </div>
     <div class="safe-bottom">
-      <div v-if="userInfo && userInfo.google_verify !== 2">
-        {{ t('improve_safe_level') }}
-      </div>
-      <BaseButton
-        v-if="userInfo && userInfo.google_verify !== 2"
-        bg-style="primary"
-        size="md"
-        @click="router.push('/settings/security-safe-check');closeDialog()"
-      >
-        {{ t('turn_on_double_check') }}
-      </BaseButton>
+      <!-- <div v-if="userInfo && userInfo.google_verify !== 2"> -->
+      <template v-if="authConfig?.is_secret !== '1'">
+        <div>
+          {{ t('improve_safe_level') }}
+        </div>
+        <BaseButton
+          bg-style="primary"
+          size="md"
+          @click="router.push('/settings/security-safe-check');closeDialog()"
+        >
+          {{ t('turn_on_double_check') }}
+        </BaseButton>
+      </template>
       <BaseButton
         size="none" type="text"
         style="margin-top: var(--tg-spacing-4);"
@@ -291,6 +335,12 @@ watch(() => activeTab.value, () => {
         font-size: var(--tg-font-size-xs);
       }
     }
+  }
+  .password-box{
+    --tg-app-select-currency-bg: none;
+    --tg-base-input-right-button-padding: 0 0;
+    --tg-base-select-hover-bg-color: none;
+    --tg-base-select-popper-style-padding-y:11px;
   }
 }
 </style>
