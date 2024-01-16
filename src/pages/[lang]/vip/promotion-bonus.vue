@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const params = { ty: 1 }
+const params = { cash_type: '818' }
 
 const { t } = useI18n()
 const { openNotify } = useNotify()
@@ -50,11 +50,15 @@ const columns = computed<Column[]>(() => [
 ])
 
 async function openReceive(item: any) {
-  if (+item.amount > 0 && +item.state === 1)
-    openVipBonusDialog({ vipBonus: '1', vipBonusId: '1' })
-    // openReceiveBonusDialog({ vipBonus: item.amount, vipBonusId: item.id })
-  else
-    openNotify({ type: 'error', message: t('no_bonus_now'), title: t('fail_bonus') })
+  if (+item.amount > 0 && +item.state === 1) {
+    openVipBonusDialog({
+      vipBonus: toFixed(Number(sub(Number(item.amount), Number(item.receive_amount))), 8),
+      vipBonusId: item.id,
+      bonusType: item.cash_type,
+    })
+  }
+  // openReceiveBonusDialog({ vipBonus: item.amount, vipBonusId: item.id })
+  else { openNotify({ type: 'error', message: t('no_bonus_now'), title: t('fail_bonus') }) }
 }
 
 function seeExpDialog() {
@@ -114,9 +118,8 @@ onMounted(() => {
           </div>
           <div
             v-else-if="(nextLevel && +nextLevel?.level === +record.level)"
-            class="score-wrap"
+            class="score-wrap user-level-vip"
             :class="{
-              'user-level-vip': +nextLevel?.level === +record.level,
               'lower-vip': +record.level <= +vip && bonusArray.length,
             }"
             :style="{

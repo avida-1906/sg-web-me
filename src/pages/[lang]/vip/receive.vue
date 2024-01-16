@@ -2,10 +2,23 @@
 import type { EnumCurrencyKey } from '~/apis/types'
 
 const today = dayjs()
-
 const { t } = useI18n()
 const { isMobile } = storeToRefs(useWindowStore())
 const { isLogin } = storeToRefs(useAppStore())
+const { renderBalanceList } = useCurrencyData()
+const {
+  list: records,
+  runAsync: runAsyncGetRecordAsync,
+  page,
+  page_size,
+  total,
+  prev,
+  next,
+  loading,
+  resetPage,
+} = useList(ApiMemberVipBonusRecord, {
+  ready: isLogin,
+}, { page_size: 10 })
 
 const dayOptions = [
   { label: t('today'), value: '0' },
@@ -18,14 +31,12 @@ const typeOptions = [
     label: t('finance_other_tab_all'),
     value: '',
   },
-  { label: t('vip_promotion_bonus'), value: '1' },
-  { label: t('vip_day_salary_bonus'), value: '2' },
-  { label: t('vip_week_salary_bonus'), value: '3' },
-  { label: t('vip_month_salary_bonus'), value: '4' },
+  { label: t('vip_promotion_bonus'), value: '818' },
+  { label: t('vip_day_salary_bonus'), value: '819' },
+  { label: t('vip_week_salary_bonus'), value: '820' },
+  { label: t('vip_month_salary_bonus'), value: '821' },
+  { label: t('birthday_bonus'), value: '822' },
 ]
-
-const { renderBalanceList } = useCurrencyData()
-
 const columns = reactive<Column[]>([
   {
     title: t('label_draw_time'),
@@ -52,37 +63,23 @@ const columns = reactive<Column[]>([
 const dayType = ref('0')
 const bonusType = ref('')
 
-const {
-  list: records,
-  runAsync: runGetRecordAsync,
-  page,
-  page_size,
-  total,
-  prev,
-  next,
-  loading,
-} = useList(ApiMemberVipBonusRecord, {
-  ready: isLogin,
-}, { page_size: 10 })
-
 const params = computed(() => ({
   page: page.value,
   page_size: page_size.value,
   start_time: today.subtract(+dayType.value, 'day').startOf('day').unix(),
   end_time: today.endOf('day').unix(),
+  cash_type: bonusType.value,
 }))
 
 function getCurrencyName(id: string | number): EnumCurrencyKey {
   return renderBalanceList.value.filter(c => +c.cur === +id)[0].type
 }
-
 function getCashType(cashType: string) {
   const temp
     = Object.entries(PromoTransactionType)
       .filter(([k, v]) => +k > 0 && +k === +cashType)[0]
   return temp ? t(`transaction_${temp[1]}`) : '-'
 }
-
 function onPrevious() {
   prev()
 }
@@ -91,13 +88,14 @@ function onNext() {
   next()
 }
 
-runGetRecordAsync(params.value)
+// watch(() => params.value.start_time, () => {
+//   nextTick(() => {
+//     runGetRecordAsync(params.value)
+//   })
+// })
 
-watch(() => params.value.start_time, () => {
-  nextTick(() => {
-    runGetRecordAsync(params.value)
-  })
-})
+useListSearch(params, runAsyncGetRecordAsync, resetPage)
+// runGetRecordAsync(params.value)
 </script>
 
 <template>

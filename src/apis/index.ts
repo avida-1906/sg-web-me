@@ -1095,6 +1095,8 @@ export function ApiMemberVipBonusRecord(params: {
   page_size: number
   start_time: number
   end_time: number
+  /** 818 vip晋级礼金 819 vip日红包 820 vip周红包 821 vip月红包 822 vip生日礼金 */
+  cash_type: string
 }) {
   return httpClient.get<IResponseList<{
     amount: string
@@ -1146,7 +1148,7 @@ export function ApiMemberApplyVipBonus(params: {
  */
 export function ApiMemberVipBonusAvailable(params: {
   /** 奖励类型 */
-  ty: number
+  cash_type: number | string
 }) {
   return httpClient.get<{
     id: string
@@ -1154,6 +1156,8 @@ export function ApiMemberVipBonusAvailable(params: {
     amount: string
     state: number
     vip: string
+    /** 已领取金额 */
+    receive_amount: string
   }[]>('/member/vip/bonus/available', { params })
 }
 
@@ -2176,4 +2180,42 @@ export function ApiFinanceBalanceTransfer(data: {
   amount: string
 }) {
   return httpClient.post('/finance/balance/transfer', data)
+}
+
+/*
+* vip奖励领取
+* @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=b913c96a-70ba-485c-b1f0-4b3ef8f89769
+*/
+export function ApiMemberVipBonusApply(data: {
+  id: string
+  cur: string
+  amount: string
+}) {
+  return httpClient.post<string>('/member/vip/bonus/apply', data)
+}
+
+/*
+* vip等级场馆返水配置
+* @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=d7f53680-3e01-4a43-afc9-46aafb4d0a5b
+*/
+export function ApiMemberVipRebateConfig(params: {
+  /** vip等级 */
+  lv: string
+  /** vip等级 */
+  game_type: string
+  /** vip等级 */
+  cur: string
+}) {
+  return httpClient.get<{
+    'id': string
+    'currency_id': CurrencyCode
+    'en_name': string
+    'game_type': string
+    'zh_name': string
+    'pt_name': string
+    'vn_name': string
+    'th_name': string
+    'name': string
+    'rate': string
+  }[]>('/member/vip/rebate/config', { params })
 }
