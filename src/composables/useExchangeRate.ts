@@ -10,6 +10,13 @@ export function useExchangeRate() {
    * @param targetCurrency 目标货币
    */
   const getRate = (baseCurrency: EnumCurrencyKey, targetCurrency: EnumCurrencyKey) => {
+    if (baseCurrency === targetCurrency) {
+      return {
+        baseNum: 1,
+        targetNum: '1',
+      }
+    }
+
     const baseCurrencyMap = getCurrencyConfig(baseCurrency)
     const targetCurrencyMap = getCurrencyConfig(targetCurrency)
 
