@@ -16,7 +16,7 @@ const expData = computed(() => {
     return {
       coin: item.label,
       num: '1',
-      exp: getRate(item.label, 'USDT')?.targetNum || 0,
+      exp: item.label === 'USDT' ? '1' : getRate(item.label, 'USDT')?.targetNum || 0,
     }
   })
 })
