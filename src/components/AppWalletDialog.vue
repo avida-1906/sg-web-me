@@ -37,10 +37,12 @@ const tabList = computed(() => [
   { label: t('deposit'), value: 'deposit' },
   { label: t('menu_title_settings_withdrawals'), value: 'withdraw' },
   { label: t('card_wallet'), value: 'cardHolder' },
+  { label: t('money_exchange'), value: 'exchange' },
 ])
 const isDeposit = computed(() => currentTab.value === 'deposit')
 const isWithdraw = computed(() => currentTab.value === 'withdraw')
 const isCardHolder = computed(() => currentTab.value === 'cardHolder')
+const isExchange = computed(() => currentTab.value === 'exchange')
 const isVirCurrency = computed(() => {
   if (activeCurrency.value)
     return application.isVirtualCurrency(activeCurrency.value.type)
@@ -97,7 +99,7 @@ await application.allSettled(
       <BaseTab v-model="currentTab" :list="tabList" />
       <template v-if="isEmailVerify">
         <AppSelectCurrency
-          v-show="showWallet && !isCardHolder"
+          v-show="showWallet && !isCardHolder && !isExchange"
           :type="4"
           :active-currency-list="getActiveCurrency"
           :show-balance="isWithdraw"
@@ -156,7 +158,6 @@ await application.allSettled(
       :tip-text="tabList.find((item) => item.value === currentTab)?.label"
     />
     <!-- 卡包 -->
-    <!-- <KeepAlive> -->
     <template v-if="isCardHolder">
       <Suspense timeout="0">
         <AppCardHolder />
@@ -167,10 +168,10 @@ await application.allSettled(
         </template>
       </Suspense>
     </template>
-    <!-- </KeepAlive> -->
+    <AppMoneyExchange v-else-if="isExchange" />
   </div>
   <div
-    v-if="(isWithdraw || isDeposit)
+    v-if="(isWithdraw || isDeposit || isExchange)
       && userInfo && userInfo.google_verify !== 2 && isEmailVerify"
     class="safe-bottom"
   >

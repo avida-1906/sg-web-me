@@ -15,6 +15,7 @@ interface Props {
   textCenter?: boolean
   name?: string
   readonly?: boolean
+  hideSpinBtn?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -162,6 +163,7 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse, iInput, isTouched, setBlur
               'p-l-0': $slots['left-icon'],
               'textCenter': textCenter,
               'readonly': readonly,
+              hideSpinBtn,
             }"
             :autocomplete="`new-${_type}`"
             title=""
@@ -393,14 +395,14 @@ defineExpose({ getFocus, setTouchTrue, setTouchFalse, iInput, isTouched, setBlur
       &.textCenter {
         text-align: center;
       }
-
-      // &::-webkit-outer-spin-button,
-      // &::-webkit-inner-spin-button {
-      //   -webkit-appearance: none;
-      //   appearance: none;
-      //   margin: 0;
-      // }
-
+      &.hideSpinBtn{
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          appearance: none;
+          margin: 0;
+        }
+      }
     }
     .p-l-0 {
       padding-left: 0;

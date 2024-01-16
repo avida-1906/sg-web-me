@@ -1,1 +1,5 @@
 hi: A
+money_exchange: 兑换货币
+exchange: 兑换
+pay_with: 以 {currency} 支付
+rate: 汇率

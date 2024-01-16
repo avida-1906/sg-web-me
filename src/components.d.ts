@@ -89,6 +89,7 @@ declare module 'vue' {
     AppMarquee: typeof import('./components/AppMarquee.vue')['default']
     AppMatchStatistics: typeof import('./components/AppMatchStatistics.vue')['default']
     AppMenuItem: typeof import('./components/AppMenuItem.vue')['default']
+    AppMoneyExchange: typeof import('./components/AppMoneyExchange.vue')['default']
     AppNavBreadCrumb: typeof import('./components/AppNavBreadCrumb.vue')['default']
     AppNotice: typeof import('./components/AppNotice.vue')['default']
     AppNoticeNotify: typeof import('./components/AppNoticeNotify.vue')['default']

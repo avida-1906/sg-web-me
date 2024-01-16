@@ -23,6 +23,7 @@ declare global {
   const ApiChatSendMessage: typeof import('./apis/index')['ApiChatSendMessage']
   const ApiDevDeleteThirdAuth: typeof import('./apis/index')['ApiDevDeleteThirdAuth']
   const ApiFinancRecordDepositBank: typeof import('./apis/index')['ApiFinancRecordDepositBank']
+  const ApiFinanceBalanceTransfer: typeof import('./apis/index')['ApiFinanceBalanceTransfer']
   const ApiFinanceDepositCurrency: typeof import('./apis/index')['ApiFinanceDepositCurrency']
   const ApiFinanceMerchantCoinList: typeof import('./apis/index')['ApiFinanceMerchantCoinList']
   const ApiFinanceMerchantList: typeof import('./apis/index')['ApiFinanceMerchantList']
@@ -706,6 +707,7 @@ declare module 'vue' {
     readonly ApiChatSendMessage: UnwrapRef<typeof import('./apis/index')['ApiChatSendMessage']>
     readonly ApiDevDeleteThirdAuth: UnwrapRef<typeof import('./apis/index')['ApiDevDeleteThirdAuth']>
     readonly ApiFinancRecordDepositBank: UnwrapRef<typeof import('./apis/index')['ApiFinancRecordDepositBank']>
+    readonly ApiFinanceBalanceTransfer: UnwrapRef<typeof import('./apis/index')['ApiFinanceBalanceTransfer']>
     readonly ApiFinanceDepositCurrency: UnwrapRef<typeof import('./apis/index')['ApiFinanceDepositCurrency']>
     readonly ApiFinanceMerchantCoinList: UnwrapRef<typeof import('./apis/index')['ApiFinanceMerchantCoinList']>
     readonly ApiFinanceMerchantList: UnwrapRef<typeof import('./apis/index')['ApiFinanceMerchantList']>
@@ -1383,6 +1385,7 @@ declare module '@vue/runtime-core' {
     readonly ApiChatSendMessage: UnwrapRef<typeof import('./apis/index')['ApiChatSendMessage']>
     readonly ApiDevDeleteThirdAuth: UnwrapRef<typeof import('./apis/index')['ApiDevDeleteThirdAuth']>
     readonly ApiFinancRecordDepositBank: UnwrapRef<typeof import('./apis/index')['ApiFinancRecordDepositBank']>
+    readonly ApiFinanceBalanceTransfer: UnwrapRef<typeof import('./apis/index')['ApiFinanceBalanceTransfer']>
     readonly ApiFinanceDepositCurrency: UnwrapRef<typeof import('./apis/index')['ApiFinanceDepositCurrency']>
     readonly ApiFinanceMerchantCoinList: UnwrapRef<typeof import('./apis/index')['ApiFinanceMerchantCoinList']>
     readonly ApiFinanceMerchantList: UnwrapRef<typeof import('./apis/index')['ApiFinanceMerchantList']>

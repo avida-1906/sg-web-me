@@ -2165,3 +2165,15 @@ export function ApiMemberInterestGetConfig(currencyId: CurrencyCode) {
     content_text: string
   }>('/member/interest/get/config', { params: { currencyId } })
 }
+
+/**
+ * 会员各币种间余额转换
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=05d3cf72-7b2a-4bfd-b994-6365cc48c3c4
+ */
+export function ApiFinanceBalanceTransfer(data: {
+  currency_in: CurrencyCode
+  currency_out: CurrencyCode
+  amount: string
+}) {
+  return httpClient.post('/finance/balance/transfer', data)
+}
