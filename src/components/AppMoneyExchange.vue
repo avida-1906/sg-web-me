@@ -74,11 +74,13 @@ function onAmountGetInput(v: string) {
   setAmountPay(div(+v, rate.value))
 }
 function confirm() {
-  run({
-    currency_in: currencyCodePay.value,
-    currency_out: currencyCodeGet.value,
-    amount: amountPay.value,
-  })
+  if (+amountPay.value > 0) {
+    run({
+      currency_in: currencyCodePay.value,
+      currency_out: currencyCodeGet.value,
+      amount: amountPay.value,
+    })
+  }
 }
 
 // 监听支付货币类型
