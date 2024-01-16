@@ -143,7 +143,7 @@ onMounted(() => {
           record.send_time, 'HH:mm:ss')}` }}
       </template>
       <template #direct_user_count="{ record }">
-        {{ record.sub_user_count + record.direct_user_count }}
+        {{ record.sub_user_count }}
       </template>
       <template #model_name="{ record }">
         <span>{{ platformIdList.find(
