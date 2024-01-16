@@ -8,9 +8,11 @@ const { providerList } = storeToRefs(useSportsStore())
 const { AllLanguages, userLanguage } = storeToRefs(useLanguageStore())
 const { bigPlats: platformList } = storeToRefs(useCasinoStore())
 const { isMobile } = storeToRefs(useWindowStore())
-// const {
-//   renderCurrencyList,
-// } = useCurrencyData()
+const { run: runVipRebateConfig, data: vipRebateConfig, loading: loadVipRebateConfig } = useRequest(ApiMemberVipRebateConfig, {
+  onSuccess(data) {
+
+  },
+})
 
 const tab = ref('')
 const squareTabList = ref<{
@@ -45,26 +47,27 @@ const allPlatforms = computed(() =>
   platformList.value.sort((a, b) => b.seq - a.seq).concat(providerList.value.sort((a, b) => b.seq - a.seq)))
 const tabList = computed(() => [
   { label: t('slot'), value: '3', icon: 'chess-slot-machine' },
-  { label: t('fishing'), value: 'by', icon: 'uni-fishing' },
-  { label: t('chess'), value: 'qp', icon: 'tabbar-game' },
+  { label: t('fishing'), value: '2', icon: 'uni-fishing' },
+  // { label: t('chess'), value: 'qp', icon: 'tabbar-game' },
   { label: t('live'), value: '1', icon: 'chess-live-casino' },
   { label: t('sports'), value: '4', icon: 'spt-soccer' },
-].filter(item => allPlatforms.value.filter(p => p.game_type === item.value).length))
+])
+// .filter(item => allPlatforms.value.filter(p => p.game_type === item.value).length))
 const filteredPlatforms = computed(() =>
   allPlatforms.value.filter(p => p.game_type === tab.value))
 const filterPlatformColumn = computed<Column[]>(() => filteredPlatforms.value.map(p =>
   ({ title: p[prefix.value ? `${prefix.value}_name` : 'name'], dataIndex: `${p.id}rate`, align: 'center', slot: `${p.id}rate` })))
-const data = computed(() => {
-  return vipConfigData.value
-    ? Object.values(vipConfigData.value).sort((a, b) => +a.level - +b.level)
-      .map((p) => {
-        const temp = p.rebate_config.filter(r => r.game_type === tab.value)[0]?.data.filter(t => t.currency_id === squareVal.value)
-        return temp && temp.length
-          ? temp.map(d => ({ level: p.level, [`${d.id}rate`]: d.rate === '' || d.rate === undefined || d.rate === null ? '' : `${d.rate}%` })).reduce((acc, cur) => ({ ...acc, ...cur }), {})
-          : { level: p.level }
-      })
-    : []
-})
+// const data = computed(() => {
+//   return vipConfigData.value
+//     ? Object.values(vipConfigData.value).sort((a, b) => +a.level - +b.level)
+//       .map((p) => {
+//         const temp = p.rebate_config.filter(r => r.game_type === tab.value)[0]?.data.filter(t => t.currency_id === squareVal.value)
+//         return temp && temp.length
+//           ? temp.map(d => ({ level: p.level, [`${d.id}rate`]: d.rate === '' || d.rate === undefined || d.rate === null ? '' : `${d.rate}%` })).reduce((acc, cur) => ({ ...acc, ...cur }), {})
+//           : { level: p.level }
+//       })
+//     : []
+// })
 const columns = computed<Column[]>(() => filterPlatformColumn.value.toReversed().concat({
   title: `VIP${t('grade')}`,
   dataIndex: 'level',
@@ -79,6 +82,15 @@ function changeCurrency(item: any) {
 watch(tabList, (val) => {
   if (val && val.length)
     tab.value = val[0].value
+}, {
+  immediate: true,
+})
+watch([() => tab.value, () => squareVal.value], () => {
+  runVipRebateConfig({
+    lv: '1',
+    game_type: tab.value,
+    cur: squareVal.value,
+  })
 }, {
   immediate: true,
 })
@@ -121,7 +133,7 @@ watch(tabList, (val) => {
           style="--tg-base-square-tab--padding-outer-y: var(--tg-spacing-6);"
         />
       </template>
-      <BaseTable :columns="columns" :data-source="data">
+      <BaseTable :columns="columns" :data-source="vipRebateConfig" :loading="loadVipRebateConfig">
         <template #level="{ record }">
           <!-- <div>VIP{{ record.level }}</div> -->
           <div class="vip-badge">

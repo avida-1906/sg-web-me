@@ -2201,9 +2201,9 @@ export function ApiMemberVipBonusApply(data: {
 export function ApiMemberVipRebateConfig(params: {
   /** vip等级 */
   lv: string
-  /** vip等级 */
+  /** 游戏类型 1真人视讯 2捕鱼游戏 3老虎机 4体育 */
   game_type: string
-  /** vip等级 */
+  /** 币种id */
   cur: string
 }) {
   return httpClient.get<{
