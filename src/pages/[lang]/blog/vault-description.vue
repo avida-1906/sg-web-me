@@ -1,11 +1,8 @@
 <script setup lang='ts'>
 const { t } = useI18n()
-const {
-  currentGlobalCurrency,
-} = storeToRefs(useAppStore())
-const {
-  renderBalanceList,
-} = useCurrencyData()
+const { currentGlobalCurrency } = storeToRefs(useAppStore())
+const { renderBalanceList } = useCurrencyData()
+const { isMobile } = storeToRefs(useWindowStore())
 
 const curType = ref(currentGlobalCurrency.value)
 const curCode = computed(() => {
@@ -61,11 +58,13 @@ await application.allSettled([runAsync()])
         {{ t('annual_interest_rate') }}
       </div>
     </div>
-    <div class="bg-tg-secondary-grey flex justify-between rounded-[4px] px-2 py-19 md:px-15 md:py-17">
+    <div class="bg-tg-secondary-grey flex items-center justify-between rounded-[4px] px-2 md:px-15">
       <div class="text-tg-secondary-light max-w-160 w-full flex flex-col items-center text-center text-[14px] font-semibold leading-[20px]">
         <BaseSelect
           v-model="curType" popper :options="currencyOptions"
-          style="--tg-base-select-popper-style-padding-x:0;--tg-base-select-popper-style-padding-y:0;--tg-base-select-popper-bg-color:transparent;"
+          :style="`--tg-base-select-popper-style-padding-x:0;
+          --tg-base-select-popper-style-padding-y:${isMobile ? '19px' : '17px'};
+          --tg-base-select-popper-bg-color:transparent;--tg-base-select-hover-bg-color:transparent;`"
         >
           <template #label="{ data }">
             <AppCurrencyIcon show-name :currency-type="data?.value" />
