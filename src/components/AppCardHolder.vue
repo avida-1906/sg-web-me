@@ -11,54 +11,40 @@ type WalletCurrencyList = {
 } & CurrencyData
 
 const { t } = useI18n()
-
 const closeDialog = inject('closeDialog', () => { })
-const cardList: Ref<WalletCurrencyList[] | null> = ref(null)
-
 const { openDeleteConfirm } = useDeleteConfirmDialog()
-const {
-  renderCurrencyList,
-  getVirContractName,
-} = useCurrencyData()
-// 会员卡包
-const {
-  data: walletBankcard,
-  runAsync: runAsyncWalletBankcardList,
-} = useRequest(ApiWalletBankcardList, {
-  onSuccess() {
-    const temp: WalletCurrencyList[] = []
-    for (const item of renderCurrencyList.value) {
-      const currentBankcard = walletBankcard.value?.bankcard[item.cur] || []
-      if (application.isVirtualCurrency(item.type)) { // 虚拟币
-        const currentCoin = walletBankcard.value?.coin[item.cur] || []
-        temp.push({
-          ...item,
-          coin: currentCoin,
-          addressNum: currentCoin.length,
-          showAdd: currentCoin.length < 3,
-          shown: false,
-        })
-      }
-      else { // 银行卡
-        temp.push({
-          ...item,
-          bankcard: currentBankcard,
-          addressNum: currentBankcard.length,
-          showAdd: item.cur === '702'
-            ? currentBankcard.length < 1
-            : currentBankcard.length < 3,
-          shown: false,
-        })
-      }
-    }
-    // 排序，绑定的在前
-    temp.sort((a, b) => {
-      return b.addressNum - a.addressNum
-    })
-    cardList.value = temp
-  },
-})
+const { currentGlobalCurrency } = storeToRefs(useAppStore())
+const { renderCurrencyList, getVirContractName } = useCurrencyData()
 const { openWalletDialog } = useWalletDialog({ activeTab: 'cardHolder' })
+
+const cardList: Ref<WalletCurrencyList[] | null> = ref(null)
+const curType = ref(currentGlobalCurrency.value)
+
+const curCode = computed(() => {
+  return renderCurrencyList.value.find(a => a.type === curType.value)?.cur ?? '701'
+})
+const currencyOptions = computed(() => {
+  return renderCurrencyList.value.map((a) => {
+    return {
+      label: a.type,
+      value: a.type,
+      currencyType: a.type,
+    }
+  })
+})
+const isVirtualCurrency = computed(() => application.isVirtualCurrency(curType.value))
+
+// 会员卡包
+const { data: bankcardData, runAsync: runAsyncWalletBankcardList } = useRequest(ApiWalletBankcardList)
+const bankcardList = computed(() => {
+  if (bankcardData.value) {
+    const list = isVirtualCurrency.value ? bankcardData.value.coin[curType.value] : bankcardData.value.bankcard[curType.value]
+    return list ?? []
+  }
+
+  return []
+})
+
 const toAddBankcards = function (item: WalletCurrencyList) {
   let isFirst = true
   let openName = ''
@@ -82,8 +68,6 @@ const toAddBankcards = function (item: WalletCurrencyList) {
   closeDialog()
   nextTick(() => openAddBankcardsDialog())
 }
-
-let lastShown = -1
 
 const toAddVirAddress = function (
   item: WalletCurrencyList,
@@ -114,152 +98,68 @@ function toDeleteBankcard(item: BankCard) {
     updateWalletList: runAsyncWalletBankcardList,
   })
 }
-function handleShow(item: WalletCurrencyList, index: number) {
-  const obj = cardList.value?.find(item => item.shown)
-  obj && (obj.shown = false)
-  item.shown = true
-  // if (lastShown > -1 && cardList.value)
-  // cardList.value[lastShown].shown = new Date().getTime()
-  lastShown = index
-}
 
-// if (!cardList.value)
 await application.allSettled([runAsyncWalletBankcardList()])
 </script>
 
 <template>
-  <div class="app-card-holder">
-    <div class="layout-spacing reset wallet-address">
-      <BaseCollapse
-        v-for="item, index in cardList"
-        :key="item.type"
-        :shown="item.shown"
-        :title="item.addressNum?.toString() || '0'"
-        style="--tg-icon-transition: 0;"
-        @click-show="handleShow(item, index)"
-        @click-close="lastShown === index ? lastShown = -1 : ''"
-      >
-        <template #top-right>
-          <div style="width: 8ch;">
-            <AppCurrencyIcon
-              show-name
-              :currency-type="item.type"
-            />
-          </div>
+  <div class="px-16 pb-43">
+    <div class="flex flex-col items-center">
+      <BaseSelect v-model="curType" :options="currencyOptions" popper>
+        <template #label="{ data }">
+          <AppCurrencyIcon show-name :currency-type="data?.value" />
         </template>
-        <template #content>
-          <div
-            v-if="application.isVirtualCurrency(item.type)"
-            class="layout-spacing reset"
-          >
-            <div
-              v-for="tmp in item.coin"
-              :key="tmp.id"
-              class="address-row"
-              :class="{ 'bankcard-disable-card-holder': tmp.state === 2 }"
-            >
-              <BaseIcon :name="`coin-${item.type.toLocaleLowerCase()}-title`" />
-              <span class="bank-num">{{ tmp.address }}</span>
-              <span class="type">{{
-                getVirContractName(tmp.contract_type.toString())
-              }}</span>
-              <BaseButton
-                type="text"
-                style="z-index: var(--tg-z-index-10);"
-                @click.stop="toDeleteVirAddress(tmp, item.type)"
-              >
-                <BaseIcon name="uni-delete" />
-              </BaseButton>
-            </div>
-            <BaseButton
-              v-if="item.showAdd"
-              size="sm"
-              type="text"
-              class="add-btn"
-              @click="toAddVirAddress(item)"
-            >
-              <BaseIcon style="transform: rotate(45deg);" name="uni-close" />
+        <template #option="{ data: { item } }">
+          <AppCurrencyIcon show-name :currency-type="item.value" />
+        </template>
+      </BaseSelect>
+    </div>
+    <!-- 当前币种绑定为0 -->
+    <div v-show="bankcardList.length === 0" class="bg-tg-secondary-dark border-tg-text-white mb-14 mt-17 flex border-collapse items-center justify-center border-2 rounded-[4px] border-dashed py-25">
+      <ul class="relative font-medium leading-[1.5]">
+        <div class="absolute left-[-22px] text-[16px]">
+          <BaseIcon name="uni-warning-color" />
+        </div>
+        <li>{{ t('add_withdraw_info') }}</li>
+        <li>1.{{ t('three_withdraw_info_only') }}</li>
+        <li>2.{{ t('want_more_del_first') }}</li>
+      </ul>
+    </div>
+
+    <!-- 列表 -->
+    <div class="mb-14 flex flex-col gap-14">
+      <!-- item -->
+      <div class="flex overflow-hidden rounded-[4px]">
+        <div class="bg-tg-secondary-grey max-w-60 flex items-center justify-center p-23">
+          <BaseIcon name="coin-usdt" />
+        </div>
+        <div class="bg-tg-secondary relative flex items-center px-14">
+          <div class="text-tg-text-white flex flex-col gap-6">
+            <span class="font-semibold">开户行</span>
+            <span class="font-bold">000000000000</span>
+          </div>
+          <div class="absolute right-14">
+            <BaseButton size="none" type="text">
+              <BaseIcon class="text-[18px]" name="uni-bank-delete" />
             </BaseButton>
           </div>
-          <div v-else class="layout-spacing reset">
-            <div
-              v-for="tmp in item.bankcard"
-              :key="tmp.id"
-              class="address-row"
-              :class="{ 'bankcard-disable-card-holder': tmp.state === 2 }"
-            >
-              <BaseIcon :name="item.cur === '702' ? 'fiat-pix-title' : 'fiat-bank'" />
-              <div class="bank-num">
-                <span style="padding-right: 1ch;">{{ tmp.bank_name }}</span>
-                <span>{{ tmp.bank_account }}</span>
-              </div>
-              <span class="type">{{ tmp.open_name }}</span>
-              <BaseButton
-                type="text"
-                style="z-index: var(--tg-z-index-10);"
-                @click.stop="toDeleteBankcard(tmp)"
-              >
-                <BaseIcon name="uni-delete" />
-              </BaseButton>
-              <!-- <div v-if="tmp.state === 2" class="bankcard-disable-text">
-                <BaseIcon name="uni-disable" />
-                暂不可用
-              </div> -->
-            </div>
-            <BaseButton
-              v-if="item.showAdd"
-              type="text"
-              size="sm"
-              class="add-btn"
-              @click="toAddBankcards(item)"
-            >
-              <BaseIcon style="transform: rotate(45deg);" name="uni-close" />
-            </BaseButton>
-          </div>
-        </template>
-      </BaseCollapse>
-      <BaseEmpty
-        v-if="!cardList?.length"
-        :description="t('data_empty')"
-        icon="uni-empty-betslip"
-      />
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col">
+      <BaseButton size="lg" bg-style="secondary">
+        {{ `${t('label_bind')}${isVirtualCurrency ? t('withdraw_address') : t('withdraw_account')}` }}
+      </BaseButton>
+    </div>
+
+    <!-- 当千币种绑定>0 -->
+    <div v-show="bankcardList.length > 0" class="mt-14 font-medium leading-[1.5]">
+      {{ t('three_withdraw_info_only') }}{{ t('want_more_del_first') }}
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-.app-card-holder {
-  padding-bottom: var(--tg-spacing-16);
-  .wallet-address{
-    gap:  var(--tg-spacing-6) 0;
-    .layout-spacing{
-      gap:  var(--tg-spacing-6) 0;
-      background: var(--tg-primary-main);
-    }
-    .add-btn{
-      flex: 1;
-      font-size: var(--tg-font-size-xs);
-      color: var(--tg-text-lightgrey);
-      background: var(--tg-secondary-dark);
-    }
-    .address-row{
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: var(--tg-secondary-dark);
-      font-size: var(--tg-font-size-xs);
-      color: var(--tg-text-white);
-      padding: 0 var(--tg-spacing-4) 0 var(--tg-spacing-16);
-      line-height: 38px;;
-      .type{
-        font-weight: 500;
-        color: var(--tg-text-warn);
-      }
-      .bank-num{
-        flex: 1;
-        margin-left: var(--tg-spacing-8);
-      }
-    }
-  }
-}
+
 </style>
