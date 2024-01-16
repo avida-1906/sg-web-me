@@ -110,7 +110,9 @@ useListSearch(params, runAsyncGetRecordAsync, resetPage)
       :data-source="records"
     >
       <template #updated_at="{ record }">
-        <div>{{ timeToCustomizeFormat(record.updated_at) }}</div>
+        {{ `${timeToDateFormat(record.created_at)} ${timeToCustomizeFormat(
+          record.created_at, 'HH:mm:ss')}` }}
+        <!-- <div>{{ timeToCustomizeFormat(record.updated_at) }}</div> -->
       </template>
       <template #cash_type="{ record }">
         {{ getCashType(record.cash_type) }}

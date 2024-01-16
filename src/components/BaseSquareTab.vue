@@ -216,7 +216,7 @@ await application.allSettled([loadIcon()])
   &.is-mobile{
     width: 100%;
     gap:40px;
-    justify-content: space-around;
+    justify-content: space-between;
     .button{
       padding-top: var(--tg-base-square-tab-padding-top);
       .main{

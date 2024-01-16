@@ -71,18 +71,19 @@ const columns: Column[] = [
   },
   {
     title: t('performance'),
-    dataIndex: 'valid_bet_amount_direct',
+    dataIndex: 'valid_bet_amount_total',
     align: 'center',
     slot: 'bet_amount',
   },
   {
     title: t('label_contribute_count'),
-    dataIndex: 'direct_user_count',
+    dataIndex: 'direct_user_count', // sub_user_count+ direct_user_count
     align: 'center',
+    slot: 'direct_user_count',
   },
   {
     title: t('finance_funds_transfer_sort_commission'),
-    dataIndex: 'commission_amount_direct',
+    dataIndex: 'commission_amount_total',
     align: 'center',
     slot: 'commission_amount',
   },
@@ -141,6 +142,9 @@ onMounted(() => {
         {{ `${timeToDateFormat(record.send_time)} ${timeToCustomizeFormat(
           record.send_time, 'HH:mm:ss')}` }}
       </template>
+      <template #direct_user_count="{ record }">
+        {{ record.sub_user_count + record.direct_user_count }}
+      </template>
       <template #model_name="{ record }">
         <span>{{ platformIdList.find(
           item => item.value === record.model_id)?.label ?? '-' }}</span>
@@ -148,7 +152,7 @@ onMounted(() => {
       <template #bet_amount="{ record }">
         <div class="center">
           <AppAmount
-            :amount="record.valid_bet_amount_direct"
+            :amount="record.valid_bet_amount_total"
             :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
           />
         </div>
@@ -156,7 +160,7 @@ onMounted(() => {
       <template #commission_amount="{ record }">
         <div class="center">
           <AppAmount
-            :amount="record.commission_amount_direct"
+            :amount="record.commission_amount_total"
             :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
           />
         </div>
