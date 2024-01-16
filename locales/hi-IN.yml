@@ -3,3 +3,8 @@ money_exchange: 兑换货币
 exchange: 兑换
 pay_with: 以 {currency} 支付
 rate: 汇率
+
+birthday_bonus: 生日奖金
+collection_instructions: 领取说明：本活动奖金均是以USDT发放；您可以自行选择领取的货币，货币间汇率采用市场实时汇率。
+activity_bonus: 活动奖金
+success_received: 成功领取{label} {amount} {renderSvg}

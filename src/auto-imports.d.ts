@@ -107,10 +107,12 @@ declare global {
   const ApiMemberUpdate: typeof import('./apis/index')['ApiMemberUpdate']
   const ApiMemberUpload: typeof import('./apis/index')['ApiMemberUpload']
   const ApiMemberVipBonusAmount: typeof import('./apis/index')['ApiMemberVipBonusAmount']
+  const ApiMemberVipBonusApply: typeof import('./apis/index')['ApiMemberVipBonusApply']
   const ApiMemberVipBonusAvailable: typeof import('./apis/index')['ApiMemberVipBonusAvailable']
   const ApiMemberVipBonusRecord: typeof import('./apis/index')['ApiMemberVipBonusRecord']
   const ApiMemberVipConfig: typeof import('./apis/index')['ApiMemberVipConfig']
   const ApiMemberVipMultiple: typeof import('./apis/index')['ApiMemberVipMultiple']
+  const ApiMemberVipRebateConfig: typeof import('./apis/index')['ApiMemberVipRebateConfig']
   const ApiMemberWalletDelete: typeof import('./apis/index')['ApiMemberWalletDelete']
   const ApiMemberWalletInsert: typeof import('./apis/index')['ApiMemberWalletInsert']
   const ApiPaymentDepositBankApplication: typeof import('./apis/index')['ApiPaymentDepositBankApplication']
@@ -791,10 +793,12 @@ declare module 'vue' {
     readonly ApiMemberUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberUpdate']>
     readonly ApiMemberUpload: UnwrapRef<typeof import('./apis/index')['ApiMemberUpload']>
     readonly ApiMemberVipBonusAmount: UnwrapRef<typeof import('./apis/index')['ApiMemberVipBonusAmount']>
+    readonly ApiMemberVipBonusApply: UnwrapRef<typeof import('./apis/index')['ApiMemberVipBonusApply']>
     readonly ApiMemberVipBonusAvailable: UnwrapRef<typeof import('./apis/index')['ApiMemberVipBonusAvailable']>
     readonly ApiMemberVipBonusRecord: UnwrapRef<typeof import('./apis/index')['ApiMemberVipBonusRecord']>
     readonly ApiMemberVipConfig: UnwrapRef<typeof import('./apis/index')['ApiMemberVipConfig']>
     readonly ApiMemberVipMultiple: UnwrapRef<typeof import('./apis/index')['ApiMemberVipMultiple']>
+    readonly ApiMemberVipRebateConfig: UnwrapRef<typeof import('./apis/index')['ApiMemberVipRebateConfig']>
     readonly ApiMemberWalletDelete: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletDelete']>
     readonly ApiMemberWalletInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletInsert']>
     readonly ApiPaymentDepositBankApplication: UnwrapRef<typeof import('./apis/index')['ApiPaymentDepositBankApplication']>
@@ -1469,10 +1473,12 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberUpdate']>
     readonly ApiMemberUpload: UnwrapRef<typeof import('./apis/index')['ApiMemberUpload']>
     readonly ApiMemberVipBonusAmount: UnwrapRef<typeof import('./apis/index')['ApiMemberVipBonusAmount']>
+    readonly ApiMemberVipBonusApply: UnwrapRef<typeof import('./apis/index')['ApiMemberVipBonusApply']>
     readonly ApiMemberVipBonusAvailable: UnwrapRef<typeof import('./apis/index')['ApiMemberVipBonusAvailable']>
     readonly ApiMemberVipBonusRecord: UnwrapRef<typeof import('./apis/index')['ApiMemberVipBonusRecord']>
     readonly ApiMemberVipConfig: UnwrapRef<typeof import('./apis/index')['ApiMemberVipConfig']>
     readonly ApiMemberVipMultiple: UnwrapRef<typeof import('./apis/index')['ApiMemberVipMultiple']>
+    readonly ApiMemberVipRebateConfig: UnwrapRef<typeof import('./apis/index')['ApiMemberVipRebateConfig']>
     readonly ApiMemberWalletDelete: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletDelete']>
     readonly ApiMemberWalletInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberWalletInsert']>
     readonly ApiPaymentDepositBankApplication: UnwrapRef<typeof import('./apis/index')['ApiPaymentDepositBankApplication']>

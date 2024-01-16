@@ -9,7 +9,7 @@ export function useExchangeRate() {
    * @param baseCurrency 基础货币 默认数量为 1
    * @param targetCurrency 目标货币
    */
-  const getRate = (baseCurrency: EnumCurrencyKey, targetCurrency: EnumCurrencyKey) => {
+  const getRate = (baseCurrency: EnumCurrencyKey, targetCurrency: EnumCurrencyKey, keepBit = 2) => {
     if (baseCurrency === targetCurrency) {
       return {
         baseNum: 1,
@@ -24,7 +24,7 @@ export function useExchangeRate() {
     if (baseRates) {
       return {
         baseNum: 1,
-        targetNum: toFixed(+baseRates[targetCurrencyMap.cur], 2),
+        targetNum: keepBit === -1 ? baseRates[targetCurrencyMap.cur] : toFixed(+baseRates[targetCurrencyMap.cur], keepBit),
       }
     }
   }

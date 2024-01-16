@@ -2,86 +2,182 @@
 import type { CurrencyData } from '~/composables/useCurrencyData'
 
 interface Props {
+  /** 奖金金额 */
   vipBonus?: string
+  /** 奖金id，存在则领取的是晋级奖金 */
   vipBonusId?: string
+  /** 奖金类型 */
+  bonusType?: string
 }
 
 const props = defineProps<Props>()
-
-const emit = defineEmits(['confirm'])
-
 const closeDialog = inject('closeDialog', () => { })
-
 const { t } = useI18n()
-const appStore = useAppStore()
-const { exchangeRateData } = storeToRefs(appStore)
 const { openNotify } = useNotify()
+const { getRate } = useExchangeRate()
+const { isLogin } = storeToRefs(useAppStore())
+const amountMax = ref('0')
 const {
   value: amount,
-  //   setValue: setAmount,
+  setValue: setAmount,
   errorMessage: amountMsg,
-//   validate: valiAmount,
+  validate: valiAmount,
 //   resetField: amountReset,
 } = useField<string>('amount', (value) => {
-
+  if (!value)
+    return t('input_amount')
+  else if (Number(value) === 0)
+    return t('validate_deposit_amount_zero')
+  else if (Number(value) < 0)
+    return t('validate_deposit_amount_pos')
+  else if (value && Number(value) > Number(amountMax.value))
+    return t('validate_deposit_amount_max')
+  return ''
 })
+const {
+  value: targetAmount,
+  setValue: setTargetAmount,
+  errorMessage: targetAmountMsg,
+  //   validate: valiAmount,
+  //   resetField: amountReset,
+} = useField<string>('targetAmount')
 const { selected: typeVal, list: options } = useSelect([
-  {
-    label: '日奖金',
-    value: '1',
-  },
-  {
-    label: '周奖金',
-    value: '2',
-  },
-  {
-    label: '月奖金',
-    value: '3',
-  },
-  {
-    label: t('finance_other_tab_all'),
-    value: '4',
-  },
+  // { label: t('vip_promotion_bonus'), value: '818' },
+  { label: t('vip_day_salary_bonus'), value: '819' },
+  { label: t('vip_week_salary_bonus'), value: '820' },
+  { label: t('vip_month_salary_bonus'), value: '821' },
+  // { label: t('birthday_bonus'), value: '822' },
+  // {
+  //   label: t('finance_other_tab_all'),
+  //   value: '',
+  // },
 ])
-
-const currentNetwork = ref('')
+const amountRef = ref()
 const activeCurrency = ref<CurrencyData | null>()
-
-const rate = computed(() => {
-  const temp = exchangeRateData.value?.rates
-  if (temp && temp['706'] && activeCurrency.value)
-    return temp['706'][activeCurrency.value.cur] || '1'
-  return '1'
+const getBit = computed(() => {
+  return application.isVirtualCurrency(activeCurrency.value?.type ?? 'USDT') ? 8 : 2
 })
+const {
+  runAsync: runAsyncVipBonusApply,
+  loading: loadVipBonusApply,
+} = useRequest(ApiMemberVipBonusApply)
+const rate = computed(() => {
+  return activeCurrency.value?.type === 'USDT' ? '1.00' : getRate('USDT', activeCurrency.value?.type ?? 'USDT', -1)?.targetNum
+})
+const { run: runGetPromoBonus, data: promoBonus, loading: loadPromoBonus }
+  = useRequest(ApiMemberVipBonusAvailable, {
+    ready: isLogin,
+    onSuccess(data) {
+      const item = data[0]
+      if (item.state === 2) {
+        amountMax.value = toFixed(0, getBit.value)
+        setAmount(toFixed(0, getBit.value), false)
+        setTargetAmount(toFixed(0, getBit.value))
+      }
+      else {
+        const amount = Number(sub(Number(item.amount), Number(item.receive_amount)))
+        amountMax.value = toFixed(amount, getBit.value)
+        setAmount(toFixed(amount, getBit.value))
+        setTargetAmount(toFixed(Number(mul(Number(rate.value), amount)), getBit.value))
+      }
+    },
+  })
 
-function changeCurrency(item: CurrencyData, network: string) {
+// 币种切换
+function changeCurrency(item: CurrencyData) {
   activeCurrency.value = item
-  currentNetwork.value = network
+  setTargetAmount(toFixed(Number(mul(Number(rate.value), Number(amount.value))), getBit.value))
 }
+// 奖金类型切换
 function selectTypeChange(item: string) {
   typeVal.value = item
+  runGetPromoBonus({ cash_type: typeVal.value })
 }
+function renderSvg() {
+  return activeCurrency.value
+    ? `<svg aria-hidden="true" style="width:14px;height:14px;margin: 0 5px;">
+          <use xlink:href="#icon-coin-${activeCurrency.value.type.toLocaleLowerCase()}"/>
+        </svg>`
+    : ''
+}
+async function submitBonus() {
+  if (amountRef.value)
+    amountRef.value.setTouchTrue()
+  await valiAmount()
+  if (!amountMsg.value) {
+    runAsyncVipBonusApply({
+      id: props.vipBonusId ?? (promoBonus.value && promoBonus.value[0].id) ?? '',
+      cur: activeCurrency.value?.cur ?? '',
+      amount: amount.value,
+    }).then(() => {
+      const label = options.value.find(item => item.value === typeVal.value)?.label ?? t('vip_promotion_bonus')
+      openNotify({
+        type: 'success',
+        title: `${label}${t('receive')}`,
+        icon: 'navbar-wallet-notify',
+        // message: `成功领取${label} ${targetAmount.value} ${renderSvg()}`,
+        message: t('success_received', { label, amount: targetAmount.value, renderSvg: renderSvg() }),
+      })
+      closeDialog()
+    })
+  }
+}
+function amountBlur() {
+  if (Number(amount.value) > Number(amountMax.value))
+    setAmount(amountMax.value)
+
+  setTargetAmount(toFixed(Number(mul(Number(rate.value), Number(amount.value))), getBit.value))
+}
+
+onMounted(() => {
+  if (!props.vipBonusId) {
+    runGetPromoBonus({ cash_type: typeVal.value })
+  }
+  else {
+    typeVal.value = '818'
+    setAmount(props.vipBonus ?? '', false)
+    amountMax.value = props.vipBonus ?? '0'
+  }
+})
 </script>
 
 <template>
   <div class="app-receive-bonus">
-    <!-- <div class="amount"> -->
-    <BaseLabel label="活动奖金">
-      <BaseInput v-model="amount" :msg="amountMsg" type="number" msg-after-touched>
-        <template #right-button>
+    <BaseLabel :label="$t('activity_bonus')">
+      <BaseInput ref="amountRef" v-model="amount" :msg="amountMsg" type="number" msg-after-touched @blur="amountBlur">
+        <template v-if="!vipBonusId" #right-button>
           <BaseSelect
             :model-value="typeVal" popper plain-popper-label :options="options"
             @select="selectTypeChange"
-          />
+          >
+            <template #label="{ data }">
+              <div class="center" style="gap: 4px;">
+                <AppCurrencyIcon currency-type="USDT" />
+                <span>{{ data.label }}</span>
+              </div>
+            </template>
+            <template #option="{ data: { item } }">
+              <div class="center" style="gap: 4px;">
+                <AppCurrencyIcon currency-type="USDT" />
+                <span>{{ item.label }}</span>
+              </div>
+            </template>
+          </BaseSelect>
+        </template>
+        <template v-else #right-icon>
+          <AppCurrencyIcon currency-type="USDT" />
         </template>
       </BaseInput>
     </BaseLabel>
     <div>
       <div class="top-label">
-        <span>以 ETH 结算</span>
-        <span>汇率{{ rate }}</span>
+        <span>{{ $t('exchange') }}{{ activeCurrency?.type }}</span>
+        <span>{{ $t('rate') }}{{ rate }}</span>
       </div>
-      <BaseInput v-model="amount" :msg="amountMsg" type="number" msg-after-touched>
+      <BaseInput
+        v-model="targetAmount" :msg="targetAmountMsg"
+        type="number" msg-after-touched disabled
+      >
         <template #right-button>
           <AppSelectCurrency
             :type="3" :show-balance="false"
@@ -91,11 +187,15 @@ function selectTypeChange(item: string) {
         </template>
       </BaseInput>
     </div>
-    <BaseButton bg-style="secondary" size="md">
-      领取
+    <BaseButton
+      bg-style="secondary" size="md"
+      :loading="loadVipBonusApply || loadPromoBonus"
+      @click="submitBonus"
+    >
+      {{ $t('receive') }}
     </BaseButton>
     <div class="tips">
-      领取说明：本活动奖金均是以USDT发放；您可以自行选择领取的货币，货币间汇率采用市场实时汇率。
+      {{ $t('collection_instructions') }}
     </div>
   </div>
 </template>

@@ -38,7 +38,7 @@ for (const key in currencyConfig) {
 //   }
 // })
 const squareVal = ref(squareTabList.value[0].value)
-console.log(platformList.value, providerList.value)
+
 const prefix = computed(() =>
   AllLanguages.value.filter(a => a.value === userLanguage.value)[0].prefix)
 const allPlatforms = computed(() =>
