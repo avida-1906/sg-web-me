@@ -46,7 +46,7 @@ await application.allSettled([runAsync()])
 </script>
 
 <template>
-  <div class="md:bg-tg-secondary-dark mx-auto max-w-650 md:my-16 md:rounded-[8px] md:p-20">
+  <div class="md:bg-tg-secondary-dark mx-auto max-w-650 select-none md:my-16 md:rounded-[8px] md:p-20">
     <div class="flex justify-between px-2 py-19 md:px-15 md:py-17">
       <div class="text-tg-secondary-light max-w-160 w-full text-center text-[14px] font-semibold leading-[20px]">
         {{ t('currency_type') }}
