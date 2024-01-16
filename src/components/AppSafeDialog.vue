@@ -234,8 +234,7 @@ watch(() => activeTab.value, () => {
       </BaseButton>
       <BaseButton
         size="none" type="text"
-        style="margin-top: var(--tg-spacing-4);
-        --tg-base-button-text-default-color: var(--tg-text-white)"
+        style="margin-top: var(--tg-spacing-4);"
         @click="push('/blog/vault-description');closeDialog()"
       >
         {{ t('vault_info') }}
