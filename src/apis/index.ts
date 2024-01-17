@@ -2159,15 +2159,16 @@ export function ApiMemberVipMultiple() {
 * 获取利息宝配置
 * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=f79ae784-bcef-462d-af70-900bc09f1ae9
 */
-export function ApiMemberInterestGetConfig(currencyId: CurrencyCode) {
+export function ApiMemberInterestGetConfig() {
   return httpClient.get<{
     id: string
-    currency_ids: string
-    currency_names: string
-    config: string
+    currency_id: number
+    currency_name: string
+    min_deposit: string
+    interest_rate: string
     translate: number
     content_text: string
-  }>('/member/interest/get/config', { params: { currencyId } })
+  }[]>('/member/interest/get/config')
 }
 
 /**

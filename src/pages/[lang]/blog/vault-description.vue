@@ -1,45 +1,36 @@
 <script setup lang='ts'>
 const { t } = useI18n()
-const { currentGlobalCurrency } = storeToRefs(useAppStore())
-const { renderCurrencyList } = useCurrencyData()
 const { isMobile } = storeToRefs(useWindowStore())
 
-const curType = ref(currentGlobalCurrency.value)
-const curCode = computed(() => {
-  return renderCurrencyList.value.find(a => a.type === curType.value)?.cur ?? '701'
-})
+const curType = ref('')
 
+const { data, runAsync } = useRequest(ApiMemberInterestGetConfig, {
+  onSuccess(res) {
+    curType.value = res[0].currency_name
+  },
+})
 const currencyOptions = computed(() => {
-  return renderCurrencyList.value.map((a) => {
-    return {
-      label: a.type,
-      value: a.type,
-      currencyType: a.type,
-    }
-  })
+  if (data.value) {
+    return data.value.map((a) => {
+      return {
+        label: a.currency_name,
+        value: a.currency_name,
+        currencyType: a.currency_name,
+      }
+    })
+  }
+  return []
 })
-
-const { data, runAsync, loading } = useRequest(() => ApiMemberInterestGetConfig(curCode.value))
 const minDepositAmount = computed(() => {
-  // if (data.value) {
-  //   const arr = JSON.parse(data.value.config)
-  //   return arr.find((a: any) => a.currency_id === +curCode.value)?.min_deposit ?? 0
-  // }
+  if (data.value)
+    return data.value.find(a => a.currency_name === curType.value)?.min_deposit ?? 0
+
   return 0
 })
 const interestRate = computed(() => {
-  // if (data.value) {
-  //   const arr = JSON.parse(data.value.config)
-  //   return arr.find((a: any) => a.currency_id === +curCode.value)?.interest_rate ?? 0
-  // }
+  if (data.value)
+    return data.value.find(a => a.currency_name === curType.value)?.interest_rate ?? 0
   return 0
-})
-
-watch(currentGlobalCurrency, (a) => {
-  curType.value = a
-})
-watch(curCode, () => {
-  runAsync()
 })
 
 await application.allSettled([runAsync()])
@@ -76,10 +67,10 @@ await application.allSettled([runAsync()])
         </BaseSelect>
       </div>
       <div class="text-tg-secondary-light max-w-160 w-full text-center text-[14px] font-semibold leading-[20px]">
-        {{ loading ? '-' : application.numberToLocaleString(minDepositAmount) }}
+        {{ application.numberToLocaleString(+minDepositAmount) }}
       </div>
       <div class="text-tg-secondary-light max-w-160 w-full text-center text-[14px] font-semibold leading-[20px]">
-        {{ loading ? '-' : `${application.numberToLocaleString(interestRate)}%` }}
+        {{ `${application.numberToLocaleString(+interestRate)}%` }}
       </div>
     </div>
 
