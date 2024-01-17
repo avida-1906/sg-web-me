@@ -21,18 +21,18 @@ const currencyOptions = computed(() => {
 
 const { data, runAsync, loading } = useRequest(() => ApiMemberInterestGetConfig(curCode.value))
 const minDepositAmount = computed(() => {
-  if (data.value) {
-    const arr = JSON.parse(data.value.config)
-    return arr.find((a: any) => a.currency_id === +curCode.value)?.min_deposit ?? 0
-  }
-  return ''
+  // if (data.value) {
+  //   const arr = JSON.parse(data.value.config)
+  //   return arr.find((a: any) => a.currency_id === +curCode.value)?.min_deposit ?? 0
+  // }
+  return 0
 })
 const interestRate = computed(() => {
-  if (data.value) {
-    const arr = JSON.parse(data.value.config)
-    return arr.find((a: any) => a.currency_id === +curCode.value)?.interest_rate ?? 0
-  }
-  return ''
+  // if (data.value) {
+  //   const arr = JSON.parse(data.value.config)
+  //   return arr.find((a: any) => a.currency_id === +curCode.value)?.interest_rate ?? 0
+  // }
+  return 0
 })
 
 watch(currentGlobalCurrency, (a) => {
@@ -65,6 +65,7 @@ await application.allSettled([runAsync()])
           :style="`--tg-base-select-popper-style-padding-x:0;
           --tg-base-select-popper-style-padding-y:${isMobile ? '19px' : '17px'};
           --tg-base-select-popper-bg-color:transparent;--tg-base-select-hover-bg-color:transparent;`"
+          popper-max-height="24em"
         >
           <template #label="{ data }">
             <AppCurrencyIcon show-name :currency-type="data?.value" />

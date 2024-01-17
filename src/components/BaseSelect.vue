@@ -21,10 +21,12 @@ interface Props {
   plainPopperLabel?: boolean
   popperClazz?: string
   distance?: number
+  popperMaxHeight?: string
 }
 const props = withDefaults(defineProps<Props>(), {
   layout: 'vertical',
   distance: 6,
+  popperMaxHeight: '20em',
 })
 const emit = defineEmits(['update:modelValue', 'select', 'focus'])
 
@@ -105,7 +107,7 @@ function onPopperOpen() {
       </div>
       <template #popper="{ hide }">
         <div
-          class="scroll-y need-pad-y popper-wrap"
+          class="scroll-y need-pad-y popper-wrap" :style="{ maxHeight: popperMaxHeight }"
         >
           <a
             v-for="item, i in options" :key="i"
@@ -287,7 +289,6 @@ function onPopperOpen() {
 .popper-wrap {
   display: flex;
   flex-direction: column;
-  max-height: 20em;
 
   &::-webkit-scrollbar-thumb {
     background: var(--tg-secondary-light);
