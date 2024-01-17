@@ -13,7 +13,7 @@ export function useExchangeRate() {
     if (baseCurrency === targetCurrency) {
       return {
         baseNum: 1,
-        targetNum: '1',
+        targetNum: toFixed(1, keepBit),
       }
     }
 
