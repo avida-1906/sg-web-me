@@ -128,7 +128,6 @@ const menuData = computed(() => [
       { title: t('license') },
       { title: t('anti_money_laundering_rule') },
       { title: t('terms_of_service') },
-      { title: t('self_exclusion') },
       { title: 'Primedice', icon: true },
     ],
   },
