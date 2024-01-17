@@ -1963,3 +1963,14 @@ withdraw_address: 收款地址
 wrong_format: 格式错误
 vip_integral: 'VIP คะแนนสะสม'
 sports_events2: รายการกีฬา
+choose_proto_pls: 请选择协议
+vir_address: 虚拟货币地址
+input_vir_address_pls: 请输入虚拟货币地址
+digital_pwd: 数字密码
+check_vir_address_pls: 请认真核对地址，地址错误资金将无法到账
+check_account_pls: 请认真核对账号，账号错误资金将无法到账
+first_name: 名字
+last_name : 姓氏
+country_pls: 请选择国家
+city_pls: 请填写城市
+select_pix_type_pls: 请选择PIX账号类型
