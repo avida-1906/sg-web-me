@@ -157,7 +157,6 @@ await application.allSettled([runMemberNoticeAllList(), loadIcon()])
 
 <template>
   <div class="layout-spacing">
-    <BaseButton>{{ $t('login') }}</BaseButton>
     <AppBanner type="casino" />
     <!-- <AppMarquee /> -->
     <div v-if="!isMobile" class="tg-mt-24">

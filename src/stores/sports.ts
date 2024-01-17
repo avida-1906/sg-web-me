@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import type { Menu } from '~/composables/useApiMenuData'
 
 export enum EnumSportsPanelType {
@@ -358,7 +357,7 @@ export const useSportsStore = defineStore('sports', () => {
       })
       return [
         {
-          title: t('sports_events'),
+          title: t('sports_events2'),
           path: '',
           icon: 'spt-basketball',
           list,

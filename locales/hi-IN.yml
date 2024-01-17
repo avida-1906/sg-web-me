@@ -1,4 +1,1950 @@
-hi: A
+login: 登录
+reg: 注册
+register: 创建账户
+continue: 继续
+gamer: 玩家
+currency_type: 币种
+start_game: 开始游戏
+slot: 老虎机
+fishing: 捕鱼
+chess: 棋牌
+live: 真人
+email_or_username: 电邮地址或用户名
+email_or_username_incorrect: 电邮地址或用户名格式不正确
+two_step_verification: 双重验证
+pls_enter_two_step_verification: 请输入双重验证
+tip_start_double_check: 启用双重验证以让您的账户更加安全。
+email_address: 电邮地址
+pls_enter_email_address: 请输入电邮地址
+email_address_incorrect: 电邮地址格式不正确
+reset_pwd_email: 已发送密码重置电邮
+already_send_email_user: 我们已发送账户恢复电邮至
+recover_pwd: 恢复密码
+username: 用户名
+pls_enter_username: 请输入用户名
+username_incorrect: 您的用户名长度必须为 3 – 14 个字符。
+password: 密码
+old_pwd: 旧密码
+new_pwd: 新密码
+confirm_new_pwd: 确认新密码
+confirm_pwd: 确认密码
+pls_enter_password: 请输入密码
+pls_enter_birthday: 请输入生日
+password_incorrect: 密码格式不正确
+password_uppercase_lowercase_letter: 密码必须含有至少 1 个大写字母和 1 个小写字母
+password_least_8_characters: 您的密码必须含有至少 8 个字符
+password_least_1_number: 密码必须含有至少一个数字
+uppercase_lowercase_letter: 含有大写和小写字母
+least_8_characters: 至少 8 个字符
+reg_step: 填写您的详细信息
+reg_step1: 步骤 1/2： 填写您的详细信息
+reg_step2: 步骤 2/2： 填写您的详细信息
+step_label: 步骤
+code_optional: 代码（可选的）
+read_and_agree: 我已阅读并同意
+terms_conditions: 条款与条件
+read_terms_conditions: 我已阅读并同意条款与条件
+agree_terms_conditions: 请完整阅读条款与条件，然后滚动至末尾将其接受。
+read_and_accept: 阅读并接受条款与条件
+or_use: 或者使用
+forgot_password: 忘记密码
+no_account_yet: 还未有账户？
+register_account: 注册账户
+have_account: 已有账户？
+stake_hCaptcha: '{site}受hCaptcha保护，hCaptcha'
+privacy_policy: 隐私政策
+responsible_casino: 负责任博彩
+license: 许可证
+self_exclusion: 自我排除
+anti_money_laundering_rule: 反洗钱规则
+copyright: 版权所有
+and: 和
+terms_of_service: 服务条款
+applicable: 适用。
+time: 时间
+balance: 余额
+amount: 金额
+casino: 娱乐城
+sports: 体育
+game: 游戏
+wallet: 钱包
+safe: 保险库
+affiliate: 联盟计划
+transaction_record: 交易记录
+statistical_data: 统计数据
+sports_betting: 体育投注
+trophy: 奖杯
+lucky_trophy: 最幸运奖杯
+big_win: 最大之赢
+setting: 设置
+stake_safety: '{site}安全'
+online_support: 在线支持
+vip_club: VIP俱乐部
+club: 俱乐部
+logout: 登出
+logout_dont_foget: 别忘了在您离开之前先查看我们丰富的娱乐城与体育博彩促销活动！
+chat_room: 聊天室
+bet_slip: 投注单
+my_bets: 我的投注
+all_bets: 所有投注
+casino_bets: 娱乐城投注
+billboard: 风云榜
+competition_board: 竞赛排行榜
+competition: '{money} 竞赛'
+competition_name: 竞赛名称
+currency: 货币
+network: 网络
+deposit: 存款
+withdraw: 取款
+this_field_is_required: 此字段为必填项
+buy_cryptocurrency: 购买加密货币
+your_currency_deposit_address: 您的 {currency} 存款地址
+sports_events: 体育项目
+top_sports_events: 顶级体育项目
+choose_your_balance: 选择您的显示余额
+enter_your_content: 请输入内容
+hello: 你好
+a_day: 一天
+a_few_hours: 几小时
+a_few_minutes: 几分钟
+a_week: 一周
+active_15m_ago: '过去 {minutes} 分钟内在线'
+active_day_ago: '{days} 天前在线'
+active_hour_ago: '{hours} 小时前在线'
+active_minute_ago: '{minutes} 分钟前在线'
+active_state: 在线
+active_week_ago: 1 周前在线
+offline: 离线
+add_participant: 添加成员
+add_person: 添加成员
+ai_answer: 人工智能答案
+ai_answer_information: 人工智能答案，信息
+ai_answers_english_only: 人工智能答案目前只有英语。
+ai_bot: 人工智能机器人
+alexandria_unauthorized: '您可以尝试向我们发送消息或登录 {app_name}'
+almost_there: 快找到答案了……
+also_in_this_conversation: 也在此对话中
+amazing: 棒
+answer: 回答
+answer_is_generated_with_ai: '此答案仅基于 {company_name} 指定的内容。它是人工智能生成的，因此可能不完全正确。'
+answer_is_generated_with_ai_may_be_incorrect: 这个答案是使用人工智能自动生成的。它有可能不完全正确。
+answer_is_generated_with_ai_sources: '人工智能的回答是根据 {company_name} 提供的公共和私人数据源生成的。'
+april_date: '4 月 {date} 日'
+article: 文章
+article_double_author: '作者：{author_first_name1} 和 {author_first_name2}'
+article_multiple_authors: '作者：{author_first_name1} 和另外 {number_of_other_authors} 人'
+article_question: 这是否解答了您的问题?
+article_search_hint_text: 搜索文章……
+article_search_no_results_for_query: '没有关于 "{query}" 的结果'
+article_search_search_results: 搜索结果
+article_search_search_results_for_query: '搜索关于 "{query}" 的结果'
+article_single_author: '作者：{author_first_name}'
+ask_a_question: 提出问题
+ask_a_question_placeholder: 提出问题…
+ask_a_question_with_ellipsis: 请问一个问题……
+ask_another_question_with_ellipsis: 再问一个问题……
+ask_our_bot_a_question: 向我们的机器人提问
+asked_about: 询问关于
+assigned_to_admin: '分配给 {admin}'
+attribute_collector_negative: 否
+attribute_collector_positive: 是
+august_date: '8 月 {date} 日'
+avatar: 头像
+avatars: 头像
+away_state: 离开
+bad: 差
+banner: 横幅
+bot: 机器
+bot_answers_instantly: 机器人会立即回答
+bot_expectation_text: 我们的机器人可以回答许多常见问题
+bot_is_still_thinking: 机器人仍在思考……
+bot_is_thinking: 机器人正在思考……
+normal_ques: 常见问题
+browse_collections: 浏览收藏
+by_email: 通过电子邮件
+by_web_notification: 通过网页通知
+can_continue_whatsapp: 您可以在 WhatsApp 上继续对话
+cancel: 取消
+confirm: 确认
+cant_load_new_messages: 无法加载新消息
+check_later_for_updates: 请稍后再回来查看更新。
+checklist_card_first_step: 第一步
+checklist_card_next_step: 下一步
+checklist_completed: 已完成
+checklist_in_progress_time_remaining_plural: '还剩大约 {minutes} 分钟'
+checklist_in_progress_time_remaining_singular: 还剩大约 1 分钟
+checklist_mark_step_as_complete: 标记为已完成
+checklist_not_started_time_remaining_plural: '大约 {minutes} 分钟'
+checklist_not_started_time_remaining_singular: 大约 1 分钟
+checklist_number_of_steps_plural: '{number_of_steps} 步'
+checklist_number_of_steps_progress_plural: '已完成 {steps_completed} 步，共 {total_steps} 步'
+checklist_number_of_steps_progress_singular: '已完成 1 步，共 {total_steps} 步'
+checklist_number_of_steps_singular: 1 步
+checklist_sender_name: '共享者：{name}'
+checklist_step_action_button: 步骤操作按钮
+checklist_step_completed: 已完成
+choose_one: 选择一项…
+clear: 清除
+clear_all: 全部清除
+click_open_whatsapp: 点击此处打开 WhatsApp
+click_to_unmute: 单击取消静音
+close: 关闭
+close_intercom_messenger: 关闭 Intercom Messenger
+connecting: 正在连接……
+continue_on_whatsapp: 在 WhatsApp 上继续
+continue_the_conversation: 继续对话
+continue_whatsapp_instead: 您可以改为在 WhatsApp 上继续对话。
+conversation_card_office_hours_header: 我们重新上线的时间
+conversation_card_reply_time_header: 我们平常的回复时间
+conversation_card_reply_time_header_m5: 平常的回复时间
+conversation_card_unknown_response_time: 我们会尽快回复
+conversation_has_ended: 您的对话已结束
+conversation_moved_whatsapp: 您的对话已移至 WhatsApp
+conversations: 对话
+couldnt_load_app: 无法加载应用程序。
+couldnt_load_apps: 无法加载应用程序。
+couldnt_load_content: 无法加载内容
+currently_no_help_articles: 目前没有可用的帮助文章。
+custom_response_delay_0: 通常在几分钟内回复
+custom_response_delay_1: 通常在几小时内回复
+custom_response_delay_2: 通常在一天之内回复
+custom_response_delay_3: 通常在一周之内回复
+custom_response_delay_unknown: 会尽快回复。
+december_date: '12 月 {date} 日'
+discovery_launcher: 发现启动器
+discovery_mode_entry_text: 需要帮助？
+dismiss: 关闭
+dont_show_suggestions: 不显示建议
+download_transcript: 下载对话
+download: 下载
+email: 电子邮件
+emoji_picker: 表情符号选取器
+empty_conversations: 来自团队的消息将显示在此处
+empty_suggestion_prompt: 暂无相关建议
+enter_text_placeholder: 输入文字……
+expand_header: 展开标题
+expected_response_delay_10800: 3 小时内
+expected_response_delay_120: 2 分钟之内
+expected_response_delay_1200: 20 分钟内
+expected_response_delay_14400: 4 小时内
+expected_response_delay_172800: 2 天
+expected_response_delay_180: 3 分钟之内
+expected_response_delay_1800: 30 分钟内
+expected_response_delay_18000: 5 小时内
+expected_response_delay_21600: 6 小时内
+expected_response_delay_240: 4 分钟之内
+expected_response_delay_259200: 3 天
+expected_response_delay_300: 5 分钟内
+expected_response_delay_345600: 4 天
+expected_response_delay_3600: 1 小时内
+expected_response_delay_43200: 12 小时内
+expected_response_delay_432000: 5 天
+expected_response_delay_518400: 6 天
+expected_response_delay_60: 1 分钟之内
+expected_response_delay_600: 10 分钟内
+expected_response_delay_604800: 1 周内
+expected_response_delay_7200: 2 小时内
+expected_response_delay_86400: 1 天
+expected_response_delay_900: 15 分钟内
+extra_labels_count: '+ {labels_count} 个标签'
+failed_message: 失败消息
+failed_to_send: 无法发送
+february_date: '2 月 {date} 日'
+field_is_required: '字段“{field_name}”为必填项'
+file_max_limit: '最多 {limit} 个文件'
+file_too_big: '无法发送超过 {limit}MB 的文件'
+file_type_not_allowed: 文件类型不允许
+frequently_used: 频繁使用
+from_app: '来自 {app_name}'
+from_name: '来自 {name}'
+generating_answer: 正在生成答案……
+get_an_instant_answer: 即时获取答案
+get_help: 获取帮助
+get_notified: 接收通知
+get_notified_by_email: 获取电子邮件通知
+get_responses_by_email: 收到电子邮件回复
+gif_attribution: '通过 {providername}'
+gif_picker: GIF 选取器
+gifs_load_error: 无法加载 GIF
+go_to: '前往 {app_name}'
+great: 好
+group_conversation_1_other_participant_count_short: +另外 1 人
+group_conversation_multiple_other_participant_count_short: '+另外 {other_participant_count} 人'
+group_conversation_multiple_person_also_participating: '另外 {other_participant_count} 人也在参与'
+group_conversation_name_also_participating: '{participant_name} 也在参与'
+group_conversation_name_and_1_other_also_particiapting: '{participant_name} 和另外 1 人也在参与'
+group_conversation_name_and_multiple_others_also_participating: '{participant_name} 和另外 {other_participant_count} 人也在参与'
+group_conversation_one_person_also_participating: 另外 1 人也在参与
+help_space_title: 帮助
+hi_name: "您好，{first_name} 👋"
+hi_there: 您好 👋
+home_space_title: 主页
+how_can_we_help: 我们能提供什么帮助？
+how_would_you_rate_this: 您如何为此内容评分？
+january_date: '1 月 {date} 日'
+join_conversation: 加入对话
+july_date: '7 月 {date} 日'
+june_date: '6 月 {date} 日'
+last_seconds: '{delta} 秒前'
+last_minutes: '{delta} 分钟前'
+last_hours: '{delta} 小时前'
+last_days: '{delta} 天前'
+last_active_hours_ago: '上次在线为 {mins} 小时前'
+last_active_mins_ago: '上次在线为 {mins} 分钟前'
+last_active_over_a_week: 上次在线为超过 1 周前
+learn_more: 了解更多
+leave_us_a_message: 给我们留言
+leave_your_email: 留下你的邮箱
+loading: 正在加载
+more: 更多
+seq: 次
+march_date: '3 月 {date} 日'
+may_date: '5 月 {date} 日'
+message: 消息
+message_seen: 已读
+message_state_sending: 发送中…
+message_unseen: 未读
+message_has_unseen: 有消息未读
+messages_browse_articles_btn: 浏览以获取帮助
+messages_empty_state_text: 来自团队的消息将显示在此处
+messages_empty_state_title: 没有消息
+messages_space_title: 消息
+messenger: Messenger
+messenger_bot_reply_time: 我们的机器人会立即回复
+multiple_articles: '{total_articles} 篇文章'
+multiple_collections: '{total_collection} 个收藏'
+mute_sound: 静音
+name_and_1_other: '{name} 和另外 1 人'
+name_and_one_other: '{name} 和另外 1 人'
+name_and_two_others: '{name} 和另外 2 人'
+name_and_x_others: '{name} 和另外 {count} 人'
+nature: 自然
+navigation_back: 返回
+new_conversation: 新对话
+new_message: 新消息
+news: 新闻
+news_empty_title: 尚无消息
+news_latest_subtitle: '来自团队 {team_name}'
+news_latest_title: 最新
+news_older_title: 较旧
+news_space_title: 新闻
+newsfeed: 新闻推送
+no_articles_to_display: 暂无文章
+no_content: 暂无内容
+no_conversations: 没有对话
+no_emoji_found: 找不到表情符号
+no_gifs_found: 未找到GIF
+no_help_articles_to_display: 无帮助文章
+no_messages_from_the_team: 没有来自团队的消息
+no_results_for_searchterm: '没有关于“{searchTerm}”的结果'
+no_tasks: 没有任务
+no_tasks_available_currently: 目前没有任务。
+nothing_to_see_here_yet: 此处尚无可查看内容
+notification: 通知
+november_date: '11 月 {date} 日'
+number_is_incorrect: 该号码似乎不正确
+objects: 物件
+october_date: '10 月 {date} 日'
+office_hours_client_response_1h: 1 小时后提供客户服务
+office_hours_client_response_2h: 2 小时后提供客户服务
+office_hours_client_response_30m: 30 分钟后提供客户服务
+office_hours_client_response_3h: 3 小时后提供客户服务
+office_hours_client_response_day_0: 周一开始提供客户服务
+office_hours_client_response_day_1: 周二开始提供客户服务
+office_hours_client_response_day_2: 周三开始提供客户服务
+office_hours_client_response_day_3: 周四开始提供客户服务
+office_hours_client_response_day_4: 周五开始提供客户服务
+office_hours_client_response_day_5: 周六开始提供客户服务
+office_hours_client_response_day_6: 周日开始提供客户服务
+office_hours_client_response_later_today: 今天晚些时候提供客户服务
+office_hours_client_response_next_week: 下周提供客户服务
+office_hours_client_response_tomorrow: 明天提供客户服务
+ok_description: 还行
+open_article_in_help_center: 在帮助中心中打开
+open_conversation_and_reply: 打开对话并回复
+open_intercom_messenger: 打开 Intercom Messenger
+operator_asked_for_attribute: '询问关于 {attribute}'
+or_click_open_whatsapp: 或点击此处打开 WhatsApp
+or_continue_on_whatsapp_web: 或在 WhatsApp 网页上继续
+our_bot_answers_instantly: 我们的机器人会立即回答
+pause: 暂停
+people: 人
+phone_number: 电话号码
+places: 地点
+play: 播放
+play_sound: 播放声音
+play_video: 播放视频
+plus_x_participants: '+ {count}'
+pointer: 指针
+post: 帖子
+powered_by_intercom: 由 Intercom 提供支持
+proactive_expected_response_delay_10800: 通常在 3 小时之内回复
+proactive_expected_response_delay_120: 通常在 2 分钟之内回复
+proactive_expected_response_delay_1200: 通常在 20 分钟之内回复
+proactive_expected_response_delay_14400: 通常在 4 小时之内回复
+proactive_expected_response_delay_172800: 通常在 2 天之内回复
+proactive_expected_response_delay_180: 通常在 3 分钟之内回复
+proactive_expected_response_delay_1800: 通常在 30 分钟之内回复
+proactive_expected_response_delay_18000: 通常在 5 小时之内回复
+proactive_expected_response_delay_21600: 通常在 6 小时之内回复
+proactive_expected_response_delay_240: 通常在 4 分钟之内回复
+proactive_expected_response_delay_259200: 通常在 3 天之内回复
+proactive_expected_response_delay_300: 通常在 5 分钟之内回复
+proactive_expected_response_delay_345600: 通常在 4 天之内回复
+proactive_expected_response_delay_3600: 通常在 1 小时之内回复
+proactive_expected_response_delay_43200: 通常在 12 小时之内回复
+proactive_expected_response_delay_432000: 通常在 5 天之内回复
+proactive_expected_response_delay_518400: 通常在 6 天之内回复
+proactive_expected_response_delay_60: 通常在 1 分钟之内回复
+proactive_expected_response_delay_600: 通常在 10 分钟之内回复
+proactive_expected_response_delay_604800: 通常在 1 周之内回复
+proactive_expected_response_delay_7200: 通常在 2 小时之内回复
+proactive_expected_response_delay_86400: 通常在 1 天之内回复
+proactive_expected_response_delay_900: 通常在 15 分钟之内回复
+proactive_expected_response_delay_unknown: 会尽快回复
+product_tours_author: '创建者：{company} 的 {name}'
+product_tours_done: 已完成
+product_tours_error: 抱歉，使用此导览时出现意外错误
+product_tours_error_cta: 与团队联系
+product_tours_name: 产品导览
+product_tours_next: 下一步
+product_tours_restart: 重新开始
+product_tours_snooze: 休眠
+product_tours_tour_step_number: '{start_number} / {end_number}'
+product_tours_view: 查看导览
+profile_location: '{time} 在 {location}'
+rate_your_conversation: 为对话打分
+receive_replies_there: 当团队回复时，您会在那里收到回复
+recent_ticket: 最近的工单
+recent_tickets: 最近的工单
+reconnect: 重新连接
+recorded_days_ago: '{days} 天前录制'
+recorded_over_week_ago: 一周前录制
+recorded_today: 今天录制
+recorded_yesterday: 昨天录制
+remove_participant: 移除成员
+remove_person: 移除成员
+reply_from: 来自……的回复
+reply_to_conversation: 输入回复
+reply_to_name: '回复 {name}…'
+scan_qr: 用手机扫描二维码
+search: 搜索
+search_browse_empty_state_text: 抱歉，我们找不到任何相应的结果。请尝试改写您的搜索字词。
+search_for_answers: 搜索回答…
+search_for_emoji: 搜索表情符号…
+search_for_help: 搜索帮助
+search_gif: 正在搜索 GIF…
+see_all: 查看所有对话
+see_all_conversations: 查看您的所有对话
+see_past_conversations: 查看过去的对话
+see_previous_conversations: 查看您以前的对话
+seek_video: 查找视频
+send: 发送
+send_a_message: 发送消息…
+send_a_message_reply_time: 平常的回复时间是
+send_a_message_reply_time_card: '平常的回复时间是 {replyTime}'
+send_prefilled_message: 当 WhatsApp 打开时，发送预先填写的消息以继续对话
+send_us_a_message: 向我们发送消息
+send_us_a_message_bot: 向我们发送消息，我们的机器人会立即回复
+sent_a_video: 发送了视频
+sent_an_app: 发送了应用程序
+sent_an_attachment: 发送了附件
+sent_an_image: 发送了图片
+sent_you_a_video: 给您发了视频
+sent_you_a_video_reply: 给您发了视频回复
+sent_you_an_app: 给您发送了应用程序
+sent_you_an_attachment: 给您发了附件
+sent_you_an_image: 给您发了图片
+september_date: '9 月 {date} 日'
+shared_by: 共享者：
+show_admin_name: 显示管理员姓名
+show_less: 显示更少
+single_article: 1 篇文章
+single_collection: 1 个收藏
+sms: 短信
+some_things_failed_to_load: 部分内容未能加载。请重试。
+something_is_wrong: 出现问题
+source: 来源
+sources: 来源
+spaces_error_description: 内容无法加载
+spaces_error_title: 出现问题
+start_a_conversation: 开始对话
+start_another_conversation: 开始另一个对话
+start_typing: 开始输入……
+status: 状态
+status_pending: 确认中
+still_generating_answer: 仍在生成答案……
+still_thinking: 仍在思考……
+still_working_on_it: 仍在努力解答……
+string_is_incorrect: 似乎不正确
+submit: 提交
+successfully_reconnected: 已成功重新连接
+suggested_articles: 推荐文章
+suggested_content_prompt: 这些是否与您的问题有关？
+surveys_all_options_response_hint: 请选择所有适用的选项
+surveys_close_survey: 关闭调查
+surveys_done_button: 已完成
+surveys_dropdown_default_option: 请选择一个回答……
+surveys_email_error: 请输入有效的电子邮件地址
+surveys_fixed_response_count_response_hint: '请选择 {response_count} 个选项'
+surveys_from_company: '来自 {company} 的调查'
+surveys_from_teammate: '来自 {company} 的 {sender_name} 的调查'
+surveys_multi_select_too_few_responses: '此问题需要选择至少 {response_count} 个选项'
+surveys_multi_select_too_many_responses: '此问题需要选择 {response_count} 个选项'
+surveys_multiselect_other_option: 其他（请具体说明）
+surveys_multiselect_other_option_input_label: 请具体说明
+surveys_multiselect_other_option_input_placeholder: 输入回应
+surveys_multiselect_other_option_value: 其他
+surveys_next_button: 下一步
+surveys_nps_lower_label: 不太可能
+surveys_nps_upper_label: 非常可能
+surveys_number_error: 请输入一个数字
+surveys_required_question: 这是一个必答问题
+surveys_required_response: 这是必须填写的回应
+surveys_response_range_response_hint: '请选择最少 {minimum_response_count} 个和最多 {maximum_response_count} 个选项'
+surveys_response_too_long: '请将回答保持在最多 {character_count} 个字符以内'
+surveys_single_response_hint: 请选择 1 个选项
+surveys_submit_response: 提交您的回应
+surveys_telephone_error: 请输入有效的电话号码
+surveys_birthday_error: 请输入您的出生日期
+surveys_text_input_question_placeholder: 请在此处输入您的回答……
+symbols: 符号
+tasks_space_title: 任务
+team_name_custom_response_delay_2: '{app_name} 通常在一天内回复'
+team_name_custom_response_delay_3: '{app_name} 通常在一周内回复'
+team_name_proactive_expected_response_delay_one_business_day: '{app_name} 通常在一个工作日内回复'
+team_name_proactive_expected_response_delay_two_business_days: '{app_name} 通常在两个工作日内回复'
+teammate_calendar_link: 队友日历
+teammate_profile: '{provider} 队友个人资料'
+tell_us_more: 让我们了解更多…
+tell_us_what_you_need: 告诉我们您需要什么帮助，我们的机器人将尽力回答
+terrible: 糟糕
+thank_you: 感谢您
+thanks_custom_response_delay_one_business_day: 谢谢！团队会在一个工作日内回复
+thanks_custom_response_delay_two_business_days: 谢谢！团队会在两个工作日内回复
+thanks_for_letting_us_know: 感谢您的反馈
+thanks_proactive_expected_response_delay_unknown: 谢谢! 团队会尽快回复
+that_country_code_doesnt_look_quite_right: 该国家/地区代码似乎不正确
+that_email_address_doesnt_look_quite_right: 该电子邮件地址似乎不正确
+that_number_doesnt_look_quite_right: 该号码似乎不正确
+that_number_has_too_many_digits: 该号码位数过多
+that_number_is_missing_a_few_digits: 该号码缺少几位数字
+that_number_needs_a_prefix: 该号码需要前缀 (+ 或 00)
+the_team_can_help_if_needed: 团队可以根据需要提供帮助
+the_team_typically_replies_in_10800: 团队通常在 3 小时内回复
+the_team_typically_replies_in_120: 团队通常在 2 分钟之内回复
+the_team_typically_replies_in_1200: 团队通常在 20 分钟内回复
+the_team_typically_replies_in_14400: 团队通常在 4 小时内回复
+the_team_typically_replies_in_172800: 团队通常在 2 天内回复
+the_team_typically_replies_in_180: 团队通常在 3 分钟之内回复
+the_team_typically_replies_in_1800: 团队通常在 30 分钟内回复
+the_team_typically_replies_in_18000: 团队通常在 5 小时内回复
+the_team_typically_replies_in_21600: 团队通常在 6 小时内回复
+the_team_typically_replies_in_240: 团队通常在 4 分钟之内回复
+the_team_typically_replies_in_259200: 团队通常在 3 天内回复
+the_team_typically_replies_in_300: 团队通常在 5 分钟内回复
+the_team_typically_replies_in_345600: 团队通常在 4 天内回复
+the_team_typically_replies_in_3600: 团队通常在 1 小时内回复
+the_team_typically_replies_in_43200: 团队通常在 12 小时内回复
+the_team_typically_replies_in_432000: 团队通常在 5 天内回复
+the_team_typically_replies_in_518400: 团队通常在 6 天内回复
+the_team_typically_replies_in_60: 团队通常在 1 分钟之内回复
+the_team_typically_replies_in_600: 团队通常在 10 分钟内回复
+the_team_typically_replies_in_604800: 团队通常在 1 周内回复
+the_team_typically_replies_in_7200: 团队通常在 2 小时内回复
+the_team_typically_replies_in_86400: 团队通常在 1 天内回复
+the_team_typically_replies_in_900: 团队通常在 15 分钟内回复
+the_team_typically_replies_in_day: 团队通常在一天之内回复。
+the_team_typically_replies_in_hours: 团队通常在几小时内回复。
+the_team_typically_replies_in_minutes: 团队通常在几分钟内回复。
+the_team_typically_replies_in_one_business_day: 团队通常在一个工作日内回复。
+the_team_typically_replies_in_two_business_days: 团队通常在两个工作日内回复
+the_team_typically_replies_in_under_n_hours: '团队通常在 {hours} 小时内回复。'
+the_team_typically_replies_in_under_n_min: '团队通常在 {minutes} 分钟内回复。'
+the_team_typically_replies_in_unknown: 团队会尽快回复
+the_team_typically_replies_in_week: 团队通常在一周之内回复。
+thinking: 正在思考……
+this_chat_is_powered_by_intercom: 此聊天由 Intercom 提供技术支持
+ticket_status_event_moved_automation_with_bullet_point: '工单已移入“{status}” • {timestamp}'
+ticket_status_event_moved_with_bullet_point: '{teammate} 已将工单移入“{status}” • {timestamp}'
+tickets_add_file: 添加文件
+tickets_add_files: 添加文件
+tickets_create_ticket: 创建工单
+tickets_create_ticket_fallback: 请回复以下信息，有人会尽快回复您。
+tickets_cta_text: 对这个工单有疑问吗？
+tickets_email_copy: 回复和工单更新信息将被发送到此电子邮箱
+tickets_email_subject: '您的{ticket_type_name}工单'
+tickets_email_subject_with_ticket_id: 'Your {ticket_type_name} ticket #{ticket_id}'
+tickets_estimated_resolution: '预计解决时间：{duration}'
+tickets_files_added: 文件已添加
+tickets_have_a_question: 对这个问题有疑问吗？
+tickets_in_progress_status_detail: 我们正在努力解决此问题 🙌
+tickets_in_progress_status_detail_with_assignee: '{first_name} 正在处理此问题！'
+tickets_is_resolved: 此工单已解决了吗？
+tickets_log_a_ticket: 记录一份工单
+tickets_resolved_status_detail: 我们已经完成了您的工单
+tickets_resolved_status_detail_with_assignee: '{first_name} 已完成您的工单'
+tickets_sla: '预计解决时间：{time}'
+tickets_space_title: 工单
+tickets_status_change_event: '工单现在{status} • {timestamp}'
+tickets_status_description_completed: 我们已完成您的工单
+tickets_status_description_more_info: 我们需要更多信息
+tickets_status_description_well_pick_up_soon: 我们会尽快处理您的工单
+tickets_status_description_working_on: 我们正在处理您的工单
+tickets_status_event_moved: '{teammate} 于 {timestamp}将工单移入“{status}”'
+tickets_status_event_moved_automation: '工单已于 {timestamp}移入{status}'
+tickets_status_event_submitted: '工票已{submitted_status} • {timestamp}'
+tickets_status_in_progress: 进行中
+tickets_status_resolved: 已解决
+tickets_status_submitted: 已提交
+tickets_status_waiting_on_you: 正等候您
+tickets_submitted_confirmation_header: 工单已提交
+tickets_submitted_confirmation_paragraph: 一旦您的工单有了更新，我们就会通知您
+tickets_submitted_status_detail: 我们很快就会处理此问题
+tickets_submitted_status_detail_with_assignee: '{first_name} 很快就会处理此问题'
+tickets_updates_prompt: 您将通过 Messenger 和电子邮件收到更新
+tickets_view_ticket: 查看工单详情
+tickets_waiting_on_customer_status_detail: 我们需要您提供更多信息
+tickets_waiting_on_customer_status_detail_with_assignee: '{first_name} 需要更多信息'
+time_day_ago: '{delta} 天前'
+time_future_1h: 1 小时
+time_future_2h: 2 小时
+time_future_30m: 30 分钟
+time_future_3h: 3 小时
+time_future_day_0: 周一
+time_future_day_1: 周二
+time_future_day_2: 周三
+time_future_day_3: 周四
+time_future_day_4: 周五
+time_future_day_5: 周六
+time_future_day_6: 周日
+time_future_later_today: 今天晚些时候
+time_future_next_week: 下周
+time_future_tomorrow: 明天
+time_hour_ago: '{delta} 小时前'
+time_hour_after: '{delta} 小时后'
+time_hour: '{delta} 小时'
+time_just_now: 刚才
+time_minute_ago: '{delta} 分钟前'
+time_week_ago: '{delta} 周前'
+time_yesterday: 昨天
+time_january: 一月
+time_february: 二月
+time_march: 三月
+time_april: 四月
+time_may: 五月
+time_june: 六月
+time_july: 七月
+time_august: 八月
+time_september: 九月
+time_october: 十月
+time_november: 十一月
+time_december: 十二月
+time_birthday: 出生日期
+time_month: 月度
+date: 日期
+tour: 导览
+community: 社区
+blog: 博客
+help_center: 帮助中心
+try_again: 重试
+try_help_center: 试试我们的帮助中心
+try_use_different_keywords: 尝试使用不同的关键字或输入您的完整问题
+two_business_days: 两个工作日
+type_a_number: 输入一个数字…
+typically_replies_in_one_business_day: 通常在一个工作日内回复
+typically_replies_in_two_business_days: 通常在两个工作日内回复
+typing: 正在键入
+unable_to_load_the_messenger: 无法加载 Messenger
+unread_messages: 未读消息
+updated_in_the_last_15m: 在过去 15 分钟内更新
+updated_in_the_last_hour: 在过去一小时内更新
+updated_over_a_week_ago: 一周前更新
+updated_this_week: 本周更新
+updated_today: 更新于今天
+updated_yesterday: 更新于昨天
+upfront_collection_form_close_out: 您可以随时返回此处查看回应并发送更新。
+upfront_collection_form_introduction: 分享一些背景信息，以帮助团队更好更快地做出回应。
+upfront_collection_form_submission_confirmation: 感谢您发送此背景信息。为了节省以后的时间，欢迎您立即添加更多详细信息。
+upfront_collection_form_subtitle: 向团队发送一些背景信息
+upfront_collection_form_subtitle_submitted: 他们会牢记这些背景信息
+upfront_collection_form_title: 更快获得帮助
+upfront_collection_form_title_submitted: 已发送给团队！
+upload_attachment: 上传附件
+upload_failed: 上传失败
+upload_max_files_allowed: '最多允许 {limit} 个文件'
+upload_max_files_size: '最大文件大小为 {limit}MB'
+user_says: '{firstName}说…'
+usual_reply_time_header_label: 平常的回复时间
+view_label: 查看
+view_all: 查看全部
+view_conversation: 查看对话
+view_more: 显示更多
+view_more_details: 查看更多详情
+view_more_2: 查看更多
+view_less: 显示较少
+view_post: 查看帖子
+we_run_on_intercom: 我们在 Intercom 上运行
+with_teamname: '与 {teamname} 对话'
+working_on_it: 正在努力解答……
+write_your_message: 写下你的信息
+written_by: 作者
+you: 您
+you_have_to_enough_18: 您必须年满 18 岁以上
+you_are_all_up_to_date: 你们都深陷其中！
+you_have_new_messages: 您有新消息。
+you_rated_the_conversation: 您已为对话打分
+you_will_get_a_reply_here_and_at_email: '您将在此处 ({email}) 收到电子邮件回复'
+youll_be_notified_here_and_by_email: 您将在这里并通过电子邮件获取通知
+youll_be_notified_here_and_by_sms: 您将在这里并通过短信获取通知
+your_checklists: 您的清单
+your_conversations: 您的对话
+your_email: 您的电子邮件
+your_message: 您的消息
+your_recent_message: 最近的消息
+your_recent_messages: 最近的消息
+your_ticket: 您的工单
+casino_game_remove_favorite: 取消收藏
+casino_game_add_favorite: 收藏游戏
+casino_game_open_trend: 打开实时统计
+casino_game_close_trend: 关闭实时统计
+casino_game_open_theatre: 启用剧院模式
+casino_game_close_theatre: 禁用剧院模式
+casino_game_test_mode: 试玩模式
+casino_game_real_money_mode: 真钱模式
+search_need_at_least_3_word: 需要至少 3 个字符来进行搜索。
+search_recent: 近期搜索
+search_no_result: 未找到结果。
+search_clear: 清除搜索
+search_game: 搜索游戏
+search_events: 搜索赛事
+casino_origin_game: 原创游戏
+casino_games_recommend: 热门推荐
+casino_provider: 游戏提供商
+casino_sort_popular: 热门
+casino_sort_featured: 重点介绍
+casino_filter_label: 筛选依据
+casino_filter_label_sort: 排序依据
+casino_filter_provider_all: 查看所有游戏提供商
+load_more: 加载更多
+game_type_all: 大厅
+game_type_live: 真人娱乐场
+game_type_slot: 特色老虎机
+game_type_slot_short_name: 老虎机
+game_type_rec: 推荐游戏
+finance_deposit_empty_text: 尚未存款
+finance_withdraw_empty_text: 尚未提款
+finance_other_empty_text: 暂无条目
+finance_deposit_download_text: 下载全部存款
+finance_withdraw_download_text: 下载全部提款
+finance_other_tab_all: 全部
+finance_other_tab_bonus: 奖金
+finance_other_tab_drop: 空投奖金
+finance_other_tab_campaign_withdrawal: 活动佣金取款
+finance_other_tab_reload_claim: 充值奖金领取
+finance_other_tab_race_payout: 竞赛奖金
+finance_other_tab_rains_received: 收到的红包雨
+finance_other_tab_rains_sent: 发出的红包雨
+finance_other_tab_rakeback_received: 已收回返水
+finance_other_tab_sportsbook_promotion_payout: 体育博彩促销奖金支付
+finance_other_tab_tips_received: 收到的小费
+finance_other_tab_tips_sent: 发送的小费
+finance_other_tab_vault_deposit: 保险库存款
+finance_other_tab_vault_withdrawal: 保险库取款
+finance_funds_transfer_sort_available: 可用金额
+finance_funds_transfer_sort_commission: 佣金
+finance_funds_transfer_sort_withdrawn: 已提取
+finance_funds_campaign_sort_created: 创建日
+finance_funds_campaign_sort_deposit_count: 存款次数
+finance_funds_transfer_commission_withdraw: 提取佣金
+finance_funds_vault_draw: 保险库提款
+success_deposit: 成功存放 {amount} {icon} 进保险库
+confirm_draw_vault: 已确认从保险库提取 {amount} {icon}
+avai_commission: 可用佣金
+total_commission: 总佣金
+page_label: 页
+page_sizer_label: 条/页
+page_prev: 上一页
+page_next: 下一页
+jump_to: 跳至
+currency_byte_coin: 加密货币
+currency_law_coin: 法定货币
+menu_title_promotion_tutorial: 推广教程
+menu_title_my_promotion: 我的推广
+menu_title_my_commission: 我的佣金
+menu_title_my_performance: 我的业绩
+menu_title_all_data: 所有数据
+menu_title_direct_finance: 直属财务
+menu_title_direct_bet: 直属投注
+menu_title_direct_user: 直属用户
+menu_title_direct_receive: 直属领取
+menu_title_commission_rate: 返佣比例
+menu_title_add_new_subagent: 注册子代理
+menu_title_settings_general: 常规
+menu_title_settings_security: 安全
+menu_title_settings_preferences: 首选项
+menu_title_settings_sessions: 会话
+menu_title_settings_ignoredusers: 黑名单
+menu_title_settings_api: API
+menu_title_settings_verify: 验证
+menu_title_settings_offers: 优惠
+menu_title_settings_deposits: 存款
+menu_title_settings_withdrawals: 提款
+menu_title_settings_bets: 投注
+menu_title_settings_archive: 投注档案
+menu_title_settings_other: 其他
+menu_title_settings_contact: 联系方式
+menu_title_settings_update_loginpwd: 修改密码
+menu_title_settings_update_safepwd: 资金密码
+menu_title_settings_update_safecheck: 双重验证
+menu_title_settings_private: 隐私选项
+menu_title_settings_loginsession: 登录日志
+register_date: 注册日期
+total_deposits: 总存款次数
+last_deposits: 最后一次存款
+independent_deposit: 独立存款
+commission_rate: 佣金率
+wagered: 总投注额
+bet_amount: 投注额
+notify_title_error: 错误
+notify_title_success: 成功
+tennis: 网球
+soccer: 足球
+american-football: 美式橄榄球
+basketball: 篮球
+table-tennis: 乒乓球
+ice-hockey: 冰上曲棍球
+baseball: 棒球
+cricket: 板球
+ecricket: 电子板球
+league-of-legends: 英雄联盟
+counter-strike: CS:GO/CS2
+mma: 综合格斗
+rugby: 英式橄榄球
+arena-of-valor: 传说对决
+aussie-rules: 澳洲足球
+badminton: 羽毛球
+boxing: 拳击
+darts: 飞镖
+dota-2: 刀塔2
+fifa: FIFA
+floorball: 地板球
+futsal: 五人制足球
+halo: 光环
+handball: 手球
+kings-of-glory: 王者荣耀
+mobile-legends: 无尽对决
+nba2k: NBA2K
+rainbow-six: 彩虹六号
+snooker: 桌球
+starcraft-2: 星际争霸2
+starcraft-1: 星际争霸 I
+valorant: 无畏契约
+volleyball: 排球
+waterpolo: 水球
+alpine-skiing: 登山
+stock-car-racing: 改装车比赛
+gaelic-hurling: 盖尔式板棍球
+gaelic-football: 盖尔式足球
+golf: 高尔夫
+ski-jumping: 高山滑雪
+biathlon: 滑雪和射击
+motorcycle-racing: 摩托车竞速
+beach-volley: 沙滩排球
+politics-entertainment: 特技比赛
+formula-1: 一级方程式
+cross-country: 越野赛
+cycling: 自行车赛
+sports_event: 赛事
+sports_status_timeout: 暂停
+sports_status_live: 滚球
+sports_status_close: 关闭
+sports_status_interrupted: 中断
+sports_status_settled: 已结算
+sports_status_finished: 已结束
+sports_duplicate_bet: 重复下注
+sports_status_tie: 平
+sports_status_win_half: 赢一半
+sports_status_lose_half: 输一半
+sports_status_lose_part: 输部分
+sports_estimated_payment_amount: 预计支付额
+sports_payment_amount: 支付额
+sports_single_bet: 单项投注
+sports_multi_bet: 复式投注
+sports_active: 未结算
+sports_settled: 已结算
+sports_accept_any_odds: 接受任何赔率
+sports_accept_higher_odds: 只接受更高的赔率
+sports_accept_none_odds: 不接受任何赔率更改
+sports_bet_slip_empty: 投注单为空
+sports_betting_now: 立即开始下注！
+sports_total_odds: 总赔率
+sports_total_bet_amount: 总投注额
+sports_odds_has_changed: 赔率已更改。
+sports_bet: 押下
+sports_hot_event: 热门赛事
+sports_three_options: 三项投注
+sports_standard: 标准
+sports_winner_market: 获胜盘
+sports_handicap_market: 让分盘
+sports_total_market: 总分盘
+sports_tab_live_events: 滚球盘
+sports_tab_starting_soon: 即将开赛
+sports_tab_lobby: 大厅
+sports_tab_favourites: 收藏夹
+sports_title_favourites: 收藏
+sports_no_active_bet: 暂无活跃的赌注
+sports_live_trend: 实时统计
+sports_live_tv: 直播
+sports_live_favourites: 热门滚球盘
+sports_upcoming_favourites: 即将开始的热门赛事
+sports_provider: 体育场馆
+sports_odds_title: 赔率
+DECIMAL: 小数式
+FRACTION: 分数式
+AMERICAN: 美式
+INDONESIA: 印尼格式
+MALAYSIA: 马来格式
+HONGKONG: 香港格式
+sports_live_unlogin_tip: 请登录以观看直播
+sports_starts_in: '开始时间：{minutes}分钟后'
+welcome_guest: 欢迎
+language_title: 语言
+language_current: 中文
+casino_index_description: 浏览我们种类繁多的赌场游戏，让 {site} 为您提供既公平又有趣的在线博彩体验。直接通过您的浏览器在老虎机、真人娱乐场、21点、百家乐、轮盘以及数以千计的经典赌场游戏包括您最喜爱的 {site} 原创游戏上进行投注。
+sports_index_description: 通过我们的体育博彩平台投注于来自世界各地的体育团队、选手及联赛。在综合格斗、篮球、足球等多个体育赛事的各种博彩项目上以及滚球盘口中进行投注，享受无与伦比的体育博彩体验。
+chat_been_hide: 聊天室已被隐藏
+chat_show_room: 显示聊天室
+chat_stop_by_scroll: 聊天室因滚动而暂停
+chat_new_msgs_count: 条新信息
+chat_command_see_bet: 查看赌注
+chat_command_see_user: 查看玩家
+chat_command_tip_user: 给用户发送小费
+chat_command_tip_rain: 下红包雨
+chat_command_ignore_user: 拉入黑名单
+chat_command_unignore_user: 移出黑名单
+chat_send_msg_placeholder: 输入您的消息
+chat_new_window: 弹出式聊天室
+chat_close_side: 折叠侧边栏
+chat_send_tip_label: 发送小费
+chat_rule_full_title: 完整的规则可以在我们的
+chat_forum: 论坛
+chat_rule_find: 上找到。
+about_us: 关于我们
+sponsor_activity: 赞助活动
+online_shopping: 网购
+notify_error_forbid_operation: 不允许此操作
+user_account: 账号
+user_superior: 上级
+can_receive: 可领取
+receive_type: 领取类型
+record: 记录
+window_minimize: 最小化
+empty_game: 暂无游戏
+copy_success: 成功复制
+end_time: 结束时间
+date_picker_error: 请选择正确的开始时间和结束时间
+sports_vs: 对
+receive_bonus: 领取奖金
+choose_bonus_receive_label: 你可以自由选择您想要的币种进行领取
+current_exchange_rate: 当前汇率
+bonus_receive_expect: 预计可领取
+confirm_receive: 确认领取
+site_message: 站内信
+notice: 公告
+marquee: 跑马灯
+reward_feedback: 有奖反馈
+message_center: 消息中心
+deposit_detail: 存款详情
+official_service: 官方客服
+receive_success: 领取成功
+wait_office_reply: 请等待官方客服回复
+agent_level_label: 代理等级
+agent_level_up_condition: 晋升条件(流水)
+receive_record_label: 领取记录
+receive_agent_commission_label: 佣金领取
+current_wait_receive_label: 您当前待领取金额为
+current_wait_receive_desc: 您可自由选择您想要的币种进行领取
+commission_wallet_money_label: 佣金钱包和余额
+currency_exchange_rate: 兑换领取币总汇率
+vip: VIP
+vip_promotion_bonus: 晋级奖金
+vip_water_back: 返水
+vip_day_salary: 日俸禄
+vip_week_salary: 周俸禄
+vip_month_salary: 月俸禄
+vip_day_salary_bonus: 日奖金
+vip_week_salary_bonus: 周奖金
+vip_month_salary_bonus: 月奖金
+grade: 等级
+vip_promotion_exp: 晋级经验
+turnover_multiple: 流水倍数
+multiple: 倍
+effective_bet: 有效投注
+total_win_lose: 总赢/输
+rebate_amount: 返佣金额
+bet_order_num: 投注单数量
+rule_desc: '{vip} 规则说明'
+vip_rule_1: 满足VIP晋级要求（即打码都满足条件），即可晋级相应VIP等级，获得相应晋级奖金，如连续晋级多级，可领取全部等级晋级奖金
+vip_rule_2: 达到VIP等级对应日俸禄要求，即可领取对应日奖金，每日00:00重置
+vip_rule_3: 达到VIP等级对应周俸禄要求，即可领取对应周奖金，每周一00:00重置
+vip_rule_4: 每月充值及打码达到当前VIP等级对应月俸禄要求，即可领取对应月奖金，每月1日00:00重置
+vip_rule_5: 会员在达到某VIP等级后，若上个月充值及打码未达到保级要求，则自动降一个等级
+vip_rule_6: VIP所赠送的奖金需1倍流水（即稽核、打码或有效投注）才能提现，打码不限游戏平台
+vip_rule_7: 本功能仅限账号本人进行正常游戏投注，禁止租借账号、无风险投注(对赌、对刷、低赔刷水)、恶意套利、使用外挂程式、机器人、利用协议、漏洞、接口、群控或其他技术手段参与，一经查核属实，本平台有权终止会员登录、暂停会员使用网站、及没收奖金和不当盈利的权利，无需特别通知
+vip_rule_8: 会员领取VIP奖励时，本平台将默认会员同意且遵守对应条件等相关规定，为避免文字理解歧义，本平台保有本活动最终解释权
+validate_msg_input_name: 请输入正确姓名
+validate_msg_choose_bank: 请选择银行
+validate_msg_choose_pix_account_type: 请选择PIX账户类型
+validate_msg_input_bank_number: 请输入银行卡号码
+validate_msg_input_third_account: 请输入第三方账户
+validate_msg_regexp_bank_number: 请输入 4 - 30 位数字组成的正确银行卡号
+validate_msg_regexp_pix_account: 请输入 4 - 30 位数字组成的正确PIX账户
+validate_msg_input_branch_address: 请输入正确开户支行地址
+validate_msg_withdraw_way: 请先绑定提款方式，再进行提款
+validate_msg_input_pay_pwd: 请输入资金密码
+validate_msg_input_paypwd_6: 请输入6位数字组成的资金密码
+validate_msg_input_code: 请输入验证码
+validate_msg_regexp_code: 您的邮箱验证码含有6位数字
+label_email_check: 邮箱验证
+label_bank_number: 银行卡号
+label_branch_address: 开户行地址
+label_account_holder_name: 开户人姓名
+label_all_type: 全部类型
+label_type: 类型
+label_currency_types: 货币种类
+label_draw_time: 领取时间
+label_contribute_count: 贡献人数
+label_bind: 绑定
+title_input_paypwd: 输入资金密码
+title_wallet_set: 钱包设置
+success_bind: 绑定成功
+success_delete: 删除成功
+tip_msg_bind_once: 绑定后不可更改
+tip_msg_is_default_bank_number: 是否设为默认卡号
+tip_msg_all_bind_account: 所有绑定账户
+tip_msg_name_identical: 姓名必须一致
+tip_msg_name_edit: 请谨慎确认姓名，更改姓名将会非常麻烦
+promo_activity: 促销活动
+promo_lottery_activity: 抽奖活动
+weekly_share: 每周瓜分
+vip_banner_tip_1: 与您的专属 VIP 服务代表合作，根据您的投注需求定制福利。
+vip_banner_tip_2: 您可以预期每周和每月根据您的游戏量获得奖金。玩得越多，获得的奖金就越多。
+vip_banner_tip_3: 运气不佳？{site} 会在您每次升级时根据您的损失提供额外资金。
+vip_banner_tip_4: 被分配一名将支持并满足您的投注需求的专属 VIP 服务代表。
+vip_banner_tip_5: 在每达到下个级别后获取奖金。所达级别越高，升级奖金就越大。
+booster_bonus: 助推奖金
+upgrade_bonus: 升级奖金
+monthly_bonus: 月度奖金
+weekly_bonus: 周度奖金
+day_deposit_bonus: 每日奖金/充值奖金
+recent_game_perform_bonus: 近期游戏表现奖金
+dedicated_vip_servicer: 专属 VIP 服务代表
+multiple_count: 乘数
+ranking: 排名
+hidden_user: 隐身
+hidden_mode: 隐身模式
+user_turn_on_hidden: 此玩家启用了私密功能
+turn_on: 开启
+receive: 领取
+received: 已领取
+wait_receive: 待领取
+service_transfer: 客服转账
+bind_pix_account: 绑定PIX账户
+bind_bank_card: 绑定银行卡
+data_empty: 暂无数据
+chat_rule_1: 请勿在聊天时发送垃圾消息并避免使用过多的大写字母。
+chat_rule_2: 请勿骚扰或冒犯其他用户及 {site} 工作人员。
+chat_rule_3: 请勿分享您或其他玩家的任何个人信息（包括社交媒体账号）。
+chat_rule_4: 请勿向其他用户讨钱或要求贷款、下红包雨、或小费。
+chat_rule_5: 严禁使用除了主账户外您任何其他账户聊天。
+chat_rule_6: 不允许可被视为诈骗的可疑行为。
+chat_rule_7: 请勿从事任何形式的广告/交易/销售/购买/提供服务。
+chat_rule_8: 请勿讨论直播主、 Twitch 或任何其他类似平台。
+chat_rule_9: 请勿使用网址缩短服务。一定要提交完整的链接。
+chat_rule_10: 请勿分享编码、脚本或任何机器人程序的服务。
+chat_rule_11: 请只使用聊天室指定的语言聊天，潜在的滥用行为将受到制裁。
+chat_rule_12: 严禁谈论政治与宗教话题。
+user_confirm_delete_draw_way: 请您确认删除以下提款方式吗？
+confirm_delete: 确认删除
+big_winner: 大赢家
+lucky_winner: 幸运赢家
+win_label: 赢
+lose: 输
+description: 描述
+link: 链接
+buy_bonus_round: 购买奖励回合
+pirate: 海盗
+sea: 海洋
+fairness: 公平性
+switch_wave: 切换波动性
+house_edge: 庄家优势
+investor: 投注者
+partner: 合作伙伴
+media: 新闻媒体
+win: 胜
+win_equal_lose: 胜平负
+transaction_way: 交易方式
+transaction_time: 交易时间
+credit_card: 信用卡
+need_online_service: 如需帮助，请联系在线支持
+support: 支持
+success_send_code: 验证码发送成功
+code: 验证码
+after_seconds_send_code: 秒后重新发送邮件
+resend_code: 重新发送验证码
+feedback_placeholder: 您的任何意见对我们都很重要，凡事有价值意见都将被采纳，一旦采纳将视重要程度给予不同现金奖励，欢迎您畅所欲言！
+feedback: 反馈
+create_feedback: 创建反馈
+user_feedback: 我的反馈
+input_feedback: 请输入反馈内容
+success_submit_feedback: 反馈提交成功！
+feedback_content: 反馈内容
+image: 图片
+image_upload_only: 仅能上传：{ty}格式
+image_upload_tip: 仅能上传：png/jpg格式，最多上传5张，单张最大1M
+image_upload_size: 单张图片最大{size}
+image_upload_failed: 图片上传失败
+bonus_rule: 奖励规则
+bonus_label: 奖励
+feedback_bonus_tip: 我们已经设置了巨额奖金，专门收集反馈意见，以便我们优化系统和功能，给您带来更好的体验！一旦被采纳，将根据重要程度给予奖励（未采纳除外）
+bonus_not_apply: 待领取奖金
+feedback_status: 反馈状态
+feedback_status_done: 已处理
+dealing: 处理中
+content_text: 内容
+select_amount: 请选择金额
+input_amount: 请输入金额
+min_amount_is: 最小金额为
+max_amount_is: 最大金额为
+deposit_name: 存款人姓名
+deposit_name_tip: 为及时到账，请务必输入正确的存款人姓名
+deposit_amount: 充值金额
+confirm_pay: 确认支付
+payee_info: 收款人信息
+transfer_amount_equal_order: 转账金额务必与订单金额一致
+cancel_deposit: 取消存款申请
+already_deposit: 我已存款
+confirm_transfer_ontime: 请转账成功后务必及时确认！否则可能造成延迟上分！
+bank_choose: 银行选择
+channel_choose: 通道选择
+choose_draw_bank: 请选择出款银行
+validate_require: 不能为空
+validate_amount: 金额不能为
+validate_deposit_amount_pos: 金额不能为负数
+validate_deposit_amount_max: 金额不能超过最大值
+validate_deposit_amount_zero: 金额不能为0
+withdraw_apply_success: 出款申请成功
+withdraw_bank: 出款银行卡
+pix_account: PIX账号
+max: 最大值
+sports_rule: 体育博彩规则
+sports_label: 体育博彩
+scan: 浏览
+change_byte_addr: 您确定要更换您的 {delta} 存款地址吗？
+attention: 请注意
+change_byte_addr_1: 您一旦更换存款地址，旧地址便将被禁用。只有新地址才可用于存款。请切勿再使用旧地址进行任何存款。
+change_byte_addr_2: 请在您更换存款地址前先确保您已无任何待处理的存款交易。
+action_no_cancel: 此操作无法撤消
+validate_msg_user_name: 请输入正确的电邮地址或 3 - 30 个小写英文和数字组成的用户名
+need_login_tip: 您必须登录进行此操作
+mark_all_read: 标记全部为已读
+empty_notify: 暂无通知
+tip_show_action: 您的互动将在此处显示
+tip_for_set_safepwd: 为了您的资金安全，请先设置资金密码。
+tip_set_safe: 请先设置资金密码
+go_set: 前往设置
+showing: 正显示
+in_all_game: 款游戏中的
+now_show_game_num: 正显示 {total} 款游戏中的 {percentage} 个
+validate_msg_user_name_tip: 您的用户名长度必须为 3 – 30 个小写英文字母和数字组成
+success_register: 注册成功!
+user_name_exist: 用户名已存在,请重新填写用户名
+currency_disable: 无法使用货币
+save: 保存
+verified: 已验证
+raffle_ticket: 抽奖券
+in_date: 加入日期
+fresh_competition: 最新竞赛
+deal_pend: 待处理
+adopted: 已采纳
+ignored: 已忽略
+next_vip_amount: 距离 {vip} 还差 {amount}
+water: 流水
+empty_vip: 暂无级别
+class: 级别
+copper: 铜
+silver: 银
+gold: 金
+platinum: 铂金
+diamond: 钻石
+yours: 您的
+progress: 进度
+live_start_on_event: 直播视频将在赛事进行之前开始
+load_fail: 加载失败了
+plat_maintain: 场馆维护中
+no_more: 没有更多了
+loading_label: 加载中...
+recent_game_record: 近期游戏记录
+profile: 个人资料
+chat_rule_title: 聊天室规则
+delete_confirm: 删除确认
+login_fail_tip: 登录失效，请重新登录
+sys_error: 系统错误
+res_timeout: 响应超时
+find_error: 发生错误
+input_mem_account: 输入会员账号
+submit_reg: 提交注册
+join_time: 加入时间
+player_id: 搜索账号
+activity_clicks: 活动点击量
+recommend_users: 推荐用户
+new_active: 创建新活动
+activity: 活动
+commission_cal_tip: 我们所有的游戏都带有不同的庄家优势百分比。您可以使用以下公式来计算您的佣金
+sports_cal_tip: 所有体育投注均以 {rate} 的理论庄家优势进行。您可以使用以下公式来计算您的佣金
+commission_encourage: 您若是个影响力极佳并能触及广大群众，或是处在其他特殊情况下的联盟会员，可请联系我们杰出的支持团队。经与联盟经理人讨论后，我们可争取为您定制一套联盟计划。这可能包括更高的佣金。
+statistical_time: 统计时间
+withdraw_amount: 取款金额
+deposit_amount_label: 存款金额
+current_amount: 当前余额
+receive_amount: 领取总额
+agent_commission: 代理佣金
+is_first_deposit: 是否首存
+last_login: 上次登录
+online_status: 在线状态
+settle_time: 结算时间
+performance: 业绩
+detail: 详情
+accu_commission: 累计佣金
+sub_count: 下级人数
+label_contribute_commission: 贡献佣金
+received_commission: 已领取佣金
+last_commission: 上次佣金
+team_num: 团队总数
+direct_mem: 直属成员
+other_mem: 其他成员
+total_performance: 总业绩
+direct_performance: 直属业绩
+other_performance: 其他业绩
+total_effect_bets: 有效投注总额
+total_bet_order: 总投注单
+slash_win_lose_total: 总赢/输
+promo_info: 推广信息
+click_save_qr: 点击保存二维码
+my_link: 我的链接
+sub_bet: 直属投注
+ten_thousand: 万
+total_agency_bonus: 总代理奖金
+contribute: 贡献
+contribute_to: 贡献给
+direct: 直属
+sub_total_performance: 下级总业绩
+enjoy: 享受
+user_effect_bet: 自己有效投注{num}万
+sub_self_no_profit: 无下级自身无收益
+activity_name: 活动名称
+label_no_collect: 暂无任何收藏，请使用
+put_collect: 把游戏添加到收藏夹中。
+success_edit: 修改成功
+this_contains_invalid_email_characters: 这含有无效的电子邮件字符
+tip_email_to: 确认电邮已发送至
+success_update_email: 成功更新电邮地址
+tip_email_sent: 已重新发送电邮
+email_update_to: 验证电邮已重新发送至
+success_update_phone: 成功更新手机号码
+phone_update_to: 手机号码已更新为
+success_verify: 验证成功
+congratulate_email_success: 恭喜您电邮验证成功!
+resend_email: 重新发送电邮
+phone: 手机号码
+tip_phone: 我们只服务国际电话区号列表中所列有的区域。
+intl_phone_pre: 国际电话区号
+social_account: 社交账号
+action: 行动
+cancel_ignore: 解除拉黑
+level_desc: 等级描述
+preferences_tip_1: 用户隐私是 {site} 的核心价值之一。 这些设置将允许您在其他玩家面前完全匿名。
+preferences_tip_2: 您的投注不会出现在公开投注动态和投注预览中
+preferences_tip_3: 其他用户将无法查看您的输赢和投注的统计数据
+preferences_tip_4: 其他用户将无法查看您的竞赛记录
+preferences_tip_5: 请容许长达 30 秒的时间使更新生效。
+preferences_tip_6: 防止您在聊天室中收到红包雨
+preferences_tip_7: 选择不接收营销电邮或优惠
+turn_on_hide_mode: 启用隐身模式
+hide_all_statistic: 隐藏所有统计数据
+hide_all_competition_record: 隐藏所有竞赛记录
+refuse_rain: 拒绝接收红包雨
+marketing: 营销
+receive_market_email: 接收营销电邮
+validate_msg_pwd_unequal: 两次输入的密码不一致
+validate_msg_safepwd_unequal: 两次输入的资金密码不一致
+success_update_pwd: 修改密码成功
+pls_input_double_check_pwd: 请输入双重验证密码
+success_set_double_check: 设置双重验证密码成功
+copy_to_google: 将代码复制到您的身份验证器应用程序（Authenticator App）
+hide_from_others: 防止他人看到此页！
+success_set_safepwd: 设置资金密码成功
+tip_safepwd_six: 您的资金密码含有6位数字
+email_uncheck: 邮箱未验证
+tip_safepwd: 资金密码将用于保护提款，保险库取款安全。
+login_time: 登录时间
+browser: 浏览器
+area: 地区
+wise_bet: 更明智地下注
+reg_now: 立即注册
+welcome_back: 欢迎归来
+user_vip_pro: 您的 VIP 进度
+most_advance_casino: 最领先的在线加密货币赌场
+go_casino: 前往娱乐城
+best_sports: 最棒的加密货币在线体育博彩
+go_sports: 前往体育博彩
+pls_input_virtual_addr: 请输入正确提币地址
+choose_protocol: 选择协议
+your_virtual_addr: 您{currencyName}的
+is_default_addr: 是否设为默认地址
+transfer_in_addr: 转入地址
+confirm_pls_addr_tip: 请确认发送{ type }到此地址，充值需要全网确认才能到账，请耐心等待！
+transfer_in_amount: 转入金额
+pls_confirm_deposit_addr: 请确认收款地址存入完整金额（不含手续费），否则可能导致无法上分
+use_in_game: 游戏使用中
+search_currency: 搜索货币
+card_wallet: 卡包
+improve_safe_level: 通过双重验证提高您的账户安全性
+turn_on_double_check: 启用双重验证
+hide_zero_wallet: 隐藏零数余额
+zero_wallet_hidden: 您为零数的余额不会显示在钱包中
+address: 地址
+withdrawal_min_amount: 最低提款金额为
+withdrawal_fee_tip: 我们将从您的余额扣除
+withdrawal_as_fee: 作为您提款的交易费用
+present: 送
+order_label: 笔
+bet_tip_amount_tip: 已成功押下总值
+de: 的
+bet_more_than_balance: 您的投注额不能大于余额。
+all: 所有
+order_by_alpha: 按字母顺序排列
+sport_in_coming: 滚球与即将开赛的盘口
+champion_bet: 冠军投注
+empty_cap: 暂无可用盘口
+for_example: 举例说明如下
+direct_team: 直属团队
+other_team: 其他团队
+summary: 总结说明
+no_bonus_now: 暂无可领取活动礼金
+fail_bonus: 领取失败
+bet_number: 投注编号
+transaction_rebate: 会员返水
+transaction_activity: 活动红利
+transaction_admin_activity: 人工红利派发
+transaction_deposit_bonus: 存款优惠
+transaction_vip_upgrade: vip晋级礼金
+transaction_vip_day: vip日红包
+transaction_vip_week: vip周红包
+transaction_vip_monthly: vip月红包
+transaction_vip_birthday: vip生日礼金
+promotion_tutorial_example_desc: 本站点返佣以有效投注为依据，假设返佣比例为左上角表格。A在本站第一个发现商机，马上发展了B1、B2和B3，B1又往下发展了C1和C2，B2无下级，B3只发展了比较有实力的C3。
+promotion_tutorial_example_desc1: 几天后，B1本人的有效投注为8万，B2本人的有效投注为5万，B3本人的有效投注为3万，C1本人的有效投注为10万，C2本人的有效投注为4万，C3本人的有效投注达71万，则B1总业绩来自C1和C2共14万，对应返佣比例为80/万；B2无下级业绩为0；B3下级C3给力，总业绩为71万，对应返佣比例为100/万；A有来自直属团队16万和来自其他团队85万，总业绩为101万，对应返佣比例是100/万。
+promotion_tutorial_example_desc2: 那么他们之间的收益计算方式如下
+promotion_tutorial_example_desc3: 是指垂直发展的成员，统一叫直属团队。
+promotion_tutorial_direct_team_1: (1) B1，B2，B3贡献给A： (8万+5万+3万)x100/万=1600。
+promotion_tutorial_direct_team_2: (2) C1和C2贡献给B1： (10万+4万)x80/万=1120。
+promotion_tutorial_direct_team_3: (3) C3贡献给B3： 71万x100/万=7100。
+promotion_tutorial_other_team_1: 是指下级、下下级、下下下级...等发展的成员，统一叫其他团队；因本系统可无限发展下级，为便于解说，本文只取2级结构作为例子阐述。
+promotion_tutorial_other_team_2: (1)来自C1和C2：因B1总业绩14万，只享受80/万的返佣比例，而A总业绩101万，享受100/万的返佣比例，那么A和B1之间产生了返佣差额为：100-80=20/万，此差额即为C1和C2贡献给A的部分，所以C1和C2贡献给A：(10万+4万)×20/万=280。
+promotion_tutorial_other_team_3: (2)来自C3：因B3总业绩71万，享受100/万的返佣比例，A总业绩101万，享受100/万的返佣比例，那么A和B3之间产生的返佣差额为：100-100=0/万，C3贡献给A：71万x0/万=0。
+promotion_tutorial_summary_1: (1)C3给力，间接让A的所有业绩都享受更高返佣比例。
+promotion_tutorial_summary_2: (2)B2可能比较懒，没有发展下级，则无收益。
+promotion_tutorial_summary_3: (3)B3虽然加入比较晚，且属于A的下级，但其下级C3给力，让B3直接享受更高返佣比例，所以B3无论何时加入，处于谁的下级，不管身处于第几级，收益永远不受影响，不再吃他人下级的亏，发展也不被制约。
+promotion_tutorial_summary_4: (4)这是一套绝对公平公正的代理模式，并不会因为谁加入得晚，而永远被踩在脚下。
+pls_input_min_max_amount: 请输入 {min} - {max} 之间的金额
+bet_no_close_tip: 您的投注单里不能含有已关闭的盘口投注项
+same_event_no_multi: 来自同一赛事的多重投注项不能结合成复式投注。
+multi_bet_max: 复式投注项组合不能超过 {max} 个。
+reuse_bet: 重新使用投注单
+reg_bet: 注册进行投注
+accept_odd: 接受新赔率
+company_intro_tip_1: '{host} 是加密货币博彩领域的全球领导者，拥有以比特币和其他加密货币进行投注的最佳赌场与体育博彩平台之一。成立于 2017 年的 {host} 现已发展成为在线博彩行业中最值得信赖的品牌之一，并在全球许多市场上提供了种类繁多的赌场游戏。玩家可以在 {site} 这单一的平台上同时享受安全、可靠及有趣的在线博彩体验！除了赌场外，{host} 也提供了能在世界上最大型的体育项目、联赛与比赛上进行投注的动态体育博彩平台。具有最新更新的赔率和各种各样的投注选项，不难理解为什么 {site} 即是使用加密货币进行体育投注最实用的方式。'
+company_intro_tip_2: '{host} 是业内最负盛名的加密货币赌场与体育博彩平台之一。作为UFC 在拉丁美洲和亚洲的官方博彩合作伙伴以及沃特福德足球俱乐部的主要赞助商，{site} 是例如 Drake、伊斯利 · 阿迪萨亚、何塞 · 奥尔多等许多业内重头人物与超级巨星所信任的优质博彩合作伙伴。'
+company_intro_tip_3: '{host} 在库拉索获得许可，提供安全、可靠及公平的平台。{host} 由 Medium Rare N.V.根据颁发给由库拉索政府授权和监管的 Antillephone 的游戏许可证 8048/JAZ 运营。凭借良好的声誉、安全可靠的平台以及赌场与体育博彩上的各种投注选项，{site} 是个在世界各地都具有活跃社区的在线博彩平台。'
+company_intro_tip_title_1: '{site} 加密货币赌场体验'
+company_intro_tip_4: '{site} 加密货币赌场具有来自许多游戏提供商的数千多款赌场游戏，带给玩家无与伦比的体验。{site} 的赌场游戏在类型与玩法上各不相同，而这也包括了老虎机、21点、轮盘、百家乐和其他桌面游戏等经典游戏。'
+company_intro_tip_5: 为了让玩家获得身临其境的博彩体验，{site} 提供的真人娱乐场游戏具有真人荷官，通过现场直播视频让玩家在各种各样的真人娱乐场游戏中获得正宗的赌场游戏体验。
+company_intro_tip_6: '{site} 除了提供来自许多游戏提供商不同类型的赌场游戏外，我们还拥有自己的 {site} 原创游戏，而这些游戏还是 {host} 最受欢迎的游戏之一，例如 Dice、Plinko、Mines、Crash、Limbo、Hilo等经典游戏。'
+company_intro_tip_7: 由我们才华横溢的团队制作以提供业内最优质、最公平的赌场游戏体验，{site} 原创游戏都是可证明公平的游戏且具有业内最低的庄家优势，并也同时确保玩家能获得值得信赖的博彩体验以及居高的玩家回报率（RTP）
+company_intro_tip_8: 除了种类繁多的游戏、原创游戏的精美设计和各式各样的投注选项，{site} 也为使用比特币（BTC）、以太币（ETH）、狗狗币（DOGE）、比特币现金（BCH）、瑞波币（XRP）、波场币（TRX）以及柚子币（EOS）进行投注的玩家带来了最具吸引力和娱乐性的在线赌场体验之一。
+company_intro_tip_title_2: '{host} 加密货币体育博彩'
+company_intro_tip_9: '{host} 的在线体育博彩让玩家能轻松投注于全球最大型的体育赛事。体育博彩玩家可以在我们的平台上投注于他们最喜爱的体育项目，例如足球、篮球、综合格斗、电子竞技、冰上曲棍球、板球、美式足球、网球、乒乓球、棒球、飞镖、一级方程式等，这甚至还包括了政治与娱乐！'
+company_intro_tip_10: '{host} 为玩家提供了在 UFC、英超联赛、NBA、NFL、CFL、MLB、意甲联赛、西甲联赛，还有甚至像《英雄联盟》和 Dota 2的电子竞技联赛这类各种大型的联赛和锦标赛上进行投注的机会。无论是哪个体育联赛，您都能在 {site} 找到它的投注盘口！'
+company_intro_tip_11: '{site} 为想在实时赛事上投注的玩家提供了实时体育博彩，以多种实时投注选项满足最活跃的体育博彩玩家。'
+company_intro_tip_title_3: '{site} 的促销活动、奖金以及 VIP 计划'
+company_intro_tip_12: '{site} 具有简单易用的用户界面以及高质量的用户体验，为 {site} 社区活跃的成员带来不同的促销活动与奖金。'
+company_intro_tip_13: '{site} 为玩家们准备的促销活动包括了定期的体育博彩促销活动和赌场促销活动。'
+company_intro_tip_14: '除了为赌场与体育博彩玩家们举办惊人的 $50,000 周度送奖活动和 {site} 每日竞赛外，{site} 也时常以 UFC、NBA、英超联赛等大型赛事或新推出的游戏进行特别的促销活动与奖金发放。'
+company_intro_tip_15: 注册了 {host} 账户之后，您接下来便可以根据您在 {site} 平台上的总投注额成为 VIP 并提高您 VIP 俱乐部的会员级别。VIP 会员将能享受特殊福利，例如重装奖金、返水、升级奖金、周度助推奖金以及通过电邮发送的月度奖金。
+company_intro_tip_16: 符合条件的伯金 IV VIP 会员也将被分配一名专属的 VIP 服务代表。除此之外，{site} 所提供的全面 VIP 计划还会根据不同类型的玩家的累积使用量来满足他们的需求。有关 VIP 计划的更多信息，请参阅我们的 VIP 计划概述。
+company_intro_tip_title_4: '{site} 加密货币博彩的即时存款与提款的功能'
+company_intro_tip_17: 在 {site} 的在线赌场与体育博彩上使用比特币或其他可用的加密货币进行投注与管理资金其实十分容易。要把资金存入您的 {host} 账户以使用您选择的加密货币进行体育投注，请遵循下列简单的步骤：
+company_intro_tip_step_1: 第一步：前往钱包 > 存款。
+company_intro_tip_step_2: 第二步：选择您想使用的货币。我们支持比特币（BTC）、以太币（ETH）、狗狗币（DOGE）、莱特币（LTC）等各种货币。复制您所选货币的存款地址。
+company_intro_tip_step_3: 第三步：在您的加密货币钱包或交易所发送货币时，将您的存款地址输入为接收地址。
+company_intro_tip_step_4: 附加说明：如果您想使用法定货币存款，您可以前往钱包 > 购买加密货币以通过 MoonPay 使用法定货币为 {site} 账户购买加密货币。
+company_intro_tip_18: 您在 {site} 的存款与提款都是即时的，并且可任您选择任何可用的加密货币。无论您是想在我们的赌场游戏或体育赛事上进行投注，{site} 都提供了简单明了的过程。
+company_intro_tip_19:  MoonPay 具有许多受支持的支付方式，您可以使用 Visa、MasterCard、Apple Pay、Google Pay 等购买加密货币来存款以进行投注。有关您所在辖区支持的支付方式完整列表，请参阅 MoonPay 文档。
+company_intro_tip_20: 具有蓬勃发展的社区、活跃的聊天室以及一个专门为客户解决游戏或账户方面任何问题的支持团队，{host} 因此成功展示了它能成为最领先的加密货币赌场及体育博彩平台的原因。
+bet_amount_label: 投注金额
+bonus_up: 奖金增长
+promo: 福利
+look_vip_level: 查看 VIP 级别表
+beginner_handbook: 入门手册
+step_num: 第{num}步
+experience: 体验
+click_more: 点击这里以了解更多
+has_more_q: 还有更多问题？
+online_24_sup: 24 小时在线客户支持
+vip_club_tip_1: 无与伦比的 VIP 体验
+vip_club_tip_2: 解锁专属福利并获得无需任何附加条件即可立即提取的奖金。
+vip_club_tip_3: 成为 VIP 是个既简单又富有回报的过程
+vip_club_tip_4: 立即注册以开始在赌场或体育盘口上进行投注
+vip_club_tip_5: 您的每笔赌注都会影响您 VIP 级别的进度。达到下个级别以解锁更多福利。
+vip_club_tip_6: 立即领取您的奖金。领取每日、周度和月度奖金的过程既简单又容易。
+vip_club_tip_7: '{site} 通过不间断送出的奖金提供了独特且无与伦比的体验'
+vip_club_tip_8: 每次升级都能获得更棒的奖励
+vip_club_tip_9: 联系我们屡获殊荣的支持团队
+vip_club_tip_10: 为什么 {site} 的 VIP 计划是最出色的？
+vip_club_tip_11: 由于我们发放给玩家的奖金数额居多，{site} 的 VIP 计划一向都被评为最佳的在线赌场体验之一。
+vip_club_tip_12: 此外，我们屡获殊荣的支持团队将全天候在线回答您的任何问题。我们在众多在线赌场中拥有最高的客户满意度，也与此同时创建了由全球最热情的一些博彩爱好者所组成的社区。
+vip_club_tip_13: 我们至今为止已送出了超过 10 亿美元的奖金。这也是我们具有最出色的在线 VIP 计划的主要原因。
+vip_club_tip_14: 我们坚信奖励玩家的投注量和忠诚度。
+vip_club_tip_15: '{site} 一共发放了多少奖金？'
+vip_club_tip_16: 如何参加 $75,000 周度抽奖活动？
+vip_club_tip_17: 您在 {site} 的每 $1,000 投注能换来一张抽奖券，而您只需要一张抽奖券便能参加抽奖活动。投注得越多，获得的抽奖券就越多，您的获胜机会也会因而增加。
+vip_club_tip_18: 如何加入 {site} Telegram 频道？
+vip_club_tip_19: '{site} Telegram 频道的账号是 {tg}。'
+vip_club_tip_20: 如果您已经下载了 Telegram，请点击这里加入。
+vip_club_tip_21: 如何加入 {site} VIP Telegram 频道？
+vip_club_tip_22: 一旦达到铜级，您便可以请在线支持把您添加到 {site} VIP Telegram 频道。
+vip_club_tip_23: 您也可以通过加入 {site} Telegram 频道{tg}找到更多相关的信息。
+vip_club_tip_24: 什么是近期游戏表现奖金？
+vip_club_tip_25: 这是由您的 VIP 服务代表主要根据您的总投注和运气酌情给予的奖金。
+vip_club_tip_26: 什么是返水？
+vip_club_tip_27: 返水是退还给您的玩家佣金（庄家优势）的百分比。
+vip_club_tip_28: 充值奖金是什么？该如何领取我的充值奖金？
+vip_club_tip_29: 充值奖金是根据玩家近期的投注表现计算的。玩家可以选择每日、每小时或每 10 分钟的领取间隔。
+vip_club_tip_30: 点击账户右上角的主用户菜单，在下拉菜单中点击 “VIP” 。在出现的模式窗口上点击 “充值奖金” 选项卡，然后再点击 “领取充值奖金” 即可。您能否被分配一名服务代表将取决于您的总投注额。
+vip_club_tip_31: 月度奖金将在何时发放？
+vip_club_tip_32: 月度奖金将会每月发放一次，日期一般在 15 日左右。但在某些情况下，发放日可能会稍晚或甚至提早，而这就是为什么它是 {site} 最令人期待的奖金之一。月度奖金一旦发放后，您便将收到电邮通知。为确保您不会错过奖金，请记得也要查看您电邮中的垃圾邮件文件夹。
+vip_club_tip_33: 铜、银和金级的玩家们将通过每日充值奖金领取奖金，而铂金与钻石级的玩家将一次性地领取他们的奖金。
+vip_club_tip_34: 如何计算达到下个级别所需要投注的金额?
+vip_club_tip_35: 首先点击账户右上角的主用户菜单，在下拉菜单中点击 “VIP” 查看您 VIP 进度条上的百分比，然后从 100% 减去此数目以获得剩余百分比。接下来将剩余百分比乘以您达到下个级别所剩下的总投注需求即可。
+vip_club_tip_36: 每次升级后我会得到哪些奖励？
+vip_club_tip_37: 升级奖金：这是每次升级都会增加的固定奖金。我们将根据您在升级前的盈亏情况以近期游戏表现奖金的形式添加额外金额。
+vip_club_tip_38: 周度与月度奖金：根据您的 VIP 级别您将得到一笔基础金额，之后您在相应的时间段内每投注的 $1,000 将得到额外的金额。
+vip_club_tip_39: 每日奖金：充值奖金在到期后将由您的 VIP 服务代表更新。
+vip_club_tip_40: 奖金数额是如何计算的？
+vip_club_tip_41: 您所得到的奖金数额是按照您的总投注额和利润计算的。我们坚信玩家们无论输赢都应该得到奖励。只奖励输钱的玩家并不公平，但如果您的运气真的欠佳，我们会再额外增加您的奖金数额！
+vip_club_tip_42: 我的 VIP 服务代表能为我做什么？
+vip_club_tip_43: 您的 VIP 服务代表将确保您的游戏表现会得到奖励。他们会帮您更新充值奖金、在您的升级过程中给予指导、审查您的体育限制、评估您是否可获得额外奖金以及处理您在网站上遇到的任何问题。
+vip_club_tip_44: 在被分配了一名 VIP 服务代表后，所获得的充值奖金是一个持续的还是可更新的福利？
+vip_club_tip_45: 当您达到铂金 IV 级别并被分配一名 VIP 服务代表后，您将开始获得可更新的周度充值奖金。每当您的周度充值奖金到期时，您便可联系您的 VIP 服务代表以更新您在接下来 7 天内可领取的充值奖金。
+vip_club_tip_46: 充值奖金的数额是取决于您每周在游戏中的表现，如果您那一周内在利润方面的运气不佳，您将会得到额外的奖金。
+vip_club_tip_47: VIP 服务代表的职责包括了什么，与常规的在线支持人员又有何不同？
+vip_club_tip_48: VIP 服务代表只分配给铂金 IV 级别以上的玩家。他们可以回答您有关 VIP 计划的问题并确保您领取所有应得的奖金。VIP 服务代表也能够在确保奖金符合您需求的同时更频繁地发送更大的奖金。
+vip_club_tip_49: 在线支持可以帮助您解决在平台上遇到的任何技术问题。
+vip_club_tip_50: 我什么时候可以被分配 VIP 服务代表？
+vip_club_tip_51: 玩家一旦达到铂金 IV 级后便会被分配一名 VIP 服务代表。这名服务代表将成为您的专属支持人员，帮助您解决所有疑问并在您的游戏过程中提供任何所需的指导。请注意，您是否符合资格还取决于您近期的活动。
+vip_club_tip_52: 万一我的 VIP 服务代表休假去了该怎么办？
+vip_club_tip_53: 请确保向您的 VIP 服务代表索取他特有 VIP 服务频道的邀请链接。如果您漏掉了这一步，您可以联系在线支持获取一个 VIP 备份链接。这将是您的服务代表回来之前的临时备份代表。
+vip_club_tip_54: 使用我们的知识指南或到我们的社区论坛上提问。
+vip_club_tip_55: 由真人提供的有效支持。我们可以通过即时在线聊天和电邮帮助您进行设置与故障排除。
+chat_us: 与我们聊天
+pls_input_deposit_name: 存款人姓名必填
+min_amount_0: 最小金额不可小于等于0
+min_len_6: 最小字符长度为6
+safe_pwd_error: 支付密码格式错误
+save_to_vault: 存入保险库
+draw_vault: 保险库取款
+vault_info: 了解更多有关保险库的信息
+progress_level: 进展程度
+send_currency_bonus: 支持人员将按照您所选的货币发送奖金
+turn_on_rebate: 启用返水功能
+vip_tg_right: VIP Telegram 频道访问权
+week_monthly_bonus_up: 周度和月度奖金增加
+vip_send_currency_bonus: VIP 服务代表将按照您所选的货币发送奖金
+day_week_bonus_up: 每日和周度奖金增加
+special_promo: 专属定制福利
+vip_up_tip: 您的进度是通过您在娱乐城和体育博彩中的总投注额累积起来的。只要您的级别上升，就表示能获得更大的奖励和独家 VIP 待遇。
+vip_up_tip_2: 所有已结算的体育投注将回报加快 3 倍的进展速度。结算为无效的赌注并不包括在内。
+learn_more_vip: 了解更多有关成为 {site} VIP 的消息
+index_title_prefix: '{site}：加密货币赌场和体育投注'
+index_title_suffix: 在线 BTC 赌场
+btc_sport_title: 加密货币与比特币在线体育博彩
+affiliate_activity: 联盟活动
+affiliate_bonus: 联盟佣金
+affiliate_overview: 联盟计划概述
+affiliate_refer_user: 联盟计划推荐用户
+affiliate_plan: 联盟保留计划
+hot_casino_game: 热门赌场游戏
+btc_casino_title: 在线加密货币与比特币赌场
+casino_game: 赌场游戏
+recent_casino_game: 近期赌场游戏记录
+token_set: API 令牌设置
+set_general: 设置常规
+login_pwd: 登录密码
+account_session: 账户会话
+check_account: 验证账户
+transaction_archive: 交易档案
+transaction_bet: 投注交易
+transaction_deposit: 存款交易
+transaction_other: 其他交易
+transaction_withdraw: 提款交易
+today: 今日
+last_days_mid: 近{delta}日
+one_receive: 一键领取
+on: 于
+add_one_bet: 把以上 {num} 项投注 加入我的投注单
+copied: 复制成功
+footer_desc: '{site} 由 Medium Rare N.V. 所属和经营，注册编号： 145353，注册地址：Korporaalweg 10,Willemstad, Curaçao。请通过 {email} 与我们联系。 支付代理公司是 Medium Rare Limited，地址于 7-9 Riga Feraiou, LIZANTIA COURT, Office 310, Agioi Omologites,1087 Nicosia,Cyprus 以及注册号：HE 410775 {site} 由库拉索政府授权和监管，并根据颁发给 Antillephone 的 8048/JAZ 号许可证运营。{site} 已通过所有合规性审查，并获得合法授权，可进行所有机会与投注游戏的游戏操作。'
+order: 订单
+plat_not_sup_currency: 该场馆暂不支持您所选择的币种
+has_stop_bet: 您有暂停的投注项
+cant_form_multiple: 同一场赛事的多个投注项不能组合为复式投注
+no_sup_multiple: 您有不支持复式投注的投注项
+bet_one_max: 同时最多只能添加 {max} 个投注项。
+bet_odd_change: 赔率已变更，您需先接受赔率更改方可进行投注
+bet_sup_10x: 只支持10的整数倍的投注金额
+bet_fixed_x: 不支持小数位超过{fixed}位的投注金额
+failed_get_betinfo: 获取投注信息失败
+view_my_bets: 查看我的投注
+closed: 已关闭
+empty_unsettle_bet: 暂无未结算的赌注
+empty_settle_bet: 暂无已结算的赌注
+empty_casino_bet: 暂无娱乐城投注
+vip_top: 您的 VIP 等级已达到最高
+wait_upgrade: 待升级
+upgraded: 已升级
+game_water_experience: 经验
+in_play: 在玩
+week_0: 星期天
+week_1: 星期一
+week_2: 星期二
+week_3: 星期三
+week_4: 星期四
+week_5: 星期五
+week_6: 星期六
+double_check_code: 双重验证码
+official_number: 法定数字格式
+official_num_tip: 警告：在 {currencyName} 法定货币视图中，法定数字格式将被禁用。
+privacy: 隐私
+casino_intro_1: 在 {site} 享受最出色的在线赌场体验
+casino_intro_2: 自 2017 年以来，{host} 在网络上提供了最出色的在线加密货币与比特币赌场的博彩体验。易于使用、功能丰富且平台简约，玩家们都一而再再而三地重返 {site} 投注于他们最喜爱的赌场游戏。
+casino_intro_3: 在种类繁多的赌场游戏中投注于老虎机、纸牌游戏等
+casino_intro_4: 浏览我们种类繁多的赌场游戏，在 {site} 享受公平有趣的博彩体验。直接通过您的浏览器在老虎机、真人娱乐场、21点、百家乐、轮盘、弹珠以及数以千计的经典游戏上进行投注。
+casino_intro_5: 此外，我们还具有著名的 {site} 原创游戏——最初让 {site} 声名鹊起的赌场游戏。这包括了像 Dice、Plinko、Mines、Crash、Limbo、Hilo、Keno、Wheel 等热门游戏，另加我们最近刚推出的另一款 {site} 原创 Dragon Tower！
+casino_intro_6: 无论您是热衷于像 Video Poker 这类的桌面与纸牌游戏、 Spin a Win 这类的游戏节目游戏或是新推出的赌场游戏——最终的选择权都在您的手里！
+casino_intro_7: 如何通过您的加密货币钱包在 {site} 存款
+casino_intro_8: 在我们的在线赌场上使用比特币或其他可用的加密货币进行投注其实十分容易。要把资金存入您的 {host} 账户，请遵循下列步骤：
+casino_intro_9: '{site} 的支持人员将随时为您提供在线的支持与帮助，无论您是在存款时或是访问喜爱的游戏时遇到任何问题，他们都会给予您必要的帮助。'
+casino_intro_10: '{site} 团队一直都在努力改进我们无可匹敌的服务，确保来自世界各地的用户都能享有最佳的在线赌场博彩体验。随着我们定期增加到平台上的大量新游戏以及杰出的客户支持，玩家必能轻松在闻名的 {site} 赌场上雷厉风行。'
+casino_intro_11: 最广泛的游戏提供商——在 {site} 投注于您最喜爱的游戏
+casino_intro_12: 除了我们著名的 {site} 原创游戏外，{site} 也具有在线博彩业内最受信赖的游戏提供商所提供的各种游戏。
+casino_intro_13: "{site} 的精选游戏提供商包括了 Pragmatic Play、 Evolution Gaming、 Quickspin、 Relax Gaming、 Playtech、 Big Time Gaming、 Play'n Go、 Gamomat、 Hacksaw Gaming、 Push Gaming、 Netent、 No Limit City、 iSoftBet、 Spinomenal 以及更多其他以优质游戏而闻名的热门提供商。"
+casino_intro_14: 这其中包括了一些最受欢迎的老虎机和其他赌场游戏，如粉丝们最喜爱的 Sweet Bonanza, Crazy Time, Wanted Dead or a Wild, The Dog House, Gates of Olympus, Book of Shadows, Money Train 2, Fruit Party 2, Mystery Museum, Jammin Jars, The Dog House Megaways, Double Ball Roulette, Monopoly Live, Buffalo King, Floating Dragon, Lightning Dice, Super Sic Bo, Gonzos Treasure Hunt, Side Bet City 等等。
+casino_intro_15: 无论是投注功能、支付乘数、游戏主题还是整体游戏体验，{site} 所提供的各种赌场游戏都是属于世界级的，并保证能为所有玩家带来生动多样的体验——不管他们对游戏的偏好如何！
+casino_intro_16: '{site} 赌场为什么会既安全又公平？'
+casino_intro_17: 您在 {site} 原创游戏中的所有投注都是可证明公平的，这些赌注会在网站上得到验证，也可以通过第三方网站进行外部验证，例如我们社区成员在 ProvablyFair.Me 上创建的 {site} 检验器。
+casino_intro_18: 除了提供公平结果的技术之外，{host} 自 2017 年以来一直都是业内最负盛名的赌场之一，最近更成为了 UFC 的官方投注合作伙伴，并在英超联赛中赞助沃特福德足球俱乐部。
+casino_intro_19: 随着成千上万的忠实玩家每小时进行的数百万笔投注，{site} 即是网络上最受信任与合法的在线赌场之一。
+get_email_code: 获取验证码
+re_get: 重新获取
+footer_description: '{name} 由 Medium Rare N.V. 所属和经营，注册编号： 145353，注册地址： Korporaalweg 10, Willemstad, Curaçao。请通过 {email} 与我们联系。支付代理公司是 Medium Rare Limited，地址于 7-9 Riga Feraiou, LIZANTIA COURT, Office 310, Agioi Omologites, 1087 Nicosia, Cyprus 以及注册号：HE 410775'
+empty_fav_event: 暂无收藏赛事
+reject: 拒绝
+emoji_title: 表情符号
+failure: 失败
+confirmed: 已确认
+saving_account: 收款账户
+saving_address: 收款地址
+deal_contract: 交易协议
+account_type: 账户类型
+saving_bank: 收款银行
+order_num: 订单编号
+copy_addr_suc: 已成功复制！
+pls_enter_savor_name: 请输入存款人姓名
+savor_name: 收款人姓名
+open_addr: 开户网点
+transfer_amount: 转账金额
+select_deposit_amount: 请下拉选择充值金额
+pls_select_pix: 请选择PIX账号
+we_use_cookie: 我们使用 Cookie
+cookie_purposes: 进行功能与分析目的。
+accept: 接受
+start_game_now: 立即开始游戏
+policies: 政策
+min_len_char: 最小字符长度为 {delta}
+max_len_char: 最大字符长度为 {delta}
+name_has_invalid_char: 用户名含有无效的字符
+pls_select_name: 请选择显示名称
+must_verify_email_then: 您必须验证您的电邮地址才能进行{delta}
+open: 打开
+additional_time: 加时
+no_support_email: 电子邮件域不受支持
+email_add_char: 请在您的电邮地址中加入 “{delta}” 符号
+email_no_equal_password: 您的电邮地址和密码不能相同
+pls_input_email: 请输入有效的电邮地址
+name_3_char: 您的 username 必须含有至少 3 个字符
+name_14_char: 您的 username 不得超过 14 个字符
+name_no_equal_pwd: 您的用户名和密码不能相同
+choose_another_name: 此用户名已被使用，请选择另一用户名
+email_exists: 电邮地址已存在
+email_code: 邮箱验证码
+bet_num: 注单量
+win_lose: 输赢
+min_odd_bet: 赔率小于1.10的投注项不能组合为复式投注
+select_addr: 请选择地址
+input_draw_coin_addr: 请输入提币地址
+withdraw_detail: 提款详情
+direct_vip: 直属会员
+up_rule: 晋级标准
+keep_level_desc: 保级说明
+check_desc: 稽核说明
+activity_desc: 活动声明
+explain_desc: 解释说明
+day_no_max: 日期不能超过{delta}号
+max_age: 您的年龄不能超过 {delta} 岁
+max_value: 值必须大于或等于{delta}
+qr_code: 二维码
+bet_comp_coin: 您下注使用的所有货币会标准化为竞赛货币
+exp_rule: 货币汇率
+electric_game: 电竞
+max_odd: 复式投注赔率超过上限
+commission_transfer: 转账
+currency_list: 币种列表
+commission_currency_conversion: 佣金币种转换
+total_approx: 合计约为
+confirm_conversion: 确认转换
+exchange_rate_for_currency_received: 兑领取币种汇率
+commission_wallet_balance: 佣金钱包余额
+achievable_cumulatively: 累计可获得
+converted_currency: 转换后货币
+choose_convert_your_desired_currency: 您可以选择转换成您想要的货币
+commission_wallet_amount_exchange_total: 您当前佣金钱包金额按照{type}汇率换算合计约为
+affiliate_overview_desc_1: 加入 {name}.com 的联盟计划，以推荐我们的品牌赚钱! 每当一位用户通过您的推荐链接注册并使用 {name}.com，您便会收到联盟佣金。
+affiliate_overview_desc_2: 身为 {name}.com 的联盟会员，所赚的佣金将以推荐用户在娱乐城和体育博彩中的总投注为依据。这跟传统联盟计划的不同之处在于无论推荐用户是赢或输，您都能获得同样的佣金！
+reco_link: 推荐链接
+download_ad: 下载横幅
+page_title_live: 在线玩真人赌场游戏 - 真人荷官
+or: 或
+only_6_num: 仅支持6位纯数字
+pwd_2_not_equal: 两次密码输入不一致
+edit_safe_pwd: 修改资金密码
+set_safe_pwd: 设置资金密码
+not_bind_email: 您还未绑定邮箱
+must_bind_email: 请先绑定邮箱后在设置资金密码
+go_bind: 前往绑定
+old_safe_pwd: 原资金密码
+new_safe_pwd: 新资金密码
+confirm_safe_pwd: 确认资金密码
+forget_safe_pwd: 忘记资金密码？前往
+connect_service: 联系客服
+page_title_sport: 体育博彩 - 在线体育博彩
+online_casino: 在线博彩
+empty_archive: 暂无投注档案
+empty_official_deposit: 暂无法定货币存款
+empty_official_withdraw: 暂无法定货币提款
+vip_level_comp: VIP级别对照
+day_bonus: 每日奖金
+deposit_bonus: 充值奖金
+two: 二
+three: 三
+casino_new_intro_1: 最佳在线赌场游戏 - 在 {host} 玩最佳游戏
+casino_new_intro_2: 面对如此丰富的赌场游戏，您会从哪里下手？从最出色的赌场游戏开始是一个不错的选择，此类游戏可以为您提供出色的图形设计和更加丰厚的赢利。现在就让我们为您带来
+casino_new_intro_3: 赌场上最出色的赌场游戏。
+casino_new_intro_4: 什么是在线赌场游戏？
+casino_new_intro_5: 在线赌场游戏包括经典的桌面游戏、老虎机游戏、骰子游戏和纸牌游戏。在 {host}，您可以找到数百种游戏供您尝试，这些游戏画面精美，有多种不同的投注和赢钱方式。
+casino_new_intro_6: 无论您是二十一点游戏迷，还是喜欢累积头奖的老虎机，您都能找到适合自己喜欢的各种在线赌场游戏类型。继续阅读，探索 {host} 上的最佳在线赌场游戏。
+casino_new_intro_7: 什么是最出色的赌场游戏？
+casino_new_intro_8: 从桌面游戏到在线老虎机，您可以在这里找到最佳赌场游戏
+casino_new_intro_9: 桌面游戏
+casino_new_intro_10: 是经典的赌场游戏，在 {host} 上非常热门。坐上虚拟座位，玩转传奇赌场游戏，如二十一点、百家乐和轮盘赌。如果您是第一次接触在线博彩游戏，请在投注前了解如何在 {site} 赌场玩桌面游戏。
+casino_new_intro_11: 真人赌场游戏
+casino_new_intro_12: 真人赌场游戏或真人荷官游戏是在线赌场网站上最受欢迎的游戏之一。这些游戏通过真人荷官和即时聊天功能提供沉浸式的在线赌场体验。我们的真人赌场游戏种类繁多，均设置在真实的赌场演播内，并现场直播到我们的平台上。
+casino_new_intro_13: 首先，赌场玩家只需进入真人赌场大厅，从一系列游戏中进行选择即可！从在线扑克到欧洲轮盘赌，我们提供各类真人发牌的赌场游戏。请访问我们的真人赌场指南了解更多信息。
+casino_new_intro_14: 纸牌游戏
+casino_new_intro_15: 是在 {site} 赌场的另一款最佳游戏。我们有多种可供选择的视频扑克游戏和真人在线扑克游戏，让您应接不暇！如果您是扑克迷，那您绝对不能错过Caribbean Stud Poker Live和Casino Hold'em Live。如果您正在寻找有趣的视频扑克游戏，您一定会喜欢 {site} Original 的视频扑克和 BGaming 的Jacks or Better！查看我们的扑克和视频扑克指南获得更有帮助的扑克技巧。
+casino_new_intro_16: 您还可以在 {site} 赌场在线享受无数其他经典纸牌游戏和特别游戏。在 {host} 学习如何玩纸牌游戏，充分利用手中的牌获利。
+casino_new_intro_17: 骰子游戏
+casino_new_intro_18: 掷骰子
+casino_new_intro_19: 游戏允许您对掷骰子的结果进行投注，这款游戏在 {host} 非常流行。您可以享受 骰宝和扎金花等绝佳赌场游戏还有其他新款骰子游戏，例如来自Evolution Gaming的Football Studio Dice Live。在 {host} 了解如何玩赌场掷骰子游戏可增加您的赢利机会。
+casino_new_intro_20: 老虎机游戏
+casino_new_intro_21: 老虎机
+casino_new_intro_22: 是 {site} 赌场中最常见的游戏，由许多主题、卷轴、赔付线、奖金回合和博彩玩法组成。您可以在 {host} 上玩的最佳老虎机游戏之一是Scarab Spin，这是一款埃及主题的 {site} Original 游戏，提供诱人的 97.84% 玩家回报率。
+casino_new_intro_23: 从经典老虎机到现代在线老虎机游戏，{host} 上的各种老虎机都能提供独特的游戏体验，让每个人都乐在其中。最受欢迎的老虎机主题包括水果、动物、宝石、古代、拉斯维加斯、复古、太空、海洋等。
+casino_new_intro_24: 我们提供试玩模式，您可以在下注前玩玩我们的老虎机游戏！了解如何在线玩老虎机，方便您在 {site} 赌场玩最受欢迎的游戏时制定策略。
+casino_new_intro_25: 什么是最值得玩的赌场游戏？
+casino_new_intro_26: 游戏拥有出色的画面和超级简单的玩法，是所有在线赌场爱好者的理想选择。您现在可以在 {host} 上玩到的最佳游戏如下：
+casino_new_intro_27: Plinko 的灵感来自日本的机械游戏 Pachinko，是一款金字塔型的游戏，您可以将球投到游戏网格上，获得胜利和倍数。RTP 99%。
+casino_new_intro_28: 骰子
+casino_new_intro_29: 掷骰子是一款非常简单的游戏，您可以对有 100 面的骰子掷出的结果进行投注。RTP 99%。了解 {site} 赌场的其他骰子游戏。
+casino_new_intro_30: 另一款 {site} Originals 游戏 Limbo 是一款以掷骰子为基础的游戏，最高奖金可达投注额的 1,000,000 倍！RTP 99%。
+casino_new_intro_31: 受到经典扫雷游戏的启发，Mines 是一款加密博彩游戏，您必须在游戏中寻找宝石并避开炸弹！RTP 99%。了解 {site} 赌场的其他Mines 游戏。
+casino_new_intro_32: 作为 {host} 上最简单的游戏之一，Crash 需要您预测在崩溃（Crash）之前倍数会上升到多高！RTP 99%。如果想体验与众不同的游戏，请访问Evolution Gaming 的 Cash or Crash Live。
+casino_new_intro_33: 二十一点
+casino_new_intro_34: '{site} Original 二十一点是一款只需简单介绍的游戏，它能让您以超低的庄家优势战胜庄家。RTP 99.53%。{site} 赌场还会带来许多二十一点变体游戏。'
+casino_new_intro_35: Hilo 是一款比特币赌场游戏。游戏中您需要预测下一张牌与当前显示的牌值相比的大小。RTP 99%。
+casino_new_intro_36: 基诺
+casino_new_intro_37: 基诺是一种宾果式游戏，基于中式彩票游戏打造，您可以在等待开奖之前选择一系列数字，看看自己是否中奖。RTP 99%。
+casino_new_intro_38: 转盘
+casino_new_intro_39: 在这款独特的转盘游戏中，您可以从 15 种可定制的游戏模式中进行选择，调整投注金额、承担的风险和显示的倍数。RTP 99%。查看Money Wheel（来自 Play'n GO 的转盘游戏），体验转盘游戏的乐趣！
+casino_new_intro_40: 轮盘赌
+casino_new_intro_41: '{site} Original 轮盘赌是 {host} 最受欢迎的游戏之一，游戏包含大量的内围和外围投注供您下注。RTP 97.30%。查看轮盘大厅，了解 {host} 提供的其他轮盘游戏。'
+casino_new_intro_42: 在 {site} 的专属游戏中放手一搏吧，这款游戏正在加密赌场行业掀起一场风暴！RTP 98.29%。
+casino_new_intro_43: 如何玩在线赌场游戏并获胜 - 基本策略和技巧
+casino_new_intro_44: 准备好尝试一些最出色的在线赌场游戏了吗？以下是一些有用的提示，供您在开始选择游戏时参考
+casino_new_intro_45: 大多数在线赌场游戏都采用随机数字生成器（RNG），这意味着您可以在每一轮投注中获胜或失败。在选择玩哪些游戏时，请牢记这一点。
+casino_new_intro_46: 在玩游戏之前，您应该始终查看游戏的庄家优势或 RTP，这样您就能知道该游戏在一段时间内的典型赔率。此外，请务必查看最低存款额和最大赢钱潜力。
+casino_new_intro_47: 不要局限于一种游戏。例如，在 {host} 上查找最新发布的游戏，玩转累积奖金的老虎机游戏的同时享受真人娱乐场游戏，您有机会获得巨额奖金和更高的赔率。
+casino_new_intro_48: 请量力而行，注意博彩权责。
+casino_new_intro_49: 赌场游戏赔率、边际优势和 RTP
+casino_new_intro_50: 在选择赌场游戏之前，您应该仔细阅读游戏说明，了解有关游戏的关键信息，特别是与庄家优势和玩家回报率（RTP）相关的信息。正如您从我们的最佳游戏列表中看到的，您可以玩的许多 {site} Original 游戏的庄家优势仅为1%，这是非常超值的游戏选择。通过我们便捷的赌场优势 指南，了解更多关于赌场优势以及为什么需要优势的信息。
+casino_new_intro_51: 赌场奖金和 VIP 计划
+casino_new_intro_52: 如果您想要在 {host} 获得最大赢利，您可以查看最新促销活动和优惠。您还可以了解有关{site} VIP 俱乐部的更多信息，发现与加入俱乐部相关的各种福利，包括每月独家优惠和丰厚奖金。
+casino_new_intro_53: 其他热门在线赌场游戏
+casino_new_intro_54: 如果您想要在 {host} 尝试更多精彩游戏，请查看赌场游戏行业中领先供应商提供的以下热门游戏：
+casino_new_intro_55: '{site} Original 的 百家乐'
+sport_new_intro_1: '{site} 体育投注 - 人人喜爱的在线体育博彩公司'
+sport_new_intro_2: '{host} 为现代投注者提供丰富的体育投注选择——我们的在线体育博彩公司提供各种实时体育投注，包括综合格斗、篮球、足球、曲棍球和棒球等。'
+sport_new_intro_3: 我们的在线体育投注平台操作简单，用户可以在平台上投注自己喜欢的球队、球员和世界各地的联赛，还可以观看最大型的体育赛事直播。了解有关如何在 {site} 免费在线观看您喜爱的体育节目直播的更多信息。
+sport_new_intro_4: 根据体育项目和直播体育赛事的不同，最雄心勃勃的体育投注者可以获得丰富多彩的体育选项和策略。{site} 每天的体育投注量超过 100,000 次，是国内外体育投注的首选网站。获取所有最新体育趋势和 2023 年 8 月的数据！
+sport_new_intro_5: 通过我们的终极体育博彩指南，了解更多您喜爱的体育项目、比赛和球员的博彩信息！
+sport_new_intro_6: 在线体育博彩赔率与投注类型
+sport_new_intro_7: '{site} 很自豪能为我们忠实的体育投注者提供顶级在线体育博彩体验。'
+sport_new_intro_8: 只需前往感兴趣的体育运动、类别或体育联盟，即可查看可供投注的实时赛事和即将进行的赛事。除了对体育赛事的结果进行投注外，还有许多投注方式可供选择！您还可以使用我们的“投注生成器”功能，通过串关投注和同场比赛多重投注增加中奖机会。
+sport_new_intro_9: 最受欢迎的投注类型包括：
+sport_new_intro_10: 数据和冠军：一个赛季的大小球胜率以及冠军都属于长期投注，投注者可以通过长期投注获得价值。
+sport_new_intro_11: 赔率：一种简单的投注方式，您投注三种结果之一：赢、输或平。
+sport_new_intro_12: 让球：一种热门的投注类型，包括在球队或赛事的最终得分中增加或减少一个数值。类似于总分投注，即预测总进球数或总得分是否会高于或低于某个特定数字。投注者还可以利用差额投注策略增加胜算。
+sport_new_intro_13: 大小球赔率：比赛或球队总分的大小球。
+sport_new_intro_14: 第一分/第一球：投注最先得分（得分、进球、达阵等）的球队或球员。
+sport_new_intro_15: 体育直播的半场/中场休息调整赔率：根据实时比分调整赔率。
+sport_new_intro_16: 球员特殊投注及更多：个人数据大/小球、全场最佳/MVP 以及其他庆祝运动员成就的特定投注。
+sport_new_intro_17: 正确得分：准确预测比赛最终比分获得胜利
+sport_new_intro_18: 注册用户还可观看部分赛事和运动项目的现场直播——请查看赛事是否提供现场直播。了解如何免费观看您喜爱的体育赛事直播！
+sport_new_intro_19: 体育博彩促销活动和 {site} 体育博彩奖金
+sport_new_intro_20: 除了 {site} 上精彩绝伦的体育博彩体验外，我们还为机智的投注者定期提供体育博彩促销活动。
+sport_new_intro_21: 除了每周 5 万美元的丰厚赠品和我们体育博彩和赌场的 {site} 每日竞赛之外，我们还定期围绕 UFC、NBA、英超联赛等赛事开展体育博彩促销活动和奖金活动。
+sport_new_intro_22: 很荣幸我们提供的工具和信息可以帮助您安全地使用 {site}。通过我们的博彩权责指南了解更多在线博彩技巧。
+sport_new_intro_23: 可在 {site} 在线体育博彩投注的体育项目和联赛
+sport_new_intro_24: 浏览我们丰富的热门体育项目，满足您的体育投注和博彩需求——包括足球、篮球、综合格斗、电子竞技、冰球、板球、美式足球、网球、乒乓球、棒球、飞镖、一级方程式等，还有政治和娱乐！
+sport_new_intro_25: 无论您是想投注单场比赛，还是整个赛季，我们都有全球范围内的各种体育赛事，包括全球最好的职业体育联赛，包括UFC、英超联赛、NBA、NFL、CFL、MLB（职业棒球大联盟）、NCAA、意甲、西甲和电竞联赛，例如英雄联盟和Dota 2。我们甚至提供模拟现实联赛中的各种投注选项，包括SRL 足球和SRL 板球。通过我们的模拟现实联赛投注指南了解更多有关如何投注模拟现实联赛（SRL）的信息。
+sport_new_intro_26: '{site} 是一个在线投注网站，提供直观易用的实时体育投注平台，可以对即将进行的体育赛事投注。没有什么比滚球体育投注更令人兴奋的了——投注已经开始的体育赛事，根据当前的比赛状态调整赔率，与时间赛跑。'
+sport_new_intro_27: 滚球体育博彩对于那些对比赛非常敏锐的人来说绝对是心头好，他们很有信心比赛会在最后发生翻转。热门滚球体育投注包括滚球足球、滚球网球、滚球篮球、滚球板球和滚球电竞体育投注——根据时间和活动会随时提供不同类型的滚球体育项目。进一步了解滚球投注与赛前投注之间的区别，以及如何制定最佳投注策略可以在 {site} 获胜。
+sport_new_intro_28: 因此，无论您是想投注美国体育联赛，还是热衷于尝试足球博彩，或者只是想了解更多有关体育博彩活动的信息，您都可以在 {site} 体育博彩上找到，同时还有对即将进行的比赛给出的每周博彩提示和预测！您还可以成为 {site} VIP 会员，让一切更上一层楼！如需了解该计划的更多信息，请阅读我们的 {site} VIP 指南。
+equal_round: 平局
+commission_wallet: 佣金钱包
+commission_transfer_title: 佣金转换
+old_pwd_tip8: 最小字符长度为 8
+password_least_8_characters_2: 您的密码长度必须至少为 8 个字符
+pwd_unequal: 密码不一致
+cash_profit: 现金利润
+vip_win_lose: 会员输赢
+register_time: 注册时间
+statistical_date: 统计日期
+phone_invalid: 手机号码无效
+colon: ：
+period: 。
+vip_total_bonus: 累积奖金
+type_select: 类型选择
+rule_text_one: 汇率会根据市场波动实时同步
+rule_text_two: 会在您注单结算时的汇率为准
+rule_text_three: 已经统计的有效投注不会受后续的汇率影响
+rule_text_title: VIP按照您的有效投注来计算
+after_transfer_withdraw_money: 转到钱包后需要1倍有效投注才可提款
+mini_manual_bet: '手动投注'
+mini_auto_bet: '自动投注'
+mini_bet_amount: '投注额'
+mini_profit: '获取利润'
+mini_bet_frequency: '投注次数'
+mini_if_win: '若赢'
+mini_reset: '重置'
+mini_add: '增加：'
+mini_if_lose: '若输'
+mini_take_profit: '止赢'
+mini_stop_lose: '止损'
+mini_start_auto_bet: '开始自动投注'
+mini_stop_auto_bet: '停止自动投注'
+mini_auto_bet_finish: '正在完成投注'
+mini_target_multi: '目标乘数'
+mini_win_odd: '获胜几率'
+mini_touzhu: '投注'
+mini_more_than_balance: '您的投注额不能大于余额！'
+mini_must_than_zero: '必须大于或等于0'
+mini_game_set: '游戏设置'
+mini_ju_mode: '剧院模式'
+mini_sstj: '实时统计'
+mini_collect_game: '收藏游戏'
+mini_fairness: '公平性'
+mini_start_auto_bet_tip: '自动投注开始'
+mini_stop_auto_bet_tip: '自动投注完成'
+commission_record: 佣金记录
+commission_grant: 佣金发放
+commission_draw: 佣金提取
+order_id: 订单号
+score: 比分
+v_sports: 虚拟体育
+plinko_manual: "手动投注"
+plinko_auto: "自动投注"
+plinko_amount: "投注额"
+plinko_risk: "风险"
+plinko_rows: "排数"
+plinko_bet: "投注"
+plinko_betNumbers: "投注次数"
+plinko_autobetstart: "开始自动投注"
+plinko_autobetstop: "停止自动投注"
+plinko_fairness: "公平性"
+plinko_original: "原创游戏"
+plinko_bigwins: "大赢家"
+plinko_luckwins: "幸运赢家"
+plinko_challenges: "挑战"
+plinko_description: "描述"
+plinko_rank: "排名"
+plinko_user: "玩家"
+plinko_date: "日期"
+plinko_multiplier: "乘数"
+plinko_payout: "支付额"
+plinko_level1: "下等"
+plinko_level2: "中等"
+plinko_level3: "上等"
+plinko_stealth: "隐身"
+plinko_live: "即时下注"
+plinko_animation: "动画"
+plinko_maxvalue: "最大投注额"
+plinko_info: "游戏信息"
+plinko_keyboard: "快捷键"
+plinko_maxquestion1: "您确定要启用最大投注额按钮吗？"
+plinko_maxquestion2: "您确定要启用最大投注额按钮吗？"
+plinko_turnOn: "开启"
+plinko_turnOff: "开启"
+plinko_info1: "1.配置模式将通过风险和乘数来决定不同的潜在支付额。"
+plinko_info2: "2.请勿在游戏进行时转动您的设备或显示屏来逆重力。"
+plinko_rules: "游戏规则"
+plinko_hotkey1: "下注"
+plinko_hotkey2: "加倍投注额"
+plinko_hotkey3: "减半投注额"
+plinko_hotkey4: "零数投注额"
+plinko_hotkeyInfo: "快捷键一旦启用后将会影响所有游戏至禁用为止。虽然部分游戏的绑定键相同，还是建议您确认不同游戏的锁定按键交互之后再使用。"
+plinko_hotkeyUse: "启用快捷键"
+plinko_statistics: "实时统计"
+plinko_type1: "全部"
+plinko_type2: "投注"
+plinko_type3: "竞赛"
+plinko_type4: "隐藏"
+plinko_left1: "利润"
+plinko_left2: "总投注额"
+plinko_right1: "赢"
+plinko_right2: "输"
+plinko_max: "最大值"
+plinko_autobetalert1: "自动投注开始"
+plinko_autobetalert2: "自动投注完成"
+plinko_betamountalert: "您的投注额不能大于余额！"
+commission_draw_success: 佣金提取成功
+receive_bonus_amount: 领取金额
+integral: 积分
+reg_success_title: 成功
+reg_day: DD
+login_ip_title: IP
+gameble_aware: Gameble aware
+transfer_to_wallet: 转移到钱包
+statistical_data_dialog_title: 统计数据
+end_time_table: '结束时间：{time}小时后'
+user_no_statistics_display: 此用户未有可显示的统计数据
+this_week: 本周
+this_month: 本月
+this_quarter: 本季度
+sports_tab_starting_soon2: 即将开赛
+recent_game_record2: 近期游戏记录
+keep_integral: 保级积分
+min_deposit_amount: 最低存入金额
+annual_interest_rate: 年利率
+vault_des_1: 'The Meibo Vault Explained: How to Use Our Online Vault to Store Crypto'
+vault_des_2_1: 'Although betting at Meibo.com is highly secure, the Vault is an additional layer of protection for your funds. Every user at Meibo.com can access the Vault, whether you play'
+vault_des_casino: 'casino games'
+vault_des_2_2: 'or place bets on your favourite'
+vault_des_sports: 'sports.'
+vault_des_3: 'Here, we explain everything you need to know about the Meibo Vault, including how to access it and why it’s worth utilising as you place your bets at'
+vault_des_4: 'What is the Vault on Meibo.com?'
+vault_des_5: 'The Meibo Vault is a safe place to store funds without worrying about transaction fees or blockchain delays. The Vault acts like your own digital wallet or even like a savings account you would have with a bank. It is extremely secure – thanks to 2FA – and you can implement enhanced safety measures to take care of the crypto within. The Vault is also where you can access several Meibo.com promotions, so it’s well worth taking advantage of your Vault when placing your bets at Meibo.'
+vault_des_6: 'How Do You Access the Vault?'
+vault_des_7: 'Accessing the Vault is straightforward and can be done via any desktop or mobile device. Here are the steps to access your Meibo Vault:'
+vault_des_li1: 'Step 1: Log in to your Meibo.com account.'
+vault_des_li2: 'Step 2: Navigate to the main user menu.'
+vault_des_li3_1: 'Step 3: Go to'
+vault_des_li3_2: 'Account > Vault.'
+vault_des_li4: 'Step 4: Access your Vault and set up your security features.'
+vault_des_li5: 'Step 5: Deposit crypto into your Vault.'
+vault_des_8: 'When you access the Vault for the first time, you will need to verify which security features to activate, including 2FA (two-factor authentication). You will also need to enter your password to access the crypto that you store within.'
+vault_des_9: 'How Do You Use the Vault?'
+vault_des_10: 'The primary use of the Vault is to keep your funds safe. When you complete a crypto deposit at Meibo.com, you can add your cryptocurrency to the Vault for an added layer of protection to keep your funds safe.'
+vault_des_11: 'The Vault ensures secure transmission of digital payments, and the easy-to-use interface means that you can easily access your crypto when you want to use it at Meibo, whether you’re playing '
+vault_des_card: 'cards,'
+vault_des_dice: 'dice,'
+vault_des_slots: 'slots,'
+vault_des_12: 'or placing bets on the biggest'
+vault_des_live: 'live'
+vault_des_upcoming: 'upcoming'
+vault_des_13: 'sporting events.'
+vault_des_14: 'What is the Vault Used for?'
+vault_des_15: 'The Vault is used to store cryptocurrency; in this regard, it’s similar to a cryptocurrency wallet. However, we also use the Vault to deposit some of our casino offers, giveaway prizes and weekly promotions.'
+vault_des_16: 'Learn more about how our monthly bonuses work and find out how to become a Meibo VIP and what exclusive rewards members of the Meibo VIP Club can access.'
+vault_des_17: 'The easiest way to think of the Vault is to compare it to a bank vault. You can keep your funds in an account at the bank, but storing them within the Vault is an extra layer of security so that only you can access them.'
+vault_des_18: 'What Are the Benefits of Using the Vault?'
+vault_des_19: 'There are lots of benefits to using the Vault at Meibo.com:'
+vault_des_li6: 'Additional security for your funds via 2FA.'
+vault_des_li7: 'Store multiple cryptocurrencies simultaneously.'
+vault_des_li8: 'Save crypto in your Vault alongside your Meibo.com balance.'
+vault_des_li9: 'Receive prizes and giveaways securely to your Vault.'
+vault_des_li10: 'Access your crypto immediately without transaction fees and avoid blockchain delays.'
+vault_des_li11: 'Instant access to your crypto as and when you need it to fund your gameplay at the Meibo Casino or sports bets.'
+vault_des_20: 'Is Storing Funds in the Vault Safe?'
+vault_des_21: 'Yes, storing funds in the Meibo.com Vault is 100% safe. In addition to the site-wide security measures we implement to protect the funds in your balance, the Vault is bolstered by 2FA, offering additional protection and security.'
+vault_des_22: 'That being said, it’s easy to access your funds as and when you want them – simply log in and pass through the 2FA to get to your crypto.'
+vault_des_23: 'How Do You Withdraw Funds from the Vault?'
+vault_des_24: 'To withdraw funds from your Vault, first, decide how much of which currency you would like to withdraw. Then, enter your password and complete the 2FA. You can then transfer the funds to your Meibo.com balance to play your favourite casino games or to bet on sports. Alternatively, you can withdraw the funds to your crypto wallet with the help of Moonpay.'
+vault_des_25: "If you're after more information about our deposit and withdrawal methods on Meibo.com, check out our guide to online payment methods."
+vault_des_26: 'How Long Can You Store Funds in the Vault?'
+vault_des_27: 'You can store cryptocurrency in your Vault for as long as you maintain a Meibo.com account. We haven’t put any time constraints on the Vault, and you can feel free to use it for as long as you wish to keep your cryptocurrency safe.'
+vault_des_28: 'What Crypto Can You Store in the Vault?'
+vault_des_29: 'You can place bets at Meibo.com with a wide selection of cryptocurrencies. As such, the following currencies can all be stored in the Vault:'
+vault_des_li12: Bitcoin (BTC)
+vault_des_li13: Ethereum (ETH)
+vault_des_li14: Litecoin (LTC)
+vault_des_li15: Dogecoin (Doge)
+vault_des_li16: Bitcoin Cash (BCH)
+vault_des_li17: Ripple (XRP)
+vault_des_li18: Tron (TRX)
+vault_des_li19: EOS (EOS)
+vault_des_li20: Tether (USDT)
+vault_des_li21: Binance Coin (BNB)
+vault_des_li22: USD Coin (USDC)
+vault_des_li23: ApeCoin (APE)
+vault_des_li24: Binance USD (BUSD)
+vault_des_li25: Dai (DAI)
+vault_des_li26: Chainlink (LINK)
+vault_des_li27: The Sandbox (SAND)
+vault_des_li28: Shiba Inu (SHIB)
+vault_des_li29: Uniswap (UNI)
+vault_des_li30: Polygon (MATIC)
+vault_des_30: "Learn more about how to buy crypto if you're just getting started."
+vault_des_31: 'Conclusion: Why You Should Utilise the Vault Feature on Meibo.com'
+vault_des_32: "The Meibo.com Vault is the ideal place to store your cryptocurrency to fund your bets at Meibo Casino or Sportsbook. Whether you’re playing our best games (such as live casino games and table games) or looking to place bets on the upcoming basketball or American football season, you can quickly move crypto from your Vault to your balance to fund your bets - it's that simple."
+vault_des_33: 'Remember, we also send funds securely to the Vault as part of certain casino promotions and sports offers, so make sure you set up your Vault to avoid missing out on all our special deals, weekly giveaways, and exclusive prizes!'
+vault_des_34: "New to Meibo.com and want to learn more before placing your bets? Browse through our online casino guide and our guide to sports betting and you'll be an expert in no time."
+vault_des_35: 'Please remember to always gamble responsibly. Learn more tips when betting online with our responsible gambling guide . You can use our budget calculator to stay on top of your spending habits and read up on our guide to knowing how much to gamble with.'
+success_close_double_check: 关闭双重验证密码成功
+close_verification: 关闭双重验证
+vip_sports_tip_title: 体育场馆的积分是下列列表的{rate}倍
+vip_sports_tip_content: (例：1USDT=1会员积分，您在体育投注1USDT将获得{rate}会员积分）
 money_exchange: 兑换货币
 exchange: 兑换
 pay_with: 以 {currency} 支付
@@ -14,3 +1960,4 @@ withdraw_account: 收款账号
 withdraw_address: 收款地址
 wrong_format: 格式错误
 vip_integral: 'VIP 积分'
+sports_events2: 体育项目

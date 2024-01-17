@@ -773,7 +773,7 @@ search_game: Procurar seu jogo
 search_events: Procure seu evento
 casino_origin_game: Originais do Meibo
 casino_games_recommend: Recomendações populares
-casino_provider: Provedores
+casino_provider: Provedore
 casino_sort_popular: Popular
 casino_sort_featured: Destaques
 casino_filter_label: Filtrar por
@@ -843,7 +843,7 @@ menu_title_settings_api: API
 menu_title_settings_verify: Verificação
 menu_title_settings_offers: Desconto
 menu_title_settings_deposits: Depósitos
-menu_title_settings_withdrawals: Retiradas
+menu_title_settings_withdrawals: Retirada
 menu_title_settings_bets: Aposta
 menu_title_settings_archive: Arquivos de apostas
 menu_title_settings_other: Outro
@@ -2479,3 +2479,4 @@ withdraw_account: 收款账号
 withdraw_address: 收款地址
 wrong_format: 格式错误
 vip_integral: 'VIP Rank'
+sports_events2: Eventos esportivos
