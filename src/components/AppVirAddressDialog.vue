@@ -22,7 +22,6 @@ const emit = defineEmits(['added'])
 const closeDialog = inject('closeDialog', () => { })
 
 const { bool: isDefault } = useBoolean(false)
-const { openPayPwdDialog, closePayPwdDialog } = usePayPwdDialog()
 const {
   getVirtualCurrencyContractType,
 } = useCurrencyData()
@@ -44,6 +43,10 @@ const {
     return t('pls_input_virtual_addr')
   return ''
 })
+
+const passwordRef = ref()
+const password = ref('')
+
 const {
   run: runMemberWalletInsert,
   loading: addWalletInsertLoading,
@@ -54,11 +57,10 @@ const {
       title: t('label_bind'),
       message: t('success_bind'),
     })
-    if (props.isWithdraw) {
-      closePayPwdDialog()
+    if (props.isWithdraw)
       emit('added')
-    }
-    else { closeAllDialog() }
+
+    else closeAllDialog()
   },
 })
 
@@ -74,38 +76,21 @@ function getTypeVal() {
   currentNetwork.value = props.contractId || (curContractList.value ? curContractList.value[0]?.value : '')
 }
 
-// 协议名称
-const curNetworkName = computed(() => {
-  if (curContractList.value) {
-    return curContractList.value.find(
-      (item: ISelectOption) => item.value === currentNetwork.value)?.label
-  }
-  return ''
-})
-
 // 关闭弹框
 function closeAllDialog() {
   closeDialog()
-  closePayPwdDialog()
 }
 async function handleBindAddress() {
   await valiAddress()
-  if (!addressMsg.value) {
-    openPayPwdDialog({
-      runSubmit: (payPassword: string) => {
-        runMemberWalletInsert({
-          contract_type: Number(currentNetwork.value),
-          currency_id: props.currencyId,
-          address: address.value,
-          is_default: isDefault.value ? 1 : 2,
-          pay_password: payPassword,
-        })
-      },
-      toPayPwdSet: () => {
-        closeAllDialog()
-        callback.value = undefined
-      },
-      loading: addWalletInsertLoading,
+  passwordRef.value.setTouchTrue()
+  await passwordRef.value.validatePassword()
+  if (!addressMsg.value && !passwordRef.value.errPassword) {
+    runMemberWalletInsert({
+      contract_type: Number(currentNetwork.value),
+      currency_id: props.currencyId,
+      address: address.value,
+      is_default: isDefault.value ? 1 : 2,
+      pay_password: password.value,
     })
   }
 }
@@ -145,9 +130,7 @@ onUnmounted(() => {
         <BaseLabel :label="t('vir_address')" must>
           <BaseInput v-model="address" :msg="addressMsg" :placeholder="t('input_vir_address_pls')" />
         </BaseLabel>
-        <BaseLabel :label="t('digital_pwd')" must>
-          <BaseInput v-model="address" :msg="addressMsg" :placeholder="t('input_vir_address_pls')" />
-        </BaseLabel>
+        <AppPasswordInput ref="passwordRef" v-model="password" />
         <div class="flex items-center">
           <BaseCheckBox v-model="isDefault" />
           <span class="text-tg-secondary-light leading-[1.4]">{{ t('is_default_addr') }}</span>

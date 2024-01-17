@@ -13,9 +13,10 @@ type WalletCurrencyList = {
 const { t } = useI18n()
 const closeDialog = inject('closeDialog', () => { })
 const { openDeleteConfirm } = useDeleteConfirmDialog()
-const { currentGlobalCurrency } = storeToRefs(useAppStore())
+const { currentGlobalCurrency, userInfo } = storeToRefs(useAppStore())
 const { renderCurrencyList, getVirContractName } = useCurrencyData()
 const { openWalletDialog } = useWalletDialog({ activeTab: 'cardHolder' })
+const { push } = useLocalRouter()
 
 const cardList: Ref<WalletCurrencyList[] | null> = ref(null)
 const curType = ref(currentGlobalCurrency.value)
@@ -97,6 +98,12 @@ function toDeleteBankcard(item: BankCard) {
   })
 }
 function bind() {
+  if (userInfo.value?.pay_password !== '1') {
+    closeDialog()
+    push('/settings/security-safe-pwd')
+    return
+  }
+
   if (isVirtualCurrency.value)
     toAddVirAddress()
 }
