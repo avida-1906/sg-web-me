@@ -2462,7 +2462,7 @@ vault_des_34: "New to Meibo.com and want to learn more before placing your bets?
 vault_des_35: 'Please remember to always gamble responsibly. Learn more tips when betting online with our responsible gambling guide . You can use our budget calculator to stay on top of your spending habits and read up on our guide to knowing how much to gamble with.'
 success_close_double_check: 关闭双重验证密码成功
 close_verification: 关闭双重验证
-vip_sports_tip_title: 体育场馆的积分是下列列表的{rate}倍
+vip_sports_tip_title: A pontuação dos estádios esportivos equivalem a {rate} vezes a seguinte lista
 vip_sports_tip_content: '(Exemplo: 1 USDT = 1 ponto de associação. Ao fazer uma aposta esportiva de 1 USDT, você receberá {rate} pontos de associação)'
 money_exchange: 兑换货币
 exchange: 兑换
