@@ -95,6 +95,7 @@ declare module 'vue' {
     AppNoticeNotify: typeof import('./components/AppNoticeNotify.vue')['default']
     AppOutrightPreview: typeof import('./components/AppOutrightPreview.vue')['default']
     AppPageMyBets: typeof import('./components/AppPageMyBets.vue')['default']
+    AppPasswordInput: typeof import('./components/AppPasswordInput.vue')['default']
     AppPasswordVerify: typeof import('./components/AppPasswordVerify.vue')['default']
     AppPayPwdAndGoogleCode: typeof import('./components/AppPayPwdAndGoogleCode.vue')['default']
     AppPayPwdDialog: typeof import('./components/AppPayPwdDialog.vue')['default']

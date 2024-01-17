@@ -18,25 +18,14 @@ const tabOptions = [
   { label: t('menu_title_settings_withdrawals'), value: 'withdraw' },
 ]
 const amountRef = ref()
+const password = ref('')
 const passwordRef = ref()
 
-const { selected: pwdType, list: pwdOptions } = useSelect([
-  { label: t('menu_title_settings_update_safepwd'), value: '2' },
-
-])
 // 获取安全验证配置
 const {
   data: authConfig,
   runAsync: runAsyncMemberAuthConfig,
-} = useRequest(ApiMemberAuthConfig, {
-  onSuccess(data) {
-    if (data.is_secret === '1')
-      pwdOptions.value.push({ label: t('double_check_code'), value: '1' })
-  },
-})
-const pwdLabel = computed(() => {
-  return pwdOptions.value.find(t => t.value === pwdType.value)?.label
-})
+} = useRequest(ApiMemberAuthConfig)
 const {
   value: amount,
   errorMessage: errAmount,
@@ -53,19 +42,19 @@ const {
     // return t('validate_deposit_amount_max')
   return ''
 })
-const {
-  value: password,
-  resetField: resetPassword,
-  validate: validatePassword,
-  errorMessage: errPassword,
-} = useField<string>('password', (value) => {
-  if (!value)
-    return t('min_len_6')
-  else if (!payPasswordReg.test(value))
-    return `${pwdLabel.value}${t('wrong_format')}` // t('safe_pwd_error')
+// const {
+//   value: password,
+//   resetField: resetPassword,
+//   validate: validatePassword,
+//   errorMessage: errPassword,
+// } = useField<string>('password', (value) => {
+//   if (!value)
+//     return t('min_len_6')
+//   else if (!payPasswordReg.test(value))
+//     return `${pwdLabel.value}${t('wrong_format')}` // t('safe_pwd_error')
 
-  return ''
-})
+//   return ''
+// })
 
 const isDeposit = computed(() => activeTab.value === 'deposit')
 const updateType = computed(() => isDeposit.value ? 1 : 2)
@@ -116,7 +105,7 @@ const {
         }),
     })
     reset()
-    resetPassword()
+    passwordRef.value.resetPassword()
     appStore.getBalanceData()
     appStore.getLockerData()
     // appStore.updateUserInfo()
@@ -143,9 +132,9 @@ async function handleUpdate() {
       runLockerUpdate(updateParams.value)
   }
   else {
-    await validatePassword()
-    if (!errAmount.value && !errPassword.value && updateParams.value)
-      runLockerUpdate({ ...updateParams.value, password: password.value, auth_type: pwdType.value })
+    await passwordRef.value.validatePassword()
+    if (!errAmount.value && !passwordRef.value.errPassword && updateParams.value)
+      runLockerUpdate({ ...updateParams.value, password: password.value, auth_type: passwordRef.value.authType })
   }
 }
 function changeCurrency(item: CurrencyData) {
@@ -162,14 +151,9 @@ function reset() {
 function handleBlur() {
   setAmount(Number(amount.value).toFixed(application.isVirtualCurrency(activeCurrency.value.type) ? 8 : 2).toString(), true)
 }
-// 密码类型切换
-function selectTypeChange(item: string) {
-  pwdType.value = item
-}
 
 watch(() => activeTab.value, () => {
   amountRef.value.setTouchFalse()
-  resetPassword()
 })
 
 await application.allSettled([runAsyncMemberAuthConfig()])
@@ -221,7 +205,8 @@ await application.allSettled([runAsyncMemberAuthConfig()])
         {{ t('save_to_vault') }}
       </BaseButton>
       <template v-else>
-        <div class="password-box">
+        <AppPasswordInput ref="passwordRef" v-model="password" />
+        <!-- <div class="password-box">
           <BaseInput
             ref="passwordRef" v-model="password"
             :label="pwdLabel"
@@ -236,12 +221,6 @@ await application.allSettled([runAsyncMemberAuthConfig()])
                 :model-value="pwdType" popper plain-popper-label :options="pwdOptions"
                 @select="selectTypeChange"
               >
-                <!-- <template #label="{ data }">
-                <div class="center" style="gap: 4px;">
-                  <AppCurrencyIcon currency-type="USDT" />
-                  <span>{{ data.label }}</span>
-                </div>
-              </template> -->
                 <template #option="{ data: { item } }">
                   <div class="center">
                     {{ item.label }}
@@ -250,7 +229,7 @@ await application.allSettled([runAsyncMemberAuthConfig()])
               </BaseSelect>
             </template>
           </BaseInput>
-        </div>
+        </div> -->
         <BaseButton
           style="font-size: var(--tg-font-size-base);"
           bg-style="secondary"
