@@ -13,10 +13,7 @@ interface IBank {
   sortlevel: string
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  isFirst: false,
-  openName: '',
-})
+const props = defineProps<Props>()
 
 const emit = defineEmits(['added'])
 const closeDialog = inject('closeDialog', () => {})
@@ -26,15 +23,26 @@ const { openNotify } = useNotify()
 const { bool: isDefault, setFalse: setIsDefaultFalse } = useBoolean(false)
 
 const {
-  value: openName,
-  errorMessage: usernameError,
-  validate: usernameValidate,
-  resetField: usernameReset,
-} = useField<string>('username', (value) => {
-  if (!value || value.trim() === '' || value.trim().length > 20)
+  value: firstName,
+  errorMessage: errFirstName,
+  validate: valiFirstName,
+  resetField: resetFirstName,
+} = useField<string>('firstName', (v) => {
+  if (!v || v.trim() === '' || v.trim().length > 20)
     return t('validate_msg_input_name')
   return ''
 })
+const {
+  value: lastName,
+  errorMessage: errLastName,
+  validate: valiLastName,
+  resetField: resetLastName,
+} = useField<string>('lastName', (v) => {
+  if (!v || v.trim() === '' || v.trim().length > 20)
+    return t('validate_msg_input_name')
+  return ''
+})
+
 const {
   value: bankName,
   errorMessage: banknameError,
@@ -44,7 +52,7 @@ const {
   if (!value)
     return t('validate_msg_choose_pix_account_type')
   return ''
-})
+}, { initialValue: t('validate_msg_choose_pix_account_type') })
 const {
   value: bankAccount,
   errorMessage: bankaccountError,
@@ -55,16 +63,6 @@ const {
     return t('validate_msg_input_third_account')
   else if (value.length < 4 || value.length > 30)
     return t('validate_msg_regexp_pix_account')
-  return ''
-})
-const {
-  value: bankAreaCpf,
-  errorMessage: bankAreaCpfError,
-  validate: bankAreaCpfValidate,
-  resetField: bankAreaCpfReset,
-} = useField<string>('bankAreaCpf', (value) => {
-  if (value && value.length > 100)
-    return t('validate_msg_input_branch_address')
   return ''
 })
 const passwordRef = ref()
@@ -82,10 +80,10 @@ const {
       title: t('label_bind'),
       message: t('success_bind'),
     })
-    usernameReset()
+    resetFirstName()
+    resetLastName()
     banknameReset()
     bankaccountReset()
-    bankAreaCpfReset()
     setIsDefaultFalse()
     closePayPwdDialog()
     emit('added')
@@ -106,19 +104,19 @@ const bankSelectOptions = computed(() => {
 })
 
 const onBindBank = async function () {
-  await usernameValidate()
+  await valiFirstName()
+  await valiLastName()
   await banknameValidate()
   await bankaccountValidate()
-  await bankAreaCpfValidate()
-  if (!usernameError.value && !usernameError.value
+  if (!errFirstName.value && !errLastName.value
   && !bankaccountError.value) {
     openPayPwdDialog({
       runSubmit: (payPassword: string) => {
         runBankcardInsert({
           currency_id: '702',
           bank_name: bankName.value,
-          open_name: openName.value,
-          bank_area_cpf: bankAreaCpf.value,
+          open_name: props.openName || `${firstName.value},${lastName.value}`,
+          bank_area_cpf: '',
           bank_account: bankAccount.value,
           is_default: isDefault.value ? 1 : 2,
           pay_password: payPassword,
@@ -146,10 +144,10 @@ const onBindBank = async function () {
         <!-- 姓名 -->
         <div class="flex items-center gap-14">
           <BaseLabel class="grow" must :label="t('first_name')">
-            <BaseInput />
+            <BaseInput v-model="firstName" :msg="errFirstName" />
           </BaseLabel>
           <BaseLabel class="grow" must :label="t('last_name')">
-            <BaseInput />
+            <BaseInput v-model="lastName" :msg="errLastName" />
           </BaseLabel>
         </div>
         <!-- 地区 -->
@@ -162,8 +160,8 @@ const onBindBank = async function () {
           </BaseLabel>
         </div>
         <BaseSelect
-          :label="t('select_pix_type_pls')"
-          must small
+          v-model="bankName" :label="t('select_pix_type_pls')" :options="bankSelectOptions"
+          must small :msg="banknameError" show-placeholder
         />
         <BaseLabel must :label="t('pix_account')">
           <BaseInput />

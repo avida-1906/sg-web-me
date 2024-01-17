@@ -18,7 +18,6 @@ const { renderCurrencyList, getVirContractName } = useCurrencyData()
 const { openWalletDialog } = useWalletDialog({ activeTab: 'cardHolder' })
 const { push } = useLocalRouter()
 
-const cardList: Ref<WalletCurrencyList[] | null> = ref(null)
 const curType = ref(currentGlobalCurrency.value)
 
 const curCode = computed(() => {
@@ -69,12 +68,12 @@ function toAddBankcards(item: WalletCurrencyList) {
   nextTick(() => openAddBankcardsDialog())
 }
 function toAddPix() {
-  const isFirst = true
-  const openName = ''
-  // if (item.bankcard?.length) {
-  //   isFirst = false
-  //   openName = item.bankcard[0].open_name
-  // }
+  let isFirst = true
+  let openName = ''
+  if (bankcardList.value.length > 0) {
+    isFirst = false
+    openName = bankcardList.value[0].open_name
+  }
   const {
     openAddPixDialog,
   } = useDialogAddPix({
