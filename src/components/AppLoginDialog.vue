@@ -18,7 +18,6 @@ const { t } = useI18n()
   .title {
     color: var(--tg-text-white);
     text-align: center;
-    font-family: PingFang SC;
     font-size: var(--tg-font-size-md);
     font-style: normal;
     font-weight: 500;

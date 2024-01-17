@@ -81,7 +81,6 @@ button:hover svg {
   background: #2F4552;
   color: #FFF;
   text-align: center;
-  font-family: PingFang SC;
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
