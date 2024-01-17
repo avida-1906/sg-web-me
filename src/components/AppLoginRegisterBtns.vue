@@ -25,7 +25,7 @@ function handleRegister() {
         --tg-base-button-text-default-color: var(--tg-text-white);"
       @click.stop="handleLogin"
     >
-      Đăng ậ
+      {{ t('login') }}
     </BaseButton>
     <BaseButton
       custom-padding
