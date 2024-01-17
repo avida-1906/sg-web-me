@@ -69,19 +69,17 @@ const toAddBankcards = function (item: WalletCurrencyList) {
   nextTick(() => openAddBankcardsDialog())
 }
 
-const toAddVirAddress = function (
-  item: WalletCurrencyList,
-) {
+const toAddVirAddress = function () {
   const {
     openVirAddressDialog,
   } = useVirAddressDialog({
-    title: `${t('label_bind')}${item.type}`,
-    icon: item.type,
+    icon: curType.value,
   })
   closeDialog()
   nextTick(() => openVirAddressDialog({
-    currencyId: item.cur,
-    currencyName: item.type,
+    currencyId: curCode.value,
+    currencyName: curType.value,
+    title: `${t('label_bind')}${curType.value}`,
     callback: openWalletDialog,
   }))
 }
@@ -97,6 +95,10 @@ function toDeleteBankcard(item: BankCard) {
     item,
     updateWalletList: runAsyncWalletBankcardList,
   })
+}
+function bind() {
+  if (isVirtualCurrency.value)
+    toAddVirAddress()
 }
 
 await application.allSettled([runAsyncWalletBankcardList()])
@@ -148,7 +150,7 @@ await application.allSettled([runAsyncWalletBankcardList()])
     </div>
 
     <div class="flex flex-col">
-      <BaseButton size="lg" bg-style="secondary">
+      <BaseButton size="lg" bg-style="secondary" @click="bind">
         {{ `${t('label_bind')}${isVirtualCurrency ? t('withdraw_address') : t('withdraw_account')}` }}
       </BaseButton>
     </div>

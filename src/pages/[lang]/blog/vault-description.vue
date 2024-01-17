@@ -70,7 +70,7 @@ await application.allSettled([runAsync()])
         {{ application.numberToLocaleString(+minDepositAmount) }}
       </div>
       <div class="text-tg-secondary-light max-w-160 w-full text-center text-[14px] font-semibold leading-[20px]">
-        {{ `${application.numberToLocaleString(+interestRate)}%` }}
+        {{ `${application.numberToLocaleString(+interestRate * 100)}%` }}
       </div>
     </div>
 
