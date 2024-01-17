@@ -24,7 +24,7 @@ export function useExchangeRate() {
     if (baseRates) {
       return {
         baseNum: 1,
-        targetNum: keepBit === -1 ? baseRates[targetCurrencyMap.cur] : toFixed(+baseRates[targetCurrencyMap.cur], keepBit),
+        targetNum: toFixed(+baseRates[targetCurrencyMap.cur], keepBit),
       }
     }
   }
