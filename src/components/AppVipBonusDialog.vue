@@ -62,7 +62,7 @@ const {
   loading: loadVipBonusApply,
 } = useRequest(ApiMemberVipBonusApply)
 const rate = computed(() => {
-  return activeCurrency.value?.type === 'USDT' ? '1.00' : getRate('USDT', activeCurrency.value?.type ?? 'USDT', -1)?.targetNum
+  return activeCurrency.value?.type === 'USDT' ? '1.00' : getRate('USDT', activeCurrency.value?.type ?? 'USDT', 8)?.targetNum
 })
 const { run: runGetPromoBonus, data: promoBonus, loading: loadPromoBonus }
   = useRequest(ApiMemberVipBonusAvailable, {
