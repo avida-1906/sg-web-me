@@ -7,6 +7,7 @@ interface Props {
   isWithdraw?: boolean
   contractId?: string
   callback?: (params?: any) => void
+  title?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -127,66 +128,49 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="layout-spacing reset app-vir-address">
-    <BaseSelect
-      v-if="curContractList?.length && !isWithdraw"
-      v-model="currentNetwork"
-      :label="t('choose_protocol')"
-      :options="curContractList"
-      small
-    />
-    <div>
-      <div class="label-wrap">
-        {{ t('your_virtual_addr', { currencyName }) }}<span class="network">{{
-          curNetworkName }}</span>{{ t('address') }}<span class="must">*</span>
+  <div class="px-16 pb-16">
+    <div class="border-tg-secondary border-[1px] rounded-t-[4px] border-solid px-20 pb-14 pt-19">
+      <div class="text-[18px] font-medium leading-[1.4]">
+        {{ title }}
       </div>
-      <BaseInput v-model="address" :msg="addressMsg" />
+      <div class="bg-tg-secondary my-15 h-1 w-full" />
+      <div class="flex flex-col gap-14">
+        <BaseSelect
+          v-if="curContractList?.length && !isWithdraw"
+          v-model="currentNetwork"
+          :label="t('choose_proto_pls')"
+          :options="curContractList"
+          small must
+        />
+        <BaseLabel :label="t('vir_address')" must>
+          <BaseInput v-model="address" :msg="addressMsg" :placeholder="t('input_vir_address_pls')" />
+        </BaseLabel>
+        <BaseLabel :label="t('digital_pwd')" must>
+          <BaseInput v-model="address" :msg="addressMsg" :placeholder="t('input_vir_address_pls')" />
+        </BaseLabel>
+        <div class="flex items-center">
+          <BaseCheckBox v-model="isDefault" />
+          <span class="text-tg-secondary-light leading-[1.4]">{{ t('is_default_addr') }}</span>
+        </div>
+      </div>
     </div>
-    <!-- </BaseLabel> -->
-    <div class="checkbox-wrap">
-      <span>{{ t('is_default_addr') }}</span>
-      <BaseCheckBox v-model="isDefault" />
+
+    <div class="border-tg-secondary border-[1px] border-t-0 rounded-b-[4px] border-solid px-20 pb-14 pt-10">
+      <div class="text-tg-secondary-light mb-10 leading-[1.4]">
+        {{ t('check_vir_address_pls') }}
+      </div>
+      <BaseButton
+        bg-style="secondary"
+        :loading="addWalletInsertLoading"
+        size="sm"
+        class="min-w-90"
+        @click="handleBindAddress"
+      >
+        {{ isWithdraw ? t('submit') : t('label_bind') }}
+      </BaseButton>
     </div>
-    <BaseButton
-      bg-style="primary"
-      :loading="addWalletInsertLoading"
-      size="md"
-      @click="handleBindAddress"
-    >
-      {{ isWithdraw ? t('submit') : t('label_bind') }}
-    </BaseButton>
   </div>
 </template>
 
-<style>
-:root{
-  --tg-app-vir-address-style-padding: 0 var(--tg-spacing-16) var(--tg-spacing-16);
-}
-</style>
-
 <style scoped lang="scss">
-.app-vir-address {
-  padding: var(--tg-app-vir-address-style-padding);
-  gap: var(--tg-spacing-12);
-  .label-wrap{
-    margin-bottom: var(--tg-spacing-4);
-    font-weight: var(--tg-font-weight-semibold);
-    color: var(--tg-text-lightgrey);
-    .network{
-      color: var(--tg-text-warn);
-    }
-    .must{
-      color: var(--tg-text-error);
-    }
-  }
-  .checkbox-wrap{
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      > span {
-        color: var(--tg-text-lightgrey);
-        font-weight: var(--tg-font-weight-semibold);
-      }
-    }
-}
 </style>
