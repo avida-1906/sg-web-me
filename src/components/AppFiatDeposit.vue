@@ -453,7 +453,7 @@ await application.allSettled([awaitHandle()])
                 @blur="formatAmount"
               />
             </BaseLabel>
-            <BaseLabel v-else :label="t('deposit_amount')" must-small="">
+            <BaseLabel v-else :label="t('deposit_amount')" must-small>
               <div style="position: relative;">
                 <BaseSelect
                   v-if="fixedAmount && fixedAmount.length"

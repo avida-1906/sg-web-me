@@ -219,7 +219,7 @@ await application.allSettled(
               @focus="selectBankError && selectBankReset()"
             >
               <template #label>
-                <span class="popper-label">
+                <span style="min-height: 18px;">
                   <!-- <BaseIcon
                     v-if="defaultBank"
                     :name="currentType === '1' ? 'fiat-bank' : 'fiat-pix-title'"

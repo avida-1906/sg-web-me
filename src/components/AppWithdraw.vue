@@ -192,15 +192,15 @@ await application.allSettled(
             style="--tg-base-select-popper-style-padding-y: var(--tg-spacing-9)"
             @focus="addressMsg && resetAddress()"
           >
-            <!-- <template #label>
-              <span class="popper-label">
-                <AppCurrencyIcon
+            <template #label>
+              <div style="min-height: 18px;">
+                <!-- <AppCurrencyIcon
                   v-if="defaultAddress"
                   :currency-type="activeCurrency?.type"
-                />
+                /> -->
                 {{ defaultAddress?.address }}
-              </span>
-            </template> -->
+              </div>
+            </template>
             <template #option="{ data: { item, parentWidth } }">
               <div :style="{ width: `${parentWidth}px` }">
                 {{ item.label }}
