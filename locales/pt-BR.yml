@@ -1032,9 +1032,7 @@ current_wait_receive_desc: Você pode escolher o tipo de moeda que gostaria de r
 commission_wallet_money_label: Carteira de comissão e saldo
 currency_exchange_rate: Taxa de câmbio do valor total
 vip: VIP
-vip_promotion_bonus: 'Bônus de promoção
-
-  '
+vip_promotion_bonus: 'Bônus de promoção'
 vip_water_back: Desconto
 vip_day_salary: Salário diário
 vip_week_salary: Salário semanal
