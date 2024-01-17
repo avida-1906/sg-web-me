@@ -643,20 +643,20 @@ img.error {
 }
 
 // 银行卡禁用
-.bankcard-disable, .bankcard-disable-card-holder{
-  position: relative;
-  &::after{
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    background-color: var(--tg-primary-main);
-    opacity: .5;
-    cursor: not-allowed;
-  }
-}
+// .bankcard-disable, .bankcard-disable-card-holder{
+//   position: relative;
+//   &::after{
+//     content: '';
+//     position: absolute;
+//     top: 0;
+//     right: 0;
+//     left: 0;
+//     bottom: 0;
+//     background-color: var(--tg-primary-main);
+//     opacity: .5;
+//     cursor: not-allowed;
+//   }
+// }
 .bankcard-disable{
   &:hover, &.active {
     /* 需要覆盖页面的背景色 权重不够*/

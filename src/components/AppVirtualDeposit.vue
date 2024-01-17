@@ -11,6 +11,7 @@ const props = defineProps<Props>()
 const emit = defineEmits(['show'])
 const amountRef = ref()
 const currentAisle = ref()
+const aisleId = ref()
 const depositStep = ref('1')
 const backDepositInfo: {
   address: string
@@ -54,10 +55,16 @@ const {
   data: paymentMethodCoinList,
   loading: financeMerchantCoinListLoad,
 } = useRequest(ApiFinanceMerchantCoinList, {
-  onSuccess() {
-    currentAisle.value = paymentMethodCoinList.value
-      ? paymentMethodCoinList.value[0]
-      : null
+  onSuccess(data) {
+    paymentMethodCoinList.value = data.map((item) => {
+      return {
+        ...item,
+        label: item.name,
+        value: item.id,
+      }
+    })
+    aisleId.value = data[0].id
+    currentAisle.value = data[0]
   },
 })
 const {
@@ -102,9 +109,7 @@ const getFinanceMerchantCoinParam = computed(() => {
   }
 })
 const getAmountLimit = computed(() => {
-  return (paymentMethodCoinList.value?.length ?? 0) > 1
-    ? ''
-    : `${currentAisle.value?.amount_min}-${currentAisle.value?.amount_max}`
+  return currentAisle.value ? `${currentAisle.value.amount_min}-${currentAisle.value.amount_max}` : ''
 })
 
 async function confirmPayment() {
@@ -140,7 +145,7 @@ function cancelPayment() {
   depositStep.value = '1'
   emit('show', true)
 }
-const toCopy = function (item: string) {
+function toCopy(item: string) {
   application.copy(item)
 }
 function backDepositInit(data: { amount: string; id?: string }) {
@@ -148,6 +153,9 @@ function backDepositInit(data: { amount: string; id?: string }) {
   backDepositInfo.id = data.id
   depositStep.value = '2'
   emit('show', false)
+}
+function payMethodCoinselect(val: string) {
+  currentAisle.value = paymentMethodCoinList.value?.find(item => item.id === val)
 }
 
 watch(() => props.activeCurrency, (newValue) => {
@@ -171,10 +179,15 @@ await application.allSettled([
   <div class="app-virtual-deposit">
     <template v-if="depositStep === '1'">
       <template v-if="paymentMethodCoinList?.length">
-        <BaseLabel
-          v-show="paymentMethodCoinList?.length > 1" :label="t('channel_choose')"
-        >
-          <div class="other-aisles scroll-x">
+        <BaseLabel v-show="paymentMethodCoinList?.length > 1" :label="t('channel_choose')" must-small>
+          <BaseSelect
+            v-model="aisleId"
+            :options="paymentMethodCoinList"
+            :msg="amountError"
+            small
+            @select="payMethodCoinselect"
+          />
+          <!-- <div class="other-aisles scroll-x">
             <div
               v-for="item in paymentMethodCoinList"
               :id="item.id"
@@ -186,12 +199,9 @@ await application.allSettled([
               <span>{{ item.name }}</span>
               <span>{{ item.amount_min }}-{{ item.amount_max }}</span>
             </div>
-          </div>
+          </div> -->
         </BaseLabel>
-        <BaseLabel
-          v-if="currentAisle.amount_type === 2"
-          :label="`${t('deposit_amount')}: ${activeCurrency.prefix}`"
-        >
+        <BaseLabel v-if="currentAisle.amount_type === 2" :label="t('deposit_amount')" must-small>
           <BaseInput
             ref="amountRef"
             v-model="amount"
@@ -200,10 +210,7 @@ await application.allSettled([
             msg-after-touched
           />
         </BaseLabel>
-        <BaseLabel
-          v-else
-          :label="`${t('deposit_amount')}: ${activeCurrency.prefix}`"
-        >
+        <BaseLabel v-else :label="t('deposit_amount')" must-small>
           <div style="position: relative;">
             <BaseSelect
               v-if="oftenAmount && oftenAmount.length"

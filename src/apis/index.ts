@@ -829,6 +829,7 @@ export function ApiFinanceWithdraw(data: {
   amount: string
   pay_password: string
   bankcard_id: string
+  auth_type: string
 }) {
   return httpClient.post<string>('/finance/withdraw', data)
 }
@@ -854,6 +855,7 @@ export function ApiFinanceWithdrawCoin(data: {
   wallet_id: string
   amount: string
   pay_password: string
+  auth_type: string
 }) {
   return httpClient.post<string>('/finance/withdraw/coin', data)
 }

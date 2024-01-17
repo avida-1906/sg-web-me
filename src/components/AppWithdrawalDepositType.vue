@@ -36,12 +36,12 @@ watch(() => props.currentType, () => {
 </script>
 
 <template>
-  <div class="scroll-x withdrawal-deposit-type">
+  <div class="scroll-x hide-scrollbar withdrawal-deposit-type">
     <div
       v-for="item in currentType"
       :id="`id${item.value}`"
       :key="item.value"
-      class="type-btn"
+      class="center type-btn"
       :class="item.value === props.modelValue ? 'active' : '' "
       @click="changeType(item.value)"
     >
@@ -72,36 +72,31 @@ watch(() => props.currentType, () => {
 .withdrawal-deposit-type{
   width: 100%;
   display: flex;
-  gap: var(--tg-spacing-12);
-  &::-webkit-scrollbar-thumb{
-    display: none;
-  }
+  gap: 4px;
+  background: #0F212E;
+  box-shadow: 0px 1px 2px 0px #0000001F;
+  padding: 4px 8px;
   .type-btn{
+    position: relative;
+    height: 32px;
     flex-shrink: 0;
-    background: var(--tg-secondary-main);
-    padding: 0 var(--tg-spacing-12);
-    text-align: center;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: .5rem;
-    box-shadow: 0px 2px 3px -1px rgba(0, 0, 0, 0.30);
+    padding: 0 var(--tg-spacing-8);
+    gap: 4px;
+    border: var(--tg-border-width-default) solid var(--tg-secondary-main);
     border-radius: var(--tg-radius-default);
     color: var(--tg-text-white);
     cursor: pointer;
-    position: relative;
     overflow: hidden;
+    font-size: var(--tg-font-size-xs);
     &:active{
-      .label, svg {
-        transform: scale(.96);
-      }
+      transform: scale(.96);
     }
     &:hover{
       opacity: .9;
     }
     &.active{
-      background-color: var(--tg-text-blue);
+      background-color: #2F4553;
+      box-shadow: 0px 1px 2px 0px #0000001F;
     }
     .tag{
       position: absolute;
@@ -111,12 +106,11 @@ watch(() => props.currentType, () => {
       color: var(--tg-text-white);
       font-size: var(--tg-font-size-xs);
       font-weight: 500;
-      padding: var(--tg-spacing-1) var(--tg-spacing-2);
       border-radius: var(--tg-radius-none) var(--tg-radius-default);
-      text-align: center;
+      transform: translate(25%,-25%);
       span{
         display: inline-block;
-        transform: scale(0.67);
+        transform: scale(0.5) translate(-25%,25%);
       }
     }
     .green{
