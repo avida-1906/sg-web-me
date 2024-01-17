@@ -2199,8 +2199,6 @@ export function ApiMemberVipBonusApply(data: {
 * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=d7f53680-3e01-4a43-afc9-46aafb4d0a5b
 */
 export function ApiMemberVipRebateConfig(params: {
-  /** vip等级 */
-  lv: string
   /** 游戏类型 1真人视讯 2捕鱼游戏 3老虎机 4体育 */
   game_type: string
   /** 币种id */

@@ -2,17 +2,13 @@
 import type { EnumCurrencyKey } from '~/apis/types'
 
 const { t } = useI18n()
-const appStore = useAppStore()
-const { vipConfigData } = storeToRefs(appStore)
+// const appStore = useAppStore()
+// const { vipConfigData } = storeToRefs(appStore)
 const { providerList } = storeToRefs(useSportsStore())
 const { AllLanguages, userLanguage } = storeToRefs(useLanguageStore())
 const { bigPlats: platformList } = storeToRefs(useCasinoStore())
 const { isMobile } = storeToRefs(useWindowStore())
-const { run: runVipRebateConfig, data: vipRebateConfig, loading: loadVipRebateConfig } = useRequest(ApiMemberVipRebateConfig, {
-  onSuccess(data) {
-
-  },
-})
+const { run: runVipRebateConfig, data: vipRebateConfig, loading: loadVipRebateConfig } = useRequest(ApiMemberVipRebateConfig)
 
 const tab = ref('')
 const squareTabList = ref<{
@@ -70,7 +66,7 @@ const filterPlatformColumn = computed<Column[]>(() => filteredPlatforms.value.ma
 // })
 const columns = computed<Column[]>(() => filterPlatformColumn.value.toReversed().concat({
   title: `VIP${t('grade')}`,
-  dataIndex: 'level',
+  dataIndex: 'vip',
   align: 'center',
   slot: 'level',
 }).toReversed())
@@ -87,7 +83,6 @@ watch(tabList, (val) => {
 })
 watch([() => tab.value, () => squareVal.value], () => {
   runVipRebateConfig({
-    lv: '1',
     game_type: tab.value,
     cur: squareVal.value,
   })
@@ -137,7 +132,7 @@ watch([() => tab.value, () => squareVal.value], () => {
         <template #level="{ record }">
           <!-- <div>VIP{{ record.level }}</div> -->
           <div class="vip-badge">
-            <BaseIcon :name="`vip${record.level}`" />
+            <BaseIcon :name="`vip${record.vip}`" />
           </div>
         </template>
       </BaseTable>
