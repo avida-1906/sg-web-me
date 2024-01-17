@@ -25,6 +25,9 @@ usePageTitle({
 
 const isRec = computed(() => currentType.value === 'rec') // 推荐游戏
 const isCat = computed(() => currentType.value === 'category') // 类别
+const isProvider = computed(() => currentType.value === 'provider') // 供应商
+const vid = computed(() =>
+  isProvider.value ? route.query.vid?.toString() : void 0)
 
 // 类别场馆列表
 const {
@@ -61,6 +64,9 @@ const platformOptions = computed(() => {
 const bannerBg = computed(() => {
   if (isRec.value) {
     return '/png/casino/group-banner-default.png'
+  }
+  else if (isProvider.value) {
+    return platformList.value.find(a => a.venue_id === vid.value)?.background ?? ''
   }
   else {
     if (lobbyBdata.value)
