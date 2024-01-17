@@ -52,7 +52,7 @@ const tabList = computed(() => [
 const filteredPlatforms = computed(() =>
   allPlatforms.value.filter(p => p.game_type === tab.value))
 const filterPlatformColumn = computed<Column[]>(() => filteredPlatforms.value.map(p =>
-  ({ title: p[prefix.value ? `${prefix.value}_name` : 'name'], dataIndex: `${p.id}rate`, align: 'center', slot: `${p.id}rate` })))
+  ({ title: p[prefix.value ? `${prefix.value}_name` : 'name'], dataIndex: `${p.id}rate`, align: 'center' })))
 // const data = computed(() => {
 //   return vipConfigData.value
 //     ? Object.values(vipConfigData.value).sort((a, b) => +a.level - +b.level)
@@ -69,7 +69,23 @@ const columns = computed<Column[]>(() => filterPlatformColumn.value.toReversed()
   dataIndex: 'vip',
   align: 'center',
   slot: 'level',
+  skeWidth: '32px',
 }).toReversed())
+const getRebateConfig = computed(() => {
+  const result = []
+  const currentArr = vipRebateConfig.value ?? []
+  while (currentArr.length > 0) {
+    const obj: {
+      [t: string]: string
+    } = {}
+    obj.vip = currentArr[0]?.vip
+    currentArr.splice(0, columns.value.length - 1)?.forEach((item) => {
+      obj[`${item.id}rate`] = item.rate ? `${item.rate}%` : '-'
+    })
+    result.push(obj)
+  }
+  return result
+})
 
 function changeCurrency(item: any) {
   squareVal.value = item.cur
@@ -128,7 +144,11 @@ watch([() => tab.value, () => squareVal.value], () => {
           style="--tg-base-square-tab--padding-outer-y: var(--tg-spacing-6);"
         />
       </template>
-      <BaseTable :columns="columns" :data-source="vipRebateConfig" :loading="loadVipRebateConfig">
+      <BaseTable
+        :columns="columns"
+        :data-source="getRebateConfig" :loading="loadVipRebateConfig"
+        :skeleton-width="20"
+      >
         <template #level="{ record }">
           <!-- <div>VIP{{ record.level }}</div> -->
           <div class="vip-badge">
