@@ -100,7 +100,7 @@ export function useApiMenuData() {
               icon: 'chess-vipclub',
             },
             {
-              title: t('statistical_data'),
+              title: t('statistical_data_dialog_title'),
               path: '',
               icon: 'uni-trend',
               callBack: () => openStatisticsDialog(),
@@ -158,7 +158,7 @@ export function useApiMenuData() {
       domId: '',
     },
     {
-      title: `VIP ${t('club')}`,
+      title: `${t('vip_club')}`,
       path: '/vip-club',
       icon: 'chess-vipclub',
       list: [],

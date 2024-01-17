@@ -23,7 +23,7 @@ already_send_email_user: Foi enviado um e-mail para recuperação da conta
 recover_pwd: Recuperação de senha
 username: Nome de Usuário
 pls_enter_username: Digite o nome de usuário
-username_incorrect: Seu nome de usuário deve possuir 3 - 14 caracteres
+username_incorrect: Seu nome de usuário deve conter de 3 a 14 caracteres
 password: Senha
 old_pwd: Senha Antiga
 new_pwd: Nova senha
@@ -69,7 +69,7 @@ balance: Saldo
 amount: Valor
 casino: Cassino
 sports: Esportes
-game: Jogos
+game: Jogo
 wallet: Carteira
 safe: Cofre
 affiliate: Afiliados
@@ -85,8 +85,7 @@ online_support: Suporte Ao Vivo
 vip_club: Clube VIP
 club: Clube
 logout: Sair
-logout_dont_foget: Não se esqueça de conferir as nossas promoções de Cassino e Apostas
-  Esportivas antes de sair!
+logout_dont_foget: 'Não se esqueça de verificar nossa gigantesca seleção de promoções tanto do cassino quanto de esportes antes de sair!'
 chat_room: Chat
 bet_slip: Boletim de apostas
 my_bets: Minhas Apostas
@@ -771,12 +770,12 @@ search_recent: Pesquisas Recentes
 search_no_result: Sem resultados
 search_clear: Limpar Pesquisa
 search_game: Procurar seu jogo
-search_events: Procurar seu jogo
-casino_origin_game: Jogos originais
+search_events: Procure seu evento
+casino_origin_game: Originais do Meibo
 casino_games_recommend: Recomendações populares
 casino_provider: Provedores
 casino_sort_popular: Popular
-casino_sort_featured: Popular
+casino_sort_featured: Destaques
 casino_filter_label: Filtrar por
 casino_filter_label_sort: Ordenar Por
 casino_filter_provider_all: Visualizar todos os fornecedores de jogos
@@ -941,14 +940,14 @@ sports_bet: Caução
 sports_hot_event: Jogos populares
 sports_three_options: Aposta de 3 vias
 sports_standard: Padrão
-sports_winner_market: Linha vencedora
+sports_winner_market: Ganhador
 sports_handicap_market: Handicap
 sports_total_market: Handicap total
 sports_tab_live_events: Rolling Ball
 sports_tab_starting_soon: Prestes a começar
-sports_tab_lobby: Salão
+sports_tab_lobby: Lobby
 sports_tab_favourites: Favoritos
-sports_title_favourites: Coletar
+sports_title_favourites: Favoritos
 sports_no_active_bet: Sem apostas ativas
 sports_live_trend: Estatísticas em tempo real
 sports_live_tv: Transmissão ao vivo
@@ -988,13 +987,13 @@ chat_command_ignore_user: Incluir na lista negra
 chat_command_unignore_user: Remover da lista negra
 chat_send_msg_placeholder: Escreva a sua mensagem
 chat_new_window: Sala de bate-papo popup
-chat_close_side: Ocultar barra lateral
+chat_close_side: Minimizar Barra Lateral
 chat_send_tip_label: Enviar gorjeta
 chat_rule_full_title: Todas as regras podem ser encontradas em nosso
 chat_forum: Fórum
 chat_rule_find: '.'
 about_us: Sobre Nós
-sponsor_activity: Eventos patrocinados
+sponsor_activity: Patrocínios
 online_shopping: Loja
 notify_error_forbid_operation: Operação não permitida
 user_account: Conta
@@ -1513,10 +1512,8 @@ promotion_tutorial_summary_3: "(3) Embora B3 tenha aderido relativamente tarde e
   o seu subordinado C3 é muito poderoso, permitindo que B3 desfrute diretamente de um rácio de
   comissão mais elevado. Portanto, não importa quando B3 se junta, de quem é subordinado,
   independentemente do nível que ele está em vigor, a renda nunca será afetada, você não sofrerá mais com as perdas dos
-  subordinados de outras pessoas e seu desenvolvimento não será restringido.
- (4) Este é um modelo de representação extremamente justo e não deixará ninguém em desvantagem devido à participação tardia."
-promotion_tutorial_summary_4: "(4) Este é um modelo de agência absolutamente justo
-  e justo, e ninguém será pisoteado para sempre só porque ingressou tarde."
+  subordinados de outras pessoas e seu desenvolvimento não será restringido."
+promotion_tutorial_summary_4: "(4) Este é um modelo de representação extremamente justo e não deixará ninguém em desvantagem devido à participação tardia."
 pls_input_min_max_amount: Insira um valor entre {min} - {max}
 bet_no_close_tip: Seu boletim de apostas não pode conter apostas fechadas
 same_event_no_multi: Apostas múltiplas do mesmo evento não podem ser combinadas
@@ -1956,7 +1953,7 @@ must_verify_email_then: Para fazer {delta}, você precisa verificar seu e-mail
 open: Abrir
 additional_time: Tempo adicional
 no_support_email: Domínio de e-mail não suportado
-email_add_char: Por favor, inclua um "{delta}" em seu endereço de e-mail
+email_add_char: Por favor, inclua um '{delta}' (ponto) em seu endereço de e-mail
 email_no_equal_password: Seu endereço de e-mail e senha não podem ser iguais
 pls_input_email: Por favor insira um endereço de e-mail válido
 name_3_char: Seu username deve conter pelo menos 3 caracteres
@@ -2360,7 +2357,7 @@ plinko_hotkey4: 'Valor da aposta ímpar'
 plinko_hotkeyInfo: 'Assim que a tecla de atalho estiver ativada, ela afetará todos os jogos até que seja desativada. Embora alguns jogos tenham as mesmas combinações de teclas, é recomendável confirmar as interações de teclas bloqueadas de diferentes jogos antes de usá-los.'
 plinko_hotkeyUse: 'Habilitar teclas de atalho'
 plinko_statistics: 'Estatísticas em tempo real'
-plinko_type1: ""
+plinko_type1: "Todas"
 plinko_type2: Aposta
 plinko_type3: Competição
 plinko_type4: Ocultar
@@ -2376,7 +2373,7 @@ commission_draw_success: 'Retirada de comissão bem-sucedida'
 receive_bonus_amount: 'Valor a receber'
 integral: 'Nível de classificação'
 reg_success_title: Sucesso
-reg_day: DD
+reg_day: Dia
 login_ip_title: IP
 gameble_aware: 'Aposta com responsabilidade'
 transfer_to_wallet: 'Transferir para carteira'
@@ -2388,7 +2385,7 @@ this_month: 本月
 this_quarter: 本季度
 sports_tab_starting_soon2: Prestes a começar
 recent_game_record2: Recente
-keep_integral: 保级积分
+keep_integral: Pontos de rebaixamento
 min_deposit_amount: 最低存入金额
 annual_interest_rate: 年利率
 vault_des_1: 'The Meibo Vault Explained: How to Use Our Online Vault to Store Crypto'
@@ -2468,13 +2465,13 @@ vault_des_35: 'Please remember to always gamble responsibly. Learn more tips whe
 success_close_double_check: 关闭双重验证密码成功
 close_verification: 关闭双重验证
 vip_sports_tip_title: 体育场馆的积分是下列列表的{rate}倍
-vip_sports_tip_content: (例：1USDT=1会员积分，您在体育投注1USDT将获得{rate}会员积分）
+vip_sports_tip_content: '(Exemplo: 1 USDT = 1 ponto de associação. Ao fazer uma aposta esportiva de 1 USDT, você receberá {rate} pontos de associação)'
 money_exchange: 兑换货币
 exchange: 兑换
 pay_with: 以 {currency} 支付
 rate: 汇率
 
-birthday_bonus: 生日奖金
+birthday_bonus: Bônus de aniversário
 collection_instructions: 领取说明：本活动奖金均是以USDT发放；您可以自行选择领取的货币，货币间汇率采用市场实时汇率。
 activity_bonus: 活动奖金
 success_received: 成功领取{label} {amount} {renderSvg}

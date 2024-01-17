@@ -442,7 +442,7 @@ reply_from: Trả lời từ
 reply_to_conversation: Nhập câu trả lời
 reply_to_name: trả lời {name}
 scan_qr: Quét mã QR bằng điện thoại di động của bạn
-search: tìm kiếm
+search: Tìm
 search_browse_empty_state_text: Xin lỗi, chúng tôi không thể tìm thấy bất kỳ kết
   quả tương ứng. Hãy thử viết lại cụm từ tìm kiếm của bạn.
 search_for_answers: tìm kiếm đáp án
@@ -628,12 +628,12 @@ time_future_1h: 1 giờ
 time_future_2h: 2 giờ
 time_future_30m: 30 phút
 time_future_3h: 3 giờ
-time_future_day_0: Thứ hai
+time_future_day_0: Thứ Hai
 time_future_day_1: Thứ Ba
-time_future_day_2: 'Thứ tư '
-time_future_day_3: Thứ năm
-time_future_day_4: Thứ sáu
-time_future_day_5: 'Thứ bảy '
+time_future_day_2: 'Thứ Tư '
+time_future_day_3: Thứ Năm
+time_future_day_4: Thứ Sáu
+time_future_day_5: 'Thứ Bảy '
 time_future_day_6: Chủ nhật
 time_future_later_today: Tối hôm nay
 time_future_next_week: Tuần sau
@@ -785,7 +785,7 @@ page_prev: Trước
 page_next: Tiếp
 jump_to: Chuyển tới
 currency_byte_coin: Tiền điện tử
-currency_law_coin: Local Currency
+currency_law_coin: Nội tệ
 menu_title_promotion_tutorial: Hướng dẫn khuyến mãi
 menu_title_my_promotion: Sự quảng cáo của tôi
 menu_title_my_commission: Hoa hồng của tôi
@@ -908,7 +908,7 @@ sports_total_market: Kèo tổng điểm
 sports_tab_live_events: Sự Kiện Trực Tuyến
 sports_tab_starting_soon: Sắp Bắt Đầu
 sports_tab_lobby: Sảnh
-sports_tab_favourites: Yêu thích
+sports_tab_favourites: Yêu Thích
 sports_title_favourites: Sưu tầm
 sports_no_active_bet: Chưa có cược nào đang hoạt động
 sports_live_tv: Phát trực tiếp
@@ -1761,12 +1761,12 @@ upgraded: Đã thăng cấp
 game_water_experience: Kinh nghiệm
 in_play: chơi
 week_0: Chủ nhật
-week_1: Thứ hai
+week_1: Thứ Hai
 week_2: Thứ Ba
-week_3: Thứ tư
-week_4: Thứ năm
-week_5: Thứ sáu
-week_6: Thứ bảy
+week_3: Thứ Tư
+week_4: Thứ Năm
+week_5: Thứ Sáu
+week_6: Thứ Bảy
 double_check_code: Mã Hai Yếu Tố
 official_number: Định dạng số Tiền Pháp Định
 official_num_tip: 'Cảnh báo: Trong chế độ xem tiền tệ fiat {currencyName}, định dạng
@@ -2305,7 +2305,7 @@ plinko_autobetalert2: 'Đặt cược tự động hoàn tất'
 plinko_betamountalert: 'Đặt cược của bạn không thể lớn hơn số dư của bạn!'
 commission_draw_success: 'Rút tiền hoa hồng thành công'
 receive_bonus_amount: 'Số tiền nhận được'
-integral: 'Tích điểm'
+integral: ' Tích điểm'
 reg_success_title: 'Thành công'
 reg_day: DD
 login_ip_title: 'Địa chỉ IP'
@@ -2319,7 +2319,7 @@ this_month: 本月
 this_quarter: 本季度
 sports_tab_starting_soon2: Bắt Đầu
 recent_game_record2: Gần đây
-keep_integral: 保级积分
+keep_integral: Điểm xuống hạng
 min_deposit_amount: 最低存入金额
 annual_interest_rate: 年利率
 vault_des_1: 'The Meibo Vault Explained: How to Use Our Online Vault to Store Crypto'
@@ -2399,7 +2399,7 @@ vault_des_35: 'Please remember to always gamble responsibly. Learn more tips whe
 success_close_double_check: 关闭双重验证密码成功
 close_verification: 关闭双重验证
 vip_sports_tip_title: 体育场馆的积分是下列列表的{rate}倍
-vip_sports_tip_content: (例：1USDT=1会员积分，您在体育投注1USDT将获得{rate}会员积分）
+vip_sports_tip_content: '(Ví dụ: 1USDT=1 điểm thành viên, bạn sẽ nhận được 2 điểm thành viên khi đặt cược 1 USDT vào thể thao)'
 money_exchange: 兑换货币
 exchange: 兑换
 pay_with: 以 {currency} 支付

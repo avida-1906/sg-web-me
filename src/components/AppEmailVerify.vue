@@ -163,7 +163,7 @@ onMounted(() => {
             {{ t('email_address') }}
           </div>
           <div>
-            {{ t('must_verify_email_then', { delta: tipText }) }}{{ t('period') }}
+            {{ t('must_verify_email_then', { delta: `${tipText}`.toLowerCase() }) }}{{ t('period') }}
           </div>
         </template>
         <BaseLabel :label="t('email_address')" must-small>
