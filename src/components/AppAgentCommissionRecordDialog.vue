@@ -46,7 +46,7 @@ const columns = reactive<Column[]>([
     align: 'center',
   },
   {
-    title: t('label_draw_time'),
+    title: t('time'),
     dataIndex: 'apply_at',
     slot: 'apply_at',
     align: 'center',
@@ -111,15 +111,30 @@ await application.allSettled(
       :skeleton-row="4"
     >
       <template #apply_at="{ record }">
-        <div>{{ timeToDateFormat2(record.apply_at) }}</div>
-        <div>{{ timeToCustomizeFormat(record.apply_at, 'HH:mm:ss') }}</div>
+        {{ `${timeToDateFormat(record.apply_at)} ${timeToCustomizeFormat(
+          record.apply_at, 'HH:mm:ss')}` }}
+        <!-- <div>{{ timeToDateFormat2(record.apply_at) }}</div>
+        <div>{{ timeToCustomizeFormat(record.apply_at, 'HH:mm:ss') }}</div> -->
       </template>
+
       <template #amount="{ record }">
         <div class="to-right">
           <AppAmount
             :amount="record.amount"
             :currency-type="getCurrencyConfigByCode(record.currency_id)?.name"
           />
+        </div>
+      </template>
+      <template #bill_no="{ record }">
+        <div class="center" style="gap: 4px">
+          <span>{{ record.bill_no }}</span>
+          <AppTooltip :text="t('copy_addr_suc')" icon-name="uni-doc" :triggers="['click']">
+            <template #content>
+              <BaseButton size="none" type="text" @click="application.copy(record.bill_no)">
+                <BaseIcon name="uni-doc" />
+              </BaseButton>
+            </template>
+          </AppTooltip>
         </div>
       </template>
     </BaseTable>

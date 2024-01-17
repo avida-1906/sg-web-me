@@ -31,7 +31,7 @@ const { sortMap, setSortMap } = useTableSort()
 const columns: Column[] = [
   {
     title: t('join_time'),
-    dataIndex: 'created_at',
+    dataIndex: 'reg_time',
     align: 'center',
     slot: 'time',
     skeWidth: '100px',
@@ -114,8 +114,8 @@ onMounted(() => {
       @sort="setSortMap"
     >
       <template #time="{ record }">
-        {{ `${timeToDateFormat(record.created_at)} ${timeToCustomizeFormat(
-          record.created_at, 'HH:mm:ss')}` }}
+        {{ `${timeToDateFormat(record.reg_time)} ${timeToCustomizeFormat(
+          record.reg_time, 'HH:mm:ss')}` }}
       </template>
       <template #username="{ record }">
         <AppReportUserName :username="record.username" :level="`${record.vip}`" />

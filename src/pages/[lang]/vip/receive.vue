@@ -75,10 +75,11 @@ function getCurrencyName(id: string | number): EnumCurrencyKey {
   return renderBalanceList.value.filter(c => +c.cur === +id)[0].type
 }
 function getCashType(cashType: string) {
-  const temp
-    = Object.entries(PromoTransactionType)
-      .filter(([k, v]) => +k > 0 && +k === +cashType)[0]
-  return temp ? t(`transaction_${temp[1]}`) : '-'
+  return typeOptions.find(item => item.value === cashType.toString())?.label ?? '-'
+  // const temp
+  //   = Object.entries(PromoTransactionType)
+  //     .filter(([k, v]) => +k > 0 && +k === +cashType)[0]
+  // return temp ? t(`transaction_${temp[1]}`) : '-'
 }
 function onPrevious() {
   prev()

@@ -187,7 +187,7 @@ function openLink(link: string) {
       <div class="item-content grid-wrap" :class="{ 'is-less-than-sm': isMobile }">
         <div v-for="(item, index) in commission" :key="index">
           <span>{{ item.label }} </span>
-          <div class="yellow">
+          <div>
             <BaseSkeleton v-if="loadMyData" height="14px" animated="ani-opacity" />
             <AppAmount v-else :amount="item.value" currency-type="USDT" />
           </div>
@@ -369,9 +369,6 @@ function openLink(link: string) {
       border-radius: 8px;
       gap: 8px;
     }
-  }
-  .yellow{
-    color: var(--tg-text-warn);
   }
 }
 .is-mobile{

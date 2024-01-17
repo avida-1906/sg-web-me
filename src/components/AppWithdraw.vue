@@ -218,7 +218,7 @@ await application.allSettled(
           <div class="top">
             <span class="label">{{ t('amount') }}
               <span style="color: var(--tg-text-error);">*</span></span>
-            <span class="us">US${{ getUsRate }}</span>
+            <span class="us">US${{ application.numberToLocaleString(Number(getUsRate)) }}</span>
           </div>
           <BaseInput
             ref="amountRef"
