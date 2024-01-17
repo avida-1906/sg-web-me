@@ -13,6 +13,15 @@ if [ ! -f "$LANG_FILE" ]; then
     exit 1
 fi
 
+# 删除 lang.yml 文件中的空行
+sed -i '' '/^$/d' "${LANG_FILE}"
+
+# 判断文件是不是空的
+if [ ! -s "$LANG_FILE" ]; then
+    echo "Error: ${LANG_FILE} is empty."
+    exit 1
+fi
+
 # 遍历 locales 目录下的所有 .yml 文件
 for file in ${LOCALES_DIR}/*.yml; do
     if [ -f "$file" ]; then
