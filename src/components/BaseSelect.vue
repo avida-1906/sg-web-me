@@ -190,7 +190,7 @@ function onPopperOpen() {
   --tg-base-select-style-font-size: var(--tg-font-size-default);
   --tg-base-select-popper-option-active-color: var(--tg-popper-hover-color-default);
   --tg-base-select-popper-active-color: var(--tg-text-blue);
-  --tg-base-select-popopen-bg-color: transparent;
+  // --tg-base-select-popopen-bg-color: transparent;
   --tg-base-select-popper-bg-color:var(--tg-secondary-dark);
   --tg-base-select-popcontent-lineheight: 1.28572;
   --tg-base-select-popper-font-weight: var(--tg-font-weight-semibold);
@@ -232,9 +232,9 @@ function onPopperOpen() {
       overflow:hidden ;
     }
   }
-  &.pop-open {
-    background-color: var(--tg-base-select-popopen-bg-color);
-  }
+  // &.pop-open {
+  //   background-color: var(--tg-base-select-popopen-bg-color);
+  // }
   &.plain {
     background-color: transparent;
     &:hover {

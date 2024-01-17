@@ -133,7 +133,8 @@ async function handleWithdraw() {
       amount: amount.value,
       pay_password: paypwd.value,
       wallet_id: address.value,
-      auth_type: passwordRef.value.authType,
+      auth_type: Number(passwordRef.value.authType),
+      auth_code: paypwd.value,
     })
   }
 }

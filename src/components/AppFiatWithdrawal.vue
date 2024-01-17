@@ -156,7 +156,8 @@ async function withDrawSubmit() {
       amount: amount.value,
       pay_password: payPassword.value,
       bankcard_id: bankcardId.value,
-      auth_type: passwordRef.value.authType,
+      auth_type: Number(passwordRef.value.authType),
+      auth_code: payPassword.value,
     })
   }
 }

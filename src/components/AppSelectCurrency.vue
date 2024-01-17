@@ -169,7 +169,6 @@ onMounted(() => {
         v-model="currentNetwork"
         :options="curContractList"
         popper
-        popper-clazz="select-currency"
       />
     </div>
   </div>
@@ -183,9 +182,9 @@ onMounted(() => {
   --tg-app-dropdown-width: auto;
   --tg-app-select-currency-bg: var(--tg-secondary-dark);
 }
-.select-currency{
+/* .select-currency{
   --tg-base-select-popper-active-color: none;
-}
+} */
 </style>
 
 <style lang="scss" scoped>

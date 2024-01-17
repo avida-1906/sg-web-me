@@ -26,6 +26,11 @@ const {
   run: runWithdrawBalance,
   loading: loadingWithdrawBalance,
 } = useRequest(ApiFinanceWithdrawBalance)
+// 获取安全验证配置
+const {
+  data: authConfig,
+  runAsync: runAsyncMemberAuthConfig,
+} = useRequest(ApiMemberAuthConfig)
 
 const currentNetwork = ref('')
 const contentRef = ref()
@@ -89,6 +94,7 @@ await application.allSettled(
   [
     runAsyncDepositCurrency(),
     runAsyncWithdrawCurrency(),
+    runAsyncMemberAuthConfig(),
   ],
 )
 </script>
@@ -172,7 +178,7 @@ await application.allSettled(
   </div>
   <div
     v-if="(isWithdraw || isDeposit || isExchange)
-      && userInfo && userInfo.google_verify !== 2 && isEmailVerify"
+      && authConfig?.is_pay_password !== '1' && isEmailVerify"
     class="safe-bottom"
   >
     <div>
