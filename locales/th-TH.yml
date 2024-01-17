@@ -1119,7 +1119,7 @@ select_amount: โปรดเลือกจำนวนเงิน
 input_amount: โปรดกรอกจำนวนเงิน
 min_amount_is: จำนวนเงินขั้นต่ำคือ
 max_amount_is: จำนวนเงินสูงสุดคือ
-deposit_name: ชื่อนามสกุลผู้ฝาก
+deposit_name: ชื่อและนามสกุลผู้ฝาก
 deposit_name_tip: 'เพื่อให้แน่ใจว่าได้รับเงินแล้ว  โปรดกรอกชื่อผู้ฝากที่ถูกต้อง'
 deposit_amount: จำนวนการเติมเงิน
 confirm_pay: ยืนยันชำระ
@@ -1573,7 +1573,7 @@ account_type: ประเภทบัญชี
 saving_bank: ธนาครผู้รับ
 order_num: รหัสสั่งซื้อ
 copy_addr_suc: คัดลอกสำเร็จ！
-pls_enter_savor_name: กรุณากรอกชื่อนามสกุลผู้ฝาก
+pls_enter_savor_name: กรุณากรอกชื่อและนามสกุลผู้ฝาก
 savor_name: ชื่อนามสกุลผู้รับ
 open_addr: เว็บไซต์เปิดบัญชี
 transfer_amount: ยอดเงินโอน
@@ -1961,3 +1961,5 @@ want_more_del_first: 如需绑定更多，请先删除不常用
 withdraw_account: 收款账号
 withdraw_address: 收款地址
 wrong_format: 格式错误
+vip_integral: 'VIP คะแนนสะสม'
+sports_events2: รายการกีฬา

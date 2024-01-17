@@ -773,7 +773,7 @@ search_game: Procurar seu jogo
 search_events: Procure seu evento
 casino_origin_game: Originais do Meibo
 casino_games_recommend: Recomendações populares
-casino_provider: Provedores
+casino_provider: Provedore
 casino_sort_popular: Popular
 casino_sort_featured: Destaques
 casino_filter_label: Filtrar por
@@ -843,7 +843,7 @@ menu_title_settings_api: API
 menu_title_settings_verify: Verificação
 menu_title_settings_offers: Desconto
 menu_title_settings_deposits: Depósitos
-menu_title_settings_withdrawals: Retiradas
+menu_title_settings_withdrawals: Retirada
 menu_title_settings_bets: Aposta
 menu_title_settings_archive: Arquivos de apostas
 menu_title_settings_other: Outro
@@ -2462,7 +2462,7 @@ vault_des_34: "New to Meibo.com and want to learn more before placing your bets?
 vault_des_35: 'Please remember to always gamble responsibly. Learn more tips when betting online with our responsible gambling guide . You can use our budget calculator to stay on top of your spending habits and read up on our guide to knowing how much to gamble with.'
 success_close_double_check: 关闭双重验证密码成功
 close_verification: 关闭双重验证
-vip_sports_tip_title: 体育场馆的积分是下列列表的{rate}倍
+vip_sports_tip_title: A pontuação dos estádios esportivos equivalem a {rate} vezes a seguinte lista
 vip_sports_tip_content: '(Exemplo: 1 USDT = 1 ponto de associação. Ao fazer uma aposta esportiva de 1 USDT, você receberá {rate} pontos de associação)'
 money_exchange: 兑换货币
 exchange: 兑换
@@ -2478,3 +2478,5 @@ want_more_del_first: 如需绑定更多，请先删除不常用
 withdraw_account: 收款账号
 withdraw_address: 收款地址
 wrong_format: 格式错误
+vip_integral: 'VIP Rank'
+sports_events2: Eventos esportivos

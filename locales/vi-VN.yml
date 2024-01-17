@@ -1,4 +1,4 @@
-login: Đăng Nhập
+login: 'Đăng Nhập'
 reg: Đăng ký
 register: Tạo Tài khoản
 continue: Tiếp tục
@@ -2305,7 +2305,7 @@ plinko_autobetalert2: 'Đặt cược tự động hoàn tất'
 plinko_betamountalert: 'Đặt cược của bạn không thể lớn hơn số dư của bạn!'
 commission_draw_success: 'Rút tiền hoa hồng thành công'
 receive_bonus_amount: 'Số tiền nhận được'
-integral: ' Tích điểm'
+integral: 'Tích điểm'
 reg_success_title: 'Thành công'
 reg_day: DD
 login_ip_title: 'Địa chỉ IP'
@@ -2398,7 +2398,7 @@ vault_des_34: "New to Meibo.com and want to learn more before placing your bets?
 vault_des_35: 'Please remember to always gamble responsibly. Learn more tips when betting online with our responsible gambling guide . You can use our budget calculator to stay on top of your spending habits and read up on our guide to knowing how much to gamble with.'
 success_close_double_check: 关闭双重验证密码成功
 close_verification: 关闭双重验证
-vip_sports_tip_title: 体育场馆的积分是下列列表的{rate}倍
+vip_sports_tip_title: Điểm dành cho sân vận động thể thao gấp {rate} lần số điểm được liệt kê bên dưới
 vip_sports_tip_content: '(Ví dụ: 1USDT=1 điểm thành viên, bạn sẽ nhận được 2 điểm thành viên khi đặt cược 1 USDT vào thể thao)'
 money_exchange: 兑换货币
 exchange: 兑换
@@ -2414,3 +2414,5 @@ want_more_del_first: 如需绑定更多，请先删除不常用
 withdraw_account: 收款账号
 withdraw_address: 收款地址
 wrong_format: 格式错误
+vip_integral: 'VIP Tích điểm'
+sports_events2: Tất Cả

@@ -2206,6 +2206,7 @@ export function ApiMemberVipRebateConfig(params: {
   cur: string
 }) {
   return httpClient.get<{
+    'vip': string
     'id': string
     'currency_id': CurrencyCode
     'en_name': string

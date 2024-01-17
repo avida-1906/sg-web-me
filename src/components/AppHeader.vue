@@ -292,7 +292,6 @@ function handleClickMenuItem(item: { name: string; path?: string }) {
     align-items: center;
     color: var(--tg-text-white);
     text-align: center;
-    font-family: PingFang SC;
     font-size: var(--tg-font-size-default);
     font-style: normal;
     font-weight: 600;
