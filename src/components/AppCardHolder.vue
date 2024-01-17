@@ -13,9 +13,10 @@ type WalletCurrencyList = {
 const { t } = useI18n()
 const closeDialog = inject('closeDialog', () => { })
 const { openDeleteConfirm } = useDeleteConfirmDialog()
-const { currentGlobalCurrency } = storeToRefs(useAppStore())
+const { currentGlobalCurrency, userInfo } = storeToRefs(useAppStore())
 const { renderCurrencyList, getVirContractName } = useCurrencyData()
 const { openWalletDialog } = useWalletDialog({ activeTab: 'cardHolder' })
+const { push } = useLocalRouter()
 
 const cardList: Ref<WalletCurrencyList[] | null> = ref(null)
 const curType = ref(currentGlobalCurrency.value)
@@ -45,31 +46,48 @@ const bankcardList = computed(() => {
   return []
 })
 
-const toAddBankcards = function (item: WalletCurrencyList) {
+function toAddBankcards(item: WalletCurrencyList) {
   let isFirst = true
   let openName = ''
   if (item.bankcard?.length) {
     isFirst = false
     openName = item.bankcard[0].open_name
   }
-  const currentType = item.cur === '702'
   const {
     openAddBankcardsDialog,
   } = useAddBankcardsDialog({
-    title: currentType ? t('bind_pix_account') : t('bind_bank_card'),
-    icon: currentType ? 'fiat-pix-title' : 'fiat-bank',
+    title: t('bind_bank_card'),
+    icon: 'fiat-bank',
     openName,
     isFirst,
     activeCurrency: item,
     /** 702 货币id */
-    currentType: currentType ? '2' : '1',
+    currentType: '1',
     callback: openWalletDialog,
   })
   closeDialog()
   nextTick(() => openAddBankcardsDialog())
 }
+function toAddPix() {
+  const isFirst = true
+  const openName = ''
+  // if (item.bankcard?.length) {
+  //   isFirst = false
+  //   openName = item.bankcard[0].open_name
+  // }
+  const {
+    openAddPixDialog,
+  } = useDialogAddPix({
+    title: t('bind_pix_account'),
+    icon: 'fiat-pix-title',
+    openName,
+    isFirst,
+  })
+  closeDialog()
+  nextTick(() => openAddPixDialog())
+}
 
-const toAddVirAddress = function () {
+function toAddVirAddress() {
   const {
     openVirAddressDialog,
   } = useVirAddressDialog({
@@ -97,8 +115,17 @@ function toDeleteBankcard(item: BankCard) {
   })
 }
 function bind() {
+  if (userInfo.value?.pay_password !== '1') {
+    closeDialog()
+    push('/settings/security-safe-pwd')
+    return
+  }
+
   if (isVirtualCurrency.value)
     toAddVirAddress()
+
+  else if (curCode.value === '702')
+    toAddPix()
 }
 
 await application.allSettled([runAsyncWalletBankcardList()])

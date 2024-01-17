@@ -9,6 +9,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     AppAccordionMenu: typeof import('./components/AppAccordionMenu.vue')['default']
     AppAddBankcards: typeof import('./components/AppAddBankcards.vue')['default']
+    AppAddPix: typeof import('./components/AppAddPix.vue')['default']
     AppAffiliateContent: typeof import('./components/AppAffiliateContent.vue')['default']
     AppAgentCommissionDrawDialog: typeof import('./components/AppAgentCommissionDrawDialog.vue')['default']
     AppAgentCommissionRecordDialog: typeof import('./components/AppAgentCommissionRecordDialog.vue')['default']
@@ -96,6 +97,7 @@ declare module 'vue' {
     AppNoticeNotify: typeof import('./components/AppNoticeNotify.vue')['default']
     AppOutrightPreview: typeof import('./components/AppOutrightPreview.vue')['default']
     AppPageMyBets: typeof import('./components/AppPageMyBets.vue')['default']
+    AppPasswordInput: typeof import('./components/AppPasswordInput.vue')['default']
     AppPasswordVerify: typeof import('./components/AppPasswordVerify.vue')['default']
     AppPayPwdAndGoogleCode: typeof import('./components/AppPayPwdAndGoogleCode.vue')['default']
     AppPayPwdDialog: typeof import('./components/AppPayPwdDialog.vue')['default']
