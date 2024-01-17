@@ -2305,7 +2305,7 @@ plinko_autobetalert2: 'Đặt cược tự động hoàn tất'
 plinko_betamountalert: 'Đặt cược của bạn không thể lớn hơn số dư của bạn!'
 commission_draw_success: 'Rút tiền hoa hồng thành công'
 receive_bonus_amount: 'Số tiền nhận được'
-integral: ' Tích điểm'
+integral: 'Tích điểm'
 reg_success_title: 'Thành công'
 reg_day: DD
 login_ip_title: 'Địa chỉ IP'
@@ -2414,3 +2414,4 @@ want_more_del_first: 如需绑定更多，请先删除不常用
 withdraw_account: 收款账号
 withdraw_address: 收款地址
 wrong_format: 格式错误
+vip_integral: 'VIP Tích điểm'
