@@ -4,14 +4,6 @@ const { startTime, endTime } = getDaIntervalMap(new Date().getTime(), 30)
 const { t } = useI18n()
 const { isLogin } = storeToRefs(useAppStore())
 const router = useLocalRouter()
-// const { list: scaleList } = useScaleData()
-// const { selected: platformId, list: platformIdList } = useSelect([
-//   {
-//     label: t('finance_other_tab_all'),
-//     value: '',
-//   },
-//   ...scaleList,
-// ])
 const platformId = ref('')
 const platformIdList = ref([
   {
@@ -77,9 +69,8 @@ const columns: Column[] = [
   },
   {
     title: t('label_contribute_count'),
-    dataIndex: 'direct_user_count', // sub_user_count+ direct_user_count
+    dataIndex: 'sub_user_count',
     align: 'center',
-    slot: 'direct_user_count',
   },
   {
     title: t('finance_funds_transfer_sort_commission'),
@@ -141,9 +132,6 @@ onMounted(() => {
       <template #time="{ record }">
         {{ `${timeToDateFormat(record.send_time)} ${timeToCustomizeFormat(
           record.send_time, 'HH:mm:ss')}` }}
-      </template>
-      <template #direct_user_count="{ record }">
-        {{ record.sub_user_count }}
       </template>
       <template #model_name="{ record }">
         <span>{{ platformIdList.find(
