@@ -485,6 +485,7 @@ declare global {
   const useDialogAgentGrade: typeof import('./composables/useDialogAgentGrade')['useDialogAgentGrade']
   const useDialogAuthTerms: typeof import('./composables/useDialogAuthTerms')['useDialogAuthTerms']
   const useDialogBetSlip: typeof import('./composables/useDialogBetSlip')['useDialogBetSlip']
+  const useDialogBindBank: typeof import('./composables/useDialogBindBank')['useDialogBindBank']
   const useDialogCommissionWallet: typeof import('./composables/useDialogCommissionWallet')['useDialogCommissionWallet']
   const useDialogDepositDetail: typeof import('./composables/useDialogDepositDetail')['useDialogDepositDetail']
   const useDialogList: typeof import('./composables/useDialogList')['useDialogList']
@@ -1172,6 +1173,7 @@ declare module 'vue' {
     readonly useDialogAgentGrade: UnwrapRef<typeof import('./composables/useDialogAgentGrade')['useDialogAgentGrade']>
     readonly useDialogAuthTerms: UnwrapRef<typeof import('./composables/useDialogAuthTerms')['useDialogAuthTerms']>
     readonly useDialogBetSlip: UnwrapRef<typeof import('./composables/useDialogBetSlip')['useDialogBetSlip']>
+    readonly useDialogBindBank: UnwrapRef<typeof import('./composables/useDialogBindBank')['useDialogBindBank']>
     readonly useDialogCommissionWallet: UnwrapRef<typeof import('./composables/useDialogCommissionWallet')['useDialogCommissionWallet']>
     readonly useDialogDepositDetail: UnwrapRef<typeof import('./composables/useDialogDepositDetail')['useDialogDepositDetail']>
     readonly useDialogList: UnwrapRef<typeof import('./composables/useDialogList')['useDialogList']>
@@ -1853,6 +1855,7 @@ declare module '@vue/runtime-core' {
     readonly useDialogAgentGrade: UnwrapRef<typeof import('./composables/useDialogAgentGrade')['useDialogAgentGrade']>
     readonly useDialogAuthTerms: UnwrapRef<typeof import('./composables/useDialogAuthTerms')['useDialogAuthTerms']>
     readonly useDialogBetSlip: UnwrapRef<typeof import('./composables/useDialogBetSlip')['useDialogBetSlip']>
+    readonly useDialogBindBank: UnwrapRef<typeof import('./composables/useDialogBindBank')['useDialogBindBank']>
     readonly useDialogCommissionWallet: UnwrapRef<typeof import('./composables/useDialogCommissionWallet')['useDialogCommissionWallet']>
     readonly useDialogDepositDetail: UnwrapRef<typeof import('./composables/useDialogDepositDetail')['useDialogDepositDetail']>
     readonly useDialogList: UnwrapRef<typeof import('./composables/useDialogList')['useDialogList']>

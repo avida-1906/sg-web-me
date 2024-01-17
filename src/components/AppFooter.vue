@@ -5,6 +5,7 @@ import type { EnumSportsOddsType } from '~/stores/sports'
 const { t } = useI18n()
 
 const router = useLocalRouter()
+const { openService } = useService()
 const {
   currentGlobalCurrency,
   exchangeRateData,
@@ -108,7 +109,7 @@ const menuData = computed(() => [
       { title: t('affiliate') },
       { title: t('responsible_casino') },
       // { title: t('gameble_aware'), icon: true },
-      { title: t('online_support') },
+      { title: t('online_support'), onClick: () => openService() },
       { title: t('help_center'), icon: true },
     ],
   },
@@ -139,9 +140,11 @@ function selectChange(v: EnumLanguageKeys) {
 function selectOddsChange(v: EnumSportsOddsType) {
   sportStore.setSportsOddsType(v)
 }
-function pathTo(tmp: { path?: string; title: string; icon?: boolean }) {
+function pathTo(tmp: { path?: string; title: string; icon?: boolean; onClick?: () => void }) {
   if (tmp.path)
     router.push(replaceSportsPlatId(tmp.path))
+  else if (tmp.onClick)
+    tmp.onClick()
 }
 </script>
 

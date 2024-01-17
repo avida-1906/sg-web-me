@@ -7,18 +7,18 @@ interface Props {
   maxWithdrawBalance?: string
 }
 const props = withDefaults(defineProps<Props>(), {})
-const amountRef = ref()
 
+const amountRef = ref()
+const passwordRef = ref()
+const payPassword = ref('')
 const { t } = useI18n()
-const { isLessThanXs } = storeToRefs(useWindowStore())
+// const { isLessThanXs } = storeToRefs(useWindowStore())
 const { openNotify } = useNotify()
 const { exchangeRateData } = storeToRefs(useAppStore())
-
 /** '1' 银行卡， '2' pix 除了巴西其他国家都是银行卡 */
 const currentType = computed<'1' | '2'>(() =>
   props.activeCurrency.cur === '702' ? '2' : '1',
 )
-
 const {
   value: selectBank,
   errorMessage: selectBankError,
@@ -47,16 +47,16 @@ const {
     // return t('validate_deposit_amount_max')
   return ''
 })
-const {
-  value: payPassword,
-  errorMessage: payPasswordError,
-  validate: payPasswordValidate,
-  resetField: payPasswordReset,
-} = useField<string>('payPassword', (value) => {
-  if (!value)
-    return t('validate_msg_input_pay_pwd')
-  return ''
-})
+// const {
+//   value: payPassword,
+//   errorMessage: payPasswordError,
+//   validate: payPasswordValidate,
+//   resetField: payPasswordReset,
+// } = useField<string>('payPassword', (value) => {
+//   if (!value)
+//     return t('validate_msg_input_pay_pwd')
+//   return ''
+// })
 
 const {
   runAsync: runAsyncWithdrawMethodList,
@@ -86,10 +86,9 @@ const {
     })
     selectBankReset()
     amountReset()
-    payPasswordReset()
+    passwordRef.value.resetPassword()
   },
 })
-
 // const withdrawMethodData = computed(() => {
 //   if (withdrawMethodList.value) {
 //     currentWithdrawMethod.value = withdrawMethodList.value[0].id
@@ -148,8 +147,8 @@ async function withDrawSubmit() {
     amountRef.value.setTouchTrue()
   await selectBankValidate()
   await amountValidate()
-  await payPasswordValidate()
-  if (!selectBankError.value && !amountError.value && !payPasswordError.value) {
+  await passwordRef.value.validatePassword()
+  if (!selectBankError.value && !amountError.value && !passwordRef.value.errPassword) {
     runWithdraw({
       currency_id: Number(props.activeCurrency.cur),
       // method_id: currentWithdrawMethod.value,
@@ -157,6 +156,7 @@ async function withDrawSubmit() {
       amount: amount.value,
       pay_password: payPassword.value,
       bankcard_id: bankcardId.value,
+      auth_type: passwordRef.value.authType,
     })
   }
 }
@@ -170,7 +170,7 @@ watch(() => props.activeCurrency, (newValue) => {
   runAsyncWithdrawMethodList({ currency_id: newValue.cur })
   selectBankReset()
   amountReset()
-  payPasswordReset()
+  passwordRef.value?.resetPassword()
 })
 
 await application.allSettled(
@@ -210,44 +210,40 @@ await application.allSettled(
               v-model="selectBank"
               :options="bindBanks"
               :msg="selectBankError"
-              must theme popper border
-              popper-clazz="app-with"
+              must popper border
               :style="{
                 '--tg-base-select-popper-style-padding-y':
-                  'var(--tg-spacing-12)',
+                  'var(--tg-spacing-9)',
               }"
               @focus="selectBankError && selectBankReset()"
             >
               <template #label>
                 <span class="popper-label">
-                  <BaseIcon
+                  <!-- <BaseIcon
                     v-if="defaultBank"
                     :name="currentType === '1' ? 'fiat-bank' : 'fiat-pix-title'"
-                  />
+                  /> -->
                   {{ defaultBank }}
                 </span>
               </template>
               <template #option="{ data: { item, parentWidth } }">
-                <div
-                  class="scroll-x bank-options"
-                  :style="{ width: `${parentWidth + 24}px` }"
-                >
-                  <div class="option-row">
-                    <BaseIcon
+                <div :style="{ width: `${parentWidth}px` }">
+                  {{ `${item.label} ${item.value}` }}{{ }}
+                  <!-- <div class="option-row"> -->
+                  <!-- <BaseIcon
                       font-size="40px"
                       :name="currentType === '1'
                         ? 'fiat-bank' : 'fiat-pix-title'"
-                    />
-                    <div class="bank-info" :class="{ 'is-mobile': isLessThanXs }">
+                    /> -->
+                  <!-- <div class="bank-info" :class="{ 'is-mobile': isLessThanXs }">
                       <p>{{ item.label }}</p>
                       <p>{{ item.value }}</p>
-                    </div>
-                  </div>
+                    </div> -->
+                  <!-- </div> -->
                 </div>
               </template>
             </BaseSelect>
           </BaseLabel>
-          <!-- <BaseLabel :label="t('amount')" must> -->
           <div class="amount">
             <div class="top">
               <span class="label">{{ t('amount') }}
@@ -271,15 +267,16 @@ await application.allSettled(
               </template>
             </BaseInput>
           </div>
+          <AppPasswordInput ref="passwordRef" v-model="payPassword" />
           <!-- </BaseLabel> -->
-          <BaseLabel :label="t('menu_title_settings_update_safepwd')" must>
+          <!-- <BaseLabel :label="t('menu_title_settings_update_safepwd')" must>
             <BaseInput
               v-model="payPassword"
               :msg="payPasswordError"
               type="password"
               max="6"
             />
-          </BaseLabel>
+          </BaseLabel> -->
           <BaseButton bg-style="secondary" size="md" @click="withDrawSubmit">
             {{ t('menu_title_settings_withdrawals') }}
           </BaseButton>
@@ -293,14 +290,14 @@ await application.allSettled(
 </template>
 
 <style>
-.app-with.v-popper--theme-tg-popper-outer.v-popper--theme-dropdown .v-popper__arrow-inner,
+/* .app-with.v-popper--theme-tg-popper-outer.v-popper--theme-dropdown .v-popper__arrow-inner,
 .app-with.v-popper--theme-tg-popper-outer.v-popper--theme-dropdown .v-popper__arrow-outer,
 .app-with.v-popper--theme-tg-popper-outer-deep.v-popper--theme-dropdown
 .v-popper__arrow-inner,
 .app-with.v-popper--theme-tg-popper-outer-deep.v-popper--theme-dropdown
 .v-popper__arrow-outer {
   border-color: var(--tg-secondary-main);
-}
+} */
 </style>
 
 <style lang='scss' scoped>

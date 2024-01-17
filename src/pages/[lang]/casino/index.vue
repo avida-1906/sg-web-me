@@ -152,11 +152,16 @@ onMounted(() => {
     openRegisterDialog()
 })
 
+const { openBindBankDialog } = useDialogBindBank()
+
 await application.allSettled([runMemberNoticeAllList(), loadIcon()])
 </script>
 
 <template>
   <div class="layout-spacing">
+    <!-- <BaseButton @click="openBindBankDialog">
+      打开绑定银行卡
+    </BaseButton> -->
     <AppBanner type="casino" />
     <!-- <AppMarquee /> -->
     <div v-if="!isMobile" class="tg-mt-24">

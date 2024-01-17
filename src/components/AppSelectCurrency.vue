@@ -276,17 +276,15 @@ onMounted(() => {
     }
 
     .popper-content {
-        max-height: 20rem;
+        max-height: 300px;
         overflow-y: auto;
         color: var(--tg-popper-color-default);
         font-size: var(--tg-font-size-default);
         font-weight: 500;
         flex: 1;
-
         &::-webkit-scrollbar-thumb {
             background: var(--tg-secondary-light);
         }
-
         .content-row {
             display: flex;
             align-items: center;
