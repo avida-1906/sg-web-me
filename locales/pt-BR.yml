@@ -2491,3 +2491,9 @@ last_name : 姓氏
 country_pls: 请选择国家
 city_pls: 请填写城市
 select_pix_type_pls: 请选择PIX账号类型
+diff_game_diff_rate: 投注不同场馆将会获得不同的VIP积分累积，详情请查看下图。
+bet_currency: 投注币种
+sports_integral: 体育场馆积分
+casino_integral: 真人场馆积分
+slot_integral: 电子场馆积分
+fish_integral: 捕鱼场馆积分

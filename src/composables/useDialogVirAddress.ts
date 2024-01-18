@@ -1,4 +1,4 @@
-import AppVirAddressDialog from '~/components/AppVirAddressDialog.vue'
+import AppAddVirAddressDialog from '~/components/AppAddVirAddressDialog.vue'
 
 export function useVirAddressDialog(headMsg: { icon: string }) {
   const {
@@ -6,7 +6,7 @@ export function useVirAddressDialog(headMsg: { icon: string }) {
     closeDialog: closeVirAddressDialog,
   } = useDialog({
     icon: `coin-${headMsg.icon.toLocaleLowerCase()}-title`,
-    default: obj => h(AppVirAddressDialog, obj),
+    default: obj => h(AppAddVirAddressDialog, obj),
   })
 
   return {

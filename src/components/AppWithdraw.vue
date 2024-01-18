@@ -1,5 +1,4 @@
 <script setup lang='ts'>
-/* eslint-disable max-len */
 import type { CurrencyCode, CurrencyData } from '~/composables/useCurrencyData'
 
 interface Props {
@@ -44,17 +43,19 @@ const {
     // return t('validate_deposit_amount_max')
   return ''
 })
-const {
-  value: paypwd,
-  errorMessage: paypwdMsg,
-  validate: valiPaypwd,
-  resetField: payPasswordReset,
-} = useField<string>('paypwd', (value) => {
-  if (!value)
-    // return t('this_field_is_required')
-    return t('validate_msg_input_pay_pwd')
-  return ''
-})
+// const {
+//   value: paypwd,
+//   errorMessage: paypwdMsg,
+//   validate: valiPaypwd,
+//   resetField: payPasswordReset,
+// } = useField<string>('paypwd', (value) => {
+//   if (!value)
+//     // return t('this_field_is_required')
+//     return t('validate_msg_input_pay_pwd')
+//   return ''
+// })
+const paypwd = ref('')
+const passwordRef = ref()
 const {
   data: walletList,
   runAsync: runAsyncWalletList,
@@ -83,7 +84,7 @@ const {
     })
     defaultAddress.value?.is_default !== 1 && resetAddress()
     reset()
-    payPasswordReset()
+    passwordRef.value.resetPassword()
   },
 })
 
@@ -124,14 +125,16 @@ async function handleWithdraw() {
     amountRef.value.setTouchTrue()
   await valiAddress()
   await valiAmount()
-  await valiPaypwd()
-  if (!addressMsg.value && !amountMsg.value && !paypwdMsg.value) {
+  await passwordRef.value.validatePassword()
+  if (!addressMsg.value && !amountMsg.value && !passwordRef.value.errPassword) {
     runAsyncWithdrawCoin({
       currency_id: Number(props.activeCurrency.cur),
       contract_id: props.currentNetwork,
       amount: amount.value,
       pay_password: paypwd.value,
       wallet_id: address.value,
+      auth_type: Number(passwordRef.value.authType),
+      auth_code: paypwd.value,
     })
   }
 }
@@ -157,8 +160,7 @@ watch(() => props.currentNetwork, () => {
   if (props.currentNetwork) {
     runAsyncWithdrawMethodList({ currency_id: props.activeCurrency.cur })
     resetAddress()
-    // amountReset()
-    payPasswordReset()
+    passwordRef.value?.resetPassword()
     updateContract()
     reset()
   }
@@ -185,31 +187,29 @@ await application.allSettled(
             v-model="address"
             :options="addrOptions"
             :msg="addressMsg"
-            popper small theme border
+            small popper border
             popper-clazz="app-with"
-            style="--tg-base-select-popper-style-padding-y: var(--tg-spacing-12)"
+            style="--tg-base-select-popper-style-padding-y: var(--tg-spacing-9)"
             @focus="addressMsg && resetAddress()"
           >
             <template #label>
-              <span class="popper-label">
-                <AppCurrencyIcon
+              <div style="min-height: 18px;">
+                <!-- <AppCurrencyIcon
                   v-if="defaultAddress"
                   :currency-type="activeCurrency?.type"
-                />
+                /> -->
                 {{ defaultAddress?.address }}
-              </span>
+              </div>
             </template>
             <template #option="{ data: { item, parentWidth } }">
-              <div
-                class="scroll-x bank-options"
-                :style="{ width: `${parentWidth + 24}px` }"
-              >
-                <div class="option-row">
+              <div :style="{ width: `${parentWidth}px` }">
+                {{ item.label }}
+                <!-- <div class="option-row">
                   <AppCurrencyIcon :currency-type="activeCurrency?.type" />
                   <div class="bank-info">
                     <p>{{ item.label }}</p>
                   </div>
-                </div>
+                </div> -->
               </div>
             </template>
           </BaseSelect>
@@ -218,7 +218,7 @@ await application.allSettled(
           <div class="top">
             <span class="label">{{ t('amount') }}
               <span style="color: var(--tg-text-error);">*</span></span>
-            <span class="us">US${{ getUsRate }}</span>
+            <span class="us">US${{ application.numberToLocaleString(Number(getUsRate)) }}</span>
           </div>
           <BaseInput
             ref="amountRef"
@@ -237,9 +237,10 @@ await application.allSettled(
             </template>
           </BaseInput>
         </div>
-        <BaseLabel :label="t('menu_title_settings_update_safepwd')" must>
+        <!-- <BaseLabel :label="t('menu_title_settings_update_safepwd')" must>
           <BaseInput v-model="paypwd" :msg="paypwdMsg" type="password" max="6" />
-        </BaseLabel>
+        </BaseLabel> -->
+        <AppPasswordInput ref="passwordRef" v-model="paypwd" />
         <BaseButton bg-style="secondary" size="md" @click="handleWithdraw">
           {{ t('menu_title_settings_withdrawals') }}
         </BaseButton>
@@ -254,7 +255,7 @@ await application.allSettled(
           </div> -->
       </div>
       <!-- 虚拟币地址添加 -->
-      <AppVirAddressDialog
+      <AppAddVirAddressDialog
         v-else
         is-withdraw
         :currency-id="activeCurrency.cur"
@@ -271,12 +272,12 @@ await application.allSettled(
 </template>
 
 <style>
-.app-with.v-popper--theme-tg-popper-outer.v-popper--theme-dropdown .v-popper__arrow-inner,
+/* .app-with.v-popper--theme-tg-popper-outer.v-popper--theme-dropdown .v-popper__arrow-inner,
 .app-with.v-popper--theme-tg-popper-outer.v-popper--theme-dropdown .v-popper__arrow-outer,
 .app-with.v-popper--theme-tg-popper-outer-deep.v-popper--theme-dropdown .v-popper__arrow-inner,
 .app-with.v-popper--theme-tg-popper-outer-deep.v-popper--theme-dropdown .v-popper__arrow-outer {
   border-color: var(--tg-secondary-main);
-}
+} */
 </style>
 
 <style lang='scss' scoped>

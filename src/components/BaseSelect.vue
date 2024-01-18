@@ -22,6 +22,7 @@ interface Props {
   popperClazz?: string
   distance?: number
   popperMaxHeight?: string
+  showPlaceholder?: boolean
 }
 const props = withDefaults(defineProps<Props>(), {
   layout: 'vertical',
@@ -38,6 +39,8 @@ const {
 const parent = ref<HTMLElement | null>(null)
 const { width } = useElementSize(parent)
 const { isMobile } = storeToRefs(useWindowStore())
+
+const placeholder = props.modelValue
 
 const error = computed(() => !!props.msg)
 const selectedOption = computed(() =>
@@ -144,11 +147,18 @@ function onPopperOpen() {
       <div class="select-warp">
         <select
           :value="modelValue"
-          :class="{ disabled, small, error }"
+          :class="{
+            disabled,
+            small,
+            error,
+            'placeholder-select': modelValue === placeholder,
+          }"
           :disabled="disabled"
           @change="onChange"
         >
-          <option style="display: none;" disabled hidden value="" />
+          <option v-if="showPlaceholder" selected disabled :value="placeholder">
+            {{ placeholder }}
+          </option>
           <option
             v-for="o, i in options"
             :key="i"
@@ -185,7 +195,7 @@ function onPopperOpen() {
   --tg-base-select-style-font-size: var(--tg-font-size-default);
   --tg-base-select-popper-option-active-color: var(--tg-popper-hover-color-default);
   --tg-base-select-popper-active-color: var(--tg-text-blue);
-  --tg-base-select-popopen-bg-color: transparent;
+  // --tg-base-select-popopen-bg-color: transparent;
   --tg-base-select-popper-bg-color:var(--tg-secondary-dark);
   --tg-base-select-popcontent-lineheight: 1.28572;
   --tg-base-select-popper-font-weight: var(--tg-font-weight-semibold);
@@ -227,9 +237,9 @@ function onPopperOpen() {
       overflow:hidden ;
     }
   }
-  &.pop-open {
-    background-color: var(--tg-base-select-popopen-bg-color);
-  }
+  // &.pop-open {
+  //   background-color: var(--tg-base-select-popopen-bg-color);
+  // }
   &.plain {
     background-color: transparent;
     &:hover {
@@ -385,6 +395,10 @@ function onPopperOpen() {
     }
     &.disabled {
       cursor: not-allowed;
+    }
+    &.placeholder-select{
+      color: var(--tg-text-placeholder) !important;
+      font-weight: var(--tg-font-weight-semibold);
     }
   }
   .icon {

@@ -149,6 +149,7 @@ declare global {
   const EffectScope: typeof import('vue')['EffectScope']
   const EnumCasinoSortType: typeof import('./utils/enums')['EnumCasinoSortType']
   const EnumCurrency: typeof import('./utils/enums')['EnumCurrency']
+  const EnumGlobalGameType: typeof import('./utils/enums')['EnumGlobalGameType']
   const EnumLanguage: typeof import('./utils/enums')['EnumLanguage']
   const EnumOddsChange: typeof import('./utils/enums')['EnumOddsChange']
   const EnumRightSidebarContent: typeof import('./composables/useRightSidebar')['EnumRightSidebarContent']
@@ -449,6 +450,7 @@ declare global {
   const useBattery: typeof import('@vueuse/core')['useBattery']
   const useBluetooth: typeof import('@vueuse/core')['useBluetooth']
   const useBoolean: typeof import('./composables/useBoolean')['default']
+  const useBrandBaseDetail: typeof import('./composables/useBrandBaseDetail')['useBrandBaseDetail']
   const useBreakpoints: typeof import('@vueuse/core')['useBreakpoints']
   const useBroadcastChannel: typeof import('@vueuse/core')['useBroadcastChannel']
   const useBrowserLocation: typeof import('@vueuse/core')['useBrowserLocation']
@@ -836,10 +838,10 @@ declare module 'vue' {
     readonly CART_TO_SPORTS_BUS: UnwrapRef<typeof import('./utils/event-bus')['CART_TO_SPORTS_BUS']>
     readonly CASINO_LOBBY_RESET: UnwrapRef<typeof import('./utils/event-bus')['CASINO_LOBBY_RESET']>
     readonly CHAT_MESSAGE_BUS: UnwrapRef<typeof import('./utils/event-bus')['CHAT_MESSAGE_BUS']>
-    readonly CasinoGameType: UnwrapRef<typeof import('./utils/enums')['CasinoGameType']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly EnumCasinoSortType: UnwrapRef<typeof import('./utils/enums')['EnumCasinoSortType']>
     readonly EnumCurrency: UnwrapRef<typeof import('./utils/enums')['EnumCurrency']>
+    readonly EnumGlobalGameType: UnwrapRef<typeof import('./utils/enums')['EnumGlobalGameType']>
     readonly EnumLanguage: UnwrapRef<typeof import('./utils/enums')['EnumLanguage']>
     readonly EnumOddsChange: UnwrapRef<typeof import('./utils/enums')['EnumOddsChange']>
     readonly EnumRightSidebarContent: UnwrapRef<typeof import('./composables/useRightSidebar')['EnumRightSidebarContent']>
@@ -1138,6 +1140,7 @@ declare module 'vue' {
     readonly useBattery: UnwrapRef<typeof import('@vueuse/core')['useBattery']>
     readonly useBluetooth: UnwrapRef<typeof import('@vueuse/core')['useBluetooth']>
     readonly useBoolean: UnwrapRef<typeof import('./composables/useBoolean')['default']>
+    readonly useBrandBaseDetail: UnwrapRef<typeof import('./composables/useBrandBaseDetail')['useBrandBaseDetail']>
     readonly useBreakpoints: UnwrapRef<typeof import('@vueuse/core')['useBreakpoints']>
     readonly useBroadcastChannel: UnwrapRef<typeof import('@vueuse/core')['useBroadcastChannel']>
     readonly useBrowserLocation: UnwrapRef<typeof import('@vueuse/core')['useBrowserLocation']>
@@ -1519,10 +1522,10 @@ declare module '@vue/runtime-core' {
     readonly CART_TO_SPORTS_BUS: UnwrapRef<typeof import('./utils/event-bus')['CART_TO_SPORTS_BUS']>
     readonly CASINO_LOBBY_RESET: UnwrapRef<typeof import('./utils/event-bus')['CASINO_LOBBY_RESET']>
     readonly CHAT_MESSAGE_BUS: UnwrapRef<typeof import('./utils/event-bus')['CHAT_MESSAGE_BUS']>
-    readonly CasinoGameType: UnwrapRef<typeof import('./utils/enums')['CasinoGameType']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly EnumCasinoSortType: UnwrapRef<typeof import('./utils/enums')['EnumCasinoSortType']>
     readonly EnumCurrency: UnwrapRef<typeof import('./utils/enums')['EnumCurrency']>
+    readonly EnumGlobalGameType: UnwrapRef<typeof import('./utils/enums')['EnumGlobalGameType']>
     readonly EnumLanguage: UnwrapRef<typeof import('./utils/enums')['EnumLanguage']>
     readonly EnumOddsChange: UnwrapRef<typeof import('./utils/enums')['EnumOddsChange']>
     readonly EnumRightSidebarContent: UnwrapRef<typeof import('./composables/useRightSidebar')['EnumRightSidebarContent']>
@@ -1821,6 +1824,7 @@ declare module '@vue/runtime-core' {
     readonly useBattery: UnwrapRef<typeof import('@vueuse/core')['useBattery']>
     readonly useBluetooth: UnwrapRef<typeof import('@vueuse/core')['useBluetooth']>
     readonly useBoolean: UnwrapRef<typeof import('./composables/useBoolean')['default']>
+    readonly useBrandBaseDetail: UnwrapRef<typeof import('./composables/useBrandBaseDetail')['useBrandBaseDetail']>
     readonly useBreakpoints: UnwrapRef<typeof import('@vueuse/core')['useBreakpoints']>
     readonly useBroadcastChannel: UnwrapRef<typeof import('@vueuse/core')['useBroadcastChannel']>
     readonly useBrowserLocation: UnwrapRef<typeof import('@vueuse/core')['useBrowserLocation']>

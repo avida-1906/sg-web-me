@@ -398,12 +398,14 @@ await application.allSettled([awaitHandle()])
         </div>
         <!-- 三方支付存款 -->
         <div v-else class="type-other">
-          <AppWithdrawalDepositType
-            v-if="havePaymentMethod"
-            v-model="currentType"
-            :current-type="paymentMethodData"
-            style="margin-bottom: 12px;"
-          />
+          <BaseLabel label="支付方式" must-small>
+            <AppWithdrawalDepositType
+              v-if="havePaymentMethod"
+              v-model="currentType"
+              :current-type="paymentMethodData"
+              style="margin-bottom: 12px;"
+            />
+          </BaseLabel>
           <div class="other-first">
             <BaseLabel
               v-if="currentTypeItem && currentTypeItem.bank"
@@ -435,16 +437,12 @@ await application.allSettled([awaitHandle()])
                 </div>
               </div>
             </BaseLabel>
-            <BaseLabel
-              v-if="isPaymentDepositBank"
-              :label="`${t('deposit_name')}:`"
-              :label-content="t('deposit_name_tip')"
-            >
+            <BaseLabel v-if="isPaymentDepositBank" must-small :label="t('deposit_name')">
               <BaseInput v-model="depositName" :msg="depositNameError" />
             </BaseLabel>
             <BaseLabel
               v-if="currentAisleItem?.type === 2"
-              :label="`${t('deposit_amount')}: ${activeCurrency.prefix}`"
+              :label="`${t('deposit_amount')} ${activeCurrency.prefix}`"
             >
               <BaseInput
                 ref="amountRef"
@@ -455,10 +453,7 @@ await application.allSettled([awaitHandle()])
                 @blur="formatAmount"
               />
             </BaseLabel>
-            <BaseLabel
-              v-else
-              :label="`${t('deposit_amount')}: ${activeCurrency.prefix}`"
-            >
+            <BaseLabel v-else :label="t('deposit_amount')" must-small>
               <div style="position: relative;">
                 <BaseSelect
                   v-if="fixedAmount && fixedAmount.length"

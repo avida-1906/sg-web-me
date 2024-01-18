@@ -64,7 +64,7 @@ const {
   runAsync: runDetail,
 } = useRequest(() => ApiMemberGameDetail(props.id, props.pid, props.gameId), {
   onSuccess(res) {
-    if (+res.game_type === CasinoGameType.slot)
+    if (+res.game_type === EnumGlobalGameType.slot)
       showTestMode.value = true
 
     currencyList.value = res.currencys

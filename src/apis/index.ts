@@ -829,6 +829,8 @@ export function ApiFinanceWithdraw(data: {
   amount: string
   pay_password: string
   bankcard_id: string
+  auth_type: number
+  auth_code: string
 }) {
   return httpClient.post<string>('/finance/withdraw', data)
 }
@@ -854,6 +856,8 @@ export function ApiFinanceWithdrawCoin(data: {
   wallet_id: string
   amount: string
   pay_password: string
+  auth_type: number
+  auth_code: string
 }) {
   return httpClient.post<string>('/finance/withdraw/coin', data)
 }
@@ -1815,6 +1819,7 @@ export function ApiAgencyCommissionScale() {
         id: string
         /** 1真人 2捕鱼 3电子 4体育 5棋牌 6电竞 */
         model_ids: string
+        ico: string[]
         levels: {
           id: string
           /** 佣金配置ID */

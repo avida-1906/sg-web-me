@@ -21,11 +21,10 @@ const amountRef = ref()
 const password = ref('')
 const passwordRef = ref()
 
+// 获取利率
+const { data: interestConfig, runAsync: runAsyncInterestConfig } = useRequest(ApiMemberInterestGetConfig)
 // 获取安全验证配置
-const {
-  data: authConfig,
-  runAsync: runAsyncMemberAuthConfig,
-} = useRequest(ApiMemberAuthConfig)
+const { isOpenVerify, isSetAuth } = useBrandBaseDetail()
 const {
   value: amount,
   errorMessage: errAmount,
@@ -68,6 +67,13 @@ const updateParams = computed<IMemberBalanceLockerUpdate | null>(() => {
     }
   }
   return null
+})
+// 币种年利率
+const vault = computed(() => {
+  if (interestConfig.value)
+    return interestConfig.value.find(a => a.currency_id.toString() === activeCurrency.value?.cur)?.interest_rate ?? 0
+
+  return 0
 })
 // const getUsRate = computed(() => {
 //   const str: CurrencyCode = activeCurrency.value?.cur
@@ -156,7 +162,7 @@ watch(() => activeTab.value, () => {
   amountRef.value.setTouchFalse()
 })
 
-await application.allSettled([runAsyncMemberAuthConfig()])
+await application.allSettled([runAsyncInterestConfig()])
 </script>
 
 <template>
@@ -175,7 +181,8 @@ await application.allSettled([runAsyncMemberAuthConfig()])
       </div>
       <div class="amount">
         <div class="top">
-          <span class="label">{{ t('amount') }}</span>
+          <span v-show="isDeposit" class="label">{{ t('annual_interest_rate') + t('colon') }}{{ vault }}%</span>
+          <span v-show="!isDeposit" class="label">{{ t('amount') }}</span>
           <!-- <span class="us">US${{ getUsRate }}</span> -->
         </div>
         <BaseInput
@@ -242,8 +249,7 @@ await application.allSettled([runAsyncMemberAuthConfig()])
       </template>
     </div>
     <div class="safe-bottom">
-      <!-- <div v-if="userInfo && userInfo.google_verify !== 2"> -->
-      <template v-if="authConfig?.is_secret !== '1'">
+      <template v-if=" isOpenVerify && !isSetAuth">
         <div>
           {{ t('improve_safe_level') }}
         </div>

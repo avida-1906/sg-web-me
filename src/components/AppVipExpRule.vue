@@ -1,66 +1,96 @@
 <script lang="ts" setup>
+const { t } = useI18n()
 const { getRate } = useExchangeRate()
-const { data } = useRequest(ApiMemberVipMultiple, {
-  manual: false,
-})
-
-const sportMultipleRate = computed(() => {
-  if (!data.value)
-    return 0
-
-  return (+(data.value.find(item => item.game_type === 4)?.rate || 0)).toFixed(0)
-})
-
 const expData = computed(() => {
   return getCurrencyOptions().map((item) => {
     return {
-      coin: item.label,
-      num: '1',
+      currency: item.label,
+      num: '1.00',
       exp: getRate(item.label, 'USDT', 8)?.targetNum || 0,
     }
   })
 })
+
+const { data } = useRequest(ApiMemberVipMultiple, { manual: false })
+const tableData = computed(() => {
+  if (data.value) {
+    return expData.value.map((a) => {
+      const sportsRate = data.value?.find(b => b.game_type === EnumGlobalGameType.sports)?.rate ?? 1
+      const casinoRate = data.value?.find(b => b.game_type === EnumGlobalGameType.casino)?.rate ?? 1
+      const slotRate = data.value?.find(b => b.game_type === EnumGlobalGameType.slot)?.rate ?? 1
+      const fishRate = data.value?.find(b => b.game_type === EnumGlobalGameType.fish)?.rate ?? 1
+      return {
+        ...a,
+        sports: toFixed(+a.exp * +sportsRate, 8).toString().slice(0, 10) + t('integral'),
+        casino: toFixed(+a.exp * +casinoRate, 8).toString().slice(0, 10) + t('integral'),
+        slot: toFixed(+a.exp * +slotRate, 8).toString().slice(0, 10) + t('integral'),
+        fish: toFixed(+a.exp * +fishRate, 8).toString().slice(0, 10) + t('integral'),
+      }
+    })
+  }
+  return []
+})
+
+const column = [
+  {
+    title: t('bet_currency'),
+    slot: 'currency',
+    dataIndex: 'currency',
+    align: 'center',
+  },
+  {
+    title: t('sports_integral'),
+    slot: 'sports',
+    dataIndex: 'sports',
+    align: 'center',
+  },
+  {
+    title: t('casino_integral'),
+    slot: 'casino',
+    dataIndex: 'casino',
+    align: 'center',
+  },
+  {
+    title: t('slot_integral'),
+    slot: 'slot',
+    dataIndex: 'slot',
+    align: 'center',
+  },
+  {
+    title: t('fish_integral'),
+    slot: 'fish',
+    dataIndex: 'fish',
+    align: 'center',
+  },
+]
 </script>
 
 <template>
   <div class="app-vip-exp-rule">
     <div class="rule-title">
-      {{ $t('rule_text_title') }}
+      {{ t('rule_text_title') }}
     </div>
     <div class="rule-text">
-      1.{{ $t('rule_text_one') }}{{ $t('period') }}
+      1.{{ t('rule_text_one') }}{{ $t('period') }}
     </div>
     <div class="rule-text">
-      2.{{ $t('rule_text_two') }}{{ $t('period') }}
+      2.{{ t('rule_text_two') }}{{ $t('period') }}
     </div>
     <div class="rule-text">
-      3.{{ $t('rule_text_three') }}{{ $t('period') }}
+      3.{{ t('rule_text_three') }}{{ $t('period') }}
     </div>
     <div class="rule-text">
-      4.{{ $t('vip_sports_tip_title', { rate: sportMultipleRate }) }}<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;{{ $t('vip_sports_tip_content', { rate: sportMultipleRate }) }}
+      4.{{ t('diff_game_diff_rate') }}
     </div>
-    <ul>
-      <!-- <li class="title">
-        <div class="left">
-          {{ $t('effective_bet') }}
+
+    <BaseTable :columns="column" :data-source="tableData">
+      <template #currency="{ record }">
+        <div class="flex gap-4">
+          {{ record.num }}
+          <AppCurrencyIcon :currency-type="record.currency" />
         </div>
-        <div class="right">
-          VIP{{ $t('game_water_experience') }}
-        </div>
-      </li> -->
-      <li v-for="item in expData" :key="item.coin">
-        <div class="left">
-          {{ item.num + item.coin }}
-        </div>
-        <div class="equal">
-          =
-        </div>
-        <div class="right">
-          {{ item.exp }}VIP{{ $t('integral') }}
-        </div>
-      </li>
-    </ul>
+      </template>
+    </BaseTable>
   </div>
 </template>
 
@@ -81,31 +111,6 @@ const expData = computed(() => {
     font-size: var(--tg-font-size-default);
     line-height: 1.4;
     color: var(--tg-secondary-light);
-  }
-  ul {
-    margin-top: 12px;
-    li {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      text-align: center;
-      .left, .right {
-        width: 45%;
-      }
-      .equal {
-        width: 10%;
-      }
-      // .right {
-      //   // text-align: right;
-      // }
-    }
-    li:nth-child(odd) {
-      background-color: var(--tg-secondary-grey);
-      line-height: 28px;
-    }
-    li:nth-child(even) {
-      line-height: 44px;
-    }
   }
 }
 </style>

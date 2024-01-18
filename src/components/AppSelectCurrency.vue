@@ -169,7 +169,6 @@ onMounted(() => {
         v-model="currentNetwork"
         :options="curContractList"
         popper
-        popper-clazz="select-currency"
       />
     </div>
   </div>
@@ -183,9 +182,9 @@ onMounted(() => {
   --tg-app-dropdown-width: auto;
   --tg-app-select-currency-bg: var(--tg-secondary-dark);
 }
-.select-currency{
+/* .select-currency{
   --tg-base-select-popper-active-color: none;
-}
+} */
 </style>
 
 <style lang="scss" scoped>
@@ -276,17 +275,15 @@ onMounted(() => {
     }
 
     .popper-content {
-        max-height: 20rem;
+        max-height: 300px;
         overflow-y: auto;
         color: var(--tg-popper-color-default);
         font-size: var(--tg-font-size-default);
         font-weight: 500;
         flex: 1;
-
         &::-webkit-scrollbar-thumb {
             background: var(--tg-secondary-light);
         }
-
         .content-row {
             display: flex;
             align-items: center;
