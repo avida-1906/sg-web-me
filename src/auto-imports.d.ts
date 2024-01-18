@@ -448,6 +448,7 @@ declare global {
   const useBattery: typeof import('@vueuse/core')['useBattery']
   const useBluetooth: typeof import('@vueuse/core')['useBluetooth']
   const useBoolean: typeof import('./composables/useBoolean')['default']
+  const useBrandBaseDetail: typeof import('./composables/useBrandBaseDetail')['useBrandBaseDetail']
   const useBreakpoints: typeof import('@vueuse/core')['useBreakpoints']
   const useBroadcastChannel: typeof import('@vueuse/core')['useBroadcastChannel']
   const useBrowserLocation: typeof import('@vueuse/core')['useBrowserLocation']
@@ -1136,6 +1137,7 @@ declare module 'vue' {
     readonly useBattery: UnwrapRef<typeof import('@vueuse/core')['useBattery']>
     readonly useBluetooth: UnwrapRef<typeof import('@vueuse/core')['useBluetooth']>
     readonly useBoolean: UnwrapRef<typeof import('./composables/useBoolean')['default']>
+    readonly useBrandBaseDetail: UnwrapRef<typeof import('./composables/useBrandBaseDetail')['useBrandBaseDetail']>
     readonly useBreakpoints: UnwrapRef<typeof import('@vueuse/core')['useBreakpoints']>
     readonly useBroadcastChannel: UnwrapRef<typeof import('@vueuse/core')['useBroadcastChannel']>
     readonly useBrowserLocation: UnwrapRef<typeof import('@vueuse/core')['useBrowserLocation']>
@@ -1818,6 +1820,7 @@ declare module '@vue/runtime-core' {
     readonly useBattery: UnwrapRef<typeof import('@vueuse/core')['useBattery']>
     readonly useBluetooth: UnwrapRef<typeof import('@vueuse/core')['useBluetooth']>
     readonly useBoolean: UnwrapRef<typeof import('./composables/useBoolean')['default']>
+    readonly useBrandBaseDetail: UnwrapRef<typeof import('./composables/useBrandBaseDetail')['useBrandBaseDetail']>
     readonly useBreakpoints: UnwrapRef<typeof import('@vueuse/core')['useBreakpoints']>
     readonly useBroadcastChannel: UnwrapRef<typeof import('@vueuse/core')['useBroadcastChannel']>
     readonly useBrowserLocation: UnwrapRef<typeof import('@vueuse/core')['useBrowserLocation']>

@@ -1,33 +1,48 @@
 <script setup lang='ts'>
 interface Props {
-  modelValue?: string
+  modelValue: string
+  modelType?: string
+  errPayPwd?: string
+  placeholder?: string
 }
 
 withDefaults(defineProps<Props>(), {
   modelValue: '',
+  placeholder: '',
+  errPayPwd: '',
 })
 
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(['update:modelValue', 'update:modelType'])
 const { t } = useI18n()
-const { selected: pwdType, list: pwdOptions } = useSelect([
-  { label: t('menu_title_settings_update_safepwd'), value: '2' },
-])
-// 获取安全验证配置
 const {
-  data: authConfig,
-  runAsync: runAsyncMemberAuthConfig,
-} = useRequest(ApiMemberAuthConfig, {
-  onSuccess(data) {
-    if (data.is_secret === '1')
-      pwdOptions.value.push({ label: t('double_check_code'), value: '1' })
-  },
+  isSetAuth, isOpenVerify, isOpenPayPwd, isSetPayPwd, brandBaseDetail,
+} = useBrandBaseDetail()
+
+const pwdOptions = computed(() => {
+  const check = brandBaseDetail.value.check
+  const code = { label: t('double_check_code'), value: '1' }
+  const pwd = { label: t('menu_title_settings_update_safepwd'), value: '2' }
+  const teg = []
+  if (check === 3) {
+    isSetPayPwd.value && teg.push(pwd)
+    isSetAuth.value && teg.push(code)
+  }
+  else if (isOpenVerify.value) {
+    teg.push(code)
+  }
+  else if (isOpenPayPwd.value) {
+    teg.push(pwd)
+  }
+  return teg
 })
+
+const passwordRef = ref()
+const pwdType = ref(pwdOptions.value[0]?.value ?? '')
 
 const pwdLabel = computed(() => {
   return pwdOptions.value.find(t => t.value === pwdType.value)?.label
 })
 
-const passwordRef = ref()
 const {
   value: password,
   resetField: resetPassword,
@@ -49,25 +64,22 @@ const getTouchTrue = computed(() => {
 function selectTypeChange(item: string) {
   pwdType.value = item
   resetPassword()
+  emit('update:modelValue', item)
 }
 
 defineExpose({ resetPassword, validatePassword, errPassword, setTouchTrue: getTouchTrue, authType: pwdType })
 
-// onMounted(() => {
-//   defineExpose({ setTouchTrue: passwordRef.value.setTouchTrue })
-// })
-
-await application.allSettled([runAsyncMemberAuthConfig()])
+emit('update:modelType', pwdType.value)
 </script>
 
 <template>
   <div class="password-box">
     <BaseInput
-      ref="passwordRef" v-model="password" :label="pwdLabel" :msg="errPassword" placeholder=""
+      ref="passwordRef" v-model="password" :label="pwdLabel" :msg="errPassword || errPayPwd" :placeholder="placeholder"
       type="password" max="6" must msg-after-touched
       @blur="emit('update:modelValue', password)"
     >
-      <template v-if="authConfig?.is_secret === '1'" #right-button>
+      <template #right-button>
         <BaseSelect
           :model-value="pwdType" popper plain-popper-label :options="pwdOptions"
           @select="selectTypeChange"

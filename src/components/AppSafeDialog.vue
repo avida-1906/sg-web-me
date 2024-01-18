@@ -24,10 +24,7 @@ const passwordRef = ref()
 // 获取利率
 const { data: interestConfig, runAsync: runAsyncInterestConfig } = useRequest(ApiMemberInterestGetConfig)
 // 获取安全验证配置
-const {
-  data: authConfig,
-  runAsync: runAsyncMemberAuthConfig,
-} = useRequest(ApiMemberAuthConfig)
+const { isOpenVerify, isSetAuth } = useBrandBaseDetail()
 const {
   value: amount,
   errorMessage: errAmount,
@@ -165,7 +162,7 @@ watch(() => activeTab.value, () => {
   amountRef.value.setTouchFalse()
 })
 
-await application.allSettled([runAsyncMemberAuthConfig(), runAsyncInterestConfig()])
+await application.allSettled([runAsyncInterestConfig()])
 </script>
 
 <template>
@@ -252,8 +249,7 @@ await application.allSettled([runAsyncMemberAuthConfig(), runAsyncInterestConfig
       </template>
     </div>
     <div class="safe-bottom">
-      <!-- <div v-if="userInfo && userInfo.google_verify !== 2"> -->
-      <template v-if="authConfig?.is_secret !== '1'">
+      <template v-if=" isOpenVerify && !isSetAuth">
         <div>
           {{ t('improve_safe_level') }}
         </div>
