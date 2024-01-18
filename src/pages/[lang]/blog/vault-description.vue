@@ -4,23 +4,8 @@ const { isMobile } = storeToRefs(useWindowStore())
 
 const curType = ref('')
 
-const { data, runAsync } = useRequest(ApiMemberInterestGetConfig, {
-  onSuccess(res) {
-    curType.value = res[0].currency_name
-  },
-})
-const currencyOptions = computed(() => {
-  if (data.value) {
-    return data.value.map((a) => {
-      return {
-        label: a.currency_name,
-        value: a.currency_name,
-        currencyType: a.currency_name,
-      }
-    })
-  }
-  return []
-})
+const { data, runAsync } = useRequest(ApiMemberInterestGetConfig)
+
 const minDepositAmount = computed(() => {
   if (data.value)
     return data.value.find(a => a.currency_name === curType.value)?.min_deposit ?? 0
@@ -32,6 +17,10 @@ const interestRate = computed(() => {
     return data.value.find(a => a.currency_name === curType.value)?.interest_rate ?? 0
   return 0
 })
+
+function changeCurrency(v: any) {
+  curType.value = v.type
+}
 
 await application.allSettled([runAsync()])
 </script>
@@ -51,20 +40,16 @@ await application.allSettled([runAsync()])
     </div>
     <div class="bg-tg-secondary-grey flex items-center justify-between rounded-[4px] px-2 md:px-15">
       <div class="text-tg-secondary-light max-w-160 w-full flex flex-col items-center text-center text-[14px] font-semibold leading-[20px]">
-        <BaseSelect
-          v-model="curType" popper :options="currencyOptions"
-          :style="`--tg-base-select-popper-style-padding-x:0;
-          --tg-base-select-popper-style-padding-y:${isMobile ? '19px' : '17px'};
-          --tg-base-select-popper-bg-color:transparent;--tg-base-select-hover-bg-color:transparent;`"
-          popper-max-height="24em"
-        >
-          <template #label="{ data }">
-            <AppCurrencyIcon show-name :currency-type="data?.value" />
-          </template>
-          <template #option="{ data: { item } }">
-            <AppCurrencyIcon show-name :currency-type="item.value" />
-          </template>
-        </BaseSelect>
+        <AppSelectCurrency
+          :type="4"
+          :show-balance="false"
+          popper-clazz="app-wallet-cur"
+          placeholder="search"
+          :active-currency-list="data ?? []"
+          :style="`--tg-app-select-currency-padding-x:0;--tg-app-select-currency-bg:transparent;
+          --tg-app-select-currency-padding-y:${isMobile ? '19px' : '17px'};`"
+          @change="changeCurrency"
+        />
       </div>
       <div class="text-tg-secondary-light max-w-160 w-full text-center text-[14px] font-semibold leading-[20px]">
         {{ application.numberToLocaleString(+minDepositAmount) }}
