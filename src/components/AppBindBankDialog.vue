@@ -1,24 +1,18 @@
 <script lang="ts" setup>
 import { useForm } from 'vee-validate'
 import * as yup from 'yup'
+import type { CurrencyCode } from '~/composables/useCurrencyData'
 
 interface Props {
   openName: string
-  currencyId: string
+  currencyId: CurrencyCode
   isWithdraw?: boolean
-}
-
-interface IBank {
-  id: string
-  name: string
-  pid: string
-  sortlevel: string
 }
 
 const props = defineProps<Props>()
 
 const { t } = useI18n()
-const currencyId = ref(props.currencyId)
+const currencyId = ref<CurrencyCode>(props.currencyId)
 const auth_type = ref<'1' | '2'>('1')
 // 是否设置为默认地址
 const { bool: isDefaultAddress, setBool: setDefaultAddress } = useBoolean(false)
@@ -68,39 +62,33 @@ const {
 })
 // #endregion
 
-// #region 银行数据
-const {
-  data: bankList,
-  run: runBankTreeList,
-} = useApiMemberTreeList('019001')
-
-const bank_nameOptions = computed(() => {
-  if (!bankList.value)
+// #region 国家和银行数据
+const { data: countryList } = useRequest(ApiMemberBankcardBank, {
+  defaultParams: [{
+    currency_id: currencyId.value,
+  }],
+  manual: false,
+})
+const countryOptions = computed(() => {
+  if (!countryList.value)
     return []
-  return bankList.value.map((item: IBank) => {
+  return countryList.value.map((item) => {
     const temp = {
-      label: item.name,
-      icon: 'fiat-bank',
-      value: item.name,
+      label: item.country_name ? item.country_name : '--',
+      value: item.country_id,
     }
     return temp
   })
 })
-// #endregion
-
-// #region 国家数据
-const {
-  data: countryList,
-  run: runCountryList,
-} = useApiMemberTreeList('006')
-
-const countryOptions = computed(() => {
-  if (!countryList.value)
+const bank_nameOptions = computed(() => {
+  if (!country.value)
     return []
-  return countryList.value.map((item: IBank) => {
+
+  const temp = countryList.value?.find(item => item.country_id === country.value)
+  return (temp?.bank_list ?? []).map((item) => {
     const temp = {
       label: item.name,
-      value: item.id,
+      value: item.name,
     }
     return temp
   })
@@ -130,6 +118,12 @@ const onSubmit = handleSubmit((values) => {
   // resetForm() // 重置表单
 })
 // #endregion
+
+// 默认选中第一个国家
+watch(countryOptions, (val) => {
+  if (val.length)
+    country.value = val[0].value
+})
 </script>
 
 <template>
@@ -137,7 +131,7 @@ const onSubmit = handleSubmit((values) => {
     <form class="border-tg-secondary border rounded-[4px] border-solid" @submit="onSubmit">
       <div class="px-20">
         <div class="border-tg-secondary border-b border-solid pb-15 pt-19 text-[18px] font-[600]">
-          绑定银行卡{{ props.openName }}
+          绑定银行卡
         </div>
       </div>
       <div class="flex gap-14 px-20 pt-14">

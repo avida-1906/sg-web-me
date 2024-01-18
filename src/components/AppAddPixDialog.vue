@@ -9,13 +9,6 @@ interface Props {
   isWithdraw?: boolean
 }
 
-interface IBank {
-  id: string
-  name: string
-  pid: string
-  sortlevel: string
-}
-
 const props = defineProps<Props>()
 
 const { t } = useI18n()
@@ -93,7 +86,7 @@ const bank_nameOptions = computed(() => {
   return (temp?.bank_list ?? []).map((item) => {
     const temp = {
       label: item.name,
-      value: item.id,
+      value: item.name,
     }
     return temp
   })
