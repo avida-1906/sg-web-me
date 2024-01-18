@@ -173,7 +173,7 @@ await application.allSettled([runAsyncWalletBankcardList()])
     </div>
 
     <div class="flex flex-col">
-      <BaseButton size="lg" bg-style="secondary" @click="bind">
+      <BaseButton size="lg" bg-style="secondary" :disabled="bankcardList.length >= 3" @click="bind">
         {{ `${t('label_bind')}${isVirtualCurrency ? t('withdraw_address') : t('withdraw_account')}` }}
       </BaseButton>
     </div>
