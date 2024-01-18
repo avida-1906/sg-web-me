@@ -128,10 +128,6 @@ const onSubmit = handleSubmit((values) => {
     auth_type: +auth_type.value as any,
   })
   // resetForm() // 重置表单
-}, (values, errors, results) => {
-  console.log('表单数据', values)
-  console.log('错误信息', errors)
-  console.log('验证结果', results)
 })
 // #endregion
 </script>
