@@ -5,6 +5,7 @@ export function useDialogBindBank(config: {
   isFirst?: boolean
   openName?: string
   currencyId: string
+  closeDialog?: () => void
 }) {
   const { t } = i18n.global
   const {

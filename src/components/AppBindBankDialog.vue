@@ -2,6 +2,12 @@
 import { useForm } from 'vee-validate'
 import * as yup from 'yup'
 
+interface Props {
+  openName: string
+  currencyId: string
+  isWithdraw?: boolean
+}
+
 interface IBank {
   id: string
   name: string
@@ -9,11 +15,15 @@ interface IBank {
   sortlevel: string
 }
 
+const props = defineProps<Props>()
+
 const { t } = useI18n()
-const currencyId = ref('701')
+const currencyId = ref(props.currencyId)
 const auth_type = ref<'1' | '2'>('1')
 // 是否设置为默认地址
 const { bool: isDefaultAddress, setBool: setDefaultAddress } = useBoolean(false)
+const { openWalletDialog } = useWalletDialog({ activeTab: 'cardHolder' })
+const closeCurDialog = inject('closeDialog', () => {})
 
 // #region 表单验证
 const validationSchema = yup.object({
@@ -52,6 +62,8 @@ const {
       title: t('label_bind'),
       message: t('success_bind'),
     })
+    closeCurDialog()
+    openWalletDialog()
   },
 })
 // #endregion
@@ -129,18 +141,18 @@ const onSubmit = handleSubmit((values) => {
     <form class="border-tg-secondary border rounded-[4px] border-solid" @submit="onSubmit">
       <div class="px-20">
         <div class="border-tg-secondary border-b border-solid pb-15 pt-19 text-[18px] font-[600]">
-          绑定银行卡
+          绑定银行卡{{ props.openName }}
         </div>
       </div>
       <div class="flex gap-14 px-20 pt-14">
         <div class="flex-1">
           <BaseLabel must label="名字">
-            <BaseInput v-model="xing" :msg="xingError" />
+            <BaseInput v-model="ming" :msg="mingError" />
           </BaseLabel>
         </div>
         <div class="flex-1">
           <BaseLabel must label="姓氏">
-            <BaseInput v-model="ming" :msg="mingError" />
+            <BaseInput v-model="xing" :msg="xingError" />
           </BaseLabel>
         </div>
       </div>
