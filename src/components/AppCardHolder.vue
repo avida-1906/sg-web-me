@@ -65,6 +65,7 @@ function toAddPix() {
     icon: 'fiat-pix-title',
     openName,
     isFirst,
+    currencyId: curCode.value,
   })
   closeDialog()
   nextTick(() => openAddPixDialog())

@@ -1,11 +1,14 @@
-<script setup lang='ts'>
+<script lang="ts" setup>
+import { useForm } from 'vee-validate'
+import * as yup from 'yup'
+import type { CurrencyCode } from '~/composables/useCurrencyData'
+
 interface Props {
-  title?: string
-  /** 是否第一次绑定 */
-  isFirst?: boolean
-  /** 户名 */
-  openName?: string
+  openName: string
+  currencyId: CurrencyCode
+  isWithdraw?: boolean
 }
+
 interface IBank {
   id: string
   name: string
@@ -15,61 +18,39 @@ interface IBank {
 
 const props = defineProps<Props>()
 
-const emit = defineEmits(['added'])
-const closeDialog = inject('closeDialog', () => {})
-
 const { t } = useI18n()
+const currencyId = ref<CurrencyCode>(props.currencyId)
+const auth_type = ref<'1' | '2'>('1')
+// 是否设置为默认地址
+const { bool: isDefaultAddress, setBool: setDefaultAddress } = useBoolean(false)
+const { openWalletDialog } = useWalletDialog({ activeTab: 'cardHolder' })
+const closeCurDialog = inject('closeDialog', () => {})
+
+// #region 表单验证
+const validationSchema = yup.object({
+  xing: yup.string().trim().required(t('enter_your_content')),
+  ming: yup.string().trim().required(t('enter_your_content')),
+  country: yup.string().trim().required(t('enter_your_content')),
+  city: yup.string().trim().required(t('enter_your_content')),
+  bank_name: yup.string().trim().required(t('enter_your_content')),
+  bank_account: yup.string().required(t('enter_your_content')).matches(/^[a-zA-Z0-9]{4,30}$/, t('validate_msg_regexp_pix_account')),
+  pay_password: yup.string().trim().required(t('enter_your_content')),
+})
+// #endregion
+
+// #region 表单数据
+const { values, errors, handleSubmit, resetForm } = useForm({ validationSchema })
+const { value: xing, errorMessage: xingError } = useField<string>('xing')
+const { value: ming, errorMessage: mingError } = useField<string>('ming')
+const { value: country, errorMessage: countryError } = useField<string>('country')
+const { value: city, errorMessage: cityError } = useField<string>('city')
+const { value: bank_name, errorMessage: bank_nameError } = useField<string>('bank_name')
+const { value: bank_account, errorMessage: bank_accountError } = useField<number>('bank_account')
+const { value: pay_password, errorMessage: pay_passwordError } = useField<string>('pay_password')
+// #endregion
+
+// #region 请求api
 const { openNotify } = useNotify()
-const { bool: isDefault, setFalse: setIsDefaultFalse } = useBoolean(false)
-
-const {
-  value: firstName,
-  errorMessage: errFirstName,
-  validate: valiFirstName,
-  resetField: resetFirstName,
-} = useField<string>('firstName', (v) => {
-  if (!v || v.trim() === '' || v.trim().length > 20)
-    return t('validate_msg_input_name')
-  return ''
-})
-const {
-  value: lastName,
-  errorMessage: errLastName,
-  validate: valiLastName,
-  resetField: resetLastName,
-} = useField<string>('lastName', (v) => {
-  if (!v || v.trim() === '' || v.trim().length > 20)
-    return t('validate_msg_input_name')
-  return ''
-})
-
-const {
-  value: bankName,
-  errorMessage: banknameError,
-  validate: banknameValidate,
-  resetField: banknameReset,
-} = useField<string>('bankname', (value) => {
-  if (!value)
-    return t('validate_msg_choose_pix_account_type')
-  return ''
-}, { initialValue: t('validate_msg_choose_pix_account_type') })
-const {
-  value: bankAccount,
-  errorMessage: bankaccountError,
-  validate: bankaccountValidate,
-  resetField: bankaccountReset,
-} = useField<string>('bankaccount', (value) => {
-  if (!value)
-    return t('validate_msg_input_third_account')
-  else if (value.length < 4 || value.length > 30)
-    return t('validate_msg_regexp_pix_account')
-  return ''
-})
-const passwordRef = ref()
-const password = ref('')
-
-const { openPayPwdDialog, closePayPwdDialog } = usePayPwdDialog()
-const { data: bankList } = useApiMemberTreeList('019002')
 const {
   run: runBankcardInsert,
   loading: bankcardInsertLoading,
@@ -80,116 +61,139 @@ const {
       title: t('label_bind'),
       message: t('success_bind'),
     })
-    resetFirstName()
-    resetLastName()
-    banknameReset()
-    bankaccountReset()
-    setIsDefaultFalse()
-    closePayPwdDialog()
-    emit('added')
+    closeCurDialog()
+    openWalletDialog()
   },
 })
+// #endregion
 
-const bankSelectOptions = computed(() => {
-  if (!bankList.value)
+// #region 国家和银行数据
+const { data: countryList } = useRequest(ApiMemberBankcardBank, {
+  defaultParams: [{
+    currency_id: currencyId.value,
+  }],
+  manual: false,
+})
+const countryOptions = computed(() => {
+  if (!countryList.value)
     return []
-  return bankList.value.map((item: IBank) => {
+  return countryList.value.map((item) => {
     const temp = {
-      label: item.name,
-      icon: 'fiat-bank',
-      value: item.name,
+      label: item.country_name ? item.country_name : '--',
+      value: item.country_id,
     }
     return temp
   })
 })
+const bank_nameOptions = computed(() => {
+  if (!country.value)
+    return []
 
-const onBindBank = async function () {
-  await valiFirstName()
-  await valiLastName()
-  await banknameValidate()
-  await bankaccountValidate()
-  if (!errFirstName.value && !errLastName.value
-  && !bankaccountError.value) {
-    openPayPwdDialog({
-      runSubmit: (payPassword: string) => {
-        runBankcardInsert({
-          currency_id: '702',
-          bank_name: bankName.value,
-          open_name: props.openName || `${firstName.value},${lastName.value}`,
-          bank_area_cpf: '',
-          bank_account: bankAccount.value,
-          is_default: isDefault.value ? 1 : 2,
-          pay_password: payPassword,
-        })
-      },
-      toPayPwdSet: () => {
-        // callback.value = undefined
-        closeDialog()
-        closePayPwdDialog()
-      },
-      loading: bankcardInsertLoading,
-    })
-  }
-}
+  const temp = countryList.value?.find(item => item.country_id === country.value)
+  return (temp?.bank_list ?? []).map((item) => {
+    const temp = {
+      label: item.name,
+      value: item.id,
+    }
+    return temp
+  })
+})
+// #endregion
+
+// #region 提交表单
+// 3、表单行为===============================================================================
+// 提交表单：验证成功的处理和验证失败的处理
+// 第一个参数：验证成功回调，入参为表单数据
+// 第二个参数：验证失败回调，入参为表单数据、错误信息、验证结果
+// 验证成功后，调用 resetForm()，重置表单
+const onSubmit = handleSubmit((values) => {
+  console.log('发送表单数据', values)
+  runBankcardInsert({
+    currency_id: currencyId.value,
+    open_name: `${values.xing},${values.ming}`,
+    bank_name: values.bank_name,
+    bank_account: values.bank_account,
+    is_default: isDefaultAddress.value ? 1 : 2,
+    pay_password: values.pay_password,
+    country: values.country,
+    city: values.city,
+    address: '',
+    auth_type: +auth_type.value as any,
+  })
+  // resetForm() // 重置表单
+})
+// #endregion
+
+// 默认选中第一个国家
+watch(countryOptions, (val) => {
+  if (val.length)
+    country.value = val[0].value
+})
 </script>
 
 <template>
   <div class="px-16 pb-16">
-    <div class="border-tg-secondary border-[1px] rounded-t-[4px] border-solid px-20 pb-14 pt-19">
-      <div class="text-[18px] font-medium leading-[1.4]">
-        {{ title }}
+    <form class="border-tg-secondary border rounded-[4px] border-solid" @submit="onSubmit">
+      <div class="px-20">
+        <div class="border-tg-secondary border-b border-solid pb-15 pt-19 text-[18px] font-[600]">
+          绑定PIX
+        </div>
       </div>
-      <div class="bg-tg-secondary my-15 h-1 w-full" />
-      <div class="flex flex-col gap-14">
-        <!-- 姓名 -->
-        <div class="flex items-center gap-14">
-          <BaseLabel class="grow" must :label="t('first_name')">
-            <BaseInput v-model="firstName" :msg="errFirstName" />
-          </BaseLabel>
-          <BaseLabel class="grow" must :label="t('last_name')">
-            <BaseInput v-model="lastName" :msg="errLastName" />
+      <div class="flex gap-14 px-20 pt-14">
+        <div class="flex-1">
+          <BaseLabel must label="名字">
+            <BaseInput v-model="ming" :msg="mingError" />
           </BaseLabel>
         </div>
-        <!-- 地区 -->
-        <div class="flex items-center gap-14">
-          <BaseLabel class="grow" must :label="t('country_pls')">
-            <BaseInput />
-          </BaseLabel>
-          <BaseLabel class="grow" must :label="t('city_pls')">
-            <BaseInput />
+        <div class="flex-1">
+          <BaseLabel must label="姓氏">
+            <BaseInput v-model="xing" :msg="xingError" />
           </BaseLabel>
         </div>
-        <BaseSelect
-          v-model="bankName" :label="t('select_pix_type_pls')" :options="bankSelectOptions"
-          must small :msg="banknameError" show-placeholder
-        />
-        <BaseLabel must :label="t('pix_account')">
-          <BaseInput />
+      </div>
+      <div class="flex gap-14 px-20 pt-14">
+        <div class="flex-1">
+          <BaseLabel must label="国家">
+            <BaseSelect v-model="country" small :options="countryOptions" :msg="countryError" />
+          </BaseLabel>
+        </div>
+        <div class="flex-1">
+          <BaseLabel must label="城市">
+            <BaseInput v-model="city" :msg="cityError" />
+          </BaseLabel>
+        </div>
+      </div>
+      <div class="px-20 pt-14">
+        <BaseLabel must label="PIX账号类型">
+          <BaseSelect v-model="bank_name" small :options="bank_nameOptions" :msg="bank_nameError" />
         </BaseLabel>
-        <AppPasswordInput ref="passwordRef" v-model="password" />
-        <div class="flex items-center">
-          <BaseCheckBox v-model="isDefault" />
-          <span class="text-tg-secondary-light leading-[1.4]">{{ t('is_default_addr') }}</span>
+      </div>
+      <div class="px-20 pt-14">
+        <BaseLabel must label="PIX账号">
+          <BaseInput v-model="bank_account" :msg="bank_accountError" />
+        </BaseLabel>
+      </div>
+      <div class="px-20 pt-14">
+        <AppPasswordInput v-model="pay_password" v-model:modelType="auth_type" :err-pay-pwd="pay_passwordError" />
+      </div>
+      <div class="flex items-center px-20 py-14">
+        <BaseCheckBox v-model="isDefaultAddress" />
+        <span class="text-tg-secondary-light cursor-pointer" @click="setDefaultAddress(!isDefaultAddress)">{{ $t('is_default_addr') }}</span>
+      </div>
+      <div class="border-tg-secondary border-t rounded-b-[4px] border-solid px-20 pb-24">
+        <div class="text-tg-secondary-light py-10">
+          {{ $t('check_account_pls') }}
         </div>
+        <BaseButton
+          :loading="bankcardInsertLoading"
+          bg-style="secondary"
+          size="sm"
+          class="min-w-90"
+          origin-type="submit"
+        >
+          {{ $t('label_bind') }}
+        </BaseButton>
       </div>
-    </div>
-    <div class="border-tg-secondary border-[1px] border-t-0 rounded-b-[4px] border-solid px-20 pb-14 pt-10">
-      <div class="text-tg-secondary-light mb-10 leading-[1.4]">
-        {{ t('check_account_pls') }}
-      </div>
-      <BaseButton
-        bg-style="secondary"
-        :loading="bankcardInsertLoading"
-        size="sm"
-        class="min-w-90"
-        @click="onBindBank"
-      >
-        {{ t('label_bind') }}
-      </BaseButton>
-    </div>
+    </form>
   </div>
 </template>
-
-<style lang='scss' scoped>
-
-</style>

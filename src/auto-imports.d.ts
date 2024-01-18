@@ -54,6 +54,7 @@ declare global {
   const ApiMemberBalanceAgency: typeof import('./apis/index')['ApiMemberBalanceAgency']
   const ApiMemberBalanceLocker: typeof import('./apis/index')['ApiMemberBalanceLocker']
   const ApiMemberBalanceLockerUpdate: typeof import('./apis/index')['ApiMemberBalanceLockerUpdate']
+  const ApiMemberBankcardBank: typeof import('./apis/index')['ApiMemberBankcardBank']
   const ApiMemberBankcardDelete: typeof import('./apis/index')['ApiMemberBankcardDelete']
   const ApiMemberBankcardInsert: typeof import('./apis/index')['ApiMemberBankcardInsert']
   const ApiMemberBankcardList: typeof import('./apis/index')['ApiMemberBankcardList']
@@ -747,6 +748,7 @@ declare module 'vue' {
     readonly ApiMemberBalanceAgency: UnwrapRef<typeof import('./apis/index')['ApiMemberBalanceAgency']>
     readonly ApiMemberBalanceLocker: UnwrapRef<typeof import('./apis/index')['ApiMemberBalanceLocker']>
     readonly ApiMemberBalanceLockerUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberBalanceLockerUpdate']>
+    readonly ApiMemberBankcardBank: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardBank']>
     readonly ApiMemberBankcardDelete: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardDelete']>
     readonly ApiMemberBankcardInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardInsert']>
     readonly ApiMemberBankcardList: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardList']>
@@ -1431,6 +1433,7 @@ declare module '@vue/runtime-core' {
     readonly ApiMemberBalanceAgency: UnwrapRef<typeof import('./apis/index')['ApiMemberBalanceAgency']>
     readonly ApiMemberBalanceLocker: UnwrapRef<typeof import('./apis/index')['ApiMemberBalanceLocker']>
     readonly ApiMemberBalanceLockerUpdate: UnwrapRef<typeof import('./apis/index')['ApiMemberBalanceLockerUpdate']>
+    readonly ApiMemberBankcardBank: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardBank']>
     readonly ApiMemberBankcardDelete: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardDelete']>
     readonly ApiMemberBankcardInsert: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardInsert']>
     readonly ApiMemberBankcardList: UnwrapRef<typeof import('./apis/index')['ApiMemberBankcardList']>

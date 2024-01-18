@@ -2238,3 +2238,23 @@ export function ApiMemberVipRebateConfig(params: {
     'rate': string
   }[]>('/member/vip/rebate/config', { params })
 }
+
+/**
+ * 按货币取银行列表 member/bankcard/bank
+ * @see https://console-docs.apipost.cn/preview/972a64ada7e847ea/c00b1160394a31fb?target_id=eda66e11-97ad-409d-b4f1-af753a74f5e2
+ */
+export function ApiMemberBankcardBank(params: {
+  currency_id: CurrencyCode
+}) {
+  return httpClient.get<{
+    country_id: string
+    country_name: string
+    bank_list: {
+      currency_id: CurrencyCode
+      id: string
+      name: string
+      sort_level: string
+      country_id: string
+    }[]
+  }[]>('/member/bankcard/bank', { params })
+}
