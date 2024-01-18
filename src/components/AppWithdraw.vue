@@ -187,7 +187,7 @@ await application.allSettled(
             v-model="address"
             :options="addrOptions"
             :msg="addressMsg"
-            popper small border
+            small popper border
             popper-clazz="app-with"
             style="--tg-base-select-popper-style-padding-y: var(--tg-spacing-9)"
             @focus="addressMsg && resetAddress()"
@@ -255,7 +255,7 @@ await application.allSettled(
           </div> -->
       </div>
       <!-- 虚拟币地址添加 -->
-      <AppVirAddressDialog
+      <AppAddVirAddressDialog
         v-else
         is-withdraw
         :currency-id="activeCurrency.cur"
