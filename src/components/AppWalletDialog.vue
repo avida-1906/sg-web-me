@@ -14,6 +14,9 @@ const closeDialog = inject('closeDialog', () => { })
 const { userInfo } = storeToRefs(useAppStore())
 const { bool: showWallet, setBool: setShowWalletBool } = useBoolean(true)
 const {
+  isSetAuth, isOpenVerify, isOpenPayPwd, isSetPayPwd, brandBaseDetail,
+} = useBrandBaseDetail()
+const {
   data: depositCurrency,
   runAsync: runAsyncDepositCurrency,
 } = useRequest(ApiFinanceDepositCurrency)
@@ -27,13 +30,16 @@ const {
   loading: loadingWithdrawBalance,
 } = useRequest(ApiFinanceWithdrawBalance)
 // 获取安全验证配置
-const { isOpenVerify, isSetAuth } = useBrandBaseDetail()
+// const { isOpenVerify, isSetAuth } = useBrandBaseDetail()
 
 const currentNetwork = ref('')
 const contentRef = ref()
 const distance = ref(6)
 const activeCurrency = ref<CurrencyData | null>()
 const currentTab = ref(props.activeTab)
+const SecuritySafePwd = defineAsyncComponent(() => import('~/pages/[lang]/settings/security-safe-pwd.vue'))
+const SecuritySafeCheck = defineAsyncComponent(() => import('~/pages/[lang]/settings/security-safe-check.vue'))
+const AppEmailVerify = defineAsyncComponent(() => import('~/components/AppEmailVerify.vue'))
 
 const tabList = computed(() => [
   { label: t('deposit'), value: 'deposit' },
@@ -59,6 +65,24 @@ const getActiveCurrency = computed(() => {
     return withdrawCurrency.value
   else
     return []
+})
+
+const getComponent = computed(() => {
+  const check = brandBaseDetail.value?.check
+  if (!isEmailVerify.value && !isCardHolder.value)
+    return AppEmailVerify
+
+  else if (check === 3 && !isSetPayPwd.value && !isSetAuth.value)
+    return SecuritySafePwd
+
+  else if (isOpenVerify.value && !isSetAuth.value)
+    return SecuritySafeCheck
+
+  else if (isOpenPayPwd.value && !isSetPayPwd.value)
+    return SecuritySafePwd
+
+  else
+    return null
 })
 
 function changeCurrency(item: CurrencyData, network: string) {
@@ -96,10 +120,13 @@ await application.allSettled(
 </script>
 
 <template>
-  <div class="app-wallet-dialog">
-    <div ref="contentRef" class="content">
-      <BaseTab v-model="currentTab" :list="tabList" />
-      <template v-if="isEmailVerify">
+  <div v-if="getComponent" class="component-box">
+    <component :is="getComponent" :tip-text="tabList.find((item) => item.value === currentTab)?.label" />
+  </div>
+  <template v-else>
+    <div class="app-wallet-dialog">
+      <div ref="contentRef" class="content">
+        <BaseTab v-model="currentTab" :list="tabList" />
         <AppSelectCurrency
           v-show="showWallet && !isCardHolder && !isExchange"
           :type="4"
@@ -153,41 +180,36 @@ await application.allSettled(
             </template>
           </Suspense>
         </template>
+      </div>
+      <template v-if="isCardHolder">
+        <Suspense timeout="0">
+          <AppCardHolder />
+          <template #fallback>
+            <div class="center dialog-loading-height">
+              <BaseLoading />
+            </div>
+          </template>
+        </Suspense>
       </template>
+      <AppMoneyExchange v-else-if="isExchange" />
     </div>
-    <AppEmailVerify
-      v-if="!isEmailVerify && !isCardHolder"
-      :tip-text="tabList.find((item) => item.value === currentTab)?.label"
-    />
-    <!-- 卡包 -->
-    <template v-if="isCardHolder">
-      <Suspense timeout="0">
-        <AppCardHolder />
-        <template #fallback>
-          <div class="center dialog-loading-height">
-            <BaseLoading />
-          </div>
-        </template>
-      </Suspense>
-    </template>
-    <AppMoneyExchange v-else-if="isExchange" />
-  </div>
-  <div
-    v-if="(isWithdraw || isDeposit || isExchange)
-      && isOpenVerify && !isSetAuth && isEmailVerify"
-    class="safe-bottom"
-  >
-    <div>
-      {{ t('improve_safe_level') }}
-    </div>
-    <BaseButton
-      bg-style="primary"
-      size="md"
-      @click="router.push('/settings/security-safe-check'); closeDialog()"
+    <div
+      v-if="(isWithdraw || isDeposit || isExchange)
+        && isOpenVerify && !isSetAuth"
+      class="safe-bottom"
     >
-      {{ t('turn_on_double_check') }}
-    </BaseButton>
-  </div>
+      <div>
+        {{ t('improve_safe_level') }}
+      </div>
+      <BaseButton
+        bg-style="primary"
+        size="md"
+        @click="router.push('/settings/security-safe-check'); closeDialog()"
+      >
+        {{ t('turn_on_double_check') }}
+      </BaseButton>
+    </div>
+  </template>
 </template>
 
 <style>
@@ -200,6 +222,9 @@ await application.allSettled(
 </style>
 
 <style lang='scss' scoped>
+.component-box{
+  padding: 0 16px 16px;
+}
 .app-wallet-dialog {
   --tg-base-input-style-placeholder-color: var(--tg-text-lightgrey);
   --tg-base-input-style-placeholder-opacity: 1;

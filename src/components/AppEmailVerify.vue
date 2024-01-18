@@ -153,7 +153,7 @@ onMounted(() => {
 <template>
   <div class="tg-settings-general">
     <AppSettingsContentItem
-      :dialog-box="isDialog"
+      :last-one="isDialog"
       :title="t('email_address')" :verified="emailSubmitBtnDisabled"
       :badge="emailVerified" @submit="emailSubmit"
     >
@@ -206,10 +206,11 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .tg-settings-general {
+  // padding: 0 16px 16px;
   .verify-content{
     display: flex;
     flex-direction: column;
-    padding: 0 16px 16px;
+    // padding: 0 16px 16px;
     gap: var(--tg-spacing-16);
     .content-title{
       color:var(--tg-text-white);

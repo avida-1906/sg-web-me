@@ -126,7 +126,7 @@ function numberSubmit() {
   notifyData.value = {
     type: 'phone',
     title: t('success_update_phone'),
-    // eslint-disable-next-line max-len
+
     message: `${t('phone_update_to')} ${areaCodeValueLabel.value} ${paramsData.value.phone}`,
   }
   setPhoneDisabledBtnTrue()

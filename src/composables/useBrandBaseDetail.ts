@@ -14,6 +14,7 @@ export const useBrandBaseDetail = createGlobalState(() => {
 
   const {
     data: authConfig,
+    run: runMemberAuthConfig,
   } = useRequest(ApiMemberAuthConfig, {
     ready: isLogin,
     manual: false,
@@ -43,5 +44,6 @@ export const useBrandBaseDetail = createGlobalState(() => {
     isOpenVerify,
     /** 站点是否开启资金密码 */
     isOpenPayPwd,
+    runMemberAuthConfig,
   }
 })
