@@ -185,6 +185,7 @@ await application.allSettled([
             :options="paymentMethodCoinList"
             :msg="amountError"
             small
+            :show-placeholder="false"
             @select="payMethodCoinselect"
           />
           <!-- <div class="other-aisles scroll-x">
@@ -211,19 +212,15 @@ await application.allSettled([
           />
         </BaseLabel>
         <BaseLabel v-else :label="t('deposit_amount')" must-small>
-          <div style="position: relative;">
-            <BaseSelect
-              v-if="oftenAmount && oftenAmount.length"
-              v-model="amount"
-              :placeholder="t('select_deposit_amount')"
-              :options="oftenAmount"
-              :msg="amountError"
-              small
-            />
-            <div v-if="!amount" class="placeholder-text">
-              {{ t('select_deposit_amount') }}
-            </div>
-          </div>
+          <BaseSelect
+            v-if="oftenAmount && oftenAmount.length"
+            v-model="amount"
+            :placeholder="t('select_deposit_amount')"
+            :options="oftenAmount"
+            :msg="amountError"
+            small
+            show-placeholder
+          />
         </BaseLabel>
         <BaseMoneyKeyboard
           v-if="oftenAmount && oftenAmount.length"
@@ -384,11 +381,6 @@ await application.allSettled([
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-gap:  var(--tg-spacing-12);
-    }
-    .placeholder-text{
-      position: absolute;
-      top: var(--tg-spacing-13);
-      left: var(--tg-spacing-9);
     }
 }
 </style>

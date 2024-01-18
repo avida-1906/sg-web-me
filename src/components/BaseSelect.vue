@@ -23,6 +23,7 @@ interface Props {
   distance?: number
   popperMaxHeight?: string
   showPlaceholder?: boolean
+  placeholder?: string
 }
 const props = withDefaults(defineProps<Props>(), {
   layout: 'vertical',
@@ -39,8 +40,6 @@ const {
 const parent = ref<HTMLElement | null>(null)
 const { width } = useElementSize(parent)
 const { isMobile } = storeToRefs(useWindowStore())
-
-const placeholder = props.modelValue
 
 const error = computed(() => !!props.msg)
 const selectedOption = computed(() =>
@@ -151,12 +150,12 @@ function onPopperOpen() {
             disabled,
             small,
             error,
-            'placeholder-select': modelValue === placeholder,
+            'placeholder-select': showPlaceholder,
           }"
           :disabled="disabled"
           @change="onChange"
         >
-          <option v-if="showPlaceholder" selected disabled :value="placeholder">
+          <option v-if="showPlaceholder" disabled value="">
             {{ placeholder }}
           </option>
           <option
