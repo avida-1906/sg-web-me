@@ -249,7 +249,7 @@ await application.allSettled([runAsyncInterestConfig()])
       </template>
     </div>
     <div class="safe-bottom">
-      <template v-if=" isOpenVerify && !isSetAuth">
+      <template v-if="isOpenVerify && !isSetAuth">
         <div>
           {{ t('improve_safe_level') }}
         </div>

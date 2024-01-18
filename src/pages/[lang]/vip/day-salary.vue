@@ -7,6 +7,7 @@ const route = useRoute()
 const { vip, vipConfigArray } = useVipInfo()
 const { isMobile } = storeToRefs(useWindowStore())
 const { openVipBonusDialog } = useDialogVipBonus()
+const { isLogin } = storeToRefs(useAppStore())
 // const { run: runGetPromoBonus, data: promoBonus } = useRequest(ApiMemberVipBonusAvailable)
 
 // const { openReceiveBonusDialog } = useDialogReceiveBonus(() => {
@@ -121,7 +122,7 @@ const columns = computed<Column[]>(() => [
         </template> -->
       </BaseTable>
       <div v-if="route.path.includes('/vip/')" class="btn-box">
-        <BaseButton class="btn-receive" bg-style="secondary" custom-padding @click="openVipBonusDialog">
+        <BaseButton class="btn-receive" bg-style="secondary" custom-padding :disabled="!isLogin" @click="openVipBonusDialog">
           {{ t('receive_bonus') }}
         </BaseButton>
       </div>

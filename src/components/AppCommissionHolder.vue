@@ -57,7 +57,7 @@ await application.allSettled(
         bg-style="secondary" size="md"
         @click="runTransferToMember"
       >
-        {{ $t('finance_funds_transfer_commission_withdraw') }}
+        {{ $t('transfer_to_wallet') }}
       </BaseButton>
       <div class="holder-tip">
         {{ t('after_transfer_withdraw_money') }}
