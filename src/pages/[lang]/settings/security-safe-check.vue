@@ -3,6 +3,7 @@ const { t } = useI18n()
 usePageTitle({ prefix: t('two_step_verification') })
 const { openNotify } = useNotify()
 const { userInfo } = storeToRefs(useAppStore())
+const { runMemberAuthConfig } = useBrandBaseDetail()
 // const { updateUserInfo } = useAppStore()
 /** 双重验证 */
 const {
@@ -59,11 +60,13 @@ const {
   loading: loadMemberAuthSet,
 } = useRequest(ApiMemberAuthSet, {
   onSuccess() {
+    runMemberAuthConfig()
     runAsyncMemberAuthConfig()
     openNotify({
       type: 'success',
       message: t('success_set_double_check'),
     })
+
     // updateUserInfo()
   },
 })
@@ -73,6 +76,7 @@ const {
   loading: loadMemberAuthClose,
 } = useRequest(ApiMemberAuthClose, {
   onSuccess() {
+    runMemberAuthConfig()
     runAsyncMemberAuthConfig()
     openNotify({
       type: 'success',
