@@ -74,12 +74,12 @@ await application.allSettled([runAsyncModelsList()])
 <template>
   <div class="all-data-page">
     <div class="table-filter">
-      <BaseSquareTab v-if="isMobile" v-model="tab" :list="tabList" />
+      <BaseSquareTab v-if="isMobile" v-model="tab" :list="tabList ?? []" />
       <BaseTab
         v-else
         v-model="tab"
         style="--tg-tab-style-color: var(--tg-text-lightgrey);"
-        :list="tabList"
+        :list="tabList ?? []"
         :center="false"
       />
     </div>

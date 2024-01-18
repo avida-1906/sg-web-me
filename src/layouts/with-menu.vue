@@ -174,13 +174,14 @@ watch(route, () => {
                       /> -->
                       <div
                         class="right"
-                        :class="{ 'is-vip': path.includes('/vip/') }"
+                        :class="{ 'is-vip': path.includes('/vip/'), isMobile }"
                       >
                         <div
                           class="content-container"
                           :class="{
                             'is-vip': path.includes('/vip/'),
                             'no-bg': noBg,
+                            isMobile,
                           }"
                         >
                           <RouterView v-slot="{ Component }">
@@ -320,6 +321,9 @@ watch(route, () => {
         position: relative;
         border-radius: var(--tg-radius-md);
         overflow: hidden;
+        &.isMobile{
+          border-radius: 0;
+        }
         &.is-vip {
           // border-radius: 0;
         }
@@ -336,6 +340,9 @@ watch(route, () => {
           position: relative;
           border-radius: var(--tg-radius-md);
           min-height: 100%;
+          &.isMobile{
+            border-radius: 0;
+          }
           &.is-vip {
             // border-radius: 0;
           }
