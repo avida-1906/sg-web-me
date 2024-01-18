@@ -461,6 +461,11 @@ export function ApiMemberBankcardInsert(data: {
   bank_area_cpf?: string
   is_default?: number
   pay_password: string
+  country: string
+  city: string
+  address: string
+  /** 1:谷歌 2:资金密码 */
+  auth_type: 1 | 2
 }) {
   return httpClient.post<string>('/member/bankcard/insert', data)
 }

@@ -51,6 +51,20 @@ const { value: bank_name, errorMessage: bank_nameError } = useField<string>('ban
 const { value: bank_account, errorMessage: bank_accountError } = useField<number>('bank_account')
 const { value: pay_password, errorMessage: pay_passwordError } = useField<string>('pay_password')
 
+const { openNotify } = useNotify()
+const {
+  run: runBankcardInsert,
+  loading: bankcardInsertLoading,
+} = useRequest(ApiMemberBankcardInsert, {
+  onSuccess() {
+    openNotify({
+      type: 'success',
+      title: t('label_bind'),
+      message: t('success_bind'),
+    })
+  },
+})
+
 // 3、表单行为===============================================================================
 // 提交表单：验证成功的处理和验证失败的处理
 // 第一个参数：验证成功回调，入参为表单数据
