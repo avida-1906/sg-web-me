@@ -131,45 +131,45 @@ watch(countryOptions, (val) => {
     <form class="border-tg-secondary border rounded-[4px] border-solid" @submit="onSubmit">
       <div class="px-20">
         <div class="border-tg-secondary border-b border-solid pb-15 pt-19 text-[18px] font-[600]">
-          绑定银行卡
+          {{ $t('bind_bank_card') }}
         </div>
       </div>
       <div class="flex gap-14 px-20 pt-14">
         <div class="flex-1">
-          <BaseLabel must label="名字">
+          <BaseLabel must :label="$t('first_name')">
             <BaseInput v-model="ming" :msg="mingError" />
           </BaseLabel>
         </div>
         <div class="flex-1">
-          <BaseLabel must label="姓氏">
+          <BaseLabel must :label="$t('last_name')">
             <BaseInput v-model="xing" :msg="xingError" />
           </BaseLabel>
         </div>
       </div>
       <div class="flex gap-14 px-20 pt-14">
         <div class="flex-1">
-          <BaseLabel must label="国家">
+          <BaseLabel must :label="$t('country')">
             <BaseSelect v-model="country" small :options="countryOptions" :msg="countryError" />
           </BaseLabel>
         </div>
         <div class="flex-1">
-          <BaseLabel must label="城市">
+          <BaseLabel must :label="$t('city')">
             <BaseInput v-model="city" :msg="cityError" />
           </BaseLabel>
         </div>
       </div>
       <div class="px-20 pt-14">
-        <BaseLabel must label="银行">
+        <BaseLabel must :label="$t('bank_choose')">
           <BaseSelect v-model="bank_name" small :options="bank_nameOptions" :msg="bank_nameError" />
         </BaseLabel>
       </div>
       <div class="px-20 pt-14">
-        <BaseLabel label="开户行地址">
+        <BaseLabel :label="$t('label_branch_address')">
           <BaseInput v-model="address" :msg="addressError" />
         </BaseLabel>
       </div>
       <div class="px-20 pt-14">
-        <BaseLabel must label="银行卡号">
+        <BaseLabel must :label="$t('label_bank_number')">
           <BaseInput v-model="bank_account" type="number" :msg="bank_accountError" />
         </BaseLabel>
       </div>

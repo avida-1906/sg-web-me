@@ -129,40 +129,40 @@ watch(countryOptions, (val) => {
     <form class="border-tg-secondary border rounded-[4px] border-solid" @submit="onSubmit">
       <div class="px-20">
         <div class="border-tg-secondary border-b border-solid pb-15 pt-19 text-[18px] font-[600]">
-          绑定PIX
+          {{ $t('bind_pix_account') }}
         </div>
       </div>
       <div class="flex gap-14 px-20 pt-14">
         <div class="flex-1">
-          <BaseLabel must label="名字">
+          <BaseLabel must :label="$t('first_name')">
             <BaseInput v-model="ming" :msg="mingError" />
           </BaseLabel>
         </div>
         <div class="flex-1">
-          <BaseLabel must label="姓氏">
+          <BaseLabel must :label="$t('last_name')">
             <BaseInput v-model="xing" :msg="xingError" />
           </BaseLabel>
         </div>
       </div>
       <div class="flex gap-14 px-20 pt-14">
         <div class="flex-1">
-          <BaseLabel must label="国家">
+          <BaseLabel must :label="$t('country')">
             <BaseSelect v-model="country" small :options="countryOptions" :msg="countryError" />
           </BaseLabel>
         </div>
         <div class="flex-1">
-          <BaseLabel must label="城市">
+          <BaseLabel must :label="$t('city')">
             <BaseInput v-model="city" :msg="cityError" />
           </BaseLabel>
         </div>
       </div>
       <div class="px-20 pt-14">
-        <BaseLabel must label="PIX账号类型">
+        <BaseLabel must :label="$t('pix_account_type')">
           <BaseSelect v-model="bank_name" small :options="bank_nameOptions" :msg="bank_nameError" />
         </BaseLabel>
       </div>
       <div class="px-20 pt-14">
-        <BaseLabel must label="PIX账号">
+        <BaseLabel must :label="$t('pix_account')">
           <BaseInput v-model="bank_account" :msg="bank_accountError" />
         </BaseLabel>
       </div>
