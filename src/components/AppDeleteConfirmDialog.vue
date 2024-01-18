@@ -14,9 +14,9 @@ const closeDialog = inject('closeDialog', () => { })
 
 const { t } = useI18n()
 const { openNotify } = useNotify()
-const {
-  getVirContractName,
-} = useCurrencyData()
+
+const passwordRef = ref()
+const password = ref('')
 
 const isBankcard = computed(() => 'bank_name' in props.item)
 const bankcardItem = computed(() => props.item as BankCard)
@@ -24,18 +24,6 @@ const virtualCoinItem = computed(() => props.item as VirtualCoin)
 const api = computed(() =>
   isBankcard.value ? ApiMemberBankcardDelete : ApiMemberWalletDelete,
 )
-
-const {
-  value: password,
-  errorMessage: pwdErrorMsg,
-  validate: validatePassword,
-} = useField<string>('password', (value) => {
-  if (!value)
-    return t('validate_msg_input_pay_pwd')
-  else if (!payPasswordReg.test(value))
-    return t('validate_msg_input_paypwd_6')
-  return ''
-})
 
 function cancel() {
   closeDialog()
@@ -52,9 +40,15 @@ const { run: runDelete } = useRequest(api.value, {
   },
 })
 async function deleteConfirm() {
-  await validatePassword()
-  if (!pwdErrorMsg.value)
-    runDelete({ id: props.item.id, pay_password: password.value })
+  passwordRef.value.setTouchTrue()
+  await passwordRef.value.validatePassword()
+  if (!passwordRef.value.errPassword) {
+    runDelete({
+      id: props.item.id,
+      pay_password: password.value,
+      authType: passwordRef.value.authType,
+    })
+  }
 }
 </script>
 
@@ -76,14 +70,7 @@ async function deleteConfirm() {
       {{ isBankcard ? bankcardItem.bank_account : virtualCoinItem.address }}
     </div>
     <div class="pay-password">
-      <BaseInput
-        v-model="password"
-        :label="t('menu_title_settings_update_safepwd')"
-        :msg="pwdErrorMsg"
-        type="password"
-        max="6"
-        must
-      />
+      <AppPasswordInput ref="passwordRef" v-model="password" />
     </div>
     <div class="btns">
       <BaseButton
