@@ -11,7 +11,7 @@ interface IBank {
 
 const { t } = useI18n()
 const currencyId = ref('701')
-const auth_type = ref<1 | 2>(1)
+const auth_type = ref<'1' | '2'>('1')
 // 是否设置为默认地址
 const { bool: isDefaultAddress, setBool: setDefaultAddress } = useBoolean(false)
 
@@ -105,7 +105,7 @@ const onSubmit = handleSubmit((values) => {
   console.log('发送表单数据', values)
   runBankcardInsert({
     currency_id: currencyId.value,
-    open_name: values.xing + values.ming,
+    open_name: `${values.xing},${values.ming}`,
     bank_name: values.bank_name,
     bank_account: values.bank_account,
     is_default: isDefaultAddress.value ? 1 : 2,
@@ -113,7 +113,7 @@ const onSubmit = handleSubmit((values) => {
     country: values.country,
     city: values.city,
     address: values.address,
-    auth_type: auth_type.value,
+    auth_type: +auth_type.value as any,
   })
   // resetForm() // 重置表单
 }, (values, errors, results) => {
@@ -135,12 +135,12 @@ const onSubmit = handleSubmit((values) => {
       <div class="flex gap-14 px-20 pt-14">
         <div class="flex-1">
           <BaseLabel must label="名字">
-            <BaseInput v-model="xing" placeholder="请输入开户人名字" :msg="xingError" />
+            <BaseInput v-model="xing" :msg="xingError" />
           </BaseLabel>
         </div>
         <div class="flex-1">
           <BaseLabel must label="姓氏">
-            <BaseInput v-model="ming" placeholder="请输入开户人姓" :msg="mingError" />
+            <BaseInput v-model="ming" :msg="mingError" />
           </BaseLabel>
         </div>
       </div>
@@ -152,7 +152,7 @@ const onSubmit = handleSubmit((values) => {
         </div>
         <div class="flex-1">
           <BaseLabel must label="城市">
-            <BaseInput v-model="city" placeholder="请填写城市" :msg="cityError" />
+            <BaseInput v-model="city" :msg="cityError" />
           </BaseLabel>
         </div>
       </div>
@@ -163,17 +163,17 @@ const onSubmit = handleSubmit((values) => {
       </div>
       <div class="px-20 pt-14">
         <BaseLabel label="开户行地址">
-          <BaseInput v-model="address" placeholder="请填写开户行地址" :msg="addressError" />
+          <BaseInput v-model="address" :msg="addressError" />
         </BaseLabel>
       </div>
       <div class="px-20 pt-14">
         <BaseLabel must label="银行卡号">
-          <BaseInput v-model="bank_account" placeholder="请输入银行卡号" :msg="bank_accountError" />
+          <BaseInput v-model="bank_account" :msg="bank_accountError" />
         </BaseLabel>
       </div>
       <div class="px-20 pt-14">
-        <AppPasswordInput v-model="pay_password" :err-pay-pwd="pay_passwordError" />
-        {{ pay_passwordError }}
+        <AppPasswordInput v-model="pay_password" v-model:modelType="auth_type" :err-pay-pwd="pay_passwordError" />
+        {{ auth_type }}
       </div>
       <div class="flex items-center px-20 py-14">
         <BaseCheckBox v-model="isDefaultAddress" />
