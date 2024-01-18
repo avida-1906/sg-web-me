@@ -376,15 +376,17 @@ export enum PromoTransactionType {
 }
 
 /**
- * 娱乐城游戏枚举
+ * 游戏类型枚举
  */
-export enum CasinoGameType {
+export enum EnumGlobalGameType {
   /** 真人 */
   'casino' = 1,
   /** 捕鱼 */
   'fish' = 2,
   /** 电子 */
   'slot' = 3,
+  /** 体育 */
+  'sports' = 4,
 }
 
 /**
