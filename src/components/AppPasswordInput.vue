@@ -37,7 +37,7 @@ const pwdOptions = computed(() => {
 })
 
 const passwordRef = ref()
-const pwdType = ref(pwdOptions.value[0]?.value ?? '')
+const pwdType = ref('')
 
 const pwdLabel = computed(() => {
   return pwdOptions.value.find(t => t.value === pwdType.value)?.label
@@ -67,9 +67,12 @@ function selectTypeChange(item: string) {
   emit('update:modelValue', item)
 }
 
-defineExpose({ resetPassword, validatePassword, errPassword, setTouchTrue: getTouchTrue, authType: pwdType })
+watch(() => pwdOptions.value, () => {
+  pwdType.value = pwdOptions.value[0]?.value ?? ''
+  emit('update:modelType', pwdType.value)
+}, { immediate: true })
 
-emit('update:modelType', pwdType.value)
+defineExpose({ resetPassword, validatePassword, errPassword, setTouchTrue: getTouchTrue, authType: pwdType })
 </script>
 
 <template>
