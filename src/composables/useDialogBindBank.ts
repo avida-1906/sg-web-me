@@ -2,7 +2,7 @@ import AppBindBankDialog from '~/components/AppBindBankDialog.vue'
 
 export function useDialogBindBank() {
   const { t } = useI18n()
-  const title = computed(() => t('bind_bank_card'))
+  const title = computed(() => t('wallet'))
   const {
     openDialog: openBindBankDialog,
     closeDialog: closeBindBankDialog,

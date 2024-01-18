@@ -127,25 +127,34 @@ const onSubmit = handleSubmit((values) => {
 <template>
   <div class="px-16 pb-16">
     <form class="border-tg-secondary border rounded-[4px] border-solid" @submit="onSubmit">
-      <div class="px-20 pt-14">
-        <BaseLabel must label="名字">
-          <BaseInput v-model="xing" placeholder="请输入开户人名字" :msg="xingError" />
-        </BaseLabel>
+      <div class="px-20">
+        <div class="border-tg-secondary border-b border-solid pb-15 pt-19 text-[18px] font-[600]">
+          绑定银行卡
+        </div>
       </div>
-      <div class="px-20 pt-14">
-        <BaseLabel must label="姓氏">
-          <BaseInput v-model="ming" placeholder="请输入开户人姓" :msg="mingError" />
-        </BaseLabel>
+      <div class="flex gap-14 px-20 pt-14">
+        <div class="flex-1">
+          <BaseLabel must label="名字">
+            <BaseInput v-model="xing" placeholder="请输入开户人名字" :msg="xingError" />
+          </BaseLabel>
+        </div>
+        <div class="flex-1">
+          <BaseLabel must label="姓氏">
+            <BaseInput v-model="ming" placeholder="请输入开户人姓" :msg="mingError" />
+          </BaseLabel>
+        </div>
       </div>
-      <div class="px-20 pt-14">
-        <BaseLabel must label="国家">
-          <BaseSelect v-model="country" small :options="countryOptions" :msg="countryError" />
-        </BaseLabel>
-      </div>
-      <div class="px-20 pt-14">
-        <BaseLabel must label="城市">
-          <BaseInput v-model="city" placeholder="请填写城市" :msg="cityError" />
-        </BaseLabel>
+      <div class="flex gap-14 px-20 pt-14">
+        <div class="flex-1">
+          <BaseLabel must label="国家">
+            <BaseSelect v-model="country" small :options="countryOptions" :msg="countryError" />
+          </BaseLabel>
+        </div>
+        <div class="flex-1">
+          <BaseLabel must label="城市">
+            <BaseInput v-model="city" placeholder="请填写城市" :msg="cityError" />
+          </BaseLabel>
+        </div>
       </div>
       <div class="px-20 pt-14">
         <BaseLabel must label="银行">
@@ -163,10 +172,8 @@ const onSubmit = handleSubmit((values) => {
         </BaseLabel>
       </div>
       <div class="px-20 pt-14">
-        <AppPasswordInput v-model="pay_password" />
-        <p v-if="pay_passwordError">
-          {{ pay_passwordError }}
-        </p>
+        <AppPasswordInput v-model="pay_password" :err-pay-pwd="pay_passwordError" />
+        {{ pay_passwordError }}
       </div>
       <div class="flex items-center px-20 py-14">
         <BaseCheckBox v-model="isDefaultAddress" />

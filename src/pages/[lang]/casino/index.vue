@@ -159,9 +159,9 @@ await application.allSettled([runMemberNoticeAllList(), loadIcon()])
 
 <template>
   <div class="layout-spacing">
-    <!-- <BaseButton @click="openBindBankDialog">
+    <BaseButton @click="openBindBankDialog">
       打开绑定银行卡
-    </BaseButton> -->
+    </BaseButton>
     <AppBanner type="casino" />
     <!-- <AppMarquee /> -->
     <div v-if="!isMobile" class="tg-mt-24">
