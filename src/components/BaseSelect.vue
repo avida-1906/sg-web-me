@@ -150,7 +150,7 @@ function onPopperOpen() {
             disabled,
             small,
             error,
-            'placeholder-select': showPlaceholder,
+            'placeholder-select': showPlaceholder && !modelValue,
           }"
           :disabled="disabled"
           @change="onChange"

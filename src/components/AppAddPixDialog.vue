@@ -52,7 +52,7 @@ const {
   if (!value)
     return t('validate_msg_choose_pix_account_type')
   return ''
-}, { initialValue: t('validate_msg_choose_pix_account_type') })
+})
 const {
   value: bankAccount,
   errorMessage: bankaccountError,
@@ -161,7 +161,7 @@ const onBindBank = async function () {
         </div>
         <BaseSelect
           v-model="bankName" :label="t('select_pix_type_pls')" :options="bankSelectOptions"
-          must small :msg="banknameError" show-placeholder
+          must small :msg="banknameError" show-placeholder :placeholder="t('select_pix_type_pls')"
         />
         <BaseLabel must :label="t('pix_account')">
           <BaseInput />

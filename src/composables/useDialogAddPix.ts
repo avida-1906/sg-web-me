@@ -1,4 +1,4 @@
-import AppAddPix from '~/components/AppAddPix.vue'
+import AppAddPixDialog from '~/components/AppAddPixDialog.vue'
 
 export function useDialogAddPix(params: {
   title: string
@@ -11,7 +11,7 @@ export function useDialogAddPix(params: {
     closeDialog: closeAddPixDialog,
   } = useDialog({
     icon: params.icon,
-    default: () => h(AppAddPix, {
+    default: () => h(AppAddPixDialog, {
       openName: params.openName,
       isFirst: params.isFirst,
       title: params.title,

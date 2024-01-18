@@ -665,6 +665,7 @@ export function ApiMemberFrontLoginLogList(params?: {
 export function ApiMemberWalletDelete(data: {
   id: string
   pay_password: string
+  authType: string
 }) {
   return httpClient.post<string>('/member/wallet/delete', data)
 }
@@ -676,6 +677,7 @@ export function ApiMemberWalletDelete(data: {
 export function ApiMemberBankcardDelete(data: {
   id: string
   pay_password: string
+  authType: string
 }) {
   return httpClient.post<string>('/member/bankcard/delete', data)
 }
