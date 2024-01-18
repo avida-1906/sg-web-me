@@ -333,7 +333,7 @@ watch(route, () => {
           }
         }
         .content-container {
-          color: var(--tg-border-color-grey);
+          color: var(--tg-secondary-light);
           background: var(--tg-secondary-dark);
           padding: var(--tg-spacing-12);
           overflow: hidden;
