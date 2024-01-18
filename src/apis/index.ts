@@ -494,6 +494,7 @@ export function ApiMemberWalletInsert(data: {
   is_default?: number
   /** 资金密码 */
   pay_password: string
+  auth_type: number
 }) {
   return httpClient.post<string>('/member/wallet/insert', data)
 }
@@ -665,7 +666,7 @@ export function ApiMemberFrontLoginLogList(params?: {
 export function ApiMemberWalletDelete(data: {
   id: string
   pay_password: string
-  authType: string
+  auth_type: number
 }) {
   return httpClient.post<string>('/member/wallet/delete', data)
 }
@@ -677,7 +678,7 @@ export function ApiMemberWalletDelete(data: {
 export function ApiMemberBankcardDelete(data: {
   id: string
   pay_password: string
-  authType: string
+  auth_type: number
 }) {
   return httpClient.post<string>('/member/bankcard/delete', data)
 }

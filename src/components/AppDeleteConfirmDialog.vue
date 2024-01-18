@@ -46,7 +46,7 @@ async function deleteConfirm() {
     runDelete({
       id: props.item.id,
       pay_password: password.value,
-      authType: passwordRef.value.authType,
+      auth_type: Number(passwordRef.value.authType),
     })
   }
 }
